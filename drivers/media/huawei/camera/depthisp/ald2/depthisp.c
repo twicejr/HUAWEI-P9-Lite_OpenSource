@@ -708,7 +708,7 @@ EXPORT_SYMBOL(disp_flush_reg);
 
 static void disp_msleep(unsigned int ms)
 {
-	ktime_t wait = ns_to_ktime(ms * 1000 * 1000);
+	ktime_t wait = ns_to_ktime((u64)ms * 1000 * 1000);
 	set_current_state(TASK_UNINTERRUPTIBLE);
 	schedule_hrtimeout(&wait, HRTIMER_MODE_REL);
 }

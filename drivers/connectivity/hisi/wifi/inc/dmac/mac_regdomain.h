@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : mac_regdomain.h
-  版 本 号   : 初稿
-  作    者   : zhangheng
-  生成日期   : 2013年9月18日
-  最近修改   :
-  功能描述   : mac_regdomain.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年9月18日
-    作    者   : zhangheng
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __MAC_REGDOMAIN_H__
 #define __MAC_REGDOMAIN_H__
@@ -263,41 +246,13 @@ extern mac_regclass_info_stru* mac_get_channel_num_rc_info(oal_uint8 uc_band, oa
 extern oal_uint32  mac_regdomain_set_max_power(oal_uint8 uc_pwr, oal_bool_enum_uint8 en_exceed_reg);
 
 
-/*****************************************************************************
- 函 数 名  : mac_get_band_by_channel_num
- 功能描述  : 通过信道号找到频段，由调用者保证输入的信道号合法，从而降低本接口的复杂性，提高效率
- 输入参数  : oal_uint8 uc_channel_num
- 输出参数  : 无
- 返 回 值  : wlan_channel_band_enum_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月31日
-    作    者   : l00279018
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE wlan_channel_band_enum_uint8 mac_get_band_by_channel_num(oal_uint8 uc_channel_num)
 {
     return ((uc_channel_num > MAX_CHANNEL_NUM_FREQ_2G) ? WLAN_BAND_5G : WLAN_BAND_2G);
 }
 
-/*****************************************************************************
- 函 数 名  : mac_is_ch_supp_in_regclass
- 功能描述  : 判断信道是否被管制类支持
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月22日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_bool_enum_uint8 mac_is_ch_supp_in_regclass(mac_regclass_info_stru *pst_rc_info, oal_uint8 uc_freq, oal_uint8 uc_ch_idx)
 {
 
@@ -319,21 +274,7 @@ OAL_STATIC OAL_INLINE oal_bool_enum_uint8 mac_is_ch_supp_in_regclass(mac_regclas
     return OAL_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_get_num_supp_channel
- 功能描述  : 获取当前频段所支持的最大信道数目
- 输入参数  : en_band: 频段
- 输出参数  : 无
- 返 回 值  : 当前频段所支持的最大信道数目
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月12日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint8  mac_get_num_supp_channel(wlan_channel_band_enum_uint8 en_band)
 {
     switch (en_band)
@@ -349,21 +290,7 @@ OAL_STATIC OAL_INLINE oal_uint8  mac_get_num_supp_channel(wlan_channel_band_enum
     }
 }
 
-/*****************************************************************************
- 函 数 名  : mac_get_sec_ch_idx_offset
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月29日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint8  mac_get_sec_ch_idx_offset(wlan_channel_band_enum_uint8 en_band)
 {
     switch (en_band)
@@ -379,21 +306,7 @@ OAL_STATIC OAL_INLINE oal_uint8  mac_get_sec_ch_idx_offset(wlan_channel_band_enu
     }
 }
 
-/*****************************************************************************
- 函 数 名  : mac_get_affected_ch_idx_offset
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月29日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint8  mac_get_affected_ch_idx_offset(wlan_channel_band_enum_uint8 en_band)
 {
     switch (en_band)
@@ -409,22 +322,7 @@ OAL_STATIC OAL_INLINE oal_uint8  mac_get_affected_ch_idx_offset(wlan_channel_ban
     }
 }
 
-/*****************************************************************************
- 函 数 名  : mac_is_rc_dfs_req
- 功能描述  : 根据国家码和管制域判断该信道是否为DFS信道
- 输入参数  : pst_rc_info: 管制域指针
- 输出参数  : 无
- 返 回 值  : OAL_TRUE : 是DFS信道
-             OAL_FALSE: 不是DFS信道
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月16日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_bool_enum_uint8  mac_is_rc_dfs_req(mac_regclass_info_stru *pst_rc_info)
 {
     if (0 == (pst_rc_info->uc_behaviour_bmap & MAC_RC_DFS))
@@ -435,23 +333,7 @@ OAL_STATIC OAL_INLINE oal_bool_enum_uint8  mac_is_rc_dfs_req(mac_regclass_info_s
     return OAL_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_is_ch_in_radar_band
- 功能描述  : 判断某条信道是否为DFS信道
- 输入参数  : en_band    : 工作频带
-             uc_chan_idx: 信道索引
- 输出参数  : 无
- 返 回 值  : OAL_TRUE : 是DFS信道
-             OAL_FALSE: 不是DFS信道
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月16日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_bool_enum_uint8  mac_is_ch_in_radar_band(mac_rc_start_freq_enum_uint8 en_band, oal_uint8 uc_chan_idx)
 {
     mac_regclass_info_stru   *pst_rc_info;

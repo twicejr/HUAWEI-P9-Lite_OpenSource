@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : BST_IP_SocketClone.c
-  版 本 号   : 初稿
-  作    者   : D00173029
-  生成日期   : 2014年4月16日
-  最近修改   :
-  功能描述   : 这个文件实现了复制SOCKET所使用的函数
-  函数列表   :
-
-  修改历史   :
-  1.日    期 : 2014年04月16日
-    作    者 : d00173029
-    修改内容 : 创建文件
-******************************************************************************/
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -52,21 +35,7 @@ extern "C" {
    5 函数实现
 ******************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : BST_IP_IsInPcbSet
- 功能描述  :
- 输入参数  : tcp_pcb *pstPcb
-             tcp_pcb *pstPcbSet
- 输出参数  : 无
- 返 回 值  : BST_FALSE 成功
-             BST_TRUE  失败
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : l00242755
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_STATIC BST_UINT32 BST_IP_IsInPcbSet( const struct tcp_pcb *pstPcb, const struct tcp_pcb *pstPcbSet )
 {
     const struct tcp_pcb               *pstTmpPcbSet;
@@ -99,22 +68,7 @@ BST_STATIC BST_UINT32 BST_IP_IsInPcbSet( const struct tcp_pcb *pstPcb, const str
     }
 }
 
-/*****************************************************************************
- 函 数 名  : BST_IP_TcpCloneConn
- 功能描述  : 克隆一个TCP连接
- 输入参数  : tcp_pcb *pstPcb
-             ip_addr *pstIpAddr
-             tcp_connected_fn connected
-             BST_UINT16 port
- 输出参数  : 无
- 返 回 值  : 返回成功或出错信息
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月12日
-      作    者   : l00242755
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_IP_ERR_T BST_IP_TcpCloneConn( struct tcp_pcb *pstPcb, struct  ip_addr *pstIpAddr, tcp_connected_fn connected, BST_UINT16 port )
 {
     err_t                               ret;
@@ -186,20 +140,7 @@ BST_IP_ERR_T BST_IP_TcpCloneConn( struct tcp_pcb *pstPcb, struct  ip_addr *pstIp
     return BST_IP_ERR_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_IP_ApiRecordTcpProperty
- 功能描述  : 记录TCP的属性
- 输入参数  : BST_IP_PKT_ID_T stPktId
-             tcp_pcb *pstPcb
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月12日
-      作    者   : l00242755
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID  BST_IP_ApiRecordTcpProperty(
     BST_IP_PKT_ID_T             stPktId,
     struct tcp_pcb             *pstPcb )
@@ -233,20 +174,7 @@ BST_VOID  BST_IP_ApiRecordTcpProperty(
     BST_IP_ReadFromPcbPropertey( &( pstPktLstMem->stCurrentSktProperty ), pstPcb );
 }
 
-/*****************************************************************************
- 函 数 名  : BST_IP_ApiRecordTcpProperty
- 功能描述  : 设置TCP的属性
- 输入参数  : tcp_pcb *pstPcb
-             BST_IP_SKT_PROPTY_STRU *pstCurrentProperty
- 输出参数  : 返回出错类型
- 返 回 值  : BST_NO_ERROR_MSG
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月12日
-      作    者   : l00242755
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_IP_ApiSetTcpPcbProperty(
     struct tcp_pcb                 *pstPcb,
     BST_IP_SKT_PROPTY_STRU         *pstCurrentProperty,
@@ -307,20 +235,7 @@ BST_ERR_ENUM_UINT8 BST_IP_ApiSetTcpPcbProperty(
     return BST_NO_ERROR_MSG;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_IP_ApiGetTcpPcbProperty
- 功能描述  : 根据同步的发起方，从相应的AP或协议栈获得TCP的属性
- 输入参数  : tcp_pcb *pstPcb
-             BST_IP_SKT_PROPTY_STRU *pstCurrentProperty
- 输出参数  : 返回出错类型
- 返 回 值  : BST_ERR_ENUM_UINT8
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月12日
-      作    者   : l00242755
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8  BST_IP_ApiGetTcpPcbProperty(
     struct tcp_pcb             *pstPcb,
     BST_IP_SKT_PROPTY_STRU     *pstCurrentProperty,
@@ -397,20 +312,7 @@ BST_ERR_ENUM_UINT8  BST_IP_ApiGetTcpPcbProperty(
     return BST_NO_ERROR_MSG;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_IP_ApiDropTcpPcb
- 功能描述  :
- 输入参数  : tcp_pcb *pstPcb
-             BST_UINT32 ulBeRmv
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年09月02日
-      作    者   : z00220931
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_IP_ApiDropTcpPcb( struct tcp_pcb *pstPcb )
 {
     if ( BST_NULL_PTR == pstPcb )
@@ -438,19 +340,7 @@ BST_VOID BST_IP_ApiDropTcpPcb( struct tcp_pcb *pstPcb )
     memp_free( MEMP_TCP_PCB, pstPcb );
 }
 
-/*****************************************************************************
- 函 数 名  : BST_IP_ApiResetTcpPcb
- 功能描述  : 重置Tcp pcb的状态
- 输入参数  : tcp_pcb *pstPcb
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年9月20日
-      作    者   : l00231445
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_IP_ApiResetTcpPcb( struct tcp_pcb *pstPcb )
 {
     if ( BST_NULL_PTR == pstPcb )

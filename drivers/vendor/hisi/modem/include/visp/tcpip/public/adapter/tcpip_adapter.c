@@ -1,38 +1,4 @@
-/*******************************************************************************
-*
-*
-*                Copyright 2006, Huawei Technologies Co. Ltd.
-*                            ALL RIGHTS RESERVED
-*
-*-------------------------------------------------------------------------------
-*
-*                              tcpip_adapter.c
-*
-*  Project Code: VISPV100R005
-*   Module Name: PUBLIC
-*  Date Created: 2005-5-12
-*        Author: zhang hong yan(19316)
-*   Description: VISP适配代码文件
-*
-*-------------------------------------------------------------------------------
-*  Modification History
-*  DATE        NAME             DESCRIPTION
-*  -----------------------------------------------------------------------------
-*  2005-5-12  zhang hong yan(19316)  Creat the first version.
-*  2006-4-27  wang xin(03278)        根据编程规范，对文件进行规范化整理
-*  2006-5-10  X36317                 为支持ARM CPU字节对齐特性所做代码修改.
-*  2006-5-22  X36317                 为消除PC-LINT告警而做的代码修改.
-*  2006-6-20  X36317                 第二阶段代码质量改进.
-*  2008-10-31  liangjicheng          V1R7C02发布
-                                    增加新模块初始化
-                                    1)DCLBase     2)OSPF       3)RIP
-                                    4)IPOA        5)BFDEXT     6)RTP
-                                    7)VLINK       8)VLAN
-*  2008-11-10  liangjicheng        根据检视意见整理
-*  2009-01-14  liangjicheng        非组件可剪裁模块初始化
-*  2008-03-03  liangjicheng        BC3D01254 删除RTP模块
-*
-*******************************************************************************/
+
 
 /*
 一、可裁减特性适配说明
@@ -631,14 +597,12 @@ VOID TCPIP_RegAllAppInfo()
 #endif
 
 /* IPOA Init should after am4 */
-/*Begin BC3D01674 【IPOA】ATM接口shutdown后操作undoshudown，不能正常UP 09-07-15 l00147446*/
 #if(TCPIP_COMP_REGISTER_IPOA == VRP_YES)
             {
                 extern VOID IPoA_Init( VOID );
                 (VOID)IPoA_Init();
             }
 #endif
-/*End BC3D01674 【IPOA】ATM接口shutdown后操作undoshudown，不能正常UP 09-07-15 l00147446*/
 
 #if(TCPIP_COMP_REGISTER_VLAN == VRP_YES)
             {
@@ -687,10 +651,8 @@ VOID TCPIP_RegAllAppInfo()
 /*OSPF NSR依赖NSR特性是否被裁减，如果NSR被裁减，OSPF NSR也不生效*/
 #if (TCPIP_COMP_REGISTER_NSR == VRP_YES)
   {
-      /*Added by guojianjun178934, 【检视发现问题】消除PCLint告警和Coverity告警, 2013/11/13   问题单号:DTS2013111304976 */
       extern VOID NSR_OSPF_Adapt_Init();
       NSR_OSPF_Adapt_Init();
-      /* End of Added by guojianjun178934, 2013/11/13   问题单号:DTS2013111304976 */
   }
 #endif
 
@@ -977,21 +939,17 @@ ULONG VISP_InitTCPIPStack()
     /*TCPIP_Set_PreConfigPara(TCP4_CFG_NEED_CACHE, xxx);    */   /*配置TCP是否缓存下一跳和出接口信息*/
     /*TCPIP_Set_PreConfigPara(SKT_TASK_SOCK_PRIO, xxx);     */   /*配置VISP SockRun任务优先级*/
     /*TCPIP_Set_PreConfigPara(xxx, xxx);                    */   /*其他*/
-    /*消除VISP外部构建PC-Lint告警 l48923 2006-05-10*/
     (VOID)TCPIP_Set_PreConfigPara(SKT_TASK_SOCK_PRIO, 175);   /*配置VISP SockRun任务优先级与SYSPRI相同,为175*/
 
     (VOID)TCPIP_Set_PreConfigPara(PTP_IPV6_ENABLE, 1);
     (VOID)TCPIP_Set_PreConfigPara(SYNCE_DEFAULT_QL, 8); /*默认值SSU-B*/
 
-    /*Added by guojianjun178934, 【检视发现问题】消除PCLint告警和Coverity告警, 2013/11/25   问题单号:DTS2013111304976 */
     /*取消NSR相关预配置宏,但定义暂时保留*/
-    /* End of Added by guojianjun178934, 2013/11/25   问题单号:DTS2013111304976 */
     
     /***********************************************************************************
     Step3：
     启动VISP协议栈。
     ***********************************************************************************/
-    /*消除VISP外部构建PC-Lint告警 l48923 2006-05-10*/
     if (TCPIP_SystemEntry() != VOS_OK)
     {
         return VOS_ERR;

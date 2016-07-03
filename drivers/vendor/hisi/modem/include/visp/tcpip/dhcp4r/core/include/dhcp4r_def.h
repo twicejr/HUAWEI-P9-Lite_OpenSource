@@ -104,7 +104,6 @@ enum enDHCPTxRx
     DHCP_TO_CLIENT,         /* 2 向client发送 */
     DHCP_FROM_SERVER,       /* 3 从server接收 */
     DHCP_TO_SERVER,         /* 4 向server发送 */
-    /* Add by y00176567/z00171897, at 2011-06-28. 修改原因: 支持UTRP自启动 */
     DHCP_TO_RELAY,         /* 5 二级Relay */
 };
 
@@ -133,7 +132,6 @@ enum enDHCPERRPKTTYPE
     DHCP4R_BD_MSG,
     /* 定义ulAdd82TooLongPkt报文统计类型0x17 */
     DHCP4R_ATL_MSG,
-    /* Add by y00176567/z00171897, at 2011-06-28. 修改原因: 支持UTRP自启动 */
     /* 定义二级Relay报文统计类型0x18 */
     DHCP4R_TXR_MSG,
 };

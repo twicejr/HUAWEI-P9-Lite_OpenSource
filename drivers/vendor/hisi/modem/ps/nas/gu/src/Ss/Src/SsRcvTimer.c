@@ -1,17 +1,4 @@
-/*******************************************************************************
-  Copyright    : 2005-2007, Huawei Tech. Co., Ltd.
-  File name    : SsRcvTimer.c
-  Description  : 接收Timer溢出消息的处理
-  Function List:
-      1.  Ss_T551Expiry         T551溢出后的处理
-      2.  Ss_RcvTimerOut        进行TIMER溢出的分发处理（该函数由CC调用）
-  History:
-      1.  张志勇 2004.03.09   新版作成
-      2.  日    期   : 2006年10月8日
-          作    者   : luojian id:60022475
-          修改内容   : 问题单号:A32D06583，修改Ss_RcvTimerOut函数
-      3.  丁  庆 2006.11.07   问题单A32D07063
-*******************************************************************************/
+
 
 
 #include "SsInclude.h"
@@ -67,36 +54,7 @@ VOS_VOID Ss_T551Expiry(
 /*lint +e767 修改人:罗建 107747;检视人:sunshaohua*/
 
 
-/***********************************************************************
-*  MODULE   : Ss_RcvTimerOut
-*  FUNCTION : 进行TIMER溢出的分发处理（该函数由CC调用）
-*  INPUT    : VOS_UINT8     ucTi        对应的Ti
-*             VOS_UINT8     ucTimerId   定时器id
-*  OUTPUT   : VOS_VOID
-*  RETURN   : VOS_VOID
-*  NOTE     : 无
-*  HISTORY  :
-*     1.  张志勇 04-03-09  新版作成
-      2.  日    期   : 2006年10月8日
-          作    者   : luojian id:60022475
-          修改内容   : 问题单号:A32D06583，修改Ss_RcvTimerOut函数
-      3.日    期   : 2012年02月24日
-        作    者   : 傅映君/f62575
-        修改内容   : C50_IPC Project 新增等待USIM的FDN检查结果超时处理
-      4.日    期   : 2013年04月08日
-        作    者   : l65478
-        修改内容   : DTS2013032201710:功耗下不去
-      5.日    期   : 2013年05月17日
-        作    者   : w00176964
-        修改内容   : SS FDN&Call Control项目:FDN检查删除
-      6.日    期   :2013年9月12日
-        作    者   :z00161729
-        修改内容   :DTS2013082903019:支持ss重发功能
-      7.日    期   : 2014年5月22日
-        作    者   : z00161729
-        修改内容   : DTS2014050601476:L打电话重定向到g过程中电话挂断，mm缓存cc abort，
-                     g查询csfb状态是存在，lau结束后没有启动自主FR流程到L
-************************************************************************/
+
 
 VOS_VOID Ss_RcvTimerOut(
     VOS_UINT8                           ucTi,

@@ -11,9 +11,7 @@
 #include "mdrv.h"
 #include "AtInternalMsg.h"
 #include "MnClient.h"
-/* Added by wx270776 for OM融合, 2015-7-24, begin */
 #include "msp_diag_comm.h"
-/* Added by wx270776 for OM融合, 2015-7-24, end */
 
 
 #ifdef __cplusplus
@@ -119,7 +117,6 @@ extern "C" {
 #define AT_MNTN_MSG_RECORD_MAX_NUM                  (100)
 
 
-/* Added by wx270776 for OM融合, 2015-7-24, begin */
 #define   TAF_LOG(Mod, SubMod, Level, String) \
           (VOS_VOID)DIAG_LogReport( DIAG_GEN_LOG_MODULE(VOS_GetModemIDFromPid(Mod), DIAG_MODE_UMTS, (Level)), \
                           (Mod), __FILE__, __LINE__, "%s \r\n", (String) )
@@ -139,7 +136,6 @@ extern "C" {
 #define   TAF_LOG4(Mod, SubMod, Level, String, Para1, Para2, Para3, Para4) \
           (VOS_VOID)DIAG_LogReport( DIAG_GEN_LOG_MODULE(VOS_GetModemIDFromPid(Mod), DIAG_MODE_UMTS, (Level)), \
                           (Mod), __FILE__, __LINE__, "%s, %d, %d, %d, %d \r\n", (String), (VOS_INT32)(Para1), (VOS_INT32)(Para2), (VOS_INT32)(Para3), (VOS_INT32)(Para4) )
-/* Added by wx270776 for OM融合, 2015-7-24, end */
 
 
 /*****************************************************************************
@@ -177,15 +173,7 @@ enum AT_FC_POINT_TYPE_ENUM
 };
 typedef VOS_UINT32 AT_FC_POINT_TYPE_ENUM_UINT32;
 
-/*****************************************************************************
- 结构名称: AT_OM_GREENCHANNEL_ERR_ENUM_UINT32
- 结构说明: OM_GreenChannel的第三个参数可带一些可维可测信息，
-           为了提高定位效率，对ps一些典型 错误做了如下枚举定义
 
-  1.日    期   : 2011年10月17日
-    作    者   : s62952
-    修改内容   : 创建文件
-*****************************************************************************/
 enum AT_OM_GREENCHANNEL_ERR_ENUM
 {
     AT_OM_GREENCHANNEL_PS_CID_NOT_DEFINE = 0,
@@ -217,14 +205,7 @@ typedef VOS_UINT32 AT_OM_GREENCHANNEL_ERR_ENUM_UINT32;
   6 STRUCT定义
 *****************************************************************************/
 
-/*****************************************************************************
- 结构名    : AT_MNTN_MSC_STRU
- 结构说明  : 管脚信号结构
 
-  1.日    期   : 2011年10月17日
-    作    者   : s62952
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* _H2ASN_Skip */
@@ -234,14 +215,7 @@ typedef struct
 
 } AT_MNTN_MSC_STRU;
 
-/*****************************************************************************
- 结构名    : AT_MNTN_FLOW_CTRL_STRU
- 结构说明  : 流控可维可测结构
 
-  1.日    期   : 2011年10月17日
-    作    者   : s62952
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* _H2ASN_Skip */
@@ -251,14 +225,7 @@ typedef struct
 
 } AT_MNTN_FLOW_CTRL_STRU;
 
-/*****************************************************************************
- 结构名    : AT_MNTN_FC_POINT_STRU
- 结构说明  : 流控点可维可测结构
 
-  1.日    期   : 2013年11月12日
-    作    者   : A00165503
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* _H2ASN_Skip */
@@ -268,14 +235,7 @@ typedef struct
 
 } AT_MNTN_FC_POINT_STRU;
 
-/*****************************************************************************
- 结构名    : AT_RPT_PORT_STRU
- 结构说明  : 主动上报端口结构
 
-  1.日    期   : 2014年8月1日
-    作    者   : n00269697
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     AT_CLIENT_TAB_INDEX_UINT8           enAtClientTabIndex;
@@ -283,14 +243,7 @@ typedef struct
     MODEM_ID_ENUM_UINT16                enModemId;                              /* 该端口属于哪个modem */
 } AT_RPT_PORT_STRU;
 
-/*****************************************************************************
- 结构名    : AT_MNTN_RPTPORT_STRU
- 结构说明  : 主动上报端口可维可测结构
 
-  1.日    期   : 2014年8月1日
-    作    者   : n00269697
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* _H2ASN_Skip */
@@ -298,14 +251,7 @@ typedef struct
     AT_RPT_PORT_STRU                    astAtRptPort[AT_MAX_CLIENT_NUM];
 } AT_MNTN_RPTPORT_STRU;
 
-/*****************************************************************************
- 结构名    : AT_MNTN_MODEM_STATS_STRU
- 结构说明  : MODEM设备统计信息结构
 
-  1.日    期   : 2011年10月17日
-    作    者   : s62952
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     /* 上行统计信息 */
@@ -323,14 +269,7 @@ typedef struct
     VOS_UINT32                          ulReserved;
 } AT_MNTN_MODEM_STATS_STRU;
 
-/*****************************************************************************
- 结构名    : AT_MNTN_HSUART_STATS_STRU
- 结构说明  : 记录UART的可维可测信息
 
-  1.日    期   : 2013年09月21日
-    作    者   : j00174725
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     /* NV读取统计信息 */
@@ -388,18 +327,7 @@ typedef struct
 
 } AT_MNTN_HSUART_STATS_STRU;
 
-/*****************************************************************************
- 结构名    : AT_DEBUG_INFO_STRU
- 结构说明  : Debug信息
 
-  1.日    期   :
-    作    者   : z00220246
-    修改内容   : 新增结构
-
-  2.日    期   : 2015年5月27日
-    作    者   : l00198894
-    修改内容   : TSTS
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucPcuiCtrlConcurrentFlg;                /* PCUI和CTRL口并发标志 */
@@ -412,14 +340,7 @@ typedef struct
     VOS_UINT8                           ucUnCheckApPortFlg;
 }AT_DEBUG_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : AT_RESET_MNTN_INFO_STRU
- 协议表格  :
- 结构说明  : RESET信息
- 1.日    期   :
-   作    者   : f00179208
-   修改内容   : 新增结构
-*****************************************************************************/
+
 typedef struct
 {
     /* 复位信号量信息 */
@@ -446,14 +367,7 @@ typedef struct
 
 } AT_MNTN_STATS_STRU;
 
-/*****************************************************************************
- 结构名    : AT_MNTN_MSG_RECORD_STRU
- 协议表格  :
- 结构说明  : 记录进入AT模块的每条消息的Pid以及消息Id
- 1.日    期   : 2014年09月04日
-   作    者   : g00261581
-   修改内容   : 新增结构
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulSendPid;
@@ -462,14 +376,7 @@ typedef struct
     VOS_UINT32                          ulSliceEnd;
 } AT_MNTN_MSG_RECORD_STRU;
 
-/*****************************************************************************
- 结构名    : AT_MNTN_MSG_RECORD_INFO_STRU
- 协议表格  :
- 结构说明  : 记录进入AT模块的消息信息
- 1.日    期   : 2014年09月04日
-   作    者   : g00261581
-   修改内容   : 新增结构
-*****************************************************************************/
+
 typedef struct
 {
     AT_MNTN_MSG_RECORD_STRU             astAtMntnMsgRecord[AT_MNTN_MSG_RECORD_MAX_NUM];

@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasPrlApi.c
-  版 本 号   : 初稿
-  作    者   : y00245242
-  生成日期   : 2014年08月日
-  功能描述   : NAS 1X&EVDO 提供访问PRL API函数
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年08月06日
-    作    者   : y00245242
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -214,21 +199,7 @@ CNAS_PRL_BANDCLASS10_SUBCLASS_CHAN_STRU const g_astCnasPrlBand10Tab[] = {
 *****************************************************************************/
 /*lint -save -e958 */
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_InitPrlCtx
- 功能描述  : 初始化PRL上下文信息
- 输入参数  : ulTaskInitFlag - task初始化标志
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月21日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_PRL_InitPrlCtx(VOS_UINT32 ulTaskInitFlag)
 {
     if (VOS_TRUE == ulTaskInitFlag)
@@ -245,181 +216,56 @@ VOS_VOID CNAS_PRL_InitPrlCtx(VOS_UINT32 ulTaskInitFlag)
     CNAS_PRL_InitPrlInfo(ulTaskInitFlag);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_GetPrlHeaderInfoAddr
- 功能描述  : 获取当前PRL header信息首地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回PRL header信息首地址
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年08月08日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_PRL_HEADER_INFO_STRU* CNAS_PRL_GetPrlHeaderInfoAddr(VOS_VOID)
 {
     return &(CNAS_PRL_GetPrlInfoAddr()->stPrlHeader);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_GetPrlInfoValidFlag
- 功能描述  : 获取当前PRL信息有效标志
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回PRL信息是否有效标志
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年10月17日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_PRL_GetPrlInfoValidFlag(VOS_VOID)
 {
     return (CNAS_PRL_GetPrlInfoAddr()->ulIsPrlValid);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_GetDdefaultPrl
- 功能描述  : 获取default PRL
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回default PRL数据
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年10月17日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 *CNAS_PRL_GetDefaultPrl(VOS_VOID)
 {
     return &(g_aucDefaultPrlBuffer[0]);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_GetDefaultPrlSize
- 功能描述  : 获取default PRL size
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回default PRL size
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年10月17日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT16 CNAS_PRL_GetDefaultPrlSize(VOS_VOID)
 {
     return sizeof(g_aucDefaultPrlBuffer);
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_GetPrlAcqInfoAddr
- 功能描述  : 获取当前PRL捕获记录信息首地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回PRL捕获记录首地址
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年08月08日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_PRL_ACQ_RECORD_INFO_STRU* CNAS_PRL_GetPrlAcqInfoAddr(VOS_VOID)
 {
     return &(CNAS_PRL_GetPrlInfoAddr()->stPrlAcqInfo);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_GetPrlSysInfoAddr
- 功能描述  : 获取当前PRL系统信息首地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回PRL系统信息首地址
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年08月08日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_PRL_SYS_RECORD_INFO_STRU* CNAS_PRL_GetPrlSysInfoAddr(VOS_VOID)
 {
     return &(CNAS_PRL_GetPrlInfoAddr()->stPrlSysInfo);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_GetPrlAcqRecordNum
- 功能描述  : 获取当前PRL捕获记录数目
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回PRL捕获记录数目
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年08月08日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT16 CNAS_PRL_GetPrlAcqRecordNum(VOS_VOID)
 {
     return (CNAS_PRL_GetPrlInfoAddr()->stPrlAcqInfo.usAcqRecordNum);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_GetPrlRevInfo
- 功能描述  : 获取当前PRL版本信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回PRL header信息首地址
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年08月08日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_PRL_SSPR_P_REV_ENUM_UINT8 CNAS_PRL_GetPrlRevInfo(VOS_VOID)
 {
     return (CNAS_PRL_GetPrlHeaderInfoAddr()->enSsprPRev);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_SetPrlRevInfo
- 功能描述  : 设置当前PRL版本信息
- 输入参数  : enSsprPRev -- PRL版本
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年08月21日
-   作    者   : h00246512
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_PRL_SetPrlRevInfo(
     CNAS_PRL_SSPR_P_REV_ENUM_UINT8      enSsprPRev
 )
@@ -427,21 +273,7 @@ VOS_VOID CNAS_PRL_SetPrlRevInfo(
     CNAS_PRL_GetPrlHeaderInfoAddr()->enSsprPRev = enSsprPRev;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_GetSpecifiedPrlAcqRecord
- 功能描述  : 获取指定PRL捕获记录地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回指定PRL捕获记录地址
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年08月08日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_PRL_ACQ_RECORD_STRU *CNAS_PRL_GetSpecifiedPrlAcqRecord(VOS_UINT16 usIndex)
 {
     if ((usIndex < CNAS_PRL_GetPrlAcqRecordNum()) && (usIndex < CNAS_PRL_ACQ_RECORD_MAX_NUM))
@@ -453,41 +285,13 @@ CNAS_PRL_ACQ_RECORD_STRU *CNAS_PRL_GetSpecifiedPrlAcqRecord(VOS_UINT16 usIndex)
     return VOS_NULL_PTR;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_GetPrlSysRecordNum
- 功能描述  : 获取当前PRL系统记录数目
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回PRL系统记录数目
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年08月08日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT16 CNAS_PRL_GetPrlSysRecordNum(VOS_VOID)
 {
     return (CNAS_PRL_GetPrlInfoAddr()->stPrlSysInfo.usSysRecordNum);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_GetSpecifiedPrlSysRecord
- 功能描述  : 获取指定PRL系统记录地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回指定PRL系统记录地址
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年08月08日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_PRL_EXT_SYS_RECORD_STRU *CNAS_PRL_GetSpecifiedPrlSysRecord(VOS_UINT16 usIndex)
 {
     /* 索引检查 */
@@ -500,22 +304,7 @@ CNAS_PRL_EXT_SYS_RECORD_STRU *CNAS_PRL_GetSpecifiedPrlSysRecord(VOS_UINT16 usInd
     return VOS_NULL_PTR;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_InitPrlHeaderInfo
- 功能描述  : 初始化PRL头信息
- 输入参数  : pstPrlHeader -- 指向PRL头地址
- 输出参数  : 无
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2014年08月06日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_PRL_InitPrlHeaderInfo(
     CNAS_PRL_HEADER_INFO_STRU          *pstPrlHeader
 )
@@ -526,22 +315,7 @@ VOS_VOID CNAS_PRL_InitPrlHeaderInfo(
     pstPrlHeader->enDefRoamInd = CNAS_PRL_SYS_ROAMING_STATUS_RESERVED;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_InitPrlAcqInfo
- 功能描述  : 初始化PRL捕获记录信息
- 输入参数  : pstPrlAcqInfo -- 指向PRL捕获记录首地址
- 输出参数  : 无
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2014年08月06日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_PRL_InitPrlAcqInfo(
     CNAS_PRL_ACQ_RECORD_INFO_STRU      *pstPrlAcqInfo
 )
@@ -557,22 +331,7 @@ VOS_VOID CNAS_PRL_InitPrlAcqInfo(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_FreeMccRec
- 功能描述  : 释放PRL系统表中MCC-MNC记录的内存
- 输入参数  : pstPrlSysInfo -- 指向PRL系统记录首地址
- 输出参数  : 无
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2015年08月18日
-   作    者   : x00306642
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_PRL_FreeMccRec(
     CNAS_PRL_SYS_RECORD_INFO_STRU      *pstPrlSysInfo
 )
@@ -597,22 +356,7 @@ VOS_VOID CNAS_PRL_FreeMccRec(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_InitPrlSysInfo
- 功能描述  : 初始化PRL获取记录信息
- 输入参数  : pstPrlSysInfo -- 指向PRL系统记录首地址
- 输出参数  : 无
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2014年08月06日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_PRL_InitPrlSysInfo(
     CNAS_PRL_SYS_RECORD_INFO_STRU      *pstPrlSysInfo,
     VOS_UINT32                          ulTaskInitFlag
@@ -632,22 +376,7 @@ VOS_VOID CNAS_PRL_InitPrlSysInfo(
     pstPrlSysInfo->pstSysRecord = VOS_NULL_PTR;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_InitPrlInfo
- 功能描述  : 初始化PRL
- 输入参数  : ulTaskInitFlag - task初始化标志
- 输出参数  : 无
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2014年08月06日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_PRL_InitPrlInfo(VOS_UINT32 ulTaskInitFlag)
 {
     CNAS_PRL_INFO_STRU                  *pstPrlInfo = VOS_NULL_PTR;
@@ -663,25 +392,7 @@ VOS_VOID CNAS_PRL_InitPrlInfo(VOS_UINT32 ulTaskInitFlag)
     CNAS_PRL_InitPrlSysInfo(&(pstPrlInfo->stPrlSysInfo), ulTaskInitFlag);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_ProcPrlInfo
- 功能描述  : 处理PRL数据信息
- 输入参数  : pucSrc   -- prl原始数据地址
-             usSrcLen -- 数据长度
-             enPrlRev -- 版本
 
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  -- PRL解析成功
-             VOS_FALSE -- PRL解析失败
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年8月21日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_PRL_ProcPrlInfo(
     VOS_UINT8                          *pucSrc,
     VOS_UINT16                          usSrcLen,
@@ -721,26 +432,7 @@ VOS_UINT32 CNAS_PRL_ProcPrlInfo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_MapStandardBand0SubClassToChannel
- 功能描述  : 根据C.S0057,将Band0中的SYS A/B转换成对应的channel
- 输入参数  : enBandSubClass - Band SubClass
-             enSysSelType   - System Designator
-             enStandChanSelType - primary还是secondary
- 输出参数  : pusChannel - 对应的频点信息
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月14日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年7月14日
-    作    者   : y00245242
-    修改内容   : iteration 17开发
-*****************************************************************************/
 VOS_VOID CNAS_PRL_MapStandardBand0SubClassToChannel(
     CNAS_PRL_BAND_SUBCLASS_TYPE_ENUM_UINT8                  enBandSubClass,
     CNAS_PRL_SYS_SEL_TYPE_ENUM_UINT8                        enSysSelType,
@@ -805,22 +497,7 @@ VOS_VOID CNAS_PRL_MapStandardBand0SubClassToChannel(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_MapCellularCdmaStandardSysAToBandChannel
- 功能描述  : 将Cellular CDMA (Standard Channels) Acquisition Record中Sys A的
-             信息，转换成band和channel number
- 输入参数  : pstCellularStandardSys - Cellular CDMA (Standard Channels)信息
- 输出参数  : pstFreqInfo - 转换后的频点信息
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_PRL_MapCellularCdmaStandardSysAToBandChannel(
     CNAS_PRL_STANDARD_CHAN_SEL_TYPE_ENUM_UINT8              enChanSelType,
     CNAS_PRL_ACQ_REC_FREQ_INFO_STRU                        *pstFreqInfo
@@ -895,22 +572,7 @@ VOS_VOID CNAS_PRL_MapCellularCdmaStandardSysAToBandChannel(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_MapCellularCdmaStandardSysBToBandChannel
- 功能描述  : 将Cellular CDMA (Standard Channels) Acquisition Record中SYS B的
-             信息，转换成band和channel number
- 输入参数  : pstCellularStandardSys - Cellular CDMA (Standard Channels)信息
- 输出参数  : pstFreqInfo - 转换后的频点信息
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_PRL_MapCellularCdmaStandardSysBToBandChannel(
     CNAS_PRL_STANDARD_CHAN_SEL_TYPE_ENUM_UINT8              enChanSelType,
     CNAS_PRL_ACQ_REC_FREQ_INFO_STRU                        *pstFreqInfo
@@ -958,22 +620,7 @@ VOS_VOID CNAS_PRL_MapCellularCdmaStandardSysBToBandChannel(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_MapCellularCdmaStandardToBandChannel
- 功能描述  : 将Cellular CDMA (Standard Channels) Acquisition Record中的
-             信息，转换成band和channel number
- 输入参数  : pstCellularStandardSys - Cellular CDMA (Standard Channels)信息
- 输出参数  : pstFreqInfo - 转换后的频点信息
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_PRL_MapCellularCdmaStandardToBandChannel(
     CNAS_PRL_CELLULAR_CDMA_SYS_ACQ_STANDARD_RECORD_STRU    *pstCellularStandardSys,
     CNAS_PRL_ACQ_REC_FREQ_INFO_STRU                        *pstFreqInfo
@@ -1029,23 +676,7 @@ VOS_VOID CNAS_PRL_MapCellularCdmaStandardToBandChannel(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_MapCellularCdmaCustomToBandChannel
- 功能描述  : 将Cellular CDMA (Custom Channels) Acquisition Record中的
-             信息，转换成band和channel number
- 输入参数  : pstCelluarCustomSys - Cellular CDMA (Custom Channels)信息
- 输出参数  : pstFreqInfo - 转换后的频点信息
 
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_PRL_MapCellularCdmaCustomToBandChannel(
     CNAS_PRL_CELLULAR_CDMA_SYS_ACQ_CUSTOM_RECORD_STRU      *pstCelluarCustomSys,
     CNAS_PRL_ACQ_REC_FREQ_INFO_STRU                        *pstFreqInfo
@@ -1071,23 +702,7 @@ VOS_VOID CNAS_PRL_MapCellularCdmaCustomToBandChannel(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_MapCellularCdmaPreferToBandChannel
- 功能描述  : 将Cellular CDMA Preferred Acquisition Record中的
-             信息，转换成band和channel number
- 输入参数  : pstCellularPreSys - Cellular CDMA Preferred信息
- 输出参数  : pstFreqInfo - 转换后的频点信息
 
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_PRL_MapCellularCdmaPreferToBandChannel(
     CNAS_PRL_CELLUAR_CDMA_PREFERRED_SYS_ACQ_RECORD_STRU    *pstCellularPreSys,
     CNAS_PRL_ACQ_REC_FREQ_INFO_STRU                        *pstFreqInfo
@@ -1141,22 +756,7 @@ VOS_VOID CNAS_PRL_MapCellularCdmaPreferToBandChannel(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_MapPcsBlockAToBandChannel
- 功能描述  : 将PCS CDMA Block A中的信息，转换成band和channel number
- 输入参数  : enSpreadingRate - Spreading Rate类型
- 输出参数  : pstFreqInfo - 转换后的频点信息
 
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_PRL_MapPcsBlockAToBandChannel(
     CNAS_PRL_SPREADING_RATE_ENUM_UINT8                      enSpreadingRate,
     CNAS_PRL_ACQ_REC_FREQ_INFO_STRU                        *pstFreqInfo
@@ -1180,22 +780,7 @@ VOS_VOID CNAS_PRL_MapPcsBlockAToBandChannel(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_MapPcsBlockBToBandChannel
- 功能描述  : 将PCS CDMA Block B中的信息，转换成band和channel number
- 输入参数  : enSpreadingRate - Spreading Rate类型
- 输出参数  : pstFreqInfo - 转换后的频点信息
 
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_PRL_MapPcsBlockBToBandChannel(
     CNAS_PRL_SPREADING_RATE_ENUM_UINT8                      enSpreadingRate,
     CNAS_PRL_ACQ_REC_FREQ_INFO_STRU                        *pstFreqInfo
@@ -1219,22 +804,7 @@ VOS_VOID CNAS_PRL_MapPcsBlockBToBandChannel(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_MapPcsBlockCToBandChannel
- 功能描述  : 将PCS CDMA Block C中的信息，转换成band和channel number
- 输入参数  : enSpreadingRate - Spreading Rate类型
- 输出参数  : pstFreqInfo - 转换后的频点信息
 
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_PRL_MapPcsBlockCToBandChannel(
     CNAS_PRL_SPREADING_RATE_ENUM_UINT8                      enSpreadingRate,
     CNAS_PRL_ACQ_REC_FREQ_INFO_STRU                        *pstFreqInfo
@@ -1257,22 +827,7 @@ VOS_VOID CNAS_PRL_MapPcsBlockCToBandChannel(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_MapPcsBlockDToBandChannel
- 功能描述  : 将PCS CDMA Block D中的信息，转换成band和channel number
- 输入参数  : enSpreadingRate - Spreading Rate类型
- 输出参数  : pstFreqInfo - 转换后的频点信息
 
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_PRL_MapPcsBlockDToBandChannel(
     CNAS_PRL_SPREADING_RATE_ENUM_UINT8                      enSpreadingRate,
     CNAS_PRL_ACQ_REC_FREQ_INFO_STRU                        *pstFreqInfo
@@ -1295,22 +850,7 @@ VOS_VOID CNAS_PRL_MapPcsBlockDToBandChannel(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_MapPcsBlockEToBandChannel
- 功能描述  : 将PCS CDMA Block E中的信息，转换成band和channel number
- 输入参数  : enSpreadingRate - Spreading Rate类型
- 输出参数  : pstFreqInfo - 转换后的频点信息
 
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_PRL_MapPcsBlockEToBandChannel(
     CNAS_PRL_SPREADING_RATE_ENUM_UINT8                      enSpreadingRate,
     CNAS_PRL_ACQ_REC_FREQ_INFO_STRU                        *pstFreqInfo
@@ -1333,22 +873,7 @@ VOS_VOID CNAS_PRL_MapPcsBlockEToBandChannel(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_MapPcsBlockFToBandChannel
- 功能描述  : 将PCS CDMA Block F中的信息，转换成band和channel number
- 输入参数  : enSpreadingRate - Spreading Rate类型
- 输出参数  : pstFreqInfo - 转换后的频点信息
 
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_PRL_MapPcsBlockFToBandChannel(
     CNAS_PRL_SPREADING_RATE_ENUM_UINT8                      enSpreadingRate,
     CNAS_PRL_ACQ_REC_FREQ_INFO_STRU                        *pstFreqInfo
@@ -1372,22 +897,7 @@ VOS_VOID CNAS_PRL_MapPcsBlockFToBandChannel(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_MapPcsBlockAnyToBandChannel
- 功能描述  : 将PCS CDMA Block Any中的信息，转换成band和channel number
- 输入参数  : enSpreadingRate - Spreading Rate类型
- 输出参数  : pstFreqInfo - 转换后的频点信息
 
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_PRL_MapPcsBlockAnyToBandChannel(
     CNAS_PRL_SPREADING_RATE_ENUM_UINT8                      enSpreadingRate,
     CNAS_PRL_ACQ_REC_FREQ_INFO_STRU                        *pstFreqInfo
@@ -1443,23 +953,7 @@ VOS_VOID CNAS_PRL_MapPcsBlockAnyToBandChannel(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_TransBlockTypeToBlockTypeFlag
- 功能描述  : 将PCS CDMA (Using Blocks) Acquisition Record中的
-             Block Type信息，转换成对应的Block Type Flag
- 输入参数  : pstPcsBlocksSys - PCS CDMA (Using Blocks)信息
- 输出参数  : pstFreqInfo - 转换后的频点信息
 
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_PRL_MAP_PCS_BLOCK_FLG_ENUM_UINT32 CNAS_PRL_TransBlockTypeToBlockTypeFlag(
     CNAS_PRL_PCS_CDMA_FREQUENCY_BLOCK_ENUM_UINT8           enBlockType
 )
@@ -1488,23 +982,7 @@ CNAS_PRL_MAP_PCS_BLOCK_FLG_ENUM_UINT32 CNAS_PRL_TransBlockTypeToBlockTypeFlag(
             return CNAS_PRL_MAP_PCS_BLOCK_NULL_FLG;
     }
 }
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_MapPcsCdmaBlockToBandChannel
- 功能描述  : 将PCS CDMA (Using Blocks) Acquisition Record中的
-             信息，转换成band和channel number
- 输入参数  : pstPcsBlocksSys - PCS CDMA (Using Blocks)信息
- 输出参数  : pstFreqInfo - 转换后的频点信息
 
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_PRL_MapPcsCdmaBlockToBandChannel(
     CNAS_PRL_PCS_CDMA_SYS_ACQ_BLOCKS_RECORD_STRU           *pstPcsBlocksSys,
     CNAS_PRL_ACQ_REC_FREQ_INFO_STRU                        *pstFreqInfo
@@ -1599,23 +1077,7 @@ VOS_VOID CNAS_PRL_MapPcsCdmaBlockToBandChannel(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_MapPcsCdmaChannelToBandChannel
- 功能描述  : 将PCS CDMA (Using Channels) Acquisition Record中的
-             信息，转换成band和channel number
- 输入参数  : pstPcsChannelsSys - PCS CDMA (Using Channels)信息
- 输出参数  : pstFreqInfo - 转换后的频点信息
 
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_PRL_MapPcsCdmaChannelToBandChannel(
     CNAS_PRL_PCS_CDMA_SYS_ACQ_CHANNELS_STRU                *pstPcsChannelsSys,
     CNAS_PRL_ACQ_REC_FREQ_INFO_STRU                        *pstFreqInfo
@@ -1640,22 +1102,7 @@ VOS_VOID CNAS_PRL_MapPcsCdmaChannelToBandChannel(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_MapCdmaGenericToBandChannel
- 功能描述  : 将CDMA Generic的Acquisition Record中的
-             信息，转换成band和channel number
- 输入参数  : pstGenericAcq - cdma generic信息
- 输出参数  : pstFreqInfo - 转换后的频点信息
 
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年10月27日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_PRL_MapCdmaGenericToBandChannel(
     CNAS_PRL_GENERIC_ACQ_FOR_1X_AND_IS95_STRU              *pstGenericAcq,
     CNAS_PRL_ACQ_REC_FREQ_INFO_STRU                        *pstFreqInfo
@@ -1676,22 +1123,7 @@ VOS_VOID CNAS_PRL_MapCdmaGenericToBandChannel(
 
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_GetPrlAcqRecFreqListInfo
- 功能描述  : 通过PRL中指定的系统记录获取频点列表信息
- 输入参数  : pstPrlAcqRec - 指定的获取表记录
- 输出参数  : pstFreqInfo  - 转换后的频点信息
 
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年8月9日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_PRL_GetPrlAcqRecFreqListInfo(
     CNAS_PRL_ACQ_RECORD_STRU                               *pstPrlAcqRec,
     CNAS_PRL_ACQ_REC_FREQ_INFO_STRU                        *pstFreqInfo
@@ -1757,22 +1189,7 @@ VOS_VOID CNAS_PRL_GetPrlAcqRecFreqListInfo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_CalcPrlAcqRecTotalFreqNum
- 功能描述  : 计算PRL获取表中总的频点个数
- 输入参数  : 无
- 输出参数  : 无
 
- 返 回 值  : 获取表中总的频点个数
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年8月9日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT16 CNAS_PRL_CalcPrlAcqRecTotalFreqNum(VOS_VOID)
 {
     VOS_UINT16                          i;
@@ -1810,23 +1227,7 @@ VOS_UINT16 CNAS_PRL_CalcPrlAcqRecTotalFreqNum(VOS_VOID)
 
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_CalcPrlSysRecListTotalFreqNum
- 功能描述  : 计算PRL系统记录列表的总的频点个数
- 输入参数  : usSysRecNum-----------系统记录总个数
-             pstSysRecord----------系统记录列表
- 输出参数  : 无
 
- 返 回 值  : 获取表中总的频点个数
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年8月15日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT16 CNAS_PRL_CalcPrlSysRecListTotalFreqNum(
     VOS_UINT16                          usSysRecNum,
     CNAS_PRL_EXT_SYS_RECORD_STRU       *pstSysRecord
@@ -1868,22 +1269,7 @@ VOS_UINT16 CNAS_PRL_CalcPrlSysRecListTotalFreqNum(
     return usTotalNum;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_GetSidNidWildCard_1XIS95
- 功能描述  : 当前的SID和NID是否匹配(仅比较SID和NID),匹配则返回VOS_TRUE，否则返回
-             VOS_FALSE，同时返回当前SID/NID的通配类型
- 输入参数  : pstSysInfo - 需要比较的SID/NID
-             pstSysRecord - 待比较的系统记录
- 输出参数  : pstWildCard  - 获取通配符类型
- 返 回 值  : VOS_TRUE:当前匹配，通配类型有效, VOS_FALSE:当前不匹配，通配类型无效
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月14日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_PRL_IsSidNidMatch_1XIS95(
     CNAS_PRL_1X_SYSTEM_STRU            *pstSysInfo,
     CNAS_PRL_EXT_SYS_RECORD_STRU       *pstSysRecord
@@ -1928,23 +1314,7 @@ VOS_UINT32 CNAS_PRL_IsSidNidMatch_1XIS95(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_GetPrl1xIs95SysRecordWildCardType
- 功能描述  : 查看sys record中的sid和nid，是否是通配符
- 输入参数  : pstSysInfo - 需要比较的SID/NID
-             pstSysRecord - 待比较的系统记录
- 输出参数  : 无
 
- 返 回 值  : SID和NID的匹配结果
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年8月14日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_PRL_WILDCARD_TYPE_ENUM_UINT8 CNAS_PRL_GetPrl1xIs95SysRecordWildCardType(
     CNAS_PRL_EXT_SYS_RECORD_STRU       *pstSysRecord
 )
@@ -1995,23 +1365,7 @@ CNAS_PRL_WILDCARD_TYPE_ENUM_UINT8 CNAS_PRL_GetPrl1xIs95SysRecordWildCardType(
     return enWildCardType;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_GetPrl1xMccMncSysRecordWileCardType
- 功能描述  : 查看MCC/MNC类型的sys record中的sid和nid，是否是通配符
- 输入参数  : pstSysInfo - 需要比较的SID/NID
-             pstSysRecord - 待比较的系统记录
- 输出参数  : 无
 
- 返 回 值  : SID和NID的匹配结果
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年7月24日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_PRL_WILDCARD_TYPE_ENUM_UINT8 CNAS_PRL_GetPrl1xMccMncSysRecordWileCardType(
     CNAS_PRL_1X_SYSTEM_STRU            *pstSysInfo,
     CNAS_PRL_EXT_SYS_RECORD_STRU       *pstSysRecord
@@ -2054,22 +1408,7 @@ CNAS_PRL_WILDCARD_TYPE_ENUM_UINT8 CNAS_PRL_GetPrl1xMccMncSysRecordWileCardType(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_GetPrlSysRecordWildCardType
- 功能描述  : 查看sys record中的通配符类型
- 输入参数  : pstSysRecord - 待比较的系统记录
- 输出参数  : 无
 
- 返 回 值  : 通配符类型
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年8月14日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_PRL_WILDCARD_TYPE_ENUM_UINT8 CNAS_PRL_GetPrlSysRecordWildCardType(
     CNAS_PRL_1X_SYSTEM_STRU            *pstSysInfo,
     CNAS_PRL_EXT_SYS_RECORD_STRU       *pstSysRecord
@@ -2094,25 +1433,7 @@ CNAS_PRL_WILDCARD_TYPE_ENUM_UINT8 CNAS_PRL_GetPrlSysRecordWildCardType(
     return CNAS_PRL_WILDCARD_TYPE_UNKNOWN;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_GetMatchLvl_OnlySidNidMatch
- 功能描述  : 在仅SID/NID匹配的情况下，对应的sys record的匹配级别
- 输入参数  : pstSysRecord - 系统记录的类型
- 输出参数  : 无
 
- 返 回 值  : sys reord的匹配结果
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年8月14日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-  2.日    期   : 2015年7月4日
-    作    者   : w00242748
-    修改内容   : CDMA 1X Iteration 17 modified
-
-*****************************************************************************/
 CNAS_PRL_SID_NID_MATCH_LVL_ENUM_UINT16 CNAS_PRL_GetMatchLvl_OnlySidNidMatch(
     CNAS_PRL_1X_SYSTEM_STRU            *pstSysInfo,
     CNAS_PRL_EXT_SYS_RECORD_STRU       *pstSysRecord
@@ -2145,25 +1466,7 @@ CNAS_PRL_SID_NID_MATCH_LVL_ENUM_UINT16 CNAS_PRL_GetMatchLvl_OnlySidNidMatch(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_GetMatchLvl_OnlySidNidBandMatch
- 功能描述  : 在Band匹配的情况下，对应的sys record的匹配级别
- 输入参数  : pstSysRecord - 系统记录的类型
- 输出参数  : 无
 
- 返 回 值  : sys reord的匹配结果
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年8月14日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-  2.日    期   : 2015年7月4日
-    作    者   : w00242748
-    修改内容   : CDMA 1X Iteration 17 modified
-
-*****************************************************************************/
 CNAS_PRL_SID_NID_MATCH_LVL_ENUM_UINT16 CNAS_PRL_GetMatchLvl_OnlySidNidBandMatch(
     CNAS_PRL_1X_SYSTEM_STRU            *pstSysInfo,
     CNAS_PRL_EXT_SYS_RECORD_STRU       *pstSysRecord
@@ -2212,25 +1515,7 @@ CNAS_PRL_SID_NID_MATCH_LVL_ENUM_UINT16 CNAS_PRL_GetMatchLvl_OnlySidNidBandMatch(
     return enMatchLvl;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_GetMatchLvl_SidNidBandChannelMatch
- 功能描述  : 在channel都匹配的情况下，对应的sys record的匹配级别
- 输入参数  : pstSysRecord - 系统记录的类型
- 输出参数  : 无
 
- 返 回 值  : sys reord的匹配结果
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年8月14日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-  2.日    期   : 2015年7月4日
-    作    者   : w00242748
-    修改内容   : CDMA 1X Iteration 17 modified
-
-*****************************************************************************/
 CNAS_PRL_SID_NID_MATCH_LVL_ENUM_UINT16 CNAS_PRL_GetMatchLvl_SidNidBandChannelMatch(
     CNAS_PRL_1X_SYSTEM_STRU            *pstSysInfo,
     CNAS_PRL_EXT_SYS_RECORD_STRU       *pstSysRecord
@@ -2261,27 +1546,7 @@ CNAS_PRL_SID_NID_MATCH_LVL_ENUM_UINT16 CNAS_PRL_GetMatchLvl_SidNidBandChannelMat
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_Get1xSysMatchSysRecordLvl
- 功能描述  : 当前的1X系统是否和系统记录相匹配
- 输入参数  : usSrcSid - 需要比较的SID， usSrcNid - 需要比较的NID
-             pstSysRecord - 待比较的系统记录
- 输出参数  : 无
 
- 返 回 值  : SID和NID的匹配结果
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
- 2.日    期   : 2014年12月30日
-   作    者   : y00245242
-   修改内容   : match GEO修改
-
-*****************************************************************************/
 CNAS_PRL_SID_NID_MATCH_LVL_ENUM_UINT16 CNAS_PRL_Get1xSysMatchSysRecordLvl(
     CNAS_PRL_1X_SYSTEM_STRU            *pstSysInfo,
     CNAS_PRL_EXT_SYS_RECORD_STRU       *pstSysRecord
@@ -2344,25 +1609,7 @@ CNAS_PRL_SID_NID_MATCH_LVL_ENUM_UINT16 CNAS_PRL_Get1xSysMatchSysRecordLvl(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_Get1xSysGeoList
- 功能描述  : 判断当前的1x系统是否在PRL中存在
- 输入参数  : usSid - 待查找的sid
-             usNid - 待查找的nid
- 输出参数  : pstGeoListInfo - 搜索出的GEO列表信息，如果在PRL中不存在，则返回的个数为0
 
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-  2.日    期   : 2015年7月7日
-    作    者   : w00242748
-    修改内容   : CDMA 1X Iteration 17 modified
-*****************************************************************************/
 VOS_VOID CNAS_PRL_Get1xSysGeoList(
     CNAS_PRL_1X_SYSTEM_STRU                                *pstSysInfo,
     CNAS_PRL_MATCHED_GEO_LIST_INFO_STRU                    *pstGeoListInfo
@@ -2458,28 +1705,7 @@ VOS_VOID CNAS_PRL_Get1xSysGeoList(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_BuildGeoSysRecList
- 功能描述  : 构建GEO中的系统记录列表，如果在多个GEO中，都存在匹配的SID和NID的时候，需要能够拼接
- 输入参数  : pstGeoListInfo - 当前已经找到的GEO信息
-             ucIgnoreNegSys - 是否忽略negative系统,默认都是忽略negative系统的,紧急呼叫是不忽略negative系统,因为
-                              紧急呼叫可以在negative系统上提供服务
- 输出参数  : pusSysRecNum -- 系统记录数
-             pstSysRecord -- 系统记录指向的地址
 
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-  2.日    期   : 2015年3月9日
-    作    者   : w00176964
-    修改内容   : DTS2015030405482:构造系统捕获表时,GEO中系统个数为1时,需要过滤negative系统
-
-*****************************************************************************/
 VOS_VOID CNAS_PRL_BuildGeoSysRecList(
     CNAS_PRL_1X_SYSTEM_STRU                                *pstSysInfo,
     CNAS_PRL_MATCHED_GEO_LIST_INFO_STRU                    *pstGeoListInfo,
@@ -2564,24 +1790,7 @@ VOS_VOID CNAS_PRL_BuildGeoSysRecList(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_IsSysRecordVaild
- 功能描述  : 判断系统记录是否可用
- 输入参数  :
- 输出参数  :
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月5日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-  2.日    期   : 2015年7月4日
-    作    者   : w00242748
-    修改内容   : CDMA 1X Iteration 17 modified
-
-*****************************************************************************/
 VOS_UINT8 CNAS_PRL_IsSysRecordVaild(
     CNAS_PRL_EXT_SYS_RECORD_STRU                            *pstSysRecord
 )
@@ -2595,25 +1804,7 @@ VOS_UINT8 CNAS_PRL_IsSysRecordVaild(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_Is1xSysNegative_BandChanAmbiguousMatch
- 功能描述  : 判断geo中系统是neg的方式band channel模糊匹配，匹配方式为:如果一个geo中同时存在匹配的pref系统neg
-             系统，比较匹配等级，如果相等，不再比较band channel等级，直接作pref系统
- 输入参数  : CNAS_PRL_1X_SYSTEM_STRU                                 *pstSysInfo
-             CNAS_PRL_MATCHED_GEO_INFO_STRU                          *pstMatchedGeoInfo
- 输出参数  :
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月5日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-  2.日    期   : 2015年7月28日
-    作    者   : c00299063
-    修改内容   : DTS2015072703850
-*****************************************************************************/
 VOS_UINT8 CNAS_PRL_Is1xSysNegative_BandChanAmbiguousMatch(
     CNAS_PRL_1X_SYSTEM_STRU                                 *pstSysInfo,
     CNAS_PRL_MATCHED_GEO_INFO_STRU                          *pstMatchedGeoInfo
@@ -2668,21 +1859,7 @@ VOS_UINT8 CNAS_PRL_Is1xSysNegative_BandChanAmbiguousMatch(
     }
 
 }
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_CmpIncludeRelationOfTwoAcqRecord
- 功能描述  : 比较两个捕获记录所包含的频点相互之间的包含关系
- 输入参数  : CNAS_PRL_ACQ_RECORD_STRU                               *pstFirAcqRecord,
-             CNAS_PRL_ACQ_RECORD_STRU                               *pstSecAcqRecord
- 输出参数  :
- 返 回 值  :  CNAS_PRL_ACQ_RECORD_INCLUDE_RELATION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月5日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-*****************************************************************************/
 CNAS_PRL_ACQ_RECORD_INCLUDE_RELATION_ENUM_UINT8 CNAS_PRL_CmpIncludeRelationOfTwoAcqRecord(
     CNAS_PRL_ACQ_RECORD_STRU                               *pstFirAcqRecord,
     CNAS_PRL_ACQ_RECORD_STRU                               *pstSecAcqRecord
@@ -2751,22 +1928,7 @@ CNAS_PRL_ACQ_RECORD_INCLUDE_RELATION_ENUM_UINT8 CNAS_PRL_CmpIncludeRelationOfTwo
 
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_CmpBandChanMatchLvlOfTwoAcqRecord
- 功能描述  : 比较两个捕获记录的band channel 匹配程度
- 输入参数  : CNAS_PRL_1X_SYSTEM_STRU                                 *pstSysInfo,
-             CNAS_PRL_EXT_SYS_RECORD_STRU                            *pstFirSysRecord,
-             CNAS_PRL_EXT_SYS_RECORD_STRU                            *pstSecSysRecord
- 输出参数  :
- 返 回 值  :  CNAS_PRL_BAND_CHANNEL_MATCH_CMP_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月5日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-*****************************************************************************/
 CNAS_PRL_BAND_CHANNEL_MATCH_CMP_ENUM_UINT8 CNAS_PRL_CmpSysBandChanMatchLvlInTwoSysRecord(
     CNAS_PRL_1X_SYSTEM_STRU                                 *pstSysInfo,
     CNAS_PRL_EXT_SYS_RECORD_STRU                            *pstFirSysRecord,
@@ -2832,25 +1994,7 @@ CNAS_PRL_BAND_CHANNEL_MATCH_CMP_ENUM_UINT8 CNAS_PRL_CmpSysBandChanMatchLvlInTwoS
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_Is1xSysNegative_CmpPrefAndNegSysPrioInGeo
- 功能描述  : 判断系统为neg系统的方式为 比较geo中pref系统和neg系统的优先级
- 输入参数  : CNAS_PRL_1X_SYSTEM_STRU                                 *pstSysInfo,
-             CNAS_PRL_MATCHED_GEO_INFO_STRU                          *pstMatchedGeoInfo
- 输出参数  :
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月5日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-*****************************************************************************/
 VOS_UINT8 CNAS_PRL_Is1xSysNegative_BandChanAccurateMatch(
     CNAS_PRL_1X_SYSTEM_STRU                                 *pstSysInfo,
     CNAS_PRL_MATCHED_GEO_INFO_STRU                          *pstMatchedGeoInfo
@@ -2949,21 +2093,7 @@ VOS_UINT8 CNAS_PRL_Is1xSysNegative_BandChanAccurateMatch(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_Is1xSysNegativeInCurGeo
- 功能描述  : 判断系统在当前GEO中是否是neg系统
- 输入参数  : CNAS_PRL_1X_SYSTEM_STRU                                 *pstSysInfo,
-             CNAS_PRL_MATCHED_GEO_INFO_STRU                          *pstMatchedGeoInfo
- 输出参数  :
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月5日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 CNAS_PRL_Is1xSysNegativeInCurGeo(
     CNAS_PRL_1X_SYSTEM_STRU                                 *pstSysInfo,
     CNAS_PRL_MATCHED_GEO_INFO_STRU                          *pstMatchedGeoInfo
@@ -2982,28 +2112,7 @@ VOS_UINT8 CNAS_PRL_Is1xSysNegativeInCurGeo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_Is1xSysNegative
- 功能描述  : 判断当前的SID和NID在PRL中是否是Negative的
- 输入参数  : pstSysInfo -- 传入的系统信息
- 输出参数  : 无
- 返 回 值  : VOS_TRUE: 是Negative的  VOS_FALSE: 不是Negative的
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月12日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-  2.日    期   : 2014年8月12日
-    作    者   : y00245242
-    修改内容   : 修改GEO匹配原则
-  3.日    期   : 2015年7月2日
-    作    者   : w00242748
-    修改内容   : CDMA 1X Iteration 17 modified
-
-*****************************************************************************/
 VOS_UINT32 CNAS_PRL_Is1xSysNegativeInPrl(
     CNAS_PRL_1X_SYSTEM_STRU                                *pstSysInfo,
     CNAS_PRL_MATCHED_GEO_LIST_INFO_STRU                    *pstGeoListInfo
@@ -3049,21 +2158,7 @@ VOS_UINT32 CNAS_PRL_Is1xSysNegativeInPrl(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_GetPrefOnlyFlg
- 功能描述  : 获取pref only标志
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT8 返回Pref only标记
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月13日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 CNAS_PRL_GetPrefOnlyFlg(VOS_VOID)
 {
     CNAS_PRL_HEADER_INFO_STRU          *pstPrlHeaderInfo = VOS_NULL_PTR;
@@ -3073,26 +2168,7 @@ VOS_UINT8 CNAS_PRL_GetPrefOnlyFlg(VOS_VOID)
     return pstPrlHeaderInfo->ucPreferOnly;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_IsMostPref1xSysInGeo
- 功能描述  : 查看当前的1x系统是不是当前GEO中优先级最高的系统
- 输入参数  : pstCurSysInfo -- 当前搜到的系统信息
-             pstSysAcqList -- 生成的捕获列表信息
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:是优先级最高的   VOS_FALSE: 不是优先级最高的
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月12日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-  2.日    期   : 2014年12月30日
-    作    者   : y00245242
-    修改内容   : 修改GEO match原则
-
-*****************************************************************************/
 VOS_UINT32 CNAS_PRL_IsMostPref1xSysInGeo(
     CNAS_PRL_1X_SYSTEM_STRU                                *pstCurSysInfo,
     CNAS_PRL_MATCHED_GEO_LIST_INFO_STRU                    *pstGeoListInfo
@@ -3196,23 +2272,7 @@ VOS_UINT32 CNAS_PRL_IsMostPref1xSysInGeo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_Is1xSysIdMatched
- 功能描述  : 判定1X的系统ID(sid+nid)是否匹配
- 输入参数  : usSrcSid/usSrcNid - 需要比较的系统ID
-             usDstSid/usDstNid - 待比较的系统ID
- 输出参数  : 无
 
- 返 回 值  : VOS_TRUE:当前匹配, VOS_FALSE:当前不匹配
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年8月20日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_PRL_Is1xSysIdMatched(
     VOS_UINT16                          usSrcSid,
     VOS_UINT16                          usSrcNid,
@@ -3235,24 +2295,7 @@ VOS_UINT32 CNAS_PRL_Is1xSysIdMatched(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_Is1xSysIdInSysIdList
- 功能描述  : 判定1X的系统ID(sid+nid)是否在SYS ID列表中
- 输入参数  : pstSrcSysId - 需要比较的系统ID
-             usDtsSysIdNum   -- 待比较的系统ID列表个数
-             pstDstSysIdInfo --- 待比较的系统ID列表
- 输出参数  : 无
 
- 返 回 值  : VOS_TRUE:在目标SYSID列表中, VOS_FALSE:不在目标SYSID列表中
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年8月28日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_PRL_Is1xSysIdInSysIdList(
     CNAS_PRL_1X_SYSTEM_ID_STRU         *pstSrcSysId,
     VOS_UINT16                          usDtsSysIdNum,
@@ -3275,23 +2318,7 @@ VOS_UINT32 CNAS_PRL_Is1xSysIdInSysIdList(
 
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_Is1xSysMatched
- 功能描述  : 判定1X的系统ID(sid+nid)和频点是否匹配
- 输入参数  : pstSrcSysId - 需要比较的系统
-             pstDtsSysId - 待比较的系统
- 输出参数  : 无
 
- 返 回 值  : VOS_TRUE:当前匹配, VOS_FALSE:当前不匹配
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年8月20日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_PRL_Is1xSysMatched(
     CNAS_PRL_1X_SYSTEM_STRU            *pstSrcSys,
     CNAS_PRL_1X_SYSTEM_STRU            *pstDstSys
@@ -3322,22 +2349,7 @@ VOS_UINT32 CNAS_PRL_Is1xSysMatched(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_Get1xSysMatchSysRecordIndexInGeo
- 功能描述  : get the most matched system record index in GEO
- 输入参数  : pstMatchedGeoInfo -- matched GEO information pointer
 
- 输出参数  : pusIndex   -- return system record index in GEO
- 返 回 值  : enMatchLvl -- match level
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 12/2/2014
-    作    者   : y00245242
-    修改内容   : create
-
-*****************************************************************************/
 CNAS_PRL_SID_NID_MATCH_LVL_ENUM_UINT16 CNAS_PRL_Get1xSysMatchSysRecordIndexInGeo(
     CNAS_PRL_1X_SYSTEM_STRU            *pstSysInfo,
     CNAS_PRL_MATCHED_GEO_INFO_STRU     *pstMatchedGeoInfo,
@@ -3375,26 +2387,7 @@ CNAS_PRL_SID_NID_MATCH_LVL_ENUM_UINT16 CNAS_PRL_Get1xSysMatchSysRecordIndexInGeo
     return enMatchLvl;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_CmpSysPriorityofTwoSystemsInSameGeo
- 功能描述  : compare the priority of two system records in the same GEO list
- 输入参数  : CNAS_PRL_1X_SYSTEM_STRU                                *pstCurSysInfo,
-             CNAS_PRL_1X_SYSTEM_STRU                                *pstOrigSysInfo,
-             CNAS_PRL_MATCHED_GEO_LIST_INFO_STRU                    *pstSysGeoListInfo,
- 输出参数  : CNAS_PRL_SYS_PRI_CMP_ENUM_UINT8                        *penSysPriCmp
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 11/27/2014
-    作    者   : c00299063
-    修改内容   : create new function
-  2.日    期   : 2015/03/31
-    作    者   : w00242748
-    修改内容   : DTS2015032802406:比较两个系统的优先级
-
-*****************************************************************************/
 CNAS_PRL_SYS_PRI_TYPE_ENUM_UINT32  CNAS_PRL_CmpSysPriorityofTwoSystemsInSameGeo(
     CNAS_PRL_1X_SYSTEM_STRU                                *pstCurSysInfo,
     CNAS_PRL_1X_SYSTEM_STRU                                *pstOrigSysInfo,
@@ -3525,25 +2518,7 @@ CNAS_PRL_SYS_PRI_TYPE_ENUM_UINT32  CNAS_PRL_CmpSysPriorityofTwoSystemsInSameGeo(
     return CNAS_PRL_SYS_PRI_LOW;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_GetRoamingIndInMatchedGeolist
- 功能描述  : get the roam indicator vlaue of system record in geo list
- 输入参数  : CNAS_PRL_1X_SYSTEM_STRU                                *pstSysInfo
-             CNAS_PRL_MATCHED_GEO_LIST_INFO_STRU                    *pstGeoListInfo
- 输出参数  : CNAS_PRL_SYS_ROAMING_IND_ENUM_UINT8                    *enRoamingInd
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 11/27/2014
-    作    者   : c00299063
-    修改内容   : create new function
-  修改历史      :
-  2.日    期   : 2015/11/17
-    作    者   : y00245242
-    修改内容   : iteration 19
-*****************************************************************************/
 CNAS_PRL_SYS_ROAMING_IND_ENUM_UINT8 CNAS_PRL_GetRoamingIndInMatchedGeolist(
     CNAS_PRL_1X_SYSTEM_STRU                                *pstSysInfo,
     CNAS_PRL_MATCHED_GEO_LIST_INFO_STRU                    *pstGeoListInfo
@@ -3607,22 +2582,7 @@ CNAS_PRL_SYS_ROAMING_IND_ENUM_UINT8 CNAS_PRL_GetRoamingIndInMatchedGeolist(
 
 
 #if 0
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_GetAcqRecIndexAccordingToSysRecIndex
- 功能描述  : Get acquisition record index according to system record index
- 输入参数  : usSysRecIndex -- system record index in PRL system table
- 输出参数  : none
 
- 返 回 值  : return acquisition record index in PRL acquisition Table
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 28/11/2014
-    作    者   : y00245242
-    修改内容   : create
-
-*****************************************************************************/
 VOS_UINT16 CNAS_PRL_GetAcqRecIndexAccordingToSysRecIndex(
     VOS_UINT16                          usSysRecIndex
 )
@@ -3638,31 +2598,7 @@ VOS_UINT16 CNAS_PRL_GetAcqRecIndexAccordingToSysRecIndex(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_IsCurrentSystemHomeRoamingIndicator
- 功能描述  : check current system is home roaming indicator
 
- 输入参数  : pstSysInfo     -- the current system information
-             pstCurSysInfo  -- the current system synchronized.
-
- 输出参数  : penRoamingInd  -- return roaming indicator
-
- 返 回 值  : VOS_TRUE  -- home roaming system
-             VOS_FALSE -- non-roaming system
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 28/11/2014
-    作    者   : y00245242
-    修改内容   : create
-  2.日    期   : 2015/04/02
-    作    者   : w00242748
-    修改内容   : DTS2015032802406:比较两个系统优先级时，增加判断该系统是否在HOME
-                 SID/NID中
-
-*****************************************************************************/
 VOS_UINT32 CNAS_PRL_IsCurrentSystemHomeRoamingIndicator(
     CNAS_PRL_1X_SYSTEM_STRU                                *pstSysInfo,
     CNAS_PRL_MATCHED_GEO_LIST_INFO_STRU                    *pstGeoListInfo,
@@ -3692,35 +2628,7 @@ VOS_UINT32 CNAS_PRL_IsCurrentSystemHomeRoamingIndicator(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_CompareRoamingIndicatorPreferenceOfTwoSystems
- 功能描述  : comparing two systems, which system roaming indicator is more
-             preferred
-             1) if current system is more preferred than old system, return
-                MORE;
-             2) if current system is the same preferred than old system,
-                return SAME;
-             3) if current system is the less preferred than old system,
-                return LESS;
 
-             NOTE: It implements function from chapter 2.6.2 in CDG 143
-
-
- 输入参数  : pstCurSysGeoListInfo  -- the current system GEO list information
-             pstOrigSysGeoListInfo -- the orignal system GEO list information
- 输出参数  : none
- 返 回 值  : MORE -- more preferred
-             SAME -- same preferred
-             LESS -- less preferred
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 28/11/2014
-    作    者   : y00245242
-    修改内容   : create
-
-*****************************************************************************/
 CNAS_PRL_SYS_PRI_TYPE_ENUM_UINT32 CNAS_PRL_CompareRoamingIndicatorPreferenceOfTwoSystems(
     CNAS_PRL_1X_SYSTEM_STRU                                *pstCurSysInfo,
     CNAS_PRL_1X_SYSTEM_STRU                                *pstOrigSysInfo,
@@ -3787,36 +2695,7 @@ CNAS_PRL_SYS_PRI_TYPE_ENUM_UINT32 CNAS_PRL_CompareRoamingIndicatorPreferenceOfTw
     return CNAS_PRL_SYS_PRI_UNKNOWN;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_CompareChannelIndexOfTwoSystems
- 功能描述  : comparing two systems, which system channel is more
-             preferred
-             1) if current system index is LESS than old system, return
-                MORE;
-             2) if current system index is the same as old system,
-                return SAME;
-             3) if current system index is MORE than old system,
-                return LESS;
 
-
- 输入参数  : usCurSysAcqIndex   -- the current system index in PRL acquisition table;
-             ucCurSysFreqIndex  -- the current system freqency index in acquisiton record;
-             usOrigSysAcqIndex  -- the current system index in PRL acquisition table;
-             ucOrigSysFreqIndex -- the current system freqency index in acquisiton record;
-
- 输出参数  : none
- 返 回 值  : MORE -- more preferred
-             SAME -- same preferred
-             LESS -- less preferred
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 28/11/2014
-    作    者   : y00245242
-    修改内容   : create
-
-*****************************************************************************/
 CNAS_PRL_SYS_PRI_TYPE_ENUM_UINT32 CNAS_PRL_CompareChannelIndexOfTwoSystems(
     VOS_UINT16                          usCurSysAcqIndex,
     VOS_UINT8                           ucCurSysFreqIndex,
@@ -3847,35 +2726,7 @@ CNAS_PRL_SYS_PRI_TYPE_ENUM_UINT32 CNAS_PRL_CompareChannelIndexOfTwoSystems(
     return CNAS_PRL_SYS_PRI_LOW;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_CompareChannelPreferenceOfTwoSystems
- 功能描述  : comparing two systems, which system channel is more
-             preferred
-             1) if current system is more preferred than old system, return
-                MORE;
-             2) if current system is the same preferred than old system,
-                return SAME;
-             3) if current system is the less preferred than old system,
-                return LESS;
 
-             NOTE: It implements function from chapter 2.6.2 in CDG 143.
-
-
- 输入参数  : pstCurSysInfo  -- the current system information
-             pstOrigSysInfo -- the orignal system information
- 输出参数  : none
- 返 回 值  : MORE -- more preferred
-             SAME -- same preferred
-             LESS -- less preferred
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 28/11/2014
-    作    者   : y00245242
-    修改内容   : create
-
-*****************************************************************************/
 CNAS_PRL_SYS_PRI_TYPE_ENUM_UINT32 CNAS_PRL_CompareChannelPreferenceOfTwoSystems(
     CNAS_PRL_1X_SYSTEM_STRU            *pstCurSysInfo,
     CNAS_PRL_1X_SYSTEM_STRU            *pstOrigSysInfo
@@ -3960,27 +2811,7 @@ CNAS_PRL_SYS_PRI_TYPE_ENUM_UINT32 CNAS_PRL_CompareChannelPreferenceOfTwoSystems(
     return CNAS_PRL_SYS_PRI_LOW;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_GetTheSameGeoInfoOfTwoGeoList
- 功能描述  : Comparing GEO list of both systems,  get the first same GEO in both
-             lists
 
- 输入参数  : pstCurSysGeoListInfo   -- the current system GEO list information
-             pstOrigSysGeoListInfo  -- the orignal system GEO list information.
-
- 输出参数  : none
-
- 返 回 值  : CNAS_PRL_MATCHED_GEO_INFO_STRU* -- return the same GEO information
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 28/11/2014
-    作    者   : y00245242
-    修改内容   : create
-
-*****************************************************************************/
 CNAS_PRL_MATCHED_GEO_INFO_STRU *CNAS_PRL_GetTheSameGeoInfoOfTwoGeoList(
     CNAS_PRL_MATCHED_GEO_LIST_INFO_STRU                    *pstCurSysGeoListInfo,
     CNAS_PRL_MATCHED_GEO_LIST_INFO_STRU                    *pstOrigSysGeoListInfo
@@ -4004,38 +2835,7 @@ CNAS_PRL_MATCHED_GEO_INFO_STRU *CNAS_PRL_GetTheSameGeoInfoOfTwoGeoList(
     return VOS_NULL_PTR;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_CompareSystemPreference
- 功能描述  : compare two systems, return the preferred result.
-             1) if current system is more preferred than old system, return
-                MORE;
-             2) if current system is the same preferred than old system,
-                return SAME;
-             3) if current system is the less preferred than old system,
-                return LESS
 
-             NOTE: It implements function from chapter 2.11 in CDG 143:
-                   When comparing two systems (that are available OTA),
-                   MS shall step in order through the criteria listed in
-                   the Remarks column to determine and select the more preferred
-                   one. Once a criterion is met, MS shall use it and stop
-                   going through the list.
-
- 输入参数  : pstCurSysInfo  -- the current system synchronized.
-             pstOrigSysInfo -- the previous camped system.
- 输出参数  : none
- 返 回 值  : MORE -- more preferred
-             SAME -- same preferred
-             LESS -- less preferred
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年11月27日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_PRL_SYS_PRI_TYPE_ENUM_UINT32 CNAS_PRL_CompareSystemPreference(
     CNAS_PRL_1X_SYSTEM_STRU            *pstCurSysInfo,
     CNAS_PRL_1X_SYSTEM_STRU            *pstOrigSysInfo
@@ -4144,22 +2944,7 @@ CNAS_PRL_SYS_PRI_TYPE_ENUM_UINT32 CNAS_PRL_CompareSystemPreference(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_CalcMatchedGeoListTotalFreqNum
- 功能描述  : calculate the totoal frequency number of the matched GEO list
- 输入参数  : pstGeoListInfo----matched geo list info
- 输出参数  : NONE
 
- 返 回 值  : the totoal number of the geo list channel
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 3/1/2015
-    作    者   : w00176964
-    修改内容   : Create
-
-*****************************************************************************/
 VOS_UINT16 CNAS_PRL_CalcMatchedGeoListTotalFreqNum(
     CNAS_PRL_1X_SYSTEM_STRU                                *pstSysInfo,
     CNAS_PRL_MATCHED_GEO_LIST_INFO_STRU                    *pstGeoListInfo
@@ -4201,21 +2986,7 @@ VOS_UINT16 CNAS_PRL_CalcMatchedGeoListTotalFreqNum(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_GetBandChanMatchInfoOfGeoSys
- 功能描述  : 获取GEO的Band和Channel的匹配等级
- 输入参数  : CNAS_PRL_1X_SYSTEM_STRU                                *pstSysInfo,
-             CNAS_PRL_MATCHED_GEO_INFO_STRU                         *pstGeoInfo
- 输出参数  : 无
- 返 回 值  : CNAS_PRL_BAND_CHANNEL_MATCH_TYPE_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月26日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-*****************************************************************************/
 CNAS_PRL_BAND_CHANNEL_MATCH_TYPE_ENUM_UINT8 CNAS_PRL_GetBandChanMatchInfoOfGeoSys(
     CNAS_PRL_1X_SYSTEM_STRU                                *pstSysInfo,
     CNAS_PRL_MATCHED_GEO_INFO_STRU                         *pstGeoInfo
@@ -4294,21 +3065,7 @@ CNAS_PRL_BAND_CHANNEL_MATCH_TYPE_ENUM_UINT8 CNAS_PRL_GetBandChanMatchInfoOfGeoSy
     return CNAS_PRL_BAND_CHANNEL_NOT_MATCH;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_GetMostMatched1xGeoFrom1xGeoList
- 功能描述  : 从GEO list中获取最匹配的GEO 信息
- 输入参数  : pstGeoListInfo -- 匹配的GEO List
 
- 输出参数  : pstGeoInfo -- 返回最match的GEO信息
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年12月30日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 CNAS_PRL_MATCHED_GEO_INFO_STRU *CNAS_PRL_GetMostMatched1xGeoFrom1xGeoList(
     CNAS_PRL_1X_SYSTEM_STRU                                *pstSysInfo,
     CNAS_PRL_MATCHED_GEO_LIST_INFO_STRU                    *pstGeoListInfo
@@ -4347,23 +3104,7 @@ CNAS_PRL_MATCHED_GEO_INFO_STRU *CNAS_PRL_GetMostMatched1xGeoFrom1xGeoList(
     return pstMostMatchGeoInfo;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_GetAllMostMatched1xGeoFrom1xGeoList
- 功能描述  : 从GEO list中获取所有最匹配的GEO信息
- 输入参数  : pstGeoListInfo          -- 匹配的GEO List
-             pstMostMatchGeoListInfo -- 匹配等级最高GEO list信息
 
- 输出参数  : 无
- 返 回 值  : 返回所有最匹配的GEO
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年12月30日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_PRL_GetAllMostMatched1xGeoFrom1xGeoList(
     CNAS_PRL_1X_SYSTEM_STRU                                *pstSysInfo,
     CNAS_PRL_MATCHED_GEO_LIST_INFO_STRU                    *pstGeoListInfo,
@@ -4391,23 +3132,7 @@ VOS_VOID CNAS_PRL_GetAllMostMatched1xGeoFrom1xGeoList(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_GetCurSysBandChannelMatchTypeInAcqRecord
- 功能描述  : 从GEO list中获取所有最匹配的GEO信息
- 输入参数  : pstFreq      -- 频点信息
-             pstAcqRecord -- 捕获标记录信息
 
- 输出参数  : 无
- 返 回 值  : 返回所有最匹配的GEO
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年12月30日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_PRL_BAND_CHANNEL_MATCH_TYPE_ENUM_UINT8 CNAS_PRL_GetCurSysBandChannelMatchTypeInAcqRecord(
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstFreq,
     CNAS_PRL_ACQ_RECORD_STRU           *pstAcqRecord
@@ -4439,21 +3164,7 @@ CNAS_PRL_BAND_CHANNEL_MATCH_TYPE_ENUM_UINT8 CNAS_PRL_GetCurSysBandChannelMatchTy
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_IsCurrentSystemInHomeSidNidList
- 功能描述  : 检查当前系统是否在Home SID/NID List中
- 输入参数  : CNAS_PRL_1X_SYSTEM_STRU            *pstCurSysInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月31日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 CNAS_PRL_IsCurrentSystemInHomeSidNidList(
     CNAS_PRL_1X_SYSTEM_STRU            *pstCurSysInfo
 )
@@ -4486,21 +3197,7 @@ VOS_UINT8 CNAS_PRL_IsCurrentSystemInHomeSidNidList(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_GetSpecifiedPrlValidAcqRecord
- 功能描述  : 获取指定有效PRL捕获记录地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回指定PRL捕获记录地址
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年12月29日
-   作    者   : d00212987
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_PRL_ACQ_RECORD_STRU *CNAS_PRL_GetSpecifiedPrlValidAcqRecord(VOS_UINT16 usIndex)
 {
     CNAS_PRL_ACQ_RECORD_STRU           *pstPrlAcqRecord;
@@ -4520,21 +3217,7 @@ CNAS_PRL_ACQ_RECORD_STRU *CNAS_PRL_GetSpecifiedPrlValidAcqRecord(VOS_UINT16 usIn
 
     return VOS_NULL_PTR;
 }
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_GetSpecifiedPrlValidSysRecord
- 功能描述  : 获取指定的有效PRL系统记录地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回指定PRL系统记录地址
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年12月29日
-   作    者   : d00212987
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_PRL_EXT_SYS_RECORD_STRU *CNAS_PRL_GetSpecifiedPrlValidSysRecord(VOS_UINT16 usIndex)
 {
     CNAS_PRL_EXT_SYS_RECORD_STRU       *pstSysRecord;
@@ -4558,24 +3241,7 @@ CNAS_PRL_EXT_SYS_RECORD_STRU *CNAS_PRL_GetSpecifiedPrlValidSysRecord(VOS_UINT16 
     return VOS_NULL_PTR;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_CmpFreqValue
- 功能描述  : 比较两组频点是否相等
- 输入参数  : pstSrcFreq  - 源频点
-             pstDstFreq  - 待比较频点
 
- 输出参数  : 无
-
- 返 回 值  : VOS_TRUE/VOS_FALSE
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年12月8日
-    作    者   : d00212987
-    修改内容   : EVDO HSD Phase0
-
-*****************************************************************************/
 VOS_UINT32 CNAS_PRL_CmpFreqValue(
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstSrcFreq,
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstDstFreq
@@ -4597,25 +3263,7 @@ VOS_UINT32 CNAS_PRL_CmpFreqValue(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_CmpSubnetValue
- 功能描述  : 比较两组Subnet是否相等
- 输入参数  : pucSrcSubnet  - 源Subnet
-             pucDstSubnet  - 待比较Subnet
-             ulCmpLen      - 待比较长度
 
- 输出参数  : 无
-
- 返 回 值  : VOS_TRUE/VOS_FALSE
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年12月8日
-    作    者   : d00212987
-    修改内容   : EVDO HSD Phase0
-
-*****************************************************************************/
 VOS_UINT32 CNAS_PRL_CmpSubnetValue(
     VOS_UINT8                          *pucSrcSubnet,
     VOS_UINT8                          *pucDstSubnet,
@@ -4637,26 +3285,7 @@ VOS_UINT32 CNAS_PRL_CmpSubnetValue(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_IsHrpdSubnetMatched
- 功能描述  : 判定SubnetId是否匹配
- 输入参数  : pucOTASubnetid           - 空口来的Subnet Id
-             ucOTASubnetidBitSize     - 空口来的Subnet Id bit长度(单位:bit)
-             pucSysRecSubnetid        - SYS RECORD存放的Subnet Id
-             ucSysRecSubnetidBitSize  - SYS RECORD存放的Subnet Id bit长度(单位:bit)
 
- 输出参数  : 无
-
- 返 回 值  : CNAS_PRL_SUBNET_MATCH_LVL_ENUM_UINT16
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年12月8日
-    作    者   : d00212987
-    修改内容   : EVDO HSD Phase0
-
-*****************************************************************************/
 CNAS_PRL_SUBNET_MATCH_LVL_ENUM_UINT16 CNAS_PRL_IsHrpdSubnetMatched(
     VOS_UINT8                          *pucOTASubnetid,
     VOS_UINT8                           ucOTASubnetidBitSize,
@@ -4712,23 +3341,7 @@ CNAS_PRL_SUBNET_MATCH_LVL_ENUM_UINT16 CNAS_PRL_IsHrpdSubnetMatched(
     return CNAS_PRL_SUBNET_MATCH_LVL_SUBNET;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_IsHrpdFreqMatched
- 功能描述  : 判定Hrpd 中频点是否匹配
- 输入参数  : usAcqIndex  - Acq表索引
-             pstFreq     - 频点
 
- 输出参数  : 无
-
- 返 回 值  : VOS_TRUE/VOS_FALSE
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年12月8日
-    作    者   : d00212987
-    修改内容   : EVDO HSD Phase0
-*****************************************************************************/
 CNAS_PRL_BAND_CHANNEL_MATCH_TYPE_ENUM_UINT8 CNAS_PRL_IsHrpdFreqMatched(
     VOS_UINT16                          usAcqIndex,
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstFreq
@@ -4774,23 +3387,7 @@ CNAS_PRL_BAND_CHANNEL_MATCH_TYPE_ENUM_UINT8 CNAS_PRL_IsHrpdFreqMatched(
     return enBandChannelMatch;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_GetHrpdSysRecByIndex
- 功能描述  : 获取Index 对应的 Hrpd SYS RECORD记录
- 输入参数  : Index    - Hrpd SYS RECORD Index
 
- 输出参数  : NA
-
- 返 回 值  : 获取到的Hrpd SYS RECORD
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年12月8日
-    作    者   : d00212987
-    修改内容   : EVDO HSD Phase0
-
-*****************************************************************************/
 CNAS_PRL_EXT_SYS_RECORD_STRU* CNAS_PRL_GetHrpdSysRecByIndex(VOS_UINT16 usIndex)
 {
     CNAS_PRL_EXT_SYS_RECORD_STRU       *pstSysRecord;
@@ -4814,26 +3411,7 @@ CNAS_PRL_EXT_SYS_RECORD_STRU* CNAS_PRL_GetHrpdSysRecByIndex(VOS_UINT16 usIndex)
     return pstSysRecord;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_GetHrpdSysRecMatchLvl
- 功能描述  : 当前的HRPD系统是否和系统记录相匹配
- 输入参数  : pstHrpdSystem - 需要比较HRPD系统
-             pstSysRecord  - 待比较的系统记录
- 输出参数  : 无
 
- 返 回 值  : 匹配结果
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年12月8日
-    作    者   : d00212987
-    修改内容   : EVDO HSD Phase0
-  2.日    期   : 2015年07月17日
-    作    者   : x00306642
-    修改内容   : 增加MMC-MNC的处理
-
-*****************************************************************************/
 CNAS_PRL_SUBNET_MATCH_LVL_ENUM_UINT16 CNAS_PRL_GetHrpdSysRecMatchLvl(
     CNAS_PRL_HRPD_SYSTEM_STRU          *pstHrpdSystem,
     CNAS_PRL_EXT_SYS_RECORD_STRU       *pstSysRecord
@@ -4865,26 +3443,7 @@ CNAS_PRL_SUBNET_MATCH_LVL_ENUM_UINT16 CNAS_PRL_GetHrpdSysRecMatchLvl(
     return enMatchLevel;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_RecordMostMatchLvlGeoIndex
- 功能描述  : 存放最高MATCH LEVEL Index
- 输入参数  : pst1xGeoInfoEx     - 最大存放频点个数
-             penMatchLvl        - 搜索出的GEO列表信息，如果在PRL中不存在，则返回的个数为0
-             enGet1xSysMatchLvl - 最高MATCH LEVEL
-             usSysRecIndex      - SYS RECORD Index
 
- 输出参数  : penMatchLvl - 获取到的最高MATCH LEVEL
-
- 返 回 值  :
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年12月8日
-    作    者   : d00212987
-    修改内容   : EVDO HSD Phase0
-
-*****************************************************************************/
 VOS_VOID CNAS_PRL_RecordMostMatchLvlGeoIndex(
     CNAS_PRL_MATCHED_1X_GEO_INFO_EX_STRU                   *pst1xGeoInfoEx,
     CNAS_PRL_SID_NID_MATCH_LVL_ENUM_UINT16                 *penMatchLvl,
@@ -4916,24 +3475,7 @@ VOS_VOID CNAS_PRL_RecordMostMatchLvlGeoIndex(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_Get1xSysGeoListEx
- 功能描述  : 从SYS RECORD中获取Geo列表
- 输入参数  : pstSysInfo     - 最大存放频点个数
-             pst1xGeoListEx - 搜索出的GEO列表信息，如果在PRL中不存在，则返回的个数为0
 
- 输出参数  : pst1xGeoListEx - 获取到的GEO列表信息
-
- 返 回 值  : 获取到的GEO列表个数
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年12月8日
-    作    者   : d00212987
-    修改内容   : EVDO HSD Phase0
-
-*****************************************************************************/
 VOS_VOID CNAS_PRL_Get1xSysGeoListEx(
     CNAS_PRL_1X_SYSTEM_STRU                                *pstSysInfo,
     CNAS_PRL_MATCHED_1X_GEO_LIST_INFO_EX_STRU              *pst1xGeoListEx
@@ -5030,24 +3572,7 @@ VOS_VOID CNAS_PRL_Get1xSysGeoListEx(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_GetMatchLvl_MccMncBased_SubTypeMulSid
- 功能描述  : 获取MCC-MNC类型，子类型为多SID的记录匹配等级
- 输入参数  : pstSysInfo   - 当前系统消息
-             pstSysRecord - 系统记录的类型
 
- 输出参数  : 无
-
- 返 回 值  : sys reord的匹配结果
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年7月4日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_PRL_IsSidNidMatch_MccMncBased(
     CNAS_PRL_1X_SYSTEM_STRU            *pstSysInfo,
     CNAS_PRL_EXT_SYS_RECORD_STRU       *pstSysRecord
@@ -5081,109 +3606,31 @@ VOS_UINT32 CNAS_PRL_IsSidNidMatch_MccMncBased(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_GetBand0PrefChanTab
- 功能描述  : 获取Band0列表
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : CNAS_PRL_BANDCLASS0_SUBCLASS_CHAN_STRU
-             返回BAND0数据数据
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年07月07日
-   作    者   : h00313353
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_PRL_BANDCLASS0_SUBCLASS_CHAN_STRU const *CNAS_PRL_GetBand0PrefChanTab(VOS_VOID)
 {
     return g_astCnasPrlBand0Tab;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_GetBand0PrefChanTabSize
- 功能描述  : 获取Band0列表大小
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
-             返回BAND0数据大小
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年07月07日
-   作    者   : h00313353
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_PRL_GetBand0PrefChanTabSize(VOS_VOID)
 {
     return (sizeof(g_astCnasPrlBand0Tab)/sizeof(CNAS_PRL_BANDCLASS0_SUBCLASS_CHAN_STRU));
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_GetBand10PrefChanTabSize
- 功能描述  : 获取Band10表数据大小
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
-             返回BAND10数据数据表大小
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年07月07日
-   作    者   : h00313353
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_PRL_GetBand10PrefChanTabSize(VOS_VOID)
 {
     return (sizeof(g_astCnasPrlBand10Tab)/sizeof(CNAS_PRL_BANDCLASS10_SUBCLASS_CHAN_STRU));
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_GetBand10PrefChanTab
- 功能描述  : 获取Band10列表
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : CNAS_PRL_BANDCLASS10_SUBCLASS_CHAN_STRU
-             返回BAND10数据数据
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年07月07日
-   作    者   : h00313353
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_PRL_BANDCLASS10_SUBCLASS_CHAN_STRU const *CNAS_PRL_GetBand10PrefChanTab(VOS_VOID)
 {
     return g_astCnasPrlBand10Tab;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_Is1xSysRecord
- 功能描述  : 判断系统记录是否可用
- 输入参数  :
- 输出参数  :
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月4日
-    作    者   : w00242748
-    修改内容   : CDMA 1X Iteration 17 modified
-
-  2.日    期   : 2015年8月20日
-    作    者   : w00242748
-    修改内容   : DTS2015081904804
-
-*****************************************************************************/
 VOS_UINT8 CNAS_PRL_Is1xSysRecord(
     CNAS_PRL_EXT_SYS_RECORD_STRU                            *pstSysRecord
 )
@@ -5206,23 +3653,7 @@ VOS_UINT8 CNAS_PRL_Is1xSysRecord(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_IsHrpdSysRec
- 功能描述  : 判断系统记录是否为HRPD类型的
- 输入参数  : pstSysRecord     - 系统记录
 
- 输出参数  : 无
-
- 返 回 值  : 判断结果
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年07月16日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_PRL_IsHrpdSysRec(
     CNAS_PRL_EXT_SYS_RECORD_STRU       *pstSysRecord
 )
@@ -5237,26 +3668,7 @@ VOS_UINT32 CNAS_PRL_IsHrpdSysRec(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_GetHrpdSysRecMatchLvl_IS856
- 功能描述  : 当前的HRPD系统是否和系统记录中的IS856系统相匹配
- 输入参数  : pstHrpdSystem  - 待匹配的系统
-             pstSysRecord   - HRPD系统表
 
- 输出参数  : 无
-
- 返 回 值  : 匹配结果
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年07月16日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-  2.日    期   : 2015年12月30日
-    作    者   : z00316370
-    修改内容   : 增加通配情况下匹配等级
-*****************************************************************************/
 CNAS_PRL_SUBNET_MATCH_LVL_ENUM_UINT16 CNAS_PRL_GetHrpdSysRecMatchLvl_IS856(
     CNAS_PRL_HRPD_SYSTEM_STRU          *pstHrpdSystem,
     CNAS_PRL_EXT_SYS_RECORD_STRU       *pstSysRecord
@@ -5297,27 +3709,7 @@ CNAS_PRL_SUBNET_MATCH_LVL_ENUM_UINT16 CNAS_PRL_GetHrpdSysRecMatchLvl_IS856(
     return CNAS_PRL_SUBNET_MATCH_LVL_NOT_MATCH;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_GetHrpdSysRecMatchLvl_IS856
- 功能描述  : 当前的HRPD系统是否和系统记录中的IS856系统相匹配
- 输入参数  : pstHrpdSystem  - 待匹配的系统
-             pstSysRecord   - HRPD系统表
 
- 输出参数  : 无
-
- 返 回 值  : 匹配结果
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年07月16日
-    作    者   : x00306642
-    修改内容   : 新生成函数
- 2.日    期   : 2015年12月30日
-    作    者   : z00316370
-    修改内容   : 增加通配情况下匹配等级
-
-*****************************************************************************/
 CNAS_PRL_SUBNET_MATCH_LVL_ENUM_UINT16 CNAS_PRL_GetHrpdSysRecMatchLvl_MccMncBased(
     CNAS_PRL_HRPD_SYSTEM_STRU          *pstHrpdSystem,
     CNAS_PRL_EXT_SYS_RECORD_STRU       *pstSysRecord
@@ -5376,23 +3768,7 @@ CNAS_PRL_SUBNET_MATCH_LVL_ENUM_UINT16 CNAS_PRL_GetHrpdSysRecMatchLvl_MccMncBased
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_Get1xSysMatchSysRecordCustomLvl
- 功能描述  : 当前的1X系统是否和系统记录相匹配
- 输入参数  : usSrcSid - 需要比较的SID， usSrcNid - 需要比较的NID
-             pstSysRecord - 待比较的系统记录
- 输出参数  : 无
 
- 返 回 值  : SID和NID的匹配结果
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年12月3日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_PRL_CUSTOM_MATCH_LVL_ENUM_UINT16 CNAS_PRL_ConvertStandardMatchLvlToCustom(
     CNAS_PRL_SID_NID_MATCH_LVL_ENUM_UINT16                  enStandardMatchLvl
 )
@@ -5423,22 +3799,7 @@ CNAS_PRL_CUSTOM_MATCH_LVL_ENUM_UINT16 CNAS_PRL_ConvertStandardMatchLvlToCustom(
     return enCustomMatchLvl;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_GetCustomMatchLvl_OnlySidNidBandMatch
- 功能描述  : 在Band匹配的情况下，对应的sys record的匹配级别
- 输入参数  : pstSysRecord - 系统记录的类型
- 输出参数  : 无
 
- 返 回 值  : sys reord的匹配结果
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年12月3日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_PRL_CUSTOM_MATCH_LVL_ENUM_UINT16 CNAS_PRL_GetCustomMatchLvl_OnlySidNidBandMatch(
     CNAS_PRL_1X_SYSTEM_STRU            *pstSysInfo,
     CNAS_PRL_EXT_SYS_RECORD_STRU       *pstSysRecord
@@ -5474,23 +3835,7 @@ CNAS_PRL_CUSTOM_MATCH_LVL_ENUM_UINT16 CNAS_PRL_GetCustomMatchLvl_OnlySidNidBandM
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_Get1xSysMatchSysRecordCustomLvl
- 功能描述  : 当前的1X系统是否和系统记录相匹配
- 输入参数  : usSrcSid - 需要比较的SID， usSrcNid - 需要比较的NID
-             pstSysRecord - 待比较的系统记录
- 输出参数  : 无
 
- 返 回 值  : SID和NID的匹配结果
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年12月3日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_PRL_CUSTOM_MATCH_LVL_ENUM_UINT16 CNAS_PRL_Get1xSysMatchSysRecordCustomLvl(
     CNAS_PRL_1X_SYSTEM_STRU            *pstSysInfo,
     CNAS_PRL_EXT_SYS_RECORD_STRU       *pstSysRecord
@@ -5560,21 +3905,7 @@ CNAS_PRL_CUSTOM_MATCH_LVL_ENUM_UINT16 CNAS_PRL_Get1xSysMatchSysRecordCustomLvl(
     return CNAS_PRL_ConvertStandardMatchLvlToCustom(enStandardMatchLvl);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_BuildGeoListBasedOnSysRecord
- 功能描述  : 根据系统记录信息获取相应的GEO
- 输入参数  : pstCurSysInfo - 当前系统
- 输出参数  : pstGeoList - GEO列表
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月7日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_PRL_GetMostMultiMatched1xGeoList(
     CNAS_PRL_1X_SYSTEM_STRU                                *pstCurSysInfo,
     CNAS_PRL_MULTI_MATCHED_GEO_LIST_INFO_STRU              *pstMostMatchGeoListInfo

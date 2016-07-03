@@ -1,21 +1,4 @@
-/************************************************************************
-*                                                                      *
-*                             ppp_perf.h                               *
-*                                                                      *
-*  Project Code:       VRP3.0                                          *
-*  Create Date:        2013/04/17                                      *
-*  Author:             wangyong                                        *
-*  Modify Date:                                                        *
-*  Document:                                                           *
-*  Function:           PPP模块性能统计宏定义                           *
-*  Others:                                                             *
-*----------------------------------------------------------------------*
-*                                                                      *
-*  Copyright 2000-2002 VRP3.0 Team Beijing Institute HuaWei Tech, Inc. *
-*                      ALL RIGHTS RESERVED                             *
-*                                                                      *
-*                                                                      *
-************************************************************************/
+
 #ifndef      _PPP_PERF_H_
 #define      _PPP_PERF_H_
 
@@ -333,7 +316,7 @@ typedef struct tagAlarmLinkHead
 /* ms主动去活 */
 #define PPP_SNMP_PERF_SET_FAILREASON_MS_RELEASE(pstPppInfo, pstFsm) \
 { \
-/*Modified by liushuang for DTS2012033006941 . 单栈V4、双栈v6协商失败或者V6未协商时置终端主动退网原因值*/ \
+\
     if ((PPP_LCP == pstFsm->usProtocol) \
                     || (PPP_VSNCP == pstFsm->usProtocol) \
                     || ((PPP_IPCP == pstFsm->usProtocol) \

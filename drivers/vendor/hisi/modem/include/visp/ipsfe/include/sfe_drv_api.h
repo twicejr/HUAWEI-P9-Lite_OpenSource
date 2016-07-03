@@ -1,26 +1,4 @@
-/*******************************************************************************
-*
-*
-*                Copyright 2010, Huawei Technologies Co. Ltd.
-*                            ALL RIGHTS RESERVED
-*
-*-------------------------------------------------------------------------------
-*
-*                              sfe_drv_api.h
-*
-*  Project Code: V1.1.0
-*   Module Name: DRIVER
-*  Date Created: 2010-9-16
-*        Author: h00121208
-*   Description: 驱动模块API头文件
-*
-*-------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                      DESCRIPTION
-*  -----------------------------------------------------------------------------
-*  2010-9-16    h00121208                 Creat the first version.
-*
-*******************************************************************************/
+
 
 #ifndef _SFE_DRV_API_H_
 #define _SFE_DRV_API_H_
@@ -264,27 +242,7 @@ UINT32 SFE_DRV_SetOnceRcvSndPktNum(UINT32 u32VcpuId, UINT32 u32OnceRcvPktNum, UI
 *******************************************************************************/
 UINT32 SFE_DRV_SetDevMtu(UINT32 u32DevId, UINT32 u32Mtu);
 
-/*******************************************************************************
-*    Func Name: SFE_GetIfIdByDevId
-* Date Created: 2010-06-07
-*       Author: wuxiaowei 00161372 hexianjun 00121208
-*      Purpose: 根据设备ID获取数据面接口ID
-*  Description: 根据设备ID获取数据面接口ID
-*        Input: UINT32 u32DevId: 有效的设备ID
-*       Output: SFE_MBUF_IFID_S *pstIfId: 该设备ID对应的数据面接口ID,内存由产品提供.
-*       Return: 成功:0
-*               失败:其它
-*      Caution: 1.在SCG产品应用场景下,用于产品获取指定Linux接口对应的VISP数据面接口信息.
-*        Since: DOPRA VISP V2R3C02
-*    Reference: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-06-07   wuxiaowei 00161372      Create
-*               hexianjun 00121208
-*
-*******************************************************************************/
+
 UINT32 SFE_GetIfIdByDevId(UINT32 u32DevId, SFE_MBUF_IFID_S *pstIfId);
 
 /*******************************************************************************

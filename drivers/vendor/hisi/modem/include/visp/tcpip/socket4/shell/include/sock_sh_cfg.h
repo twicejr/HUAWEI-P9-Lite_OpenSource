@@ -89,7 +89,6 @@ VOID  SOCK_ShowTCB(ULONG ulTaskId);
 VOID  SOCK_ShowSockInfo(ULONG ulTaskId, ULONG iFd);
 VOID  SOCK_ShowSockBufInfo(ULONG ulTaskId, ULONG iFd, ULONG ulBufType);
 VOID SOCK_ShowMGInfoBySock(ULONG ulTaskId, LONG lSockId);
-/* Add for DTS2011041801697, by z00166124, at 2011-04-22. 修改原因: 增加显示接口 */
 VOID  SOCK_ShowISISInfoBySock(ULONG ulTaskId, LONG lSockId);
 
 VOID *SOCK_GetNextQ0Socket(VOID *pParam, VOID **pNewParam);

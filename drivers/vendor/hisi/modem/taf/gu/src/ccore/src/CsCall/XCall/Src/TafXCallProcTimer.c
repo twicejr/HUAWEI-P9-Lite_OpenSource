@@ -1,22 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafXCallProcTimer.c
-  版 本 号   : 初稿
-  作    者   : w00176964
-  生成日期   : 2014年11月17日
-  最近修改   :
-  功能描述   : 处理timer超时消息的文件
-  函数列表   :
-
-  修改历史   :
-  1.日    期   : 2014年11月17日
-    作    者   : w00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 /*****************************************************************************
@@ -53,21 +35,7 @@ extern "C" {
    3 函数实现
 *****************************************************************************/
 /*lint -save -e958 */
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvTiWaitCallRedialPeriodExpired
- 功能描述  : 处理重拨定时器的超时消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月18日
-    作    者   : W00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvTiWaitCallRedialPeriodExpired(VOS_VOID *pMsg)
 {
     /* nothing to do here */
@@ -75,24 +43,7 @@ VOS_VOID TAF_XCALL_RcvTiWaitCallRedialPeriodExpired(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvTiWaitCallRedialIntervalExpired
- 功能描述  : 处理重拨间隔定时器的超时消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月18日
-    作    者   : W00176964
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年4月11日
-    作    者   : y00245242
-    修改内容   : iteration 13开发
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvTiWaitCallRedialIntervalExpired(VOS_VOID *pMsg)
 {
     VOS_UINT8                           ucCallId;
@@ -166,21 +117,7 @@ VOS_VOID TAF_XCALL_RcvTiWaitCallRedialIntervalExpired(VOS_VOID *pMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvTiStartAndStopContDtmfIntervalExpired
- 功能描述  : Start Cont Dtmf命令响应后，启动定时器，超时后处理函数,获取CallID,处理缓存
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月18日
-    作    者   : l00324781
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvTiStartAndStopContDtmfIntervalExpired(VOS_VOID *pMsg)
 {
     VOS_UINT8                           ucCallId;
@@ -194,20 +131,7 @@ VOS_VOID TAF_XCALL_RcvTiStartAndStopContDtmfIntervalExpired(VOS_VOID *pMsg)
 }
 
 #if (FEATURE_ON == FEATURE_CHINA_TELECOM_VOICE_ENCRYPT)
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvTiVoiceEncryptWaitOrigReqExpired
- 功能描述  : 处理等待呼叫请求消息超时
- 输入参数  : pMsg -- 定时器消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvTiVoiceEncryptWaitOrigReqExpired(VOS_VOID *pMsg)
 {
     TAF_XCALL_ProcEccEvent(TAF_XCALL_TIMER_MSG_EVENT_WAIT_ORIG_REQ,
@@ -216,20 +140,7 @@ VOS_VOID TAF_XCALL_RcvTiVoiceEncryptWaitOrigReqExpired(VOS_VOID *pMsg)
                            VOS_NULL_PTR);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvTiDelayEncryptReqExpired
- 功能描述  : 处理延时发送密钥请求发送定时器超时处理
- 输入参数  : pMsg -- 定时器消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvTiDelayEncryptReqExpired(VOS_VOID *pMsg)
 {
     TAF_XCALL_ProcEccEvent(TAF_XCALL_TIMER_MSG_EVENT_DELAY_SEND_ENCRYPT_REQ,
@@ -238,20 +149,7 @@ VOS_VOID TAF_XCALL_RcvTiDelayEncryptReqExpired(VOS_VOID *pMsg)
                            VOS_NULL_PTR);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvTiTx01Expired
- 功能描述  : 处理TX01定时器超时
- 输入参数  : pMsg -- 定时器消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvTiTx01Expired(VOS_VOID *pMsg)
 {
     TAF_XCALL_ProcEccEvent(TAF_XCALL_TIMER_MSG_EVENT_TX01,
@@ -260,20 +158,7 @@ VOS_VOID TAF_XCALL_RcvTiTx01Expired(VOS_VOID *pMsg)
                            VOS_NULL_PTR);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvTiTx02Expired
- 功能描述  : 处理TX02定时器超时
- 输入参数  : pMsg -- 定时器消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvTiTx02Expired(VOS_VOID *pMsg)
 {
     TAF_XCALL_ProcEccEvent(TAF_XCALL_TIMER_MSG_EVENT_TX02,
@@ -282,20 +167,7 @@ VOS_VOID TAF_XCALL_RcvTiTx02Expired(VOS_VOID *pMsg)
                            VOS_NULL_PTR);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvTiRemoteCtrlWaitApAnswerExpired
- 功能描述  : 处理TI_TAF_XCALL_REMOTE_CTRL_WAIT_AP_ANSWER_TIMER定时器超时
- 输入参数  : pMsg -- 定时器消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月18日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvTiRemoteCtrlWaitApAnswerExpired(VOS_VOID *pMsg)
 {
     TAF_XCALL_ProcEccEvent(TAF_XCALL_TIMER_MSG_EVENT_REMOTE_CTRL_WAIT_AP_ANSWER,
@@ -304,20 +176,7 @@ VOS_VOID TAF_XCALL_RcvTiRemoteCtrlWaitApAnswerExpired(VOS_VOID *pMsg)
                            VOS_NULL_PTR);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvTiPubKeyUpdateWaitAckExpired
- 功能描述  : 处理等待公钥更新确认消息定时器超时
- 输入参数  : pMsg -- 定时器消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-11-10
-    作    者   : l00359089
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvTiPubKeyUpdateWaitAckExpired(VOS_VOID *pMsg)
 {
     TAF_XCALL_ProcEccEvent(TAF_XCALL_TIMER_MSG_EVENT_PUB_KEY_UPDATE_WAIT_ACK,

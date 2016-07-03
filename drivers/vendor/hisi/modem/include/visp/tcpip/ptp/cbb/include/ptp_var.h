@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2008-2018, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : ptp_var.h
-  版 本 号   : 初稿
-  作    者   :
-  生成日期   : 2008年5月4日
-  最近修改   :
-  功能描述   :
-  函数列表   :
-  修改历史   :
-  1.日    期   :2008-06-20
-    作    者   :tanqiang
-    修改内容   :按编程规范添加文件头注释
-
-******************************************************************************/
 #ifndef _ptp_var_h_
 #define _ptp_var_h_
 
@@ -29,9 +12,7 @@ extern "C" {
 extern PTP_CAPTURE_PACKET_FUNC g_pfPtpCapturePacketFunc;
 
 extern PTP_GRANT_ACQUIRED_FUNC g_pfPtpGrantAcquired;
-/*Begin Add by heyijun KF37287 for DTS2011062105058 支持clock id授权方案*/
 extern PTP_GRANT_ACQUIRED_ID_FUNC g_pfPtpGrantAcquiredById;
-/*End Add by heyijun KF37287 for DTS2011062105058 支持clock id授权方案*/
 
 /* 维测全局指针 */
 extern PTP_DBG_OUTPUT_HOOK_FUNC     g_pfDbgOutput;
@@ -103,20 +84,13 @@ extern DLL_S *g_stPtpvlanList;
 
 extern UCHAR g_ucPtpDomainSwitch;
 
-/*Begin add by t00110672 for  DTS2011031504784 2011-3-17,协议一致性检查优化*/
 extern UCHAR g_ucPtpConformitySwitch;
 
-/*Added by limin00188004, Master侧AlternateMasterFlag字段值是否需要兼容老版本标记, 2011/12/15   问题单号:DTS2011121501803 */
 extern UCHAR g_ucPtpAlternateMasterFlag;
-/* End of Added by limin00188004, 2011/12/15   问题单号:DTS2011121501803 */
 
-/* Modified by limin00188004/zhangliangzhi00187023/jijianhua00169178, PTP slave侧支持5路SYNC协商, 2011/12/28   问题单号:S.PTP.5SYNC.01 */
 extern ULONG g_ulPtpMultiSelectMode;  /*5路选源开关,只在Slave侧,目前只针对单播,默认为FALSE,即单路选源*/
-/* Modified by limin00188004/zhangliangzhi00187023/jijianhua00169178, PTP slave侧支持5路SYNC协商, 2011/12/28   问题单号:S.PTP.5SYNC.01 */
 
-/*Added by limin00188004, 1588 PTP支持多TLV处理和协商链路单独删除, 2012/9/20   问题单号:S.PTP.02.01 */
 extern ULONG g_ulPtpMasterDurationSwitch;
-/* End of Added by limin00188004, 2012/9/20   问题单号:S.PTP.02.01 */
 
 extern USHORT g_usPtpMaxAddrNum;
 
@@ -214,18 +188,14 @@ extern PTP_PPI_TIME_S g_ulPTPPpiTime;/*PTP下发耗时统计处理变量*/
     }                                                                          \
 }
 
-/*Begin Add by heyijun KF62476 for DTS2011122700669, 调试打印增加基于地址过滤功能 */
 extern PTP_ADDRINFO_S g_stPtpPacketFilterAddr;
-/*End   Add by heyijun KF62476 for DTS2011122700669, 调试打印增加基于地址过滤功能 */                                    
 
-/*Added by guo00178934, two-way模式，是否允许sync和delay序号相同, 2012/1/5   问题单号:20120105_2 */
 extern ULONG g_ulPtpSeqIdCompatType;
-/* End of Added by guo00178934, 2012/1/5   问题单号:20120105_2 */
 
 extern ULONG g_ulPtpClassCheckSwitch; /* PTP_NO:校验(默认)  PTP_YES:不校验(PT5000对接用) */
 
-extern UCHAR g_ucBmcSourceMode;         /*Added by luogaowei 2013-5-8 1588 16.1需求，记录选源模式*/
-extern ULONG g_ulNegoAndBmcSplitMode;   /*Added by luogaowei 2013-5-8 1588 16.1需求，记录是否是分离模式*/
+extern UCHAR g_ucBmcSourceMode;
+extern ULONG g_ulNegoAndBmcSplitMode;
 extern UCHAR g_ucPtpMutexCfgFlag;       /*分离模式和keeplive 接口互斥标记，初始化为0, 仅仅用于互斥调用*/
 
 #ifdef __cplusplus

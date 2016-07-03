@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafCbaProcEtwsPrimNtf.c
-  版 本 号   : 初稿
-  作    者   : l00171473
-  生成日期   : 2012年3月19日
-  最近修改   :
-  功能描述   : ETWS主通知相关的消息
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年3月19日
-    作    者   : l00171473
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -58,21 +41,7 @@ extern "C" {
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_RcvAsEtwsPrimNotifyInd
- 功能描述  : 处理接入层发送的ETWS主通知消息
- 输入参数  : pstMsg  - AS发送过来的主通知消息
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月19日
-    作    者   : l00171473
-    修改内容   : 新生成函数, for V7R1C50 CSFB&PPAC&ETWS&ISR
-
-*****************************************************************************/
 VOS_VOID TAF_CBA_RcvAsEtwsPrimNotifyInd(
     RR_CBS_ETWS_PRIMARY_NOTIFY_IND_STRU                    *pstMsg
 )
@@ -118,22 +87,7 @@ VOS_VOID TAF_CBA_RcvAsEtwsPrimNotifyInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_IsMsgIdInEtwsMsgIdList
- 功能描述  : 判断指定MSG ID是否在ETWS的ID范围
- 输入参数  : usMsgId: 主从通知/CBS消息的MSG ID
- 输出参数  : 无
- 返 回 值  : VOS_TRUE :在ETWS的ID范围内
-             VOS_FALSE:不在ETWS的ID范围内
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月25日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_CBA_IsMsgIdInEtwsMsgIdList(
     VOS_UINT16                          usMsgId
 )
@@ -177,22 +131,7 @@ VOS_UINT32 TAF_CBA_IsMsgIdInEtwsMsgIdList(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_IsEtwsPrimNtfMsgIdValid
- 功能描述  : 判断主通知消息ID是否有效
- 输入参数  : usMsgId: 待判断的MSG ID
- 输出参数  : 无
- 返 回 值  : VOS_TRUE : MSG ID有效
-             VOS_FALSE: MSG ID无效
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月25日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_CBA_IsEtwsPrimNtfMsgIdValid(
     VOS_UINT16                          usMsgId
 )
@@ -215,21 +154,7 @@ VOS_UINT32  TAF_CBA_IsEtwsPrimNtfMsgIdValid(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_GetEtwsDupDetcTimeLen
- 功能描述  : 获取ETWS的主通知消息的重复检测时长
- 输入参数  : pstPlmn: Plmn信息
- 输出参数  : 无
- 返 回 值  : 主通知消息的重复检测时长 Duplication Detection Time
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月25日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_CBA_GetEtwsDupDetcTimeLen(
     TAF_CBA_PLMN_ID_STRU                                   *pstPlmn
 )
@@ -272,21 +197,7 @@ VOS_UINT32 TAF_CBA_GetEtwsDupDetcTimeLen(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_BuildEtwsPrimNtfRecord
- 功能描述  : 从AS的主通知消息中构造新的ETWS主通知记录
- 输入参数  : pstMsg:       指向AS的主通知消息
- 输出参数  : pstNewRecord: 新的ETWS主通知记录
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月9日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_CBA_BuildEtwsPrimNtfRecord(
     RR_CBS_ETWS_PRIMARY_NOTIFY_IND_STRU                    *pstMsg,
     TAF_CBA_RECORD_STRU                                    *pstNewRecord
@@ -317,21 +228,7 @@ VOS_VOID TAF_CBA_BuildEtwsPrimNtfRecord(
     pstNewRecord->ulRcvTimeTick    = VOS_GetTick();
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_SaveEtwsPrimNtfRecord
- 功能描述  : 保存ETWS主通知记录
- 输入参数  : pstNewRecord: 待保存的新的主通知记录
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月27日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_CBA_SaveEtwsPrimNtfRecord (
     TAF_CBA_RECORD_STRU                *pstNewRecord
 )
@@ -402,21 +299,7 @@ VOS_VOID TAF_CBA_SaveEtwsPrimNtfRecord (
                                  usPrimNtfNum);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_GetEarliestEtwsPrimNtfRecordInx
- 功能描述  : 获取最早的ETWS主通知记录的index
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 最早的ETWS主通知记录的index
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月10日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_CBA_GetEarliestEtwsPrimNtfRecordInx(VOS_VOID)
 {
     TAF_CBA_RECORD_STRU                *pstRecordList;
@@ -444,22 +327,7 @@ VOS_UINT32  TAF_CBA_GetEarliestEtwsPrimNtfRecordInx(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_IsNeedDupDetectEtwsPrimNtf
- 功能描述  : 判断是否需要做重复过滤
- 输入参数  : VOS_VOID
- 输出参数  :
- 返 回 值  : VOS_TRUE : 需要做重复过滤
-             VOS_FALSE: 不需要做重复过滤
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月04日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_CBA_IsNeedDupDetectEtwsPrimNtf(VOS_VOID)
 {
     TAF_CBA_DUP_DETECT_CFG_ENUM_UINT8   enDupDetectCfg;
@@ -475,24 +343,7 @@ VOS_UINT32 TAF_CBA_IsNeedDupDetectEtwsPrimNtf(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_IsDupEtwsPrimNtf
- 功能描述  : 判断主通知记录表中是否存在重复的记录项
- 输入参数  : pstRecord: 指向新消息记录
- 输出参数  :
- 返 回 值  : VOS_TRUE : 历史记录表中存在相同的记录项
-             VOS_FALSE: 不存在相同的记录项
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月9日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月04日
-    作    者   : l00171473
-    修改内容   : for DTS2012120600056, 增加判断是否需要做重复过滤
-*****************************************************************************/
 VOS_UINT32 TAF_CBA_IsDupEtwsPrimNtf(
     TAF_CBA_RECORD_STRU                *pstRecord
 )
@@ -553,22 +404,7 @@ VOS_UINT32 TAF_CBA_IsDupEtwsPrimNtf(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_GetEtwsPrimNtfRecordInxByMsgIdCode
- 功能描述  : 从主通知历史记录表中获取MSG ID和MSG CODE相同项的Index
- 输入参数  : pstRecord: 指向新消息记录
- 输出参数  : pstIndex : 相同项的index值
- 返 回 值  : VOS_TRUE : 获取成功
-             VOS_FALSE: 获取失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月9日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_CBA_GetEtwsPrimNtfRecordInxByMsgIdCode(
     TAF_CBA_RECORD_STRU                *pstRecord,
     VOS_UINT32                         *pstIndex
@@ -608,22 +444,7 @@ VOS_UINT32 TAF_CBA_GetEtwsPrimNtfRecordInxByMsgIdCode(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_TemporaryEnableCbs
- 功能描述  : 检查是否需要临时使能CBS以便于接收ETWS的从通知, 如果需要则向AS发送
-             使能CBS消息, 并启动定时器. 定时器超时后需要需向AS发送去使能CBS消息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月15日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_CBA_TemporaryEnableCbs(VOS_VOID)
 {
     TAF_CBA_CBSTATUS_ENUM_UINT8         enCbsStatus;

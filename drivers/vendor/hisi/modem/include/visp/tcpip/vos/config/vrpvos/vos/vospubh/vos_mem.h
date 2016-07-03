@@ -1,21 +1,4 @@
-/************************************************************************
- *                                                                      *
- *                             VOS_MEM.H                                *
- *                                                                      *
- *  Project Code:       VRP3.0                                          *
- *  Create Date:        2000/03/1                                       *
- *  Author:             Zhu Yingming                                    *
- *  Modify Date:                                                        *
- *  Document:  《VRP3.0-VOS内存管理详细设计说明书》                     *
- *             《VRP3.0-VOS内存管理概要设计说明书》                     *
- *  Function: VOS memory managment.                                     *
- *  Others:                                                             *
- *----------------------------------------------------------------------*
- *                                                                      *
- *             Copyright 2000 - 2002 HuaWei Tech, Inc.                  *
- *                      ALL RIGHTS RESERVED                             *
- *                                                                      *
- ************************************************************************/
+
 
 
 #ifndef _VOS_MEM_H_

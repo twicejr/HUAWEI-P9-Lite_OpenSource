@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : dmac_scan_test.c
-  版 本 号   : 初稿
-  作    者   : 王山博
-  生成日期   : 2014年4月21日
-  最近修改   :
-  功能描述   : 验证扫描模块的相关功能而开发的PRCO接口函数及处理函数
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年4月21日
-    作    者   : w00196298
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -89,21 +72,7 @@ extern oal_uint32 dmac_scan_add_req(mac_device_stru *pst_mac_device, mac_scan_re
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : Linux 的PROC 接口定义
- 功能描述  : Linux 的PROC实现所需的所有相关函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月21日
-    作    者   : w00196298
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_int32 dmac_scan_seq_show(struct seq_file *f, void *v)
 {
     dmac_scanner_procfs_stru *pst_scan_record = (dmac_scanner_procfs_stru *)v;
@@ -419,21 +388,7 @@ OAL_STATIC OAL_CONST struct file_operations dmac_scan_proc_fops = {
     .write      = dmac_scan_proc_write,
 };
 
-/*****************************************************************************
- 函 数 名  : dmac_scan_verify_update
- 功能描述  : SCAN验证功能更新统计变量的函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月21日
-    作    者   : w00196298
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_scan_verify_update(oal_uint8 uc_scan_func, oal_uint8 uc_band, oal_uint8 uc_scan_type)
 {
     oal_uint8   uc_do_stats;
@@ -453,21 +408,7 @@ oal_void dmac_scan_verify_update(oal_uint8 uc_scan_func, oal_uint8 uc_band, oal_
     g_st_scanner_record.uc_enable_radar_det_cnt += (WLAN_BAND_5G == uc_band) && uc_do_radar_det;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_scan_verify_init
- 功能描述  : SCAN验证功能初始化函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月21日
-    作    者   : w00196298
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  dmac_scan_verify_init(oal_void)
 {
 #if defined(_PRE_WLAN_CHIP_TEST) && (_PRE_OS_VERSION_LINUX == _PRE_OS_VERSION)

@@ -211,7 +211,7 @@ oal_void oal_sdio_exception_submit(struct oal_sdio *hi_sdio, oal_int32 excep_typ
         oal_sdio_release_host(hi_sdio);
         return;
     }
-    
+
     /*disable sdio*/
     oal_disable_sdio_state(hi_sdio, OAL_SDIO_ALL);
     hcc_change_state_exception();
@@ -493,7 +493,7 @@ oal_int32 oal_sdio_msg_irq(struct oal_sdio *hi_sdio)
 {
     oal_int32 bit = 0;
     struct sdio_func       *func;
-    oal_uint32                   msg = 0;
+    oal_uint32           msg = 0;
     oal_int32                   ret;
 
     func       = hi_sdio->func;
@@ -1095,7 +1095,9 @@ OAL_STATIC oal_int32 oal_gpio_rxdata_thread(oal_void *data)
 
 
 oal_atomic g_wakeup_dev_wait_ack;
-oal_atomic g_pm_spinlock_get;
+oal_uint32 g_ul_pm_wakeup_event = OAL_FALSE;
+EXPORT_SYMBOL_GPL(g_ul_pm_wakeup_event);
+
 
 OAL_STATIC irqreturn_t wlan_gpio_irq(oal_int32 irq, oal_void *dev_id)
 {
@@ -1108,17 +1110,13 @@ OAL_STATIC irqreturn_t wlan_gpio_irq(oal_int32 irq, oal_void *dev_id)
         OAL_IO_PRINT(KERN_ERR"GPIO interrupt function param is NULL\r\n");
         return IRQ_HANDLED;
     }
-    //OAL_BUG_ON(!hi_sdio->pst_pm_callback);
-    //OAL_BUG_ON(!hi_sdio->pst_pm_callback->wlan_pm_state_get);
+
     if(!hi_sdio->pst_pm_callback ||!hi_sdio->pst_pm_callback->wlan_pm_state_get )
     {
         OAL_IO_PRINT("GPIO interrupt function param is NULL\r\n");
         return IRQ_HANDLED;
     }
 
-    //g_pm_info->allowsleep_flag = FALSE;
-    //oal_spin_lock(&hi_sdio->st_irq_lock);
-	//oal_atomic_set(&g_pm_spinlock_get,1);
 
     hi_sdio->gpio_int_count++;
 
@@ -1129,7 +1127,7 @@ OAL_STATIC irqreturn_t wlan_gpio_irq(oal_int32 irq, oal_void *dev_id)
 
 	ul_state = hi_sdio->pst_pm_callback->wlan_pm_state_get();
 
-	
+
     //OAL_IO_PRINT(KERN_ERR"[SDIO][DBG]wlan_gpio_irq get pm state=%d\r\n",(oal_uint32)ul_state);
     if(0 == ul_state)
     {
@@ -1146,13 +1144,12 @@ OAL_STATIC irqreturn_t wlan_gpio_irq(oal_int32 irq, oal_void *dev_id)
         /*1==HOST_ALLOW_TO_SLEEP表示当前是休眠，唤醒host*/
         OAL_BUG_ON(!hi_sdio->pst_pm_callback->wlan_pm_wakeup_host);
         hi_sdio->wakeup_int_count++;
+        g_ul_pm_wakeup_event = OAL_TRUE;
         //OAL_IO_PRINT("[SDIO][DBG]Sdio Wakeup Interrrupt %llu,data intr %llu \r\n",hi_sdio->wakeup_int_count,hi_sdio->gpio_int_count);
         hi_sdio->pst_pm_callback->wlan_pm_wakeup_host();
 
     }
-	
-    //oal_spin_unlock(&hi_sdio->st_irq_lock);
-	//oal_atomic_set(&g_pm_spinlock_get,0);
+
 
     return IRQ_HANDLED;
 }
@@ -1189,8 +1186,6 @@ oal_int32 oal_register_gpio_intr(struct oal_sdio *hi_sdio)
     }
 
    oal_atomic_set(&g_wakeup_dev_wait_ack,0);
-   oal_atomic_set(&g_pm_spinlock_get,0);
-   
 
    ret = request_irq(wlan_irq, wlan_gpio_irq, IRQF_NO_SUSPEND | IRQF_TRIGGER_RISING | IRQF_DISABLED, "wifi_gpio_intr", hi_sdio);
    if (ret < 0)
@@ -1224,21 +1219,7 @@ oal_void oal_unregister_gpio_intr(struct oal_sdio *hi_sdio)
     hi_sdio->gpio_rx_tsk = NULL;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_wlan_gpio_intr_enable
- 功能描述  : 使能/关闭 WLAN GPIO 中断
- 输入参数  : 1:enable; 0:disenable
- 输出参数  : 无
- 返 回 值  : 成功或失败原因
- 调用函数  : 无
- 被调函数  : 无
 
- 修改历史      :
-  1.日    期   : 2015年5月20日
-    作    者   : zourong 00274374
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void oal_wlan_gpio_intr_enable(struct oal_sdio *hi_sdio,oal_uint32  ul_en)
 {
     oal_uint            flags;
@@ -1328,7 +1309,7 @@ oal_void oal_sdio_get_dev_pm_state(struct oal_sdio *hi_sdio,oal_uint* pst_ul_f1,
 {
     int    ret;
 
-   
+
     sdio_claim_host(hi_sdio->func);
     *pst_ul_f1 = sdio_f0_readb(hi_sdio->func,0xf1,&ret);
     *pst_ul_f2 = sdio_f0_readb(hi_sdio->func,0xf2,&ret);
@@ -1345,7 +1326,7 @@ oal_void oal_sdio_get_dev_pm_state(struct oal_sdio *hi_sdio,oal_uint* pst_ul_f1,
 oal_int32 oal_sdio_wakeup_dev(struct oal_sdio *hi_sdio)
 {
     int    ret;
-	
+
     oal_sdio_claim_host(hi_sdio);
     sdio_f0_writeb(hi_sdio->func,DISALLOW_TO_SLEEP_VALUE,HISDIO_WAKEUP_DEV_REG,&ret);
     oal_sdio_release_host(hi_sdio);
@@ -1614,21 +1595,7 @@ failed_sdio_alloc:
 }
 
 #if 0
-/*****************************************************************************
- 函 数 名  : oal_sdio_wake_release_lock
- 功能描述  : 释放指定次数wakelock锁
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 成功或失败原因
- 调用函数  : 无
- 被调函数  : 无
 
- 修改历史      :
-  1.日    期   : 2015年5月20日
-    作    者   : zourong 00274374
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 oal_int  oal_sdio_wake_release_lock(struct oal_sdio *pst_hi_sdio, oal_uint32 ul_locks)
 {
@@ -1666,21 +1633,7 @@ oal_int  oal_sdio_wake_release_lock(struct oal_sdio *pst_hi_sdio, oal_uint32 ul_
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : oal_sdio_wakelocks_release_detect
- 功能描述  : 强行释放wakelock锁
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 成功或失败原因
- 调用函数  : 无
- 被调函数  : 无
 
- 修改历史      :
-  1.日    期   : 2015年5月20日
-    作    者   : zourong 00274374
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 oal_void oal_sdio_wakelocks_release_detect(struct oal_sdio *pst_hi_sdio)
 {
@@ -1970,7 +1923,7 @@ OAL_STATIC oal_int32 _oal_sdio_transfer_scatt(struct oal_sdio *hi_sdio, oal_int3
         oal_uint64  trans_us;
         ktime_t time_stop = ktime_get();
         trans_us = (oal_uint64)ktime_to_us(ktime_sub(time_stop, time_start));
-        printk(KERN_WARNING"[E]sdio_transfer_scatt fail=%d, time cost:%llu us,[addr:%u, sg_len:%u,rw_sz:%u]\n", 
+        printk(KERN_WARNING"[E]sdio_transfer_scatt fail=%d, time cost:%llu us,[addr:%u, sg_len:%u,rw_sz:%u]\n",
                             ret, trans_us, addr, sg_len, rw_sz);
 
 #endif
@@ -2479,7 +2432,7 @@ oal_int32 oal_sdio_panic_status_check(struct oal_sdio* hi_sdio)
     {
         ret = OAL_TRUE;
     }
-    
+
     if(!hisdio_intr_mode)
     {
         /*sdio mode*/
@@ -2594,6 +2547,7 @@ struct oal_sdio* oal_sdio_init_module(oal_void* data)
     if(NULL == hi_sdio)
     {
         OAL_IO_PRINT("[E]alloc oal_sdio failed [%d]\n", (oal_int32)OAL_SIZEOF(struct oal_sdio));
+        CHR_EXCEPTION(CHR_WIFI_DRV(CHR_WIFI_DRV_EVENT_PLAT, CHR_PLAT_DRV_ERROR_SDIO_INIT));
         return NULL;
     }
     oal_memset((oal_void*)hi_sdio,0,OAL_SIZEOF(struct oal_sdio));
@@ -2699,6 +2653,8 @@ failed_sdio_extend_alloc:
     kfree(hi_sdio->rx_reserved_buff);
 failed_rx_reserved_buff_alloc:
     kfree(hi_sdio);
+    CHR_EXCEPTION(CHR_WIFI_DRV(CHR_WIFI_DRV_EVENT_PLAT, CHR_PLAT_DRV_ERROR_SDIO_INIT));
+
     return NULL;
 }
 oal_module_symbol(oal_sdio_init_module);

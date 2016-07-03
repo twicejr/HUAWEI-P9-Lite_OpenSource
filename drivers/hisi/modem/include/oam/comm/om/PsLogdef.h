@@ -30,7 +30,6 @@ extern "C"{
 /*****************************************************************************
   2 枚举定义
 ******************************************************************************/
-/*RPTIN2LAYER l00285345 PRINT_SWITCH 原原打印开关 PRINT2LAYER_SWITCH层间打印开关 */
 #define PRINT_OFF             (0)
 #define PRINT_ON              (1)
 #define PRINT_SWITCH          (PRINT_OFF)
@@ -178,7 +177,6 @@ typedef enum
 #endif
 #endif
 
-/*新打印接口 l00285345 20150808*/
 #if (VOS_OS_VER == VOS_WIN32)
 #define LPS_PRINT_LOG(ModulePID, pcString) \
             vos_printf(" %s, %d, %s\r\n ", __FILE__, __LINE__,pcString)
@@ -2416,7 +2414,6 @@ typedef enum
             PS_FILE_ID_NASERABMCDSMSGPROC_C,
 
 
-/* c00144034编译合入 */
                   PS_FILE_ID_MMC_LMMINTERFACE_C,
 
 /* R9 DC+MIMO合入 */
@@ -2447,10 +2444,7 @@ typedef enum
                   PS_FILE_ID_ACORE_FLOW_CTRL_C,
                   PS_FILE_ID_CCORE_FLOW_CTRL_C,
                   PS_FILE_ID_TTF_MEM_RB_C,
-                  /* Added by h00163499 for DSDA Project，2012-12-24,  Begin */
                   PS_FILE_ID_TTF_MEMCTRL_C,
-                  /* Added by h0016399 for DSDA Project，2012-12-24,  end */
-                  /* Added by s00164817 for PS Project，2011-12-13,  Begin */
                   PS_FILE_ID_IMM_RB_C,
                   PS_FILE_ID_IMM_ZC_C,
                   PS_FILE_ID_IMM_MNTN_C,
@@ -2459,7 +2453,6 @@ typedef enum
                   PS_FILE_ID_LITTLE_IMAGE_LOG_C,
 
 
-                  /* Added by s00164817 for PS Project，2011-12-13,  End */
 
 
                   PS_FILE_ID_PSDIPC_C,
@@ -3524,9 +3517,7 @@ typedef enum
 /* CPROC */
 typedef enum
 {
-    /* CDMA CPROC FILE ID START, l00322531, 2015/8/10
-     * 如果要增加新的FILE ID,请添加此列表最后,PS_FILE_ID_CPROC_BUTT之前。
-     */
+    
     /* FWK */
     PS_FILE_ID_FWK_DLLIST_C = CPROC_TEAM_FILE_ID,
     PS_FILE_ID_FWK_ESS_C,

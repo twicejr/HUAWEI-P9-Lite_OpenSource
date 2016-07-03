@@ -183,7 +183,6 @@ typedef struct
 *****************************************************************************/
 extern NAS_EMM_STA_STRU     g_astEmmSecuStaTbl[];
 
-/* 删除TAU消息加密的相关无效配置代码 y00307272 20151017 DTS2015101700432 */
 extern VOS_UINT8  *g_pucSecuSrcBuf;
 extern VOS_UINT8  *g_pucSecuDstBuf;
 

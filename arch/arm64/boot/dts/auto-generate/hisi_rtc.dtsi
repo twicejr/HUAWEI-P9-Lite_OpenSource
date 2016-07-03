@@ -18,12 +18,12 @@
                     interrupts = <3 0>;
                     interrupt-names = "hisi-pmic-rtc";
 
-                    hisilicon,pmic-rtc-base = <0x12c>;
-                    hisilicon,pmic-rtc-imr  = <0x0e1>;
-                    hisilicon,pmic-rtc-icr  = <0x120>;
+                    hisilicon,pmic-rtc-base = <0x1D0>;
+                    hisilicon,pmic-rtc-imr  = <0x130>;
+                    hisilicon,pmic-rtc-icr  = <0x1B2>;
                     hisilicon,pmic-rtc-ib   = <0x3>;
 
-                    hisilicon,pmic-rtc-xo-thrshd-pwroff-val = <0x00B8>;
+                    hisilicon,pmic-rtc-xo-thrshd-pwroff-val = <0xFFFF>;
 
                     status = "disabled";
 	    };

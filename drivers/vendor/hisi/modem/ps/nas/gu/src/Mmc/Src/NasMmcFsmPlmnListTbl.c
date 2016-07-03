@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmcFsmPlmnListTbl.c
-  版 本 号   : 初稿
-  作    者   : w00176964
-  生成日期   : 2011年07月04日
-  最近修改   :
-  功能描述   : NAS 层plmn list状态机状态转移表
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年07月04日
-    作    者   : w00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -31,17 +14,13 @@
 #include "MmcLmmInterface.h"
 #endif
 
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-16, begin */
 /* 删除ExtAppMmcInterface.h*/
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-16, end */
 
 #include "NasMmcSndInternalMsg.h"
 #include "NasMmcFsmPlmnList.h"
 #include "NasMmcFsmPLmnListTbl.h"
 
-/* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
 #include "MsccMmcInterface.h"
-/* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -57,7 +36,6 @@ extern "C" {
 /* NAS MMC状态机数组:list搜网层二状态机名称*/
 NAS_FSM_DESC_STRU                       g_stNasMmcPlmnListFsmDesc;
 
-/* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
 /* NAS_MMC_PLMN_LIST_STA_INIT动作表 */
 NAS_ACT_STRU   g_astNasPlmnListInitActTbl[]              =
 {
@@ -236,11 +214,9 @@ NAS_ACT_STRU   g_astNasPlmnListWaitEpsConnRelIndActTbl[]              =
                       TI_NAS_MMC_WAIT_EPS_CONN_REL_IND,
                       NAS_MMC_RcvTiWaitEpsConnRelIndExpired_PlmnList_WaitEpsConnRelInd),
 
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-2-8, begin */
     NAS_ACT_TBL_ITEM(UEPS_PID_MSCC,
                      ID_MSCC_MMC_IMS_VOICE_CAP_NOTIFY,
                      NAS_MMC_RcvMsccImsVoiceCapInd_PlmnList_WaitEpsConnRelInd),
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-2-8, end */
 };
 
 /* NAS_MMC_PLMN_LIST_STA_WAIT_EPS_REG_IND动作表 */
@@ -299,11 +275,9 @@ NAS_ACT_STRU   g_astNasPlmnListWaitEpsRegIndActTbl[]              =
                       TI_NAS_MMC_WAIT_EPS_REG_IND,
                       NAS_MMC_RcvTiWaitEpsRegIndExpired_PlmnList_WaitEpsRegInd),
 
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-2-8, begin */
     NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
                       ID_MSCC_MMC_IMS_VOICE_CAP_NOTIFY,
                       NAS_MMC_RcvMsccImsVoiceCapInd_PlmnList_WaitEpsRegInd),
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-2-8, end */
 };
 
 #endif
@@ -452,11 +426,9 @@ NAS_ACT_STRU   g_astNasPlmnListWaitCsPsRegRsltIndActTbl[]              =
                      RRMM_LIMIT_SERVICE_CAMP_IND,
                      NAS_MMC_RcvRrmmLimitServiceCampInd_PlmnList_WaitCsPsRegRsltInd),
 
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-2-8, begin */
     NAS_ACT_TBL_ITEM(UEPS_PID_MSCC,
                      ID_MSCC_MMC_IMS_VOICE_CAP_NOTIFY,
                      NAS_MMC_RcvMsccImsVoiceCapInd_PlmnList_WaitCsPsRegRsltInd),
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-2-8, end */
 };
 
 
@@ -1076,7 +1048,6 @@ NAS_ACT_STRU   g_astNasPlmnListWaitLmmPlmnSearchStopCnfActTbl[]              =
                      NAS_MMC_RcvTafPlmnListReq_PlmnList_NonInit),
 
 };
-/* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
 #endif
 
@@ -1192,42 +1163,14 @@ NAS_STA_STRU g_astNasMmcPlmnListStaTbl[] =
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetPlmnListStaTblSize
- 功能描述  : 获取Plmn List状态机的大小
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:Plmn List状态机的大小
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年9月19日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_GetPlmnListStaTblSize( VOS_VOID  )
 {
     return (sizeof(g_astNasMmcPlmnListStaTbl)/sizeof(NAS_STA_STRU));
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetPlmnListFsmDescAddr
- 功能描述  : 获取挂起状态机的描述表
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : NAS_FSM_DESC_STRU:指向PLMN LIST状态机的描述表
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年9月19日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_FSM_DESC_STRU * NAS_MMC_GetPlmnListFsmDescAddr(VOS_VOID)
 {
     return (&g_stNasMmcPlmnListFsmDesc);

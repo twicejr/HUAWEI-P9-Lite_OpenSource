@@ -136,11 +136,11 @@ static int pericom30216_clean_int_mask(void)
     u8 reg_val;
     struct typec_device_info *di = g_pericom30216_dev;
 
-    pericom30216_read_reg(PERICOM30216_REG_CONTROL);
     reg_val = di->reg[PERICOM30216_REG_CONTROL - 1];
-    reg_val &= ~PERICOM30216_REG_CONTROL_INT_MASK;
-
-    pericom30216_write_reg(PERICOM30216_REG_CONTROL, reg_val);
+    if (reg_val & PERICOM30216_REG_CONTROL_INT_MASK) {
+        reg_val &= ~PERICOM30216_REG_CONTROL_INT_MASK;
+        pericom30216_write_reg(PERICOM30216_REG_CONTROL, reg_val);
+    }
 
     return 0;
 }
@@ -336,6 +336,12 @@ static int pericom30216_detect_attachment_status(void)
     } else {
         /* there will be two interrupts when a DFP device is detected.
          the first is attach and the next is a none-type interrupt as a chip feature. */
+#ifndef CONFIG_DUAL_ROLE_USB_INTF
+        if (0x00 == reg_cc_status) {
+            hwlog_info("%s: pericom DETACH backup\n", __func__);
+            di->dev_st.attach_status = TYPEC_DETACH;
+        }
+#endif
     }
 
     return di->dev_st.attach_status;

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmcMsgCompare.h
-  版 本 号   : 初稿
-  作    者   : zhoujun 40661
-  生成日期   : 2011年9月27日
-  最近修改   :
-  功能描述   : NasMmcMsgCompare.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年9月27日
-    作    者   : zhoujun 40661
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 其他头文件包含
@@ -42,16 +25,7 @@ extern "C" {
 /*****************************************************************************
   3 枚举定义
 *****************************************************************************/
-/*****************************************************************************
- 枚举名    : NAS_MMC_MSG_PRIO_ENUM
- 结构说明  : MMC消息优先级比较的结果
- 1.日    期   : 2011年4月28日
-   作    者   : zhoujun 40661
-   修改内容   : 新建
- 1.日    期   : 2011年7月14日
-   作    者   : w00167002
-   修改内容   : V7R1 PHASEII 重构: 更新为UINT32位
-*****************************************************************************/
+
 enum NAS_MMC_MSG_COMPARE_PRIO_RSLT_ENUM
 {
     NAS_MMC_MSG_COMPARE_PRIO_RSLT_ABORT  ,                                       /* 高优先级消息中断当前流程 */
@@ -82,39 +56,21 @@ typedef VOS_UINT32 NAS_MMC_MSG_COMPARE_PRIO_RSLT_ENUM_UINT32;
   7 STRUCT定义
 *****************************************************************************/
 
-/*****************************************************************************
- 结构名    : NAS_MMC_MSG_COMPARE_FUNC
- 结构说明  : 优先级比较处理函数的类型定义
- 1.日    期   : 2011年9月28日
-   作    者   : zhoujun \40661
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef VOS_UINT32 (*NAS_MMC_MSG_COMPARE_FUNC)(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
     NAS_MMC_ABORT_FSM_TYPE_UINT8       *penAbortType
 );
 
-/*****************************************************************************
- 结构名    : NAS_MMC_MSG_COMPARE_STRU
- 结构说明  : 比较函数结构
- 1.日    期   : 2011年9月28日
-   作    者   : zhoujun \40661
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulCurrEventType;        /* 需比较的消息 */
     NAS_MMC_MSG_COMPARE_FUNC            pfCompareFun;           /* 比较函数 */
 }  NAS_MMC_MSG_COMPARE_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_MSG_COMPARE_STRU
- 结构说明  : 比较函数结构
- 1.日    期   : 2011年9月28日
-   作    者   : zhoujun \40661
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     NAS_MMC_FSM_ID_ENUM_UINT32          enFsmId;                /* 当前运行的FSM ID */
@@ -136,13 +92,7 @@ typedef struct
   10 函数声明
 *****************************************************************************/
 
-/*****************************************************************************
- 结构名    : NAS_MMC_COMPARE_TBL_ITEM
- 结构说明  : 每个单个状态机比较函数表结构
- 1.日    期   : 2011年9月28日
-   作    者   : zhoujun \40661
-   修改内容   : 新增
-*****************************************************************************/
+
 
 #define NAS_MMC_COMPARE_TBL_ITEM(ulCurrMsgType, pCompareFun)\
 {\
@@ -150,13 +100,7 @@ typedef struct
     ((pCompareFun))\
 }
 
-/*****************************************************************************
- 结构名    : NAS_MMC_COMPARE_TBL_ITEM
- 结构说明  : 比较函数表结构
- 1.日    期   : 2011年9月28日
-   作    者   : zhoujun \40661
-   修改内容   : 新增
-*****************************************************************************/
+
 #define NAS_MMC_FSM_COMPARE_TBL_ITEM(enFsmId, astFsmCompareTbl)\
 {\
     ( enFsmId),\
@@ -295,7 +239,6 @@ VOS_UINT32 NAS_MMC_ComparePowerOffPrioWithPlmnSelection(
     NAS_MMC_ABORT_FSM_TYPE_UINT8       *penAbortType
 );
 
-/* Added by s00246516 for L-C互操作项目, 2014-01-28, Begin */
 VOS_UINT32 NAS_MMC_ComparePowerSavePrioWithPlmnSelection(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -313,9 +256,7 @@ VOS_UINT32 NAS_MMC_CompareRegReqPrioWithPlmnSelection(
     struct MsgCB                       *pstMsg,
     NAS_MMC_ABORT_FSM_TYPE_UINT8       *penAbortType
 );
-/* Added by s00246516 for L-C互操作项目, 2014-01-28, End */
 
-/* Added by c00318887 for 预置频点搜网优化, 2015-9-10, begin */
 VOS_UINT32 NAS_MMC_ComparePlmnSearchPhaseOneTotalTimePrioWithPlmnSelection(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -348,7 +289,6 @@ VOS_UINT32 NAS_MMC_CompareTiPlmnSearchPhaseOneTotalTimerExpiredPrioWithBgSearch(
     NAS_MMC_ABORT_FSM_TYPE_UINT8       *penAbortType
 );
 
-/* Added by c00318887 for 预置频点搜网优化, 2015-9-10, end */
 
 #if (FEATURE_ON == FEATURE_DSDS)
 VOS_UINT32 NAS_MMC_CompareSrvAcqReqPrioWithPlmnSelection(
@@ -425,7 +365,6 @@ VOS_UINT32 NAS_MMC_ComparePowerOffPrioWithPlmnList(
     NAS_MMC_ABORT_FSM_TYPE_UINT8       *penAbortType
 );
 
-/* Added by s00246516 for L-C互操作项目, 2014-01-28, Begin */
 VOS_UINT32 NAS_MMC_ComparePowerSavePrioWithPlmnList(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -443,7 +382,6 @@ VOS_UINT32 NAS_MMC_CompareRegReqPrioWithPlmnList(
     struct MsgCB                       *pstMsg,
     NAS_MMC_ABORT_FSM_TYPE_UINT8       *penAbortType
 );
-/* Added by s00246516 for L-C互操作项目, 2014-01-28, End */
 
 VOS_UINT32 NAS_MMC_CompareSysCfgSetPrioWithPlmnList(
     VOS_UINT32                          ulEventType,
@@ -495,14 +433,12 @@ VOS_UINT32  NAS_MMC_CompareLmmSuspendIndPrioWithPlmnList(
 );
 #endif
 
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-13, begin */
 VOS_UINT32 NAS_MMC_CompareCmServiceIndPrioWithAnyCellSearch(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
     NAS_MMC_ABORT_FSM_TYPE_UINT8       *penAbortType
 );
 
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-13, end */
 
 VOS_UINT32 NAS_MMC_ComparePoweroffPrioWithBgSearch(
     VOS_UINT32                          ulEventType,
@@ -511,7 +447,6 @@ VOS_UINT32 NAS_MMC_ComparePoweroffPrioWithBgSearch(
 );
 
 
-/* Added by s00246516 for L-C互操作项目, 2014-01-28, Begin */
 VOS_UINT32 NAS_MMC_ComparePowerSavePrioWithBgSearch(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -529,7 +464,6 @@ VOS_UINT32 NAS_MMC_CompareRegReqPrioWithBgSearch(
     struct MsgCB                       *pstMsg,
     NAS_MMC_ABORT_FSM_TYPE_UINT8       *penAbortType
 );
-/* Added by s00246516 for L-C互操作项目, 2014-01-28, End */
 
 VOS_UINT32 NAS_MMC_CompareUserPlmnListPrioWithBgSearch(
     VOS_UINT32                          ulEventType,
@@ -612,7 +546,6 @@ VOS_UINT32 NAS_MMC_ComparePlmnSearchIndPrioWithAnyCellSearch(
 );
 
 
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-13, begin */
 VOS_UINT32 NAS_MMC_CompareLmmServiceResultIndPrioWithPlmnSelection(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -632,7 +565,6 @@ VOS_UINT32  NAS_MMC_CompareLmmServiceResultIndPrioWithBgSearch(
     NAS_MMC_ABORT_FSM_TYPE_UINT8       *penAbortType
 );
 
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-13, end */
 #endif
 
 

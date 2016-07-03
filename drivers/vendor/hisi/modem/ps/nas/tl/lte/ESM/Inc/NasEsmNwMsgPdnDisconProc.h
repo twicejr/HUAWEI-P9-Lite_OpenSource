@@ -1,14 +1,4 @@
-/******************************************************************************
 
-        @(#)Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : NasEsmNwMsgPdnDisconProc.h
-    Description :
-    History     :
-     1.¶¡Àö 00128736      2008-09-01  Draft Enact
-     2.ÑîÜç»Ý 00135146    2009-03-06  Modify  BA8D01127
-******************************************************************************/
 
 #ifndef _NASESMNWMSGPDNDISCONPROC_H
 #define _NASESMNWMSGPDNDISCONPROC_H

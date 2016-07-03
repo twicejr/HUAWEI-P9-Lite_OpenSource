@@ -1,30 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : SleepFlow.c
-  版 本 号   : 初稿
-  作    者   : zuowen
-  生成日期   : 2005年3月7日
-  最近修改   :
-  功能描述   : 实现 SLEEP 睡眠/唤醒流程驱动
-  函数列表   :
-  修改历史   :
-
-  1.日    期   : 2005年3月7日
-    作    者   : zuowen
-    修改内容   : 创建文件
-
-  2.日    期   : 2006年1月14日
-    作    者   : wangqinghua
-    修改内容   : 集成测试后对 SLEEP 模块进行修改
-  3.
-    日    期   : 2006年4月13日
-    作    者   : w45442
-    修改内容   : 修改问题单A32D03034
-
-******************************************************************************/
 
 #include "vos.h"
 #include "hpacomm.h"
@@ -125,21 +99,7 @@ VOS_VOID SLEEP_ExitLowPower(SLEEP_MODE_ENUM_UINT32 enMode)
 }
 
 
-/*****************************************************************************
- 函 数 名  : SLEEP_IsSleep
- 功能描述  : 返回系统的状态
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年10月22日
-    作    者   : g47350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_BOOL SLEEP_IsSleep(VOS_VOID)
 {
     return VOS_FALSE;
@@ -367,21 +327,7 @@ VOS_UINT32                              g_ulSleepSlaveSemFlag = VOS_FALSE;
   3 函数申明
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : SLEEP_NotifyStateRegPidTblInit
- 功能描述  : 注册PID表的初始化
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月14日
-    作    者   : L00256032
-    修改内容   : V8R1 LowPower&NV_Expand项目新增
-
-*****************************************************************************/
 VOS_VOID SLEEP_NotifyStateRegPidTblInit( VOS_VOID )
 {
     VOS_UINT32      ulLoop;
@@ -394,23 +340,7 @@ VOS_VOID SLEEP_NotifyStateRegPidTblInit( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_NotifyStateReg
- 功能描述  : 低功耗状态通知注册函数，不做PID重复注册的判断，由注册方流程保证
- 输入参数  : ulRcvPid:接收状态指示的PID
-             VOS_RATMODE_ENUM_UINT32 enRatMode
- 输出参数  : 无
- 返 回 值  : VOS_OK : 注册成功
-             VOS_ERR: 注册失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月14日
-    作    者   : L00256032
-    修改内容   : V8R1 LowPower&NV_Expand项目新增
-
-*****************************************************************************/
 VOS_UINT32 SLEEP_NotifyStateReg(VOS_UINT32 ulRcvPid, VOS_RATMODE_ENUM_UINT32 enRatMode)
 {
     VOS_UINT32                          ulLoop;
@@ -473,22 +403,7 @@ VOS_UINT32 SLEEP_NotifyStateReg(VOS_UINT32 ulRcvPid, VOS_RATMODE_ENUM_UINT32 enR
     return VOS_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_NotifyStateUnreg
- 功能描述  : 低功耗状态通知去注册函数
- 输入参数  : ulRcvPid:不接收状态指示的PID
- 输出参数  : 无
- 返 回 值  : VOS_OK : 去注册成功
-             VOS_ERR: 去注册失败(未找到匹配PID)
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月14日
-    作    者   : L00256032
-    修改内容   : V8R1 LowPower&NV_Expand项目新增
-
-*****************************************************************************/
 VOS_UINT32 SLEEP_NotifyStateUnreg(VOS_UINT32 ulRcvPid)
 {
     VOS_UINT32      ulLoop;
@@ -521,21 +436,7 @@ VOS_UINT32 SLEEP_NotifyStateUnreg(VOS_UINT32 ulRcvPid)
     return VOS_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_NotifyStateToRegPid
- 功能描述  : 通知注册PID相应低功耗状态
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月14日
-    作    者   : L00256032
-    修改内容   : V8R1 LowPower&NV_Expand项目新增
-
-*****************************************************************************/
 VOS_VOID SLEEP_NotifyStateToRegPid(
     VOS_RATMODE_ENUM_UINT32             enRatMode,
     SLEEP_SYSTEM_STATE_ENUM_UINT32      enState)
@@ -596,21 +497,7 @@ VOS_VOID SLEEP_NotifyStateToRegPid(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_GetModemId
- 功能描述  : 获取当前所在的Modem ID
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : MODEM_ID_ENUM_UINT16
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月14日
-    作    者   : L00256032
-    修改内容   : V8R1 LowPower&NV_Expand项目新增
-
-*****************************************************************************/
 MODEM_ID_ENUM_UINT16 SLEEP_GetModemId(VOS_VOID)
 {
 #if defined (INSTANCE_2)
@@ -622,21 +509,7 @@ MODEM_ID_ENUM_UINT16 SLEEP_GetModemId(VOS_VOID)
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_TaskDelay
- 功能描述  : 任务延迟接口，CPU循环读取slice值，阻塞性接口
- 输入参数  : VOS_UINT32 ulSliceDelay
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月21日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_TaskDelay( VOS_UINT32 ulSliceDelay )
 {
     VOS_UINT32                          ulSlice;
@@ -652,21 +525,7 @@ VOS_VOID SLEEP_TaskDelay( VOS_UINT32 ulSliceDelay )
 }
 
 
-/*****************************************************************************
- 函 数 名  : SLEEP_IsAwake
- 功能描述  : 判断当前是否醒着
- 输入参数  : SLEEP_MODE_ENUM_UINT32 enMode
- 输出参数  : 无
- 返 回 值  : VOS_BOOL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月26日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_BOOL SLEEP_IsAwake( SLEEP_MODE_ENUM_UINT32 enMode )
 {
     if ((VOS_RATMODE_GSM == enMode) || (VOS_RATMODE_WCDMA == enMode))
@@ -691,22 +550,7 @@ VOS_BOOL SLEEP_IsAwake( SLEEP_MODE_ENUM_UINT32 enMode )
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_IsSlaveSleep
- 功能描述  : 获取当前模式是否处于从模低功耗状态
- 输入参数  : SLEEP_MODE_ENUM_UINT32 enMode  当前模式
- 输出参数  : 无
- 返 回 值  : VOS_BOOL   VOS_TRUE    当前模式处于从模低功耗态
-                        VOS_FALSE   当前模式没有处于从模低功耗状态
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月30日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_BOOL SLEEP_IsSlaveSleep(SLEEP_MODE_ENUM_UINT32 enMode)
 {
     VOS_INT                             lLockLevel;
@@ -740,22 +584,7 @@ VOS_BOOL SLEEP_IsSlaveSleep(SLEEP_MODE_ENUM_UINT32 enMode)
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_AwakeInfoGet
- 功能描述  : 获取器件上电流程
- 输入参数  : SLEEP_MODE_ENUM_UINT32 enMode  当前模式
-             VOS_UINT32 uLen                传入的数组长度
- 输出参数  : VOS_UINT32 *pstDrxInfo         上电流程时间信息
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月11日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 SLEEP_AwakeInfoGet( SLEEP_MODE_ENUM_UINT32 enMode, VOS_UINT32 *pstAwakeHWInfo, VOS_UINT32 uLen )
 {
     MODEM_ID_ENUM_UINT16                enModem;
@@ -809,21 +638,7 @@ VOS_UINT32 SLEEP_AwakeInfoGet( SLEEP_MODE_ENUM_UINT32 enMode, VOS_UINT32 *pstAwa
 }
 
 
-/*****************************************************************************
- 函 数 名  : SLEEP_VoteLock
- 功能描述  : 唤醒投票
- 输入参数  : SLEEP_MODE_ENUM_UINT32 enMode
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年3月30日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_VoteLock(SLEEP_MODE_ENUM_UINT32 enMode)
 {
 #if defined (INSTANCE_2)
@@ -876,21 +691,7 @@ VOS_VOID SLEEP_VoteLock(SLEEP_MODE_ENUM_UINT32 enMode)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_VoteUnlock
- 功能描述  : 睡眠投票
- 输入参数  : SLEEP_MODE_ENUM_UINT32 enMode
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年3月30日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_VoteUnlock(SLEEP_MODE_ENUM_UINT32 enMode)
 {
 #if defined (INSTANCE_2)
@@ -941,21 +742,7 @@ VOS_VOID SLEEP_VoteUnlock(SLEEP_MODE_ENUM_UINT32 enMode)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_TimeCal
- 功能描述  : 获取DRX器件恢复等待时间
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年3月30日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_TimeCal( VOS_VOID )
 {
     g_ulSleepRusumeTime = g_stSleepDrxResumeTime.ulAbbPwrRsmTime;
@@ -982,21 +769,7 @@ VOS_VOID SLEEP_TimeCal( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_TCXOIsrProc
- 功能描述  : TCXO定时中断处理函数
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月7日
-    作    者   : S00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_TCXOIsrProc( VOS_VOID )
 {
     /*lint -e534*/
@@ -1004,21 +777,7 @@ VOS_VOID SLEEP_TCXOIsrProc( VOS_VOID )
     /*lint +e534*/
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_TCXOEnable
- 功能描述  : TCXO上电函数
- 输入参数  : enMode     :模式，W/G
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月27日
-    作    者   : g47350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_TCXOEnable(SLEEP_MODE_ENUM_UINT32 enMode)
 {
     VOS_UINT32                          ulTcxoResult;
@@ -1064,21 +823,7 @@ VOS_VOID SLEEP_TCXOEnable(SLEEP_MODE_ENUM_UINT32 enMode)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_TCXODisable
- 功能描述  : TCXO下电函数
- 输入参数  : enMode     :模式，W/G
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月27日
-    作    者   : g47350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_TCXODisable(SLEEP_MODE_ENUM_UINT32 enMode)
 {
     if ((SLEEP_GU_MODE_TYPE_BUTT <= enMode) || (SLEEP_CHANNEL_BOTH <= SLEEP_TCXO_CHAN(enMode)))
@@ -1098,21 +843,7 @@ VOS_VOID SLEEP_TCXODisable(SLEEP_MODE_ENUM_UINT32 enMode)
 
 /*lint -e662 -e661*/
 
-/*****************************************************************************
- 函 数 名  : SLEEP_ABBPowerUp
- 功能描述  : ABB上电函数
- 输入参数  : enMode     :模式，W/G
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月27日
-    作    者   : g47350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_ABBPowerUp(SLEEP_MODE_ENUM_UINT32 enMode)
 {
 #if (FEATURE_ON == FEATURE_MODE_FEM_CHAN_EXT)
@@ -1165,21 +896,7 @@ VOS_VOID SLEEP_ABBPowerUp(SLEEP_MODE_ENUM_UINT32 enMode)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_ABBPowerDown
- 功能描述  : ABB下电函数
- 输入参数  : enMode     :模式，W/G
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月27日
-    作    者   : g47350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_ABBPowerDown(SLEEP_MODE_ENUM_UINT32 enMode)
 {
 #if (FEATURE_ON == FEATURE_MODE_FEM_CHAN_EXT)
@@ -1232,21 +949,7 @@ VOS_VOID SLEEP_ABBPowerDown(SLEEP_MODE_ENUM_UINT32 enMode)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_RFPowerUp
- 功能描述  : RF上电函数
- 输入参数  : enMode     :模式，W/G
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月27日
-    作    者   : g47350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_RFPowerUp(SLEEP_MODE_ENUM_UINT32 enMode)
 {
 #if (FEATURE_ON == FEATURE_MODE_FEM_CHAN_EXT)
@@ -1300,21 +1003,7 @@ VOS_VOID SLEEP_RFPowerUp(SLEEP_MODE_ENUM_UINT32 enMode)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_RFPowerDown
- 功能描述  : RF下电函数
- 输入参数  : enMode     :模式，W/G
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月27日
-    作    者   : g47350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_RFPowerDown(SLEEP_MODE_ENUM_UINT32 enMode)
 {
 #if (FEATURE_ON == FEATURE_MODE_FEM_CHAN_EXT)
@@ -1375,21 +1064,7 @@ VOS_VOID SLEEP_RFPowerDown(SLEEP_MODE_ENUM_UINT32 enMode)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_RFFECfgPowerUp
- 功能描述  : RF上电函数
- 输入参数  : enMode     :模式，W/G
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月17日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_RFFECfgPowerUp(SLEEP_MODE_ENUM_UINT32 enMode)
 {
 #if (FEATURE_ON == FEATURE_MODE_FEM_CHAN_EXT)
@@ -1428,21 +1103,7 @@ VOS_VOID SLEEP_RFFECfgPowerUp(SLEEP_MODE_ENUM_UINT32 enMode)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_RFFECfgPowerDown
- 功能描述  : RF下电函数
- 输入参数  : enMode     :模式，W/G
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月17日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_RFFECfgPowerDown(SLEEP_MODE_ENUM_UINT32 enMode)
 {
 #if (FEATURE_ON == FEATURE_MODE_FEM_CHAN_EXT)
@@ -1474,21 +1135,7 @@ VOS_VOID SLEEP_RFFECfgPowerDown(SLEEP_MODE_ENUM_UINT32 enMode)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_ABBPllEnable
- 功能描述  : ABBPLL使能函数
- 输入参数  : enMode     :模式，W/G
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月27日
-    作    者   : g47350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_ABBPllEnable(SLEEP_MODE_ENUM_UINT32 enMode)
 {
 #if (FEATURE_ON == FEATURE_MODE_FEM_CHAN_EXT)
@@ -1541,21 +1188,7 @@ VOS_VOID SLEEP_ABBPllEnable(SLEEP_MODE_ENUM_UINT32 enMode)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_ABBPllDisable
- 功能描述  : ABBPLL去使能函数
- 输入参数  : enMode     :模式，W/G
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月27日
-    作    者   : g47350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_ABBPllDisable(SLEEP_MODE_ENUM_UINT32 enMode)
 {
 #if (FEATURE_ON == FEATURE_MODE_FEM_CHAN_EXT)
@@ -1647,23 +1280,7 @@ VOS_UINT32 SLEEP_GBBPClkSrcSelect(VOS_VOID)
 
 /*lint +e662 +e661*/
 
-/*****************************************************************************
- 函 数 名  : SLEEP_PowerUp
- 功能描述  : 上电RTT子系统.
- 输入参数  : enMode     :模式，W/G
 
- 输出参数  : 无
-
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年07月31日
-    作    者   : g47350
-    修改内容   : V900R001项目新增函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_PowerUp(SLEEP_MODE_ENUM_UINT32 enMode)
 {
     MODEM_ID_ENUM_UINT16                enModem;
@@ -1755,21 +1372,7 @@ VOS_VOID SLEEP_PowerUp(SLEEP_MODE_ENUM_UINT32 enMode)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_ReadBaseCntSym
- 功能描述  : 读取当前Base Cnt信息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月28日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 SLEEP_ReadBaseCntChip( VOS_VOID )
 {
     VOS_UINT32                          ulBaseSlot;
@@ -1788,24 +1391,7 @@ VOS_UINT32 SLEEP_ReadBaseCntChip( VOS_VOID )
     return ulBaseChip;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_ResumeReg
- 功能描述  : BBP上电后，恢复WBBP寄存器内容
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年3月30日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-  2.日    期   : 2013年10月28日
-    作    者   : s00207770
-    修改内容   : 规避BBP SFN加减1问题
-
-*****************************************************************************/
 VOS_VOID SLEEP_ResumeReg( VOS_VOID )
 {
 #if (VOS_OS_VER != VOS_WIN32)
@@ -1894,23 +1480,7 @@ VOS_UINT32 SLEEP_ForceWakeProtected(VOS_VOID)
     return VOS_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_DeactivateHw
- 功能描述  : 下电RTT子系统.
- 输入参数  : enMode     :模式，W/G
 
- 输出参数  : 无
-
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年07月31日
-    作    者   : g47350
-    修改内容   : V900R001项目新增函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_DeactivateHw(SLEEP_MODE_ENUM_UINT32 enMode)
 {
     MODEM_ID_ENUM_UINT16                enModem;
@@ -1990,23 +1560,7 @@ VOS_VOID SLEEP_DeactivateHw(SLEEP_MODE_ENUM_UINT32 enMode)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_ActivateHw
- 功能描述  : 上电RTT子系统.
- 输入参数  : enMode     :模式，W/G
 
- 输出参数  : 无
-
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年07月31日
-    作    者   : g47350
-    修改内容   : V900R001项目新增函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_ActivateHw(SLEEP_MODE_ENUM_UINT32 enMode)
 {
     MODEM_ID_ENUM_UINT16                enModem;
@@ -2115,28 +1669,7 @@ VOS_VOID SLEEP_ActivateHw(SLEEP_MODE_ENUM_UINT32 enMode)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_WakePhy
- 功能描述  : 通过发送消息唤醒GUPHY.
- 输入参数  : ulMsgId    :消息ID，区分主模/从模唤醒
-             enMode     :唤醒的模式，W/G
-             enWakeType :唤醒类型，强制唤醒/正常唤醒
 
- 输出参数  : 无
-
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年07月31日
-    作    者   : g47350
-    修改内容   : V900R001项目新增函数
-  2.日    期   : 2014年07月25日
-    作    者   : s00207770
-    修改内容   : V800R100增加唤醒时间可维可测信息，发送到PC工具侧
-
-*****************************************************************************/
 VOS_UINT32 SLEEP_WakePhy(VOS_UINT32 ulMsgId, SLEEP_MODE_ENUM_UINT32 enMode, UPHY_OAM_WAKE_TYPE_ENUM_UINT32 enWakeType)
 {
     UPHY_OAM_WAKE_CMD_STRU               *pstPhyMsg;
@@ -2171,24 +1704,7 @@ VOS_UINT32 SLEEP_WakePhy(VOS_UINT32 ulMsgId, SLEEP_MODE_ENUM_UINT32 enMode, UPHY
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_IsrProc
- 功能描述  : 将SLEEP模块中断处理转换为消息交互
- 输入参数  : ulMsgId: 消息ID对应不同的中断
-             enMode : 模块,W/G
 
- 输出参数  : 无
-
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年03月09日
-    作    者   : s00207770
-    修改内容   : 低功耗任务优先级拆分项目新增函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_AwakeIsrProc(VOS_UINT32 ulMsgId, SLEEP_MODE_ENUM_UINT32 enMode)
 {
     VOS_INT                             lLockLevel;
@@ -2228,27 +1744,7 @@ VOS_VOID SLEEP_AwakeIsrProc(VOS_UINT32 ulMsgId, SLEEP_MODE_ENUM_UINT32 enMode)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_SleepIsrProc
- 功能描述  : 将SLEEP模块中断处理转换为消息交互
- 输入参数  : ulMsgId: 消息ID对应不同的中断
-             enMode : 模块,W/G
 
- 输出参数  : 无
-
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年07月31日
-    作    者   : g47350
-    修改内容   : V900R001项目新增函数
-  2.日    期   : 2015年03月09日
-    作    者   : s00207770
-    修改内容   : 低功耗任务优先级拆分项目修改函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_SleepIsrProc(VOS_UINT32 ulMsgId, SLEEP_MODE_ENUM_UINT32 enMode)
 {
     VOS_INT                             lLockLevel;
@@ -2288,23 +1784,7 @@ VOS_VOID SLEEP_SleepIsrProc(VOS_UINT32 ulMsgId, SLEEP_MODE_ENUM_UINT32 enMode)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_32KClkMsgProc
- 功能描述  : 接收到32K时钟切换中断消息处理.
- 输入参数  : pstMsg 消息体
 
- 输出参数  : 无
-
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年07月31日
-    作    者   : g47350
-    修改内容   : V900R001项目新增函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_32KClkMsgProc(MsgBlock *pstMsg)
 {
     UPHY_OAM_SLEEP_IND_STRU             *pstPhyReq;
@@ -2419,23 +1899,7 @@ VOS_VOID SLEEP_32KClkMsgProc(MsgBlock *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_MasterSleepMsgProc
- 功能描述  : 接收到GUPHY进入主模SLEEP态消息处理.
- 输入参数  : pstMsg 消息体
 
- 输出参数  : 无
-
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年07月31日
-    作    者   : g47350
-    修改内容   : V900R001项目新增函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_MasterSleepMsgProc(MsgBlock *pstMsg)
 {
     UPHY_OAM_SLEEP_IND_STRU                 *pstPhyReq;
@@ -2461,23 +1925,7 @@ VOS_VOID SLEEP_MasterSleepMsgProc(MsgBlock *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_WakeMasterMsgProc
- 功能描述  : 接收到WAKE中断消息处理.
- 输入参数  : pstMsg 消息体
 
- 输出参数  : 无
-
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年07月31日
-    作    者   : g47350
-    修改内容   : V900R001项目新增函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_WakeMasterMsgProc(MsgBlock *pstMsg)
 {
     SLEEP_ISR_MSG_STRU                 *pstIsrReq;
@@ -2557,23 +2005,7 @@ VOS_VOID SLEEP_WakeMasterMsgProc(MsgBlock *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_NormalClkMsgProc
- 功能描述  : 接收到时钟切换中断(正常时钟)消息处理.
- 输入参数  : pstMsg 消息体
 
- 输出参数  : 无
-
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年07月31日
-    作    者   : g47350
-    修改内容   : V900R001项目新增函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_NormalClkMsgProc(MsgBlock *pstMsg)
 {
     SLEEP_ISR_MSG_STRU                 *pstIsrReq;
@@ -2671,23 +2103,7 @@ VOS_VOID SLEEP_NormalClkMsgProc(MsgBlock *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_SlaveSleepMsgProc
- 功能描述  : GUPHY通知进入从模的消息处理函数.
- 输入参数  : pstMsg 消息体
 
- 输出参数  : 无
-
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年07月31日
-    作    者   : g47350
-    修改内容   : V900R001项目新增函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_SlaveSleepMsgProc(MsgBlock *pstMsg)
 {
     UPHY_OAM_SLEEP_IND_STRU            *pstPhyReq;
@@ -2821,24 +2237,7 @@ VOS_VOID SLEEP_SlaveSleepMsgProc(MsgBlock *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_WakeSlaveGUProc
- 功能描述  : 异系统测量下TL唤醒GU处理
- 输入参数  : pstMsg 消息体
 
-
- 输出参数  : 无
-
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年11月13日
-    作    者   : g47350
-    修改内容   : 多模低功耗联调
-
-*****************************************************************************/
 VOS_VOID SLEEP_WakeSlaveGUProc(MsgBlock *pstMsg)
 {
     SLEEP_ISR_MSG_STRU                 *pstIsrReq;
@@ -2907,24 +2306,7 @@ VOS_VOID SLEEP_WakeSlaveGUProc(MsgBlock *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_WakeMasterGUProc
- 功能描述  : 强制唤醒GU处理
- 输入参数  : pstMsg 消息体
 
-
- 输出参数  : 无
-
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年1月26日
-    作    者   : s00207770
-    修改内容   : 新增接口
-
-*****************************************************************************/
 VOS_VOID SLEEP_WakeMasterGUProc(MsgBlock *pstMsg)
 {
     SLEEP_ISR_MSG_STRU                 *pstIsrReq;
@@ -2945,23 +2327,7 @@ VOS_VOID SLEEP_WakeMasterGUProc(MsgBlock *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_MasterWakeSlave
- 功能描述  : GUPHY作为主模唤醒从模函数.
- 输入参数  : enRatMode 需要唤醒的模式
 
- 输出参数  : 无
-
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年07月31日
-    作    者   : g47350
-    修改内容   : V900R001项目新增函数
-
-*****************************************************************************/
 VOS_UINT32 SLEEP_MasterWakeSlave(SLEEP_MODE_ENUM_UINT32 enRatMode)
 {
     VOS_INT32                           lLockLevel;
@@ -3003,23 +2369,7 @@ VOS_UINT32 SLEEP_MasterWakeSlave(SLEEP_MODE_ENUM_UINT32 enRatMode)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_MasterForceWake
- 功能描述  : 判断是否在主模低功耗下，如果是则强制唤醒GUPHY.
- 输入参数  : enMode 模式
 
- 输出参数  : 无
-
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年07月31日
-    作    者   : g47350
-    修改内容   : V900R001项目新增函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_MasterForceWake(SLEEP_MODE_ENUM_UINT32 enMode)
 {
     VOS_INT32                           lIntLevel;
@@ -3066,23 +2416,7 @@ VOS_VOID SLEEP_MasterForceWake(SLEEP_MODE_ENUM_UINT32 enMode)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_SlaveForceWake
- 功能描述  : 判断是否在从模低功耗下，如果是则强制唤醒GUPHY.
- 输入参数  : enMode 模式
 
- 输出参数  : 无
-
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年07月31日
-    作    者   : g47350
-    修改内容   : V900R001项目新增函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_SlaveForceWake(SLEEP_MODE_ENUM_UINT32 enMode)
 {
     VOS_UINT32                          ulStartSlice;
@@ -3113,24 +2447,7 @@ VOS_VOID SLEEP_SlaveForceWake(SLEEP_MODE_ENUM_UINT32 enMode)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_HookMsgProc
- 功能描述  : SLEEP注册给OSA的发送消息钩子函数，用来在GUPHY进入SLEEP态，强制唤醒
-             GUPHY
- 输入参数  : 指向OSA消息体指针
 
- 输出参数  : 无
-
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年07月31日
-    作    者   : g47350
-    修改内容   : V900R001项目新增函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_HookMsgProc(MsgBlock *pstMsg)
 {
     VOS_INT                             lLockLevel;
@@ -3199,23 +2516,7 @@ VOS_VOID SLEEP_HookMsgProc(MsgBlock *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_AwakeMsgProc
- 功能描述  : AWAKE消息处理函数
- 输入参数  : 指向OSA消息体指针
 
- 输出参数  : 无
-
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年03月09日
-    作    者   : s00207770
-    修改内容   : 低功耗任务优先级拆分项目修改
-
-*****************************************************************************/
 VOS_VOID SLEEP_AwakeMsgProc(MsgBlock* pstMsg)
 {
     SLEEP_MSG_FUN_STRU                 *pstMsgFun;
@@ -3271,26 +2572,7 @@ VOS_VOID SLEEP_AwakeMsgProc(MsgBlock* pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_SleepMsgProc
- 功能描述  : SLEEP消息处理函数
- 输入参数  : 指向OSA消息体指针
 
- 输出参数  : 无
-
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年07月31日
-    作    者   : g47350
-    修改内容   : V900R001项目新增函数
-  2.日    期   : 2015年03月09日
-    作    者   : s00207770
-    修改内容   : 低功耗任务优先级拆分项目修改
-
-*****************************************************************************/
 VOS_VOID SLEEP_SleepMsgProc(MsgBlock* pstMsg)
 {
     SLEEP_MSG_FUN_STRU                 *pstMsgFun;
@@ -3353,21 +2635,7 @@ VOS_VOID SLEEP_SleepMsgProc(MsgBlock* pstMsg)
 }
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- 函 数 名  : SLEEP_BBE16HaltIsr
- 功能描述  : BBE16睡眠中断服务程序
- 输入参数  : SLEEP_MODE_ENUM_UINT32 enMode
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_BBE16HaltIsr( SLEEP_MODE_ENUM_UINT32 enMode )
 {
     CPHY_SLEEP_MODE_ENUM_UINT32               enHaltType;
@@ -3427,22 +2695,7 @@ VOS_VOID SLEEP_BBE16HaltIsr( SLEEP_MODE_ENUM_UINT32 enMode )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_BBE16AwakeIsr
- 功能描述  : X模唤醒中断服务程序
-             BBP定时中断，只有主模才有，只在低功耗态才进行处理
- 输入参数  : SLEEP_MODE_ENUM_UINT32 enMode
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_BBE16AwakeIsr( SLEEP_MODE_ENUM_UINT32 enMode )
 {
     SLEEP_BBE16_NOR_STATE_TRACK(enMode, SLEEP_BBE16_NORMAL_WAKE_INT_TRACE);
@@ -3481,21 +2734,7 @@ VOS_VOID SLEEP_BBE16AwakeIsr( SLEEP_MODE_ENUM_UINT32 enMode )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_BBE16ResumeIsr
- 功能描述  : BBE16唤醒恢复中断服务程序
- 输入参数  : SLEEP_MODE_ENUM_UINT32 enMode
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_BBE16ResumeIsr( SLEEP_MODE_ENUM_UINT32 enMode )
 {
     SLEEP_BBE16_NOR_STATE_TRACK(enMode, SLEEP_BBE16_RESUME_INT_TRACE);
@@ -3505,21 +2744,7 @@ VOS_VOID SLEEP_BBE16ResumeIsr( SLEEP_MODE_ENUM_UINT32 enMode )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_BBE16PowerUp
- 功能描述  : BBE16上电流程接口
- 输入参数  : SLEEP_MODE_ENUM_UINT32 enMode
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月28日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_BBE16PowerUp( SLEEP_MODE_ENUM_UINT32 enMode )
 {
     if ((VOS_RATMODE_1X == enMode) || (VOS_RATMODE_HRPD == enMode))
@@ -3541,22 +2766,7 @@ VOS_VOID SLEEP_BBE16PowerUp( SLEEP_MODE_ENUM_UINT32 enMode )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_ReportEvent
- 功能描述  : 调用OM提供的上报Event接口
- 输入参数  : VOS_UINT16 usEventId
-             SLEEP_MODE_ENUM_UINT32 enMode
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月28日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_ReportEvent(VOS_UINT16 usEventId, SLEEP_MODE_ENUM_UINT32 enMode)
 {
     DIAG_EVENT_IND_STRU                 stEventInd;
@@ -3574,23 +2784,7 @@ VOS_VOID SLEEP_ReportEvent(VOS_UINT16 usEventId, SLEEP_MODE_ENUM_UINT32 enMode)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_BBE16DeactivateHw
- 功能描述  : 下电RTT子系统.
- 输入参数  : enMode     :模式，W/G
 
- 输出参数  : 无
-
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年07月31日
-    作    者   : x00306642
-    修改内容   : x模低功耗新增函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_BBE16DeactivateHw(SLEEP_MODE_ENUM_UINT32 enMode)
 {
     MODEM_ID_ENUM_UINT16                enModem;
@@ -3663,23 +2857,7 @@ VOS_VOID SLEEP_BBE16DeactivateHw(SLEEP_MODE_ENUM_UINT32 enMode)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_BBE16ActivateHw
- 功能描述  : 上电RTT子系统.
- 输入参数  : enMode     :模式，W/G
 
- 输出参数  : 无
-
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年07月31日
-    作    者   : x00306642
-    修改内容   : x模低功耗新增函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_BBE16ActivateHw(SLEEP_MODE_ENUM_UINT32 enMode)
 {
     MODEM_ID_ENUM_UINT16                enModem;
@@ -3763,21 +2941,7 @@ VOS_VOID SLEEP_BBE16ActivateHw(SLEEP_MODE_ENUM_UINT32 enMode)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_BBE16GetTwinMode
- 功能描述  : 判断1X/HRPD对应模式
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : SLEEP_MODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 SLEEP_MODE_ENUM_UINT32 SLEEP_BBE16GetTwinMode( SLEEP_MODE_ENUM_UINT32 enMode )
 {
     SLEEP_MODE_ENUM_UINT32              enTwinMode;
@@ -3798,21 +2962,7 @@ SLEEP_MODE_ENUM_UINT32 SLEEP_BBE16GetTwinMode( SLEEP_MODE_ENUM_UINT32 enMode )
     return enTwinMode;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_BBE16GetTwinState
- 功能描述  : 判断1X/HRPD对应模式的低功耗状态
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : SLEEP_BBE16_SYSTEM_STATE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 SLEEP_BBE16_SYSTEM_STATE_ENUM_UINT32 SLEEP_BBE16GetTwinState( SLEEP_MODE_ENUM_UINT32 enMode )
 {
     SLEEP_MODE_ENUM_UINT32              enTwinMode;
@@ -3833,21 +2983,7 @@ SLEEP_BBE16_SYSTEM_STATE_ENUM_UINT32 SLEEP_BBE16GetTwinState( SLEEP_MODE_ENUM_UI
     return g_astSleepBBE16ModeInfo[enTwinMode].enSystemState;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_BBE16MailBoxResumeProc
- 功能描述  : 封装邮箱提供的resume接口
- 输入参数  : enMode     邮箱的模式
- 输出参数  : 无
- 返 回 值  : enRatMode  转换后的VOS模式
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_BBE16MailBoxResumeProc(SLEEP_MODE_ENUM_UINT32 enMode)
 {
     XMBX_RATMODE_ENUM_U32               enXmbxMode;
@@ -3873,22 +3009,7 @@ VOS_VOID SLEEP_BBE16MailBoxResumeProc(SLEEP_MODE_ENUM_UINT32 enMode)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_BBE16IsMailBoxAllowCBBE16Sleep
- 功能描述  : 封装邮箱提供的判断邮箱是否有消息接口
- 输入参数  : enMode
- 输出参数  : 无
- 返 回 值  : VOS_FALSE  邮箱无消息
-             VOS_TRUE   邮箱有消息
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 SLEEP_BBE16IsMailBoxAllowCBBE16Sleep(SLEEP_MODE_ENUM_UINT32 enMode)
 {
     XMBX_RATMODE_ENUM_U32               enXmbxMode;
@@ -3923,22 +3044,7 @@ VOS_UINT32 SLEEP_BBE16IsMailBoxAllowCBBE16Sleep(SLEEP_MODE_ENUM_UINT32 enMode)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_BBE16MailBoxGetDspState
- 功能描述  : 封装的邮箱判断DSP状态的API
- 输入参数  : enMode
- 输出参数  : 无
- 返 回 值  : VOS_FALSE  邮箱无消息
-             VOS_TRUE   邮箱有消息
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 SLEEP_BBE16MailBoxGetDspState(XMBX_RATMODE_ENUM_U32 enMode)
 {
     SLEEP_MODE_ENUM_UINT32              enRatMode;
@@ -3964,22 +3070,7 @@ VOS_UINT32 SLEEP_BBE16MailBoxGetDspState(XMBX_RATMODE_ENUM_U32 enMode)
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_BBE16MailBoxForceWakeDsp
- 功能描述  : 封装的邮箱强制唤醒DSP的API
- 输入参数  : enMode
- 输出参数  : 无
- 返 回 值  : VOS_FALSE  邮箱无消息
-             VOS_TRUE   邮箱有消息
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_BBE16MailBoxForceWakeDsp(XMBX_RATMODE_ENUM_U32 enMode)
 {
     SLEEP_MODE_ENUM_UINT32              enRatMode;
@@ -4003,23 +3094,7 @@ VOS_VOID SLEEP_BBE16MailBoxForceWakeDsp(XMBX_RATMODE_ENUM_U32 enMode)
     SLEEP_BBE16ForceWakeProc(enRatMode);
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_BBE16GetLowPowerState
- 功能描述  : 提供1X/HRPD低功耗状态判断
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 VOS_TRUE    当前模式处于低功耗态
-                        VOS_FALSE   当前模式处于正常状态
-                        VOS_ERROR   传入模式错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  SLEEP_BBE16GetLowPowerState(SLEEP_MODE_ENUM_UINT32 enMode)
 {
     VOS_UINT32                          ulRet   = VOS_TRUE;
@@ -4035,21 +3110,7 @@ VOS_UINT32  SLEEP_BBE16GetLowPowerState(SLEEP_MODE_ENUM_UINT32 enMode)
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_BBE16CprocWakeupProc
- 功能描述  : OAM提供注册函数给CPROC注册wakeup proc
- 输入参数  : SLEEP_BBE16_CPROC_WAKEUP_FUNC pFun
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月15日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_BBE16CprocWakeupProc(SLEEP_BBE16_CPROC_WAKEUP_FUNC pFun, VOS_RATMODE_ENUM_UINT32 enMode, VOS_VOID* pulPara)
 {
     if (VOS_NULL_PTR == pFun)
@@ -4062,21 +3123,7 @@ VOS_VOID SLEEP_BBE16CprocWakeupProc(SLEEP_BBE16_CPROC_WAKEUP_FUNC pFun, VOS_RATM
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_BBE16CprocSleepProc
- 功能描述  : OAM提供注册函数给CPROC注册sleep proc
- 输入参数  : SLEEP_BBE16_CPROC_SLEEP_FUNC pFun
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月15日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_BBE16CprocSleepProc(SLEEP_BBE16_CPROC_SLEEP_FUNC pFun, VOS_RATMODE_ENUM_UINT32 enMode, VOS_VOID* pulPara)
 {
     if (VOS_NULL_PTR == pFun)
@@ -4090,23 +3137,7 @@ VOS_VOID SLEEP_BBE16CprocSleepProc(SLEEP_BBE16_CPROC_SLEEP_FUNC pFun, VOS_RATMOD
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_BBE16ForceWakeProc
- 功能描述  : 邮箱发强制唤醒消息给OAM
- 输入参数  : enMode
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 VOS_TRUE    当前模式处于低功耗态
-                        VOS_FALSE   当前模式处于正常状态
-                        VOS_ERROR   传入模式错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月15日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  SLEEP_BBE16ForceWakeProc( SLEEP_MODE_ENUM_UINT32 enMode )
 {
     if (VOS_RATMODE_1X == enMode)
@@ -4149,23 +3180,7 @@ VOS_VOID  SLEEP_BBE16ForceWakeProc( SLEEP_MODE_ENUM_UINT32 enMode )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_BBE16MasterForceWakeProc
- 功能描述  : 邮箱发强制唤醒消息给OAM
- 输入参数  : enMode
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 VOS_TRUE    当前模式处于低功耗态
-                        VOS_FALSE   当前模式处于正常状态
-                        VOS_ERROR   传入模式错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月15日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  SLEEP_BBE16MasterForceWakeProc(MsgBlock *pstMsg)
 {
     SLEEP_ISR_MSG_STRU                 *pstIsrReq;
@@ -4192,23 +3207,7 @@ VOS_VOID  SLEEP_BBE16MasterForceWakeProc(MsgBlock *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_BBE16SlaveForceWakeProc
- 功能描述  : 邮箱发强制唤醒消息给OAM
- 输入参数  : enMode
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 VOS_TRUE    当前模式处于低功耗态
-                        VOS_FALSE   当前模式处于正常状态
-                        VOS_ERROR   传入模式错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月15日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  SLEEP_BBE16SlaveForceWakeProc(MsgBlock *pstMsg)
 {
     SLEEP_ISR_MSG_STRU                 *pstIsrReq;
@@ -4230,21 +3229,7 @@ VOS_VOID  SLEEP_BBE16SlaveForceWakeProc(MsgBlock *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_BBE16MasterForceWake
- 功能描述  : 判断是否在主模低功耗下，如果是则强制唤醒X模.
- 输入参数  : enMode 模式
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月27日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_BBE16MasterForceWake( SLEEP_MODE_ENUM_UINT32 enMode )
 {
     VOS_INT                             lIntLevel;
@@ -4320,21 +3305,7 @@ VOS_VOID SLEEP_BBE16MasterForceWake( SLEEP_MODE_ENUM_UINT32 enMode )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_BBE16SlaveForceWake
- 功能描述  : 判断是否在从模低功耗下，如果是则强制唤醒X模.
- 输入参数  : enMode 模式
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月27日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_BBE16SlaveForceWake( SLEEP_MODE_ENUM_UINT32 enMode )
 {
     SLEEP_MODE_ENUM_UINT32                                  enTwinMode;
@@ -4425,22 +3396,7 @@ VOS_VOID SLEEP_BBE16SlaveForceWake( SLEEP_MODE_ENUM_UINT32 enMode )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_BBE16HaltIsrProc
- 功能描述  : 将SLEEP模块中断处理转换为消息交互
- 输入参数  : ulMsgId: 消息ID对应不同的中断
-             enMode : 模块,1X/HRPD
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_BBE16HaltIsrProc( VOS_UINT32 ulMsgId, SLEEP_MODE_ENUM_UINT32 enMode )
 {
     VOS_INT                             lLockLevel;
@@ -4480,22 +3436,7 @@ VOS_VOID SLEEP_BBE16HaltIsrProc( VOS_UINT32 ulMsgId, SLEEP_MODE_ENUM_UINT32 enMo
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_BBE16AwakeIsrProc
- 功能描述  : 将SLEEP模块中断处理转换为消息交互
- 输入参数  : ulMsgId: 消息ID对应不同的中断
-             enMode : 模块,1X/HRPD
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_BBE16AwakeIsrProc( VOS_UINT32 ulMsgId, SLEEP_MODE_ENUM_UINT32 enMode )
 {
     VOS_INT                             lLockLevel;
@@ -4535,22 +3476,7 @@ VOS_VOID SLEEP_BBE16AwakeIsrProc( VOS_UINT32 ulMsgId, SLEEP_MODE_ENUM_UINT32 enM
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_BBE16ResumeIsrProc
- 功能描述  : 将SLEEP模块中断处理转换为消息交互
- 输入参数  : ulMsgId: 消息ID对应不同的中断
-             enMode : 模块,1X/HRPD
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_BBE16ResumeIsrProc( VOS_UINT32 ulMsgId, SLEEP_MODE_ENUM_UINT32 enMode )
 {
     VOS_INT                             lLockLevel;
@@ -4590,21 +3516,7 @@ VOS_VOID SLEEP_BBE16ResumeIsrProc( VOS_UINT32 ulMsgId, SLEEP_MODE_ENUM_UINT32 en
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_BBE16HaltMsgProc
- 功能描述  : BBE16睡眠请求处理接口
- 输入参数  : MsgBlock* pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_BBE16HaltMsgProc( MsgBlock* pstMsg )
 {
     SLEEP_ISR_MSG_STRU                 *pstIsrReq;
@@ -4732,21 +3644,7 @@ VOS_VOID SLEEP_BBE16HaltMsgProc( MsgBlock* pstMsg )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_BBE16AwakeMsgProc
- 功能描述  : BBP定时器唤醒中断转消息后的处理
- 输入参数  : MsgBlock* pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_BBE16AwakeMsgProc( MsgBlock* pstMsg )
 {
     SLEEP_ISR_MSG_STRU                 *pstIsrReq;
@@ -4827,21 +3725,7 @@ VOS_VOID SLEEP_BBE16AwakeMsgProc( MsgBlock* pstMsg )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_BBE16ResumeMsgProc
- 功能描述  : BBE16睡眠请求处理接口
- 输入参数  : MsgBlock* pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_BBE16ResumeMsgProc( MsgBlock* pstMsg )
 {
     SLEEP_ISR_MSG_STRU                 *pstIsrReq;
@@ -4977,21 +3861,7 @@ VOS_VOID SLEEP_BBE16ResumeMsgProc( MsgBlock* pstMsg )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_BBE16DbgInit
- 功能描述  : 维测信息初始化
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_BBE16DbgInit(VOS_VOID)
 {
     if (VOS_NULL_PTR == g_pstSleepBBE16NormalState)
@@ -5070,23 +3940,7 @@ VOS_VOID SLEEP_BBE16DbgInit(VOS_VOID)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : SLEEP_Init
- 功能描述  : SLEEP模块初始化函数
- 输入参数  : VOS_VOID
 
- 输出参数  :
-
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年07月31日
-    作    者   : g47350
-    修改内容   : V900R001项目新增函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_Init(VOS_VOID)
 {
     SLEEP_MODE_ENUM_UINT32              enMode;
@@ -5362,23 +4216,7 @@ VOS_VOID SLEEP_Init(VOS_VOID)
     /*lint +e438 屏蔽ulRecordAddr没有使用的错误*/
 }
 
-/*****************************************************************************
- 函 数 名  : WuepsAwakePidInit
- 功能描述  : Awake 模块 PID 的初始化函数
- 输入参数  : ip: 初始化步骤
 
- 输出参数  :
-
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年03月09日
-    作    者   : s00207770
-    修改内容   : 低功耗任务优先级拆分项目新增函数
-
-*****************************************************************************/
 VOS_UINT32 WuepsAwakePidInit(enum VOS_INIT_PHASE_DEFINE ip)
 {
     switch( ip )
@@ -5427,23 +4265,7 @@ VOS_UINT32 WuepsAwakeFidInit(enum VOS_INIT_PHASE_DEFINE ip)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : WuepsSleepPidInit
- 功能描述  : SLEEP 模块 PID 的初始化函数
- 输入参数  : ip: 初始化步骤
 
- 输出参数  :
-
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年07月31日
-    作    者   : g47350
-    修改内容   : V900R001项目新增函数
-
-*****************************************************************************/
 VOS_UINT32 WuepsSleepPidInit(enum VOS_INIT_PHASE_DEFINE ip)
 {
     switch( ip )
@@ -5534,21 +4356,7 @@ VOS_VOID SLEEP_GUChannelShow(VOS_VOID)
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : SLEEP_WakeSliceShow
- 功能描述  : 唤醒时刻打点显示
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月24日
-    作    者   : S00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID SLEEP_WakeSliceShow( VOS_VOID )
 {
     VOS_UINT32                          i;

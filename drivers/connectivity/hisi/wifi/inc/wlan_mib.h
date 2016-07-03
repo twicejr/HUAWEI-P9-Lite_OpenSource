@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : wlan_mib.h
-  版 本 号   : 初稿
-  作    者   : huxiaotong
-  生成日期   : 2012年10月18日
-  最近修改   :
-  功能描述   : 定义所有MIB元素结构及其对应枚举 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年10月18日
-    作    者   : huxiaotong
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __WLAN_MIB_H__
 #define __WLAN_MIB_H__
@@ -855,7 +838,9 @@ typedef enum
 #ifdef _PRE_WLAN_FEATURE_TXOPPS
     WLAN_CFGID_STA_TXOP_AID        = 126,
 #endif
-
+#if (_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC == _PRE_MULTI_CORE_MODE)
+    WLAN_CFGID_CHECK_LTE_GPIO      = 127,
+#endif
     /*wep*/
     //WLAN_CFGID_ADD_WEP_KEY         = 130,
     WLAN_CFGID_REMOVE_WEP_KEY      = 131,
@@ -2997,7 +2982,8 @@ typedef struct
 /****************************************************************************************/
 typedef struct
 {
-    oal_bool_enum_uint8 en_dot11FortyMHzOperationImplemented;           /* dot11FortyMHzOperationImplemented TruthValue */
+    oal_bool_enum_uint8 en_dot112GFortyMHzOperationImplemented;         /* dot11FortyMHzOperationImplemented TruthValue */
+    oal_bool_enum_uint8 en_dot115GFortyMHzOperationImplemented;         /* dot11FortyMHzOperationImplemented TruthValue */
     oal_bool_enum_uint8 en_dot11FortyMHzOperationActivated;             /* dot11FortyMHzOperationActivated TruthValue */
     oal_uint32          ul_dot11CurrentPrimaryChannel;                  /* dot11CurrentPrimaryChannel Unsigned32 */
     oal_uint32          ul_dot11CurrentSecondaryChannel;                /* dot11CurrentSecondaryChannel Unsigned32 */
@@ -3007,7 +2993,8 @@ typedef struct
     //oal_bool_enum_uint8 en_dot11HTGreenfieldOptionActivated;            /* dot11HTGreenfieldOptionActivated TruthValue */
     oal_bool_enum_uint8 en_dot11ShortGIOptionInTwentyImplemented;       /* dot11ShortGIOptionInTwentyImplemented TruthValue */
     //oal_bool_enum_uint8 en_dot11ShortGIOptionInTwentyActivated;         /* dot11ShortGIOptionInTwentyActivated TruthValue */
-    oal_bool_enum_uint8 en_dot11ShortGIOptionInFortyImplemented;        /* dot11ShortGIOptionInFortyImplemented TruthValue */
+    oal_bool_enum_uint8 en_dot112GShortGIOptionInFortyImplemented;      /* dot11ShortGIOptionInFortyImplemented TruthValue */
+    oal_bool_enum_uint8 en_dot115GShortGIOptionInFortyImplemented;      /* dot11ShortGIOptionInFortyImplemented TruthValue */
     //oal_bool_enum_uint8 en_dot11ShortGIOptionInFortyActivated;          /* dot11ShortGIOptionInFortyActivated TruthValue */
     oal_bool_enum_uint8 en_dot11LDPCCodingOptionImplemented;            /* dot11LDPCCodingOptionImplemented TruthValue */
     oal_bool_enum_uint8 en_dot11LDPCCodingOptionActivated;              /* dot11LDPCCodingOptionActivated TruthValue */

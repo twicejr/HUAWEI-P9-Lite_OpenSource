@@ -494,345 +494,36 @@ typedef UINT32 (*g_pfSfeGetSocketIdHook)(SFE_MBUF_S *pstMbuf, UINT32 u32Connecti
 *******************************************************************************/
 extern UINT32 SFE_RegFuncGetSocketIdHook(g_pfSfeGetSocketIdHook pfRegFunc);
 
-/*******************************************************************************
-*    Func Name: SFE_Socket
-* Date Created: 2010-06-04
-*       Author: wudingyuan 00110679
-*      Purpose: 创建一个新的SOCKET
-*  Description: 创建一个新的SOCKET
-*        Input: INT32 i32Family:      协议族 < SFE_AF_INET>
-*               INT32 i32Type:        插口类型 <SFE_SOCK_STREAM或SFE_SOCK_DGRAM>
-*               INT32 i32Protocol:    协议类型 <SFE_IPPROTO_TCP或SFE_IPPROTO_UDP>
-*       Output: 
-*       Return: 成功: 新建的socket描述符,即socket id
-*               失败: 负数错误码
-*      Caution: 
-*        Since: DOPRA VISP V2R3C02
-*    Reference: SFE_Bind
-*               SFE_Listen
-*               SFE_Connect
-*               SFE_SetSocketOpt
-*               SFE_GetSocketOpt
-*               SFE_Close
-*               SFE_RecvZMbuf
-*               SFE_SendZMbuf
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-06-04   wudingyuan 110679             Create
-*
-*******************************************************************************/
+
 INT32 SFE_Socket(INT32 i32Family, INT32 i32Type, INT32 i32Protocol);
 
-/*******************************************************************************
-*    Func Name: SFE_Bind
-* Date Created: 2010-06-04
-*       Author: wudingyuan 00110679
-*      Purpose: socket绑定
-*  Description: 把一SOCKET与一地址及端口绑定
-*        Input: INT32 i32Fd:                    Socket描述符 <大于0>
-*               SFE_SOCKADDRIN_S *pstSockAddr:  指向SFE_SOCKADDRIN_S结构的指针,指定欲绑定的地址和端口 <非0>
-*               INT32 i32AddrLen:               SFE_SOCKADDRIN_S结构的长度 <非0>
-*       Output: 
-*       Return: 成功: 0
-*               失败: 负数错误码
-*      Caution: 1.当前支持SFE_SO_REUSEADDR,SFE_SO_REUSEPORT选项下可以同一端口绑定不同的地址
-*        Since: DOPRA VISP V2R3C02
-*    Reference: SFE_Socket
-*               SFE_Listen
-*               SFE_Connect
-*               SFE_SetSocketOpt
-*               SFE_GetSocketOpt
-*               SFE_Close
-*               SFE_RecvZMbuf
-*               SFE_SendZMbuf
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-06-04   wudingyuan 110679             Create
-*
-*******************************************************************************/
+
 INT32 SFE_Bind(INT32 i32Fd, SFE_SOCKADDRIN_S *pstSockAddr, INT32 i32AddrLen);
 
-/*******************************************************************************
-*    Func Name: SFE_Listen
-* Date Created: 2010-06-04
-*       Author: wudingyuan 00110679
-*      Purpose: socket侦听
-*  Description: 侦听对端的连接
-*        Input: INT32 i32Fd: Socket描述符 <大于0>
-*               INT32 i32BackLog: 插口的排队等待的连接个数门限 <[0,5]>
-*       Output: 
-*       Return: 成功: 0
-*               失败: 负数错误码
-*      Caution: 参数u32BackLog的取值范围：0～5(SFE_SOMAXCONN)。如用户输入值大于5时取5，用户输入的值小于0时取0
-*        Since: DOPRA VISP V2R3C02
-*    Reference: SFE_Socket
-*               SFE_Bind
-*               SFE_Connect
-*               SFE_SetSocketOpt
-*               SFE_GetSocketOpt
-*               SFE_Close
-*               SFE_RecvZMbuf
-*               SFE_SendZMbuf
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-06-04   wudingyuan 110679             Create
-*
-*******************************************************************************/
+
 INT32 SFE_Listen(INT32 i32Fd, INT32 i32BackLog);
 
-/*******************************************************************************
-*    Func Name: SFE_Connect
-* Date Created: 2010-06-04
-*       Author: wudingyuan 00110679
-*      Purpose: socket连接
-*  Description: 向对端发送连接请求
-*        Input: INT32 i32Fd:                   Socket描述符 <大于0>
-*               SFE_SOCKADDRIN_S *pstSockAddr:  指向SFE_SOCKADDRIN_S结构的指针,指定欲连接的远端地址和端口 <非空>
-*               INT32 i32AddrLen:              SFE_SOCKADDRIN_S结构的长度 <非0>
-*       Output: 
-*       Return: 成功: 0
-*               失败: 负数错误码
-*      Caution: 
-*        Since: DOPRA VISP V2R3C02
-*    Reference: SFE_Socket
-*               SFE_Bind
-*               SFE_Listen
-*               SFE_SetSocketOpt
-*               SFE_GetSocketOpt
-*               SFE_Close
-*               SFE_RecvZMbuf
-*               SFE_SendZMbuf
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-06-04   wudingyuan 110679             Create
-*
-*******************************************************************************/
+
 INT32 SFE_Connect(INT32 i32Fd, SFE_SOCKADDRIN_S *pstSockAddr, INT32 i32AddrLen);
 
-/*******************************************************************************
-*    Func Name: SFE_SetSocketOpt
-* Date Created: 2010-06-04
-*       Author: wudingyuan 00110679
-*      Purpose: 设置socket属性
-*  Description: 设置socket属性
-*        Input: INT32 i32Fd:       Socket描述符 <大于0>
-*               INT32 i32Level:    级别 <SFE_SOL_SOCKET,SFE_IPPROTO_IP,SFE_IPPROTO_TCP>
-*               INT32 i32OptName:  选项名称 <SFE_SO_ACCEPTCONN, SFE_SO_REUSEADDR,SFE_SO_KEEPALIVE,
-*                   SFE_SO_LINGER,SFE_SO_REUSEPORT,SFE_SO_SETKEEPALIVE,SFE_SO_UDPCHECKSUM,SFE_SO_SNDBUF,
-*                   SFE_SO_SNDLOWAT,SFE_SO_RCVLOWAT,SFE_SO_RCVBUF>
-*               CHAR *pcOptVal:   选项值       <非空>
-*               INT32 i32OptLen:   选项值长度   <非0>
-*       Output: 
-*       Return: 成功: 0
-*               失败: 负数错误码
-*      Caution: 
-*        Since: DOPRA VISP V2R3C02
-*    Reference: SFE_Socket
-*               SFE_Bind
-*               SFE_Listen
-*               SFE_Connect
-*               SFE_GetSocketOpt
-*               SFE_Close
-*               SFE_RecvZMbuf
-*               SFE_SendZMbuf
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-06-04   wudingyuan 110679             Create
-*
-*******************************************************************************/
+
 INT32 SFE_SetSocketOpt(INT32 i32Fd, INT32 i32Level, INT32 i32OptName,
                        CHAR *pcOptVal, INT32 i32OptLen);
 
-/*******************************************************************************
-*    Func Name: SFE_GetSocketOpt
-* Date Created: 2010-06-04
-*       Author: wudingyuan 00110679
-*      Purpose: 获取socket属性
-*  Description: 获取socket属性
-*        Input: INT32 i32Fd:       Socket描述符 <大于0>
-*               INT32 i32Level:    级别  <SFE_SOL_SOCKET,SFE_IPPROTO_IP,SFE_IPPROTO_TCP>
-*               INT32 i32OptName:  选项名称 <SFE_SO_ACCEPTCONN, SFE_SO_REUSEADDR,SFE_SO_KEEPALIVE,
-*                   SFE_SO_LINGER,SFE_SO_REUSEPORT,SFE_SO_SETKEEPALIVE,SFE_SO_UDPCHECKSUM,SFE_SO_SNDBUF,
-*                   SFE_SO_SNDLOWAT,SFE_SO_RCVLOWAT,SFE_SO_RCVBUF>
-*       Output: CHAR *pcOptVal:   选项值   <非空>
-*               INT32 *pi32OptLen: 选项值长度 <非空>
-*       Return: 成功: 0
-*               失败: 负数错误码
-*      Caution: 
-*        Since: DOPRA VISP V2R3C02
-*    Reference: SFE_Socket
-*               SFE_Bind
-*               SFE_Listen
-*               SFE_Connect
-*               SFE_SetSocketOpt
-*               SFE_Close
-*               SFE_RecvZMbuf
-*               SFE_SendZMbuf
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-06-04   wudingyuan 110679             Create
-*
-*******************************************************************************/
+
 INT32 SFE_GetSocketOpt(INT32 i32Fd, INT32 i32Level, INT32 i32OptName,
                        CHAR *pcOptVal, INT32 *pi32OptLen);
 
-/*******************************************************************************
-*    Func Name: SFE_Ioctl
-* Date Created: 2010-06-04
-*       Author: wudingyuan 00110679
-*      Purpose: 设置或获取socket的各IO方面属性
-*  Description: 设置或获取socket的各IO方面属性
-*        Input: INT32 i32Fd:       Socket描述符 <大于0>
-*               UINT32 u32ReqType: 要设置的选项类型 <SFE_FIOASYNC>
-*               CHAR *pcValue:   指向传入或传出数据的指针,不同的选项有不同的含义. <非空>
-*       Output: 
-*       Return: 成功: 0
-*               失败: 负数错误码
-*      Caution: 
-*        Since: DOPRA VISP V2R3C02
-*    Reference: SFE_Socket
-*               SFE_Bind
-*               SFE_Listen
-*               SFE_Connect
-*               SFE_SetSocketOpt
-*               SFE_GetSocketOpt
-*               SFE_RecvZMbuf
-*               SFE_SendZMbuf
 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-06-04   wudingyuan 110679             Create
-*
-*******************************************************************************/
 INT32 SFE_Ioctl(INT32 i32Fd, UINT32 u32ReqType, CHAR *pcValue);
 
-/*******************************************************************************
-*    Func Name: SFE_Close
-* Date Created: 2010-06-04
-*       Author: wudingyuan 00110679
-*      Purpose: 关闭SOCKET
-*  Description: 关闭SOCKET
-*        Input: INT32 i32Fd: Socket描述符 <大于0>
-*       Output: 
-*       Return: 成功: 0
-*               失败: 负数错误码
-*      Caution: 1.该接口只适用于标准socket和透明代理socket和UDP重排socket,
-*                 TCP重排socket不能使用该接口
-*               2.从DOPRA IP V2R3C06SPC100起TCP重排socket可以使用该接口删除
-*                 socket节点,但不会主动发送任何报文
-*        Since: DOPRA VISP V2R3C02
-*    Reference: SFE_Socket
-*               SFE_Bind
-*               SFE_Listen
-*               SFE_Connect
-*               SFE_SetSocketOpt
-*               SFE_GetSocketOpt
-*               SFE_RecvZMbuf
-*               SFE_SendZMbuf
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-06-04   wudingyuan 110679             Create
-*
-*******************************************************************************/
+
 INT32 SFE_Close(INT32 i32Fd);
 
-/*******************************************************************************
-*    Func Name: SFE_RecvZMbuf
-* Date Created: 2010-06-04
-*       Author: wudingyuan 00110679
-*      Purpose: 零拷贝方式接收数据
-*  Description: 零拷贝方式接收数据,一次将接收缓冲区中的所有数据接收完毕
-*        Input: INT32 i32Fd:            Socket描述符    <大于0>
-*               SFE_MBUF_S **ppstMBuf:  接收到的数据MBUF内存地址 <非空>
-*       Output: UINT32 *pu32Len: 接收的数据长度 <非空>
-*       Return: 成功: 0
-*               失败: 其它
-*      Caution: 1.对于TCP(标准TCP,透明代理),当前接收缓冲区中也可能是一个MBUF链,
-*                 但是一个MBUF并不一定对应一个报文。
-*               2.对于UDP和TCP重排，一个报文对应一个MBUF，多个报文构成MBUF链。
-*               3.用户每次接收时协议栈会将当前接收缓冲区中的所有数据交给用户。
-*               4.接收时socket缓冲区无数据返回特定的错误,产品如果要对于该情况进行区别对待,
-*                 则产品只能使用该错误码的宏名SFE_SOCK_RECV_ZMBUF_NO_DATA不能直接使用其值,
-*                 因为后续VISP可能会调整宏值,但是会保证宏名不变.
-*               5.对于从重排socket接收的数据,产品不能修改MBUF中的内容,特别别是不能进行MBUF操作处理,只能访问MBUF中的信息。
-*        Since: DOPRA VISP V2R3C02
-*    Reference: SFE_Socket
-*               SFE_Bind
-*               SFE_Listen
-*               SFE_Connect
-*               SFE_SetSocketOpt
-*               SFE_GetSocketOpt
-*               SFE_Close
-*               SFE_SendZMbuf
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-06-04   wudingyuan 110679             Create
-*
-*******************************************************************************/
+
 UINT32 SFE_RecvZMbuf(INT32 i32Fd, SFE_MBUF_S **ppstMBuf, UINT32 *pu32Len);
 
-/*******************************************************************************
-*    Func Name: SFE_SendZMbuf
-* Date Created: 2010-06-04
-*       Author: wudingyuan 00110679
-*      Purpose: 零拷贝方式发送数据
-*  Description: 零拷贝方式发送数据
-*        Input: INT32 i32Fd:           Socket描述符 <大于0>
-*               SFE_MBUF_S **ppstMBuf: 待发送的MBUF(输出时为剩余未发送的MBUF数据，
-*                                      如果为NULL表示报文已被发送完毕，否则表示还有部分数据未发送) <非空>
-*               UINT32 *pu32Len:       待发送的数据长度，如果不指定待发送长度（值为0），则表示发送整个MBUF
-*                                      (输出时为实际发送了的数据长度)<非空>
-*               SFE_SOCKADDRIN_S *pstSockAddr: 发送UDP报文时指定的目的地.TCP不需要指定直接传入NULL即可. <见描述>
-*               INT32 i32AddrLen: 发送UDP报文时指定的目的地址长度.TCP不需要指定直接传入0即可.   <见描述>
-*       Output: 
-*       Return: 成功: 0
-*               失败: 其它
-*      Caution: 1.对于TCP,产品可以指定发送当前MBUF中的部分数据.TCP重排不能发送MBUF中的部分数据.
-*               2.对于UDP和TCP重排,产品每次只能发送一个MBUF，不能以MBUF链的形式发送；
-*                 并且每次发送的是整个MBUF,不能发送MBUF中的部分数据。
-*               3.UDP未进行连接时发送报文必须指定发送目的地.UDP进行了连接时即远端地址信息已经确定时不能指定发送目的地.
-*                 当前标准UDP只支持不连接在发送时指定目的地址的方式.
-*                 TCP发送数据时不能指定目的地址.
-*               4.如果不指定发送地址则必须将pstSockAddr字段填NULL且i32AddrLen字段填0.
-*               5.对于从重排socket接收的数据，产品不能修改MBUF中的内容,特别别是不能进行MBUF操作处理,
-*                 只能访问MBUF中的信息.
-*               6.无论该接口发送成功还是失败,产品都必须判断输入输出参数ppstMBuf,
-*                 当该函数返回时如果输出的报文指针不为NULL则报文由产品负责缓存或释放;
-*                 如果输出的报文指针为NULL则表示VISP已经将报文发送或者释放.
-*        Since: DOPRA VISP V2R3C02
-*    Reference: SFE_Socket
-*               SFE_Bind
-*               SFE_Listen
-*               SFE_Connect
-*               SFE_SetSocketOpt
-*               SFE_GetSocketOpt
-*               SFE_Close
-*               SFE_RecvZMbuf
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-06-04   wudingyuan 110679       Create
-*
-*******************************************************************************/
+
 UINT32 SFE_SendZMbuf(INT32 i32Fd, SFE_MBUF_S **ppstMBuf, UINT32 *pu32Len,
                      SFE_SOCKADDRIN_S *pstSockAddr, INT32 i32AddrLen);
 
@@ -1060,51 +751,10 @@ VOID SFE_ShowAllUdpSocketVerbose(UINT32 u32IsShowVerbose);
 *******************************************************************************/
 VOID SFE_ShowAllUdpSocketNum(UINT32 u32IsShowVerbose);
 
-/*******************************************************************************
-*    Func Name: SFE_SOCK_GetPoolTotalAndFreeUnitNum
-* Date Created: 2012-05-03
-*       Author: zhaoyue00171897
-*      Purpose: 获取SOCK资源池总的和剩余的单元数
-*  Description: 获取SOCK资源池总的和剩余的单元数
-*        Input: 
-*       Output: UINT32 *pu32TotalUnitNum:SOCK资源池总的单元数
-*               UINT32 *pu32FreeUnitNum:SOCK资源池剩余的单元数
-*       Return: 成功:SFE_SOCK_OK
-*               失败:错误码
-*      Caution: 该接口要在系统启动完成后调用才能生效
-*        Since: DOPRA IP V200R003C06SPC100
-*    Reference: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2012-05-03   zhaoyue00171897         Create
-*
-*******************************************************************************/
+
 UINT32 SFE_SOCK_GetPoolTotalAndFreeUnitNum(UINT32 *pu32TotalUnitNum, UINT32 *pu32FreeUnitNum);
 
-/*******************************************************************************
-*    Func Name: SFE_GetSockName
-* Date Created: 2012-05-16
-*       Author: zhaoyue00171897
-*      Purpose: 获取指定ID的socket对应的本地协议地址和端口
-*  Description: 获取指定ID的socket对应的本地协议地址和端口
-*        Input: INT32 i32Fd:Socket描述符
-*               INT32 *pi32AddrLen:SFE_SOCKADDRIN_S结构的长度指针
-*       Output: SFE_SOCKADDRIN_S *pstSockAddr:查出的本地地址结果
-*               INT32 *pi32AddrLen:SFE_SOCKADDRIN_S结构的长度指针
-*       Return: 成功:SFE_SOCK_OK
-*               失败:错误码
-*      Caution: 该接口要在系统启动完成后调用才能生效
-*        Since: DOPRA IP V200R003C06SPC100
-*    Reference: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2012-05-16   zhaoyue00171897         Create
-*
-*******************************************************************************/
+
 INT32 SFE_GetSockName(INT32 i32Fd, SFE_SOCKADDRIN_S *pstSockAddr, INT32 *pi32AddrLen);
 
 #ifdef  __cplusplus

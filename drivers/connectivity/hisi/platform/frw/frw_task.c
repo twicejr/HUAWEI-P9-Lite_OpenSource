@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : frw_task.c
-  版 本 号   : 初稿
-  作    者   : mayuan m00212148
-  生成日期   : 2012年10月22日
-  最近修改   :
-  功能描述   :
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年10月22日
-    作    者   : mayuan m00212148
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -52,21 +35,7 @@ frw_task_stru g_ast_event_task[WLAN_FRW_MAX_NUM_CORES];
 
 #if (_PRE_FRW_FEATURE_PROCCESS_ENTITY_TYPE == _PRE_FRW_FEATURE_PROCCESS_ENTITY_THREAD)
 
-/*****************************************************************************
- 函 数 名  : frw_set_thread_property
- 功能描述  : 设置线程参数函数
- 输入参数  : p: 当前线程; policy: 调度策略; param:
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月9日
-    作    者   : lingxuemeng 00324381
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC void frw_set_thread_property(oal_task_stru *p, int policy, struct sched_param *param, long nice)
 {
     OAL_BUG_ON(!p);
@@ -85,21 +54,7 @@ OAL_STATIC void frw_set_thread_property(oal_task_stru *p, int policy, struct sch
 
 }
 
-/*****************************************************************************
- 函 数 名  : frw_task_thread
- 功能描述  : frw 内核线程主程序
- 输入参数  : 核id
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月9日
-    作    者   : lingxuemeng 00324381
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_int32 frw_task_thread(oal_void* ul_bind_cpu)
 {
     oal_int32       ret = 0;
@@ -164,21 +119,7 @@ OAL_STATIC oal_int32 frw_task_thread(oal_void* ul_bind_cpu)
     return 0;
 }
 
-/*****************************************************************************
- 函 数 名  : frw_task_init_kthread
- 功能描述  : kthread初始化接口
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月9日
-    作    者   : lingxuemeng 00324381
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  frw_task_init(oal_void)
 {
     oal_uint       ul_core_id;
@@ -210,21 +151,7 @@ oal_uint32  frw_task_init(oal_void)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : frw_thread_exit
- 功能描述  : 线程退出函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月9日
-    作    者   : lingxuemeng 00324381
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void frw_task_exit(oal_void)
 {
     oal_uint32       ul_core_id;
@@ -239,80 +166,24 @@ oal_void frw_task_exit(oal_void)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : frw_task_event_handler_register
- 功能描述  : 供外部模块注册tasklet处理函数中执行的函数
- 输入参数  : p_func: 需要被执行的函数
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月9日
-    作    者   : lingxuemeng 00324381
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  frw_task_event_handler_register(oal_void (*p_func)(oal_uint))
 {
 
 }
 
-/*****************************************************************************
- 函 数 名  : frw_task_sched
- 功能描述  : 唤醒event时间处理线程，与wake_event_interruptible对应
- 输入参数  : ul_core_id: 核id
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月9日
-    作    者   : lingxuemeng 00324381
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void frw_task_sched(oal_uint32 ul_core_id)
 {
     OAL_WAIT_QUEUE_WAKE_UP_INTERRUPT(&g_ast_event_task[ul_core_id].frw_wq);
 }
 
-/*****************************************************************************
- 函 数 名  : frw_task_set_state
- 功能描述  : 设置内核线程的绑定状态
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月10日
-    作    者   : zhoukaichun
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void frw_task_set_state(oal_uint32 ul_core_id, oal_uint8 uc_task_state)
 {
     g_ast_event_task[ul_core_id].uc_task_state = uc_task_state;
 }
-/*****************************************************************************
- 函 数 名  : frw_task_get_state
- 功能描述  : 获取内核线程的绑定状态
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月10日
-    作    者   : zhoukaichun
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint8 frw_task_get_state(oal_uint32 ul_core_id)
 {
     return g_ast_event_task[ul_core_id].uc_task_state;
@@ -320,21 +191,7 @@ oal_uint8 frw_task_get_state(oal_uint32 ul_core_id)
 
 #elif (_PRE_FRW_FEATURE_PROCCESS_ENTITY_TYPE == _PRE_FRW_FEATURE_PROCCESS_ENTITY_TASKLET)
 
-/*****************************************************************************
- 函 数 名  : frw_task_init
- 功能描述  : tasklet初始化接口
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月22日
-    作    者   : mayuan m00212148
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  frw_task_init(oal_void)
 {
     oal_uint32 ul_core_id;
@@ -346,21 +203,7 @@ oal_uint32  frw_task_init(oal_void)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : frw_task_exit
- 功能描述  : task 退出函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月29日
-    作    者   : wangjianchang wWX278082
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void frw_task_exit(oal_void)
 {
     oal_uint32       ul_core_id;
@@ -371,21 +214,7 @@ oal_void frw_task_exit(oal_void)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : frw_task_event_handler_register
- 功能描述  : 供外部模块注册tasklet处理函数中执行的函数
- 输入参数  : p_func: 需要被执行的函数
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月22日
-    作    者   : mayuan m00212148
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  frw_task_event_handler_register(oal_void (*p_func)(oal_uint))
 {
     oal_uint32 ul_core_id;
@@ -402,62 +231,20 @@ oal_void  frw_task_event_handler_register(oal_void (*p_func)(oal_uint))
     }
 }
 
-/*****************************************************************************
- 函 数 名  : frw_remote_task_receive
- 功能描述  : 将tasklet调度执行，被IPI中断调度执行
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月17日
-    作    者   : wangjianchang wWX278082
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void frw_remote_task_receive(void *info)
 {
     oal_tasklet_stru *pst_task = (oal_tasklet_stru *)info;
     oal_task_sched(pst_task);
 }
 
-/*****************************************************************************
- 函 数 名  : frw_task_sched_on_cpu
- 功能描述  : 使用IPI中断，调度目标core上的tasklet执行处理事件
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月17日
-    作    者   : wangjianchang wWX278082
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void frw_task_sched_on_cpu(oal_tasklet_stru *pst_task, oal_uint32 ul_core_id)
 {
     oal_smp_call_function_single(ul_core_id, frw_remote_task_receive, (void *)pst_task, 0);
 }
 
-/*****************************************************************************
- 函 数 名  : frw_task_sched
- 功能描述  : task调度接口
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月14日
-    作    者   : wangjianchang wWX278082
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void frw_task_sched(oal_uint32 ul_core_id)
 {
     oal_uint32 ul_this_cpu = OAL_GET_CORE_ID();
@@ -477,40 +264,12 @@ oal_void frw_task_sched(oal_uint32 ul_core_id)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : frw_task_set_state
- 功能描述  : 设置tasklet的状态
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月17日
-    作    者   : wangjianchang wWX278082
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void frw_task_set_state(oal_uint32 ul_core_id, oal_uint8 uc_task_state)
 {
 }
 
-/*****************************************************************************
- 函 数 名  : frw_task_get_state
- 功能描述  : 获取tasklet的状态，tasklet一直与核绑定
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月17日
-    作    者   : wangjianchang wWX278082
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint8 frw_task_get_state(oal_uint32 ul_core_id)
 {
 	return FRW_TASK_STATE_IRQ_BIND;

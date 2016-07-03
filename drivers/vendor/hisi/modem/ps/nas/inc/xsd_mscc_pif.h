@@ -136,58 +136,22 @@ typedef struct
     XSD_MSCC_START_RESULT_ENUM_UINT32           enRslt;
 }XSD_MSCC_START_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : MSCC_XSD_POWER_OFF_REQ_STRU
- 结构说明  : ID_MSCC_XSD_POWER_OFF_REQ消息结构
- 1.日    期   : 2015年2月5日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef NAS_MSCC_PIF_POWER_OFF_REQ_STRU                     MSCC_XSD_POWER_OFF_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : XSD_MSCC_POWER_OFF_CNF_STRU
- 结构说明  : ID_XSD_MSCC_POWER_OFF_CNF消息结构
- 1.日    期   : 2015年2月5日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef NAS_MSCC_PIF_POWER_OFF_CNF_STRU                     XSD_MSCC_POWER_OFF_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : MSCC_XSD_MO_CALL_START_NTF_STRU
- 结构说明  : ID_MSCC_XSD_MO_CALL_START_NTF消息结构
- 1.日    期   : 2015年2月5日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef NAS_MSCC_PIF_CDMA_MO_CALL_START_NTF_STRU            MSCC_XSD_MO_CALL_START_NTF_STRU;
 
-/*****************************************************************************
- 结构名    : MSCC_XSD_CALL_REDIAL_SYSTEM_ACQUIRE_NTF_STRU
- 结构说明  : ID_MSCC_XSD_CALL_REDIAL_SYSTEM_ACQUIRE_NTF消息结构
- 1.日    期   : 2015年2月5日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef NAS_MSCC_PIF_CDMA_MO_CALL_REDIAL_SYS_ACQ_NTF_STRU   MSCC_XSD_CALL_REDIAL_SYSTEM_ACQUIRE_NTF_STRU;
 
-/*****************************************************************************
- 结构名    : MSCC_XSD_MO_CALL_SUCCESS_NTF_STRU
- 结构说明  : ID_MSCC_XSD_MO_CALL_SUCCESS_NTF消息结构
- 1.日    期   : 2015年2月5日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef NAS_MSCC_PIF_CDMA_MO_CALL_SUCCESS_NTF_STRU          MSCC_XSD_MO_CALL_SUCCESS_NTF_STRU;
 
-/*****************************************************************************
- 结构名    : MSCC_XSD_MO_CALL_END_NTF_STRU
- 结构说明  : ID_MSCC_XSD_MO_CALL_END_NTF消息结构
- 1.日    期   : 2015年2月5日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef NAS_MSCC_PIF_CDMA_MO_CALL_END_NTF_STRU              MSCC_XSD_1X_MO_CALL_END_NTF_STRU;
 
 
@@ -225,13 +189,7 @@ typedef struct
 
 
 
-/*****************************************************************************
- 结构名    : XSD_MSCC_1X_SYSTEM_SERVICE_INFO_IND_STRU
- 结构说明  : ID_XSD_MSCC_1X_SYSTEM_SERVICE_INFO_IND消息结构
- 1.日    期   : 2015年2月5日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef NAS_MSCC_PIF_1X_SYSTEM_SERVICE_INFO_IND_STRU    XSD_MSCC_1X_SYSTEM_SERVICE_INFO_IND_STRU;
 
 
@@ -245,31 +203,13 @@ typedef struct
     MSCC_MSG_HEADER_STRU                        stMsgHeader;                    /*_H2ASN_Skip*//* 消息头                                   */
 }XSD_MSCC_SYSTEM_ACQUIRE_START_IND_STRU;
 
-/*****************************************************************************
- 结构名    : MSCC_XSD_CDMACSQ_SET_REQ_STRU
- 结构说明  : ID_XSD_MSCC_CDMACSQ_SET_REQ_STRU消息结构
- 1.日    期   : 2015年2月5日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef NAS_MSCC_PIF_CDMACSQ_SET_REQ_STRU    MSCC_XSD_CDMACSQ_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : XSD_MSCC_CDMACSQ_SET_CNF_STRU
- 结构说明  : ID_XSD_MSCC_CDMACSQ_SET_CNF_STRU消息结构
- 1.日    期   : 2015年2月5日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef NAS_MSCC_PIF_CDMACSQ_SET_CNF_STRU    XSD_MSCC_CDMACSQ_SET_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_CDMACSQ_IND_STRU
- 结构说明  : ID_NAS_MSCC_PIF_CDMACSQ_IND消息结构
- 1.日    期   : 2015年2月5日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef NAS_MSCC_PIF_CDMACSQ_IND_STRU    XSD_MSCC_CDMACSQ_IND_STRU;
 
 /** ****************************************************************************
@@ -289,13 +229,7 @@ typedef struct
     VOS_UINT16                                      usCdmaPn;
 }MSCC_XSD_CFREQ_LOCK_NTF_STRU;
 
-/*****************************************************************************
- 结构名    : XSD_MSCC_1X_SYSTEM_TIME_IND_STRU
- 结构说明  : ID_XSD_MSCC_1X_SYSTEM_TIME_IND消息结构
- 1.日    期   : 2015年2月4日
-   作    者   : L00256032
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef NAS_MSCC_PIF_1X_SYSTEM_TIME_IND_STRU    XSD_MSCC_1X_SYSTEM_TIME_IND_STRU;
 
 /** ****************************************************************************
@@ -332,40 +266,16 @@ typedef struct
 typedef NAS_MSCC_PIF_SYS_CFG_SET_CNF_STRU   XSD_MSCC_SYS_CFG_CNF_STRU;
 
 
-/*****************************************************************************
- 结构名    : MSCC_XSD_SRV_ACQ_REQ_STRU
- 结构说明  : 业务触发搜网指示
- 1.日    期   : 2015年5月21日
-   作    者   : w00242748
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef NAS_MSCC_PIF_SRV_ACQ_REQ_STRU MSCC_XSD_SRV_ACQ_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : XSD_MSCC_SRV_ACQ_CNF_STRU
- 结构说明  : 业务触发搜网结果
- 1.日    期   : 2015年5月21日
-   作    者   : w00242748
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef NAS_MSCC_PIF_SRV_ACQ_CNF_STRU XSD_MSCC_SRV_ACQ_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : MSCC_XSD_BEGIN_SESSION_NOTIFY_STRU
- 结构说明  : 业务触发搜网开始指示
- 1.日    期   : 2015年5月21日
-   作    者   : W00242748
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef NAS_MSCC_PIF_BEGIN_SESSION_NOTIFY_STRU MSCC_XSD_BEGIN_SESSION_NOTIFY_STRU;
 
-/*****************************************************************************
- 结构名    : MSCC_XSD_END_SESSION_NOTIFY_STRU
- 结构说明  : 业务触发搜网结束指示
- 1.日    期   : 2015年5月21日
-   作    者   : W00242748
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef NAS_MSCC_PIF_END_SESSION_NOTIFY_STRU MSCC_XSD_END_SESSION_NOTIFY_STRU;
 
 
@@ -382,13 +292,7 @@ typedef struct
     VOS_UINT8                           aucReserve[2];
 }MSCC_XSD_HANDSET_INFO_QRY_STRU;
 
-/*****************************************************************************
- 结构名    : XSD_MSCC_HANDSET_INFO_QRY_CNF_STRU
- 结构说明  : XSD给MSCC回复的手机状态信息的消息结构
- 1.日    期   : 2015年5月16日
-   作    者   : z00316370
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                stMsgHeader;        /*_H2ASN_Skip*//* 消息头    */
@@ -413,51 +317,18 @@ typedef struct
 }XSD_MSCC_UE_STATE_IND_STRU;
 
 
-/*****************************************************************************
- 结构名    : MSCC_XSD_SID_NID_IND_STRU
- 结构说明  : SID指示
- 1.日    期   : 2015年7月2日
-   作    者   : y00245242
-   修改内容   : 新建
- 2.日    期   : 2015年12月15日
-   作    者   : l00324781
-   修改内容   : CL_MUTIMODE_OPTIMIZE SID_IND修改为SID_NID_IND
-*****************************************************************************/
+
 typedef NAS_MSCC_PIF_SID_NID_IND_STRU MSCC_XSD_SID_NID_IND_STRU;
 
-/*****************************************************************************
- 结构名    : XSD_MSCC_EMC_CALLBACK_IND_STRU
- 结构说明  : XSD给MSCC回复紧急呼CALLBACK模式状态的消息结构
- 1.日    期   : 2015年07月02日
-   作    者   : h00313353
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef NAS_MSCC_PIF_EMC_CALLBACK_IND_STRU XSD_MSCC_EMC_CALLBACK_IND_STRU;
 
-/*****************************************************************************
- 结构名    : MSCC_XSD_END_EMC_CALLBACK_REQ_STRU
- 结构说明  : MSCC给XSD回复退出紧急呼CallBack请求的消息结构
- 1.日    期   : 2015年07月02日
-   作    者   : h00313353
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef NAS_MSCC_PIF_END_EMC_CALLBACK_IND_STRU MSCC_XSD_END_EMC_CALLBACK_NTF_STRU;
-/*****************************************************************************
- 结构名    : MSCC_XSD_OPER_LOCK_WHITE_SID_STRU
- 结构说明  : 保存的SID白名单信息
-  1.日    期   : 2015年7月2日
-    作    者   : y00322978
-    修改内容   : 新建
-*****************************************************************************/
+
 typedef NAS_MSCC_PIF_OPER_LOCK_SYS_WHITE_STRU MSCC_XSD_OPER_LOCK_SYS_WHITE_STRU;
 
-/*****************************************************************************
- 结构名    : MSCC_XSD_SET_CSIDLIST_REQ_STRU
- 结构说明  : MSCC给XSD sid white list 设置请求结构体
- 1.日    期   : 2015年07月02日
-   作    者   : y00322978
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef NAS_MSCC_PIF_SET_CSIDLIST_REQ_STRU MSCC_XSD_SET_CSIDLIST_REQ_STRU;
 
 typedef NAS_MSCC_PIF_SET_CSIDLIST_CNF_STRU XSD_MSCC_SET_CSIDLIST_CNF_STRU;
@@ -465,14 +336,7 @@ typedef NAS_MSCC_PIF_SET_CSIDLIST_CNF_STRU XSD_MSCC_SET_CSIDLIST_CNF_STRU;
 typedef NAS_MSCC_PIF_SYNC_SERVICE_AVAILABLE_IND_STRU XSD_MSCC_SYNC_SERVICE_AVAILABLE_IND_STRU;
 
 
-/*****************************************************************************
- 结构名    : XSD_MSCC_1X_NO_SERVICE_IND_STRU
- 结构说明  : XSD收到CAS_CNAS_1X_SYSTEM_DETERMIN_IND，发起搜网，进入无服务，
-             用于通知MMA启动服务上报延时定时器，仅Idle态下处理。
- 1.日    期   : 2015年10月08日
-   作    者   : l00324781
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                        stMsgHeader;                    /*_H2ASN_Skip*//* 消息头                                   */

@@ -25,6 +25,8 @@ source "drivers/huawei_platform/chipverification/Kconfig"
 source "drivers/huawei_platform/chr/Kconfig"
 source "drivers/huawei_platform/lcd/Kconfig"
 source "drivers/huawei_platform/devdetect/Kconfig"
+source "drivers/huawei_platform/ocp/Kconfig"
+source "drivers/huawei_platform/madapt/Kconfig"
 endmenu
 
 source "drivers/huawei_platform/audio/Kconfig"
@@ -33,3 +35,4 @@ source "drivers/huawei_platform/antenna_fpga/Kconfig"
 source "drivers/huawei_platform/power/Kconfig"
 source "drivers/huawei_platform/uid_iostats/Kconfig"
 source "drivers/huawei_platform/antenna_board_match/Kconfig"
+source "drivers/huawei_platform/antenna_board_gpio_match/Kconfig"

@@ -75,7 +75,7 @@ typedef struct tagCKP_BACKUP_PPPALLINFO_S
           bVjFlag           : 1,        /* VJ用户数统计标志 */
           bLzs0Flag         : 1,        /* Stac_Lzs0用户数统计 */
           bLzs1Flag         : 1,        /* Stac_Lzs1用户数统计 */
-          bPpcAAAFlag       : 1,        /* add by g00127633 增加预付费用户是否需要到AAA鉴权 0不需要到AAA,1需要*/
+          bPpcAAAFlag       : 1,
           bPppSuccess       : 1,        /* PPP建立成功标记,用于PPP指标优化 */
           bAuthFlag         : 1,        /* 用于判断是否已经完成过chap或pap鉴权,若是VOS_TRUE,则重协商不再走AAA */
           bIpcpSucFlag      : 1,        /* PPP协商IPCP协商成功标记,该标记在重协商过程也不会改变 */
@@ -109,7 +109,6 @@ typedef struct tagCKP_BACKUP_PPPALLINFO_S
     VOS_UINT32 ulDNSAddr1;
     VOS_UINT32 ulDNSAddr2;
     //ULONG64 ulNegoStartTime;      /* PPP协商开始时间 */
-    //ULONG64 ulNegoEndTime;        /* 双栈ipv6先协商成功记录该值,问题单号:DTS2012051200799 */
     VOS_UINT32 ulNowUTCInSec;
 
     VOS_UINT16 usPeerId;                   /* 保存第一次发送服务器id */

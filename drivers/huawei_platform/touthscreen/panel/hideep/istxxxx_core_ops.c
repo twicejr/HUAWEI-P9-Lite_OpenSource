@@ -1332,19 +1332,19 @@ static int hideep_resume(void)
 	switch (gesture_info->sleep_mode) {
 		case TS_POWER_OFF_MODE:
 			hideep_power_on();
-			msleep(20);
+			mdelay(20);
 			if(ts->dev_state == ISTCORE_PWR_NORMAL)
 				goto ret;
 			ts->dev_state = ISTCORE_PWR_NORMAL  ;
 #ifdef CRIMSON
 			hideep_reset_ic(); 
-			msleep(25);
+			mdelay(100);
 #endif
 			break;
 		case TS_GESTURE_MODE:
 			TS_LOG_INFO("exit gesture mode.\n");
 			hideep_reset_ic(); 
-			msleep(25);
+			mdelay(25);
 			gesture = 0;
 			hideep_item_switch(TS_ACTION_WRITE, VR_LPWU, 1, &gesture);
 			if(gesture_info->off_motion_on)

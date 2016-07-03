@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasXccComFunc.h
-  版 本 号   : 初稿
-  作    者   : w00242748
-  生成日期   : 2014年9月15日
-  最近修改   :
-  功能描述   : CnasXccComFunc.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年9月15日
-    作    者   : w00242748
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __CNAS_XCC_COM_FUNC_H__
 #define __CNAS_XCC_COM_FUNC_H__
@@ -195,13 +178,7 @@ enum SEND_BURST_DTMF_OFF_LENGTH_ENUM
 };
 typedef VOS_UINT8 SEND_BURST_DTMF_OFF_LENGTH_ENUM_UINT8;
 
-/*****************************************************************************
- 结构名    : CAS_TAF_EST_CAUSE_CODE_MAP_STRU
- 结构说明  : CAS EST REASON与TAF原因值的对应结构
-  1.日    期   : 2014年9月22日
-    作    者   : c00294324
-    修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          enCasCause;
@@ -209,26 +186,14 @@ typedef struct
 }CAS_TAF_EST_CAUSE_CODE_MAP_STRU;
 
 
-/*****************************************************************************
- 结构名    : CAS_TAF_TERMINATE_CAUSE_CODE_MAP_STRU
- 结构说明  : CAS TERMINATE REASON与TAF原因值的对应结构
-  1.日    期   : 2014年9月22日
-    作    者   : c00294324
-    修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                  enCasCause;
     TAF_XCC_CAUSE_ENUM_UINT32                   enXccCause;
 }CAS_TAF_TERMINATE_CAUSE_CODE_MAP_STRU;
 
-/*****************************************************************************
- 枚举名    : CNAS_XCC_SERVICE_TYPE_ENUM
- 枚举说明  : 服务类型枚举定义
- 1.日    期   : 2014年9月5日
-   作    者   : w00242748
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CNAS_XCC_SERVICE_TYPE_ENUM
 {
     /* 语音呼叫 */
@@ -815,13 +780,7 @@ typedef struct
 }CNAS_XCC_INFO_RECS_MSG_WAITING_STRU;
 
 
-/*****************************************************************************
- 结构名    : CNAS_XCC_INFO_RECS_STRU
- 结构说明  : information records消息结构
-  1.日    期   : 2014年11月10日
-    作    者   : y00307564
-    修改内容   : 1X SS Project 新增
-*****************************************************************************/
+
 typedef struct
 {
     CNAS_XCC_F_DSCH_INFO_RECORD_TYPE_ENUM_UINT32            enInfoRecsType;
@@ -849,13 +808,7 @@ typedef struct
 }CNAS_XCC_INFO_RECS_DATA_STRU;
 
 
-/*****************************************************************************
- 结构名    : CNAS_XCC_AWIM_STRU
- 结构说明  : AWIM消息结构
-  1.日    期   : 2014年11月12日
-    作    者   : l00256032
-    修改内容   : 1X SS Project 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucNumInfoRecs;
@@ -863,16 +816,7 @@ typedef struct
     CNAS_XCC_INFO_RECS_DATA_STRU        astInfoRecsData[CNAS_XCC_MAX_AWIM_EAWIM_INFO_RECO_NUM];
 }CNAS_XCC_AWIM_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XCC_EAWIM_STRU
- 结构说明  : EAWIM消息结构
-  1.日    期   : 2014年10月15日
-    作    者   : w00242748
-    修改内容   : 新增
-  2.日    期   : 2014年11月10日
-    作    者   : y00307564
-    修改内容   : 1X SS Project 修改
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucConRef;           /* 对应协议字段CON_REF */
@@ -884,16 +828,7 @@ typedef struct
     CNAS_XCC_INFO_RECS_DATA_STRU        astInfoRecsData[CNAS_XCC_MAX_AWIM_EAWIM_INFO_RECO_NUM];
 }CNAS_XCC_EAWIM_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XCC_EFWIM_STRU
- 结构说明  : EFWIM消息结构
-  1.日    期   : 2014年10月15日
-    作    者   : w00242748
-    修改内容   : 新增
-  2.日    期   : 2014年11月10日
-    作    者   : y00307564
-    修改内容   : 1X SS Project 修改
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucConRef;           /* 对应协议字段CON_REF */
@@ -905,13 +840,7 @@ typedef struct
     CNAS_XCC_INFO_RECS_DATA_STRU        astInfoRecsData[CNAS_XCC_MAX_FWIM_EFWIM_INFO_RECO_NUM];
 }CNAS_XCC_EFWIM_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XCC_FWIM_STRU
- 结构说明  : FWIM消息结构
-  1.日    期   : 2014年11月10日
-    作    者   : y00307564
-    修改内容   : 1X SS Project 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucNumInfoRecs;
@@ -919,13 +848,7 @@ typedef struct
     CNAS_XCC_INFO_RECS_DATA_STRU        astInfoRecsData[CNAS_XCC_MAX_FWIM_EFWIM_INFO_RECO_NUM];
 }CNAS_XCC_FWIM_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XCC_ORDERS_STRU
- 结构说明  : ORDERS消息结构
-  1.日    期   : 2014年10月15日
-    作    者   : w00242748
-    修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32 ulOrderDesc;  /* 对应协议字段ORDER_DESC,类型unsigned long */
@@ -937,13 +860,7 @@ typedef struct
     /* c_F_Orders_parameters parameters; */
 }CNAS_XCC_ORDERS_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XCC_ORDRM_STRU
- 结构说明  : ORDER消息结构
-  1.日    期   : 2014年10月15日
-    作    者   : w00242748
-    修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8               ucUseTime;              /* 对应协议字段USE_TIME */
@@ -958,13 +875,7 @@ typedef struct
     CNAS_XCC_ORDERS_STRU    stOrder;
 }CNAS_XCC_ORDRM_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XCC_FNM_STRU
- 结构说明  : FNM消息结构
-  1.日    期   : 2014年11月18日
-    作    者   : h00246512
-    修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucIsRelease;
@@ -973,13 +884,7 @@ typedef struct
     CNAS_XCC_INFO_RECS_DATA_STRU        astInfoRecsData[CNAS_XCC_MAX_FNM_INFO_RECO_NUM];
 }CNAS_XCC_FNM_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XCC_SOCM_STRU
- 结构说明  : SOCM消息结构
-  1.日    期   : 2014年11月18日
-    作    者   : h00246512
-    修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usSo;
@@ -1002,13 +907,7 @@ typedef struct
     VOS_UINT32                          ulOnLength;                                 /**<  refers to S.0005 3.7.3.3.2.9 */
     VOS_UINT32                          ulOffLength;                                /**<  refers to S.0005 3.7.3.3.2.9 */
 }CNAS_XCC_SEND_BURST_DTMF_STRU;
-/*****************************************************************************
- 结构名    : XCC_MMA_1X_CALL_STATE_MAP_STRU
- 结构说明  : 1x call state 的对应结构
-  1.日    期   : 2014年9月22日
-    作    者   : c00294324
-    修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     CNAS_CCB_1X_CALL_STATE_ENUM_UINT8           enCcbCallState;

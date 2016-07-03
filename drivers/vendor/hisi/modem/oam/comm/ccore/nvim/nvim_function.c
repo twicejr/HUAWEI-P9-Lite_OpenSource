@@ -150,24 +150,7 @@ VOS_UINT32      g_ulNVInitEndSlice   = 0;
 
 extern VOS_VOID XML_DecodeMain(VOS_BOOL *pbIsDecodeXml); /* XML Decode处理 */
 extern VOS_VOID XML_DeleteFile(VOS_VOID);
-/*****************************************************************************
- 函 数 名  : NV_WriteDataEvent
- 功能描述  : NV_WriteDataEvent事件上报
- 输入参数  : VOS_UINT16 usID -> NV ID
-             VOS_UINT32 ulOffset-> 相对buffer偏移量
-             VOS_VOID *pItem -> NV data buffer
-             VOS_UINT32 ulLength -> buffer length
-             VOS_UINT32 ulResult-> 结果
- 输出参数  :
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年05月24日
-    作    者   : z00100318
-    修改内容   :  V7R1C50 Flashless PhaseI项目新增函数
-*****************************************************************************/
 VOS_VOID NV_WriteDataEvent(VOS_UINT16      usID,
                             VOS_UINT32          ulOffset,
                             VOS_VOID            *pItem,
@@ -398,20 +381,7 @@ VOS_UINT32 NV_WriteDirectAll(VOS_UINT16 usID,VOS_VOID *pItem,VOS_UINT32 ulLength
 
 /* nv模块下移，不再支持通过给任务发消息写 */
 #if 0
-/*****************************************************************************
- 函 数 名  : NV_SendMsgToNvFlush
- 功能描述  : NV_SendMsgToNvFlush 给NV_Flush任务发送消息
- 输入参数  :
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年05月24日
-    作    者   : d00212987
-    修改内容   :  V7R1C50 Flashless PhaseII项目新增函数
-*****************************************************************************/
 VOS_UINT32 NV_SendMsgToNvFlush(VOS_VOID)
 {
     NVIM_FLUSH_MSG_STRU *pstNvFlushMsg;
@@ -443,22 +413,7 @@ VOS_UINT32 NV_SendMsgToNvFlush(VOS_VOID)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : NV_FlushMemoryToFile
- 功能描述  : 把内存刷新到文件中
- 输入参数  : pcFilePath: 文件路径
-             pData     : 写入内容
-             ulDataLen : 写入内容长度
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月18日
-    作    者   : d00212987
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_UINT32 NV_FlushMemoryToFile(VOS_CHAR *pcFilePath, VOS_VOID *pData,VOS_UINT32 ulDataLen)
 {
     FILE                               *fp;
@@ -488,21 +443,7 @@ VOS_UINT32 NV_FlushMemoryToFile(VOS_CHAR *pcFilePath, VOS_VOID *pData,VOS_UINT32
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : NV_FlushDdrProc
- 功能描述  : 升级过程中所有写nv操作，都只写到ddr中，最后靠该函数把ddr刷入文件
- 输入参数  : bIsCreatefile : 是否需要创建标记文件
-             bIsDecodeXml  : 是否解析XML文件
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年05月23日
-    作    者   : d00212987
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_UINT32 NV_FlushDdrProc(VOS_BOOL bIsCreatefile, VOS_BOOL bIsDecodeXml)
 {
     NV_FILE_LIST_INFO_STRU             *pstFileListInfo;
@@ -648,20 +589,7 @@ VOS_UINT32 NV_GetLengthAll(VOS_UINT16 usID, NV_CONTROL_FILE_INFO_STRU  *pstNVCtr
     return NV_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : NV_NVBackupOption
- 功能描述  : 使用区原有NV文件备份到Falsh区域
- 输入参数  : enBackupWrite 需要备份到的分区
 
- 输出参数  : 无
-
- 返 回 值  : VOS_UINT32
-
- 修改历史      :
-  1.日    期   : 2013年10月26日
-    作    者   : d00212987
-    修改内容   : BalongV9R1 NV备份数据丢失容错&恢复
-*****************************************************************************/
 VOS_UINT32 NV_BackupOption(NVIM_BACKUP_WRITE_FLASH_ENUM_UINT32 enBackupWrite)
 {
     VOS_UINT32                          ulBackupTotalLen;
@@ -1391,20 +1319,7 @@ VOS_UINT32 NV_PowerOffWriteNV(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NV_Flush
- 功能描述  : NV_Flush写入接口函数
- 输入参数  :
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年05月23日
-    作    者   : d00212987
-    修改内容   :  V7R1C50 Flashless PhaseII项目新增函数
-*****************************************************************************/
 VOS_UINT32 NV_Flush(VOS_VOID)
 {
     VOS_UINT32                          ulRslt;
@@ -1883,22 +1798,7 @@ VOS_UINT32 NV_SpecialNvIdBackup(VOS_UINT16 usID,VOS_VOID *pItem,VOS_UINT32 ulLen
 
 /* NV模块下移，不再支持发消息写 */
 #if 0
-/*****************************************************************************
- 函 数 名  : NvimFL_MsgProc
- 功能描述  : 处理FLUSH的消息
- 输入参数  : MsgBlock
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年05月23日
-    作    者   : w00184875
-    修改内容   : V7R1C50 Flashless PhaseII项目新增函数
-
-*****************************************************************************/
 VOS_VOID NvimFL_MsgProc(MsgBlock* pstMsg)
 {
     NVIM_FLUSH_MSG_STRU                *pstNvFlushMsg;
@@ -1938,22 +1838,7 @@ VOS_VOID NvimFL_MsgProc(MsgBlock* pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NvimFLInit
- 功能描述  : 读取flush阈值
- 输入参数  : 无
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年05月23日
-    作    者   : w00184875
-    修改内容   : V7R1C50 Flashless PhaseII项目新增函数
-
-*****************************************************************************/
 VOS_UINT32 NvimFLInit(VOS_VOID)
 {
     /* 读取NV项中的flush阈值 */
@@ -1974,22 +1859,7 @@ VOS_UINT32 NvimFLInit(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : NvimFLPidInit
- 功能描述  : NVIM_FLUSH PID初始化函数
- 输入参数  : VOS_INIT_PHASE_DEFINE
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年05月23日
-    作    者   : w00184875
-    修改内容   : V7R1C50 Flashless PhaseII项目新增函数
-
-*****************************************************************************/
 VOS_UINT32 NvimFLPidInit(enum VOS_INIT_PHASE_DEFINE ip)
 {
     switch ( ip )
@@ -2004,22 +1874,7 @@ VOS_UINT32 NvimFLPidInit(enum VOS_INIT_PHASE_DEFINE ip)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : NVIM_FLUSH_FID_Init
- 功能描述  : NVIM_FLUSH任务初始化函数
- 输入参数  : VOS_INIT_PHASE_DEFINE
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年05月23日
-    作    者   : w00184875
-    修改内容   : V7R1C50 Flashless PhaseII项目新增函数
-
-*****************************************************************************/
 VOS_UINT32 NVIM_FLUSH_FID_Init(enum VOS_INIT_PHASE_DEFINE ip)
 {
     VOS_UINT32                          ulRslt;
@@ -2193,7 +2048,6 @@ VOS_UINT32 NV_BackupProc(VOS_VOID)
     NV_Printf("\r\nNV_BackupProc is begining.\r\n");
 
     /* Init NV-Update zone nv files into memory. */
-    /* Add by z00100318 for V7R1C50 Flashless PhaseI项目 begin */
     ulResult = NV_Copy_Data_To_Memory();
 
     if ((NV_OK != ulResult) && (NV_OPEN_FILE_FAIL != ulResult))        /* 将NV数据读进内存BUFFER中 */
@@ -2207,7 +2061,6 @@ VOS_UINT32 NV_BackupProc(VOS_VOID)
         NV_File_Remove((VOS_CHAR*)g_acNvUseDir, (VOS_CHAR*)g_acNvBackupFile);
     }
 
-    /* Add by z00100318 for V7R1C50 Flashless PhaseI项目 end */
     PS_TURN_ON_UPDATE_VERSION_LED();
 
     /* Check NV security file in NV-Update zone.*/
@@ -2597,20 +2450,7 @@ VOS_UINT32 NV_QueryRestoreResult(VOS_VOID)
 }
 
 #if (FEATURE_ON == FEATURE_BROWSER_NV_FILE_IMEI_PROTECT)
-/*****************************************************************************
- 函 数 名  : NV_FileDirCmp
- 功能描述  : 文件所在文件夹路路径比较
- 输入参数  : pcNvFileDir  : NV所在文件夹路径
-             pcFilePath   : 待判断文件路径，确认是否属于NV文件路径
 
- 输出参数  : 无
- 返 回 值  : VOS_BOOL
-
- 修改历史      :
-  1.日    期   : 2013年5月7日
-    作    者   : d00212987
-    修改内容   : FileBrowser 访问modem文件需IMEI验证 新增
-*****************************************************************************/
 VOS_BOOL NV_FileDirCmp(VOS_CHAR  *pcNvFileDir, VOS_CHAR  *pcFilePath)
 {
     VOS_CHAR                            acDilms[] = "/";
@@ -2651,19 +2491,7 @@ static NV_DIR_PATH_STRU g_astNvDirCPathTbl[] =
     g_acNvDefaultDir
 };
 
-/*****************************************************************************
- 函 数 名  : NV_CheckNVFile
- 功能描述  : 根据文件路径判断是否属于NV 相关文件
- 输入参数  : pcFilePath   : 文件路径
 
- 输出参数  : 无
- 返 回 值  : VOS_BOOL
-
- 修改历史      :
-  1.日    期   : 2013年5月7日
-    作    者   : d00212987
-    修改内容   : FileBrowser 访问modem文件需IMEI验证 新增
-*****************************************************************************/
 VOS_BOOL NV_CheckNVFile(VOS_CHAR  *pcFilePath)
 {
     VOS_UINT32                          ulIndex;

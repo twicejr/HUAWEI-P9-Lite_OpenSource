@@ -73,7 +73,15 @@ static int devfreq_cooling_set_cur_state(struct thermal_cooling_device *cdev,
 	g_ipa_freq_limit[IPA_GPU] = freq;
 	trace_IPA_actor_gpu_cooling(freq/1000,state);
 	if (df->max_freq != freq)
+#ifdef CONFIG_HISI_IPA_THERMAL
+	{/*NOT use devfreq_qos_set_max,because gpufreq not support VOTE */
+		mutex_lock(&df->lock);
+		update_devfreq(df);
+		mutex_unlock(&df->lock);
+	}
+#else
 		devfreq_qos_set_max(df, freq);
+#endif
 
 	dfc->cooling_state = state;
 

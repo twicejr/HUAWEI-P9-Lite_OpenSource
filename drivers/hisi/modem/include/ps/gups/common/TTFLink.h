@@ -190,7 +190,6 @@ extern VOS_UINT32   TTF_LinkIsEmpty(VOS_UINT32 ulPid, const TTF_LINK_ST *pLink);
 extern TTF_NODE_ST* TTF_LinkPeekHead(VOS_UINT32 ulPid, const TTF_LINK_ST * pLink);
 
 extern VOS_UINT32   TTF_RING_Q_Init(VOS_UINT32 ulPid, TTF_RING_Q_ST *pstRingQ, VOS_UINT32 ulMaxSize );
-/*Linux add begin£¬¸ð°ÙÕÂ 00178567 */
 extern VOS_UINT32  TTF_RING_Q_InitAndNodeAddrSet(VOS_UINT32 ulPid,
                                                                 TTF_RING_Q_ST *pstRingQ,
                                                                 VOS_VOID **ppNode,
@@ -198,7 +197,6 @@ extern VOS_UINT32  TTF_RING_Q_InitAndNodeAddrSet(VOS_UINT32 ulPid,
                                                                 VOS_UINT32 ulBlkSize,
                                                                 VOS_UINT32 ulMaxSize );
 extern VOS_UINT32  TTF_RING_Q_NodeAddrInit(VOS_UINT32 ulPid, TTF_RING_Q_ST *pstRingQ, VOS_VOID **ppNodeAddr,VOS_UINT32 ulNodeCnt,VOS_UINT8 ucSize);
-/*Linux add end£¬¸ð°ÙÕÂ 00178567 */
 extern VOS_UINT32   TTF_RING_Q_NodeAddrSet(VOS_UINT32 ulPid, TTF_RING_Q_ST *pstRingQ, VOS_VOID **ppNodeAddr,VOS_UINT32 ulNodeCnt);
 extern VOS_VOID*    TTF_RING_Q_Front(VOS_UINT32 ulPid, TTF_RING_Q_ST *pstRingQ);
 extern VOS_VOID*    TTF_RING_Q_Rear(VOS_UINT32 ulPid, TTF_RING_Q_ST *pstRingQ);

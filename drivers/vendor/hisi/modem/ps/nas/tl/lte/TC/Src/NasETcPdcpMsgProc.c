@@ -45,17 +45,7 @@ extern "C" {
 /*****************************************************************************
   3 Function
 *****************************************************************************/
-/*****************************************************************************
- Function Name   : NAS_ETC_PdcpUlMsgDistr
- Description     : PDCP UL的消息处理函数
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2009-10-14  Draft Enact
-
-*****************************************************************************/
 /*lint -e960*/
 /*lint -e961*/
 VOS_VOID  NAS_ETC_PdcpUlMsgDistr
@@ -110,17 +100,7 @@ VOS_VOID  NAS_ETC_PdcpUlMsgDistr
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ETC_RcvTcPdcpUlActTestModeCnf
- Description     : PDCP UL模块发来的ACTIVATE TEST MODE CNF消息处理函数
- Input           : pRcvMsg-----------收到的ACTIVATE TEST MODE CNF消息
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2009-10-14  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ETC_RcvTcPdcpUlActTestModeCnf
 (
     const LTC_LPDCP_ACTIVATE_TEST_MODE_CNF_STRU *pRcvMsg
@@ -159,17 +139,7 @@ VOS_VOID  NAS_ETC_RcvTcPdcpUlActTestModeCnf
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_ETC_RcvTcPdcpUlStartTestLoopCnf
- Description     : PDCP UL模块发来的START TEST LOOP CNF消息处理函数
- Input           : pRcvMsg-----------收到的START TEST LOOP CNF消息
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2009-10-15  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ETC_RcvTcPdcpUlStartTestLoopCnf
 (
     const LTC_LPDCP_START_TEST_LOOP_CNF_STRU *pRcvMsg
@@ -198,17 +168,7 @@ VOS_VOID  NAS_ETC_RcvTcPdcpUlStartTestLoopCnf
                                 TC_CLOSE_UE_TEST_LOOP_CMP);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ETC_RcvTcPdcpUlStopTestLoopCnf
- Description     : PDCP UL模块发来的STOP TEST LOOP CNF消息处理函数
- Input           : pRcvMsg-----------收到的STOP TEST LOOP CNF消息
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2009-10-15  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ETC_RcvTcPdcpUlStopTestLoopCnf
 (
     const LTC_LPDCP_STOP_TEST_LOOP_CNF_STRU *pRcvMsg
@@ -237,17 +197,7 @@ VOS_VOID  NAS_ETC_RcvTcPdcpUlStopTestLoopCnf
                                 TC_OPEN_UE_TEST_LOOP_CMP);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ETC_RcvTcPdcpUlDeactTestModeCnf
- Description     : PDCP UL模块发来的DEACTIVATE TEST MODE CNF消息处理函数
- Input           : pRcvMsg-----------收到的DEACTIVATE TEST MODE CNF消息
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2009-10-15  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ETC_RcvTcPdcpUlDeactTestModeCnf
 (
     const LTC_LPDCP_DEACTIVATE_TEST_MODE_CNF_STRU *pRcvMsg
@@ -294,17 +244,7 @@ VOS_VOID  NAS_ETC_RcvTcPdcpUlDeactTestModeCnf
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ETC_SndTcPdcpActTestModeMsg
- Description     : TC模块向PDCP模块发送ACTIVATE TEST MODE消息
- Input           : pstTcNwMsgIE--------译码后的空口消息
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2009-10-14  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ETC_SndTcPdcpActTestModeMsg
 (
     const NAS_ETC_NW_MSG_STRU           *pstTcNwMsgIE
@@ -341,17 +281,7 @@ VOS_VOID  NAS_ETC_SndTcPdcpActTestModeMsg
     TLPS_PRINT2LAYER_INFO(NAS_ETC_SndTcPdcpActTestModeMsg_ENUM, LNAS_TC_SndMsg);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ETC_SndTcPdcpDeactTestModeMsg
- Description     : TC模块向PDCP模块发送DEACTIVATE TEST MODE消息
- Input           : pstTcNwMsgIE--------译码后的空口消息
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2009-10-15  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ETC_SndTcPdcpDeactTestModeMsg( VOS_VOID )
 {
     LTC_LPDCP_DEACTIVATE_TEST_MODE_STRU     *pstTcPdcpDeActTestMode = VOS_NULL_PTR;
@@ -383,18 +313,7 @@ VOS_VOID  NAS_ETC_SndTcPdcpDeactTestModeMsg( VOS_VOID )
     NAS_ETC_NORM_LOG("NAS_ETC_SndTcPdcpDeactTestModeMsg:NORM:Send ID_LTC_LPDCP_DEACTIVATE_TEST_MODE!");
     TLPS_PRINT2LAYER_INFO(NAS_ETC_SndTcPdcpDeactTestModeMsg_ENUM, LNAS_TC_SndMsg);
 }
-/*****************************************************************************
- Function Name   : NAS_ETC_SndTcPdcpStartTestLoopMsg
- Description     : TC模块向PDCP模块发送START TEST LOOP消息
- Input           : pstTcNwMsgIE--------译码后的空口消息
- Output          : None
- Return          : VOS_VOID
 
-
- History         :
-    1.lihong00150010      2009-10-15  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ETC_SndTcPdcpStartTestLoopMsg
 (
     const NAS_ETC_NW_MSG_STRU           *pstTcNwMsgIE
@@ -448,17 +367,7 @@ VOS_VOID  NAS_ETC_SndTcPdcpStartTestLoopMsg
     TLPS_PRINT2LAYER_INFO(NAS_ETC_SndTcPdcpStartTestLoopMsg_ENUM, LNAS_TC_SndMsg);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ETC_SndTcPdcpStopTestLoopMsg
- Description     : TC模块向PDCP模块发送STOP TEST LOOP消息
- Input           : pstTcNwMsgIE--------译码后的空口消息
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2009-10-15  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ETC_SndTcPdcpStopTestLoopMsg
 (
     const NAS_ETC_NW_MSG_STRU           *pstTcNwMsgIE
@@ -496,17 +405,7 @@ VOS_VOID  NAS_ETC_SndTcPdcpStopTestLoopMsg
     TLPS_PRINT2LAYER_INFO(NAS_ETC_SndTcPdcpStopTestLoopMsg_ENUM, LNAS_TC_SndMsg);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ETC_SndTcCdsActTestModeMsg
- Description     : 通知CDS进入环回模式
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.niuxiufan 00181501      2012-02-14  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ETC_SndTcCdsActTestModeMsg(VOS_VOID)
 {
     CDS_ETC_ACT_TEST_MODE_NOTIFY_STRU        *pstTcCdsActTestLoop = VOS_NULL_PTR;
@@ -535,17 +434,7 @@ VOS_VOID  NAS_ETC_SndTcCdsActTestModeMsg(VOS_VOID)
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_ETC_SndTcCdsDeactTestModeMsg
- Description     : 通知CDS退出环回模式
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.niuxiufan 00181501      2012-02-14  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ETC_SndTcCdsDeactTestModeMsg(VOS_VOID)
 {
     ETC_CDS_DEACT_TEST_MODE_NOTIFY_STRU        *pstTcCdsDeactTestLoop = VOS_NULL_PTR;
@@ -574,18 +463,7 @@ VOS_VOID  NAS_ETC_SndTcCdsDeactTestModeMsg(VOS_VOID)
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_ETC_SndTcCdsStartTestLoopMsg
- Description     : TC模块向CDS模块发送START TEST LOOP消息
- Input           : pstTcNwMsgIE--------译码后的空口消息
- Output          : None
- Return          : VOS_VOID
 
-
- History         :
-    1.y00151394      2012-09-17  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ETC_SndTcCdsStartTestLoopMsg
 (
     const NAS_ETC_NW_MSG_STRU           *pstTcNwMsgIE
@@ -629,18 +507,7 @@ VOS_VOID  NAS_ETC_SndTcCdsStartTestLoopMsg
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ETC_SndTcCdsStopTestLoopMsg
- Description     : TC模块向CDS模块发送STOP TEST LOOP消息
- Input           : pstTcNwMsgIE--------译码后的空口消息
- Output          : None
- Return          : VOS_VOID
 
-
- History         :
-    1.y00151394      2012-09-17  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ETC_SndTcCdsStopTestLoopMsg(VOS_VOID)
 {
     ETC_CDS_STOP_TEST_LOOP_NOTIFY_STRU *pstStopNfyMsg;

@@ -999,8 +999,6 @@ static void device_to_off(struct otg_dev *dev_p)
 		stop_peripheral(dwc_otg_dev);
 	}
 	hw_shutdown(dev_p);
-
-	dev_p->charger_type = CHARGER_TYPE_NONE;
 }
 
 static int off_to_host(struct otg_dev *p)
@@ -1256,6 +1254,7 @@ static void handle_event(struct otg_dev *p, enum otg_dev_event_type event)
 
 			device_to_off(p);
 
+			p->charger_type = CHARGER_TYPE_NONE;
 			notify_charger_type(p);
 
 			p->status = OTG_DEV_OFF;

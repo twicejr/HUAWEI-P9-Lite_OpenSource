@@ -132,7 +132,6 @@ extern "C"{
 #define IF_PHY_REMOVE             16
 #define PASSIVE                   1
 
-/* Added by z43740 for TR报文发送增强, 2009-04-17 */
 #define IF_REMOVE                 32  /* 为了显示方便，把IF_REMOVE标志位值有2修改为32 */
 #define IF_NO_PHY_SHUTDOWN        2   /* 标识接口Shutdown还没有通知底层 */
 /* End of addition */
@@ -239,7 +238,7 @@ enum enumUpToLink
     /* 根据问题单D1370 用于从地址的添加 2002/01/11 Chenwejun */
     /* 由于删除和增加从地址都要使用，所以修改名字 2002/01/22 */
     SIOCPROADDRSEC,
-    SIOCDADDRSEC,  /* 删除从地址, 通知Eth删除ARP表项. Added by z36377 for SWFD12089 sys VRPD038,20050715*/
+    SIOCDADDRSEC,
     SIOCAIP6LINKLOCALADDR,  /*添加IPV6 Link_Local地址*/
     SIOCAIP6GLOBALADDR,
     SIOCAIP6SITELOCALADDR,    /*增加 IPv6地址*/
@@ -253,7 +252,7 @@ enum enumUpToLink
     SIOCLEAVEMULTI,
     SIOCISISENABLE,    /*向链路层获取ISIS开关*/
 
-    SIOCMADDRSEC,  /* 修改从地址掩码长度, Added by l143205 for BC3D00874, 2008-12-9 */
+    SIOCMADDRSEC,
     SIOC_MAX_SIOCWORD1 /*No use actually.Just for adding enum word easily. ZhuKun,20041020*/
 };
 
@@ -285,7 +284,6 @@ enum enumLinkToUp
     SIOCDDRIFUP,
     SIOCOSIENABLE,
     SIOCRCVMAC,
-    /*add by huzhiyong 新增两个PPP与DDR之间的接口命令字2002/01/24*/
     SIOCDDRIFDOWN,
     SIOCDDRLOWERDOWN,
 
@@ -373,7 +371,6 @@ enum enumLinkToUp
 #define POS_DEFAULT_MTU         4470 
 #define MIN_IF_MTU              328  /* 根据EFU限制所有接口最小值为 328*/
 
-/* Add for DTS2011042601883, by z00171897, at 2011-04-26. 修改原因: 最大MTU改为1492，默认MTU为1450 */
 #define MAX_PPPOE_MTU           1492
 #define DEFAULT_PPPOE_MTU       1450
 
@@ -925,7 +922,6 @@ enum enumRouterMsg
     IF_COMBINE_PHYSTATUS(pIf);                      \
 }
 
-/* add by L00105073 for 主备倒换后PPP重协商 */
 #define IF_SET_RAWPHYSTATUS(pIf, ulRawPhyStatus)    \
 {                                                   \
     if ((ulRawPhyStatus) == IF_STATUS_UP)           \

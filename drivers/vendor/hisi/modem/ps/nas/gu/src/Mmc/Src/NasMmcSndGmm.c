@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmcSndGmm.c
-  版 本 号   : 初稿
-  作    者   : w00176964
-  生成日期   : 2010年5月9日
-  最近修改   :
-  功能描述   : MMC发给GMM的消息的处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年05月9日
-    作    者   : w00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 /*****************************************************************************
   1 头文件包含
 *****************************************************************************/
@@ -49,23 +32,7 @@ extern "C" {
 
 /*lint -save -e958 */
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndGmmStartReq
- 功能描述  : 给GMM发送开机消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月10日
-    作    者   : luokaihui /l00167671
-    修改内容   : 新生成函数
-  2.日    期   : 2011年07月13日
-    作    者   : w00176964
-    修改内容   : GUNAS V7R1 PhaseII 阶段调整
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndGmmStartReq(VOS_VOID)
 {
     MMCGMM_START_REQ_STRU              *pstMsg = VOS_NULL_PTR;
@@ -91,24 +58,7 @@ VOS_VOID NAS_MMC_SndGmmStartReq(VOS_VOID)
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndGmmPowerOffReq
- 功能描述  : 向GMM模块发送关机原语MMCGMM_POWER_OFF_REQ的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月9日
-    作    者   : W00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2011年07月13日
-    作    者   : w00176964
-    修改内容   : GUNAS V7R1 PhaseII 阶段调整
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndGmmPowerOffReq(VOS_VOID)
 {
     MMCGMM_POWER_OFF_REQ_STRU          *pstMsg = VOS_NULL_PTR;
@@ -131,23 +81,7 @@ VOS_VOID NAS_MMC_SndGmmPowerOffReq(VOS_VOID)
 
     NAS_MML_SndInternalMsg(pstMsg);
 }
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndGmmPlmnSchInit
- 功能描述  : 向GMM发送plmnsrchinit
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月9日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2011年7月22日
-    作    者   : l00130025
-    修改内容   : PhaseII修改
-*****************************************************************************/
 VOS_VOID   NAS_MMC_SndGmmPlmnSchInit(VOS_VOID)
 {
     MMCGMM_PLMN_SEARCH_INITIATED_STRU  *pstInternalMsg = VOS_NULL_PTR;
@@ -173,28 +107,7 @@ VOS_VOID   NAS_MMC_SndGmmPlmnSchInit(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndGmmSuspendInd
- 功能描述  : NAS向GMM发起挂起指示
- 输入参数  : RRMM_SUSPEND_IND_ST                *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月10日
-    作    者   : W00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2011年07月13日
-    作    者   : w00176964
-    修改内容   : GUNAS V7R1 PhaseII 阶段调整
-
-  3.日    期   : 2011年10月27日
-    作    者   : w00176964
-    修改内容   : GUNAS V7R1 PhaseIII 阶段调整:联合注册
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndGmmSuspendInd(
     RRMM_SUSPEND_IND_ST                *pstMsg
 )
@@ -227,27 +140,7 @@ VOS_VOID NAS_MMC_SndGmmSuspendInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndGmmResumeInd
- 功能描述  : NAS向MM发送ResumeInd的指示
- 输入参数  : RRMM_RESUME_IND_ST                 *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月10日
-    作    者   : W00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2011年07月13日
-    作    者   : w00176964
-    修改内容   : GUNAS V7R1 PhaseII 阶段调整
-  3.日    期   : 2013年11月26日
-    作    者   : w00176964
-    修改内容   : Volte PhaseII项目调整
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndGmmResumeInd(
     RRMM_RESUME_IND_ST                 *pstMsg
 )
@@ -284,23 +177,7 @@ VOS_VOID NAS_MMC_SndGmmResumeInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndGmmCoverageLostInd
- 功能描述  : NAS向GMM发送coverage lost的指示
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2011年7月22日
-    作    者   : l00130025
-    修改内容   : PhaseII修改
-*****************************************************************************/
 
 VOS_VOID  NAS_MMC_SndGmmCoverageLostInd(VOS_VOID)
 {
@@ -326,22 +203,7 @@ VOS_VOID  NAS_MMC_SndGmmCoverageLostInd(VOS_VOID)
     return;
 }
 
-/*******************************************************************************
-  函 数 名  : NAS_MMC_SndGmmAttachReq
-  功能描述  : 发送原语MMCGMM_ATTACH_REQ的公共处理
-  输入参数  : ulOpid          - Opid
-               ulMmcAttachType - ATTACH类型
-  输出参数  : 无
-  返 回 值  :
-  调用函数  :
-  被调函数  :
 
-  修改历史      :
-  1.日    期   : 2011年7月11日
-    作    者   : w00166186
-    修改内容   : 新建，V7R1 PHASE II,ATTACH/DETACH调整
-
-*******************************************************************************/
 VOS_VOID NAS_MMC_SndGmmAttachReq(
     VOS_UINT32                          ulOpid,
     VOS_UINT32                          ulMmcAttachType
@@ -369,21 +231,7 @@ VOS_VOID NAS_MMC_SndGmmAttachReq(
     NAS_MML_SndInternalMsg((VOS_VOID*)pstMsg);
 }
 
-/*******************************************************************************
- 函 数 名  : NAS_MMC_SndGmmDetachReq
- 功能描述  : 发送原语MMCGMM_DETACH_REQ的公共处理
- 输入参数  : ulOpid        - Opid
-              ulDetachCause - Detach原因
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月11日
-   作    者   : w00166186
-   修改内容   : 新建，V7R1 PHASE II,ATTACH/DETACH调整
-*******************************************************************************/
 VOS_VOID NAS_MMC_SndGmmDetachReq(
     VOS_UINT32                          ulOpid,
     MMC_GMM_DETACH_TYPE_ENUM_UINT32     enDetachType,  /* detach类型 */
@@ -412,21 +260,7 @@ VOS_VOID NAS_MMC_SndGmmDetachReq(
     NAS_MML_SndInternalMsg((VOS_VOID*)pstMsg);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndGmmRelReq
- 功能描述  : 向GMM发送PS信令链接释放消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年07月11日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndGmmRelReq(VOS_VOID)
 {
     /* 向GMM发送PS信令链接释放消息 */
@@ -462,25 +296,7 @@ VOS_VOID NAS_MMC_SndGmmRelReq(VOS_VOID)
 
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndGmmLteSysinfo
- 功能描述  : NAS通知gmm的LTE 系统消息
- 输入参数  : MMC_LMM_USIM_STATUS_ENUM_UINT32     ulUsimState
- 输出参数  : 无
- 返 回 值  : VOS_ERR: ID_MMC_LMM_USIM_STATUS_REQ消息发送失败
-             VOS_OK : ID_MMC_LMM_USIM_STATUS_REQ消息发送成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年3月28日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月28日
-   作    者   : W00166186
-   修改内容   : DTS2012042602593,MM没有保存当前驻留的PLMN，导致后续判断出错
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndGmmLteSysinfoInd(
     LMM_MMC_SYS_INFO_IND_STRU          *pstLmmSysInfoMsg
 )
@@ -512,21 +328,7 @@ VOS_VOID NAS_MMC_SndGmmLteSysinfoInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndGmmLmmAttachInd
- 功能描述  : MMC向GMM通知当前LMM的attach结果
- 输入参数  : LMM_MMC_ATTACH_IND_STRU        *pstActionResultInd
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月26日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  NAS_MMC_SndGmmLmmAttachInd(
     LMM_MMC_ATTACH_IND_STRU        *pstAttachInd
 )
@@ -559,21 +361,7 @@ VOS_VOID  NAS_MMC_SndGmmLmmAttachInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndGmmLmmTauResultInd
- 功能描述  : MMC向GMM通知当前LMM的TAU注册结果
- 输入参数  : LMM_MMC_ATTACH_IND_STRU        *pstActionResultInd
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月26日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  NAS_MMC_SndGmmLmmTauResultInd(
     LMM_MMC_TAU_RESULT_IND_STRU        *pstActionResultInd
 )
@@ -606,20 +394,7 @@ VOS_VOID  NAS_MMC_SndGmmLmmTauResultInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndGmmLmmMtDetachInd
- 功能描述  : MMC向GMM通知当前LMM的网侧去注册结果
- 输入参数  : LMM_MMC_DETACH_IND_STRU            *pstActionResultInd DETACH消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年10月26日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  NAS_MMC_SndGmmLmmMtDetachInd(
     LMM_MMC_DETACH_IND_STRU            *pstActionResultInd
 )
@@ -654,20 +429,7 @@ VOS_VOID  NAS_MMC_SndGmmLmmMtDetachInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndGmmLmmLocalDetachInd
- 功能描述  : MMC向GMM通知当前LMM的本地去注册结果
- 输入参数  : LMM_MMC_DETACH_IND_STRU            *pstActionResultInd DETACH消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年12月6日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  NAS_MMC_SndGmmLmmLocalDetachInd(
     LMM_MMC_DETACH_IND_STRU            *pstActionResultInd
 )
@@ -701,20 +463,7 @@ VOS_VOID  NAS_MMC_SndGmmLmmLocalDetachInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndGmmLmmMoDetachInd
- 功能描述  : MMC向GMM通知当前LMM的UE去注册结果
- 输入参数  : LMM_MMC_DETACH_CNF_STRU            *pstLmmDetachCnf
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年12月5日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  NAS_MMC_SndGmmLmmMoDetachInd(
     LMM_MMC_DETACH_CNF_STRU            *pstLmmDetachCnf
 )
@@ -749,21 +498,7 @@ VOS_VOID  NAS_MMC_SndGmmLmmMoDetachInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndGmmLmmSerResultnd
- 功能描述  : MMC向GMM通知当前LMM的service request结果
- 输入参数  : LMM_MMC_DETACH_IND_STRU        *pstSerInd
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月26日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  NAS_MMC_SndGmmLmmSerResultnd(
     LMM_MMC_SERVICE_RESULT_IND_STRU     *pstSerInd
 )
@@ -797,20 +532,7 @@ VOS_VOID  NAS_MMC_SndGmmLmmSerResultnd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndGmmLmmStatusInd
- 功能描述  : MMC向GMM通知当前LMM的Status_IND
- 输入参数  : LMM_MMC_STATUS_IND_STRU        *pstStatusInd
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期: 2012年03月02日
-   作    者: l00130025
-   修改内容: DTS2012022102014:L->G->L->G后，没有重新分配TLLI,导致G下RAU被网侧ImplicityDetached
-*****************************************************************************/
 VOS_VOID  NAS_MMC_SndGmmLmmStatusInd(
     LMM_MMC_STATUS_IND_STRU            *pstStatusInd
 )
@@ -844,20 +566,7 @@ VOS_VOID  NAS_MMC_SndGmmLmmStatusInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndGmmLmmTimerStateNotify
- 功能描述  : MMC向GMM通知当前LMM的定时器状态
- 输入参数  : pstTimerStatusNotify - 消息内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年3月20日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  NAS_MMC_SndGmmLmmTimerStateNotify(
     LMM_MMC_TIMER_STATE_NOTIFY_STRU    *pstTimerStatusNotify
 )
@@ -892,20 +601,7 @@ VOS_VOID  NAS_MMC_SndGmmLmmTimerStateNotify(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndGmmEmergencyNumList
- 功能描述  : MMC向GMM通知EmergencyNumList
- 输入参数  : pstEmergencyNumList - 消息内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年5月22日
-   作    者   : b00269685
-   修改内容   : DTS2014050604659新生成函数
-*****************************************************************************/
 VOS_VOID  NAS_MMC_SndGmmEmergencyNumList(
     MMCGMM_EMERGENCY_NUM_LIST_IND_STRU                     *pstEmergencyNumList
 )
@@ -947,23 +643,7 @@ VOS_VOID  NAS_MMC_SndGmmEmergencyNumList(
 #endif
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndGmmModeChangeReq
- 功能描述  : 向GMM发送模式改变的消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2011年3月28日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2011年07月27日
-   作    者   : w00167002
-   修改内容   : V7R1_PHASEII调整
 
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndGmmModeChangeReq(
     NAS_MML_MS_MODE_ENUM_UINT8          enMsMode
 )
@@ -990,44 +670,7 @@ VOS_VOID NAS_MMC_SndGmmModeChangeReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndGmmWasSysInfoInd
- 功能描述  : 向GMM转发WAS系统消息
- 输入参数  : VOS_UINT32                          ulForbiddenFlg
-             VOS_UINT32                          ulUserSrchFlg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月21日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月24日
-    作    者   : w00166186
-    修改内容   : DTS2011122004483,指定搜网不停LAU问题统一修改
-  3.日    期   : 2012年05月16日
-    作    者   : l65478
-    修改内容   : DTS2011122004483,E5在HPLMN上注册失败#14后没有再发起注册
-  4.日    期   : 2012年11月29日
-    作    者   : W00176964
-    修改内容   : DTS2012112902395,BVT测试,hplmn被拒#11后后续需要继续注册
-  5.日    期   : 2013年9月14日
-    作    者   : w00167002
-    修改内容   : DTS2013090908249:开机用户指定搜网24003，CS注册被拒15，MM在LIMIT
-                 状态，在选网状态机收到同一小区的SYSINFO后，通知MM当前没有FORB FLG,
-                 导致MM发起循环注册；
-                 在NAS_MMC_SndGmmWasSysInfoInd函数中，如果是用户指定搜网，则将FORBFLG设置为null，
-                 将此耦合去除；
-                 在选网状态机识别出是否是用户指定搜网，并配置正确的ulForbiddenFlg标志；
-  6.日    期   : 2015年11月16日
-    作    者   : c00318887
-    修改内容   : DTS2015061609864
-  7.日    期   : 2016年1月27日
-    作    者   : z00359541
-    修改内容   : DTS2016012302336:周期RAU被用户指定搜打断，后续搜到同一网络要能发起注册
-*****************************************************************************/
 VOS_VOID   NAS_MMC_SndGmmWasSysInfoInd(
     VOS_UINT32                          ulForbiddenFlg,
     VOS_UINT32                          ulUserSrchFlg,
@@ -1100,41 +743,7 @@ VOS_VOID   NAS_MMC_SndGmmWasSysInfoInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndGmmGsmSysInfoInd
- 功能描述  : 向GMM转发GSM系统消息
- 输入参数  : VOS_UINT32                          ulForbiddenFlg
-             VOS_UINT32                          ulUserSrchFlg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月21日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月24日
-    作    者   : w00166186
-    修改内容   : DTS2011122004483,指定搜网不停LAU问题统一修改
-  3.日    期   : 2012年12月11日
-    作    者   : w00176964
-    修改内容   : 修改变量名
-  4.日    期   : 2013年9月14日
-    作    者   : w00167002
-    修改内容   : DTS2013090908249:开机用户指定搜网24003，CS注册被拒15，MM在LIMIT
-                 状态，在选网状态机收到同一小区的SYSINFO后，通知MM当前没有FORB FLG,
-                 导致MM发起循环注册；
-                 在NAS_MMC_SndGmmGsmSysInfoInd函数中，如果是用户指定搜网，则将FORBFLG设置为null，
-                 将此耦合去除；
-                 在选网状态机识别出是否是用户指定搜网，并配置正确的ulForbiddenFlg标志；
-  5.日    期   : 2015年11月16日
-    作    者   : c00318887
-    修改内容   : DTS2015061609864
-  6.日    期   : 2015年1月26日
-    作    者   : z00359541
-    修改内容   : DTS2016012302336:周期RAU被用户指定搜打断，后续搜到同一网络要能发起注册
-*****************************************************************************/
 VOS_VOID   NAS_MMC_SndGmmGsmSysInfoInd(
     VOS_UINT32                          ulForbiddenFlg,
     VOS_UINT32                          ulUserSrchFlg,
@@ -1209,7 +818,6 @@ VOS_VOID   NAS_MMC_SndGmmGsmSysInfoInd(
                                                 NAS_MMC_REG_DOMAIN_PS);
     }
 
-    /* Modified by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, begin */
     pstInternalMsg->unAcInfo.ucRestrictType               = pstGrrMmSysInfo->unAcInfo.ucRestrictType;
 
     /* 如果是GSM禁止接入，通知MM/GMM，防止发起注册 */
@@ -1217,7 +825,6 @@ VOS_VOID   NAS_MMC_SndGmmGsmSysInfoInd(
     {
         pstInternalMsg->unAcInfo.ucRestrictType            = RRC_NAS_ACCESS_RESTRICTION_ALL_SERVICE;
     }
-    /* Modified by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, end */
 
     /* 从bar转为不bar的标志位 */
     pstInternalMsg->ucCsChanged2UnBarFlg    = (VOS_UINT8)NAS_MML_GetCsRegisterBarToUnBarFlg();
@@ -1229,25 +836,7 @@ VOS_VOID   NAS_MMC_SndGmmGsmSysInfoInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndGmmWasAcInfoChangeInd
- 功能描述  : NAS向GMM发送AC INFO CHANGE的指示
- 输入参数  :
-    VOS_UINT8                           ucCsResTrictionRegister,
-    VOS_UINT8                           ucPsResTrictionRegister,
-    VOS_UINT8                           ucOldCsResTrictionRegister,
-    VOS_UINT8                           ucOldPsResTrictionRegister
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年2月15日
-    作    者   : W00166186
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  NAS_MMC_SndGmmWasAcInfoChangeInd(
     VOS_UINT8                           ucCsResTrictionRegister,
     VOS_UINT8                           ucPsResTrictionRegister,
@@ -1313,20 +902,7 @@ VOS_VOID  NAS_MMC_SndGmmWasAcInfoChangeInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndGmmVoiceDomainChangeNotify
- 功能描述  : NAS向GMM发送MMCGMM_VOICE_DOMAIN_CHANGE_NOTIFY
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月10日
-    作    者   : s00217060
-    修改内容   : VOLTE SWITCH新生成函数
-*****************************************************************************/
 VOS_VOID  NAS_MMC_SndGmmVoiceDomainChangeNotify(VOS_VOID)
 {
     MMCGMM_VOICE_DOMAIN_CHANGE_NOTIFY_STRU *pstSndMsg           = VOS_NULL_PTR;

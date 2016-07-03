@@ -70,9 +70,7 @@ extern "C"{
 #include "rtpro/glue/i3agent/i3agent.h"
 #include "tcpip/vrf/core/include/vrf_inc.h"
 
-/*Modified by liangjicheng 00103192, G3, 2011/2/9   问题单号:V2R3C03-ROTUE-MERGE */
 #include "tcpip/socket4/core/include/sock_com.h"
-/*End of Modified by liangjicheng 00103192, 2011/2/9   问题单号:V2R3C03-ROTUE-MERGE */
 
 #include "vos/vospubh/vos_util.h"
 #include "tcpip/ipv6/ppmng/core/include/ppmng_pub.h"

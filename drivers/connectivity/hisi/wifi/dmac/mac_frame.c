@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : mac_frame.c
-  版 本 号   : 初稿
-  作    者   : huxiaotong
-  生成日期   : 2012年12月3日
-  最近修改   :
-  功能描述   : 对应帧的结构定义的源文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年12月3日
-    作    者   : huxiaotong
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -74,21 +57,7 @@ oal_uint8    g_auc_p2p_oui[MAC_OUI_LEN] = {0x50, 0x6F, 0x9A};
   4 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : mac_report_beacon
- 功能描述  : 接收流程打印beacon帧
- 输入参数  : pst_cb_ctrl:接收帧的控制字段
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月22日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void  mac_report_beacon(mac_rx_ctl_stru *pst_rx_cb,oal_netbuf_stru *pst_netbuf)
 {
     oal_uint32    ul_ret;
@@ -115,25 +84,7 @@ OAL_STATIC oal_void  mac_report_beacon(mac_rx_ctl_stru *pst_rx_cb,oal_netbuf_str
     }
 }
 
-/*****************************************************************************
- 函 数 名  : mac_report_80211_get_switch
- 功能描述  : 为上报接收到的80211帧获取打印开关
- 输入参数  : pst_mac_vap     :mac vap结构指针
-             pen_frame_switch:帧内容开关
-             pen_cb_switch   :帧控制字段开关
-             pen_dscr_switch :描述符开关
-             pst_rx_cb       :接收控制
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月22日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  mac_report_80211_get_switch(
                             mac_vap_stru               *pst_mac_vap,
                             mac_rx_ctl_stru            *pst_rx_cb,
@@ -263,21 +214,7 @@ OAL_STATIC oal_uint32  mac_report_80211_get_switch(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_report_80211_get_user_macaddr
- 功能描述  : 获取发送端用户mac地址，用于SDT过滤
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月23日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  mac_report_80211_get_user_macaddr(
                                             mac_rx_ctl_stru *pst_rx_cb,
                                             oal_uint8        auc_user_macaddr[])
@@ -307,22 +244,7 @@ OAL_STATIC oal_uint32  mac_report_80211_get_user_macaddr(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_report_80211_frame
- 功能描述  : 上报接收到的80211帧，不包含beacon
- 输入参数  : pst_mac_vap :mac vap结构指针
-             pst_cb_ctrl:接收帧的控制字段
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月22日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  mac_report_80211_frame(mac_vap_stru *pst_mac_vap,
                                                      mac_rx_ctl_stru *pst_rx_cb,
                                                      oal_netbuf_stru *pst_netbuf,
@@ -402,23 +324,7 @@ OAL_STATIC oal_uint32  mac_report_80211_frame(mac_vap_stru *pst_mac_vap,
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_rx_report_80211_frame
- 功能描述  : 接收流程上报80211帧，区分beacon帧和其他帧
- 输入参数  : pst_mac_vap :mac vap结构指针
-             pst_cb_ctrl:接收帧的控制字段
-             en_ota_type:表明是dmac的cb还是hmac的cb
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月22日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  mac_rx_report_80211_frame(oal_uint8 *pst_vap,
                                              oal_uint8 *pst_rx_cb,
                                              oal_netbuf_stru *pst_netbuf,
@@ -452,22 +358,7 @@ oal_uint32  mac_rx_report_80211_frame(oal_uint8 *pst_vap,
     return OAL_SUCC;
 }
 #ifdef _PRE_WLAN_FEATURE_P2P
-/*****************************************************************************
- 函 数 名  : mac_find_p2p_attribute
- 功能描述  : 查找P2P attribute信息元素
- 输入参数  : oal_uint8 uc_eid
-             const oal_uint8 *puc_ies
-             oal_int32 l_len
- 输出参数  :
- 返 回 值  : const oal_uint8 *
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月10日
-    作    者   : z00241943
-    修改内容   : 新生成函数
-*****************************************************************************/
 oal_uint8 *mac_find_p2p_attribute(oal_uint8 uc_eid, oal_uint8 *puc_ies, oal_int32 l_len)
 {
     oal_int32 l_ie_len = 0;
@@ -495,22 +386,7 @@ oal_uint8 *mac_find_p2p_attribute(oal_uint8 uc_eid, oal_uint8 *puc_ies, oal_int3
     return puc_ies;
 }
 #endif
-/*****************************************************************************
- 函 数 名  : mac_find_ie
- 功能描述  : 查找指定的IE
- 输入参数  : oal_uint8 uc_eid
-             const oal_uint8 *puc_ies
-             oal_int32 l_len
- 输出参数  :
- 返 回 值  : const oal_uint8 *
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月15日
-    作    者   : l00311403
-    修改内容   : 新生成函数
-*****************************************************************************/
 oal_uint8 *mac_find_ie(oal_uint8 uc_eid, oal_uint8 *puc_ies, oal_int32 l_len)
 {
     if (OAL_PTR_NULL == puc_ies)
@@ -532,24 +408,7 @@ oal_uint8 *mac_find_ie(oal_uint8 uc_eid, oal_uint8 *puc_ies, oal_int32 l_len)
     return puc_ies;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_find_vendor_ie
- 功能描述  : 查找厂家自定义 IE
- 输入参数  : oal_uint32 oui
-             oal_uint8 oui_type
-             oal_uint8 *ies
-             oal_int32 len
- 输出参数  : 无
- 返 回 值  : oal_uint8 *
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月13日
-    作    者   : duankaiyong 00194999
-    修改内容   : 新生成函数,摘自linux 内核
-
-*****************************************************************************/
 oal_uint8 *mac_find_vendor_ie(oal_uint32      ul_oui,
                                 oal_uint8     uc_oui_type,
                                 oal_uint8    *puc_ies,
@@ -590,22 +449,7 @@ oal_uint8 *mac_find_vendor_ie(oal_uint32      ul_oui,
     return OAL_PTR_NULL;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_set_beacon_interval_field
- 功能描述  : 设置beacon interval元素
- 输入参数  : pst_mac_vap: 指向vap
-             puc_buffer : 指向buffer
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月9日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  mac_set_beacon_interval_field(oal_void *pst_vap, oal_uint8 *puc_buffer)
 {
     oal_uint16   *pus_bcn_int;
@@ -623,22 +467,7 @@ oal_void  mac_set_beacon_interval_field(oal_void *pst_vap, oal_uint8 *puc_buffer
     *pus_bcn_int = (oal_uint16)OAL_BYTEORDER_TO_LE32(ul_bcn_int);
 }
 
-/*****************************************************************************
- 函 数 名  : mac_set_cap_info_ap
- 功能描述  : 作为ap时，根据mib值，设置cap info
- 输入参数  : pst_vap      : 指向vap
-             puc_cap_info : 指向存储能力位信息的buffer
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月9日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  mac_set_cap_info_ap(oal_void *pst_vap, oal_uint8 *puc_cap_info)
 {
     mac_cap_info_stru  *pst_cap_info = (mac_cap_info_stru *)puc_cap_info;
@@ -708,22 +537,7 @@ oal_void  mac_set_cap_info_ap(oal_void *pst_vap, oal_uint8 *puc_cap_info)
 
 }
 
-/*****************************************************************************
- 函 数 名  : mac_set_cap_info_sta
- 功能描述  : STA根据关联用户的能力信息，设置关联请求帧中的cap info
- 输入参数  : pst_vap      : 指向vap
-             puc_cap_info : 指向存储能力位信息的buffer
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月7日
-    作    者   : l00279018
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  mac_set_cap_info_sta(oal_void *pst_vap, oal_uint8 *puc_cap_info)
 {
     mac_cap_info_stru   *pst_cap_info = (mac_cap_info_stru *)puc_cap_info;
@@ -750,22 +564,7 @@ oal_void  mac_set_cap_info_sta(oal_void *pst_vap, oal_uint8 *puc_cap_info)
     pst_cap_info->bit_radio_measurement = pst_mac_vap->pst_mib_info->st_wlan_mib_sta_config.en_dot11RadioMeasurementActivated;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_set_ssid_ie
- 功能描述  : 设置ssid ie
- 输入参数  : pst_vap: 指向vap
-             puc_buffer : 指向buffer
- 输出参数  : puc_ie_len : element的长度
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月9日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  mac_set_ssid_ie(oal_void *pst_vap, oal_uint8 *puc_buffer, oal_uint8 *puc_ie_len, oal_uint16 us_frm_type)
 {
     oal_uint8    *puc_ssid;
@@ -808,22 +607,7 @@ oal_void  mac_set_ssid_ie(oal_void *pst_vap, oal_uint8 *puc_buffer, oal_uint8 *p
 
 }
 
-/*****************************************************************************
- 函 数 名  : mac_set_supported_rates_ie
- 功能描述  : 设置速率集
- 输入参数  : pst_vap: 指向vap
-             puc_buffer: 指向buffer
- 输出参数  : puc_ie_len: element的长度
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月11日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  mac_set_supported_rates_ie(oal_void *pst_vap, oal_uint8 *puc_buffer, oal_uint8 *puc_ie_len)
 {
     mac_vap_stru     *pst_mac_vap   = (mac_vap_stru *)pst_vap;
@@ -872,22 +656,7 @@ oal_void  mac_set_supported_rates_ie(oal_void *pst_vap, oal_uint8 *puc_buffer, o
     *puc_ie_len = MAC_IE_HDR_LEN + uc_nrates;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_set_dsss_params
- 功能描述  : 填充DS参数集
- 输入参数  : pst_vap: 指向vap
-             puc_buffer: 指向buffer
- 输出参数  : puc_ie_len: element的长度
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月11日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void mac_set_dsss_params(oal_void *pst_vap, oal_uint8 *puc_buffer, oal_uint8 *puc_ie_len)
 {
     mac_vap_stru    *pst_mac_vap     = (mac_vap_stru *)pst_vap;
@@ -903,9 +672,7 @@ oal_void mac_set_dsss_params(oal_void *pst_vap, oal_uint8 *puc_buffer, oal_uint8
     The DSSS Parameter Set element contains information to allow channel number identification for STAs.
     ***************************************************************************/
 
-    /* 问题单:DTS2015031705155，5G下beacon或者probe rsp帧中不携带dsss ie信息，因此,导致有些商用网卡
-       扫描到的ap信道号和ap实际配置的信道号概率性不一致，导致入网失败；为增加兼容性，在5G模式下，也
-       携带dsss ie信息，并且通过抓包，发现多款商用ap，5G only也携带了dsss ie信息 */
+    
 #if 0
     if (WLAN_BAND_2G != pst_mac_vap->st_channel.en_band)
     {
@@ -939,22 +706,7 @@ oal_void mac_set_dsss_params(oal_void *pst_vap, oal_uint8 *puc_buffer, oal_uint8
 
 #ifdef _PRE_WLAN_FEATURE_11D
 
-/*****************************************************************************
- 函 数 名  : mac_set_country_ie
- 功能描述  : 填充Country信息
- 输入参数  : pst_vap: 指向vap
-             puc_buffer: 指向buffer
- 输出参数  : puc_ie_len: element的长度
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月11日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void mac_set_country_ie(oal_void *pst_vap, oal_uint8 *puc_buffer, oal_uint8 *puc_ie_len)
 {
     mac_vap_stru                *pst_mac_vap = (mac_vap_stru *)pst_vap;
@@ -1044,22 +796,7 @@ oal_void mac_set_country_ie(oal_void *pst_vap, oal_uint8 *puc_buffer, oal_uint8 
     *puc_ie_len = uc_index;
 }
 #endif
-/*****************************************************************************
- 函 数 名  : mac_set_11nbfee_vendor_ie
- 功能描述  : 填充厂商自定义ie
- 输入参数  : pst_vap: 指向vap
-             puc_buffer: 指向buffer
- 输出参数  : puc_ie_len: element的长度
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月12日
-    作    者   : 张志明
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void mac_set_11ntxbf_vendor_ie(oal_void *pst_vap, oal_uint8 *puc_buffer, oal_uint8 *puc_ie_len)
 {
     mac_vap_stru                        *pst_mac_vap = (mac_vap_stru *)pst_vap;
@@ -1088,26 +825,7 @@ oal_void mac_set_11ntxbf_vendor_ie(oal_void *pst_vap, oal_uint8 *puc_buffer, oal
 
 }
 
-/*****************************************************************************
- 函 数 名  : mac_set_vendor_hisi_ie
- 功能描述  : 填充厂商自定义ie
- 输入参数  : pst_vap: 指向vap
-             puc_buffer: 指向buffer
- 输出参数  : puc_ie_len: element的长度
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月12日
-    作    者   : 张志明
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年11月18日
-    作    者   : w00346925
-    修改内容   : 分配2.4G 11ac私有增强OUI和Type
-
-*****************************************************************************/
 oal_void mac_set_vendor_hisi_ie(oal_void *pst_vap, oal_uint8 *puc_buffer, oal_uint8 *puc_ie_len)
 {
     struct mac_ieee80211_vendor_ie *pst_vendor_ie;
@@ -1126,22 +844,7 @@ oal_void mac_set_vendor_hisi_ie(oal_void *pst_vap, oal_uint8 *puc_buffer, oal_ui
     *puc_ie_len = OAL_SIZEOF(*pst_vendor_ie);
 }
 
-/*****************************************************************************
- 函 数 名  : mac_set_pwrconstraint_ie
- 功能描述  : 填充power constraint信息
- 输入参数  : pst_vap: 指向vap
-             puc_buffer: 指向buffer
- 输出参数  : puc_ie_len: element的长度
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月12日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void mac_set_pwrconstraint_ie(oal_void *pst_vap, oal_uint8 *puc_buffer, oal_uint8 *puc_ie_len)
 {
     mac_vap_stru *pst_mac_vap = (mac_vap_stru *)pst_vap;
@@ -1175,26 +878,7 @@ oal_void mac_set_pwrconstraint_ie(oal_void *pst_vap, oal_uint8 *puc_buffer, oal_
     *puc_ie_len = MAC_IE_HDR_LEN + MAC_PWR_CONSTRAINT_LEN;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_set_quiet_ie
- 功能描述  : 填充quiet信息
- 输入参数  : pst_vap: 指向vap
-             puc_buffer: 指向buffer
-             uc_qcount  : Quiet Count
-             uc_qperiod : Quiet Period
-             us_qdur    : Quiet Duration
-             us_qoffset : Quiet Offset
- 输出参数  : puc_ie_len: element的长度
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月12日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void mac_set_quiet_ie(
                 void      *pst_vap,    oal_uint8 *puc_buffer, oal_uint8  uc_qcount,
                 oal_uint8  uc_qperiod, oal_uint16 us_qduration,    oal_uint16 us_qoffset,
@@ -1241,22 +925,7 @@ oal_void mac_set_quiet_ie(
     *puc_ie_len = MAC_IE_HDR_LEN + MAC_QUIET_IE_LEN;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_set_tpc_report_ie
- 功能描述  : 填充tpc report信息
- 输入参数  : pst_vap: 指向vap
-             puc_buffer: 指向buffer
- 输出参数  : puc_ie_len: element的长度
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月12日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void mac_set_tpc_report_ie(oal_void *pst_vap, oal_uint8 *puc_buffer, oal_uint8 *puc_ie_len)
 {
     mac_vap_stru *pst_mac_vap = (mac_vap_stru *)pst_vap;
@@ -1286,22 +955,7 @@ oal_void mac_set_tpc_report_ie(oal_void *pst_vap, oal_uint8 *puc_buffer, oal_uin
     *puc_ie_len = MAC_IE_HDR_LEN + MAC_TPCREP_IE_LEN;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_set_erp_ie
- 功能描述  : 填充Quiet信息
- 输入参数  : pst_vap: 指向vap
-             puc_buffer: 指向buffer
- 输出参数  : puc_ie_len: element的长度
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月12日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void mac_set_erp_ie(oal_void *pst_vap, oal_uint8 *puc_buffer, oal_uint8 *puc_ie_len)
 {
     mac_vap_stru         *pst_mac_vap    = (mac_vap_stru *)pst_vap;
@@ -1350,28 +1004,7 @@ oal_void mac_set_erp_ie(oal_void *pst_vap, oal_uint8 *puc_buffer, oal_uint8 *puc
 
 }
 
-/*****************************************************************************
- 函 数 名  : mac_sort_pcip
- 功能描述  : pcip排序, Sorts the enabled Pairwise Cipsers for the requested mode
- 输入参数  : uc_mode    : 模式
-             puc_pcip   : pcip
-             uc_pw_count:
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月16日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-  2.日    期   : 2013年8月19日
-    作    者   : duankaiyong 00194999
-    修改内容   : 修改函数，取消魔鬼数字
-    备    注   : 质疑该函数功能，函数中两个分支的处理一模一样，是否有必要区分情况
-
-*****************************************************************************/
 OAL_STATIC oal_void  mac_sort_pcip(oal_uint8 uc_mode, oal_uint8 *puc_pcip, oal_uint8 uc_pw_count)
 {
     oal_uint8   uc_loop;
@@ -1439,23 +1072,7 @@ OAL_STATIC oal_void  mac_sort_pcip(oal_uint8 uc_mode, oal_uint8 *puc_pcip, oal_u
 
 }
 
-/*****************************************************************************
- 函 数 名  : mac_set_rsn_ie_authenticator
- 功能描述  : AP 填充rsn信息
- 输入参数  : pst_vap   : 指向vap
-             puc_buffer: 指向buffer
-             uc_mode   : 认证模式
- 输出参数  : puc_ie_len: element的长度
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月12日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void mac_set_rsn_ie_authenticator(
                 oal_void  *pst_vap,
                 oal_uint8 *puc_buffer,
@@ -1657,28 +1274,7 @@ OAL_STATIC oal_void mac_set_rsn_ie_authenticator(
     *puc_ie_len = uc_index;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_set_rsn_ie
- 功能描述  : 设置RSN信息元素（sta侧）, 用于STA association request 组帧的时候
- 输入参数  : mac_vap_stru *pst_vap,
-             oal_uint8    *puc_buffer,      填充的frame
-             oal_uint8    *puc_ie_len       填充后返回的长度值
- 输出参数  :
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月1日
-    作    者   : z00241943
-    修改内容   : 新生成函数
-  2.日    期   : 2013年8月21日
-    作    者   : duankaiyong 00194999
-    修改内容   : 补充完整 STA 11i 加密信息
-  3.日    期   : 2015年6月8日
-    作    者   : g00260350
-    修改内容   : 分拆rsn、wpa的ie构建函数
-*****************************************************************************/
 oal_uint32 mac_set_rsn_ie(oal_void *pst_mac_vap, oal_uint8 *puc_buffer, oal_uint8 *puc_ie_len)
 {
     oal_uint8                            uc_index;
@@ -1804,28 +1400,7 @@ oal_uint32 mac_set_rsn_ie(oal_void *pst_mac_vap, oal_uint8 *puc_buffer, oal_uint
     return OAL_TRUE;
 
 }
-/*****************************************************************************
- 函 数 名  : mac_set_wpa_ie
- 功能描述  : 设置WPA信息元素（sta侧）, 用于STA association request 组帧的时候
- 输入参数  : mac_vap_stru *pst_vap,
-             oal_uint8    *puc_buffer,      填充的frame
-             oal_uint8    *puc_ie_len       填充后返回的长度值
- 输出参数  :
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月1日
-    作    者   : z00241943
-    修改内容   : 新生成函数
-  2.日    期   : 2013年8月21日
-    作    者   : duankaiyong 00194999
-    修改内容   : 补充完整 STA 11i 加密信息
-  3.日    期   : 2015年6月8日
-    作    者   : g00260350
-    修改内容   : 分拆rsn、wpa的ie构建函数
-*****************************************************************************/
 oal_uint32 mac_set_wpa_ie(oal_void *pst_mac_vap, oal_uint8 *puc_buffer, oal_uint8 *puc_ie_len)
 {
     oal_uint8                            uc_index;
@@ -1907,23 +1482,7 @@ oal_uint32 mac_set_wpa_ie(oal_void *pst_mac_vap, oal_uint8 *puc_buffer, oal_uint
     return OAL_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_set_security_ie_authenticator
- 功能描述  : 设置安全相关的信息元素(AP)，用于AP beacon 和probe response 组帧的时候
- 输入参数  : pst_vap   : 指向vap
-             puc_buffer: 指向buffer
-             uc_mode   : WPA/WPA2 模式
- 输出参数  : puc_ie_len: 返回的ie长度
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月15日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  mac_set_security_ie_authenticator(oal_void *pst_vap, oal_uint8 *puc_buffer, oal_uint8 *puc_ie_len, oal_uint8 uc_mode)
 {
     mac_vap_stru *pst_mac_vap        = (mac_vap_stru *)pst_vap;
@@ -1946,41 +1505,12 @@ oal_void  mac_set_security_ie_authenticator(oal_void *pst_vap, oal_uint8 *puc_bu
 }
 
 #ifdef _PRE_WLAN_FEATURE_STA_UAPSD
-/*****************************************************************************
- 函 数 名  : mac_get_uapsd_config_max_sp_len
- 功能描述  : 获取uapsd的配置参数max sp len
- 输入参数  : pst_mac_vap: 指向vap
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月25日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint8 mac_get_uapsd_config_max_sp_len(mac_vap_stru *pst_mac_vap)
 {
     return pst_mac_vap->st_sta_uapsd_cfg.uc_max_sp_len;
 }
-/*****************************************************************************
- 函 数 名  : mac_get_uapsd_config_ac
- 功能描述  : 设置qos info字段
- 输入参数  : pst_mac_vap: 指向vap
-             uc_ac : ac的值
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月25日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint8 mac_get_uapsd_config_ac(mac_vap_stru *pst_mac_vap, oal_uint8 uc_ac)
 {
     if (uc_ac < WLAN_WME_AC_BUTT)
@@ -1990,22 +1520,7 @@ oal_uint8 mac_get_uapsd_config_ac(mac_vap_stru *pst_mac_vap, oal_uint8 uc_ac)
 
     return 0;
 }
-/*****************************************************************************
- 函 数 名  : mac_set_qos_info_wmm_sta
- 功能描述  : 设置sta qos info字段
- 输入参数  : pst_mac_vap: 指向vap
-             puc_buffer : 指向buffer
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月10日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  mac_set_qos_info_wmm_sta(mac_vap_stru *pst_mac_vap, oal_uint8 *puc_buffer)
 {
     oal_uint8                   uc_qos_info = 0;
@@ -2043,22 +1558,7 @@ oal_void  mac_set_qos_info_wmm_sta(mac_vap_stru *pst_mac_vap, oal_uint8 *puc_buf
     puc_buffer[0] = uc_qos_info;
 }
 #endif
-/*****************************************************************************
- 函 数 名  : mac_set_qos_info_field
- 功能描述  : 设置qos info字段
- 输入参数  : pst_mac_vap: 指向vap
-             puc_buffer : 指向buffer
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月16日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void  mac_set_qos_info_field(mac_vap_stru *pst_mac_vap, oal_uint8 *puc_buffer)
 {
     mac_qos_info_stru *pst_qos_info = (mac_qos_info_stru *)puc_buffer;
@@ -2094,23 +1594,7 @@ OAL_STATIC oal_void  mac_set_qos_info_field(mac_vap_stru *pst_mac_vap, oal_uint8
     }
 }
 
-/*****************************************************************************
- 函 数 名  : mac_set_wmm_ac_params
- 功能描述  : 设置一个ac的参数
- 输入参数  : pst_mac_vap: 指向vap
-             puc_buffer : 指向buffer
-             en_ac      : AC类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月16日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void  mac_set_wmm_ac_params(mac_vap_stru *pst_mac_vap, oal_uint8 *puc_buffer, wlan_wme_ac_type_enum_uint8 en_ac)
 {
     mac_wmm_ac_params_stru *pst_ac_params = (mac_wmm_ac_params_stru *)puc_buffer;
@@ -2157,23 +1641,7 @@ OAL_STATIC oal_void  mac_set_wmm_ac_params(mac_vap_stru *pst_mac_vap, oal_uint8 
 
 }
 
-/*****************************************************************************
- 函 数 名  : mac_set_wmm_params_ie
- 功能描述  : 设置wmm信息元素
- 输入参数  : pst_vap   : 指向vap
-             puc_buffer: 指向buffer
-             en_is_qos : 是否支持QOS。如果是BEACON/Probe Req/Probe Rsp/ASSOC Req帧，则取AP/STA自身的QOS能力；如果ASSOC RSP，则需要根据对方STA的QOS能力，来判断是否带WMM IE。
- 输出参数  : puc_ie_len: ie的总长度
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月16日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  mac_set_wmm_params_ie(oal_void *pst_vap, oal_uint8 *puc_buffer, oal_bool_enum_uint8 en_is_qos, oal_uint8 *puc_ie_len)
 {
     oal_uint8     uc_index;
@@ -2237,22 +1705,7 @@ oal_void  mac_set_wmm_params_ie(oal_void *pst_vap, oal_uint8 *puc_buffer, oal_bo
     *puc_ie_len = MAC_IE_HDR_LEN + MAC_WMM_PARAM_LEN;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_set_exsup_rates_ie
- 功能描述  : 填充extended supported rates信息
- 输入参数  : pst_vap: 指向vap
-             puc_buffer: 指向buffer
- 输出参数  : puc_ie_len: element的长度
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月12日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void mac_set_exsup_rates_ie(oal_void *pst_vap, oal_uint8 *puc_buffer, oal_uint8 *puc_ie_len)
 {
     mac_vap_stru     *pst_mac_vap   = (mac_vap_stru *)pst_vap;
@@ -2294,22 +1747,7 @@ oal_void mac_set_exsup_rates_ie(oal_void *pst_vap, oal_uint8 *puc_buffer, oal_ui
     *puc_ie_len = MAC_IE_HDR_LEN + uc_nrates;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_set_bssload_ie
- 功能描述  : 填充bss load信息
- 输入参数  : pst_vap: 指向vap
-             puc_buffer: 指向buffer
- 输出参数  : puc_ie_len: element的长度
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月12日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void mac_set_bssload_ie(oal_void *pst_vap, oal_uint8 *puc_buffer, oal_uint8 *puc_ie_len)
 {
     mac_bss_load_stru  *pst_bss_load;
@@ -2345,22 +1783,7 @@ oal_void mac_set_bssload_ie(oal_void *pst_vap, oal_uint8 *puc_buffer, oal_uint8 
 }
 
 #ifdef _PRE_WLAN_FEATURE_SMPS
-/*****************************************************************************
- 函 数 名  : mac_calc_smps_field
- 功能描述  : 填写SM Power Save字段
- 输入参数  : pst_vap :指向vap
-             puc_buffer :指向buffer
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月9日
-    作    者   : z00241943
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint8 mac_calc_smps_field(oal_void *pst_vap)
 {
     mac_vap_stru *pst_mac_vap = (mac_vap_stru *)pst_vap;
@@ -2382,22 +1805,7 @@ OAL_STATIC oal_uint8 mac_calc_smps_field(oal_void *pst_vap)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : mac_set_ht_capinfo_field
- 功能描述  : 填写ht capabilities info域
- 输入参数  : pst_vap :指向vap
-             puc_buffer :指向buffer
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月15日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void mac_set_ht_capinfo_field(oal_void *pst_vap, oal_uint8 *puc_buffer)
 {
     mac_vap_stru *pst_mac_vap = (mac_vap_stru *)pst_vap;
@@ -2440,7 +1848,7 @@ OAL_STATIC oal_void mac_set_ht_capinfo_field(oal_void *pst_vap, oal_uint8 *puc_b
 
     pst_ht_capinfo->bit_short_gi_20mhz = pst_mac_vap->pst_mib_info->st_phy_ht.en_dot11ShortGIOptionInTwentyImplemented;
 
-    pst_ht_capinfo->bit_short_gi_40mhz = pst_mac_vap->pst_mib_info->st_phy_ht.en_dot11ShortGIOptionInFortyImplemented;
+    pst_ht_capinfo->bit_short_gi_40mhz = mac_mib_get_ShortGIOptionInFortyImplemented(pst_mac_vap);
 
     pst_ht_capinfo->bit_tx_stbc = pst_mac_vap->pst_mib_info->st_phy_ht.en_dot11TxSTBCOptionImplemented;
 
@@ -2479,22 +1887,7 @@ OAL_STATIC oal_void mac_set_ht_capinfo_field(oal_void *pst_vap, oal_uint8 *puc_b
     pst_ht_capinfo->bit_lsig_txop_protection = pst_mac_vap->pst_mib_info->st_wlan_mib_ht_sta_cfg.en_dot11LsigTxopProtectionOptionImplemented;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_set_ampdu_params_field
- 功能描述  : 填充ht a-mpdu parameters域信息
- 输入参数  : pst_vap :指向vap
-             puc_buffer :指向buffer
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月16日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void mac_set_ampdu_params_field(oal_void * pst_vap, oal_uint8 *puc_buffer)
 {
     mac_vap_stru *pst_mac_vap                = (mac_vap_stru *)pst_vap;
@@ -2515,22 +1908,7 @@ OAL_STATIC oal_void mac_set_ampdu_params_field(oal_void * pst_vap, oal_uint8 *pu
     pst_ampdu_params->bit_min_mpdu_start_spacing = pst_mac_vap->pst_mib_info->st_wlan_mib_ht_sta_cfg.ul_dot11MinimumMPDUStartSpacing;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_set_sup_mcs_set_field
- 功能描述  : 填充supported mcs set域信息
- 输入参数  : pst_vap :指向vap
-             puc_buffer :指向buffer
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月16日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void mac_set_sup_mcs_set_field(oal_void * pst_vap, oal_uint8 *puc_buffer)
 {
     mac_vap_stru *pst_mac_vap              = (mac_vap_stru *)pst_vap;
@@ -2581,22 +1959,7 @@ OAL_STATIC oal_void mac_set_sup_mcs_set_field(oal_void * pst_vap, oal_uint8 *puc
     pst_sup_mcs_set->bit_resv2 = 0;
 
 }
-/*****************************************************************************
- 函 数 名  : mac_set_ht_extcap_field
- 功能描述  : 填充ht extended capabilities field信息
- 输入参数  : pst_vap :指向vap
-             puc_buffer :指向buffer
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月16日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void mac_set_ht_extcap_field(oal_void * pst_vap, oal_uint8 *puc_buffer)
 {
     mac_vap_stru *pst_mac_vap      = (mac_vap_stru *)pst_vap;
@@ -2629,22 +1992,7 @@ OAL_STATIC oal_void mac_set_ht_extcap_field(oal_void * pst_vap, oal_uint8 *puc_b
     pst_ext_cap->bit_rd_resp = pst_mac_vap->pst_mib_info->st_wlan_mib_ht_sta_cfg.en_dot11RDResponderOptionImplemented;
 
 }
-/*****************************************************************************
- 函 数 名  : mac_set_txbf_cap_field
- 功能描述  : 填充tansmit beamforming capbilities域信息
- 输入参数  : pst_vap :指向vap
-             puc_buffer :指向buffer
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月17日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void mac_set_txbf_cap_field(oal_void * pst_vap, oal_uint8 *puc_buffer)
 {
     mac_vap_stru *pst_mac_vap        = (mac_vap_stru *)pst_vap;
@@ -2767,22 +2115,7 @@ OAL_STATIC oal_void mac_set_txbf_cap_field(oal_void * pst_vap, oal_uint8 *puc_bu
 	pst_txbf_cap->bit_implicit_txbf_rx = pst_mac_vap->st_txbf_add_cap.bit_imbf_receive_cap;
 #endif
 }
-/*****************************************************************************
- 函 数 名  : mac_set_asel_cap_field
- 功能描述  : 填充asel(antenna selection) capabilities域信息
- 输入参数  : pst_vap: 指向vap
-             puc_buffer: 指向buffer
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月17日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void mac_set_asel_cap_field(oal_void * pst_vap, oal_uint8 *puc_buffer)
 {
     mac_vap_stru *pst_mac_vap        = (mac_vap_stru *)pst_vap;
@@ -2832,25 +2165,7 @@ OAL_STATIC oal_void mac_set_asel_cap_field(oal_void * pst_vap, oal_uint8 *puc_bu
     pst_asel_cap->bit_trans_sounding_ppdu = pst_mac_vap->pst_mib_info->st_wlan_mib_phy_antenna.en_dot11TransmitSoundingPPDUOptionImplemented;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_set_Timeout_Interval_ie
- 功能描述  : 设置Timeout_Interval信息元素
- 输入参数  : pst_mac_vap   : 指向vap
-             puc_buffer: 指向buffer
-             ul_type: Timeout_Interval的类型
-             puc_sta_addr: ap发送带Timeout_Interval的assoc rsp帧中的DA
-             puc_ie_len: ie的总长度
-             pst_sa_query_info :组ASSOCIATION_COMEBACK_TIME时需要吧
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月22日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void mac_set_timeout_interval_ie(oal_void *pst_vap,
                                            oal_uint8 *puc_buffer,
                                            oal_uint8 *puc_ie_len,
@@ -2895,22 +2210,7 @@ oal_void mac_set_timeout_interval_ie(oal_void *pst_vap,
 }
 
 
-/*****************************************************************************
- 函 数 名  : mac_set_ht_capabilities_ie
- 功能描述  : 填充ht capabilities信息
- 输入参数  : pst_vap: 指向vap
-             puc_buffer: 指向buffer
- 输出参数  : puc_ie_len: element的长度
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月12日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void mac_set_ht_capabilities_ie(oal_void *pst_vap, oal_uint8 *puc_buffer, oal_uint8 *puc_ie_len)
 {
     mac_vap_stru *pst_mac_vap        = (mac_vap_stru *)pst_vap;
@@ -2963,22 +2263,7 @@ oal_void mac_set_ht_capabilities_ie(oal_void *pst_vap, oal_uint8 *puc_buffer, oa
     *puc_ie_len = MAC_IE_HDR_LEN + MAC_HT_CAP_LEN;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_set_ht_opern_ie
- 功能描述  : 填充ht operation信息
- 输入参数  : pst_vap: 指向vap
-             puc_buffer: 指向buffer
- 输出参数  : puc_ie_len: element的长度
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月12日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void mac_set_ht_opern_ie(oal_void *pst_vap, oal_uint8 *puc_buffer, oal_uint8 *puc_ie_len)
 {
     mac_vap_stru        *pst_mac_vap     = (mac_vap_stru *)pst_vap;
@@ -3120,22 +2405,7 @@ oal_void mac_set_ht_opern_ie(oal_void *pst_vap, oal_uint8 *puc_buffer, oal_uint8
     *puc_ie_len = MAC_IE_HDR_LEN + MAC_HT_OPERN_LEN;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_set_obss_scan_params
- 功能描述  : 填充overlapping bss scan parameters
- 输入参数  : pst_vap   : MAC VAP结构体指针
-             puc_buffer: 指向buffer
- 输出参数  : puc_ie_len: element的长度
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月17日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void mac_set_obss_scan_params(oal_void *pst_vap, oal_uint8 *puc_buffer, oal_uint8 *puc_ie_len)
 {
     mac_vap_stru                *pst_mac_vap = (mac_vap_stru *)pst_vap;
@@ -3199,22 +2469,7 @@ oal_void mac_set_obss_scan_params(oal_void *pst_vap, oal_uint8 *puc_buffer, oal_
     *puc_ie_len = MAC_IE_HDR_LEN + MAC_OBSS_SCAN_IE_LEN;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_set_ext_capabilities_ie
- 功能描述  : 填充extended capabilities element信息
- 输入参数  : pst_vap: 指向vap
-             puc_buffer: 指向buffer
- 输出参数  : puc_ie_len: element的长度
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月12日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void mac_set_ext_capabilities_ie(oal_void *pst_vap, oal_uint8 *puc_buffer, oal_uint8 *puc_ie_len)
 {
     mac_vap_stru            *pst_mac_vap = (mac_vap_stru *)pst_vap;
@@ -3286,22 +2541,7 @@ oal_void mac_set_ext_capabilities_ie(oal_void *pst_vap, oal_uint8 *puc_buffer, o
     *puc_ie_len = MAC_IE_HDR_LEN + MAC_XCAPS_EX_LEN;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_set_vht_capinfo_field
- 功能描述  : 设置vht capinfo域
- 输入参数  : pst_vap :指向vap
-             puc_buffer :指向buffer
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  mac_set_vht_capinfo_field(oal_void *pst_vap, oal_uint8 *puc_buffer)
 {
     mac_vap_stru           *pst_mac_vap     = (mac_vap_stru *)pst_vap;
@@ -3365,21 +2605,7 @@ oal_void  mac_set_vht_capinfo_field(oal_void *pst_vap, oal_uint8 *puc_buffer)
 
 }
 
-/*****************************************************************************
- 函 数 名  : mac_set_vht_supported_mcsset_field
- 功能描述  : 设置vht supported mcs set field
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月18日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  mac_set_vht_supported_mcsset_field(oal_void *pst_vap, oal_uint8 *puc_buffer)
 {
     mac_vap_stru              *pst_mac_vap    = (mac_vap_stru *)pst_vap;
@@ -3411,22 +2637,7 @@ oal_void  mac_set_vht_supported_mcsset_field(oal_void *pst_vap, oal_uint8 *puc_b
 
 }
 
-/*****************************************************************************
- 函 数 名  : mac_set_vht_capabilities_ie
- 功能描述  : 设置vht能力ie
- 输入参数  : pst_vap: 指向vap
-             puc_buffer: 指向buffer
- 输出参数  : puc_ie_len: element的长度
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  mac_set_vht_capabilities_ie(oal_void *pst_vap, oal_uint8 *puc_buffer, oal_uint8 *puc_ie_len)
 {
     mac_vap_stru  *pst_mac_vap = (mac_vap_stru *)pst_vap;
@@ -3461,22 +2672,7 @@ oal_void  mac_set_vht_capabilities_ie(oal_void *pst_vap, oal_uint8 *puc_buffer, 
     *puc_ie_len = MAC_IE_HDR_LEN + MAC_VHT_CAP_IE_LEN;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_set_vht_opern_ie
- 功能描述  : 设置vht操作信息
- 输入参数  : pst_vap: 指向vap
-             puc_buffer: 指向buffer
- 输出参数  : puc_ie_len: element的长度
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  mac_set_vht_opern_ie(oal_void *pst_vap, oal_uint8 *puc_buffer, oal_uint8 *puc_ie_len)
 {
     mac_vap_stru        *pst_mac_vap = (mac_vap_stru *)pst_vap;
@@ -3598,22 +2794,7 @@ oal_void  mac_set_vht_opern_ie(oal_void *pst_vap, oal_uint8 *puc_buffer, oal_uin
     *puc_ie_len = MAC_IE_HDR_LEN + MAC_VHT_INFO_IE_LEN;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_set_csa_ie
- 功能描述  : 设置Channel Switch Announcement IE
- 输入参数  : pst_mac_vap: MAC VAP结构体指针
- 输出参数  : puc_buffer : 帧体指针
-             puc_ie_len : IE的长度
- 返 回 值  : OAL_SUCC或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月21日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  mac_set_csa_ie(oal_uint8 uc_channel, oal_uint8 uc_csa_cnt, oal_uint8 *puc_buffer, oal_uint8 *puc_ie_len)
 {
     if (OAL_UNLIKELY((OAL_PTR_NULL == puc_buffer) || (OAL_PTR_NULL == puc_ie_len)))
@@ -3640,22 +2821,7 @@ oal_uint32  mac_set_csa_ie(oal_uint8 uc_channel, oal_uint8 uc_csa_cnt, oal_uint8
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_get_ssid
- 功能描述  : 获取beacon帧中的ssid
- 输入参数  : puc_beacon_body,               Beacon or probe rsp帧体
-             oal_int32 l_frame_body_len,    帧体长度
- 输出参数  : puc_ssid_len,                  ssid 长度
- 返 回 值  : 指向ssid
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月20日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint8*  mac_get_ssid(oal_uint8 *puc_beacon_body, oal_int32 l_frame_body_len, oal_uint8 *puc_ssid_len)
 {
     const oal_uint8   *puc_ssid_ie;
@@ -3702,21 +2868,7 @@ oal_uint8*  mac_get_ssid(oal_uint8 *puc_beacon_body, oal_int32 l_frame_body_len,
     return OAL_PTR_NULL;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_get_beacon_period
- 功能描述  : 从beacon帧中获得beacon period
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月20日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint16  mac_get_beacon_period(oal_uint8 *puc_beacon_body)
 {
     /*************************************************************************/
@@ -3731,21 +2883,7 @@ oal_uint16  mac_get_beacon_period(oal_uint8 *puc_beacon_body)
     return *((oal_uint16 *)(puc_beacon_body + MAC_TIME_STAMP_LEN));
 }
 
-/*****************************************************************************
- 函 数 名  : mac_get_dtim_period
- 功能描述  : 获取dtim period值
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月23日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint8  mac_get_dtim_period(oal_uint8 *puc_frame_body, oal_uint16 us_frame_body_len)
 {
     oal_uint8   *puc_ie;
@@ -3765,21 +2903,7 @@ oal_uint8  mac_get_dtim_period(oal_uint8 *puc_frame_body, oal_uint16 us_frame_bo
 }
 
 
-/*****************************************************************************
- 函 数 名  : mac_get_dtim_cnt
- 功能描述  : 获取dtim cnt值
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月23日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint8  mac_get_dtim_cnt(oal_uint8 *puc_frame_body, oal_uint16 us_frame_body_len)
 {
     oal_uint8   *puc_ie;
@@ -3798,21 +2922,7 @@ oal_uint8  mac_get_dtim_cnt(oal_uint8 *puc_frame_body, oal_uint16 us_frame_body_
     return 0;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_is_wmm_ie
- 功能描述  : 判断是否是wmm ie
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月25日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_bool_enum_uint8  mac_is_wmm_ie(oal_uint8 *puc_ie)
 {
     /* --------------------------------------------------------------------- */
@@ -3836,21 +2946,7 @@ oal_bool_enum_uint8  mac_is_wmm_ie(oal_uint8 *puc_ie)
     return OAL_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_get_wmm_ie
- 功能描述  : 从管理帧中获取wmm ie
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月25日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint8*  mac_get_wmm_ie(oal_uint8 *puc_beacon_body, oal_uint16 us_frame_len, oal_uint16 us_offset)
 {
     oal_uint16 us_index;
@@ -3873,21 +2969,7 @@ oal_uint8*  mac_get_wmm_ie(oal_uint8 *puc_beacon_body, oal_uint16 us_frame_len, 
     return OAL_PTR_NULL;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_get_obss_scan_ie
- 功能描述  : 从beacon/assoc rsp帧获取obss scan信息元素
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月23日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint8* mac_get_obss_scan_ie(oal_uint8 *puc_beacon_body, oal_uint16 us_frame_len, oal_uint16 us_offset)
 {
     oal_uint16 us_index;
@@ -3910,21 +2992,7 @@ oal_uint8* mac_get_obss_scan_ie(oal_uint8 *puc_beacon_body, oal_uint16 us_frame_
     return OAL_PTR_NULL;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_get_rsn_capability
- 功能描述  : 根据rsn_ie获取rsn能力
- 输入参数  : puc_rsn_ie
- 输出参数  : 无
- 返 回 值  : oal_uint16
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月23日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-******************************************************************************/
 oal_uint16 mac_get_rsn_capability(const oal_uint8 *puc_rsn_ie)
 {
     oal_uint16  us_pairwise_count      = 0;
@@ -3980,21 +3048,7 @@ oal_uint16 mac_get_rsn_capability(const oal_uint8 *puc_rsn_ie)
 
 }
 
-/*****************************************************************************
- 函 数 名  : wlan_set_power_cap_ie
- 功能描述  : 设置power capability信息元素
- 输入参数  : mac_vap_stru *pst_vap, oal_uint8 *puc_buffer, oal_uint8 *puc_ie_len
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月29日
-    作    者   : z00241943
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void mac_set_power_cap_ie(oal_uint8 *pst_vap, oal_uint8 *puc_buffer, oal_uint8 *puc_ie_len)
 {
     mac_vap_stru            *pst_mac_vap        = (mac_vap_stru *)pst_vap;
@@ -4028,23 +3082,7 @@ oal_void mac_set_power_cap_ie(oal_uint8 *pst_vap, oal_uint8 *puc_buffer, oal_uin
     *puc_ie_len = MAC_IE_HDR_LEN + MAC_PWR_CAP_LEN;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_set_supported_channel_ie
- 功能描述  : 设置支持信道信息元素
- 输入参数  : mac_vap_stru *pst_vap,
-             oal_uint8 *puc_buffer
-             oal_uint8 *puc_ie_len
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月1日
-    作    者   : z00241943
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void mac_set_supported_channel_ie(oal_uint8 *pst_vap, oal_uint8 *puc_buffer, oal_uint8 *puc_ie_len)
 {
     oal_uint8            uc_channel_max_num;
@@ -4134,24 +3172,7 @@ oal_void mac_set_supported_channel_ie(oal_uint8 *pst_vap, oal_uint8 *puc_buffer,
 
 }
 
-/*****************************************************************************
- 函 数 名  : mac_set_wmm_ie_sta
- 功能描述  : 设置WMM info element
- 输入参数  : mac_vap_stru  *pst_vap, oal_uint8 *puc_buffer, oal_uint8 *puc_ie_len
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月1日
-    作    者   : z00241943
-    修改内容   : 新生成函数
-  2.日    期   : 2013年10月23日
-    作    者   : y00184180
-    修改内容   : 修改函数名和填充内容
-
-*****************************************************************************/
 oal_void mac_set_wmm_ie_sta(oal_uint8 *pst_vap, oal_uint8 *puc_buffer, oal_uint8 *puc_ie_len)
 {
     oal_uint8            uc_index;
@@ -4199,21 +3220,7 @@ oal_void mac_set_wmm_ie_sta(oal_uint8 *pst_vap, oal_uint8 *puc_buffer, oal_uint8
     *puc_ie_len = MAC_IE_HDR_LEN + MAC_WMM_INFO_LEN;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_set_listen_interval_ie
- 功能描述  : 设置listen interval信息元素
- 输入参数  : mac_vap_stru *pst_vap, oal_uint8 *puc_buffer, oal_uint8 *puc_ie_len
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月1日
-    作    者   : z00241943
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void mac_set_listen_interval_ie(oal_uint8 *pst_vap, oal_uint8 *puc_buffer, oal_uint8 *puc_ie_len)
 {
     puc_buffer[0] = 0x03;
@@ -4221,42 +3228,14 @@ oal_void mac_set_listen_interval_ie(oal_uint8 *pst_vap, oal_uint8 *puc_buffer, o
     *puc_ie_len   = MAC_LIS_INTERVAL_IE_LEN;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_set_status_code_ie
- 功能描述  : 设置状态码信息元素
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月1日
-    作    者   : z00241943
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void mac_set_status_code_ie(oal_uint8 *puc_buffer, mac_status_code_enum_uint16 en_status_code)
 {
     puc_buffer[0] = (oal_uint8)(en_status_code & 0x00FF);
     puc_buffer[1] = (oal_uint8)((en_status_code & 0xFF00) >> 8);
 }
 
-/*****************************************************************************
- 函 数 名  : mac_set_aid_ie
- 功能描述  : 设置AID（扫描ID）信息元素
- 输入参数  : oal_uint8 *puc_buffer, oal_uint16 uc_status_code
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月1日
-    作    者   : z00241943
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void mac_set_aid_ie(oal_uint8 *puc_buffer, oal_uint16 uc_aid)
 {
     /*The 2 MSB bits of Association ID is set to 1 as required by the standard.*/
@@ -4265,21 +3244,7 @@ oal_void mac_set_aid_ie(oal_uint8 *puc_buffer, oal_uint16 uc_aid)
     puc_buffer[1] = (uc_aid & 0xFF00) >> 8;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_get_bss_type
- 功能描述  : 获取BSS的类型
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月8日
-    作    者   : z00241943
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint8  mac_get_bss_type(oal_uint16 us_cap_info)
 {
     mac_cap_info_stru *pst_cap_info = (mac_cap_info_stru *)&us_cap_info;
@@ -4297,21 +3262,7 @@ oal_uint8  mac_get_bss_type(oal_uint16 us_cap_info)
     return (oal_uint8)WLAN_MIB_DESIRED_BSSTYPE_ANY;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_check_mac_privacy
- 功能描述  : 检查CAP INFO中privacy 是否加密
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月8日
-    作    者   : z00241943
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  mac_check_mac_privacy(oal_uint16 us_cap_info,oal_uint8 *pst_vap)
 {
     mac_vap_stru       *pst_mac_vap;
@@ -4338,24 +3289,7 @@ oal_uint32  mac_check_mac_privacy(oal_uint16 us_cap_info,oal_uint8 *pst_vap)
 
 }
 
-/*****************************************************************************
- 函 数 名  : mac_add_app_ie
- 功能描述  : 填充用户态下发的信息元素到管理帧中
- 输入参数  : mac_vap_stru *pst_mac_vap
-             oal_uint8 *puc_buffer
-             oal_uint8 *puc_ie_len
-             enum WPS_IE_TYPE en_type
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月17日
-    作    者   : duankaiyong 00194999
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void mac_add_app_ie(oal_void *pst_vap,
                             oal_uint8 *puc_buffer,
                             oal_uint16 *pus_ie_len,
@@ -4383,24 +3317,7 @@ oal_void mac_add_app_ie(oal_void *pst_vap,
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_set_wps_ie
- 功能描述  : 填充用户态下发的信息元素到管理帧中
- 输入参数  : mac_vap_stru *pst_mac_vap
-             oal_uint8 *puc_buffer
-             oal_uint8 *puc_ie_len
-             enum WPS_IE_TYPE en_type
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月9日
-    作    者   : duankaiyong 00194999
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void mac_add_wps_ie(oal_void *pst_vap,
                         oal_uint8 *puc_buffer,
                         oal_uint16 *pus_ie_len,
@@ -4437,22 +3354,7 @@ oal_void mac_add_wps_ie(oal_void *pst_vap,
 }
 
 #ifdef _PRE_WLAN_FEATURE_OPMODE_NOTIFY
-/*****************************************************************************
- 函 数 名  : mac_set_opmode_field
- 功能描述  : 设置operating mode field
- 输入参数  : oal_uint8 *pst_vap    ---- vap指针
-             oal_uint8 *puc_buffer ---- buf指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月12日
-    作    者   : zhangyu
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void mac_set_opmode_field(oal_uint8 *pst_vap, oal_uint8 *puc_buffer)
 {
     mac_vap_stru           *pst_mac_vap       = (mac_vap_stru *)pst_vap;
@@ -4473,22 +3375,7 @@ oal_void mac_set_opmode_field(oal_uint8 *pst_vap, oal_uint8 *puc_buffer)
     pst_opmode_notify->bit_rx_nss_type   = 0;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_set_opmode_notify_ie
- 功能描述  : 设置operating mode notificatin ie
- 输入参数  : oal_uint8 *pst_vap    ---- vap指针
-             oal_uint8 *puc_buffer ---- buf指针
- 输出参数  : oal_uint8 *puc_ie_len ---- 输出该IE长度
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月12日
-    作    者   : zhangyu
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void mac_set_opmode_notify_ie(oal_uint8 *pst_vap, oal_uint8 *puc_buffer, oal_uint8 *puc_ie_len)
 {
     mac_vap_stru *pst_mac_vap = (mac_vap_stru *)pst_vap;
@@ -4519,21 +3406,7 @@ oal_void mac_set_opmode_notify_ie(oal_uint8 *pst_vap, oal_uint8 *puc_buffer, oal
 
 #if (_PRE_WLAN_FEATURE_PMF != _PRE_PMF_NOT_SUPPORT)
 
-/*****************************************************************************
- 函 数 名  : mac_get_pmf_cap
- 功能描述  : 从RSN ie中获取pmf能力信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月7日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 wlan_pmf_cap_status_uint8 mac_get_pmf_cap(oal_uint8 *puc_ie, oal_uint32 ul_ie_len)
 {
     oal_uint8  *puc_rsn_ie;
@@ -4567,23 +3440,7 @@ wlan_pmf_cap_status_uint8 mac_get_pmf_cap(oal_uint8 *puc_ie, oal_uint32 ul_ie_le
 }
 #endif
 #ifdef _PRE_WLAN_FEATURE_11R
-/*****************************************************************************
- 函 数 名  : mac_set_md_ie
- 功能描述  : 填充mdie
- 输入参数  : mac_vap_stru *pst_mac_vap
-             oal_uint8 *puc_buffer
-             oal_uint8 *puc_ie_len
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月13日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void mac_set_md_ie(oal_void *pst_vap, oal_uint8 *puc_buffer, oal_uint8 *puc_ie_len)
 {
     mac_vap_stru *pst_mac_vap = (mac_vap_stru *)pst_vap;
@@ -4626,23 +3483,7 @@ oal_void mac_set_md_ie(oal_void *pst_vap, oal_uint8 *puc_buffer, oal_uint8 *puc_
     *puc_ie_len = 5;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_set_ft_ie
- 功能描述  : 填充mdie
- 输入参数  : mac_vap_stru *pst_mac_vap
-             oal_uint8 *puc_buffer
-             oal_uint8 *puc_ie_len
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月13日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void mac_set_ft_ie(oal_void *pst_vap, oal_uint8 *puc_buffer, oal_uint16 *pus_ie_len)
 {
     mac_vap_stru *pst_mac_vap = (mac_vap_stru *)pst_vap;

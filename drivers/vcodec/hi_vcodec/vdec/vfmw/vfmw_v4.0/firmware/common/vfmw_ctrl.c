@@ -66,7 +66,7 @@ extern SINT32 g_TunnelLineNumber;
 #define CHAN_CTX_MEM_SIZE  (sizeof(VFMW_CHAN_S)+2048+sizeof(VDEC_USRDAT_POOL_S))
 #define CHAN_CTX_MEM_BEFORE_USRDAT  (sizeof(VFMW_CHAN_S)+2048)
 
-#define BPD_SIZE                    (2048 * 7 + 512)  // 因为TV这边要求首地址是256/512对齐，所以这里增大512byte  l00232354
+#define BPD_SIZE                    (2048 * 7 + 512)
 #define VP8_SEGID_SIZE              (32 * 1024)
 #define MAX_VID_PROTOCOL_NAME       (20)
 
@@ -1581,7 +1581,7 @@ SINT32 VCTRL_CreateChanWithOption(VDEC_CHAN_CAP_LEVEL_E eCapLevel, VDEC_CHAN_OPT
 
     if((pChanOption->u32DynamicFrameStoreAllocEn) > 1)
     {
-        pChanOption->u32DynamicFrameStoreAllocEn = 0;//防止该flag为随机值.l00273086//
+        pChanOption->u32DynamicFrameStoreAllocEn = 0;
     }
     /* 获得通道应有的内存预算 */
     if ( VCTRL_OK != VCTRL_GetChanMemSizeWithOption(eCapLevel, pChanOption, &DetailMemSize,flag) )
@@ -1923,10 +1923,10 @@ SINT32 VCTRL_CreateChanWithOption(VDEC_CHAN_CAP_LEVEL_E eCapLevel, VDEC_CHAN_OPT
     s_pstVfmwChan[ChanID]->stChanMem_ctx.VirAddr = ChanMemCtx.VirAddr;
     s_pstVfmwChan[ChanID]->stChanMem_ctx.Length  = ChanMemCtx.Length;
 
-    s_pstVfmwChan[ChanID]->FspInst.eFspPartitionState = FSP_PARTITION_STATE_FIRST;//初始化通道帧存划分状态为第一次划分,等待接收数据获取宽高等.l00273086//
+    s_pstVfmwChan[ChanID]->FspInst.eFspPartitionState = FSP_PARTITION_STATE_FIRST;
 
     //--- VDM
-    if(1 != s_pstVfmwChan[ChanID]->stSynExtraData.stChanOption.u32DynamicFrameStoreAllocEn) //l00273086 使用动态分配的时候，BPD与SEGID的大小分在SCD中
+    if(1 != s_pstVfmwChan[ChanID]->stSynExtraData.stChanOption.u32DynamicFrameStoreAllocEn)
     {
         s_pstVfmwChan[ChanID]->s32VdmChanMemAddr = ChanMemVDH.PhyAddr;
         s_pstVfmwChan[ChanID]->s32VdmChanMemSize = ChanMemVDH.Length - 16;
@@ -2599,7 +2599,6 @@ SINT32 VCTRL_LoadDspCode(SINT32 ChanID)
         return VCTRL_ERR;
     }
 
-    // l00232354: S5V100 低功耗处理，解码通道工作时，VDH时钟打开，销毁时，VDH时钟关掉: 此时是配置通道，VDH时钟还
     // 没有打开，但加载VFMW BIN 文件时，需要有时钟才能工作，故在这里打开和关闭。
     VCTRL_OpenHardware(ChanID);
 
@@ -2738,7 +2737,6 @@ SINT32 VCTRL_ResetChanWithOption(SINT32 ChanID, VDEC_CHAN_RESET_OPTION_S *pOptio
     s_pstVfmwChan[ChanID]->stSynExtraData.NextPts = (UINT64)(-1);
     s_pstVfmwChan[ChanID]->stSynExtraData.s32NewPicSegDetector = 0;
 
-    /* 当复位通道后就不能再次重送之前数据 l00273086 */
     if(1 == s_pstVfmwChan[ChanID]->stSynExtraData.stChanOption.u32DynamicFrameStoreAllocEn)
     {
         s_pstVfmwChan[ChanID]->stSynExtraData.s32WaitFsFlag = 0;
@@ -2813,7 +2811,6 @@ SINT32 VCTRL_ResetChan(SINT32 ChanID)
     s_pstVfmwChan[ChanID]->stSynExtraData.NextPts = (UINT64)(-1);
     s_pstVfmwChan[ChanID]->stSynExtraData.s32NewPicSegDetector = 0;
 
-    /* 当复位通道后就不能再次重送之前数据 l00273086 */
     if(1 == s_pstVfmwChan[ChanID]->stSynExtraData.stChanOption.u32DynamicFrameStoreAllocEn)
     {
         s_pstVfmwChan[ChanID]->stSynExtraData.s32WaitFsFlag = 0;
@@ -2872,7 +2869,6 @@ SINT32 VCTRL_GetChanImage( SINT32 ChanID, IMAGE *pImage )
     VCTRL_ASSERT_RET(ChanID>=0 && ChanID<MAX_CHAN_NUM, "ChanID out of range");
     VCTRL_ASSERT_RET( NULL !=s_pstVfmwChan[ChanID], "Chan inactive");
 
-    /*虽然已经停止了该通道解码，但是由于通道信息都是齐全的，所以可以进行获取、释放帧存的操作l00165842*/
     VCTRL_ASSERT_RET(1 == s_pstVfmwChan[ChanID]->s32IsOpen, "This channel is not opened");
 
     VFMW_OSAL_SpinLock(G_SPINLOCK_DESTROY);
@@ -3284,7 +3280,7 @@ VOID VCTRL_PostProc( SINT32 ChanId, SINT32 ErrRatio, UINT32 Mb0QpInCurrPic, LUMA
     #ifdef VFMW_HEVC_SUPPORT
         case VFMW_HEVC:
          HEVCDEC_VDMPostProc( &s_pstVfmwChan[ChanId]->stSynCtx.unSyntax.stHevcCtx, ErrRatio, 1,pLumaInfo,ModuleLowlyEnable,VdhId);
-	     if(1 == s_pstVfmwChan[ChanId]->stSynCtx.unSyntax.stHevcCtx.IsStreamEndFlag)//最后一帧,输出 l00214825
+	     if(1 == s_pstVfmwChan[ChanId]->stSynCtx.unSyntax.stHevcCtx.IsStreamEndFlag)
 	     {
              VCTRL_OutputLastFrame(ChanId);
              s_pstVfmwChan[ChanId]->stSynCtx.unSyntax.stHevcCtx.IsStreamEndFlag = 0;
@@ -3681,7 +3677,7 @@ SINT32 VCTRL_GetChanMemSizeWithOption(VDEC_CHAN_CAP_LEVEL_E eCapLevel, VDEC_CHAN
         if( VDMHAL_OK == ret )
         {
             pDetailMemSize->VdhDetailMem = MemArrange.TotalMemUsed + 16;
-            if(1 != pChanOption->u32DynamicFrameStoreAllocEn)//l00273086 使用动态帧存时，由于在create chan时不分配内存，所以对BPD,SEG的分配挪到SCD中
+            if(1 != pChanOption->u32DynamicFrameStoreAllocEn)
             {
             #ifdef VFMW_VC1_SUPPORT
                 pDetailMemSize->VdhDetailMem += BPD_SIZE;
@@ -4006,7 +4002,7 @@ SINT32 VCTRL_DecChanSyntax(SINT32 ChanID)
     if((0 == s_pstVfmwChan[ChanID]->stSynExtraData.stChanOption.u32DynamicFrameStoreAllocEn) || \
        ((1 == s_pstVfmwChan[ChanID]->stSynExtraData.stChanOption.u32DynamicFrameStoreAllocEn) && \
        (FSP_PARTITION_STATE_FIRST   == s_pstVfmwChan[ChanID]->FspInst.eFspPartitionState || \
-        FSP_PARTITION_STATE_SUCCESS == s_pstVfmwChan[ChanID]->FspInst.eFspPartitionState)))   //状态机 l00273086
+        FSP_PARTITION_STATE_SUCCESS == s_pstVfmwChan[ChanID]->FspInst.eFspPartitionState)))
     {
         if ((0 == pSegMan->IsCurrSegWaitDec) && (0 == s_pstVfmwChan[ChanID]->stSynExtraData.s32WaitFsFlag))
         {
@@ -4035,8 +4031,7 @@ SINT32 VCTRL_DecChanSyntax(SINT32 ChanID)
             }
         #endif
             /* mpeg2 PTS 处理机制修改，解决PTS提前一帧的问题  */
-            /* lkf58351 20111227: mpeg2 码流处理机制修改，不需要等到下一帧码流才送当前帧码流去解码，
-               即不存在PTS提前一帧的问题，故沿用之前的pts处理方式  */
+            
             if(
             #ifdef SCD_MP4_SLICE_ENABLE
                 VFMW_MPEG2 == s_pstVfmwChan[ChanID]->stChanCfg.eVidStd ||

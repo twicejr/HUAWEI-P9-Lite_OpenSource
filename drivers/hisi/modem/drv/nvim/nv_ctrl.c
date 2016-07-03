@@ -302,14 +302,7 @@ s32 nv_file_ftell(FILE* fp)
 
 
 
- /*
-  * Function   : nv_file_access
-  * Discription: check the file is exist?
-  * Parameter  : fp:   file pointer
-  * Output     :
-  * return     : 0:表示有文件 其他没文件
-  * History    : yuyangyang  00228784  create
-  */
+ 
 s32 nv_file_access(const s8* path,s32 mode)
 {
 #ifdef CONFIG_MULTI_CARRIER

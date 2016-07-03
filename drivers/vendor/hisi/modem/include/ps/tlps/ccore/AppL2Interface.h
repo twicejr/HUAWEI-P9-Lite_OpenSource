@@ -1,25 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : AppL2Interface.h
-  版 本 号   : 初稿
-  作    者   : q00208938
-  生成日期   : 2014年6月10日
-  最近修改   :
-  功能描述   : L2和APP之间接口定义
-  函数列表   :
-
-  修改历史   :
-  1.日    期   :
-    作    者   :
-    修改内容   :
-  2.日    期   :
-    作    者   :
-    修改内容   :
-
-******************************************************************************/
 
 #ifndef __APPL2INTERFACE_H__
 #define __APPL2INTERFACE_H__
@@ -147,7 +126,6 @@ enum APP_L2_MSG_TYPE_ENUM
     ID_MAC_APP_CA_CELL_CMD_CNF              = (MAC_APP_MSG_HDR + 0x04),
     ID_MAC_APP_CA_CELL_CMD_IND              = (MAC_APP_MSG_HDR + 0x05),
 
-    /* L2增加随机接入过程统计可维可测调测信息，m00280824 2014/12/09 BEGIN*/
     ID_PS_OM_MAC_RA_MSG1_INFO_IND             = (MAC_APP_MSG_HDR + 0x06),
     ID_PS_OM_MAC_RA_MSG2_INFO_IND             = (MAC_APP_MSG_HDR + 0x07),
     ID_PS_OM_MAC_RA_MSG3_INFO_IND             = (MAC_APP_MSG_HDR + 0x08),
@@ -155,7 +133,6 @@ enum APP_L2_MSG_TYPE_ENUM
     ID_PS_OM_MAC_RAMSG4_CCCH_INFO_IND         = (MAC_APP_MSG_HDR + 0x0A),
     ID_PS_OM_MAC_RAMSG4_CRNTI_INFO_IND        = (MAC_APP_MSG_HDR + 0x0B),
     ID_PS_OM_MAC_RAMSG4_PDCCH_INFO_IND        = (MAC_APP_MSG_HDR + 0x0C),
-    /* L2增加随机接入过程统计可维可测调测信息，m00280824 2014/12/09 END*/
 
     ID_APP_RLC_TRANSPARENT_CMD_REQ          = (APP_RLC_MSG_HDR + 0x01),
     ID_APP_RLC_TRANSPARENT_CMD_CNF          = (RLC_APP_MSG_HDR + 0x02),
@@ -167,7 +144,6 @@ enum APP_L2_MSG_TYPE_ENUM
 
     ID_OM_L2_SWITCH_CONTROL_CMD_REQ         = (APP_PDCP_MSG_HDR + 0x02),  /*0xec2*/
     ID_L2_OM_SWITCH_CONTROL_CMD_CNF         = (PDCP_APP_MSG_HDR + 0x04),   /*0xee4*/
-    /* DTS2014081204455 L2定位信令相关问题增加调测，w00161397 2014/08/07 */
 
     ID_PS_OM_PDCP_UL_SRB_INFO_IND           = (PDCP_APP_MSG_HDR + 0x05),
     ID_PS_OM_PDCP_UL_RRC_CNF_INFO_IND       = (PDCP_APP_MSG_HDR + 0x06),
@@ -176,7 +152,6 @@ enum APP_L2_MSG_TYPE_ENUM
     ID_PS_OM_RLC_DL_RX_CTRL_PDU_INFO_IND    = (PDCP_APP_MSG_HDR + 0x09),
     ID_PS_OM_RLC_DL_SRB_PDU_INFO_IND        = (PDCP_APP_MSG_HDR + 0x0A)
 
-    /* DTS2014081204455 L2定位信令相关问题增加调测，w00161397 2014/08/07 */
 };
 typedef         VOS_UINT32          APP_L2_MSG_TYPE_ENUM_UINT32;
 

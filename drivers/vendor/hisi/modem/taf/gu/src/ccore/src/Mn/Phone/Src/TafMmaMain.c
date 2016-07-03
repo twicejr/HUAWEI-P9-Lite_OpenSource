@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafMmaMain.c
-  版 本 号   : 初稿
-  作    者   : W00176964
-  生成日期   : 2013年7月9日
-  最近修改   :
-  功能描述   : TafMmaMain.C文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年7月9日
-    作    者   : w00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -40,9 +23,7 @@
 #include "TafMmaMsgPrioCompare.h"
 #include "TafMmaTimerMgmt.h"
 #include "TafSdcLib.h"
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-25, begin */
 #include "Nasrrcinterface.h"
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-25, end */
 
 #include "TafMmaFsmImsSwitchTbl.h"
 
@@ -89,9 +70,7 @@ extern VOS_UINT32                                       g_ucUsimHotInFlag;
 extern MMA_TIMER_ST                                     g_stPhPinOperTimer;
 extern MMA_TIMER_ST                                     g_stPhPhResetTimer;
 extern MMA_TIMER_ST                                     g_MmaTimerforPcReplay;
-/* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
 extern TAF_MMA_LOCATION_STATUS_EVENT_INFO_STRU          g_stMmsStkLocStaSysInfo;
-/* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 extern MMA_TIMER_ST                                     g_MmaSimTimer[TAF_SIM_TIMER_NUM];
 extern MMA_TI_TABLE                                     gastMmaTiTab[MMA_MAX_TI];
 extern MMA_INTERNAL_TIMER_ST                            gstMmaInternalTimer;
@@ -117,24 +96,7 @@ extern MMA_TIMER_ST                                     g_stAbortNetScanProtectT
 /*****************************************************************************
   6 函数定义
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : TAF_MMA_BuildEventType
- 功能描述  : 构造EventType
- 输入参数  : pstMsg      :  消息内容
- 输出参数  : 无
- 返 回 值  : ulEventType事件类型
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月9日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年6月6日
-    作    者   : l00198894
-    修改内容   : Modem PID扩展
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_BuildEventType(
     struct MsgCB                       *pstMsg
 )
@@ -167,23 +129,7 @@ VOS_UINT32 TAF_MMA_BuildEventType(
 }
 
 
-/*****************************************************************************
- 函 数 名    : TAF_MMA_FSM_ProcessEvent
- 功能描述    : 状态机的事件处理函数
- 输入参数    : ulCurState :当前状态
-               ulEventType:处理事件
-               pRcvMsg    :消息指针
- 输出参数    :
- 返回值      : VOS_UINT32:处理是否完成
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月8日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
- *****************************************************************************/
 VOS_UINT32 TAF_MMA_FSM_ProcessEvent(
     VOS_UINT32                          ulCurState,
     VOS_UINT32                          ulEventType,
@@ -214,23 +160,7 @@ VOS_UINT32 TAF_MMA_FSM_ProcessEvent(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_PreProcessMsg
- 功能描述  : MMA消息预处理
- 输入参数  : ulEventType  :消息类型
-             pstMsg       :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:预处理完成
-             VOS_FALSE:还需要进行状态机中处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月9日
-    作    者   : W00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_PreProcessMsg(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -264,22 +194,7 @@ VOS_UINT32 TAF_MMA_PreProcessMsg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcessMsgInFsm
- 功能描述  : MMA模块消息进状态机查表处理
- 输入参数  : ulEventType    :  消息类型+PID
-             pstMsg         :  消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:该消息是否处理完成
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月9日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_ProcessMsgInFsm(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -324,26 +239,7 @@ VOS_UINT32 TAF_MMA_ProcessMsgInFsm(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcMsgPrio
- 功能描述  : 将当前收到的消息和子状态机的入口消息进行比较,并根据比较结果进行后续的动作
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE: 当前消息处理完成，不需要后续处理
-             VOS_FALSE:当前消息处理完成，需要后续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年7月22日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
- 2.日    期   : 2015年4月9日
-   作    者   : y00245242
-   修改内容   : iteration 13开发
-*****************************************************************************/
 VOS_UINT32  TAF_MMA_ProcMsgPrio(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -386,23 +282,7 @@ VOS_UINT32  TAF_MMA_ProcMsgPrio(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_PostProcessMsg
- 功能描述  : MMA状态机后处理函数,将当前收到的消息和sub状态机的入口消息进行比较,
-              判断后续的动作
- 输入参数  : ulEventType:消息类型
-             pstMsg       :消息内容
- 输出参数  : 无
- 返 回 值  : 返回消息是否已经处理完成
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年7月9日
-   作    者   : W00176964
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_MMA_PostProcessMsg(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -416,20 +296,7 @@ VOS_UINT32  TAF_MMA_PostProcessMsg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcessBufferMsg
- 功能描述  : 处理缓存
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年7月12日
-   作    者   : W00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_ProcessBufferMsg( VOS_VOID )
 {
     TAF_MMA_ENTRY_MSG_STRU             *pstEntryMsg = VOS_NULL_PTR;
@@ -498,20 +365,7 @@ VOS_VOID TAF_MMA_ProcessBufferMsg( VOS_VOID )
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_MsgProc
- 功能描述  : MMA的消息处理函数
- 输入参数  : pstMsg       :MMA收到的消息
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年7月9日
-   作    者   : w00176964
-   修改内容   : Mma_MsgProc函数名修改以及增加预处理和状态机处理分支
-*****************************************************************************/
 VOS_VOID  TAF_MMA_MsgProc(
     struct MsgCB                       *pstMsg
 )
@@ -577,23 +431,7 @@ VOS_VOID  TAF_MMA_MsgProc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RegFsm
- 功能描述  : 各个状态机注册
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:注册成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年05月8日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2015年02月04日
-    作    者   : f00179208
-    修改内容   : IMS动态开关配置项目
-*****************************************************************************/
 VOS_VOID TAF_MMA_RegFsm( VOS_VOID  )
 {
     /* 预处理注册 */
@@ -642,24 +480,7 @@ VOS_VOID TAF_MMA_RegFsm( VOS_VOID  )
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_InitTask
- 功能描述  : MMA任务初始化函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年7月9日
-   作    者   : W00176964
-   修改内容   : 新生成函数
-
- 2.日    期   : 2013年12月03日
-   作    者   : z00234330
-   修改内容   : dts2012120302954 不需要启动定时器,sdt om端口链接上时和sdt上的log删除时，会导出可维可测
-*****************************************************************************/
 VOS_VOID  TAF_MMA_InitTask( VOS_VOID )
 {
     VOS_UINT32                          ulAutoInitPsFlg;
@@ -700,24 +521,7 @@ VOS_VOID  TAF_MMA_InitTask( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_InitPid
- 功能描述  : MMA的PID初始化函数
- 输入参数  : enum VOS_INIT_PHASE_DEFINE ip
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月9日
-    作    者   : w00176964
-    修改内容   : WuepsMmaPidInit修改函数名
-  2.日    期   : 2014年8月20日
-    作    者   : y00213812
-    修改内容   : 增加CMDA模式下CSIM卡的注册回调
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_InitPid (
     enum VOS_INIT_PHASE_DEFINE          ip
 )
@@ -761,36 +565,7 @@ VOS_UINT32 TAF_MMA_InitPid (
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_InitCtx
- 功能描述  : MMA CTX模块初始化
- 输入参数  : enInitType:初始化类型,上电或软关机
- 输出参数  : pstMsccCtx:MMA上下文信息
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年7月9日
-   作    者   : W00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2014年1月28日
-   作    者   : s00217060
-   修改内容   : DTS2014011709107:修改g_stRegTimeInfo初始值
- 3.日    期   : 2013年4月1日
-   作    者   : y00176023
-   修改内容   : DSDS GUNAS II项目:增加对扩展模块(物理层)的初始化
- 4.日    期   : 2015年3月2日
-   作    者   : z00161729
-   修改内容   : AT&T 支持EONS特性修改
- 5.日    期   : 2015年4月10日
-   作    者   : h00313353
-   修改内容   : SysCfg重构
- 6.日    期   : 2015年9月28日
-   作    者   : z00161729
-   修改内容   : 支持LTE CSG功能新增
-
-*****************************************************************************/
 VOS_VOID  TAF_MMA_InitCtx(
     TAF_MMA_INIT_CTX_TYPE_ENUM_UINT8     enInitType,
     TAF_MMA_CONTEXT_STRU                *pstMmaCtx
@@ -819,9 +594,7 @@ VOS_VOID  TAF_MMA_InitCtx(
 
     TAF_MMA_InitAllTimers(enInitType, pstMmaCtx->astMmaTimerCtx);
 
-    /* Added by w00167002 for L-C互操作项目, 2014-2-18, begin */
     TAF_MMA_InitOperCtx(pstMmaCtx->astMmaOperCtx);
-    /* Added by w00167002 for L-C互操作项目, 2014-2-18, end */
 
     TAF_MMA_InitMmaGlobalValue(enInitType);
 
@@ -891,28 +664,7 @@ VOS_VOID  TAF_MMA_InitCtx(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadNvim
- 功能描述  : MMA模块读取NV的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年7月11日
-   作    者   : W00176964
-   修改内容   : 新生成函数
-
- 2.日    期   : 2014年2月20日
-   作    者   : w00167002
-   修改内容   : L-C互操作项目:PID初始化读取NV
-
- 3.日    期   : 2015年4月16日
-   作    者   : y00245242
-   修改内容   : iteration 13开发
-*****************************************************************************/
 
 VOS_VOID TAF_MMA_ReadNvim(VOS_VOID)
 {
@@ -991,13 +743,9 @@ VOS_VOID TAF_MMA_ReadNvim(VOS_VOID)
     /* en_NV_Item_Sim_Personalisation_Pwd */
     TAF_MMA_ReadSimPersonalisationPwdNvim();
 
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-25, begin */
     GASGCOM_UpdateCustomizeNv();
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-25, end */
 
-    /* Added by w00167002 for L-C互操作项目, 2014-2-20, begin */
     TAF_MMA_ReadLcCtrlNvim();
-    /* Added by w00167002 for L-C互操作项目, 2014-2-20, end */
 
     TAF_MMA_ReadCFreqLockNvim();
 
@@ -1024,20 +772,7 @@ VOS_VOID TAF_MMA_ReadNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_InitTi
- 功能描述  : 增加全局TI初始化
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2006年3月8日
-    作    者   : liuyang id:48197
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_InitTi(VOS_VOID)
 {
     VOS_UINT32                          ulI;
@@ -1054,23 +789,7 @@ VOS_VOID TAF_MMA_InitTi(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_InitTimerId
- 功能描述  : 复位内部定时器相关全局变量指针
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月15日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2015年2月26日
-    作    者   : b00269685
-    修改内容   : at&t修改
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_InitTimerId(VOS_VOID)
 {
     VOS_UINT32                          i;
@@ -1102,21 +821,7 @@ VOS_VOID TAF_MMA_InitTimerId(VOS_VOID)
     g_stAbortNetScanProtectTimer.ulTimerId              = TI_TAF_MMA_ABORT_NET_SCAN_TIMER;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_InitNetworkSelectionMenuCtx
- 功能描述  : 初时化网络选择菜单控制上下文
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月19日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_InitNetworkSelectionMenuCtx(VOS_VOID)
 {
     g_StatusContext.stNetSelMenuCtx.ucNetSelMenuFlg   = VOS_FALSE;
@@ -1133,21 +838,7 @@ VOS_VOID TAF_MMA_InitNetworkSelectionMenuCtx(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_InitRatBalancingCtx
- 功能描述  : 初时化接入技术平衡控制上下文
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月19日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_InitRatBalancingCtx(VOS_VOID)
 {
     g_StatusContext.stRatBalancingCtx.ucRatBalancingFlg = VOS_FALSE;
@@ -1166,22 +857,7 @@ VOS_VOID TAF_MMA_InitRatBalancingCtx(VOS_VOID)
 
 /* TAF_MMA_InitUsimInfo */
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_InitStatusCtx
- 功能描述  : 初始化和USIM模块相关的信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月15日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2015年4月10日
-    作    者   : h00313353
-    修改内容   : SysCfg重构
-*****************************************************************************/
 VOS_VOID TAF_MMA_InitStatusCtx(
     TAF_MMA_INIT_CTX_TYPE_ENUM_UINT8     enInitType
 )
@@ -1233,11 +909,9 @@ VOS_VOID TAF_MMA_InitStatusCtx(
 
     g_StatusContext.ulCsCause                    = NAS_MSCC_PIF_CAUSE_NULL;
     g_StatusContext.ulPsCause                    = NAS_MSCC_PIF_CAUSE_NULL;
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-3, end */
 
     g_StatusContext.ulTimMaxFlg                  = VOS_FALSE;
 
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-3, begin */
     g_StatusContext.ucReselMode                  = 0;
     g_StatusContext.ucDomainFlag                 = NAS_MSCC_PIF_SRVDOMAIN_NO_DOMAIN;
     g_StatusContext.ucModeService                = TAF_PH_MS_CLASS_NULL;
@@ -1262,23 +936,7 @@ VOS_VOID TAF_MMA_InitStatusCtx(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_InitRssiValue
- 功能描述  : 初始化MMA中Rssi值
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月4日
-    作    者   : t00212959
-    修改内容   : AT^CERSSI?增加返回参数
-  2.日    期   : 2014年11月29日
-    作    者   : l00305157
-    修改内容   : Service_State_Optimize_PhaseI项目修改
-*****************************************************************************/
  VOS_VOID TAF_MMA_InitRssiValue(VOS_VOID)
 {
 
@@ -1295,27 +953,9 @@ VOS_VOID TAF_MMA_InitStatusCtx(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_InitCellAcInfo
- 功能描述  : 清空接入禁止MMA的全局变量
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月18日
-    作    者   : l00167671
-    修改内容   : DTS2013021804440,在L下不使用该全局变量记录接入禁止情况，清空成非接入禁止
-                 回到GU下时如果接入禁止发生改变MSCC会重新上报
-  2.日    期   : 2013年4月19日
-    作    者   : z00161729
-    修改内容   : 主动上报AT命令控制下移至C核及mma和mscc接口调整
-*****************************************************************************/
 VOS_VOID TAF_MMA_InitCellAcInfo(VOS_VOID)
 {
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-20, begin */
     TAF_SDC_ACCESS_RESTRICTION_STRU     stCsAcRetriction;
     TAF_SDC_ACCESS_RESTRICTION_STRU     stPsAcRetriction;
 
@@ -1331,28 +971,12 @@ VOS_VOID TAF_MMA_InitCellAcInfo(VOS_VOID)
 
     TAF_SDC_SetCsAcRestriction(&stCsAcRetriction);
     TAF_SDC_SetPsAcRestriction(&stPsAcRetriction);
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-20, end */
 
     return;
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_InitSyscfgInfo
- 功能描述  : 初始化和syscfg相关的信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月15日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2015年4月9日
-    作    者   : h00313353
-    修改内容   : SysCfg宏定义转为枚举
-*****************************************************************************/
 VOS_VOID TAF_MMA_InitSyscfgInfo(VOS_VOID)
 {
 
@@ -1402,20 +1026,7 @@ VOS_VOID TAF_MMA_InitSyscfgInfo(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_InitPhoneModeCtrlCtx
- 功能描述  : 初始化和开关机相关的控制信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月15日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_InitPhoneModeCtrlCtx(
     TAF_MMA_PHONE_MODE_CTRL_CTX_STRU   *pstCtrlCtx
 )
@@ -1423,9 +1034,7 @@ VOS_VOID TAF_MMA_InitPhoneModeCtrlCtx(
     /* 默认初始化快速开机标志为Disable */
     gstMmaValue.ulQuickStartFlg = MMA_QUICK_START_DISABLE;
 
-    /* Deleted by w00176964 for VoLTE_PhaseIII 项目, 2013-12-25, begin */
 
-    /* Deleted by w00176964 for VoLTE_PhaseIII 项目, 2013-12-25, end */
 
     /* 默认初始化为上电需要初始化栈 */
     pstCtrlCtx->ulAutoInitPsFlg     = VOS_TRUE;
@@ -1435,32 +1044,7 @@ VOS_VOID TAF_MMA_InitPhoneModeCtrlCtx(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_InitOrigMeInfo
- 功能描述  : 初始化stMeInfo
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
- 修改历史      :
-    1.日    期   : 2009年02月01日
-      作    者   : l00130025
-      修改内容   : 问题单号：AT2D08501,修改MMA的MeInfo的初始化,软关机时不清除UE信息
-    2.日    期   : 2009年07月10日
-      作    者   : l00130025
-      修改内容   : 问题单号：AT2D12843,输入ATI命令返回厂商名称与其他平台数据卡不一致
-    3.日    期   : 2009年07月10日
-      作    者   : l00130025
-      修改内容   : 问题单号：AT2D12751,Mobile Partner概率性不识别单板驱动名称
-    4.日    期   : 2012年11月1日
-      作    者   : w00167002
-      修改内容   : DTS2012102905571:DCM定制需求，如果当前NV配置不显示本地的全球
-                    运行商列表信息,则直接返回.
-    5.日    期   : 2015年2月28日
-      作    者   : z00161729
-      修改内容   : AT&T 支持EONS特性修改
-*****************************************************************************/
+
 VOS_VOID TAF_MMA_InitOrigMeInfo( VOS_VOID )
 {
     VOS_UINT32                          i;
@@ -1519,42 +1103,20 @@ VOS_VOID TAF_MMA_InitOrigMeInfo( VOS_VOID )
     {
         MMA_WARNINGLOG("MMA_InitMeInfo():Read Software Version  Failed!");
     }
-    /* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-11, begin */
 
-    /* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-11, end */
 
     /* 默认全球运营商表有效  */
     gstMmaValue.ucNotDisplayLocalNetworkNameFlg = VOS_FALSE;
 
-   /* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-11, begin */
 
-   /* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-11, end */
 }
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_InitTimerLen
- 功能描述  : 初始化定时器时长
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月28日
-    作    者   : s46746
-    修改内容   : DSDA GUNAS C CORE项目，定时器时长初始化
-  2.日    期   : 2013年7月10日
-    作    者   : w00176964
-    修改内容   : VoLTE_Phase1项目:开关机定时器重新设计
-*****************************************************************************/
 VOS_VOID TAF_MMA_InitTimerLen(VOS_VOID)
 {
     aStaTimerLen[STA_TIMER_NULL]            = STA_TIMER_NULL_LEN;
-    /* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-10, begin */
-    /* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-10, end */
     aStaTimerLen[STA_TIMER_PLMN_RESEL]      = STA_TIMER_PLMN_RESEL_LEN;
     aStaTimerLen[STA_TIMER_PLMN_SEL]        = STA_TIMER_PLMN_SEL_LEN;
     aStaTimerLen[STA_TIMER_SERVICE_IND]     = STA_TIMER_SERVICE_IND_LEN;
@@ -1582,20 +1144,7 @@ VOS_VOID TAF_MMA_InitTimerLen(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_InitInternalTimer
- 功能描述  : 复位内部定时器相关全局变量指针
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2006年6月7日
-    作    者   : liuyang id:48197
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_InitInternalTimer(VOS_VOID)
 {
     gstMmaInternalTimer.ulTimes                  = 0;
@@ -1608,20 +1157,7 @@ VOS_VOID TAF_MMA_InitInternalTimer(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_InitAllTimers
- 功能描述  : 初始化所有定时器，应在mma初始化时被调用
- 输入参数  : pstMmaTimerCtx - 定时器上下文指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月23日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  TAF_MMA_InitAllTimers(
     TAF_MMA_INIT_CTX_TYPE_ENUM_UINT8     enInitType,
     TAF_MMA_TIMER_CTX_STRU              *pstMmaTimerCtx
@@ -1655,21 +1191,7 @@ VOS_VOID  TAF_MMA_InitAllTimers(
     return;
 }
 
-/* Added by w00167002 for L-C互操作项目, 2014-2-18, begin */
-/*****************************************************************************
- 函 数 名  : TAF_MMA_InitOperCtx
- 功能描述  : 初始化所有OperCtx内容，应在mma初始化时被调用
- 输入参数  : pstMmaOperCtx - OperCtx内容指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月18日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  TAF_MMA_InitOperCtx(
     TAF_MMA_OPER_CTX_STRU               *pstMmaOperCtx
 )
@@ -1693,31 +1215,8 @@ VOS_VOID  TAF_MMA_InitOperCtx(
     return;
 }
 
-/* Added by w00167002 for L-C互操作项目, 2014-2-18, end */
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_InitSdcNetworkInfo
- 功能描述  : 初始化SDC模块中网络相关信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月10日
-    作    者   : w00176964
-    修改内容   : VoLTE_Phase1项目新增
-  2.日    期   : 2014年12月27日
-    作    者   : s00217060
-    修改内容   : Service_State_Optimize_PhaseI
-  3.日    期   : 2015年2月25日
-    作    者   : z00161729
-    修改内容   : AT&T 支持EONS特性修改
-  4.日    期   : 2015年12月29日
-    作    者   : z00359541
-    修改内容   : DTS2015120305849: 增加初始化原因值为入参
-*****************************************************************************/
 VOS_VOID TAF_MMA_InitSdcNetworkInfo(
     TAF_SDC_INIT_CTX_TYPE_ENUM_UINT8     enInitType
 )
@@ -1734,20 +1233,7 @@ VOS_VOID TAF_MMA_InitSdcNetworkInfo(
     TAF_SDC_InitEnhancedOperatorNameInfo(enInitType, &(pstSdcCtx->stEnhancedOperatorNameInfo));
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_InitMePersonalisationStatus
- 功能描述  : 初始化定时器时长
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月10日
-    作    者   : w00176964
-    修改内容   : VoLTE_Phase1项目新增
-*****************************************************************************/
 VOS_VOID TAF_MMA_InitMePersonalisationStatus(VOS_VOID)
 {
     PS_MEM_SET(&g_stMmaMePersonalisationStatus, 0, sizeof(g_stMmaMePersonalisationStatus));
@@ -1758,28 +1244,7 @@ VOS_VOID TAF_MMA_InitMePersonalisationStatus(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_InitMmaGlobalValue
- 功能描述  : 初始化全局变量gstMmaValue
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月10日
-    作    者   : w00176964
-    修改内容   : VoLTE_Phase1项目新增
-  2.日    期   : 2013年10月30日
-    作    者   : z00161729
-    修改内容   : DTS2013103005073:cardlock解锁卡成功后，mma会触发重新关机清除了
-                 g_MmaNewValue.stSimLockMaxTimes.ulLockMaxTimes全局变量，重新开机未重新读取nv项，
-                 导致cardlock查询剩余次数为0
-  3.日    期   : 2015年2月28日
-    作    者   : b00269685
-    修改内容   : at&t支持 eons修改
-*****************************************************************************/
 VOS_VOID TAF_MMA_InitMmaGlobalValue(
     TAF_MMA_INIT_CTX_TYPE_ENUM_UINT8     enInitType
 )
@@ -1826,20 +1291,7 @@ VOS_VOID TAF_MMA_InitMmaGlobalValue(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_InitBandInfo
- 功能描述  : 初始化频段能力信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月7日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_InitBandInfo(VOS_VOID)
 {
     TAF_MMA_UE_BAND_CAPA_ST            *pstUeBandCap = VOS_NULL_PTR;
@@ -1865,21 +1317,7 @@ VOS_VOID TAF_MMA_InitBandInfo(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_InitDsdsInfo
- 功能描述  : 初始化DSDS相关的信息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月29日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_InitDsdsInfo(VOS_VOID)
 {
     TAF_MMA_SRV_ACQ_RAT_LIST_STRU      *pstSrvAcqRatListAddr = VOS_NULL_PTR;
@@ -1889,21 +1327,7 @@ VOS_VOID TAF_MMA_InitDsdsInfo(VOS_VOID)
     PS_MEM_SET(pstSrvAcqRatListAddr, 0, sizeof(TAF_MMA_SRV_ACQ_RAT_LIST_STRU));
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_InitAttachInfo
- 功能描述  : 初始化ATTACH相关信息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月29日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_InitAttachInfo(VOS_VOID)
 {
     TAF_MMA_CONTEXT_STRU                *pstMmaCtx = VOS_NULL_PTR;
@@ -1913,20 +1337,7 @@ VOS_VOID TAF_MMA_InitAttachInfo(VOS_VOID)
     pstMmaCtx->stAttachInfo.ucAttachOpId         = 0;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_MsgProcEntry
- 功能描述  : MMA的消息处理入口函数
- 输入参数  : pstMsg       :MMA收到的消息
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年7月19日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  TAF_MMA_MsgProcEntry(
     struct MsgCB                       *pstMsg
 )
@@ -1950,20 +1361,7 @@ VOS_VOID  TAF_MMA_MsgProcEntry(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_InitDelayRptCtrlInfo
- 功能描述  : 延时上报nv项信息初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年10月10日
-   作    者   : l00324781
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_InitDelayRptCtrlInfo(VOS_VOID)
 {
 

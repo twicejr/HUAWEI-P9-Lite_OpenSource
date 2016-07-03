@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafApsPreproc.c
-  版 本 号   : 初稿
-  作    者   : o00132663
-  生成日期   : 2011年12月28日
-  最近修改   :
-  功能描述   : TAF APS模块状态机预处理函数实现文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年12月28日
-    作    者   : o00132663
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -94,22 +77,7 @@ extern "C" {
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtGetDsFlowInfoReq_PreProc
- 功能描述  : AT消息ID_MSG_TAF_PS_GET_DSFLOW_INFO_REQ预处理函数
- 输入参数  : ulEventType - 事件名
-             pstMsg      - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE    - 消息处理完毕
-             VOS_FALSE   - 消息未处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月15日
-    作    者   : 欧阳飞 00132663
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtGetDsFlowInfoReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -117,7 +85,6 @@ VOS_UINT32 TAF_APS_RcvAtGetDsFlowInfoReq_PreProc(
 {
     TAF_PS_MSG_STRU                    *pstMsgHeader;
     TAF_PS_GET_DSFLOW_INFO_REQ_STRU    *pstGetDsFlowInfoReq;
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     TAF_DSFLOW_QUERY_INFO_STRU          stDsFlowQryInfo;
 
     /* 初始化 */
@@ -126,7 +93,6 @@ VOS_UINT32 TAF_APS_RcvAtGetDsFlowInfoReq_PreProc(
 
     /* 流量上报信息初始化 */
     PS_MEM_SET(&stDsFlowQryInfo, 0, sizeof(TAF_DSFLOW_QUERY_INFO_STRU));
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     /* 查询所有RAB承载的流量信息 */
     TAF_APS_QryAllRabDsFlowStats(&stDsFlowQryInfo);
@@ -141,25 +107,7 @@ VOS_UINT32 TAF_APS_RcvAtGetDsFlowInfoReq_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtClearDsFlowReq_PreProc
- 功能描述  : AT消息ID_MSG_TAF_PS_CLEAR_DSFLOW_REQ预处理函数
- 输入参数  : ulEventType - 事件名
-             pstMsg      - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32  - 函数执行结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月15日
-    作    者   : 欧阳飞 00132663
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年2月2日
-    作    者   : A00165503
-    修改内容   : DTS2015021010050: 清除流量阈值相关统计
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtClearDsFlowReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -195,28 +143,7 @@ VOS_UINT32 TAF_APS_RcvAtClearDsFlowReq_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvConfigDsFlowRptReq_PreProc
- 功能描述  : AT消息ID_MSG_TAF_PS_CONFIG_DSFLOW_RPT_REQ预处理函数
- 输入参数  : ulEventType - 事件名
-             pstMsg      - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32  - 函数执行结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月15日
-    作    者   : 欧阳飞 00132663
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年11月09日
-    作    者   : l00198894
-    修改内容   : Probe路测工具对接项目修改AT端口流量上报标志位
-  3.日    期   : 2013年4月8日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtConfigDsFlowRptReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -224,7 +151,6 @@ VOS_UINT32 TAF_APS_RcvAtConfigDsFlowRptReq_PreProc(
 {
     TAF_PS_MSG_STRU                 *pstMsgHeader;
     TAF_PS_CONFIG_DSFLOW_RPT_REQ_STRU  *pstConfigDsFlowRptReq;
-    /* Modified by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-8, begin */
     VOS_UINT32                          ulRptCmdStatus;
 
     /* 初始化 */
@@ -244,7 +170,6 @@ VOS_UINT32 TAF_APS_RcvAtConfigDsFlowRptReq_PreProc(
     }
 
     TAF_SDC_UpdateRptCmdStatus(TAF_SDC_RPT_CMD_DSFLOWRPT, ulRptCmdStatus);
-    /* Modified by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-8, end */
 
     /* 给AT回复清除结果 */
     TAF_APS_SndConfigDsFlowRptCnf(&(pstConfigDsFlowRptReq->stCtrl),
@@ -253,22 +178,7 @@ VOS_UINT32 TAF_APS_RcvAtConfigDsFlowRptReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvSetApDsFlowRptCfgReq_PreProc
- 功能描述  : 消息ID_MSG_TAF_PS_SET_APDSFLOW_RPT_CFG_REQ预处理函数
- 输入参数  : ulEventType --- 事件名
-             pstMsg      --- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE    --- 消息处理完毕
-             VOS_FALSE   --- 消息未处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月2日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvSetApDsFlowRptCfgReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -323,22 +233,7 @@ VOS_UINT32 TAF_APS_RcvSetApDsFlowRptCfgReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvGetApDsFlowRptCfgReq_PreProc
- 功能描述  : 消息ID_MSG_TAF_PS_GET_APDSFLOW_RPT_CFG_REQ预处理函数
- 输入参数  : ulEventType --- 事件名
-             pstMsg      --- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE    --- 消息处理完毕
-             VOS_FALSE   --- 消息未处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月4日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvGetApDsFlowRptCfgReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -362,22 +257,7 @@ VOS_UINT32 TAF_APS_RcvGetApDsFlowRptCfgReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvSetDsFlowNvWriteCfgReq_PreProc
- 功能描述  : 消息ID_MSG_TAF_PS_SET_DSFLOW_NV_WRITE_CFG_REQ预处理函数
- 输入参数  : ulEventType --- 事件名
-             pstMsg      --- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE    --- 消息处理完毕
-             VOS_FALSE   --- 消息未处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月12日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvSetDsFlowNvWriteCfgReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -443,22 +323,7 @@ VOS_UINT32 TAF_APS_RcvSetDsFlowNvWriteCfgReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvGetDsFlowNvWriteCfgReq_PreProc
- 功能描述  : 消息ID_MSG_TAF_PS_GET_DSFLOW_NV_WRITE_CFG_REQ预处理函数
- 输入参数  : ulEventType --- 事件名
-             pstMsg      --- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE    --- 消息处理完毕
-             VOS_FALSE   --- 消息未处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月12日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvGetDsFlowNvWriteCfgReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -483,38 +348,7 @@ VOS_UINT32 TAF_APS_RcvGetDsFlowNvWriteCfgReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiDsFlowReportExpired_PreProc
- 功能描述  : 处理流量上报定时器超时消息
- 输入参数  : ulEventType - 事件名
-             pstMsg      - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 消息处理结束
-             VOS_FALSE - 消息未处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月15日
-    作    者   : 欧阳飞 00132663
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年11月09日
-    作    者   : l00198894
-    修改内容   : Probe路测工具对接项目增加OM流量上报
-
-  3.日    期   : 2013年4月7日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核及mma和mmc接口调整
-
-  4.日    期   : 2015年2月2日
-    作    者   : A00165503
-    修改内容   : DTS2015021010050: 增加流量阈值上报处理
-
-  5.日    期   : 2016年01月21日
-    作    者   : w00316404
-    修改内容   : DTS2016012006718: add cds state report for nonlte
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiDsFlowReportExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -587,30 +421,7 @@ VOS_UINT32 TAF_APS_RcvTiDsFlowReportExpired_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiDsFlowReportExpired_PreProc
- 功能描述  : 处理保存流量到NV定时器超时消息
- 输入参数  : ulEventType - 事件名
-             pstMsg      - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 消息处理结束
-             VOS_FALSE - 消息未处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月15日
-    作    者   : 欧阳飞 00132663
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年5月15日
-    作    者   : A00165503
-    修改内容   : DTS2012051402688: G模下清空流量信息后拨号数传, 时间小于10分
-                 钟, 重启单板时没有将流量信息写入NV
-  3.日    期   : 2012年5月30日
-    作    者   : zhangyizhan 60575
-    修改内容   : DTS2012052907939, 保存到NV的时间由NV 9036配置
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiDsFlowWriteNvExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -636,23 +447,7 @@ VOS_UINT32 TAF_APS_RcvTiDsFlowWriteNvExpired_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtGetPrimPdpCtxInfoReq_PreProc
- 功能描述  : 查询主PDP上下文预处理函数
-             (ID_MSG_TAF_PS_GET_PRIM_PDP_CONTEXT_INFO_REQ)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月16日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtGetPrimPdpCtxInfoReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -669,21 +464,7 @@ VOS_UINT32 TAF_APS_RcvAtGetPrimPdpCtxInfoReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtGetPdpInfoReq_PreProc
- 功能描述  : 查询主从PDP上下文预处理函数
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月5日
-    作    者   : c00173809
-    修改内容   : DTS2012010604900
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtGetPdpInfoReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -749,23 +530,7 @@ VOS_UINT32 TAF_APS_RcvAtGetPdpInfoReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtGetSecPdpCtxInfoReq_PreProc
- 功能描述  : 查询从PDP上下文预处理函数
-             (ID_MSG_TAF_PS_GET_SEC_PDP_CONTEXT_INFO_REQ)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月16日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtGetSecPdpCtxInfoReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -782,23 +547,7 @@ VOS_UINT32 TAF_APS_RcvAtGetSecPdpCtxInfoReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtGetTftInfoReq_PreProc
- 功能描述  : 查询TFT参数预处理函数
-             (ID_MSG_TAF_PS_GET_PDP_TFT_INFO_REQ)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月16日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtGetTftInfoReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -815,23 +564,7 @@ VOS_UINT32 TAF_APS_RcvAtGetTftInfoReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtGetPdpIpAddrInfoReq_PreProc
- 功能描述  : 查询已激活承载的IP地址设置命令预处理函数
-             (ID_MSG_TAF_PS_GET_PDP_IP_ADDR_INFO_REQ)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月16日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtGetPdpIpAddrInfoReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -848,23 +581,7 @@ VOS_UINT32 TAF_APS_RcvAtGetPdpIpAddrInfoReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtGetAnsModeInfoReq_PreProc
- 功能描述  : 查询PS域的自动应答状态预处理函数
-             (ID_MSG_TAF_PS_GET_ANSWER_MODE_INFO_REQ)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月16日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtGetAnsModeInfoReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -881,23 +598,7 @@ VOS_UINT32 TAF_APS_RcvAtGetAnsModeInfoReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtGetPdpContextStateReq_PreProc
- 功能描述  : 查询当前PDP的激活状态
 
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年01月06日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtGetPdpContextStateReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -919,23 +620,7 @@ VOS_UINT32 TAF_APS_RcvAtGetPdpContextStateReq_PreProc(
 
 #if ( FEATURE_ON == FEATURE_LTE )
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtGetDynamicPrimPdpCtxInfoReq_PreProc
- 功能描述  : 读取主PDP上下文动态参数预处理函数
-             (ID_MSG_TAF_PS_GET_DYNAMIC_PRIM_PDP_CONTEXT_INFO_REQ)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月16日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtGetDynamicPrimPdpCtxInfoReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -967,23 +652,7 @@ VOS_UINT32 TAF_APS_RcvAtGetDynamicPrimPdpCtxInfoReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtGetDynamicSecPdpCtxInfoReq_PreProc
- 功能描述  : 读取从PDP上下文动态参数预处理函数
-             (ID_MSG_TAF_PS_GET_DYNAMIC_SEC_PDP_CONTEXT_INFO_REQ)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月16日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtGetDynamicSecPdpCtxInfoReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1015,23 +684,7 @@ VOS_UINT32 TAF_APS_RcvAtGetDynamicSecPdpCtxInfoReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtGetDynamicTftInfoReq_PreProc
- 功能描述  : 读取TFT的动态参数预处理函数
-             (ID_MSG_TAF_PS_GET_DYNAMIC_TFT_INFO_REQ)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月16日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtGetDynamicTftInfoReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1062,23 +715,7 @@ VOS_UINT32 TAF_APS_RcvAtGetDynamicTftInfoReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtGetEpsQosInfoReq_PreProc
- 功能描述  : 查询EPS服务质量预处理函数
-             (ID_MSG_TAF_PS_GET_EPS_QOS_INFO_REQ)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月16日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtGetEpsQosInfoReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1148,23 +785,7 @@ VOS_UINT32 TAF_APS_RcvAtGetEpsQosInfoReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtGetDynamicEpsQosInfoReq_PreProc
- 功能描述  : 查询EPS服务质量动态参数预处理函数
-             (ID_MSG_TAF_PS_GET_DYNAMIC_EPS_QOS_INFO_REQ)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月16日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtGetDynamicEpsQosInfoReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1195,25 +816,8 @@ VOS_UINT32 TAF_APS_RcvAtGetDynamicEpsQosInfoReq_PreProc(
     return VOS_TRUE;
 }
 
-/* Add by w00199382 for V7代码同步, 2012-04-07, Begin   */
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtGetLteCsInfoReq_PreProc
- 功能描述  :
-             (ID_MSG_TAF_PS_GET_LTE_CS_REQ)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年02月24日
-    作    者   : h00135900
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtGetLteCsInfoReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1247,26 +851,7 @@ VOS_UINT32 TAF_APS_RcvAtGetLteCsInfoReq_PreProc(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvL4aGetLteCsCnf_PreProc
- 功能描述  :
-             (ID_L4A_APS_GET_LTE_CS_CNF)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年02月24日
-    作    者   : h00135900
-    修改内容   : 新生成函数
-  2.日    期 : 2013年07月08日
-    作    者 : Y00213812
-    修改内容 : VoLTE_PhaseI 项目，从缓冲队列中获取消息
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvL4aGetLteCsCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1343,23 +928,7 @@ VOS_UINT32 TAF_APS_RcvL4aGetLteCsCnf_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtGetCemodeInfoReq_PreProc
- 功能描述  :
-             (ID_MSG_TAF_PS_GET_CEMODE_REQ)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-   1.日    期   : 2012年03月20日
-    作    者   : w00182550
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtGetCemodeInfoReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1391,25 +960,7 @@ VOS_UINT32 TAF_APS_RcvAtGetCemodeInfoReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvL4aGetCemodeCnf_PreProc
- 功能描述  :
-             (ID_L4A_APS_GET_CEMODE_CNF)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年03月20日
-    作    者   : w00182550
-    修改内容   : 新生成函数
-  2.日    期 : 2013年07月08日
-    作    者 : Y00213812
-    修改内容 : VoLTE_PhaseI 项目，从缓冲队列中获取消息
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvL4aGetCemodeCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1489,23 +1040,7 @@ VOS_UINT32 TAF_APS_RcvL4aGetCemodeCnf_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtSetPdprofInfoReq_PreProc
- 功能描述  : 设置APN, 用户名和密码鉴权信息预处理函数
-             (ID_MSG_TAF_PS_SET_PDPROFMOD_INFO_REQ)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月12日
-    作    者   : x00126983
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtSetPdprofInfoReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1536,23 +1071,7 @@ VOS_UINT32 TAF_APS_RcvAtSetPdprofInfoReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvL4aSetPdprofInfoCnf_PreProc
- 功能描述  : CNF消息预处理函数
-             (ID_L4A_APS_SET_PDPROFMOD_CNF)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年03月15日
-    作    者   : x00126983
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvL4aSetPdprofInfoCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1565,7 +1084,6 @@ VOS_UINT32 TAF_APS_RcvL4aSetPdprofInfoCnf_PreProc(
     TAF_PS_SET_PROFILE_INFO_REQ_STRU   *pstSetPdprofInfoReq;
     VOS_UINT32                          ulPara;
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     /* 初始化消息 */
     pstPsMsg                = (APS_L4A_SET_PDPROFMOD_CNF_STRU*)pstMsg;
     ulErrCode               = pstPsMsg->ulErrorCode;
@@ -1615,32 +1133,14 @@ VOS_UINT32 TAF_APS_RcvL4aSetPdprofInfoCnf_PreProc(
         /* 返回AT处理结果 */
         TAF_APS_SndSetPdprofInfoCnf(&stCtrl, ulErrCode);
     }
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     return VOS_TRUE;
 }
 
-/* Add by w00199382 for V7代码同步, 2012-04-07, End   */
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtGetAuthDataInfoReq_PreProc
- 功能描述  : 查询用户名和密码鉴权信息预处理函数
-             (ID_MSG_TAF_PS_GET_AUTHDATA_INFO_REQ)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月16日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtGetAuthDataInfoReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1657,23 +1157,7 @@ VOS_UINT32 TAF_APS_RcvAtGetAuthDataInfoReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtGetUmtsQosInfoReq_PreProc
- 功能描述  : 查询PDP上下文的Qos参数的预处理函数
-             (ID_MSG_TAF_PS_GET_UMTS_QOS_INFO_REQ)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月16日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtGetUmtsQosInfoReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1690,23 +1174,7 @@ VOS_UINT32 TAF_APS_RcvAtGetUmtsQosInfoReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtGetUmtsQosMinInfoReq_PreProc
- 功能描述  : 查询PDP上下文的最小可接受服务质量预处理函数
-             (ID_MSG_TAF_PS_GET_UMTS_QOS_MIN_INFO_REQ)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月16日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtGetUmtsQosMinInfoReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1723,24 +1191,7 @@ VOS_UINT32 TAF_APS_RcvAtGetUmtsQosMinInfoReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtGetDynamicUmtsQosInfoReq_PreProc
- 功能描述  : 查询PDP上下文激活后经过与网络协商后而实际使用的QoS预处理函数
-             (ID_MSG_TAF_PS_GET_DYNAMIC_UMTS_QOS_INFO_REQ)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月16日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtGetDynamicUmtsQosInfoReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1757,23 +1208,7 @@ VOS_UINT32 TAF_APS_RcvAtGetDynamicUmtsQosInfoReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtGetPdpDnsInfoReq_PreProc
- 功能描述  : 查询PDP上下文使用的DNS信息预处理函数
-             (ID_MSG_TAF_PS_GET_PDP_DNS_INFO_REQ)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月16日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtGetPdpDnsInfoReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1791,28 +1226,7 @@ VOS_UINT32 TAF_APS_RcvAtGetPdpDnsInfoReq_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtSetPrimPdpCtxInfoReq_PreProc
- 功能描述  : 设置主PDP上下文预处理函数
-             (ID_MSG_TAF_PS_SET_PRIM_PDP_CONTEXT_INFO_REQ)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月16日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月26日
-    作    者   : m00217266
-    修改内容   : DSDA C核项目接口修改(添加系统能力判断)
-  3.日    期   : 2014年02月14日
-    作    者   : m00217266
-    修改内容   : L-C互操作项目(添加请求有效性判断)
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtSetPrimPdpCtxInfoReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1829,14 +1243,12 @@ VOS_UINT32 TAF_APS_RcvAtSetPrimPdpCtxInfoReq_PreProc(
     pstSetPdpCtxInfoReq = (TAF_PS_SET_PRIM_PDP_CONTEXT_INFO_REQ_STRU *)pstPsMsg->aucContent;
 
 #if (FEATURE_ON == FEATURE_CL_INTERWORK)
-    /* Added by m00217266 for L-C互操作项目, 2014-1-24, begin */
     /* L-C互操作模式，对请求消息有效性做判断 */
     if (VOS_FALSE == TAF_APS_LCCheckReqValid(&(pstSetPdpCtxInfoReq->stCtrl)))
     {
         TAF_APS_SndSetPrimPdpCtxInfoCnf(&(pstSetPdpCtxInfoReq->stCtrl), TAF_PARA_UNSPECIFIED_ERROR);
         return VOS_TRUE;
     }
-    /* Added by m00217266 for L-C互操作项目, 2014-1-24, end */
 #endif
 #if ( FEATURE_ON == FEATURE_LTE )
     /* 根据LTE能力分别执行 */
@@ -1872,25 +1284,7 @@ VOS_UINT32 TAF_APS_RcvAtSetPrimPdpCtxInfoReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtSetSecPdpCtxInfoReq_PreProc
- 功能描述  : 设置从PDP上下文预处理函数
-             (ID_MSG_TAF_PS_SET_SEC_PDP_CONTEXT_INFO_REQ)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月16日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月26日
-    作    者   : m00217266
-    修改内容   : DSDA C核项目接口修改(添加系统能力判断)
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtSetSecPdpCtxInfoReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1933,25 +1327,7 @@ VOS_UINT32 TAF_APS_RcvAtSetSecPdpCtxInfoReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtSetTftInfoReq_PreProc
- 功能描述  : 设置TFT参数预处理函数
-             (ID_MSG_TAF_PS_SET_TFT_INFO_REQ)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月16日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月26日
-    作    者   : m00217266
-    修改内容   : DSDA C核项目接口修改(添加系统能力判断)
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtSetTftInfoReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1995,25 +1371,7 @@ VOS_UINT32 TAF_APS_RcvAtSetTftInfoReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtSetAnsModeInfoReq_PreProc
- 功能描述  : PS域的自动应答状态设置预处理函数
-             (ID_MSG_TAF_PS_SET_ANSWER_MODE_INFO_REQ)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月16日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月26日
-    作    者   : m00217266
-    修改内容   : DSDA C核项目接口修改(添加系统能力判断)
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtSetAnsModeInfoReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2056,28 +1414,7 @@ VOS_UINT32 TAF_APS_RcvAtSetAnsModeInfoReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtSetAuthDataInfoReq_PreProc
- 功能描述  : 设置用户名和密码鉴权信息预处理函数
-             (ID_MSG_TAF_PS_SET_AUTHDATA_INFO_REQ)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月16日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月26日
-    作    者   : m00217266
-    修改内容   : DSDA C核项目接口修改(添加系统能力判断)
-  3.日    期   : 2014年02月14日
-    作    者   : m00217266
-    修改内容   : L-C互操作项目(添加请求有效性判断)
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtSetAuthDataInfoReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2094,14 +1431,12 @@ VOS_UINT32 TAF_APS_RcvAtSetAuthDataInfoReq_PreProc(
     pstAuthdata     = (TAF_PS_SET_AUTHDATA_INFO_REQ_STRU *)pstPsMsg->aucContent;
 
 #if (FEATURE_ON == FEATURE_CL_INTERWORK)
-    /* Added by m00217266 for L-C互操作项目, 2014-1-24, begin */
     /* L-C互操作模式，对请求消息有效性做判断 */
     if (VOS_FALSE == TAF_APS_LCCheckReqValid(&(pstAuthdata->stCtrl)))
     {
         (VOS_VOID)TAF_APS_SndSetAuthDataInfoCnf(&(pstAuthdata->stCtrl), TAF_PARA_UNSPECIFIED_ERROR);
         return VOS_TRUE;
     }
-    /* Added by m00217266 for L-C互操作项目, 2014-1-24, end */
 #endif
 
 #if ( FEATURE_ON == FEATURE_LTE )
@@ -2134,25 +1469,7 @@ VOS_UINT32 TAF_APS_RcvAtSetAuthDataInfoReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtSetUmtsQosInfoReq_PreProc
- 功能描述  : 设置PDP上下文的Qos参数的预处理函数
-             (ID_MSG_TAF_PS_SET_UMTS_QOS_INFO_REQ)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-  2.日    期   : 2014年02月14日
-    作    者   : m00217266
-    修改内容   : L-C互操作项目(添加请求有效性判断)
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtSetUmtsQosInfoReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2166,14 +1483,12 @@ VOS_UINT32 TAF_APS_RcvAtSetUmtsQosInfoReq_PreProc(
     pstSetQosReq    = (TAF_PS_SET_UMTS_QOS_INFO_REQ_STRU *)pstPsMsg->aucContent;
 
 #if (FEATURE_ON == FEATURE_CL_INTERWORK)
-    /* Added by m00217266 for L-C互操作项目, 2014-1-24, begin */
     /* L-C互操作模式，对请求消息有效性做判断 */
     if (VOS_FALSE == TAF_APS_LCCheckReqValid(&(pstSetQosReq->stCtrl)))
     {
         TAF_APS_SndSetUmtsQosInfoCnf(&(pstSetQosReq->stCtrl), TAF_PARA_UNSPECIFIED_ERROR);
         return VOS_TRUE;
     }
-    /* Added by m00217266 for L-C互操作项目, 2014-1-24, end */
 #endif
 
     /* 去消息头, 调用原处理函数处理并回复AT */
@@ -2182,25 +1497,7 @@ VOS_UINT32 TAF_APS_RcvAtSetUmtsQosInfoReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtSetUmtsQosMinInfoReq_PreProc
- 功能描述  : 设置PDP上下文的最小可接受服务质量预处理函数
-             (ID_MSG_TAF_PS_SET_UMTS_QOS_MIN_INFO_REQ)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-  2.日    期   : 2014年02月14日
-    作    者   : m00217266
-    修改内容   : L-C互操作项目(添加请求有效性判断)
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtSetUmtsQosMinInfoReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2214,14 +1511,12 @@ VOS_UINT32 TAF_APS_RcvAtSetUmtsQosMinInfoReq_PreProc(
     pstSetQosMinReq = (TAF_PS_SET_UMTS_QOS_MIN_INFO_REQ_STRU *)pstPsMsg->aucContent;
 
 #if (FEATURE_ON == FEATURE_CL_INTERWORK)
-    /* Added by m00217266 for L-C互操作项目, 2014-1-24, begin */
     /* L-C互操作模式，对请求消息有效性做判断 */
     if (VOS_FALSE == TAF_APS_LCCheckReqValid(&(pstSetQosMinReq->stCtrl)))
     {
         TAF_APS_SndSetUmtsQosMinInfoCnf(&(pstSetQosMinReq->stCtrl), TAF_PARA_UNSPECIFIED_ERROR);
         return VOS_TRUE;
     }
-    /* Added by m00217266 for L-C互操作项目, 2014-1-24, end */
 #endif
 
     /* 去消息头, 调用原处理函数处理并回复AT */
@@ -2230,23 +1525,7 @@ VOS_UINT32 TAF_APS_RcvAtSetUmtsQosMinInfoReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtSetPdpDnsInfoReq_PreProc
- 功能描述  : 设置PDP上下文使用的DNS信息预处理函数
-             (ID_MSG_TAF_PS_SET_PDP_DNS_INFO_REQ)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtSetPdpDnsInfoReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2263,23 +1542,7 @@ VOS_UINT32 TAF_APS_RcvAtSetPdpDnsInfoReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtTrigGprsDataReq_PreProc
- 功能描述  : 消息预处理函数
-             (ID_MSG_TAF_PS_TRIG_GPRS_DATA_REQ)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtTrigGprsDataReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2298,23 +1561,7 @@ VOS_UINT32 TAF_APS_RcvAtTrigGprsDataReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtConfigNbnsFunctionReq_PreProc
- 功能描述  : 消息预处理函数
-             (ID_MSG_TAF_PS_CONFIG_NBNS_FUNCTION_REQ)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtConfigNbnsFunctionReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2331,21 +1578,7 @@ VOS_UINT32 TAF_APS_RcvAtConfigNbnsFunctionReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvFindCidForDialReq_PreProc
- 功能描述  : 查询CID请求。
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : c00173809
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtFindCidForDialReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2388,22 +1621,7 @@ VOS_UINT32 TAF_APS_RcvAtFindCidForDialReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetCidParaReq_PreProc
- 功能描述  : 获取CID的参数
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : c00173809
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtGetCidParaReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2444,22 +1662,7 @@ VOS_UINT32 TAF_APS_RcvAtGetCidParaReq_PreProc(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SetCidParaReq_PreProc
- 功能描述  : 设置CID的参数
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : c00173809
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtSetCidParaReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2498,24 +1701,7 @@ VOS_UINT32 TAF_APS_RcvAtSetCidParaReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtGetCidQosParaReq_PreProc
- 功能描述  : 获取CID的QOS参数
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年06月29日
-    作    者   : l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2015年01月20日
-    作    者   : z00301431
-    修改内容   : DTS2015012000798, 消息申请后未初始化导致min qos配置错误
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtGetCidQosParaReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2560,22 +1746,7 @@ VOS_UINT32 TAF_APS_RcvAtGetCidQosParaReq_PreProc(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtSetCidQosParaReq_PreProc
- 功能描述  : 设置CID的Qos参数
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年06月29日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtSetCidQosParaReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2616,36 +1787,7 @@ VOS_UINT32 TAF_APS_RcvAtSetCidQosParaReq_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtSetPdpContextStateReq_PreProc
- 功能描述  : 激活去激活上下文的时候，需要进行预处理，判定当前是否能进入状态机
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史    :
-  1.日    期  : 2011年12月22日
-    作    者  : h44270
-    修改内容  : 新生成函数
-
-  2.日    期   : 2012年4月16日
-    作    者   : A00165503
-    修改内容   : DTS2012040100697: 自动应答模式下, 网侧建立的ESP承载, 用户不
-                 能修改和去激活
-
-  3.日    期   : 2012年11月13日
-    作    者   : A00165503
-    修改内容   : DTS2012111205973: LTE默认缺省承载IP类型IPv4v6, 用户拨号IP类
-                 型IPv4 only或IPv6 only, 缺省承载IP类型被错误的修改为用户拨
-                 号IP类型
-
-  4.日    期   : 2014年02月14日
-    作    者   : m00217266
-    修改内容   : L-C互操作项目(添加请求有效性判断)
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtSetPdpContextStateReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2661,14 +1803,12 @@ VOS_UINT32 TAF_APS_RcvAtSetPdpContextStateReq_PreProc(
     pstSetPdpStateReq                   = (TAF_PS_SET_PDP_STATE_REQ_STRU*)(pstAppMsg->aucContent);
 
 #if (FEATURE_ON == FEATURE_CL_INTERWORK)
-    /* Added by m00217266 for L-C互操作项目, 2014-1-24, begin */
     /* L-C互操作模式，对请求消息有效性做判断 */
     if (VOS_FALSE == TAF_APS_LCCheckReqValid(&(pstSetPdpStateReq->stCtrl)))
     {
         TAF_APS_SndSetPdpCtxStateCnf(&(pstSetPdpStateReq->stCtrl), TAF_PS_CAUSE_UNKNOWN);
         return VOS_TRUE;
     }
-    /* Added by m00217266 for L-C互操作项目, 2014-1-24, end */
 #endif
 
     /* 设置激活标记 */
@@ -2700,29 +1840,7 @@ VOS_UINT32 TAF_APS_RcvAtSetPdpContextStateReq_PreProc(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ProcActivatePdpContext_PreProc
- 功能描述  : 预处理状态机中处理PDP激活
- 输入参数  :    ucCidValue
-                pstSetPdpStateReq
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年1月17日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-  2.日    期   : 2014年02月25日
-    作    者   : Y00213812
-    修改内容   : DTS2014022504539:只支持IMSA与其它端口共用APN
-
-  3.日    期   : 2014年5月16日
-    作    者   : A00165503
-    修改内容   : DTS2014050703206: 调整承载匹配处理
-*****************************************************************************/
 VOS_UINT32 TAF_APS_ProcActivatePdpContext_PreProc(
     VOS_UINT8                           ucCidValue,
     TAF_PS_SET_PDP_STATE_REQ_STRU      *pstSetPdpStateReq
@@ -2853,24 +1971,7 @@ VOS_UINT32 TAF_APS_ProcActivatePdpContext_PreProc(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ProcDeactivatePdpContext_PreProc
- 功能描述  : 预处理状态机处理PDP去激活
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年1月17日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-  2.日    期   : 2013年12月17日
-    作    者   : Y00213812
-    修改内容   : 增加多用户共用APN的处理
-*****************************************************************************/
 VOS_UINT32 TAF_APS_ProcDeactivatePdpContext_PreProc(
     VOS_UINT8                           ucCidValue,
     TAF_PS_SET_PDP_STATE_REQ_STRU      *pstSetPdpStateReq
@@ -2886,10 +1987,7 @@ VOS_UINT32 TAF_APS_ProcDeactivatePdpContext_PreProc(
 
     if (TAF_APS_INVALID_PDPID == ucPdpId)
     {
-        /*
-           去激活操作，如果是去激活一个新的CID,说明当前对应的CID还没有激活
-           或者尝试激活，直接返回OK
-        */
+        
         TAF_APS_SndSetPdpCtxStateCnf(&(pstSetPdpStateReq->stCtrl),
                                     TAF_PS_CAUSE_SUCCESS);
 
@@ -2937,31 +2035,7 @@ VOS_UINT32 TAF_APS_ProcDeactivatePdpContext_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallModifyReq_PreProc
- 功能描述  : 收到modify消息的时候，需要进行预处理，判定当前是否能进入状态机
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月22日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年03月05日
-    作    者   : f00179208
-    修改内容   : 问题单号:DTS2012022405416，G下正常驻留，发起PDP MOD REQ,
-                 PDP修改完成异系统到W下，PS被BAR，AT无响应
-
-  3.日    期   : 2012年4月16日
-    作    者   : A00165503
-    修改内容   : DTS2012040100697: 自动应答模式下, 网侧建立的ESP承载, 用户不
-                 能修改和去激活
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallModifyReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3019,39 +2093,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallModifyReq_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallOrigReq_PreProc
- 功能描述  : 收到激活消息的时候，需要进行预处理，判定当前是否能进入状态机
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月22日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年11月13日
-    作    者   : A00165503
-    修改内容   : DTS2012111205973: LTE默认缺省承载IP类型IPv4v6, 用户拨号IP类
-                 型IPv4 only或IPv6 only, 缺省承载IP类型被错误的修改为用户拨
-                 号IP类型
-
-  3.日    期   : 2014年02月25日
-    作    者   : Y00213812
-    修改内容   : DTS2014022504539:只支持IMSA与其它端口共用APN
-
-  4.日    期   : 2014年02月14日
-    作    者   : m00217266
-    修改内容   : L-C互操作项目(添加请求有效性判断)
-
-  5.日    期   : 2014年5月16日
-    作    者   : A00165503
-    修改内容   : DTS2014050703206: 调整承载匹配处理
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallOrigReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3074,7 +2116,6 @@ VOS_UINT32 TAF_APS_RcvAtPsCallOrigReq_PreProc(
     ucPdpId                             = TAF_APS_INVALID_PDPID;
 
 #if (FEATURE_ON == FEATURE_CL_INTERWORK)
-    /* Added by m00217266 for L-C互操作项目, 2014-1-24, begin */
     /* L-C互操作模式，对请求消息有效性做判断 */
     if (VOS_FALSE == TAF_APS_LCCheckReqValid(&(pstCallOrigReq->stCtrl)))
     {
@@ -3083,7 +2124,6 @@ VOS_UINT32 TAF_APS_RcvAtPsCallOrigReq_PreProc(
                       TAF_PS_CAUSE_UNKNOWN);
         return VOS_TRUE;
     }
-    /* Added by m00217266 for L-C互操作项目, 2014-1-24, end */
 #endif
 
     /* 如果系统为开机，则直接返回VOS_TRUE */
@@ -3224,20 +2264,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallOrigReq_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_IsStaNwActivatingSubStaWaitAppAnswer
- 功能描述  : 判断当前处于网络激活等待应用发起应答状态
- 输出参数  : TAF_PS_PPP_DIAL_ORIG_REQ_STRU      *pstPppDialOrigReq
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月7日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_IsStaNwActivatingSubStaWaitAppAnswer(
     TAF_PS_PPP_DIAL_ORIG_REQ_STRU      *pstPppDialOrigReq
 )
@@ -3273,27 +2300,7 @@ VOS_UINT32 TAF_APS_IsStaNwActivatingSubStaWaitAppAnswer(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPppDialOrigReq_PreProc
- 功能描述  : 收到PPP拨号激活消息的时候，需要进行预处理，判定当前是否能进入状态机
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史    :
-  1.日    期   : 2011年12月22日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年11月13日
-    作    者   : A00165503
-    修改内容   : DTS2012111205973: LTE默认缺省承载IP类型IPv4v6, 用户拨号IP类
-                 型IPv4 only或IPv6 only, 缺省承载IP类型被错误的修改为用户拨
-                 号IP类型
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPppDialOrigReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3422,28 +2429,7 @@ VOS_UINT32 TAF_APS_RcvAtPppDialOrigReq_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallEndReq_PreProc
- 功能描述  : 收到ID_MSG_TAF_PS_CALL_END_REQ消息的时候，需要进行预处理，判定当前是否能进入状态机
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史    :
- 1.日    期  : 2011年12月22日
-   作    者  : h44270
-   修改内容  : 新生成函数
-  2.日    期   : 2012年3月6日
-    作    者   : c00173809
-    修改内容   : PPP和NDIS拨相同CID的PDP上下文出错.
-
-  3.日    期   : 2013年9月23日
-    作    者   : A00165503
-    修改内容   : UART-MODEM: PDPID获取失败时返回ERROR, 防止用户挂死
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallEndReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3511,31 +2497,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallEndReq_PreProc(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallAnswerReq_PreProc
- 功能描述  : 收到ANSWER消息的时候，需要进行预处理，判定当前是否能进入状态机
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史    :
-  1.日    期  : 2011年12月22日
-    作    者  : h44270
-    修改内容  : 新生成函数
-  2.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-  3.日    期   : 2013年05月22日
-    作    者   : f00179208
-    修改内容   : V3R3 PPP PROJECT
-  4.日    期 : 2013年07月08日
-    作    者 : Y00213812
-    修改内容 : VoLTE_PhaseI 项目，数据结构变更，增加PID记录到实体
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallAnswerReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3612,11 +2574,9 @@ VOS_UINT32 TAF_APS_RcvAtPsCallAnswerReq_PreProc(
                 /* 用户设置了PDP ADDR */
                 if ('\0' != stPdpPriPara.stPriPdpInfo.stPdpAddr.aucIpv4Addr[0])
                 {
-                    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
                     if (0 != PS_MEM_CMP(stPdpPriPara.stPriPdpInfo.stPdpAddr.aucIpv4Addr,
                                         g_PdpEntity[ucPdpId].PdpAddr.aucIpAddr,
                                         TAF_IPV4_ADDR_LEN))
-                    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
                     {
                         TAF_APS_SndCallAnswerCnf(&(pstCallAnswerReq->stCtrl),
                                                  pstCallAnswerReq->stAnsInfo.ucCid,
@@ -3661,25 +2621,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallAnswerReq_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallHangupReq_PreProc
- 功能描述  : 收到HAANUP消息的时候，需要进行预处理，判定当前是否能进入状态机
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史    :
- 1.日    期  : 2011年12月22日
-   作    者  : h44270
-   修改内容  : 新生成函数
-
-  2.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallHangupReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3706,28 +2648,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallHangupReq_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvSmRegPdpActCnf_PreProc
- 功能描述  : 收到SM D_PMC_SMREG_PDP_ACT_CNF消息的预处理
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史    :
- 1.日    期  : 2011年12月22日
-   作    者  : h44270
-   修改内容  : 新生成函数
-
- 2.日    期  : 2011年12月22日
-   作    者  : M00217266
-   修改内容  : 清零PDP激活失败计数器（AT&T&DCM定制 PDP激活受限）
- 3.日    期   : 2012年8月10日
-   作    者   : L00171473
-   修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvSmRegPdpActCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3773,29 +2694,7 @@ VOS_UINT32 TAF_APS_RcvSmRegPdpActCnf_PreProc(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvSmRegPdpActRej_PreProc
- 功能描述  : 收到SM D_PMC_SMREG_PDP_ACT_REJ消息的预处理
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史    :
- 1.日    期  : 2011年12月22日
-   作    者  : h44270
-   修改内容  : 新生成函数
-
- 2.日    期  : 2012年6月15日
-   作    者  : m00217266
-   修改内容  : 添加PDP激活受限处理
-
-  3.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : SM/APS原语接口中的CAUSE成员类型修改
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvSmRegPdpActRej_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3826,30 +2725,7 @@ VOS_UINT32 TAF_APS_RcvSmRegPdpActRej_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvSmRegPdpActInd_PreProc
- 功能描述  : 收到SM D_PMC_SMREG_PDP_ACT_Ind消息的预处理
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史    :
- 1.日    期  : 2011年12月22日
-   作    者  : h44270
-   修改内容  : 新生成函数
- 2.日    期   : 2012年8月10日
-   作    者   : L00171473
-   修改内容   : DTS2012082204471, TQE清理
- 3.日    期   : 2013年06月05日
-   作    者   : f00179208
-   修改内容   : V3R3 PPP PROJECT
- 4.日    期   : 2013年07月08日
-   作    者   : Y00213812
-   修改内容   : VoLTE_PhaseI 项目，增加PID记录到实体
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvSmRegPdpActInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3888,22 +2764,7 @@ VOS_UINT32 TAF_APS_RcvSmRegPdpActInd_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvSmRegPdpModifyInd_PreProc
- 功能描述  : 收到SM SMREG_PDP_MODIFY_IND_STRU消息的预处理
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史    :
- 1.日    期  : 2011年12月22日
-   作    者  : h44270
-   修改内容  : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvSmRegPdpModifyInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3925,22 +2786,7 @@ VOS_UINT32 TAF_APS_RcvSmRegPdpModifyInd_PreProc(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvSmRegPdpModifyCnf_PreProc
- 功能描述  : 收到SM D_PMC_SMREG_PDP_MODIFY_IND消息的预处理
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史    :
- 1.日    期  : 2011年12月22日
-   作    者  : h44270
-   修改内容  : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvSmRegPdpModifyCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3962,22 +2808,7 @@ VOS_UINT32 TAF_APS_RcvSmRegPdpModifyCnf_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvSmRegPdpModifyRej_PreProc
- 功能描述  : 收到SM D_PMC_SMREG_PDP_MODIFY_IND消息的预处理
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史    :
- 1.日    期  : 2011年12月22日
-   作    者  : h44270
-   修改内容  : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvSmRegPdpModifyRej_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3999,26 +2830,7 @@ VOS_UINT32 TAF_APS_RcvSmRegPdpModifyRej_PreProc(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvSmRegPdpDeactivInd_PreProc
- 功能描述  : 收到SM D_PMC_SMREG_PDP_DEACTIV_IND消息的预处理
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史    :
- 1.日    期  : 2011年12月22日
-   作    者  : h44270
-   修改内容  : 新生成函数
-
-2.日    期  : 2012年6月15日
-   作    者  : m00217266
-   修改内容  : 添加PDP激活受限处理
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvSmRegPdpDeactivInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4041,22 +2853,7 @@ VOS_UINT32 TAF_APS_RcvSmRegPdpDeactivInd_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvSmRegPdpDeactivCnf_PreProc
- 功能描述  : 收到SM D_PMC_SMREG_PDP_DEACTIV_CNF消息的预处理
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史    :
- 1.日    期  : 2011年12月22日
-   作    者  : h44270
-   修改内容  : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvSmRegPdpDeactivCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4078,24 +2875,7 @@ VOS_UINT32 TAF_APS_RcvSmRegPdpDeactivCnf_PreProc(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvSmRegPdpActSecCnf_PreProc
- 功能描述  : 收到SM D_PMC_SMREG_PDP_ACT_SEC_CNF消息的预处理
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史    :
- 1.日    期  : 2011年12月22日
-   作    者  : h44270
-   修改内容  : 新生成函数
- 2.日    期   : 2012年8月10日
-   作    者   : L00171473
-   修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvSmRegPdpActSecCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4128,22 +2908,7 @@ VOS_UINT32 TAF_APS_RcvSmRegPdpActSecCnf_PreProc(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvSmRegPdpActSecRej_PreProc
- 功能描述  : 收到SM D_PMC_SMREG_PDP_ACT_SEC_REJ消息的预处理
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史    :
- 1.日    期  : 2011年12月22日
-   作    者  : h44270
-   修改内容  : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvSmRegPdpActSecRej_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4166,23 +2931,7 @@ VOS_UINT32 TAF_APS_RcvSmRegPdpActSecRej_PreProc(
 }
 
 #if ( FEATURE_ON == FEATURE_LTE )
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtSetEpsQosInfoReq_PreProc
- 功能描述  : 设置EPS服务质量预处理函数
-             (ID_MSG_TAF_PS_SET_EPS_QOS_INFO_REQ)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月16日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtSetEpsQosInfoReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4214,31 +2963,7 @@ VOS_UINT32 TAF_APS_RcvAtSetEpsQosInfoReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvL4aSetCgdcontCnf_PreProc
- 功能描述  : CNF消息预处理函数
-             (ID_L4A_APS_SET_CGDCONT_CNF)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月18日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年6月15日
-    作    者   : m00217266
-    修改内容   : 停止暂停PDP激活定时器(AT&T定制，PDP激活限制)
-
-  3.日    期 : 2013年07月08日
-    作    者 : Y00213812
-    修改内容 : VoLTE_PhaseI 项目，数据结构变更
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvL4aSetCgdcontCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4310,26 +3035,7 @@ VOS_UINT32 TAF_APS_RcvL4aSetCgdcontCnf_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvL4aSetCgdscontCnf_PreProc
- 功能描述  : CNF消息预处理函数
-             (ID_L4A_APS_SET_CGDSCONT_CNF)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月18日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-  2.日    期 : 2013年07月08日
-    作    者 : Y00213812
-    修改内容 : VoLTE_PhaseI 项目，数据结构变更
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvL4aSetCgdscontCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4358,7 +3064,6 @@ VOS_UINT32 TAF_APS_RcvL4aSetCgdscontCnf_PreProc(
         /* 保护定时器没有超时, 停止定时器 */
         TAF_APS_StopTimer(TI_TAF_APS_WAIT_SET_CGDSCONT_CNF, ulPara);
 
-        /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
         /* 从缓冲队列中获取消息 */
         pstMsgInfo      = TAF_APS_GetItemFromCmdBufferQueue(TI_TAF_APS_WAIT_SET_CGDSCONT_CNF, ulPara);
         if (VOS_NULL_PTR == pstMsgInfo)
@@ -4384,7 +3089,6 @@ VOS_UINT32 TAF_APS_RcvL4aSetCgdscontCnf_PreProc(
                                    &(pstSetPdpCtxInfoReq->stPdpContextInfo),
                                    &ulErrCode);
         }
-        /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
         /* 从消息等待队列中删除该消息 */
         TAF_APS_DelItemInCmdBufferQueue(TI_TAF_APS_WAIT_SET_CGDSCONT_CNF, ulPara);
@@ -4396,26 +3100,7 @@ VOS_UINT32 TAF_APS_RcvL4aSetCgdscontCnf_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvL4aSetCgtftCnf_PreProc
- 功能描述  : CNF消息预处理函数
-             (ID_L4A_APS_SET_CGTFT_CNF)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月18日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-  2.日    期 : 2013年07月08日
-    作    者 : Y00213812
-    修改内容 : VoLTE_PhaseI 项目，数据结构变更
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvL4aSetCgtftCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4444,7 +3129,6 @@ VOS_UINT32 TAF_APS_RcvL4aSetCgtftCnf_PreProc(
         /* 保护定时器没有超时, 停止定时器 */
         TAF_APS_StopTimer(TI_TAF_APS_WAIT_SET_CGTFT_CNF, ulPara);
 
-        /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
         /* 从缓冲队列中获取消息 */
         pstMsgInfo      = TAF_APS_GetItemFromCmdBufferQueue(TI_TAF_APS_WAIT_SET_CGTFT_CNF, ulPara);
         if (VOS_NULL_PTR == pstMsgInfo)
@@ -4467,7 +3151,6 @@ VOS_UINT32 TAF_APS_RcvL4aSetCgtftCnf_PreProc(
             /* 设置TFT参数 */
             TAF_APS_SetTftInfo(&(pstSetTftInfoReq->stTftInfo), &ulErrCode);
         }
-        /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
         /* 从消息等待队列中删除该消息 */
         TAF_APS_DelItemInCmdBufferQueue(TI_TAF_APS_WAIT_SET_CGTFT_CNF, ulPara);
@@ -4479,23 +3162,7 @@ VOS_UINT32 TAF_APS_RcvL4aSetCgtftCnf_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvL4aSetCgautoCnf_PreProc
- 功能描述  : CNF消息预处理函数
-             (ID_L4A_APS_SET_CGAUTO_CNF)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月18日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvL4aSetCgautoCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4525,7 +3192,6 @@ VOS_UINT32 TAF_APS_RcvL4aSetCgautoCnf_PreProc(
         /* 保护定时器没有超时, 停止定时器 */
         TAF_APS_StopTimer(TI_TAF_APS_WAIT_SET_CGAUTO_CNF, ulPara);
 
-        /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
         /* 从缓冲队列中获取消息 */
         pstMsgInfo      = TAF_APS_GetItemFromCmdBufferQueue(TI_TAF_APS_WAIT_SET_CGAUTO_CNF, ulPara);
         if (VOS_NULL_PTR == pstMsgInfo)
@@ -4560,7 +3226,6 @@ VOS_UINT32 TAF_APS_RcvL4aSetCgautoCnf_PreProc(
                 ulErrCode = TAF_PARA_SET_ERROR;
             }
         }
-        /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
         /* 从消息等待队列中删除该消息 */
         TAF_APS_DelItemInCmdBufferQueue(TI_TAF_APS_WAIT_SET_CGAUTO_CNF, ulPara);
@@ -4572,23 +3237,7 @@ VOS_UINT32 TAF_APS_RcvL4aSetCgautoCnf_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvL4aSetCgansCnf_PreProc
- 功能描述  : CNF消息预处理函数
-             (ID_L4A_APS_SET_CGANS_CNF)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月18日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvL4aSetCgansCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4599,23 +3248,7 @@ VOS_UINT32 TAF_APS_RcvL4aSetCgansCnf_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvL4aSetCgeqosCnf_PreProc
- 功能描述  : CNF消息预处理函数
-             (ID_L4A_APS_SET_CGEQOS_CNF)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月18日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvL4aSetCgeqosCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4644,7 +3277,6 @@ VOS_UINT32 TAF_APS_RcvL4aSetCgeqosCnf_PreProc(
         /* 保护定时器没有超时, 停止定时器 */
         TAF_APS_StopTimer(TI_TAF_APS_WAIT_SET_CGEQOS_CNF, ulPara);
 
-        /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
         /* 从缓冲队列中获取消息 */
         pstMsgInfo      = TAF_APS_GetItemFromCmdBufferQueue(TI_TAF_APS_WAIT_SET_CGEQOS_CNF, ulPara);
         if (VOS_NULL_PTR == pstMsgInfo)
@@ -4668,7 +3300,6 @@ VOS_UINT32 TAF_APS_RcvL4aSetCgeqosCnf_PreProc(
             TAF_APS_SetEpsQosInfo(&pstSetEpsQosInfoReq->stEpsQosInfo,
                                   &ulErrCode);
         }
-        /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
         /* 从消息等待队列中删除该消息 */
         TAF_APS_DelItemInCmdBufferQueue(TI_TAF_APS_WAIT_SET_CGEQOS_CNF, ulPara);
@@ -4680,23 +3311,7 @@ VOS_UINT32 TAF_APS_RcvL4aSetCgeqosCnf_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvL4aSetAuthdataCnf_PreProc
- 功能描述  : CNF消息预处理函数
-             (ID_L4A_APS_SET_AUTHDATA_CNF)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月18日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvL4aSetAuthdataCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4725,7 +3340,6 @@ VOS_UINT32 TAF_APS_RcvL4aSetAuthdataCnf_PreProc(
         /* 保护定时器没有超时, 停止定时器 */
         TAF_APS_StopTimer(TI_TAF_APS_WAIT_SET_AUTHDATA_CNF, ulPara);
 
-        /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
         /* 从缓冲队列中获取消息 */
         pstMsgInfo      = TAF_APS_GetItemFromCmdBufferQueue(TI_TAF_APS_WAIT_SET_AUTHDATA_CNF, ulPara);
         if (VOS_NULL_PTR == pstMsgInfo)
@@ -4751,7 +3365,6 @@ VOS_UINT32 TAF_APS_RcvL4aSetAuthdataCnf_PreProc(
                                 &(pstAuthDataReq->stAuthDataInfo),
                                 &ulErrCode);
         }
-        /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
         /* 从消息等待队列中删除该消息 */
         TAF_APS_DelItemInCmdBufferQueue(TI_TAF_APS_WAIT_SET_AUTHDATA_CNF, ulPara);
@@ -4763,23 +3376,7 @@ VOS_UINT32 TAF_APS_RcvL4aSetAuthdataCnf_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvL4aSetCgcontrdpCnf_PreProc
- 功能描述  : CNF消息预处理函数
-             (ID_L4A_APS_SET_CGCONTRDP_CNF)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月18日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvL4aSetCgcontrdpCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4877,26 +3474,7 @@ VOS_UINT32 TAF_APS_RcvL4aSetCgcontrdpCnf_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvL4aSetCgscontrdpCnf_PreProc
- 功能描述  : CNF消息预处理函数
-             (ID_L4A_APS_SET_CGSCONTRDP_CNF)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月18日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-  2.日    期 : 2013年07月08日
-    作    者 : Y00213812
-    修改内容 : VoLTE_PhaseI 项目，从缓冲队列中获取消息
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvL4aSetCgscontrdpCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4954,7 +3532,6 @@ VOS_UINT32 TAF_APS_RcvL4aSetCgscontrdpCnf_PreProc(
                    0x00,
                    ulGetDynamicPdpCtxInfoCnfLen);
 
-        /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
         /* 从缓冲队列中获取消息 */
         if (VOS_TRUE != TAF_APS_GetCtrlHdrFromCmdBufferQueue(&pstGetDynamicPdpCtxInfoCnf->stCtrl,
                                                               TI_TAF_APS_WAIT_SET_CGSCONTRDP_CNF,
@@ -4968,7 +3545,6 @@ VOS_UINT32 TAF_APS_RcvL4aSetCgscontrdpCnf_PreProc(
 
             return VOS_TRUE;
         }
-        /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
         pstGetDynamicPdpCtxInfoCnf->enCause          = ulErrCode;
         pstGetDynamicPdpCtxInfoCnf->ulCidNum         = ulCidNum;
@@ -4988,35 +3564,14 @@ VOS_UINT32 TAF_APS_RcvL4aSetCgscontrdpCnf_PreProc(
         /* 释放内存 */
         PS_MEM_FREE(WUEPS_PID_TAF, pstGetDynamicPdpCtxInfoCnf);
 
-        /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
         /* 从消息等待队列中删除该消息 */
         TAF_APS_DelItemInCmdBufferQueue(TI_TAF_APS_WAIT_SET_CGSCONTRDP_CNF, ulPara);
-        /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     }
 
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_FillPfTftInfo
- 功能描述  : 将L4a回复的TFT参数填充到回复给AT的CNF消息中
- 输入参数  : APS_L4A_SDF_PF_TFT_STRU   *pstL4aPfTftInfo - L4A回复的TFT参数
-             VOS_UINT32                 ulCidNum        - CID个数
-  输出参数  : TAF_PF_TFT_STRU           *pstPfTftInfo    - 给AT回复的TFT参数
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年01月12日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年9月28日
-    作    者   : W00316404
-    修改内容   : R11 TFT 协议升级
-
-*****************************************************************************/
 VOS_VOID TAF_APS_FillPfTftInfo(
     TAF_PF_TFT_STRU                    *pstPfTftInfo,
     APS_L4A_SDF_PF_TFT_STRU            *pstL4aPfTftInfo,
@@ -5092,26 +3647,7 @@ VOS_VOID TAF_APS_FillPfTftInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvL4aSetCgtftrdpCnf_PreProc
- 功能描述  : CNF消息预处理函数
-             (ID_L4A_APS_SET_CGTFTRDP_CNF)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月18日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-  2.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，从缓冲队列中获取消息
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvL4aSetCgtftrdpCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -5170,7 +3706,6 @@ VOS_UINT32 TAF_APS_RcvL4aSetCgtftrdpCnf_PreProc(
                    0x00,
                    ulGetDynamicTftInfoCnfLen);
 
-        /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
         /* 从缓冲队列中获取消息 */
         if (VOS_TRUE != TAF_APS_GetCtrlHdrFromCmdBufferQueue(&pstGetDynamicTftInfoCnf->stCtrl,
                                                               TI_TAF_APS_WAIT_SET_CGTFTRDP_CNF,
@@ -5184,7 +3719,6 @@ VOS_UINT32 TAF_APS_RcvL4aSetCgtftrdpCnf_PreProc(
 
             return VOS_TRUE;
         }
-        /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
         pstGetDynamicTftInfoCnf->enCause          = ulErrCode;
         pstGetDynamicTftInfoCnf->ulCidNum         = ulCidNum;
@@ -5199,32 +3733,14 @@ VOS_UINT32 TAF_APS_RcvL4aSetCgtftrdpCnf_PreProc(
         /* 释放内存 */
         PS_MEM_FREE(WUEPS_PID_TAF, pstGetDynamicTftInfoCnf);
 
-        /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
         /* 从消息等待队列中删除该消息 */
         TAF_APS_DelItemInCmdBufferQueue(TI_TAF_APS_WAIT_SET_CGTFTRDP_CNF, ulPara);
-        /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
     }
 
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvL4aSetCgeqosrdpCnf_PreProc
- 功能描述  : CNF消息预处理函数
-             (ID_L4A_APS_SET_CGEQOSRDP_CNF)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月18日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvL4aSetCgeqosrdpCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -5282,7 +3798,6 @@ VOS_UINT32 TAF_APS_RcvL4aSetCgeqosrdpCnf_PreProc(
                    0x00,
                    ulGetDynamicEpsQosInfoCnfLen);
 
-        /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-08-28, begin */
         /* 从缓冲队列中获取消息 */
         if (VOS_TRUE != TAF_APS_GetCtrlHdrFromCmdBufferQueue(&pstGetDynamicEpsQosInfoCnf->stCtrl,
                                                               TI_TAF_APS_WAIT_SET_CGEQOSRDP_CNF,
@@ -5296,7 +3811,6 @@ VOS_UINT32 TAF_APS_RcvL4aSetCgeqosrdpCnf_PreProc(
 
             return VOS_TRUE;
         }
-        /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-08-28, end */
 
         pstGetDynamicEpsQosInfoCnf->enCause           = ulErrCode;
         pstGetDynamicEpsQosInfoCnf->ulCidNum          = ulCidNum;
@@ -5324,23 +3838,7 @@ VOS_UINT32 TAF_APS_RcvL4aSetCgeqosrdpCnf_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiSetCgdcontCnfExpired_PreProc
- 功能描述  : 发往L4A消息保护定时器超时预处理函数
-             (TI_TAF_APS_WAIT_SET_CGDCONT_CNF)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiSetCgdcontCnfExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -5371,23 +3869,7 @@ VOS_UINT32 TAF_APS_RcvTiSetCgdcontCnfExpired_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiSetCgdscontCnfExpired_PreProc
- 功能描述  : 发往L4A消息保护定时器超时预处理函数
-             (TI_TAF_APS_WAIT_SET_CGDSCONT_CNF)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiSetCgdscontCnfExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -5419,23 +3901,7 @@ VOS_UINT32 TAF_APS_RcvTiSetCgdscontCnfExpired_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiSetCgtftCnfExpired_PreProc
- 功能描述  : 发往L4A消息保护定时器超时预处理函数
-             (TI_TAF_APS_WAIT_SET_CGTFT_CNF)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiSetCgtftCnfExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -5467,23 +3933,7 @@ VOS_UINT32 TAF_APS_RcvTiSetCgtftCnfExpired_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiSetCgautoCnfExpired_PreProc
- 功能描述  : 发往L4A消息保护定时器超时预处理函数
-             (TI_TAF_APS_WAIT_SET_CGAUTO_CNF)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiSetCgautoCnfExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -5515,23 +3965,7 @@ VOS_UINT32 TAF_APS_RcvTiSetCgautoCnfExpired_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiSetCgeqosCnfExpired_PreProc
- 功能描述  : 发往L4A消息保护定时器超时预处理函数
-             (TI_TAF_APS_WAIT_SET_CGEQOS_CNF)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiSetCgeqosCnfExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -5562,23 +3996,7 @@ VOS_UINT32 TAF_APS_RcvTiSetCgeqosCnfExpired_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiSetAuthdataCnfExpired_PreProc
- 功能描述  : 发往L4A消息保护定时器超时预处理函数
-             (TI_TAF_APS_WAIT_SET_AUTHDATA_CNF)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiSetAuthdataCnfExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -5609,24 +4027,7 @@ VOS_UINT32 TAF_APS_RcvTiSetAuthdataCnfExpired_PreProc(
     return VOS_TRUE;
 }
 
-/* Add by w00199382 for V7代码同步, 2012-04-07, Begin   */
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiGetLtecsCnfExpired_PreProc
- 功能描述  : 发往L4A消息保护定时器超时预处理函数
-             (TI_TAF_APS_WAIT_GET_LTE_CS_CNF)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : w00182550
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiGetLtecsCnfExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -5657,23 +4058,7 @@ VOS_UINT32 TAF_APS_RcvTiGetLtecsCnfExpired_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiGetCemodeCnfExpired_PreProc
- 功能描述  : 发往L4A消息保护定时器超时预处理函数
-             (TI_TAF_APS_WAIT_GET_CEMODE_CNF)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiGetCemodeCnfExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -5705,23 +4090,7 @@ VOS_UINT32 TAF_APS_RcvTiGetCemodeCnfExpired_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiSetPdprofInfoExpired_PreProc
- 功能描述  : 发往L4A消息保护定时器超时预处理函数
-             (TI_TAF_APS_WAIT_SET_PDPROF_CNF)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年03月22日
-    作    者   : x00126983
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiSetPdprofInfoExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -5753,25 +4122,8 @@ VOS_UINT32 TAF_APS_RcvTiSetPdprofInfoExpired_PreProc(
 }
 
 
-/* Add by w00199382 for V7代码同步, 2012-04-07, End   */
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiSetCgcontrdpCnfExpired_PreProc
- 功能描述  : 发往L4A消息保护定时器超时预处理函数
-             (TI_TAF_APS_WAIT_SET_CGCONTRDP_CNF)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiSetCgcontrdpCnfExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -5802,26 +4154,7 @@ VOS_UINT32 TAF_APS_RcvTiSetCgcontrdpCnfExpired_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiSetCgscontrdpCnfExpired_PreProc
- 功能描述  : 发往L4A消息保护定时器超时预处理函数
-             (TI_TAF_APS_WAIT_SET_CGSCONTRDP_CNF)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-  2.日    期 : 2013年07月08日
-    作    者 : Y00213812
-    修改内容 : VoLTE_PhaseI 项目，从缓冲队列中获取消息
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiSetCgscontrdpCnfExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -5852,23 +4185,7 @@ VOS_UINT32 TAF_APS_RcvTiSetCgscontrdpCnfExpired_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiSetCgtftrdpCnfExpired_PreProc
- 功能描述  : 发往L4A消息保护定时器超时预处理函数
-             (TI_TAF_APS_WAIT_SET_CGTFTRDP_CNF)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiSetCgtftrdpCnfExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -5899,26 +4216,7 @@ VOS_UINT32 TAF_APS_RcvTiSetCgtftrdpCnfExpired_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiSetCgeqosrdpCnfExpired_PreProc
- 功能描述  : 发往L4A消息保护定时器超时预处理函数
-             (TI_TAF_APS_WAIT_SET_CGEQOSRDP_CNF)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-  2.日    期 : 2013年07月08日
-    作    者 : Y00213812
-    修改内容 : VoLTE_PhaseI 项目，从缓冲队列中获取消息
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiSetCgeqosrdpCnfExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -5949,21 +4247,7 @@ VOS_UINT32 TAF_APS_RcvTiSetCgeqosrdpCnfExpired_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_TransL4aErrorCode
- 功能描述  : 转换L4A返回的错误码
- 输入参数  : VOS_UINT32         ulL4aErrCode
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_PS_CAUSE_ENUM_UINT32 TAF_APS_TransL4aErrorCode(
     VOS_UINT32                          ulL4aErrCode
 )
@@ -5979,22 +4263,7 @@ TAF_PS_CAUSE_ENUM_UINT32 TAF_APS_TransL4aErrorCode(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEsmPdpSetupCnf_PreProc
- 功能描述  : 收到ESM ID_APP_ESM_PDP_SETUP_CNF消息的预处理
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史    :
- 1.日    期  : 2015年12月7日
-   作    者  : w00316404
-   修改内容  : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEsmPdpSetupCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -6014,22 +4283,7 @@ VOS_UINT32 TAF_APS_RcvEsmPdpSetupCnf_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEsmNdisconnCnf_PreProc
- 功能描述  : 收到ESM ID_APP_ESM_NDISCONN_CNF消息的预处理
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史    :
- 1.日    期  : 2015年12月7日
-   作    者  : w00316404
-   修改内容  : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEsmNdisconnCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -6049,26 +4303,7 @@ VOS_UINT32 TAF_APS_RcvEsmNdisconnCnf_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEsmApsPdpNanageInd_PreProc
- 功能描述  : 收到ESM ID_APP_ESM_PDP_MANAGER_IND消息的预处理
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史    :
- 1.日    期  : 2011年12月22日
-   作    者  : h44270
-   修改内容  : 新生成函数
-
- 2.日    期   : 2013年07月08日
-   作    者   : Y00213812
-   修改内容   : VoLTE_PhaseI 项目，增加MODULE ID
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEsmApsPdpNanageInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -6100,22 +4335,7 @@ VOS_UINT32 TAF_APS_RcvEsmApsPdpNanageInd_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEsmApsPdpModifyCnf_PreProc
- 功能描述  : 收到L4a ID_APP_ESM_PDP_MODIFY_CNF消息的预处理
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史    :
- 1.日    期  : 2015年12月7日
-   作    者  : w00316404
-   修改内容  : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEsmApsPdpModifyCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -6135,22 +4355,7 @@ VOS_UINT32 TAF_APS_RcvEsmApsPdpModifyCnf_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEsmApsPdpModifyInd_PreProc
- 功能描述  : 收到ESM ID_APP_ESM_PDP_MODIFY_IND消息的预处理
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史    :
- 1.日    期  : 2015年12月7日
-   作    者  : w00316404
-   修改内容  : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEsmApsPdpModifyInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -6171,22 +4376,7 @@ VOS_UINT32 TAF_APS_RcvEsmApsPdpModifyInd_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEsmApsPdpReleaseCnf_PreProc
- 功能描述  : 收到ESM ID_APP_ESM_PDP_RELEASE_CNF消息的预处理
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史    :
- 1.日    期  : 2015年12月7日
-   作    者  : w00316404
-   修改内容  : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEsmApsPdpReleaseCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -6206,29 +4396,7 @@ VOS_UINT32 TAF_APS_RcvEsmApsPdpReleaseCnf_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEsmApsPdpDeactivateInd_PreProc
- 功能描述  : 收到ESM ID_APP_ESM_PDP_RELEASE_IND消息的预处理
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史    :
- 1.日    期  : 2011年12月22日
-   作    者  : h44270
-   修改内容  : 新生成函数
-
- 2.日    期  : 2015年5月29日
-   作    者  : a00165503
-   修改内容  :  MODIFY for DTS2015051204781
-
- 3.日    期   : 2015年12月7日
-   作    者   : w00316404
-   修改内容   : Split L4A Project
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEsmApsPdpDeactivateInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -6258,26 +4426,7 @@ VOS_UINT32 TAF_APS_RcvEsmApsPdpDeactivateInd_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEsmApsPdpSetupInd_PreProc
- 功能描述  : 收到ID_APP_ESM_PDP_SETUP_IND消息的预处理
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月19日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : Split L4A Project
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEsmApsPdpSetupInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -6308,30 +4457,7 @@ VOS_UINT32 TAF_APS_RcvEsmApsPdpSetupInd_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEsmEpsBearInfoInd_PreProc
- 功能描述  : 收到Esm SM_ESM_EPS_BEARER_INFO_IND_STRU相关消息的预处理
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史    :
-  1.日    期  : 2011年12月22日
-    作    者  : h44270
-    修改内容  : 新生成函数
-
-  2.日    期   : 2012年4月16日
-    作    者   : A00165503
-    修改内容   : DTS2012040100697: 自动应答模式下, 网侧建立的ESP承载, 用户不
-                 能修改和去激活
-
-  3.日    期  : 2015年5月29日
-    作    者  : a00165503
-    修改内容  :  MODIFY for DTS2015051204781
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEsmEpsBearInfoInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -6340,7 +4466,6 @@ VOS_UINT32 TAF_APS_RcvEsmEpsBearInfoInd_PreProc(
     TAF_APS_EPS_BEARER_INFO_IND_STRU   *pstBearerInfo;
     VOS_UINT8                           ucPdpId;
     VOS_UINT8                           ucCid;
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     TAF_CTRL_STRU                       stCtrl;
 
     PS_MEM_SET(&stCtrl, 0, sizeof(TAF_CTRL_STRU));
@@ -6349,7 +4474,6 @@ VOS_UINT32 TAF_APS_RcvEsmEpsBearInfoInd_PreProc(
     stCtrl.ulModuleId   = WUEPS_PID_AT;
     stCtrl.usClientId   = TAF_APS_INVALID_CLIENTID;
     stCtrl.ucOpId       = TAF_APS_INVALID_OPID;
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     pstBearerInfo = (SM_ESM_EPS_BEARER_INFO_IND_STRU*)pstMsg;
 
@@ -6418,21 +4542,7 @@ VOS_UINT32 TAF_APS_RcvEsmEpsBearInfoInd_PreProc(
 }
 
 #if (FEATURE_ON == FEATURE_IMS)
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEsmNotificationInd_PreProc
- 功能描述  : ID_EMS_APS_NOTIFICATION_IND处理函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年09月18日
-    作    者   : Y00213812
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEsmNotificationInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -6452,22 +4562,7 @@ VOS_UINT32 TAF_APS_RcvEsmNotificationInd_PreProc(
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvSndcpActivateRsp_PreProc
- 功能描述  : 收到Sndcp APS_SN_ACT_RSP_MSG_TYPE消息的预处理
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史    :
- 1.日    期  : 2011年12月22日
-   作    者  : h44270
-   修改内容  : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvSndcpActivateRsp_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -6486,22 +4581,7 @@ VOS_UINT32 TAF_APS_RcvSndcpActivateRsp_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvSndcpModifyRsp_PreProc
- 功能描述  : 收到Sndcp APS_SN_MDF_RSP_MSG_TYPE消息的预处理
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史    :
- 1.日    期  : 2011年12月22日
-   作    者  : h44270
-   修改内容  : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvSndcpModifyRsp_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -6521,22 +4601,7 @@ VOS_UINT32 TAF_APS_RcvSndcpModifyRsp_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvSndcpDeactRsp_PreProc
- 功能描述  : 收到Sndcp APS_SN_DEACT_RSP_MSG_TYPE消息的预处理
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史    :
- 1.日    期  : 2011年12月22日
-   作    者  : h44270
-   修改内容  : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvSndcpDeactRsp_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -6556,31 +4621,7 @@ VOS_UINT32 TAF_APS_RcvSndcpDeactRsp_PreProc(
 }
 
 #if (FEATURE_ON == FEATURE_IPV6)
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvNdIpv6ParaInfoNotifyInd_PreProc
- 功能描述  : 收到NDCLINET的ID_NDCLIENT_APS_PARA_INFO_NOTIFY消息的预处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月2日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年6月30日
-    作    者   : A00165503
-    修改内容   : DTS2012062900707: IPv6拨号成功, 应用获取IPv6地址前缀异常
-  3.日    期   : 2012年12月11日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-  4.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，增加PID记录到实体
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvNdIpv6ParaInfoNotifyInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -6591,6 +4632,7 @@ VOS_UINT32 TAF_APS_RcvNdIpv6ParaInfoNotifyInd_PreProc(
     TAF_APS_RAT_TYPE_ENUM_UINT32        enRatType;
     NDCLIENT_APS_PARA_INFO_NOTIFY_STRU *pstNdIpv6ParaInfoNotifyInd;
     APS_PDP_CONTEXT_ENTITY_ST          *pstPdpEntity;
+    TAF_APS_STA_ENUM_UINT32             enState;
 
 
     PS_MEM_SET(&stCtrl, 0x00, sizeof(stCtrl));
@@ -6600,6 +4642,9 @@ VOS_UINT32 TAF_APS_RcvNdIpv6ParaInfoNotifyInd_PreProc(
 
     /* 获取NSAPI对应的APS实体索引 */
     ucPdpId = TAF_APS_GetPdpIdByNsapi(pstNdIpv6ParaInfoNotifyInd->ucRabId);
+
+    enState = TAF_APS_GetPdpIdMainFsmState(ucPdpId);
+
     if (TAF_APS_INVALID_PDPID != ucPdpId)
     {
         /* 获取该PDPID的PDP实体内容地址 */
@@ -6660,7 +4705,8 @@ VOS_UINT32 TAF_APS_RcvNdIpv6ParaInfoNotifyInd_PreProc(
 
         /* 检查当前APS是否有用户使用, 如果有用户使用, 上报RA信息事件 */
         if ((TAF_APS_INVALID_CLIENTID != TAF_APS_GetPdpEntClientId(ucPdpId, pstPdpEntity->stClientInfo.ucCid))
-         && (VOS_TRUE == pstPdpEntity->ulUsedFlg))
+         && (VOS_TRUE == pstPdpEntity->ulUsedFlg)
+         && ((TAF_APS_STA_ACTIVE == enState) || (TAF_APS_STA_MS_MODIFYING == enState)))
         {
             /* 填写APP控制头 */
             TAF_APS_SetPsCallEvtCtrl(ucPdpId, pstPdpEntity->stClientInfo.ucCid, &stCtrl);
@@ -6683,26 +4729,7 @@ VOS_UINT32 TAF_APS_RcvNdIpv6ParaInfoNotifyInd_PreProc(
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtGetGprsActiveTypeReq_PreProc
- 功能描述  : 获取PPP拨号CID对应的PDP类型
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史    :
-   1.日    期  : 2011年12月22日
-     作    者  : A00165503
-     修改内容  : 新生成函数
-
-  2.日    期   : 2014年1月13日
-    作    者   : A00165503
-    修改内容   : DTS2013122609183: L2P参数处理优化, 直接根据CID上下文中定义
-                 的PDP类型决定
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtGetGprsActiveTypeReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -6760,33 +4787,7 @@ VOS_UINT32 TAF_APS_RcvAtGetGprsActiveTypeReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtSetDnsQueryReq_PreProc
- 功能描述  : 查询指定的PDP激活后，与网侧协商的主DNS、辅DNS信息的预处理函数
-             (ID_MSG_TAF_PS_GET_NEGOTIATION_DNS_REQ)
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年02月20日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年10月17日
-    作    者   : l00198894
-    修改内容   : DTS2012101606439, 增加DNS默认值回复
-  3.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，结构替换
-
-  4.日    期   : 2015年4月20日
-    作    者   : Y00213812
-    修改内容   : 增加CDMA模式后需要考虑dormant状态和discing状态
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtSetDnsQueryReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -6807,9 +4808,7 @@ VOS_UINT32 TAF_APS_RcvAtSetDnsQueryReq_PreProc(
     PS_MEM_SET(&stNegoDnsCnf, 0, sizeof(stNegoDnsCnf));
 
     /* 填写消息内容 */
-    /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     stNegoDnsCnf.stCtrl                 = pstNegoDnsReq->stCtrl;
-    /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     stNegoDnsCnf.enCause                = TAF_PS_CAUSE_UNKNOWN;
 
@@ -6866,22 +4865,7 @@ VOS_UINT32 TAF_APS_RcvAtSetDnsQueryReq_PreProc(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiApsLimitPdpActExpired_PreProc
- 功能描述  : 暂停PDP激活定时器超时预处理函数(AT&T DCM定制，PDP激活受限
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月16日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiApsLimitPdpActExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -6890,22 +4874,7 @@ VOS_UINT32 TAF_APS_RcvTiApsLimitPdpActExpired_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiApsMsActvaingExpired_PreProc
- 功能描述  : APS发起的PDP激活超时预处理函数(AT&T DCM定制，PDP激活受限
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月16日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiApsMsActvaingExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -6917,21 +4886,7 @@ VOS_UINT32 TAF_APS_RcvTiApsMsActvaingExpired_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetActPdpLimitTimerLen
- 功能描述  : 产生暂停PDP激活定时器的时长(AT&T DCM定制，PDP激活受限
- 输入参数  : VOS_UINT8 ucFailCount
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月16日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_GetActPdpLimitTimerLen(
     VOS_UINT8                           ucFailCount
 )
@@ -6971,21 +4926,7 @@ VOS_UINT32 TAF_APS_GetActPdpLimitTimerLen(
     return (ulTimeLen * TIMER_S_TO_MS_1000);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ProcPdpActLimit_PreProc
- 功能描述  : 收到激活被拒、主动去激活或者激活超时，处理激活受限
- 输入参数  : VOS_UINT8 ucTryingCount
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月15日
-    作    者   : M00217266
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_ProcPdpActLimit_PreProc(VOS_UINT8 ucTryingCount)
 {
     TAF_APS_PDP_ACT_LIMIT_INFO_STRU    *pstPdpActLimitInfo;
@@ -7011,21 +4952,7 @@ VOS_VOID TAF_APS_ProcPdpActLimit_PreProc(VOS_UINT8 ucTryingCount)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_IsPdpActLimit_PreProc
- 功能描述  : 判断是不是PDP激活受限
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月30日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_IsPdpActLimit_PreProc(VOS_VOID)
 {
     TAF_APS_RAT_TYPE_ENUM_UINT32        enCurrRatType;
@@ -7051,23 +4978,7 @@ VOS_UINT32 TAF_APS_IsPdpActLimit_PreProc(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtSetPdpContextStateReq_PdpActLimit_PreProc
- 功能描述  : 收到ID_MSG_TAF_PS_SET_PDP_CONTEXT_STATE_REQ，PDP激活受限的预处
-             理
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月4日
-    作    者   : l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtSetPdpContextStateReq_PdpActLimit_PreProc(
     TAF_PS_SET_PDP_STATE_REQ_STRU      *pstSetPdpStateReq
 )
@@ -7090,32 +5001,12 @@ VOS_UINT32 TAF_APS_RcvAtSetPdpContextStateReq_PdpActLimit_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvOmSetDsflowRptReq_PreProc
- 功能描述  : 收到ID_NAS_OM_SET_DSFLOW_RPT_REQ，设置OM流量上报信息
- 输入参数  : ulEventType        -- 事件类型
-             pstMsg             -- 消息信息
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月09日
-    作    者   : l00198894
-    修改内容   : Probe路测工具对接项目新增函数
-
-  2.日    期   : 2015年7月09日
-    作    者   : wx270776
-    修改内容   : OM融合
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvOmSetDsflowRptReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 )
 {
-    /* Modified by wx270776 for OM融合, 2015-7-1, begin */
     NAS_OM_SET_DSFLOW_RPT_REQ_STRU     *pstDsflowRptReq = VOS_NULL_PTR;
     NAS_OM_SET_DSFLOW_RPT_CNF_STRU     *pstDsflowRptCnf = VOS_NULL_PTR;
     TAF_APS_DSFLOW_STATS_CTX_STRU      *pstApsDsFlowCtx = VOS_NULL_PTR;//global
@@ -7186,25 +5077,10 @@ VOS_UINT32 TAF_APS_RcvOmSetDsflowRptReq_PreProc(
 
 
     return VOS_TRUE;
-    /* Modified by wx270776 for OM融合, 2015-7-1, end */
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvMmcServiceStatusInd_PreProc
- 功能描述  : 收到ID_MMC_APS_SERVICE_STATUS_IND，预处理
- 输入参数  : ulEventType        -- 事件类型
-             pstMsg             -- 消息信息
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年07月30日
-    作    者   : m00217266
-    修改内容   : 新增，主要用于记录ID_MMC_APS_SERVICE_STATUS_IND消息处理之前pdp实体的接入技术
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvMmcServiceStatusInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -7334,21 +5210,7 @@ VOS_UINT32 TAF_APS_RcvMmcServiceStatusInd_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_Aps_RcvGetCidSdfReq
- 功能描述  : 用于获取所有NV项中的SDF配置信息预处理
- 输入参数  : VOS_VOID                           *pMsgData
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月09日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPsGetCidSdfReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -7396,21 +5258,7 @@ VOS_UINT32 TAF_APS_RcvPsGetCidSdfReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvSetImsPdpCfgReq_PreProc
- 功能描述  : 设置PDP是否支持IMS
- 输入参数  : VOS_VOID                           *pMsgData
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月29日
-    作    者   : z00301431
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvSetImsPdpCfgReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -7455,25 +5303,8 @@ VOS_UINT32 TAF_APS_RcvSetImsPdpCfgReq_PreProc(
     return VOS_TRUE;
 }
 
-/* Added by m00217266 for L-C互操作项目, 2014-2-12, begin */
 #if (FEATURE_ON == FEATURE_CL_INTERWORK)
-/*****************************************************************************
- 函 数 名  : TAF_APS_LC_Check_Req_Valid
- 功能描述  : 在LC互操作模式下，检查请求的有效性
- 输入参数  : TAF_CTRL_STRU
- 输出参数  : 无
- 返 回 值  : VOS_UINT8,
-             0:无效请求
-             1:有效请求
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月12日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 TAF_APS_LCCheckReqValid(
     TAF_CTRL_STRU                       *pstCtrlInfo
 )
@@ -7505,26 +5336,10 @@ VOS_UINT8 TAF_APS_LCCheckReqValid(
     return VOS_TRUE;
 }
 #endif
-/* Added by m00217266 for L-C互操作项目, 2014-2-12, end */
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvXccDataCallSuspendInd_PreProc
- 功能描述  : 收到ID_XCC_APS_DATA_CALL_SUSPEND_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月18日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvXccDataCallSuspendInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -7548,22 +5363,7 @@ VOS_UINT32 TAF_APS_RcvXccDataCallSuspendInd_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvXccDataCallResumeInd_PreProc
- 功能描述  : 收到ID_XCC_APS_DATA_CALL_RESUME_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月18日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvXccDataCallResumeInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -7613,22 +5413,7 @@ VOS_UINT32 TAF_APS_RcvXccDataCallResumeInd_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvXccOrigDataCallCnf_PreProc
- 功能描述  : 收到ID_XCC_APS_ORIG_DATA_CALL_CNF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月18日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvXccOrigDataCallCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -7651,22 +5436,7 @@ VOS_UINT32 TAF_APS_RcvXccOrigDataCallCnf_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvXccHangupDataCallCnf_PreProc
- 功能描述  : 收到ID_XCC_APS_HANGUP_DATA_CALL_CNF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月18日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvXccHangupDataCallCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -7690,22 +5460,7 @@ VOS_UINT32 TAF_APS_RcvXccHangupDataCallCnf_PreProc(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvXccDataCallDiscInd_PreProc
- 功能描述  : 收到ID_XCC_APS_DATA_CALL_DISC_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月18日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvXccDataCallDiscInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -7736,22 +5491,7 @@ VOS_UINT32 TAF_APS_RcvXccDataCallDiscInd_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvXccIncomintCallInd_PreProc
- 功能描述  : 收到ID_XCC_APS_INCOMING_CALL_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月18日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvXccIncomingCallInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -7797,22 +5537,7 @@ VOS_UINT32 TAF_APS_RcvXccIncomingCallInd_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvXccDataCallConnInd_PreProc
- 功能描述  : 收到ID_XCC_APS_DATA_CALL_CONN_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月18日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvXccDataCallConnInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -7835,22 +5560,7 @@ VOS_UINT32 TAF_APS_RcvXccDataCallConnInd_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvXccDataServiceConnInd_PreProc
- 功能描述  : 收到ID_XCC_APS_DATA_SERVICE_CONNECT_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月18日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvXccDataServiceConnInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -7874,22 +5584,7 @@ VOS_UINT32 TAF_APS_RcvXccDataServiceConnInd_PreProc(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvXccAnswerDataCallCnf_PreProc
- 功能描述  : 收到ID_XCC_APS_ANSWER_DATA_CALL_CNF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月18日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvXccAnswerDataCallCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -7911,24 +5606,7 @@ VOS_UINT32 TAF_APS_RcvXccAnswerDataCallCnf_PreProc(
     /* 否则进状态机处理 */
     return VOS_FALSE;
 }
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvXccSetPdpEntDormantTimer_PreProc
- 功能描述  : SOCM消息配置Dormant Timer
- 输入参数  : XCC_APS_SO_CTRL_MSG_IND_STRU       *pstSoCtrlMsgInd
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月1日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年1月7日
-    作    者   : g00261581
-    修改内容   : 设置Dormant TI时跟具体的PdpId实体无关
-*****************************************************************************/
 VOS_VOID TAF_APS_RcvXccSetPdpEntDormantTimer_PreProc(
     XCC_APS_SO_CTRL_MSG_IND_STRU       *pstSoCtrlMsgInd
 )
@@ -7986,22 +5664,7 @@ VOS_VOID TAF_APS_RcvXccSetPdpEntDormantTimer_PreProc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvXccSetPacketZoneReconnFeature_PreProc
- 功能描述  : SOCM Msg used to config Packet Zone Reconnect Feature and Packet Zone Hysteresis Feature
-             Parse SOCM Msg
- 输入参数  : XCC_APS_SO_CTRL_MSG_IND_STRU       *pstSoCtrlMsgInd
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月23日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_RcvXccSetPacketZoneReconnFeature_PreProc(
     XCC_APS_SO_CTRL_MSG_IND_STRU       *pstSoCtrlMsgInd
 )
@@ -8032,25 +5695,7 @@ VOS_VOID TAF_APS_RcvXccSetPacketZoneReconnFeature_PreProc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvXccSoCntrlMsg_PreProc
- 功能描述  : 收到ID_XCC_APS_SERVICE_OPTION_CONTROL_MESSAGE消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月18日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年1月7日
-    作    者   : g00261581
-    修改内容   : 增加Packet zone特性功能的配置
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvXccSoCtrlMsg_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8078,22 +5723,7 @@ VOS_UINT32 TAF_APS_RcvXccSoCtrlMsg_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPppActCnf_PreProc
- 功能描述  : 收到ID_PPP_APS_PDP_ACT_CNF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月18日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPppActCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8112,22 +5742,7 @@ VOS_UINT32 TAF_APS_RcvPppActCnf_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPppDeactInd_PreProc
- 功能描述  : 收到ID_PPP_APS_PDP_DEACT_CNF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月18日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPppDeactCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8147,22 +5762,7 @@ VOS_UINT32 TAF_APS_RcvPppDeactCnf_PreProc(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPppDeactNtf_PreProc
- 功能描述  : 收到ID_PPP_APS_PDP_DEACT_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月18日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPppDeactNtf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8182,22 +5782,7 @@ VOS_UINT32 TAF_APS_RcvPppDeactNtf_PreProc(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPppModifyInd_PreProc
- 功能描述  : 收到ID_PPP_APS_MODIFY_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年03月27日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPppModifyInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8216,21 +5801,7 @@ VOS_UINT32 TAF_APS_RcvPppModifyInd_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEhsmPdnInfoChgInd_PreProc
- 功能描述  : aps收到ehsm的pdn信息变化消息的预处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月6日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEhsmPdnInfoChgInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8249,22 +5820,7 @@ VOS_UINT32 TAF_APS_RcvEhsmPdnInfoChgInd_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPppReconnInd_PreProc
- 功能描述  : 收到ID_PPP_APS_RECONN_IND消息的预处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月9日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPppReconnInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8283,22 +5839,7 @@ VOS_UINT32 TAF_APS_RcvPppReconnInd_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvCdsServiceInd_PreProc
- 功能描述  : 收到ID_CDS_APS_SERVICE_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月18日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvCdsServiceInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8329,22 +5870,7 @@ VOS_UINT32 TAF_APS_RcvCdsServiceInd_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SetCqosPriReq_PreProc
- 功能描述  : 处理ID_MSG_TAF_PS_SET_CQOS_PRI_REQ消息
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月16日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_SetCqosPriReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8369,22 +5895,7 @@ VOS_UINT32 TAF_APS_SetCqosPriReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPsCallEnterDormantInd_PreProc
- 功能描述  : 收到ID_MSG_TAF_PS_CALL_ENTER_DORMANT_IND消息的预处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月28日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPsCallEnterDormantInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8405,22 +5916,7 @@ VOS_UINT32 TAF_APS_RcvPsCallEnterDormantInd_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiHatExpired_PreProc
- 功能描述  : APS PreProc when HAT Expired
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月24日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiHatExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8431,22 +5927,7 @@ VOS_UINT32 TAF_APS_RcvTiHatExpired_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiHtExpired_PreProc
- 功能描述  : APS PreProc when HT Expired
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月24日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiHtExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8457,23 +5938,7 @@ VOS_UINT32 TAF_APS_RcvTiHtExpired_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvMmaEpdszidInfo_PreProc
- 功能描述  : APS Rcv EPDSZID Info from MMA，Update Current EPDSZID，
-             Start Reconnect If current EPDSZID is not in the List
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月24日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvMmaEpdszidInfo_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8521,22 +5986,7 @@ VOS_UINT32 TAF_APS_RcvMmaEpdszidInfo_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvXregRegBeginInd_PreProc
- 功能描述  : XREG send Reg Begin Ind Msg to APS,The msg contains sid/nid/pzid info
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月24日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvXregRegBeginInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8553,22 +6003,7 @@ VOS_UINT32 TAF_APS_RcvXregRegBeginInd_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPsInterEpdszidReOrig_PreProc
- 功能描述  : PreProc Epdszis Re-Orig Req
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月7日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPsInterEpdszidReOrig_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8579,22 +6014,7 @@ VOS_UINT32 TAF_APS_RcvPsInterEpdszidReOrig_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPsHaiChangeInd_PreProc
- 功能描述  : 收到ID_MSG_TAF_PS_HAI_CHANGE_IND消息的预处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月4日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPsHaiChangeInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8617,22 +6037,7 @@ VOS_UINT32 TAF_APS_RcvPsHaiChangeInd_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvXccUpdateDataCallInfoInd_PreProc
- 功能描述  : The Process for receiving ID_XCC_APS_ANSWER_DATA_CALL_CNF
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月4日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvXccUpdateDataCallInfoInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8655,22 +6060,7 @@ VOS_UINT32 TAF_APS_RcvXccUpdateDataCallInfoInd_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvHsmOrigCnf_PreProc
- 功能描述  : 收到ID_HSM_APS_ORIG_CNF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月05日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvHsmOrigCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8692,22 +6082,7 @@ VOS_UINT32 TAF_APS_RcvHsmOrigCnf_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvHsmConnectInd_PreProc
- 功能描述  : 收到ID_HSM_APS_CONNECT_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月05日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvHsmConnectInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8742,22 +6117,7 @@ VOS_UINT32 TAF_APS_RcvHsmConnectInd_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvHsmDiscCnf_PreProc
- 功能描述  : 收到ID_HSM_APS_DISC_CNF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月05日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvHsmDiscCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8779,22 +6139,7 @@ VOS_UINT32 TAF_APS_RcvHsmDiscCnf_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvHsmDiscInd_PreProc
- 功能描述  : 收到ID_HSM_APS_DISC_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月05日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvHsmDiscInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8816,22 +6161,7 @@ VOS_UINT32 TAF_APS_RcvHsmDiscInd_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvHsmLocChangedInd_PreProc
- 功能描述  : 收到ID_HSM_APS_LOC_CHANGED_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月05日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvHsmLocChangedInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8859,22 +6189,7 @@ VOS_UINT32 TAF_APS_RcvHsmLocChangedInd_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvHsm1XToHrpdHandOff_PreProc
- 功能描述  : 收到ID_HSM_APS_1X_TO_HRPD_HANDOFF_CNF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月05日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvHsm1XToHrpdHandOff_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8896,22 +6211,7 @@ VOS_UINT32 TAF_APS_RcvHsm1XToHrpdHandOff_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvHsmHrpdAvailableIndPreProc
- 功能描述  : 收到ID_HSM_APS_HRPD_AVAILABLE_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月07日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvHsmHrpdAvailableIndPreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8923,25 +6223,7 @@ VOS_UINT32 TAF_APS_RcvHsmHrpdAvailableIndPreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPsSetPktCdataInactivityTimeLenReq_PreProc
- 功能描述  : 消息ID_MSG_TAF_PS_SET_1X_MAX_NO_DATA_TIME_LEN_REQ预处理函数
- 输入参数  : ulEventType --- 事件名
-             pstMsg      --- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE    --- 消息处理完毕
-             VOS_FALSE   --- 消息未处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月21日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-  2.日    期   : 2016年1月25日
-    作    者   : y00322978
-    修改内容   : DTS2016012503506 at+cta设置1x和do的进入dormant态的时长
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPsSetPktCdataInactivityTimeLenReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8958,22 +6240,7 @@ VOS_UINT32 TAF_APS_RcvPsSetPktCdataInactivityTimeLenReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPsGetPktCdataInactivityTimerLenReq_PreProc
- 功能描述  : 消息ID_MSG_TAF_PS_SET_1X_MAX_NO_DATA_TIME_LEN_REQ预处理函数
- 输入参数  : ulEventType --- 事件名
-             pstMsg      --- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE    --- 消息处理完毕
-             VOS_FALSE   --- 消息未处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月21日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPsGetPktCdataInactivityTimerLenReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8997,24 +6264,7 @@ VOS_UINT32 TAF_APS_RcvPsGetPktCdataInactivityTimerLenReq_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPowerOnInd_Preproc
- 功能描述  : 从卡中读取数据业务时最大无数据收发时间请求
- 输入参数  : ulEventType --- 事件名
-             pstMsg      --- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE    --- 消息处理完毕
-             VOS_FALSE   --- 消息未处理
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年4月21日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPowerOnInd_Preproc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -9045,22 +6295,7 @@ VOS_UINT32 TAF_APS_RcvPowerOnInd_Preproc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtSetDialModeReq_PreProc
- 功能描述  :
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年04月02日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPsSetDialModeReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -9086,22 +6321,7 @@ VOS_UINT32 TAF_APS_RcvPsSetDialModeReq_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvGetCgmtuValue_PreProc
- 功能描述  : TAF APS Pre Proc CDMA Mtu Value Qry Req
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月29日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvGetCgmtuValue_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -9119,22 +6339,7 @@ VOS_UINT32 TAF_APS_RcvGetCgmtuValue_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvMma1XServiceStatusInd_PreProc
- 功能描述  : 收到ID_MMA_TAF_1X_SERVICE_STATUS_IND消息的处理
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年04月08日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvMma1XServiceStatusInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -9219,22 +6424,7 @@ VOS_UINT32 TAF_APS_RcvMma1XServiceStatusInd_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvMmaCLServiceStatusInd_PreProc
- 功能描述  : 收到ID_MMA_TAF_SERVICE_STATUS_IND消息的处理
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年04月08日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvMmaCLServiceStatusInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -9337,22 +6527,7 @@ VOS_UINT32 TAF_APS_RcvMmaCLServiceStatusInd_PreProc(
 
 
 #if 0
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvMmaHrpdDataCallSysAcqInd_PreProc
- 功能描述  : 收到ID_MMA_APS_HRPD_DATA_CALL_SYS_ACQ_IND消息的处理
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月16日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvMmaHrpdDataCallSysAcqInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -9381,22 +6556,7 @@ VOS_UINT32 TAF_APS_RcvMmaHrpdDataCallSysAcqInd_PreProc(
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvMmaSysCfgInfoInd_PreProc
- 功能描述  : 收到ID_MMA_APS_SYS_CFG_INFO_IND消息的处理
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月29日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvMmaSysCfgInfoInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -9446,22 +6606,7 @@ VOS_UINT32 TAF_APS_RcvMmaSysCfgInfoInd_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEhsmPdnActiveInd_PreProc
- 功能描述  : 收到ID_EHSM_APS_PDN_ACTIVATE_IND消息的处理
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月16日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEhsmPdnActInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -9523,22 +6668,7 @@ VOS_UINT32 TAF_APS_RcvEhsmPdnActInd_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEhsmPdnDeactiveInd_PreProc
- 功能描述  : 收到ID_EHSM_APS_PDN_DEACTIVATE_IND消息的处理
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月16日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEhsmPdnDeactInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -9558,22 +6688,7 @@ VOS_UINT32 TAF_APS_RcvEhsmPdnDeactInd_PreProc(
     /* 否则进状态机处理 */
     return VOS_FALSE;
 }
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEhsmLteHandoverToEhrpdInd_PreProc
- 功能描述  : 收到ID_MMA_TAF_SERVICE_STATUS_IND消息的处理
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月11日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEhsmLteHandoverToEhrpdInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -9598,22 +6713,7 @@ VOS_UINT32 TAF_APS_RcvEhsmLteHandoverToEhrpdInd_PreProc(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEhsmPdnActCnf_PreProc
- 功能描述  : 收到ID_EHSM_APS_PDN_ACTIVATE_CNF消息的处理
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月19日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEhsmPdnActCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -9634,22 +6734,7 @@ VOS_UINT32 TAF_APS_RcvEhsmPdnActCnf_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEhsmPdnAttachCnf_PreProc
- 功能描述  : ID_EHSM_APS_PDN_ATTACH_CNF消息的预处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月30日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEhsmPdnAttachCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -9670,22 +6755,7 @@ VOS_UINT32 TAF_APS_RcvEhsmPdnAttachCnf_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEhsmPdnDeactCnf_PreProc
- 功能描述  : 收到ID_EHSM_APS_PDN_DEACTIVATE_CNF消息的处理
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月16日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEhsmPdnDeactCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -9706,22 +6776,7 @@ VOS_UINT32 TAF_APS_RcvEhsmPdnDeactCnf_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEhsmReconnCnf_PreProc
- 功能描述  : 收到ID_EHSM_APS_RECONN_CNF消息的处理
- 输入参数  : VOS_UINT32         ulEventType
-             struct MsgCB      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月16日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEhsmReconnCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -9747,22 +6802,7 @@ VOS_UINT32 TAF_APS_RcvEhsmReconnCnf_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvDhcpDnsGetCnf_PreProc
- 功能描述  : 收到DHCP的ID_DHCP_APS_GET_DNS_IPV4_CNF消息的预处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月24日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvDhcpDnsIpv4Cnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -9834,22 +6874,7 @@ VOS_UINT32 TAF_APS_RcvDhcpDnsIpv4Cnf_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvDhcpDnsIpv6Cnf_PreProc
- 功能描述  : 收到DHCP的ID_DHCP_APS_GET_DNS_IPV6_CNF消息的预处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月24日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvDhcpDnsIpv6Cnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -9914,22 +6939,7 @@ VOS_UINT32 TAF_APS_RcvDhcpDnsIpv6Cnf_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvInterPsServiceModeModifyInd_PreProc
- 功能描述  : 收到ID_MSG_TAF_PS_INTER_PS_SERVICE_MODE_MODIFY_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月4日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvInterPsServiceModeModifyInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -9989,22 +6999,7 @@ VOS_UINT32 TAF_APS_RcvInterPsServiceModeModifyInd_PreProc(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvSet1xDormantTimer_PreProc
- 功能描述  : 消息ID_MSG_TAF_PS_SET_1X_MAX_NO_DATA_TIME_LEN_REQ预处理函数
- 输入参数  : ulEventType --- 事件名
-             pstMsg      --- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE    --- 消息处理完毕
-             VOS_FALSE   --- 消息未处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月13日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtSet1xDormantTimer_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -10043,22 +7038,7 @@ VOS_UINT32 TAF_APS_RcvAtSet1xDormantTimer_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtGet1xDormantTimer_PreProc
- 功能描述  : 消息ID_MSG_TAF_PS_SET_1X_MAX_NO_DATA_TIME_LEN_REQ预处理函数
- 输入参数  : ulEventType --- 事件名
-             pstMsg      --- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE    --- 消息处理完毕
-             VOS_FALSE   --- 消息未处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月13日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtGet1xDormantTimer_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -10084,21 +7064,7 @@ VOS_UINT32 TAF_APS_RcvAtGet1xDormantTimer_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_UsimGetFileRspPreProc
- 功能描述  : aps 收到卡文件读取cnf消息的处理
- 输入参数  : USIMM_READFILE_CNF_STRU* pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月27日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_UsimGetFileRspPreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg

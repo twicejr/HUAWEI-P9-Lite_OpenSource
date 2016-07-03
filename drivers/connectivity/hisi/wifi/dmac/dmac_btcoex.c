@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : dmac_btcoex.c
-  版 本 号   : 初稿
-  作    者   : c00221210
-  生成日期   : 2014年12月02日
-  最近修改   :
-  功能描述   : WiFi和bt共存特性文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年12月02日
-    作    者   : c00221210
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -91,22 +74,7 @@ oal_uint32 g_delba = 1;
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : dmac_btcoex_encap_preempt_sta
- 功能描述  : 根据指定的PS位封null data帧
- 输入参数  : oal_uint8 *puc_frame
 
- 输出参数  : 无
- 返 回 值  : OAL_STATIC  OAL_INLINE  void
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年2月10日
-    作    者   : c00221210
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void dmac_btcoex_encap_preempt_sta(oal_uint8 *puc_frame,
                                                                oal_uint8 *puc_da,
                                                                oal_uint8 *puc_sa,
@@ -153,22 +121,7 @@ OAL_STATIC oal_void dmac_btcoex_encap_preempt_sta(oal_uint8 *puc_frame,
 
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_btcoex_init_preempt
- 功能描述  :
- 输入参数  : pst_dmac_vap
-             pst_dmac_user
- 输出参数  : 无
- 返 回 值  : OAL_SUCC或者其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月10日
-    作    者   : c00221210
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_btcoex_init_preempt(mac_vap_stru *pst_mac_vap, mac_user_stru *pst_mac_user, coex_preempt_frame_enum_uint8 en_preempt_type)
 {
     /* 填写帧头*/
@@ -182,20 +135,7 @@ oal_void dmac_btcoex_init_preempt(mac_vap_stru *pst_mac_vap, mac_user_stru *pst_
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_btcoex_status_event_handler
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月16日
-    作    者   : g00306640
-    修改内容   : 新生成函数
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void dmac_btcoex_update_ba_size(mac_vap_stru *pst_mac_vap, hal_btcoex_wifi_status_stru *pst_wifi_status, hal_btcoex_btble_status_stru *pst_btble_status)
 {
     bt_status_stru *pst_bt_status;
@@ -252,20 +192,7 @@ OAL_STATIC OAL_INLINE oal_void dmac_btcoex_update_ba_size(mac_vap_stru *pst_mac_
     pst_wifi_status->uc_ba_size = g_auc_rx_win_size[uc_bt_rx_win_size_grade][pst_wifi_status->uc_ba_size_index];
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_bt_transfer_status_handler
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月19日
-    作    者   : c000221210
-    修改内容   : 新生成函数
-*****************************************************************************/
 OAL_STATIC oal_uint32 dmac_bt_transfer_status_handler(frw_event_mem_stru *pst_event_mem)
 {
     oal_uint8 uc_vap_idx;
@@ -338,20 +265,7 @@ OAL_STATIC oal_uint32 dmac_bt_transfer_status_handler(frw_event_mem_stru *pst_ev
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_btcoex_rx_rate_statistics_flag_callback
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月16日
-    作    者   : g00306640
-    修改内容   : 新生成函数
-*****************************************************************************/
 OAL_STATIC oal_uint32 dmac_btcoex_rx_rate_statistics_flag_callback(oal_void *p_arg)
 {
     mac_device_stru *pst_mac_device;
@@ -395,20 +309,7 @@ OAL_STATIC oal_uint32 dmac_btcoex_rx_rate_statistics_flag_callback(oal_void *p_a
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_btcoex_status_event_handler
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月19日
-    作    者   : c000221210
-    修改内容   : 新生成函数
-*****************************************************************************/
 OAL_STATIC oal_uint32 dmac_btcoex_status_event_handler(frw_event_mem_stru *pst_event_mem)
 {
     frw_event_stru *pst_event;
@@ -500,20 +401,7 @@ OAL_STATIC oal_uint32 dmac_btcoex_status_event_handler(frw_event_mem_stru *pst_e
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_btcoex_register_dmac_misc_event
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月3日
-    作    者   : g00306640
-    修改内容   : 新生成函数
-*****************************************************************************/
 oal_uint32 dmac_btcoex_register_dmac_misc_event(hal_dmac_misc_sub_type_enum en_event_type, oal_uint32 (*p_func)(frw_event_mem_stru *))
 {
     if(en_event_type >= HAL_EVENT_DMAC_MISC_SUB_TYPE_BUTT || NULL == p_func)
@@ -527,20 +415,7 @@ oal_uint32 dmac_btcoex_register_dmac_misc_event(hal_dmac_misc_sub_type_enum en_e
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_btcoex_unregister_dmac_misc_event
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月3日
-    作    者   : g00306640
-    修改内容   : 新生成函数
-*****************************************************************************/
 oal_uint32  dmac_btcoex_unregister_dmac_misc_event(hal_dmac_misc_sub_type_enum en_event_type)
 {
     if(en_event_type >= HAL_EVENT_DMAC_MISC_SUB_TYPE_BUTT)
@@ -553,23 +428,7 @@ oal_uint32  dmac_btcoex_unregister_dmac_misc_event(hal_dmac_misc_sub_type_enum e
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_btcoex_init()
- 功能描述  : 初始化共存相关的参数
- 输出参数  : 无
- 返 回 值  : oal_err_code_enum_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月02日
-    作    者   : c00221210
-    修改内容   : 新生成函数
-  2.日    期   : 2014年12月25日
-    作    者   : g00306640
-    修改内容   : 修改
-
-*****************************************************************************/
 oal_uint32 dmac_btcoex_init(oal_void)
 {
     if (OAL_SUCC != dmac_btcoex_register_dmac_misc_event(HAL_EVENT_DMAC_PS_BTCOEX, dmac_btcoex_status_event_handler))
@@ -587,20 +446,7 @@ oal_uint32 dmac_btcoex_init(oal_void)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_btcoex_exit()
- 功能描述  : 初始化共存相关的参数
- 输出参数  : 无
- 返 回 值  : OAL_STATIC oal_bool_enum_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月02日
-    作    者   : c00221210
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 dmac_btcoex_exit(oal_void)
 {
     /* init coexit wifi bt param */
@@ -609,20 +455,7 @@ oal_uint32 dmac_btcoex_exit(oal_void)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_btcoex_wlan_priority_set()
- 功能描述  : 软件设定高优先级保护
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月27日
-    作    者   : g00306640
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_btcoex_wlan_priority_set(mac_device_stru *pst_mac_device, oal_uint8 uc_value, oal_uint8 uc_timeout_ms)
 {
     oal_uint8 *puc_state;
@@ -693,20 +526,7 @@ oal_void dmac_btcoex_wlan_priority_set(mac_device_stru *pst_mac_device, oal_uint
 
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_btcoex_wlan_priority_timeout_callback()
- 功能描述  : 软件设定高优先级保护超时函数
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月27日
-    作    者   : g00306640
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 dmac_btcoex_wlan_priority_timeout_callback(oal_void *p_arg)
 {
     mac_device_stru     *pst_mac_device = (mac_device_stru *)p_arg;
@@ -715,20 +535,7 @@ oal_uint32 dmac_btcoex_wlan_priority_timeout_callback(oal_void *p_arg)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_btcoex_change_state_syn
- 功能描述  : 同步dmac vap状态
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月25日
-    作    者   : g00306640
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_btcoex_change_state_syn(mac_vap_stru *pst_mac_vap)
 {
     switch (pst_mac_vap->en_vap_state)
@@ -747,20 +554,7 @@ oal_void dmac_btcoex_change_state_syn(mac_vap_stru *pst_mac_vap)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_btcoex_rx_delba_trigger
- 功能描述  : Change ba size
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月18日
-    作    者   : c00221210
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_btcoex_delba_trigger(mac_vap_stru *pst_mac_vap, oal_uint8 uc_need_delba,oal_uint8 uc_ba_size)
 {
     dmac_to_hmac_btcoex_rx_delba_trigger_event_stru  st_dmac_to_hmac_btcoex_rx_delba;
@@ -770,20 +564,7 @@ oal_void dmac_btcoex_delba_trigger(mac_vap_stru *pst_mac_vap, oal_uint8 uc_need_
     dmac_send_sys_event(pst_mac_vap, WLAN_CFGID_BTCOEX_RX_DELBA_TRIGGER, OAL_SIZEOF(dmac_to_hmac_btcoex_rx_delba_trigger_event_stru), (oal_uint8 *)&st_dmac_to_hmac_btcoex_rx_delba);
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_btcoex_vap_up_handle
- 功能描述  : 处理vap_up，给BT发送中断
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月29日
-    作    者   : g00306640
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_btcoex_vap_up_handle(mac_vap_stru *pst_mac_vap)
 {
     oal_uint8 uc_chan_idx;
@@ -831,20 +612,7 @@ oal_void dmac_btcoex_vap_up_handle(mac_vap_stru *pst_mac_vap)
                  pst_bt_status->bit_bt_on);
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_btcoex_vap_down_handle
- 功能描述  : 处理vap_down，给BT发送中断
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月29日
-    作    者   : g00306640
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_btcoex_vap_down_handle(mac_vap_stru *pst_mac_vap)
 {
     mac_device_stru *pst_mac_device;
@@ -867,20 +635,7 @@ oal_void dmac_btcoex_vap_down_handle(mac_vap_stru *pst_mac_vap)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_btcoex_update_rx_rate_threshold
- 功能描述  : 获取速率门限
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月23日
-    作    者   : g00306640
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_btcoex_update_rx_rate_threshold (mac_vap_stru *pst_mac_vap, hal_btcoex_wifi_status_stru *pst_wifi_status)
 {
     oal_uint8 uc_band;
@@ -903,24 +658,7 @@ oal_void dmac_btcoex_update_rx_rate_threshold (mac_vap_stru *pst_mac_vap, hal_bt
 
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_config_btcoex_assoc_state_syn
- 功能描述  : 同步共存下mac的状态
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年01月15日
-    作    者   : c00221210
-    修改内容   : 新生成函数
-  2.日    期   : 2015年07月28日
-    作    者   : g00306640
-    修改内容   : 不区分sta和ap
-
-*****************************************************************************/
 oal_uint32 dmac_config_btcoex_assoc_state_syn(mac_vap_stru *pst_mac_vap, mac_user_stru *pst_mac_user)
 {
     oal_uint8 uc_chan_idx;
@@ -968,7 +706,6 @@ oal_uint32 dmac_config_btcoex_assoc_state_syn(mac_vap_stru *pst_mac_vap, mac_use
     pst_btcoex_wifi_status->uc_ba_size_index = BTCOEX_RX_WINDOW_SIZE_INDEX_3;
     pst_btcoex_wifi_status->uc_ba_size_addba_rsp_index = BTCOEX_RX_WINDOW_SIZE_INDEX_3;
 
-    /* DTS2016010901179 BT无业务时,恢复wifi控制聚合 */
     if (0 == pst_ble_status->bit_bt_transfer && 0 == pst_ble_status->bit_bt_ba)
     {
         dmac_btcoex_delba_trigger(pst_mac_vap, OAL_FALSE, 0);
@@ -1008,20 +745,7 @@ oal_uint32 dmac_config_btcoex_assoc_state_syn(mac_vap_stru *pst_mac_vap, mac_use
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_btcoex_rx_average_rate_calculate
- 功能描述  : 统计平均速率
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月23日
-    作    者   : g00306640
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void dmac_btcoex_rx_average_rate_calculate (hal_to_dmac_device_stru *pst_hal_device, oal_int32 *pl_rx_rssi, oal_uint32 *pul_rx_rate)
 {
     hal_btcoex_wifi_rx_info_stru *pst_btcoex_wifi_rx_rate_info;
@@ -1052,20 +776,7 @@ OAL_STATIC OAL_INLINE oal_void dmac_btcoex_rx_average_rate_calculate (hal_to_dma
 
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_btcoex_low_rate_callback
- 功能描述  : 接收降速后处理
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月9日
-    作    者   : g00306640
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32 dmac_btcoex_low_rate_callback(oal_void *p_arg)
 {
     mac_vap_stru *pst_vap = (mac_vap_stru *)p_arg;
@@ -1132,20 +843,7 @@ OAL_STATIC oal_uint32 dmac_btcoex_low_rate_callback(oal_void *p_arg)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_btcoex_bt_low_rate_process
- 功能描述  : 接收降速后处理
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月9日
-    作    者   : g00306640
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_btcoex_bt_low_rate_process (mac_vap_stru *pst_vap,
                                                 hal_to_dmac_device_stru *pst_hal_device)
 {
@@ -1303,21 +1001,7 @@ oal_void dmac_btcoex_bt_low_rate_process (mac_vap_stru *pst_vap,
         }
     }
 }
-/*****************************************************************************
- 函 数 名  : dmac_btcoex_release_rx_prot
- 功能描述  : 共存对于关键帧的操作
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月27日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_btcoex_release_rx_prot(mac_device_stru *pst_mac_device, oal_uint8 uc_data_type)
 {
     bt_status_stru              *pst_bt_status;

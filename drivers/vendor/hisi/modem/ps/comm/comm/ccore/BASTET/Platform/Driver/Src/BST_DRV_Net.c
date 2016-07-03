@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : BST_DRV_NET.c
-  版 本 号   : 初稿
-  作    者   : d00173029
-  生成日期   : 2014年05月04日
-  最近修改   :
-  功能描述   : 实现带网络参数的循环型任务类BST_CORE_PTask相关处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年05月13日
-    作    者   : d00173029
-    修改内容   : 建立文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -101,21 +84,7 @@ BST_UINT32                              g_ulTrfcFlowLmt         = BST_IP_NO_TRFC
    6 函数实现
 ******************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : BST_DRV_NET_Output
- 功能描述  :
- 输入参数  : BST_NETIF_T* pstNetif
-             BST_NET_PBUF_T* p_stBuf
-             BST_NET_IPADD_T* ipaddr
- 输出参数  : 无
- 返 回 值  : err_t
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 err_t BST_DRV_NET_Output( BST_NETIF_T* pstNetif, BST_NET_PBUF_T* p_stBuf, BST_NET_IPADD_T* ipaddr )
 {
     BST_DRV_STRU                       *pstDriver;
@@ -192,19 +161,7 @@ err_t BST_DRV_NET_Output( BST_NETIF_T* pstNetif, BST_NET_PBUF_T* p_stBuf, BST_NE
     /*lint +e438*/
 }
 
-/*****************************************************************************
- 函 数 名  : BST_DRV_NetApiGetDeviceState
- 功能描述  : 获取当前网络状态
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : BST_ERR_ENUM_UINT8
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_BOOL BST_DRV_NetApiGetDeviceState( BST_VOID )
 {
     if ( BST_DRV_NETSTATE_UP == g_enNetDeviceStatus )
@@ -217,19 +174,7 @@ BST_BOOL BST_DRV_NetApiGetDeviceState( BST_VOID )
     }
 }
 
-/*****************************************************************************
- 函 数 名  : BST_DRV_NetApiSetDeviceState
- 功能描述  : 获取当前网络状态
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : BST_ERR_ENUM_UINT8
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_DRV_NetApiSetDeviceState( BST_UINT32 ulNetState )
 {
     BST_NETIF_T                *pstNetif;
@@ -267,19 +212,7 @@ BST_VOID BST_DRV_NetApiSetDeviceState( BST_UINT32 ulNetState )
     }
     return;
 }
-/*****************************************************************************
- 函 数 名  : BST_DRV_NET_CfgAddr
- 功能描述  :
- 输入参数  : NET_DRV_LOCAL_IP_INFO_STRU  *pstLocalIpInfo
- 输出参数  : 无
- 返 回 值  : BST_ERR_ENUM_UINT8
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_DRV_NET_CfgAddr( NET_DRV_LOCAL_IP_INFO_STRU *pstLocalIpInfo )
 {
     BST_NETIF_T                        *pstNetif;
@@ -305,19 +238,7 @@ BST_ERR_ENUM_UINT8 BST_DRV_NET_CfgAddr( NET_DRV_LOCAL_IP_INFO_STRU *pstLocalIpIn
     return BST_NO_ERROR_MSG;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_DRV_NET_SetTimeStamp
- 功能描述  :
- 输入参数  : BST_DRV_NET_TIME_CLBRT_STRU *pstTimeClbrt
- 输出参数  : 无
- 返 回 值  : BST_ERR_ENUM_UINT8
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_DRV_NET_SetTimeStamp( BST_DRV_NET_TIME_CLBRT_STRU *pstTimeClbrt )
 {
     BST_UINT32                          ulTimeUnit;
@@ -357,19 +278,7 @@ BST_ERR_ENUM_UINT8 BST_DRV_NET_SetTimeStamp( BST_DRV_NET_TIME_CLBRT_STRU *pstTim
     return BST_NO_ERROR_MSG;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_DRV_NET_GetTimeStamp
- 功能描述  :
- 输入参数  : BST_UINT32 *pulTimeStamp
- 输出参数  : 无
- 返 回 值  : BST_ERR_ENUM_UINT8
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_DRV_NET_GetTimeStamp( BST_UINT32 *pulTimeStamp )
 {
     BST_UINT32                          ulTimeDiff;
@@ -405,19 +314,7 @@ BST_ERR_ENUM_UINT8 BST_DRV_NET_GetTimeStamp( BST_UINT32 *pulTimeStamp )
    *pulTimeStamp                        = pstTimeStamp->ulApStartTime + ulTimeDiff;
     return BST_NO_ERROR_MSG;
 }
-/*****************************************************************************
- 函 数 名  : BST_DRV_NET_CmdResumeToAp
- 功能描述  : 返还数据给AP
- 输入参数  : BST_VOID *pvData   数据指针
- 输出参数  : 无
- 返 回 值  : BST_ERR_ENUM_UINT8
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_DRV_NET_CmdResumeToAp( BST_VOID *pvData )
 {
 #if( BST_IP_SUPPORT_PPP == BST_FEATURE_ON )
@@ -434,19 +331,7 @@ BST_ERR_ENUM_UINT8 BST_DRV_NET_CmdResumeToAp( BST_VOID *pvData )
     }
 }
 
-/*****************************************************************************
- 函 数 名  : BST_DRV_NET_CmdFreePacket
- 功能描述  : 从数据队列删除一个IP Packet
- 输入参数  : BST_VOID *pvData   该包数据对应指针
- 输出参数  : 无
- 返 回 值  : BST_ERR_ENUM_UINT8
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_DRV_NET_CmdFreePacket( BST_VOID *pvData )
 {
 #if( BST_IP_SUPPORT_PPP == BST_FEATURE_ON )
@@ -461,20 +346,7 @@ BST_ERR_ENUM_UINT8 BST_DRV_NET_CmdFreePacket( BST_VOID *pvData )
     }
 }
 
-/*****************************************************************************
- 函 数 名  : BST_DRV_NET_IoCtrl
- 功能描述  :
- 输入参数  : BST_UINT32 ulCmd
-             BST_VOID *pvData
- 输出参数  : 无
- 返 回 值  : BST_ERR_ENUM_UINT8
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_DRV_NET_IoCtrl( BST_UINT32 ulCmd, BST_VOID *pvData )
 {
     switch( ulCmd )
@@ -534,19 +406,7 @@ BST_ERR_ENUM_UINT8 BST_DRV_NET_IoCtrl( BST_UINT32 ulCmd, BST_VOID *pvData )
     return BST_NO_ERROR_MSG;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_DRV_NET_IfInit
- 功能描述  :
- 输入参数  : BST_NETIF_T* pstNetif
- 输出参数  : 无
- 返 回 值  : err_t
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 err_t BST_DRV_NET_IfInit( BST_NETIF_T* pstNetif )
 {
 #if( BST_IP_SUPPORT_PPP == BST_FEATURE_ON )
@@ -573,20 +433,7 @@ err_t BST_DRV_NET_IfInit( BST_NETIF_T* pstNetif )
     }
 }
 
-/*****************************************************************************
- 函 数 名  : 3GPP网络IP包接收函数，
- 功能描述  :
- 输入参数  : BST_UINT32   ulLength
-             BST_UINT8   *pucData
- 输出参数  : 无
- 返 回 值  : BST_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_UINT32 BST_DRV_NET_Recv( BST_UINT32   ulLength,
                              BST_UINT8   *pucData )
 {
@@ -623,19 +470,7 @@ BST_UINT32 BST_DRV_NET_Recv( BST_UINT32   ulLength,
     return ulRtnLength;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_DRV_NET_CfgPktMode
- 功能描述  :
- 输入参数  : BST_DRV_NET_PKT_MODE_ENUM_UINT32  *penPktMode
- 输出参数  : 无
- 返 回 值  : BST_ERR_ENUM_UINT8
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_DRV_NET_CfgPktMode( BST_DRV_NET_PKT_MODE_ENUM_UINT32  *penPktMode )
 {
     BST_DRV_NET_PKT_MODE_ENUM_UINT32    enNetPacketMode;
@@ -690,40 +525,14 @@ BST_ERR_ENUM_UINT8 BST_DRV_NET_CfgPktMode( BST_DRV_NET_PKT_MODE_ENUM_UINT32  *pe
 }
 
 #if( BST_IP_SUPPORT_PPP == BST_FEATURE_ON )
-/*****************************************************************************
- 函 数 名  : BST_DRV_NET_PppCb
- 功能描述  :
- 输入参数  : void *ctx
-             int errCode
-             void *arg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 void BST_DRV_NET_PppCb( void *ctx, int errCode, void *arg )
 {
 
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  :
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_DRV_NET_RbshInitial( NET_DRV_LOCAL_IP_INFO_STRU* pstLocalIpInfo )
 {
     NET_DRV_LOCAL_IP_INFO_STRU          stRubbishNetAddr;
@@ -750,19 +559,7 @@ BST_ERR_ENUM_UINT8 BST_DRV_NET_RbshInitial( NET_DRV_LOCAL_IP_INFO_STRU* pstLocal
     return BST_NO_ERROR_MSG;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_DRV_NET_Initial
- 功能描述  :
- 输入参数  : BST_VOID *pvArg
- 输出参数  : 无
- 返 回 值  : BST_ERR_ENUM_UINT8
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_DRV_NET_Initial( BST_VOID *pvArg )
 {
     BST_DRV_STRU                       *pstDrvHandler;
@@ -823,19 +620,7 @@ BST_ERR_ENUM_UINT8 BST_DRV_NET_Initial( BST_VOID *pvArg )
     return BST_NO_ERROR_MSG;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_DRV_InitNetThread
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_DRV_InitNetThread( BST_VOID )
 {
     BST_OS_CreateThread ( ( BST_INT8 *)"BST_IP_Thread",
@@ -846,19 +631,7 @@ BST_VOID BST_DRV_InitNetThread( BST_VOID )
     BST_IP_LwipLockInit();
 }
 
-/*****************************************************************************
- 函 数 名  : BST_DRV_NET_Thread
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_DRV_NET_Thread( BST_VOID *pvArg )
 {
     lwip_thread_fn                      pfLwipThreadFun;
@@ -881,19 +654,7 @@ BST_VOID BST_DRV_NET_Thread( BST_VOID *pvArg )
     pfLwipThreadFun( BST_NULL_PTR );
 }
 
-/*****************************************************************************
- 函 数 名  : BST_DRV_NetGetPktLen
- 功能描述  : 获取数据包长度
- 输入参数  : BST_VOID *pvPkt
- 输出参数  : 无
- 返 回 值  : BST_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_UINT32 BST_DRV_NetGetPktLen( BST_VOID *pvPkt )
 {
 #if( BST_IP_SUPPORT_PPP == BST_FEATURE_ON )
@@ -911,24 +672,12 @@ BST_UINT32 BST_DRV_NetGetPktLen( BST_VOID *pvPkt )
     }
     else
 #endif
-    {//pc-lint 要求if else要有大括号
+    {
         return BST_PAL_NetApiPacketLen( pvPkt );
     }
 }
 
-/*****************************************************************************
- 函 数 名  : BST_DRV_NetGetPktHead
- 功能描述  : 获取数据包头部
- 输入参数  : BST_VOID *pvPkt
- 输出参数  : 无
- 返 回 值  : BST_UINT8
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_UINT8 *BST_DRV_NetGetPktHead( BST_VOID *pvPkt )
 {
 #if( BST_IP_SUPPORT_PPP == BST_FEATURE_ON )

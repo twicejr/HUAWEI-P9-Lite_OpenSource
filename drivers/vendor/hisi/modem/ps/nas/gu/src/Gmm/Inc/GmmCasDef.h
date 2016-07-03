@@ -1,30 +1,4 @@
-/************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : GmmCasGlobal.h
-  Author      : Roger Leo
-  Version     : V200R001
-  Date        : 2005-08-25
-  Description : 定义了GMM模块公共接入层全局共享的数据结构
-  History     :
-  1. Date:2005-08-25
-     Author: Roger Leo
-     Modification:update
-  2.日    期   : 2006年08月09日
-    作    者   : 蒋丽萍j60010247
-    修改内容   : 问题单A32D03479，在PC机上实现时将#pragma pack(0)和#pragma pack()加编译开关
-  3.日    期   : 2007年12月14日
-    作    者   : s46746
-    修改内容   : 问题单A32D13638，保证进行RAU之前不向网侧发送其它数据，并且RAU不成功，不恢复层2
-  4.日    期   : 2009年05月14日
-    作    者   : h44270
-    修改内容   : 问题单号:AT2D11898/AT2D11828,在IDLE态下发送PS域短信，没有按照ATTACH ACCEPT消息中Radio Priority for SMS来请求资源
-  5.日    期   : 2009年05月23日
-    作    者   : L65478
-    修改内容   : 问题单号:AT2D06770,RAU失败，因为GRM建链的原因是DATA，实际应该是信令
-  6.日    期   : 2011年04月23日
-    作    者   : L00171473
-    修改内容   : for V7R1 porting, 去掉枚举成员最后的逗号，避免编译WARNING
-************************************************************************/
+
 
 #ifndef _GMM_CAS_DEF_H_
 #define _GMM_CAS_DEF_H_

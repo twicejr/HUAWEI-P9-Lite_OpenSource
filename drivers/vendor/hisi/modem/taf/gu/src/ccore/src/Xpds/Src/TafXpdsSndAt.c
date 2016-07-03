@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafXpdsSndAt.c
-  版 本 号   : 初稿
-  作    者   : g00256031
-  生成日期   : 2015年08月25日
-  功能描述   : 发送消息给AT模块的接口
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年08月25日
-    作    者   : g00256031
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -44,20 +29,7 @@ extern "C"{
 /*****************************************************************************
   3 函数定义
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_FillMpcStartPosReq
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月18日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XPDS_FillMpcStartPosReq
 (
     TAF_XPDS_MPC_START_POS_REQ_STRU                   *pstStartPosReq
@@ -153,20 +125,7 @@ VOS_VOID TAF_XPDS_FillMpcStartPosReq
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_FillMpcPosReportReq
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月18日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XPDS_FillMpcPosReportReq
 (
     TAF_XPDS_MPC_POS_REPORT_STRU       *pstPosReportReq
@@ -208,21 +167,7 @@ VOS_VOID TAF_XPDS_FillMpcPosReportReq
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_CalcTimeInWeek
- 功能描述  : 相对于当前周的时间
- 输入参数  : ulRefTime
- 输出参数  : 无
- 返 回 值  : 相对于当前周的毫秒时间
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月16日
-    作    者   : g00256031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_CalcTimeInWeek(VOS_UINT32 ulRefTime)
 {
     VOS_UINT64                          ulCurrTime64;
@@ -264,21 +209,7 @@ VOS_UINT32 TAF_XPDS_CalcTimeInWeek(VOS_UINT32 ulRefTime)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_CalcAbsTime
- 功能描述  : 计算当前的绝对时间
- 输入参数  : ulRefTime
- 输出参数  : 无
- 返 回 值  : 以毫秒为单位的绝对时间
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月16日
-    作    者   : g00256031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT64 TAF_XPDS_CalcAbsTime(VOS_UINT32 ulRefTime)
 {
     VOS_UINT64                          ulCurrTime64;
@@ -318,24 +249,7 @@ VOS_UINT64 TAF_XPDS_CalcAbsTime(VOS_UINT32 ulRefTime)
     return ulStartTime64;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndAtMsg
- 功能描述  : XPDS发送msg至AT的模板
- 输入参数  : AT_APPCTRL_STRU                    *pAppCtrl
-             VOS_UINT32                          ulMsgId
-             VOS_UINT32                          ulLen
-             VOS_UINT8                          *pData
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月24日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndAtMsg(
     AT_APPCTRL_STRU                    *pAppCtrl,
     VOS_UINT32                          ulMsgId,
@@ -381,21 +295,7 @@ VOS_VOID TAF_XPDS_SndAtMsg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndAtMsgNoData
- 功能描述  : 发送给AT不带数据内容的消息
- 输入参数  : struct MsgCB *pstMsg
- 输出参数  : 无
- 返 回 值  : TAF_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月17日
-    作    者   : g00256031
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndAtMsgNoData(
     AT_APPCTRL_STRU                    *pAppCtrl,
     VOS_UINT32                          ulMsgId
@@ -433,21 +333,7 @@ VOS_VOID TAF_XPDS_SndAtMsgNoData(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndAtGpsStartReq
- 功能描述  :
- 输入参数  : struct MsgCB *pstMsg
- 输出参数  : 无
- 返 回 值  : TAF_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月17日
-    作    者   : g00256031
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndAtGpsStartReq(
     AT_APPCTRL_STRU                    *pAppCtrl
 )
@@ -487,20 +373,7 @@ VOS_VOID TAF_XPDS_SndAtGpsStartReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndAtApOpenCagpsDataCall
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月18日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndAtApOpenCagpsDataCall(VOS_VOID)
 {
     XPDS_AT_AP_DATA_CALL_REQ_STRU      *pstMsgDataCallReq;
@@ -539,20 +412,7 @@ VOS_VOID TAF_XPDS_SndAtApOpenCagpsDataCall(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndAtApCloseCagpsDataCall
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月18日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndAtApCloseCagpsDataCall(VOS_VOID)
 {
     XPDS_AT_AP_DATA_CALL_REQ_STRU      *pstMsgDataCallReq;
@@ -591,20 +451,7 @@ VOS_VOID TAF_XPDS_SndAtApCloseCagpsDataCall(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndAtApOpenSocketReq
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月18日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndAtApOpenSocketReq(
     AT_XPDS_SERVER_MODE_ENUM_UINT32     enServerMode,
     VOS_UINT32                          ulIpAddr,
@@ -649,20 +496,7 @@ VOS_VOID TAF_XPDS_SndAtApOpenSocketReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndAtApCloseSocketReq
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月18日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndAtApCloseSocketReq(
     AT_XPDS_SERVER_MODE_ENUM_UINT32     enServerMode,
     VOS_UINT32                          ulIpAddr,
@@ -707,20 +541,7 @@ VOS_VOID TAF_XPDS_SndAtApCloseSocketReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndAtGpsTimeSyncInfo
- 功能描述  : XPDS给AT模块上报获取Sync timer结果
- 输入参数  : pstRcvSyncTime : Cas上报sync time结果
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月10日
-    作    者   : d00212987
-    修改内容   : AGPS迭代1新增
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndAtGpsTimeSyncInfo(
     CAS_XPDS_TIME_SYNC_IND_STRU        *pstRcvSyncTime
 )
@@ -799,20 +620,7 @@ VOS_VOID TAF_XPDS_SndAtGpsTimeSyncInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndAtGpsReflocInfoCnf
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月23日
-    作    者   : y00174758
-    修改内容   : AGPS迭代2新增
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndAtGpsReflocInfoCnf(
     AT_APPCTRL_STRU                    *pstAppCtrl,
     XPDS_AT_GPS_REFLOC_INFO_STRU       *pstRefloc
@@ -854,20 +662,7 @@ VOS_VOID TAF_XPDS_SndAtGpsReflocInfoCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndAtApMpcStartPosReq
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月18日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndAtApMpcStartPosReq
 (
     VOS_VOID
@@ -893,20 +688,7 @@ VOS_VOID TAF_XPDS_SndAtApMpcStartPosReq
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndMpcPosReportReq
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月18日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndAtApMpcPosReportReq
 (
     VOS_VOID
@@ -933,21 +715,7 @@ VOS_VOID TAF_XPDS_SndAtApMpcPosReportReq
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndAtApPdeSessionEndMsg
- 功能描述  : During MSA, When Got Loc Rsp, MS can end Session
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月22日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndAtApPdeSessionEndMsg(VOS_VOID)
 {
     TAF_XPDS_PD_MSG_HEADER_STRU                stPdMsgHeader;
@@ -1014,17 +782,7 @@ VOS_VOID TAF_XPDS_SndAtApPdeSessionEndMsg(VOS_VOID)
     PS_MEM_FREE(UEPS_PID_XPDS, pucMsgBuff);
 }
 
-/*****************************************************************************
- Func Name    : TAF_XPDS_SndAtApPdeRejectRsp
- Description  : Function for sending different messages after processing
-                PDE message buffer
 
- 修改历史      :
-  1.日    期   : 2015年7月27日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndAtApPdeRejectRsp(
     TAF_XPDS_REVLINK_RSP_REJECT_STRU                       *pstRejInfo
 )
@@ -1086,20 +844,7 @@ VOS_VOID TAF_XPDS_SndAtApPdeRejectRsp(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndAtApReverseData
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月18日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndAtApReverseData
 (
     AT_XPDS_SERVER_MODE_ENUM_UINT32     enServerMode,
@@ -1153,20 +898,7 @@ VOS_VOID TAF_XPDS_SndAtApReverseData
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndAtGpsAbortPosInd
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月18日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndAtGpsAbortPosInd(
     XPDS_AT_ABORT_POS_REASON_ENUM_UINT16                    enAbortReason
 )
@@ -1205,20 +937,7 @@ VOS_VOID TAF_XPDS_SndAtGpsAbortPosInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndAtGpsStopCnf
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月18日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndAtGpsStopCnf(VOS_VOID)
 {
     XPDS_AT_RESULT_CNF_STRU            *pstMsgRsltCnf;
@@ -1257,20 +976,7 @@ VOS_VOID TAF_XPDS_SndAtGpsStopCnf(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndAtGpsNiSessionInd
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月18日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndAtGpsNiSessionInd(
     TAF_XPDS_RCV_XSMS_POS_REQ_STRU    *pstXsmsMsg
 )
@@ -1322,20 +1028,7 @@ VOS_VOID TAF_XPDS_SndAtGpsNiSessionInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndAtGpsCancelNiSession
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月18日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndAtGpsCancelNiSession(
     VOS_VOID
 )
@@ -1375,20 +1068,7 @@ VOS_VOID TAF_XPDS_SndAtGpsCancelNiSession(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndAtGpsCpNiStart
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月18日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndAtGpsCpNiStart(
     VOS_VOID
 )
@@ -1428,20 +1108,7 @@ VOS_VOID TAF_XPDS_SndAtGpsCpNiStart(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndAtGpsCpNiStop
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月18日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndAtGpsCpNiStop(
     VOS_VOID
 )
@@ -1542,20 +1209,7 @@ VOS_VOID TAF_XPDS_SndAtGpsAcqAssistData(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndAtGpsIonInfo
- 功能描述  : XPDS发送ION信息到AT
- 输入参数  : pstProvEph
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月22日
-    作    者   : y00174758
-    修改内容   : AGPS迭代14新增
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndAtGpsIonInfo(VOS_VOID)
 {
     XPDS_AT_GPS_ION_INFO_IND_STRU      *pstMsgIonInfoInd;
@@ -1605,20 +1259,7 @@ VOS_VOID TAF_XPDS_SndAtGpsIonInfo(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndAtGpsEphInfo
- 功能描述  : XPDS发送EPH信息到AT
- 输入参数  : pstProvEph
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月22日
-    作    者   : y00174758
-    修改内容   : AGPS迭代14新增
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndAtGpsEphInfo(VOS_VOID)
 {
     XPDS_AT_GPS_EPH_INFO_IND_STRU      *pstMsgEphInfoInd;
@@ -1694,20 +1335,7 @@ VOS_VOID TAF_XPDS_SndAtGpsEphInfo(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndAtGpsAlmInfo
- 功能描述  : XPDS发送ALM信息到AT
- 输入参数  : pstProvEph
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月22日
-    作    者   : y00174758
-    修改内容   : AGPS迭代14新增
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndAtGpsAlmInfo(VOS_VOID)
 {
     XPDS_AT_GPS_ALM_INFO_IND_STRU      *pstMsgAlmInfoInd;
@@ -1830,20 +1458,7 @@ VOS_VOID TAF_XPDS_SndAtGpsPositionInfo(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SetPosReportLocInfo
- 功能描述  : 设置POS REP里面的位置信息
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月22日
-    作    者   : c00299064
-    修改内容   : AGPS迭代2新增
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SetPosReportLocInfo(
     TAF_XPDS_MPC_POS_REPORT_STRU       *pstPosReportReq
 )
@@ -1910,20 +1525,7 @@ VOS_VOID TAF_XPDS_SetPosReportLocInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndAtGpsUtsTestStartReq
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月23日
-    作    者   : y00174758
-    修改内容   : AGPS迭代2新增
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndAtGpsUtsTestStartReq(
     VOS_UINT32                          ulDataLen,
     VOS_UINT8                          *pucData
@@ -1971,20 +1573,7 @@ VOS_VOID TAF_XPDS_SndAtGpsUtsTestStartReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndAtGpsUtsTestStopReq
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月23日
-    作    者   : y00174758
-    修改内容   : AGPS迭代2新增
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndAtGpsUtsTestStopReq(
     VOS_UINT32                          ulDataLen,
     VOS_UINT8                          *pucData
@@ -2032,20 +1621,7 @@ VOS_VOID TAF_XPDS_SndAtGpsUtsTestStopReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndAtUtsGpsPosInfo
- 功能描述  : XPDS发送MSB GPS定位结果到UTS
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月05日
-    作    者   : y00174758
-    修改内容   : AGPS迭代2新增
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndAtUtsGpsPosInfo(VOS_VOID)
 {
     XPDS_AT_UTS_GPS_POS_INFO_IND_STRU  *pstMsgUtsPosInfoInd;
@@ -2086,20 +1662,7 @@ VOS_VOID TAF_XPDS_SndAtUtsGpsPosInfo(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndAtOmGpsTestStartReq
- 功能描述  : XPDS发送测试请求到GPS
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月17日
-    作    者   : y00174758
-    修改内容   : AGPS迭代2新增
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndAtOmGpsTestStartReq(
     TAF_XPDS_FIX_MODE_ENUM_UINT8        enFixMode,
     TAF_XPDS_GPS_START_MODE_ENUM_UINT8  enStartMode
@@ -2142,20 +1705,7 @@ VOS_VOID TAF_XPDS_SndAtOmGpsTestStartReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndAtGpsAbortPosInd
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月18日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndAtOmGpsTestStopReq(VOS_VOID)
 {
     XPDS_AT_GPS_OM_TEST_STOP_REQ_STRU  *pstMsgStopReq;
@@ -2193,20 +1743,7 @@ VOS_VOID TAF_XPDS_SndAtOmGpsTestStopReq(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndOmStartGpsFixCnf
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月17日
-    作    者   : y00174758
-    修改内容   : AGPS迭代2新增
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndOmStartGpsFixCnf(
     OM_NAS_CDMA_START_GPS_FIX_REQ_STRU *pstMsgStartReq
 )
@@ -2246,20 +1783,7 @@ VOS_VOID TAF_XPDS_SndOmStartGpsFixCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndOmStopGpsFixCnf
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月17日
-    作    者   : y00174758
-    修改内容   : AGPS迭代2新增
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndOmStopGpsFixCnf(
     OM_NAS_CDMA_STOP_GPS_FIX_REQ_STRU  *pstMsgStopReq
 )
@@ -2299,20 +1823,7 @@ VOS_VOID TAF_XPDS_SndOmStopGpsFixCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndOmGpsFixRsltInd
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月17日
-    作    者   : y00174758
-    修改内容   : AGPS迭代2新增
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndOmGpsFixRsltInd(
     NAS_OM_CDMA_GPS_FIX_RSLT_ENUM_UINT8 enFixRslt
 )
@@ -2373,20 +1884,7 @@ VOS_VOID TAF_XPDS_SndOmGpsFixRsltInd(
     PS_MEM_FREE(UEPS_PID_XPDS, pstFixRsltInd);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndOmGpsSignalMsgInd
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月17日
-    作    者   : y00174758
-    修改内容   : AGPS迭代2新增
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndOmGpsSignalMsgInd(
     NAS_OM_CDMA_GPS_SIGNAL_MSG_TYPE_ENUM_UINT8              enMsgType
 )
@@ -2431,20 +1929,7 @@ VOS_VOID TAF_XPDS_SndOmGpsSignalMsgInd(
     PS_MEM_FREE(UEPS_PID_XPDS, pstGpsSignalMsgInd);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndOmGpsFixStartInd
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月17日
-    作    者   : y00174758
-    修改内容   : AGPS迭代2新增
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndOmGpsFixStartInd(VOS_VOID)
 {
     NAS_OM_CDMA_GPS_FIX_START_IND_STRU                     *pstGpsFixStartInd;

@@ -122,21 +122,7 @@ VOS_VOID NAS_MSCC_SndHsdPowerOffReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndHsdCdmaMoCallStartNtf
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月6日
-    作    者   : x00314862
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndHsdCdmaMoCallStartNtf(
     MMA_MSCC_CDMA_MO_CALL_START_NTF_STRU         *pstCdmaMoCallStartNtf
 )
@@ -173,21 +159,7 @@ VOS_VOID NAS_MSCC_SndHsdCdmaMoCallStartNtf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndHsdCdmaMoCallRedialSysAcqNtf
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月6日
-    作    者   : x00314862
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndHsdCdmaMoCallRedialSysAcqNtf(
     MMA_MSCC_CDMA_MO_CALL_REDIAL_SYS_ACQ_NTF_STRU         *pstCdmaMoCallRedialSysAcqNtf
 )
@@ -228,21 +200,7 @@ VOS_VOID NAS_MSCC_SndHsdCdmaMoCallRedialSysAcqNtf(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndHsdCdmaMoCallSuccessNtf
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月6日
-    作    者   : x00314862
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndHsdCdmaMoCallSuccessNtf(
     MMA_MSCC_CDMA_MO_CALL_SUCCESS_NTF_STRU         *pstCdmaMoCallSuccessNtf
 )
@@ -281,21 +239,7 @@ VOS_VOID NAS_MSCC_SndHsdCdmaMoCallSuccessNtf(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndHsdCdmaMoCallEndNtf
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月6日
-    作    者   : x00314862
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndHsdCdmaMoCallEndNtf(
     MMA_MSCC_CDMA_MO_CALL_END_NTF_STRU *pstCdmaMoCallEndNtf
 )
@@ -332,25 +276,7 @@ VOS_VOID NAS_MSCC_SndHsdCdmaMoCallEndNtf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndHsdCfreqLockNtf
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月6日
-    作    者   : x00314862
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年07月14日
-    作    者   : x00306642
-    修改内容   : 修改HSD接口
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndHsdCfreqLockNtf(
     MMA_MSCC_CFREQ_LOCK_NTF_STRU       *pstCfreqLockNtf
 )
@@ -397,21 +323,7 @@ VOS_VOID NAS_MSCC_SndHsdCfreqLockNtf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndHsdCdmacsqSetReq
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月6日
-    作    者   : x00314862
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndHsdCdmacsqSetReq(
     MMA_MSCC_CDMACSQ_SET_REQ_STRU       *pstCdmacsqSetReq
 )
@@ -785,21 +697,7 @@ VOS_VOID NAS_MSCC_SndHsdDisableLteNtf(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndHsdSrvAcqReq
- 功能描述  : 向HSD发送因服务触发的搜网指示请求消息
- 输入参数  : pstSrvAcqReq
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年5月21日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndHsdSrvAcqReq(
     MMA_MSCC_SRV_ACQ_REQ_STRU          *pstSrvAcqReq
 )
@@ -835,21 +733,7 @@ VOS_VOID NAS_MSCC_SndHsdSrvAcqReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndHsdBeginSessionNotify
- 功能描述  : 向HSD发送申请资源消息
- 输入参数  : enSessionType:Session类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年5月21日
-   作    者   : W00242748
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndHsdBeginSessionNotify(
     MMA_MSCC_BEGIN_SESSION_NOTIFY_STRU *pstBeginSessionNtf
 )
@@ -886,21 +770,7 @@ VOS_VOID NAS_MSCC_SndHsdBeginSessionNotify(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndHsdEndSessionNotify
- 功能描述  : 向HSD发送释放资源消息
- 输入参数  : pstEndSessionNtf
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年5月21日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndHsdEndSessionNotify(
     MMA_MSCC_END_SESSION_NOTIFY_STRU   *pstEndSessionNtf
 )
@@ -938,20 +808,7 @@ VOS_VOID NAS_MSCC_SndHsdEndSessionNotify(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndHsdHdrcsqSetReq
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月20日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndHsdHdrcsqSetReq(
     MMA_MSCC_HDR_CSQ_SET_REQ_STRU       *pstHdrcsqSetReq
 )

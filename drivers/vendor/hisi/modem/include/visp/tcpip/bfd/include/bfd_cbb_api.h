@@ -45,9 +45,7 @@ extern "C" {
 /* BFD协议顺从性,为后续扩展性考虑，每一bit控制一个协议一致性问题 */
 #define BFD_PROCOMPLIANCE_FOR_PF     0x00000001
 
-/*Added by likaikun213099, 收到Rx=0的报文，应该停止发送BFD控制报文, 2014/9/19   问题单号:DTS2014090900429 */
 #define BFD_PROCOMPLIANCE_FOR_RXZERO 0x00000002
-/* End of Added by likaikun213099, 2014/9/19   问题单号:DTS2014090900429 */
 
 
 /* BFD错误码定义如下 */
@@ -114,9 +112,7 @@ typedef enum tagBFD_ERR_E
     BFD_ERR_VRFINDEX               , /* 57 VRF不匹配 */
     BFD_ERR_FILTER                 , /* 58 过滤条件非法 */
     /* End:VISP1.7C03 VRF wangchengyang,2009-02-01 */
-    /*Begin BC3D01505 关闭句柄出现段错误 l00147446 */
     BFD_ERR_MEM_RELEASE            , /* 59 释放内存出错*/
-    /*END BC3D01505 关闭句柄出现段错误 l00147446 */
     BFD_ERR_GET_IPV6VTABLE         , /* 60 获取ipv6组件虚表失败 */
     BFD_ERR_IPVER_DISMATCH         , /* 61 BFD IP version不匹配 */
     BFD_ERR_SOCKET6                , /* 62 BFD6 操作socket失败 */
@@ -144,7 +140,6 @@ typedef enum tagBFD_ERR_E
     BFD_ERR_CREATE_EXTQUEUE        , /* 78 创建OTHER队列失败 */
     /*End   BC3D02903 liangjicheng 2010-04-19 */
 
-    /*SGSN需求DTS2010091302569: BFD 多会话和应用共用问题*/
     BFD_ERR_SESSION_CONFLICT,               /* 79 创建的静态会话或动态会话冲突 */
 
     BFD_ERR_DISABLE_WHEN_DELSES = 88,       /*88 BFD没有使能 */
@@ -155,7 +150,6 @@ typedef enum tagBFD_ERR_E
     BFD_ERR_MEM_ALLOC_VRFSESSENTY_ININIT,   /*93 BFD初始化时分配BFD会话全局表项定义内存失败 */
     BFD_ERR_MEM_ALLOC_GDBGSWTICH_ININIT,    /*94 BFD初始化时分配全局debug开关内存失败 */
     BFD_ERR_MEM_ALLOC_DISABLEONEVRF_ININIT, /*95 BFD初始化时分配去使能所有或单个VRF中BFD的标志内存失败 */
-    /*Add for V2R3C05, by b0177000/y00176567, at 2011-06-03. 修改原因: V2R3C05 增加BFD会话创建时输入的协议类型错误码 */   
     BFD_ERR_PROTOCOL,                       /*96 BFD会话创建时输入的协议类型错误 */
     BFD_ERR_NOT_SUPORT_RFC_DEMANDMODE,      /*97 创建的BFD基于RFC的会话目前不支持查询模式 */
     BFD_ERR_MEM_ALLOC_SESSENTY_INIT,        /*98 BFD初始化时分配BFD表内存失败 */
@@ -201,18 +195,13 @@ typedef struct tagBFD_SESSION_INFO_S
     ULONG ulLastSentTime;     /* 上一个报文发送的时间，通过VOS_Tm_Now获取的低32位，单位:ms */
     ULONG ulAppId;            /* 会话设定的应用组合 */
     ULONG ulUpToDown;         /* 会话自创建之后，状态由Up变Down的总次数 */
-    /* Added by w61195 for A82D13244，2007-4-3，用户可以根据诊断字判断会话DOWN掉的原因 */
     ULONG ulDiagnostic;       /* 会话的诊断字(0-9)，诊断字9代表本端收到了对端的AdminDown报文，0-8参见RFC草案 */
-    /* Added by w61195 for A82D14110，2007-4-16，用户配置的会话所在接口索引，多跳会话该值为0 */
     ULONG ulSessIfIndex;
     UCHAR ucTos;              /* bfd会话tos */
     UCHAR Padding[3];
     ULONG ulCurrentGRState;  /* 该BFD会话当前的GR状态, 取值见enumBFD_GR_STATE */
-    /*Add for V2R3C05, by b0177000/y00176567, at 2011-06-03. 修改原因: V2R3C05 会话创建协议类型 */   
     ULONG ulBfdProtocol;      /* bfd会话协议类型 */
-    /*Add for V2R3C05, by b0177000/y00176567, at 2011-06-03. 修改原因: V2R3C05 对端报文中RequiredMinRxInterval值 */   
     ULONG ulRemoteMri;        /* 对端报文中RequiredMinRxInterval值 */
-    /*Add for V2R3C05, by b0177000/y00176567, at 2011-06-03. 修改原因: V2R3C05 对端报文中Demand值 */   
     ULONG ulRemoteDemandMode; /* 对端报文中Demand值,1:查询模式；0:非查询模式(异步模式) */
 }BFD_SESSION_INFO_S;
 
@@ -508,7 +497,6 @@ typedef enum tagBFD_EVENT_E
     BFD_EVENT_MAX
 } BFD_EVENT_E ;
 
-/*Added by w00207740, BFD NSR,上报消息定义, 2013/8/27 */
 typedef enum tagBFD_NSR_MSG_E
 {
     BFD_NSR_MSG_SESSINFO = 0    ,                 /* 上报BFD4会话信息 */
@@ -518,7 +506,6 @@ typedef enum tagBFD_NSR_MSG_E
     BFD_NSR_MSG_MAX             ,      
 } BFD_NSR_MSG_E ;
 
-/*Added by w00207740, BFD NSR,全局信息结构体, 2013/8/27 */
 typedef struct tagBFD_NSR_GLOBAL_INFO
 {
     ULONG ulBfdNsrState;                    /* BFD NSR当前状态 */
@@ -535,7 +522,6 @@ typedef struct tagBFD_NSR_GLOBAL_INFO
     ULONG ulTimeOut;                        /* NSR过程是否超时*/
 }BFD_NSR_GLOBAL_INFO_S;
 
-/* Modified by w00207740, DTS2014021806601,usBfdNsrSessStateFlag字段废弃, 2014/2/19 */
 typedef struct tagBFD_NSR_SESS_INFO
 {
     ULONG   ulSessId;                                   /* 会话ID */
@@ -582,7 +568,6 @@ typedef struct tagBFD6_NSR_SESS_INFO
 #define BFD_LEN_AUTH_NONE              24           /* 不带任何认证的BFD控制报文长度 */
 
 /* Modified by z36377 for A82D12722:增加出接口信息字段 */
-/* Modified by w61195 for A82D21612, 2007-12-4, 修改NP下发参数，将探测总时间拆分为检测间隔和检测倍数 */
 /* 对NP下发参数数据结构 */
 typedef struct tagBFD_PPI_S
 {
@@ -651,14 +636,12 @@ typedef enum tagPPI_MSG_TYPE_E
     /* SGSN BFD新需求:区分会话删除的原因 */
     BFD_PPI_SESSION_DELETE_ADMINDOWN               ,         /* 由于Admin down导致会话删除 */
     BFD_PPI_SESSION_DELETE_DOWN                    ,         /* 由于其他原因导致会话删除 */
-    /* Add for V2R3C05, by b0177000/y00176567, at 2011-06-03. 修改原因: V2R3C05 增加停止或重新发送周期性BFD的NP下发类型 */   
     BFD_PPI_SESSION_STOP_SEND_DETECT_PKT           ,         /* 通知不再发送周期性BFD报文 */
     BFD_PPI_SESSION_START_SEND_DETECT_PKT          ,         /* 通知重新发送周期性BFD报文 */
 
     BFD_PPI_MSG_MAX
 }PPI_MSG_TYPE_E;/* 修改该结构时请同步修改bfd_ppi.c中BFD_PPI_OprType_En */
 
-/*Added by w00207740, NSR BFD,新增钩子函数下发命令, 2013/8/29 */
 typedef enum tagNSR_PPI_MSG_TYPE_E
 {
     BFD_PPI_NSR_READY                              ,         /* 通知转发面控制面就绪 */                            
@@ -688,7 +671,6 @@ typedef struct tagBFD_CREATEDEL_BYVRF_S
     ULONG  ulSrcIP;
     ULONG  ulOutIfIndex;
     ULONG  ulVrfIndex;               /* VRF 索引*/
-    /* Add for V2R3C05, by b0177000/y00176567, at 2011-06-03. 修改原因: V2R3C05 增加创建会话的协议类型字段 */   
     ULONG  ulBfdProtocol;            /* 会话协议类型*/
 }BFD_CREATEDEL_BYVRF_S;
 
@@ -762,11 +744,9 @@ typedef struct tagBfd6Notify {
     struct tagBfd6Notify *pstNext;
 } BFD6_NOTIFY_HOOK_S;
 
-/* Modified by likaikun213099, 原始宏定义与产品定义冲突了, 2014/11/15   问题单号:DTS2014111500081  */
 #define VISP_BFD_FOR_IPV4      0
 #define VISP_BFD_FOR_IPV6      1
 #define VISP_BFD_FOR_ALL       2
-/*End of Modified by likaikun213099, 2014/11/15   问题单号:DTS2014111500081  */
 typedef struct tagBFD_SESSION_FILTER_EX_S {
     UCHAR szCfgName[BFD_MAX_SESS_NAME_LEN + 1];
     ULONG ulPeerAddr4;   /* IPv4地址  主机顺序 */                                                               
@@ -920,63 +900,9 @@ extern ULONG BFD_GetSessionInfo(ULONG ulSessionID, BFD_SESSION_INFO_S *pSess);
 *
 *******************************************************************************/
 extern ULONG BFD_GetVersion(CHAR *szVerInfo);
-/*******************************************************************************
-*    Func Name: BFD_Init
-*  Description: BFD初始化，由于现在基于VISP实现
-*               因此放在VISP协议栈启动的SystemEntry中
-*        Input: ULONG ulNpMode：
-*                     0    不使用NP
-*                     1    NP发送，软件探测
-*                     2    NP发送、探测
-*                     其他 非法
-*               ULONG ulBFDTaskPri：BFD主任务的优先级(0～255)
-*                                   visp中要求等于SOCKRUN任务的优先级
-*               ULONG ulBFDTaskStackSize：BFD主任务栈大小
-*                                   visp中要求等于SOCKRUN任务的栈大小，默认是16K*
-*       Output: 
-*       Return: 成功返回       BFD_OK
-*               失败返回       BFD_ERR
-*                              BFD_ERR_CREATE_TASK；
-*                              BFD_ERR_CREATE_QUEUE；
-*                              BFD_ERR_NP_MODE
-*                              BFD_ERR_TASK_PRI
-*                              BFD_ERR_CREATE_OTHERQUEUE
-*
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE            NAME             DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2006-12-08      Wangchengyang    Create
-*  2007-03-22      lijing 52889     modify for Defect A82D13061
-*  2007-12-7       zhangchunyu      modify for Defect A82D21512
-*******************************************************************************/
+
 extern ULONG BFD_Init(ULONG ulNpMode,ULONG ulBFDTaskPri, ULONG ulBFDTaskStackSize);
-/*******************************************************************************
-*    Func Name: BFD_IpAddrEventNotify
-*  Description: 当外部添加、删除了一个地址时，通知BFD模块进行相应处理，比如：
-*               一个会话的源地址被删除了，则该会话被停止；
-*               若一个会话的目的地址被设置为了本地地址，则该会话被停止。
-*               直接写消息和事件通知BFD任务处理;
-*
-*        Input: ulIpEvent  地址事件：添加、删除;0 表示增加1 表示删除
-*               ulIpAddr   添加或删除的地址值；主机序；
-*               ulIfIndex  地址变化发生接口的索引值；
-*
-*       Output: 
-*       Return: 成功返回       BFD_OK
-*               失败返回       BFD_ERR_DISABLE;
-*                              BFD_ERR_EVENT
-*
-*
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE            NAME             DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2006-12-07     Wangchengyang    Create
-*  2007-5-17  wujie(61195)         Modified for A82D15480，入参地址变为主机序
-*******************************************************************************/
+
 extern ULONG BFD_IpAddrEventNotify(ULONG ulIpEvent, ULONG ulIpAddr, ULONG ulIfIndex);
 /*******************************************************************************
 *    Func Name: BFD6_IpAddrEventNotify
@@ -1026,27 +952,7 @@ ULONG BFD6_IpAddrEventNotify(ULONG ulIpEvent, ULONG *pulIpAddr, ULONG ulIfIndex)
 *
 *******************************************************************************/
 extern ULONG BFD_TrunkPortEventNotify(ULONG ulPortEvent, ULONG ulPortIfIndex);
-/*******************************************************************************
-*    Func Name: BFD_RecvPacket
-* Date Created: 2006-12-6
-*       Author: wujie(61195)
-*  Description: 接收处理一个BFD控制报文
-*               当不能在协议栈的UDP输入处理中打钩子时，可以在UDP socket接收处理中使用此接收接口。
-*        Input: CHAR *pBFDPacket: 接收的BFD报文
-*               ULONG ulPktLenth: BFD报文总长度
-*               ULONG ulDstIP: 接收报文的目的地址，网络序
-*               ULONG ulSrcIP: 接收报文的源地址，网络序；
-*               ULONG InIfIndex: 报文入接口索引
-*       Output:
-*       Return:
-*      Caution: Important points if any
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE        NAME             DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2006-12-6   wujie(61195)         Creat the first version.
-*  2009-02-01  wangchengyang        modified for VISP1.7C03 VRF
-*******************************************************************************/
+
 extern ULONG BFD_RecvPacket(CHAR *pBFDPacket, ULONG ulPktLenth, ULONG ulDstIP, ULONG ulSrcIP, ULONG InIfIndex);
 
 /*******************************************************************************
@@ -1073,48 +979,9 @@ extern ULONG BFD_RecvPacket(CHAR *pBFDPacket, ULONG ulPktLenth, ULONG ulDstIP, U
 extern ULONG BFD_RecvPacketByVrf(CHAR *pBFDPacket, ULONG ulPktLenth, ULONG ulDstIP, ULONG ulSrcIP, ULONG InIfIndex,ULONG
 ulVrfIndex);
 
-/*******************************************************************************
-*    Func Name: BFD_RecvPacketWithIP
-*  Description: 接收处理一个UDP数据为BFD控制报文的IP报文；
-*               当协议栈支持在UDP输入处理中打钩子时（比如在VISP中应用时），使用此接收接口。
-*        Input: CHAR* pIpPacket:接收的BFD报文，报文格式为IP报文首部、UDP报文首部、BFD报文
-*               ULONG ulInIfIndex:报文入接口索引
-*       Output: 
-*       Return: 成功或错误码
-*      Caution: VISP协议栈在IP报文接收处理的时候，会将IP首部的长度字段转换为主机序，
-*               然后减去IP首部的长度，所以这里传入的IP报文首部长度字段直接减去UDP首部长度
-*               即得到BFD报文长度
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE        NAME             DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2006-12-5  wujie(61195)         Creat the first version.
-*  2007-7-24  wujie(61195)         Modified for A82D18150，和VRP旧版本的BFD多跳对接
-*
-*******************************************************************************/
+
 extern ULONG BFD_RecvPacketWithIP( CHAR* pIpPacket, ULONG ulInIfIndex);
-/*******************************************************************************
-*    Func Name: BFD_RecvPacketWithIP
-* Date Created: 2006-12-5
-*       Author: wujie(61195)
-*  Description: 接收处理一个UDP数据为BFD控制报文的IP报文；
-*               当协议栈支持在UDP输入处理中打钩子时（比如在VISP中应用时），使用此接收接口。
-*        Input: CHAR* pIpPacket:接收的BFD报文，报文格式为IP报文首部、UDP报文首部、BFD报文
-*               ULONG ulInIfIndex:报文入接口索引
-*               ULONG ulVrfIndex :VRF索引
-*       Output: 
-*       Return: 成功或错误码
-*      Caution: VISP协议栈在IP报文接收处理的时候，会将IP首部的长度字段转换为主机序，
-*               然后减去IP首部的长度，所以这里传入的IP报文首部长度字段直接减去UDP首部长度
-*               即得到BFD报文长度
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE        NAME             DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2006-12-5   wujie(61195)         Creat the first version.
-*  2007-7-24   wujie(61195)         Modified for A82D18150，和VRP旧版本的BFD多跳对接
-*  2009-02-01  wangchengyang        modified for VISP1.7C03 VRF
-*******************************************************************************/
+
 extern ULONG BFD_RecvPacketWithIPByVrf(CHAR* pIpPacket, ULONG ulInIfIndex,ULONG ulVrfIndex);
 /*******************************************************************************
 *    Func Name: BFD_SessionAdminister
@@ -1139,34 +1006,7 @@ extern ULONG BFD_RecvPacketWithIPByVrf(CHAR* pIpPacket, ULONG ulInIfIndex,ULONG 
 *  2006-12-06      Wangchengyang    Create
 *******************************************************************************/
 extern ULONG BFD_SessionAdminister(ULONG ulSessionID, BOOL_T bShutdown);
-/*******************************************************************************
-*    Func Name: BFD_SessionCreate
-*  Description: 设定一个BFD会话的基本参数，并开始建立会话
-*        Input: ULONG ulDstIP      指定会话的目的地址；主机序；
-*               ULONG ulSrcIP      指定会话的源地址；主机序；
-*               ULONG ulOutIfIndex   单跳会话时为出接口索引，多跳时值为0；
-*                                    由调用者保证以上参数的合理性
-*               ULONG *pulSessionID  取值范围为[0,512]，如果是0则由VISP自动分配会话ID，
-*                                    否则根据指定的ID创建会话
-*
-*       Output: ULONG *pulSessionID  会话的标识ID
-*       Return: 成功返回       BFD_OK
-*               失败返回       BFD_ERR_EXIST_SESSION
-*                              BFD_ERR_SESSION_FULL
-*                              BFD_ERR_NULL_POINTER
-*                              BFD_ERR_MEM_ALLOC
-*                              BFD_ERR_HA_IS_SMOOTHING
-*                              BFD_ERR_DISABLE
-*                              BFD_ERR_QUE_BUSY
-*
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE            NAME             DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2006-12-05      Wangchengyang    Create
-*  2007-5-17       wujie(61195)     Modified for A82D15480，入参地址变为主机序
-*******************************************************************************/
+
 extern ULONG BFD_SessionCreate(ULONG ulDstIP, ULONG ulSrcIP, ULONG ulOutIfIndex, ULONG* pulSessionID);
 /*******************************************************************************
 *    Func Name: BFD_SessionDeleteDontSendDDPkt
@@ -1284,26 +1124,7 @@ extern ULONG BFD_SessionParaUpdate( ULONG ulSessionID, BFD_SESSION_PARA_S *pSess
 *  2006-12-06      Wangchengyang    Create
 *******************************************************************************/
 extern ULONG BFD_SetAppsToSession(ULONG ulSessionID, ULONG ulAppGroup);
-/*******************************************************************************
-*    Func Name: BFD_SetBfdCapability
-*  Description: 使能或去使能BFD功能
-*
-*        Input: BOOL_T bBfdCapability TRUE－使能；FALSE－去使能；
-*
-*       Output: 
-*       Return: 成功返回       BFD_OK
-*               失败返回       BFD_ERR_DISABLE_PROCESSING
-*                              BFD_ERR_INVALID_PARAMETER
-*
-*
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE            NAME             DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2006-12-07      Wangchengyang    Create
-*  2007-03-29      jiangtao(51916)  Modify for A82D13299
-*******************************************************************************/
+
 extern ULONG BFD_SetBfdCapability(BOOL_T bBfdCapability);
 /*******************************************************************************
 *    Func Name: BFD_SetDebugSwitch
@@ -1652,22 +1473,7 @@ extern VOID BFD_ShowSessionInfoByVrf(CHAR *pszVrfName);
 *******************************************************************************/
 extern VOID BFD_ShowSessionCountByVrf(CHAR *pszVrfName);
 
-/*******************************************************************************
-*    Func Name: BFD_ShowSessionInfo
-* Date Created: 2008-8-4
-*       Author: qinyun
-*  Description: 显示BFD所有会话统计信息
-*        Input: VOID
-*       Output: 
-*       Return: VOID
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME             DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-8-4  qinyun(62011)     Creat the first version.
-*  2009-02-01  wangchengyang modified for VISP1.7C03 VRF
-*******************************************************************************/
+
 extern VOID BFD_ShowSessionCount(VOID);
 
 /*******************************************************************************

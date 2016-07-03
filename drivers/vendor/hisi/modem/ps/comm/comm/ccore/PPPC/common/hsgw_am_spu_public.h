@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2012-2020, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : hsgw_public.h
-  版 本 号   : 初稿
-  作    者   : zhaichao 00129699
-  生成日期   : 2012年10月30日
-  最近修改   :
-  功能描述   : HSGW/PDSN SPU各模块公用数据结构定义
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年10月30日
-    作    者   : zhaichao 0129699
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __HSGW_AM_PUBLIC_H__
 #define __HSGW_AM_PUBLIC_H__
@@ -81,7 +64,7 @@ typedef struct tagFA_COF_CFG_S
 #define  DIAM_AUTH_SERVER_DELETE     6  /* 3GPP SERVER去活 */
 
 
-#define MDN_MAX_LEN 20/* Added by l61463 at 2008-06-18 PDSN V9 for 电信MDN需求 */
+#define MDN_MAX_LEN 20
 #define RD_HW_VPN_NAME_LEN_MAX          31     /* VPN Name最长为31个字节 */
 #define MDN_BCD_MAX_LEN_WITH_PREFIX 15
 #define MDN_BCD_MAX_LEN_WITHOUT_PREFIX 13

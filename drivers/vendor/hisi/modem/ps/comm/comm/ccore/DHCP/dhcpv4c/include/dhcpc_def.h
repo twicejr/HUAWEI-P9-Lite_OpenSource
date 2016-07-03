@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : dhcpc_def.h
-  版 本 号   : 初稿
-  作    者   : c57548
-  生成日期   : 2007年11月3日
-  最近修改   :
-  功能描述   : dhcpc模块的宏定义
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2007年11月3日
-    作    者   : c57548
-    修改内容   : 创建文件
-
-******************************************************************************/
 #ifndef _DHCPC_DEF_H_
 #define _DHCPC_DEF_H_
 
@@ -227,41 +210,30 @@ typedef enum
  #define M_ALM_TYPE_RESTORE 0                               /* 恢复告警 */
  #define M_ALM_TYPE_FAULT 1                                 /* 故障告警 */
  #define M_ALM_TYPE_EVENT 2                                 /* 事件告警 */
- #define M_ALM_TYPE_SECURITY 4                              /*安全告警*/
+ #define M_ALM_TYPE_SECURITY 4
 #endif
 
 //Cyjun: 确定是否分段: M_SPM_DPR_ALM等值业务侧明显不用，而平台又定义了这些宏
 /*DWORD类型宏定义*/
 typedef enum enU_SOFTPARA_DWORD_VALUE
 {
-    M_SPM_DPR_ALM = 1,/*配电盒告警抑制软参 Added by wangbin 63984 at 2007-11-19 PGPV2R1-NE40E-1 for SRM-PDB */
-    M_SPM_DPR_ALMEX = 2,/*配电盒告警抑制软参 Added by wangbin 63984 at 2007-11-19 PGPV2R1-NE40E-1 for SRM-PDB */
+    M_SPM_DPR_ALM = 1,
+    M_SPM_DPR_ALMEX = 2,
 
-    /*begin: add by wangweihua@2008-05-22 for 选择DPE的软参(默认轮选，否则按报文IP地址计算)*/
     M_SPM_PF_FLAG = 3,
-    /*end: add by wangweihua@2008-05-22 for 选择DPE的软参(默认轮选，否则按报文IP地址计算)*/
 
     M_SPM_APN_TIME_THRESHOLD = 4,
     M_SPM_UGW_AAA_TRY_INTERVAL = 5,
     M_SPM_OCS_CONNECT_PORT = 7,  //用于控制ocs建链端口
     M_SPM_CHR_DEVNO = 8,
-    M_SPM_CM_INVALID_VOLUME_QUOTA = 21, /* Added by t00159128, 2012/1/31   问题单号:DTS2012011304847 */
-    /* BEGIN:Added by h00139187 at 2012-3-22 for PS9.1 DTS2012032202767 【PS9.1 IP组主动质量改进】软参兼容性修改*/
+    M_SPM_CM_INVALID_VOLUME_QUOTA = 21,
     M_SPM_PF_NEW_FLAG  =  51, /*PS9.1 新增软参使用DWORD51*/
-    /* BEGIN: Added by xuyaoqiang, 2012/2/14   问题单号:PS9.2 VF DCCA V2.1 */
     M_SPM_CM_OCSC_QUOTA_ZERO_NPT  =  61,
-    /* BEGIN: Added by huangbin 00139187, 2012/7/24 增加软参控制ipsqm cbs*/
     M_SPM_PF_IPSQM_CBS  =  62,
-    /* END:   Added by huangbin 00139187, 2012/2/14 增加软参控制ipsqm cbs*/
-    /* linyufeng 00176669 DHCPv6特性 2012-07-14 start */
     M_SPM_PTM_DHCP_SERVER_INTERVAL = 71,
-    /* linyufeng 00176669 DHCPv6特性 2012-07-14 end */
     M_SPM_IPN_TCP_MSS_DEFAULT_VALUE = 72,
-    /*Add by xsm00201057 20130304 for PDSNC06软参移植*/
     M_SPM_PF_PDSN_FLAG = 76,
-    /*End by xsm00201057 20130304 for PDSNC06软参移植*/
     M_SPM_PDSN_AAA_TRY_INTERVAL = 78,
-    /*Add by xsm00201057 20130520 for PDSN新增costos功能控制软参修改*/
     M_SPM_PF_PDSN_NEW_FLAG = 84,
 
     M_SPM_DEF_DWORD_END
@@ -334,9 +306,7 @@ typedef enum enumPTM_LOG_LVL_E
 
 /*ip地址的ulong数目*/
 #define LAP_IP_ULONG_NUM     4
-/* z00175135 IPv6 Prefix Delegation特性 2012-06-18 start */
 #define LAP_ULONG_BIT_NUM   32
-/* z00175135 IPv6 Prefix Delegation特性 2012-06-18 end   */
 
 /*MSISDN中用的ULONG数*/
 #define LAP_MSISDN_ULONG_NUM        2
@@ -360,11 +330,9 @@ typedef struct tagLAP2_DHCP_MSG
     ULONG aulPdpAddr[LAP_IP_ULONG_NUM];       /*IP地址*/
     ULONG aulMSISDN[LAP_MSISDN_ULONG_NUM];        /*MSISDN*/
     ULONG ulIndex;             /*上下文索引*/
-    /* zhangjinquan 00175135 DHCPv6特性 2012-06-30 start */
     ULONG aulAgentIP[LAP_IP_ULONG_NUM];           /*Agent IP*/
     ULONG aulPrimaryDNS[LAP_IP_ULONG_NUM];
     ULONG aulSecondaryDNS[LAP_IP_ULONG_NUM];
-    /* zhangjinquan 00175135 DHCPv6特性 2012-06-30 end   */
     ULONG ulTeidc;            /*TEIDC*/
     USHORT usVpnId;           /*VPN ID*/
     USHORT usPoolIndex;        /*地址池索引*/
@@ -613,28 +581,22 @@ typedef enum tagEN_TRACE_TYPE
     TRC_TYPE_GY                 = 0X07,
     TRC_TYPE_MBMS_SESSION       = 0X08,
     TRC_TYPE_GX                 = 0x09,     /* GX接口跟踪 */
-    //Begin:added by c00110835 for 跟踪适配
     TRC_TYPE_EXTERN_SGW_S4S11S12S1U    = 0X0A,     /* SGW的S4/S11/S12/S1-U外部接口跟踪 */
     TRC_TYPE_EXTERN_SGW_S5S8           = 0x0B,     /* SGW的S5/S8外部接口跟踪 */
     TRC_TYPE_EXTERN_PGW_S5S8S2AS2BGNGP    = 0x0C,     /* PGW的S5/S8/S2a/Gn/Gp外部接口跟踪 */
-    //End:added by c00110835 for 跟踪适配
     TRC_TYPE_GIS6B              = 0x0D,     /* Gi/S6b接口跟踪 */
     TRC_TYPE_EXT_IPPM       = 0x0E,     /* IPPM外部接口跟踪 */
     TRC_TYPE_IPPM               = 0x0F,     /* IPPM接口跟踪 */
     TRC_TYPE_TCP                = 0x10,     /* TCP层的消息跟踪 */
     TRC_TYPE_IKE                 = 0x11,                          /* IKE  消息跟踪 */
-    //Begin:added by c00110835 for 模块间内部跟踪
     TRC_TYPE_INTER_MODULE               = 0x15,
     TRC_TYPE_USER_INTER_TYPE            = 0x16,
     TRC_TYPE_GA_INTER                   = 0x14,
     TRC_TYPE_GI_INTER                   = 0x1D,
-    //End:added by c00110835 for 模块间内部跟踪
     TRC_TYPE_SGW_S4S11S12S1U    = 0X1A,     /* SGW的S4/S11/S12/S1-U接口跟踪 */
     TRC_TYPE_SGW_S5S8           = 0x1B,     /* SGW的S5/S8接口跟踪 */
     TRC_TYPE_PGW_S5S8S2AGNGP    = 0x1C,     /* PGW的S5/S8/S2a/Gn/Gp接口跟踪 */
-    /* BEGIN: Added for PN:DTS2011032301715  for gy内部跟踪 by wujin 00167715, 2011/3/24 */
     TRC_TYPE_GY_INTER                   = 0x17,
-    /* END:   Added for PN:DTS2011032301715  for gy内部跟踪 by wujin 00167715, 2011/3/24 */
     TRC_TYPE_GX_INTER                   = 0x19,
     TRC_TYPE_V                  = 0x1E, /* DHCP信令的V接口跟踪 */
     TRC_TYPE_GCF                    = 0x1F,
@@ -710,10 +672,8 @@ typedef struct tagSDB_FILTER_CONTENT_S
   UCHAR usGateStatusFlag : 1;          /*如果Gate关闭，为0，否则为1*/
   UCHAR usUpDir          : 1;                       /*0：表示Filter不用于上行，1：表示用于上行*/
   UCHAR usDownDir        : 1;                       /*0：表示Filter不用于下行，1：表示用于下行*/
-  /* BEGIN: Added by l50262 for 静态pcc, 2009/3/25 */
   UCHAR    usSmPccCrtFlg : 1;                       /*标记为此次sm 静态pcc创建，置1*/
-  UCHAR    usSmPccCrtFilter : 1;                       /*标记filter由sm 静态pcc创建，置1*/
-  /* END:   Added by l50262 for 静态pcc, 2009/3/25 */
+  UCHAR    usSmPccCrtFilter : 1;
   UCHAR ucFlag;                    /*有效标记*/
   UCHAR ucIsSrcPortRng :1;  /*表示源端口为区间范围还是只有端口号:1表示范围;0表示端口*/
   UCHAR ucIsDstPortRng :1;  /*表示目的端口为区间范围还是只有端口号:1表示范围;0表示端口*/
@@ -725,11 +685,9 @@ typedef struct tagSDB_FILTER_CONTENT_S
 typedef struct tagSDB_FILTER_S
 {
   UCHAR ucFilterId;
-  /* Modified start by hourufeng 00139414 for Gx融合 2011.8.30*/
   /*filter操作码，目前仅供Gx融合GGSN使用，根据此操作码从filter list中判断出当前要操作的filter
     GTPC_CREATE_NEW_TFT、GTPC_DELETE_EXISTING_TFT不需要赋值*/
   UCHAR ucFilterOpCode;
-  /* Modified end by hourufeng 00139414 for Gx融合 2011.8.30*/
   SDB_FILTER_CONTENT_S stFilterContent;
   ULONG ulNwFilterId;
   ULONG ulNwFilterIdSecond;
@@ -1337,13 +1295,13 @@ typedef struct tagAM_CM_UPDATETYPE
     UCHAR  ucEarpChangeFlag      :1;
     UCHAR  ucPcscfFaultFlag          :1;
     //UCHAR  ucVogProfileChangeFlag      :1;/* 发送到MSU的vog-profile变化*/
-    UCHAR  ucCongestionChangeFlag          :1; /* add by g00131462 for 小区拥塞 */
+    UCHAR  ucCongestionChangeFlag          :1;
 
     UCHAR  ucSubNetChangeFlag :1;
     UCHAR  ucbit2SuspendUpd:2;
     UCHAR  ucCLHandoverFlag :1;   /*标识当前是C/L互切的场景*/
-    UCHAR  ucC2LSecondMatchFlag:1;  /*add by jiahong 00148456 C切L,给IPN置二次匹配标记DTS2013090206054*/
-    UCHAR  uc34HOQosVersionChgFlg :1;  /* 标识3,4G互切QOS版本变化标识 DTS2013081507691 */
+    UCHAR  ucC2LSecondMatchFlag:1;
+    UCHAR  uc34HOQosVersionChgFlg :1;
     UCHAR  ucRsv :3;
 } VOS_PACKED AM_CM_UPDATETYPE_S;
 
@@ -1421,8 +1379,7 @@ typedef struct tagGTP_COMMON_FLAGS_S
 //gtp backup define
 //
 
-/* C00119457，为了Handover等流程能够回退且在Handover流程结束后PGW/SGW
-能够正确删除源侧资源，需要备份一些回退数据，字段定义与SDB_GSPU_CONTEXT_S一致 */
+
 typedef struct tagSDB_WITHDRAW_DATA_S
 {
     UCHAR ucUgwRole;        /* 角色信息 */
@@ -1445,7 +1402,7 @@ typedef struct tagSDB_WITHDRAW_DATA_S
 
     ULONG ulSgwLeftPeerTeidc;     /* 左侧对端信令隧道标识 */
     ULONG ulSgwLeftLocTeidc;      /* 左侧本端信令隧道标识 */
-    ULONG ulLeftPeerSigIpInHeader;/* IP头中的左侧对端信令IP */
+    ULONG ulLeftPeerSigIpInHeader;
     ULONG ulSgwLeftPeerSigIP;     /* 信元中解析出的左侧对端IP */
     ULONG ulSgwLeftLocSigIP;      /* 左侧本端信令IP */
     USHORT usSgwLeftPeerSigPort;  /* 左侧对端信令端口 */
@@ -1501,20 +1458,16 @@ typedef struct tagSDB_WITHDRAW_DATA_S
     UCHAR ucSendTraceInfoToPgw : 1;
     UCHAR ucMachineState;      /* GTPV2 一级状态; GTPV1 状态 */
     UCHAR ucMachineL2State;    /* GTPV2 二级状态*/
-    /* Modified start by taojixiu 00132297 at 2011-08-13 PS9.1 for VPLMN性能统计CR收编 */
     UCHAR ucUsrTypeFlg : 2;       /* 保存上下文中的用户属性信息*/
     UCHAR ucIsActByTauOrHo : 1;
     UCHAR ucReserve : 5;          /* 保留，字节对齐，后续使用请优先使用保留字段 */
-    /* Modified end by taojixiu 00132297 at 2011-08-13 PS9.1 for VPLMN性能统计CR收编 */
     USHORT usTraceId;
     UCHAR ucSgwListOfInterfaces;
     UCHAR ucPgwListOfInterfaces;
 
     ULONG ulSgwIfindex;      /* 用于保存组级接口的Sgw 侧的Ifindex */
     ULONG ulPgwIfindex;      /* 用于保存组级接口的Pgw or GGSN 侧的Ifindex */
-    /* Added start by taojixiu 00132297 at 2011-08-13 PS9.1 for VPLMN性能统计CR收编 */
     T3GPP_SGSN_MCC_MNC_S stSgsnPlmn;
-    /* Added end by taojixiu 00132297 at 2011-08-13 PS9.1 for VPLMN性能统计CR收编 */
     AM_CM_UPDATETYPE_S stUpdateType; /*4字节*/            /*更新类型:GTP_CHANGE_SGSN_IP,GTP_CHANGE_QOS,GTP_CHANGE_LOCATION,GTP_CHANGE_RAT */
     USHORT usLeftRecovery;  /*ucLeftRecovery*/
     UCHAR ucBitMsChangeExtendFlag    : 1;
@@ -1590,7 +1543,7 @@ typedef struct tagGTP_IE_PCO_PARSE_S
     UCHAR       *pucWriteCurPos;                 /* PCO应答消息写当前指针，使用前应当先为应答消息分配内存 */
     UCHAR       *pucLcpReqOptions;
 
-    in6_addr    stUserIP;                         /* 用户IP */
+    in6_addr    stUserIP;
     int         iSendControlIndex;               /* 发送控制块索引 */
 
     USHORT      usResponseLen;                   /* 鉴权回应长度*/
@@ -1772,9 +1725,7 @@ typedef struct tag3GPP_IMSI_MCC_MNC_S       /*  IMSI_MCC_MNC结构  */
     UCHAR MNC1  : 4;
     UCHAR MNC2  : 4;
     /*UCHAR SPARE : 4;*/                        /*  不用添1  */
-    /* BEGIN: Added by 袁昊, 2003/7/29 */
     UCHAR MNC3  : 4;
-    /* END:   Added by 袁昊, 2003/7/29 */
 #else
 
     UCHAR MCC2  : 4;
@@ -1782,9 +1733,7 @@ typedef struct tag3GPP_IMSI_MCC_MNC_S       /*  IMSI_MCC_MNC结构  */
     UCHAR MNC1  : 4;
     UCHAR MCC3  : 4;
     /*UCHAR SPARE : 4;*/                        /*  不用添1  */
-    /* BEGIN: Added by 袁昊, 2003/7/29 */
     UCHAR MNC3  : 4;
-    /* END:   Added by 袁昊, 2003/7/29 */
     UCHAR MNC2  : 4;
 #endif
 } VOS_PACKED T3GPP_IMSI_MCC_MNC_S;
@@ -1891,7 +1840,7 @@ typedef struct  tagSDB_SCCG_CONTEXT_S
     ULONG ucBatchNotActive:1;
     ULONG bit1MSUFlagc:1;
     ULONG  ucVIPUserFlg:1;
-    ULONG ucQchatFlag:1;           /* 是否为Qchat用户标志 */
+    ULONG ucQchatFlag:1;
     ULONG ucSupprotFPIFlag:1;/*FPI属性标志*/
     ULONG ucSupAreaCongestionRpt:1; /*小区拥塞上报*/
     ULONG ucBitAreaCongTriggerFlag:1;
@@ -1923,8 +1872,7 @@ typedef struct  tagSDB_SCCG_CONTEXT_S
     AM_GTPV2_TRACE_INFO_S *pstTraceInfo;/*UGW 1.1:Trace info暂存指针，发送消息后指针释放*/
     S_GTPV2_PAA *pstGTPV2PAA;
     AAA_Service_List *pstServiceList; /* Servic-List指针 */
-    UCHAR *pstPrcfUpdateMsg;       /* 保存PCRFC RAR更新消息 */
-    /* add start by wangboyu at 2011-09-30 for PCC增强 */
+    UCHAR *pstPrcfUpdateMsg;
     UGW_TFT_QOS_UPDATE_BAKUP_S *pstQosRollBack;     /*  用户缺省承载的QOS回退 */
     UCHAR* pucLapRspMsg; /*包含DHCPV6信息的Lap响应消息存在此处*/
 
@@ -2296,7 +2244,6 @@ typedef struct  tagSDB_SCCG_CONTEXT_S
     UCHAR ucAuthenticator[16];
     ULONG ulRadiusServerIP;
     UCHAR ucTetheringFlag;
-    /*  Added by liuyan 00195624 on 2012-9-17 for SBR特性 */
     //UCHAR ucMseProfileListOper;
     UCHAR ucMsdLogicalSlotId;     /*MSD板的slot*/
 
@@ -2305,7 +2252,7 @@ typedef struct  tagSDB_SCCG_CONTEXT_S
     UCHAR ucMsdSgId;                   /*MSD板的SG*/
     UCHAR ucLocalLocationReportFlag;
     UCHAR ucBitRaiTriggerFlag :1;
-    UCHAR ucClearFlg   :1;  /* 上下文清除标记 DTS2012101004007 */
+    UCHAR ucClearFlg   :1;
     UCHAR ucBitTaiTriggerFlag :1;
     UCHAR ucBitEcgiTriggerFlag :1;
     UCHAR ucBitUliTriggerFlag :1;
@@ -2314,7 +2261,6 @@ typedef struct  tagSDB_SCCG_CONTEXT_S
     /*SPU向MSD-SDU发送消息后记录已发请求消息标记，后续收到MSD返回的响应消息后，清除此标记.
        如果SPU板没发送激活请求，就收到MS的响应消息，则直接丢弃该消息。*/
     UCHAR bit1SendReqFlag:1;
-    /* Added end by liuyan 00195624 on 2012-9-17 for SBR特性*/
     UCHAR aucUliInfo[MAX_CONGESTION_RPT_ULI_LEN];
     UCHAR ucL2InfoLen;
     UCHAR ucContChargingAdded:1;
@@ -2350,9 +2296,7 @@ typedef struct tagGTP_LICENSETYPE_S
     //UCHAR ucReserve:6;
     UCHAR ucMultiServLicenseFlag:1;    /*是否为Multi Service用户激活*/
     UCHAR  ucOnlineChargeFlag:1;/*是否为在线计费用户*/
-    /* Modified start at 2012-3-6 by yuanhao for 网络侧二次激活License控制 */
     UCHAR ucNetSecActFlag:1;   /* 是否网络侧二次激活，只适用于融合网关的Gn/Gp SGSN接入 */
-    /* Modified start at 2012-3-6 by yuanhao for 网络侧二次激活License控制 */
 
     UCHAR ucDhcpv6Flg:1;
     UCHAR ucPdv6flag:1;
@@ -2466,7 +2410,7 @@ typedef struct tagSDB_GSPU_CONTEXT_S
     ULONG ucEarpChangeForMsgProc: 1;
     ULONG ucSgsnReqMsgWithEarp: 1;
     ULONG ucCpuxDeleteFlag: 1;
-    ULONG ucCarType: 1;       /* 用来计数pdp使用的car资源类型0:AMBR CAR,1:PDP CAR.for DTS2013012804080 */
+    ULONG ucCarType: 1;
     ULONG ulBackupPre : 24;   /* 备份相关 */
     ULONG ulGspuBdIndex;      /* 该记录在SC上PDP Context表中索引 */
     ULONG ulDefaultGspuIndex; /* 专有承载所对应的缺省承载的gspu index，用于根据专有承载反查缺省承载，缺省承载该字段为全f*/
@@ -2539,7 +2483,7 @@ typedef struct tagSDB_GSPU_CONTEXT_S
 
     UCHAR ucChargingChar[2];     /* 计费特征(协) */
     UCHAR ucSelectMode  : 3;     /* APN选择模式(协)，取值参见上面的宏 */
-    UCHAR ucUEInitProc  : 1;     /* 由UE触发的处理，Wangyuting add for BI8D00507,2009-5-4*/
+    UCHAR ucUEInitProc  : 1;
     UCHAR ucDTI : 1;             /* 更新消息里Direct Tunnel Flag信元的DTI标志位,0表示2Tunnel,1表示1Tunnel */
     UCHAR ucChargeOnlineFlag : 1;
     UCHAR ucChargeOfflineFlag : 1;
@@ -2589,10 +2533,10 @@ typedef struct tagSDB_GSPU_CONTEXT_S
     UCHAR ucPrevMsgType;                   /* 上一次接收到的消息类型  */
     UCHAR ucVirtualApnMapCounter : 2;      /* 用作记录虚拟apn映射次数，包括所有映射类型，最多三次*/
     UCHAR ucApnRestricFlag       : 1;      /* apn-restriction */
-    UCHAR ucGxRelType            : 1;      /* Added by c00110835 for CR20120130050:用于表示和PCRF接口版本使用的R8接口还是R7接口*/
+    UCHAR ucGxRelType            : 1;
     UCHAR Conflict               : 2;      /* 消息冲突时，用来终结消息 */
     UCHAR ucIPReleaseFlag        : 1;      /* 激活前收到地址释放消息 */
-    UCHAR ucFilterTableIndexReleaseFlag:1; /* add by mayouwei 20090407 for c01 B037 地址泄漏*/
+    UCHAR ucFilterTableIndexReleaseFlag:1;
     UCHAR ucUgwRole;                       /* 定义见UGW_NET_ELEMENT_ROLE_E */
     UCHAR ucHplmnIndex;                    /* 保存HPLMN INDEX，用户激活时保存，二次和专有上下文继承该字段 */
     T3GPP_GGSN_MCC_MNC_S stMccMnc;         /* 3字节 是GGSN,PGW,P+S HPLMN,按照stImsi从HPLMN匹配到的HPLMN，如果在SGW上，该字段表示PGW的PLMN */
@@ -2630,7 +2574,7 @@ typedef struct tagSDB_GSPU_CONTEXT_S
     UCHAR ucMainContextFlag : 1;           /* 该字段仅在平滑时使用,用于标识当前用户情况*/
     UCHAR ucAddrAllocDhcpsFlag:1;          /* 是否dhcp 方式分配地址，UGW专用*/
 
-    UCHAR ucDelCause;                    /* 去活原因值 DTS2014011806081 delcause 有7bit扩展到8bit*/
+    UCHAR ucDelCause;
 
 
     /*分别用来保存（更新时）新增和原来的上下行带宽分别占用标记*/
@@ -2643,13 +2587,9 @@ typedef struct tagSDB_GSPU_CONTEXT_S
     UCHAR ucULIValid        : 1; /* 标示上下文中的ULI信息合法CM组使用*/
     UCHAR ucTimeZoneValid   : 1; /* 标示上下文中的Timezone信息合法CM组使用*/
     UCHAR ucNegoUsrPriResv  : 1;
-    /* Added start by jiexianzhu at 2013.12.16 for 本地映射 VLRID/GT */
     UCHAR ucTransparentFromRadiusFlag : 1; /* 标记 aucTransparentData 中数据激活时从radius获取(1),从本地配置获取(0) */
-    /* Added end by jiexianzhu at 2013.12.16 for 本地映射 VLRID/GT */
-    /* Added start by p00114481 at 2013-11-06 UGW9811V900R011C00 for GGSN/PGW Proxy特性 */
     UCHAR ucGateWayProxyFlag : 1;      /* Proxy 上下文标记*/
     UCHAR ucProxyWaitResponseFlag : 1;  /* Proxy 上下文等待响应消息标记*/
-    /* Added end by p00114481 at 2013-11-06 UGW9811V900R011C00 for GGSN/PGW Proxy特性 */
     UCHAR ucRedundancyV4Flag: 1;
     UCHAR ucRedundancyV6Flag: 1;
 
@@ -2678,7 +2618,7 @@ typedef struct tagSDB_GSPU_CONTEXT_S
     UCHAR ucL2TPFlag        : 1;       /* 新增L2TP标记 */
     UCHAR ucPppFlag         : 4;       /* 新增ppp标志 */
 
-    UCHAR ucCmdProcess      : 1;       /*用于表示pcc用户mbc流程是否处理add by fanzhiyu on 2013.10.28 ps10.1 for DTS2013102303826*/
+    UCHAR ucCmdProcess      : 1;
     UCHAR ucLiFlag          : 1;
     UCHAR ucDataTrcFlg      : 2;
     UCHAR ucIpv6RouteMsgNum : 4;       /* 以前是ucMsgNum */
@@ -2691,7 +2631,7 @@ typedef struct tagSDB_GSPU_CONTEXT_S
     UCHAR ucBit2SelectType    : 2;   /*PCC使用字段: 0 基于pcrfgrp选择service；1:基于全局realmIdex选择索引；2:基于apn下的realm选择索引; 3:初始化值(又AM保证)*/
     UCHAR ucStripFlag        : 1;      /* 剥离域名标志 */
     UCHAR ucConfict : 1;
-    UCHAR ucLcenseFlag       : 1;      /* added by c00110835 用于V2用户是否统计了License */
+    UCHAR ucLcenseFlag       : 1;
     UCHAR ucErrorIndicationDirect : 1; /* SGW上标示error indication的方向:0-表示从左侧收到，1-表示从右侧收到*/
     UCHAR ucPrepImsFlag      : 2;      /* 专有承载是IMS信令上下文的预备指示，等和PCRF交互完后即可转正*/
 
@@ -2747,7 +2687,7 @@ typedef struct tagSDB_GSPU_CONTEXT_S
     UCHAR bit1SgwOflChrgEnabled: 1;
     UCHAR ucOcscForceDropFlag  : 1; /* tianshuang for CR20120301017*/
     UCHAR ucDhcpIPV6Flg        : 1; /* tianshuang for DHCP-IPV6 2012-07-10 标识用户是否为IPV6*/
-    UCHAR ucBWMUsrFlg          : 1; /* 标识上下文为BWM用户,AM无法感知BWM,IPN无法感知角色切换,造成切换时相关话统不准确,增加该字段由AM在角色切换时计算 DTS2012011306321*/
+    UCHAR ucBWMUsrFlg          : 1;
     UCHAR ucBit4BearerReqMsgLeft:4;
 
     UCHAR ucSrvLevel         : 3;   /* 业务级别*/
@@ -2882,7 +2822,7 @@ typedef struct tagSDB_GSPU_CONTEXT_S
     UCHAR ucBitEcgiTriggerFlag: 1;
     UCHAR ucImsLocChangeFlag  : 1;     /* ims位置上报标记位,用于表示当pcrfc通知更新时是否需要向左侧发起更新和indication字段Octet 7的bit8置1 */
     UCHAR bit1MsdFlag         : 1;     /* 是否是MSD用户, 该标记在MSD返回有效SG等信息时置位*/
-    UCHAR bit1UptByIdleTimeOut: 1;     /* 是否是cm idletimeout发起的更新  DTS2014031702885 */
+    UCHAR bit1UptByIdleTimeOut: 1;
     UCHAR bit1SendReqFlag     : 1;     /* SPU向MSD-SDU发送消息后记录已发请求消息标记，后续收到MSD返回的响应消息后，清除此标记.
                                           如果SPU板没发送激活请求，就收到MS的响应消息，则直接丢弃该消息。*/
     /*4*/
@@ -2891,7 +2831,7 @@ typedef struct tagSDB_GSPU_CONTEXT_S
     UCHAR ucLinkedEPSBearId;
     UCHAR ucbit1TightInterwork: 1;     /* 0:松耦合  1:紧耦合 */
     UCHAR ucTetheringFlag     : 1;
-    UCHAR ucLiDirectFlg       : 1;     /* 合法监听发起方标志位 1 代表网络侧，0 代表UE侧 modify usLichnIndex to usLiDirectFlg by w00221565 at 2013-03-01 for LI DTS2013011100335   */
+    UCHAR ucLiDirectFlg       : 1;
     UCHAR usPMIPTimeoutFlg    : 1;
     UCHAR ucCorrelationID     : 4;     /* 网络二次激活使用 */
     /*4*/
@@ -2949,7 +2889,7 @@ typedef struct tagSDB_GSPU_CONTEXT_S
     /*8*/
 
     UCHAR ucGroupLevelServiceType;     /* 记录用户组级的业务类型， tos /non-tos*/
-    UCHAR ucPccMode;                   /* modify by wangboyu at 2011-08-31 for PCC 融合 */
+    UCHAR ucPccMode;
     USHORT usUserGroupID;              /* 用户组ID，同时也是用户组级BWM_CB数组的索引号 */
     USHORT usPmipSequence;
     UCHAR ucHandoffIndicator;
@@ -2988,12 +2928,12 @@ typedef struct tagSDB_GSPU_CONTEXT_S
     UCHAR ucUserDefaultIdleTime:1;     /* 标识未配置idle-timeout时使用默认的idle时长,目前为1天,由软参bit1157控制,默认开,对所有用户生效*/
     UCHAR ucSuspendAdd:1;              /* 1,增加过suspend的统计  0，没有增加过suspend的统计*/
     UCHAR ucSPGWCsFlag:1;              /* SPGW激活失败时响应消息中Cause值的CS位置1还是置0,1表示CS需要置1,0表示CS需要置0*/
-    UCHAR ucLiBkpFlag :1;              /* DTS2013052100045合法监听N+1备份成功标志位，0代表成功，1代表失败，恢复上下文备份后，如果该字段为失败，则去活上下文*/
+    UCHAR ucLiBkpFlag :1;
     UCHAR ucFupEnableFlag :1;          /* 标识PCRF启用了FUP,用于给PF下表项 */
-    UCHAR ucPrivateExtensionOccur:1;   /* 标识私有扩展段是否出现 Add by liangxuyang 00171541 for DelMsg Private_Extension at 2011-12-01*/
+    UCHAR ucPrivateExtensionOccur:1;
 
     UCHAR ucUsmBackupFlg:1;            /* 主板是否已经备份过标志*/
-    UCHAR ucPrivateDelCause:3;         /* 标识私有原因值 Add by liuyan 00195624 for DelMsg Private_Extension at 2011-12-22*/
+    UCHAR ucPrivateDelCause:3;
     UCHAR ucIsQchatIdletime:1;         /* idletime是否使用 qchat的idletime*/
     UCHAR ucCoaQosFlag:1;
     UCHAR ucSAEmsFlag:1;              /* Gn免维护SA标记*/
@@ -3001,13 +2941,13 @@ typedef struct tagSDB_GSPU_CONTEXT_S
 
     UCHAR ucPcrfcAuthReqType       :3; /* AM 处理pcrfc请求消息时，消息预处理 0 :成功; 1: 失败*/
     UCHAR ucPcrfcDelType           :1; /* AM 和pcrfc间的消息去活类型: 1 :session; 0: bearer*/
-    UCHAR ucSlavePdpFlag           :1; /* 使用标记标识是备板用户，用于平滑时性能统计恢复用 */
+    UCHAR ucSlavePdpFlag           :1;
     UCHAR ucNeedSendToMMEFlag      :1; /* 分离重复激活为合一时使用，用于标识通知pgw删除后delete-rsp消息不发送给mme，1:不需要，0:需要*/
     UCHAR ucRadiusPCMode           :2; /* 保留 */
 
     UCHAR ucPccResourceFlag        :1; /* ucPccResourceFlag: 1:占用PCC资源       0:表示没有占用PCC资源*/
     UCHAR ucReportingLevelDefault  :1;
-    UCHAR ucMessageCode            :6; /* modify by wangboyu at 2011-08-31 for PCC 融合 */
+    UCHAR ucMessageCode            :6;
 
     UCHAR ucRuleChangeFlag         :1;
     UCHAR ucTriggerChangeFlag      :1;
@@ -3036,7 +2976,7 @@ typedef struct tagSDB_GSPU_CONTEXT_S
     GTP_COMMON_FLAGS_S stCommonFlags;  /* 1字节 */
     UCHAR ucChargingCharInMsg[2];      /* 用于存储SGSN携带的CC信元的值*/
     UCHAR ucUpdatePccFlag   :1;
-    UCHAR ucPccFilterType   :1;        /* ADD by g00135725 at 2009-07-21 for PCC(AM):0:标示7层，1标示3，4层*/
+    UCHAR ucPccFilterType   :1;
     UCHAR ucSendDelSessReq  :1;
     UCHAR ucSendDelBearerReq:1;
     UCHAR ucSendDelBearerCmd:1;
@@ -3088,7 +3028,7 @@ typedef struct tagSDB_GSPU_CONTEXT_S
     UCHAR ucMSRarUpdBakFlag:1;         /* RAR更新时需要通知IPN进行备份的标志 */
     UCHAR ucPccRollBackFlag:1;         /* PCRFC通知AM PCC回滚时，AM置该位为1，IPN通过此标志在备板做回滚操作，该字段在PCRFC给AM回更新响应和revoke消息时置位*/
     UCHAR ucBitCfFlag :1;              /* 1表示CF用户，0表示不是CF用户*/
-    UCHAR ucDelNullflg:1;              /* 已使用 PCC用户通过BRC消息删除filter时，如果全部filterid都无法找到相应的filter时，UGW发起更新操作，不通知PCC  modify start by wangboyu for TFT异常处理 at 2012-01-31   */
+    UCHAR ucDelNullflg:1;
 
     UCHAR ucVIPDelByLicense:1;         /* 由于license不足，VIP用户接入而导致的普通用户去活 */
     UCHAR ucOldVIPUserFlg:1;           /* 用于性能统计*/
@@ -3121,7 +3061,7 @@ typedef struct tagSDB_GSPU_CONTEXT_S
     UCHAR ucBitUliTriggerFlag:1;       /* PCRF/AAA/OCS/CG是否下发ULI trigger*/
     UCHAR ucBitMsFlag:1;               /* 当前正在处理ms info change request消息，该消息和PCRF/CM交互时，如果失败或超时不去活用户*/
     UCHAR ucAAAQosFlag:1;              /* 1,AAA下发了有效的QosId，0，AAA没有下发QosId */
-    UCHAR ucQchatFlag:1;               /* 是否为Qchat用户标志 */
+    UCHAR ucQchatFlag:1;
 
     UCHAR ucPerfLicenseDownFlag:4;
     UCHAR ucPerfLicenseUpFlag:4;
@@ -3135,7 +3075,7 @@ typedef struct tagSDB_GSPU_CONTEXT_S
     UCHAR ucAdcRuleFlag       :1;      /* 是否有ADC规则*/
     UCHAR ucAdcChangeFlag       :1;    /* ADC是否更新*/
 
-    UCHAR ucAreaCongTriggerFuncFlag:1; /* add by g00131462 for 小区拥塞 */
+    UCHAR ucAreaCongTriggerFuncFlag:1;
     UCHAR ucGgsnInitUpdateBit:7;
 
     UCHAR ucCfProfileListNum;          /* cf-profile的个数*/
@@ -3184,7 +3124,7 @@ typedef struct tagSDB_GSPU_CONTEXT_S
     USHORT usMSProfilelistIndex;       /* 用于记录动态策略，如果此索引非法则判断为非MSD用户, 此标记由IPN修改，AM读。 AM负责修改bit1MsdFlag 标记*/
     UCHAR ucMsdSgId;                   /* MSD板的SG*/
     UCHAR ucLocalLocationReportFlag;
-    UCHAR ucBriTrigger;                /* y00170683 PMIP开发 */
+    UCHAR ucBriTrigger;
     UCHAR ucBri3GppErrCode;
 
     UCHAR ucMsdTCPOptiFlag           :1;
@@ -3194,16 +3134,13 @@ typedef struct tagSDB_GSPU_CONTEXT_S
     UCHAR ucSGSNS4Flag               :1;
     UCHAR ucBitPmipLapFail           :1;
     UCHAR ucBitPmipDhcpFsmFlg        :1;/* PMIP 延迟分配申请地址是否已经转状态机 */
-    UCHAR ucCrtByServOrForbiddentoCrt:1;/* modified by wangboyu at 2013-03-14 for DTS2013021600701 CR20130304070
-                                            此标记在二次激活中表示该承载是由业务触发的。在一次激活表示该用户被惩罚，
-                                            下一次的业务触发二次激活直接返回失败。仅用于GGSN。此CR经SE确认，
-                                            在10.0后续版本中因为IPN业务调整可以解决此问题而不需要继承。*/
+    UCHAR ucCrtByServOrForbiddentoCrt:1;
 
     UCHAR ucbit1SuspendFlag :1;        /* suspend 挂起状态机标记*/
     UCHAR ucbit1VoiceFlag :1;          /* Delete bearer cmd中 Voice bearer标志*/
     UCHAR ucPostLapRelease    : 2;
 
-    UCHAR ucBit4S6bSrvSelectType:3;    /*add by jiahong 00148456 at 20131016 for 10.1 s6b_dra .s6b使用字段取值为S6B_SERVER_SELECT_TYPE_E */
+    UCHAR ucBit4S6bSrvSelectType:3;
 
     UCHAR ucbit1VogEmsFlag:1;
     GTP_PMIPV6PEERADDR_BSSID stPmipV6addrOrBSSID;     /* 16字节 */
@@ -3232,9 +3169,7 @@ typedef struct tagRM_SOCKET_PATH_S
     ULONG  ulVrfIndex;                //VPN索引
     ULONG  ulGroupifIndex;            //组级ifindex
     ULONG  ulLocalSubindex;           /*本端地址接口索引*/
-    /* add start by wenxing 00194498 on 2014-01-06 for DTS2013120202505
-        proxy ggsn/pgw 直接回复失败的时候的跟踪方向 proxy ggsn(pgw)->sgw
-     */
+    
     UCHAR ucProxyCode;
     UCHAR ucCommendFlag; /*板间推荐过来的请求消息，回响应消息是需要使用原接入的逻辑接口地址*/
     USHORT usApnIndex;   /* apn 索引，用于接口跟踪的消息上报 */
@@ -3242,7 +3177,6 @@ typedef struct tagRM_SOCKET_PATH_S
     UCHAR ucRev[3];
 }VOS_PACKED RM_SOCKET_PATH_S;
 
-/* BEGIN: Added for PN: 全网跟踪  by LiHairong, 2010/4/8 */
 #pragma pack (1)
 typedef struct
 {
@@ -3397,7 +3331,7 @@ typedef enum
     USM_ACTIVE,                         /*激活态*/
     USM_PCRFC_UPDATE,
     USM_ASN_UPDATE,
-    USM_CM_UPDATE,                  /*10*/       /*更新等待CM*/
+    USM_CM_UPDATE,
     USM_PCRFC_DELETE,                 /*PCRFC删除的等待状态*/
     USM_CM_DELETE,                   /*CM删除的等待状态*/
     USM_WAIT_SGSN_DELETE,
@@ -3649,27 +3583,21 @@ typedef enum enE_CDB_AM_GUL_TBL
     M_AM_UGW_DDN_FLOW_CONTROL_TBL_ID,
     M_SC_VIP_SWITCH_FUNCTION_TBL_ID,
 
-    /* Added start by jiexianzhu at 2013.12.16 for 本地映射 VLRID/GT */
     M_SC_TRANSPARENT_TBL_ID,
     M_SC_PLMN_TRANSPARENT_TBL_ID,
     M_SC_DEFAULT_TRANSPARENT_TBL_ID,
-    /* Added end by jiexianzhu at 2013.12.16 for 本地映射 VLRID/GT */
     M_SC_SDU_OVERLOAD_CTRL_TBL_ID,
 
-    /* Added start by p00114481 at 2014-01-20 UGW9811V900R011C00 for GGSN/PGW Proxy特性 */
     M_SC_HOMEGROUPBINDAPN_TBL_ID,  /*211*/
-    /* Added end by p00114481 at 2014-01-20 UGW9811V900R011C00 for GGSN/PGW Proxy特性 */
 
     M_MSG_CON_RESEND_SW_FUNCTION_TBL_ID,
     M_SC_ACCESS_REACTIVATION_REQ_DEL_TBL_ID,
-    /*add by g00135725 20140215 for 管控需求*/
     M_SC_LACGROUP_TBL_ID,  /*213*/
     M_SC_TACGROUP_TBL_ID,  /*214*/
     M_SC_LACTACRAC_SECTION_TBL_ID,    /*215*/
     M_SC_RACGROUP_TBL_ID,  /*216*/
     M_SC_SPECIFICAPNVALUE_TBL_ID, /* 217 */
 
-    /*add by g00135725 20140215 for 管控需求*/
     M_SC_CPU_UPDATARATE_TBL_ID,
     M_SC_ENGIN_REACTIVATION_REQ_DEL_TBL_ID,
     CDB_AM_GUL_END_TBL_ID = CDB_AM_MAX_ID,
@@ -3724,17 +3652,11 @@ typedef enum tagCRM_SPU_BOARD_TYPE_ENUM
     CRM_BOARD_TYPE_UNKNOWN = 0,  /**< 未获取单板扩展类型，为未知类型 */
     CRM_BOARD_TYPE_SPUD,         /**< SPUD板（包含带TCAM扣卡） */
     CRM_BOARD_TYPE_SPUE,         /**< SPUE板 */
-    /* Added start by s00171233 at 2012-01-06 PGPV200R005 for IPPM&IPSQM特性 */
     CRM_BOARD_TYPE_PEU,          /**< PEU板 */
-    /* Added end by s00171233 at 2012-01-06 PGPV200R005 for IPPM&IPSQM特性 */
-    /* Added start by jiaguochen 00178577 at 2012-03-22 PGPV2R6 for SPU-Group支持SPUF单板 */
     CRM_BOARD_TYPE_SPUF,
-    /* Added end by jiaguochen 00178577 at 2012-03-22 PGPV2R6 for SPU-Group支持SPUF单板 */
-    /* Added start by fenglin 00221566 at 2012-09-03 PGPV2R6C00 for CRM MSU  特性 */
     CRM_BOARD_TYPE_MSU,          /**< MSU板 */
-    /* Added end by fenglin 00221566 at 2012-09-03 PGPV2R6C00 for CRM MSU  特性 */
-    CRM_BOARD_TYPE_SPUF1,/* Added by gaohongfeng 00221579 at 2013-03-28 PGPV2R6C01 for 设备管理整改 */
-    CRM_BOARD_TYPE_MSUF1,/* Added by gaohongfeng 00221579 at 2013-03-28 PGPV2R6C01 for 设备管理整改 */
+    CRM_BOARD_TYPE_SPUF1,
+    CRM_BOARD_TYPE_MSUF1,
     CRM_BOARD_TYPE_MAX,           /**< 无效硬件类型 */
 }  CRM_SPU_BOARD_TYPE_ENUM ;
 
@@ -3747,7 +3669,6 @@ typedef struct
     VOS_INT8   aValue[M_CDB_MAX_FIELD_LENGTH];
 } S_CFG_CDB_CONDITION;
 
-/* C00119457: DATE_T和TIME_T是基础类型，很难解除这种依赖，所以暂时保持现状 */
 typedef struct
 {
     ULONG  ulTick;     /* 上报发生的TICK数 */
@@ -3949,8 +3870,7 @@ enum enumPSCompType
 //3410-3512为增值类业务使用的组件id范围，包括VOG/HOSTING/SBR，但是后续UGW/SCCG/PDSN/WASN不能使用此段，建议接入侧复用。
 #define M_PS_VAS_COMP_TYPE_BASE (M_PS_COMP_TYPE_BASE + 154)
 
-/* C00119457: 下面的枚举只有UFP和业务侧在用，所以放在这个文件由业务侧与UFP
-共享(业务侧负责维护，UFP同步) */
+
 /* !!!枚举顺序不可随意修改，必须和SPUCFG一致，目前组件类型已用满，各组不能自行增加!!! */
 /* 实名组件类型，在此定义的组件类型会直接影响业务的部署，会写入到spucfg中 */
 typedef enum enCOMP_TYPE_E
@@ -4186,9 +4106,7 @@ typedef enum  enAM_USM_QUE_TYPE_E
     E_AM_USM_QUE_TIMER,             /* 接收定时器消息队列，对应U_TM 队列 */
     E_AM_USM_QUE_GM_RANDOM,         /* 接收随机用户跟踪共享消息队列，对应RANDOM_GTPCRCV%2d 队列 */
 
-    /* add start by jiexianzhu at 2012.08.25 for 计数整合 */
     E_AM_USM_QUE_SC_GRM_MSG,        /* GRM发送SC接收的用于命令的队列，对应GRMWriteSCRead%2lu 队列 */
-    /* add end by jiexianzhu at 2012.08.25 for 计数整合 */
 
     E_AM_USM_QUE_FCM_GTP,           /* 对应FCM_SUB_MID_GTPC  相关处理 */
     E_AM_USM_QUE_FCM_GTPC_FSDB,     /* 对应FCM_SUB_MID_GTPC_FSDB CKP相关处理 */
@@ -4260,9 +4178,9 @@ typedef enum enU_SOFTPARA_BYTE_VALUE
     //Cyjun: 既然实际是个宏的集合，业务不用的清理出去，平台以宏定义了M_SPM_ALM_SUMMUMER
     M_SPM_ALM_SUMMUMER = 2,/*告警时区夏令时*/
 
-    M_SPM_DHCP_AGENTIP_USAGE_CTR = 3,/* 控制远端地址池Agent IP下地址的最大使用率 zhangjinquan z00175135 */
+    M_SPM_DHCP_AGENTIP_USAGE_CTR = 3,
 
-    M_SPM_DHCP_AGENTIP_NUM_CTR = 4,/* 控制APN在每个CPU上最大申请的Agent IP个数 zhangjinquan z00175135 */
+    M_SPM_DHCP_AGENTIP_NUM_CTR = 4,
 
     //Cyjun: 既然实际是个宏的集合，业务不用的清理出去，平台以宏定义了M_SPM_SEC_UMT
     M_SPM_SEC_UMT = 10,/*M2000UMTS5.0 and UMTS6.0,软参控制*/
@@ -4294,17 +4212,13 @@ typedef enum enU_SOFTPARA_BYTE_VALUE
        SC要发送由软参所设置的个请求都超时，才置该SC的路径断，并报告给SD*/
     M_SPM_AM_SFN_PATH_ALARM_SW = 43,
     M_SPM_UDP_CHECKSUM = 45,        /* 用于控制UDP CheckSum, bit0:L2tp控制消息,bit1:L2tp数据消息,bit2:Gtp, bit3:DHCP */
-    /* Added start by taojixiu 00132297 at 2008-11-25 V8需求同步 for APN全大写 */
     /*控制AAA鉴权、计费以及话单，OCS中APN名是否大写*/
     M_SPM_GGSN_APN_UPPERCONTROL = 40,
-    /* Added end by taojixiu 00132297 at 2008-11-25 V8需求同步 for APN全大写 */
 
-    /* BEGIN: Added for PN:软参控制camel用户欠费处理 by baoxin 144601, 2008/12/27 */
     M_SPM_AM_ADDR_CONFLIC_CHECK_SW = 44,
     M_SPM_L2TP_UDP_CHECKSUM = 45,
     M_SPM_AM_GRM_CONTROL_TIMER = 46,
     M_SPM_GGSN_DEACTIVE_CAUSE_CTRL = 62,
-    /* END: Added for PN:软参控制camel用户欠费处理 by baoxin 144601, 2008/12/27 */
 
     M_SPM_AM_GGSN_TAKE_CGADDRESS = 49, /*GGSN在激活和更新应答中是否携带CG地址*/
 
@@ -4332,18 +4246,16 @@ typedef enum enU_SOFTPARA_BYTE_VALUE
 
     M_SPM_L2TP_INVALID_TUNL_EXIST = 63, /* 无效L2TP隧道存活时间，单位:小时 */
 
-    M_SPM_SM_SAM_INDENTIFY_THRESHOLD = 66, /*最大关联识别包数*/
+    M_SPM_SM_SAM_INDENTIFY_THRESHOLD = 66,
 
     M_SPM_IMSIMSISDN_SELECT = 68,
     /*用于控制性能统计时用哪个APN进行统计,如果软参值为1，用虚拟APN进行性能统计,软参值为0，用真实APN进行性能统计*/
     M_SPM_CM_CAPABILITY_STAT_APN_TYPE = 75,
 
-    /* Added start by liwei 57151 at 2008-12-22 V9R7C02 for C02V8特性移植 */
     /* 控制diameter消息called-station-id AVP标记位 */
     M_SPM_CM_DIAM_CSIAVPFLAG = 76,
     /* 1,2,3 bit控制V8 I+D需求；4 bit控制NSN对接需求 */
     M_SPM_CM_V8_SOFT_PARAM = 77,
-    /* Added end by liwei 57151 at 2008-12-22 V9R7C02 for C02V8特性移植 */
 
     /*60号软参用来控制外层分片的老化时间，单位为250ms
       取值范围 1~255，缺省值120,若配置为0则取120*/
@@ -4359,9 +4271,7 @@ typedef enum enU_SOFTPARA_BYTE_VALUE
 
     M_SPM_CM_CDRF_CTRLIDLE = 65,
 
-    //begin added by liuyan 39579 for R007C02 V8特性移植
     M_SPM_CM_V8_SOFT_PARA = 79,
-    //end added by liuyan for R007C02 V8特性移植
     /* Bit0和Bit1两位,事件计费的类型:  00：SCUR事件计费   01：IEC  10：增强性ECUR
       Bit2位：1：开启block功能：激活触发CCR，不回CCA,Tx超时后在线转离线，后续的事件计费业务被阻塞 0：关闭block功能 */
     M_SPM_CM_IEC_ECUR_SCUR_EVENT = 80,
@@ -4372,8 +4282,6 @@ typedef enum enU_SOFTPARA_BYTE_VALUE
     M_SPM_PF_IPv6_UDP_CHKSUM_FLAG = 84,
 
     M_SPM_CM_OCSC_SUPPORTED_VENDOR_ID = 85,
-    /* Added start by l00129869 at 2009-07-30 GGSNV9R7C03 for 话单32位翻转 */
-    /* Added end by l00129869 at 2009-07-30 GGSNV9R7C03 for 话单32位翻转 */
     M_SPM_CM_TFA_FUN_SWITCH = 87, /* 西班牙在线计费需求*/
     M_SPM_CM_CDR_ADAPT_FOR_OPERATE = 88,
 
@@ -4387,18 +4295,13 @@ typedef enum enU_SOFTPARA_BYTE_VALUE
 
     M_SPM_AM_MSG_AUTHENTICATOR_FLAG = 95,
     M_SPM_AM_MSG_ACCESSPREFIX_FLAG = 96,
-    /* Modified start by Libin 51420 at 2009-10-29 GGSNV9R8-IPN for 业务报表增强 */
-    /* start: added by h00139187, 2010-10-25 for UGWV9R9C00 BBIT Debug Policing 补偿软参*/
     M_SPM_PF_CAR_RETRIEVE_RATE = 97,
-    /* Added start by l00141244 at 2011-07-30 V9R9C00 for CR20110113007 五元组快速老化时间进行软参控制 */
     M_SPM_SM_FD_QUICK_AGE_TIME = 98,
-    /* Added end by l00141244 at 2011-07-30 V9R9C00 for CR20110113007 五元组快速老化时间进行软参控制 */
 
     M_SPM_L2TP_ICCN_LCP_FLAG = 110,
 
     M_SPM_AM_FORWARDING_AGE_TIME =115,  /*转发表项老化启动时间，有效值为0-24.值为0时，默认3点。1-24时，启动时间为1-24点。*/
 
-    /* Added start by taojixiu 00132297 at 2010-06-22 V9R8C01 for PS8.1 FLOW CONTROL 流控软参调整*/
     M_SPM_AM_GTPC_WAL_MAX = 121,
     M_SPM_AM_GTPC_WAL_PERCENT = 122,
     M_SPM_AM_GTPC_N_MIN = 123,
@@ -4409,7 +4312,6 @@ typedef enum enU_SOFTPARA_BYTE_VALUE
     M_SPM_AM_SD_ALARM_TIMES = 128,
     M_SPM_AM_SD_RESTORE_ALARM_INTERVAL = 129,
     M_SPM_AM_SD_RESTORE_ALARM_TIMES = 130,
-    /* Added end by taojixiu 00132297 at 2010-06-22 V9R8C01 for PS8.1 FLOW CONTROL 流控软参调整 */
 
     M_SPM_DHCP_SERVER_TEST_INTERVAL = 132,     /* DHCP 探测server状态定时器超时次数 */
     M_SPM_DHCP_ALARM_INTERVAL = 133,           /* DHCP 告警扫描server状态的间隔 */
@@ -4422,12 +4324,8 @@ typedef enum enU_SOFTPARA_BYTE_VALUE
     M_SPM_AM_GTPC_CACHE_TIME = 102,
     M_SPM_AM_UPM_ONLINE_INJECT = 103,
     M_SPM_IPN_RPT_SUBSCRIBER_SWITCH = 105,
-    /* Modified end by Libin 51420 at 2009-10-29 GGSNV9R8-IPN for 业务报表增强 */
 
-    /* BEGIN: Added for PN:AX4D14214 用户流间隔超过2分钟的情况导致SIG识别率低 by x00110917, 2010/3/17 */
     M_SPM_IPN_CACHE_FD_AGETIME = 107,    /* 小五元组老化时间 1-255 表示 10s~2550s */
-    /* END:   Added for PN:AX4D14214 用户流间隔超过2分钟的情况导致SIG识别率低 by x00110917, 2010/3/17 */
-    /* BEGIN: Added for 问题单号:AK9D04024 by j00134986, 2010/6/10 */
 
     M_SPM_SM_PCC_FUP_RGSID_OR_MKEY = 108,
 
@@ -4440,9 +4338,7 @@ typedef enum enU_SOFTPARA_BYTE_VALUE
 
     M_SPM_AM_HZ_ACT_NUM_IN_SEC_MAX = 117,/*Added by c0011085 for homezone 流控*/
 
-    /*Added Start by liuli 67542, 2011-05-25 for ps9.1 sync GGSNV9R8C01 CR20101208036 无线资源动态调控需求*/
     M_SPM_IP_2G_RES_DYN_CTRL = 131,
-    /*Added end by liuli 67542, 2011-05-25 for ps9.1 sync GGSNV9R8C01 CR20101208036 无线资源动态调控需求*/
 
     M_SPM_PATH_RECOVERY_SWITCH = 144,
 
@@ -4452,23 +4348,17 @@ typedef enum enU_SOFTPARA_BYTE_VALUE
 
     M_SPM_CM_CDRF_CTROL_AMACCESS    = 203,
 
-    /* Add start by wangren 00167746 at 2011-01-24 UGWV9R9C0 for dpi硬件加速 */
     M_SPM_IPN_DPILOGIC_FUNC_SWITCH = 243, /*控制DPI硬件加速功能是否使能*/
     M_SPM_IPN_DPILOGIC_FUNC_HEARTBEAT = 244,  /*控制DPI硬件心跳检测功能是否使能以及DPI心跳检测故障*/
-    /* Add end by wangren 00167746 at 2011-01-24 UGWV9R9C0 for dpi硬件加速*/
 
     M_SPM_AM_GTP_PROXY_CONTROL = 248,
     M_SPM_LI_SINGLE_IP_MULTI_PORT_CONTROL = 249,
-    /* Added start by j00171840 at 2012-4-20 UGWV9R9c01 for CR20110818056:对强制归并的流量通过软参控制计费方式*/
     M_SPM_SM_FORCE_MERGE_METHOD = 301,
-    /* Added end by j00171840 at 2012-4-20 UGWV9R9c01 for CR20110818056:对强制归并的流量通过软参控制计费方式*/
     M_SPM_CM_EVENTTRIGGER_SUPPORT_DIFF_RELEASE = 302,
     M_SPM_GUL_CONFLIT = 303,
     M_SPM_QOS_NOKEY_ATTR_SAE_TO_GGSN = 304,
     M_SPM_LOGIC_TCPBUFFER_TIME = 305,
-     /*Added start by lixiaochen 129881 for 控制外部跟踪是否在CPU上处理at 2013-01-14*/
     M_SPM_PF_EXTERN_TRACE = 307,
-    /*Added end by lixiaochen 129881 for 控制外部跟踪是否在CPU上处理at 2013-01-14*/
     M_SPM_CM_OCSC_HOLDING_TIMER_AMAN = 309,   //阿曼需求，command层收到异常返回码后启动holding-time定时器
     M_SPM_CM_OCSC_CCR_I_WAL_PERCENT = 310,   //阿曼需求，command层收到异常返回码后启动holding-time定时器
     M_SPM_CM_OCSC_CCR_TYPE_WAL_CTRL = 311,   //阿曼需求，command层收到异常返回码后启动holding-time定时器
@@ -4477,27 +4367,18 @@ typedef enum enU_SOFTPARA_BYTE_VALUE
     M_SPM_KPI_ALARM_THRESHOLD = 315,
     M_SPM_BYTE_CAN_BOARD_ACCESS = 316,  //single IP方案控制E F板是否允许板级接入:0 允许；1 不允许
 
-    /* BEGIN: Added for 同步维护问题单DTS2014040304358，SGSN不带Qos版本时升级到R7, jiangxu 90004782 2014/4/24 */
     M_SPM_BYTE_QOS_UPGRADE_R7 = 325,
-    /* END:   Added for 同步维护问题单DTS2014040304358，SGSN不带Qos版本时升级到R7, jiangxu 90004782 2014/4/24 */
 
     M_SPM_IP_IPSQM_EN_PKT_NUM = 401,
     M_SPM_IP_IPSQM_DE_PKT_NUM = 402,
-    /* BEGIN: Added by yuehongwei, 2012/2/8   问题单号:PS9.2 SRU流控特性*/
     M_SPM_SRU_CPU_CTRL = 403,
 
-    /* Added start by l00227142 at 2012-11-30  for CR20121128021——“移动特通需求--流量拥塞告警” */
     M_SPM_LI_CONGEST_TIMER = 408,
-    /* Added end by l00227142 at 2012-11-30  for CR20121128021——“移动特通需求--流量拥塞告警” */
 
-    /* Added start by dengchangqi 00181262 at 2013-03-01 V9R9C02 for 50%PCC内存模式 */
     M_SPM_SM_PCC_PRODUCT_MODE = 409,
-    /* Added end by dengchangqi 00181262 at 2013-03-01 V9R9C02 for 50%PCC内存模式 */
     M_SPM_SM_PCC_ADAPTER_FOR_AIS = 501,
     M_SPM_AM_PROTOCOL_UPGRADE = 502,
-    /* add start by yangyang 00161651  at 2012.10.18 for tcp 优化算法配置*/
      M_SPM_IPN_TCP_OPTIMIZE_ALGORITHM = 503,
-     /* add end by yangyang 00161651  at 2012.10.18 for tcp 优化算法配置*/
     M_SPM_CM_OCSC_AISBYT504 = 504,
 
     M_SPM_CM_OCSC_QOS_INFORMATION = 505,
@@ -4507,7 +4388,7 @@ typedef enum enU_SOFTPARA_BYTE_VALUE
     M_SPM_IPN_TCP_BUFCC_SIZE = 509,
 
     M_SPM_SM_FUI_DNS_PASS_MAX_NUM = 511,
-    M_SPM_AM_AUTH_FLOWCONTROL_FLAG = 512,/* Added by panjinlei 00248472 at 20130911 智能流控特性 */
+    M_SPM_AM_AUTH_FLOWCONTROL_FLAG = 512,
     M_SPM_CM_AUTH_FC_INTER_CTRL = 512, /* Added pcrf,ocs,aaa auth 接口消息流控使用 by z48729 */
     M_SPM_SM_L347_BUFFMBUF_AGE_TIME = 513,
 
@@ -4541,26 +4422,20 @@ typedef enum enU_SOFTPARA_BYTE_VALUE
     M_SPM_CM_PHGW_EXIST_STORAGE_FILE = 583,
     M_SPM_CM_DIAM_ROUTE_FAILOVER  = 589,
     M_SPM_PDSN_L2TP_ICCN_LCP_FLAG = 590,
-    /*Add by xsm00201057 20130304 for PDSNC06软参移植*/
     /*60号软参用来控制外层分片的老化时间，单位为250ms
       取值范围 1~255，缺省值120,若配置为0则取120*/
     M_SPM_PF_PDSN_EXTERIOR_FRAG_AGING_THR = 594,
     /*61号软参用来控制内层分片的老化时间，单位为250ms
       取值范围 1~255，缺省值120,若配置为0则取120*/
     M_SPM_PF_PDSN_INTERIOR_FRAG_AGING_THR = 595,
-    /*End by xsm00201057 20130304 for PDSNC06软参移植*/
-    /* Added start by l00103254 at 2011-07-30 UGWV9R10C01 for PDSN 五元组快速老化时间进行软参控制 */
     /* 68号软参在pdsn产品改为596 */
     M_SPM_IMSIMSISDN_SELECT_PDSN = 596,
     /* 66号软参在pdsn产品改为597 */
-    M_SPM_SM_SAM_INDENTIFY_THRESHOLD_PDSN = 597, /*最大关联识别包数*/
+    M_SPM_SM_SAM_INDENTIFY_THRESHOLD_PDSN = 597,
     /* 98号软参在pdsn产品改为598 */
     M_SPM_SM_FD_QUICK_AGE_TIME_PDSN = 598,
-    /* BEGIN: Added for PN:AX4D14214 用户流间隔超过2分钟的情况导致SIG识别率低 by x00110917, 2010/3/17 */
     /* 107号软参在pdsn产品改为599 */
     M_SPM_IPN_CACHE_FD_AGETIME_PDSN = 599,    /* 小五元组老化时间 1-255 表示 10s~2550s */
-    /* END:   Added for PN:AX4D14214 用户流间隔超过2分钟的情况导致SIG识别率低 by x00110917, 2010/3/17 */
-    /* Added end by l00103254 at 2011-07-30 UGWV9R10C01 for PDSN 五元组快速老化时间进行软参控制 */
 
     M_SPM_PDSN_LI_BAN = 574, /*PDSN LI ban功能*/ /*PDSN LI 增加 */
     M_SPM_LI_PDSNTAI_MAXSEQNUMDELTA = 602, /*PDSN LI 海外TAI功能*/ /*PDSN LI 增加 */
@@ -4708,13 +4583,11 @@ typedef enum E_PERF_OBJ_CHANGE_TYPE
 #define  TRC_DIRECTION_LEFT_OUT_PGW_PMIP    0x510
 #define  TRC_DIRECTION_RIGHT_IN_SGW         0x600
 #define  TRC_DIRECTION_LEFT_OUT_SGW         0x700
-#define  TRC_DIRECTION_IN_GGSN              0x800 /* zhangjinquan DTS2011082501761 2011-08-24 对于GGSN形态，应该用GGSN显示方向 */
-#define  TRC_DIRECTION_OUT_GGSN             0x900 /* zhangjinquan DTS2011082501761 2011-08-24 对于GGSN形态，应该用GGSN显示方向 */
+#define  TRC_DIRECTION_IN_GGSN              0x800
+#define  TRC_DIRECTION_OUT_GGSN             0x900
 #define  TRC_DIRECTION_RIGHT_IN_UGW         0xa00
 #define  TRC_DIRECTION_RIGHT_OUT_UGW        0xb00
-/* zhangjinquan DTS2011072204836  对于spud板需要能够抓到异常的ack包 2012-01-09 start */
 #define  TRC_DIRECTION_RIGHT_IN_UGW_ERR     0xc00
-/* zhangjinquan DTS2011072204836  对于spud板需要能够抓到异常的ack包 2012-01-09 end   */
 
 
 /* --------------------------------------------------------------------------- */
@@ -4785,7 +4658,6 @@ typedef enum tagEMS_DEBUG_MODULE_TYPE
 
 #define AM_TRC_IPV6_LEN 16
 
-//Begin:added by c00110835 for 跟踪适配
 typedef struct tagUGW_EXTERN_INTF_TRACE_S
 {
     ULONG  ulMsgClass;      //消息类型
@@ -4825,9 +4697,7 @@ typedef struct tagUGW_EXTERN_INTF_TRACE_INFO_S
 }UGW_EXTERN_INTF_TRACE_INFO_S;
 
 
-//End:added by c00110835 for 跟踪适配
 
-/* Added end by fanlianrong kf25870 on 2010-12-04 for PGPV2R5 OMADA-TCP跟踪 */
 /* SGW S4/S11接口的消息定义(业务组使用)*/
 #define  S4S11_MSGTYPE_PATH         0x01
 #define  S4S11_MSGTYPE_GTP          0x02
@@ -5593,7 +5463,7 @@ typedef struct tag_Fwd_ComChannel
         }s;
     }SrcNode;
 
-    PF_ULONG ulHashGene;       /*hash因子 w00136200*/
+    PF_ULONG ulHashGene;
 
     union
     {
@@ -5630,13 +5500,11 @@ typedef struct tag_Fwd_ComChannel
 
 #define FWD_COMMCHANNEL_SIZE    sizeof(FWD_COMCHANNEL_S)
 
-/* Added start by tulinglong 129941 on 2012-05-15 PGPV2R6 for FCM归一化 */
 #define URTD_SET_MSGCODE(pMBuf, MsgCode) \
 (((FWD_COMCHANNEL_S*)((PMBUF_MTOD((pMBuf), CHAR*)) - FWD_COMMCHANNEL_SIZE))->ucMsgCode) = (MsgCode)
 
 #define URTD_GET_MSGCODE(pMBuf) \
 ((FWD_COMCHANNEL_S*)((PMBUF_MTOD((pMBuf), CHAR*)) - FWD_COMMCHANNEL_SIZE))->ucMsgCode
-/* Added end by tulinglong 129941 on 2012-05-15 PGPV2R6 for FCM归一化 */
 
 /* IMSI 和MSISDN 长度*/
 #define M_SC_MSISDN_LEN  8
@@ -5720,9 +5588,7 @@ typedef VOID (*IPC_RPC_RECEIVE_NOTIFY)
 #define DHCPC_RETRANS_TIMER_LENGTH    100            /*DHCP重发定时器时长0.1s*/
 #define DHCPC_RETRANS_STEPS_PERSEC    (1000/DHCPC_RETRANS_TIMER_LENGTH)            /*每秒钟的刻度数*/
 #define DHCPC_TMR_CIRCLE_TIME            (8 * DHCPC_RETRANS_STEPS_PERSEC)          /*总共的刻度数*/
-/* BEGIN: Added for PN:DHCPv6特性 by tianyang 00144555, 2012/7/23 */
 #define DHCPC_FREE_SCAN_TIMER_LENGTH  (1000*60*60)
-/* END:   Added for PN:DHCPv6特性 by tianyang 00144555, 2012/7/23 */
 
 /* DS.UGWV9R10C0.DHCPv6.DHCP.0024支持TID使用情况的维护--半小时老化一次 */
 #ifdef __WIN32_PLATFORM__
@@ -5809,16 +5675,13 @@ typedef VOID (*IPC_RPC_RECEIVE_NOTIFY)
 #define DHCP_NO_ALARM                      0               /* DHCP 没有发布链路断告警 */
 #define DHCP_ALARMED                       1               /* DHCP 已经发布链路断告警 */
 
-/* BEGIN: Added for PN:DHCPv6特性 by tianyang 00144555, 2012/7/7 */
 #define DHCPC_BLOCK_USED 1
 #ifdef __WIN32_PLATFORM__
 #define DHCP_BLOCK_MAX_SACNNUM 3
 #else
 #define DHCP_BLOCK_MAX_SACNNUM 10
 #endif
-/* END:   Added for PN:DHCPv6特性 by tianyang 00144555, 2012/7/7 */
 
-/* zhangjinquan 00175135 DHCPv6特性 2012-07-23 start */
 /* 秒级时间槽的定时间间隔 */
 #define DHCPC_SECOND_TIMER_INTERVAL 200
 #define DHCPC_SECONDS_PER_HOUR 3600
@@ -5881,7 +5744,6 @@ extern DHCPC_TIMER_LIST_HEAD_S *g_pstDHCPTimerHashList;
 extern RELTMR_T g_ulDHCPCSecondTimerId;
 /* 小时定时器id */
 extern RELTMR_T g_ulDHCPCHourTimerId;
-/* zhangjinquan 00175135 DHCPv6特性 2012-07-23 end   */
 
 enum
 {
@@ -6079,8 +5941,6 @@ enum DHCPC_AGING_STATUS_FLAG
 };
 
 #define DHCPC_GROUP_BITSIZE 16
-/*m00221573 全文件pclint 2012-10-19 start*/
 extern ULONG DHCPC_StartTimer(UCHAR ucIpType, ULONG ulTeidc, UCHAR ucEvent, ULONG ulTimerInterval, DHCPC_TIMER_CALLBACK pCallBackFun);
-/*m00221573 全文件pclint 2012-10-19 end*/
 
 #endif /* #ifndef _DHCP_DEF_H_ */

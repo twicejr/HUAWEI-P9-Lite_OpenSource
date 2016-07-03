@@ -1,15 +1,4 @@
-/*************************************************************************
-*   版权所有(C) 1987-2020, 深圳华为技术有限公司.
-*
-*   文 件 名 :  rf_power.c
-*
-*   作    者 :  zuofenghua
-*
-*   描    述 :  用于管理射频器件供电
-*
-*   修改记录 :  2015年3月23日  v1.00  zuofenghua  创建
-*
-*************************************************************************/
+
 
 #ifndef __RF_MIPI_CFG_H__
 #define __RF_MIPI_CFG_H__
@@ -56,15 +45,7 @@ int balong_rf_config_by_mipi_allmodem_off(void);
 int balong_rf_config_by_mipi_init(void);
 #else
 
-/*****************************************************************************
-* 函 数    : balong_rf_mipi_write
-* 功 能    : 射频MIPI配置接口
-* 输 入    : 无
-* 输 出    : 无
-* 返 回    : 
-* 作 者    :z00228752
-* 说 明    :
-*****************************************************************************/
+
 static inline int balong_rf_mipi_write(RF_NV_MIPI_CMD_STRU *cmd, RF_NV_MIPI_BYTE_DATA_STRU *data, int cnt, int max)
 {
     return RFFE_OK;

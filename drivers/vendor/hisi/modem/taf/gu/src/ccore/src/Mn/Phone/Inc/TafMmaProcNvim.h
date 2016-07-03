@@ -1,20 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafMmaProcNvim.h
-  版 本 号   : 初稿
-  作    者   : w00176964
-  生成日期   : 2013年7月9日
-  最近修改   :
-  功能描述   : TafMmaProcNvim.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年7月9日
-    作    者   : W00176964
-    修改内容   : 创建文件
-******************************************************************************/
 #ifndef _TAF_MMA_PROC_NVIM_H
 #define _TAF_MMA_PROC_NVIM_H
 
@@ -131,9 +115,7 @@ VOS_UINT32 TAF_MMA_ReadAlphanumericNameByPlmnIdNvim( TAF_PH_OPERATOR_NAME_STRU  
 VOS_VOID TAF_MMA_ReadDeactUsimWhenPoweroffNvim(VOS_VOID);
 VOS_VOID TAF_MMA_ReadSimPersonalisationPwdNvim( VOS_VOID );
 
-/* Added by w00167002 for L-C互操作项目, 2014-2-14, begin */
 VOS_VOID TAF_MMA_ReadLcCtrlNvim( VOS_VOID );
-/* Added by w00167002 for L-C互操作项目, 2014-2-14, end */
 VOS_VOID TAF_MMA_ReadUeSupporttedCPHSFlagNvim(VOS_VOID);
 VOS_VOID  TAF_MMA_ReadPsStartNvim( VOS_VOID );
 VOS_VOID  TAF_MMA_ReadCardLockStatusNvim( VOS_VOID );
@@ -186,7 +168,6 @@ VOS_VOID TAF_MMA_ReadMeidFromNvim( VOS_VOID );
 #endif
 
 VOS_VOID TAF_MMA_ReadNonnormalRegStatusMergeCfgNvim( VOS_VOID );
-/* Added by j00354216 for C模服务状态优化, 2015-9-30, begin */
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
 VOS_VOID TAF_MMA_ReadDelaySndCLServiceStatusTimeLenNvim(
     VOS_VOID
@@ -194,7 +175,6 @@ VOS_VOID TAF_MMA_ReadDelaySndCLServiceStatusTimeLenNvim(
 
 VOS_VOID TAF_MMA_ReadCLDelayReportSrvCfgNvim(VOS_VOID);
 #endif
-/* Added by j00354216 for C模服务状态优化, 2015-9-30, end */
 
 #if (VOS_OS_VER == VOS_WIN32)
 #pragma pack()

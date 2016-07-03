@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : mac_frame.h
-  版 本 号   : 初稿
-  作    者   : huxiaotong
-  生成日期   : 2012年12月3日
-  最近修改   :
-  功能描述   : 对应的帧的结构及操作接口定义的源文件(HAL模块不可以调用)
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年12月3日
-    作    者   : huxiaotong
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __MAC_FRAME_H__
 #define __MAC_FRAME_H__
@@ -146,6 +129,7 @@ extern "C" {
 #define MAC_WMM_UAPSD_ALL           (BIT0 | BIT1 | BIT2 | BIT3)
 #define MAC_OUISUBTYPE_WMM_INFO     0
 #define MAC_OUISUBTYPE_WMM_PARAM    1
+#define MAC_OUISUBTYPE_WMM_PARAM_OFFSET 6 /* wmm 字段中EDCA_INFO位置,表示是否携带EDCA参数 偏移6 */
 #define MAC_WMM_QOS_INFO_POS        8   /* wmm 字段中qos info位置，偏移8 */
 #define MAC_OUI_WMM_VERSION         1
 #define MAC_HT_CAP_LEN              26  /* HT能力信息长度为26 */
@@ -1702,44 +1686,13 @@ extern oal_uint32  mac_rx_report_80211_frame(oal_uint8 *pst_mac_vap,
                                              oal_netbuf_stru *pst_netbuf,
                                              oam_ota_type_enum_uint8 en_ota_type);
 
-/*****************************************************************************
- 函 数 名  : mac_hdr_set_frame_control
- 功能描述  : This function sets the 'frame control' bits in the MAC header of the
-             input frame to the given 16-bit value.
- 输入参数  : puc_header－80211头部指针
-             us_fc －value
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月14日
-    作    者   : c00178899
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void mac_hdr_set_frame_control(oal_uint8 *puc_header, oal_uint16 us_fc)
 {
     *(oal_uint16 *)puc_header = us_fc;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_hdr_set_duration
- 功能描述  : 设置MAC头duration字段
- 输入参数  : puc_header : 指向mac帧头
-             us_duration: 要设置的值
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月7日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void mac_hdr_set_duration(oal_uint8 *puc_header, oal_uint16 us_duration)
 {
     oal_uint16 *pus_dur = (oal_uint16 *)(puc_header + WLAN_HDR_DUR_OFFSET);
@@ -1747,153 +1700,44 @@ OAL_STATIC OAL_INLINE oal_void mac_hdr_set_duration(oal_uint8 *puc_header, oal_u
     *pus_dur = us_duration;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_hdr_set_fragment_number
- 功能描述  : 设置MAC头分片序号字段
- 输入参数  : puc_header : 指向mac帧头
-             uc_frag_num: 分片序号
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月7日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  mac_hdr_set_fragment_number(oal_uint8 *puc_header, oal_uint8 uc_frag_num)
 {
     puc_header[WLAN_HDR_FRAG_OFFSET] &= 0xF0;
     puc_header[WLAN_HDR_FRAG_OFFSET] |= (uc_frag_num & 0x0F);
 }
 
-/*****************************************************************************
- 函 数 名  : mac_hdr_set_from_ds
- 功能描述  : This function sets the 'from ds' bit in the MAC header of the input frame
-             to the given value stored in the LSB bit.
-             The bit position of the 'from ds' in the 'frame control field' of the MAC
-             header is represented by the bit pattern 0x00000010.
- 输入参数  : puc_header－80211头部指针
-             uc_from_ds －value
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月14日
-    作    者   : c00178899
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void mac_hdr_set_from_ds(oal_uint8* puc_header, oal_uint8 uc_from_ds)
 {
     ((mac_header_frame_control_stru *)(puc_header))->bit_from_ds = uc_from_ds;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_hdr_get_from_ds
- 功能描述  : This function extracts the 'from ds' bit from the MAC header of the input frame.
-             Returns the value in the LSB of the returned value.
- 输入参数  : header－80211头部指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月14日
-    作    者   : c00178899
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint8 mac_hdr_get_from_ds(oal_uint8* puc_header)
 {
     return (oal_uint8)((mac_header_frame_control_stru *)(puc_header))->bit_from_ds;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_hdr_set_to_ds
- 功能描述  : This function sets the 'to ds' bit in the MAC header of the input frame
-             to the given value stored in the LSB bit.
-             The bit position of the 'to ds' in the 'frame control field' of the MAC
-             header is represented by the bit pattern 0x00000001
- 输入参数  : puc_header－80211头部指针
-             uc_to_ds －value
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月14日
-    作    者   : c00178899
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void mac_hdr_set_to_ds(oal_uint8* puc_header, oal_uint8 uc_to_ds)
 {
     ((mac_header_frame_control_stru *)(puc_header))->bit_to_ds = uc_to_ds;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_hdr_get_to_ds
- 功能描述  : This function extracts the 'to ds' bit from the MAC header of the input frame.
-             Returns the value in the LSB of the returned value.
- 输入参数  : puc_header－80211头部指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月14日
-    作    者   : c00178899
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint8 mac_hdr_get_to_ds(oal_uint8* puc_header)
 {
     return (oal_uint8)((mac_header_frame_control_stru *)(puc_header))->bit_to_ds;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_get_tid_value_4addr
- 功能描述  : 四地址获取帧头中的tid
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月11日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint8  mac_get_tid_value_4addr(oal_uint8 *puc_header)
 {
     return (puc_header[MAC_QOS_CTRL_FIELD_OFFSET_4ADDR] & 0x07); /* B0 - B2 */
 }
 
-/*****************************************************************************
- 函 数 名  : mac_get_tid_value
- 功能描述  : 四地址获取帧头中的tid
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月11日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint8  mac_get_tid_value(oal_uint8 *puc_header, oal_bool_enum_uint8 en_is_4addr)
 {
     if (en_is_4addr)
@@ -1906,21 +1750,7 @@ OAL_STATIC OAL_INLINE oal_uint8  mac_get_tid_value(oal_uint8 *puc_header, oal_bo
     }
 }
 
-/*****************************************************************************
- 函 数 名  : mac_get_seq_num
- 功能描述  : 获取接受侦的seqence number
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月11日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint16  mac_get_seq_num(oal_uint8 *puc_header)
 {
     oal_uint16 us_seq_num = 0;
@@ -1932,22 +1762,7 @@ OAL_STATIC OAL_INLINE oal_uint16  mac_get_seq_num(oal_uint8 *puc_header)
     return us_seq_num;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_set_seq_num
- 功能描述  : 设置帧的序列号
- 输入参数  : oal_uint8 *puc_header
-             oal_uint16 us_seq_num
- 输出参数  : 无
- 返 回 值  : OAL_STATIC OAL_INLINE oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月3日,星期二
-    作    者   : y00201072
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  mac_set_seq_num(oal_uint8 *puc_header, oal_uint16 us_seq_num)
 {
     puc_header[23]      = (oal_uint8)us_seq_num >> 4;
@@ -1955,61 +1770,19 @@ OAL_STATIC OAL_INLINE oal_void  mac_set_seq_num(oal_uint8 *puc_header, oal_uint1
     puc_header[22]      |= (oal_uint8)(us_seq_num << 4);
 }
 
-/*****************************************************************************
- 函 数 名  : mac_get_bar_start_seq_num
- 功能描述  : 获取BAR帧中的start seq num值
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月2日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint16 mac_get_bar_start_seq_num(oal_uint8 *puc_payload)
 {
     return ((puc_payload[2] & 0xF0) >> 4) | (puc_payload[3] << 4);
 }
 
-/*****************************************************************************
- 函 数 名  : mac_get_ack_policy_4addr
- 功能描述  : 4地址获取qos帧确认策略
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月11日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint8  mac_get_ack_policy_4addr(oal_uint8 *puc_header)
 {
     return ((puc_header[MAC_QOS_CTRL_FIELD_OFFSET_4ADDR] & 0x60) >> 5); /* B5 - B6 */
 }
 
-/*****************************************************************************
- 函 数 名  : mac_get_ack_policy
- 功能描述  : 4地址获取qos帧确认策略
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月11日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint8  mac_get_ack_policy(oal_uint8 *puc_header, oal_bool_enum_uint8 en_is_4addr)
 {
     if (en_is_4addr)
@@ -2022,24 +1795,7 @@ OAL_STATIC OAL_INLINE oal_uint8  mac_get_ack_policy(oal_uint8 *puc_header, oal_b
     }
 }
 
-/*****************************************************************************
- 函 数 名  : mac_null_data_encap
- 功能描述  : 封装空桢
- 输入参数  : header－80211头部指针
-             us_fc frame control类型
-             puc_da: 目的mac地址
-             puc_sa: 源mac地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  : 无
- 被调函数  : 无
 
- 修改历史      :
-  1.日    期   : 2012年11月23日
-    作    者   : k53369
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void mac_null_data_encap(oal_uint8* header, oal_uint16 us_fc, oal_uint8 *puc_da, oal_uint8 *puc_sa)
 {
     mac_hdr_set_frame_control(header, us_fc);
@@ -2066,22 +1822,7 @@ OAL_STATIC OAL_INLINE oal_void mac_null_data_encap(oal_uint8* header, oal_uint16
     }
 }
 
-/*****************************************************************************
- 函 数 名  : mac_rx_get_da
- 功能描述  : 获取收到的帧的目的地址
-             参考协议 <802.11权威指南> 81页
- 输入参数  : 指向接收到帧的帧头指针
- 输出参数  : 指向目的地址的指针
- 返 回 值  : 成功或者失败原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月10日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void mac_rx_get_da(
                 mac_ieee80211_frame_stru   *pst_mac_header,
                 oal_uint8                 **puc_da)
@@ -2098,22 +1839,7 @@ OAL_STATIC OAL_INLINE oal_void mac_rx_get_da(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : mac_rx_get_sa
- 功能描述  : 获取收到的帧的源地址
-             参考协议 <802.11权威指南> 81页
- 输入参数  : 指向接收到帧的帧头指针
- 输出参数  : 指向源地址的指针
- 返 回 值  : 成功或者失败原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月11日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  mac_rx_get_sa(
                 mac_ieee80211_frame_stru   *pst_mac_header,
                 oal_uint8                 **puc_sa)
@@ -2136,22 +1862,7 @@ OAL_STATIC OAL_INLINE oal_void  mac_rx_get_sa(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : mac_get_transmitter_addr
- 功能描述  : 获取收到的帧的发送端地址
-             参考协议 <802.11权威指南> 81页
- 输入参数  : 指向接收到帧的帧头指针
- 输出参数  : 指向 TA 的指针
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月20日
-    作    者   : duankaiyong 00194999
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void mac_get_transmit_addr(
                 mac_ieee80211_frame_stru   *pst_mac_header,
                 oal_uint8                 **puc_bssid)
@@ -2160,42 +1871,14 @@ OAL_STATIC OAL_INLINE oal_void mac_get_transmit_addr(
     *puc_bssid = pst_mac_header->auc_address2;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_get_submsdu_len
- 功能描述  : 获取netbuf中submsdu的长度
- 输入参数  : 指向submsdu的头指针
- 输出参数  : submsdu的长度
- 返 回 值  : 成功或者失败原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月11日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  mac_get_submsdu_len(oal_uint8 *puc_submsdu_hdr, oal_uint16 *pus_submsdu_len)
 {
     *pus_submsdu_len = *(puc_submsdu_hdr + MAC_SUBMSDU_LENGTH_OFFSET);
     *pus_submsdu_len = (oal_uint16)((*pus_submsdu_len << 8) + *(puc_submsdu_hdr + MAC_SUBMSDU_LENGTH_OFFSET + 1));
 }
 
-/*****************************************************************************
- 函 数 名  : mac_get_submsdu_pad_len
- 功能描述  : 获取submsdu需要填充的字节数
- 输入参数  : submsdu的长度
- 输出参数  : 填充的字节数
- 返 回 值  : 成功或者失败个数
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月11日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  mac_get_submsdu_pad_len(oal_uint16 us_msdu_len, oal_uint8 *puc_submsdu_pad_len)
 {
    *puc_submsdu_pad_len = us_msdu_len & 0x3;
@@ -2206,21 +1889,7 @@ OAL_STATIC OAL_INLINE oal_void  mac_get_submsdu_pad_len(oal_uint16 us_msdu_len, 
     }
 }
 
-/*****************************************************************************
- 函 数 名  : mac_is_grp_addr
- 功能描述  : 判断该帧是否是组播帧
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月11日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_bool_enum_uint8 mac_is_grp_addr(oal_uint8 *puc_addr)
 {
     if ((puc_addr[0] & 1) != 0)
@@ -2231,61 +1900,19 @@ OAL_STATIC OAL_INLINE oal_bool_enum_uint8 mac_is_grp_addr(oal_uint8 *puc_addr)
     return OAL_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_ieeee80211_is_action
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月11日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_bool_enum_uint8  mac_ieeee80211_is_action(oal_uint8 *puc_header)
 {
     return (puc_header[0] & (MAC_IEEE80211_FCTL_FTYPE | MAC_IEEE80211_FCTL_STYPE)) == (WLAN_ACTION << 4);
 }
 
-/*****************************************************************************
- 函 数 名  : mac_get_frame_sub_type
- 功能描述  : 获取报文的子类型
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月18日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint8  mac_get_frame_sub_type(oal_uint8 *puc_mac_header)
 {
     return (puc_mac_header[0] & 0xFC);
 }
 
-/*****************************************************************************
- 函 数 名  : mac_is_addba_req_frame
- 功能描述  : 判断该帧是不是addba req帧
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月18日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_bool_enum_uint8 mac_is_addba_req_frame(oal_netbuf_stru *pst_netbuf, oal_uint8 *puc_tid)
 {
     oal_uint8 *puc_mac_header  = oal_netbuf_header(pst_netbuf);
@@ -2308,21 +1935,7 @@ OAL_STATIC OAL_INLINE oal_bool_enum_uint8 mac_is_addba_req_frame(oal_netbuf_stru
     return OAL_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_is_addba_rsp_frame
- 功能描述  : 判断该帧是不是addba rsp帧
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月18日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_bool_enum_uint8 mac_is_addba_rsp_frame(oal_netbuf_stru *pst_netbuf)
 {
     oal_uint8 *puc_mac_header  = oal_netbuf_header(pst_netbuf);
@@ -2345,21 +1958,7 @@ OAL_STATIC OAL_INLINE oal_bool_enum_uint8 mac_is_addba_rsp_frame(oal_netbuf_stru
 }
 
 
-/*****************************************************************************
- 函 数 名  : mac_is_delba_frame
- 功能描述  : 判断一个帧是否是delba
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月4日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_bool_enum_uint8 mac_is_delba_frame(oal_netbuf_stru *pst_netbuf, oal_uint8 *puc_tid)
 {
     oal_uint8 *puc_mac_header  = oal_netbuf_header(pst_netbuf);
@@ -2382,102 +1981,31 @@ OAL_STATIC OAL_INLINE oal_bool_enum_uint8 mac_is_delba_frame(oal_netbuf_stru *ps
     return OAL_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_get_frame_protected_flag
- 功能描述  : 获取报文的帧保护位
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月24日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_bool_enum_uint8  mac_get_frame_protected_flag(oal_uint8 *puc_mac_header)
 {
     return ((puc_mac_header[1] & 0x40) ? OAL_TRUE : OAL_FALSE);
 }
 
-/*****************************************************************************
- 函 数 名  : mac_frame_get_subtype_value
- 功能描述  : 获取802.11帧子类型的值(0~15)
-             帧第一个字节的高四位
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月9日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint8  mac_frame_get_subtype_value(oal_uint8 *puc_mac_header)
 {
     return ((puc_mac_header[0] & 0xF0) >> 4) ;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_get_frame_type
- 功能描述  : 获取报文类型
- 输入参数  : oal_uint8 *puc_mac_header
- 输出参数  : 无
- 返 回 值  : OAL_STATIC OAL_INLINE oal_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月23日,星期一
-    作    者   : y00201072
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint8  mac_get_frame_type(oal_uint8 *puc_mac_header)
 {
     return (puc_mac_header[0] & 0x0C);
 }
 
-/*****************************************************************************
- 函 数 名  : mac_frame_get_type_value
- 功能描述  : 获取80211帧帧类型，取值0~2
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月9日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint8  mac_frame_get_type_value(oal_uint8 *puc_mac_header)
 {
     return (puc_mac_header[0] & 0x0C) >> 2;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_get_cap_info
- 功能描述  : 从asoc rsp帧中获取capability fied
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月13日
-    作    者   : y00184180
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint16 mac_get_cap_info(oal_uint8 *mac_frame_body)
 {
     oal_uint16  us_cap_info     = 0;
@@ -2489,21 +2017,7 @@ OAL_STATIC OAL_INLINE oal_uint16 mac_get_cap_info(oal_uint8 *mac_frame_body)
     return us_cap_info;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_set_snap
- 功能描述  : 设置LLC SNAP, TX流程上调用
- 输入参数  : pst_buf netbuf结构体 us_ether_type 以太网类型
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月14日
-    作    者   : c00178899
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void mac_set_snap(oal_netbuf_stru  *pst_buf,
                                             oal_uint16        us_ether_type,
                                             oal_uint8         uc_offset)
@@ -2540,21 +2054,7 @@ OAL_STATIC OAL_INLINE oal_void mac_set_snap(oal_netbuf_stru  *pst_buf,
 
 }
 
-/*****************************************************************************
- 函 数 名  : mac_get_auth_alg
- 功能描述  : 获取认证状态字段
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月20日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint16  mac_get_auth_alg(oal_uint8 *puc_mac_hdr)
 {
     oal_uint16 us_auth_alg = 0;
@@ -2565,21 +2065,7 @@ OAL_STATIC OAL_INLINE oal_uint16  mac_get_auth_alg(oal_uint8 *puc_mac_hdr)
     return us_auth_alg;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_get_auth_status
- 功能描述  : 获取认证状态字段
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月27日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint16  mac_get_auth_status(oal_uint8 *puc_mac_hdr)
 {
     oal_uint16 us_auth_status = 0;
@@ -2590,21 +2076,7 @@ OAL_STATIC OAL_INLINE oal_uint16  mac_get_auth_status(oal_uint8 *puc_mac_hdr)
     return us_auth_status;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_get_auth_seq_num
- 功能描述  : 获取认证帧序列号
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月27日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint16  mac_get_auth_seq_num(oal_uint8 *puc_mac_hdr)
 {
     oal_uint16 us_auth_seq = 0;
@@ -2615,61 +2087,19 @@ OAL_STATIC OAL_INLINE oal_uint16  mac_get_auth_seq_num(oal_uint8 *puc_mac_hdr)
     return us_auth_seq;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_set_wep
- 功能描述  : 设置protected frame subfield
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月28日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  mac_set_wep(oal_uint8 *puc_hdr, oal_uint8 uc_wep)
 {
     puc_hdr[1] &= 0xBF;
     puc_hdr[1] |= (oal_uint8)(uc_wep << 6);
 }
 
-/*****************************************************************************
- 函 数 名  : mac_set_protectedframe
- 功能描述  : 设置帧控制字段的受保护字段
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月23日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  mac_set_protectedframe(oal_uint8 *puc_mac_hdr)
 {
     puc_mac_hdr[1] |= 0x40;
 }
-/*****************************************************************************
- 函 数 名  : mac_get_protectedframe
- 功能描述  : 获取帧头中保护位信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月10日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_bool_enum_uint8 mac_get_protectedframe(oal_uint8 *puc_mac_hdr)
 {
     mac_ieee80211_frame_stru *pst_mac_hdr = OAL_PTR_NULL;
@@ -2679,41 +2109,13 @@ OAL_STATIC OAL_INLINE oal_bool_enum_uint8 mac_get_protectedframe(oal_uint8 *puc_
 }
 
 
-/*****************************************************************************
- 函 数 名  : mac_is_protectedframe
- 功能描述  : 获取帧控制字段的受保护字段
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月29日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint8  mac_is_protectedframe(oal_uint8 *puc_mac_hdr)
 {
     return ((puc_mac_hdr[1] & 0x40) >> 6);
 }
 
-/*****************************************************************************
- 函 数 名  : mac_get_auth_algo_num
- 功能描述  : 获取认证帧的认证算法
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月28日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint16  mac_get_auth_algo_num(oal_netbuf_stru *pst_netbuf)
 {
     oal_uint16 us_auth_algo = 0;
@@ -2729,41 +2131,13 @@ OAL_STATIC OAL_INLINE oal_uint16  mac_get_auth_algo_num(oal_netbuf_stru *pst_net
     return us_auth_algo;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_get_auth_ch_text
- 功能描述  : 获取认证帧中的challenge txt
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月29日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint8*  mac_get_auth_ch_text(oal_uint8 *puc_mac_hdr)
 {
     return &(puc_mac_hdr[MAC_80211_FRAME_LEN + 6]);
 }
 
-/*****************************************************************************
- 函 数 名  : mac_is_4addr
- 功能描述  : 是否为4地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月21日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_bool_enum_uint8  mac_is_4addr(oal_uint8 *puc_mac_hdr)
 {
     oal_uint8               uc_is_tods;
@@ -2779,81 +2153,25 @@ OAL_STATIC OAL_INLINE oal_bool_enum_uint8  mac_is_4addr(oal_uint8 *puc_mac_hdr)
 }
 
 
-/*****************************************************************************
- 函 数 名  : mac_get_address1
- 功能描述  : 拷贝地址1
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月2日
-    作    者   : y00184180
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  mac_get_address1(oal_uint8 *puc_mac_hdr, oal_uint8 *puc_addr)
 {
     oal_memcopy(puc_addr, puc_mac_hdr + 4, 6);
 }
 
-/*****************************************************************************
- 函 数 名  : mac_get_address2
- 功能描述  : 拷贝地址2
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月29日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  mac_get_address2(oal_uint8 *puc_mac_hdr, oal_uint8 *puc_addr)
 {
     oal_memcopy(puc_addr, puc_mac_hdr + 10, 6);
 }
 
-/*****************************************************************************
- 函 数 名  : mac_get_address3
- 功能描述  : 拷贝地址3
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月2日
-    作    者   : y00184180
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  mac_get_address3(oal_uint8 *puc_mac_hdr, oal_uint8 *puc_addr)
 {
     oal_memcopy(puc_addr, puc_mac_hdr + 16, 6);
 }
 
-/*****************************************************************************
- 函 数 名  : mac_get_qos_ctrl
- 功能描述  : 获取mac头中的qos ctrl字段
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月21日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-    其    他   : 3地址情况下使用
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  mac_get_qos_ctrl(oal_uint8 *puc_mac_hdr, oal_uint8 *puc_qos_ctrl)
 {
     if (OAL_TRUE != mac_is_4addr(puc_mac_hdr))
@@ -2867,21 +2185,7 @@ OAL_STATIC OAL_INLINE oal_void  mac_get_qos_ctrl(oal_uint8 *puc_mac_hdr, oal_uin
 }
 
 
-/*****************************************************************************
- 函 数 名  : mac_get_asoc_status
- 功能描述  : 获取关联帧中的状态信息
- 输入参数  : puc_mac_header:关联帧
- 输出参数  : 无
- 返 回 值  : 关联帧中的状态信息
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月1日
-    作    者   : chenwenfeng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE mac_status_code_enum_uint16  mac_get_asoc_status(oal_uint8 *puc_mac_payload)
 {
     mac_status_code_enum_uint16          en_asoc_status;
@@ -2891,21 +2195,7 @@ OAL_STATIC OAL_INLINE mac_status_code_enum_uint16  mac_get_asoc_status(oal_uint8
     return en_asoc_status;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_get_asoc_status
- 功能描述  : 获取关联帧中的关联ID
- 输入参数  : puc_mac_header:关联帧
- 输出参数  : 无
- 返 回 值  : 关联帧中的关联ID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月1日
-    作    者   : chenwenfeng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint16 mac_get_asoc_id(oal_uint8 *puc_mac_payload)
 {
     oal_uint16 us_asoc_id;
@@ -2916,21 +2206,7 @@ OAL_STATIC OAL_INLINE oal_uint16 mac_get_asoc_id(oal_uint8 *puc_mac_payload)
     return us_asoc_id;
 }
 
-/*****************************************************************************
- 函 数 名  : wlan_get_bssid
- 功能描述  : 根据"from ds"bit,从帧中提取bssid(mac地址)
- 输入参数  : puc_mac_header:mac帧头，puc_bssid:mac帧bssid
- 输出参数  : puc_bssid:mac帧bssid，
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月3日
-    作    者   : y00184180
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void mac_get_bssid(oal_uint8 *puc_mac_hdr, oal_uint8 *puc_bssid)
 {
     if (1 == mac_hdr_get_from_ds(puc_mac_hdr))
@@ -2947,22 +2223,7 @@ OAL_STATIC OAL_INLINE oal_void mac_get_bssid(oal_uint8 *puc_mac_hdr, oal_uint8 *
     }
 }
 
-/*****************************************************************************
- 函 数 名  : mac_frame_is_eapol
- 功能描述  : 判断LLC 帧类型是否为EAPOL 类型帧
- 输入参数  : mac_llc_snap_stru *pst_mac_llc_snap
- 输出参数  : 无
- 返 回 值  : OAL_TRUE     是EAPOL 类型数据
-             OAL_FALSE  不是EAPOL 类型数据
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月12日
-    作    者   : duankaiyong 00194999
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_bool_enum mac_frame_is_eapol(mac_llc_snap_stru *pst_mac_llc_snap)
 {
     return (ETHER_ONE_X_TYPE == oal_byteorder_host_to_net_uint16(pst_mac_llc_snap->us_ether_type))?OAL_TRUE:OAL_FALSE;

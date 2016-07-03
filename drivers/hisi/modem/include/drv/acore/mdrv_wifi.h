@@ -5,21 +5,7 @@
 
 /*************************WIFI START**********************************/
 
-/*****************************************************************************
- 函 数 名  : WifiCalDataLen
- 功能描述  : WIFI计算需要数据块内存
- 输入参数  : usLen - 用户申请数据长度Len
- 输出参数  : 无
- 返 回 值  : 申请的数据区的总长度
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月22日
-    作    者   : y00171741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 extern unsigned short BSP_WifiCalDataLen(unsigned short usLen);
 #define DRV_WifiCalDataLen(usLen) BSP_WifiCalDataLen(usLen)
 
@@ -136,7 +122,6 @@ extern int WIFI_SET_PA_MODE(int wifiPaMode);
 *****************************************************************************/
 extern unsigned int DRV_WIFI_DATA_RESERVED_TAIL(unsigned int len);
 
-/*h00106354 20120201 合入流控接口 add start */
 /*****************************************************************************
  函 数 名  : DRV_WIFI_SET_RX_FCTL
  功能描述  : 设置WIFI接收流控标识

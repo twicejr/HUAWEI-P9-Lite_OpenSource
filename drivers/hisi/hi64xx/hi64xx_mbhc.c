@@ -334,6 +334,12 @@ void hi64xx_plug_in_detect(struct hi64xx_mbhc_priv *priv)
 		anc_hs_interface_charge_detect(saradc_value, anc_type);
 		hi64xx_irq_unmask_btn_irqs(&priv->mbhc_pub);
 	}
+
+	anc_hs_interface_refresh_headset_type(anc_type);
+	/* real invert headset */
+	if((priv->mbhc_config.hs_4_pole_min_voltage > saradc_value) && (priv->hs_status == HISI_JACK_INVERT)) {
+		anc_hs_interface_invert_hs_control(ANC_HS_MIC_GND_CONNECT);
+	}
 #endif
 	if(priv->need_match_micbias == 1) {
 		hi64xx_irq_micbias_mbhc_enable(priv, false);
@@ -457,6 +463,8 @@ void hi64xx_plug_out_detect(struct hi64xx_mbhc_priv *priv)
 	//stop charge first
 #ifdef CONFIG_ANC_HS_INTERFACE
 	anc_hs_interface_stop_charge();
+
+	anc_hs_interface_invert_hs_control(ANC_HS_MIC_GND_DISCONNECT);
 #endif
 
 	/* eco off */

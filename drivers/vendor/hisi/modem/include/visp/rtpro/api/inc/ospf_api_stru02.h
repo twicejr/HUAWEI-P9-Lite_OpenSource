@@ -1,25 +1,4 @@
-/*******************************************************************************
-*
-*
-*                Copyright 2008, Huawei Technologies Co. Ltd.
-*                            ALL RIGHTS RESERVED
-*
-*-------------------------------------------------------------------------------
-*
-*                              ospf_api_stru02.h
-*
-*  Project Code: VISPV1R7C02
-*   Module Name: OSPF  
-*   Description:
-*   01 OSPF API 结构定义(SGSN接口整改)
-*
-*-------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  -----------------------------------------------------------------------------
-*  2008-11-25   liangjicheng             Create                
-*  2008-12-23   wangchengyang            modify for statis(error & cumul)
-*******************************************************************************/
+
 #ifndef _OSPF_API_STRU02_H
 #define _OSPF_API_STRU02_H
 
@@ -80,7 +59,6 @@ typedef struct tagOSPF_SHOWIF_OUT
     ULONG ulAuthType;                           /*13 接口生效的认证类型*/ 
     ULONG ulIfCfgAuthType;                      /*-- 接口配置的认证类型*/ 
 
-    /*Begin for BC3D02736 接口认证（或区域认证）Keyid值用户可配 l00147446 10-02-27*/
     ULONG ulAuthKeyId;                          /*13 接口生效的认证Key Id*/ 
     ULONG ulIfCfgAuthKeyId;                     /*-- 接口配置的认证Key Id*/ 
     /*End for BC3D02736*/
@@ -113,9 +91,7 @@ typedef struct tagOSPF_SHOWIF_OUT
     /* add for BC3D02908  */
     ULONG ulAccNum;
     /* end for BC3D02908  */
-    /*Added by liubinKF35460, 增加一个流量工程属性变量, 2011/5/20   问题单号:OSPF_20110519_01 */
     ULONG ulSupportQos;
-    /* End of Added by liubinKF35460, 2011/5/20   问题单号:OSPF_20110519_01 */
 }OSPF_SHOWIF_OUT_S;
 
 #endif
@@ -336,17 +312,13 @@ typedef struct tagOSPF_SHOWCUMLTVE_OUT
     ULONG  ulAsBdr;      /* as 边界路由器 */
     /* End:wangchengyang 2008-12-23 */
 
-    /*Modified by liangjicheng 00103192, OSPF-03, 2010/10/25   问题单号:DTS2010102501546 */
     ULONG  ulMaxAgeLsaNoImport;    /*OSPF 引入路由删除造成的 MAX-AGE LSA 个数*/
     ULONG  ulMaxAgeLsaTimer;       /*3600秒到时 MAX-AGE LSA 个数*/
     ULONG  ulMaxAgeLsaTotal;       /*所有flush的LSA个数）*/
-    /*End of Modified by liangjicheng 00103192, 2010/10/25   问题单号:DTS2010102501546 */
 
-    /*Added by guojianjun178934, 添加OSPF NSR性能临时调试信息, 2013/4/7   问题单号:20130118_01 */
     ULONG  ulRestoreTime;
     ULONG  ulRestoreUnpacketTime;
     ULONG  ulRestorePacket;
-    /* End of Added by guojianjun178934, 2013/4/7   问题单号:20130118_01 */
 }OSPF_SHOWCUMLTVE_OUT_S;
 #endif
 
@@ -580,7 +552,6 @@ typedef struct tagOSPF_CFGAREANSSA
 }OSPF_CFGAREANSSA_S;
 #endif
 
-/*Modified by liangjicheng 00103192, Calc Delay, 2011/10/27   问题单号: REQ-201106295399-OSPF-PER */
 /*此数据结构用来配置进程的计算延迟*/
 typedef struct tagOSPF_CFGCALCDELAY
 {
@@ -588,7 +559,6 @@ typedef struct tagOSPF_CFGCALCDELAY
     USHORT usPadding; 
     ULONG ulCaclDelay;  /*路由计算最大延时间隔(ms)，默认值2000，取值范围：1~10000*/
 }OSPF_CFGCALCDELAY_S;
-/*End of Modified by liangjicheng 00103192, 2011/10/27   问题单号: REQ-201106295399-OSPF-PER */
 
 #endif
 

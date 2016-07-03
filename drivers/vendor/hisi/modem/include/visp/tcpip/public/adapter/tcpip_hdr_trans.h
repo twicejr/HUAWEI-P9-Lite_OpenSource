@@ -158,7 +158,7 @@ extern VOID   HDR_Translate(UCHAR* pHDRMsg, ULONG ulMsgLen, ULONG ulScanId);
 extern VOID   HDR_TranslateByCfg(HDR_MSG_HEAD_S *pstHdrComHead, FILE *fpHdrFile, FILE *fpCfgFile, ULONG ulScanId);
 extern VOID   HDR_WriteBinaryFile(UCHAR* pHDRMsg, ULONG ulMsgLen, ULONG ulMsgType, ULONG ulScanId);
 /*extern VOID   main(VOID);*/
-extern int main(VOID);/* Modify by shuxieliu00176784, at 2011-05-20. 修改原因: 消除Coverity告警 */
+extern int main(VOID);
 extern ULONG  TCPIP_TranslatHdrByConfig(CHAR szHdrFile[LEN_128],CHAR szCfgFile[LEN_128],ULONG ulScanId);
 
 #ifdef  __cplusplus

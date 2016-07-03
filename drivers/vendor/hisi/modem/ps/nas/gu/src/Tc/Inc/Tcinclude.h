@@ -29,9 +29,7 @@
 
 #include "NasRlcInterface.h"
 
-/* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
 #include "MsccMmcInterface.h"
-/* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
 #include "NasNvInterface.h"
 

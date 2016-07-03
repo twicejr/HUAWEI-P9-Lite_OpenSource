@@ -63,18 +63,7 @@ VOS_VOID Ss_SaveRegister(
     g_SsSaveMsg[ucTi-8].pucMsg = (VOS_UINT8 *)pucEncDest;                                    /* 缓存消息                                 */
 }
 
-/***********************************************************************
-*  MODULE   : Ss_DeleteRegister
-*  FUNCTION : 用于释放SaveREGISTER时分配的内存
-*  INPUT    : VOS_UINT8     ucTi            对应的Ti
-*  OUTPUT   : VOS_VOID
-*  RETURN   : VOS_VOID
-*  NOTE     : 无
-*  HISTORY  :
- 1.日    期   : 2015年9月19日
-   作    者   : c00318887
-   修改内容   : 新生成函数
-************************************************************************/
+
 
 VOS_VOID Ss_DeleteRegister(
                      VOS_UINT8 ucTi
@@ -150,23 +139,7 @@ VOS_VOID Ss_SndFacility(
     PS_SS_MEM_FREE( VOS_MEMPOOL_INDEX_NAS, pucEncDest );                             /* 释放该消息                               */
 }
 
-/***********************************************************************
-*  MODULE   : Ss_SndRelCmpl
-*  FUNCTION : 发送RELEASE COMPLETE消息
-*  INPUT    : VOS_VOID      *pSspMsg        当前处理的消息。若为NULL，
-*                                       则自己作一个RELEASE COMPLETE消息
-*             VOS_UINT8     ucTi            对应的Ti
-*             VOS_UINT8     ucCause         原因
-*  OUTPUT   : VOS_VOID
-*  RETURN   : VOS_VOID
-*  NOTE     : 无
-*  HISTORY  :
-*     1.  张志勇   04-03-09  新版作成
-*     2.  张志勇   05-03-16  修改CAUSE的填写
-      3.日    期   : 2012年12月19日
-        作    者   : l00198894
-        修改内容   : DTS2012121904363: 解决BVT测试中SS发送RELCOMPL编码失败
-************************************************************************/
+
 VOS_VOID Ss_SndRelCmpl(
                    VOS_VOID *pSspMsg,
                    VOS_UINT8 ucTi,

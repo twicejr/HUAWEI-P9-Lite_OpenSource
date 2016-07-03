@@ -1,15 +1,4 @@
-/******************************************************************************
 
-  Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : NasLmmPubMPrint.h
-  Description     : NasLmmPubMPrint.c header file
-  History         :
-      1.lining 00141619       2008-10-24   Draft Enact
-      2.zhengjunyan 00148421  2011-05-28   文件名由NasMmPubMPrint.h修改为
-                                           NasLmmPubMPrint.h
-******************************************************************************/
 
 #ifndef __NASLMMPUBMPRINT_H__
 #define __NASLMMPUBMPRINT_H__

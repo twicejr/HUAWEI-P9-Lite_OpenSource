@@ -19,7 +19,6 @@ extern "C" {
 #include "vos/ansilib/psos/stdarg.h"
 #endif
 #elif (VRP_OS_VXWORKS == VRP_YES)
-/* edit by L00105073 for BC3D01411: 从Tornado目录中包含各类型CPU对应的头文件 */
 #include "vos/ansilib/vxworks/stdarg.h"
 #else
 /*Linux直接添加系统的头文件*/

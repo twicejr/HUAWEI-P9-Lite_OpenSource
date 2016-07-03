@@ -1,14 +1,4 @@
-/******************************************************************************
 
-        @(#)Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : NasLmmPubMNvim.h
-    Description :
-    History     :
-    1.zhengjunyan 00148421  2011-05-28 文件名由 NasMmPubMNvim.h修改为
-                                        NasLmmPubMNvim.h
-******************************************************************************/
 
 #ifndef __NASLMMPUBMNVIM_H__
 #define __NASLMMPUBMNVIM_H__

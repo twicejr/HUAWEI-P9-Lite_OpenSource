@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : MnCallImsaProc.h
-  版 本 号   : 初稿
-  作    者   : w00176964
-  生成日期   : 2013年9月24日
-  最近修改   :
-  功能描述   : MnCallImsaProc.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年09月24日
-    作    者   : W00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 #ifndef _MN_CALL_IMSA_PROC_H_
 #define _MN_CALL_IMSA_PROC_H_
 
@@ -96,9 +79,7 @@ VOS_VOID TAF_CALL_SendImsaSrvccStatusNtf(
 
 VOS_VOID TAF_CALL_ProcImsaMsgSyncInd(IMSA_CALL_MSG_SYNC_IND_STRU *pstMsgSyncInd);
 
-VOS_VOID TAF_CALL_ProcImsaCcwaCapNtf(
-    IMSA_CALL_CCWA_CAP_NOTIFY_STRU     *pstCcwaCapNtf
-);
+
 #endif
 
 

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : QosFcRabStatus.c
-  版 本 号   : 初稿
-  作    者   : w00145177
-  生成日期   : 2011年12月23日
-  最近修改   :
-  功能描述   : QoS流控承载状态管理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年12月23日
-    作    者   : w00145177
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -64,22 +47,7 @@ VOS_UINT8 g_ucQosFcQci2Priority[QCI_TYPE_BUTT] = {0xff,
 /******************************************************************************
    5 函数实现
 ******************************************************************************/
-/*****************************************************************************
- 函 数 名  : QosFc_UpdateRabStatus
- 功能描述  : 更新流控实体状态
- 输入参数  : VOS_UINT8 ucRabId
-             QOS_FC_RAB_STATE_ENUM_UINT32 enRabState
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月28日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID QosFc_UpdateRabStatus(VOS_UINT8 ucRabId, QOS_FC_RAB_STATE_ENUM_UINT32 enRabState)
 {
     MODEM_ID_ENUM_UINT16    enModemId;
@@ -114,21 +82,7 @@ VOS_VOID QosFc_UpdateRabStatus(VOS_UINT8 ucRabId, QOS_FC_RAB_STATE_ENUM_UINT32 e
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : QosFc_GetRabStatus
- 功能描述  : 获取流控实体状态
- 输入参数  : VOS_UINT8 ucRabId
- 输出参数  : 无
- 返 回 值  : QOS_FC_RAB_STATE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月28日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 QOS_FC_RAB_STATE_ENUM_UINT32 QosFc_GetRabStatus(VOS_UINT8 ucRabId)
 {
     MODEM_ID_ENUM_UINT16    enModemId;
@@ -146,21 +100,7 @@ QOS_FC_RAB_STATE_ENUM_UINT32 QosFc_GetRabStatus(VOS_UINT8 ucRabId)
     return g_enRabState[enModemId][(FC_MASK_RABID & ucRabId) - 5];
 }
 
-/*****************************************************************************
- 函 数 名  : QosFc_RabEntityInit
- 功能描述  : 流控实体初始化
- 输入参数  : VOS_UINT32 ulIndex
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月28日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID QosFc_RabEntityInit(VOS_UINT32 ulIndex)
 {
     if(FC_MAX_RAB_NUM <= ulIndex)
@@ -180,21 +120,7 @@ VOS_VOID QosFc_RabEntityInit(VOS_UINT32 ulIndex)
 
 }
 
-/*****************************************************************************
- 函 数 名  : QosFcRabInit
- 功能描述  : QoS流控承载状态管理模块初始化
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月24日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID QosFcRabInit(VOS_VOID)
 {
     VOS_UINT32 i,j = 0;
@@ -212,21 +138,7 @@ VOS_VOID QosFcRabInit(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : QosFc_IsInValidRabId
- 功能描述  : RABID合法性检查
- 输入参数  : VOS_UINT8 ucRabId
- 输出参数  : 无
- 返 回 值  : VOS_BOOL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月28日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_BOOL QosFc_IsInValidRabId(VOS_UINT32 ulRabId)
 {
     if ((ulRabId < FC_MIN_RABID) || (ulRabId > FC_MAX_RABID))
@@ -237,21 +149,7 @@ VOS_BOOL QosFc_IsInValidRabId(VOS_UINT32 ulRabId)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : QosFc_OtherAvailRabOfPdn
- 功能描述  : 判断PDN上是否还有承载处于数传状态
- 输入参数  : VOS_UINT8 ucRabId
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月28日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 QosFc_OtherAvailRabOfPdn(VOS_UINT8 ucRabId)
 {
     VOS_UINT32  i;
@@ -274,21 +172,7 @@ VOS_UINT8 QosFc_OtherAvailRabOfPdn(VOS_UINT8 ucRabId)
 
 }
 
-/*****************************************************************************
- 函 数 名  : QosFc_RabNeedFlowCtrl
- 功能描述  : 判断是否是可流控承载
- 输入参数  : VOS_UINT32 ulIndex
- 输出参数  : 无
- 返 回 值  : VOS_BOOL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月28日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_BOOL QosFc_RabNeedFlowCtrl(VOS_UINT32 ulIndex)
 {
     if(FC_MAX_RAB_NUM <= ulIndex)
@@ -312,21 +196,7 @@ VOS_BOOL QosFc_RabNeedFlowCtrl(VOS_UINT32 ulIndex)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : QosFc_SetRabDiscard
- 功能描述  : 承载丢包状态设置
- 输入参数  : VOS_UINT32 ulIndex
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月26日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID QosFc_SetRabDiscard(VOS_UINT32 ulIndex)
 {
     MODEM_ID_ENUM_UINT16    enModemId;
@@ -377,21 +247,7 @@ VOS_VOID QosFc_SetRabDiscard(VOS_UINT32 ulIndex)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : QosFc_DiscardAllDataFlow
- 功能描述  : 进入警戒门限时，一次置所有低优先级承载进入丢包流控状态
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月28日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 QosFc_DiscardAllDataFlow(VOS_VOID)
 {
     VOS_INT32  i,j;
@@ -438,21 +294,7 @@ VOS_UINT32 QosFc_DiscardAllDataFlow(VOS_VOID)
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : QosFc_DiscardDataFlow
- 功能描述  : 进行丢包流控处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月28日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 QosFc_DiscardDataFlow(VOS_VOID)
 {
     VOS_INT32  i,j;
@@ -504,21 +346,7 @@ VOS_UINT32 QosFc_DiscardDataFlow(VOS_VOID)
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : QosFc_SetRabRandomDiscard
- 功能描述  : 承载随机丢包状态设置
- 输入参数  : VOS_UINT32 ulIndex
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月26日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID QosFc_SetRabRandomDiscard(VOS_UINT32 ulIndex)
 {
     MODEM_ID_ENUM_UINT16    enModemId;
@@ -552,21 +380,7 @@ VOS_VOID QosFc_SetRabRandomDiscard(VOS_UINT32 ulIndex)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : QosFc_RandomDiscardDataFlow
- 功能描述  : 进行随机丢包流控处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月28日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 QosFc_RandomDiscardDataFlow(VOS_VOID)
 {
     VOS_INT32  i,j;
@@ -622,21 +436,7 @@ VOS_UINT32 QosFc_RandomDiscardDataFlow(VOS_VOID)
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : QosFc_SetRabNormal
- 功能描述  : 承载正常状态设置
- 输入参数  : VOS_UINT32 ulIndex
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月26日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID QosFc_SetRabNormal(VOS_UINT32 ulIndex)
 {
     MODEM_ID_ENUM_UINT16    enModemId;
@@ -671,21 +471,7 @@ VOS_VOID QosFc_SetRabNormal(VOS_UINT32 ulIndex)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : QosFc_RestoreHighPriRab
- 功能描述  : 优先级小于6的承载首先恢复正常数传
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月26日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 QosFc_RestoreHighPriRab(VOS_VOID)
 {
     /* 优先级小于6的承载首先恢复正常数传 */
@@ -717,21 +503,7 @@ VOS_UINT32 QosFc_RestoreHighPriRab(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : QosFc_RestoreRabStatus
- 功能描述  : 恢复数传状态，分两步完成恢复过程
- 输入参数  : VOS_UINT32 ulIndex
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月26日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID QosFc_RestoreRabStatus(VOS_UINT32 ulIndex)
 {
     if(FC_MAX_RAB_NUM <= ulIndex)
@@ -763,21 +535,7 @@ VOS_VOID QosFc_RestoreRabStatus(VOS_UINT32 ulIndex)
 
 }
 
-/*****************************************************************************
- 函 数 名  : QosFc_RestoreDataFlow
- 功能描述  : 进行流控实体恢复数传处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月28日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 QosFc_RestoreDataFlow(VOS_VOID)
 {
     VOS_UINT32  i,j;
@@ -818,22 +576,7 @@ VOS_UINT32 QosFc_RestoreDataFlow(VOS_VOID)
     return PS_FAIL;
 }
 
-/*****************************************************************************
- 函 数 名  : QosFc_SetRabEntity
- 功能描述  : 根据承载更新消息设置流控实体
- 输入参数  : QOS_FC_RAB_ENTITY_STRU *pstQosFcRabEntity
-             CONST QOS_FC_RAB_CREATE_IND_STRU *pstRabCreate
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月28日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID QosFc_SetRabEntity(QOS_FC_RAB_ENTITY_STRU *pstQosFcRabEntity, CONST QOS_FC_RAB_CREATE_IND_STRU *pstRabCreate)
 {
     if((VOS_NULL_PTR == pstRabCreate) || (VOS_NULL_PTR == pstQosFcRabEntity))
@@ -854,22 +597,7 @@ VOS_VOID QosFc_SetRabEntity(QOS_FC_RAB_ENTITY_STRU *pstQosFcRabEntity, CONST QOS
 
 }
 
-/*****************************************************************************
- 函 数 名  : QosFc_MoveUpEntityPos
- 功能描述  : 实体排序
- 输入参数  : VOS_UINT32 ulInitPos
-             VOS_UINT8 ucPriority
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月6日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 QosFc_MoveUpEntityPos(VOS_UINT32 ulInitPos, VOS_UINT8 ucPriority)
 {
     VOS_UINT32  j;
@@ -890,22 +618,7 @@ VOS_UINT32 QosFc_MoveUpEntityPos(VOS_UINT32 ulInitPos, VOS_UINT8 ucPriority)
     return j;
 }
 
-/*****************************************************************************
- 函 数 名  : QosFc_MoveDownEntityPos
- 功能描述  : 实体排序
- 输入参数  : VOS_UINT32 ulInitPos
-             VOS_UINT8 ucPriority
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月6日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 QosFc_MoveDownEntityPos(VOS_UINT32 ulInitPos, VOS_UINT8 ucPriority)
 {
     VOS_UINT32  j;
@@ -931,21 +644,7 @@ VOS_UINT32 QosFc_MoveDownEntityPos(VOS_UINT32 ulInitPos, VOS_UINT8 ucPriority)
     return j;
 }
 
-/*****************************************************************************
- 函 数 名  : QosFc_CreateRabEntity
- 功能描述  : 创建或更新流控实体
- 输入参数  : QOS_FC_RAB_CREATE_IND_STRU *pstRabCreate
- 输出参数  : 无
- 返 回 值  : QOS_FC_RAB_ENTITY_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月24日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 QOS_FC_RAB_ENTITY_STRU* QosFc_CreateRabEntity(CONST QOS_FC_RAB_CREATE_IND_STRU *pstRabCreate, VOS_UINT8 *pucOldLinkRabId)
 {
     VOS_UINT8   ucPriority;             /* 承载优先级 */
@@ -1046,21 +745,7 @@ QOS_FC_RAB_ENTITY_STRU* QosFc_CreateRabEntity(CONST QOS_FC_RAB_CREATE_IND_STRU *
     return &g_stQosFcRabEntity[idx];
 }
 
-/*****************************************************************************
- 函 数 名  : QosFc_GetPdnQci
- 功能描述  : 获取PDN上所有承载的最小QCI
- 输入参数  : VOS_UINT8 ucRabId
- 输出参数  : 无
- 返 回 值  : QCI_TYPE_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月28日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 QCI_TYPE_ENUM_UINT8 QosFc_GetPdnQci(VOS_UINT8 ucRabId)
 {
     QCI_TYPE_ENUM_UINT8     enQci = QCI_TYPE_BUTT;
@@ -1083,21 +768,7 @@ QCI_TYPE_ENUM_UINT8 QosFc_GetPdnQci(VOS_UINT8 ucRabId)
     return enQci;
 }
 
-/*****************************************************************************
- 函 数 名  : QosFc_RabCreate
- 功能描述  : 承载更新消息处理
- 输入参数  : MsgBlock  *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月28日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID QosFc_RabCreate(CONST MsgBlock  *pstMsg)
 {
     QOS_FC_RAB_CREATE_IND_STRU *pstRabCreate = (QOS_FC_RAB_CREATE_IND_STRU *)(VOS_VOID*)pstMsg;
@@ -1177,21 +848,7 @@ VOS_VOID QosFc_RabCreate(CONST MsgBlock  *pstMsg)
 
 }
 
-/*****************************************************************************
- 函 数 名  : QosFc_ReleaseRabEntity
- 功能描述  : 流控实体释放处理
- 输入参数  : VOS_UINT8 ucRabId
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月28日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 QosFc_ReleaseRabEntity(VOS_UINT8 ucRabId)
 {
     VOS_UINT32  i,j;
@@ -1247,21 +904,7 @@ VOS_UINT8 QosFc_ReleaseRabEntity(VOS_UINT8 ucRabId)
     return ucLinkRabId;
 }
 
-/*****************************************************************************
- 函 数 名  : QosFc_RabRelease
- 功能描述  : 承载释放消息处理
- 输入参数  : MsgBlock  *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月28日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID QosFc_RabRelease(CONST MsgBlock  *pstMsg)
 {
     QOS_FC_RAB_RELEASE_IND_STRU *pstRabRelease = (QOS_FC_RAB_RELEASE_IND_STRU *)(VOS_VOID*)pstMsg;
@@ -1321,22 +964,7 @@ VOS_VOID QosFc_RabRelease(CONST MsgBlock  *pstMsg)
 
 }
 
-/*****************************************************************************
- 函 数 名  : QosFc_IsDiscard
- 功能描述  : QoS流控丢包判断，每个包调用一次
- 输入参数  : VOS_UINT8 ucRabId
-             MODEM_ID_ENUM_UINT16 enModemId
- 输出参数  : 无
- 返 回 值  : VOS_BOOL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月24日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_BOOL QosFc_IsDiscard(VOS_UINT8 ucRabId, MODEM_ID_ENUM_UINT16 enModemId)
 {
     static VOS_UINT32  ulPktCntVal = 0;         /* 包计数 */

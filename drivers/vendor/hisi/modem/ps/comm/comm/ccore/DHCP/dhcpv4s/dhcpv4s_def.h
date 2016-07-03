@@ -1,22 +1,5 @@
 
-/************************************************************************
- *                                                                      *
- *                             DHCPS_DEF.H                               *
- *                                                                      *
- *  Project Code:       DHCP                                            *
- *  Create Date:        2002/04/10                                      *
- *  Author:                                                             *
- *  Modify Date:                                                        *
- *  Document:  《DHCP服务器详细设计说明书》                             *
- *             《DHCP服务器概要设计说明书》                             *
- *  Function:                                                           *
- *  Others:                                                             *
- *----------------------------------------------------------------------*
- *                                                                      *
- *             Copyright 2000 - 2002 HuaWei Tech, Inc.                  *
- *                      ALL RIGHTS RESERVED                             *
- *                                                                      *
- ***********************************************************************/
+
 #ifndef _DHCPV4S_DEF_H_
 #define _DHCPV4S_DEF_H_
 
@@ -174,13 +157,11 @@
 #define DHCPS_LEASE_NOTUSED       0
 #define DHCPS_LEASE_USED             1
 
-/* Added start by ZhangYang  z00142225 at 2009-01-19 UGWV900R001C001 for 地址分配功能 */
 /*----------------------------------*/
 #define IP_HEADER_LENGTH 20
 #define UDP_HEADER_LENGTH 8
 
 
-/* Added end by ZhangYang  z00142225 at 2009-01-19 UGWV900R001C001 for 地址分配功能 */
 
 
 
@@ -210,9 +191,9 @@
     /*判断租约的使用标志*/                       \
     if( (P1)->ucUsed != DHCPS_LEASE_USED)                     \
     {                                                                            \
-        /* z00175135 DTS2012031905269 删除无用断言 2012-03-19 start */\
+\
         /*VOS_Assert(0);*/                                                   \
-        /* z00175135 DTS2012031905269 删除无用断言 2012-03-19 end   */\
+\
         (P2)->ulResult = DHCPS_STATE_CHANGE_ERR;           \
         DHCPS_InternalBranchCounter((U1));                    \
         return VOS_ERR;                                                 \
@@ -256,7 +237,6 @@
         return VOS_ERR;                                                 \
     }                                                                            \
 
-/* Added start by dongmingzhou 42828 at 2009-04-21 UGWV9R1C1 for 备份 */
 /*停止 启动*/
 /*0          0         */
 /*0          1         */
@@ -266,7 +246,6 @@
 #define DHCPS_HA_LEASETIME_START            1    
 #define DHCPS_HA_LEASETIME_STOP             2    
 #define DHCPS_HA_LEASETIME_STOPSTART        3    
-/* Added end by dongmingzhou 42828 at 2009-04-21 UGWV9R1C1 for 备份 */
 
 
 #define DHCPS_IPADDR_INVALID(IPADDR) ((0 == IPADDR) || (VOS_NULL_DWORD == IPADDR))

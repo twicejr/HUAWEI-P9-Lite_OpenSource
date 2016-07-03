@@ -468,10 +468,8 @@ typedef  struct    tagDAD
     ULONG              ulIfIndex;               /*接口索引*/
     IP6IFADDR_S        *pstIp6IfAddr;           /*待检测单播地址*/
     ULONG              ulDADAttempt;            /*待发送邻居请求的次数*/
-    /* Modified by guojianjun178934, IPV6 DAD探测定时器修改方案变更, 2014/2/12   问题单号:S-IP-003-PUBLIC-FUNC-005  */
     ULONG              ulExpireHigh;            /*下一次发送邻居请求的预期时间*/
     ULONG              ulExpireLow;             /*下一次发送邻居请求的预期时间*/
-    /*End of Modified by guojianjun178934, 2014/2/12   问题单号:S-IP-003-PUBLIC-FUNC-005  */
     struct    tagDAD    *pstTotalNext;          /*总链表下一个*/
     struct    tagDAD    *pstTotalPrevious;      /*总链表上一个*/
     struct    tagDAD    *pstIfNext;             /*接口链表下一个*/
@@ -576,7 +574,6 @@ typedef struct tagNDInfo
     /* Begin : Changes for AC4D05067 by Anand on 20s-02-2008 */
     ULONG          ulNonDeleteNBEntries; /* Non Deletable NB entries */
 
-    /*Added by guojianjun178934,  接口状态变化或MAC地址变化主动发送通告NA报文, 2014/1/26   问题单号:S-IP-005-PUBLIC-FUNC-003 */
     SLL_S           *pstNARoot;
     ND_TIMER_S      stNDNATimerMsg;
     ULONG           ulNATimerID;      /*接口主动通告NA报文定时器ID*/
@@ -584,13 +581,10 @@ typedef struct tagNDInfo
     ULONG           ulNAMinDelay;     /*首个NA报文的最小发送时延*/
     ULONG           ulNAMaxDelay;     /*首个NA报文的最大发送时延*/
     ULONG           ulMaxNACount;     /*NA报文最大发送次数*/
-    /* End of Added by guojianjun178934, 2014/1/26   问题单号:S-IP-005-PUBLIC-FUNC-003 */
 
-    /*Added by guojianjun178934, 【检视问题单---DAD告警优化】产品定期发送地址冲突检测的NS报文，如果收到了NA我们需要启动DAD探测, 2014/2/21   问题单号:DTS2014021206259  */
     SLL_S           *pstDADExtRoot;
     ND_TIMER_S      stNDDADExtTimerMsg;
     ULONG           ulDADExtTimerID;      /*接口执行DAD扩展定时器ID*/
-    /* End of Added by guojianjun178934, 2014/2/21   问题单号:DTS2014021206259  */
     
     VOID           *pvHostParams;  /* ND Host parameters */
 

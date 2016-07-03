@@ -130,7 +130,6 @@ typedef struct tagIF_LINESTATE_TLV
     ULONG  ulIfLineState;
 }IF_LINESTATE_TLV_S;
 
-/* Add for DTS2011080805208, by zhaoyue00171897, at 2011-08-09. 修改原因: VLAN一致性告警门限支持HA */
 typedef struct tagIF_VLANMAXWARNINGNUM_TLV
 {
     USHORT usSubMsgType;
@@ -167,7 +166,6 @@ enum enumIFNETNEWBAKMsgType  /*新的IFNET HA头消息类型,占两个字节*/
     IF_CONFIG_1AGVERSION,
     IF_CONFIG_1AGRCVDEFAULTVLAN,
     IF_CONFIG_IFLINESTATE,
-    /* Add for DTS2011080805208, by zhaoyue00171897, at 2011-08-09. 修改原因: VLAN一致性告警门限支持HA */
     IF_VLAN_MAXWARNING_NUM,
 };
 
@@ -209,7 +207,6 @@ typedef struct tagIF_BAK_DEV_TLV
 #define  IFNET_BAK_NO_RECOVER      0x01
 /*接口已外部平滑*/
 #define  IFNET_BAK_CHECK_OVER      0x02
-/*Added by z00208058, PTN需求，主备倒换过程中网管接口不删除，问题单DTS2012120607609, 2012/12/6 */
 #define  IFNET_NOT_CLEAN          0x04
 
 #define  IF_EXIST       2
@@ -270,7 +267,7 @@ typedef struct tagIF_BAK_DEV_TLV
     (to)->ulIfIndex     = (from)->if_ulIfIndex; \
     (to)->ulTopIfIndex  = (from)->if_ulTopIfIndex; \
     (to)->ulNetIfIndex  = (from)->if_ulNetIfIndex; \
-    /* edit by L00105073 for 主备倒换后PPP重协商 */\
+\
     /* (to)->ulPhyStatus  = (from)->ulPhyStatus; */\
     (to)->ulPhyStatus   = (from)->if_ulRawPhyStatus; \
     (to)->ulShutdown    = (from)->if_ulShutdown; \
@@ -286,7 +283,7 @@ typedef struct tagIF_BAK_DEV_TLV
 {\
     (to)->if_ulTopIfIndex  =  (from)->ulTopIfIndex;\
     (to)->if_ulNetIfIndex  =  (from)->ulNetIfIndex;\
-    /* edit by L00105073 for 主备倒换后PPP重协商 */\
+\
     /* (to)->if_ulPhyStatus   =  (from)->ulPhyStatus; */\
     IF_SET_RAWPHYSTATUS((to), (from)->ulPhyStatus);\
     (to)->if_ulShutdown    =  (from)->ulShutdown;\
@@ -308,7 +305,7 @@ typedef struct tagIF_BAK_DEV_TLV
     (to)->ulCfgMTU     = (from)->if_ulCfgMTU; \
     (to)->ulKeepAlive  = (from)->if_ulKeepAlive; \
     (to)->ulShutdown   = (from)->if_ulShutdown; \
-    /* edit by L00105073 for 主备倒换后PPP重协商 */\
+\
     /* (to)->ulPhyStatus  = (from)->ulPhyStatus; */\
     (to)->ulPhyStatus  = (from)->if_ulRawPhyStatus; \
     (to)->ulBaud       = (from)->if_ulBaud; \
@@ -324,7 +321,7 @@ typedef struct tagIF_BAK_DEV_TLV
     (to)->if_ulKeepAlive  =   (from)->ulKeepAlive;\
     (to)->if_ulShutdown   =   (from)->ulShutdown;\
     (to)->if_ulShutdown   &=  (~IF_DELETE) ;\
-    /* edit by L00105073 for 主备倒换后PPP重协商 */\
+\
     /* (to)->if_ulPhyStatus  =   (from)->ulPhyStatus;\ */\
     IF_SET_RAWPHYSTATUS((to), (from)->ulPhyStatus);\
     if((PORT_ETH_TRUNK != (to)->if_ulPortType) && (PORT_MP_GROUP != (to)->if_ulPortType))\
@@ -426,7 +423,6 @@ extern ULONG IF_HA_TLV_Restore(ULONG ulIfIndex, UCHAR *pucBuf, USHORT usTlvType)
 extern ULONG IF_HA_TLV_OutputMsg(UCHAR *pucBuf, UCHAR ucOperation, USHORT usMsgLen);
 extern ULONG IF_HA_TLV_CalcMsgLen(USHORT usTlvType, USHORT *pusTlvLen);
 
-/*Added by z00208058, PTN需求，主备倒换过程中网管接口不删除，问题单DTS2012120607609, 2012/12/6 */
 extern ULONG TCPIP_HA_SetIfnetNotClean(ULONG ulIfIndex);
 
 #ifdef  __cplusplus

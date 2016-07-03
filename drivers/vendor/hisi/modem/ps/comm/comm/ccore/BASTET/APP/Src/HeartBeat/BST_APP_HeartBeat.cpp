@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : HeartBeat.cpp
-  版 本 号   : 初稿
-  作    者   : l00242755
-  生成日期   : 2014年4月16日
-  最近修改   :
-  功能描述   : 实现长连接应用Modem代理的基本接口
-  函数列表   :
-
-  修改历史   :
-  1.日    期   : 2013年12月9日
-    作    者   : l00242755
-    修改内容   : 创建文件
-******************************************************************************/
 #include "BST_APP_HeartBeat.h"
 #include "BST_DBG_MemLeak.h"
 #include "BST_SRV_TaskMng.h"
@@ -29,21 +12,7 @@
 #define    THIS_FILE_ID        PS_FILE_ID_BST_APP_HEARTBEAT_CPP
 static int ini_flag     = 0;
 /*lint +e767*/
-/*****************************************************************************
- 函 数 名  : HeartBeat
- 功能描述  : 构造函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年3月9日
-      作    者   : l00242755
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 HeartBeat::HeartBeat( BST_PROCID_T usInProcID, BST_TASKID_T usInTaskID )
     : BST_CORE_CNPTask( usInProcID, usInTaskID ),
       BST_SRV_CAsRcver( BST_SRV_GetTaskMsgHandle( usInProcID, usInTaskID ) )
@@ -61,22 +30,7 @@ HeartBeat::HeartBeat( BST_PROCID_T usInProcID, BST_TASKID_T usInTaskID )
     RegAsNotice( BST_AS_EVT_L3_NET_RANK );
 }
 
-/*****************************************************************************
- 函 数 名  : ~HeartBeat
- 功能描述  : 析构函数
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2013年3月9日
-      作    者   : l00242755
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 HeartBeat::~HeartBeat( BST_VOID )
 {
     if ( BST_OS_IsTimerValid( m_stHbTxRetry.ulTimerId ) )
@@ -119,21 +73,7 @@ HeartBeat::~HeartBeat( BST_VOID )
     BST_OS_FREE( m_pstHbPktContent );
 }
 
-/*****************************************************************************
- 函 数 名  : Entry
- 功能描述  : 应用心跳间隔超时回调函数
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2013年3月9日
-      作    者   : l00242755
-      修改内容   : 新生成函数
-*****************************************************************************/
 BST_VOID HeartBeat::Entry( BST_VOID )
 {
     BST_IP_ERR_T                        lSockRtnVal;
@@ -219,22 +159,7 @@ BST_VOID HeartBeat::Entry( BST_VOID )
     Finished();
 #endif
 }
-/*****************************************************************************
- 函 数 名  : SendHbPkt
- 功能描述  : 发送数据包到服务器
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2013年3月9日
-      作    者   : l00242755
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 /*lint -e438*/
 BST_BOOL HeartBeat::SendHbPkt( BST_VOID )
 {
@@ -298,21 +223,7 @@ BST_BOOL HeartBeat::SendHbPkt( BST_VOID )
     return BST_TRUE;
 }
 /*lint +e438*/
-/*****************************************************************************
- 函 数 名  : Connectd
- 功能描述  : tcp_connect的回调函数
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2013年3月9日
-      作    者   : l00242755
-      修改内容   : 新生成函数
-*****************************************************************************/
 BST_IP_ERR_T HeartBeat::Connectd( BST_IP_CSocket *pcSocket )
 {
     BST_ERR_ENUM_UINT8                  enRtnVal = BST_NO_ERROR_MSG;
@@ -355,23 +266,7 @@ BST_IP_ERR_T HeartBeat::Connectd( BST_IP_CSocket *pcSocket )
     return enRtnVal;
 }
 
-/*****************************************************************************
- 函 数 名  : Received
- 功能描述  : tcp_recv函数的回调函数
- 输入参数  : fd      :socket句柄
-            pucData :接收到的数据包
-            usLength:接收到数据包的长度
- 输出参数  : 无
- 返 回 值  : BST_IP_PKTPROC_MODE_ENUM
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年3月9日
-      作    者   : l00242755
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 BST_IP_PKTPROC_MODE_ENUM HeartBeat::Received(
     BST_IP_CSocket     *pcSocket,
     const BST_UINT8    *const pucData,
@@ -435,21 +330,7 @@ BST_IP_PKTPROC_MODE_ENUM HeartBeat::Received(
     return BST_IP_PKT_FORWARD_PROC;
 }
 
-/*****************************************************************************
- 函 数 名  : Closed
- 功能描述  : 解析接收到的数据包是否为非心跳数据包
- 输入参数  : fd socket句柄
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年3月9日
-      作    者   : l00242755
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 BST_VOID HeartBeat::IpErr ( BST_IP_CSocket *pcSocket, BST_IP_ERR_T InIpErrMsg )
 {
     BST_ERR_ENUM_UINT8              ucRtnVal;
@@ -500,21 +381,7 @@ BST_VOID HeartBeat::IpErr ( BST_IP_CSocket *pcSocket, BST_IP_ERR_T InIpErrMsg )
                   m_usProcId, m_usTaskId,InIpErrMsg );
 }
 
-/***************************************************************
- 函 数 名   : Acked
- 功能描述   : 处理Ack响应IP包事件
- 输入参数   : 无
- 输出参数   : 无
- 返 回 值   : 无
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 修改历史   :
- 1.日    期 : 2015年05月10日
-   作    者 : d00173029
-   修改内容 : 创建文件
-***************************************************************/
 BST_VOID HeartBeat::Acked (
     BST_IP_CSocket             *pcSocket,
     const BST_UINT32            ulMinNumber,
@@ -566,22 +433,7 @@ BST_VOID HeartBeat::Acked (
     }
 }
 
-/*****************************************************************************
- 函 数 名  : ParsePkt
- 功能描述  : 解析接收到的数据包是否为非心跳数据包
- 输入参数  : pucRcvData: 接收到的数据的指针
-            usLength  : 接收到的数据长度
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年3月9日
-      作    者   : l00242755
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 BST_ERR_ENUM_UINT8 HeartBeat::ParsePkt(
     const BST_UINT8    *pucRcvData,
     const BST_UINT16    usLength )
@@ -641,22 +493,7 @@ BST_ERR_ENUM_UINT8 HeartBeat::ParsePkt(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : ComposeHbPkt
- 功能描述  : 根据AP侧下发的心跳包信息，在应用中组包
- 输入参数  : 无
- 输出参数  : pucCmpsData:需要发送的心跳包
-             pusSndLength:心跳包的长度
- 返 回 值  : BST_BOOL
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年3月9日
-      作    者   : l00242755
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 /*lint -e438 -e429*/
 BST_UINT8 *HeartBeat::ComposeHbPkt(
     BST_UINT8  *pucCmpsData,
@@ -720,24 +557,7 @@ BST_UINT8 *HeartBeat::ComposeHbPkt(
     return pucCmpsData;
 }
 /*lint +e438 +e429*/
-/*****************************************************************************
- 函 数 名  : IsRespPkt
- 功能描述  : 解析接收到的数据包是否为非心跳数据包
- 输入参数  : pucData:接收到的心跳回复包，
-             pRespData:待比较的数据包，
-             usDataLen:接收到心跳包的长度，
-             usRespLen:待比较心跳包的长度
- 输出参数  : 无
- 返 回 值  : BST_BOOL
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年12月9日
-      作    者   : l00242755
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 BST_BOOL HeartBeat::IsRespPkt(
     const BST_UINT8 *pucData,
     BST_UINT8 *pucRespData,
@@ -767,21 +587,7 @@ BST_BOOL HeartBeat::IsRespPkt(
     return BST_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : IsConfigOk
- 功能描述  : 判断配置是否完成
- 输入参数  :无
- 输出参数  :无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年3月9日
-      作    者   : l00242755
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 BST_BOOL HeartBeat::IsConfigOk( BST_VOID ) const
 {
     BST_DRV_STRU                       *pNetDrvHandle;
@@ -821,21 +627,7 @@ BST_BOOL HeartBeat::IsConfigOk( BST_VOID ) const
     return BST_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : RxAnsTimerProc
- 功能描述  : 重传定时器超时回调函数
- 输入参数  : pvPara
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2015年5月29日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 BST_VOID HeartBeat::RxAnsTimerProc( BST_VOID *pvPara )
 {
     BST_CORE_CPTask                    *pcPtask;
@@ -876,21 +668,7 @@ BST_VOID HeartBeat::RxAnsTimerProc( BST_VOID *pvPara )
     }
 }
 
-/*****************************************************************************
- 函 数 名  : ChnlCtrlTimerProc
- 功能描述  : 信道控制超时重试事件
- 输入参数  : pvPara
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2015年5月29日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 BST_VOID HeartBeat::ChnlCtrlTimerProc( BST_VOID *pvPara )
 {
     BST_SRV_CHNL_LINK_STRU             *pstChnlLinker;
@@ -920,22 +698,7 @@ BST_VOID HeartBeat::ChnlCtrlTimerProc( BST_VOID *pvPara )
         BST_SRV_CHNL_ProcInCB( pstChnlLinker );
     }
 }
-/*****************************************************************************
- 函 数 名  : TimerExpied
- 功能描述  : 重传定时器超时回调函数
- 输入参数  : lId:定时器ID号
-             pvPara
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年6月18日
-      作    者   : l00242755
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 BST_VOID HeartBeat::TimerExpired(
     BST_OS_TIMERID_T ulId,
     BST_VOID        *pvPara )
@@ -954,24 +717,7 @@ BST_VOID HeartBeat::TimerExpired(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : PidInquired
- 功能描述  : AP信息下发到应用的配置函数
 
- 输入参数  : enParamId ：PID的值
-            usDataSize：数据长度
-            pData     ：数据指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2014年9月4日
-      作    者   : l00231445
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 BST_UINT16 HeartBeat::PidInquired(
     BST_CORE_PID_ENUM_UINT16  enParamId,
     BST_UINT16                usDataSize,
@@ -1002,26 +748,7 @@ BST_UINT16 HeartBeat::PidInquired(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : PidConfiged
- 功能描述  : AP信息下发到应用的配置函数
 
- 输入参数  : enParamId：PID
-            usLen    ：对应PID的数据长度
-            pData    ：数据指针
-            ulBaseCfged：基础项配置的标志
-            pucNewAddr：PID项存储的地址
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2013年3月9日
-      作    者   : l00242755
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 BST_ERR_ENUM_UINT8 HeartBeat::PidConfiged(
     BST_CORE_PID_ENUM_UINT16     enParamId,
     BST_UINT16                   usLen,
@@ -1139,22 +866,7 @@ BST_ERR_ENUM_UINT8 HeartBeat::PidConfiged(
     return BST_NO_ERROR_MSG;
 }
 
-/*****************************************************************************
- 函 数 名  : SetSocketInfo
- 功能描述  : 设置socket类的属性
 
- 输入参数  : enSocketType：socket类型
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2013年3月9日
-      作    者   : l00242755
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 BST_BOOL HeartBeat::SetSocketInfo( BST_SCKT_TYPE_ENUM_UINT32 enSocketType )
 {
     BST_IP_ERR_T                enIpErrMsg;
@@ -1195,22 +907,7 @@ BST_BOOL HeartBeat::SetSocketInfo( BST_SCKT_TYPE_ENUM_UINT32 enSocketType )
     }
     return BST_TRUE;
 }
-/*****************************************************************************
- 函 数 名  : ConfigType
- 功能描述  : 设置应用类型
 
- 输入参数  : enPrtcType 协议类型
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2013年3月9日
-      作    者   : l00242755
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 BST_UINT8 *HeartBeat::ConfigType(
     const BST_VOID *const pData,
     BST_UINT16            usLen )
@@ -1266,22 +963,7 @@ BST_UINT8 *HeartBeat::ConfigType(
     return pucRtnPtr;
 }
 
-/*****************************************************************************
- 函 数 名  : SetHbSnInfo
- 功能描述  : 设置心跳序列信息
- 输入参数  : pstHbSnPkt:心跳信息数据的指针
-            usLength：数据长度
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年3月9日
-      作    者   : l00242755
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 BST_UINT8 *HeartBeat::SetHbSnInfo(
     const BST_VOID *const pData,
     BST_UINT16            usLen )
@@ -1326,22 +1008,7 @@ BST_UINT8 *HeartBeat::SetHbSnInfo(
     return pucRtnPtr;
 }
 
-/*****************************************************************************
- 函 数 名  : InitHeartBeat
- 功能描述  : 初始化应用心跳的注册表信息
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2013年3月9日
-      作    者   : l00242755
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 BST_BOOL HeartBeat::InitHeartBeat()
 {
     if ( BST_NULL_PTR == m_pSocket )
@@ -1450,22 +1117,7 @@ BST_BOOL HeartBeat::InitHeartBeat()
     return BST_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : InitRegedit
- 功能描述  : 初始化应用心跳的注册表信息
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2013年3月9日
-      作    者   : l00242755
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 BST_BOOL HeartBeat::InitRegedit( BST_VOID )
 {
     BST_CORE_CRegedit                  *pcRegedit;
@@ -1602,23 +1254,7 @@ BST_BOOL HeartBeat::InitRegedit( BST_VOID )
     return BST_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : SetCipherKey
- 功能描述  : 设置密钥
 
- 输入参数  : pucCipherKey：密钥数据的指针
-            usLength    ：密钥的长度
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2013年3月9日
-      作    者   : l00242755
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 BST_UINT8 *HeartBeat::SetCipherKey(
     BST_UINT8 *pucCipherKey,
     BST_UINT16 usLength )
@@ -1627,23 +1263,7 @@ BST_UINT8 *HeartBeat::SetCipherKey(
     return BST_NULL_PTR;
 }
 
-/*****************************************************************************
- 函 数 名  : SetEncrypType
- 功能描述  : 设置加密类型
 
- 输入参数  : pData：加密类型的数据指针
-            usLen：数据的长度
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2013年3月9日
-      作    者   : l00242755
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 BST_UINT8 *HeartBeat::SetEncrypType(
     BST_UINT8 *pData,
     BST_UINT16 usLen )
@@ -1655,23 +1275,7 @@ BST_UINT8 *HeartBeat::SetEncrypType(
     return BST_NULL_PTR;
 }
 
-/*****************************************************************************
- 函 数 名  : SetCheckType
- 功能描述  : 设置校验类型
 
- 输入参数  : pData：校验类型的数据指针
-            usLen：数据的长度
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2013年3月9日
-      作    者   : l00242755
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 BST_UINT8 *HeartBeat::SetCheckType(
     BST_UINT8 *pData,
     BST_UINT16 usLen )
@@ -1683,23 +1287,7 @@ BST_UINT8 *HeartBeat::SetCheckType(
     return BST_NULL_PTR;
 }
 
-/*****************************************************************************
- 函 数 名  : SetFixedContent
- 功能描述  : 设置心跳固定字段的内容
 
- 输入参数  : pucFixContent：固定字段的数据指针
-            usFixLength   ：数据的长度
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2013年3月9日
-      作    者   : l00242755
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 BST_UINT8 *HeartBeat::SetFixedContent(
     BST_UINT8  *pucFixContent,
     BST_UINT16  usFixLength )
@@ -1734,23 +1322,7 @@ BST_UINT8 *HeartBeat::SetFixedContent(
     return pucRtnPtr;
 }
 
-/*****************************************************************************
- 函 数 名  : SetRespContent
- 功能描述  : 设置心跳服务器回复的内容
 
- 输入参数  : pucRespContent：回复的内容
-            usFixLength   ：回复包的长度
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2013年3月9日
-      作    者   : l00242755
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 BST_UINT8 *HeartBeat::SetRespContent(
     BST_UINT8  *pucRespContent,
     BST_UINT16  usRespLength )
@@ -1786,23 +1358,7 @@ BST_UINT8 *HeartBeat::SetRespContent(
     return pucRtnPtr;
 }
 
-/*****************************************************************************
- 函 数 名  : SetAppTxRetry
- 功能描述  : 设置应用层发送重传的定时器信息
 
- 输入参数  : pstRetryInfo:重传的相关信息
-            usLen:下发数据段的长度
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2013年7月17日
-      作    者   : l00242755
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 BST_UINT8 *HeartBeat::SetAppTxRetry(
     const BST_VOID *const pData,
     BST_UINT16            usLen )
@@ -1834,21 +1390,7 @@ BST_UINT8 *HeartBeat::SetAppTxRetry(
 #endif
     return pucRtnPtr;
 }
-/*****************************************************************************
- 函 数 名  : ReBuildLink
- 功能描述  : 重建连接
- 输入参数  : BST_UINT32 ulNeedReport 重建的同时，是否需要上报给AP，Socket已经断开了
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2015年5月29日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 BST_VOID HeartBeat::ReBuildLink( BST_UINT32 ulNeedReport )
 {
     BST_UINT32                      ulSocketEst = BST_APP_CONN_TYPE_AP_ERR_CLS;
@@ -1903,38 +1445,12 @@ BST_VOID HeartBeat::ReBuildLink( BST_UINT32 ulNeedReport )
         }
     }
 }
-/*****************************************************************************
- 函 数 名  : onErrClosed
- 功能描述  : 探测器发现任务Socket中断后的处理流程
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2015年5月29日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 BST_VOID HeartBeat::onCycleError( BST_VOID )
 {
     ProcEstState( BST_APP_CONN_TYPE_CP_ERR_CLS );
 }
-/*****************************************************************************
- 函 数 名  : onUpdateCycle
- 功能描述  : 回调函数，探测器明确时间后，告知应用更新时间
- 输入参数  : BST_UINT16 ulDetCycle 探明的新周期数，单位为Cycle（1->5min）
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年05月24日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID HeartBeat::onUpdateCycle( BST_UINT16 ulDetCycle )
 {
     BST_UINT32              ulNewCycle;
@@ -1948,21 +1464,7 @@ BST_VOID HeartBeat::onUpdateCycle( BST_UINT16 ulDetCycle )
     m_pExptReport->Report( BST_PID_HB_CONF_CYC, BST_OS_SIZEOF( BST_UINT32 ), &ulNewCycle );
 }
 
-/*****************************************************************************
- 函 数 名  : onErrClosed
- 功能描述  : 处理EST状态标识
- 输入参数  : 当前EST状态
- 输出参数  : 无
- 返 回 值  : BST_TASK_STATE_ENUM_UINT8 处理后的任务状态
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2015年5月29日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 BST_TASK_STATE_ENUM_UINT8 HeartBeat::ProcEstState(
     BST_APP_CONN_EST_TYPE_ENUM_UINT32 enNewSta )
 {
@@ -2036,21 +1538,7 @@ BST_TASK_STATE_ENUM_UINT8 HeartBeat::ProcEstState(
     return GetState();
 }
 
-/***************************************************************
- 函 数 名   : ChnlCtrlInit
- 功能描述   : 信道控制发送接口
- 输入参数   : 无
- 输出参数   : 无
- 返 回 值   : 无
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 修改历史   :
- 1.日    期 : 2015年05月10日
-   作    者 : d00173029
-   修改内容 : 创建文件
-***************************************************************/
 BST_SRV_CHNL_LINK_STRU *HeartBeat::GetChnlInstance( BST_VOID )
 {
     if( BST_NULL_PTR != m_pstChnlLinker )
@@ -2083,23 +1571,7 @@ BST_SRV_CHNL_LINK_STRU *HeartBeat::GetChnlInstance( BST_VOID )
     return m_pstChnlLinker;
 }
 
-/***************************************************************
- 函 数 名   : ChnlCtrlSend
- 功能描述   : 信道控制发送接口
- 输入参数   :
-    BST_SRV_CHNL_HEAD_STRU *const pstChnHead,   链路分级数据入口
 
- 输出参数   : 无
- 返 回 值   : 无
- 被调函数   :
- 调用函数   :
-
- 修改历史   :
- 修改历史   :
- 1.日    期 : 2015年05月10日
-   作    者 : d00173029
-   修改内容 : 创建文件
-***************************************************************/
 BST_VOID HeartBeat::ChnlCtrlSend(
     BST_SRV_CHNL_HEAD_STRU     *pstPktItem )
 {
@@ -2226,21 +1698,7 @@ err_drop:
     return;
 }
 
-/***************************************************************
- 函 数 名   : ChnlCtrlClose
- 功能描述   : 关闭信道连接入口
- 输入参数   : 无
- 输出参数   : 无
- 返 回 值   : 无
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 修改历史   :
- 1.日    期 : 2015年05月10日
-   作    者 : d00173029
-   修改内容 : 创建文件
-***************************************************************/
 BST_VOID HeartBeat::ChnlCtrlClose( BST_VOID )
 {
     BST_SRV_CHNL_LINK_STRU     *pstChnlLinker;
@@ -2268,21 +1726,7 @@ BST_VOID HeartBeat::ChnlCtrlClose( BST_VOID )
                           &ulVoidProp );
 }
 
-/***************************************************************
- 函 数 名   : ChnlCtrlClear
- 功能描述   : 清除信道数据入口
- 输入参数   : 无
- 输出参数   : 无
- 返 回 值   : 无
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 修改历史   :
- 1.日    期 : 2015年05月10日
-   作    者 : d00173029
-   修改内容 : 创建文件
-***************************************************************/
 BST_VOID HeartBeat::ChnlCtrlClear( BST_VOID )
 {
     BST_SRV_CHNL_LINK_STRU     *pstChnlLinker;
@@ -2299,21 +1743,7 @@ BST_VOID HeartBeat::ChnlCtrlClear( BST_VOID )
                           &ulVoidProp );
 }
 
-/***************************************************************
- 函 数 名   : AsEventCallback
- 功能描述   : 清除信道数据入口
- 输入参数   : 无
- 输出参数   : 无
- 返 回 值   : 无
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 修改历史   :
- 1.日    期 : 2015年05月10日
-   作    者 : d00173029
-   修改内容 : 创建文件
-***************************************************************/
 BST_VOID HeartBeat::AsEventCallback(
         BST_AS_EVT_ENUM_UINT32    enEvent,
         BST_UINT32                ulLength,

@@ -221,13 +221,7 @@ typedef struct
     VOS_UINT32                  aulRegValue[PS_REG_RPT_MAX_NUM];
 } PS_REG_RPT_CFG_STRU;
 
-/*****************************************************************************
- 结构名    : PS_REG_REQ_ADDR_STRU
- 结构说明  : 工具请求上报寄存器地址
- 1.日    期   : 2012年08月19日
-   作    者   : d00212987
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                  ulCnt;       /* 上报的寄存器个数 */
@@ -247,26 +241,14 @@ typedef struct
 }PS_REG_RPT_IND_CONTENT_HEAD;
 
 #define PS_REG_RPT_MAX_FREQUENCY_BUFFER  (sizeof(PS_REG_RPT_IND_CONTENT_HEAD)+(PS_REG_RPT_MAX_BITMAP_LEN*sizeof(VOS_UINT32))+(PS_REG_RPT_MAX_NUM * sizeof(VOS_UINT32)))
-/*****************************************************************************
- 结构名    : PS_REG_RPT_IND_MSG
- 结构说明  : 寄存器打包三帧上报结构体
- 1.日    期   : 2012年08月19日
-   作    者   : d00212987
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     /* 为缓解OM通道流量，只上报寄存器的值，寄存器对应的地址被由PC端维护 */
     VOS_UINT8                  aucValue[PS_REG_RPT_MAX_FREQUENCY_BUFFER * PS_REG_RPT_SEND_FREQUENCY];
 } PS_REG_RPT_IND_MSG;
 
-/*****************************************************************************
- 结构名    : PS_REG_RPT_CONTROL_STRU
- 结构说明  : 寄存器上报代码逻辑控制全局变量
- 1.日    期   : 2012年08月19日
-   作    者   : d00212987
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_BOOL                bRptEnableStatus;
@@ -325,13 +307,7 @@ typedef struct
     VOS_UINT32          ulMaxTime;
 }DMA_REG_TIME_STRU;
 
-/*****************************************************************************
- 结构名    : APP_OM_REG_START_REQ_STRU
- 结构说明  : 寄存器捕获启动消息
- 1.日    期   : 2012年08月19日
-   作    者   : d00212987
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -348,13 +324,7 @@ typedef struct
     VOS_UINT8                           aucValue[4];
 }APP_OM_REG_START_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : OM_REG_RPT_STOP_STRU
- 结构说明  : 寄存器捕获停止消息
- 1.日    期   : 2012年08月19日
-   作    者   : d00212987
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -369,13 +339,7 @@ typedef struct
     PS_REG_SYS_MODE_ENUM_UINT32         enSysMode;
 }OM_REG_RPT_STOP_STRU;
 
-/*****************************************************************************
- 结构名    : OM_REG_RPT_DIFF_STRU
- 结构说明  : 寄存器捕获停止消息
- 1.日    期   : 2012年08月19日
-   作    者   : d00212987
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -390,13 +354,7 @@ typedef struct
     VOS_UINT32                          ulRptDiffNum;
 }OM_REG_RPT_DIFF_STRU;
 
-/*****************************************************************************
- 结构名    : OM_APP_REG_MODE_NUM_STRU
- 结构说明  :
- 1.日    期   : 2012年08月19日
-   作    者   : d00212987
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                      ulLenth;
@@ -405,13 +363,7 @@ typedef struct
     VOS_UINT32                      aulRegAddr[1];
 }APP_OM_REG_START_MODE_STRU;
 
-/*****************************************************************************
- 结构名    : OM_APP_REG_MODE_NUM_STRU
- 结构说明  :
- 1.日    期   : 2012年08月19日
-   作    者   : d00212987
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     PS_REG_SYS_MODE_ENUM_UINT32     enSysMode;
@@ -419,13 +371,7 @@ typedef struct
     VOS_UINT8                       aucAddr[4];
 }OM_APP_REG_MODE_NUM_STRU;
 
-/*****************************************************************************
- 结构名    : OM_APP_REG_START_CNF_STRU
- 结构说明  :
- 1.日    期   : 2012年08月19日
-   作    者   : d00212987
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                      ulErrCode;
@@ -441,13 +387,7 @@ typedef struct
 
 #if (FEATURE_GUC_BBP_TRIG == FEATURE_ON)
 
-/*****************************************************************************
- 结构名    : PS_REG_BBP_TRIG_MODE_ENUM
- 结构说明  : BBP TRIG支持模式
- 1.日    期   : 2015年07月30日
-   作    者   : s00207770
-   修改内容   : 新建
-*****************************************************************************/
+
 enum PS_REG_BBP_TRIG_MODE_ENUM
 {
     PS_REG_BBP_TRIG_MODE_WCDMA = 0,
@@ -457,13 +397,7 @@ enum PS_REG_BBP_TRIG_MODE_ENUM
 };
 typedef VOS_UINT16  PS_REG_BBP_TRIG_MODE_ENUM_UINT16;
 
-/*****************************************************************************
- 结构名    : PS_REG_GUCBBP_TRIG_LIST_STRU
- 结构说明  : GUCBBP trig模式配置属性
- 1.日    期   : 2015年07月30日
-   作    者   : s00207770
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                      ulGUCBBPTrigEnable;
@@ -474,25 +408,13 @@ typedef struct
     VOS_UINT32                      ulGUCBBPTrigList[PS_GUCBBP_TRIG_NUM];
 }PS_REG_GUCBBP_TRIG_LIST_STRU;
 
-/*****************************************************************************
- 结构名    : PS_REG_GUCBBP_TRIG_INFO_STRU
- 结构说明  : GUCBBP trig配置属性
- 1.日    期   : 2015年07月30日
-   作    者   : s00207770
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     PS_REG_GUCBBP_TRIG_LIST_STRU    stModeTrigInfo[MODEM_ID_BUTT][PS_REG_BBP_TRIG_MODE_BUTT];
 }PS_REG_GUCBBP_TRIG_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : APP_OM_GUC_REGLIST_REQ_STRU
- 结构说明  :
- 1.日    期   : 2015年08月13日
-   作    者   : S00207770
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -507,13 +429,7 @@ typedef struct
     VOS_UINT8                       aucValue[4];
 }APP_OM_GUC_REGLIST_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : APP_OM_GUC_REGLIST_INFO_STRU
- 结构说明  :
- 1.日    期   : 2015年08月13日
-   作    者   : S00207770
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                      ulLenth;
@@ -521,38 +437,20 @@ typedef struct
     VOS_UINT32                      aulRegAddr[1];
 }APP_OM_GUC_REGLIST_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : APP_OM_GUC_REGLIST_CNF_STRU
- 结构说明  :
- 1.日    期   : 2015年07月30日
-   作    者   : s00207770
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                      ulErrCode;
     VOS_UINT8                       aucAddr[4];
 }APP_OM_GUC_REGLIST_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : PS_REG_BBPTRIG_CFG_INFO_STRU
- 结构说明  :
- 1.日    期   : 2015年07月30日
-   作    者   : s00207770
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                      aulValue[MODEM_ID_BUTT][PS_REG_BBP_TRIG_MODE_BUTT];
 }PS_REG_BBPTRIG_CFG_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : APP_OM_BBPTRIG_CFG_REQ_STRU
- 结构说明  :
- 1.日    期   : 2015年07月30日
-   作    者   : s00207770
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2012, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名      : ScFactory.c
-  版 本 号      : 初稿
-  作    者      : w00184875
-  生成日期      : 2012年04月07日
-  最近修改      :
-  功能描述      : 该C文件给出了ScComm模块的实现
-  函数列表      :
-  修改历史      :
-  1.日    期    : 2012年04月16日
-    作    者    : w00184875
-    修改内容    : 创建文件
-
-******************************************************************************/
 /*****************************************************************************
   1 头文件包含
 *****************************************************************************/
@@ -45,24 +28,7 @@
   3 函数申明
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : SC_FAC_RsaDecrypt
- 功能描述  : RSA解密接口
- 输入参数  : pucCipherData: 密文
-             ulCipherLen: 密文长度
 
- 输出参数  : pucRawData: 明文
-             pulLen: 明文长度
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年04月07日
-    作    者   : w00184875
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 SC_ERROR_CODE_ENUM_UINT32 SC_FAC_RsaDecrypt(
     VOS_UINT8                          *pucCipherData,
     VOS_UINT32                          ulCipherLen,
@@ -88,25 +54,7 @@ SC_ERROR_CODE_ENUM_UINT32 SC_FAC_RsaDecrypt(
 
 }
 
-/*****************************************************************************
- 函 数 名  : SC_FAC_RsaEncrypt
- 功能描述  : NAS收到AT^PHONEPHYNUM?查询命令，通过该接口对物理号进行RSA加密
- 输入参数  : pcRawData: 物理号，明文存储
-             ulLen: 物理号长度
 
- 输出参数  : pcCipherData: RSA加密后的密文
-             pulCipherLen: RSA加密后的密文长度
-
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年4月3日
-    作    者   : w00184875
-    修改内容   : 初始生成
-
-*****************************************************************************/
 SC_ERROR_CODE_ENUM_UINT32 SC_FAC_RsaEncrypt(
     VOS_UINT8                          *pucRawData,
     VOS_UINT32                          ulLen,
@@ -131,20 +79,7 @@ SC_ERROR_CODE_ENUM_UINT32 SC_FAC_RsaEncrypt(
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_FAC_SetFacAuthPubKey
- 功能描述  : NAS收到AT^FACAUTHPUBKEY命令，调用该接口进行鉴权密钥的写入
- 输入参数  : pstSetFacAuthPubKey: 写入鉴权公钥的数据结构
- 输出参数  : NA
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32类型的SC错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月7日
-    作    者   : h59254
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-*****************************************************************************/
 SC_ERROR_CODE_ENUM_UINT32 SC_FAC_SetFacAuthPubKey(SC_SET_FAC_AUTH_PUB_KEY_STRU *pstSetFacAuthPubKey)
 {
     VOS_UINT32                          ulResult;
@@ -225,22 +160,7 @@ SC_ERROR_CODE_ENUM_UINT32 SC_FAC_SetFacAuthPubKey(SC_SET_FAC_AUTH_PUB_KEY_STRU *
 }
 
 
-/*****************************************************************************
- 函 数 名  : SC_FAC_WriteHUK
- 功能描述  : NAS收到AT^HUK命令，通过该SC封装的接口写入HUK
- 输入参数  : pcHuk: HUK码流，128bit
-             ucLen: HUK码流长度
 
- 输出参数  : NA
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年4月9日
-    作    者   : h59254
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-*****************************************************************************/
 SC_ERROR_CODE_ENUM_UINT32 SC_FAC_WriteHUK(
     VOS_UINT8                          *pucHuk,
     VOS_UINT32                          ulLen
@@ -270,23 +190,7 @@ SC_ERROR_CODE_ENUM_UINT32 SC_FAC_WriteHUK(
     return SC_ERROR_CODE_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_FAC_WriteIMEI
- 功能描述  : NAS收到AT^PHONEPHYNUM令，通过该SC封装的接口把IMEI密文写入IMEIFile.bin并生成签名
- 输入参数  : enModemID    : 卡0 或者卡1
-             pucCipherData: IMEI密文码流
-             ulCipherLen  : IMEI密文码流长度
 
- 输出参数  : NA
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年5月9日
-    作    者   : d00212987
-    修改内容   : IMEI验证
-*****************************************************************************/
 SC_ERROR_CODE_ENUM_UINT32 SC_FAC_WriteIMEI(
     MODEM_ID_ENUM_UINT16                enModemID,
     VOS_UINT8                          *pucCipherData,
@@ -353,23 +257,7 @@ SC_ERROR_CODE_ENUM_UINT32 SC_FAC_WriteIMEI(
     return SC_ERROR_CODE_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_FAC_StartIdentify
- 功能描述  : NAS收到AT^IDENTIFYSTART后，通过该接口获取<identify_start_response>码流
- 输入参数  : NA
 
- 输出参数  : pstIdentifyStartRsp: 用于获取<identify_start_response>码流的数据结构，
-             由调用者申请内存
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年04月07日
-    作    者   : d00212987
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 SC_ERROR_CODE_ENUM_UINT32 SC_FAC_StartIdentify(SC_IDENTIFY_START_RESPONSE_STRU *pstIdentifyStartRsp)
 {
     VOS_UINT32                          ulResult;
@@ -450,22 +338,7 @@ SC_ERROR_CODE_ENUM_UINT32 SC_FAC_StartIdentify(SC_IDENTIFY_START_RESPONSE_STRU *
     return SC_ERROR_CODE_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_FAC_EndIdentify
- 功能描述  : NAS收到AT^IDENTIFYEND命令后，通过该接口将<identify_end_request>码流提交给SC
- 输入参数  : pstIdentifyEndReq: 用于存储<identify_end_request>码流的数据结构
 
- 输出参数  : NA
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年4月3日
-    作    者   : w00184875
-    修改内容   : 初始生成
-
-*****************************************************************************/
 SC_ERROR_CODE_ENUM_UINT32 SC_FAC_EndIdentify(SC_IDENTIFY_END_REQUEST_STRU *pstIdentifyEndReq)
 {
     VOS_UINT32                          ulResult;
@@ -560,22 +433,7 @@ SC_ERROR_CODE_ENUM_UINT32 SC_FAC_EndIdentify(SC_IDENTIFY_END_REQUEST_STRU *pstId
 }
 
 
-/*****************************************************************************
- 函 数 名  : SC_FAC_SetPortAttrib
- 功能描述  : NAS收到AT^PORTATTRIBSET设置命令后，通过该接口将端口锁属性信息提交给SC
- 输入参数  : pstSetPortAttrib: 端口锁属性相关信息
 
- 输出参数  : NA
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年04月09日
-    作    者   : d00212987
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 SC_ERROR_CODE_ENUM_UINT32 SC_FAC_SetPortAttrib(SC_SET_PORT_ATTRIBUTE_STRU *pstSetPortAttrib)
 {
     VOS_UINT32                          ulResult;
@@ -689,22 +547,7 @@ SC_ERROR_CODE_ENUM_UINT32 SC_FAC_SetPortAttrib(SC_SET_PORT_ATTRIBUTE_STRU *pstSe
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_FAC_GetPortAttrib
- 功能描述  : 获取端口状态
- 输入参数  : 无
 
- 输出参数  : penStatus: 端口状态
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年04月07日
-    作    者   : w00184875
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 SC_ERROR_CODE_ENUM_UINT32 SC_FAC_GetPortAttrib(
     SC_PORT_STATUS_ENUM_UINT32         *penStatus
 )
@@ -740,23 +583,7 @@ SC_ERROR_CODE_ENUM_UINT32 SC_FAC_GetPortAttrib(
     return SC_ERROR_CODE_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_FAC_VerifyPortPassword
- 功能描述  : NAS收到AT^PORTCTRLTMP命令，调用该接口进行端口锁密码校验
- 输入参数  : pcPwd: 端口锁密码，密码为明文传送(密码为16个“0”-“9”字符组成)
-             ucLen: 端口锁密码长度
 
- 输出参数  : NA
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年4月7日
-    作    者   : w00184875
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 SC_ERROR_CODE_ENUM_UINT32 SC_FAC_VerifyPortPassword(
     VOS_UINT8                          *pucPwd,
     VOS_UINT8                           ucLen
@@ -820,25 +647,7 @@ SC_ERROR_CODE_ENUM_UINT32 SC_FAC_VerifyPortPassword(
 }
 
 #if (FEATURE_ON == FEATURE_VSIM)
-/*****************************************************************************
- 函 数 名  : SC_FAC_SetDhKey
- 功能描述  : NAS收到AT^HVPDH设置命令后，通过该接口将DH KEY提交给SC
- 输入参数  : MODEM_ID_ENUM_UINT16         enModemID,
-             SC_DH_KEY_TYPE_ENUM_UINT32   enKeyType,
-             VOS_UINT32                   ulKeyLen,
-             VOS_UINT8                   *pucKey
 
- 输出参数  : NA
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年8月27日
-    作    者   : L47619
-    修改内容   : V9R1 vSIM项目修改
-
-*****************************************************************************/
 SC_ERROR_CODE_ENUM_UINT32 SC_FAC_SetDhKey(
     MODEM_ID_ENUM_UINT16                enModemID,
     SC_DH_KEY_TYPE_ENUM_UINT32          enKeyType,

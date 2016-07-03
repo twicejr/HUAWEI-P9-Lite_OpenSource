@@ -128,7 +128,6 @@ typedef struct md5password
     CHAR  szMd5Password[TCPMD5PWDMAXLEN];  /* MD5pwd(长度< 256位) MD5 P***W***(len < 256 bit) */
 }SOCKMD5Pwd_S;
 
-/* 设置MD5pwd对应的数据结构 *//* C00-整改-l00103192 17  2014-1-26 */
 typedef struct md5password_ex
 {
     ULONG sin_addr;            /* socket的32位地址长度     32-bit address of the socket */
@@ -166,7 +165,6 @@ typedef struct tagTCPMd5PwdHead
 /* TCP协议控制块 */
 typedef struct tagTCPCB
 {
-    /*Added by zhoushisong202096, 更改TCP重组队列, 2013/11/5 */
     MBUF_S       *pReassPkt;             /* TCP重组队列,如果无TCP重组报文则为NULL */
     SHORT        sState;
     SHORT        sTimer[TCPT_NTIMERS];
@@ -175,7 +173,6 @@ typedef struct tagTCPCB
     SHORT        sDupAcks;
     USHORT       usMaxSeg;
     CHAR         cForce;
-    /*Added by likaikun213099, MCCP-MSS可配置, 2013/12/18 */
     UCHAR        ucIsUserSetMSS;
     USHORT       usFlags;
 #define    TF_ACKNOW        0x0001        /* ACK, 立即处理      ack peer immediately */
@@ -260,7 +257,7 @@ typedef struct tagTCPCB
     ULONG     ulRcvMaxDataByte;     /*最大数据报文段所携带的字节数*/
     ULONG     ulRcvMinDataByte;     /*最小数据报文段所携带的字节数*/
     ULONG     ulSndTotal;           /*包括发送报文的总个数*/
-    ULONG     ulSndErr;             /*发送失败报文数 Added for dist_sock by likaikun00213099*/
+    ULONG     ulSndErr;
     ULONG     ulSndRetran;          /*重传报文个数*/
     ULONG     ulSndDataPacket;      /*发送有效数据报文个数*/
     ULONG     ulSndDataByte;        /*共发送有效数据字节数*/
@@ -279,15 +276,7 @@ typedef struct tagTCPCB
     ULONG     ulSndBufCutLen;      /* 在备板上要去掉的tcp socket 缓存的长度  Length of tcp socket snd buf on slave board to be cut */
     ULONG     ulSeqRcvNxtRevised;  /* 修正seqRcvNxt的时间  Times that seqRcvNxt has been revised */
 
-    /* Modified for A82D12723 by l48923 2007-03-16.
-     * After switching, we may rcv seq that is out of rcv wnd.
-     * 变换后，rcv seq可能脱离rcv wnd
-     * This case is just same as the case in TCP_Reass. We record the
-     * smallest rcved seq that is out of order. Once we receive it
-     * again(duplicated packet), we can revise our seqRcvNxt.
-     * 这种情况和TCP_Reass的情况一致。记录最小的一个rcved seq。一旦再次接收到之后，
-     * 就可以校正seqRcvNxt
-     */
+    
     TCP_SEQ   seqRcvedOutOfWnd;       /* 最近一次收到的脱离rcv wnd的seq  Last received seq that is out of the rcv wnd */
     CHAR      cSeqRcvedOutOfWndValid; /* 指明这个seq是否有效  Indicate whether the seq that is out rcv wnd is valid.
                                        * 当接收到一个有效的seq时，将其置零  Once a valid seq is recieved, we set it as 0(invalid).
@@ -346,7 +335,6 @@ LONG TCPGetMd5Pass(LONG iOptName, MBUF_S   *p, TCPCB_S *pNwTCPCB);
 struct tagTCPCB        *TCPDisconnect(struct tagTCPCB *);
 struct tagTCPCB        *TCPDrop(struct tagTCPCB *, LONG);
 
-/*  与VRPV5B02D21同步  modified by x36317 for synchronizing with VRPV5B02D21  2004-09-10*/
 /* TCP MD5 authentication, 2002,07,21, zhangfeng */
 ULONG TCPDoOptions(TCPCB_S         *pTCPCB,
                         USHORT          usLenOfIPPack,
@@ -526,7 +514,6 @@ extern ULONG g_ulRespondQuench; /* ICMP Quench报文响应开关 */
 
 extern struct IIF_IPV4_IP_AM4_ComIntFUNVtbl    *g_pstTCPAddr4Vtbl ;
 extern struct IIF_IPV4_IP_PP4_ComIntFUNVtbl         *g_pstTCPPP4Vtbl ;
-/* Deleted by qinyun62011, (Distribute socket)分布式socket裁剪，删除无用代码, 2014/3/12 */
 //extern struct IIF_IPV4_IP_ICMP_ComIntFUNVtbl     *g_pstTCPICMP4Vtbl ;
 /*x36317 在数通，用的原来的FIB，在非数通用的是SFIB 2004-7-16*/
 extern struct IIF_COMP_FIBAGENT_ComIntFUNVtbl        *g_pstTCPFIB4Vtbl ;

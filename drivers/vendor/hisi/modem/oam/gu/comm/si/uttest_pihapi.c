@@ -5,15 +5,7 @@
 
 extern VOS_UINT32 SI_PIH_GetReceiverPid(MN_CLIENT_ID_T  ClientId, VOS_UINT32 *pulReceiverPid);
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者:
-#    修改内容: 新建CASE
-*******************************************************************/
+
 VOS_UINT32 uttest_SI_PIH_GetReceiverPid_case1(VOS_VOID)
 {
 #if ( FEATURE_MULTI_MODEM == FEATURE_ON )
@@ -29,15 +21,7 @@ VOS_UINT32 uttest_SI_PIH_GetReceiverPid_case1(VOS_VOID)
 
 }
 
-/*******************************************************************
-*测试项:MODEMID0
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者:
-#    修改内容: 新建CASE
-*******************************************************************/
+
 VOS_UINT32 uttest_SI_PIH_GetReceiverPid_case2(VOS_VOID)
 {
 #if ( FEATURE_MULTI_MODEM == FEATURE_ON )
@@ -53,15 +37,7 @@ VOS_UINT32 uttest_SI_PIH_GetReceiverPid_case2(VOS_VOID)
     return VOS_OK;
 }
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者:
-#    修改内容: 新建CASE
-*******************************************************************/
+
 VOS_UINT32 uttest_SI_PIH_GetReceiverPid_case3(VOS_VOID)
 {
 #if ( FEATURE_MULTI_MODEM == FEATURE_ON )
@@ -77,15 +53,7 @@ VOS_UINT32 uttest_SI_PIH_GetReceiverPid_case3(VOS_VOID)
     return VOS_OK;
 }
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者:
-#    修改内容: 新建CASE
-*******************************************************************/
+
 VOS_UINT32 uttest_SI_PIH_GetReceiverPid_case4(VOS_VOID)
 {
 #if ( FEATURE_MULTI_MODEM == FEATURE_ON )
@@ -101,15 +69,7 @@ VOS_UINT32 uttest_SI_PIH_GetReceiverPid_case4(VOS_VOID)
     return VOS_OK;
 }
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者:
-#    修改内容: 新建CASE
-*******************************************************************/
+
 VOS_UINT32 uttest_SI_PIH_IsSvlte_case1(VOS_VOID)
 {
     if (VOS_FALSE == SI_PIH_IsSvlte())
@@ -134,15 +94,7 @@ VOS_UINT32 uttest_NV_ReadEx_stub1(MODEM_ID_ENUM_UINT16           enModemID,
     return NV_OK;
 }
 
-/*******************************************************************
-*测试项:NV项读取成功
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者:
-#    修改内容: 新建CASE
-*******************************************************************/
+
 VOS_UINT32 uttest_SI_PIH_IsSvlte_case2(VOS_VOID)
 {
 #if (FEATURE_MULTI_MODEM == FEATURE_ON)
@@ -159,15 +111,7 @@ VOS_UINT32 uttest_SI_PIH_IsSvlte_case2(VOS_VOID)
 }
 
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者:
-#    修改内容: 新建CASE
-*******************************************************************/
+
 VOS_UINT32 uttest_SI_PIH_FdnBdnQuery_case1(VOS_VOID)
 {
 	if (TAF_FAILURE == SI_PIH_FdnBdnQuery(0,0,0))
@@ -178,15 +122,7 @@ VOS_UINT32 uttest_SI_PIH_FdnBdnQuery_case1(VOS_VOID)
     return VOS_ERR;
 }
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者:
-#    修改内容: 新建CASE
-*******************************************************************/
+
 VOS_UINT32 uttest_SI_PIH_FdnBdnQuery_case2(VOS_VOID)
 {
 	if (TAF_SUCCESS == SI_PIH_FdnBdnQuery(0,0,0))
@@ -197,15 +133,7 @@ VOS_UINT32 uttest_SI_PIH_FdnBdnQuery_case2(VOS_VOID)
     return VOS_ERR;
 }
 
-/*******************************************************************
-*测试项: 查询当前的BDN状态
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者:
-#    修改内容: 新建CASE
-*******************************************************************/
+
 VOS_UINT32 uttest_SI_PIH_FdnBdnQuery_case3(VOS_VOID)
 {
     if (TAF_SUCCESS == SI_PIH_FdnBdnQuery(0,0,1))
@@ -216,15 +144,7 @@ VOS_UINT32 uttest_SI_PIH_FdnBdnQuery_case3(VOS_VOID)
     return VOS_ERR;
 }
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者:
-#    修改内容: 新建CASE
-*******************************************************************/
+
 VOS_UINT32 uttest_SI_PIH_FdnBdnQuery_case4(VOS_VOID)
 {
     if (TAF_FAILURE == SI_PIH_FdnBdnQuery(0,0,1))
@@ -235,15 +155,7 @@ VOS_UINT32 uttest_SI_PIH_FdnBdnQuery_case4(VOS_VOID)
     return VOS_ERR;
 }
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者:
-#    修改内容: 新建CASE
-*******************************************************************/
+
 VOS_UINT32 uttest_SI_PIH_FdnBdnQuery_case5(VOS_VOID)
 {
     if (TAF_FAILURE == SI_PIH_FdnBdnQuery(0,0,1))
@@ -254,15 +166,7 @@ VOS_UINT32 uttest_SI_PIH_FdnBdnQuery_case5(VOS_VOID)
     return VOS_ERR;
 }
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者:
-#    修改内容: 新建CASE
-*******************************************************************/
+
 VOS_UINT32 uttest_SI_PIH_GenericAccessReq_case1(VOS_VOID)
 {
 	SI_PIH_CSIM_COMMAND_STRU stData;
@@ -277,15 +181,7 @@ VOS_UINT32 uttest_SI_PIH_GenericAccessReq_case1(VOS_VOID)
     return VOS_ERR;
 }
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者:
-#    修改内容: 新建CASE
-*******************************************************************/
+
 VOS_UINT32 uttest_SI_PIH_GenericAccessReq_case2(VOS_VOID)
 {
 	SI_PIH_CSIM_COMMAND_STRU stData;
@@ -300,15 +196,7 @@ VOS_UINT32 uttest_SI_PIH_GenericAccessReq_case2(VOS_VOID)
     return VOS_ERR;
 }
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者:
-#    修改内容: 新建CASE
-*******************************************************************/
+
 VOS_UINT32 uttest_SI_PIH_GenericAccessReq_case3(VOS_VOID)
 {
 	SI_PIH_CSIM_COMMAND_STRU stData;
@@ -323,15 +211,7 @@ VOS_UINT32 uttest_SI_PIH_GenericAccessReq_case3(VOS_VOID)
     return VOS_ERR;
 }
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者:
-#    修改内容: 新建CASE
-*******************************************************************/
+
 VOS_UINT32 uttest_SI_PIH_GenericAccessReq_case4(VOS_VOID)
 {
 	SI_PIH_CSIM_COMMAND_STRU stData;
@@ -346,15 +226,7 @@ VOS_UINT32 uttest_SI_PIH_GenericAccessReq_case4(VOS_VOID)
     return VOS_ERR;
 }
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者:
-#    修改内容: 新建CASE
-*******************************************************************/
+
 VOS_UINT32 uttest_SI_PIH_GenericAccessReq_case5(VOS_VOID)
 {
 	SI_PIH_CSIM_COMMAND_STRU stData;
@@ -369,15 +241,7 @@ VOS_UINT32 uttest_SI_PIH_GenericAccessReq_case5(VOS_VOID)
     return VOS_ERR;
 }
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者:
-#    修改内容: 新建CASE
-*******************************************************************/
+
 VOS_UINT32 uttest_SI_PIH_GenericAccessReq_case6(VOS_VOID)
 {
 	SI_PIH_CSIM_COMMAND_STRU            stData;
@@ -392,15 +256,7 @@ VOS_UINT32 uttest_SI_PIH_GenericAccessReq_case6(VOS_VOID)
     return VOS_ERR;
 }
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者:
-#    修改内容: 新建CASE
-*******************************************************************/
+
 VOS_UINT32 uttest_SI_PIH_GenericAccessReq_case7(VOS_VOID)
 {
 	SI_PIH_CSIM_COMMAND_STRU stData;
@@ -415,15 +271,7 @@ VOS_UINT32 uttest_SI_PIH_GenericAccessReq_case7(VOS_VOID)
     return VOS_ERR;
 }
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者: w00184875
-#    修改内容: 新建CASE
-*******************************************************************/
+
 VOS_UINT32 uttest_SI_PIH_FdnEnable_case1(VOS_VOID)
 {
 	MN_CLIENT_ID_T     ClientId;
@@ -443,15 +291,7 @@ VOS_UINT32 uttest_SI_PIH_FdnEnable_case1(VOS_VOID)
 	return VOS_ERR;
 }
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者: w00184875
-#    修改内容: 新建CASE
-*******************************************************************/
+
 VOS_UINT32 uttest_SI_PIH_FdnEnable_case2(VOS_VOID)
 {
 #if (FEATURE_MULTI_MODEM == FEATURE_OFF)
@@ -470,15 +310,7 @@ VOS_UINT32 uttest_SI_PIH_FdnEnable_case2(VOS_VOID)
 #endif
 }
 
-/*******************************************************************
-*测试项:申请消息内存失败
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者: w00184875
-#    修改内容: 新建CASE
-*******************************************************************/
+
 VOS_UINT32 uttest_SI_PIH_FdnEnable_case3(VOS_VOID)
 {
 	MN_CLIENT_ID_T     ClientId;
@@ -498,15 +330,7 @@ VOS_UINT32 uttest_SI_PIH_FdnEnable_case3(VOS_VOID)
 	return VOS_OK;
 }
 
-/*******************************************************************
-*测试项:消息发送失败
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者: w00184875
-#    修改内容: 新建CASE
-*******************************************************************/
+
 VOS_UINT32 uttest_SI_PIH_FdnEnable_case4(VOS_VOID)
 {
 	MN_CLIENT_ID_T     ClientId;
@@ -526,15 +350,7 @@ VOS_UINT32 uttest_SI_PIH_FdnEnable_case4(VOS_VOID)
     return VOS_OK;
 }
 
-/*******************************************************************
-*测试项:消息发送成功
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者: w00184875
-#    修改内容: 新建CASE
-*******************************************************************/
+
 VOS_UINT32 uttest_SI_PIH_FdnEnable_case5(VOS_VOID)
 {
 	MN_CLIENT_ID_T     ClientId;
@@ -554,15 +370,7 @@ VOS_UINT32 uttest_SI_PIH_FdnEnable_case5(VOS_VOID)
     return VOS_OK;
 }
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者: w00184875
-#    修改内容: 新建CASE
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_FdnDisable_case1(void)
 {
 	MN_CLIENT_ID_T     ClientId;
@@ -582,15 +390,7 @@ unsigned int uttest_SI_PIH_FdnDisable_case1(void)
 	return VOS_OK;
 }
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者: w00184875
-#    修改内容: 新建CASE
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_FdnDisable_case2(void)
 {
 #if (FEATURE_MULTI_MODEM == FEATURE_OFF)
@@ -613,15 +413,7 @@ unsigned int uttest_SI_PIH_FdnDisable_case2(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者: w00184875
-#    修改内容: 新建CASE
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_FdnDisable_case3(void)
 {
 	MN_CLIENT_ID_T     ClientId;
@@ -642,15 +434,7 @@ unsigned int uttest_SI_PIH_FdnDisable_case3(void)
 
 }
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者: w00184875
-#    修改内容: 新建CASE
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_FdnDisable_case4(void)
 {
 	MN_CLIENT_ID_T     ClientId;
@@ -670,15 +454,7 @@ unsigned int uttest_SI_PIH_FdnDisable_case4(void)
 	return VOS_OK;
 }
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者: w00184875
-#    修改内容: 新建CASE
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_FdnDisable_case5(void)
 {
 	MN_CLIENT_ID_T     ClientId;
@@ -698,15 +474,7 @@ unsigned int uttest_SI_PIH_FdnDisable_case5(void)
 	return VOS_OK;
 }
 
-/*******************************************************************
-测试用例编号      : Test_SI_PIH_IsdbAccessReq_001
-测试用例标题      : 输入的APDU长度为0
-预期结果          : 函数返回TAF_FAILURE
-修改历史          :
-1.日   期  : 2012-09-04
-  作   者  : h59254
-  修改内容 : 安全存储项目新增
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_IsdbAccessReq_case1(void)
 {
 	// 变量声明
@@ -731,15 +499,7 @@ unsigned int uttest_SI_PIH_IsdbAccessReq_case1(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-测试用例编号      : Test_SI_PIH_IsdbAccessReq_001
-测试用例标题      : 输入的APDU长度为0
-预期结果          : 函数返回TAF_FAILURE
-修改历史          :
-1.日   期  : 2012-09-04
-  作   者  : h59254
-  修改内容 : 安全存储项目新增
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_IsdbAccessReq_case2(void)
 {
 
@@ -765,15 +525,7 @@ unsigned int uttest_SI_PIH_IsdbAccessReq_case2(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-测试用例编号      : Test_SI_PIH_IsdbAccessReq_003
-测试用例标题      : 申请消息失败
-预期结果          : 函数返回TAF_FAILURE
-修改历史          :
-1.日   期  : 2012-09-04
-  作   者  : h59254
-  修改内容 : 安全存储项目新增
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_IsdbAccessReq_case3(void)
 {
 
@@ -801,15 +553,7 @@ unsigned int uttest_SI_PIH_IsdbAccessReq_case3(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-测试用例编号      : Test_SI_PIH_IsdbAccessReq_004
-测试用例标题      : 发送消息失败
-预期结果          : 函数返回TAF_FAILURE
-修改历史          :
-1.日   期  : 2012-09-04
-  作   者  : h59254
-  修改内容 : 安全存储项目新增
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_IsdbAccessReq_case4(void)
 {
 
@@ -837,15 +581,7 @@ unsigned int uttest_SI_PIH_IsdbAccessReq_case4(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-测试用例编号      : Test_SI_PIH_IsdbAccessReq_005
-测试用例标题      : 发送消息成功
-预期结果          : 函数返回TAF_FAILURE
-修改历史          :
-1.日   期  : 2012-09-04
-  作   者  : h59254
-  修改内容 : 安全存储项目新增
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_IsdbAccessReq_case5(void)
 {
 
@@ -873,15 +609,7 @@ unsigned int uttest_SI_PIH_IsdbAccessReq_case5(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-测试用例编号      : Test_SI_PIH_CchoSetReq_001
-测试用例标题      : 参数检测失败
-预期结果          : 函数返回TAF_FAILURE
-修改历史          :
-1.日   期  : 2013-05-21
-  作   者  : g47350
-  修改内容 : NFC-BIP项目新增
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_CchoSetReq_case1(void)
 {
     // 变量声明
@@ -907,15 +635,7 @@ unsigned int uttest_SI_PIH_CchoSetReq_case1(void)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_SI_PIH_CchoSetReq_002
-测试用例标题      : 获取接收者PID失败
-预期结果          : 函数返回TAF_FAILURE
-修改历史          :
-1.日   期  : 2013-05-21
-  作   者  : g47350
-  修改内容 : NFC-BIP项目新增
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_CchoSetReq_case2(void)
 {
     // 变量声明
@@ -941,15 +661,7 @@ unsigned int uttest_SI_PIH_CchoSetReq_case2(void)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_SI_PIH_CchoSetReq_003
-测试用例标题      : 分配消息内存失败
-预期结果          : 函数返回TAF_FAILURE
-修改历史          :
-1.日   期  : 2013-05-21
-  作   者  : g47350
-  修改内容 : NFC-BIP项目新增
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_CchoSetReq_case3(void)
 {
     // 变量声明
@@ -974,15 +686,7 @@ unsigned int uttest_SI_PIH_CchoSetReq_case3(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-测试用例编号      : Test_SI_PIH_CchoSetReq_004
-测试用例标题      : 发送消息失败
-预期结果          : 函数返回TAF_FAILURE
-修改历史          :
-1.日   期  : 2013-05-21
-  作   者  : g47350
-  修改内容 : NFC-BIP项目新增
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_CchoSetReq_case4(void)
 {
     // 变量声明
@@ -1010,15 +714,7 @@ unsigned int uttest_SI_PIH_CchoSetReq_case4(void)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_SI_PIH_CchoSetReq_005
-测试用例标题      : 执行成功
-预期结果          : 函数返回TAF_SUCCESS
-修改历史          :
-1.日   期  : 2013-05-21
-  作   者  : g47350
-  修改内容 : NFC-BIP项目新增
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_CchoSetReq_case5(void)
 {
     // 变量声明
@@ -1046,15 +742,7 @@ unsigned int uttest_SI_PIH_CchoSetReq_case5(void)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_SI_PIH_CchcSetReq_001
-测试用例标题      : 获取接收者PID失败
-预期结果          : 函数返回TAF_FAILURE
-修改历史          :
-1.日   期  : 2013-05-21
-  作   者  : g47350
-  修改内容 : NFC-BIP项目新增
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_CchcSetReq_case1(void)
 {
     // 变量声明
@@ -1080,15 +768,7 @@ unsigned int uttest_SI_PIH_CchcSetReq_case1(void)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_SI_PIH_CchcSetReq_002
-测试用例标题      : 分配消息内存失败
-预期结果          : 函数返回TAF_FAILURE
-修改历史          :
-1.日   期  : 2013-05-21
-  作   者  : g47350
-  修改内容 : NFC-BIP项目新增
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_CchcSetReq_case2(void)
 {
     // 变量声明
@@ -1113,15 +793,7 @@ unsigned int uttest_SI_PIH_CchcSetReq_case2(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-测试用例编号      : Test_SI_PIH_CchcSetReq_003
-测试用例标题      : 发送消息失败
-预期结果          : 函数返回TAF_FAILURE
-修改历史          :
-1.日   期  : 2013-05-21
-  作   者  : g47350
-  修改内容 : NFC-BIP项目新增
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_CchcSetReq_case3(void)
 {
     // 变量声明
@@ -1147,15 +819,7 @@ unsigned int uttest_SI_PIH_CchcSetReq_case3(void)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_SI_PIH_CchcSetReq_004
-测试用例标题      : 执行成功
-预期结果          : 函数返回TAF_SUCCESS
-修改历史          :
-1.日   期  : 2013-05-21
-  作   者  : g47350
-  修改内容 : NFC-BIP项目新增
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_CchcSetReq_case4(void)
 {
     // 变量声明
@@ -1181,15 +845,7 @@ unsigned int uttest_SI_PIH_CchcSetReq_case4(void)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_SI_PIH_CglaSetReq_001
-测试用例标题      : 获取接收者PID失败
-预期结果          : 函数返回TAF_FAILURE
-修改历史          :
-1.日   期  : 2013-05-21
-  作   者  : g47350
-  修改内容 : NFC-BIP项目新增
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_CglaSetReq_case1(void)
 {
     // 变量声明
@@ -1214,15 +870,7 @@ unsigned int uttest_SI_PIH_CglaSetReq_case1(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-测试用例编号      : Test_SI_PIH_CglaSetReq_002
-测试用例标题      : 分配消息内存失败
-预期结果          : 函数返回TAF_FAILURE
-修改历史          :
-1.日   期  : 2013-05-21
-  作   者  : g47350
-  修改内容 : NFC-BIP项目新增
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_CglaSetReq_case2(void)
 {
     // 变量声明
@@ -1247,15 +895,7 @@ unsigned int uttest_SI_PIH_CglaSetReq_case2(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-测试用例编号      : Test_SI_PIH_CglaSetReq_003
-测试用例标题      : 发送消息失败
-预期结果          : 函数返回TAF_FAILURE
-修改历史          :
-1.日   期  : 2013-05-21
-  作   者  : g47350
-  修改内容 : NFC-BIP项目新增
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_CglaSetReq_case3(void)
 {
     // 变量声明
@@ -1281,15 +921,7 @@ unsigned int uttest_SI_PIH_CglaSetReq_case3(void)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_SI_PIH_CglaSetReq_004
-测试用例标题      : 执行成功
-预期结果          : 函数返回TAF_SUCCESS
-修改历史          :
-1.日   期  : 2013-05-21
-  作   者  : g47350
-  修改内容 : NFC-BIP项目新增
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_CglaSetReq_case4(void)
 {
     // 变量声明
@@ -1315,15 +947,7 @@ unsigned int uttest_SI_PIH_CglaSetReq_case4(void)
 
 }
 
-/*******************************************************************
-测试用例编号      : SI_PIH_HvsDHSet_001
-测试用例标题      : 参数检测空指针
-预期结果          : 函数返回TAF_FAILURE
-修改历史          :
-1.日   期  : 2013-04-02
-  作   者  : g47350
-  修改内容 : BalongV300R002 vSIM开发项目
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_HvsDHSet_case1(void)
 {
 #if (FEATURE_VSIM == FEATURE_ON)
@@ -1339,15 +963,7 @@ unsigned int uttest_SI_PIH_HvsDHSet_case1(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-测试用例编号      : SI_PIH_HvsDHSet_002
-测试用例标题      : 参数检测长度过大
-预期结果          : 函数返回TAF_FAILURE
-修改历史          :
-1.日   期  : 2013-04-02
-  作   者  : g47350
-  修改内容 : BalongV300R002 vSIM开发项目
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_HvsDHSet_case2(void)
 {
 #if (FEATURE_VSIM == FEATURE_ON)
@@ -1365,15 +981,7 @@ unsigned int uttest_SI_PIH_HvsDHSet_case2(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-测试用例编号      : SI_PIH_HvsDHSet_003
-测试用例标题      : client转换为ulReceiverPid失败
-预期结果          : 函数返回TAF_FAILURE
-修改历史          :
-1.日   期  : 2013-04-02
-  作   者  : g47350
-  修改内容 : BalongV300R002 vSIM开发项目
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_HvsDHSet_case3(void)
 {
 #if (FEATURE_VSIM == FEATURE_ON)
@@ -1391,15 +999,7 @@ unsigned int uttest_SI_PIH_HvsDHSet_case3(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-测试用例编号      : SI_PIH_HvsDHSet_004
-测试用例标题      : 分配消息失败
-预期结果          : 函数返回TAF_FAILURE
-修改历史          :
-1.日   期  : 2013-04-02
-  作   者  : g47350
-  修改内容 : BalongV300R002 vSIM开发项目
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_HvsDHSet_case4(void)
 {
 #if (FEATURE_VSIM == FEATURE_ON)
@@ -1417,15 +1017,7 @@ unsigned int uttest_SI_PIH_HvsDHSet_case4(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-测试用例编号      : SI_PIH_HvsDHSet_005
-测试用例标题      : 发送消息失败
-预期结果          : 函数返回TAF_FAILURE
-修改历史          :
-1.日   期  : 2013-04-02
-  作   者  : g47350
-  修改内容 : BalongV300R002 vSIM开发项目
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_HvsDHSet_case5(void)
 {
 #if (FEATURE_VSIM == FEATURE_ON)
@@ -1443,15 +1035,7 @@ unsigned int uttest_SI_PIH_HvsDHSet_case5(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-测试用例编号      : SI_PIH_HvsDHSet_006
-测试用例标题      : 服务器密钥设置请求发到CCPU
-预期结果          : 函数返回TAF_SUCCESS
-修改历史          :
-1.日   期  : 2013-04-02
-  作   者  : g47350
-  修改内容 : BalongV300R002 vSIM开发项目
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_HvsDHSet_case6(void)
 {
 #if (FEATURE_VSIM == FEATURE_ON)
@@ -1469,15 +1053,7 @@ unsigned int uttest_SI_PIH_HvsDHSet_case6(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-测试用例编号      : SI_PIH_HvsDHQuery_001
-测试用例标题      : client转换为ulReceiverPid失败
-预期结果          : 函数返回TAF_FAILURE
-修改历史          :
-1.日   期  : 2013-04-02
-  作   者  : g47350
-  修改内容 : BalongV300R002 vSIM开发项目
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_HvsDHQuery_case1(void)
 {
 #if (FEATURE_VSIM == FEATURE_ON)
@@ -1491,15 +1067,7 @@ unsigned int uttest_SI_PIH_HvsDHQuery_case1(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-测试用例编号      : SI_PIH_HvsDHQuery_002
-测试用例标题      : 分配消息失败
-预期结果          : 函数返回TAF_FAILURE
-修改历史          :
-1.日   期  : 2013-04-02
-  作   者  : g47350
-  修改内容 : BalongV300R002 vSIM开发项目
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_HvsDHQuery_case2(void)
 {
 #if (FEATURE_VSIM == FEATURE_ON)
@@ -1513,15 +1081,7 @@ unsigned int uttest_SI_PIH_HvsDHQuery_case2(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-测试用例编号      : SI_PIH_HvsDHQuery_003
-测试用例标题      : 发送消息失败
-预期结果          : 函数返回TAF_FAILURE
-修改历史          :
-1.日   期  : 2013-04-02
-  作   者  : g47350
-  修改内容 : BalongV300R002 vSIM开发项目
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_HvsDHQuery_case3(void)
 {
 #if (FEATURE_VSIM == FEATURE_ON)
@@ -1535,15 +1095,7 @@ unsigned int uttest_SI_PIH_HvsDHQuery_case3(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-测试用例编号      : SI_PIH_HvsDHQuery_004
-测试用例标题      : 密钥查询发送到CCPU
-预期结果          : 函数返回TAF_SUCCESS
-修改历史          :
-1.日   期  : 2013-04-02
-  作   者  : g47350
-  修改内容 : BalongV300R002 vSIM开发项目
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_HvsDHQuery_case4(void)
 {
 #if (FEATURE_VSIM == FEATURE_ON)
@@ -1558,15 +1110,7 @@ unsigned int uttest_SI_PIH_HvsDHQuery_case4(void)
 
 }
 
-/*******************************************************************
-测试用例编号      : SI_PIH_HvsContQuery_001
-测试用例标题      : client转换为ulReceiverPid失败
-预期结果          : 函数返回TAF_FAILURE
-修改历史          :
-1.日   期  : 2013-04-02
-  作   者  : g47350
-  修改内容 : BalongV300R002 vSIM开发项目
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_HvsContQuery_case1(void)
 {
 #if (FEATURE_VSIM == FEATURE_ON)
@@ -1581,15 +1125,7 @@ unsigned int uttest_SI_PIH_HvsContQuery_case1(void)
 }
 
 
-/*******************************************************************
-测试用例编号      : SI_PIH_HvsContQuery_002
-测试用例标题      : 分配消息失败
-预期结果          : 函数返回TAF_FAILURE
-修改历史          :
-1.日   期  : 2013-04-02
-  作   者  : g47350
-  修改内容 : BalongV300R002 vSIM开发项目
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_HvsContQuery_case2(void)
 {
 #if (FEATURE_VSIM == FEATURE_ON)
@@ -1603,15 +1139,7 @@ unsigned int uttest_SI_PIH_HvsContQuery_case2(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-测试用例编号      : SI_PIH_HvsContQuery_003
-测试用例标题      : 发送消息失败
-预期结果          : 函数返回TAF_FAILURE
-修改历史          :
-1.日   期  : 2013-04-02
-  作   者  : g47350
-  修改内容 : BalongV300R002 vSIM开发项目
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_HvsContQuery_case3(void)
 {
 #if (FEATURE_VSIM == FEATURE_ON)
@@ -1625,15 +1153,7 @@ unsigned int uttest_SI_PIH_HvsContQuery_case3(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-测试用例编号      : SI_PIH_HvsContQuery_004
-测试用例标题      : 文件内容查询发送到CCPU
-预期结果          : 函数返回TAF_SUCCESS
-修改历史          :
-1.日   期  : 2013-04-02
-  作   者  : g47350
-  修改内容 : BalongV300R002 vSIM开发项目
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_HvsContQuery_case4(void)
 {
 #if (FEATURE_VSIM == FEATURE_ON)
@@ -1647,15 +1167,7 @@ unsigned int uttest_SI_PIH_HvsContQuery_case4(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-测试用例编号      : SI_PIH_HvSstQuery_001
-测试用例标题      : client转换为ulReceiverPid失败)
-预期结果          : 函数返回TAF_FAILURE
-修改历史          :
-1.日   期  : 2013-04-02
-  作   者  : g47350
-  修改内容 : BalongV300R002 vSIM开发项目
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_HvSstQuery_case1(void)
 {
 #if (FEATURE_VSIM == FEATURE_ON)
@@ -1670,15 +1182,7 @@ unsigned int uttest_SI_PIH_HvSstQuery_case1(void)
 }
 
 
-/*******************************************************************
-测试用例编号      : SI_PIH_HvSstQuery_002
-测试用例标题      : 分配消息失败
-预期结果          : 函数返回TAF_FAILURE
-修改历史          :
-1.日   期  : 2013-04-02
-  作   者  : g47350
-  修改内容 : BalongV300R002 vSIM开发项目
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_HvSstQuery_case2(void)
 {
 #if (FEATURE_VSIM == FEATURE_ON)
@@ -1692,15 +1196,7 @@ unsigned int uttest_SI_PIH_HvSstQuery_case2(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-测试用例编号      : SI_PIH_HvSstQuery_003
-测试用例标题      : 发送消息失败
-预期结果          : 函数返回TAF_FAILURE
-修改历史          :
-1.日   期  : 2013-04-02
-  作   者  : g47350
-  修改内容 : BalongV300R002 vSIM开发项目
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_HvSstQuery_case3(void)
 {
 #if (FEATURE_VSIM == FEATURE_ON)
@@ -1716,15 +1212,7 @@ unsigned int uttest_SI_PIH_HvSstQuery_case3(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-测试用例编号      : SI_PIH_HvSstQuery_004
-测试用例标题      : 卡状态查询发送到CCPU
-预期结果          : 函数返回TAF_SUCCESS
-修改历史          :
-1.日   期  : 2013-04-02
-  作   者  : g47350
-  修改内容 : BalongV300R002 vSIM开发项目
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_HvSstQuery_case4(void)
 {
 #if (FEATURE_VSIM == FEATURE_ON)
@@ -1738,15 +1226,7 @@ unsigned int uttest_SI_PIH_HvSstQuery_case4(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-测试用例编号      : SI_PIH_HvSstSet_001
-测试用例标题      : 参数检测失败
-预期结果          : 函数返回TAF_FAILURE
-修改历史          :
-1.日   期  : 2013-04-02
-  作   者  : g47350
-  修改内容 : BalongV300R002 vSIM开发项目
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_HvSstSet_case1(void)
 {
 #if (FEATURE_VSIM == FEATURE_ON)
@@ -1760,15 +1240,7 @@ unsigned int uttest_SI_PIH_HvSstSet_case1(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-测试用例编号      : SI_PIH_HvSstSet_002
-测试用例标题      : client转换为ulReceiverPid失败
-预期结果          : 函数返回TAF_FAILURE
-修改历史          :
-1.日   期  : 2013-04-02
-  作   者  : g47350
-  修改内容 : BalongV300R002 vSIM开发项目
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_HvSstSet_case2(void)
 {
 #if (FEATURE_VSIM == FEATURE_ON)
@@ -1784,15 +1256,7 @@ unsigned int uttest_SI_PIH_HvSstSet_case2(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-测试用例编号      : SI_PIH_HvSstSet_003
-测试用例标题      : 分配消息失败
-预期结果          : 函数返回TAF_FAILURE
-修改历史          :
-1.日   期  : 2013-04-02
-  作   者  : g47350
-  修改内容 : BalongV300R002 vSIM开发项目
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_HvSstSet_case3(void)
 {
 #if (FEATURE_VSIM == FEATURE_ON)
@@ -1808,15 +1272,7 @@ unsigned int uttest_SI_PIH_HvSstSet_case3(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-测试用例编号      : SI_PIH_HvSstSet_004
-测试用例标题      : 发送消息失败
-预期结果          : 函数返回TAF_FAILURE
-修改历史          :
-1.日   期  : 2013-04-02
-  作   者  : g47350
-  修改内容 : BalongV300R002 vSIM开发项目
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_HvSstSet_case4(void)
 {
 #if (FEATURE_VSIM == FEATURE_ON)
@@ -1832,15 +1288,7 @@ unsigned int uttest_SI_PIH_HvSstSet_case4(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-测试用例编号      : SI_PIH_HvSstSet_005
-测试用例标题      : 卡状态设置发送到CCPU
-预期结果          : 函数返回TAF_SUCCESS
-修改历史          :
-1.日   期  : 2013-04-02
-  作   者  : g47350
-  修改内容 : BalongV300R002 vSIM开发项目
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_HvSstSet_case5(void)
 {
 #if (FEATURE_VSIM == FEATURE_ON)
@@ -1856,15 +1304,7 @@ unsigned int uttest_SI_PIH_HvSstSet_case5(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-*测试项:SI_PIH_AtFileWrite_001
-*被测函数功能描述:client转换为ulReceiverPid失败
-*预期结果：返回error
-************************* 修改记录 *********************************
-#  1.日    期: 2013-04-10
-#    作    者: z00208519
-#    修改内容: 新建CASE
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_AtFileWrite_case1(void)
 {
 #if (FEATURE_VSIM == FEATURE_ON)
@@ -1880,15 +1320,7 @@ unsigned int uttest_SI_PIH_AtFileWrite_case1(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-*测试项:SI_PIH_AtFileWrite_002
-*被测函数功能描述:pstData为空
-*预期结果：返回error
-************************* 修改记录 *********************************
-#  1.日    期: 2013-04-10
-#    作    者: z00208519
-#    修改内容: 新建CASE
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_AtFileWrite_case2(void)
 {
 #if (FEATURE_VSIM == FEATURE_ON)
@@ -1907,16 +1339,7 @@ unsigned int uttest_SI_PIH_AtFileWrite_case2(void)
 }
 
 
-/*******************************************************************
-*测试项:SI_PIH_AtFileWrite_003
-*被测函数功能描述:1 pstData不为空
-                  2 pstData中文件内容为空
-*预期结果：返回error
-************************* 修改记录 *********************************
-#  1.日    期: 2013-04-10
-#    作    者: z00208519
-#    修改内容: 新建CASE
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_AtFileWrite_case3(void)
 {
 #if (FEATURE_VSIM == FEATURE_ON)
@@ -1936,16 +1359,7 @@ unsigned int uttest_SI_PIH_AtFileWrite_case3(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-*测试项:SI_PIH_AtFileWrite_004
-*被测函数功能描述:1 pstData不为空
-                  2 pstData中文件长度为空
-*预期结果：返回error
-************************* 修改记录 *********************************
-#  1.日    期: 2013-04-10
-#    作    者: z00208519
-#    修改内容: 新建CASE
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_AtFileWrite_case4(void)
 {
 #if (FEATURE_VSIM == FEATURE_ON)
@@ -1965,17 +1379,7 @@ unsigned int uttest_SI_PIH_AtFileWrite_case4(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-*测试项:SI_PIH_AtFileWrite_005
-*被测函数功能描述:1 pstData不为空
-                  2 pstData中所有属性不为空
-                  3 分配内存失败
-*预期结果：返回error
-************************* 修改记录 *********************************
-#  1.日    期: 2013-04-10
-#    作    者: z00208519
-#    修改内容: 新建CASE
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_AtFileWrite_case5(void)
 {
 #if (FEATURE_VSIM == FEATURE_ON)
@@ -2001,18 +1405,7 @@ unsigned int uttest_SI_PIH_AtFileWrite_case5(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-*测试项:SI_PIH_AtFileWrite_006
-*被测函数功能描述:1 pstData不为空
-                  2 pstData中所有属性不为空
-                  3 分配内存成功
-                  4 发送消息失败
-*预期结果：返回error
-************************* 修改记录 *********************************
-#  1.日    期: 2013-04-10
-#    作    者: z00208519
-#    修改内容: 新建CASE
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_AtFileWrite_case6(void)
 {
 #if (FEATURE_VSIM == FEATURE_ON)
@@ -2038,18 +1431,7 @@ unsigned int uttest_SI_PIH_AtFileWrite_case6(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-*测试项:SI_PIH_AtFileWrite_007
-*被测函数功能描述:1 pstData不为空
-                  2 pstData中所有属性不为空
-                  3 分配内存成功
-                  4 发送消息成功
-*预期结果：返回error
-************************* 修改记录 *********************************
-#  1.日    期: 2013-04-10
-#    作    者: z00208519
-#    修改内容: 新建CASE
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_AtFileWrite_case7(void)
 {
 #if (FEATURE_VSIM == FEATURE_ON)
@@ -2075,15 +1457,7 @@ unsigned int uttest_SI_PIH_AtFileWrite_case7(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-测试用例编号      : Test_SI_PIH_UiccAuthReq_001
-测试用例标题      : Client Id转换失败
-预期结果          : 函数返回TAF_FAILURE
-修改历史          :
-1.日   期  : 2014-03-24
-  作   者  : h59254
-  修改内容 : GBA项目开发
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_UiccAuthReq_case1(void)
 {
 #if (FEATURE_ON == FEATURE_IMS)
@@ -2112,15 +1486,7 @@ unsigned int uttest_SI_PIH_UiccAuthReq_case1(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-测试用例编号      : Test_SI_PIH_UiccAuthReq_002
-测试用例标题      : 鉴权参数为空指针
-预期结果          : 函数返回TAF_FAILURE
-修改历史          :
-1.日   期  : 2014-03-24
-  作   者  : h59254
-  修改内容 : GBA项目开发
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_UiccAuthReq_case2(void)
 {
 #if (FEATURE_ON == FEATURE_IMS)
@@ -2146,15 +1512,7 @@ unsigned int uttest_SI_PIH_UiccAuthReq_case2(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-测试用例编号      : Test_SI_PIH_UiccAuthReq_003
-测试用例标题      : 申请消息失败
-预期结果          : 函数返回TAF_FAILURE
-修改历史          :
-1.日   期  : 2014-03-24
-  作   者  : h59254
-  修改内容 : GBA项目开发
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_UiccAuthReq_case3(void)
 {
 #if (FEATURE_ON == FEATURE_IMS)
@@ -2183,15 +1541,7 @@ unsigned int uttest_SI_PIH_UiccAuthReq_case3(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-测试用例编号      : Test_SI_PIH_UiccAuthReq_004
-测试用例标题      : 发送消息失败
-预期结果          : 函数返回TAF_FAILURE
-修改历史          :
-1.日   期  : 2014-03-24
-  作   者  : h59254
-  修改内容 : GBA项目开发
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_UiccAuthReq_case4(void)
 {
 #if (FEATURE_ON == FEATURE_IMS)
@@ -2220,15 +1570,7 @@ unsigned int uttest_SI_PIH_UiccAuthReq_case4(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-测试用例编号      : Test_SI_PIH_UiccAuthReq_005
-测试用例标题      : 发送消息成功
-预期结果          : 函数返回TAF_SUCCESS
-修改历史          :
-1.日   期  : 2014-03-24
-  作   者  : h59254
-  修改内容 : GBA项目开发
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_UiccAuthReq_case5(void)
 {
 #if (FEATURE_ON == FEATURE_IMS)
@@ -2257,15 +1599,7 @@ unsigned int uttest_SI_PIH_UiccAuthReq_case5(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-测试用例编号      : Test_SI_PIH_AccessUICCFileReq_001
-测试用例标题      : Client Id转换失败
-预期结果          : 函数返回TAF_FAILURE
-修改历史          :
-1.日   期  : 2014-03-24
-  作   者  : h59254
-  修改内容 : GBA项目开发
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_AccessUICCFileReq_case1(void)
 {
 #if (FEATURE_ON == FEATURE_IMS)
@@ -2294,15 +1628,7 @@ unsigned int uttest_SI_PIH_AccessUICCFileReq_case1(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-测试用例编号      : Test_SI_PIH_AccessUICCFileReq_002
-测试用例标题      : 鉴权参数为空指针
-预期结果          : 函数返回TAF_FAILURE
-修改历史          :
-1.日   期  : 2014-03-24
-  作   者  : h59254
-  修改内容 : GBA项目开发
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_AccessUICCFileReq_case2(void)
 {
 #if (FEATURE_ON == FEATURE_IMS)
@@ -2331,15 +1657,7 @@ unsigned int uttest_SI_PIH_AccessUICCFileReq_case2(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-测试用例编号      : Test_SI_PIH_AccessUICCFileReq_003
-测试用例标题      : 申请消息失败
-预期结果          : 函数返回TAF_FAILURE
-修改历史          :
-1.日   期  : 2014-03-24
-  作   者  : h59254
-  修改内容 : GBA项目开发
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_AccessUICCFileReq_case3(void)
 {
 #if (FEATURE_ON == FEATURE_IMS)
@@ -2368,15 +1686,7 @@ unsigned int uttest_SI_PIH_AccessUICCFileReq_case3(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-测试用例编号      : Test_SI_PIH_AccessUICCFileReq_005
-测试用例标题      : 发送消息成功
-预期结果          : 函数返回TAF_SUCCESS
-修改历史          :
-1.日   期  : 2014-03-24
-  作   者  : h59254
-  修改内容 : GBA项目开发
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_AccessUICCFileReq_case4(void)
 {
 #if (FEATURE_ON == FEATURE_IMS)
@@ -2405,15 +1715,7 @@ unsigned int uttest_SI_PIH_AccessUICCFileReq_case4(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-测试用例编号      : Test_SI_PIH_AccessUICCFileReq_004
-测试用例标题      : 发送消息失败
-预期结果          : 函数返回TAF_FAILURE
-修改历史          :
-1.日   期  : 2014-03-24
-  作   者  : h59254
-  修改内容 : GBA项目开发
-*******************************************************************/
+
 unsigned int uttest_SI_PIH_AccessUICCFileReq_case5(void)
 {
 #if (FEATURE_ON == FEATURE_IMS)

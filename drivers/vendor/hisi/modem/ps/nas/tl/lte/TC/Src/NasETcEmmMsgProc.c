@@ -106,18 +106,7 @@ VOS_VOID NAS_ETC_EmmMsgDistr( VOS_VOID *pRcvMsg )
 }
 
 #if ( FEATURE_LPP == FEATURE_ON )
-/*****************************************************************************
- Function Name   : NAS_ETC_SndTcResetUePositionInfoMsg
- Description     : TC模块向LPP模块发送RESET POSITION
- Input           : pstTcNwMsgIE--------译码后的空口消息
- Output          : None
- Return          : VOS_VOID
 
-
- History         :
-    1.lifuxin 00253982      2015-9-1  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ETC_SndTcResetUePositionInfoMsg
 (
     const NAS_ETC_NW_MSG_STRU           *pstTcNwMsgIE
@@ -149,17 +138,7 @@ VOS_VOID  NAS_ETC_SndTcResetUePositionInfoMsg
 }
 #endif
 
-/*****************************************************************************
- Function Name   : NAS_ETC_NwMsgProcess
- Description     : 处理空口消息
- Input           : pstTcNwMsgIE-------译码后的空口消息
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2009-10-14  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ETC_NwMsgProcess
 (
     const NAS_ETC_NW_MSG_STRU           *pstTcNwMsgIE
@@ -212,17 +191,7 @@ VOS_VOID  NAS_ETC_NwMsgProcess
 }
 
 
-/*****************************************************************************
- Function Name  : NAS_ETC_RcvTcEmmDataInd()
- Description    : TC模块收到ID_EMM_ETC_DATA_IND处理函数
- Input          : EMM_ETC_DATA_IND_STRU *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2008-10-13  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ETC_RcvTcEmmDataInd( EMM_ETC_DATA_IND_STRU *pRcvMsg )
 {
     NAS_ETC_CAUSE_ENUM_UINT8             enTcCause           = NAS_ETC_CAUSE_SUCCESS;
@@ -262,18 +231,7 @@ VOS_VOID NAS_ETC_RcvTcEmmDataInd( EMM_ETC_DATA_IND_STRU *pRcvMsg )
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ETC_SndTcEmmDataReqMsg
- Description     : 向EMM模块发送DATA REQ消息
- Input           : None
- Output          : pSendMsg-----------发送消息存储区
-                   pulLength----------发送消息长度
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2009-10-14  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ETC_SndTcEmmDataReqMsg
 (
     const VOS_UINT8                    *pucSendMsg,

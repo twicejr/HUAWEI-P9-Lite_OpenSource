@@ -1,15 +1,4 @@
-/******************************************************************************
 
-  Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : LRrcGrrInterface.h
-  Description     : LTE RRC与GRR之间接口文件
-  History         :
-      1.liutao 38432       2010-12-30   Draft Enact
-      2.lidui 143774       2011-09-22 DTS2011091702682:直接用该.h文件生成的.dll文件，消息解析失败
-	  3.wangyue 151278     2011-12-22 DTS2011121902767:L2G重选接口修改，增加能量值
-******************************************************************************/
 
 #ifndef __LRRC_GRRINTERFACE_H__
 #define __LRRC_GRRINTERFACE_H__
@@ -912,10 +901,8 @@ typedef struct
 
     LRRC_GURRC_REDIR_SAVED_EUTRA_INFO_STRU                  stRedirEutraInfo;
 
-    /* begin：add for chr */
     VOS_UINT32                                              ulHoBeginTimeStampHigh;
     VOS_UINT32                                              ulHoBeginTimeStampLow;
-    /* end：add for chr */
 
     VOS_UINT32                                              ulHoDatalen;
 
@@ -1039,30 +1026,14 @@ typedef struct
     VOS_UINT8                                               aucGeranPsInfoData[LRRC_GRR_UE_CAP_GEREN_PS_MAX_LEN];
 }GRR_LRRC_GETUECAPINFO_CNF_STRU;
 
-/*****************************************************************************
- 结 构 名  : LRRC_GRR_GERAN_CELL_STRU
- 结构说明  : lte测量GSM小区结构
- 修改历史  :
-  1.日  期   : 2014年2月18日
-    作  者   : s00184266
-    修改内容 : 新生成结构
 
-*****************************************************************************/
 typedef struct
 {
    VOS_UINT16                                               usArfcn;
    LRRC_GRR_BANDINDICATOR_ENUM_UINT16                       enBandInd;
 }LRRC_GRR_GERAN_CELL_STRU;
 
-/*****************************************************************************
- 结 构 名  : LRRC_GRR_GERAN_CELL_INFO_LIST_STRU
- 结构说明  : lte测量GSM小区列表结构
- 修改历史  :
-  1.日  期   : 2014年2月18日
-    作  者   : s00184266
-    修改内容 : 新生成结构
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16                                              usArfcnNum;
@@ -1079,15 +1050,7 @@ typedef struct
     LRRC_GRR_GERAN_CELL_STRU                                astGeranCellInfo[LRRC_GURRC_GERAN_ARFCN_MAX_NUM];
 }LRRC_GRR_GERAN_CELL_INFO_LIST_STRU;
 
-/*****************************************************************************
- 结 构 名  : LRRC_GRR_IDLE_MEASURE_REQ_STRU
- 结构说明  : Lte idle态下测量gsm邻区请求
- 修改历史  :
-  1.日  期   : 2014年2月17日
-    作  者   : s00184266
-    修改内容 : 新生成结构
 
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/
@@ -1097,15 +1060,7 @@ typedef struct
     LRRC_GRR_GERAN_CELL_INFO_LIST_STRU                      stGsmCellInfoList;  /* 测量的GSM小区列表 */
 }LRRC_GRR_IDLE_MEASURE_REQ_STRU;
 
-/*****************************************************************************
- 结 构 名  : GRR_LRRC_IDLE_MEASURE_CNF_STRU
- 结构说明  : LRRC_GRR_IDLE_MEASURE_REQ的回复原语
- 修改历史  :
-  1.日  期   : 2014年2月18日
-    作  者   : s00184266
-    修改内容 : 新生成结构
 
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/
@@ -1115,15 +1070,7 @@ typedef struct
     LRRC_GURRC_MEAS_RESULT_ENUM_UINT32                      enRslt;             /* 启动or停止测量结果 */
 }GRR_LRRC_IDLE_MEASURE_CNF_STRU;
 
-/*****************************************************************************
- 结 构 名  : GRR_LRRC_GERAN_CELL_MEAS_RESULT_STRU
- 结构说明  : g模测量单个小区上报结果结构
- 修改历史  :
-  1.日  期   : 2014年2月18日
-    作  者   : s00184266
-    修改内容 : 新生成结构
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16                                              usArfcn;            /* 频点 */
@@ -1132,15 +1079,7 @@ typedef struct
     VOS_UINT8                                               aucReserved[2];     /* 保留位 */
 }GRR_LRRC_GERAN_CELL_MEAS_RESULT_STRU;
 
-/*****************************************************************************
- 结 构 名  : GRR_LRRC_GERAN_MEAS_RESULT_STRU
- 结构说明  : g模测量上报结构
- 修改历史  :
-  1.日  期   : 2014年2月18日
-    作  者   : s00184266
-    修改内容 : 新生成结构
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16                                              usArfcnNum;         /* 频点个数 */
@@ -1148,15 +1087,7 @@ typedef struct
     GRR_LRRC_GERAN_CELL_MEAS_RESULT_STRU                    astGeranCellResult[LRRC_GURRC_GERAN_ARFCN_MAX_NUM];
 }GRR_LRRC_GERAN_MEAS_RESULT_IND_STRU;
 
-/*****************************************************************************
- 结 构 名  : GRR_LRRC_IDLE_MEASURE_IND_STRU
- 结构说明  : G模上报lte idle测量消息结构
- 修改历史  :
-  1.日  期   : 2014年2月18日
-    作  者   : s00184266
-    修改内容 : 新生成结构
 
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/
@@ -1166,15 +1097,7 @@ typedef struct
     GRR_LRRC_GERAN_MEAS_RESULT_IND_STRU                     stGsmMeasResult;    /* 测量上报结果 */
 }GRR_LRRC_IDLE_MEASURE_IND_STRU;
 
-/*****************************************************************************
- 结 构 名  : LRRC_GRR_CONNECTED_MEASURE_REQ_STRU
- 结构说明  : lte连接态下测量GSM邻区消息结构
- 修改历史  :
-  1.日  期   : 2014年2月18日
-    作  者   : s00184266
-    修改内容 : 新生成结构
 
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/
@@ -1184,15 +1107,7 @@ typedef struct
     LRRC_GRR_GERAN_CELL_INFO_LIST_STRU                      stGsmCellInfoList;  /* 测量的GSM小区列表 */
 }LRRC_GRR_CONNECTED_MEASURE_REQ_STRU;
 
-/*****************************************************************************
- 结 构 名  : GRR_LRRC_CONNECTED_MEASURE_CNF_STRU
- 结构说明  : LRRC_GRR_CONNECTED_MEASURE_REQ的消息回复
- 修改历史  :
-  1.日  期   : 2014年2月18日
-    作  者   : s00184266
-    修改内容 : 新生成结构
 
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/
@@ -1202,15 +1117,7 @@ typedef struct
     LRRC_GURRC_MEAS_RESULT_ENUM_UINT32                      enRslt;             /* 启动or停止测量结果 */
 }GRR_LRRC_CONNECTED_MEASURE_CNF_STRU;
 
-/*****************************************************************************
- 结 构 名  : GRR_LRRC_CONNECTED_MEASURE_IND_STRU
- 结构说明  : G模上报lte connected测量消息结构
- 修改历史  :
-  1.日  期   : 2014年2月18日
-    作  者   : s00184266
-    修改内容 : 新生成结构
 
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/
@@ -1220,15 +1127,7 @@ typedef struct
     GRR_LRRC_GERAN_MEAS_RESULT_IND_STRU                     stGsmMeasResult;    /* 测量上报结果 */
 }GRR_LRRC_CONNECTED_MEASURE_IND_STRU;
 
-/*****************************************************************************
- 结 构 名  : LRRC_GRR_BSIC_VERIFIED_REQ_STRU
- 结构说明  : lte请求g模进行bsic验证消息结构
- 修改历史  :
-  1.日  期   : 2014年2月18日
-    作  者   : s00184266
-    修改内容 : 新生成结构
 
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/
@@ -1240,15 +1139,7 @@ typedef struct
     LRRC_GRR_GERAN_CELL_STRU                                astGeranInfo[LRRC_GURRC_GERAN_CELL_FOR_BSIC_MAX_NUM];   /* gsm小区列表 */
 }LRRC_GRR_BSIC_VERIFIED_REQ_STRU;
 
-/*****************************************************************************
- 结 构 名  : GRR_LRRC_BSIC_VERIFIED_CNF_STRU
- 结构说明  :
- 修改历史  :
-  1.日  期   : 2014年2月18日
-    作  者   : s00184266
-    修改内容 : 新生成结构
 
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/
@@ -1257,15 +1148,7 @@ typedef struct
     VOS_UINT8                                               aucReserved[2];     /* 保留位 */
 }GRR_LRRC_BSIC_VERIFIED_CNF_STRU;
 
-/*****************************************************************************
- 结 构 名  : GRR_LRRC_BSIC_VERIFIED_RESULT_STRU
- 结构说明  : G模单小区的bsic验证结果
- 修改历史  :
-  1.日  期   : 2014年2月18日
-    作  者   : s00184266
-    修改内容 : 新生成结构
 
-*****************************************************************************/
 typedef struct
 {
     LRRC_GRR_GERAN_CELL_INFO_STRU                           stGeranCellInfo;
@@ -1273,15 +1156,7 @@ typedef struct
     VOS_INT32                                               lFNOffset;
 }GRR_LRRC_BSIC_VERIFIED_RESULT_STRU;
 
-/*****************************************************************************
- 结 构 名  : GRR_LRRC_BSIC_VERIFIED_IND_STRU
- 结构说明  : G模上报lte bsic验证结果消息结构
- 修改历史  :
-  1.日  期   : 2014年2月18日
-    作  者   : s00184266
-    修改内容 : 新生成结构
 
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/
@@ -1291,15 +1166,7 @@ typedef struct
     GRR_LRRC_BSIC_VERIFIED_RESULT_STRU                      astGeranBsicVerifedResult[LRRC_GURRC_GERAN_CELL_FOR_BSIC_MAX_NUM]; /* 频点bsic验证结果列表 */
 }GRR_LRRC_BSIC_VERIFIED_IND_STRU;
 
-/*****************************************************************************
- 结 构 名  : LRRC_GRR_RELALL_REQ_STRU
- 结构说明  : lte请求g模释放所有任务的消息结构
- 修改历史  :
-  1.日  期   : 2014年2月18日
-    作  者   : s00184266
-    修改内容 : 新生成结构
 
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/
@@ -1308,15 +1175,7 @@ typedef struct
     VOS_UINT8                                               aucReserved[3];
 }LRRC_GRR_RELALL_REQ_STRU;
 
-/*****************************************************************************
- 结 构 名  : GRR_LRRC_RELALL_CNF_STRU
- 结构说明  : LRRC_GRR_RELALL_REQ的回复消息结构
- 修改历史  :
-  1.日  期   : 2014年2月18日
-    作  者   : s00184266
-    修改内容 : 新生成结构
 
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/

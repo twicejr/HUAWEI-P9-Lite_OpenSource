@@ -33,21 +33,7 @@
 /*lint +e767 修改人:罗建 107747;检视人:sunshaohua*/
 
 /*lint -save -e958 */
-/*****************************************************************************
- 函 数 名  : NAS_SS_LogSsStateInfo
- 功能描述  : 勾SS的状态
- 输入参数  : ucSsState: SS的当前状态
- 输出参数  : VOS_VOID
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月30日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  NAS_SS_LogSsStateInfo(
     VOS_UINT8                           ucState
 )
@@ -138,22 +124,7 @@ VOS_UINT8 Ss_EntityBuildCr( VOS_UINT8 ucTi )
     return SS_NONE_CR;                                                          /* 返回没找到CR                             */
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SS_IsOnlyMtSs
- 功能描述  : 判断是否是唯一存在的mt ss业务
- 输入参数  : ucTi       - 指定实体的TI
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 是唯一存在的mt ss业务
-             VOS_FALSE - 不是唯一存在的 mt ss业务
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年6月16日
-   作    者   : z00161729
-   修改内容   : DSDS III新增
-
-*****************************************************************************/
 VOS_UINT8 NAS_SS_IsOnlyMtSs(
     VOS_UINT8                           ucTi
 )
@@ -187,22 +158,7 @@ VOS_UINT8 NAS_SS_IsOnlyMtSs(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_SS_IsOnlyMoSs
- 功能描述  : 判断是否是唯一存在的mo ss业务
- 输入参数  : ucTi       - 指定实体的TI
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 是唯一存在的mo ss业务
-             VOS_FALSE - 不是唯一存在的mo ss业务
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年6月16日
-   作    者   : z00161729
-   修改内容   : DSDS III新增
-
-*****************************************************************************/
 VOS_UINT8 NAS_SS_IsOnlyMoSs(
     VOS_UINT8                           ucTi
 )
@@ -236,22 +192,7 @@ VOS_UINT8 NAS_SS_IsOnlyMoSs(
 }
 
 #if (FEATURE_ON == FEATURE_DSDS)
-/*****************************************************************************
- 函 数 名  : NAS_SS_NotifySessionAccordingSsStateChg
- 功能描述  : 根据ss实体状态进行资源申请和释放
- 输入参数  : ucTi       - 指定实体的TI
-             ucNewState - ss状态
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年6月16日
-   作    者   : z00161729
-   修改内容   : DSDS III新增
-
-*****************************************************************************/
 VOS_VOID NAS_SS_NotifySessionAccordingSsStateChg(
     VOS_UINT8                           ucTi,
     VOS_UINT8                           ucNewState
@@ -310,22 +251,7 @@ VOS_VOID NAS_SS_NotifySessionAccordingSsStateChg(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_SS_ChangeSsState
- 功能描述  : 设置ss实体状态
- 输入参数  : ucTi       - 指定实体的TI
-             ucNewState - ss状态
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年6月16日
-   作    者   : z00161729
-   修改内容   : DSDS III新增
-
-*****************************************************************************/
 VOS_VOID NAS_SS_ChangeSsState(
     VOS_UINT8                           ucTi,
     VOS_UINT8                           ucNewState
@@ -366,20 +292,7 @@ VOS_VOID Ss_EntityCreat(
     g_SsEntity[ucTi].ucCr = ucCr;                                               /* 设置CR                                   */
 }
 
-/***********************************************************************
-*  MODULE   : Ss_EntityClear
-*  FUNCTION : 释放实体
-*  INPUT    : VOS_UINT8     ucTi        指定实体的TI
-*  OUTPUT   : VOS_VOID
-*  RETURN   : VOS_VOID
-*  NOTE     : 无
-*  HISTORY  :
-*     1.  张志勇 04-03-08  新版作成
-*     2.  张志勇 04-03-23  增加停止T551的处理
-    3.日    期   : 2014年6月24日
-      作    者   : w00167002
-      修改内容   : DSDS III项目
-************************************************************************/
+
 
 
 VOS_VOID Ss_EntityClear(
@@ -454,36 +367,18 @@ VOS_UINT8 Ss_EntitySelectTi(
     }
     return ucTi;                                                                /* 返回找到的TI                             */
 }
-/***********************************************************************
-*  MODULE   : Ss_GetSsTi
-*  FUNCTION :
-*  INPUT    : VOS_UINT8     ucCr        指定实体对应的CR
-*
-*  OUTPUT   : VOS_UINT8
-*  RETURN   : VOS_UINT8     ucTi;
-*  NOTE     : 无
-*  HISTORY  :
-      1.  日    期   : 2008年05月24日
-          作    者   : huwen id:44270
-          修改内容   : 问题单号:AT2D03224
-      2.日    期   : 2013年8月6日
-        作    者   : z00161729
-        修改内容  : V9R1 STK升级修改
 
-************************************************************************/
 VOS_UINT8 Ss_GetSsTi(VOS_UINT8  ucCr)
 {
     VOS_UINT8  i;
     VOS_UINT8  ucTi = SS_NONE_TI;
 
-    /* Modified by z00161729 for V9R1 STK升级, 2013-8-6, begin */
     /* 网络发起USSD业务要求用户确认，用户不确认至超时处理时Cr范围是8-14,转换成128-134 */
     if ((ucCr > (TAF_MIDDLE_SSA_TI))
      && (ucCr <= TAF_MAX_SSA_TI))
     {
         ucCr += 120;
     }
-    /* Modified by z00161729 for V9R1 STK升级, 2013-8-6, end */
 
     for( i = 0 ; i < SS_MAX_ENTITY_NUM ; i++ )
     {

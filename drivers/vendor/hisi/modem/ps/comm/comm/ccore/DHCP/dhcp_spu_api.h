@@ -1,21 +1,4 @@
-/******************************************************************************
 
-  Copyright (C), 2001-2011, Huawei Tech. Co., Ltd.
-
- ******************************************************************************
-  File Name     : dhcp_spu_api.h
-  Version       : Initial Draft
-  Author        : l00103336
-  Created       : 2012/4/24
-  Last Modified :
-  Description   : DHCP模块SPU提供的公共数据定义
-  Function List :
-  History       :
-  1.Date        : 2012/4/24
-    Author      : l00103336
-    Modification: Created file
-
-******************************************************************************/
 #ifndef __DHCP_SPU_API_H__
 #define __DHCP_SPU_API_H__
 
@@ -60,11 +43,10 @@ typedef enum tagDHCPS_USM_MSG_E
     DHCPS_USM_MSG_END
 }DHCPS_USM_MSG_E;
 
-/* zhangjinquan 00175135 DHCPv6特性 2012-06-30 start */
 /*DHCP控制块*/
 typedef struct tagDHCPC_CTRLBLK
 {
-    struct tagDHCPC_CTRLBLK *pstPreNode;    /* add by tianyang 00144555 for dhcpv6 特性 2012-07-18 */
+    struct tagDHCPC_CTRLBLK *pstPreNode;
     struct tagDHCPC_CTRLBLK *pstNextNode;
     VOID *pTmpDhcpCtrlBlkPtr;       /* 用于保存临时控制块指针 */
     VOS_UINT32       ulDHCPCtxIdx;       /*DHCP控制块索引*/
@@ -87,7 +69,7 @@ typedef struct tagDHCPC_CTRLBLK
     VOS_UINT16      usVPNIndex;         /* 保存LAP消息中的VPN索引 */
     VOS_UINT16      usPoolIndex;
     VOS_UINT16      usServerGrpIndex;   /*ServerGrp index*/
-    VOS_UINT16      usApnIndex;         /*APN索引*/
+    VOS_UINT16      usApnIndex;
 
     VOS_UINT16      usSeqNum;
     UCHAR       ucUserType:4;       /*UserType ppp,gtp*/
@@ -109,7 +91,7 @@ typedef struct tagDHCPC_CTRLBLK
     UCHAR       ucLeaseStatus:4;    /* 租约状态 */
     UCHAR       ucCause:4;
 
-    UCHAR       ucRandomNo;        /* 随机跟踪 DTS2012091903437 y00170683 */
+    UCHAR       ucRandomNo;
 
 #if 0
     UCHAR       aucResved[3];       /*保留字段*/
@@ -117,9 +99,7 @@ typedef struct tagDHCPC_CTRLBLK
     VOS_UINT8   ucRabId;                      /*RabId*/
     MODEM_ID_ENUM_UINT16  enModemId;          /*enModemId*/
 }DHCPC_CTRLBLK;
-/* zhangjinquan 00175135 DHCPv6特性 2012-06-30 end   */
 
-/* BEGIN: Added by jixiaoming for 节省内存 at 2012-10-26 */
 
 typedef struct tagDHCPV4C_BAK_INFO_S
 {
@@ -172,7 +152,6 @@ typedef struct tagDHCPC_BACKBLK_S
     UCHAR       usDhcpStatus:4;     /* DHCP状态 */
     UCHAR       ucReserve;
 }DHCPC_BACK_BLK_S;
-/* END: Added by jixiaoming for 节省内存 at 2012-10-26 */
 
 /*dhcp网络包物理结构DHCPS_ANALYZEDPACKET_S*/
 typedef struct tagDHCPS_ANALYZEDPACKET
@@ -194,10 +173,8 @@ typedef struct tagDHCPS_ANALYZEDPACKET
     UCHAR        aucParaReqList[256];   /*1~254, 最多保存254个*/
     UCHAR        ucParaReqLen;
     UCHAR        ucOptionOverload;  /*字段 overload标志*/
-    /* Modified start by ZhangYang  z00142225 at 2008-12-17 UGWV900R001C001 for 地址分配功能 */
     UCHAR       ucRapidCommitFlag;
     UCHAR       aucRev[1];
-    /* Modified end by ZhangYang  z00142225 at 2008-12-17 UGWV900R001C001 for 地址分配功能 */
 }DHCPS_ANALYZEDPACKET_S;
 
 /*租约分配信息结构DHCPS_LEASE_S*/

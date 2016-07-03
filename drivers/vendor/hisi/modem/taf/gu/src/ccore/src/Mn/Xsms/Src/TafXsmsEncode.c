@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafXsmsEncode.c
-  版 本 号   : 初稿
-  作    者   : j00304117
-  生成日期   : 2014年10月31日
-  功能描述   : 1X SMS(Short Message Service)编码
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年10月31日
-    作    者   : j00304117
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -41,23 +26,7 @@ extern "C"{
   3 函数定义
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_PackBitToByte
- 功能描述  : 把少于8个bit的值写入指定数组的指定bit位置上去
- 输入参数  : ucValue:      需要写入的值
-             ucBitNum:     需要写入的bit数，1-8bit
-             usBitPos:     写入bit处于数组中的位置
- 输出参数  : pucBuffer:    需要写入的数组的地址
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月31日
-    作    者   : j00304117
-    修改内容   : 新生成函数
-
-***************************************************************6**************/
 VOS_VOID TAF_XSMS_PackBitToByte(
     VOS_UINT8                          *pucBuffer,
     VOS_UINT8                           ucValue,
@@ -109,21 +78,7 @@ VOS_VOID TAF_XSMS_PackBitToByte(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_ReplaceMessageID
- 功能描述  : 替换MessageID
- 输入参数  : usMessageId:      新的MessageID的值
- 输出参数  : pucBDStru:        需要发送的短消息的Ril结构体
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月31日
-    作    者   : j00304117
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XSMS_ReplaceMessageID(
     TAF_XSMS_MESSAGE_STRU              *pucBDStru,
     VOS_UINT16                          usMessageId
@@ -141,22 +96,7 @@ VOS_VOID TAF_XSMS_ReplaceMessageID(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_FillTeleserviceID
- 功能描述  : 编码TeleserviceID参数
- 输入参数  : pstBDStru:      包含短信信息的结构体指针
- 输出参数  : pucPos:         码流的地址偏移值
-             pucTLRawData:   码流的首地址
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月31日
-    作    者   : j00304117
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XSMS_FillTeleserviceID(
     TAF_XSMS_MESSAGE_STRU              *pstBDStru,
     VOS_UINT8                          *pucTLRawData,
@@ -176,22 +116,7 @@ VOS_VOID TAF_XSMS_FillTeleserviceID(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_FillServiceCategory
- 功能描述  : 编码ServiceCategory参数
- 输入参数  : pstBDStru:      包含短信信息的结构体指针
- 输出参数  : pucPos:         码流的地址偏移值
-             pucTLRawData:   码流的首地址
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月31日
-    作    者   : j00304117
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XSMS_FillServiceCategory(
     TAF_XSMS_MESSAGE_STRU              *pstBDStru,
     VOS_UINT8                          *pucTLRawData,
@@ -211,22 +136,7 @@ VOS_VOID TAF_XSMS_FillServiceCategory(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_FillAddress
- 功能描述  : 编码Address参数
- 输入参数  : pstAddr:      包含地址信息的结构体指针
- 输出参数  : pucLen:       Address参数的长度
-             pucTLRawData: 码流的地址
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月31日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XSMS_FillAddress(
     TAF_XSMS_ADDR_STRU                 *pstAddr,
     VOS_UINT8                          *pucTLRawData,
@@ -290,23 +200,7 @@ VOS_VOID TAF_XSMS_FillAddress(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_FillSubAddress
- 功能描述  : 编码SubAddress参数
- 输入参数  : pstSubAddr      包含子地址信息的结构体指针
-             enStates        发送还是接收的消息
- 输出参数  : pucPos          码流的地址偏移值
-             pucTLRawData    码流的首地址
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月31日
-    作    者   : j00304117
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XSMS_FillSubAddress(
     TAF_XSMS_SUB_ADDR_STRU             *pstSubAddr,
     VOS_UINT8                          *pucTLRawData,
@@ -362,22 +256,7 @@ VOS_VOID TAF_XSMS_FillSubAddress(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_FillBearerReplyOpiton
- 功能描述  : 编码BearerReplyOpiton参数
- 输入参数  : ucBearReplySeqNum:               ReplyOpiton的值
- 输出参数  : pucPos:                          码流的地址偏移值
-             pucTLRawData:                    码流的首地址
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月31日
-    作    者   : j00304117
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XSMS_FillBearerReplyOpiton(
     VOS_UINT8                           ucBearReplySeqNum,
     VOS_UINT8                          *pucTLRawData,
@@ -398,22 +277,7 @@ VOS_VOID TAF_XSMS_FillBearerReplyOpiton(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_FillBearerData
- 功能描述  : 编码BearerData参数
- 输入参数  : pstBDStru:             包含短信信息的结构体指针
- 输出参数  : pucPos:                码流的地址偏移值
-             pucTLRawData:          码流的首地址
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月31日
-    作    者   : j00304117
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XSMS_FillBearerData(
     TAF_XSMS_MESSAGE_STRU              *pstBDStru,
     VOS_UINT8                          *pucTLRawData,
@@ -432,25 +296,7 @@ VOS_VOID TAF_XSMS_FillBearerData(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_GetP2PDBMStru
- 功能描述  : 输入tpdu得到点对点DMB结构体(外部调用)
- 输入参数  : pstBDStru:                 包含短信信息的结构体指针
-             usMessageIdentifier:       需要写入DBM结构体Message Identifier
-             ucBearerReplyOptionSeq:    需要写入DMB结构体的Bearer Reply OptionSeq
-             enStates:                  发送还是接收的消息
- 输出参数  : pstDBMStru:                需要输出的DBM结构体
- 返 回 值  : VOS_ERR                    编码失败
-             VOS_OK                     编码成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月31日
-    作    者   : j00304117
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_GetP2PDBMStru(
     TAF_XSMS_MESSAGE_STRU              *pstBDStru,
     VOS_UINT16                          usMessageIdentifier,
@@ -488,23 +334,7 @@ VOS_UINT32 TAF_XSMS_GetP2PDBMStru(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_GetAckDBMStru
- 功能描述  : 输入目的地址和Cause Code得到DBM结构体(外部调用)
- 输入参数  : pstAddrStru:           需要写入DBM结构体目的地址结构体
-             pstCauseCodeStru:      需要写入DBM结构体的pstCauseCode结构体
- 输出参数  : pstDBMStru:            需要输出的DBM结构体
- 返 回 值  : VOS_ERR                编码失败
-             VOS_OK                 编码成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月31日
-    作    者   : j00304117
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_GetAckDBMStru(
     TAF_XSMS_ADDR_STRU                 *pstAddrStru,
     TAF_XSMS_CAUSE_CODE_STRU           *pstCauseCodeStru,
@@ -533,26 +363,7 @@ VOS_UINT32 TAF_XSMS_GetAckDBMStru(
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_EncodeBearDataStruToP2PRaw
- 功能描述  : 把RIL下发的结构体转换成点对点短信的码流(外部调用)
- 输入参数  : pstBDStru:                    被编码成TL层码流的结构体
-             ucBearerReplyOptionSeq:       短信中实际需要使用的Bearer Reply Option Sequence
-             usMessageIdentifier:          短信中实际需要使用的Message Identifier
-             enStates:                     发送还是接收的消息
- 输出参数  : pucTLRawData:                 TL层码流指针，编码好的数据写入该数组
-             pucEncodedLen:                码流长度
- 返 回 值  : VOS_OK                        编码成功
-             VOS_ERR                       编码失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月31日
-    作    者   : j00304117
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_EncodeBearDataStruToP2PRaw(
     TAF_XSMS_MESSAGE_STRU              *pstBDStru,
     VOS_UINT8                          *pucTLRawData,
@@ -585,26 +396,7 @@ VOS_UINT32 TAF_XSMS_EncodeBearDataStruToP2PRaw(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_EncodeBearDataStruToSimRaw
- 功能描述  : 把RIL下发的结构体转换成需要写入UIM卡的点对点短信的码流(外部调用)
- 输入参数  : pstBDStru:                   被编码成TL层码流的结构体
-             ucBearerReplyOptionSeq:      短信中实际需要使用的Bearer Reply Option Sequence
-             usMessageIdentifier:         短信中实际需要使用的Message Identifier
-             enStates:                    发送还是接收的消息
- 输出参数  : pucTLRawData:                TL层码流指针，编码好的数据写入该数组
-             pucEncodedLen:               总共编码的了多少字节
- 返 回 值  : VOS_OK                       编码成功
-             VOS_ERR                      编码失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月31日
-    作    者   : j00304117
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_EncodeBearDataStruToSimRaw(
     TAF_XSMS_MESSAGE_STRU              *pstBDStru,
     VOS_UINT8                          *pucTLRawData,
@@ -696,24 +488,7 @@ VOS_UINT32 TAF_XSMS_EncodeBearDataStruToSimRaw(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_EncodeAckMsg
- 功能描述  : 编码TL层的ACK
- 输入参数  : pstDestAddr:          包含目的地址信息的结构体指针
-             pstCauseCode:         包含CauseCode信息的结构体指针
- 输出参数  : pucTLRawData:         码流的地址
-             pucCodedLen:          码流的长度
- 返 回 值  : VOS_OK                编码成功
-             VOS_ERR               编码失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月31日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_EncodeAckMsg(
     TAF_XSMS_ADDR_STRU                 *pstDestAddr,
     TAF_XSMS_CAUSE_CODE_STRU           *pstCauseCode,
@@ -767,21 +542,7 @@ VOS_UINT32 TAF_XSMS_EncodeAckMsg(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_EncodeAuth
- 功能描述  : 编码鉴权数组
- 输入参数  : pstDestinationAddr:    需要发送消息的设备的目的地址
- 输出参数  : pucAuthData:           输出的鉴权数组
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月31日
-    作    者   : j00304117
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XSMS_EncodeAuth(
     TAF_XSMS_ADDR_STRU                 *pstDestinationAddr,
     VOS_UINT8                          *pucAuthData
@@ -854,21 +615,7 @@ VOS_VOID TAF_XSMS_EncodeAuth(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_EncodeRelativeValidPeriod
- 功能描述  : 编码ValidPeriod
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月14日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XSMS_EncodeRelativeValidPeriod
 (
     VOS_UINT8                           ucTimeValue, /* timeLen = (ucTimeValue+1)*5 */
@@ -893,21 +640,7 @@ VOS_VOID TAF_XSMS_EncodeRelativeValidPeriod
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_EncodeRelativeValidPeriod
- 功能描述  : 编码ValidPeriod
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月14日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XSMS_EncodePrioIndicator
 (
     TAF_XSMS_BD_SMS_PRIO_ENUM_UINT8     enPrio,
@@ -932,21 +665,7 @@ VOS_VOID TAF_XSMS_EncodePrioIndicator
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_EncodeXcallMsgBearDataByContext
- 功能描述  : MO Idle状态下收到XCALL下发的命令发送短信的处理流程
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月03日
-    作    者   : h00300778
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_EncodeXcallMsgBearDataByContext
 (
     VOS_UINT8                          *pucData,

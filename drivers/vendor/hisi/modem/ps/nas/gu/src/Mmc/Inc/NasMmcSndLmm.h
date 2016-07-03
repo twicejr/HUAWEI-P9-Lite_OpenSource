@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmcSndLmm.h
-  版 本 号   : 初稿
-  作    者   : w00176964
-  生成日期   : 2011年5月9日
-  最近修改   :
-  功能描述   : 定义MMC发送给LMM的消息处理头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年5月9日
-    作    者   : w00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 #ifndef _NAS_MMC_SND_LMM_H
 #define _NAS_MMC_SND_LMM_H_
 
@@ -27,9 +10,7 @@
 #include "MmcLmmInterface.h"
 #endif
 #include  "MmcGmmInterface.h"
-/* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
 #include "MsccMmcInterface.h"
-/* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 #include  "NasCommDef.h"
 #include  "NasMmcCtx.h"
 
@@ -104,11 +85,9 @@ VOS_VOID NAS_MMC_SndLmmEquPlmnReq(
     NAS_MML_EQUPLMN_INFO_STRU          *pstEquPlmnInfo
 );
 
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, begin */
 VOS_VOID NAS_MMC_BuildSndLmmEquPlmnInfo(
      NAS_MML_EQUPLMN_INFO_STRU          *pstEquPlmnInfo
 );
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, end */
 
 VOS_VOID NAS_MMC_SndLmmMtDetachIndActionResultReq(
     NAS_MMC_GMM_NT_DETACH_ENUM_U32      enMtType,
@@ -130,7 +109,6 @@ VOS_VOID NAS_MMC_SndLmmRegActionResultReq(
 
 VOS_VOID NAS_MMC_SndLmmRelReq( VOS_VOID );
 
-/* Modified by s00246516 for L-C互操作项目, 2014-02-14, Begin */
 VOS_VOID NAS_MMC_SndLmmAttachReq(
     VOS_UINT32                                              ulOpId,
     VOS_UINT32                                              ulAttachType,
@@ -143,7 +121,6 @@ VOS_VOID NAS_MMC_SndLmmDetachReq(
     NAS_MSCC_PIF_DETACH_REASON_ENUM_UINT32   enDetachReason
 );
 
-/* Modified by s00246516 for L-C互操作项目, 2014-02-14, Begin */
 
 VOS_VOID NAS_MMC_SndLmmResumeNotify( VOS_VOID );
 
@@ -178,11 +155,9 @@ VOS_UINT32  NAS_MMC_ConvertDetachTypeToLmm(
     MMC_LMM_MO_DETACH_TYPE_ENUM_UINT32 *penLmmDetachType
 );
 
-/* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
 VOS_VOID  NAS_MMC_SndLmmSyscfgReq(
     MSCC_MMC_SYS_CFG_SET_REQ_STRU        *pstSysCfgMsg
 );
-/* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
 VOS_VOID  NAS_MMC_SndLmmDisableLteNotify(
     MMC_LMM_DISABLE_LTE_REASON_ENUM_UINT32                  enDisableLteReason
@@ -338,11 +313,9 @@ VOS_VOID NAS_MMC_SndLmmEndSessionNotify(
 #endif
 
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-19, begin */
 VOS_VOID NAS_MMC_SndLmmImsVoiceCapChangeNtf(
     VOS_UINT8                           ucImsVoiceAvail
 );
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-19, end */
 VOS_VOID NAS_MMC_SndLmmCellSignReportNotify(VOS_VOID);
 
 VOS_VOID NAS_MMC_SndLmmVoiceDomainChangeInd(

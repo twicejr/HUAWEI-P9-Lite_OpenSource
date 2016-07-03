@@ -1,26 +1,4 @@
-/*************************************************************************
- *
- *              Copyright 2005, Huawei Technologies Co. Ltd.
- *                          ALL RIGHTS RESERVED
- * 
- *-----------------------------------------------------------------------*
- *
- *                         IF_IPC.H 
- *
- *  Project Code: VISP1.5
- *   Module Name: IFNET
- *  Date Created: 2004/03/28
- *        Author: luohanjun
- *   Description: Ifnet板间通信头文件
- *               
- *-----------------------------------------------------------------------*
- *  Modification History
- *  DATE            NAME            DESCRIPTION
- *  2004/03/28      luohanjun       Create
- *  2006/03/30      liai            Adjust for D00654
- *  2006/04/21      liai            Adjust for D00878
- *  2008/01/10      z62474          Modify for A82D22522
- ************************************************************************/
+
 
 #ifndef _TCPIP_IF_IPC_H_
 #define _TCPIP_IF_IPC_H_

@@ -1,23 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasERabmIpFilter.c
-  版 本 号   : 初稿
-  作    者   : L62099
-  生成日期   : 2011年2月26日
-  最近修改   :
-  功能描述   : 本文件为RABM TFT功能在IP Filter硬件加速上的适配，主要包括将TFT
-               参数转换为硬件识别的IP Filter格式，以及Filter排序，Filter
-               配置等功能
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年2月26日
-    作    者   : L62099
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 Include HeadFile
@@ -86,20 +67,7 @@ STATIC VOS_UINT32 g_aulNasERabmUlNdisFilterTypeTable[][2] =
 *****************************************************************************/
 
 /*lint -e960*/
-/*****************************************************************************
- 函 数 名  : NAS_ERABM_IpfUlNdisFilterInit
- 功能描述  : 定义上行 NDIS模块使用的Filter类型和参数，保存在全局变量中
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月3日
-    作    者   : l00150010
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_ERABM_IpfUlNdisFilterInit( VOS_VOID )
 {
     NAS_ERABM_IPF_UL_NDIS_FILTER_INFO *pstFilter;
@@ -142,21 +110,7 @@ VOS_VOID NAS_ERABM_IpfUlNdisFilterInit( VOS_VOID )
     NAS_ERABM_IPF_DEF_UL_NDIS_LOC_FF_FILTER();
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_ERABM_IpfGetFreeFilter
- 功能描述  : 从IP Filter 队列中查找空闲的IP Filter
- 输入参数  : NAS_ERABM_IPF_DIRECTION_UINT32 enDir
- 输出参数  : 无
- 返 回 值  : IPF_FILTER_CONFIG_S *
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年3月23日
-    作    者   : L62099
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 IPF_FILTER_CONFIG_S * NAS_ERABM_IpfGetFreeFilter(NAS_ERABM_IPF_DIRECTION_UINT32 enDir)
 {
     /* 获取上行Filter */
@@ -181,22 +135,7 @@ IPF_FILTER_CONFIG_S * NAS_ERABM_IpfGetFreeFilter(NAS_ERABM_IPF_DIRECTION_UINT32 
 }
 /*lint +e960*/
 
-/*****************************************************************************
- 函 数 名  : NAS_ERABM_IpfCompare
- 功能描述  : IPF中 Filter按优先级排序功能
- 输入参数  : const VOS_VOID *arg1
-             const VOS_VOID *arg2
- 输出参数  : 无
- 返 回 值  : VOS_INT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年3月23日
-    作    者   : L62099
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 /*lint -e960*/
 /*lint -e961*/
 VOS_INT32 NAS_ERABM_IpfCompare(const VOS_VOID *arg1, const VOS_VOID *arg2)
@@ -227,22 +166,7 @@ VOS_INT32 NAS_ERABM_IpfCompare(const VOS_VOID *arg1, const VOS_VOID *arg2)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_ERABM_IpfGenerateBaseIpv4Filter
- 功能描述  : 产生IPv4类型的基本参数的Filter
- 输入参数  : const APP_ESM_IP_ADDR_STRU *pstPdnAddr,
-             VOS_UINT8 ucEpsbId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年3月23日
-    作    者   : L62099
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_ERABM_IpfGenerateBaseIpv4Filter
 (
     const APP_ESM_IP_ADDR_STRU *pstPdnAddr,
@@ -292,22 +216,7 @@ VOS_UINT32 NAS_ERABM_IpfGenerateBaseIpv4Filter
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_ERABM_IpfGenerateBaseIpv6Filter
- 功能描述  : 产生IPv6格式的基本参数的Filter
- 输入参数  : const APP_ESM_IP_ADDR_STRU *pstPdnAddr,
-             VOS_UINT8 ucEpsbId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年3月23日
-    作    者   : L62099
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_ERABM_IpfGenerateBaseIpv6Filter
 (
     const APP_ESM_IP_ADDR_STRU *pstPdnAddr,
@@ -372,22 +281,7 @@ VOS_UINT32 NAS_ERABM_IpfGenerateBaseIpv6Filter
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_ERABM_IpfGenerateFilterWithoutTFT
- 功能描述  : 产生不携带TFT参数的承载的FILTER信息
- 输入参数  : APP_ESM_IP_ADDR_STRU *pstPdnAddr
-              VOS_UINT8 ucEpsbId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年3月23日
-    作    者   : L62099
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_ERABM_IpfGenerateFilterWithoutTFT
 (
     const APP_ESM_IP_ADDR_STRU *pstPdnAddr,
@@ -421,23 +315,7 @@ VOS_UINT32 NAS_ERABM_IpfGenerateFilterWithoutTFT
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_ERABM_IpfConvertOtherPartToFilter
- 功能描述  : 将 TFT参数中除源地址/目的地址/FlowLabel 等与V4V6相关参数之外的
-             数据转换为IP Filter格式
- 输入参数  : const ESM_ERABM_TFT_PF_STRU *pstTftPf,
-             IPF_MATCH_INFO_S     *pstIpFilter
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年3月23日
-    作    者   : L62099
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_ERABM_IpfConvertOtherPartToFilter
 (
     const ESM_ERABM_TFT_PF_STRU *pstTftPf,
@@ -514,21 +392,7 @@ VOS_VOID NAS_ERABM_IpfConvertOtherPartToFilter
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : NAS_ERABM_IpfCalcMaskLength
- 功能描述  : 计算掩码的长度
- 输入参数  : const ESM_ERABM_TFT_PF_STRU *pstTftPf
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年3月23日
-    作    者   : L62099
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_ERABM_IpfCalcIpv4MaskLength
 (
     const ESM_ERABM_TFT_PF_STRU *pstTftPf,
@@ -569,23 +433,7 @@ VOS_VOID NAS_ERABM_IpfCalcIpv4MaskLength
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : NAS_ERABM_IpfConvertIpv4TftToFilter
- 功能描述  : 将IPv4格式TFT转换为IP filter格式
- 输入参数  : const APP_ESM_IP_ADDR_STRU *pstPdnAddr,
-             const ESM_ERABM_TFT_PF_STRU *pstTftPf,
-             VOS_UINT8            ucEpsbId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年3月23日
-    作    者   : L62099
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_ERABM_IpfConvertIpv4TftToFilter
 (
     const APP_ESM_IP_ADDR_STRU *pstPdnAddr,
@@ -675,23 +523,7 @@ VOS_UINT32 NAS_ERABM_IpfConvertIpv4TftToFilter
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_ERABM_IpfConvertIpv6TftToFilter
- 功能描述  : 将IPv6格式TFT转换为IP Filter格式
- 输入参数  : const APP_ESM_IP_ADDR_STRU *pstPdnAddr,
-             const ESM_ERABM_TFT_PF_STRU *pstTftPf,
-             VOS_UINT8            ucEpsbId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年3月23日
-    作    者   : L62099
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_ERABM_IpfConvertIpv6TftToFilter
 (
     const APP_ESM_IP_ADDR_STRU *pstPdnAddr,
@@ -784,23 +616,7 @@ VOS_UINT32 NAS_ERABM_IpfConvertIpv6TftToFilter
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_ERABM_IpfCheckFilterType
- 功能描述  : 检查上行TFT的类型, 可以是IPv4,可以是IPv6, 如果无法区分, 则需要
-             将TFT分为IPv4和IPv6两个
- 输入参数  : ESM_ERABM_TFT_PF_STRU *pstTftPf
-             VOS_UINT8 ucIpType
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年3月23日
-    作    者   : L62099
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_ERABM_IpfCheckFilterType
 (
     const ESM_ERABM_TFT_PF_STRU *pstTftPf,
@@ -842,23 +658,7 @@ VOS_UINT32 NAS_ERABM_IpfCheckFilterType
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_ERABM_IpfConvertTftToFilter
- 功能描述  : 将指定上行TFT参数转换为IP Filter格式
- 输入参数  : const APP_ESM_IP_ADDR_STRU   *pstPdnAddr,
-             const ESM_ERABM_TFT_PF_STRU   *pstTftPf,
-             VOS_UINT8                     ucEpsbId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年3月23日
-    作    者   : L62099
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_ERABM_IpfConvertTftToFilter
 (
     const APP_ESM_IP_ADDR_STRU   *pstPdnAddr,
@@ -901,22 +701,7 @@ VOS_UINT32 NAS_ERABM_IpfConvertTftToFilter
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_ERABM_IpfGenerateFilterWithTFT
- 功能描述  : 遍历承载的所有TFT参数，并转换为IP Filter
- 输入参数  : const APP_ESM_IP_ADDR_STRU *pstPdnAddr,
-             VOS_UINT8 ucEpsbId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年3月23日
-    作    者   : L62099
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_ERABM_IpfGenerateFilterWithTFT
 (
     const APP_ESM_IP_ADDR_STRU *pstPdnAddr,
@@ -948,21 +733,7 @@ VOS_UINT32 NAS_ERABM_IpfGenerateFilterWithTFT
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_ERABM_IpfGenerateUlNidsFilters
- 功能描述  : 将所有UL NDIS所需数据包的FILTER配置到上行FILTER队列中
- 输入参数  : VOS_UINT32 ulFilterId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月05日
-    作    者   : L00150010
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_ERABM_IpfGenerateUlNidsFilters()
 {
     VOS_UINT32                  i               = 0;
@@ -980,20 +751,7 @@ VOS_UINT32 NAS_ERABM_IpfGenerateUlNidsFilters()
 
     return PS_SUCC;
 }
-/*****************************************************************************
- 函 数 名  : NAS_ERABM_IpfGenerateFilters
- 功能描述  : 遍历所有承载，生成IP FIlter参数
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年3月23日
-    作    者   : L62099
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_ERABM_IpfGenerateFilters()
 {
     VOS_UINT8                       ucEpsbId        = NAS_ERABM_NULL;
@@ -1078,22 +836,7 @@ VOS_UINT32 NAS_ERABM_IpfGenerateFilters()
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_ERABM_IpfFilterSort
- 功能描述  : IP Filter 优先级比较函数
- 输入参数  : IPF_FILTER_CONFIG_S *pstFilter
-             VOS_UINT32 ulNum
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月1日
-    作    者   : L62099
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_ERABM_IpfFilterSort(IPF_FILTER_CONFIG_S *pstFilter, VOS_UINT32 ulNum)
 {
     /* 调用C语言的库函数qsort对pstFilter进行快速排序 */
@@ -1102,20 +845,7 @@ VOS_VOID NAS_ERABM_IpfFilterSort(IPF_FILTER_CONFIG_S *pstFilter, VOS_UINT32 ulNu
     /*lint +e586*/
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_ERABM_IpfConfigUlFilter
- 功能描述  : 便利所有上行TFT, 生成IP Filter, 并配置到硬件加速器
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年3月23日
-    作    者   : L62099
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_ERABM_IpfConfigUlFilter()
 {
     VOS_UINT32                      ulIpFilterNum   = 0;
@@ -1156,21 +886,7 @@ VOS_UINT32 NAS_ERABM_IpfConfigUlFilter()
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_ERABM_GetSrcIpv4MatchedDeftBearerId
- 功能描述  : 遍历所有缺省承载，查找源IPv4地址匹配的承载号
- 输入参数  : VOS_UINT8 *pstDataAddr
- 输出参数  : VOS_UINT8 *pucBearerId
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月21日
-    作    者   : L00150010
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 NAS_ERABM_GetSrcIpv4MatchedDeftBearerId
 (
     const NAS_ERABM_IPV4_HEADER_STRU   *pstIpv4HeaderInfo,
@@ -1216,21 +932,7 @@ VOS_UINT8 NAS_ERABM_GetSrcIpv4MatchedDeftBearerId
     return NAS_ERABM_FAILURE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_ERABM_GetSrcIpv6MatchedDeftBearerId
- 功能描述  : 遍历所有缺省承载，查找源IPv6地址前缀匹配的承载号
- 输入参数  : VOS_UINT8 *pstIpv6HeaderInfo
- 输出参数  : VOS_UINT8 *pucBearerId
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月21日
-    作    者   : L00150010
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 NAS_ERABM_GetSrcIpv6MatchedDeftBearerId
 (
     const NAS_ERABM_IPV6_HEADER_STRU   *pstIpv6HeaderInfo,
@@ -1277,23 +979,7 @@ VOS_UINT8 NAS_ERABM_GetSrcIpv6MatchedDeftBearerId
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_ERABM_IpfIpv4HeadFragmentProcess
- 功能描述  : IPV4头部分片处理功能
- 输入参数  : VOS_UINT8 *pstDataAddr
-             VOS_UINT32 ulSegType
-             VOS_UINT32 ulMatchId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月21日
-    作    者   : L00150010
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 NAS_ERABM_IpfIpv4HeadFragmentProcess
 (
     const NAS_ERABM_IPV4_HEADER_STRU   *pucIpv4Data,
@@ -1327,21 +1013,7 @@ VOS_UINT8 NAS_ERABM_IpfIpv4HeadFragmentProcess
     return NAS_ERABM_IPF_INVALID_BEARER_ID;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_ERABM_FindBearerIdInIpv4SegBuff
- 功能描述  : 根据identifier、源和目的IP地址，在IPV4分片包存储数组中查找承载号
- 输入参数  : NAS_ERABM_IPV4_HEADER_STRU         *pstIpv4HeaderInfo
- 输出参数  : VOS_UINT8                          *pucBearerIdTmp
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月21日
-    作    者   : L00150010
-    修改内容   : 新生成函数
-
-*****************************************************************************/
     VOS_UINT8 NAS_ERABM_FindBearerIdInIpv4SegBuff
     (
         const NAS_ERABM_IPV4_HEADER_STRU   *pstIpv4HeaderInfo,
@@ -1378,21 +1050,7 @@ VOS_UINT8 NAS_ERABM_IpfIpv4HeadFragmentProcess
         return NAS_ERABM_FAILURE;
     }
 
-/*****************************************************************************
- 函 数 名  : NAS_ERABM_IpfIpv4NonHeadFragmentProcess
- 功能描述  : IPV4非头部分片处理功能
- 输入参数  : NAS_ERABM_IPV4_HEADER_STRU         *pucIpv4Data
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月21日
-    作    者   : L00150010
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 NAS_ERABM_IpfIpv4NonHeadFragmentProcess
 (
     const NAS_ERABM_IPV4_HEADER_STRU   *pucIpv4Data
@@ -1419,23 +1077,7 @@ VOS_UINT8 NAS_ERABM_IpfIpv4NonHeadFragmentProcess
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_ERABM_Ipv4fIpFragmentProcess
- 功能描述  : IPV4分片处理功能
- 输入参数  : VOS_UINT8 *pstDataAddr
-             VOS_UINT32 ulSegType
-             VOS_UINT32 ulMatchId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月21日
-    作    者   : L00150010
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 NAS_ERABM_IpfIpv4FragmentProcess
 (
     VOS_UINT8                          *pstDataAddr,
@@ -1470,23 +1112,7 @@ VOS_UINT8 NAS_ERABM_IpfIpv4FragmentProcess
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_ERABM_Ipv6fIpFragmentProcess
- 功能描述  : IPV6分片处理功能
- 输入参数  : VOS_UINT8 *pstDataAddr
-             VOS_UINT32 ulSegType
-             VOS_UINT32 ulMatchId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月21日
-    作    者   : L00150010
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 NAS_ERABM_IpfIpv6FragmentProcess
 (
     VOS_UINT8                          *pstDataAddr,
@@ -1519,24 +1145,7 @@ VOS_UINT8 NAS_ERABM_IpfIpv6FragmentProcess
     return NAS_ERABM_IPF_INVALID_BEARER_ID;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_ERABM_IpfIpFragmentProcess
- 功能描述  : 上行IP分片处理功能
- 输入参数  : VOS_UINT8 *pstDataAddr
-             VOS_UINT32 ulIpVer
-             VOS_UINT32 ulSegType
-             VOS_UINT32 ulMatchId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月2日
-    作    者   : L62099
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 NAS_ERABM_IpfIpFragmentProcess
 (
     VOS_UINT8                          *pstDataAddr,
@@ -1565,21 +1174,7 @@ VOS_UINT8 NAS_ERABM_IpfIpFragmentProcess
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_ERABM_IpfAddUlNdisFilter
- 功能描述  : 用于添加上行NDIS的几种FILTER类型
- 输入参数  : VOS_UINT32 ulFilterId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   : L00150010
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_ERABM_IpfAddUlNdisFilter(VOS_UINT32 ulFilterId)
 {
     NAS_ERABM_IPF_UL_NDIS_FILTER_INFO  *pstUlNdisFilter = VOS_NULL_PTR;
@@ -1654,21 +1249,7 @@ VOS_UINT32 NAS_ERABM_IpfAddUlNdisFilter(VOS_UINT32 ulFilterId)
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_ERABM_IpfRmvUlNdisFilter
- 功能描述  : 删除上行NDIS Filter接口
- 输入参数  : VOS_UINT32 ulFilterId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月05日
-    作    者   : L00150010
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_ERABM_IpfRmvUlNdisFilter(VOS_UINT32 ulFilterId)
 {
     VOS_UINT32                  i               = 0;
@@ -1712,21 +1293,7 @@ VOS_UINT32 NAS_ERABM_IpfRmvUlNdisFilter(VOS_UINT32 ulFilterId)
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_ERABM_SetUlNdisFilterValidFlag
- 功能描述  : 设置全局变量g_enUlNdisFilterValidFlag
- 输入参数  : NAS_ERABM_UL_NDIS_FILTER_FLAG_ENUM_UINT32   enUlNdisFilterFlag
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月12日
-    作    者   : L00150010
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_ERABM_SetUlNdisFilterValidFlag
 (
     NAS_ERABM_UL_NDIS_FILTER_FLAG_ENUM_UINT32   enUlNdisFilterFlag
@@ -1735,22 +1302,7 @@ VOS_VOID NAS_ERABM_SetUlNdisFilterValidFlag
     NAS_ERABM_IPF_SET_UL_NDIS_FILTER_FLAG(enUlNdisFilterFlag);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_ERABM_CdsCompare
- 功能描述  : CDS中 Filter按优先级排序功能
- 输入参数  : const VOS_VOID *arg1
-             const VOS_VOID *arg2
- 输出参数  : 无
- 返 回 值  : VOS_INT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年3月23日
-    作    者   : L62099
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_INT32 NAS_ERABM_CdsCompare(const VOS_VOID *arg1, const VOS_VOID *arg2)
 {
     VOS_UINT16              usVar1;
@@ -1780,22 +1332,7 @@ VOS_INT32 NAS_ERABM_CdsCompare(const VOS_VOID *arg1, const VOS_VOID *arg2)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_ERABM_CdsFilterSort
- 功能描述  : IP Filter 优先级比较函数
- 输入参数  : CDS_SOFTFILTER_INFO_STRU *pstFilter
-             VOS_UINT32 ulNum
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月12日
-    作    者   : lihong00150010
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_ERABM_CdsFilterSort(CDS_SOFTFILTER_INFO_STRU *pstFilter, VOS_UINT32 ulNum)
 {
     /* 调用C语言的库函数qsort对pstFilter进行快速排序 */
@@ -1804,22 +1341,7 @@ VOS_VOID NAS_ERABM_CdsFilterSort(CDS_SOFTFILTER_INFO_STRU *pstFilter, VOS_UINT32
     /*lint +e586*/
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_ERABM_CdsGenerateBaseIpv4Filter
- 功能描述  : 产生IPv4类型的基本参数的Filter
- 输入参数  : const APP_ESM_IP_ADDR_STRU *pstPdnAddr,
-             VOS_UINT8 ucEpsbId
- 输出参数  : NAS_ERABM_CDS_FILTER_ARRAY     *pstCdsFilterArryay
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月12日
-    作    者   : L62099
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_ERABM_CdsGenerateBaseIpv4Filter
 (
     NAS_ERABM_CDS_FILTER_ARRAY     *pstCdsFilterArryay,
@@ -1873,22 +1395,7 @@ VOS_UINT32 NAS_ERABM_CdsGenerateBaseIpv4Filter
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_ERABM_CdsGenerateBaseIpv6Filter
- 功能描述  : 产生IPv6格式的基本参数的Filter
- 输入参数  : const APP_ESM_IP_ADDR_STRU *pstPdnAddr,
-             VOS_UINT8 ucEpsbId
- 输出参数  : NAS_ERABM_CDS_FILTER_ARRAY     *pstCdsFilterArryay
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月12日
-    作    者   : lihong00150010
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_ERABM_CdsGenerateBaseIpv6Filter
 (
     NAS_ERABM_CDS_FILTER_ARRAY     *pstCdsFilterArryay,
@@ -1954,22 +1461,7 @@ VOS_UINT32 NAS_ERABM_CdsGenerateBaseIpv6Filter
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_ERABM_CdsGenerateFilterWithoutTFT
- 功能描述  : 产生不携带TFT参数的承载的FILTER信息
- 输入参数  : APP_ESM_IP_ADDR_STRU *pstPdnAddr
-             VOS_UINT8 ucEpsbId
- 输出参数  : NAS_ERABM_CDS_FILTER_ARRAY     *pstCdsFilterArryay
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月12日
-    作    者   : lihong00150010
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_ERABM_CdsGenerateFilterWithoutTFT
 (
     NAS_ERABM_CDS_FILTER_ARRAY     *pstCdsFilterArryay,
@@ -2004,23 +1496,7 @@ VOS_UINT32 NAS_ERABM_CdsGenerateFilterWithoutTFT
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_ERABM_CdsConvertOtherPartToFilter
- 功能描述  : 将 TFT参数中除源地址/目的地址/FlowLabel 等与V4V6相关参数之外的
-             数据转换为IP Filter格式
- 输入参数  : const ESM_ERABM_TFT_PF_STRU *pstTftPf,
-             CDS_SOFTFILTER_INFO_STRU               *pstFilter
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月12日
-    作    者   : lihong00150010
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_ERABM_CdsConvertOtherPartToFilter
 (
     const ESM_ERABM_TFT_PF_STRU        *pstTftPf,
@@ -2062,23 +1538,7 @@ VOS_VOID NAS_ERABM_CdsConvertOtherPartToFilter
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_ERABM_CdsConvertIpv4TftToFilter
- 功能描述  : 将IPv4格式TFT转换为IP filter格式
- 输入参数  : const APP_ESM_IP_ADDR_STRU *pstPdnAddr,
-             const ESM_ERABM_TFT_PF_STRU *pstTftPf,
-             VOS_UINT8            ucEpsbId
- 输出参数  : NAS_ERABM_CDS_FILTER_ARRAY     *pstCdsFilterArryay,
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月12日
-    作    者   : lihong00150010
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_ERABM_CdsConvertIpv4TftToFilter
 (
     NAS_ERABM_CDS_FILTER_ARRAY     *pstCdsFilterArryay,
@@ -2148,23 +1608,7 @@ VOS_UINT32 NAS_ERABM_CdsConvertIpv4TftToFilter
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_ERABM_CdsConvertIpv6TftToFilter
- 功能描述  : 将IPv6格式TFT转换为IP Filter格式
- 输入参数  : const APP_ESM_IP_ADDR_STRU *pstPdnAddr,
-             const ESM_ERABM_TFT_PF_STRU *pstTftPf,
-             VOS_UINT8            ucEpsbId
- 输出参数  : NAS_ERABM_CDS_FILTER_ARRAY     *pstCdsFilterArryay,
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月12日
-    作    者   : lihong00150010
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_ERABM_CdsConvertIpv6TftToFilter
 (
     NAS_ERABM_CDS_FILTER_ARRAY     *pstCdsFilterArryay,
@@ -2243,23 +1687,7 @@ VOS_UINT32 NAS_ERABM_CdsConvertIpv6TftToFilter
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_ERABM_CdsConvertTftToFilter
- 功能描述  : 将指定上行TFT参数转换为IP Filter格式
- 输入参数  : const APP_ESM_IP_ADDR_STRU   *pstPdnAddr,
-             const ESM_ERABM_TFT_PF_STRU   *pstTftPf,
-             VOS_UINT8                     ucEpsbId
- 输出参数  : NAS_ERABM_CDS_FILTER_ARRAY     *pstCdsFilterArryay,
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月12日
-    作    者   : lihong00150010
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_ERABM_CdsConvertTftToFilter
 (
     NAS_ERABM_CDS_FILTER_ARRAY     *pstCdsFilterArryay,
@@ -2305,22 +1733,7 @@ VOS_UINT32 NAS_ERABM_CdsConvertTftToFilter
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_ERABM_CdsGenerateFilterWithTFT
- 功能描述  : 遍历承载的所有TFT参数，并转换为IP Filter
- 输入参数  : const APP_ESM_IP_ADDR_STRU *pstPdnAddr,
-             VOS_UINT8 ucEpsbId
- 输出参数  : NAS_ERABM_CDS_FILTER_ARRAY     *pstCdsFilterArryay,
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月12日
-    作    者   : lihong00150010
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_ERABM_CdsGenerateFilterWithTFT
 (
     NAS_ERABM_CDS_FILTER_ARRAY     *pstCdsFilterArryay,
@@ -2354,20 +1767,7 @@ VOS_UINT32 NAS_ERABM_CdsGenerateFilterWithTFT
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_ERABM_CdsGenerateFilters
- 功能描述  : 遍历所有承载，生成IP FIlter参数
- 输出参数  : NAS_ERABM_CDS_FILTER_ARRAY     *pstCdsFilterArryay
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月12日
-    作    者   : lihong00150010
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_ERABM_CdsGenerateFilters
 (
     NAS_ERABM_CDS_FILTER_ARRAY     *pstCdsFilterArryay
@@ -2446,20 +1846,7 @@ VOS_UINT32 NAS_ERABM_CdsGenerateFilters
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_ERABM_CdsConfigUlFilter
- 功能描述  : 遍历所有上行TFT, 生成IP Filter, 并配置到CDS
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月12日
-    作    者   : lihong00150010
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_ERABM_CdsConfigUlFilter( VOS_VOID )
 {
     NAS_ERABM_CDS_FILTER_ARRAY     *pstCdsFilterArryay = VOS_NULL_PTR;
@@ -2504,20 +1891,7 @@ VOS_UINT32 NAS_ERABM_CdsConfigUlFilter( VOS_VOID )
     NAS_ERABM_MEM_FREE(pstCdsFilterArryay);
     return PS_SUCC;
 }
-/*****************************************************************************
- 函 数 名  : NAS_ERABM_SndOmLogIpfUlFilterInfo
- 功能描述  : 输出ERABM给IPF配置的FILTER信息，只输出前16个
- 输出参数  : 无
- 返 回 值  : None
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月18日
-    作    者   : leixiantiao 00258641
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_ERABM_SndOmLogIpfUlFilterInfo(IPF_FILTER_CONFIG_S  *pstFilterList, VOS_UINT32  ulIpFilterNum)
 {
     NAS_ERABM_OM_LOG_IPF_FILTER_INFO_STRU      *pstMsg = VOS_NULL_PTR;
@@ -2556,20 +1930,7 @@ VOS_VOID NAS_ERABM_SndOmLogIpfUlFilterInfo(IPF_FILTER_CONFIG_S  *pstFilterList, 
     NAS_ERABM_MEM_FREE(pstMsg);
     return;
 }
-/*****************************************************************************
- 函 数 名  : NAS_ERABM_SndOmLogCdsUlFilterInfo
- 功能描述  : 输出ERABM给CDS配置的FILTER信息，只输出前16个
- 输出参数  : 无
- 返 回 值  : None
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月18日
-    作    者   : leixiantiao 00258641
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_ERABM_SndOmLogCdsUlFilterInfo(CDS_SOFTFILTER_INFO_STRU  *pstFilterList, VOS_UINT32  ulUpLinkUsedNum)
 {
     NAS_ERABM_OM_LOG_CDS_FILTER_INFO_STRU      *pstMsg = VOS_NULL_PTR;

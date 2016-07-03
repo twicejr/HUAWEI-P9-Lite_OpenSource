@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasXccSndXpds.c
-  版 本 号   : 初稿
-  作    者   : y00314741
-  生成日期   : 2015年08月31日
-  最近修改   :
-  功能描述   : XCC发送给XPDS的消息处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年08月31日
-    作    者   : y00314741
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -48,23 +31,7 @@ extern "C" {
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndXpdsOrigCallCnf
- 功能描述  : 给XPDS发送ID_XCC_XPDS_ORIG_AGPS_CALL_CNF
- 输入参数  : ucCallId    -- 呼叫实体
-             enFailLayer -- TAF_XCC_FAIL_LAYER_ENUM_UINT8
-             enCause     -- 原因值
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月31日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndXpdsOrigCallCnf(
     VOS_UINT8                           ucCallId,
     TAF_XCC_FAIL_LAYER_ENUM_UINT8       enFailLayer,
@@ -105,22 +72,7 @@ VOS_VOID CNAS_XCC_SndXpdsOrigCallCnf(
     PS_SEND_MSG(UEPS_PID_XCC, pstMsg);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndXpdsEndCallCnf
- 功能描述  : 给XPDS发送ID_XCC_XPDS_END_AGPS_CALL_CNF
- 输入参数  : ucCallId    -- 呼叫实体
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年08月31日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndXpdsEndCallCnf(
     VOS_UINT8                           ucCallId
 )
@@ -157,21 +109,7 @@ VOS_VOID CNAS_XCC_SndXpdsEndCallCnf(
     PS_SEND_MSG(UEPS_PID_XCC, pstMsg);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndXpdsIncomingCallInd
- 功能描述  : 给XPDS发送ID_XCC_XPDS_INCOMING_CALL_IND
- 输入参数  : CNAS_XCC_CALL_INFO_CTX_STRU        *pstCallInfo-- 呼叫信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月31日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndXpdsIncomingCallInd(
     CNAS_XCC_CALL_INFO_CTX_STRU        *pstCallInfo
 )
@@ -210,21 +148,7 @@ VOS_VOID CNAS_XCC_SndXpdsIncomingCallInd(
     PS_SEND_MSG(UEPS_PID_XCC, pstMsg);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndCsmsCallConnectInd
- 功能描述  : 给XPDS发送ID_XCC_XPDS_CALL_CONN_IND
- 输入参数  : CNAS_XCC_CALL_INFO_CTX_STRU        *pstCallInfo-- 呼叫信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月31日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndXpdsCallConnectInd(
     CNAS_XCC_CALL_INFO_CTX_STRU        *pstCallInfo
 )
@@ -263,23 +187,7 @@ VOS_VOID CNAS_XCC_SndXpdsCallConnectInd(
     PS_SEND_MSG(UEPS_PID_XCC, pstMsg);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndXpdsAnswerCallCnf
- 功能描述  : 给XPDS发送ID_XCC_XPDS_ANSWER_CALL_CNF
- 输入参数  : VOS_UINT8                           ucCallId-- 呼叫实体
-             TAF_XCC_CAUSE_ENUM_UINT32           enRslt
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 修改历史      :
-  1.日    期   : 2015年08月31日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndXpdsAnswerCallCnf(
     VOS_UINT8                           ucCallId,
     TAF_XCC_CAUSE_ENUM_UINT32           enRslt
@@ -320,21 +228,7 @@ VOS_VOID CNAS_XCC_SndXpdsAnswerCallCnf(
 
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndXpdsServiceConnectInd
- 功能描述  : 给XPDS发送ID_XCC_XPDS_SERVICE_CONNECT_IND
- 输入参数  : CNAS_XCC_CALL_INFO_CTX_STRU        *pstCallInfo-- 呼叫信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月31日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndXpdsServiceConnectInd(
     CNAS_XCC_CALL_INFO_CTX_STRU        *pstCallInfo
 )

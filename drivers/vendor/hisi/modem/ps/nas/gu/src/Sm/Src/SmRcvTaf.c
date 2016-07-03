@@ -1,22 +1,4 @@
-/*******************************************************************************
-  Copyright    : 2005-2007, Huawei Tech. Co., Ltd.
-  File name    : SmRcvTaf.c
-  Description  :
-  Function List:
-               1.  SM_RcvTafPdpCnxtActReq
-               2.  SM_RcvTafPdpCnxtActRejRsp
-               3.  SM_RcvTafPdpCnxtDeActReq
-               4.  SM_RcvTafPdpModifyRsp
-               5.  SM_RcvTafPdpCntxtModifyReq
-               6.  SM_RcvTafPdpCnxtActSecReq
-               7.  SM_RcvTafPdpCnxtActReq_S00
-               8.  SM_RcvTafPdpCnxtActReq_S05
-               9.  SM_PdpAddrApnComp
-  History:
-      1.   张志勇      2003.12.09   新规作成
-      2.   2006-04-10 MODIFY BY H41410 FOR A32D01902
-      3.   韩鲁峰   2006-04-12     for A32D02451
-*******************************************************************************/
+
 #include "SmInclude.h"
 #include "NasSmComm.h"
 
@@ -36,20 +18,7 @@
 #define    THIS_FILE_ID        PS_FILE_ID_SM_RCVTAF_C
 /*lint +e767 修改人:罗建 107747;检视人:sunshaohua*/
 
-/*******************************************************************************
-  Module:   NAS_SM_ProcTafPdpActiveReq
-  Function: ID_SMREG_PDP_ACTIVATE_REQ消息的分发
-  Input:    SMREG_PDP_ACTIVATE_REQ_STRU        *pstMsg
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.   郑 伟   2003.12.09   新规作成
 
-  2.日    期   : 2013年4月23日
-    作    者   : L47619
-    修改内容   : V9R1 IPv6&TAF/SM接口优化项目修改
-*******************************************************************************/
 VOS_VOID NAS_SM_ProcTafPdpActiveReq(
     SMREG_PDP_ACTIVATE_REQ_STRU        *pstMsg
 )
@@ -145,23 +114,7 @@ VOS_VOID NAS_SM_ProcTafPdpActiveRej(
     return;
 }
 
-/*******************************************************************************
-  Module:   SM_ProcTafPdpDeActiveReq
-  Function: TAFSM_PDP_DEACTIVATE_REQ消息的分发处理
-  Input:    SMREG_PDP_DEACTIVATE_REQ_STRU    *pPcpMsg;
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.郑 伟   2003.12.09   新规作成
 
-  2.日    期   : 2014年6月28日
-    作    者   : A00165503
-    修改内容   : DSDS III 项目, 信令流程发起前申请资源
-  3.日    期   : 2015年4月28日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-*******************************************************************************/
 VOS_VOID NAS_SM_ProcTafPdpDeActiveReq(
     SMREG_PDP_DEACTIVATE_REQ_STRU      *pstMsg
 )
@@ -256,23 +209,7 @@ VOS_VOID NAS_SM_ProcTafPdpDeActiveReq(
     return;
 }
 
-/*******************************************************************************
-  Module:   SM_ProcTafPdpModifyRsp
-  Function: TAFSM_PDP_MODIFY_RSP消息的分发处理
-  Input:    SMREG_PDP_MODIFY_RSP_STRU          *pstMsg
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1. 郑 伟   2003.12.09   新规作成
-  2.日    期   : 2012年2月28日
-    作    者   : z00161729
-    修改内容   : V7R1 C50 支持ISR修改
 
-  3.日    期   : 2014年6月28日
-    作    者   : A00165503
-    修改内容   : DSDS III 项目, 信令流程结束后释放资源
-*******************************************************************************/
 VOS_VOID NAS_SM_ProcTafPdpModifyRsp(
     SMREG_PDP_MODIFY_RSP_STRU          *pstMsg
 )
@@ -306,24 +243,7 @@ VOS_VOID NAS_SM_ProcTafPdpModifyRsp(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_ProcTafPdpModifyRejRsp
- 功能描述  : TAFSM_PDP_MODIFY_REJ_RSP消息的分发处理
- 输入参数  : SMREG_PDP_MODIFY_REJ_RSP_STRU       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年9月9日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2014年6月28日
-    作    者   : A00165503
-    修改内容   : DSDS III 项目, 信令流程结束后释放资源
-*****************************************************************************/
 VOS_VOID NAS_SM_ProcTafPdpModifyRejRsp(
     SMREG_PDP_MODIFY_REJ_RSP_STRU       *pstMsg
 )
@@ -362,27 +282,7 @@ VOS_VOID NAS_SM_ProcTafPdpModifyRejRsp(
     return;
 }
 
-/*******************************************************************************
-  Module:   SM_ProcTafPdpModifyReq
-  Function: TAFSM_PDP_MODIFY_REQ消息的分发处理
-  Input:    SMREG_PDP_MODIFY_REQ_STRU          *pstMsg
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.郑 伟   2003.12.09   新规作成
 
-  2.日    期   : 2013年4月23日
-    作    者   : L47619
-    修改内容   : V9R1 IPv6&TAF/SM接口优化项目修改
-
-  3.日    期   : 2014年6月28日
-    作    者   : A00165503
-    修改内容   : DSDS III 项目, 信令流程发起前申请资源
-  4.日    期   : 2015年4月28日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-*******************************************************************************/
 VOS_VOID NAS_SM_ProcTafPdpModifyReq(
     SMREG_PDP_MODIFY_REQ_STRU          *pstMsg
 )
@@ -444,23 +344,7 @@ VOS_VOID NAS_SM_ProcTafPdpModifyReq(
     return;
 }
 
-/*******************************************************************************
-  Module:   SM_ProcTafPdpActiveSecReq
-  Function: TAFSM_PDP_ACTIVATE_SEC_REQ消息的分发处理
-  Input:    SMREG_PDP_ACTIVATE_SEC_REQ_STRU    *pstMsg
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.   郑 伟   2003.12.09   新规作成
-      2.日    期  : 2012年08月24日
-        作    者  : m00217266
-        修改内容  : 修改接口SM_SndTafSmPdpActSecRej原因值类型
-      3.日    期   : 2013年4月23日
-        作    者   : L47619
-        修改内容   : V9R1 IPv6&TAF/SM接口优化项目修改
 
-*******************************************************************************/
 VOS_VOID NAS_SM_ProcTafPdpActiveSecReq(
     SMREG_PDP_ACTIVATE_SEC_REQ_STRU    *pstMsg
 )
@@ -506,27 +390,7 @@ VOS_VOID NAS_SM_ProcTafPdpActiveSecReq(
     return;
 }
 
-/*******************************************************************************
-  Module:   NAS_SM_ProcTafPdpActiveSecReq_S00
-  Function: SM_PDP_INACTIVE状态接收TAFSM_PDP_ACTIVATE_SEC_REQ消息的处理
-  Input:    SMREG_PDP_ACTIVATE_SEC_REQ_STRU    *pstMsg;
-  Output:   VOS_VOID
-  NOTE:     0-0
-  Return:   VOS_VOID
-  History:
-  1.   张志勇      2003.12.17   新规作成
 
-  2.日    期   : 2012年12月12日
-    作    者   : a00165503
-    修改内容   : DTS2013120300990:在PDP激活过程中发起RAU,第一次PDP激活失败
-
-  3.日    期   : 2014年6月28日
-    作    者   : A00165503
-    修改内容   : DSDS III 项目, 信令流程发起前申请资源
-  4.日    期   : 2015年4月28日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-*******************************************************************************/
 VOS_VOID NAS_SM_ProcTafPdpActiveSecReq_S00(
     SMREG_PDP_ACTIVATE_SEC_REQ_STRU    *pstMsg
 )
@@ -602,31 +466,7 @@ VOS_VOID NAS_SM_ProcTafPdpActiveSecReq_S00(
     return;
 }
 
-/*******************************************************************************
-  Module:   NAS_SM_ProcTafPdpCnxtActReq_S00
-  Function: SM_PDP_INACTIVE状态接收TAFSM_PDP_ACTIVATE_REQ消息的处理
-  Input:    SMREG_PDP_ACTIVATE_REQ_STRU        *pstMsg
-  Output:   VOS_VOID
-  NOTE:     0-0
-  Return:   VOS_VOID
-  History:
-  1.   郑 伟   2003.12.09   新规作成
 
-  2.日    期   : 2013年4月23日
-    作    者   : L47619
-    修改内容   : V9R1 IPv6&TAF/SM接口优化项目修改
-
-  3.日    期   : 2012年12月12日
-    作    者   : a00165503
-    修改内容   : DTS2013120300990:在PDP激活过程中发起RAU,第一次PDP激活失败
-
-  4.日    期   : 2014年6月28日
-    作    者   : A00165503
-    修改内容   : DSDS III 项目, 信令流程发起前申请资源
-  5.日    期   : 2015年4月28日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-*******************************************************************************/
 VOS_VOID NAS_SM_ProcTafPdpCnxtActReq_S00(
     SMREG_PDP_ACTIVATE_REQ_STRU        *pstMsg
 )
@@ -718,31 +558,7 @@ VOS_VOID NAS_SM_ProcTafPdpCnxtActReq_S00(
     return;
 }
 
-/*******************************************************************************
-  Module:   NAS_SM_ProcTafPdpCnxtActReq_S05
-  Function: SM_PDP_NW_ACTIVE状态接收TAFSM_PDP_ACTIVATE_REQ消息的处理
-  Input:    SMREG_PDP_ACTIVATE_REQ_STRU *pstMsg
-  Output:   VOS_VOID
-  NOTE:     0-0
-  Return:   VOS_VOID
-  History:
-  1.   郑 伟   2003.12.09   新规作成
 
-  2.日    期   : 2013年4月23日
-    作    者   : L47619
-    修改内容   : V9R1 IPv6&TAF/SM接口优化项目修改
-
-  3.日    期   : 2012年12月12日
-    作    者   : a00165503
-    修改内容   : DTS2013120300990:在PDP激活过程中发起RAU,第一次PDP激活失败
-
-  4.日    期   : 2014年12月17日
-    作    者   : A00165503
-    修改内容   : DTS2014112107909: 每次信令流程发起时, 需要申请新的资源
-  5.日    期   : 2015年4月28日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-*******************************************************************************/
 VOS_VOID NAS_SM_ProcTafPdpCnxtActReq_S05(
     SMREG_PDP_ACTIVATE_REQ_STRU        *pstMsg
 )
@@ -804,24 +620,7 @@ VOS_VOID NAS_SM_ProcTafPdpCnxtActReq_S05(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_RcvTafPdpCnxtActReq
- 功能描述  : 接收SMREG_PDP_ACT_REQ消息处理
- 输入参数  : SMREG_PDP_ACTIVATE_REQ_STRU        *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月20日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2013年4月23日
-    作    者   : L47619
-    修改内容   : V9R1 IPv6&TAF/SM接口优化项目修改
-*****************************************************************************/
 VOS_VOID NAS_SM_RcvTafPdpCnxtActReq(
     SMREG_PDP_ACTIVATE_REQ_STRU        *pstMsg
 )
@@ -869,21 +668,7 @@ VOS_VOID NAS_SM_RcvTafPdpCnxtActReq(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_RcvTafPdpCnxtActRejRsp
- 功能描述  : 接收SMREG_PDP_ACT_REJ_RSP消息处理
- 输入参数  : SMREG_PDP_ACTIVATE_REJ_RSP_STRU    *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月20日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_SM_RcvTafPdpCnxtActRejRsp(
     SMREG_PDP_ACTIVATE_REJ_RSP_STRU     *pstMsg
 )
@@ -898,25 +683,7 @@ VOS_VOID NAS_SM_RcvTafPdpCnxtActRejRsp(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_RcvTafPdpCntxtModifyReq
- 功能描述  : 接收SMREG_PDP_MODIFY_REQ消息处理
- 输入参数  : SMREG_PDP_MODIFY_REQ_STRU          *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月20日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2013年4月23日
-    作    者   : L47619
-    修改内容   : V9R1 IPv6&TAF/SM接口优化项目修改
-
-*****************************************************************************/
 VOS_VOID NAS_SM_RcvTafPdpCntxtModifyReq(
     SMREG_PDP_MODIFY_REQ_STRU          *pstMsg
 )
@@ -931,21 +698,7 @@ VOS_VOID NAS_SM_RcvTafPdpCntxtModifyReq(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_RcvTafPdpCnxtDeActReq
- 功能描述  : 接收SMREG_PDP_DEACTIV_REQ消息处理
- 输入参数  : SMREG_PDP_DEACTIVATE_REQ_STRU       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月20日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_SM_RcvTafPdpCnxtDeActReq(
     SMREG_PDP_DEACTIVATE_REQ_STRU       *pstMsg
 )
@@ -984,29 +737,7 @@ VOS_VOID NAS_SM_RcvTafPdpCnxtDeActReq(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_RcvTafPdpCnxtActSecReq
- 功能描述  : 接收SMREG_PDP_ACT_SEC_REQ消息处理
- 输入参数  : SMREG_PDP_ACTIVATE_SEC_REQ_STRU *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月20日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期  : 2012年08月24日
-    作    者  : m00217266
-    修改内容  : SM/APS原语接口中的CAUSE成员类型修改
-
-  3.日    期  : 2013年4月23日
-    作    者  : L47619
-    修改内容  : V9R1 IPv6&TAF/SM接口优化项目修改
-
-*****************************************************************************/
 VOS_VOID NAS_SM_RcvTafPdpCnxtActSecReq(
     SMREG_PDP_ACTIVATE_SEC_REQ_STRU *pstMsg
 )
@@ -1022,22 +753,7 @@ VOS_VOID NAS_SM_RcvTafPdpCnxtActSecReq(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_RcvTafPdpModifyRsp
- 功能描述  : 接收SMREG_PDP_MODIFY_RSP消息处理
- 输入参数  : NAS_RCV_TAFMSG_STRU        *pstTafMsg - 收到的TAF消息
-             SMREG_PDP_MODIFY_RSP_STRU  *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月20日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_SM_RcvTafPdpModifyRsp(
     SMREG_PDP_MODIFY_RSP_STRU           *pstMsg
 )
@@ -1052,21 +768,7 @@ VOS_VOID NAS_SM_RcvTafPdpModifyRsp(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_RcvTafPdpModifyRejRsp
- 功能描述  : 接收SMREG_PDP_MODIFY_REJ_RSP消息处理
- 输入参数  : SMREG_PDP_MODIFY_REJ_RSP_STRU       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年9月9日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_SM_RcvTafPdpModifyRejRsp(
     SMREG_PDP_MODIFY_REJ_RSP_STRU       *pstMsg
 )
@@ -1082,21 +784,7 @@ VOS_VOID NAS_SM_RcvTafPdpModifyRejRsp(
     }
 }
 
-/*******************************************************************************
-  Module:   SM_PdpAddrApnComp
-  Function: 查找Addr和Apn相同的实体是否存在
-  Input:    SMREG_PDP_ACTIVATE_REQ_STRU        *pstMsg
-  Output:   VOS_VOID
-  NOTE:
-  Return:   SM_RETURN_OK
-            SM_RETURN_NG
-  History:
-      1.   郑 伟   2003.12.09   新规作成
 
-  2.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : SM保存的QOS和APN由动态内存改为静态数组
-*******************************************************************************/
 VOS_UINT8 SM_PdpAddrApnComp(
     SMREG_PDP_ACTIVATE_REQ_STRU        *pstMsg
 )
@@ -1145,20 +833,7 @@ VOS_UINT8 SM_PdpAddrApnComp(
     return ucRet;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_StopRegisterProcedure
- 功能描述  : 当前无缓存消息或正在做PDP激活的操作，更新SM注册状态，停止注册定时器
- 输入参数  : ucConnectId
- 输出参数  : 无
- 返 回 值  : VOS_UINT8      缓存消息的ID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月7日
-    作    者   : Y00213812
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_VOID NAS_SM_StopRegisterProcedure(VOS_VOID)
 {
     VOS_UINT8                           i;
@@ -1191,20 +866,7 @@ VOS_VOID NAS_SM_StopRegisterProcedure(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_ClearHoldMsgByConnectId
- 功能描述  : 通过ConnectID清理缓存消息
- 输入参数  : ucConnectId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月7日
-    作    者   : A00165503
-    修改内容   : DTS2013110900940: IOT PDP去激活SM状态异常
-*****************************************************************************/
 VOS_VOID NAS_SM_ClearHoldMsgByConnectId(VOS_UINT8 ucConnectId)
 {
     MSG_HEADER_STRU                    *pstHoldMsg;
@@ -1240,50 +902,7 @@ VOS_VOID NAS_SM_ClearHoldMsgByConnectId(VOS_UINT8 ucConnectId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_RcvTafPdpAbortReq
- 功能描述  : 处理ID_APS_SM_PDP_ABORT_REQ消息, 用于取消激活/去激活/修改PDP操作
- 输入参数  : pstPdpAbortReq             - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月20日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年9月11日
-    作    者   : z60575
-    修改内容   : DTS2012090508449问题修改，abort时需要给GMM发去激活
-
-  3.日    期   : 2013年11月7日
-    作    者   : A00165503
-    修改内容   : DTS2013110900940: IOT PDP去激活SM状态异常
-
-  4.日    期   : 2014年1月17日
-    作    者   : z60575
-    修改内容   : DTS2014011706342问题修改，已经去激活时不再发起本地去激活
-
-  5.日    期   : 2014年3月14日
-    作    者   : A00165503
-    修改内容   : DTS2014031210013: APS取消当前PDP激活, SM已经处于激活状态时,
-                 需要本地去激活该PDP实体
-
-  6.日    期   : 2014年05月05日
-    作    者   : Y00213812
-    修改内容   : 清除缓存消息，如果当前已无任何缓存消息，且为正在注册状态，
-                 需要停止注册定时器，设置为未注册状态
-
-  7.日    期   : 2014年6月28日
-    作    者   : A00165503
-    修改内容   : DSDS III 项目, 信令流程结束后释放资源
-
-  8.日    期   : 2014年12月06日
-    作    者   : A00165503
-    修改内容   : DTS2014120207400: 连续去激活多个PDP, 网侧不释放RRC连接
-*****************************************************************************/
 VOS_VOID NAS_SM_RcvTafPdpAbortReq(
     SMREG_PDP_ABORT_REQ_STRU           *pstPdpAbortReq
 )
@@ -1394,36 +1013,7 @@ VOS_VOID NAS_SM_RcvTafPdpAbortReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_RcvTafPdpLocalDeactivateReq
- 功能描述  : 处理ID_APS_SM_PDP_LOCAL_DEACTIVATE_REQ消息, 用于释放SM实体
- 输入参数  : pstPdpLocalDeactivateReq   - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月20日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年9月11日
-    作    者   : z60575
-    修改内容   : DTS2012090508449问题修改，abort时需要给GMM发去激活
-
-  3.日    期   : 2014年1月17日
-    作    者   : z60575
-    修改内容   : DTS2014011706342问题修改，已经去激活时不再发起本地去激活
-
-  4.日    期   : 2014年6月28日
-    作    者   : A00165503
-    修改内容   : DSDS III 项目, 信令流程结束后释放资源
-
-  5.日    期   : 2014年12月06日
-    作    者   : A00165503
-    修改内容   : DTS2014120207400: 连续去激活多个PDP, 网侧不释放RRC连接
-*****************************************************************************/
 VOS_VOID NAS_SM_RcvTafPdpLocalDeactivateReq(
     SMREG_PDP_LOCAL_DEACTIVATE_REQ_STRU    *pstPdpLocalDeactivateReq
 )
@@ -1479,24 +1069,7 @@ VOS_VOID NAS_SM_RcvTafPdpLocalDeactivateReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_BeginSession
- 功能描述  : 申请资源
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月28日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2014年12月17日
-    作    者   : A00165503
-    修改内容   : DTS2014112107909: 允许重复申请资源
-*****************************************************************************/
 VOS_VOID NAS_SM_BeginSession(VOS_VOID)
 {
     SM_ENTITY_STRU                     *pstSmEntity = VOS_NULL_PTR;
@@ -1509,20 +1082,7 @@ VOS_VOID NAS_SM_BeginSession(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_EndSession
- 功能描述  : 释放资源
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月28日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_SM_EndSession(VOS_VOID)
 {
     SM_ENTITY_STRU                     *pstSmEntity = VOS_NULL_PTR;

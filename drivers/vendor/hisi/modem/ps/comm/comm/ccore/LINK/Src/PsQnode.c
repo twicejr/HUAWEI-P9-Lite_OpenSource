@@ -1,16 +1,4 @@
-/******************************************************************************
-  文 件 名   : PsQnode.c
-  版 本 号   : 初稿
-  作    者   : liukai
-  生成日期   : 2013年9月16日
-  最近修改   :
-  功能描述   : 提供PsQnode功能
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年9月16日
-    作    者   : liukai
-    修改内容   : 创建文件
-******************************************************************************/
+
 
 #ifdef  __cplusplus
   #if  __cplusplus
@@ -71,22 +59,7 @@ PS_QNODE_RESET_STATISTIC_INFO_STRU  g_stPsQnodeResetStatInfo;
 /******************************************************************************
    5 函数实现
 ******************************************************************************/
-/*****************************************************************************
- 函 数 名  : PS_Qnode_Init
- 功能描述  : 初始化并使能调试的接口
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 说    明  : 此函数只允许初始化一次
 
- 修改历史      :
-  1.日    期   : 2013年9月16日
-    作    者   : liukai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PS_Qnode_Init(VOS_VOID)
 {
     VOS_UINT32                  ulLoop;
@@ -132,27 +105,7 @@ VOS_VOID PS_Qnode_Init(VOS_VOID)
     return;
 } /* PS_Qnode_Init */
 
-/*****************************************************************************
- 函 数 名  : PS_Qnode_GetNode
- 功能描述  : 申请Qnode结点
- 输入参数  : usFileId   - 文件ID
-             usLineId   - 行号
-             ulPid      - PID
- 输出参数  : 成功, 返回申请的Qnode结点; 失败, 返回NULL
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月16日
-    作    者   : liukai
-    修改内容   : 新生成函数
-
-  2.日    期   : 2016年01月26日
-    作    者   : m00314743
-    修改内容   : 新增内存泄露复位机制
-
-*****************************************************************************/
 PS_QNODE_STRU* PS_Qnode_GetNode(VOS_UINT16 usFileId,
                                 VOS_UINT16 usLineId,
                                 VOS_UINT32 ulPid)
@@ -250,24 +203,7 @@ PS_QNODE_STRU* PS_Qnode_GetNode(VOS_UINT16 usFileId,
     return VOS_NULL_PTR;
 } /* PS_Qnode_GetNode */
 
-/*****************************************************************************
- 函 数 名  : PS_Qnode_SendEvent
- 功能描述  : 上报事件
- 输入参数  : ulPid - 操作PID
-             enEventId - 事件ID
-             pEventData - 事件信息内容
-             ulDataLen - 事件信息长度
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月9日
-    作    者   : liukai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PS_Qnode_SendEvent(VOS_UINT32  ulPid,
                             VOS_UINT16  usEventId,
                             VOS_VOID   *pEventData,
@@ -296,24 +232,7 @@ VOS_VOID PS_Qnode_SendEvent(VOS_UINT32  ulPid,
     return;
 }    /* PS_Qnode_SendEvent */
 
-/*****************************************************************************
- 函 数 名  : PS_Qnode_FreeNode
- 功能描述  : 释放Qnode结点
- 输入参数  : usFileId   - 文件ID
-             usLineId   - 行号
-             ulPid      - PID
-             pstQnode   - Qnode结点
- 输出参数  : 无
- 返 回 值  : 操作结果, 成功 - PS_SUCC, 否则 - PS_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月16日
-    作    者   : liukai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 PS_RSLT_CODE_ENUM_UINT32 PS_Qnode_FreeNode(VOS_UINT16       usFileId,
                                        VOS_UINT16      usLineId,
                                        VOS_UINT32      ulOpPid,
@@ -443,27 +362,7 @@ PS_RSLT_CODE_ENUM_UINT32 PS_Qnode_FreeNode(VOS_UINT16       usFileId,
     return PS_SUCC;
 } /* PS_Qnode_FreeNode */
 
-/*****************************************************************************
- 函 数 名  : PS_Qnode_FillMemInfo
- 功能描述  : 向Qnode结点填写挂接的数据源, 并填写自定义参数
- 输入参数  : usFileId       - 文件ID
-             usLineId       - 行号
-             ulPid          - PID
-             pstQnode       - Qnode结点
-             pstMemSrc      - 描述内存中挂接的用户数据源的结构
-             ucParaOctetCnt - 用户自定义参数长度, 单位: 字节
-             aucPara        - 用户自定义参数
- 输出参数  : 无
- 返 回 值  : 操作结果, 成功 - PS_SUCC, 否则 - PS_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月17日
-    作    者   : liukai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 PS_RSLT_CODE_ENUM_UINT32 PS_Qnode_FillMemInfo(VOS_UINT16   usFileId,
                             VOS_UINT16                     usLineId,
                             VOS_UINT32                     ulPid,
@@ -512,24 +411,7 @@ PS_RSLT_CODE_ENUM_UINT32 PS_Qnode_FillMemInfo(VOS_UINT16   usFileId,
     return PS_SUCC;
 } /* PS_Qnode_FillMemInfo */
 
-/*****************************************************************************
- 函 数 名  : PS_Qnode_Trace
- 功能描述  : 向Qnode结点填写调试信息(调试类API)
- 输入参数  : usFileId   - 文件ID
-             usLineId   - 行号
-             ulPid      - PID
-             pstQnode   - Qnode结点
- 输出参数  : 无
- 返 回 值  : 操作结果, 成功 - PS_SUCC, 否则 - PS_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月17日
-    作    者   : liukai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 PS_RSLT_CODE_ENUM_UINT32 PS_Qnode_Trace(VOS_UINT16 usFileID, VOS_UINT16 usLineNum,
             VOS_UINT32 ulPid, PS_QNODE_STRU *pstQnode)
 {
@@ -563,21 +445,7 @@ PS_RSLT_CODE_ENUM_UINT32 PS_Qnode_Trace(VOS_UINT16 usFileID, VOS_UINT16 usLineNu
     return PS_SUCC;
 } /* PS_Qnode_Trace */
 
-/*****************************************************************************
- 函 数 名  : PS_Qnode_ShowBinaryInfo
- 功能描述  : 二进制打印函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月11日
-    作    者   : liukai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PS_Qnode_ShowBinaryInfo(VOS_UINT32 ulValue)
 {
     VOS_UINT32              ulLoop;
@@ -600,21 +468,7 @@ VOS_VOID PS_Qnode_ShowBinaryInfo(VOS_UINT32 ulValue)
     return;
 } /* PS_Qnode_ShowBinaryInfo */
 
-/*****************************************************************************
- 函 数 名  : PS_Qnode_ShowUsedInfo
- 功能描述  : 显示在用的Qnode结点(调试类API)
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月11日
-    作    者   : liukai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PS_Qnode_ShowUsedInfo(VOS_VOID)
 {
     VOS_UINT32              ulLoop;
@@ -638,21 +492,7 @@ VOS_VOID PS_Qnode_ShowUsedInfo(VOS_VOID)
     }
 } /* PS_Qnode_ShowUsedInfo */
 
-/*****************************************************************************
- 函 数 名  : PS_Qnode_ShowUsedInfo
- 功能描述  : 显示在用的Qnode结点明细(调试类API)
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月20日
-    作    者   : liukai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PS_Qnode_ShowDetailUsedInfo(VOS_VOID)
 {
     VOS_UINT32               ulLoop;
@@ -695,21 +535,7 @@ VOS_VOID PS_Qnode_ShowDetailUsedInfo(VOS_VOID)
     return;
 } /* PS_Qnode_ShowDetailUsedInfo */
 
-/*****************************************************************************
- 函 数 名  : PS_Qnode_SetTracePrint
- 功能描述  : 使能Qnode结点trace print功能(调试类API)
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月20日
-    作    者   : liukai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PS_Qnode_SetTracePrint(PS_QNODE_TRACE_PRINT_SWITCH_ENUM_UINT8 enPrint)
 {
     if (PS_QNODE_TRACE_PRINT_BUTT <= enPrint)
@@ -723,21 +549,7 @@ VOS_VOID PS_Qnode_SetTracePrint(PS_QNODE_TRACE_PRINT_SWITCH_ENUM_UINT8 enPrint)
     return;
 } /* PS_Qnode_SetTracePrint */
 
-/*****************************************************************************
- 函 数 名  : PS_Qnode_Statistics
- 功能描述  : 显示Qnode结点统计(调试类API)
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月20日
-    作    者   : liukai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PS_Qnode_Statistics(VOS_VOID)
 {
     vos_printf("total alloc %u times\n",          g_stMgmt.stStat.ulAllocTotalCnt);
@@ -751,21 +563,7 @@ VOS_VOID PS_Qnode_Statistics(VOS_VOID)
     return;
 } /* PS_Qnode_Statistics */
 
-/*****************************************************************************
- 函 数 名  : PS_Qnode_Help
- 功能描述  : Qnode结点调试帮助命令(调试类API)
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月20日
-    作    者   : liukai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PS_Qnode_Help(VOS_VOID)
 {
     vos_printf("********************TTF_Qnode DEBUG INFO************************\n");
@@ -777,21 +575,7 @@ VOS_VOID PS_Qnode_Help(VOS_VOID)
     return;
 } /* PS_Qnode_Help */
 
-/*****************************************************************************
- 函 数 名  : PS_Qnode_ResetCtrlInitNvPara
- 功能描述  : Qnode复位NV项参数初始化函数
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年01月26日
-    作    者   : m00314743
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PS_Qnode_ResetCtrlInitNvPara(VOS_VOID)
 {
     VOS_UINT32                          ulRslt;
@@ -824,21 +608,7 @@ VOS_VOID PS_Qnode_ResetCtrlInitNvPara(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : PS_QnodeResetStatInfoInit
- 功能描述  : Qnode复位统计信息初始化
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年01月26日
-    作    者   : m00314743
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PS_Qnode_ResetStatInfoInit(VOS_VOID)
 {
     PS_MEM_SET(&g_stPsQnodeResetStatInfo, 0x00, sizeof(PS_QNODE_RESET_STATISTIC_INFO_STRU));
@@ -847,23 +617,7 @@ VOS_VOID PS_Qnode_ResetStatInfoInit(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PS_Qnode_ResetGetFailProc
- 功能描述  : 节点获取失败处理，用于判断是否主动复位
- 输入参数  : VOS_UINT16                          usFileId,
-             VOS_UINT16                          usLineId,
-             VOS_UINT32                          ulPid
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年01月26日
-    作    者   : m00314743
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PS_Qnode_ResetGetFailProc
 (
     VOS_UINT16                          usFileId,
@@ -916,21 +670,7 @@ VOS_VOID PS_Qnode_ResetGetFailProc
 }
 
 #if 0
-/*****************************************************************************
- 函 数 名  : PS_Qnode_ResetTestAlloc
- 功能描述  : 复位机制测试函数
- 输入参数  : VOS_UINT16                          usAllocCnt,
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年01月26日
-    作    者   : m00314743
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PS_Qnode_ResetTestAlloc
 (
     VOS_UINT16                          usAllocCnt

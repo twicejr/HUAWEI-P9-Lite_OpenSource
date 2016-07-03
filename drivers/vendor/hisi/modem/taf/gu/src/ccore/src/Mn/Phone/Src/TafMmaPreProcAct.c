@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafMmaPreProcAct.c
-  版 本 号   : 初稿
-  作    者   : w00176964
-  生成日期   : 2013年7月9日
-  最近修改   :
-  功能描述   :预处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年7月9日
-    作    者   : w00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -42,30 +25,22 @@
 #include "TafMmaSndXsms.h"
 #include "TafMmaNetworkNameTbl.h"
 #include "MmaAppLocal.h"
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-24, begin */
 #if (FEATURE_ON == FEATURE_IMS)
 #include "MmaMsccInterface.h"
 #endif
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-24, end */
 
-/* Added by w00167002 for L-C互操作项目, 2014-2-14, begin */
 #include "TafMmaSndApp.h"
 #include "TafMmaProcNvim.h"
 #include "TafMmaMntn.h"
 #include "TafMmaFsmPhoneMode.h"
-/* Added by w00167002 for L-C互操作项目, 2014-2-14, end */
 #include "MmaUphyInterface.h"
 #include "TafMmaFsmPhoneMode.h"
 
-/* Added by s00261364 for V3R360_eCall项目, 2014-4-17, begin */
 #include "TafMmaProcUsim.h"
-/* Added by s00261364 for V3R360_eCall项目, 2014-4-17, end */
 
-/* Add by j00174725 for K3V3 多模多天线特性, 2014-06-16, Begin */
 #if (FEATURE_MULTI_MODEM == FEATURE_ON)
 #include "TafMtcApi.h"
 #endif
-/* Add by j00174725 for K3V3 多模多天线特性, 2014-06-16, End */
 #include "NasComm.h"
 #include "TafMmaProcUsim.h"
 #include "TafMmaSndMscc.h"
@@ -122,23 +97,7 @@ extern MMA_TIMER_ST                                     g_stAbortNetScanProtectT
   3 函数实现
 *****************************************************************************/
 #ifdef __PS_WIN32_RECUR__
-/*****************************************************************************
- 函 数 名  : NAS_MMA_SndOutsideContextData
- 功能描述  : 恢复MMA全局变量。
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年01月04日
-    作    者   : 欧阳飞 00132663
-    修改内容   : 新生成函数
-  2.日    期   : 2013年4月1日
-    作    者   : z00161729
-    修改内容   : 主动上报AT命令控制下移至C核及mma和mscc接口调整
-*****************************************************************************/
 VOS_UINT32 NAS_MMA_RestoreContextData(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -153,20 +112,14 @@ VOS_UINT32 NAS_MMA_RestoreContextData(
     {
         pstOutsideCtx = &pRcvMsgCB->stOutsideCtx;
 
-        /* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-12, begin */
 
-        /* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-12, end */
         g_MmaNewValue.ucSimType = pstOutsideCtx->ucSimType;
 
-        /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-1, begin */
         TAF_SDC_SetSimImsi(pstOutsideCtx->pc_g_aucMmaImsi);
-        /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-1, end */
 
         PS_MEM_CPY(g_aucMmaImei, pstOutsideCtx->pc_g_aucMmaImei, TAF_PH_IMEI_LEN-1);
 
-        /* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-12, begin */
 
-        /* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-12, end */
         PS_MEM_CPY(&g_StatusContext, &pstOutsideCtx->pc_g_StatusContext, sizeof(STATUS_CONTEXT_STRU));
         PS_MEM_CPY(&gstMmaValue, &pstOutsideCtx->pc_gstMmaValue, sizeof(TAF_MMA_GLOBAL_VALUE_ST));
         gstMmaValue.pg_StatusContext = &g_StatusContext;
@@ -175,9 +128,7 @@ VOS_UINT32 NAS_MMA_RestoreContextData(
         PS_MEM_CPY(gastMmaTiTab, pstOutsideCtx->pc_gastMmaTiTab, MMA_MAX_TI*sizeof(MMA_TI_TABLE));
 
         PS_MEM_CPY(&gstMmaInternalTimer, &pstOutsideCtx->pc_gstMmaInternalTimer, sizeof(MMA_INTERNAL_TIMER_ST));
-        /* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-11, begin */
 
-        /* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-11, end */
         PS_MEM_CPY(g_MmaSimTimer, pstOutsideCtx->pc_g_MmaSimTimer, TAF_SIM_TIMER_NUM*sizeof(MMA_TIMER_ST));
 
         MMA_INFOLOG("MMA: NAS_MMA_RestoreContextData - data is restored.");
@@ -185,33 +136,7 @@ VOS_UINT32 NAS_MMA_RestoreContextData(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMA_RestoreFixedContextData
- 功能描述  : 恢复MMA全局变量。
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年05月11日
-    作    者   : 欧阳飞 00132663
-    修改内容   : 新生成函数
-  2.日    期   : 2009年08月22日
-    作    者   : 欧阳飞 00132663
-    修改内容   : AT2D13878, 【PC回放工程】回放消息恢复NV，但当前的全局变量在开机时已经读取NV项赋值了，
-                 此后收到软开机消息，并不会重新读取，导致MMA全局变量未更新。
-  3.日    期   : 2011年6月28日
-    作    者   : 傅映君/f62575
-    修改内容   : 问题单号: DTS2011040204531,删除en_NV_Item_Ps_Delay_Flag
-  4.日    期   : 2013年4月1日
-    作    者   : z00161729
-    修改内容   : 主动上报AT命令控制下移至C核及mma和mscc接口调整
-  5.日    期   : 2013年05月17日
-    作    者   : m00217266
-    修改内容   : nv项拆分
-*****************************************************************************/
 VOS_UINT32 NAS_MMA_RestoreFixedContextData(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -243,18 +168,14 @@ VOS_UINT32 NAS_MMA_RestoreFixedContextData(
             case 0:
                 /* 全局变量恢复 */
 
-                /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-1, begin */
                 TAF_SDC_SetSimImsi(pstOutsideCtx->aucMmaImsi);
-                /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-1, end */
 
                 g_MmaNewValue.ucSimType = pstOutsideCtx->aucSimType;
 
                 pstLastSyscfgSet->stUserSetBand.uUserSetGuBand.ulPrefBand = pstOutsideCtx->ulPrefBand;
                 pstLastSyscfgSet->stUserSetBand.uUserSetUeFormatGuBand = pstOutsideCtx->Band;
                 gstMmaValue.ulQuickStartFlg = pstOutsideCtx->ulQuickStartFlg;
-                /* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-12, begin */
 
-                /* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-12, end */
                 gstMmaValue.stEfustServiceCfg = pstOutsideCtx->stEfustServiceCfg;
 
                 PS_MEM_CPY(g_MmaNewValue.aucImeiBcd, pstOutsideCtx->aucImeiBcd, TAF_PH_IMEI_LEN+1);
@@ -315,27 +236,7 @@ VOS_UINT32 NAS_MMA_RestoreFixedContextData(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SetMiniMode_PreProc
- 功能描述  : 设置mini模式
- 输入参数  : usClientId--当前发起操作的client ID
-             ucOpId--当前发起操作的OP ID
-             ucSetMode-当前设置的模式
- 输出参数  : 无
- 返 回 值  : VOS_TURE--已经处理完设置请求
-             VOS_FALSE--未处理完成设置请求
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2014年07月07日
-    作    者   : z00234330
-    修改内容   : coverity清理
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_SetMiniMode_PreProc(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucOpId,
@@ -368,26 +269,7 @@ VOS_UINT32 TAF_MMA_SetMiniMode_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SetRfOffMode_PreProc
- 功能描述  : 设置rf off模式
- 输入参数  : usClientId--当前发起操作的client ID
-             ucOpId--当前发起操作的OP ID
-             ucSetMode-当前设置的模式
- 输出参数  : 无
- 返 回 值  : VOS_TURE--已经处理完设置请求
-             VOS_FALSE--未处理完成设置请求
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2014年07月07日
-    作    者   : z00234330
-    修改内容   : coverity清理
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_SetRfOffMode_PreProc(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucOpId,
@@ -416,26 +298,7 @@ VOS_UINT32 TAF_MMA_SetRfOffMode_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SetFtMode_PreProc
- 功能描述  : 设置FT模式
- 输入参数  : usClientId--当前发起操作的client ID
-             ucOpId--当前发起操作的OP ID
-             ucSetMode-当前设置的模式
- 输出参数  : 无
- 返 回 值  : VOS_TURE--已经处理完设置请求
-             VOS_FALSE--未处理完成设置请求
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2014年07月07日
-    作    者   : z00234330
-    修改内容   : coverity清理
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_SetFtMode_PreProc(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucOpId,
@@ -464,27 +327,7 @@ VOS_UINT32 TAF_MMA_SetFtMode_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SetVdfMiniMode_PreProc
- 功能描述  : 设置vdf mini模式
- 输入参数  : usClientId--当前发起操作的client ID
-             ucOpId--当前发起操作的OP ID
-             ucSetMode-当前设置的模式
- 输出参数  : 无
- 返 回 值  : VOS_TURE--已经处理完设置请求
-             VOS_FALSE--未处理完成设置请求
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2014年07月07日
-    作    者   : z00234330
-    修改内容   : coverity清理
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_SetVdfMiniMode_PreProc(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucOpId,
@@ -513,26 +356,7 @@ VOS_UINT32 TAF_MMA_SetVdfMiniMode_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SetLowPowerMode_PreProc
- 功能描述  : 设置lower power模式
- 输入参数  : usClientId--当前发起操作的client ID
-             ucOpId--当前发起操作的OP ID
-             ucSetMode-当前设置的模式
- 输出参数  : 无
- 返 回 值  : VOS_TURE--已经处理完设置请求
-             VOS_FALSE--未处理完成设置请求
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2014年07月07日
-    作    者   : z00234330
-    修改内容   : coverity清理
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_SetLowPowerMode_PreProc(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucOpId,
@@ -561,26 +385,7 @@ VOS_UINT32 TAF_MMA_SetLowPowerMode_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SetResetMode_PreProc
- 功能描述  : 设置reset模式
- 输入参数  : usClientId--当前发起操作的client ID
-             ucOpId--当前发起操作的OP ID
-             ucSetMode-当前设置的模式
- 输出参数  : 无
- 返 回 值  : VOS_TURE--已经处理完设置请求
-             VOS_FALSE--未处理完成设置请求
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2014年07月07日
-    作    者   : z00234330
-    修改内容   : coverity清理
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_SetResetMode_PreProc(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucOpId,
@@ -617,26 +422,7 @@ VOS_UINT32 TAF_MMA_SetResetMode_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SetFullMode_PreProc
- 功能描述  : 设置full模式
- 输入参数  : usClientId--当前发起操作的client ID
-             ucOpId--当前发起操作的OP ID
-             ucSetMode-当前设置的模式
- 输出参数  : 无
- 返 回 值  : VOS_TURE--已经处理完设置请求
-             VOS_FALSE--未处理完成设置请求
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2014年7月7号
-    作    者   : z00234330
-    修改内容   : coverity清理
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_SetFullMode_PreProc(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucOpId,
@@ -670,30 +456,7 @@ VOS_UINT32 TAF_MMA_SetFullMode_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SetPowerOffMode_PreProc
- 功能描述  : 设置power off模式
- 输入参数  : usClientId--当前发起操作的client ID
-             ucOpId--当前发起操作的OP ID
-             ucSetMode-当前设置的模式
- 输出参数  : 无
- 返 回 值  : VOS_TURE--已经处理完设置请求
-             VOS_FALSE--未处理完成设置请求
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2013年9月27日
-    作    者   : w00167002
-    修改内容   : DTS2013092100149:删除C核TASKDELAY处理，在V9低功耗时，会导致
-                  TASKDELAY后未被唤醒，导致AT消息没有回复。
-  3.日    期   : 2014年07月07日
-    作    者   : z00234330
-    修改内容   : coverity清理
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_SetPowerOffMode_PreProc(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucOpId,
@@ -712,7 +475,6 @@ VOS_UINT32 TAF_MMA_SetPowerOffMode_PreProc(
     stPhMode.CmdType        = TAF_PH_CMD_SET;
     stPhMode.PhMode         = ucSetMode;
 
-    /* DTS2012051402688: G模下清空流量信息后拨号数传, 时间小于10分钟, 重启单板时需要将流量信息写入NV */
     TAF_APS_SaveDsFlowInfoToNv();
 
     if (SYSTEM_APP_WEBUI == usAppCfgSupportType)
@@ -783,33 +545,13 @@ VOS_UINT32 TAF_MMA_SetPowerOffMode_PreProc(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_IsPhoneModeSetAllowed_PreProc
- 功能描述  : 是否允许设置手机模式
- 输入参数  : usClientId       -当前的clientID
-             ucPhMode         -当前设置的手机模式
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:不允许设置手机模式
-             VOS_TRUE: 允许设置手机模式
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年7月19日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2014年2月14日
-   作    者   : w00167002
-   修改内容   : L-C互操作项目:调整函数参数
-*****************************************************************************/
 
-/* Modified by w00167002 for L-C互操作项目, 2014-2-15, begin */
 VOS_UINT32 TAF_MMA_IsPhoneModeSetAllowed_PreProc(
     VOS_UINT16                          usClientId,
     TAF_PH_MODE                         ucPhMode
 )
 {
-    /* Modified by w00167002 for L-C互操作项目, 2014-2-18, begin */
     TAF_SDC_RAT_PRIO_STRU              *pstRatPrio      = VOS_NULL_PTR;
     VOS_UINT8                           ucCurPhmode;
 
@@ -866,32 +608,9 @@ VOS_UINT32 TAF_MMA_IsPhoneModeSetAllowed_PreProc(
     /* 可以进行模式设置 */
     return VOS_TRUE;
 
-    /* Modified by w00167002 for L-C互操作项目, 2014-2-18, end */
 }
-/* Modified by w00167002 for L-C互操作项目, 2014-2-15, end */
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcOmPhoneModeSetReq_PreProc
- 功能描述  : 处理模式设置请求
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-  2.日    期   : 2014年2月21日
-    作    者   : w00167002
-    修改内容   : 降圈复杂度，TAF_MMA_ProcPhoneModeSetReq_PreProc函数改名
-  3.日    期   : 2014年07月07日
-    作    者   : z00234330
-    修改内容   : coverity清理
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_ProcOmPhoneModeSetReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -921,11 +640,9 @@ VOS_UINT32 TAF_MMA_ProcOmPhoneModeSetReq_PreProc(
         return VOS_FALSE;
     }
 
-    /* Modified by w00167002 for L-C互操作项目, 2014-2-15, begin */
 
     /* 判断当前是否允许进行模式设置 */
     if (VOS_FALSE == TAF_MMA_IsPhoneModeSetAllowed_PreProc(usClientId, pstPhModeSet->PhMode))
-    /* Modified by w00167002 for L-C互操作项目, 2014-2-15, end */
     {
         stPhMode.CmdType    = TAF_PH_CMD_SET;
         stPhMode.PhMode     = TAF_SDC_GetCurPhoneMode();
@@ -935,11 +652,9 @@ VOS_UINT32 TAF_MMA_ProcOmPhoneModeSetReq_PreProc(
         return VOS_TRUE;
     }
 
-    /* Modified by w00167002 for L-C互操作项目, 2014-2-21, begin */
 
     /* 根据不同的模式进行设置处理 */
     ulRet =TAF_MMA_ProcPhoneModeSet_PreProc(pstPhModeSet->PhMode, usClientId, ucOpId);
-    /* Modified by w00167002 for L-C互操作项目, 2014-2-21, end */
 
     if (ucOldMode != pstPhModeSet->PhMode)
     {
@@ -968,28 +683,10 @@ VOS_UINT32 TAF_MMA_ProcOmPhoneModeSetReq_PreProc(
 }
 
 
-/* Added by w00167002 for L-C互操作项目, 2014-2-15, begin */
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcPhoneModeSet_PreProc
- 功能描述  : 处理TAF模式设置请求
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年02月15日
-    作    者   : w00167002
-    修改内容   : 新生成函数:TAF_MMA_ProcTafPhoneModeSetReq_PreProc降圈复杂度
-  2.日    期   : 2014年07月07日
-    作    者   : z00234330
-    修改内容   : coverity清理
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_ProcPhoneModeSet_PreProc(
     TAF_PH_MODE                         ucCurrPhMode,
     VOS_UINT16                          usClientId,
@@ -1062,27 +759,7 @@ VOS_UINT32 TAF_MMA_ProcPhoneModeSet_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcTafPhoneModeSetReq_PreProc
- 功能描述  : 处理TAF模式设置请求
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年02月15日
-    作    者   : w00167002
-    修改内容   : 新生成函数:用来处理TAF/CMMCA下发的开关机设置
-  2.日    期   : 2014年07月07日
-    作    者   : z00234330
-    修改内容   : coverity清理
-  3.日    期   : 2015年12月11日
-    作    者   : w00242748
-    修改内容   : DTS2015103000174:支持软开关读取平台能力，为适配动态切C模
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_ProcTafPhoneModeSetReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1171,27 +848,9 @@ VOS_UINT32 TAF_MMA_ProcTafPhoneModeSetReq_PreProc(
     return ulRet;
 }
 
-/* Added by w00167002 for L-C互操作项目, 2014-2-15, end */
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvOmPhoneModeSetReq_PreProc
- 功能描述  : 收到OM的模式设置和查询消息的预处理
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2014年07月07日
-    作    者   : z00234330
-    修改内容   : coverity清理
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvOmPhoneModeSetReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1245,25 +904,7 @@ VOS_UINT32 TAF_MMA_RcvOmPhoneModeSetReq_PreProc(
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvUphyInitStatus_PreProc
- 功能描述  : 收到物理层上报初始化状态指示消息的预处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年3月21日
-   作    者   : y00176023
-   修改内容   : 新生成函数
- 2.日    期   : 2015年5月23日
-   作    者   : s00217060
-   修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_2.0修改
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvUphyInitStatusInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1313,28 +954,7 @@ VOS_UINT32 TAF_MMA_RcvUphyInitStatusInd_PreProc(
     return VOS_TRUE;
 }
 
-/* Added by w00167002 for L-C互操作项目, 2014-2-19, begin */
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvQryPhoneModeReq_PreProc
- 功能描述  : 收到模式查询消息的预处理
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月19日
-    作    者   : w00167002
-    修改内容   : 新建函数
-  2.日    期   : 2014年07月07日
-    作    者   : z00234330
-    修改内容   : coverity清理
-  3.日期       :2015年 03月23日
-    作    者   : y00322978
-    修改内容   : TAF_MMA_RcvQryPhoneModeReq_PreProc 重构
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvQryPhoneModeReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1372,23 +992,9 @@ VOS_UINT32 TAF_MMA_RcvQryPhoneModeReq_PreProc(
     return VOS_TRUE;
 }
 
-/* Added by w00167002 for L-C互操作项目, 2014-2-19, end */
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_GetUsimImsi
- 功能描述  : 保存内部卡状态指示消息到缓存消息队列中
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年02月17日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_GetUsimImsi(
     USIMM_CARD_STATUS_STRU             *pstUsimStatus,
     VOS_UINT8                          *pucImsi
@@ -1415,20 +1021,7 @@ VOS_VOID TAF_MMA_GetUsimImsi(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_IsCsimImsimChanged
- 功能描述  : 获取Csim的Imsim文件相关信息，判断Imsim是否发生改变
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月6日
-    作    者   : h00313353
-    修改内容   : 1X 锁网锁卡
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_IsCsimImsimChanged(
     USIMM_CARD_STATUS_STRU             *pstCsimStatus,
     VOS_UINT8                          *pucImsi
@@ -1481,40 +1074,7 @@ VOS_UINT32 TAF_MMA_IsCsimImsimChanged(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvPihUsimStatusInd_PreProc
- 功能描述  : 收到PIH模块上报的卡状态指示消息的预处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年7月10日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2013年10月22日
-   作    者   : z00161729
-   修改内容   : DTS2013101600135:pin码开启simlock开启，先解pin再解simlock mma没有触发重新关机开机
- 3.日    期   : 2014年04月28日
-   作    者   : s00246516
-   修改内容   : 双IMSI切换时,MMA概率不触发关机和开机操作
- 4.日    期   : 2015年2月15日
-   作    者   : c00318887
-   修改内容   : AT&T phaseII:如果IMSI变更且存在CS业务，则启动定时器等待CS业务结束后关机
- 5.日    期   : 2015年5月23日
-   作    者   : s00217060
-   修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_2.0修改
- 6.日    期   : 2015年7月6日
-   作    者   : s00217060
-   修改内容   : DTS2015070606276:syscfg过程中对卡状态变化的处理单独封装函数
- 7.日    期   : 2015年12月29日
-   作    者   : z00359541
-   修改内容   : DTS2015120305849:收到卡状态消息初始化EONS卡文件相关信息
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvPihUsimStatusInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1527,14 +1087,11 @@ VOS_UINT32 TAF_MMA_RcvPihUsimStatusInd_PreProc(
     /* 获取CSIM的IMSIM文件 */
     VOS_UINT8                           aucIMSIM[NAS_MAX_IMSI_LENGTH];
 
-    /* Add by s00217060 for K3V3 多模多天线特性, 2014-06-27, Begin */
 #if (FEATURE_MULTI_MODEM == FEATURE_ON)
     TAF_CTRL_STRU                       stCtrl;
     TAF_MTC_USIMM_CARD_SERVIC_ENUM_UINT16   enMtcUsimCardState;
     TAF_MTC_USIMM_CARD_SERVIC_ENUM_UINT16   enMtcCsimCardState;
 #endif
-    /* Add by s00217060 for K3V3 多模多天线特性, 2014-06-27, End */
-/* Added by w00167002 for L-C互操作项目, 2014-2-20, begin */
 #if (FEATURE_ON == FEATURE_CL_INTERWORK)
     TAF_MMA_USIMM_CARD_TYPE_ENUM_UINT32           enCardType;                   /* 卡类型:SIM、USIM、ROM-SIM  */
     TAF_MMA_CARD_STATUS_ENUM_UINT8                enCardStatus;
@@ -1543,14 +1100,12 @@ VOS_UINT32 TAF_MMA_RcvPihUsimStatusInd_PreProc(
 
     ulIsCsimImsiChanged                           = VOS_FALSE;
 
-    /* Add by s00217060 for K3V3 多模多天线特性, 2014-06-27, Begin */
     /* 初始化 */
 #if (FEATURE_MULTI_MODEM == FEATURE_ON)
     PS_MEM_SET(&stCtrl, 0x0,sizeof(stCtrl));
     enMtcUsimCardState  = TAF_MTC_USIMM_CARD_SERVIC_ABSENT;
     enMtcCsimCardState  = TAF_MTC_USIMM_CARD_SERVIC_ABSENT;
 #endif
-    /* Add by s00217060 for K3V3 多模多天线特性, 2014-06-27, End */
     pstUsimMsg      = (USIMM_CARDSTATUS_IND_STRU *)pstMsg;
 
     if (VOS_TRUE == TAF_MMA_GetTestRoamFlag())
@@ -1567,13 +1122,11 @@ VOS_UINT32 TAF_MMA_RcvPihUsimStatusInd_PreProc(
     /* 发送消息 AT_MMA_USIM_STATUS_IND 给AT */
     TAF_MMA_SndATUsimmStatusInd(pstUsimMsg, aucIMSI);
 
-/* Added by w00167002 for L-C互操作项目, 2014-2-20, begin */
 #if (FEATURE_ON == FEATURE_CL_INTERWORK)
     TAF_MMA_ConvertCardType(pstUsimMsg->stUsimSimInfo.enCardType, &enCardType);
     TAF_MMA_ConvertCardStatus(pstUsimMsg->stUsimSimInfo.enCardService, &enCardStatus);
     TAF_MMA_SndSimStatusInd(enCardType, enCardStatus);
 #endif
-/* Added by w00167002 for L-C互操作项目, 2014-2-20, end */
 
     /* 分别保存Usim和Csim卡类型 */
     TAF_SDC_SaveUsimCardType(pstUsimMsg->stUsimSimInfo.enCardType);
@@ -1589,7 +1142,6 @@ VOS_UINT32 TAF_MMA_RcvPihUsimStatusInd_PreProc(
     /* 在收到SIM上报的卡状态时，通知SMS模块当前的卡状态 */
     MN_PH_SndMsgUsimStatus(pstUsimMsg->stUsimSimInfo.enCardService);
 
-    /* Add by s00217060 for K3V3 多模多天线特性, 2014-06-27, Begin */
 #if (FEATURE_MULTI_MODEM == FEATURE_ON)
     /* 填写CTL头 */
     TAF_API_CTRL_HEADER(&stCtrl, WUEPS_PID_MMA, 0, 0);
@@ -1601,7 +1153,6 @@ VOS_UINT32 TAF_MMA_RcvPihUsimStatusInd_PreProc(
     /* 发送消息给MTC模块 */
     MTC_SetModemUsimmState(&stCtrl, enMtcUsimCardState, enMtcCsimCardState);
 #endif
-    /* Add by s00217060 for K3V3 多模多天线特性, 2014-06-27, End */
 
     /* 判断卡状态和USIM IMSI是否改变 */
     ulUsimStaChg    = TAF_MMA_IsCardStatusChanged(pstUsimMsg);
@@ -1682,22 +1233,7 @@ VOS_UINT32 TAF_MMA_RcvPihUsimStatusInd_PreProc(
     return TAF_MMA_ProcUsimStatusIndByCurFsmId(ulUsimStaChg, ulImsiChg);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMmaInterUsimStatusChangeInd_PreProc
- 功能描述  : 收到MMA的内部卡状态指示消息的预处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年7月10日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMmaInterUsimStatusChangeInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1749,25 +1285,7 @@ VOS_UINT32 TAF_MMA_RcvMmaInterUsimStatusChangeInd_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMmaSimLockStatusChangeInd_PreProc
- 功能描述  : 收到MMA的锁网锁卡卡状态指示消息的预处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年10月15日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2015年4月27日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMmaSimLockStatusChangeInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1800,30 +1318,7 @@ VOS_UINT32 TAF_MMA_RcvMmaSimLockStatusChangeInd_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMmaQrySyscfgReq_PreProc
- 功能描述  : 收到AT的SYSCFG消息的预处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年7月10日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
- 2.日    期   : 2014年2月13日
-    作    者   : w00167002
-    修改内容   : L-C互操作项目:调整SYSCFG的设置查询接口
-
-  3.日    期   : 2015年3月26日
-    作    者   : y00322978
-    修改内容   : 接口函数重构，接收来自MMA的 syscfg qry消息
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMmaQrySyscfgReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1954,21 +1449,7 @@ VOS_UINT32 TAF_MMA_RcvMmaQrySyscfgReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvAtEonsUcs2Req_PreProc
- 功能描述  : 收到AT^EONSUCS2预处理
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年03月12日
-    作    者   : c00318887
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvAtEonsUcs2Req_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2020,21 +1501,7 @@ VOS_UINT32 TAF_MMA_RcvAtEonsUcs2Req_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvAtParaReadReq_PreProc
- 功能描述  : 收到AT的参数查询请求的预处理
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月13日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvAtParaReadReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2064,23 +1531,7 @@ VOS_UINT32 TAF_MMA_RcvAtParaReadReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_IsNetworkCapInfoChanged
- 功能描述  : 判断SDC中的存储的网络能力信息是否发生改变
- 输入参数  : pstNewNwCapInfo---收到网络能力指示消息更新后SDC中的网络能力信息
 
- 输出参数  : 无
- 返 回 值  : VOS_TRUE, 网络能力信息发生改变
-             VOS_FALSE,网络能力信息不发生改变
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2013年10月10日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_IsNetworkCapInfoChanged(
     TAF_SDC_NETWORK_CAP_INFO_STRU       *pstNewNwCapInfo
 )
@@ -2112,34 +1563,7 @@ VOS_UINT32 TAF_MMA_IsNetworkCapInfoChanged(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccNetworkCapabilityInfoInd_PreProc
- 功能描述  : 处理来自MSCC的LTE 网络能力参数的上报，根据消息内容转发给IMSA
- 输入参数  : ulEventType  由消息ID与task ID决定
-             pstMsg       消息地址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE: 消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年7月13日
-   作    者   : y00245242
-   修改内容   : 新生成函数
- 2.日    期   : 2013年09月18日
-   作    者   : s00217060
-   修改内容   : VoLTE_PhaseII项目，网络能力改变时通知SPM
- 3.日    期   : 2013年10月10日
-   作    者   : w00176964
-   修改内容   : VoLTE_PhaseII项目，网络能力改变时通知IMSA
- 4.日    期   : 2015年01月28日
-   作    者   : y00245242
-   修改内容   : iteration 9开发，下移IMSA接口到MSCC模块
- 5.日    期   : 2015年2月16日
-   作    者   : s00217060
-   修改内容   : VOLTE SWITCH
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccNetworkCapabilityInfoInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2199,35 +1623,12 @@ VOS_UINT32 TAF_MMA_RcvMsccNetworkCapabilityInfoInd_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_UsimRefreshIndMsgProc
- 功能描述  : MMA接收卡更新指示消息的处理
- 输入参数  : USIMM_STKREFRESH_IND_STRU* pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月4日
-    作    者   : z00161729
-    修改内容   : SVLTE 和usim接口调整修改
-  2.日    期   : 2012年07月15日
-    作    者   : w00176964
-    修改内容   : VoLTE_PhaseI项目修改:修改函数参数和返回值以及函数名
-  3.日    期   : 2015年02月06日
-    作    者   : h00313353
-    修改内容   : USIMM卡接口调整
-  4.日    期   : 2015年2月15日
-    作    者   : c00318887
-    修改内容   : AT&T phaseII:更新所有文件时增加AT^FILECHANGE上报并等待CS业务结束后关机的处理
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvPihUsimRefreshIndMsgProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 )
 {
-   /* Modified by w00176964 for VoLTE_PhaseI项目, 2013-7-24, begin */
     USIMM_STKREFRESH_IND_STRU          *pUsimRefreshIndMsg = VOS_NULL_PTR;
     VOS_UINT8                           ucRefreshAllFileRestartFlag;
     VOS_UINT8                          *pucOldImsi;
@@ -2326,31 +1727,10 @@ VOS_UINT32 TAF_MMA_RcvPihUsimRefreshIndMsgProc(
     }
 
     return VOS_TRUE;
-   /* Modified by w00176964 for VoLTE_PhaseI项目, 2013-7-24, end */
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcPihUsimRefreshInd3gSessionReset_PreProc
- 功能描述  : MMA处理文件刷新指示:3G SESSION RESET
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : vos_true
-             vos_false
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年8月12日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2015年2月15日
-   作    者   : c00318887
-   修改内容   : AT&T phaseII:存在CS业务，则启动定时器等待CS业务结束后关机
-3.日    期   : 2015年4月27日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 
 VOS_UINT32 TAF_MMA_ProcPihUsimRefreshInd3gSessionReset_PreProc(VOS_VOID)
 {
@@ -2383,29 +1763,7 @@ VOS_UINT32 TAF_MMA_ProcPihUsimRefreshInd3gSessionReset_PreProc(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadUsimInfo_PreProc
- 功能描述  : 开机读取USIM卡文件相关信息
- 输入参数  : ucIsNeedReadImsim:是否需要读取CSIM的IMSIM文件
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年7月18日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2014年4月1日
-   作    者   : s00261364
-   修改内容   : V3R360_eCall项目修改:增加ecall相关卡文件读取
- 3.日    期   : 2015年2月9日
-   作    者   : z00161729
-   修改内容   : AT&T 支持EONS特性修改
- 4.日    期   : 2015年12月28日
-   作    者   : h00313353
-   修改内容   : 1X 锁网锁卡
-*****************************************************************************/
 
 VOS_VOID TAF_MMA_ReadUsimInfo_PreProc(
     VOS_VOID
@@ -2417,12 +1775,10 @@ VOS_VOID TAF_MMA_ReadUsimInfo_PreProc(
 
     if (TAF_SDC_USIM_STATUS_VALID == TAF_SDC_GetUsimStatus())
     {
-        /* Added by s00261364 for V3R360_eCall项目, 2014-4-4, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
         /*  更新ecall模式信息 */
         TAF_MMA_UpdateCallMode();
 #endif
-        /* Added by s00261364 for V3R360_eCall项目, 2014-4-4, end */
 
         /* 读取SPN文件 */
         TAF_MMA_ReadSpnFile();
@@ -2461,27 +1817,7 @@ VOS_VOID TAF_MMA_ReadUsimInfo_PreProc(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndAtIccStatusInd_PreProc
- 功能描述  : 预处理中向AT发送usim status ind消息
- 输入参数  :  VOS_UINT32            ulUsimStaChg--卡状态是否改变
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2013年7月18日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2013年4月1日
-   作    者   : y00176023
-   修改内容   : DSDS GUNAS II项目:更改初始化状态名称
- 3.日    期   : 2015年11月2日
-   作    者   : l00289540
-   修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_3.0 修改
-*****************************************************************************/
 
 VOS_VOID TAF_MMA_SndAtIccStatusInd_PreProc(
     VOS_UINT32                          ulUsimStaChg
@@ -2553,27 +1889,7 @@ VOS_VOID TAF_MMA_SndAtIccStatusInd_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcUsimStatusIndInPhoneModeProc_PreProc
- 功能描述  : 开关机过程中处理卡状态指示
- 输入参数  : pstUsimMsg-卡状态改变指示
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:当前预处理完成,不需要进入后续处理
-             VOS_FALSE:当前预处理未完成,需要进入后续继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年7月18日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2013年4月1日
-   作    者   : y00176023
-   修改内容   : DSDS GUNAS II项目:更改初始化状态名称
- 3.日    期   : 2015年4月27日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 
 VOS_UINT32 TAF_MMA_ProcUsimStatusIndInPhoneModeProc_PreProc(
     VOS_UINT32                          ulUsimStaChg,
@@ -2597,22 +1913,7 @@ VOS_UINT32 TAF_MMA_ProcUsimStatusIndInPhoneModeProc_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcUsimStatusIndInFsmMain_PreProc
- 功能描述  : main状态机中收到卡状态变化的处理
- 输入参数  : VOS_UINT32                          ulUsimStaChg
-             VOS_UINT32                          ulImsiChg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月6日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_ProcUsimStatusIndInFsmMain_PreProc(
     VOS_UINT32                          ulUsimStaChg,
     VOS_UINT32                          ulImsiChg
@@ -2645,22 +1946,7 @@ VOS_UINT32 TAF_MMA_ProcUsimStatusIndInFsmMain_PreProc(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcUsimStatusIndInFsmSyscfg_PreProc
- 功能描述  : syscfg状态机中收到卡状态变化的预处理
- 输入参数  : VOS_UINT32                          ulUsimStaChg
-             VOS_UINT32                          ulImsiChg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月6日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_ProcUsimStatusIndInFsmSyscfg_PreProc(
     VOS_UINT32                          ulUsimStaChg,
     VOS_UINT32                          ulImsiChg
@@ -2672,22 +1958,7 @@ VOS_UINT32 TAF_MMA_ProcUsimStatusIndInFsmSyscfg_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcUsimStatusIndInFsmImsSwitch_PreProc
- 功能描述  : ims switch状态机中收到卡状态变化的预处理
- 输入参数  : VOS_UINT32                          ulUsimStaChg
-             VOS_UINT32                          ulImsiChg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月6日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_ProcUsimStatusIndInFsmImsSwitch_PreProc(
     VOS_UINT32                          ulUsimStaChg,
     VOS_UINT32                          ulImsiChg
@@ -2699,24 +1970,7 @@ VOS_UINT32 TAF_MMA_ProcUsimStatusIndInFsmImsSwitch_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcUsimStatusIndByCurFsmId
- 功能描述  : 根据当前状态机Id处理卡状态指示
- 输入参数  : ulUsimmStaChg:USIMM卡状态是否发生改变
-             ulImsiChg    :卡的IMSI是否发生改变
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
-             VOS_TRUE:  不需要进入状态机处理
-             VOS_FALSE: 需要进入状态机处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月28日
-    作    者   : h00313353
-    修改内容   : 1X 锁网锁卡
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_ProcUsimStatusIndByCurFsmId(
     VOS_UINT32                          ulUsimmStaChg,
     VOS_UINT32                          ulImsiChg
@@ -2743,25 +1997,7 @@ VOS_UINT32 TAF_MMA_ProcUsimStatusIndByCurFsmId(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccCampOnInd_PreProc
- 功能描述  : 处理来自MSCC的驻留指示消息
- 输入参数  : ulEventType  由消息ID与task ID决定
-             pstMsg       消息地址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE: 消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年11月19日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2014年6月16日
-   作    者   : w00167002
-   修改内容   : DSDS III新增
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccCampOnInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2792,25 +2028,9 @@ VOS_UINT32 TAF_MMA_RcvMsccCampOnInd_PreProc(
     return VOS_TRUE;
 }
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, begin */
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccAreaLostNoRfStatusInd_PreProc
- 功能描述  : 处理来自MSCC的驻留指示消息
- 输入参数  : ulEventType  由消息ID与task ID决定
-             pstMsg       消息地址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE: 消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年6月13日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccRfAvailableInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2851,23 +2071,7 @@ VOS_UINT32 TAF_MMA_RcvMsccRfAvailableInd_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ConvertSdcRatToAppRatType
- 功能描述  : 将SDC的RAT TYPE转换成APP的RAT TYPE
- 输入参数  : NAS_MSCC_PIF_NET_RAT_TYPE_ENUM_UINT8 enMsccRatType
- 输出参数  : TAF_MMA_RAT_TYPE_ENUM_UINT8
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月15日
-    作    者   : l00208543
-    修改内容   : 新生成函数
-  2.日    期   : 2015年4月10日
-    作    者   : h00313353
-    修改内容   : SysCfg重构
-*****************************************************************************/
 TAF_MMA_RAT_TYPE_ENUM_UINT8 TAF_MMA_ConvertSdcRatToAppRatType(
                         TAF_SDC_SYS_MODE_ENUM_UINT8 enSdcRatType
                         )
@@ -2889,23 +2093,7 @@ TAF_MMA_RAT_TYPE_ENUM_UINT8 TAF_MMA_ConvertSdcRatToAppRatType(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ConvertMsccDomainToMmaDomainType
- 功能描述  : 将MSCC的DOMAIN TYPE转换成MMA的DOMAIN TYPE
- 输入参数  : NAS_MSCC_PIF_SRVDOMAIN_ENUM_UINT32      enMsccDomainType
- 输出参数  : TAF_MMA_SERVICE_DOMAIN_ENUM_UINT8
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月15日
-    作    者   : l00208543
-    修改内容   : 新生成函数
-  2.日    期   : 2015年4月9日
-    作    者   : h00313353
-    修改内容   : SysCfg SrvDomain宏定义to枚举
-*****************************************************************************/
 TAF_MMA_SERVICE_DOMAIN_ENUM_UINT8 TAF_MMA_ConvertMsccDomainToMmaDomainType(
                         NAS_MSCC_PIF_SRVDOMAIN_ENUM_UINT32      enMsccDomainType
 )
@@ -2932,37 +2120,19 @@ TAF_MMA_SERVICE_DOMAIN_ENUM_UINT8 TAF_MMA_ConvertMsccDomainToMmaDomainType(
             return TAF_MMA_SERVICE_DOMAIN_NULL;
     }
 }
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndRegRejInfoInd
- 功能描述  : 收到MSCC的指定域的注册结果的处理
- 输入参数  : pstRejInfoInd--MSCC上报的注册结果信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月13日
-    作    者   : W00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2014年4月1日
-    作    者   : z00161729
-    修改内容   : DTS2014040300125:service 被拒和网络detach ind被拒需要上报^rejinfo
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndRegRejInfoInd(
     MSCC_MMA_REG_RESULT_IND_STRU        *pstRejInfoInd
 )
 {
     /* 将MSCC的数据类型转换为TAF的数据类型，进行上报 */
     TAF_PH_REG_REJ_INFO_STRU            stTafRejInfo;
-    TAF_SDC_SYS_INFO_STRU              *pstSysInfo = VOS_NULL_PTR;
 
     /* 填充上报事件 */
-    pstSysInfo                = TAF_SDC_GetSysInfo();
+    stTafRejInfo.enRat        = TAF_MMA_ConvertSdcRatToAppRatType(pstRejInfoInd->stCampPostion.enNetRatType);
+    stTafRejInfo.stPlmnId.Mcc = pstRejInfoInd->stCampPostion.stPlmnId.ulMcc;
+    stTafRejInfo.stPlmnId.Mnc = pstRejInfoInd->stCampPostion.stPlmnId.ulMnc;
 
-    stTafRejInfo.enRat        = TAF_MMA_ConvertSdcRatToAppRatType(pstSysInfo->enSysMode);
-    stTafRejInfo.stPlmnId.Mcc = pstSysInfo->st3gppSysInfo.stPlmnId.ulMcc;
-    stTafRejInfo.stPlmnId.Mnc = pstSysInfo->st3gppSysInfo.stPlmnId.ulMnc;
     stTafRejInfo.enSrvDomain  = TAF_MMA_ConvertMsccDomainToMmaDomainType(pstRejInfoInd->enCnDomainId);
     stTafRejInfo.ulRejCause   = pstRejInfoInd->enRejCause;
 
@@ -2971,9 +2141,9 @@ VOS_VOID TAF_MMA_SndRegRejInfoInd(
 
     stTafRejInfo.aucReserved[0]       = 0;
     stTafRejInfo.ucOriginalRejCause   = pstRejInfoInd->ucOriginalRejCause;
-    stTafRejInfo.ulCellId             = pstSysInfo->st3gppSysInfo.ulCellId;
-    stTafRejInfo.ucRac                = pstSysInfo->st3gppSysInfo.ucRac;
-    stTafRejInfo.usLac                = pstSysInfo->st3gppSysInfo.usLac;
+    stTafRejInfo.ulCellId             = pstRejInfoInd->stCampPostion.ulCellId;
+    stTafRejInfo.ucRac                = pstRejInfoInd->stCampPostion.ucRac;
+    stTafRejInfo.usLac                = pstRejInfoInd->stCampPostion.usLac;
 
     /* 将PLMN ID转为BCD格式 */
     MMA_PlmnId2Bcd(&stTafRejInfo.stPlmnId);
@@ -2986,34 +2156,7 @@ VOS_VOID TAF_MMA_SndRegRejInfoInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccRegResultInd_PreProc
- 功能描述  : 收到MSCC的指定域的注册结果的处理
- 输入参数  : VOS_UINT32                          ulEventType,
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月15日
-    作    者   : l00208543
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月13日
-    作    者   : W00176964
-    修改内容   : Volte_PhaseIII 项目修改
-  3.日    期   : 2014年12月13日
-    作    者   : s00217060
-    修改内容   : Service_State_Optimize_PhaseI 通知IMSA服务状态修改
-  4.日    期   : 2015年1月28日
-    作    者   : y00245242
-    修改内容   : iteration 9开发，移IMSA接口到MSCC模块
-  5.日    期   : 2015年6月9日
-    作    者   : n00269697
-    修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_2.0，为了尽可能使用有效的地理位置信息，
-                 注册成功后，需要更新国家码和时间戳
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccRegResultInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3047,27 +2190,7 @@ VOS_UINT32 TAF_MMA_RcvMsccRegResultInd_PreProc(
 
 
 #if (FEATURE_ON == FEATURE_IMS)
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccImsVoiceCapInd_PreProc
- 功能描述  : 收到IMSA的IMS voice cap消息的预处理
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月13日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2015年01月28日
-    作    者   : y00245242
-    修改内容   : iteration 9开发， IMSA接口下移到MSCC模块
-  3.日    期   : 2015年06月17日
-    作    者   : w00316404
-    修改内容   : NEXT B26 Project,通知MTC当前IMS VOICE是否可用
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccImsVoiceCapInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3089,25 +2212,8 @@ VOS_UINT32 TAF_MMA_RcvMsccImsVoiceCapInd_PreProc(
 
 /* 删除定时器处理逻辑 */
 #endif
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, end */
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccUsimAuthFailInd_PreProc
- 功能描述  : 收到MSCC传上来的USIM鉴权失败原因值信息进行处理
- 输入参数  : MSCC_MMA_USIM_AUTH_FAIL_IND_STRU *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月15日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-  2.日    期   : 2014年4月1日
-    作    者   : z00161729
-    修改内容   : DTS2014040300125:service 被拒和网络detach ind被拒需要上报^rejinfo
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccUsimAuthFailInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3115,16 +2221,14 @@ VOS_UINT32 TAF_MMA_RcvMsccUsimAuthFailInd_PreProc(
 {
     /* 将MMC的数据类型转换为TAF的数据类型，进行上报 */
     TAF_PH_REG_REJ_INFO_STRU            stTafRejInfo;
-    TAF_SDC_SYS_INFO_STRU              *pstSysInfo = VOS_NULL_PTR;
     MSCC_MMA_USIM_AUTH_FAIL_IND_STRU    *pstAuthFailInd  = VOS_NULL_PTR;
 
     pstAuthFailInd            = (MSCC_MMA_USIM_AUTH_FAIL_IND_STRU *)pstMsg;
 
     /* 填充上报事件 */
-    pstSysInfo                = TAF_SDC_GetSysInfo();
-    stTafRejInfo.enRat        = TAF_MMA_ConvertSdcRatToAppRatType(pstSysInfo->enSysMode);
-    stTafRejInfo.stPlmnId.Mcc = pstSysInfo->st3gppSysInfo.stPlmnId.ulMcc;
-    stTafRejInfo.stPlmnId.Mnc = pstSysInfo->st3gppSysInfo.stPlmnId.ulMnc;
+    stTafRejInfo.enRat        = TAF_MMA_ConvertSdcRatToAppRatType(pstAuthFailInd->stCampPostion.enNetRatType);
+    stTafRejInfo.stPlmnId.Mcc = pstAuthFailInd->stCampPostion.stPlmnId.ulMcc;
+    stTafRejInfo.stPlmnId.Mnc = pstAuthFailInd->stCampPostion.stPlmnId.ulMnc;
     stTafRejInfo.enSrvDomain  = TAF_MMA_ConvertMsccDomainToMmaDomainType(pstAuthFailInd->enCnDomainId);
 
     /* 为了和网络拒绝原因值区分，usim鉴权失败原因值加上一个偏移位 */
@@ -3134,9 +2238,9 @@ VOS_UINT32 TAF_MMA_RcvMsccUsimAuthFailInd_PreProc(
 
     stTafRejInfo.aucReserved[0]       = 0;
     stTafRejInfo.ucOriginalRejCause   = (VOS_UINT8)NAS_MML_REG_FAIL_CAUSE_NULL;
-    stTafRejInfo.ulCellId             = pstSysInfo->st3gppSysInfo.ulCellId;
-    stTafRejInfo.ucRac                = pstSysInfo->st3gppSysInfo.ucRac;
-    stTafRejInfo.usLac                = pstSysInfo->st3gppSysInfo.usLac;
+    stTafRejInfo.ulCellId             = pstAuthFailInd->stCampPostion.ulCellId;
+    stTafRejInfo.ucRac                = pstAuthFailInd->stCampPostion.ucRac;
+    stTafRejInfo.usLac                = pstAuthFailInd->stCampPostion.usLac;
 
     /* 将PLMN ID转为BCD格式 */
     MMA_PlmnId2Bcd(&stTafRejInfo.stPlmnId);
@@ -3151,38 +2255,17 @@ VOS_UINT32 TAF_MMA_RcvMsccUsimAuthFailInd_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccCsServiceConnStatusInd_PreProc
- 功能描述  : 收到MSCC上报的cs业务信令连接状态指示消息
- 输入参数  : ulEventType - 事件类型
-             pstMsg      - 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年03月04日
-    作    者   : z00161729
-    修改内容   : DTS2014022800234:被叫mm收到paging会设置cs业务信令连接存在，
-                 但查询^usersrvstate时返回无cs业务，syscfgex设置失败回复存在cs业务，不一致
-  2.日    期   : 2014年06月27日
-    作    者   : s00217060
-    修改内容   : K3V3 多模多天线特性:CS域的连接状态通知MTC
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccCsServiceConnStatusInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 )
 {
     MSCC_MMA_CS_SERVICE_CONN_STATUS_IND_STRU                *pstCsServiceConnStatusInd = VOS_NULL_PTR;
-    /* Add by s00217060 for K3V3 多模多天线特性, 2014-06-27, Begin */
 #if (FEATURE_MULTI_MODEM == FEATURE_ON)
     TAF_MTC_SRV_CONN_STATE_INFO_STRU                        stMmaMtcConnStInfo;
     TAF_CTRL_STRU                                           stCtrl;
 #endif
-    /* Add by s00217060 for K3V3 多模多天线特性, 2014-06-27, End */
 
     /* 初始化 */
 #if (FEATURE_MULTI_MODEM == FEATURE_ON)
@@ -3194,7 +2277,6 @@ VOS_UINT32 TAF_MMA_RcvMsccCsServiceConnStatusInd_PreProc(
 
     TAF_SDC_SetCsServiceConnStatusFlag(pstCsServiceConnStatusInd->ucCsServiceConnStatusFlag);
 
-    /* Add by s00217060 for K3V3 多模多天线特性, 2014-06-27, Begin */
 #if (FEATURE_MULTI_MODEM == FEATURE_ON)
     stMmaMtcConnStInfo.bitOpCsSrv           = VOS_TRUE;
     stMmaMtcConnStInfo.enCsSrvConnState     = pstCsServiceConnStatusInd->ucCsServiceConnStatusFlag;
@@ -3205,7 +2287,6 @@ VOS_UINT32 TAF_MMA_RcvMsccCsServiceConnStatusInd_PreProc(
     /* 将连接状态报到MTC */
     MTC_SetModemServiceConnState(&stCtrl, &stMmaMtcConnStInfo);
 #endif
-    /* Add by s00217060 for K3V3 多模多天线特性, 2014-06-27, End */
 #if (FEATURE_ON == FEATURE_BASTET)
     if(VOS_TRUE == TAF_SDC_GetBastetSupportFlag())
     {
@@ -3216,40 +2297,23 @@ VOS_UINT32 TAF_MMA_RcvMsccCsServiceConnStatusInd_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccServRejInd_PreProc
- 功能描述  : 收到MSCC传上来的服务被拒原因值信息进行处理
- 输入参数  : ulEventType - 事件类型
-             pstMsg      - 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月1日
-    作    者   : z00161729
-    修改内容   : DTS2014040300125:service 被拒和网络detach ind被拒没有上报^rejinfo
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccServRejInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 )
 {
-    MSCC_MMA_SERV_REJ_IND_STRU          *pstServRejInd = VOS_NULL_PTR;
+    MSCC_MMA_SERV_REJ_IND_STRU         *pstServRejInd = VOS_NULL_PTR;
     TAF_PH_REG_REJ_INFO_STRU            stTafServRejInfo;
-    TAF_SDC_SYS_INFO_STRU              *pstSysInfo = VOS_NULL_PTR;
 
     pstServRejInd = (MSCC_MMA_SERV_REJ_IND_STRU *) pstMsg;
     PS_MEM_SET(&stTafServRejInfo, 0, sizeof(stTafServRejInfo));
 
     /* 填充上报事件 */
-    pstSysInfo                    = TAF_SDC_GetSysInfo();
-    stTafServRejInfo.enRat        = TAF_MMA_ConvertSdcRatToAppRatType(pstSysInfo->enSysMode);
-    stTafServRejInfo.stPlmnId.Mcc = pstSysInfo->st3gppSysInfo.stPlmnId.ulMcc;
-    stTafServRejInfo.stPlmnId.Mnc = pstSysInfo->st3gppSysInfo.stPlmnId.ulMnc;
+    stTafServRejInfo.enRat        = TAF_MMA_ConvertSdcRatToAppRatType(pstServRejInd->stCampPostion.enNetRatType);
+    stTafServRejInfo.stPlmnId.Mcc = pstServRejInd->stCampPostion.stPlmnId.ulMcc;
+    stTafServRejInfo.stPlmnId.Mnc = pstServRejInd->stCampPostion.stPlmnId.ulMnc;
+
     stTafServRejInfo.enSrvDomain  = TAF_MMA_ConvertMsccDomainToMmaDomainType(pstServRejInd->enCnDomainId);
 
     stTafServRejInfo.ulRejCause   = pstServRejInd->usRejCause;
@@ -3260,9 +2324,9 @@ VOS_UINT32 TAF_MMA_RcvMsccServRejInd_PreProc(
 
     stTafServRejInfo.aucReserved[0]       = 0;
     stTafServRejInfo.ucOriginalRejCause   = pstServRejInd->ucOriginalRejCause;
-    stTafServRejInfo.ulCellId             = pstSysInfo->st3gppSysInfo.ulCellId;
-    stTafServRejInfo.ucRac                = pstSysInfo->st3gppSysInfo.ucRac;
-    stTafServRejInfo.usLac                = pstSysInfo->st3gppSysInfo.usLac;
+    stTafServRejInfo.ulCellId             = pstServRejInd->stCampPostion.ulCellId;
+    stTafServRejInfo.ucRac                = pstServRejInd->stCampPostion.ucRac;
+    stTafServRejInfo.usLac                = pstServRejInd->stCampPostion.usLac;
 
     if (VOS_TRUE == TAF_MMA_IsRegRejChangeNeedRpt())
     {
@@ -3273,23 +2337,7 @@ VOS_UINT32 TAF_MMA_RcvMsccServRejInd_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccAttachCnf_PreProc
- 功能描述  : 收到MSCC传上来的attach cnf进行处理
- 输入参数  : ulEventType - 事件类型
-             pstMsg      - 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月30日
-    作    者   : z00161729
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccAttachCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3320,24 +2368,7 @@ VOS_UINT32 TAF_MMA_RcvMsccAttachCnf_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccDplmnSetCnf_PreProc
- 功能描述  : MMA收到MSCC发送的 ID_MSCC_MMA_DPLMN_SET_CNF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月12日
-    作    者   : n00355355
-    修改内容   : 新生成函数
-  2.日    期   : 2015年11月2日
-    作    者   : l00289540
-    修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_3.0 修改
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccDplmnSetCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3358,23 +2389,7 @@ VOS_UINT32 TAF_MMA_RcvMsccDplmnSetCnf_PreProc(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccDetachInd_PreProc
- 功能描述  : 收到MSCC传上来的detach ind被拒原因值信息进行处理
- 输入参数  : ulEventType - 事件类型
-             pstMsg      - 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月1日
-    作    者   : z00161729
-    修改内容   : DTS2014040300125:service 被拒和网络detach ind被拒没有上报^rejinfo
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccDetachInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3382,7 +2397,6 @@ VOS_UINT32 TAF_MMA_RcvMsccDetachInd_PreProc(
 {
     MSCC_MMA_DETACH_IND_STRU            *pstDetachInd = VOS_NULL_PTR;
     TAF_PH_REG_REJ_INFO_STRU            stTafServRejInfo;
-    TAF_SDC_SYS_INFO_STRU              *pstSysInfo = VOS_NULL_PTR;
 
     pstDetachInd = (MSCC_MMA_DETACH_IND_STRU *) pstMsg;
     PS_MEM_SET(&stTafServRejInfo, 0, sizeof(stTafServRejInfo));
@@ -3390,10 +2404,10 @@ VOS_UINT32 TAF_MMA_RcvMsccDetachInd_PreProc(
     if (NAS_MSCC_PIF_NETWORK_DETACH_TYPE_NOATTACH == pstDetachInd->enNetworkDetachType)
     {
         /* 填充上报事件 */
-        pstSysInfo                    = TAF_SDC_GetSysInfo();
-        stTafServRejInfo.enRat        = TAF_MMA_ConvertSdcRatToAppRatType(pstSysInfo->enSysMode);
-        stTafServRejInfo.stPlmnId.Mcc = pstSysInfo->st3gppSysInfo.stPlmnId.ulMcc;
-        stTafServRejInfo.stPlmnId.Mnc = pstSysInfo->st3gppSysInfo.stPlmnId.ulMnc;
+        stTafServRejInfo.enRat        = TAF_MMA_ConvertSdcRatToAppRatType(pstDetachInd->stCampPostion.enNetRatType);
+        stTafServRejInfo.stPlmnId.Mcc = pstDetachInd->stCampPostion.stPlmnId.ulMcc;
+        stTafServRejInfo.stPlmnId.Mnc = pstDetachInd->stCampPostion.stPlmnId.ulMnc;
+
         stTafServRejInfo.enSrvDomain  = TAF_MMA_ConvertMsccDomainToMmaDomainType(pstDetachInd->enCnDomainId);
 
         stTafServRejInfo.ulRejCause   = pstDetachInd->ulDetachCause;
@@ -3404,9 +2418,9 @@ VOS_UINT32 TAF_MMA_RcvMsccDetachInd_PreProc(
 
         stTafServRejInfo.aucReserved[0]       = 0;
         stTafServRejInfo.ucOriginalRejCause   = pstDetachInd->ucOriginalDetachCause;
-        stTafServRejInfo.ulCellId             = pstSysInfo->st3gppSysInfo.ulCellId;
-        stTafServRejInfo.ucRac                = pstSysInfo->st3gppSysInfo.ucRac;
-        stTafServRejInfo.usLac                = pstSysInfo->st3gppSysInfo.usLac;
+        stTafServRejInfo.ulCellId             = pstDetachInd->stCampPostion.ulCellId;
+        stTafServRejInfo.ucRac                = pstDetachInd->stCampPostion.ucRac;
+        stTafServRejInfo.usLac                = pstDetachInd->stCampPostion.usLac;
 
         if (VOS_TRUE == TAF_MMA_IsRegRejChangeNeedRpt())
         {
@@ -3419,21 +2433,7 @@ VOS_UINT32 TAF_MMA_RcvMsccDetachInd_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ConvertMsccCauseToMmaFormat
- 功能描述  : 将MSCC格式的CAUSE值转换成MMA格式的
- 输入参数  : MSCC_MMA_NET_SCAN_CAUSE_ENUM_UINT8   enMsccCause
- 输出参数  : TAF_MMA_NET_SCAN_CAUSE_ENUM_UINT8  *pstMmaCause
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月16日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_ConvertMsccCauseToTafFormat(
     NAS_MSCC_PIF_NET_SCAN_CAUSE_ENUM_UINT8   enMsccCause,
     TAF_MMA_NET_SCAN_CAUSE_ENUM_UINT8  *pstMmaCause
@@ -3481,21 +2481,7 @@ VOS_VOID TAF_MMA_ConvertMsccCauseToTafFormat(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ConvertMsccBandToTafFormat
- 功能描述  : 将MSCC频段转换成Taf格式
- 输入参数  : NAS_MML_MS_BAND_INFO_STRU          *pstMsccBand
- 输出参数  : TAF_USER_SET_PREF_BAND64           *pstUserBand
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月16日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_ConvertMsccBandToTafFormat(
     NAS_MSCC_PIF_UE_SUPPORT_FREQ_BAND_STRU     *pstMsccBand,
     TAF_USER_SET_PREF_BAND64                   *pstUserBand
@@ -3541,26 +2527,7 @@ VOS_VOID TAF_MMA_ConvertMsccBandToTafFormat(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ConvertMsccNetScanCnfToMmaFormat
- 功能描述  : 收到MSCC回复的NETSCAN请求转换成给AT上报格式
- 输入参数  : MSCC_MMA_NET_SCAN_CNF_STRU *pMsg
- 输出参数  : TAF_MMA_NET_SCAN_CNF_STRU *pstNetScanCnf
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月16日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-  2.日    期   : 2013年10月15日
-    作    者   : w00167002
-    修改内容   : 飞检编程规范修改
-  3.日    期   : 2015年03月25日
-    作    者   : K00902809
-    修改内容   : changed according to new structure.
-*****************************************************************************/
 VOS_VOID TAF_MMA_ConvertMsccNetScanCnfToMmaFormat(
     MSCC_MMA_NET_SCAN_CNF_STRU          *pstMsg,
     TAF_MMA_NET_SCAN_CNF_STRU          *pstNetScanCnf
@@ -3604,23 +2571,7 @@ VOS_VOID TAF_MMA_ConvertMsccNetScanCnfToMmaFormat(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccNetScanCnf_PreProc
- 功能描述  : 收到MSCC传上来的netscan回复
- 输入参数  : MSCC_MMA_NET_SCAN_CNF_STRU *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月16日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-  2.日    期   : 2015年03月25日
-    作    者   : K00902809
-    修改内容   : Including TAF_MMA_SendAtNetScanCnf instead of MN_PH_SendMsg
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccNetScanCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3658,23 +2609,7 @@ VOS_UINT32 TAF_MMA_RcvMsccNetScanCnf_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ConvertMsccAbortNetScanCnfToMmaFormat
- 功能描述  : MMA收到MSCC的NETSCAN回复后，组装成发送给AT的消息格式
- 输入参数  : pstMsg    收到MSCC的回复消息
- 输出参数  : pstNetScanCnf 给AT模块发送的请求
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月16日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-  2.日    期   : 2015年03月25日
-    作    者   : K00902809
-    修改内容   : changed according to new structure.
-*****************************************************************************/
 VOS_VOID TAF_MMA_ConvertMsccAbortNetScanCnfToMmaFormat(
     MSCC_MMA_ABORT_NET_SCAN_CNF_STRU    *pstMsg,
     TAF_MMA_NET_SCAN_CNF_STRU           *pstNetScanCnf
@@ -3716,23 +2651,7 @@ VOS_VOID TAF_MMA_ConvertMsccAbortNetScanCnfToMmaFormat(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccAbortNetScanCnf_PreProc
- 功能描述  : 收到MSCC传上来的打断netscan回复
- 输入参数  : MSCC_MMA_NET_SCAN_CNF_STRU *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月16日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-  2.日    期   : 2015年03月25日
-    作    者   : K00902809
-    修改内容   : Including TAF_MMA_SendAtNetScanCnf instead of MN_PH_SendMsg
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccAbortNetScanCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3767,21 +2686,7 @@ VOS_UINT32 TAF_MMA_RcvMsccAbortNetScanCnf_PreProc(
 
 #if (FEATURE_MULTI_MODEM == FEATURE_ON)
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMtcNcellInfoInd_PreProc
- 功能描述  : 处理来自mtc的ID_MTC_MMA_NCELL_INFO_IND消息
- 输入参数  : pstMsg - 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月24日
-    作    者   : z00161729
-    修改内容   : SVLTE支持NCELL搜网
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMtcNcellInfoInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3794,21 +2699,7 @@ VOS_UINT32 TAF_MMA_RcvMtcNcellInfoInd_PreProc(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMtcPsTransferInd_PreProc
- 功能描述  : 处理来自mtc的ID_MTC_MMA_PS_TRANSFER_IND消息
- 输入参数  : pstMsg - 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月6日
-    作    者   : z00161729
-    修改内容   : DTS2014010202583:SVLTE优化G-TL ps切换性能修改
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMtcPsTransferInd_PreProc(
      VOS_UINT32                         ulEventType,
     struct MsgCB                       *pstMsg
@@ -3822,22 +2713,7 @@ VOS_UINT32 TAF_MMA_RcvMtcPsTransferInd_PreProc(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMtcOtherModemInfoNotify_PreProc
- 功能描述  : 处理来自mtc的ID_MTC_MMA_OTHER_MODEM_INFO_NOTIFY消息
- 输入参数  : ulEventType---事件类型
-             pstMsg - 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月22日
-    作    者   : z00161729
-    修改内容   : SVLTE优化G-TL ps切换性能修改
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMtcOtherModemInfoNotify_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3849,22 +2725,7 @@ VOS_UINT32 TAF_MMA_RcvMtcOtherModemInfoNotify_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMtcOtherModemDplmnNplmnInfoNotify_PreProc
- 功能描述  : 处理来自mtc的other modem dplmn nplmn info notify消息
- 输入参数  : ulEventType---事件类型
-             pstMsg - 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月3日
-    作    者   : z00161729
-    修改内容   : 开机漫游搜网项目修改
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMtcOtherModemDplmnNplmnInfoNotify_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3878,24 +2739,7 @@ VOS_UINT32 TAF_MMA_RcvMtcOtherModemDplmnNplmnInfoNotify_PreProc(
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccEplmnInfoInd_PreProc
- 功能描述  : 收到MSCC 等效plmn信息
- 输入参数  : pstEplmnInfoIndMsg - 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月25日
-    作    者   : z00161729
-    修改内容   : SVLTE支持NCELL搜网
-
-  2.日    期   : 2014年01月17日
-    作    者   : l00198894
-    修改内容   : V9R1C53 C+L 离网重选项目
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccEplmnInfoInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3915,23 +2759,7 @@ VOS_UINT32 TAF_MMA_RcvMsccEplmnInfoInd_PreProc(
 
 
 
-/* Added by s00261364 for L-C互操作项目, 2014-1-26, begin */
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMmaAcqReq_PreProc
- 功能描述  : 收到CMMCA模块的acq req消息
- 输入参数  : ulEventType
-             pstMsg
 
- 输出参数  : 无
- 返 回 值  : VOS_TRUE/VOS_FALSE
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年2月14日
-    作    者   : b00269685
-    修改内容   : L-C互操作项目
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMmaAcqReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4015,23 +2843,7 @@ VOS_UINT32 TAF_MMA_RcvMmaAcqReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ConvertAttachDomainToAttachType
- 功能描述  : 将TAF_PH_SERVICE_DOMAIN转换为MMA模块的Attach type
- 输入参数  : TAF_MMA_SERVICE_DOMAIN_ENUM_UINT8              ucAttachDomain
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月13日
-    作    者   : s00246516
-    修改内容   : 新生成函数
-  2.日    期   : 2015年4月9日
-    作    者   : h00313353
-    修改内容   : SysCfg SrvDomain转枚举
-*****************************************************************************/
 TAF_MMA_ATTACH_TYPE_ENUM_UINT8 TAF_MMA_ConvertAttachDomainToAttachType(
     TAF_MMA_SERVICE_DOMAIN_ENUM_UINT8                       enAttachDomain
 )
@@ -4063,22 +2875,7 @@ TAF_MMA_ATTACH_TYPE_ENUM_UINT8 TAF_MMA_ConvertAttachDomainToAttachType(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccRegReq_PreProc
- 功能描述  : 收到CMSCCA模块的reg req信息
- 输入参数  : ulEventType
-             pstMsg
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年2月14日
-    作    者   : b00269685
-    修改内容   : L-C互操作项目
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMmaRegReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4181,23 +2978,7 @@ VOS_UINT32 TAF_MMA_RcvMmaRegReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMmaPowerSaveReq_PreProc
- 功能描述  : 收到CMMCA模块的power save req信息
- 输入参数  : ulEventType
-             pstMsg
 
- 输出参数  : 无
- 返 回 值  : VOS_TRUE
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年2月14日
-    作    者   : b00269685
-    修改内容   : L-C互操作项目
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMmaPowerSaveReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4273,22 +3054,7 @@ VOS_UINT32 TAF_MMA_RcvMmaPowerSaveReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccAcqCnf_PreProc
- 功能描述  : 收到MSCC模块的acq cnf信息
- 输入参数  : ulEventType
-             pstMsg
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年2月14日
-    作    者   : b00269685
-    修改内容   : L-C互操作项目
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccAcqCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4326,22 +3092,7 @@ VOS_UINT32 TAF_MMA_RcvMsccAcqCnf_PreProc(
 }
 
 #if (FEATURE_ON == FEATURE_CL_INTERWORK)
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccAcqInd_PreProc
- 功能描述  : 收到MSCC模块的acq ind信息
- 输入参数  : ulEventType
-             pstMsg
 
- 输出参数  : 无
- 返 回 值  : VOS_TRUE
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年2月14日
-    作    者   : b00269685
-    修改内容   : L-C互操作项目
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccAcqInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4368,22 +3119,7 @@ VOS_UINT32 TAF_MMA_RcvMsccAcqInd_PreProc(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndEndSessionNotifyAccordingSrvType
- 功能描述  : 根据业务类型发送end session释放资源，
-             存在多业务并发，需要发送多条end session情况
- 输入参数  : pstSrvType - 业务类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年6月30日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndEndSessionNotifyAccordingSrvType(
     TAF_SDC_TRIG_PLMN_SEARCH_SRV_TYPE_UNION                 *pstSrvType
 )
@@ -4460,21 +3196,7 @@ VOS_VOID TAF_MMA_SndEndSessionNotifyAccordingSrvType(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ConvertSrvTypeToMscc
- 功能描述  : 将spm和mma接口业务类型转换为mma和mscc接口业务类型
- 输入参数  : enMmaSrvType     - TAF MMA接口业务类型
- 输出参数  : pucMsccSrvType    - MMA MSCC接口业务类型
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月7日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_ConvertSrvTypeToMscc(
     TAF_MMA_SRV_TYPE_ENUM_UINT8              enMmaSrvType,
     NAS_MSCC_PIF_SRV_TYPE_ENUM_UINT8        *pucMsccSrvType
@@ -4526,20 +3248,7 @@ VOS_VOID TAF_MMA_ConvertSrvTypeToMscc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_UpdateTrigPlmnSearchSrvType
- 功能描述  : 更新业务触发搜网时业务类型
- 输入参数  : enSrvType - 业务类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月21日
-    作    者   : z00161729
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_VOID TAF_SDC_UpdateTrigPlmnSearchSrvType(
     TAF_MMA_SRV_TYPE_ENUM_UINT8         enSrvType
 )
@@ -4594,22 +3303,7 @@ VOS_VOID TAF_SDC_UpdateTrigPlmnSearchSrvType(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTafSrvAcqReq_PreProc
- 功能描述  : 收到TAF SPM模块的srv acq req消息
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE: 消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月21日
-    作    者   : z00161729
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTafSrvAcqReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4664,22 +3358,7 @@ VOS_UINT32 TAF_MMA_RcvTafSrvAcqReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccSrvAcqCnf_PreProc
- 功能描述  : 收到mscc的srv acq cnf消息
- 输入参数  : ulEventType - 事件类型
-             pstMsg      - 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE: 消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月21日
-    作    者   : z00161729
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccSrvAcqCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4707,21 +3386,7 @@ VOS_UINT32 TAF_MMA_RcvMsccSrvAcqCnf_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTiWaitMsccSrvAcqCnfExpired_PreProc
- 功能描述  : 等mscc回复srv acq cnf消息超时的处理
- 输入参数  : ulEventType - 事件类型
-             pstMsg      - 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月21日
-    作    者   : z00161729
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTiWaitMsccSrvAcqCnfExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4740,28 +3405,7 @@ VOS_UINT32 TAF_MMA_RcvTiWaitMsccSrvAcqCnfExpired_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvAtPlmnList_PreProc
- 功能描述  : 收到AT的at+cops=?列表搜网请求的预处理
- 输入参数  : ulEventType - 事件类型
-             pstMsg      - 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:不需要进一步处理
-             VOS_FALSE:需要进状态机处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月21日
-    作    者   : z00161729
-    修改内容   : 新增函数
-  2.日    期   : 2014年7月24日
-    作    者   : b00269685
-    修改内容   : coverify清理
-  3.日    期   : 2015年4月22日
-    作    者   : b00269685
-    修改内容   : 列表搜上报
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvAtPlmnList_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4803,21 +3447,7 @@ VOS_UINT32 TAF_MMA_RcvAtPlmnList_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_IsSysCfgAllowedInCallExist
- 功能描述  : 如果当前存在呼叫场景下，收到AT的syscfg请求处理
- 输入参数  : pstReqRatOrder -- 用户请求的RAT order
- 输出参数  : pulErrCode     -- 不允许操作码
- 返 回 值  : VOS_TRUE:不需要进一步处理
-             VOS_FALSE:需要进状态机处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月15日
-    作    者   : y00245242
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_IsSysCfgAllowedInCallExist(
     TAF_MMA_RAT_ORDER_STRU             *pstReqRatOrder,
     TAF_ERROR_CODE_ENUM_UINT32         *pulErrCode
@@ -4917,26 +3547,7 @@ VOS_UINT32 TAF_MMA_IsSysCfgAllowedInCallExist(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvSysCfgSetReq_PreProc
- 功能描述  : 收到AT的syscfg请求的预处理
- 输入参数  : ulEventType - 事件类型
-             pstMsg      - 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:不需要进一步处理
-             VOS_FALSE:需要进状态机处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月21日
-    作    者   : z00161729
-    修改内容   : 新增函数
-  2.日    期   : 2016年1月6日
-    作    者   : w00242748
-    修改内容   : DTS2015072705348:进入紧急呼回呼模式后，挂起HRPD和LTE；退出紧急呼
-                 回呼模式后，再进行搜网，紧急呼回呼模式下，不进行其他任何形式搜网；
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvSysCfgSetReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4990,23 +3601,7 @@ VOS_UINT32 TAF_MMA_RcvSysCfgSetReq_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccRegCnf_PreProc
- 功能描述  : 收到MSCC模块的reg cnf信息
- 输入参数  : ulEventType
-             pstMsg
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年2月14日
-    作    者   : b00269685
-    修改内容   : L-C互操作项目
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccRegCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -5057,24 +3652,7 @@ VOS_UINT32 TAF_MMA_RcvMsccRegCnf_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccPowerSaveCnf_PreProc
- 功能描述  : 收到MSCC模块的power save cnf信息
- 输入参数  : ulEventType
-             pstMsg
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年2月14日
-    作    者   : b00269685
-    修改内容   : L-C互操作项目
-
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccPowerSaveCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -5110,25 +3688,8 @@ VOS_UINT32 TAF_MMA_RcvMsccPowerSaveCnf_PreProc(
     return VOS_TRUE;
 }
 
-/* Added by s00261364 for L-C互操作项目, 2014-1-26, end */
 
-/* Added by b00269685 for L-C互操作项目, 2014-3-4, begin */
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTiWaitMsccAcqCnfExpired_PreProc
- 功能描述  : 等待MSCC模块的acq cnf信息超时处理
- 输入参数  : ulEventType
-             pstMsg
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年3月4日
-    作    者   : b00269685
-    修改内容   : L-C互操作项目
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTiWaitMsccAcqCnfExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -5159,22 +3720,7 @@ VOS_UINT32 TAF_MMA_RcvTiWaitMsccAcqCnfExpired_PreProc(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTiWaitMsccRegCnfExpired_PreProc
- 功能描述  : 等待MSCC模块的reg cnf信息超时处理
- 输入参数  : ulEventType
-             pstMsg
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年3月4日
-    作    者   : b00269685
-    修改内容   : L-C互操作项目
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTiWaitMsccRegCnfExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -5205,22 +3751,7 @@ VOS_UINT32 TAF_MMA_RcvTiWaitMsccRegCnfExpired_PreProc(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTiWaitMsccPowerSaveExpired_PreProc
- 功能描述  : 等待MSCC模块的powersave cnf信息超时处理
- 输入参数  : ulEventType
-             pstMsg
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年3月4日
-    作    者   : b00269685
-    修改内容   : L-C互操作项目
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTiWaitMsccPowerSaveExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -5245,24 +3776,8 @@ VOS_UINT32 TAF_MMA_RcvTiWaitMsccPowerSaveExpired_PreProc(
     return VOS_TRUE;
 
 }
-/* Added by b00269685 for L-C互操作项目, 2014-3-4, end */
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvDelayReportServiceStatusExpired_PreProc
- 功能描述  : TI_TAF_MMA_DELAY_REPORT_SERVICE_STATUS超时处理
- 输入参数  : ulEventType
-             pstMsg
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史    :
-1.日    期   : 2015年02月11日
-  作    者   : l00305157
-  修改内容   : Service_State_Optimize_PhaseII 项目修改
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvDelayReportServiceStatusExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -5317,23 +3832,7 @@ VOS_UINT32 TAF_MMA_RcvDelayReportServiceStatusExpired_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvDelayReportCLNoServiceExpired_PreProc
- 功能描述  : TI_TAF_MMA_DELAY_RPT_CL_NO_SERVICE超时处理
- 输入参数  : ulEventType
-             pstMsg
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史    :
-
-  1.日    期   : 2016年1月7日
-    作    者   : h00313353
-    修改内容   : DTS2016010508602
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvDelayReportCLNoServiceExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -5415,23 +3914,7 @@ VOS_UINT32 TAF_MMA_RcvDelayReportCLNoServiceExpired_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvDelayReportDONoServiceExpired_PreProc
- 功能描述  : TI_TAF_MMA_DELAY_RPT_DO_NO_SERVICE超时处理
- 输入参数  : ulEventType
-             pstMsg
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史    :
-
-  1.日    期   : 2016年1月7日
-    作    者   : h00313353
-    修改内容   : DTS2016010508602
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvDelayReportDONoServiceExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -5491,24 +3974,9 @@ VOS_UINT32 TAF_MMA_RcvDelayReportDONoServiceExpired_PreProc(
     return VOS_TRUE;
 }
 
-/* Added by w00176964 for V3R3C60_eCall项目, 2014-4-22, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcPihUsimRefreshIndEfUstFileChanged_PreProc
- 功能描述  : 预处理文件刷新指示EFUST文件变更指示
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:不需要进一步处理
-             VOS_FALSE:需要进状态机处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年4月23日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
 
 VOS_UINT32 TAF_MMA_ProcPihUsimRefreshIndEfUstFileChanged_PreProc(VOS_VOID)
 {
@@ -5550,25 +4018,10 @@ VOS_UINT32 TAF_MMA_ProcPihUsimRefreshIndEfUstFileChanged_PreProc(VOS_VOID)
 }
 
 #endif
-/* Added by w00176964 for V3R3C60_eCall项目, 2014-4-22, end */
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_MapMsccServiceStatus
- 功能描述  : CDMA服务状态转换为TAF层服务状态
- 输入参数  : XSD_MMA_SERVICE_STATUS_ENUM_UINT8   enServiceStatus
- 输出参数  : 无
- 返 回 值  : TAF_SDC_SERVICE_STATUS_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月20日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_SDC_SERVICE_STATUS_ENUM_UINT8 TAF_MMA_MapMsccServiceStatus(
     NAS_MSCC_PIF_SERVICE_STATUS_ENUM_UINT32     enServiceStatus
 )
@@ -5627,20 +4080,7 @@ TAF_SDC_NETWORK_EXISTANCE_ENUM_UINT32 TAF_MMA_Map1xSrvStaToCdmaNetworkExistance(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_CovertSubMode_1xLost
- 功能描述  : 1x无服务时，获取当前的submode。
- 输入参数  : TAF_SDC_SYS_SUBMODE_ENUM_UINT8      enPreSubMode
- 输出参数  : 无
- 返 回 值  : TAF_SDC_SYS_SUBMODE_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月03日
-    作    者   : m00312079
-    修改内容   : 新建
-*****************************************************************************/
 TAF_SDC_SYS_SUBMODE_ENUM_UINT8 TAF_MMA_CovertSubMode_1xLost(
     TAF_SDC_SYS_SUBMODE_ENUM_UINT8      enPreSubMode
 )
@@ -5668,20 +4108,7 @@ TAF_SDC_SYS_SUBMODE_ENUM_UINT8 TAF_MMA_CovertSubMode_1xLost(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_CovertSubMode_1xExist
- 功能描述  : 1x有服务时，获取当前的submode。
- 输入参数  : TAF_SDC_SYS_SUBMODE_ENUM_UINT8      enPreSubMode
- 输出参数  : 无
- 返 回 值  : TAF_SDC_SYS_SUBMODE_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月03日
-    作    者   : m00312079
-    修改内容   : 新建
-*****************************************************************************/
 TAF_SDC_SYS_SUBMODE_ENUM_UINT8 TAF_MMA_CovertSubMode_1xExist(
      TAF_SDC_SYS_SUBMODE_ENUM_UINT8      enPreSubMode
 
@@ -5712,21 +4139,7 @@ TAF_SDC_SYS_SUBMODE_ENUM_UINT8 TAF_MMA_CovertSubMode_1xExist(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_BuildStk1xSystemInfo
- 功能描述  : 构造给STK的1X system info
- 输入参数  : NAS_MSCC_PIF_1X_SYS_SRV_INFO_STRU  *pstMscc1xSysSrvInfo
- 输出参数  : MMA_STK_1X_SYS_INFO_STRU           *pstStk1xSysInfo
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月3日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_BuildStk1xSystemInfo(
     NAS_MSCC_PIF_1X_SYS_SRV_INFO_STRU  *pstMscc1xSysSrvInfo,
     MMA_STK_1X_SYS_INFO_STRU           *pstStk1xSysInfo
@@ -5765,22 +4178,7 @@ VOS_VOID TAF_MMA_BuildStk1xSystemInfo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_BuildStkSrvStatus
- 功能描述  : 构造给STK的服务状态
- 输入参数  : NAS_MSCC_PIF_SERVICE_STATUS_ENUM_UINT32     enServiceStatus
-             NAS_STK_SERVICE_STATUS_INFO_STRU           *pstServiceStatus
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月3日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_BuildStkSrvStatus(
     NAS_MSCC_PIF_SERVICE_STATUS_ENUM_UINT32     enServiceStatus,
     NAS_STK_SERVICE_STATUS_INFO_STRU           *pstServiceStatus
@@ -5806,22 +4204,7 @@ VOS_VOID TAF_MMA_BuildStkSrvStatus(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_IsStk1xSystemInfoChanged
- 功能描述  : 判断STK需要的service info是否有改变
- 输入参数  : TAF_SDC_SERVICE_STATUS_ENUM_UINT8                       enCurServiceStatus
-             NAS_MSCC_PIF_1X_SYS_SRV_INFO_STRU               *pstMscc1xSysSrvInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月8日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_IsStk1xSystemInfoChanged(
     TAF_SDC_SERVICE_STATUS_ENUM_UINT8   enCurServiceStatus,
     NAS_MSCC_PIF_1X_SYS_SRV_INFO_STRU  *pstMscc1xSysSrvInfo
@@ -5886,23 +4269,7 @@ VOS_UINT32 TAF_MMA_IsStk1xSystemInfoChanged(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_Rcv1xMsccSystemServiceInfoInd_PreProc
- 功能描述  : 处理收到的XSD主动上报的系统服务信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月18日
-    作    者   : g00261581
-    修改内容   : CDMA 1X Iteration 5 新增函数
-  2.日    期   : 2015年06月03日
-    作    者   : m00312079
-    修改内容   : 增加EVDO版本号处理
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMscc1xSystemServiceInfoInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -6090,24 +4457,7 @@ VOS_UINT32 TAF_MMA_RcvMscc1xSystemServiceInfoInd_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccSyncServiceAvailInd_PreProc
- 功能描述  : 处理收到的MSCC主动上报的系统服务可用信息
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月31日
-    作    者   : w00242748
-    修改内容   : CDMA 1X Iteration 17 新增函数
-  2.日    期   : 2015年9月30日
-    作    者   : j00354216
-    修改内容   : CDMA Iteration 18 修改
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccSyncServiceAvailInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -6224,25 +4574,7 @@ VOS_UINT32 TAF_MMA_RcvMsccSyncServiceAvailInd_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTafCdmaMoCallStartNtf_PreProc
- 功能描述  : 收到ID_TAF_MMA_CDMA_MO_CALL_START_NTF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月17日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年7月21日
-    作    者   : h00313353
-    修改内容   : 迭代17 紧急呼
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTafCdmaMoCallStartNtf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -6267,22 +4599,7 @@ VOS_UINT32 TAF_MMA_RcvTafCdmaMoCallStartNtf_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTafCdmaMoCallEndNtf_PreProc
- 功能描述  : 收到ID_TAF_MMA_CDMA_MO_CALL_END_NTF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月10日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTafCdmaMoCallEndNtf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -6298,22 +4615,7 @@ VOS_UINT32 TAF_MMA_RcvTafCdmaMoCallEndNtf_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTafCdmaMoCallSuccessNtf_PreProc
- 功能描述  : 收到ID_TAF_MMA_CDMA_MO_CALL_SUCCESS_NTF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月10日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTafCdmaMoCallSuccessNtf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -6329,22 +4631,7 @@ VOS_UINT32 TAF_MMA_RcvTafCdmaMoCallSuccessNtf_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTafCdmaCallRedialSystemAcquireNtf
- 功能描述  : 收到ID_TAF_MMA_CMDA_CALL_REDIAL_SYSTEM_ACQUIRE_NTF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月10日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTafCdmaCallRedialSystemAcquireNtf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -6361,27 +4648,7 @@ VOS_UINT32 TAF_MMA_RcvTafCdmaCallRedialSystemAcquireNtf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvAtQueryCLocInfo_PreProc
- 功能描述  : MMA预处理中处理at命令^CLOCINFO
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月4日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-  2.日    期   : 2015年03月25日
-    作    者   : K00902809
-    修改内容   : Changed the structure from TAF_MMA_CLOCINFO_QUERY_REQ_STRU to TAF_MMA_CDMA_LOCINFO_QRY_REQ_STRU
-  3.日    期   : 2015年9月30日
-    作    者   : j00354216
-    修改内容   : CDMA Iteration 18 修改
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvAtQueryCLocInfo_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -6466,25 +4733,7 @@ VOS_UINT32 TAF_MMA_RcvAtQueryCLocInfo_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvSetCFreqLock_PreProc
- 功能描述  : MMA预处理中处理^CFREQLOCK设置命令
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月29日
-    作    者   : y00307564
-    修改内容   : 新生成函数
-  2.日    期   : 2016年1月6日
-    作    者   : w00242748
-    修改内容   : DTS2015072705348:进入紧急呼回呼模式后，挂起HRPD和LTE；退出紧急呼
-                 回呼模式后，再进行搜网，紧急呼回呼模式下，不进行其他任何形式搜网；
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvSetCFreqLock_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -6544,22 +4793,7 @@ VOS_UINT32 TAF_MMA_RcvSetCFreqLock_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvQueryCFreqLock_PreProc
- 功能描述  : MMA预处理中处理^CFREQLOCK查询命令
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月29日
-    作    者   : y00307564
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvQueryCFreqLock_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -6600,27 +4834,7 @@ VOS_UINT32 TAF_MMA_RcvQueryCFreqLock_PreProc(
 
     return VOS_TRUE;
 }
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcCdmaCsqSetReq_PreProc
- 功能描述  : 处理TAF信号强度上报设置请求
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月25日
-    作    者   : m00312079
-    修改内容   : 新生成函数
-  2.日    期   : 2015年10月16日
-    作    者   : m00312079
-    修改内容   : DTS2015101505057:添加ec/Io的上报门限
-  3.日    期   : 2016年1月7日
-    作    者   : t00323010
-    修改内容   : DTS2016010711329:增加平台是否支持1x逻辑判断
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_ProcCdmaCsqSetReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -6690,25 +4904,7 @@ VOS_UINT32 TAF_MMA_ProcCdmaCsqSetReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccCdmaCsqSetCnf_PreProc
- 功能描述  : 处理XSD信号强度上报设置的处理结果
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月26日
-    作    者   : m00312079
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年10月16日
-    作    者   : m00312079
-    修改内容   : DTS2015101505057:添加ec/Io的上报门限
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccCdmaCsqSetCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -6772,28 +4968,7 @@ VOS_UINT32 TAF_MMA_RcvMsccCdmaCsqSetCnf_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvCdmaCsqQryReq_PreProc
- 功能描述  : 查询信号强度
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月26日
-    作    者   : m00312079
-    修改内容   : 新生成函数
-  2.日    期   : 2015年9月30日
-    作    者   : j00354216
-    修改内容   : CDMA Iteration 18 修改
-
-  2.日    期   : 2015年10月16日
-    作    者   : m00312079
-    修改内容   : DTS2015101505057:添加ec/Io的上报门限
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvCdmaCsqQryReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -6841,28 +5016,7 @@ VOS_UINT32 TAF_MMA_RcvCdmaCsqQryReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccCdmaCsqInd_PreProc
- 功能描述  : 主动上报信号强度
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月26日
-    作    者   : m00312079
-    修改内容   : 新生成函数
-  2.日    期   : 2015年9月30日
-    作    者   : j00354216
-    修改内容   : CDMA Iteration 18 修改
-
- 2.日    期   : 2015年10月16日
-   作    者   : m00312079
-   修改内容   : DTS2015101505057:添加ec/Io的上报门限
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccCdmaCsqInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -6942,20 +5096,7 @@ TAF_SDC_NETWORK_EXISTANCE_ENUM_UINT32 TAF_MMA_MapHrpdSrvStaToCdmaNetworkExistanc
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_CovertSubMode_EvdoExist
- 功能描述  : EVDO有服务时，获取当前的submode。
- 输入参数  : TAF_SDC_SYS_SUBMODE_ENUM_UINT8      enPreSubMode
- 输出参数  : 无
- 返 回 值  : TAF_SDC_SYS_SUBMODE_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月03日
-    作    者   : m00312079
-    修改内容   : 新建
-*****************************************************************************/
 TAF_SDC_SYS_SUBMODE_ENUM_UINT8 TAF_MMA_CovertSubMode_EvdoExist(
     TAF_SDC_SYS_MODE_ENUM_UINT8                             enSysMode,
     MSCC_MMA_HRPD_SESSION_RELEASE_TYPE_ENUM_UINT32          enCurrSessionRelType
@@ -6993,35 +5134,7 @@ TAF_SDC_SYS_SUBMODE_ENUM_UINT8 TAF_MMA_CovertSubMode_EvdoExist(
     return enCurrSubMode;
 
 }
-/*****************************************************************************
-Function Name   :   TAF_MMA_RcvMsccHrpdServiceStatusInd_PreProc
-Description     :   Receive and process the MSCC hrpd service status ind
-Input parameters:   ulEventType-----message ID +pid
-                    pstMsg     -----message content
-Outout parameters:  None
-Return Value    :   VOS_TRUE------------the current event is processed finished
 
-
-Modify History  :
-1)  Date           : 2015-02-04
-    Author         : w00208541
-    Modify content : Create
-2)  Date           : 2015-06-02
-    Author         : m00312079
-    Modify content : Add session release type
-3)  Date           : 2015-06-03
-    Author         : l00324781
-    Modify content : MMA_TAF_SERVICE_STATUS消息拆分
-4)  Date           : 2015-06-11
-    Author         : w00242748
-    Modify content : CDMA Iteration 15 modified
-5)  Date           : 2015-08-22
-    Author         : y00307564
-    Modify content : DTS2015081005519modified
-6)  Date           : 2015-09-30
-    Author         : j00354216
-    Modify content : CDMA Iteration 18 modified
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccHrpdServiceStatusInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -7153,28 +5266,7 @@ VOS_UINT32 TAF_MMA_RcvMsccHrpdServiceStatusInd_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
-Function Name   :   TAF_MMA_RcvMsccHrpdOverheadMsgInd_PreProc
-Description     :   Receive and process the MSCC hrpd overhead msg ind
-Input parameters:   ulEventType-----message ID +pid
-                    pstMsg     -----message content
-Outout parameters:  None
-Return Value    :   VOS_TRUE------------the current event is processed finished
 
-
-Modify History  :
-1)  Date           : 2015-02-04
-    Author         : w00208541
-    Modify content : Create
-1)  Date           : 2015-06-18
-    Author         : l00324781
-    Modify content : Iteration12 TAF_SYS_SUBMODE_ENUM_UINT8修改为TAF_SDC_SYS_SUBMODE_ENUM_UINT8
-
-  3.日    期   : 2015年11月20日
-    作    者   : Y00213812
-    修改内容   : 收到DO的系统消息暂不上报^MODE，等搜网或session协商结束后再
-                 上报
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccHrpdOverheadMsgInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -7220,21 +5312,7 @@ VOS_UINT32 TAF_MMA_RcvMsccHrpdSysAcqCnf_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_GetPriCdmaSrvMode
- 功能描述  : 获取当前高优先级的服务模式
- 输入参数  : TAF_SDC_SYS_MODE_ENUM_UINT8         enSysMode
- 输出参数  : 无
- 返 回 值  : MMA_TAF_RAT_TYPE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月10日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 MMA_TAF_RAT_TYPE_ENUM_UINT32 TAF_MMA_GetPriCdmaSrvMode(
     TAF_SDC_SYS_MODE_ENUM_UINT8         enSysMode
 )
@@ -7308,22 +5386,7 @@ VOS_UINT32 TAF_MMA_RcvMsccCLSysAcqEndInd_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_Rcv1xChanSetReq_PreProc
- 功能描述  : MMA预处理中处理^1XCHAN设置命令
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月16日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_Rcv1xChanSetReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -7371,21 +5434,7 @@ VOS_UINT32 TAF_MMA_Rcv1xChanSetReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvQuery1xChanReq_PreProc
- 功能描述  : MMA预处理中处理^CVER查询命令
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月16日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvQuery1xChanReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -7431,21 +5480,7 @@ VOS_UINT32 TAF_MMA_RcvQuery1xChanReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvAtQueryCVER_PreProc
- 功能描述  : MMA预处理中处理^CVER查询命令
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月16日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvQueryCVerReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -7491,22 +5526,7 @@ VOS_UINT32 TAF_MMA_RcvQueryCVerReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvQueryStateReq_PreProc
- 功能描述  : MMA预处理中处理^GETST查询命令
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月16日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvQueryStateReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -7551,22 +5571,7 @@ VOS_UINT32 TAF_MMA_RcvQueryStateReq_PreProc(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvQueryHighVerReq_PreProc
- 功能描述  : MMA预处理中处理^CHIGHVER设置命令
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月16日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvQueryHighVerReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -7608,21 +5613,7 @@ VOS_UINT32 TAF_MMA_RcvQueryHighVerReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccHandsetInfoQryCnf_PreProc
- 功能描述  : 处理MSCC上报手机信息的处理结果
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月22日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccHandsetInfoQryCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -7650,21 +5641,7 @@ VOS_UINT32 TAF_MMA_RcvMsccHandsetInfoQryCnf_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_CasStateQry_Proc
- 功能描述  : 处理MSCC上报手机状态信息的处理结果
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月22日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_CasStateQry_Proc(
     VOS_UINT8                           ucCasState,
     VOS_UINT8                           ucCasSubSta
@@ -7707,21 +5684,7 @@ VOS_VOID TAF_MMA_CasStateQry_Proc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_CasStateConvert_Proc
- 功能描述  : 处理状态转换
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月22日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_CasStateConvert_Proc(
     VOS_UINT8                           ucCasState,
     VOS_UINT8                           ucCasSubSta,
@@ -7807,21 +5770,7 @@ VOS_VOID TAF_MMA_CasStateConvert_Proc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_HighVerQry_Proc
- 功能描述  : 处理MSCC上报手机版本信息的处理结果
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月22日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_HighVerQry_Proc(
     MSCC_MMA_1X_CAS_P_REV_ENUM_UINT8    enHighVer
 )
@@ -7860,22 +5809,7 @@ VOS_VOID TAF_MMA_HighVerQry_Proc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTiWaitMsccStateQryCnfExpired_PreProc
- 功能描述  : MMA预处理中处理^GETST查询命令超时
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月16日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTiWaitMsccStateQryCnfExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -7899,22 +5833,7 @@ VOS_UINT32 TAF_MMA_RcvTiWaitMsccStateQryCnfExpired_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTiWaitMsccHVerQryCnfExpired_PreProc
- 功能描述  : MMA预处理中处理^CHIGHVER查询命令超时
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月16日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTiWaitMsccHVerQryCnfExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -7939,22 +5858,7 @@ VOS_UINT32 TAF_MMA_RcvTiWaitMsccHVerQryCnfExpired_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvHsmHrpdSysInfoInd_PreProc
- 功能描述  : MMA收到HSM的hrpd的sys info上报处理，用于可维可测
- 输入参数  : VOS_UINT32                          ulEventType,
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月4日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvHsmHrpdSysInfoInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -7976,22 +5880,7 @@ VOS_UINT32 TAF_MMA_RcvHsmHrpdSysInfoInd_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvHsmHardwareSysInfoInd_PreProc
- 功能描述  : 保存HSM发来的HARDWARE INFO到SDC
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月6日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_MMA_RcvHsmHardwareSysInfoInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8012,22 +5901,7 @@ VOS_UINT32  TAF_MMA_RcvHsmHardwareSysInfoInd_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvOmCdmaStatusInfoReportReq_PreProc
- 功能描述  : 收到OM的cdma可维可测查询请求消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月4日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvOmCdmaStatusInfoReportReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8077,22 +5951,7 @@ VOS_UINT32 TAF_MMA_RcvOmCdmaStatusInfoReportReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTiCdmaSysInfoReport_PreProc
- 功能描述  : 定时上报cdma sysinfo给om
- 输入参数  :  VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月10日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTiCdmaSysInfoReport_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8106,31 +5965,7 @@ VOS_UINT32 TAF_MMA_RcvTiCdmaSysInfoReport_PreProc(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMscc1XSidNidInd_PreProc
- 功能描述  : 处理mscc发过来的sid、nid主动上报消息
- 输入参数  :  VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月9日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-  2.日    期   : 2015年9月30日
-    作    者   : j00354216
-    修改内容   : CDMA Iteration 18 修改
-  3.日    期   : 2015年12月15日
-    作    者   : l00359089
-    修改内容   : SID上报不受延时上报控制, 且SID 的值保存在 pstSdcCtx->stNetworkInfo.lSid 中
-  4.日    期   : 2015年12月10日
-    作    者   : l00324781
-    修改内容   : CL_MUTIMODE_OPTIMIZE修改
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMscc1XSidNidInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8156,22 +5991,7 @@ VOS_UINT32 TAF_MMA_RcvMscc1XSidNidInd_PreProc(
 
     return VOS_TRUE;
 }
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvQuitCallBackReq_PreProc
- 功能描述  : AT QCCB请求处理
- 输入参数  :  VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月9日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvQuitCallBackInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8188,25 +6008,7 @@ VOS_UINT32 TAF_MMA_RcvQuitCallBackInd_PreProc(
 
     return VOS_TRUE;
 }
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMscc1XEmcCallBackNtf_PreProc
- 功能描述  : xsd call back  透传上报
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月14日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-  2.日    期   : 2016年1月6日
-    作    者   : w00242748
-    修改内容   : DTS2015072705348:进入紧急呼回呼模式后，挂起HRPD和LTE；退出紧急呼
-                 回呼模式后，再进行搜网，紧急呼回呼模式下，不进行其他任何形式搜网；
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMscc1XEmcCallBackNtf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8230,22 +6032,7 @@ VOS_UINT32 TAF_MMA_RcvMscc1XEmcCallBackNtf_PreProc(
 
     return VOS_TRUE;
 }
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvSetCSidListReq_PreProc
- 功能描述  : AT CSIDLIST req
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月13日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvSetCSidListReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8296,22 +6083,7 @@ VOS_UINT32 TAF_MMA_RcvSetCSidListReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccSetCSidListCnf
- 功能描述  : 收到mscc 关于csidlist set的结果消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月13日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccSetCSidListCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8345,22 +6117,7 @@ VOS_UINT32 TAF_MMA_RcvMsccSetCSidListCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvQryEmcCallBackMode_PreProc
- 功能描述  : 查询当前是否在紧急呼callback模式下
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月14日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvQryEmcCallBackMode_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8397,22 +6154,7 @@ VOS_UINT32 TAF_MMA_RcvQryEmcCallBackMode_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvXcc1xCallStateInd_PreProc
- 功能描述  : XCC 1x call state 上报消息处理
- 输入参数  : VOS_UINT32                          ulEventType,
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月22日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvXcc1xCallStateInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8453,23 +6195,7 @@ VOS_UINT32 TAF_MMA_RcvXcc1xCallStateInd_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvXsdUeStateInd_PreProc
- 功能描述  : 收到XSD STATE IND的预处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE: 消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月11日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccUeStateInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8486,21 +6212,7 @@ VOS_UINT32 TAF_MMA_RcvMsccUeStateInd_PreProc(
 
     return VOS_TRUE;
 }
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcHdrCsqSetReq_PreProc
- 功能描述  : 处理TAF信号强度上报设置请求
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : C00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_ProcHdrCsqSetReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8573,21 +6285,7 @@ VOS_UINT32 TAF_MMA_ProcHdrCsqSetReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccHdrCsqSetCnf_PreProc
- 功能描述  : 处理HSD信号强度上报设置的处理结果
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : C00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccHdrCsqSetCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8642,21 +6340,7 @@ VOS_UINT32 TAF_MMA_RcvMsccHdrCsqSetCnf_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccHdrCsqInd_PreProc
- 功能描述  : 主动上报信号强度
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : C00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccHdrCsqInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8708,21 +6392,7 @@ VOS_UINT32 TAF_MMA_RcvMsccHdrCsqInd_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvHdrCsqQryReq_PreProc
- 功能描述  : 查询信号强度上报的设置
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvHdrCsqQryReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8772,22 +6442,7 @@ VOS_UINT32 TAF_MMA_RcvHdrCsqQryReq_PreProc(
 
 
 
-/*****************************************************************************
-  函 数 名  : TAF_MMA_RcvTiCLDelayRptCsServiceStatusExpired_PreProc
-  功能描述  : TI_TAF_MMA_CDMA_CS_SERVICE_STATUS_DELAY_REPORT超时处理
-  输入参数  : ulEventType
-             pstMsg
 
-  输出参数  : 无
-  返 回 值  : VOS_TRUE
-  调用函数  :
-  被调函数  :
-
-  修改历史  :
-1.日    期  : 2015年9月30日
-  作    者  : j00354216
-  修改内容  : CDMA Iteration 18 新增
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTiCLDelayRptCsServiceStatusExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8859,22 +6514,7 @@ VOS_UINT32 TAF_MMA_RcvTiCLDelayRptCsServiceStatusExpired_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
-  函 数 名  : TAF_MMA_RcvTiCLDelayRptPsServiceStatusExpired_PreProc
-  功能描述  : TI_TAF_MMA_CDMA_PS_SERVICE_STATUS_DELAY_REPORT超时处理
-  输入参数  : ulEventType
-             pstMsg
 
-  输出参数  : 无
-  返 回 值  : VOS_TRUE
-  调用函数  :
-  被调函数  :
-
-  修改历史  :
-1.日    期  : 2015年9月30日
-  作    者  : j00354216
-  修改内容  : CDMA Iteration 18 新增
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTiCLDelayRptPsServiceStatusExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8999,22 +6639,7 @@ VOS_UINT32 TAF_MMA_RcvTiCLDelayRptPsServiceStatusExpired_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvQryCurrSidNid_PreProc
- 功能描述  : 查询当前系统驻留的sid nid
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvQryCurrSidNid_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -9052,21 +6677,7 @@ VOS_UINT32 TAF_MMA_RcvQryCurrSidNid_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccDataCallRedialSysAcqInd_PreProc
- 功能描述  : 处理MSCC上报数据呼的搜网结果
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月16日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccDataCallRedialSysAcqInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -9084,24 +6695,7 @@ VOS_UINT32 TAF_MMA_RcvMsccDataCallRedialSysAcqInd_PreProc(
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccSystemAcquireStartInd_PreProc
- 功能描述  : 处理MSCC上报的搜网开始消息
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
-  1.日    期  : 2013年10月09日
-    作    者  : l00208543
-    修改内容  : 新生成函数,DTS2013100904573
-  2.日    期  : 2015年6月04日
-    作    者  : w00176964
-    修改内容  : CDMA Iteration 15 Modified
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccSystemAcquireStartInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -9130,42 +6724,7 @@ VOS_UINT32 TAF_MMA_RcvMsccSystemAcquireStartInd_PreProc(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccSystemAcquireEndInd_PreProc
- 功能描述  : 根据不同的接入技术设置等待挂起回复的状态
- 输入参数  : enPlmnSelectionRslt: 搜网结果
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年7月11日
-    作    者  : s46746
-    修改内容  : 新生成函数
-  2.日    期   : 2012年10月19日
-    作    者   : s46746
-    修改内容   : DTS2012101902505,开机搜网无服务时，报一次Location status event事件
-  3.日    期   : 2013年4月2日
-    作    者   : z00161729
-    修改内容   : 主动上报AT命令控制下移至C核及mma和mscc接口调整
-  4.日    期   : 2012年07月15日
-    作    者   : w00176964
-    修改内容   : VoLTE_PhaseI项目修改:修改函数参数和返回值
-  5.日    期   : 2013年10月9日
-    作    者   : l00208543
-    修改内容   : DTS2013100904573
-  6.日    期   : 2015年06月04日
-    作    者   : w00176964
-    修改内容   : CDMA Iteration 15 Modified
-  7.日    期   : 2015年10月10日
-    作    者   : l00324781
-    修改内容   : CDMA Iteration 18 Modified
-
-  8.日    期   : 2015年11月21日
-    作    者   : Y00213812
-    修改内容   : 增加搜网失败后服务模式的上报
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccSystemAcquireEndInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -9299,20 +6858,7 @@ VOS_UINT32 TAF_MMA_RcvMsccSystemAcquireEndInd_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvCopsFormatTypeSetReq_PreProc
- 功能描述  : MMA模块收到AT模块发送的cops format type set req
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2015年3月9日
-    作    者   : z00161729
-    修改内容   : AT&T 支持EONS特性修改
-*****************************************************************************/
+
 VOS_UINT32 TAF_MMA_RcvCopsFormatTypeSetReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -9331,20 +6877,7 @@ VOS_UINT32 TAF_MMA_RcvCopsFormatTypeSetReq_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvUsimStubSetReq_PreProc
- 功能描述  : MMA模块收到AT模块发送的usim stub set req
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2015年3月31日
-    作    者   : z00161729
-    修改内容   : AT&T 支持EONS特性修改
-*****************************************************************************/
+
 VOS_UINT32 TAF_MMA_RcvUsimStubSetReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -9407,20 +6940,7 @@ VOS_UINT32 TAF_MMA_RcvUsimStubSetReq_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvRefreshStubSetReq_PreProc
- 功能描述  : MMA模块收到AT模块发送的refresh stub set req
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2015年3月31日
-    作    者   : z00161729
-    修改内容   : AT&T 支持EONS特性修改
-*****************************************************************************/
+
 VOS_UINT32 TAF_MMA_RcvRefreshStubSetReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -9472,22 +6992,7 @@ VOS_UINT32 TAF_MMA_RcvRefreshStubSetReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvCSServiceDisconnExpired_PreProc
- 功能描述  : 等待cs 业务结束的超时处理
- 输入参数  : ulEventType
-             pstMsg
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年2月15日
-    作    者   : c00318887
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvCSServiceDisconnExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -9508,21 +7013,7 @@ VOS_UINT32 TAF_MMA_RcvCSServiceDisconnExpired_PreProc(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvWaitReadSimFilesExpired_PreProc
- 功能描述  : 读卡文件保护定时器超时的处理
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月15日
-    作    者   : z00161729
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvWaitReadSimFilesExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                        *pstMsg
@@ -9534,20 +7025,7 @@ VOS_UINT32 TAF_MMA_RcvWaitReadSimFilesExpired_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvAutoReselStubSetReq_PreProc
- 功能描述  : MMA模块收到AT模块发送的refresh stub set req
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2015年5月30日
-    作    者   : b00269685
-    修改内容   : new
-*****************************************************************************/
+
 VOS_UINT32 TAF_MMA_RcvAutoReselStubSetReq_PreProc(
     VOS_UINT32                                              ulEventType,
     struct MsgCB                                           *pstMsg
@@ -9565,25 +7043,8 @@ VOS_UINT32 TAF_MMA_RcvAutoReselStubSetReq_PreProc(
 }
 
 
-/* Add by s00217060 for K3V3 多模多天线特性, 2014-06-27, Begin */
-/*lint -e958 修改人: j00174725; */
 #if (FEATURE_MULTI_MODEM == FEATURE_ON)
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccPsServiceConnStatusInd_PreProc
- 功能描述  : 收到MSCC模块PS域的连接状态信息
- 输入参数  : ulEventType
-             pstMsg
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年6月27日
-    作    者   : s00217060
-    修改内容   : K3V3 多模多天线特性
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccPsServiceConnStatusInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -9635,29 +7096,11 @@ VOS_UINT32 TAF_MMA_RcvMsccPsServiceConnStatusInd_PreProc(
     return VOS_TRUE;
 }
 #endif
-/*lint +e958 修改人: j00174725; */
-/* Add by s00217060 for K3V3 多模多天线特性, 2014-06-27, End */
 
 
 
 #if (FEATURE_ON == FEATURE_IMS)
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTafImsSrvInfoNotify_PreProc
- 功能描述  : 收到TAF的ID_TAF_MMA_IMS_SRV_INFO_NOTIFY信息的处理
- 输入参数  : ulEventType
-             pstMsg
 
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:消息处理完成
-             VOS_FALSE:消息未处理完成
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年11月06日
-    作    者   : s00217060
-    修改内容   : DTS2014110608091:IMS电话时不处理cs域的paging ind
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTafImsSrvInfoNotify_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -9673,23 +7116,7 @@ VOS_UINT32 TAF_MMA_RcvTafImsSrvInfoNotify_PreProc(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTafImsSwitchQryReq_PreProc
- 功能描述  : 收到TAF的ID_TAF_MMA_IMS_SWITCH_QRY_REQ信息的处理
- 输入参数  : ulEventType
-             pstMsg
 
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:消息处理完成
-             VOS_FALSE:消息未处理完成
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年02月04日
-    作    者   : f00179208
-    修改内容   : IMS动态开关配置项目
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTafImsSwitchQryReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -9714,23 +7141,7 @@ VOS_UINT32 TAF_MMA_RcvTafImsSwitchQryReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTafVoiceDomainSetReq_PreProc
- 功能描述  : 收到TAF的ID_TAF_MMA_VOICE_DOMAIN_SET_REQ信息的处理
- 输入参数  : ulEventType
-             pstMsg
 
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:消息处理完成
-             VOS_FALSE:消息未处理完成
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年02月04日
-    作    者   : f00179208
-    修改内容   : IMS动态开关配置项目
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTafVoiceDomainSetReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -9804,23 +7215,7 @@ VOS_UINT32 TAF_MMA_RcvTafVoiceDomainSetReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTafVoiceDomainQryReq_PreProc
- 功能描述  : 收到TAF的ID_TAF_MMA_VOICE_DOMAIN_QRY_REQ信息的处理
- 输入参数  : ulEventType
-             pstMsg
 
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:消息处理完成
-             VOS_FALSE:消息未处理完成
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年02月04日
-    作    者   : f00179208
-    修改内容   : IMS动态开关配置项目
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTafVoiceDomainQryReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -9838,27 +7233,7 @@ VOS_UINT32 TAF_MMA_RcvTafVoiceDomainQryReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccImsSwitchStateInd_PreProc
- 功能描述  : 收到MSCC模块的IMS开关机状态指示处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年04月15日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-
- 2.日    期   : 2015年03月13日
-   作    者   : l00198894
-   修改内容   : VOLTE Randk1方案项目
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccImsSwitchStateInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -9885,26 +7260,7 @@ VOS_UINT32 TAF_MMA_RcvMsccImsSwitchStateInd_PreProc(
 
 
 #if ( FEATURE_ON == FEATURE_LTE )
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccLmmCellSignReportInd_PreProc
- 功能描述  : 收到MMC上报的LMM  的信号量的消息
- 输入参数  : ID_MMC_MMA_LMM_CELL_SIGN_INFO_REPORT_IND *pMsg MMC上传得数据类型
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月28日
-    作    者   : w00281933
-    修改内容   : 新生成函数(服务状态显示优化Phase I)
-  2.日    期   : 2015年4月28日
-    作    者   : b00269685
-    修改内容   : add rat of rssi
-  3.日    期   : 2015年10月8日
-    作    者   : l00324781
-    修改内容   : Iteration 18 ,CL模服务状态显示优化
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccLmmCellSignReportInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -9955,53 +7311,7 @@ VOS_UINT32 TAF_MMA_RcvMsccLmmCellSignReportInd_PreProc(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccRssiInd_PreProc
- 功能描述  : 收到MSCC上报的MSCC_RSSI_IND消息
- 输入参数  : MSCC_MMA_RSSI_IND_STRU *pMsg MSCC上传得数据类型
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2005年9月24日
-    作    者   : liuyang
-    修改内容   : 新生成函数
-  2.日    期   : 2006年3月16日
-    作    者   : liuyang id:48197
-    修改内容   : 问题单号：A32D02382
-
-  3.日    期   : 2012年5月26日
-    作    者   : z40661
-    修改内容   : DTS2012050803419,判断信号强度过小时,需要在信号强度发生变化时,主动上报一次服务状态
-
-  4.日    期   : 2012年6月5日
-    作    者   : z40661
-    修改内容   : DTS2012042602737，与终端产品线达成一致，删除AT^sysinfo信号
-                 门限的判断
-  5.日    期   : 2013年2月4日
-    作    者   : t00212959
-    修改内容   : DTS2013020600770:at^cerssi?增加返回参数
-  6.日    期   : 2013年4月2日
-    作    者   : z00161729
-    修改内容   : 主动上报AT命令控制下移至C核及mma和mmc接口调整
-  7.日    期   : 2012年07月15日
-    作    者   : w00176964
-    修改内容   : VoLTE_PhaseI项目修改:修改函数参数和返回值
-  8.日    期   : 2014年06月4日
-    作    者   : b00269685
-    修改内容   : 增加判断是否需要上报
-  10.日    期   : 2014年11月28日
-    作    者   : w00281933
-    修改内容   : 注册状态显示优化Phase I
-  11.日    期   : 2015年4月28日
-    作    者   : b00269685
-    修改内容   : rssi信息需要携带rat
-  12.日    期   : 2015年10月8日
-    作    者   : l00324781
-    修改内容   : Iteration 18 ,CL模服务状态显示优化
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccRssiInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -10009,7 +7319,6 @@ VOS_UINT32 TAF_MMA_RcvMsccRssiInd_PreProc(
 {
     VOS_UINT32                          ulI;
 
-    /* Added by w00176964 for VoLTE_PhaseI项目, 2013-7-15, begin */
     MSCC_MMA_RSSI_IND_STRU              *pMsg;
     TAF_SDC_CTX_STRU                   *pstSdcCtx = VOS_NULL_PTR;
     TAF_SDC_SYS_MODE_ENUM_UINT8         enAppSysMode;
@@ -10022,7 +7331,6 @@ VOS_UINT32 TAF_MMA_RcvMsccRssiInd_PreProc(
 #endif
 
     pMsg            = (MSCC_MMA_RSSI_IND_STRU*)pstMsg;
-    /* Added by w00176964 for VoLTE_PhaseI项目, 2013-7-15, end */
     enAppSysMode    = TAF_SDC_GetAppSysMode();
     pstSdcCtx       = TAF_SDC_GetSdcCtx();
 
@@ -10071,27 +7379,10 @@ VOS_UINT32 TAF_MMA_RcvMsccRssiInd_PreProc(
         TAF_MMA_SndAtRssiInd();
     }
 
-    /* Modified by w00176964 for VoLTE_PhaseI项目, 2013-7-15, begin */
     return VOS_TRUE;
-    /* Modified by w00176964 for VoLTE_PhaseI项目, 2013-7-15, end */
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccSrchedPlmnInfoInd_PreProc
- 功能描述  : 收到MSCC传上来的搜到PLMN信息上报消息
- 输入参数  : ulEventType - 事件类型
-             pstMsg      - 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月15日
-    作    者   : h00285180
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccSrchedPlmnInfoInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -10116,23 +7407,7 @@ VOS_UINT32 TAF_MMA_RcvMsccSrchedPlmnInfoInd_PreProc(
 
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- 函 数 名  : TAF_MMA_IsAutoSrchNetworkAllowedInCLMode_PreProc
- 功能描述  : check在CL模式下，是否允许自动搜索网络
- 输入参数  : 无
 
- 输出参数  : penErrCode -- 返回操作错误码
- 返 回 值  : VOS_TRUE   -- 允许进行自动搜网, 该场景不需要关注错误码；
-             VOS_FALSE  -- 不允许进行自动搜网，该场景需要返回错误码给用户；
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年12月26日
-    作    者   : y00245242
-    修改内容   : 新建
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_IsAutoSrchNetworkAllowedInCLMode_PreProc(
     TAF_ERROR_CODE_ENUM_UINT32         *penErrCode
 )
@@ -10169,32 +7444,7 @@ VOS_UINT32 TAF_MMA_IsAutoSrchNetworkAllowedInCLMode_PreProc(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvPlmnAutoReselReq_PreProc
- 功能描述  : 收到AT的at+cops=0设置的预处理
- 输入参数  : ulEventType - 事件类型
-             pstMsg      - 消息内容
 
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:不需要进一步处理
-             VOS_FALSE:需要进状态机处理
-
-调用函数   :
-被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年2月7日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-  2.日    期   : 2016年1月6日
-    作    者   : w00242748
-    修改内容   : DTS2015072705348:进入紧急呼回呼模式后，挂起HRPD和LTE；退出紧急呼
-                 回呼模式后，再进行搜网，紧急呼回呼模式下，不进行其他任何形式搜网；
-
-  3.日    期   : 2015年12月25日
-    作    者   : y00245242
-    修改内容   : CL模式下，亮屏触发搜网特性开发
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvPlmnAutoReselReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -10248,24 +7498,7 @@ VOS_UINT32 TAF_MMA_RcvPlmnAutoReselReq_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvPlmnSpecialSelReq_PreProc
- 功能描述  : 收到AT的at+cops=0设置的预处理
- 输入参数  : ulEventType - 事件类型
-             pstMsg      - 消息内容
 
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:不需要进一步处理
-             VOS_FALSE:需要进状态机处理
-
-调用函数   :
-被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年2月7日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvPlmnSpecialSelReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -10354,13 +7587,11 @@ VOS_UINT32 TAF_MMA_RcvPlmnSpecialSelReq_PreProc(
         /* svlte nv开启允许关机状态设置cops */
         if (TAF_PH_MODE_FULL != TAF_SDC_GetCurPhoneMode())
         {
-            /* Modified by b00269685 for Fortify 清理, 2014-7-22, begin */
             (VOS_VOID)TAF_MMA_RcvPlmnSelectionReq_PowerOff(pstPlmnUserSelMsg,
                                                            stPlmn,
                                                            pstPlmnUserSelMsg->stPlmnUserSel.enAccessMode,
                                                            TAF_PLMN_RESELETION_MANUAL);
             return VOS_TRUE;
-            /* Modified by b00269685 for Fortify 清理, 2014-7-22, end */
         }
 
 
@@ -10401,21 +7632,7 @@ VOS_UINT32 TAF_MMA_RcvPlmnSpecialSelReq_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvLocInfoQryReq_PreProc
- 功能描述  : 处理TAF loc info 上报设置请求
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月7日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvLocInfoQryReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -10440,21 +7657,7 @@ VOS_UINT32 TAF_MMA_RcvLocInfoQryReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvCipherQryReq_PreProc
- 功能描述  : 处理TAF loc info 上报设置请求
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月7日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvCipherQryReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -10468,21 +7671,7 @@ VOS_UINT32 TAF_MMA_RcvCipherQryReq_PreProc(
 
     return VOS_TRUE;
 }
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvPowerDownReq_PreProc
- 功能描述  : 处理PrefPlmnType 上报设置请求
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月7日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvPowerDownReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -10512,21 +7701,7 @@ VOS_UINT32 TAF_MMA_RcvPowerDownReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvPrefPlmnTypeSetReq_PreProc
- 功能描述  : 处理TAF loc info 上报设置请求
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月7日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvPrefPlmnTypeSetReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -10555,21 +7730,7 @@ VOS_UINT32 TAF_MMA_RcvPrefPlmnTypeSetReq_PreProc(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvCFPlmnSetReq_PreProc
- 功能描述  : 处理TAF cfplmn 上报设置请求
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月7日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvCFPlmnSetReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -10614,21 +7775,7 @@ VOS_UINT32 TAF_MMA_RcvCFPlmnSetReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvCFPlmnQueryReq_PreProc
- 功能描述  : 处理TAF cfplmn 上报设置请求
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月7日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvCFPlmnQueryReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -10669,22 +7816,7 @@ VOS_UINT32 TAF_MMA_RcvCFPlmnQueryReq_PreProc(
     TAF_MMA_StartTimer(TI_TAF_MMA_WAIT_MSCC_CFPLMN_QUERY_CNF, TI_TAF_MMA_WAIT_MSCC_CFPLMN_QUERY_CNF_LEN);
     return VOS_TRUE;
 }
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccCFPlmnSetCnf_PreProc
- 功能描述  : 收到mscc的cfplmn cnf消息
- 输入参数  : ulEventType - 事件类型
-             pstMsg      - 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE: 消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月7日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccCFPlmnSetCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -10726,22 +7858,7 @@ VOS_UINT32 TAF_MMA_RcvMsccCFPlmnSetCnf_PreProc(
     }
     return VOS_TRUE;
 }
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccCFPlmnQueryCnf_PreProc
- 功能描述  : 收到mscc的cfplmn cnf消息
- 输入参数  : ulEventType - 事件类型
-             pstMsg      - 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE: 消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月7日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccCFPlmnQueryCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -10783,22 +7900,7 @@ VOS_UINT32 TAF_MMA_RcvMsccCFPlmnQueryCnf_PreProc(
     }
     return VOS_TRUE;
 }
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTiWaitMsccCFPlmnSetCnfExpired_PreProc
- 功能描述  : 等待MSCC模块的FPLMN CNF信息超时处理
- 输入参数  : ulEventType
-             pstMsg
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年2月7日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTiWaitMsccCFPlmnSetCnfExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -10820,22 +7922,7 @@ VOS_UINT32 TAF_MMA_RcvTiWaitMsccCFPlmnSetCnfExpired_PreProc(
 
     return VOS_TRUE;
 }
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTiWaitMsccCFPlmnQueryCnfExpired_PreProc
- 功能描述  : 等待MSCC模块的FPLMN CNF信息超时处理
- 输入参数  : ulEventType
-             pstMsg
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年2月7日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTiWaitMsccCFPlmnQueryCnfExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -10859,21 +7946,7 @@ VOS_UINT32 TAF_MMA_RcvTiWaitMsccCFPlmnQueryCnfExpired_PreProc(
 
 }
 
-/**********************************************************
- 函 数 名  : TAF_MMA_RcvMmaPrefPlmnSetReq_PreProc
- 功能描述  : CPOL设置命令处理
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月3日
-    作    者   : y00307564
-    修改内容   : Iteration 8 新生成
-*************************************************************/
 VOS_UINT32 TAF_MMA_RcvMmaPrefPlmnSetReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -10952,21 +8025,7 @@ VOS_UINT32 TAF_MMA_RcvMmaPrefPlmnSetReq_PreProc(
 
     return VOS_TRUE;
 }
-/**********************************************************
- 函 数 名  : TAF_MMA_RcvMmaPrefPlmnTestReq_PreProc
- 功能描述  : CPOL测试命令处理
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月3日
-    作    者   : y00307564
-    修改内容   : Iteration 8 新生成
-*************************************************************/
 VOS_UINT32 TAF_MMA_RcvMmaPrefPlmnTestReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -10996,21 +8055,7 @@ VOS_UINT32 TAF_MMA_RcvMmaPrefPlmnTestReq_PreProc(
     return VOS_TRUE;
 }
 
-/**********************************************************
- 函 数 名  : TAF_MMA_RcvMmaPrefPlmnQueryReq_PreProc
- 功能描述  : CPOL查询命令处理
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月3日
-    作    者   : y00307564
-    修改内容   : Iteration 8新增
-*************************************************************/
 VOS_UINT32 TAF_MMA_RcvMmaPrefPlmnQueryReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -11043,21 +8088,7 @@ VOS_UINT32 TAF_MMA_RcvMmaPrefPlmnQueryReq_PreProc(
     return VOS_TRUE;
 }
 
-/**********************************************************
- 函 数 名  : TAF_MMA_RcvMsccPrefPlmnQueryCnf_PreProc
- 功能描述  : CPOL查询命令处理
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月05日
-    作    者   : y00307564
-    修改内容   : Iteration 8新增
-*************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccPrefPlmnQueryCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -11113,21 +8144,7 @@ VOS_UINT32 TAF_MMA_RcvMsccPrefPlmnQueryCnf_PreProc(
     return VOS_TRUE;
 }
 
-/**********************************************************
- 函 数 名  : TAF_MMA_RcvMsccPrefPlmnSetCnf_PreProc
- 功能描述  : CPOL设置命令处理
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月05日
-    作    者   : y00307564
-    修改内容   : Iteration 8新增
-*************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccPrefPlmnSetCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -11155,22 +8172,7 @@ VOS_UINT32 TAF_MMA_RcvMsccPrefPlmnSetCnf_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTiWaitMsccPrefPlmnSetCnfExpired_PreProc
- 功能描述  : 等待MSCC模块的pref plmn set CNF信息超时处理
- 输入参数  : ulEventType
-             pstMsg
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年02月04日
-    作    者   : y00307564
-    修改内容   : Iteration 8新增
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTiWaitMsccPrefPlmnSetCnfExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -11192,22 +8194,7 @@ VOS_UINT32 TAF_MMA_RcvTiWaitMsccPrefPlmnSetCnfExpired_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTiWaitMsccPrefPlmnQueryCnfExpired_PreProc
- 功能描述  : 等待MSCC模块的pref plmn query CNF信息超时处理
- 输入参数  : ulEventType
-             pstMsg
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年02月04日
-    作    者   : y00307564
-    修改内容   : Iteration 8新增
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTiWaitMsccPrefPlmnQueryCnfExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -11231,22 +8218,7 @@ VOS_UINT32 TAF_MMA_RcvTiWaitMsccPrefPlmnQueryCnfExpired_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTiWaitMsccPrefPlmnTestCnfExpired_PreProc
- 功能描述  : 等待MSCC模块的pref plmn test CNF信息超时处理
- 输入参数  : ulEventType
-             pstMsg
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年02月04日
-    作    者   : y00307564
-    修改内容   : Iteration 8新增
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTiWaitMsccPrefPlmnTestCnfExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -11272,22 +8244,7 @@ VOS_UINT32 TAF_MMA_RcvTiWaitMsccPrefPlmnTestCnfExpired_PreProc(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvCerssiSetReq_PreProc
- 功能描述  : Mma PreProc Cerssi Set Req
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月23日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvCerssiSetReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -11339,24 +8296,7 @@ VOS_UINT32 TAF_MMA_RcvCerssiSetReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvCerssiQryReq_PreProc
- 功能描述  : Mma PreProc Cerssi Qry Req
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月24日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-  2.日    期   : 2015年10月8日
-    作    者   : l00324781
-    修改内容   : Iteration 18 ,CL模服务状态显示优化
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvCerssiQryReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -12100,21 +9040,7 @@ VOS_UINT32 TAF_MMA_RcvPlmnQryReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMmaSetCqstReq_PreProc
- 功能描述  : AT^CQST
- 输入参数  : ulEventType *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月24日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMmaSetCqstReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -12179,22 +9105,7 @@ VOS_UINT32 TAF_MMA_RcvMmaSetCqstReq_PreProc(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMmaQryQuickStartReq_PreProc
- 功能描述  : 快速开机查询命令的消息处理
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月27日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMmaQryQuickStartReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -12240,25 +9151,7 @@ VOS_UINT32 TAF_MMA_RcvMmaQryQuickStartReq_PreProc(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMmaQryCrpnReq_PreProc
- 功能描述  : AT^CRPN设置
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月24日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-  2.日    期   : 2015年3月5日
-    作    者   : b00269685
-    修改内容   : 修改为分段上报
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMmaQryCrpnReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -12407,22 +9300,7 @@ VOS_UINT32 TAF_MMA_RcvMmaQryCrpnReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMmaSetCmmReq_PreProc
- 功能描述  : AT^CMM 设置
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月24日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMmaSetCmmReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -12461,21 +9339,7 @@ VOS_UINT32 TAF_MMA_RcvMmaSetCmmReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMmaTestSyscfgReq_PreProc
- 功能描述  : syscfg test req 消息预处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月26日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMmaTestSyscfgReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -12510,22 +9374,7 @@ VOS_UINT32 TAF_MMA_RcvMmaTestSyscfgReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMmaCsnrQryReq_PreProc
- 功能描述  : CSNR qry 消息处理并回复
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月28日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMmaCsnrQryReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -12573,25 +9422,7 @@ VOS_UINT32 TAF_MMA_RcvMmaCsnrQryReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMmaCsqQryReq_PreProc
- 功能描述  : CSQ QRY消息预处理
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月28日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年10月8日
-    作    者   : l00324781
-    修改内容   : Iteration 18 ,CL模服务状态显示优化
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMmaCsqQryReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -12655,27 +9486,7 @@ VOS_UINT32 TAF_MMA_RcvMmaCsqQryReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMmaCsqLvlQryReq_PreProc
- 功能描述  : csqlvl qry req消息处理
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月28日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-  2.日    期   : 2015年02月11日
-    作    者   : l00305157
-    修改内容   : Service_State_Optimize_PhaseII 项目修改
-  3.日    期   : 2015年10月8日
-    作    者   : l00324781
-    修改内容   : Iteration 18 ,CL模服务状态显示优化
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMmaCsqLvlQryReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -12727,14 +9538,12 @@ VOS_UINT32 TAF_MMA_RcvMmaCsqLvlQryReq_PreProc(
 
     /* 根据信号强度获取到CSQLVLEXT命令的信号格数，CSQLVLEXT仅关心INDEX为0的RSSI值 */
     if (TAF_SDC_REPORT_SRVSTA_NORMAL_SERVICE != TAF_SDC_GetAppServiceStatus())
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-2, end */
     {
      stCsqLvlExtPara.enRssilv = MN_PH_CSQLVLEXT_RSSILV_VALUE_0;
     }
     else
     {
      /*获取当前RSSI的值,调用API*/
-     /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-2, begin */
         if (TAF_SDC_SYS_MODE_GSM == TAF_SDC_GetAppSysMode())
         {
             MN_PH_GetRssilvForCsqlvlExt(TAF_SDC_GetSdcCtx()->stAppNetworkInfo.stAppSigQuaInfo.st3GppRssiInfo.u.st2GCellSignInfo.sRssiValue,
@@ -12747,7 +9556,6 @@ VOS_UINT32 TAF_MMA_RcvMmaCsqLvlQryReq_PreProc(
                                      TAF_SDC_GetAppSysMode(),
                                      &stCsqLvlExtPara.enRssilv);
         }
-     /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-2, end */
     }
     /* 当前版本不支持CSQLVLEXT命令的比特误码率百分比查询，固定返回99 */
     stCsqLvlExtPara.enBer = MN_PH_CSQLVLEXT_BER_VALUE_99;
@@ -12759,22 +9567,7 @@ VOS_UINT32 TAF_MMA_RcvMmaCsqLvlQryReq_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvAccessModeQry_PreProc
- 功能描述  : MMA Pre Process Access Mode Qry Req
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月27日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvAccessModeQry_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -12830,27 +9623,7 @@ VOS_UINT32 TAF_MMA_RcvAccessModeQry_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvCopsQry_PreProc
- 功能描述  : Mma Pre Process Cops Qry Req
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月27日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-  2.日    期   : 2015年04月11日
-    作    者   : w00281933
-    修改内容   : 服务状态优化Phase II
-  3.日    期   : 2016年1月22日
-    作    者   : h00313353
-    修改内容   : DTS2016012202418
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvCopsQry_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -13055,24 +9828,7 @@ VOS_UINT32 TAF_MMA_RcvCopsQry_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvRegStateQryReq_PreProc
- 功能描述  : Mma PreProc reg state Qry Req
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月27日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-  2.日    期   : 2015年9月30日
-    作    者   : j00354216
-    修改内容   : CDMA Iteration 18 修改
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvRegStateQryReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -13149,27 +9905,7 @@ VOS_UINT32 TAF_MMA_RcvRegStateQryReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvSysInfoQryReq_PreProc
- 功能描述  : Mma Pre Proc System Info Qry Req
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月28日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-  2.日    期   : 2015年02月11日
-    作    者   : l00305157
-    修改内容   : Service_State_Optimize_PhaseII 项目修改
-  3.日    期   : 2015年10月8日
-    作    者   : l00324781
-    修改内容   : Iteration 18 ,CL模服务状态显示优化
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvSysInfoQryReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -13237,7 +9973,6 @@ VOS_UINT32 TAF_MMA_RcvSysInfoQryReq_PreProc(
             MMA_GetSysInfoSysMode(&sys_info);
         }
 
-        /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-3, end */
 
         if ( MMA_SIM_IS_LOCK == MMA_GetMeLockStatus() )
         {
@@ -13254,9 +9989,7 @@ VOS_UINT32 TAF_MMA_RcvSysInfoQryReq_PreProc(
         }
         else
         {
-            /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, begin */
             sys_info.ucSimStatus = MMA_GetUsimStatus(VOS_FALSE);
-            /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, end */
         }
 
         TAF_MMA_SndSystemInfoQryCnf(pstRcvMsg, &sys_info);
@@ -13265,24 +9998,7 @@ VOS_UINT32 TAF_MMA_RcvSysInfoQryReq_PreProc(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvAntennaInfoQryReq_PreProc
- 功能描述  : Mma Pre Proc Antenna Info Qry Req
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月30日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-  2.日    期   : 2015年10月8日
-    作    者   : l00324781
-    修改内容   : Iteration 18 ,CL模服务状态显示优化
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvAntennaInfoQryReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -13322,9 +10038,6 @@ VOS_UINT32 TAF_MMA_RcvAntennaInfoQryReq_PreProc(
     }
 #if ( FEATURE_ON == FEATURE_LTE )
     else if(TAF_SDC_SYS_MODE_LTE == enSysMode )
-    /* Add by w00199382 for V7代码同步, 2012-04-07, Begin   */
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-3, begin */
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-3, end */
     {
 
         /*与 at_CsqInfoProc 中RssiLevel处理相同 */
@@ -13342,26 +10055,10 @@ VOS_UINT32 TAF_MMA_RcvAntennaInfoQryReq_PreProc(
     {
         MMA_WARNINGLOG("TAF_MMA_RcvAntennaInfoQryReq_PreProc():RAT IS INVALID");
     }
-/* Add by w00199382 for V7代码同步, 2012-04-07, End   */
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvApHplmnQryReq_PreProc
- 功能描述  : Mma PreProc ApHplmn Qry Req
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月30日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvApHplmnQryReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -13383,20 +10080,7 @@ VOS_UINT32 TAF_MMA_RcvApHplmnQryReq_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvDplmnQryReq_PreProc
- 功能描述  : MMA收到TAF发送的ID_TAF_MMA_DPLMN_QRY_REQ消息的预处理
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月16日
-    作    者   : n00355355
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvDplmnQryReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -13419,20 +10103,7 @@ VOS_UINT32 TAF_MMA_RcvDplmnQryReq_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvDplmnSetReq_PreProc
- 功能描述  : mma 收到ID_TAF_MMA_DPLMN_SET_REQ消息的处理
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月12日
-    作    者   : n00355355
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvDplmnSetReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -13523,36 +10194,30 @@ VOS_UINT32 TAF_MMA_RcvHandShakeQry_PreProc(
     VOS_UINT8                           aucBuf[AT_HS_PARA_MAX_LENGTH];
     VOS_UINT8                          *pPara = VOS_NULL_PTR;
     VOS_UINT32                          ulId;
-    /* Added by w00176964 for VoLTE_PhaseI项目, 2013-7-12, begin */
     VOS_UINT8                           ucPhoneMode;
 
     pstRcvMsg   = (TAF_MMA_HAND_SHAKE_QRY_REQ_STRU *)pstMsg;
 
     ucPhoneMode = TAF_SDC_GetCurPhoneMode();
-    /* Added by w00176964 for VoLTE_PhaseI项目, 2013-7-12, end */
 
     ulId        = MMA_HS_ID;
     PS_MEM_CPY(aucBuf, &ulId, sizeof(VOS_UINT32));                              /*id*/
 
     aucBuf[4]   = MMA_HS_PROTOCOL_APP;                                            /*protocol*/
 
-    /* Modified by w00176964 for VoLTE_PhaseI项目, 2013-7-12, begin */
     if ((TAF_PH_MODE_FULL == ucPhoneMode)                    /*UE CUR CFUN MODE*/
      || (TAF_PH_MODE_FT == ucPhoneMode))
     {
         aucBuf[5] = MMA_HS_ONLINE;
     }
-    /* BEGIN: Modified by w00199382, 2012/4/4   问题单号:DTS2012031906134*/
     else if (TAF_PH_MODE_RFOFF == ucPhoneMode)
     {
         aucBuf[5] = MMA_HS_OFFLINE;
     }
-    /* END: Modified by w00199382, 2012/4/4   问题单号:DTS2012031906134*/
     else
     {
         aucBuf[5] = MMA_HS_LPM;
     }
-    /* Modified by w00176964 for VoLTE_PhaseI项目, 2013-7-12, end */
 
     aucBuf[6] = MMA_HS_PRODUCT_CLASS_GW;                                        /*product_class*/
     aucBuf[7] = MMA_HS_PRODUCT_ID;                                              /*product id*/
@@ -13565,22 +10230,7 @@ VOS_UINT32 TAF_MMA_RcvHandShakeQry_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTiWaitMsccPlmnAutoSelCnfExpired_PreProc
- 功能描述  : 等待MSCC模块的PLMN AUTO RESEL CNF信息超时处理
- 输入参数  : ulEventType
-             pstMsg
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年4月2日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTiWaitMsccPlmnAutoSelCnfExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -13604,22 +10254,7 @@ VOS_UINT32 TAF_MMA_RcvTiWaitMsccPlmnAutoSelCnfExpired_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTiWaitMsccAbortSpecPlmnSelCnfExpired_PreProc
- 功能描述  : 等待MSCC模块的PLMN special RESEL CNF信息超时处理
- 输入参数  : ulEventType
-             pstMsg
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年4月2日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTiWaitMsccAbortSpecPlmnSelCnfExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -13643,25 +10278,7 @@ VOS_UINT32 TAF_MMA_RcvTiWaitMsccAbortSpecPlmnSelCnfExpired_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTiWaitMsccSpecPlmnSelCnfExpired_PreProc
- 功能描述  : 等待MSCC模块的PLMN special abort CNF信息超时处理
- 输入参数  : ulEventType
-             pstMsg
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年4月2日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-  2.日    期   : 2016年1月18日
-    作    者   : z00359541
-    修改内容   : DTS2016011901728: AT命令超时后更新MMA状态为手动搜
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTiWaitMsccSpecPlmnSelCnfExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -13692,22 +10309,7 @@ VOS_UINT32 TAF_MMA_RcvTiWaitMsccSpecPlmnSelCnfExpired_PreProc(
 
     return VOS_TRUE;
 }
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTiWaitMsccPlmnListAbortCnfExpired_PreProc
- 功能描述  : 等待MSCC模块的PLMN list abort CNF信息超时处理
- 输入参数  : ulEventType
-             pstMsg
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年4月2日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTiWaitMsccPlmnListAbortCnfExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -13754,22 +10356,7 @@ VOS_UINT32 TAF_MMA_RcvTiWaitMsccPlmnListAbortCnfExpired_PreProc(
 
     return VOS_TRUE;
 }
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcAutoAttachSetReq_PreProc
- 功能描述  : 根据服务模式启动attach过程
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月9日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_ProcAutoAttachSetReq_PreProc(VOS_VOID)
 {
     TAF_MMA_ATTACH_TYPE_ENUM_UINT8      enAttachType;
@@ -13839,21 +10426,7 @@ VOS_VOID TAF_MMA_ProcAutoAttachSetReq_PreProc(VOS_VOID)
 }
 
 #if (FEATURE_ON == FEATURE_CSG)
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTafCsgListSearchReq_PreProc
- 功能描述  : CSG 列表搜网请求预处理
- 输入参数  : ulEventType - 事件类型
-             pstMsg     - 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月6日
-    作    者   : z00161729
-    修改内容   : 支持LTE CSG功能新增
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTafCsgListSearchReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -13943,21 +10516,7 @@ VOS_UINT32 TAF_MMA_RcvTafCsgListSearchReq_PreProc(
 
     return VOS_FALSE;
 }
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTiWaitMsccCsgListSearchCnfExpired_PreProc
- 功能描述  : CSG list搜网定时器超时处理
- 输入参数  : ulEventType - 事件类型
-             pstMsg     - 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月8日
-    作    者   : z00161729
-    修改内容   : 支持LTE CSG功能新增
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTiWaitMsccCsgListSearchCnfExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -13984,21 +10543,7 @@ VOS_UINT32 TAF_MMA_RcvTiWaitMsccCsgListSearchCnfExpired_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTiWaitMsccCsgListAbortCnfExpired_PreProc
- 功能描述  : CSG list abort定时器超时处理
- 输入参数  : ulEventType - 事件类型
-             pstMsg     - 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月8日
-    作    者   : z00161729
-    修改内容   : 支持LTE CSG功能新增
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTiWaitMsccCsgListAbortCnfExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -14046,22 +10591,7 @@ VOS_UINT32 TAF_MMA_RcvTiWaitMsccCsgListAbortCnfExpired_PreProc(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMmaSetAutoAttachReq_PreProc
- 功能描述  : AT^CAATT
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月25日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMmaSetAutoAttachReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -14146,12 +10676,10 @@ VOS_UINT32 TAF_MMA_RcvMmaSetAutoAttachReq_PreProc(
         if ((MMA_AUTO_ATTACH_DISABLE  == ucAutoAttachFlg)
             &&(MMA_AUTO_ATTACH_ENABLE == ulMsgAutoAttachFlg))
         {
-            /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-3, begin */
             if ( (TAF_SDC_SERVICE_STATUS_NORMAL_SERVICE != TAF_SDC_GetPsServiceStatus())
               && ( (STA_FSM_NULL     != g_StatusContext.ulFsmState)
                 && (STA_FSM_STOP     != g_StatusContext.ulFsmState) )
               && (TAF_PH_MS_CLASS_CC != g_StatusContext.ucModeService)  )
-            /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-3, end */
             {
                 TAF_MMA_ProcAutoAttachSetReq_PreProc();
             }
@@ -14161,22 +10689,7 @@ VOS_UINT32 TAF_MMA_RcvMmaSetAutoAttachReq_PreProc(
     return VOS_TRUE;
 
 }
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMmaQryAutoAttachReq_PreProc
- 功能描述  : Mma Pre Process Qry Auto Attach Info Req
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月28日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMmaQryAutoAttachReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -14223,22 +10736,7 @@ VOS_UINT32 TAF_MMA_RcvMmaQryAutoAttachReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvDetachReq_PreProc
- 功能描述  : 收到DetachReq消息的预处理
- 输入参数  : ulEventType:消息类型
-             pstMsg:消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:不需要进入状态机,VOS_FALSE:需要进入状态机继续执行
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月13日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvDetachReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -14294,22 +10792,7 @@ VOS_UINT32 TAF_MMA_RcvDetachReq_PreProc(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvAttachReq_PreProc
- 功能描述  : 收到ID_TAF_MMA_ATTACH_REQ的预处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月20日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvAttachReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -14319,7 +10802,6 @@ VOS_UINT32 TAF_MMA_RcvAttachReq_PreProc(
 
     pstAttachReqMsg   = (TAF_MMA_ATTACH_REQ_STRU *)pstMsg;
 
-    /* Added by s00261364 for L-C互操作项目, 2014-1-27, begin */
     /* 如果是C+L模式 */
     if (VOS_TRUE == TAF_MMA_IsPowerOnCLInterWork())
     {
@@ -14330,7 +10812,6 @@ VOS_UINT32 TAF_MMA_RcvAttachReq_PreProc(
 
         return VOS_TRUE;
     }
-    /* Added by s00261364 for L-C互操作项目, 2014-1-27, end */
 
     /* 参数有效性检查 */
     if (pstAttachReqMsg->enAttachType > TAF_MMA_ATTACH_TYPE_GPRS_IMSI)
@@ -14361,26 +10842,7 @@ VOS_UINT32 TAF_MMA_RcvAttachReq_PreProc(
 }
 
 
-/**********************************************************
- 函 数 名  : TAF_MMA_RcvAttachStatusQry_PreProc
- 功能描述  : 获取注册状态
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月15日
-    作    者   : c00173809
-    修改内容   : AT 融合项目,调用API获取域的注册状态。
-  2.日    期   : 2012年07月15日
-    作    者   : w00176964
-    修改内容   : VoLTE_PhaseI项目修改:修改函数参数和返回值
-  3.日    期   : 2015年4月17日
-    作    者   : h00313353
-    修改内容   : SysCfg Reconsitution
-*************************************************************/
 VOS_UINT32 TAF_MMA_RcvAttachStatusQry_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -14403,21 +10865,7 @@ VOS_UINT32 TAF_MMA_RcvAttachStatusQry_PreProc(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_IsNeedProcUsimStatusIndInFsmPhoneMode
- 功能描述  : 是否需要在phone mode状态机里处理卡状态上报
- 输入参数  : VOS_UINT32                          ulFsmTopState
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月19日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_IsNeedProcUsimStatusIndInFsmPhoneMode(
     VOS_UINT32                          ulFsmTopState
 )
@@ -14441,20 +10889,7 @@ VOS_UINT32 TAF_MMA_IsNeedProcUsimStatusIndInFsmPhoneMode(
 }
 
 
-/*****************************************************************************
- Function Name     :  TAF_MMA_RcvTafPsRatTypeNtf_PreProc
- Description       :  消息透传
 
- Input parameters  :   VOS_UINT32                          ulEventType,
-                       struct MsgCB                       *pstMsg
- Outout parameters :
- Return Value      :   VOS_UINT32
-
- Modify History:
-     1)  Date      :   2015-06-01
-         Author    :   y00314741
-         Modify content :    Create
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTafPsRatTypeNtf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -14471,23 +10906,7 @@ VOS_UINT32 TAF_MMA_RcvTafPsRatTypeNtf_PreProc(
 
 #if 0
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccInterSysStartInd_PreProc
- 功能描述  : 收到MSCC_MMA_INTERSYS_START_IND_STRU的预处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE: 消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月1日
-    作    者   : l00324781
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccInterSysStartInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg

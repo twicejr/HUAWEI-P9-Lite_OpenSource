@@ -1,28 +1,4 @@
-/*******************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : MM_Share.c
-  Description :
-  Function List:
-              Mm_AtTest
-              Mm_AtTest_GetGmmRegState
-              Mm_AtTest_GetGmmState
-              Mm_AtTest_GetGprsState
-              Mm_AtTest_GetMmRegState
-              Mm_AtTest_GetMmState
-              Mm_StartRelTimer
-              Mm_StopRelTimer
-  History     :
-      1.张志勇   2004.03.10 新规作成
-      2.日    期   : 2008年5月7日
-        作    者   : luojian id:107747
-        修改内容  : 根据问题单号AT2D03294,增加MM测试命令
-      3.日    期   : 2008年09月03日
-        作    者   : o00132663
-        修改内容  : 问题单号：AT2D05469,扩展^CMM命令.
-      4.日    期   : 2009年05月04日
-        作    者   : l00130025
-        修改内容   : 问题单号：AT2D11646,当网侧配置T3212的值为255时,MM启动18小时定时器,导致单板复位.
-*******************************************************************************/
+
 
 /*****************************************************************************
   1 头文件包含
@@ -32,9 +8,7 @@
 
 #include "MnComm.h"
 #include "NasMmcCtx.h"
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
 #include "TafStdlib.h"
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -62,21 +36,7 @@ VOS_UINT32                              g_ulGmmDelaySuspendRsp = 0;
 
 /*lint -save -e958 */
 
-/*****************************************************************************
- 函 数 名  : Mm_AtTest_GetGprsState
- 功能描述  : 获取GPRS移动性管理状态
- 输入参数  : NAS_TEST_AT_RSLT_STRU *pstAtCmdRslt
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年5月7日
-    作    者   : luojian id:107747
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 Mm_AtTest_GetGprsState(MM_TEST_AT_RSLT_STRU *pstAtCmdRslt)
 {
     pstAtCmdRslt->ulRsltNum = 2;
@@ -89,84 +49,28 @@ VOS_UINT32 Mm_AtTest_GetGprsState(MM_TEST_AT_RSLT_STRU *pstAtCmdRslt)
     pstAtCmdRslt->aulRslt[1] = Gmm_GetGprsState();
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : Mm_AtTest_GetGmmState
- 功能描述  :
- 输入参数  : NAS_TEST_AT_RSLT_STRU *pstAtCmdRslt
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年5月7日
-    作    者   : luojian id:107747
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 Mm_AtTest_GetGmmState(MM_TEST_AT_RSLT_STRU *pstAtCmdRslt)
 {
     pstAtCmdRslt->ulRsltNum = 1;
     pstAtCmdRslt->aulRslt[0] = Gmm_GetState();
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : Mm_AtTest_GetMmState
- 功能描述  :
- 输入参数  : NAS_TEST_AT_RSLT_STRU *pstAtCmdRslt
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年5月7日
-    作    者   : luojian id:107747
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 Mm_AtTest_GetMmState(MM_TEST_AT_RSLT_STRU *pstAtCmdRslt)
 {
     pstAtCmdRslt->ulRsltNum = 1;
     pstAtCmdRslt->aulRslt[0] = Mm_GetState();
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : Mm_AtTest_GetMmRegState
- 功能描述  :
- 输入参数  : NAS_TEST_AT_RSLT_STRU *pstAtCmdRslt
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年5月7日
-    作    者   : luojian id:107747
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 Mm_AtTest_GetMmRegState(MM_TEST_AT_RSLT_STRU *pstAtCmdRslt)
 {
     pstAtCmdRslt->ulRsltNum = 1;
     pstAtCmdRslt->aulRslt[0] = NAS_MML_GetCsRegStatus();
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : Mm_AtTest_GetGmmRegState
- 功能描述  :
- 输入参数  : NAS_TEST_AT_RSLT_STRU *pstAtCmdRslt
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年5月7日
-    作    者   : luojian id:107747
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 Mm_AtTest_GetGmmRegState(MM_TEST_AT_RSLT_STRU *pstAtCmdRslt)
 {
     pstAtCmdRslt->ulRsltNum = 1;
@@ -175,23 +79,7 @@ VOS_UINT32 Mm_AtTest_GetGmmRegState(MM_TEST_AT_RSLT_STRU *pstAtCmdRslt)
 }
 
 
-/*****************************************************************************
- 函 数 名  : Mm_AtTest_SetPlmnSearchMode
- 功能描述  : 仅仅更新NV项，设置搜网模式
- 输入参数  : TAF_UINT32 ulPlmnSearchMode
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年9月2日
-    作    者   : ouyangfei id:00132663
-    修改内容   : 新生成函数,问题单号：AT2D05469,扩展^CMM命令.
-  2.日    期   : 2013年05月20日
-    作    者   : m00217266
-    修改内容   : nv项拆分
-*****************************************************************************/
 VOS_UINT32 Mm_AtTest_SetPlmnSearchMode(VOS_UINT32 ulPlmnSearchMode)
 {
     NAS_NVIM_SELPLMN_MODE_STRU      stPlmnSelMode;
@@ -228,21 +116,7 @@ VOS_UINT32 Mm_AtTest_SetPlmnSearchMode(VOS_UINT32 ulPlmnSearchMode)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : Mm_AtTest_SetRatMode
- 功能描述  : 仅仅更新NV项，设置接入模式
- 输入参数  : TAF_UINT32 ulRatMode
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年9月2日
-    作    者   : ouyangfei id:00132663
-    修改内容   : 新生成函数,问题单号：AT2D05469,扩展^CMM命令.
-
-*****************************************************************************/
 VOS_UINT32 Mm_AtTest_SetRatMode(VOS_UINT32 ulRatMode)
 {
     NVIM_EQUIVALENT_PLMN_LIST_STRU  stEquivPlmn;
@@ -287,21 +161,7 @@ VOS_UINT32 Mm_AtTest_SetRatMode(VOS_UINT32 ulRatMode)
 }
 
 #if ( VOS_WIN32 == VOS_OS_VER )
-/*****************************************************************************
- 函 数 名  : Mm_AtTest_SetAdditionalUpdateRsltIe
- 功能描述  : 设置Additional Update Rslt Ie，用于PC测试
- 输入参数  : TAF_UINT32 ulAdditionalUpdateRsltIe
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年06月19日
-    作    者   : s46746
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 Mm_AtTest_SetAdditionalUpdateRsltIe(
     VOS_UINT32 AdditionalUpdateRsltIe
 )
@@ -322,21 +182,7 @@ VOS_UINT32 Mm_AtTest_SetAdditionalUpdateRsltIe(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : Mm_AtTest_SetLteUeUsageSetting
- 功能描述  : 设置LTE语音和数据中心，用于PC测试
- 输入参数  : TAF_UINT32 ulLteUeUsageSetting
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年06月19日
-    作    者   : s46746
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 Mm_AtTest_SetLteUeUsageSetting(
     VOS_UINT32 ulLteUeUsageSetting
 )
@@ -353,21 +199,7 @@ VOS_UINT32 Mm_AtTest_SetLteUeUsageSetting(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : Mm_AtTest_SetGmmDelaySuspendRsp
- 功能描述  : 设置GMM延迟给MMC回复SUSPEND RSP，用于PC测试
- 输入参数  : TAF_UINT32 ulGmmDelaySuspendRspFlg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月23日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 Mm_AtTest_SetGmmDelaySuspendRsp(
     VOS_UINT32 ulGmmDelaySuspendRspFlg
 )
@@ -384,22 +216,7 @@ VOS_UINT32 Mm_AtTest_SetGmmDelaySuspendRsp(
     return VOS_OK;
 }
 
-/* Modified by z00234330 for 主动上报AT命令控制下移至C核, 2013-4-16, begin */
-/*****************************************************************************
- 函 数 名  : Mm_AtTest_SetLteUeUsageSetting
- 功能描述  : 设置LTE语音和数据中心，用于PC测试
- 输入参数  : TAF_UINT32 ulLteUeUsageSetting
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年06月19日
-    作    者   : s46746
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 Mm_AtTest_SetCsfbHighPrioFlg(
     VOS_UINT8                       ucFlg
 )
@@ -415,25 +232,10 @@ VOS_UINT32 Mm_AtTest_SetCsfbHighPrioFlg(
     return VOS_OK;
 }
 
-/* Modified by z00234330 for 主动上报AT命令控制下移至C核, 2013-4-16, end */
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : Mm_AtTest_SetOriginalRejectCause
- 功能描述  : 设置网络侧下发的原始拒绝原因值，用于PC测试
- 输入参数  : VOS_UINT8 ucOriginalUeCause
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月17日
-    作    者   : g00322017
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 Mm_AtTest_SetOriginalRejectCause(
     VOS_UINT32                          ulOriginalUeCause
 )
@@ -444,22 +246,7 @@ VOS_UINT32 Mm_AtTest_SetOriginalRejectCause(
     return VOS_OK;
 }
 
-/* Modified by z00234330 for C50问题单同步到V9, 2013-4-16, begin */
-/*****************************************************************************
- 函 数 名  : Mm_AtTest_ClearUserPlmnId
- 功能描述  : 清除用户设置的PLMN ID，用于PC测试
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月20日
-    作    者   : z00234330
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 Mm_AtTest_ClearUserPlmnId( VOS_VOID )
 {
     NAS_MML_PLMN_WITH_RAT_STRU         stUserPlmn;
@@ -471,32 +258,8 @@ VOS_UINT32 Mm_AtTest_ClearUserPlmnId( VOS_VOID )
     return VOS_OK;
 }
 
-/* Modified by z00234330 for C50问题单同步到V9, 2013-4-16, end */
 
-/*****************************************************************************
- 函 数 名  : Mm_AtTest
- 功能描述  :
- 输入参数  : NAS_TEST_AT_CMD_STRU *pstAtCmd
-             NAS_TEST_AT_RSLT_STRU *pstAtCmdRslt
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年5月7日
-    作    者   : luojian id:107747
-    修改内容   : 新生成函数
-  2.日    期   : 2008年09月03日
-    作    者   : o00132663
-    修改内容  : 问题单号：AT2D05469,扩展^CMM命令.
-  3.日    期   : 2012年06月19日
-    作    者   : s46746
-    修改内容   : For CS/PS mode 1，PC打桩测试
-  4.日    期   : 2013年7月20日
-    作    者   : z00234330
-    修改内容   : 增加清除USER PLMN的AT命令
-*****************************************************************************/
 VOS_UINT32 Mm_AtTest(VOS_VOID* pstAtCmd,VOS_VOID* pstAtCmdRslt)
 {
     VOS_UINT32 ulRst;
@@ -543,18 +306,14 @@ VOS_UINT32 Mm_AtTest(VOS_VOID* pstAtCmd,VOS_VOID* pstAtCmdRslt)
             ((MM_TEST_AT_RSLT_STRU*)pstAtCmdRslt)->ulRsltNum = 0;
             break;
 
-/* Modified by z00234330 for 主动上报AT命令控制下移至C核, 2013-4-16, begin */
         case MM_TEST_AT_CMD_SET_CSFB_HIGH_PRIO_FLG:
             ulRst = Mm_AtTest_SetCsfbHighPrioFlg(((MM_TEST_AT_CMD_STRU*)pstAtCmd)->aulPara[0]);
             ((MM_TEST_AT_RSLT_STRU*)pstAtCmdRslt)->ulRsltNum = 0;
             break;
-/* Modified by z00234330 for 主动上报AT命令控制下移至C核, 2013-4-16, end */
-/* Modified by z00234330 for C50问题单同步到V9, 2013-4-16, begin */
         case MM_TEST_AT_CMD_CLEAR_USER_PLMN_:
             ulRst = Mm_AtTest_ClearUserPlmnId();
             ((MM_TEST_AT_RSLT_STRU*)pstAtCmdRslt)->ulRsltNum = 0;
             break;
-/* Modified by z00234330 for C50问题单同步到V9, 2013-4-16, end */
 
 #endif
         case MM_TEST_AT_CMD_SET_ORIGINAL_REJECT_CAUSE:
@@ -568,24 +327,7 @@ VOS_UINT32 Mm_AtTest(VOS_VOID* pstAtCmd,VOS_VOID* pstAtCmdRslt)
     return ulRst;
 }
 
- /*****************************************************************************
-  Prototype      : MM_HexAlpha2AsciiString
-  Description    : 完成16进制数转换功能
-  Input          : nptr --- 字符串
-  Output         :
-  Return Value   : AT_SUCCESS --- 成功
-                   AT_FAILURE --- 失败
-  Calls          : ---
-  Called By      : ---
-
-  History        : ---
-   1.Date        : 2005-04-19
-     Author      : ---
-     Modification: Created function
-   2.日    期 : 2007-03-27
-     作    者 : h59254
-     修改内容 : 问题单号:A32D09820(PC-Lint修改)
- *****************************************************************************/
+ 
  VOS_UINT32 MM_HexAlpha2AsciiString(VOS_UINT32 ulDestLength,VOS_UINT8 *pucDst,VOS_UINT8 *pucSrc,VOS_UINT16 usSrcLen)
  {
      VOS_UINT16 usLen = 0;
@@ -646,48 +388,17 @@ VOS_UINT32 Mm_AtTest(VOS_VOID* pstAtCmd,VOS_VOID* pstAtCmdRslt)
      return usLen;
  }
 
-/* Deleted by f62575 for V9R1 STK升级, 2013-6-26, begin */
 /* Deleted Mm_TranslateNtwkName2Str */
-/* Deleted by f62575 for V9R1 STK升级, 2013-6-26, end */
 
 
-/*****************************************************************************
- 函 数 名  : MMC_ComGetRatType
- 功能描述  : 获取当前的接入模式
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT8 *pucRatType
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年5月6日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MMC_ComGetRatType(VOS_UINT8 *pucRatType)
 {
     *pucRatType = NAS_MML_GetCurrNetRatType();
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_GetMncLenFromBCCHMnc
- 功能描述  : 根据 BCCH的Mnc确定Sim卡中对应Plmn的Mnc的长度 ，便于在list搜网上报时处理
-             调用函数需要保证,ulBcchMnc对应网络 与pstDestPlmnInfo对应网络是相同的
- 输入参数  : 无
- 输出参数  : VOS_UINT8
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年2月27日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8  NAS_MM_GetMncLenFromBCCHMnc(
     VOS_UINT32                          ulBcchMnc
 )

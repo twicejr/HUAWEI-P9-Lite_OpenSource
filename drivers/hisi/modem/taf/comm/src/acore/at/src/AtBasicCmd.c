@@ -221,42 +221,14 @@ AT_PAR_CMD_ELEMENT_STRU g_astAtBasicCmdTbl[] =
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : At_RegisterBasicCmdTable
- 功能描述  : 注册基本命令表
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月21日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 At_RegisterBasicCmdTable(VOS_VOID)
 {
     return AT_RegisterCmdTable(g_astAtBasicCmdTbl, sizeof(g_astAtBasicCmdTbl)/sizeof(g_astAtBasicCmdTbl[0]));
 }
 
 
-/*****************************************************************************
- 函 数 名  : At_CheckIfDCmdValidChar
- 功能描述  : 检测指定字符是否为D命令中可出现的合法字符(copy from balong V3R1)
- 输入参数  : VOS_UINT8 ucChar
- 输出参数  : 无
- 返 回 值  : PRIVATE VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月23日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 At_CheckIfDCmdValidChar(VOS_UINT8 ucChar)
 {
     /* LINUX系统下的拨号命令格式为:ATDT"*99#"，比规范的拨号命令多了引号，而引号不在
@@ -282,22 +254,7 @@ VOS_UINT32 At_CheckIfDCmdValidChar(VOS_UINT8 ucChar)
 }
 
 
-/*****************************************************************************
- 函 数 名  : At_GetFirstBasicCmdAddr
- 功能描述  : 获取组合基础命令中第一个基础命令的地址
- 输入参数  : VOS_UINT8 *pData
-             VOS_UINT32* pulLen
- 输出参数  : 无
- 返 回 值  : VOS_UINT8*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月23日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8* At_GetFirstBasicCmdAddr(VOS_UINT8 *pData, VOS_UINT32* pulLen)
 {
     VOS_UINT32 i = 0, j = 0;

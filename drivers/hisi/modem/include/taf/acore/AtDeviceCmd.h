@@ -66,16 +66,7 @@ extern "C" {
 /*****************************************************************************
   3 枚举定义
 *****************************************************************************/
-/*****************************************************************************
- 枚举名    : AT_TBAT_OPERATION_TYPE_ENUM
- 结构说明  : ^TBAT的测试项目
-             AT_TBAT_BATTERY_ANALOG_VOLTAGE         电池模拟电压
-             AT_TBAT_BATTERY_DIGITAL_VOLTAGE        电池数字电压
-             AT_TBAT_BATTERY_VOLUME                 电池电量
-  1.日    期   : 2012年01月02日
-    作    者   : f62575
-    修改内容   : 创建
-*****************************************************************************/
+
 enum AT_TBAT_OPERATION_TYPE_ENUM
 {
     AT_TBAT_BATTERY_ANALOG_VOLTAGE      = 0,
@@ -85,15 +76,7 @@ enum AT_TBAT_OPERATION_TYPE_ENUM
 };
 typedef VOS_UINT32  AT_TBAT_OPERATION_TYPE_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : AT_TBAT_OPERATION_DIRECTION_ENUM
- 结构说明  : ^TBAT的测试方向
-            AT_TBAT_READ_FROM_UUT   从单板侧(UUT)读取
-            AT_TBAT_SET_TO_UUT      设置到单板侧(UUT)
-  1.日    期   : 2012年01月02日
-    作    者   : f62575
-    修改内容   : 创建
-*****************************************************************************/
+
 enum AT_TBAT_OPERATION_DIRECTION_ENUM
 {
     AT_TBAT_READ_FROM_UUT,
@@ -102,17 +85,7 @@ enum AT_TBAT_OPERATION_DIRECTION_ENUM
 };
 typedef VOS_UINT32  AT_TBAT_OPERATION_DIRECTION_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : AT_TSELRF_PATH_ENUM
- 结构说明  : ^TSELRF的射频通路编号
-             AT_TSELRF_PATH_GSM       GSM通路（包括EDGE/GPRS/EGSM等的全集）
-             AT_TSELRF_PATH_WCDMA_PRI WCDMA主集
-             AT_TSELRF_PATH_WCDMA_DIV WCDMA分集
-             AT_TSELRF_PATH_WIFI      WiFi通路
-  1.日    期   : 2012年01月02日
-    作    者   : f62575
-    修改内容   : 创建
-*****************************************************************************/
+
 enum AT_TSELRF_PATH_ENUM
 {
     AT_TSELRF_PATH_GSM                  = 1,
@@ -148,28 +121,14 @@ extern VOS_INT8                         g_acATOpwordPwd[AT_OPWORD_PWD_LEN+1];
   7 STRUCT定义
 *****************************************************************************/
 
-/*****************************************************************************
- 结构名    : AT_TBAT_BATTERY_ADC_INFO_STRU
- 结构说明  : ^TBAT命令设置电池校准参数的数据结构
 
-  1.日    期   : 2012年01月02日
-    作    者   : f62575
-    修改内容   : 创建
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16                          usMinAdc;
     VOS_UINT16                          usMaxAdc;
 }AT_TBAT_BATTERY_ADC_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : AT_WIFISEC_WIWEP_INFO_STRU
- 结构说明  : WIWEP命令操作对象: WIFI KEY的数据结构
-             ucwlKeys的内容为字符类型，以字符串结束符'\0'作为数据结束
-  1.日    期   : 2012年01月02日
-    作    者   : f62575
-    修改内容   : 创建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           aucwlKeys[AT_NV_WLKEY_LEN];

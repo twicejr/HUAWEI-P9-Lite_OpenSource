@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NASUTRANCTRLFSMMODECHANGE.c
-  版 本 号   : 初稿
-  作    者   : s00217060
-  生成日期   : 2012年8月7日
-  最近修改   :
-  功能描述   : ModeChange状态机处理文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年8月7日
-    作    者   : s00217060
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -70,25 +53,7 @@ extern "C" {
   3 函数实现
 *****************************************************************************/
 #if (FEATURE_ON == FEATURE_UE_MODE_TDS)
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvWasSysInfo_ModeChange_Init
- 功能描述  : 模式变更初始化状态收到WAS系统消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年8月7日
-   作    者   : s00217060
-   修改内容   : 新生成函数
- 2.日    期   : 2013年1月6日
-   作    者   : s00217060
-   修改内容   : for DSDA GUNAS C CORE:平台支持G/L时，才给G/L发送Utran_Mode_Req
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvWasSysInfo_ModeChange_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -130,25 +95,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvWasSysInfo_ModeChange_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvTdSysInfo_ModeChange_Init
- 功能描述  : 模式变更初始化状态收到TDRRC系统消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年8月7日
-   作    者   : s00217060
-   修改内容   : 新生成函数
- 2.日    期   : 2013年1月6日
-   作    者   : s00217060
-   修改内容   : for DSDA GUNAS C CORE:平台支持G/L时，才给G/L发送Utran_Mode_Req
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvTdSysInfo_ModeChange_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -190,25 +137,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvTdSysInfo_ModeChange_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvGasSysInfo_ModeChange_Init
- 功能描述  : 模式变更初始化状态收到GAS系统消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年8月8日
-   作    者   : s00217060
-   修改内容   : 新生成函数
- 2.日    期   : 2013年1月6日
-   作    者   : s00217060
-   修改内容   : for DSDA GUNAS C CORE:平台支持G/L时，才给G/L发送Utran_Mode_Req
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvGasSysInfo_ModeChange_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -265,25 +194,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvGasSysInfo_ModeChange_Init(
 }
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvLmmSysInfo_ModeChange_Init
- 功能描述  : 模式变更初始化状态收到LMM系统消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年8月8日
-   作    者   : s00217060
-   修改内容   : 新生成函数
- 2.日    期   : 2013年1月6日
-   作    者   : s00217060
-   修改内容   : for DSDA GUNAS C CORE:平台支持G/L时，才给G/L发送Utran_Mode_Req
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvLmmSysInfo_ModeChange_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -338,22 +249,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvLmmSysInfo_ModeChange_Init(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvWasUtranModeCnf_ModeChange_WaitSlaveModeCnf
- 功能描述  : 模式变更等待从模回复状态收到WAS的模式变更回复消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年8月8日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvWasUtranModeCnf_ModeChange_WaitSlaveModeCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -381,22 +277,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvWasUtranModeCnf_ModeChange_WaitSlaveModeCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvTdUtranModeCnf_ModeChange_WaitSlaveModeCnf
- 功能描述  : 模式变更等待从模回复状态收到TDRRC的模式变更回复消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年8月8日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvTdUtranModeCnf_ModeChange_WaitSlaveModeCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -425,22 +306,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvTdUtranModeCnf_ModeChange_WaitSlaveModeCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvGasUtranModeCnf_ModeChange_WaitSlaveModeCnf
- 功能描述  : 模式变更等待从模回复状态收到GAS的模式变更回复消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年8月8日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvGasUtranModeCnf_ModeChange_WaitSlaveModeCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -470,22 +336,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvGasUtranModeCnf_ModeChange_WaitSlaveModeCnf(
 
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvLmmUtranModeCnf_ModeChange_WaitSlaveModeCnf
- 功能描述  : 模式变更等待从模回复状态收到LMM的模式变更回复消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年8月8日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvLmmUtranModeCnf_ModeChange_WaitSlaveModeCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -515,22 +366,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvLmmUtranModeCnf_ModeChange_WaitSlaveModeCnf(
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvTiWaitTotalUtranModeCnfExpired_ModeChange_WaitSlaveModeCnf
- 功能描述  : 模式变更等待从模回复状态收到等待从模回复的定时器超时消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年8月8日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvTiWaitSlaveModeUtranModeCnfExpired_ModeChange_WaitSlaveModeCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -551,22 +387,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvTiWaitSlaveModeUtranModeCnfExpired_ModeChange_WaitSl
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvMasterModeCnf_ModeChange_WaitMasterModeCnf
- 功能描述  : 模式变更等待主模回复状态收到WAS的模式变更回复消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年8月8日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvMasterModeCnf_ModeChange_WaitMasterModeCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -591,22 +412,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvMasterModeCnf_ModeChange_WaitMasterModeCnf(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvTiWaitMasterModeCnfExpired_ModeChange_WaitMasterModeCnf
- 功能描述  : 模式变更等待主模回复状态收到WAS的模式变更回复定时器超时消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年8月8日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvTiWaitMasterModeCnfExpired_ModeChange_WaitMasterModeCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -634,20 +440,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvTiWaitMasterModeCnfExpired_ModeChange_WaitMasterMode
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_ProcSlaveModeCnf_ModeChange
- 功能描述  : 模式变更状态机收到从模回复状态后的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年8月8日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_UTRANCTRL_ProcSlaveModeCnf_ModeChange(
     NAS_UTRANCTRL_MASTER_MODE_ENUM_UINT8                    enMasterMode
 )
@@ -674,21 +467,7 @@ VOS_VOID NAS_UTRANCTRL_ProcSlaveModeCnf_ModeChange(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_SndMasterModeUtranModeReq_ModeChange
- 功能描述  : 根据不同的主模给相应的主模发送模式变更请求
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2012年8月8日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_UTRANCTRL_SndMasterModeUtranModeReq_ModeChange(
     NAS_UTRANCTRL_MASTER_MODE_ENUM_UINT8                    enMasterMode
 )
@@ -727,19 +506,7 @@ VOS_VOID NAS_UTRANCTRL_SndMasterModeUtranModeReq_ModeChange(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_GetMasterMode_ModeChange
- 功能描述  : 获取当前主模
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : NAS_UTRANCTRL_MASTER_MODE_ENUM_UINT8：主模类型
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012-8-8
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 NAS_UTRANCTRL_MASTER_MODE_ENUM_UINT8  NAS_UTRANCTRL_GetMasterMode_ModeChange(VOS_VOID)
 {
     NAS_UTRANCTRL_ENTRY_MSG_STRU                           *pstEntryMsg;
@@ -781,22 +548,7 @@ NAS_UTRANCTRL_MASTER_MODE_ENUM_UINT8  NAS_UTRANCTRL_GetMasterMode_ModeChange(VOS
 }
 
 #if (FEATURE_ON == FEATURE_TDS_WCDMA_DYNAMIC_LOAD)
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvLmmMasterModeRelCnf_ModeChange_WaitMasterModeRelCnf
- 功能描述  : 模式变更等待G主模释放回复状态收到主模模式变更回复消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年8月25日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvGasMasterModeRelCnf_ModeChange_WaitMasterModeRelCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -839,22 +591,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvGasMasterModeRelCnf_ModeChange_WaitMasterModeRelCnf(
 }
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvLmmMasterModeRelCnf_ModeChange_WaitMasterModeRelCnf
- 功能描述  : 模式变更等待L主模释放回复状态收到主模模式变更回复消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年8月25日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvLmmMasterModeRelCnf_ModeChange_WaitMasterModeRelCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -896,22 +633,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvLmmMasterModeRelCnf_ModeChange_WaitMasterModeRelCnf(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvTiWaitMasterModeRelCnfExpired_ModeChange_WaitMasterModeRelCnf
- 功能描述  : 模式变更等待G/L主模释放回复状态收到定时器超时消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年8月25日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvTiWaitMasterModeRelCnfExpired_ModeChange_WaitMasterModeRelCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg

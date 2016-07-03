@@ -139,7 +139,7 @@ int deinit_wifi_mem(void)
 static void read_from_global_buf(unsigned char * buf)
 {
 	memcpy(buf,g_wifimac,WLAN_MAC_LEN);
-	hwlog_info("get MAC from g_wifimac: mac=%02x:%02x:%02x:%02x:%02x:%02x\n",buf[0],buf[1],buf[2],buf[3],buf[4],buf[5]);
+	hwlog_info("get MAC from g_wifimac: mac=%02x:%02x:**:**:%02x:%02x\n",buf[0],buf[1],buf[4],buf[5]);
 	return;
 }
 
@@ -220,7 +220,7 @@ static int read_from_mac_file(unsigned char * buf)
 
 	sum = char2_byte(buf1,buf2);
 	if (0 != sum){
-		hwlog_err("get MAC from file: mac=%02x:%02x:%02x:%02x:%02x:%02x\n",buf2[0],buf2[1],buf2[2],buf2[3],buf2[4],buf2[5]);
+		hwlog_err("get MAC from file: mac=%02x:%02x:**:**:%02x:%02x\n",buf2[0],buf2[1],buf2[4],buf2[5]);
 		memcpy(buf,buf2,WLAN_MAC_LEN);
 	}else{
 		set_fs(old_fs);

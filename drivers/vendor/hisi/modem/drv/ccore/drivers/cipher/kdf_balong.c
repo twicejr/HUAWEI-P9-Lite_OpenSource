@@ -11,6 +11,8 @@
 
 //#define KDF_CACHE_ENABLE
 #define KDF_ERR_PRINT(fmt, ...)  bsp_trace(BSP_LOG_LEVEL_ERROR, BSP_MODU_CIPHER, "[KDF]: <%s> "fmt"\n", __FUNCTION__, ##__VA_ARGS__)
+#define kdf_inc_ref cipher_inc_ref
+#define kdf_dec_ref cipher_dec_ref
 
 struct kdf_chn_ctl kdf_ctl = {.bd_fifo_base = NULL,
                               .rd_fifo_base = NULL,
@@ -148,10 +150,17 @@ static void kdf_get_new_key(unsigned int u32DestIndex, KEY_MAKE_S * pstKeyMake)
 	u32    key_word = 0;
 	int    i = 0;
 	unsigned int kdf_reg_base;
-
+	int ret;
+	
 	if(CIPHER_KEY_NOT_OUTPUT == pstKeyMake->enKeyOutput)
 		return;
 	*(pstKeyMake->stKeyGet.penOutKeyLen) = pstKeyMake->stKeyGet.enKeyLen;
+
+	ret = kdf_inc_ref(LTE_KEY_OPT_CHANNEL_KDF);
+	if (ret) {
+		KDF_ERR_PRINT("ERR: kdf ref overflowed!\n");
+		return;
+	}
 
 	kdf_reg_base = (unsigned int)kdf_ctl.reg_base;
 	ram_key_addr = (void *)(kdf_reg_base + HI_KEY_RAM_OFFSET + 
@@ -166,6 +175,8 @@ static void kdf_get_new_key(unsigned int u32DestIndex, KEY_MAKE_S * pstKeyMake)
 		ram_key_addr = (void *)((unsigned int)ram_key_addr + 4);
 		dst_addr = (void *)((unsigned int)dst_addr + 4);;
 	}
+
+	kdf_dec_ref(LTE_KEY_OPT_CHANNEL_KDF);
 }
 
 int mdrv_cipher_gen_key(KEY_CONFIG_INFO_S * pstKeyCfgInfo, 
@@ -175,9 +186,16 @@ int mdrv_cipher_gen_key(KEY_CONFIG_INFO_S * pstKeyCfgInfo,
 	int             ret     = 0;
 	unsigned int    buf_off = 0;
 
+	ret = kdf_inc_ref(LTE_KEY_OPT_CHANNEL_KDF);
+	if (ret) {
+		KDF_ERR_PRINT("ERR:ref overflowed!\n");
+		return ret;
+	}
+	
 	if(mdrv_cipher_enable())
 	{
 		KDF_ERR_PRINT("ERR: fail to open clk\n");
+		kdf_dec_ref(LTE_KEY_OPT_CHANNEL_KDF);
 		return MDRV_ERROR;
 	}
 	osl_sem_down(&kdf_ctl.kdf_sem);
@@ -210,6 +228,7 @@ int mdrv_cipher_gen_key(KEY_CONFIG_INFO_S * pstKeyCfgInfo,
 	kdf_get_new_key(u32DestIndex, pstKeyMake);
 
 EXT_KDF_GEN:
+	kdf_dec_ref(LTE_KEY_OPT_CHANNEL_KDF);
 	osl_sem_up(&kdf_ctl.kdf_sem);
 	return ret;
 }
@@ -222,9 +241,17 @@ int kdf_rw_key (KDF_OPS kdf_op, void * pAddr,
 	KEY_CONFIG_INFO_S pstKeyCfgInfo = {0};
 	S_CONFIG_INFO_S pstSCfgInfo = {0};
 	/*lint +e64*/
+
+	ret = kdf_inc_ref(LTE_KEY_OPT_CHANNEL_KDF);
+	if (ret) {
+		KDF_ERR_PRINT("ERR:ref overflowed!\n");
+		return ret;
+	}
+	
 	if(mdrv_cipher_enable())
 	{
 		KDF_ERR_PRINT("ERR: fail to open clk\n");
+		kdf_dec_ref(LTE_KEY_OPT_CHANNEL_KDF);
 		return MDRV_ERROR;
 	}
 	osl_sem_down(&kdf_ctl.kdf_sem);
@@ -232,8 +259,10 @@ int kdf_rw_key (KDF_OPS kdf_op, void * pAddr,
 													u32ReadLength, pAddr);
 	ret = kdf_wait_bd_done();
 	if(ret)
-		KDF_ERR_PRINT("kdf_wait_bd_done err\n");
+		KDF_ERR_PRINT("kdf_wait_bd_done err(0x%x)\n",ret);
 	osl_sem_up(&kdf_ctl.kdf_sem);
+
+	kdf_dec_ref(LTE_KEY_OPT_CHANNEL_KDF);
 	return ret;
 }
 

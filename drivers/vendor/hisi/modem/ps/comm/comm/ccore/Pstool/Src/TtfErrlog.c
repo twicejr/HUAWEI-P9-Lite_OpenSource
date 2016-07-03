@@ -1,39 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TtfErrlog.c
-  版 本 号   : 初稿
-  作    者   : t00148005
-  生成日期   : 2013年10月5日
-  最近修改   :
-  功能描述   : GU TTF Errlog功能模块
-  函数列表   :
-              GTTF_MNTN_ErrlogMdlErrEvt
-              GTTF_MNTN_ErrlogTbfAbnmlEvt
-              TTF_MNTN_ErrlogBufGet
-              TTF_MNTN_ErrlogBufPut
-              TTF_MNTN_ErrlogBufRpt
-              TTF_MNTN_ErrlogCbReg
-              TTF_MNTN_ErrlogCbRun
-              TTF_MNTN_ErrLogGetModuleId
-              TTF_MNTN_ErrLogRcvCtrlInd
-              TTF_MNTN_ErrLogRcvRptReq
-              TTF_MNTN_ErrlogShow
-              TTF_MNTN_InitErrlogBuffer
-              TTF_MNTN_InitErrLogEnt
-              WTTF_MNTN_ErrlogFlushRlcErrEvt
-              WTTF_MNTN_ErrlogRlcLiErrEvt
-              WTTF_MNTN_ErrlogRlcResetEvt
-              WTTF_MNTN_ErrlogTfciFailEvt
-
-  修改历史   :
-  1.日    期   : 2013年10月5日
-    作    者   : t00148005
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 /*****************************************************************************
@@ -123,21 +88,7 @@ VOS_UINT8                               g_aucTtfErrlogAlmLevTbl[TTF_ERR_LOG_ALM_
   3 函数实现
 *****************************************************************************/
 /*lint -save -e958 */
-/*****************************************************************************
- 函 数 名  : TTF_MNTN_InitErrlogBuffer
- 功能描述  : 初始化Errlog使用的缓存
- 输入参数  : VOS_UINT32 ulPid
- 输出参数  : 无
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年09月12日
-    作    者   : t00148005
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TTF_MNTN_InitErrlogBuffer(MODEM_ID_ENUM_UINT16  enModemId)
 {
     if (VOS_NULL_PTR != TTF_ERR_LOG_ENT_BUF_GET(enModemId))
@@ -154,21 +105,7 @@ VOS_VOID TTF_MNTN_InitErrlogBuffer(MODEM_ID_ENUM_UINT16  enModemId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TTF_MNTN_InitErrLogEnt
- 功能描述  : 初始化Errlog实体
- 输入参数  : VOS_UINT32 ulPid
- 输出参数  : 无
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年09月12日
-    作    者   : t00148005
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TTF_MNTN_InitErrLogEnt(VOS_UINT32 ulPid)
 {
     VOS_UINT32                  ulRslt;
@@ -267,21 +204,7 @@ VOS_UINT32 TTF_MNTN_InitErrLogEnt(VOS_UINT32 ulPid)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TTF_MNTN_ErrLogRcvCtrlInd
- 功能描述  : 收到OM ID_OM_ERR_LOG_CTRL_IND的处理函数
- 输入参数  : MsgBlock *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年09月12日
-    作    者   : t00148005
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TTF_MNTN_ErrLogRcvCtrlInd(MsgBlock *pstMsg, void *p)
 {
     OM_ERROR_LOG_CTRL_IND_STRU *pstCtrlInd;
@@ -305,22 +228,7 @@ VOS_UINT32 TTF_MNTN_ErrLogRcvCtrlInd(MsgBlock *pstMsg, void *p)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TTF_MNTN_ErrlogBufRpt
- 功能描述  : 将缓存的数据上报
- 输入参数  : MODEM_ID_ENUM_UINT16 enModemId
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年09月12日
-    作    者   : t00148005
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 /*lint -e{416,419,831} */
 VOS_VOID TTF_MNTN_ErrlogBufRpt(VOS_UINT32 ulSenderPid, VOS_UINT32 ulReceiverPid, MODEM_ID_ENUM_UINT16 enModemId)
 {
@@ -453,21 +361,7 @@ VOS_VOID TTF_MNTN_ErrlogBufRpt(VOS_UINT32 ulSenderPid, VOS_UINT32 ulReceiverPid,
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TTF_MNTN_ErrLogRcvRptReq
- 功能描述  : 收到OM ID_OM_ERR_LOG_REPORT_REQ的处理函数
- 输入参数  : MsgBlock *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年09月12日
-    作    者   : t00148005
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TTF_MNTN_ErrLogRcvRptReq(MsgBlock *pstMsg, void *p)
 {
     OM_ERR_LOG_REPORT_REQ_STRU *pstRptReq;
@@ -480,23 +374,7 @@ VOS_UINT32 TTF_MNTN_ErrLogRcvRptReq(MsgBlock *pstMsg, void *p)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TTF_MNTN_ErrlogBufGet
- 功能描述  : 从Buffer中读取数据
- 输入参数  : VOS_UINT32 ulPid
-             VOS_CHAR   *pBuffer 拷入数据的缓存
-             VOS_UINT32 ulBytes  读取的字节数
- 输出参数  : 无
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年09月12日
-    作    者   : t00148005
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TTF_MNTN_ErrlogBufGet(VOS_UINT32 ulPid, MODEM_ID_ENUM_UINT16  enModemId, VOS_CHAR *pBuffer, VOS_UINT32 ulBytes)
 {
     VOS_UINT32              ulRslt;
@@ -552,23 +430,7 @@ VOS_VOID TTF_MNTN_ErrlogBufGet(VOS_UINT32 ulPid, MODEM_ID_ENUM_UINT16  enModemId
     VOS_SmV(TTF_ERR_LOG_ENT_SEM_GET(enModemId));
 }
 
-/*****************************************************************************
- 函 数 名  : TTF_MNTN_ErrlogBufPut
- 功能描述  : 向Buffer中写入数据
- 输入参数  : VOS_UINT32 ulPid
-             VOS_CHAR   *pBuffer 源数据缓存
-             VOS_UINT32 ulBytes  写入的字节长度
- 输出参数  : 无
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年09月12日
-    作    者   : t00148005
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TTF_MNTN_ErrlogBufPut(VOS_UINT32 ulPid,  VOS_CHAR *pBuffer, VOS_UINT32 ulBytes)
 {
     MODEM_ID_ENUM_UINT16    enModemId;
@@ -636,22 +498,7 @@ VOS_VOID TTF_MNTN_ErrlogBufPut(VOS_UINT32 ulPid,  VOS_CHAR *pBuffer, VOS_UINT32 
 }
 
 
-/*****************************************************************************
- 函 数 名  : TTF_MNTN_ErrLogGetModuleId
- 功能描述  : 将PID转为私有MODULE ID
- 输入参数  : VOS_UINT32 ulPid
 
- 输出参数  : 无
- 返 回 值  : MODULE ID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年09月12日
-    作    者   : t00148005
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 TTF_MNTN_ErrLogGetModuleId(VOS_UINT32 ulPid)
 {
     VOS_UINT32 ulIndx;
@@ -685,23 +532,7 @@ VOS_UINT8 TTF_MNTN_ErrLogGetModuleId(VOS_UINT32 ulPid)
     return MODULE_ID_BUTT;
 }
 
-/*****************************************************************************
- 函 数 名  : TTF_MNTN_ErrlogCbReg
- 功能描述  : 注册回调函数
- 输入参数  : VOS_UINT32 ulPid
-             TTF_MNTN_ERR_LOG_RPT_CB pErrlogCb
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年09月12日
-    作    者   : t00148005
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TTF_MNTN_ErrlogCbReg(VOS_UINT32 ulPid, TTF_MNTN_ERR_LOG_RPT_CB pErrlogCb)
 {
     TTF_MODULE_ID_ENUM_UINT8 enModuleId;
@@ -728,22 +559,7 @@ VOS_VOID TTF_MNTN_ErrlogCbReg(VOS_UINT32 ulPid, TTF_MNTN_ERR_LOG_RPT_CB pErrlogC
     TTF_ERR_LOG_RPT_CB_SET(enModemId, enModuleId, pErrlogCb);
 }
 
-/*****************************************************************************
- 函 数 名  : TTF_MNTN_ErrlogCbRun
- 功能描述  : 运行所有回调函数
- 输入参数  : MODEM_ID_ENUM_UINT16 enModemId
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年09月12日
-    作    者   : t00148005
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TTF_MNTN_ErrlogCbRun(MODEM_ID_ENUM_UINT16 enModemId)
 {
     VOS_UINT32                  ulIndx;
@@ -764,23 +580,7 @@ VOS_VOID TTF_MNTN_ErrlogCbRun(MODEM_ID_ENUM_UINT16 enModemId)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : GTTF_MNTN_ErrlogTbfAbnmlEvt
- 功能描述  : 生成GRPS TBF异常事件并保存到缓存中
- 输入参数  : VOS_UINT32 ulPid   PID
-             VOS_UINT16 usType  异常类型
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年09月20日
-    作    者   : t00148005
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID GTTF_MNTN_ErrlogTbfAbnmlEvt(VOS_UINT32 ulPid, VOS_UINT16 usType)
 {
     TTF_MNTN_ERR_LOG_GRLC_TBF_ABNML_STRU stTbfAbnml;
@@ -814,22 +614,7 @@ VOS_VOID GTTF_MNTN_ErrlogTbfAbnmlEvt(VOS_UINT32 ulPid, VOS_UINT16 usType)
     TTF_MNTN_ErrlogBufPut(ulPid, (VOS_CHAR *)&stTbfAbnml, sizeof(TTF_MNTN_ERR_LOG_GRLC_TBF_ABNML_STRU));
 }
 
-/*****************************************************************************
- 函 数 名  : GTTF_MNTN_ErrlogMdlErrEvt
- 功能描述  : 生成GSM MDL Err事件
- 输入参数  : VOS_UINT32 ulPid
-             VOS_VOID *pMdlErr
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月23日
-    作    者   : t00148005
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID GTTF_MNTN_ErrlogMdlErrEvt(VOS_UINT32 ulPid, VOS_VOID *pMdlErr)
 {
     TTF_MNTN_ERR_LOG_GDL_MDL_ERR_STRU       stMdlErrEvt;
@@ -868,23 +653,7 @@ VOS_VOID GTTF_MNTN_ErrlogMdlErrEvt(VOS_UINT32 ulPid, VOS_VOID *pMdlErr)
     TTF_MNTN_ErrlogBufPut(ulPid, (VOS_CHAR *)&stMdlErrEvt, sizeof(TTF_MNTN_ERR_LOG_GDL_MDL_ERR_STRU));
 }
 
-/*****************************************************************************
- 函 数 名  : WTTF_MNTN_ErrlogRlcResetEvt
- 功能描述  : RLC Reset event record
- 输入参数  : VOS_UINT8 ucRbId                                           - Rb Id
-             TTF_MNTN_ERR_LOG_WRLC_RESET_TYPE_ENUM_UINT8 enResetType    - Rlc reset type
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013.09.20
-    作    者   : x59651
-    修改内容   : create new function
-
-*****************************************************************************/
 VOS_VOID WTTF_MNTN_ErrlogRlcResetEvt(VOS_UINT32 ulPid, VOS_UINT8 ucRbId,
     TTF_MNTN_ERR_LOG_WRLC_RESET_TYPE_ENUM_UINT8 enResetType)
 {
@@ -922,22 +691,7 @@ VOS_VOID WTTF_MNTN_ErrlogRlcResetEvt(VOS_UINT32 ulPid, VOS_UINT8 ucRbId,
     TTF_MNTN_ErrlogBufPut(ulPid, (VOS_CHAR *)&stTtfMntnWrlcReset, sizeof(TTF_MNTN_ERR_LOG_WRLC_RESET_STRU));
 }
 
-/*****************************************************************************
- 函 数 名  : WTTF_MNTN_ErrlogTfciFailEvt
- 功能描述  : report TFC select fail event
- 输入参数  : VOS_UINT8 ucMacState                               - MAC UL state
-             TTF_MNTN_ERR_LOG_TFC_ERR_NO_CHOICE_ENUM8 enType    - TFC select fail type
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013.09.21
-    作    者   : x59651
-    修改内容   : create new function
-
-*****************************************************************************/
 VOS_VOID  WTTF_MNTN_ErrlogTfciFailEvt(VOS_UINT32 ulPid, VOS_UINT8 ucMacState,
     TTF_MNTN_ERR_LOG_TFC_ERR_NO_CHOICE_ENUM8 enType)
 {
@@ -977,21 +731,7 @@ VOS_VOID  WTTF_MNTN_ErrlogTfciFailEvt(VOS_UINT32 ulPid, VOS_UINT8 ucMacState,
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TTF_MNTN_ErrlogGetCommInfoBuffAddrForGUL
- 功能描述  : 获取记录G上行信息结构体指针
- 输入参数  : ulPid
- 输出参数  : 无
- 返 回 值  : GTTF_UL_INFO_STRU *
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月5日
-    作    者   : g00178567
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 GTTF_UL_INFO_STRU * TTF_MNTN_ErrlogGetCommInfoBuffAddrForGUL(VOS_UINT32 ulPid)
 {
     MODEM_ID_ENUM_UINT16        enModemId       = VOS_GetModemIDFromPid(ulPid);
@@ -1020,21 +760,7 @@ GTTF_UL_INFO_STRU * TTF_MNTN_ErrlogGetCommInfoBuffAddrForGUL(VOS_UINT32 ulPid)
     return pstGttfULInfo;
 }
 
-/*****************************************************************************
- 函 数 名  : TTF_MNTN_ErrlogGetCommInfoBuffAddrForGDL
- 功能描述  : 获取记录G下行信息结构体指针
- 输入参数  : ulPid
- 输出参数  : 无
- 返 回 值  : GTTF_DL_INFO_STRU *
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月5日
-    作    者   : g00178567
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 GTTF_DL_INFO_STRU * TTF_MNTN_ErrlogGetCommInfoBuffAddrForGDL(VOS_UINT32 ulPid)
 {
     MODEM_ID_ENUM_UINT16        enModemId       = VOS_GetModemIDFromPid(ulPid);
@@ -1063,21 +789,7 @@ GTTF_DL_INFO_STRU * TTF_MNTN_ErrlogGetCommInfoBuffAddrForGDL(VOS_UINT32 ulPid)
     return pstGttfDLInfo;
 }
 
-/*****************************************************************************
- 函 数 名  : TTF_MNTN_ErrlogGetCommInfoBuffAddrForWUL
- 功能描述  : 获取记录W上行信息结构体指针
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : WTTF_MAC_UL_INFO_STRU *
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月5日
-    作    者   : g00178567
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 WTTF_MAC_UL_INFO_STRU * TTF_MNTN_ErrlogGetCommInfoBuffAddrForWUL(VOS_UINT32 ulPid)
 {
     MODEM_ID_ENUM_UINT16            enModemId       = VOS_GetModemIDFromPid(ulPid);
@@ -1106,21 +818,7 @@ WTTF_MAC_UL_INFO_STRU * TTF_MNTN_ErrlogGetCommInfoBuffAddrForWUL(VOS_UINT32 ulPi
     return pstWttfULInfo;
 }
 
-/*****************************************************************************
- 函 数 名  : TTF_MNTN_ErrlogGetCommInfoBuffAddrForWUlSched
- 功能描述  : 获取记录WUPA信息结构体指针
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : WTTF_UL_SCHED_INFO_STRU *
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月5日
-    作    者   : g00178567
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 WTTF_UL_SCHED_INFO_STRU * TTF_MNTN_ErrlogGetCommInfoBuffAddrForWUlSched(VOS_UINT32 ulPid)
 {
     MODEM_ID_ENUM_UINT16                enModemId       = VOS_GetModemIDFromPid(ulPid);
@@ -1147,21 +845,7 @@ WTTF_UL_SCHED_INFO_STRU * TTF_MNTN_ErrlogGetCommInfoBuffAddrForWUlSched(VOS_UINT
     return pstWttfUlSchedInfo;
 }
 
-/*****************************************************************************
- 函 数 名  : TTF_MNTN_ErrlogGetCommInfoBuffAddrForWDL
- 功能描述  : 获取记录W下行信息结构体指针
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : WTTF_MAC_DL_INFO_STRU *
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月5日
-    作    者   : g00178567
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 WTTF_MAC_DL_INFO_STRU * TTF_MNTN_ErrlogGetCommInfoBuffAddrForWDL(VOS_UINT32 ulPid)
 {
     MODEM_ID_ENUM_UINT16            enModemId       = VOS_GetModemIDFromPid(ulPid);
@@ -1190,21 +874,7 @@ WTTF_MAC_DL_INFO_STRU * TTF_MNTN_ErrlogGetCommInfoBuffAddrForWDL(VOS_UINT32 ulPi
     return pstWttfDLInfo;
 }
 
-/*****************************************************************************
- 函 数 名  : TTF_MNTN_ErrlogGetWcdmaCommInfo
- 功能描述  : 获取记录W Comm信息结构体指针
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : TTF_MNTN_WCDMA_COMM_INFO_STRU *
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月5日
-    作    者   : g00178567
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TTF_MNTN_WCDMA_COMM_INFO_STRU * TTF_MNTN_ErrlogGetWcdmaCommInfo(VOS_UINT32 ulPid)
 {
     MODEM_ID_ENUM_UINT16            enModemId       = VOS_GetModemIDFromPid(ulPid);
@@ -1219,21 +889,7 @@ TTF_MNTN_WCDMA_COMM_INFO_STRU * TTF_MNTN_ErrlogGetWcdmaCommInfo(VOS_UINT32 ulPid
     return TTF_ERR_LOG_ENT_WCDMA_COMM_INFO_GET(enModemId);
 }
 
-/*****************************************************************************
- 函 数 名  : TTF_MNTN_ErrlogGetGsmCommInfo
- 功能描述  : 获取记录W Comm信息结构体指针
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : TTF_MNTN_GSM_COMM_INFO_STRU *
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月5日
-    作    者   : g00178567
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TTF_MNTN_GSM_COMM_INFO_STRU * TTF_MNTN_ErrlogGetGsmCommInfo(VOS_UINT32 ulPid)
 {
     MODEM_ID_ENUM_UINT16            enModemId       = VOS_GetModemIDFromPid(ulPid);
@@ -1249,21 +905,7 @@ TTF_MNTN_GSM_COMM_INFO_STRU * TTF_MNTN_ErrlogGetGsmCommInfo(VOS_UINT32 ulPid)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TTF_MNTN_ErrlogShow
- 功能描述  : Errlog Debug 打印
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月5日
-    作    者   : t00148005
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TTF_MNTN_ErrlogShow(VOS_VOID)
 {
     VOS_UINT32                      ulIndx;

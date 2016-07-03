@@ -94,7 +94,6 @@ typedef ULONG    task_t;
 
 #define    SCM_RIGHTS           0x01
 
-/* Added by fengjing209023 DTS2014032706863 本段调用了CLOSE后不需要再上报ASYN_CLOSE事件 */
 /* user close  state */
 #define    SS_USERCLOSECALLED     0x01  /* 用户已经调用过CLOSE */
 #define    SS_PEERCLOSENOTIFIED   0x02  /* SOCKET已经上报过PEERCLOSE */
@@ -226,7 +225,6 @@ typedef struct tagSOCKET
     SHORT               so_sQLimit;         /* max number queued connections */
     SHORT               so_sTimeO;          /* connection timeout */
     SHORT               so_sError;          /* error affecting connection */
-    /* Added by fengjing209023 DTS2014032706863 本段调用了CLOSE后不需要再上报ASYN_CLOSE事件 */
     UCHAR               ucUsrCloseFlag;     /* 1、用来标记用户是否调了CLOSE,2、用来标记是否上报过PEERCLOSE */
     /* Addend end */
     UCHAR               ucPadding_1[1];
@@ -361,8 +359,7 @@ typedef struct tagTCB
 
 /* Head Cache结点结构*/
 /*moved by y36299 for SWFD10728 2005/06/21*/
-/* Modified by X36317, 为保证ARM CPU四字节对齐，需在链路层首部预留一定长度，
-   所以添加一个指针，用于指向真正的链路层首部, 2006/5/19 */
+
 
 typedef struct tag_HeadCache
 {

@@ -1,67 +1,4 @@
-/*******************************************************************************
-  Copyright     : 2005-2007, Huawei Tech. Co., Ltd.
-  File name     : GmmService.c
-  Description   : GMM SERVICE REQUEST功能相关处理用源文件
-  Function List :
-    01.   Gmm_RcvRabmReestablishReq
-    02.   Gmm_RcvRrmmSecurityInd
-    03.   Gmm_RcvRrmmSecurityInd_RegInit
-    04.   Gmm_RcvRrmmSecurityInd_ServReqInit
-    05.   Gmm_RcvServiceAcceptMsg
-    06.   Gmm_RcvServiceRejectMsg
-    07.   Gmm_RcvSmsEstReq
-    08.   Gmm_RcvSmsUnitdataReq
-    09.   Gmm_ServiceReqRejectCasue10
-    10.   Gmm_ServiceReqRejectCasue11
-    11.   Gmm_ServiceReqRejectCasue12
-    12.   Gmm_ServiceReqRejectCasue13
-    13.   Gmm_ServiceReqRejectCasue3
-    14.   Gmm_ServiceReqRejectCasue40
-    15.   Gmm_ServiceReqRejectCasue7
-    16.   Gmm_ServiceReqRejectCasue9
-    17.   Gmm_ServiceReqRejectTheOtherCause
-    18.   Gmm_ServiceRequestMsgMake
-    19.   Gmm_ServiceRequestMsgMake_ForData
-  History       :
-    1.  张志勇  2003.12.05  新规作成
-    2.  s46746  2006.05.08  根据问题单A32D03487修改
-    3.日    期   : 2006年12月5日
-      作    者   : luojian 60022475
-      修改内容   : Maps3000接口修改
-    4.日    期   : 2007年07月10日
-      作    者   : s46746
-      修改内容   : 根据问题单号：A32D12268
-    5.日    期   : 2007年10月10日
-      作    者   : s46746
-      修改内容   : 根据问题单号：A32D12948
-    6.日    期   : 2007年12月15日
-      作    者   : l00107747
-      修改内容   : 问题单号:A32D13897,Gmm_RcvRabmReestablishReq
-                   增加在GMM其他状态的处理
-    7.日    期   : 2008年3月17日
-      作    者   : s46746
-      修改内容   : 问题单号:AT2D02570,NAS B005版本新增需求合入
-    8.日    期   : 2008年7月24日
-      作    者   : luojian 00107747
-      修改内容   : 根据问题单号：AT2D04627/AT2D04237,
-                     ATTEMPT TO UPDATE/ATTACH 状态对CM服务处理
-    9. 日    期   : 2008年9月18日
-       作    者   : ouyangfei 00132663
-       修改内容   : 根据问题单号：AT2D05816，在GMM过程中，来自CM层的SMS请求应该被缓存，等GMM过程结束再发起。
-    10.日    期   : 2008年9月23日
-       作    者   : o00132663
-       修改内容   : 根据问题单号：AT2D05839,清除无用全局变量 ucRlsMsgFlg和状态GMM_REGISTERED_WAIT_FOR_RAU
-    11.日    期   : 2008年9月26日
-       作    者   : x00115505
-       修改内容   : 问题单号:AT2D05431
-    12.日    期   : 2009年07月31日
-       作    者   : x00115505
-       修改内容   : 问题单号:AT2D13413,小区重选时，应用发起的重建请求直接被GMM拒绝。
-    13.日    期   : 2009年8月3日
-       作    者   : s46746
-       修改内容   : 根据问题单号：AT2D13469，测试GCF用例12.9.7c，PDP激活时Service Req被拒，
-                    上层没有立即终止该过程，之后驻留正常服务小区后再次发起了PDP激活请求消息，导致用例失败
-*******************************************************************************/
+
 #include "GmmInc.h"
 #include "GmmCasGlobal.h"
 #include "GmmCasComm.h"
@@ -85,19 +22,7 @@
 #define    THIS_FILE_ID        PS_FILE_ID_GMM_SERVICE_C
 /*lint +e767 修改人:luojian 107747;检视人:sunshaohua*/
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_RcvRabmReestablishReq_AttemptToUpdate
- 功能描述  : 在register attempting to update状态收到GMMRABM_REESTABLISH_REQ原语后的处理
- 输入参数  : pstMsg - 消息内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2015年1月14日
-   作    者   : z00161729
-   修改内容   : AT&T 支持DAM特性修改
-*****************************************************************************/
+
 VOS_VOID NAS_GMM_RcvRabmReestablishReq_AttemptToUpdate(
     GMMRABM_REESTABLISH_REQ_STRU       *pstMsg
 )
@@ -133,21 +58,7 @@ VOS_VOID NAS_GMM_RcvRabmReestablishReq_AttemptToUpdate(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_RcvRabmRabSetupInd
- 功能描述  : gmm收到rabm的rab set up ind消息的处理
- 输入参数  : pstRabSetupIndMsg - 消息内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年7月14日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_GMM_RcvRabmRabSetupInd(
     GMMRABM_RAB_SETUP_IND_STRU         *pstRabSetupIndMsg
 )
@@ -177,52 +88,7 @@ VOS_VOID NAS_GMM_RcvRabmRabSetupInd(
 }
 
 
-/*******************************************************************************
-  Module   : Gmm_RcvRabmReestablishReq
-  Function : 收到GMMRABM_REESTABLISH_REQ原语后的处理
-  Input    : VOS_VOID *pMsg     原语首地址
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1.张志勇  2003.12.10  新版作成
 
-    2.日    期   : 2010年7月17日
-      作    者   : 欧阳飞
-      修改内容   : DTS2010071601574, 将参数类型从指向GMMRABM_REESTABLISH_REQ_-
-                   STRU的指针改为usUplinkDataStatus项
-    3.日    期   : 2011年3月2日
-      作    者   : z00161729
-      修改内容   : DTS2010071601574:RAU过程完成收到rau accept需要等待RABM或WRR回复后再发送RAU cmp消息期间,
-                   缓存rabm重建请求.
-    3.日    期   : 2011年3月8日
-      作    者   : c00173809
-      修改内容   : DTS2011030704202:在用户列表搜过程中,如果发起RABM重建请求,优先处理RABM服务.
-    4.日    期   : 2012年2月15日
-      作    者   : w00166186
-      修改内容   : CSFB&PPAC&ETWS&ISR 开发
-    5.日    期   : 2012年8月25日
-      作    者   : m00217266
-      修改内容   : 修改GMM_SndSmServiceRej函数接口
-    6.日    期   : 2012年8月15日
-      作    者   : z00161729
-      修改内容   : DCM定制需求和遗留问题修改
-    7.日    期   : 2012年12月11日
-      作    者   : w00176964
-      修改内容   : NAS_MML_GetPsRestrictNormalServiceFlg修改函数名
-    8.日    期   : 2013年05月30日
-      作    者   : l65478
-      修改内容   : DTS2013052405902, 上网和MMS同时进行的时候,MMS失败
-    9.日    期   : 2013年07月27日
-      作    者   : l65478
-      修改内容   : DTS2013071003497, 连接被NAS终止后,GMM收到RAB的重建请求后没有重新发起RAB重建请求
-   10.日    期   : 2013年08月16日
-      作    者   : l65478
-      修改内容   : DTS2013091003969,L handover to W后收到鉴权消息没有处理
-   11.日    期   : 2015年1月5日
-      作    者   : z00161729
-      修改内容   : AT&T 支持DAM特性修改
-*******************************************************************************/
 VOS_VOID Gmm_RcvRabmReestablishReq(VOS_VOID *pMsg)
 {
     VOS_UINT32                      ulRrcEstCauseTemp;
@@ -238,13 +104,9 @@ VOS_VOID Gmm_RcvRabmReestablishReq(VOS_VOID *pMsg)
         return;
     }
 
-    /* Modified by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, begin */
     if (VOS_TRUE == NAS_MML_GetPsRestrictNormalServiceFlg())
-    /* Modified by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, end */
     {
-        /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-9-10, begin */
         Gmm_SndRabmReestablishCnf(GMM_RABM_SERVICEREQ_FAILURE);
-        /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-9-10, end */
         return;
     }
 
@@ -323,9 +185,7 @@ VOS_VOID Gmm_RcvRabmReestablishReq(VOS_VOID *pMsg)
 
         g_GmmGlobalCtrl.ucSpecProcHold = GMM_SERVICE_REQUEST_DATA_IDLE;
 
-        /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, begin */
         Gmm_SndMmcGprsServiceInd(NAS_MMC_GMM_GPRS_SERVICE_DATA);
-        /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, end */
         break;
 
     case GMM_REGISTERED_ATTEMPTING_TO_UPDATE:
@@ -552,25 +412,7 @@ VOS_VOID Gmm_RcvRabmReestablishReq(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_RcvSmsEstReq_SuspendWaitForSysinfo
- 功能描述  : 在SUSPEND WAIT FOR SYSINFO状态下收到SMS消息的处理
- 输入参数  : pMsg        - 收到消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月26日
-    作    者   : l65478
-    修改内容   : 新生成函数
-
-  2.日    期   : 2014年12月25日
-    作    者   : w00167002
-    修改内容   : DTS2014122201960:在SUSPEND WAIT FOR SYSINFO时候，如果定时器在
-                运行，则继续等系统消息。
-*****************************************************************************/
 VOS_VOID NAS_GMM_RcvRabmEstReq_SuspendWaitForSysinfo(
     VOS_VOID                            *pMsg
 )
@@ -610,16 +452,7 @@ VOS_VOID NAS_GMM_RcvRabmEstReq_SuspendWaitForSysinfo(
     return;
 }
 
-/*******************************************************************************
-  Module   : Gmm_RcvRabRelInd
-  Function : 收到GMMRABM_RAB_REL_IND原语后的处理
-  Input    : VOS_VOID
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-        1.  x00115505     2009.05.11  新版做成
-*******************************************************************************/
+
 VOS_VOID Gmm_RcvRabRelInd(VOS_VOID)
 {
     VOS_VOID                            *pMsg;
@@ -656,25 +489,7 @@ VOS_VOID Gmm_RcvRabRelInd(VOS_VOID)
         Gmm_MemFree(pRabmReEst);
     }
 }
-/*******************************************************************************
-  Module   : Gmm_RcvRrmmSecurityInd
-  Function : 收到RRMM_SECURITY_IND原语后的处理
-  Input    : VOS_VOID *pMsg     原语首地址
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1. 张志勇  2003.12.10  新版作成
-    2.日    期   : 2012年03月2日
-      作    者   : l00130025
-      修改内容   : DTS2012022906401:L->W Handover SMC在系统消息前收到时没有处理，导致RAU失败
-    3.日    期   : 2012年09月26日
-      作    者   : z00161729
-      修改内容   : DTS2012080605232:W下正常驻留启动T3312,搜网到L 后HO到W，gmm进入pmm_connected状态未停止T3312
-    4.日    期   : 2015年7月2日
-      作    者   : z00161729
-      修改内容   : 24008 23122 R11 CR升级项目修改
-*******************************************************************************/
+
 VOS_VOID Gmm_RcvRrmmSecurityInd(VOS_VOID *pMsg)
 {
     RRMM_SECURITY_IND_STRU             *pstSecurityInd = VOS_NULL_PTR;
@@ -733,29 +548,7 @@ VOS_VOID Gmm_RcvRrmmSecurityInd(VOS_VOID *pMsg)
         break;
     }
 }
-/*******************************************************************************
-  Module   : Gmm_RcvRrmmSecurityInd_RegInit
-  Function : 在GMM-REGISTERED-INITIATED状态下，收到RRMM_SECURITY_IND原语后的处理
-  Input    : RRMM_SECURITY_IND_STRU *ptr     原语首地址
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1. 张志勇  2003.12.10  新版作成
-  2. 张志勇  2004.10.27  CK,IK存储格式变更
-  3.日    期   : 2006年12月5日
-    作    者   : luojian 60022475
-    修改内容   : Maps3000接口修改
-  4.日    期   : 2011年3月3日
-    作    者   : z00161729
-    修改内容   : DTS2011021201997:PS、CS完整性保护是否开启由GMM和MM分开维护,MMC不再维护
-  2.日    期   : 2011年7月27日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-  6.日    期  :2014年01月09日
-    作    者  :l65478
-    修改内容  :DTS2014010704608:第一次鉴权响应和网络发起的第二次鉴权请求冲突
-*******************************************************************************/
+
 VOS_VOID Gmm_RcvRrmmSecurityInd_RegInit(
                                     RRMM_SECURITY_IND_STRU *ptr                 /* 原语首地址                               */
                                     )
@@ -783,41 +576,7 @@ VOS_VOID Gmm_RcvRrmmSecurityInd_RegInit(
     {
     }
 }
-/*******************************************************************************
-  Module   : Gmm_RcvRrmmSecurityInd_ServReqInit
-  Function : 在GMM-SERVICE-REQUEST-INITIATED状态下，收到RRMM_SECURITY_IND原
-             语后的处理
-  Input    : RRMM_SECURITY_IND_STRU *ptr     原语首地址
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1.张志勇  2003.12.10  新版作成
-  2.张志勇  2004.10.27  CK,IK存储格式变更
-  3.日    期   : 2006年12月5日
-    作    者   : luojian 60022475
-    修改内容   : Maps3000接口修改
-  4.日    期   : 2008年9月18日
-    作    者   : ouyangfei 00132663
-    修改内容   : 根据问题单号：AT2D05816，在GMM过程中，来自CM层的SMS请求应该被缓存，
-                  等GMM过程结束再发起。
-  5.日    期   : 2011年3月3日
-    作    者   : z00161729
-    修改内容   : DTS2011021201997:PS、CS完整性保护是否开启由GMM和MM分开维护,MMC不再维护
-  6.日    期   : 2011年7月14日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
-  7.日    期   : 2011年7月27日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-  8.日    期   : 2012年8月1日
-    作    者   : A00165503
-    修改内容   : DTS2012072705055: GMM和SM之间增加信令连接建立指示原语, SM根
-                 据该原语重启T3380, T3381或T3390
-  9.日    期  :2014年01月09日
-    作    者  :l65478
-    修改内容  :DTS2014010704608:第一次鉴权响应和网络发起的第二次鉴权请求冲突
-*******************************************************************************/
+
 VOS_VOID Gmm_RcvRrmmSecurityInd_ServReqInit(
                                         RRMM_SECURITY_IND_STRU *ptr             /* 原语首地址                               */
                                         )
@@ -933,23 +692,7 @@ VOS_VOID Gmm_RcvRrmmSecurityInd_ServReqInit(
     }
 
 }
-/*****************************************************************************
- 函 数 名  : Gmm_RcvRrmmSecurityInd_SuspendWaitSysinfo
- 功能描述  : SuspendWaitSysinfo状态对SecurityInd的处理
- 输入参数  : RRMM_SECURITY_IND_STRU              *pStSecurityInd
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月1日
-    作    者   : l00130025
-    修改内容   : DTS2012022906401,L->W handover，Resume后收到Security_ind没有处理
-  2.日    期  :2014年01月09日
-    作    者  :l65478
-    修改内容  :DTS2014010704608:第一次鉴权响应和网络发起的第二次鉴权请求冲突
-*****************************************************************************/
 
 VOS_VOID Gmm_RcvRrmmSecurityInd_SuspendWaitSysinfo(
     RRMM_SECURITY_IND_STRU              *pStSecurityInd
@@ -986,39 +729,7 @@ VOS_VOID Gmm_RcvRrmmSecurityInd_SuspendWaitSysinfo(
 
 }
 
-/*******************************************************************************
-  Module   : Gmm_RcvServiceAcceptMsg
-  Function : 收到service accept消息后的处理
-  Input    : NAS_MSG_STRU *pMsg     NAS消息首地址
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1.张志勇  2003.12.10  新版作成
-  2.日    期   : 2008年9月18日
-    作    者   : ouyangfei 00132663
-    修改内容   : 根据问题单号：AT2D05816，在GMM过程中，来自CM层的SMS请求应该被缓存，
-                  等GMM过程结束再发起。
-  3.日    期   : 2011年7月14日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
-  4.日    期   : 2012年04月24日
-    作    者   : L65478
-    修改内容   : DTS2012042407125,没有处理PDP STATUS IE
-  5.日    期   : 2012年08月24日
-    作    者   : m00217266
-    修改内容   : 修改Gmm_SndSmEstablishCnf接口，添加原因值，删除GMM_ClearErrCode
-  6.日    期  :2014年01月09日
-    作    者  :l65478
-    修改内容  :DTS2014010704608:第一次鉴权响应和网络发起的第二次鉴权请求冲突
 
-  6.日    期   : 2014年5月28日
-    作    者   : z00234330
-    修改内容   : SMC流程,dts2014052907662
-  7.日    期   : 2015年7月2日
-    作    者   : z00161729
-    修改内容   : 24008 23122 R11 CR升级项目修改
-*******************************************************************************/
 VOS_VOID Gmm_RcvServiceAcceptMsg(
                              NAS_MSG_FOR_PCLINT_STRU *pMsg
                              )
@@ -1144,27 +855,7 @@ VOS_VOID Gmm_RcvServiceAcceptMsg(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : Gmm_RcvServiceRejectMsg_Cause_Handling
- 功能描述  : 分发错误码处理
- 输入参数  : ucRejectCause 拒绝的原因
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年5月20日
-    作    者   : S62952
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月25日
-    作    者   : m00217266
-    修改内容   : 删除GMM_SaveErrCode，添加Gmm_Save_Detach_Cause，
-                保存导致Attach失败的原因值
-  3.日    期   : 2015年6月5日
-    作    者   : z00161729
-    修改内容   : 24008 23122 R11 CR升级项目修改
-*****************************************************************************/
 VOS_VOID  Gmm_RcvServiceRejectMsg_Cause_Handling(VOS_UINT8 ucRejectCause)
 {
     /*保存被拒绝的错误码*/
@@ -1177,16 +868,7 @@ VOS_VOID  Gmm_RcvServiceRejectMsg_Cause_Handling(VOS_UINT8 ucRejectCause)
         Gmm_ServiceReqRejectCasue3(ucRejectCause);
         break;
 
-    /*24008_CR2297R2_(Rel-11)_C1-124967 24008 4.7.13.4描述如下:
-    #8 - The MS shall set the GPRS update status to GU3 ROAMING NOT ALLOWED (and
-    shall store it according to subclause 4.1.3.2) and shall delete any P-TMSI,
-    P-TMSI signature, RAI and GPRS ciphering key sequence number. The new GMM state
-    is GMM-DEREGISTERED.
-    The MS shall set the update status to U3 ROAMING NOT ALLOWED, shall delete any TMSI, LAI
-    and ciphering key sequence number. If the MS is operating in MS operation mode A and an RR
-    connection exists, the MS shall abort the RR connection, unless an emergency call is ongoing.
-    The SIM/USIM shall be considered as invalid for GPRS and non-GPRS services until switching off
-    or the SIM/USIM is removed. */
+    
     case NAS_MML_REG_FAIL_CAUSE_GPRS_SERV_AND_NON_GPRS_SERV_NOT_ALLOW:
         Gmm_ServiceReqRejectCasue3(ucRejectCause);
         break;
@@ -1221,53 +903,7 @@ VOS_VOID  Gmm_RcvServiceRejectMsg_Cause_Handling(VOS_UINT8 ucRejectCause)
 
 }
 
-/*******************************************************************************
-  Module   : Gmm_RcvServiceRejectMsg
-  Function : 收到service reject消息后的处理
-  Input    : NAS_MSG_STRU *pMsg  NAS消息首地址
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1. 张志勇  2003.12.10  新版作成
-    2. 日    期   : 2008年9月18日
-       作    者   : ouyangfei 00132663
-       修改内容   : 根据问题单号：AT2D05816，在GMM过程中，来自CM层的SMS请求应该被缓存，等GMM过程结束再发起。
-    3. 日    期   : 2010年11月24日
-       作    者   : 王毛 00166186
-       修改内容   : 根据问题单号DTS2010112205253,DEFAULT分支，错误原因值填写不正确
-    4. 日    期   : 2011年7月26日
-       作    者   : c00173809
-       修改内容   : 根据问题单号DTS2011072203766,发起PDP激活被拒(原因#15)，BALONG立即给SM返回失败。
-    5.日    期   : 2012年02月16日
-      作    者   : L65478
-      修改内容   : 问题单号;DTS2012021602026,GCF测试失败,PDP激活被网络拒绝后立刻又重新发起了PDP激活请求
-    6.日    期   : 2012年3月17日
-      作    者   : w00176964
-      修改内容   : DTS2012031900095 V7R1 C30 SBM&EM定制需求:增加拨号被拒定制
-    7.日    期   : 2012年3月21日
-      作    者   : z40661
-      修改内容   : DTS2011112403767:L重选到W，被网络拒绝#9后携带的PTMSI不正确
-    8.日    期   : 2012年8月25日
-      作    者   : m00217266
-      修改内容   : 修改函数GMM_SndSmServiceRej，添加原因值入参
-    9.日    期   : 2013年1月4日
-      作    者   : w00176964
-      修改内容   : DTS2013010400031:全局变量g_ucGcfInd替换为USIM提供API函数USIMM_IsTestCard
-   10.日    期   : 2013年6月5日
-      作    者   : w00242748
-      修改内容   : svlte和usim接口调整
-   11.日    期  :2014年01月09日
-      作    者  :l65478
-      修改内容  :DTS2014010704608:第一次鉴权响应和网络发起的第二次鉴权请求冲突
-   12.日    期  :2014年04月2日
-      作    者  :w00242748
-      修改内容  :DTS2014040200322:PS域发起PS拨号时，被网络拒绝原因值#3,#6,#7,#8
-                 导致PS域卡无效，现需规避这种场景。
-   13.日    期   : 2014年10月20日
-      作    者   : h00285180
-      修改内容   : 拒绝原因值优化PhaseII DTS2014110307415
-*******************************************************************************/
+
 VOS_VOID Gmm_RcvServiceRejectMsg(
                              NAS_MSG_FOR_PCLINT_STRU *pMsg
                              )
@@ -1379,19 +1015,7 @@ VOS_VOID Gmm_RcvServiceRejectMsg(
     return;
 }
 
-/*******************************************************************************
-  Module   : Gmm_ServiceReqRejectCasue3
-  Function : 收到原因值为3的service reject消息后的处理
-  Input    : VOS_UINT8 ucCause    失败原因
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1.张志勇  2003.12.10  新版作成
-  2.日    期   : 2011年7月14日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
-*******************************************************************************/
+
 VOS_VOID Gmm_ServiceReqRejectCasue3(
                                 VOS_UINT8 ucCause                               /* 失败原因                                 */
                                 )
@@ -1425,19 +1049,7 @@ VOS_VOID Gmm_ServiceReqRejectCasue3(
 
 }
 
-/*******************************************************************************
-  Module   : Gmm_ServiceReqRejectCasue7
-  Function : 收到原因值为7的service reject消息后的处理
-  Input    : 无
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1.张志勇  2003.12.10  新版作成
-  2.日    期   : 2011年7月14日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
-*******************************************************************************/
+
 VOS_VOID Gmm_ServiceReqRejectCasue7(VOS_VOID)
 {
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16  enCause;
@@ -1473,24 +1085,7 @@ VOS_VOID Gmm_ServiceReqRejectCasue7(VOS_VOID)
     Gmm_TimerStop(GMM_TIMER_T3302);                                             /* 停T3302                                  */
 
 }
-/*******************************************************************************
-  Module   : Gmm_ServiceReqRejectCasue9
-  Function : 收到原因值为9的service reject消息后的处理
-  Input    : 无
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1.张志勇  2003.12.10  新版作成
-  2.日    期   : 2011年7月14日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
 
-  3.日    期   : 2012年3月21日
-    作    者   : z40661
-    修改内容   : DTS2011110201060:L重选到W，被网络拒绝#9后携带的PTMSI不正确
-
-*******************************************************************************/
 VOS_VOID Gmm_ServiceReqRejectCasue9(VOS_VOID)
 {
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16  enCause;
@@ -1522,20 +1117,7 @@ VOS_VOID Gmm_ServiceReqRejectCasue9(VOS_VOID)
     NAS_GMM_SetLteGutiValid(VOS_TRUE);
 #endif
 }
-/*******************************************************************************
-  Module   : Gmm_ServiceReqRejectCasue10
-  Function : 收到原因值为10的service reject消息后的处理
-  Input    : 无
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1.张志勇  2003.12.10  新版作成
-  2.日    期   : 2011年7月14日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
 
-*******************************************************************************/
 VOS_VOID Gmm_ServiceReqRejectCasue10(VOS_VOID)
 {
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16  enCause;
@@ -1554,19 +1136,7 @@ VOS_VOID Gmm_ServiceReqRejectCasue10(VOS_VOID)
     Gmm_Attach_Prepare();
     Gmm_AttachInitiate(GMM_NULL_PROCEDURE);                                     /* 进行attach                               */
 }
-/*******************************************************************************
-  Module   : Gmm_ServiceReqRejectCasue11
-  Function : 收到原因值为11的service reject消息后的处理
-  Input    : 无
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1. 张志勇  2003.12.10  新版作成
-  2.日    期   : 2011年7月14日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
-*******************************************************************************/
+
 VOS_VOID Gmm_ServiceReqRejectCasue11(VOS_VOID)
 {
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16  enCause;
@@ -1600,19 +1170,7 @@ VOS_VOID Gmm_ServiceReqRejectCasue11(VOS_VOID)
     Gmm_TimerStop(GMM_TIMER_T3302);                                             /* 停T3302                                  */
 
 }
-/*******************************************************************************
-  Module   : Gmm_ServiceReqRejectCasue12
-  Function : 收到原因值为12的service reject消息后的处理
-  Input    : 无
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1. 张志勇  2003.12.10  新版作成
-  2.日    期   : 2011年7月14日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
-*******************************************************************************/
+
 VOS_VOID Gmm_ServiceReqRejectCasue12(VOS_VOID)
 {
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16   enCause;
@@ -1645,19 +1203,7 @@ VOS_VOID Gmm_ServiceReqRejectCasue12(VOS_VOID)
     Gmm_TimerStop(GMM_TIMER_T3302);                                             /* 停T3302                                  */
 
 }
-/*******************************************************************************
-  Module   : Gmm_ServiceReqRejectCasue13
-  Function : 收到原因值为13的service reject消息后的处理
-  Input    : 无
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1.张志勇  2003.12.10  新版作成
-  2.日    期   : 2011年7月14日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
-*******************************************************************************/
+
 VOS_VOID Gmm_ServiceReqRejectCasue13(
                              VOS_UINT8 ucCause                                  /* 失败原因                                 */
                              )
@@ -1697,20 +1243,7 @@ VOS_VOID Gmm_ServiceReqRejectCasue13(
 
 }
 
-/*******************************************************************************
-  Module   : Gmm_ServiceReqRejectCasue40
-  Function : 收到原因值为40的service reject消息后的处理
-  Input    : 无
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1.张志勇  2003.12.10  新版作成
-  2.日    期   : 2011年7月14日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
 
-*******************************************************************************/
 VOS_VOID Gmm_ServiceReqRejectCasue40(VOS_VOID)
 {
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16  enCause;
@@ -1747,21 +1280,7 @@ VOS_VOID Gmm_ServiceReqRejectCasue40(VOS_VOID)
     {
     }
 }
-/*******************************************************************************
-  Module   : Gmm_ServiceReqRejectTheOtherCause
-  Function : 收到原因值为3，6，7，9，10，11，12，13，15，40之外值的
-             service reject消息后的处理
-  Input    : VOS_UINT8 ucCause  :拒绝原因值
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1.张志勇   2003.12.10  新版作成
-  2.日    期   : 2011年7月14日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
 
-*******************************************************************************/
 VOS_VOID Gmm_ServiceReqRejectTheOtherCause(
                                        VOS_UINT8 ucCause                        /* 拒绝原因值                               */
                                        )
@@ -1796,31 +1315,7 @@ VOS_VOID Gmm_ServiceReqRejectTheOtherCause(
     {
     }
 }
-/*******************************************************************************
-  Module   : Gmm_ServiceRequestMsgMake
-  Function : service request的制作
-  Input    : 无
-  Output   : 无
-  NOTE     : 无
-  Return   : NAS_MSG_STRU *ptrNasMsg    :NAS消息首地址
-  History  :
-  1. 张志勇  2003.12.10  新版作成
-  2.日    期   : 2011年7月27日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-  3.日    期   : 2012年3月7日
-    作    者   : z00161729
-    修改内容   : V7R1 C50 支持ISR修改
-  4.日    期   : 2012年3月15日
-    作    者   : l65478
-    修改内容   : DTS2013120300990:在PDP激活过程中发起RAU,第一次PDP激活失败
-  5.日    期   : 2014年12月06日
-    作    者   : A00165503
-    修改内容   : DTS2014120207400: 连续去激活多个PDP, 网侧不释放RRC连接
-  6.日    期   : 2016年1月20日
-    作    者   : c00318887
-    修改内容   : DTS2015123110917: usim卡在GSM下做2G鉴权后，csfb到3G下鉴权错误
-*******************************************************************************/
+
 NAS_MSG_STRU *Gmm_ServiceRequestMsgMake()
 {
     NAS_MSG_FOR_PCLINT_STRU            *ptrNasMsg;
@@ -1911,37 +1406,7 @@ NAS_MSG_STRU *Gmm_ServiceRequestMsgMake()
     return (NAS_MSG_STRU *)ptrNasMsg;
 }
 
-/*****************************************************************************
- 函 数 名  : Gmm_ServiceRequestMsgMake_ForData
- 功能描述  : service request For Data类型的制作
- 输入参数  : pMsg
- 输出参数  :
- 返 回 值  : NAS_MSG_STRU *
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2010年1月14日
-   作    者   : Z00163274
-   修改内容   : 新生成函数
-
- 2.日    期   : 2010年7月17日
-   作    者   : 欧阳飞
-   修改内容   : DTS2010071601574, 将参数类型从指向GMMRABM_REESTABLISH_REQ_-
-                STRU的指针改为usUplinkDataStatus项
- 3.日    期   : 2011年7月27日
-   作    者   : h44270
-   修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
- 4.日    期   : 2012年3月7日
-   作    者   : z00161729
-   修改内容   : V7R1 C50 支持ISR修改
- 5.日    期   : 2013年05月30日
-   作    者   : l65478
-   修改内容   : DTS2013052405902, 上网和MMS同时进行的时候,MMS失败
-  6.日    期   : 2016年1月20日
-    作    者   : c00318887
-    修改内容   : DTS2015123110917: usim卡在GSM下做2G鉴权后，csfb到3G下鉴权错误
-*****************************************************************************/
 NAS_MSG_STRU *Gmm_ServiceRequestMsgMake_ForData(
     VOS_UINT16                          usUplinkDataStatus,
     VOS_UINT16                          usPdpContextStatus
@@ -2065,20 +1530,7 @@ NAS_MSG_STRU *Gmm_ServiceRequestMsgMake_ForData(
     return (NAS_MSG_STRU *)ptrNasMsg;
 }
 
-/*******************************************************************************
-  Module   : Gmm_RcvSmsUnitdataReq
-  Function : 收到原语PMMSMS_UNITDATA_REQ的处理
-  Input    : VOS_VOID       *pMsg   指向原语的指针
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1. 张志勇  2004.03.11  新规作成  二期改造_GMM_001_03
-    2. 日    期   : 2007年12月11日
-       作    者   : l65478
-       修改内容   : A32D13796
 
-*******************************************************************************/
 VOS_VOID Gmm_RcvSmsUnitdataReq(
                            VOS_VOID    *pMsg                                    /* 消息指针                                 */
                            )
@@ -2155,21 +1607,7 @@ VOS_VOID NAS_GMM_BufferSmsEstReq(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_RcvSmsEstReq_RegUptNeededNormalSrv
- 功能描述  : GMM_REGISTERED_UPDATE_NEEDED状态正常服务收到SMS EST REQ的处理
- 输入参数  : PMMSMS_EST_REQ_STRU                 pstGmmSmsEstReq
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月24日
-    作    者   : w00166186
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_GMM_RcvSmsEstReq_RegUptNeededNormalSrv(
     PMMSMS_EST_REQ_STRU                *pstGmmSmsEstReq
 )
@@ -2228,38 +1666,7 @@ VOS_VOID NAS_GMM_RcvSmsEstReq_RegUptNeededNormalSrv(
                     NAS_OM_EVENT_NO_PARA);
 
 }
-/*******************************************************************************
-  Module   : Gmm_RcvSmsEstReq
-  Function : 收到原语PMMSMS_EST_REQ的处理
-  Input    : VOS_VOID       *pMsg   指向原语的指针
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1. 张志勇  2004.03.11  新规作成  二期改造_GMM_001_05
-    2. 日    期   : 2008年7月24日
-       作    者   : luojian 00107747
-       修改内容   : 根据问题单号：AT2D04627/AT2D04237
-    3. 日    期   : 2008年9月18日
-       作    者   : ouyangfei 00132663
-       修改内容   : 根据问题单号：AT2D05816，在GMM过程中，来自CM层的SMS请求应该被缓存，等GMM过程结束再发起。
-    4.日    期   : 2011年3月2日
-      作    者   : z00161729
-      修改内容   : DTS2010071601574:RAU过程完成收到rau accept需要等待RABM或WRR回复后再发送RAU cmp消息期间,
-                   缓存sms请求,等RAU结束再发起
-    5.日    期   : 2012年2月15日
-      作    者   : w00166186
-      修改内容   : CSFB&PPAC&ETWS&ISR 开发
-    6.日    期   : 2012年5月7日
-      作    者   : z00161729
-      修改内容   : V7R1C50 GUL BG搜网修改
-    7.日    期   : 2012年12月11日
-      作    者   : w00176964
-      修改内容   : NAS_MML_GetPsRestrictNormalServiceFlg修改函数名
-    8.日    期   : 2013年08月16日
-      作    者   : l65478
-      修改内容   : DTS2013091003969,L handover to W后收到鉴权消息没有处理
-*******************************************************************************/
+
 VOS_VOID Gmm_RcvSmsEstReq(
                       VOS_VOID    *pMsg                                         /* 消息指针                                 */
                       )
@@ -2282,9 +1689,7 @@ VOS_VOID Gmm_RcvSmsEstReq(
         g_GmmGlobalCtrl.MsgHold.ulMsgAddrForSMS = (VOS_UINT32)NULL;
     }
 
-    /* Modified by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, begin */
     if (VOS_TRUE == NAS_MML_GetPsRestrictNormalServiceFlg())
-    /* Modified by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, end */
     {
         /* 通知SMS建链失败 */
         Gmm_SndSmsErrorInd(GMM_SMS_SPEC_PROC_ONGOING);
@@ -2439,21 +1844,7 @@ VOS_VOID Gmm_RcvSmsEstReq(
 }
 
 #if (FEATURE_ON == FEATURE_DSDS)
-/*****************************************************************************
- 函 数 名  : NAS_GMM_ConvertSmsSessionTypeToRrc
- 功能描述  : 将gmm和sms接口中的session type转换为gmm和gu接入层的session type
- 输入参数  : enGmmSmsSessionType - gmm和sms接口中的session type
- 输出参数  : pucRrcSessionType   - gmm和gu接入层的session type
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月25日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_GMM_ConvertSmsSessionTypeToRrc(
     GMMSMS_SESSION_TYPE_ENUM_UINT8      enGmmSmsSessionType,
     RRC_NAS_SESSION_TYPE_ENUM_UINT8    *pucRrcSessionType
@@ -2477,23 +1868,7 @@ VOS_VOID NAS_GMM_ConvertSmsSessionTypeToRrc(
 }
 #endif 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_RcvSmsBeginSessionNotify_PreProc
- 功能描述  : 收到sms的begin session消息的处理
- 输入参数  : pstBeginSessionMsg  - 收到sms begin session消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月25日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2015年09月23日
-    作    者   : c00318887
-    修改内容   : DTS2015082604451:修改DSDS宏控，停止释放PS域SMS连接的定时器
-*****************************************************************************/
 VOS_VOID NAS_GMM_RcvSmsBeginSessionNotify_PreProc(
     GMMSMS_BEGIN_SESSION_NOTIFY_STRU   *pstBeginSessionMsg
 )
@@ -2516,23 +1891,7 @@ VOS_VOID NAS_GMM_RcvSmsBeginSessionNotify_PreProc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_RcvSmsEndSessionNotify_PreProc
- 功能描述  : 收到sms的end session消息的处理
- 输入参数  : pstEndSessionMsg  - 收到sms end session消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月25日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2015年09月23日
-    作    者   : c00318887
-    修改内容   : DTS2015082604451:修改DSDS宏控，启动释放PS域SMS连接的定时器
-*****************************************************************************/
 VOS_VOID NAS_GMM_RcvSmsEndSessionNotify_PreProc(
     GMMSMS_END_SESSION_NOTIFY_STRU     *pstEndSessionMsg
 )
@@ -2558,24 +1917,7 @@ VOS_VOID NAS_GMM_RcvSmsEndSessionNotify_PreProc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_RcvSmsEstReq_SuspendWaitForSysinfo
- 功能描述  : 在SUSPEND WAIT FOR SYSINFO状态下收到SMS消息的处理
- 输入参数  : pMsg        - 收到消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月26日
-    作    者   : l65478
-    修改内容   : 新生成函数
-  2.日    期   : 2014年12月25日
-    作    者   : w00167002
-    修改内容   : DTS2014122201960:在SUSPEND WAIT FOR SYSINFO时候，如果定时器在
-                运行，则继续等系统消息
-*****************************************************************************/
 VOS_VOID NAS_GMM_RcvSmsEstReq_SuspendWaitForSysinfo(
     VOS_VOID                            *pMsg
 )
@@ -2616,23 +1958,7 @@ VOS_VOID NAS_GMM_RcvSmsEstReq_SuspendWaitForSysinfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_ProcMmlProcStatusQryReq
- 功能描述  : 处理RABM的请求，查看当前是否有CS信令，PS域短信和PS域专有过程
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月19日
-    作    者   : h44270
-    修改内容   : 新生成函数
-  2.日    期   : 2013年7月11日
-    作    者   : M00217266
-    修改内容   : 添加函数入参
-*****************************************************************************/
 VOS_VOID NAS_GMM_RcvRabmMmlProcStatusQryReq(
     struct MsgCB                       *pMsg
 )
@@ -2665,20 +1991,7 @@ VOS_VOID NAS_GMM_RcvRabmMmlProcStatusQryReq(
     NAS_GMM_SndRabmMmlProcStatusQryCnf(&stMmlProcStatus);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_ChangePsSerRejCauseAvoidInvalidSim
- 功能描述  : service request拒绝原因值自适应
- 输入参数  : VOS_UINT8 *pucRcvMsg  指向原始拒绝原因值的指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月20日
-    作    者   : h00285180
-    修改内容   : 拒绝原因值PhaseII DTS2014110307415
-*****************************************************************************/
 VOS_VOID NAS_GMM_ChangePsSerRejCauseAvoidInvalidSim(VOS_UINT8 *pucRcvMsg)
 {
     NAS_MML_PLMN_ID_STRU               *pstCurrCampPlmnId    = VOS_NULL_PTR;

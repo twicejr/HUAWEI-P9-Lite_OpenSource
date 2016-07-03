@@ -1,18 +1,4 @@
-/*******************************************************************************
-  Copyright    : 2005-2007, Huawei Tech. Co., Ltd.
-  File name    : SsSndMm.c
-  Description  : 发送MM消息的处理
-  Function List:
-      1.  Ss_SndMmMsg                 SS向MM发送消息
-      2.  Ss_SndMmssEstReq            SS通知MM建立MM连接
-      3.  Ss_SndMmssDataReq           向MM发送数据
-      4.  Ss_SndMmssRelReq            SS用该原语要求MM释放MM连接
-  History:
-      1.  张志勇 2004.03.09   新版作成
-      2.日    期   : 2007年06月04日
-        作    者   : luojian id:60022475
-        修改内容   : 问题单号:A32D11456
-*******************************************************************************/
+
 
 #include "SsInclude.h"
 #include "NasOmInterface.h"
@@ -33,19 +19,7 @@
 
 /*lint -save -e958 */
 
-/*****************************************************************************
- 函 数 名  : NAS_SS_ReportM2NOtaMsg
- 功能描述  : 对trace中勾取SS的空口消息
- 输入参数  : pNasMsg - 消息内容
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月29日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_SS_ReportM2NOtaMsg(
     SS_MSG_STRU                         *pNasMsg
 )
@@ -93,19 +67,7 @@ VOS_VOID NAS_SS_ReportM2NOtaMsg(
     return;
 }
 
-/***********************************************************************
-*  MODULE   : Ss_SndMmssEstReq
-*  FUNCTION : SS通知MM建立MM连接
-*  INPUT    : VOS_UINT8     ucTi         对应的MM连接的TI
-*  OUTPUT   : VOS_VOID
-*  RETURN   : VOS_VOID
-*  NOTE     : 无
-*  HISTORY  :
-*     1.  张志勇 04-03-09  新版作成
-  2.日    期   : 2012年12月11日
-    作    者   : l00167671
-    修改内容   : DTS2012121802573, TQE清理
-************************************************************************/
+
 
 VOS_VOID Ss_SndMmssEstReq(
     VOS_UINT8                           ucTi,                                   /* 对应的MM连接的TI                         */
@@ -136,28 +98,7 @@ VOS_VOID Ss_SndMmssEstReq(
     }
 }
 
-/***********************************************************************
-*  MODULE   : Ss_SndMmssDataReq
-*  FUNCTION : 向MM发送数据
-*  INPUT    : VOS_UINT8     ucTi            对应的MM连接的TI
-*             VOS_UINT8     *pucSsMsg       待发送数据（动态内存，内部释放）
-*             VOS_UINT32     ulSsMsgSize     消息长度
-*  OUTPUT   : VOS_VOID
-*  RETURN   : VOS_VOID
-*  NOTE     : 无
-*  HISTORY  :
-*     1.  张志勇   04-03-09  新版作成
-*     2.  张志勇   05-01-14  删除对指针pucSsMsg的释放
-      3.日    期   : 2007年06月04日
-        作    者   : luojian id:60022475
-        修改内容   : 问题单号:A32D11456
-	  4.日    期   : 2012年12月11日
-	    作    者   : l00167671
-	    修改内容   : DTS2012121802573, TQE清理
-      5.日    期   : 2012年12月29日
-        作    者   : l00198894
-        修改内容   : DTS2012122702627: 增加SS空口消息可维可测
-************************************************************************/
+
 VOS_VOID Ss_SndMmssDataReq(
                        VOS_UINT8 ucTi,                                              /* 对应的MM连接的TI                         */
                        VOS_UINT8 *pucSsMsg,                                         /* 待发送数据                               */
@@ -197,22 +138,7 @@ VOS_VOID Ss_SndMmssDataReq(
     }
 }
 
-/***********************************************************************
-*  MODULE   : Ss_SndMmssRelReq
-*  FUNCTION : SS用该原语要求MM释放MM连接
-*  INPUT    : VOS_UINT8     ucTi        对应的MM连接的TI
-*  OUTPUT   : VOS_VOID
-*  RETURN   : VOS_VOID
-*  NOTE     : 无
-*  HISTORY  :
-*     1.  张志勇 04-03-09  新版作成
-      2.日    期   : 2007年06月04日
-        作    者   : luojian id:60022475
-        修改内容   : 问题单号:A32D11456
-	  3.日    期   : 2012年12月11日
-	    作    者   : l00167671
-	    修改内容   : DTS2012121802573, TQE清理
-************************************************************************/
+
 
 VOS_VOID Ss_SndMmssRelReq(
                       VOS_UINT8 ucTi                                                /* 对应的MM连接的TI                         */
@@ -240,21 +166,7 @@ VOS_VOID Ss_SndMmssRelReq(
 }
 
 #if (FEATURE_ON == FEATURE_DSDS)
-/*****************************************************************************
- 函 数 名  : NAS_SS_SndMmBeginSessionNotify
- 功能描述  : 向MM发送begin session notify
- 输入参数  : enSessionType - session type
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月16日
-    作    者   : z00161729
-    修改内容   : DSDS III新增
-
-*****************************************************************************/
 VOS_VOID NAS_SS_SndMmBeginSessionNotify(
     MMSS_SESSION_TYPE_ENUM_UINT8        enSessionType
 )
@@ -296,21 +208,7 @@ VOS_VOID NAS_SS_SndMmBeginSessionNotify(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_SS_SndMmEndSessionNotify
- 功能描述  : 向MM发送end session notify
- 输入参数  : enSessionType - session type
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月16日
-    作    者   : z00161729
-    修改内容   : DSDS III新增
-
-*****************************************************************************/
 VOS_VOID NAS_SS_SndMmEndSessionNotify(
     MMSS_SESSION_TYPE_ENUM_UINT8        enSessionType
 )
@@ -354,21 +252,7 @@ VOS_VOID NAS_SS_SndMmEndSessionNotify(
 #endif
 
 
-/*****************************************************************************
- 函 数 名  : Ss_SndMmssSsStatusNty
- 功能描述  : 向MM发送end session notify
- 输入参数  : enSessionType - session type
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月18日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID Ss_SndMmssSsStatusNty(
     MMSS_STATUS_ENUM_UINT8              enSsStatus
 )
@@ -409,21 +293,7 @@ VOS_VOID Ss_SndMmssSsStatusNty(
     return;
 }
 
-/***********************************************************************
-*  MODULE   : Ss_SndMmssAbortReq
-*  FUNCTION : SS用该原语要求MM释放MM连接
-*  INPUT    : VOS_UINT8     ucTi        对应的MM连接的TI
-*  OUTPUT   : VOS_VOID
-*  RETURN   : VOS_VOID
-*  NOTE     : 无
-*  HISTORY  :
-      1.日    期   : 2008年05月09日
-        作    者   : 胡文
-        修改内容   : 问题单号:AT2D03224
-	  2.日    期   : 2012年12月11日
-	    作    者   : l00167671
-	    修改内容   : DTS2012121802573, TQE清理
-************************************************************************/
+
 VOS_VOID Ss_SndMmssAbortReq(
                       VOS_UINT8 ucTi                                                /* 对应的MM连接的TI                         */
                       )

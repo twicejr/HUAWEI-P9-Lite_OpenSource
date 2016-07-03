@@ -1,22 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2006, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CdsImsProc.c
-  版 本 号   : 初稿
-  作    者   : y00151394
-  生成日期   : 2013年07月30日
-  最近修改   :
-  功能描述   : 实现CDS IMS相关功能
-  函数列表   :
-
-  修改历史   :
-  1.日    期   : 2013年07月30日
-    作    者   : y00151394
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -69,21 +51,7 @@ CDS_IMS_DL_FRAGMENT_BUFF_STRU  g_stCdsImsDlFragInfoBuff = {0};
 
 #if (CDS_FEATURE_OFF == CDS_FEATURE_IMS)
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_RegUlDataSendCb
- 功能描述  : IMS Feature 关闭时的桩函数
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年07月31日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 
 /* IMS虚拟网卡上行数据发送回调定义 */
 typedef VOS_UINT32 (*IMS_NIC_SEND_UL_DATA_FUNC)(VOS_UINT8 *pData, VOS_UINT16 usLen, MODEM_ID_ENUM_UINT16 enModemId);
@@ -95,21 +63,7 @@ VOS_UINT32 IMS_NIC_RegUlDataSendCb(IMS_NIC_SEND_UL_DATA_FUNC pFunc, MODEM_ID_ENU
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_DlDataRcv
- 功能描述  : IMS Feature 关闭时的桩函数
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年07月31日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 IMS_NIC_DlDataRcv(VOS_UINT8 *pData, VOS_UINT16 usLen, MODEM_ID_ENUM_UINT16 enModemId)
 {
     (VOS_VOID)pData;
@@ -122,21 +76,7 @@ VOS_UINT32 IMS_NIC_DlDataRcv(VOS_UINT8 *pData, VOS_UINT16 usLen, MODEM_ID_ENUM_U
 #endif
 
 #if (CDS_FEATURE_OFF == CDS_FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : CDS_ERABM_GetDefaultEpsbId
- 功能描述  : LTE Feature 关闭时的桩函数
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2014年01月20日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CDS_ERABM_GetDefaultEpsbId(VOS_UINT8 ucDrbId, VOS_UINT8 *pucDeftEpsbId)
 {
     (VOS_VOID)ucDrbId;
@@ -145,21 +85,7 @@ VOS_UINT32 CDS_ERABM_GetDefaultEpsbId(VOS_UINT8 ucDrbId, VOS_UINT8 *pucDeftEpsbI
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : CDS_TtfMemCopyAlloc
- 功能描述  : 新申请一块内存，将pstSrc的内容拷贝到新内存上。
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年07月31日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 TTF_MEM_ST* CDS_TtfMemCopyAlloc(TTF_MEM_ST *pstSrc, VOS_UINT32 ulLen)
 {
     TTF_MEM_ST      *pstDest;
@@ -183,20 +109,7 @@ TTF_MEM_ST* CDS_TtfMemCopyAlloc(TTF_MEM_ST *pstSrc, VOS_UINT32 ulLen)
     return pstDest;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_SendIpPacket2PC
- 功能描述  : 将数据包发送到PC Wireshark进行解析
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年07月31日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CDS_SendIpPacket2PC(TTF_MEM_ST *pstIpPkt)
 {
     TTF_MEM_ST          *pstDbgPkt;
@@ -219,22 +132,7 @@ VOS_VOID CDS_SendIpPacket2PC(TTF_MEM_ST *pstIpPkt)
 }
 
 
-/*****************************************************************************
- 函 数 名  : CDS_RxDataFromImsNIC
- 功能描述  : CDS从IMS虚拟网卡接收数据
- 输入参数  :
- 输出参数  :
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2013年07月31日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CDS_RxDataFromImsNIC(const VOS_UINT8 *pData, VOS_UINT16 usLen,MODEM_ID_ENUM_UINT16 enModemId)
 {
     CDS_ENTITY_STRU             *pstCdsEntity;
@@ -304,21 +202,7 @@ VOS_UINT32 CDS_RxDataFromImsNIC(const VOS_UINT8 *pData, VOS_UINT16 usLen,MODEM_I
 
 
 
-/*****************************************************************************
- 函 数 名  : CDS_UlProcImsData
- 功能描述  : 处理上行IMS数据。默认按Modem0处理。
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年07月31日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_UlProcImsData(MODEM_ID_ENUM_UINT16 enModemId)
 {
     VOS_UINT32              ulCnt;
@@ -372,20 +256,7 @@ VOS_VOID CDS_UlProcImsData(MODEM_ID_ENUM_UINT16 enModemId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_IsNdClientPkt
- 功能描述  : 判断下行数据包是否是NDCLIENT数据包.
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年07月31日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CDS_IsNdClientPkt(const TTF_MEM_ST *pstIpPkt)
 {
     CDS_IP_DATA_INFO_STRU       stIpv6Info = {0};
@@ -423,20 +294,7 @@ VOS_UINT32 CDS_IsNdClientPkt(const TTF_MEM_ST *pstIpPkt)
     return  PS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_SendNdDataIndMsg
- 功能描述  : 发送ND数据包到NDCLIENT处理
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年07月31日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CDS_SendNdDataIndMsg(TTF_MEM_ST *pstNdPkt, VOS_UINT8 ucRabId, const CDS_ENTITY_STRU *pstCdsEntity)
 {
     CDS_NDCLIENT_ND_DATA_IND_STRU  *pstDataInd;
@@ -490,20 +348,7 @@ VOS_VOID CDS_SendNdDataIndMsg(TTF_MEM_ST *pstNdPkt, VOS_UINT8 ucRabId, const CDS
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_IsImsBearer
- 功能描述  : 判断RabId是否是IMS承载
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年07月31日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CDS_IsImsBearer(VOS_UINT8 ucRabId, const CDS_ENTITY_STRU *pstCdsEntity)
 {
     VOS_UINT32      ulCnt;
@@ -520,20 +365,7 @@ VOS_UINT32 CDS_IsImsBearer(VOS_UINT8 ucRabId, const CDS_ENTITY_STRU *pstCdsEntit
     return PS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_IsImsDefBearer
- 功能描述  : 判断RabId是否是IMS缺省承载
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年07月31日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CDS_IsImsDefBearer(VOS_UINT8 ucRabId, const CDS_ENTITY_STRU *pstCdsEntity)
 {
     VOS_UINT32      ulCnt;
@@ -551,22 +383,7 @@ VOS_UINT32 CDS_IsImsDefBearer(VOS_UINT8 ucRabId, const CDS_ENTITY_STRU *pstCdsEn
     return PS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_ImsSaveFragmentPktInfo
- 功能描述  : CDS IMS 保存下行分片包信息
- 输入参数  :
- 输出参数  :
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2014年02月07日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_ImsSaveFragmentPktInfo(const CDS_IP_DATA_INFO_STRU *pstIpPktInfo)
 {
     CDS_IMS_DL_FRAGMENT_BUFF_STRU   *pstImsFragBuff;
@@ -587,22 +404,7 @@ VOS_VOID CDS_ImsSaveFragmentPktInfo(const CDS_IP_DATA_INFO_STRU *pstIpPktInfo)
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_ImsGetDestPortFromFragBuff
- 功能描述  : CDS IMS 从分片包缓存信息中获取目的端口号
- 输入参数  :
- 输出参数  :
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2014年02月07日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CDS_ImsGetDestPortFromFragBuff(VOS_UINT16 *pusDestPort,
                                                     const CDS_IP_DATA_INFO_STRU *pstIpPktInfo)
 {
@@ -627,22 +429,7 @@ VOS_UINT32 CDS_ImsGetDestPortFromFragBuff(VOS_UINT16 *pusDestPort,
     return PS_FAIL;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_ImsGetPktDestPort
- 功能描述  : CDS IMS 获取数据包目的端口号
- 输入参数  :
- 输出参数  :
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2014年02月07日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CDS_ImsGetPktDestPort(VOS_UINT16 *pusDestPort,
                                         const CDS_IP_DATA_INFO_STRU *pstIpPktInfo)
 {
@@ -678,21 +465,7 @@ VOS_UINT32 CDS_ImsGetPktDestPort(VOS_UINT16 *pusDestPort,
 
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_IsImsUtPkt
- 功能描述  : 判断是否是IMS UT数据包，如果是则发送到A核.
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2014年01月16日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CDS_IsImsUtPkt(const TTF_MEM_ST *pstIpPkt,const CDS_ENTITY_STRU *pstCdsEntity)
 {
     CDS_IP_DATA_INFO_STRU       stIpPktInfo = {0};
@@ -735,21 +508,7 @@ VOS_UINT32 CDS_IsImsUtPkt(const TTF_MEM_ST *pstIpPkt,const CDS_ENTITY_STRU *pstC
     return PS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_DlProcImsData
- 功能描述  : 处理下行VoLte数据
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年07月31日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_DlProcImsUtPkt(CDS_IMS_SDU_STRU *pstImsSdu, const CDS_ENTITY_STRU *pstCdsEntity)
 {
     VOS_UINT32              ulResult;
@@ -795,21 +554,7 @@ VOS_VOID CDS_DlProcImsUtPkt(CDS_IMS_SDU_STRU *pstImsSdu, const CDS_ENTITY_STRU *
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_DlProcImsData
- 功能描述  : 处理下行VoLte数据
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年07月31日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_DlProcImsData(CDS_IMS_SDU_STRU *pstImsSdu, const CDS_ENTITY_STRU *pstCdsEntity)
 {
     TTF_MEM_ST          *pstImsPkt;
@@ -877,21 +622,7 @@ VOS_VOID CDS_DlProcImsData(CDS_IMS_SDU_STRU *pstImsSdu, const CDS_ENTITY_STRU *p
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_ProcSetImsBearerReqMsg
- 功能描述  : 处理IMSA 设置承载请求消息.默认按Modem0处理。
- 输入参数  :
- 输出参数  :
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2013年07月31日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CDS_SendImsaSetImsBearerCnfMsg(VOS_UINT32 ulResult)
 {
     IMSA_CDS_SET_IMS_BEARER_CNF_STRU   *pstCnfMsg;
@@ -922,21 +653,7 @@ VOS_VOID CDS_SendImsaSetImsBearerCnfMsg(VOS_UINT32 ulResult)
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : CDS_ProcSetImsBearerReqMsg
- 功能描述  : 处理IMSA 设置承载请求消息.默认按Modem0处理。
- 输入参数  :
- 输出参数  :
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2013年07月31日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CDS_ImsaSetImsBearerReqMsgProc(MsgBlock *pstMsg)
 {
     IMSA_CDS_SET_IMS_BEARER_REQ_STRU   *pstReqMsg;
@@ -999,21 +716,7 @@ VOS_VOID CDS_ImsaSetImsBearerReqMsgProc(MsgBlock *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_IMSA_MsgProc
- 功能描述  : IMSA消息处理函数。
- 输入参数  :
- 输出参数  :
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2013年07月31日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CDS_IMSA_MsgProc(MsgBlock  *pstMsg)
 {
     if (VOS_NULL_PTR == pstMsg)
@@ -1039,19 +742,7 @@ VOS_VOID CDS_IMSA_MsgProc(MsgBlock  *pstMsg)
     return;
 
 }
-/*****************************************************************************
- 函 数 名  : CDS_JudgIpPktType
- 功能描述  : 根据IP包大小判断类型
- 输入参数  : VOS_UINT8 ucRabId pstCdsEntity pstIpPkt
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年08月21日
-      作    者   : c00253308
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_UINT8 CDS_JudgIpPktType(VOS_UINT8 ucRabId, const CDS_ENTITY_STRU *pstCdsEntity, TTF_MEM_ST *pstIpPkt)
 {
     VOS_UINT32      ulCnt;
@@ -1074,20 +765,7 @@ VOS_UINT8 CDS_JudgIpPktType(VOS_UINT8 ucRabId, const CDS_ENTITY_STRU *pstCdsEnti
     }
     return IP_PKT_TYPE_NORMAL;
 }
-/*****************************************************************************
- 函 数 名  : CDS_PdcpGetImsBeareByRabId
- 功能描述  : 判断RabId是否是IMS承载,供PDCP在建立下行实体时调用
- 输入参数  : ucRabId
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2015年12月10日
-      作    者   : c00253308
-      修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CDS_PdcpGetImsBeareByRabId(VOS_UINT8 ucRabId)
 {
     VOS_UINT32      ulCnt;

@@ -1,29 +1,4 @@
-/*************************************************************************
- *
- *              Copyright 2005, Huawei Technologies Co. Ltd.
- *                          ALL RIGHTS RESERVED
- * 
- *-----------------------------------------------------------------------*
- *
- *                            ppp_ipcp_type.h
- *
- *  Project Code: VISP1.5
- *   Module Name: PPP
- *  Date Created: 2000-04-04
- *        Author: DengYiou
- *   Description: PPP的IPCP协议处理模块数据结构
- *
- *-----------------------------------------------------------------------*
- *  Modification History
- *  DATE            NAME            DESCRIPTION
- *  2000-04-04      DengYiou        Create
- *  2004-07-15      YiAn            Modified for VISP
- *  2006-03-31      ZhuKun          Adjust for D00661
- *  2006-04-21      ZhuKun          Adjust for D00875
- *  2006-05-11      luyao           为支持ARM CPU字节对齐特性，修改结构。
- *  2006-05-13      l48923          Delete useless code
- *
- ************************************************************************/
+
 
 #ifndef _IPCP_TYPE_H_
 #define _IPCP_TYPE_H_
@@ -80,7 +55,6 @@ extern "C" {
 
 /* 添加协商选项(addci)宏 */
 /* 修改原因: 删除旧的子选项处理代码，修改代码以支持RFC3544规定的子选项*/
-/*Modified by z43740: 为了消除pclint告警，增加局部变量usIPHC,2005/10/25*/
 #define ADDCIIPHC(opt, neg_iphc, neg_vj, val, maxslotindex, cflag, us_tcp_space, \
 us_non_tcp_space, us_f_max_period, us_f_max_time, us_max_header, \
 ulNegoSuboptions, ucRtpCompression, ucCompressType) \
@@ -313,7 +287,6 @@ if ( pstGotOptions->neg && \
     stTryOption.neg = 0; \
 }
 
-/* Modified by z43740 for BC3D02007: ACK/REJ报文选项需要和Request报文中选项保持一致,2009-09-09 */
 #define REJCIIPHC(opt, neg_iphc, neg_vj, val, maxslot, cflag, us_tcp_space, us_non_tcp_space, \
     us_f_max_period, us_f_max_time, us_max_header, ulNegoSubOptions, ucRtpCompression, ucCompressType) \
 if(pstGotOptions->neg_iphc && (pPacket[0] == opt)) \
@@ -462,8 +435,6 @@ if (neg) \
 }
 
 /* 修改原因: 删除旧的子选项处理代码，修改代码以支持RFC3544规定的子选项*/
-/* Modified by z43740 for BC3D02007: ACK/REJ报文选项需要和Request报文中选项保持一致,2009-09-09 */
-/* Modified by y00176567, at 2011-05-27. 修改原因: 消除VC三级告警 */
 /* 将函数PPP_IPCP_ParseIPHCSubOpts的第二个参数类型转换成(USHORT)，以和该函数原型定义类型保持一致 */
 #define ACKCIIPHC(opt, neg_iphc, neg_vj, val, maxslotindex, cflag \
         , tcp_space, none_tcp_space, f_max_period, f_max_time, max_header \
@@ -677,7 +648,6 @@ VOID PPP_IPCP_Reqci_Adjust(UCHAR** pszPacket,
                            UCHAR ucCompressType);
 
 extern ULONG PPP_IPCP_IPHCInit(PPPINFO_S *pstPppInfo,PPP_IPCP_OPTION_S *pstGotOptions,PPP_IPCP_OPTION_S *pstHisOptions);
-/* Add for DTS2011042101452, by z00166124, at 2011-04-21. 修改原因: IPCP定时器传入接口索引指针 */
 VOID PPP_IPCP_FSM_TimeOut(VOID *pIfIndex);
 VOID PPP_IPCP_Ncp_Reset(VOID * pIfIndex);
 

@@ -110,23 +110,7 @@ typedef enum enumSfeBfdErrCode
 
 }SFE_BFD_ERR_CODE_E;
 
-/*******************************************************************************
-*    Func Name: SFE_BFD_DelAllBfdSession
-* Date Created: 2009-9-15
-*       Author: w60786/h00121208
-*  Description: 删除所有BFD会话
-*        Input: VOID
-*       Output: 
-*       Return: 成功:SFE_BFD_OK
-*               失败:错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                     DESCRIPTION    
-*  ----------------------------------------------------------------------------
-*  2009-9-15    w60786/h00121208         Creat the first version.
-*
-*******************************************************************************/
+
 extern UINT32 SFE_BFD_DelAllBfdSession(VOID);
 
 /*******************************************************************************

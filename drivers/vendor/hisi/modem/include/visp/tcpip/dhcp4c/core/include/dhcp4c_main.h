@@ -48,10 +48,8 @@ extern UCHAR g_ucDhcpcTos;
 /* 设置dhpc4c模块是否可以接受server发送过来的50/55/57选项  */
 extern ULONG g_ulDhcpcIgnoreOption;
 
-/* Add by heyijun 00218462 for DTS2012092900232 维测需求开发, 2012-9 */
 /* DHCP4C 统计信息 */
 extern DHCP4C_STATISTIC_S g_stDhcp4cStat;
-/* End of Add by heyijun 00218462 for DTS2012092900232 维测需求开发, 2012-9 */
 
 VOID DHCP4C_ArpReq_TimeoutProc(ULONG ulIfIndex);
 ULONG DHCP4C_BuildPacket(DHCP4C_SESSION_S *pstSession, ULONG ulMessgeType);
@@ -122,7 +120,6 @@ ULONG DHCP4C_DelDefaultAddr(ULONG ulIfIndex);
 ULONG DHCP4C_GetDefaultAddr(ULONG ulIfIndex, ULONG *pulIpAddr,ULONG *pulSubnetMask);
 ULONG DHCP4C_GetDhcpcOptionsInfo(ULONG ulIfIndex, struct tagDHCP4C_OPTIONINFO *pstDhcpOptions);
 
-/* Add by w60786 for A82D24353 2008-03-18 增强DHCP Client兼容性. */
 ULONG DHCP4C_IsRecvUnicastBeforeCfgIP ( ULONG ulIfIndex );
 
 extern TCPIP_PROCDHCP_HOOK_FUNC g_pstProcDhcpcPacketHook;
@@ -152,10 +149,8 @@ ULONG DHCP4C_GetSessionIfIndexByPkt_PT(UCHAR *pucUdpBuf, ULONG usUdpBufLen, ULON
 ULONG DHCP4C_SetDHCPVlanScanning(ULONG ulIfIndex, ULONG ulEnable, ULONG ulDelayTime);
 ULONG DHCP4C_Core_SetDHCPVlanScanning(ULONG ulIfIndex, ULONG ulEnable, ULONG ulDelayTime);
 ULONG DHCP4C_GetDHCPVlanScanning(ULONG ulIfIndex, ULONG *pulEnable, ULONG *pulDelayTime);
-/* Add by heyijun 00218462 for DTS2012092900232 维测需求开发, 2012-9 */
 ULONG DHCP4C_GetDhcp4cStatistic(DHCP4C_STATISTIC_S *pstStat);
 ULONG DHCP4C_ClrDhcp4cStatistic(VOID);
-/* End of Add by heyijun 00218462 for DTS2012092900232 维测需求开发, 2012-9 */
 
 /*******************************************************************************
 *    Func Name: DHCP4C_GetSessionByIfIndex
@@ -178,14 +173,12 @@ DHCP4C_SESSION_S *DHCP4C_GetSessionByIfIndex(ULONG ulIfIndex);
 
 extern ULONG  DHCP4C_DoFsmSelecting(UCHAR *pucUdpBuf, ULONG usUdpBufLen);
 
-/*Added by guojianjun178934, 支持DHCP46 68端口动态开启关闭功能, 2014/11/21   问题单号:S-IP-C20-005-DHCP.001 */
 ULONG DHCP4C_CloseSocket(LONG lSocket);
 ULONG DHCP4C_Get_SessionCount(VOID);
 ULONG DHCP4C_Check_CreateSocket(VOID);
 VOID DHCP4C_Check_CloseSocket(VOID);
 VOID DHCP4C_Delete_Session(VOID *pstSess);
 VOID DHCP4C_Delete_AllSession(VOID);
-/* End of Added by guojianjun178934, 2014/11/21   问题单号:S-IP-C20-005-DHCP.001 */
 
 #ifdef __cplusplus
 }

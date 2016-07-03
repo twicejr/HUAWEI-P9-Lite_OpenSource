@@ -1,4 +1,4 @@
-/* MD5: eab236ec602daa510dbc40ff2f9224a6*/
+/* MD5: b561dc3ecb8520ce0aa23e36e9a42c06*/
 #if !defined(__PRODUCT_CONFIG_H__)
 #define __PRODUCT_CONFIG_H__
 
@@ -27,7 +27,7 @@
 #endif 
 
 #ifndef PRODUCT_FULL_VERSION_STR
-#define PRODUCT_FULL_VERSION_STR "Austin V100R001C20B180" 
+#define PRODUCT_FULL_VERSION_STR "Austin V100R001C20B195" 
 #endif 
 
 #ifndef PRODUCT_FILE_VERSION_STR
@@ -35,7 +35,7 @@
 #endif 
 
 #ifndef PRODUCT_DLOAD_SOFTWARE_VER		
-#define PRODUCT_DLOAD_SOFTWARE_VER		 "21.180.00.00.031" 
+#define PRODUCT_DLOAD_SOFTWARE_VER		 "21.195.00.00.031" 
 #endif 
 
 #ifndef PLATFORM

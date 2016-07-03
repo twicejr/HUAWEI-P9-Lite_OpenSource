@@ -1,20 +1,4 @@
-/*******************************************************************************
 
-  版权所有 (C), 2001-2011, 华为技术有限公司
-
- *******************************************************************************
- 文 件 名   : rdr_hisi_ap_test.c
- 版 本 号   : 初稿
- 作    者   : 刘海龙 00249396
- 生成日期   : 2015年3月5日
- 最近修改   :
- 功能描述   : ap可维可测的测试函数
- 修改历史   :
- 1.日  期   : 2015年3月5日
-   作  者   : 刘海龙 00249396
- 修改内容   : 创建文件
-
- *******************************************************************************/
 
 /*******************************************************************************
   1 头文件包含
@@ -52,26 +36,14 @@ extern "C" {
 extern u64 g_hisiap_addr;
 extern u64 get_32k_abs_timer_value(void);
 
-/*****************************************************************************
-Description : 测试获取版本信息功能
-History
-1.Date: 2015/02/06
-Author : l00249396
-Modification : Created function
-*****************************************************************************/
+
 void test_get_product_version(void)
 {
 	char version[32];
 	 get_product_version(version, PRODUCT_VERSION_LEN);
 }
 
-/*****************************************************************************
-Description : 测试hung task
-History
-1.Date: 2015/02/06
-Author : l00249396
-Modification : Created function
-*****************************************************************************/
+
 static int test_hung_task_thread_fn(void *data)
 {
 	int i;
@@ -83,13 +55,7 @@ static int test_hung_task_thread_fn(void *data)
 	return 0;
 }
 
-/*****************************************************************************
- Description : 测试hung task
-  History
-  1.Date: 2015/02/06
-    Author : l00249396
-    Modification : Created function
-*****************************************************************************/
+
 int test_hung_task(void)
 {
 	if (!kthread_run(test_hung_task_thread_fn, NULL,
@@ -105,13 +71,7 @@ int test_hung_task(void)
 	return 0;
 }
 
-/*****************************************************************************
-Description : 显示临终遗言模块指定任务调用栈信息
-History
-1.Date: 2015/02/06
-Author : l00249396
-Modification : Created function
-*****************************************************************************/
+
 void ap_exch_task_stack_dump(int taskPid)
 {
 	pid_t exc_pid = (pid_t) taskPid;
@@ -132,13 +92,7 @@ void ap_exch_task_stack_dump(int taskPid)
 	}
 }
 
-/*****************************************************************************
-Description : 显示临终遗言模块指定内存地址内的内容，offset是要访问的异常区的偏移
-History
-1.Date: 2015/02/06
-Author : l00249396
-Modification : Created function
-*****************************************************************************/
+
 void ap_exch_buf_show(unsigned int offset, unsigned int size)
 {
 	unsigned int add_offset = 0;
@@ -155,16 +109,7 @@ void ap_exch_buf_show(unsigned int offset, unsigned int size)
 			 size, 16);
 }
 
-/*****************************************************************************
-Description : 打印buf信息，若为ASCII字符则打印字符
-input:    buf     待dump地址
-       size    内容大小
-       per_row 每行打印数据量
-History
-1.Date: 2015/02/06
-Author : l00249396
-Modification : Created function
-*****************************************************************************/
+
 void ap_exch_hex_dump(unsigned char *buf, unsigned int size,
 		      unsigned char per_row)
 {
@@ -211,13 +156,7 @@ void ap_exch_hex_dump(unsigned char *buf, unsigned int size,
 
 typedef void (*FUNC_VOID) (void);
 
-/*****************************************************************************
- Description : 未定义指令异常
-  History
-  1.Date: 2015/02/06
-    Author : l00249396
-    Modification : Created function
-*****************************************************************************/
+
 int ap_exchUNDEF(void *arg)
 {
 	int b = 0;
@@ -227,13 +166,7 @@ int ap_exchUNDEF(void *arg)
 	return 0;
 }
 
-/*****************************************************************************
- Description : 软中断异常
-  History
-  1.Date: 2015/02/06
-    Author : l00249396
-    Modification : Created function
-*****************************************************************************/
+
 int ap_exchSWI(void *arg)
 {
 #ifdef CONFIG_ARM64

@@ -23,9 +23,7 @@ extern SM_PDP_ADDR_AND_APN_STRU   g_SmPdpAddrApn;
 extern VOS_UINT8                  g_aucSapi[SM_MAX_NSAPI_NUM + SM_NSAPI_OFFSET][2];
 extern GMMSM_SGSN_REL_VER_ENUM    g_SmSgsnVersion;
 
-/* added  by m00217266 for v9r1 dcm logger可维可测项目, 2013-06-30, begin */
 extern VOS_UINT8                  g_ucSmTimerFiveExpireFlag;
-/* added  by m00217266 for v9r1 dcm logger可维可测项目, 2013-06-30, end */
 
 /* SmRcvTaf.c */
 extern VOS_VOID NAS_SM_ProcTafPdpActiveReq(SMREG_PDP_ACTIVATE_REQ_STRU*);
@@ -101,9 +99,7 @@ extern VOS_VOID SM_NwModifyProtectTimerExpire(VOS_UINT8);
 extern VOS_VOID SM_TimerStart(VOS_UINT8,VOS_UINT32,VOS_UINT8);
 extern VOS_VOID SM_TimerStop( VOS_UINT8  ucTimerId );
 extern VOS_VOID SM_RcvStatusMsg( GMMSM_DATA_IND_STRU *);
-/* Modified by wx270776 for OM融合, 2015-7-24, begin */
 extern VOS_VOID Sm_FillQosInfo(NAS_QOS_IND_STRUCT *pMsg);
-/* Modified by wx270776 for OM融合, 2015-7-24, end */
 extern VOS_VOID Sm_OmQuery(VOS_VOID *pMsg);
 
 
@@ -115,9 +111,7 @@ extern VOS_VOID SM_ReportN2MOtaMsg(VOS_UINT8 ucMsgType, NAS_MSG_STRU *pNasMsg);
 extern VOS_UINT16 NAS_SM_CalcMaxSduSize(VOS_UINT8 *pucQos, VOS_UINT8 ucCurrOctet);
 extern VOS_UINT16 NAS_SM_CalcTransDelay(VOS_UINT8 *pucQos, VOS_UINT8 ucCurrOctet);
 extern VOS_UINT32 NAS_SM_CalcQosBitRate(VOS_UINT8 *pucQos, VOS_UINT8 ucCurrOctetIndex, VOS_UINT8 ucExtOctetIndex, VOS_UINT8 ucBitRateType, VOS_UINT32 ulQosLen);
-/* Modified by wx270776 for OM融合, 2015-7-24, begin */
 extern VOS_VOID   NAS_SM_FillQos(NAS_QOS_IND_STRUCT *pMsg, VOS_UINT8 *pucQos, VOS_UINT32 ulQosLen);
-/* Modified by wx270776 for OM融合, 2015-7-24, end */
 extern VOS_UINT32 NAS_SM_FindCurrPdpId(VOS_UINT8 *pucNSAPI);
 
 /* SmRcvRabm.c */

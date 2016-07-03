@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : dmac_pm_sta.h
-  版 本 号   : 初稿
-  作    者   : l00280485
-  生成日期   : 2015年1月14日
-  最近修改   :
-  功能描述   : dmac_pm_sta.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年1月14日
-    作    者   : l00280485
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __DMAC_PM_STA_H__
 #define __DMAC_PM_STA_H__
@@ -85,7 +68,6 @@ extern oal_uint8 dmac_psm_save_ps_state (oal_void);
 extern oal_uint8 dmac_psm_recover_powerdown(oal_uint8 uc_dmach0,oal_uint8 uc_dmach1,oal_uint8 uc_dmach2);
 extern oal_uint8 dmac_psm_recover_no_powerdown (oal_void);
 extern oal_uint8 dmac_psm_cbb_stopwork (oal_void);
-extern oal_uint8 dmac_psm_lightsleep_stop (oal_void);
 extern oal_void dmac_psm_rf_sleep(oal_uint8 uc_restore_reg);
 extern oal_void dmac_psm_rf_awake (oal_uint8 uc_restore_reg);
 extern oal_void dmac_psm_sync_tsf_to_sta(oal_void);

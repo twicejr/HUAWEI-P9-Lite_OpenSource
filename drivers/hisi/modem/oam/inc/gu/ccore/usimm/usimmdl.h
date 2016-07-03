@@ -1,16 +1,4 @@
-/************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : UsimmDL.h
-  Author      : zhuli 00100318
-  Version     : V100R002
-  Date        : 2008-5-15
-  Description : 该头文件定义了---
-  History     :
-  1.Date:2008-07-02
-     Author: m00128685
-     Modification:Modify the definition of enum
 
-************************************************************************/
 
 #ifndef __USIMM_DL_H__
 #define __USIMM_DL_H__

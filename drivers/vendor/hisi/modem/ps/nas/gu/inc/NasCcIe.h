@@ -1,36 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasCcIe.h
-  版 本 号   : 初稿
-  作    者   : 丁庆 49431
-  生成日期   : 2007年8月25日
-  最近修改   : 2007年8月25日
-  功能描述   : 定义CC空口消息中的IE
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2007年8月25日
-    作    者   : 丁庆 49431
-    修改内容   : 创建文件
-  2.日    期   : 2008年9月11日
-    作    者   :S62952
-    修改内容   : 问题单号:AT2D05593
-  3.日    期   : 2008年10月24日
-    作    者   :S62952
-    修改内容   : 问题单号:A32D14191
-  4.日    期   : 2010年02月23日
-    作    者   : f62575
-    修改内容   : 问题单号:AT2D16374
-
-  5.日    期   : 2010年3月2日
-    作    者   : zhoujun /z40661
-    修改内容   : NAS R7协议升级
-  6.日    期   : 2011年04月23日
-    作    者   : L00171473
-    修改内容   : for V7R1 porting, 去掉枚举成员最后的逗号，避免编译WARNING
-******************************************************************************/
 
 #ifndef __NAS_CC_IE_H__
 #define __NAS_CC_IE_H__
@@ -1383,10 +1351,8 @@ enum NAS_CC_EMERGENCY_CAT_ENUM                                                  
     NAS_CC_EMERGENCY_FIRE                                   =  4,               /* Bit 3 Fire Brigade                */
     NAS_CC_EMERGENCY_MARINE                                 =  8,               /* Bit 4 Marine Guard                */
     NAS_CC_EMERGENCY_MOUNTAIN                               = 16,               /* Bit 5 Mountain Rescue             */
-/* Added by y00245242 for V3R3C60_eCall项目, 2014-4-16, begin */
     NAS_CC_EMERGENCY_MIEC                                   = 0x20,             /* Bit 6 manually initiated eCall    */
     NAS_CC_EMERGENCY_AIEC                                   = 0x40              /* Bit 7 auto initiated eCall        */
-/* Added by y00245242 for V3R3C60_eCall项目, 2014-4-16, end */
 };
 typedef VOS_UINT8  NAS_CC_EMERGENCY_CAT_ENUM_U8;
 
@@ -2984,13 +2950,11 @@ typedef struct
     │spare │                                                      │Octet 3
     └───┴───────────────────────────┘
 */
-/* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-16, begin */
 typedef struct
 {
     NAS_CC_EMERGENCY_CAT_ENUM_U8        EmergencyCAT        :7;
     VOS_UINT8                           Spare               :1;
 }NAS_CC_IE_SERVICE_CATEGORY_OCTET3_STRU;
-/* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-16, end */
 
 typedef struct
 {

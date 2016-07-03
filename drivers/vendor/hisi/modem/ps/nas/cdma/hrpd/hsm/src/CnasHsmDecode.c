@@ -161,24 +161,7 @@ CNAS_HSM_DECODE_ERROR_TYPE_ENUM_UINT32 CNAS_HSM_DecodeUATIAssignment(
 }
 
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_DecodeSessionClose
-Description     :   Decode SessionClose message sent by AN
-Input parameters:   *pucInData          - ptr to SessionClose message sent by CTTF
-Output parameters:  *pstOutSessionClose - ptr to SessionClose structure with decoded fields of CTTF message
-Return Value    :   CNAS_HSM_DECODE_ERROR_TYPE_ENUM_UINT32
 
-Modify History  :
-1)  Date           : 2015-02-04
-    Author         : s00250401
-    Modify content : Create
-2)  Date           : 2015-05-29
-    Author         : s00250401
-    Modify content : Iteration 12 - Added decode for all CloseEeason(0x03 and 0x04)
-3.  日    期   : 2015年08月26日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-*****************************************************************************/
  CNAS_HSM_DECODE_ERROR_TYPE_ENUM_UINT32 CNAS_HSM_DecodeSessionClose(
     VOS_UINT8                          *pucInData,
     VOS_UINT16                          usInMsgBitLen,

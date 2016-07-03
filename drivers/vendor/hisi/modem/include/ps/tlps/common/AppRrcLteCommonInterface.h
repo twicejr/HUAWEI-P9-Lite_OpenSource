@@ -1,14 +1,4 @@
-/******************************************************************************
 
-    Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : AppRrcInterface.h
-  Description     : AppRrcInterface.h header file
-  History         :
-     1.XiaoJun 58160       2009-4-29     Draft Enact
-	 2.lishangfeng  55206 2011-09-11 DTS2011091100356:候补信息维护策略改进，并且能够支持多Band时的维护
-******************************************************************************/
 
 #ifndef __APPRRCLTECOMMONINTERFACE_H__
 #define __APPRRCLTECOMMONINTERFACE_H__

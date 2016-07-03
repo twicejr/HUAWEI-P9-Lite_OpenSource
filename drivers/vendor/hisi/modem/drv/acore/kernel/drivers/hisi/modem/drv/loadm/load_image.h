@@ -54,6 +54,8 @@ extern "C"
 {
 #endif /* __cplusplus */
 
+#include <bsp_ipc.h>
+
 #ifdef CONFIG_TZDRIVER
 #include <teek_client_api.h>
 #include <teek_client_id.h>
@@ -82,6 +84,20 @@ int bsp_load_modem_images(void);
 
 /* 供动态加载协议栈镜像使用 */
 int bsp_load_modem_single_image(enum SVC_SECBOOT_IMG_TYPE ecoretype, u32 run_addr, u32 ddr_size);
+
+/*****************************************************************************
+ 函 数 名  : bsp_load_notify_ccpu_start
+ 功能描述  : 通知lpm3 C核启动
+ 输入参数  : 无
+ 输出参数  : 无
+ 返 回 值  : 成功返回OK,失败返回ERROR
+ 调用函数  :
+ 被调函数  :
+*****************************************************************************/
+static inline int bsp_load_notify_ccpu_start(void)
+{
+    return bsp_ipc_int_send(IPC_CORE_MCORE, IPC_MCU_INT_SRC_CCPU_START);
+}
 
 #ifdef __cplusplus /* __cplusplus */
 }

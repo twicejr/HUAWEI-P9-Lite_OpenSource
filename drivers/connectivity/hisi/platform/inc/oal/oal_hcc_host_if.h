@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : oal_hcc_if.h
-  版 本 号   : 初稿
-  作    者   : z00262551
-  生成日期   : 2014年10月20日
-  最近修改   :
-  功能描述   : oal_hcc_if.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年10月20日
-    作    者   : z00262551
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __OAL_HCC_HOST_IF_H
 #define __OAL_HCC_HOST_IF_H
@@ -495,21 +478,7 @@ extern struct custom_process_func_handler g_pst_custom_process_func;
 
 
 #define HCC_NETBUF_RESERVED_ROOM_SIZE   (HCC_HDR_TOTAL_LEN+HISDIO_H2D_SCATT_BUFFLEN_ALIGN)
-/*****************************************************************************
- 函 数 名  : hcc_netbuf_alloc
- 功能描述  : reserved the fixed headroom and tailroom for hcc transfer!
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月12日
-    作    者   : z00262551
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 #define hcc_netbuf_alloc(ul_size)   oal_netbuf_alloc(ul_size + HCC_NETBUF_RESERVED_ROOM_SIZE,HCC_NETBUF_RESERVED_ROOM_SIZE,0)
 
 OAL_STATIC OAL_INLINE oal_void hcc_tx_netbuf_free(oal_netbuf_stru* pst_netbuf)

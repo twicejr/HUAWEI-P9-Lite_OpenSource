@@ -37,18 +37,7 @@ NAS_LCS_CN_MSG_STRU                     g_stLcsCnDecodeMsgStru;
 /*****************************************************************************
   3 Function
 *****************************************************************************/
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeCnMsg
- Description     : LCS空口消息解析入口函数
- Input           : pucSrc                       :码流
-                   pstCnMsgStru                 :解析后结构
- Output          : pulDecodeMsgLen              :已解析长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeCnMsg
 (
     VOS_UINT8                           *pucMsg,
@@ -129,18 +118,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeCnMsg
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeRegister
- Description     : 解析Register空口码流
- Input           : pucSrc                       :码流
-                   pstCnMsgStru                 :解析后结构
- Output          : pulLen                       :已解析长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeRegister
 (
     VOS_UINT8                           *pucMsg,
@@ -203,18 +181,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeRegister
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeFacility
- Description     : 解析Facility空口消息
- Input           : pucSrc                       :码流
-                   pstCnMsgStru                 :解析后结构
- Output          : pulLen                       :已解析长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeFacility
 (
     VOS_UINT8                           *pucMsg,
@@ -259,18 +226,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeFacility
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeRelCmpl
- Description     : 解析Rel Complete空口消息
- Input           : pucSrc                       :码流
-                   pstCnMsgStru                 :解析后结构
- Output          : pulLen                       :已解析长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeRelCmpl
 (
     VOS_UINT8                           *pucMsg,
@@ -346,18 +302,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeRelCmpl
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeIeFacility
- Description     : 解析Facility信元
- Input           : pucSrc                       :码流
-                   pstCnMsgStru                 :解析后结构
- Output          : pulLen                       :已解析长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeIeFacility
 (
     VOS_UINT8                           *pucMsg,
@@ -407,18 +352,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeIeFacility
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeCause
- Description     : 解析CASUE信元
- Input           : pucSrc                       :码流
-                   pstCnMsgStru                 :解析后结构
- Output          : puLen                        :已解析长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeCause
 (
     VOS_UINT8                           *pucMsg,
@@ -471,18 +405,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeCause
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeComponent
- Description     : 解析component
- Input           : pucSrc                       :码流
-                   pstCnMsgStru                 :解析后结构
- Output          : pulLen                       :已解析长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeComponent
 (
     VOS_UINT8                           *pucSrc,
@@ -546,18 +469,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeComponent
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeRtrnRslt
- Description     : 解析Retrun Result Component对应Para
- Input           : pucSrc                       :码流
-                   pstCnMsgStru                 :解析后结构
- Output          : pulLen                       :已解析长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeRtrnRslt
 (
     VOS_UINT8                           *pucSrc,
@@ -700,19 +612,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeRtrnRslt
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeMolrRstLocEstimate
- Description     : 解析Mo LR网侧回复中信元LocEstimate Value
- Input           : pucSrc                       :码流
-                   ulLen                        :信元LEN值
-                   pstMolrRst                   :解析后结构
- Output          : NONE
- Return          : NONE
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_LCS_DecodeMolrRstLocEstimate
 (
     VOS_UINT8                           *pucSrc,
@@ -743,19 +643,7 @@ VOS_VOID NAS_LCS_DecodeMolrRstLocEstimate
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeMolrRstDecipherKey
- Description     : 解析Mo LR网侧回复中信元DecipherKey
- Input           : pucSrc                       :码流
-                   ulLen                        :信元LEN值
-                   pstMolrRst                   :解析后结构
- Output          : NONE
- Return          : NONE
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_LCS_DecodeMolrRstDecipherKey
 (
     VOS_UINT8                           *pucSrc,
@@ -779,19 +667,7 @@ VOS_VOID NAS_LCS_DecodeMolrRstDecipherKey
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeMolrRstAddLocEstimate
- Description     : 解析Mo LR网侧回复中信元AddLocEstimate
- Input           : pucSrc                       :码流
-                   ulLen                        :信元LEN值
-                   pstMolrRst                   :解析后结构
- Output          : NONE
- Return          : NONE
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_LCS_DecodeMolrRstAddLocEstimate
 (
     VOS_UINT8                           *pucSrc,
@@ -822,19 +698,7 @@ VOS_VOID NAS_LCS_DecodeMolrRstAddLocEstimate
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeMolrRstVelEstimate
- Description     : 解析Mo LR网侧回复中信元VelEstimate
- Input           : pucSrc                       :码流
-                   ulLen                        :信元LEN值
-                   pstMolrRst                   :解析后结构
- Output          : NONE
- Return          : NONE
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_LCS_DecodeMolrRstVelEstimate
 (
     VOS_UINT8                           *pucSrc,
@@ -861,19 +725,7 @@ VOS_VOID NAS_LCS_DecodeMolrRstVelEstimate
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeMolrRstHGmlcAddr
- Description     : 解析Mo LR网侧回复中信元HGmlcAddr
- Input           : pucSrc                       :码流
-                   ulLen                        :信元LEN值
-                   pstMolrRst                   :解析后结构
- Output          : NONE
- Return          : NONE
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_LCS_DecodeMolrRstHGmlcAddr
 (
     VOS_UINT8                           *pucSrc,
@@ -899,19 +751,7 @@ VOS_VOID NAS_LCS_DecodeMolrRstHGmlcAddr
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeMolrRstShortCircuit
- Description     : 解析Mo LR网侧回复中信元ShortCircuit
- Input           : pucSrc                       :码流
-                   ulLen                        :信元LEN值
-                   pstMolrRst                   :解析后结构
- Output          : NONE
- Return          : NONE
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_LCS_DecodeMolrRstShortCircuit
 (
     VOS_UINT8                           *pucSrc,
@@ -927,19 +767,7 @@ VOS_VOID NAS_LCS_DecodeMolrRstShortCircuit
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeMolrRstReportPlmnList
- Description     : 解析Mo LR网侧回复中信元ReportPlmnList
- Input           : pucSrc                       :码流
-                   ulLen                        :信元LEN值
-                   pstMolrRst                   :解析后结构
- Output          : NONE
- Return          : NONE
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_LCS_DecodeMolrRstReportPlmnList
 (
     VOS_UINT8                           *pucSrc,
@@ -968,18 +796,7 @@ VOS_VOID NAS_LCS_DecodeMolrRstReportPlmnList
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeMoLrResult
- Description     : 解析Mo LR网侧定位结果回复
- Input           : pucSrc                       :码流
-                   pstCnMsgStru                 :解析后结构
- Output          : pulLen                       :已解析长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeMoLrResult
 (
     VOS_UINT8                           *pucSrc,
@@ -1108,18 +925,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeMoLrResult
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeLatitude
- Description     : 解析纬度
- Input           : pucSrc                       :码流
- Output          : penLatitudeSign              :南北纬标识
-                   pulDegreeLatitude            :纬度
- Return          : None
 
- History         :
-    1.lihong 00150010    2015-10-13  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_LCS_DecodeLatitude
 (
     VOS_UINT8                          *pucSrc,
@@ -1147,17 +953,7 @@ VOS_VOID NAS_LCS_DecodeLatitude
 }
 
 /*lint -e713*/
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeLongitude
- Description     : 解析经度
- Input           : pucSrc                       :码流
-                   pulDegreeLongitude           :经度
- Return          : None
 
- History         :
-    1.lihong 00150010    2015-10-13  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_LCS_DecodeLongitude
 (
     VOS_UINT8                          *pucSrc,
@@ -1181,18 +977,7 @@ VOS_VOID NAS_LCS_DecodeLongitude
 }
 /*lint +e713*/
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeAltitude
- Description     : 解析纬度
- Input           : pucSrc                       :码流
- Output          : penAltitudeDirection         :高深度标识
-                   pusAltitude                  :高度或者深度
- Return          : None
 
- History         :
-    1.lihong 00150010    2015-10-13  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_LCS_DecodeAltitude
 (
     VOS_UINT8                          *pucSrc,
@@ -1219,18 +1004,7 @@ VOS_VOID NAS_LCS_DecodeAltitude
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeLocPoint
- Description     : 解析位置信息POINT格式
- Input           : pucSrc                       :码流
-                   ulLen                        :Value长度
- Output          : pstLocationEstimate          :解析后结构
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.lihong 00150010    2015-10-13  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeLocPoint
 (
     VOS_UINT8                           *pucSrc,
@@ -1272,18 +1046,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeLocPoint
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeLocPointWithCircle
- Description     : 解析位置信息POINT WITH UNCERTAINTITY CIRCLE格式
- Input           : pucSrc                       :码流
-                   ulLen                        :Value长度
- Output          : pstLocationEstimate          :解析后结构
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.lihong 00150010    2015-10-13  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeLocPointWithCircle
 (
     VOS_UINT8                           *pucSrc,
@@ -1330,18 +1093,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeLocPointWithCircle
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeLocPointWithEllipse
- Description     : 解析位置信息POINT WITH UNCERTAINTITY ELLIPSE格式
- Input           : pucSrc                       :码流
-                   ulLen                        :Value长度
- Output          : pstLocationEstimate          :解析后结构
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.lihong 00150010    2015-10-13  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeLocPointWithEllipse
 (
     VOS_UINT8                           *pucSrc,
@@ -1400,18 +1152,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeLocPointWithEllipse
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeLocPointWithAlititudeAndEllipsoid
- Description     : 解析位置信息POINT WITH ALTITUDE AND UNCERTAINTITY ELLIPSOID格式
- Input           : pucSrc                       :码流
-                   ulLen                        :Value长度
- Output          : pstLocationEstimate          :解析后结构
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.lihong 00150010    2015-10-13  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeLocPointWithAlititudeAndEllipsoid
 (
     VOS_UINT8                           *pucSrc,
@@ -1480,18 +1221,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeLocPointWithAlititudeAndEllipsoid
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeLocArc
- Description     : 解析位置信息ARC格式
- Input           : pucSrc                       :码流
-                   ulLen                        :Value长度
- Output          : pstLocationEstimate          :解析后结构
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.lihong 00150010    2015-10-13  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeLocArc
 (
     VOS_UINT8                           *pucSrc,
@@ -1551,18 +1281,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeLocArc
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeLocPointWithAltitude
- Description     : 解析位置信息POINT WITH ALTITUDE格式
- Input           : pucSrc                       :码流
-                   ulLen                        :Value长度
- Output          : pstLocationEstimate          :解析后结构
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.lihong 00150010    2015-10-13  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeLocPointWithAltitude
 (
     VOS_UINT8                           *pucSrc,
@@ -1610,18 +1329,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeLocPointWithAltitude
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeLocPolygon
- Description     : 解析位置信息POLYGON格式
- Input           : pucSrc                       :码流
-                   ulLen                        :Value长度
- Output          : pstLocationEstimate          :解析后结构
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.lihong 00150010    2015-10-13  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeLocPolygon
 (
     VOS_UINT8                           *pucSrc,
@@ -1682,19 +1390,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeLocPolygon
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeLocEstimate
- Description     : 解析信元locationEstimate
- Input           : pucSrc                       :码流
-                   pulLen                       :Value长度
- Output          : pulLen                       :已解析长度
-                   pstLocationEstimate          :解析后结构
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.lihong 00150010    2015-10-13  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeLocEstimate
 (
     VOS_UINT8                           *pucSrc,
@@ -1767,19 +1463,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeLocEstimate
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeAddLocEstimate
- Description     : 解析信元AdditionallocationEstimate
- Input           : pucSrc                       :码流
-                   pulLen                       :Value长度
- Output          : pulLen                       :已解析长度
-                   pstLocationEstimate          :解析后结构
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.lihong 00150010    2015-10-13  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeAddLocEstimate
 (
     VOS_UINT8                           *pucSrc,
@@ -1837,18 +1521,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeAddLocEstimate
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeHorizontalVelocity
- Description     : 解析速度信息HORIZAONTAL VELOCITY格式
- Input           : pucSrc                       :码流
-                   ulLen                        :Value长度
- Output          : pstVelEstimate               :解析后结构
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.lihong 00150010    2015-10-14  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeHorizontalVelocity
 (
     VOS_UINT8                           *pucSrc,
@@ -1888,18 +1561,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeHorizontalVelocity
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeHorizontalAndVerticalVelocity
- Description     : 解析速度信息HORIZAONTAL AND VERTICAL VELOCITY格式
- Input           : pucSrc                       :码流
-                   ulLen                        :Value长度
- Output          : pstVelEstimate               :解析后结构
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.lihong 00150010    2015-10-14  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeHorizontalAndVerticalVelocity
 (
     VOS_UINT8                           *pucSrc,
@@ -1948,18 +1610,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeHorizontalAndVerticalVelocity
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeHorizontalVelocityWithUncertainty
- Description     : 解析速度信息HORIZAONTAL VELOCITY WITH UNCERTAINTY格式
- Input           : pucSrc                       :码流
-                   ulLen                        :Value长度
- Output          : pstVelEstimate               :解析后结构
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.lihong 00150010    2015-10-14  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeHorizontalVelocityWithUncertainty
 (
     VOS_UINT8                           *pucSrc,
@@ -2002,18 +1653,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeHorizontalVelocityWithUncertainty
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeHorizontalAndVerticalVelocityWithUncertainty
- Description     : 解析速度信息HORIZAONTAL AND VERTICAL VELOCITY WITH UNCERTAINTY格式
- Input           : pucSrc                       :码流
-                   ulLen                        :Value长度
- Output          : pstVelEstimate               :解析后结构
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.lihong 00150010    2015-10-14  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeHorizontalAndVerticalVelocityWithUncertainty
 (
     VOS_UINT8                           *pucSrc,
@@ -2069,19 +1709,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeHorizontalAndVerticalVelocityWithUncerta
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeVelEstimate
- Description     : 解析信元velocityEstimate
- Input           : pucSrc                       :码流
-                   pstRepPlmnList               :解析后结构
-                   pulLen                       :剩余解析长度
- Output          : pulLen                       :已解析长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeVelEstimate
 (
     VOS_UINT8                           *pucSrc,
@@ -2142,19 +1770,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeVelEstimate
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeHGmlcAddr
- Description     : 解析信元h-gmlc-address
- Input           : pucSrc                       :码流
-                   pstRepPlmnList               :解析后结构
-                   pulLen                       :剩余解析长度
- Output          : pulLen                       :已解析长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeHGmlcAddr
 (
     VOS_UINT8                           *pucSrc,
@@ -2189,19 +1805,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeHGmlcAddr
     *pulLen = ulUndecodeLen;
     return NAS_LCS_CAUSE_SUCCESS;
 }
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeReportPlmnList
- Description     : 解析信元reportingPLMNList
- Input           : pucSrc                       :码流
-                   pstRepPlmnList               :解析后结构
-                   pulLen                       :剩余解析长度
- Output          : pulLen                       :已解析长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeReportPlmnList
 (
     VOS_UINT8                           *pucSrc,
@@ -2270,19 +1874,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeReportPlmnList
     *pulLen = ulSum;
     return enRslt;
 }
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodePlmnList
- Description     : 解析信元plmn-list
- Input           : pucSrc                       :码流
-                   pstPlmnList                  :解析后结构
-                   pulLen                       :剩余解析长度
- Output          : pulLen                       :已解析长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodePlmnList
 (
     VOS_UINT8                           *pucSrc,
@@ -2388,19 +1980,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodePlmnList
     *pulLen = ulSum;
     return NAS_LCS_CAUSE_SUCCESS;
 }
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodePlmn
- Description     : 解析信元plmn
- Input           : pucSrc                       :码流
-                   pstPlmn                      :解析后结构
-                   pulLen                       :剩余解析长度
- Output          : pulLen                       :已解析长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodePlmn
 (
     VOS_UINT8                           *pucSrc,
@@ -2511,18 +2091,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodePlmn
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeErrorCode
- Description     : 解析Error code
- Input           : pucSrc                       :码流
-                   pstCnMsgStru                 :解析后结构
- Output          : pulDecodeMsgLen              :已解析长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeErrorCode
 (
     VOS_UINT8                           *pucSrc,
@@ -2575,18 +2144,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeErrorCode
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeRtrnErr
- Description     : 解析Retrun Error Component
- Input           : pucSrc                       :码流
-                   pstCnMsgStru                 :解析后结构
- Output          : pulDecodeMsgLen              :已解析长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeRtrnErr
 (
     VOS_UINT8                           *pucSrc,
@@ -2655,18 +2213,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeRtrnErr
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodePromblemCode
- Description     : 解析Promblem Code
- Input           : pucSrc                       :码流
-                   pstCnMsgStru                 :解析后结构
- Output          : pulLen                       :已解析长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodePromblemCode
 (
     VOS_UINT8                           *pucSrc,
@@ -2721,18 +2268,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodePromblemCode
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeReject
- Description     : 解析Rej Component
- Input           : pucSrc                       :码流
-                   pstCnMsgStru                 :解析后结构
- Output          : pulLen                       :已解析长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeReject
 (
     VOS_UINT8                           *pucSrc,
@@ -2801,18 +2337,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeReject
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeInvoke
- Description     : 解析Invoke Component
- Input           : pucSrc                       :码流
-                   pstCnMsgStru                 :解析后结构
- Output          : pulLen                       :已解析长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeInvoke
 (
     VOS_UINT8                           *pucSrc,
@@ -2924,18 +2449,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeInvoke
     *pulLen = ulSum;
     return enRslt;
 }
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeInvokeId
- Description     : 解析Invoke Id
- Input           : pucSrc                       :码流
-                   pstCnMsgStru                 :解析后结构
- Output          : pulDecodeMsgLen              :已解析长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeInvokeId
 (
     VOS_UINT8                           *pucSrc,
@@ -2973,18 +2487,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeInvokeId
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeLinkedId
- Description     : 解析Linked Id
- Input           : pucSrc                       :码流
-                   pstCnMsgStru                 :解析后结构
- Output          : pulLen                       :已解析长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeLinkedId
 (
     VOS_UINT8                           *pucSrc,
@@ -3022,19 +2525,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeLinkedId
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeOperationCode
- Description     : 解析Operation Code
- Input           : pucSrc                       :码流
-                   pstCnMsgStru                 :解析后结构
- Output          : pulDecodeMsgLen              :已解析长度
-                   pucOperationCode             :Operation Code
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeOperationCode
 (
     VOS_UINT8                           *pucSrc,
@@ -3097,18 +2588,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeOperationCode
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeLocNotification
- Description     : 解析Operation Lcs-LocationNotification 相应para
- Input           : pucSrc                       :码流
-                   pstCnMsgStru                 :解析后结构
- Output          : pulDecodeMsgLen              :已解析长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeLocNotification
 (
     VOS_UINT8                           *pucSrc,
@@ -3184,18 +2664,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeLocNotification
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeNotificationOpIe
- Description     : 解析Loc Notification可选信元
- Input           : pucSrc                       :码流
-                   pstLocNtfStru                :解析后结构
- Output          : pulLen                       :已解析长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeNotificationOpIe
 (
     VOS_UINT8                           *pucSrc,
@@ -3309,18 +2778,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeNotificationOpIe
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeNotificationOpIe
- Description     : 解析Requestor ID信元中的必选信元DataCodingScheme
- Input           : pucSrc                       :码流
-                   pstRequestorId               :解析后结构
- Output          : pulLen                       :已解析长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeReqIdDataCodingScheme
 (
     VOS_UINT8                           *pucSrc,
@@ -3383,18 +2841,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeReqIdDataCodingScheme
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeRequestorID
- Description     : 解析Requestor ID信元
- Input           : pucSrc                       :码流
-                   pstRequestorId               :解析后结构
- Output          : pulLen                       :已解析长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeRequestorID
 (
     VOS_UINT8                           *pucSrc,
@@ -3486,18 +2933,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeRequestorID
     *pulLen = ulSum;
     return NAS_LCS_CAUSE_SUCCESS;
 }
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeRequestorIDString
- Description     : 解析RequestorIDString信元
- Input           : pucSrc                       :码流
-                   pstReqString                 :解析后结构
- Output          : pulLen                       :已解析长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeRequestorIDString
 (
     VOS_UINT8                           *pucSrc,
@@ -3561,18 +2997,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeRequestorIDString
     *pulLen = ulSum;
     return NAS_LCS_CAUSE_SUCCESS;
 }
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeCodeWordDataCodingScheme
- Description     : 解析lcs Code Word信元中的必选信元DataCodingScheme
- Input           : pucSrc                       :码流
-                   pstCodeWord                  :解析后结构
- Output          : pulLen                       :已解析长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeCodeWordDataCodingScheme
 (
     VOS_UINT8                           *pucSrc,
@@ -3634,18 +3059,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeCodeWordDataCodingScheme
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeCodeWord
- Description     : 解析lcs Code Word信元
- Input           : pucSrc                       :码流
-                   pstCodeWord                  :解析后结构
- Output          : pulLen                       :已解析长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeCodeWord
 (
     VOS_UINT8                           *pucSrc,
@@ -3695,18 +3109,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeCodeWord
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeCodeWordString
- Description     : 解析lcs Code Word String信元
- Input           : pucSrc                       :码流
-                   pstCodeWord                  :解析后结构
- Output          : pulLen                       :已解析长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeCodeWordString
 (
     VOS_UINT8                           *pucSrc,
@@ -3768,18 +3171,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeCodeWordString
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeServiceTypeId
- Description     : 解析Service Type Id信元
- Input           : pucSrc                       :码流
-                   pucServiceTypeId             :解析后结构
- Output          : pulLen                       :已解析长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeServiceTypeId
 (
     VOS_UINT8                           *pucSrc,
@@ -3819,18 +3211,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeServiceTypeId
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeCilentExtId
- Description     : 解析CilentExternalId信元
- Input           : pucSrc                       :码流
-                   pstClientExternalId          :解析后结构
- Output          : pulLen                       :已解析长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeCilentExtId
 (
     VOS_UINT8                           *pucSrc,
@@ -3916,18 +3297,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeCilentExtId
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeExternalAddr
- Description     : 解析CilentExternal Address信元
- Input           : pucSrc                       :码流
-                   pstClientExternalId          :解析后结构
- Output          : pulLen                       :已解析长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeExternalAddr
 (
     VOS_UINT8                           *pucSrc,
@@ -3959,18 +3329,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeExternalAddr
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeExtensionContainer
- Description     : 解析Extension Container信元
- Input           : pucSrc                       :码流
-                   pstClientExternalId          :解析后结构
- Output          : pulLen                       :已解析长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeExtensionContainer
 (
     VOS_UINT8                           *pucSrc,
@@ -3986,18 +3345,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeExtensionContainer
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeDataCodingScheme
- Description     : 解析Data Coding Scheme信元
- Input           : pucSrc                       :码流
-                   pucDataCodeScheme            :解析后结构
- Output          : pulLen                       :已解析长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeDataCodingScheme
 (
     VOS_UINT8                           *pucSrc,
@@ -4026,18 +3374,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeDataCodingScheme
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeClientNameDataCodingScheme
- Description     : 解析Clent Name信元中必选信元Data Coding Scheme信元
- Input           : pucSrc                       :码流
-                   pucDataCodeScheme            :解析后结构
- Output          : pulLen                       :已解析长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeClientNameDataCodingScheme
 (
     VOS_UINT8                           *pucSrc,
@@ -4096,18 +3433,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeClientNameDataCodingScheme
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeClientName
- Description     : 解析Client Name信元
- Input           : pucSrc                       :码流
-                   pstClientName                :解析后结构
- Output          : pulLen                       :已解析长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeClientName
 (
     VOS_UINT8                           *pucSrc,
@@ -4189,18 +3515,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeClientName
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeFormatIndicator
- Description     : 解析Format Indicator信元
- Input           : pucSrc                       :码流
-                   penLcsFormat                 :解析后结构
- Output          : pulLen                       :已解析长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeFormatIndicator
 (
     VOS_UINT8                           *pucSrc,
@@ -4226,18 +3541,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeFormatIndicator
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeClientNameString
- Description     : 解析Client Name String信元
- Input           : pucSrc                       :码流
-                   pstClientName                :解析后结构
- Output          : pulLen                       :已解析长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeClientNameString
 (
     VOS_UINT8                           *pucSrc,
@@ -4300,18 +3604,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeClientNameString
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeNotificationType
- Description     : 解析Notication Type
- Input           : pucSrc                       :码流
-                   pucNtfType                   :解析后参数
- Output          : pulLen                       :已解析长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeNotificationType
 (
     VOS_UINT8                           *pucSrc,
@@ -4353,18 +3646,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeNotificationType
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeLocEstimateType
- Description     : 解析locationEstimateType
- Input           : pucSrc                       :码流
-                   pstLocNtfStru                :解析后结构
- Output          : pulLen                       :已解析长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeLocEstimateType
 (
     VOS_UINT8                           *pucSrc,
@@ -4412,18 +3694,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeLocEstimateType
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeLocationType
- Description     : 解析Location Type
- Input           : pucSrc                       :码流
-                   pstLocNtfStru                :解析后结构
- Output          : pulLen                       :已解析长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeLocationType
 (
     VOS_UINT8                           *pucSrc,
@@ -4511,19 +3782,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeLocationType
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeDeferLocEventType
- Description     : 解析解析枚举
- Input           : pucSrc                       :码流
-                   pucDest                      :解析后参数
-                   ucTagMode                    :TAG模式
- Output          : pulLen                       :已解析长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeDeferLocEventType
 (
     VOS_UINT8                           *pucSrc,
@@ -4606,19 +3865,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeDeferLocEventType
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeTL
- Description     : 解析TAG和Len
- Input           : pucSrc                       :码流
- Output          : pulLen                       :已解析长度
-                   pulIeLen                     :IE LEN
-                   pstTagStru                   :解析后TAG结构
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeTL
 (
     VOS_UINT8                           *pucSrc,
@@ -4697,19 +3944,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeTL
     *pulValueLen  = ulValueLen;
     return NAS_LCS_CAUSE_SUCCESS;
 }
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeTag
- Description     : 解析解析枚举
- Input           : pucSrc                       :码流
-                   pucDest                      :解析后参数
-                   ucTagMode                    :TAG模式
- Output          : pulLen                       :已解析长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeTag
 (
     VOS_UINT8                           *pucSrc,
@@ -4767,19 +4002,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeTag
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeLength
- Description     : 解析LEN
- Input           : pucSrc                       :码流
-                   pucDest                      :解析后参数
-                   ucTagMode                    :TAG模式
- Output          : pulLen                       :已解析长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32  NAS_LCS_DecodeLength
 (
     VOS_UINT8                           *pucSrc,
@@ -4846,19 +4069,7 @@ NAS_LCS_CAUSE_ENUM_UINT32  NAS_LCS_DecodeLength
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_DecodeIndefLen
- Description     : 解析不定LEN
- Input           : pucSrc                       :码流
-                   pucDest                      :解析后参数
-                   ucTagMode                    :TAG模式
- Output          : pulLen                       :已解析长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeIndefLen(VOS_UINT8 *pucSrc, VOS_UINT8 *pucLen)
 {
     VOS_UINT8                           aucEndFlag[]    = {0,0};
@@ -4937,19 +4148,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_DecodeIndefLen(VOS_UINT8 *pucSrc, VOS_UINT8 *p
     return NAS_LCS_CAUSE_FAIL;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_CheckOperationCode
- Description     : 解析不定LEN
- Input           : pucSrc                       :码流
-                   pucDest                      :解析后参数
-                   ucTagMode                    :TAG模式
- Output          : pulLen                       :已解析长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :解析结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_CheckOperationCode(NAS_LCS_OPERATION_TYPE_UINT32 enOperationCode)
 {
     NAS_LCS_CAUSE_ENUM_UINT32           enRslt;
@@ -4969,17 +4168,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_CheckOperationCode(NAS_LCS_OPERATION_TYPE_UINT
     return enRslt;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_CheckProblemTagVaild
- Description     : 判断Problem Code是否合法
- Input           : enProblemTag :Problem Tag
- Output          : None
- Return          : 0:合法, 1:非法
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_CheckProblemTagVaild(NAS_LCS_PROBLEM_TAG_ENUM_UINT8 enProblemTag)
 {
     NAS_LCS_CAUSE_ENUM_UINT32           enRslt;
@@ -5002,18 +4191,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_CheckProblemTagVaild(NAS_LCS_PROBLEM_TAG_ENUM_
     return enRslt;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_GetRegisterOperaCode
- Description     : 获取Register空口的消息Operation Code
- Input           : pucFacilityIe                  : FacilityIe码流
-                   ulLen                          : 码流长度
- Output          : None
- Return          : NAS_LCS_OPERATION_TYPE_UINT32  : Operation Code
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_OPERATION_TYPE_UINT32 NAS_LCS_GetRegisterOperaCode
 (
     VOS_UINT8                          *pucFacilityIe,

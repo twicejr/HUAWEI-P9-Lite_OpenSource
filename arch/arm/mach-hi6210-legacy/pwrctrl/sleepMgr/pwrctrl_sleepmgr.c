@@ -1,25 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : pwrctrl_sleepmgr.c
-  版 本 号   : 初稿
-  作    者   : 刘永富 56193
-  生成日期   : 2012年7月25日
-  最近修改   :
-  功能描述   : 低功耗睡眠管理
-  函数列表   :
-              pwrctrl_sleep_mgr_sleep_init
-              pwrctrl_sleep_mgr_tele_vote_lock
-              pwrctrl_sleep_mgr_tele_vote_unlock
-
-  修改历史   :
-  1.日    期   : 2012年7月25日
-    作    者   : 刘永富 56193
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -81,22 +60,7 @@ static struct platform_suspend_ops pwrctrl_ops = {
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : PWRCTRL_SleepMgrSleepInit
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : RET_OK         成功
-             RET_ERR        失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月23日
-    作    者   : 刘永富 56193
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32_t pwrctrl_sleep_mgr_sleep_init( void_t)
 {
 
@@ -108,23 +72,7 @@ s32_t pwrctrl_sleep_mgr_sleep_init( void_t)
     return RET_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : pwrctrl_sleep_mgr_tele_vote_lock
- 功能描述  : 远程投票禁止睡眠接口
- 输入参数  : teleModeId         远程模块ID
-             enClientId         投票模块ID
- 输出参数  : 无
- 返 回 值  : RET_OK         成功
-             RET_ERR        失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月23日
-    作    者   : 刘永富 56193
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32_t pwrctrl_sleep_mgr_tele_vote_lock(PWC_TELE_SLEEP_MODE_ID_E teleModeId, PWC_TELE_SLEEP_CLIENT_ID_E enClientId)
 {
     if((enClientId < PWRCTRL_TELE_SLEEP_CSIGHT0 )||(enClientId >= PWRCTRL_TELE_CLIENT_BUTT))
@@ -145,23 +93,7 @@ s32_t pwrctrl_sleep_mgr_tele_vote_lock(PWC_TELE_SLEEP_MODE_ID_E teleModeId, PWC_
 
 }
 
-/*****************************************************************************
- 函 数 名  : pwrctrl_sleep_mgr_tele_vote_unlock
- 功能描述  : 远程投票允许睡眠接口
- 输入参数  : teleModeId         远程模块ID
-             enClientId         投票模块ID
- 输出参数  : 无
- 返 回 值  : RET_OK         成功
-             RET_ERR        失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月23日
-    作    者   : 刘永富 56193
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32_t pwrctrl_sleep_mgr_tele_vote_unlock(PWC_TELE_SLEEP_MODE_ID_E teleModeId, PWC_TELE_SLEEP_CLIENT_ID_E enClientId)
 {
     if((enClientId < PWRCTRL_TELE_SLEEP_CSIGHT0 )||(enClientId >= PWRCTRL_TELE_CLIENT_BUTT))

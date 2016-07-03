@@ -18,21 +18,7 @@
 #define    THIS_FILE_ID          PS_FILE_ID_DHCPC_SERVER_C
 /*lint +e767*/
 
-/*****************************************************************************
- 函 数 名  : DHCPC_UpdateServerGroupStatusNormal
- 功能描述  : 将当前使用的服务器的状态设置为Normal
- 输入参数  : DHCPC_CTRLBLK *pstDhcpcContext
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月3日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPC_UpdateServerGroupStatusNormal(ULONG ulSvrGrpIndex, UCHAR ucCurrentSrv)
 {
     if (DHCPC_PRIMARY_SERVER == ucCurrentSrv)
@@ -47,25 +33,7 @@ VOID DHCPC_UpdateServerGroupStatusNormal(ULONG ulSvrGrpIndex, UCHAR ucCurrentSrv
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_TrySetCurSvrAbnormal
- 功能描述  : 尝试将服务器的状态变为Abnormal.
-             如果当前状态为Abnormal,什么都不做。
-             如果不为Abnormal,将主服务器状态设置为Abnormal,同时设置状态变为
-             TRY的时间间隔。
- 输入参数  : ULONG ulSvrGrpIndex
-             UCHAR ucCurrentSrv
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月25日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPC_TrySetCurSvrAbnormal(ULONG ulSvrGrpIndex, UCHAR ucCurrentSrv)
 {
     if (DHCPC_PRIMARY_SERVER == ucCurrentSrv)
@@ -80,21 +48,7 @@ VOID DHCPC_TrySetCurSvrAbnormal(ULONG ulSvrGrpIndex, UCHAR ucCurrentSrv)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_ReachTotalLimit
- 功能描述  : 向主备服务器发送消息达到最大重发次数处理
- 输入参数  : DHCPC_CTRLBLK *pstDhcpcContext
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月25日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_ReachTotalLimit(DHCPC_CTRLBLK *pstDhcpcContext)
 {
     /* 设置当前使用的服务器状态 */
@@ -107,23 +61,7 @@ ULONG DHCPC_ReachTotalLimit(DHCPC_CTRLBLK *pstDhcpcContext)
     return VOS_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_ReachSingleLimit
- 功能描述  : 向一个服务器发送次数达到重发最大次数处理
- 输入参数  : DHCPC_CTRLBLK *pstDhcpcContext
-             LAP_DHCP_CFG_S *pstDhcpServer
-             DHCP_SERVER_STATUS_S *pstDhcpServerStatus
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月25日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_ReachSingleLimit(DHCPC_CTRLBLK *pstDhcpcContext, LAP_DHCP_CFG_S *pstDhcpServer,
                                 DHCP_SERVER_STATUS_S *pstDhcpServerStatus)
 {
@@ -164,23 +102,7 @@ ULONG DHCPC_ReachSingleLimit(DHCPC_CTRLBLK *pstDhcpcContext, LAP_DHCP_CFG_S *pst
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_SingleFirstSend
- 功能描述  : 单个服务器,第一次发送消息处理
- 输入参数  : DHCPC_CTRLBLK *pstDhcpcContext
-             LAP_DHCP_CFG_S *pstDhcpServer
-             DHCP_SERVER_STATUS_S *pstDhcpServerStatus
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月25日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_SingleFirstSend(DHCPC_CTRLBLK *pstDhcpcContext, LAP_DHCP_CFG_S *pstDhcpServer,
                                 DHCP_SERVER_STATUS_S *pstDhcpServerStatus)
 {
@@ -193,23 +115,7 @@ ULONG DHCPC_SingleFirstSend(DHCPC_CTRLBLK *pstDhcpcContext, LAP_DHCP_CFG_S *pstD
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_DoubleFirstSend_MainNormal
- 功能描述  : 主备服务器,第一次发送消息,主状态为Normal的处理
- 输入参数  : DHCPC_CTRLBLK *pstDhcpcContext
-             LAP_DHCP_CFG_S *pstDhcpServer
-             DHCP_SERVER_STATUS_S *pstDhcpServerStatus
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月25日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_DoubleFirstSend_MainNormal(DHCPC_CTRLBLK *pstDhcpcContext, LAP_DHCP_CFG_S *pstDhcpServer,
                                 DHCP_SERVER_STATUS_S *pstDhcpServerStatus)
 {
@@ -228,23 +134,7 @@ ULONG DHCPC_DoubleFirstSend_MainNormal(DHCPC_CTRLBLK *pstDhcpcContext, LAP_DHCP_
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_DoubleFirstSend_MainAbnormal
- 功能描述  : 主备服务器,第一次发送消息,主服务器状态为Abnormal的处理
- 输入参数  : DHCPC_CTRLBLK *pstDhcpcContext
-             LAP_DHCP_CFG_S *pstDhcpServer
-             DHCP_SERVER_STATUS_S *pstDhcpServerStatus
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月25日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_DoubleFirstSend_MainAbnormal(DHCPC_CTRLBLK *pstDhcpcContext, LAP_DHCP_CFG_S *pstDhcpServer,
                                 DHCP_SERVER_STATUS_S *pstDhcpServerStatus)
 {
@@ -276,23 +166,7 @@ ULONG DHCPC_DoubleFirstSend_MainAbnormal(DHCPC_CTRLBLK *pstDhcpcContext, LAP_DHC
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_DoubleFirstSend_MainTry
- 功能描述  : 主备服务器,主服务器状态为Try的处理
- 输入参数  : DHCPC_CTRLBLK *pstDhcpcContext
-             LAP_DHCP_CFG_S *pstDhcpServer
-             DHCP_SERVER_STATUS_S *pstDhcpServerStatus
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月25日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_DoubleFirstSend_MainTry(DHCPC_CTRLBLK *pstDhcpcContext, LAP_DHCP_CFG_S *pstDhcpServer,
                                 DHCP_SERVER_STATUS_S *pstDhcpServerStatus)
 {
@@ -303,23 +177,7 @@ ULONG DHCPC_DoubleFirstSend_MainTry(DHCPC_CTRLBLK *pstDhcpcContext, LAP_DHCP_CFG
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_DoubleFirstSend
- 功能描述  : 主备服务期,第一次发送消息服务器选择处理
- 输入参数  : DHCPC_CTRLBLK *pstDhcpcContext
-             LAP_DHCP_CFG_S *pstDhcpServer
-             DHCP_SERVER_STATUS_S *pstDhcpServerStatus
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月25日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_DoubleFirstSend(DHCPC_CTRLBLK *pstDhcpcContext, LAP_DHCP_CFG_S *pstDhcpServer,
                                 DHCP_SERVER_STATUS_S *pstDhcpServerStatus)
 {
@@ -347,23 +205,7 @@ ULONG DHCPC_DoubleFirstSend(DHCPC_CTRLBLK *pstDhcpcContext, LAP_DHCP_CFG_S *pstD
     return ulReturn;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_NotFirstSend
- 功能描述  : 非第一次发送消息处理
- 输入参数  : DHCPC_CTRLBLK *pstDhcpcContext
-             LAP_DHCP_CFG_S *pstDhcpServer
-             DHCP_SERVER_STATUS_S *pstDhcpServerStatus
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月25日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_NotFirstSend(DHCPC_CTRLBLK *pstDhcpcContext, LAP_DHCP_CFG_S *pstDhcpServer,
                                 DHCP_SERVER_STATUS_S *pstDhcpServerStatus)
 {
@@ -390,23 +232,7 @@ ULONG DHCPC_NotFirstSend(DHCPC_CTRLBLK *pstDhcpcContext, LAP_DHCP_CFG_S *pstDhcp
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_GetServerIp
- 功能描述  : 从dhcp服务器的配置中获取Server地址
- 输入参数  : LAP_DHCP_CFG_S *pstDhcpServer
-             UCHAR ucCurrentSrv
-             ULONG aulServerIp[LAP_IP_ULONG_NUM]
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月25日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPC_GetServerIp(LAP_DHCP_CFG_S *pstDhcpServer, UCHAR ucCurrentSrv, ULONG aulServerIp[LAP_IP_ULONG_NUM])
 {
     if (DHCPC_PRIMARY_SERVER == ucCurrentSrv)
@@ -421,22 +247,7 @@ VOID DHCPC_GetServerIp(LAP_DHCP_CFG_S *pstDhcpServer, UCHAR ucCurrentSrv, ULONG 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_SelectAndGetServerCfg
- 功能描述  : 选择要发送的dhcp服务器,并获取地址配置
- 输入参数  : DHCPC_CTRLBLK *pstDhcpcContext
-             ULONG aulServerIp[LAP_IP_ULONG_NUM]
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月25日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_SelectAndGetServerCfg(DHCPC_CTRLBLK *pstDhcpcContext, ULONG aulServerIp[LAP_IP_ULONG_NUM])
 {
     ULONG   ulRet = VOS_ERR;

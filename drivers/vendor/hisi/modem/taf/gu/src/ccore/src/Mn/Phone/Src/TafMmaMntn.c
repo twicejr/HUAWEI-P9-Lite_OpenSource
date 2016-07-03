@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2012, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafMmaMntn.c
-  版 本 号   : 初稿
-  作    者   : w00176964
-  生成日期   : 2013年7月23日
-  最近修改   :
-  功能描述   : MMA模块可维可测相关的处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年7月23日
-    作    者   : w00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -49,20 +32,7 @@ extern STATUS_CONTEXT_STRU                      g_StatusContext;
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : TAF_MMA_LogFsmInfo
- 功能描述  : 状态机启动停止或状态迁移时，以消息形式在SDT中进行显示，方便可维可测
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年07月23日
-    作    者   : w00176964
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID  TAF_MMA_LogFsmInfo(VOS_VOID)
 {
     TAF_MMA_LOG_FSM_INFO_STRU          *pstMsg = VOS_NULL_PTR;
@@ -93,21 +63,7 @@ VOS_VOID  TAF_MMA_LogFsmInfo(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_LogBufferQueueMsg
- 功能描述  : 导出缓存的消息
- 输入参数  : ulFullFlg:缓存是否已经满的标志位
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月24日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  TAF_MMA_LogBufferQueueMsg(
     VOS_UINT32                          ulFullFlg
 )
@@ -139,22 +95,8 @@ VOS_VOID  TAF_MMA_LogBufferQueueMsg(
     return;
 }
 
-/* Added by w00167002 for L-C互操作项目, 2014-2-18, begin */
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_LogOperCtxInfo
- 功能描述  : 导出OPER_CTX的信息内容
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月18日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_LogOperCtxInfo(VOS_VOID)
 {
     TAF_MMA_LOG_OPER_CTX_INFO_STRU     *pstBufferMsg    = VOS_NULL_PTR;
@@ -184,25 +126,10 @@ VOS_VOID TAF_MMA_LogOperCtxInfo(VOS_VOID)
     return;
 }
 
-/* Added by w00167002 for L-C互操作项目, 2014-2-18, end */
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndOmInternalMsgQueueInfo
- 功能描述  : 发送内部消息队列的相关信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月24日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  TAF_MMA_SndOmInternalMsgQueueInfo(
     VOS_UINT8                          ucFullFlg,
     VOS_UINT8                          ucMsgLenValidFlg
@@ -235,20 +162,7 @@ VOS_VOID  TAF_MMA_SndOmInternalMsgQueueInfo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_LogDrvApiPwrCtrlSleepVoteUnlock
- 功能描述  : 调用API接口DRV_PWRCTRL_SLEEPVOTE_UNLOCK时，以消息形式在SDT中进行显示，方便可维可测
- 输入参数  : ulRslt:调用API的返回值
-             enClientId:睡眠投票ID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年08月12日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_VOID  TAF_MMA_LogDrvApiPwrCtrlSleepVoteUnlock(
     VOS_UINT32                          ulRslt,
     PWC_CLIENT_ID_E                     enClientId
@@ -287,20 +201,7 @@ VOS_VOID  TAF_MMA_LogDrvApiPwrCtrlSleepVoteUnlock(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_LogDrvApiPwrCtrlSleepVoteLock
- 功能描述  : 调用API接口DRV_PWRCTRL_SLEEPVOTE_LOCK时，以消息形式在SDT中进行显示，方便可维可测
- 输入参数  : ulRslt:调用API的返回值
-             enClientId:睡眠投票ID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年08月12日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_VOID  TAF_MMA_LogDrvApiPwrCtrlSleepVoteLock(
     VOS_UINT32                          ulRslt,
     PWC_CLIENT_ID_E                     enClientId
@@ -337,21 +238,7 @@ VOS_VOID  TAF_MMA_LogDrvApiPwrCtrlSleepVoteLock(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ShowPhoneModeCtrlInfo
- 功能描述  : 显示开关机相关的控制信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月7日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_ShowPhoneModeCtrlInfo(VOS_VOID)
 {
     (VOS_VOID)vos_printf("\n");
@@ -364,21 +251,7 @@ VOS_VOID TAF_MMA_ShowPhoneModeCtrlInfo(VOS_VOID)
     (VOS_VOID)vos_printf("*****************************\n");
 }
 
-/* Added by w00167002 for L-C互操作项目, 2014-2-18, begin */
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ShowCLConfigInfo
- 功能描述  : 显示当前LC的配置信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月18日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_ShowCLConfigInfo(VOS_VOID)
 {
     (VOS_VOID)vos_printf("\n");
@@ -388,24 +261,9 @@ VOS_VOID TAF_MMA_ShowCLConfigInfo(VOS_VOID)
     (VOS_VOID)vos_printf("*CL CONFIG LCWORK Flag: %d\n",          TAF_SDC_GetLCWorkCfg());
     (VOS_VOID)vos_printf("*****************************\n");
 }
-/* Added by w00167002 for L-C互操作项目, 2014-2-18, end */
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_LogCopsRltInfo
- 功能描述  : 获取网络运营商名称
- 输入参数  : *pstOperatorName          - cops 获取成功后的运营商名
-             enType                    - 取运营商名的来源文件或nv
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月11日
-    作    者   : c00318887
-    修改内容   : AT&T 支持EONS特性修改
-*****************************************************************************/
 VOS_VOID TAF_MMA_LogCopsRltInfo(
         TAF_PH_NETWORKNAME_STRU                   *pstOperatorName,
         TAF_SDC_LOG_OPER_NAME_TYPE_ENUM_UINT8      enType
@@ -466,26 +324,7 @@ VOS_VOID TAF_MMA_LogCopsRltInfo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ModelPihSndUsimStatusInd
- 功能描述  : 模拟卡状态上报
- 输入参数  : enCardTypeOne
-             enCardTypeTwo
-             enCardServiceOne
-             enCardServiceTwo
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月19日
-    作    者   : f00179208
-    修改内容   : 新增函数
-  2.日    期   : 2015年12月31日
-    作    者   : j00354216
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_ModelPihSndUsimStatusInd(
     USIMM_CARD_TYPE_ENUM_UINT32         enCardTypeOne,
     USIMM_CARD_SERVIC_ENUM_UINT32       enCardServiceOne,
@@ -564,20 +403,7 @@ VOS_VOID TAF_MMA_ModelPihSndUsimStatusInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ModelUphySndInitStatusInd
- 功能描述  : 模拟物理层初始化上报
- 输入参数  : enInitStatus
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月19日
-    作    者   : f00179208
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_ModelUphySndInitStatusInd(
     MMA_UPHY_INIT_STATUS_ENUM_UINT16               enInitStatus
 )
@@ -608,20 +434,7 @@ VOS_VOID TAF_MMA_ModelUphySndInitStatusInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ModelUsimStatusIndTimeOut
- 功能描述  : 模拟卡状态上报超时
- 输入参数  : enInitStatus
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月19日
-    作    者   : f00179208
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_ModelUsimStatusIndTimeOut(VOS_VOID)
 {
     REL_TIMER_MSG                      *pstTimerMsg = VOS_NULL_PTR;
@@ -650,20 +463,7 @@ VOS_VOID TAF_MMA_ModelUsimStatusIndTimeOut(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndTestInterPowerInitReq
- 功能描述  : 模拟内部上电
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月19日
-    作    者   : f00179208
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndTestInterPowerInitReq(VOS_VOID)
 {
     TAF_MMA_INTER_POWER_INIT_REQ_STRU  *pstPowerInitMsg = VOS_NULL_PTR;
@@ -691,20 +491,7 @@ VOS_VOID TAF_MMA_SndTestInterPowerInitReq(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_TestSetGeoInfo
- 功能描述  : 测试打桩设置国家码信息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月19日
-    作    者   : f00179208
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_TestSetGeoInfo(
     VOS_UINT32                          ulMcc,
     VOS_UINT32                          ulMnc
@@ -722,20 +509,7 @@ VOS_VOID TAF_MMA_TestSetGeoInfo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_LogNetworkInfoAndAppNetworkInfo
- 功能描述  : 勾主动上报相关信息NetworkInfo/AppNetworkInfo
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月11日
-    作    者   : l00305157
-    修改内容   : Service_State_Optimize_PhaseII 项目修改
-*****************************************************************************/
 VOS_VOID  TAF_MMA_LogNetworkInfoAndAppNetworkInfo(VOS_VOID)
 {
     TAF_SDC_LOG_NETWORK_AND_APPNETWORK_CTX_INFO_STRU                            *pstMsg = VOS_NULL_PTR;
@@ -774,24 +548,7 @@ VOS_VOID  TAF_MMA_LogNetworkInfoAndAppNetworkInfo(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_LogReadNVInfo
- 功能描述  : 勾取读取的NV信息上报 可维可测
- 输入参数  : VOS_UINT16                              enNvItem,
-             VOS_UINT16                              usNvDataLength,
-             VOS_UINT32                              ulPid,
-             VOS_UINT32                             *pData
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月7日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_LogReadNVInfo(
     VOS_UINT16                          enNvItem,
     VOS_UINT16                          usNvDataLength,
@@ -826,21 +583,7 @@ VOS_VOID TAF_MMA_LogReadNVInfo(
 }
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- 函 数 名  : TAF_MMA_LogDelayReportInfo
- 功能描述  : 勾取延时上报的AT命令类型，可维可测,在延时上报处勾取
- 输入参数  : TAF_MMA_LOG_DELAY_REPORT_TYPE_UINT8     enDelayRptType  AT命令类型
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月8日
-    作    者   : l00324781
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_LogDelayReportInfo(
     TAF_MMA_LOG_DELAY_REPORT_TYPE_ENUM_UINT8    enDelayRptType
 )
@@ -876,21 +619,7 @@ VOS_VOID TAF_MMA_LogDelayReportInfo(
 /*lint -restore */
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_LogCLDelayRptSrvStatusCtx
- 功能描述  : 勾取当前系统信息，包括实时系统信息，和延时系统信息，及延时定时器状态
- 输入参数  : enMmaLogDelayRptCtxType   消息类型
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  : 在系统信息有更新出调用
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年01月15日
-    作    者   : l00324781
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_LogCLDelayRptSrvStatusCtx(
     TAF_MMA_LOG_CL_DELAY_REPORT_CTX_TYPE_ENUM_UINT8         enMmaLogDelayRptCtxType
 )

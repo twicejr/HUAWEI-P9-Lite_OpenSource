@@ -1,17 +1,4 @@
-/******************************************************************************
 
-        @(#)Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : NasEsmNwMsgPdnConProc.c
-    Description : 处理EMM发给SM的网侧消息
-    History     :
-     1.丁丽 00128736        2008-09-01  Draft Enact
-     2.祝义强 00138739      2008-12-03  Modify BA8D00656
-     3.杨茜惠 00135146      2008-12-19  Modify BA8D00755
-     4.杨茜惠 00135146      2009-03-06  Modify BA8D01127
-     5.李洪00150010         2009-08-05  Modify  BJ9D01627
-******************************************************************************/
 
 
 /*****************************************************************************
@@ -47,17 +34,7 @@ extern "C" {
 extern VOS_UINT32 APPITF_ConfigBoardIPAddr(const VOS_UINT8* pucCfgIP);*/
 
 
-/*****************************************************************************
- Function Name   : NAS_ESM_ProcNwMsgEsmCause54
- Description     : 处理ESM原因值54
- Input           : ulStateTblIndex -- 动态表索引
-                   pRcvMsg         -- 收到的空口消息
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.sunjitan 00193151      2014-02-17   Draft Enact
-*****************************************************************************/
 /*lint -e960*/
 /*lint -e961*/
 VOS_VOID NAS_ESM_ProcNwMsgEsmCause54
@@ -182,16 +159,7 @@ VOS_VOID NAS_ESM_ProcNwMsgEsmCause54
     return;
 
 }
-/*****************************************************************************
- Function Name  : NAS_ESM_PdnRejInfoCreate
- Description    : 创建一个PDN被拒绝的节点
- Input          :
- Output         : VOS_VOID
- Return Value   : 地址对实例指针，如果创建失败，则返回VOS_NULL_PTR
 
- History        :
-      1.wangchen 00209181   2014-09-20  Draft Enact
-*****************************************************************************/
 NAS_ESM_PDN_REJ_INFO_STRU* NAS_ESM_PdnRejInfoCreate
 (
     APP_ESM_PDN_TYPE_ENUM_UINT32        enPdnType,
@@ -235,17 +203,7 @@ NAS_ESM_PDN_REJ_INFO_STRU* NAS_ESM_PdnRejInfoCreate
     return pstPdnRejInfo;
 }
 
-/*****************************************************************************
- Function Name  : NAS_ESM_PdnRejListAdd
- Description    : 向被禁列表中添加一个新的地址对，新的地址对会被添加到列表的尾部
- Input          : ppstListHead  指向地址对列表的指针
-                  pstNode       新添加的地址对
- Output         : VOS_VOID
- Return Value   : 成功添加的地址对指针
 
- History        :
-      1.wangchen 00209181   2014-09-20  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ESM_PdnRejListAdd(NAS_ESM_PDN_REJ_INFO_STRU **ppstListHead, NAS_ESM_PDN_REJ_INFO_STRU *pstNode)
 {
     NAS_ESM_PDN_REJ_INFO_STRU *pstTmp = VOS_NULL_PTR;
@@ -273,16 +231,7 @@ VOS_VOID NAS_ESM_PdnRejListAdd(NAS_ESM_PDN_REJ_INFO_STRU **ppstListHead, NAS_ESM
 
     return;
 }
-/*****************************************************************************
- Function Name  : NAS_ESM_PdnRejListDestroy
- Description    : 销毁整个被禁列表
- Input          : pstListHead   待销毁的地址对列表
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2014-09-20  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ESM_PdnRejListDestroy(NAS_ESM_PDN_REJ_INFO_STRU *pstListHead)
 {
     NAS_ESM_PDN_REJ_INFO_STRU *pstTmpPdnRejInfo = VOS_NULL_PTR;
@@ -300,17 +249,7 @@ VOS_VOID NAS_ESM_PdnRejListDestroy(NAS_ESM_PDN_REJ_INFO_STRU *pstListHead)
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ESM_ProcNwMsgEsmCause50
- Description     : 处理ESM原因值50
- Input           : ulStateTblIndex -- 动态表索引
-                   pRcvMsg         -- 收到的空口消息
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.wangchen 00209181     2014-09-04   Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ESM_ProcNwMsgEsmCause50
 (
     VOS_UINT32                          ulStateTblIndex,
@@ -358,17 +297,7 @@ VOS_VOID NAS_ESM_ProcNwMsgEsmCause50
     return;
 
 }
-/*****************************************************************************
- Function Name   : NAS_ESM_ProcNwMsgEsmCause51
- Description     : 处理ESM原因值51
- Input           : ulStateTblIndex -- 动态表索引
-                   pRcvMsg         -- 收到的空口消息
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.wangchen 00209181     2014-09-04   Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ESM_ProcNwMsgEsmCause51
 (
     VOS_UINT32                          ulStateTblIndex,
@@ -420,17 +349,7 @@ VOS_VOID NAS_ESM_ProcNwMsgEsmCause51
     return;
 
 }
-/*****************************************************************************
- Function Name   : NAS_ESM_ProcNwMsgEsmCause66
- Description     : 处理ESM原因值66
- Input           : ulStateTblIndex -- 动态表索引
-                   pRcvMsg         -- 收到的空口消息
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.wangchen 00209181     2014-09-04   Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ESM_ProcNwMsgEsmCause66
 (
     VOS_UINT32                          ulStateTblIndex,
@@ -482,19 +401,7 @@ VOS_VOID NAS_ESM_ProcNwMsgEsmCause66
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_ProcValidNwMsgPdnConnRej
- Description     : 处理PDN连接拒绝请求消息
- Input           : ulStateTblIndex -- 动态表索引
-                   pRcvMsg         -- 收到的空口消息
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.sunbing49683      2009-4-16   Draft Enact
-    2.lihong00150010    2010-08-12  Modify
-    3.liuwenyu00143951  2010-11-11  Modify
-*****************************************************************************/
 VOS_VOID NAS_ESM_ProcValidNwMsgPdnConnRej
 (
     VOS_UINT32                          ulStateTblIndex,
@@ -596,20 +503,7 @@ VOS_VOID NAS_ESM_ProcValidNwMsgPdnConnRej
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ESM_ProcValidNwMsgActDefltEpsbReq
- Description     : 处理缺省承载激活这条空口消息
- Input           : ulStateTblIndex -- 动态表索引
-                   pRcvMsg         -- 收到的空口消息
- Output          : None
- Return          : None
 
- History         :
-    1.丁丽 00128736      2008-9-10   Draft Enact
-    2.sunbing 49683         2009-02-05  Modify
-    3.lihong00150010        2010-2-02   Modify
-    4.liuwenyu00143951      2010-11-11  Modify
-*****************************************************************************/
 VOS_VOID  NAS_ESM_ProcValidNwMsgActDefltEpsbReq
 (
     VOS_UINT32                                  ulStateTblIndex,
@@ -655,18 +549,7 @@ VOS_VOID  NAS_ESM_ProcValidNwMsgActDefltEpsbReq
                                       &(pMsg->stEsmNwMsgIE));
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SaveNwActDefltEpsbReqInfo
- Description     : 保存缺省承载激活的上下文信息
- Input           : pstMsgIE         -- 译码后的网络消息
-                   ulStateTblIndex  -- 动态表索引
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.liuwenyu  00143951      2009-12-02  Draft Enact
-    2.sunjitan    00193151      2011-09-23  Modified
-*****************************************************************************/
 VOS_VOID NAS_ESM_SaveNwActDefltEpsbReqInfo
 (
     const  NAS_ESM_NW_MSG_STRU          *pstMsgIE,
@@ -804,17 +687,7 @@ VOS_VOID NAS_ESM_SaveNwActDefltEpsbReqInfo
                         &pstMsgIE->stPcoInfo,
                         sizeof(NAS_ESM_CONTEXT_PCO_STRU));
 }
-/*****************************************************************************
- Function Name   : NAS_ESM_SndEsmAppPdpManageIndMsg
- Description     : 向APP发送
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2009-12-3  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_SndEsmAppPdpManageIndMsg
 (
     const APP_ESM_PDP_MANAGER_IND_STRU       *pstPdpManInd
@@ -860,17 +733,7 @@ VOS_VOID  NAS_ESM_SndEsmAppPdpManageIndMsg
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_IsDhcpProcedureNeeded
- Description     : 判定是否需要开启DHCP流程获取网络参数
- Input           : ucEpsbId-----------------承载号
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2010-11-30  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_ESM_IsDhcpProcedureNeeded
 (
     VOS_UINT32                          ucEpsbId
@@ -908,17 +771,7 @@ VOS_UINT32 NAS_ESM_IsDhcpProcedureNeeded
     return PS_FALSE;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SndEsmAppSdfSetupSuccMsg
- Description     : 向APP回复成功消息
- Input           : ucEpsbId-----------------承载号
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2010-11-30  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ESM_SndEsmAppSdfSetupSuccMsg
 (
     VOS_UINT32                          ulStateTblIndex
@@ -945,18 +798,7 @@ VOS_VOID NAS_ESM_SndEsmAppSdfSetupSuccMsg
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SetEpsBearTftInfo
- Description     : 赋值承载TFT信息
- Input           : ulBitCId-----------------承载关联CID
-                   pstEpsBearInfoInd--------ESM与SM接口的承载信息指针
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2011-04-30  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ESM_SetEpsBearTftInfo
 (
     VOS_UINT32                          ulBitCId,
@@ -992,18 +834,7 @@ VOS_VOID NAS_ESM_SetEpsBearTftInfo
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SetEpsBearPcoIpv4Item
- Description     : 赋值承载PCO IPV4项
- Input           : pstEpsbCntxtInfo-----------------ESM承载信息指针
-                   pstEpsBearInfoInd----------------ESM与SM接口中的承载信息指针
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2011-04-30  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ESM_SetEpsBearPcoIpv4Item
 (
     const NAS_ESM_EPSB_CNTXT_INFO_STRU *pstEpsbCntxtInfo,
@@ -1122,18 +953,7 @@ VOS_VOID NAS_ESM_SetEpsBearPcoIpv4Item
                             APP_MAX_IPV4_ADDR_LEN);
     }
 }
-/*****************************************************************************
- Function Name   : NAS_ESM_SetEpsBearPcoIpv6Item
- Description     : 赋值承载PCO IPV6项
- Input           : pstEpsbCntxtInfo-----------------ESM承载信息指针
-                   pstEpsBearInfoInd----------------ESM与SM接口中的承载信息指针
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.n00181501       2011-12-16  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ESM_SetEpsBearPcoIpv6Item
 (
     const NAS_ESM_EPSB_CNTXT_INFO_STRU *pstEpsbCntxtInfo,
@@ -1221,18 +1041,7 @@ VOS_VOID NAS_ESM_SetEpsBearPcoIpv6Item
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SetEpsBearInfo
- Description     : 赋值承载信息
- Input           : pstEpsbCntxtInfo-----------------ESM承载信息指针
-                   pstEpsBearInfoInd----------------ESM与SM接口中的承载信息指针
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2011-04-30  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ESM_SetEpsBearInfo
 (
     const NAS_ESM_EPSB_CNTXT_INFO_STRU *pstEpsbCntxtInfo,
@@ -1357,17 +1166,7 @@ VOS_VOID NAS_ESM_SetEpsBearInfo
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SndSmEspBearerActIndMsg
- Description     : 向SM发送承载激活消息
- Input           : ucEpsbId-----------------承载号
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2011-04-30  Draft Enact
-
-*****************************************************************************/
 /*lint -specific(-e433)*/
 
 VOS_VOID NAS_ESM_SndSmEspBearerActIndMsg
@@ -1425,18 +1224,7 @@ VOS_VOID NAS_ESM_SndSmEspBearerActIndMsg
 }
 /*lint -specific(+e433)*/
 
-/*****************************************************************************
- Function Name   : NAS_ESM_DefltBearActMsgAutoAccept
- Description     : 自动接受缺省承载激活的处理
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.liuwenyu 00143951    2009-12-3    Draft Enact
-    2.liuhua   00212067    2012-09-06   Add support for double APN
-    3.sunjitan 00193151    2015-06-16   Modify for 1XCL_MULTI_MODE_PHASEI
-*****************************************************************************/
 VOS_VOID NAS_ESM_DefltBearActMsgAutoAccept
 (
     VOS_UINT32                          ulStateTblIndex,
@@ -1638,17 +1426,7 @@ VOS_VOID NAS_ESM_DefltBearActMsgAutoAccept
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_DefltBearActMsgManualProc
- Description     : 缺省承载激活手动处理
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2009-12-3  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_DefltBearActMsgManualProc
 (
     VOS_UINT32                          ulStateTblIndex,
@@ -1728,17 +1506,7 @@ VOS_VOID  NAS_ESM_DefltBearActMsgManualProc
     pstStateAddr->ucIsWaitForUserAnswer = PS_TRUE;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_ActDefltBearFailProc
- Description     : 激活缺省承载失败处理
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2009-12-4  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_ActDefltBearFailProc
 (
     const NAS_ESM_ENCODE_INFO_STRU     *pstEncodeInfo,

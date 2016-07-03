@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : oal_cache.h
-  版 本 号   : 初稿
-  作    者   : t00231215
-  生成日期   : 2013年1月15日
-  最近修改   :
-  功能描述   : cache操作原语
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年1月15日
-    作    者   : t00231215
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __OAL_LINUX_CACHE_H__
 #define __OAL_LINUX_CACHE_H__
@@ -105,42 +88,13 @@ extern void __iomem *g_l2cache_base;
     /*TBD*/
 #else
 extern struct cpu_cache_fns cpu_cache;
-/*****************************************************************************
- 函 数 名  : oal_l1cache_flush
- 功能描述  : flush L1 Cache
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年1月15日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void oal_l1cache_flush(oal_void)
 {
     cpu_cache.flush_kern_all();
 }
 
-/*****************************************************************************
- 函 数 名  : oal_l2cache_dcache_lock
- 功能描述  : L2 cache锁住或释放对应的Dcache 的cache way
- 输入参数  : en_flag: OAL_TRUE表示锁住，OAL_FALSE表示释放
-             ul_way: 要锁住或者释放的对应的cache way
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年1月15日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  oal_l2cache_dcache_lock(oal_bool_enum_uint8 en_flag, oal_uint32 ul_way)
 {
     oal_uint32 ul_reg;
@@ -166,22 +120,7 @@ OAL_STATIC OAL_INLINE oal_void  oal_l2cache_dcache_lock(oal_bool_enum_uint8 en_f
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_l2cache_icache_lock
- 功能描述  : L2 cache锁住或释放对应的Icache 的cache way
- 输入参数  : en_flag: OAL_TRUE表示锁住，OAL_FALSE表示释放
-             ul_way: 要锁住或者释放的对应的cache way
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年1月15日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  oal_l2cache_icache_lock(oal_bool_enum_uint8 en_flag, oal_uint32 ul_way)
 {
     oal_uint32 ul_reg;
@@ -205,41 +144,13 @@ OAL_STATIC OAL_INLINE oal_void  oal_l2cache_icache_lock(oal_bool_enum_uint8 en_f
 
 }
 
-/*****************************************************************************
- 函 数 名  : oal_cache_flush_all
- 功能描述  : clean 并 invalid L2 cache
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年1月15日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  oal_cache_flush_all(oal_void)
 {
     flush_cache_all();
 }
 
-/*****************************************************************************
- 函 数 名  : oal_cache_rxtx_lock
- 功能描述  : 将rx tx流程关键代码关键数据锁进L2 cache
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年1月18日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  oal_cache_rxtx_lock(oal_void)
 {
 #if ((_PRE_TARGET_PRODUCT_TYPE_5610EVB == _PRE_CONFIG_TARGET_PRODUCT)\

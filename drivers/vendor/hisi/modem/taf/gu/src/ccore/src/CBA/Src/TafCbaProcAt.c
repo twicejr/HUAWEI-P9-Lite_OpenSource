@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafCbaProcAt.c
-  版 本 号   : 初稿
-  作    者   : l00171473
-  生成日期   : 2012年3月19日
-  最近修改   :
-  功能描述   : CBA模块与AT相关的处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年3月19日
-    作    者   : l00171473
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -28,9 +11,7 @@
 #include  "TafLog.h"
 #include  "MnErrorCode.h"
 #include  "MnMsgApi.h"
-/* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, begin */
 #include  "TafClientApi.h"
-/* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, end */
 #include  "MnComm.h"
 #include  "MnMsgSmCommProc.h"
 #include  "TafTypeDef.h"
@@ -59,21 +40,7 @@ extern MN_MSG_EVENT_INFO_STRU           f_stMsgEventInfo;
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_SndAtRcvCbmMsg
- 功能描述  : 将接收到的CBS消息上报给应用;
- 输入参数  : pstTpduData: CBS广播短信内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年5月8日
-    作    者   : zhoujun /z40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_CBA_SndAtRcvCbmMsg(
     const MN_MSG_CBRAW_TS_DATA_STRU    *pstTpduData
 )
@@ -100,21 +67,7 @@ VOS_VOID TAF_CBA_SndAtRcvCbmMsg(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_SndAtGetAllCbMidsRslt
- 功能描述  : 上报当前所有CBS消息MIDS
- 输入参数  : pstEventParm: CBMI RANGE LIST 事件信息
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年5月8日
-    作    者   : zhoujun /z40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  TAF_CBA_SndAtGetAllCbMidsRslt(
     const MN_MSG_EVENT_PARM_STRU       *pstEventParm
 )
@@ -144,22 +97,7 @@ VOS_VOID  TAF_CBA_SndAtGetAllCbMidsRslt(
                        &f_stMsgEventInfo);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_SndAtModifyCbMidsRlst
- 功能描述  : 用户新增,删除,清空CBS消息ID后上报给用户当前设置结果
- 输入参数  : pstEventParm: 操作CBMI 列表结果事件
-             ulEventType:  当前用户的操作类型
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年5月8日
-    作    者   : zhoujun /z40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  TAF_CBA_SndAtModifyCbMidsRlst(
     const MN_MSG_EVENT_PARM_STRU       *pstEventParm,
     VOS_UINT32                          ulEventType
@@ -192,21 +130,7 @@ VOS_VOID  TAF_CBA_SndAtModifyCbMidsRlst(
 
 #if (FEATURE_ON == FEATURE_ETWS)
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_SndAtEtwsPrimNtfMsg
- 功能描述  : 向AT上报ETWS主通知消息
- 输入参数  : pstPrimNtfMsg: 来自接入层的主通知消息
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月28日
-    作    者   : l00171473
-    修改内容   : 新生成函数, for V7R1C50 CSFB&PPAC&ETWS&ISR
-
-*****************************************************************************/
 VOS_VOID  TAF_CBA_SndAtEtwsPrimNtfMsg(
     RR_CBS_ETWS_PRIMARY_NOTIFY_IND_STRU                    *pstPrimNtfMsg
 )
@@ -239,22 +163,7 @@ VOS_VOID  TAF_CBA_SndAtEtwsPrimNtfMsg(
 #endif /* (FEATURE_ON == FEATURE_ETWS) */
 
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_InitEventParm
- 功能描述  : 初始化消息上报事件的基本参数
- 输入参数  : clientId    : 发起该请求的Client的ID
-             opId        : Operation ID, 标识本次操作
- 输出参数  : pstEventParm: 消息上报事件的基本参数
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月25日
-    作    者   : 傅映君 62575
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_CBA_InitEventParm(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId,
@@ -266,25 +175,7 @@ VOS_VOID TAF_CBA_InitEventParm(
     pstEventParm->ulFailCause   = MN_ERR_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_RcvAtGetAllCbMids
- 功能描述  : 获取当前激活的所有CBS MID
- 输入参数  : clientId: 发起该请求的Client的ID
-             opId    : Operation ID, 标识本次操作
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年5月11日
-    作    者   : zhoujun /z40661
-    修改内容   : 新生成函数
-  2.日    期   : 2012年3月29日
-    作    者   : l00171473
-    修改内容   : for V7R1C50 CSFB&PPAC&ETWS&ISR
-
-*****************************************************************************/
 VOS_VOID TAF_CBA_RcvAtGetAllCbMids(
     MN_CLIENT_ID_T                     clientId,
     MN_OPERATION_ID_T                  opId
@@ -301,33 +192,7 @@ VOS_VOID TAF_CBA_RcvAtGetAllCbMids(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_RcvAtAddCbMids
- 功能描述  : 在当前模式下添加消息类型ID
- 输入参数  : clientId        : 发起该请求的Client的ID
-             opId            : Operation ID, 标识本次操作
-             pstAddCbMidsList: 待增加的广播短消息ID集合
- 输出参数  : 无
- 返 回 值  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月11日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-  2.日    期   : 2012年3月24日
-    作    者   : l00171473
-    修改内容   : for V7R1C50 CSFB&PPAC&ETWS&ISR
-  3.日    期   : 2012年12月4日
-    作    者   : l00171473
-    修改内容   : for DTS2012120609242, 有重复的MSG ID也允许设置
-  4.日    期   : 2013年07月11日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级项目
-*****************************************************************************/
 VOS_VOID  TAF_CBA_RcvAtAddCbMids(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId,
@@ -337,7 +202,6 @@ VOS_VOID  TAF_CBA_RcvAtAddCbMids(
     VOS_UINT32                          ulRet;
     MN_MSG_EVENT_PARM_STRU              stEventParm;
 
-    /* Deleted by f62575 for V9R1 STK升级, 2013/07/11 */
 
     /* AT设置过来的MID列表MSG ID需要调整为小的MSG ID
        放到usMsgIdFrom中,大的MSG ID放到usMsgIdTo中 */
@@ -369,26 +233,7 @@ VOS_VOID  TAF_CBA_RcvAtAddCbMids(
     TAF_CBA_SndAtModifyCbMidsRlst(&stEventParm, MN_MSG_EVT_ADD_CBMIDS);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_RcvAtDelCbMids
- 功能描述  : 在当前模式下删除消息类型ID
- 输入参数  : clientId    : 发起该请求的Client的ID
-             opId        : Operation ID, 标识本次操作
-             pstDelCbMids: 待删除的消息ID集合
- 输出参数  : 无
- 返 回 值  : 无
- 输出参数  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月11日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-  2.日    期   : 2013年07月11日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级项目
-*****************************************************************************/
 VOS_VOID TAF_CBA_RcvAtDelCbMids(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId,
@@ -398,7 +243,6 @@ VOS_VOID TAF_CBA_RcvAtDelCbMids(
     VOS_UINT32                          ulRet;
     MN_MSG_EVENT_PARM_STRU              stEventParm;
 
-    /* Deleted by f62575 for V9R1 STK升级, 2013/07/11 */
 
     MN_SendClientResponse(clientId, opId, MN_ERR_NO_ERROR);
 
@@ -430,24 +274,7 @@ VOS_VOID TAF_CBA_RcvAtDelCbMids(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_RcvAtEmptyCbMids
- 功能描述  : 清空所有的用户设置的CBS MSGID
- 输入参数  : clientId : 发起该请求的Client的ID
-             opId     : Operation ID, 标识本次操作
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年5月10日
-    作    者   : zhoujun /z40661
-    修改内容   : 新生成函数
-  2.日    期   : 2013年07月11日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级项目
-*****************************************************************************/
 VOS_VOID TAF_CBA_RcvAtEmptyCbMids(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId
@@ -456,7 +283,6 @@ VOS_VOID TAF_CBA_RcvAtEmptyCbMids(
     VOS_UINT32                          ulRet;
     MN_MSG_EVENT_PARM_STRU              stEventParm;
 
-    /* Deleted by f62575 for V9R1 STK升级, 2013/07/11 */
 
     MN_SendClientResponse(clientId, opId, MN_ERR_NO_ERROR);
 
@@ -488,21 +314,7 @@ VOS_VOID TAF_CBA_RcvAtEmptyCbMids(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_ProcAtMsg
- 功能描述  : 处理来自AT的消息
- 输入参数  : pstMsg: 来自AT模块的VOS消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月19日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_CBA_ProcAtMsg(
     struct MsgCB                       *pstMsg
 )
@@ -538,24 +350,7 @@ VOS_VOID TAF_CBA_ProcAtMsg(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_UpdateAsCbsActiveState
- 功能描述  : 用户更新设置的CBS MID Range列表后, 通知接入层更新CBS的激活状态
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年5月7日
-    作    者   : zhoujun /z40661
-    修改内容   : 新生成函数
-  2.日    期   : 2012年3月3日
-    作    者   : l00171473
-    修改内容   : for V7R1C50 CSFB&PPAC&ETWS&ISR,
-
-*****************************************************************************/
 VOS_VOID TAF_CBA_UpdateAsCbsActiveState(VOS_VOID)
 {
     VOS_UINT32                          ulIsActiveListEmpty;
@@ -579,21 +374,7 @@ VOS_VOID TAF_CBA_UpdateAsCbsActiveState(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_RcvAtModifyMsgIds
- 功能描述  : 用户操作CBS的通用处理,包括更新内存,NV项,USIM以及通知接入层
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年5月10日
-    作    者   : zhoujun /z40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_CBA_RcvAtModifyMsgIds(VOS_VOID)
 {
     /* 更新NV项中的MSGID 列表 */
@@ -614,21 +395,7 @@ VOS_VOID TAF_CBA_RcvAtModifyMsgIds(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_GetActiveMids
- 功能描述  : 获取当前用户激活的所有CBS消息ID
- 输入参数  : 无
- 输出参数  : pstActiveCbMids:当前已激活的CBS消息ID
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月26日
-    作    者   : t00212959
-    修改内容   : 新生成函数 for V7R1C50 CSFB&PPAC&ETWS&ISR
-
-*****************************************************************************/
 VOS_VOID TAF_CBA_GetActiveMids(
     TAF_CBA_CBMI_RANGE_LIST_STRU       *pstActiveCbMids
 )

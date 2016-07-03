@@ -1,20 +1,4 @@
-/************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : MmSuspend.h
-  Author      : sxbo
-  Version     : V200R001
-  Date        : 2005-08-16
-  Description : 该头文件定义了MM模块SuspendProc子模块内部函数和数据结构
-  History     :
-  1. Date:2005-08-16
-     Author: sxbo
-     Modification:Create
 
-  2. x51137 2006/5/5 A32D03487
-  3.日    期   : 2006年08月09日
-    作    者   : 蒋丽萍j60010247
-    修改内容   : 问题单A32D03479，在PC机上实现时将#pragma pack(0)和#pragma pack()加编译开关
-************************************************************************/
 
 #ifndef _MM_SUSPEND_H_
 #define _MM_SUSPEND_H_
@@ -102,7 +86,6 @@ VOS_VOID MM_RelMsgBuf(VOS_VOID);
 
 VOS_VOID MM_SuspendTimeout(VOS_VOID);
 
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, begin */
 #if (FEATURE_ON == FEATURE_LTE)
 VOS_VOID NAS_MM_ProcResumeIndBackToLTE(
     MMCMM_RESUME_IND_STRU              *pstResumeMsg
@@ -127,7 +110,6 @@ VOS_VOID NAS_MM_ProcResumeIndBackToLTE_Srvcc(VOS_VOID);
 VOS_VOID NAS_MM_ProcSrvccFail(VOS_VOID);
 VOS_VOID NAS_MM_ProcSrvccSuccess(VOS_VOID);
 #endif
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, end */
 
 
 #if ((VOS_OS_VER == VOS_WIN32) || (VOS_OS_VER == VOS_NUCLEUS))

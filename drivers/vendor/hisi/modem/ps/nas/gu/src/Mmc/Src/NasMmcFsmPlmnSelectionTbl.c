@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmcFsmPlmnSelectionTbl.c
-  版 本 号   : 初稿
-  作    者   : sunxibo /46746
-  生成日期   : 2011年07月04日
-  最近修改   :
-  功能描述   : NAS 层状态机PlmnSelection状态处理表
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年07月04日
-    作    者   : sunxibo /46746
-    修改内容   : Added for V7R1 phase II
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -28,14 +11,10 @@
 #include "NasMmcFsmPlmnSelectionTbl.h"
 #include "NasMmcTimerMgmt.h"
 
-/* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
 #include "MsccMmcInterface.h"
-/* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
 #include "MmcGmmInterface.h"
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-7, begin */
 /* 删除ExtAppMmcInterface.h*/
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-7, end */
 
 
 #ifdef __cplusplus
@@ -50,7 +29,6 @@ extern "C" {
   2 全局变量定义
 *****************************************************************************/
 
-/* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
 /* NAS MMC状态机数组:搜网层二状态机名称*/
 NAS_FSM_DESC_STRU                       g_stNasMmcPlmnSelectionFsmDesc;
 
@@ -73,12 +51,10 @@ NAS_ACT_STRU   g_astNasMmcPlmnSelectionInitActTbl[]             =
                       ID_MSCC_MMC_SPEC_PLMN_SEARCH_ABORT_REQ,
                       NAS_MMC_RcvTafSpecPlmnSearchAbortReq_PlmnSelection),
 
-    /* Added by s00246516 for L-C互操作项目, 2014-01-27, Begin */
     /* MMA发送过来的获取请求 */
     NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
                       ID_MSCC_MMC_ACQ_REQ,
                       NAS_MMC_RcvMsccAcqReq_PlmnSelection_Init),
-    /* Added by s00246516 for L-C互操作项目, 2014-01-27, End */
 };
 
 /* NAS_MMC_PLMN_SELECTION_STA_WAIT_WAS_PLMN_SEARCH_CNF 动作表 */
@@ -475,11 +451,9 @@ NAS_ACT_STRU   g_astNasMmcPlmnSelectionWaitCsPsRegRsltIndActTbl[]              =
                       RRMM_LIMIT_SERVICE_CAMP_IND,
                       NAS_MMC_RcvRrmmLimitServiceCampInd_PlmnSelection_WaitCsPsRegRsltInd),
 
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-2-8, begin */
     NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
                       ID_MSCC_MMC_IMS_VOICE_CAP_NOTIFY,
                       NAS_MMC_RcvMsccImsVoiceCapInd_PlmnSelection_WaitCsPsRegRsltInd),
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-2-8, end */
 };
 
 /* NAS_MMC_PLMN_SELECTION_STA_WAIT_RRC_CONN_REL_IND 动作表 */
@@ -598,7 +572,6 @@ NAS_ACT_STRU   g_astNasMmcPlmnSelectionWaitCsPsConnRelActTbl[]              =
 
 };
 
-/* Added by s00246516 for L-C互操作项目, 2014-01-28, Begin */
 NAS_ACT_STRU   g_astNasMmcPlmnSelectionWaitMsccRegReqActTbl[]                =
 {
     /* 收到 MMA 的 ID_MMA_MMC_REG_REQ 消息的处理 */
@@ -637,7 +610,6 @@ NAS_ACT_STRU   g_astNasMmcPlmnSelectionWaitMsccRegReqActTbl[]                =
 
 #endif
 };
-/* Added by s00246516 for L-C互操作项目, 2014-01-28, End */
 
 #if   (FEATURE_ON == FEATURE_LTE)
 /* NAS_MMC_PLMN_SELECTION_STA_WAIT_LMM_SYSINFO_IND 动作表 */
@@ -734,11 +706,9 @@ NAS_ACT_STRU   g_astNasMmcPlmnSelectionWaitEpsRegRsltIndActTbl[]         =
                       ID_MSCC_MMC_SPEC_PLMN_SEARCH_ABORT_REQ,
                       NAS_MMC_RcvTafSpecPlmnSearchAbortReq_PlmnSelection),
 
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-2-7, begin */
     NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
                       ID_MSCC_MMC_IMS_VOICE_CAP_NOTIFY,
                       NAS_MMC_RcvMsccImsVoiceCapInd_PlmnSelection_WaitEpsRegRsltInd),
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-2-7, end */
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
     NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
@@ -1010,11 +980,9 @@ NAS_ACT_STRU   g_astNasMmcPlmnSelectionWaitEpsRegIndCsPsMode1ReCampLteActTbl[]  
                       ID_MSCC_MMC_SPEC_PLMN_SEARCH_ABORT_REQ,
                       NAS_MMC_RcvTafSpecPlmnSearchAbortReq_PlmnSelection),
 
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-2-7, begin */
     NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
                       ID_MSCC_MMC_IMS_VOICE_CAP_NOTIFY,
                       NAS_MMC_RcvMsccImsVoiceCapInd_PlmnSelection_WaitEpsRegRsltIndCsPsMode1ReCampLte),
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-2-7, end */
 };
 
 /* NAS_MMC_PLMN_SELECTION_STA_WAIT_EPS_REL_IND_CSPSMODE1_RECAMP_LTE 动作表 */
@@ -1058,7 +1026,6 @@ NAS_ACT_STRU   g_astNasMmcPlmnSelectionWaitEpsRelIndCsPsMode1ReCampLteActTbl[]  
                       ID_LMM_MMC_DETACH_CNF,
                       NAS_MMC_RcvLmmMmcDetachCnf_PlmnSelection_WaitEpsRelIndCsPsMode1ReCampLte),
 };
-/* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
 #endif
 
@@ -1109,11 +1076,9 @@ NAS_STA_STRU g_astNasMmcPlmnSelectionStaTbl[] =
     NAS_STA_TBL_ITEM( NAS_MMC_PLMN_SELECTION_STA_WAIT_RRC_CONN_REL_IND,
                           g_astNasMmcPlmnSelectionWaitCsPsConnRelActTbl ),
 
-    /* Added by s00246516 for L-C互操作项目, 2014-01-28, Begin */
     /*  等待MMA的注册请求 */
     NAS_STA_TBL_ITEM( NAS_MMC_PLMN_SELECTION_STA_WAIT_MSCC_REG_REQ,
                           g_astNasMmcPlmnSelectionWaitMsccRegReqActTbl ),
-    /* Added by s00246516 for L-C互操作项目, 2014-01-28, End */
 
 #if (FEATURE_ON == FEATURE_LTE)
     /*  等待L模上报搜网结果 */
@@ -1174,21 +1139,7 @@ NAS_STA_STRU g_astNasMmcPlmnSelectionStaTbl[] =
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetPlmnSelectionStaTblSize
- 功能描述  : 获取PLMN SELECTION状态机的大小
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:PLMN SELECTION状态机的大小
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月04日
-    作    者   : sunxibo 46746
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_GetPlmnSelectionStaTblSize( VOS_VOID  )
 {
     return (sizeof(g_astNasMmcPlmnSelectionStaTbl)/sizeof(NAS_STA_STRU));
@@ -1196,21 +1147,7 @@ VOS_UINT32 NAS_MMC_GetPlmnSelectionStaTblSize( VOS_VOID  )
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetPlmnSelectionFsmDescAddr
- 功能描述  : 获取自动搜网状态机的描述表
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : NAS_FSM_DESC_STRU:指向PLMN SELECTION状态机的描述表
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月04日
-    作    者   : sunxibo 46746
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_FSM_DESC_STRU * NAS_MMC_GetPlmnSelectionFsmDescAddr(VOS_VOID)
 {
     return (&g_stNasMmcPlmnSelectionFsmDesc);

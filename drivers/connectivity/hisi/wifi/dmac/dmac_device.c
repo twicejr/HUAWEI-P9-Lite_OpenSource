@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : dmac_device.c
-  版 本 号   : 初稿
-  作    者   : zhangwei 00326350
-  生成日期   : 2015年05月07日
-  最近修改   :
-  功能描述   : dmac device对应结构
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年05月07日
-    作    者   : zhangwei
-    修改内容   : 创建文件
-
-******************************************************************************/
 #ifdef __cplusplus
 #if __cplusplus
 extern "C" {
@@ -54,21 +37,7 @@ extern "C" {
 #define THIS_FILE_ID OAM_FILE_ID_DMAC_DEVICE_C
 
 
-/*****************************************************************************
- 函 数 名  : dmac_free_hd_tx_dscr_queue
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 成功或者失败原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月19日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void  dmac_free_hd_tx_dscr_queue(hal_to_dmac_device_stru *pst_hal_dev_stru)
 {
     oal_uint8                        uc_index;
@@ -95,21 +64,7 @@ OAL_STATIC oal_void  dmac_free_hd_tx_dscr_queue(hal_to_dmac_device_stru *pst_hal
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_device_exit
- 功能描述  : device结构以及对应特性退出
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月7日
-    作    者   : 张炜 64406
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_device_exit(mac_board_stru *pst_board, mac_chip_stru *pst_chip, dmac_device_stru *pst_dmac_device)
 {
     mac_device_stru   *pst_device;
@@ -131,7 +86,6 @@ oal_uint32  dmac_device_exit(mac_board_stru *pst_board, mac_chip_stru *pst_chip,
     /* 算法框架退出 */
     dmac_alg_exit(pst_device);
 
-	/* DTS2015071603951 mac和phy没有异常情况,不要进行mac和phy复位, 不然会导致PCIE异常 */
     /* 挂起硬件发送 */
     //hal_set_machw_tx_suspend(pst_device->pst_device_stru);
 
@@ -196,21 +150,7 @@ oal_uint32  dmac_device_exit(mac_board_stru *pst_board, mac_chip_stru *pst_chip,
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_chip_exit
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月7日
-    作    者   : 张炜 64406
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_chip_exit(mac_board_stru *pst_board, mac_chip_stru *pst_chip)
 {
     dmac_device_stru  *pst_dmac_device;
@@ -249,21 +189,7 @@ OAL_STATIC oal_uint32  dmac_chip_exit(mac_board_stru *pst_board, mac_chip_stru *
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_board_exit
- 功能描述  : 删除board
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月7日
-    作    者   : 张炜 64406
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_board_exit(mac_board_stru *pst_board)
 {
     oal_uint8        uc_chip_idx;
@@ -307,24 +233,7 @@ oal_uint32  dmac_board_exit(mac_board_stru *pst_board)
 
 
 #ifdef _PRE_DEBUG_MODE
-/*****************************************************************************
- 函 数 名  : dmac_device_exception_report_timeout_fn
- 功能描述  : 异常维测信息上报，定期读取寄存器，出现错误直接上报
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月4日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-  2.日    期   : 2015年1月4日
-    作    者   : daihu
-    修改内容   : 增加双芯片时，pcie0和pcie1的读写
-
-*****************************************************************************/
 oal_uint32  dmac_device_exception_report_timeout_fn(oal_void *p_arg)
 {
 #if ((_PRE_OS_VERSION_LINUX == _PRE_OS_VERSION) && (_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC != _PRE_MULTI_CORE_MODE))
@@ -381,21 +290,7 @@ oal_uint32  dmac_device_exception_report_timeout_fn(oal_void *p_arg)
 #endif
 
 #ifdef _PRE_WLAN_DFT_REG
-/*****************************************************************************
- 函 数 名  : dmac_reg_timeout
- 功能描述  : 周期定时器超时处理函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-   1.日    期   : 2014年5月25日
-     作    者   : z00260280
-     修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_reg_timeout(void *p_arg)
 {
     hal_to_dmac_device_stru    *pst_device;
@@ -420,21 +315,7 @@ OAL_STATIC oal_uint32  dmac_reg_timeout(void *p_arg)
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : dmac_cfg_vap_init
- 功能描述  : dmac_cfg_vap_init_event需要移植到此处.dmac初始化完成后，需要增量和hmac的握手
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月12日
-    作    者   : 张炜 64406
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 OAL_STATIC oal_uint32 dmac_cfg_vap_init(mac_device_stru *pst_device)
 {
@@ -462,21 +343,7 @@ OAL_STATIC oal_void dmac_alg_stat_init(dmac_device_stru *pst_dmac_device)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_device_init
- 功能描述  : device的初始化函数
- 输入参数  : 指向要进行初始化的device指针
- 输出参数  : 无
- 返 回 值  : 成功或者失败原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月19日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_device_init(oal_uint8 *puc_device_id, oal_uint8 uc_chip_id, oal_uint8 uc_device_id, oal_uint32 ul_chip_ver)
 {
     oal_uint32                 ul_ret;
@@ -611,7 +478,6 @@ OAL_STATIC oal_uint32  dmac_device_init(oal_uint8 *puc_device_id, oal_uint8 uc_c
     pst_device->ul_pcie_reg110_timeout_counter = 0;
     pst_device->ul_pcie_read_counter = 0;
 
-    /* DTS2015100700205,特殊网卡兼容性问题规避方案: 会发生DataFlow Break时候会影响性能 */
     pst_device->st_dataflow_brk_bypass.en_brk_limit_aggr_enable = OAL_FALSE;
     pst_device->st_dataflow_brk_bypass.ul_tx_dataflow_brk_cnt = 0;
     pst_device->st_dataflow_brk_bypass.ul_last_tx_complete_isr_cnt = 0;
@@ -742,21 +608,7 @@ OAL_STATIC oal_uint32  dmac_device_init(oal_uint8 *puc_device_id, oal_uint8 uc_c
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_chip_init
- 功能描述  : chip对象初始化函数
- 输入参数  : chip对象指针、chip id
- 输出参数  : 无
- 返 回 值  : 成功或失败原因
- 调用函数  : mac_device_init
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月19日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_chip_init(mac_chip_stru *pst_chip, oal_uint8 uc_chip_id)
 {
     oal_uint8  uc_device;
@@ -819,21 +671,7 @@ OAL_STATIC oal_uint32  dmac_chip_init(mac_chip_stru *pst_chip, oal_uint8 uc_chip
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_board_init
- 功能描述  : 在hmac和dmac中调用时，分别直接对全局变量赋值
- 输入参数  : board对象指针
- 输出参数  : 无
- 返 回 值  : 成功或失败
- 调用函数  : mac_chip_init、oal_bit_set_bit_one_byte、mac_board_register_table_instance
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月19日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_board_init(mac_board_stru *pst_board)
 {
     oal_uint8  uc_chip;
@@ -869,21 +707,7 @@ oal_uint32  dmac_board_init(mac_board_stru *pst_board)
 
 
 
-/*****************************************************************************
- 函 数 名  : dmac_mac_error_overload
- 功能描述  : mac错误是否过载
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月4日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_mac_error_overload(mac_device_stru *pst_mac_device, hal_mac_error_type_enum_uint8 en_error_id)
 {
     if (pst_mac_device->aul_mac_err_cnt[en_error_id] > MAX_MAC_ERR_IN_TBTT)
@@ -895,41 +719,13 @@ oal_uint32  dmac_mac_error_overload(mac_device_stru *pst_mac_device, hal_mac_err
 
 
 
-/*****************************************************************************
- 函 数 名  : dmac_mac_error_cnt_clr
- 功能描述  : mac错误计数器全部清0
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月4日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  dmac_mac_error_cnt_clr(mac_device_stru *pst_mac_device)
 {
     oal_memset(pst_mac_device->aul_mac_err_cnt, 0, sizeof(pst_mac_device->aul_mac_err_cnt));
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_mac_error_cnt_inc
- 功能描述  : mac错误计数器加1
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月4日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  dmac_mac_error_cnt_inc(mac_device_stru *pst_mac_device, oal_uint8 uc_mac_int_bit)
 {
     pst_mac_device->aul_mac_err_cnt[uc_mac_int_bit] += 1;

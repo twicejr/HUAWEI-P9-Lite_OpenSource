@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafXCallProcEccSrv.c
-  版 本 号   : 初稿
-  作    者   : y00245242
-  生成日期   : 2015年10月21日
-  功能描述   : TAF X CALL处理ECC业务功能
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年10月21日
-    作    者   : y00245242
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -129,20 +114,7 @@ TAF_XCALL_ECC_EVENT_PROC_STRU  g_astTafXcallRemoteCtrlEventProcTab[TAF_XCALL_REM
 /*****************************************************************************
   3 函数定义
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_FillAdditionalInfo
- 功能描述  : 填充KMC额外信息
- 输入参数  : pstKmcMsg -- KMC消息结构地址
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_FillAdditionalInfo(
     TAF_XCALL_KMC_MSG_STRU             *pstKmcMsg
 )
@@ -179,20 +151,7 @@ VOS_VOID TAF_XCALL_FillAdditionalInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_FillKmcReqMsgTempPubKey
- 功能描述  : 填充KMC REQ临时公钥信息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_FillKmcReqMsgTempPubKey(
     TAF_XCALL_KMC_MSG_STRU             *pstKmcMsg,
     TAF_XCALL_KS_NEGOTIATE_CTX         *pstKsNegoCtx
@@ -210,25 +169,7 @@ VOS_VOID TAF_XCALL_FillKmcReqMsgTempPubKey(
     pstKmcMsg->u.stKeyReq.ucKeyVersion = TAF_XCALL_GetVoiceEncryptPublicKeyAndVersionNumber()->ucVerNum;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ConvertRemoteNumFromStdBcdToKmcBcd
- 功能描述  : 将远程号码存储的Bcd格式转成语音加密要求的BCD格式的编码
- 输入参数  : VOS_UINT8                          *pucStdBcdContent
-             VOS_UINT8                           ucStdBcdLen
-             VOS_UINT8                          *pucEncVoiceMsgContent
-             VOS_UINT8                           ucEncVoiceMsgLen
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
-             VOS_TRUE: 成功
-             VOS_FALSE:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月28日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-*****************************************************************************/
 VOS_UINT32 TAF_XCALL_ConvertRemoteNumFromStdBcdToKmcBcd(
     VOS_UINT8                          *pucStdBcdContent,
     VOS_UINT8                           ucStdBcdLen,
@@ -308,27 +249,7 @@ VOS_UINT32 TAF_XCALL_ConvertRemoteNumFromStdBcdToKmcBcd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ConvertImsiFromStdBcdToKmcBcd
- 功能描述  : 将Imsi中转换成语音加密要求的编码格式
-             EG: 15位 IMSI = 230 040 680000079
-             From StdBcd: 0x08 0x29 0x03 0x40 0x60 0x08 0x00 0x00 0x97 (首位低4位为保留位0x09)
-             To   KmcBcd: 0x08 0x02 0x30 0x04 0x06 0x80 0x00 0x00 0x79
- 输入参数  : VOS_UINT8                          *pucStdImsiContent,
-             VOS_UINT8                          *pucEncVoiceImsiContent,
-             VOS_UINT8                           ucEncVoiceImsiLen
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
-             VOS_TRUE: 成功
-             VOS_FALSE:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月28日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-*****************************************************************************/
 VOS_UINT32 TAF_XCALL_ConvertImsiFromStdBcdToKmcBcd(
     VOS_UINT8                          *pucImsiContent,
     VOS_UINT8                          *pucEncVoiceImsiContent,
@@ -378,23 +299,7 @@ VOS_UINT32 TAF_XCALL_ConvertImsiFromStdBcdToKmcBcd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_FillKmcReqMsgCipherText
- 功能描述  : 填充KMC REQ密文信息
- 输入参数  : pstKmcMsg     -- KMC消息
-             pstKsNegoCtx  -- 密话协商上下文
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
-             VOS_TRUE: 成功
-             VOS_FALSE:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月28日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-*****************************************************************************/
 VOS_UINT32 TAF_XCALL_FillKmcReqMsgCipherText(
     TAF_XCALL_KMC_MSG_STRU             *pstKmcMsg,
     TAF_XCALL_KS_NEGOTIATE_CTX         *pstKsNegoCtx
@@ -480,21 +385,7 @@ VOS_UINT32 TAF_XCALL_FillKmcReqMsgCipherText(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_FillKmcKeyReqMsgTypeAndMode
- 功能描述  : 填充KMC KEY请求的消息类型以及模式
- 输入参数  : pstKmcMsg    -- KMC消息
-             pstKsNegoCtx -- 密话协商消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_FillKmcKeyReqMsgTypeAndMode(
     TAF_XCALL_KMC_MSG_STRU             *pstKmcMsg,
     TAF_XCALL_KS_NEGOTIATE_CTX         *pstKsNegoCtx
@@ -535,21 +426,7 @@ VOS_VOID TAF_XCALL_FillKmcKeyReqMsgTypeAndMode(
             break;
     }
 }
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_FillKmcUpdateRspMsg
- 功能描述  : 填充KMC Update Rsp Msg
- 输入参数  : VOS_VOID
- 输出参数  :  TAF_XCALL_KMC_MSG_STRU             *pstKmcMsg
- 返 回 值  : VOS_FALSE: 失败；
-             VOS_TRUE : 成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月27日
-    作    者   : l00359089
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XCALL_FillKmcUpdateRspMsg(
     TAF_XCALL_KMC_MSG_STRU             *pstKmcMsg
 )
@@ -564,21 +441,7 @@ VOS_UINT32 TAF_XCALL_FillKmcUpdateRspMsg(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_GetSendXsmsReqOpId
- 功能描述  : 获取分配发送XSMS请求opId
- 输入参数  : 无
- 输出参数  : 无
 
- 返 回 值  : usOpIdSeqNum -- 返回opId发送序列号
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT16 TAF_XCALL_GetSendXsmsReqOpId(VOS_VOID)
 {
     TAF_XCALL_XSMS_SEND_REQ_OPID_MGMT_CTX                  *pstOpIdMgmt = VOS_NULL_PTR;
@@ -595,21 +458,7 @@ VOS_UINT16 TAF_XCALL_GetSendXsmsReqOpId(VOS_VOID)
     return (pstOpIdMgmt->usOpIdSeqNum);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_IsCallingNumExist
- 功能描述  : 密话被叫时，判断主叫方号码是否存在
- 输入参数  : pstCallEntity -- 呼叫实体地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月28日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XCALL_IsCallingNumExist(
     TAF_XCALL_CALL_ENTITY_STRU         *pstCallEntity
 )
@@ -634,22 +483,7 @@ VOS_UINT32 TAF_XCALL_IsCallingNumExist(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_IsEncVoiceNumberSameAsCallNumber
- 功能描述  : 检查密话号码是否与呼叫号码一致
- 输入参数  : ucCallNumLen    -- 呼叫号码长度
-             pucCallNum      -- pucCallNum呼叫号码信息
-             pstEccRemoteNum -- ECC远端号码长度
- 输出参数  : 无
- 返 回 值  : VOS_TRUE -- 号码一致； VOS_FALSE: 号码不一致
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XCALL_IsEncVoiceNumberSameAsCallNumber(
     VOS_UINT8                                               ucCallNumLen,
     VOS_UINT8                                              *pucCallNum,
@@ -707,21 +541,7 @@ VOS_UINT32 TAF_XCALL_IsEncVoiceNumberSameAsCallNumber(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SendKmcKeyReqMsg
- 功能描述  : 获取MT呼叫状态
- 输入参数  : pstKsNegoCtx -- 密话协商上下文
- 输出参数  : 无
- 返 回 值  : TAF_CALL_APP_ENCRYPT_VOICE_STATUS_ENUM_UINT32 -- 返回发送结果原因值
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 TAF_CALL_APP_ENCRYPT_VOICE_STATUS_ENUM_UINT32 TAF_XCALL_SendKmcKeyReqMsg(
     TAF_XCALL_KS_NEGOTIATE_CTX         *pstKsNegoCtx
 )
@@ -785,22 +605,7 @@ TAF_CALL_APP_ENCRYPT_VOICE_STATUS_ENUM_UINT32 TAF_XCALL_SendKmcKeyReqMsg(
 
     return TAF_CALL_APP_ENCRYPT_VOICE_SUCC;
 }
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SendKmcUpdateRspMsg
- 功能描述  : 发送公钥更新响应消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_FALSE :失败
-             VOS_TRUE : 成功
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年10月27日
-    作    者   : l00359089
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XCALL_SendKmcUpdateRspMsg(
     VOS_UINT16                          usOpId,
     TAF_XCALL_KMC_MSG_STRU             *pstKmcMsg
@@ -835,21 +640,7 @@ VOS_UINT32 TAF_XCALL_SendKmcUpdateRspMsg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ProcEccEvent
- 功能描述  : 处理ECC内部事件
- 输入参数  : ulEventType     -- 内部事件
-             VOS_VOID *pMsg  -- 事件对应的消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ProcEccEvent(
     VOS_UINT32                                              ulEventType,
     TAF_XCALL_ECC_SRV_STATE_MACHINE_ID_ENUM_UINT32          enStateMachine,
@@ -907,21 +698,7 @@ VOS_VOID TAF_XCALL_ProcEccEvent(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ProcKmcKsNegotiateProcedure
- 功能描述  : 处理KMC的Ks协商流程
- 输入参数  : enEventType     -- 内部事件
-             VOS_VOID *pMsg  -- 事件对应的消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ProcKmcKsNegotiateProcedure(
     TAF_XCALL_VOICE_ENC_MSG_EVENT_TYPE_ENUM_UINT32          enEventType,
     VOS_VOID                                               *pMsg,
@@ -943,21 +720,7 @@ VOS_VOID TAF_XCALL_ProcKmcKsNegotiateProcedure(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ProcKmcPublicKeyUpdateProcedure
- 功能描述  : 处理KMC公钥更新流程
- 输入参数  : enEventType     -- 内部事件
-             VOS_VOID *pMsg  -- 事件对应的消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ProcKmcPublicKeyUpdateProcedure(
     TAF_XCALL_PUB_KEY_UPDATE_MSG_EVENT_TYPE_ENUM_UINT32     enEventType,
     VOS_VOID                                               *pMsg,
@@ -976,21 +739,7 @@ VOS_VOID TAF_XCALL_ProcKmcPublicKeyUpdateProcedure(
     g_astTafXcallPubKeyEventProcTab[enEventType].pfEventProcFun(pMsg, pKmcDecMsg);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ProcKmcRemoteControlProcedure
- 功能描述  : 处理远程控制流程
- 输入参数  : enEventType     -- 内部事件
-             VOS_VOID *pMsg  -- 事件对应的消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ProcKmcRemoteControlProcedure(
     TAF_XCALL_REMOTE_CTRL_MSG_EVENT_TYPE_ENUM_UINT32        enEventType,
     VOS_VOID                                               *pMsg,
@@ -1009,20 +758,7 @@ VOS_VOID TAF_XCALL_ProcKmcRemoteControlProcedure(
     g_astTafXcallRemoteCtrlEventProcTab[enEventType].pfEventProcFun(pMsg, pKmcDecMsg);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ExitVoiceEncriptProcedure
- 功能描述  : 退出语音加密流程
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月3日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ExitVoiceEncriptProcedure(VOS_VOID)
 {
     /* 停止可能相关的密话定时器 */
@@ -1035,20 +771,7 @@ VOS_VOID TAF_XCALL_ExitVoiceEncriptProcedure(VOS_VOID)
     TAF_XCALL_InitEncVoiceKeyNegotiateCtx();
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ExitPubKeyUpdateProcedure
- 功能描述  : 退出公钥更新流程
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月3日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ExitPubKeyUpdateProcedure(VOS_VOID)
 {
     TAF_XCALL_StopTimer(TI_TAF_XCALL_PUB_KEY_UPDATE_WAIT_ACK_TIMER, 0);
@@ -1057,20 +780,7 @@ VOS_VOID TAF_XCALL_ExitPubKeyUpdateProcedure(VOS_VOID)
     TAF_XCALL_InitEncVoiceKmcUpdateCtx();
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ExitRemoteCtrlOpertionProcedure
- 功能描述  : 退出远程控制操作流程
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月3日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ExitRemoteCtrlOpertionProcedure(VOS_VOID)
 {
     TAF_XCALL_StopTimer(TI_TAF_XCALL_REMOTE_CTRL_WAIT_AP_ANSWER_TIMER, 0);
@@ -1079,22 +789,7 @@ VOS_VOID TAF_XCALL_ExitRemoteCtrlOpertionProcedure(VOS_VOID)
     TAF_XCALL_InitEncVoiceRemoteCtrlCtx();
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ProcVoiceEncKmcKeyRsp
- 功能描述  : 处理KMC下发的MT密钥响应事件
- 输入参数  : *pMsg        -- 事件对应的消息内容
-             pKmcDecMsg   -- KMC解码消息
-             pstKsNegoCtx -- 密话上下文信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XCALL_VerifySignature(
     VOS_UINT8                           ucPubKeyLen,
     VOS_UINT8                          *pucPubKey,
@@ -1121,21 +816,7 @@ VOS_UINT32 TAF_XCALL_VerifySignature(
     return TAF_XCALL_CipherVerify(&stCipherVerify);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ProcMoAutoModeVoiceEncReq
- 功能描述  : 处理用户下发的MO自动模式的密话请求
- 输入参数  : pstKsNegoCtx      -- 密话协商上下文信息
-             pstAppEncVoiceReq -- 密话请求消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ProcMoAutoModeVoiceEncReq(
     TAF_XCALL_KS_NEGOTIATE_CTX                             *pstKsNegoCtx,
     TAF_CALL_APP_ENCRYPT_VOICE_REQ_STRU                    *pstAppEncVoiceReq
@@ -1255,21 +936,7 @@ VOS_VOID TAF_XCALL_ProcMoAutoModeVoiceEncReq(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ProcMtAutoModeVoiceEncReq
- 功能描述  : 处理用户下发的Mt自动模式的密话请求
- 输入参数  : pstKsNegoCtx      -- 密话协商上下文信息
-             pstAppEncVoiceReq -- 密话请求消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ProcMtAutoModeVoiceEncReq(
     TAF_XCALL_KS_NEGOTIATE_CTX                             *pstKsNegoCtx,
     TAF_CALL_APP_ENCRYPT_VOICE_REQ_STRU                    *pstAppEncVoiceReq
@@ -1376,21 +1043,7 @@ VOS_VOID TAF_XCALL_ProcMtAutoModeVoiceEncReq(
     TAF_XCALL_SndAppEncryptVoiceCnf(&pstAppEncVoiceReq->stCtrl, TAF_CALL_APP_ENCRYPT_VOICE_SUCC);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ProcMoManualModeVoiceEncReq
- 功能描述  : 处理用户下发的MO自动模式的密话请求
- 输入参数  : pstKsNegoCtx      -- 密话协商上下文信息
-             pstAppEncVoiceReq -- 密话请求消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ProcMoManualModeVoiceEncReq(
     TAF_XCALL_KS_NEGOTIATE_CTX                             *pstKsNegoCtx,
     TAF_CALL_APP_ENCRYPT_VOICE_REQ_STRU                    *pstAppEncVoiceReq
@@ -1504,21 +1157,7 @@ VOS_VOID TAF_XCALL_ProcMoManualModeVoiceEncReq(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ProcMtManualModeVoiceEncReq
- 功能描述  : 处理用户下发的MT自动模式的密话请求
- 输入参数  : pstKsNegoCtx      -- 密话协商上下文信息
-             pstAppEncVoiceReq -- 密话请求消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ProcMtManualModeVoiceEncReq(
     TAF_XCALL_KS_NEGOTIATE_CTX                             *pstKsNegoCtx,
     TAF_CALL_APP_ENCRYPT_VOICE_REQ_STRU                    *pstAppEncVoiceReq
@@ -1634,22 +1273,7 @@ VOS_VOID TAF_XCALL_ProcMtManualModeVoiceEncReq(
     pstKsNegoCtx->enVoiceEncState = TAF_XCALL_VOICE_ENCRYPT_STA_WAITING_ENCRYPT_RSP;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ProcVoiceEncKmcKeyRsp
- 功能描述  : 处理KMC下发的MT密钥响应事件
- 输入参数  : *pMsg        -- 事件对应的消息内容
-             pKmcDecMsg   -- KMC解码消息
-             pstKsNegoCtx -- 密话上下文信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ProcVoiceEncKmcKeyRsp(
     XSMS_XCALL_KMC_MSG_RCV_IND_STRU    *pstXsmsRcvInd,
     TAF_XCALL_KMC_MSG_STRU             *pKmcDecMsg,
@@ -1751,20 +1375,7 @@ VOS_VOID TAF_XCALL_ProcVoiceEncKmcKeyRsp(
     pstKsNegoCtx->enVoiceEncState = TAF_XCALL_VOICE_ENCRYPT_STA_WAITING_ECC_SERVICE_CNF;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ProcVoiceEncEventAppEncVoiceReq
- 功能描述  : 处理用户下发的密话请求
- 输入参数  : VOS_VOID *pMsg  -- 事件对应的消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ProcVoiceEncEventAppEncVoiceReq(
     VOS_VOID                           *pMsg,
     VOS_VOID                           *pKmcDecMsg
@@ -1818,20 +1429,7 @@ VOS_VOID TAF_XCALL_ProcVoiceEncEventAppEncVoiceReq(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ProcVoiceEncEventAppOrigReq
- 功能描述  : 处理用户下发的呼叫请求事件
- 输入参数  : VOS_VOID *pMsg  -- 事件对应的消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : l00359089
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ProcVoiceEncEventAppOrigReq(
     VOS_VOID                           *pMsg,
     VOS_VOID                           *pKmcDecMsg
@@ -1907,20 +1505,7 @@ VOS_VOID TAF_XCALL_ProcVoiceEncEventAppOrigReq(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ProcVoiceEncEventAppHangUpReq
- 功能描述  : 处理用户下发的挂机事件
- 输入参数  : VOS_VOID *pMsg  -- 事件对应的消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ProcVoiceEncEventAppHangUpReq(
     VOS_VOID                           *pMsg,
     VOS_VOID                           *pKmcDecMsg
@@ -1945,20 +1530,7 @@ VOS_VOID TAF_XCALL_ProcVoiceEncEventAppHangUpReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ProcVoiceEncEventKmcMoKeyRsp
- 功能描述  : 处理KMC下发的MO密钥响应事件
- 输入参数  : VOS_VOID *pMsg  -- 事件对应的消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ProcVoiceEncEventKmcMoKeyRsp(
     VOS_VOID                           *pMsg,
     VOS_VOID                           *pKmcDecMsg
@@ -1989,20 +1561,7 @@ VOS_VOID TAF_XCALL_ProcVoiceEncEventKmcMoKeyRsp(
                                     pstKsNegoCtx);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ProcVoiceEncEventKmcMtKeyRsp
- 功能描述  : 处理KMC下发的MT密钥响应事件
- 输入参数  : VOS_VOID *pMsg  -- 事件对应的消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ProcVoiceEncEventKmcMtKeyRsp(
     VOS_VOID                           *pMsg,
     VOS_VOID                           *pKmcDecMsg
@@ -2033,20 +1592,7 @@ VOS_VOID TAF_XCALL_ProcVoiceEncEventKmcMtKeyRsp(
                                     pstKsNegoCtx);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ProcVoiceEncEventKmcMtEncryptInd
- 功能描述  : 处理KMC下发的MT密钥指示事件
- 输入参数  : VOS_VOID *pMsg  -- 事件对应的消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ProcVoiceEncEventKmcMtEncryptInd(
     VOS_VOID                           *pMsg,
     VOS_VOID                           *pKmcDecMsg
@@ -2158,20 +1704,7 @@ VOS_VOID TAF_XCALL_ProcVoiceEncEventKmcMtEncryptInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ProcVoiceEncEventKmcErrInd
- 功能描述  : 处理KMC下发的MT密钥响应事件
- 输入参数  : VOS_VOID *pMsg  -- 事件对应的消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ProcVoiceEncEventKmcErrInd(
     VOS_VOID                           *pMsg,
     VOS_VOID                           *pKmcDecMsg
@@ -2233,20 +1766,7 @@ VOS_VOID TAF_XCALL_ProcVoiceEncEventKmcErrInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ProcVoiceEncEventIncomingCallInd
- 功能描述  : 处理XCC的被叫指示
- 输入参数  : VOS_VOID *pMsg  -- 事件对应的消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ProcVoiceEncEventIncomingCallInd(
     VOS_VOID                           *pMsg,
     VOS_VOID                           *pKmcDecMsg
@@ -2271,20 +1791,7 @@ VOS_VOID TAF_XCALL_ProcVoiceEncEventIncomingCallInd(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ProcVoiceEncEventXccDiscInd
- 功能描述  : 处理收到XCC电话断开指示
- 输入参数  : VOS_VOID *pMsg  -- 事件对应的消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ProcVoiceEncEventXccDiscInd(
     VOS_VOID                           *pMsg,
     VOS_VOID                           *pKmcDecMsg
@@ -2309,20 +1816,7 @@ VOS_VOID TAF_XCALL_ProcVoiceEncEventXccDiscInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ProcVoiceEncEventXccTchAssignCmplInd
- 功能描述  : 处理收到XCC TCH指派完成指示
- 输入参数  : VOS_VOID *pMsg  -- 事件对应的消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ProcVoiceEncEventXccTchAssignCmplInd(
     VOS_VOID                           *pMsg,
     VOS_VOID                           *pKmcDecMsg
@@ -2352,20 +1846,7 @@ VOS_VOID TAF_XCALL_ProcVoiceEncEventXccTchAssignCmplInd(
     pstKsNegoCtx->enVoiceEncState = TAF_XCALL_VOICE_ENCRYPT_STA_DELAY_SEND_ENCRYPT_REQ;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ProcVoiceEncEventXccEccServiceCnf
- 功能描述  : 处理收到XCC ECC SO确认消息
- 输入参数  : VOS_VOID *pMsg  -- 事件对应的消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ProcVoiceEncEventXccEccServiceCnf(
     VOS_VOID                           *pMsg,
     VOS_VOID                           *pKmcDecMsg
@@ -2447,20 +1928,7 @@ VOS_VOID TAF_XCALL_ProcVoiceEncEventXccEccServiceCnf(
     pstKsNegoCtx->enVoiceEncState = TAF_XCALL_VOICE_ENCRYPT_STA_ENCRYPT_ACTIVE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ProcVoiceEncEventXccAnswerCnf
- 功能描述  : 处理收到XCC被叫接听应答消息
- 输入参数  : VOS_VOID *pMsg  -- 事件对应的消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ProcVoiceEncEventXccAnswerCnf(
     VOS_VOID                           *pMsg,
     VOS_VOID                           *pKmcDecMsg
@@ -2526,20 +1994,7 @@ VOS_VOID TAF_XCALL_ProcVoiceEncEventXccAnswerCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ProcVoiceEncEventXsmsSendCnf
- 功能描述  : 处理收到XSMS密话请求发送确认消息
- 输入参数  : VOS_VOID *pMsg  -- 事件对应的消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ProcVoiceEncEventXsmsSendCnf(
     VOS_VOID                           *pMsg,
     VOS_VOID                           *pKmcDecMsg
@@ -2607,20 +2062,7 @@ VOS_VOID TAF_XCALL_ProcVoiceEncEventXsmsSendCnf(
     TAF_XCALL_ExitVoiceEncriptProcedure();
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ProcVoiceEncEventTimerWaitOrigReq
- 功能描述  : 处理等待ORIG请求时，定时器超时
- 输入参数  : VOS_VOID *pMsg  -- 事件对应的消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ProcVoiceEncEventTimerWaitOrigReq(
     VOS_VOID                           *pMsg,
     VOS_VOID                           *pKmcDecMsg
@@ -2645,20 +2087,7 @@ VOS_VOID TAF_XCALL_ProcVoiceEncEventTimerWaitOrigReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ProcVoiceEncEventTimerDelaySendEncReq
- 功能描述  : 处理延时密话请求发送时，定时器超时
- 输入参数  : VOS_VOID *pMsg  -- 事件对应的消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ProcVoiceEncEventTimerDelaySendEncReq(
     VOS_VOID                           *pMsg,
     VOS_VOID                           *pKmcDecMsg
@@ -2697,20 +2126,7 @@ VOS_VOID TAF_XCALL_ProcVoiceEncEventTimerDelaySendEncReq(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ProcVoiceEncEventTimerTx01
- 功能描述  : 处理TX01定时器超时事件
- 输入参数  : VOS_VOID *pMsg  -- 事件对应的消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ProcVoiceEncEventTimerTx01(
     VOS_VOID                           *pMsg,
     VOS_VOID                           *pKmcDecMsg
@@ -2735,20 +2151,7 @@ VOS_VOID TAF_XCALL_ProcVoiceEncEventTimerTx01(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ProcVoiceEncEventTimerTx02
- 功能描述  : 处理TX02定时器超时事件
- 输入参数  : VOS_VOID *pMsg  -- 事件对应的消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ProcVoiceEncEventTimerTx02(
     VOS_VOID                           *pMsg,
     VOS_VOID                           *pKmcDecMsg
@@ -2773,20 +2176,7 @@ VOS_VOID TAF_XCALL_ProcVoiceEncEventTimerTx02(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ProcVoiceEncEventIntCallRelInd
- 功能描述  : 处理内部造成的呼叫释放
- 输入参数  : VOS_VOID *pMsg  -- 事件对应的消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ProcVoiceEncEventIntCallRelInd(
     VOS_VOID                           *pMsg,
     VOS_VOID                           *pKmcDecMsg
@@ -2810,20 +2200,7 @@ VOS_VOID TAF_XCALL_ProcVoiceEncEventIntCallRelInd(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ProcPubKeyEventKmcUpdateInd
- 功能描述  : 处理KMC的公钥更新请求消息
- 输入参数  : VOS_VOID *pMsg  -- 事件对应的消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : l00359089
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ProcPubKeyEventKmcUpdateInd(
     VOS_VOID                           *pMsg,
     VOS_VOID                           *pKmcDecMsg
@@ -2917,20 +2294,7 @@ VOS_VOID TAF_XCALL_ProcPubKeyEventKmcUpdateInd(
     TAF_XCALL_StartTimer(TI_TAF_XCALL_PUB_KEY_UPDATE_WAIT_ACK_TIMER, TI_TAF_XCALL_PUB_KEY_UPDATE_WAIT_ACK_LEN, 0);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ProcPubKeyEventKmcUpdateAck
- 功能描述  : 处理KMC的公钥更新确认消息
- 输入参数  : VOS_VOID *pMsg  -- 事件对应的消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : l00359089
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ProcPubKeyEventKmcUpdateAck(
     VOS_VOID                           *pMsg,
     VOS_VOID                           *pKmcDecMsg
@@ -2985,20 +2349,7 @@ VOS_VOID TAF_XCALL_ProcPubKeyEventKmcUpdateAck(
     TAF_XCALL_ExitPubKeyUpdateProcedure();
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ProcPubKeyEventXsmsSendCnf
- 功能描述  : 处理公钥更新的确认消息发送确认结果消息
- 输入参数  : VOS_VOID *pMsg  -- 事件对应的消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : l00359089
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ProcPubKeyEventXsmsSendCnf(
     VOS_VOID                           *pMsg,
     VOS_VOID                           *pKmcDecMsg
@@ -3019,20 +2370,7 @@ VOS_VOID TAF_XCALL_ProcPubKeyEventXsmsSendCnf(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ProcRemoteCtrlEventAppRemoteCtrlAnswerReq
- 功能描述  : 处理用户下发的远程控制应答请求消息
- 输入参数  : VOS_VOID *pMsg  -- 事件对应的消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ProcRemoteCtrlEventAppRemoteCtrlAnswerReq(
     VOS_VOID                           *pMsg,
     VOS_VOID                           *pKmcDecMsg
@@ -3139,20 +2477,7 @@ VOS_VOID TAF_XCALL_ProcRemoteCtrlEventAppRemoteCtrlAnswerReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ProcRemoteCtrlEventKmcRemoteCtrlCmdInd
- 功能描述  : 处理KMC下发的远程控制命令请求消息
- 输入参数  : VOS_VOID *pMsg  -- 事件对应的消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ProcRemoteCtrlEventKmcRemoteCtrlCmdInd(
     VOS_VOID                           *pMsg,
     VOS_VOID                           *pKmcDecMsg
@@ -3317,20 +2642,7 @@ VOS_VOID TAF_XCALL_ProcRemoteCtrlEventKmcRemoteCtrlCmdInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ProcRemoteCtrlEventXsmsSendCnf
- 功能描述  : 处理发送远程控制响应消息发送结果事件
- 输入参数  : VOS_VOID *pMsg  -- 事件对应的消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ProcRemoteCtrlEventXsmsSendCnf(
     VOS_VOID                           *pMsg,
     VOS_VOID                           *pKmcDecMsg
@@ -3415,20 +2727,7 @@ VOS_VOID TAF_XCALL_ProcRemoteCtrlEventXsmsSendCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ProcRemoteCtrlEventTimerWaitApAnswer
- 功能描述  : 处理发送远程控制响应消息发送结果事件
- 输入参数  : VOS_VOID *pMsg  -- 事件对应的消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ProcRemoteCtrlEventTimerWaitApAnswer(
     VOS_VOID                           *pMsg,
     VOS_VOID                           *pKmcDecMsg
@@ -3463,22 +2762,7 @@ VOS_VOID TAF_XCALL_ProcRemoteCtrlEventTimerWaitApAnswer(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_IsMkTimeParaValid
- 功能描述  : 检查TimeZone结构体个成员数值是否符合MkTime函数的要求
- 输入参数  : TAF_STD_TIME_ZONE_TYPE_STRU        *pstTimeZone 时间
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
-             VOS_TRUE:  有效
-             VOS_FALSE: 无效
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-*****************************************************************************/
 VOS_UINT32 TAF_XCALL_IsMkTimeParaValid(
     TAF_STD_TIME_ZONE_TYPE_STRU        *pstTimeZone
 )
@@ -3538,22 +2822,7 @@ VOS_UINT32 TAF_XCALL_IsMkTimeParaValid(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_GetTimeIntervalSince1970
- 功能描述  : 获取当前时区原点与输入时间之间的秒数
- 输入参数  : TAF_STD_TIME_ZONE_TYPE_STRU        *pstTimeZone 时间
- 输出参数  : VOS_UINT64                         *pullTimeInterval
- 返 回 值  : VOS_UINT32
-             VOS_TRUE:  成功
-             VOS_FALSE: 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-*****************************************************************************/
 VOS_UINT32 TAF_XCALL_GetTimeIntervalSince1970(
     TAF_STD_TIME_ZONE_TYPE_STRU        *pstTimeZone,
     VOS_UINT64                         *pullTimeInterval
@@ -3601,22 +2870,7 @@ VOS_UINT32 TAF_XCALL_GetTimeIntervalSince1970(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ConvertCurSysTime80msToStdTimeIntervalSince1970
- 功能描述  : 将系统时间转换成从当前时区原点起的秒数
- 输入参数  : VOS_UINT64 : 从CDMA_Timing_GetSystemTime80ms获取的当前系统时间(80ms)
- 输出参数  : VOS_UINT64 : *pullStdSysTime
- 返 回 值  : VOS_UINT32
-             VOS_TRUE:  成功
-             VOS_FASLE: 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-*****************************************************************************/
 VOS_UINT32 TAF_XCALL_ConvertCurSysTime80msToStdTimeIntervalSince1970(
     VOS_UINT64                          ullCurSysTime,
     VOS_UINT64                         *pullStdSysTime
@@ -3651,22 +2905,7 @@ VOS_UINT32 TAF_XCALL_ConvertCurSysTime80msToStdTimeIntervalSince1970(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_IsTimeZoneEmpty
- 功能描述  : 判断时间结构是否为空
- 输入参数  : TAF_STD_TIME_ZONE_TYPE_STRU        *pstTimeZone
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
-             VOS_TRUE:  为空
-             VOS_FASLE: 不为空
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-*****************************************************************************/
 VOS_UINT32 TAF_XCALL_IsTimeZoneEmpty(
     TAF_STD_TIME_ZONE_TYPE_STRU        *pstTimeZone
 )
@@ -3683,22 +2922,7 @@ VOS_UINT32 TAF_XCALL_IsTimeZoneEmpty(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_IsTimeStampValid
- 功能描述  : 判断网络时间戳是否符合要求
- 输入参数  : pucTimeStamp: 时间戳
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
-             VOS_TRUE:  时间戳符合要求
-             VOS_FALSE: 时间戳不符合要求
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-*****************************************************************************/
 VOS_UINT32 TAF_XCALL_IsTimeStampValid(
     TAF_STD_TIME_ZONE_TYPE_STRU        *pstTimeStamp,
     TAF_STD_TIME_ZONE_TYPE_STRU        *pstLastSysTimeZone
@@ -3799,23 +3023,7 @@ VOS_UINT32 TAF_XCALL_IsTimeStampValid(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_GenerateEncVoicePlainText
- 功能描述  : 将IMSI, HardWare Id, 被叫号码进行BCD编码合并到一个数组中,生成明文信息
- 输入参数  : VOS_UINT8                                              *pucImsiInfo,
-             TAF_XCALL_HARDWARE_ID_INFO_STRU                        *pstHardWareId,
-             TAF_ECC_CALL_BCD_NUM_STRU                              *pstCalledNum,
- 输出参数  : TAF_XCALL_PLAIN_TEXT_INFO_STRU                         *pstPlainTextInfo
- 返 回 值  : VOS_UINT32
-             VOS_TRUE:  合并成功
-             VOS_FALSE: 合并失败
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-*****************************************************************************/
+
 VOS_UINT32 TAF_XCALL_GenerateEncVoicePlainText(
     VOS_UINT8                                              *pucImsiInfo,
     TAF_XCALL_HARDWARE_ID_INFO_STRU                        *pstHardWareId,
@@ -3890,24 +3098,7 @@ VOS_UINT32 TAF_XCALL_GenerateEncVoicePlainText(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SendRemoteCtrlEventRsltToKmc
- 功能描述  : Remote Ctrl Ind消息失败的处理
- 输入参数  : TAF_XCALL_KMC_MSG_ROMOTE_CTRL_CMD_TYPE_ENUM_UINT8       enRemoteCtrlCmdType,  命令类型
-             TAF_XCALL_KMC_MSG_ROMOTE_CTRL_CMD_RSLT_ENUM_UINT8       enRemoteCtrlRsltType  远程控制信息回复结果
-             TAF_XCALL_REMOTE_CTRL_CTX                              *pstRemoteCtrlCtx      远程控制信息上下文
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
-             VOS_TRUE   :发送成功
-             VOS_FALSE  :发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-*****************************************************************************/
 VOS_UINT32 TAF_XCALL_SendRemoteCtrlEventRsltToKmc(
     TAF_XCALL_KMC_MSG_ROMOTE_CTRL_CMD_TYPE_ENUM_UINT8       enRemoteCtrlCmdType,
     TAF_XCALL_KMC_MSG_ROMOTE_CTRL_CMD_RSLT_ENUM_UINT8       enRemoteCtrlRsltType,
@@ -3941,22 +3132,7 @@ VOS_UINT32 TAF_XCALL_SendRemoteCtrlEventRsltToKmc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_GetHardWareInfo
- 功能描述  : 获取硬件信息
- 输入参数  :
- 输出参数  : TAF_XCALL_HARDWARE_ID_INFO_STRU                         stHardWareIdInfo
- 返 回 值  : VOS_UINT32
-             VOS_TRUE:  获取成功
-             VOS_FALSE: 获取失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-*****************************************************************************/
 VOS_UINT32 TAF_XCALL_GetHardWareInfo(
     TAF_XCALL_HARDWARE_ID_INFO_STRU                        *pstHardWareIdInfo
 )
@@ -3993,25 +3169,7 @@ VOS_UINT32 TAF_XCALL_GetHardWareInfo(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ConvertRemoteNumFromKmcBcdToStdBcd
- 功能描述  : 将KMC发过来的BCD 格式的号码转成标准BCD 格式的号码
-             eg. 000000012345  --->  2143F5FFFFFF
-                 000000123456  --->  214365FFFFFF
- 输入参数  : VOS_UINT8  *pucKmcBcdNum  KMC发过来的BCD 格式的号码
-             VOS_UINT8  ucKmcBcdNumLen  KMC发过来的BCD 格式的号码所占字节数
-             VOS_UINT8  ucStdBcdNumLen 为标准BCD 格式的号码分配的字节数
- 输出参数  : VOS_UINT8  *pucStdBcdNum, 转换后的号码
 
- 返 回 值  : VOS_UINT32 转换成标准BCD 格式的有效号码长度(即除去填充OXFF的长度)
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年10月29日
-    作    者   : l00359089
-    修改内容   : Iteration 19
-*****************************************************************************/
 VOS_UINT8 TAF_XCALL_ConvertRemoteNumFromKmcBcdToStdBcd(
     VOS_UINT8                          *pucKmcBcdNum,
     VOS_UINT8                           ucKmcBcdNumLen,
@@ -4078,20 +3236,7 @@ VOS_UINT8 TAF_XCALL_ConvertRemoteNumFromKmcBcdToStdBcd(
     return j ;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ProcPubKeyEventTimerWaitAck
- 功能描述  : 处理等待公钥更新确认消息定时器超时事件
- 输入参数  : VOS_VOID *pMsg  -- 事件对应的消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-11-10
-    作    者   : l00359089
-    修改内容   : 新生成函数 for iteration 19
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ProcPubKeyEventTimerWaitAck(
     VOS_VOID                           *pMsg,
     VOS_VOID                           *pKmcDecMsg

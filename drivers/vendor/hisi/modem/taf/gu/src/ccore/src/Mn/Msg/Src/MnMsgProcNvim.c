@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : MnMsgProcNvim.c
-  版 本 号   : 初稿
-  作    者   : s62952
-  生成日期   : 2012年3月3日
-  最近修改   :
-  功能描述   : MSG处理NV项的读写文件
-  函数列表   :
-  修改历史   :
-  1.日    期   :2012年3月3日
-    作    者   : s62952
-    修改内容   : 创建文件
-
-******************************************************************************/
 /*****************************************************************************
   1 头文件包含
 *****************************************************************************/
@@ -23,10 +6,8 @@
 #include "MnMsgProcNvim.h"
 #include "NVIM_Interface.h"
 #include "MnComm.h"
-/* Added by l00167671 for NV拆分项目 , 2013-05-17, begin */
 #include "NasNvInterface.h"
 #include "TafNvInterface.h"
-/* Added by l00167671 for NV拆分项目 , 2013-05-17, end*/
 extern VOS_CHAR *g_pucSmsFileOnFlash;
 
 #ifdef __cplusplus
@@ -51,29 +32,7 @@ extern "C" {
    4 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_ReadCsmpParaFromUsimSupportFlgNvim
- 功能描述  : 获取NVIM中的en_NV_Item_NVIM_GET_CSMP_PARA_FROM_USIM_SUPPORT_FLG的内容
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年03月03日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  3.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-  4.日    期   : 2014年9月9日
-    作    者   : z00161729
-    修改内容   : DTS2014091200106:中国电信4G卡，0x6f42里短信中心号码存在，但indication指示bit为1，表示没有，手机漫游到国外无法获取到短信中心，发不了短信
-*****************************************************************************/
 VOS_VOID  MN_MSG_ReadCsmpParaFromUsimSupportFlgNvim( VOS_VOID )
 {
     MN_MSG_GET_CSMP_PARA_FROM_USIM_SUPPORT_FLG_STRU        stGetCsmpParaFromUsimSupportFlg;
@@ -125,26 +84,7 @@ VOS_VOID  MN_MSG_ReadCsmpParaFromUsimSupportFlgNvim( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_ReadSmsPpDownloadSupportFlgNvim
- 功能描述  : 获取NVIM中的en_NV_Item_NVIM_SMS_PP_DOWNLOAD_SUPPORT_FLG的内容
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年03月03日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  3.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-*****************************************************************************/
 VOS_VOID  MN_MSG_ReadSmsPpDownloadSupportFlgNvim( VOS_VOID )
 {
     MN_MSG_SMS_PP_DOWNLOAD_SUPPORT_FLG_STRU        stSmsPpDownlodSupportFlg;
@@ -185,24 +125,7 @@ VOS_VOID  MN_MSG_ReadSmsPpDownloadSupportFlgNvim( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_GetFlashSmsStoragePath
- 功能描述  : 获取Flash中的短信存储路径
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年03月04日
-    作    者   : f62575
-    修改内容   : DTS2013091009786 支持通过产品形态和版本区分FLASH文件根目录
-
-  2.日    期   : 2015年5月29日
-    作    者   : l00198894
-    修改内容   : TSTS
-*****************************************************************************/
 VOS_VOID  MN_MSG_GetFlashSmsStoragePath( VOS_VOID )
 {
     #if((defined __PS_WIN32_RECUR__) || (defined DMT))
@@ -260,29 +183,7 @@ VOS_VOID  MN_MSG_GetFlashSmsStoragePath( VOS_VOID )
 
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_ReadSmsNvimSmsRexistSupportFlgNvim
- 功能描述  : 获取NVIM中的en_NV_Item_NVIM_SMS_NVIM_SMSREXIST_SUPPORT_FLG的内容
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年03月03日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  3.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-  4.日    期   : 2014年03月04日
-    作    者   : f62575
-    修改内容   : DTS2013091009786 支持通过产品形态和版本区分FLASH文件根目录
-*****************************************************************************/
 VOS_VOID  MN_MSG_ReadSmsNvimSmsRexistSupportFlgNvim( VOS_VOID )
 {
     MN_MSG_SMS_NVIM_SMSREXIST_SUPPORT_FLG_STRU     stSmsNvSmsrexitSupportFlg;
@@ -329,26 +230,7 @@ VOS_VOID  MN_MSG_ReadSmsNvimSmsRexistSupportFlgNvim( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_ReadSmsStatusReportInEfsmsSupportFlgNvim
- 功能描述  : 获取NVIM中的en_NV_Item_NVIM_SMS_STATUS_REPORT_IN_EFSMS_SUPPORT_FLG的内容
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年03月03日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  3.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-*****************************************************************************/
 VOS_VOID  MN_MSG_ReadSmsStatusReportInEfsmsSupportFlgNvim( VOS_VOID )
 {
     MN_MSG_SMS_STATUS_IN_EFSMS_SUPPORT_FLG_STRU    stSmsStatusInEfsmsSupportFlg;
@@ -394,26 +276,7 @@ VOS_VOID  MN_MSG_ReadSmsStatusReportInEfsmsSupportFlgNvim( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_ReadPsOnlyCsServiceSupportFlgNvim
- 功能描述  : 获取NVIM中的en_NV_Item_NVIM_PS_ONLY_CS_SERVICE_SUPPORT_FLG的内容
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年03月03日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  3.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-*****************************************************************************/
 VOS_VOID  MN_MSG_ReadPsOnlyCsServiceSupportFlgNvim( VOS_VOID )
 {
     NAS_NVIM_PS_ONLY_CS_SERVICE_SUPPORT_FLG_STRU   stPsOnlyCsServiceSupportFlg;
@@ -459,20 +322,7 @@ VOS_VOID  MN_MSG_ReadPsOnlyCsServiceSupportFlgNvim( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_ReadClosePathFlgNvim
- 功能描述  : 获取NVIM中的en_NV_Item_SMS_Close_Path的内容
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年05月23日
-    作    者   : l65478
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  MN_MSG_ReadClosePathFlgNvim( VOS_VOID )
 {
     VOS_UINT8                                      aucCustomizeChgRcvPath[2];
@@ -493,23 +343,7 @@ VOS_VOID  MN_MSG_ReadClosePathFlgNvim( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_ReadNvimInfo
- 功能描述  : 从NV中读取信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年5月18日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2013年05月23日
-    作    者   : l65478
-    修改内容   : 增加NV项控制在收不到AP的RP ACK时,是否需要进行本地存储
-*****************************************************************************/
 VOS_VOID MN_MSG_ReadNvimInfo(VOS_VOID)
 {
     /* en_NV_Item_NVIM_GET_CSMP_PARA_FROM_USIM_SUPPORT_FLG */

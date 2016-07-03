@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2014, 华为技术有限公司
- ******************************************************************************
-  文 件 名   : BST_DRV_As.c
-  版 本 号   : 初稿
-  作    者   : d00173029
-  生成日期   : 2014年7月3日
-  最近修改   :
-  功能描述   : 实现接入层相关处理驱动接口
-  函数列表   :
-
-  修改历史   :
-  1.日    期   : 2014年07月3日
-    作    者   : d00173029
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -96,19 +79,7 @@ BST_DRV_STRU    g_BstDrvAsHandle =
    6 函数实现
 ******************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : BST_DRV_AsInit
- 功能描述  : BST_VOID *pvArg  NO USE
- 输入参数  : 接入层驱动初始化
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_DRV_AsInit( BST_VOID *pvArg )
 {
     BST_ERR_ENUM_UINT8                  ucRtnVal;
@@ -128,20 +99,7 @@ BST_ERR_ENUM_UINT8 BST_DRV_AsInit( BST_VOID *pvArg )
     return ucRtnVal;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_DRV_AsEventCallBack
- 功能描述  : 就收接入层状态等信息的驱动
- 输入参数  : BST_UINT32 ulLength     长度
-             BST_UINT8 *pucData      RRC状态及制式参数
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_DRV_AsEventCallBack(
     BST_AS_EVT_ENUM_UINT32          enAsEvent,
     BST_UINT32                      ulLength,
@@ -187,20 +145,7 @@ BST_VOID BST_DRV_AsEventCallBack(
     BST_SRV_RcvAsEvent( enAsEvent, ulLength, pvData );
 }
 
-/*****************************************************************************
- 函 数 名  : BST_DRV_AsIoCtrl
- 功能描述  : 接入层的控制命令处理
- 输入参数  : BST_UINT32 ulCmd  控制命令
-             BST_VOID *pvData  NO USE
- 输出参数  : 无
- 返 回 值  : 返回出错信息
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_DRV_AsIoCtrl( BST_UINT32 ulCmd, BST_VOID *pvData )
 {
     BST_ERR_ENUM_UINT8                  ucRtnVal = BST_NO_ERROR_MSG;
@@ -254,19 +199,7 @@ BST_ERR_ENUM_UINT8 BST_DRV_AsIoCtrl( BST_UINT32 ulCmd, BST_VOID *pvData )
 
 
 
-/*****************************************************************************
- 函 数 名  :BST_DRV_AsSetReportFlag
- 功能描述  :设置消息是否需要上报给AP
- 输入参数  :bReportFlg  BST_TRUE  需要上报， BST_FALSE不需要上报
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年11月10日
-      作    者   : z00128442
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 
 BST_VOID BST_DRV_AsSetReportFlag(BST_UINT8 ucReportFlg)
 {
@@ -282,20 +215,7 @@ BST_VOID BST_DRV_AsSetReportFlag(BST_UINT8 ucReportFlg)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : BST_DRV_AsPsSrvProc
- 功能描述  : PS域服务状态发生变化的处理函数
- 输入参数  : BST_MODEM_ID_ENUM_UINT32  ulModemId  modem的ID号
-             BST_DRV_AS_CS_EVENT_STRU *pstEvent   事件
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_DRV_AsCsEvtProc( BST_BOOL bConflict )
 {
     if( BST_TRUE == bConflict )
@@ -307,20 +227,7 @@ BST_VOID BST_DRV_AsCsEvtProc( BST_BOOL bConflict )
         BST_DRV_UnBlockDataService(BST_AS_BLOCKED_BY_CS_CONFLICT);
     }
 }
-/*****************************************************************************
- 函 数 名  : BST_DRV_AsPsSrvProc
- 功能描述  : PS域服务状态发生变化的处理函数
- 输入参数  : BST_MODEM_ID_ENUM_UINT32  ulModemId  modem的ID号
-             BST_DRV_AS_CS_EVENT_STRU *pstEvent   事件
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_DRV_AsPsSrvProc( BST_BOOL bInservice )
 {
     if( BST_FALSE == bInservice )
@@ -333,19 +240,7 @@ BST_VOID BST_DRV_AsPsSrvProc( BST_BOOL bInservice )
     }
 
 }
-/*****************************************************************************
- 函 数 名  : BST_DRV_AsNetStateProc
- 功能描述  : Net Device状态发生变化的处理函数
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年08月24日
-      作    者   : z00128442
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_DRV_AsNetStateProc( BST_BOOL bNetDeviceUp )
 {
     if( BST_FALSE == bNetDeviceUp )
@@ -357,19 +252,7 @@ BST_VOID BST_DRV_AsNetStateProc( BST_BOOL bNetDeviceUp )
         BST_DRV_UnBlockDataService(BST_AS_BLOCKED_BY_NET_STATE);
     }
 }
-/*****************************************************************************
- 函 数 名  : BST_DRV_BlockDataService
- 功能描述  : block状态发生变化的处理函数
- 输入参数  : BST_UINT8  bitFlag  新的block标志位 
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年03月13日
-      作    者   : z00128442
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 
 BST_VOID BST_DRV_BlockDataService(BST_UINT8 bitFlag)
 {
@@ -386,19 +269,7 @@ BST_VOID BST_DRV_BlockDataService(BST_UINT8 bitFlag)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : BST_DRV_UnBlockDataService
- 功能描述  : unblock状态发生变化的处理函数
- 输入参数  : BST_UINT8  bitFlag  新的unblock标志位 
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年03月13日
-      作    者   : z00128442
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 
 BST_VOID BST_DRV_UnBlockDataService(BST_UINT8 bitFlag)
 {
@@ -417,20 +288,7 @@ BST_VOID BST_DRV_UnBlockDataService(BST_UINT8 bitFlag)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : BST_DRV_AsSetChnlMode
- 功能描述  : 设置As通道模式
- 输入参数  : enChnlMode: 期望设置的模式
-                           bSetByOrder: 是否需要根据信道模式的优先级进行判断
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年05月23日
-      作    者   : z00128442
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_DRV_AsSetChnlMode( BST_DRV_CHNLMODE_ENUM_UINT32 enChnlMode, BST_BOOL bForceSet)
 {
     BST_ERR_ENUM_UINT8                  enResult;
@@ -473,19 +331,7 @@ BST_VOID BST_DRV_AsSetChnlMode( BST_DRV_CHNLMODE_ENUM_UINT32 enChnlMode, BST_BOO
 
 
 
-/*****************************************************************************
- 函 数 名  : BST_DRV_AsProcRrcState
- 功能描述  : 
- 输入参数  : 
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年03月13日
-      作    者   : z00128442
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 
 BST_VOID BST_DRV_AsProcRrcState(BST_UINT32 ulRrcState)
 {
@@ -516,19 +362,7 @@ BST_VOID BST_DRV_AsProcRrcState(BST_UINT32 ulRrcState)
 }
 
 
-/*****************************************************************************
- 函 数 名  : BST_DRV_AsProcTxData
- 功能描述  : 处理Data 数据收发消息
- 输入参数  : 
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年03月13日
-      作    者   : z00128442
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 
 BST_VOID BST_DRV_AsProcApTxData( BST_VOID )
 {
@@ -537,19 +371,7 @@ BST_VOID BST_DRV_AsProcApTxData( BST_VOID )
 }
 
 
-/*****************************************************************************
- 函 数 名  : BST_DRV_AsProcBstTxData
- 功能描述  : 处理BST 内部数据收发指示事件
- 输入参数  : ucDataType 收到的数据类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年05月23日
-      作    者   : z00128442
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_DRV_AsProcBstTxData( BST_UINT8 ucDataType  )
 {
     switch(ucDataType)
@@ -570,19 +392,7 @@ BST_VOID BST_DRV_AsProcBstTxData( BST_UINT8 ucDataType  )
 }
 
 
-/*****************************************************************************
- 函 数 名  : BST_DRV_AsProcHpriDataFinish
- 功能描述  : 处理BST 内部数据收发指示事件
- 输入参数  : ucDataType 收到的数据类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年05月23日
-      作    者   : z00128442
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_DRV_AsProcHpriDataFinish( BST_VOID )
 {
     if(BST_DRV_CHNLMODE_HPR != g_ulBstDrvChnlMode)
@@ -596,20 +406,7 @@ BST_VOID BST_DRV_AsProcHpriDataFinish( BST_VOID )
 
 
 
-/*****************************************************************************
- 函 数 名  : BST_DRV_AsMapRatToEnum
- 功能描述  : rat mode类型转化
- 输入参数  :
 
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年07月18日
-      作    者   : z00128442
-      修改内容   : 新生成函数
-*****************************************************************************/
 BST_DRV_AS_RAT_ENUM_UINT32 BST_DRV_AsMapRatToEnum(
     BST_AS_RAT_MODE_UINT32  ulRatMode )
 {

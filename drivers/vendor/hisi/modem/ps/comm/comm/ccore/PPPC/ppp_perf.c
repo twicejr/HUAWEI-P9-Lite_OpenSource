@@ -1,21 +1,4 @@
-/************************************************************************
-*                                                                      *
-*                             ppp_perf.c                               *
-*                                                                      *
-*  Project Code:       VRP3.0                                          *
-*  Create Date:        2013/04/17                                      *
-*  Author:             wangyong                                        *
-*  Modify Date:                                                        *
-*  Document:                                                           *
-*  Function:           PPP模块性能统计                                 *
-*  Others:                                                             *
-*----------------------------------------------------------------------*
-*                                                                      *
-*  Copyright 2000-2002 VRP3.0 Team Beijing Institute HuaWei Tech, Inc. *
-*                      ALL RIGHTS RESERVED                             *
-*                                                                      *
-*                                                                      *
-************************************************************************/
+
 
 
 
@@ -1345,22 +1328,7 @@ VOS_UINT32 PerfSetFamPerfCounterByAddress(VOS_UINT32 *pCounterAddress, VOS_UINT3
     return VOS_OK;
 }
 /*lint +e774*/
-/*****************************************************************************
- 函 数 名  : PPP_PerfInc
- 功能描述  : PPP性能统计增加
- 输入参数  : VOS_SIZE_T ulPerfCounter
-             VOS_UINT32 ulPerfType
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月6日
-    作    者   : luofang
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID PPP_PerfInc(VOS_UINT32 *pulPerfCounter, VOS_UINT32 ulPerfType, UCHAR ucEhrpdMode)
 {
     VOS_UINT32 ulRet = 0;
@@ -1383,22 +1351,7 @@ VOID PPP_PerfInc(VOS_UINT32 *pulPerfCounter, VOS_UINT32 ulPerfType, UCHAR ucEhrp
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_PerfDec
- 功能描述  : PPP性能统计
- 输入参数  : VOS_SIZE_T ulPerfCounter
-             VOS_UINT32 ulPerfType
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月6日
-    作    者   : luofang
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID PPP_PerfDec(VOS_UINT32 *pulPerfCounter, VOS_UINT32 ulPerfType, UCHAR ucEhrpdMode)
 {
     VOS_UINT32 ulRet = 0;
@@ -1421,22 +1374,7 @@ VOID PPP_PerfDec(VOS_UINT32 *pulPerfCounter, VOS_UINT32 ulPerfType, UCHAR ucEhrp
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IPV6_PerfInc
- 功能描述  : IPV6性能统计,加一操作
- 输入参数  : VOS_UINT32* pulPerfCounter
-             VOS_UINT32 ulPerfType
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月11日
-    作    者   : y00202564
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID IPV6_PerfInc(VOS_UINT32 *pulPerfCounter, VOS_UINT32 ulPerfType)
 {
     (VOS_VOID)PerfSetFamPerfCounterByAddress(pulPerfCounter, IPV6_ADD, 1);
@@ -1444,22 +1382,7 @@ VOID IPV6_PerfInc(VOS_UINT32 *pulPerfCounter, VOS_UINT32 ulPerfType)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IPV6_PerfDec
- 功能描述  : IPV6性能统计，减一操作
- 输入参数  : VOS_UINT32* pulPerfCounter
-             VOS_UINT32 ulPerfType
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月11日
-    作    者   : y00202564
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID IPV6_PerfDec(VOS_UINT32 *pulPerfCounter, VOS_UINT32 ulPerfType)
 {
     (VOS_VOID)PerfSetFamPerfCounterByAddress(pulPerfCounter, IPV6_SUB, 1);
@@ -1467,7 +1390,6 @@ VOID IPV6_PerfDec(VOS_UINT32 *pulPerfCounter, VOS_UINT32 ulPerfType)
     return;
 }
 
-/* Added start by c00127007 at 2010-04-24 PDSNV9R7C05 for 同步C02 */
 VOID A11_ReqNumSubProc(PPPINFO_S *pstPppInfo)
 {
     if (NULL == pstPppInfo)
@@ -1499,20 +1421,7 @@ VOID A11_ReqNumSubProc(PPPINFO_S *pstPppInfo)
 
 
 #define ___PPP_SNMP_ALARM____
-/*****************************************************************************
-函 数 名  : InsertAlarmLink
-功能描述  : 插入到告警链表尾
-输入参数  : PPPA11_AlarmLink_S *pstAlarmLink
-输出参数  : VOS_OK;VOS_ERR
-返 回 值  :
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2010-02-23
- 作    者   : c00127007 PDSNV9R7C05 for PPP_A11_Alarm
- 修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 InsertAlarmLink(PPPA11_AlarmLink_S *pstAlarmLink)
 {
     PPPA11_AlarmLink_NODE_S *pstNode = NULL;
@@ -1558,20 +1467,7 @@ VOS_UINT32 InsertAlarmLink(PPPA11_AlarmLink_S *pstAlarmLink)
 
     return VOS_OK;
 }
-/*****************************************************************************
-函 数 名  : DeleteAlarmLink
-功能描述  : 从告警链表中删除头节点，进行告警
-输入参数  : 无
-输出参数  : PPPA11_AlarmLink_S *pstNodeInfo
-返 回 值  : VOS_OK;VOS_ERR
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2010-02-23
-作    者   : c00127007 PDSNV9R7C05 for PPP_A11_Alarm
-修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DeleteAlarmLink(PPPA11_AlarmLink_S *pstNodeInfo)
 {
     PPPA11_AlarmLink_NODE_S *pstNode = NULL;
@@ -1646,20 +1542,7 @@ VOID PPP_A11_GetBSIDFromBCD(UCHAR *pucDst, const UCHAR *pucSrc, VOS_UINT32 ulLen
     return;
 }
 
-/*****************************************************************************
-函 数 名  : PPP_InsertAlarm
-功能描述  : PPP的SNMP告警
-输入参数  : PPPINFO_S *pstPppInfo, UCHAR enRetType
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2010-02-23
-作    者   : c00127007 PDSNV9R7C05 for PPP_A11_Alarm
-修改内容   : 新生成函数
-*****************************************************************************/
 VOID PPP_InsertAlarm(PPPINFO_S *pstPppInfo, UCHAR enRetType)
 {
     PPPA11_AlarmLink_S stAlarmLink = {0};
@@ -1744,20 +1627,7 @@ VOID PPP_InsertAlarm(PPPINFO_S *pstPppInfo, UCHAR enRetType)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : PPP_A11_AlarmToFamEx
-功能描述  : PPP_A11的SNMP告警
-输入参数  : PPPA11_AlarmLink_S stAlarmReport
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2010-02-23
-作    者   : c00127007 PDSNV9R7C05 for PPP_A11_Alarm
-修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 PPP_A11_AlarmToFamEx(PPPA11_AlarmLink_S stAlarmReport)
 {
     VOS_UINT32 ulRetCode = VOS_ERR;
@@ -1801,20 +1671,7 @@ VOS_UINT32 PPP_A11_AlarmToFamEx(PPPA11_AlarmLink_S stAlarmReport)
 
     return VOS_OK;
 }
-/*****************************************************************************
-函 数 名  : PPP_A11_AlarmProc
-功能描述  : 新增的PPP和A11的告警处理函数，每1秒读出一个告警消息,进行告警
-输入参数  : 无
-输出参数  : 无
-返 回 值  :
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2010-02-23
-作    者   : c00127007 PDSNV9R7C05 for PPP_A11_Alarm
-修改内容   : 新生成函数
-*****************************************************************************/
 VOID PPP_A11_AlarmProc(VOID)
 {
     PPPA11_AlarmLink_S stAlarmReport = {0};
@@ -1848,18 +1705,7 @@ VOID PPP_A11_AlarmProc(VOID)
     return;
 }
 
- /*=======================================================================
-  *  函数名称:       IPV6_PerfStatistic
-  *  初稿完成:       2012/02/01
-  *  作    者:       yangxiangkun 00202564
-  *  函数功能:       性能统计,ipv6cp协商成功次数
-  *  输入参数:       VOS_UINT32 ulMsgType
-  *  输出参数:       无
-  *  返回类型:       无
-  *  其他说明:       无
-  *  调用函数:
-  *  主调函数:       IPV6_MainTask
-  *=======================================================================*/
+ 
  VOS_VOID IPV6_PerfStatistic(VOS_UINT32 ulMsgType)
  {
      switch (ulMsgType)

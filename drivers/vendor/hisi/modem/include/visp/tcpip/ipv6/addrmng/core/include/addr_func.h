@@ -635,9 +635,7 @@ ULONG IP6_Addr_GetLoopBackIfIndexByAddr(ULONG ulVrfIndex, ULONG *pulIfIndex);
 ULONG IP6_Addr_GetLinkLocalIfIndexByAddr(ULONG ulVrfIndex, IN6ADDR_S *pstIn6Addr, 
                                                         ULONG *pulIfIndex);
 
-/* Modified by guojianjun178934, 【检视问题单---DAD告警优化】产品定期发送地址冲突检测的NS报文，如果收到了NA我们需要启动DAD探测, 2014/2/21   问题单号:DTS2014021206259  */
 VOID IP6_Addr_DADExtCompleteNotify(IP6IFADDR_S *pstIp6IfAddr);
-/*End of Modified by guojianjun178934, 2014/2/21   问题单号:DTS2014021206259  */
 
 IP6IFADDR_S *IP6_Addr_IF_FindNetAddrWithPrefix(IN6ADDR_S *pstIn6Addr,
                                              IN6ADDR_S *pstPrefixMask,

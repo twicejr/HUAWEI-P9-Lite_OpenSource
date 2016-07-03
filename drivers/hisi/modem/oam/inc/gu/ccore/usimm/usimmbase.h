@@ -1,16 +1,4 @@
-/************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : UsimmBase.h
-  Author      : zhuli 00100318
-  Version     : V100R002
-  Date        : 2008-5-15
-  Description : 该头文件定义了---
-  History     :
-  1.Date:2008-07-02
-     Author: m00128685
-     Modification:Modify the definition of enum
 
-************************************************************************/
 
 #ifndef __USIMM_BASE_H__
 #define __USIMM_BASE_H__
@@ -569,7 +557,6 @@ enum USIMM_MODE_TYPE_ENUM
 typedef VOS_UINT8      USIMM_MODE_TYPE_ENUM_UINT8;
 
 
-/* USIM卡电压等级，协议TS102221 11.1.1.4.6.1 */
 enum USIMM_VOLTAGE_CLASS_ENUM
 {
     USIMM_VOLTAGE_5V           = 0x10,   /* supply voltage class A */
@@ -799,14 +786,7 @@ typedef struct
     VOS_UINT8                           ucRecordLen;
 }USIMM_SIMEF_FCP_ST;
 /*lint +e959 +e958*/
-/*****************************************************************************
- 结构名    : USIMM_AID_INFO_STRU
- 结构说明  : 用于记录USIM/ISIM/CSIM的AID内容和长度
- 修改历史      :
-  1.日    期   : 2013年12月19日
-    作    者   : h59254
-    修改内容   :
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulAIDLen;       /*当前的AID长度*/
@@ -863,14 +843,7 @@ typedef struct
     USIMM_EFFCP_ST                          stEFInfo;       /*当前EF信息*/
 }USIMM_CURFILEINFO_ST;
 
-/*****************************************************************************
- 结构名    : USIMM_POOL_ONERECORD_ST
- 结构说明  : 文件池中文件信息记录结构
 
-  1.日    期   : 2012年06月17日
-    作    者   : h59254
-    修改内容   : ATT定制项目增加APP类型
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16                              usEFId;         /* 文件ID */
@@ -880,14 +853,7 @@ typedef struct
     VOS_UINT8                              *pucContent;     /* 文件内容指针 */
 }USIMM_POOL_ONERECORD_ST;
 
-/*****************************************************************************
- 结构名    : USIMM_POOL_OPTION_FILE_CFG_ST
- 结构说明  : USIMM模块可选文件初始化配置结构
 
-  1.日    期   : 2012年12月23日
-    作    者   : h59254
-    修改内容   : 问题单修改新增加结构
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16                              usOptionFileNum;
@@ -925,14 +891,7 @@ typedef struct
     VOS_CHAR                                aucFileName[USIMM_LOG_FILE_MAX_NUM][USIMM_LOG_FILE_NAME_LEN];
 }USIMM_LOG_CTRLFILE_STRU;
 
-/*****************************************************************************
-结构名    : USIMM_OPFILE_LIST_STRU
-结构说明  : USIMM模块初始化列表结构
 
-  1.日    期   : 2013年1月25日
-    作    者   : h59254
-    修改内容   : 初始生成
-*****************************************************************************/
 typedef struct
 {
     USIMM_DEF_FILEID_ENUM_UINT32        enDefFileID;
@@ -2610,7 +2569,6 @@ enum USIMM_MODE_TYPE_ENUM
 typedef VOS_UINT8      USIMM_MODE_TYPE_ENUM_UINT8;
 
 
-/* USIM卡电压等级，协议TS102221 11.1.1.4.6.1 */
 enum USIMM_VOLTAGE_CLASS_ENUM
 {
     USIMM_VOLTAGE_5V           = 0x10,   /* supply voltage class A */
@@ -2641,7 +2599,6 @@ enum USIMM_STATUS_P2_PARA_ENUM
 typedef VOS_UINT8      USIMM_STATUS_P2_PARA_ENUM_UINT8;
 
 
-/* USIM卡select命令P1参数含义，协议TS102221 11.1.1.2 */
 enum USIMM_SELECT_P1_PARA_ENUM
 {
     USIMM_SELECT_BY_FILE_ID         = 0x00,   /* select DF,EF or MF by file id */
@@ -2655,7 +2612,6 @@ enum USIMM_SELECT_P1_PARA_ENUM
 typedef VOS_UINT8      USIMM_SELECT_P1_PARA_ENUM_UINT8;
 
 
-/* USIM卡select命令P2参数含义，协议TS102221 11.1.1.2 */
 enum USIMM_SELECT_P2_PARA_ENUM
 {
     USIMM_SELECT_ACTIVATE_AID         = 0x00,   /* Application session control,激活应用，仅当P1参数为04时，这个值才有意义 */
@@ -2968,14 +2924,7 @@ typedef struct
 }USIMM_ADF_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : USIMM_AID_INFO_STRU
- 结构说明  : 用于记录USIM/ISIM/CSIM的AID内容和长度
- 修改历史      :
-  1.日    期   : 2013年12月19日
-    作    者   : h59254
-    修改内容   :
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulAIDLen;       /*当前的AID长度*/
@@ -3038,14 +2987,7 @@ typedef struct
     USIMM_EFFCP_ST                          stEFInfo;       /*当前EF信息*/
 }USIMM_CURFILEINFO_ST;
 
-/*****************************************************************************
- 结构名    : USIMM_POOL_ONERECORD_ST
- 结构说明  : 文件池中文件信息记录结构
 
-  1.日    期   : 2012年06月17日
-    作    者   : h59254
-    修改内容   : ATT定制项目增加APP类型
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16                              usFId;          /* 文件ID */
@@ -3055,14 +2997,7 @@ typedef struct
     VOS_UINT8                              *pucContent;     /* 文件内容指针 */
 }USIMM_POOL_ONERECORD_ST;
 
-/*****************************************************************************
- 结构名    : USIMM_POOL_OPTION_FILE_CFG_ST
- 结构说明  : USIMM模块可选文件初始化配置结构
 
-  1.日    期   : 2012年12月23日
-    作    者   : h59254
-    修改内容   : 问题单修改新增加结构
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16                              usOptionFileNum;
@@ -3100,14 +3035,7 @@ typedef struct
     VOS_CHAR                                aucFileName[USIMM_LOG_FILE_MAX_NUM][USIMM_LOG_FILE_NAME_LEN];
 }USIMM_LOG_CTRLFILE_STRU;
 
-/*****************************************************************************
-结构名    : USIMM_OPFILE_LIST_STRU
-结构说明  : USIMM模块初始化列表结构
 
-  1.日    期   : 2013年1月25日
-    作    者   : h59254
-    修改内容   : 初始生成
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16                          usFileId;

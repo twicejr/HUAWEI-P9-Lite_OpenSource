@@ -92,7 +92,6 @@ enum tagPPIOprType
     PPI_OAM1AG_SETGLOBALVLANPRITOMA,    /*42 设置全局VLAN优先级到使用全局VLAN优先级的MA中*/
     /* VISP1.8.1 支持1AG标准协议开发*/
     PPI_OAM1AG_SET1AGVERSION,    /* 43 设置MEP使用的1AG协议版本 */
-    /* Added for 支持接收不带VLAN头的1AG报文2009-05-14 */
     PPI_OAM1AG_SETMEPVLANFLAG,   /* 44 设置MEP下发送报文时是否需要带VLAN头标志.
                                        0:表示不需要带VLAN头,1表示需要带VLAN*/
     PPI_OAM1AG_CREATE_MD,            /* 45 创建维护域 */
@@ -200,36 +199,28 @@ enum tagPPIOprType
     PPI_MAP_ADD,                    /* 123 MAP ADD*/
     PPI_MAP_DEL,                    /* 124 MAP DEL*/
 
-    /*  Add for 新需求, by mengzechao176865, at 2011-02-23. 
-        修改原因: 将VLAN与子接口对应关系下发给tran */
+    
     PPI_IF_SUBIF_JOIN_VLAN,         /* 125 将子接口加入VLAN通知tran */
     PPI_IF_SUBIF_LEAVE_VLAN,        /* 126 将子接口离开VLAN通知tran */
 
-    /* Add by zhaoyue00171897, at 2011-08-17. 修改原因: 支持获取动态FDB表项 */
     PPI_DYNAMIC_FDB_GET,            /* 127 从NP获取动态FDB表项 */
     
-    /* Add for V2R3C06, by shuxie liu00176784, at 2011-10-04. 修改原因:  支持EOAM协议版本全局设置  */
     PPI_OAM1AG_SETGLBVERSION,     /* 128 EOAM协议全局版本设置 */
 
-    /* Add for V2R3C06, by z00171897/p00193127, at 2011-10-17. 修改原因: 支持Y1731使能/去使性能检测 */
     PPI_OAMY1731_ENABLEDLM,        /* 129 使能双端帧丢失检测 */
     PPI_OAMY1731_DISABLEDLM,       /* 130 去使能双端帧丢失检测 */
     PPI_OAMY1731_ENABLESLM,        /* 131 使能单端帧丢失检测 */
     PPI_OAMY1731_DISABLESLM,       /* 132 去使能单端帧丢失检测 */
     PPI_OAMY1731_ENABLEDDM,        /* 133 使能双向延时检测 */
     PPI_OAMY1731_DISABLEDDM,       /* 134 去使能双向延时检测 */
-    /* Add for VISPV2R3C05STACK-127, by zhaoyue00171897, at 2012-02-03. 修改原因: 增加使能/去使能3AH时NP下发 */
     PPI_3AH_ENABLE,                /* 135 使能3AH功能 */
     PPI_3AH_DISABLE,               /* 136 去使能3AH功能 */
-     /* Add for V2R3C07, by z00208058/w00207740, at 2012-4-16. 修改原因: TRUNK LACP下移需求开发 */
     PPI_ADD_LINK,                  /*137 TRUNK下发ADD操作*/
     PPI_DEL_LINK,                  /*138 TRUNK下发DEL操作*/
     PPI_UPDATE_LINK,               /*139 TRUNK下发UPDATE操作*/
 
-    /*Added by limin00188004, 支持全局和VRF域的控制License, 2012/9/26   问题单号:S.VRF.02.01 */
     PPI_VRF_GLOBAL_LICENCE,        /*140 VRF licence特性使能/去使能命令字*/
     PPI_VRF_SINGLE_LICENCE,        /*141 某个VRF的licence开关*/
-    /* End of Added by limin00188004, 2012/9/26   问题单号:S.VRF.02.01 */
     PPI_OAM1AG_START_RMEP_DETECT,  /*142  通知底层启动RMEP的探测*/
     PPI_OAM1AG_STOP_RMEP_DETECT,   /*143  通知底层停止RMEP的探测*/
 

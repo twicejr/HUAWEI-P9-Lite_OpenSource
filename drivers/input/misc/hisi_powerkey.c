@@ -131,8 +131,8 @@ static irqreturn_t hisi_powerkey_handler(int irq, void *data)
 		       __func__);
 		input_report_key(info->idev, KEY_POWER, POWER_KEY_PRESS);
 		input_sync(info->idev);
-	} else if (info->irq[1] == irq) {
 		tui_poweroff_work_start();
+	} else if (info->irq[1] == irq) {
 		if (check_himntn(HIMNTN_PRESS_KEY_TO_FASTBOOT)) {
 			if ((VOL_UPDOWN_PRESS & gpio_key_vol_updown_press_get())
 			    == VOL_UPDOWN_PRESS) {

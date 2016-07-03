@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2014, 华为技术有限公司
-*******************************************************************************
-  文 件 名   : BST_APP_LongRRC.c
-  版 本 号   : 初稿
-  作    者   : w00346326
-  生成日期   : 2015年5月19日
-  最近修改   :
-  功能描述   : 终端保持RRC连接状态方案的逻辑实现
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年10月23日
-    作    者   : w00346326
-    修改内容   : 创建文件
-******************************************************************************/
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -55,19 +40,7 @@ BST_UINT8                   g_cBstAppLongRRCPkt[] = {69,0,0,40,0,29,0,0,
 /******************************************************************************
    6 函数实现
 ******************************************************************************/
-/*****************************************************************************
- 函 数 名  : BST_APP_LongRRCInit
- 功能描述  : 初始化保持RRC连接状态模块
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年10月24日
-      作    者   : w00346326
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_APP_LongRRCInit( BST_VOID )
 {
     BST_RLS_LOG( "BST_APP_LongRRCInit: enter");
@@ -76,20 +49,7 @@ BST_VOID BST_APP_LongRRCInit( BST_VOID )
                                                         BST_SRV_GetSysMsgHandle() );
 }
 
-/*****************************************************************************
- 函 数 名  : BST_APP_LongRRCSetNetParm
- 功能描述  : 配置网络参数
- 输入参数  : BST_UINT32 ulIPv4          IPv4地址
-             BST_BOOL bIsNetStateUp     网卡状态是否为UP
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年10月24日
-      作    者   : w00346326
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_APP_LongRRCSetNetParm( BST_UINT32 ulIPv4,  BST_BOOL bNetStateUp)
 {
 
@@ -113,20 +73,7 @@ BST_VOID BST_APP_LongRRCSetNetParm( BST_UINT32 ulIPv4,  BST_BOOL bNetStateUp)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : BST_APP_LongRRCConfig
- 功能描述  : 接收AP侧配置消息，进行配置
- 输入参数  : BST_UINT32 ulArgS   AP下发的配置消息
- 输出参数  : 无
- 返 回 值  : BST_NO_ERROR_MSG   配置成功
-             others             配置失败
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年10月24日
-      作    者   : w00346326
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_APP_LongRRCConfig( BST_UINT32 ulSustainS )
 {
     BST_RLS_LOG1( "BST_APP_LongRRCConfig: enter %d", ulSustainS );
@@ -161,20 +108,7 @@ BST_ERR_ENUM_UINT8 BST_APP_LongRRCConfig( BST_UINT32 ulSustainS )
     return BST_NO_ERROR_MSG;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_APP_LongRRCTimerCallback
- 功能描述  : 定时器超时回调函数
- 输入参数  : BST_OS_TIMERID_T ulTimerId         定时器ID
-             BST_VOID *pData                    定时器附带的数据指针
- 输出参数  : 无
- 返 回 值  : BST_VOID
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年10月24日
-      作    者   : w00346326
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_APP_LongRRCTimerCallback( BST_OS_TIMERID_T ulTimerId, BST_VOID *pData )
 {
     if ( ulTimerId != g_stLongRRCInfo.ulIntervalId )
@@ -192,19 +126,7 @@ BST_VOID BST_APP_LongRRCTimerCallback( BST_OS_TIMERID_T ulTimerId, BST_VOID *pDa
     }
 }
 
-/*****************************************************************************
- 函 数 名  : BST_APP_LongRRCSendPkt
- 功能描述  : 向空口发送IP数据包
- 输入参数  : BST_VOID
- 输出参数  : 无
- 返 回 值  : BST_VOID
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年10月24日
-      作    者   : w00346326
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_APP_LongRRCSendPkt( BST_VOID )
 {
     BST_DRV_IP_DATA_STRU                stIPData;

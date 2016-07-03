@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2015, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasHsmSndEhsm.c
-  版 本 号   : 初稿
-  作    者   : t00323010
-  生成日期   : 2015年05月30日
-  最近修改   :
-  功能描述   : HSM发送给EHSM的消息处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年05月30日
-    作    者   : t00323010
-    修改内容   : creat
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -48,21 +31,7 @@ extern "C" {
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : CNAS_HSM_SndEhsmSessionInfoInd
- 功能描述  : 向EHSM发送ID_HSM_EHSM_SESSION_INFO_IND消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月30日
-    作    者   : x00314862
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSM_SndEhsmSessionInfoInd(
     CNAS_HSM_SESSION_TYPE_ENUM_UINT8                       enSessionType
 )
@@ -75,9 +44,7 @@ VOS_VOID CNAS_HSM_SndEhsmSessionInfoInd(
 #if defined(DMT)
     pstMsg = (HSM_EHSM_SESSION_INFO_IND_STRU *)PS_ALLOC_MSG(UEPS_PID_HSM, ulLen);
 #else
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-15, begin */
     pstMsg = (HSM_EHSM_SESSION_INFO_IND_STRU *)CNAS_GetIntMsgSendBuf(UEPS_PID_HSM, sizeof(HSM_EHSM_SESSION_INFO_IND_STRU));
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-15, end */
 #endif
 
     if (CNAS_HSM_IS_NULL_PTR(pstMsg))
@@ -125,9 +92,7 @@ VOS_VOID CNAS_HSM_SndEhsmSuspendInd(VOS_VOID)
 #if defined(DMT)
     pstMsg  = (HSM_EHSM_SUSPEND_IND_STRU *)PS_ALLOC_MSG(UEPS_PID_HSM, ulLen);
 #else
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-15, begin */
     pstMsg  = (HSM_EHSM_SUSPEND_IND_STRU *)CNAS_GetIntMsgSendBuf(UEPS_PID_HSM, sizeof(HSM_EHSM_SUSPEND_IND_STRU));
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-15, end */
 #endif
 
     if (CNAS_HSM_IS_NULL_PTR(pstMsg))
@@ -173,9 +138,7 @@ VOS_VOID CNAS_HSM_SndEhsmConnEstCnf(
 #if defined(DMT)
     pstMsg  = (HSM_EHSM_CONN_EST_CNF_STRU *)PS_ALLOC_MSG(UEPS_PID_HSM, ulLen);
 #else
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-15, begin */
     pstMsg  = (HSM_EHSM_CONN_EST_CNF_STRU *)CNAS_GetIntMsgSendBuf(UEPS_PID_HSM, sizeof(HSM_EHSM_CONN_EST_CNF_STRU));
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-15, end */
 #endif
 
     if (CNAS_HSM_IS_NULL_PTR(pstMsg))
@@ -221,9 +184,7 @@ VOS_VOID CNAS_HSM_SndEhsmDiscCnf(VOS_VOID)
 #if defined(DMT)
     pstMsg  = (HSM_EHSM_DISC_CNF_STRU *)PS_ALLOC_MSG(UEPS_PID_HSM, ulLen);
 #else
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-15, begin */
     pstMsg  = (HSM_EHSM_DISC_CNF_STRU *)CNAS_GetIntMsgSendBuf(UEPS_PID_HSM, sizeof(HSM_EHSM_DISC_CNF_STRU));
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-15, end */
 #endif
 
     if (CNAS_HSM_IS_NULL_PTR(pstMsg))
@@ -267,9 +228,7 @@ VOS_VOID CNAS_HSM_SndEhsmDiscInd(VOS_VOID)
 #if defined(DMT)
     pstEhsmDiscInd = (HSM_EHSM_DISC_IND_STRU *)PS_ALLOC_MSG(UEPS_PID_HSM, ulLen);
 #else
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-15, begin */
     pstEhsmDiscInd = (HSM_EHSM_DISC_IND_STRU *)CNAS_GetIntMsgSendBuf(UEPS_PID_HSM, sizeof(HSM_EHSM_DISC_IND_STRU));
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-15, end */
 #endif
 
     if (CNAS_HSM_IS_NULL_PTR(pstEhsmDiscInd))
@@ -310,9 +269,7 @@ VOS_VOID CNAS_HSM_SndEhsmConnInd(VOS_VOID)
 #if defined(DMT)
     pstEhsmConnInd = (HSM_EHSM_CONNECT_IND_STRU *)PS_ALLOC_MSG(UEPS_PID_HSM, ulLen);
 #else
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-15, begin */
     pstEhsmConnInd = (HSM_EHSM_CONNECT_IND_STRU *)CNAS_GetIntMsgSendBuf(UEPS_PID_HSM, sizeof(HSM_EHSM_CONNECT_IND_STRU));
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-15, end */
 #endif
 
     if (CNAS_HSM_IS_NULL_PTR(pstEhsmConnInd))

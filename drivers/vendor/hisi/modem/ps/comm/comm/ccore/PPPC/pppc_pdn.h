@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2015, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : pppc_pdn.h
-  版 本 号   : 初稿
-  作    者   : w00316385
-  生成日期   : 2015年05月29日
-  最近修改   :
-  功能描述   : PDN相关的定义
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年05月29日
-    作    者   : w00316385
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef _PPPC_PDN_H_
 #define _PPPC_PDN_H_
@@ -336,7 +319,7 @@ typedef struct
           bit1PostpaidEnabled : 1,
           bit1SgwOflChrgEnabled : 1,
           bit1ActByTauOrHo : 1,        /* 是否是切换过来的，仅对hsgw用户有效 */
-          bit1PcrfReferUserprofileId :1,   /*PCC用户在激活时下发了USERPROFILE ID是置 1 否则 置0 DTS2013082908329 */
+          bit1PcrfReferUserprofileId :1,
           bit1PcrfQciFlag : 1;   /*ehrpd PCC 用户 , 如果pcrfC消息通知了qci 置1*/
 
     UCHAR ucTFTNumbers;
@@ -359,7 +342,7 @@ typedef struct
     };
     /*lint +e658*/
     /*PCC使用*/
-    VOS_UINT32   ulFilterPrecedenceBitMap;      /*DTS2013070106753 网络侧下发filter 优先级维护字段 0~~31*/
+    VOS_UINT32   ulFilterPrecedenceBitMap;
     UCHAR   ucExtenPrecedence;
     UCHAR   ucBitUECreateV4FilterFlag : 1;                /* UE 发起过创建v4filter */
     UCHAR   ucBitUECreateV6FilterFlag : 1;                /* UE 发起过创建v6filter */

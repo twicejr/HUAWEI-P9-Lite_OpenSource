@@ -31,19 +31,7 @@
 /*****************************************************************************
   3 Function
 *****************************************************************************/
-/*****************************************************************************
- Function Name   : NAS_ESM_ProcValidNwMsgResAllocRej
- Description     : 处理资源分配拒绝这条空口消息
- Input           : ulStateTblIndex -- 动态表索引
-                   pRcvMsg         -- 收到的空口消息
- Output          : None
- Return          : None
 
- History         :
-    1.lihong00150010      2009-7-21  Draft Enact
-    2.lihong00150010      2010-2-02  Modify
-    3.liuwenyu00143951    2010-11-11 Modify
-*****************************************************************************/
 VOS_VOID  NAS_ESM_ProcValidNwMsgResAllocRej
 (
     VOS_UINT32                          ulStateTblIndex,

@@ -1,13 +1,4 @@
-/************************************************************************
-  Copyright    : 2005-2007, Huawei Tech. Co., Ltd.
-  File name    : UsimmBase.c
-  Author       : zhuli 00100318
-  Version      : V100R002
-  Date         : 2008-5-15
-  Description  : 该C文件给出了---全局变量定义模块实现
-  Function List:
-  History      :
- ************************************************************************/
+
 #include "product_config.h"
 
 #if (FEATURE_ON == FEATURE_UE_UICC_MULTI_APP_SUPPORT)
@@ -97,13 +88,7 @@ USIMM_STORE_ESN_MEID_STATUS_STRU    g_stStoreEsnMeidStatus;
 VOS_UINT8                          *g_pucUSIMMVsimData = VOS_NULL_PTR;
 #endif
 
-/*****************************************************************************
- 全局变量名    : g_ulUsimmFeatureCfg
- 全局变量说明  : USIMM模块定制特性全局控制变量
- 1.日    期   : 2012年06月19日
-   作    者   : H59254
-   修改内容   : 新建
-*****************************************************************************/
+
 USIMM_FEATURE_CFG_STRU              g_stUsimmFeatureCfg;
 
 VOS_UINT32                          g_ulATTSpecErrSWCnt;    /* ATT特殊处理的SW计数 */
@@ -1236,19 +1221,7 @@ USIMM_FILEID_PATHSTR_TABLE_STRU g_stUSIMMFilePathTable[USIMM_DEF_FILEID_BUTT] =
     {USIMM_IMS_APP,              USIMM_ISIM_EFSMSP_STR      },            /*USIMM_ISIM_EFSMSP_ID    */
  };
 
-/*****************************************************************************
-函 数 名  :USIMM_CCB_SetTestCardType
-功能描述  :设置测试卡类型
-输入参数  :USIMM_TEST_PHYCARD_TYPE_ENUM_UINT32
-输出参数  :无
-返 回 值  :无
 
-修订记录  :
-1. 日    期   : 2015年3月6日
-   作    者   : g00256031
-   修改内容   : 新增
-
-*****************************************************************************/
 VOS_VOID USIMM_CCB_SetTestCardType(USIMM_TEST_PHYCARD_TYPE_ENUM_UINT32 enTestCardType)
 {
     g_enTestCardType = enTestCardType;
@@ -1256,37 +1229,13 @@ VOS_VOID USIMM_CCB_SetTestCardType(USIMM_TEST_PHYCARD_TYPE_ENUM_UINT32 enTestCar
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CCB_GetTestCardType
-功能描述  :获取测试卡类型
-输入参数  :无
-输出参数  :无
-返 回 值  :USIMM_TEST_PHYCARD_TYPE_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月6日
-   作    者   : g00256031
-   修改内容   : 新增
-
-*****************************************************************************/
 USIMM_TEST_PHYCARD_TYPE_ENUM_UINT32 USIMM_CCB_GetTestCardType(VOS_VOID)
 {
     return g_enTestCardType;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CCB_SetCardType
-功能描述  :设置卡类型
-输入参数  :USIMM_PHYCARD_TYPE_ENUM_UINT32
-输出参数  :无
-返 回 值  :无
 
-修订记录  :
-1. 日    期   : 2015年3月6日
-   作    者   : g00256031
-   修改内容   : 新增
-
-*****************************************************************************/
 VOS_VOID USIMM_CCB_SetCardType(USIMM_PHYCARD_TYPE_ENUM_UINT32 enCardType)
 {
     VOS_UINT32                          i;
@@ -1311,37 +1260,13 @@ VOS_VOID USIMM_CCB_SetCardType(USIMM_PHYCARD_TYPE_ENUM_UINT32 enCardType)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CCB_GetCardType
-功能描述  :获取当前的卡类型
-输入参数  :无
-输出参数  :无
-返 回 值  :USIMM_PHYCARD_TYPE_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月6日
-   作    者   : g00256031
-   修改内容   : 新增
-
-*****************************************************************************/
 USIMM_PHYCARD_TYPE_ENUM_UINT32 USIMM_CCB_GetCardType(VOS_VOID)
 {
     return gstUSIMMBaseInfo.enCardType;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CCB_SetCardVersion
-功能描述  :设置卡类型
-输入参数  :USIMM_PHYCARD_TYPE_ENUM_UINT32
-输出参数  :无
-返 回 值  :无
 
-修订记录  :
-1. 日    期   : 2015年3月6日
-   作    者   : g00256031
-   修改内容   : 新增
-
-*****************************************************************************/
 VOS_VOID USIMM_CCB_SetCardVersion(USIMM_PHYCARD_TYPE_ENUM_UINT32 enCardVersion)
 {
     gstUSIMMBaseInfo.enCardVersion = enCardVersion;
@@ -1349,37 +1274,13 @@ VOS_VOID USIMM_CCB_SetCardVersion(USIMM_PHYCARD_TYPE_ENUM_UINT32 enCardVersion)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CCB_GetCardType
-功能描述  :获取当前的卡类型
-输入参数  :无
-输出参数  :无
-返 回 值  :USIMM_PHYCARD_TYPE_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月6日
-   作    者   : g00256031
-   修改内容   : 新增
-
-*****************************************************************************/
 USIMM_PHYCARD_TYPE_ENUM_UINT32 USIMM_CCB_GetCardVersion(VOS_VOID)
 {
     return gstUSIMMBaseInfo.enCardVersion;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CCB_SetMainAppType
-功能描述  :设置主应用类型
-输入参数  :USIMM_CARDAPP_ENUM_UINT32
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2015年3月6日
-   作    者   : g00256031
-   修改内容   : 新增
 
-*****************************************************************************/
 VOS_VOID USIMM_CCB_SetMainAppType(USIMM_CARDAPP_ENUM_UINT32 enMainAppType)
 {
     gstUSIMMBaseInfo.enMainAppType = enMainAppType;
@@ -1387,19 +1288,7 @@ VOS_VOID USIMM_CCB_SetMainAppType(USIMM_CARDAPP_ENUM_UINT32 enMainAppType)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CCB_GetMainAppType
-功能描述  :返回主应用类型
-输入参数  :无
-输出参数  :无
-返 回 值  :USIMM_CARDAPP_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月6日
-   作    者   : g00256031
-   修改内容   : 新增
-
-*****************************************************************************/
 USIMM_CARDAPP_ENUM_UINT32 USIMM_CCB_GetMainAppType(VOS_VOID)
 {
     if (USIMM_PHYCARD_TYPE_NOCARD == USIMM_CCB_GetCardType())
@@ -1410,20 +1299,7 @@ USIMM_CARDAPP_ENUM_UINT32 USIMM_CCB_GetMainAppType(VOS_VOID)
     return gstUSIMMBaseInfo.enMainAppType;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CCB_SetAppService
-功能描述  :设置卡服务类型
-输入参数  :USIMM_CARDAPP_ENUM_UINT32
-           USIMM_CARD_SERVIC_ENUM_UINT32
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2015年3月6日
-   作    者   : g00256031
-   修改内容   : 新增
 
-*****************************************************************************/
 VOS_VOID USIMM_CCB_SetAppService(USIMM_CARDAPP_ENUM_UINT32 enAppType, USIMM_CARD_SERVIC_ENUM_UINT32 enAppService)
 {
     VOS_UINT8                           ucChannelNo;
@@ -1448,19 +1324,7 @@ VOS_VOID USIMM_CCB_SetAppService(USIMM_CARDAPP_ENUM_UINT32 enAppType, USIMM_CARD
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CCB_GetAppService
-功能描述  :获取卡服务类型
-输入参数  :USIMM_CARDAPP_ENUM_UINT32
-输出参数  :无
-返 回 值  :USIMM_CARD_SERVIC_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月6日
-   作    者   : g00256031
-   修改内容   : 新增
-
-*****************************************************************************/
 USIMM_CARD_SERVIC_ENUM_UINT32 USIMM_CCB_GetAppService(USIMM_CARDAPP_ENUM_UINT32 enAppType)
 {
     VOS_UINT8                           ucChannelNo;
@@ -1500,20 +1364,7 @@ USIMM_CARD_SERVIC_ENUM_UINT32 USIMM_CCB_GetAppService(USIMM_CARDAPP_ENUM_UINT32 
     return g_astUSIMMCardAppInfo[ucChannelNo].enAppService;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CCB_SetAppStateChange
-功能描述  :设置卡状态改变
-输入参数  :USIMM_CARDAPP_ENUM_UINT32
-           USIMM_CARD_STATE_CHANGE_ENUM_UINT32
-输出参数  :无
-返 回 值  :无
 
-修订记录  :
-1. 日    期   : 2015年3月6日
-   作    者   : g00256031
-   修改内容   : 新增
-
-*****************************************************************************/
 VOS_VOID USIMM_CCB_SetAppStateChange(USIMM_CARDAPP_ENUM_UINT32 enAppType, USIMM_CARD_STATE_CHANGE_ENUM_UINT32 enStateChange)
 {
     if ((USIMM_CARDAPP_BUTT           <= enAppType)
@@ -1527,19 +1378,7 @@ VOS_VOID USIMM_CCB_SetAppStateChange(USIMM_CARDAPP_ENUM_UINT32 enAppType, USIMM_
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CCB_GetAppStateChange
-功能描述  :获取卡改变状态
-输入参数  :USIMM_CARDAPP_ENUM_UINT32
-输出参数  :无
-返 回 值  :USIMM_CARD_STATE_CHANGE_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月6日
-   作    者   : g00256031
-   修改内容   : 新增
-
-*****************************************************************************/
 USIMM_CARD_STATE_CHANGE_ENUM_UINT32 USIMM_CCB_GetAppStateChange(USIMM_CARDAPP_ENUM_UINT32 enAppType)
 {
     if (USIMM_CARDAPP_BUTT <= enAppType)
@@ -1550,19 +1389,7 @@ USIMM_CARD_STATE_CHANGE_ENUM_UINT32 USIMM_CCB_GetAppStateChange(USIMM_CARDAPP_EN
     return gstUSIMMBaseInfo.enStateChange;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CCB_GetCurFileInfo
-功能描述  :获得应用的当前文件信息
-输入参数  :enAppType
-输出参数  :无
-返 回 值  :USIMM_CURFILEINFO_ST*
 
-修订记录  :
-1. 日    期   : 2015年3月6日
-   作    者   : g00256031
-   修改内容   : 新增
-
-*****************************************************************************/
 USIMM_CURFILEINFO_ST* USIMM_CCB_GetCurFileInfo(USIMM_CARDAPP_ENUM_UINT32 enAppType)
 {
     VOS_UINT8                           ucChannelNo;
@@ -1584,19 +1411,7 @@ USIMM_CURFILEINFO_ST* USIMM_CCB_GetCurFileInfo(USIMM_CARDAPP_ENUM_UINT32 enAppTy
     return &g_astUSIMMCardAppInfo[ucChannelNo].stCurFileInfo;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CCB_GetCurEFInfo
-功能描述  :获得应用的当前EF文件信息
-输入参数  :USIMM_CARDAPP_ENUM_UINT32
-输出参数  :无
-返 回 值  :USIMM_EFFCP_ST*
 
-修订记录  :
-1. 日    期   : 2015年3月6日
-   作    者   : g00256031
-   修改内容   : 新增
-
-*****************************************************************************/
 USIMM_EFFCP_ST* USIMM_CCB_GetCurEFInfo(USIMM_CARDAPP_ENUM_UINT32 enAppType)
 {
     VOS_UINT8                           ucChannelNo;
@@ -1618,19 +1433,7 @@ USIMM_EFFCP_ST* USIMM_CCB_GetCurEFInfo(USIMM_CARDAPP_ENUM_UINT32 enAppType)
     return &g_astUSIMMCardAppInfo[ucChannelNo].stCurFileInfo.stEFInfo;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CCB_GetCurDFInfo
-功能描述  :获得应用的当前DF文件信息
-输入参数  :USIMM_CARDAPP_ENUM_UINT32
-输出参数  :无
-返 回 值  :USIMM_DFFCP_ST*
 
-修订记录  :
-1. 日    期   : 2015年3月6日
-   作    者   : g00256031
-   修改内容   : 新增
-
-*****************************************************************************/
 USIMM_DFFCP_ST* USIMM_CCB_GetCurDFInfo(USIMM_CARDAPP_ENUM_UINT32 enAppType)
 {
     VOS_UINT8                           ucChannelNo;
@@ -1652,19 +1455,7 @@ USIMM_DFFCP_ST* USIMM_CCB_GetCurDFInfo(USIMM_CARDAPP_ENUM_UINT32 enAppType)
     return &g_astUSIMMCardAppInfo[ucChannelNo].stCurFileInfo.stDFInfo;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CCB_GetAdfInfo
-功能描述  :获得应用的ADF信息
-输入参数  :USIMM_CARDAPP_ENUM_UINT32
-输出参数  :无
-返 回 值  :USIMM_UICC_ADF_INFO_STRU*
 
-修订记录  :
-1. 日    期   : 2015年3月6日
-   作    者   : g00256031
-   修改内容   : 新增
-
-*****************************************************************************/
 USIMM_UICC_ADF_INFO_STRU* USIMM_CCB_GetAdfInfoByCH(VOS_UINT8 ucChannelNo)
 {
     if (USIMM_CHANNEL_NUMBER_MAX <= ucChannelNo)
@@ -1680,19 +1471,7 @@ USIMM_UICC_ADF_INFO_STRU* USIMM_CCB_GetAdfInfoByCH(VOS_UINT8 ucChannelNo)
     return &g_astUSIMMCardAppInfo[ucChannelNo].stAdfInfo;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CCB_GetAppInfoByCH
-功能描述  :通过CHANNLE号获得应用信息
-输入参数  :ucCHNum
-输出参数  :无
-返 回 值  :USIMM_COMM_CARD_APP_INFO_STRU *
 
-修订记录  :
-1. 日    期   : 2015年3月6日
-   作    者   : g00256031
-   修改内容   : 新增
-
-*****************************************************************************/
 USIMM_COMM_CARD_APP_INFO_STRU* USIMM_CCB_GetAppInfoByCH(VOS_UINT8 ucChannelNo)
 {
     if (USIMM_CHANNEL_NUMBER_MAX <= ucChannelNo)
@@ -1703,19 +1482,7 @@ USIMM_COMM_CARD_APP_INFO_STRU* USIMM_CCB_GetAppInfoByCH(VOS_UINT8 ucChannelNo)
     return &g_astUSIMMCardAppInfo[ucChannelNo];
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CCB_GetAppTypeByCH
-功能描述  :通过CHANNLE号获得应用类型
-输入参数  :ucCHNum
-输出参数  :无
-返 回 值  :USIMM_CARDAPP_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月6日
-   作    者   : g00256031
-   修改内容   : 新增
-
-*****************************************************************************/
 USIMM_CARDAPP_ENUM_UINT32 USIMM_CCB_GetAppTypeByCH(VOS_UINT8 ucCHNum)
 {
     if (ucCHNum >= USIMM_CHANNEL_NUMBER_MAX)
@@ -1726,19 +1493,7 @@ USIMM_CARDAPP_ENUM_UINT32 USIMM_CCB_GetAppTypeByCH(VOS_UINT8 ucCHNum)
     return g_astUSIMMCardAppInfo[ucCHNum].enAppType;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CCB_GetPINInfo
-功能描述  :获取全局PIN信息
-输入参数  :USIMM_CARDAPP_ENUM_UINT32
-输出参数  :无
-返 回 值  :USIMM_COMM_PIN_INFO_STRU*
-修订记录  :
 
-1. 日    期   : 2015年3月6日
-   作    者   : g00256031
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_COMM_PIN_INFO_STRU* USIMM_CCB_GetPINInfo(USIMM_CARDAPP_ENUM_UINT32 enAppType)
 {
     VOS_UINT32                  ulIndex;
@@ -1761,18 +1516,7 @@ USIMM_COMM_PIN_INFO_STRU* USIMM_CCB_GetPINInfo(USIMM_CARDAPP_ENUM_UINT32 enAppTy
     return &g_astUSIMMCardAppInfo[ulIndex].stPinInfo;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CCB_GetPIN1InfoByRef
-功能描述  :获取全局PIN1信息
-输入参数  :USIMM_COMM_PIN_ENUM_UINT32
-输出参数  :无
-返 回 值  :USIMM_APP_PIN_INFO_STRU*
-修订记录  :
-1. 日    期   : 2015年3月6日
-   作    者   : g00256031
-   修改内容   : Creat
 
-*****************************************************************************/
 USIMM_APP_PIN_INFO_STRU* USIMM_CCB_GetPIN1InfoByRef(USIMM_COMM_PIN_ENUM_UINT32 enPinType)
 {
     /* 参数判断 */
@@ -1784,18 +1528,7 @@ USIMM_APP_PIN_INFO_STRU* USIMM_CCB_GetPIN1InfoByRef(USIMM_COMM_PIN_ENUM_UINT32 e
     return &g_astUSIMMAppPIN1Info[enPinType];
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CCB_GetPIN1InfoByApp
-功能描述  :获取全局PIN信息
-输入参数  :USIMM_CARDAPP_ENUM_UINT32
-输出参数  :无
-返 回 值  :USIMM_APP_PIN_INFO_STRU*
-修订记录  :
-1. 日    期   : 2015年3月6日
-   作    者   : g00256031
-   修改内容   : Creat
 
-*****************************************************************************/
 USIMM_APP_PIN_INFO_STRU* USIMM_CCB_GetPIN1InfoByApp(USIMM_CARDAPP_ENUM_UINT32 enAppType)
 {
     VOS_UINT8                           ucChannelNo;
@@ -1818,18 +1551,7 @@ USIMM_APP_PIN_INFO_STRU* USIMM_CCB_GetPIN1InfoByApp(USIMM_CARDAPP_ENUM_UINT32 en
     return USIMM_CCB_GetPIN1InfoByRef(g_astUSIMMCardAppInfo[ucChannelNo].stPinInfo.enPinKeyRef);
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CCB_GetPIN2InfoByApp
-功能描述  :获取全局PIN2信息
-输入参数  :USIMM_CARDAPP_ENUM_UINT32
-输出参数  :无
-返 回 值  :USIMM_APP_PIN_INFO_STRU*
-修订记录  :
-1. 日    期   : 2015年3月6日
-   作    者   : g00256031
-   修改内容   : Creat
 
-*****************************************************************************/
 USIMM_APP_PIN_INFO_STRU* USIMM_CCB_GetPIN2InfoByApp(USIMM_CARDAPP_ENUM_UINT32 enAppType)
 {
     VOS_UINT8                           ucChannelNo;
@@ -1852,20 +1574,7 @@ USIMM_APP_PIN_INFO_STRU* USIMM_CCB_GetPIN2InfoByApp(USIMM_CARDAPP_ENUM_UINT32 en
     return &g_astUSIMMCardAppInfo[ucChannelNo].stPinInfo.stPin2Info;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CCB_SetAppFDN
-功能描述  :设置应用的FDN状态
-输入参数  :USIMM_CARDAPP_ENUM_UINT32
-           USIMM_FDNSTATUS_ENUM_UINT32
-输出参数  :无
-返 回 值  :无
 
-修订记录  :
-1. 日    期   : 2015年3月6日
-   作    者   : g00256031
-   修改内容   : 新增
-
-*****************************************************************************/
 VOS_VOID USIMM_CCB_SetAppFDN(
     USIMM_CARDAPP_ENUM_UINT32           enAppType,
     USIMM_FDNSTATUS_ENUM_UINT32         enFDNStatus
@@ -1893,19 +1602,7 @@ VOS_VOID USIMM_CCB_SetAppFDN(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CCB_GetAppFDN
-功能描述  :获得应用的FDN状态
-输入参数  :USIMM_CARDAPP_ENUM_UINT32
-输出参数  :无
-返 回 值  :USIMM_FDNSTATUS_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月6日
-   作    者   : g00256031
-   修改内容   : 新增
-
-*****************************************************************************/
 USIMM_FDNSTATUS_ENUM_UINT32 USIMM_CCB_GetAppFDN(USIMM_CARDAPP_ENUM_UINT32 enAppType)
 {
     VOS_UINT8                           ucChannelNo;
@@ -1927,20 +1624,7 @@ USIMM_FDNSTATUS_ENUM_UINT32 USIMM_CCB_GetAppFDN(USIMM_CARDAPP_ENUM_UINT32 enAppT
     return g_astUSIMMCardAppInfo[ucChannelNo].enFDNStatus;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CCB_SetAppBDN
-功能描述  :设置应用的BDN状态
-输入参数  :USIMM_CARDAPP_ENUM_UINT32
-           USIMM_BDNSTATUS_ENUM_UINT32
-输出参数  :无
-返 回 值  :无
 
-修订记录  :
-1. 日    期   : 2015年3月6日
-   作    者   : g00256031
-   修改内容   : 新增
-
-*****************************************************************************/
 VOS_VOID USIMM_CCB_SetAppBDN(USIMM_CARDAPP_ENUM_UINT32 enAppType,
                                         USIMM_BDNSTATUS_ENUM_UINT32 enBDNStatus)
 {
@@ -1966,19 +1650,7 @@ VOS_VOID USIMM_CCB_SetAppBDN(USIMM_CARDAPP_ENUM_UINT32 enAppType,
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CCB_GetAppBDN
-功能描述  :获得应用的BDN状态
-输入参数  :USIMM_CARDAPP_ENUM_UINT32
-输出参数  :无
-返 回 值  :USIMM_BDNSTATUS_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月6日
-   作    者   : g00256031
-   修改内容   : 新增
-
-*****************************************************************************/
 USIMM_BDNSTATUS_ENUM_UINT32 USIMM_CCB_GetAppBDN(USIMM_CARDAPP_ENUM_UINT32 enAppType)
 {
     VOS_UINT8                           ucChannelNo;
@@ -2000,20 +1672,7 @@ USIMM_BDNSTATUS_ENUM_UINT32 USIMM_CCB_GetAppBDN(USIMM_CARDAPP_ENUM_UINT32 enAppT
     return g_astUSIMMCardAppInfo[ucChannelNo].enBDNStatus;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CCB_SetAppChNO
-功能描述  :赋值应用通道号
-输入参数  :USIMM_CARDAPP_ENUM_UINT32
-           VOS_UINT32
-输出参数  :无
-返 回 值  :VOS_VOID
 
-修订记录  :
-1. 日    期   : 2015年3月6日
-   作    者   : g00256031
-   修改内容   : 新增
-
-*****************************************************************************/
 VOS_VOID USIMM_CCB_SetAppChNO(VOS_UINT8 ucChannelNo, USIMM_CARDAPP_ENUM_UINT32 enAppType)
 {
     if ((USIMM_UNLIMIT_APP_BUTT < enAppType)
@@ -2027,19 +1686,7 @@ VOS_VOID USIMM_CCB_SetAppChNO(VOS_UINT8 ucChannelNo, USIMM_CARDAPP_ENUM_UINT32 e
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CCB_GetAppChNO
-功能描述  :获得应用的通道号
-输入参数  :USIMM_CARDAPP_ENUM_UINT32
-输出参数  :无
-返 回 值  :VOS_UINT8
 
-修订记录  :
-1. 日    期   : 2015年3月6日
-   作    者   : g00256031
-   修改内容   : 新增
-
-*****************************************************************************/
 VOS_UINT8 USIMM_CCB_GetAppChNO(USIMM_CARDAPP_ENUM_UINT32 enAppType)
 {
     VOS_UINT8                           i;
@@ -2060,20 +1707,7 @@ VOS_UINT8 USIMM_CCB_GetAppChNO(USIMM_CARDAPP_ENUM_UINT32 enAppType)
     return VOS_NULL_BYTE;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CCB_SetSimPhase
-功能描述  :赋值sim卡phase
-输入参数  :USIMM_CARDAPP_ENUM_UINT32
-           VOS_UINT32
-输出参数  :无
-返 回 值  :USIMM_BDNSTATUS_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月6日
-   作    者   : g00256031
-   修改内容   : 新增
-
-*****************************************************************************/
 VOS_VOID USIMM_CCB_SetSimPhase(USIMM_CARDAPP_ENUM_UINT32   enAppType,
                                             USIMM_SIM_PHASE_ENUM_UINT32 enSimPhase)
 {
@@ -2099,19 +1733,7 @@ VOS_VOID USIMM_CCB_SetSimPhase(USIMM_CARDAPP_ENUM_UINT32   enAppType,
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CCB_GetSimPhase
-功能描述  :获得sim卡phase
-输入参数  :USIMM_CARDAPP_ENUM_UINT32
-输出参数  :无
-返 回 值  :VOS_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月6日
-   作    者   : g00256031
-   修改内容   : 新增
-
-*****************************************************************************/
 USIMM_SIM_PHASE_ENUM_UINT32 USIMM_CCB_GetSimPhase(USIMM_CARDAPP_ENUM_UINT32 enAppType)
 {
     VOS_UINT8                           ucChannelNo;
@@ -2133,19 +1755,7 @@ USIMM_SIM_PHASE_ENUM_UINT32 USIMM_CCB_GetSimPhase(USIMM_CARDAPP_ENUM_UINT32 enAp
     return g_astUSIMMCardAppInfo[ucChannelNo].enSimPhase;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CCB_GetAIDByApp
-功能描述  :
-输入参数  :USIMM_CARDAPP_ENUM_UINT32
-输出参数  :无
-返 回 值  :USIMM_AID_INFO_STRU*
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : 新增
-
-*****************************************************************************/
 USIMM_AID_INFO_STRU* USIMM_CCB_GetAIDByApp(USIMM_CARDAPP_ENUM_UINT32 enAppType)
 {
     if (enAppType >= USIMM_CARDAPP_BUTT)
@@ -2162,19 +1772,7 @@ USIMM_AID_INFO_STRU* USIMM_CCB_GetAIDByApp(USIMM_CARDAPP_ENUM_UINT32 enAppType)
     return &g_astUSIMMInitAIDInfo[enAppType];
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CCB_SetAIDByApp
-功能描述  :
-输入参数  :USIMM_CARDAPP_ENUM_UINT32
-输出参数  :无
-返 回 值  :USIMM_AID_INFO_STRU*
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : 新增
-
-*****************************************************************************/
 VOS_VOID USIMM_CCB_SetAIDByApp(USIMM_CARDAPP_ENUM_UINT32   enAppType,
                                             VOS_UINT32                  ulDataLen,
                                             VOS_UINT8                   *pucAID)
@@ -2196,19 +1794,7 @@ VOS_VOID USIMM_CCB_SetAIDByApp(USIMM_CARDAPP_ENUM_UINT32   enAppType,
     return ;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CCB_SetAIDFcp
-功能描述  :
-输入参数  :
-输出参数  :无
-返 回 值  :无
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : 新增
-
-*****************************************************************************/
 
 VOS_VOID USIMM_CCB_SetAIDFcp(VOS_UINT8 ucChannelNo, VOS_UINT32 ulFcpLen, VOS_UINT8 *pucFcp)
 {
@@ -2226,19 +1812,7 @@ VOS_VOID USIMM_CCB_SetAIDFcp(VOS_UINT8 ucChannelNo, VOS_UINT32 ulFcpLen, VOS_UIN
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CCB_GetAIDFcp
-功能描述  :
-输入参数  :
-输出参数  :无
-返 回 值  :无
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : 新增
-
-*****************************************************************************/
 
 VOS_VOID USIMM_CCB_GetAIDFcp(VOS_UINT8 ucChannelNo, VOS_UINT32 *pulFcpLen, VOS_UINT8 **ppucFcp)
 {
@@ -2256,19 +1830,7 @@ VOS_VOID USIMM_CCB_GetAIDFcp(VOS_UINT8 ucChannelNo, VOS_UINT32 *pulFcpLen, VOS_U
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CCB_GetAIDFcp
-功能描述  :
-输入参数  :
-输出参数  :无
-返 回 值  :无
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : 新增
-
-*****************************************************************************/
 
 VOS_VOID USIMM_CCB_ClearAIDFcp(VOS_UINT8 ucChannelNo)
 {
@@ -2282,19 +1844,7 @@ VOS_VOID USIMM_CCB_ClearAIDFcp(VOS_UINT8 ucChannelNo)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CCB_GetAIDFcp
-功能描述  :
-输入参数  :
-输出参数  :无
-返 回 值  :无
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : 新增
-
-*****************************************************************************/
 
 VOS_VOID USIMM_CCB_SetResponse(VOS_UINT8 ucChannelNo, VOS_UINT32 ulRspLen, VOS_UINT8 *pucRsp)
 {
@@ -2312,19 +1862,7 @@ VOS_VOID USIMM_CCB_SetResponse(VOS_UINT8 ucChannelNo, VOS_UINT32 ulRspLen, VOS_U
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CCB_GetAIDFcp
-功能描述  :
-输入参数  :
-输出参数  :无
-返 回 值  :无
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : 新增
-
-*****************************************************************************/
 
 VOS_VOID USIMM_CCB_GetResponse(VOS_UINT8 ucChannelNo, VOS_UINT32 *pulRspLen, VOS_UINT8 **ppucRsp)
 {
@@ -2342,19 +1880,7 @@ VOS_VOID USIMM_CCB_GetResponse(VOS_UINT8 ucChannelNo, VOS_UINT32 *pulRspLen, VOS
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CCB_GetAIDFcp
-功能描述  :
-输入参数  :
-输出参数  :无
-返 回 值  :无
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : 新增
-
-*****************************************************************************/
 
 VOS_VOID USIMM_CCB_ClearResponse(VOS_UINT8 ucChannelNo)
 {
@@ -2368,37 +1894,13 @@ VOS_VOID USIMM_CCB_ClearResponse(VOS_UINT8 ucChannelNo)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CCB_GetUsimSimulateIsimStatus
-功能描述  :返回USIM是否支持模拟ISIM的状态
-输入参数  :无
-输出参数  :无
-返 回 值  :状态
 
-修订记录  :
-1. 日    期   : 2015年4月8日
-   作    者   : H00300778
-   修改内容   : 新增
-
-*****************************************************************************/
 VOS_UINT32 USIMM_CCB_GetUsimSimulateIsimStatus(VOS_VOID)
 {
     return gulUsimSupportIMS;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CCB_SetUsimSimulateIsimStatus
-功能描述  :设置USIM是否支持模拟ISIM的状态
-输入参数  :ulStatus:状态
-输出参数  :无
-返 回 值  :无
 
-修订记录  :
-1. 日    期   : 2015年4月8日
-   作    者   : H00300778
-   修改内容   : 新增
-
-*****************************************************************************/
 VOS_VOID USIMM_CCB_SetUsimSimulateIsimStatus(VOS_UINT32 ulStatus)
 {
     gulUsimSupportIMS = ulStatus;
@@ -2406,19 +1908,7 @@ VOS_VOID USIMM_CCB_SetUsimSimulateIsimStatus(VOS_UINT32 ulStatus)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CCB_IsCardExist
-功能描述  :返回当前是否有卡(快速开机模式也算是有卡)
-输入参数  :ulStatus:状态
-输出参数  :无
-返 回 值  :无
 
-修订记录  :
-1. 日    期   : 2015年4月8日
-   作    者   : H00300778
-   修改内容   : 新增
-
-*****************************************************************************/
 VOS_UINT32 USIMM_CCB_IsCardExist(VOS_VOID)
 {
     if (USIMM_PHYCARD_TYPE_NOCARD == USIMM_CCB_GetCardType())
@@ -2428,37 +1918,13 @@ VOS_UINT32 USIMM_CCB_IsCardExist(VOS_VOID)
 
     return VOS_TRUE;
 }
-/*****************************************************************************
-函 数 名  :USIMM_CCB_GetFilePoolTotalGlobal
-功能描述  :返回文件池全局变量
-输入参数  :无
-输出参数  :文件池的总全局变量
-返 回 值  :无
 
-修订记录  :
-1. 日    期   : 2015年4月8日
-   作    者   : C00299064
-   修改内容   : 新增
-
-*****************************************************************************/
 USIMM_POOL_ST* USIMM_CCB_GetFilePoolTotalGlobal(VOS_VOID)
 {
     return &gstUSIMMPOOL;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CCB_GetFilePoolTotalGlobal
-功能描述  :返回文件池单个记录
-输入参数  :无
-输出参数  :返回文件池单个记录
-返 回 值  :无
 
-修订记录  :
-1. 日    期   : 2015年4月8日
-   作    者   : C00299064
-   修改内容   : 新增
-
-*****************************************************************************/
 USIMM_POOL_ONERECORD_ST* USIMM_CCB_GetPoolFileByIndex(VOS_UINT32 ulFileIndex)
 {
     if (USIMM_POOL_MAX_NUM <= ulFileIndex)
@@ -2470,35 +1936,13 @@ USIMM_POOL_ONERECORD_ST* USIMM_CCB_GetPoolFileByIndex(VOS_UINT32 ulFileIndex)
     return &gstUSIMMPOOL.astpoolRecord[ulFileIndex];
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CCB_GetUsimOpenSpeed
-功能描述  :返回快速开机模式状态
-输入参数  :无
-输出参数  :无
-返 回 值  :快速开机模式状态:USIMM_OPENSPEEDDISABLE/USIMM_OPENSPEEDENABLE
 
-修订记录  :
-1. 日    期   : 2015年4月8日
-   作    者   : H00300778
-   修改内容   : 新增
-*****************************************************************************/
 VOS_UINT32 USIMM_CCB_GetUsimOpenSpeed(VOS_VOID)
 {
     return gulUSIMMOpenSpeed;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CCB_SetUsimOpenSpeed
-功能描述  :设置快速开机模式状态
-输入参数  :ulStatus:快速开机模式状态:USIMM_OPENSPEEDDISABLE/USIMM_OPENSPEEDENABLE
-输出参数  :无
-返 回 值  :无
 
-修订记录  :
-1. 日    期   : 2015年4月8日
-   作    者   : H00300778
-   修改内容   : 新增
-*****************************************************************************/
 VOS_VOID USIMM_CCB_SetUsimOpenSpeed(VOS_UINT32 ulStatus)
 {
     gulUSIMMOpenSpeed = ulStatus;
@@ -2506,19 +1950,7 @@ VOS_VOID USIMM_CCB_SetUsimOpenSpeed(VOS_UINT32 ulStatus)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_T1InitGlobalVar
-功能描述  : T=1相关全局变量的初始化
-输入参数  : VOS_VOID
-输出参数  : 无
-返 回 值  : VOS_VOID
-调用函数  : 无
-被调函数  :
-修订记录  :
-1. 日    期   : 2013年10月22日
-   作    者   : L00256032
-   修改内容   : V9R1 T=1项目新增
-*****************************************************************************/
+
 VOS_VOID USIMM_T1InitGlobalVar(VOS_VOID)
 {
     /* BWT倍数初始化为1 */
@@ -2527,18 +1959,7 @@ VOS_VOID USIMM_T1InitGlobalVar(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_InitPoolGlobal
-功能描述  :初始化文件池的相关变量和状态　
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-调用函数  :无
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID USIMM_InitPoolGlobal(VOS_VOID)
 {
     VOS_UINT32                          i;
@@ -2563,17 +1984,7 @@ VOS_VOID USIMM_InitPoolGlobal(VOS_VOID)
     return;
 }
 
-/********************************************************************
-函 数 名  :USIMM_COMM_InitGlobalVar
-功能描述  :初始化相关公共全局变量的内容
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-修订记录  :
-1. 日    期   : 2015年3月12日
-   作    者   : g00256031
-   修改内容   : Creat
-********************************************************************/
+
 VOS_VOID USIMM_SetGlobalVarDefValue(VOS_VOID)
 {
     /*lint -e534*/
@@ -2638,19 +2049,7 @@ VOS_VOID USIMM_SetGlobalVarDefValue(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ClearGlobalVar
-功能描述  :清空全局变量的内容，仅在任务初始化调用
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-调用函数  :无
-修订记录  :
-1. 日    期   : 2013年6月19日
-   作    者   : j00168360
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_ClearGlobalVar(VOS_VOID)
 {
     USIMM_SetGlobalVarDefValue();
@@ -2662,19 +2061,7 @@ VOS_VOID USIMM_ClearGlobalVar(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ResetGlobalVar
-功能描述  :再次清空全局变量的内容，
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-调用函数  :无
-修订记录  :
-1. 日    期   : 2013年6月19日
-   作    者   : j00168360
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_ResetGlobalVar(VOS_VOID)
 {
     USIMM_PoolDelAll();         /*避免内存泄露，先释放相关内存*/
@@ -2690,19 +2077,7 @@ VOS_VOID USIMM_ResetGlobalVar(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ResetGlobalVarWithCard
-功能描述  :重设定相关全局变量的内容,并且会设置卡状态上报标记
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-调用函数  :无
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_ResetGlobalVarWithCard(VOS_VOID)
 {
     USIMM_ResetGlobalVar();
@@ -2718,18 +2093,7 @@ VOS_VOID USIMM_ResetGlobalVarWithCard(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_AttGlobalInit
-功能描述  :初始化ATT相关全局变量的内容　
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-调用函数  :无
-修订记录  :
-1. 日    期   : 2012年6月18日
-   作    者   : H59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID USIMM_InitConfigGlobal(VOS_VOID)
 {
     NAS_NVIM_FOLLOWON_OPENSPEED_FLAG_STRU   stUSIMMOpenSpeed;
@@ -2766,19 +2130,7 @@ VOS_VOID USIMM_InitConfigGlobal(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_InitOpneSpeed
-功能描述  :初始化快速开机需要的全局变量的内容，并上报卡状态　
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-调用函数  :
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_InitOpenSpeed(VOS_VOID)
 {
     USIMM_COMM_PIN_INFO_STRU           *pstCommPinInfo;
@@ -2820,19 +2172,7 @@ VOS_VOID USIMM_InitOpenSpeed(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SetTimeOutFlag
-功能描述  :
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-调用函数  :
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_SetTimeOutFlag(
     VOS_BOOL                            bFlag)
 {
@@ -2841,37 +2181,13 @@ VOS_VOID USIMM_SetTimeOutFlag(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_GetTimeOutFlag
-功能描述  :
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-调用函数  :
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_BOOL USIMM_GetTimeOutFlag(VOS_VOID)
 {
     return gstUSIMMBaseInfo.bTimeOut;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_GetDLErrorInfo
-功能描述  :
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-调用函数  :
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 USIMMDL_ERROR_ENUM_UINT32 USIMM_GetT0DLErrorInfo(VOS_VOID)
 {
     return gstUSIMMDLControl.enDLError;
@@ -2984,13 +2300,7 @@ VOS_UINT32                          g_ulCsimSessionId = VOS_NULL_DWORD;
 VOS_BOOL                            g_bCacheEFIccidData = VOS_FALSE;
 VOS_UINT8                           g_aucEFIccidData[USIMM_EFICCID_LEN] = {0};
 
-/*****************************************************************************
- 全局变量名    : g_ulUsimmFeatureCfg
- 全局变量说明  : USIMM模块定制特性全局控制变量
- 1.日    期   : 2012年06月19日
-   作    者   : H59254
-   修改内容   : 新建
-*****************************************************************************/
+
 USIMM_FEATURE_CFG_STRU              g_stUsimmFeatureCfg;
 
 VOS_UINT32                          g_ulATTSpecErrSWCnt;    /* ATT特殊处理的SW计数 */
@@ -4218,19 +3528,7 @@ USIMM_FILEID_PATHSTR_TABLE_STRU g_stUSIMMFilePathTable[USIMM_DEF_FILEID_BUTT] =
     {USIMM_IMS_APP,              USIMM_ISIM_EFSMSP_STR      },            /*USIMM_ISIM_EFSMSP_ID    */
  };
 
-/*****************************************************************************
-函 数 名  : USIMM_T1InitGlobalVar
-功能描述  : T=1相关全局变量的初始化
-输入参数  : VOS_VOID
-输出参数  : 无
-返 回 值  : VOS_VOID
-调用函数  : 无
-被调函数  :
-修订记录  :
-1. 日    期   : 2013年10月22日
-   作    者   : L00256032
-   修改内容   : V9R1 T=1项目新增
-*****************************************************************************/
+
 VOS_VOID  USIMM_T1InitGlobalVar(VOS_VOID)
 {
     /*lint -e534*/

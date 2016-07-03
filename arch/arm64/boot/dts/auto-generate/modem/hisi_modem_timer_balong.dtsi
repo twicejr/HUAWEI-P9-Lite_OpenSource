@@ -315,6 +315,15 @@
 		need_map=<1>;
 		status = "ok";
 	};
+	timer_stamp@0xFFF0A000 {
+		compatible = "hisilicon,timer_stamp";
+		reg = <0x0 0xfff0a534 0x0 0x1000>;
+		offset = <0x0 0x4>;
+		increase_count_flag=<1>;
+		clock-frequency  = <32764>;
+		need_map=<1>;
+		status = "ok";
+	};
 	/*k3 source is sys counter*/
 	hrttimer_app@0xfff08000 {
 		compatible = "hisilicon,hrttimer_slice";

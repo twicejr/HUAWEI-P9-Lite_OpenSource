@@ -43,16 +43,7 @@ extern "C" {
 /*****************************************************************************
   3 Function
 *****************************************************************************/
-/*****************************************************************************
- Function Name   : NAS_EMM_CheckLcsOrLppMsgNeedHighPrioStore
- Description     : 判断LPP or LCS消息是否需要高优先级缓存
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong 00150010      2015-07-29  Draft Enact
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_CheckLcsOrLppMsgNeedHighPrioStore( VOS_VOID )
 {
     /*如果是建链过程中，则高优先级缓存*/
@@ -78,16 +69,7 @@ VOS_UINT32 NAS_EMM_CheckLcsOrLppMsgNeedHighPrioStore( VOS_VOID )
     return NAS_EMM_FAIL;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_CheckLcsOrLppMsgNeedLowPrioStore
- Description     : 判断LPP or LCS消息是否需要低优先级缓存
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong 00150010      2015-07-29  Draft Enact
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_CheckLcsOrLppMsgNeedLowPrioStore( VOS_VOID )
 {
     VOS_UINT32                          ulCurEmmStat;
@@ -116,18 +98,7 @@ VOS_UINT32 NAS_EMM_CheckLcsOrLppMsgNeedLowPrioStore( VOS_VOID )
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_SndLmmLcsEstCnf
- Description     : 发送建链成功消息
- Input           : ulEstRst------------------建链结果
-                   ulOpid--------------------OPID
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong 00150010      2015-07-28  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_LMM_SndLmmLcsEstCnf
 (
     LMM_LCS_EST_RESULT_ENUM_UINT32      enEstRst,
@@ -167,16 +138,7 @@ VOS_VOID  NAS_LMM_SndLmmLcsEstCnf
     NAS_LMM_SEND_MSG(pLmmLcsEstCnfMsg);
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_IsEpcLcsSupported
- Description     : 判断EPC-LCS能力是否支持
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong 00150010      2015-07-29  Draft Enact
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_IsEpcLcsSupported( VOS_VOID )
 {
     NAS_MM_UE_NET_CAP_STRU             *pstUeNetCap = VOS_NULL_PTR;
@@ -225,15 +187,7 @@ VOS_UINT32 NAS_EMM_IsEpcLcsSupported( VOS_VOID )
     return NAS_EMM_YES;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SndLcsDataCnf
- Description     : 对LCS_LMM_DATA_REQ的回复
- Input           : enDataCnfRst-------------发送结果
-                   ulOpId-------------------OPID
- Output          : None
- Return          : VOS_VOID
- History         : lihong  00150010   2015-07-29  Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_EMM_SndLcsDataCnf
 (
     LMM_LCS_SEND_RSLT_ENUM_UINT32       enDataCnfRst,
@@ -272,17 +226,7 @@ VOS_VOID NAS_EMM_SndLcsDataCnf
     NAS_LMM_SEND_MSG(pstEmmLcsDataCnf);
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SndLcsCnf
- Description     : 给SS回复结果
- Input           : ulMsgId------------------消息ID
-                   enDataCnfRst-------------发送结果
-                   ulEstRst-----------------建链结果
-                   ulOpId-------------------OPID
- Output          : None
- Return          : VOS_VOID
- History         : lihong  00150010   2015-07-29  Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_EMM_SndLcsCnf
 (
     VOS_UINT32                          ulMsgId,
@@ -301,20 +245,7 @@ VOS_VOID NAS_EMM_SndLcsCnf
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SomeStateRcvLcsMsgCommProc
- Description     : 在除
-                   REG.NORMAL_SERVICE
-                   REG.ATTEMPTING_TO_UPDATE_MM
-                   之外的其它状态下收到SS的建链请求或者数据请求时相同的处理部分
- Input           : ulMsgId------------------消息ID
-                   ulOpId-------------------OPID
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong 00150010      2015-07-29  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_SomeStateRcvLcsMsgCommProc
 (
     VOS_UINT32                          ulMsgId,
@@ -389,16 +320,7 @@ VOS_UINT32  NAS_EMM_SomeStateRcvLcsMsgCommProc
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_RcvLcsMsgEstReq
- Description     : 收到LCS建链请求消息的处理
- Input           : pMsg-------------------消息指针
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong 00150010      2015-07-28  Draft Enact
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_RcvLcsMsgEstReq
 (
     MsgBlock                           *pMsg
@@ -464,16 +386,7 @@ VOS_UINT32 NAS_EMM_RcvLcsMsgEstReq
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SndLcsAirMsg
- Description     : 发送LCS空口消息
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong 00150010      2015-07-29  Draft Enact
-*****************************************************************************/
 VOS_VOID    NAS_EMM_SndLcsAirMsg
 (
     LCS_LMM_DATA_REQ_STRU              *pstLcsLmmDataReq
@@ -514,16 +427,7 @@ VOS_VOID    NAS_EMM_SndLcsAirMsg
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_RcvLcsMsgDataReq
- Description     : 收到LCS数据发送请求消息的处理
- Input           : pMsg-------------------消息指针
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong 00150010      2015-07-29  Draft Enact
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_RcvLcsMsgDataReq
 (
     MsgBlock                           *pMsg
@@ -589,15 +493,7 @@ VOS_UINT32 NAS_EMM_RcvLcsMsgDataReq
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_SndLcsDataInd
- Description     : 向LPP发送ID_LMM_LCS_DATA_IND
- Input           : pstContainer------------------------SS下行空口消息指针
- Output          :
- Return          : 处理结果
- History         :
-    lihong 00150010 2015-07-29  新开发
-*****************************************************************************/
+
 VOS_VOID NAS_LMM_SndLcsDataInd
 (
     NAS_EMM_GENERIC_MESSAGE_CONTAINER_STRU     *pstContainer
@@ -656,15 +552,7 @@ VOS_VOID NAS_LMM_SndLcsDataInd
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_SndLcsRelInd
- Description     : 向LPP发送ID_LMM_LCS_REL_IND
- Input           : None
- Output          : None
- Return          : None
- History         :
-    lihong 00150010 2015-10-19  新开发
-*****************************************************************************/
+
 VOS_VOID NAS_LMM_SndLcsRelInd( VOS_VOID )
 {
     LMM_LCS_REL_IND_STRU      *pstEmmLcsRelInd   = NAS_EMM_NULL_PTR;
@@ -702,16 +590,7 @@ VOS_VOID NAS_LMM_SndLcsRelInd( VOS_VOID )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SndLcsPosCapInfoInd
- Description     : 通知LCS模块LCS能力
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2015-07-30  Draft Enact
-*****************************************************************************/
 VOS_VOID    NAS_EMM_SndLcsPosCapInfoInd( VOS_VOID )
 {
     NAS_LMM_PUB_INFO_STRU              *pstPubInfo              = VOS_NULL_PTR;
@@ -761,17 +640,7 @@ VOS_VOID    NAS_EMM_SndLcsPosCapInfoInd( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegSsNormalMsgLcsEstReq
- Description     : 正常服务状态下收到LCS建链请求的处理
- Input           : ulMsgId-----------------消息ID
-                   pMsgStru----------------消息指针
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong 00150010     2015-07-30  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsRegSsNormalMsgLcsEstReq
 (
     VOS_UINT32                          ulMsgId,
@@ -832,17 +701,7 @@ VOS_UINT32  NAS_EMM_MsRegSsNormalMsgLcsEstReq
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegSsRegAttemptUpdateMmMsgLcsEstReq
- Description     : updte mm状态下收到LCS建链请求的处理
- Input           : ulMsgId-----------------消息ID
-                   pMsgStru----------------消息指针
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong 00150010     2015-07-30  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsRegSsRegAttemptUpdateMmMsgLcsEstReq
 (
     VOS_UINT32                          ulMsgId,

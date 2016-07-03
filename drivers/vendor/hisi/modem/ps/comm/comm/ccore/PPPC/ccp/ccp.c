@@ -1,23 +1,4 @@
-/************************************************************************
-*                                                                      *
-*                             ccp.c                                    *
-*                                                                      *
-*  Project Code:       VRP3.0                                          *
-*  Create Date:                                                        *
-*  Author:             sunjianfeng                                      *
-*  Modify Date:                                                        *
-*  Document:                                                           *
-*  Function:           PPP的CCP协议函数的实现                          *
-*  Others:                                                             *
-*----------------------------------------------------------------------*
-*                                                                      *
-*  Copyright 2000-2002 VRP3.0 Team Beijing Institute HuaWei Tech, Inc. *
-*                      ALL RIGHTS RESERVED                             *
-*                                                                      *
-*----------------------------------------------------------------------*
-*                                                                      *
-*                                                                      *
-************************************************************************/
+
 
 
 /*****************************************************************************
@@ -62,29 +43,14 @@ PPPFSMCALLBACK_S g_stCcpCallbacks =
     NULL,
     "CCP"
 };
-UCHAR ucCompType = 0;/* Added by liutao 38563 at 2004-09-28 V800R002 for PPP压缩移植 */
+UCHAR ucCompType = 0;
 
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
 /*lint -save -e958 */
 /*lint -e572*/
-/****************************************************************************
-* CREATE DATE  ：2000/06/26                                                 *
-* CREATED BY   ：SHI YONG                                                   *
-* FUNCTION     ：CCP接收外部事件.事件包括：Up、Down、Open、Close            *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstCcpInfo:LCP控制块指针                                   *
-*                ulCmd:命令字,可以为如下值:                                 *
-*                      PPPFSMLOWERDOWN:下层Down                             *
-*                      PPPFSMLOWERUP:下层Up                                 *
-*                      PPPFSMOPEN:Open事件                                  *
-*                      PPPFSMCLOSE:Down事件                                 *
-*                pPara:事件的参数,为NULL                                    *
-* OUTPUT       ：                                                           *
-* RETURN       ：NULL                                                       *
-* CALLED BY    ：PPP_Core_ReceiveEventFromShell、PPP_Core_RejectProtocol    *
-****************************************************************************/
+
 
 VOS_VOID PPP_CCP_ReceiveEventFromCore (VOS_VOID *pstCcpInfo, VOS_UINT32 ulCmd, char *pPara)
 {
@@ -107,16 +73,7 @@ VOS_VOID PPP_CCP_ReceiveEventFromCore (VOS_VOID *pstCcpInfo, VOS_UINT32 ulCmd, c
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/06/24                                                 *
-* CREATED BY   ：Shi Yong                                                   *
-* FUNCTION     ：确定CCP需要协商那些参数,在CCP初始化时进行                  *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo    :PPP控制块                                   *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_Core_NetworkPhase                                      *
-****************************************************************************/
+
 
 VOS_VOID PPP_CCP_init (PPPINFO_S* pstPppInfo)
 {
@@ -140,9 +97,7 @@ VOS_VOID PPP_CCP_init (PPPINFO_S* pstPppInfo)
     pstCcpInfo->ulCcpTimeoutID = 0;
     pstCcpInfo->ulTimeOutTime = PPP_CCP_TIMEOUTTIME;
 
-    /* Added start by liutao 38563 at 2004-09-29 V800R002 for PPP压缩移植 */
     pstCcpInfo->ucPppCompType = 0;
-    /* Added end by liutao 38563 at 2004-09-29 V800R002 for PPP压缩移植 */
 
     /* 状态机初始化 */
     pstFsm->usProtocol    = (VOS_UINT16)PPP_CCP;
@@ -155,7 +110,7 @@ VOS_VOID PPP_CCP_init (PPPINFO_S* pstPppInfo)
     /* 协商参数值初始化,是否协商某个参数则在resetci函数中初始化 */
     pstWantOptions->bMppc_compress = VRP_YES;
     pstWantOptions->bStac_compress = VRP_YES;
-    pstWantOptions->bLZS0_comp = VRP_YES;/* Added by liutao 38563 at 2004-09-27 V800R002 for PPP压缩移植 */
+    pstWantOptions->bLZS0_comp = VRP_YES;
     pstWantOptions->ulMppc_supportedbits = PPP_MPPC_SUPPORTEDBITS;
     pstWantOptions->usStac_historys  = STAC_HISTORY_COUNT;
     pstWantOptions->ucStac_checkmode = PPP_STAC_SEQUENCE_NUMBER; /* sequence number */
@@ -167,21 +122,9 @@ VOS_VOID PPP_CCP_init (PPPINFO_S* pstPppInfo)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：CCP接收报文                                                *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstCcpInfo:CCP控制块                                       *
-*                pHead:存放报文内存的头指针,应负责释放这段内存              *
-*                pPacket:报文头位置                                         *
-*                ulLen:报文长度                                             *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_Core_ReceivePacketFromShell                            *
-****************************************************************************/
+
 VOID PPP_CCP_ReceivePacket (VOID *pstCcpInfo, UCHAR* pHead, UCHAR* pPacket, VOS_UINT32
-                            ulLen, VOS_UINT32 ulRPIndex)/* Modified by liutao 38563 at 2004-09-22 V800R002 for PPP压缩移植 */
+                            ulLen, VOS_UINT32 ulRPIndex)
 {
     PPPFSM_S *pstFsm;
 
@@ -192,7 +135,7 @@ VOID PPP_CCP_ReceivePacket (VOID *pstCcpInfo, UCHAR* pHead, UCHAR* pPacket, VOS_
     }
     pstFsm = &(((PPP_CCP_INFO_S*)pstCcpInfo)->stFsm);
 
-    PPP_FSM_ReceivePacket(pstFsm, pHead, pPacket, ulLen, ulRPIndex);/* Modified by liutao 38563 at 2004-09-22 V800R002 for PPP压缩移植 */
+    PPP_FSM_ReceivePacket(pstFsm, pHead, pPacket, ulLen, ulRPIndex);
 
     return;
 }
@@ -201,16 +144,7 @@ VOID PPP_CCP_ReceivePacket (VOID *pstCcpInfo, UCHAR* pHead, UCHAR* pPacket, VOS_
  * PPP_CCP_resetci - initialize at start of negotiation.
  */
 
-/****************************************************************************
-* CREATE DATE  ：2000/06/24                                                 *
-* CREATED BY   ：Shi Yong                                                   *
-* FUNCTION     ：确定IPCP需要协商那些参数,在IPCP初始化时进行                  *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm    :状态机                                          *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：状态机中执行tls动作的宏PPP_FSM_tls                         *
-****************************************************************************/
+
 VOID PPP_CCP_resetci(PPPFSM_S *pstFsm)
 {
     PPP_CCP_INFO_S * pstCcpInfo;
@@ -246,18 +180,16 @@ VOID PPP_CCP_resetci(PPPFSM_S *pstFsm)
     if (pstConfig->bStacCompress)
     {
         pstWantOptions->bStac_compress = VRP_YES;
-        pstWantOptions->bLZS0_comp = VRP_YES; /* Added by liutao 38563 at 2004-09-27 V800R002 for PPP压缩移植 */
+        pstWantOptions->bLZS0_comp = VRP_YES;
         pstWantOptions->usStac_historys  = STAC_HISTORY_COUNT;
         pstWantOptions->ucStac_checkmode = PPP_STAC_SEQUENCE_NUMBER;
 
     }
-    /* Added start by liutao 38563 at 2004-10-30 V800R002 for PPPC移植 */
     else
     {
         pstWantOptions->bStac_compress = VRP_NO;
     }
 
-    /* Added end by liutao 38563 at 2004-10-30 V800R002 for PPPC移植 */
 
     if (pstConfig->bMppcCompress)
     {
@@ -265,13 +197,11 @@ VOID PPP_CCP_resetci(PPPFSM_S *pstFsm)
         pstWantOptions->ulMppc_supportedbits = PPP_MPPC_SUPPORTEDBITS;
 
     }
-    /* Added start by liutao 38563 at 2004-10-30 V800R002 for PPPC移植 */
     else
     {
         pstWantOptions->bMppc_compress = VRP_NO;
     }
 
-    /* Added end by liutao 38563 at 2004-10-30 V800R002 for PPPC移植 */
 
     *pstGotOptions   = *pstWantOptions;
     *pstAllowOptions = *pstWantOptions;
@@ -282,16 +212,7 @@ VOID PPP_CCP_resetci(PPPFSM_S *pstFsm)
  * PPP_CCP_cilen - Return total length of our configuration info.
  */
 
-/****************************************************************************
-* CREATE DATE  ：2000/06/24                                                 *
-* CREATED BY   ：Shi Yong                                                   *
-* FUNCTION     ：计算要发送的Config Request报文数据部分长度                 *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm: 状态机                                             *
-* OUTPUT       ：                                                           *
-* RETURN       ：Config Request报文长度                                     *
-* CALLED BY    ：PPP_FSM_SendConfigReq                                      *
-****************************************************************************/
+
 VOS_UINT16 PPP_CCP_cilen(PPPFSM_S *pstFsm)
 {
  #ifdef __PRODUCT_TYPE_PDSN80
@@ -300,7 +221,6 @@ VOS_UINT16 PPP_CCP_cilen(PPPFSM_S *pstFsm)
     pstCcpInfo = (PPP_CCP_INFO_S*)pstFsm->pProtocolInfo;
     pstGotOptions = &(pstCcpInfo->stGotOptions);
 
-    /* Modified start by liutao 38563 at 2004-09-28 V800R002 for PPP压缩移植 */
     /*Begin WGGSN_B03_L2TP_PPPC_COMP*/
     if ((pstGotOptions->bStac_compress == 1)
        && ((g_usPppLzs0UserNum < PPPCOMP_LZS0_MAXUSER)
@@ -323,12 +243,11 @@ VOS_UINT16 PPP_CCP_cilen(PPPFSM_S *pstFsm)
         ucCompType = CI_MPPC_COMPRESS;
         return CILEN_MPPC_COMPRESS;
     }
-    /* Modified end by liutao 38563 at 2004-09-28 V800R002 for PPP压缩移植 */
     else
     {
         PPP_DBG_OK_CNT(PPP_PHOK_802);
         pstGotOptions->bMppc_compress = 0;
-        ucCompType = 0;/* Added by liutao 38563 at 2004-09-28 V800R002 for PPP压缩移植 */
+        ucCompType = 0;
         return 0;
     }
 
@@ -340,24 +259,8 @@ VOS_UINT16 PPP_CCP_cilen(PPPFSM_S *pstFsm)
     /*End WGGSN_B03_L2TP_PPPC_COMP*/
 }
 
-/* Added start by liutao 38563 at 2004-09-27 V800R002 for PPP压缩移植 */
 
-/*****************************************************************************
- 函 数 名  : PPP_CCP_addci
- 功能描述  : 组建config request报文
- 输入参数  : PPPFSM_S *pstFsm
-             UCHAR *puc
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2004年9月27日
-    作    者   : liutao 38563
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID PPP_CCP_addci(PPPFSM_S *pstFsm, UCHAR *puc)
 {
     PPP_CCP_INFO_S * pstCcpInfo;
@@ -406,26 +309,13 @@ VOID PPP_CCP_addci(PPPFSM_S *pstFsm, UCHAR *puc)
     return;
 }
 
-/* Added end by liutao 38563 at 2004-09-27 V800R002 for PPP压缩移植 */
-/* Added start by liutao 38563 at 2004-09-28 V800R002 for PPP压缩移植 */
 
 /*
  * PPP_CCP_ackci - process a received configure-ack, and return
  * VOS_OK if the packet was OK.
  */
 
-/****************************************************************************
-* CREATE DATE  ：2000/06/24                                                 *
-* CREATED BY   ：Shi Yong                                                   *
-* FUNCTION     ：处理收到的Config ACK报文                                   *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm: 状态机                                             *
-*                pPacket:报文头位置                                         *
-*                ulLen:  报文长度                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：VOS_OK,合法的ACK报文;VOS_ERR:非法的ACK报文                 *
-* CALLED BY    ：PPP_FSM_ReceiveConfAck                                     *
-****************************************************************************/
+
 VOS_UINT16 PPP_CCP_ackci(PPPFSM_S *pstFsm, UCHAR *p, VOS_UINT32 len)
 {
     PPP_CCP_INFO_S * pstCcpInfo;
@@ -542,25 +432,13 @@ VOS_UINT16 PPP_CCP_ackci(PPPFSM_S *pstFsm, UCHAR *p, VOS_UINT32 len)
     return VOS_OK;
 }
 
-/* Added end by liutao 38563 at 2004-09-28 V800R002 for PPP压缩移植 */
 
 /*
  * PPP_CCP_nakci - process received configure-nak.
  * Returns 1 if the nak was OK.
  */
 
-/****************************************************************************
-* CREATE DATE  ：2000/06/24                                                 *
-* CREATED BY   ：Shi Yong                                                   *
-* FUNCTION     ：处理收到的Config Nak报文                                   *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm: 状态机                                             *
-*                pPacket:报文头位置                                         *
-*                ulLen:  报文长度                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：VOS_OK,合法的NAK报文;VOS_ERR:非法的NAK报文                 *
-* CALLED BY    ：PPP_FSM_ReceiveConfNakRej                                  *
-****************************************************************************/
+
 VOS_UINT16 PPP_CCP_nakci(PPPFSM_S *pstFsm, UCHAR *p, VOS_UINT32 len)
 {
     PPP_CCP_INFO_S * pstCcpInfo;
@@ -574,9 +452,7 @@ VOS_UINT16 PPP_CCP_nakci(PPPFSM_S *pstFsm, UCHAR *p, VOS_UINT32 len)
     pstCcpInfo = (PPP_CCP_INFO_S*)pstFsm->pProtocolInfo;
     pstGotOptions = &(pstCcpInfo->stGotOptions);
 
-    /* Deleted start by liutao 38563 at 2004-09-28 V800R002 for PPP压缩移植 */
 
-    /* Deleted end by liutao 38563 at 2004-09-28 V800R002 for PPP压缩移植 */
     pstTryOption = *pstGotOptions;
 
     /*Begin WGGSN_B03_L2TP_PPPC_COMP*/
@@ -648,18 +524,7 @@ VOS_UINT16 PPP_CCP_nakci(PPPFSM_S *pstFsm, UCHAR *p, VOS_UINT32 len)
  * PPP_CCP_rejci - reject some of our suggested compression methods.
  */
 
-/****************************************************************************
-* CREATE DATE  ：2000/06/24                                                 *
-* CREATED BY   ：Shi Yong                                                   *
-* FUNCTION     ：处理收到的Config Reject报文                                *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm: 状态机                                             *
-*                pPacket:报文头位置                                         *
-*                ulLen:  报文长度                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：VOS_OK,合法的reject报文;VOS_ERR:非法的reject报文           *
-* CALLED BY    ：PPP_FSM_ReceiveConfNakRej                                  *
-****************************************************************************/
+
 VOS_UINT16 PPP_CCP_rejci(PPPFSM_S *pstFsm, UCHAR *p, VOS_UINT32 len)
 {
     PPP_CCP_INFO_S * pstCcpInfo;
@@ -742,25 +607,8 @@ VOS_UINT16 PPP_CCP_rejci(PPPFSM_S *pstFsm, UCHAR *p, VOS_UINT32 len)
     return VOS_ERR;
 }
 
-/* Added start by liutao 38563 at 2004-09-27 V800R002 for PPP压缩移植 */
 
-/*****************************************************************************
- 函 数 名  : PPP_CCP_reqci
- 功能描述  : 解析对方发来的Config Request
- 输入参数  : PPPFSM_S *pstFsm
-             UCHAR *inp
-             VOS_UINT32 *len
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2004年9月27日
-    作    者   : liutao 38563
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 UCHAR PPP_CCP_reqci(PPPFSM_S *pstFsm, UCHAR *inp, VOS_UINT32 *len)
 {
  #ifdef __PRODUCT_TYPE_PDSN80
@@ -1084,21 +932,11 @@ UCHAR PPP_CCP_reqci(PPPFSM_S *pstFsm, UCHAR *inp, VOS_UINT32 *len)
     return CONFREJ;
 }
 
-/* Added end by liutao 38563 at 2004-09-27 V800R002 for PPP压缩移植 */
 /*
  * CCP has come up  .
  */
 
-/****************************************************************************
-* CREATE DATE  ：2000/06/24                                                 *
-* CREATED BY   ：Shi Yong                                                   *
-* FUNCTION     ：状态机up的处理函数                                         *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm:状态机                                              *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：是回调函数，由状态机tlu动作宏(PPP_FSM_tlu)调用             *
-****************************************************************************/
+
 VOID PPP_CCP_up(PPPFSM_S *pstFsm)
 {
     PPPINFO_S* pstPppInfo = (PPPINFO_S*)pstFsm->pPppInfo;
@@ -1139,16 +977,7 @@ VOID PPP_CCP_up(PPPFSM_S *pstFsm)
  * CCP has gone down .
  */
 
-/****************************************************************************
-* CREATE DATE  ：2000/06/24                                                 *
-* CREATED BY   ：Shi Yong                                                   *
-* FUNCTION     ：状态机finished的处理函数                                   *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm:状态机                                              *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：是回调函数，由状态机tlf动作宏(PPP_FSM_tlf)调用             *
-****************************************************************************/
+
 VOID PPP_CCP_down(PPPFSM_S *pstFsm)
 {
     PPP_CCP_INFO_S* pstCcpInfo = (PPP_CCP_INFO_S*)pstFsm->pProtocolInfo;
@@ -1169,24 +998,9 @@ VOID PPP_CCP_finished(PPPFSM_S *pstFsm)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：SHI YONG                                                   *
-* FUNCTION     ：处理子协议私有的报文私有的报文类型                         *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm: 状态机                                             *
-*                ucCode: 报文类型                                           *
-*                ucId:   报文ID                                             *
-*                pHead:  存放报文内存的头指针,应负责释放这段内存            *
-*                pPacket:报文头位置                                         *
-*                ulLen:  报文长度                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：VOS_OK :合法报文                                           *
-*                VOS_ERR:不能识别的报文                                     *
-* CALLED BY    ：PPP_FSM_ReceivePacket                                      *
-****************************************************************************/
+
 VOS_UINT16 PPP_CCP_extcode(PPPFSM_S *pstFsm, UCHAR ucCode, UCHAR ucId, UCHAR *pHead, UCHAR *pPacket, VOS_UINT32 ulLen,
-                       VOS_UINT32 ulRPIndex)                                                                                      /* Modified by liutao 38563 at 2004-09-22 V800R002 for PPP压缩移植 */
+                       VOS_UINT32 ulRPIndex)
 {
     if (pstFsm->ucState != PPP_STATE_OPENED)
     {
@@ -1197,10 +1011,10 @@ VOS_UINT16 PPP_CCP_extcode(PPPFSM_S *pstFsm, UCHAR ucCode, UCHAR ucId, UCHAR *pH
     switch (ucCode)
     {
     case RESETREQ:
-        PPP_CCP_rresetreq(pstFsm, ucId, pHead, pPacket, ulLen, ulRPIndex);/* Modified by liutao 38563 at 2004-09-22 V800R002 for PPP压缩移植 */
+        PPP_CCP_rresetreq(pstFsm, ucId, pHead, pPacket, ulLen, ulRPIndex);
         break;
     case RESETACK:
-        PPP_CCP_rresetack(pstFsm, ucId, pPacket, ulLen, ulRPIndex);/* Modified by liutao 38563 at 2004-09-22 V800R002 for PPP压缩移植 */
+        PPP_CCP_rresetack(pstFsm, ucId, pPacket, ulLen, ulRPIndex);
 
         break;
     default:
@@ -1213,32 +1027,11 @@ VOS_UINT16 PPP_CCP_extcode(PPPFSM_S *pstFsm, UCHAR ucCode, UCHAR ucId, UCHAR *pH
     return VOS_OK;
 }
 
-/* Added start by liutao 38563 at 2004-09-22 V800R002 for PPP压缩移植 */
 
-/*****************************************************************************
- 函 数 名  : PPP_CCP_rresetreq
- 功能描述  : 接受ResetReq消息的处理函数
- 输入参数  : PPPFSM_S *pstFsm
-             UCHAR id
-             UCHAR *pHead
-             UCHAR *pPacket
-             ULONGulLen
-             VOS_UINT32 ulRPIndex
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2004年9月22日
-    作    者   : liutao 38563
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID PPP_CCP_rresetreq (PPPFSM_S *pstFsm, UCHAR id, UCHAR *pHead, UCHAR *pPacket, VOS_UINT32
                         ulLen, VOS_UINT32 ulRPIndex)
 {
-    /* Deleted start by zhudaoming 62333 at 2007-12-06 GGSN9811V9R7C01B02 for L2TP/PPP V9移植 */
     /*GGSN 不支持压缩，V9没有GSPC扣卡，暂时删除此段代码*/
 
 
@@ -1246,48 +1039,19 @@ VOID PPP_CCP_rresetreq (PPPFSM_S *pstFsm, UCHAR id, UCHAR *pHead, UCHAR *pPacket
 
 
 
-    /* Deleted end by zhudaoming 62333 at 2007-12-06 GGSN9811V9R7C01B02 for L2TP/PPP V9移植 */
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_CCP_rresetack
- 功能描述  : 接收Reset ACK消息处理函数
- 输入参数  : PPPFSM_S *pstFsm
-             UCHAR id
-             UCHAR *pPacket
-             ULONGulLen
-             VOS_UINT32 ulRPIndex
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2004年9月22日
-    作    者   : liutao 38563
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID PPP_CCP_rresetack (PPPFSM_S *pstFsm, UCHAR id, UCHAR *pPacket, VOS_UINT32
                         ulLen, VOS_UINT32 ulRPIndex)
 {
     return;
 }
 
-/* Added end by liutao 38563 at 2004-09-22 V800R002 for PPP压缩移植 */
 
 
-/****************************************************************************
-* CREATE DATE  ：2000/06/24                                                 *
-* CREATED BY   ：Shi Yong                                                   *
-* FUNCTION     ：发送RESETREQ请求                                           *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo    :PPP控制块                                   *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_Core_NetworkPhase                                      *
-****************************************************************************/
+
 VOID PPP_CCP_SendResetReq(PPPINFO_S* pstPppInfo)
 {
     return;

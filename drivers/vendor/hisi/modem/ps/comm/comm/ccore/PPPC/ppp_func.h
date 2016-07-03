@@ -1,24 +1,4 @@
-/************************************************************************
- *                                                                      *
- *                             ppp_func.h                               *
- *                                                                      *
- *  Project Code:       VRP3.0                                          *
- *  Create Date:        2000/03/27                                      *
- *  Author:             Deng Yi Ou                                      *
- *  Modify Date:                                                        *
- *  Document:                                                           *
- *  Function:           PPP模块私有函数说明                             *
- *  Others:                                                             *
- *----------------------------------------------------------------------*
- *                                                                      *
- *  Copyright 2000-2002 VRP3.0 Team Beijing Institute HuaWei Tech, Inc. *
- *                      ALL RIGHTS RESERVED                             *
- *                                                                      *
- *----------------------------------------------------------------------*
- *                                                                      *
- *   这个文件包含了PPP模块所有私有函数的申明                            *
- *                                                                      *
- ************************************************************************/
+
 
 #ifndef      _PPP_FUNC_H_
 #define      _PPP_FUNC_H_
@@ -157,7 +137,7 @@ extern VOS_UINT32 PDN_PDNGlobalIndexToPDNScIndex(VOS_UINT32 ulPDNGlobalIndex);
 /***************** 状态机 ******************/
 /* 对外接口 */
 VOS_VOID PPP_FSM_ReceiveEvent (PPPFSM_S* pstFsm, VOS_UINT32 ulCmd, CHAR *pPara) ;
-VOID PPP_FSM_ReceivePacket (PPPFSM_S* pstFsm, UCHAR* pHead, UCHAR* pPacket, VOS_UINT32 ulLen,VOS_UINT32 ulRPIndex) ;/* Modified by liutao 38563 at 2004-09-22 V800R002 for PPP压缩移植 */
+VOID PPP_FSM_ReceivePacket (PPPFSM_S* pstFsm, UCHAR* pHead, UCHAR* pPacket, VOS_UINT32 ulLen,VOS_UINT32 ulRPIndex) ;
 VOID PPP_FSM_Init(PPPFSM_S *pstFsm) ;
 
 /* 外部事件处理 */

@@ -1,16 +1,4 @@
-/******************************************************************************
 
-
-        @(#)Copyright(C)2013,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : ImsaIntraInterface.h
-    Description : 内部模块间接口头文件
-    History     :
-      1.sunbing 00049683    2013-05-28  Draft Enact
-
-
-******************************************************************************/
 
 #ifndef __IMSAINTRAINTERFACE_H__
 #define __IMSAINTRAINTERFACE_H__
@@ -201,13 +189,7 @@ enum IMSA_IP_TYPE_ENUM
 };
 typedef VOS_UINT8 IMSA_IP_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 结构名称: IMSA_PF_TRANS_DIRECTION_ENUM_UINT8
- 结构说明: TFT过滤器方向
- 1.日    期   : 2014年06月116日
-   作    者   : W00209181
-   修改内容   : Added for VTLTE
-*****************************************************************************/
+
 enum IMSA_PF_TRANS_DIRECTION_ENUM
 {
     IMSA_PF_TRANS_DIRECTION_PRE_REL7     = 0x00,             /* 0 - Pre-Release 7 TFT filter (see 3GPP TS 24.008 [8], table 10.5.162) */

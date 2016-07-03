@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : dmac_rx_data.h
-  版 本 号   : 初稿
-  作    者   : huxiaotong
-  生成日期   : 2012年11月20日
-  最近修改   :
-  功能描述   : dmac_rx_data.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年11月20日
-    作    者   : huxiaotong
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __DMAC_RX_DATA_H__
 #define __DMAC_RX_DATA_H__
@@ -115,21 +98,7 @@ extern oal_uint32  dmac_rx_filter_frame_sta(
 extern oal_bool_enum_uint8  dmac_rx_check_mgmt_replay_failure(dmac_rx_ctl_stru  *pst_cb_ctrl);
 
 #if (_PRE_PRODUCT_ID != _PRE_PRODUCT_ID_HI1102_DEV)
-/*****************************************************************************
- 函 数 名  : dmac_rx_fcs_statistic_info
- 功能描述  : 统计接收到的帧的FCS的正确性
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月11日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  dmac_rx_fcs_statistic_info(
                 mac_ieee80211_frame_stru    *pst_frame_hdr,
                 mac_vap_stru                *pst_vap,
@@ -164,21 +133,7 @@ OAL_STATIC OAL_INLINE oal_void  dmac_rx_fcs_statistic_info(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : dmac_rx_get_dscr_info
- 功能描述  : 设置描述符信息，并且将信息存储到对应的netbuf的cb字段中
- 输入参数  : pul_dscr为软件可见的描述符首地址
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月13日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  dmac_rx_get_dscr_info(
                 hal_to_dmac_device_stru    *pst_device,
                 oal_uint32                 *pul_dscr,
@@ -207,21 +162,7 @@ OAL_STATIC OAL_INLINE oal_void  dmac_rx_get_dscr_info(
    // pst_cb_ctrl->st_rx_info.pul_mac_hdr_start_addr   = st_hal_rx_ctl.pul_mac_hdr_start_addr;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_rx_data_ps_process
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月14日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32  dmac_rx_data_ps_process(
                 dmac_vap_stru          *pst_dmac_vap,
                 dmac_user_stru         *pst_dmac_user,
@@ -259,22 +200,7 @@ OAL_STATIC OAL_INLINE oal_uint32  dmac_rx_data_ps_process(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_rx_rssi_rate_stat
- 功能描述  : 接收帧处理接口
- 输入参数  : pst_user : User指针
-             pst_rx_stats : 接收统计量
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月4日
-    作    者   : g00306640
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void dmac_rx_rssi_rate_stat(dmac_user_stru *pst_dmac_user, hal_rx_statistic_stru *pst_rx_stats, mac_device_stru *pst_mac_device)
 {
     hal_to_dmac_device_stru *pst_hal_device;
@@ -290,21 +216,7 @@ OAL_STATIC OAL_INLINE oal_void dmac_rx_rssi_rate_stat(dmac_user_stru *pst_dmac_u
     pst_hal_device->ul_rx_rate = ul_rate_kbps;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_rx_process_data_frame
- 功能描述  : 执行DMAC模块中，接收流程的特性
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月14日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32  dmac_rx_process_data_frame(
                 mac_vap_stru                   *pst_vap,
                 dmac_rx_ctl_stru               *pst_cb_ctrl,
@@ -368,22 +280,7 @@ OAL_STATIC OAL_INLINE oal_uint32  dmac_rx_process_data_frame(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_rx_record_tid
- 功能描述  : 记录最新数据帧的tid,方便wmm动态开关的自动化测试
- 输入参数  :
-             mac_ieee80211_frame_stru:     帖头指针
- 输出参数  :
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月22日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32 dmac_rx_record_tid(mac_vap_stru  *pst_vap, mac_ieee80211_frame_stru  *pst_frame)
 {
     mac_device_stru          *pst_mac_dev;
@@ -417,21 +314,7 @@ OAL_STATIC OAL_INLINE oal_uint32 dmac_rx_record_tid(mac_vap_stru  *pst_vap, mac_
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_rx_update_aggr_mib
- 功能描述  : 更新接收到的mpdu的数目
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月26日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void dmac_rx_update_aggr_mib(mac_vap_stru *pst_vap, oal_uint16 us_mpdu_num)
 {
     if ((0 == us_mpdu_num) || (0 == pst_vap->uc_vap_id))
@@ -442,22 +325,7 @@ OAL_STATIC OAL_INLINE oal_void dmac_rx_update_aggr_mib(mac_vap_stru *pst_vap, oa
     pst_vap->pst_mib_info->st_wlan_mib_counters.ul_dot11MPDUInReceivedAMPDUCount += us_mpdu_num;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_rx_update_mib_11n
- 功能描述  : 更新接收流程中与11n相关的MIB值
- 输入参数  : (1)要操作的vap的指针
-             (2)接收帧对应的控制信息
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月24日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  dmac_rx_update_mib_11n(mac_vap_stru *pst_vap, dmac_rx_ctl_stru *pst_cb_ctrl)
 {
     /* 更新ul_dot11ReceivedAMSDUCount值 */
@@ -502,10 +370,10 @@ OAL_STATIC OAL_INLINE oal_void dmac_rx_pingpong_list_unlock(hal_to_dmac_device_s
   10 函数声明
 *****************************************************************************/
 extern oal_uint32  dmac_rx_process_data_event(frw_event_mem_stru *pst_event_mem);
-extern oal_uint32  dmac_rx_invalid_vap_event(frw_event_mem_stru *pst_event_mem);
 extern oal_uint32  dmac_mac_error_process_event(frw_event_mem_stru *pst_event_mem);
+#if (_PRE_PRODUCT_ID == _PRE_PRODUCT_ID_HI1151)
 extern oal_uint32  dmac_soc_error_process_event(frw_event_mem_stru *pst_event_mem);
-
+#endif
 OAL_STATIC OAL_INLINE oal_uint32  dmac_rx_filter_mpdu(dmac_rx_ctl_stru *pst_cb_ctrl, oal_uint16 us_dscr_num)
 {
     /* 描述符异常:接收到的为A-MSDU帧，同时该描述符非该MPDU的第一个描述符 */

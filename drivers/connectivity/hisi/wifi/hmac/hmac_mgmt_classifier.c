@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : hmac_mgmt_classifier.c
-  版 本 号   : 初稿
-  作    者   : huxiaotong
-  生成日期   : 2012年11月20日
-  最近修改   :
-  功能描述   : HMAC模块管理帧操作函数定义的源文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年11月20日
-    作    者   : huxiaotong
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -57,21 +40,7 @@ OAL_STATIC oal_uint8 g_ucLinklossLogSwitch = 0;
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : hmac_mgmt_tx_action
- 功能描述  : ACTION帧发送
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月10日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_mgmt_tx_action(
                 hmac_vap_stru              *pst_hmac_vap,
                 hmac_user_stru             *pst_hmac_user,
@@ -121,21 +90,7 @@ oal_uint32  hmac_mgmt_tx_action(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_mgmt_tx_priv_req
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月26日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_mgmt_tx_priv_req(
                 hmac_vap_stru              *pst_hmac_vap,
                 hmac_user_stru             *pst_hmac_user,
@@ -172,21 +127,7 @@ oal_uint32  hmac_mgmt_tx_priv_req(
 }
 
 #if 0
-/*****************************************************************************
- 函 数 名  : hmac_mgmt_rx_action
- 功能描述  : 用于处理从wlan接收过来的管理帧，此函数中包含对端发送过来的DELBA
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月14日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  hmac_mgmt_rx_action(
                 hmac_vap_stru          *pst_vap,
                 oal_netbuf_stru        *pst_mgmt_netbuf)
@@ -260,21 +201,7 @@ OAL_STATIC oal_uint32  hmac_mgmt_rx_action(
     return OAL_SUCC;
 }
 #endif
-/*****************************************************************************
- 函 数 名  : hmac_mgmt_rx_delba_event
- 功能描述  : 自身DMAC模块产生DELBA的处理函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月14日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_mgmt_rx_delba_event(frw_event_mem_stru *pst_event_mem)
 {
 
@@ -328,21 +255,7 @@ oal_uint32  hmac_mgmt_rx_delba_event(frw_event_mem_stru *pst_event_mem)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_rx_process_mgmt_event
- 功能描述  : HMAC模块接收WLAN_CRX事件的处理函数
- 输入参数  : pst_event_mem: 事件内存结构体指针
- 输出参数  : 无
- 返 回 值  : 成功或者失败原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月14日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_rx_process_mgmt_event(frw_event_mem_stru *pst_event_mem)
 {
     frw_event_stru                     *pst_event;
@@ -398,21 +311,7 @@ oal_uint32  hmac_rx_process_mgmt_event(frw_event_mem_stru *pst_event_mem)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_mgmt_tbtt_event
- 功能描述  : tbtt事件处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月9日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_mgmt_tbtt_event(frw_event_mem_stru *pst_event_mem)
 {
     frw_event_stru                     *pst_event;
@@ -452,21 +351,7 @@ oal_uint32  hmac_mgmt_tbtt_event(frw_event_mem_stru *pst_event_mem)
     return ul_ret;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_send_del_user_event
- 功能描述  : hmac抛事件删除dmac用户
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月6日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  hmac_send_del_user_event(mac_vap_stru  *pst_mac_vap, oal_uint8 *puc_da)
 {
     frw_event_mem_stru                 *pst_event_del_user;
@@ -499,21 +384,7 @@ OAL_STATIC oal_uint32  hmac_send_del_user_event(mac_vap_stru  *pst_mac_vap, oal_
     FRW_EVENT_FREE(pst_event_del_user);
     return OAL_SUCC;
 }
-/*****************************************************************************
- 函 数 名  : hmac_mgmt_send_disasoc_deauth_event
- 功能描述  : 去关联/去认证事件处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月21日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_mgmt_send_disasoc_deauth_event(frw_event_mem_stru *pst_event_mem)
 {
     frw_event_stru                     *pst_event;
@@ -622,20 +493,7 @@ oal_uint32  hmac_mgmt_send_disasoc_deauth_event(frw_event_mem_stru *pst_event_me
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_proc_disasoc_misc_event
- 功能描述  : HMAC去关联用户处理入口函数
- 输入参数  : pst_event_mem: 事件内存指针
- 输出参数  : 无
- 返 回 值  : OAL_SUCC或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月15日
-    作    者   : zhangyu
-    修改内容   : 新生成函数
-*****************************************************************************/
 oal_uint32  hmac_proc_disasoc_misc_event(frw_event_mem_stru *pst_event_mem)
 {
     frw_event_stru          *pst_event;
@@ -669,7 +527,10 @@ oal_uint32  hmac_proc_disasoc_misc_event(frw_event_mem_stru *pst_event_mem)
     if (g_ucLinklossLogSwitch && (DMAC_DISASOC_MISC_LINKLOSS == pdmac_disasoc_misc_stru->en_disasoc_reason)&& (pst_hmac_vap->station_info.signal > -65))
     {
         wifi_open_bcpu_set(1);
+
+#ifdef PLATFORM_DEBUG_ENABLE
         debug_uart_read_wifi_mem(OAL_TRUE);
+#endif
     }
 #endif
 
@@ -680,7 +541,6 @@ oal_uint32  hmac_proc_disasoc_misc_event(frw_event_mem_stru *pst_event_mem)
         /* 如果有打开cca测试 */
         if (1 == g_st_dmac_test_mng.uc_cca_flag)
         {
-            //l00311403 是不是应该将break;换成return
         }
     }
     #endif
@@ -720,9 +580,7 @@ oal_uint32  hmac_proc_disasoc_misc_event(frw_event_mem_stru *pst_event_mem)
 
         en_is_protected = pst_hmac_user->st_user_base_info.st_cap_info.bit_pmf_active;
 
-        /* BEGIN:DTS2015052810869 STA发现AP信道修改，则删除用户，而不发送去认证帧 */
         if (pdmac_disasoc_misc_stru->en_disasoc_reason != DMAC_DISASOC_MISC_CHANNEL_MISMATCH)
-        /* END:DTS2015052810869 STA发现AP信道修改，则删除用户，而不发送去认证帧 */
         {
             /* 发送去认证帧到AP */
             hmac_mgmt_send_disassoc_frame(&pst_hmac_vap->st_vap_base_info, pst_hmac_user->st_user_base_info.auc_user_mac_addr, MAC_UNSPEC_REASON, en_is_protected);
@@ -739,20 +597,7 @@ oal_uint32  hmac_proc_disasoc_misc_event(frw_event_mem_stru *pst_event_mem)
 }
 
 #ifdef _PRE_WLAN_FEATURE_ROAM
-/*****************************************************************************
- 函 数 名  : hmac_proc_roam_trigger_event
- 功能描述  : HMAC漫游触发处理入口函数
- 输入参数  : pst_event_mem: 事件内存指针
- 输出参数  : 无
- 返 回 值  : OAL_SUCC或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月10日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-*****************************************************************************/
 oal_uint32  hmac_proc_roam_trigger_event(frw_event_mem_stru *pst_event_mem)
 {
     frw_event_stru          *pst_event;

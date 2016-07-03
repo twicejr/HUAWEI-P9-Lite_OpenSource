@@ -89,7 +89,6 @@ ULONG PTPV2_GeneralPktProc(UCHAR* pBuffer, ULONG ulPacketLen, TCPIP_PTP_ADDRINFO
     
     /*获取PTP端口信息 */
     ulRet = PTPV2_GetPortInfo(&stAddrInfo, &pstPortInfo);
-    /*Added by wuling201943,  , 2014/11/20   问题单号:DTS2014102506925 */
     /*目前BC应用中，Hert时钟组是基于物理端口配置PTP功能的，而实际上物理
         端口是Trunk的成员端口。如果后续基于Trunk端口配置PTP，则报文入接口仍然
         是物理端口，导致根据物理端口无法匹配到PTP的配置端口信息。所以在第
@@ -110,7 +109,6 @@ ULONG PTPV2_GeneralPktProc(UCHAR* pBuffer, ULONG ulPacketLen, TCPIP_PTP_ADDRINFO
             }
         }        
     }
-    /* End of Added by wuling201943, 2014/11/20   问题单号:DTS2014102506925 */
     
     if (TCPIP_PTP_OK != ulRet)
     {
@@ -258,8 +256,6 @@ ULONG PTPV2_PktGeneralHeaderCheck(PTPV2_PORT_S* pstPtpPort, PTPV2_MSGHEADER_S* p
         return TCPIP_PTP_ERR_VERSION;
     }
 
-    /*Modified by dutianyi for DTS2014060505599, 2014/6/7, domainNumber已经在入口处检查过了，此处无需再次判断*/
-    /*End of modifying by dutianyi for DTS2014060505599, 2014/6/7, domainNumber已经在入口处检查过了，此处无需再次判断*/
 
     /* flagfield域合法性检查 */
     ulRet = PTPV2_PktFlagfieldCheck(pstPtpPort, (CHAR*)(pstMsgHeader->ucflagField), ulPtpMsgType);
@@ -433,27 +429,7 @@ ULONG PTPV2_OCBuildPktFlagfield(PTPV2_PORT_S* pstPtpPort, PTPV2_MSGHEADER_S* pst
 
 
 
-/******************************************************************************
-*Func Name   : PTPV2_PKT_HeaderCheck
-*Description : PTP消息头合法性检测总入口，所有需要检查头的均调用该接口
-*Input       : PTP_PORT_S       *pstPtpPort   时钟端口控制块指针
-*              PTP_MSGHEADER_S  *pBuffer      报文
-*              ULONG            ulPtpMsgType  报文类型(详见PTP_MSG_TYPE_E)
-*              ULONG            ulPacketLen   接收的报文长度
-*              PTP_ADDRINFO_S   *pstAddrInfo  接收到报文的地址以及UDP信息
 
-*Output      : .
-*Return      : 成功返回PTP_OK，失败返回错误码
-*Caution     :
-*Calls       :
-*Called by   :
-*-----------------------------------------------------------------------------
-*  Modification History
-*  DATE                 NAME           DESCRIPTION
-*  2008-6-5             wangchengyang  Create
-*  2009-4-28  wangchengyang-xujun62830-57575         VISPV1R8C01.消除Vc三级告警
-*  2010-12-21  wangchengyang62830         DTS2010122100198 .
-*******************************************************************************/
 /*
    Bits                                  Octets  Offset
    7     6     5     4   3   2   1   0
@@ -666,18 +642,14 @@ ULONG PTPV2_OverMacSndAnnPkt(VOID *pThis, VOID *pData, VOID *pAddr)
                     /* 将出接口索引填入MBuf的使用者数据 */
                     MBUF_ASSIGN_SEND_IFNET_INDEX(pstMultiPortMbuf, pstMultiPortInfo->ulIfIndex);
 
-                    /*Added by wuling201943,  , 2014/11/11   问题单号:DTS2014111107372 */
                     /*根据和产品讨论新方案,针对不同的接口填写不同的源MAC
                                 当本端MASTER 多个物理接口给对端slave发送报文，导致slave获取的master
                                 源physical地址相同，下发给底软时钟组不能基于源MAC过滤*/
                     pstEthHdr = MBUF_MTOD(pstMultiPortMbuf, ETHARP_ETHERHDR_S*);
                     (VOID)TCPIP_GetEtharpMac(pstMultiPortInfo->ulIfIndex, ucSrcMacAddr);
                     (VOID)TCPIP_Mem_Copy((UCHAR *)pstEthHdr->ucHdrSrcMacAddr, PTPV2_MACADDRLEN, ucSrcMacAddr, PTPV2_MACADDRLEN);
-                    /* End of Added by wuling201943, 2014/11/11   问题单号:DTS2014111107372 */
                     
-                    /*Add by wuling 2014-10-25 for DTS2014101506144  报文追踪对应每一个物理接口*/
                     {
-                        /*Begin Mod by wuing 00201943 for DTS2014101506444 on 2014-10-27, 获取报文从PTP报文开始*/
                         ULONG ulPtpPktLen = pstMultiPortMbuf->ulTotalDataLength - ulLength;
                         UCHAR *pucPtpPkt  = MBUF_MTOD(pstMultiPortMbuf, UCHAR*);
                         
@@ -688,7 +660,6 @@ ULONG PTPV2_OverMacSndAnnPkt(VOID *pThis, VOID *pData, VOID *pAddr)
                                              (VOID *)ucSrcMacAddr, PTPV2_MACADDRLEN);
                         if (NULL != g_pfPtpV2CapturePktFunc)
                         {
-                            /*modified by wuling for DTS2014102506961 传入接口对应的ptp实际端口号 2014-11-19 --start*/
                             (VOID)g_pfPtpV2CapturePktFunc(TCPIP_PTP_PKT_OUT, pucPtpPkt, 
                                     ulPtpPktLen, &stMultiPortAddrInfo, pstMultiPortInfo->pstSubPortInfo->usPortNo);
                         }
@@ -708,16 +679,13 @@ ULONG PTPV2_OverMacSndAnnPkt(VOID *pThis, VOID *pData, VOID *pAddr)
         }
     }
 
-    /*Add by wuling 2014-10-25 for DTS2014101506144 报文追踪对应每一个物理接*/
     {
-        /*Begin Mod by wuling 00201943 for DTS2014101506444 on 2014-10-27, 获取报文从PTP报文开始*/
         ULONG ulPtpPktLen = pstMbuf->ulTotalDataLength - ulLength;
         UCHAR *pucPtpPkt  = MBUF_MTOD(pstMbuf, UCHAR*);
 
         pucPtpPkt += ulLength;        
         if (NULL != g_pfPtpV2CapturePktFunc)
         {
-            /*modified by wuling for DTS2014102506961 传入接口对应的ptp实际端口号 2014-11-19 --start*/
             (VOID)g_pfPtpV2CapturePktFunc(TCPIP_PTP_PKT_OUT, pucPtpPkt, 
                         ulPtpPktLen, pstAddrInfo, pstPortInfo->pstSubPortInfo->usPortNo);
         }

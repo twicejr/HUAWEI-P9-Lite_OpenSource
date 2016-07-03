@@ -42,8 +42,6 @@ typedef struct tagOSPF_NETWORK_LSA_CLASH_WARNING_S
     ULONG szClashRouterID[OSPF_CLASH_ROUTER_MAX];
 }OSPF_NETWORK_LSA_CLASH_WARNING_S;
 
-/*Added by guojianjun178934, 【DOPRA IP V3R2C10-同步问题单-DTS2014081600138】【OSPF可靠性提升专项】同一区域内Router-ID数量过多触发路由计算上限，导致路由生成失败 , 2014/9/25   问题单号:DTS2014092408371  */
-/*Added by guojianjun178934, 【检视发现问题】分组核心网控制域产品维护专项_OSPF可靠性提升专项, 2014/6/30   问题单号:DTS2014062803093 */
 /*路由计算抑制通知*/
 typedef struct tagOSPF_ROUTE_CALCULATE_THRESHOLD_NOTIFY
 {
@@ -53,8 +51,6 @@ typedef struct tagOSPF_ROUTE_CALCULATE_THRESHOLD_NOTIFY
     ULONG ulRouterLSACount;             /*当前区域Router LSA总数*/
     ULONG ulNetworkLSACount;           /* 当前区域Network LSA总数*/
 }OSPF_ROUTE_CALCULATE_THRESHOLD_NOTIFY;
-/* End of Added by guojianjun178934, 2014/6/30   问题单号:DTS2014062803093 */
-/* End of Added by guojianjun178934, 2014/9/25   问题单号:DTS2014092408371  */
 
 #ifdef __cplusplus
 }

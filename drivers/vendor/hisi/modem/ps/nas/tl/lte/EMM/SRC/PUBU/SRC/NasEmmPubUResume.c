@@ -139,34 +139,7 @@ VOS_VOID  NAS_EMM_SaveMmcResumePara( VOS_VOID )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsAnySsNoCellAvailMsgRrcRsumeInd
- Description     : LMM收到解挂消息，要先给ESM和ERABM解挂，等ERABM解挂
-                   结束，能够数传时，再通知MMC解挂
 
-                    MMC    ERABM/ESM        LMM         LRRC
-                    |           |           |           |
-                    |           |           |   RSM_IND |
-                    |           |  RSM_IND  | <-------- |
-                    |           | <-------- |           |
-                    |           | <-------- |           |
-                    |           |           |           |
-                    |           | --------> |           |
-                    |           | --------> |           |
-                    |    RSM_IND|           |           |
-                    |  <------------------- | RSM_RSP   |
-                    |           |           | --------> |
-                    |           |           |           |
-                    |           |           |           |
-
- Input           : None
- Output          : None
- Return          : VOS_UINT32
-
- History         :
-    1.Hanlufeng 41410      2011-4-23  Draft Enact
-    2.zhengjunyan 00148421 2011-09-13 DTS2011082202543
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsAnySsNoCellAvailMsgRrcRsumeInd(
                                         VOS_UINT32  ulMsgId,
                                         VOS_VOID   *pMsgStru )
@@ -612,17 +585,7 @@ VOS_VOID  NAS_EMM_MmcRsmGetSecuPara( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsSuspendSsWaitEndMsgLrrcResumeInd
- Description     : 收到 LRRC 解挂指示，类型应该为回退
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-4-25  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsSuspendSsWaitEndMsgLrrcResumeInd(
                                         VOS_UINT32  ulMsgId,
                                         VOS_VOID   *pMsgStru  )
@@ -642,17 +605,7 @@ VOS_UINT32  NAS_EMM_MsSuspendSsWaitEndMsgLrrcResumeInd(
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegSsNoCellAvailMsgRrcSecuParaInd
- Description     : GU->L的切换时，LRRC要获取安全参数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-4-25  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsRegSsNoCellAvailMsgRrcSecuParaInd(
                                         VOS_UINT32  ulMsgId,
                                         VOS_VOID   *pMsgStru )
@@ -677,18 +630,7 @@ VOS_UINT32  NAS_EMM_MsRegSsNoCellAvailMsgRrcSecuParaInd(
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegSsNoCellAvailMsgRrcRelInd
- Description     : 从G/U模向 L 模切换失败;
-                   L->GU的切换完成，LMM进入 NO CELL状态，会收到REL IND信息
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-5-31  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsRegSsNoCellAvailMsgRrcRelInd(
                                         VOS_UINT32  ulMsgId,
                                         VOS_VOID   *pMsgStru )
@@ -727,17 +669,7 @@ VOS_UINT32  NAS_EMM_MsRegSsNoCellAvailMsgRrcRelInd(
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsResumeSsRrcRsmWaitOtherMsgRsmRsp
- Description     : ESM和ERABM响应后，给MMC和RRC发恢复；
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-4-23  Draft Enact
-    2.sunbing 49683             2012-5-29  删除无效的ESM/RABM回复处理，CM层不会 有失败回复
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsResumeSsRrcRsmWaitOtherMsgRsmRsp(
                                         VOS_UINT32  ulMsgId,
                                         VOS_VOID   *pMsgStru  )
@@ -813,19 +745,7 @@ VOS_UINT32  NAS_EMM_MsResumeSsRrcRsmWaitOtherMsgWtOtherTimerExp(
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_PreProcSysWhenResumingReverse
- Description     : 对于挂起过程中回退的场景，收到RESUME后，继续收到SYS后，
-                   要根据挂起前的状态，转换到两种NO CELL状态或NO IMSI状态。
-                   该函数的调用点在预处理系统消息处；
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421 & Hanlufeng 41410  2011-4-25  Draft Enact
-    2.zhengjunyan 00148421  2011-11-30  DTS20111112801762
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_PreProcSysWhenResumingReverse(
                             const EMMC_EMM_SYS_INFO_IND_STRU *pstsysinfo )
 {
@@ -922,17 +842,7 @@ VOS_VOID  NAS_EMM_ReverseStateChng( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ReverseStateChngAsPlmnInd
- Description     : 由于PLMN IND消息，且恢复类型是回退类型时的状态转换
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong 00150010      2012-12-22  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ReverseStateChngAsPlmnInd( VOS_VOID )
 {
     NAS_EMM_PUBU_LOG1_INFO("NAS_EMM_ReverseStateChng: CurState = ",
@@ -968,17 +878,7 @@ VOS_VOID  NAS_EMM_ReverseStateChngAsPlmnInd( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_PreProcSysInfoReselReverse
- Description     : 重选回退收到LRRC_LMM_SYS_INFO_IND进入状态机前预处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-11-30  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_PreProcSysInfoReselReverse(
                                    const EMMC_EMM_SYS_INFO_IND_STRU *pstsysinfo )
 {
@@ -1095,18 +995,7 @@ VOS_UINT32  NAS_EMM_PreProcSysInfoReselReverse(
     return ulRslt;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_PreProcSysInfoHoAndCcoReverse
- Description     : 重选回退收到LRRC_LMM_SYS_INFO_IND进入状态机前预处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2012-5-30  Draft Enact
-    2.lihong00150010      2012-12-20 Modify:Emergency
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_PreProcSysInfoHoAndCcoReverse(
                                    const EMMC_EMM_SYS_INFO_IND_STRU *pstsysinfo )
 {
@@ -1296,18 +1185,7 @@ VOS_VOID  NAS_EMM_GU2LNoEpsBearProc(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsResumeSsRrcOriWaitSysInfoIndMsgMmcPlmnInd
- Description     :
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2011-6-15  Draft Enact
-    2.lihong 00150010     2012-12-22 Modify:DTS2012121306127，系统消息机制变更
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsResumeSsRrcOriWaitSysInfoIndMsgMmcPlmnInd
 (
     VOS_UINT32  ulMsgId,
@@ -1376,17 +1254,7 @@ VOS_UINT32  NAS_EMM_MsResumeSsRrcOriWaitSysInfoIndMsgMmcPlmnInd
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsResumeSsRrcOriWaitSysInfoIndMsgMmcDetachReq
- Description     : RRC触发解挂等系统消息过程中收到MMC的DETACH
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.sunjitan 00193151      2013-12-30  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsResumeSsRrcOriWaitSysInfoIndMsgMmcDetachReq
 (
     VOS_UINT32                          ulMsgId,
@@ -1474,16 +1342,7 @@ VOS_UINT32  NAS_EMM_MsResumeSsRrcOriWaitSysInfoIndMsgMmcDetachReq
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcSuitSysWhenRrcOriRsmGu2LReg
- Description     : RRC触发GU到L的异系统变换，处于REG态下收到正常系统消息的处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-3-25  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ProcSuitSysWhenRrcOriRsmGu2LReg(VOS_VOID)
 {
 
@@ -1507,16 +1366,7 @@ VOS_VOID  NAS_EMM_ProcSuitSysWhenRrcOriRsmGu2LReg(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsResumeSsRrcOriWaitSysInfoIndMsgAnyCellOrForbidden
- Description     : 在回复等待RRC的系统消息状态收到ANYCELL或者被禁的系统消息
- Input           : const EMMC_EMM_SYS_INFO_IND_STRU   *pstsysinfo
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong 00150010      2014-01-23  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_EMM_MsResumeSsRrcOriWaitSysInfoIndMsgAnyCellOrForbidden
 (
     const EMMC_EMM_SYS_INFO_IND_STRU   *pstsysinfo
@@ -1562,16 +1412,7 @@ VOS_VOID  NAS_EMM_MsResumeSsRrcOriWaitSysInfoIndMsgAnyCellOrForbidden
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_IsHoIgnoreForbSysInfo
- Description     :
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    lifuxin 00253982 2015-4-25  初稿
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_IsHoIgnoreForbSysInfo(
                      EMMC_EMM_SYS_INFO_IND_STRU         *pstsysinfo)
 {
@@ -1611,21 +1452,7 @@ VOS_UINT32  NAS_EMM_IsHoIgnoreForbSysInfo(
     return NAS_EMM_NO;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsResumeSsRrcOriWaitSysInfoIndMsgSysInfoInd
- Description     : 状态机中，此状态下收到系统消息，一定是从GU变换过来的过程。
-                   回退类型的处理，在预处理中就回退到 NO CELL状态去了，不会
-                   进入这个状态；
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.Hanlufeng 41410      2011-4-25  Draft Enact
-    2.sunjitan 00193151    2012-02-02 Modify for UE radio capability
-    3.sunjitan 00193151    2013-01-22 DCM对于GU到L的切换要求不考虑被禁TA的修改
-    4.lihong 00150010      2012-12-19 Modify:Emergency
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsResumeSsRrcOriWaitSysInfoIndMsgSysInfoInd(
                                         VOS_UINT32  ulMsgId,
                                         VOS_VOID   *pMsgStru  )
@@ -1721,17 +1548,7 @@ VOS_UINT32  NAS_EMM_MsResumeSsRrcOriWaitSysInfoIndMsgSysInfoInd(
 
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsResumeSsRrcOriWaitSysInfoIndMsgAreaLostInd
- Description     : RESUME+RRCORI_WAIT_SYS_INFO状态收到丢网消息处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-4-25  Draft Enact
-    2.leili 00132387            2011-11-30 modify
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsResumeSsRrcOriWaitSysInfoIndMsgAreaLostInd
 (
     VOS_UINT32      ulMsgId,
@@ -1803,7 +1620,6 @@ VOS_UINT32  NAS_EMM_MsResumeSsRrcOriWaitSysInfoIndMsgAreaLostInd
     }
     return NAS_LMM_MSG_HANDLED;
 }
-/* leixiantiao 00258641 重构代码降低圈复杂度 2014-7-30 begin */
 
 VOS_UINT32 NAS_EMM_IsLauOrComRauOrSrvccHappenedWithCsPsUeMode(VOS_VOID)
 {
@@ -1815,16 +1631,7 @@ VOS_UINT32 NAS_EMM_IsLauOrComRauOrSrvccHappenedWithCsPsUeMode(VOS_VOID)
     }
     return NAS_EMM_NO;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_IsG2LAndGmmSuspendMmcOri
- Description     : DTS2015122100087去掉方向判断
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.yanglei 00307272      2015-12-23 Draft Enact
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_IsG2LAndGmmSuspendWithCsPsUeMode(VOS_VOID)
 {
     if ((GMM_LMM_GPRS_SUSPENSION == NAS_LMM_GetEmmInfoPsState())
@@ -1835,7 +1642,6 @@ VOS_UINT32 NAS_EMM_IsG2LAndGmmSuspendWithCsPsUeMode(VOS_VOID)
     return NAS_EMM_NO;
 }
 
-/* leixiantiao 00258641 重构代码降低圈复杂度 2014-7-30 edn */
 
 
 VOS_UINT32 NAS_EMM_IsEmcCsfbHappenedAndLaiChangWithCsPsUeMode(VOS_VOID)
@@ -1983,14 +1789,12 @@ VOS_VOID  NAS_EMM_RrcResumeReselTypeSetTauStartCause(VOS_VOID  )
     /* 获取TIN值 */
     enTinType = NAS_EMM_GetTinType();
 
-    /* leixiantiao 00258641 重构代码降低圈复杂度 2014-7-30 begin */
     if(NAS_EMM_YES == NAS_EMM_IsLauOrComRauOrSrvccHappenedWithCsPsUeMode())
     {
         NAS_EMM_TAU_LOG_INFO("NAS_EMM_RrcResumeReselTypeSetTauStartCause:LAU OR COMBINED RAU");
         TLPS_PRINT2LAYER_INFO(NAS_EMM_RrcResumeReselTypeSetTauStartCause_ENUM,LNAS_EMM_LAU_OR_COMB_RAU);
         NAS_LMM_SetEmmInfoRegDomain(NAS_LMM_REG_DOMAIN_PS);
     }
-    /* leixiantiao 00258641 重构代码降低圈复杂度 2014-7-30 end */
 
     if (NAS_EMM_YES == NAS_EMM_IsEmcCsfbHappenedAndLaiChangWithCsPsUeMode())
     {
@@ -2043,7 +1847,6 @@ VOS_VOID  NAS_EMM_RrcResumeReselTypeSetTauStartCause(VOS_VOID  )
     /* c)when the UE performs an intersystem change from A/Gb mode to S1 mode and
          the EPS services were previously suspended in A/Gb mode;
          这个条件时联合TAU所独有的 */
-    /* leixiantiao 00258641 重构代码降低圈复杂度 2014-7-30 begin */
     if (NAS_EMM_YES == NAS_EMM_IsG2LAndGmmSuspendWithCsPsUeMode())
     {
         NAS_EMM_TAU_LOG_INFO("NAS_EMM_RrcResumeReselTypeSetTauStartCause:EPS service suspended init tau");
@@ -2052,7 +1855,6 @@ VOS_VOID  NAS_EMM_RrcResumeReselTypeSetTauStartCause(VOS_VOID  )
         NAS_LMM_SetEmmInfoTriggerTauSysChange(NAS_EMM_YES);
         return;
     }
-    /* leixiantiao 00258641 重构代码降低圈复杂度 2014-7-30 end */
 
 
     /*q)When the UE performs an intersystem change from A/Gb mode to S1 mode and the TIN indicates "RAT-related TMSI",
@@ -2160,16 +1962,7 @@ VOS_VOID  NAS_EMM_RrcResumeRedirTypeSetTauStartCause(VOS_VOID )
     }
     return;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_MsResumeSsRrcOriWaitSysInfoIndMsgWtSysInfoTimerExpHoProc
- Description     : 对于GU2L的场景，根据激活前状态进入NO CELL状态或NO IMSI状态
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leixiantiao 00258641      2014-7-30  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_EMM_MsResumeSsRrcOriWaitSysInfoIndMsgWtSysInfoTimerExpHoProc(VOS_VOID)
 {
     /*对于GU2L的场景，根据激活前状态进入NO CELL状态或NO IMSI状态 */
@@ -2204,17 +1997,7 @@ VOS_VOID  NAS_EMM_MsResumeSsRrcOriWaitSysInfoIndMsgWtSysInfoTimerExpHoProc(VOS_V
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsResumeSsRrcOriWaitSysInfoIndMsgWtSysInfoTimerExp
- Description     : 根据激活类型进行不同的处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-4-25  Draft Enact
-    2.leili 00132387            2011-11-30 modify
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsResumeSsRrcOriWaitSysInfoIndMsgWtSysInfoTimerExp(
                                         VOS_UINT32  ulMsgId,
                                         VOS_VOID   *pMsgStru  )
@@ -2250,9 +2033,7 @@ VOS_UINT32  NAS_EMM_MsResumeSsRrcOriWaitSysInfoIndMsgWtSysInfoTimerExp(
                 break;
         /*对于GU2L的场景，根据激活前状态进入NO CELL状态或NO IMSI状态 */
         case    NAS_LMM_SYS_CHNG_TYPE_HO:
-                /* leixiantiao 00258641 重构函数降低圈复杂度 begin */
                 NAS_EMM_MsResumeSsRrcOriWaitSysInfoIndMsgWtSysInfoTimerExpHoProc();
-                /* leixiantiao 00258641 重构函数降低圈复杂度 end */
                 break;
         case    NAS_LMM_SYS_CHNG_TYPE_RSL:
                 if (EMM_MS_REG == NAS_EMM_GetMsBefResume())
@@ -2308,20 +2089,7 @@ VOS_UINT32  NAS_EMM_MsResumeSsRrcOriWaitSysInfoIndMsgWtSysInfoTimerExp(
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsResumeSsRrcOriWaitSysInfoIndMsgRrcRelInd
- Description     : RESUME过程等待系统消息时，收到REL_IND，应该是
-                   切换回退，或CCO类型的回退，
-                   改变连接状态，并通知MMC即可;
-                   然后进入标准的LTE模式继续等待SYS或丢网消息
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-4-25  Draft Enact
-    2.leili 00132387            2011-11-30 modify
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsResumeSsRrcOriWaitSysInfoIndMsgRrcRelInd(
                                         VOS_UINT32  ulMsgId,
                                         VOS_VOID   *pMsgStru  )
@@ -2428,17 +2196,7 @@ VOS_UINT32  NAS_EMM_MsResumeSsRrcOriMsgT3412Exp
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsResumeSsRrcOriWaitSysInfoIndMsgBearStatusReq
- Description     : 收到承载状态请求消息处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2011-11-22  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsResumeSsRrcOriWaitSysInfoIndMsgBearStatusReq
 (
     VOS_UINT32  ulMsgId,
@@ -2776,18 +2534,7 @@ VOS_UINT32 NAS_EMM_ProcHoSysCommonCheckTauFlag( VOS_VOID )
     return NAS_EMM_NO;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcGu
- Description     : 处理注册态下重选类型的解挂.
-                   收到系统消息后，两种可能: TAU, 无动作。
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387     2012-03-22  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ProcConnGu2LReselect( VOS_VOID )
 {
     GMM_LMM_PACKET_MM_STATE_ENUM_UINT32 enPacketMmState = GMM_LMM_PACKET_MM_STATE_BUTT;
@@ -2820,20 +2567,7 @@ VOS_VOID  NAS_EMM_ProcConnGu2LReselect( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcSysWhenRsmGu2LRegReselect
- Description     : 处理注册态下重选类型的解挂.
-                   收到系统消息后，两种可能: TAU, 无动作。
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010     2011-08-15  Draft Enact
-    2.wangchen  00209181        2013-10-24  Modify
-    3.lihong00150010     2012-12-18  Modify:Emergency
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ProcSysWhenRsmGu2LRegReselect( VOS_VOID )
 {
     MMC_LMM_TIN_TYPE_ENUM_UINT32        enTinType       = MMC_LMM_TIN_INVALID;
@@ -2915,7 +2649,6 @@ VOS_VOID  NAS_EMM_ProcSysWhenRsmGu2LRegReselect( VOS_VOID )
     /* For case c, if the TIN indicates "RAT-related TMSI" and the EPS services were
     not resumed before returning to S1 mode, the UE shall set the TIN to "P-TMSI" before
     initiating the combined tracking area updating procedure*/
-    /* leixiantiao 00258641 重构代码降低圈复杂度 2014-7-30 begin */
     if (NAS_EMM_YES == NAS_EMM_IsG2LAndGmmSuspendWithCsPsUeMode())
     {
         NAS_EMM_TAU_LOG_INFO("NAS_EMM_ProcSysWhenRsmGu2LRegReselect:EPS service suspended init tau");
@@ -2925,13 +2658,11 @@ VOS_VOID  NAS_EMM_ProcSysWhenRsmGu2LRegReselect( VOS_VOID )
         return ;
     }
 
-    /* leixiantiao 00258641 重构代码降低圈复杂度 2014-7-30 end */
     /* d)when the UE performs an intersystem change from A/Gb or Iu mode to S1 mode,
          and the UE previously either performed a location area update procedure
          or a combined routing area update procedure in A/Gb or Iu mode,
          in order to re-establish the SGs association. In this case the EPS update
          type IE shall be set to "combined TA/LA updating with IMSI attach"; */
-    /* leixiantiao 00258641 重构代码降低圈复杂度 2014-7-30 begin */
     if (NAS_EMM_YES == NAS_EMM_IsLauOrComRauOrSrvccHappenedWithCsPsUeMode())
     {
         NAS_EMM_TAU_LOG_INFO("NAS_EMM_ProcSysWhenRsmGu2LRegReselect:LAU or Combined Rau init tau");
@@ -2948,7 +2679,6 @@ VOS_VOID  NAS_EMM_ProcSysWhenRsmGu2LRegReselect( VOS_VOID )
         NAS_LMM_SetEmmInfoRegDomain(NAS_LMM_REG_DOMAIN_PS);
     }
 
-    /* leixiantiao 00258641 重构代码降低圈复杂度 2014-7-30 end */
     /*q)When the UE performs an intersystem change from A/Gb mode to S1 mode and the TIN indicates "RAT-related TMSI",
     but the UE is required to perform tracking area updating for IMS voice termination as specified in 3GPP TS 24.008 [13],
     annex P.4*/
@@ -3003,20 +2733,7 @@ VOS_VOID  NAS_EMM_ProcSysWhenRsmGu2LRegReselect( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcSysWhenRsmGu2LRegRedirect
- Description     : 处理注册态下重定向类型的解挂.
-                   收到系统消息后，两种可能: TAU, 无动作。
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010     2011-08-15  Draft Enact
-    2.sunjitan 00193151  2012-07-12 Modify: 删除对定时器的判断
-    3.wangchen  00209181        2013-10-24  Modify
-    4.lihong00150010     2012-12-18  Modify:Emergency
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ProcSysWhenRsmGu2LRegRedirect( VOS_VOID )
 {
     MMC_LMM_TIN_TYPE_ENUM_UINT32            ulTinType   = MMC_LMM_TIN_INVALID;
@@ -3066,7 +2783,6 @@ VOS_VOID  NAS_EMM_ProcSysWhenRsmGu2LRegRedirect( VOS_VOID )
     /* c)when the UE performs an intersystem change from A/Gb mode to S1 mode and
          the EPS services were previously suspended in A/Gb mode;
          这个条件时联合TAU所独有的 */
-    /* leixiantiao 00258641 重构函数降低圈复杂度 2014-7-30 begin */
     if (NAS_EMM_YES == NAS_EMM_IsG2LAndGmmSuspendWithCsPsUeMode())
     {
         NAS_EMM_TAU_LOG_INFO("NAS_EMM_ProcSysWhenRsmGu2LRegRedirect:EPS service suspended init tau");
@@ -3075,14 +2791,12 @@ VOS_VOID  NAS_EMM_ProcSysWhenRsmGu2LRegRedirect( VOS_VOID )
         NAS_EMM_TAU_StartTauForInterRat(NAS_EMM_TAU_START_CAUSE_OTHERS, NAS_LMM_OM_TAU_START_TYPE_GSM_PS_SUSPEND);
         return ;
     }
-    /* leixiantiao 00258641 重构函数降低圈复杂度 2014-7-30 end */
 
     /* d)when the UE performs an intersystem change from A/Gb or Iu mode to S1 mode,
          and the UE previously either performed a location area update procedure
          or a combined routing area update procedure in A/Gb or Iu mode,
          in order to re-establish the SGs association. In this case the EPS update
          type IE shall be set to "combined TA/LA updating with IMSI attach"; */
-    /* leixiantiao 00258641 重构函数降低圈复杂度 2014-7-30 begin */
     if (NAS_EMM_YES == NAS_EMM_IsLauOrComRauOrSrvccHappenedWithCsPsUeMode())
     {
         NAS_EMM_TAU_LOG_INFO("NAS_EMM_ProcSysWhenRsmGu2LRegRedirect:LAU or Combined Rau init tau");
@@ -3098,7 +2812,6 @@ VOS_VOID  NAS_EMM_ProcSysWhenRsmGu2LRegRedirect( VOS_VOID )
         TLPS_PRINT2LAYER_INFO(NAS_EMM_ProcSysWhenRsmGu2LRegRedirect_ENUM,LNAS_EMM_EMC_CSFB_LAI_CHG);
         NAS_LMM_SetEmmInfoRegDomain(NAS_LMM_REG_DOMAIN_PS);
     }
-    /* leixiantiao 00258641 重构函数降低圈复杂度 2014-7-30 end */
     /*q)When the UE performs an intersystem change from A/Gb mode to S1 mode and the TIN indicates "RAT-related TMSI",
     but the UE is required to perform tracking area updating for IMS voice termination as specified in 3GPP TS 24.008 [13],
     annex P.4*/
@@ -3156,16 +2869,7 @@ VOS_VOID  NAS_EMM_ProcSysWhenRsmGu2LRegRedirect( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcSysWhenRsmGu2LRegCco
- Description     : 处理注册态下CCO类型的解挂,收到系统消息后TAU。
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.sunjitan 00193151     2015-03-15  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ProcSysWhenRsmGu2LRegCco( VOS_VOID )
 {
     if (NAS_EMM_YES == NAS_EMM_IsPtmsiTauActiveFlagSatified())
@@ -3198,19 +2902,7 @@ VOS_VOID  NAS_EMM_ProcSysWhenRsmGu2LRegCco( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcSysWhenRsmGu2LHo
- Description     : 切换的系统变换，发起TAU
-                   5.5.3.2.2  l)when the UE reselects an E-UTRAN cell while it
-                   was in GPRS READY state or PMM-CONNECTED mode;
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.HanLufeng 41410      2011-4-26  Draft Enact
-    2.wangchen 00209181    2013-10-24 Modify
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ProcSysWhenRsmGu2LHo( VOS_VOID )
 {
     MMC_LMM_TIN_TYPE_ENUM_UINT32            ulTinType   = MMC_LMM_TIN_INVALID;
@@ -3400,16 +3092,7 @@ VOS_VOID  NAS_EMM_ProcSuitSysWhenRsmGu2LReg(VOS_VOID)
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcSuitSysWhenRrcOriRsmGu2LDeReg
- Description     : RRC触发GU到L的异系统变换，处于DEREG态下收到正常系统消息的处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.sunjitan 00193151      2012-7-12  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ProcSuitSysWhenRrcOriRsmGu2LDeReg(VOS_VOID)
 {
     VOS_UINT32                          ulSendResult = NAS_EMM_FAIL;
@@ -3433,16 +3116,7 @@ VOS_VOID  NAS_EMM_ProcSuitSysWhenRrcOriRsmGu2LDeReg(VOS_VOID)
 
     return;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcSuitSysWhenMmcOriRsmGu2LDeReg
- Description     : MMC触发GU到L的异系统变换，处于DEREG态下收到正常系统消息的处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.sunjitan 00193151      2012-7-12  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ProcSuitSysWhenMmcOriRsmGu2LDeReg(VOS_VOID)
 {
     VOS_UINT32                          ulSendResult;
@@ -3499,17 +3173,7 @@ VOS_VOID  NAS_EMM_ProcSuitSysWhenMmcOriRsmGu2LDeReg(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsResumeSsMmcOriWaitSysInfoIndMsgMmcPlmnInd
- Description     : 收到搜网消息的处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili     00132387     2011-11-21  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsResumeSsMmcOriWaitSysInfoIndMsgMmcPlmnInd
 (
     VOS_UINT32  ulMsgId,
@@ -3555,18 +3219,7 @@ VOS_UINT32  NAS_EMM_MsResumeSsMmcOriWaitSysInfoIndMsgMmcPlmnInd
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ResumeProcPTMSITau
- Description     : 处理TIN值为P-TMSI时触发的TAU
 
- Input           : None
- Output          : None
- Return          : VOS_UINT32
-
- History         :
-    1.leili 00132387      2012-2-28  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ResumeProcPTMSITau( VOS_VOID )
 {
 
@@ -3592,17 +3245,7 @@ VOS_VOID  NAS_EMM_ResumeProcPTMSITau( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MmcResumeSetTauStartCause
- Description     : MMC激活L模后，需要设置TAU启动原因的条件
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2011-11-22  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_MmcResumeSetTauStartCause(VOS_VOID)
 {
     MMC_LMM_TIN_TYPE_ENUM_UINT32            enTinType   = MMC_LMM_TIN_BUTT;
@@ -3668,17 +3311,7 @@ VOS_VOID  NAS_EMM_MmcResumeSetTauStartCause(VOS_VOID)
 
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsResumeSsMmcOriWaitSysInfoIndMsgAreaLostInd
- Description     : 收到丢网消息处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2011-11-22  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsResumeSsMmcOriWaitSysInfoIndMsgAreaLostInd
 (
     VOS_UINT32  ulMsgId,
@@ -3728,17 +3361,7 @@ VOS_UINT32  NAS_EMM_MsResumeSsMmcOriWaitSysInfoIndMsgAreaLostInd
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsResumeSsMmcOriWaitSysInfoIndMsgAppDetachReq
- Description     : MMC触发的激活等系统消息过程中收到MMC的DETACH消息处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.sunjitan 00193151      2013-12-30  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsResumeSsMmcOriWaitSysInfoIndMsgMmcDetachReq
 (
     VOS_UINT32                          ulMsgId,
@@ -3918,17 +3541,7 @@ VOS_UINT32   NAS_EMM_MmcOriResumeCheckTauFlag(VOS_VOID)
     return NAS_EMM_NO;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MmcOriResumeSysInfoProc
- Description     : MMC激活L模时收到系统消息触发TAU的处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387     2011-11-22  Draft Enact
-    2.sunjitan 00193151  2012-07-12 Modify: Last TA维护，修改触发TAU和ATTACH的判定逻辑
-*****************************************************************************/
 VOS_VOID  NAS_EMM_MmcOriResumeSysInfoProc(VOS_VOID)
 {
     /* 澳电定制需求 3402定时器启动期间在GU下用户指定搜网到L立即发起注册 */
@@ -3951,16 +3564,7 @@ VOS_VOID  NAS_EMM_MmcOriResumeSysInfoProc(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcSuitSysWhenMmcOriRsmGu2LReg
- Description     : MMC触发GU到L的异系统变换，处于REG态下收到正常系统消息的处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-3-25  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ProcSuitSysWhenMmcOriRsmGu2LReg(VOS_VOID)
 {
 
@@ -4095,17 +3699,7 @@ VOS_UINT32  NAS_EMM_MsResumeSsMmcOriWaitSysInfoIndMsgSysInfoInd
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsResumeSsMmcOriWaitSysInfoIndMsgT3412Exp
- Description     : 收到T3412超时处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2011-11-22  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsResumeSsMmcOriWaitSysInfoIndMsgT3412Exp
 (
     VOS_UINT32  ulMsgId,
@@ -4137,17 +3731,7 @@ VOS_UINT32  NAS_EMM_MsResumeSsMmcOriWaitSysInfoIndMsgT3412Exp
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsResumeSsMmcOriWaitSysInfoIndMsgBearStatusReq
- Description     : 收到承载状态请求消息处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2011-11-22  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsResumeSsMmcOriWaitSysInfoIndMsgBearStatusReq
 (
     VOS_UINT32  ulMsgId,
@@ -4178,19 +3762,7 @@ VOS_UINT32  NAS_EMM_MsResumeSsMmcOriWaitSysInfoIndMsgBearStatusReq
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsResumeReverseMsgRrcAccessGrantInd
- Description     : Resume.WtCmResume
-                   Resume.RrcOriWtSysInfo
-                   两个状态下收到LRRC_LMM_ACCESS_GRANT_IND消息的处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-11-29  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsResumeReverseMsgRrcAccessGrantInd(
                                         VOS_UINT32  ulMsgId,
                                         VOS_VOID   *pMsgStru  )
@@ -4374,18 +3946,7 @@ VOS_UINT32  NAS_LMM_PreProcMmcImsVoiceCapChangeNotify(MsgBlock *    pMsg )
 
 
 
-/*****************************************************************************
- Function Name   : NAS_LMM_PreProcMmcImsVoiceDomainChangeInd
- Description     : IMS voice domain通知
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.wangchen 00209181 2015-02-26  Draft Enact
-    2.yanglei  00307272 2015-07-28  可维可测，设置VOICE DOMAIN时上报UE能力
-
-*****************************************************************************/
 VOS_UINT32  NAS_LMM_PreProcMmcImsVoiceDomainChangeInd(MsgBlock *    pMsg )
 {
 
@@ -4552,17 +4113,7 @@ VOS_UINT32  NAS_LMM_PreProcMmcImsVoiceDomainChangeInd(MsgBlock *    pMsg )
 
     return NAS_LMM_MSG_HANDLED;
 }
-/*****************************************************************************
- Function Name   : NAS_LMM_PreProcMmcCsConnStatusNotify
- Description     : CS域建链通知
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.wangchen 00209181     2015-04-15  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_LMM_PreProcMmcCsConnStatusNotify(MsgBlock *    pMsg )
 {
 

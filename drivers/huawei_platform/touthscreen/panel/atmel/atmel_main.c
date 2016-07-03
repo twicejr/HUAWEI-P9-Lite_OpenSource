@@ -23,6 +23,7 @@ extern struct dsm_client *tp_dclient;
 static struct mxt_data *mxt_g_data;
 static volatile bool mxt_t100_int = true;
 extern struct ts_data g_ts_data;
+extern atomic_t g_data_report_over;
 int update_sd_mode = 0;
 int featurefile_read_success = 0;
 #define T38COVERCUT 58
@@ -39,6 +40,9 @@ int gMxtT6Cmd58Flag = MXT_T6_CMD58_ON;
 #define T100_PROC_FINGER_NUM
 #define AVDD_LDO_VALUE (3300000)
 #define VDDIO_LDO_VALUE (1850000)
+#define ATMEL_MXT_MOISTURE_MODE 0x0a
+atomic_t atmel_mxt_moisture_flag = ATOMIC_INIT(0);
+atomic_t atmel_mxt_vnoise_flag = ATOMIC_INIT(0);
 
 static void mxt_parse_module_dts(struct ts_device_data *chip_data);
 static int atmel_chip_detect(struct device_node *device, struct ts_device_data *chip_data, struct platform_device *ts_dev);
@@ -75,6 +79,7 @@ static int mxt_initialize_info_block(struct mxt_data *data);
 static void atmel_special_hardware_test_switch(unsigned int value);
 static int atmel_special_hardware_test_result(char *buf);
 
+static void atmel_dsm_record_chip_status(struct mxt_data *data);
 //WORKAROUND1 finger down workaround
 //WORKAROUND2 glove down workaround
 //WORKAROUND3 for T72 noise level check feature
@@ -1149,6 +1154,7 @@ static int mxt_parse_object_table(struct mxt_data *data, struct mxt_object *obje
 			break;
 		case MXT_PROCI_RETRANSMISSIONCOMPENSATION_T80:
 			data->T80_address = object->start_address;
+			data->T80_reportid = min_id;
 			break;
 		case MXT_PROCI_UNLOCKGESTURE_T81:
 			data->T81_address = object->start_address;
@@ -2519,6 +2525,7 @@ static void mxt_status_count(u8 *msg)
 			break;
 		case MXT_T72_NOISE_SUPPRESSION_VNOIS:
 			increase_sta_cnt(&mxt_g_data->sta_cnt.vnoise_state);
+			atomic_set(&atmel_mxt_vnoise_flag, 1);
 			break;
 		default:
 			break;
@@ -2578,6 +2585,16 @@ static void mxt_proc_t72_messages(struct mxt_data *data, u8 *msg)
 	}
 }
 
+static void mxt_proc_T80_messages(struct mxt_data *data, u8 *msg)
+{
+	u8 status = msg[1];
+
+	TS_LOG_DEBUG("%s, T80 status = 0x%x\n", __func__, status);
+	if (status & ATMEL_MXT_MOISTURE_MODE) {
+		increase_sta_cnt(&data->sta_cnt.moisture_state);
+		atomic_set(&atmel_mxt_moisture_flag, 1);
+	}
+}
 static void mxt_proc_T81_messages(struct mxt_data *data, u8 *msg)
 {
 	u8 reportid = msg[0];
@@ -2975,6 +2992,8 @@ static int mxt_proc_message(struct mxt_data *data, u8 *message)
 	else if (report_id >= data->T72_reportid_min
 			&& report_id <= data->T72_reportid_max) {
 		mxt_proc_t72_messages(data, message);
+	} else if (report_id == data->T80_reportid) {
+		mxt_proc_T80_messages(data, message);
 	} else if (report_id >= data->T81_reportid_min
 			&& report_id <= data->T81_reportid_max) {
 		mxt_proc_T81_messages(data, message);
@@ -3162,6 +3181,8 @@ static int atmel_irq_bottom_half(struct ts_cmd_node *in_cmd, struct ts_cmd_node 
 		out_cmd->command = TS_INPUT_ALGO;
 		out_cmd->cmd_param.pub_params.algo_param.algo_order = data->chip_data->algo_id;
 		TS_LOG_DEBUG("order: %d\n", out_cmd->cmd_param.pub_params.algo_param.algo_order);
+	} else {
+		atomic_set(&g_data_report_over, 1);
 	}
 	return NO_ERR;
 }
@@ -3558,6 +3579,28 @@ static int atmel_fw_check_after_resume(void)
 	return retval;
 }
 
+#if defined (CONFIG_HUAWEI_DSM)
+static void atmel_dsm_record_chip_status(struct mxt_data *data)
+{
+	if (atomic_read(&atmel_mxt_moisture_flag)) {
+		if (!dsm_client_ocuppy(tp_dclient)) {
+			dsm_client_record(tp_dclient, "TP IC works in moisture mode,moisture count = %d.\n", \
+				data->sta_cnt.moisture_state);
+			dsm_client_notify(tp_dclient, DSM_TP_ATMEL_IN_MOISTURE_ERROR_NO);
+		}
+		atomic_set(&atmel_mxt_moisture_flag, 0);
+	}
+	if (atomic_read(&atmel_mxt_vnoise_flag)) {
+		if (!dsm_client_ocuppy(tp_dclient)) {
+			dsm_client_record(tp_dclient, "TP IC works in very noise mode,vnoise count = %d.\n", \
+				data->sta_cnt.vnoise_state);
+			dsm_client_notify(tp_dclient, DSM_TP_ATMEL_IN_VNOISE_ERROR_NO);
+		}
+		atomic_set(&atmel_mxt_vnoise_flag, 0);
+	}
+}
+#endif
+
 static int atmel_after_resume(void *feature_info)
 {
 	struct mxt_data *data = mxt_g_data;
@@ -3575,6 +3618,9 @@ static int atmel_after_resume(void *feature_info)
 	}
 	atmel_status_resume();
 	mdelay(10);
+#if defined (CONFIG_HUAWEI_DSM)
+	atmel_dsm_record_chip_status(data);
+#endif
 	TS_LOG_INFO("%s - status count is: stable: %d, noise: %d, very noise: %d\n", __func__, mxt_g_data->sta_cnt.stable_state, mxt_g_data->sta_cnt.noise_state, mxt_g_data->sta_cnt.vnoise_state);
 	return retval;
 }
@@ -3868,9 +3914,15 @@ static void mxt_print_feature_info(char* func_name, struct feature_info* feature
 static void mxt_get_feature_file_name(char *feature_file_name, bool from_sd)
 {
 	int offset;
+	struct mxt_data *data = mxt_g_data;
+
 	if (!from_sd) {
 		offset = snprintf(feature_file_name, PAGE_SIZE, "ts/atmel/");
-		offset += snprintf(feature_file_name+offset, PAGE_SIZE-offset, g_ts_data.product_name);
+		if (data->description[0] != '\0') {
+			offset += snprintf(feature_file_name+offset, PAGE_SIZE-offset, data->description);
+		} else {
+			offset += snprintf(feature_file_name+offset, PAGE_SIZE-offset, g_ts_data.product_name);
+		}
 		snprintf(feature_file_name+offset, PAGE_SIZE-offset, "_config_feature.raw");
 	} else {
 		offset = snprintf(feature_file_name, PAGE_SIZE, "../../../sdcard/update/config_feature.raw");

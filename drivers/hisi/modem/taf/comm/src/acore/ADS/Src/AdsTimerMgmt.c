@@ -39,23 +39,7 @@ ADS_TIMER_OPERATE_STRU                  g_astAdsTmrOperateTbl[] =
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : ADS_MNTN_TraceTimerOperation
- 功能描述  : 发送消息给OM模块，ADS定时器运行状态
- 输入参数  : ulPid         - PID
-             enTimerId     - 定时器ID
-             ulTimerLen    - 定时器时长
-             enTimerStatus - 定时器状态
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月22日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  ADS_MNTN_TraceTimerOperation(
     VOS_UINT32                          ulPid,
     ADS_TIMER_ID_ENUM_UINT32            enTimerId,
@@ -64,9 +48,7 @@ VOS_VOID  ADS_MNTN_TraceTimerOperation(
     ADS_TIMER_STOP_CAUSE_ENUM_UINT8     enStopCause
 )
 {
-    ADS_TIMER_INFO_STRU                 stMsg;
-
-    PS_MEM_SET(&stMsg, 0x00, sizeof(ADS_TIMER_INFO_STRU));
+    ADS_TIMER_INFO_STRU                 stMsg = {0};
 
     stMsg.ulSenderCpuId     = VOS_LOCAL_CPUID;
     stMsg.ulReceiverCpuId   = VOS_LOCAL_CPUID;
@@ -77,6 +59,8 @@ VOS_VOID  ADS_MNTN_TraceTimerOperation(
     stMsg.ulTimerLen        = ulTimerLen;
     stMsg.enTimerAction     = enTimerAction;
     stMsg.enTimerStopCause  = enStopCause;
+    stMsg.aucReserved[0]    = 0;
+    stMsg.aucReserved[1]    = 0;
 
     DIAG_TraceReport(&stMsg);
 
@@ -84,138 +68,103 @@ VOS_VOID  ADS_MNTN_TraceTimerOperation(
 }
 
 
-/*****************************************************************************
- 函 数 名  : ADS_StartTimer
- 功能描述  : ADS启动定时器
- 输入参数  : VOS_UINT32                          ulPid
-             ADS_TIMER_ID_ENUM_UINT32            enTimerId
-             VOS_UINT32                          ulLen
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2011年12月14日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-
-  2.日    期   : 2013年9月22日
-    作    者   : A00165503
-    修改内容   : DTS2013092200927: 定时器使用优化
-
-  3.日    期   : 2016年01月25日
-    作    者   : w00316404
-    修改内容   : DTS2016010709647: 定时器使用句柄判断并优化
-*****************************************************************************/
 VOS_VOID  ADS_StartTimer(
     ADS_TIMER_ID_ENUM_UINT32            enTimerId,
     VOS_UINT32                          ulLen
 )
 {
-    ADS_TIMER_CTX_STRU                 *pstTiCtx;
-    ADS_TIMER_OPERATE_STRU              stTmrOperate;
+    ADS_TIMER_CTX_STRU                 *pstTiCtx      = VOS_NULL_PTR;
+    ADS_TIMER_OPERATE_STRU             *pstTmrOperate = VOS_NULL_PTR;
     VOS_UINT32                          ulRet;
-
-    stTmrOperate = g_astAdsTmrOperateTbl[enTimerId];
 
     /* 不在使用的定时器范围内 */
     if (enTimerId >= ADS_MAX_TIMER_NUM)
     {
-        ADS_ERROR_LOG1(ACPU_PID_ADS_UL, "ADS_StartTimer: timer id is invalid.", enTimerId);
+        ADS_ERROR_LOG1(ACPU_PID_ADS_UL,
+            "ADS_StartTimer: timer id is invalid. <enTimerId>", enTimerId);
         return;
     }
+
+
+    /* 获取定时器上下文 */
+    pstTmrOperate = &(g_astAdsTmrOperateTbl[enTimerId]);
+    pstTiCtx      = &(g_stAdsCtx.astAdsTiCtx[enTimerId]);
 
     /* 定时器长度检查 */
     if (0 == ulLen)
     {
-        ADS_ERROR_LOG(ACPU_PID_ADS_UL, "ADS_StartTimer: timer len is 0,");
+        ADS_ERROR_LOG(pstTmrOperate->ulPid,
+            "ADS_StartTimer: timer len is 0,");
         return;
     }
 
-    pstTiCtx = &(g_stAdsCtx.astAdsTiCtx[enTimerId]);
-
+    /* 定时器已运行 */
     if (VOS_NULL_PTR != pstTiCtx->hTimer)
     {
         return;
     }
 
-    if (VOS_NULL_PTR == stTmrOperate.pfnTimerStartCallBack)
+    /* 启动定时器 */
+    if (VOS_NULL_PTR == pstTmrOperate->pfnTimerStartCallBack)
     {
         ulRet = VOS_StartRelTimer(&(pstTiCtx->hTimer),
-                                  stTmrOperate.ulPid,
+                                  pstTmrOperate->ulPid,
                                   ulLen,
                                   enTimerId,
                                   0,
                                   VOS_RELTIMER_NOLOOP,
-                                  stTmrOperate.enPrecision);
+                                  pstTmrOperate->enPrecision);
     }
     else
     {
         ulRet = VOS_StartCallBackRelTimer(&(pstTiCtx->hTimer),
-                                           stTmrOperate.ulPid,
-                                           ulLen,
-                                           enTimerId,
-                                           0,
-                                           VOS_RELTIMER_NOLOOP,
-                                           stTmrOperate.pfnTimerStartCallBack,
-                                           stTmrOperate.enPrecision);
+                                          pstTmrOperate->ulPid,
+                                          ulLen,
+                                          enTimerId,
+                                          0,
+                                          VOS_RELTIMER_NOLOOP,
+                                          pstTmrOperate->pfnTimerStartCallBack,
+                                          pstTmrOperate->enPrecision);
     }
 
     if (VOS_OK != ulRet)
     {
-        ADS_ERROR_LOG(stTmrOperate.ulPid, "ADS_StartTimer:timer is fail start!");
+        ADS_ERROR_LOG1(pstTmrOperate->ulPid,
+            "ADS_StartTimer: timer start failed! <ret>", ulRet);
         return;
     }
 
-    pstTiCtx->enTimerStatus = ADS_TIMER_STATUS_RUNNING;
-
     /*勾包ADS_TIMER_INFO_STRU*/
-    ADS_MNTN_TraceTimerOperation(stTmrOperate.ulPid, enTimerId, ulLen, ADS_TIMER_OPERATION_START, ADS_TIMER_STOP_CAUSE_ENUM_BUTT);
+    ADS_MNTN_TraceTimerOperation(pstTmrOperate->ulPid, enTimerId, ulLen, ADS_TIMER_OPERATION_START, ADS_TIMER_STOP_CAUSE_ENUM_BUTT);
 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_StopTimer
- 功能描述  : ADS停止定时器
- 输入参数  : VOS_UINT32                          ulPid
-             ADS_TIMER_ID_ENUM_UINT32            enTimerId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月7日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ADS_StopTimer(
     VOS_UINT32                          ulPid,
     ADS_TIMER_ID_ENUM_UINT32            enTimerId,
     ADS_TIMER_STOP_CAUSE_ENUM_UINT8     enStopCause
 )
 {
-    ADS_TIMER_CTX_STRU                 *pstTiCtx;
-
-    pstTiCtx = ADS_GetTiCtx();
+    ADS_TIMER_CTX_STRU                 *pstTiCtx = VOS_NULL_PTR;
 
     /* 不在使用的定时器范围内 */
     if (enTimerId >= ADS_MAX_TIMER_NUM)
     {
+        ADS_ERROR_LOG1(ACPU_PID_ADS_UL,
+            "ADS_StopTimer: timer id is invalid. <enTimerId>", enTimerId);
         return;
     }
 
-    /* 停止VOS定时器: 当定时器的指针已经为空的时候, 说明其已经停止或者超时 */
-    if (VOS_NULL_PTR != pstTiCtx[enTimerId].hTimer)
-    {
-        VOS_StopRelTimer(&(pstTiCtx[enTimerId].hTimer));
-    }
+    /* 获取定时器上下文 */
+    pstTiCtx = &(g_stAdsCtx.astAdsTiCtx[enTimerId]);
 
-    pstTiCtx[enTimerId].hTimer        = VOS_NULL_PTR;
-    pstTiCtx[enTimerId].enTimerStatus = ADS_TIMER_STATUS_STOP;
+    /* 停止定时器 */
+    if (VOS_NULL_PTR != pstTiCtx->hTimer)
+    {
+        (VOS_VOID)VOS_StopRelTimer(&(pstTiCtx->hTimer));
+    }
 
     /*勾包ADS_TIMER_INFO_STRU*/
     ADS_MNTN_TraceTimerOperation(ulPid, enTimerId, 0, ADS_TIMER_OPERATION_STOP, enStopCause);
@@ -223,43 +172,30 @@ VOS_VOID ADS_StopTimer(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_GetTimerStatus
- 功能描述  : 获取ADS定时器的状态
- 输入参数  : VOS_UINT32                          ulPid
-             ADS_TIMER_ID_ENUM_UINT32            enTimerId
- 输出参数  : 无
- 返 回 值  : ADS_TIMER_STATUS_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月7日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-
-  2.日    期   : 2013年9月22日
-    作    者   : A00165503
-    修改内容   : DTS2013092200927: 定时器使用优化
-*****************************************************************************/
 ADS_TIMER_STATUS_ENUM_UINT8 ADS_GetTimerStatus(
     VOS_UINT32                          ulPid,
     ADS_TIMER_ID_ENUM_UINT32            enTimerId
 )
 {
-    ADS_TIMER_CTX_STRU                 *pstTiCtx;
-    ADS_TIMER_STATUS_ENUM_UINT8         enTimerStatus;
+    ADS_TIMER_CTX_STRU                 *pstTiCtx = VOS_NULL_PTR;
 
-    pstTiCtx  = ADS_GetTiCtx();
-
-    enTimerStatus = ADS_TIMER_STATUS_STOP;
-
-    if (enTimerId < ADS_MAX_TIMER_NUM)
+    /* 不在使用的定时器范围内 */
+    if (enTimerId >= ADS_MAX_TIMER_NUM)
     {
-        enTimerStatus = pstTiCtx[enTimerId].enTimerStatus;
+        return ASD_TIMER_STATUS_BUTT;
     }
 
-    return enTimerStatus;
+    /* 获取定时器上下文 */
+    pstTiCtx = &(g_stAdsCtx.astAdsTiCtx[enTimerId]);
+
+    /* 检查定时器句柄 */
+    if (VOS_NULL_PTR != pstTiCtx->hTimer)
+    {
+        return ADS_TIMER_STATUS_RUNNING;
+    }
+
+    return ADS_TIMER_STATUS_STOP;
 }
 
 

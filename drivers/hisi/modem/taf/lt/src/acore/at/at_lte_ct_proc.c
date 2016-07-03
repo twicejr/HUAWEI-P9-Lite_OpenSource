@@ -86,8 +86,7 @@ VOS_UINT32 atSetVCTCXOPara(VOS_UINT8 ucClientId)
     }
 #endif
 
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_SET_FVCTCXO_REQ,ucClientId, (VOS_VOID*)(&stVCTCXOSetReq), sizeof(stVCTCXOSetReq));
 
     if(AT_SUCCESS == ulRst)
@@ -142,8 +141,7 @@ VOS_UINT32 atQryVCTCXOPara(VOS_UINT8 ucClientId)
     FTM_RD_FVCTCXO_REQ_STRU stVCTCXOQryReq = {0};
     VOS_UINT32 ulRst;
 
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_RD_FVCTCXO_REQ,ucClientId, (VOS_VOID*)(&stVCTCXOQryReq), sizeof(stVCTCXOQryReq));
 
     if(AT_SUCCESS == ulRst)
@@ -232,8 +230,7 @@ VOS_UINT32 atSetFTXONPara(VOS_UINT8 ucClientId)
 
     stFTXONSetReq.enSwtich = (FTM_TXON_SWT_ENUM)(gastAtParaList[0].ulParaValue);
 
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_SET_TXON_REQ, ucClientId, (VOS_VOID*)(&stFTXONSetReq), sizeof(stFTXONSetReq));
 
     if(AT_SUCCESS == ulRst)
@@ -289,8 +286,7 @@ VOS_UINT32 atQryFTXONPara(VOS_UINT8 ucClientId)
     VOS_UINT32 ulRst;
 
 
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_RD_TXON_REQ,ucClientId, (VOS_VOID*)(&stFTXONQryReq), sizeof(stFTXONQryReq));
 
     if(AT_SUCCESS == ulRst)
@@ -420,8 +416,7 @@ VOS_UINT32 atSetFRXONPara(VOS_UINT8 ucClientId)
 
     stFRXONSetReq.ulRxSwt = gastAtParaList[0].ulParaValue;
 
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_SET_RXON_REQ,ucClientId, (VOS_VOID*)(&stFRXONSetReq), sizeof(stFRXONSetReq));
 
     if(AT_SUCCESS == ulRst)
@@ -476,8 +471,7 @@ VOS_UINT32 atQryFRXONPara(VOS_UINT8 ucClientId)
     FTM_RD_RXON_REQ_STRU stFRXONQryReq = {0};
     VOS_UINT32 ulRst;
 
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_RD_RXON_REQ,ucClientId, (VOS_VOID*)(&stFRXONQryReq), sizeof(stFRXONQryReq));
 
     if(AT_SUCCESS == ulRst)
@@ -578,8 +572,7 @@ VOS_UINT32 atSetFCHANPara(VOS_UINT8 ucClientId)
     (VOS_VOID)AT_SetGlobalFchan((VOS_UINT8)(gastAtParaList[0].ulParaValue));
 
 
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_SET_FCHAN_REQ,ucClientId, (VOS_VOID*)(&stFCHANSetReq), sizeof(stFCHANSetReq));
 
     if(AT_SUCCESS == ulRst)
@@ -712,8 +705,7 @@ VOS_UINT32 atQryFCHANPara(VOS_UINT8 ucClientId)
     FTM_RD_FCHAN_REQ_STRU stFCHANQryReq = {0};
     VOS_UINT32 ulRst;
 
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_RD_FCHAN_REQ,ucClientId, (VOS_VOID*)(&stFCHANQryReq), sizeof(stFCHANQryReq));
 
     if(AT_SUCCESS == ulRst)
@@ -822,11 +814,9 @@ VOS_UINT32 atSetTselrfPara(VOS_UINT8 ucClientId)
     }
     else if(FTM_TSELRF_WIFI == ulPath)
     {
-        /*DTS2012041102190 : h00135900 start in 2011-04-11 AT代码融合*/
 #ifdef VERSION_V7R1_C010
         ulRst=BSP_HwIsSupportWifi();
 #endif
-        /*DTS2012041102190 : h00135900 end in 2011-04-11 AT代码融合*/
         if(ulRst == ERR_MSP_SUCCESS)
         {
             /*WIFI未Enable直接返回失败*/
@@ -989,8 +979,7 @@ VOS_UINT32 atSetFLNAPara(VOS_UINT8 ucClientId)
 
     stFLNASetReq.ucAggcLvl = (VOS_UINT8)(gastAtParaList[0].ulParaValue);
 
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_SET_AAGC_REQ,ucClientId, (VOS_VOID*)(&stFLNASetReq), sizeof(stFLNASetReq));
 
     if(AT_SUCCESS == ulRst)
@@ -1046,8 +1035,7 @@ VOS_UINT32 atQryFLNAPara(VOS_UINT8 ucClientId)
     FTM_RD_AAGC_REQ_STRU stFLNAQryReq = {0};
     VOS_UINT32 ulRst;
 
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_RD_AAGC_REQ,ucClientId, (VOS_VOID*)(&stFLNAQryReq), sizeof(stFLNAQryReq));
 
     if(AT_SUCCESS == ulRst)
@@ -1106,8 +1094,7 @@ VOS_UINT32 atQryFRSSIPara(VOS_UINT8 ucClientId)
     FTM_FRSSI_REQ_STRU stFRssiQryReq = {0};
     VOS_UINT32 ulRst;
 
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_FRSSI_REQ,ucClientId, (VOS_VOID*)(&stFRssiQryReq), sizeof(stFRssiQryReq));
 
     if(AT_SUCCESS == ulRst)
@@ -1427,7 +1414,6 @@ VOS_UINT32 atSetFPOWPara(VOS_UINT8 ucClientId)
     //(S16_T)(gastAtParaList[0].ulParaValue);
     HAL_SDMLOG("-----[%s]:send data to C-core \n", __FUNCTION__);
 
-    // lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_FPOW_REQ, ucClientId, (VOS_VOID*)(&stFPOWSetReq), sizeof(stFPOWSetReq));
 
     if(AT_SUCCESS == ulRst)

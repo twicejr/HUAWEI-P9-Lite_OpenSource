@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmcFsmMain.h
-  版 本 号   : 初稿
-  作    者   : zhoujun /40661
-  生成日期   : 2011年3月30日
-  最近修改   :
-  功能描述   : NasMmcFsmMain.C 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年3月30日
-    作    者   : zhoujun /40661
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef _NAS_MMC_FSM_MAIN_H
 #define _NAS_MMC_FSM_MAIN_H
@@ -159,7 +142,6 @@ VOS_UINT32  NAS_MMC_RcvMsccSrvAcqReq_L1Main(
 
 #endif
 
-/* Added by s00246516 for L-C互操作项目, 2014-01-27, Begin */
 VOS_UINT32  NAS_MMC_RcvMsccAcqReq_L1Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -174,7 +156,6 @@ VOS_UINT32  NAS_MMC_RcvMsccPowerSaveReq_L1Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 );
-/* Added by s00246516 for L-C互操作项目, 2014-01-27, End */
 
 VOS_UINT32  NAS_MMC_RcvMsccGetGeoReq_L1Main(
     VOS_UINT32                          ulEventType,
@@ -379,22 +360,18 @@ VOS_UINT32  NAS_MMC_RcvMsccCLAssociatedInfoNtf_OnPlmn(
     struct MsgCB                       *pstMsg
 );
 #endif
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-14, begin */
 VOS_UINT32  NAS_MMC_RcvLmmServiceResultInd_Initial(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 );
 
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-14, end */
 #endif
 
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-14, begin */
 VOS_VOID NAS_MMC_BuildCoverageRatPrioListEmgCall_L1Main(
     NAS_MML_PLMN_RAT_PRIO_STRU         *pstSyscfgRatPrioList,
     NAS_MML_PLMN_RAT_PRIO_STRU         *pstRatPrioList
 );
 
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-14, end */
 
 VOS_UINT32 NAS_MMC_RcvMmcMmcSuspendRslt_OnPlmn(
     VOS_UINT32                          ulEventType,
@@ -472,11 +449,9 @@ VOS_VOID NAS_MMC_AdjustOtherCauseAdditionalAction_OnPlmn(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                   *penAdditionalAction
 );
 
-/* Modified by c00318887 for 预置频点搜网优化, 2015-9-10, begin */
 VOS_VOID    NAS_MMC_ProcCoverageLost_L1Main(
     NAS_MMC_PLMN_SEARCH_SCENE_ENUM_UINT32          ulPlmnSearchScene
 );
-/* Modified by c00318887 for 预置频点搜网优化, 2015-9-10, end */
 
 VOS_VOID    NAS_MMC_ProcOutOfService_L1Main(
     NAS_MMCMMC_PLMN_SELECTION_RSLT_STRU                    *pstPlmnSelectionRslt
@@ -572,11 +547,9 @@ VOS_UINT8 NAS_MMC_IsNeedEnterOocStatusWhenAreaLost_OnPlmn(
     NAS_MMC_SEARCHED_TYPE_STRU                             *pstSearchedType
 );
 
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, begin */
 
 VOS_UINT32 NAS_MMC_IsNeedAnycell_OnPlmn( VOS_VOID );
 
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, end */
 
 VOS_UINT32  NAS_MMC_RcvMmCmServiceInd_OnPlmn(
     VOS_UINT32                          ulEventType,
@@ -624,12 +597,10 @@ VOS_UINT32  NAS_MMC_RcvMsccNcellInfoNotify_OnPlmn(
 
 
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-10, begin */
 VOS_UINT32 NAS_MMC_RcvMsccImsVoiceCapInd_OnPlmn(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 );
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-10, end */
 
 #if (FEATURE_ON == FEATURE_IMS)
 VOS_UINT32 NAS_MMC_RcvMsccImsSwitchStateInd_OnPlmn(

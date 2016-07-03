@@ -1,14 +1,4 @@
-/******************************************************************************
 
-   Copyright(C)2013,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : ImsaProcAtMsg.c
-  Description     : 该C文件给出了IMSA模块处理AT命令的实现
-  History           :
-     1.leili 00132387      2013-10-12  Draft Enact
-
-******************************************************************************/
 
 /*****************************************************************************
   1 Include HeadFile
@@ -61,16 +51,7 @@ extern VOS_VOID IMSA_SndMsgAtCirepQryCnf
 *****************************************************************************/
 
 /*lint -e961*/
-/*****************************************************************************
- Function Name  : IMSA_ProcMsgCiregSetReq
- Discription    : 收到ID_AT_IMSA_CIREG_SET_REQ消息的处理
- Input          :
- Output         : None
- Return         : None
- History:
-      1. leili 00132387      2013-10-12  Draft Enact
 
-*****************************************************************************/
 VOS_VOID IMSA_ProcMsgCiregSetReq (const AT_IMSA_CIREG_SET_REQ_STRU *pstCiregSetReq)
 {
     IMSA_AT_CONTROL_STRU                *pstImsaAtControl;
@@ -106,16 +87,7 @@ VOS_VOID IMSA_ProcMsgCiregSetReq (const AT_IMSA_CIREG_SET_REQ_STRU *pstCiregSetR
     return;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SndMsgAtCiregSetCnf
- Discription    : 发送ID_AT_IMSA_CIREG_SET_CNF消息的处理
- Input          :
- Output         : None
- Return         : None
- History:
-      1. leili 00132387      2013-10-12  Draft Enact
 
-*****************************************************************************/
 VOS_VOID IMSA_SndMsgAtCiregSetCnf (VOS_UINT8 ucOpId, VOS_UINT16 usClientId,VOS_UINT32 ulRslt)
 {
 
@@ -151,16 +123,7 @@ VOS_VOID IMSA_SndMsgAtCiregSetCnf (VOS_UINT8 ucOpId, VOS_UINT16 usClientId,VOS_U
     return;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SndMsgAtCireguInd
- Discription    : 发送ID_AT_IMSA_CIREGU_IND消息的处理
- Input          :
- Output         : None
- Return         : None
- History:
-      1. leili 00132387      2013-10-12  Draft Enact
 
-*****************************************************************************/
 VOS_VOID IMSA_SndMsgAtCireguInd (VOS_UINT32 ulRegInfo)
 {
     IMSA_AT_CIREGU_IND_STRU             *pstCireguInd;
@@ -212,16 +175,7 @@ VOS_VOID IMSA_SndMsgAtCireguInd (VOS_UINT32 ulRegInfo)
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_ProcMsgCiregQryReq
- Discription    : 收到ID_AT_IMSA_CIREG_QRY_REQ消息的处理
- Input          :
- Output         : None
- Return         : None
- History:
-      1. leili 00132387      2013-10-12  Draft Enact
 
-*****************************************************************************/
 VOS_VOID IMSA_ProcMsgCiregQryReq (const AT_IMSA_CIREG_QRY_REQ_STRU *pstCiregQryReq)
 {
     VOS_UINT32                          ulRegInfo;
@@ -245,16 +199,7 @@ VOS_VOID IMSA_ProcMsgCiregQryReq (const AT_IMSA_CIREG_QRY_REQ_STRU *pstCiregQryR
     return;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SndMsgAtCiregQryCnf
- Discription    : 发送ID_AT_IMSA_CIREG_QRY_CNF消息的处理
- Input          :
- Output         : None
- Return         : None
- History:
-      1. leili 00132387      2013-10-12  Draft Enact
 
-*****************************************************************************/
 VOS_VOID IMSA_SndMsgAtCiregQryCnf
 (
     VOS_UINT8 ucOpId,
@@ -306,16 +251,7 @@ VOS_VOID IMSA_SndMsgAtCiregQryCnf
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_ProcMsgCirepSetReq
- Discription    : 收到ID_AT_IMSA_CIREP_SET_REQ消息的处理
- Input          :
- Output         : None
- Return         : None
- History:
-      1. leili 00132387      2013-10-12  Draft Enact
 
-*****************************************************************************/
 VOS_VOID IMSA_ProcMsgCirepSetReq (const AT_IMSA_CIREP_SET_REQ_STRU *pstCirepSetReq)
 {
     IMSA_AT_CONTROL_STRU                *pstImsaAtControl;
@@ -350,16 +286,7 @@ VOS_VOID IMSA_ProcMsgCirepSetReq (const AT_IMSA_CIREP_SET_REQ_STRU *pstCirepSetR
     return;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SndMsgAtCirepSetCnf
- Discription    : 发送ID_AT_IMSA_CIREG_SET_CNF消息的处理
- Input          :
- Output         : None
- Return         : None
- History:
-      1. leili 00132387      2013-10-12  Draft Enact
 
-*****************************************************************************/
 VOS_VOID IMSA_SndMsgAtCirepSetCnf (VOS_UINT8 ucOpId, VOS_UINT16 usClientId, VOS_UINT32 ulRslt)
 {
     IMSA_AT_CIREP_SET_CNF_STRU          *pstCirepSetCnf;
@@ -393,16 +320,7 @@ VOS_VOID IMSA_SndMsgAtCirepSetCnf (VOS_UINT8 ucOpId, VOS_UINT16 usClientId, VOS_
     return;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SndMsgAtCirephInd
- Discription    : 发送ID_AT_IMSA_CIREPH_IND消息的处理
- Input          :
- Output         : None
- Return         : None
- History:
-      1. leili 00132387      2013-10-12  Draft Enact
 
-*****************************************************************************/
 VOS_VOID IMSA_SndMsgAtCirephInd (AT_IMSA_SRVCC_HANDVOER_ENUM_UINT32   enHandover)
 {
     IMSA_AT_CIREPH_IND_STRU             *pstCirephInd;
@@ -449,16 +367,7 @@ VOS_VOID IMSA_SndMsgAtCirephInd (AT_IMSA_SRVCC_HANDVOER_ENUM_UINT32   enHandover
     return;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SndMsgAtCirepiInd
- Discription    : 发送ID_AT_IMSA_CIREPI_IND消息的处理
- Input          :
- Output         : None
- Return         : None
- History:
-      1. leili 00132387      2013-10-12  Draft Enact
 
-*****************************************************************************/
 VOS_VOID IMSA_SndMsgAtCirepiInd (AT_IMSA_IMSVOPS_CAPABILITY_ENUM_UINT32      enImsvops)
 {
     IMSA_AT_CIREPI_IND_STRU             *pstCirepiInd;
@@ -507,16 +416,7 @@ VOS_VOID IMSA_SndMsgAtCirepiInd (AT_IMSA_IMSVOPS_CAPABILITY_ENUM_UINT32      enI
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_ProcMsgCirepQryReq
- Discription    : 收到ID_AT_IMSA_CIREG_QRY_REQ消息的处理
- Input          :
- Output         : None
- Return         : None
- History:
-      1. leili 00132387      2013-10-12  Draft Enact
 
-*****************************************************************************/
 VOS_VOID IMSA_ProcMsgCirepQryReq (const AT_IMSA_CIREP_QRY_REQ_STRU *pstCiregQryReq)
 {
     AT_IMSA_IMSVOPS_CAPABILITY_ENUM_UINT32      enImsvops;
@@ -544,16 +444,7 @@ VOS_VOID IMSA_ProcMsgCirepQryReq (const AT_IMSA_CIREP_QRY_REQ_STRU *pstCiregQryR
     return;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_ProcMsgVolteImpuQryReq
- Discription    : 收到ID_AT_IMSA_VOLTEIMPU_QRY_REQ消息的处理
- Input          :
- Output         : None
- Return         : None
- History:
-      1. wangchen 00209181      2013-12-19  Draft Enact
 
-*****************************************************************************/
 VOS_VOID IMSA_ProcMsgVolteImpuQryReq(const AT_IMSA_VOLTEIMPU_QRY_REQ_STRU *pstVolteImpuQryReq)
 {
     IMSA_AT_CONTROL_STRU                *pstImsaAtControl;
@@ -570,99 +461,8 @@ VOS_VOID IMSA_ProcMsgVolteImpuQryReq(const AT_IMSA_VOLTEIMPU_QRY_REQ_STRU *pstVo
     /* 给IMSA发送查询命令 */
     IMSA_SendImsVolteImpuQryReq();
 }
-/*****************************************************************************
- Function Name  : IMSA_ProcMsgCcwaiSetReq
- Discription    : 收到ID_AT_IMSA_CCWAI_SET_REQ消息的处理
- Input          :
- Output         : None
- Return         : None
- History:
-      1. wangchen 00209181      2014-3-11  Draft Enact
-      2. jiaguocai 00355737     2015-09-07 Add 保存ccwa配置信息
-
-*****************************************************************************/
-VOS_VOID IMSA_ProcMsgCcwaiSetReq(const AT_IMSA_CCWAI_SET_REQ_STRU *pstCcwaiSetReq)
-{
-    IMSA_AT_CONTROL_STRU                *pstImsaAtControl;
-
-    pstImsaAtControl = IMSA_GetAtControlAddress();
 
 
-    IMSA_INFO_LOG("IMSA_ProcMsgCcwaiSetReq is entered! ");
-    TLPS_PRINT2LAYER_INFO(IMSA_ProcMsgCcwaiSetReq_ENUM, LNAS_ENTRY);
-
-    /* 需要保存CLENT ID和OPID，用于回复时使用 */
-    pstImsaAtControl->usClientId = pstCcwaiSetReq->usClientId;
-    pstImsaAtControl->ucOpId = pstCcwaiSetReq->ucOpId;
-
-    pstImsaAtControl->enMode = pstCcwaiSetReq->enMode;
-
-    /* 给IMSA发送查询命令 */
-    IMSA_SendImsCcwaiSetReq(pstCcwaiSetReq->enMode);
-
-}
-/*****************************************************************************
- Function Name  : IMSA_SndMsgAtCcwaiSetCnf()
- Description    : IMS回复CcwaiSet事件的处理
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
-
- History        :
-      1.wangchen 00209181       2014-3-11  Draft Enact
-*****************************************************************************/
-VOS_VOID IMSA_SndMsgAtCcwaiSetCnf
-(
-    VOS_UINT32 ulResult
-)
-{
-    IMSA_AT_CCWAI_SET_CNF_STRU          *pstAtCcwaiSetCnf;
-
-    IMSA_AT_CONTROL_STRU                    *pstImsaAtControl;
-
-    pstImsaAtControl = IMSA_GetAtControlAddress();
-
-    /*分配消息空间*/
-    pstAtCcwaiSetCnf = (VOS_VOID*)IMSA_ALLOC_MSG(sizeof(IMSA_AT_CCWAI_SET_CNF_STRU));
-
-    /*检测是否分配成功*/
-    if (VOS_NULL_PTR == pstAtCcwaiSetCnf)
-    {
-        /*打印异常信息*/
-        IMSA_ERR_LOG("IMSA_SndMsgAtCcwaiSetCnf:ERROR:Alloc Msg fail!");
-        TLPS_PRINT2LAYER_ERROR(IMSA_SndMsgAtCcwaiSetCnf_ENUM, LNAS_NULL_PTR);
-        return ;
-    }
-
-    IMSA_MEM_SET_S( IMSA_GET_MSG_ENTITY(pstAtCcwaiSetCnf),
-                    IMSA_GET_MSG_LENGTH(pstAtCcwaiSetCnf),
-                    0,
-                    IMSA_GET_MSG_LENGTH(pstAtCcwaiSetCnf));
-
-    IMSA_WRITE_AT_MSG_MSG_HEAD(pstAtCcwaiSetCnf,ID_IMSA_AT_CCWAI_SET_CNF);
-
-    /*填写消息内容*/
-    pstAtCcwaiSetCnf->ucOpId = pstImsaAtControl->ucOpId;
-    pstAtCcwaiSetCnf->usClientId = pstImsaAtControl->usClientId;
-
-    pstAtCcwaiSetCnf->ulResult = ulResult;
-
-    /*调用消息发送函数 */
-    IMSA_SND_MSG(pstAtCcwaiSetCnf);
-
-    return;
-}
-
-/*****************************************************************************
- Function Name  : IMSA_ProcImsMsgQryVolteImpuCnf()
- Description    : IMS回复IMPU查询事件的处理
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
-
- History        :
-      1.wangchen 00209181       2013-12-19  Draft Enact
-*****************************************************************************/
 /*lint -e818*/
 /*lint -e830*/
 VOS_VOID IMSA_SndMsgAtQryVolteImpuCnf
@@ -719,16 +519,7 @@ VOS_VOID IMSA_SndMsgAtQryVolteImpuCnf
 /*lint +e818*/
 
 
-/*****************************************************************************
- Function Name  : IMSA_SndMsgAtCirepQryCnf
- Discription    : 发送ID_AT_IMSA_CIREP_QRY_CNF消息的处理
- Input          :
- Output         : None
- Return         : None
- History:
-      1. leili 00132387      2013-10-12  Draft Enact
 
-*****************************************************************************/
 VOS_VOID IMSA_SndMsgAtCirepQryCnf
 (
     VOS_UINT8 ucOpId,
@@ -773,16 +564,7 @@ VOS_VOID IMSA_SndMsgAtCirepQryCnf
     return;
 }
 /*lint +e961*/
-/*****************************************************************************
- Function Name  : IMSA_SndMsgAtPdpActInd
- Discription    : 发送ID_IMSA_AT_VT_PDP_ACTIVATE_IND消息的处理
- Input          :
- Output         : None
- Return         : None
- History:
-      1. wangchen 00209181  2014-08-04  Draft Enact
 
-*****************************************************************************/
 VOS_VOID IMSA_SndMsgAtPdpActInd (const IMSA_PDP_CNTXT_INFO_STRU     *pstPdpInfo)
 {
     IMSA_AT_VT_PDP_ACTIVATE_IND_STRU    *pstPdpActInd;
@@ -870,16 +652,7 @@ VOS_VOID IMSA_SndMsgAtPdpActInd (const IMSA_PDP_CNTXT_INFO_STRU     *pstPdpInfo)
     return;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SndMsgAtPdpDeactInd
- Discription    : 发送ID_IMSA_AT_VT_PDP_DEACTIVATE_IND消息的处理
- Input          :
- Output         : None
- Return         : None
- History:
-      1. wangchen 00209181  2014-08-04  Draft Enact
 
-*****************************************************************************/
 VOS_VOID IMSA_SndMsgAtPdpDeactInd (TAF_PDP_TYPE_ENUM_UINT8             enPdpType)
 {
     IMSA_AT_VT_PDP_DEACTIVATE_IND_STRU    *pstPdpDeactInd;
@@ -920,18 +693,7 @@ VOS_VOID IMSA_SndMsgAtPdpDeactInd (TAF_PDP_TYPE_ENUM_UINT8             enPdpType
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_SndMsgAtMtStatusInd
- Discription    : 发送ID_IMSA_AT_MT_STATES_IND消息的处理
- Input          : ulCallId    被叫id
-                  mtStates    被叫状态， 0收到INVITE, 1被叫挂断
-                  pMoNumber   主叫号码
- Output         : None
- Return         : None
- History:
-      1. mengchao 00277840  2015-03-18  Draft Enact
 
-*****************************************************************************/
 VOS_VOID IMSA_SndMsgAtMtStatusInd(const IMSA_MT_STATUS_REPORT_STRU    *pstMtReport)
 {
     IMSA_AT_MT_STATES_IND_STRU        *pstMtStatusInd = VOS_NULL_PTR;

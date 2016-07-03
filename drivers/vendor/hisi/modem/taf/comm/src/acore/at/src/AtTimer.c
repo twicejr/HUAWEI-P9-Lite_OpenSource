@@ -27,26 +27,7 @@ extern "C" {
 *****************************************************************************/
 
 
-/*****************************************************************************
- 函 数 名  : AT_StartRelTimer
- 功能描述  : AT启动REL定时器函数
- 输入参数  : HTIMER *phTm
-             VOS_PID Pid
-             VOS_UINT32 ulLength
-             VOS_UINT32 ulName
-             VOS_UINT32 ulParam
-             VOS_UINT8 ucMode
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月5日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_StartRelTimer(
     HTIMER                             *phTm,
     VOS_UINT32                          ulLength,
@@ -58,13 +39,11 @@ VOS_UINT32 AT_StartRelTimer(
     VOS_UINT32                          ulRet;
     AT_TIMER_OPERATION_STRU             stTimer;
 
-    /* Added by L60609 for AT Project，2011-10-22,  Begin*/
     if (0 == ulLength)
     {
         AT_ERR_LOG("AT_StartRelTimer: Start Rel Timer Length is 0!");
         return VOS_ERR;
     }
-    /* Added by L60609 for AT Project，2011-10-22,  End*/
 
     if ( ulLength >= VOS_TIMER_MAX_LENGTH )
     {
@@ -92,22 +71,7 @@ VOS_UINT32 AT_StartRelTimer(
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_StopRelTimer
- 功能描述  : AT停止REL定时器函数
- 输入参数  : VOS_UINT32 ulName
-             HTIMER *phTm
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月5日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_StopRelTimer(
     VOS_UINT32                          ulName,
     HTIMER                             *phTm
@@ -137,29 +101,7 @@ VOS_UINT32 AT_StopRelTimer(
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : At_StartTimer
- 功能描述  : AT启动定时器
- 输入参数  : TAF_UINT32 usLength
-             TAF_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : TAF_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-
-  1.Date        : 2005-04-19
-    Author      : ---
-    Modification: Created function
-  2.日    期   : 2009-03-25
-    作    者   : s62952
-    修改内容   : 问题单号:AT2D10008
-  3.日    期   : 2011年10月5日
-    作    者   : 鲁琳/l60609
-    修改内容   : AT Project:定时器由AT内部实现
-
-*****************************************************************************/
 VOS_UINT32 At_StartTimer(
     VOS_UINT32                          usLength,
     VOS_UINT8                           ucIndex

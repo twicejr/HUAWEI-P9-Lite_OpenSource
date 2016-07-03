@@ -8,6 +8,6 @@
 / {
 	cp_reset_app:cp_reset@0{
 		compatible = "hisilicon,cp_reset_app";
-		scbakdata13 = <0x348>;
+		scbakdata13 = <0x440>;
 	};
 };

@@ -58,7 +58,6 @@ typedef struct tagPUBLIC_HEAD_BAK
     ULONG  ulPingForbidFlag;
 }PUBLIC_HEAD_BAK_S;
 
-/*add by z00104207 for VR7，用于禁ping增强的地址备份*/
 typedef struct tagHA_PINGALLOWLIST_ADDR
 {
     ULONG ulIPAddr;             /*地址*/

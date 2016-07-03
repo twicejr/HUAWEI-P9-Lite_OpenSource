@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafMmaMsgPrioCompare.h
-  版 本 号   : 初稿
-  作    者   : w00176964
-  生成日期   : 2013年7月22日
-  最近修改   :
-  功能描述   : TafMmaMsgPrioCompare.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年7月22日
-    作    者   : w00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 其他头文件包含
@@ -42,13 +25,7 @@ extern "C" {
 /*****************************************************************************
   3 枚举定义
 *****************************************************************************/
-/*****************************************************************************
- 枚举名    : TAF_MMA_ABORT_FSM_TYPE_UINT8
- 结构说明  : Abort类型
- 1.日    期   : 2013年7月22日
-   作    者   : w00176964
-   修改内容   : 新增
-*****************************************************************************/
+
 enum TAF_MMA_ABORT_FSM_TYPE
 {
     TAF_MMA_ABORT_FSM_IMMEDIATELY           = 0,
@@ -57,18 +34,7 @@ enum TAF_MMA_ABORT_FSM_TYPE
 };
 typedef VOS_UINT8 TAF_MMA_ABORT_FSM_TYPE_UINT8;
 
-/*****************************************************************************
- 枚举名    : TAF_MMA_MSG_COMPARE_PRIO_RSLT_ENUM
- 结构说明  : MMa消息优先级比较的结果
- 1.日    期   : 2013年7月22日
-   作    者   : w00176964
-   修改内容   : 新建
 
- 2.日    期   : 2015年4月8日
-   作    者   : y00245242
-   修改内容   : iteration 13开发
-
-*****************************************************************************/
 enum TAF_MMA_MSG_COMPARE_PRIO_RSLT_ENUM
 {
     TAF_MMA_MSG_COMPARE_PRIO_RSLT_ABORT              ,                          /* 高优先级消息中断当前流程 */
@@ -101,39 +67,21 @@ typedef VOS_UINT32 TAF_MMA_MSG_COMPARE_PRIO_RSLT_ENUM_UINT32;
   7 STRUCT定义
 *****************************************************************************/
 
-/*****************************************************************************
- 结构名    : TAF_MMA_MSG_COMPARE_FUNC
- 结构说明  : 优先级比较处理函数的类型定义
- 1.日    期   : 2013年7月22日
-   作    者   : w00176964
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef VOS_UINT32 (*TAF_MMA_MSG_COMPARE_FUNC)(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
     TAF_MMA_ABORT_FSM_TYPE_UINT8       *penAbortType
 );
 
-/*****************************************************************************
- 结构名    : TAF_MMA_MSG_COMPARE_STRU
- 结构说明  : 比较函数结构
- 1.日    期   : 2013年7月22日
-   作    者   : w00176964
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulCurrEventType;        /* 需比较的消息 */
     TAF_MMA_MSG_COMPARE_FUNC            pfCompareFun;           /* 比较函数 */
 }  TAF_MMA_MSG_COMPARE_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_MMA_MSG_COMPARE_STRU
- 结构说明  : 比较函数结构
- 1.日    期   : 2013年7月22日
-   作    者   : w00176964
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     TAF_MMA_FSM_ID_ENUM_UINT32          enFsmId;                /* 当前运行的FSM ID */
@@ -233,6 +181,11 @@ VOS_UINT32 TAF_MMA_CompareAtPlmnReselPrioWithPhoneMode(
     TAF_MMA_ABORT_FSM_TYPE_UINT8       *penAbortType
 );
 
+VOS_UINT32 TAF_MMA_CompareSTKRefreshWithPhoneMode(
+    VOS_UINT32                          ulEventType,
+    struct MsgCB                       *pstMsg,
+    TAF_MMA_ABORT_FSM_TYPE_UINT8       *penAbortType
+);
 
 #if (FEATURE_ON == FEATURE_IMS)
 VOS_UINT32 TAF_MMA_CompareImsSwitchSetReqPrioWithPhoneMode(
@@ -332,6 +285,12 @@ VOS_UINT32 TAF_MMA_CompareDetachReqPrioWithSysCfg(
     TAF_MMA_ABORT_FSM_TYPE_UINT8       *penAbortType
 );
 
+VOS_UINT32 TAF_MMA_CompareSTKRefreshWithSysCfg(
+    VOS_UINT32                          ulEventType,
+    struct MsgCB                       *pstMsg,
+    TAF_MMA_ABORT_FSM_TYPE_UINT8       *penAbortType
+);
+
 VOS_UINT32 TAF_MMA_ComparePlmnReselReqPrioWithSysCfg(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -376,13 +335,7 @@ VOS_UINT32 TAF_MMA_ComparePlmnAbortReqPrioWithSysCfg(
 
 
 
-/*****************************************************************************
- 结构名    : TAF_MMA_COMPARE_TBL_ITEM
- 结构说明  : 每个单个状态机比较函数表结构
- 1.日    期   : 2013年7月22日
-   作    者   : w00176964
-   修改内容   : 新增
-*****************************************************************************/
+
 
 #define TAF_MMA_COMPARE_TBL_ITEM(ulCurrMsgType, pCompareFun)\
 {\
@@ -390,13 +343,7 @@ VOS_UINT32 TAF_MMA_ComparePlmnAbortReqPrioWithSysCfg(
     ((pCompareFun))\
 }
 
-/*****************************************************************************
- 结构名    : TAF_MMA_COMPARE_TBL_ITEM
- 结构说明  : 比较函数表结构
- 1.日    期   : 2013年7月22日
-   作    者   : w00176964
-   修改内容   : 新增
-*****************************************************************************/
+
 #define TAF_MMA_FSM_COMPARE_TBL_ITEM(enFsmId, astFsmCompareTbl)\
 {\
     ( enFsmId),\

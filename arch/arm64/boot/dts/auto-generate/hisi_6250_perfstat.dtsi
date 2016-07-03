@@ -1,0 +1,38 @@
+/*
+ * Hisilicon Ltd. Hi3650 SoC
+ *
+ * Copyright (C) 2012-2013 Hisilicon Ltd.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * publishhed by the Free Software Foundation.
+ */
+
+  /{
+        perfstat:a1@0xFF012000 {
+            compatible = "hisilicon,hi6250-perfstat-driver";
+            reg = <0x0 0xFF012000 0x0 0x1000>;
+            interrupts = <0 127 4>;
+            clock-names = "sample_clk";
+            clocks = <&clk_gate_perf_stat>;
+            perf-power-supply = <&perf>;
+            perf-dsssubsys0-supply = <&dsssubsys>;
+            perf-dsssubsys1-supply = <&dsssubsys>;
+            perf-g3d-supply = <&g3d>;
+            perf-ispsubsys0-supply = <&ispsubsys>;
+            perf-ispsubsys1-supply = <&ispsubsys>;
+            perf-vdec-supply = <&vdec>;
+            perf-venc-supply = <&venc>;
+            /*perf-ivp-supply = <&ivp>;*/
+            perf-asp-supply = <&asp>;
+            perf-hifi-supply = <&hifi>;
+            perf-usbotg-supply = <&usbotg>;
+
+            hisilicon,perf-event-id = <0x80000000>;
+            hisilicon,max-sample-time = <2000>;
+            hisilicon,per-int-size = <2>;
+            hisilicon,per-data-size = <32>;
+            hisilicon,vldmsk-of-sprt = <0x77FB>;
+            status = "disabled";
+        };
+  };

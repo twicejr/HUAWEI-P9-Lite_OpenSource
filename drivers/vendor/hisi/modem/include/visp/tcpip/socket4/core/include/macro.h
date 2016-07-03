@@ -56,8 +56,7 @@ typedef ULONG    task_t;
 /* #define  FILENUM      20 */
 /*x36317 SOCKET预配置:最大的SOCKET数2004-7-23*/
 #define     FILENUM         (g_stSOCK4ModInfo.ulSKT_MAX_SOCK_N)
-/* Modify for DTS2011031503749, by yuehaitao171195, at 2011-03-17. 修改原因: TSleep
-   阻塞时并没有持有信号量，此时如果其他任务创建了多个socket，则socket可能扩充文件描述符，导致TSleep返回后访问野内存 */
+
 #define     EXPANDNUM       FILENUM
 
 /*used by f_ucState*/

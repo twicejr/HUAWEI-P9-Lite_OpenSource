@@ -1,16 +1,4 @@
-/******************************************************************************
 
-   Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : NasEsmPublic.c
-  Description     : 提供SM模块公共操作
-  History         :
-     1.丁丽 00128736      2008-09-01  Draft Enact
-     2.孙兵 49683         2009-01-06  Modify BA8D00870
-     3.杨茜惠 00135146    2009-03-06  Modify BA8D01127
-     4.李洪00150010       2009-08-03  Modify  BJ9D01608
-******************************************************************************/
 
 
 /*****************************************************************************
@@ -43,7 +31,6 @@ extern "C" {
   2 Declare the Global Variable
 *****************************************************************************/
 
-/* 删除PCO flag相关无效代码 y00307272 20151205 DTS2015101700432 */
 
 VOS_UINT32                              g_ulMd5Flag     = NAS_ESM_FUN_MD5_CTRL_ON;
 VOS_UINT32                              g_ulDelSdfWithQosFlag = LPS_NV_GET_DEL_SDF_WITH_QOS_BIT;
@@ -315,16 +302,7 @@ VOS_UINT32  NAS_ESM_AllocEmmEsmOpId( VOS_VOID )
 }
 
 #if (FEATURE_ON == FEATURE_DSDS)
-/*****************************************************************************
- Function Name   : NAS_ESM_SendBeginSessionNotify
- Description     : ESM开始申请资源的函数封装
- Input           :
- Output          :
- Return          : VOS_VOID
 
- History         :
-    1.lifuxin  00253982       2014-07-02   Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ESM_SendBeginSessionNotify(VOS_VOID)
 {
     EMM_ESM_BEGIN_SESSION_NOTIFY_STRU     *pstEmmEsmBeginSessionNotity = VOS_NULL_PTR;
@@ -381,16 +359,7 @@ VOS_VOID NAS_ESM_SendBeginSessionNotify(VOS_VOID)
     NAS_ESM_SND_MSG(pstEmmEsmBeginSessionNotity);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SendBeginSessionNotify
- Description     : ESM结束申请资源的函数封装
- Input           :
- Output          :
- Return          : VOS_VOID
 
- History         :
-    1.lifuxin  00253982       2014-07-02   Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ESM_SendEndSessionNotify(VOS_VOID)
 {
     EMM_ESM_END_SESSION_NOTIFY_STRU     *pstEmmEsmEndSessionNotity;
@@ -448,17 +417,7 @@ VOS_VOID NAS_ESM_SendEndSessionNotify(VOS_VOID)
 }
 #endif
 
-/*****************************************************************************
- Function Name   : NAS_ESM_IsGbrBearer
- Description     : 判断是否是GBR承载
- Input           : ucQci--------QCI
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2010-1-13  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_ESM_IsGbrBearer( VOS_UINT8 ucQci )
 {
     if ((ucQci >= NAS_ESM_QCI_TYPE_QCI1_GBR) && (ucQci <= NAS_ESM_QCI_TYPE_QCI4_GBR))
@@ -469,17 +428,7 @@ VOS_UINT32  NAS_ESM_IsGbrBearer( VOS_UINT8 ucQci )
     return PS_FALSE;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_GetBearCntxtType
- Description     : 获取承载类型
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2009-8-31  Draft Enact
-
-*****************************************************************************/
 NAS_ESM_BEARER_TYPE_ENUM_UINT8  NAS_ESM_GetBearCntxtType( VOS_UINT32 ulEpsbId )
 {
     /* 若不是有效承载号，则返回未激活态 */
@@ -494,17 +443,7 @@ NAS_ESM_BEARER_TYPE_ENUM_UINT8  NAS_ESM_GetBearCntxtType( VOS_UINT32 ulEpsbId )
     return (NAS_ESM_Entity())->astEpsbCntxtInfo[(ulEpsbId - NAS_ESM_MIN_EPSB_ID)].enBearerCntxtType;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SetBearCntxtType
- Description     : 设置承载类型
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2009-8-31  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_SetBearCntxtType
 (
     VOS_UINT32                          ulEpsbId,
@@ -524,16 +463,7 @@ VOS_VOID  NAS_ESM_SetBearCntxtType
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ESM_GetBearCntxtState
- Input           : 获取承载状态
- Output          : None
- Return          : NAS_ESM_BEARER_STATE_ENUM_UINT8
 
- History         :
-    1.lihong00150010      2009-8-28  Draft Enact
-
-*****************************************************************************/
 NAS_ESM_BEARER_STATE_ENUM_UINT8 NAS_ESM_GetBearCntxtState(VOS_UINT32 ulEpsbId)
 {
     /* 若不是有效承载号，则返回未激活态 */
@@ -548,16 +478,7 @@ NAS_ESM_BEARER_STATE_ENUM_UINT8 NAS_ESM_GetBearCntxtState(VOS_UINT32 ulEpsbId)
     return (NAS_ESM_Entity())->astEpsbCntxtInfo[(ulEpsbId - NAS_ESM_MIN_EPSB_ID)].enBearerCntxtState;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SetBearCntxtState
- Input           : 设置承载状态
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2009-8-28  Draft Enact
-
-*****************************************************************************/
 /*lint -e960*/
 /*lint -e961*/
 VOS_VOID NAS_ESM_SetBearCntxtState
@@ -585,17 +506,7 @@ VOS_VOID NAS_ESM_SetBearCntxtState
     NAS_ESM_NORM_LOG("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
  }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SetBearCntxtLinkCid
- Description     : 设置承载关联的CID
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2009-8-31  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_SetBearCntxtLinkCid
 (
     VOS_UINT32                          ulEpsbId,
@@ -617,17 +528,7 @@ VOS_VOID  NAS_ESM_SetBearCntxtLinkCid
     (NAS_ESM_Entity())->astEpsbCntxtInfo[(ulEpsbId - NAS_ESM_MIN_EPSB_ID)].bitOpCId = NAS_ESM_OP_TRUE;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_ClearBearCntxtLinkCid
- Description     : 清除承载关联CID
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2009-8-31  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_ClearBearCntxtLinkCid
 (
     VOS_UINT32                          ulEpsbId,
@@ -648,17 +549,7 @@ VOS_VOID  NAS_ESM_ClearBearCntxtLinkCid
     /*lint +e701*/
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_UpdateBearCntextLinkCid
- Description     : 更新承载关联CID
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2010-05-31  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_UpdateBearCntextLinkCid
 (
     const NAS_ESM_NW_MSG_STRU          *pstDecodedNwMsg,
@@ -697,17 +588,7 @@ VOS_VOID  NAS_ESM_UpdateBearCntextLinkCid
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_GetEpsbCntxtInfoAddr
- Description     : 获取承载信息
- Input           : None
- Output          : None
- Return          : NAS_ESM_EPSB_CNTXT_INFO_STRU *
 
- History         :
-    1.lihong00150010      2009-9-1  Draft Enact
-
-*****************************************************************************/
 NAS_ESM_EPSB_CNTXT_INFO_STRU * NAS_ESM_GetEpsbCntxtInfoAddr( VOS_UINT32 ulEpsbId )
 {
     /* 若不是有效承载号，则返回未激活态 */
@@ -753,16 +634,7 @@ VOS_VOID NAS_ESM_AssignOpId(VOS_UINT32         *pulOpId)
     NAS_ESM_SetCurMaxOpIdValue(*pulOpId);
 }
 
-/*****************************************************************************
- Function Name  : NAS_ESM_AssignErabmOpId
- Discription    : 分配SM与ERABM交互使用的OpId
- Input          : VOS_UINT32         *pulOpId
- Output         : VOS_UINT32         *pulOpId
- Return         : None
- History:
-      1.wangchen 00209181   2014-07-17  Draft Enact
 
-*****************************************************************************/
 VOS_VOID NAS_ESM_AssignErabmSessionId(VOS_UINT8         *pucOpId)
 {
     VOS_UINT8                         ucOpId = NAS_ESM_NULL;
@@ -812,17 +684,7 @@ VOS_VOID NAS_ESM_AssignPTI(VOS_UINT32         *pulPti)
     NAS_ESM_SetCurMaxPTIValue((VOS_UINT8)(*pulPti));
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_AssignGwIpId
- Description     : 分配网关鉴权时携带的Identifier
- Input           : VOS_UINT8   *pucGwAuthId
- Output          : VOS_UINT8   *pucGwAuthId
- Return          : VOS_VOID
 
- History         :
-    1.    leili  00132387      2010-7-15  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_AssignGwIpId( VOS_UINT8   *pucGwAuthId)
 {
     VOS_UINT8                          ucGwAuthId = NAS_ESM_NULL;
@@ -843,33 +705,13 @@ VOS_VOID  NAS_ESM_AssignGwIpId( VOS_UINT8   *pucGwAuthId)
     NAS_ESM_SetCurMaxGwAuthIdVaule(*pucGwAuthId);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_Random
- Description     : 获取32位的随机数
- Input           : NONE
- Output          : NONE
- Return          : VOS_UINT32
 
- History         :
-    1.lihong 00150010       2010-8-19   Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_ESM_Random()
 {
     return PS_RAND(NAS_ESM_MAX_UINT32);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_GetGwAuthChallegeValue
- Description     : 获取网关CHAP鉴权过程Challenge message中的Challenge值
- Input           : VOS_UINT8 *paucValue
- Output          : VOS_UINT8 *paucValue
- Return          : VOS_VOID
 
- History         :
-    1.leili  00132387       2010-7-15   Draft Enact
-    2.lihong 00150010       2010-8-19   Modify
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_GetGwAuthChallengeValue( VOS_UINT8 *pucValue )
 {
     VOS_UINT32                          ulRandTmp   = NAS_ESM_NULL;
@@ -910,20 +752,7 @@ VOS_VOID  NAS_ESM_GetGwAuthChallengeValue( VOS_UINT8 *pucValue )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_GetGwAuthRpsValue
- Description     : 获取网关CHAP鉴权过程Response message中的Response值
- Input           : VOS_UINT8 *pucPwd --------CHAP鉴权密码
-                   VOS_UINT8 ucId -----------CHAP鉴权标识
-                   VOS_UINT8 *pucChlgVal ----CHAP鉴权Chellenge value
- Output          : VOS_UINT8 *pucRspVal -----CHAP鉴权Response value
- Return          : VOS_VOID
 
- History         :
-    1.leili  00132387       2010-7-15   Draft Enact
-    2.lihong 00150010       2010-8-19   Modify
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_GetGwAuthRpsValue
 (
     const VOS_UINT8                    *pucPwd,
@@ -976,17 +805,7 @@ VOS_VOID  NAS_ESM_GetGwAuthRpsValue
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_QueryPfInTft
- Description     : 在TFT信息中查找指定的PF
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2010-8-28  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_ESM_QueryPfInTft
 (
     VOS_UINT8                           ucPacketFilterID,
@@ -1137,18 +956,7 @@ VOS_UINT32 NAS_ESM_QueryFirstSdfIdByEpsbId
     return NAS_ESM_FAILURE;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_QuerySdfIdByEpsbIdAndPfId
- Description     : 根据承载号和PF号，查找SDF号
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.sunbing49683      2009-4-16  Draft Enact
-    2.lihong00150010    2009-7-14   Modify
-
-*****************************************************************************/
 VOS_UINT32 NAS_ESM_QuerySdfIdByEpsbIdAndPfId
 (
     VOS_UINT8                           ucEpsbId,
@@ -1184,17 +992,7 @@ VOS_UINT32 NAS_ESM_QuerySdfIdByEpsbIdAndPfId
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ESM_GetQuerySdfIdResult
- Description     : 获取查找SDF号的结果
- Input           : None
- Output          : None
- Return          : NAS_ESM_QUERY_CID_RSLT_ENUM_UINT8
 
- History         :
-    1.lihong 00150010      2009-7-14  Draft Enact
-
-*****************************************************************************/
 NAS_ESM_QUERY_CID_RSLT_ENUM_UINT8  NAS_ESM_GetQuerySdfIdResult
 (
      VOS_UINT32                         ulFindNum,
@@ -1233,17 +1031,7 @@ NAS_ESM_QUERY_CID_RSLT_ENUM_UINT8  NAS_ESM_GetQuerySdfIdResult
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ESM_QuerySdfId
- Description     : 查找SDF号
- Input           : None
- Output          : None
- Return          : NAS_ESM_QUERY_CID_RSLT_ENUM_UINT8
 
- History         :
-    1.lihong 00150010      2009-7-14  Draft Enact
-
-*****************************************************************************/
 NAS_ESM_QUERY_CID_RSLT_ENUM_UINT8  NAS_ESM_QuerySdfId
 (
     const NAS_ESM_NW_MSG_STRU          *pstEsmNwMsgIE,
@@ -1308,18 +1096,7 @@ NAS_ESM_QUERY_CID_RSLT_ENUM_UINT8  NAS_ESM_QuerySdfId
                                         enIsCidEqual);
 
 }
-/*****************************************************************************
- Function Name   : NAS_ESM_GetLinkCidByActiveCid
- Description     : 通过专有承载的Cid,找到这个专有承载的关联
-                   缺省承载对应的Cid.
- Input           : ulCid -- Cid号
- Output          : None
- Return          : 找到的缺省承载的Cid
 
- History         :
-    1.liuwenyu 00143951      2010-8-31  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_ESM_GetLinkCidByActiveCid
 (
     VOS_UINT32                          ulCid
@@ -1522,17 +1299,7 @@ VOS_UINT32 NAS_ESM_QueryStateTblIndexByEpsbId(VOS_UINT32 ulEpsbId,VOS_UINT32 *ul
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ESM_GetBuffItemAddr
- Description     : 获取缓存记录地址
- Input           : ulIndex------------------------定时器索引号
- Output          : None
- Return          : VOS_VOID*
 
- History         :
-    1.lihong00150010      2010-4-23  Draft Enact
-
-*****************************************************************************/
 VOS_VOID* NAS_ESM_GetBuffItemAddr
 (
     NAS_ESM_BUFF_ITEM_TYPE_ENUM_UINT8   enEsmBuffType,
@@ -1554,18 +1321,7 @@ VOS_VOID* NAS_ESM_GetBuffItemAddr
     return pBuffItem;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_GetPtiBuffItemTimer
- Description     : 获取ESM缓存记录关联定时器
- Input           : ulIndex------------------------定时器索引号
- Output          : None
- Return          : NAS_ESM_TIMER_STRU*
 
- History         :
-    1.lihong00150010      2010-1-29     Draft Enact
-    2.lihong00150010      2010-04-23    Modify
-
-*****************************************************************************/
 NAS_ESM_TIMER_STRU* NAS_ESM_GetPtiBuffItemTimer
 (
     VOS_UINT32                          ulIndex
@@ -1586,18 +1342,7 @@ NAS_ESM_TIMER_STRU* NAS_ESM_GetPtiBuffItemTimer
     return &pstEsmPtiBuffItem->stTimerInfo;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_GetTimerLen
- Description     : 获取定时器时长
- Input           : enTimerType------------------定时器类型
-                   ulIndex----------------------定时器索引号
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2010-1-29  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_ESM_GetTimerLen
 (
     NAS_ESM_TIMER_PARA_ENUM_UINT8       enTimerType
@@ -1650,18 +1395,7 @@ VOS_UINT32  NAS_ESM_GetTimerLen
     return ulTimerLen;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_GetTimer
- Description     : 获取定时器
- Input           : enTimerType------------------定时器类型
-                   ulIndex----------------------定时器索引号
- Output          : None
- Return          : NAS_ESM_TIMER_STRU*
 
- History         :
-    1.lihong00150010      2010-1-29  Draft Enact
-
-*****************************************************************************/
 NAS_ESM_TIMER_STRU*  NAS_ESM_GetTimer
 (
     VOS_UINT32                          ulIndex,
@@ -1707,18 +1441,7 @@ NAS_ESM_TIMER_STRU*  NAS_ESM_GetTimer
     return pstTimerInfo;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_PrintTimeStartInfo
- Description     : 打印定时器启动信息
- Input           : enTimerType------------------定时器类型
-                   ulIndex----------------------定时器索引号
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2010-1-29  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_PrintTimeStartInfo
 (
     VOS_UINT32                          ulIndex,
@@ -1778,17 +1501,7 @@ VOS_VOID  NAS_ESM_PrintTimeStartInfo
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_PrintTimeStopInfo
- Description     : 打印定时器关闭信息
- Input           : enTimerType------------------定时器类型
-                   ulIndex----------------------定时器索引号
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2010-1-29  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_PrintTimeStopInfo
 (
     VOS_UINT32                          ulIndex,
@@ -1850,17 +1563,7 @@ VOS_VOID  NAS_ESM_PrintTimeStopInfo
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_IsTimerNameValid
- Description     : 判断定时器名是否合法
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2010-1-29  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_ESM_IsTimerNameValid
 (
     VOS_UINT32                          ulIndex,
@@ -1921,18 +1624,7 @@ VOS_UINT32  NAS_ESM_IsTimerNameValid
     return PS_FALSE;
 }
 
-/*****************************************************************************
- Function Name  : NAS_ESM_TimerStart
- Discription    : 启动某一承载的某种类型的定时器
- Input          : VOS_UINT32  ulIndex
-                  NAS_ESM_TIMER_PARA_ENUM_UINT8   enTimerType
- Output         : VOS_VOID
- Return         : None
- History:
-      1.丁丽 00128736      2008-09-01  Draft Enact
-      2.sunbing 49683      2009-02-05  Modify
-      3.lihong 00150010    2010-01-29  Modify
-*****************************************************************************/
+
 VOS_VOID NAS_ESM_TimerStart
 (
     VOS_UINT32                          ulIndex,
@@ -2012,17 +1704,7 @@ VOS_VOID NAS_ESM_TimerStart
     NAS_ESM_PrintTimeStartInfo(ulIndex, enTimerType);
 }
 
-/*****************************************************************************
- Function Name  : NAS_ESM_TimerStop
- Discription    : 停止某一承载定时器
- Input          : VOS_UINT32  ulEpsbId
- Output         : VOS_VOID
- Return         : None
- History:
-      1.丁丽 00128736      2008-09-01  Draft Enact
-      2.sunbing 49683      2009-02-05  Modify
-      3.lihong 00150010    2010-01-29  Modify
-*****************************************************************************/
+
 VOS_VOID NAS_ESM_TimerStop
 (
     VOS_UINT32                          ulIndex,
@@ -2081,17 +1763,7 @@ VOS_VOID NAS_ESM_TimerStop
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_GetTimerMaxExpTimes
- Description     : 获取指定定时器允许的最大超时次数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421  2011-2-12  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_ESM_GetTimerMaxExpNum(
                                         NAS_ESM_TIMER_PARA_ENUM_UINT8 enTimerType )
 {
@@ -2125,19 +1797,7 @@ VOS_UINT32  NAS_ESM_GetTimerMaxExpNum(
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ESM_QueryOverduePtiBuffItem
- Description     : 查找过期的PTI缓存记录
- Input           : ucPti----------------------PTI
-                   ucEpsbId-------------------承载号
- Output          : pulIndex-------------------缓存记录索引号
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2010-2-2      Draft Enact
-    2.lihong00150010      2010-04-23    Modify
-
-*****************************************************************************/
 VOS_UINT32  NAS_ESM_QueryOverduePtiBuffItem
 (
     VOS_UINT8                           ucPti,
@@ -2180,21 +1840,7 @@ VOS_UINT32  NAS_ESM_QueryOverduePtiBuffItem
     return NAS_ESM_FAILURE;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SavePtiBuffItem
- Description     : 缓存PTI和回复消息
- Input           : ucPti----------------------PTI
-                   ucEpsbId-------------------承载号
-                   ulLength-------------------回复消息长度
-                   pucSendMsg-----------------回复消息首地址
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2010-1-29     Draft Enact
-    2.lihong00150010      2010-04-23    Modify
-
-*****************************************************************************/
 VOS_UINT32  NAS_ESM_SavePtiBuffItem
 (
     VOS_UINT8                           ucPti,
@@ -2282,18 +1928,7 @@ VOS_UINT32  NAS_ESM_SavePtiBuffItem
     return NAS_ESM_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_QueryPtiBuffItemByEpsbId
- Description     : 通过承载号查找ESM缓存记录
- Input           : ucEpsbId-------------------承载号
- Output          : pulIndex-------------------缓存记录索引号
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2010-2-2      Draft Enact
-    2.lihong00150010      2010-04-23    Modify
-
-*****************************************************************************/
 VOS_UINT32  NAS_ESM_QueryPtiBuffItemByEpsbId
 (
     VOS_UINT8                           ucEpsbId,
@@ -2332,18 +1967,7 @@ VOS_UINT32  NAS_ESM_QueryPtiBuffItemByEpsbId
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ESM_QueryPtiBuffItemByPti
- Description     : 通过PTI查找ESM缓存记录
- Input           : ucPti----------------------PTI
- Output          : pulIndex-------------------缓存记录索引号
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2010-2-2      Draft Enact
-    2.lihong00150010      2010-04-23    Modify
-
-*****************************************************************************/
 VOS_UINT32  NAS_ESM_QueryPtiBuffItemByPti
 (
     VOS_UINT8                           ucPti,
@@ -2381,17 +2005,7 @@ VOS_UINT32  NAS_ESM_QueryPtiBuffItemByPti
     return NAS_ESM_FAILURE;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_ClearEsmBuff
- Description     : 清楚ESM缓存
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2010-2-11  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_ClearEsmBuff( VOS_VOID )
 {
     VOS_UINT32                          ulCnt               = NAS_ESM_NULL;
@@ -2416,17 +2030,7 @@ VOS_VOID  NAS_ESM_ClearEsmBuff( VOS_VOID )
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_ClearEsmBuffItem
- Description     : 清楚ESM缓存记录
- Input           : ulIndex-------------------缓存记录索引号
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2010-2-2  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ESM_ClearEsmBuffItem
 (
     NAS_ESM_BUFF_ITEM_TYPE_ENUM_UINT8   enEsmBuffType,
@@ -2646,18 +2250,7 @@ VOS_VOID NAS_ESM_RelStateTblResource(VOS_UINT32  ulStateTblIndex )
     #endif
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_QueryNWPacketFilterID
- Description     : 根据App设置的packetfilterID，查找网络侧分配的packetfilterID
- Input           : ucPacketFilterID   -- APP设置的packetfilterID
-                   ulCID              -- 要查找的CID
- Output          : ucNWPacketFilterID -- 网络分配的packetfilterID
- Return          : NAS_ESM_SUCCESS    -- 找到了对应的网络packetfilterID
-                   NAS_ESM_FAILURE    -- 没找到了对应的网络packetfilterID
- History         :
-    1.liuwenyu00143951      2009-10-23  Draft Enact
 
-*****************************************************************************/
 VOS_UINT32 NAS_ESM_QueryNWPacketFilterID
 (
     VOS_UINT8                           ucPacketFilterID,
@@ -2691,17 +2284,7 @@ VOS_UINT32 NAS_ESM_QueryNWPacketFilterID
 
 
 
-/*****************************************************************************
- Function Name   : NAS_ESM_IsTftInfoValid
- Description     : TFT信息的合法性检查
- Input           : None
- Output          : None
- Return          : NAS_ESM_FAILURE -- 信息不合法
-                   NAS_ESM_SUCCESS -- 信息合法
- History         :
-    1.liuwenyu 00143951      2010-8-23  Draft Enact
 
-*****************************************************************************/
 VOS_UINT32  NAS_ESM_IsTftInfoValid
 (
     const APP_ESM_TFT_INFO_STRU               *pstAppTftInfo
@@ -2753,18 +2336,7 @@ VOS_UINT32  NAS_ESM_IsTftInfoValid
     return NAS_ESM_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_IsSdfQosValid
- Description     : SDF Qos信息的合法性检查
- Input           : pstSdfQosInfo -- SDF Qos信息的结构指针
- Output          : None
- Return          : NAS_ESM_FAILURE -- 信息不合法
-                   NAS_ESM_SUCCESS -- 信息合法
 
- History         :
-    1.liuwenyu 00143951      2010-9-1  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_ESM_IsSdfQosValid
 (
     const APP_ESM_EPS_QOS_INFO_STRU          *pstSdfQosInfo
@@ -2808,18 +2380,7 @@ VOS_UINT32  NAS_ESM_IsSdfQosValid
      return NAS_ESM_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_IsGwAuthInfoValid
- Description     : 网关鉴权信息的合法性检查
- Input           : pstGwAuthInfo -- 网关鉴权信息的结构指针
- Output          : None
- Return          : NAS_ESM_FAILURE -- 信息不合法
-                   NAS_ESM_SUCCESS -- 信息合法
 
- History         :
-    1.liuwenyu 00143951      2010-9-1  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_ESM_IsGwAuthInfoValid
 (
     const APP_ESM_GW_AUTH_INFO_STRU           *pstGwAuthInfo
@@ -2855,18 +2416,7 @@ VOS_UINT32  NAS_ESM_IsGwAuthInfoValid
 
     return APP_SUCCESS;
 }
-/*****************************************************************************
- Function Name   : NAS_ESM_IsSdfParaOtherInfoValid
- Description     : SDF 静态信息中，pdn类型，IP地址分配方式
-                   承载类型的合法性检查
- Input           : pstSdfPara      -- SDF静态信息结构的指针
- Output          : None
- Return          : NAS_ESM_FAILURE -- 静态信息不合法
-                   NAS_ESM_SUCCESS -- 静态信息合法
- History         :
-    1.liuwenyu 00143951      2010-9-1  Draft Enact
 
-*****************************************************************************/
 VOS_UINT32  NAS_ESM_IsSdfParaOtherInfoValid
 (
     const NAS_ESM_SDF_PARA_STRU           *pstSdfPara
@@ -2901,17 +2451,7 @@ VOS_UINT32  NAS_ESM_IsSdfParaOtherInfoValid
     return NAS_ESM_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_IsSdfParaValid
- Description     : 判断SDF的静态信息是否合法
- Input           : pstSdfPara      -- SDF静态信息结构的指针
- Output          : None
- Return          : NAS_ESM_FAILURE -- 静态信息不合法
-                   NAS_ESM_SUCCESS -- 静态信息合法
- History         :
-    1.liuwenyu 00143951      2010-9-1  Draft Enact
 
-*****************************************************************************/
 VOS_UINT32  NAS_ESM_IsSdfParaValid
 (
     const NAS_ESM_SDF_PARA_STRU           *pstSdfPara
@@ -2970,17 +2510,7 @@ VOS_UINT32  NAS_ESM_IsSdfParaValid
 
 
 
-/*****************************************************************************
- Function Name   : NAS_ESM_GetAppErrorByEsmCause
- Description     : 根据ESM原因值，获得对应的App错误码
- Input           : enEsmCause -- ESM原因值
- Output          : None
- Return          : App错误码
 
- History         :
-    1.liuwenyu00143951      2009-09-22  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_ESM_GetAppErrorByEsmCause
 (
     NAS_ESM_CAUSE_ENUM_UINT8            enEsmCause
@@ -3001,16 +2531,7 @@ VOS_UINT32 NAS_ESM_GetAppErrorByEsmCause
     return APP_ERR_SM_NW_PROT_ERR_UNSPECIFIED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_GetBearerLinkedCidNum
- Description     : 获取承载对应的激活的Cid的个数
- Input           : ulEpsbId -- 承载号
- Output          : None
- Return          : 承载对应的激活的Cid个数
- History         :
-    1.liuwenyu 00143951      2010-3-8  Draft Enact
 
-*****************************************************************************/
 VOS_UINT32  NAS_ESM_GetBearerLinkedCidNum
 (
     VOS_UINT32                          ulEpsbId
@@ -4206,17 +3727,7 @@ VOS_VOID NAS_ESM_PrintEsmSendMsg
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_PrintEpsQos
- Description     : 打印承载Qos
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.liuwenyu 00143951      2010-04-15   Draft Enact
-
-*****************************************************************************/
 
 VOS_VOID NAS_ESM_PrintEpsQos( const NAS_ESM_EPSB_CNTXT_INFO_STRU *pstEpsbInfo )
 {
@@ -4239,17 +3750,7 @@ VOS_VOID NAS_ESM_PrintEpsQos( const NAS_ESM_EPSB_CNTXT_INFO_STRU *pstEpsbInfo )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ESM_PrintEpsLinkedSdfId
- Description     : 打印承载包含的SDF号
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.liuwenyu 00143951      2010-04-15   Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ESM_PrintEpsLinkedSdfId( const NAS_ESM_EPSB_CNTXT_INFO_STRU *pstEpsbInfo )
 {
     VOS_UINT32                          ulBitCId    = NAS_ESM_NULL;
@@ -4290,17 +3791,7 @@ VOS_VOID NAS_ESM_PrintEpsLinkedSdfId( const NAS_ESM_EPSB_CNTXT_INFO_STRU *pstEps
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_PrintEpsPdn
- Description     : 打印承载信息中的PDN信息
- Input           : pstEpsbInfo
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010    2010-01-19  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ESM_PrintEpsPdn( const NAS_ESM_EPSB_CNTXT_INFO_STRU *pstEpsbInfo )
 {
     if ((PS_TRUE == NAS_ESM_IsDefaultEpsBearerType(pstEpsbInfo->enBearerCntxtType))
@@ -4388,17 +3879,7 @@ VOS_VOID NAS_ESM_PrintEpsPdn( const NAS_ESM_EPSB_CNTXT_INFO_STRU *pstEpsbInfo )
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_PrintEpsApnAmbr
- Description     : 打印承载信息中的APN-AMBR信息
- Input           : pstEpsbInfo
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010    2010-01-19  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ESM_PrintEpsApnAmbr( const NAS_ESM_EPSB_CNTXT_INFO_STRU *pstEpsbInfo )
 {
     if ((PS_TRUE == NAS_ESM_IsDefaultEpsBearerType(pstEpsbInfo->enBearerCntxtType))
@@ -4422,17 +3903,7 @@ VOS_VOID NAS_ESM_PrintEpsApnAmbr( const NAS_ESM_EPSB_CNTXT_INFO_STRU *pstEpsbInf
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ESM_PrintEpsbInfo
- Description     : 打印某条承载的信息
- Input           : VOS_UINT32 ulEpsbId
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.liuwenyu 00143951      2010-04-15   Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ESM_PrintEpsbInfo(VOS_UINT32 ulEpsbId)
 {
     NAS_ESM_EPSB_CNTXT_INFO_STRU       *pstEpsbInfo         = VOS_NULL_PTR;
@@ -4478,18 +3949,7 @@ VOS_VOID NAS_ESM_PrintEpsbInfo(VOS_UINT32 ulEpsbId)
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_GetAllEpsBearerInPdn
- Description     : 获取某PDN下的所有承载号
- Input           : ucEpsbId---------------------承载号
- Output          : pucEpsBearNum----------------承载数
-                   pucEspbId--------------------承载号数组首地址
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2010-05-27   Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_ESM_GetAllEpsBearerInPdn
 (
     VOS_UINT8                           ucEpsbId,
@@ -4531,18 +3991,7 @@ VOS_UINT32 NAS_ESM_GetAllEpsBearerInPdn
     return NAS_ESM_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_IsExistSamePrecedenceInTft
- Description     : 判断TFT中是否有相同precedence 的两个PF
- Input           : ulPfNum -- packet filter 数目
-                   pstTFT  -- packet filter 数组的首地址
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.liuwenyu 00143951      2010-05-26  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_ESM_IsExistSamePrecedenceInTft
 (
     VOS_UINT32                          ulPfNum,
@@ -4566,17 +4015,7 @@ VOS_UINT32 NAS_ESM_IsExistSamePrecedenceInTft
     return NAS_ESM_FAILURE;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_DHCPGetIPv4Mask
- Description     : 根据IP地址计算子网掩码
- Input           : pucIpv4Addr --- IP地址
- Output          : pucIpv4Mask --- 子网掩码
- Return          : VOS_VOID
 
- History         :
-    1.sunli 00180715        2011-04-18  Modify
-
-*****************************************************************************/
 VOS_VOID NAS_ESM_DHCPGetIPv4Mask
 (
     const VOS_UINT8                    *pucIpv4Addr,
@@ -4610,18 +4049,7 @@ VOS_VOID NAS_ESM_DHCPGetIPv4Mask
     IP_SetUint32Data(pucIpv4Mask, ulMask);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_DHCPGetIPv4GateWay
- Description     : 根据IP地址和子网掩码计算网关
- Input           : pucIpv4Addr    --- IP地址
-                   pucIpv4Mask    --- 子网掩码
- Output          : pucIpv4GateWay --- 网关
- Return          : VOS_VOID
 
- History         :
-    1.sunli 00180715        2011-04-18  Modify
-
-*****************************************************************************/
 VOS_VOID NAS_ESM_DHCPGetIPv4GateWay
 (
     const VOS_UINT8                    *pucIpv4Addr,
@@ -4648,16 +4076,7 @@ VOS_VOID NAS_ESM_DHCPGetIPv4GateWay
     IP_SetUint32Data(pucIpv4GateWay, ulGateWay);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_ClearSdfPara
- Description     : 根据Cid清除Sdf参数
- Input           : Cid
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.yangfan 00159566      2011-6-29  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ESM_ClearSdfPara(VOS_UINT32  ulCid)
 {
     NAS_ESM_SDF_PARA_STRU              *pstSdfPara       = VOS_NULL_PTR;
@@ -4671,16 +4090,7 @@ VOS_VOID NAS_ESM_ClearSdfPara(VOS_UINT32  ulCid)
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_ClearNwCtrlSdfPara
- Description     : 清除网侧主动建立专有承载的静态信息 CID 20~31
- Input           :
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.yangfan 00159566      2011-6-27  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ESM_ClearNwCtrlSdfPara(VOS_VOID)
 {
     VOS_UINT32                          ulCnt            = NAS_ESM_NULL;
@@ -4698,17 +4108,7 @@ VOS_VOID NAS_ESM_ClearNwCtrlSdfPara(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_Ipv4TransformPcoStru
- Description     : 转变PCO结构格式，用于适配上报APP中PCO结构和本地存储PCO结构的不同
- Input           : pstContPco  -- 本地存储的PCO结构指针
- Output          : pstTransPco-----转换格式后的PCO结构指针
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2011-03-29  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ESM_Ipv4TransformPcoStru
 (
     const NAS_ESM_CONTEXT_PCO_STRU     *pstContPco,
@@ -4757,17 +4157,7 @@ VOS_VOID NAS_ESM_Ipv4TransformPcoStru
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_Ipv6TransformPcoStru
- Description     : 转变PCO结构格式，用于适配上报APP中PCO结构和本地存储PCO结构的不同
- Input           : pstContPco  -- 本地存储的PCO结构指针
- Output          : pstTransPco-----转换格式后的PCO结构指针
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2011-03-29  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ESM_Ipv6TransformPcoStru
 (
     const NAS_ESM_CONTEXT_PCO_STRU     *pstContPco,
@@ -4808,17 +4198,7 @@ VOS_VOID NAS_ESM_Ipv6TransformPcoStru
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_Ipv4v6TransformPcoStru
- Description     : 转变PCO结构格式，用于适配上报APP中PCO结构和本地存储PCO结构的不同
- Input           : pstContPco  -- 本地存储的PCO结构指针
- Output          : pstTransPco-----转换格式后的PCO结构指针
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2011-03-29  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ESM_Ipv4v6TransformPcoStru
 (
     const NAS_ESM_CONTEXT_PCO_STRU     *pstContPco,
@@ -4909,18 +4289,7 @@ VOS_VOID NAS_ESM_Ipv4v6TransformPcoStru
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ESM_TransformPcoStru
- Description     : 转变PCO结构格式，用于适配上报APP中PCO结构和本地存储PCO结构的不同
- Input           : ucIpType -- PDN类型
-                   pstContPco  -- 本地存储的PCO结构指针
- Output          : pstTransPco-----转换格式后的PCO结构指针
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2011-03-29  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ESM_TransformPcoStru
 (
     VOS_UINT8                           ucIpType,
@@ -4942,17 +4311,7 @@ VOS_VOID NAS_ESM_TransformPcoStru
         NAS_ESM_Ipv4v6TransformPcoStru(pstContPco, pstTransPco);
     }
 }
-/*****************************************************************************
- Function Name   : NAS_ESM_ClearCid0StaticInfo
- Description     : 用于在清空资源时,重新初始化CID0的内容
- Input           : VOS_UINT32
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.niuxiufan 00181501   2012-3-21  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ESM_ClearCid0StaticInfo(VOS_VOID)
 {
     NAS_ESM_SDF_PARA_STRU          *pstBearCntxtPara  = VOS_NULL_PTR;
@@ -4970,17 +4329,7 @@ VOS_VOID NAS_ESM_ClearCid0StaticInfo(VOS_VOID)
     pstBearCntxtPara->ulLinkdCId            = 20;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_HasExistedEmergencyPdn
- Description     : 判断当前已经建立的EPS承载中是否有紧急PDN连接
- Input           : None
- Output          : None
- Return          : PS_TRUE    存在紧急PDN连接
-                   PS_FALSE   不存在紧急PDN连接
- History         :
-    1.liuhua    00212067       2012-10-25  Draft Enact
 
-*****************************************************************************/
 VOS_UINT32 NAS_ESM_HasExistedEmergencyPdn(VOS_VOID)
 {
     VOS_UINT32 ulEpsId = 0;
@@ -5001,17 +4350,7 @@ VOS_UINT32 NAS_ESM_HasExistedEmergencyPdn(VOS_VOID)
     return PS_FALSE;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_HasEstingEmergencyPdn
- Description     : 判断当前是否存在正在建立的紧急PDN连接
- Input           : None
- Output          : None
- Return          : PS_TRUE    存在正在建立的紧急PDN连接
-                   PS_FALSE   不存在正在建立的紧急PDN连接
- History         :
-    1.liuhua    00212067       2012-10-25  Draft Enact
 
-*****************************************************************************/
 VOS_UINT32 NAS_ESM_HasEstingEmergencyPdn(VOS_VOID)
 {
     VOS_UINT32 i = 0;
@@ -5030,17 +4369,7 @@ VOS_UINT32 NAS_ESM_HasEstingEmergencyPdn(VOS_VOID)
     return PS_FALSE;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_HasEmergencyPdn
- Description     : 判断当前是否存在紧急PDN连接
- Input           : None
- Output          : None
- Return          : PS_TRUE    存在紧急PDN连接
-                   PS_FALSE   不存在紧急PDN连接
- History         :
-    1.liuhua    00212067       2012-10-25  Draft Enact
 
-*****************************************************************************/
 VOS_UINT32 NAS_ESM_HasEmergencyPdn(VOS_VOID)
 {
     if (NAS_ESM_HasExistedEmergencyPdn() || NAS_ESM_HasEstingEmergencyPdn())
@@ -5054,20 +4383,7 @@ VOS_UINT32 NAS_ESM_HasEmergencyPdn(VOS_VOID)
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ESM_IsEmmEmcAttachedOrAttaching
- Description     : 判断当前EMM已经处于紧急注册状态或正在进行紧急注册，                        ü鼸SM内部信息来等效判断，
-                   包含以下两种情况:
-                      1. 只有一个正在建立的PDN连接请求，且为紧急类型，此时EMM正在进行紧急注册
-                      2. 只有一个已经建立的PDN连接请求，且为紧急类型，此时EMM已经处于紧急注册
- Input           : None
- Output          : None
- Return          : PS_TRUE    EMM已经处于紧急注册状态或正在进行紧急注册
-                   PS_FALSE   EMM既不处于紧急注册状态也没有正在进行紧急注册
- History         :
-    1.liuhua    00212067       2012-10-25  Draft Enact
 
-*****************************************************************************/
 VOS_UINT32 NAS_ESM_IsEmmEmcAttachedOrAttaching(VOS_VOID)
 {
     if (((0 == NAS_ESM_GetCurPdnNum()) && (PS_TRUE == NAS_ESM_HasEstingEmergencyPdn())) ||
@@ -5081,18 +4397,7 @@ VOS_UINT32 NAS_ESM_IsEmmEmcAttachedOrAttaching(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_IsDefaultEpsBearerType
- Description     : 判断承载类型是否是默认承载，这里的默认承载是协议原本意义上的默认承载类型
-                   (通过ACTIVATE DEFAULT EPS BEARER CONTEXT REQUEST激活)，因此包括紧急类型承载
- Input           : Type  承载类型
- Output          : None
- Return          : PS_TRUE    该承载是默认承载
-                   PS_FALSE   该承载不是默认承载
- History         :
-    1.liuhua    00212067       2012-10-25  Draft Enact
 
-*****************************************************************************/
 VOS_UINT32 NAS_ESM_IsDefaultEpsBearerType(VOS_UINT32 Type)
 {
     if ((NAS_ESM_BEARER_TYPE_DEFAULT == Type) || (NAS_ESM_BEARER_TYPE_EMERGENCY == Type))
@@ -5105,17 +4410,7 @@ VOS_UINT32 NAS_ESM_IsDefaultEpsBearerType(VOS_UINT32 Type)
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_QueryStateTblIndexForEmc
- Description     : 在动态表中搜索紧急PDN建立消息
- Input           : None
- Output          : pulStateIndex  如果有紧急记录，通过此参数保存将该动态表索引值
- Return          : NAS_ESM_SUCCESS  搜索成功
-                   NAS_ESM_FAILURE  搜索不成功
- History         :
-    1.liuhua    00212067       2012-10-25  Draft Enact
 
-*****************************************************************************/
 VOS_UINT32 NAS_ESM_QueryStateTblIndexForEmc(VOS_UINT32 *pulStateIndex)
 {
     VOS_UINT32                          ulCnt               = NAS_ESM_NULL;
@@ -5137,16 +4432,7 @@ VOS_UINT32 NAS_ESM_QueryStateTblIndexForEmc(VOS_UINT32 *pulStateIndex)
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ESM_DeactAllNonEmcPdn
- Description     : 释放当前所有非紧急PDN连接
- Input           : None
- Output          : None
- Return          : None
- History         :
-    1.liuhua    00212067       2012-10-25  Draft Enact
 
-*****************************************************************************/
 VOS_VOID  NAS_ESM_DeactAllNonEmcPdn(VOS_VOID)
 {
     VOS_UINT32 ulCid = 0;
@@ -5198,20 +4484,7 @@ VOS_VOID  NAS_ESM_DeactAllNonEmcPdn(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_ESM_SndOmEsmTimerStatus
- 功能描述  : 发送消息给OM模块，ESM定时器运行完成
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年12月6日
-   作    者   : niuxiufan 00181501
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  NAS_ESM_SndOmEsmTimerStatus(
     NAS_ESM_TIMER_RUN_STA_ENUM_UINT32        enTimerStatus,
     NAS_ESM_TIMER_PARA_ENUM_UINT8           enTimerId,
@@ -5246,17 +4519,7 @@ VOS_VOID  NAS_ESM_SndOmEsmTimerStatus(
 }
 /*lint +e961*/
 /*lint +e960*/
-/*****************************************************************************
- Function Name   : NAS_ESM_GetSdfPara
- Description     : 获取APP的SDF PARA
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387    2013-5-8  Draft Enact
-
-*****************************************************************************/
 /*lint -e426*/
 /*lint -e830*/
 /*lint -e429*/
@@ -5281,17 +4544,7 @@ VOS_UINT32  NAS_ESM_GetSdfPara
 /*lint +e830*/
 /*lint +e426*/
 
-/*****************************************************************************
- Function Name   : NAS_ESM_GetSdfPara
- Description     : 获取APP的PDP MANAGE INFO
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387    2013-5-8  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_ESM_GetPdpManageInfo
 (
     APP_ESM_PDP_MANAGE_INFO_STRU  *pstPdpManageInfo
@@ -5307,17 +4560,7 @@ VOS_UINT32  NAS_ESM_GetPdpManageInfo
     #endif
     return ulRslt;
 }
-/*****************************************************************************
- Function Name   : NAS_ESM_IsCurrentApnExitRej50InfoAndSamePdnType
- Description     : 判断当前被拒绝的PDN是否在被拒列表中
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.wangchen 00209181 2014-09-04  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_ESM_IsCurrentApnAvailable
 (
     APP_ESM_PDN_TYPE_ENUM_UINT32        enPdnType,
@@ -5343,17 +4586,7 @@ VOS_UINT32  NAS_ESM_IsCurrentApnAvailable
     }
     return NAS_ESM_SUCCESS;
 }
-/*****************************************************************************
- Function Name   : NAS_ESM_IsCurrentApnExitRej50InfoAndSamePdnType
- Description     : 判断当前被拒绝的PDN是否在被拒列表中
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.wangchen 00209181 2014-09-04  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_ESM_IsCurrentApnHas50Rej
 (
     APP_ESM_PDN_TYPE_ENUM_UINT32        enPdnType,
@@ -5414,17 +4647,7 @@ VOS_UINT32  NAS_ESM_IsCurrentApnHas50Rej
     }
     return VOS_FALSE;
 }
-/*****************************************************************************
- Function Name   : NAS_ESM_IsCurrentApnExitRej50InfoAndSamePdnType
- Description     : 判断当前被拒绝的PDN是否在被拒列表中
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.wangchen 00209181 2014-09-04  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_ESM_IsCurrentApnHas51Rej
 (
     APP_ESM_PDN_TYPE_ENUM_UINT32        enPdnType,
@@ -5486,17 +4709,7 @@ VOS_UINT32  NAS_ESM_IsCurrentApnHas51Rej
     }
     return VOS_FALSE;
 }
-/*****************************************************************************
- Function Name   : NAS_ESM_IsCurrentApnExitRej50InfoAndSamePdnType
- Description     : 判断当前被拒绝的PDN是否在被拒列表中
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.wangchen 00209181 2014-09-04  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_ESM_IsCurrentApnHas66Rej
 (
     VOS_UINT32                           ulBitOpApnInfo,
@@ -5555,15 +4768,7 @@ VOS_UINT32  NAS_ESM_IsCurrentApnHas66Rej
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ESM_ReadUsimRpmPdpPara
- Description     : 读USIM卡中RPM参数的处理
- Input           : None
- Output          : None
- Return          : VOS_UINT8                   读取结果
- History         :
-    1.sunjitan 00193151    2015-01-15  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32 NAS_ESM_ReadUsimBackOffRpmPdpPara(VOS_VOID)
 {
     VOS_CHAR                         *cPathStr;
@@ -5593,19 +4798,7 @@ VOS_UINT32 NAS_ESM_ReadUsimBackOffRpmPdpPara(VOS_VOID)
                             &stGetFilePath);
 
 }
-/*****************************************************************************
- Function Name  : NAS_ESM_SndUsimReadFileReq()
- Description    : 给USIM发送读取文件请求
- Input          : ulAppType         应用类型
-                  ucRecordNum
-                  ulOpId
-                  stGetFilePath     文件路径
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.leixiantiao 00258641  2015-02-10   Draft Enact
-*****************************************************************************/
 VOS_UINT32 NAS_ESM_SndUsimReadFileReq
 (
     USIMM_CARDAPP_ENUM_UINT32       ulAppType,
@@ -5653,16 +4846,7 @@ VOS_UINT32 NAS_ESM_SndUsimReadFileReq
 }
 
 
-/*****************************************************************************
- Function Name  : NAS_ESM_DecodeUsimBackOffPara
- Description    : 读USIM中的BackOff算法参数的译码
- Input          : VOS_UINT16           参数长度
- Output         : VOS_UINT8            参数流
- Return Value   : VOS_UINT32           译码结果
 
- History        :
-      1.sunjitan 00193151    2015-01-15  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ESM_DecodeUsimBackOffPara
 (
     VOS_UINT16                          usLen,
@@ -5704,16 +4888,7 @@ VOS_VOID NAS_ESM_DecodeUsimBackOffPara
 
     return;
 }
-/*****************************************************************************
- Function Name  : NAS_ESM_ProcReadIsimFileResult()
- Description    : ESM读卡文件，USIM回复消息处理
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.leixiantiao 00258641    2015-01-15  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ESM_ProcReadIsimFileResult(VOS_VOID *pRcvMsg)
 {
     NAS_BACKOFF_INIT_INFO_STRU           stInitPara;
@@ -5762,16 +4937,7 @@ VOS_VOID NAS_ESM_ProcReadIsimFileResult(VOS_VOID *pRcvMsg)
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_ESM_UsimMsgDistr()
- Description    : SM模块USIM消息分发函数
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.sunjitan 00193151    2015-01-15  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ESM_UsimMsgDistr(VOS_VOID *pRcvMsg)
 {
     PS_MSG_HEADER_STRU                  *pHeader = VOS_NULL_PTR;
@@ -5791,16 +4957,7 @@ VOS_VOID NAS_ESM_UsimMsgDistr(VOS_VOID *pRcvMsg)
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_ESM_IsWaitBackOffUsimCnfTimerRunning
- Description    : 判断等待读USIM卡定时器是否在运行
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.sunjitan 00193151    2015-01-15  Draft Enact
-*****************************************************************************/
 VOS_UINT8 NAS_ESM_IsWaitBackOffUsimCnfTimerRunning(VOS_VOID)
 {
     NAS_ESM_TIMER_STRU                 *pstTimerInfo = VOS_NULL_PTR;
@@ -5817,16 +4974,7 @@ VOS_UINT8 NAS_ESM_IsWaitBackOffUsimCnfTimerRunning(VOS_VOID)
 
 
 
-/*****************************************************************************
- Function Name  : NAS_ESM_QueryPdnDisconnNumInStateTbl
- Description    : 查询动态表中正在去激活的PDN连接数
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
 
- History        :
-      1.sunjitan 00193151    2015-03-15  Draft Enact
-*****************************************************************************/
 VOS_UINT32 NAS_ESM_QueryPdnDisconnNumInStateTbl(VOS_VOID)
 {
     NAS_ESM_STATE_INFO_STRU            *pstStateAddr     = VOS_NULL_PTR;
@@ -5851,17 +4999,7 @@ VOS_UINT32 NAS_ESM_QueryPdnDisconnNumInStateTbl(VOS_VOID)
     return ulPdnDisconnNum;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SecuMemCpy
- Description     : 安全memcpy
- Input           : VOS_VOID* pDst, VOS_UINT32 ulMaxBuffer, const VOS_VOID* pSrc,
-                   VOS_UINT32  ulLength, VOS_UINT32 ulLineNO, VOS_UINT32 ulFileID
- Output          : None
- Return          : VOS_INT32
 
- History         :
-    1.z00297373    2015-12-28  Draft Enact
-*****************************************************************************/
 VOS_INT32 NAS_ESM_SecuMemCpy
 (
     VOS_VOID            * pDst,

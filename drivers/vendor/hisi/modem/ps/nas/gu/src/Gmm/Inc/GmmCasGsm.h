@@ -1,18 +1,4 @@
-/************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : GmmCasGsm.h
-  Author      : Roger Leo
-  Version     : V200R001
-  Date        : 2005-11-17
-  Description : GmmCasGsm模块的内部头文件
-  History     :
-  1. Date:2005-11-17
-     Author: Roger Leo
-     Modification:update
-  2.日    期   : 2006年08月09日
-    作    者   : 蒋丽萍j60010247
-    修改内容   : 问题单A32D03479，在PC机上实现时将#pragma pack(0)和#pragma pack()加编译开关
-************************************************************************/
+
 
 #ifndef _GMM_CAS_GSM_H_
 #define _GMM_CAS_GSM_H_
@@ -301,9 +287,7 @@ VOS_VOID GMM_RcvGasRadioAccessCapa( VOS_VOID *pRcvMsg );
 VOS_VOID GMM_RcvGasTdsRadioAccessCapa(
     VOS_VOID                           *pstRcvMsg
 );
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-22, begin */
 VOS_VOID GMM_RcvGasClassMarkChangeInd( VOS_VOID *pRcvMsg );
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-22, end */
 
 VOS_VOID GMM_SaveReadyTimerValue(
                         VOS_UINT8 ucMsgByte                 /* 消息中时长位置的字节 */

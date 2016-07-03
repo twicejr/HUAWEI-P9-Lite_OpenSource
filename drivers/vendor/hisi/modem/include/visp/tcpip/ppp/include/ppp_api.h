@@ -1,27 +1,4 @@
-/*******************************************************************************
-*
-*
-*                Copyright 2008, Huawei Technologies Co. Ltd.
-*                            ALL RIGHTS RESERVED
-*
-*-------------------------------------------------------------------------------
-*
-*                              ppp_api.h
-*
-*  Project Code: VISPV100R006C02
-*   Module Name: PPP  
-*  Date Created: 2008-03-17
-*        Author: chenfutian69112
-*   Description: PPP模块提供的对外数据结构定义和API声明
-*
-*-------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  -----------------------------------------------------------------------------
-*  2008-03-17   chenfutian69112         Create
-*  2008-08-25   f54882                  Modify for BC3D00263
-*
-*******************************************************************************/
+
 #ifndef _PPP_API_H_
 #define _PPP_API_H_
 
@@ -35,11 +12,7 @@ extern "C"{
 *                        对外提供的错误码
 ***********************************************************************/
 
-/*注意:
-如果修改错误码，请同步修改ppp_info.c 文件中的
-CHAR* g_apszPPPErrorInfo_En[] 描述 
-added by l61496 2007-9-10
-*/
+
 typedef enum enPppProErrorInfo
 {
     PPP_NOENCAP_ERROR = VOS_ERR + 1,    /* 2 */ 
@@ -119,20 +92,14 @@ typedef enum enPppProErrorInfo
 
     PPP_ERRCODE_END         /* 错误码上限值，仅作错误码边界判断，以后增加错误码时必须定义在此值之前 */
 }PPP_PRO_ERROR_INFO_E;
-/*注意:
-如果修改错误码，请同步修改ppp_info.c 文件中的
-CHAR* g_apszPPPErrorInfo_En[] 描述 
-added by l61496 2007-9-10
-*/
+
 
 
 /**********************************************************************
 *                        对外提供的宏定义
 ***********************************************************************/
 
-/* Modified by z43740: 支持RFC2486, 2006/05/29 */
 #define PPP_MAXUSERNAMELEN     72
-/* Modify by b00177000 2011-08-30,for DTS2011083000610, 修改原因:无线基站维优小需求:用户pwd可以最大支持20个字符 */
 #define PPP_MAXUSERPWDLEN      20
 #define PPP_MAXUSERPWDLENOLD   16
 
@@ -710,7 +677,7 @@ typedef struct tagPppConfigInfo
           bRejectPeerDNS1      :1,
   
           bEnableIPHComp  : 1,
-          bNegoSubOptions : 1,  /* 是否协商RFC3544规定的子选项，added by z43740,2005/09/19 */ 
+          bNegoSubOptions : 1,
           bStacCompress   : 1,   
           
           bPppInterleave  : 1,  /* 是否使能MP的分片交叉功能 */
@@ -734,7 +701,7 @@ typedef struct tagPppConfigInfo
     ULONG ulNegTimeOut;
 
     USHORT usMaxMpBindNum;/*最大绑定链路数*/
-    USHORT usMinFragLen; /*MP开始分段的最小包长, added by pengjimei 2001/09/17*/
+    USHORT usMinFragLen;
     ULONG  ulBindType;
     ULONG  ulBindVTNum;
     ULONG  ulEndpointDiscriminator; /*MP终端描述符值*/
@@ -769,7 +736,7 @@ typedef struct tagPppConfigInfo
     LONG   lCCOMPANY_FORMAT;
     LONG   lDELETE_UDP_CHKSUM;
     
-    UCHAR  ucEnableUniDirection;/*是否支持IPHC单通处理,add by wuhailan,2008-04-11.*/
+    UCHAR  ucEnableUniDirection;
     UCHAR  ucPadding_2[3];
 
     USHORT usDefaultPid;        /* Default PID */
@@ -1223,24 +1190,7 @@ extern ULONG TCPIP_EnableACFC ( ULONG ulIfIndex, ULONG ulSetYes );
 *******************************************************************************/
 extern ULONG TCPIP_SetPppAuthType(ULONG ulIfIndex, ULONG ulType);
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetPppAuthType
-* Date Created: 2010-01-19
-*       Author: z00104207
-*  Description: 获取PPP认证方式
-*        Input: ULONG ulIfIndex:      接口索引
-*       Output: ULONG *pulType:       PPP认证方式，传入指针不能为空。
-*               ULONG *pulCallInAuth: CallInAuth字段，暂无使用，保留将来使用。如
-*                                     不获取该字段的值，可以传入空指针。
-*       Return: 成功则返回VOS_OK，否则返回错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-01-19   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_GetPppAuthType(ULONG ulIfIndex, ULONG *pulType, ULONG *pulCallInAuth);
 
 /*******************************************************************************
@@ -2290,164 +2240,27 @@ extern ULONG TCPIP_ClearIfIPHCStat(ULONG ulIfIndex);
 *******************************************************************************/
 extern ULONG TCPIP_GetIfIPHCStatistics(ULONG ulIfIndex,TCPIP_IPHC_STATISTICS_S *pstIPHCStatistics);
 
-/*******************************************************************************
-*    Func Name: TCPIP_PPP_Set_NegTimeoutWaring
-* Date Created: 2009-02-26
-*       Author: zengshaoyang62531/hexianjun00121208
-*  Description: 设置/取消首次协商不过对外告警功能
-*        Input: ULONG ulTime:为0时表示取消协商不过对外告警功能
-*                            非0表示设置协商不过对外告警功能，
-*                            ulTime数值表示用户指定的协商时间
-*       Output: 
-*       Return: 成功:VOS_OK;失败:返回错误码
-*      Caution: ulTime必须为5的倍数,否则返回错误,最大为600s
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                                     DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-02-26   zengshaoyang62531/hexianjun00121208       Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_PPP_Set_NegTimeoutWaring(ULONG ulTime);
-/*******************************************************************************
-*    Func Name: TCPIP_PPP_Get_NegTime
-* Date Created: 2009-02-26
-*       Author: zengshaoyang62531/hexianjun00121208
-*  Description: 获取用户设置的首次协商不过对外告警时间
-*        Input: ULONG ulTime: 首次协商不过对外告警时间
-*       Output: 
-*       Return: 成功:VOS_OK;失败:返回错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-02-26   zengshaoyang62531/hexianjun00121208       Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_PPP_Get_NegTime(ULONG *pulTime);
 
-/*******************************************************************************
-*    Func Name: TCPIP_SetNegoMagicNum
-* Date Created: 2009-07-14
-*       Author: z00104207
-*  Description: 设置接口是否协商Magic Number
-*        Input: ULONG ulIfIndex: 接口索引
-*               ULONG ulSetYes:  协商Magic Number标记，1-协商，0-不协商
-*       Output: 
-*       Return: 成功则返回VOS_OK，失败则返回其他错误码
-*      Caution: 只能对PPP/VT/Dialer接口调用该API接口。要使得配置操作生效，需要重启接口。
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-07-14   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_SetNegoMagicNum(ULONG ulIfIndex, ULONG ulSetYes);
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetNegoMagicNum
-* Date Created: 2009-07-14
-*       Author: z00104207
-*  Description: 获取接口是否协商Magic Number的标记
-*        Input: ULONG ulIfIndex:  接口索引
-*       Output: ULONG *pulSetYes: 获取到的标记值，1-协商，0-不协商
-*       Return: 成功则返回VOS_OK，失败则返回其他错误码
-*      Caution: 只能对PPP/VT/Dialer接口调用该API接口。
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-07-14   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_GetNegoMagicNum(ULONG ulIfIndex, ULONG *pulSetYes);
 
-/*******************************************************************************
-*    Func Name: TCPIP_SetPppSelfLoop
-* Date Created: 2009-07-17
-*       Author: z00104207
-*  Description: 设置接口自环模式标记
-*        Input: ULONG ulIfIndex: 接口索引
-*               ULONG ulSetYes:  设置是否自环模式，1-是，0-否
-*       Output: 
-*       Return: 成功则返回VOS_OK，失败则返回其他错误码
-*      Caution: 设置自环模式，是指本接口与本接口自身建立连接，进行PPP协商。
-*               自环模式下，将不协商Magic Number，不检查对端地址的合法性。对于
-*               MP组接口，除了要对MP组设置自环模式外，还需对每条子链路设置自环模
-*               式，MP组的自环才能生效。只能对PPP接口和MP组接口调用该API接口。要
-*               使得配置操作生效，需要重启接口。
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-07-17   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_SetPppSelfLoop(ULONG ulIfIndex, ULONG ulSetYes);
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetPppSelfLoop
-* Date Created: 2009-07-17
-*       Author: z00104207
-*  Description: 获取接口自环模式标记
-*        Input: ULONG ulIfIndex:  接口索引
-*       Output: ULONG *pulSetYes: 获取到的标记值
-*       Return: 成功则返回VOS_OK，失败则返回其他错误码
-*      Caution: 只能对PPP接口和MP组接口调用该API接口。
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-07-17   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_GetPppSelfLoop(ULONG ulIfIndex, ULONG *pulSetYes);
 
-/*******************************************************************************
-*    Func Name: TCPIP_SetNcpResendTime
-* Date Created: 2009-09-04
-*       Author: z00104207
-*  Description: 设置LCP报OPEN时，各个NCP协议发送一个协商请求报文后，再分别对各个
-*               NCP协议延时补发一个NCP协商请求报文的时间
-*        Input: ULONG ulIfIndex: 接口索引
-*               ULONG ulTime:    延时补发的时间，范围是0~6000毫秒，其中取0时表示
-*                                不补发NCP协商请求报文
-*       Output: 
-*       Return: 成功则返回VOS_OK，失败则返回其他错误码
-*      Caution: 接口的链路封装类型必须为PPP，即支持PPP/MP/Dialer接口，默认情况下
-*               是不会对各个NCP协议再补发一个NCP协商请求报文的。NCP协商请求报文
-*               包括IPCP协商请求报文、OSICP协商请求报文和MUXCP协商请求报文
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-09-04   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_SetNcpResendTime(ULONG ulIfIndex, ULONG ulTime);
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetNcpResendTime
-* Date Created: 2009-09-04
-*       Author: z00104207
-*  Description: 获取LCP报OPEN时，各个NCP协议发送一个NCP协商请求报文后，再分别对各个
-*               NCP协议延时补发一个NCP协商请求报文的时间
-*        Input: ULONG ulIfIndex: ULONG ulIfIndex: 接口索引
-*       Output: ULONG *pulTime:  获取到的延时补发的时间，范围是0~6000毫秒，其中
-*                                取0时表示不补发NCP协商请求报文
-*       Return: 成功则返回VOS_OK，失败则返回其他错误码
-*      Caution: 接口的链路封装类型必须为PPP，即支持PPP/MP/Dialer接口，默认情况下
-*               是不会对各个NCP协议再补发一个NCP协商请求报文的，因此默认情况下获
-*               取到的值为0
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-09-04   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_GetNcpResendTime(ULONG ulIfIndex, ULONG *pulTime);
 
 /*******************************************************************************
@@ -2507,42 +2320,10 @@ extern VOID TCPIP_ShowUsedConfigInfo(CHAR *szName);
 extern ULONG TCPIP_GetLcpEchoInfo(ULONG ulIfIndex, ULONG ulCmd, VOID  *pData);
 
 
-/*******************************************************************************
-*    Func Name: TCPIP_SetDealAcfcPfcFlag
-* Date Created: 2009-06-23
-*       Author: z00104207
-*  Description: 针对接口设置是否接受和处理ACFC、PFC协商选项
-*        Input: ULONG ulIfIndex: 接口索引
-*               ULONG ulFlag:    是否接受和处理标记，是则填写为1，否则填写为0
-*       Output: 
-*       Return: 成功则返回VOS_OK，失败则返回其他错误码
-*      Caution: 操作的接口只能是PPP接口
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-06-23   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_SetDealAcfcPfcFlag(ULONG ulIfIndex, ULONG ulFlag);
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetDealAcfcPfcFlag
-* Date Created: 2009-06-23
-*       Author: z00104207
-*  Description: 获取接口上"是否接受和处理ACFC、PFC协商选项"标记的值
-*        Input: ULONG ulIfIndex: 接口索引
-*               ULONG *pulFlag:  标记值输出参数
-*       Output: 
-*       Return: 
-*      Caution: 成功则返回VOS_OK，失败则返回其他错误码
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-06-23   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_GetDealAcfcPfcFlag(ULONG ulIfIndex, ULONG *pulFlag);
 
 
@@ -2636,81 +2417,16 @@ extern ULONG TCPIP_GetMaxLoopbackDetectTime(ULONG *pulTime);
 *******************************************************************************/
 extern VOID TCPIP_ShowPPPNegoInfoByIf(CHAR *szName);
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetPPPFSMState
-* Date Created: 2009-12-15
-*       Author: Gexianjun/h00121208
-*  Description: 获取PPP状态机状态
-*        Input: ULONG ulIfIndex: 接口索引
-*       Output: ULONG *pulPppPhase:PPP所处的阶段,取值：参见enum ePppPhase
-*               ULONG *pulPppNegoType:PPP协商类型,取值：参见enum ePppNegoType
-*               ULONG *pulPppFsmState:PPP协商状态值,取值：参见enum ePppFsmState
-*       Return: 成功则返回VOS_OK，失败则返回其他错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-12-15   Gexianjun/h00121208     Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_GetPPPFSMState(ULONG ulIfIndex, ULONG *pulPppPhase,ULONG *pulPppNegoType, ULONG *pulPppFsmState );
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetPapUserName
-* Date Created: 2010-01-19
-*       Author: z00104207
-*  Description: 获取PAP认证时的用户名。
-*        Input: ULONG ulIfIndex:    接口索引
-*       Output: UCHAR *pucUserName: 用户名，用户应保证传入内存的长度最少为
-*                                   (PPP_MAXUSERNAMELEN + 1)字节
-*       Return: 成功则返回VOS_OK，否则返回错误码。
-*      Caution: 获取用户名时，不限制认证方式必须为PAP认证。
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-01-19   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_GetPapUserName(ULONG ulIfIndex, UCHAR *pucUserName);
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetChapUserName
-* Date Created: 2010-01-19
-*       Author: z00104207
-*  Description: 获取CHAP认证时的用户名。
-*        Input: ULONG ulIfIndex:    接口索引
-*       Output: UCHAR *pucUserName: 用户名，用户应保证传入内存的长度最少为
-*                                   (PPP_MAXUSERNAMELEN + 1)字节
-*       Return: 成功则返回VOS_OK，否则返回错误码。
-*      Caution: 获取用户名时，不限制认证方式必须为CHAP认证。
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-01-19   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_GetChapUserName(ULONG ulIfIndex, UCHAR *pucUserName);
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetPppDownInfo
-* Date Created: 2010-03-10
-*       Author: z00104207
-*  Description: 获取PPP协商Down相关的信息
-*        Input: ULONG ulIfIndex:               接口索引
-*               ULONG ulProtocolType:          PPP子协议
-*       Output: PPPDOWNINFO_S *pstPppDownInfo: PPP协商Down相关的信息
-*       Return: 成功则返回VOS_OK，否则返回其他错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-03-10   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_GetPppDownInfo(ULONG ulIfIndex, ULONG ulProtocolType, PPPDOWNINFO_S *pstPppDownInfo);
 
 

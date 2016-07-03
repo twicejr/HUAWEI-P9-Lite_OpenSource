@@ -1,65 +1,4 @@
-/*******************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : GmmExt.h
-  Description : WUEPS系统NAS内部GMM功能模块结构体定义
-  History     :
-      1.  张志勇  2003.12.05  文件作成
-      2.  张志勇  2004.10.23  CK,IK的存储结构改为字节流
-      3.  l40632  2006.06.08  根据问题单A32D04196修改
-  4.日    期   : 2006年08月09日
-    作    者   : 蒋丽萍j60010247
-    修改内容   : 问题单A32D03479，在PC机上实现时将#pragma pack(0)和#pragma pack()加编译开关
-  5.日    期   : 2006年11月20日
-    作    者   : s46746
-    修改内容   : 创建，根据问题单号：A32D07433
-  6.日    期   : 2007年03月20日
-    作    者   : x51137
-    修改内容   : A32D09192
-  7.日    期   : 2007年3月30日
-    作    者   : s46746
-    修改内容   : 问题单号:A32D09854
-  8.日    期   : 2007年06月16日
-    作    者   : luojian id:60022475
-    修改内容   : 根据问题单号：A32D11635,gas上报GPRS RESUME FAILURE时,仍然通知
-                 RABM 恢复成功,如果存在PDP激活时,发起RAU,如果在这个RAU过程中系
-                 统消息指示RAI发生改变就不再发起RAU.
-  9.日    期   : 2007年10月16日
-    作    者   : l65478
-    修改内容   : 问题单号:A32D11957
- 10.日    期   : 2007年10月27日
-    作    者   : luojian id:107747
-    修改内容   : 根据问题单号：A32D13038
- 11.日    期   : 2007年12月18日
-    作    者   : luojian id:107747
-    修改内容   : 根据问题单号：A32D13917
- 12.日    期   : 2007年12月21日
-    作    者   : l00107747
-    修改内容   : 问题单A32D13950,W支持CS&PS,G下不支持PS，切换到W模式后GMM没有发起联合RAU
- 13.日    期   : 2008年9月18日
-    作    者   : ouyangfei 00132663
-    修改内容   : 根据问题单号：AT2D05816，在GMM过程中，来自CM层的SMS请求应该被缓存，等GMM过程结束再发起。
- 14.日    期   : 2008年9月23日
-    作    者   : o00132663
-    修改内容   : 根据问题单号：AT2D05839,清除无用全局变量 ucRlsMsgFlg和状态GMM_REGISTERED_WAIT_FOR_RAU
- 25.日    期   : 2009年02月13日
-    作    者   : o00132663
-    修改内容   : 问题单号:AT2D08906,【TA 认证】【外场用例-HK】smartone UE没有处于attach状态,就发起了业务请求.
- 26.日    期   : 2009年5月9日
-    作    者   : l00130025
-    修改内容   : 根据问题单号：AT2D11645/AT2D11797,关机，若detach的EST_REQ失败，Gmm会反复发起EST_REQ
- 27.日    期   : 2009年7月23日
-    作    者   : s46746
-    修改内容   : 根据问题单号：AT2D12878，GSM下HPLMN搜索时接收到GPRS寻呼或PDP激活(W下PDP激活相同处理)请求需要能及时响应
- 28.日    期   : 2009年10月12日
-    作    者   : s46746
-    修改内容   : 根据问题单号：AT2D14959，GMM向MMC发送RAU、Attach成功的假流程时，没有携带EPLMN列表
- 29.日    期   : 2011年04月23日
-    作    者   : L00171473
-    修改内容   : for V7R1 porting, 去掉枚举成员最后的逗号，避免编译WARNING
- 30.日    期   : 2012年03月15日
-    作    者   : l00130025
-    修改内容   : DTS2012021407803,Eplmn维护修改，删除GMM/MM/MMC关于NVIM_EPLMN的冗余定义
-*******************************************************************************/
+
 #ifndef _GMMSTRUCTURE_H_
 #define _GMMSTRUCTURE_H_
 
@@ -214,10 +153,8 @@ typedef struct
     VOS_UINT8       aucImeisv[GMM_MAX_SIZE_IMEISV];                                 /* IMEISV                                   */
 }GMM_UEID_STRU;
 
-/* Modified by t00212959 for DCM定制需求和遗留问题, 2012-8-14, begin */
 /*此定义移到LMM中*/
 #define GMM_NON_DRX_TIMER_MAX           7
-/* Modified by t00212959 for DCM定制需求和遗留问题, 2012-8-14, end */
 
 
 /* GMM_MSG_HOLD_STRU: ulMsgHoldMsk取值 */
@@ -286,16 +223,12 @@ typedef struct
 
     GMM_UEID_STRU                           UeId;
 
-    /* Modified by t00212959 for DCM定制需求和遗留问题, 2012-8-14, begin */
     /* PS域的DRX parameter 定义，从GMM移至MML中，这里记录上次Attach或者RAU时Drx参数的携带状态*/
     NAS_MML_PS_REG_CONTAIN_DRX_PARA_ENUM_UINT8              enLatestAttachOrRauContainDrx;
 
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-14, begin */
     VOS_UINT8                                               ucMsRadioCapSupportLteFromRegReq;   /* ATTACH或RAU时携带的MS Radio Access capability IE是否支持LTE,VOS_TRUE:支持LTE,VOS_FALSE:不支持LTE */
     VOS_UINT8                                               ucMsRadioCapSupportLteFromAs;       /* 记录GAS接入层发送的GRRMM_MS_RADIO_ACCESS_CAPABILITIES_IND或GRRMM_MS_RADIO_ACCESS_CAPABILITIES_TDS_IND
                                                                                                   是否支持LTE,VOS_TRUE:支持L；VOS_FALSE:不支持L */
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-14, end */
-    /* Modified by t00212959 for DCM定制需求和遗留问题, 2012-8-14, end */
     NAS_MML_VOICE_DOMAIN_PREFERENCE_ENUM_UINT8              enVoiceDomainFromRegReq;            /* 记录发起ATTACH或RAU时的voice domain */
 
 }GMM_UE_INFO_STRU;
@@ -419,19 +352,7 @@ enum GMM_SERVICE_REQ_TYPE_ENUM
 typedef VOS_UINT8 GMM_SERVICE_REQ_TYPE_ENUM_UINT8;
 
 
-/*****************************************************************************
- 结构名     : GMM_BACKUP_SHARE_STRU
- 结构说明   : 对GMM中一些参数进行备份恢复，目前只有CCO流程会用到
- 1.日    期  : 2011年6月30日
-   作    者  : w00176964
-   修改内容  : 新建
- 2.日    期   : 2012年03月08日
-   作    者   : l00130025
-   修改内容   : DTS2012030107623: G->W Est_Rej_Cogest,CCO回退过程，需要保存Eplmn
- 3.日    期   : 2013年09月24日
-   作    者   : w00176964
-   修改内容   : VoLTE_PhaseII 项目:增加SIM卡中的PS安全上下文的备份恢复
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                   ucState;                                /* GMM状态*/
@@ -441,9 +362,7 @@ typedef struct
     VOS_UINT8                                   ucRauAttmptCnt;                         /* RAU attempt counter                      */
     GMM_GPRS_SRV_STATE                          ucSrvState;                             /* 当前GMM GPRS服务状态 */
     GMM_PS_SECURITY_INFO_STRU                   stPsSecutityInfo;                       /* PS域的security information*/
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-24, begin */
     NAS_MML_SIM_PS_SECURITY_INFO_STRU           stSimPsSecurity;                        /* SIM卡中的PS域的安全参数 */
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-24, end */
     GMM_SYS_INFO_STRU                           stSysInfo;                              /* 当前系统消息 */
     GMM_UE_INFO_STRU                            stUeInfo;                               /* UE 信息                                  */
 
@@ -454,13 +373,7 @@ typedef struct
     VOS_UINT8                                   aucReserved[2];
 }GMM_BACKUP_SHARE_STRU;
 
-/*****************************************************************************
- 枚举名    : NAS_GMM_ATTACH_TYPE_ENUM
- 结构说明  : 等待ATTACH结果的类型
- 1.日    期   : 2011年6月30日
-   作    者   : w00166186
-   修改内容   : 新建结构
-*****************************************************************************/
+
 enum NAS_GMM_ATTACH_TYPE_ENUM
 {
     GMM_WAIT_NULL_ATTACH  = 0,
@@ -471,13 +384,7 @@ enum NAS_GMM_ATTACH_TYPE_ENUM
 };
 typedef VOS_UINT8 NAS_GMM_ATTACH_TYPE_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : NAS_GMM_DETACH_TYPE_ENUM
- 结构说明  : 等待DETACH结果的类型
- 1.日    期   : 2011年6月30日
-   作    者   : w00166186
-   修改内容   : 新建结构
-*****************************************************************************/
+
 enum NAS_GMM_DETACH_TYPE_ENUM
 {
     GMM_WAIT_NULL_DETACH = 0,
@@ -489,39 +396,21 @@ enum NAS_GMM_DETACH_TYPE_ENUM
 
 typedef VOS_UINT32 NAS_GMM_DETACH_TYPE_ENUM_UINT32;
 
-/*****************************************************************************
- 结构名    : GMM_ATTACH_INFO_STRU
- 结构说明  : GMM等待ATTACH结果的信息
- 1.日    期   : 2011年6月30日
-   作    者   : w00166186
-   修改内容   : 新建结构
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulOpid;                                 /* MMA生成和使用 */
     NAS_GMM_ATTACH_TYPE_ENUM_UINT32     enAttachType;                           /* 等待ATTACH响应消息的类型 */
 }NAS_GMM_ATTACH_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : GMM_ATTACH_INFO_STRU
- 结构说明  : GMM等待DETACH结果的信息
- 1.日    期   : 2011年6月30日
-   作    者   : w00166186
-   修改内容   : 新建结构
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulOpid;                                 /* MMA生成和使用 */
     NAS_GMM_DETACH_TYPE_ENUM_UINT32     enDetachType;                           /* 等待DETACH响应消息的类型                 */
 }NAS_GMM_DETACH_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_GMM_NVIM_TIN_INFO_STRU
- 结构说明  : en_NV_Item_TIN_INFO NV项结构
-  1.日    期   : 2012年1月8日
-    作    者   : z00161729
-    修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     NAS_MML_TIN_TYPE_ENUM_UINT8         enTinType;                              /* TIN类型 */
@@ -529,16 +418,7 @@ typedef struct
     VOS_UINT8                           aucImsi[NAS_MML_MAX_IMSI_LEN];          /* 上次保存的IMSI的内容 */
 }NAS_GMM_NVIM_TIN_INFO_STRU;
 
-/*****************************************************************************
- 枚举名    : NAS_GMM_LOG_OM_INFO_ENUM
- 结构说明  : 可维可测消息id
- 1.日    期   : 2012年3月17日
-   作    者   : z00161729
-   修改内容   : 新建结构
- 2.日    期   : 2012年8月14日
-   作    者   : t00212959
-   修改内容   : DCM定制需求和遗留问题,新增ps注册携带DRX参数改变
-*****************************************************************************/
+
 enum NAS_GMM_LOG_OM_INFO_ENUM
 {
     NAS_GMM_LOG_GUTI_INFO_IND       = 0xa00,
@@ -548,13 +428,7 @@ enum NAS_GMM_LOG_OM_INFO_ENUM
 };
 typedef VOS_UINT32 NAS_GMM_LOG_OM_INFO_ENUM_UINT32;
 
-/*****************************************************************************
- 结构名    : NAS_GMM_LOG_TIN_INFO_STRU
- 结构说明  : GMM TIN值更新时通知om勾消息，可维可测使用
-  1.日    期   : 2012年3月17日
-    作    者   : z00161729
-    修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;
@@ -563,21 +437,13 @@ typedef struct
 }NAS_GMM_LOG_TIN_INFO_STRU;
 
 
-/* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-14, begin */
-/*****************************************************************************
- 结构名    : NAS_GMM_LOG_PS_REG_DRX_INFO_STRU
- 结构说明  : ps注册携带DRX参数值更新时通知om勾消息，可维可测使用
-  1.日    期   : 2012年8月14日
-    作    者   : t00212959
-    修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                               stMsgHeader;
     NAS_MML_PS_REG_CONTAIN_DRX_PARA_ENUM_UINT8    enPsRegContainDrx;            /* 是否携带Drx 参数类型*/
     VOS_UINT8                                     aucReserve[3];
 }NAS_GMM_LOG_PS_REG_DRX_INFO_STRU;
-/* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-14, end */
 
 /* ucEventCause使用的宏定义 */
 #define GMM_EVENT_CAUSE_INVALID      0xff

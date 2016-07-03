@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : PsRrmInterface.h
-  版 本 号   : 初稿
-  作    者   : L00128652
-  生成日期   : 2014年01月09日
-  最近修改   :
-  功能描述   : 协议栈与RRM之间接口文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年01月09日
-    作    者   : L00128652
-    修改内容   : 创建文件
-
- ******************************************************************************/
 
 #ifndef __PSRRMINTERFACE_H__
 #define __PSRRMINTERFACE_H__
@@ -53,13 +36,7 @@ extern "C" {
 /*****************************************************************************
   3 枚举定义
 *****************************************************************************/
-/*******************************************************************************
- 枚举名    : PS_RRM_MSG_TYPE_ENUM_UINT32
- 结构说明  : 消息枚举
- 1.日    期   : 2014年01月09日
-   作    者   : l00128652
-   修改内容   : Added for DSDS
-*******************************************************************************/
+
 enum PS_RRM_MSG_TYPE_ENUM
 {
     ID_PS_RRM_RADIO_RESOURCE_APPLY_REQ                          = 0x0001,       /* _H2ASN_MsgChoice PS_RRM_RADIO_RESOURCE_APPLY_REQ_STRU */
@@ -93,13 +70,7 @@ enum PS_RRM_MSG_TYPE_ENUM
 typedef VOS_UINT32 PS_RRM_MSG_TYPE_ENUM_UINT32;
 
 
-/*******************************************************************************
- 枚举名    : RRM_PS_URGENT_TYPE_ENUM_UINT8
- 结构说明  : 抢占消息的紧急类型
- 1.日    期   : 2014年03月28日
-   作    者   : l00128652
-   修改内容   : Added for DSDS
-*******************************************************************************/
+
 enum RRM_PS_URGENT_TYPE_ENUM
 {
     RRM_PS_URGENT_TYPE_NO_URGENT                           = 0,                 /* 不紧急 */
@@ -110,15 +81,7 @@ enum RRM_PS_URGENT_TYPE_ENUM
 typedef VOS_UINT8 RRM_PS_URGENT_TYPE_ENUM_UINT8;
 
 
-/*******************************************************************************
- 枚举名    : RRM_PS_TASK_TYPE_ENUM_UINT16
- 结构说明  : 任务类型枚举
- 1.日    期   : 2014年01月09日
-   作    者   : l00128652
-   修改内容   : Added for DSDS
-备注说明  : 该枚举值跟RRM模块的g_astTaskTypeInfoTab表是一一对应关系，
-            修改该枚举值时需要同步修改g_astTaskTypeInfoTab表
-*******************************************************************************/
+
 enum RRM_PS_TASK_TYPE_ENUM
 {
     /* 初始状态无任务 */
@@ -284,13 +247,7 @@ enum RRM_PS_TASK_TYPE_ENUM
 };
 typedef VOS_UINT16 RRM_PS_TASK_TYPE_ENUM_UINT16;
 
-/*******************************************************************************
- 枚举名    : PS_RRM_RESULT_ENUM_UINT8
- 结构说明  : 申请的结果
- 1.日    期   : 2014年01月09日
-   作    者   : w00101153
-   修改内容   : Added for DSDS
-*******************************************************************************/
+
 enum PS_RRM_RESULT_ENUM
 {
     PS_RRM_RESULT_SUCCESS               = 0,
@@ -300,13 +257,7 @@ enum PS_RRM_RESULT_ENUM
 typedef VOS_UINT8 PS_RRM_RESULT_ENUM_UINT8;
 
 
-/*******************************************************************************
- 枚举名    : RRM_PS_CHECK_MSG_RESULT_UINT8
- 结构说明  : RRM检查MSG消息结果
- 1.日    期   : 2014年02月25日
-   作    者   : h00163499
-   修改内容   : Added for DSDS
-*******************************************************************************/
+
 enum RRM_PS_CHECK_MSG_RESULT_ENUM
 {
     RRM_PS_CHECK_MSG_RESULT_OK                       = 0,
@@ -317,13 +268,7 @@ enum RRM_PS_CHECK_MSG_RESULT_ENUM
 };
 typedef VOS_UINT8 RRM_PS_CHECK_MSG_RESULT_ENUM_UINT8;
 
-/*******************************************************************************
- 枚举名    : PS_RRM_SIGNAL_READY_ENUM_UINT8
- 结构说明  : 资源不可抢占回复结果
- 1.日    期   : 2014年06月24日
-   作    者   : g00260269
-   修改内容   : Added for DSDS
-*******************************************************************************/
+
 enum PS_RRM_SIGNAL_READY_ENUM
 {
     PS_RRM_SIGNAL_NOT_READY         = 0,
@@ -333,13 +278,7 @@ enum PS_RRM_SIGNAL_READY_ENUM
 };
 typedef VOS_UINT8 PS_RRM_SIGNAL_READY_ENUM_UINT8;
 
-/*******************************************************************************
- 枚举名    : PS_RRM_RF_SHARED_ENUM_UINT8
- 结构说明  : 资源是否可争用结果
- 1.日    期   : 2014年06月24日
-   作    者   : g00260269
-   修改内容   : Added for DSDS
-*******************************************************************************/
+
 enum PS_RRM_RF_SHARED_ENUM
 {
     PS_RRM_RF_NOT_SHARED                = 0,
@@ -349,13 +288,7 @@ enum PS_RRM_RF_SHARED_ENUM
 };
 typedef VOS_UINT8 PS_RRM_RF_SHARED_ENUM_UINT8;
 
-/*******************************************************************************
- 枚举名    : PS_RRM_RF_AVAILABLE_ENUM_UINT8
- 结构说明  : 资源是否可用结果
- 1.日    期   : 2014年06月24日
-   作    者   : g00260269
-   修改内容   : Added for DSDS
-*******************************************************************************/
+
 enum PS_RRM_RF_AVAILABLE_ENUM
 {
     PS_RRM_RF_NOT_AVAILABLE                 = 0,
@@ -365,13 +298,7 @@ enum PS_RRM_RF_AVAILABLE_ENUM
 };
 typedef VOS_UINT8 PS_RRM_RF_AVAILABLE_ENUM_UINT8;
 
-/*******************************************************************************
- 枚举名    : PS_RRM_RF_AVAILABLE_ENUM_UINT8
- 结构说明  : 资源申请前试探结果
- 1.日    期   : 2014年06月24日
-   作    者   : g00260269
-   修改内容   : Added for DSDS
-*******************************************************************************/
+
 enum PS_RRM_IS_PREEMPTED_ENUM
 {
     PS_RRM_NOT_PREEMPTED                = 0,
@@ -381,13 +308,7 @@ enum PS_RRM_IS_PREEMPTED_ENUM
 };
 typedef VOS_UINT8 PS_RRM_IS_PREEMPTED_ENUM_UINT8;
 
-/*******************************************************************************
- 枚举名    : PS_RRM_RAT_COMBINED_MODE_ENUM
- 结构说明  : 系统组合模式定义
- 1.日    期   : 2015年06月17日
-   作    者   : s00246516
-   修改内容   : Added for DSDS
-*******************************************************************************/
+
 enum PS_RRM_RAT_COMBINED_MODE_ENUM
 {
     PS_RRM_RAT_COMBINED_MODE_CL                 = 0, /* 当前支持1X或者EVDO */
@@ -412,13 +333,7 @@ typedef VOS_UINT8 PS_RRM_RAT_COMBINED_MODE_ENUM_UINT8;
 /*****************************************************************************
   7 STRUCT定义
 *****************************************************************************/
-/*******************************************************************************
- 结构名    : PS_RRM_RADIO_RESOURCE_APPLY_REQ_STRU
- 结构说明  : PS发给RRM指示资源申请
- 1.日    期   : 2014年01月09日
-   作    者   : l00128652
-   修改内容   : Added for DSDS
-*******************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;        /* 消息头 */ /*_H2ASN_Skip*/
@@ -427,13 +342,7 @@ typedef struct
     VOS_RATMODE_ENUM_UINT32             enRatType;          /* 需要使用射频资源的模式，如果是异系统互操作，填写目标模式 */ /* _H2ASN_Replace VOS_UINT32 enRatType; */
 }PS_RRM_RADIO_RESOURCE_APPLY_REQ_STRU;
 
-/*******************************************************************************
- 结构名    : RRM_PS_RADIO_RESOURCE_APPLY_CNF_STRU
- 结构说明  : RRM发给PS指示资源申请结果
- 1.日    期   : 2014年01月09日
-   作    者   : l00128652
-   修改内容   : Added for DSDS
-*******************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                    stMsgHeader;         /* 消息头 */ /*_H2ASN_Skip*/
@@ -442,13 +351,7 @@ typedef struct
     VOS_UINT8                          aucReserved[1];
 } RRM_PS_RADIO_RESOURCE_APPLY_CNF_STRU;
 
-/*******************************************************************************
- 结构名    : PS_RRM_RADIO_RESOURCE_RELEASE_IND_STRU
- 结构说明  : PS发给RRM指示资源释放
- 1.日    期   : 2014年01月09日
-   作    者   : l00128652
-   修改内容   : Added for DSDS
-*******************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;        /* 消息头 */ /*_H2ASN_Skip*/
@@ -463,13 +366,7 @@ typedef struct
                                                                如果enRelAllFlag = PS_TRUE生效， 该延迟时间不生效 */
 }PS_RRM_RADIO_RESOURCE_RELEASE_IND_STRU;
 
-/*******************************************************************************
- 结构名    : RRM_PS_RADIO_RESOURCE_OCCUPY_REQ_STRU
- 结构说明  : RRM发给PS指示资源抢占
- 1.日    期   : 2014年01月09日
-   作    者   : l00128652
-   修改内容   : Added for DSDS
-*******************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;        /* 消息头 */ /*_H2ASN_Skip*/
@@ -477,26 +374,14 @@ typedef struct
     VOS_UINT8                           aucReserved[3];
 } RRM_PS_RADIO_RESOURCE_OCCUPY_REQ_STRU;
 
-/*******************************************************************************
- 结构名    : PS_RRM_RADIO_RESOURCE_OCCUPY_CNF_STRU
- 结构说明  : PS发给RRM指示资源抢占结果
- 1.日    期   : 2014年01月09日
-   作    者   : l00128652
-   修改内容   : Added for DSDS
-*******************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;        /* 消息头 */ /*_H2ASN_Skip*/
     VOS_UINT8                           aucReserved[4];
 } PS_RRM_RADIO_RESOURCE_OCCUPY_CNF_STRU;
 
-/*******************************************************************************
- 结构名    : PS_RRM_PROTECT_PS_IND_STRU
- 结构说明  : PS发给RRM指示PS业务需要保护
- 1.日    期   : 2014年01月09日
-   作    者   : l00128652
-   修改内容   : Added for DSDS
-*******************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;        /* 消息头 */ /*_H2ASN_Skip*/
@@ -504,13 +389,7 @@ typedef struct
     VOS_UINT8                           aucReserved[2];
 } PS_RRM_PROTECT_PS_IND_STRU;
 
-/*******************************************************************************
- 结构名    : PS_RRM_DEPROTECT_PS_IND_STRU
- 结构说明  : PS发给RRM指示PS业务去保护
- 1.日    期   : 2014年01月09日
-   作    者   : l00128652
-   修改内容   : Added for DSDS
-*******************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;        /* 消息头 */ /*_H2ASN_Skip*/
@@ -518,13 +397,7 @@ typedef struct
     VOS_UINT8                           aucReserved[2];
 } PS_RRM_DEPROTECT_PS_IND_STRU;
 
-/*******************************************************************************
- 结构名    : PS_RRM_REGISTER_IND_STRU
- 结构说明  : PS发给RRM指示注册某种类型的业务通知消息
- 1.日    期   : 2014年01月09日
-   作    者   : l00128652
-   修改内容   : Added for DSDS
-*******************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;        /* 消息头 */ /*_H2ASN_Skip*/
@@ -533,13 +406,7 @@ typedef struct
     VOS_RATMODE_ENUM_UINT32             enRatType;          /* _H2ASN_Replace VOS_UINT32 enRatType; */
 } PS_RRM_REGISTER_IND_STRU;
 
-/*******************************************************************************
- 结构名    : PS_RRM_DEREGISTER_IND_STRU
- 结构说明  : PS发给RRM指示去注册某种类型的业务通知消息
- 1.日    期   : 2014年01月09日
-   作    者   : l00128652
-   修改内容   : Added for DSDS
-*******************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;        /* 消息头 */ /*_H2ASN_Skip*/
@@ -549,13 +416,7 @@ typedef struct
 } PS_RRM_DEREGISTER_IND_STRU;
 
 
-/*******************************************************************************
- 结构名    : RRM_PS_STATUS_IND_STRU
- 结构说明  : RRM通知PS当前的状态，针对任务进行通知
- 1.日    期   : 2014年01月09日
-   作    者   : l00128652
-   修改内容   : Added for DSDS
-*******************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;        /* 消息头 */ /*_H2ASN_Skip*/
@@ -565,13 +426,7 @@ typedef struct
 } RRM_PS_STATUS_IND_STRU;
 
 
-/*******************************************************************************
- 结构名    : RRM_PS_ERR_IND_STRU
- 结构说明  : RRM发给PS指示错误信息
- 1.日    期   : 2014年02月25日
-   作    者   : h00163499
-   修改内容   : Added for DSDS
-*******************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;        /* 消息头 */ /*_H2ASN_Skip*/
@@ -580,13 +435,7 @@ typedef struct
 } RRM_PS_ERROR_IND_STRU;
 
 
-/*******************************************************************************
- 结构名    : RRM_PS_ABNORMAL_STATUS_IND_STRU
- 结构说明  : RRM发给PS指示异常状态指示
- 1.日    期   : 2014年04月22日
-   作    者   : h00163499
-   修改内容   : Added for DSDS
-*******************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;        /* 消息头 */ /*_H2ASN_Skip*/
@@ -594,13 +443,7 @@ typedef struct
 } RRM_PS_ABNORMAL_STATUS_IND_STRU;
 
 
-/*******************************************************************************
- 结构名    : PS_RRM_PROTECT_SIGNAL_IND_STRU
- 结构说明  : PS发给RRM指示SIGNAL业务需要保护
- 1.日    期   : 2014年06月23日
-   作    者   : h00163499
-   修改内容   : Added for DSDS
-*******************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;        /* 消息头 */ /*_H2ASN_Skip*/
@@ -610,13 +453,7 @@ typedef struct
 } PS_RRM_PROTECT_SIGNAL_IND_STRU;
 
 
-/*******************************************************************************
- 结构名    : PS_RRM_DEPROTECT_SIGNAL_IND_STRU
- 结构说明  : PS发给RRM指示SIGNAL业务需要去保护
- 1.日    期   : 2014年06月23日
-   作    者   : h00163499
-   修改内容   : Added for DSDS
-*******************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;         /* 消息头 */ /*_H2ASN_Skip*/
@@ -625,15 +462,7 @@ typedef struct
     VOS_RATMODE_ENUM_UINT32             enRatType;           /* 需要使用射频资源的模式，如果是异系统互操作，填写目标模式 */ /* _H2ASN_Replace VOS_UINT32 enRatType; */
 } PS_RRM_DEPROTECT_SIGNAL_IND_STRU;
 
-/*******************************************************************************
- 结构名    : RRM_PS_USED_TASK_STATUS_IND_STRU
- 结构说明  : RRM通知PS当前正在使用资源的任务状态
 
- 1.日    期   : 2015年01月15日
-   作    者   : y00142674
-   修改内容   : Added for DSDS
-
-*******************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;        /* 消息头 */ /*_H2ASN_Skip*/
@@ -642,15 +471,7 @@ typedef struct
     MODEM_ID_ENUM_UINT16                enModemId;          /* _H2ASN_Replace VOS_UINT16 enModemId; */
 } RRM_PS_USED_TASK_STATUS_IND_STRU;
 
-/*******************************************************************************
- 结构名    : PS_RRM_RAT_COMBINED_MODE_IND_STRU
- 结构说明  : 通知RRM当前系统组合模式结构体
 
- 1.日    期   : 2015年06月17日
-   作    者   : s00246516
-   修改内容   : Added for DSDS
-
-*******************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;        /* 消息头 */ /*_H2ASN_Skip*/

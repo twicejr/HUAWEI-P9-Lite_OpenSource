@@ -64,19 +64,7 @@ VOS_UINT32                      gulExtRecord;
 
 extern USIMM_CARD_SERVIC_ENUM_UINT32 g_enAcpuCardStatus;
 
-/*****************************************************************************
-函 数 名  :
-功能描述  :
-输入参数  :
-输出参数  :
-返 回 值  :
 
-修订记录  :
-1. 日    期   : 2009年03月12日
-    作    者   : m00128685
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 SI_PB_ErrorProc(VOS_VOID)
 {
     USIMM_CARD_SERVIC_ENUM_UINT32       ulCardStatus = USIMM_CARD_SERVIC_BUTT;
@@ -126,19 +114,7 @@ VOS_UINT32 SI_PB_ErrorProc(VOS_VOID)
 #if ((OSA_CPU_ACPU == VOS_OSA_CPU)||(defined(DMT)))
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
-函 数 名  : SI_PB_ReadXeccProc
-功能描述  : 处理读取Ecc号码请求
-输入参数  : usIndexNum: 读取的条数
-            usIndexStar:读取的起始索引号
-输出参数  : pstCnfData: 回复的结果
-返 回 值  : 无
-修订记录  :
-1. 日    期   : 2007年10月15日
-    作    者   : z00100318
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID SI_PB_ReadXeccProc(VOS_UINT16 usIndexNum,VOS_UINT16 usIndexStar,SI_PB_EVENT_INFO_STRU *pstCnfData)
 {
     VOS_UINT32          ulResult;
@@ -205,19 +181,7 @@ VOS_VOID SI_PB_ReadXeccProc(VOS_UINT16 usIndexNum,VOS_UINT16 usIndexStar,SI_PB_E
 }
 #endif
 
-/*****************************************************************************
-函 数 名  : SI_PB_ReadEccProc
-功能描述  : 处理读取Ecc号码请求
-输入参数  : usIndexNum: 读取的条数
-            usIndexStar:读取的起始索引号
-输出参数  : pstCnfData: 回复的结果
-返 回 值  : 无
-修订记录  :
-1. 日    期   : 2007年10月15日
-    作    者   : z00100318
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID SI_PB_ReadEccProc(VOS_UINT16 usIndexNum,VOS_UINT16 usIndexStar,SI_PB_EVENT_INFO_STRU *pstCnfData)
 {
     VOS_UINT32          ulResult;
@@ -283,18 +247,7 @@ VOS_VOID SI_PB_ReadEccProc(VOS_UINT16 usIndexNum,VOS_UINT16 usIndexStar,SI_PB_EV
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_ReadProc
-功能描述  : 处理读取电话本的请求
-输入参数  : pMsg:读取电话本请求消息
-输出参数  : 无
-返 回 值  : VOS_ERR/VOS_OK
-修订记录  :
-1. 日    期   : 2007年10月15日
-    作    者   : z00100318
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 SI_PB_ReadProc(PBMsgBlock *pMsg)
 {
     SI_PB_READ_REQ_STRU         *pstMsg;
@@ -433,20 +386,7 @@ VOS_UINT32 SI_PB_ReadProc(PBMsgBlock *pMsg)
 }
 
 
-/*****************************************************************************
-函 数 名  :SI_PB_SearchHandle
-功能描述  :电话本查找处理函数
-输入参数  :pMsg:搜索电话请求消息
-           ucOffset:搜索电话本的缓存区偏移
-输出参数  :pstCnfData:回复搜索结果
-返 回 值  :TAF_ERR_PB_NOT_FOUND/TAF_ERR_NO_ERROR
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年03月12日
-    作    者   : H59254
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PB_SearchHandle(SI_PB_SEARCH_REQ_STRU *pMsg,
                                       SI_PB_EVENT_INFO_STRU *pstCnfData,
                                       VOS_UINT8 ucOffset)
@@ -498,20 +438,7 @@ VOS_UINT32 SI_PB_SearchHandle(SI_PB_SEARCH_REQ_STRU *pMsg,
     return TAF_ERR_NO_ERROR;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_SearchReq
-功能描述  : Index方式电话本查找处理函数
-输入参数  :pMsg:搜索电话请求消息
-           ucOffset:搜索电话本的缓存区偏移
-输出参数  :pstCnfData:回复搜索结果
-返 回 值  :TAF_ERR_PB_NOT_FOUND/TAF_ERR_NO_ERROR
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年04月15日
-    作    者   : m00128685
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PB_SearchReq(SI_PB_SEARCH_REQ_STRU *pMsg,
                                    SI_PB_EVENT_INFO_STRU *pstCnfData,
                                    VOS_UINT8 ucOffset)
@@ -593,19 +520,7 @@ VOS_UINT32 SI_PB_SearchReq(SI_PB_SEARCH_REQ_STRU *pMsg,
 }
 
 
-/*****************************************************************************
-函 数 名  :SI_PB_SearchProc
-功能描述  :电话本查找处理函数
-输入参数  :pMsg:搜索电话请求消息
-输出参数  :无
-返 回 值  :VOS_OK/VOS_ERR
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年03月12日
-    作    者   : H59254
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PB_SearchProc(PBMsgBlock *pMsg)
 {
     SI_PB_EVENT_INFO_STRU   stCnfData;
@@ -659,21 +574,7 @@ VOS_UINT32 SI_PB_SearchProc(PBMsgBlock *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_SReadEMLProc
-功能描述  : Email电话本读取
-输入参数  : usIndex:索引号
-            usOffset:电话本缓存区偏移
-输出参数  : pstRecord:读取的结果
-返 回 值  : VOS_OK/VOS_ERR
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年06月05日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 SI_PB_SReadEMLProc(VOS_UINT16 usIndex, VOS_UINT16 usOffset, SI_PB_RECORD_STRU *pstRecord)
 {
     VOS_UINT32  ulEMLContentOffset;
@@ -746,21 +647,7 @@ VOS_UINT32 SI_PB_SReadEMLProc(VOS_UINT16 usIndex, VOS_UINT16 usOffset, SI_PB_REC
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_SReadANRProc
-功能描述  : ANR电话本读取
-输入参数  : usIndex:索引号
-            usOffset:电话本缓存区偏移
-输出参数  : pstRecord:读取的结果
-返 回 值  : VOS_OK/VOS_ERR
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年06月05日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 SI_PB_SReadANRProc(VOS_UINT16 usIndex, VOS_UINT16 usOffset, SI_PB_RECORD_STRU *pstRecord)
 {
     VOS_UINT32 ulAnrContentOffset;
@@ -835,20 +722,7 @@ VOS_UINT32 SI_PB_SReadANRProc(VOS_UINT16 usIndex, VOS_UINT16 usOffset, SI_PB_REC
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_SReadProc
-功能描述  : 复合电话本读取
-输入参数  : pMsg: 读取复合电话本请求消息
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年06月05日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 SI_PB_SReadProc(PBMsgBlock *pMsg)
 {
     SI_PB_READ_REQ_STRU         *pstMsg;
@@ -1009,18 +883,7 @@ VOS_UINT32 SI_PB_SReadProc(PBMsgBlock *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PBUpdateGobal
-功能描述  : 用于处理Ccpu电话本发送的全局变量初始化完毕消息
-输入参数  : Ccpu发送的消息内容
-输出参数  : 无
-返 回 值  : 无
-修订记录  :
-1.  日    期   : 2007年10月15日
-    作    者   :
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 SI_PBUpdateAGlobal(PBMsgBlock *pMsg)
 {
     SI_PB_UPDATEGLOBAL_IND_STRU        *pstMsg;
@@ -1122,20 +985,7 @@ VOS_UINT32 SI_PBUpdateAGlobal(PBMsgBlock *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PBUpdateACurPB
-功能描述  : 用于处理Ccpu发送的更新当前电话本设置消息
-输入参数  : Ccpu发送的更新设置消息
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2007年10月15日
-    作    者   :
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 SI_PBUpdateACurPB(PBMsgBlock *pMsg)
 {
     SI_PB_SETPB_IND_STRU *pstMsg;
@@ -1149,17 +999,7 @@ VOS_UINT32 SI_PBUpdateACurPB(PBMsgBlock *pMsg)
 #endif
 
 #if ((OSA_CPU_CCPU == VOS_OSA_CPU)||(defined(DMT)))
-/*****************************************************************************
-函 数 名  : SI_PB_InitStatusInd
-功能描述  : PB模块发送电话本初始化状态指示消息
-输入参数  : enPBInitStatus:电话本初始化状态
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2015年01月30日
-  作    者  : h00300778
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_PB_InitStatusInd(USIMM_PB_INIT_STATUS_ENUM_UINT16 enPBInitStatus)
 {
     USIMM_PBINIT_STATUS_IND_STRU       *pstMsg;
@@ -1188,28 +1028,7 @@ VOS_VOID SI_PB_InitStatusInd(USIMM_PB_INIT_STATUS_ENUM_UINT16 enPBInitStatus)
     return ;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_AlphaTagTruncation
 
-功能描述  :对姓名字段长度进行处理
-
-输入参数  :
-
-输出参数  :无
-
-返 回 值  :拷贝长度
-
-调用函数  :SI_PB_MemSet
-           SI_PB_AsciiToBcd
-
-被调函数  :无
-
-修订记录  :
- 1. 日    期   : 2007年10月15日
-    作    者   : h59254
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT8 SI_PB_AlphaTagTruncation(SI_PB_RECORD_STRU *pstRecord, VOS_UINT8 ucOffset)
 {
     VOS_UINT8  uctemp;
@@ -1256,33 +1075,7 @@ VOS_UINT8 SI_PB_AlphaTagTruncation(SI_PB_RECORD_STRU *pstRecord, VOS_UINT8 ucOff
     }
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_UpdataXDNFile
 
-功能描述  :更新电话本的文件内容
-
-输入参数  :ucPBOffset:对应的电话本的相关信息
-           usFileId:电话本的文件ID
-           ucRecord:电话本的记录号
-           pstRecord:更新的电话本内容
-
-输出参数  :无
-
-返 回 值  :VOS_OK 解析成功
-           VOS_ERR 解析失败
-
-调用函数  :SI_PB_MemSet
-           SI_PB_AsciiToBcd
-           SI_PB_SetFileReq
-
-被调函数  :无
-
-修订记录  :
-1. 日    期   : 2007年10月15日
-    作    者   : z00100318
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 SI_PB_UpdataXDNFile(VOS_UINT8 ucPBOffset, VOS_UINT16 usFileId, VOS_UINT16 usExtFileId,
                                         VOS_UINT8 ucRecord,SI_PB_RECORD_STRU *pstRecord)
 {
@@ -1389,32 +1182,7 @@ VOS_UINT32 SI_PB_UpdataXDNFile(VOS_UINT8 ucPBOffset, VOS_UINT16 usFileId, VOS_UI
     return SI_PB_SetFileReq(&stUpdateReq);
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_UpdataADN
 
-功能描述  :更新ADN的文件内容
-
-输入参数  :ucPBOffset:对应的电话本的相关信息
-           usFileId:电话本的文件ID
-           ucRecord:电话本的记录号
-           pstRecord:更新的电话本内容
-
-输出参数  :无
-
-返 回 值  :VOS_OK 解析成功
-           VOS_ERR 解析失败
-
-调用函数  :SI_PB_MemSet
-           SI_PB_AsciiToBcd
-
-被调函数  :无
-
-修订记录  :
-1.  日    期   : 2009年06月08日
-    作    者   : m00128685
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 SI_PB_UpdataADN(SI_PB_RECORD_STRU        *pstRecord,
                                    SI_PB_SPBDATA_STRU       *pstSPBReq,
                                    VOS_UINT16               *pusExtUsedNum,
@@ -1535,29 +1303,7 @@ VOS_UINT32 SI_PB_UpdataADN(SI_PB_RECORD_STRU        *pstRecord,
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_UpdataType2ANR
 
-功能描述  :更新ANR的文件内容
-
-输入参数  :pstPBFid :需要更新的电话本的FID信息
-           pstSPBReq:记录所有需要更新的电话本
-           pstRecord:更新的电话本内容
-           pucFreeANRRecord:空闲的ANR记录
-
-输出参数  :无
-返 回 值  :VOS_OK 解析成功
-           VOS_ERR 解析失败
-调用函数  :
-
-被调函数  :无
-
-修订记录  :
-1.  日    期   : 2009年09月24日
-    作    者   : m00128685
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 SI_PB_UpdataType2ANR(SI_PB_RECORD_STRU       *pstRecord,
                                             SI_PB_SPBDATA_STRU     *pstSPBReq,
                                             SI_PB_SPB_UPDATE_STRU  *pstPBFid,
@@ -1664,32 +1410,7 @@ VOS_UINT32 SI_PB_UpdataType2ANR(SI_PB_RECORD_STRU       *pstRecord,
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_UpdataANR
 
-功能描述  :更新ANR的文件内容
-
-输入参数  :ucPBOffset:对应的电话本的相关信息
-           usFileId:电话本的文件ID
-           ucRecord:电话本的记录号
-           pstRecord:更新的电话本内容
-
-输出参数  :无
-
-返 回 值  :VOS_OK 解析成功
-           VOS_ERR 解析失败
-
-调用函数  :SI_PB_MemSet
-           SI_PB_AsciiToBcd
-
-被调函数  :无
-
-修订记录  :
-1.  日    期   : 2009年06月08日
-    作    者   : m00128685
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 SI_PB_UpdataANR(SI_PB_RECORD_STRU        *pstRecord,
                                     SI_PB_SPBDATA_STRU      *pstSPBReq,
                                     VOS_UINT16              *pusExtUsedNum,
@@ -1886,32 +1607,7 @@ VOS_UINT32 SI_PB_UpdataANR(SI_PB_RECORD_STRU        *pstRecord,
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_UpdataEML
 
-功能描述  :更新Email的文件内容
-
-输入参数  :ucPBOffset:对应的电话本的相关信息
-           usFileId:电话本的文件ID
-           ucRecord:电话本的记录号
-           pstRecord:更新的电话本内容
-
-输出参数  :无
-
-返 回 值  :VOS_OK 解析成功
-           VOS_ERR 解析失败
-
-调用函数  :SI_PB_MemSet
-           SI_PB_AsciiToBcd
-
-被调函数  :无
-
-修订记录  :
-1.  日    期   : 2009年06月08日
-    作    者   : m00128685
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 SI_PB_UpdataEML(SI_PB_RECORD_STRU        *pstRecord,
                                     SI_PB_SPBDATA_STRU       *pstSPBReq,
                                     SI_PB_SPB_UPDATE_STRU    *pstPBFid)
@@ -2085,33 +1781,7 @@ VOS_UINT32 SI_PB_UpdataEML(SI_PB_RECORD_STRU        *pstRecord,
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_UpdataSPBFile
 
-功能描述  :更新电话本的文件内容
-
-输入参数  :ucPBOffset:对应的电话本的相关信息
-           usFileId:电话本的文件ID
-           ucRecord:电话本的记录号
-           pstRecord:更新的电话本内容
-
-输出参数  :无
-
-返 回 值  :VOS_OK 解析成功
-           VOS_ERR 解析失败
-
-调用函数  :SI_PB_MemSet
-           SI_PB_AsciiToBcd
-           USIMM_SetFileReq
-
-被调函数  :无
-
-修订记录  :
-1.  日    期   : 2009年06月08日
-    作    者   : m00128685
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 SI_PB_UpdataSPBFile(SI_PB_SPB_UPDATE_STRU *pstPBFid,
                                         SI_PB_RECORD_STRU *pstRecord)
 {
@@ -2163,19 +1833,7 @@ VOS_UINT32 SI_PB_UpdataSPBFile(SI_PB_SPB_UPDATE_STRU *pstPBFid,
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_DeleteHandleAnr
-功能描述  :更新电话本的文件内容
-输入参数  :
-输出参数  :无
-返 回 值  :VOS_OK 解析成功
-           VOS_ERR 解析失败
-修订记录  :
-1.  日    期   : 2009年06月08日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 
 VOS_VOID SI_PB_DeleteHandleAnr(VOS_UINT16          usFileId,
                                         VOS_UINT16          usIndex,
@@ -2302,19 +1960,7 @@ VOS_VOID SI_PB_DeleteHandleAnr(VOS_UINT16          usFileId,
     }
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_DeleteHandleEmail
-功能描述  :更新电话本的文件内容
-输入参数  :
-输出参数  :无
-返 回 值  :VOS_OK 解析成功
-           VOS_ERR 解析失败
-修订记录  :
-1.  日    期   : 2009年06月08日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 
 VOS_VOID SI_PB_DeleteHandleEmail(VOS_UINT16         usIndex,
                                           SI_PB_SPBDATA_STRU *pstSPBReq,
@@ -2410,33 +2056,7 @@ VOS_VOID SI_PB_DeleteHandleEmail(VOS_UINT16         usIndex,
     return;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_DeleteHandle
 
-功能描述  :删除电话本的文件内容
-
-输入参数  :ucPBOffset:对应的电话本的相关信息
-           usFileId:电话本的文件ID
-           ucRecord:电话本的记录号
-           pstRecord:更新的电话本内容
-
-输出参数  :无
-
-返 回 值  :VOS_OK 解析成功
-           VOS_ERR 解析失败
-
-调用函数  :SI_PB_MemSet
-           SI_PB_AsciiToBcd
-           USIMM_SetFileReq
-
-被调函数  :无
-
-修订记录  :
-1.  日    期   : 2009年06月08日
-    作    者   : m00128685
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 SI_PB_DeleteHandle(VOS_UINT16 usFileId, VOS_UINT8 ucRecord,
                                       VOS_UINT8 ucOffset,VOS_UINT16 usIndex)
 {
@@ -2516,20 +2136,7 @@ VOS_UINT32 SI_PB_DeleteHandle(VOS_UINT16 usFileId, VOS_UINT8 ucRecord,
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :
-功能描述  :
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2008年10月15日
-    作    者   : z00100318
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 SI_PB_QueryProc(PBMsgBlock *pMsg)
 {
     SI_PB_QUERY_REQ_STRU *pstMsg;
@@ -2606,18 +2213,7 @@ VOS_UINT32 SI_PB_QueryProc(PBMsgBlock *pMsg)
     return SI_PBCallback(&stCnfData);/*调用回调函数*/
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_SendSetCurPB
-功能描述  : 发送当前的电话本设置给Acpu
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-修订记录  :
-1.  日    期   : 2011年10月15日
-    作    者   : z00100318
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID SI_PB_SendSetCurPB(VOS_VOID)
 {
     SI_PB_SETPB_IND_STRU *pstMsg;
@@ -2642,20 +2238,7 @@ VOS_VOID SI_PB_SendSetCurPB(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :
-功能描述  :
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2008年10月15日
-    作    者   : z00100318
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 SI_PB_SetProc(PBMsgBlock *pMsg)
 {
     SI_PB_SET_REQ_STRU    *pstMsg;
@@ -2726,20 +2309,7 @@ VOS_UINT32 SI_PB_SetProc(PBMsgBlock *pMsg)
     return SI_PBCallback(&stCnfData);                   /*调用回调函数*/
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_FindFreeIndex
-功能描述  : 找到电话本空闲条目
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年06月15日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 SI_PB_FindFreeIndex(VOS_UINT8 ucPBOffset, VOS_UINT16 *pusIndex)
 {
     VOS_UINT16 i;
@@ -2762,20 +2332,7 @@ VOS_UINT32 SI_PB_FindFreeIndex(VOS_UINT8 ucPBOffset, VOS_UINT16 *pusIndex)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :
-功能描述  :
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2008年10月15日
-    作    者   : z00100318
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 SI_PB_AddProc(PBMsgBlock *pMsg)
 {
     SI_PB_ADD_REP_STRU    *pstMsg;
@@ -2915,20 +2472,7 @@ VOS_UINT32 SI_PB_AddProc(PBMsgBlock *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_GetANRInfo
-功能描述  : 根据AT输入确定需要更新的ANR电话本
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年06月05日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 SI_PB_GetANRInfo(SI_PB_ADDITION_NUM_STRU *pstANRNum,
                                     VOS_UINT16 usADNFid,
                                     VOS_UINT16 *pusANRFileId)
@@ -2968,20 +2512,7 @@ VOS_UINT32 SI_PB_GetANRInfo(SI_PB_ADDITION_NUM_STRU *pstANRNum,
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_SAddProc
-功能描述  :
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年06月05日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 SI_PB_SAddProc(PBMsgBlock *pMsg)
 {
     SI_PB_ADD_REP_STRU    *pstMsg;
@@ -3147,20 +2678,7 @@ VOS_UINT32 SI_PB_SAddProc(PBMsgBlock *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :
-功能描述  :
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2008年10月15日
-    作    者   : z00100318
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 SI_PB_ModifyProc(PBMsgBlock *pMsg)
 {
     SI_PB_ADD_REP_STRU     *pstMsg;
@@ -3279,20 +2797,7 @@ VOS_UINT32 SI_PB_ModifyProc(PBMsgBlock *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_SModifyProc
-功能描述  :
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年06月05日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 SI_PB_SModifyProc(PBMsgBlock *pMsg)
 {
     SI_PB_ADD_REP_STRU     *pstMsg;
@@ -3436,20 +2941,7 @@ VOS_UINT32 SI_PB_SModifyProc(PBMsgBlock *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_DeleteProc
-功能描述  :
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2008年10月15日
-    作    者   : z00100318
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 SI_PB_DeleteProc(PBMsgBlock *pMsg)
 {
     SI_PB_DELETE_REQ_STRU *pstMsg;
@@ -3567,20 +3059,7 @@ VOS_UINT32 SI_PB_DeleteProc(PBMsgBlock *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_RefreshProc
-功能描述  : Refresh请求的处理
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2008年11月11日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 SI_PB_RefreshALLContent(VOS_VOID)
 {
     VOS_UINT32             ulResult  = VOS_ERR;
@@ -3614,17 +3093,7 @@ VOS_UINT32 SI_PB_RefreshALLContent(VOS_VOID)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_FDNCheckProc
-功能描述  : FDN号码检查消息回复
-输入参数  :pMsg 号码消息
-输出参数  :
-返 回 值  :VOS_OK成功VOS_ERR失败
-修订记录  :
-1.  日    期   : 2012年02月22日
-    作    者   : w00184875
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PB_FDNCheckProc(PBMsgBlock *pMsg)
 {
     PB_FDN_CHECK_CNF_STRU              *pstFDNCheckCnf;
@@ -3708,17 +3177,7 @@ VOS_UINT32 SI_PB_FDNCheckProc(PBMsgBlock *pMsg)
 }
 
 
-/*****************************************************************************
-函 数 名  : SI_PB_EcallNumberQryProc
-功能描述  : ECALL号码获取请求消息
-输入参数  : pMsg 号码获取请求消息
-输出参数  : 无
-返 回 值  : VOS_OK成功VOS_ERR失败
-修订记录  :
-1.  日    期   : 2014年04月25日
-    作    者   : h59254
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PB_EcallNumberQryProc(PBMsgBlock *pMsg)
 {
     SI_PB_ECALLQRY_REQ_STRU            *pstEcallQryReq;
@@ -3767,20 +3226,7 @@ VOS_UINT32 SI_PB_EcallNumberQryProc(PBMsgBlock *pMsg)
     return VOS_SendMsg(MAPS_PB_PID, pstEcallQryCnf);
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_JudgeTotalUsedNum
-功能描述  : 根据电话本的更新接
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年06月05日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID SI_PB_JudgeTotalUsedNum(VOS_UINT8 ucPBOffset,SI_PB_EVENT_INFO_STRU *pstCnfData)
 {
     if ((SI_PB_EVENT_ADD_CNF == gstPBReqUnit.enPBEventType)
@@ -3835,20 +3281,7 @@ VOS_VOID SI_PB_JudgeTotalUsedNum(VOS_UINT8 ucPBOffset,SI_PB_EVENT_INFO_STRU *pst
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_RefreshADNUsedNum
-功能描述  : 跟新ADN电话本的使用情况
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年06月05日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID SI_PB_RefreshADNUsedNum(VOS_UINT8 *pucDstStorage, VOS_UINT8 *pucSrcReq,VOS_UINT8 ucOffset)
 {
    /*该电话本缓存(需判断缓存是否为空)和PBreq比较*/
@@ -3875,20 +3308,7 @@ VOS_VOID SI_PB_RefreshADNUsedNum(VOS_UINT8 *pucDstStorage, VOS_UINT8 *pucSrcReq,
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_RefreshEXTUsedNum
-功能描述  : 跟新EXT电话本的使用情况
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年06月05日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID SI_PB_RefreshEXTUsedNum(VOS_UINT8 *pucDstStorage, VOS_UINT8 *pucSrcReq, VOS_UINT8 ucOffset)
 {
     if((0x0 != pucDstStorage[0])&&(0xFF != pucDstStorage[1]))/*有效*/
@@ -3909,20 +3329,7 @@ VOS_VOID SI_PB_RefreshEXTUsedNum(VOS_UINT8 *pucDstStorage, VOS_UINT8 *pucSrcReq,
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_RefreshANRUsedNum
-功能描述  : 跟新ANR电话本的使用情况
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年06月05日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID SI_PB_RefreshANRUsedNum(VOS_UINT8 *pucDstStorage, VOS_UINT8 *pucSrcReq, VOS_UINT8 ucOffset)
 {
     if(VOS_OK == SI_PB_CheckANRValidity(pucDstStorage))/*有效*/
@@ -3943,20 +3350,7 @@ VOS_VOID SI_PB_RefreshANRUsedNum(VOS_UINT8 *pucDstStorage, VOS_UINT8 *pucSrcReq,
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_RefreshEMLUsedNum
-功能描述  : 跟新EML电话本的使用情况
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年06月05日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID SI_PB_RefreshEMLUsedNum(VOS_UINT8 *pucDstStorage, VOS_UINT8 *pucSrcReq)
 {
     if(0xFF != pucDstStorage[0])/*有效*/
@@ -3977,20 +3371,7 @@ VOS_VOID SI_PB_RefreshEMLUsedNum(VOS_UINT8 *pucDstStorage, VOS_UINT8 *pucSrcReq)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_RefreshMemory
-功能描述  : 根据电话本的更新接
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年06月05日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 SI_PB_RefreshMemory(VOS_UINT16 usFileId,VOS_UINT16 usRecordLen,VOS_UINT8 ucOffset,VOS_UINT8 ucRecordNum)
 {
     VOS_UINT8  *pucSrcReq;
@@ -4086,20 +3467,7 @@ VOS_UINT32 SI_PB_RefreshMemory(VOS_UINT16 usFileId,VOS_UINT16 usRecordLen,VOS_UI
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :
-功能描述  :
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年06月05日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID SI_PB_UsimSetFileProc(USIMM_UPDATEFILE_CNF_STRU    *pstMsg,
                                         VOS_UINT8                   ucPBOffset,
                                         SI_PB_EVENT_INFO_STRU       *pstCnfData)
@@ -4135,19 +3503,7 @@ VOS_VOID SI_PB_UsimSetFileProc(USIMM_UPDATEFILE_CNF_STRU    *pstMsg,
     return;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_UsimSetExtFileProc
-功能描述  :处理对EXT文件操作的回复
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年5月7日
-    作    者   : h59254
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID SI_PB_UsimSetExtFileProc(USIMM_UPDATEFILE_CNF_STRU *pstMsg, VOS_UINT8 ucPBOffset)
 {
     VOS_UINT8   *ptemp;
@@ -4186,17 +3542,7 @@ VOS_VOID SI_PB_UsimSetExtFileProc(USIMM_UPDATEFILE_CNF_STRU *pstMsg, VOS_UINT8 u
     }
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_RefreshCardIndMsgSnd
-功能描述  :PB模块构造一条假的卡状态消息触发PB重新初始化
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-修订记录  :
-1. 日    期   : 2013年5月28日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID SI_PB_RefreshCardIndMsgSnd(VOS_VOID)
 {
     VOS_UINT8                           ucCardStatus;
@@ -4229,18 +3575,7 @@ VOS_VOID SI_PB_RefreshCardIndMsgSnd(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_SimRefreshFileCheck
-功能描述  :PB模块判断是否是SIM卡电话本更新
-输入参数  :usPathLen:路径长度
-           pcFilePath:路径内容
-输出参数  :无
-返 回 值  :无
-修订记录  :
-1. 日    期   : 2015年2月2日
-   作    者   : h00300778
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_BOOL SI_PB_SimRefreshFileCheck(VOS_UINT16 usPathLen, VOS_UINT8 *pcFilePath)
 {
     USIMM_DEF_FILEID_ENUM_UINT32        enFileID;
@@ -4265,18 +3600,7 @@ VOS_BOOL SI_PB_SimRefreshFileCheck(VOS_UINT16 usPathLen, VOS_UINT8 *pcFilePath)
     }
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_UsimRefreshFileCheck
-功能描述  :PB模块判断是否是SIM卡电话本更新
-输入参数  :usPathLen:路径长度
-           pcFilePath:路径内容
-输出参数  :无
-返 回 值  :无
-修订记录  :
-1. 日    期   : 2015年2月2日
-   作    者   : h00300778
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_BOOL SI_PB_UsimRefreshFileCheck(
     VOS_UINT16                          usPathLen, 
     VOS_UINT8                           *pcFilePath,
@@ -4318,17 +3642,7 @@ VOS_BOOL SI_PB_UsimRefreshFileCheck(
     }
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_RefreshFileCheck
-功能描述  :PB模块Refresh命令判断是否需要处理
-输入参数  :pstMsg:REFRESH命令指示消息
-输出参数  :无
-返 回 值  :无
-修订记录  :
-1. 日    期   : 2015年2月2日
-   作    者   : h00300778
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_BOOL SI_PB_RefreshFileCheck(USIMM_STKREFRESH_IND_STRU *pstMsg)
 {
     VOS_UINT16                          i;
@@ -4359,17 +3673,7 @@ VOS_BOOL SI_PB_RefreshFileCheck(USIMM_STKREFRESH_IND_STRU *pstMsg)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_PihRefreshIndProc
-功能描述  :PB模块Refresh命令处理函数
-输入参数  :pstMsg:REFRESH命令指示消息
-输出参数  :无
-返 回 值  :无
-修订记录  :
-1. 日    期   : 2013年5月28日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID SI_PB_PihRefreshIndProc(USIMM_STKREFRESH_IND_STRU *pstMsg)
 {
     VOS_UINT32                          ulPbRefreshFlag;
@@ -4409,19 +3713,7 @@ VOS_VOID SI_PB_PihRefreshIndProc(USIMM_STKREFRESH_IND_STRU *pstMsg)
 
     return;
 }
-/*****************************************************************************
-函 数 名  : SI_PB_UsimSetSPBFileProc
-功能描述  : 处理对复合电话本文件操作的回复
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年06月08日
-    作    者   : m00128685
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID SI_PB_UsimSetSPBFileProc(USIMM_SETMUTILFILE_CNF_STRU *pstPBMsg,
                                              SI_PB_EVENT_INFO_STRU       *pstCnfData,
                                              VOS_UINT8                   ucOffset)
@@ -4460,20 +3752,7 @@ VOS_VOID SI_PB_UsimSetSPBFileProc(USIMM_SETMUTILFILE_CNF_STRU *pstPBMsg,
     return;
 }
 
-/*****************************************************************************
-函 数 名  :
-功能描述  :
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2007年10月15日
-    作    者   :
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID SI_PB_UsimGetFileProc(USIMM_READFILE_CNF_STRU *pstMsg,
                                         VOS_UINT8               ucPBOffset,
                                         SI_PB_EVENT_INFO_STRU   *pstCnfData)
@@ -4508,20 +3787,7 @@ VOS_VOID SI_PB_UsimGetFileProc(USIMM_READFILE_CNF_STRU *pstMsg,
 
     return ;
 }
-/*****************************************************************************
-函 数 名  : SI_PB_UsimSearchFileProc
-功能描述  :
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2007年10月15日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID SI_PB_UsimSearchFileProc(USIMM_READFILE_CNF_STRU *pstMsg,
                                             VOS_UINT8               ucPBOffset,
                                             SI_PB_EVENT_INFO_STRU   *pstCnfData)
@@ -4569,20 +3835,7 @@ VOS_VOID SI_PB_UsimSearchFileProc(USIMM_READFILE_CNF_STRU *pstMsg,
 
     return;
 }
-/*****************************************************************************
-函 数 名  : SI_PB_UsimGetIndexFile
-功能描述  :
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年04月15日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID SI_PB_UsimGetIndexFile(VOS_UINT8 ucPBOffset, SI_PB_EVENT_INFO_STRU *pstCnfData)
 {
     VOS_UINT32                  ulResult;
@@ -4655,18 +3908,7 @@ VOS_VOID SI_PB_UsimGetIndexFile(VOS_UINT8 ucPBOffset, SI_PB_EVENT_INFO_STRU *pst
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PBSendGlobalToAcpu
-功能描述  : 发送全局变量内容给Acpu
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-修订记录  :
-1.  日    期   : 2011年10月15日
-    作    者   : z100318
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID SI_PBSendGlobalToAcpu(VOS_VOID)
 {
     SI_PB_UPDATEGLOBAL_IND_STRU        *pstMsg;
@@ -4731,17 +3973,7 @@ VOS_VOID SI_PBSendGlobalToAcpu(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_EcallInitInd
-功能描述  : ECALL号码初始化上报
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-修订记录  :
-1.  日    期   : 2014年04月25日
-    作    者   : h59254
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID SI_PB_EcallInitInd(VOS_VOID)
 {
     SI_PB_ECALLINIT_IND_STRU           *pstEcallIndMsg;
@@ -4765,19 +3997,7 @@ VOS_VOID SI_PB_EcallInitInd(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_ReleaseAll
-功能描述  : 释放电话本空间及全局变量清空
-输入参数  :
-输出参数  :
-返 回 值  :
 
-修订记录  :
-1.  日    期   : 2012年06月09日
-    作    者   :
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_VOID SI_PB_ReleaseAll(VOS_VOID)
 {
     gstPBInitState.enPBInitStep = PB_INIT_PB_STATUS;
@@ -4791,20 +4011,7 @@ VOS_VOID SI_PB_ReleaseAll(VOS_VOID)
     SI_PBSendGlobalToAcpu();
 }
 
-/*****************************************************************************
-函 数 名  : SI_PBUsimCnfMsgProc
-功能描述  : 处理USIMM模块回复的请求，需要根据结果回复给AT
-输入参数  : 消息内容
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2007年10月15日
-    作    者   :
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 SI_PBUsimCnfMsgProc(PBMsgBlock *pMsg)
 {
     VOS_UINT8                   ucPBOffset;
@@ -4882,20 +4089,7 @@ VOS_UINT32 SI_PBUsimCnfMsgProc(PBMsgBlock *pMsg)
     return SI_PBCallback(&stCnfData);/*调用回调函数*/
 }
 
-/*****************************************************************************
-函 数 名  : SI_PBUsimMsgProc
-功能描述  : 处理当前USIMM返回和上报的所有消息
-输入参数  : 消息内容
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2007年10月15日
-    作    者   :
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 SI_PBUsimMsgProc(PBMsgBlock *pMsg)
 {
     VOS_UINT32                   ulResult;
@@ -4962,20 +4156,7 @@ VOS_UINT32 SI_PBUsimMsgProc(PBMsgBlock *pMsg)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名      :
-功能描述  :
-输入参数  :
-输出参数  :
-返 回 值      :
-调用函数  :
-被调函数  :
-修订记录  :
-1. 日    期   : 2007年10月15日
-    作    者   :
-    修改内容   : Creat
 
-*****************************************************************************/
 
 SI_PB_INIT_LIST_STRU    gastPBInitProc[] =
 {
@@ -5068,24 +4249,7 @@ VOS_UINT32 SI_PBInitMsgProc (PBMsgBlock *pMsg)
 }
 #endif
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitGlobeVariable
-功能描述  : 初始化PB相关的全局变量
-输入参数  : 无
-输出参数  : gstPBCtrlInfo
-            gstPBInitState
-            gstPBReqUnit
-            gastPBContent
-返 回 值  : 无
-调用函数  : VOS_MemSet
-            SI_PB_MemSet
-被调函数  :
-修订记录  :
-1.  日    期   : 2008年10月15日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID SI_PB_InitGlobeVariable(VOS_VOID)
 {
     /*lint -e534*/
@@ -5180,20 +4344,7 @@ VOS_VOID SI_PB_InitGlobeVariable(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : WuepsPBPidInit
-功能描述  : 初始化PB相关的全局变量
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_OK
-调用函数  : SI_PB_InitGlobeVariable
-被调函数  :
-修订记录  :
-1.  日    期   : 2008年10月15日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 WuepsPBPidInit(enum VOS_INIT_PHASE_DEFINE InitPhrase)
 {
     switch (InitPhrase)
@@ -5219,18 +4370,7 @@ VOS_UINT32 WuepsPBPidInit(enum VOS_INIT_PHASE_DEFINE InitPhrase)
 }
 
 
-/*****************************************************************************
-函 数 名  : SI_PB_PidMsgProc
-功能描述  : 电话本模块的消息处理模块
-输入参数  : pstPBMsg - 消息内容
-输出参数  : 无
-返 回 值  : 无
-修订记录  :
-1.  日    期   : 2007年10月15日
-    作    者   : z00100318
-    修改内容   : Creat
 
-*****************************************************************************/
 #if (defined(DMT))
 SI_PB_PROC_LIST_STRU    gastPBReqProc[] =
 {
@@ -5318,19 +4458,7 @@ VOS_VOID SI_PB_PidMsgProc(struct MsgCB *pstPBMsg)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PBCallback
-功能描述  : 回调处理函数
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_UINT32，表示函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2008年10月20日
-  作    者  : H59254
-  修改内容  : Create
-*****************************************************************************/
+
 extern TAF_VOID At_PbCallBackFunc(SI_PB_EVENT_INFO_STRU  *pEvent);
 
 VOS_UINT32 SI_PBCallback(SI_PB_EVENT_INFO_STRU *pstEvent)

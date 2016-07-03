@@ -15,7 +15,7 @@
 #include "TafDrvAgent.h"
 #include "AtCmdMsgProc.h"
 #include "AtEventReport.h"
-#include "AtRabmInterface.h" /* V3R2和V7R1共用 z40661 c00149739 20111221 */
+#include "AtRabmInterface.h"
 #include "AtRnicInterface.h"
 #include "AtDeviceCmd.h"
 #include "AtInit.h"
@@ -33,14 +33,10 @@
 #endif
 
 #include "OmApi.h"
-/* Added by l00167671 for NV拆分项目 , 2013-05-17, begin */
 #include "NasNvInterface.h"
 #include "TafNvInterface.h"
-/* Added by l00167671 for NV拆分项目 , 2013-05-17, end*/
 #include "GasNvInterface.h"
-/* Added by s00217060 for VoLTE_PhaseI  项目, 2013-08-16, begin */
 #include "AppVcApi.h"
-/* Added by s00217060 for VoLTE_PhaseI  项目, 2013-08-16, end */
 
 #include "AtCmdImsProc.h"
 
@@ -88,7 +84,6 @@ EXTERN VOS_UINT8    gucCurrEncVoiceDataWriteFileNum;
 EXTERN TAF_CHAR    *g_pacCurrEncVoiceDataWriteFilePath[];
 #endif
 
-/* Added by L60609 for AT Project，2011-10-04,  Begin*/
 
 /*AT 模块处理来自AT AGENT消息函数对应表*/
 const AT_PROC_MSG_FROM_DRV_AGENT_STRU g_astAtProcMsgFromDrvAgentTab[]=
@@ -115,13 +110,9 @@ const AT_PROC_MSG_FROM_DRV_AGENT_STRU g_astAtProcMsgFromDrvAgentTab[]=
     {DRV_AGENT_SFEATURE_QRY_CNF,            AT_RcvDrvAgentQrySfeatureRsp},
     {DRV_AGENT_PRODTYPE_QRY_CNF,            AT_RcvDrvAgentQryProdtypeRsp},
 
-    /* Added by 傅映君/f62575 for CPULOAD&MFREELOCKSIZE处理过程移至C核, 2011/11/15, begin */
     {DRV_AGENT_CPULOAD_QRY_CNF,             AT_RcvDrvAgentCpuloadQryRsp},
     {DRV_AGENT_MFREELOCKSIZE_QRY_CNF,       AT_RcvDrvAgentMfreelocksizeQryRsp},
-    /* Added by 傅映君/f62575 for CPULOAD&MFREELOCKSIZE处理过程移至C核, 2011/11/15, end */
-    /* Added by l00171473 for 内存监控AT命令, 2011-11-29,  begin */
     {DRV_AGENT_MEMINFO_QRY_CNF,             AT_RcvDrvAgentMemInfoQryRsp},
-    /* Added by l00171473 for 内存监控AT命令, 2011-11-29,  end */
     {DRV_AGENT_DLOADINFO_QRY_CNF,           AT_RcvDrvAgentDloadInfoQryRsp},
     {DRV_AGENT_FLASHINFO_QRY_CNF,           AT_RcvDrvAgentFlashInfoQryRsp},
     {DRV_AGENT_AUTHORITYVER_QRY_CNF,        AT_RcvDrvAgentAuthorityVerQryRsp},
@@ -137,11 +128,9 @@ const AT_PROC_MSG_FROM_DRV_AGENT_STRU g_astAtProcMsgFromDrvAgentTab[]=
 
     {DRV_AGENT_IMSICHG_QRY_CNF,             AT_RcvDrvAgentImsiChgQryRsp},
     {DRV_AGENT_INFORBU_SET_CNF,             AT_RcvDrvAgentInfoRbuSetRsp},
-    /*DTS2012041102190 : h00135900 start in 2011-04-11 AT代码融合*/
 #if ( FEATURE_ON == FEATURE_LTE )
     {DRV_AGENT_INFORRS_SET_CNF,             AT_RcvDrvAgentInfoRrsSetRsp},
 #endif
-    /*DTS2012041102190 : h00135900 end in 2011-04-11 AT代码融合*/
     {DRV_AGENT_CPNN_QRY_CNF,                AT_RcvDrvAgentCpnnQryRsp},
     {DRV_AGENT_CPNN_TEST_CNF,               AT_RcvDrvAgentCpnnTestRsp},
     {DRV_AGENT_NVBACKUP_SET_CNF,            AT_RcvDrvAgentNvBackupSetRsp},
@@ -190,15 +179,12 @@ const AT_PROC_MSG_FROM_DRV_AGENT_STRU g_astAtProcMsgFromDrvAgentTab[]=
     {DRV_AGENT_HVPDH_CNF,                   AT_RcvDrvAgentHvpdhSetCnf},
 #endif
 
-    /* Added by d00212987 for BalongV9R1 NV备份数据丢失容错&恢复 项目 2013-10-24, begin */
     {DRV_AGENT_NVMANUFACTUREEXT_SET_CNF,    AT_RcvNvManufactureExtSetCnf},
-    /* Added by d00212987 for BalongV9R1 NV备份数据丢失容错&恢复 项目 2013-10-24, end */
 
     {DRV_AGENT_ANTSWITCH_SET_CNF,           AT_RcvDrvAgentAntSwitchSetCnf},
     {DRV_AGENT_ANTSWITCH_QRY_CNF,           AT_RcvDrvAgentAntSwitchQryCnf},
 };
 
-/* Added by L60609 for AT Project，2011-10-04,  End*/
 
 /* AT模块处理来自MTA消息函数对应表*/
 const AT_PROC_MSG_FROM_MTA_STRU g_astAtProcMsgFromMtaTab[]=
@@ -227,11 +213,9 @@ const AT_PROC_MSG_FROM_MTA_STRU g_astAtProcMsgFromMtaTab[]=
 
     {ID_MTA_AT_BODY_SAR_SET_CNF,           AT_RcvMtaBodySarSetCnf},
 
-    /* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-1, begin */
     {ID_MTA_AT_CURC_QRY_CNF,                AT_RcvMtaQryCurcCnf},
     {ID_MTA_AT_UNSOLICITED_RPT_SET_CNF,     AT_RcvMtaSetUnsolicitedRptCnf},
     {ID_MTA_AT_UNSOLICITED_RPT_QRY_CNF,     AT_RcvMtaQryUnsolicitedRptCnf},
-    /* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-1, end */
 
     {ID_MTA_AT_IMEI_VERIFY_QRY_CNF,         AT_RcvMtaImeiVerifyQryCnf},
     {ID_MTA_AT_CGSN_QRY_CNF,                AT_RcvMtaCgsnQryCnf},
@@ -255,9 +239,7 @@ const AT_PROC_MSG_FROM_MTA_STRU g_astAtProcMsgFromMtaTab[]=
 #endif
     { ID_MTA_AT_PHY_INIT_CNF,               AT_RcvMtaPhyInitCnf},
 
-    /* Added by l00198894 for 新增+ECID命令, 2013-12-09, begin */
     {ID_MTA_AT_ECID_SET_CNF,                AT_RcvMtaEcidSetCnf},
-    /* Added by l00198894 for 新增+ECID命令, 2013-12-09, end */
 
     {ID_MTA_AT_MIPICLK_QRY_CNF,             AT_RcvMtaMipiInfoCnf},
     {ID_MTA_AT_MIPICLK_INFO_IND,            AT_RcvMtaMipiInfoInd},
@@ -376,7 +358,6 @@ const AT_PROC_MSG_FROM_CALL_STRU g_astAtProcMsgFromCallTab[]=
     {ID_TAF_CALL_APP_TYPE_BUTT,                             VOS_NULL_PTR}
 };
 
-/* Added by w00167002 for L-C互操作项目, 2014-2-21, begin */
 const AT_PROC_MSG_FROM_MMA_STRU g_astAtProcMsgFromMmaTab[]=
 {
     /* 消息ID */                            /* 消息处理函数 */
@@ -508,7 +489,6 @@ const AT_PROC_MSG_FROM_MMA_STRU g_astAtProcMsgFromMmaTab[]=
     {ID_TAF_MMA_CLMODE_IND,           AT_RcvMmaCLModInd},
     {ID_TAF_MMA_INIT_LOC_INFO_IND,    AT_RcvMmaInitLocInfoInd},
 };
-/* Added by w00167002 for L-C互操作项目, 2014-2-21, end */
 
 /* AT码流缓存数组(包括AT命令或其它数据)。
    设置该缓存数组的原因:底软任务在调用At_CmdStreamPreProc接口时，某些场景下(如直接使用超级终端发送AT命令),则会
@@ -521,9 +501,7 @@ AT_CLIENT_MANAGE_STRU                   gastAtClientTab[AT_MAX_CLIENT_NUM];
 
 TAF_UINT32                              gulPBPrintTag = VOS_FALSE;
 
-/* Added by f00179208 for AT Project，2011-11-04,  Begin*/
 extern VOS_BOOL                         g_bSetFlg;
-/* Added by f00179208 for AT Project，2011-11-04,  End*/
 
 /*****************************************************************************
    3 函数、变量声明
@@ -539,25 +517,7 @@ extern VOS_UINT32    AT_ProcTempprtEventInd(
 
 #ifdef __PS_WIN32_RECUR__
 
-/*****************************************************************************
- 函 数 名  : AT_RestoreClientData
- 功能描述  : 恢复AT模块上的客户端口数据表
- 输入参数  : NAS_AT_OUTSIDE_RUNNING_CONTEXT_PART_ST          *pstOutsideCtx
- 输出参数  : 无
- 返 回 值  : TAF_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月17日
-    作    者   : 傅映君/f62575
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年9月30日
-    作    者   : 鲁琳/l60609
-    修改内容   : AT Project: 删除At_RegTafCallBackFunc
-
-*****************************************************************************/
 TAF_VOID AT_RestoreClientData(
     NAS_AT_SDT_AT_CLIENT_TABLE_STRU    *pstAtClientData
 )
@@ -577,25 +537,7 @@ TAF_VOID AT_RestoreClientData(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RestoreContextData
- 功能描述  : 恢复AT全局变量。
- 输入参数  : pMsg   PC回放消息指针；
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2010年02月12日
-    作    者   : 傅映君 62575
-    修改内容   : 新生成函数
-  2.日    期   : 2010年7月16日
-    作    者   : 傅映君/f62575
-    修改内容   : 问题单号：DTS2010071402189，支持AT模块多CLIENT ID的回放
-  3.日    期   : 2013年03月07日
-    作    者   : f00179208
-    修改内容   : DSDA PHASE III
-*****************************************************************************/
+
 TAF_UINT32 AT_RestoreContextData(
     AT_MSG_STRU                         *pMsg
 )
@@ -643,54 +585,12 @@ TAF_UINT32 AT_RestoreContextData(
     return AT_OK;
 }
 #endif
-/* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
-/*****************************************************************************
- 函 数 名  : At_MmaMsgProc
- 功能描述  : AT模块处理来自MMA的消息
- 输入参数  : MSG_HEADER_STRU * pstMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年2月22日
-    作    者   : f62575
-    修改内容   : 新生成函数
-
-  2.日    期   : 2010年7月16日
-    作    者   : 傅映君/f62575
-    修改内容   : 问题单号：DTS2010071402189，支持AT模块多CLIENT ID的回放
-
-  3.日    期   : 2011年10月17日
-    作    者   : o00132663
-    修改内容   : AT移植项目，增加AT处理CC和MMA模块的消息
-  4.日    期   : 2012年4月24日
-    作    者   : l00171473
-    修改内容   : DTS2012041805606
-  5.日    期   : 2012年12月11日
-    作    者   : w00176964
-    修改内容   : 增加mma的小区接入禁止信息上报消息的处理
-  6.日    期   : 2013年2月4日
-    作    者   : t00212959
-    修改内容   : DTS2013020600770:at^cerssi?增加返回参数
-  7.日    期   : 2013年05月06日
-    作    者   : f62575
-    修改内容   : SS FDN&Call Control项目，支持+COPN命令
-  8.日    期   : 2014年01月15日
-    作    者   : f62575
-    修改内容   : DTS2014011301359: 增加对+CPOL查询命令的响应消息处理
-
-  9.日    期   : 2014年3月5日
-    作    者   : w00167002
-    修改内容   : AT处理MMA的消息调整为表格，降圈复杂度
-*****************************************************************************/
 TAF_VOID At_MmaMsgProc(
     MSG_HEADER_STRU                     *pstMsg
 )
 {
-    /* Modified by w00167002 for L-C互操作项目, 2014-3-5, begin */
     VOS_UINT32                          i;
     VOS_UINT32                          ulMsgCnt;
     VOS_UINT32                          ulRst;
@@ -720,25 +620,10 @@ TAF_VOID At_MmaMsgProc(
         AT_ERR_LOG("At_MmaMsgProc: Msg Id is invalid!");
     }
 
-    /* Modified by w00167002 for L-C互操作项目, 2014-3-5, end */
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : At_CallMsgProc
- 功能描述  : AT模块处理来自XCALL的消息
- 输入参数  : MSG_HEADER_STRU * pstMsg
- 输出参数  : 无
- 返 回 值  : TAF_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月2日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_UINT32 At_CallMsgProc(
     MSG_HEADER_STRU                     *pstMsg
 )
@@ -778,37 +663,7 @@ TAF_UINT32 At_CallMsgProc(
     return AT_ERROR;
 }
 
-/*****************************************************************************
-Prototype      : At_EventMsgProc
-Description    : AT模块消息处理入口函数，该函数注册给DOPRA调度。
-Input          : pMsg -- VOS消息指针
-Output         : None
-Return Value   : None
-Calls          : None
-Called By      : DOPRA
 
-  History        : ---
-  1.Date        : 2005-04-19
-  Author      : ---
-  Modification: Created function
-  2. Date:2006-04-12
-     Author: w42656
-     Modification:修改At_MsgProc,问题单号: A32D01851
-  3.日    期   : 2008年6月10日
-    作    者   : luojian id:00107747
-    修改内容   : 问题单号:AT2D03704
-  4.日    期   : 2010年7月16日
-    作    者   : 傅映君/f62575
-    修改内容   : 问题单号：DTS2010071402189，支持AT模块多CLIENT ID的回放
-  5.日    期   : 2011年12月20日
-    作    者   : o00132663
-    修改内容   : PS融合项目，MN_CALLBACK_DATA_FLOW消息已经被消息ID_EVT_TAF
-                 _PS_REPORT_DSFLOW_IND替代，删除。
-  6.日    期   : 2012年03月03日
-    作    者   : s62952
-    修改内容   : BalongV300R002 Build优化项目
-
-*****************************************************************************/
 TAF_VOID At_EventMsgProc(MN_AT_IND_EVT_STRU *pMsg)
 {
 
@@ -827,10 +682,8 @@ TAF_VOID At_EventMsgProc(MN_AT_IND_EVT_STRU *pMsg)
             return;
 
         case MN_CALLBACK_PS_CALL:
-            /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
             /* PS域事件处理 */
             AT_RcvTafPsEvt((TAF_PS_EVT_STRU*)pMsg);
-            /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
             return;
 
         case MN_CALLBACK_DATA_STATUS:
@@ -857,11 +710,9 @@ TAF_VOID At_EventMsgProc(MN_AT_IND_EVT_STRU *pMsg)
             At_CmdCnfMsgProc(pMsg->aucContent, pMsg->usLen);
             break;
 
-        /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
         case MN_CALLBACK_VOICE_CONTROL:
             At_VcMsgProc(pMsg, pMsg->usLen);
             break;
-        /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
         case MN_CALLBACK_LOG_PRINT:
             AT_LogPrintMsgProc((TAF_MNTN_LOG_PRINT_STRU *)pMsg);
@@ -874,26 +725,7 @@ TAF_VOID At_EventMsgProc(MN_AT_IND_EVT_STRU *pMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_E5CheckRight
- 功能描述  : 检查是否有权限操作AT命令
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_BOOL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年10月18日
-    作    者   : zhoujun /40661
-    修改内容   : 新生成函数
-  2.日    期   : 2010年12月25日
-    作    者   : lijun 00171473
-    修改内容   : DTS2010122500864 修改OPENPORT在SSCOM中输入的特殊处理
-  3.日    期   : 2012年03月03日
-    作    者   : s62952
-    修改内容   : BalongV300R002 Build优化项目 :删除NAS_FEATURE_AT_PWD宏
-*****************************************************************************/
 VOS_BOOL AT_E5CheckRight(
     VOS_UINT8                           ucIndex,
     VOS_UINT8                          *pucData,
@@ -984,28 +816,7 @@ VOS_BOOL AT_E5CheckRight(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- Prototype      : At_PppProtocolRelIndProc
- Description    : AT接收PPP链路释放完成指示消息
- Input          : pMsg
- Output         : ---
- Return Value   : VOS_VOID
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2010-03-04
-    Author      : L47619
-    Modification: Created function
-
-  2.日    期   : 2013年05月27日
-    作    者   : f00179208
-    修改内容   : V3R3 PPP PROJECT
-
-  3.日    期   : 2013年9月21日
-    作    者   : j00174725
-    修改内容   : UART-MODEM: 增加支持UART端口
-*****************************************************************************/
 TAF_VOID At_PppProtocolRelIndProc(AT_PPP_PROTOCOL_REL_IND_MSG_STRU *pMsg)
 {
     VOS_UINT8                           ucIndex;
@@ -1036,32 +847,7 @@ TAF_VOID At_PppProtocolRelIndProc(AT_PPP_PROTOCOL_REL_IND_MSG_STRU *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_ModemMscIndProc
- 功能描述  : AT接收管脚信号的处理
- 输入参数  : AT_PPP_MODEM_MSC_IND_MSG_STRU *pMsg
- 输出参数  : 无
- 返 回 值  : TAF_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.Date        : 2010-03-04
-    Author      : L47619
-    Modification: Created function
-
-  2.日    期   : 2011年10月15日
-    作    者   : 鲁琳/l60609
-    修改内容   : AT Project:静态分配 client id
-
-  3.日    期   : 2013年05月27日
-    作    者   : f00179208
-    修改内容   : V3R3 PPP PROJECT
-
-  4.日    期   : 2013年09月21日
-    作    者   : j00174725
-    修改内容   : UART-MODEM: 增加支持UART端口
-*****************************************************************************/
 VOS_VOID AT_ModemMscIndProc(AT_PPP_MODEM_MSC_IND_MSG_STRU *pMsg)
 {
     VOS_UINT8                           ucIndex;
@@ -1120,21 +906,7 @@ TAF_VOID At_PppMsgProc(MSG_HEADER_STRU *pMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : At_RfCfgCnfReturnErrProc
- 功能描述  : DSP返回的Rf配置结果原语,回复出错情况的处理
- 输入参数  : ucIndex - 用户索引
- 输出参数  : 无
- 返 回 值  : 执行结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月30日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  At_RfCfgCnfReturnErrProc(
     VOS_UINT8                           ucIndex
 )
@@ -1169,21 +941,7 @@ VOS_UINT32  At_RfCfgCnfReturnErrProc(
    return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : At_RfCfgCnfReturnSuccProc
- 功能描述  : DSP返回的Rf配置结果原语,回复成功情况的处理
- 输入参数  : ucIndex - 用户索引
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月30日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  At_RfCfgCnfReturnSuccProc(
     VOS_UINT8                           ucIndex
 )
@@ -1235,21 +993,7 @@ VOS_VOID  At_RfCfgCnfReturnSuccProc(
 
 }
 
-/*****************************************************************************
- 函 数 名  : At_HpaRfCfgCnfProc
- 功能描述  : DSP返回的Rf配置结果原语
- 输入参数  : pstMsg - DSP回复消息内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年6月28日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  At_HpaRfCfgCnfProc(
     HPA_AT_RF_CFG_CNF_STRU              *pstMsg
 )
@@ -1284,21 +1028,7 @@ VOS_VOID  At_HpaRfCfgCnfProc(
 }
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- 函 数 名  : At_CHpaRfCfgCnfProc
- 功能描述  : DSP返回的Rf配置结果原语
- 输入参数  : pstMsg - DSP回复消息内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年6月28日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  At_CHpaRfCfgCnfProc(
     CHPA_AT_RF_CFG_CNF_STRU             *pstMsg
 )
@@ -1329,24 +1059,7 @@ VOS_VOID  At_CHpaRfCfgCnfProc(
 #endif
 
 
-/*****************************************************************************
- 函 数 名  : AT_RfRssiIndProc
- 功能描述  : 对DSP回复获取当前信道RSSI消息的处理
- 输入参数  : pstMsg - 消息内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月19日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2011年10月18日
-    作    者   : c00173809
-    修改内容   : AT融合项目，修改浮点数运算。
-
-*****************************************************************************/
 VOS_VOID  At_RfRssiIndProc(
     HPA_AT_RF_RX_RSSI_IND_STRU          *pstMsg
 )
@@ -1406,21 +1119,7 @@ VOS_VOID  At_RfRssiIndProc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : At_HpaMsgProc
- 功能描述  : 对WDSP回复消息的处理
- 输入参数  : pstMsg - 回复消息内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年6月28日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  At_HPAMsgProc(
     MsgBlock                            *pstMsg
 )
@@ -1480,21 +1179,7 @@ VOS_VOID  At_HPAMsgProc(
 }
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- 函 数 名  : At_CHpaMsgProc
- 功能描述  : 对X DSP回复消息的处理
- 输入参数  : pstMsg - 回复消息内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月18日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  At_CHPAMsgProc(
     MsgBlock                            *pstMsg
 )
@@ -1525,21 +1210,7 @@ VOS_VOID  At_CHPAMsgProc(
 #endif
 
 
-/*****************************************************************************
- 函 数 名  : At_GHpaMsgProc
- 功能描述  : 对GDSP回复消息的处理
- 输入参数  : pstMsg - 消息内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年6月28日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  At_GHPAMsgProc(
     MsgBlock                            *pstMsg
 )
@@ -1592,30 +1263,7 @@ VOS_VOID  At_GHPAMsgProc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_FormatAtiCmdQryString
- 功能描述  : 生成ATI命令查询信息字符串
- 输入参数  : MODEM_ID_ENUM_UINT16                enModemId
-             DRV_AGENT_MSID_QRY_CNF_STRU         *pstDrvAgentMsidQryCnf
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月4日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月13日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-  3.日    期   : 2013年3月4日
-    作    者   : l60609
-    修改内容   : DSDA PHASE III
-  4.日    期   : 2013年5月20日
-    作    者   : Y00213812
-    修改内容   : 读取AT保存的IMEI号码
-*****************************************************************************/
 VOS_UINT32 AT_FormatAtiCmdQryString(
     MODEM_ID_ENUM_UINT16                enModemId,
     DRV_AGENT_MSID_QRY_CNF_STRU        *pstDrvAgentMsidQryCnf
@@ -1686,26 +1334,7 @@ VOS_UINT32 AT_FormatAtiCmdQryString(
 
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvDrvAgentMsidQryCnf
- 功能描述  : DRV_AGENT_MSID_QRY_CNF消息处理函数
- 输入参数  : VOS_VOID *pMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月4日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月1日
-    作    者   : 傅映君/f62575
-    修改内容   : DTS2011112602473，解决自动应答开启情况下被叫死机问题
-  3.日    期   : 2013年3月4日
-    作    者   : l60609
-    修改内容   : DSDA PHASE III
-*****************************************************************************/
 VOS_UINT32 AT_RcvDrvAgentMsidQryCnf(VOS_VOID *pMsg)
 {
     DRV_AGENT_MSG_STRU                 *pRcvMsg;
@@ -1728,13 +1357,11 @@ VOS_UINT32 AT_RcvDrvAgentMsidQryCnf(VOS_VOID *pMsg)
         return VOS_ERR;
     }
 
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, begin */
     if (AT_IS_BROADCAST_CLIENT_INDEX(ucIndex))
     {
         AT_WARN_LOG("AT_RcvDrvAgentMsidQryCnf : AT_BROADCAST_INDEX.");
         return VOS_ERR;
     }
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, end */
 
     /* 当前AT是否在等待该命令返回 */
     if (AT_CMD_MSID_READ == gastAtClientTab[ucIndex].CmdCurrentOpt)
@@ -1789,24 +1416,7 @@ VOS_UINT32 AT_RcvDrvAgentMsidQryCnf(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvDrvAgentGasMntnCmdRsp
- 功能描述  : DRV_AGENT_GAS_MNTN_CMD_RSP消息处理函数
- 输入参数  : VOS_VOID *pMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月4日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月1日
-    作    者   : 傅映君/f62575
-    修改内容   : DTS2011112602473，解决自动应答开启情况下被叫死机问题
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvDrvAgentGasMntnCmdRsp(VOS_VOID *pMsg)
 {
     DRV_AGENT_GAS_MNTN_CMD_CNF_STRU    *pstDrvAgentGasMntnCmdCnf;
@@ -1831,13 +1441,11 @@ VOS_UINT32 AT_RcvDrvAgentGasMntnCmdRsp(VOS_VOID *pMsg)
         return VOS_ERR;
     }
 
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, begin */
     if (AT_IS_BROADCAST_CLIENT_INDEX(ucIndex))
     {
         AT_WARN_LOG("AT_RcvDrvAgentGasMntnCmdRsp : AT_BROADCAST_INDEX.");
         return VOS_ERR;
     }
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, end */
 
     /* 当前AT是否在等待该命令返回 */
     if (AT_CMD_CGAS_QUERY != gastAtClientTab[ucIndex].CmdCurrentOpt)
@@ -1958,22 +1566,7 @@ VOS_UINT32 AT_RcvDrvAgentGasMntnCmdRsp(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvDrvAgentHardwareQryRsp
- 功能描述  : DRV_AGENT_HARDWARE_QRY_RSP消息处理函数
- 输入参数  : VOS_VOID *pMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2011年10月5日
-    作    者   : c00173809
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月1日
-    作    者   : 傅映君/f62575
-    修改内容   : DTS2011112602473，解决自动应答开启情况下被叫死机问题
-*****************************************************************************/
+
 VOS_UINT32 AT_RcvDrvAgentHardwareQryRsp(VOS_VOID *pMsg)
 {
     VOS_UINT32                                  ulRet;
@@ -1993,13 +1586,11 @@ VOS_UINT32 AT_RcvDrvAgentHardwareQryRsp(VOS_VOID *pMsg)
         return VOS_ERR;
     }
 
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, begin */
     if (AT_IS_BROADCAST_CLIENT_INDEX(ucIndex))
     {
         AT_WARN_LOG("AT_RcvDrvAgentHardwareQryRsp : AT_BROADCAST_INDEX.");
         return VOS_ERR;
     }
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, end */
 
     if (AT_CMD_DRV_AGENT_HARDWARE_QRY != gastAtClientTab[ucIndex].CmdCurrentOpt)
     {
@@ -2038,24 +1629,7 @@ VOS_UINT32 AT_RcvDrvAgentHardwareQryRsp(VOS_VOID *pMsg)
 
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvDrvAgentVertimeQryRsp
- 功能描述  : DRV_AGENT_VERTIME_QRY_CNF消息处理函数
- 输入参数  : VOS_VOID *pMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月4日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月1日
-    作    者   : 傅映君/f62575
-    修改内容   : DTS2011112602473，解决自动应答开启情况下被叫死机问题
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvDrvAgentVertimeQryRsp(VOS_VOID *pMsg)
 {
     DRV_AGENT_MSG_STRU                 *pRcvMsg;
@@ -2075,13 +1649,11 @@ VOS_UINT32 AT_RcvDrvAgentVertimeQryRsp(VOS_VOID *pMsg)
         return VOS_ERR;
     }
 
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, begin */
     if (AT_IS_BROADCAST_CLIENT_INDEX(ucIndex))
     {
         AT_WARN_LOG("AT_RcvDrvAgentVertimeQryRsp : AT_BROADCAST_INDEX.");
         return VOS_ERR;
     }
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, end */
 
     /* 当前AT是否在等待该命令返回 */
     if (AT_CMD_VERSIONTIME_READ != gastAtClientTab[ucIndex].CmdCurrentOpt)
@@ -2106,24 +1678,7 @@ VOS_UINT32 AT_RcvDrvAgentVertimeQryRsp(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvDrvAgentYjcxSetCnf
- 功能描述  : DRV_AGENT_YJCX_SET_CNF消息处理函数
- 输入参数  : VOS_VOID *pMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月4日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月1日
-    作    者   : 傅映君/f62575
-    修改内容   : DTS2011112602473，解决自动应答开启情况下被叫死机问题
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvDrvAgentYjcxSetCnf(VOS_VOID *pMsg)
 {
     DRV_AGENT_MSG_STRU                     *pRcvMsg;
@@ -2145,13 +1700,11 @@ VOS_UINT32 AT_RcvDrvAgentYjcxSetCnf(VOS_VOID *pMsg)
         return VOS_ERR;
     }
 
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, begin */
     if (AT_IS_BROADCAST_CLIENT_INDEX(ucIndex))
     {
         AT_WARN_LOG("AT_RcvDrvAgentYjcxSetCnf : AT_BROADCAST_INDEX.");
         return VOS_ERR;
     }
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, end */
 
     /* 当前AT是否在等待该命令返回 */
     if (AT_CMD_YJCX_SET != gastAtClientTab[ucIndex].CmdCurrentOpt)
@@ -2191,24 +1744,7 @@ VOS_UINT32 AT_RcvDrvAgentYjcxSetCnf(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvDrvAgentYjcxQryCnf
- 功能描述  : DRV_AGENT_YJCX_QRY_CNF消息处理函数
- 输入参数  : VOS_VOID *pMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月4日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月1日
-    作    者   : 傅映君/f62575
-    修改内容   : DTS2011112602473，解决自动应答开启情况下被叫死机问题
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvDrvAgentYjcxQryCnf(VOS_VOID *pMsg)
 {
     DRV_AGENT_MSG_STRU                     *pRcvMsg;
@@ -2230,13 +1766,11 @@ VOS_UINT32 AT_RcvDrvAgentYjcxQryCnf(VOS_VOID *pMsg)
         return VOS_ERR;
     }
 
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, begin */
     if (AT_IS_BROADCAST_CLIENT_INDEX(ucIndex))
     {
         AT_WARN_LOG("AT_RcvDrvAgentYjcxQryCnf : AT_BROADCAST_INDEX.");
         return VOS_ERR;
     }
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, end */
 
     /* 当前AT是否在等待该命令返回 */
     if (AT_CMD_YJCX_QUERY != gastAtClientTab[ucIndex].CmdCurrentOpt)
@@ -2277,23 +1811,7 @@ VOS_UINT32 AT_RcvDrvAgentYjcxQryCnf(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : At_QryEonsUcs2RspProc
- 功能描述  : AT口输出EONSUCS2查询结果
- 输入参数  : VOS_VOID                            ucIndex - AT 通道
-             VOS_UINT8                           OpId
-             VOS_UINT32                          ulResult
-             TAF_MMA_EONS_UCS2_PLMN_NAME_STRU    stEonsUcs2PlmnName
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年03月12日
-    作    者   : c00318887
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID At_QryEonsUcs2RspProc(
     VOS_UINT8                           ucIndex,
     VOS_UINT8                           ucOpId,
@@ -2357,20 +1875,7 @@ VOS_VOID At_QryEonsUcs2RspProc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaEonsUcs2Cnf
- 功能描述  : AT_RcvMmaEonsUcs2Cnf 消息处理函数
- 输入参数  : VOS_VOID *pMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年03月12日
-    作    者   : c00318887
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaEonsUcs2Cnf(VOS_VOID *pMsg)
 {
     TAF_MMA_EONS_UCS2_CNF_STRU         *pstEonsUcs2QryCnfMsg = VOS_NULL_PTR;
@@ -2427,23 +1932,7 @@ VOS_UINT32 AT_RcvMmaEonsUcs2Cnf(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvAtMmaUsimStatusInd
- 功能描述  : AT_RcvMmaCrpnQueryRsp消息处理函数
- 输入参数  : VOS_VOID *pMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月4日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月24日
-    作    者   : l60609
-    修改内容   : DSDA Phase II
-*****************************************************************************/
 VOS_UINT32 AT_RcvAtMmaUsimStatusInd(VOS_VOID *pMsg)
 {
     AT_MMA_USIM_STATUS_IND_STRU        *pstAtMmaUsimStatusIndMsg;
@@ -2481,24 +1970,7 @@ VOS_UINT32 AT_RcvAtMmaUsimStatusInd(VOS_VOID *pMsg)
 
 }
 
-/*****************************************************************************
- 函 数 名  : At_RcvAtCcMsgStateQryCnfProc
- 功能描述  : AT_CC_MSG_STATE_QRY_CNF消息处理函数
- 输入参数  : VOS_VOID *pMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月4日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月1日
-    作    者   : 傅映君/f62575
-    修改内容   : DTS2011112602473，解决自动应答开启情况下被叫死机问题
-
-*****************************************************************************/
 VOS_UINT32 At_RcvAtCcMsgStateQryCnfProc(VOS_VOID *pMsg)
 {
     AT_CC_STATE_QRY_CNF_MSG_STRU           *pstAtCcStateQryCnfMsg;
@@ -2519,13 +1991,11 @@ VOS_UINT32 At_RcvAtCcMsgStateQryCnfProc(VOS_VOID *pMsg)
         return VOS_ERR;
     }
 
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, begin */
     if (AT_IS_BROADCAST_CLIENT_INDEX(ucIndex))
     {
         AT_WARN_LOG("At_RcvAtCcMsgStateQryCnfProc : AT_BROADCAST_INDEX.");
         return VOS_ERR;
     }
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, end */
 
     /* 当前未等待该命令回复 */
     if (AT_CMD_CC_STATE_QUERY != gastAtClientTab[ucIndex].CmdCurrentOpt)
@@ -2563,24 +2033,7 @@ VOS_UINT32 At_RcvAtCcMsgStateQryCnfProc(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaCmmSetCmdRsp
- 功能描述  : AT_MMA_CMM_SET_CMD_RSP消息处理函数
- 输入参数  : VOS_VOID *pMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月4日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月1日
-    作    者   : 傅映君/f62575
-    修改内容   : DTS2011112602473，解决自动应答开启情况下被叫死机问题
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaCmmSetCmdRsp(VOS_VOID *pMsg)
 {
     TAF_MMA_CMM_SET_CNF_STRU           *pstMnMmTestCmdRspMsg;
@@ -2601,13 +2054,11 @@ VOS_UINT32 AT_RcvMmaCmmSetCmdRsp(VOS_VOID *pMsg)
         return VOS_ERR;
     }
 
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, begin */
     if (AT_IS_BROADCAST_CLIENT_INDEX(ucIndex))
     {
         AT_WARN_LOG("AT_RcvMmaCmmSetCmdRsp : AT_BROADCAST_INDEX.");
         return VOS_ERR;
     }
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, end */
 
     /* 复位AT状态 */
     AT_STOP_TIMER_CMD_READY(ucIndex);
@@ -2648,24 +2099,7 @@ VOS_UINT32 AT_RcvMmaCmmSetCmdRsp(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvDrvAgentFullHardwareQryRsp
- 功能描述  : DRV_AGENT_FULL_HARDWARE_QRY_RSP消息处理函数
- 输入参数  : VOS_VOID *pMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月5日
-    作    者   : c00173809
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月1日
-    作    者   : 傅映君/f62575
-    修改内容   : DTS2011112602473，解决自动应答开启情况下被叫死机问题
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvDrvAgentFullHardwareQryRsp(VOS_VOID *pMsg)
 {
     TAF_UINT16                                       usLength;
@@ -2684,13 +2118,11 @@ VOS_UINT32 AT_RcvDrvAgentFullHardwareQryRsp(VOS_VOID *pMsg)
         return VOS_ERR;
     }
 
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, begin */
     if (AT_IS_BROADCAST_CLIENT_INDEX(ucIndex))
     {
         AT_WARN_LOG("AT_RcvDrvAgentFullHardwareQryRsp : AT_BROADCAST_INDEX.");
         return VOS_ERR;
     }
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, end */
 
     if (AT_CMD_DRV_AGENT_FULL_HARDWARE_QRY != gastAtClientTab[ucIndex].CmdCurrentOpt)
     {
@@ -2741,23 +2173,7 @@ VOS_UINT32 AT_RcvDrvAgentFullHardwareQryRsp(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : At_SendRfCfgAntSelToHPA
- 功能描述  : 在接收机打开后,进行分集主集切换时需重新发送配置请求给HPA
- 输入参数  : ucDivOrPriOn - 要测量分集还是主集
- 输出参数  : 无
- 返 回 值  : 返回发送结果，AT_FAILURE:发送失败；AT_SUCCESS:发送成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月29日
-    作    者   : z00161729
-    修改内容   : 新生成函数
- 2.日    期   : 2011年10月18日
-   作    者   : c00173809
-   修改内容   : AT Project,该函数从AtSetParaCmd.c移到该文件
-*****************************************************************************/
 VOS_UINT32 At_SendRfCfgAntSelToHPA(VOS_UINT8 ucDivOrPriOn)
 {
     AT_HPA_RF_CFG_REQ_STRU              *pstMsg;
@@ -2776,7 +2192,6 @@ VOS_UINT32 At_SendRfCfgAntSelToHPA(VOS_UINT8 ucDivOrPriOn)
 
     PS_MEM_SET(pstMsg, 0x00, sizeof(AT_HPA_RF_CFG_REQ_STRU));
 
-    /* Modified by L00171473 for DTS2012010901510 DSP PID更正, 2012-01-07, begin */
 
     /* 填写消息头 */
     pstMsg->ulSenderCpuId      = VOS_LOCAL_CPUID;
@@ -2785,7 +2200,6 @@ VOS_UINT32 At_SendRfCfgAntSelToHPA(VOS_UINT8 ucDivOrPriOn)
     pstMsg->ulReceiverPid      = DSP_PID_WPHY;
     pstMsg->ulLength           = ulLength;
 
-    /* Modified by L00171473 for DTS2012010901510 DSP PID更正, 2012-01-07, end */
 
     /* 填写消息体 */
     pstMsg->usMsgID            = ID_AT_HPA_RF_CFG_REQ;
@@ -2818,26 +2232,7 @@ VOS_UINT32 At_SendRfCfgAntSelToHPA(VOS_UINT8 ucDivOrPriOn)
     return AT_SUCCESS;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvDrvAgentSetSimlockCnf
- 功能描述  : DRV_AGENT_SIMLOCK_SET_CNF消息处理函数
- 输入参数  : VOS_VOID *pMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年11月3日
-    作    者   : c00173809
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月1日
-    作    者   : 傅映君/f62575
-    修改内容   : DTS2011112602473，解决自动应答开启情况下被叫死机问题
-  3.日    期   : 2012年2月20日
-    作    者   : l60609
-    修改内容   : B060 Prj:SIMLOCK安全检查放在C核处理
-*****************************************************************************/
 VOS_UINT32 AT_RcvDrvAgentSetSimlockCnf(VOS_VOID *pMsg)
 {
     DRV_AGENT_MSG_STRU                              *pRcvMsg;
@@ -2856,13 +2251,11 @@ VOS_UINT32 AT_RcvDrvAgentSetSimlockCnf(VOS_VOID *pMsg)
         return VOS_ERR;
     }
 
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, begin */
     if (AT_IS_BROADCAST_CLIENT_INDEX(ucIndex))
     {
         AT_WARN_LOG("AT_RcvDrvAgentSetSimlockCnf : AT_BROADCAST_INDEX.");
         return VOS_ERR;
     }
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, end */
 
     if (AT_CMD_DRV_AGENT_SIMLOCK_SET_REQ != gastAtClientTab[ucIndex].CmdCurrentOpt)
     {
@@ -2888,24 +2281,7 @@ VOS_UINT32 AT_RcvDrvAgentSetSimlockCnf(VOS_VOID *pMsg)
 
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvDrvAgentQryRxdivCnf
- 功能描述  : DRV_AGENT_RXDIV_QRY_CNF消息处理函数
- 输入参数  : VOS_VOID *pMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月22日
-    作    者   : c00173809
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月1日
-    作    者   : 傅映君/f62575
-    修改内容   : DTS2011112602473，解决自动应答开启情况下被叫死机问题
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvDrvAgentQryRxdivCnf(VOS_VOID *pMsg)
 {
     VOS_UINT32                                       ulRet;
@@ -2929,13 +2305,11 @@ VOS_UINT32 AT_RcvDrvAgentQryRxdivCnf(VOS_VOID *pMsg)
         return VOS_ERR;
     }
 
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, begin */
     if (AT_IS_BROADCAST_CLIENT_INDEX(ucIndex))
     {
         AT_WARN_LOG("AT_RcvDrvAgentQryRxdivCnf : AT_BROADCAST_INDEX.");
         return VOS_ERR;
     }
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, end */
 
     if (AT_CMD_DRV_AGENT_RXDIV_QRY_REQ != gastAtClientTab[ucIndex].CmdCurrentOpt)
     {
@@ -3026,27 +2400,7 @@ VOS_UINT32 AT_RcvDrvAgentQryRxdivCnf(VOS_VOID *pMsg)
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : AT_RcvDrvAgentSetRxdivCnf
- 功能描述  : DRV_AGENT_RXDIV_SET_CNF消息处理函数
- 输入参数  : VOS_VOID *pMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : c00173809
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月1日
-    作    者   : 傅映君/f62575
-    修改内容   : DTS2011112602473，解决自动应答开启情况下被叫死机问题
-  3.日    期   : 2012年1月16日
-    作    者   : f62575
-    修改内容   : SMALL IMAGE特性合入: V3R1规格变更同步
-                                接收机没有打开情况下，禁止用户设置分集接收
-*****************************************************************************/
 VOS_UINT32 AT_RcvDrvAgentSetRxdivCnf(VOS_VOID *pMsg)
 {
     VOS_UINT8                                        ucIndex;
@@ -3065,13 +2419,11 @@ VOS_UINT32 AT_RcvDrvAgentSetRxdivCnf(VOS_VOID *pMsg)
         return VOS_ERR;
     }
 
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, begin */
     if (AT_IS_BROADCAST_CLIENT_INDEX(ucIndex))
     {
         AT_WARN_LOG("AT_RcvDrvAgentSetRxdivCnf : AT_BROADCAST_INDEX.");
         return VOS_ERR;
     }
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, end */
 
     if (AT_CMD_DRV_AGENT_RXDIV_SET_REQ != gastAtClientTab[ucIndex].CmdCurrentOpt)
     {
@@ -3144,24 +2496,7 @@ VOS_UINT32 AT_RcvDrvAgentSetRxdivCnf(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvDrvAgentSetNvRestoreCnf
- 功能描述  : DRV_AGENT_NVRESTORE_SET_CNF消息处理函数
- 输入参数  : VOS_VOID *pMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年11月03日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月1日
-    作    者   : 傅映君/f62575
-    修改内容   : DTS2011112602473，解决自动应答开启情况下被叫死机问题
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvDrvAgentSetNvRestoreCnf(VOS_VOID *pMsg)
 {
     VOS_UINT8                                        ucIndex;
@@ -3179,13 +2514,11 @@ VOS_UINT32 AT_RcvDrvAgentSetNvRestoreCnf(VOS_VOID *pMsg)
         return VOS_ERR;
     }
 
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, begin */
     if (AT_IS_BROADCAST_CLIENT_INDEX(ucIndex))
     {
         AT_WARN_LOG("AT_RcvDrvAgentSetNvRestoreCnf : AT_BROADCAST_INDEX.");
         return VOS_ERR;
     }
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, end */
 
     if (AT_CMD_NVRESTORE_SET != gastAtClientTab[ucIndex].CmdCurrentOpt)
     {
@@ -3208,26 +2541,7 @@ VOS_UINT32 AT_RcvDrvAgentSetNvRestoreCnf(VOS_VOID *pMsg)
 
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvDrvAgentQryNvRestoreRstCnf
- 功能描述  : DRV_AGENT_NVRSTSTTS_QRY_CNF消息处理函数
- 输入参数  : VOS_VOID *pMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年11月03日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月1日
-    作    者   : 傅映君/f62575
-    修改内容   : DTS2011112602473，解决自动应答开启情况下被叫死机问题
-  3.日    期   : 2011年12月1日
-    作    者   : z60575
-    修改内容   : DTS2012071704644，工具不识别OK
-*****************************************************************************/
 VOS_UINT32 AT_RcvDrvAgentQryNvRestoreRstCnf(VOS_VOID *pMsg)
 {
     VOS_UINT8                                        ucIndex;
@@ -3246,13 +2560,11 @@ VOS_UINT32 AT_RcvDrvAgentQryNvRestoreRstCnf(VOS_VOID *pMsg)
         return VOS_ERR;
     }
 
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, begin */
     if (AT_IS_BROADCAST_CLIENT_INDEX(ucIndex))
     {
         AT_WARN_LOG("AT_RcvDrvAgentQryNvRestoreRstCnf : AT_BROADCAST_INDEX.");
         return VOS_ERR;
     }
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, end */
 
     if (AT_CMD_NVRSTSTTS_READ != gastAtClientTab[ucIndex].CmdCurrentOpt)
     {
@@ -3288,24 +2600,7 @@ VOS_UINT32 AT_RcvDrvAgentQryNvRestoreRstCnf(VOS_VOID *pMsg)
 
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvDrvAgentNvRestoreManuDefaultRsp
- 功能描述  : DRV_AGENT_NVRESTORE_MANU_DEFAULT_CNF消息处理函数
- 输入参数  : VOS_VOID *pMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年11月04日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月1日
-    作    者   : 傅映君/f62575
-    修改内容   : DTS2011112602473，解决自动应答开启情况下被叫死机问题
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvDrvAgentNvRestoreManuDefaultRsp(VOS_VOID *pMsg)
 {
     VOS_UINT8                                        ucIndex;
@@ -3325,13 +2620,11 @@ VOS_UINT32 AT_RcvDrvAgentNvRestoreManuDefaultRsp(VOS_VOID *pMsg)
         return VOS_ERR;
     }
 
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, begin */
     if (AT_IS_BROADCAST_CLIENT_INDEX(ucIndex))
     {
         AT_WARN_LOG("AT_RcvDrvAgentNvRestoreManuDefaultRsp : AT_BROADCAST_INDEX.");
         return VOS_ERR;
     }
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, end */
 
     if (AT_CMD_F_SET != gastAtClientTab[ucIndex].CmdCurrentOpt)
     {
@@ -3361,27 +2654,7 @@ VOS_UINT32 AT_RcvDrvAgentNvRestoreManuDefaultRsp(VOS_VOID *pMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_GetImeiValue
- 功能描述  : ^PHYNUM 读取NV项获取IMEI
- 输入参数  : MODEM_ID_ENUM_UINT16                enModemId,
-             VOS_UINT8 aucImei[TAF_PH_IMEI_LEN + 1]
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月3日
-    作    者   : w00181244
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月13日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-  3.日    期   : 2013年3月4日
-    作    者   : l60609
-    修改内容   : DSDA PHASE III
-*****************************************************************************/
 VOS_UINT32  AT_GetImeiValue(
     MODEM_ID_ENUM_UINT16                enModemId,
     VOS_UINT8                           aucImei[TAF_PH_IMEI_LEN + 1]
@@ -3459,23 +2732,7 @@ VOS_UINT32  AT_GetImeiValue(
 
 
 
-/*****************************************************************************
- 函 数 名  : AT_RcvDrvAgentSetGpioplRsp
- 功能描述  : 设置GPIO各管脚电平的回复处理
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月4日
-    作    者   : w00181244
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月1日
-    作    者   : 傅映君/f62575
-    修改内容   : DTS2011112602473，解决自动应答开启情况下被叫死机问题
-*****************************************************************************/
 VOS_UINT32 AT_RcvDrvAgentSetGpioplRsp(VOS_VOID *pMsg)
 {
 
@@ -3494,13 +2751,11 @@ VOS_UINT32 AT_RcvDrvAgentSetGpioplRsp(VOS_VOID *pMsg)
         return VOS_ERR;
     }
 
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, begin */
     if (AT_IS_BROADCAST_CLIENT_INDEX(ucIndex))
     {
         AT_WARN_LOG("AT_RcvDrvAgentGpioplRsp : AT_BROADCAST_INDEX.");
         return VOS_ERR;
     }
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, end */
 
     if (AT_CMD_GPIOPL_SET != gastAtClientTab[ucIndex].CmdCurrentOpt)
     {
@@ -3526,24 +2781,7 @@ VOS_UINT32 AT_RcvDrvAgentSetGpioplRsp(VOS_VOID *pMsg)
 
 
 
-/*****************************************************************************
- 函 数 名  : AT_RcvDrvAgentQryGpioplRsp
- 功能描述  : 查询GPIO管教电平回复的处理
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月15日
-    作    者   : w00181244
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月1日
-    作    者   : 傅映君/f62575
-    修改内容   : DTS2011112602473，解决自动应答开启情况下被叫死机问题
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvDrvAgentQryGpioplRsp(VOS_VOID *pMsg)
 {
     DRV_AGENT_MSG_STRU                   *pRcvMsg;
@@ -3564,13 +2802,11 @@ VOS_UINT32 AT_RcvDrvAgentQryGpioplRsp(VOS_VOID *pMsg)
         return VOS_ERR;
     }
 
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, begin */
     if (AT_IS_BROADCAST_CLIENT_INDEX(ucIndex))
     {
         AT_WARN_LOG("AT_RcvDrvAgentQryGpioplRsp : AT_BROADCAST_INDEX.");
         return VOS_ERR;
     }
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, end */
 
     /* 判断当前操作类型是否为AT_CMD_GPIOPL_QRY */
     if (AT_CMD_GPIOPL_QRY != gastAtClientTab[ucIndex].CmdCurrentOpt)
@@ -3611,24 +2847,7 @@ VOS_UINT32 AT_RcvDrvAgentQryGpioplRsp(VOS_VOID *pMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_RcvDrvAgentSetDatalockRsp
- 功能描述  : dATalock设置函数回复的处理
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月15日
-    作    者   : w00181244
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月1日
-    作    者   : 傅映君/f62575
-    修改内容   : DTS2011112602473，解决自动应答开启情况下被叫死机问题
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvDrvAgentSetDatalockRsp(VOS_VOID *pMsg)
 {
     DRV_AGENT_MSG_STRU                 *pRcvMsg;
@@ -3647,13 +2866,11 @@ VOS_UINT32 AT_RcvDrvAgentSetDatalockRsp(VOS_VOID *pMsg)
         return VOS_ERR;
     }
 
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, begin */
     if (AT_IS_BROADCAST_CLIENT_INDEX(ucIndex))
     {
         AT_WARN_LOG("AT_RcvDrvAgentSetDatalockRsp : AT_BROADCAST_INDEX.");
         return VOS_ERR;
     }
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, end */
 
     /* 判断当前操作类型是否为AT_CMD_DATALOCK_SET */
     if (AT_CMD_DATALOCK_SET != gastAtClientTab[ucIndex].CmdCurrentOpt)
@@ -3681,31 +2898,7 @@ VOS_UINT32 AT_RcvDrvAgentSetDatalockRsp(VOS_VOID *pMsg)
     return VOS_OK;
  }
 
-/*****************************************************************************
- 函 数 名  : AT_GetSimLockStatus
- 功能描述  : AT^SIMLOCK使能状态查询命令,
-                对于硬加密改制版本，
-                补充文件保存密码校验结果更新en_NV_Item_CardlockStatus流程，
-                其他场景仍然读取en_NV_Item_CardlockStatus状态，
-                不等于永久解锁，            且en_NV_Item_CustomizeSimLockPlmnInfo中Plmn信息,
-                有效时返回1,代             表激活,
-                其他情况下返回0,非激活;
-              密码校验操作需要在C核完成，此处改用异步处理过程
- 输入参数  :ucIndex --- 用户索引
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月4日
-    作    者   : w00181244
-    修改内容   : 新生成函数
-  2.日    期   : 2012年02月3日
-    作    者   : f62575
-    修改内容   : B050 SIMLOCK命令的硬加密改制功能: 因为通过密码校验更新锁卡状态必须在C核完成，
-                 修改为异步处理
-*****************************************************************************/
 VOS_UINT32 AT_GetSimLockStatus(VOS_UINT8 ucIndex)
 {
 
@@ -3732,23 +2925,7 @@ VOS_UINT32 AT_GetSimLockStatus(VOS_UINT8 ucIndex)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvDrvAgentQryTbatvoltRsp
- 功能描述  : 电池电压查询回复处理
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月15日
-    作    者   : w00181244
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月1日
-    作    者   : 傅映君/f62575
-    修改内容   : DTS2011112602473，解决自动应答开启情况下被叫死机问题
-*****************************************************************************/
 VOS_UINT32 AT_RcvDrvAgentQryTbatvoltRsp(VOS_VOID *pMsg)
 {
     DRV_AGENT_MSG_STRU                 *pRcvMsg;
@@ -3768,13 +2945,11 @@ VOS_UINT32 AT_RcvDrvAgentQryTbatvoltRsp(VOS_VOID *pMsg)
         return VOS_ERR;
     }
 
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, begin */
     if (AT_IS_BROADCAST_CLIENT_INDEX(ucIndex))
     {
         AT_WARN_LOG("AT_RcvDrvAgentQryTbatvoltRsp : AT_BROADCAST_INDEX.");
         return VOS_ERR;
     }
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, end */
 
     /*判断当前操作类型是否为AT_CMD_TBATVOLT_QRY*/
     if (AT_CMD_TBATVOLT_QRY != gastAtClientTab[ucIndex].CmdCurrentOpt)
@@ -3808,42 +2983,14 @@ VOS_UINT32 AT_RcvDrvAgentQryTbatvoltRsp(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/* Added by f00179208 for AT Project，2011-10-06,  Begin */
-/*****************************************************************************
-函 数 名  : At_RcvVcMsgQryModeCnfProc
-功能描述  : VC消息查询语音模式回复的处理函数
-输入参数  : MN_AT_IND_EVT_STRU   *pstData
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修订记录  :
-  1.日    期   : 2011年10月15日
-    作    者   : f00179208
-    修改内容   : 创建函数,处理AT命令的结果回复
-  2.日    期   : 2011年12月1日
-    作    者   : 傅映君/f62575
-    修改内容   : DTS2011112602473，解决自动应答开启情况下被叫死机问题
-  3.日    期   : 2012年03月03日
-    作    者   : s62952
-    修改内容   : BalongV300R002 Build优化项目
-  4.日    期   : 2012年8月10日
-    作    者   : y00213812
-    修改内容   : DTS2012082204471, TQE清理，类型定义错误
-  5.日    期   : 2013年10月08日
-    作    者   : j00174725
-    修改内容   : TQE
-*****************************************************************************/
 VOS_VOID At_RcvVcMsgQryModeCnfProc(MN_AT_IND_EVT_STRU *pstData)
 {
 
     MN_AT_IND_EVT_STRU                  *pRcvMsg;
     APP_VC_EVENT_INFO_STRU              *pstEvent;
     VOS_UINT8                            ucIndex;
-    /*modified by Y00213812 for DTS2012082204471 TQE清理, 2012-08-10, begin*/
     VOS_UINT16                           usVoiceMode;
-    /*modified by Y00213812 for DTS2012082204471 TQE清理, 2012-08-10, end*/
     VOS_UINT16                           usDevMode;
     VOS_UINT32                           ulRet;
 
@@ -3859,13 +3006,11 @@ VOS_VOID At_RcvVcMsgQryModeCnfProc(MN_AT_IND_EVT_STRU *pstData)
         return;
     }
 
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, begin */
     if (AT_IS_BROADCAST_CLIENT_INDEX(ucIndex))
     {
         AT_WARN_LOG("At_RcvVcMsgQryModeCnfProc : AT_BROADCAST_INDEX.");
         return;
     }
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, end */
 
     /* 格式化VMSET命令返回 */
     if (AT_CMD_VMSET_READ == gastAtClientTab[ucIndex].CmdCurrentOpt)
@@ -3890,7 +3035,6 @@ VOS_VOID At_RcvVcMsgQryModeCnfProc(MN_AT_IND_EVT_STRU *pstData)
         }
     }
     /* 格式化CVOICE命令返回 */
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     else if ( AT_CMD_CVOICE_READ == gastAtClientTab[ucIndex].CmdCurrentOpt)
     {
         /* 转换为应用于VC语音模式 */
@@ -3916,7 +3060,6 @@ VOS_VOID At_RcvVcMsgQryModeCnfProc(MN_AT_IND_EVT_STRU *pstData)
             ulRet = AT_OK;
         }
     }
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     else
     {
         return;
@@ -3929,23 +3072,7 @@ VOS_VOID At_RcvVcMsgQryModeCnfProc(MN_AT_IND_EVT_STRU *pstData)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : At_RcvVcMsgSetPortCnfProc
-功能描述  : VC消息设置端口回复的处理函数
-输入参数  : MN_AT_IND_EVT_STRU   *pstData
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修订记录  :
-  1.日    期   : 2011年10月15日
-    作    者   : f00179208
-    修改内容   : 创建函数,处理AT命令的结果回复
-  2.日    期   : 2011年12月1日
-    作    者   : 傅映君/f62575
-    修改内容   : DTS2011112602473，解决自动应答开启情况下被叫死机问题
-*****************************************************************************/
 VOS_VOID At_RcvVcMsgSetPortCnfProc(MN_AT_IND_EVT_STRU *pstData)
 {
     MN_AT_IND_EVT_STRU                 *pRcvMsg;
@@ -3965,13 +3092,11 @@ VOS_VOID At_RcvVcMsgSetPortCnfProc(MN_AT_IND_EVT_STRU *pstData)
         return;
     }
 
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, begin */
     if (AT_IS_BROADCAST_CLIENT_INDEX(ucIndex))
     {
         AT_WARN_LOG("At_RcvVcMsgSetPortCnfProc : AT_BROADCAST_INDEX.");
         return;
     }
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, end */
 
     if (VOS_TRUE == pstEvent->bSuccess)
     {
@@ -3990,23 +3115,7 @@ VOS_VOID At_RcvVcMsgSetPortCnfProc(MN_AT_IND_EVT_STRU *pstData)
 
 }
 
-/*****************************************************************************
-函 数 名  : At_RcvVcMsgQryPortCnfProc
-功能描述  : VC消息设置端口回复的处理函数
-输入参数  : MN_AT_IND_EVT_STRU   *pstData
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修订记录  :
-1.  日    期   : 2011年10月17日
-    作    者   : f00179208
-    修改内容   : 创建函数,处理AT命令的结果回复
-  2.日    期   : 2011年12月1日
-    作    者   : 傅映君/f62575
-    修改内容   : DTS2011112602473，解决自动应答开启情况下被叫死机问题
-*****************************************************************************/
 VOS_VOID At_RcvVcMsgQryPortCnfProc(MN_AT_IND_EVT_STRU *pstData)
 {
     MN_AT_IND_EVT_STRU                  *pRcvMsg;
@@ -4026,13 +3135,11 @@ VOS_VOID At_RcvVcMsgQryPortCnfProc(MN_AT_IND_EVT_STRU *pstData)
         return;
     }
 
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, begin */
     if (AT_IS_BROADCAST_CLIENT_INDEX(ucIndex))
     {
         AT_WARN_LOG("At_RcvVcMsgQryPortCnfProc : AT_BROADCAST_INDEX.");
         return;
     }
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, end */
 
     /* 查询的端口号 */
     ucVoicePort = pstEvent->enVoicePort;
@@ -4060,22 +3167,8 @@ VOS_VOID At_RcvVcMsgQryPortCnfProc(MN_AT_IND_EVT_STRU *pstData)
     return;
 
 }
-/* Added by f00179208 for AT Project，2011-10-06,  End */
 
-/*****************************************************************************
- 函 数 名  : At_RcvRnicMsgDsflowRspProc
- 功能描述  : 处理RNIC发来的流量统计指示
- 输入参数  : MsgBlock   *pstData
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_OK, VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修订记录  :
- 1.日    期   : 2011年12月15日
-   作    者   : f00179208
-   修改内容   : 创建函数,处理RNIC的消息
-*****************************************************************************/
 VOS_UINT32 AT_RcvRnicDsflowRsp(MsgBlock *pstMsg)
 {
     VOS_UINT16                          usLength;
@@ -4124,20 +3217,7 @@ VOS_UINT32 AT_RcvRnicDsflowRsp(MsgBlock *pstMsg)
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : AT_RcvRnicDialModeCnf
- 功能描述  : 处理RNIC发来的拨号模式查询请求
- 输入参数  : MsgBlock   *pstData
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_OK, VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修订记录  :
- 1.日    期   : 2011年12月21日
-   作    者   : f00179208
-   修改内容   : 创建函数,处理RNIC的消息
-*****************************************************************************/
 VOS_UINT32 AT_RcvRnicDialModeCnf(MsgBlock *pstMsg)
 {
     VOS_UINT16                          usLength;
@@ -4191,25 +3271,7 @@ VOS_UINT32 AT_RcvRnicDialModeCnf(MsgBlock *pstMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- Prototype      : At_ZeroReplaceBlankInString
- Description    : 将第二空格替换成0
- Input          : pData --- 字符串
-                  pLen  --- 长度
- Output         :
- Return Value   : ---
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2011-07-08
-    Author      : f00179208
-    Modification: Created function for DTS2011070803450
-
-  2.日    期   : 2011年10月22日
-    作    者   : w00181244
-    修改内容   : 从 V3R1移植过来
-*****************************************************************************/
 VOS_VOID At_ZeroReplaceBlankInString( VOS_UINT8 *pData, VOS_UINT32 ulLen)
 {
     TAF_UINT32 ulChkLen  = 0;
@@ -4239,35 +3301,7 @@ VOS_VOID At_ZeroReplaceBlankInString( VOS_UINT8 *pData, VOS_UINT32 ulLen)
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_RcvDrvAgentQryVersionRsp
- 功能描述  : version查询结果处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月6日
-    作    者   : w00181244
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月1日
-    作    者   : 傅映君/f62575
-    修改内容   : DTS2011112602473，解决自动应答开启情况下被叫死机问题
-  3.日    期   : 2012年04月19日
-    作    者   : f62575
-    修改内容   : V7代码同步:  默认值值按版本区分，输出保持不变
-  4.日    期   : 2012年12月13日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-  5.日    期   : 2013年3月4日
-    作    者   : L60609
-    修改内容   : DSDA PHASE III
-  6.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-*****************************************************************************/
 VOS_UINT32 AT_RcvDrvAgentQryVersionRsp(VOS_VOID *pMsg)
 {
     DRV_AGENT_MSG_STRU                 *pRcvMsg;
@@ -4279,7 +3313,6 @@ VOS_UINT32 AT_RcvDrvAgentQryVersionRsp(VOS_VOID *pMsg)
     VOS_BOOL                            bPhyNumIsNull;
 
     VOS_UINT32                          ulOpt;
-    /* Modify by f62575 for V7代码同步, 2012-04-07, Begin   */
     VOS_UINT32                          ulRet;
     TAF_NVIM_CS_VER_STRU                stCsver;
     MODEM_ID_ENUM_UINT16                enModemId;
@@ -4293,7 +3326,6 @@ VOS_UINT32 AT_RcvDrvAgentQryVersionRsp(VOS_VOID *pMsg)
     {
         return AT_ERROR;
     }
-    /* Modify by f62575 for V7代码同步, 2012-04-07, End   */
 
     /* 初始化消息，获取ucContent */
     ulLen                        = 0;
@@ -4307,13 +3339,11 @@ VOS_UINT32 AT_RcvDrvAgentQryVersionRsp(VOS_VOID *pMsg)
         return VOS_ERR;
     }
 
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, begin */
     if (AT_IS_BROADCAST_CLIENT_INDEX(ucIndex))
     {
         AT_WARN_LOG("AT_RcvDrvAgentQryVersionRsp : AT_BROADCAST_INDEX.");
         return VOS_ERR;
     }
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, end */
 
     /* 判断当前操作类型是否为AT_CMD_VERSION_QRY/AT_CMD_RSFR_VERSION_QRY, ^RSFR命令也借用此接口 */
     if ((AT_CMD_VERSION_QRY != gastAtClientTab[ucIndex].CmdCurrentOpt)
@@ -4403,11 +3433,9 @@ VOS_UINT32 AT_RcvDrvAgentQryVersionRsp(VOS_VOID *pMsg)
                                            "%s:INTU:%s%s",
                                            "^VERSION",pstVersionQryCnfInfo->stInterModelId.aucModelId, gaucAtCrLf);
 
-        /* Modify by f62575 for V7代码同步, 2012-04-07, Begin   */
         usLength += (VOS_UINT16)At_sprintf(AT_CMD_MAX_LEN, (VOS_CHAR *)pgucAtSndCodeAddr, (VOS_CHAR *)(pgucAtSndCodeAddr + usLength),
                                            "%s:CFG:%d%s",
                                            "^VERSION",stCsver.usCsver, gaucAtCrLf);
-        /* Modify by f62575 for V7代码同步, 2012-04-07, End   */
 
         usLength += (VOS_UINT16)At_sprintf(AT_CMD_MAX_LEN, (VOS_CHAR *)pgucAtSndCodeAddr, (VOS_CHAR *)(pgucAtSndCodeAddr + usLength),
                                            "%s:PRL:",
@@ -4453,11 +3481,9 @@ VOS_UINT32 AT_RcvDrvAgentQryVersionRsp(VOS_VOID *pMsg)
                                            "%s:INTU:%s",
                                            "^VERSION", gaucAtCrLf);
 
-        /* Modify by f62575 for V7代码同步, 2012-04-07, Begin   */
         usLength += (VOS_UINT16)At_sprintf(AT_CMD_MAX_LEN, (VOS_CHAR *)pgucAtSndCodeAddr, (VOS_CHAR *)(pgucAtSndCodeAddr + usLength),
                                            "%s:CFG:%d%s",
                                            "^VERSION",stCsver.usCsver, gaucAtCrLf);
-        /* Modify by f62575 for V7代码同步, 2012-04-07, End   */
 
         usLength += (VOS_UINT16)At_sprintf(AT_CMD_MAX_LEN, (VOS_CHAR *)pgucAtSndCodeAddr, (VOS_CHAR *)(pgucAtSndCodeAddr + usLength),
                                            "%s:PRL:",
@@ -4481,20 +3507,7 @@ VOS_UINT32 AT_RcvDrvAgentQryVersionRsp(VOS_VOID *pMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_SetGlobalFchan
- 功能描述  : 设置装备全局变量的接入模式
- 输入参数  : VOS_UINT8 ucRATMode
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月13日
-    作    者   : w00181244
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_SetGlobalFchan(VOS_UINT8 ucRATMode)
 {
     g_stAtDevCmdCtrl.ucDeviceRatMode = ucRATMode;
@@ -4503,20 +3516,7 @@ VOS_UINT32 AT_SetGlobalFchan(VOS_UINT8 ucRATMode)
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_SetFchanRspErr
- 功能描述  : Fchan错误码返回
- 输入参数  : AT_AGENT_FCHAN_SET_ERROR_ENUM_UINT32  enResult
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : w00181244
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_SetFchanRspErr(DRV_AGENT_FCHAN_SET_ERROR_ENUM_UINT32  enResult)
 {
     if(DRV_AGENT_FCHAN_BAND_NOT_MATCH == enResult)
@@ -4541,23 +3541,7 @@ VOS_UINT32 AT_SetFchanRspErr(DRV_AGENT_FCHAN_SET_ERROR_ENUM_UINT32  enResult)
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_RcvDrvAgentSetFchanRsp
- 功能描述  : Fchan设置函数回复处理
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : w00181244
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月1日
-    作    者   : 傅映君/f62575
-    修改内容   : DTS2011112602473，解决自动应答开启情况下被叫死机问题
-*****************************************************************************/
 VOS_UINT32 AT_RcvDrvAgentSetFchanRsp(VOS_VOID *pMsg)
 {
     DRV_AGENT_MSG_STRU                 *pRcvMsg;
@@ -4576,13 +3560,11 @@ VOS_UINT32 AT_RcvDrvAgentSetFchanRsp(VOS_VOID *pMsg)
         return VOS_ERR;
     }
 
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, begin */
     if (AT_IS_BROADCAST_CLIENT_INDEX(ucIndex))
     {
         AT_WARN_LOG("AT_RcvDrvAgentSetFchanRsp : AT_BROADCAST_INDEX.");
         return VOS_ERR;
     }
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, end */
 
     /* 判断当前操作类型是否为AT_CMD_FCHAN_SET */
     if (AT_CMD_FCHAN_SET != gastAtClientTab[ucIndex].CmdCurrentOpt)
@@ -4616,20 +3598,7 @@ VOS_UINT32 AT_RcvDrvAgentSetFchanRsp(VOS_VOID *pMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_GetRxpriErr
- 功能描述  : Rxpri设置函数回复错误码处理
- 输入参数  : AT_AGENT_RXPRI_SET_ERROR_ENUM_UINT32 enResult
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : w00181244
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_GetRxpriErr(DRV_AGENT_ERROR_ENUM_UINT32 enResult)
 {
     if(DRV_AGENT_CME_RX_DIV_OTHER_ERR == enResult)
@@ -4645,23 +3614,7 @@ VOS_UINT32 AT_GetRxpriErr(DRV_AGENT_ERROR_ENUM_UINT32 enResult)
     return AT_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SupportHsdpa
- 功能描述  : ^SFEATURE查询单板是否支持DPA特性
- 输入参数  : AT_UE_CAPA_STRU                    *pstUECapa
- 输出参数  :*pbSupportHsdpa
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : w00181244
-    修改内容   : 新生成函数
-  2.日    期   : 2012年5月18日
-    作    者   : z60575
-    修改内容   : DTS2012051806821，读取接入层能力NV项修改，入参结构修改
-*****************************************************************************/
 VOS_VOID AT_SupportHsdpa(
     AT_NVIM_UE_CAPA_STRU               *pstUECapa,
     VOS_BOOL                           *pbSupportHsdpa
@@ -4688,23 +3641,7 @@ VOS_VOID AT_SupportHsdpa(
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_SupportHsupa
- 功能描述  : ^SFEATURE查询单板是否支持UPA特性
- 输入参数  : AT_UE_CAPA_STRU                    *pstUECapa
- 输出参数  :*pbSupportHsupa
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : w00181244
-    修改内容   : 新生成函数
-  2.日    期   : 2012年5月18日
-    作    者   : z60575
-    修改内容   : DTS2012051806821，读取接入层能力NV项修改，入参结构修改
-*****************************************************************************/
 VOS_VOID AT_SupportHsupa(
     AT_NVIM_UE_CAPA_STRU               *pstUECapa,
     VOS_BOOL                           *pbSupportHsupa
@@ -4730,34 +3667,7 @@ VOS_VOID AT_SupportHsupa(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetWFeatureInfo
- 功能描述  : ^SFEATURE查询单板3G特性
- 输入参数  : AT_AGENT_SFEATURE_QRY_CNF_STRU *pstATAgentSfeATureQryCnf
 
- 输出参数  :AT_FEATURE_SUPPORT_ST  *pstFeATure,
-            VOS_UINT8               aucStrTmp[50]
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2011年10月13日
-    作    者   : w00181244
-    修改内容   : 新生成函数
-  2.日    期   : 2012年5月15日
-    作    者   : f62575
-    修改内容   : DTS2012051400682，支持UMTS分集频段的输出
-  3.日    期   : 2012年5月18日
-    作    者   : z60575
-    修改内容   : DTS2012051806821，读取接入层能力NV项修改
-  4.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  5. 日    期   : 2012年11月12日
-     作    者   : t00212959
-     修改内容   : DTS2012103101740,MMA中Band结构改为VOS_UINT32,AT保持一致
-*****************************************************************************/
 VOS_UINT32 AT_GetWFeatureInfo(
     AT_FEATURE_SUPPORT_ST              *pstFeATure,
     DRV_AGENT_SFEATURE_QRY_CNF_STRU    *pstAtAgentSfeatureQryCnf
@@ -4838,31 +3748,7 @@ VOS_UINT32 AT_GetWFeatureInfo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_GetGFeatureInfo
- 功能描述  : ^SFEATURE查询单板2G特性
- 输入参数  : AT_AGENT_SFEATURE_QRY_CNF_STRU *pstATAgentSfeATureQryCnf
 
- 输出参数  :AT_FEATURE_SUPPORT_ST  *pstFeATure,
-            VOS_UINT8               aucStrTmp[50]
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2011年10月13日
-    作    者   : w00181244
-    修改内容   : 新生成函数
-  2.日    期   : 2012年02月10日
-    作    者   : l00171473
-    修改内容   : 单板不支持G时，SFEATURE修改
-  3.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  4.日    期   : 2012年11月12日
-    作    者   : t00212959
-    修改内容   : DTS2012103101740,MMA中Band结构改为VOS_UINT32,AT保持一致
-*****************************************************************************/
 VOS_VOID AT_GetGFeatureInfo(
     AT_FEATURE_SUPPORT_ST              *pstFeATure,
     DRV_AGENT_SFEATURE_QRY_CNF_STRU    *pstATAgentSfeatureQryCnf
@@ -4881,13 +3767,11 @@ VOS_VOID AT_GetGFeatureInfo(
     /* !!!如果增加频段，aucStrDiv 长度需要增加!!! */
     ulLen = (VOS_UINT32)AT_GetGsmBandStr(aucStrTmp,&(pstATAgentSfeatureQryCnf->stBandFeature));
 
-    /* Modified by l00171473 for 单板不支持G时SFEATURE修改, 2012-02-10, begin */
     if ( 0 == ulLen )
     {
         (VOS_VOID)vos_printf("AT_GetGFeatureInfo, Not Support G.\n");
         return;
     }
-    /* Modified by l00171473 for 单板不支持G时SFEATURE修改, 2012-02-10, end */
 
     /* 读取EDGE支持能力 */
     if (NV_OK != NV_ReadEx(MODEM_ID_0, en_NV_Item_Egprs_Flag, &usEgprsFlag,
@@ -4915,22 +3799,7 @@ VOS_VOID AT_GetGFeatureInfo(
     VOS_MemCpy(pstFeATure[AT_FEATURE_GSM].aucContent, aucStrTmp, ulLen);
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetTdsFeatureInfo
- 功能描述  : ^SFEATURE查询单板TDS特性
- 输入参数  : AT_FEATURE_SUPPORT_ST * pstFeATure
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月13日
-    作    者   : z00212940
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月13日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-*****************************************************************************/
 #if(FEATURE_ON == FEATURE_UE_MODE_TDS)
 VOS_UINT32 AT_GetTdsFeatureInfo(AT_FEATURE_SUPPORT_ST * pstFeATure)
 {
@@ -4994,30 +3863,7 @@ VOS_UINT32 AT_GetTdsFeatureInfo(AT_FEATURE_SUPPORT_ST * pstFeATure)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : AT_RcvDrvAgentQrySfeatureRsp
- 功能描述  : ^SFEATURE查询结果处理及单板其它特性查询
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月13日
-    作    者   : w00181244
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月1日
-    作    者   : 傅映君/f62575
-    修改内容   : DTS2011112602473，解决自动应答开启情况下被叫死机问题
-  3.日    期   : 2012年04月13日
-    作    者   : f62575
-    修改内容   : V7代码同步: 配合AT_GetLteFeatureInfo接口功能的更新
-                    AT_GetLteFeatureInfo仅输出LTE支持的频段信息
-  4.日    期   : 2012年11月12日
-    作    者   : t00212959
-    修改内容   : DTS2012103101740,MMA中Band结构改为VOS_UINT32,AT保持一致
-*****************************************************************************/
 VOS_UINT32 AT_RcvDrvAgentQrySfeatureRsp(VOS_VOID *pMsg)
 {
     /* 初始化 */
@@ -5058,13 +3904,11 @@ VOS_UINT32 AT_RcvDrvAgentQrySfeatureRsp(VOS_VOID *pMsg)
         return VOS_ERR;
     }
 
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, begin */
     if (AT_IS_BROADCAST_CLIENT_INDEX(ucIndex))
     {
         AT_WARN_LOG("AT_RcvDrvAgentQrySfeatureRsp : AT_BROADCAST_INDEX.");
         return VOS_ERR;
     }
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, end */
 
     /*判断当前操作类型是否为AT_CMD_SFEATURE_QRY */
     if (AT_CMD_SFEATURE_QRY != gastAtClientTab[ucIndex].CmdCurrentOpt)
@@ -5094,7 +3938,6 @@ VOS_UINT32 AT_RcvDrvAgentQrySfeatureRsp(VOS_VOID *pMsg)
         return VOS_OK;
     }
 
-/* Modify by f62575 for V7代码同步, 2012-04-07, Begin   */
 #if(FEATURE_ON == FEATURE_LTE)
     ulReult = AT_GetLteFeatureInfo(pstFeATure);
     if (VOS_OK != ulReult)
@@ -5105,7 +3948,6 @@ VOS_UINT32 AT_RcvDrvAgentQrySfeatureRsp(VOS_VOID *pMsg)
         return VOS_OK;
     }
 #endif
-/* Modify by f62575 for V7代码同步, 2012-04-07, End   */
 
 #if(FEATURE_UE_MODE_TDS == FEATURE_ON)
     ulReult = AT_GetTdsFeatureInfo(pstFeATure);
@@ -5120,14 +3962,12 @@ VOS_UINT32 AT_RcvDrvAgentQrySfeatureRsp(VOS_VOID *pMsg)
 
     AT_GetGFeatureInfo(pstFeATure,pstAtAgentSfeatureQryCnf);
 
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     if (BSP_MODULE_SUPPORT == mdrv_misc_support_check(BSP_MODULE_TYPE_WIFI) )
     {
         /* WIFI */
         pstFeATure[AT_FEATURE_WIFI].ucFeatureFlag = AT_FEATURE_EXIST;
         VOS_sprintf((VOS_CHAR*)pstFeATure[AT_FEATURE_WIFI].aucContent, "B,G,N");
     }
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
 
     /* 计算支持特性的个数 */
     ucFeATrueNum = 0;
@@ -5175,23 +4015,7 @@ VOS_UINT32 AT_RcvDrvAgentQrySfeatureRsp(VOS_VOID *pMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_RcvDrvAgentQryProdtypeRsp
- 功能描述  : ^PRODTYPE查询回复处理
- 输入参数  : VOS_VOID * pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月13日
-    作    者   : w00181244
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月1日
-    作    者   : 傅映君/f62575
-    修改内容   : DTS2011112602473，解决自动应答开启情况下被叫死机问题
-*****************************************************************************/
 VOS_UINT32 AT_RcvDrvAgentQryProdtypeRsp(VOS_VOID * pMsg)
 {
     DRV_AGENT_MSG_STRU                 *pRcvMsg;
@@ -5209,13 +4033,11 @@ VOS_UINT32 AT_RcvDrvAgentQryProdtypeRsp(VOS_VOID * pMsg)
         return VOS_ERR;
     }
 
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, begin */
     if (AT_IS_BROADCAST_CLIENT_INDEX(ucIndex))
     {
         AT_WARN_LOG("AT_RcvDrvAgentQryProdtypeRsp : AT_BROADCAST_INDEX.");
         return VOS_ERR;
     }
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, end */
 
     /* 判断当前操作类型是否为AT_CMD_PRODTYPE_QRY */
     if (AT_CMD_PRODTYPE_QRY != gastAtClientTab[ucIndex].CmdCurrentOpt)
@@ -5237,22 +4059,7 @@ VOS_UINT32 AT_RcvDrvAgentQryProdtypeRsp(VOS_VOID * pMsg)
     return VOS_OK;
 }
 
-/* Added by L60609 for AT Project，2011-10-04,  Begin*/
-/*****************************************************************************
- 函 数 名  : At_ProcMsgFromDrvAgent
- 功能描述  : At模块处理来自At Agent的消息
- 输入参数  : DRV_AGENT_MSG_STRU *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月4日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID At_ProcMsgFromDrvAgent(DRV_AGENT_MSG_STRU *pMsg)
 {
     VOS_UINT32                          i;
@@ -5291,27 +4098,7 @@ VOS_VOID At_ProcMsgFromDrvAgent(DRV_AGENT_MSG_STRU *pMsg)
     return;
 }
 
-/*****************************************************************************
- Prototype      : At_PB_Unicode2UnicodePrint
- Description    : Unicode到Unicode打印转换
- Input          : ucNumType--- 号码类型
-                  pucDst   --- 目的字串
-                  usDstLen --- 目的字串长度
-                  pucSrc   --- 源字串
-                  usSrcLen --- 源字串长度
- Output         :
- Return Value   : AT_XXX  --- ATC返回码
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-04-19
-    Author      : ---
-    Modification: Created function
-  2.日    期 : 2007-03-27
-    作    者 : h59254
-    修改内容 : 问题单号:A32D09820(PC-Lint修改)
-*****************************************************************************/
 TAF_UINT32 At_PB_Unicode2UnicodePrint(TAF_UINT32 MaxLength,TAF_INT8 *headaddr,TAF_UINT8 *pucDst, TAF_UINT8 *pucSrc, TAF_UINT16 usSrcLen)
 {
     TAF_UINT16 usLen    = 0;
@@ -5371,23 +4158,7 @@ TAF_UINT32 At_PB_Unicode2UnicodePrint(TAF_UINT32 MaxLength,TAF_INT8 *headaddr,TA
     return usLen;
 }
 
-/*****************************************************************************
- Prototype      : At_PbGsmFormatPrint
- Description    : 将GSM编码的高位清0输出
- Input          : usMaxLength 指pucDst的最大长度
-                : pucSrc输入的码流
-                : usSrcLen 输入码流的长度
- Output         : pucDst 输出的GSM码流
- Return Value   : 输出GSM码流的长度
 
- History        : ---
-  1.Date        : 2005-04-19
-    Author      : ---
-    Modification: Created function
-  2.Date        : 2011-01-19
-    Author      : j00168360
-    Modification: [电话本第二阶段] 更改函数名称，
-*****************************************************************************/
 TAF_UINT16 At_PbGsmFormatPrint(TAF_UINT16 usMaxLength,
                                TAF_UINT8  *pucDst,
                                TAF_UINT8  *pucSrc,
@@ -5411,19 +4182,7 @@ TAF_UINT16 At_PbGsmFormatPrint(TAF_UINT16 usMaxLength,
     return usSrcLen;
 }
 
-/*****************************************************************************
- Prototype      : At_PbOneUnicodeToIra
- Description    : 将一个UCS2编码转换为IRA编码
- Input          : usUnicodeChar -- UCS2编码
- Output         : pucDst      -- 指向转换后字符
- Return Value   : AT_SUCCESS -- 转换成功
-                  AT_FAILURE -- 转换失败
 
- History        :
-  1.Date        : 2011-01-19
-    Author      : j00168360
-    Modification: [电话本第二阶段] Created function
-*****************************************************************************/
 TAF_UINT32 At_PbOneUnicodeToIra(TAF_UINT16 usUnicodeChar, TAF_UINT8 *pucDst)
 {
     TAF_UINT16 usIndex;
@@ -5444,20 +4203,7 @@ TAF_UINT32 At_PbOneUnicodeToIra(TAF_UINT16 usUnicodeChar, TAF_UINT8 *pucDst)
     return AT_FAILURE;
 }
 
-/*****************************************************************************
- Prototype      : At_PbUnicodeToIraFormatPrint
- Description    : 当前字符集为IRA，需要查表将ucs2字符转换为IRA字符
- Input          : ulMaxLength -- 能存储转换后字符的最大长度
-                  pucSrc      -- 指向待转换字符
-                  ulSrcLen    -- 待转换字符长度
- Output         : pucDst      -- 指向转换后字符
- Return Value   : 转换后的IRA码流长度
 
- History        :
-  1.Date        : 2011-01-19
-    Author      : j00168360
-    Modification: [电话本第二阶段] Created function
-*****************************************************************************/
 TAF_UINT16 At_PbUnicodeToIraFormatPrint(TAF_UINT16 usMaxLength,
                                         TAF_UINT8  *pucDst,
                                         TAF_UINT8  *pucSrc,
@@ -5497,22 +4243,7 @@ TAF_UINT16 At_PbUnicodeToIraFormatPrint(TAF_UINT16 usMaxLength,
     return usRetLen;
 }
 
-/*****************************************************************************
- Prototype      : At_PbUnicode82FormatPrint
- Description    : 将UCS2码流按82编码格式解压
- Input          : puc82Code 输入的UCS2 82码流,'82'类型标志的字节已被截掉
- Input          :           第一个Byte表示长度,
-                :           第二、三个Byte表示BaseCode,
-                :           第四个及以后的Byte表示82压缩后的码流
- Output         : pucDst 是解压以后的码流
-                : pulDstLen 是解压以后的码流的长度
- Return Value   : 无
 
- History        :
-  1.Date        : 2011-01-19
-    Author      : j00168360
-    Modification: [电话本第二阶段] Created function
-*****************************************************************************/
 TAF_VOID At_PbUnicode82FormatPrint(TAF_UINT8  *puc82Code,
                                    TAF_UINT8  *pucDst,
                                    TAF_UINT16 *pusDstLen)
@@ -5580,22 +4311,7 @@ TAF_VOID At_PbUnicode82FormatPrint(TAF_UINT8  *puc82Code,
     return;
 }
 
-/*****************************************************************************
- Prototype      : At_PbUnicode8FormatPrint
- Description    : 将UCS2码流按81编码格式解压
- Input          : puc81Code 输入的UCS2 81码流,'81'类型标志的字节已被截掉
-                :           第一个Byte表示长度,
-                :           第二个Byte表示基指针,
-                :           第三个及以后的Byte表示81压缩后的码流
- Output         : pucDst 是解压以后的码流
-                : pulDstLen 是解压以后的码流的长度
- Return Value   : 无
 
- History        :
-  1.Date        : 2011-01-19
-    Author      : j00168360
-    Modification: [电话本第二阶段] Created function
-*****************************************************************************/
 TAF_VOID At_PbUnicode81FormatPrint(TAF_UINT8  *puc81Code,
                                    TAF_UINT8  *pucDst,
                                    TAF_UINT16 *pusDstLen)
@@ -5662,20 +4378,7 @@ TAF_VOID At_PbUnicode81FormatPrint(TAF_UINT8  *puc81Code,
     return;
 }
 
-/*****************************************************************************
- Prototype      : At_PbUnicode80FormatPrint
- Description    : 将UCS2码流按80格式保存
- Input          : pucSrc -- 输入的UCS2码流
-                : ulSrcLen -- 输入的UCS2码流长度
- Output         : pucDst -- 转成UCS2 80后的码流
-                : pulDstLen -- 转成UCS2 80后的码流长度
- Return Value   : 无
 
- History        :
-  1.Date        : 2011-01-19
-    Author      : j00168360
-    Modification: [电话本第二阶段] Created function
-*****************************************************************************/
 TAF_VOID At_PbUnicode80FormatPrint(TAF_UINT8  *pucSrc,
                                    TAF_UINT16 usSrcLen,
                                    TAF_UINT8  *pucDst,
@@ -5696,18 +4399,7 @@ TAF_VOID At_PbUnicode80FormatPrint(TAF_UINT8  *pucSrc,
     return;
 }
 
-/*****************************************************************************
- Prototype      :At_PbGsmExtToUnicode
- Description    :查找GSM到UNICODE扩展表，找到则返回成功，否则返回失败
- Input          : ucGsmExtChar -- GSM字符
- Output         : pusUnicodeChar --  UCS2字符
- Return Value   : AT_SUCCESS，AT_FAILURE
 
- History        :
-  1.Date        : 2011-01-19
-    Author      : j00168360
-    Modification: [电话本第二阶段] Created function
-*****************************************************************************/
 TAF_UINT32 At_PbGsmExtToUnicode(TAF_UINT8 ucGsmExtChar, TAF_UINT16 *pusUnicodeChar)
 {
     TAF_UINT16      usIndex;
@@ -5728,20 +4420,7 @@ TAF_UINT32 At_PbGsmExtToUnicode(TAF_UINT8 ucGsmExtChar, TAF_UINT16 *pusUnicodeCh
     return AT_FAILURE;
 }
 
-/*****************************************************************************
- Prototype      :At_PbGsmToUnicode
- Description    :当前字符集为UCS2或IRA，而存储格式为GSM7bit，需要先将GSM7bit查表转换为UCS2
- Input          : pucSrc -- 输入的GSM码流
-                : ulSrcLen -- 输入的GSM码流长度
- Output         : pucDst -- 转成UCS2后的码流
-                : pulDstLen -- 转成UCS2后的码流长度
- Return Value   : 无
 
- History        :
-  1.Date        : 2011-01-19
-    Author      : j00168360
-    Modification: [电话本第二阶段] Created function
-*****************************************************************************/
 TAF_VOID At_PbGsmToUnicode(TAF_UINT8  *pucSrc,
                            TAF_UINT16 usSrcLen,
                            TAF_UINT8  *pucDst,
@@ -5828,19 +4507,7 @@ TAF_VOID At_PbGsmToUnicode(TAF_UINT8  *pucSrc,
     return;
 }
 
-/*****************************************************************************
- Prototype      : At_PbRecordToUnicode
- Description    : 将卡中姓名字段存储格式转化为UCS2码
- Input          : pEvent -- 事件内容
- Output         : pucDecode -- 转换后的UCS2码
-                : pusDecodeLen -- 转换后的UCS2码长度
- Return Value   : 无
 
- History        :
-  1.Date        : 2011-01-19
-    Author      : j00168360
-    Modification: [电话本第二阶段] Created function
-*****************************************************************************/
 TAF_VOID At_PbRecordToUnicode(SI_PB_EVENT_INFO_STRU *pstEvent,
                               TAF_UINT8             *pucDecode,
                               TAF_UINT16            *pusDecodeLen)
@@ -5882,19 +4549,7 @@ TAF_VOID At_PbRecordToUnicode(SI_PB_EVENT_INFO_STRU *pstEvent,
     return;
 }
 
-/*****************************************************************************
- Prototype      : At_Pb_AlaphPrint
- Description    : 电话簿读取姓名数据打印函数
- Input          : pEvent -- 事件内容
-                : pusDataLen -- 相对pgucAtSndCrLfAddr的偏移长度
- Output         : pucData  -- 输出的数据
- Return Value   : AT_SUCCESS， AT_FAILURE
 
- History        :
-  1.Date        : 2011-01-19
-    Author      : j00168360
-    Modification: [电话本第二阶段] Created function
-*****************************************************************************/
 TAF_UINT32 At_Pb_AlaphPrint(TAF_UINT16            *pusDataLen,
                             SI_PB_EVENT_INFO_STRU *pstEvent,
                             TAF_UINT8             *pucData)
@@ -5963,19 +4618,7 @@ TAF_UINT32 At_Pb_AlaphPrint(TAF_UINT16            *pusDataLen,
     return AT_SUCCESS;
 }
 
-/*****************************************************************************
- Prototype      : At_Pb_CnumAlaphPrint
- Description    : 电话簿读取姓名数据打印函数
- Input          : pEvent -- 事件内容
-                : pusDataLen -- 相对pgucAtSndCrLfAddr的偏移长度
- Output         : pucData  -- 输出的数据
- Return Value   : AT_SUCCESS， AT_FAILURE
 
- History        :
-  1.Date        : 2011-01-19
-    Author      : j00168360
-    Modification: [电话本第二阶段] Created function
-*****************************************************************************/
 TAF_UINT32 At_Pb_CnumAlaphPrint(TAF_UINT16            *pusDataLen,
                             SI_PB_EVENT_INFO_STRU *pstEvent,
                             TAF_UINT8             *pucData)
@@ -6042,19 +4685,7 @@ TAF_UINT32 At_Pb_CnumAlaphPrint(TAF_UINT16            *pusDataLen,
     return AT_SUCCESS;
 }
 
-/*****************************************************************************
- Prototype      : AT_Pb_NumberPrint
- Description    : 电话簿读取号码及号码类型打印函数
- Input          : pEvent -- 事件内容
-                : pusDataLen -- 相对pgucAtSndCrLfAddr的偏移长度
- Output         : pusDataLen  -- 输出相对pgucAtSndCrLfAddr的偏移长度
- Return Value   : AT_SUCCESS， AT_FAILURE
 
- History        :
-  1.Date        : 2011-04-21
-    Author      : j00168360
-    Modification: [DTS] Created function，根据产品线意见当号码为空时号码类型显示为129
-*****************************************************************************/
 TAF_VOID AT_Pb_NumberPrint(TAF_UINT16 *pusDataLen, SI_PB_EVENT_INFO_STRU *pstEvent, TAF_UINT8 *pucData)
 {
     TAF_UINT16      usLength = *pusDataLen;
@@ -6103,20 +4734,7 @@ TAF_VOID AT_Pb_NumberPrint(TAF_UINT16 *pusDataLen, SI_PB_EVENT_INFO_STRU *pstEve
     return;
 }
 
-/*****************************************************************************
- Prototype      : At_PbReadCnfProc
- Description    : 电话簿读取数据打印函数
- Input          : pEvent --- 事件内容
- Output         :
- Return Value   : ---
- Calls          : ---
- Called By      : ---
 
- History        : z00100318
-  1.Date        : 2008-11-10
-    Author      : ---
-    Modification: Created function
-*****************************************************************************/
 TAF_UINT32 At_PbCNUMCmdPrint(VOS_UINT8 ucIndex,TAF_UINT16 *pusDataLen,TAF_UINT8 *pucData,SI_PB_EVENT_INFO_STRU *pEvent)
 {
     TAF_UINT16              usLength = *pusDataLen;
@@ -6155,23 +4773,7 @@ TAF_UINT32 At_PbCNUMCmdPrint(VOS_UINT8 ucIndex,TAF_UINT16 *pusDataLen,TAF_UINT8 
     return AT_SUCCESS;
 }
 
-/*****************************************************************************
- Prototype      : At_PbReadCnfProc
- Description    : 电话簿读取数据打印函数
- Input          : pEvent --- 事件内容
- Output         :
- Return Value   : ---
- Calls          : ---
- Called By      : ---
 
- History        : z00100318
-  1.Date        : 2008-11-10
-    Author      : ---
-    Modification: Created function
-  2.Date        : 2011-04-21
-    Author      : j00168360
-    Modification: [DTS2011041403381],根据产品线意见，当电话号码为空时号码类型显示为129
-*****************************************************************************/
 TAF_UINT32 At_PbCPBR2CmdPrint(VOS_UINT8 ucIndex,TAF_UINT16 *pusDataLen,TAF_UINT8 *pucData,SI_PB_EVENT_INFO_STRU *pEvent)
 {
     TAF_UINT16              usLength = *pusDataLen;
@@ -6213,23 +4815,7 @@ TAF_UINT32 At_PbCPBR2CmdPrint(VOS_UINT8 ucIndex,TAF_UINT16 *pusDataLen,TAF_UINT8
 }
 
 
-/*****************************************************************************
- Prototype      : At_PbReadCnfProc
- Description    : 电话簿读取数据打印函数
- Input          : pEvent --- 事件内容
- Output         :
- Return Value   : ---
- Calls          : ---
- Called By      : ---
 
- History        : z00100318
-  1.Date        : 2008-11-10
-    Author      : ---
-    Modification: Created function
-  2.Date        : 2011-04-21
-    Author      : j00168360
-    Modification: [DTS2011041403381],根据产品线意见，当电话号码为空时号码类型显示为129
-*****************************************************************************/
 TAF_UINT32 At_PbCPBRCmdPrint(VOS_UINT8 ucIndex,TAF_UINT16 *pusDataLen,TAF_UINT8 *pucData,SI_PB_EVENT_INFO_STRU *pEvent)
 {
     TAF_UINT16              usLength = *pusDataLen;
@@ -6296,26 +4882,7 @@ TAF_UINT32 At_PbCPBRCmdPrint(VOS_UINT8 ucIndex,TAF_UINT16 *pusDataLen,TAF_UINT8 
     return AT_SUCCESS;
 }
 
-/*****************************************************************************
- Prototype      : At_PbEmailPrint
- Description    : 将GSM7BIT格式存储的email转换为IRA上报
- Input          : pucSrc -- 输入的GSM码流
-                : ulSrcLen -- 输入的GSM码流长度
- Output         : pucDst -- 转成IRA后的码流
-                : pulDstLen -- 转成IRA后的码流长度
- Return Value   : 无
- Calls          : At_PbGsmToUnicode，At_PbUnicodeToIraFormatPrint
- Called By      : At_PbSCPBRCmdPrint
 
- History        :
-  1.Date        : 2011-01-27
-    Author      : j00168360
-    Modification: [电话本第二阶]Created function
-
-  2.日    期    : 2012年8月10日
-    作    者    : y00213812
-    修改内容    : DTS2012082204471, TQE清理
-*****************************************************************************/
 TAF_VOID At_PbEmailPrint(TAF_UINT8  *pucSrc,
                          TAF_UINT16 usSrcLen,
                          TAF_UINT8  *pucDst,
@@ -6325,7 +4892,6 @@ TAF_VOID At_PbEmailPrint(TAF_UINT8  *pucSrc,
     TAF_UINT16  usUCS2CodeLen;
     TAF_UINT16  usEMailLen = usSrcLen;
 
-    /*modified by Y00213812 for DTS2012082204471 TQE清理, 2012-08-10, begin*/
     TAF_UINT16  usReturnLen;
 
     /* 对EMAIL长度大于64Byte，进行截断处理 */
@@ -6344,33 +4910,13 @@ TAF_VOID At_PbEmailPrint(TAF_UINT8  *pucSrc,
         AT_INFO_LOG("At_PbEmailPrint error: usReturnLen = 0");
         return;
     }
-    /*modified by Y00213812 for DTS2012082204471 TQE清理, 2012-08-10, end*/
 
     *pusDstLen = (TAF_UINT16)(usUCS2CodeLen >> 1);
 
     return;
 }
 
-/*****************************************************************************
- Prototype      : At_PbSCPBRCmdPrint
- Description    : 电话簿读取数据打印函数
- Input          : pEvent --- 事件内容
- Output         :
- Return Value   : ---
- Calls          : ---
- Called By      : ---
 
- History        : m00128685
-  1.Date        : 2009-06-18
-    Author      : ---
-    Modification: Created function
-  2.Date        : 2011-01-27
-    Author      : j00168360
-    Modification: [电话本第二阶]段修改EMAIL字段读取
-  3.Date        : 2011-04-21
-    Author      : j00168360
-    Modification: [DTS2011041403381],根据产品线意见，当电话号码为空时号码类型显示为129
-*****************************************************************************/
 TAF_UINT32 At_PbSCPBRCmdPrint(VOS_UINT8 ucIndex,TAF_UINT16 *pusDataLen,SI_PB_EVENT_INFO_STRU *pEvent)
 {
     TAF_UINT16              usLength = *pusDataLen;
@@ -6581,23 +5127,7 @@ TAF_VOID At_PbSearchCnfProc(VOS_UINT8 ucIndex,SI_PB_EVENT_INFO_STRU  *pEvent)
 }
 
 
-/*****************************************************************************
- Prototype      : At_PbReadCnfProc
- Description    : 电话簿读取数据打印函数
- Input          : pEvent --- 事件内容
- Output         :
- Return Value   : ---
- Calls          : ---
- Called By      : ---
 
- History        : z00100318
-  1.Date        : 2008-11-10
-    Author      : ---
-    Modification: Created function
-  2.日    期   : 2012年03月03日
-   作    者   : s62952
-   修改内容   : BalongV300R002 Build优化项目 :oam确认电话本与E5、LCARD删除掉
-*****************************************************************************/
 TAF_UINT32 At_PbReadCnfProc(VOS_UINT8 ucIndex,SI_PB_EVENT_INFO_STRU  *pEvent)
 {
     VOS_UINT32                          ulResult;
@@ -6642,14 +5172,12 @@ TAF_UINT32 At_PbReadCnfProc(VOS_UINT8 ucIndex,SI_PB_EVENT_INFO_STRU  *pEvent)
         }
     }
 
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     if(AT_SUCCESS == ulResult)
     {
         usPBReadPrintLength += (TAF_UINT16)At_sprintf(AT_CMD_MAX_LEN,(TAF_CHAR *)pgucAtSndCrLfAddr,
                                                 (TAF_CHAR *)pgucAtSndCrLfAddr + usPBReadPrintLength,
                                                 "%s","\r\n");
     }
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
     At_SendResultData(ucIndex,pgucAtSndCrLfAddr,usPBReadPrintLength);
 
@@ -6659,32 +5187,7 @@ TAF_UINT32 At_PbReadCnfProc(VOS_UINT8 ucIndex,SI_PB_EVENT_INFO_STRU  *pEvent)
 }
 
 
-/*****************************************************************************
- Prototype      : At_PbCallBackFunc
- Description    : 电话簿管理上报函数
- Input          : pEvent --- 事件内容
- Output         :
- Return Value   : ---
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-04-19
-    Author      : ---
-    Modification: Created function
-  2.日    期 : 2007-03-27
-    作    者 : h59254
-    修改内容 : 问题单号:A32D09820(PC-Lint修改)
-  3.日    期   : 2007年06月11日
-    作    者   : h44270
-    修改内容   : 问题单A32D11418
-  4.日    期   : 2007年11月22日
-    作    者   : z00100318
-    修改内容   : PB优化
-  5.日    期   : 2011年12月1日
-    作    者   : 傅映君/f62575
-    修改内容   : DTS2011112602473，解决自动应答开启情况下被叫死机问题
-*****************************************************************************/
 TAF_VOID At_PbCallBackFunc(SI_PB_EVENT_INFO_STRU  *pEvent)
 {
     TAF_UINT32 ulSendMsg = 0;
@@ -6704,13 +5207,11 @@ TAF_VOID At_PbCallBackFunc(SI_PB_EVENT_INFO_STRU  *pEvent)
         return;
     }
 
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, begin */
     if (AT_IS_BROADCAST_CLIENT_INDEX(ucIndex))
     {
         AT_WARN_LOG("At_PbMsgProc : AT_BROADCAST_INDEX.");
         return;
     }
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, end */
 
     if(AT_CMD_CNUM == gastAtClientTab[ucIndex].CmdIndex)
     {
@@ -6756,22 +5257,8 @@ TAF_VOID At_PbCallBackFunc(SI_PB_EVENT_INFO_STRU  *pEvent)
     return;
 }
 
-/* Added by L60609 for AT Project，2011-10-04,  End*/
 
-/*****************************************************************************
-函 数 名  : At_RcvVcMsgSetGroundCnfProc
-功能描述  : VC 前台、后台模式设置回复消息的处理函数
-输入参数  : MN_AT_IND_EVT_STRU   *pstData
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修订记录  :
-  1.日    期   : 2012年12月28日
-    作    者   : 张鹏/z00214637
-    修改内容   : 创建函数,处理AT命令的结果回复
-*****************************************************************************/
 VOS_VOID At_RcvVcMsgSetGroundCnfProc(
     MN_AT_IND_EVT_STRU                 *pstData
 )
@@ -6818,20 +5305,7 @@ VOS_VOID At_RcvVcMsgSetGroundCnfProc(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : At_RcvVcMsgQryGroundRspProc
-功能描述  : VC消息查询前台模式回复的处理函数
-输入参数  : MN_AT_IND_EVT_STRU   *pstData
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修订记录  :
-  1.日    期   : 2012年12月28日
-    作    者   : 张鹏/z00214637
-    修改内容   : 创建函数,处理AT命令的结果回复
-*****************************************************************************/
 VOS_VOID At_RcvVcMsgQryGroundRspProc(
     MN_AT_IND_EVT_STRU                 *pstData
 )
@@ -6887,20 +5361,7 @@ VOS_VOID At_RcvVcMsgQryGroundRspProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : At_RcvVcMsgQryTTYModeCnfProc
- 功能描述  : VC消息查询端口回复的处理函数
- 输入参数  :  MN_AT_IND_EVT_STRU *pstData
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月7日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID At_RcvVcMsgQryTTYModeCnfProc(
     MN_AT_IND_EVT_STRU                 *pstData
 )
@@ -6956,20 +5417,7 @@ VOS_VOID At_RcvVcMsgQryTTYModeCnfProc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : At_RcvVcMsgSetTTYModeCnfProc
- 功能描述  : VC消息设置端口回复的处理函数
- 输入参数  :  MN_AT_IND_EVT_STRU *pstData
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月7日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID At_RcvVcMsgSetTTYModeCnfProc(
     MN_AT_IND_EVT_STRU                 *pstData
 )
@@ -7019,27 +5467,7 @@ VOS_VOID At_RcvVcMsgSetTTYModeCnfProc(
 }
 
 
-/* Added by f00179208 for AT Project，2011-10-06,  Begin */
-/*****************************************************************************
- 函 数 名  : At_ProcMsgFromVc
- 功能描述  : At模块处理来自VC的消息
- 输入参数  : MN_AT_IND_EVT_STRU *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月06日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月28日
-    作    者   : 张鹏/z00214637
-    修改内容   : ^CBG命令实现
-  3.日    期   : 2014年3月27日
-    作    者   : j00174725
-    修改内容   : Ecall项目
-*****************************************************************************/
 VOS_VOID At_ProcMsgFromVc(MN_AT_IND_EVT_STRU *pMsg)
 {
     switch(pMsg->usMsgName)
@@ -7073,7 +5501,6 @@ VOS_VOID At_ProcMsgFromVc(MN_AT_IND_EVT_STRU *pMsg)
             At_RcvVcMsgSetTTYModeCnfProc(pMsg);
             break;
 
-        /* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
         case APP_VC_MSG_SET_MSD_CNF:
             AT_RcvVcMsgSetMsdCnfProc(pMsg);
@@ -7087,7 +5514,6 @@ VOS_VOID At_ProcMsgFromVc(MN_AT_IND_EVT_STRU *pMsg)
             AT_RcvVcMsgQryEcallCfgCnfProc(pMsg);
             break;
 #endif
-        /* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, end */
 
         case APP_VC_MSG_DTMF_DECODER_IND:
             At_RcvVcMsgDtmfDecoderIndProc(pMsg);
@@ -7098,24 +5524,8 @@ VOS_VOID At_ProcMsgFromVc(MN_AT_IND_EVT_STRU *pMsg)
     }
     return;
 }
-/* Added by f00179208 for AT Project，2011-10-06,  End */
 
-/* Added by f00179208 for PS Project，2011-12-08,  Begin */
-/*****************************************************************************
- 函 数 名  : At_ProcMsgFromVc
- 功能描述  : At模块处理来自RNIC的消息
- 输入参数  : MN_AT_IND_EVT_STRU *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_OK, VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年12月08日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 At_RcvRnicMsg(MsgBlock *pstMsg)
 {
     VOS_UINT32                          ulRst;
@@ -7143,24 +5553,8 @@ VOS_UINT32 At_RcvRnicMsg(MsgBlock *pstMsg)
     }
     return ulRst;
 }
-/* Added by f00179208 for PS Project，2011-12-08,  End */
 
-/* Added by o00132663 for AT Project，2011-10-06,  Begin */
-/*****************************************************************************
- 函 数 名  : At_ProcMsgFromCc
- 功能描述  : At模块处理来自CC的消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月06日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID At_ProcMsgFromCc(VOS_VOID *pMsg)
 {
     MSG_HEADER_STRU                    *pstMsgHeader;
@@ -7178,23 +5572,8 @@ VOS_VOID At_ProcMsgFromCc(VOS_VOID *pMsg)
     }
     return;
 }
-/* Added by o00132663 for AT Project，2011-10-06,  End */
 
-/*****************************************************************************
- 函 数 名  : AT_RcvNdisMsg
- 功能描述  : NDIS模块消息处理
- 输入参数  : MsgBlock* pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年3月25日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_RcvNdisMsg(MsgBlock* pMsg)
 {
     VOS_UINT32                          ulResult;
@@ -7231,21 +5610,7 @@ VOS_VOID AT_RcvNdisMsg(MsgBlock* pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_ProcRabmSetFastDormParaCnf
- 功能描述  : 处理消息ID_RABM_AT_SET_FASTDORM_PARA_CNF
- 输入参数  : pstMsg - 来自RABM的消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年10月19日
-   作    者   : h44270
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32    AT_ProcRabmSetFastDormParaCnf(
     RABM_AT_SET_FASTDORM_PARA_CNF_STRU     *pstMsg
 )
@@ -7276,25 +5641,7 @@ VOS_UINT32    AT_ProcRabmSetFastDormParaCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_ProcRabmQryFastDormParaCnf
- 功能描述  : 处理消息RABM_AT_QRY_FASTDORM_PARA_CNF_STRU
- 输入参数  : pstMsg - 来自RABM的消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年10月19日
-   作    者   : h44270
-   修改内容   : 新生成函数
-
- 2.日    期   : 2012年3月20日
-   作    者   : l60609
-   修改内容   : B070 Project:直接读写NV，不再调用底软接口
-
-*****************************************************************************/
 VOS_UINT32    AT_ProcRabmQryFastDormParaCnf(
     RABM_AT_QRY_FASTDORM_PARA_CNF_STRU     *pstMsg
 )
@@ -7339,21 +5686,7 @@ VOS_UINT32    AT_ProcRabmQryFastDormParaCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : AT_ProcRabmReleaseRrcCnf
- 功能描述  : 快速拆除rrc连接
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月11日
-    作    者   : M00217266
-    修改内容  : Optimize RIL:
-
-*****************************************************************************/
 VOS_UINT32 AT_ProcRabmReleaseRrcCnf(RABM_AT_RELEASE_RRC_CNF_STRU *pstMsg)
 {
     VOS_UINT8                               ucIndex;
@@ -7384,21 +5717,7 @@ VOS_UINT32 AT_ProcRabmReleaseRrcCnf(RABM_AT_RELEASE_RRC_CNF_STRU *pstMsg)
 }
 
 #if (FEATURE_ON == FEATURE_HUAWEI_VP)
-/*****************************************************************************
- 函 数 名  : AT_ProcRabmSetVoicePreferParaCnf
- 功能描述  : 处理消息RABM_AT_SET_VOICEPREFER_PARA_CNF_STRU
- 输入参数  : pstMsg - 来自RABM的消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年12月26日
-   作    者   : s00273135
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32    AT_ProcRabmSetVoicePreferParaCnf(
     RABM_AT_SET_VOICEPREFER_PARA_CNF_STRU     *pstMsg
 )
@@ -7428,21 +5747,7 @@ VOS_UINT32    AT_ProcRabmSetVoicePreferParaCnf(
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : AT_ProcRabmQryVoicePreferEnableParaCnf
- 功能描述  : 处理消息RABM_AT_QRY_VOICEPREFER_PARA_CNF_STRU
- 输入参数  : pstMsg - 来自RABM的消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年12月26日
-   作    者   : s00273135
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_ProcRabmQryVoicePreferEnableParaCnf(RABM_AT_QRY_VOICEPREFER_PARA_CNF_STRU *pstMsg)
 {
     VOS_UINT8                           ucIndex;
@@ -7479,21 +5784,7 @@ VOS_UINT32 AT_ProcRabmQryVoicePreferEnableParaCnf(RABM_AT_QRY_VOICEPREFER_PARA_C
     return VOS_OK;
 
 }
-/*****************************************************************************
- 函 数 名  : AT_ProcRabmVoicePreferStatusReport
- 功能描述  : 处理消息RABM_AT_VOICEPREFER_STATUS_REPORT_STRU
- 输入参数  : pstMsg - 来自RABM的消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年12月26日
-   作    者   : s00273135
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_ProcRabmVoicePreferStatusReport(RABM_AT_VOICEPREFER_STATUS_REPORT_STRU *pstMsg)
 {
     VOS_UINT8                           ucIndex;
@@ -7524,24 +5815,7 @@ VOS_UINT32 AT_ProcRabmVoicePreferStatusReport(RABM_AT_VOICEPREFER_STATUS_REPORT_
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : AT_RabmMsgProc
- 功能描述  : AT模块处理来自Rabm的消息
- 输入参数  : MSG_HEADER_STRU * pstMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年10月19日
-   作    者   : h44270
-   修改内容   : 新生成函数
-  2.日    期   : 2013年7月11日
-    作    者   : M00217266
-    修改内容  : Optimize RIL:
-
-*****************************************************************************/
 TAF_VOID AT_RabmMsgProc(
     MSG_HEADER_STRU                    *pstMsg
 )
@@ -7580,41 +5854,7 @@ TAF_VOID AT_RabmMsgProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : At_MsgProc
- 功能描述  : AT模块消息处理入口函数
- 输入参数  : MsgBlock* pMsg
- 输出参数  : 无
- 返 回 值  : TAF_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.Date        : 2005-04-19
-    Author      : ---
-    Modification: Created function
-  2.日    期   : 2010年2月23日
-    作    者   : f62575
-    修改内容   : 问题单号: AT2D16941：增加短信功能任意点回放功能
-  3.日    期   : 2011年10月4日
-    作    者   : 鲁琳/l60609
-    修改内容   : AT Project: 增加AT AGENT的处理
-  4.日    期   : 2011年10月23日
-    作    者   : A00165503
-    修改内容   : AT Project: NDIS消息处理
-  5.日    期   : 2011年10月23日
-    作    者   : f00179208
-    修改内容   : AT Project: 增加VC消息处理
-  6.日    期   : 2011年12月08日
-    作    者   : f00179208
-    修改内容   : PS Project: 增加RNIC消息处理
-  7.日    期   : 2012年12月20日
-    作    者   : l60609
-    修改内容   : DSDA Phase II
-  8.日    期   : 2015年6月25日
-    作    者   : l00198894
-    修改内容   : TSTS
-*****************************************************************************/
 TAF_VOID At_MsgProc(MsgBlock* pMsg)
 {
     VOS_UINT32                          ulSendPid;
@@ -7835,29 +6075,7 @@ TAF_VOID At_MsgProc(MsgBlock* pMsg)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : AT_EventReport
- 功能描述  : 向OM上报AT事件
- 输入参数  : VOS_UINT32 ulPid                   需要上报事件的模块ID
-             NAS_OM_EVENT_ID_ENUM enEventId     需要上报的事件ID
-             VOS_VOID *pPara                    事件中的可选参数
-             VOS_UINT32 ulLen                   可选参数长度
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月22日
-    作    者   : f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2013年10月08日
-    作    者   : j00174725
-    修改内容   : TQE
-  3.日    期   : 2015年07月23日
-    作    者   : wx270776
-    修改内容   : OM融合
-*****************************************************************************/
 VOS_VOID AT_EventReport(
     VOS_UINT32                          ulPid,
     NAS_OM_EVENT_ID_ENUM_UINT16         enEventId,
@@ -7865,7 +6083,6 @@ VOS_VOID AT_EventReport(
     VOS_UINT32                          ulLen
 )
 {
-    /* Modified by wx270776 for OM融合, 2015-8-3, begin */
     DIAG_EVENT_IND_STRU                 stDiagEvent;
     NAS_OM_EVENT_IND_STRUCT            *pstAtEvent = VOS_NULL_PTR;
     VOS_VOID                           *pData = pPara;
@@ -7923,29 +6140,12 @@ VOS_VOID AT_EventReport(
     }
 
     PS_MEM_FREE(ulPid, pstAtEvent);
-    /* Modified by wx270776 for OM融合, 2015-6-27, end */
 
     return;
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_RcvDrvAgentSetAdcRsp
- 功能描述  : ^ADC的查询回复处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年11月5日
-    作    者   : w00181244
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月1日
-    作    者   : 傅映君/f62575
-    修改内容   : DTS2011112602473，解决自动应答开启情况下被叫死机问题
-*****************************************************************************/
 VOS_UINT32 AT_RcvDrvAgentSetAdcRsp(VOS_VOID *pMsg)
 {
     DRV_AGENT_MSG_STRU                        *pRcvMsg;
@@ -7964,13 +6164,11 @@ VOS_UINT32 AT_RcvDrvAgentSetAdcRsp(VOS_VOID *pMsg)
         return VOS_ERR;
     }
 
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, begin */
     if (AT_IS_BROADCAST_CLIENT_INDEX(ucIndex))
     {
         AT_WARN_LOG("AT_RcvDrvAgentSetAdcRsp : AT_BROADCAST_INDEX.");
         return VOS_ERR;
     }
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, end */
 
     /* 判断当前操作类型是否为AT_CMD_ADC_SET */
     if (AT_CMD_ADC_SET != gastAtClientTab[ucIndex].CmdCurrentOpt)
@@ -7999,20 +6197,7 @@ VOS_UINT32 AT_RcvDrvAgentSetAdcRsp(VOS_VOID *pMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_RcvDrvAgentQryTbatRsp
- 功能描述  : ^TBAT的查询回复处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月13日
-    作    者   : w00181244
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_RcvDrvAgentQryTbatRsp(VOS_VOID *pMsg)
 {
     DRV_AGENT_MSG_STRU                 *pRcvMsg;
@@ -8059,27 +6244,7 @@ VOS_UINT32 AT_RcvDrvAgentQryTbatRsp(VOS_VOID *pMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_RcvSimLockQryRsp
- 功能描述  : ^SIMLOCK=2查询SIMLOCK状态的回复处理函数
-     VOS_UINT8                           ucIndex,
-     VOS_UINT8                           OpId,
-     VOS_VOID                           *pPara
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月03日
-    作    者   : f62575
-    修改内容   : 新生成函数
-
-  2.日    期   : 2014年2月21日
-    作    者   : w00167002
-    修改内容   : 调整函数返回值为VOS_UINT32
-*****************************************************************************/
-/* Modified by w00167002 for L-C互操作项目, 2014-2-21, begin */
 VOS_UINT32 AT_RcvSimLockQryRsp(VOS_VOID *pMsg)
 {
     VOS_UINT8                           ucIndex;
@@ -8127,25 +6292,11 @@ VOS_UINT32 AT_RcvSimLockQryRsp(VOS_VOID *pMsg)
 
     return VOS_OK;
 }
-/* Modified by w00167002 for L-C互操作项目, 2014-2-21, end */
 
 
 #if (OSA_CPU_CCPU == VOS_OSA_CPU)
 #if (VOS_WIN32 == VOS_OS_VER)
-/*****************************************************************************
- 函 数 名  : WuepsATFidInit
- 功能描述  : AT FID初始化，用于ST测试，
- 输入参数  : VOS_INIT_PHASE_DEFINE ip
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月22日
-    作    者   : c00173809
-    修改内容   : 新生成函数/PS融合项目
-*****************************************************************************/
 VOS_UINT32 WuepsATFidInit(enum VOS_INIT_PHASE_DEFINE ip)
 {
     VOS_UINT32 ulRslt = VOS_OK;
@@ -8153,7 +6304,6 @@ VOS_UINT32 WuepsATFidInit(enum VOS_INIT_PHASE_DEFINE ip)
     switch( ip )
     {
         case   VOS_IP_LOAD_CONFIG:
-        /* Added by L60609 for AT Project，2011-10-20,  Begin*/
         #if (VOS_WIN32 == VOS_OS_VER)
             ulRslt = VOS_RegisterPIDInfo(WUEPS_PID_AT,
                                            (Init_Fun_Type)At_PidInit,
@@ -8164,7 +6314,6 @@ VOS_UINT32 WuepsATFidInit(enum VOS_INIT_PHASE_DEFINE ip)
                 return VOS_ERR;
             }
         #endif
-            /* Added by L60609 for AT Project，2011-10-20,  Begin*/
 
             ulRslt = VOS_RegisterMsgTaskPrio(WUEPS_FID_AT, VOS_PRIORITY_P6);
 
@@ -8184,21 +6333,7 @@ VOS_UINT32 WuepsATFidInit(enum VOS_INIT_PHASE_DEFINE ip)
 #endif
 
 #if (FEATURE_ON == FEATURE_SECURITY_SHELL)
-/*****************************************************************************
- 函 数 名  : AT_RcvDrvAgentSetSpwordRsp
- 功能描述  : 处理DRV_AGENT_SPWORD_SET_CNF消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月21日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvDrvAgentSetSpwordRsp(VOS_VOID *pMsg)
 {
     DRV_AGENT_MSG_STRU                        *pRcvMsg;
@@ -8253,21 +6388,7 @@ VOS_UINT32 AT_RcvDrvAgentSetSpwordRsp(VOS_VOID *pMsg)
 }
 
 #endif
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaCipherInfoQueryCnf
- 功能描述  : AT_MMA_CIPHER_INFO_QUERY_CNF消息处理函数
- 输入参数  : VOS_VOID *pMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年02月02日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaCipherInfoQueryCnf(VOS_VOID *pMsg)
 {
     TAF_MMA_CIPHER_QRY_CNF_STRU        *pstCipherQryCnf = VOS_NULL_PTR;
@@ -8325,21 +6446,7 @@ VOS_UINT32 AT_RcvMmaCipherInfoQueryCnf(VOS_VOID *pMsg)
 
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaLocInfoQueryCnf
- 功能描述  : AT_MMA_LOCATION_INFO_QUERY_CNF消息处理函数
- 输入参数  : VOS_VOID *pMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年02月02日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaLocInfoQueryCnf(VOS_VOID *pMsg)
 {
     TAF_MMA_LOCATION_INFO_QRY_CNF_STRU *pstLocInfoCnf = VOS_NULL_PTR;
@@ -8445,20 +6552,7 @@ VOS_UINT32 AT_RcvMmaLocInfoQueryCnf(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvDrvAgentNvBackupStatQryRsp
- 功能描述  : AT^NVBACKUPSTAT的查询回复处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年02月18日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_RcvDrvAgentNvBackupStatQryRsp(VOS_VOID *pMsg)
 {
     DRV_AGENT_MSG_STRU                     *pRcvMsg;
@@ -8530,20 +6624,7 @@ VOS_UINT32 AT_RcvDrvAgentNvBackupStatQryRsp(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvDrvAgentNandBadBlockQryRsp
- 功能描述  : AT^NANDBBC的查询回复处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年02月18日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_RcvDrvAgentNandBadBlockQryRsp(VOS_VOID *pMsg)
 {
     DRV_AGENT_MSG_STRU                     *pRcvMsg;
@@ -8619,20 +6700,7 @@ VOS_UINT32 AT_RcvDrvAgentNandBadBlockQryRsp(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvDrvAgentNandDevInfoQryRsp
- 功能描述  : AT^NANDVER的查询回复处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年02月18日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_RcvDrvAgentNandDevInfoQryRsp(VOS_VOID *pMsg)
 {
     DRV_AGENT_MSG_STRU                     *pRcvMsg;
@@ -8696,20 +6764,7 @@ VOS_UINT32 AT_RcvDrvAgentNandDevInfoQryRsp(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvDrvAgentChipTempQryRsp
- 功能描述  : AT^CHIPTEMP的查询回复处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年02月18日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_RcvDrvAgentChipTempQryRsp(VOS_VOID *pMsg)
 {
     DRV_AGENT_MSG_STRU                 *pRcvMsg;
@@ -8778,23 +6833,8 @@ VOS_UINT32 AT_RcvDrvAgentChipTempQryRsp(VOS_VOID *pMsg)
 
 
 #ifndef __PS_WIN32_RECUR__
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaOmMaintainInfoInd
- 功能描述  : 处理来自MMA的PC工具可谓可测配置信息
- 输入参数  : pstMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月24日
-    作    者   : l00171473
-    修改内容   : 新生成函数
 
-*****************************************************************************/
-
-/* Modified by w00167002 for L-C互操作项目, 2014-2-21, begin */
 VOS_UINT32 AT_RcvMmaOmMaintainInfoInd(
     VOS_VOID                           *pstMsg
 )
@@ -8812,30 +6852,9 @@ VOS_UINT32 AT_RcvMmaOmMaintainInfoInd(
 
     return VOS_OK;
 }
-/* Modified by w00167002 for L-C互操作项目, 2014-2-21, end */
 #endif
 
-/*****************************************************************************
- 函 数 名  : AT_RcvDrvAgentAntStateIndRsp
- 功能描述  : ^ANTSTATE 查询回复处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
 
- 修改历史      :
-  1.日    期   : 2012年2月25日
-    作    者   : w00184875
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月25日
-    作    者   : l00227485
-    修改内容   : DSDA PhaseII
-  3.日    期   : 2013年5月30日
-    作    者   : z60575
-    修改内容   :DTS2013060307614, DSDA_SAR修改
-  4.日    期   : 2013年8月2日
-    作    者   : z60575
-    修改内容   :DTS2013073103769,从C核查询天线状态
-*****************************************************************************/
 VOS_UINT32 AT_RcvDrvAgentAntStateIndRsp(VOS_VOID *pMsg)
 {
     DRV_AGENT_MSG_STRU                 *pRcvMsg;
@@ -8867,21 +6886,7 @@ VOS_UINT32 AT_RcvDrvAgentAntStateIndRsp(VOS_VOID *pMsg)
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : AT_RcvDrvAgentSetMaxLockTmsRsp
- 功能描述  : DRV_AGENT_MAX_LOCK_TIMES_SET_CNF消息处理函数
- 输入参数  : VOS_VOID *pMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年03月19日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvDrvAgentSetMaxLockTmsRsp(VOS_VOID *pMsg)
 {
     DRV_AGENT_MSG_STRU                        *pRcvMsg;
@@ -8929,21 +6934,7 @@ VOS_UINT32 AT_RcvDrvAgentSetMaxLockTmsRsp(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvDrvAgentSetApSimstRsp
- 功能描述  : DRV_AGENT_AT_DEACT_SIM_SET_CNF消息处理函数
- 输入参数  : VOS_VOID *pMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年06月18日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvDrvAgentSetApSimstRsp(VOS_VOID *pMsg)
 {
     DRV_AGENT_MSG_STRU                        *pRcvMsg;
@@ -8992,21 +6983,7 @@ VOS_UINT32 AT_RcvDrvAgentSetApSimstRsp(VOS_VOID *pMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_RcvDrvAgentHukSetCnf
- 功能描述  : ^HUK命令设置回复处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年04月10日
-    作    者   : l00198894
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvDrvAgentHukSetCnf(VOS_VOID *pMsg)
 {
     DRV_AGENT_MSG_STRU                     *pRcvMsg;
@@ -9061,21 +7038,7 @@ VOS_UINT32 AT_RcvDrvAgentHukSetCnf(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvDrvAgentFacAuthPubkeySetCnf
- 功能描述  : ^FACAUTHPUBKEY命令设置回复处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年04月10日
-    作    者   : l00198894
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvDrvAgentFacAuthPubkeySetCnf(VOS_VOID *pMsg)
 {
     DRV_AGENT_MSG_STRU                     *pRcvMsg;
@@ -9130,21 +7093,7 @@ VOS_UINT32 AT_RcvDrvAgentFacAuthPubkeySetCnf(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvDrvAgentIdentifyStartSetCnf
- 功能描述  : ^IDENTIFYSTART命令设置回复处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年04月10日
-    作    者   : l00198894
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvDrvAgentIdentifyStartSetCnf(VOS_VOID *pMsg)
 {
     DRV_AGENT_MSG_STRU                     *pRcvMsg;
@@ -9214,21 +7163,7 @@ VOS_UINT32 AT_RcvDrvAgentIdentifyStartSetCnf(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvDrvAgentIdentifyEndSetCnf
- 功能描述  : ^IDENTIFYEND命令设置回复处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年04月10日
-    作    者   : l00198894
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvDrvAgentIdentifyEndSetCnf(VOS_VOID *pMsg)
 {
     DRV_AGENT_MSG_STRU                     *pRcvMsg;
@@ -9281,21 +7216,7 @@ VOS_UINT32 AT_RcvDrvAgentIdentifyEndSetCnf(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvDrvAgentSimlockDataWriteSetCnf
- 功能描述  : ^SIMLOCKDATAWRITE命令设置回复处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年04月10日
-    作    者   : l00198894
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvDrvAgentSimlockDataWriteSetCnf(VOS_VOID *pMsg)
 {
     DRV_AGENT_MSG_STRU                         *pRcvMsg;
@@ -9348,21 +7269,7 @@ VOS_UINT32 AT_RcvDrvAgentSimlockDataWriteSetCnf(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_Num2AsciiNum
- 功能描述  : 十进制或十六进制数字转ASCII码
- 输入参数  : VOS_UINT8          ucNum           -- 待转换数字
- 输出参数  : 无
- 返 回 值  : VOS_CHAR       -- 转换后的ASCII码，失败返回'*'
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年04月28日
-    作    者   : l00198894
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 VOS_CHAR AT_Num2AsciiNum(VOS_UINT8 ucNum)
 {
     if (9 >= ucNum)
@@ -9379,21 +7286,7 @@ VOS_CHAR AT_Num2AsciiNum(VOS_UINT8 ucNum)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : AT_CheckSimlockCodeLast2Char
- 功能描述  : 检查锁网锁卡号码字符串最后两位的合法性
- 输入参数  : DRV_AGENT_PERSONALIZATION_CATEGORY_ENUM_UINT8   enCategory
- 输出参数  : VOS_CHAR          *pcStrLast2Char        -- 检查后的最后两个字符
- 返 回 值  : VOS_OK     -- 检查成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年05月14日
-    作    者   : l00198894
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 VOS_UINT32 AT_CheckSimlockCodeLast2Char(
     DRV_AGENT_PERSONALIZATION_CATEGORY_ENUM_UINT8   enCategory,
     VOS_CHAR                                       *pcStrLast2Char
@@ -9429,21 +7322,7 @@ VOS_UINT32 AT_CheckSimlockCodeLast2Char(
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_CheckSimlockCodeStr
- 功能描述  : 检查锁网锁卡号码字符串合法性，并补充字符串结束符
- 输入参数  : DRV_AGENT_PERSONALIZATION_CATEGORY_ENUM_UINT8   enCategory
- 输出参数  : VOS_CHAR          *pcStrCode       -- 检查后的字符串
- 返 回 值  : VOS_OK     -- 检查成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年05月14日
-    作    者   : l00198894
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 VOS_UINT32 AT_CheckSimlockCodeStr(
     DRV_AGENT_PERSONALIZATION_CATEGORY_ENUM_UINT8   enCategory,
     VOS_CHAR                                       *pcStrCode
@@ -9500,22 +7379,7 @@ VOS_UINT32 AT_CheckSimlockCodeStr(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SimlockCodeBcd2Str
- 功能描述  : 锁网锁卡号段BCD码转字符串
- 输入参数  : DRV_AGENT_PERSONALIZATION_CATEGORY_ENUM_UINT8   enCategory
-             VOS_UINT8         *pucBcdNum       -- 待转换号段BCD码
- 输出参数  : VOS_CHAR          *pcStrNum        -- 转换后的字符串
- 返 回 值  : VOS_OK     -- 转换成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年04月10日
-    作    者   : l00198894
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 VOS_UINT32 AT_SimlockCodeBcd2Str(
     DRV_AGENT_PERSONALIZATION_CATEGORY_ENUM_UINT8   enCategory,
     VOS_UINT8                                      *pucBcdNum,
@@ -9572,26 +7436,7 @@ VOS_UINT32 AT_SimlockCodeBcd2Str(
 
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PhoneSimlockInfoPrint
- 功能描述  : 锁网锁卡信息打印函数
- 输入参数  : DRV_AGENT_PHONESIMLOCKINFO_QRY_CNF_STRU    *pstPhoneSimlockInfo
-             VOS_UINT8                                   ucIndex
-             VOS_UINT16                                 *pusLength
- 输出参数  : 无
- 返 回 值  : VOS_UINT16     -- 打印字符串长度
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年04月10日
-    作    者   : l00198894
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-  2.日    期   : 2012年8月10日
-    作    者   : y00213812
-    修改内容   : DTS2012082204471, TQE清理，AT_PhoneSimlockInfoPrint第二个参数
-                 由数据结构改为数据结构指针
-*****************************************************************************/
 VOS_UINT32 AT_PhoneSimlockInfoPrint(
     DRV_AGENT_PHONESIMLOCKINFO_QRY_CNF_STRU    *pstPhoneSimlockInfo,
     VOS_UINT8                                   ucIndex,
@@ -9690,24 +7535,7 @@ VOS_UINT32 AT_PhoneSimlockInfoPrint(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvDrvAgentPhoneSimlockInfoQryCnf
- 功能描述  : ^PHONESIMLOCKINFO命令查询回复处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年04月10日
-    作    者   : l00198894
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-  2.日    期   : 2012年8月10日
-    作    者   : y00213812
-    修改内容   : DTS2012082204471, TQE清理，AT_PhoneSimlockInfoPrint第二个参数
-                 由数据结构改为数据结构指针
-*****************************************************************************/
 VOS_UINT32 AT_RcvDrvAgentPhoneSimlockInfoQryCnf(VOS_VOID *pMsg)
 {
     DRV_AGENT_MSG_STRU                         *pRcvMsg;
@@ -9750,12 +7578,11 @@ VOS_UINT32 AT_RcvDrvAgentPhoneSimlockInfoQryCnf(VOS_VOID *pMsg)
         /* 输出设置结果 */
         ulResult    = AT_OK;
         /* 打印结果 */
-        /*modified by Y00213812 for DTS2012082204471 TQE清理, 2012-08-10, begin*/
         if (VOS_OK != AT_PhoneSimlockInfoPrint(pstEvent, ucIndex, &usLength))
         {
             ulResult = AT_PERSONALIZATION_OTHER_ERROR;
         }
-    }   /*modified by Y00213812 for DTS2012082204471 TQE清理, 2012-08-10, end*/
+    }
     else
     {
         /* 异常情况, 转换错误码 */
@@ -9769,22 +7596,7 @@ VOS_UINT32 AT_RcvDrvAgentPhoneSimlockInfoQryCnf(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SimlockDataReadPrint
- 功能描述  : 锁网锁卡安全数据打印函数
- 输入参数  : DRV_AGENT_SIMLOCKDATAREAD_QRY_CNF_STRU     stSimlockDataRead
-             VOS_UINT8                                  ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT16  *pusLength   -- 打印字符串长度
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年04月10日
-    作    者   : l00198894
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 VOS_UINT32 AT_SimlockDataReadPrint(
     DRV_AGENT_SIMLOCKDATAREAD_QRY_CNF_STRU      stSimlockDataRead,
     VOS_UINT8                                   ucIndex,
@@ -9882,23 +7694,7 @@ VOS_UINT32 AT_SimlockDataReadPrint(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvDrvAgentSimlockDataReadQryCnf
- 功能描述  : ^SIMLOCKDATAREAD命令查询回复处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年04月10日
-    作    者   : l00198894
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-  2.日    期   : 2015年4月7日
-    作    者   : w00316404
-    修改内容   : M project A characeristic AT part
-*****************************************************************************/
 VOS_UINT32 AT_RcvDrvAgentSimlockDataReadQryCnf(VOS_VOID *pMsg)
 {
     DRV_AGENT_MSG_STRU                         *pRcvMsg;
@@ -9928,7 +7724,6 @@ VOS_UINT32 AT_RcvDrvAgentSimlockDataReadQryCnf(VOS_VOID *pMsg)
         return VOS_ERR;
     }
 
-    /* 判断当前操作类型是否为AT_CMD_SIMLOCKDATAREAD_READ或者为AT_CMD_CLCK_SIMLOCKDATAREAD_READ */
     if ( AT_CMD_SIMLOCKDATAREAD_READ != gastAtClientTab[ucIndex].CmdCurrentOpt
       && AT_CMD_CLCK_SIMLOCKDATAREAD != gastAtClientTab[ucIndex].CmdCurrentOpt)
     {
@@ -9975,21 +7770,7 @@ VOS_UINT32 AT_RcvDrvAgentSimlockDataReadQryCnf(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvDrvAgentPhonePhynumSetCnf
- 功能描述  : ^SIMLOCKINFO命令设置回复处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年04月10日
-    作    者   : l00198894
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvDrvAgentPhonePhynumSetCnf(VOS_VOID *pMsg)
 {
     DRV_AGENT_MSG_STRU                 *pRcvMsg;
@@ -10042,21 +7823,7 @@ VOS_UINT32 AT_RcvDrvAgentPhonePhynumSetCnf(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvDrvAgentPhonePhynumQryCnf
- 功能描述  : ^PHONEPHYNUM命令查询回复处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年04月10日
-    作    者   : l00198894
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvDrvAgentPhonePhynumQryCnf(VOS_VOID *pMsg)
 {
     DRV_AGENT_MSG_STRU                 *pRcvMsg;
@@ -10140,21 +7907,7 @@ VOS_UINT32 AT_RcvDrvAgentPhonePhynumQryCnf(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PortCtrlTmpSndMsg
- 功能描述  : 密码校验通过之后发送OM和HSIC关联请求函数
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_OK  设置或查询操作成功
-             VOS_ERR 设置或查询操作失败
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012年04月10日
-    作    者   : y00213812
-    修改内容   : AP-Modem锁网锁卡项目新增函数
 
- *****************************************************************************/
 VOS_UINT32  AT_PortCtrlTmpSndMsg(VOS_VOID)
 {
     OM_HSIC_CONNECT_MSG_STRU           *pstMsg;
@@ -10178,21 +7931,7 @@ VOS_UINT32  AT_PortCtrlTmpSndMsg(VOS_VOID)
     return AT_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvDrvAgentPortctrlTmpSetCnf
- 功能描述  : ^PORTCTRLTMP命令设置回复处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年04月10日
-    作    者   : l00198894
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvDrvAgentPortctrlTmpSetCnf(VOS_VOID *pMsg)
 {
     DRV_AGENT_MSG_STRU                 *pRcvMsg;
@@ -10249,21 +7988,7 @@ VOS_UINT32 AT_RcvDrvAgentPortctrlTmpSetCnf(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvDrvAgentPortAttribSetCnf
- 功能描述  : ^PORTATTRIBSET命令设置回复处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年04月10日
-    作    者   : l00198894
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvDrvAgentPortAttribSetCnf(VOS_VOID *pMsg)
 {
     DRV_AGENT_MSG_STRU                   *pRcvMsg;
@@ -10315,21 +8040,7 @@ VOS_UINT32 AT_RcvDrvAgentPortAttribSetCnf(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvDrvAgentPortAttribSetQryCnf
- 功能描述  : ^PORTATTRIBSET命令查询回复处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年04月10日
-    作    者   : l00198894
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvDrvAgentPortAttribSetQryCnf(VOS_VOID *pMsg)
 {
     DRV_AGENT_MSG_STRU                                     *pRcvMsg;
@@ -10396,21 +8107,7 @@ VOS_UINT32 AT_RcvDrvAgentPortAttribSetQryCnf(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvDrvAgentOpwordSetCnf
- 功能描述  : ^OPWORD命令设置回复处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年04月18日
-    作    者   : y00213812
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvDrvAgentOpwordSetCnf(VOS_VOID *pMsg)
 {
     DRV_AGENT_MSG_STRU                      *pRcvMsg;
@@ -10465,20 +8162,7 @@ VOS_UINT32 AT_RcvDrvAgentOpwordSetCnf(VOS_VOID *pMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_RcvDrvAgentAntSwitchSetCnf
- 功能描述  : 响应ANTSWITCH设置处理结果
- 输入参数  : VOS_VOID *pMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月1日
-    作    者   : y00258578
-    修改内容   : 新加函数
-*****************************************************************************/
 VOS_UINT32 AT_RcvDrvAgentAntSwitchSetCnf(VOS_VOID *pstData)
 {
     VOS_UINT8                           ucIndex = 0;
@@ -10522,20 +8206,7 @@ VOS_UINT32 AT_RcvDrvAgentAntSwitchSetCnf(VOS_VOID *pstData)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvDrvAgentAntSwitchQryCnf
- 功能描述  : 响应ANTSWITCH查询处理结果
- 输入参数  : VOS_VOID *pMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月1日
-    作    者   : y00258578
-    修改内容   : 新加函数
-*****************************************************************************/
 VOS_UINT32 AT_RcvDrvAgentAntSwitchQryCnf(VOS_VOID *pstData)
 {
     VOS_UINT8                           ucIndex = 0;
@@ -10589,21 +8260,7 @@ VOS_UINT32 AT_RcvDrvAgentAntSwitchQryCnf(VOS_VOID *pstData)
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaCposSetCnf
- 功能描述  : +CPOS命令设置回复处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年06月28日
-    作    者   : y00213812
-    修改内容   : V7R1C50 A-GPS项目新增函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaCposSetCnf(VOS_VOID *pMsg)
 {
     /* 定义局部变量 */
@@ -10656,23 +8313,7 @@ VOS_UINT32 AT_RcvMtaCposSetCnf(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaCposrInd
- 功能描述  : +CPOSR主动上报命令处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年06月28日
-    作    者   : y00213812
-    修改内容   : V7R1C50 A-GPS项目新增函数
-  2.日    期   : 2013年2月20日
-    作    者   : l60609
-    修改内容   : DSDA PHASE III
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaCposrInd(VOS_VOID *pMsg)
 {
     /* 定义局部变量 */
@@ -10709,23 +8350,7 @@ VOS_UINT32 AT_RcvMtaCposrInd(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaXcposrRptInd
- 功能描述  : ^XCPOSRRPT主动上报命令处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年06月28日
-    作    者   : y00213812
-    修改内容   : V7R1C50 A-GPS项目新增函数
-  2.日    期   : 2013年2月20日
-    作    者   : l60609
-    修改内容   : DSDA PHASE III
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaXcposrRptInd(VOS_VOID *pMsg)
 {
     VOS_UINT8                           ucIndex;
@@ -10761,21 +8386,7 @@ VOS_UINT32 AT_RcvMtaXcposrRptInd(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaCgpsClockSetCnf
- 功能描述  : ^CGPSCLOCK命令设置回复处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年06月28日
-    作    者   : y00213812
-    修改内容   : V7R1C50 A-GPS项目新增函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaCgpsClockSetCnf(VOS_VOID *pMsg)
 {
     /* 定义局部变量 */
@@ -10826,21 +8437,7 @@ VOS_UINT32 AT_RcvMtaCgpsClockSetCnf(VOS_VOID *pMsg)
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : At_ProcMtaMsg
- 功能描述  : 处理来自MTA模块的消息
- 输入参数  : MTA_MSG_STRU *pMsg
- 输出参数  : 无
- 返 回 值  : TAF_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年06月28日
-    作    者   : y00213812
-    修改内容   : V7R1C50 A-GPS项目新增函数
-
-*****************************************************************************/
 VOS_VOID At_ProcMtaMsg(AT_MTA_MSG_STRU *pstMsg)
 {
     VOS_UINT32                          i;
@@ -10880,21 +8477,7 @@ VOS_VOID At_ProcMtaMsg(AT_MTA_MSG_STRU *pstMsg)
 }
 
 #if ((FEATURE_ON == FEATURE_UE_MODE_CDMA) && (FEATURE_ON == FEATURE_AGPS))
-/*****************************************************************************
- 函 数 名  : AT_ProcXpdsMsg
- 功能描述  : AT处理XPDS模块发送来的消息
- 输入参数  : AT_XPDS_MSG_STRU *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月2日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_ProcXpdsMsg(AT_XPDS_MSG_STRU *pstMsg)
 {
     VOS_UINT32                          i;
@@ -10935,21 +8518,7 @@ VOS_VOID AT_ProcXpdsMsg(AT_XPDS_MSG_STRU *pstMsg)
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaApSecSetCnf
- 功能描述  : AT模块收到MTA模块消息处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月31日
-    作    者   : 李紫剑/00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaApSecSetCnf( VOS_VOID *pMsg )
 {
     AT_MTA_MSG_STRU                    *pstRcvMsg;
@@ -11023,23 +8592,7 @@ VOS_UINT32 AT_RcvMtaApSecSetCnf( VOS_VOID *pMsg )
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaSimlockUnlockSetCnf
- 功能描述  : AT模块收到MTA模块消息处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年09月19日
-    作    者   : 李紫剑/00198894
-    修改内容   : 新生成函数
-  2.日    期   : 2015年4月7日
-    作    者   : w00316404
-    修改内容   : M project A characeristic AT part
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaSimlockUnlockSetCnf( VOS_VOID *pMsg )
 {
     AT_MTA_MSG_STRU                    *pstRcvMsg;
@@ -11065,7 +8618,6 @@ VOS_UINT32 AT_RcvMtaSimlockUnlockSetCnf( VOS_VOID *pMsg )
         return VOS_ERR;
     }
 
-    /* 判断当前操作类型是否为AT_CMD_SIMLOCKUNLOCK_SET或者为AT_CMD_CLCK_SIMLOCKUNLOCK_SET */
     if (AT_CMD_SIMLOCKUNLOCK_SET    != gastAtClientTab[ucIndex].CmdCurrentOpt
      && AT_CMD_CLCK_SIMLOCKUNLOCK   != gastAtClientTab[ucIndex].CmdCurrentOpt)
     {
@@ -11096,21 +8648,7 @@ VOS_UINT32 AT_RcvMtaSimlockUnlockSetCnf( VOS_VOID *pMsg )
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaQryNmrCnf
- 功能描述  : AT模块收到ID_MTA_AT_QRY_NMR_CNF模块消息处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月21日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaQryNmrCnf( VOS_VOID *pMsg )
 {
     AT_MTA_MSG_STRU                    *pRcvMsg      = VOS_NULL_PTR;
@@ -11227,21 +8765,7 @@ VOS_UINT32 AT_RcvMtaQryNmrCnf( VOS_VOID *pMsg )
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaWrrAutotestQryCnf
- 功能描述  : 执行^CWAS后，收到MTA的回复结果。
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月30日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaWrrAutotestQryCnf(
     VOS_VOID                           *pMsg
 )
@@ -11317,21 +8841,7 @@ VOS_UINT32 AT_RcvMtaWrrAutotestQryCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaWrrCellinfoQryCnf
- 功能描述  : 执行^CELLINFO后，收到MTA的回复
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月30日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaWrrCellinfoQryCnf(
     VOS_VOID                           *pMsg
 )
@@ -11412,21 +8922,7 @@ VOS_UINT32 AT_RcvMtaWrrCellinfoQryCnf(
 
 
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaWrrMeanrptQryCnf
- 功能描述  : at下发^CELLINFO命令后，收到MTA的回复
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月30日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaWrrMeanrptQryCnf(
     VOS_VOID                           *pMsg
 )
@@ -11513,21 +9009,7 @@ VOS_UINT32 AT_RcvMtaWrrMeanrptQryCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaWrrCellSrhSetCnf
- 功能描述  : 通过at命令^CELLSRCH设置后，收到mTA的回复
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月30日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaWrrCellSrhSetCnf(
     VOS_VOID                           *pMsg
 )
@@ -11584,21 +9066,7 @@ VOS_UINT32 AT_RcvMtaWrrCellSrhSetCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaWrrCellSrhQryCnf
- 功能描述  : 通过AT命令^CELLSRCH查询后，收到mTA的回复
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月30日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaWrrCellSrhQryCnf(
     VOS_VOID                           *pMsg
 )
@@ -11663,21 +9131,7 @@ VOS_UINT32 AT_RcvMtaWrrCellSrhQryCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaWrrFreqLockSetCnf
- 功能描述  : 通过at命令^FREQLOCK设置锁频信息后，收到MTA的回复
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月30日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaWrrFreqLockSetCnf(
     VOS_VOID                           *pMsg
 )
@@ -11734,21 +9188,7 @@ VOS_UINT32 AT_RcvMtaWrrFreqLockSetCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaWrrFreqLockQryCnf
- 功能描述  : 通过at命令^FREQLOCK查询锁频信息后，收到MTAde回复
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月30日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaWrrFreqLockQryCnf(
     VOS_VOID                           *pMsg
 )
@@ -11825,21 +9265,7 @@ VOS_UINT32 AT_RcvMtaWrrFreqLockQryCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaWrrRrcVersionSetCnf
- 功能描述  : 通过at命令^HSPA设置RRC VERSION信息后，收到MTA的回复
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月30日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaWrrRrcVersionSetCnf(
     VOS_VOID                           *pMsg
 )
@@ -11901,21 +9327,7 @@ VOS_UINT32 AT_RcvMtaWrrRrcVersionSetCnf(
 
 
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaWrrRrcVersionQryCnf
- 功能描述  : 通过at命令^HSPA查询RRC VERSION信息后，收到MTA的回复
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月30日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaWrrRrcVersionQryCnf(
     VOS_VOID                           *pMsg
 )
@@ -11980,24 +9392,7 @@ VOS_UINT32 AT_RcvMtaWrrRrcVersionQryCnf(
     return VOS_OK;
 }
 
-/* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, begin */
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaAcInfoQueryCnf
- 功能描述  : AT_MMA_AC_INFO_QUERY_CNF消息处理函数
- 输入参数  : VOS_VOID *pstMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2015年03月24日
-    作    者   : K00902809
-    修改内容   : Changed the structure to TAF_MMA_AC_INFO_QRY_CNF_STRU
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaAcInfoQueryCnf(VOS_VOID *pstMsg)
 {
     TAF_MMA_AC_INFO_QRY_CNF_STRU       *pstAcInfoQueryCnf;
@@ -12078,24 +9473,8 @@ VOS_UINT32 AT_RcvMmaAcInfoQueryCnf(VOS_VOID *pstMsg)
     return VOS_OK;
 }
 
-/* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, end */
 
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-1, begin */
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaQryCurcCnf
- 功能描述  : AT收到MTA ID_MTA_AT_QRY_CURC_CNF消息处理函数
- 输入参数  : VOS_VOID *pstMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月1日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaQryCurcCnf(VOS_VOID *pstMsg)
 {
     AT_MTA_MSG_STRU                        *pstRcvMsg          = VOS_NULL_PTR;
@@ -12180,21 +9559,7 @@ VOS_UINT32 AT_RcvMtaQryCurcCnf(VOS_VOID *pstMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaSetUnsolicitedRptCnf
- 功能描述  : AT收到MTA ID_MTA_AT_SET_UNSOLICITED_RPT_CNF消息处理函数
- 输入参数  : VOS_VOID *pstMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月1日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaSetUnsolicitedRptCnf(VOS_VOID *pstMsg)
 {
     AT_MTA_MSG_STRU                        *pstRcvMsg            = VOS_NULL_PTR;
@@ -12250,24 +9615,7 @@ VOS_UINT32 AT_RcvMtaSetUnsolicitedRptCnf(VOS_VOID *pstMsg)
 
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaQryUnsolicitedRptCnf
- 功能描述  : AT收到MTA AT收到ID_MTA_AT_QRY_UNSOLICITED_RPT_CNF消息处理函数消息处理函数
- 输入参数  : VOS_VOID *pstMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月1日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2013年5月25日
-    作    者   : s00217060
-    修改内容   : DTS2013052406352
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaQryUnsolicitedRptCnf(VOS_VOID *pstMsg)
 {
     AT_MTA_MSG_STRU                        *pstRcvMsg            = VOS_NULL_PTR;
@@ -12323,25 +9671,7 @@ VOS_UINT32 AT_RcvMtaQryUnsolicitedRptCnf(VOS_VOID *pstMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_ProcMtaUnsolicitedRptQryCnf
- 功能描述  : AT处理查询消息函数
- 输入参数  : VOS_VOID *pstMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月1日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2013年5月25日
-    作    者   : s00217060
-    修改内容   : for DTS2013052406352:
-                 ucIndex错误，副卡设置at^time=0,查询时显示+ctzr: 0
-
-*****************************************************************************/
 VOS_UINT32 AT_ProcMtaUnsolicitedRptQryCnf(
     VOS_UINT8                               ucIndex,
     VOS_VOID                               *pstMsg
@@ -12408,28 +9738,8 @@ VOS_UINT32 AT_ProcMtaUnsolicitedRptQryCnf(
     return ulResult;
 }
 
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-1, end */
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaCerssiInfoQueryCnf
- 功能描述  : TAF_MMA_CERSSI_INFO_QUERY_CNF_STRU消息处理函数
- 输入参数  : VOS_VOID *pstMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月4日
-    作    者   : z00161729
-    修改内容   : 新生成函数
- 2.日    期   : 2013年4月20日
-   作    者   : z00161729
-   修改内容   : 主动上报AT命令控制下移至C核及mma和mmc接口调整
-  3.日    期   : 2015年4月10日
-    作    者   : h00313353
-    修改内容   : SysCfg重构
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaCerssiInfoQueryCnf(VOS_VOID *pstMsg)
 {
     TAF_MMA_CERSSI_INFO_QRY_CNF_STRU   *pstCerssiInfoQueryCnf = VOS_NULL_PTR;
@@ -12475,7 +9785,6 @@ VOS_UINT32 AT_RcvMmaCerssiInfoQueryCnf(VOS_VOID *pstMsg)
     }
     else
     {
-        /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-20, begin */
         if (TAF_MMA_RAT_GSM == pstCerssiInfoQueryCnf->stCerssi.enRatType)
         {
             usLength += (VOS_UINT16)At_sprintf(AT_CMD_MAX_LEN,
@@ -12560,7 +9869,6 @@ VOS_UINT32 AT_RcvMmaCerssiInfoQueryCnf(VOS_VOID *pstMsg)
             }
         }
 
-        /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-20, end */
 
 #if ( FEATURE_ON == FEATURE_LTE )
         if (TAF_MMA_RAT_LTE == pstCerssiInfoQueryCnf->stCerssi.enRatType)
@@ -12619,21 +9927,7 @@ VOS_UINT32 AT_RcvMmaCerssiInfoQueryCnf(VOS_VOID *pstMsg)
 
 
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaBodySarSetCnf
- 功能描述  : AT_MMA_AC_INFO_QUERY_CNF消息处理函数
- 输入参数  : VOS_VOID *pstMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年03月11日
-    作    者   : z00214637
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaBodySarSetCnf(VOS_VOID *pstMsg)
 {
     AT_MTA_MSG_STRU                    *pRcvMsg             = VOS_NULL_PTR;
@@ -12695,24 +9989,7 @@ VOS_UINT32 AT_RcvMtaBodySarSetCnf(VOS_VOID *pstMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_ReportResetCmd
- 功能描述  : 上报^RESET命令
- 输入参数  : enCause复位原因值
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
-  1.日    期   : 2013年04月17日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年5月27日
-    作    者   : l00198894
-    修改内容   : TSTS
-*****************************************************************************/
 VOS_VOID AT_ReportResetCmd(AT_RESET_REPORT_CAUSE_ENUM_UINT32 enCause)
 {
     VOS_UINT16                          usLength;
@@ -12744,26 +10021,7 @@ VOS_VOID AT_ReportResetCmd(AT_RESET_REPORT_CAUSE_ENUM_UINT32 enCause)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_StopAllTimer
- 功能描述  : 停止AT所有的定时器
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2013年04月19日
-   作    者   : f00179208
-   修改内容   : 新生成函数
- 2.日    期   : 2013年07月11日
-   作    者   : l00198894
-   修改内容   : V9R1 STK升级项目
- 3.日    期   : 2014年03月13日
-   作    者   : f00179208
-   修改内容   : DTS2014031305234: AT命令设置和查询定时器没有停止
-*****************************************************************************/
 VOS_VOID AT_StopAllTimer(VOS_VOID)
 {
     VOS_UINT8                           ucModemIndex;
@@ -12787,7 +10045,6 @@ VOS_VOID AT_StopAllTimer(VOS_VOID)
             pstCcCtx->stS0TimeInfo.ulTimerName = 0;
         }
 
-        /* Deleted by l00198894 for V9R1 STK升级, 2013/07/11 */
     }
 
     for (ucClientIndex = 0; ucClientIndex < AT_MAX_CLIENT_NUM; ucClientIndex++)
@@ -12802,20 +10059,7 @@ VOS_VOID AT_StopAllTimer(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_ResetParseCtx
- 功能描述  : 重置PHARE CTX
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2013年04月19日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_ResetParseCtx(VOS_VOID)
 {
     VOS_UINT8                           ucClientIndex;
@@ -12849,32 +10093,7 @@ VOS_VOID AT_ResetParseCtx(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_ResetClientTab
- 功能描述  : 重置CLIENT TAB
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2013年04月19日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-
- 2.日    期   : 2013年05月22日
-   作    者   : f00179208
-   修改内容   : V3R3 PPP PROJECT
-
-  3.日    期   : 2013年11月12日
-    作    者   : A00165503
-    修改内容   : UART-MODEM: 增加HSAURT端口
-
-  4.日    期   : 2015年5月27日
-    作    者   : l00198894
-    修改内容   : TSTS
-*****************************************************************************/
 VOS_VOID AT_ResetClientTab(VOS_VOID)
 {
     VOS_UINT8                           ucLoop;
@@ -12989,20 +10208,7 @@ VOS_VOID AT_ResetClientTab(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : AT_ResetOtherCtx
- 功能描述  : 重置散落在各文件的全局变量
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2013年06月03日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_ResetOtherCtx(VOS_VOID)
 {
     /* <CR> */
@@ -13031,24 +10237,7 @@ VOS_VOID AT_ResetOtherCtx(VOS_VOID)
     gucAtXType      = 0;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvCcpuResetStartInd
- 功能描述  : AT收到AT消息ID_CCPU_AT_RESET_START_IND的处理
- 输入参数  : pMsg:消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2013年04月17日
-   作    者   : f00179208
-   修改内容   : 新生成函数
- 2.日    期   : 2013年6月1日
-    作    者   : z60575
-    修改内容   : DTS2012060100769，modem state新增接口
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvCcpuResetStartInd(
     VOS_VOID                           *pstMsg
 )
@@ -13122,20 +10311,7 @@ VOS_UINT32 AT_RcvCcpuResetStartInd(
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : AT_RcvCcpuResetEndInd
- 功能描述  : AT收到AT消息ID_CCPU_AT_RESET_END_IND的处理
- 输入参数  : pMsg:消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2013年04月17日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_RcvCcpuResetEndInd(
     VOS_VOID                           *pstMsg
 )
@@ -13158,20 +10334,7 @@ VOS_UINT32 AT_RcvCcpuResetEndInd(
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : AT_RcvHifiResetStartInd
- 功能描述  : AT收到AT消息ID_HIFI_AT_RESET_START_IND的处理
- 输入参数  : pMsg:消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2013年04月17日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_RcvHifiResetStartInd(
     VOS_VOID                           *pstMsg
 )
@@ -13188,21 +10351,7 @@ VOS_UINT32 AT_RcvHifiResetStartInd(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvHifiResetEndInd
- 功能描述  : AT收到AT消息ID_HIFI_AT_RESET_END_IND的处理
- 输入参数  : VOS_VOID                           *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月4日
-    作    者   : s00190137
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvHifiResetEndInd(
     VOS_VOID                           *pstMsg
 )
@@ -13217,20 +10366,7 @@ VOS_UINT32 AT_RcvHifiResetEndInd(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SpyMsgProc
- 功能描述  : AT Spy Pid消息处理函数
- 输入参数  : VOS_VOID *pstMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年04月17日
-    作    者   : z00214637
-    修改内容   : 从at_lte_eventreport.c移植
-*****************************************************************************/
 VOS_UINT32 AT_SpyMsgProc(VOS_VOID* pstMsg)
 {
     VOS_UINT32 ulRet = VOS_OK;
@@ -13256,24 +10392,7 @@ VOS_UINT32 AT_SpyMsgProc(VOS_VOID* pstMsg)
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvTempprtStatusInd
- 功能描述  : 温保主动上报状态消息处理函数
- 输入参数  : VOS_VOID *pstMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年04月17日
-    作    者   : z00214637
-    修改内容   : 新生成函数
-  2.日    期   : 2013年10月08日
-    作    者   : j00174725
-    修改内容   : TQE
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvTempprtStatusInd(VOS_VOID *pMsg)
 {
     TEMP_PROTECT_EVENT_AT_IND_STRU     *pstTempPrt = VOS_NULL_PTR;
@@ -13312,21 +10431,7 @@ VOS_UINT32 AT_RcvTempprtStatusInd(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaImeiVerifyQryCnf
- 功能描述  : 收到IMEI校验查询的处理
- 输入参数  : pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年05月23日
-    作    者   : Y00213812
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaImeiVerifyQryCnf(VOS_VOID *pstMsg)
 {
     AT_MTA_MSG_STRU                    *pRcvMsg       = VOS_NULL_PTR;
@@ -13379,21 +10484,7 @@ VOS_UINT32 AT_RcvMtaImeiVerifyQryCnf(VOS_VOID *pstMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaCgsnQryCnf
- 功能描述  : 收到UE信息上报的处理
- 输入参数  : pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年05月23日
-    作    者   : Y00213812
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaCgsnQryCnf(VOS_VOID *pstMsg)
 {
     VOS_UINT32                          ulI;
@@ -13459,29 +10550,7 @@ VOS_UINT32 AT_RcvMtaCgsnQryCnf(VOS_VOID *pstMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaCopnInfoQueryCnf
- 功能描述  : TAF_MMA_COPN_INFO_QUERY_CNF_STRU消息处理函数
- 输入参数  : VOS_VOID *pMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年05月06日
-    作    者   : f62575
-    修改内容   : SS FDN&Call Control项目，支持+COPN命令
-  2.日    期   : 2013年05月24日
-    作    者   : W00176964
-    修改内容   : SS FDN&Call Control项目:UT修改,增加逗号分隔符
-  3.日    期   : 2014年01月15日
-    作    者   : f62575
-    修改内容   : DTS2014011301359: 接收方PID由原来的WUEPS_PID_MMA修改为I0_WUEPS_PID_MMA
-  4.日    期   : 2015年03月24日
-    作    者   : K00902809
-    修改内容   : Added new structure TAF_MMA_COPN_INFO_QRY_CNF_STRU.
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaCopnInfoQueryCnf(VOS_VOID *pMsg)
 {
     TAF_MMA_COPN_INFO_QRY_CNF_STRU     *pstCopnInfo = VOS_NULL_PTR;
@@ -13618,21 +10687,7 @@ VOS_UINT32 AT_RcvMmaCopnInfoQueryCnf(VOS_VOID *pMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaSetNCellMonitorCnf
- 功能描述  : AT收到MTA ID_MTA_AT_SET_NCELL_MONITOR_CNF消息处理函数
- 输入参数  : VOS_VOID *pstMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月31日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaSetNCellMonitorCnf(VOS_VOID *pstMsg)
 {
     AT_MTA_MSG_STRU                        *pstRcvMsg = VOS_NULL_PTR;
@@ -13688,21 +10743,7 @@ VOS_UINT32 AT_RcvMtaSetNCellMonitorCnf(VOS_VOID *pstMsg)
 
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaQryNCellMonitorCnf
- 功能描述  : AT收到MTA ID_MTA_AT_NCELL_MONITOR_QRY_CNF消息处理函数
- 输入参数  : VOS_VOID *pstMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月4日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaQryNCellMonitorCnf(VOS_VOID *pstMsg)
 {
     AT_MTA_MSG_STRU                        *pstRcvMsg      = VOS_NULL_PTR;
@@ -13771,21 +10812,7 @@ VOS_UINT32 AT_RcvMtaQryNCellMonitorCnf(VOS_VOID *pstMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaNCellMonitorInd
- 功能描述  : AT收到MTA ID_MTA_AT_NCELL_MONITOR_IND消息处理函数
- 输入参数  : VOS_VOID *pstMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月4日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaNCellMonitorInd(VOS_VOID *pstMsg)
 {
     AT_MTA_MSG_STRU                        *pstRcvMsg      = VOS_NULL_PTR;
@@ -13820,24 +10847,7 @@ VOS_UINT32 AT_RcvMtaNCellMonitorInd(VOS_VOID *pstMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaSimInsertRsp
- 功能描述  : SIMINSERT设置命令的返回处理
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月4日
-    作    者   : s00190137
-    修改内容   : 新生成函数
-  2.日    期   : 2015年03月24日
-    作    者   : K00902809
-    修改内容   : Added structure TAF_MMA_SIM_INSERT_CNF_STRU instead of TAF_MMA_SIM_INSERT_RSP_STRU
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaSimInsertRsp(VOS_VOID *pMsg)
 {
     TAF_MMA_SIM_INSERT_CNF_STRU        *pstSimInsertRsp = VOS_NULL_PTR;
@@ -13886,20 +10896,7 @@ VOS_UINT32 AT_RcvMmaSimInsertRsp(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaRefclkfreqSetCnf
- 功能描述  : AT模块收到MTA回复的REFCLKFREQ_SET_CNF消息的处理函数
- 输入参数  : pstMsg -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月22日
-    作    者   : l00198894
-    修改内容   : V9R1 AGPS
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaRefclkfreqSetCnf(VOS_VOID *pMsg)
 {
     /* 定义局部变量 */
@@ -13955,20 +10952,7 @@ VOS_UINT32 AT_RcvMtaRefclkfreqSetCnf(VOS_VOID *pMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaRficSsiRdQryCnf
- 功能描述  : AT模块收到MTA回复的RFIC SSIRD消息的处理函数
- 输入参数  : pMsg -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月29日
-    作    者   : x00316382
-    修改内容   : 新增
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaRficSsiRdQryCnf(VOS_VOID *pMsg)
 {
     /* 定义局部变量 */
@@ -14016,20 +11000,7 @@ VOS_UINT32 AT_RcvMtaRficSsiRdQryCnf(VOS_VOID *pMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaRefclkfreqQryCnf
- 功能描述  : AT模块收到MTA回复的REFCLKFREQ_QRY_CNF消息的处理函数
- 输入参数  : pMsg -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月22日
-    作    者   : l00198894
-    修改内容   : V9R1 AGPS
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaRefclkfreqQryCnf(VOS_VOID *pMsg)
 {
     /* 定义局部变量 */
@@ -14092,20 +11063,7 @@ VOS_UINT32 AT_RcvMtaRefclkfreqQryCnf(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaRefclkfreqInd
- 功能描述  : AT模块收到MTA回复的REFCLKFREQ_IND消息的处理函数
- 输入参数  : pstMsg -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月22日
-    作    者   : l00198894
-    修改内容   : V9R1 AGPS
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaRefclkfreqInd(VOS_VOID *pMsg)
 {
     /* 定义局部变量 */
@@ -14141,21 +11099,7 @@ VOS_UINT32 AT_RcvMtaRefclkfreqInd(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaHandleDectSetCnf
- 功能描述  : 处理MTA设置cp侧手持位置CNF消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月8日
-    作    者   : M00217266
-    修改内容   : AP Sensor:
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaHandleDectSetCnf(
     VOS_VOID                           *pMsg
 )
@@ -14210,21 +11154,7 @@ VOS_UINT32 AT_RcvMtaHandleDectSetCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaHandleDectQryCnf
- 功能描述  : 处理MTA查询cp侧手持位置CNF消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月8日
-    作    者   : M00217266
-    修改内容   : AP Sensor:
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaHandleDectQryCnf(
     VOS_VOID                           *pMsg
 )
@@ -14288,20 +11218,7 @@ VOS_UINT32 AT_RcvMtaHandleDectQryCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaPsTransferInd
- 功能描述  : 上报^PSTRANSFER命令通知应用执行PS域迁移流程
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月21日
-    作    者   : l00198894
-    修改内容   : V9R1C50 SVLTE离网重选项目新增
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaPsTransferInd(
     VOS_VOID                           *pMsg
 )
@@ -14335,20 +11252,7 @@ VOS_UINT32 AT_RcvMtaPsTransferInd(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaMipiInfoInd
- 功能描述  : ^mipiclk主动上报通知应用层控制LCD
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年03月04日
-    作    者   : j00174725
-    修改内容   : RF&LCD INTRUSION项目新增
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaMipiInfoInd(
     VOS_VOID                           *pMsg
 )
@@ -14383,20 +11287,7 @@ VOS_UINT32 AT_RcvMtaMipiInfoInd(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaMipiInfoCnf
- 功能描述  : 回复^mipiclk查询通知应用层控制LCD
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年03月04日
-    作    者   : j00174725
-    修改内容   : RF&LCD INTRUSION项目新增
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaMipiInfoCnf(
     VOS_VOID                           *pMsg
 )
@@ -14456,20 +11347,7 @@ VOS_UINT32 AT_RcvMtaMipiInfoCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvSwitchCmdModeMsg
- 功能描述  : 处理端口切换命令模式消息
- 输入参数  : ucIndex - 端口索引号
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月23日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_RcvSwitchCmdModeMsg(VOS_UINT8 ucIndex)
 {
     AT_UART_LINE_CTRL_STRU             *pstLineCtrl = VOS_NULL_PTR;
@@ -14510,20 +11388,7 @@ VOS_VOID AT_RcvSwitchCmdModeMsg(VOS_UINT8 ucIndex)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvWaterLowMsg
- 功能描述  : 端口TX达到低水线消息处理
- 输入参数  : ucIndex --- 端口索引号
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月12日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_RcvWaterLowMsg(VOS_UINT8 ucIndex)
 {
     AT_UART_CTX_STRU                   *pstUartCtx = VOS_NULL_PTR;
@@ -14552,20 +11417,7 @@ VOS_VOID AT_RcvWaterLowMsg(VOS_UINT8 ucIndex)
 }
 
 #if (FEATURE_ON == FEATURE_DSDS)
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaPsProtectSetCnf
- 功能描述  : AT模块收到MTA发来的ID_MTA_AT_RRC_PROTECT_PS_CNF请求消息的处理函数
- 输入参数  : pMsg   -- MTA发送的消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月25日
-    作    者   : y00176023
-    修改内容   : 新增^PSPROTECTMODE命令
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaPsProtectSetCnf(VOS_VOID *pMsg)
 {
     /* 定义局部变量 */
@@ -14619,20 +11471,7 @@ VOS_UINT32 AT_RcvMtaPsProtectSetCnf(VOS_VOID *pMsg)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaPhyInitCnf
- 功能描述  : AT模块收到MTA发来的 ID_MTA_AT_PHY_INIT_CNF确认消息的处理函数
- 输入参数  : pMsg   -- MTA发送的消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月25日
-    作    者   : y00176023
-    修改内容   : 新增^PHYINIT命令
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaPhyInitCnf(VOS_VOID *pMsg)
 {
     /* 定义局部变量 */
@@ -14687,24 +11526,7 @@ VOS_UINT32 AT_RcvMtaPhyInitCnf(VOS_VOID *pMsg)
 
 
 
-/* Added by l00198894 for 新增+ECID命令, 2013-12-09, begin */
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaEcidSetCnf
- 功能描述  : AT模块收到MTA回复的ECID_SET_CNF消息的处理函数
- 输入参数  : pstMsg -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月10日
-    作    者   : l00198894
-    修改内容   : 新增+ECID命令
-  2.日    期   : 2015年05月20日
-    作    者   : j00174725
-    修改内容   : DTS2015052207518
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaEcidSetCnf(VOS_VOID *pMsg)
 {
     /* 定义局部变量 */
@@ -14771,25 +11593,9 @@ VOS_UINT32 AT_RcvMtaEcidSetCnf(VOS_VOID *pMsg)
 
     return VOS_OK;
 }
-/* Added by l00198894 for 新增+ECID命令, 2013-12-09, end */
 
-/* Added by s00261364 for L-C互操作项目, 2014-1-27, begin */
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaSysCfgSetCnf
- 功能描述  : 处理来自MMA模块ID_TAF_MMA_SYS_CFG_CNF消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月24日
-    作    者   : s00261364
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaSysCfgSetCnf(
     VOS_VOID                           *pMsg
 )
@@ -14836,26 +11642,7 @@ VOS_UINT32 AT_RcvMmaSysCfgSetCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaPhoneModeSetCnf
- 功能描述  : 处理来自MMA模块ID_TAF_MMA_PHONE_MODE_SET_CNF消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月27日
-    作    者   : s00261364
-    修改内容   : 新生成函数
-  2.日    期   : 2015年4月10日
-    作    者   : h00313353
-    修改内容   : SysCfg重构
-  3.日    期   : 2015年7月23日
-    作    者   : wx270776
-    修改内容   : OM融合
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaPhoneModeSetCnf(
     VOS_VOID                           *pMsg
 )
@@ -14906,9 +11693,7 @@ VOS_UINT32 AT_RcvMmaPhoneModeSetCnf(
     }
 
 
-    /* Deleted by wx270776 for OM融合, 2015-7-9, begin */
 
-    /* Deleted by wx270776 for OM融合, 2015-7-9, end */
 
     /* V7R2 ^PSTANDBY命令复用关机处理流程 */
 #ifdef FEATURE_UPGRADE_TL
@@ -14950,21 +11735,7 @@ VOS_UINT32 AT_RcvMmaPhoneModeSetCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaDetachCnf
- 功能描述  : 处理来自MMA模块ID_TAF_MMA_DETACH_CNF消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月27日
-    作    者   : s00261364
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaDetachCnf(
     VOS_VOID                           *pMsg
 )
@@ -15010,23 +11781,8 @@ VOS_UINT32 AT_RcvMmaDetachCnf(
     return VOS_OK;
 }
 
-/* Added by s00261364 for L-C互操作项目, 2014-1-27, end */
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaAttachCnf
- 功能描述  : AT收到MMA Attach Cnf消息的处理
- 输入参数  : void    *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_OK:成功 VOS_ERR:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月9日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaAttachCnf(
     VOS_VOID                           *pstMsg
 )
@@ -15074,21 +11830,7 @@ VOS_UINT32 AT_RcvMmaAttachCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaAttachStatusQryCnf
- 功能描述  : AT收到MMA ATTACH QRY STATUS CNF消息的处理
- 输入参数  : 无
- 输出参数  : VOS_OK:成功 VOS_ERR:失败
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月9日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaAttachStatusQryCnf(
     VOS_VOID                           *pstMsg
 )
@@ -15165,22 +11907,8 @@ VOS_UINT32 AT_RcvMmaAttachStatusQryCnf(
 }
 
 
-/* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
-/*****************************************************************************
-函 数 名  : AT_RcvVcMsgSetMsdCnfProc
-功能描述  : VC回复AT 设置eCall消息的处理函数
-输入参数  : MN_AT_IND_EVT_STRU   *pstData
-输出参数  : 无
-返 回 值  : VOS_UINT32
-调用函数  :
-被调函数  :
 
-修订记录  :
-  1.日    期   : 2014年3月27日
-    作    者   : j00174725
-    修改内容   : V3R3C60_eCall项目
-*****************************************************************************/
 VOS_UINT32 AT_RcvVcMsgSetMsdCnfProc(
     MN_AT_IND_EVT_STRU                 *pstData
 )
@@ -15229,20 +11957,7 @@ VOS_UINT32 AT_RcvVcMsgSetMsdCnfProc(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : AT_RcvVcMsgQryMsdCnfProc
-功能描述  : VC回复AT 查询eCall MSD 消息的处理函数
-输入参数  : MN_AT_IND_EVT_STRU   *pstData
-输出参数  : 无
-返 回 值  : VOS_UINT32
-调用函数  :
-被调函数  :
 
-修订记录  :
-  1.日    期   : 2014年3月27日
-    作    者   : j00174725
-    修改内容   : V3R3C60_eCall项目
-*****************************************************************************/
 VOS_UINT32 AT_RcvVcMsgQryMsdCnfProc(
     MN_AT_IND_EVT_STRU                 *pstData
 )
@@ -15315,20 +12030,7 @@ VOS_UINT32 AT_RcvVcMsgQryMsdCnfProc(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : AT_RcvVcMsgQryEcallCfgCnfProc
-功能描述  : VC回复AT 查询eCall 配置消息的处理函数
-输入参数  : MN_AT_IND_EVT_STRU   *pstData
-输出参数  : 无
-返 回 值  : VOS_UINT32
-调用函数  :
-被调函数  :
 
-修订记录  :
-  1.日    期   : 2014年3月27日
-    作    者   : j00174725
-    修改内容   : V3R3C60_eCall项目
-*****************************************************************************/
 VOS_UINT32 AT_RcvVcMsgQryEcallCfgCnfProc(
     MN_AT_IND_EVT_STRU                 *pstData
 )
@@ -15387,28 +12089,10 @@ VOS_UINT32 AT_RcvVcMsgQryEcallCfgCnfProc(
     return VOS_OK;
 }
 #endif
-/* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, end */
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaCLocInfoQueryCnf
- 功能描述  : TAF_MMA_CLOCINFO_QUERY_CNF_STRU消息处理函数,^ClocInfo查询结果
- 输入参数  : VOS_VOID *pstMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月28日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-  2.日    期   : 2015年03月25日
-    作    者   : K00902809
-    修改内容   : Changed the structre to  TAF_MMA_CDMA_LOCINFO_QRY_CNF_STRU
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaCLocInfoQueryCnf(
     VOS_VOID                           *pstMsg
 )
@@ -15489,21 +12173,7 @@ VOS_UINT32 AT_RcvMmaCLocInfoQueryCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaCSidNidInd
- 功能描述  : TAF_MMA_CSIDNID_IND_STRU消息处理函数,^CSidNid主动上报
- 输入参数  : VOS_VOID *pstMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月28日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaCSidInd(
     VOS_VOID                           *pstMsg
 )
@@ -15537,21 +12207,7 @@ VOS_UINT32 AT_RcvMmaCSidInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaEmcCallBackNtf
- 功能描述  : emc call back 主动上报
- 输入参数  : VOS_VOID *pstMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月14日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaEmcCallBackNtf(
     VOS_VOID                           *pstMsg
 )
@@ -15584,21 +12240,7 @@ VOS_UINT32 AT_RcvMmaEmcCallBackNtf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaQuitCallBackCnf
- 功能描述  : 上报退出callback模式的结果
- 输入参数  : VOS_VOID *pstMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月10日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaQuitCallBackCnf(
     VOS_VOID                           *pMsg
 )
@@ -15649,21 +12291,7 @@ VOS_UINT32 AT_RcvMmaQuitCallBackCnf(
     At_FormatResultData(ucIndex, ulResult);
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaQryEmcCallBackCnf
- 功能描述  : 上报emc callback模式查询结果
- 输入参数  : VOS_VOID *pstMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月14日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaQryEmcCallBackCnf(
     VOS_VOID                           *pMsg
 )
@@ -15723,21 +12351,7 @@ VOS_UINT32 AT_RcvMmaQryEmcCallBackCnf(
     At_FormatResultData(ucIndex, ulResult);
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaSetCSidListCnf
- 功能描述  : set csidlist cnf msg proc
- 输入参数  : VOS_VOID *pstMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月13日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaSetCSidListCnf(
     VOS_VOID                           *pMsg
 )
@@ -15789,21 +12403,7 @@ VOS_UINT32 AT_RcvMmaSetCSidListCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaQryCurrSidNidCnf
- 功能描述  : 上报home sid nid模式查询结果
- 输入参数  : VOS_VOID *pstMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaQryCurrSidNidCnf(
     VOS_VOID                           *pMsg
 )
@@ -15867,21 +12467,7 @@ VOS_UINT32 AT_RcvMmaQryCurrSidNidCnf(
 }
 #if (FEATURE_ON == FEATURE_CHINA_TELECOM_VOICE_ENCRYPT)
 
-/*****************************************************************************
- 函 数 名  : AT_RcvXcallEncryptCallCnf
- 功能描述  : xcall 处理密话请求回复消息处理
- 输入参数  : VOS_VOID *pstMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月24日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvXcallEncryptCallCnf(
     VOS_VOID                                               *pstMsg
 )
@@ -15945,21 +12531,7 @@ VOS_UINT32 AT_RcvXcallEncryptCallCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvXcallEncryptCallInd
- 功能描述  : 密话呼叫主动上报
- 输入参数  : VOS_VOID *pstMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月24日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvXcallEncryptCallInd(
     VOS_VOID                           *pstMsg
 )
@@ -16033,21 +12605,7 @@ VOS_UINT32 AT_RcvXcallEncryptCallInd(
     return VOS_OK;
 
 }
-/*****************************************************************************
- 函 数 名  : AT_RcvXcallEcRemoteCtrlInd
- 功能描述  : 远程控制命令上报
- 输入参数  : VOS_VOID *pstMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月24日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvXcallEccRemoteCtrlInd(
     VOS_VOID                           *pstMsg
 )
@@ -16080,21 +12638,7 @@ VOS_UINT32 AT_RcvXcallEccRemoteCtrlInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvXcallRemoteCtrlAnsCnf
- 功能描述  : 远程控制指令执行完后，短信通知kmc后回复消息
- 输入参数  : VOS_VOID *pstMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月24日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvXcallRemoteCtrlAnsCnf(
     VOS_VOID                           *pstMsg
 )
@@ -16145,21 +12689,7 @@ VOS_UINT32 AT_RcvXcallRemoteCtrlAnsCnf(
     return VOS_OK;
 
 }
-/*****************************************************************************
- 函 数 名  : AT_RcvXcallEccCapSetCnf
- 功能描述  : 配置modem密话能力cnf消息处理
- 输入参数  : VOS_VOID *pstMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月24日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvXcallEccCapSetCnf(
     VOS_VOID                           *pstMsg
 )
@@ -16211,21 +12741,7 @@ VOS_UINT32 AT_RcvXcallEccCapSetCnf(
     return VOS_OK;
 
 }
-/*****************************************************************************
- 函 数 名  : AT_RcvXcallEccCapQryCnf
- 功能描述  : 查询modem密话能力cnf消息处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月24日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvXcallEccCapQryCnf(
     VOS_VOID                           *pstMsg
 )
@@ -16301,21 +12817,7 @@ VOS_UINT32 AT_RcvXcallEccCapQryCnf(
 
 }
 #if (FEATURE_ON == FEATURE_CHINA_TELECOM_VOICE_ENCRYPT_TEST_MODE)
-/*****************************************************************************
- 函 数 名  : AT_RcvXcallSetEccTestModeCnf
- 功能描述  : 密话测试模式设置结果回复
- 功能描述  : 查询modem密话能力cnf消息处理
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月24日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvXcallSetEccTestModeCnf(
     VOS_VOID                           *pstMsg
 )
@@ -16367,21 +12869,7 @@ VOS_UINT32 AT_RcvXcallSetEccTestModeCnf(
     return VOS_OK;
 
 }
-/*****************************************************************************
- 函 数 名  : AT_RcvXcallQryEccTestModeCnf
- 功能描述  : 查询当前是否是密话测试模式
- 输入参数  : VOS_VOID *pstMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月24日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvXcallQryEccTestModeCnf(
     VOS_VOID                           *pstMsg
 )
@@ -16442,21 +12930,7 @@ VOS_UINT32 AT_RcvXcallQryEccTestModeCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvXcallQryEccRandomCnf
- 功能描述  : 密话测试模式下获取随机数
- 输入参数  : VOS_VOID *pstMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月24日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvXcallQryEccRandomCnf(
     VOS_VOID                           *pstMsg
 )
@@ -16547,21 +13021,7 @@ VOS_UINT32 AT_RcvXcallQryEccRandomCnf(
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : AT_RcvXcallQryEccKmcCnf
- 功能描述  : 密话测试模式下查询kmc
- 输入参数  : VOS_VOID *pstMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月26日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvXcallQryEccKmcCnf(
     VOS_VOID                           *pstMsg
 )
@@ -16634,21 +13094,7 @@ VOS_UINT32 AT_RcvXcallQryEccKmcCnf(
     return VOS_OK;
 
 }
-/*****************************************************************************
- 函 数 名  : AT_RcvXcallSetEccKmcCnf
- 功能描述  : 密话测试模式下设置kmc返回结果
- 输入参数  : VOS_VOID *pstMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月26日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvXcallSetEccKmcCnf(
     VOS_VOID                           *pstMsg
 )
@@ -16701,21 +13147,7 @@ VOS_UINT32 AT_RcvXcallSetEccKmcCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvXcallEncryptedVoiceDataInd
- 功能描述  : 测试模式下，把测试数据写入文件
- 输入参数  : VOS_VOID *pstMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月26日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvXcallEncryptedVoiceDataInd(
     VOS_VOID                                               *pstMsg
 )
@@ -16808,21 +13240,7 @@ VOS_UINT32 AT_RcvXcallEncryptedVoiceDataInd(
 
 #endif
 #endif
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaClocinfoInd
- 功能描述  : TAF_MMA_CLOCINFO_IND_STRU消息处理函数,^CLOCINFO主动上报
- 输入参数  : VOS_VOID *pstMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月28日
-    作    者   : l00359089
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaClocinfoInd(
     VOS_VOID                           *pMsg
 )
@@ -16862,21 +13280,7 @@ VOS_UINT32 AT_RcvMmaClocinfoInd(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvXcallPrivacyModeSetCnf
- 功能描述  : 处理privacy mode设置结果
- 输入参数  : VOS_VOID *pstMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月24日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvXcallPrivacyModeSetCnf(
     VOS_VOID                                               *pstMsg
 )
@@ -16928,21 +13332,7 @@ VOS_UINT32 AT_RcvXcallPrivacyModeSetCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvXcallPrivacyModeQryCnf
- 功能描述  : 处理privacy mode查询结果
- 输入参数  : VOS_VOID *pstMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月24日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvXcallPrivacyModeQryCnf(
     VOS_VOID                           *pstMsg
 )
@@ -17009,21 +13399,7 @@ VOS_UINT32 AT_RcvXcallPrivacyModeQryCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvXcallPrivacyModeInd
- 功能描述  : 处理privacy mode指示
- 输入参数  : VOS_VOID *pstMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月24日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvXcallPrivacyModeInd(
     VOS_VOID                           *pstMsg
 )
@@ -17059,21 +13435,7 @@ VOS_UINT32 AT_RcvXcallPrivacyModeInd(
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaCTimeInd
- 功能描述  : TAF_MMA_CTIME_IND_STRU消息处理函数,^CTIME时间上报
- 输入参数  : VOS_VOID *pstMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月26?
-    作    者   : x00314862
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaCTimeInd(
     VOS_VOID                           *pstMsg
 )
@@ -17146,21 +13508,7 @@ VOS_UINT32 AT_RcvMmaCTimeInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaCFreqLockSetCnf
- 功能描述  : 设置锁频结果上报
- 输入参数  : VOS_VOID *pstMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月29日
-    作    者   : y00307564
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaCFreqLockSetCnf(
     VOS_VOID                           *pstMsg
 )
@@ -17213,24 +13561,7 @@ VOS_UINT32 AT_RcvMmaCFreqLockSetCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaCFreqLockQueryCnf
- 功能描述  : 查询锁频结果上报
- 输入参数  : VOS_VOID *pstMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月29日
-    作    者   : y00307564
-    修改内容   : 新生成函数
-  2.日    期   : 2015年02月05日
-    作    者   : y00307564
-    修改内容   : Iteration 8 修改
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaCFreqLockQueryCnf(
     VOS_VOID                           *pstMsg
 )
@@ -17304,21 +13635,7 @@ VOS_UINT32 AT_RcvMmaCFreqLockQueryCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaCdmaCsqSetCnf
- 功能描述  : 处理来自MMA模块ID_TAF_MMA_CDMACSQ_SET_CNF消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月25日
-    作    者   : m00312079
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaCdmaCsqSetCnf(
     VOS_VOID                           *pMsg
 )
@@ -17363,25 +13680,7 @@ VOS_UINT32 AT_RcvMmaCdmaCsqSetCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaCdmaCsqQryCnf
- 功能描述  : 处理来自MMA模块ID_TAF_MMA_CDMACSQ_QRY_CNF消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月25日
-    作    者   : m00312079
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年10月16日
-    作    者   : m00312079
-    修改内容   : DTS2015101505057:添加ec/Io的上报门限
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaCdmaCsqQryCnf(
     VOS_VOID                           *pMsg
 )
@@ -17438,25 +13737,7 @@ VOS_UINT32 AT_RcvMmaCdmaCsqQryCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaCdmaCsqInd
- 功能描述  : 处理来自MMA模块ID_TAF_MMA_CDMACSQ_IND消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月25日
-    作    者   : m00312079
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年10月16日
-    作    者   : m00312079
-    修改内容   : DTS2015101505057:添加ec/Io的上报门限
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaCdmaCsqInd(
     VOS_VOID                           *pMsg
 )
@@ -17493,21 +13774,7 @@ VOS_UINT32 AT_RcvMmaCdmaCsqInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaCLModInd
- 功能描述  : 处理来自MMA模块ID_TAF_MMA_CLMODE_IND消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaCLModInd(
     VOS_VOID                           *pMsg
 )
@@ -17545,20 +13812,7 @@ VOS_UINT32 AT_RcvMmaCLModInd(
     return VOS_OK;
 
 }
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaXpassInfoInd
- 功能描述  : AT模块收到MTA主动上报的xpass信息
- 输入参数  : pstMsg -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月25日
-    作    者   : m00217266
-    修改内容   : 新增
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaXpassInfoInd(
     VOS_VOID                           *pMsg
 )
@@ -17594,21 +13848,7 @@ VOS_UINT32 AT_RcvMtaXpassInfoInd(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaCFPlmnSetCnfs
- 功能描述  : 处理来自MMA模块ID_TAF_MMA_CFPLMN_SET_CNF消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月9日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaCFPlmnSetCnf(
     VOS_VOID                           *pMsg
 )
@@ -17660,21 +13900,7 @@ VOS_UINT32 AT_RcvMmaCFPlmnSetCnf(
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaCFPlmnQueryCnf
- 功能描述  : 查询FPLMN上报
- 输入参数  : VOS_VOID *pstMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月7日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaCFPlmnQueryCnf(
     VOS_VOID                           *pstMsg
 )
@@ -17751,25 +13977,7 @@ VOS_UINT32 AT_RcvMmaCFPlmnQueryCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_ReportQryPrefPlmnCmdPara
- 功能描述  : 处理上报查询prefplmn上报
- 输入参数  : TAF_MMA_PREF_PLMN_QUERY_CNF_STRU   *pstCpolQryCnf,
-             AT_MODEM_NET_CTX_STRU              *pstNetCtx,
-             VOS_UINT16                         *pusLength,
-             VOS_UINT32                          ucIndex,
-             VOS_UINT32                          ulLoop
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月05日
-    作    者   : y00307564
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_ReportQryPrefPlmnCmdPara(
     TAF_MMA_PREF_PLMN_QUERY_CNF_STRU   *pstCpolQryCnf,
     AT_MODEM_NET_CTX_STRU              *pstNetCtx,
@@ -17866,25 +14074,7 @@ VOS_VOID AT_ReportQryPrefPlmnCmdPara(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_ReportQryPrefPLmnCmd
- 功能描述  : 处理上报查询prefplmn上报
- 输入参数  : TAF_MMA_CPOL_INFO_QUERY_CNF_STRU   *pstCpolQryCnf,
-             VOS_UINT32                         *pulValidPlmnNum,
-             AT_MODEM_NET_CTX_STRU              *pstNetCtx,
-             VOS_UINT16                         *pusLength,
-             VOS_UINT32                          ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月05日
-    作    者   : y00307564
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_ReportQryPrefPlmnCmd(
     TAF_MMA_PREF_PLMN_QUERY_CNF_STRU   *pstCpolQryCnf,
     VOS_UINT32                         *pulValidPlmnNum,
@@ -17956,21 +14146,7 @@ VOS_VOID AT_ReportQryPrefPlmnCmd(
     return;
 
 }
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaPrefPlmnSetCnf
- 功能描述  : 处理来自MMA模块ID_TAF_MMA_PREF_PLMN_SET_CNF消息
- 输入参数  : VOS_VOID *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月05日
-    作    者   : y00307564
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaPrefPlmnSetCnf(
     VOS_VOID                           *pstMsg
 )
@@ -18024,21 +14200,7 @@ VOS_UINT32 AT_RcvMmaPrefPlmnSetCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaPrefPlmnQueryCnf
- 功能描述  : 处理来自MMA模块ID_TAF_MMA_PREF_PLMN_QUERY_CNF消息
- 输入参数  : VOS_VOID *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月05日
-    作    者   : y00307564
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaPrefPlmnQueryCnf(
     VOS_VOID                           *pstMsg
 )
@@ -18141,21 +14303,7 @@ VOS_UINT32 AT_RcvMmaPrefPlmnQueryCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaPrefPlmnTestCnf
- 功能描述  : 处理来自MMA模块ID_TAF_MMA_PREF_PLMN_TEST_CNF消息
- 输入参数  : VOS_VOID *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月05日
-    作    者   : y00307564
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaPrefPlmnTestCnf(
     VOS_VOID                           *pstMsg
 )
@@ -18228,28 +14376,7 @@ VOS_UINT32 AT_RcvMmaPrefPlmnTestCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaAcInfoChangeInd
- 功能描述  : 处理TAF_PH_EVT_AC_INFO_CHANGE_IND
- 输入参数  : VOS_UINT8                           ucIndex,
-             TAF_PHONE_EVENT_INFO_STRU          *pstEvent
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2013年2月25日
-    作    者   : l60609
-    修改内容   : DSDA PHASE III
-  3.日    期   : 2015年03月24日
-    作    者   : K00902809
-    修改内容   : Changed the arguments to VOS_VOID     *pstMsg
-                 Added new structure TAF_MMA_AC_INFO_CHANGE_IND_STRU instead of common event structure.
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaAcInfoChangeInd(
     VOS_VOID                           *pstMsg
 )
@@ -18283,7 +14410,6 @@ VOS_UINT32 AT_RcvMmaAcInfoChangeInd(
     }
 
     /* 通过AT^CURC控制紧急呼叫号码不上报 */
-    /* Modified by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-2, end */
 
     usLength += (VOS_UINT16)At_sprintf(AT_CMD_MAX_LEN,
                                        (VOS_CHAR *)pgucAtSndCodeAddr,
@@ -18354,27 +14480,7 @@ VOS_UINT32 AT_RcvMmaEOPlmnSetCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaEOPlmnQryCnf
- 功能描述  : 处理TAF_MMA_EVT_USER_CFG_OPLMN_QRY_CNF
- 输入参数  : TAF_UINT8* pData
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月16日
-    作    者   : x65241
-    修改内容   : 新生成函数
-  2.日    期    : 2013年11月26日
-    作    者    : s00190137
-    修改内容    : 将最大支持设置的OPLMN扩展到256个
-  3.日    期    : 2015年03月31日
-    作    者    : K00902809
-    修改内容    : changed the function name AT_PhEOPlmnQueryCnfProc to AT_RcvMmaEOPlmnQryCnf
-                    and included new structure  TAF_MMA_EOPLMN_QRY_CNF_STRU
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaEOPlmnQryCnf(
     VOS_VOID                           *pstMsg
 )
@@ -18472,25 +14578,7 @@ VOS_UINT32 AT_RcvMmaNetScanCnf(
     return VOS_OK;
 }
 
-/**********************************************************
- 函 数 名  : AT_RcvMmaUserSrvStateQryCnf
- 功能描述  : 参数查询结果^USERSRVSTATE的上报处理
- 输入参数  : ucIndex - 索引
-             OpId    - operation id
-             pPara   - 参数内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年06月11日
-    作    者   : s00217060
-    修改内容   : 新增函数
-  2.日    期   : 2015年03月28日
-    作    者   : K00902809
-    修改内容   : Modified the function name from  AT_RcvUserSrvStateQryCnf to AT_RcvMmaUserSrvStateQryCnf and structure.
-*************************************************************/
 VOS_UINT32 AT_RcvMmaUserSrvStateQryCnf(
     VOS_VOID                           *pstMsg
 )
@@ -18544,30 +14632,7 @@ VOS_UINT32 AT_RcvMmaUserSrvStateQryCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaPwrOnAndRegTimeQryCnf
- 功能描述  : 查询AT^APPWRONREG的返回值
- 输入参数  :
-     VOS_UINT8                           ucIndex,
-     VOS_UINT8                           OpId,
-     VOS_VOID                           *pPara
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月5日
-    作    者   : 欧阳飞
-    修改内容   : 新生成函数
-  2.日    期   : 2014年1月28日
-    作    者   : s00217060
-    修改内容   : DTS2014011709107:修改MMA按Slice上报给AT
-  3.日    期   : 2015年03月28日
-    作    者   : K00902809
-    修改内容   : Changed the function name from AT_QryParaRegisterTimeProc to AT_RcvMmaPwrOnAndRegTimeQryCnf
-                   and structure to TAF_MMA_POWER_ON_AND_REG_TIME_QRY_CNF_STRU
-*****************************************************************************/
 VOS_UINT32  AT_RcvMmaPwrOnAndRegTimeQryCnf(
     VOS_VOID                           *pstMsg
 )
@@ -18647,32 +14712,7 @@ VOS_UINT32  AT_RcvMmaPwrOnAndRegTimeQryCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaSpnQryCnf
- 功能描述  : 生成AT^SPN设置命令的返回结果
- 输入参数  :
-     VOS_UINT8                           ucIndex,
-     VOS_UINT8                           OpId,
-     VOS_VOID                           *pPara
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月5日
-    作    者   : 欧阳飞
-    修改内容   : 新生成函数
-  2.日    期   : 2012年7月24日
-    作    者   : z60575
-    修改内容   : DTS2012072102200,不存在SPN文件时返回错误码65286
-  3.日    期   : 2013年2月22日
-    作    者   : l60609
-    修改内容   : DSDA PHASE III
-  4.日    期   : 2015年03月30日
-    作    者   : K00902809
-    修改内容   : Modified the function name from MMA_SpnParaProc to AT_RcvMmaSpnQryCnf and structure is added.
-*****************************************************************************/
 VOS_UINT32  AT_RcvMmaSpnQryCnf(
     VOS_VOID                           *pstMsg
 )
@@ -18682,7 +14722,6 @@ VOS_UINT32  AT_RcvMmaSpnQryCnf(
     TAF_PH_USIM_SPN_STRU                stAtSPNRslt;
     VOS_UINT16                          usLength;
     VOS_UINT16                          usDatalen;
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     VOS_UINT8                          *pucSystemAppConfig;
     VOS_UINT8                           ucIndex;
     AT_MODEM_NET_CTX_STRU              *pstNetCtx = VOS_NULL_PTR;
@@ -18714,7 +14753,6 @@ VOS_UINT32  AT_RcvMmaSpnQryCnf(
     pstNetCtx = AT_GetModemNetCtxAddrFromClientId(ucIndex);
 
     pucSystemAppConfig                  = AT_GetSystemAppConfigAddr();
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
     /* 初始化 */
     ulResult  = AT_OK;
@@ -18746,7 +14784,6 @@ VOS_UINT32  AT_RcvMmaSpnQryCnf(
                                             g_stParseContext[ucIndex].pstCmdElement->pszCmdName);
 
 
-        /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
         if ( SYSTEM_APP_WEBUI == *pucSystemAppConfig)
         {
             usLength += (VOS_UINT16)At_sprintf(AT_CMD_MAX_LEN,(TAF_CHAR *)pgucAtSndCodeAddr,
@@ -18791,27 +14828,7 @@ VOS_UINT32  AT_RcvMmaSpnQryCnf(
 }
 
 
-/**********************************************************
- 函 数 名  : At_QryMmPlmnInfoRspProc
- 功能描述  : 参数查询结果^MMPLMNINFO的上报处理
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年01月09日
-    作    者   : l65478
-    修改内容   : 新增函数
-  2.日    期   : 2015年01月07日
-    作    者   : l00198894
-    修改内容   : DTS2014102103988: ^MMPLMNINFO命令显示异常
-  3.日    期   : 2015年03月30日
-    作    者   : K00902809
-    修改内容   : Changed the function name from At_QryMmPlmnInfoRspProc to AT_RcvMmaMMPlmnInfoQryCnf
-                 and added new structure.
-*************************************************************/
 VOS_UINT32  AT_RcvMmaMMPlmnInfoQryCnf(
     VOS_VOID                           *pstMsg
 )
@@ -18893,26 +14910,7 @@ VOS_UINT32  AT_RcvMmaMMPlmnInfoQryCnf(
     return VOS_OK;
 }
 
-/**********************************************************
- 函 数 名  : At_QryMmPlmnInfoRspProc
- 功能描述  : 参数查询结果^PLMN的上报处理
- 输入参数  : ucIndex
-             OpId
-             pPara
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年01月23日
-    作    者   : Y00213812
-    修改内容   : 新增函数
-  2.日    期   : 2015年03月30日
-    作    者   : K00902809
-    修改内容   : Changed the function name from At_RcvPlmnQryCnf to AT_RcvMmaPlmnQryCnf
-                 and added new structure.
-*************************************************************/
 VOS_UINT32  AT_RcvMmaPlmnQryCnf(
     VOS_VOID                           *pstMsg
 )
@@ -19002,21 +15000,7 @@ VOS_UINT32  AT_RcvMmaPlmnQryCnf(
 
 
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaCerssiSetCnf
- 功能描述  : AT Rcv Mma Set Cerssi Cfg Cnf
- 输入参数  : VOS_VOID                           *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月23日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaCerssiSetCnf(
     VOS_VOID                           *pstMsg
 )
@@ -19065,21 +15049,7 @@ VOS_UINT32 AT_RcvMmaCerssiSetCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaPlmnReselAutoSetCnf
- 功能描述  : 处理来自MMA模块ID_TAF_MMA_PLMN_RESEL_AUTO_CNF消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月9日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaPlmnReselAutoSetCnf(
     VOS_VOID                           *pstMsg
 )
@@ -19130,21 +15100,7 @@ VOS_UINT32 AT_RcvMmaPlmnReselAutoSetCnf(
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaPlmnSpecialSelSetCnf
- 功能描述  : 处理来自MMA模块ID_TAF_MMA_PLMN_USER_SEL_CNF消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月31日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaPlmnSpecialSelSetCnf(
     VOS_VOID                           *pstMsg
 )
@@ -19195,21 +15151,7 @@ VOS_UINT32 AT_RcvMmaPlmnSpecialSelSetCnf(
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaPlmnListAbortCnf
- 功能描述  : 处理来自MMA模块ID_TAF_MMA_PLMN_LIST_ABORT_CNF消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月31日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaPlmnListAbortCnf(
     VOS_VOID                           *pstMsg
 )
@@ -19255,21 +15197,7 @@ VOS_UINT32 AT_RcvMmaPlmnListAbortCnf(
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaPowerDownCnf
- 功能描述  : 处理来自MMA模块ID_TAF_MMA_MT_POWER_DOWN_CNF消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月31日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaPowerDownCnf(
     VOS_VOID                           *pstMsg
 )
@@ -19320,21 +15248,7 @@ VOS_UINT32 AT_RcvMmaPowerDownCnf(
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaPrefPlmnTypeSetCnf
- 功能描述  : 处理来自MMA模块ID_TAF_MMA_CPLS_SET_CNF消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月31日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaPrefPlmnTypeSetCnf(
     VOS_VOID                           *pstMsg
 )
@@ -19383,21 +15297,7 @@ VOS_UINT32 AT_RcvMmaPrefPlmnTypeSetCnf(
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaPhoneModeQryCnf
- 功能描述  : 处理来自MMA模块ID_TAF_MMA_Phone_Mode_Qry_CNF消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月9日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaPhoneModeQryCnf(
     VOS_VOID                           *pMsg
 )
@@ -19452,21 +15352,7 @@ VOS_UINT32 AT_RcvMmaPhoneModeQryCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvTafMmaQuickStartSetCnf
- 功能描述  : AT^CQST
- 输入参数  : *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月24日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvTafMmaQuickStartSetCnf(
     VOS_VOID                           *pMsg
 )
@@ -19514,21 +15400,7 @@ VOS_UINT32 AT_RcvTafMmaQuickStartSetCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvTafMmaAutoAttachSetCnf
- 功能描述  : AT^CAATT SET返回结果处理
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月26日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvTafMmaAutoAttachSetCnf(
     VOS_VOID                           *pMsg
 )
@@ -19579,21 +15451,7 @@ VOS_UINT32 AT_RcvTafMmaAutoAttachSetCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvTafMmaSyscfgQryCnf
- 功能描述  : AT+SYSCFG or AT+SYSCFGEX命令返回并输出
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月26日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvTafMmaSyscfgQryCnf(
     VOS_VOID                           *pMsg
 )
@@ -19651,21 +15509,7 @@ VOS_UINT32 AT_RcvTafMmaSyscfgQryCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaAccessModeQryCnf
- 功能描述  : AT Rcv Mma Access Mode Qry Cnf
- 输入参数  : VOS_VOID                           *pMsg
- 输出参数  : VOS_UINT32
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月27日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaAccessModeQryCnf(
     VOS_VOID                           *pMsg
 )
@@ -19724,21 +15568,7 @@ VOS_UINT32 AT_RcvMmaAccessModeQryCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaCopsQryCnf
- 功能描述  : At Rcv Mma Cops Qry Cnf
- 输入参数  : VOS_VOID                           *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月27日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaCopsQryCnf(
     VOS_VOID                           *pMsg
 )
@@ -19776,21 +15606,7 @@ VOS_UINT32 AT_RcvMmaCopsQryCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaRegStateQryCnf
- 功能描述  : AT Rcv Mma reg state Qry Cnf
- 输入参数  : VOS_VOID                           *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月27日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaRegStateQryCnf(
     VOS_VOID                           *pMsg
 )
@@ -19846,21 +15662,7 @@ VOS_UINT32 AT_RcvMmaRegStateQryCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaAutoAttachQryCnf
- 功能描述  : AT Rcv Mma Auto Attach Qry Cnf
- 输入参数  : VOS_VOID                           *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月28日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaAutoAttachQryCnf(
     VOS_VOID                           *pMsg
 )
@@ -19917,21 +15719,7 @@ VOS_UINT32 AT_RcvMmaAutoAttachQryCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaSysInfoQryCnf
- 功能描述  : AT Rcv Mma Sys Info Qry Cnf
- 输入参数  : VOS_VOID                           *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月28日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaSysInfoQryCnf(
     VOS_VOID                           *pMsg
 )
@@ -19992,21 +15780,7 @@ VOS_UINT32 AT_RcvMmaSysInfoQryCnf(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaAnqueryQryCnf
- 功能描述  : At Rcv Mma Anquery Qry Cnf
- 输入参数  : VOS_VOID                           *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月30日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaAnqueryQryCnf(
     VOS_VOID                           *pMsg
 )
@@ -20056,21 +15830,7 @@ VOS_UINT32 AT_RcvMmaAnqueryQryCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaEHplmnInfoQryCnf
- 功能描述  : AT收到MMA的ID_TAF_MMA_HOME_PLMN_QRY_CNF处理
- 输入参数  : VOS_VOID                           *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月24日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaEHplmnInfoQryCnf(
     VOS_VOID                           *pstMsg
 )
@@ -20111,21 +15871,7 @@ VOS_UINT32 AT_RcvMmaEHplmnInfoQryCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaApHplmnQryCnf
- 功能描述  : AT Rcv Mma ApHPLMN Qry Cnf
- 输入参数  : VOS_VOID                           *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月30日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaApHplmnQryCnf(
     VOS_UINT8                           ucIndex,
     VOS_VOID                           *pstMsg
@@ -20174,21 +15920,7 @@ VOS_UINT32 AT_RcvMmaApHplmnQryCnf(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaSrvStatusInd
- 功能描述  : AT Proc Service Status Ind
- 输入参数  : VOS_VOID                           *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月31日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaSrvStatusInd(
     VOS_VOID                           *pstMsg
 )
@@ -20230,21 +15962,7 @@ VOS_UINT32 AT_RcvMmaSrvStatusInd(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaRssiInfoInd
- 功能描述  : AT Proc Rssi Info Ind
- 输入参数  : VOS_VOID                           *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月31日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaRssiInfoInd(
     VOS_VOID                           *pstMsg
 )
@@ -20268,21 +15986,7 @@ VOS_UINT32 AT_RcvMmaRssiInfoInd(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaRegStatusInd
- 功能描述  : AT Proc Reg Status Ind
- 输入参数  : VOS_VOID                           *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月31日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaRegStatusInd(
     VOS_VOID                           *pstMsg
 )
@@ -20306,21 +16010,7 @@ VOS_UINT32 AT_RcvMmaRegStatusInd(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaRegRejInfoInd
- 功能描述  : AT Proc Mma Reg Rej Info Ind
- 输入参数  : VOS_VOID                           *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月31日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaRegRejInfoInd(
     VOS_VOID                           *pstMsg
 )
@@ -20433,21 +16123,7 @@ VOS_UINT32 AT_RcvMmaRegRejInfoInd(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaPlmnSelectInfoInd
- 功能描述  : At Proc Mma Plmn Selection Info Ind
- 输入参数  : VOS_VOID                           *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月31日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaPlmnSelectInfoInd(
     VOS_VOID                           *pstMsg
 )
@@ -20497,21 +16173,7 @@ VOS_UINT32 AT_RcvMmaPlmnSelectInfoInd(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvTafMmaSyscfgTestCnf
- 功能描述  : at 处理syscfg test 返回命令结果
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月26日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvTafMmaSyscfgTestCnf(
     VOS_VOID                           *pMsg
 )
@@ -20593,21 +16255,7 @@ VOS_UINT32 AT_RcvTafMmaSyscfgTestCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_RcvTafMmaQuickStartQryCnf
- 功能描述  : AT处理CQST QRY 查询结果并输出
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月27日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvTafMmaQuickStartQryCnf(
     VOS_VOID                           *pMsg
 )
@@ -20665,21 +16313,7 @@ VOS_UINT32 AT_RcvTafMmaQuickStartQryCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvTafMmaCsnrQryCnf
- 功能描述  : AT处理来自MMA的csnr qry查询返回结果并输出上报
- 输入参数  : *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月28日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvTafMmaCsnrQryCnf(
     VOS_VOID                           *pMsg
 )
@@ -20737,21 +16371,7 @@ VOS_UINT32 AT_RcvTafMmaCsnrQryCnf(
     return  VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvTafMmaCsqQryCnf
- 功能描述  : AT处理CSQ QRY查询结果并输出
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月28日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvTafMmaCsqQryCnf(
     VOS_VOID                           *pMsg
 )
@@ -20818,21 +16438,7 @@ VOS_UINT32 AT_RcvTafMmaCsqQryCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvTafMmaCsqlvlQryCnf
- 功能描述  : AT收到来自MMA的csqlvl qry 消息处理结果并上报
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月28日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvTafMmaCsqlvlQryCnf(
     VOS_VOID                           *pMsg
 )
@@ -20912,21 +16518,7 @@ VOS_UINT32 AT_RcvTafMmaCsqlvlQryCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaTimeChangeInd
- 功能描述  : 收到TIME CHANGE IND 后AT处理函数
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOID_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月30日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaTimeChangeInd(
     VOS_VOID                           *pMsg
 )
@@ -20952,11 +16544,9 @@ VOS_UINT32 AT_RcvMmaTimeChangeInd(
      || (NAS_MM_INFO_IE_LTZ == (pstTimeChangeInd->ucIeFlg & NAS_MM_INFO_IE_LTZ)))
     {
         /* 存在时间信息 */
-        /* Modified by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-2, end */
         usLength += (TAF_UINT16)At_PrintMmTimeInfo(ucIndex,
                                                    pstTimeChangeInd,
                                                    (pgucAtSndCodeAddr + usLength));
-        /* Modified by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-2, end */
     }
 
     At_SendResultData(ucIndex,pgucAtSndCodeAddr,usLength);
@@ -20964,29 +16554,12 @@ VOS_UINT32 AT_RcvMmaTimeChangeInd(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaModeChangeInd
- 功能描述  : AT处理mode change主动上报接口
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月31日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-  2.日    期   : 2015年08月22日
-    作    者   : y00307564
-    修改内容   : DTS2015081005519修改
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaModeChangeInd(
     VOS_VOID                           *pMsg
 )
 {
     VOS_UINT16                          usLength;
-    /* Modified by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-2, begin */
     MODEM_ID_ENUM_UINT16                enModemId;
     VOS_UINT32                          ulRslt;
     VOS_UINT8                           ucIndex;
@@ -21041,29 +16614,13 @@ VOS_UINT32 AT_RcvMmaModeChangeInd(
 
     At_SendResultData(ucIndex, pgucAtSndCodeAddr, usLength);
 
-    /* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-2, begin */
     /* 此处全局变量维护不再准确，需要删除，用时从C核获取 */
-    /* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-2, end */
 
     return VOS_TRUE;
 
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaPlmnChangeInd
- 功能描述  : plmn change主动上报AT处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月31日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaPlmnChangeInd(
     VOS_VOID                           *pMsg
 )
@@ -21092,8 +16649,6 @@ VOS_UINT32 AT_RcvMmaPlmnChangeInd(
         return VOS_ERR;
     }
 
-    /* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-2, begin */
-    /* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-2, end */
 
     usLength += (TAF_UINT16)At_sprintf(AT_CMD_MAX_LEN,
                                      (VOS_CHAR *)pgucAtSndCodeAddr,
@@ -21140,24 +16695,7 @@ VOS_UINT32 AT_RcvMmaPlmnChangeInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvTafMmaCrpnQryCnf
- 功能描述  : AT 处理CRPN QRY返回结果
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月1日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-  2.日    期   : 2015年10月15日
-    作    者   : zwx247453
-    修改内容   : 网络安全代码修改
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvTafMmaCrpnQryCnf(
     VOS_VOID                           *pMsg
 )
@@ -21185,13 +16723,11 @@ VOS_UINT32 AT_RcvTafMmaCrpnQryCnf(
         return VOS_ERR;
     }
 
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, begin */
     if (AT_IS_BROADCAST_CLIENT_INDEX(ucIndex))
     {
         AT_WARN_LOG("AT_RcvTafMmaCrpnQryCnf : AT_BROADCAST_INDEX.");
         return VOS_ERR;
     }
-    /* Added by 傅映君/f62575 for 自动应答开启情况下被叫死机问题, 2011/11/28, end */
 
     /* 当前AT是否在等待该命令返回 */
     if (AT_CMD_CRPN_QUERY != gastAtClientTab[ucIndex].CmdCurrentOpt)
@@ -21468,21 +17004,7 @@ VOS_UINT32 AT_RcvMmaHsQryCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaHdrCsqInd
- 功能描述  : 处理来自MMA模块ID_TAF_MMA_HDR_CSQ_IND消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : C00299064
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaHdrCsqInd(
     VOS_VOID                           *pMsg
 )
@@ -21518,21 +17040,7 @@ VOS_UINT32 AT_RcvMmaHdrCsqInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaHdrCsqSetCnf
- 功能描述  : 处理来自MMA模块ID_TAF_MMA_HDR_CSQ_SET_CNF消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : C00299064
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaHdrCsqSetCnf(
     VOS_VOID                           *pMsg
 )
@@ -21577,21 +17085,7 @@ VOS_UINT32 AT_RcvMmaHdrCsqSetCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaHdrCsqQryCnf
- 功能描述  : 处理来自MMA模块ID_TAF_MMA_CDMACSQ_QRY_CNF消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : C00299064
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaHdrCsqQryCnf(
     VOS_VOID                           *pMsg
 )
@@ -21652,20 +17146,7 @@ VOS_UINT32 AT_RcvMmaHdrCsqQryCnf(
 
 
 #if (FEATURE_ON == FEATURE_IMS)
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaImsSwitchSetCnf
- 功能描述  : 处理ID_TAF_MMA_IMS_SWITCH_SET_CNF
- 输入参数  :  VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月02日
-    作    者   : zwx247453
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaImsSwitchSetCnf(
     VOS_VOID                           *pMsg
 )
@@ -21716,20 +17197,7 @@ VOS_UINT32 AT_RcvMmaImsSwitchSetCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaImsSwitchQryCnf
- 功能描述  : 处理ID_TAF_MMA_IMS_SWITCH_QRY_CNF
- 输入参数  :  VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月02日
-    作    者   : zwx247453
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaImsSwitchQryCnf(
     VOS_VOID                           *pMsg
 )
@@ -21777,20 +17245,7 @@ VOS_UINT32 AT_RcvMmaImsSwitchQryCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaVoiceDomainSetCnf
- 功能描述  : 处理ID_TAF_MMA_VOICE_DOMAIN_SET_CNF
- 输入参数  :  VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月02日
-    作    者   : zwx247453
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaVoiceDomainSetCnf(
     VOS_VOID                           *pMsg
 )
@@ -21841,20 +17296,7 @@ VOS_UINT32 AT_RcvMmaVoiceDomainSetCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_VoiceDomainTransToOutputValue
- 功能描述  : modem侧对应的voice domain值转换为AT的输出值
- 输入参数  : enVoiceDomain
- 输出参数  : 无
- 返 回 值  : ulValue
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月04日
-    作    者   : zwx247453
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_VoiceDomainTransToOutputValue(
     TAF_MMA_VOICE_DOMAIN_ENUM_UINT32    enVoiceDoman,
     VOS_UINT32                         *pulValue
@@ -21892,20 +17334,7 @@ VOS_UINT32 AT_VoiceDomainTransToOutputValue(
 
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaVoiceDomainQryCnf
- 功能描述  : 处理ID_TAF_MMA_VOICE_DOMAIN_QRY_CNF
- 输入参数  :  VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月02日
-    作    者   : zwx247453
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaVoiceDomainQryCnf(
     VOS_VOID                           *pMsg
 )
@@ -21964,20 +17393,7 @@ VOS_UINT32 AT_RcvMmaVoiceDomainQryCnf(
 }
 
 #endif
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaSetFemctrlCnf
- 功能描述  : AT模块收到MTA回复的FEMCTRL消息的处理函数
- 输入参数  : pstMsg -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月15日
-    作    者   : m00217266
-    修改内容   : 新增
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaSetFemctrlCnf(
     VOS_VOID                           *pMsg
 )
@@ -22028,21 +17444,7 @@ VOS_UINT32 AT_RcvMtaSetFemctrlCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMma1xChanSetCnf
- 功能描述  : AT_MMA_1XCHAN_CNF消息处理函数,^CVER查询结果
- 输入参数  : VOS_VOID *pstMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月16日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMma1xChanSetCnf(
     VOS_VOID                           *pstMsg
 )
@@ -22095,21 +17497,7 @@ VOS_UINT32 AT_RcvMma1xChanSetCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMma1xChanQueryCnf
- 功能描述  : AT_MMA_1XCHAN_QUERY_CNF消息处理函数,^1XCHAN查询结果
- 输入参数  : VOS_VOID *pstMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月16日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMma1xChanQueryCnf(
     VOS_VOID                           *pstMsg
 )
@@ -22176,21 +17564,7 @@ VOS_UINT32 AT_RcvMma1xChanQueryCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaCVerQueryCnf
- 功能描述  : AT_MMA_CVER_QUERY_CNF消息处理函数,^CVER查询结果
- 输入参数  : VOS_VOID *pstMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月16日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaCVerQueryCnf(
     VOS_VOID                           *pstMsg
 )
@@ -22257,21 +17631,7 @@ VOS_UINT32 AT_RcvMmaCVerQueryCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaStateQueryCnf
- 功能描述  : ID_TAF_MMA_GETST_QUERY_CNF消息处理函数,^CVER查询结果
- 输入参数  : VOS_VOID *pstMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月16日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaStateQueryCnf(
     VOS_VOID                           *pstMsg
 )
@@ -22340,21 +17700,7 @@ VOS_UINT32 AT_RcvMmaStateQueryCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaCHverQueryCnf
- 功能描述  : ID_TAF_MMA_CHVER_QUERY_CNF消息处理函数,^CVER查询结果
- 输入参数  : VOS_VOID *pstMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月16日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaCHverQueryCnf(
     VOS_VOID                           *pstMsg
 )
@@ -22422,21 +17768,7 @@ VOS_UINT32 AT_RcvMmaCHverQueryCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaHplmnQryCnf
- 功能描述  : AT收到ID_TAF_MMA_HPLMN_QRY_CNF消息处理函数,AT上报^HPLMN查询结果
- 输入参数  : VOS_VOID                           *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月9日
-    作    者   : n00355355
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaHplmnQryCnf(
     VOS_UINT8                           ucIndex,
     VOS_VOID                           *pstMsg
@@ -22549,21 +17881,7 @@ VOS_UINT32 AT_RcvMmaHplmnQryCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaDplmnQryCnf
- 功能描述  : AT收到MMA发送的DPLMN QRY CNF消息，上报^DPLMNLIST:<VER>命令
- 输入参数  : VOS_VOID                           *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月16日
-    作    者   : n00355355
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaDplmnQryCnf(
     VOS_VOID                           *pstMsg
 )
@@ -22630,21 +17948,7 @@ VOS_UINT32 AT_RcvMmaDplmnQryCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaDplmnSetCnf
- 功能描述  : AT收到ID_TAF_DPLMN_SET_CNF消息的处理，AT上报设置结果
- 输入参数  : VOS_VOID                           *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月12日
-    作    者   : n00355355
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaDplmnSetCnf(
     VOS_VOID                           *pstMsg
 )
@@ -22706,20 +18010,7 @@ VOS_UINT32 AT_RcvMmaDplmnSetCnf(
 
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaSetFrCnf
- 功能描述  : AT模块收到MTA回复的FRSTATUS消息的处理函数
- 输入参数  : pstMsg -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月03日
-    作    者   : wx270776
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaSetFrCnf(
     VOS_VOID                           *pMsg
 )
@@ -22771,20 +18062,7 @@ VOS_UINT32 AT_RcvMtaSetFrCnf(
     return VOS_OK;
 }
 #endif
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaSrchedPlmnInfoInd
- 功能描述  : 处理ID_TAF_MMA_SRCHED_PLMN_INFO_IND
- 输入参数  :  VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月15日
-    作    者   : h00285180
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_RcvMmaSrchedPlmnInfoInd(
     VOS_VOID                           *pMsg
 )
@@ -22878,23 +18156,7 @@ VOS_UINT32 AT_RcvMmaSrchedPlmnInfoInd(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaTransModeQryCnf
- 功能描述  : AT模块收到MTA回复的TransMode消息的处理函数
- 输入参数  : pstMsg -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月30日
-    作    者   : lwx277467
-    修改内容   : 新增
-  2.日    期   : 2015年10月15日
-    作    者   : zwx247453
-    修改内容   : 网络安全代码修改
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaTransModeQryCnf(VOS_VOID *pMsg)
 {
     AT_MTA_MSG_STRU                        *pstRcvMsg               = VOS_NULL_PTR;
@@ -22949,23 +18211,7 @@ VOS_UINT32 AT_RcvMtaTransModeQryCnf(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaUECenterQryCnf
- 功能描述  : AT模块收到MTA回复的查询UE模式消息的处理函数
- 输入参数  : pstMsg -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月7日
-    作    者   : lwx277467
-    修改内容   : 新增
-  2.日    期   : 2015年10月15日
-    作    者   : zwx247453
-    修改内容   : 网络安全代码修改
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaUECenterQryCnf(VOS_VOID *pMsg)
 {
     AT_MTA_MSG_STRU                        *pstRcvMsg               = VOS_NULL_PTR;
@@ -23020,20 +18266,7 @@ VOS_UINT32 AT_RcvMtaUECenterQryCnf(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaUECenterSetCnf
- 功能描述  : AT模块收到MTA回复的设置UE模式消息的处理函数
- 输入参数  : pstMsg -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月7日
-    作    者   : lwx277467
-    修改内容   : 新增
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaUECenterSetCnf(VOS_VOID *pMsg)
 {
     AT_MTA_MSG_STRU                        *pstRcvMsg               = VOS_NULL_PTR;
@@ -23082,20 +18315,7 @@ VOS_UINT32 AT_RcvMtaUECenterSetCnf(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : At_MipiRdCnfProc
- 功能描述  : AT模块收到HPA 回复的MipiRead 消息的处理函数
- 输入参数  : pstMsg -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月19日
-    作    者   : l00227485
-    修改内容   : 新增
-*****************************************************************************/
 VOS_UINT32  At_MipiRdCnfProc( HPA_AT_MIPI_RD_CNF_STRU *pstMsg )
 {
     VOS_UINT32                          usRslt;
@@ -23138,20 +18358,7 @@ VOS_UINT32  At_MipiRdCnfProc( HPA_AT_MIPI_RD_CNF_STRU *pstMsg )
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : At_MipiWrCnfProc
- 功能描述  : AT模块收到HPA 回复的MipiRead 消息的处理函数
- 输入参数  : pstMsg -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月19日
-    作    者   : l00227485
-    修改内容   : 新增
-*****************************************************************************/
 VOS_UINT32  At_MipiWrCnfProc( HPA_AT_MIPI_WR_CNF_STRU       *pstMsg )
 {
     VOS_UINT32                          ulRslt;
@@ -23182,20 +18389,7 @@ VOS_UINT32  At_MipiWrCnfProc( HPA_AT_MIPI_WR_CNF_STRU       *pstMsg )
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : At_SsiWrCnfProc
- 功能描述  : AT模块收到HPA 回复的SsiRead 消息的处理函数
- 输入参数  : pstMsg -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月19日
-    作    者   : l00227485
-    修改内容   : 新增
-*****************************************************************************/
 VOS_UINT32  At_SsiWrCnfProc( HPA_AT_SSI_WR_CNF_STRU         *pstMsg )
 {
     VOS_UINT32                          ulRslt;
@@ -23227,20 +18421,7 @@ VOS_UINT32  At_SsiWrCnfProc( HPA_AT_SSI_WR_CNF_STRU         *pstMsg )
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : At_SsiRdCnfProc
- 功能描述  : AT模块收到HPA 回复的MipiRead 消息的处理函数
- 输入参数  : pstMsg -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月19日
-    作    者   : l00227485
-    修改内容   : 新增
-*****************************************************************************/
 VOS_UINT32  At_SsiRdCnfProc( HPA_AT_SSI_RD_CNF_STRU          *pstMsg )
 {
     VOS_UINT32                          ulRslt;
@@ -23285,20 +18466,7 @@ VOS_UINT32  At_SsiRdCnfProc( HPA_AT_SSI_RD_CNF_STRU          *pstMsg )
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : At_PdmCtrlCnfProc
- 功能描述  : AT模块收到HPA 回复的MipiRead 消息的处理函数
- 输入参数  : pstMsg -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月20日
-    作    者   : x00316382
-    修改内容   : 新增
-*****************************************************************************/
 VOS_UINT32  At_PdmCtrlCnfProc( HPA_AT_PDM_CTRL_CNF_STRU *pstMsg )
 {
     VOS_UINT32                          ulRslt;
@@ -23329,20 +18497,7 @@ VOS_UINT32  At_PdmCtrlCnfProc( HPA_AT_PDM_CTRL_CNF_STRU *pstMsg )
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMmaInitLocInfoInd
- 功能描述  : AT模块收到TAF_MMA_INIT_LOC_INFO_IND_STRU消息,上报INITLOCINFO命令
- 输入参数  : pstMsg -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月10日
-    作    者   : l00324781
-    修改内容   : 新增
-*****************************************************************************/
 
 VOS_UINT32 AT_RcvMmaInitLocInfoInd(
     VOS_VOID                           *pMsg

@@ -1,15 +1,4 @@
-/*******************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : GmmDef.h
-  Description : WUEPS系统NAS内部GMM功能模块宏定义
-  History     :
-      1.  张志勇  2003.12.05  文件作成
 
-      2.日    期   : 2009年5月9日
-        作    者   : l00130025
-        修改内容   : 根据问题单号：AT2D11645/AT2D11797,关机，若detach的EST_REQ失败，
-                     Gmm会反复发起EST_REQ
-*******************************************************************************/
 #ifndef _GMMDEFINE_H_
 #define _GMMDEFINE_H_
 
@@ -160,12 +149,9 @@ typedef VOS_UINT8   NAS_GMM_CTRL_STATUS_ENUM_UINT8;
 #define     GMM_TIMER_DELAY_RADIO_CAPA_TRIGED_RAU_VALUE         (1*1000)                  /* RadioCapa修改后的延迟时间，定时器超时后检查是否触发RAU */
 
 
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, begin */
 #define     GMM_TIMER_WAIT_AS_MS_RADIO_CAPA_INFO_VALUE         (1*1000)         /*定时器超时触发rau或attach*/
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, end */
 
 #define     GMM_TIMER_DELAY_VOICE_DOMAIN_TRIG_RAU_VALUE         (1*1000)         /*voice daomain变化时暂时无法做RAU的等待时长，定时器超时触发RAU */
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, end */
 
 #define     GMM_TIMER_DELAY_PS_SMS_CONN_REL_VALUE               (3*1000)         /* 默认延长3s，释放PS域SMS连接 */
 

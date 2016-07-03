@@ -3,23 +3,9 @@
 #include "dhcpc_dbg.h"
 #include "dhcpc_cdb.h"
 
-/*m00221573 全文件pclint 2012-10-18 start*/
 extern SDB_GSPU_CONTEXT_S * DHCPC_GetOneContextByteidc(ULONG ulTeidc);
 extern ULONG DHCPCv6_Get_MsgDirection(UCHAR MsgDirection,UCHAR ucUgwRole);
-/*m00221573 全文件pclint 2012-10-18 end*/
-/*****************************************************************************
- 函 数 名  : DHCPC_GetVifName
- 功能描述  : 获取当前组的或instance的V接口的名称
- 输入参数  : 
- 输出参数  : 无
- 返 回 值  :
- 调用函数  : CRM_GetSelfGroupId CRM_GetSelfGroupBoardType
- 被调函数  : DHCPC_OmVIfMsgTrc
- 修改历史      :
-  1.日    期   : 2011年11月11日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 ULONG DHCPC_GetVifName(UCHAR aucVIfName[DHCPC_V_INTERFACE_NAME_MAX_LEN+1])
 {
     ULONG ulRet = VOS_ERR;
@@ -53,33 +39,12 @@ ULONG DHCPC_GetVifName(UCHAR aucVIfName[DHCPC_V_INTERFACE_NAME_MAX_LEN+1])
     }
 
     /* 组拼vif的名称 */
-    /* z00175135 DTS2012012003193 全文件pclint 2012-02-09 start */
     VOS_sprintf((CHAR *)aucVIfName, "vif%u/%u/%d", ulGroupId, ulInstanceId, 0);
-    /* z00175135 DTS2012012003193 全文件pclint 2012-02-09 end   */
 
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_OmVIfMsgTrc
- 功能描述  : V接口跟踪
- 输入参数  : ULONG  ulDhcpMsgType  
-             ULONG ulDirection     
-             UCHAR  *pMsg          
-             USHORT usMsgLen       
-             UCHAR  ucIpType       
-             ULONG  *pulPeerIp     
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  : 
- 被调函数  : 
- 
- 修改历史      :
-  1.日    期   : 2012年9月11日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOID DHCPC_OmVIfMsgTrc(ULONG  ulDhcpMsgType,
                                 ULONG ulDirection,
                                 UCHAR  *pMsg,
@@ -134,25 +99,7 @@ VOID DHCPC_OmVIfMsgTrc(ULONG  ulDhcpMsgType,
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_OmEmsTrcMsgTrc
- 功能描述  : 全网跟踪
- 输入参数  : UCHAR ucMsgType                 
-             ULONG ulDirection               
-             UCHAR *pucMsg                   
-             ULONG ulMsgLen                  
-             SDB_GSPU_CONTEXT_S *pstContext  
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  : 
- 被调函数  : 
- 
- 修改历史      :
-  1.日    期   : 2012年9月11日
-    作    者   : 
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOID DHCPC_OmEmsTrcMsgTrc(UCHAR ucMsgType, ULONG ulDirection, UCHAR *pucMsg,
                                     ULONG ulMsgLen, SDB_GSPU_CONTEXT_S *pstContext)
 {
@@ -201,22 +148,7 @@ VOID DHCPC_OmEmsTrcMsgTrc(UCHAR ucMsgType, ULONG ulDirection, UCHAR *pucMsg,
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPCv6_OmMsgTrc
- 功能描述  : dhcpv6 用户消息跟踪
- 输入参数  : DHCPC_CTRLBLK *pstDhcpcContext, UCHAR *pucDhcpv6Msg,UCHAR MsgType,ULONG ulMsgLen
-                
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  : 
- 被调函数  : 
- 
- 修改历史      :
-  1.日    期   : 2012年7月30日
-    作    者   : linyufeng 00176669
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOID DHCPCv6_OmMsgTrc(UCHAR *pucDhcpv6Msg,DHCPC_CTRLBLK *pstDhcpcContext, UCHAR ucMsgType,ULONG ulMsgLen, UCHAR MsgDirection)
 {
     ULONG ulDirection = TRC_DIRECTION_LEFT_IN_PGW;
@@ -237,7 +169,6 @@ VOID DHCPCv6_OmMsgTrc(UCHAR *pucDhcpv6Msg,DHCPC_CTRLBLK *pstDhcpcContext, UCHAR 
         DHCPC_OmEmsTrcMsgTrc(ucMsgType, ulDirection, pucDhcpv6Msg, ulMsgLen, pstContext);
     }
 
-    /*用户跟踪 DTS2012091903437 y00170683 */
     UGW_OmUsrMsgTrace(pucDhcpv6Msg,
         GUSER_MSGTYPE_DHCPV6,
         (ULONG)ucMsgType + ulDirection,

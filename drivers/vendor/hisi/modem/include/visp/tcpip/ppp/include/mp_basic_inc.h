@@ -1,27 +1,4 @@
-/*************************************************************************
- *
- *              Copyright 2005, Huawei Technologies Co. Ltd.
- *                          ALL RIGHTS RESERVED
- * 
- *-----------------------------------------------------------------------*
- *
- *                            mp_basic_inc.h
- *
- *  Project Code: VISP1.5
- *   Module Name: MP
- *  Date Created: 2005-09-15
- *        Author: YaoChengliang
- *   Description: MP模块的C文件包含的基本头文件
- *
- *-----------------------------------------------------------------------*
- *  Modification History
- *  DATE            NAME            DESCRIPTION
- *  2005-09-15      YaoChengliang   Create
- *  2006-03-31      ZhuKun          Adjust for D00663
- *  2006-04-21      ZhuKun          Adjust for D00876
- *  2006-05-13      l48923          Delete useless code
- *
- *************************************************************************/
+
 
 #ifndef _MP_BASIC_INC_H_
 #define _MP_BASIC_INC_H_
@@ -72,7 +49,6 @@ extern "C" {
 #include "ip4/pp4/include/pp4_pub.h"
 #include "tcp4/core/include/tcp.h"
 
-/* Added by t45114: 共享数据保护,2006/03/21 */
 #include "tcpip/socket4/core/include/macro.h"
 #include "tcpip/socket4/core/include/sock_com.h"
 /*#include "tcpip/socket4/core/include/sock_pub.h" */

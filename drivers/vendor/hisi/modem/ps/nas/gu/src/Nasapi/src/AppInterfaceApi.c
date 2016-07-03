@@ -34,20 +34,7 @@
 /*lint +e767 修改人:罗建 107747;检视人:sunshaohua*/
 
 
-/***********************************************************************
-*  MODULE   : Api_AppRabmDataReq
-*  FUNCTION : APP向RABM发送CS域数据
-*  INPUT    : ST_APP_RABM_DATA *pRabmDataReq
-*  OUTPUT   : void
-*  RETURN   : void
-*  NOTE     :
-*  HISTORY  :
-*     1.  L47619   2008-03-06  NAS分组域架构优化(该函数仅支持WCDMA模式CS域上行数据)
 
-  2.日    期   : 2012年12月11日
-    作    者   : l00167671
-    修改内容   : DTS2012121802573, TQE清理
-************************************************************************/
 VOS_VOID Api_AppRabmDataReq( ST_APP_RABM_DATA *pRabmDataReq )
 {
     VOS_UINT32  ulDataLen;

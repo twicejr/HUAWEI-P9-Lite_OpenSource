@@ -1,18 +1,4 @@
-/******************************************************************************
 
-   Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : NasEmmPubUCnMsgDecode.c
-  Description     :
-  History         :
-      1.  niezhouyu  00108792  Draft Enact
-      2.  qilili     00145085  修改问题单
-      3. zhengjunyan 00148421 2009.03.03 问题单BA8D01054
-        IDEN REQ消息携带类型值为0，没有作为IMSI类型处理
-      4.  yangqianhui 00135146  2009-10-19 BN8D01126 NAS圈复杂度优化
-      5. shicongyong 00111599  2009-10-20 BN8D01116 NAS圈复杂度优化
-******************************************************************************/
 
 
 /*****************************************************************************
@@ -303,18 +289,7 @@ VOS_VOID  NAS_EMM_DecodeCnMsgIEOptListCalcLen
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_DecodeCnMsgIEOptList
- Description     : 循环解析可选信元
- Input           : NAS_EMM_DECODE_IELIST_PARA_STRU
- Output          :
- Return          : 解码是否成功
- History         :
-    1.s00111599      2009-9-28  Draft Enact
-    2.z00148421      2011-3-01  DTS201102220339:对于识别到的IE，如果没提供Decode
-                                函数，则跳过该IE，继续解码
-    3.n00181501      2012-7-23 modify 增加网络兼容性,对可选信元解析时忽略顺序
-*****************************************************************************/
+
 VOS_UINT32  NAS_EMM_DecodeCnMsgIEOptList(
                                             NAS_EMM_DECODE_IELIST_PARA_STRU *pstIEOptParaList,
                                             VOS_UINT32  *pulSum
@@ -471,16 +446,7 @@ VOS_UINT32  NAS_EMM_DecodeCnMsgIEOptList(
 
     return NAS_EMM_SUCC;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_DecodeCnMsgIEMstListParaChk
- Description     : 指针非空的检查
- Input           : NAS_EMM_DECODE_IELIST_PARA_STRU
- Output          :
- Return          : NAS_EMM_SUCC 指针非空
- History         :
-    1.s00111599      2009-10-20  Draft Enact
 
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_DecodeCnMsgIEOptListParaChk(
                            NAS_EMM_DECODE_IELIST_PARA_STRU *pstIEOptParaList
                                                                    )
@@ -527,16 +493,7 @@ VOS_UINT32 NAS_EMM_DecodeCnMsgIEOptListParaChk(
     return ulRslt;
 
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_DecodeCnMsgIEEdianChk
- Description     : 检查字节序，并对消息可选项存储的bit位的纠正
- Input           : pulOptpos 传入存储位置
- Output          : pulOptpos 纠正存储位置
- Return          : 无
- History         :
-    1. s00111599  2009-10-20    Draft Enact
 
-*****************************************************************************/
 VOS_VOID  NAS_EMM_DecodeCnMsgIEEdianChk(
 
                                             VOS_UINT32  *pulOptpos,
@@ -552,16 +509,7 @@ VOS_VOID  NAS_EMM_DecodeCnMsgIEEdianChk(
         *pulOptpos = (ucOptbits - (*pulOptpos% ucOptbits)) ;
     }
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_DECODE_IsLittleEdian
- Description     : 判断是否为小头
- Input           : 无
- Output          :
- Return          :返回PS_TRUE为小头； 否则为大头
- History         :
-    1. s00111599  2009-10-20     Draft Enact
 
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_DecodeIsLittleEdian(VOS_VOID)
 {
     NAS_EMM_DECODE_EDIAN_UION unNasEdian;
@@ -576,17 +524,7 @@ VOS_UINT32 NAS_EMM_DecodeIsLittleEdian(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_DecodeCnEmmCause
- Description     :    主要用于CN消息中EMM原因值的解码，
-                      参考协议24301   9.9.3.9节的Table 9.9.3.9.1中所述，
-                      非表中所列原因值均作为#111处理。
- Input           : VOS_UINT8
- Output          : NULL
- Return          :  NAS_EMM_CN_CAUSE_ENUM_UINT8
- History         :
-    1.sunjitan 00193151      2012-06-05  Draft Enact
-*****************************************************************************/
+
 NAS_EMM_CN_CAUSE_ENUM_UINT8  NAS_EMM_DecodeCnEmmCause(VOS_UINT8  ucEMMCau)
 {
     if (   ((NAS_LMM_CAUSE_IMSI_UNKNOWN_IN_HSS <= ucEMMCau) && (ucEMMCau <= NAS_LMM_CAUSE_ILLEGAL_UE))
@@ -1160,17 +1098,7 @@ VOS_UINT32  NAS_EMM_DecodeCnGUTICmdMsgNasMsg(
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_DecodeCnGUTICmdMsg
- Description     : 把MM CN 消息解码到具体的结构中
- Input           : pRcvMsg
-                   pstCnMsgStru
- Output          : pstCnMsgStru
- Return          : 解码是否成功
- History         :
-    1.n00108792      2008-9-28  Draft Enact
 
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_DecodeCnGUTICmdMsg(LRRC_LNAS_MSG_STRU            *pRcvMsg,
                                         VOS_UINT32                  ulLength,
                                         NAS_EMM_CN_MSG_STRU        *pstCnMsgStru)
@@ -1185,18 +1113,7 @@ VOS_UINT32  NAS_EMM_DecodeCnGUTICmdMsg(LRRC_LNAS_MSG_STRU            *pRcvMsg,
     return ulRet;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_DecodeCnIdenReqMsg
- Description     : 把MM CN 消息解码到具体的结构中
- Input           : pRcvMsg
-                   pstCnMsgStru
- Output          : pstCnMsgStru
- Return          : 解码是否成功
- History         :
-    1.n00108792      2008-9-28  Draft Enact
-    2.zhengjunyan 00148421 2009.03.03 问题单BA8D01054
-    描述:type of identity的判断条件
-*****************************************************************************/
+
 VOS_UINT32  NAS_EMM_DecodeCnIdenReqMsg(
                                     LRRC_LNAS_MSG_STRU          *pRcvMsg,
                                     VOS_UINT32                  ulLength,
@@ -1290,17 +1207,7 @@ VOS_UINT32  NAS_EMM_DecodeCnSerRejMsgNasMsg(
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_DecodeCnSerRejMsg
- Description     : 把MM CN 消息解码到具体的结构中
- Input           : pRcvMsg
-                   pstCnMsgStru
- Output          : pstCnMsgStru
- Return          : 解码是否成功
- History         :
-    1.n00108792      2008-9-28  Draft Enact
 
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_DecodeCnSerRejMsg(LRRC_LNAS_MSG_STRU             *pRcvMsg,
                                     VOS_UINT32                      ulLength,
                                     NAS_EMM_CN_MSG_STRU            *pstCnMsgStru)
@@ -1314,24 +1221,7 @@ VOS_UINT32  NAS_EMM_DecodeCnSerRejMsg(LRRC_LNAS_MSG_STRU             *pRcvMsg,
 
     return ulRet;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_VerifyEpsUpdateRslt
- Description     : 验证EPS Update Result信元是否合法
 
-                   0   0   0       TA updated
-                   0   0   1       combined TA/LA updated
-                   1   0   0       TA updated and ISR activated (NOTE)
-                   1   0   1       combined TA/LA updated and ISR activated (NOTE)
-                   All other values are reserved
-
- Input           : ucEPSUpdateRslt----------EPS Update Result
- Output          : None
- Return          : VOS_UINT32
-
- History         :
-    1.lihong00150010      2011-08-23  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_VerifyEpsUpdateRslt
 (
     VOS_UINT8                           ucEPSUpdateRslt
@@ -1359,19 +1249,7 @@ VOS_UINT32  NAS_EMM_VerifyEpsUpdateRslt
 
     return NAS_EMM_FAIL;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_DecodeCnTAUAcpMsgNasMsg
- Description     :
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.h41410      2009-2-3  Draft Enact
-    2.lining 00141619        2009-7-10     2009Q1协议刷新
-      CR39--Security and inter RAT mobility to E-UTRAN
-      新增解析可选信元NAS key set identifierASME
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_DecodeCnTAUAcpMsgNasMsg(
                                         LRRC_LNAS_MSG_STRU           *pRcvMsg,
                                         VOS_UINT8                  *pucRcvCnNasMsg,
@@ -1445,17 +1323,7 @@ VOS_UINT32  NAS_EMM_DecodeCnTAUAcpMsgNasMsg(
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_DecodeCnTAUAcpMsg
- Description     : 把MM CN 消息解码到具体的结构中
- Input           : pRcvMsg
-                   pstCnMsgStru
- Output          : pstCnMsgStru
- Return          : 解码是否成功
- History         :
-    1.n00108792      2008-9-28  Draft Enact
 
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_DecodeCnTAUAcpMsg(LRRC_LNAS_MSG_STRU             *pRcvMsg,
                                     VOS_UINT32                      ulLength,
                                     NAS_EMM_CN_MSG_STRU            *pstCnMsgStru)
@@ -1470,17 +1338,7 @@ VOS_UINT32  NAS_EMM_DecodeCnTAUAcpMsg(LRRC_LNAS_MSG_STRU             *pRcvMsg,
     return ulRet;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_DecodeCnTAURejMsg
- Description     : 把MM CN 消息解码到具体的结构中
- Input           : pRcvMsg
-                   pstCnMsgStru
- Output          : pstCnMsgStru
- Return          : 解码是否成功
- History         :
-    1.n00108792      2008-9-28  Draft Enact
 
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_DecodeCnTAURejMsg(
                                     LRRC_LNAS_MSG_STRU          *pRcvMsg,
                                     VOS_UINT32                  ulLength,
@@ -1625,16 +1483,7 @@ VOS_UINT32  NAS_EMM_DecodeCnAuthReqMsgNasMsg
 
     return NAS_EMM_SUCC;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_DecodeCnAuthReqMsg
- Description     : 把MM CN 消息解码到具体的结构中
- Input           : pRcvMsg
-                   pstCnMsgStru
- Output          : pstCnMsgStru
- Return          : 解码是否成功
- History         :
-    1.liuwenyu 00143951      2008-9-28  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  NAS_EMM_DecodeCnAuthReqMsg
 (
     LRRC_LNAS_MSG_STRU                    *pRcvMsg,
@@ -1651,16 +1500,7 @@ VOS_UINT32  NAS_EMM_DecodeCnAuthReqMsg
 
     return ulRet;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_DecodeCnAuthRejMsg
- Description     : 把MM CN 消息解码到具体的结构中
- Input           : pRcvMsg
-                   pstCnMsgStru
- Output          : pstCnMsgStru
- Return          : 解码是否成功
- History         :
-    1.liuwenyu 00143951      2008-9-28  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  NAS_EMM_DecodeCnAuthRejMsg(
                                     LRRC_LNAS_MSG_STRU          *pRcvMsg,
                                     VOS_UINT32                  ulLength,
@@ -1675,16 +1515,7 @@ VOS_UINT32  NAS_EMM_DecodeCnAuthRejMsg(
     return NAS_EMM_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_DecodeCnSecurModeCtrlMsgNasMsg
- Description     : 把MM CN 消息解码到具体的结构中
- Input           : pRcvMsg
-                   pstCnMsgStru
- Output          : pstCnMsgStru
- Return          : 解码是否成功
- History         :
-    1.liuwenyu 00143951      2008-9-28  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  NAS_EMM_DecodeCnSecurModeCtrlMsgNasMsg
 (
     LRRC_LNAS_MSG_STRU                    *pRcvMsg,
@@ -1746,16 +1577,7 @@ VOS_UINT32  NAS_EMM_DecodeCnSecurModeCtrlMsgNasMsg
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_DecodeCnSecurModeCtrlMsg
- Description     : 把MM CN 消息解码到具体的结构中
- Input           : pRcvMsg
-                   pstCnMsgStru
- Output          : pstCnMsgStru
- Return          : 解码是否成功
- History         :
-    1.liuwenyu 00143951      2008-9-28  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  NAS_EMM_DecodeCnSecurModeCtrlMsg
 (
     LRRC_LNAS_MSG_STRU                    *pRcvMsg,
@@ -1772,20 +1594,7 @@ VOS_UINT32  NAS_EMM_DecodeCnSecurModeCtrlMsg
 
     return ulRet;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_DecodeType1Tai
- Description     : 译码类型为010的TA List
- Input           : VOS_UINT32 *pulTaiLength
-                   VOS_UINT32  ulTaiNumSum
-                   VOS_UINT8  *pucTmpMsg
-                   NAS_EMM_TA_LIST_STRU   *pstTaiStru
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.y00135146      2009-10-10  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_DecodeType1Tai(VOS_UINT32 *pulTaiLength,
                                         VOS_UINT32  ulTaiNumSum,
                                         VOS_UINT8  *pucTaiInfo,
@@ -1843,20 +1652,7 @@ VOS_UINT32 NAS_EMM_DecodeType1Tai(VOS_UINT32 *pulTaiLength,
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_DecodeType0Tai
- Description     : 译码类型为000的TA List
- Input           : VOS_UINT32 *pulTaiLength
-                   VOS_UINT32  ulTaiNumSum
-                   VOS_UINT8  *pucTmpMsg
-                   NAS_EMM_TA_LIST_STRU   *pstTaiStru
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.y00135146      2009-10-10  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_DecodeType0Tai(VOS_UINT32 *pulTaiLength,
                                         VOS_UINT32  ulTaiNumSum,
                                         VOS_UINT8  *pucTaiInfo,
@@ -1905,20 +1701,7 @@ VOS_UINT32 NAS_EMM_DecodeType0Tai(VOS_UINT32 *pulTaiLength,
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_DecodeType2Tai
- Description     : 译码类型为010的TA List
- Input           : VOS_UINT32 *pulTaiLength
-                   VOS_UINT32  ulTaiNumSum
-                   VOS_UINT8  *pucTmpMsg
-                   NAS_EMM_TA_LIST_STRU   *pstTaiStru
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.y00135146      2009-10-12  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_DecodeType2Tai(VOS_UINT32 *pulTaiLength,
                                         VOS_UINT32  ulTaiNumSum,
                                         VOS_UINT8  *pucTaiInfo,
@@ -1964,20 +1747,7 @@ VOS_UINT32 NAS_EMM_DecodeType2Tai(VOS_UINT32 *pulTaiLength,
     return (ulTotalTaiNum - ulTaiNumSum);
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_DecodeTai
- Description     : 把MM CN 消息解码到具体的结构中
- Input           : pRcvMsg
-                   pulIndex
-                   pstTaiStru
-                   enMsgTp
- Output          : pstTaiStru pulIndex
- Return          : 解码是否成功
- History         :
-    1.h41410      2008-9-28  Draft Enact
-    2.y00135146   2009-10-10 Modify  BN8D01126 修改内容:NAS圈复杂度优化
 
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_DecodeTai(
                                     VOS_UINT8   *pRcvMsg,
                                     VOS_UINT32  *pulIndex,
@@ -2215,20 +1985,7 @@ VOS_UINT32  NAS_EMM_DecodeLai(
     return NAS_EMM_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_DecodeMsId
- Description     : 把MM CN 消息解码到具体的结构中
- Input           : pRcvMsg
-                   ulIndex
-                   pstMsIdStru
-                   enMsgTp
- Output          : pstMsIdStru ulIndex
- Return          : 解码是否成功
- History         :
-    1.h41410      2008-9-28  Draft Enact
-    2.z00148421   2011-3-01  DTS201102220339:V1R1版本不关心 MS Identity 信元，只
-                             验证信元长度合法性，不解析内容
-*****************************************************************************/
+
 VOS_UINT32  NAS_EMM_DecodeMsId(
                                     VOS_UINT8   *pRcvMsg,
                                     VOS_UINT32  *pulIndex,
@@ -2345,17 +2102,7 @@ VOS_UINT32  NAS_EMM_DecodePlmnList(
     return NAS_EMM_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_VerifyEmergencyNumListLen
- Description     : 检测紧急呼号码列表长度的合法性
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong 00150010     2012-2-21  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_VerifyEmergencyNumListLen
 (
     VOS_UINT8                          *pRcvMsg
@@ -2406,18 +2153,7 @@ VOS_UINT32  NAS_EMM_VerifyEmergencyNumListLen
     return NAS_EMM_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_DecodeEmergencyNumList
- Description     : 把空口消息携带的Emergency number list IE内容解码到内存结构中
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2011-7-2  Draft Enact
-    2.lihong 00150010     2012-2-21 Modify
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_DecodeEmergencyNumList
 (
     VOS_UINT8   *pRcvMsg,
@@ -2496,17 +2232,7 @@ VOS_UINT32  NAS_EMM_DecodeEmergencyNumList
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_DecodeEpsNetFeatureSupport
- Description     : 把空口消息携带的EPS network feature support IE内容解码到内存结构中
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2011-7-4  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_DecodeEpsNetFeatureSupport
 (
     VOS_UINT8   *pRcvMsg,
@@ -2556,17 +2282,7 @@ VOS_UINT32  NAS_EMM_DecodeEpsNetFeatureSupport
     return NAS_EMM_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_DecodeAdditionalUpdateRslt
- Description     : 把空口消息携带的Additional update result IE内容解码到内存结构中
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2011-7-4  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_DecodeAdditionalUpdateRslt
 (
     VOS_UINT8   *pRcvMsg,
@@ -2680,18 +2396,7 @@ VOS_UINT32  NAS_EMM_DecodeMsgCon(VOS_UINT8  *pRcvMsg,
     return NAS_EMM_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_DecodeESMMsgCon
- Description     : 把MM CN 消息解码到具体的结构中
- Input           : pRcvMsg
-                   ulIndex
-                   pstPlmnListStru
- Output          : pstPlmnListStru
- Return          : 解码是否成功
- History         :
-    1.w00209181     2014-09-25  Draft Enact
 
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_DecodeEsmMsgCon
 (
     VOS_UINT8   *pRcvMsg,
@@ -2748,19 +2453,7 @@ VOS_UINT32  NAS_EMM_DecodeEsmMsgCon
     return NAS_EMM_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_DecodeTimer2
- Description     : 把T3402(GPRS TIMER2)消息解码到具体的结构中
- Input           : pRcvMsg
-                   ulIndex
-                   pstTimer
-                   enMsgTp
- Output          : pstTimer pulIndex
- Return          : 解码是否成功
- History         :
-    1.c00134407      2014-10-13  Draft Enact
 
-*****************************************************************************/
 
 VOS_UINT32  NAS_EMM_DecodeTimer2(
                                         VOS_UINT8   *pucRcvMsg,
@@ -2862,9 +2555,7 @@ VOS_UINT32  NAS_EMM_DecodeTimer(
     pstTmpTimer                         = (NAS_EMM_TIMER_STRU *)pstTimer;
 
     ulSum                               = NAS_EMM_NULL;
-    /*l00258641 消除fortify告警 begin*/
     /*ucTimeGap                           = NAS_EMM_NULL;*/
-    /*l00258641 消除fortify告警 end*/
 
 
     /*取出Timer unit值*/
@@ -3008,16 +2699,7 @@ VOS_UINT32  NAS_EMM_DecodeKSIasme(
     return NAS_EMM_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_DecodeNwName
- Description     : Network Name信元解析函数
- Input           :
- Output          : VOS_UINT32  *pulIndex
- Return          : 解码是否成功
- History         :
-    1.y00159566      2011-3-3  Draft Enact
 
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_DecodeNwName(
                                         NAS_EMM_CN_NETWORK_NAME_STRU   *pstNwName,
                                         VOS_UINT8                      *pTmpRcvMsg,
@@ -3055,16 +2737,7 @@ VOS_UINT32  NAS_EMM_DecodeNwName(
     return NAS_EMM_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_DecodeTimeZone
- Description     : TimeZone信元解析函数
- Input           :
- Output          : VOS_UINT32  *pulIndex
- Return          : 解码是否成功
- History         :
-    1.y00159566      2011-3-3  Draft Enact
 
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_DecodeTimeZone(
                                         NAS_EMM_CN_TIMEZONE_STRU       *pstTimeZone,
                                         VOS_UINT8                      *pTmpRcvMsg,
@@ -3090,16 +2763,7 @@ VOS_UINT32  NAS_EMM_DecodeTimeZone(
     return NAS_EMM_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_DecodeLocalTimeZone
- Description     : LocalTimeZone信元解析函数
- Input           :
- Output          : VOS_UINT32  *pulIndex
- Return          : 解码是否成功
- History         :
-    1.y00159566      2011-3-3  Draft Enact
 
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_DecodeLocalTimeZone(
                                         NAS_EMM_CN_TIMEZONE_UNITIME_STRU *pstLocalTZ,
                                         VOS_UINT8                        *pTmpRcvMsg,
@@ -3134,16 +2798,7 @@ VOS_UINT32  NAS_EMM_DecodeLocalTimeZone(
     return NAS_EMM_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_DecodeDaylight
- Description     : TimeZone信元解析函数
- Input           :
- Output          : VOS_UINT32  *pulIndex
- Return          : 解码是否成功
- History         :
-    1.y00159566      2011-3-3  Draft Enact
 
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_DecodeDaylight(
                                         NAS_LMM_DAYLIGHT_SAVE_TIME_ENUM_UINT8       *pstDaylight,
                                         VOS_UINT8                      *pTmpRcvMsg,
@@ -3169,17 +2824,7 @@ VOS_UINT32  NAS_EMM_DecodeDaylight(
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_DecodeCnEmmInfoMsg
- Description     : 解码EmmInformation消息
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.yangfan     00159566      2009-11-4  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_DecodeCnEmmInfoMsg(LRRC_LNAS_MSG_STRU          *pRcvMsg,
                                                       VOS_UINT32                 ulLength,
                                                       NAS_EMM_CN_MSG_STRU       *pstCnMsgStru)
@@ -3477,18 +3122,7 @@ VOS_UINT32  NAS_EMM_DecodeCnDownlinkNasTransportMsg(LRRC_LNAS_MSG_STRU          
 
     return NAS_EMM_SUCC;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_DecodeCli
- Description     : 解码CLI信元
- Input           : pRcvMsg
-                   ulLength
- Output          : pstCsSerNotifications
-                   pulIndex
- Return          : 解码是否成功
- History         :
-    1.lihong00150010       2012-02-22  Draft Enact
 
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_DecodeCli
 (
     LRRC_LNAS_MSG_STRU                  *pRcvMsg,
@@ -3537,18 +3171,7 @@ VOS_UINT32  NAS_EMM_DecodeCli
     return NAS_EMM_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_DecodeLcsClientId
- Description     : 解码LCS CLIENT IDENTIFIER信元
- Input           : pRcvMsg
-                   ulLength
- Output          : pstCsSerNotifications
-                   pulIndex
- Return          : 解码是否成功
- History         :
-    1.lihong00150010       2012-02-22  Draft Enact
 
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_DecodeLcsClientId
 (
     LRRC_LNAS_MSG_STRU                  *pRcvMsg,
@@ -3597,16 +3220,7 @@ VOS_UINT32  NAS_EMM_DecodeLcsClientId
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_DecodeCnCsSerNotification
- Description     : 解码CS SERVICE NOTIFICATION消息
- Input           : pRcvMsg
- Output          : pstCnMsgStru
- Return          : 解码是否成功
- History         :
-    1.lihong00150010       2012-02-21  Draft Enact
 
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_DecodeCnCsSerNotification
 (
     LRRC_LNAS_MSG_STRU                 *pRcvMsg,
@@ -3711,17 +3325,7 @@ VOS_UINT32  NAS_EMM_DecodeCnCsSerNotification
     return NAS_EMM_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_DecodeGenericMessageContainer
- Description     : 解码 Generic Message Container 部分
- Input           : pMsgBuf      : 待解码码流
- Output          : pLength      : 解码完成后内存偏移量
-                   pDstMsgStrct : 解码后存放数据结构
- Return          : 解码是否成功
- History         :
-    1.liuhua    00212067       2012-07-04  Draft Enact
 
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_DecodeGenericMessageContainer(VOS_UINT8 *pucMsgBuf,
                                                  VOS_UINT32 *pulLength,
                                                  NAS_EMM_GENERIC_MESSAGE_CONTAINER_STRU *pstDstMsgStrct)
@@ -3758,17 +3362,7 @@ VOS_UINT32 NAS_EMM_DecodeGenericMessageContainer(VOS_UINT8 *pucMsgBuf,
     return NAS_EMM_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_DecodeAdditionalInfo
- Description     : 解码 Additional Information 部分
- Input           : pMsgBuf      : 待解码码流
- Output          : pLength      : 解码完成后内存偏移量
-                   pDstMsgStrct : 解码后存放数据结构
- Return          : 解码是否成功
- History         :
-    1.liuhua    00212067       2012-07-04  Draft Enact
 
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_DecodeAdditionalInfo(VOS_UINT8 *pucMsgBuf,
                                         VOS_UINT32 *pulLength,
                                         NAS_EMM_ADDITIONAL_INFOR_STRU *pstDstMsgStrct)
@@ -3801,16 +3395,7 @@ VOS_UINT32 NAS_EMM_DecodeAdditionalInfo(VOS_UINT8 *pucMsgBuf,
 /*lint +e961*/
 /*lint +e960*/
 /*lint +e72*/
-/*****************************************************************************
- Function Name   : NAS_EMM_DecodeCnDownlinkGenericNasTransportMsg
- Description     : 解码DOWNLINK GENERIC NAS Transport消息
- Input           : pRcvMsg
- Output          : pstCnMsgStru
- Return          : 解码是否成功
- History         :
-    1.liuhua    00212067       2012-07-03  Draft Enact
 
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_DecodeCnDownlinkGenericNasTransportMsg
 (
     LRRC_LNAS_MSG_STRU                 *pstRcvMsg,
@@ -3913,18 +3498,7 @@ VOS_UINT32  NAS_EMM_DecodeCnDownlinkGenericNasTransportMsg
     return ulRet;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_SndOmLogCnMsgIEDecodeFail
- Description     : EMM空口信元解析失败，可维可测上报
- Input           : enIeType 信元类型
-                   enCause  失败原因
-                   ulValue  失败值
- Output          : None
- Return          : None
 
- History         :
-    1.leixiantiao 00258641      2015-3-13  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_LMM_SndOmLogCnMsgDecodeFail
 (
     NAS_EMM_CN_MSG_IE_TYPE_ENUM_UINT32                  enIeType,

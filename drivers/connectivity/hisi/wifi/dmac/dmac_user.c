@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : dmac_user.c
-  版 本 号   : 初稿
-  作    者   : huxiaotong
-  生成日期   : 2012年10月19日
-  最近修改   :
-  功能描述   :
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年10月19日
-    作    者   : huxiaotong
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -45,7 +28,7 @@ extern "C" {
 #include "dmac_psm_sta.h"
 #include "dmac_device.h"
 #include "dmac_resource.h"
-
+#include "dmac_config.h"
 
 
 #undef  THIS_FILE_ID
@@ -59,21 +42,7 @@ extern "C" {
   3 函数实现
 *****************************************************************************/
 #ifdef _PRE_DEBUG_MODE_USER_TRACK
-/*****************************************************************************
- 函 数 名  : dmac_user_track_init
- 功能描述  : 单用户跟踪初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月26日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_user_track_init(dmac_user_stru  *pst_dmac_user)
 {
     pst_dmac_user->st_txrx_protocol.en_rx_flg = OAL_TRUE;
@@ -84,24 +53,7 @@ OAL_STATIC oal_uint32  dmac_user_track_init(dmac_user_stru  *pst_dmac_user)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_user_check_txrx_protocol_change
- 功能描述  : 检查接收或者发送数据帧所使用的协议模式有没有变化，如果变化则上
-             报sdt
- 输入参数  : pst_dmac_user: dmac user结构
-             en_present_mode :接收或者发送当前帧使用的协议模式
-             en_type:  表明是tx还是rx
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月23日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_user_check_txrx_protocol_change(
                                   dmac_user_stru *pst_dmac_user,
                                   oal_uint8      uc_present_mode,
@@ -171,21 +123,7 @@ oal_uint32  dmac_user_check_txrx_protocol_change(
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : dmac_user_init
- 功能描述  : 初始化DMAC 用户
- 输入参数  : 指向用户的指针
- 输出参数  : 失败原因或成功
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月19日
-    作    者   : 康国昌53369
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_user_init(dmac_user_stru *pst_dmac_user)
 {
     mac_vap_stru            *pst_mac_vap;
@@ -240,41 +178,13 @@ OAL_STATIC oal_uint32  dmac_user_init(dmac_user_stru *pst_dmac_user)
 }
 
 
-/*****************************************************************************
- 函 数 名  : mac_res_get_dmac_user
- 功能描述  : 获取对应DMAC USER索引的内存,由HMAC层强转为自己的内存解析
- 输入参数  : 对应DMAC USER内存索引
- 输出参数  : 无
- 返 回 值  : 对应内存地址
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月9日
-    作    者   : chenwenfeng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void*  mac_res_get_dmac_user(oal_uint16 us_idx)
 {
     return  mac_res_get_mac_user(us_idx);
 }
 
-/*****************************************************************************
- 函 数 名  : mac_res_get_dmac_user_alloc
- 功能描述  : 获取对应DMAC USER索引的内存,只用于第一次申请user内存时调用
- 输入参数  : 对应DMAC USER内存索引
- 输出参数  : 无
- 返 回 值  : 对应内存地址
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月9日
-    作    者   : lingxuemeng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void*  mac_res_get_dmac_user_alloc(oal_uint16 us_idx)
 {
     mac_user_stru*  pst_mac_user;
@@ -298,21 +208,7 @@ void*  mac_res_get_dmac_user_alloc(oal_uint16 us_idx)
     return  (void*)pst_mac_user;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_user_alloc
- 功能描述  : 申请device user id对应的内存
- 输入参数  : 对应DMAC USER内存索引
- 输出参数  : 无
- 返 回 值  : 对应内存地址
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月9日
-    作    者   : lingxuemeng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 dmac_user_alloc(oal_uint16 us_user_idx)
 {
     oal_uint32        ul_ret = 0;
@@ -345,21 +241,7 @@ oal_uint32 dmac_user_alloc(oal_uint16 us_user_idx)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_user_free
- 功能描述  : 释放device user id对应的内存
- 输入参数  : 对应DMAC USER内存索引
- 输出参数  : 无
- 返 回 值  : 对应内存地址
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月9日
-    作    者   : lingxuemeng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 dmac_user_free(oal_uint16 us_user_idx)
 {
     dmac_user_stru*  pst_dmac_user;
@@ -396,21 +278,7 @@ oal_uint32 dmac_user_free(oal_uint16 us_user_idx)
     return ul_ret;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_user_add_multi_user
- 功能描述  : dmac创建组播用户
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月23日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_user_add_multi_user(mac_vap_stru *pst_mac_vap, oal_uint16 us_multi_user_idx)
 {
     dmac_user_stru  *pst_dmac_multi_user;
@@ -460,21 +328,7 @@ oal_uint32  dmac_user_add_multi_user(mac_vap_stru *pst_mac_vap, oal_uint16 us_mu
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_user_del_multi_user
- 功能描述  : 删除用户的调测命令
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月6日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_user_del_multi_user(mac_vap_stru *pst_mac_vap, oal_uint16 us_user_idx)
 {
     mac_device_stru                *pst_mac_device;
@@ -520,21 +374,7 @@ oal_uint32  dmac_user_del_multi_user(mac_vap_stru *pst_mac_vap, oal_uint16 us_us
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_user_get_tid_by_num
- 功能描述  : 根据tid num获取dmac user下的tid队列指针
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月22日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_user_get_tid_by_num(mac_user_stru *pst_mac_user, oal_uint8 uc_tid_num, dmac_tid_stru **ppst_tid_queue)
 {
     dmac_user_stru     *pst_dmac_user;
@@ -561,21 +401,7 @@ oal_uint32  dmac_user_get_tid_by_num(mac_user_stru *pst_mac_user, oal_uint8 uc_t
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_is_user_in_smartant_training
- 功能描述  : 获取当前用户是否在智能天线训练状态
- 输入参数  : pst_user: 指向user的指针
- 输出参数  : pen_is_training: 返回状态
- 返 回 值  : 错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月5日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 dmac_user_get_smartant_training_state(
                 mac_user_stru                          *pst_user,
                 dmac_user_smartant_training_enum_uint8 *pen_training_state)
@@ -597,22 +423,7 @@ oal_uint32 dmac_user_get_smartant_training_state(
 }
 
 #ifdef _PRE_WLAN_FEATURE_SMARTANT
-/*****************************************************************************
- 函 数 名  : dmac_set_user_in_smartant_training
- 功能描述  : 设置当前在智能天线训练状态
- 输入参数  : pst_user      : 指向用户的指针
-             en)is_training: 要设置的状态
- 输出参数  : 无
- 返 回 值  : 错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月5日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_user_set_smartant_training_state(
                 mac_user_stru                              *pst_user,
                 dmac_user_smartant_training_enum_uint8      en_training_state)
@@ -632,21 +443,7 @@ oal_uint32  dmac_user_set_smartant_training_state(
     return OAL_SUCC;
 }
 #endif
-/*****************************************************************************
- 函 数 名  : dmac_user_get_smartant_normal_rate_stats
- 功能描述  : 读取用户的当前速率统计信息
- 输入参数  : pst_mac_user        : 指向用户的指针
- 输出参数  : ppst_rate_stats_info: 指向速率统计信息
- 返 回 值  : 错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月5日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_user_get_smartant_normal_rate_stats(
                 mac_user_stru                      *pst_mac_user,
                 dmac_tx_normal_rate_stats_stru    **ppst_rate_stats_info)
@@ -669,21 +466,7 @@ oal_uint32  dmac_user_get_smartant_normal_rate_stats(
 }
 
 #ifdef _PRE_WLAN_FEATURE_SMARTANT
-/*****************************************************************************
- 函 数 名  : dmac_user_set_smartant_normal_rate_stats
- 功能描述  : 设置用户的当前速率统计信息
- 输入参数  : pst_mac_user: 指向用户的指针
- 输出参数  : pst_rate_stats_info: 速率统计信息
- 返 回 值  : 错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月5日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_user_set_smartant_normal_rate_stats(
                 mac_user_stru                  *pst_mac_user,
                 dmac_tx_normal_rate_stats_stru *pst_rate_stats_info)
@@ -713,22 +496,7 @@ oal_uint32  dmac_user_set_smartant_normal_rate_stats(
 }
 #endif
 #if 0
-/*****************************************************************************
- 函 数 名  : dmac_user_get_txchain_mask
- 功能描述  : 获取不同空间流下的TX CHAIN MASK
- 输入参数  : pst_user: 指向用户的指针
-             en_nss: 空间流枚举
- 输出参数  : puc_chainmask: tx chain mask
- 返 回 值  : 错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月5日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_user_get_txchain_mask(
                 mac_user_stru          *pst_user,
                 wlan_nss_enum_uint8     en_nss,
@@ -757,22 +525,7 @@ oal_uint32  dmac_user_get_txchain_mask(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_user_set_txchain_mask
- 功能描述  : 获取不同空间流下的TX CHAIN MASK
- 输入参数  : pst_user: 指向用户的指针
-             en_nss: 空间流枚举
- 输出参数  : puc_chainmask: tx chain mask
- 返 回 值  : 错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月5日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_user_set_txchain_mask(
                 mac_user_stru          *pst_user,
                 wlan_nss_enum_uint8     en_nss,
@@ -802,21 +555,7 @@ oal_uint32  dmac_user_set_txchain_mask(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : dmac_user_get_vip_flag
- 功能描述  : 读取用户的VIP属性
- 输入参数  : pst_user      : 指向user用户的指针
- 输出参数  :
- 返 回 值  : true - vip; false - 非vip
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月5日
-    作    者   : chenyan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_bool_enum_uint8  dmac_user_get_vip_flag(mac_user_stru  *pst_user)
 {
     dmac_user_stru                 *pst_dmac_user;
@@ -834,21 +573,7 @@ oal_bool_enum_uint8  dmac_user_get_vip_flag(mac_user_stru  *pst_user)
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_user_get_ps_mode
- 功能描述  : 读取用户的ps_mode
- 输入参数  : pst_user      : 指向user用户的指针
- 输出参数  :
- 返 回 值  : true - 处于ps_mode;
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月5日
-    作    者   : chenyan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_bool_enum_uint8  dmac_user_get_ps_mode(mac_user_stru  *pst_user)
 {
     dmac_user_stru                 *pst_dmac_user;
@@ -865,21 +590,7 @@ oal_bool_enum_uint8  dmac_user_get_ps_mode(mac_user_stru  *pst_user)
     return (oal_bool_enum_uint8)(pst_dmac_user->bit_ps_mode);
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_user_get_vip_flag
- 功能描述  : 读取用户的VIP属性
- 输入参数  : pst_user      : 指向user用户的指针
- 输出参数  : pen_vip_flag
- 返 回 值  : 错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月5日
-    作    者   : chenyan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_user_set_vip_flag(
                 mac_user_stru               *pst_user,
                 oal_bool_enum_uint8          en_vip_flag)
@@ -900,21 +611,7 @@ oal_uint32  dmac_user_set_vip_flag(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_user_init_slottime
- 功能描述  : 根据用户状态设置slottime类型
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : y00196452
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_user_init_slottime(mac_vap_stru *pst_mac_vap, mac_user_stru *pst_mac_user)
 {
     hal_to_dmac_device_stru    *pst_hal_device;
@@ -938,21 +635,7 @@ oal_void dmac_user_init_slottime(mac_vap_stru *pst_mac_vap, mac_user_stru *pst_m
     }
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_user_inactive
- 功能描述  : 设置用户为非活跃
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月23日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_user_inactive(dmac_user_stru *pst_dmac_user)
 {
     mac_device_stru    *pst_mac_device;
@@ -1030,7 +713,6 @@ oal_uint32  dmac_user_inactive(dmac_user_stru *pst_dmac_user)
     /* 将gtk的乒乓指示位清0 注意:此位ap无作用，sta使用*/
     dmac_reset_gtk_token(pst_mac_vap);
 
-    /*从硬件表中删除用户MAC 地址，l00218984 add 2013-10-18*/
     OAM_INFO_LOG2(pst_dmac_user->st_user_base_info.uc_vap_id, OAM_SF_WPA, "dmac_user_del::lutidx %u, usridx %u\r\n", pst_dmac_user->uc_lut_index, pst_dmac_user->st_user_base_info.us_assoc_id);
 
     ul_ret = dmac_11i_del_peer_macaddr(pst_mac_vap,pst_dmac_user->uc_lut_index);
@@ -1042,21 +724,7 @@ oal_uint32  dmac_user_inactive(dmac_user_stru *pst_dmac_user)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_user_active_timer
- 功能描述  : 活跃定时器到期处理函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月23日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_user_active_timer(void *p_arg)
 {
     mac_device_stru     *pst_mac_device = (mac_device_stru *)p_arg;
@@ -1119,21 +787,7 @@ OAL_STATIC oal_uint32  dmac_user_active_timer(void *p_arg)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_user_active
- 功能描述  : 设置用户为活跃
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月23日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_user_active(dmac_user_stru *pst_dmac_user)
 {
     oal_uint8           uc_lut_idx;
@@ -1226,21 +880,7 @@ oal_uint32  dmac_user_active(dmac_user_stru *pst_dmac_user)
 
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_psm_tid_mpdu_num
- 功能描述  : 判断某一个用户的所有tid是否都为空，只要有一个tid不为空就返回false
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : true:所有tid都为空   false:有tid不为空
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月29日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 dmac_psm_tid_mpdu_num(dmac_user_stru  *pst_dmac_user)
 {
     oal_uint8                     uc_tid_idx         = 0;
@@ -1254,82 +894,25 @@ oal_uint32 dmac_psm_tid_mpdu_num(dmac_user_stru  *pst_dmac_user)
     return ul_tid_mpdu_num;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_psm_is_psm_empty
- 功能描述  : 判断某一个用户的psm是否都为空
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月17日
-    作    者   : g00306640
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_bool_enum_uint8 dmac_psm_is_psm_empty(dmac_user_stru *pst_dmac_user)
 {
     return (0 == oal_atomic_read(&pst_dmac_user->st_ps_structure.uc_mpdu_num));
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_psm_is_uapsd_empty
- 功能描述  : 判断某一个用户的uspsd队列是否都为空，如果非空就返回false
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : true:uapsd 为空   false:uapsd 不为空
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月16日
-    作    者   : duankaiyong 00194999
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_bool_enum_uint8 dmac_psm_is_uapsd_empty(dmac_user_stru  *pst_dmac_user)
 {
     return (0 == oal_atomic_read(&pst_dmac_user->st_uapsd_stru.uc_mpdu_num));
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_psm_is_tid_empty
- 功能描述  : 判断某一个用户的所有tid是否都为空，只要有一个tid不为空就返回false
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : true:所有tid都为空   false:有tid不为空
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月23日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_bool_enum_uint8 dmac_psm_is_tid_empty(dmac_user_stru  *pst_dmac_user)
 {
     return (0 == dmac_psm_tid_mpdu_num(pst_dmac_user));
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_send_null_frame_to_sta
- 功能描述  : keepalive超时发送null帧函数
- 输入参数  : pst_mac_vap:  指向VAP的指针
-             pst_mac_user: 指向用户的指针
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月29日
-    作    者   : w00269675
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_send_null_frame_to_sta(mac_vap_stru *pst_mac_vap, mac_user_stru *pst_mac_user)
 {
     dmac_vap_stru             *pst_dmac_vap;
@@ -1391,21 +974,7 @@ oal_uint32  dmac_send_null_frame_to_sta(mac_vap_stru *pst_mac_vap, mac_user_stru
 
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_user_keepalive_timer
- 功能描述  : 用户keepalive定时器到期处理函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月30日
-    作    者   : w00269675
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_user_keepalive_timer(void *p_arg)
 {
     mac_device_stru     *pst_mac_device;
@@ -1545,6 +1114,9 @@ oal_uint32 dmac_alg_distance_notify_hook(mac_user_stru *pst_user, dmac_alg_dista
 {
     dmac_device_stru        *pst_dmac_device;
     dmac_alg_stat_stru      *pst_dmac_alg_stat;
+#if (_PRE_PRODUCT_ID == _PRE_PRODUCT_ID_HI1102_DEV)
+    hal_to_dmac_device_stru *pst_hal_device;
+#endif
 
     pst_dmac_device   = dmac_res_get_mac_dev(pst_user->uc_device_id);
     if (OAL_PTR_NULL == pst_dmac_device)
@@ -1578,6 +1150,18 @@ oal_uint32 dmac_alg_distance_notify_hook(mac_user_stru *pst_user, dmac_alg_dista
     {
         hal_set_improve_ce_threshold(pst_dmac_device->pst_device_base_info->pst_device_stru, 16);
     }
+
+#ifdef _PRE_PLAT_FEATURE_CUSTOMIZE
+    dmac_config_update_dsss_scaling_reg(pst_dmac_alg_stat->en_dmac_device_distance_enum);
+#endif  /* _PRE_PLAT_FEATURE_CUSTOMIZE */
+
+#ifdef _PRE_WLAN_FEATURE_TPC
+    pst_hal_device = pst_dmac_device->pst_device_base_info->pst_device_stru;
+
+    hal_set_spec_frm_phy_tx_mode(pst_hal_device,
+                                pst_hal_device->st_wifi_channel_status.uc_band,
+                                pst_hal_device->st_wifi_channel_status.uc_idx);
+#endif  /* _PRE_WLAN_FEATURE_TPC */
 #endif
     return OAL_SUCC;
 }
@@ -1727,21 +1311,7 @@ oal_void dmac_rx_compatibility_identify(dmac_user_stru *pst_dmac_user, oal_uint3
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_compatibility_handler
- 功能描述  : 兼容性问题特殊配置处理函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月7日
-    作    者   : s00304087
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void dmac_compatibility_handler(dmac_vap_stru *pst_dmac_vap, mac_ap_type_enum_uint8 en_ap_type, oal_bool_enum_uint8 en_is_add_user)
 {
     dmac_device_stru *pst_dmac_device;
@@ -1791,21 +1361,7 @@ OAL_STATIC oal_void dmac_compatibility_handler(dmac_vap_stru *pst_dmac_vap, mac_
     return;
 }
 #endif
-/*****************************************************************************
- 函 数 名  : dmac_user_add
- 功能描述  : DMAC用户添加用户同步操作
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月6日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_user_add(frw_event_mem_stru *pst_event_mem)
 {
     oal_uint16                      us_user_idx;
@@ -1901,6 +1457,9 @@ oal_uint32  dmac_user_add(frw_event_mem_stru *pst_event_mem)
 
     /* 重新关联用户的时候，重置乒乓位 */
     dmac_reset_gtk_token(pst_mac_vap);
+
+    /* MAC统计信息初始化 */
+    OAL_MEMZERO(&(pst_mac_device->st_mac_key_statis_info),OAL_SIZEOF(hal_mac_key_statis_info_stru));
 #endif
 
     /* dmac user初始化 */
@@ -1947,6 +1506,10 @@ oal_uint32  dmac_user_add(frw_event_mem_stru *pst_event_mem)
         dmac_pm_post_event(pst_dmac_vap,AP_PWR_EVENT_USR_ASSOC,0,OAL_PTR_NULL);
     }
 #endif
+
+#ifdef _PRE_WLAN_FEATURE_STA_PM
+    dmac_psm_init_null_frm_cnt(pst_dmac_vap);
+#endif  /* _PRE_WLAN_FEATURE_STA_PM */
 
 #ifdef _PRE_WLAN_FEATURE_PROXYSTA
     if (OAL_TRUE == pst_mac_device->st_cap_flag.bit_proxysta)
@@ -2043,21 +1606,7 @@ oal_uint32  dmac_user_add(frw_event_mem_stru *pst_event_mem)
     return OAL_SUCC;
 }
 #if (_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC == _PRE_MULTI_CORE_MODE)
-/*****************************************************************************
- 函 数 名  : dmac_full_phy_freq_user_add
- 功能描述  : 在DMAC OFFLOAD模式下,phy降频处理
- 输入参数  : mac_vap_stru *pst_mac_vap,dmac_user_stru *pst_dmac_user
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月5日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_full_phy_freq_user_add(mac_vap_stru *pst_mac_vap,dmac_user_stru *pst_dmac_user)
 {
     mac_device_stru         *pst_mac_device;
@@ -2083,21 +1632,7 @@ oal_void dmac_full_phy_freq_user_add(mac_vap_stru *pst_mac_vap,dmac_user_stru *p
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : dmac_user_add_notify_alg
- 功能描述  : 通知算法增加user
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月25日
-    作    者   : y00184180
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_user_add_notify_alg(frw_event_mem_stru *pst_event_mem)
 {
     oal_uint32               ul_ret;
@@ -2147,29 +1682,15 @@ oal_uint32  dmac_user_add_notify_alg(frw_event_mem_stru *pst_event_mem)
     {
         dmac_alg_vap_up_notify(&(pst_dmac_vap->st_vap_base_info));
 
-#if (_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC == _PRE_MULTI_CORE_MODE)
+    #if (_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC == _PRE_MULTI_CORE_MODE)
         dmac_full_phy_freq_user_add(&(pst_dmac_vap->st_vap_base_info), pst_dmac_user);
-#endif
+    #endif
     }
 
     return OAL_SUCC;
 }
 #if (_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC == _PRE_MULTI_CORE_MODE)
-/*****************************************************************************
- 函 数 名  : dmac_user_del_offload
- 功能描述  : 在DMAC OFFLOAD模式下dmac侧删除user的添加操作
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月22日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_user_del_offload(mac_vap_stru* pst_vap, oal_uint16 us_user_idx)
 {
     mac_device_stru   *pst_mac_device;
@@ -2210,21 +1731,7 @@ oal_uint32  dmac_user_del_offload(mac_vap_stru* pst_vap, oal_uint16 us_user_idx)
 
     return OAL_SUCC;
 }
-/*****************************************************************************
- 函 数 名  : dmac_full_phy_freq_user_del
- 功能描述  : 在DMAC OFFLOAD模式下user ldpc能力标志位清零
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月5日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_full_phy_freq_user_del(dmac_user_stru *pst_dmac_user,mac_device_stru *pst_mac_device)
 {
     if (OAL_TRUE == DMAC_GET_USER_SUPPORT_VHT(&(pst_dmac_user->st_user_base_info)) ||
@@ -2247,24 +1754,7 @@ oal_void dmac_full_phy_freq_user_del(dmac_user_stru *pst_dmac_user,mac_device_st
 }
 
 #endif
-/*****************************************************************************
- 函 数 名  : dmac_user_del
- 功能描述  : 删除用户
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月22日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-  2.日    期   : 2014年6月19日
-    作    者   : z00273164
-    修改内容   : 增加sa query timer的删除
-
-*****************************************************************************/
 oal_uint32  dmac_user_del(frw_event_mem_stru *pst_event_mem)
 {
     oal_uint16                      us_user_idx;
@@ -2347,6 +1837,17 @@ oal_uint32  dmac_user_del(frw_event_mem_stru *pst_event_mem)
         dmac_full_phy_freq_user_del(pst_dmac_user, pst_mac_device);
 #endif
 
+#ifdef _PRE_WLAN_FEATURE_P2P
+            
+            if (IS_P2P_CL(&(pst_dmac_vap->st_vap_base_info)))
+            {
+                hal_vap_set_noa(pst_dmac_vap->pst_hal_vap, 0, 0, 0, 0);
+                hal_vap_set_ops(pst_dmac_vap->pst_hal_vap, 0, 0);
+                OAL_MEMZERO(&(pst_dmac_vap->st_p2p_ops_param), OAL_SIZEOF(mac_cfg_p2p_ops_param_stru));
+                OAL_MEMZERO(&(pst_dmac_vap->st_p2p_noa_param), OAL_SIZEOF(mac_cfg_p2p_noa_param_stru));
+            }
+            
+#endif
     }
 
     #ifdef _PRE_WLAN_FEATURE_UAPSD
@@ -2415,7 +1916,6 @@ oal_uint32  dmac_user_del(frw_event_mem_stru *pst_event_mem)
 #endif
 
 #if (_PRE_PRODUCT_ID == _PRE_PRODUCT_ID_HI1151)
-    /* DTS2015100700205,特殊网卡兼容性问题规避方案，用户去关联后暂时关闭该规避 */
     pst_mac_device->st_dataflow_brk_bypass.en_brk_limit_aggr_enable = OAL_FALSE;
 #endif
 #if (_PRE_PRODUCT_ID == _PRE_PRODUCT_ID_HI1102_DEV)
@@ -2439,21 +1939,7 @@ oal_uint32  dmac_user_del(frw_event_mem_stru *pst_event_mem)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_user_key_search_fail_handler
- 功能描述  : 接收帧key search fail处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月26日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  dmac_user_key_search_fail_handler(dmac_user_stru *pst_dmac_user)
 {
     mac_device_stru    *pst_mac_device;
@@ -2481,21 +1967,7 @@ oal_void  dmac_user_key_search_fail_handler(dmac_user_stru *pst_dmac_user)
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_user_tx_inactive_user_handler
- 功能描述  : 发送流程非活跃用户处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月26日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_user_tx_inactive_user_handler(dmac_user_stru *pst_dmac_user)
 {
     mac_device_stru    *pst_mac_device;
@@ -2520,21 +1992,7 @@ oal_uint32  dmac_user_tx_inactive_user_handler(dmac_user_stru *pst_dmac_user)
 }
 
 #ifdef _PRE_WLAN_DFT_EVENT
-/*****************************************************************************
- 函 数 名  : dmac_event_pause_user
- 功能描述  : 暂停或者恢复user事件消息上报
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月4日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  dmac_user_status_change_to_sdt(
                                        dmac_user_stru       *pst_dmac_user,
                                        oal_bool_enum_uint8   en_is_user_paused )
@@ -2549,21 +2007,7 @@ OAL_STATIC OAL_INLINE oal_void  dmac_user_status_change_to_sdt(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : dmac_user_pause
- 功能描述  : 暂停用户所有TID
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月27日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_user_pause(dmac_user_stru *pst_dmac_user)
 {
     oal_uint8       uc_tid_idx;
@@ -2576,7 +2020,6 @@ oal_uint32  dmac_user_pause(dmac_user_stru *pst_dmac_user)
 
         return OAL_ERR_CODE_PTR_NULL;
     }
-    /* DTS2015081802876 防止用户已经删除后，P2P NOA中断事件才得到处理，pause和resume状态不匹配 */
     if (MAC_USER_STATE_ASSOC != pst_dmac_user->st_user_base_info.en_user_asoc_state)
     {
         return OAL_SUCC;
@@ -2601,21 +2044,7 @@ oal_uint32  dmac_user_pause(dmac_user_stru *pst_dmac_user)
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_user_resume
- 功能描述  : 恢复用户所有TID
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月27日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_user_resume(dmac_user_stru *pst_dmac_user)
 {
     oal_uint8       uc_tid_idx;
@@ -2631,7 +2060,6 @@ oal_uint32  dmac_user_resume(dmac_user_stru *pst_dmac_user)
         return OAL_ERR_CODE_PTR_NULL;
     }
 
-    /* DTS2015081802876 防止用户已经删除后，P2P NOA中断事件才得到处理，导致device获取失败 */
     if (MAC_USER_STATE_ASSOC != pst_dmac_user->st_user_base_info.en_user_asoc_state)
     {
         return OAL_SUCC;
@@ -2665,21 +2093,7 @@ oal_uint32  dmac_user_resume(dmac_user_stru *pst_dmac_user)
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_user_set_groupid_partial_aid
- 功能描述  : 设置user的groupid 和 partial aid(11ac Draft 6.0中9.17a)
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月15日
-    作    者   : y00184180
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_user_set_groupid_partial_aid(mac_vap_stru  *pst_mac_vap,
                                                       dmac_user_stru *pst_dmac_user)
 {
@@ -2717,21 +2131,7 @@ oal_uint32  dmac_user_set_groupid_partial_aid(mac_vap_stru  *pst_mac_vap,
 }
 
 #ifdef _PRE_WLAN_FEATURE_SMPS
-/*****************************************************************************
- 函 数 名  : dmac_user_set_smps_mode
- 功能描述  : 设置获取user的smps模式
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月9日
-    作    者   : z00241943
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint8 dmac_user_get_smps_mode(mac_vap_stru  *pst_mac_vap, mac_user_stru *pst_mac_user)
 {
     wlan_mib_mimo_power_save_enum_uint8 en_vap_smps;
@@ -2750,21 +2150,7 @@ oal_uint8 dmac_user_get_smps_mode(mac_vap_stru  *pst_mac_vap, mac_user_stru *pst
 #endif
 
 #if (_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC == _PRE_MULTI_CORE_MODE)
-/*****************************************************************************
- 函 数 名  : dmac_ap_pause_all_user
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : oal_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月10日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_ap_pause_all_user(mac_vap_stru *pst_mac_vap)
 {
     oal_dlist_head_stru                  *pst_entry;
@@ -2802,21 +2188,7 @@ oal_void dmac_ap_pause_all_user(mac_vap_stru *pst_mac_vap)
         hal_tx_enable_peer_sta_ps_ctrl(pst_mac_device->pst_device_stru, pst_dmac_user_tmp->uc_lut_index);
     }
 }
-/*****************************************************************************
- 函 数 名  : dmac_ap_resume_all_user
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : oal_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月10日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_ap_resume_all_user(mac_vap_stru *pst_mac_vap)
 {
     oal_dlist_head_stru                  *pst_entry;
@@ -2856,21 +2228,7 @@ oal_void dmac_ap_resume_all_user(mac_vap_stru *pst_mac_vap)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : mac_vap_get_dmac_user_by_addr
- 功能描述  : 根据mac地址获取mac_user指针
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月8日
-    作    者   : l00324381
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 dmac_user_stru  *mac_vap_get_dmac_user_by_addr(mac_vap_stru *pst_mac_vap, oal_uint8  *puc_mac_addr)
 {
     oal_uint32              ul_ret;

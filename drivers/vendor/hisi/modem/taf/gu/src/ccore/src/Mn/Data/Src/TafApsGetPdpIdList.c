@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafApsGetPdpIdList.c
-  版 本 号   : 初稿
-  作    者   : h44270
-  生成日期   : 2011年12月23日
-  最近修改   :
-  功能描述   : 收到各模块消息后，获取进入的状态机实体所对应的PDP ID
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年12月23日
-    作    者   : h44270
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -62,17 +45,7 @@ extern "C" {
 /*****************************************************************************
   2 全局变量定义
 *****************************************************************************/
-/*****************************************************************************
- 全局变量名    : gastApsGetPdpIdList
- 全局变量说明  : 获取当前消息所对应的状态机实体PDP ID的处理函数列表
- 1.日    期   : 2011年12月16日
-   作    者   : h44270
-   修改内容   : 新建
-  2.日    期 : 2013年07月08日
-    作    者 : Y00213812
-    修改内容 : VoLTE_PhaseI 项目，AT变更为TAF
 
-*****************************************************************************/
 TAF_APS_GET_FSM_PDPID_LIST_STRU gastApsGetPdpIdList[] =
 {
     {TAF_BuildEventType(WUEPS_PID_TAF, ID_MSG_TAF_PS_SET_PDP_CONTEXT_STATE_REQ), TAF_APS_GetPdpIdListWithAtSetPdpContextStateReq},
@@ -167,31 +140,7 @@ TAF_APS_GET_FSM_PDPID_LIST_STRU gastApsGetPdpIdList[] =
 *****************************************************************************/
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithAtSetPdpContextStateReq
- 功能描述  : 获取当前ID_MSG_TAF_PS_SET_PDP_CONTEXT_STATE_REQ消息所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdOperationList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年4月16日
-    作    者   : A00165503
-    修改内容   : DTS2012040100697: 自动应答模式下, 网侧建立的ESP承载, 用户不
-                 能修改和去激活
-  3.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  3.日    期   : 2013年07月222日
-    作    者   : j00177245
-    修改内容   : 清理Coverity
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithAtSetPdpContextStateReq(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -217,26 +166,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithAtSetPdpContextStateReq(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithAtCallEndReq
- 功能描述  : 获取当前ID_MSG_TAF_PS_CALL_END_REQ消息所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : h44270
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  3.日    期   : 2013年07月222日
-    作    者   : j00177245
-    修改内容   : 清理Coverity
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithAtCallEndReq(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -255,21 +185,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithAtCallEndReq(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithAtCallAnswerReq
- 功能描述  : 获取当前ID_MSG_TAF_PS_CALL_ANSWER_REQ消息所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : s62952
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithAtCallAnswerReq(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -293,21 +209,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithAtCallAnswerReq(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithAtCallHangupReq
- 功能描述  : 获取当前ID_MSG_TAF_PS_CALL_HANGUP_REQ消息所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : s62952
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithAtCallHangupReq(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -331,31 +233,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithAtCallHangupReq(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithAtCallModifyReq
- 功能描述  : 获取当前ID_MSG_TAF_PS_CALL_MODIFY_REQ消息所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年4月16日
-    作    者   : A00165503
-    修改内容   : DTS2012040100697: 自动应答模式下, 网侧建立的ESP承载, 用户不
-                 能修改和去激活
-  3.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  4.日    期   : 2013年07月222日
-    作    者   : j00177245
-    修改内容   : 清理Coverity
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithAtCallModifyReq(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -379,26 +257,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithAtCallModifyReq(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithAtCallOrigReq
- 功能描述  : 获取当前ID_MSG_TAF_PS_CALL_ORIG_REQ消息所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : h44270
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  3.日    期   : 2013年07月222日
-    作    者   : j00177245
-    修改内容   : 清理Coverity
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithAtCallOrigReq(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -417,26 +276,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithAtCallOrigReq(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithAtPppDialOrigReq
- 功能描述  : 获取当前ID_MSG_TAF_PS_PPP_DIAL_ORIG_REQ消息所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : h44270
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  2.日    期   : 2013年07月222日
-    作    者   : j00177245
-    修改内容   : 清理Coverity
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithAtPppDialOrigReq(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -455,21 +295,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithAtPppDialOrigReq(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithSmPdpActCnf
- 功能描述  : 获取当前SM 回复的Act Cnf消息所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithSmPdpActCnf(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -486,21 +312,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithSmPdpActCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithSmPdpActRej
- 功能描述  : 获取当前SM 回复的Act Rej消息所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithSmPdpActRej(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -515,21 +327,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithSmPdpActRej(
     pstPdpIdList->ucPdpNum = 1;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithSmPdpActInd
- 功能描述  : 获取当前SM 回复的Act Ind消息所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithSmPdpActInd(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -546,21 +344,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithSmPdpActInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithSmPdpModifyCnf
- 功能描述  : 获取当前SM 回复的Modify Cnf消息所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithSmPdpModifyCnf(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -576,21 +360,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithSmPdpModifyCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithSmPdpModifyInd
- 功能描述  : 获取当前SM 的Modify IND消息所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月4日
-    作    者   : zhangyizhan 60575
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  TAF_APS_GetPdpIdListWithSmPdpModifyInd(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -606,21 +376,7 @@ VOS_VOID  TAF_APS_GetPdpIdListWithSmPdpModifyInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithSmPdpModifyRej
- 功能描述  : 获取当前SM 回复的Modify Rej消息所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithSmPdpModifyRej(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -637,28 +393,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithSmPdpModifyRej(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithSmPdpDeactivInd
- 功能描述  : 获取当前SM 回复的Deactiv Ind消息所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : h44270
-    修改内容   : 新生成函数
-  2.日    期   : 2012年06月05日
-    作    者   : f00179208
-    修改内容   : DTS2012060200787, 去激活默认承载，挂接的专有承载也需要一起去激活
-
-  3.日    期   : 2012年7月24日
-    作    者   : A00165503
-    修改内容   : DTS2012072302387: APS处理SM的DEACTIVATE_IND消息使用自身维护
-                 的NSAPI, 不使用SM上报的NSAPI
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithSmPdpDeactivInd(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -725,21 +460,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithSmPdpDeactivInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithSmPdpDeactivCnf
- 功能描述  : 获取当前SM 回复的Deactiv Cnf消息所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithSmPdpDeactivCnf(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -755,21 +476,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithSmPdpDeactivCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithSmPdpActSecCnf
- 功能描述  : 获取当前SM 回复的ActSec Cnf消息所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithSmPdpActSecCnf(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -785,21 +492,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithSmPdpActSecCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithSmPdpActSecRej
- 功能描述  : 获取当前SM 回复的ActSec Rej消息所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithSmPdpActSecRej(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -816,21 +509,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithSmPdpActSecRej(
 }
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithEsmPdpSetupCnf
- 功能描述  : 获取当前ESM 上报的Pdp Setup Cnf所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithEsmPdpSetupCnf(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -846,21 +525,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithEsmPdpSetupCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithEsmNdisconnCnf
- 功能描述  : 获取当前ESM 上报的Ndidconn Cnf所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithEsmNdisconnCnf(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -877,25 +542,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithEsmNdisconnCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithEsmPdpManageInd
- 功能描述  : 获取当前ESM 上报的ID_APP_ESM_PDP_MANAGER_IND所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : S62952
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : Split L4A Project
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithEsmPdpManageInd(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -912,21 +559,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithEsmPdpManageInd(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithEsmPdpModifyCnf
- 功能描述  : 获取当前ESM 上报的Pdp Modify Cnf所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithEsmPdpModifyCnf(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -941,21 +574,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithEsmPdpModifyCnf(
     pstPdpIdList->ucPdpNum = 1;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithEsmPdpModifyInd
- 功能描述  : 获取当前ESM 上报的Pdp Modify Ind所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithEsmPdpModifyInd(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -972,21 +591,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithEsmPdpModifyInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithEsmReleaseCnf
- 功能描述  : 获取当前ESM 上报的Pdp Release Cnf所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithEsmReleaseCnf(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -1002,28 +607,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithEsmReleaseCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithEsmDeactivateInd
- 功能描述  : 获取当前L4A 上报的Pdp Deactivate Ind所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-  2.日    期  : 2015年5月29日
-    作    者  : a00165503
-    修改内容  :  MODIFY for DTS2015051204781
-
-  3.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : Split L4A Project
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithEsmDeactivateInd(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -1047,25 +631,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithEsmDeactivateInd(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithEsmSetupInd
- 功能描述  : 获取当前ESM 上报的PDP SETUP IND所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月19日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : Split L4A Project
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithEsmSetupInd(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -1090,24 +656,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithEsmSetupInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithEsmSmEpsBearerInfoInd
- 功能描述  : 获取当前ESM 上报的Bear info Ind所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-  2.日    期  : 2015年5月29日
-    作    者  : a00165503
-    修改内容  :  MODIFY for DTS2015051204781
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithEsmSmEpsBearerInfoInd(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -1135,22 +684,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithEsmSmEpsBearerInfoInd(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithL4aSetCgansCnf
- 功能描述  : 获取当前L4A 上报的Set Cgans Cnf所对应需要操作的PDP列表
- 输入参数  : struct MsgCB                       *pstMsg
-             TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月30日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithL4aSetCgansCnf(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -1161,21 +695,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithL4aSetCgansCnf(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithAttachBearerActivateInd
- 功能描述  : 获取当前内部消息ID_MSG_TAF_PS_ATTACH_BEARER_ACTIVATE_IND所对应需要操作的PDP列表
- 输入参数  : pstMsg       --- 消息指针
-             pstPdpIdList --- PDP操作列表
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月20日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithAttachBearerActivateInd(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -1192,21 +712,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithAttachBearerActivateInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithRabmApsSysChgToGprsInd
- 功能描述  : 获取当前RABM上报的ID_RABM_APS_SYS_CHG_TO_GPRS_IND所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithRabmApsSysChgToGprsInd(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -1222,21 +728,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithRabmApsSysChgToGprsInd(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithRabmApsLocalPdpDeactReqMsg
- 功能描述  : 获取当前Rabm 上报的ApsLocalPdpDeactReqMsg消息所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithRabmApsLocalPdpDeactReqMsg(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -1253,21 +745,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithRabmApsLocalPdpDeactReqMsg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithSndcpActRspMsgType
- 功能描述  : 获取当前Sndcp 上报的APS_SN_ACT_RSP_MSG_TYPE消息所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithSndcpActRspMsgType(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -1283,21 +761,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithSndcpActRspMsgType(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithSndcpMdfRspMsgType
- 功能描述  : 获取当前Sndcp 上报的APS_SN_MDF_RSP_MSG_TYPE消息所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithSndcpMdfRspMsgType(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -1314,21 +778,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithSndcpMdfRspMsgType(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithSndcpDeactRspMsgType
- 功能描述  : 获取当前Sndcp 上报的APS_SN_DEACT_RSP_MSG_TYPE消息所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithSndcpDeactRspMsgType(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -1345,21 +795,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithSndcpDeactRspMsgType(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithSndcpStatusReqMsgType
- 功能描述  : 获取当前Sndcp 上报的APS_SN_STATUS_REQ_MSG_TYPE消息所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithSndcpStatusReqMsgType(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -1375,21 +811,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithSndcpStatusReqMsgType(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithApsInternalPdpDeactivateReq
- 功能描述  : 获取当前内部消息ID_APS_APS_INTERNAL_PDP_DEACTIVATE_REQ所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月2日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithApsInternalPdpDeactivateReq(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -1404,21 +826,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithApsInternalPdpDeactivateReq(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithApsLocalPdpDeactivateInd
- 功能描述  : 获取当前内部消息ID_APS_APS_LOCAL_PDP_DEACTIVATE_IND所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年06月06日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithApsLocalPdpDeactivateInd(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -1433,21 +841,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithApsLocalPdpDeactivateInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithApsInternalPdpActivateReq
- 功能描述  : 获取当前内部消息ID_APS_APS_INTERNAL_PDP_ACTIVATE_REQ所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月10日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithApsInternalPdpActivateReq(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -1461,20 +855,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithApsInternalPdpActivateReq(
     pstPdpIdList->ucPdpNum = 1;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetFsmPdpIdList
- 功能描述  : 设置当前Pdp Id所对应的Lay2状态机需要迁移的状态
- 输入参数  : ulState:当前迁移的状态
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : h44270
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  TAF_APS_GetFsmPdpIdList(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -1521,21 +902,7 @@ VOS_VOID  TAF_APS_GetFsmPdpIdList(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithServiceStatusChangeReq
- 功能描述  : 获取ID_MSG_TAF_PS_INTER_SERVICE_STATUS_CHANGE_IND所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年04月08日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithServiceStatusChangeReq(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -1551,21 +918,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithServiceStatusChangeReq(
 }
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithXccOrigDataCnf
- 功能描述  : 获取ID_XCC_APS_ORIG_DATA_CALL_CNF所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月24日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithXccOrigDataCnf(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -1579,21 +932,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithXccOrigDataCnf(
     pstPdpIdList->ucPdpNum    = 1;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithXccHangUpDataCnf
- 功能描述  : 获取ID_XCC_APS_HANGUP_DATA_CALL_CNF所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月24日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithXccHangUpDataCnf(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -1607,22 +946,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithXccHangUpDataCnf(
     pstPdpIdList->ucPdpNum    = 1;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithXccDataCallDiscInd
- 功能描述  : 获取ID_XCC_APS_DATA_CALL_DISC_IND所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  修改历史      :
-   1.日    期   : 2014年10月24日
-     作    者   : h00246512
-     修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithXccDataCallDiscInd(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -1654,21 +978,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithXccDataCallDiscInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithXccIncomingCallInd
- 功能描述  : 获取ID_XCC_APS_INCOMING_CALL_IND所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月24日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithXccIncomingCallInd(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -1700,21 +1010,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithXccIncomingCallInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithXccDataCallConnInd
- 功能描述  : 获取ID_XCC_APS_DATA_CALL_CONN_IND所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月24日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithXccDataCallConnInd(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -1728,21 +1024,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithXccDataCallConnInd(
     pstPdpIdList->ucPdpNum    = 1;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithXccDataSrvConnInd
- 功能描述  : 获取ID_XCC_APS_DATA_SERVICE_CONNECT_IND所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月24日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithXccDataSrvConnInd(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -1756,21 +1038,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithXccDataSrvConnInd(
     pstPdpIdList->ucPdpNum    = 1;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithXccAnswerDataCnf
- 功能描述  : 获取ID_XCC_APS_ANSWER_DATA_CALL_CNF所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月24日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithXccAnswerDataCnf(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -1784,21 +1052,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithXccAnswerDataCnf(
     pstPdpIdList->ucPdpNum    = 1;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithCdsCdataServiceInd
- 功能描述  : 获取ID_CDS_APS_CDATA_SERVICE_IND所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月24日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithCdsCdataServiceInd(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -1827,21 +1081,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithCdsCdataServiceInd(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithPsCallEnterDormantInd
- 功能描述  : 获取ID_MSG_TAF_PS_ENTER_DORMANT_IND所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月24日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithPsCallEnterDormantInd(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -1856,21 +1096,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithPsCallEnterDormantInd(
     pstPdpIdList->ucPdpNum    = 1;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithApsInternEndCdmaCallReq
- 功能描述  : 获取ID_MSG_TAF_PS_INTER_END_CDMA_CALL_REQ所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月24日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithApsInternEndCdmaCallReq(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -1885,22 +1111,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithApsInternEndCdmaCallReq(
     pstPdpIdList->ucPdpNum    = 1;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithPppActCnf
- 功能描述  : 获取ID_PPP_APS_ACT_CNF所对应需要操作的PDP列表
- 输入参数  : struct MsgCB                       *pstMsg
-             TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月24日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithPppActCnf(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -1914,22 +1125,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithPppActCnf(
     pstPdpIdList->ucPdpNum    = 1;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithPppDeactCnf
- 功能描述  : 获取ID_PPP_APS_DEACT_CNF所对应需要操作的PDP列表
- 输入参数  : struct MsgCB                       *pstMsg
-             TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月24日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithPppDeactCnf(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -1943,22 +1139,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithPppDeactCnf(
     pstPdpIdList->ucPdpNum    = 1;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithPppDeactNtf
- 功能描述  : 获取ID_PPP_APS_DEACT_IND所对应需要操作的PDP列表
- 输入参数  : struct MsgCB                       *pstMsg
-             TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月24日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithPppDeactNtf(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -1972,22 +1153,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithPppDeactNtf(
     pstPdpIdList->ucPdpNum    = 1;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithPppModifyInd
- 功能描述  : 获取ID_PPP_APS_MODIFY_IND所对应需要操作的PDP列表
- 输入参数  : struct MsgCB                       *pstMsg
-             TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年03月27日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithPppModifyInd(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -2001,22 +1167,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithPppModifyInd(
     pstPdpIdList->ucPdpNum    = 1;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithPppReconnInd
- 功能描述  : 获取ID_PPP_APS_RECONN_IND消息需要操作的PDPID列表
- 输入参数  : struct MsgCB                       *pstMsg
-             TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月9日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithPppReconnInd(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -2030,22 +1181,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithPppReconnInd(
     pstPdpIdList->ucPdpNum    = 1;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithEpdszidReOrigReq
- 功能描述  : After Rcv Epdszid Re-Orig Req Msg ,Get PdpIds Which need to Proc this Msg
- 输入参数  : struct MsgCB                       *pstMsg
-             TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月31日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithEpdszidReOrigReq(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -2073,23 +1209,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithEpdszidReOrigReq(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithXccDataCallResumeInd
- 功能描述  : After Receiving ID_XCC_APS_DATA_CALL_RESUME_IND ,
-             Getting PdpId List Which need to Process this Msg
- 输入参数  : struct MsgCB                       *pstMsg
-             TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月10日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithXccDataCallResumeInd(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -2119,23 +1239,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithXccDataCallResumeInd(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithXccUpdateDataCallInfoInd
- 功能描述  : After Receiving ID_XCC_APS_UPDATE_DATA_CALL_INFO_IND ,
-             Getting PdpId List Which need to Process this Msg
- 输入参数  : struct MsgCB                       *pstMsg
-             TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月4日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithXccUpdateDataCallInfoInd(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -2150,21 +1254,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithXccUpdateDataCallInfoInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithHsmOrigCnf
- 功能描述  : 获取ID_HSM_APS_ORIG_CNF所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月05日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithHsmOrigCnf(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -2178,21 +1268,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithHsmOrigCnf(
     pstPdpIdList->ucPdpNum    = 1;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithHsmConnectInd
- 功能描述  : 获取ID_HSM_APS_CONNECT_IND所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月05日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithHsmConnectInd(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -2224,21 +1300,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithHsmConnectInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithHsmDiscCnf
- 功能描述  : 获取ID_HSM_APS_DISC_CNF所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月05日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithHsmDiscCnf(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -2252,21 +1314,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithHsmDiscCnf(
     pstPdpIdList->ucPdpNum    = 1;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithHsmDiscInd
- 功能描述  : 获取ID_HSM_APS_DISC_IND所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月05日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithHsmDiscInd(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -2281,21 +1329,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithHsmDiscInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithHsmOrigCnf
- 功能描述  : 获取ID_HSM_APS_LOC_CHANGED_IND所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月05日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithHsmLocChangedInd(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -2307,21 +1341,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithHsmLocChangedInd(
 */
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithHsm1XHrpdHandOff
- 功能描述  : 获取ID_HSM_APS_1X_TO_HRPD_HANDOFF_CNF所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月05日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithHsm1XToHrpdHandOffCnf(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -2344,21 +1364,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithHsm1XToHrpdHandOffCnf(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWith1XToHrpdHandOffReq
- 功能描述  : 获取ID_MSG_TAF_PS_INTER_1X_TO_HRPD_HANDOFF_REQ所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年04月07日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWith1XToHrpdHandOffReq(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -2373,21 +1379,7 @@ VOS_VOID TAF_APS_GetPdpIdListWith1XToHrpdHandOffReq(
     pstPdpIdList->ucPdpNum    = 1;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithHrpdTo1XHandOffReq
- 功能描述  : 获取ID_MSG_TAF_PS_INTER_HRPD_TO_1X_HANDOFF_REQ所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年04月07日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithHrpdTo1XHandOffReq(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -2402,21 +1394,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithHrpdTo1XHandOffReq(
     pstPdpIdList->ucPdpNum    = 1;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithEhsmPdnActCnf
- 功能描述  : 获取ID_EHSM_APS_PDN_ACTIVATE_CNF所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月16日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithEhsmPdnActCnf(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -2432,21 +1410,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithEhsmPdnActCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithEhsmPdnAttachCnf
- 功能描述  : 获取ID_EHSM_APS_PDN_ATTACH_CNF所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月30日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithEhsmPdnAttachCnf(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -2463,21 +1427,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithEhsmPdnAttachCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithEhsmPdnDeactCnf
- 功能描述  : 获取ID_EHSM_APS_PDN_DEACTIVATE_CNF所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月16日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithEhsmPdnDeactCnf(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -2493,21 +1443,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithEhsmPdnDeactCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithEhsmPdnDeactCnf
- 功能描述  : 获取ID_EHSM_APS_PDN_DEACTIVATE_IND所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月16日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithEhsmPdnDeactInd(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -2523,21 +1459,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithEhsmPdnDeactInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithEhsmPdnActInd
- 功能描述  : 获取ID_EHSM_APS_PDN_ACTIVATE_IND所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月16日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithEhsmPdnActInd(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -2554,21 +1476,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithEhsmPdnActInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithEhsmPdnModifyInd
- 功能描述  : 获取ID_EHSM_APS_PDN_INFO_CHANGE_IND所对应需要操作的PDP列表
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月8日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithEhsmPdnModifyInd(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -2582,22 +1490,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithEhsmPdnModifyInd(
     pstPdpIdList->aucPdpId[0] = TAF_APS_GetPdpIdByCid(pstEhsmPdnChgInd->ucCid);
     pstPdpIdList->ucPdpNum    = 1;
 }
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithEhsmLteHandoverToEhrpdInd
- 功能描述  : 获取ID_EHSM_APS_PDN_IRAT_HRPD_IND所对应需要操作的PDP列表
- 输入参数  : struct MsgCB                       *pstMsg
-             TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月27日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithEhsmLteHandoverToEhrpdInd(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -2614,22 +1507,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithEhsmLteHandoverToEhrpdInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithEnd1xServiceInDormantInd
- 功能描述  : 获取ID_MSG_TAF_PS_INTER_END_1X_SERVICE_IN_DORMANT_IND所对应需要操作的PDP列表
- 输入参数  : struct MsgCB                       *pstMsg
-             TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月04日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithEnd1xServiceInDormantInd(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList
@@ -2645,21 +1523,7 @@ VOS_VOID TAF_APS_GetPdpIdListWithEnd1xServiceInDormantInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdListWithHrpdDataCallSysAcqInd
- 功能描述  : 获取ID_MMA_APS_HRPD_DATA_CALL_SYS_ACQ_IND所对应需要操作的PDP列表
- 输入参数  : pstMsg:传入的消息
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月17日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpIdListWithHrpdDataCallSysAcqInd(
     struct MsgCB                       *pstMsg,
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList

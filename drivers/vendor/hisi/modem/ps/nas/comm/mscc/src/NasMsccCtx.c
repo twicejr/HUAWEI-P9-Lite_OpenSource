@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMsccCtx.c
-  版 本 号   : 初稿
-  作    者   : y00245242
-  生成日期   : 2015年01月26日
-  功能描述   : NAS MSCC全局变量管理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年01月26日
-    作    者   : y00245242
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -62,50 +47,13 @@ NAS_MSCC_CTX_STRU                       g_stNasMsccCtx;
 /*****************************************************************************
   3 函数定义
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_GetMsccCtxAddr
- 功能描述  : 获取当前MSCC的CTX
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回当前MSCC的CTX地址
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年01月26日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_MSCC_CTX_STRU* NAS_MSCC_GetMsccCtxAddr(VOS_VOID)
 {
     return &(g_stNasMsccCtx);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_InitCtx
- 功能描述  : MSCC上下文全局变量初始化
- 输入参数  : enInitType - 指示是开机初始化还是关机初始化
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年01月26日
-   作    者   : y00245242
-   修改内容   : 新生成函数
- 2.日    期   : 2015年04月13日
-   作    者   : y00174758
-   修改内容   : CDMA Iteration 10 Modified
- 3. Date      : 2015-04-14
-    Author    : a00295761
-    Content   : Added Init MS Cfg Info Function
- 4. Date      : 2015-04-27
-    Author    : y00174758
-    Content   : 添加开机、关机初始化指示
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_InitCtx(
     NAS_MSCC_INIT_CTX_TYPE_ENUM_UINT8 enInitType
 )
@@ -149,30 +97,7 @@ VOS_VOID NAS_MSCC_InitCtx(
     NAS_MSCC_InitNoCardInitSearchLocInfo(&(pstMsccCtx->stSysAcqCtrl.stNoCardInitSearchLoc));
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_InitNetworkInfo
- 功能描述  : 初始化网络相关信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年01月26日
-   作    者   : y00245242
-   修改内容   : 新生成函数
- 2.日    期   : 2015年04月11日
-   作    者   : w00176964
-   修改内容   : CDMA Iteration 10 Modified
- 3. Date      : 2015-04-14
-    Author    : a00295761
-    Content   : Added Init Steps
- 4. Date      : 2015-09-22
-    Author    : y00346957
-    Content   : DTS2015070910885 修改，删掉了mscc sys pri class这个结构体
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_InitNetworkInfo(
     NAS_MSCC_NW_INFO_STRU               *pstNwInfo
 )
@@ -229,21 +154,7 @@ VOS_VOID NAS_MSCC_InitNetworkInfo(
     pstNwInfo->stSendToImsaInfo.ucRoamFlg            = VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SetGuNwCapInfo
- 功能描述  : 设置GU网络能力信息
- 输入参数  : pstGuNwCap -- LTE网络能力信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年01月26日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SetGuNwCapInfo(NAS_MSCC_NETWORK_CAP_INFO_STRU *pstGuNwCap)
 {
     NAS_MSCC_NETWORK_CAP_INFO_STRU     *pstGuNwCapInfo = VOS_NULL;
@@ -255,42 +166,14 @@ VOS_VOID NAS_MSCC_SetGuNwCapInfo(NAS_MSCC_NETWORK_CAP_INFO_STRU *pstGuNwCap)
     pstGuNwCapInfo->enNwImsVoCap = pstGuNwCap->enNwImsVoCap;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_GetGuNwCapInfo
- 功能描述  : MSCC上下文全局变量初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : NAS_MSCC_NETWORK_CAP_INFO_STRU -- GU网络能力信息
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年01月26日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_MSCC_NETWORK_CAP_INFO_STRU *NAS_MSCC_GetGuNwCapInfo(VOS_VOID)
 {
     return &(NAS_MSCC_GetMsccCtxAddr()->stNwInfo.stGuNwCapInfo);
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SetLteNwCapInfo
- 功能描述  : 设置LTE 网络能力信息
- 输入参数  : pstLteNwCap -- LTE网络能力信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年01月26日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SetLteNwCapInfo(NAS_MSCC_NETWORK_CAP_INFO_STRU *pstLteNwCap)
 {
     NAS_MSCC_NETWORK_CAP_INFO_STRU     *pstLteNwCapInfo = VOS_NULL;
@@ -302,21 +185,7 @@ VOS_VOID NAS_MSCC_SetLteNwCapInfo(NAS_MSCC_NETWORK_CAP_INFO_STRU *pstLteNwCap)
     pstLteNwCapInfo->enNwImsVoCap = pstLteNwCap->enNwImsVoCap;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SetPersistentBearerState
- 功能描述  : 设置当前是否存在persistent eps bearer标识
- 输入参数  : enPersistentBearerState - 是否存在persistent eps bearer标识
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年5月12日
-   作    者   : z00161729
-   修改内容   : 24301 R11 CR升级项目修改
-
-*****************************************************************************/
 VOS_VOID    NAS_MSCC_SetPersistentBearerState(
     NAS_MSCC_PERSISTENT_BEARER_STATE_ENUM_UINT8             enPersistentBearerState
 )
@@ -325,21 +194,7 @@ VOS_VOID    NAS_MSCC_SetPersistentBearerState(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_GetPersistentBearerState
- 功能描述  : 获取当前是否存在persistent eps bearer标识
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 是否存在persistent eps bearer标识
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年5月12日
-   作    者   : z00161729
-   修改内容   : 24301 R11 CR升级项目修改
-
-*****************************************************************************/
 NAS_MSCC_PERSISTENT_BEARER_STATE_ENUM_UINT8  NAS_MSCC_GetPersistentBearerState(VOS_VOID)
 {
     return NAS_MSCC_GetMsccCtxAddr()->stNwInfo.stImsDomainInfo.enPersistentBearerState;
@@ -347,21 +202,7 @@ NAS_MSCC_PERSISTENT_BEARER_STATE_ENUM_UINT8  NAS_MSCC_GetPersistentBearerState(V
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SetImsVoiceCapability
- 功能描述  : 设置当前语音能力
- 输入参数  : enImsVoiceCap - IMS语音能力
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年8月14日
-   作    者   : n00269697
-   修改内容   : DTS2015072803051
-
-*****************************************************************************/
 VOS_VOID    NAS_MSCC_SetImsVoiceCapability(
     MSCC_IMSA_IMS_VOICE_CAP_ENUM_UINT8                      enImsVoiceCap
 )
@@ -370,120 +211,38 @@ VOS_VOID    NAS_MSCC_SetImsVoiceCapability(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_GetImsVoiceCapability
- 功能描述  : 获取当前语音能力
- 输入参数  : enImsVoiceCap - IMS语音能力
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年8月14日
-   作    者   : n00269697
-   修改内容   : DTS2015072803051
-
-*****************************************************************************/
 MSCC_IMSA_IMS_VOICE_CAP_ENUM_UINT8  NAS_MSCC_GetImsVoiceCapability(VOS_VOID)
 {
     return NAS_MSCC_GetMsccCtxAddr()->stNwInfo.stImsDomainInfo.enImsVoiceCap;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_GetLteNwCapInfo
- 功能描述  : MSCC上下文全局变量初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : NAS_MSCC_NETWORK_CAP_INFO_STRU -- LTE网络能力信息
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年01月26日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_MSCC_NETWORK_CAP_INFO_STRU *NAS_MSCC_GetLteNwCapInfo(VOS_VOID)
 {
     return &(NAS_MSCC_GetMsccCtxAddr()->stNwInfo.stLteNwCapInfo);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_GetCurrSysInfo
- 功能描述  : 获取当前网络的系统信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : NAS_MSCC_SYS_INFO_STRU -- 当前网络系统信息
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年01月26日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_MSCC_SYS_INFO_STRU *NAS_MSCC_GetCurrSysInfo(VOS_VOID)
 {
     return &(NAS_MSCC_GetMsccCtxAddr()->stNwInfo.stSysInfo);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_GetTimerCtxAddr
- 功能描述  : 获取MSCC CTX模块中定时器的上下文
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : MSCC CTX模块中定时器的上下文指针
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年01月27日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 NAS_MSCC_TIMER_CTX_STRU *NAS_MSCC_GetTimerCtxAddr( VOS_VOID )
 {
     return &(NAS_MSCC_GetMsccCtxAddr()->astMsccTimerCtx[0]);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_GetImsCfgInfo
- 功能描述  : 获取MSCC模块中IMS配置信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : IMS配置信息
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年01月27日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 NAS_MSCC_IMS_CONFIG_PARA_STRU *NAS_MSCC_GetImsCfgInfo( VOS_VOID )
 {
     return &(NAS_MSCC_GetMsccCtxAddr()->stMsCfgInfo.stCustomCfgInfo.stImsCfgInfo);
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_GetWaitImsVoiceAvailTimerLen
- 功能描述  : 获取等待IMS VOICE可用的定时器时长
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 等待IMS VOICE可用的定时器时长
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年01月27日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MSCC_GetWaitImsVoiceAvailTimerLen(VOS_VOID)
 {
     return NAS_MSCC_GetMsccCtxAddr()->stMsCfgInfo.stCustomCfgInfo.stImsCfgInfo.ulWaitImsVoiceAvailTimerLen;
@@ -1021,17 +780,7 @@ VOS_VOID NAS_MSCC_ClearCacheMsg(
 }
 
 #if ((FEATURE_ON == FEATURE_UE_MODE_CDMA) && (FEATURE_ON == FEATURE_LTE))
-/*****************************************************************************
-Function Name   :   NAS_MSCC_InitFsmCtx_CLInterSys
-Description     :   CL异系统流程的状态机的初始化函数
-Input parameters:   None.
-Output parameters:  None.
-Return Value    :   None.
-Modify History:
-    1)  Date    :   2015-11-05
-        Author  :   w00176964
-        Modify content :    Create
-*****************************************************************************/
+
 VOS_VOID NAS_MSCC_InitFsmCtx_CLInterSys(VOS_VOID)
 {
     return;
@@ -1124,21 +873,7 @@ VOS_VOID NAS_MSCC_SaveCurEntryMsg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_GetImsSupportFlag
- 功能描述  : 获取当前是否支持IMS标志,GSM,UTRAN,LTE IMS其中有一个支持IMS就认为支持IMS
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 当前是否支持IMS标志
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年01月27日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MSCC_GetImsSupportFlag(VOS_VOID)
 {
     NAS_MSCC_IMS_CONFIG_PARA_STRU      *pstImsCfgInfo = VOS_NULL_PTR;
@@ -1285,22 +1020,7 @@ NAS_MSCC_FSM_POWER_OFF_CTX_STRU* NAS_MSCC_GetModuleOrderAddr_PowerOff(VOS_VOID)
 }
 
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_SetModuleOrder_PowerOff
-Description     :   This function is used to set the module order global structure address. The Power Off order is
-                    written in the list by reading the Platform Rat Cap global strucuture in the MSCC global context
-Input parameters:   None.
-Output parameters:  None.
-Return Value    :   None.
-Modify History:
-    1)  Date    :   2014-02-02
-        Author  :   a00295761
-        Modify content :    Create
 
-    1)  Date    :   2015-05-08
-        Author  :   y00245242
-        Modify content : iteration 13开发
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SetModuleOrder_PowerOff(VOS_VOID)
 {
     NAS_MSCC_FSM_POWER_OFF_CTX_STRU    *pstModuleOrder;
@@ -1824,18 +1544,7 @@ VOS_VOID NAS_MSCC_InitFsmCtx_BSR(VOS_VOID)
 #endif
 
 #if ((FEATURE_ON == FEATURE_UE_MODE_CDMA) && (FEATURE_ON == FEATURE_DSDS))
-/*****************************************************************************
-Function Name   :   NAS_MSCC_IsCLCombinedModeWithRatPrio
-Description     :   是否是CL mode
-Input parameters:   None.
-Output parameters:  None.
-Return Value    :
 
-Modify History:
-    1)  Date    :   2015-07-13
-        Author  :   f00279542
-        Modify content :    Create
-*****************************************************************************/
 VOS_UINT8 NAS_MSCC_IsCLCombinedModeWithRatPrio
 (
     NAS_MSCC_PIF_RAT_PRIO_STRU         *pstUserRatPrio
@@ -1981,20 +1690,7 @@ VOS_UINT8 NAS_MSCC_GetLteCampOnFlag(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SetCurr3gppRoamingFlg
- 功能描述  : 设置当前网络的漫游状态信息
- 输入参数  : ucRoamingFlg 当前网络漫游状态信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月14日
-    作    者   : c00318887
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SetCurr3gppRoamingFlg(
     VOS_UINT8                               ucRoamingFlg
 )
@@ -2002,39 +1698,13 @@ VOS_VOID NAS_MSCC_SetCurr3gppRoamingFlg(
     (NAS_MSCC_GetMsccCtxAddr()->stNwInfo.stSysInfo.st3gppSysInfo.ucRoamFlag) = ucRoamingFlg;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_GetCurr3gppRoamingFlg
- 功能描述  : 设置当前网络的漫游状态信息
- 输入参数  : ucRoamingFlg 当前网络漫游状态信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月14日
-    作    者   : c00318887
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 NAS_MSCC_GetCurr3gppRoamingFlg(VOS_VOID)
 {
     return (NAS_MSCC_GetMsccCtxAddr()->stNwInfo.stSysInfo.st3gppSysInfo.ucRoamFlag);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_UpdateRoamFlag
- 功能描述  : 更新MSCC保存的RoamFlag标示
- 输入参数  : enRegState       --MMC上报的注册状态消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月14日
-    作    者   : c00318887
-    修改内容   : DTS2015082002854: 漫游标记不准
-*****************************************************************************/
 VOS_VOID NAS_MSCC_UpdateRoamFlag(
     NAS_MSCC_PIF_REG_STATE_ENUM_UINT8   enRegState
 )
@@ -2058,21 +1728,7 @@ VOS_VOID NAS_MSCC_UpdateRoamFlag(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SetCurr3gppPsServiceStatus
- 功能描述  : 设置当前网络的业务状态信息
- 输入参数  : enSrvSt 当前网络业务状态信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年04月11日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SetCurr3gppPsServiceStatus(
     NAS_MSCC_SERVICE_STATUS_ENUM_UINT8  enSrvSt
 )
@@ -2081,82 +1737,14 @@ VOS_VOID NAS_MSCC_SetCurr3gppPsServiceStatus(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_GetCurr3gppPsServiceStatus
- 功能描述  : 获取当前网络的业务状态信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : NAS_MSCC_SERVICE_STATUS_INFO_STRU -- 当前网络业务状态信息
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年04月11日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_MSCC_SERVICE_STATUS_ENUM_UINT8 NAS_MSCC_GetCurr3gppPsServiceStatus(VOS_VOID)
 {
     return (NAS_MSCC_GetMsccCtxAddr()->stNwInfo.stServiceStatusInfo.en3gppPsServiceStatus);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_GetLastSendToImsaRoamFlg
- 功能描述  : 获取当前网络的上一次漫游状态信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT8 -- 当前网络上一次漫游状态信息
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2015年11月23日
-   作    者   : c00318887
-   修改内容   : 新生成函数
-*****************************************************************************/
-VOS_UINT8 NAS_MSCC_GetLastSendToImsaRoamFlg(VOS_VOID)
-{
-    return (NAS_MSCC_GetMsccCtxAddr()->stNwInfo.stSendToImsaInfo.ucRoamFlg);
-}
-
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SetCurrRoamStatus
- 功能描述  : 保存当前网络的漫游状态信息
- 输入参数  : VOS_UINT8 -- 当前网络漫游状态信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年11月23日
-    作    者   : c00318887
-    修改内容   : 新生成函数
-*****************************************************************************/
-VOS_VOID NAS_MSCC_SetLastSendToImsaRoamFlg(
-    VOS_UINT8  ucRoamStatus
-)
-{
-    NAS_MSCC_GetMsccCtxAddr()->stNwInfo.stSendToImsaInfo.ucRoamFlg = ucRoamStatus;
-}
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SetCurr1xServiceStatus
- 功能描述  : 获取当前网络的业务状态信息
- 输入参数  : enSrvSt 当前网络业务状态信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2015年04月11日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SetCurr1xServiceStatus(
     NAS_MSCC_SERVICE_STATUS_ENUM_UINT8  enSrvSt
 )
@@ -2165,41 +1753,13 @@ VOS_VOID NAS_MSCC_SetCurr1xServiceStatus(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_GetCurr1xServiceStatus
- 功能描述  : 获取当前网络的业务状态信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : NAS_MSCC_SERVICE_STATUS_INFO_STRU -- 当前网络业务状态信息
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年04月11日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_MSCC_SERVICE_STATUS_ENUM_UINT8 NAS_MSCC_GetCurr1xServiceStatus(VOS_VOID)
 {
     return (NAS_MSCC_GetMsccCtxAddr()->stNwInfo.stServiceStatusInfo.en1xServiceStatus);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SetCurrHrpdServiceStatus
- 功能描述  : 获取当前网络的业务状态信息
- 输入参数  : enSrvSt -- 当前网络的业务状态信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年04月11日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SetCurrHrpdServiceStatus(
     NAS_MSCC_SERVICE_STATUS_ENUM_UINT8  enSrvSt
 )
@@ -2208,21 +1768,7 @@ VOS_VOID NAS_MSCC_SetCurrHrpdServiceStatus(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_GetCurrHrpdServiceStatus
- 功能描述  : 获取当前网络的业务状态信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : NAS_MSCC_SERVICE_STATUS_INFO_STRU -- 当前网络业务状态信息
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年04月11日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_MSCC_SERVICE_STATUS_ENUM_UINT8 NAS_MSCC_GetCurrHrpdServiceStatus(VOS_VOID)
 {
     return (NAS_MSCC_GetMsccCtxAddr()->stNwInfo.stServiceStatusInfo.enHrpdServiceStatus);
@@ -2246,20 +1792,7 @@ VOS_UINT8 NAS_MSCC_GetBsrTimerNvimActiveFlag(VOS_VOID)
     return (NAS_MSCC_GetMmssNvimCfgInfoAddr()->stMmssSysAcqCfg.stSysAcqTimerCfg.ucIsBsrTimerNvimActiveFlag);
 }
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_InitFsmCtx_L1Main
-Description     :   This function is used to init the l1 main fsm ctx
-Input parameters:   None.
-Output parameters:  None.
-Return Value    :   None.
-Modify History:
-    1)  Date    :   2014-04-07
-        Author  :   w00176964
-        Modify content :    Create
-    2)  Date    :   2015-12-10
-        Author  :   w00176964
-        Modify content :CL_MUTIMODE_OPTIMIZE调整
-*****************************************************************************/
+
 
 VOS_VOID NAS_MSCC_InitFsmCtx_L1Main(VOS_VOID)
 {
@@ -2283,20 +1816,7 @@ VOS_VOID NAS_MSCC_InitFsmCtx_L1Main(VOS_VOID)
 }
 
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_GetCurOosAvailableTimerStartCount_L1Main
-Description     :   The function is used to get current available timer start count
-Input parameters:   None
-Output parameters:  None.
-Return Value    :   the available timer start count
-Modify History:
-    1)  Date    :   2015-04-07
-        Author  :   w00176964
-        Modify content :    Create
-    2)  Date    :   2015-04-07
-        Author  :   w00176964
-        Modify content :CL_MUTIMODE_OPTIMIZE调整
-*****************************************************************************/
+
 VOS_UINT32  NAS_MSCC_GetCurOosAvailableTimerStartCount_L1Main(VOS_VOID)
 {
     if (NAS_MSCC_FSM_L1_MAIN != NAS_MSCC_GetCurrFsmId())
@@ -2307,20 +1827,7 @@ VOS_UINT32  NAS_MSCC_GetCurOosAvailableTimerStartCount_L1Main(VOS_VOID)
     return  NAS_MSCC_GetCurFsmAddr()->unFsmCtx.stL1MainCtx.stOosAvailableTimerCtx.ulAvailableTimerCount;
 }
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_ResetCurOosAvailableTimerStartCount_L1Main
-Description     :   The function is used to reset current available timer start count
-Input parameters:   None
-Output parameters:  None.
-Return Value    :   NONE
-Modify History:
-    1)  Date    :   2015-04-07
-        Author  :   w00176964
-        Modify content :    Create
-    2)  Date    :   2015-12-12
-        Author  :   w00176964
-        Modify content :CL_MUTIMODE_OPTIMIZE调整
-*****************************************************************************/
+
 VOS_VOID  NAS_MSCC_ResetCurOosAvailableTimerStartCount_L1Main(VOS_VOID)
 {
     if (NAS_MSCC_FSM_L1_MAIN != NAS_MSCC_GetCurrFsmId())
@@ -2333,20 +1840,7 @@ VOS_VOID  NAS_MSCC_ResetCurOosAvailableTimerStartCount_L1Main(VOS_VOID)
     NAS_MSCC_GetCurFsmAddr()->unFsmCtx.stL1MainCtx.stOosAvailableTimerCtx.ulAvailableTimerCount = 0;
 }
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_AddCurOosAvailableTimerStartCount_L1Main
-Description     :   The function is used to add current available timer start count
-Input parameters:   None
-Output parameters:  None.
-Return Value    :   None
-Modify History:
-    1)  Date    :   2015-04-07
-        Author  :   w00176964
-        Modify content :    Create
-    2)  Date    :   2015-04-07
-        Author  :   w00176964
-        Modify content :CL_MUTIMODE_OPTIMIZE调整
-*****************************************************************************/
+
 VOS_VOID  NAS_MSCC_AddCurOosAvailableTimerStartCount_L1Main(VOS_VOID)
 {
     if (NAS_MSCC_FSM_L1_MAIN != NAS_MSCC_GetCurrFsmId())
@@ -2359,20 +1853,7 @@ VOS_VOID  NAS_MSCC_AddCurOosAvailableTimerStartCount_L1Main(VOS_VOID)
     (NAS_MSCC_GetCurFsmAddr()->unFsmCtx.stL1MainCtx.stOosAvailableTimerCtx.ulAvailableTimerCount)++;
 }
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_GetNextOosAvailableTimerLength_L1Main
-Description     :   The function is used to get next start available timer length
-Input parameters:   None
-Output parameters:  None.
-Return Value    :   the next available timer length
-Modify History:
-    1)  Date    :   2015-04-07
-        Author  :   w00176964
-        Modify content :    Create
-    2)  Date    :   2015-12-10
-        Author  :   w00176964
-        Modify content :CL_MUTIMODE_OPTIMIZE调整
-*****************************************************************************/
+
 VOS_UINT32  NAS_MSCC_GetNextOosAvailableTimerLength_L1Main(VOS_VOID)
 {
     VOS_UINT32                          ulCount;
@@ -3020,17 +2501,7 @@ VOS_UINT8 NAS_MSCC_GetOrigSysMsplIndex_BSR(VOS_VOID)
 }
 
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_SetOrigSysDefMsplRecFlg_BSR
-Description     :   设置原始系统是否在default mspl中的标记
-Input parameters:   原始系统在default mspl中的标记
-Output parameters:  None.
-Return Value    :   None
-Modify History:
-    1)  Date    :   2016-01-08
-        Author  :   w00176964
-        Modify content :    Create
-*****************************************************************************/
+
 VOS_VOID NAS_MSCC_SetOrigSysDefMsplRecFlg_BSR(
     VOS_UINT8                           ucOrigSysUseDefMsplRec
 )
@@ -3044,17 +2515,7 @@ VOS_VOID NAS_MSCC_SetOrigSysDefMsplRecFlg_BSR(
     (g_stNasMsccCtx.stCurFsm.unFsmCtx.stBsrCtx.ucOrigSysUseDefMsplRec) = ucOrigSysUseDefMsplRec;
 }
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_GetOrigSysDefMsplRecFlg_BSR
-Description     :   获取原始系统是否在default mspl中的标记
-Input parameters:   None.
-Output parameters:  None.
-Return Value    :   原始系统是否在default mspl中的标记
-Modify History:
-    1)  Date    :   2016-01-08
-        Author  :   w00176964
-        Modify content :    Create
-*****************************************************************************/
+
 VOS_UINT8 NAS_MSCC_GetOrigSysDefMsplRecFlg_BSR(VOS_VOID)
 {
     /* 如果当前状态机不是BSR */
@@ -3081,21 +2542,7 @@ NAS_MSCC_MLPL_MSPL_SYS_TYPE_ENUM_UINT8 NAS_MSCC_GetDestBsrSysType_BSR(VOS_VOID)
     return (g_stNasMsccCtx.stCurFsm.unFsmCtx.stBsrCtx.enDestBsrSysType);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_GetHrpdHighPrioSysInfo_BSR
- 功能描述  : 获取高优先级subnet列表
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年04月07日
-   作    者   : y00307564
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_MSCC_HIGH_PRIORITY_SYSTEM_INFO_STRU *NAS_MSCC_GetHrpdHighPrioSysInfo_BSR(VOS_VOID)
 {
     return &(NAS_MSCC_GetCurFsmAddr()->unFsmCtx.stBsrCtx.stHighPriSysInfo);
@@ -3117,20 +2564,7 @@ VOS_VOID NAS_MSCC_SaveCardStatus(
     NAS_MSCC_GetMsccCtxAddr()->stSimInfo.stSimStatus.enCsimStatus = enCsimStatus;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SaveIsCardChanged
- 功能描述  : 保存卡ICCID是否发生改变的标识
- 输入参数  : VOS_UINT8          卡ICCID是否发生改变
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年08月26日
-   作    者   : h00313353
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SaveIsCardChangedFlg(
     VOS_UINT8                           ucIsCardChanged
 )
@@ -3140,20 +2574,7 @@ VOS_VOID NAS_MSCC_SaveIsCardChangedFlg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_GetIsCardChanged
- 功能描述  : 获取卡ICCID是否发生改变的标识
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT8          卡ICCID是否发生改变
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年08月26日
-   作    者   : h00313353
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 NAS_MSCC_GetIsCardChangedFlg( VOS_VOID )
 {
     return (NAS_MSCC_GetMsccCtxAddr()->stSimInfo.ucIsCardChanged);
@@ -3296,21 +2717,7 @@ VOS_UINT32 NAS_MSCC_GetCurrBsrTimerLen(VOS_VOID)
     return NAS_MSCC_GetSysAcqCtrlInfoAddr()->ulCurrBsrTimerLen;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SetEmcCallExistFlag
- 功能描述  : 设置紧急呼标记是否存在
- 输入参数  : VOS_UINT8                           ucIsEmcCallExistFlg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月6日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SetEmcCallExistFlag(
     VOS_UINT8                           ucIsEmcCallExistFlg
 )
@@ -3319,41 +2726,13 @@ VOS_VOID NAS_MSCC_SetEmcCallExistFlag(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_GetEmcCallExistFlag
- 功能描述  : 获取紧急呼标记是否存在
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月6日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 NAS_MSCC_GetEmcCallExistFlag(VOS_VOID)
 {
     return NAS_MSCC_GetSysAcqCtrlInfoAddr()->ucIsEmcCallExist;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SetCallBackEnableFlag
- 功能描述  : 设置紧急呼回呼功能标记是否存在
- 输入参数  : VOS_UINT32                          ulCallBackEnableFlg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月6日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SetEmcCallBackEnableFlag(
     VOS_UINT32                          ulCallBackEnableFlg
 )
@@ -3362,21 +2741,7 @@ VOS_VOID NAS_MSCC_SetEmcCallBackEnableFlag(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_GetCallBackEnableFlag
- 功能描述  : 获取紧急呼回呼功能是否使能
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月6日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MSCC_GetEmcCallBackEnableFlag(VOS_VOID)
 {
     return NAS_MSCC_GetSysAcqCtrlInfoAddr()->ulCallBackEnableFlg;
@@ -3425,21 +2790,7 @@ VOS_VOID NAS_MSCC_InitMsCfgInfo(
 }
 
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_InitCustomCfgInfo
-Description     :   The function is used to init the Custom Cfg Info
-Input parameters:   Pointer to Custom Cfg Info global variable.
-Output parameters:  None
-Return Value    :   None
 
-Modify History:
-    1)  Date    :   2015-4-14
-        Author  :   a00295761
-        Modify content :    Create
-    2)  Date    :   2015-12-10
-        Author  :   w00176964
-        Modify content : CL_MUTIMODE_OPTIMIZE调整
-*****************************************************************************/
 
 VOS_VOID NAS_MSCC_InitCustomCfgInfo(
     NAS_MSCC_CUSTOM_CONFIG_STRU        *pstCustomCfgInfo
@@ -3580,27 +2931,7 @@ VOS_VOID NAS_MSCC_InitMmssLastLocationInfo(
 }
 
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_InitSysAcqTimerCfgInfo
-Description     :   The function is used to init the Sys Acq Timer cfg global variable.
-Input parameters:   Pointer to Sys Acq Timer cfg  global variable.
-Output parameters:  None
-Return Value    :   None
 
-Modify History:
-    1)  Date    :   2015-4-14
-        Author  :   a00295761
-        Modify content :    Create
-
-    2) Date     : 2016-01-14
-       Author   : W00176964
-       Modify   : DTS2016011505496:增加对原始系统不在MSPL表进行BSR流程,定时器时长的NV控制
-
-    3)  Date    :   2016-1-14
-        Author  :   w00176964
-        Modify content : DTS2016010704615:CCF05006用例(1进入dormant态,需要在BSR定时器超时后重选到
-                         LTE上)不通过,需要修改NV2015中BSR的默认值才能通过用例
-*****************************************************************************/
 
 VOS_VOID NAS_MSCC_InitSysAcqTimerCfgInfo(
     NAS_MSCC_SYSACQ_TIMER_CFG_STRU     *pstSysAcqTimerCfg
@@ -3639,25 +2970,7 @@ VOS_VOID NAS_MSCC_InitPowerSaveCtrlInfo(
     return;
 }
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_InitSysAcqCtrlInfo
-Description     :   The function is used to init the System Acquire Context global variable
-Input parameters:   Pointer to Sys Acq Ctrl Info  global variable.
-Output parameters:  None
-Return Value    :   None
 
-Modify History:
-    1)  Date    :   2015-4-28
-        Author  :   t00323010
-        Modify content :    Create
-    2)  Date    :   2015-9-19
-        Author  :   y00346957
-        Modify content :    add for DTS2015070910885
-      3.日    期   : 2016年1月6日
-        作    者   : w00242748
-        修改内容   : DTS2015072705348:进入紧急呼回呼模式后，挂起HRPD和LTE；退出紧急呼
-                     回呼模式后，再进行搜网，紧急呼回呼模式下，不进行其他任何形式搜网；
-*****************************************************************************/
 
 VOS_VOID NAS_MSCC_InitSysAcqCtrlInfo(
     NAS_MSCC_SYS_ACQ_CTRL_CTX_STRU     *pstSysAcqCtrlInfo
@@ -3676,20 +2989,7 @@ VOS_VOID NAS_MSCC_InitSysAcqCtrlInfo(
     pstSysAcqCtrlInfo->ulCallBackEnableFlg      = VOS_FALSE;
 }
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_Set1xSysAcqMoCallFlag
-Description     :   The function is used to set ucSysAcqMoCallFlag
-Input parameters: VOS_UINT8                           ucFlg
-Output parameters:  None.
-Return Value    :   None
-Modify History:
-    1)  Date    :   2015-07-09
-        Author  :   y00314741
-        Modify content :    Create
-    2)  Date    :   2015-12-10
-        Author  :   w00176964
-        Modify content :CL_MUTIMODE_OPTIMIZE调整
-*****************************************************************************/
+
 VOS_VOID  NAS_MSCC_Set1xSysAcqMoCallFlag(
     VOS_UINT8                           ucFlg
 )
@@ -3697,20 +2997,7 @@ VOS_VOID  NAS_MSCC_Set1xSysAcqMoCallFlag(
     NAS_MSCC_GetMsccCtxAddr()->stSysAcqCtrl.ucSysAcqMoCallFlag = ucFlg;
 }
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_Get1xSysAcqMoCallFlags
-Description     :   The function is used to get ucSysAcqMoCallFlag
-Input parameters:   None
-Output parameters:  None.
-Return Value    :
-Modify History:
-    1)  Date    :   2015-07-09
-        Author  :   y00314741
-        Modify content :    Create
-    2)  Date    :   2015-12-10
-        Author  :   w00176964
-        Modify content :CL_MUTIMODE_OPTIMIZE调整
-*****************************************************************************/
+
 VOS_UINT8  NAS_MSCC_Get1xSysAcqMoCallFlag(VOS_VOID)
 {
     return NAS_MSCC_GetMsccCtxAddr()->stSysAcqCtrl.ucSysAcqMoCallFlag;
@@ -3729,21 +3016,7 @@ VOS_VOID NAS_MSCC_SetAllowSrchLteFlg(
     NAS_MSCC_GetMsccCtxAddr()->stSysAcqCtrl.ucAllowSrchLteFlg = ucAllowSrchLteFlg;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_InitMntnInfo
- 功能描述  : The function is used to init the mntn Context global variableS
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月2日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_InitMntnInfo(
     NAS_MSCC_MNTN_CTX_STRU            *pstMntnInfo
 )
@@ -3754,21 +3027,7 @@ VOS_VOID NAS_MSCC_InitMntnInfo(
 
 
 
-/*****************************************************************************
-函 数 名  : NAS_MSCC_AddLogMsgState
-功能描述  : 增加stLogMsgState
-输入参数  : usSendPid, usMsgName,usReceivePid
-输出参数  : 无
-返 回 值  :
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2015年7月2日
-  作    者   : y00322978
-  修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_AddLogMsgState(
     VOS_UINT32                          ulSendPid,
     VOS_UINT32                          ulReceivePid,
@@ -3795,21 +3054,7 @@ VOS_VOID NAS_MSCC_AddLogMsgState(
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_UpdateExitTime
- 功能描述  : 更新消息退出的时间
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月2日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_UpdateMsgExitTime( VOS_VOID )
 {
     NAS_MSCC_LOG_MSG_STATUS_STRU       *pstLogMsgState;
@@ -3823,24 +3068,7 @@ VOS_VOID NAS_MSCC_UpdateMsgExitTime( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_LogMsgInfo
- 功能描述  : 判断消息是否是定时器发出的，如果是就打印定时器信息，否则打印消
-             息信息
- 输入参数  : MSG_HEADER_STRU
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月2日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-  2.日    期   : 2016年01月23日
-    作    者   : l00324781
-    修改内容   : LOG_MSG_OPTIMIZE 修改
-*****************************************************************************/
 VOS_VOID NAS_MSCC_LogMsgInfo(
     MSG_HEADER_STRU                    *pstMsgHeader
 )
@@ -3888,23 +3116,7 @@ VOS_VOID NAS_MSCC_LogMsgInfo(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_IsCLModeSupportedInRatList
- 功能描述  : 判断目标接入技术是否支持CL模式
- 输入参数  : NAS_MSCC_PIF_RAT_PRIO_STRU         *pstRatPrioList
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
-             VOS_TRUE  表示支持
-             VOS_FASLE 表示不支持
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月21日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MSCC_IsCLModeSupportedInRatList(
     NAS_MSCC_PIF_RAT_PRIO_STRU         *pstRatPrioList
 )
@@ -3923,23 +3135,7 @@ VOS_UINT32 NAS_MSCC_IsCLModeSupportedInRatList(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_Init1xServiceClSysAcqStrategyInfo
- 功能描述  : 初始化1x有服务时CL系统捕获策略NV信息
- 输入参数  : NAS_MSCC_1X_SERVICE_CL_SYSTEM_ACQUIRE_STRATEGY_STRU
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2016年1月14日
-    作    者   : w00176964
-    修改内容   : DTS2016010704615:修改NV默认值保证CCF用例通过
-*****************************************************************************/
 VOS_VOID NAS_MSCC_Init1xServiceClSysAcqStrategyInfo(
     NAS_MSCC_1X_SERVICE_CL_SYSTEM_ACQUIRE_STRATEGY_STRU    *pstSysAcqStrategy
 )
@@ -3955,77 +3151,25 @@ VOS_VOID NAS_MSCC_Init1xServiceClSysAcqStrategyInfo(
     pstSysAcqStrategy->stPhaseTwoPatternCfg.usTotalTimeLen       = 0;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_Get1xServiceClSysAcqPatternONeCfgAddr
- 功能描述  : 获取1x有服务时CL系统捕获策略阶段1NV信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : NAS_MSCC_1X_SERVICE_CL_SYSTEM_ACQUIRE_PATTERN_CFG_STRU
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 NAS_MSCC_1X_SERVICE_CL_SYSTEM_ACQUIRE_PATTERN_CFG_STRU* NAS_MSCC_Get1xServiceClSysAcqPatternOneCfgAddr(VOS_VOID)
 {
     return &(NAS_MSCC_GetMsccCtxAddr()->stMsCfgInfo.stCustomCfgInfo.st1xSrvClSysAcqStrategy.stPhaseOnePatternCfg);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_Get1xServiceClSysAcqPatternTwoCfgAddr
- 功能描述  : 获取1x有服务时CL系统捕获策略阶段2NV信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : NAS_MSCC_1X_SERVICE_CL_SYSTEM_ACQUIRE_PATTERN_CFG_STRU
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 NAS_MSCC_1X_SERVICE_CL_SYSTEM_ACQUIRE_PATTERN_CFG_STRU* NAS_MSCC_Get1xServiceClSysAcqPatternTwoCfgAddr(VOS_VOID)
 {
     return &(NAS_MSCC_GetMsccCtxAddr()->stMsCfgInfo.stCustomCfgInfo.st1xSrvClSysAcqStrategy.stPhaseTwoPatternCfg);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_GetCur1xServiceSysAcqPhaseNum
- 功能描述  : 获取1x有服务时CL系统捕获当前处于哪个阶段
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : NAS_MSCC_1X_SERVICE_CL_SYSTEM_ACQUIRE_PHASE_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 NAS_MSCC_1X_SERVICE_CL_SYSTEM_ACQUIRE_PHASE_ENUM_UINT8 NAS_MSCC_GetCur1xServiceSysAcqPhaseNum(VOS_VOID)
 {
     return (NAS_MSCC_GetMsccCtxAddr()->stSysAcqCtrl.enCur1xServiceSysAcqPhaseNum);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SetCur1xServiceSysAcqPhaseNum
- 功能描述  : 设置1x有服务时CL系统捕获当前处于哪个阶段
- 输入参数  : NAS_MSCC_1X_SERVICE_CL_SYSTEM_ACQUIRE_PHASE_ENUM_UINT8
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SetCur1xServiceSysAcqPhaseNum(
     NAS_MSCC_1X_SERVICE_CL_SYSTEM_ACQUIRE_PHASE_ENUM_UINT8  enPhase
 )
@@ -4033,59 +3177,20 @@ VOS_VOID NAS_MSCC_SetCur1xServiceSysAcqPhaseNum(
     (NAS_MSCC_GetMsccCtxAddr()->stSysAcqCtrl.enCur1xServiceSysAcqPhaseNum) = enPhase;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_ResetCur1xServiceSysAcqPhaseNum
- 功能描述  : RESET 1x有服务时CL系统捕获阶段
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_ResetCur1xServiceSysAcqPhaseNum(VOS_VOID)
 {
     (NAS_MSCC_GetMsccCtxAddr()->stSysAcqCtrl.enCur1xServiceSysAcqPhaseNum) = NAS_MSCC_1X_SERVICE_CL_SYSTEM_ACQUIRE_PHASE_ONE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_AddCur1xServiceSysAcqPhaseNum
- 功能描述  : add 1x有服务时CL系统捕获阶段
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_AddCur1xServiceSysAcqPhaseNum(VOS_VOID)
 {
     (NAS_MSCC_GetMsccCtxAddr()->stSysAcqCtrl.enCur1xServiceSysAcqPhaseNum)++;
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_GetCur1xServiceLteFullBandSrchCount_L1Main
- 功能描述  : 获取当前1x有服务时available定时器超时触发的LTE全频搜索次数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 NAS_MSCC_GetCur1xServiceLteFullBandSrchCount_L1Main(VOS_VOID)
 {
     if (NAS_MSCC_FSM_L1_MAIN != NAS_MSCC_GetCurrFsmId())
@@ -4097,20 +3202,7 @@ VOS_UINT8 NAS_MSCC_GetCur1xServiceLteFullBandSrchCount_L1Main(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_ResetCur1xServiceLteFullBandSrchCount_L1Main
- 功能描述  : reset当前1x有服务时available定时器超时触发的lte全频搜索次数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_ResetCur1xServiceLteFullBandSrchCount_L1Main(VOS_VOID)
 {
     if (NAS_MSCC_FSM_L1_MAIN != NAS_MSCC_GetCurrFsmId())
@@ -4122,20 +3214,7 @@ VOS_VOID NAS_MSCC_ResetCur1xServiceLteFullBandSrchCount_L1Main(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_AddCur1xServiceLteFullBandSrchCount_L1Main
- 功能描述  : 递增当前1x有服务时available定时器超时触发的全频搜索次数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_AddCur1xServiceLteFullBandSrchCount_L1Main(VOS_VOID)
 {
     if (NAS_MSCC_FSM_L1_MAIN != NAS_MSCC_GetCurrFsmId())
@@ -4149,20 +3228,7 @@ VOS_VOID NAS_MSCC_AddCur1xServiceLteFullBandSrchCount_L1Main(VOS_VOID)
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_GetCur1xServiceLteHistorySrchCount_L1Main
- 功能描述  : 获取当前1x有服务时available定时器超时触发的历史频搜索次数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 NAS_MSCC_GetCur1xServiceLteHistorySrchCount_L1Main(VOS_VOID)
 {
     if (NAS_MSCC_FSM_L1_MAIN != NAS_MSCC_GetCurrFsmId())
@@ -4174,20 +3240,7 @@ VOS_UINT8 NAS_MSCC_GetCur1xServiceLteHistorySrchCount_L1Main(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_ResetCur1xServiceLteHistorySrchCount_L1Main
- 功能描述  : reset当前1x有服务时available定时器超时触发的历史频点搜索次数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_ResetCur1xServiceLteHistorySrchCount_L1Main(VOS_VOID)
 {
     if (NAS_MSCC_FSM_L1_MAIN != NAS_MSCC_GetCurrFsmId())
@@ -4199,20 +3252,7 @@ VOS_VOID NAS_MSCC_ResetCur1xServiceLteHistorySrchCount_L1Main(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_AddCur1xServiceLteHistorySrchCount_L1Main
- 功能描述  : 递增当前1x有服务时available定时器超时触发的历史频点搜索次数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_AddCur1xServiceLteHistorySrchCount_L1Main(VOS_VOID)
 {
     if (NAS_MSCC_FSM_L1_MAIN != NAS_MSCC_GetCurrFsmId())
@@ -4223,20 +3263,7 @@ VOS_VOID NAS_MSCC_AddCur1xServiceLteHistorySrchCount_L1Main(VOS_VOID)
     (NAS_MSCC_GetCurFsmAddr()->unFsmCtx.stL1MainCtx.st1xServiceAvailableTimerCtx.ucCurLteHistorySrchCount)++;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_GetNext1xServiceAvailableTimerLength_L1Main
- 功能描述  : 获取下次1x有服务时available定时器的启动时长
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 
 VOS_UINT32  NAS_MSCC_GetNext1xServiceAvailableTimerLength_L1Main(
     NAS_MSCC_1X_SERVICE_CL_SYSTEM_ACQUIRE_PHASE_ENUM_UINT8  enPhaseNum
@@ -4258,24 +3285,7 @@ VOS_UINT32  NAS_MSCC_GetNext1xServiceAvailableTimerLength_L1Main(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_IsNeedPerfromLteFullBandSrchWith1xServiceExist_L1Main
- 功能描述  : 是否需要执行Lte全频搜在1x服务存在时
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:需要执行Lte全频搜在1x服务存在时
-             VOS_FALSE:不需要执行Lte全频搜在1x服务存在时
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2016年1月14日
-    作    者   : w00176964
-    修改内容   : DTS2016011505664:搜索策略进行调整,全频搜L穿插历史搜L
-*****************************************************************************/
 
 VOS_UINT32  NAS_MSCC_IsNeedPerfromLteFullBandSrchWith1xServiceExist_L1Main(VOS_VOID)
 {
@@ -4317,21 +3327,7 @@ VOS_UINT32  NAS_MSCC_IsNeedPerfromLteFullBandSrchWith1xServiceExist_L1Main(VOS_V
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_IsNeedPerfromLteHistorySrchWith1xServiceExist_L1Main
- 功能描述  : 是否需要执行Lte历史频点搜索在1x服务存在时
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:需要执行Lte历史频点搜索在1x服务存在时
-             VOS_FALSE:不需要执行Lte历史频点搜索在1x服务存在时
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 
 VOS_UINT32  NAS_MSCC_IsNeedPerfromLteHistorySrchWith1xServiceExist_L1Main(VOS_VOID)
 {
@@ -4371,20 +3367,7 @@ VOS_UINT32  NAS_MSCC_IsNeedPerfromLteHistorySrchWith1xServiceExist_L1Main(VOS_VO
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_GetNextAvailableTimerLength_L1Main
- 功能描述  : 获取下次available定时器的启动时长
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 
 VOS_UINT32  NAS_MSCC_GetNextAvailableTimerLength_L1Main(VOS_VOID)
 {
@@ -4396,20 +3379,7 @@ VOS_UINT32  NAS_MSCC_GetNextAvailableTimerLength_L1Main(VOS_VOID)
     return NAS_MSCC_GetNextOosAvailableTimerLength_L1Main();
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_Start1xServiceClSysAcqPhaseOneTotalTimer_L1Main
- 功能描述  : 启动1x有服务时CL系统捕获阶段1总搜索时长定时器
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 
 VOS_VOID  NAS_MSCC_Start1xServiceClSysAcqPhaseOneTotalTimer_L1Main(VOS_VOID)
 {
@@ -4449,20 +3419,7 @@ VOS_VOID  NAS_MSCC_Start1xServiceClSysAcqPhaseOneTotalTimer_L1Main(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_Reset1xServiceClSysAcqRelatedInfo_L1Main
- 功能描述  : reset 1x有服务时CL系统捕获相关信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月15日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 
 VOS_VOID  NAS_MSCC_Reset1xServiceClSysAcqRelatedInfo_L1Main(VOS_VOID)
 {
@@ -4483,21 +3440,7 @@ VOS_VOID  NAS_MSCC_Reset1xServiceClSysAcqRelatedInfo_L1Main(VOS_VOID)
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_InitNoCardInitSearchLocInfo
- 功能描述  : 无卡初搜位置信息内容初始化
- 输入参数  : NAS_MSCC_NO_CARD_INIT_SEARCH_LOC_STRU         *pstNoCardInitSearchLocInfo
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月10日
-    作    者   : j00354216
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_InitNoCardInitSearchLocInfo(
     NAS_MSCC_NO_CARD_INIT_SEARCH_LOC_STRU                  *pstNoCardInitSearchLocInfo
 )
@@ -4512,42 +3455,13 @@ VOS_VOID NAS_MSCC_InitNoCardInitSearchLocInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_GetNoCardInitSearchLocInfoAddr
- 功能描述  : 获取无卡初搜位置信息内容地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : NAS_MSCC_NO_CARD_INIT_SEARCH_LOC_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月10日
-    作    者   : j00354216
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_MSCC_NO_CARD_INIT_SEARCH_LOC_STRU *NAS_MSCC_GetNoCardInitSearchLocInfoAddr(VOS_VOID)
 {
     return &(NAS_MSCC_GetMsccCtxAddr()->stSysAcqCtrl.stNoCardInitSearchLoc);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_Update1xNoCardInitSearchLocInfo
- 功能描述  : 更新1x无卡初搜位置信息内容
- 输入参数  : VOS_INT32 lSid
-             VOS_INT32 lNid
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月10日
-    作    者   : j00354216
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_Update1xNoCardInitSearchLocInfo(
     VOS_INT32                           lSid,
     VOS_INT32                           lNid
@@ -4559,21 +3473,7 @@ VOS_VOID NAS_MSCC_Update1xNoCardInitSearchLocInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_Update1xNoCardInitSearchLocMcc
- 功能描述  : 更新1x无卡初搜位置信息的MCC值
- 输入参数  : VOS_UINT32    ulMcc
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月10日
-    作    者   : j00354216
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_Update1xNoCardInitSearchLocMcc(
     VOS_UINT32                          ulMcc
 )
@@ -4583,22 +3483,7 @@ VOS_VOID NAS_MSCC_Update1xNoCardInitSearchLocMcc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_UpdateGulNoCardInitSearchLocInfo
- 功能描述  : 更新Gul无卡初搜位置信息内容
- 输入参数  : VOS_UINT32 ulMcc
-             VOS_UINT32 ulMcc
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月10日
-    作    者   : j00354216
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_UpdateGulNoCardInitSearchLocInfo(
     VOS_UINT32                          ulMcc,
     VOS_UINT32                          ulMnc
@@ -4610,21 +3495,7 @@ VOS_VOID NAS_MSCC_UpdateGulNoCardInitSearchLocInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SetNoCardInitSearchWaitType
- 功能描述  : 设置无卡初搜当前等待的初搜类型
- 输入参数  : NAS_MSCC_NO_CARD_INIT_SEARCH_WAIT_TYPE_ENUM_UINT32  enNoCardInitSearchWaitType
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月10日
-    作    者   : j00354216
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SetNoCardInitSearchWaitType(
     NAS_MSCC_NO_CARD_INIT_SEARCH_WAIT_TYPE_ENUM_UINT32      enNoCardInitSearchWaitType
 )
@@ -4634,41 +3505,13 @@ VOS_VOID NAS_MSCC_SetNoCardInitSearchWaitType(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_GetNoCardInitSearchWaitType
- 功能描述  : 获取无卡初搜当前等待的初搜类型
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : NAS_MSCC_NO_CARD_INIT_SEARCH_WAIT_TYPE_ENUM_UINT32  enNoCardInitSearchWaitType
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月10日
-    作    者   : j00354216
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_MSCC_NO_CARD_INIT_SEARCH_WAIT_TYPE_ENUM_UINT32 NAS_MSCC_GetNoCardInitSearchWaitType(VOS_VOID)
 {
     return NAS_MSCC_GetMsccCtxAddr()->stSysAcqCtrl.stNoCardInitSearchLoc.enInitSearchWaitType;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_ResetNoCardInitSearchInfo
- 功能描述  : 重置无卡初搜当前等待的初搜类型
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月10日
-    作    者   : j00354216
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_ResetNoCardInitSearchInfo(VOS_VOID)
 {
     NAS_MSCC_NO_CARD_INIT_SEARCH_LOC_STRU                  *pstNoCardInitSearchLocInfo = VOS_NULL_PTR;

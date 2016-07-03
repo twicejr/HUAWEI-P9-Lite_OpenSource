@@ -1,18 +1,4 @@
-/************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : ExtAppRabmInterface.h
-  Author      : ---
-  Version     : V200R001
-  Date        : 2005-08-17
-  Description : 协议栈软件RABM与APP接口头文件
-  History     :
-  1. Date:2005-08-17
-     Author: ---
-     Modification:Create
-  2. 日    期  : 2006年12月4日
-     作    者  : luojian id:60022475
-     修改内容  : 增加 #pragma pack(4)，问题单号:A32D07779
-************************************************************************/
+
 
 #ifndef _EXT_APP_RABM_INTERFACE_H_
 #define _EXT_APP_RABM_INTERFACE_H_

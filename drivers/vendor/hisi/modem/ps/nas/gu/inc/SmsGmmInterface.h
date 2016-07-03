@@ -113,13 +113,7 @@ typedef struct
     GMMSMS_SERVICE_STATUS_ENUM_UINT32   enServiceSts;                           /* 服务状态                                 */
 }GMMSMS_SERVICE_STATUS_IND_STRU;
 
-/*****************************************************************************
- 枚举名    : GMMSMS_SESSION_TYPE_ENUM_UINT8
- 枚举说明  : SMS域SESSION类型
- 1.日    期   : 2014年5月28日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 enum GMMSMS_SESSION_TYPE_ENUM
 {
     GMMSMS_SESSION_TYPE_MO_SMS,
@@ -128,13 +122,7 @@ enum GMMSMS_SESSION_TYPE_ENUM
 };
 typedef VOS_UINT8 GMMSMS_SESSION_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 结构名    : GMMSMS_BEGIN_SESSION_NOTIFY_STRU
- 结构说明  : SESSION开始指示
- 1.日    期   : 2014年5月28日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stMsgHeader;                /*_H2ASN_Skip*/
@@ -142,13 +130,7 @@ typedef struct
     VOS_UINT8                                       aucReserved[3];
 } GMMSMS_BEGIN_SESSION_NOTIFY_STRU;
 
-/*****************************************************************************
- 结构名    : GMMSMS_END_SESSION_NOTIFY_STRU
- 结构说明  : SESSION结束指示
- 1.日    期   : 2014年5月28日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stMsgHeader;                /*_H2ASN_Skip*/

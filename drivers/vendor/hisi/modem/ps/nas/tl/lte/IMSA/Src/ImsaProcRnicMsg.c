@@ -1,14 +1,4 @@
-/******************************************************************************
 
-   Copyright(C)2013,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : ImsaProcRnicMsg.c
-  Description     : 该C文件给出了IMSA模块处理RNIC命令的实现
-  History           :
-     1.wangchen 00209181    2014-07-31  Draft Enact
-
-******************************************************************************/
 
 /*****************************************************************************
   1 Include HeadFile
@@ -46,16 +36,7 @@ extern "C" {
 
 
 
-/*****************************************************************************
- Function Name  : IMSA_SndMsgRnicPdnActInd
- Discription    : 发送ID_IMSA_RNIC_PDN_ACT_IND消息的处理
- Input          :
- Output         : None
- Return         : None
- History:
-      1. wangchen 00209181  2014-07-31  Draft Enact
 
-*****************************************************************************/
 VOS_VOID IMSA_SndMsgRnicPdnActInd(const IMSA_PDP_CNTXT_INFO_STRU     *pstPdpInfo)
 {
 
@@ -144,15 +125,7 @@ VOS_VOID IMSA_SndMsgRnicPdnActInd(const IMSA_PDP_CNTXT_INFO_STRU     *pstPdpInfo
     IMSA_SND_MSG(pstRnicPdnActInd);
     return;
 }
-/*****************************************************************************
- Function Name  : IMSA_SndMsgRnicPdnDeactInd
- Discription    : 发送IMSA_SndMsgRnicPdnDeactInd消息的处理
- Input          :
- Output         : None
- Return         : None
- History:
-      1. wangchen 00209181  2014-07-31  Draft Enact
-*****************************************************************************/
+
 VOS_VOID IMSA_SndMsgRnicPdnDeactInd(VOS_UINT8 ucPdpId)
 {
     IMSA_RNIC_PDN_DEACT_IND_STRU          *pstRnicPdnDeactInd;

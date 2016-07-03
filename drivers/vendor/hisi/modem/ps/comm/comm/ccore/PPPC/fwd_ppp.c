@@ -1,42 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : fwd_ppp.c
-  版 本 号   : 初稿
-  作    者   : zhangnan 68158
-  生成日期   : 2007年07月19日
-  最近修改   :
-  功能描述   : PPP模块处理函数
-  函数列表   :
-
-  修改历史   :
-  1.日    期   : 2007年07月14日
-    作    者   : zhangnan 68158
-    修改内容   : 创建文件
-
- 2.日    期  : 2007-07-23
-    作    者  :zhangna 68158
-    内    容  :添加协议报文上送的封装
-
- 3.日    期  : 2007-07-30
-    作    者  :zhangna 68158
-    内    容  修改宏的名称
-
- 4.日    期  : 2007-08-02
-    作    者  :zhangnan 68158
-    内    容  封装上送信息头时,使用了新定义的 ENCAP_TOCP_INFO_S结构来表示封装的长度,用于更新MBUF
-                新定义了临时变量 ENCAP_TOCP_INFO_S *pstEncapHd 用于指向封装信息头,方便 " 封装信息头宏 " 中的计算
-                封装装的信息头采用主机序格式
- 5.日    期  : 2008-01-29
-    作    者  :zhangnan 68158
-    内    容  :函数处理只返回结果不丢包，在外面调用处统一处理；增加一个返回值表示同步报文，在外面决定是否丢弃
- 6.日    期  : 2008-02-15
-    作    者  :zhangnan 68158
-    内    容  :修改获取GTPU表字段的宏，优化为只有一个参数，减少计算
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -74,21 +36,7 @@ VOS_UINT16                          g_usPppSynSliceBufUsedLen = 0;
 *****************************************************************************/
 /*lint -save -e958 */
 
-/*****************************************************************************
- 函 数 名  : FWD_PppFillDataInfo
- 功能描述  : 填写需要勾取的数据
- 输入参数  : pstIP: 原始数据的ip信息指针
-             pstUlDataInfo: 勾取的数据的指针
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-06-23
-    作    者   : d00314740
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID FWD_PppFillDataInfo
 (
     VOS_UINT8                          *pucPppData,
@@ -188,25 +136,7 @@ VOS_VOID FWD_PppFillDataInfo
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : FWD_PppParse
- 功能描述  : 更新参数，返回PPP头的长度
- 输入参数  : VOS_UINT8 *pcuPppHead   PPP头
- 输出参数  : VOS_UINT32 *pulHdLen    PPP头的长度
- 返 回 值  : PPP_IS_DATA    :    数据报文
-             PPP_IS_LCP_ECHO:    ECHO报文
-             PPP_IS_LCP_SIG :    协商报文
-             PPP_IS_ASYN    :    异步报文
-             PPP_IS_OTHER_SIG  :   其他信令报文
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月29日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 FWD_PppParse
 (
     VOS_UINT8                          *pcuPppHead,
@@ -235,7 +165,6 @@ VOS_UINT32 FWD_PppParse
     }
 
     /*协议域判断*/
-    /*Modified Start by lijun 00129916 2010-03-02 for AX4D13910 修改PPP解析流程*/
     /*数据报文，协议域无压缩*/
     if ((PPP_H_PF_IPV4 == usPppHdFlg) ||(PPP_H_PF_IPV6 == usPppHdFlg))
     {
@@ -263,18 +192,15 @@ VOS_UINT32 FWD_PppParse
         {
             ret = PPP_PARSE_R_LCP_ECHO_REQ;
         }
-        /* begin: add by zhangnan 68158 at 2012-02-21 for PPP Echo 报文无法跟踪 */
         else if (PPP_H_LCP_ECHOREP == ucLcpCode)
         {
             ret = PPP_PARSE_R_LCP_ECHO_REPLY;
         }
-        /* end  :add by zhangnan 68158 at 2012-02-21 for PPP Echo 报文无法跟踪 */
         else /*ucCode !=0X09 */
         {
             ret = PPP_PARSE_R_LCP_SIG;
         }
     }
-    /*Added start by wangyixing 00167384 at 2013-2-4 for HSGW开发*/
     else if (PPP_H_PF_VSNP == usPppHdFlg)
     {
         /*偏移掉协议,协议域无压缩*/
@@ -287,11 +213,9 @@ VOS_UINT32 FWD_PppParse
         ulPPPHLen +=1;
         ret = PPP_PARSE_R_VSCP_DATA;
     }
-    /*Added end by wangyixing 00167384 at 2013-2-4 for HSGW开发*/
     else
     {
-        /*Modified by t00127644 for DTS2010073002901
-        协议域后判断第一个字节高4bit是否>=8,如果>=,则认为是信令报文,上送PPP,否则认为报文非法,丢弃*/
+        
         if(((usPppHdFlg>>12)&0xf)>= 8)
         {
             ret = PPP_PARSE_R_OTHER_SIG;
@@ -305,22 +229,7 @@ VOS_UINT32 FWD_PppParse
     return ret;
 }
 
-/*****************************************************************************
- 函 数 名  : FWD_PppGetLcpMagicNum
- 功能描述  : 获取本端魔术字
- 输入参数  : 无
 
- 输出参数  : pulPppMagicNum    魔术字
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年10月22日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 FWD_PppGetLcpMagicNum(VOS_UINT8 ucPppId, VOS_UINT32  *pulPppMagicNum)
 {
     PPPLCPINFO_S                       *pstLcpInfo;
@@ -347,21 +256,7 @@ VOS_UINT32 FWD_PppGetLcpMagicNum(VOS_UINT8 ucPppId, VOS_UINT32  *pulPppMagicNum)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : FWD_PppDecap
- 功能描述  : PPP报文解封装
- 输入参数  : pstMBuf        PPP报文
-             enPktType      报文类型
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014-11-04
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID FWD_PppDecap
 (
     VOS_UINT16                          usStartSeq,
@@ -511,22 +406,7 @@ VOS_VOID FWD_PppDecap
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : FWD_PppGetWantLcpFcFlag
- 功能描述  : 获取协商的协议压缩域
- 输入参数  : 无
 
- 输出参数  : pulPppFcFlag    协议压缩域
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年10月22日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 FWD_PppGetWantLcpFcFlag(VOS_UINT8 ucPppId, VOS_UINT32  *pulPppFcFlag)
 {
     PPPLCPINFO_S                       *pstLcpInfo;
@@ -553,22 +433,7 @@ VOS_UINT32 FWD_PppGetWantLcpFcFlag(VOS_UINT8 ucPppId, VOS_UINT32  *pulPppFcFlag)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : FWD_PppGetWantLcpAcfcFlag
- 功能描述  : 获取协商的地址压缩域
- 输入参数  : 无
 
- 输出参数  : pulPppAcfcFlag   地址压缩域
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年10月22日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 FWD_PppGetWantLcpAcfcFlag(VOS_UINT8 ucPppId, VOS_UINT32  *pulPppAcfcFlag)
 {
     PPPLCPINFO_S                       *pstLcpInfo;
@@ -596,22 +461,7 @@ VOS_UINT32 FWD_PppGetWantLcpAcfcFlag(VOS_UINT8 ucPppId, VOS_UINT32  *pulPppAcfcF
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : FWD_PppGetHisLcpFcFlag
- 功能描述  : 获取协商的协议压缩域
- 输入参数  : 无
 
- 输出参数  : pulPppFcFlag    协议压缩域
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年10月22日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 FWD_PppGetHisLcpFcFlag(VOS_UINT8 ucPppId, VOS_UINT32  *pulPppFcFlag)
 {
     PPPLCPINFO_S                       *pstLcpInfo;
@@ -638,22 +488,7 @@ VOS_UINT32 FWD_PppGetHisLcpFcFlag(VOS_UINT8 ucPppId, VOS_UINT32  *pulPppFcFlag)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : FWD_PppGetHisLcpAcfcFlag
- 功能描述  : 获取协商的地址压缩域
- 输入参数  : 无
 
- 输出参数  : pulPppAcfcFlag   地址压缩域
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年10月22日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 FWD_PppGetHisLcpAcfcFlag(VOS_UINT8 ucPppId, VOS_UINT32  *pulPppAcfcFlag)
 {
     PPPLCPINFO_S                       *pstLcpInfo;
@@ -681,22 +516,7 @@ VOS_UINT32 FWD_PppGetHisLcpAcfcFlag(VOS_UINT8 ucPppId, VOS_UINT32  *pulPppAcfcFl
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : FWD_PppGetHisAccm
- 功能描述  : 获取对端控制字符映射标记
- 输入参数  : 无
 
- 输出参数  : pulAccmFlag   地址压缩域
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年04月29日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 FWD_PppGetHisAccm(VOS_UINT8 ucPppId, VOS_UINT32  *pulAccmFlag)
 {
     PPPLCPINFO_S                       *pstLcpInfo;
@@ -724,22 +544,7 @@ VOS_UINT32 FWD_PppGetHisAccm(VOS_UINT8 ucPppId, VOS_UINT32  *pulAccmFlag)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : FWD_PppEncap
- 功能描述  : 封装PPP报文头
- 输入参数  : ucPdnId        承载号
-             pstMBuf        PPP报文
-             enPktType      报文类型
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014-11-04
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 FWD_PppEncap
 (
     VOS_UINT8                           ucPdnId,
@@ -854,48 +659,13 @@ VOS_UINT32 FWD_PppEncap
     return VOS_OK;
 }
 
-/******************************************************************************
-函 数 名  : FWD_PppRebuildIncompleteSliceStatInit
-功能描述  : 将g_stPppRebuildIncompleteSliceStat清空
-输入参数  :
 
-输出参数  : NA
-全局变量  : NA
-返 回 值  : NA
-调用函数  : NA
-被调函数  : NA
-
-修改历史      :
-1.日    期   : 星期六 2015年8月28日
-作    者   : zWX297122
-修改内容   : 新生成函数
-
-******************************************************************************/
 VOS_VOID FWD_PppRebuildIncompleteSliceStatInit()
 {
     PS_MEM_SET(&g_stPppRebuildIncompleteSliceStat, 0, sizeof(g_stPppRebuildIncompleteSliceStat));
 }
 
-/******************************************************************************
-函 数 名  : FWD_PppRebuildIgnoreContinuousSeqFlag
-功能描述  : PPP分片跳过连续7E
-输入参数  :
-            VOS_UINT8                      *pData,
-            VOS_UINT16                      usUsed,
-            TTF_MEM_ST                     *pstData,
-            VOS_UINT32                     *ulSeqOffsetToModify
-输出参数  : NA
-全局变量  : NA
-返 回 值  : NA
-调用函数  : NA
-被调函数  : NA
 
-修改历史      :
-1.日    期   : 星期六 2015年8月13日
-作    者   : zWX297122
-修改内容   : 新生成函数
-
-******************************************************************************/
 VOS_VOID FWD_PppRebuildIgnoreContinuousSeqFlag
 (
     VOS_UINT8                      *pData,
@@ -925,27 +695,7 @@ VOS_VOID FWD_PppRebuildIgnoreContinuousSeqFlag
 
 }
 
-/******************************************************************************
- 函 数 名  : FWD_PppRebuild
- 功能描述  : PPP分片报文重组处理
-             入参pstData已经偏移到了PPP头
-             负责释放pstData
- 输入参数  :
-            VOS_UINT16                          usSeqNr,
-            TTF_MEM_ST                         *pstData,
-            PPPC_RAT_MODE_ENUM_UINT8            ucRatMode
- 输出参数  : NA
- 全局变量  : NA
- 返 回 值  :
- 调用函数  : NA
- 被调函数  : NA
 
- 修改历史      :
-  1.日    期   : 星期六 2015年8月13日
-    作    者   : zWX297122
-    修改内容   : 新生成函数
-
-******************************************************************************/
 VOS_VOID FWD_PppRebuild
 (
     VOS_UINT16                          usSeqNr,

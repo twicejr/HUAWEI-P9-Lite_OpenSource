@@ -1,0 +1,58 @@
+/*
+ * Hisilicon Ltd. Hi3650 SoC
+ *
+ * Copyright (C) 2012-2013 Hisilicon Ltd.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * publishhed by the Free Software Foundation.
+ */
+
+  /{
+    nve_himntn:himntn {
+        compatible = "hisilicon,hisi-himntn";
+        himntn = "011111111111101000100000000000000000";
+    };
+
+    rdr_ap_adapter {
+        compatible = "hisilicon,rdr_ap_adapter";
+        reg-dump-regions = <4>; /*NOTE:should be less than 10*/
+        reg-names = "sctrl", "pctrl", "peri_crg", "gic";
+        reg = <0x0 0xFFF0A000 0x0 0x800>,   /*sctrl_base_addr*/
+              <0x0 0xE8A09000 0x0 0xC00>,   /*pctrl_base_addr*/
+              <0x0 0xFFF35000 0x0 0xD00>,   /*peri_crg_base_addr*/
+              <0x0 0xE82B0000 0x0 0x2000>;   /*gic_base_addr*/
+        ldrx2dbg-abs-timer = <0xFFF0A000 0x1000 0x534 0x538>;
+	status = "ok";
+    };
+
+    ramoops{
+        compatible = "ramoops";
+        reg = <0x0 0x34800000 0x0 0x100000>;
+        record-size = <0x20000>;
+        console-size = <0x80000>;
+        ftrace-size = <0x0>;
+        dump-oops = <0x1>;
+    };
+
+    rdr {
+        compatible = "hisilicon,rdr";
+        reg = <0x0 0x34000000 0x0 0x280000>;
+        rdr-dumpctl = "1111111111100000";
+        rdr-log-max-size = <0x19000000>;
+        wait-dumplog-timeout = <120000>;
+        rdr_area_num = <9>;
+	unexpected-max-reboot-times = <0x5>;
+        bbox_area_names = "AP", "CP", "TEEOS", "HIFI", "LPM3", "IOM3", "ISP", "IVP", "EMMC";
+        bbox_area_coreid = <0x1 0x2 0x4 0x8 0x10 0x20 0x40 0x80 0x100>;
+        rdr_area_sizes = <0 0x0 0x40000 0x0 0x40000 0x40000 0x40000 0x0 0x0>;
+        status = "ok";
+    };
+
+    sysctrl_reason {
+        compatible = "hisilicon,sysctrl_reason";
+        sysctrl_reason_string = "AP_S_TSENSOR0", "AP_S_TSENSOR1", "G3D_S_G3DTSENSOR", "softreset", "AP_S_AWDT", "LPM3_S_GLOBALWDT", "LPM3_S_LPMCURST", "reserve",
+                                "IOM3_S_IOMCURST", "ASP_S_ASPWD", "CP_S_CPWD", "CP_S_CPWD", "ISP_S_ISPWD", "AP_S_DDR_SELFREFLASH", "AP_S_DDR_FATAL_INTER";
+        sysctrl_reason_offset = <0x0 0x1 0x2 0x3 0x4 0x5 0x6 0x7 0x8 0x9 0xa 0xb 0xc 0xd 0xe>;
+    };
+  };

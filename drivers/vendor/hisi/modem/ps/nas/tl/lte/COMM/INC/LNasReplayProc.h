@@ -106,13 +106,7 @@ enum NAS_LMM_REPLAY_CONTEXT_ENUM
 typedef VOS_UINT32 NAS_LMM_REPLAY_CONTEXT_ENUM_UINT32;
 
 
-/*****************************************************************************
- 枚举名    : NAS_OM_LOG_MSG_ID_ENUM
- 结构说明  : LNAS发送给OM的可维可测消息
-  1.日    期   : 2013年3月4日
-    作    者   : l00132387
-    修改内容   : LNAS发送给OM的可维可测消息ID枚举
-*****************************************************************************/
+
 enum NAS_OM_LOG_MSG_ID_ENUM
 {
     /* LMM发送给OM的消息 */
@@ -168,26 +162,14 @@ typedef struct
 }NAS_PC_REPLAY_RUNNING_CONTEXT_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_REPLAY_VAR_EXPORT_FUNC_PTR
- 结构说明  : PC回放导出变量时针对特殊变量的处理
-  1.日    期   : 2012年09月10日
-    作    者   : l65478
-    修改内容   : 新增
-*****************************************************************************/
+
 typedef VOS_UINT32 (*NAS_REPLAY_VAR_EXPORT_FUNC_PTR)(
     VOS_UINT8                           *pucDest,
     VOS_UINT8                           *pucDestEnd,
     VOS_UINT8                           *pucVar,
     VOS_UINT32                          *pulDatalen
 );
-/*****************************************************************************
- 结构名    : NAS_REPLAY_VAR_IMPORT_FUNC_PTR
- 结构说明  : PC回放恢复变量时针对特殊变量的处理
-  1.日    期   : 2012年09月10日
-    作    者   : l65478
-    修改内容   : 新增
-*****************************************************************************/
+
 typedef VOS_UINT32 (*NAS_REPLAY_VAR_IMPORT_FUNC_PTR)(
     VOS_UINT8                           *pucVar,
     VOS_UINT8                           *pucSrc,
@@ -196,13 +178,7 @@ typedef VOS_UINT32 (*NAS_REPLAY_VAR_IMPORT_FUNC_PTR)(
 );
 
 
-/*****************************************************************************
- 结构名    : NAS_REPLAY_CTX_INFO_STRU
- 结构说明  : 回放时需要导出全局变量，每个变量用此结构体描述。
-  1.日    期   : 2012年9月04日
-    作    者   : l00167671
-    修改内容   : 新生成
-*****************************************************************************/
+
 typedef struct{
     VOS_UINT8                              *pucItemAddr;                        /* 要导出/导入的全局变量地址 */
     VOS_UINT32                              ulItemLen;                          /* 导入时要导入的全局变量的长度 */

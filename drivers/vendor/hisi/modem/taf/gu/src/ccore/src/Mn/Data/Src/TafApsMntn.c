@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafApsMntn.c
-  版 本 号   : 初稿
-  作    者   : Y00213812
-  生成日期   : 2013年12月08日
-  最近修改   :
-  功能描述   : TAF APS模块可维可测处理文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年12月08日
-    作    者   : Y00213812
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -57,23 +40,7 @@ extern "C" {
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : TAF_APS_TraceSyncMsg
- 功能描述  : 将TAFAPSAPI同步消息勾出
- 输入参数  : ulMsgId       消息ID,
-             ulLength      消息长度,
-             *pucData      消息
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月17日
-    作    者   : Y00213812
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_VOID  TAF_APS_TraceMsg(
     VOS_VOID                           *pMsg
 )
@@ -82,23 +49,7 @@ VOS_VOID  TAF_APS_TraceMsg(
     DIAG_TraceReport(pMsg);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_TraceSyncMsg
- 功能描述  : 将TAFAPSAPI同步消息勾出
- 输入参数  : ulMsgId       消息ID,
-             ulLength      消息长度,
-             *pucData      消息
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月17日
-    作    者   : Y00213812
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_VOID  TAF_APS_TraceSyncMsg(
     VOS_UINT32                          ulMsgId,
     VOS_UINT8                          *pucData,
@@ -144,23 +95,7 @@ VOS_VOID  TAF_APS_TraceSyncMsg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_TraceApsEvt
- 功能描述  : TAF 将 PS事件消息头发送给 OM
- 输入参数  : ulEvtId       消息ID,
-             ulLength      消息长度,
-             *pucData      消息
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月17日
-    作    者   : Y00213812
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_VOID  TAF_APS_TraceApsEvt(
     VOS_UINT32                          ulEvtId,
     VOS_UINT32                          ulLength,
@@ -197,26 +132,7 @@ VOS_VOID  TAF_APS_TraceApsEvt(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_TraceTimer
- 功能描述  : 发送消息给OM模块，APS定时器运行状态
- 输入参数  : enTimerStatus - 定时器状态
-             enTimerId     - 定时器ID
-             ulLen         - 定时器时长
-             ucPdpId       - 定时器关联PDPID
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月13日
-    作    者   : 欧阳飞 00132663
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月18日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseIII，修改参数
-*****************************************************************************/
 VOS_VOID  TAF_APS_TraceTimer(
     TAF_APS_TIMER_STATUS_ENUM_U8        enTimerStatus,
     TAF_APS_TIMER_ID_ENUM_UINT32        enTimerId,
@@ -256,21 +172,7 @@ VOS_VOID  TAF_APS_TraceTimer(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ShowPdpEntityInfo
- 功能描述  : 显示PDP实体关键信息
- 输入参数  : VOS_UINT8                           ucPdpId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月16日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_ShowPdpEntityInfo(
     VOS_UINT8                           ucPdpId
 )
@@ -294,22 +196,7 @@ VOS_VOID TAF_APS_ShowPdpEntityInfo(
 }
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : TAF_APS_ShowCidSdfParaInfo
- 输入参数  : ucCid                      - CID
-             ucPfId                     - Packet Filter ID
- 输入参数  : ucCid
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月20日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_ShowCidSdfParaInfo(
     VOS_UINT8                           ucCid,
     VOS_UINT8                           ucPfId
@@ -378,19 +265,7 @@ VOS_VOID TAF_APS_ShowCidSdfParaInfo(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ShowDsFlowInfo
- 功能描述  : 流量统计可维可测信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月2日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_APS_ShowDsFlowInfo(VOS_VOID)
 {
     TAF_APS_DSFLOW_STATS_CTX_STRU      *pstApsDsflowCtx = VOS_NULL_PTR;
@@ -406,21 +281,7 @@ VOS_VOID TAF_APS_ShowDsFlowInfo(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_Help
- 功能描述  : 软调信息
- 输入参数  : ucCid                      - CID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月14日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_Help(
     VOS_UINT8                           ucCid
 )
@@ -434,20 +295,7 @@ VOS_VOID TAF_APS_Help(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndOmDfsInfo
- 功能描述  : 发送消息给OM模块，APS DDR调频信息
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年12月17日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  TAF_APS_SndOmDfsInfo(TAF_APS_SWITCH_DDR_RATE_INFO_STRU *pstSwitchDdrInfo)
 {
     TAF_APS_MNTN_DFS_INFO_STRU         *pstMsg = VOS_NULL_PTR;
@@ -478,23 +326,7 @@ VOS_VOID  TAF_APS_SndOmDfsInfo(TAF_APS_SWITCH_DDR_RATE_INFO_STRU *pstSwitchDdrIn
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_TraceMntnMsg
- 功能描述  : APS可维可测勾包
- 输入参数  : VOS_UINT32                          ulMsgId
-             VOS_UINT32                          ulLength
-             VOS_UINT8                          *pucData
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月17日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  TAF_APS_TraceMntnMsg(
     VOS_UINT32                          ulMsgId,
     VOS_UINT32                          ulLength,
@@ -539,20 +371,7 @@ VOS_VOID  TAF_APS_TraceMntnMsg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_LogPdpEntityInfo
- 功能描述  :
- 输入参数  : VOS_UINT8                           ucPdpId
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2015年03月28日
-    作    者   : y00314741
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 
 VOS_VOID  TAF_APS_LogPdpEntityInfo(
     VOS_UINT8                           ucPdpId
@@ -608,21 +427,7 @@ VOS_VOID  TAF_APS_LogPdpEntityInfo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_LogFsmMntnInfo
- 功能描述  : 输出消息进状态机处理前状态机的信息和处理后状态机的信息
- 输入参数  : TAF_APS_FSM_STATUS_INFO_STRU       *stPriFsmInfo,
-             TAF_APS_FSM_STATUS_INFO_STRU       *stCurrFsmInfo
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2015年03月28日
-    作    者   : y00314741
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID  TAF_APS_LogFsmMntnInfo(
     TAF_APS_FSM_STATUS_INFO_STRU       *pstPriFsmInfo,
     TAF_APS_FSM_STATUS_INFO_STRU       *pstCurrFsmInfo
@@ -682,20 +487,7 @@ VOS_VOID  TAF_APS_LogFsmMntnInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_LogOldNewPdpRatType
- 功能描述  : 输出消息进状态机处理前状态机的信息和处理后状态机的信息
- 输入参数  : TAF_APS_RAT_TYPE_ENUM_UINT32            enRatType
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2015年11月09日
-    作    者   : y00314741
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID  TAF_APS_LogOldNewPdpRatType(
     TAF_APS_RAT_TYPE_ENUM_UINT32            enNewRatType,
     TAF_APS_RAT_TYPE_ENUM_UINT32            enOldRatType
@@ -731,21 +523,7 @@ VOS_VOID  TAF_APS_LogOldNewPdpRatType(
 }
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- 函 数 名  : TAF_APS_TraceEpdszidInfo
- 功能描述  : 输出当前EPDSZID中的信息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月16日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_TraceEpdszidInfo(VOS_VOID)
 {
     TAF_APS_CDATA_EPDSZID_CTX_STRU            *pstEpdszid = VOS_NULL_PTR;
@@ -760,21 +538,7 @@ VOS_VOID TAF_APS_TraceEpdszidInfo(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_LogReadNVInfo
- 功能描述  : 勾取读取的NV信息上报 可维可测
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月7日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_LogReadNVInfo(
     VOS_UINT16                              enNvItem,
     VOS_UINT16                              usNvDataLength,

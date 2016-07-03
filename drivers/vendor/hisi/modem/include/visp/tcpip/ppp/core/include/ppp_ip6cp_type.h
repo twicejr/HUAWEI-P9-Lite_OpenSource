@@ -1,28 +1,4 @@
-/*************************************************************************
- *
- *              Copyright 2005, Huawei Technologies Co. Ltd.
- *                          ALL RIGHTS RESERVED
- * 
- *-----------------------------------------------------------------------*
- *
- *                             ppp_ip6cp_type.h
- *
- *  Project Code: VISP1.5
- *   Module Name: PPP
- *  Date Created: 2003-07-20
- *        Author: Syed Ajim Hussain
- *   Description: The File Contains all Data Structures of IPv6CP Protocol. 
- *
- *-----------------------------------------------------------------------*
- *  Modification History
- *  DATE            NAME                DESCRIPTION
- *  2003-07-20      Syed Ajim Hussain   Create
- *  2004-07-01      YiAn                Modified for VISP
- *  2006-03-31      ZhuKun              Adjust for D00661
- *  2006-04-21      ZhuKun              Adjust for D00875
- *  2006-05-11      luyao               为支持ARM CPU字节对齐特性，修改结构。
- *
- *************************************************************************/
+
 
 #ifndef _IP6CP_TYPE_H_
 #define _IP6CP_TYPE_H_
@@ -100,7 +76,6 @@ VOID PPP_IP6CP_up(PPPFSM_S *);
 VOID PPP_IP6CP_down(PPPFSM_S *);
 VOID PPP_IP6CP_finished(PPPFSM_S *);
 VOID PPP_IP6CP_starting(PPPFSM_S *);
-/* Add for DTS2011042101452, by z00166124, at 2011-04-21. 修改原因: IP6CP定时器传入接口索引指针 */
 VOID PPP_IP6CP_FSM_TimeOut(VOID *pIfIndex);
 VOID PPP_IP6CP_Ncp_Reset(VOID *pIfIndex);
 

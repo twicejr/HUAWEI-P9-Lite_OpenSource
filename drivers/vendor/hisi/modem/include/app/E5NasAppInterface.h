@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : E5NasAppInterface.h
-  版 本 号   : 初稿
-  作    者   : z40661
-  生成日期   : 2010年9月8日
-  最近修改   :
-  功能描述   : E5与应用的接口
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2010年9月8日
-    作    者   : z40661
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -91,19 +74,7 @@ typedef int  (*pAppComRecv)(unsigned char  ucPortNo, unsigned char* pucData, uns
 extern int  E5_APP_RegCallBack(unsigned char  ucPortNo, pAppComRecv pRcvCallback ,pAppComRecv *pSendCallback);
 #define APP_E5_APP_REG_CALLBACK(ucPortNo,pRcvCallback,pSendCallback)   E5_APP_RegCallBack(ucPortNo,pRcvCallback,pSendCallback)
 
-/*****************************************************************************
- 函 数 名  : E5_com_get_status
- 功能描述  : E5通道状态获取
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 0:  操作成功；
-             -1：操作失败。
 
- 修改历史      :
- 1.日    期   : 2010年9月7日
-   作    者   : sunshaohua
-   修改内容   : 新生成函数
-*****************************************************************************/
 extern int E5_com_get_status(unsigned char no);
 #define APP_E5_COM_GET_STATUS(no)   E5_com_get_status(no)
 

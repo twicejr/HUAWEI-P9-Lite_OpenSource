@@ -362,7 +362,6 @@ SINT32 PostPro_GetRepairParam(VID_STD_E VidStd, VDMHAL_REPAIR_PARAM_S *pRepairPa
 			pRepairParam->ImageAddr = pHevcDecParam->ImgPhyAddr[pHevcDecParam->CurrPicImgIdc];
 			pRepairParam->Image2DAddr = pHevcDecParam->CurrPicImg2DAddr;
 			pSlice = (HEVC_DEC_SLICE_PARAM_S *)pHevcDecParam->pFirstSlice;
-			//list0 的第0个refpic l00214825
 			hevc_ref_img_idc = pSlice->Idx2Apc[0][0];
 			pRepairParam->RefImageAddr = pHevcDecParam->ImgPhyAddr[hevc_ref_img_idc];
 			pRepairParam->CurrPmvAddr = pHevcDecParam->PmvPhyAddr[pHevcDecParam->CurrPicPmvIdc];
@@ -797,8 +796,8 @@ SINT32 PostPro_GetHevcMbGroup(VDMHAL_REPAIR_PARAM_S *pRepairParam, VDMHAL_DEC_RE
 		pDecReport->SliceMbRange[pDecReport->DecSliceNum][1] = total_mbn;	 
 		for (i = 0; i <= pDecReport->DecSliceNum; i++)
 		{
-			 curr_slice_start_mbn = pDecReport->SliceMbRange[i][0];// slice起始宏块 l00214825
-			 curr_slice_end_mbn   = pDecReport->SliceMbRange[i][1];// slice 结束宏块 l00214825
+			 curr_slice_start_mbn = pDecReport->SliceMbRange[i][0];
+			 curr_slice_end_mbn   = pDecReport->SliceMbRange[i][1];
 			 if ( (curr_slice_start_mbn > total_mbn) || (curr_slice_end_mbn > total_mbn) || 
 				(curr_slice_start_mbn > curr_slice_end_mbn) )
 			 {
@@ -834,13 +833,9 @@ SINT32 PostPro_GetHevcMbGroup(VDMHAL_REPAIR_PARAM_S *pRepairParam, VDMHAL_DEC_RE
     					 pRepairParam->MbGroup[pRepairParam->ValidGroupNum].StartMbn = (old_slice_end_mbn - 100);
     				 }
     	
-    				 // 统计validGroupNum  l00214825
     				 pRepairParam->ValidGroupNum++;
     			 }
-				 /*add by l00225186
-				   如果一帧图像只有一个slice，并且这个slice的最后几个宏块出错的话，那么也需要对其进行修补
-				   只有一个宏块出错的话，不修补
-				 */
+				 
 				 if(i == (pDecReport->DecSliceNum - 1))
 				 {
 					 if(pDecReport->SliceMbRange[i][1] < total_mbn - 1)
@@ -1092,10 +1087,7 @@ SINT32 PostPro_GetH264MbGroup(VDMHAL_REPAIR_PARAM_S *pRepairParam, VDMHAL_DEC_RE
                      pRepairParam->ValidGroupNum++;
                  }
             }
-		  	 /*add by l00225186
-	          如果一帧图像只有一个slice，并且这个slice的最后几个宏块出错的话，那么也需要对其进行修补
-	         只有一个宏块出错的话，不修补
-	         */
+		  	 
 	         if(i == (pDecReport->DecSliceNum - 1))
 	         {
                  if(pDecReport->SliceMbRange[pDecReport->DecSliceNum - 1][1] < total_mbn - 1)
@@ -1195,10 +1187,7 @@ SINT32 PostPro_GetMp24MbGroup(VDMHAL_REPAIR_PARAM_S *pRepairParam, VDMHAL_DEC_RE
                  }
             // }
              
-			 /*add by l00225186
-	          如果一帧图像只有一个slice，并且这个slice的最后几个宏块出错的话，那么也需要对其进行修补
-	         只有一个宏块出错的话，不修补
-	         */
+			 
 	         if(i == (pDecReport->DecSliceNum - 1))
 	         {
                  if(pDecReport->SliceMbRange[pDecReport->DecSliceNum - 1][1] < total_mbn - 1)
@@ -1275,10 +1264,7 @@ SINT32 PostPro_GetVc1MbGroup(VDMHAL_REPAIR_PARAM_S *pRepairParam, VDMHAL_DEC_REP
                      pRepairParam->ValidGroupNum++;
                  }
               }
-			 /*add by l00225186
-	          如果一帧图像只有一个slice，并且这个slice的最后几个宏块出错的话，那么也需要对其进行修补
-	         只有一个宏块出错的话，不修补
-	         */
+			 
 	          if (i == (pDecReport->DecSliceNum - 1))
 	          {
                   if (pDecReport->SliceMbRange[pDecReport->DecSliceNum - 1][1] < total_mbn - 1)
@@ -1355,10 +1341,7 @@ SINT32 PostPro_GetVp6MbGroup(VDMHAL_REPAIR_PARAM_S *pRepairParam, VDMHAL_DEC_REP
                      pRepairParam->ValidGroupNum++;
                  }
              }
-			 /*add by l00225186
-	          如果一帧图像只有一个slice，并且这个slice的最后几个宏块出错的话，那么也需要对其进行修补
-	         只有一个宏块出错的话，不修补
-	         */
+			 
 	          if (i == (pDecReport->DecSliceNum - 1))
 	          {
                   if (pDecReport->SliceMbRange[pDecReport->DecSliceNum - 1][1] < total_mbn - 1)
@@ -1434,10 +1417,7 @@ SINT32 PostPro_GetVp8MbGroup(VDMHAL_REPAIR_PARAM_S *pRepairParam, VDMHAL_DEC_REP
                      pRepairParam->ValidGroupNum++;
                  }
              }
-			 /*add by l00225186
-	          如果一帧图像只有一个slice，并且这个slice的最后几个宏块出错的话，那么也需要对其进行修补
-	         只有一个宏块出错的话，不修补
-	         */
+			 
 	         if(i == (pDecReport->DecSliceNum - 1))
 	         {
 	             if(pDecReport->SliceMbRange[pDecReport->DecSliceNum - 1][1] < total_mbn - 1)
@@ -1517,10 +1497,7 @@ SINT32 PostPro_GetAvsMbGroup(VDMHAL_REPAIR_PARAM_S *pRepairParam, VDMHAL_DEC_REP
                 }
             }
            
-            /*add by l00225186
-            如果一帧图像只有一个slice，并且这个slice的最后几个宏块出错的话，那么也需要对其进行修补
-            只有一个宏块出错的话，不修补
-            */
+            
             if(i == (pDecReport->DecSliceNum - 1))
             {
                 if(pDecReport->SliceMbRange[pDecReport->DecSliceNum - 1][1] < total_mbn - 1)
@@ -1592,10 +1569,7 @@ SINT32 PostPro_GetDivx3MbGroup(VDMHAL_REPAIR_PARAM_S *pRepairParam, VDMHAL_DEC_R
                     }
                 }
             }
-			 /*add by l00225186
-	          如果一帧图像只有一个slice，并且这个slice的最后几个宏块出错的话，那么也需要对其进行修补
-	         只有一个宏块出错的话，不修补
-	         */
+			 
 	         if(i == (pDecReport->DecSliceNum - 1))
 	         {
                  if(pDecReport->SliceMbRange[pDecReport->DecSliceNum - 1][1] < total_mbn - 1)

@@ -35,17 +35,7 @@ extern "C" {
   3 Function
 *****************************************************************************/
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_RrcMsgDistr()
- Description     : RABM模块RRC消息分发处理
- Input           : VOS_VOID *pRcvMsg-----------消息指针
- Output          : VOS_VOID
- Return          : VOS_VOID
 
- History         :
-    1.yangqianhui 00135146      2008-9-8  Draft Enact
-
-*****************************************************************************/
 /*lint -e960*/
 /*lint -e961*/
 VOS_VOID NAS_ERABM_RrcMsgDistr( VOS_VOID *pRcvMsg )
@@ -79,18 +69,7 @@ VOS_VOID NAS_ERABM_RrcMsgDistr( VOS_VOID *pRcvMsg )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_RcvRbSetupSuc()
- Description     : RABM收到RB建立成功消息的处理
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.yangqianhui 00135146      2008-9-10  Draft Enact
-    2.lihong00150010            2009-12-24  Modify
-
-*****************************************************************************/
 VOS_VOID NAS_ERABM_RcvRbSetupSucc( VOS_UINT32 ulEpsbId, VOS_UINT32 ulRbId )
 {
     /*APP_DATA_STATUS_CALLBACK_FUNC AppDataStatusFun;*/
@@ -109,17 +88,7 @@ VOS_VOID NAS_ERABM_RcvRbSetupSucc( VOS_UINT32 ulEpsbId, VOS_UINT32 ulRbId )
     /*AppDataStatusFun(NAS_ERABM_GetEpsbIdInfo(ulEpsbId),NAS_ERABM_APP_DATA_STATUS_START,NAS_ERABM_APP_DATA_START_RBSETUP_SUCC);*/
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_RcvRbReconfig()
- Description     : RABM收到DRB重配置的处理
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.chengmin 00285307     2015-08-18  Draft Enact for DTS2015080801854
-
-*****************************************************************************/
 VOS_VOID NAS_ERABM_RcvRbReconfig( VOS_UINT32 ulEpsbId, VOS_UINT32 ulRbId )
 {
     /*打印进入该函数*/
@@ -132,24 +101,16 @@ VOS_VOID NAS_ERABM_RcvRbReconfig( VOS_UINT32 ulEpsbId, VOS_UINT32 ulRbId )
         /*把RBID记录在EPS承载激活表中*/
         NAS_ERABM_SetEpsbRbIdInfo(ulEpsbId,ulRbId);
 
+        /* 2016-02-18, 防止DRB已经建立，但是RRC没有通知ERABM SetUp而是直接通知ReConfig的情况出现，此处增加保护来记录该EPSBID已处于连接状态 */
+        NAS_ERABM_SetRbStateInfo(ulEpsbId, NAS_ERABM_RB_CONNECTED);
+
         NAS_ERABM_LOG2("NAS_ERABM_RcvRbReconfig, RAB change:", ulEpsbId, ulRbId);
         TLPS_PRINT2LAYER_INFO2(NAS_ERABM_RcvRbReconfig_ENUM, 2, ulEpsbId, ulRbId);
     }
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_RcvRbSetupFail
- Description     : 收到RB建立失败判断对应的EPS承载是否激活
- Input           : VOS_UINT32 EpsId
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.yangqianhui 00135146      2008-9-11  Draft Enact
-    2.lihong00150010            2009-12-24  Modify
-
-*****************************************************************************/
 VOS_VOID  NAS_ERABM_RcvRbSetupFail( VOS_UINT32 ulEpsbId )
 {
     /*打印进入该函数*/
@@ -163,18 +124,7 @@ VOS_VOID  NAS_ERABM_RcvRbSetupFail( VOS_UINT32 ulEpsbId )
     NAS_ERABM_SetRbStateInfo(ulEpsbId, NAS_ERABM_RB_DISCONNECTED);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_RcvRbRelease
- Description     : 处理rrc释放rb消息
- Input           : VOS_UINT32 ulEpsbId
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.sunbing49683              2009-4-27  Draft Enact
-    2.lihong00150010            2009-12-24  Modify
-
-*****************************************************************************/
 VOS_VOID NAS_ERABM_RcvRbRelease( VOS_UINT32 ulEpsbId )
 {
     /*打印进入该函数*/
@@ -189,17 +139,7 @@ VOS_VOID NAS_ERABM_RcvRbRelease( VOS_UINT32 ulEpsbId )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_InformEsmBearerStatus()
- Description     : 通知ESM建立了RB的承载信息
- Input           :
- Output          : VOS_VOID
- Return          : VOS_VOID
 
- History         :
-    1.lihong 00150010             2009-06-16  Draft Enact
-    2.sunbing 49683               2010-08-26  Modify
-*****************************************************************************/
 VOS_VOID  NAS_ERABM_InformEsmBearerStatus( VOS_UINT8 uclOpid )
 {
     VOS_UINT32                          ulRbNumWithRb  = NAS_ERABM_NULL;
@@ -235,19 +175,7 @@ VOS_VOID  NAS_ERABM_InformEsmBearerStatus( VOS_UINT8 uclOpid )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_RcvRabmRrcRabInd()
- Description     : RABM模块RRC_RABM_RAB_IND_STRU消息分发处理
- Input           : LRRC_LRABM_RAB_IND_STRU *pRcvMsg-----------消息指针
- Output          : VOS_VOID
- Return          : VOS_VOID
 
- History         :
-    1.yangqianhui 00135146      2008-9-8  Draft Enact
-    2.lihong 00150010           2009-06-02  Modify
-    3.yangqianhui 00135146      2009-09-19  BN8D01065  Modify
-    4.lihong00150010            2009-12-24  Modify
-*****************************************************************************/
 VOS_VOID  NAS_ERABM_RcvRabmRrcRabInd(const LRRC_LRABM_RAB_IND_STRU *pRcvMsg )
 {
     VOS_UINT32                          ulRbSetupReqNum  = 0;             /*记录请求建立的RB数量*/
@@ -326,17 +254,7 @@ VOS_VOID  NAS_ERABM_RcvRabmRrcRabInd(const LRRC_LRABM_RAB_IND_STRU *pRcvMsg )
     /* RRC_RABM_RAB_IND消息结果处理 */
     NAS_ERABM_RrcRabIndResultProc(enIsRecSetupSucc, enIsRecSetupFail, enIsRecRelease);
 }
-/*****************************************************************************
- Function Name   : NAS_ERABM_RcvRabmRrcStatusMsgProc
- Description     : 根据RRC上报的状态进行相应处理
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.yangqianhui 00135146      2008-11-18  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ERABM_RcvRabmRrcStatusMsgProc( VOS_UINT32 ulRabCnt,
                                                              VOS_UINT32 ulStatus,
                                                              const VOS_UINT32 *pulEpsbId)
@@ -403,8 +321,7 @@ VOS_VOID  NAS_ERABM_RcvRabmRrcStatusMsgProc( VOS_UINT32 ulRabCnt,
            而只上报LRRC_LRABM_STATUS_IND消息恢复数传，ERABM通过EMM_ERABM_DRB_SETUP_IND
            消息通知EMM进入信令连接态；目前是收到恢复数传消息都发送EMM_ERABM_DRB_SETUP_IND
            消息，后续可以优化成切换或者CCO回退成功场景才发 */
-        /* Del by y00307272 for DTS2015091402376, 由于L-GU切换或者CCO,回退的场景下，L-GU切换或者CCO失败，
-           NAS_EMM_CONN_STATUS并没有改变，后续ERABM也无需向EMM发送DrbSetupInd */
+        
     }
 
     else
@@ -414,17 +331,7 @@ VOS_VOID  NAS_ERABM_RcvRabmRrcStatusMsgProc( VOS_UINT32 ulRabCnt,
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_RcvRabmRrcStatusInd()
- Description     : RABM模块RRC_RABM_RAB_STATUS_STRU消息分发处理
- Input           : LRRC_LRABM_STATUS_IND_STRU *pRcvMsg-----------消息指针
- Output          : VOS_VOID
- Return          : VOS_VOID
 
- History         :
-    1.yangqianhui 00135146      2008-9-8  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ERABM_RcvRabmRrcStatusInd(const LRRC_LRABM_STATUS_IND_STRU *pRcvMsg )
 {
     VOS_UINT32                          ulRabCnt = 0;
@@ -462,17 +369,7 @@ VOS_VOID  NAS_ERABM_RcvRabmRrcStatusInd(const LRRC_LRABM_STATUS_IND_STRU *pRcvMs
     NAS_ERABM_SndRabmRrcStatusRsp(LRRC_LNAS_STATUS_SUCC);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_SndRabmRrcQosUpdateReq()
- Description     : 构建和发送RRC_RABM_QOS_UPDATE_REQ消息
- Input           : VOS_VOID(目前没有找到实际的QoS参数内容)
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.yangqianhui 00135146      2008-9-8  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ERABM_SndRabmRrcQosUpdateReq( VOS_VOID )
 {
     LRRC_LRABM_QOS_UPDATE_REQ_STRU    *pstQosUpdateReq  = VOS_NULL_PTR;
@@ -502,17 +399,7 @@ VOS_VOID NAS_ERABM_SndRabmRrcQosUpdateReq( VOS_VOID )
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_SndRabmRrcRabRsp()
- Description     : 构建和发送RRC_RABM_RAB_RSP消息
- Input           : VOS_UINT32 ulRabCnt
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.yangqianhui 00135146      2008-9-8  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ERABM_SndRabmRrcRabRsp(const VOS_UINT32* pulRabId,
                                                   VOS_UINT32 ulRabCnt)
 {
@@ -555,17 +442,7 @@ VOS_VOID NAS_ERABM_SndRabmRrcRabRsp(const VOS_UINT32* pulRabId,
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_SndRabmRrcStatusRsp()
- Description     : 构建和发送RRC_RABM_STATUS_RSP消息
- Input           : VOS_UINT32 ulResult
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.yangqianhui 00135146      2008-9-12  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ERABM_SndRabmRrcStatusRsp( VOS_UINT32 ulResult )
 {
    LRRC_LRABM_STATUS_RSP_STRU    *pstStatusRsp = VOS_NULL_PTR;
@@ -603,17 +480,7 @@ VOS_VOID  NAS_ERABM_SndRabmRrcStatusRsp( VOS_UINT32 ulResult )
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_HasDrbWithoutRelatingEpsBear
- Description     : 判断是否存在DRB已建立，但关联的EPS承载尚未激活的情况
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2009-12-23  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_ERABM_HasDrbWithoutRelatingEpsBear( VOS_VOID )
 {
     VOS_UINT32                          ulEpsbId = NAS_ERABM_NULL;
@@ -631,18 +498,7 @@ VOS_UINT32  NAS_ERABM_HasDrbWithoutRelatingEpsBear( VOS_VOID )
     return NAS_ERABM_FAILURE;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_IsAllActtiveBearerWithoutDrb
- Description     : 判断是否所有的激活承载关联的DRB都没有建起来，
-                   如果没有承载处于激活态，也返回失败。
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2009-12-23  Draft Enact
-    2.sunbing 49683       2010-08-26  Modify
-*****************************************************************************/
 VOS_UINT32  NAS_ERABM_IsAllActtiveBearerWithoutDrb( VOS_VOID )
 {
     VOS_UINT32                          ulEpsbId = NAS_ERABM_NULL;
@@ -679,17 +535,7 @@ VOS_UINT32  NAS_ERABM_IsAllActtiveBearerWithoutDrb( VOS_VOID )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_RrcRabIndSetupSuccProc
- Description     : RRC_RABM_RAB_IND消息结果处理(setup succ或者setup suc与release组合)
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2012-01-11  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ERABM_RrcRabIndSetupSuccProc( VOS_VOID )
 {
     /*SERVICE流程结束*/
@@ -742,17 +588,7 @@ VOS_VOID  NAS_ERABM_RrcRabIndSetupSuccProc( VOS_VOID )
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_RrcRabIndSetupFailProc
- Description     : RRC_RABM_RAB_IND消息结果处理(setup fail或者setup fail与release组合)
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2012-01-11  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ERABM_RrcRabIndSetupFailProc
 (
     PS_BOOL_ENUM_UINT8                  enIsRecRelease
@@ -788,19 +624,7 @@ VOS_VOID  NAS_ERABM_RrcRabIndSetupFailProc
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_RrcRabIndResultProc
- Description     : RRC_RABM_RAB_IND消息结果处理
- Input           : enIsRecSetupSucc
-                   enIsRecSetupFail
-                   enIsRecRelease
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2009-12-25  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ERABM_RrcRabIndResultProc
 (
     PS_BOOL_ENUM_UINT8                  enIsRecSetupSucc,

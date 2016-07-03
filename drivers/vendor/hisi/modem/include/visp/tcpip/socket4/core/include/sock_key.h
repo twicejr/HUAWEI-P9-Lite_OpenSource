@@ -34,8 +34,8 @@ extern unsigned short g_usBindMaxPortNum;
 /*                 max prot number socket can use                      */
 /***********************************************************************/
 #define SOCK_MAXPORT            65535
-#define SOCK_DFT_MAXFREEPORT    50000  /*Added by luogaowei 2012-11-1 默认最大值50000*/
-#define SOCK_MAXFREEPORT        g_usBindMaxPortNum  /*Added by luogaowei 2012-11-1 扩充端口号默认值范围*/
+#define SOCK_DFT_MAXFREEPORT    50000
+#define SOCK_MAXFREEPORT        g_usBindMaxPortNum
 #define MAXPORTGET              15535
 /***********************************************************************/
 /*                 return value definition                             */

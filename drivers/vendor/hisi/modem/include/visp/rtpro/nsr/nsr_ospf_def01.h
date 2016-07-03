@@ -177,7 +177,6 @@
 #define NSR_OSPF_NEED_SEND_REPL_LSA_REQUEST(NSR_OSPF_REPL_CB) \
   ((NSR_OSPF_REPL_CB).repl_cb_flag & NSR_OSPF_SEND_REPL_LSA_REQUEST)
 
-/*Added by guojianjun178934, 【SDV-功能测试-NSR】NBMA网络下，删除一个区域后NSR恢复平滑出现异常, 2013/11/6   问题单号:DTS2013110401893  */
 /*设定控制块存在NSR恢复的数据*/
 #define NSR_OSPF_SET_UPDATE_CB_BY_RESTORE(NSR_OSPF_REPL_CB) \
   ((NSR_OSPF_REPL_CB).repl_cb_flag |= NSR_OSPF_UPDATE_CB_BY_RESTORE)
@@ -187,7 +186,6 @@
 /*判断控制块是否存在NSR恢复的数据*/
 #define NSR_OSPF_IS_UPDATE_CB_BY_RESTORE(NSR_OSPF_REPL_CB) \
   ((NSR_OSPF_REPL_CB).repl_cb_flag & NSR_OSPF_UPDATE_CB_BY_RESTORE)
-/* End of Added by guojianjun178934, 2013/11/6   问题单号:DTS2013110401893  */
 
 #define NSR_OSPF_MSG_STAT_FOR_SEND(MSG_TYPE, MSG_OPT, SUB_OPT) \
   nsr_ospf_msg_statistics(NSR_OSPF_MSG_DIRECT_SEND, (MSG_TYPE), (MSG_OPT), (SUB_OPT))

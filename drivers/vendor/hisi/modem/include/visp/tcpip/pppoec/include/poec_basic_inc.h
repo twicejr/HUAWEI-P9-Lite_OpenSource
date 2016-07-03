@@ -1,28 +1,4 @@
-/*************************************************************************
- *
- *              Copyright 2005, Huawei Technologies Co. Ltd.
- *                          ALL RIGHTS RESERVED
- * 
- *-----------------------------------------------------------------------*
- *
- *                          poec_basic_inc.h
- *
- *  Project Code: VISP1.5
- *   Module Name: PPPoE Client
- *  Date Created: 2005-09-15
- *        Author: zhukun
- *   Description: PPPoE Client模块的C文件包含的基本头文件
- *               
- *----------------------------------------------------------------------*
- *  Modification History 
- *  DATE            NAME                DESCRIPTION
- *  2005-09-15      z36377              Create   
- *  2005-10-20      wanghui             Adjust
- *  2006-03-30      liai                Adjust for D00660
- *  2006/04/21      liai                Adjust for D00865
- *  2006-05-13      l48923              Delete useless code
- * 
- ************************************************************************/
+
 
 #ifndef  _POEC_BASIC_INC_H_
 #define  _POEC_BASIC_INC_H_

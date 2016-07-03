@@ -34,21 +34,7 @@ extern "C" {
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : ADS_DL_CCpuResetCallback
- 功能描述  : C核单独复位时ADS DL的回调处理函数
- 输入参数  : enParam   -- 0表示复位前， 其他表示复位后
-             lUserData -- 用户数据
- 输出参数  : 无
- 返 回 值  : VOS_INT
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2013年04月10日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_INT ADS_DL_CCpuResetCallback(
     DRV_RESET_CB_MOMENT_E               enParam,
     VOS_INT                             lUserData
@@ -131,24 +117,7 @@ VOS_INT ADS_DL_CCpuResetCallback(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_DL_IpfIntCB
- 功能描述  : ADS下行数据处理模块向IPF注册的中断回调函数
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_INT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月7日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年4月12日
-    作    者   : A00165503
-    修改内容   : DTS2012020708222: ADS性能优化
-*****************************************************************************/
 VOS_INT32 ADS_DL_IpfIntCB(VOS_VOID)
 {
     ADS_DL_SndEvent(ADS_DL_EVENT_IPF_RD_INT);
@@ -156,20 +125,7 @@ VOS_INT32 ADS_DL_IpfIntCB(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_DL_IpfAdqEmptyCB
- 功能描述  : ADS向IPF注册的下行ADQ空中断处理函数
- 输入参数  : IPF_ADQ_EMPTY_E eAdqEmpty
- 输出参数  : 无
- 返 回 值  : VOS_INT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月19日
-    作    者   : l60609
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_INT32 ADS_DL_IpfAdqEmptyCB(IPF_ADQ_EMPTY_E eAdqEmpty)
 {
     if (IPF_EMPTY_ADQ0 == eAdqEmpty)
@@ -191,22 +147,7 @@ VOS_INT32 ADS_DL_IpfAdqEmptyCB(IPF_ADQ_EMPTY_E eAdqEmpty)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_DL_RcvTiAdqEmptyExpired
- 功能描述  : TI_ADS_DL_ADQ_EMPTY超时处理函数
- 输入参数  : VOS_UINT32                          ulParam,
-             VOS_UINT32                          ulTimerName
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月19日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ADS_DL_RcvTiAdqEmptyExpired(
     VOS_UINT32                          ulParam,
     VOS_UINT32                          ulTimerName
@@ -218,22 +159,7 @@ VOS_VOID ADS_DL_RcvTiAdqEmptyExpired(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_DL_ConfigAdq
- 功能描述  : 配置AD
- 输入参数  : IPF_AD_TYPE_E                       enAdType
-             VOS_UINT                            ulIpfAdNum
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月21日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 ADS_DL_ConfigAdq(
     IPF_AD_TYPE_E                       enAdType,
     VOS_UINT                            ulIpfAdNum
@@ -304,25 +230,7 @@ VOS_UINT32 ADS_DL_ConfigAdq(
     return ulCnt;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_DL_AllocMemForAdq
- 功能描述  : 处理ADQ
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月19日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年4月24日
-    作    者   : A00165503
-    修改内容   : DTS2015042201072: 优化ADQ空中断处理, 防止内存无法及时补充
-
-*****************************************************************************/
 VOS_VOID ADS_DL_AllocMemForAdq(VOS_VOID)
 {
     VOS_INT32                           lRslt;
@@ -371,21 +279,7 @@ VOS_VOID ADS_DL_AllocMemForAdq(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_DL_SendNdClientDataInd
- 功能描述  : RA包及ECHO REQUEST等报文通过VOS发给NDCLIENT
- 输入参数  : VOS_VOID *pData
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月7日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ADS_DL_SendNdClientDataInd(IMM_ZC_STRU *pstImmZc)
 {
     ADS_NDCLIENT_DATA_IND_STRU         *pstMsg  = VOS_NULL_PTR;
@@ -430,21 +324,7 @@ VOS_VOID ADS_DL_SendNdClientDataInd(IMM_ZC_STRU *pstImmZc)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_DL_SendDhcpClientDataInd
- 功能描述  : DHCPv6报文通过VOS发给DHCP CLIENT
- 输入参数  : IMM_ZC_STRU *pstImmZc
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月18日
-    作    者   : w00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ADS_DL_SendDhcpClientDataInd(IMM_ZC_STRU *pstImmZc)
 {
     ADS_DHCP_DATA_IND_STRU             *pstMsg  = VOS_NULL_PTR;
@@ -491,28 +371,13 @@ VOS_VOID ADS_DL_SendDhcpClientDataInd(IMM_ZC_STRU *pstImmZc)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_DL_FreeIpfUsedAd0
- 功能描述  : 释放IPF的使用的AD0
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年03月18日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID ADS_DL_FreeIpfUsedAd0(VOS_VOID)
 {
     VOS_UINT32                          i;
     VOS_UINT32                          ulAdNum;
 
-    /*lint -e813*/ /* added by zwx247453 for pc工程转3650, 2015-08-24, begin */
     IPF_AD_DESC_S                       astAdDesc[IPF_DLAD0_DESC_SIZE];
-    /*lint +e813*/ /* added by zwx247453 for pc工程转3650, 2015-08-24, end */
 
     ulAdNum = 0;
     PS_MEM_SET(astAdDesc, 0, (VOS_SIZE_T)(sizeof(IPF_AD_DESC_S) * IPF_DLAD0_DESC_SIZE));
@@ -528,28 +393,13 @@ VOS_VOID ADS_DL_FreeIpfUsedAd0(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_DL_FreeIpfUsedAd1
- 功能描述  : 释放IPF的使用的AD1
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年03月18日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID ADS_DL_FreeIpfUsedAd1(VOS_VOID)
 {
     VOS_UINT32                          i;
     VOS_UINT32                          ulAdNum;
 
-    /*lint -e813*/ /* added by zwx247453 for pc工程转3650, 2015-08-24, begin */
     IPF_AD_DESC_S                       astAdDesc[IPF_DLAD1_DESC_SIZE];
-    /*lint +e813*/ /* added by zwx247453 for pc工程转3650, 2015-08-24, end */
 
     ulAdNum = 0;
     PS_MEM_SET(astAdDesc, 0, (VOS_SIZE_T)(sizeof(IPF_AD_DESC_S) * IPF_DLAD1_DESC_SIZE));
@@ -565,23 +415,7 @@ VOS_VOID ADS_DL_FreeIpfUsedAd1(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_DL_Xmit
- 功能描述  : 分发数据包, 并在每个承载上的最后一个包上做标记
- 输入参数  : ucInstance --- modem ID
-             ucRabId    --- RABID [5, 15]
-             pstImmZc   --- IP buff
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月29日
-    作    者   :
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ADS_DL_Xmit(
     VOS_UINT8                           ucInstance,
     VOS_UINT8                           ucRabId,
@@ -664,21 +498,7 @@ VOS_VOID ADS_DL_Xmit(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_DL_ProcTxData
- 功能描述  : 处理下行RD
- 输入参数  : pstImmZc --- 非空代表正常数据, 空指针代表要推送最后一个包
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月1日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ADS_DL_ProcTxData(IMM_ZC_STRU *pstImmZc)
 {
     VOS_UINT8                           ucInstance;
@@ -705,21 +525,7 @@ VOS_VOID ADS_DL_ProcTxData(IMM_ZC_STRU *pstImmZc)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_DL_RdDescTransImmMem
- 功能描述  : 将RD描述符转换成IMM内存格式, 保存相关描述符信息
- 输入参数  : pstRdDesc --- RD描述符
- 输出参数  : 无
- 返 回 值  : IMM_ZC_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月06日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 IMM_ZC_STRU* ADS_DL_RdDescTransImmMem(const IPF_RD_DESC_S *pstRdDesc)
 {
     IMM_ZC_STRU                        *pstImmZc = VOS_NULL_PTR;
@@ -745,47 +551,7 @@ IMM_ZC_STRU* ADS_DL_RdDescTransImmMem(const IPF_RD_DESC_S *pstRdDesc)
     return pstImmZc;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_DL_ProcIpfResult
- 功能描述  : ADS下行IPF事件处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
-
- 修改历史      :
-  1.日    期   : 2012年4月12日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年4月24日
-    作    者   : s62952
-    修改内容   : DTS2012040103554: D态单板复位, 增加喂狗处理
-
-  3.日    期   : 2012年5月4日
-    作    者   : z60575
-    修改内容   : DTS2012050301768: IPF失败时内存泄露
-
-  4.日    期   : 2012年5月24日
-    作    者   : z60575
-    修改内容   : DTS2012052306799: 现在狗是常开的，不需要判断，并且WatchDog相关
-                 代码已经无人维护，全局变量无人赋值，判断后实际就不喂狗，删除判断
-
-  5.日    期   : 2012年11月19日
-    作    者   : A00165503
-    修改内容   : DTS2012112206761: 底软动态组包参数调整
-
-  6.日    期   : 2013年12月11日
-    作    者   : A00165503
-    修改内容   : DTS2013120905502: 不丢弃IPF检查错误的数据包
-
-  7.日    期   : 2015年9月22日
-    作    者   : A00165503
-    修改内容   : DTS2015081008249: ADS数传过程中持锁, 防止系统进入休眠
-
-***************************************************************************/
 VOS_VOID ADS_DL_ProcIpfResult(VOS_VOID)
 {
     ADS_DL_IPF_RESULT_STRU             *pstIpfResult = VOS_NULL_PTR;
@@ -915,21 +681,7 @@ VOS_VOID ADS_DL_ProcIpfResult(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_DL_IsFcAssemTuneNeeded
- 功能描述  : 检查是否需要调整流控组包参数
- 输入参数  : ulRdNum   - 数据包个数
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 需要调整
-             VOS_FALSE - 不需要调整
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月19日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 ADS_DL_IsFcAssemTuneNeeded(VOS_UINT32 ulRdNum)
 {
     ADS_DL_FC_ASSEM_STRU               *pstFcAssemInfo;
@@ -970,21 +722,7 @@ VOS_UINT32 ADS_DL_IsFcAssemTuneNeeded(VOS_UINT32 ulRdNum)
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_DL_RegDrvAssemFunc
- 功能描述  : 下行流控注册函数, 用于解决下行突发流量, FC无法及时调整流程参数,
-             FC向ADS注册流控的回调函数, 以及触发流控阈值参数
- 输入参数  : pstDrvAssemParam - 触发流控阈值参数
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月19日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID ADS_DL_RegDrvAssemFunc(FC_ADS_DRV_ASSEM_STRU *pstDrvAssemParam)
 {
     ADS_DL_FC_ASSEM_STRU               *pstFcAssemParamInfo;
@@ -1000,23 +738,7 @@ VOS_VOID ADS_DL_RegDrvAssemFunc(FC_ADS_DRV_ASSEM_STRU *pstDrvAssemParam)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_DL_RegDlDataCallback
- 功能描述  : ADS下行数据处理模块为上层模块提供的注册下行数据接收函数接口
- 输入参数  : ucExRabId --- 扩展RABID
-             pFunc     --- 数据接收回调
-             ulExParam --- 扩展参数
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月7日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 ADS_DL_RegDlDataCallback(
     VOS_UINT8                           ucExRabId,
     RCV_DL_DATA_FUNC                    pFunc,
@@ -1054,22 +776,7 @@ VOS_UINT32 ADS_DL_RegDlDataCallback(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_DL_RegFilterDataCallback
- 功能描述  : ADS下行数据处理模块为上层模块提供的注册下行数据过滤接收函数接口
- 输入参数  : VOS_UINT8                           ucRabId
-             ADS_FILTER_IP_ADDR_INFO_STRU       *pstFilterIpAddr,
-             RCV_DL_DATA_FUNC                    pFunc
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年06月04日
-    作    者   : l00198894
-    修改内容   : Share-PDP项目新增函数
-*****************************************************************************/
 VOS_UINT32 ADS_DL_RegFilterDataCallback(
     VOS_UINT8                           ucRabId,
     ADS_FILTER_IP_ADDR_INFO_STRU       *pstFilterIpAddr,
@@ -1103,20 +810,7 @@ VOS_UINT32 ADS_DL_RegFilterDataCallback(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_DL_DeregFilterDataCallback
- 功能描述  : ADS下行数据处理模块为上层模块提供的去注册下行数据过滤接收函数接口
- 输入参数  : VOS_UINT8                           ucRabId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年06月04日
-    作    者   : l00198894
-    修改内容   : Share-PDP项目新增函数
-*****************************************************************************/
 VOS_UINT32 ADS_DL_DeregFilterDataCallback(VOS_UINT8 ucRabId)
 {
     ADS_DL_RAB_INFO_STRU               *pstDlRabInfo        = VOS_NULL_PTR;
@@ -1145,25 +839,7 @@ VOS_UINT32 ADS_DL_DeregFilterDataCallback(VOS_UINT8 ucRabId)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_DL_ProcPdpStatusInd
- 功能描述  : 处理PDP状态变化消息
- 输入参数  : MODEM_ID_ENUM_UINT16                enModemId,
-             VOS_UINT8                           ucRabId,
-             ADS_PDP_STATUS_ENUM_UINT8           enPdpStatus,
-             ADS_QCI_TYPE_ENUM_UINT8             enQciType,
-             ADS_PDP_TYPE_ENUM_UINT8             enPdpType
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月7日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 ADS_DL_ProcPdpStatusInd(
     MODEM_ID_ENUM_UINT16                enModemId,
     VOS_UINT8                           ucRabId,
@@ -1217,27 +893,7 @@ VOS_UINT32 ADS_DL_ProcPdpStatusInd(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_DL_RcvTafPdpStatusInd
- 功能描述  : 处理ID_APS_ADS_PDP_STATUS_IND消息
- 输入参数  : MsgBlock *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月6日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年4月12日
-    作    者   : A00165503
-    修改内容   : DTS2012020708222: ADS性能优化
-  3.日    期   : 2012年11月24日
-    作    者   : l60609
-    修改内容   : DSDA Phase II:双实例
-*****************************************************************************/
 VOS_UINT32 ADS_DL_RcvTafPdpStatusInd(MsgBlock *pMsg)
 {
     ADS_PDP_STATUS_IND_STRU            *pstPdpStatusInd;
@@ -1254,29 +910,7 @@ VOS_UINT32 ADS_DL_RcvTafPdpStatusInd(MsgBlock *pMsg)
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_DL_RcvCcpuResetStartInd
- 功能描述  : ADS_DL收到ADS_DL消息ID_CCPU_ADS_DL_START_RESET_IND的处理
- 输入参数  : pMsg:消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2013年04月15日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-
-  2.日    期   : 2015年9月1日
-    作    者   : A00165503
-    修改内容   : DTS2015082300106: 下行灌小包, A核触发C核单独复位后整机重启
-
-  3.日    期   : 2015年9月22日
-    作    者   : A00165503
-    修改内容   : DTS2015081008249: ADS数传过程中持锁, 防止系统进入休眠
-
-*****************************************************************************/
 VOS_UINT32 ADS_DL_RcvCcpuResetStartInd(
     MsgBlock                           *pstMsg
 )
@@ -1305,24 +939,7 @@ VOS_UINT32 ADS_DL_RcvCcpuResetStartInd(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_DL_RcvCcpuResetEndInd
- 功能描述  : ADS_DL收到ADS_DL消息ID_CCPU_ADS_DL_RESET_END_IND的处理
- 输入参数  : pMsg:消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2013年09月10日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-
-  2.日    期   : 2015年9月1日
-    作    者   : A00165503
-    修改内容   : DTS2015082300106: 下行灌小包, A核触发C核单独复位后整机重启
-*****************************************************************************/
 VOS_UINT32 ADS_DL_RcvCcpuResetEndInd(
     MsgBlock                           *pstMsg
 )
@@ -1342,23 +959,7 @@ VOS_UINT32 ADS_DL_RcvCcpuResetEndInd(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_DL_RcvTafMsg
- 功能描述  : 接收来自TAF的消息
- 输入参数  : MsgBlock *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月6日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
- 2.日    期   : 2014年02月14日
-   作    者   : m00217266
-   修改内容   : pdp status ind 改为taf aps发送
-*****************************************************************************/
 VOS_UINT32 ADS_DL_RcvTafMsg(MsgBlock* pMsg)
 {
     MSG_HEADER_STRU                    *pstMsg;
@@ -1378,43 +979,14 @@ VOS_UINT32 ADS_DL_RcvTafMsg(MsgBlock* pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_DL_RcvCdsMsg
- 功能描述  : 接收来自CDS的消息
-             暂时没有要处理的消息，预留便于后续扩展
- 输入参数  : MsgBlock *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月6日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 ADS_DL_RcvCdsMsg(MsgBlock *pMsg)
 {
     /* 暂时没有要处理的消息，如果收到消息可能有错误 */
     return VOS_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_DL_RcvAdsDlMsg
- 功能描述  : 接收来自ADS DL的消息
- 输入参数  : MsgBlock *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年04月15日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 ADS_DL_RcvAdsDlMsg(MsgBlock *pMsg)
 {
     MSG_HEADER_STRU                    *pstMsg;
@@ -1439,29 +1011,7 @@ VOS_UINT32 ADS_DL_RcvAdsDlMsg(MsgBlock *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_DL_ProcMsg
- 功能描述  : ADS下行消息处理函数
- 输入参数  : MsgBlock* pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月6日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2013年4月15日
-    作    者   : f00179208
-    修改内容   : C核单独复位项目
-  3.日    期   : 2014年02月14日
-    作    者   : m00217266
-    修改内容   : pdp status ind 改为taf aps发送
-  4.日    期   : 2015年6月25日
-    作    者   : l00198894
-    修改内容   : TSTS
-*****************************************************************************/
 VOS_VOID ADS_DL_ProcMsg(MsgBlock* pMsg)
 {
     if (VOS_NULL_PTR == pMsg)

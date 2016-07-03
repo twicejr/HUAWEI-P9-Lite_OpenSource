@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : mac_ie.h
-  版 本 号   : 初稿
-  作    者   : zourong
-  生成日期   : 2013年1月8日
-  最近修改   :
-  功能描述   : mac_ie.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年1月8日
-    作    者   : zourong
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __MAC_IE_H__
 #define __MAC_IE_H__
@@ -80,21 +63,7 @@ extern "C" {
 /*****************************************************************************
   10 inline函数定义
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : mac_get_bandwidth_from_sco
- 功能描述  : 根据"次信道偏移量"获取对应的带宽模式
- 输入参数  : en_sec_chan_offset: 次信道偏移量
- 输出参数  : 无
- 返 回 值  : 带宽模式
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月12日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE wlan_channel_bandwidth_enum_uint8  mac_get_bandwidth_from_sco(mac_sec_ch_off_enum_uint8 en_sec_chan_offset)
 {
     switch (en_sec_chan_offset)
@@ -110,21 +79,7 @@ OAL_STATIC OAL_INLINE wlan_channel_bandwidth_enum_uint8  mac_get_bandwidth_from_
     }
 }
 
-/*****************************************************************************
- 函 数 名  : mac_get_sco_from_bandwidth
- 功能描述  : 根据"带宽模式"获取对应的"次信道偏移量"
- 输入参数  : en_bandwidth: 带宽模式
- 输出参数  : 无
- 返 回 值  : 次信道偏移量
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月26日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE mac_sec_ch_off_enum_uint8  mac_get_sco_from_bandwidth(wlan_channel_bandwidth_enum_uint8 en_bandwidth)
 {
     switch (en_bandwidth)
@@ -144,22 +99,7 @@ OAL_STATIC OAL_INLINE mac_sec_ch_off_enum_uint8  mac_get_sco_from_bandwidth(wlan
     }
 }
 
-/*****************************************************************************
- 函 数 名  : mac_get_bandwith_from_center_freq_seg0
- 功能描述  : 根据信道中心频点获取对应的"带宽模式"
- 输入参数  : uc_channel         : 信道号
-             uc_chan_center_freq: 信道中心频点
- 输出参数  : 无
- 返 回 值  : 带宽模式
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月27日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE wlan_channel_bandwidth_enum_uint8  mac_get_bandwith_from_center_freq_seg0(oal_uint8 uc_channel, oal_uint8 uc_chan_center_freq)
 {
     switch (uc_chan_center_freq - uc_channel)

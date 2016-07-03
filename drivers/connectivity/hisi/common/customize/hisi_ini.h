@@ -14,8 +14,8 @@
  *
  */
 
-#ifndef __OAM_DRV_H__
-#define __OAM_DRV_H__
+#ifndef __HISI_INI_H__
+#define __HISI_INI_H__
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -273,9 +273,9 @@ extern INI_PARAM_VERSION_STRU g_param_version;
  */
 
 #ifdef INI_KO_MODULE
-extern int32 ini_find_var_value(int32 modu, int8 * puc_var, int8 *puc_value);
+extern int32 ini_find_var_value(int32 modu, int8 * puc_var, int8 *puc_value, uint32 size);
 extern int32 get_cust_conf_int32(int32 modu, int8 * puc_var, int32 *pul_value);
-extern int32 get_cust_conf_string(int32 modu, int8* puc_var, int8 *puc_value);
+extern int32 get_cust_conf_string(int32 modu, int8* puc_var, int8 *puc_value, uint32 size);
 extern int32 set_cust_conf_string(int32 modu, int8 * puc_var, int8 *pc_value);
 extern int32 ini_cfg_init(void);
 extern void ini_cfg_exit(void);

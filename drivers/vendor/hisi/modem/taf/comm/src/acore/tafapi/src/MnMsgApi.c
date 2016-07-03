@@ -73,34 +73,7 @@ LOCAL MN_MSG_TS_DATA_INFO_STRU         f_stMsgDataInfo;
 /*****************************************************************************
   5 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : MSG_SendAppReq
- 功能描述  : 申请消息和填写消息头并发送消息的公共函数
- 输入参数  : enMsgType       - 申请消息的类型
-             clientId        - 发起该请求的Client的ID
-             opId            - Operation ID, 标识本次操作
-             pSendParm       - 需要发送的参数内容
- 输出参数  : 无
- 返 回 值  : MN_ERR_NO_ERROR：成功
-             其他：失败及其失败的原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月14日
-    作    者   : z40661
-    修改内容   : 新生成函数
-  2.日    期   : 2012年4月5日
-    作    者   : l00171473
-    修改内容   : for V7R1C50 CSFB&PPAC&ETWS&ISR
-  3.日    期   : 2012年12月11日
-    作    者   : l00167671
-    修改内容   : DTS2012121802573,TQE清理
-  4.日    期   : 2012年12月24日
-    作    者   : l60609
-    修改内容   : DSDA Phase II
-
-*****************************************************************************/
 VOS_UINT32 MSG_SendAppReq(
     MN_MSG_MSGTYPE_ENUM_U16             enMsgType,
     MN_CLIENT_ID_T                      clientId,
@@ -176,24 +149,7 @@ VOS_UINT32 MSG_SendAppReq(
     return MN_ERR_NO_ERROR;
 }
 
-/* Added by f62575 for AT Project，2011-10-03,  Begin*/
-/*****************************************************************************
- 函 数 名  : MN_MSG_ReqStub
- 功能描述  : 请求C核执行短信桩请求
- 输入参数  : MN_CLIENT_ID_T                 clientId 发起该请求的Client的ID
-             MN_OPERATION_ID_T              opId     Operation ID, 标识本次操作
-             const MN_MSG_STUB_MSG_STRU     *pstStubParam 桩操作参数
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月3日
-    作    者   : f62575
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MN_MSG_ReqStub(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId,
@@ -216,25 +172,8 @@ VOS_UINT32 MN_MSG_ReqStub(
 
     return ulRet;
 }
-/* Added by f62575 for AT Project，2011-10-03,  End*/
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_SetLinkCtrl
- 功能描述  : 应用设置中继链路控制接口
- 输入参数  : clientId          - 发起该请求的Client的ID
-             opId              - Operation ID, 标识本次操作
-             pstSetParam    　 - 应用设置的中继链路控制的参数内容
- 输出参数  : 无
- 返 回 值  : MN_ERR_NO_ERROR：成功
-             其他：失败及其失败的原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年7月21日
-    作    者   : f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32   MN_MSG_SetLinkCtrl(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId,
@@ -265,22 +204,7 @@ VOS_UINT32   MN_MSG_SetLinkCtrl(
 
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_GetLinkCtrl
- 功能描述  : 应用获取中继链路控制接口
- 输入参数  : clientId          - 发起该请求的Client的ID
-             opId              - Operation ID, 标识本次操作
- 输出参数  : 无
- 返 回 值  : MN_ERR_NO_ERROR：成功
-             其他：失败及其失败的原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年7月21日
-    作    者   : f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32   MN_MSG_GetLinkCtrl(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId
@@ -296,27 +220,7 @@ VOS_UINT32   MN_MSG_GetLinkCtrl(
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_Send
- 功能描述  : 应用直接发送短信和短信命令接口
- 输入参数  : clientId          - 发起该请求的Client的ID
-             opId              - Operation ID, 标识本次操作
-             pstSendDirectParm - 应用发送短信的参数内容
- 输出参数  : 无
- 返 回 值  : MN_ERR_NO_ERROR：成功
-             其他：失败及其失败的原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月27日
-    作    者   : z40661
-    修改内容   : 新生成函数
-  2.日    期   : 2011年03月01日
-    作    者   : A00165503
-    修改内容   : 问题单号: DTS2011021202242/DTS2011021400322，添加宏开关判断
-                 服务域为PS_ONLY时，CS域短信和呼叫业务是否能够发起
-*****************************************************************************/
 VOS_UINT32   MN_MSG_Send(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId,
@@ -406,24 +310,7 @@ VOS_UINT32   MN_MSG_Send(
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_SendFromMem
- 功能描述  : 从内存USIM或NVIM中发送短信接口
- 输入参数  : clientId           - 发起该请求的Client的ID
-             opId               - Operation ID, 标识本次操作
-             enDomain           - 短信发送域
-             pstSendFromMemParm - 从内存中发送短信的参数内容
- 输出参数  : 无
- 返 回 值  : MN_ERR_NO_ERROR：成功
-             其他：失败及其失败的原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月27日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32   MN_MSG_SendFromMem(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId,
@@ -472,23 +359,7 @@ VOS_UINT32   MN_MSG_SendFromMem(
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_SendAck
- 功能描述  : 收到短信后,应用可调用该接口发送收到短信的报告,RP-ACK或RP-ERROR
- 输入参数  : clientId           - 发起该请求的Client的ID
-             opId               - Operation ID, 标识本次操作
-             pstAckParm         - 发送短信报告相关信息
- 输出参数  : 无
- 返 回 值  : MN_ERR_NO_ERROR：成功
-             其他：失败及其失败的原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月27日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32   MN_MSG_SendAck(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId,
@@ -527,23 +398,7 @@ VOS_UINT32   MN_MSG_SendAck(
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_Write
- 功能描述  : 向USIM或NVIM中写一条短信
- 输入参数  : clientId       - 发起该请求的Client的ID
-             opId           - Operation ID, 标识本次操作
-             pstWriteParm   - 写短信参数
- 输出参数  : 无
- 返 回 值  : MN_ERR_NO_ERROR：成功
-             其他：失败及其失败的原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月27日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32   MN_MSG_Write(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId,
@@ -611,23 +466,7 @@ VOS_UINT32   MN_MSG_Write(
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_Read
- 功能描述  : 从USIM或NVIM中读一条短信
- 输入参数  : clientId       - 发起该请求的Client的ID
-             opId           - Operation ID, 标识本次操作
-             pstReadParm    - 读取参数
- 输出参数  : 无
- 返 回 值  : MN_ERR_NO_ERROR：成功
-             其他：失败及其失败的原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月27日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32   MN_MSG_Read(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId,
@@ -662,23 +501,7 @@ VOS_UINT32   MN_MSG_Read(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_List
- 功能描述  : 从USIM或NVIM中列表某种状态短信
- 输入参数  : clientId       - 发起该请求的Client的ID
-             opId           - Operation ID, 标识本次操作
-             pstListParm    - 列表参数
- 输出参数  : 无
- 返 回 值  : MN_ERR_NO_ERROR：成功
-             其他：失败及其失败的原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月27日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32   MN_MSG_List(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId,
@@ -718,23 +541,7 @@ VOS_UINT32   MN_MSG_List(
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_Delete
- 功能描述  : 从USIM或NVIM中列表删除短信
- 输入参数  : clientId       - 发起该请求的Client的ID
-             opId           - Operation ID, 标识本次操作
-             pstDeleteParm  - 删除参数,如索引和存储位置等等
- 输出参数  : 无
- 返 回 值  : MN_ERR_NO_ERROR：成功
-             其他：失败及其失败的原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月27日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32   MN_MSG_Delete(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId,
@@ -774,23 +581,7 @@ VOS_UINT32   MN_MSG_Delete(
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_Delete_Test
- 功能描述  : 从USIM或NVIM中列表删除短信命令的测试操作
- 输入参数  : clientId       - 发起该请求的Client的ID
-             opId           - Operation ID, 标识本次操作
-             enMemStore     - 删除短信测试命令操作的存储介质类型
- 输出参数  : 无
- 返 回 值  : MN_ERR_NO_ERROR：成功
-             其他：失败及其失败的原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月27日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32   MN_MSG_Delete_Test(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId,
@@ -824,29 +615,7 @@ VOS_UINT32   MN_MSG_Delete_Test(
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_ReadStaRpt
- 功能描述  : 从USIM或NVIM中读一条短信状态报告
- 输入参数  : clientId            - 发起该请求的Client的ID
-             opId                - Operation ID, 标识本次操作
-             pstReadParm         - 读取参数,如索引和存储位置等等
- 输出参数  : 无
- 返 回 值  : MN_ERR_NO_ERROR：成功
-             其他：失败及其失败的原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月27日
-    作    者   : z40661
-    修改内容   : 新生成函数
-  2.日    期   : 2012年03月03日
-    作    者   : s62952
-    修改内容   : BalongV300R002 Build优化项目:删除宏控制
-  3.日    期   : 2014年5月30日
-    作    者   : j00174725
-    修改内容   : TQE
-*****************************************************************************/
 VOS_UINT32   MN_MSG_ReadStaRpt(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId,
@@ -861,7 +630,6 @@ VOS_UINT32   MN_MSG_ReadStaRpt(
         return MN_ERR_NULLPTR;
     }
 
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     if ((MN_MSG_MEM_STORE_SIM != pstReadParam->enMemStore)
      && (MN_MSG_MEM_STORE_NV != pstReadParam->enMemStore))
     {
@@ -874,7 +642,6 @@ VOS_UINT32   MN_MSG_ReadStaRpt(
         AT_WARN_LOG("MN_MSG_ReadStaRpt:Invalid enMemStore2");
         return MN_ERR_INVALIDPARM;
     }
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
     ulRet = MSG_SendAppReq(MN_MSG_MSGTYPE_READ_STARPT,
                            clientId,
@@ -884,26 +651,7 @@ VOS_UINT32   MN_MSG_ReadStaRpt(
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_DeleteStaRpt
- 功能描述  : 从USIM或NVIM中列表删除短信状态报告
- 输入参数  : clientId       - 发起该请求的Client的ID
-             opId           - Operation ID, 标识本次操作
-             pstDelete      - 删除参数,如索引,存储位置
- 输出参数  : 无
- 返 回 值  : MN_ERR_NO_ERROR：成功
-             其他：失败及其失败的原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月27日
-    作    者   : z40661
-    修改内容   : 新生成函数
- 2.日    期   : 2012年03月03日
-    作    者   : s62952
-    修改内容   : BalongV300R002 Build优化项目:API删除宏控制
-*****************************************************************************/
 VOS_UINT32   MN_MSG_DeleteStaRpt(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId,
@@ -918,7 +666,6 @@ VOS_UINT32   MN_MSG_DeleteStaRpt(
         return MN_ERR_NULLPTR;
     }
 
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     if ((MN_MSG_MEM_STORE_SIM != pstDeleteParam->enMemStore)
      && (MN_MSG_MEM_STORE_NV != pstDeleteParam->enMemStore))
     {
@@ -931,7 +678,6 @@ VOS_UINT32   MN_MSG_DeleteStaRpt(
         AT_WARN_LOG("MN_MSG_DeleteStaRpt:Invalid enMemStore");
         return MN_ERR_INVALIDPARM;
     }
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
     if ((MN_MSG_DELETE_SINGLE != pstDeleteParam->enDeleteType)
      && (MN_MSG_DELETE_ALL != pstDeleteParam->enDeleteType))
@@ -949,23 +695,7 @@ VOS_UINT32   MN_MSG_DeleteStaRpt(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_WriteSrvParam
- 功能描述  : 设置短信相关参数,如短信中心，有效期等等
- 输入参数  : clientId       - 发起该请求的Client的ID
-             opId           - Operation ID, 标识本次操作
-             pstSrvParam     - 需要设置的参数,如短信中心等等
- 输出参数  : 无
- 返 回 值  : MN_ERR_NO_ERROR：成功
-             其他：失败及其失败的原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月27日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32   MN_MSG_WriteSrvParam(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId,
@@ -1037,23 +767,7 @@ VOS_UINT32   MN_MSG_WriteSrvParam(
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_ReadSrvParam
- 功能描述  : 获取短信相关参数,如短信中心，有效期等等
- 输入参数  : clientId       - 发起该请求的Client的ID
-             opId           - Operation ID, 标识本次操作
-             pstReadParm    - 读取参数,如索引和存储位置等等
- 输出参数  : 无
- 返 回 值  : MN_ERR_NO_ERROR：成功
-             其他：失败及其失败的原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月27日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32   MN_MSG_ReadSrvParam(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId,
@@ -1091,23 +805,7 @@ VOS_UINT32   MN_MSG_ReadSrvParam(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_DeleteSrvParam
- 功能描述  : 删除短信相关参数,如短信中心，有效期等等
- 输入参数  : clientId        - 发起该请求的Client的ID
-             opId            - Operation ID, 标识本次操作
-             pstDeleteParm   - 删除参数,如索引,存储位置等等
- 输出参数  : 无
- 返 回 值  : MN_ERR_NO_ERROR：成功
-             其他：失败及其失败的原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月27日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32   MN_MSG_DeleteSrvParam(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId,
@@ -1154,24 +852,7 @@ VOS_UINT32   MN_MSG_DeleteSrvParam(
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_ModifyStatus
- 功能描述  : 修改短信状态，通过该接口可以将接收到的短信修改为已读或未读状态；
-                                     可以SUMBIT或COMMAND短消息修改为已发送或未发送状态
- 输入参数  : clientId            - 发起该请求的Client的ID
-             opId                - Operation ID, 标识本次操作
-             pstModifyParm       - 修改短信状态相关参数
- 输出参数  : 无
- 返 回 值  : MN_ERR_NO_ERROR：成功
-             其他：失败及其失败的原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月27日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32   MN_MSG_ModifyStatus(
     MN_CLIENT_ID_T                       clientId,
     MN_OPERATION_ID_T                    opId,
@@ -1212,23 +893,7 @@ VOS_UINT32   MN_MSG_ModifyStatus(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_SetRcvMsgPath
- 功能描述  : 设置接收短信路径,包括存储位置和短信报告的应答
- 输入参数  : clientId            - 发起该请求的Client的ID
-             opId                - Operation ID, 标识本次操作
-             pstRcvPathParm      - 设置路径相关参数
- 输出参数  : 无
- 返 回 值  : MN_ERR_NO_ERROR：成功
-             其他：失败及其失败的原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月27日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 MN_MSG_SetRcvMsgPath(
     MN_CLIENT_ID_T                         clientId,
     MN_OPERATION_ID_T                      opId,
@@ -1299,23 +964,7 @@ VOS_UINT32 MN_MSG_SetRcvMsgPath(
 
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_GetRcvMsgPath
- 功能描述  : 获取接收短信路径,包括存储位置和短信报告应答
- 输入参数  : clientId            - 发起该请求的Client的ID
-             opId                - Operation ID, 标识本次操作
-             pstGetRcvPathParm   - 获取路径相关参数
- 输出参数  : 无
- 返 回 值  : MN_ERR_NO_ERROR：成功
-             其他：失败及其失败的原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月27日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32   MN_MSG_GetRcvMsgPath(
     MN_CLIENT_ID_T                         clientId,
     MN_OPERATION_ID_T                      opId,
@@ -1338,23 +987,7 @@ VOS_UINT32   MN_MSG_GetRcvMsgPath(
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_GetStorageStatus
- 功能描述  : 获取短信当前的存储状况
- 输入参数  : clientId            - 发起该请求的Client的ID
-             opId                - Operation ID, 标识本次操作
-             pstMemParm          - 短信存储位置相关参数
- 输出参数  : 无
- 返 回 值  : MN_ERR_NO_ERROR：成功
-             其他：失败及其失败的原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月27日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  MN_MSG_GetStorageStatus(
     MN_CLIENT_ID_T                            clientId,
     MN_OPERATION_ID_T                         opId,
@@ -1395,23 +1028,7 @@ VOS_UINT32  MN_MSG_GetStorageStatus(
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_GetStatusRptIndex
- 功能描述  : 根据MO短信索引得到其状态报告索引
- 输入参数  : clientId       - 发起该请求的Client的ID
-             opId           - Operation ID, 标识本次操作
-             pstMoMsgParm   - MO短信的参数,所有和位置
- 输出参数  : 无
- 返 回 值  : MN_ERR_NO_ERROR：成功
-             其他：失败及其失败的原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月27日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32   MN_MSG_GetStaRptIndex(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId,
@@ -1446,27 +1063,7 @@ VOS_UINT32   MN_MSG_GetStaRptIndex(
 
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_GetMoMsgIndex
- 功能描述  : 根据短信状态报告索引得到MO短信的索引
- 输入参数  : clientId       - 发起该请求的Client的ID
-             opId           - Operation ID, 标识本次操作
-             pstStaRptParm  - 短信状态报告的参数,索引和位置
 
- 输出参数  : 无
- 返 回 值  : MN_ERR_NO_ERROR：成功
-             其他：失败及其失败的原因
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2007年9月27日
-    作    者   : z40661
-    修改内容   : 新生成函数
-  2.日    期   : 2012年03月03日
-    作    者   : s62952
-    修改内容   : BalongV300R002 Build优化项目
-*****************************************************************************/
 VOS_UINT32   MN_MSG_GetMoMsgIndex(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId,
@@ -1481,7 +1078,6 @@ VOS_UINT32   MN_MSG_GetMoMsgIndex(
         return MN_ERR_NULLPTR;
     }
 
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     if ((MN_MSG_MEM_STORE_SIM != pstStaRptParm->enMemStore)
      && (MN_MSG_MEM_STORE_NV != pstStaRptParm->enMemStore))
     {
@@ -1494,7 +1090,6 @@ VOS_UINT32   MN_MSG_GetMoMsgIndex(
         AT_WARN_LOG("MN_MSG_GetMoMsgFromStaRpt:Invalid enMemStore2");
         return MN_ERR_INVALIDPARM;
     }
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
     ulRet = MSG_SendAppReq(MN_MSG_MSGTYPE_GET_MOMSG_FROMSTARPT,
                            clientId,
@@ -1504,23 +1099,7 @@ VOS_UINT32   MN_MSG_GetMoMsgIndex(
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_SetMemStatus
- 功能描述  : APP设置当前的接收容量,满或不满
- 输入参数  : clientId            - 发起该请求的Client的ID
-             opId                - Operation ID, 标识本次操作
-             pMemStatusParm      - APP当前接收容量
- 输出参数  : 无
- 返 回 值  : MN_ERR_NO_ERROR：成功
-             其他：失败及其失败的原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月27日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 MN_MSG_SetMemStatus(
     MN_CLIENT_ID_T                       clientId,
     MN_OPERATION_ID_T                    opId,
@@ -1552,23 +1131,7 @@ VOS_UINT32 MN_MSG_SetMemStatus(
 
 #if ((FEATURE_ON == FEATURE_GCBS) || (FEATURE_ON == FEATURE_WCBS))
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_GetAllCbMids
- 功能描述  : 提供给应用层查询CBS列表功能的请求
- 输入参数  : clientId           - 发起该请求的Client的ID
-             opId               - Operation ID, 标识本次操作
- 输出参数  : 无
- 返 回 值  : MN_ERR_NO_ERROR：成功
-             其他：失败及其失败的原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年5月10日
-    作    者   : zhoujun \z40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MN_MSG_GetAllCbMids(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId
@@ -1584,26 +1147,7 @@ VOS_UINT32 MN_MSG_GetAllCbMids(
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_AddCbMids
- 功能描述  : 提供给应用层打开或关闭CBS功能的请求
- 输入参数  : clientId           - 发起该请求的Client的ID
-             opId               - Operation ID, 标识本次操作
-             pstCbMids          - 待增加的广播短消息ID集合
- 输出参数  : 无
- 返 回 值  : MN_ERR_NO_ERROR：成功
-             其他：失败及其失败的原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年5月8日
-    作    者   : zhoujun /z40661
-    修改内容   : 新生成函数
-  2.日    期   : 2012年4月5日
-    作    者   : l00171473
-    修改内容   : for V7R1C50 CSFB&PPAC&ETWS&ISR
-*****************************************************************************/
 VOS_UINT32 MN_MSG_AddCbMids(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId,
@@ -1626,25 +1170,7 @@ VOS_UINT32 MN_MSG_AddCbMids(
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_DeleteCbMids
- 功能描述  : 提供给应用层打开或关闭CBS功能的请求
- 输入参数  : clientId           - 发起该请求的Client的ID
-             opId               - Operation ID, 标识本次操作
-             pstCbMids          - 待删除的广播短消息ID集合
- 输出参数  : 无
- 返 回 值  : MN_ERR_NO_ERROR：成功
-             其他：失败及其失败的原因
- 调用函数  :
- 被调函数  :
 
- 1.日    期   : 2010年5月8日
-   作    者   : zhoujun /z40661
-   修改内容   : 新生成函数
-  2.日    期   : 2012年4月5日
-    作    者   : l00171473
-    修改内容   : for V7R1C50 CSFB&PPAC&ETWS&ISR
-*****************************************************************************/
 VOS_UINT32 MN_MSG_DelCbMids(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId,
@@ -1667,22 +1193,7 @@ VOS_UINT32 MN_MSG_DelCbMids(
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_EmptyCbMids
- 功能描述  : 删除所有CBS ID
- 输入参数  : clientId           - 发起该请求的Client的ID
-             opId               - Operation ID, 标识本次操作
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年5月8日
-    作    者   : zhoujun /z40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MN_MSG_EmptyCbMids(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId

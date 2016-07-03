@@ -1,0 +1,22 @@
+/*
+ * Hisilicon Ltd. Hi3650 SoC
+ *
+ * Copyright (C) 2012-2014 Hisilicon Ltd.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * publishhed by the Free Software Foundation.
+ */
+
+/{
+		ddrcflux: ddrflux {
+			#address-cells = <2>;
+			#size-cells = <2>;
+			compatible = "hisilicon,ddrc-flux";
+			hisi,bl31-share-mem = <0x400 0x400>;
+			clocks = <&clk_ddrc_freq &clk_gate_timer5_b>;
+			clock-names = "clk_ddrc_freq","clk_timer5_b";
+			ddrflux-timer-irq = <91>;
+			status = "ok";
+		};
+};

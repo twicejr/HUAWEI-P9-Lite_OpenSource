@@ -150,20 +150,7 @@ void test_recover_IPS_MNTN_CPP()
     memset(&g_aucTempData, 0x0, sizeof(g_aucTempData));
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_TransMsg
-功能描述:消息指针为空
-测试编号:Test_IPS_MNTN_TransMsg_001
-测试标题:消息指针为空
-预期结果:
 
-1.日    期: 2011年8月11日
-  作    者: f00166181
-  修改内容: 新建CASE
-2.日    期   : 2014年5月17日
-  作    者   : liukai
-  修改内容   : 改造为linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_IPS_MNTN_TransMsg, IPS_MNTN_TransMsg_001)
 {
     /*************************************************************************
@@ -199,16 +186,7 @@ TEST(test_IPS_MNTN_TransMsg, IPS_MNTN_TransMsg_001)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数   : test_IPS_MNTN_TransMsg_002
- 被测功能   : 对桩test_IPS_MNTN_TransMsg测试
- 用例条件   : 消息指针为空
 
- 修改历史       :
- 1.日    期 : 2014年5月20日
-   作    者 : liukai
-   修改内容 : 新生成linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_TransMsg, IPS_MNTN_TransMsg_002)
 {
     /*************************************************************************
@@ -242,17 +220,7 @@ TEST(test_test_IPS_MNTN_TransMsg, IPS_MNTN_TransMsg_002)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_SndCfgCnf2Om
-功能描述:向OM发送配置确认消息，申请内存失败
-测试编号:Test_IPS_MNTN_SndCfgCnf2Om_001
-测试标题:向OM发送配置确认消息，申请内存失败
-预期结果:
 
-1.日    期   : 2014年5月21日
-  作    者   : liukai
-  修改内容   : 新生成linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_SndCfgCnf2Om_001, IPS_MNTN_SndCfgCnf2Om_001)
 {
     /*************************************************************************
@@ -291,18 +259,7 @@ TEST(test_test_IPS_MNTN_SndCfgCnf2Om_001, IPS_MNTN_SndCfgCnf2Om_001)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_SndCfgCnf2Om
-功能描述:向OM发送配置确认消息，发送消息成功
-测试编号:Test_IPS_MNTN_SndCfgCnf2Om_002
-测试标题:向OM发送配置确认消息，发送消息成功
-预期结果:
 
-1.日    期 : 2014年5月21日
-   作    者 : liukai
-   修改内容 : 新生成linux WinGDB UT用例
-
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_SndCfgCnf2Om_002, IPS_MNTN_SndCfgCnf2Om_002)
 {
     /*************************************************************************
@@ -337,18 +294,7 @@ TEST(test_test_IPS_MNTN_SndCfgCnf2Om_002, IPS_MNTN_SndCfgCnf2Om_002)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_SndCfgCnf2Om_003
-功能描述:向OM发送配置确认消息，发送消息失败
-测试编号:IPS_MNTN_SndCfgCnf2Om_003
-测试标题:向OM发送配置确认消息，发送消息失败
-预期结果:
 
-1.日    期 : 2014年5月21日
-   作    者 : liukai
-   修改内容 : 新生成linux WinGDB UT用例
-
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_SndCfgCnf2Om_003, IPS_MNTN_SndCfgCnf2Om_003)
 {
     /*************************************************************************
@@ -386,18 +332,7 @@ TEST(test_test_IPS_MNTN_SndCfgCnf2Om_003, IPS_MNTN_SndCfgCnf2Om_003)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_GetPktLenByTraceCfg_001
-功能描述:不捕获报文的情况
-测试编号:test_IPS_MNTN_GetPktLenByTraceCfg_001
-测试标题:不捕获报文的情况
-预期结果:
 
-1.日    期 : 2014年5月21日
-   作    者 : liukai
-   修改内容 : 新生成linux WinGDB UT用例
-
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_GetPktLenByTraceCfg, IPS_MNTN_GetPktLenByTraceCfg_001)
 {
     /*************************************************************************
@@ -427,18 +362,7 @@ TEST(test_test_IPS_MNTN_GetPktLenByTraceCfg, IPS_MNTN_GetPktLenByTraceCfg_001)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_GetPktLenByTraceCfg_002
-功能描述:
-测试编号:test_IPS_MNTN_GetPktLenByTraceCfg_002
-测试标题:
-预期结果:
 
-1.日    期 : 2014年5月21日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_GetPktLenByTraceCfg, IPS_MNTN_GetPktLenByTraceCfg_002)
 {
     /*************************************************************************
@@ -467,18 +391,7 @@ TEST(test_test_IPS_MNTN_GetPktLenByTraceCfg, IPS_MNTN_GetPktLenByTraceCfg_002)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_GetPktLenByTraceCfg_003
-功能描述:
-测试编号:test_IPS_MNTN_GetPktLenByTraceCfg_003
-测试标题:
-预期结果:
 
-1.日    期 : 2014年5月22日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_GetPktLenByTraceCfg, IPS_MNTN_GetPktLenByTraceCfg_003)
 {
     /*************************************************************************
@@ -507,18 +420,7 @@ TEST(test_test_IPS_MNTN_GetPktLenByTraceCfg, IPS_MNTN_GetPktLenByTraceCfg_003)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_GetPktLenByTraceCfg_004
-功能描述:
-测试编号:test_IPS_MNTN_GetPktLenByTraceCfg_004
-测试标题:
-预期结果:
 
-1.日    期 : 2014年5月22日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_GetPktLenByTraceCfg, IPS_MNTN_GetPktLenByTraceCfg_004)
 {
     /*************************************************************************
@@ -547,18 +449,7 @@ TEST(test_test_IPS_MNTN_GetPktLenByTraceCfg, IPS_MNTN_GetPktLenByTraceCfg_004)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_GetPktLenByTraceCfg_005
-功能描述:
-测试编号:test_IPS_MNTN_GetPktLenByTraceCfg_005
-测试标题:
-预期结果:
 
-1.日    期 : 2014年5月22日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_GetPktLenByTraceCfg, IPS_MNTN_GetPktLenByTraceCfg_005)
 {
     /*************************************************************************
@@ -587,18 +478,7 @@ TEST(test_test_IPS_MNTN_GetPktLenByTraceCfg, IPS_MNTN_GetPktLenByTraceCfg_005)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_GetPktLenByTraceCfg_006
-功能描述:
-测试编号:test_IPS_MNTN_GetPktLenByTraceCfg_006
-测试标题:
-预期结果:
 
-1.日    期 : 2014年5月22日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_GetPktLenByTraceCfg, IPS_MNTN_GetPktLenByTraceCfg_006)
 {
     /*************************************************************************
@@ -627,20 +507,7 @@ TEST(test_test_IPS_MNTN_GetPktLenByTraceCfg, IPS_MNTN_GetPktLenByTraceCfg_006)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_CtrlPktInfoCB
-功能描述:报文指针为空
-测试编号:test_IPS_MNTN_CtrlPktInfoCB_001
-测试标题:报文指针为空
-预期结果:
 
-1.日    期: 2011年8月11日
-  作    者: f00166181
-  修改内容: 新建CASE
-2.日    期   : 2014年5月17日
-  作    者   : liukai
-  修改内容   : 改造为linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_IPS_MNTN_CtrlPktInfoCB, IPS_MNTN_CtrlPktInfoCB_001)
 {
     /*************************************************************************
@@ -671,18 +538,7 @@ TEST(test_IPS_MNTN_CtrlPktInfoCB, IPS_MNTN_CtrlPktInfoCB_001)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_CtrlPktInfoCB_002
-功能描述:
-测试编号:test_IPS_MNTN_CtrlPktInfoCB_002
-测试标题:
-预期结果:
 
-1.日    期 : 2014年5月22日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_CtrlPktInfoCB, IPS_MNTN_CtrlPktInfoCB_002)
 {
     /*************************************************************************
@@ -718,18 +574,7 @@ TEST(test_test_IPS_MNTN_CtrlPktInfoCB, IPS_MNTN_CtrlPktInfoCB_002)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_CtrlPktInfoCB_003
-功能描述:
-测试编号:test_IPS_MNTN_CtrlPktInfoCB_003
-测试标题:
-预期结果:
 
-1.日    期 : 2014年5月26日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_CtrlPktInfoCB, IPS_MNTN_CtrlPktInfoCB_003)
 {
     /*************************************************************************
@@ -770,18 +615,7 @@ TEST(test_test_IPS_MNTN_CtrlPktInfoCB, IPS_MNTN_CtrlPktInfoCB_003)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_CtrlPktInfoCB_004
-功能描述:
-测试编号:test_IPS_MNTN_CtrlPktInfoCB_004
-测试标题:
-预期结果:
 
-1.日    期 : 2014年5月26日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_CtrlPktInfoCB, IPS_MNTN_CtrlPktInfoCB_004)
 {
     /*************************************************************************
@@ -815,20 +649,7 @@ TEST(test_test_IPS_MNTN_CtrlPktInfoCB, IPS_MNTN_CtrlPktInfoCB_004)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_PktInfoCB
-功能描述:报文指针为空
-测试编号:Test_IPS_MNTN_PktInfoCB_001
-测试标题:报文指针为空
-预期结果:
 
-1.日    期: 2011年8月11日
-  作    者: f00166181
-  修改内容: 新建CASE
-2.日    期   : 2014年5月26日
-  作    者   : liukai
-  修改内容   : 改造为linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_IPS_MNTN_PktInfoCB, IPS_MNTN_PktInfoCB_001)
 {
     /*************************************************************************
@@ -862,20 +683,7 @@ TEST(test_IPS_MNTN_PktInfoCB, IPS_MNTN_PktInfoCB_001)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项: Test_IPS_MNTN_PktInfoCB
-功能描述:捕获消息类型为桥
-测试编号:Test_IPS_MNTN_PktInfoCB_002
-测试标题:捕获消息类型为桥
-预期结果:
 
-1.日  期: 2011年8月11日
-  作    者: f00166181
-  修改内容: 新建CASE
-2.日    期   : 2014年5月26日
-  作    者   : liukai
-  修改内容   : 改造为linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_IPS_MNTN_PktInfoCB, IPS_MNTN_PktInfoCB_002)
 {
     /*************************************************************************
@@ -912,18 +720,7 @@ TEST(test_IPS_MNTN_PktInfoCB, IPS_MNTN_PktInfoCB_002)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_PktInfoCB_003
-功能描述:
-测试编号:test_IPS_MNTN_PktInfoCB_003
-测试标题:
-预期结果:
 
-1.日    期 : 2014年5月26日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_PktInfoCB, IPS_MNTN_PktInfoCB_003)
 {
     /*************************************************************************
@@ -952,20 +749,7 @@ TEST(test_test_IPS_MNTN_PktInfoCB, IPS_MNTN_PktInfoCB_003)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项: Test_IPS_MNTN_PktInfoCB
-功能描述:捕获消息类型错误
-测试编号:Test_IPS_MNTN_PktInfoCB_002
-测试标题:捕获消息类型错误
-预期结果:
 
-1.日  期: 2011年8月11日
-  作    者: f00166181
-  修改内容: 新建CASE
-2.日    期   : 2014年5月26日
-  作    者   : liukai
-  修改内容   : 改造为linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_IPS_MNTN_PktInfoCB, IPS_MNTN_PktInfoCB_004)
 {
     /*************************************************************************
@@ -1004,17 +788,7 @@ TEST(test_IPS_MNTN_PktInfoCB, IPS_MNTN_PktInfoCB_004)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项: Test_IPS_MNTN_PktInfoCB
-功能描述:配置不捕获接收报文
-测试编号:Test_IPS_MNTN_PktInfoCB_005
-测试标题:配置不捕获接收报文
-预期结果:
 
-1.日    期 : 2014年5月26日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_PktInfoCB, IPS_MNTN_PktInfoCB_005)
 {
     /*************************************************************************
@@ -1043,17 +817,7 @@ TEST(test_test_IPS_MNTN_PktInfoCB, IPS_MNTN_PktInfoCB_005)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项: Test_IPS_MNTN_PktInfoCB
-功能描述:
-测试编号:Test_IPS_MNTN_PktInfoCB_006
-测试标题:
-预期结果:
 
-1.日    期 : 2014年5月26日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_PktInfoCB, IPS_MNTN_PktInfoCB_006)
 {
     /*************************************************************************
@@ -1085,17 +849,7 @@ TEST(test_test_IPS_MNTN_PktInfoCB, IPS_MNTN_PktInfoCB_006)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项: Test_IPS_MNTN_PktInfoCB
-功能描述:配置不捕获接收报文
-测试编号:Test_IPS_MNTN_PktInfoCB_007
-测试标题:配置不捕获接收报文
-预期结果:
 
-1.日    期 : 2014年5月26日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_PktInfoCB, IPS_MNTN_PktInfoCB_007)
 {
     /*************************************************************************
@@ -1127,20 +881,7 @@ TEST(test_test_IPS_MNTN_PktInfoCB, IPS_MNTN_PktInfoCB_007)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_BridgePktInfoCB
-功能描述:报文指针为空
-测试编号:Test_IPS_MNTN_BridgePktInfoCB_001
-测试标题:报文指针为空
-预期结果:
 
-1.日    期: 2011年8月11日
-  作    者: f00166181
-  修改内容: 新建CASE
-2.日    期   : 2014年5月27日
-  作    者   : liukai
-  修改内容   : 改造为linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_IPS_MNTN_BridgePktInfoCB, IPS_MNTN_BridgePktInfoCB_001)
 {
     /*************************************************************************
@@ -1177,20 +918,7 @@ TEST(test_IPS_MNTN_BridgePktInfoCB, IPS_MNTN_BridgePktInfoCB_001)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_BridgePktInfoCB
-功能描述:捕获消息类型错误
-测试编号:Test_IPS_MNTN_BridgePktInfoCB_002
-测试标题:捕获消息类型错误
-预期结果:
 
-1.日    期: 2011年8月11日
-  作    者: f00166181
-  修改内容: 新建CASE
-2.日    期   : 2014年5月27日
-  作    者   : liukai
-  修改内容   : 改造为linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_IPS_MNTN_BridgePktInfoCB, IPS_MNTN_BridgePktInfoCB_002)
 {
     /*************************************************************************
@@ -1233,17 +961,7 @@ TEST(test_IPS_MNTN_BridgePktInfoCB, IPS_MNTN_BridgePktInfoCB_002)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_BridgePktInfoCB_003
-功能描述:配置不捕获接收报文
-测试编号:test_IPS_MNTN_BridgePktInfoCB_003
-测试标题:配置不捕获接收报文
-预期结果:
 
-1.日    期 : 2014年5月27日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_BridgePktInfoCB, IPS_MNTN_BridgePktInfoCB_003)
 {
     /*************************************************************************
@@ -1274,17 +992,7 @@ TEST(test_test_IPS_MNTN_BridgePktInfoCB, IPS_MNTN_BridgePktInfoCB_003)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_BridgePktInfoCB_004
-功能描述:配置不捕获接收报文
-测试编号:test_IPS_MNTN_BridgePktInfoCB_004
-测试标题:配置不捕获接收报文
-预期结果:
 
-1.日    期 : 2014年5月27日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_BridgePktInfoCB, IPS_MNTN_BridgePktInfoCB_004)
 {
     /*************************************************************************
@@ -1322,17 +1030,7 @@ TEST(test_test_IPS_MNTN_BridgePktInfoCB, IPS_MNTN_BridgePktInfoCB_004)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_BridgePktInfoCB_005
-功能描述:配置不捕获接收报文
-测试编号:test_IPS_MNTN_BridgePktInfoCB_005
-测试标题:配置不捕获接收报文
-预期结果:
 
-1.日    期 : 2014年5月27日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_BridgePktInfoCB, IPS_MNTN_BridgePktInfoCB_005)
 {
     /*************************************************************************
@@ -1371,17 +1069,7 @@ TEST(test_test_IPS_MNTN_BridgePktInfoCB, IPS_MNTN_BridgePktInfoCB_005)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_BridgeTraceCfgChkParam_001
-功能描述:
-测试编号:test_IPS_MNTN_BridgeTraceCfgChkParam_001
-测试标题:
-预期结果:
 
-1.日    期 : 2014年5月28日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_BridgeTraceCfgChkParam, IPS_MNTN_BridgeTraceCfgChkParam_001)
 {
     /*************************************************************************
@@ -1413,17 +1101,7 @@ TEST(test_test_IPS_MNTN_BridgeTraceCfgChkParam, IPS_MNTN_BridgeTraceCfgChkParam_
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_BridgeTraceCfgChkParam_002
-功能描述:
-测试编号:test_IPS_MNTN_BridgeTraceCfgChkParam_002
-测试标题:
-预期结果:
 
-1.日    期 : 2014年5月27日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_BridgeTraceCfgChkParam, IPS_MNTN_BridgeTraceCfgChkParam_002)
 {
     /*************************************************************************
@@ -1455,17 +1133,7 @@ TEST(test_test_IPS_MNTN_BridgeTraceCfgChkParam, IPS_MNTN_BridgeTraceCfgChkParam_
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_TraceCfgChkParam_001
-功能描述:
-测试编号:test_IPS_MNTN_TraceCfgChkParam_001
-测试标题:
-预期结果:
 
-1.日    期 : 2014年5月28日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_TraceCfgChkParam, IPS_MNTN_TraceCfgChkParam_001)
 {
     /*************************************************************************
@@ -1497,17 +1165,7 @@ TEST(test_test_IPS_MNTN_TraceCfgChkParam, IPS_MNTN_TraceCfgChkParam_001)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_TraceCfgChkParam_002
-功能描述:
-测试编号:test_IPS_MNTN_TraceCfgChkParam_002
-测试标题:
-预期结果:
 
-1.日    期 : 2014年5月28日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_TraceCfgChkParam, IPS_MNTN_TraceCfgChkParam_002)
 {
     /*************************************************************************
@@ -1539,17 +1197,7 @@ TEST(test_test_IPS_MNTN_TraceCfgChkParam, IPS_MNTN_TraceCfgChkParam_002)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_TraceCfgChkParam_003
-功能描述:
-测试编号:test_IPS_MNTN_TraceCfgChkParam_003
-测试标题:
-预期结果:
 
-1.日    期 : 2014年5月28日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_TraceCfgChkParam, IPS_MNTN_TraceCfgChkParam_003)
 {
     /*************************************************************************
@@ -1581,17 +1229,7 @@ TEST(test_test_IPS_MNTN_TraceCfgChkParam, IPS_MNTN_TraceCfgChkParam_003)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_TraceAdvancedCfgChkParam_001
-功能描述:
-测试编号:test_IPS_MNTN_TraceAdvancedCfgChkParam_001
-测试标题:
-预期结果:
 
-1.日    期 : 2014年5月28日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_TraceAdvancedCfgChkParam, IPS_MNTN_TraceAdvancedCfgChkParam_001)
 {
     /*************************************************************************
@@ -1627,17 +1265,7 @@ TEST(test_test_IPS_MNTN_TraceAdvancedCfgChkParam, IPS_MNTN_TraceAdvancedCfgChkPa
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_TraceAdvancedCfgChkParam_002
-功能描述:
-测试编号:test_IPS_MNTN_TraceAdvancedCfgChkParam_002
-测试标题:
-预期结果:
 
-1.日    期 : 2014年5月28日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_TraceAdvancedCfgChkParam, IPS_MNTN_TraceAdvancedCfgChkParam_002)
 {
     /*************************************************************************
@@ -1672,17 +1300,7 @@ TEST(test_test_IPS_MNTN_TraceAdvancedCfgChkParam, IPS_MNTN_TraceAdvancedCfgChkPa
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_TraceAdvancedCfgChkParam_003
-功能描述:
-测试编号:test_IPS_MNTN_TraceAdvancedCfgChkParam_003
-测试标题:
-预期结果:
 
-1.日    期 : 2014年5月28日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_TraceAdvancedCfgChkParam, IPS_MNTN_TraceAdvancedCfgChkParam_003)
 {
     /*************************************************************************
@@ -1717,17 +1335,7 @@ TEST(test_test_IPS_MNTN_TraceAdvancedCfgChkParam, IPS_MNTN_TraceAdvancedCfgChkPa
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_TraceAdvancedCfgReq_001
-功能描述:
-测试编号:test_IPS_MNTN_TraceAdvancedCfgReq_001
-测试标题:
-预期结果:
 
-1.日    期 : 2014年5月28日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_TraceAdvancedCfgReq, IPS_MNTN_TraceAdvancedCfgReq_001)
 {
     /*************************************************************************
@@ -1768,17 +1376,7 @@ TEST(test_test_IPS_MNTN_TraceAdvancedCfgReq, IPS_MNTN_TraceAdvancedCfgReq_001)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_TraceAdvancedCfgReq_002
-功能描述:
-测试编号:test_IPS_MNTN_TraceAdvancedCfgReq_002
-测试标题:
-预期结果:
 
-1.日    期 : 2014年5月28日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_TraceAdvancedCfgReq, IPS_MNTN_TraceAdvancedCfgReq_002)
 {
     /*************************************************************************
@@ -1819,17 +1417,7 @@ TEST(test_test_IPS_MNTN_TraceAdvancedCfgReq, IPS_MNTN_TraceAdvancedCfgReq_002)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_TraceAdvancedCfgReq_003
-功能描述:
-测试编号:test_IPS_MNTN_TraceAdvancedCfgReq_003
-测试标题:
-预期结果:
 
-1.日    期 : 2014年5月28日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_TraceAdvancedCfgReq, IPS_MNTN_TraceAdvancedCfgReq_003)
 {
     /*************************************************************************
@@ -1870,17 +1458,7 @@ TEST(test_test_IPS_MNTN_TraceAdvancedCfgReq, IPS_MNTN_TraceAdvancedCfgReq_003)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_IPInfoCfgChkParam_001
-功能描述:
-测试编号:test_IPS_MNTN_IPInfoCfgChkParam_001
-测试标题:
-预期结果:
 
-1.日    期 : 2014年5月28日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_IPInfoCfgChkParam, IPS_MNTN_IPInfoCfgChkParam_001)
 {
     /*************************************************************************
@@ -1910,17 +1488,7 @@ TEST(test_test_IPS_MNTN_IPInfoCfgChkParam, IPS_MNTN_IPInfoCfgChkParam_001)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_IPInfoCfgChkParam_002
-功能描述:
-测试编号:test_IPS_MNTN_IPInfoCfgChkParam_002
-测试标题:
-预期结果:
 
-1.日    期 : 2014年5月28日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_IPInfoCfgChkParam, IPS_MNTN_IPInfoCfgChkParam_002)
 {
     /*************************************************************************
@@ -1949,17 +1517,7 @@ TEST(test_test_IPS_MNTN_IPInfoCfgChkParam, IPS_MNTN_IPInfoCfgChkParam_002)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_IPInfoCfgChkParam_003
-功能描述:
-测试编号:test_IPS_MNTN_IPInfoCfgChkParam_003
-测试标题:
-预期结果:
 
-1.日    期 : 2014年5月28日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_IPInfoCfgChkParam, IPS_MNTN_IPInfoCfgChkParam_003)
 {
     /*************************************************************************
@@ -1988,17 +1546,7 @@ TEST(test_test_IPS_MNTN_IPInfoCfgChkParam, IPS_MNTN_IPInfoCfgChkParam_003)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_IPInfoCfgReq_001
-功能描述:
-测试编号:test_IPS_MNTN_IPInfoCfgReq_001
-测试标题:
-预期结果:
 
-1.日    期 : 2014年5月29日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_IPInfoCfgReq, IPS_MNTN_IPInfoCfgReq_001)
 {
     /*************************************************************************
@@ -2028,17 +1576,7 @@ TEST(test_test_IPS_MNTN_IPInfoCfgReq, IPS_MNTN_IPInfoCfgReq_001)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_IPInfoCfgReq_002
-功能描述:
-测试编号:test_IPS_MNTN_IPInfoCfgReq_002
-测试标题:
-预期结果:
 
-1.日    期 : 2014年5月29日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_IPInfoCfgReq, IPS_MNTN_IPInfoCfgReq_002)
 {
     /*************************************************************************
@@ -2068,17 +1606,7 @@ TEST(test_test_IPS_MNTN_IPInfoCfgReq, IPS_MNTN_IPInfoCfgReq_002)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_IPInfoCfgReq_003
-功能描述:
-测试编号:test_IPS_MNTN_IPInfoCfgReq_003
-测试标题:
-预期结果:
 
-1.日    期 : 2014年5月29日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_IPInfoCfgReq, IPS_MNTN_IPInfoCfgReq_003)
 {
     /*************************************************************************
@@ -2111,17 +1639,7 @@ TEST(test_test_IPS_MNTN_IPInfoCfgReq, IPS_MNTN_IPInfoCfgReq_003)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_Ipv4DataParse_001
-功能描述:
-测试编号:test_IPS_MNTN_Ipv4DataParse_001
-测试标题:
-预期结果:
 
-1.日    期 : 2014年5月29日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_Ipv4DataParse, IPS_MNTN_Ipv4DataParse_001)
 {
     /*************************************************************************
@@ -2148,17 +1666,7 @@ TEST(test_test_IPS_MNTN_Ipv4DataParse, IPS_MNTN_Ipv4DataParse_001)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_Ipv4DataParse_002
-功能描述:
-测试编号:test_IPS_MNTN_Ipv4DataParse_002
-测试标题:
-预期结果:
 
-1.日    期 : 2014年5月29日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_Ipv4DataParse, IPS_MNTN_Ipv4DataParse_002)
 {
     /*************************************************************************
@@ -2185,17 +1693,7 @@ TEST(test_test_IPS_MNTN_Ipv4DataParse, IPS_MNTN_Ipv4DataParse_002)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_Ipv4DataParse_003
-功能描述:
-测试编号:test_IPS_MNTN_Ipv4DataParse_003
-测试标题:
-预期结果:
 
-1.日    期 : 2014年5月29日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_Ipv4DataParse, IPS_MNTN_Ipv4DataParse_003)
 {
     /*************************************************************************
@@ -2222,17 +1720,7 @@ TEST(test_test_IPS_MNTN_Ipv4DataParse, IPS_MNTN_Ipv4DataParse_003)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_Ipv4DataParse_004
-功能描述:
-测试编号:test_IPS_MNTN_Ipv4DataParse_004
-测试标题:
-预期结果:
 
-1.日    期 : 2014年5月29日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_Ipv4DataParse, IPS_MNTN_Ipv4DataParse_004)
 {
     /*************************************************************************
@@ -2259,17 +1747,7 @@ TEST(test_test_IPS_MNTN_Ipv4DataParse, IPS_MNTN_Ipv4DataParse_004)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_Ipv4DataParse_005
-功能描述:
-测试编号:test_IPS_MNTN_Ipv4DataParse_005
-测试标题:
-预期结果:
 
-1.日    期 : 2014年5月29日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_Ipv4DataParse, IPS_MNTN_Ipv4DataParse_005)
 {
     /*************************************************************************
@@ -2296,17 +1774,7 @@ TEST(test_test_IPS_MNTN_Ipv4DataParse, IPS_MNTN_Ipv4DataParse_005)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_Ipv4DataParse_006
-功能描述:
-测试编号:test_IPS_MNTN_Ipv4DataParse_006
-测试标题:
-预期结果:
 
-1.日    期 : 2014年5月29日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_Ipv4DataParse, IPS_MNTN_Ipv4DataParse_006)
 {
     /*************************************************************************
@@ -2333,17 +1801,7 @@ TEST(test_test_IPS_MNTN_Ipv4DataParse, IPS_MNTN_Ipv4DataParse_006)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_Ipv4DataParse_007
-功能描述:
-测试编号:test_IPS_MNTN_Ipv4DataParse_007
-测试标题:
-预期结果:
 
-1.日    期 : 2014年5月29日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_Ipv4DataParse, IPS_MNTN_Ipv4DataParse_007)
 {
     /*************************************************************************
@@ -2370,17 +1828,7 @@ TEST(test_test_IPS_MNTN_Ipv4DataParse, IPS_MNTN_Ipv4DataParse_007)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_Ipv4DataParse_008
-功能描述:
-测试编号:test_IPS_MNTN_Ipv4DataParse_008
-测试标题:
-预期结果:
 
-1.日    期 : 2014年5月29日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_Ipv4DataParse, IPS_MNTN_Ipv4DataParse_008)
 {
     /*************************************************************************
@@ -2407,17 +1855,7 @@ TEST(test_test_IPS_MNTN_Ipv4DataParse, IPS_MNTN_Ipv4DataParse_008)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_GetIPInfoCfg_001
-功能描述:
-测试编号:test_IPS_MNTN_GetIPInfoCfg_001
-测试标题:
-预期结果:
 
-1.日    期 : 2014年5月30日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_GetIPInfoCfg, IPS_MNTN_GetIPInfoCfg_001)
 {
     /*************************************************************************
@@ -2446,17 +1884,7 @@ TEST(test_test_IPS_MNTN_GetIPInfoCfg, IPS_MNTN_GetIPInfoCfg_001)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_GetIPInfoCfg_002
-功能描述:
-测试编号:test_IPS_MNTN_GetIPInfoCfg_002
-测试标题:
-预期结果:
 
-1.日    期 : 2014年5月30日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_GetIPInfoCfg, IPS_MNTN_GetIPInfoCfg_002)
 {
     /*************************************************************************
@@ -2485,17 +1913,7 @@ TEST(test_test_IPS_MNTN_GetIPInfoCfg, IPS_MNTN_GetIPInfoCfg_002)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_TraceIpInfo_001
-功能描述:
-测试编号:test_IPS_MNTN_TraceIpInfo_001
-测试标题:
-预期结果:
 
-1.日    期 : 2014年5月30日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_TraceIpInfo, IPS_MNTN_TraceIpInfo_001)
 {
     /*************************************************************************
@@ -2524,17 +1942,7 @@ TEST(test_test_IPS_MNTN_TraceIpInfo, IPS_MNTN_TraceIpInfo_001)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_TraceIpInfo_002
-功能描述:
-测试编号:test_IPS_MNTN_TraceIpInfo_002
-测试标题:
-预期结果:
 
-1.日    期 : 2014年5月30日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_TraceIpInfo, IPS_MNTN_TraceIpInfo_002)
 {
     /*************************************************************************
@@ -2563,17 +1971,7 @@ TEST(test_test_IPS_MNTN_TraceIpInfo, IPS_MNTN_TraceIpInfo_002)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_TraceIpInfo_003
-功能描述:
-测试编号:test_IPS_MNTN_TraceIpInfo_003
-测试标题:
-预期结果:
 
-1.日    期 : 2014年5月30日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_TraceIpInfo, IPS_MNTN_TraceIpInfo_003)
 {
     /*************************************************************************
@@ -2602,17 +2000,7 @@ TEST(test_test_IPS_MNTN_TraceIpInfo, IPS_MNTN_TraceIpInfo_003)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_TraceIpInfo_004
-功能描述:
-测试编号:test_IPS_MNTN_TraceIpInfo_004
-测试标题:
-预期结果:
 
-1.日    期 : 2014年5月30日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_TraceIpInfo, IPS_MNTN_TraceIpInfo_004)
 {
     /*************************************************************************
@@ -2641,17 +2029,7 @@ TEST(test_test_IPS_MNTN_TraceIpInfo, IPS_MNTN_TraceIpInfo_004)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_TraceIpInfo_005
-功能描述:
-测试编号:test_IPS_MNTN_TraceIpInfo_005
-测试标题:
-预期结果:
 
-1.日    期 : 2014年5月30日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_TraceIpInfo, IPS_MNTN_TraceIpInfo_005)
 {
     /*************************************************************************
@@ -2683,17 +2061,7 @@ TEST(test_test_IPS_MNTN_TraceIpInfo, IPS_MNTN_TraceIpInfo_005)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_TraceIpInfo_006
-功能描述:
-测试编号:test_IPS_MNTN_TraceIpInfo_006
-测试标题:
-预期结果:
 
-1.日    期 : 2014年5月30日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_TraceIpInfo, IPS_MNTN_TraceIpInfo_006)
 {
     /*************************************************************************
@@ -2725,17 +2093,7 @@ TEST(test_test_IPS_MNTN_TraceIpInfo, IPS_MNTN_TraceIpInfo_006)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_TraceIpInfo_007
-功能描述:
-测试编号:test_IPS_MNTN_TraceIpInfo_007
-测试标题:
-预期结果:
 
-1.日    期 : 2014年5月31日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_TraceIpInfo, IPS_MNTN_TraceIpInfo_007)
 {
     /*************************************************************************
@@ -2767,17 +2125,7 @@ TEST(test_test_IPS_MNTN_TraceIpInfo, IPS_MNTN_TraceIpInfo_007)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_TraceIpInfo_008
-功能描述:
-测试编号:test_IPS_MNTN_TraceIpInfo_008
-测试标题:
-预期结果:
 
-1.日    期 : 2014年5月31日
-  作    者 : liukai
-  修改内容 : 新生成linux WinGDB UT用例
-*****************************************************************************/
 TEST(test_test_IPS_MNTN_TraceIpInfo, IPS_MNTN_TraceIpInfo_008)
 {
     /*************************************************************************

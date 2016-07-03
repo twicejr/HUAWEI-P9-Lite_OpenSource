@@ -1,15 +1,4 @@
-/*************************************************************************
-*   版权所有(C) 2008-2013, 深圳华为技术有限公司.
-*
-*   文 件 名    :  bbp_balong.c
-*
-*   作    者    :  x00195528
-*
-*   描    述    :  本文件主要实现BBP模块的驱动
-*
-*   修改记录    :  2014年6月5日 创建
 
-*************************************************************************/
 /*lint -save -e537 -e656 -e801*/
 #include <string.h>
 #include <stdlib.h>
@@ -160,7 +149,7 @@ int bbp_int_ltetf_enable(void)
     u32 lbbp_switch = 0;
     int iret = BSP_OK;
 
-    bsp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
 
     /*掉电保护，如果BBP掉电，返回0xffff*/
     /*ques2-return error*/
@@ -175,7 +164,7 @@ int bbp_int_ltetf_enable(void)
         iret = enable_irq(g_bbpinfo.bbpint[BBP_INT_LTETF].irq);
     }
 
-    bsp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
 
     return iret;
 }
@@ -192,7 +181,7 @@ void bbp_int_ltetf_disable(void)
     unsigned long bbp_flag = 0;;
     u32 lbbp_switch = 0;
 
-    bsp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
 
     /*掉电保护，如果BBP掉电，返回0xffff*/
     lbbp_switch = bbp_get_ltemtcmos_status();
@@ -205,7 +194,7 @@ void bbp_int_ltetf_disable(void)
 
     (void)disable_irq(g_bbpinfo.bbpint[BBP_INT_LTETF].irq );
 
-    bsp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
 
     return ;
 }
@@ -221,7 +210,7 @@ void bbp_int_ltetf_clear(void)
     unsigned long bbp_flag = 0;;
     u32 lbbp_switch = 0;
 
-    bsp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
 
     /*掉电保护，bbp没有掉电时候才可访问*/
     lbbp_switch = bbp_get_ltemtcmos_status();
@@ -233,7 +222,7 @@ void bbp_int_ltetf_clear(void)
         bbp_stamp_set(&g_bbpinfo.om->stamp_ltetf[BBP_LTEINT_CLEAR_CLS]);
     }
 
-    bsp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
 }
 /*****************************************************************************
 * 函数  : bbp_int_ltetf_handle
@@ -287,7 +276,7 @@ int bbp_int_tdstf_enable(void)
     unsigned long bbp_flag = 0;
     int iret = BSP_OK;
 
-    bsp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
 
     /*掉电保护，如果BBP掉电，返回-1*/
     tbbp_switch = bbp_get_twmtcmos_status();
@@ -306,7 +295,7 @@ int bbp_int_tdstf_enable(void)
         iret = BSP_ERROR;
     }
 
-    bsp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
 
     return iret;
 }
@@ -323,7 +312,7 @@ void bbp_int_tdstf_disable(void)
     u32 tbbp_switch = 0;
     unsigned long bbp_flag = 0;
 
-    bsp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
 
     /*掉电保护，如果BBP掉电，返回*/
     tbbp_switch = bbp_get_twmtcmos_status();
@@ -335,7 +324,7 @@ void bbp_int_tdstf_disable(void)
     }
     (void)disable_irq(g_bbpinfo.bbpint[BBP_INT_TDSTF].irq);
 
-    bsp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
 
     return;
 }
@@ -352,7 +341,7 @@ static void bbp_int_tdstf_clear(void)
     u32 tbbp_switch = 0;
     unsigned long bbp_flag = 0;
 
-    bsp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
 
     /*掉电保护，如果BBP掉电，返回0xffff*/
     tbbp_switch = bbp_get_twmtcmos_status();
@@ -363,7 +352,7 @@ static void bbp_int_tdstf_clear(void)
         bbp_stamp_set(&g_bbpinfo.om->stamp_tdstf[BBP_TDSINT_CLEAR_CLS]);
     }
 
-    bsp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
 
     return;
 }
@@ -566,7 +555,7 @@ u16 bbp_get_lte_sysframe(void)
     u32 lbbp_switch = 0;
     u16 framenum = BBP_POWER_DOWN_BACK;
 
-    bsp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
 
     /*掉电保护，如果BBP掉电，返回0xffff*/
     lbbp_switch = bbp_get_ltemtcmos_status();
@@ -576,7 +565,7 @@ u16 bbp_get_lte_sysframe(void)
         framenum = (u16)hi_bbp_get_lte_fn();
     }
 
-    bsp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
 
     return framenum;
 }
@@ -594,7 +583,7 @@ u16 bbp_get_lte_subframe(void)
     u32 lbbp_switch = 0;
     u16 framenum = BBP_POWER_DOWN_BACK;
 
-    bsp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
 
     /*掉电保护，如果BBP掉电，返回0xffff*/
     lbbp_switch = bbp_get_ltemtcmos_status();
@@ -604,7 +593,7 @@ u16 bbp_get_lte_subframe(void)
         framenum = (u16)hi_bbp_get_lte_sfn();
     }
 
-    bsp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
 
     return framenum;
 }
@@ -621,7 +610,7 @@ u16 bbp_get_tds_subframe(void)
     u32 tbbp_switch = 0;
     u16 framenum = BBP_POWER_DOWN_BACK;
 
-    bsp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
 
     /*掉电保护，如果BBP掉电，返回0xffff*/
     tbbp_switch = bbp_get_twmtcmos_status();
@@ -632,7 +621,7 @@ u16 bbp_get_tds_subframe(void)
         framenum &= BBP_TDS_STU_SFN_MASK;
     }
 
-    bsp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
 
     return framenum;
 }
@@ -650,7 +639,7 @@ u16 bbp_set_tds_subframe_offset(u16 sf_offset)
     unsigned long bbp_flag = 0;
     u32 tbbp_switch = 0;
 
-    bsp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
 
     /*掉电保护，如果BBP掉电，返回0xffff*/
     tbbp_switch = bbp_get_twmtcmos_status();
@@ -660,7 +649,7 @@ u16 bbp_set_tds_subframe_offset(u16 sf_offset)
         ret = BBP_OK;
     }
 
-    bsp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
 
     return ret;
 
@@ -1364,6 +1353,7 @@ void bbp_dma_finish(struct bbp_dma_cfg * dma_config)
 {
     u32 status = 0;
     u32 dma_chan = 0;
+    u32 time_delta = 0;
 
     bbp_stamp_set(&g_bbpinfo.om->stamp_dma[BBP_DMAFINISH_IN]);
     dma_chan = dma_config->chan;
@@ -1377,6 +1367,11 @@ void bbp_dma_finish(struct bbp_dma_cfg * dma_config)
     do
     {
         status = readl((u32)g_bbpinfo.part[BBP_DMA].reg_base + HI_BBP_FAST_CH0_CFG_OFFSET+ 0x10*dma_chan);
+
+        time_delta = get_timer_slice_delta(g_bbpinfo.om->stamp_dma[BBP_DMAFINISH_IN], bsp_get_slice_value());
+        if(time_delta > 300){
+            system_error(DRV_ERRNO_BBP_DMA_TIMEOUT, 0, 0, NULL, 0);
+        }
     }while(status & (1 << BBP_DMA_BUSY_BIT_OFFSET));
 
     bbp_stamp_set(&g_bbpinfo.om->stamp_dma[BBP_DMAFINISH_BUSY]);

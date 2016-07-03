@@ -305,7 +305,6 @@ typedef struct tagRTENTRY
     UCHAR    ucPadding[2];
     ULONG    ulLspToken;
     ULONG    ulInLabel;     /* vpn-lsp的内层标签 add by james for D19207 03/01/15 */
-/*x36530 同步25代码20041130*/
     USHORT   rt_usOriginAs;
     USHORT   rt_usPeerAs;
     ULONG    rt_ulBGPNexthop;
@@ -368,7 +367,6 @@ typedef struct tagRTENTRY
 #define FIB_DEBUG_AGE        4
 #define FIB_DEBUG_ROUTE      5
 
-/*added by huzhiyong 2002/07/03定义show fib的命令类型*/
 #define Show_Fib_AclList                11
 #define Show_Fib_PreFix                 12
 #define Show_Fib_StringSearch           13
@@ -489,7 +487,6 @@ typedef struct tagRTMSG
             ULONG       rtmsg_ulOldATIndex_ex;  /* old index of virtual link between rtmsg_stLclAddr/rtmsg_stLclMask and gateway */
             /*End of Modification BYAD07036*/
             /* #ifdef (RM_NETSTREAM) */
-/*x36530 同步25代码20041130*/
             USHORT      rtmsg_usFirstAs_ex;
             USHORT      rtmsg_usLastAs_ex;
             ULONG       rtmsg_ulOriginNexthop_ex;

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2012, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   :
-  版 本 号   : 初稿
-  作    者   : z00161729
-  生成日期   : 2013年3月26日
-  最近修改   :
-  功能描述   : TafMmaSndMscc.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年3月26日
-    作    者   : z00161729
-    修改内容   : 创建文件
-
-******************************************************************************/
 #ifndef _TAF_MMA_SND_MSCC_H_
 #define _TAF_MMA_SND_MSCC_H_
 /*****************************************************************************
@@ -61,13 +44,7 @@ extern "C" {
 /*****************************************************************************
   7 STRUCT定义
 *****************************************************************************/
-/*****************************************************************************
-结构名    : TAF_XCALL_CS_ERR_CODE_MAP_STRU
-结构说明  : TAF 层CS/PS原因值转换成XSD格式的
- 1.日    期   : 2014年12月4日
-   作    者   : w00176964
-   修改内容   : 新增
-****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                  ulCsPsCause;
@@ -106,21 +83,17 @@ VOS_VOID TAF_MMA_SndMsccModeChangeReq(
     NAS_MSCC_PIF_MS_MODE_ENUM_UINT32         enMsMode
 );
 
-/* Modified by b00269685 for L-C互操作项目, 2014-2-17, begin */
 VOS_UINT32 TAF_MMA_SndMsccAttachReq(
     VOS_UINT32                                              ulOpID,
     NAS_MSCC_PIF_ATTACH_TYPE_ENUM_UINT32                         enAttachType,
     TAF_MMA_EPS_ATTACH_REASON_ENUM_UINT8                    enAttachReason
 );
-/* Modified by b00269685 for L-C互操作项目, 2014-2-17, end */
 
-/* Added by s00246516 for L-C互操作项目, 2014-02-14, Begin */
 VOS_UINT32 TAF_MMA_SndMsccDetachReq(
     VOS_UINT8                                  ucOpID,
     NAS_MSCC_PIF_DETACH_TYPE_ENUM_UINT32            enDetachType,
     TAF_MMA_DETACH_CAUSE_ENUM_UINT8            enDetachCause
 );
-/* Added by s00246516 for L-C互操作项目, 2014-02-14, End */
 
 #if (FEATURE_ON == FEATURE_CSG)
 VOS_UINT32 TAF_MMA_SndMsccCsgListSearchReq(VOS_VOID);
@@ -142,14 +115,12 @@ VOS_VOID TAF_MMA_SndMsccPowerOffReq(
     NAS_MSCC_PIF_POWER_OFF_CAUSE_ENUM_UINT32 enCause
 );
 
-/* Modified by w00167002 for L-C互操作项目, 2014-2-13, begin */
 VOS_VOID  TAF_MMA_SndMsccSysCfgReq(
     TAF_MMA_SYS_CFG_PARA_STRU          *pSysCfgReq,
     VOS_UINT8                           ucOnlyRoamParaChanged,
     VOS_UINT8                           ucIsNeedAttachPs
 );
 
-/* Modified by w00167002 for L-C互操作项目, 2014-2-13, end */
 
 VOS_VOID TAF_MMA_SndMsccNetScanMsgReq(
     TAF_MMA_NET_SCAN_REQ_STRU          *pstNetScanReq
@@ -214,7 +185,6 @@ VOS_VOID TAF_MMA_SndMsccEndSessionNotify(
 
 
 
-/* Added by b00269685 for L-C互操作项目, 2014-2-13, begin */
 VOS_UINT32 TAF_MMA_SndMsccAcqReq(
     TAF_MMA_ACQ_PARA_STRU              *pstMmaAcqPara
 );
@@ -226,7 +196,6 @@ VOS_UINT32 TAF_MMA_SndMsccRegReq(
 VOS_UINT32 TAF_MMA_SndMsccPowerSaveReq(
     TAF_MMA_POWER_SAVE_PARA_STRU       *pstMmaPowerSavePara
 );
-/* Added by b00269685 for L-C互操作项目, 2014-2-13, end */
 
 VOS_VOID TAF_MMA_SndMsccImsSrvInfoNotify(
     VOS_UINT8                           ucImsCallFlg

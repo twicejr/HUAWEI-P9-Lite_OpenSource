@@ -1,20 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmEcall.c
-  版 本 号   : 初稿
-  作    者   : y00245242
-  生成日期   : 2014年3月31日
-  最近修改   :
-  功能描述   : NasMmEcall.c文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年3月31日
-    作    者   : y00245242
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
    1 头文件包含
@@ -46,287 +30,87 @@
 /*****************************************************************************
    3 函数实现
 *****************************************************************************/
-/*lint -e958 修改人: w00176964 for RSE 2014-06-19 begin */
-/*****************************************************************************
- 函 数 名  : NAS_MM_GetEcallInfoAddr
- 功能描述  : 获取eCall相关数据信息地址
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回eCall数据信息地址
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2014年3月31日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 NAS_MM_ECALL_INFO_STRU *NAS_MM_GetEcallInfoAddr(VOS_VOID)
 {
     return &(g_MmGlobalInfo.stEcallInfo);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_SetT3242ExpiredFlg
- 功能描述  : 设置T3242超时标识
 
- 输入参数  : ucT3242ExpiredFlg -- T3242超时标识
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2014年3月31日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MM_SetT3242ExpiredFlg(VOS_UINT8 ucT3242ExpiredFlg)
 {
     NAS_MM_GetEcallInfoAddr()->ucT3242ExpiredFlg = ucT3242ExpiredFlg;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_GetT3242ExpiredFlg
- 功能描述  : 获取T3242超时标识
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回T3242超时标识
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2014年3月31日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 NAS_MM_GetT3242ExpiredFlg(VOS_VOID)
 {
     return (NAS_MM_GetEcallInfoAddr()->ucT3242ExpiredFlg);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_SetT3243ExpiredFlg
- 功能描述  : 设置T3243超时标识
 
- 输入参数  : ucT3243ExpiredFlg -- T3243超时标识
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2014年3月31日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MM_SetT3243ExpiredFlg(VOS_UINT8 ucT3243ExpiredFlg)
 {
     NAS_MM_GetEcallInfoAddr()->ucT3243ExpiredFlg = ucT3243ExpiredFlg;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_GetT3243ExpiredFlg
- 功能描述  : 获取T3243超时标识
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回T3243超时标识
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2014年3月31日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 NAS_MM_GetT3243ExpiredFlg(VOS_VOID)
 {
     return (NAS_MM_GetEcallInfoAddr()->ucT3243ExpiredFlg);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_GetT3242StartNeededFlg
- 功能描述  : 获取启动T3242定时器标识
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回T3242启动标识
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2014年4月9日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 NAS_MM_GetT3242StartNeededFlg(VOS_VOID)
 {
     return (NAS_MM_GetEcallInfoAddr()->ucT3242StartNeededFlg);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_SetT3242StartNeededFlg
- 功能描述  : 设置T3242启动标识
 
- 输入参数  : ucT3242StartNeededFlg -- T3242启动标识
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2014年4月9日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MM_SetT3242StartNeededFlg(VOS_UINT8 ucT3242StartNeededFlg)
 {
     NAS_MM_GetEcallInfoAddr()->ucT3242StartNeededFlg = ucT3242StartNeededFlg;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_GetT3243StartNeededFlg
- 功能描述  : 获取启动T3243定时器标识
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回T3243启动标识
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2014年4月9日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 NAS_MM_GetT3243StartNeededFlg(VOS_VOID)
 {
     return (NAS_MM_GetEcallInfoAddr()->ucT3243StartNeededFlg);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_SetT3243StartNeededFlg
- 功能描述  : 设置T3243启动标识
 
- 输入参数  : ucT3243StartNeededFlg -- T3243启动标识
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2014年4月9日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MM_SetT3243StartNeededFlg(VOS_UINT8 ucT3243StartNeededFlg)
 {
     NAS_MM_GetEcallInfoAddr()->ucT3243StartNeededFlg = ucT3243StartNeededFlg;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_RcvT3242Expired_MmIdleNoCellAvailable
- 功能描述  : 在mm idle下no cell available状态下，收到T3242超时事件处理。
-             在该状态下，仅记录T3242超时标志，不做其他处理
 
- 输入参数  : pRcvMsg -- T3242定时器超时消息指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2014年3月31日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MM_RcvT3242Expired_MmIdleNoCellAvailable(VOS_VOID *pRcvMsg)
 {
     NAS_MM_SetT3242ExpiredFlg(VOS_TRUE);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_RcvT3242Expired_MmIdleNormalService
- 功能描述  : 在mm idle下的normal service子状态，收到T3242超时事件处理
-             在该状态下，仅记录T3242超时标志，不做其他处理
- 输入参数  : pRcvMsg -- T3242定时器超时消息指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年3月31日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MM_RcvT3242Expired_MmIdleNormalService(VOS_VOID *pRcvMsg)
 {
     /* 调用eCall inactivity 流程 */
     NAS_MM_PerformECallInactivity();
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_RcvT3243Expired_MmIdleNoCellAvailable
- 功能描述  : 在mm idle下no cell available状态下，收到T3243超时事件处理。
-             在该状态下，仅记录T3242超时标志，不做其他处理
 
- 输入参数  : pRcvMsg -- T3243定时器超时消息指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2014年3月31日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MM_RcvT3243Expired_MmIdleNoCellAvailable(VOS_VOID *pRcvMsg)
 {
     NAS_MM_SetT3243ExpiredFlg(VOS_TRUE);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_RcvT3243Expired_MmIdleNormalService
- 功能描述  : 在mm idle下的normal service子状态，收到T3243超时事件处理
-             在该状态下，仅记录T3243超时标志，不做其他处理
 
- 输入参数  : pRcvMsg -- T3243定时器超时消息指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2014年3月31日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MM_RcvT3243Expired_MmIdleNormalService(VOS_VOID *pRcvMsg)
 {
     /* 调用eCall inactivity 流程 */
     NAS_MM_PerformECallInactivity();
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_StopAllTimersRelatedToEcall
- 功能描述  : 停止所有与eCall相关的所有定时器
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2014年4月1日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MM_StopAllTimersRelatedToEcall(VOS_VOID)
 {
     Mm_TimerStop(MM_TIMER_T3242);
@@ -334,21 +118,7 @@ VOS_VOID NAS_MM_StopAllTimersRelatedToEcall(VOS_VOID)
     Mm_TimerStop(MM_TIMER_T3243);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_ClearAllEcallTimersExpiredFlg
- 功能描述  : 清除所有eCall定时器超时flag
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2014年4月1日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MM_ClearAllEcallTimersExpiredFlg(VOS_VOID)
 {
     NAS_MM_SetT3242ExpiredFlg(VOS_FALSE);
@@ -356,21 +126,7 @@ VOS_VOID NAS_MM_ClearAllEcallTimersExpiredFlg(VOS_VOID)
     NAS_MM_SetT3243ExpiredFlg(VOS_FALSE);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_ClearAllEcallTimersStartNeededFlg
- 功能描述  : 清除所有eCall定时器启动标识
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2014年4月22日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MM_ClearAllEcallTimersStartNeededFlg(VOS_VOID)
 {
     NAS_MM_SetT3242StartNeededFlg(VOS_FALSE);
@@ -378,20 +134,7 @@ VOS_VOID NAS_MM_ClearAllEcallTimersStartNeededFlg(VOS_VOID)
     NAS_MM_SetT3243StartNeededFlg(VOS_FALSE);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_RcvMmcMmSysInfo_MmIdleECallInactive
- 功能描述  : MM在eCall Inactive状态收到MMC转发到MM的系统消息处理
- 输入参数  : pRcvMsg------MMC转发到MM的系统消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年4月4日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MM_RcvMmcMmSysInfo_MmIdleECallInactive(
     VOS_VOID                           *pRcvMsg
 )
@@ -414,20 +157,7 @@ VOS_VOID NAS_MM_RcvMmcMmSysInfo_MmIdleECallInactive(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_RcvMmcMmAttachReq_MmIdleECallInactive
- 功能描述  : MM在eCall Inactive状态收到MMC转发到MM的attach请求消息处理
- 输入参数  : pRcvMsg------MMC转发到MM的attach请求消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年4月4日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MM_RcvMmcMmAttachReq_MmIdleECallInactive(
     VOS_VOID                           *pRcvMsg
 )
@@ -450,20 +180,7 @@ VOS_VOID NAS_MM_RcvMmcMmAttachReq_MmIdleECallInactive(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_ProcMmcMmDetachReq_MmIdleECallInactive
- 功能描述  : MM在eCall Inactive状态收到MMC转发到MM的detach请求消息处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年4月4日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MM_ProcMmcMmDetachReq_MmIdleECallInactive( VOS_VOID )
 {
     /* 判断等待标志是否存在，如果存在则发送MMCMM_DETACH CNF */
@@ -483,20 +200,7 @@ VOS_VOID NAS_MM_ProcMmcMmDetachReq_MmIdleECallInactive( VOS_VOID )
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_RcvMmcMmPlmnSrchInit_MmIdleECallInactive
- 功能描述  : MM在eCall Inactive状态收到MMC转发到MM的搜网指示的消息处理
- 输入参数  : pRcvMsg------MMC转发到MM的搜网指示的消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年4月4日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MM_RcvMmcMmPlmnSrchInit_MmIdleECallInactive(
     VOS_VOID                           *pRcvMsg
 )
@@ -509,20 +213,7 @@ VOS_VOID NAS_MM_RcvMmcMmPlmnSrchInit_MmIdleECallInactive(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_RcvMmcMmCoverageLostInd_MmIdleECallInactive
- 功能描述  : MM在eCall Inactive状态收到MMC转发到MM的丢网指示的消息处理
- 输入参数  : pRcvMsg------MMC转发到MM的丢网指示的消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年4月4日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MM_RcvMmcMmCoverageLostInd_MmIdleECallInactive(
     VOS_VOID                           *pRcvMsg
 )
@@ -543,20 +234,7 @@ VOS_VOID NAS_MM_RcvMmcMmCoverageLostInd_MmIdleECallInactive(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_RcvMmcMmPowerOffReq_MmIdleECallInactive
- 功能描述  : MM在eCall Inactive状态收到MMC转发到MM的关机请求消息的处理
- 输入参数  : pRcvMsg------MMC转发到MM的关机请求消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年4月4日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MM_RcvMmcMmPowerOffReq_MmIdleECallInactive(
     VOS_VOID                           *pRcvMsg
 )
@@ -572,20 +250,7 @@ VOS_VOID NAS_MM_RcvMmcMmPowerOffReq_MmIdleECallInactive(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_RcvMmcMmWAcInfoChangeInd_MmIdleECallInactive
- 功能描述  : MM在eCall Inactive状态收到MMC转发到MM的W的AC信息改变请求消息处理
- 输入参数  : pRcvMsg------MMC转发到MM的W的AC信息改变请求消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年4月4日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MM_RcvMmcMmWAcInfoChangeInd_MmIdleECallInactive(
     VOS_VOID                           *pRcvMsg
 )
@@ -605,23 +270,7 @@ VOS_VOID NAS_MM_RcvMmcMmWAcInfoChangeInd_MmIdleECallInactive(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_RcvSmsEstReq_MmIdleECallInactive
- 功能描述  : MM在eCall Inactive状态收到SMS的建链请求的消息处理
- 输入参数  : pRcvMsg------SMS的建链请求的消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年4月4日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   :2014年9月24日
-   作    者   :s00217060
-   修改内容   :for cs_err_log
-*****************************************************************************/
 VOS_VOID NAS_MM_RcvSmsEstReq_MmIdleECallInactive(
     VOS_VOID                           *pRcvMsg
 )
@@ -637,23 +286,7 @@ VOS_VOID NAS_MM_RcvSmsEstReq_MmIdleECallInactive(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_RcvSsEstReq_MmIdleECallInactive
- 功能描述  : MM在eCall Inactive状态收到SS的建链请求的消息处理
- 输入参数  : pRcvMsg------SS的建链请求的消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年4月4日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   :2014年9月24日
-   作    者   :s00217060
-   修改内容   :for cs_err_log
-*****************************************************************************/
 VOS_VOID NAS_MM_RcvSsEstReq_MmIdleECallInactive(
     VOS_VOID                           *pRcvMsg
 )
@@ -668,23 +301,7 @@ VOS_VOID NAS_MM_RcvSsEstReq_MmIdleECallInactive(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_RcvCcEstReq_MmIdleECallInactive
- 功能描述  : MM在eCall Inactive状态收到CC的建链请求的消息处理
- 输入参数  : pRcvMsg------CC的建链请求的消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年4月4日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   :2014年9月24日
-   作    者   :s00217060
-   修改内容   :for cs_err_log
-*****************************************************************************/
 VOS_VOID NAS_MM_RcvCcEstReq_MmIdleECallInactive(
     VOS_VOID                           *pRcvMsg
 )
@@ -774,23 +391,7 @@ VOS_VOID NAS_MM_RcvCcEstReq_MmIdleECallInactive(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_PerformECallInactivity
- 功能描述  : eCall Inactivity专有流程的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年4月4日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2014年6月13日
-   作    者   : w00242748
-   修改内容   : DSDS 新特性
-*****************************************************************************/
 VOS_VOID NAS_MM_PerformECallInactivity( VOS_VOID )
 {
     MM_MSG_IMSI_DETACH_IND_STRU         stDetachIndMsg;
@@ -863,21 +464,7 @@ VOS_VOID NAS_MM_PerformECallInactivity( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_RecordEcallTimerStartNeededFlag
- 功能描述  : 处理eCall相关定时器启动标识
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2014年4月9日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MM_RecordEcallTimerStartNeededFlag(VOS_VOID)
 {
     /* 非eCall only模式，不需要启动T3243/T3243 */
@@ -913,21 +500,7 @@ VOS_VOID NAS_MM_RecordEcallTimerStartNeededFlag(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_ClearEcallTimerInfo
- 功能描述  : 清除ecall定时器相关信息
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2014年4月9日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MM_ClearEcallTimerInfo(VOS_VOID)
 {
     /* 停止所有eCall相关定时器 */
@@ -941,21 +514,7 @@ VOS_VOID NAS_MM_ClearEcallTimerInfo(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_InitEcallInfo
- 功能描述  : 初始化eCall信息
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2014年4月9日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MM_InitEcallInfo(VOS_VOID)
 {
     /* 清除eCall T3242/T3243定时器启动标识 */
@@ -965,21 +524,7 @@ VOS_VOID NAS_MM_InitEcallInfo(VOS_VOID)
     NAS_MM_ClearAllEcallTimersExpiredFlg();
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_ProcEcallTimerStartNeededFlg
- 功能描述  : 启动eCall定时器
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2014年4月9日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MM_ProcEcallTimerStartNeededFlg(VOS_VOID)
 {
     if (VOS_TRUE == NAS_MM_GetT3242StartNeededFlg())
@@ -997,20 +542,7 @@ VOS_VOID NAS_MM_ProcEcallTimerStartNeededFlg(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_ProcBufferMsg_MmIdleECallInactive
- 功能描述  : MM在eCall Inactive状态处理缓存的消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年5月14日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MM_ProcBufferMsg_MmIdleECallInactive( VOS_VOID )
 {
     MMCC_EST_REQ_STRU                   stCcEstReqMsg;
@@ -1047,7 +579,6 @@ VOS_VOID NAS_MM_ProcBufferMsg_MmIdleECallInactive( VOS_VOID )
 }
 
 #endif
-/*lint -e958 修改人: w00176964 for RSE 2014-06-19 end */
 
 
 

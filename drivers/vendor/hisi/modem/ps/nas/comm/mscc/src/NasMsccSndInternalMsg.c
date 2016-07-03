@@ -163,20 +163,7 @@ VOS_VOID NAS_MSCC_SndAbortFsmReq(VOS_VOID)
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_SndInternalSysAcqReq
-Description     :   Funcion is used to send internal system acquire reqeust message in MSCC.
-Input parameters:   None
-Outout parameters:  None
-Return Value    :   None
-Modify History:
-    1)  Date    :   2015-04-03
-        Author  :   m00312079
-        Modify content :    Create
-    2)  Date    :   2015-12-30
-        Author  :   w00176964
-        Modify content :CL_MUTIMODE_OPTIMIZE新增搜索类型
-*****************************************************************************/
+
 VOS_VOID NAS_MSCC_SndInternalSysAcqReq(
     NAS_MSCC_SYS_ACQ_SCENE_ENUM_UINT32                      enSysAcqScene,
     NAS_MSCC_PIF_PLMN_SEARCH_TYPE_ENUM_UINT32               enLteSrchType

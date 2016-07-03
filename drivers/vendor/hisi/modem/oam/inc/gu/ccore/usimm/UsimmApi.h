@@ -1,16 +1,4 @@
-/************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : UsimmApi.h
-  Author      : zhuli 00100318
-  Version     : V100R002
-  Date        : 2008-05-15
-  Description : 该头文件定义了---
-  History     :
-  1.Date:2008-07-02
-     Author: m00128685
-     Modification:Modify the definition of enum
 
-************************************************************************/
 
 #ifndef _USIMM_API_H_
 #define _USIMM_API_H_
@@ -91,14 +79,7 @@ extern "C" {
 *******************************************************************************/
 
 #if (OSA_CPU_CCPU == VOS_OSA_CPU)
-/*****************************************************************************
- 枚举名    : USIMM_CARDSTATUS_IND_ENUM
- 枚举说明  : SIM卡插入拔出类型
 
-  1.日    期   : 2013年09月25日
-    作    者   : h59254
-    修改内容   : V3R3 SIM卡热插拨项目新增
-*****************************************************************************/
 enum USIMM_CARDSTATUS_IND_ENUM
 {
     USIMM_CARDSTATUS_IND_PLUGOUT = SIM_CARD_OUT,
@@ -112,14 +93,7 @@ typedef VOS_UINT USIMM_CARDSTATUS_IND_ENUM_UINT32;
 typedef VOS_UINT16 USIMM_CMDTYPE_ENUM_UINT16;
 typedef VOS_UINT32 USIMM_CMDTYPE_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : USIMM_FILE_TYPE_ENUM
- 枚举说明  : SIM卡文件类型
 
-  1.日    期   : 2015年04月18日
-    作    者   : d00212987
-    修改内容   : SIM卡多应用迭代II
-*****************************************************************************/
 enum USIMM_FILE_TYPE_ENUM
 {
     USIMM_EF_FILE               = 0,
@@ -163,13 +137,7 @@ typedef struct
     VOS_UINT8                       *pucEf;
 }USIMM_GETCNF_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : USIMM_TELECOM_AUTH_INFO_STRU
- 结构说明  : 电信鉴权回复信息
- 1.日    期   : 2013年07月27日
-   作    者   : g47350
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     USIMM_AUTH_RESULT_ENUM_UINT32   enResult;
@@ -180,13 +148,7 @@ typedef struct
     VOS_UINT8                      *pucAuthRes; /* Auth user response */
 }USIMM_TELECOM_AUTH_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : USIMM_IMS_AUTH_INFO_STRU
- 结构说明  : IMS鉴权回复信息
- 1.日    期   : 2013年07月27日
-   作    者   : g47350
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     USIMM_AUTH_RESULT_ENUM_UINT32   enResult;
@@ -304,13 +266,7 @@ typedef struct
     VOS_UINT8                       aucData[USIMM_AUTH_MSG_PADDING_LEN];
 }USIMM_CMDTYPE_AUTHEN_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : USIMM_ISDB_ACCESS_REQ_STRU
- 结构说明  : USIM模块透传ISDB的APDU的数据结构
- 1.日    期   : 2012年08月28日
-   作    者   : h59254
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -367,14 +323,7 @@ typedef struct
 }USIMM_CARD_INOUT_IND_STRU;
 
 #if (OSA_CPU_CCPU == VOS_OSA_CPU)
-/*****************************************************************************
- 结构名    : USIMM_CARD_STATUS_IND_STRU
- 结构说明  : SIM卡注册回调函数发送消息的数据结构
 
-  1.日    期   : 2013年09月25日
-    作    者   : h59254
-    修改内容   : V3R3 SIM卡热插拨项目新增
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER
@@ -649,14 +598,7 @@ extern VOS_VOID USIMM_QueryEsnMeidRsltCnf(
 *******************************************************************************/
 
 #if (OSA_CPU_CCPU == VOS_OSA_CPU)
-/*****************************************************************************
- 枚举名    : USIMM_CARDSTATUS_IND_ENUM
- 枚举说明  : SIM卡插入拔出类型
 
-  1.日    期   : 2013年09月25日
-    作    者   : h59254
-    修改内容   : V3R3 SIM卡热插拨项目新增
-*****************************************************************************/
 enum USIMM_CARDSTATUS_IND_ENUM
 {
     USIMM_CARDSTATUS_IND_PLUGOUT = SIM_CARD_OUT,
@@ -719,13 +661,7 @@ typedef struct
     VOS_UINT8                       *pucEf;
 }USIMM_GETCNF_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : USIMM_TELECOM_AUTH_INFO_STRU
- 结构说明  : 电信鉴权回复信息
- 1.日    期   : 2013年07月27日
-   作    者   : g47350
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     USIMM_AUTH_RESULT_ENUM_UINT32   enResult;
@@ -736,13 +672,7 @@ typedef struct
     VOS_UINT8                      *pucAuthRes; /* Auth user response */
 }USIMM_TELECOM_AUTH_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : USIMM_IMS_AUTH_INFO_STRU
- 结构说明  : IMS鉴权回复信息
- 1.日    期   : 2013年07月27日
-   作    者   : g47350
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     USIMM_AUTH_RESULT_ENUM_UINT32   enResult;
@@ -904,13 +834,7 @@ typedef struct
     VOS_UINT8                       aucData[USIMM_AUTH_MSG_PADDING_LEN];
 }USIMM_CMDTYPE_AUTHEN_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : USIMM_ISDB_ACCESS_REQ_STRU
- 结构说明  : USIM模块透传ISDB的APDU的数据结构
- 1.日    期   : 2012年08月28日
-   作    者   : h59254
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -993,14 +917,7 @@ typedef struct
 }USIMM_CARD_INOUT_IND_STRU;
 
 #if (OSA_CPU_CCPU == VOS_OSA_CPU)
-/*****************************************************************************
- 结构名    : USIMM_CARD_STATUS_IND_STRU
- 结构说明  : SIM卡注册回调函数发送消息的数据结构
 
-  1.日    期   : 2013年09月25日
-    作    者   : h59254
-    修改内容   : V3R3 SIM卡热插拨项目新增
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER

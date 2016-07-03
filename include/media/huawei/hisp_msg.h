@@ -122,6 +122,7 @@ typedef enum _ucfg_scene_e
 {
     CAMERA_SCENE_NORMAL = 0,
     CAMERA_SCENE_VIDEO,
+    CAMERA_SCENE_DEBUG,
 }ucfg_scene_e;
 
 typedef enum
@@ -180,6 +181,7 @@ typedef struct _msg_req_acquire_camera_t
     char         product_name[NAME_LEN];
     unsigned int input_otp_buffer;
     unsigned int buffer_size;
+    unsigned int input_calib_buffer;
 } msg_req_acquire_camera_t;
 
 typedef struct _msg_ack_acquire_camera_t
@@ -654,6 +656,10 @@ typedef enum
     SUBCMD_SET_RGB2YUV_PARAM,
     SUBCMD_SET_AF_OTP_CALIB_DATA,
     SUBCMD_SET_SATURATION_COMPENSATION,
+    SUBCMD_SET_FLASH_MODE,
+    SUBCMD_SET_LASER_DIRTY,
+    SUBCMD_SET_FACE_LANDMARKS,
+    SUBCMD_SET_AE_ALWAYS_CONVERGE,
 } extendset_info_e;
 
 typedef enum
@@ -739,7 +745,8 @@ typedef struct _msg_event_sent_t
     event_info_e event_id;
     unsigned int frame_number;
     unsigned int stream_id;
-    unsigned int timestamp;
+    unsigned int timestampL;
+    unsigned int timestampH;
     char         event_params[EVENT_PARAMS_LEN];
 } msg_event_sent_t;
 

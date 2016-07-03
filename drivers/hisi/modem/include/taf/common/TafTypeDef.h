@@ -159,19 +159,7 @@ typedef TAF_UINT8           MN_OPERATION_ID_T;  /* Async operation ID type */
 #define TAF_ERR_SS_IMS_BASE             (0x1000)            /* IMS回复的SS错误码 */
 #define TAF_ERR_SS_IMSA_BASE            (0x2000)            /* IMSA回复的SS错误码 */
 
-/*****************************************************************************
- 枚举名    : TAF_ERROR_CODE_ENUM_UINT32
- 结构说明  : TAF层通用错误码
 
-  3.日    期   : 2013年07月09日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseI项目:枚举定义进行调整
-                (1)CC层（网络）的原因值从1~255（目前协议规定最大127）
-                (2)CALL模块内部的原因值从256~511
-                (3)IMS原因值范围512~767
-                (4)IMSA模块内部原因值768~1023
-
-*****************************************************************************/
 enum TAF_ERROR_CODE_ENUM
 {
     TAF_ERR_NO_ERROR                                        = (TAF_ERR_CODE_BASE),          /* 成功 */
@@ -259,7 +247,6 @@ enum TAF_ERROR_CODE_ENUM
 };
 typedef  VOS_UINT32  TAF_ERROR_CODE_ENUM_UINT32;
 
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-5-6, begin */
 #ifndef TAF_SUCCESS
 #define TAF_SUCCESS    TAF_ERR_NO_ERROR     /*函数执行成功*/
 #endif
@@ -302,7 +289,6 @@ typedef TAF_UINT8 TAF_PARA_TYPE;
 #define TAF_TELE_PARA_BUTT               (142)
 
 
-/* Modify by w00199382 for V7代码同步, 2012-04-07, End   */
 
 /*内部使用的参数查询宏定义*/
 #define TAF_MMA_AT_QUERY_PARA_BEGIN (TAF_TELE_PARA_BUTT + 1)/*137*/

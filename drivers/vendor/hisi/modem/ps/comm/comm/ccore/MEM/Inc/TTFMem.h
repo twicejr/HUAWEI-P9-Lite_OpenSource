@@ -309,13 +309,7 @@ enum TTF_OM_EVENT_ID_ENUM
 };
 typedef VOS_UINT16 TTF_OM_EVENT_ID_ENUM_UINT16;
 
-/*****************************************************************************
- 结构名    : TTF_MEM_LEAK_INFO_IND_STRU
- 结构说明  : 上报内存泄露消息结构,
- 1.日    期   : 2011年12月19日
-   作    者   : C00173809
-   修改内容   : 创建文件
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                          /* 消息头 */        /* _H2ASN_Skip */
@@ -477,16 +471,7 @@ typedef struct TTF_MEM_FLOW_CTRL_INFO
 }TTF_MEM_FLOW_CTRL_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : TTF_INVALID_MEM_TYPE_ENUM_UINT8
- 协议表格  :
- ASN.1描述 :
- 结构说明  : TTF MEM内存非法类型
 
-1.日    期 : 2011年11月28日
-  作    者 : s00164817
-  修改内容 : 新建
-*****************************************************************************/
 enum TTF_INVALID_MEM_TYPE_ENUM
 {
     TTF_INVALID_MEM_TYPE_BLKTYPE = 1,               /* 内存类型 */

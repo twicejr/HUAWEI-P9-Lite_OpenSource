@@ -1,13 +1,4 @@
-/******************************************************************************
 
-   Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : NasLppMain.c
-  Description     : 该C文件给出了LPP_MAIN模块的实现
-  History           :
-  lifuxin 00253982 2015-7-7 新开发
-******************************************************************************/
 
 /*****************************************************************************
   1 Include HeadFile
@@ -46,16 +37,7 @@ extern "C" {
 /*****************************************************************************
   3 Function
 *****************************************************************************/
-/*****************************************************************************
- Function Name  : NAS_LPP_TaskEntry
- Description    : LPP模块TASK入口处理,根据接收到的消息的所属模块，将消息分发给处理该模块消息的子模块。
- Input          : struct MsgCB* pMsg-----------消息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lifuxin 00253982 2015-7-7 Draft Enact
- *****************************************************************************/
 VOS_VOID  NAS_LPP_TaskEntry(MsgBlock * pMsg)
 {
     /* 定义消息头指针*/
@@ -124,15 +106,7 @@ VOS_VOID  NAS_LPP_TaskEntry(MsgBlock * pMsg)
 #endif
     return;
 }
-/*****************************************************************************
- Function Name  : NAS_LPP_PidInit
- Discription    : LPP的PID初始化函数
- Input          :
- Output         : None
- Return         : None
- History:
-      1.lifuxin 00253982 2015-7-7 Draft Enact
-*****************************************************************************/
+
 VOS_UINT32 NAS_LPP_PidInit ( enum VOS_INIT_PHASE_DEFINE ip )
 {
 #if (FEATURE_LPP == FEATURE_ON)

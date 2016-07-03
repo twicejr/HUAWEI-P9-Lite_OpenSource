@@ -1,26 +1,4 @@
-/*******************************************************************************
-*
-*
-*                Copyright 2008, Huawei Technologies Co. Ltd.
-*                            ALL RIGHTS RESERVED
-*
-*-------------------------------------------------------------------------------
-*
-*                              am4_api.h
-*
-*  Project Code: V100R007
-*   Module Name: AM4
-*  Date Created: 2008-03-07
-*        Author: z00104207
-*   Description: VR7用户API整改
-*
-*-------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  -----------------------------------------------------------------------------
-*  2008-03-07   z00104207               Create
-*
-*******************************************************************************/
+
 #ifndef __AM4_API_H__
 #define __AM4_API_H__
 
@@ -74,7 +52,6 @@ typedef struct tagTCPIP_IPIFADDR
     ULONG  ulIfIndex;
 } TCPIP_IPIFADDR_S;
 
-/*VR7用户API整改，数据结构IP_AM4_IF_ADDR_S挪自am4_core.h，edited by z00104207*/
 typedef struct tagIpAm4IfAddr
 {
     ULONG ulAddrNum;
@@ -246,456 +223,45 @@ typedef struct tagIpAddrDecOper
 
 typedef ULONG(*AM4_SHELL_RM_CALLBACK_FUNC_PTR)(USHORT usInstanceID, struct tagIpAddrNotifyMsg *pstIpMsg, struct tagIfAddrmsg * pstIPMsg);/*add by x36530*/
 
-/*******************************************************************************
-*    Func Name: TCPIP_AddIpAddr
-*  Description: 屏蔽主从概念增加地址
-*        Input: ULONG ulIpAddr:地址(主机序)
-*               ULONG ulSubnetMask:子网掩码(主机序)
-*               ULONG ulIfIndex:接口索引
-*       Output: 
-*       Return: 成功:ERR_AM4_OK
-*               失败:
-*               ERR_AM4_INVALIDADDR
-*               ERR_AM4_ADDREXIST
-*               ERR_AM4_INVALIDIN
-*               ERR_AM4_NOFREE_ITEM
-*               ERR_AM4_HA_IS_SMOOTHING
-*               ERR_AM4_INTERFACE
-*               ERR_AM4_IPCTL
-*               ERR_AM4_GENERR_ADDSECONDARY
-*               ERR_AM4_GENERR_ADDPRI
-*               ERR_AM4_ADDSECONDARY
-*               ERR_AM4_ADDPRI
-*               ERR_AM4_NOFREE_ITEM_2
-*               ERR_AM4_NOFREE_ITEM_3
-*               ERR_AM4_NOFREE_ITEM_4
-*               ERR_AM4_PARAM
-*               ERR_AM4_ADDRINEXISTENCE
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-07   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_AddIpAddr (ULONG ulIpAddr,ULONG ulSubnetMask,ULONG ulIfIndex);
-/*******************************************************************************
-*    Func Name: TCPIP_AddPrimaryAddr
-*  Description: 增加主地址
-*        Input: ULONG ulIpAddr:地址(主机序)
-*               ULONG ulSubnetMask:子网掩码(主机序)
-*               ULONG ulIfIndex:接口索引
-*       Output: 无
-*       Return: 成功:ERR_AM4_OK
-*               失败:
-*               ERR_AM4_INVALIDIN
-*               ERR_AM4_NOFREE_ITEM
-*               ERR_AM4_HA_IS_SMOOTHING
-*               ERR_AM4_INTERFACE
-*               ERR_AM4_IPCTL
-*               ERR_AM4_GENERR_ADDPRI
-*               ERR_AM4_ADDRESS
-*               ERR_AM4_ADDPRI
-*               ERR_AM4_INVALIDIN_3
-*               ERR_AM4_INVALIDIN_4
-*               ERR_AM4_NOFREE_ITEM_2
-*               ERR_AM4_NOFREE_ITEM_3
-*               ERR_AM4_NOFREE_ITEM_4
-*               ERR_AM4_PARAM
-*               ERR_AM4_ADDRINEXISTENCE
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-07   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_AddPrimaryAddr(ULONG ulIpAddr,ULONG ulSubnetMask,ULONG ulIfIndex);
-/*******************************************************************************
-*    Func Name: TCPIP_AddSecondAddr
-*  Description: 增加从地址
-*        Input: ULONG ulIpAddr:地址(主机序)
-*               ULONG ulSubnetMask:子网掩码(主机序)
-*               ULONG ulIfIndex:接口索引
-*       Output: 
-*       Return: 成功:ERR_AM4_OK
-*               失败:
-*               ERR_AM4_ADDREXIST
-*               ERR_AM4_INVALIDIN
-*               ERR_AM4_HA_IS_SMOOTHING
-*               ERR_AM4_INTERFACE
-*               ERR_AM4_IPCTL
-*               ERR_AM4_GENERR_ADDSECONDARY
-*               ERR_AM4_ADDRESS
-*               ERR_AM4_ADDSECONDARY
-*               ERR_AM4_INVALIDIN_3
-*               ERR_AM4_INVALIDIN_4
-*               ERR_AM4_NOFREE_ITEM_3
-*               ERR_AM4_NOFREE_ITEM_4
-*               ERR_AM4_PARAM
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-07   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_AddSecondAddr(ULONG ulIpAddr,ULONG ulSubnetMask,ULONG ulIfIndex);
-/*******************************************************************************
-*    Func Name: TCPIP_CloseAddrTable
-*  Description: 注销waitlist
-*        Input: ULONG ulWaitlist:waitlist句柄
-*       Output: 
-*       Return: 成功:VOS_WAITLIST_SUCCESS
-*               失败:ERR_WAITLIST_INVALID_HANDLE, ERR_WAITLIST_INVALID_MAINTYPE,
-*                    ERR_WAITLIST_INVALID_SUBTYPE
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-07   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_CloseAddrTable(UINTPTR ulWaitlist);
-/*******************************************************************************
-*    Func Name: TCPIP_ConflictIpAddressSpecial
-*  Description: 判断地址是否与本机其他地址冲突
-*        Input: ULONG ulIfIndex:接口索引
-*               ULONG ulAddr:地址(主机序)
-*               ULONG ulMask:子网掩码(主机序)
-*       Output: 无
-*       Return: 1:地址冲突; 
-*               0:不冲突
-*               ERR_AM4_INVALIDIN(11):输入参数不合法
-*               ERR_AM4_IPCTL(37):无效的IP控制块
-*               ERR_AM4_INVALIDADDR(3):无效地址
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-07   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_ConflictIpAddressSpecial(ULONG ulIfIndex, ULONG ulAddr, ULONG ulMask);
-/*******************************************************************************
-*    Func Name: TCPIP_DelIpAddr
-*  Description: 屏蔽主从概念删除地址
-*        Input: ULONG ulIpAddr:地址(主机序)
-*               ULONG ulSubnetMask:子网掩码(主机序)
-*               ULONG ulIfIndex:接口索引
-*       Output: 
-*       Return: 成功:ERR_AM4_OK
-*               失败:
-*               ERR_AM4_NOPRIADDR
-*               ERR_AM4_INVALIDADDR
-*               ERR_AM4_INVALIDIN
-*               ERR_AM4_HA_IS_SMOOTHING
-*               ERR_AM4_INTERFACE
-*               ERR_AM4_IPCTL
-*               ERR_AM4_GENERR_DELPRIADDR
-*               ERR_AM4_GENERR_DELSECONDARY
-*               ERR_AM4_DELPRI
-*               ERR_AM4_DELSECONDARY
-*               ERR_AM4_PARAM
-*               ERR_AM4_NO_NEGO
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-07   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_DelIpAddr(ULONG ulIpAddr,ULONG ulSubnetMask,ULONG ulIfIndex);
-/*******************************************************************************
-*    Func Name: TCPIP_DelPrimaryAddr
-*  Description: 删除主地址
-*        Input: ULONG ulIpAddr:地址(主机序)
-*               ULONG ulSubnetMask:子网掩码(主机序)
-*               ULONG ulIfIndex:接口索引
-*       Output: 
-*       Return: 成功:ERR_AM4_OK
-*               失败:
-*               ERR_AM4_INVALIDIN
-*               ERR_AM4_HA_IS_SMOOTHING
-*               ERR_AM4_INTERFACE
-*               ERR_AM4_IPCTL
-*               ERR_AM4_GENERR_DELPRIADDR
-*               ERR_AM4_DELPRI
-*               ERR_AM4_INVALIDIN_2
-*               ERR_AM4_INVALIDIN_4
-*               ERR_AM4_PARAM
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-07   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_DelPrimaryAddr(ULONG ulIpAddr,ULONG ulSubnetMask,ULONG ulIfIndex);
-/*******************************************************************************
-*    Func Name: TCPIP_DelSecondAddr
-*  Description: 删除从地址
-*        Input: ULONG ulIpAddr:地址(主机序)
-*               ULONG ulSubnetMask:子网掩码(主机序)
-*               ULONG ulIfIndex:接口索引
-*       Output: 
-*       Return: 成功:ERR_AM4_OK
-*               失败:
-*               ERR_AM4_INVALIDIN
-*               ERR_AM4_HA_IS_SMOOTHING
-*               ERR_AM4_INTERFACE
-*               ERR_AM4_IPCTL
-*               ERR_AM4_GENERR_DELSECONDARY
-*               ERR_AM4_DELSECONDARY
-*               ERR_AM4_INVALIDIN_2
-*               ERR_AM4_INVALIDIN_4
-*               ERR_AM4_PARAM
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-07   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_DelSecondAddr(ULONG ulIpAddr,ULONG ulSubnetMask,ULONG ulIfIndex);
-/*******************************************************************************
-*    Func Name: TCPIP_GetAddrNumOnIf
-*  Description: 取接口的地址数
-*        Input: ULONG ulIfIndex:接口索引
-*       Output: 无
-*       Return: 接口地址数, 0-获取失败或接口没有配置地址
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-07   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_GetAddrNumOnIf(ULONG ulIfIndex);
-/*******************************************************************************
-*    Func Name: TCPIP_GetAddrTable
-*  Description: 获取地址链的下一个节点
-*        Input: ULONG   ulWaitlist:waitlist句柄
-*               ULONG ulIfIndex:接口索引
-*       Output: TCPIP_IPIFADDR_S *pIfa:地址节点的输出缓冲区，由用户指定
-*       Return: 成功:VOS_OK
-*               失败:VOS_ERR, ERR_AM4_INVALIDIN,
-*                    ERR_AM4_END,ERR_WAITLIST_INVALID_HANDLE
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-07   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_GetAddrTable(UINTPTR ulWaitlist,TCPIP_IPIFADDR_S *pIfa,ULONG ulIfIndex);
-/*******************************************************************************
-*    Func Name: TCPIP_GetIpHADbg
-*  Description: 获取HA调试开关
-*        Input: 
-*       Output: ULONG *pulDbg:HA调试开关输出指针
-*       Return: 成功:VOS_OK，失败:VOS_ERR
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-07   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_GetIpHADbg(ULONG *pulDbg);
-/*******************************************************************************
-*    Func Name: TCPIP_GetLocalIpAddr
-*  Description: 获取接口本端的地址和掩码
-*        Input: ULONG ulIfIndex:接口索引
-*       Output: IP_AM4_IF_ADDR_S *pstIPIfAddr:地址和掩码输出缓冲区，由用户负责申请和释放
-*       Return: 成功:VOS_OK
-*               失败:ERR_AM4_INVALIDIN
-*               ERR_AM4_IPCTL
-*               ERR_AM4_GENERR
-*               ERR_AM4_END
-*               ERR_WAITLIST_INVALID_HANDLE
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-07   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_GetLocalIpAddr(ULONG ulIfIndex, IP_AM4_IF_ADDR_S *pstIPIfAddr);
-/*******************************************************************************
-*    Func Name: TCPIP_GetMainIpAddr
-*  Description: 取接口的主地址
-*        Input: ULONG ulIfIndex:    接口索引
-*       Output: 接口的主地址和子网掩码
-*               ULONG *pulMainAddr: 主地址
-*               ULONG *pulMainMask: 子网掩码
-*       Return: 成功-0, 失败-非0
-*      Caution:  
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-07   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_GetMainIpAddr(ULONG ulIfIndex,ULONG *pulMainAddr, ULONG *pulMainMask);
-/*******************************************************************************
-*    Func Name: TCPIP_GetPeerIpAddr
-*  Description: 获取分配给对端的地址
-*        Input: ULONG ulIfIndex:接口索引
-*       Output: ULONG *pulIpAddr:指向地址输出指针
-*       Return: 成功:0
-*               失败:ERR_AM4_PPP_COMP_NULL
-*                    ERR_AM4_IF_NULL
-*                    PPP_PARA_NULLPOINTER
-*                    PPP_PHYTYPE_ERR
-*                    PPP_PPPCB_NOEXIST
-*                    PPP_IPCPCB_NOEXIST
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-07   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_GetPeerIpAddr(ULONG ulIfIndex, ULONG *pulIpAddr);
-/*******************************************************************************
-*    Func Name: TCPIP_OpenAddrTable
-*  Description: 注册waitlist
-*        Input: ULONG ulIfIndex:    接口索引
-*       Output: ULONG *pulWaitlist: waitlist句柄
-*       Return: 成功:VOS_OK
-*               失败:
-*               ERR_AM4_INVALIDIN:              输入参数不合法
-*               ERR_AM4_GENERR:                 处理地址出错
-*               ERR_AM4_END:                    未知错误
-*               ERR_WAITLIST_INVALID_HANDLE:    waitlist句柄无效
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-07   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_OpenAddrTable(UINTPTR *pulWaitlist,ULONG ulIfIndex);
-/*******************************************************************************
-*    Func Name: TCPIP_ProIpNegoSet
-*  Description: 设置地址协商
-*        Input: ULONG ulIfIndex:接口索引
-*               ULONG ulSetYes:操作类型(1/0 设置/取消地址协商)
-*       Output: 
-*       Return: 成功:ERR_AM4_OK
-*               失败:
-*               ERR_AM4_INVALIDIN
-*               ERR_AM4_CANTNONEGO
-*               ERR_AM4_GENERR
-*               ERR_AM4_NOFREE_ITEM
-*               ERR_AM4_HA_IS_SMOOTHING
-*               ERR_AM4_INTERFACE
-*               ERR_AM4_IPCTL
-*               ERR_AM4_NOFREE_ITEM_2
-*               ERR_AM4_PARAM
-*      Caution: 只有ppp类型的接口可以设置地址协商，其它以太接口,loopback,null等
-*               类型接口不支持设置地址协商
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-07   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_ProIpNegoSet(ULONG ulIfIndex, ULONG ulSetYes);
-/*******************************************************************************
-*    Func Name: TCPIP_RegFuncUpdateIntfAddrHook
-*  Description: 注册地址更新通知函数
-*        Input: UpdateIntfAddr_HOOK_FUNC pfHookFunc:地址更新通知钩子函数
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-07   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_RegFuncUpdateIntfAddrHook(AM4_SHELL_RM_CALLBACK_FUNC_PTR pfHookFunc);
-/*******************************************************************************
-*    Func Name: TCPIP_SetIpHADbg
-*  Description: 设置HA调试开关
-*        Input: ULONG ulDbg:调试开关取值(0关 ,1 开)
-*       Output: 
-*       Return: 成功VOS_OK，失败VOS_ERR
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-07   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_SetIpHADbg(ULONG ulDbg);
-/*******************************************************************************
-*    Func Name: TCPIP_UnnumberIpAddr
-*  Description: 设置地址借用
-*        Input: ULONG ulIfIndex:       借用的接口索引
-*               ULONG ulIfIndexLendIn: 被借用接口索引
-*               ULONG ulSetYes:        操作类型(非0/0 设置/取消地址借用)
-*       Output: 
-*       Return: 成功:ERR_AM4_OK
-*               失败:
-*               ERR_AM4_INVALIDLENDIN
-*               ERR_AM4_INVALIDIN
-*               ERR_AM4_INVALIDBRIN
-*               ERR_AM4_CANTUSEUNIN
-*               ERR_AM4_CANTNOUNNUMBER
-*               ERR_AM4_HA_IS_SMOOTHING
-*               ERR_AM4_INTERFACE
-*               ERR_AM4_IPCTL
-*               ERR_AM4_INVALIDBRIN_2
-*               ERR_AM4_INVALIDBRIN_3
-*               ERR_AM4_INVALIDBRIN_4
-*               ERR_AM4_INVALIDBRIN_5
-*               ERR_AM4_INVALIDLENDIN_2
-*               ERR_AM4_INVALIDLENDIN_3
-*               ERR_AM4_CFG_DHCP4R
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-07   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_UnnumberIpAddr(ULONG ulIfIndex, ULONG ulIfIndexLendIn, ULONG ulSetYes);
-/*******************************************************************************
-*    Func Name: TCPIP_IsLocalIfAddr
-*  Description: 根据指定的地址查找全局地址链,判断该地址是否是本地某个接口的地址
-*        Input: ULONG ulIpAddr:地址(主机序)
-*       Output: 
-*       Return: 成功:0, 失败:1
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-25   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_IsLocalIfAddr(ULONG ulIpAddr);
 extern ULONG TCPIP_Proc_IPAddr( IPADDR_OPER_S* pIpAddrOper );
 extern ULONG TCPIP_SetIPAddrDescription( ULONG ulIpAddr, CHAR* pucDesc );
@@ -715,26 +281,7 @@ extern ULONG TCPIP_SetIPAddrDescription( ULONG ulIpAddr, CHAR* pucDesc );
 *******************************************************************************/
 extern ULONG TCPIP_GetIfIndexByIP(ULONG ulIPAddr, ULONG *pulIfIndex);
 
-/*******************************************************************************
-*    Func Name: TCPIP_SetHostRouteReserved
-*  Description: 设置接口DWON时，是否保留主机路由的标记
-*        Input: ULONG ulIfIndex: 接口索引（只能是ETH或Trunk的对应的接口）
-*               ULONG ulFlag:    主机路由保留标记, 0删除, 1保留
-*       Output: 
-*       Return: 成功: VOS_OK
-*               失败: FIB_HA_IS_SMOOTHING
-*                     FIB_ERR_INVALID_FLAG
-*                     FIB_ERR_INVALID_INTERFACE
-*                     FIB_ERR_INVALID_IFTYPE
-*                     FIB_ERR_INVALID_IPCTL
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-07-22   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_SetHostRouteReserved(ULONG ulIfIndex, ULONG ulFlag);
 /*******************************************************************************
 *    Func Name: TCPIP_GetHostRouteReserved
@@ -850,42 +397,10 @@ extern ULONG TCPIP_IsLocalIfAddrByVrf(ULONG ulIpAddr,CHAR *pszVrfName);
 extern ULONG TCPIP_GetIfIndexByIpByVrf(ULONG ulIPAddr, CHAR *pszVrfName, ULONG *pulIfIndex);
 /* End: VISP1.7C03 VRF qinyun , 2009-01-20 */
 
-/*****************************************************************************
- 函 数 名  : TCPIP_CheckIpIsOnIf
- 功能描述  : 判断地址是否是给定接口上的地址
- 输入参数  : ULONG ulIfIndex  
-             ULONG ulIpAddr   
- 输出参数  : ULONG *pulFlag : 
-            VOS_TRUE:地址在指定的接口上
-            VOS_FALSE:地址不在接口上
- 返 回 值  : 
- 调用函数  : 
- 被调函数  : 
- 
- 修改历史      :
-  1.日    期   : 2009年4月24日
-    作    者   : w62223
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 extern ULONG TCPIP_CheckIpIsOnIf( ULONG ulIfIndex, ULONG ulIpAddr,ULONG *pulFlag );
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetIPAddrFlag
-* Date Created: 2009-12-15
-*       Author: Gexianjun/h00121208
-*  Description: 获取接口地址的特性：地址协商、借用地址、有自己的地址
-*        Input: ULONG ulIfIndex:    接口索引
-*       Output: ULONG *pulAddrFlag: 接口地址特性
-*       Return: 成功VOS_OK,其他返回失败
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-12-15   Gexianjun/h00121208     Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_GetIPAddrFlag(ULONG ulIfIndex, ULONG *pulAddrFlag);
 
 

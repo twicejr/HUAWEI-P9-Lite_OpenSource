@@ -1,49 +1,4 @@
-/************************************************************************
-  Copyright    : 2005-2007, Huawei Tech. Co., Ltd.
-  File name    : SSA_Decode.c
-  Author       : ---
-  Version      : V200R001
-  Date         : 2008-08-16
-  Description  : 该C文件给出了SSA模块解码函数的实现
-  Function List:
-        ---
-        ---
-        ---
-  History      :
-  1. Date:2005-08-16
-     Author: ---
-     Modification:Create
-  2. Date:2006-03-28
-     Author: h44270
-     Modification: 问题单号:A32D02754
-  3. Date:2006-04-11
-     Author: h44270
-     Modification: 问题单号:A32D02951
-  4.日    期   : 2006年4月4日
-    作    者   : liuyang id:48197
-    修改内容   : 问题单号:A32D01738
-  5.日    期   : 2006年11月14日
-    作    者   : DingQing 49431
-    修改内容   : 问题单号:A32D07201
-  6. Date:2007-01-19
-     Author: h44270
-     Modification: 问题单号:A32D08448
-  7.Date:2007-04-29
-    Author: Li Jilin 60827
-    Modification: 问题单号:A32D10708
-  8.日    期   : 2009年09月05日
-    作    者   : h44270
-    修改内容   : 问题单号:AT2D05342
-  9.日    期   : 2010年02月25日
-    作    者   : s62952
-    修改内容  : 问题单号:AT2D17545 波兰USSD网络兼容问题
- 10.日    期   : 2010年03月01日
-    作    者   : h44270
-    修改内容  : 问题单号:AT2D17545 波兰USSD网络兼容问题
- 11. 日    期   : 2010年05月07日
-     作    者   : s62952
-     修改内容   : 问题单号:A2D18963
-************************************************************************/
+
 
 
 /*****************************************************************************
@@ -126,25 +81,7 @@ VOS_UINT32 SSA_DecodeComponent(TAF_SS_CALL_INDEPENDENT_EVENT_STRU *pEvent, VOS_U
     return ulRslt;
 }
 
-/******************************************************************************
- Prototype      : SSA_DecodeInvoke
- Description    : 解码component type中的Invoke类型
- Input          : *pEvent - 上报给APP的参数
-                  **ppucSrc   - 接收到的字串
- Output         : 无
- Return Value   : 操作结果
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-08-15
-    Author      : ---
-    Modification: Created function
-  2.日    期   : 2012年8月10日
-    作    者   : y00213812
-    修改内容   : DTS2012082204471, TQE清理
-
-*******************************************************************************/
 VOS_UINT32 SSA_DecodeInvoke(TAF_SS_CALL_INDEPENDENT_EVENT_STRU *pEvent, VOS_UINT8 **ppucSrc)
 {
     VOS_UINT8       ucOperationCode;
@@ -156,13 +93,11 @@ VOS_UINT32 SSA_DecodeInvoke(TAF_SS_CALL_INDEPENDENT_EVENT_STRU *pEvent, VOS_UINT
     (*ppucSrc)++;
 
     /*获取component长度, TLV格式，同时指针移位至V，确定结束位置*/
-    /*modified by Y00213812 for DTS2012082204471 TQE清理, 2012-08-10, begin*/
     ulRslt = SSA_DecodeLength(ppucSrc, &ucTmpLen);
     if (SSA_SUCCESS != ulRslt)
     {
         SSA_LOG(WARNING_PRINT, "SSA_DecodeRtrnRslt:WARNING: Length Value Error");
     }
-    /*modified by Y00213812 for DTS2012082204471 TQE清理, 2012-08-10, end*/
     gpucSsParaEndLocation = *ppucSrc + ucTmpLen;
 
     /*检查INVOKE ID*/
@@ -286,27 +221,7 @@ VOS_UINT32 SSA_DecodeInvoke(TAF_SS_CALL_INDEPENDENT_EVENT_STRU *pEvent, VOS_UINT
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : SSA_DecodeRtrnRslt
- 功能描述  : 解码SS的网测回复
- 输入参数  : TAF_SS_CALL_INDEPENDENT_EVENT_STRU *pEvent
-             VOS_UINT8 **ppucSrc
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2005年8月15日
-    作    者   :
-    修改内容   : 新生成函数
-  2.日    期   : 2010年7月31日
-    作    者   : 王毛/00166186
-    修改内容   : DTS2010081702586 德国电信USSD PHASE1 兼容性问题
-  3.日    期   : 2012年8月10日
-    作    者   : y00213812
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_UINT32 SSA_DecodeRtrnRslt(TAF_SS_CALL_INDEPENDENT_EVENT_STRU *pEvent, VOS_UINT8 **ppucSrc)
 {
     VOS_UINT8       ucOperationCode;
@@ -318,13 +233,11 @@ VOS_UINT32 SSA_DecodeRtrnRslt(TAF_SS_CALL_INDEPENDENT_EVENT_STRU *pEvent, VOS_UI
     (*ppucSrc)++;
 
     /*获取component长度, TLV格式，同时指针移位至V，确定结束位置*/
-    /*modified by Y00213812 for DTS2012082204471 TQE清理, 2012-08-10, begin*/
     ulRslt = SSA_DecodeLength(ppucSrc, &ucTmpLen);
     if (SSA_SUCCESS != ulRslt)
     {
         SSA_LOG(WARNING_PRINT, "SSA_DecodeRtrnRslt:WARNING: Length Value Error");
     }
-    /*modified by Y00213812 for DTS2012082204471 TQE清理, 2012-08-10, end*/
 
     gpucSsParaEndLocation = *ppucSrc + ucTmpLen;
 
@@ -368,13 +281,11 @@ VOS_UINT32 SSA_DecodeRtrnRslt(TAF_SS_CALL_INDEPENDENT_EVENT_STRU *pEvent, VOS_UI
             (*ppucSrc)++;
 
             /*获取component长度, TLV格式，同时指针移位至V，确定结束位置*/
-            /*modified by Y00213812 for DTS2012082204471 TQE清理, 2012-08-10, begin*/
             ulRslt = SSA_DecodeLength(ppucSrc, &ucTmpLen);
             if (SSA_SUCCESS != ulRslt)
             {
                 SSA_LOG(WARNING_PRINT, "SSA_DecodeRtrnRslt:WARNING: Length Value Error");
             }
-            /*modified by Y00213812 for DTS2012082204471 TQE清理, 2012-08-10, end*/
         }
     }
 
@@ -466,25 +377,7 @@ VOS_UINT32 SSA_DecodeRtrnRslt(TAF_SS_CALL_INDEPENDENT_EVENT_STRU *pEvent, VOS_UI
 }
 
 
-/*****************************************************************************
- Prototype      : SSA_DecodeRtrnErr
- Description    : 解码component type中的Return Error类型
- Input          : *pEvent - 上报给APP的参数
-                  *ppucSrc   - 接收到的字串
- Output         : 无
- Return Value   : 操作结果
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-08-15
-    Author      : ---
-    Modification: Created function
-
-  2.日    期   : 2013年01月18日
-    作    者   : l00198894
-    修改内容   : DTS2013011803106: 增加SS业务错误码
-****************************************************************************/
 VOS_UINT32 SSA_DecodeRtrnErr(TAF_SS_CALL_INDEPENDENT_EVENT_STRU *pEvent, VOS_UINT8 **ppucSrc)
 {
     VOS_UINT16       usErrCode;
@@ -552,27 +445,7 @@ VOS_UINT32 SSA_DecodeRtrnErr(TAF_SS_CALL_INDEPENDENT_EVENT_STRU *pEvent, VOS_UIN
 
 }
 
-/****************************************************************************
- Prototype      : SSA_DecodeReject
- Description    : 解码component type中的Reject类型
- Input          : *pEvent - 上报给APP的参数
-                  *ppucSrc   - 接收到的字串
- Output         : 无
- Return Value   : 操作结果
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-08-15
-    Author      : ---
-    Modification: Created function
-  2.Date:2007-01-19
-    Author: h44270
-    Modification: 问题单号:A32D08448
-  3.日    期   : 2014年5月30日
-    作    者   : j00174725
-    修改内容   : TQE
-****************************************************************************/
 VOS_UINT32 SSA_DecodeReject(TAF_SS_CALL_INDEPENDENT_EVENT_STRU *pEvent, VOS_UINT8 **ppucSrc)
 {
     VOS_UINT8         ucTmpLen;
@@ -1003,23 +876,7 @@ VOS_UINT32  SSA_DecodeGetPwdInd(TAF_SS_CALL_INDEPENDENT_EVENT_STRU *para, VOS_UI
     return ulRslt;
 }
 
-/*****************************************************************************
- Prototype      : SSA_DecodeProcessUntructuredSSCnf
- Description    : 解码网络侧发来的的ProcessUntructuredSS的操作（Return result）
- Input          : **ppucSrc--输入的字串   ulLen--字串的长度
- Output         : *para--解码后的数据结构
- Return Value   : 操作结果
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-08-15
-    Author      : ---
-    Modification: Created function
-  2.日    期   : 2010年03月01日
-    作    者   : h44270
-    修改内容  : 问题单号:AT2D17075 波兰USSD网络兼容问题
-*****************************************************************************/
 VOS_UINT32  SSA_DecodeProcessUnstructuredSSCnf(TAF_SS_CALL_INDEPENDENT_EVENT_STRU *para, VOS_UINT8 **ppucSrc)
 {
     VOS_UINT32      ulRslt = SSA_SUCCESS;
@@ -1101,26 +958,7 @@ VOS_UINT32  SSA_DecodeProcessUnstructuredSSCnf(TAF_SS_CALL_INDEPENDENT_EVENT_STR
     return ulRslt;
 }
 
-/*****************************************************************************
- Prototype      : SSA_DecodeUntructuredSSInd
- Description    : 解码网络侧发来的的UntructuredSS的操作（Invoke）
- Input          : **ppucSrc--输入的字串   ulLen--字串的长度
- Output         : *para--解码后的数据结构
- Return Value   : 操作结果
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-08-15
-    Author      : ---
-    Modification: Created function
-  2.日    期   : 2010年02月25日
-    作    者   : s62952
-    修改内容  : 问题单号:AT2D170545 波兰USSD网络兼容问题
-  3.日    期   : 2013年03月26日
-    作    者   : f62575
-    修改内容  : 问题单号DTS2013040400068 解决法电网络过来的USSD消息不能上报的问题。
-*****************************************************************************/
 VOS_UINT32  SSA_DecodeUntructuredSSInd(TAF_SS_CALL_INDEPENDENT_EVENT_STRU *para, VOS_UINT8 **ppucSrc)
 {
     VOS_UINT32       ulRslt = SSA_SUCCESS;
@@ -1234,7 +1072,6 @@ VOS_UINT32  SSA_DecodeUntructuredSSInd(TAF_SS_CALL_INDEPENDENT_EVENT_STRU *para,
         para->OP_AlertingPattern = 0;
     }
 
-    /* Modified by f62575 for DTS2013040400068 解决法电网络过来的USSD消息不能上报的问题 2013-03-26, begin   */
 #if 0
     /*判断有没有msisdn这个参数，如果有的话进行解码，没有的话，返回*/
     pucCurLocation = *ppucSrc;
@@ -1286,7 +1123,6 @@ VOS_UINT32  SSA_DecodeUntructuredSSInd(TAF_SS_CALL_INDEPENDENT_EVENT_STRU *para,
         return TAF_SS_REJ_BADLY_STRUCTURED_COMPONENT;
     }
 #endif
-    /* Modified by f62575 for DTS2013040400068 解决法电网络过来的USSD消息不能上报的问题 2013-03-26, end   */
 
     return  ulRslt;
 }
@@ -1439,25 +1275,7 @@ VOS_UINT32  SSA_DecodeEraseCCEntryCnf(TAF_SS_CALL_INDEPENDENT_EVENT_STRU  *para,
     return ulRslt ;
 }
 
-/*****************************************************************************
- 函 数 名  : SSA_DecodeProcessUSSDataCnf
- 功能描述  : 解码phase1的网络回复消息
- 输入参数  : VOS_UINT8 **ppucSrc
- 输出参数  : TAF_SS_CALL_INDEPENDENT_EVENT_STRU *para
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2005年8月5日
-    作    者   :
-    修改内容   : 新生成函数
-  2.日    期   : 2010年8月16日
-    作    者   : 王毛/00166186
-    修改内容   : DTS2010081702586 德国电信USSD PHASE1 兼容性问题
-
-
-*****************************************************************************/
 VOS_UINT32  SSA_DecodeProcessUSSDataCnf(TAF_SS_CALL_INDEPENDENT_EVENT_STRU *para, VOS_UINT8 **ppucSrc)
 {
     VOS_UINT8       *pucEndLocation;
@@ -1690,23 +1508,7 @@ VOS_UINT32 SSA_DecodeBasicService(TAF_SS_BASIC_SERVICE_STRU *pDest, VOS_UINT8 **
     return ulRslt;
 }
 
-/*****************************************************************************
- Prototype      : SSA_DecodeForwardedToNumber
- Description    : 解码参数forwardedToNumber,参见24.080的Annex A的ASN.1的描述
- Input          : **ppucSrc--输入的字串, ucTagMode -- 标签模式
- Output         : *pDest--解码后的数据结构
- Return Value   : 操作结果
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-08-15
-    Author      : ---
-    Modification: Created function
-  2.日    期   : 2013年8月3日
-    作    者   : z60575
-    修改内容   : TQE修改
-*****************************************************************************/
 VOS_UINT32 SSA_DecodeForwardedToNumber(TAF_SS_NUMTYPE *pucNumType, VOS_UINT8 *pucFwdToNum,VOS_UINT8 **ppucSrc, TAG_MODE ucTagMode)
 {
     VOS_UINT8       ucStrLen;
@@ -1731,23 +1533,7 @@ VOS_UINT32 SSA_DecodeForwardedToNumber(TAF_SS_NUMTYPE *pucNumType, VOS_UINT8 *pu
     return ulRslt;
 }
 
-/*****************************************************************************
- Prototype      : SSA_DecodeForwardedToSubaddress
- Description    : 解码参数forwardedToSubaddress,参见24.080的Annex A的ASN.1的描述
- Input          : **ppucSrc--输入的字串, ucTagMode -- 标签模式
- Output         : *pDest--解码后的数据结构
- Return Value   : 操作结果
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-08-15
-    Author      : ---
-    Modification: Created function
-  2.日    期   : 2013年8月3日
-    作    者   : z60575
-    修改内容   : TQE修改
-*****************************************************************************/
 VOS_UINT32 SSA_DecodeForwardedToSubaddress(TAF_SS_SUBADDRTYPE *pucSubAddrType, VOS_UINT8 *pucSubAddr,VOS_UINT8 **ppucSrc, TAG_MODE ucTagMode)
 {
     VOS_UINT8       ucStrLen;
@@ -1991,23 +1777,7 @@ VOS_UINT32 SSA_DecodeForwardingOptions(VOS_UINT8 *pucDest, VOS_UINT8 **ppucSrc, 
 }
 
 
-/*****************************************************************************
- Prototype      : SSA_DecodeLongForwardedToNumber
- Description    : 解码参数longForwardedToNumber,参见24.080的Annex A的ASN.1的描述
- Input          : **ppucSrc--输入的字串, ucTagMode -- 标签模式
- Output         : *pDest--解码后的数据结构
- Return Value   : 操作结果
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-08-15
-    Author      : ---
-    Modification: Created function
-  2.日    期   : 2013年8月3日
-    作    者   : z60575
-    修改内容   : TQE修改
-*****************************************************************************/
 VOS_UINT32 SSA_DecodeLongForwardedToNumber(TAF_SS_NUMTYPE *pucLongFwdNumType, VOS_UINT8 *pucLongFwdToNum,VOS_UINT8 **ppucSrc, TAG_MODE ucTagMode)
 {
     VOS_UINT8     ucStrLen;
@@ -2434,23 +2204,7 @@ VOS_UINT32 SSA_DecodeBasicServiceGroupList(TAF_SS_BS_SERV_GROUPLIST_STRU *pDest,
 
     return ulRslt;
 }
-/*****************************************************************************
- Prototype      : SSA_DecodeCcbsFeatureList
- Description    : 解码参数ccbs-FeatureList,参见24.080的Annex A的ASN.1的描述
- Input          : **ppucSrc--输入的字串, ucTagMode -- 标签模式
- Output         : *pDest--解码后的数据结构
- Return Value   : 操作结果
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-08-15
-    Author      : ---
-    Modification: Created function
-  2.日    期   : 2013年07月222日
-    作    者   : j00177245
-    修改内容   : 清理Coverity
-*****************************************************************************/
 VOS_UINT32 SSA_DecodeCcbsFeatureList(TAF_SS_CCBS_FEATURELIST_STRU *pDest, VOS_UINT8 **ppucSrc, TAG_MODE ucTagMode)
 {
     VOS_UINT8       *pucEndLocation;
@@ -2746,23 +2500,7 @@ VOS_UINT32 SSA_DecodeCcbsFeature(TAF_SS_CCBS_FEATURE_STRU *pCcBsFeature, VOS_UIN
 /*lint +e438 +e830*/
 
 
-/*****************************************************************************
- Prototype      : SSA_DecodeBSubscriberNum
- Description    : 解码参数b-subscriberNumber,参见24.080的Annex A的ASN.1的描述
- Input          : **ppucSrc--输入的字串, ucTagMode -- 标签模式
- Output         : *pucNumType--解码后号码类型, *pucBSubscriberNum -- 解码后号码
- Return Value   : 操作结果
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-08-15
-    Author      : ---
-    Modification: Created function
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_UINT32 SSA_DecodeBSubscriberNum(TAF_SS_NUMTYPE *pucNumType, VOS_UINT8 *pucBSubscriberNum, VOS_UINT8 **ppucSrc, TAG_MODE ucTagMode)
 {
     VOS_UINT8       ucStrLen;
@@ -2786,23 +2524,7 @@ VOS_UINT32 SSA_DecodeBSubscriberNum(TAF_SS_NUMTYPE *pucNumType, VOS_UINT8 *pucBS
 }
 
 
-/*****************************************************************************
- Prototype      : SSA_DecodeBSubscriberSubAddress
- Description    : 解码参数b-subscriberSubaddress,参见24.080的Annex A的ASN.1的描述
- Input          : **ppucSrc--输入的字串, ucTagMode -- 标签模式
- Output         : *pucSubAddrType--解码后地址类型, pucBSubscriberSubAddr--子地址
- Return Value   : 操作结果
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-08-15
-    Author      : ---
-    Modification: Created function
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_UINT32 SSA_DecodeBSubscriberSubAddress(TAF_SS_SUBADDRTYPE *pucSubAddrType, VOS_UINT8 *pucBSubscriberSubAddr, VOS_UINT8 **ppucSrc, TAG_MODE ucTagMode)
 {
     VOS_UINT8       ucStrLen;
@@ -3074,25 +2796,7 @@ VOS_VOID SSA_Get7bits( VOS_UINT8 *pucChar,
 
 
 
-/*****************************************************************************
- 函 数 名  : SSA_Decode7bit
- 功能描述  : 7bit转8bit编码
- 输入参数  : TAF_SS_USSD_STRING_STRU   *para
-             VOS_UINT8  ucCodingScheme
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年8月20日
-    作    者   : 王毛/00166186
-    修改内容   : 新生成函数
-  2.日    期   : 2013年07月222日
-    作    者   : j00177245
-    修改内容   : 清理Coverity
-
-*****************************************************************************/
 VOS_VOID SSA_Decode7bit (TAF_SS_USSD_STRING_STRU   *para, VOS_UINT8  ucCodingScheme)
 {
     VOS_UINT8      aucTmp[TAF_SS_MAX_UNPARSE_PARA_LEN];
@@ -3158,30 +2862,7 @@ VOS_VOID SSA_Decode7bit (TAF_SS_USSD_STRING_STRU   *para, VOS_UINT8  ucCodingSch
     return;
 }
 
-/*******************************************************************************
-  Function      :SSA_DecodeUssdMessage
-  Description   :USSD字串内容进行7bit解码
-  Input         :*para --- 输入的USSD字符串的指针
-				  ucCodingScheme --- 编码方案
-  Return        : SSA_SUCCESS --- 成功
-  				  SSA_ERROR---失败
-  Output        :*para --- 指向解码转换后的USSD字符串的指针
-  Invoke        : SSA_Get7bits
-  Invoked By    : SSA_DecodeDeliverInd
-  History       : ---
-  1.Date        : 2005-08-15
-    Author      : ---
-    Modification: Created function
-  2. 日    期   : 2010年05月07日
-     作    者   : s62952
-     修改内容   : 问题单号:A2D18963
-  3. 日    期   : 2013年05月17日
-     作    者   : w00176964
-     修改内容   : SS FDN&Call Control项目:USSD的转换表放到SDC中
-  4. 日    期   : 2013年07月222日
-     作    者   : j00177245
-     修改内容   : 清理Coverity
-********************************************************************************/
+
 VOS_UINT32 SSA_DecodeUssdMessage (TAF_SS_USSD_STRING_STRU   *para, VOS_UINT8  ucCodingScheme)
 {
     VOS_UINT8      aucTmp[TAF_SS_MAX_UNPARSE_PARA_LEN];
@@ -3549,25 +3230,7 @@ VOS_UINT32  SSA_DecodeLength(VOS_UINT8 **ppucSrc, VOS_UINT8 *pucLen)
 
 }
 
-/*****************************************************************************
- Prototype      : SSA_DecodeIndefLen
- Description    : 获取可变长度字段的实际长度；
- Input          : **ppucSrc--解码前的字串
-                  *pucLen--解码前的字串长度
- Output         : *pucLen--解码后的长度
- Return Value   : 更新长度操作结果；
-                    SSA_SUCCESS 成功；其他，失败
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2006-01-21
-    Author      : ---
-    Modification: Created function
-  2.日    期   : 2012年11月02日
-    作    者   : f62575
-    修改内容   : DTS2012091700478，SS命令网络回复消息带不定长度IE，消息无法解析
-*****************************************************************************/
 VOS_UINT32 SSA_DecodeIndefLen(VOS_UINT8 *pucSrc, VOS_UINT8 *pucLen)
 {
     VOS_UINT8                           ucCheckLength;
@@ -3748,22 +3411,7 @@ VOS_UINT32 SSA_DecodeSsNull(VOS_UINT8 **ppucSrc, TAG_MODE ucTagMode)
 }
 
 
-/*****************************************************************************
- 函 数 名  : SSA_DecodeTL
- 功能描述  : 解析参数的TAG和LENGTH
- 输入参数  : VOS_UINT8          **ppucSrc    -待解码的字串
- 输出参数  : SSA_TAG_STRU       *pstTagStru  -存放解码出的标签值
-             VOS_UINT8          *pucLen      -存放解码出的长度值
- 返 回 值  : VOS_UINT32                      -解码的结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月8日
-    作    者   : 王毛/00166186
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 SSA_DecodeTL(
     VOS_UINT8                           **ppucSrc,
     SSA_TAG_STRU                        *pstTagStru,
@@ -3790,23 +3438,7 @@ VOS_UINT32 SSA_DecodeTL(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : SSA_DecodeSSDataSsCode
- 功能描述  : 解码SSData中的参数SSCode
- 输入参数  : VOS_UINT8          **ppucSrc            -待解码的字串
-             VOS_UINT8          *pucCurLocation      -待解码字串的当前位置
-             VOS_UINT8          *pucEndLocation      -待解码字串的结束位置
- 输出参数  : TAF_SS_SSDATA_STRU *pstDest             -存放解码出的参数值
- 返 回 值  : VOS_UINT32                              -解码的结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月8日
-    作    者   : 王毛/00166186
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 SSA_DecodeSSDataSsCode(
     TAF_SS_SSDATA_STRU                  *pstDest,
     VOS_UINT8                           **ppucSrc,
@@ -3856,23 +3488,7 @@ VOS_UINT32 SSA_DecodeSSDataSsCode(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : SSA_DecodeSSDataSsStatus
- 功能描述  : 解码SSData中的参数SsStatus
- 输入参数  : VOS_UINT8          **ppucSrc            -待解码的字串
-             VOS_UINT8          *pucCurLocation      -待解码字串的当前位置
-             VOS_UINT8          *pucEndLocation      -待解码字串的结束位置
- 输出参数  : TAF_SS_SSDATA_STRU *pstDest             -存放解码出的参数值
- 返 回 值  : VOS_UINT32                              -解码的结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月10日
-    作    者   : 王毛/00166186
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 SSA_DecodeSSDataSsStatus(
     TAF_SS_SSDATA_STRU                  *pstDest,
     VOS_UINT8                           **ppucSrc,
@@ -3922,23 +3538,7 @@ VOS_UINT32 SSA_DecodeSSDataSsStatus(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : SSA_DecodeSSDataSsSubScriptionOp
- 功能描述  : 对SSData的参数ss-SubscriptionOption解码
- 输入参数  : VOS_UINT8          **ppucSrc            -待解码的字串
-             VOS_UINT8          *pucCurLocation      -待解码字串的当前位置
-             VOS_UINT8          *pucEndLocation      -待解码字串的结束位置
- 输出参数  : TAF_SS_SSDATA_STRU *pstDest             -存放解码出的参数值
- 返 回 值  : VOS_UINT32                              -解码的结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月10日
-    作    者   : 王毛/00166186
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 SSA_DecodeSSDataSsSubScriptionOp(
     TAF_SS_SSDATA_STRU                  *pstDest,
     VOS_UINT8                           **ppucSrc,
@@ -3989,24 +3589,7 @@ VOS_UINT32 SSA_DecodeSSDataSsSubScriptionOp(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : SSA_DecodeSSDataBasicServiceGroupList
- 功能描述  : 对SSData的参数basicServiceGroupList解码
- 输入参数  : VOS_UINT8          **ppucSrc            -待解码的字串
-             VOS_UINT8          *pucCurLocation      -待解码字串的当前位置
-             VOS_UINT8          *pucEndLocation      -待解码字串的结束位置
- 输出参数  : TAF_SS_SSDATA_STRU *pstDest             -存放解码出的参数值
- 返 回 值  : VOS_UINT32                              -解码的结果
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2010年7月10日
-    作    者   : 王毛/00166186
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 SSA_DecodeSSDataBasicServiceGroupList(
     TAF_SS_SSDATA_STRU                  *pstDest,
     VOS_UINT8                           **ppucSrc,
@@ -4055,23 +3638,7 @@ VOS_UINT32 SSA_DecodeSSDataBasicServiceGroupList(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : SSA_DecodeSSDataDefaultPriority
- 功能描述  : 对SSData的参数defaultPriority解码
- 输入参数  : VOS_UINT8          **ppucSrc            -待解码的字串
-             VOS_UINT8          *pucCurLocation      -待解码字串的当前位置
-             VOS_UINT8          *pucEndLocation      -待解码字串的结束位置
- 输出参数  : TAF_SS_SSDATA_STRU *pstDest             -存放解码出的参数值
- 返 回 值  : VOS_UINT32                              -解码的结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月10日
-    作    者   : 王毛/00166186
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 SSA_DecodeSSDataDefaultPriority(
     TAF_SS_SSDATA_STRU                  *pstDest,
     VOS_UINT8                           **ppucSrc,
@@ -4123,23 +3690,7 @@ VOS_UINT32 SSA_DecodeSSDataDefaultPriority(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : SSA_DecodeSSDataNbrUser
- 功能描述  : 对SSData的参数nbrUser解码
- 输入参数  : VOS_UINT8          **ppucSrc            -待解码的字串
-             VOS_UINT8          *pucCurLocation      -待解码字串的当前位置
-             VOS_UINT8          *pucEndLocation      -待解码字串的结束位置
- 输出参数  : TAF_SS_SSDATA_STRU *pstDest             -存放解码出的参数值
- 返 回 值  : VOS_UINT32                              -解码的结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月10日
-    作    者   : 王毛/00166186
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 SSA_DecodeSSDataNbrUser(
     TAF_SS_SSDATA_STRU                  *pstDest,
     VOS_UINT8                           **ppucSrc,
@@ -4191,23 +3742,7 @@ VOS_UINT32 SSA_DecodeSSDataNbrUser(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : SSA_DecodeFwdFeatureBasicService
- 功能描述  : 对ForwardingFeature的参数basicService解码
- 输入参数  : VOS_UINT8              **ppucSrc            -待解码的字串
-             VOS_UINT8              *pucCurLocation      -待解码字串的当前位置
-             VOS_UINT8              *pucEndLocation      -待解码字串的结束位置
- 输出参数  : TAF_SS_FWDFEATURE_STRU *pstDest             -存放解码出的参数值
- 返 回 值  : VOS_UINT32                                  -解码的结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月10日
-    作    者   : 王毛/00166186
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 SSA_DecodeFwdFeatureBasicService(
     TAF_SS_FWDFEATURE_STRU              *pstDest,
     VOS_UINT8                           **ppucSrc,
@@ -4257,23 +3792,7 @@ VOS_UINT32 SSA_DecodeFwdFeatureBasicService(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : SSA_DecodeFwdFeatureSsStatus
- 功能描述  : 对ForwardingFeature的参数ss-Status解码
- 输入参数  : VOS_UINT8              **ppucSrc            -待解码的字串
-             VOS_UINT8              *pucCurLocation      -待解码字串的当前位置
-             VOS_UINT8              *pucEndLocation      -待解码字串的结束位置
- 输出参数  : TAF_SS_FWDFEATURE_STRU *pstDest             -存放解码出的参数值
- 返 回 值  : VOS_UINT32                                  -解码的结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月10日
-    作    者   : 王毛/00166186
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 SSA_DecodeFwdFeatureSsStatus(
     TAF_SS_FWDFEATURE_STRU              *pstDest,
     VOS_UINT8                           **ppucSrc,
@@ -4323,23 +3842,7 @@ VOS_UINT32 SSA_DecodeFwdFeatureSsStatus(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : SSA_DecodeFwdFeatureForwardedToNumber
- 功能描述  : 对ForwardingFeature的参数forwardedToNumber解码
- 输入参数  : VOS_UINT8              **ppucSrc            -待解码的字串
-             VOS_UINT8              *pucCurLocation      -待解码字串的当前位置
-             VOS_UINT8              *pucEndLocation      -待解码字串的结束位置
- 输出参数  : TAF_SS_FWDFEATURE_STRU *pstDest             -存放解码出的参数值
- 返 回 值  : VOS_UINT32                                  -解码的结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月10日
-    作    者   : 王毛/00166186
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 SSA_DecodeFwdFeatureForwardedToNumber(
     TAF_SS_FWDFEATURE_STRU              *pstDest,
     VOS_UINT8                           **ppucSrc,
@@ -4392,23 +3895,7 @@ VOS_UINT32 SSA_DecodeFwdFeatureForwardedToNumber(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : SSA_DecodeFwdFeatureForwardedToSubaddress
- 功能描述  : 对ForwardingFeature的参数forwardedToSubaddress解码
- 输入参数  : VOS_UINT8              **ppucSrc            -待解码的字串
-             VOS_UINT8              *pucCurLocation      -待解码字串的当前位置
-             VOS_UINT8              *pucEndLocation      -待解码字串的结束位置
- 输出参数  : TAF_SS_FWDFEATURE_STRU *pstDest             -存放解码出的参数值
- 返 回 值  : VOS_UINT32                                  -解码的结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月10日
-    作    者   : 王毛/00166186
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 SSA_DecodeFwdFeatureForwardedToSubaddress(
     TAF_SS_FWDFEATURE_STRU              *pstDest,
     VOS_UINT8                           **ppucSrc,
@@ -4461,23 +3948,7 @@ VOS_UINT32 SSA_DecodeFwdFeatureForwardedToSubaddress(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : SSA_DecodeFwdFeatureForwardingOptions
- 功能描述  : 对ForwardingFeature的参数forwardingOptions解码
- 输入参数  : VOS_UINT8              **ppucSrc            -待解码的字串
-             VOS_UINT8              *pucCurLocation      -待解码字串的当前位置
-             VOS_UINT8              *pucEndLocation      -待解码字串的结束位置
- 输出参数  : TAF_SS_FWDFEATURE_STRU *pstDest             -存放解码出的参数值
- 返 回 值  : VOS_UINT32                                  -解码的结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月10日
-    作    者   : 王毛/00166186
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 SSA_DecodeFwdFeatureForwardingOptions(
     TAF_SS_FWDFEATURE_STRU              *pstDest,
     VOS_UINT8                           **ppucSrc,
@@ -4527,23 +3998,7 @@ VOS_UINT32 SSA_DecodeFwdFeatureForwardingOptions(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : SSA_DecodeFwdFeatureNoReplyConditionTime
- 功能描述  : 对ForwardingFeature的参数noReplyConditionTime解码
- 输入参数  : VOS_UINT8              **ppucSrc            -待解码的字串
-             VOS_UINT8              *pucCurLocation      -待解码字串的当前位置
-             VOS_UINT8              *pucEndLocation      -待解码字串的结束位置
- 输出参数  : TAF_SS_FWDFEATURE_STRU *pstDest             -存放解码出的参数值
- 返 回 值  : VOS_UINT32                                  -解码的结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月10日
-    作    者   : 王毛/00166186
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 SSA_DecodeFwdFeatureNoReplyConditionTime(
     TAF_SS_FWDFEATURE_STRU              *pstDest,
     VOS_UINT8                           **ppucSrc,
@@ -4595,23 +4050,7 @@ VOS_UINT32 SSA_DecodeFwdFeatureNoReplyConditionTime(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : SSA_DecodeFwdFeatureLongForwardedToNumber
- 功能描述  : 对ForwardingFeature的参数longForwardedToNumber解码
- 输入参数  : VOS_UINT8              **ppucSrc            -待解码的字串
-             VOS_UINT8              *pucCurLocation      -待解码字串的当前位置
-             VOS_UINT8              *pucEndLocation      -待解码字串的结束位置
- 输出参数  : TAF_SS_FWDFEATURE_STRU *pstDest             -存放解码出的参数值
- 返 回 值  : VOS_UINT32                                  -解码的结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月10日
-    作    者   : 王毛/00166186
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 SSA_DecodeFwdFeatureLongForwardedToNumber(
     TAF_SS_FWDFEATURE_STRU              *pstDest,
     VOS_UINT8                           **ppucSrc,
@@ -4663,23 +4102,7 @@ VOS_UINT32 SSA_DecodeFwdFeatureLongForwardedToNumber(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : SSA_DecodeGenericCliRestrictionOption
- 功能描述  : 对GenericServiceInfo的参数cliRestrictionOption解码
- 输入参数  : VOS_UINT8                      **ppucSrc            -待解码的字串
-             VOS_UINT8                      *pucCurLocation      -待解码字串的当前位置
-             VOS_UINT8                      *pucEndLocation      -待解码字串的结束位置
- 输出参数  : TAF_SS_GENERIC_SERV_INFO_STRU  *pstDest             -存放解码出的参数值
- 返 回 值  : VOS_UINT32                                          -解码的结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月10日
-    作    者   : 王毛/00166186
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 SSA_DecodeGenericCliRestrictionOption(
     TAF_SS_GENERIC_SERV_INFO_STRU       *pstDest,
     VOS_UINT8                           **ppucSrc,
@@ -4728,24 +4151,7 @@ VOS_UINT32 SSA_DecodeGenericCliRestrictionOption(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : SSA_DecodeGenericMaxEntitledPriority
- 功能描述  : 对GenericServiceInfo的参数maximumEntitledPriority解码
- 输入参数  : VOS_UINT8                      **ppucSrc            -待解码的字串
-             VOS_UINT8                      *pucCurLocation      -待解码字串的当前位置
-             VOS_UINT8                      *pucEndLocation      -待解码字串的结束位置
- 输出参数  : TAF_SS_GENERIC_SERV_INFO_STRU  *pstDest             -存放解码出的参数值
- 返 回 值  : VOS_UINT32                                          -解码的结果
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2010年7月10日
-    作    者   : 王毛/00166186
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 SSA_DecodeGenericMaxEntitledPriority(
     TAF_SS_GENERIC_SERV_INFO_STRU       *pstDest,
     VOS_UINT8                           **ppucSrc,
@@ -4798,23 +4204,7 @@ VOS_UINT32 SSA_DecodeGenericMaxEntitledPriority(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : SSA_DecodeGenericDefaultPriority
- 功能描述  : 对GenericServiceInfo的参数maximumEntitledPriority解码
- 输入参数  : VOS_UINT8                      **ppucSrc            -待解码的字串
-             VOS_UINT8                      *pucCurLocation      -待解码字串的当前位置
-             VOS_UINT8                      *pucEndLocation      -待解码字串的结束位置
- 输出参数  : TAF_SS_GENERIC_SERV_INFO_STRU  *pstDest             -存放解码出的参数值
- 返 回 值  : VOS_UINT32                                          -解码的结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月10日
-    作    者   : 王毛/00166186
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 SSA_DecodeGenericDefaultPriority(
     TAF_SS_GENERIC_SERV_INFO_STRU       *pstDest,
     VOS_UINT8                           **ppucSrc,
@@ -4866,23 +4256,7 @@ VOS_UINT32 SSA_DecodeGenericDefaultPriority(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : SSA_DecodeGenericCcbsFeatureList
- 功能描述  : 对GenericServiceInfo的参数ccbs-FeatureList解码
- 输入参数  : VOS_UINT8                      **ppucSrc            -待解码的字串
-             VOS_UINT8                      *pucCurLocation      -待解码字串的当前位置
-             VOS_UINT8                      *pucEndLocation      -待解码字串的结束位置
- 输出参数  : TAF_SS_GENERIC_SERV_INFO_STRU  *pstDest             -存放解码出的参数值
- 返 回 值  : VOS_UINT32                                          -解码的结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月10日
-    作    者   : 王毛/00166186
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 SSA_DecodeGenericCcbsFeatureList(
     TAF_SS_GENERIC_SERV_INFO_STRU       *pstDest,
     VOS_UINT8                           **ppucSrc,
@@ -4932,23 +4306,7 @@ VOS_UINT32 SSA_DecodeGenericCcbsFeatureList(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : SSA_DecodeGenericNbrSB
- 功能描述  : 对GenericServiceInfo的参数nbrSB解码
- 输入参数  : VOS_UINT8                      **ppucSrc            -待解码的字串
-             VOS_UINT8                      *pucCurLocation      -待解码字串的当前位置
-             VOS_UINT8                      *pucEndLocation      -待解码字串的结束位置
- 输出参数  : TAF_SS_GENERIC_SERV_INFO_STRU  *pstDest             -存放解码出的参数值
- 返 回 值  : VOS_UINT32                                          -解码的结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月10日
-    作    者   : 王毛/00166186
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 SSA_DecodeGenericNbrSB(
     TAF_SS_GENERIC_SERV_INFO_STRU       *pstDest,
     VOS_UINT8                           **ppucSrc,
@@ -5000,23 +4358,7 @@ VOS_UINT32 SSA_DecodeGenericNbrSB(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : SSA_DecodeGenericNbrUser
- 功能描述  : 对GenericServiceInfo的参数nbrUser解码
- 输入参数  : VOS_UINT8                      **ppucSrc            -待解码的字串
-             VOS_UINT8                      *pucCurLocation      -待解码字串的当前位置
-             VOS_UINT8                      *pucEndLocation      -待解码字串的结束位置
- 输出参数  : TAF_SS_GENERIC_SERV_INFO_STRU  *pstDest             -存放解码出的参数值
- 返 回 值  : VOS_UINT32                                          -解码的结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月10日
-    作    者   : 王毛/00166186
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 SSA_DecodeGenericNbrUser(
     TAF_SS_GENERIC_SERV_INFO_STRU       *pDest,
     VOS_UINT8                           **ppucSrc,
@@ -5069,23 +4411,7 @@ VOS_UINT32 SSA_DecodeGenericNbrUser(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : SSA_DecodeGenericNbrSN
- 功能描述  : 对GenericServiceInfo的参数nbrSN解码
- 输入参数  : VOS_UINT8                      **ppucSrc            -待解码的字串
-             VOS_UINT8                      *pucCurLocation      -待解码字串的当前位置
-             VOS_UINT8                      *pucEndLocation      -待解码字串的结束位置
- 输出参数  : TAF_SS_GENERIC_SERV_INFO_STRU  *pstDest             -存放解码出的参数值
- 返 回 值  : VOS_UINT32                                          -解码的结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月10日
-    作    者   : 王毛/00166186
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 SSA_DecodeGenericNbrSN(
     TAF_SS_GENERIC_SERV_INFO_STRU       *pDest,
     VOS_UINT8                           **ppucSrc,
@@ -5138,25 +4464,7 @@ VOS_UINT32 SSA_DecodeGenericNbrSN(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : SSA_DecodeSSData
- 功能描述  : 解码SS空口消息facility中TAF_SS_SSDATA_STRU的参数
- 输入参数  : VOS_UINT8                  **ppucSrc       -待解码的字串起始地址
-             TAG_MODE                   ucTagMode       -解码的模式
- 输出参数  : TAF_SS_SSDATA_STRU         *pstDest        -存放解码出的SSData数据
- 返 回 值  : VOS_UINT32                                 -解码的结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2005年8月15日
-    作    者   :
-    修改内容   : 新生成函数
-  2.日    期   : 2010年7月10日
-    作    者   : 王毛/00166186
-    修改内容   : 降圈复杂度
-
-*****************************************************************************/
 VOS_UINT32 SSA_DecodeSSData(
     TAF_SS_SSDATA_STRU                  *pstDest,
     VOS_UINT8                           **ppucSrc,
@@ -5263,29 +4571,7 @@ VOS_UINT32 SSA_DecodeSSData(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : SSA_DecodeForwardingFeature
- 功能描述  : 解码SS空口消息facility中TAF_SS_FWDFEATURE_STRU类型的参数
- 输入参数  : VOS_UINT8                      **ppucSrc       -待解码的字串起始地址
-             TAG_MODE                       ucTagMode       -解码的模式
- 输出参数  : TAF_SS_FWDFEATURE_STRU         *pstDest        -存放解码出的SSData数据
- 返 回 值  : VOS_UINT32                                     -解码的结果
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2008年8月15日
-    作    者   :
-    修改内容   : 新生成函数
-  2.日    期   : 2006年03月28日
-    作    者   : h44270
-    修改内容   : 问题单A32D02754修改
-  3.日    期   : 2010年7月10日
-    作    者   : 王毛/00166186
-    修改内容   : 降圈复杂度
-
-*****************************************************************************/
 VOS_UINT32 SSA_DecodeForwardingFeature(
     TAF_SS_FWDFEATURE_STRU              *pstDest,
     VOS_UINT8                           **ppucSrc,
@@ -5404,25 +4690,7 @@ VOS_UINT32 SSA_DecodeForwardingFeature(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : SSA_DecodeGenericServiceInfo
- 功能描述  : 解码SS空口消息facility中TAF_SS_GENERIC_SERV_INFO_STRU类型的参数
- 输入参数  : VOS_UINT8                              **ppucSrc       -待解码的字串起始地址
-             TAG_MODE                               ucTagMode       -解码的模式
- 输出参数  : TAF_SS_GENERIC_SERV_INFO_STRU          *pstDest        -存放解码出的SSData数据
- 返 回 值  : VOS_UINT32                                             -解码的结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2005年8月15日
-    作    者   :
-    修改内容   : 新生成函数
-  2.日    期   : 2010年7月10日
-    作    者   : 王毛/00166186
-    修改内容   : 降圈复杂度
-
-*****************************************************************************/
 VOS_UINT32 SSA_DecodeGenericServiceInfo(
     TAF_SS_GENERIC_SERV_INFO_STRU       *pstDest,
     VOS_UINT8                           **ppucSrc,
@@ -5551,9 +4819,7 @@ VOS_UINT32 SSA_DecodeGenericServiceInfo(
 
 
 
-/* Deleted by f62575 for V9R1 STK升级, 2013-6-26, begin */
 /* Deleted SSA_GetDcsMsgCoding */
-/* Deleted by f62575 for V9R1 STK升级, 2013-6-26, end */
 
 /*lint -restore */
 

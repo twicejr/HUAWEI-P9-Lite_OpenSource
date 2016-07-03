@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmcFsmMainTbl.c
-  版 本 号   : 初稿
-  作    者   : zhoujun /40661
-  生成日期   : 2010年11月12日
-  最近修改   :
-  功能描述   : NAS MMC L1 Main状态机
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2010年11月12日
-    作    者   : zhoujun /40661
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -28,14 +11,10 @@
 #include "MmcGmmInterface.h"
 #include "MmcMmInterface.h"
 #include "NasMmcSndInternalMsg.h"
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-7, begin */
 /* 删除ExtAppMmcInterface.h*/
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-7, end */
 #include "NasMmcFsmMainTbl.h"
 
-/* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
 #include "MsccMmcInterface.h"
-/* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
 #include "PsRrmInterface.h"
 
@@ -60,7 +39,6 @@ NAS_FSM_DESC_STRU                       g_stNasMmcMainFsmDesc;
 
 
 /*新增状态动作处理表 */
-/* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
 /* NAS_MMC_L1_STA_NULL动作表 */
 NAS_ACT_STRU   g_astNasMmcNullActTbl[]                      =
 {
@@ -129,7 +107,6 @@ NAS_ACT_STRU   g_astNasMmcInitialActTbl[]                   =
                       ID_MSCC_MMC_PLMN_SEARCH_REQ,
                       NAS_MMC_RcvMsccPlmnSrchReq_L1Main),
 
-    /* Added by s00246516 for L-C互操作项目, 2014-01-27, Begin */
     /* MSCC发送过来的获取请求 */
     NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
                       ID_MSCC_MMC_ACQ_REQ,
@@ -144,7 +121,6 @@ NAS_ACT_STRU   g_astNasMmcInitialActTbl[]                   =
     NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
                       ID_MSCC_MMC_POWER_SAVE_REQ,
                       NAS_MMC_RcvMsccPowerSaveReq_L1Main),
-    /* Added by s00246516 for L-C互操作项目, 2014-01-27, End */
 
 #if (FEATURE_ON == FEATURE_DSDS)
     /* MSCC发送过来的ID_MSCC_MMC_SRV_ACQ_REQ */
@@ -238,21 +214,17 @@ NAS_ACT_STRU   g_astNasMmcInitialActTbl[]                   =
                       NAS_MMC_RcvMsccGetGeoReq_L1Main),
 
 
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-14, begin */
 #if (FEATURE_ON == FEATURE_LTE)
     NAS_ACT_TBL_ITEM( PS_PID_MM,
                       ID_LMM_MMC_SERVICE_RESULT_IND,
                       NAS_MMC_RcvLmmServiceResultInd_Initial),
 #endif
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-14, end */
 
-    /* Added by c00318887 for 预置频点搜网优化, 2015-9-12, begin */
     /* available Timer定时器超时 */
     NAS_ACT_TBL_ITEM(VOS_PID_TIMER,
                      TI_NAS_MMC_AVAILABLE_TIMER,
                      NAS_MMC_RcvTiAvailTimerExpired_L1Main),
 
-    /* Added by c00318887 for 预置频点搜网优化, 2015-9-12, end */
 };
 
 /* NAS_MMC_L1_STA_ON_PLMN动作表 */
@@ -311,7 +283,6 @@ NAS_ACT_STRU   g_astNasMmcOnPlmnActTbl[] =
                       ID_MSCC_MMC_PLMN_USER_RESEL_REQ,
                       NAS_MMC_RcvUserReselReq_L1Main),
 
-    /* Added by s00246516 for L-C互操作项目, 2014-01-27, Begin */
     /* MSCC发送过来的获取请求 */
     NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
                       ID_MSCC_MMC_ACQ_REQ,
@@ -326,7 +297,6 @@ NAS_ACT_STRU   g_astNasMmcOnPlmnActTbl[] =
     NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
                       ID_MSCC_MMC_POWER_SAVE_REQ,
                       NAS_MMC_RcvMsccPowerSaveReq_L1Main),
-    /* Added by s00246516 for L-C互操作项目, 2014-01-27, End */
 
     /* MMC内部发起的列表搜网请求 */
     NAS_ACT_TBL_ITEM( WUEPS_PID_MMC,
@@ -543,11 +513,9 @@ NAS_ACT_STRU   g_astNasMmcOnPlmnActTbl[] =
 
 #endif
 
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-10, begin */
     NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
                       ID_MSCC_MMC_IMS_VOICE_CAP_NOTIFY,
                       NAS_MMC_RcvMsccImsVoiceCapInd_OnPlmn),
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-10, end */
 
 #if (FEATURE_IMS == FEATURE_ON)
     NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
@@ -594,7 +562,6 @@ NAS_ACT_STRU   g_astNasMmcOOCActTbl[]   =
                       TI_NAS_MMC_PERIOD_TRYING_USER_CSG_LIST_SEARCH,
                       NAS_MMC_RcvTiPeriodTryingUserCsgListExpired_L1Main),
 #endif
-    /* Added by s00246516 for L-C互操作项目, 2014-01-27, Begin */
     /* MSCC发送过来的获取请求 */
     NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
                       ID_MSCC_MMC_ACQ_REQ,
@@ -609,7 +576,6 @@ NAS_ACT_STRU   g_astNasMmcOOCActTbl[]   =
     NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
                       ID_MSCC_MMC_POWER_SAVE_REQ,
                       NAS_MMC_RcvMsccPowerSaveReq_L1Main),
-    /* Added by s00246516 for L-C互操作项目, 2014-01-27, End */
 
     NAS_ACT_TBL_ITEM( VOS_PID_TIMER,
                       TI_NAS_MMC_PERIOD_TRYING_USER_PLMN_LIST,
@@ -656,11 +622,9 @@ NAS_ACT_STRU   g_astNasMmcOOCActTbl[]   =
                       ID_LMM_MMC_ATTACH_CNF,
                       NAS_MMC_RcvLmmAttachCnf_L1Main),
 
-    /* Modified by z00161729 for DCM定制需求和遗留问题DTS2012090401384, 2012-9-4, begin */
     NAS_ACT_TBL_ITEM( PS_PID_MM,
                       ID_LMM_MMC_SERVICE_RESULT_IND,
                       NAS_MMC_RcvLmmMmcServiceRsltInd_OnPlmn),
-    /* Modified by z00161729 for DCM定制需求和遗留问题DTS2012090401384, 2012-9-4, end */
 #endif
 
 #if (FEATURE_MULTI_MODEM == FEATURE_ON)
@@ -779,7 +743,6 @@ NAS_ACT_STRU g_astNasMmcDeactActTbl[]  =
                       NAS_MMC_RcvLmmResumeInd_Deact),
 #endif
 };
-/* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 NAS_STA_STRU g_astNasMmcL1MainStaTbl[] =
 {
     /*****************定义及关机到开机初始化状态转移表**********************/
@@ -803,41 +766,13 @@ NAS_STA_STRU g_astNasMmcL1MainStaTbl[] =
                       g_astNasMmcDeactActTbl ),
 };
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetL1MainStaTblSize
- 功能描述  : 获取L1MAIN状态机的大小
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:L1MAIN状态机的大小
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月9日
-    作    者   : zhoujun 40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_GetL1MainStaTblSize( VOS_VOID  )
 {
     return (sizeof(g_astNasMmcL1MainStaTbl)/sizeof(NAS_STA_STRU));
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetMainFsmDescAddr
- 功能描述  : 获取MAIN状态机的描述表
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : NAS_FSM_DESC_STRU:指向MAIN状态机的描述表
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月9日
-    作    者   : zhoujun 40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_FSM_DESC_STRU * NAS_MMC_GetMainFsmDescAddr(VOS_VOID)
 {
     return (&g_stNasMmcMainFsmDesc);

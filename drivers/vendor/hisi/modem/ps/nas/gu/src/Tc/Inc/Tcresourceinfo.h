@@ -1,18 +1,4 @@
-/*******************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : Tcresourceinfo.h
-  Description : TC存储资源信息的数据结构头文件
-  History     :
-      1. 2004-05-18 Creat
-      2. L47619     Modify   问题单:A32D00767
-      3. L47619     Modify   问题单:A32D02126
-      4. L47619     Modify   问题单:A32D06342
-      5.日    期  : 2006年12月4日
-        作    者  : luojian id:60022475
-        修改内容  : 增加 #pragma pack(4)，问题单号:A32D07779
-      6. L47619     Modify   问题单:A32D08523
-      7. s62952     Modify   问题单:AT2D06914
-*******************************************************************************/
+
 
 #ifndef TC_RESOURCE_INFO_H_
 #define TC_RESOURCE_INFO_H_

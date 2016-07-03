@@ -1,46 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CPU_view.c
-  版 本 号   : 初稿
-  作    者   : g00178567
-  生成日期   : 2013年3月13日
-  最近修改   :
-  功能描述   : C核任务中断统计工具
-  函数列表   :
-              CpuView_ChkTask
-              CpuView_Close
-              CpuView_CloseFuncWatch
-              CpuView_ClosePointWatch
-              CpuView_CloseTaskWatch
-              CpuView_Dump
-              CpuView_End
-              CpuView_GetTaskInfo
-              CpuView_GetTaskName
-              CpuView_InfoPrint
-              CpuView_Init
-              CpuView_IntLevChgInHook
-              CpuView_IntLevChgOutHook
-              CpuView_IsOverturn
-              CpuView_MemChk
-              CpuView_OpenFuncWatch
-              CpuView_OpenPointWatch
-              CpuView_OpenTaskWatch
-              CpuView_Restart
-              CpuView_SetPoint
-              CpuView_Start
-              CpuView_TaskSwitchHook
-              CpuView_TcbCmp
-              __cyg_profile_func_enter
-              __cyg_profile_func_exit
-  修改历史   :
-  1.日    期   : 2013年3月13日
-    作    者   : g00178567
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /******************************************************************************
    1 头文件包含
@@ -134,20 +92,7 @@ VOS_UINT32 CpuView_GetTaskName(VOS_VOID)
     return VOS_OK;
 } /* CpuView_GetTaskName */
 
-/******************************************************************************
- Prototype      : CpuView_IsOverturn
- Description    : 判断是否发现记录翻转
- Input          :
- Output         :
- Return Value   :
- Calls          :
- Called By      :
 
- History        : ---
-  1.Date        : 2013-03-10
-    Author      : g00178567
-    Modification: Created function
-******************************************************************************/
 VOS_UINT32 CpuView_IsOverturn(VOS_VOID)
 {
     if (g_ulCpuViewTraceCnt == g_ulCpuViewCnt)

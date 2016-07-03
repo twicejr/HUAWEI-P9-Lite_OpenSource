@@ -1,19 +1,4 @@
-/*******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasHsdFsmInterSys.c
-  版 本 号   : 初稿
-  作    者   : z00316370
-  生成日期   : 2015年06月03日
-  功能描述   : HRPD SD L2 INTER_SYS状态机事件处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年06月03日
-    作    者   : z00316370
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -50,22 +35,7 @@ extern "C"{
   3 函数定义
 *****************************************************************************/
 /*lint -save -e958*/
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_RcvHsdIratFromLteNtf_InterSys_Init
- 功能描述  : CNAS_HSD_INTER_SYS_STA_INIT状态收到ID_CAS_CNAS_HRPD_IRAT_FROM_LTE_NTF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月02日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_RcvHsdIratFromLteNtf_InterSys_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -82,21 +52,7 @@ VOS_UINT32 CNAS_HSD_RcvHsdIratFromLteNtf_InterSys_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_RcvCasOverheadInd_InterSys_WaitCasInd
- 功能描述  : CNAS_HSD_INTER_SYS_STA_WAIT_CAS_IND状态收到ID_CNAS_HRDP_OVERHEAD_MSG_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月02日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_RcvCasOhmInd_InterSys_WaitCasOhmInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -151,22 +107,7 @@ VOS_UINT32 CNAS_HSD_RcvCasOhmInd_InterSys_WaitCasOhmInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_RcvTiWaitCasOhmIndExpired_InterSys_WaitCasOhmInd
- 功能描述  : CNAS_HSD_SYS_ACQ_STA_WAIT_CAS_OHM_IND状态等TI_CNAS_HSD_WAIT_CAS_OHM_IND消息超时
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月03日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_RcvTiWaitCasOhmIndExpired_InterSys_WaitCasOhmInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -182,22 +123,7 @@ VOS_UINT32 CNAS_HSD_RcvTiWaitCasOhmIndExpired_InterSys_WaitCasOhmInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_RcvMsccPowerSaveReq_InterSys_WaitCasOhmInd
- 功能描述  : CNAS_HSD_INTER_SYS_STA_WAIT_CAS_IND状态收到ID_MMA_HSD_POWER_SAVE_REQ消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月03日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_RcvMsccPowerSaveReq_InterSys_WaitCasOhmInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -215,22 +141,7 @@ VOS_UINT32 CNAS_HSD_RcvMsccPowerSaveReq_InterSys_WaitCasOhmInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_RcvMsccPowerOffReq_InterSys_WaitCasInd
- 功能描述  : CNAS_HSD_INTER_SYS_STA_WAIT_CAS_IND状态收到ID_MMA_HSD_POWER_OFF_REQ消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月03日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_RcvMsccPowerOffReq_InterSys_WaitCasOhmInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -251,22 +162,7 @@ VOS_UINT32 CNAS_HSD_RcvMsccPowerOffReq_InterSys_WaitCasOhmInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_RcvMsccDataCallReq_InterSys_WaitCasOhmInd
- 功能描述  : CNAS_HSD_INTER_SYS_STA_WAIT_CAS_IND状态收到ID_MMA_HSD_DATA_CALL_REQ消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月03日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_RcvMsccDataCallReq_InterSys_WaitCasOhmInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -279,22 +175,7 @@ VOS_UINT32 CNAS_HSD_RcvMsccDataCallReq_InterSys_WaitCasOhmInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_RcvCasSuspendInd_InterSys_Init
- 功能描述  : CNAS_HSD_INTER_SYS_STA_INIT状态收到ID_CAS_CNAS_HRPD_SUSPEND_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月02日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_RcvCasSuspendInd_InterSys_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -311,22 +192,7 @@ VOS_UINT32 CNAS_HSD_RcvCasSuspendInd_InterSys_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_RcvCasIratToLte_InterSys_Init
- 功能描述  : CNAS_HSD_INTER_SYS_STA_INIT状态收到ID_CAS_CNAS_HRPD_IRAT_TO_LTE_NTF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月02日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_RcvCasIratToLte_InterSys_WaitIratOrResume(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -348,22 +214,7 @@ VOS_UINT32 CNAS_HSD_RcvCasIratToLte_InterSys_WaitIratOrResume(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_RcvCasResumeInd_InterSys_Init
- 功能描述  : CNAS_HSD_INTER_SYS_STA_INIT状态收到ID_CAS_CNAS_HRPD_RESUME_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月02日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_RcvCasResumeInd_InterSys_WaitIratOrResume(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -395,22 +246,7 @@ VOS_UINT32 CNAS_HSD_RcvCasResumeInd_InterSys_WaitIratOrResume(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_RcvTiWaitIratOrResumeExpired_InterSys_WaitIratOrResume
- 功能描述  : CNAS_HSD_INTER_SYS_STA_INIT状态接收RESUME_IND/IRAT_TO_LTE_NTF消息超时
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月02日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_RcvTiWaitIratOrResumeExpired_InterSys_WaitIratOrResume(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -437,22 +273,7 @@ VOS_UINT32 CNAS_HSD_RcvTiWaitIratOrResumeExpired_InterSys_WaitIratOrResume(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_RcvMsccPowerSaveReq_InterSys_WaitIratOrResume
- 功能描述  : CNAS_HSD_INTER_SYS_STA_WAIT_IRAT_OR_RESUME_IND状态收到ID_MMA_HSD_POWER_SAVE_REQ消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月03日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_RcvMsccPowerSaveReq_InterSys_WaitIratOrResume(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -478,22 +299,7 @@ VOS_UINT32 CNAS_HSD_RcvMsccPowerSaveReq_InterSys_WaitIratOrResume(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_RcvMsccPowerOffReq_InterSys_WaitIratOrResume
- 功能描述  : CNAS_HSD_INTER_SYS_STA_WAIT_IRAT_OR_RESUME_IND状态收到ID_MMA_HSD_POWER_OFF_REQ消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月03日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_RcvMsccPowerOffReq_InterSys_WaitIratOrResume(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -519,22 +325,7 @@ VOS_UINT32 CNAS_HSD_RcvMsccPowerOffReq_InterSys_WaitIratOrResume(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_RcvMsccDataCallReq_InterSys_WaitIratOrResume
- 功能描述  : CNAS_HSD_INTER_SYS_STA_WAIT_IRAT_OR_RESUME_IND状态收到ID_MSCC_HSD_DATA_CALL_REQ消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月03日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_RcvMsccDataCallReq_InterSys_WaitIratOrResume(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -546,22 +337,7 @@ VOS_UINT32 CNAS_HSD_RcvMsccDataCallReq_InterSys_WaitIratOrResume(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_RcvCasNetworkLost_InterSys_WaitCasOhmInd
- 功能描述  : CNAS_HSD_SYS_ACQ_STA_WAIT_CAS_OHM_IND状态收到ID_CAS_CNAS_HRPD_NETWORK_LOST_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月18日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_RcvCasNetworkLost_InterSys_WaitCasOhmInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -602,22 +378,7 @@ VOS_UINT32 CNAS_HSD_RcvCasNetworkLost_InterSys_WaitCasOhmInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_RcvCasSuspendRelCnf_InterSys_WaitSuspendRelCnf
- 功能描述  : CNAS_HSD_INTER_SYS_STA_WAIT_SUSPEND_REL_CNF状态收到ID_CAS_CNAS_HRPD_SUSPEND_REL_CNF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月29日
-    作    者   : g00256031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_RcvCasSuspendRelCnf_InterSys_WaitSuspendRelCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -636,22 +397,7 @@ VOS_UINT32 CNAS_HSD_RcvCasSuspendRelCnf_InterSys_WaitSuspendRelCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_RcvCasIratToLte_InterSys_WaitSuspendRelCnf
- 功能描述  : CNAS_HSD_INTER_SYS_STA_WAIT_SUSPEND_REL_CNF状态收到ID_CAS_CNAS_HRPD_IRAT_TO_LTE_NTF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月29日
-    作    者   : g00256031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_RcvCasIratToLte_InterSys_WaitSuspendRelCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -673,22 +419,7 @@ VOS_UINT32 CNAS_HSD_RcvCasIratToLte_InterSys_WaitSuspendRelCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_RcvCasResumeInd_InterSys_WaitSuspendRelCnf
- 功能描述  : CNAS_HSD_INTER_SYS_STA_WAIT_SUSPEND_REL_CNF状态收到ID_CAS_CNAS_HRPD_RESUME_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月29日
-    作    者   : g00256031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_RcvCasResumeInd_InterSys_WaitSuspendRelCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -701,22 +432,7 @@ VOS_UINT32 CNAS_HSD_RcvCasResumeInd_InterSys_WaitSuspendRelCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_RcvCasResumeInd_InterSys_WaitSuspendRelCnf
- 功能描述  : CNAS_HSD_INTER_SYS_STA_WAIT_SUSPEND_REL_CNF状态收到TI_CNAS_HSD_WAIT_CAS_SUSPEND_REL_CNF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月29日
-    作    者   : g00256031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_RcvTiWaitSuspendRelCnfExpired_InterSys_WaitSuspendRelCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -732,22 +448,7 @@ VOS_UINT32 CNAS_HSD_RcvTiWaitSuspendRelCnfExpired_InterSys_WaitSuspendRelCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_RcvMsccPowerOffReq_InterSys_WaitSuspendRelCnf
- 功能描述  : CNAS_HSD_INTER_SYS_STA_WAIT_SUSPEND_REL_CNF状态收到ID_MSCC_HSD_POWER_OFF_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月29日
-    作    者   : g00256031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_RcvMsccPowerOffReq_InterSys_WaitSuspendRelCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -765,22 +466,7 @@ VOS_UINT32 CNAS_HSD_RcvMsccPowerOffReq_InterSys_WaitSuspendRelCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_RcvMsccDataCallReq_InterSys_WaitSuspendRelCnf
- 功能描述  : CNAS_HSD_INTER_SYS_STA_WAIT_SUSPEND_REL_CNF状态收到ID_MSCC_HSD_DATA_CALL_REQ消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月03日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_RcvMsccDataCallReq_InterSys_WaitSuspendRelCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -792,22 +478,7 @@ VOS_UINT32 CNAS_HSD_RcvMsccDataCallReq_InterSys_WaitSuspendRelCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_RcvCasNetworkLost_InterSys_WaitIratOrResume
- 功能描述  : CNAS_HSD_INTER_SYS_STA_WAIT_IRAT_OR_RESUME_IND状态收到ID_CAS_CNAS_HRPD_NETWORK_LOST_IND消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月5日
-    作    者   : g00256031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_RcvCasNetworkLost_InterSys_WaitIratOrResume(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -852,22 +523,7 @@ VOS_UINT32 CNAS_HSD_RcvCasNetworkLost_InterSys_WaitIratOrResume(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_RcvCasNetworkLost_InterSys_WaitSuspendRelCnf
- 功能描述  : CNAS_HSD_INTER_SYS_STA_WAIT_SUSPEND_REL_CNF状态收到ID_MSCC_HSD_DATA_CALL_REQ消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月5日
-    作    者   : g00256031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_RcvCasNetworkLost_InterSys_WaitSuspendRelCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg

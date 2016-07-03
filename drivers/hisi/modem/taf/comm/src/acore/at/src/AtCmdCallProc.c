@@ -5,10 +5,8 @@
 *****************************************************************************/
 #include "AtCmdCallProc.h"
 
-/* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, begin */
 #include "AtSndMsg.h"
 #include "ATCmdProc.h"
-/* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, end */
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -31,26 +29,8 @@ extern "C" {
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/* Added by n00269697 for V3R3C60_eCall项目, 2014-3-29, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
-/*****************************************************************************
- 函 数 名  : AT_SetCecallPara
- 功能描述  : 发起ECALL会话 ，+CECALL=<type_of_eCall>
-             <type_of_eCall>:    0 test call
-                                 1 reconfiguration call eCall
-                                 2 manually initiated eCall
-                                 3 automatically initated eCall
- 输入参数  : ucIndex - 端口索引
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月29日
-    作    者   : n00269697
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_SetCecallPara(VOS_UINT8 ucIndex)
 {
     VOS_UINT32                          ulRst;
@@ -102,26 +82,7 @@ VOS_UINT32 AT_SetCecallPara(VOS_UINT8 ucIndex)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SetEclstartPara
- 功能描述  : ^ECLSTART发起ECALL会话(^ECLSTART=<activation_type>,<type_of_call>[,<dial_num>])
-             <activation_type>:   0 用户发起ECALL会话
-                                  1 自动发起ECALL会话
-             <type_of_call>:      0 发起测试会话 (发起VOICE call)
-                                  1 发起紧急呼叫 (发起EMERGENCY call)
-             <dial_num>:          发起测试呼叫时，应该要带电话号码，如果没带号码，则从SIM卡的EEfdn或EFsdn中获取；
-                                  发起紧急呼叫时，不将号码发送到网络侧，号码参数没有实际意义，可以提供，也可以不提供。
- 输入参数  : ucIndex - 端口索引
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月29日
-    作    者   : n00269697
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_SetEclstartPara(VOS_UINT8 ucIndex)
 {
     VOS_UINT32                          ulRst;
@@ -173,7 +134,6 @@ VOS_UINT32 AT_SetEclstartPara(VOS_UINT8 ucIndex)
     /* 初始化 */
     PS_MEM_SET(&stCecallPara, 0x0, sizeof(stCecallPara));
 
-    /* 发紧急呼叫时，<activation_type>参数有效，非紧急呼叫时,<activation_type>参数没有作用 --产品线:t00192572 */
     /* ^ECLSTART=x,0  发起测试call */
     if (0 == gastAtParaList[1].ulParaValue)
     {
@@ -214,20 +174,7 @@ VOS_UINT32 AT_SetEclstartPara(VOS_UINT8 ucIndex)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SetEclstopPara
- 功能描述  : ^ECLSTOP断开当前ECALL会话
- 输入参数  : ucIndex - 端口索引
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月29日
-    作    者   : n00269697
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_SetEclstopPara(VOS_UINT8 ucIndex)
 {
     VOS_UINT32                          ulRst;
@@ -262,25 +209,7 @@ VOS_UINT32 AT_SetEclstopPara(VOS_UINT8 ucIndex)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SetEclcfgPara
- 功能描述  : ^ECLCFG用于配置单板获取MSD数据的模式，配置是否禁止语音功能。
-             ^ECLCFG=<mode>[,<voc_config>]
-             <mode>:        表示单板获取MSD数据的模式，目前只支持透传模式
-             <voc_config>:  0  在MSD传输过程中同步传输语音信号，默认值。
-                            1  在MSD传输过程中禁止语音信号的传输，避免语音信号的传输干扰MSD数据的传输。
 
- 输入参数  : ucIndex - 端口索引
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年3月29日
-    作    者   : n00269697
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_SetEclcfgPara(VOS_UINT8 ucIndex)
 {
     VOS_UINT32                          ulRst;
@@ -334,21 +263,7 @@ VOS_UINT32 AT_SetEclcfgPara(VOS_UINT8 ucIndex)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SetEclmsdPara
- 功能描述  : ^ECLMSD用于下发当前ECALL会话需要传输的MSD信息
-             ^ECLMSD=<ecall_msd>
- 输入参数  : ucIndex - 端口索引
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月29日
-    作    者   : n00269697
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_SetEclmsdPara(VOS_UINT8 ucIndex)
 {
     VOS_UINT32                          ulRst;
@@ -395,20 +310,7 @@ VOS_UINT32 AT_SetEclmsdPara(VOS_UINT8 ucIndex)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : AT_QryCecallPara
- 功能描述  : 查询ECALL的类型
- 输入参数  : ucIndex - 端口索引
- 输出参数  : 无
- 返 回 值  : AT_WAIT_ASYNC_RETURN/AT_ERROR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月29日
-    作    者   : n00269697
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_QryCecallPara(VOS_UINT8 ucIndex)
 {
     VOS_UINT32                          ulRst;
@@ -431,20 +333,7 @@ VOS_UINT32 AT_QryCecallPara(VOS_UINT8 ucIndex)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : AT_QryEclcfgPara
- 功能描述  : 查询单板获取MSD数据的模式，配置是否禁止语音功能。
- 输入参数  : ucIndex - 端口索引
- 输出参数  : 无
- 返 回 值  : AT_WAIT_ASYNC_RETURN/AT_ERROR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月29日
-    作    者   : n00269697
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_QryEclcfgPara(VOS_UINT8 ucIndex)
 {
     VOS_UINT32                          ulRst;
@@ -467,20 +356,7 @@ VOS_UINT32 AT_QryEclcfgPara(VOS_UINT8 ucIndex)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : AT_QryEclmsdPara
- 功能描述  : 查询当前的msd信息
- 输入参数  : ucIndex - 端口索引
- 输出参数  : 无
- 返 回 值  : AT_WAIT_ASYNC_RETURN/AT_ERROR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月29日
-    作    者   : n00269697
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_QryEclmsdPara(VOS_UINT8 ucIndex)
 {
     VOS_UINT32                          ulRst;
@@ -503,20 +379,7 @@ VOS_UINT32 AT_QryEclmsdPara(VOS_UINT8 ucIndex)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : AT_TestEclstartPara
- 功能描述  : ECLSTART测试命令处理函数
- 输入参数  : ucIndex - 端口索引
- 输出参数  : 无
- 返 回 值  : AT_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月29日
-    作    者   : n00269697
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_TestEclstartPara(VOS_UINT8 ucIndex)
 {
 
@@ -528,20 +391,7 @@ VOS_UINT32 AT_TestEclstartPara(VOS_UINT8 ucIndex)
     return AT_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_TestEclmsdPara
- 功能描述  : ECLMSD测试命令处理函数
- 输入参数  : ucIndex - 端口索引
- 输出参数  : 无
- 返 回 值  : AT_ERROR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月29日
-    作    者   : n00269697
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_TestEclmsdPara(VOS_UINT8 ucIndex)
 {
     /* ^eclmsd不支持测试命令，
@@ -550,22 +400,8 @@ VOS_UINT32 AT_TestEclmsdPara(VOS_UINT8 ucIndex)
 }
 
 #endif
-/* Added by n00269697 for V3R3C60_eCall项目, 2014-3-29, end */
 
-/*****************************************************************************
-函 数 名  : At_RcvVcMsgDtmfDecoderIndProc
-功能描述  : AT收到VC DTMF上报消息的处理函数
-输入参数  : MN_AT_IND_EVT_STRU   *pstData
-输出参数  : 无
-返 回 值  : VOS_UINT32
-调用函数  :
-被调函数  :
 
-修订记录  :
-  1.日    期   : 2014年5月9日
-    作    者   : g00261581
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_UINT32 At_RcvVcMsgDtmfDecoderIndProc(
     MN_AT_IND_EVT_STRU                 *pstData
 )
@@ -600,23 +436,7 @@ VOS_UINT32 At_RcvVcMsgDtmfDecoderIndProc(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_CheckCfshNumber
- 功能描述  : CFSH命令携带的number合法性检查，合法的字符仅包括：'0' - '9', '*', '#', '+'。
-             '+'只能出现在号码的最前面，号码的最大长度不能超过32（不包括"+"）
- 输入参数  : pucAtPara   --- <number>
-             usLen       ---  号码长度
- 输出参数  : 无
- 返 回 值  : VOS_OK      参数合法
-             VOS_ERR     参数非法
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月8日
-    作    者   : L00256032
-    修改内容   : 1X SS Project修改
-*****************************************************************************/
 VOS_UINT32 AT_CheckCfshNumber(
     VOS_UINT8                          *pucAtPara,
     VOS_UINT16                          usLen
@@ -661,36 +481,7 @@ VOS_UINT32 AT_CheckCfshNumber(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SetCfshPara
- 功能描述  : AT^CFSH=<number> 的设置函数
 
-             <CR><LF>OK<CR><LF>
-             有MS相关错误时：
-             <CR><LF>+CME ERROR: <err><CR><LF>
-
-             本命令实现FLASH功能， 首先对命令参数进行合法性检查，包含：号码及长度。约束：合法的字符包括ASCII码数字，号码长度范围：0~32。
-             然后发送FLASH命令
-
-             当没有处于通话状态时, 需上报一个错误。
-             当有呼叫等待的时候，发送不带电话号码的FLASH命令接听第三方呼叫。
-             当通话时，发送带电话号码的FLASH命令进行对第三方的呼叫。
-             其他情况报错。
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年9月5日
-    作    者   : l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2014年11月7日
-    作    者   : L00256032
-    修改内容   : 1X SS Project修改
-
-*****************************************************************************/
 VOS_UINT32 AT_SetCfshPara(VOS_UINT8 ucIndex)
 {
     VOS_UINT32                          ulRst;
@@ -738,23 +529,7 @@ VOS_UINT32 AT_SetCfshPara(VOS_UINT8 ucIndex)
     return AT_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvTafCallSndFlashRslt
- 功能描述  : 处理TAF_CALL_EVT_SEND_FLASH_RSLT事件
- 输入参数  : MN_AT_IND_EVT_STRU                 *pEvtInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月10日
-    作    者   : l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2014年11月10日
-    作    者   : L00256032
-    修改内容   : 1X SS Project修改
-*****************************************************************************/
 VOS_VOID AT_RcvTafCallSndFlashRslt(
     MN_AT_IND_EVT_STRU                 *pEvtInfo
 )
@@ -794,20 +569,7 @@ VOS_VOID AT_RcvTafCallSndFlashRslt(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : At_TestCBurstDTMFPara
- 功能描述  : CBurstDTMF测试函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月25日
-    作    者   : f279542
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 At_TestCBurstDTMFPara(VOS_UINT8 ucIndex)
 {
     VOS_UINT16      usLength;
@@ -823,20 +585,7 @@ VOS_UINT32 At_TestCBurstDTMFPara(VOS_UINT8 ucIndex)
     return AT_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SetCBurstDTMFPara
- 功能描述  : DTMF指令处理
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : TAF_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月10日
-    作    者   : f279542
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_SetCBurstDTMFPara(VOS_UINT8 ucIndex)
 {
     VOS_UINT32                          ulRst;
@@ -901,21 +650,7 @@ VOS_UINT32 AT_SetCBurstDTMFPara(VOS_UINT8 ucIndex)
 
     return AT_ERROR;
 }
-/*****************************************************************************
- 函 数 名  : AT_RcvTafCallSndBurstDTMFCnf
- 功能描述  : 处理TAF_CALL_EVT_SEND_BURST_DTMF_CNF事件
- 输入参数  : MN_AT_IND_EVT_STRU                 *pEvtInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月10日
-    作    者   : f279542
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvTafCallSndBurstDTMFCnf(
     MN_AT_IND_EVT_STRU                 *pEvtInfo
 )
@@ -955,21 +690,7 @@ VOS_UINT32 AT_RcvTafCallSndBurstDTMFCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvTafCallSndBurstDTMFRslt
- 功能描述  : 处理TAF_CALL_EVT_SEND_BURST_DTMF_RSLT事件
- 输入参数  : MN_AT_IND_EVT_STRU                 *pEvtInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月10日
-    作    者   : f279542
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvTafCallSndBurstDTMFRslt(
     MN_AT_IND_EVT_STRU                 *pEvtInfo
 )
@@ -978,22 +699,7 @@ VOS_UINT32 AT_RcvTafCallSndBurstDTMFRslt(
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_RcvTafCallCalledNumInfoInd
- 功能描述  : 处理TAF_CALL_EVT_CALLED_NUM_INFO_IND事件
- 输入参数  : MN_AT_IND_EVT_STRU                 *pEvtInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月11日
-    作    者   : y00307564
-    修改内容   : 1X SS Project新生成函数
-
-<CR><LF>^CCALLEDNUM: <number_type>,<number_plan>,<number><CR><LF>
-*****************************************************************************/
 VOS_UINT32 AT_RcvTafCallCalledNumInfoInd(
     MN_AT_IND_EVT_STRU                 *pEvtInfo
 )
@@ -1037,22 +743,7 @@ VOS_UINT32 AT_RcvTafCallCalledNumInfoInd(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvTafCallCallingNumInfoInd
- 功能描述  : 处理TAF_CALL_EVT_CALLING_NUM_INFO_IND事件
- 输入参数  : MN_AT_IND_EVT_STRU                 *pEvtInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月11日
-    作    者   : y00307564
-    修改内容   : 1X SS Project新生成函数
-
-<CR><LF>^CCALLINGNUM: <number_type>,<number_plan>,<pi>,<si>,<number><CR><LF>
-*****************************************************************************/
 VOS_UINT32 AT_RcvTafCallCallingNumInfoInd(
     MN_AT_IND_EVT_STRU                 *pEvtInfo
 )
@@ -1098,22 +789,7 @@ VOS_UINT32 AT_RcvTafCallCallingNumInfoInd(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvTafCallDispInfoInd
- 功能描述  : 处理TAF_CALL_EVT_DISPLAY_INFO_IND事件
- 输入参数  : MN_AT_IND_EVT_STRU                 *pEvtInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月11日
-    作    者   : y00307564
-    修改内容   : 1X SS Project新生成函数
-
-<CR><LF>^CDISP: <string>[,<ext_display>,<display_type>,<display_tag>]<CR><LF>
-*****************************************************************************/
 VOS_UINT32 AT_RcvTafCallDispInfoInd(
     MN_AT_IND_EVT_STRU                 *pEvtInfo
 )
@@ -1154,22 +830,7 @@ VOS_UINT32 AT_RcvTafCallDispInfoInd(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvTafCallExtDispInfoInd
- 功能描述  : 处理TAF_CALL_EVT_EXT_DISPLAY_INFO_IND事件
- 输入参数  : MN_AT_IND_EVT_STRU                 *pEvtInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月11日
-    作    者   : y00307564
-    修改内容   : 1X SS Project新生成函数
-
-<CR><LF>^CDISP: <string>[,<ext_display>,<display_type>,<display_tag>]<CR><LF>
-*****************************************************************************/
 VOS_UINT32 AT_RcvTafCallExtDispInfoInd(
     MN_AT_IND_EVT_STRU                 *pEvtInfo
 )
@@ -1221,22 +882,7 @@ VOS_UINT32 AT_RcvTafCallExtDispInfoInd(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvTafCallConnNumInfoInd
- 功能描述  : 处理TAF_CALL_EVT_CONN_NUM_INFO_IND事件
- 输入参数  : MN_AT_IND_EVT_STRU                 *pEvtInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月11日
-    作    者   : y00307564
-    修改内容   : 1X SS Project新生成函数
-
-<CR><LF>^CCONNNUM: <number_type>,<number_plan>,<pi>,<si>,<number><CR><LF>
-*****************************************************************************/
 VOS_UINT32 AT_RcvTafCallConnNumInfoInd(
     MN_AT_IND_EVT_STRU                 *pEvtInfo
 )
@@ -1282,22 +928,7 @@ VOS_UINT32 AT_RcvTafCallConnNumInfoInd(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvTafCallRedirNumInfoInd
- 功能描述  : 处理TAF_CALL_EVT_REDIR_NUM_INFO_IND事件
- 输入参数  : MN_AT_IND_EVT_STRU                 *pEvtInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月11日
-    作    者   : y00307564
-    修改内容   : 1X SS Project新生成函数
-
-<CR><LF>^CREDIRNUM: <number_type>,<number_plan>,<number>[,<pi>,<si>[,<redir_reason>]]<CR><LF>
-*****************************************************************************/
 VOS_UINT32 AT_RcvTafCallRedirNumInfoInd(
     MN_AT_IND_EVT_STRU                 *pEvtInfo
 )
@@ -1397,22 +1028,7 @@ VOS_UINT32 AT_RcvTafCallRedirNumInfoInd(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvTafCallSignalInfoInd
- 功能描述  : 处理TAF_CALL_EVT_SIGNAL_INFO_IND事件
- 输入参数  : MN_AT_IND_EVT_STRU                 *pEvtInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月11日
-    作    者   : y00307564
-    修改内容   : 1X SS Project新生成函数
-
-<CR><LF>^CSIGTONE: <signal_type>,<alert_pitch>,<signal><CR><LF>
-*****************************************************************************/
 VOS_UINT32 AT_RcvTafCallSignalInfoInd(
     MN_AT_IND_EVT_STRU                 *pEvtInfo
 )
@@ -1448,22 +1064,7 @@ VOS_UINT32 AT_RcvTafCallSignalInfoInd(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvTafCallLineCtrlInfoInd
- 功能描述  : 处理TAF_CALL_EVT_LINE_CTRL_INFO_IND事件
- 输入参数  : MN_AT_IND_EVT_STRU                 *pEvtInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月11日
-    作    者   : y00307564
-    修改内容   : 1X SS Project新生成函数
-
-<CR><LF>^CLCTR: <polarity_include>[,<toggle>][,<reverse_polarity>],<power_denial><CR><LF>
-*****************************************************************************/
 VOS_UINT32 AT_RcvTafCallLineCtrlInfoInd(
     MN_AT_IND_EVT_STRU                 *pEvtInfo
 )
@@ -1538,28 +1139,7 @@ VOS_UINT32 AT_RcvTafCallLineCtrlInfoInd(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvTafCallCCWACInd
- 功能描述  : 处理TAF_CALL_EVT_CCWAC_INFO_IND事件
- 输入参数  : MN_AT_IND_EVT_STRU                 *pEvtInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月11日
-    作    者   : y00307564
-    修改内容   : 1X SS Project新生成函数
-
-<CR><LF>^CCWAC: <digits>,<pi>,<si>,<number_type>,<number_plan>,<isPresent>[,<signalType>,
-                <alertPitch>,<signal>]<CR><LF>
-
-  2.日    期   : 2015年1月17日
-    作    者   : y00307564
-    修改内容   : 新增PI, SI字段
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvTafCallCCWACInd(
     MN_AT_IND_EVT_STRU                 *pEvtInfo
 )
@@ -1880,21 +1460,7 @@ VOS_UINT32 AT_RcvTafCallRcvBurstDtmfInd(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvTafCallCclprCnf
- 功能描述  : AT收到TAF_CALL_EVT_CCLPR_SET_CNF事件处理函数
- 输入参数  : MN_AT_IND_EVT_STRU *pstData
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月10日
-    作    者   : f00279542
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_VOID AT_RcvTafCallCclprCnf(MN_AT_IND_EVT_STRU *pstData)
 {
     TAF_CALL_EVT_CCLPR_GET_CNF_STRU    *pstCClprGetCnf;
@@ -1957,21 +1523,7 @@ VOS_VOID AT_RcvTafCallCclprCnf(MN_AT_IND_EVT_STRU *pstData)
 
 }
 
-/*****************************************************************************
- 函 数 名  : AT_TestCclprPara
- 功能描述  : 设置命令处理函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月10日
-    作    者   : f00279542
-    修改内容   : 新增
-
-*****************************************************************************/
 VOS_UINT32 AT_TestCclprPara( VOS_UINT8 ucIndex )
 {
     gstAtSendData.usBufLen = (VOS_UINT16)At_sprintf(AT_CMD_MAX_LEN,
@@ -1983,21 +1535,7 @@ VOS_UINT32 AT_TestCclprPara( VOS_UINT8 ucIndex )
     return AT_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SetCclprPara
- 功能描述  : ^CCLPR=<call_id>设置命令处理函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月10日
-    作    者   : f00279542
-    修改内容   : 新增
-
-*****************************************************************************/
 VOS_UINT32 AT_SetCclprPara(VOS_UINT8 ucIndex)
 {
     VOS_UINT32                          ulResult;

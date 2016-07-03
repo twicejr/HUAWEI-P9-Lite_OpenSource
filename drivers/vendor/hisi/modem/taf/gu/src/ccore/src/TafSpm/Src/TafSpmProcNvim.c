@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafSpmProcNvim.c
-  版 本 号   : 初稿
-  作    者   : W00176964
-  生成日期   : 2013年5月22日
-  最近修改   :
-  功能描述   : TafSpmProcNvim.C文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年5月22日
-    作    者   : w00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -58,20 +41,7 @@ extern "C" {
 /*****************************************************************************
   6 函数定义
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ReadFdnInfoNvim
- 功能描述  : 读取en_NV_Item_FDN_Info信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年05月22日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_SPM_ReadFdnInfoNvim(VOS_VOID)
 {
     TAF_SPM_SERVICE_CTRL_CFG_INFO_STRU *pstServiceCtrlCfgInfo = VOS_NULL_PTR;
@@ -94,20 +64,7 @@ VOS_VOID TAF_SPM_ReadFdnInfoNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ReadSimCallCtrlNvim
- 功能描述  : 读取en_NV_Item_NVIM_SIM_CALL_CONTROL_SUPPORT_FLG信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年05月22日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_SPM_ReadSimCallCtrlNvim(VOS_VOID)
 {
     TAF_SPM_SERVICE_CTRL_CFG_INFO_STRU                     *pstServiceCtrlCfgInfo = VOS_NULL_PTR;
@@ -130,20 +87,7 @@ VOS_VOID TAF_SPM_ReadSimCallCtrlNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ReadBufferServiceReqProtectTimerCfgNvim
- 功能描述  : 读取NV中缓存cc/ss/sms服务请求保护定时器的配置
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月9日
-    作    者   : c00318887
-    修改内容   : 新建函数
-*****************************************************************************/
 VOS_VOID TAF_SPM_ReadBufferServiceReqProtectTimerCfgNvim(VOS_VOID)
 {
     TAF_NVIM_BUFFER_SERVICE_REQ_PROTECT_TIMER_CFG_STRU      stSrvReqProtectTimerCfg;
@@ -196,21 +140,7 @@ VOS_VOID TAF_SPM_ReadBufferServiceReqProtectTimerCfgNvim(VOS_VOID)
 }
 
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-1-15, begin */
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ReadVideoCallNvim
- 功能描述  : 读取en_NV_Item_VIDEO_CALL信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年01月15日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_SPM_ReadVideoCallNvim(VOS_VOID)
 {
     TAF_SPM_SERVICE_CTRL_CFG_INFO_STRU                     *pstServiceCtrlCfgInfo = VOS_NULL_PTR;
@@ -235,31 +165,15 @@ VOS_VOID TAF_SPM_ReadVideoCallNvim(VOS_VOID)
     return;
 }
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-1-15, end */
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ReadNvimInfo
- 功能描述  : 读取SPM模块的NV信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年05月22日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_SPM_ReadNvimInfo(VOS_VOID)
 {
     TAF_SPM_ReadFdnInfoNvim();
 
     TAF_SPM_ReadSimCallCtrlNvim();
 
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-1-15, begin */
     TAF_SPM_ReadVideoCallNvim();
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-1-15, end */
 
     TAF_SPM_ReadBufferServiceReqProtectTimerCfgNvim();
     

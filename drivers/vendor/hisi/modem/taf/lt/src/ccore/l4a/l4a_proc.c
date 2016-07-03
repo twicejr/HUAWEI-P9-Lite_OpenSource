@@ -311,17 +311,7 @@ VOS_VOID l4a_help(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- Function Name   : FwProGetMsgFunTbl
- Description     : 查找消息对应处理表格
- Input           :VOS_UINT32 * pulTableLenth
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.w00182550      2013-5-25  Draft Enact
-
-*****************************************************************************/
 
 L4A_FW_MSG_FUN_TABLE_STRU * FwProGetMsgFunTbl(VOS_UINT32 * pulTableLenth)
 {
@@ -388,34 +378,14 @@ L4A_IND_MSG_FUN_TABLE_STRU* l4a_FwProGetPsIndFun(VOS_UINT32 ulMsgId)
     return NULL;
 }
 
-/*****************************************************************************
- Function Name   : l4a_StartTimer
- Description     : 定时器启动接口封装
- Input           :L4A_RX_INFO_STRU* pNewNode
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.w00182550      2013-5-25  Draft Enact
-
-*****************************************************************************/
 
 VOS_UINT32 l4a_StartTimer(HTIMER *phTimerId, L4A_RX_INFO_STRU* pNewNode, VOS_UINT32 ulms)
 {
     return VOS_StartRelTimer(phTimerId, MSP_L4_L4A_PID,ulms, 0,(VOS_UINT32)pNewNode,VOS_RELTIMER_NOLOOP, VOS_TIMER_NO_PRECISION);
 }
 
-/*****************************************************************************
- Function Name   : l4a_StopTimer
- Description     : 定时器停止接口封装
- Input           :VOS_UINT32 hTimerId
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.w00182550      2013-5-25  Draft Enact
-
-*****************************************************************************/
 
 VOS_UINT32 l4a_StopTimer(HTIMER *phTimerId)
 {
@@ -510,17 +480,7 @@ HI_LIST_S* l4a_GetNodeHead(VOS_VOID)
     return &g_stL4aNodeHead;
 }
 
-/*****************************************************************************
- Function Name   : l4a_GetExeCmdNode
- Description     : 通道命令ID查找执行节点
- Input           :VOS_UINT32 ulCmdId
- Output          : None
- Return          : L4A_RX_INFO_STRU*
 
- History         :
-    1.w00182550      2012-11-22  Draft Enact
-
-*****************************************************************************/
 L4A_RX_INFO_STRU* l4a_GetExeCmdNode(VOS_UINT32 ulMsgId,VOS_UINT32 ulFlag)
 {
     HI_LIST_S* pHeadNode = NULL;
@@ -554,17 +514,7 @@ L4A_RX_INFO_STRU* l4a_GetExeCmdNode(VOS_UINT32 ulMsgId,VOS_UINT32 ulFlag)
     return NULL;
 }
 
-/*****************************************************************************
- Function Name   : l4a_DelCmdNode
- Description     : 删除已经处理完的节点
- Input           :L4A_RX_INFO_STRU* pstCmdNode
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.w00182550      2012-11-22  Draft Enact
-
-*****************************************************************************/
 VOS_VOID l4a_DelCmdNode(L4A_RX_INFO_STRU* pstCmdNode)
 {
     /*添加信号量保护*/
@@ -642,18 +592,7 @@ VOS_UINT32 l4a_AddCmdToListEx(L4A_DATA_MSG_STRU * pstReq, VOS_UINT32 ulATReqMsgI
     return ERR_MSP_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : l4a_AddCmdToList
- Description     : 添加解码后数据到缓存中
- Input           :VOS_VOID * pstReq
-                VOS_UINT32 ulRcvlen
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.w00182550      2012-11-19  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 l4a_AddCmdToList(L4A_DATA_MSG_STRU * pstReq, L4A_FW_MSG_FUN_TABLE_STRU* pstFunTable)
 {
     if ((NULL == pstReq) || (NULL == pstFunTable))
@@ -668,19 +607,7 @@ VOS_UINT32 l4a_AddCmdToList(L4A_DATA_MSG_STRU * pstReq, L4A_FW_MSG_FUN_TABLE_STR
     return ERR_MSP_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : l4a_SendMsg
- Description     : L4A发送消息接口
- Input           :VOS_UINT32 ulRecverId
-                VOS_UINT8* pDta
-                VOS_UINT32 dtaSize
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.w00182550      2013-5-25  Draft Enact
-
-*****************************************************************************/
 
 VOS_UINT32 l4a_SendMsg(VOS_UINT32 ulSendId, VOS_UINT32 ulRecverId, VOS_VOID* pDta, VOS_UINT32 dtaSize)
 {
@@ -724,18 +651,7 @@ VOS_UINT32 l4a_SendMsg(VOS_UINT32 ulSendId, VOS_UINT32 ulRecverId, VOS_VOID* pDt
     return ret;
 }
 
-/*****************************************************************************
- Function Name   : l4aPacket2Aps
- Description     : L4A发送消息到APS接口
- Input           :VOS_VOID* pstDataCnf
-                VOS_UINT32 ulSize
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.w00182550      2013-5-25  Draft Enact
-
-*****************************************************************************/
 
 VOS_UINT32 l4aPacket2Aps(VOS_VOID *pstDataCnf, VOS_UINT32 ulSize)
 {
@@ -746,19 +662,7 @@ VOS_UINT32 l4aPacket2Aps(VOS_VOID *pstDataCnf, VOS_UINT32 ulSize)
 
 }
 
-/*****************************************************************************
- Function Name   : l4aPacket2PsNoCnf
- Description     : 发送消息给PS，需要PS回复时使用
- Input           :VOS_UINT32 ulRecverId
-                  VOS_VOID* pData
-                  VOS_UINT32 ulLen
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.w00182550      2013-5-17  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 l4aPacket2Ps(VOS_UINT32 ulRecverId, VOS_VOID *pData, VOS_UINT32 ulLen)
 {
     VOS_UINT32 ret = ERR_MSP_SUCCESS;
@@ -799,19 +703,7 @@ VOS_UINT32 l4aPacket2Ps(VOS_UINT32 ulRecverId, VOS_VOID *pData, VOS_UINT32 ulLen
     return ret;
 }
 
-/*****************************************************************************
- Function Name   : l4aPacket2PsNoCnf
- Description     : 发送消息给PS，不需要PS回复时使用
- Input           :VOS_UINT32 ulRecverId
-                  VOS_VOID * pData
-                  VOS_UINT32 ulLen
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.w00182550      2013-5-17  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 l4aPacket2PsNoCnf(VOS_UINT32 ulRecverId, VOS_VOID *pData, VOS_UINT32 ulLen)
 {
    APP_LPS_MSG_STRU* pstAppToPsMsg = NULL;
@@ -845,18 +737,7 @@ VOS_UINT32 l4aPacket2PsNoCnf(VOS_UINT32 ulRecverId, VOS_VOID *pData, VOS_UINT32 
     return LAppSndMsgToLPs(pstAppToPsMsg);
 }
 
-/*****************************************************************************
- Function Name   : l4aPacket2At
- Description     : 封装发给消息给AT接口
- Input           :L4A_DATA_MSG_STRU* pstDataCnf
-                VOS_UINT32 ulSize
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.w00182550      2013-5-25  Draft Enact
-
-*****************************************************************************/
 
 VOS_UINT32 l4aPacket2At(VOS_VOID *pstDataCnf, VOS_UINT32 ulSize)
 {
@@ -872,17 +753,7 @@ VOS_UINT32 l4aPacket2At(VOS_VOID *pstDataCnf, VOS_UINT32 ulSize)
     return l4a_SendMsg(MSP_L4_L4A_PID, WUEPS_PID_AT, pstDataCnf, ulSize);
 }
 
-/*****************************************************************************
- Function Name   : l4a_DealTimeOutCmdEntry
- Description     : 超时命令处理入口
- Input           :VOS_VOID* pData
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.w00182550      2013-5-25  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 l4a_DealTimeOutCmdEntry(L4A_RX_INFO_STRU* pData)
 {
     VOS_UINT32 ulRet = ERR_MSP_SUCCESS;
@@ -915,17 +786,7 @@ VOS_UINT32 l4a_DealTimeOutCmdEntry(L4A_RX_INFO_STRU* pData)
     return ulRet;
 }
 
-/*****************************************************************************
- Function Name   : l4a_DealPsIndCnfEntry
- Description     : PS的上报和CNF处理入口
- Input           :L4A_PS_MSG_STRU* pData
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.w00182550      2013-5-25  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 l4a_DealPsIndCnfEntry(L4A_PS_MSG_STRU* pData)
 {
     VOS_UINT32 ulRet = ERR_MSP_SUCCESS;
@@ -1028,17 +889,7 @@ VOS_UINT32 l4a_DealPsIndCnfEntry(L4A_PS_MSG_STRU* pData)
     return ERR_MSP_FAILURE;
 }
 
-/*****************************************************************************
- Function Name   : l4a_DealAtTafReqEntry
- Description     : AT和TAF给到L4A的请求处理入口
- Input           :L4A_DATA_MSG_STRU* pData
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.w00182550      2013-5-25  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 l4a_DealAtTafReqEntry(L4A_DATA_MSG_STRU* pData)
 {
     VOS_UINT32 ulRet = ERR_MSP_SUCCESS;
@@ -1082,17 +933,7 @@ VOS_UINT32 l4a_DealAtTafReqEntry(L4A_DATA_MSG_STRU* pData)
 }
 
 
-/*****************************************************************************
- Function Name   : l4a_TaskInit
- Description     : L4A PID初始化链表
- Input           :VOS_VOID
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.w00182550      2013-5-25  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 l4a_TaskInit(VOS_VOID)
 {
     HI_LIST_S* pHeadNode = NULL;
@@ -1112,17 +953,7 @@ VOS_UINT32 l4a_TaskInit(VOS_VOID)
     return ret;
 }
 
-/*****************************************************************************
- Function Name   : l4a_MsgProc
- Description     : L4A PID初始化
- Input           :MsgBlock* pMsgBlock
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.w00182550      2013-5-25  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 l4a_MsgProcInit(enum VOS_INIT_PHASE_DEFINE ip)
 {
     VOS_UINT32 ret = 0;
@@ -1139,17 +970,7 @@ VOS_UINT32 l4a_MsgProcInit(enum VOS_INIT_PHASE_DEFINE ip)
     return 0;
 }
 
-/*****************************************************************************
- Function Name   : l4a_MsgProc
- Description     : L4A 任务处理
- Input           :MsgBlock* pMsgBlock
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.w00182550      2013-5-25  Draft Enact
-
-*****************************************************************************/
 VOS_VOID l4a_MsgProc(MsgBlock* pMsgBlock)
 {
     REL_TIMER_MSG *pTimer =NULL;
@@ -1320,17 +1141,7 @@ VOS_VOID l4a_MailboxProc(VOS_UINT32 ulPara1, VOS_UINT32 ulPara2,
 }
 
 
-/*****************************************************************************
- Function Name   : MSP_L4FidInit
- Description     : L4A任务注册
- Input           :enum VOS_INIT_PHASE_DEFINE ip
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.w00182550      2013-5-25  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 MSP_L4FidInit(enum VOS_INIT_PHASE_DEFINE ip)
 {
     VOS_UINT32 ulRelVal;

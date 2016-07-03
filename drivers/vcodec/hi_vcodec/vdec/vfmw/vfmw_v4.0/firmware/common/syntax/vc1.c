@@ -5,29 +5,7 @@ p+25Dla32ZW7omB5iYtHEGPqMDW7TpB3q4yvDckVri1GoBL4gKI3k0M86wMC5hMD5fQLRyjt
 hU2r37p3ELbs/bdDqVORskOWWzbyjFMuPxNo4xK/b5FsMpre+pJk9U9kShcBqcc/r0/nyukf
 RRZPnuMcSYEySyxA76L+rghiGcq86Mf2c76RP6CZlS/Co8bn5kb9nllXq0Zk6w==*/
 /*--------------------------------------------------------------------------------------------------------------------------*/
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
-******************************************************************************
-  文 件 名   : vc1_vfmw.c
-  版 本 号   : 初稿
-  作    者   : y62639
-  生成日期   : 2009年9月21日
-  最近修改   :
-  功能描述   : vc1 firmware
-  函数列表   :
-              VC1DEC_Decode
-              VC1DEC_Destroy
-              VC1DEC_GetRemainImg
-              VC1DEC_Init
-              VC1DEC_RecycleImage
-  修改历史   :
-  1.日    期   : 2009年9月21日
-    作    者   : y62639
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #undef __VC1_VFMW_C__
 #define __VC1_VFMW_C__

@@ -31,7 +31,7 @@ typedef struct queue_info {
 	HI_VOID* alloc_data;              //实际为  queue_data_s* 类型
 	HI_U32   queue_num;
 	HI_S32   stop;
-	struct list_head head;   //这里为两个链表(空队列和满队列)，链表节点实际内容为queue_data_s  l00214825
+	struct list_head head;
 	struct list_head free;
 
     volatile HI_BOOL bSleep;

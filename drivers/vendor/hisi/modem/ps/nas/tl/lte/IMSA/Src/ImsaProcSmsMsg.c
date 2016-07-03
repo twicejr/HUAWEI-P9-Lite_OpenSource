@@ -418,16 +418,7 @@ VOS_VOID IMSA_SMS_SndCancelImsMoSms(VOS_VOID)
 
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SMS_SndCancelImsMtSms()
- Description    : 发送取消短信接收消息
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.zhaochen 00308719      2016-01-22  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SMS_SndCancelImsMtSms(VOS_VOID)
 {
     IMSA_IMS_INPUT_EVENT_STRU                    *pstImsaImsInputEvent;
@@ -572,16 +563,7 @@ VOS_VOID IMSA_SMS_GetSmscFromRpData(const VOS_UINT8* pucRpData, VOS_CHAR* pcSmsc
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SMS_MemNotifyRetrans()
- Description    : 根据重传标识进行重传或进入空闲
- Input          :
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2013-09-29  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SMS_MemNotifyRetrans( VOS_UINT32 ulErrCode )
 {
     IMSA_SMS_SMR_MO_STRU                *pstSmrMoEntity;
@@ -737,16 +719,7 @@ VOS_VOID IMSA_SMS_ProcTimerMsgTr2m(const VOS_VOID *pTimerMsg)
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SMS_ProcTimerMsgTram()
- Description    : Tram定时器超时处理函数
- Input          : VOS_VOID *pTimerMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2013-09-29  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SMS_ProcTimerMsgTram(const VOS_VOID *pTimerMsg)
 {
     IMSA_SMS_SMR_MO_STRU                *pstSmrMoEntity;
@@ -951,17 +924,7 @@ VOS_VOID IMSA_SMS_Init(VOS_VOID)
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_SMS_ClearResource()
- Description    : 短信模块资源清理函数
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.sunbing 49683      2013-08-09  Draft Enact
-      2.lihong 00150010    2013-12-24  Modify
-*****************************************************************************/
 VOS_VOID IMSA_SMS_ClearResource(VOS_VOID)
 {
     IMSA_SMS_SMR_MO_STRU                *pstSmrMoEntity;
@@ -1010,16 +973,7 @@ VOS_VOID IMSA_SMS_ClearResource(VOS_VOID)
     pstSmrMtEntity->ucMessageReference= 0;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_IsSmsConnExist()
- Description    : 判断当前是否有SMS业务
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
 
- History        :
-      1.xiongxianghui 00253310      2014-07-01  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_IsSmsConnExist(VOS_VOID)
 {
     IMSA_SMS_SMR_MO_STRU                *pstSmrMoEntity;
@@ -1044,15 +998,7 @@ VOS_UINT32 IMSA_IsSmsConnExist(VOS_VOID)
 }
 
 #if (FEATURE_ON == FEATURE_DSDS)
-/*****************************************************************************
- Function Name  : IMSA_SMSProcMoResourceApplyCnf
- Discription    : 申请MO SMS资源定时器超时的处理
- Input          :
- Output         : None
- Return         : None
- History:
-      1. wangchen 00209181  2015-11-23  Draft Enact
-*****************************************************************************/
+
 VOS_VOID IMSA_SMSProcMoResourceApplyCnf
 (
     const MSG_IMSA_RP_DATA_REQ_STRU *pstRpDataReq
@@ -1092,15 +1038,7 @@ VOS_VOID IMSA_SMSProcMoResourceApplyCnf
 
     return;
 }
-/*****************************************************************************
- Function Name  : IMSA_SMSProcMoResourceApplyCnf
- Discription    : 申请MO SMS资源定时器超时的处理
- Input          :
- Output         : None
- Return         : None
- History:
-      1. wangchen 00209181  2015-11-23  Draft Enact
-*****************************************************************************/
+
 VOS_VOID IMSA_SMSProcSmmaResourceApplyCnf
 (
     const MSG_IMSA_SMMA_REQ_STRU *pstSmmaReq
@@ -1131,15 +1069,7 @@ VOS_VOID IMSA_SMSProcSmmaResourceApplyCnf
     return;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SMSProcSmmaRetransResourceApplyCnf
- Discription    : 申请MO SMS资源定时器超时的处理
- Input          :
- Output         : None
- Return         : None
- History:
-      1. wangchen 00209181  2015-11-23  Draft Enact
-*****************************************************************************/
+
 VOS_VOID IMSA_SMSProcSmmaRetransResourceApplyCnf
 (
     VOS_VOID
@@ -1173,15 +1103,7 @@ VOS_VOID IMSA_SMSProcSmmaRetransResourceApplyCnf
     return;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SMSProcMoResourceApplyTimerExp
- Discription    : 申请MO SMS资源定时器超时的处理
- Input          :
- Output         : None
- Return         : None
- History:
-      1. wangchen 00209181  2015-11-23  Draft Enact
-*****************************************************************************/
+
 VOS_VOID IMSA_SMSProcMoResourceApplyTimerExp
 (
     VOS_VOID
@@ -1193,15 +1115,7 @@ VOS_VOID IMSA_SMSProcMoResourceApplyTimerExp
     return;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SMSProcMoResourceApplyTimerExp
- Discription    : 申请MO SMS资源定时器超时的处理
- Input          :
- Output         : None
- Return         : None
- History:
-      1. wangchen 00209181  2015-11-23  Draft Enact
-*****************************************************************************/
+
 VOS_VOID IMSA_SMSProcSmmaResourceApplyTimerExp
 (
     VOS_VOID
@@ -1215,15 +1129,7 @@ VOS_VOID IMSA_SMSProcSmmaResourceApplyTimerExp
 
 
 
-/*****************************************************************************
- Function Name  : IMSA_SMSProcMtResourceApplyTimerExp
- Discription    : 申请MT SMS资源定时器超时的处理
- Input          :
- Output         : None
- Return         : None
- History:
-      1. wangchen 00209181  2015-11-23  Draft Enact
-*****************************************************************************/
+
 VOS_VOID IMSA_SMSProcMtResourceApplyTimerExp
 (
     VOS_VOID
@@ -1241,15 +1147,7 @@ VOS_VOID IMSA_SMSProcMtResourceApplyTimerExp
 
     return;
 }
-/*****************************************************************************
- Function Name  : IMSA_SMSProcRfOccupiedDelayTimerExp
- Discription    : 延迟处理资源抢占请求定时器超时的处理
- Input          :
- Output         : None
- Return         : None
- History:
-      1. wangchen 00209181  2015-11-23  Draft Enact
-*****************************************************************************/
+
 VOS_VOID IMSA_SMSProcMoSmsRfOccupiedDelayTimerExp
 (
     VOS_VOID
@@ -1276,15 +1174,7 @@ VOS_VOID IMSA_SMSProcMoSmsRfOccupiedDelayTimerExp
     return;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SMSProcRfOccupiedDelayTimerExp
- Discription    : 延迟处理资源抢占请求定时器超时的处理
- Input          :
- Output         : None
- Return         : None
- History:
-      1. wangchen 00209181  2015-11-23  Draft Enact
-*****************************************************************************/
+
 VOS_VOID IMSA_SMSProcMtSmsRfOccupiedDelayTimerExp
 (
     VOS_VOID

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : oal_mem.c
-  版 本 号   : 初稿
-  作    者   : zhangheng
-  生成日期   : 2012年9月18日
-  最近修改   :
-  功能描述   : 内存管理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年9月18日
-    作    者   : zhangheng
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -376,41 +359,13 @@ OAL_STATIC oal_mem_ctrl_blk_stru g_st_ctrl_blk;
   5 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : oal_mem_init_ctrl_blk
- 功能描述  : 初始化控制块内存(索引)
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月25日
-    作    者   : mayuan m00212148
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void  oal_mem_init_ctrl_blk(oal_void)
 {
     g_st_ctrl_blk.ul_idx = 0;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_mem_ctrl_blk_alloc
- 功能描述  : 为每个内存块结构体或指向内存块结构体的指针提供内存
- 输入参数  : ul_size:要分配内存的大小
- 输出参数  : 无
- 返 回 值  : 指向一块内存的指针 或空指针
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月22日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint8* oal_mem_ctrl_blk_alloc(oal_uint32 ul_size)
 {
     oal_uint8 *puc_alloc;
@@ -430,21 +385,7 @@ OAL_STATIC oal_uint8* oal_mem_ctrl_blk_alloc(oal_uint32 ul_size)
     return puc_alloc;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_mem_get_pool
- 功能描述  : 根据内存池ID，获取内存池全局变量指针
- 输入参数  : en_pool_id: 内存池ID
- 输出参数  : 无
- 返 回 值  : 指向内存池全局变量的指针 或空指针
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月20日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_mem_pool_stru* oal_mem_get_pool(oal_mem_pool_id_enum_uint8 en_pool_id)
 {
     if (OAL_UNLIKELY(en_pool_id >= OAL_MEM_POOL_ID_BUTT))
@@ -458,21 +399,7 @@ oal_mem_pool_stru* oal_mem_get_pool(oal_mem_pool_id_enum_uint8 en_pool_id)
 }
 
 #ifdef _PRE_DEBUG_MODE
-/*****************************************************************************
- 函 数 名  : oal_mem_get_tx_dscr_addr
- 功能描述  : 获取保存发送描述符地址的全局变量的首地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 指向保存发送描述符地址的全局变量的指针
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月11日
-    作    者   : yangguisen
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_mempool_tx_dscr_addr* oal_mem_get_tx_dscr_addr(oal_void)
 {
     return &g_st_tx_dscr_addr;
@@ -491,22 +418,7 @@ oal_uint16 oal_mem_get_stop_flag(oal_void)
     return (g_st_tx_dscr_addr.us_rcd_rls_stop_flag >= OAL_TX_DSCR_RCD_TAIL_CNT);
 }
 #endif
-/*****************************************************************************
- 函 数 名  : oal_mem_get_pool_cfg_table
- 功能描述  : 根据内存池ID，获取对应内存池配置信息
- 输入参数  : en_pool_id: 内存池ID
- 输出参数  : 无
- 返 回 值  : 成功: 对应内存池配置信息结构的地址
-             失败: 空指针
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月24日
-    作    者   : mayuan m00212148
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_mem_pool_cfg_stru* oal_mem_get_pool_cfg_table(oal_mem_pool_id_enum_uint8 en_pool_id)
 {
     if (OAL_UNLIKELY(en_pool_id >= OAL_MEM_POOL_ID_BUTT))
@@ -519,23 +431,7 @@ oal_mem_pool_cfg_stru* oal_mem_get_pool_cfg_table(oal_mem_pool_id_enum_uint8 en_
     return &g_ast_mem_pool_cfg_table[en_pool_id];
 }
 
-/*****************************************************************************
- 函 数 名  : oal_mem_find_available_netbuf
- 功能描述  : 从本子内存池中找到一块可用的netbuf内存
- 输入参数  : pst_mem_subpool: 子内存池结构体指针
-             en_netbuf_id: netbuf内存池编号
- 输出参数  : 无
- 返 回 值  : 成功: 指向oal_netbuf_stru结构体的指针
-             失败: OAL_PTR_NULL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月12日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_netbuf_stru* oal_mem_find_available_netbuf(oal_mem_subpool_stru *pst_mem_subpool, oal_mem_pool_id_enum en_netbuf_id)
 {
     oal_netbuf_stru   *pst_netbuf = OAL_PTR_NULL;
@@ -586,22 +482,7 @@ OAL_STATIC oal_netbuf_stru* oal_mem_find_available_netbuf(oal_mem_subpool_stru *
     return pst_netbuf;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_mem_get_total_bytes_in_pool
- 功能描述  : 获取对应内存池占用的总字节数
- 输入参数  : en_pool_id     : 内存池ID
- 输出参数  : pul_total_bytes: 对应内存池占用的总字节数
- 返 回 值  : 成功: OAL_SUCC
-             失败: OAL_ERR_CODE_PTR_NULL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月24日
-    作    者   : mayuan m00212148
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  oal_mem_get_total_bytes_in_pool(
                 oal_mem_pool_id_enum_uint8    en_pool_id,
                 oal_uint32                   *pul_total_bytes)
@@ -634,21 +515,7 @@ OAL_STATIC oal_uint32  oal_mem_get_total_bytes_in_pool(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_mem_release
- 功能描述  : 恢复(释放)已经分配的内存
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月24日
-    作    者   : mayuan m00212148
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void  oal_mem_release(oal_void)
 {
     oal_uint32  ul_pool_id;
@@ -664,21 +531,7 @@ OAL_STATIC oal_void  oal_mem_release(oal_void)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : oal_mem_netbuf_release
- 功能描述  : 释放已经分配的netbuf内存
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月11日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void  oal_mem_netbuf_release(oal_void)
 {
     oal_uint32    ul_loop;
@@ -699,21 +552,7 @@ OAL_STATIC oal_void  oal_mem_netbuf_release(oal_void)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : oal_mem_sdt_netbuf_release
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月21日,星期五
-    作    者   : y00201072
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void  oal_mem_sdt_netbuf_release(oal_void)
 {
     oal_uint32    ul_loop;
@@ -734,24 +573,7 @@ OAL_STATIC oal_void  oal_mem_sdt_netbuf_release(oal_void)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_duplicate
- 功能描述  : 复制一个netbuf,只复制其中的内容，不复制计数
- 输入参数  : oal_netbuf_stru* pst_src_netbuf 拷贝源netbuf
-             oal_uint8 uc_out_subpool_id 指定新申请的netbuf 从哪个内存池拷贝
-             oal_uint32 ul_add_head_room  新增的headroom空间大小
-             oal_uint32 ul_add_tail_room  新增的tailroom空间大小
- 输出参数  : 无
- 返 回 值  : oal_netbuf_stru 一块可用的内存块的管理结构体,未申请到为NULL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   :
-    作    者   : z00262551
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_netbuf_stru* oal_netbuf_duplicate(oal_netbuf_stru* pst_src_netbuf,
 											oal_uint8 uc_out_subpool_id,
 											oal_uint32 ul_add_head_room,
@@ -785,22 +607,7 @@ oal_netbuf_stru* oal_netbuf_duplicate(oal_netbuf_stru* pst_src_netbuf,
 }
 
 
-/*****************************************************************************
- 函 数 名  : oal_mem_create_subpool
- 功能描述  : 创建子内存池
- 输入参数  : en_pool_id   : 内存池ID
-             puc_base_addr: 内存池基地址
- 输出参数  : 无
- 返 回 值  : OAL_SUCC或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月22日
-    作    者   : mayuan m00212148
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  oal_mem_create_subpool(oal_mem_pool_id_enum_uint8 en_pool_id, oal_uint8 *puc_base_addr)
 {
     oal_mem_pool_stru      *pst_mem_pool;
@@ -906,21 +713,7 @@ OAL_STATIC oal_uint32  oal_mem_create_subpool(oal_mem_pool_id_enum_uint8 en_pool
 }
 
 #if 0
-/*****************************************************************************
- 函 数 名  : oal_mem_create_netbuf_subpool
- 功能描述  : 创建netbuf子内存池
- 输入参数  : en_pool_id: 内存池ID
- 输出参数  : 无
- 返 回 值  : OAL_SUCC或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月10日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  oal_mem_create_netbuf_subpool(oal_mem_pool_id_enum_uint8 en_pool_id)
 {
     oal_mem_pool_stru      *pst_mem_pool;
@@ -1016,21 +809,7 @@ OAL_STATIC oal_uint32  oal_mem_create_netbuf_subpool(oal_mem_pool_id_enum_uint8 
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : oal_mem_create_sdt_netbuf_subpool
- 功能描述  : 创建netbuf子内存池
- 输入参数  : en_pool_id: 内存池ID
- 输出参数  : 无
- 返 回 值  : OAL_SUCC或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年3月20日
-    作    者   : yangwu
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  oal_mem_create_sdt_netbuf_subpool(oal_mem_pool_id_enum_uint8 en_pool_id)
 {
     oal_mem_pool_stru      *pst_mem_pool;
@@ -1113,22 +892,7 @@ OAL_STATIC oal_uint32  oal_mem_create_sdt_netbuf_subpool(oal_mem_pool_id_enum_ui
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_mem_create_pool
- 功能描述  : 设置每个内存池的子内存池结构体
- 输入参数  : en_pool_id       : 内存池ID
-             puc_data_mem_addr: 内存池基地址
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月21日
-    作    者   : mayuan m00212148
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  oal_mem_create_pool(oal_mem_pool_id_enum_uint8 en_pool_id, oal_uint8 *puc_base_addr)
 {
     oal_uint8                           uc_subpool_id = 0;
@@ -1216,21 +980,7 @@ OAL_STATIC oal_uint32  oal_mem_create_pool(oal_mem_pool_id_enum_uint8 en_pool_id
     return ul_ret;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_mem_init_pool
- 功能描述  : 初始化全部内存池
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月20日
-    作    者   : mayuan m00212148
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  oal_mem_init_pool(oal_void)
 {
     oal_uint32    ul_total_bytes  = 0;         /* 内存池总字节变量 */
@@ -1285,25 +1035,7 @@ oal_uint32  oal_mem_init_pool(oal_void)
     return oal_mem_create_pool(OAL_MEM_POOL_ID_SDT_NETBUF, OAL_PTR_NULL);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_mem_alloc_enhanced
- 功能描述  : 分配内存
- 输入参数  : ul_file_id  : 调用内存申请的文件ID
-             ul_line_num : 调用内存申请所在行号
-             uc_pool_id  : 所申请内存的内存池ID
-             us_len      : 所申请内存块长度
-             uc_lock     : 是否需要加锁保护
- 输出参数  : 无
- 返 回 值  : 分配的内存块结构体指针，或空指针
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月19日
-    作    者   : mayuan m00212148
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_mem_stru* oal_mem_alloc_enhanced(
                 oal_uint32                    ul_file_id,
                 oal_uint32                    ul_line_num,
@@ -1374,24 +1106,7 @@ oal_mem_stru* oal_mem_alloc_enhanced(
     return pst_mem;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_mem_free_enhanced
- 功能描述  : 释放内存
- 输入参数  : ul_file_id  : 调用内存释放的文件ID
-             ul_line_num : 调用内存释放所在行号
-             pst_mem     : 要释放内存块地址
-             uc_lock     : 是否需要加锁保护
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或者其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月19日
-    作    者   : mayuan m00212148
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  oal_mem_free_enhanced(
                 oal_uint32      ul_file_id,
                 oal_uint32      ul_line_num,
@@ -1504,25 +1219,7 @@ oal_uint32  oal_mem_free_enhanced(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_mem_free_enhanced_array
- 功能描述  : 批量释放内存 (注意函数中不锁内存池, 要求内存块在同一个内存子池中)
- 输入参数  : ul_file_id         : 调用内存释放的文件ID
-             ul_line_num        : 调用内存释放所在行号
-             p_data             : 要释放内存块数组头指针
-             uc_mem_num         : 要释放的内存块数目
 
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或者其它错误码
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年5月22日
-    作    者   : c00260463
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_INLINE oal_uint32  oal_mem_free_enhanced_array(
                 oal_uint32      ul_file_id,
                 oal_uint32      ul_line_num,
@@ -1600,24 +1297,7 @@ OAL_INLINE oal_uint32  oal_mem_free_enhanced_array(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_mem_incr_user
- 功能描述  : 内存块引用计数加1
- 输入参数  : ul_file_id  : 文件ID
-             ul_line_num : 行号
-             pst_mem     : 要增加用户的内存块指针
-             uc_lock     : 是否需要加锁保护
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月19日
-    作    者   : mayuan m00212148
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  oal_mem_incr_user(
                 oal_uint32      ul_file_id,
                 oal_uint32      ul_line_num,
@@ -1670,26 +1350,7 @@ oal_uint32  oal_mem_incr_user(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_mem_alloc
- 功能描述  : 分配内存
- 输入参数  : ul_file_id  : 调用内存申请的文件ID
-             ul_line_num : 调用内存申请所在行号
-             uc_pool_id  : 所申请内存的内存池ID
-             us_len      : 所申请内存块长度
-             uc_lock     : 是否需要加锁保护
- 输出参数  : 无
- 返 回 值  : 成功: 指向所分配内存起始地址的指针
-             失败: 空指针
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月31日
-    作    者   : mayuan m00212148
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void* oal_mem_alloc(
                 oal_uint32                    ul_file_id,
                 oal_uint32                    ul_line_num,
@@ -1731,24 +1392,7 @@ oal_void* oal_mem_alloc(
     return (oal_void *)pst_mem->puc_data;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_mem_free
- 功能描述  : 释放内存
- 输入参数  : ul_file_id  : 调用内存释放的文件ID
-             ul_line_num : 调用内存释放所在行号
-             p_data      : 要释放内存块地址
-             uc_lock     : 是否需要加锁保护
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或者其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月31日
-    作    者   : mayuan m00212148
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  oal_mem_free(
                 oal_uint32    ul_file_id,
                 oal_uint32    ul_line_num,
@@ -1775,24 +1419,7 @@ oal_uint32  oal_mem_free(
 }
 
 
-/*****************************************************************************
- 函 数 名  : oal_mem_free_array
- 功能描述  : 批量释放内存 (注意函数中不锁内存池, 要求内存块在同一个内存子池中)
- 输入参数  : ul_file_id         : 调用内存释放的文件ID
-             ul_line_num        : 调用内存释放所在行号
-             p_data             : 要释放内存块数组头指针
-             uc_mem_num         : 要释放的内存块数目
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或者其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月22日
-    作    者   : c00260463
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_INLINE oal_uint32  oal_mem_free_array(
                 oal_uint32    ul_file_id,
                 oal_uint32    ul_line_num,
@@ -1804,23 +1431,7 @@ OAL_INLINE oal_uint32  oal_mem_free_array(
 }
 
 #if 0
-/*****************************************************************************
- 函 数 名  : oal_mem_netbuf_alloc
- 功能描述  : 分配netbuf内存
- 输入参数  : us_len : 所申请内存块长度(即数据帧的长度，不包括netbuf结构体的长度)
-             uc_lock: 是否需要加锁保护
- 输出参数  : 无
- 返 回 值  : 成功: 指向oal_netbuf_stru结构体的指针
-             失败: OAL_PTR_NULL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月10日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_netbuf_stru* oal_mem_netbuf_alloc(oal_uint32    ul_file_id,
                                       oal_uint32    ul_line_num,
                                       oal_uint16    us_len,
@@ -1908,25 +1519,7 @@ oal_netbuf_stru* oal_mem_netbuf_alloc(oal_uint32    ul_file_id,
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : oal_mem_sdt_netbuf_alloc
- 功能描述  : 分配netbuf内存
- 输入参数  : us_len : 所申请内存块长度(即数据帧的长度，不包括netbuf结构体的长度)
-             内存池的长度为netlink消息头+nlkpayload长度
-             nlkpaload有sdt消息头+实际内容+sdt消息尾
-             uc_lock: 是否需要加锁保护
- 输出参数  : 无
- 返 回 值  : 成功: 指向oal_netbuf_stru结构体的指针
-             失败: OAL_PTR_NULL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年3月20日
-    作    者   : yangwu
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_netbuf_stru* oal_mem_sdt_netbuf_alloc(oal_uint16 us_len, oal_uint8 uc_lock)
 {
     oal_mem_pool_stru      *pst_mem_pool;
@@ -2020,23 +1613,7 @@ OAL_STATIC OAL_INLINE oal_uint32 oal_mem_find_netbuf_subpool_id(oal_netbuf_stru 
 }
 
 
-/*****************************************************************************
- 函 数 名  : oal_mem_find_sdt_netbuf_subpool_id
- 功能描述  : 查找sdt netbuf的子池
- 输入参数  : oal_netbuf_stru   *pst_netbuf
-             oal_mem_pool_stru *pst_mem_pool
-             oal_uint8         *puc_subpool_id
- 输出参数  : 无
- 返 回 值  : OAL_STATIC OAL_INLINE oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月21日,星期五
-    作    者   : y00201072
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32 oal_mem_find_sdt_netbuf_subpool_id(oal_netbuf_stru   *pst_netbuf,
                                                                 oal_mem_pool_stru *pst_mem_pool,
                                                                 oal_uint8         *puc_subpool_id)
@@ -2057,22 +1634,7 @@ OAL_STATIC OAL_INLINE oal_uint32 oal_mem_find_sdt_netbuf_subpool_id(oal_netbuf_s
 }
 
 #if 0
-/*****************************************************************************
- 函 数 名  : oal_mem_netbuf_free
- 功能描述  : 释放netbuf内存
- 输入参数  : pst_netbuf: 指向oal_netbuf_stru结构体的指针
-             uc_lock   : 是否需要加锁保护
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或者其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月11日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  oal_mem_netbuf_free(oal_uint32         ul_file_id,
                                 oal_uint32         ul_line_num,
                                 oal_netbuf_stru   *pst_netbuf,
@@ -2139,22 +1701,7 @@ oal_uint32  oal_mem_netbuf_free(oal_uint32         ul_file_id,
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : oal_mem_sdt_netbuf_free
- 功能描述  : 释放netbuf内存
- 输入参数  : pst_netbuf: 指向oal_netbuf_stru结构体的指针
-             uc_lock   : 是否需要加锁保护
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或者其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月11日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  oal_mem_sdt_netbuf_free(oal_netbuf_stru *pst_netbuf, oal_uint8 uc_lock)
 {
     oal_uint8               uc_subpool_id;
@@ -2202,21 +1749,7 @@ oal_uint32  oal_mem_sdt_netbuf_free(oal_netbuf_stru *pst_netbuf, oal_uint8 uc_lo
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_mempool_info_to_sdt_register
- 功能描述  : 提供给oam模块的注册函数，注册的函数功能是将内存池信息上报SDT
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月26日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  oal_mempool_info_to_sdt_register(oal_stats_info_up_to_sdt  p_up_mempool_info,
                                                      oal_memblock_info_up_to_sdt p_up_memblock_info)
 {
@@ -2226,21 +1759,7 @@ oal_uint32  oal_mempool_info_to_sdt_register(oal_stats_info_up_to_sdt  p_up_memp
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_mem_info
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月29日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  oal_mem_info(oal_mem_pool_id_enum_uint8 en_pool_id)
 {
     oal_mem_pool_stru      *pst_mem_pool;
@@ -2272,21 +1791,7 @@ oal_void  oal_mem_info(oal_mem_pool_id_enum_uint8 en_pool_id)
 }
 
 #if 0
-/*****************************************************************************
- 函 数 名  : oal_mem_netbuf_leak
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月6日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void  oal_mem_netbuf_leak(oal_void)
 {
     oal_mem_pool_stru          *pst_mem_pool;
@@ -2351,21 +1856,7 @@ OAL_STATIC oal_void  oal_mem_netbuf_leak(oal_void)
 
 
 #if (_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC == _PRE_MULTI_CORE_MODE)
-/*****************************************************************************
- 函 数 名  : oal_get_func_name
- 功能描述  : 将函数地址转换为函数符号
- 输入参数  : call_func_ddr: 输入参量，函数返回地址
- 输出参数  : buff: 输出参量，存储函数符号
- 返 回 值  : buf_cnt: buff存储字节长度
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月19日
-    作    者   : lingxuemeng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint8 oal_get_func_name(oal_uint8 *buff, oal_ulong call_func_ddr)
 {
     oal_uint8 buf_cnt = 0;
@@ -2380,21 +1871,7 @@ oal_uint8 oal_get_func_name(oal_uint8 *buff, oal_ulong call_func_ddr)
     return buf_cnt;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_get_func_return_address
- 功能描述  : 将函数地址转换为函数符号
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : ul_ret_addr: 函数返回地址
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月19日
-    作    者   : lingxuemeng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_ulong oal_get_func_return_address(oal_void)
 {
     oal_ulong ul_ret_addr = 0;
@@ -2409,21 +1886,7 @@ oal_ulong oal_get_func_return_address(oal_void)
 }
 oal_module_symbol(oal_get_func_return_address);
 
-/*****************************************************************************
- 函 数 名  : oal_print_func
- 功能描述  : linux 下打印函数调用关系
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月19日
-    作    者   : lingxuemeng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void oal_mem_print_funcname(oal_ulong func_addr)
 {
     oal_uint8              ac_buff[OAL_MEM_SPRINT_SYMBOL_SIZE] = {0};
@@ -2438,21 +1901,7 @@ oal_void oal_mem_print_funcname(oal_ulong func_addr)
 }
 oal_module_symbol(oal_mem_print_funcname);
 
-/*****************************************************************************
- 函 数 名  : oal_mem_return_addr_count
- 功能描述  : 统计某个内存池中，某个函数总共占用内存块个数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月19日
-    作    者   : lingxuemeng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 oal_mem_return_addr_count(oal_mem_subpool_stru *pst_mem_subpool, oal_mem_stru *pst_mem_base, oal_ulong call_func_addr)
 {
     oal_uint16             us_loop;
@@ -2473,22 +1922,7 @@ oal_uint32 oal_mem_return_addr_count(oal_mem_subpool_stru *pst_mem_subpool, oal_
      return us_count;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_mem_func_addr_is_registerd
- 功能描述  : 统计数组中是否已经存储某个函数地址
- 输入参数  : ua_func_addr: 保存函数地址的数组
-             call_func_addr: 函数地址
- 输出参数  : p_func_loop: 数组中第一个为0的下标值
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月19日
-    作    者   : lingxuemeng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint8 oal_mem_func_addr_is_registerd(oal_ulong* ua_func_addr, oal_uint8 uc_func_size, oal_uint8* p_func_loop, oal_ulong call_func_addr)
 {
     oal_uint8 uc_loop = 0;
@@ -2521,21 +1955,7 @@ oal_uint8 oal_mem_func_addr_is_registerd(oal_ulong* ua_func_addr, oal_uint8 uc_f
 
 }
 
-/*****************************************************************************
- 函 数 名  : oal_mem_print_normal_pool_info
- 功能描述  : 内存池溢出时，统计上报普通内存占用情况
- 输入参数  : en_pool_id
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月19日
-    作    者   : lingxuemeng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void oal_mem_print_normal_pool_info(oal_mem_pool_id_enum_uint8 en_pool_id)
 {
     oal_mem_pool_stru     *pst_mem_pool;
@@ -2616,21 +2036,7 @@ oal_void oal_mem_print_normal_pool_info(oal_mem_pool_id_enum_uint8 en_pool_id)
 }
 oal_module_symbol(oal_mem_print_normal_pool_info);
 
-/*****************************************************************************
- 函 数 名  : oal_mem_print_pool_info
- 功能描述  : 统计输出所有内存池信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月19日
-    作    者   : lingxuemeng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void oal_mem_print_pool_info(oal_void)
 {
     oal_uint8 uc_loop;
@@ -2644,21 +2050,7 @@ oal_module_symbol(oal_mem_print_pool_info);
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : oal_mem_leak
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月29日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  oal_mem_leak(oal_mem_pool_id_enum_uint8 en_pool_id)
 {
 #ifdef _PRE_DEBUG_MODE
@@ -2721,21 +2113,7 @@ oal_void  oal_mem_leak(oal_mem_pool_id_enum_uint8 en_pool_id)
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : oal_mem_stat
- 功能描述  : 统计各个内存池使用情况
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月7日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void  oal_mem_statistics(oal_mem_pool_stat *past_mem_pool_stat)
 {
     oal_mem_pool_id_enum_uint8    en_pool_id;
@@ -2762,21 +2140,7 @@ OAL_STATIC oal_void  oal_mem_statistics(oal_mem_pool_stat *past_mem_pool_stat)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : oal_mem_check
- 功能描述  : 检测内存池是否有泄漏
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月7日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  oal_mem_check(oal_mem_pool_stat *past_stat_start, oal_mem_pool_stat *past_stat_end)
 {
     oal_uint8                     uc_bitmap = 0;
@@ -2844,21 +2208,7 @@ OAL_STATIC oal_uint32  oal_mem_check(oal_mem_pool_stat *past_stat_start, oal_mem
     return OAL_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_mem_start_stat
- 功能描述  : 内存检测接口(需要与oal_mem_end_stat配对使用)
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月7日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  oal_mem_start_stat(oal_void)
 {
     OAL_MEMZERO(&g_st_mem_stat, OAL_SIZEOF(g_st_mem_stat));
@@ -2867,22 +2217,7 @@ oal_void  oal_mem_start_stat(oal_void)
     oal_mem_statistics(g_st_mem_stat.ast_mem_start_stat);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_mem_end_stat
- 功能描述  : 内存检测接口(需要与oal_mem_start_stat配对使用)
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : OAL_TRUE:  有内存泄漏
-             OAL_FALSE: 无内存泄漏
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月7日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  oal_mem_end_stat(oal_void)
 {
     oal_mem_statistics(g_st_mem_stat.ast_mem_end_stat);
@@ -2891,21 +2226,7 @@ oal_uint32  oal_mem_end_stat(oal_void)
     return oal_mem_check(g_st_mem_stat.ast_mem_start_stat, g_st_mem_stat.ast_mem_end_stat);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_mem_trace_enhanced
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月27日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  oal_mem_trace_enhanced(oal_uint32      ul_file_id,
                                    oal_uint32      ul_line_num,
                                    oal_mem_stru   *pst_mem,
@@ -2923,34 +2244,20 @@ oal_uint32  oal_mem_trace_enhanced(oal_uint32      ul_file_id,
 
     pst_mem_subpool = &(pst_mem_pool->ast_subpool_table[pst_mem->uc_subpool_id]);
 
+#ifdef _PRE_DEBUG_MODE
     OAL_MEM_SPIN_LOCK_BH(pst_mem_subpool->st_spinlock)
 
-#ifdef _PRE_DEBUG_MODE
     pst_mem->ul_trace_file_id    = ul_file_id;
     pst_mem->ul_trace_line_num   = ul_line_num;
     pst_mem->ul_trace_time_stamp = (oal_uint32)OAL_TIME_GET_STAMP_MS();
-#endif
 
     OAL_MEM_SPIN_UNLOCK_BH(pst_mem_subpool->st_spinlock)
+#endif
 
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_mem_trace
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月27日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  oal_mem_trace(oal_uint32    ul_file_id,
                           oal_uint32    ul_line_num,
                           oal_void     *p_data,
@@ -2969,21 +2276,7 @@ oal_uint32  oal_mem_trace(oal_uint32    ul_file_id,
 }
 
 #if 0
-/*****************************************************************************
- 函 数 名  : oal_mem_netbuf_trace
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月27日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  oal_mem_netbuf_trace(oal_uint32       ul_file_id,
                                  oal_uint32       ul_line_num,
                                  oal_netbuf_stru *pst_netbuf,
@@ -3024,21 +2317,7 @@ oal_uint32  oal_mem_netbuf_trace(oal_uint32       ul_file_id,
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : oal_mem_exit
- 功能描述  : 内存模块卸载接口
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : OAL_SUCC
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月24日
-    作    者   : mayuan m00212148
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  oal_mem_exit(oal_void)
 {
     /* 卸载普通内存池 */

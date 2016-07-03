@@ -492,23 +492,7 @@ void link_PushPacket(struct link *l, struct ppp_mbuf *bp,/* struct bundle *b, */
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_ProcIpModeUlData
- 功能描述  : IP类型拨号，软件或硬件解封装完成后，调用此接口处理输出数据
- 输入参数  : pstLink    -   PPP链路信息
-             pstMem     -   解封装后单个输出数据包
-             usProto    -   数据包对应的协议
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_HDLC_ProcIpModeUlData
 (
     struct link *pstLink,
@@ -574,22 +558,7 @@ VOS_VOID PPP_HDLC_ProcIpModeUlData
     #endif
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_ProcPppModeUlData
- 功能描述  : PPP类型拨号，软件或硬件解封装完成后，调用此接口处理输出数据
- 输入参数  : usPppId    -   PPP实体ID
-             pstMem     -   解封装后单个输出数据包
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_HDLC_ProcPppModeUlData
 (
     PPP_ID      usPppId,
@@ -604,22 +573,7 @@ VOS_VOID PPP_HDLC_ProcPppModeUlData
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_ProcDlData
- 功能描述  : 软件或硬件封装完成后，调用此接口处理输出数据
- 输入参数  : usPppId    -   PPP实体ID
-             pstMem     -   封装后IP包对应的PPP帧数据，可能不是完整PPP帧
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_HDLC_ProcDlData(VOS_UINT16 usPppId, PPP_ZC_STRU *pstMem)
 {
     #ifdef PPP_ST_TEST
@@ -714,21 +668,7 @@ VOS_VOID PPP_STUB_TraceDlData(PPP_ZC_STRU *pstImmZc)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : PPP_SendPulledData
- 功能描述  : 上行发送数据给协议栈
- 输入参数  : ucPppId --- PPP ID
-             pstMem  --- TTF_MEM形式的数据
- 输出参数  :
- 返 回 值  : PS_SUCC 成功；PS_FAIL 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011-03-09
-    作    者   : l00164359
-    修改内容   : Created
-*****************************************************************************/
 VOS_UINT32 PPP_SendPulledData(VOS_UINT16 usPppId,  PPP_ZC_STRU *pstImmZc)
 {
     VOS_UINT8                          ucRabId = PPP_INVALID_RABID;
@@ -769,22 +709,7 @@ VOS_UINT32 PPP_SendPulledData(VOS_UINT16 usPppId,  PPP_ZC_STRU *pstImmZc)
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_SendPushedData
- 功能描述  : 下行发送数据给USB
- 输入参数  : ucPppId            -   PPP ID
-             pucDataBuf         -   待发送下行数据内存指针
-             usLen              -   数据长度
- 输出参数  :
- 返 回 值  : PS_SUCC 成功；PS_FAIL 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011-03-09
-    作    者   : l00164359
-    修改内容   : Created
-*****************************************************************************/
 VOS_UINT32 PPP_SendPushedData(VOS_UINT16 usPppId, VOS_UINT8 *pucDataBuf, VOS_UINT16 usLen)
 {
     PPP_ZC_STRU                        *pstMem;

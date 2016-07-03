@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CmmcaParseCmd.h
-  版 本 号   : 初稿
-  作    者   :
-  生成日期   : 2014年2月15日
-  最近修改   :
-  功能描述   : CmmcaParseCmd.c的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年2月15日
-    作    者   :
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __CMMCAPARSECMD_H__
 #define __CMMCAPARSECMD_H__
@@ -166,13 +149,7 @@ extern "C" {
   3 枚举定义
 *****************************************************************************/
 #if (FEATURE_ON == FEATURE_CL_INTERWORK)
-/*****************************************************************************
- 枚举名   :CMMCA_RAT_MMC_PKT_ERRCODE
- 枚举说明 :回复PDN连接请求的错误码
- 1.日    期   : 2014年01月23日
-   作    者   : l60609
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CMMCA_RAT_MMC_PKT_ERRCODE
 {
     /* Local */
@@ -236,13 +213,7 @@ enum CMMCA_RAT_MMC_PKT_ERRCODE
 
 typedef VOS_UINT8 CMMCA_RAT_MMC_PKT_ERRCODE_UINT8;
 
-/*****************************************************************************
- 枚举名   :CMMCA_RAT_MMC_RESULT_ENUM
- 枚举说明 :回复CMMC的结果
- 1.日    期   : 2014年01月08日
-   作    者   : l60609
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CMMCA_RAT_MMC_RESULT_ENUM
 {
     /*
@@ -256,13 +227,7 @@ enum CMMCA_RAT_MMC_RESULT_ENUM
 
 typedef VOS_UINT8 CMMCA_RAT_MMC_RESULT_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名   :CMMCA_RAT_MMC_PDN_TAB_SET_RESULT_ENUM
- 枚举说明 :RAT回复CMMC设置PDN TAB的结果
- 1.日    期   : 2014年01月08日
-   作    者   : l60609
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CMMCA_RAT_MMC_PDN_TAB_SET_RESULT_ENUM
 {
     /* 0 = success
@@ -276,13 +241,7 @@ enum CMMCA_RAT_MMC_PDN_TAB_SET_RESULT_ENUM
 
 typedef VOS_UINT8 CMMCA_RAT_MMC_PDN_TAB_SET_RESULT_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名   :CMMCA_SET_PDN_PCO_AUTH_RESULT_ENUM
- 枚举说明 :鉴权的结果
- 1.日    期   : 2014年10月27日
-   作    者   : j00174725
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CMMCA_SET_PDN_PCO_AUTH_RESULT_ENUM
 {
     /* 0 = success
@@ -297,13 +256,7 @@ enum CMMCA_SET_PDN_PCO_AUTH_RESULT_ENUM
 typedef VOS_UINT8 CMMCA_SET_PDN_PCO_AUTH_RESULT_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名   :CMMCA_RAT_MMC_BEAR_CONN_RESULT_ENUM
- 枚举说明 :RAT回复CMMC承载激活的结果
- 1.日    期   : 2014年01月08日
-   作    者   : l60609
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CMMCA_RAT_MMC_BEAR_CONN_RESULT_ENUM
 {
     /* 0 = success
@@ -319,13 +272,7 @@ enum CMMCA_RAT_MMC_BEAR_CONN_RESULT_ENUM
 
 typedef VOS_UINT8 CMMCA_RAT_MMC_BEAR_CONN_RESULT_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名   :CMMCA_MMC_MODE_RSP_RESULT_ENUM
- 枚举说明 :RAT ID
- 1.日    期   : 2014年01月27日
-   作    者   : l60609
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CMMCA_MMC_MODE_RSP_RESULT_ENUM
 {
     CMMCA_MMC_MODE_RSP_SUCC,
@@ -335,13 +282,7 @@ enum CMMCA_MMC_MODE_RSP_RESULT_ENUM
 
 typedef VOS_UINT8 CMMCA_MMC_MODE_RSP_RESULT_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名   : CMMCA_IRAT_HO_CAUSE_ENUM
- 枚举说明 : RAT_ID类型
- 1.日    期   : 2014年02月12日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CMMCA_IRAT_HO_CAUSE_ENUM
 {
     CMMCA_IRAT_HO_CAUSE_REDIRECTION = 0,
@@ -353,13 +294,7 @@ enum CMMCA_IRAT_HO_CAUSE_ENUM
 };
 typedef VOS_UINT8 CMMCA_IRAT_HO_CAUSE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名   : CMMCA_RAT_ACQ_REQ_REASON_ENUM
- 枚举说明 : 搜网请求原因
- 1.日    期   : 2014年02月11日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CMMCA_RAT_ACQ_REQ_REASON_ENUM
 {
     CMMCA_RAT_ACQ_REQ_REASON_INIT_ACQ = 0,       /* LTE shall conduct the frequency band scan per relevant standard and 3GPP BST table. */
@@ -371,13 +306,7 @@ enum CMMCA_RAT_ACQ_REQ_REASON_ENUM
 };
 typedef VOS_UINT8 CMMCA_RAT_ACQ_REQ_REASON_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名   : CMMCA_RAT_ACQ_RESULT_ENUM
- 枚举说明 : 搜网结果
- 1.日    期   : 2014年02月11日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CMMCA_RAT_ACQ_RESULT_ENUM
 {
     CMMCA_RAT_ACQ_RESULT_ACQUIRED = 0, /* an acceptable system is acquired. The info will be included in RatSysInfo. */
@@ -387,13 +316,7 @@ enum CMMCA_RAT_ACQ_RESULT_ENUM
 };
 typedef VOS_UINT8 CMMCA_RAT_ACQ_RESULT_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名   : CMMCA_RAT_GMSS_PRIORITY_CLASS_ENUM
- 枚举说明 : 搜网优先级类别
- 1.日    期   : 2014年02月11日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CMMCA_RAT_GMSS_PRIORITY_CLASS_ENUM
 {
     CMMCA_RAT_GMSS_PRIORITY_CLASS_HOME = 0,
@@ -405,13 +328,7 @@ enum CMMCA_RAT_GMSS_PRIORITY_CLASS_ENUM
 };
 typedef VOS_UINT8 CMMCA_RAT_GMSS_PRIORITY_CLASS_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名   : CMMCA_RAT_REG_RESULT_ENUM
- 枚举说明 : 注册结果
- 1.日    期   : 2014年02月11日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CMMCA_RAT_REG_RESULT_ENUM
 {
     CMMCA_RAT_REG_RESULT_REGISTERED = 0, /* LTE has registered on the qualified system. System info will be included in RatSysInfo. */
@@ -440,13 +357,7 @@ enum CMMCA_RAT_CL_REG_STATUS_ENUM
 };
 typedef VOS_UINT8 CMMCA_RAT_ATTACH_CL_REG_STATUS_ENUM8;
 
-/*****************************************************************************
- 枚举名   : CMMCA_RAT_ATTACH_TYPE_ENUM
- 枚举说明 : 注册结果
- 1.日    期   : 2014年02月11日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CMMCA_RAT_ATTACH_TYPE_ENUM
 {
     CMMCA_RAT_ATTACH_TYPE_INITIAL  = 1,
@@ -455,13 +366,7 @@ enum CMMCA_RAT_ATTACH_TYPE_ENUM
 };
 typedef VOS_UINT8 CMMCA_RAT_ATTACH_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名   : CMMCA_RAT_NOTIFY_CAUSE_ENUM
- 枚举说明 : RAT NOTIFY CAUSE
- 1.日    期   : 2014年02月11日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CMMCA_RAT_NOTIFY_CAUSE_ENUM
 {
     CMMCA_RAT_NOTIFY_CAUSE_AUTOMATIC = 0,     /* reason not specified below. For update LTE status to MMC. */
@@ -479,13 +384,7 @@ enum CMMCA_RAT_NOTIFY_CAUSE_ENUM
 };
 typedef VOS_UINT8 CMMCA_RAT_NOTIFY_CAUSE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名   : CMMCA_MMC_RAT_CPST_ENUM
- 枚举说明 : CAMP STATE
- 1.日    期   : 2014年02月11日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CMMCA_RAT_CPST_ENUM
 {
     CMMCA_RAT_CPST_SYSLOST = 0, /* LTE loses system. */
@@ -499,13 +398,7 @@ enum CMMCA_RAT_CPST_ENUM
 };
 typedef VOS_UINT8 CMMCA_RAT_CPST_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名   : CMMCA_RAT_PS_TYPE_ENUM
- 枚举说明 : PS TYPE
- 1.日    期   : 2014年02月19日
-   作    者   : b00269685
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CMMCA_RAT_PS_TYPE_ENUM
 {
     CMMCA_RAT_PS_TYPE_NO_PS = 0,
@@ -519,13 +412,7 @@ enum CMMCA_RAT_PS_TYPE_ENUM
 };
 typedef VOS_UINT8 CMMCA_RAT_PS_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名   : CMMCA_RAT_SYSTEM_TYPE_ENUM
- 枚举说明 : SYSTEM TYPE原因
- 1.日    期   : 2014年02月11日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CMMCA_RAT_SYSTEM_TYPE_ENUM
 {
     CMMCA_RAT_SYSTEM_TYPE_CDMA = 0,
@@ -537,13 +424,7 @@ enum CMMCA_RAT_SYSTEM_TYPE_ENUM
 };
 typedef VOS_UINT8 CMMCA_RAT_SYSTEM_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名   : CMMCA_MMC_RAT_NOSVC_CAUSE_ENUM
- 枚举说明 : NO SERVICE原因
- 1.日    期   : 2014年02月11日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CMMCA_MMC_RAT_NOSVC_CAUSE_ENUM
 {
     CMMCA_MMC_RAT_NOSVC_CAUSE_INITIAL_SCAN,
@@ -559,13 +440,7 @@ enum CMMCA_MMC_RAT_NOSVC_CAUSE_ENUM
 };
 typedef VOS_UINT8 CMMCA_MMC_RAT_NOSVC_CAUSE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名   : CMMCA_RAT_MMC_STATUS_ENUM
- 枚举说明 : RAT STATUS
- 1.日    期   : 2014年02月11日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CMMCA_RAT_MMC_STATUS_ENUM
 {
     CMMCA_RAT_MMC_STATUS_SUCCESS=0,        /* Success */
@@ -580,13 +455,7 @@ enum CMMCA_RAT_MMC_STATUS_ENUM
 } ;
 typedef VOS_UINT8 CMMCA_RAT_MMC_STATUS_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名   : CMMCA_CDMA_TYPE_ENUM
- 枚举说明 : CDMA TYPE
- 1.日    期   : 2014年02月11日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CMMCA_CDMA_TYPE_ENUM
 {
    CMMCA_CDMA_TYPE_1XRTT = 0,
@@ -596,13 +465,7 @@ enum CMMCA_CDMA_TYPE_ENUM
 };
 typedef VOS_UINT8 CMMCA_CDMA_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名   : CMMCA_UTRAN_CELL_TYPE_ENUM
- 枚举说明 : Utran cell type定义
- 1.日    期   : 2014年02月11日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CMMCA_UTRAN_CELL_TYPE_ENUM
 {
     CMMCA_UTRAN_CELL_TYPE_FDD,
@@ -611,13 +474,7 @@ enum CMMCA_UTRAN_CELL_TYPE_ENUM
 };
 typedef VOS_UINT8 CMMCA_UTRAN_CELL_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名   : CMMCA_GERAN_BAND_IND_ENUM
- 枚举说明 : geran band ind定义
- 1.日    期   : 2014年02月11日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CMMCA_GERAN_BAND_IND_ENUM
 {
     CMMCA_GERAN_BAND_IND_DCS1800,
@@ -626,13 +483,7 @@ enum CMMCA_GERAN_BAND_IND_ENUM
 };
 typedef VOS_UINT8 CMMCA_GERAN_BAND_IND_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名   : CMMCA_RAT_MODE_ENUM
- 枚举说明 : MODE定义
- 1.日    期   : 2014年02月11日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CMMCA_RAT_MODE_ENUM
 {
    CMMCA_RAT_MODE_LTE,
@@ -642,13 +493,7 @@ enum CMMCA_RAT_MODE_ENUM
 typedef VOS_UINT8 CMMCA_RAT_MODE_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名   : CMMCA_RAT_CMD_REJ_REASON_ENUM
- 枚举说明 : 拒绝原因值
- 1.日    期   : 2014年02月11日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CMMCA_RAT_CMD_REJ_REASON_ENUM
 {
     CMMCA_RAT_CMD_REJ_REASON_NOT_CACHABLE = 0, /* the cmd comes while previous cmd is being handling, LTE can not buffer and handle it.*/
@@ -663,13 +508,7 @@ typedef VOS_UINT8 CMMCA_RAT_CMD_REJ_REASON_ENUM_UINT8;
 
 
 
-/*****************************************************************************
- 枚举名   : CMMCA_RAT_POWERUP_RESULT_RSP_ENUM
- 枚举说明 : 开机响应原因值定义
- 1.日    期   : 2014年02月11日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CMMCA_RAT_POWERUP_RSP_RESULT_ENUM
 {
     CMMCA_RAT_POWERUP_RSP_RESULT_SUCCESS,
@@ -678,13 +517,7 @@ enum CMMCA_RAT_POWERUP_RSP_RESULT_ENUM
 };
 typedef VOS_UINT8 CMMCA_RAT_POWERUP_RSP_RESULT_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名   : CMMCA_IRAT_DATA_CONNECT_CMD_REQ_ENUM
- 枚举说明 : DataConnectCmd值定义
- 1.日    期   : 2014年02月11日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CMMCA_IRAT_DATA_CONNECT_CMD_REQ_ENUM
 {
     CMMCA_IRAT_DATA_CONNECT_CMD_REQ_SUSPEND = 0,
@@ -696,13 +529,7 @@ enum CMMCA_IRAT_DATA_CONNECT_CMD_REQ_ENUM
 typedef VOS_UINT8 CMMCA_IRAT_DATA_CONNECT_CMD_REQ_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名   : CMMCA_IRAT_DATA_CONNECT_CMD_RSP_ENUM
- 枚举说明 : DataConnectCmdRsp值定义
- 1.日    期   : 2014年02月11日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CMMCA_IRAT_DATA_CONNECT_CMD_RSP_ENUM
 {
    CMMCA_IRAT_DATA_CONNECT_CMD_RSP_PKT_ACTIVE,
@@ -716,13 +543,7 @@ enum CMMCA_IRAT_DATA_CONNECT_CMD_RSP_ENUM
 };
 typedef VOS_UINT8 CMMCA_IRAT_DATA_CONNECT_CMD_RSP_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名   :CMMCA_MMC_NO_SERV_RSP_RESULT_ENUM
- 枚举说明 :RAT ID
- 1.日    期   : 2014年01月27日
-   作    者   : l60609
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CMMCA_MMC_NO_SERV_RSP_RESULT_ENUM
 {
     CMMCA_MMC_NO_SERV_RSP_SUCC,
@@ -731,13 +552,7 @@ enum CMMCA_MMC_NO_SERV_RSP_RESULT_ENUM
 };
 typedef VOS_UINT8 CMMCA_MMC_NO_SERV_RSP_RESULT_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名   :CMMCA_MMC_BEAR_DETACH_RSP_RESULT_ENUM
- 枚举说明 : Bearer Detach结果枚举
- 1.日    期   : 2014年07月07日
-   作    者   : g00261581
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CMMCA_MMC_BEAR_DETACH_RSP_RESULT_ENUM
 {
     CMMCA_MMC_BEAR_DETACH_RSP_FAIL,
@@ -747,13 +562,7 @@ enum CMMCA_MMC_BEAR_DETACH_RSP_RESULT_ENUM
 };
 typedef VOS_UINT8 CMMCA_MMC_BEAR_DETACH_RSP_RESULT_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名   :CMMCA_IRAT_SYSTEM_CHG_RESULT_ENUM
- 枚举说明 :
- 1.日    期   : 2014年02月08日
-   作    者   : g00261581
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CMMCA_IRAT_SYSTEM_CHG_RESULT_ENUM
 {
     CMMCA_IRAT_SYSTEM_CHG_SUCCESS,
@@ -769,13 +578,7 @@ enum CMMCA_IRAT_SYSTEM_CHG_RESULT_ENUM
 
 typedef VOS_UINT8  CMMCA_IRAT_SYSTEM_CHG_RESULT_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名   :CMMCA_RAT_AUTH_MODE_ENUM
- 枚举说明 :AUTH MODE
- 1.日    期   : 2014年10月24日
-   作    者   : j00174725
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CMMCA_RAT_AUTH_MODE_ENUM
 {
     CMMCA_RAT_AUTH_MODE_NONE    = 0,
@@ -808,13 +611,7 @@ typedef VOS_UINT8 CMMCA_MMC_RAT_AUTH_MODE_ENUM_UINT8;
   7 STRUCT定义
 *****************************************************************************/
 #if (FEATURE_ON == FEATURE_CL_INTERWORK)
-/*****************************************************************************
- 结构名    : CMMCA_RAT_MMC_3GPP_RAT_INFO_STRU
- 结构说明  : 3GPP_RAT_INFO信息结构
- 1.日    期   : 2014年02月12日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usEarfcn; /* EUTRAN channel number */
@@ -822,13 +619,7 @@ typedef struct
     VOS_UINT32                          ulPlmn;
 }CMMCA_RAT_MMC_3GPP_RAT_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CMMCA_RAT_MMC_RAT_SYS_INFO_STRU
- 结构说明  : RAT_SYS_INFO信息结构
- 1.日    期   : 2014年02月12日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulMcc;      /* MMC_GMSS_MCC_UNAVL means MCC Srch Failed */
@@ -836,13 +627,7 @@ typedef struct
     CMMCA_RAT_MMC_3GPP_RAT_INFO_STRU    stEutran;
 }CMMCA_RAT_MMC_RAT_SYS_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CMMCA_RAT_MMC_RAT_SYS_INFO_RPC_STRU
- 结构说明  : RAT SYS INFO RPC信息结构
- 1.日    期   : 2014年02月12日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef  struct
 {
     CMMCA_RAT_GMSS_PRIORITY_CLASS_ENUM_UINT8                enPriorityClass; /* PLMN priority class */
@@ -855,26 +640,14 @@ typedef  struct
 }CMMCA_RAT_MMC_RAT_SYS_INFO_RPC_STRU;
 
 
-/*****************************************************************************
- 结构名    : CMMCA_PLMNID_RPC_STRU
- 结构说明  : PLMNID RPC信息结构
- 1.日    期   : 2014年02月12日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usMcc;  /* 3 digits */
     VOS_UINT16                          usMnc;  /* 2-3 digits */
 }CMMCA_PLMNID_RPC_STRU;
 
-/*****************************************************************************
- 结构名    : CMMCA_UTRAN_CELL_GLOBALID_RPC_STRU
- 结构说明  : CARRIER INFO CDMA RPC信息结构
- 1.日    期   : 2014年02月12日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     CMMCA_PLMNID_RPC_STRU               stPlmnId;
@@ -882,13 +655,7 @@ typedef struct
 }CMMCA_UTRAN_CELL_GLOBALID_RPC_STRU;
 
 
-/*****************************************************************************
- 结构名    : CMMCA_MMC_CARRIER_INFO_UTRAN_RPC_STRU
- 结构说明  : CARRIER INFO CDMA RPC信息结构
- 1.日    期   : 2014年02月12日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usArfcn;        /* UTRAN carrier frequency,(0-16383) */
@@ -900,13 +667,7 @@ typedef struct
     VOS_UINT8                           bNeedConn;
 } CMMCA_MMC_CARRIER_INFO_UTRAN_RPC_STRU;
 
-/*****************************************************************************
- 结构名    : CMMCA_GERAN_CELLGLOBALID_RPC_STRU
- 结构说明  : 载波信息参数
- 1.日    期   : 2014年02月12日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef  struct
 {
     CMMCA_PLMNID_RPC_STRU               stPlmnId;
@@ -915,13 +676,7 @@ typedef  struct
 }CMMCA_GERAN_CELLGLOBALID_RPC_STRU;
 
 
-/*****************************************************************************
- 结构名    : CMMCA_MMC_CARRIER_INFO_PARAM_RPC_UNION
- 结构说明  : 载频信息参数
- 1.日    期   : 2014年02月12日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usArfcn;  /* 0-1023 */
@@ -929,39 +684,21 @@ typedef struct
 }CMMCA_GERAN_CARRIER_FREQ_RPC_STRU;
 
 
-/*****************************************************************************
- 结构名    : CMMCA_GERAN_PHYS_CELLID_RPC_STRU
- 结构说明  : GERAN PHYS CELLID信息参数
- 1.日    期   : 2014年02月12日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucNwColourCode;   /* 3 bits,network colour code as defined in TS 23.003 */
     VOS_UINT8                           ucBsColourCode;   /* 3 bits, Base station Colour Code as defined in TS 23.003 */
 }CMMCA_GERAN_PHYS_CELLID_RPC_STRU;
 
-/*****************************************************************************
- 结构名    : CMMCA_GERAN_CGI_INFO_RPC_STRU
- 结构说明  : GERAN CGI信息参数
- 1.日    期   : 2014年02月12日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef  struct
 {
     CMMCA_GERAN_CELLGLOBALID_RPC_STRU   stcellGlobalId;
     VOS_UINT8                           ucroutingAreacode;/* The RAC identity read from broadcast information, as defined in TS 23.003 色*/
 }CMMCA_GERAN_CGI_INFO_RPC_STRU;
 
-/*****************************************************************************
- 结构名    : CMMCA_RAT_MMC_RAT_SYS_INFO_RPC_STRU
- 结构说明  : CDMA载波信息结构
- 1.日    期   : 2014年02月12日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     CMMCA_CDMA_TYPE_ENUM_UINT8          enType;                      /* Type of the CDMA system, 1xRTT or HRPD */
@@ -972,13 +709,7 @@ typedef struct
                                                                         for which cell reselection criteria has met. Total number of elements shall not exceed NumPn*/
 }CMMCA_MMC_CARRIER_INFO_CDMA_RPC_STRU;
 
-/*****************************************************************************
- 结构名    : CMMCA_MMC_CARRIER_INFO_PARAM_RPC_UNION
- 结构说明  : GERAN载波信息参数
- 1.日    期   : 2014年02月12日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     CMMCA_GERAN_CARRIER_FREQ_RPC_STRU   stCarrierInfo;
@@ -986,13 +717,7 @@ typedef struct
     CMMCA_GERAN_CGI_INFO_RPC_STRU       stCgiInfo;
 }CMMCA_MMC_CARRIER_INFO_GERAN_RPC_STRU;
 
-/*****************************************************************************
- 结构名    : CMMCA_MMC_CARRIER_INFO_EUTRAN_RPC_STRU
- 结构说明  : EUTRAN载波信息参数
- 1.日    期   : 2014年02月12日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usEarfcn;
@@ -1004,39 +729,21 @@ typedef struct
 }CMMCA_MMC_CARRIER_INFO_EUTRAN_RPC_STRU;
 
 
-/*****************************************************************************
- 结构名    : CMMCA_MMC_TARGET_SYSTEM_CARRIER_INFO_RPC_STRU
- 结构说明  : TARGET SYSTEM CARRIER INFO结构
- 1.日    期   : 2014年02月12日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     CMMCA_RAT_SYSTEM_TYPE_ENUM_UINT8                        enTargetSystemType;    /* Type of the system to which CarrierInfoParam belongs */
     CMMCA_MMC_CARRIER_INFO_EUTRAN_RPC_STRU                  stCarrierInfoEutran;       /* Contains carrier and channel information of EUTRAN system. To be defined in later phase */
 }CMMCA_MMC_TARGET_SYSTEM_CARRIER_INFO_RPC_STRU;
 
-/*****************************************************************************
- 结构名    : CMMCA_MMC_SYSTEM_CHANGE_REQ_RPC_STRU
- 结构说明  : SYSTEM_CHANGE_REQ结构
- 1.日    期   : 2014年02月12日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     CMMCA_IRAT_HO_CAUSE_ENUM_UINT8                          enCause;                             /* Cause of the system change request from LTE to other RAT */
     CMMCA_MMC_TARGET_SYSTEM_CARRIER_INFO_RPC_STRU           stTargetSystemCarrierInfo; /* Contains target system type and frequency information to which system change is requested */
 }CMMCA_MMC_SYSTEM_CHANGE_REQ_RPC_STRU;
 
-/*****************************************************************************
- 结构名    : CMMCA_MMC_RAT_SYS_INFO_RPC_STRU
- 结构说明  : RAT系统信息结构
- 1.日    期   : 2014年02月12日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef  struct
 {
     VOS_UINT16                                              usEarfcn;                    /* channel number */
@@ -1045,16 +752,7 @@ typedef  struct
 }CMMCA_MMC_RAT_SYS_INFO_RPC_STRU;
 
 
-/*****************************************************************************
- 结构名    : CMMCA_RAT_MMC_CELL_INFO_PS_REG_RSP_STRU
- 结构说明  : RAT_CELLINFO_PS_REG_RSP_RPC结构
- 1.日    期   : 2014年02月12日
-   作    者   : s00261364
-   修改内容   : 新建
- 2.日    期   : 2015年4月22日
-   作    者   : wx270776
-   修改内容   : DTS2015031602665: 增加cl attach注册状态
-*****************************************************************************/
+
 typedef  struct
 {
     CMMCA_RAT_MMC_STATUS_ENUM_UINT8                          enResult; /* Status of registration response. Rest of the fields are valid only in case Result is set to IRAT_SUCCESS */
@@ -1064,13 +762,7 @@ typedef  struct
     CMMCA_RAT_MMC_RAT_SYS_INFO_RPC_STRU                      stRatSysInfo;
 }CMMCA_MMC_RAT_CELLINFO_PS_REG_RSP_RPC_STRU;
 
-/*****************************************************************************
- 结构名    : CMMCA_MMC_RAT_MODE_REQ_STRU
- 结构说明  : ID_CMMCA_MMC_RAT_RAT_MODE_REQ的消息结构
- 1.日    期   : 2014年02月12日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     CMMCA_MMC_RAT_ID_ENUM_UINT8         enRatId;
@@ -1078,13 +770,7 @@ typedef struct
     VOS_UINT8                           aucReserved[2];
 }CMMCA_MMC_RAT_MODE_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : CMMCA_RAT_MMC_RAT_MODE_RSP_STRU
- 结构说明  : ID_CMMCA_RAT_MMC_RAT_MODE_RSP的消息结构
- 1.日    期   : 2014年02月12日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     CMMCA_MMC_RAT_ID_ENUM_UINT8                             enRatId;
@@ -1093,26 +779,14 @@ typedef struct
 }CMMCA_RAT_MMC_RAT_MODE_RSP_STRU;
 
 
-/*****************************************************************************
- 结构名    : CMMCA_MMC_RAT_POWERUP_REQ_STRU
- 结构说明  : ID_CMMCA_MMC_RAT_POWERUP_REQ的消息结构
- 1.日    期   : 2014年02月12日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     CMMCA_MMC_RAT_ID_ENUM_UINT8         enRatId;
     VOS_UINT8                           aucReserved[3];
 }CMMCA_MMC_RAT_POWERUP_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : CMMCA_RAT_MMC_POWERUP_RSP_STRU
- 结构说明  : ID_CMMCA_RAT_MMC_POWERUP_RSP的消息结构
- 1.日    期   : 2014年02月12日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     CMMCA_MMC_RAT_ID_ENUM_UINT8                             enRatId;
@@ -1120,39 +794,21 @@ typedef struct
     VOS_UINT8                                               aucReserved[2];
 }CMMCA_RAT_MMC_POWERUP_RSP_STRU;
 
-/*****************************************************************************
- 结构名    : CMMCA_MMC_RAT_POWERDOWN_REQ_STRU
- 结构说明  : ID_CMMCA_MMC_RAT_POWERDOWN_REQ的消息结构
- 1.日    期   : 2014年02月12日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     CMMCA_MMC_RAT_ID_ENUM_UINT8         enRatId;
     VOS_UINT8                           aucReserved[3];
 }CMMCA_MMC_RAT_POWERDOWN_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : CMMCA_RAT_MMC_POWERDOWN_RSP_STRU
- 结构说明  : ID_CMMCA_RAT_MMC_POWERDOWN_RSP的消息结构
- 1.日    期   : 2014年02月12日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     CMMCA_MMC_RAT_ID_ENUM_UINT8         enRatId;
     VOS_UINT8                           aucReserved[3];
 }CMMCA_RAT_MMC_POWERDOWN_RSP_STRU;
 
-/*****************************************************************************
- 结构名    : CMMCA_MMC_RAT_ACQ_REQ_STRU
- 结构说明  : ID_CMMCA_MMC_RAT_ACQ_REQ的消息结构
- 1.日    期   : 2014年02月12日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     CMMCA_MMC_RAT_ID_ENUM_UINT8         enRatId;
@@ -1160,13 +816,7 @@ typedef struct
     VOS_UINT8                           aucReserved[2];
 }CMMCA_MMC_RAT_ACQ_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : MMCA_RAT_MMC_ACQ_RSP_STRU
- 结构说明  : ID_CMMCA_RAT_MMC_ACQ_RSP的消息结构
- 1.日    期   : 2014年02月12日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     CMMCA_MMC_RAT_ID_ENUM_UINT8         enRatId;
@@ -1175,26 +825,14 @@ typedef struct
     CMMCA_RAT_MMC_RAT_SYS_INFO_RPC_STRU stRatSysInfo;
 }CMMCA_RAT_MMC_ACQ_RSP_STRU;
 
-/*****************************************************************************
- 结构名    : CMMCA_MMC_RAT_MCC_SEARCH_REQ_STRU
- 结构说明  : ID_CMMCA_MMC_RAT_MCC_SEARCH_REQ的消息结构
- 1.日    期   : 2014年02月12日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     CMMCA_MMC_RAT_ID_ENUM_UINT8         enRatId;
     VOS_UINT8                           aucReserved[3];
 }CMMCA_MMC_RAT_MCC_SEARCH_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : CMMCA_RAT_MMC_MCC_SEARCH_RSP_STRU
- 结构说明  : ID_CMMCA_RAT_MMC_MCC_SEARCH_RSP的消息结构
- 1.日    期   : 2014年02月12日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     CMMCA_MMC_RAT_ID_ENUM_UINT8         enRatId;
@@ -1207,13 +845,7 @@ typedef struct
 
 }CMMCA_RAT_MMC_MCC_SEARCH_RSP_STRU;
 
-/*****************************************************************************
- 结构名    : CMMCA_MMC_RAT_PS_REG_REQ_STRU
- 结构说明  : ID_CMMCA_MMC_RAT_PS_REG_REQ的消息结构
- 1.日    期   : 2014年02月12日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     CMMCA_MMC_RAT_ID_ENUM_UINT8                             enRatId;
@@ -1222,16 +854,7 @@ typedef struct
     VOS_UINT8                                               aucReserved[1];
 }CMMCA_MMC_RAT_PS_REG_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : CMMCA_RAT_MMC_PS_REG_RSP_STRU
- 结构说明  : ID_CMMCA_RAT_MMC_PS_REG_RSP的消息结构
- 1.日    期   : 2014年02月12日
-   作    者   : s00261364
-   修改内容   : 新建
- 2.日    期   : 2015年4月22日
-   作    者   : wx270776
-   修改内容   : DTS2015031602665: 增加cl attach注册状态
-*****************************************************************************/
+
 typedef struct
 {
     CMMCA_MMC_RAT_ID_ENUM_UINT8                             enRatId;
@@ -1241,13 +864,7 @@ typedef struct
     CMMCA_RAT_MMC_RAT_SYS_INFO_RPC_STRU                     stRatSysInfo;
 }CMMCA_RAT_MMC_PS_REG_RSP_STRU;
 
-/*****************************************************************************
- 结构名    : CMMCA_MMC_RAT_CELL_INFO_PS_REG_REQ_STRU
- 结构说明  : ID_CMMCA_MMC_RAT_CELL_INFO_PS_REG_REQ的消息结构
- 1.日    期   : 2014年02月12日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     CMMCA_MMC_RAT_ID_ENUM_UINT8                             enRatId;
@@ -1256,13 +873,7 @@ typedef struct
 }CMMCA_MMC_RAT_CELL_INFO_PS_REG_REQ_STRU;
 
 
-/*****************************************************************************
- 结构名    : CMMCA_RAT_MMC_CELL_INFO_PS_REG_RSP_STRU
- 结构说明  : ID_CMMCA_RAT_MMC_CELL_INFO_PS_REG_RSP的消息结构
- 1.日    期   : 2014年02月12日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     CMMCA_MMC_RAT_ID_ENUM_UINT8                             enRatId;
@@ -1271,13 +882,7 @@ typedef struct
 }CMMCA_RAT_MMC_CELL_INFO_PS_REG_RSP_STRU;
 
 
-/*****************************************************************************
- 结构名    : CMMCA_MMC_RAT_NO_SERVICE_REQ_STRU
- 结构说明  : ID_CMMCA_MMC_RAT_NO_SERVICE_REQ的消息结构
- 1.日    期   : 2014年02月12日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     CMMCA_MMC_RAT_ID_ENUM_UINT8                             enRatId;
@@ -1285,13 +890,7 @@ typedef struct
     VOS_UINT8                                               aucReserved[2];
 }CMMCA_MMC_RAT_NO_SERVICE_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : CMMCA_RAT_MMC_NO_SERVICE_RSP_STRU
- 结构说明  : ID_CMMCA_RAT_MMC_NO_SERVICE_RSP的消息结构
- 1.日    期   : 2014年02月12日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     CMMCA_MMC_RAT_ID_ENUM_UINT8         enRatId;
@@ -1299,13 +898,7 @@ typedef struct
     VOS_UINT8                           aucReserved[2];
 }CMMCA_RAT_MMC_NO_SERVICE_RSP_STRU;
 
-/*****************************************************************************
- 结构名    : CMMCA_RAT_MMC_NTW_ST_CHG_IND_STRU
- 结构说明  : ID_CMMCA_RAT_MMC_NTW_ST_CHG_IND的消息结构
- 1.日    期   : 2014年02月12日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     CMMCA_MMC_RAT_ID_ENUM_UINT8                             enRatId;
@@ -1320,13 +913,7 @@ typedef struct
 }CMMCA_RAT_MMC_NTW_ST_CHG_IND_STRU;
 
 
-/*****************************************************************************
- 结构名    : CMMCA_MMC_SYSTEM_CHANGE_REQ_STRU
- 结构说明  : CMD REJ IND结构
-   1.日    期   : 2014年02月12日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     CMMCA_MMC_RAT_ID_ENUM_UINT8         enSourceRat;
@@ -1335,13 +922,7 @@ typedef struct
 }CMMCA_MMC_CMD_REJ_IND_STRU;
 
 
-/*****************************************************************************
- 结构名    : CMMCA_MMC_RAT_PKT_DATA_CMD_REQ_STRU
- 结构说明  : PKT DATA CMD REQ结构
-   1.日    期   : 2014年02月12日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
    CMMCA_MMC_RAT_ID_ENUM_UINT8                                 enRatId;
@@ -1349,13 +930,7 @@ typedef struct
    VOS_UINT8                                                   aucReserved[2];
 }CMMCA_MMC_RAT_PKT_DATA_CMD_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : CMMCA_RAT_MMC_PKT_DATA_CMD_RSP_STRU
- 结构说明  : PKT DATA CMD RSP结构
-   1.日    期   : 2014年02月12日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     CMMCA_MMC_RAT_ID_ENUM_UINT8                             enRatId;
@@ -1363,13 +938,7 @@ typedef struct
     VOS_UINT8                                               aucReserved[2];
 }CMMCA_RAT_MMC_PKT_DATA_CMD_RSP_STRU;
 
-/*****************************************************************************
- 结构名    : CMMCA_PDN_INFO_STRU
- 结构说明  : PDN信息
- 1.日    期   : 2014年01月08日
-   作    者   : l60609
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucPdnId;
@@ -1379,39 +948,21 @@ typedef struct
     VOS_UINT8                           aucReserved[2];
 }CMMCA_PDN_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CMMCA_MMC_RAT_SET_PDN_TAB_REQ_STRU
- 结构说明  : ID_CMMCA_MMC_RAT_PDN_TABLE_SETUP_REQ的消息结构
- 1.日    期   : 2014年01月10日
-   作    者   : l60609
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulTotalNum;
     CMMCA_PDN_INFO_STRU                 astPdnInfo[CMMCA_SUPPORTED_PDN_NUM_MAX];
 }CMMCA_MMC_RAT_SET_PDN_TAB_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : CMMCA_RAT_MMC_SET_PDN_TAB_CNF_STRU
- 结构说明  : ID_CMMCA_RAT_MMC_PDN_TABLE_SETUP_RSP的消息结构
- 1.日    期   : 2014年01月10日
-   作    者   : l60609
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     CMMCA_RAT_MMC_PDN_TAB_SET_RESULT_ENUM_UINT8     enRslt;
     VOS_UINT8                                       aucReserved[3];
 }CMMCA_RAT_MMC_SET_PDN_TAB_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : CMMCA_MMC_RAT_DEFAULT_BEAR_CONN_REQ_STRU
- 结构说明  : ID_CMMCA_MMC_RAT_DEFAULTBEARER_REQ的消息结构
- 1.日    期   : 2014年01月10日
-   作    者   : l60609
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucPdnId;
@@ -1425,13 +976,7 @@ typedef struct
     VOS_UINT8                           aucIpv4DefRouterAddr[CMMCA_IPV4_ADDR_LEN];
 }CMMCA_MMC_RAT_DEFAULT_BEAR_CONN_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : CMMCA_RAT_MMC_DEFAULT_BEAR_CONN_CNF_STRU
- 结构说明  : ID_CMMCA_RAT_MMC_DEFAULTBEARER_RSP的消息结构
- 1.日    期   : 2014年01月10日
-   作    者   : l60609
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                    ucPdnId;
@@ -1458,13 +1003,7 @@ typedef struct
     VOS_UINT8                                    aucReserved[2];
 }CMMCA_RAT_MMC_DEFAULT_BEAR_CONN_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : CMMCA_MMC_RAT_BEAR_DISC_REQ_STRU
- 结构说明  : ID_CMMCA_MMC_RAT_BEARER_DISCONNECT_REQ的消息结构
- 1.日    期   : 2014年01月10日
-   作    者   : l60609
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucPdnId;
@@ -1473,13 +1012,7 @@ typedef struct
     VOS_UINT8                           aucReserved[1];
 }CMMCA_MMC_RAT_BEAR_DISC_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : CMMCA_RAT_MMC_BEAR_DISC_CNF_STRU
- 结构说明  : ID_CMMCA_RAT_MMC_BEARER_DISCONNECT_RSP的消息结构
- 1.日    期   : 2014年01月10日
-   作    者   : l60609
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucPdnId;
@@ -1488,13 +1021,7 @@ typedef struct
     VOS_UINT8                           aucReserved[1];
 }CMMCA_RAT_MMC_BEAR_DISC_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : CMMCA_RAT_MMC_BEAR_DISC_IND_STRU
- 结构说明  : ID_CMMCA_RAT_MMC_BEARER_DISCONNECT_IND的消息结构
- 1.日    期   : 2014年01月10日
-   作    者   : l60609
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucPdnId;
@@ -1502,26 +1029,14 @@ typedef struct
     VOS_UINT8                           aucReserved1[2];
 }CMMCA_RAT_MMC_BEAR_DISC_IND_STRU;
 
-/*****************************************************************************
- 结构名    : CMMCA_MMC_RAT_BEAR_DETACH_REQ_STRU
- 结构说明  : ID_CMMCA_MMC_RAT_BEARER_DETACH_REQ的消息结构
- 1.日    期   : 2014年07月07日
-   作    者   : g00261581
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     CMMCA_MMC_RAT_ID_ENUM_UINT8         enRatId;
     VOS_UINT8                           aucReserved[3];
 }CMMCA_MMC_RAT_BEAR_DETACH_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : CMMCA_RAT_MMC_BEAR_DETACH_RSP_STRU
- 结构说明  : ID_CMMCA_RAT_MMC_BEARER_DETACH_RSP的消息结构
- 1.日    期   : 2014年07月07日
-   作    者   : g00261581
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     CMMCA_MMC_RAT_ID_ENUM_UINT8         enRatId;
@@ -1529,13 +1044,7 @@ typedef struct
     VOS_UINT8                           aucReserved[2];
 }CMMCA_RAT_MMC_BEAR_DETACH_RSP_STRU;
 
-/*****************************************************************************
- 结构名    : CMMCA_MMC_RAT_IRAT_SYSTEM_CHG_RSP_STRU
- 结构说明  : ID_CMMCA_MMC_RAT_IRAT_SYSTEM_CHG_RSP的消息结构
- 1.日    期   : 2014年02月08日
-   作    者   : g00261581
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     CMMCA_IRAT_SYSTEM_CHG_RESULT_ENUM_UINT8       enResult;

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2012, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafSdcCtx.h
-  版 本 号   : 初稿
-  作    者   : s46746
-  生成日期   : 2012年12月25日
-  最近修改   :
-  功能描述   : TafSdcCtx.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年12月25日
-    作    者   : s46746
-    修改内容   : 创建文件
-
-******************************************************************************/
 #ifndef _TAF_SDC_CTX_H_
 #define _TAF_SDC_CTX_H_
 
@@ -29,9 +12,7 @@
 #include  "product_config.h"
 #include  "NVIM_Interface.h"
 
-/* Added by s00217060 for VoLTE_PhaseI  项目, 2013-07-15, begin */
 #include  "NasNvInterface.h"
-/* Added by s00217060 for VoLTE_PhaseI  项目, 2013-07-15, end */
 
 #include "omringbuffer.h"
 
@@ -59,16 +40,13 @@ extern "C" {
 *****************************************************************************/
 #define TAF_SDC_PLATFORM_MAX_RAT_NUM                        (7)                 /* 平台支持的最大接入技术数目 */
 
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-20, begin */
 #if (FEATURE_ON == FEATURE_LTE)
 #define TAF_SDC_MAX_RAT_NUM                             (3)                     /* 当前支持的接入技术个数 */
 #else
 #define TAF_SDC_MAX_RAT_NUM                             (2)                     /* 当前支持的GU接入技术个数 */
 #endif
 
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-20, end */
 
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-3-29, begin */
 #define TAF_SDC_MAX_IMSI_LEN                                (9)                 /* IMSI的最大长度 */
 #define TAF_SDC_IMSI_INVALID                                (0xFF)              /* IMSI的无效值的宏定义     */
 #define TAF_SDC_INVALID_MCC                                 (0xFFFFFFFF)        /* MCC的无效值 */
@@ -78,34 +56,27 @@ extern "C" {
 #define TAF_SDC_LAC_INVALID                                 (0xFFFF)
 #define TAF_SDC_IMSI_INVALID                                (0xFF)                  /* IMSI的无效值的宏定义     */
 
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-3-29, end */
 
 #define TAF_SDC_SIM_FORMAT_PLMN_LEN                         (3)                 /* SIM卡中PLMN ID的长度 */
 
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-3-25, begin */
 #define TAF_SDC_RPT_CFG_MAX_SIZE                            (8)                 /* 主动上报标识最大的长度 */
 #define TAF_SDC_MAX_SIGN_THRESHOLD                          (5)                 /* RSSI/CERSSI最大上报门限值:5DB */
 
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-3-25, end */
 
 #define TAF_SDC_ASCII2BCDLENGTH(ulAsciiLength)              ((ulAsciiLength + 1) / 2)
 #define TAF_SDC_BITS_PER_OCTET                              (8)
 #define TAF_SDC_BITS_PER_SEPTET                             (7)
 #define TAF_SDC_USSD_7BIT_PAD                               (0x1a)
 
-/* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-16, begin */
 #define TAF_SDC_EMER_NUM_MAX_LENGTH                         (46)                             /* Emergency Number information的最大字节数 */
 #define TAF_SDC_EMER_NUM_LISTS_MAX_NUMBER                   (16)
 #define TAF_SDC_NUMOF_EMER_NUMS_NO_USIM                     (8)
 #define TAF_SDC_NUMOF_EMER_NUMS_WITH_USIM                   (2)
 #define TAF_SDC_MAX_CUSTOM_ECC_NUM                          (20)                             /* 用户定制的紧急呼号码最大条数 */
 #define TAF_SDC_MAX_BCD_NUM_LEN                             (20)                             /* 该宏定义的取值与MN_CALL_MAX_BCD_NUM_LEN的取值保持一致 */
-/* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-16, end */
 
 
-/* Added by s00261364 for V3R360_eCall项目, 2014-4-4, begin */
 #define TAF_SDC_ECALL_BCD_NUM_MAX_LEN                        (20)
-/* Added by s00261364 for V3R360_eCall项目, 2014-4-4, end */
 
 #define TAF_SDC_SRV_TYPE_CS_MO_NORMAL_CALL                   (0x1)
 #define TAF_SDC_SRV_TYPE_CS_MO_EMERGENCY_CALL                (0x2)
@@ -230,13 +201,7 @@ extern "C" {
   3 枚举定义
 *****************************************************************************/
 
-/*****************************************************************************
- 枚举名    : TAF_SDC_USSD_TRAN_MODE_ENUM
- 枚举说明  : USSD的传输模式
- 1.日    期   : 2013年5月17日
-   作    者   : W00176964
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_SDC_USSD_TRAN_MODE_ENUM
 {
     TAF_SDC_USSD_NON_TRAN_MODE,                                     /* 非透传:单板支持编解码 */
@@ -245,13 +210,7 @@ enum TAF_SDC_USSD_TRAN_MODE_ENUM
 };
 typedef VOS_UINT8 TAF_SDC_USSD_TRAN_MODE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : TAF_SDC_ALPHA_TO_ASCII_TRAN_TABLE_ENUM
- 枚举说明  : ALPHA转换为ascii的转换表类型
- 1.日    期   : 2013年5月17日
-   作    者   : W00176964
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_SDC_ALPHA_TO_ASCII_TRAN_TABLE_ENUM
 {
     TAF_SDC_ALPHA_TO_ASCII_TRAN_TABLE_DEF   = 0X0,                          /* 默认的字符表转换，*/
@@ -260,16 +219,7 @@ enum TAF_SDC_ALPHA_TO_ASCII_TRAN_TABLE_ENUM
 };
 typedef VOS_UINT8 TAF_SDC_ALPHA_TO_ASCII_TRAN_TABLE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : TAF_SDC_PLATFORM_RAT_TYPE_ENUM
- 枚举说明  : 平台接入技术类型
- 1.日    期   : 2012年12月26日
-   作    者   : s46746
-   修改内容   : 新建
- 2.日    期   : 2014年07月08日
-   作    者   : y00245242
-   修改内容   : 为1X feature开发增加
-*****************************************************************************/
+
 enum TAF_SDC_PLATFORM_RAT_TYPE_ENUM
 {
     TAF_SDC_PLATFORM_RAT_GSM   = 0X0,
@@ -283,13 +233,7 @@ enum TAF_SDC_PLATFORM_RAT_TYPE_ENUM
 };
 typedef VOS_UINT8 TAF_SDC_PLATFORM_RAT_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : TAF_SDC_INIT_CTX_TYPE_ENUM_UINT8
- 结构说明  : 初始化SDC CTX信息类型
- 1.日    期   : 2012年12月26日
-   作    者   : s46746
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_SDC_INIT_CTX_TYPE_ENUM
 {
     TAF_SDC_INIT_CTX_STARTUP                    = 0,
@@ -298,15 +242,8 @@ enum TAF_SDC_INIT_CTX_TYPE_ENUM
 };
 typedef VOS_UINT8 TAF_SDC_INIT_CTX_TYPE_ENUM_UINT8;
 
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-3-29, begin */
 
-/*****************************************************************************
- 枚举名    : TAF_SDC_SYS_SUBMODE_ENUM_UINT8
- 结构说明  : 驻留网络的系统子模式枚举
- 1.日    期   : 2013年3月22日
-   作    者   : z00161729
-   修改内容   : 主动上报AT命令控制下移至C核项目mma部分全局变量调整对应原ucSysSubMode
-*****************************************************************************/
+
 enum TAF_SDC_SYS_SUBMODE_ENUM
 {
     TAF_SDC_SYS_SUBMODE_NONE                = 0,                                /* 无服务 */
@@ -336,13 +273,7 @@ enum TAF_SDC_SYS_SUBMODE_ENUM
 typedef VOS_UINT8  TAF_SDC_SYS_SUBMODE_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名    : TAF_SDC_SYS_MODE_ENUM_UINT8
- 结构说明  : 驻留网络的系统模式枚举
- 1.日    期   : 2013年3月22日
-   作    者   : z00161729
-   修改内容   : 主动上报AT命令控制下移至C核项目mma部分全局变量调整对应原ucCurRaForSysInfo
-*****************************************************************************/
+
 enum TAF_SDC_SYS_MODE_ENUM
 {
     TAF_SDC_SYS_MODE_GSM,
@@ -358,13 +289,7 @@ enum TAF_SDC_SYS_MODE_ENUM
 };
 typedef VOS_UINT8  TAF_SDC_SYS_MODE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : TAF_SDC_COPS_FORMAT_TYPE_ENUM_UINT8
- 结构说明  : cops设置显示类型
- 1.日    期   : 2015年2月12日
-   作    者   : z00161729
-   修改内容   : AT&T 支持EONS特性修改
-*****************************************************************************/
+
 enum TAF_SDC_COPS_FORMAT_TYPE_ENUM
 {
     TAF_SDC_COPS_FORMAT_TYPE_LONG_ALPH,          /* cops设置显示长字符串运营商名称*/
@@ -374,13 +299,7 @@ enum TAF_SDC_COPS_FORMAT_TYPE_ENUM
 };
 typedef VOS_UINT8  TAF_SDC_COPS_FORMAT_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : TAF_SDC_FILE_TYPE_ENUM_UINT8
- 结构说明  : 文件类型
- 1.日    期   : 2015年2月12日
-   作    者   : z00161729
-   修改内容   : AT&T 支持EONS特性修改
-*****************************************************************************/
+
 enum TAF_SDC_FILE_TYPE_ENUM
 {
     TAF_SDC_FILE_TYPE_SIM = 1,
@@ -390,13 +309,7 @@ enum TAF_SDC_FILE_TYPE_ENUM
 typedef VOS_UINT8  TAF_SDC_FILE_TYPE_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名    : TAF_SDC_OPER_NAME_TYPE_ENUM_UINT8
- 结构说明  : 运营商名称类型
- 1.日    期   : 2015年2月12日
-   作    者   : z00161729
-   修改内容   : AT&T 支持EONS特性修改
-*****************************************************************************/
+
 enum TAF_SDC_OPER_NAME_TYPE_ENUM
 {
     TAF_SDC_OPER_NAME_TYPE_PNN = 1,
@@ -409,13 +322,7 @@ typedef VOS_UINT8  TAF_SDC_OPER_NAME_TYPE_ENUM_UINT8;
 
 
 
-/*****************************************************************************
- 枚举名    : TAF_SDC_SERVICE_STATUS_ENUM_UINT8
- 结构说明  : cs/ps域服务状态
- 1.日    期: 2013年3月28日
-   作    者: z00161729
-   修改内容: 新增
-*****************************************************************************/
+
 enum TAF_SDC_SERVICE_STATUS_ENUM
 {
     TAF_SDC_SERVICE_STATUS_NORMAL_SERVICE           = 0,                        /* 正常服务 */
@@ -429,7 +336,6 @@ enum TAF_SDC_SERVICE_STATUS_ENUM
 };
 typedef VOS_UINT8 TAF_SDC_SERVICE_STATUS_ENUM_UINT8;
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, begin */
 /*****************************************************************************
     枚举名    : TAF_SDC_IMS_NORMAL_REG_STATUS_ENUM
     枚举说明  : ims的普通注册状态
@@ -445,15 +351,8 @@ enum TAF_SDC_IMS_NORMAL_REG_STATUS_ENUM
 };
 typedef VOS_UINT8 TAF_SDC_IMS_NORMAL_REG_STATUS_ENUM_UINT8;
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, end */
 
-/*****************************************************************************
- 枚举名    : TAF_SDC_REPORT_SRVSTA_ENUM_UINT8
- 结构说明  : ^srvst上报的ue的服务状态
- 1.日    期: 2013年3月28日
-   作    者: z00161729
-   修改内容: 新增
-*****************************************************************************/
+
 enum TAF_SDC_RPT_SRVSTA_ENUM
 {
     TAF_SDC_REPORT_SRVSTA_NO_SERVICE               = 0,                         /* 无服务 */
@@ -466,13 +365,7 @@ enum TAF_SDC_RPT_SRVSTA_ENUM
 typedef VOS_UINT8  TAF_SDC_REPORT_SRVSTA_ENUM_UINT8;
 
 
-/******************************************************************************
-结构名    : TAF_SDC_CELL_RESTRICTION_TYPE_ENUM_UINT8
-结构说明  : 小区接入禁止信息枚举类型
-1. 日    期: 2013年3月28日
-   作    者: z00161729
-   修改内容: 新建
-******************************************************************************/
+
 enum  TAF_SDC_CELL_RESTRICTION_TYPE_ENUM
 {
     TAF_SDC_CELL_RESTRICTION_TYPE_NONE                   = 0,                   /* 当前小区不限制任何业务 */
@@ -483,32 +376,7 @@ enum  TAF_SDC_CELL_RESTRICTION_TYPE_ENUM
 };
 typedef VOS_UINT8  TAF_SDC_CELL_RESTRICTION_TYPE_ENUM_UINT8;
 
-/******************************************************************************
-结构名    : TAF_SDC_USIM_STATUS_ENUM_UINT8
-结构说明  : 卡状态 0：USIM卡状态无效；1:USIM卡状态有效；2：USIM在CS下无效
-             3：USIM在PS下无效；4：USIM在PS+CS下均无效；255：USIM卡不存在
-1. 日    期: 2013年3月28日
-   作    者: z00161729
-   修改内容: 新建
 
-2. 日    期   : 2013年7月19日
-   作    者   : w00167002
-   修改内容   : DTS2013071900570:SVLTE特性开启时候，MODEM1解pin后，MODEM0收到
-                卡状态为AVAILABLE时候，没有发起重启。原因在于:
-                当前解PIN码之前，SDC中维护的卡状态为TAF_SDC_USIM_STATUS_VALID，
-                MODEM在收到解PIN的RSP消息时候，才会将SDC的卡状态重新设置为TAF_SDC_USIM_STATUS_UNVALID
-                ，这样再收到USIM上报的卡状态为AVAILABLE时候，会发起重启。
-                修改为SDC存储SIM卡的原始状态，MODEM在收到解PIN的RSP消息时候,
-                不需重新设置SIM状态为TAF_SDC_USIM_STATUS_UNVALID。MODEM的重启
-                由SIM卡状态的变迁来决定。如:卡状态由SIM_PIN--->AVAIALBLE,则触发
-                重启动。
-
- 3.日    期   : 2014年2月27日
-   作    者   : z00234330
-   修改内容   : dts2014022402558,sim被puk锁定时,usim模块上报的invalid,usim没有上报
-                卡状态在位时,sdc默认为卡invalid,这两种情况需要区分一下,否则使用
-                at^cpin命令查询的会不正确。
-******************************************************************************/
 enum  TAF_SDC_USIM_STATUS_ENUM
 {
     TAF_SDC_USIM_STATUS_UNVALID         = 0,                                    /* 初始化卡状态 */
@@ -530,14 +398,7 @@ enum  TAF_SDC_USIM_STATUS_ENUM
 
 typedef VOS_UINT8  TAF_SDC_USIM_STATUS_ENUM_UINT8;
 
-/* Added by w00176964 for VoLTE_PhaseI项目, 2013-7-30, begin */
-/*****************************************************************************
- 枚举名    : TAF_SDC_SIM_TYPE_ENUM_UINT8
- 枚举说明  : 当前SIM卡的类型,SIM卡或USIM卡
- 1.日    期   : 2013年7月30日
-   作    者   : w00176964
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_SDC_SIM_TYPE_ENUM
 {
     TAF_SDC_SIM_TYPE_SIM                ,                   /* SIM卡 */
@@ -549,16 +410,9 @@ enum TAF_SDC_SIM_TYPE_ENUM
 };
 typedef VOS_UINT8 TAF_SDC_SIM_TYPE_ENUM_UINT8;
 
-/* Added by w00176964 for VoLTE_PhaseI项目, 2013-7-30, end */
 
 
-/*****************************************************************************
- 枚举名    : TAF_SDC_SERVICE_DOMAIN_ENUM_UINT8
- 结构说明  : sysinfo查询时上报的服务域信息
- 1.日    期: 2013年3月28日
-   作    者: z00161729
-   修改内容: 新增
-*****************************************************************************/
+
 enum TAF_SDC_SERVICE_DOMAIN_ENUM
 {
     TAF_SDC_SERVICE_DOMAIN_NO_DOMAIN = 0,                                       /* 无服务 */
@@ -570,13 +424,7 @@ enum TAF_SDC_SERVICE_DOMAIN_ENUM
 };
 typedef VOS_UINT8  TAF_SDC_SERVICE_DOMAIN_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : TAF_SDC_REG_STATUS_ENUM_UINT8
- 结构说明  : 注册结果
- 1.日    期   : 2013年3月28日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_SDC_REG_STATUS_ENUM
 {
     TAF_SDC_REG_NOT_REGISTERED_NOT_SEARCH,                                      /* 未注册未搜索 */
@@ -589,17 +437,8 @@ enum TAF_SDC_REG_STATUS_ENUM
 };
 typedef VOS_UINT8 TAF_SDC_REG_STATUS_ENUM_UINT8;
 
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-3-29, end */
 
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, begin */
-/*****************************************************************************
- 枚举名    : TAF_SDC_RPT_CMD_ENUM
- 结构说明  : CURC主动上报命令枚举
 
-  1.日    期   : 2013年4月3日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核
-*****************************************************************************/
 enum TAF_SDC_RPT_CMD_INDEX_ENUM
 {
     TAF_SDC_RPT_CMD_MODE                     = 0,
@@ -657,15 +496,7 @@ enum TAF_SDC_RPT_CMD_INDEX_ENUM
 };
 typedef VOS_UINT8 TAF_SDC_RPT_CMD_INDEX_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : TAF_SDC_CALL_STATE_RPT_STATUS_ENUM
- 结构说明  : 主动上报AT命令状态枚举
 
-  1.日    期   : 2012年09月18日
-    作    者   : l00198894
-    修改内容   : STK补充特性及DCM需求开发项目新增枚举
-
-*****************************************************************************/
 enum TAF_SDC_CALL_STATE_RPT_STATUS_ENUM
 {
     TAF_SDC_CALL_STATE_RPT_STATUS_DISABLE,                 /* 不允许主动上报 */
@@ -674,13 +505,7 @@ enum TAF_SDC_CALL_STATE_RPT_STATUS_ENUM
 };
 typedef VOS_UINT8 TAF_SDC_CALL_STATE_RPT_STATUS_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : TAF_SDC_CMD_RPT_CTRL_TYPE_ENUM_UINT8
- 结构说明  : 主动上报受控类型
- 1.日    期   : 2013年4月10日
-   作    者   : s00217060
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_SDC_CMD_RPT_CTRL_TYPE_ENUM
 {
     TAF_SDC_CMD_RPT_CTRL_BY_CURC,               /* 主动上报受CURC控制 */
@@ -688,15 +513,8 @@ enum TAF_SDC_CMD_RPT_CTRL_TYPE_ENUM
     TAF_SDC_CMD_RPT_CTRL_BUTT
 };
 typedef VOS_UINT8 TAF_SDC_CMD_RPT_CTRL_TYPE_ENUM_UINT8;
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-8, end */
 
-/*****************************************************************************
- 枚举名    : TAF_SDC_STATUS_RPT_GENERAL_CTRL_TYPE_ENUM_UINT8
- 结构说明  : curc主动上报类型
- 1.日    期   : 2013年3月28日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_SDC_STATUS_RPT_GENERAL_CTRL_TYPE_ENUM
 {
     TAF_SDC_STATUS_RPT_GENERAL_CONTROL_TYPE_NO_REPORT = 0,
@@ -706,16 +524,8 @@ enum TAF_SDC_STATUS_RPT_GENERAL_CTRL_TYPE_ENUM
 };
 typedef VOS_UINT8 TAF_SDC_STATUS_RPT_GENERAL_CTRL_TYPE_ENUM_UINT8;
 
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, begin */
 
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-13, begin */
-/*****************************************************************************
- 枚举名    : TAF_SDC_NW_IMS_VOICE_CAP_ENUM_UINT8
- 结构说明  : IMS voice capability
- 1.日    期   : 2013年7月13日
-   作    者   : y0024524
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_SDC_NW_IMS_VOICE_CAP_ENUM
 {
     TAF_SDC_NW_IMS_VOICE_NOT_SUPPORTED    = 0,
@@ -725,13 +535,7 @@ enum TAF_SDC_NW_IMS_VOICE_CAP_ENUM
 };
 typedef VOS_UINT8 TAF_SDC_NW_IMS_VOICE_CAP_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : TAF_SDC_NW_EMC_BS_CAP_ENUM_UINT8
- 结构说明  : network EMC BS capability
- 1.日    期   : 2013年7月13日
-   作    者   : y00245242
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_SDC_NW_EMC_BS_CAP_ENUM
 {
     TAF_SDC_NW_EMC_BS_NOT_SUPPORTED       = 0,
@@ -741,13 +545,7 @@ enum TAF_SDC_NW_EMC_BS_CAP_ENUM
 };
 typedef VOS_UINT8 TAF_SDC_NW_EMC_BS_CAP_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : TAF_SDC_NW_EMC_BS_CAP_ENUM_UINT8
- 结构说明  : network EMC BS capability
- 1.日    期   : 2013年7月13日
-   作    者   : y00245242
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_SDC_LTE_CS_CAPBILITY_ENUM
 {
     TAF_SDC_LTE_CS_CAPBILITY_NO_ADDITION_INFO  = 0,
@@ -758,16 +556,8 @@ enum TAF_SDC_LTE_CS_CAPBILITY_ENUM
     TAF_SDC_LTE_CS_CAPBILITY_BUTT
 };
 typedef VOS_UINT8 TAF_SDC_LTE_CS_CAPBILITY_ENUM_UINT8;
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-13, end */
 
-/* Added by s00217060 for VoLTE_PhaseII  项目, 2013-09-22, begin */
-/*****************************************************************************
- 枚举名    : TAF_SDC_VOICE_DOMAIN_ENUM_UINT32
- 结构说明  : VOICE优选域
- 1.日    期   : 2013年9月22日
-   作    者   : s00217060
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_SDC_VOICE_DOMAIN_ENUM
 {
     TAF_SDC_VOICE_DOMAIN_CS_ONLY            = 0,                                /**< CS voice only */
@@ -779,13 +569,7 @@ enum TAF_SDC_VOICE_DOMAIN_ENUM
 };
 typedef VOS_UINT32 TAF_SDC_VOICE_DOMAIN_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : TAF_SDC_SMS_DOMAIN_ENUM_UINT8
- 结构说明  : 短信优选域
- 1.日    期   : 2013年9月22日
-   作    者   : s00217060
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_SDC_SMS_DOMAIN_ENUM
 {
     TAF_SDC_SMS_DOMAIN_NOT_USE_SMS_OVER_IP                  = 0,                /**< not to use SMS over ip */
@@ -795,13 +579,7 @@ enum TAF_SDC_SMS_DOMAIN_ENUM
 };
 typedef VOS_UINT8 TAF_SDC_SMS_DOMAIN_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : TAF_SDC_LTE_CS_SERVICE_ENUM_UINT8
- 枚举说明  : L模支持的cs域业务能力的类型
- 1.日    期   : 2013年9月24日
-   作    者   : s00217060
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_SDC_LTE_CS_SERVICE_ENUM
 {
     TAF_SDC_LTE_SUPPORT_CSFB_AND_SMS_OVER_SGS = 1,                              /* 支持cs fallback和sms over sgs*/
@@ -811,13 +589,7 @@ enum TAF_SDC_LTE_CS_SERVICE_ENUM
 };
 typedef VOS_UINT8 TAF_SDC_LTE_CS_SERVICE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : TAF_SDC_UE_USAGE_SETTING_ENUM_UINT8
- 枚举说明  : UE的使用设定
- 1.日    期   : 2013年10月08日
-   作    者   : y00245242
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_SDC_UE_USAGE_SETTING_ENUM
 {
     TAF_SDC_UE_USAGE_VOICE_CENTRIC      = 0,                                    /* 语音中心 */
@@ -826,16 +598,8 @@ enum TAF_SDC_UE_USAGE_SETTING_ENUM
     TAF_SDC_UE_USAGE_BUTT
 };
 typedef VOS_UINT8 TAF_SDC_UE_USAGE_SETTING_ENUM_UINT8;
-/* Added by s00217060 for VoLTE_PhaseII  项目, 2013-09-22, end */
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-25, begin */
-/*****************************************************************************
- 枚举名    : TAF_SDC_PHONE_MODE_ENUM
- 枚举说明  : 手机模式枚举
- 1.日    期   : 2013年12月25日
-   作    者   : w00176964
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_SDC_PHONE_MODE_ENUM
 {
     TAF_SDC_PHONE_MODE_MINI                = 0,   /* minimum functionality*/
@@ -853,14 +617,7 @@ enum TAF_SDC_PHONE_MODE_ENUM
 typedef VOS_UINT8 TAF_SDC_PHONE_MODE_ENUM_UINT8;
 
 
-/* Added by s00261364 for V3R360_eCall项目, 2014-4-1, begin */
-/*****************************************************************************
- 枚举名    : TAF_SDC_CALL_MODE_INFO_ENUM
- 结构说明  : 呼叫模式枚举
- 1.日    期   : 2014年4月1日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_SDC_CALL_MODE_ENUM
 {
     TAF_SDC_ECALL_ONLY            = 0,
@@ -868,17 +625,9 @@ enum TAF_SDC_CALL_MODE_ENUM
     TAF_SDC_CALL_MODE_BUTT
 };
 typedef VOS_UINT32 TAF_SDC_CALL_MODE_ENUM_UINT8;
-/* Added by s00261364 for V3R360_eCall项目, 2014-4-1, end */
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-25, end */
 
-/*****************************************************************************
- 枚举名    : TAF_SDC_LMM_ACCESS_TYPE_ENUM
- 结构说明  : LTE的接入模式EUTRAN_TDD/FDD
- 1.日    期   : 2014年8月14日
-   作    者   : s00217060
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_SDC_LMM_ACCESS_TYPE_ENUM
 {
     TAF_SDC_LMM_ACCESS_TYPE_EUTRAN_TDD      = 0,
@@ -887,13 +636,7 @@ enum TAF_SDC_LMM_ACCESS_TYPE_ENUM
 };
 typedef VOS_UINT8 TAF_SDC_LMM_ACCESS_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : TAF_SDC_NETWORK_NAME_CODE_SCHEME_ENUM_UINT8
- 结构说明  : 网络名称编码方式
- 1.日    期   : 2015年2月25日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_SDC_NETWORK_NAME_CODE_SCHEME_ENUM
 {
     TAF_SDC_NETWORK_NAME_CODE_SCHEME_7BIT         = 0,
@@ -904,13 +647,7 @@ enum TAF_SDC_NETWORK_NAME_CODE_SCHEME_ENUM
 typedef VOS_UINT8 TAF_SDC_NETWORK_NAME_CODE_SCHEME_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名    : TAF_SDC_CREG_TYPE_ENUM_UINT8
- 结构说明  : CREG注册枚举类型
- 1.日    期   : 2014年8月18日
-   作    者   : w00242748
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_SDC_CREG_TYPE_ENUM
 {
     TAF_SDC_CREG_TYPE_NOT_REPORT        = 0,
@@ -920,13 +657,7 @@ enum TAF_SDC_CREG_TYPE_ENUM
 };
 typedef VOS_UINT8 TAF_SDC_CREG_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : TAF_SDC_CGREG_TYPE_ENUM_UINT8
- 结构说明  : CGREG注册枚举类型
- 1.日    期   : 2014年8月18日
-   作    者   : w00242748
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_SDC_CGREG_TYPE_ENUM
 {
     TAF_SDC_CGREG_TYPE_NOT_REPORT       = 0,
@@ -936,13 +667,7 @@ enum TAF_SDC_CGREG_TYPE_ENUM
 };
 typedef VOS_UINT8 TAF_SDC_CGREG_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : TAF_SDC_CEREG_TYPE_ENUM_UINT8
- 结构说明  : CEREG注册枚举类型
- 1.日    期   : 2014年8月18日
-   作    者   : w00242748
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_SDC_CEREG_TYPE_ENUM
 {
     TAF_SDC_CEREG_TYPE_NOT_REPORT       = 0,
@@ -953,13 +678,7 @@ enum TAF_SDC_CEREG_TYPE_ENUM
 typedef VOS_UINT8 TAF_SDC_CEREG_TYPE_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名    : TAF_SDC_CDMACSQ_MODE_ENUM_UINT8
- 结构说明  :
- 1.日    期   : 2014年12月27日
-   作    者   : m00312079
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_SDC_CDMACSQ_MODE_ENUM
 {
     TAF_SDC_CDMACSQ_MODE_DISABLE      = 0,
@@ -970,13 +689,7 @@ enum TAF_SDC_CDMACSQ_MODE_ENUM
 typedef VOS_UINT8 TAF_SDC_CDMACSQ_MODE_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名    : TAF_SDC_HDR_CSQ_MODE_ENUM_UINT8
- 结构说明  :
- 1.日    期   : 2015年10月21日
-   作    者   : C00299064
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_SDC_HDR_CSQ_MODE_ENUM
 {
     TAF_SDC_HDR_CSQ_MODE_DISABLE      = 0,
@@ -988,15 +701,7 @@ typedef VOS_UINT8 TAF_SDC_HDR_CSQ_MODE_ENUM_UINT8;
 
 
 
-/*****************************************************************************
- 枚举名    : TAF_SDC_SYS_ROAMING_IND_ENUM
- 结构说明  : roaming display indication (参考3GPP2 C.R1001-A中8.2章节中Table 8.1-1)
 
- 1.日    期   : 2015年1月15日
-   作    者   : h00246512
-   修改内容   : 新增
-
-*****************************************************************************/
 enum TAF_SDC_SYS_ROAMING_IND_ENUM
 {
     /* Roaming Indicator On */
@@ -1048,13 +753,7 @@ enum TAF_SDC_SYS_ROAMING_IND_ENUM
 };
 typedef VOS_UINT8 TAF_SDC_PRL_SYS_ROAMING_IND_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : TAF_SDC_IMS_SWITCH_STATE_ENUM_UINT8
- 结构说明  : IMS协议栈开关机状态枚举类型
- 1.日    期   : 2015年02月04日
-   作    者   : f00179208
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_SDC_IMS_SWITCH_STATE_ENUM
 {
     TAF_SDC_IMS_SWITCH_STATE_OFF        = 0,
@@ -1063,13 +762,7 @@ enum TAF_SDC_IMS_SWITCH_STATE_ENUM
 };
 typedef VOS_UINT8 TAF_SDC_IMS_SWITCH_STATE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : TAF_SDC_SRV_ACQ_RAT_TYPE_ENUM_UINT8
- 枚举说明  : 业务触发搜网的RAT类型
- 1.日    期   : 2014年5月15日
-   作    者   : l00301449
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_SDC_SRV_ACQ_RAT_TYPE_ENUM
 {
     TAF_SDC_SRV_ACQ_RAT_TYPE_3GPP,
@@ -1081,13 +774,7 @@ enum TAF_SDC_SRV_ACQ_RAT_TYPE_ENUM
 typedef VOS_UINT8 TAF_SDC_SRV_ACQ_RAT_TYPE_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名    : TAF_SDC_1X_UE_STATUS_ENUM
- 枚举说明  : CDMA 当前的UE MAIN STATUS
- 1.日    期   : 2015年9月19日
-   作    者   : C00299064
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_SDC_1X_UE_MAIN_STATUS_ENUM
 {
     TAF_SDC_1X_UE_MAIN_STATUS_INIT_STATE            = 0x00,
@@ -1100,13 +787,7 @@ enum TAF_SDC_1X_UE_MAIN_STATUS_ENUM
 
 typedef VOS_UINT8 TAF_SDC_1X_UE_MAIN_STATUS_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : TAF_SDC_1X_UE_SUB_STATUS_ENUM
- 枚举说明  : CDMA 当前的UE SUB STATUS
- 1.日    期   : 2015年9月19日
-   作    者   : C00299064
-   修改内容   : 新建
-*****************************************************************************/
+
 
 enum TAF_SDC_1X_UE_SUB_STATUS_ENUM
 {
@@ -1147,14 +828,7 @@ enum TAF_SDC_NETWORK_EXISTANCE_ENUM
 };
 typedef VOS_UINT32 TAF_SDC_NETWORK_EXISTANCE_ENUM_UINT32;
 
-/*****************************************************************************
-Structure Name     :   TAF_SDC_SERVICE_INFO_STRU
-Description        :   服务相关消息结构
-Modify History     :
-1)  Date           : 2015-06-01
-    Author         : w00242748
-    Modify content : Create
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                   bitOpCsSrvSta     : 1;
@@ -1173,13 +847,7 @@ typedef struct
     TAF_SDC_REPORT_SRVSTA_ENUM_UINT8             enSrvSta;
 }TAF_SDC_SRV_REG_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NA
- 结构说明  : 更新服务状态和注册状态函数
- 1.日    期   : 2014年8月05日
-   作    者   : w00242748
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef VOS_VOID  (*pTafSdcSysmodServiceRegStaUpdateFunc)(
     TAF_SDC_SRV_REG_INFO_STRU          *pstSrvInfo
 );
@@ -1195,13 +863,7 @@ typedef struct
 }TAF_SDC_MAP_SERVICE_STATUS_TO_SYSMODE_TLB_STRU;
 
 
-/*****************************************************************************
- 结构名    : TAF_SDC_MODIFY_SYSMODE_MAP_TLB_STRU
- 结构说明  : 现有系统模式和子模式中增加或者删除一个模式
- 1.日    期   : 2016年01月09日
-   作    者   : l00301449
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     TAF_SDC_SYS_MODE_ENUM_UINT8                             enCurAppSysMode;
@@ -1227,43 +889,22 @@ typedef struct
 /*****************************************************************************
   7 STRUCT定义
 *****************************************************************************/
-/*****************************************************************************
- 结构名    : TAF_SDC_PLATFORM_RAT_CAP_STRU
- 结构说明  : 平台接入技术能力信息
- 1.日    期   : 2012年12月26日
-   作    者   : s46746
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                     ucRatNum;
     TAF_SDC_PLATFORM_RAT_TYPE_ENUM_UINT8          aenRatList[TAF_SDC_PLATFORM_MAX_RAT_NUM];
 }TAF_SDC_PLATFORM_RAT_CAP_STRU;
 
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-20, begin */
-/*****************************************************************************
- 结构名    : TAF_SDC_RAT_PRIO_STRU
- 结构说明  : 当前UE的接入技术优先级
- 1.日    期 : 2013年11月20日
-   作    者 : w00176964
-   修改内容 : 新增结构
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucRatNum;
     TAF_SDC_SYS_MODE_ENUM_UINT8         aenRatPrio[TAF_SDC_MAX_RAT_NUM];
 }TAF_SDC_RAT_PRIO_STRU;
 
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-20, end */
 
-/* Added by s00217060 for VoLTE_PhaseI  项目, 2013-07-25, begin */
-/*****************************************************************************
- 结构名    : TAF_SDC_IMS_RAT_SUPPORT_STRU
- 结构说明  : IMS支持信息
- 1.日    期   : 2013年7月25日
-   作    者   : s00217060
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucGsmImsSupportFlag;    /**< GSM IMS使能项,VOS_TRUE :支持，VOS_FALSE :不支持 */
@@ -1275,17 +916,7 @@ typedef struct
     VOS_UINT8                           aucReserved[2];
 }TAF_SDC_IMS_RAT_SUPPORT_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SDC_IMS_CAPABILITY_STRU
- 结构说明  : IMS能力:包括IMS语音是否支持，IMS短信是否支持，IMS VIDEO CALL是否支持
- 1.日    期   : 2013年09月22日
-   作    者   : s00217060
-   修改内容   : VoLTE_PhaseII项目
- 2.日    期   : 2014年04月01日
-   作    者   : y00245242
-   修改内容   : 为DTS2014040203732修改，增加NV控制USSD业务域选择；USSD业务NV打开，
-                进行正常域选择，否则选择CS域
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucVoiceCallOnImsSupportFlag;            /* IMS语音使能项,VOS_TRUE :支持，VOS_FALSE :不支持 */
@@ -1294,13 +925,7 @@ typedef struct
     VOS_UINT8                           ucUssdOnImsSupportFlag;                 /* IMS USSD业务使能项，VOS_TRUE :支持，VOS_FALSE :不支持 */
 }TAF_SDC_IMS_CAPABILITY_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SDC_SWITCH_IMS_TO_CS_REDIAL_CAUSE_CONFIG_STRU
- 结构说明  :
- 1.日    期   : 2015年8月13日
-   作    者   : l00289540
-   修改内容   : User_Exp_Improve 修改
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                 ucImsRedialCauseNum;                                                  /* IMS call重拨原因值个数 */
@@ -1310,13 +935,7 @@ typedef struct
     VOS_UINT16                ausImsaRedialCause[TAF_NVIM_IMSA2CS_CALL_REDIAL_CAUSE_MAX_NUM];
 }TAF_SDC_SWITCH_IMS_TO_CS_REDIAL_CAUSE_CONFIG_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SDC_IMS2CS_REDIAL_CONFIG_STRU
- 结构说明  :
- 1.日    期   : 2015年8月13日
-   作    者   : l00289540
-   修改内容   : User_Exp_Improve 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                               ucCallRedial;                           /* call重拨flag */
@@ -1326,16 +945,7 @@ typedef struct
     TAF_SDC_SWITCH_IMS_TO_CS_REDIAL_CAUSE_CONFIG_STRU       stCallRedialCauseCfg;
 }TAF_SDC_SWITCH_IMS_TO_CS_REDIAL_CONFIG_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SDC_SWITCH_CS_TO_IMS_REDIAL_CONFIG_STRU
- 结构说明  :
- 1.日    期   : 2013年12月24日
-   作    者   : y00245242
-   修改内容   : 增加IMS与CS之间的换域重拨功能
- 2.日    期   : 2015年8月13日
-   作    者   : l00289540
-   修改内容   : User_Exp_Improve 修改
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                               ucCallRedial;                           /* call重拨flag */
@@ -1344,16 +954,7 @@ typedef struct
     VOS_UINT8                                               aucReserve[1];
 }TAF_SDC_SWITCH_CS_TO_IMS_REDIAL_CONFIG_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SDC_SWITCH_DOMAIN_REDIAL_STRU
- 结构说明  : 重拨数据结构定义，包括呼叫重拨、短信重拨、补充业务重拨
- 1.日    期   : 2013年12月24日
-   作    者   : y00245242
-   修改内容   : 增加IMS与CS之间的换域重拨功能
- 2.日    期   : 2015年8月13日
-   作    者   : l00289540
-   修改内容   : User_Exp_Improve 修改
-*****************************************************************************/
+
 typedef struct
 {
     TAF_SDC_SWITCH_IMS_TO_CS_REDIAL_CONFIG_STRU             stRedialImsToCs;                        /* IMS to CS重拨数据结构  */
@@ -1361,46 +962,21 @@ typedef struct
 }TAF_SDC_SWITCH_DOMAIN_REDIAL_STRU;
 
 
-/*****************************************************************************
- 结构名    : TAF_SDC_IMS_CONFIG_PARA_STRU
- 结构说明  : IMS配置信息
- 1.日    期   : 2013年7月25日
-   作    者   : s00217060
-   修改内容   : 新建
- 2.日    期   : 2013年09月22日
-   作    者   : s00217060
-   修改内容   : VoLTE_PhaseII项目，增加IMS语音使能项、IMS短信使能项、voice优选域
- 3.日    期   : 2013年12月12日
-   作    者   : y00245242
-   修改内容   : 增加IMS域到CS域的换域重拨功能
- 4.日    期   : 2015年01月30日
-   作    者   : y00245242
-   修改内容   : 迭代9开发，下移IMSA接口到MSCC模块
-*****************************************************************************/
+
 typedef struct
 {
     TAF_SDC_IMS_RAT_SUPPORT_STRU        stImsRatSupport;
     TAF_SDC_IMS_CAPABILITY_STRU         stImsCapability;
     TAF_SDC_LTE_CS_SERVICE_ENUM_UINT8   enLteCsServiceCfg;                      /* L模支持的cs域业务能力的类型 */
     TAF_SDC_SMS_DOMAIN_ENUM_UINT8       enSmsDomain;                            /* sms domain preferrece */
-/* Added by y00245242 for VoLTE_PhaseIII 项目, 2013-12-12, begin */
     VOS_UINT8                           ucRoamingSupport;
     VOS_UINT8                           aucReserved[1];
     TAF_SDC_SWITCH_DOMAIN_REDIAL_STRU   stRedial;                               /* IMS<-->CS换域重拨标志 */
-/* Added by y00245242 for VoLTE_PhaseIII 项目, 2013-12-12, end */
     TAF_SDC_VOICE_DOMAIN_ENUM_UINT32    enVoiceDomain;                          /* voice domain preferrece */
 
 }TAF_SDC_IMS_CONFIG_PARA_STRU;
-/* Added by s00217060 for VoLTE_PhaseI  项目, 2013-07-25, end */
 
-/* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-16, begin */
-/*****************************************************************************
- 结构名    : TAF_SDC_EMERGENCY_CONTENT_STRU
- 结构说明  : 紧急呼内容结构体，包括紧急呼类型，紧急呼号码长度，紧急呼号码
- 1.日    期   : 2013年12月16日
-   作    者   : s00217060
-   修改内容   : VoLTE_PhaseIII新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                      ucCategoryValue;                                 /* Emergency Service Category Value         */
@@ -1408,13 +984,7 @@ typedef struct
     VOS_UINT8                      aucEmergencyList[TAF_SDC_EMER_NUM_MAX_LENGTH];   /* 紧急呼列表 */
 }TAF_SDC_EMERGENCY_CONTENT_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SDC_MM_EMERGENCY_LIST_STRU
- 结构说明  : 紧急呼列表结构体，包括Mcc，紧急呼列表个数，紧急呼列表
- 1.日    期   : 2013年12月16日
-   作    者   : s00217060
-   修改内容   : VoLTE_PhaseIII新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                         ulMcc;                                               /* MCC */
@@ -1423,14 +993,7 @@ typedef struct
     TAF_SDC_EMERGENCY_CONTENT_STRU     astEmergencyLists[TAF_SDC_EMER_NUM_LISTS_MAX_NUMBER];/* 紧急呼列表 */
 }TAF_SDC_MM_EMERGENCY_LIST_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SDC_CUSTOM_ECC_NUM_STRU
- 结构说明  : 运营商定制紧急呼号码结构
- 1.日    期   : 2013年12月24日
-   作    者   : s00217060
-   修改内容   : VoLTE_PhaseIII新增结构，与MN_CALL_CUSTOM_ECC_NUM_STRU的定义保持一致
 
-****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucCategory;                             /* 紧急呼号码类型 */
@@ -1442,14 +1005,7 @@ typedef struct
 } TAF_SDC_CUSTOM_ECC_NUM_STRU;
 
 
-/*****************************************************************************
- 结构名    : TAF_SDC_CUSTOM_ECC_NUM_LIST_STRU
- 结构说明  : 运营商定制紧急呼号码结构
- 1.日    期   : 2012年06月11日
-   作    者   : W00166186
-   修改内容   : AT&T&DCM项目新增结构
 
-****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucEccNumCount;                                  /* 紧急号个数 */
@@ -1457,33 +1013,15 @@ typedef struct
     TAF_SDC_CUSTOM_ECC_NUM_STRU         astCustomEccNumList[TAF_SDC_MAX_CUSTOM_ECC_NUM];/* 紧急呼列表 */
 } TAF_SDC_CUSTOM_ECC_NUM_LIST_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SDC_CUSTOM_ECC_CTX_STRU
- 结构说明  : 运营商定制紧急呼号码控制结构
- 1.日    期   : 2012年06月11日
-   作    者   : W00166186
-   修改内容   : AT&T&DCM项目新增结构
 
-****************************************************************************/
 typedef struct
 {
     VOS_UINT8                               ucCustomSetFlg;                     /* VOS_TRUE,标书APP正在设置定制紧急呼号码，VOS_FALSE,表示没有开始定制 */
     VOS_UINT8                               aucReserve[3];
     TAF_SDC_CUSTOM_ECC_NUM_LIST_STRU        stCustomEccNumList;                 /* APP定制的紧急呼列表 */
 } TAF_SDC_CUSTOM_ECC_CTX_STRU;
-/* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-16, end */
 
-/* Added by s00261364 for L-C互操作项目, 2014-01-27, Begin */
-/*****************************************************************************
- 结构名    : TAF_NV_LC_CTRL_PARA_STRU
- 协议表格  : 无
- 结构说明  : 用于记录L+C共SIM卡功能是否处于使能状态
 
- 修改历史      :
-  1.日    期   : 2014年01月23日
-    作    者   : s00246516
-    修改内容   : L-C互操作项目新增NV
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                                     ucLCEnableFlg;
@@ -1491,38 +1029,18 @@ typedef struct
     TAF_NVIM_LC_WORK_CFG_ENUM_UINT8               enLCWorkCfg;
     VOS_UINT8                                     aucReserved[1];
 }TAF_SDC_LC_CONFIG_PARA_STRU;
-/* Added by s00261364 for L-C互操作项目, 2014-01-27, End */
 
-/*****************************************************************************
- 结构名    : TAF_SDC_MS_CAP_INFO_STRU
- 结构说明  : MS的能力信息
- 1.日    期   : 2012年12月26日
-   作    者   : s46746
-   修改内容   : 新建
- 2.日    期   : 2013年6月3日
-   作    者   : s00217060
-   修改内容   : for V9R1_SVLTE:新增是否支持SVLTE标志
- 3.日    期   : 2013年07月25日
-   作    者   : s00217060
-   修改内容   : VoLTE_PhaseI项目:新增是否支持IMS标志
- 4.日    期   : 2013年09月22日
-   作    者   : s00217060
-   修改内容   : VoLTE_PhaseII项目，新增IMS是否支持语音/短信标志
-*****************************************************************************/
+
 typedef struct
 {
     TAF_SDC_PLATFORM_RAT_CAP_STRU       stPlatformRatCap;                       /* 平台接入技术能力信息 */
 
-    /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-09-22, begin */
     VOS_UINT8                           ucSvlteSupportFlag;                     /* 是否支持SVLTE标志 */
     VOS_UINT8                           aucReserved[3];
 
     TAF_SDC_IMS_CONFIG_PARA_STRU       stImsConfigPara;                       /* IMS相关配置信息 */
-    /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-09-22, end */
 
-    /* Added by s00261364 for L-C互操作项目, 2014-1-27, begin */
     TAF_SDC_LC_CONFIG_PARA_STRU        stLcConfigPara;
-    /* Added by s00261364 for L-C互操作项目, 2014-1-27, end */
 #if (FEATURE_ON == FEATURE_BASTET)
     VOS_UINT8                           ucBastetSupportFlag;                     /* 是否支持Bastet标志 */
     VOS_UINT8                           aucBstReserved[3];
@@ -1530,62 +1048,31 @@ typedef struct
 
 }TAF_SDC_MS_CAP_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MML_SIM_FORMAT_PLMN_ID
- 结构说明  : Sim PLMN ID的存储结构
- 1.日    期   : 2015年2月17日
-   作    者   : b00269685
-   修改内容   : 新建
-*****************************************************************************/
+
 
 typedef struct {
     VOS_UINT8                           aucSimPlmn[TAF_SDC_SIM_FORMAT_PLMN_LEN];
     VOS_UINT8                           aucReserve[1];
 } TAF_SDC_SIM_FORMAT_PLMN_ID;
 
-/* Added by z00161729 for 主动上报AT命令控制下移至C核, 2013-3-22, begin */
-/*****************************************************************************
- 结构名    : TAF_SDC_PLMN_ID_STRU
- 结构说明  : plmn信息
- 1.日    期   : 2013年3月22日
-   作    者   : s46746
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulMcc;
     VOS_UINT32                          ulMnc;
 } TAF_SDC_PLMN_ID_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SDC_3GPP_SYS_INFO_STRU
- 结构说明  : 服务小区信息
- 1.日    期   : 2013年3月22日
-   作    者   : s46746
-   修改内容   : 新建
- 2.日    期   : 2013年10月16日
-   作    者   : w00176964
-   修改内容   : VOLTE_PhaseII项目:增加漫游参数和是否驻留标记
- 3.日    期   : 2014年6月13日
-   作    者   : w00167002
-   修改内容   : DSDS III增加area lost no rf标志
- 4.日    期   : 2014年8月14日
-   作    者   : s00217060
-   修改内容   : DTS2014080700822:增加LTE驻留的小区是FDD还是TDD
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16                          usLac;
     VOS_UINT8                           aucReserve1[2];
     TAF_SDC_PLMN_ID_STRU                stPlmnId;
     VOS_UINT8                           ucRac;
-    /* Modified by w00176964 for VoLTE_PhaseII 项目, 2013-10-16, begin */
     VOS_UINT8                           ucRoamFlag;                     /* 当前驻留网络是否漫游 VOS_TRUE:漫游网络 VOS_FALSE:非漫游网络 */
     VOS_UINT8                           ucCampOnFlg;                    /* 当前是否驻留,收到系统消息认为驻留,收到搜网或丢网指示认为未驻留 */
     VOS_UINT8                           uc3GppRfAvailFlg;
 
-    /* Modified by w00176964 for VoLTE_PhaseII 项目, 2013-10-16, end */
     VOS_UINT32                          ulCellId;
     TAF_SDC_LMM_ACCESS_TYPE_ENUM_UINT8  enLmmAccessType;
     VOS_UINT8                           aucReserve2[3];
@@ -1632,13 +1119,7 @@ typedef struct
 
 
 
-/*****************************************************************************
- 结构名    : TAF_SDC_ACCESS_RESTRICTION_STRU
- 结构说明  : 接入禁止信息
- 1.日    期   : 2013年3月22日
-   作    者   : s46746
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     TAF_SDC_CELL_RESTRICTION_TYPE_ENUM_UINT8    enCellAcType;                   /* 小区受限类型 */
@@ -1648,100 +1129,45 @@ typedef struct
 }TAF_SDC_ACCESS_RESTRICTION_STRU;
 
 
-/*****************************************************************************
- 结构名    : TAF_SDC_CS_DOMAIN_INFO_STRU
- 结构说明  : CS域信息
- 1.日    期   : 2013年3月28日
-   作    者   : z00161729
-   修改内容   : 新建
- 2.日    期   : 2013年11月20日
-   作    者   : w00176964
-   修改内容   : VOLTE PhaseII项目修改:增加CS域的SIM卡注册状态
- 3.日    期   : 2014年1月23日
-   作    者   : z00161729
-   修改内容   : DTS2014012305088:svlte特性开启卡无效场景mtc无需上报pstransfer:0
-*****************************************************************************/
+
 typedef struct
 {
     TAF_SDC_SERVICE_STATUS_ENUM_UINT8      enCsServiceStatus;                   /* cs服务状态 */
     TAF_SDC_REG_STATUS_ENUM_UINT8          enCsRegStatus;                       /* cs注册状态 */
-    /* Modified by w00176964 for VoLTE_PhaseII 项目, 2013-11-20, begin */
     VOS_UINT8                              ucSimCsRegStatus;    /* SIM卡CS域的注册结果导致的卡是否有效VOS_TRUE:CS域的卡有效,VOS_FALSE:CS域的卡无效*/
 
     VOS_UINT8                              ucCsAttachAllowFlg;                  /* cs是否允许注册标识 */
 
-    /* Modified by w00176964 for VoLTE_PhaseII 项目, 2013-11-20, end */
     TAF_SDC_ACCESS_RESTRICTION_STRU        stCsAcRestriction;                   /* 当前CS域接入受限情况 */
 }TAF_SDC_CS_DOMAIN_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SDC_PS_DOMAIN_INFO_STRU
- 结构说明  : PS域信息
- 1.日    期   : 2013年3月28日
-   作    者   : z00161729
-   修改内容   : 新建
- 2.日    期   : 2013年11月20日
-   作    者   : w00176964
-   修改内容   : VOLTE PhaseII项目修改:增加PS域的SIM卡注册状态
 
- 3.日    期   : 2013年11月25日
-   作    者   : z00161729
-   修改内容   : SVLTE优化G-TL ps切换性能修改
-*****************************************************************************/
 typedef struct
 {
     TAF_SDC_SERVICE_STATUS_ENUM_UINT8      enPsServiceStatus;                                                            /* ps服务状态 */
     TAF_SDC_REG_STATUS_ENUM_UINT8          enPsRegStatus;                       /* ps注册状态 */
-    /* Modified by w00176964 for VoLTE_PhaseII 项目, 2013-11-20, begin */
     VOS_UINT8                              ucSimPsRegStatus;                    /* SIM卡PS域的注册结果导致的卡是否有效VOS_TRUE:CS域的卡有效,VOS_FALSE:CS域的卡无效*/
-    /* Modified by w00176964 for VoLTE_PhaseII 项目, 2013-11-20, end */
     VOS_UINT8                              ucPsAttachAllowFlg;                  /* ps是否允许注册标识 */
     TAF_SDC_ACCESS_RESTRICTION_STRU        stPsAcRestriction;                   /* 当前PS域接入受限情况 */
 
 }TAF_SDC_PS_DOMAIN_INFO_STRU;
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, begin */
-/*****************************************************************************
- 结构名    : TAF_SDC_IMS_DOMAIN_INFO_STRU
- 结构说明  : IMS域信息
- 1.日    期   : 2013年12月13日
-   作    者   : w00176964
-   修改内容   : 新建
- 2.日    期   : 2015年01月28日
-   作    者   : y00245242
-   修改内容   : iteration 9开发，下移IMSA接口到MSCC模块
-*****************************************************************************/
+
 typedef struct
 {
     TAF_SDC_IMS_NORMAL_REG_STATUS_ENUM_UINT8   enImsNormalRegSta;
     VOS_UINT8                                  aucReserved[3];
 }TAF_SDC_IMS_DOMAIN_INFO_STRU;
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, end */
 
-/*****************************************************************************
- 结构名    : TAF_SDC_SIM_STATUS_STRU
- 结构说明  : sim卡状态信息
- 1.日    期   : 2013年3月28日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     TAF_SDC_USIM_STATUS_ENUM_UINT8      enSimStatus;
     VOS_UINT8                           aucReserved[3];
 }TAF_SDC_SIM_STATUS_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SDC_SIM_MS_IDENTITY_STRU
- 结构说明  : ms identity信息
- 1.日    期   : 2013年3月28日
-   作    者   : z00161729
-   修改内容   : 新建
- 2.日    期   : 2014年04月28日
-   作    者   : s00246516
-   修改内容   : 双IMSI切换时,MMA概率不触发关机和开机操作
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           aucImsi[TAF_SDC_MAX_IMSI_LEN];
@@ -1751,42 +1177,19 @@ typedef struct
 }TAF_SDC_SIM_MS_IDENTITY_STRU;
 
 
-/*****************************************************************************
- 结构名    : TAF_SDC_USIM_INFO_STRU
- 结构说明  : 服务小区信息
- 1.日    期   : 2013年3月22日
-   作    者   : s46746
-   修改内容   : 新建
- 2.日    期   : 2013年7月30日
-   作    者   : w00176964
-   修改内容   : 增加SIM卡类型
- 3.日    期   : 2014年4月9日
-   作    者   : s00261364
-   修改内容   : V3R360_eCall项目:增加call模式
-*****************************************************************************/
+
 typedef struct
 {
     TAF_SDC_SIM_STATUS_STRU             stUsimStatus;                            /* SIM卡状态 */
     TAF_SDC_SIM_MS_IDENTITY_STRU        stMsIdentity;                           /* MS Identity信息 */
-    /* Added by s00261364 for V3R360_eCall项目, 2014-4-9, begin */
     TAF_SDC_CALL_MODE_ENUM_UINT8        enCallMode;
-    /* Added by s00261364 for V3R360_eCall项目, 2014-4-9, end */
-    /* Added by w00176964 for VoLTE_PhaseI项目, 2013-7-30, begin */
     TAF_SDC_SIM_TYPE_ENUM_UINT8         enUsimType;                              /* SIM卡类型 */
     VOS_UINT8                           aucRsv[2];
 
-    /* Added by w00176964 for VoLTE_PhaseI项目, 2013-7-30, end */
 }TAF_SDC_USIM_INFO_STRU;
 
 
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-3-25, begin */
-/*****************************************************************************
- 结构名    : TAF_SDC_CURC_RPT_CTRL_STRU
- 结构说明  : CURC控制主动上报的结构体
- 1.日    期   : 2013年3月25日
-   作    者   : s00217060
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     TAF_SDC_STATUS_RPT_GENERAL_CTRL_TYPE_ENUM_UINT8   enStatusRptGeneralControl; /* 控制是否允许所有私有命令的主动上报 */
@@ -1794,40 +1197,21 @@ typedef struct
     VOS_UINT8                                         aucRptCfg[TAF_SDC_RPT_CFG_MAX_SIZE]; /* 64bit主动上报标识 */
 }TAF_SDC_CURC_RPT_CTRL_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SDC_UNSOLICITED_RPT_CTRL_STRU
- 结构说明  : 单个命令控制主动上报的结构体
- 1.日    期   : 2013年3月25日
-   作    者   : s00217060
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                         aucRptCfg[TAF_SDC_RPT_CFG_MAX_SIZE]; /* 64bit主动上报标识 */
 }TAF_SDC_UNSOLICITED_RPT_CTRL_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SDC_RPT_CTRL_STRU
- 结构说明  : 控制主动上报的结构体,包括CURC和单个命令控制主动上报
- 1.日    期   : 2013年3月25日
-   作    者   : s00217060
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     TAF_SDC_CURC_RPT_CTRL_STRU              stCurcRptCtrl;                      /* CURC控制主动上报 */
     TAF_SDC_UNSOLICITED_RPT_CTRL_STRU       stUnsolicitedRptCtrl;               /* 单个命令控制主动上报 */
 }TAF_SDC_RPT_CTRL_STRU;
 
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-3-25, end */
 
-/*****************************************************************************
- 结构名    : TAF_SDC_USSD_CFG_STRU
- 结构说明  : USSD配置信息
- 1.日    期   : 2013年5月17日
-   作    者   : w00176964
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucUssdTransMode;
@@ -1836,89 +1220,40 @@ typedef struct
 }TAF_SDC_USSD_CFG_STRU;
 
 
-/*****************************************************************************
- 结构名    : TAF_SDC_DSDA_PLMN_SEARCH_ENHANCED_CFG_STRU
- 结构说明  : 控制通过两个Modem的信息交互的增强型的搜索策略
- 1.日    期   : 2013年11月25日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                   ucUtranSkipWPlmnSearchFlag;
     VOS_UINT8                                   aucReserved[3];
 }TAF_SDC_DSDA_PLMN_SEARCH_ENHANCED_CFG_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SDC_PLMN_EXACTLY_COMPARE_INFO_STRU
- 结构说明  : en_NV_Item_PLMN_EXACTLY_COMPARE_FLG nv配置内容
-  1.日    期   : 2015年2月25日
-    作    者   : z00161729
-    修改内容   : AT&T 支持EONS特性修改
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucPlmnExactlyCompareFlag;         /* 精确比较是否开启 */
     VOS_UINT8                           aucRsv[3];
 }TAF_SDC_PLMN_EXACTLY_COMPARE_INFO_STRU;
 
-/*****************************************************************************
-结构名    : TAF_SDC_NONNORMAL_REG_STATUS_MERGE_CFG_STRU
-结构说明  : 非正常服务下是否上报注册状态改变配置信息
-1.日    期  : 2015年10月28日
-  作    者  : z00359541
-  修改内容  : 新生成函数
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucMergeFlg;                      /* 非正常服务下是否上报注册状态改变 */
     VOS_UINT8                           aucReserved[3];
 } TAF_SDC_NONNORMAL_REG_STATUS_MERGE_CFG_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SDC_MS_SYS_CFG_INFO_STRU
- 结构说明  : 系统配置信息
- 1.日    期   : 2013年3月22日
-   作    者   : s46746
-   修改内容   : 新建
- 2.日    期   : 2013年5月17日
-   作    者   : w00176964
-   修改内容   : SS FDN&Call Control项目:增加USSD传输模式信息
- 3.日    期   : 2013年08月05日
-   作    者   : s00217060
-   修改内容   : VoLTE_PhaseI项目
- 4.日    期   : 2013年10月15日
-   作    者   : y00245242
-   修改内容   : VoLTE_PhaseII项目
 
- 5.日    期   : 2013年11月14日
-   作    者   : z00161729
-   修改内容   : DTS2013111507527:gcf 31.9.2.1不过，网络ussd notify消息应该广播上报，收到网络release complete应该上报cusd:2而不是0
- 6.日    期   : 2013年11月25日
-   作    者   : z00161729
-   修改内容   : SVLTE优化G-TL ps切换性能修改
- 7.日    期   : 2015年2月26日
-   作    者   : c00318887
-   修改内容   : AT&T phaseII 增加ucPlmnExactlyCompareFlg
-*****************************************************************************/
 typedef struct
 {
     TAF_SDC_RPT_CTRL_STRU               stRptCtrl;                              /* 控制主动上报信息 */
     TAF_SDC_USSD_CFG_STRU               stUssdCfg;                              /* USSD配置信息 */
-    /* Added by s00217060 for VoLTE_PhaseI  项目, 2013-08-05, begin */
     VOS_UINT16                          usAppCfgSupportType;                    /*控制应用版本*/
-    /* Added by y00245242 for VoLTE_PhaseII 项目, 2013-10-11, begin */
     TAF_SDC_UE_USAGE_SETTING_ENUM_UINT8 enUeUsageSetting;                       /* UE's usage setting */
-    /* Added by y00245242 for VoLTE_PhaseII 项目, 2013-10-11, end */
 
     VOS_UINT8                                ucRefreshAllFileRestartFlag;
     TAF_SDC_PLMN_EXACTLY_COMPARE_INFO_STRU   stPlmnExactlyCompareInfo;                /* 精确比较PLMN标记 */
 
-    /* Added by s00217060 for VoLTE_PhaseI  项目, 2013-08-05, end */
 
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-20, begin */
     TAF_SDC_RAT_PRIO_STRU               stPrioRatList;                          /* 接入技术以及优先级 */
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-20, end */
 
     TAF_SDC_DSDA_PLMN_SEARCH_ENHANCED_CFG_STRU  stDsdaPlmnSearchEnhancedCfg;
 
@@ -1927,27 +1262,14 @@ typedef struct
 }TAF_SDC_MS_SYS_CFG_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : TAF_SDC_MS_CFG_INFO_STRU
- 结构说明  : ms的配置信息
- 1.日    期   : 2013年3月28日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     TAF_SDC_MS_CAP_INFO_STRU            stMsCapInfo;                            /* MS的能力信息 */
     TAF_SDC_MS_SYS_CFG_INFO_STRU        stMsSysCfgInfo;                         /* 系统配置信息 */
 }TAF_SDC_MS_CFG_INFO_STRU;
 
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-13, begin */
-/*****************************************************************************
- 结构名    : TAF_SDC_NETWORK_CAP_INFO_STRU
- 结构说明  : 当前驻留的网络的能力信息
- 1.日    期   : 2013年3月28日
-   作    者   : y00245242
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     TAF_SDC_NW_IMS_VOICE_CAP_ENUM_UINT8   enNwImsVoCap;
@@ -1956,7 +1278,6 @@ typedef struct
     VOS_UINT8                             aucReserved[1];
 }
 TAF_SDC_NETWORK_CAP_INFO_STRU;
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-13, end */
 
 /** ****************************************************************************
  * Name        : TAF_SDC_1X_REG_INFO_STRU
@@ -2038,13 +1359,7 @@ typedef struct
 
 }TAF_SDC_1X_BASE_STATION_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SDC_CDMA_DOMAIN_INFO_STRU
- 结构说明  : 当前驻留的1X网络的域信息
- 1.日    期   : 2014年9月5日
-   作    者   : y00213812
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usBandClass;
@@ -2070,17 +1385,7 @@ typedef struct
     TAF_SDC_1X_SERVICE_INFO_STRU        stServiceInfo;
 }TAF_SDC_1X_SYS_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SDC_HRPD_SYS_INFO_STRU
- 结构说明  : 当前驻留的HRPD网络的域信息
- 1.日    期   : 2015年5月15日
-   作    者   : l00301449
-   修改内容   : 新建
 
-  2.日    期   : 2015年7月9日
-    作    者   : y00322978
-    修改内容   : 添加hrpd信息用于可维可测
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                                   ucHrpdRfAvailFlg;
@@ -2097,13 +1402,7 @@ typedef struct
 
 
 
-/*****************************************************************************
- 结构名    : TAF_SDC_NETWORK_INFO_STRU
- 结构说明  : 当前驻留的网络信息
- 1.日    期   : 2013年3月28日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     TAF_SDC_SYS_MODE_ENUM_UINT8         enSysMode;
@@ -2116,14 +1415,7 @@ typedef struct
     TAF_SDC_HRPD_SYS_INFO_STRU          stHrpdSysInfo;
 }TAF_SDC_SYS_INFO_STRU;
 
-/* Added by z00234330 for v8r2信号显示优化, 2014-10-17, begin */
-/*****************************************************************************
- 结构名    : TAF_SDC_SERVICED_PLMN_INFO_STRU
- 结构说明  : 当前提供服务的PLMN的相关信息
- 1.日    期   : 2014年10月17日
-   作    者   : z00234330
-   修改内容   : 当前提供服务的PLMN的相关信息
-*****************************************************************************/
+
 typedef struct
 {
     TAF_SDC_PLMN_ID_STRU                stServicePlmnId;     /*当前注册成功的PLMN ID*/
@@ -2138,13 +1430,7 @@ typedef struct
 }TAF_SDC_SERVICED_PLMN_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : TAF_SDC_3G_CELL_SIGN_INFO_STRU
- 结构说明  : 3G信号质量相关信息
- 1.日    期   : 2014年10月17日
-   作    者   : z00234330
-   修改内容   : 小区信号质量
-*****************************************************************************/
+
 typedef struct
 {
     VOS_INT16                       sRscpValue;  /* 小区信号质量用于3g下^cerssi上报使用*/
@@ -2154,13 +1440,7 @@ typedef struct
     VOS_UINT8                       aucReserve[16];
 } TAF_SDC_3G_CELL_SIGN_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SDC_2G_CELL_SIGN_INFO_STRU
- 结构说明  : 信号质量相关信息
- 1.日    期   : 2014年10月17日
-   作    者   : z00234330
-   修改内容   : 小区信号质量
-*****************************************************************************/
+
 typedef struct
 {
     VOS_INT16                       sRssiValue;   /* 小区信号质量用于2g下^cerssi上报使用,2g没有rscp的概念用的是rssi */
@@ -2169,13 +1449,7 @@ typedef struct
     VOS_UINT8                       aucReserve1[18];
 } TAF_SDC_2G_CELL_SIGN_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SDC_4G_CELL_SIGN_INFO_STRU
- 结构说明  : 4G信号质量相关信息
- 1.日    期   : 2014年10月17日
-   作    者   : z00234330
-   修改内容   : 小区信号质量
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usRI;                                   /* RI*/
@@ -2195,16 +1469,7 @@ typedef struct
 }TAF_SDC_4G_CELL_SIGN_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : TAF_SDC_3GPP_RSSI_INFO_STRU
- 结构说明  : 小区信号质量
- 1.日    期   : 2014年10月17日
-   作    者   : z00234330
-   修改内容   : 小区信号质量
- 2.日    期   : 2015年9月30日
-   作    者   : j00354216
-   修改内容   : CDMA Iteration 18 修改结构体名
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8        ucRssiValue;       /*已转换为等级表示的信号强度*/
@@ -2225,29 +1490,14 @@ typedef struct
 }TAF_SDC_3GPP_RSSI_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : TAF_SDC_3GPP2_RSSI_INFO_STRU
- 结构说明  : 1X模块信号质量
- 1.日    期   : 2015年9月30日
-   作    者   : j00354216
-   修改内容   : CDMA Iteration 18 增加
-*****************************************************************************/
+
 typedef struct
 {
     TAF_SDC_1X_SIG_QUALITY_INFO_STRU    st1xSigQualityRptInfo;      /* 当前1x的信号质量 */
     TAF_SDC_HRPD_SIG_QUALITY_INFO_STRU  stHrpdSigQualityRptInfo;    /* 当前hrpd的信号质量 */
 }TAF_SDC_3GPP2_SIG_QUALITY_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SDC_SIGNAL_QUALITY_INFO_STRU
- 结构说明  : 信号质量信息
- 1.日    期   : 2015年01月14日
-   作    者   : m00312079
-   修改内容   : 新建
- 2.日    期   : 2015年10月13日
-   作    者   : l00324781
-   修改内容   : CDMA Iteration 18 修改
-*****************************************************************************/
+
 typedef struct
 {
     TAF_SDC_3GPP_RSSI_INFO_STRU                st3GppRssiInfo;     /* 当前3GPP的信号质量 */
@@ -2255,25 +1505,13 @@ typedef struct
     TAF_SDC_3GPP2_SIG_QUALITY_INFO_STRU        st3Gpp2SigQuaInfo;    /* 当前是3GPP2的信号质量,包括hrpd和1x的信号质量，目前只有1x的 */
 }TAF_SDC_SIG_QUALITY_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SDC_SYSTEM_INFO_STRU
- 结构说明  : 3GPP2的系统信息
- 1.日    期   : 2015年9月30日
-   作    者   : j00354216
-   修改内容   : CDMA Iteration 18 增加
-*****************************************************************************/
+
 typedef struct
 {
     TAF_SDC_1X_SYS_INFO_STRU            st1xSysInfo;        /* 1X模块系统信息 */
 }TAF_SDC_3GPP2_SYSTEM_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SDC_APPSYSTEM_INFO_STRU
- 结构说明  : 当前提供服务小区的系统信息，包括3GPP和3GPP2
- 1.日    期   : 2015年9月30日
-   作    者   : j00354216
-   修改内容   : CDMA Iteration 18 增加
-*****************************************************************************/
+
 typedef struct
 {
     TAF_SDC_SYS_MODE_ENUM_UINT8         enSysMode;
@@ -2286,19 +1524,7 @@ typedef struct
     TAF_SDC_3GPP2_SYSTEM_INFO_STRU      st3Gpp2SysInfo;     /* 3GPP2相关系统的信息,hrpd和1x的，目前只包括1x的 */
 }TAF_SDC_APPSYSTEM_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SDC_APPNETWORK_INFO
- 结构说明  : 上报给APP用的网络信息
- 1.日    期   : 2014年10月17日
-   作    者   : z00234330
-   修改内容   : 上报给APP用的网络信息
- 2.日    期   : 2015年02月11日
-   作    者   : l00305157
-   修改内容   : Service_State_Optimize_PhaseII 项目修改
- 3.日    期   : 2015年09月30日
-   作    者   : j00354216
-   修改内容   : CDMA Iteration 18 修改
-*****************************************************************************/
+
 typedef struct
 {
     TAF_SDC_SIG_QUALITY_INFO_STRU       stAppSigQuaInfo;    /* 当前提供服务小区的信号质量,包括3GPP和3GPP2的信号质量 */
@@ -2313,22 +1539,9 @@ typedef struct
 
 }TAF_SDC_APPNETWORK_INFO;
 
-/* Added by z00234330 for v8r2信号显示优化, 2014-10-17, end */
 
 
-/*****************************************************************************
- 结构名    : TAF_SDC_NETWORK_INFO_STRU
- 结构说明  : 当前驻留的网络信息
- 1.日    期   : 2013年3月28日
-   作    者   : z00161729
-   修改内容   : 新建
- 2.日    期   : 2014年12月03日
-   作    者   : l00305157
-   修改内容   : Service_State_Optimize_PhaseI:gstMmaValue.stCerssiValue移到SDC中
- 3.日    期   : 2015年10月8日
-    作    者   : l00324781
-    修改内容   : Iteration 18 ,CL模服务状态显示优化
-*****************************************************************************/
+
 typedef struct
 {
     TAF_SDC_SYS_INFO_STRU               stSysInfo;
@@ -2337,14 +1550,10 @@ typedef struct
     TAF_SDC_REPORT_SRVSTA_ENUM_UINT8    enReportSrvsta;                         /* UE服务状态^srvst上报的服务状态 */
     TAF_SDC_SERVICE_DOMAIN_ENUM_UINT8   enServiceDomain;                        /* UE服务域sysinfo查询时上报的服务域 */
     VOS_UINT8                           aucReserved[2];
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-13, begin */
     TAF_SDC_NETWORK_CAP_INFO_STRU       stGuNwCapInfo;                          /* GU下网络业务能力信息 */
     TAF_SDC_NETWORK_CAP_INFO_STRU       stLteNwCapInfo;                         /* LTE下网络业务能力信息 */
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-13, end */
 
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, begin */
     TAF_SDC_IMS_DOMAIN_INFO_STRU        stImsDomainInfo;                        /* IMS域的网络信息 */
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, end */
 
     TAF_SDC_SIG_QUALITY_INFO_STRU       stSigQuaInfo;
 
@@ -2352,16 +1561,8 @@ typedef struct
 
 }TAF_SDC_NETWORK_INFO_STRU;
 
-/* Added by z00161729 for 主动上报AT命令控制下移至C核, 2013-3-22, end */
 
-/* Added by s00261364 for V3R360_eCall项目, 2014-4-4, begin */
-/*****************************************************************************
- 结构名    : TAF_SDC_ECALL_NUM_STRU
- 结构说明  : ecall test/recfg number信息
- 1.日    期   : 2014年4月3日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucNumType;
@@ -2370,30 +1571,15 @@ typedef struct
     VOS_UINT8                           aucCallNumber[TAF_SDC_ECALL_BCD_NUM_MAX_LEN];
 }TAF_SDC_ECALL_NUM_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SDC_ECALL_INFO_STRU
- 结构说明  : 当前手机信息
- 1.日    期   : 2014年4月3日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     TAF_SDC_CALL_MODE_ENUM_UINT8        enCallMode;
     VOS_UINT8                           aucRsv[3];
     TAF_SDC_ECALL_NUM_STRU              stEcallNum;                             /* SDN文件获取的test number/reconfiguration number */
 }TAF_SDC_ECALL_INFO_STRU;
-/* Added by s00261364 for V3R360_eCall项目, 2014-4-4, end */
 
-/*****************************************************************************
- 结构名    : TAF_SDC_UCIM_ECC_NUM_STRU
- 结构说明  : Uim或CSIM卡文件中的紧急呼叫号码结构
 
- 1.日    期   : 2014年11月18日
-   作    者   : w00176964
-   修改内容   : 1X项目新增结构
-
-****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucEccNumLen;                            /* 紧急呼号码长度 */
@@ -2401,15 +1587,7 @@ typedef struct
     VOS_UINT8                           aucEccNum[TAF_SDC_MAX_BCD_NUM_LEN];     /* 紧急呼号码 */
 } TAF_SDC_UCIM_ECC_NUM_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SDC_UCIM_ECC_NUM_LIST_STRU
- 结构说明  : Uim或CSIM卡文件中的紧急呼叫号码列表
 
- 1.日    期   : 2014年11月18日
-   作    者   : w00176964
-   修改内容   : 1X项目新增结构
-
-****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucEccNumCount;                                  /* 紧急号个数 */
@@ -2418,28 +1596,9 @@ typedef struct
 } TAF_SDC_UCIM_ECC_NUM_LIST_STRU;
 
 
-/*****************************************************************************
- 结构名    : TAF_SDC_CS_CALL_INFO_STRU
- 结构说明  : 当前cc业务相关信息
- 1.日    期   : 2013年5月17日
-   作    者   : w00176964
-   修改内容   : 新建
- 2.日    期   : 2013年09月23日
-   作    者   : s00217060
-   修改内容   : VoLTE_PhaseII项目，增加IMS域呼叫是否存在标识
- 3.日    期   : 2013年12月23日
-   作    者   : y00245242
-   修改内容   : 增加SRVCC缓存处理
- 3.日    期   : 2014年4月9日
-   作    者   : s00261364
-   修改内容   : V3R360_eCall项目:增加呼ecall呼叫test/reconfiguration号码
- 4.日    期   : 2014年11月17日
-   作    者   : w00176964
-   修改内容   : CDMA 1x项目迭代5修改
-*****************************************************************************/
+
 typedef struct
 {
-    /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-09-23, begin */
     VOS_UINT8                           ucCsCallExistFlg;                       /* 当前是否处于呼叫过程中:VOS_TRUE  当前处于呼叫过程中
                                                                                                   VOS_FALSE 当前不处于呼叫过程中  */
     VOS_UINT8                           ucImsCallExistFlg;                      /* 当前是否处于呼叫过程中:VOS_TRUE  当前处于呼叫过程中
@@ -2452,69 +1611,38 @@ typedef struct
     TAF_SDC_MM_EMERGENCY_LIST_STRU      stMmCallEmerNumList;                    /* MM带下来的紧急呼列表 */
     TAF_SDC_CUSTOM_ECC_CTX_STRU         stCustomCallEccNumCtx;                  /* 运营商定制的紧急呼列表 */
 
-    /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-09-23, end */
 
-    /* Added by s00261364 for V3R360_eCall项目, 2014-4-9, begin */
     TAF_SDC_ECALL_NUM_STRU              stEcallTestNumber;                      /* SDN文件获取的test number */
     TAF_SDC_ECALL_NUM_STRU              stEcallRecfgNumber;                     /* SDN文件获取的reconfiguration number */
-    /* Added by s00261364 for V3R360_eCall项目, 2014-4-9, end */
 
     TAF_SDC_UCIM_ECC_NUM_LIST_STRU      st1xCallUcimEccNumList;                     /* 1X下面UIM或CSIM卡中的紧急呼叫号码列表 */
 
 }TAF_SDC_CALL_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SDC_SMS_INFO_STRU
- 结构说明  : 当前SMS业务相关信息
- 1.日    期   : 2013年6月17日
-   作    者   : s00217060
-   修改内容   : 新建
- 2.日    期   : 2013年09月22日
-   作    者   : s00217060
-   修改内容   : VoLTE_PhaseII项目，增加PS域和IMS短信是否存在标识
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucCsSmsSrvExistFlg;                     /* CS域的短信业务存在标识:VOS_TRUE  当前有CS域的短信业务
                                                                                    VOS_FALSE 当前没有CS域的短信业务  */
-    /* Added by s00217060 for VoLTE_PhaseII  项目, 2013-09-22, begin */
     VOS_UINT8                           ucPsSmsSrvExistFlg;                     /* PS域的短信业务存在标识:VOS_TRUE  当前有PS域的短信业务
                                                                                    VOS_FALSE 当前没有PS域的短信业务  */
     VOS_UINT8                           ucImsSmsSrvExistFlg;                    /* IMS域的短信业务存在标识:VOS_TRUE  当前有IMS域的短信业务
                                                                                    VOS_FALSE 当前没有IMS域的短信业务  */
-    /* Added by s00217060 for VoLTE_PhaseII  项目, 2013-09-22, end */
     VOS_UINT8                           aucReserved[1];
 }TAF_SDC_SMS_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SDC_CS_SS_INFO_STRU
- 结构说明  : 当前SS业务相关信息
- 1.日    期   : 2013年6月17日
-   作    者   : s00217060
-   修改内容   : 新建
- 2.日    期   : 2013年09月22日
-   作    者   : s00217060
-   修改内容   : VoLTE_PhaseII项目，增加IMS域补充业务是否存在标识
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucCsSsSrvExistFlg;                      /* CS域的补充业务存在标识:VOS_TRUE  当前有CS域的补充业务
                                                                                    VOS_FALSE 当前没有CS域的补充业务  */
-    /* Added by s00217060 for VoLTE_PhaseII  项目, 2013-09-23, begin */
     VOS_UINT8                           ucImsSsSrvExistFlg;                     /* IMS域的补充业务存在标识:VOS_TRUE  当前有IMS域的补充业务
                                                                                    VOS_FALSE 当前没有IMS域的补充业务  */
-    /* Added by s00217060 for VoLTE_PhaseII  项目, 2013-09-23, end */
     VOS_UINT8                           aucReserved[2];
 }TAF_SDC_SS_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : TAF_SDC_CS_INFO_STRU
- 结构说明  : 当前cs相关信息
- 1.日    期   : 2014年3月3日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucCsServiceConnStatusFlag;              /* cs业务信令连接是否存在标识 */
@@ -2522,14 +1650,7 @@ typedef struct
 }TAF_SDC_CS_INFO_STRU;
 
 
-/* Add by s00217060 for K3V3 多模多天线特性, 2014-06-27, Begin */
-/*****************************************************************************
- 结构名    : TAF_SDC_PS_INFO_STRU
- 结构说明  : 当前ps相关信息
- 1.日    期   : 2014年6月27日
-   作    者   : s00217060
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucPsServiceConnStatusFlag;              /* ps业务信令连接是否存在标识 */
@@ -2537,28 +1658,14 @@ typedef struct
 }TAF_SDC_PS_INFO_STRU;
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 结构名    : TAF_SDC_EPS_INFO_STRU
- 结构说明  : 当前eps相关信息
- 1.日    期   : 2014年6月27日
-   作    者   : s00217060
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucEpsServiceConnStatusFlag;              /* eps业务信令连接是否存在标识 */
     VOS_UINT8                           aucReserved[3];
 }TAF_SDC_EPS_INFO_STRU;
 #endif
-/* Add by s00217060 for K3V3 多模多天线特性, 2014-06-27, End */
-/*******************************************************************************
- 结构名    :TAF_SDC_TRIG_PLMN_SEARCH_SRV_TYPE_STRU
- 结构说明  : union TAF_SDC_TRIG_PLMN_SEARCH_SRV_TYPE_UNION成员stTrigPlmnSearchSrvTyp定义
-             bit位置1表示该类型有效
-1.日    期 : 2014年6月29日
-  作    者 : z00161729
-  修改内容 : 新建
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                           usCsMoNormalCall   :1;
@@ -2573,13 +1680,7 @@ typedef struct
     VOS_UINT16                           usReserved7         :7;
 }TAF_SDC_TRIG_PLMN_SEARCH_SRV_TYPE_STRU;
 
-/*****************************************************************************
- 枚举名    : TAF_SDC_TRIG_PLMN_SEARCH_SRV_TYPE_UNION
- 结构说明  : no rf触发搜网业务请求类型
-1. 日    期: 2014年6月29日
-   作    者: z00161729
-   修改内容: 新建
-*****************************************************************************/
+
 typedef union
 {
     VOS_UINT16                                usTrigPlmnSearchSrvType;
@@ -2588,52 +1689,26 @@ typedef union
 }TAF_SDC_TRIG_PLMN_SEARCH_SRV_TYPE_UNION;
 
 
-/*****************************************************************************
- 结构名    : TAF_SDC_SERVICE_INFO_STRU
- 结构说明  : 当前业务相关信息
- 1.日    期   : 2013年5月17日
-   作    者   : w00176964
-   修改内容   : 新建
- 2.日    期   : 2013年6月17日
-   作    者   : s00217060
-   修改内容   : 新增短信和补充业务的信息
- 3.日    期   : 2013年09月22日
-   作    者   : s00217060
-   修改内容   : VoLTE_PhaseII项目，SMS增加PS域信息
- 4.日    期   : 2014年02月28日
-   作    者   : z00161729
-   修改内容   : DTS2014022800234:被叫mm收到paging会设置cs业务信令连接存在，
-               但查询^usersrvstate时返回无cs业务，syscfgex设置失败回复存在cs业务，不一致
-*****************************************************************************/
+
 typedef struct
 {
-    /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-09-22, begin */
     TAF_SDC_CALL_INFO_STRU              stCallInfo;                               /* CC相关信息 */
     TAF_SDC_SMS_INFO_STRU               stSmsInfo;                              /* SMS相关信息 */
     TAF_SDC_SS_INFO_STRU                stSsInfo;                               /* SS相关信息 */
-    /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-09-22, end */
 
     TAF_SDC_CS_INFO_STRU                stCsInfo;                                                                                      VOS_UINT8                           aucReserved[2];
 
-    /* Add by s00217060 for K3V3 多模多天线特性, 2014-06-27, Begin */
     TAF_SDC_PS_INFO_STRU                stPsInfo;
 #if (FEATURE_ON == FEATURE_LTE)
     TAF_SDC_EPS_INFO_STRU               stEpsInfo;
 #endif
-    /* Add by s00217060 for K3V3 多模多天线特性, 2014-06-27, End */
     TAF_SDC_TRIG_PLMN_SEARCH_SRV_TYPE_UNION stTrigPlmnSrcSrvType;
     VOS_UINT8                               aucReserved1[2];
 
 }TAF_SDC_SERVICE_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : TAF_SDC_ERRLOG_REPORT_CTRL_OCTET_STRU
- 结构说明  : TAF_SDC_ERRLOG_REPORT_CTRL_OCTET_STRU信息
- 1.日    期   : 2014年4月14日
-   作    者   : n00269697
-   修改内容   : CHR 优化项目
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           bitOpActiveRptFlag    :1;
@@ -2641,13 +1716,7 @@ typedef struct
     VOS_UINT8                           bitOpSpare            :6;
 }TAF_SDC_ERRLOG_REPORT_CTRL_OCTET_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SDC_ERRLOG_CTRL_INFO_STRU
- 结构说明  : TAF_SDC_ERRLOG_CTRL_INFO_STRU信息
- 1.日    期   : 2014年10月07日
-   作    者   : f00179208
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                               ucErrLogCtrlFlag;                       /* ERRLOG打开标识 */
@@ -2655,26 +1724,14 @@ typedef struct
     VOS_UINT16                                              usAlmLevel;                             /* 故障告警级别 */
 }TAF_SDC_ERRLOG_CTRL_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SDC_ERRLOG_BUFF_INFO_STRU
- 结构说明  : TAF_SDC_ERRLOG_BUFF_INFO_STRU信息
- 1.日    期   : 2014年10月07日
-   作    者   : f00179208
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     OM_RING_ID                          pstRingBuffer;                          /* MM层的共享缓存 */
     VOS_UINT32                          ulOverflowCnt;                          /* Ringbuf溢出的次数 */
 }TAF_SDC_ERRLOG_BUFF_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SDC_ERRLOG_RAT_FREQUENTLY_SWITCH_INFO_STRU
- 结构说明  : RAT频繁切换的信息结构
- 1.日    期   : 2015年03月13日
-   作    者   : zwx247453
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulNvStatisticTime;                      /* NV配置的统计时间 */
@@ -2684,13 +1741,7 @@ typedef struct
     OM_RING_ID                          pstRingBuffer;                          /* 记录频繁切换记录的循环队列 */
 }TAF_SDC_ERRLOG_RAT_FREQUENTLY_SWITCH_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SDC_ERRLOG_OOS_INFO_STRU
- 结构说明  : 丢网信息结构
- 1.日    期   : 2015年08月16日
-   作    者   : f00179208
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucCsOosReportToAppFlag;                 /* CS域是否有上报过APP无服务 */
@@ -2699,13 +1750,7 @@ typedef struct
     VOS_UINT8                           ucReportPowerOffBeginFlag;              /* 是否有上报过关机的CHR */
 }TAF_SDC_ERRLOG_OOS_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SDC_ERRLOG_INFO_STRU
- 结构说明  : TAF_SDC_ERRLOG_INFO_STRU信息
- 1.日    期   : 2013年08月27日
-   作    者   : f00179208
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     TAF_SDC_ERRLOG_CTRL_INFO_STRU                       stCtrlInfo;
@@ -2713,16 +1758,11 @@ typedef struct
     TAF_SDC_ERRLOG_RAT_FREQUENTLY_SWITCH_INFO_STRU      stRatFrequentlySwitchInfo;
 
     TAF_SDC_ERRLOG_OOS_INFO_STRU                        stOosInfo;
+    NAS_ERR_LOG_IMS_CALL_FAIL_INFO_STRU                 stImsCallFailInfo;
 
 }TAF_SDC_ERRLOG_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SDC_CDMA_MNTN_STRU
- 结构说明  : cdma 可维可测
- 1.日    期   : 2015年11月10日
-   作    者   : y00322978
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulEsn;                              /* 32-bit */
@@ -2730,17 +1770,7 @@ typedef struct
     VOS_UINT8                           ucReserved;
 }TAF_SDC_HARDWARE_INFO_STRU;
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-25, begin */
-/*****************************************************************************
- 结构名    : TAF_SDC_PHONE_INFO_STRU
- 结构说明  : 当前手机信息
- 1.日    期   : 2013年12月25日
-   作    者   : w00176964
-   修改内容   : 新建
- 2.日    期   : 2015年02月04日
-   作    者   : f00179208
-   修改内容   : IMS动态开关配置项目
-*****************************************************************************/
+
 typedef struct
 {
     TAF_SDC_PHONE_MODE_ENUM_UINT8       enPhMode;
@@ -2751,15 +1781,8 @@ typedef struct
 
     TAF_SDC_HARDWARE_INFO_STRU          stHardWareInfo;
 }TAF_SDC_PHONE_INFO_STRU;
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-25, end */
 
-/*****************************************************************************
- 结构名    : TAF_SDC_REG_REPORT_STATUS_STRU
- 结构说明  : 记录当前CS/PS设置的注册状态上报方式
- 1.日    期   : 2014年8月18日
-   作    者   : w00242748
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     TAF_SDC_CREG_TYPE_ENUM_UINT8        enCregType;
@@ -2768,13 +1791,7 @@ typedef struct
     VOS_UINT8                           aucRsv;
 }TAF_SDC_REG_REPORT_STATUS_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SDC_CSIM_INFO_STRU
- 结构说明  : 记录CSIM卡信息
- 1.日    期   : 2015年2月7日
-   作    者   : h00313353
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     TAF_SDC_SIM_STATUS_STRU             stCsimStatus;                           /* 卡状态 */
@@ -2784,26 +1801,14 @@ typedef struct
     VOS_UINT8                           aucRuimid[TAF_SDC_EFRUIMID_OCTET_LEN_EIGHT];
 }TAF_SDC_CSIM_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SDC_ICCID_INFO_STRU
- 结构说明  : 记录卡ICCID信息
- 1.日    期   : 2015年8月26日
-   作    者   : h00313353
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucLen;
     VOS_UINT8                           aucIccId[TAF_SDC_ICC_ID_MAX_NUM + 1];
 } TAF_SDC_ICCID_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SDC_CARD_INFO_STRU
- 结构说明  : 记录卡信息
- 1.日    期   : 2015年2月7日
-   作    者   : h00313353
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     TAF_SDC_USIM_INFO_STRU              stUsimInfo;
@@ -2811,13 +1816,7 @@ typedef struct
     TAF_SDC_ICCID_INFO_STRU             stIccIdInfo;
 }TAF_SDC_CARD_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SDC_OPERATOR_NAME_STRU
- 结构说明  : 运营商名称结构
- 1.日    期   : 2015年2月9日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           bitExt    : 1;
@@ -2829,13 +1828,7 @@ typedef struct
     VOS_UINT8                           aucOperatorName[TAF_SDC_MAX_OPER_NAME_NUM];/* 运营商的名称 */
 }TAF_SDC_OPERATOR_NAME_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SDC_OPL_RECORD_INFO_STRU
- 结构说明  : OPL文件每条记录的内容
- 1.日    期   : 2015年2月9日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     TAF_SDC_PLMN_ID_STRU                stPlmnId;
@@ -2844,13 +1837,7 @@ typedef struct
     VOS_UINT16                          usPnnIndex;
 }TAF_SDC_OPL_RECORD_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SDC_OPL_FILE_INFO_STRU
- 结构说明  : 记录OPL文件内容
- 1.日    期   : 2015年2月9日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulOplRecordNum;
@@ -2858,13 +1845,7 @@ typedef struct
     TAF_SDC_OPL_RECORD_INFO_STRU        astOplRecordInfo[TAF_SDC_OPL_MAX_RECORD_NUM];
 }TAF_SDC_OPL_FILE_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SDC_PNN_RECORD_INFO_STRU
- 结构说明  : PNN文件每条记录的内容
- 1.日    期   : 2015年2月9日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     TAF_SDC_OPERATOR_NAME_STRU          stOperatorNameShort;/* 运营商的短名称 */
@@ -2875,13 +1856,7 @@ typedef struct
 }TAF_SDC_PNN_RECORD_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : TAF_SDC_PNN_FILE_INFO_STRU
- 结构说明  : 记录PNN文件内容
- 1.日    期   : 2015年2月9日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulPnnRecordNum;
@@ -2889,25 +1864,13 @@ typedef struct
     TAF_SDC_PNN_RECORD_INFO_STRU        astPnnRecordInfo[TAF_SDC_PNN_MAX_RECORD_NUM];
 }TAF_SDC_PNN_FILE_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SDC_CPHS_FILE_INFO_STRU
- 结构说明  : 记录CPHS文件内容
- 1.日    期   : 2015年2月9日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     TAF_SDC_OPERATOR_NAME_STRU          stCPHSOperName;
 }TAF_SDC_CPHS_FILE_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SDC_SPN_FILE_INFO_STRU
- 结构说明  : 记录SPN文件内容
- 1.日    期   : 2015年2月9日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                         ucDispRplmnMode;
@@ -2915,13 +1878,7 @@ typedef struct
     TAF_SDC_OPERATOR_NAME_STRU        stSpnOperName;
 }TAF_SDC_SPN_FILE_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SDC_SPDI_FILE_INFO_STRU
- 结构说明  : 记录SPDI文件内容
- 1.日    期   : 2015年2月9日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucServiceProviderPlmnNum;
@@ -2929,13 +1886,7 @@ typedef struct
     TAF_SDC_PLMN_ID_STRU                astSeriveProviderPlmn[TAF_SDC_MAX_SERVICE_PROVIDER_PLMN_NUM];
 }TAF_SDC_SPDI_FILE_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SDC_MM_INFO_STRU
- 结构说明  : 记录mm/gmm/emm information消息内容
- 1.日    期   : 2015年2月9日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     TAF_SDC_PLMN_ID_STRU                stOperatorPlmnId;
@@ -2943,13 +1894,7 @@ typedef struct
     TAF_SDC_OPERATOR_NAME_STRU          stOperatorNameLong;          /* 当前驻留网络运营商的长名称 */
 }TAF_SDC_MM_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SDC_CUSTOM_OPER_NAME_STRU
- 结构说明  : 记录50024 nv项记录的运营商定制的名称
- 1.日    期   : 2015年2月9日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     TAF_SDC_PLMN_ID_STRU                stOperatorPlmnId;
@@ -2958,13 +1903,7 @@ typedef struct
 }TAF_SDC_CUSTOM_OPER_NAME_STRU;
 
 
-/*****************************************************************************
- 结构名    : TAF_SDC_CUSTOM_OPER_NAME_INFO_STRU
- 结构说明  : 记录50024 nv项记录的运营商定制的名称
- 1.日    期   : 2015年2月9日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     TAF_SDC_CUSTOM_OPER_NAME_STRU   astCustomOperName[TAF_NVIM_STORED_OPER_NAME_NUM];
@@ -2972,13 +1911,7 @@ typedef struct
 
 
 
-/*****************************************************************************
- 结构名    : TAF_SDC_OPER_NAME_TYPE_PRIO_STRU
- 结构说明  : 运营商名称显示优先级信息
- 1.日    期   : 2015年2月11日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                   ucOperNamePrioNum;
@@ -2986,13 +1919,7 @@ typedef struct
     TAF_SDC_OPER_NAME_TYPE_ENUM_UINT8           aucOperNameTypePrio[TAF_SDC_MAX_OPER_NAME_PRIO_NUM];
 }TAF_SDC_OPER_NAME_TYPE_PRIO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SDC_ENHANCED_OPERATOR_NAME_INFO
- 结构说明  : 记录运营商名称相关信息
- 1.日    期   : 2015年2月9日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     TAF_SDC_OPER_NAME_TYPE_PRIO_STRU     stOperNameTypePrio;   /* cops或^eonsucs2查询从PNN或SPN或CPHS或NITZ获取先后顺序优先级*/
@@ -3013,50 +1940,22 @@ typedef struct
 }TAF_SDC_ENHANCED_OPERATOR_NAME_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : TAF_SDC_CDMA_MNTN_STRU
- 结构说明  : cdma 可维可测
- 1.日    期   : 2015年11月10日
-   作    者   : y00322978
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulCdmaStatusReportSuport;           /* 0:不支持上报 other:支持上报*/
     VOS_UINT32                          ulRptPeriod;                        /*可维可测上报周期*/
 }TAF_SDC_CDMA_MNTN_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SDC_CTX_STRU
- 结构说明  : SDC_CTX信息
- 1.日    期   : 2012年12月26日
-   作    者   : s46746
-   修改内容   : 新建
- 2.日    期   : 2013年3月22日
-   作    者   : z00161729
-   修改内容   : 主动上报AT命令控制下移至C核项目把mmc部分全局变量移至sdc
- 3.日    期   : 2013年5月17日
-   作    者   : w00176964
-   修改内容   : SS FDN&Call Control:增加业务相关信息
- 4.日    期   : 2014年11月24日
-   作    者   : s00217060
-   修改内容   : Service_State_Optimize_PhaseI修改
- 5.日    期   : 2015年2月9日
-   作    者   : z00161729
-   修改内容   : AT&T 支持EONS特性修改
-*****************************************************************************/
+
 typedef struct
 {
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-3-22, begin */
     TAF_SDC_CARD_INFO_STRU              stSimInfo;                              /* 卡相关信息 */
     TAF_SDC_MS_CFG_INFO_STRU            stMsCfgInfo;                            /* MS的配置信息 */
     TAF_SDC_NETWORK_INFO_STRU           stNetworkInfo;                          /* 当前驻留的网络信息 */
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-3-22, end */
     TAF_SDC_SERVICE_INFO_STRU           stServiceInfo;                          /* 当前业务相关信息 */
 
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-25, begin */
     TAF_SDC_PHONE_INFO_STRU             stPhoneInfo;
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-25, end */
 
     TAF_SDC_ERRLOG_INFO_STRU            stErrlogInfo;
 
@@ -3072,25 +1971,15 @@ typedef struct
     TAF_SDC_CDMA_MNTN_STRU              stCdmaMntn;
 }TAF_SDC_CTX_STRU;
 
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, begin */
-/*****************************************************************************
-结构名    : TAF_SDC_CELL_SIGN_REPORT_CFG_STRU
-结构说明  : 信号质量主动上报相关配置信息
-1.日    期  : 2013年5月7日
-  作    者  : s00217060
-  修改内容  : 支持^cerssi新增结构
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucSignThreshold;                        /* 信号变化门限,当RSSI变化超过该值，接入层需要主动上报信号质量，取值0表示接入层按默认值处理 */
     VOS_UINT8                           ucMinRptTimerInterval;                  /* 间隔上报的时间   */
 } TAF_SDC_CELL_SIGN_REPORT_CFG_STRU;
 
-/* Deleted by s00217060 for VoLTE_PhaseI  项目, 2013-08-05, begin */
 /* call state NV删除，call state的上报由curc统一控制 */
-/* Deleted by s00217060 for VoLTE_PhaseI  项目, 2013-08-05, end */
 
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, end */
 
 
 
@@ -3113,80 +2002,20 @@ TAF_SDC_MS_CAP_INFO_STRU*  TAF_SDC_GetMsCapInfo( VOS_VOID );
 
 TAF_SDC_PLATFORM_RAT_CAP_STRU*  TAF_SDC_GetPlatformRatCap( VOS_VOID );
 
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-1, begin */
 TAF_SDC_CURC_RPT_CTRL_STRU*  TAF_SDC_GetCurcRptCtrl( VOS_VOID );
 TAF_SDC_UNSOLICITED_RPT_CTRL_STRU*  TAF_SDC_GetUnsolicitedRptCtrl( VOS_VOID );
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-1, end */
 
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-15, begin */
-/*****************************************************************************
- 函 数 名  : TAF_SDC_GetGuNwCapInfo
- 功能描述  : get GU network capability infomation
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回保存的网络能力参数
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年7月15日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_SDC_NETWORK_CAP_INFO_STRU *TAF_SDC_GetGuNwCapInfo(VOS_VOID);
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_GetLteNwCapInfo
- 功能描述  : get LTE network capability infomation
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回保存的网络能力参数
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年7月15日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_SDC_NETWORK_CAP_INFO_STRU *TAF_SDC_GetLteNwCapInfo(VOS_VOID);
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_SetGuNwCapInfo
- 功能描述  : set GU network capability infomation
- 输入参数  : pstNwCapInfo 网络能力信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年7月15日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_SDC_SetGuNwCapInfo(TAF_SDC_NETWORK_CAP_INFO_STRU *pstNwCapInfo);
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_SetLteNwCapInfo
- 功能描述  : set LTE network capability infomation
- 输入参数  : pstNwCapInfo 网络能力信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年7月15日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_SDC_SetLteNwCapInfo(TAF_SDC_NETWORK_CAP_INFO_STRU *pstNwCapInfo);
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-15, end */
 
 
 VOS_VOID TAF_SDC_InitMsCapInfo(
@@ -3199,7 +2028,6 @@ VOS_VOID TAF_SDC_InitCtx(
     TAF_SDC_CTX_STRU                    *pstSdcCtx
 );
 
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
 TAF_SDC_SYS_MODE_ENUM_UINT8 TAF_SDC_GetSysMode( VOS_VOID );
 VOS_VOID TAF_SDC_SetSysMode(TAF_SDC_SYS_MODE_ENUM_UINT8 enSysMode);
 TAF_SDC_SYS_SUBMODE_ENUM_UINT8 TAF_SDC_GetSysSubMode( VOS_VOID );
@@ -3229,10 +2057,8 @@ VOS_VOID TAF_SDC_SetLastSimImsi( VOS_UINT8 *pstImsi );
 
 TAF_SDC_USIM_STATUS_ENUM_UINT8 TAF_SDC_GetSimStatus( VOS_VOID );
 
-/* Added by w00176964 for VoLTE_PhaseI项目, 2013-7-30, begin */
 
 TAF_SDC_SIM_TYPE_ENUM_UINT8 TAF_SDC_GetSimType( VOS_VOID );
-/* Added by w00176964 for VoLTE_PhaseI项目, 2013-7-30, end */
 VOS_VOID TAF_SDC_SetCurrCampPlmnId(TAF_SDC_PLMN_ID_STRU *pstPlmnId);
 TAF_SDC_PLMN_ID_STRU *TAF_SDC_GetCurrCampPlmnId(VOS_VOID);
 
@@ -3260,19 +2086,15 @@ TAF_SDC_ACCESS_RESTRICTION_STRU *TAF_SDC_GetCsAcRestriction(VOS_VOID);
 
 TAF_SDC_ACCESS_RESTRICTION_STRU *TAF_SDC_GetPsAcRestriction(VOS_VOID);
 
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
 TAF_SDC_LMM_ACCESS_TYPE_ENUM_UINT8 TAF_SDC_GetCurrLmmAccessType(VOS_VOID);
 VOS_VOID TAF_SDC_SetCurrLmmAccessType(TAF_SDC_LMM_ACCESS_TYPE_ENUM_UINT8 enAccessType);
 
 
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, begin */
 VOS_VOID TAF_SDC_InitCurcRptCtrlInfo(VOS_VOID);
 VOS_VOID TAF_SDC_InitUnsolicitedRptCtrlInfo(VOS_VOID);
 VOS_VOID TAF_SDC_ReadCellSignReportCfgNV( VOS_VOID );
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, end */
 
-/* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-09-23, begin */
 VOS_UINT8   TAF_SDC_GetCsCallExistFlg(VOS_VOID);
 VOS_VOID    TAF_SDC_SetCsCallExistFlg(
     VOS_UINT8                           ucInCall
@@ -3281,7 +2103,6 @@ VOS_VOID    TAF_SDC_SetImsCallExistFlg(
     VOS_UINT8                           ucImsCallExistFlg
 );
 VOS_UINT8   TAF_SDC_GetImsCallExistFlg(VOS_VOID);
-/* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-09-23, end */
 
 VOS_VOID    TAF_SDC_SetCsEccExistFlg(
     VOS_UINT8                           ucCsEccExistFlg
@@ -3290,7 +2111,6 @@ VOS_UINT8 TAF_SDC_GetCsEccExistFlg(VOS_VOID);
 
 /* 删除SRVCC标志，移到CALL模块 */
 
-/* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-16, begin */
 TAF_SDC_CALL_INFO_STRU* TAF_SDC_GetCallInfo(VOS_VOID);
 VOS_VOID TAF_SDC_SetMmCallEmerNumList(
     TAF_SDC_MM_EMERGENCY_LIST_STRU     *pstMmCallEmerNumList
@@ -3303,7 +2123,6 @@ TAF_SDC_CUSTOM_ECC_CTX_STRU* TAF_SDC_GetCustomCallEccNumCtx(VOS_VOID);
 VOS_CHAR** TAF_SDC_GetCallEmerNumsNoUsimTblAddr(VOS_VOID);
 VOS_CHAR** TAF_SDC_GetCallEmerNumsWithUsimTblAddr(VOS_VOID);
 
-/* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-16, end */
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
 VOS_CHAR** TAF_SDC_GetCdmaCallEmcNumsAddr(VOS_VOID);
 #endif
@@ -3331,15 +2150,12 @@ VOS_VOID TAF_SDC_SetCsServiceConnStatusFlag(
 TAF_SDC_TRIG_PLMN_SEARCH_SRV_TYPE_UNION *TAF_SDC_GetTrigPlmnSearchSrvType(VOS_VOID);
 
 
-/* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-16, begin */
 VOS_VOID TAF_SDC_InitCallInfo(
     TAF_SDC_CALL_INFO_STRU             *pstCallInfo
 );
 VOS_VOID TAF_SDC_ReadCustomEccNumListNvim(VOS_VOID);
 
-/* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-16, end */
 
-/* Added by s00217060 for VoLTE_PhaseI  项目, 2013-07-27, begin */
 VOS_VOID TAF_SDC_InitAppCfgSupportType(VOS_VOID);
 
 VOS_VOID TAF_SDC_InitGuNwCapInfo(
@@ -3352,20 +2168,15 @@ VOS_VOID TAF_SDC_InitNetWorkInfo(
     TAF_SDC_NETWORK_INFO_STRU *pstNetworkInfo
 );
 
-/* Added by s00217060 for VoLTE_PhaseI  项目, 2013-07-27, end */
 
-/* Add by s00217060 for K3V3 多模多天线特性, 2014-06-27, Begin */
 VOS_VOID TAF_SDC_InitCsInfo(TAF_SDC_CS_INFO_STRU *pstCsInfo);
 VOS_VOID TAF_SDC_InitPsInfo(TAF_SDC_PS_INFO_STRU *pstPsInfo);
 #if (FEATURE_ON == FEATURE_LTE)
 VOS_VOID TAF_SDC_InitEpsInfo(TAF_SDC_EPS_INFO_STRU *pstEpsInfo);
 #endif
-/* Add by s00217060 for K3V3 多模多天线特性, 2014-06-27, End */
 
 
-/* Added by y00245242 for VoLTE_PhaseII 项目, 2013-10-11, begin */
 VOS_VOID TAF_SDC_InitUeUsageSetting(VOS_VOID);
-/* Added by y00245242 for VoLTE_PhaseII 项目, 2013-10-11, end */
 
 VOS_UINT8   TAF_SDC_Get7BitToAssicTableType(VOS_VOID);
 VOS_VOID    TAF_SDC_Set7BitToAssicTableType(
@@ -3400,7 +2211,6 @@ VOS_VOID    TAF_SDC_SetCsSmsSrvExistFlg(
     VOS_UINT8                           ucCsSmsSrvExistFlg
 );
 VOS_UINT8   TAF_SDC_GetCsSmsSrvExistFlg(VOS_VOID);
-/* Added by s00217060 for VoLTE_PhaseII  项目, 2013-09-22, begin */
 VOS_VOID TAF_SDC_SetPsSmsSrvExistFlg(
     VOS_UINT8                           ucPsSmsSrvExistFlg
 );
@@ -3413,7 +2223,6 @@ VOS_VOID    TAF_SDC_SetImsSsSrvExistFlg(
     VOS_UINT8                           ucImsSsSrvExistFlg
 );
 VOS_UINT8   TAF_SDC_GetImsSsSrvExistFlg(VOS_VOID);
-/* Added by s00217060 for VoLTE_PhaseII  项目, 2013-09-22, end */
 VOS_VOID    TAF_SDC_SetCsSsSrvExistFlg(
     VOS_UINT8                           ucCsSsSrvExistFlg
 );
@@ -3424,12 +2233,10 @@ VOS_VOID TAF_SDC_InitSvlteSupportFlag(
 );
 
 
-/* Added by s00217060 for VoLTE_PhaseI  项目, 2013-07-11, begin */
 VOS_VOID TAF_SDC_InitImsRatSupport(
     TAF_SDC_INIT_CTX_TYPE_ENUM_UINT8    enInitType,
     TAF_SDC_MS_CAP_INFO_STRU           *pstMsCapInfo
 );
-/* Added by s00217060 for VoLTE_PhaseII  项目, 2013-09-22, begin */
 VOS_VOID TAF_SDC_InitImsCapability(
     TAF_SDC_INIT_CTX_TYPE_ENUM_UINT8    enInitType,
     TAF_SDC_MS_CAP_INFO_STRU           *pstMsCapInfo
@@ -3466,13 +2273,10 @@ VOS_VOID TAF_SDC_InitImsUssdCfgInfo(
     TAF_SDC_INIT_CTX_TYPE_ENUM_UINT8    enInitType,
     TAF_SDC_MS_CAP_INFO_STRU           *pstMsCapInfo
 );
-/* Added by w00167002 for L-C互操作项目, 2014-2-15, begin */
 VOS_VOID TAF_SDC_InitLcConfigPara(
     TAF_SDC_LC_CONFIG_PARA_STRU        *pstLcConfigPara
 );
-/* Added by w00167002 for L-C互操作项目, 2014-2-15, end */
 
-/* Added by s00217060 for VoLTE_PhaseII  项目, 2013-09-22, end */
 
 VOS_VOID TAF_SDC_SetGsmImsSupportFlag(
     VOS_UINT8                          ucGsmImsSupportFlag
@@ -3492,7 +2296,6 @@ VOS_VOID TAF_SDC_SetAppCfgSupportType(
 );
 VOS_UINT16 TAF_SDC_GetAppCfgSupportType(VOS_VOID);
 
-/* Added by s00217060 for VoLTE_PhaseI  项目, 2013-07-11, end */
 
 VOS_VOID TAF_SDC_SetCsAttachAllowFlg(VOS_UINT8 ucCsAttachAllowFlg);
 VOS_UINT8 TAF_SDC_GetCsAttachAllowFlg(VOS_VOID);
@@ -3515,7 +2318,15 @@ VOS_UINT8 TAF_SDC_GetErrLogReportPowerOnBeginFlag(VOS_VOID);
 VOS_VOID TAF_SDC_SetErrLogReportPowerOnBeginFlag(VOS_UINT8 ucFlag);
 VOS_UINT8 TAF_SDC_GetErrLogReportPowerOffBeginFlag(VOS_VOID);
 VOS_VOID TAF_SDC_SetErrLogReportPowerOffBeginFlag(VOS_UINT8 ucFlag);
-
+VOS_UINT8 TAF_SDC_GetErrLogImsCallFailFlag(VOS_VOID);
+VOS_VOID TAF_SDC_SetErrLogImsCallFailFlag(
+    VOS_UINT8                           ucImsCallFailFlag
+);
+VOS_UINT32 TAF_SDC_GetErrLogImsCallFailCause(VOS_VOID);
+VOS_VOID TAF_SDC_SetErrLogImsCallFailCause(
+    VOS_UINT32                          ulImsCallFailCause
+);
+VOS_VOID TAF_SDC_InitErrLogImsCallFailInfo(VOS_VOID);
 VOS_UINT8 TAF_SDC_GetErrlogActiveRptFlag(VOS_VOID);
 VOS_VOID TAF_SDC_SetErrlogActiveRptFlag(VOS_UINT8 ucActiveRptFlag);
 VOS_UINT8 TAF_SDC_GetErrlogRatSwitchRptFlag(VOS_VOID);
@@ -3570,7 +2381,6 @@ extern VOS_UINT32 TAF_SDC_GetErrLogRingBufferUseBytes(VOS_VOID);
 extern VOS_VOID TAF_SDC_CleanErrLogRingBuf(VOS_VOID);
 #endif
 
-/* Added by s00217060 for VoLTE_PhaseII  项目, 2013-09-22, begin */
 VOS_VOID TAF_SDC_SetVoiceCallOnImsSupportFlag(
     VOS_UINT8                          ucVoiceCallOnImsSupportFlag
 );
@@ -3651,9 +2461,7 @@ VOS_VOID TAF_SDC_SetMsPrioRatList(
     TAF_SDC_RAT_PRIO_STRU              *pstPrioRatList
 );
 
-/* Added by s00217060 for VoLTE_PhaseII  项目, 2013-09-22, end */
 
-/* Added by y00245242 for VoLTE_PhaseIII 项目, 2013-12-12, begin */
 VOS_UINT8 TAF_SDC_GetCallRedailFromImsToCsSupportFlag(VOS_VOID);
 
 VOS_VOID TAF_SDC_SetCallRedailFromImsToCsSupportFlag(VOS_UINT8 ucCallRedialFromImsToCs);
@@ -3665,9 +2473,7 @@ VOS_VOID TAF_SDC_SetSmsRedailFromImsToCsSupportFlag(VOS_UINT8 ucSmsRedialFromIms
 VOS_UINT8 TAF_SDC_GetRoamingSupportFlag(VOS_VOID);
 
 VOS_VOID TAF_SDC_SetRoamingSupportFlag(VOS_UINT8 ucRoamingSupport);
-/* Added by y00245242 for VoLTE_PhaseIII 项目, 2013-12-12, end */
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-14, begin */
 VOS_VOID    TAF_SDC_SetImsNormalRegStatus(
     TAF_SDC_IMS_NORMAL_REG_STATUS_ENUM_UINT8    enRegStatus
 );
@@ -3693,7 +2499,6 @@ VOS_VOID  TAF_SDC_SetCgregType(TAF_SDC_CGREG_TYPE_ENUM_UINT8 enCgregType);
 
 VOS_VOID  TAF_SDC_SetCeregType(TAF_SDC_CEREG_TYPE_ENUM_UINT8 enCeregType);
 
-/* Added by s00261364 for V3R360_eCall项目, 2014-4-4, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
 TAF_SDC_ECALL_NUM_STRU*                 TAF_SDC_GetEcallTestNumber(VOS_VOID);
 TAF_SDC_ECALL_NUM_STRU*                 TAF_SDC_GetEcallRecfgNumber(VOS_VOID);
@@ -3702,7 +2507,6 @@ VOS_VOID  TAF_SDC_SetCurCallMode(
     TAF_SDC_CALL_MODE_ENUM_UINT8        enCallMode
 );
 #endif
-/* Added by s00261364 for V3R360_eCall项目, 2014-4-4, end */
 
 VOS_VOID TAF_SDC_InitPhoneInfo(
     TAF_SDC_PHONE_INFO_STRU            *pstPhInfo
@@ -3726,7 +2530,6 @@ VOS_UINT8  TAF_SDC_GetUtranSkipWPlmnSearchFlag(VOS_VOID);
 VOS_UINT8 TAF_SDC_GetUssdOnImsSupportFlag(VOS_VOID);
 
 VOS_VOID TAF_SDC_SetUssdOnImsSupportFlag(VOS_UINT8 ucUssdOnImsSupportFlag);
-/* Added by s00261364 for L-C互操作项目, 2014-1-27, begin */
 VOS_VOID TAF_SDC_SetLCEnableFlg(
     VOS_UINT8                           ucLCEnableFlg
 );
@@ -3737,15 +2540,10 @@ VOS_UINT8 TAF_SDC_GetLCWorkCfg(VOS_VOID);
 VOS_VOID   TAF_SDC_SetLCWorkCfg(
     TAF_NVIM_LC_WORK_CFG_ENUM_UINT8     enLCWorkCfg
 );
-/* Added by s00261364 for L-C互操作项目, 2014-1-27, end */
 
-/* Added by m00217266 for L-C互操作项目, 2014-2-12, begin */
 VOS_UINT8 TAF_SDC_GetLCRatCombined(VOS_VOID);
-/* Added by m00217266 for L-C互操作项目, 2014-2-12, end */
 
-/* Added by w00167002 for L-C互操作项目, 2014-2-14, begin */
 TAF_SDC_LC_CONFIG_PARA_STRU* TAF_SDC_GetLcConfigPara(VOS_VOID);
-/* Added by w00167002 for L-C互操作项目, 2014-2-14, end */
 
 VOS_VOID TAF_SDC_SaveCsimCardType(
     USIMM_CARD_TYPE_ENUM_UINT32         enCardType
@@ -3763,16 +2561,13 @@ VOS_VOID TAF_SDC_SaveCsimCardStatus(
     USIMM_CARD_SERVIC_ENUM_UINT32       enCsimStatus
 );
 
-/* Added by w00176964 for V3R3C60_eCall项目, 2014-4-26, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
 VOS_VOID TAF_SDC_InitECallNumber(
     TAF_SDC_ECALL_NUM_STRU             *pstECallNumber
 );
 #endif
 
-/* Added by w00176964 for V3R3C60_eCall项目, 2014-4-26, end */
 
-/* Add by s00217060 for K3V3 多模多天线特性, 2014-06-27, Begin */
 VOS_VOID TAF_SDC_SetPsServiceConnStatusFlag(
     VOS_UINT8                           ucPsServiceConnStatusFlag
 );
@@ -3783,7 +2578,6 @@ VOS_VOID TAF_SDC_SetEpsServiceConnStatusFlag(
 );
 VOS_UINT8 TAF_SDC_GetEpsServiceConnStatusFlag(VOS_VOID);
 #endif
-/* Add by s00217060 for K3V3 多模多天线特性, 2014-06-27, End */
 #if (FEATURE_ON == FEATURE_BASTET)
 VOS_UINT8   TAF_SDC_GetBastetSupportFlag(VOS_VOID);
 #endif

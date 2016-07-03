@@ -1,22 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : MnCallProcVc.c
-  版 本 号   : 初稿
-  作    者   : y00245242
-  生成日期   : 2014年04月01日
-  最近修改   :
-  功能描述   : 处理VC发送给CALL模块的消息
-  函数列表   :
-
-  修改历史   :
-  1.日    期   : 2014年04月01日
-    作    者   : y00245242
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 /*****************************************************************************
@@ -51,24 +33,7 @@ LOCAL MN_CALL_INFO_STRU                   f_astCallInfos[MN_CALL_MAX_NUM];
    3 函数实现
 *****************************************************************************/
 /*lint -save -e958 */
-/*****************************************************************************
- 函 数 名  : TAF_CALL_RcvVcCallEndCall
- 功能描述  : 处理收到VC通知CALL模块呼叫结束指示
 
- 输入参数  : pstEndCall   - 消息地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年04月04日
-    作    者   : y00245242
-    修改内容   : 新增函数
-  2.日    期   :2014年9月24日
-    作    者   :s00217060
-    修改内容   :for cs_err_log
-*****************************************************************************/
 VOS_VOID TAF_CALL_RcvVcCallEndCall(VC_CALL_MSG_STRU *pstEndCall)
 {
     TAF_UINT8                           ucNumOfCalls;
@@ -93,24 +58,7 @@ VOS_VOID TAF_CALL_RcvVcCallEndCall(VC_CALL_MSG_STRU *pstEndCall)
 }
 
 #if (FEATURE_ON == FEATURE_ECALL)
-/*****************************************************************************
- 函 数 名  : TAF_CALL_ProcEcallMsdTransSuccess
- 功能描述  : 处理MSD传输成功消息
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年04月30日
-    作    者   : y00245242
-    修改内容   : 为eCall feature增加
-  2.日    期   : 2015年4月2日
-    作    者   : w00316404
-    修改内容   : clean coverity
-*****************************************************************************/
 VOS_VOID TAF_CALL_ProcEcallMsdTransSuccess(VOID)
 {
     MN_CALL_MSG_BUFF_STRU              *pstBufferdMsg = VOS_NULL_PTR;
@@ -182,21 +130,7 @@ VOS_VOID TAF_CALL_ProcEcallMsdTransSuccess(VOID)
     TAF_CALL_SetEcallMsdTransStatus(VC_CALL_ECALL_TRANS_STATUS_BUTT);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_RcvVcEcallTransStatusNtf
- 功能描述  : 处理收到VC通知CALL模块当前MSD传输的状态消息
 
- 输入参数  : pstEcallTransStatusNtf   - 消息地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年04月01日
-    作    者   : y00245242
-    修改内容   : 为eCall feature增加
-*****************************************************************************/
 VOS_VOID TAF_CALL_RcvVcEcallTransStatusNtf(VC_CALL_ECALL_TRANS_STATUS_NTF_STRU *pstEcallTransStatusNtf)
 {
 

@@ -21,6 +21,7 @@
 
 #include <asm/cpuidle.h>
 #include <asm/suspend.h>
+#include <linux/sched.h>
 
 #include "dt_idle_states.h"
 #ifdef CONFIG_HISI_CORESIGHT_TRACE
@@ -47,6 +48,10 @@ static int hisi_enter_idle_state(struct cpuidle_device *dev,
 				  struct cpuidle_driver *drv, int idx)
 {
 	int ret;
+
+	if (need_resched()) {
+		return idx;
+	}
 
 	if (!idx) {
 		cpu_do_idle();

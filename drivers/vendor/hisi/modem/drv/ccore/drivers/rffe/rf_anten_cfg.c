@@ -1,15 +1,4 @@
-/*************************************************************************
-*   版权所有(C) 1987-2020, 深圳华为技术有限公司.
-*
-*   文 件 名 :  rf_mipi_cfg.c
-*
-*   作    者 :  zuofenghua
-*
-*   描    述 :  通过mipi接口对射频器件进行控制
-*
-*   修改记录 :  2015年3月23日  v1.00  zuofenghua  创建
-*
-*************************************************************************/
+
 #include <stdio.h>
 #include <string.h>
 #include <securec.h>
@@ -91,16 +80,7 @@ int balong_rf_pin_set_mux(struct pinctrl * pctrl, unsigned int gpio_num, unsigne
 
     return 0;
 }
-/*****************************************************************************
-* 函 数    : rf_pin_to_gpio
-* 功 能    : 射频管脚和gpio编号的转换
-* 输 入    : @pin 射频管脚编号
 
-* 输 出    : 无
-* 返 回    : 非0为成功，0xffff为失败
-* 作 者    :z00228752
-* 说 明    :内部接口
-*****************************************************************************/
 unsigned int balong_rf_pin_to_gpio(unsigned int pin)
 {
 
@@ -112,16 +92,7 @@ unsigned int balong_rf_pin_to_gpio(unsigned int pin)
     return g_rfpin2gpio.cfg[pin];
 }
 
-/*****************************************************************************
-* 函 数    : balong_rf_config_anten_pin_function
-* 功 能    : 射频管脚输出电平配置，0为低电平，1为高电平
-* 输 入    : @pin 射频管脚编号
 
-* 输 出    : 无
-* 返 回    : 非0为成功，-1为失败
-* 作 者    : z00228752
-* 说 明    : 内部接口
-*****************************************************************************/
 int balong_rf_config_anten_pin(u32 pin_mask, u32 pin_value , u32 pin_func)
 {
     u32 i;
@@ -163,16 +134,7 @@ int balong_rf_config_anten_pin(u32 pin_mask, u32 pin_value , u32 pin_func)
 }
 
 
-/*****************************************************************************
-* 函 数    : balong_rf_config_anten_pin_function
-* 功 能    : modem开机时射频管脚配置
-* 输 入    : @pin 射频管脚编号
 
-* 输 出    : 无
-* 返 回    : 非0为成功，-1为失败
-* 作 者    :z00228752
-* 说 明    :内部接口
-*****************************************************************************/
 int balong_rf_config_anten_common(RFFE_PIN_STRU * pin_info)
 {
     int ret        = RFFE_OK;
@@ -201,16 +163,7 @@ int balong_rf_config_anten_common(RFFE_PIN_STRU * pin_info)
     return ret;
 }
 
-/*****************************************************************************
-* 函 数    : balong_rf_config_anten_pin_function
-* 功 能    : modem开机时射频管脚配置
-* 输 入    : @pin 射频管脚编号
 
-* 输 出    : 无
-* 返 回    : 非0为成功，-1为失败
-* 作 者    :z00228752
-* 说 明    :内部接口
-*****************************************************************************/
 int balong_rf_config_anten_poweron(u32 modem_id)
 {
     int ret        = RFFE_OK;
@@ -232,16 +185,7 @@ int balong_rf_config_anten_poweron(u32 modem_id)
     return ret;
 }
 
-/*****************************************************************************
-* 函 数    : balong_rf_config_anten_pin_function
-* 功 能    : modem关机时射频管脚配置
-* 输 入    : @pin 射频管脚编号
 
-* 输 出    : 无
-* 返 回    : 非0为成功，-1为失败
-* 作 者    :z00228752
-* 说 明    :内部接口
-*****************************************************************************/
 int balong_rf_config_anten_poweroff(u32 modem_id)
 {
     int ret = RFFE_OK;
@@ -263,16 +207,7 @@ int balong_rf_config_anten_poweroff(u32 modem_id)
     return ret;
 }
 
-/*****************************************************************************
-* 函 数    : balong_rf_config_anten_pin_function
-* 功 能    : 两个modem开机时射频管脚配置
-* 输 入    : @pin 射频管脚编号
 
-* 输 出    : 无
-* 返 回    : 非0为成功，-1为失败
-* 作 者    :z00228752
-* 说 明    :内部接口
-*****************************************************************************/
 int balong_rf_config_anten_allpoweroff( void )
 {
     int ret = RFFE_OK;
@@ -288,16 +223,7 @@ int balong_rf_config_anten_allpoweroff( void )
 
     return ret;
 }
-/*****************************************************************************
-* 函 数    : balong_anten_event_report_oam
-* 功 能    : 天线插拔时，上报到oam
-* 输 入    : @para 上报消息参数
 
-* 输 出    : 无
-* 返 回    : 非0为成功，-1为失败
-* 作 者    :z00228752
-* 说 明    :内部接口
-*****************************************************************************/
 void balong_anten_event_report_oam(void *para)
 {
     struct anten_msg_stru msg = {0, 0};
@@ -320,16 +246,7 @@ void balong_anten_event_report_oam(void *para)
 
 }
 
-/*****************************************************************************
-* 函 数    : balong_anten_data_receive
-* 功 能    : 天线插拔时，接收a核的消息
-* 输 入    : @para 上报消息参数
 
-* 输 出    : 无
-* 返 回    : 非0为成功，-1为失败
-* 作 者    :z00228752
-* 说 明    :内部接口
-*****************************************************************************/
 int balong_anten_data_receive(void)
 {    
     int len = 0;
@@ -437,16 +354,7 @@ s32 balong_tdsl_gsm_interference_init(void)
 #endif
 }
 
-/*****************************************************************************
-* 函 数    : balong_fem_io_debuginfo_add
-* 功 能    : 射频管脚接口调试信息
-* 输 入    : @mipi_nv  nvid号为18002中，mipi配置方式的索引号
 
-* 输 出    : 无
-* 返 回    : 0为成功，-1为失败
-* 作 者    :z00228752
-* 说 明    :内部调试接口
-*****************************************************************************/
 void balong_fem_io_debuginfo_add(void* caller,u32 para1,u32 para2,u32 para3,int ret)
 {
     u32 i = para1%FEM_IO_CFG_MAX;
@@ -458,16 +366,7 @@ void balong_fem_io_debuginfo_add(void* caller,u32 para1,u32 para2,u32 para3,int 
     g_femio_debug[i].ret         = ret;
 }
 
-/*****************************************************************************
-* 函 数    : fem_iocfg_group_mipi
-* 功 能    : 射频管脚本置--mipi配置方式
-* 输 入    : @mipi_nv  nvid号为18002中，mipi配置方式的索引号
 
-* 输 出    : 无
-* 返 回    : 0为成功，-1为失败
-* 作 者    :z00228752
-* 说 明    :内部接口
-*****************************************************************************/
 static int balong_fem_iocfg_group_mipi(u32 nv_index)
 {
     int ret      = 0;
@@ -481,16 +380,7 @@ static int balong_fem_iocfg_group_mipi(u32 nv_index)
     return ret;
 }
 
-/*****************************************************************************
-* 函 数    : fem_iocfg_group_gpio
-* 功 能    : 射频管脚本置--gpio配置方式
-* 输 入    : @gpio_nv  nvid号为18002中，gpio配置方式的索引号
 
-* 输 出    : 无
-* 返 回    : 0为成功，-1为失败
-* 作 者    :z00228752
-* 说 明    :内部接口
-*****************************************************************************/
 static int balong_fem_iocfg_group_gpio(u32 nv_index, u32 mux)
 {
     u32 i= 0;
@@ -539,18 +429,7 @@ static int balong_fem_iocfg_group_gpio(u32 nv_index, u32 mux)
     return 0;
 }
 
-/*****************************************************************************
-* 函 数    : balong_fem_iocfg_group_gpio_mipi_with_nv
-* 功 能    : 射频管脚本置
-* 输 入    : @type,0为gpio配置方式
-                    @gpio_nv    nvid号为18002中，gpio配置方式的索引号
-                    @mipi_nv     nvid号为18002中，gpio配置方式的索引号              
 
-* 输 出    : 无
-* 返 回    : 0为成功，-1为失败
-* 作 者    : z00228752
-* 说 明    : 内部接口
-*****************************************************************************/
 static int balong_fem_iocfg_group_gpio_mipi_with_nv(u32 nv_index, u32 mux)
 {
     FEMIO_CTRL_MODE type = FEMIO_CTRL_TOP;
@@ -588,18 +467,7 @@ static int balong_fem_iocfg_group_gpio_mipi_with_nv(u32 nv_index, u32 mux)
     }
     return ret;
 }
-/*****************************************************************************
-* 函 数    : balong_fem_iocfg_gpio_no_nv
-* 功 能    : 射频管脚本置
-* 输 入    : @gpio, 为gpio编号
-                    @mux    管脚复用配置，0为GPIO，1为线控
-                    @value  管脚输出电平值 ,0为输出低电平，1为输出低电平
 
-* 输 出    : 无
-* 返 回    : 0为成功，-1为失败
-* 作 者    : z00228752
-* 说 明    : 内部接口
-*****************************************************************************/
 static int balong_fem_iocfg_gpio_no_nv(u32 gpio, u32 mux, u32 value)
 {
     int ret = RFFE_OK;
@@ -623,18 +491,7 @@ static int balong_fem_iocfg_gpio_no_nv(u32 gpio, u32 mux, u32 value)
     return ret;
 }
 
-/*****************************************************************************
-* 函 数    : balong_fem_iocfg_gpio_with_resume
-* 功 能    : 射频管脚本置
-* 输 入    : @gpio, 为gpio编号
-                    @mux    管脚复用配置，0为GPIO，1为线控
-                    @value  管脚输出电平值 ,0为输出低电平，1为输出低电平
 
-* 输 出    : 无
-* 返 回    : 0为成功，-1为失败
-* 作 者    : z00228752
-* 说 明    : 内部接口
-*****************************************************************************/
 static int balong_fem_iocfg_gpio_with_resume(u32 gpio, u32 mux, u32 value)
 {
     int ret = RFFE_OK;
@@ -674,16 +531,7 @@ static int balong_fem_iocfg_gpio_with_resume(u32 gpio, u32 mux, u32 value)
     return ret;
 }
 
-/*****************************************************************************
-* 函 数    : balong_rf_gpio_comm_config
-* 功 能    : 射频gpio通用配置函数(参照18022nv )
-* 输 入    : @nv_index nv编号
 
-* 输 出    : 无
-* 返 回    : 非0为成功，-1为失败
-* 作 者    :z00228752
-* 说 明    :内部接口
-*****************************************************************************/
 int balong_rf_gpio_comm_config(u32 nv_index)
 {
     u32 gpio = g_comm_gpio.profile[nv_index].gpio_num;
@@ -708,17 +556,7 @@ int balong_rf_gpio_comm_config(u32 nv_index)
 
 }
 
-/*****************************************************************************
-* 函 数    : balong_rf_pin_dts_modify
-* 功 能    : 射频gpio通用配置函数(参照18022nv )
-* 输 入    : @nv_index nv编号
-                     @dts_mode init/lowpower/normal
 
-* 输 出    : 无
-* 返 回    : 非0为成功，-1为失败
-* 作 者    :z00228752
-* 说 明    :内部接口
-*****************************************************************************/
 int balong_rf_pin_dts_modify(u32 nv_index, u32 dts_mode)
 {
     u32 gpio = g_comm_gpio.profile[nv_index].gpio_num;
@@ -750,16 +588,7 @@ int balong_rf_pin_dts_modify(u32 nv_index, u32 dts_mode)
 
 }
 
-/*****************************************************************************
-* 函 数    : balong_rf_mipi_comm_config
-* 功 能    : 射频mipi通用配置函数(参照18022nv )
-* 输 入    : @nv_index nv编号
 
-* 输 出    : 无
-* 返 回    : 非0为成功，-1为失败
-* 作 者    : z00228752
-* 说 明    : 内部接口
-*****************************************************************************/
 int balong_rf_mipi_comm_config(u32 nv_index)
 {
     int ret      = 0;
@@ -773,16 +602,7 @@ int balong_rf_mipi_comm_config(u32 nv_index)
     return ret;
 }
 
-/*****************************************************************************
-* 函 数    : balong_rf_anten_resume
-* 功 能    : 天线相关低功耗唤醒
-* 输 入    : 无
 
-* 输 出    : 无
-* 返 回    : 非0为成功，-1为失败
-* 作 者    : z00228752
-* 说 明    : 内部接口
-*****************************************************************************/
 int balong_rf_anten_resume(void)
 {
     int ret      = 0;
@@ -796,16 +616,7 @@ int balong_rf_anten_resume(void)
     return ret;
 }
 
-/*****************************************************************************
-* 函 数    : balong_rf_anten_suspend
-* 功 能    : 天线相关低功耗睡眠配置
-* 输 入    : 无
 
-* 输 出    : 无
-* 返 回    : 非0为成功，-1为失败
-* 作 者    : z00228752
-* 说 明    : 内部接口
-*****************************************************************************/
 int balong_rf_anten_suspend(void)
 {
     int ret      = 0;
@@ -819,36 +630,7 @@ int balong_rf_anten_suspend(void)
     return ret;
 }
 
-/*****************************************************************************
-* 函 数    : bsp_fem_ioctrl
-* 功 能    : 射频管脚配置
-* 输 入    : @ctrl_type  接口类型，1为gpio、mipi参照NV配置，2为直接传参配置
 
-               ctrl_type = CFG_RFFE_GROUP_GPIO_MIPI
-              @para1 is nvindex    nv  项索引，取值为0-15，此参数参见nv手册18002
-              @para2 is mux         管脚复用配置，0为gpio功能，1为线控功能
-              @para3 is reserved   保留
-
-               ctrl_type = CFG_RFFFE_SET_PIN_NO_NV
-              @para1 is gpio num    gpio编号
-              @para2 is mux           管脚复用配置，0为gpio功能，1为线控功能
-              @para3 is value         若para2为gpio功能，则value为输出电平
-
-               ctrl_type = CFG_RFFE_SET_PIN_WITH_RESUEM(在1的基础上，增加低功耗功能)
-              @para1 is gpio num      gpio编号
-              @para2 is mux          管脚复用配置，0为gpio功能，1为线控功能
-              @para3 is value           若para2为gpio功能，则value为输出电平
-
-               ctrl_type = CFG_VIA_MODEM_IS_ACTIVE(外置modem是否在位)
-              @para1 is active        0表示不在位，1表示在位
-              @para2 is mux        保留
-              @para3 is value            保留
-
-* 输 出    : 无
-* 返 回    : 0为成功，-1为失败
-* 作 者    : z00228752
-* 说 明    : 此接口在手机平台使用，MBB不设及，打桩即可
-*****************************************************************************/
 int bsp_fem_ioctrl(FEMIO_CTRL_TYPE ctrl_type, unsigned int para1, unsigned int para2, unsigned int para3)
 {
     int ret = 0;
@@ -894,17 +676,7 @@ int bsp_fem_ioctrl(FEMIO_CTRL_TYPE ctrl_type, unsigned int para1, unsigned int p
     return ret;
 }
 
-/*****************************************************************************
-* 函 数    : bsp_anten_get_lockstate
-* 功 能    : 获取天线有线无线连接状态接口
-* 输 入    : @modem_id,modem编号
 
-* 输 出    : @status    有线为1,无线为0
-
-* 返 回    : 0为成功，-1为失败
-* 作 者    : z00228752
-* 说 明    : 内部接口
-*****************************************************************************/
 int bsp_anten_get_lockstate(PWC_COMM_MODEM_E modem_id, unsigned int *status)
 {
     int value = 0;
@@ -934,18 +706,7 @@ int bsp_anten_get_lockstate(PWC_COMM_MODEM_E modem_id, unsigned int *status)
     return RFFE_OK;
 }
 
-/*****************************************************************************
-* 函 数    : bsp_anten_set_outer_rfswitch
-* 功 能    : NAS专用接口
-                    外接Modem的天线选择控制接口
-                    当前单板不支持此功能（对应NV项为全0），或者其他异常 返回-1
-* 输 入    : @status 1:外接Modem天线功能，0：非外接Modem天线功能
 
-* 输 出    : 无
-
-* 返 回    : 0为成功，-1为失败
-* 作 者    : z00228752
-*****************************************************************************/
 int bsp_anten_set_outer_rfswitch(unsigned int status)
 {   
     unsigned int i          = 0;
@@ -987,18 +748,7 @@ int bsp_anten_set_outer_rfswitch(unsigned int status)
 
     return ret;
 }
-/*****************************************************************************
-* 函 数    : bsp_anten_get_outer_rfswitch
-* 功 能    : NAS专用接口
-                    外接Modem的天线选择查询接口
-                    当前单板不支持此功能（对应NV项为全0），或者其他异常 返回-1
-* 输 入    : 无
 
-* 输 出    : @status 1:外接Modem天线功能，0：非外接Modem天线功能
-
-* 返 回    : 0为成功，-1为失败
-* 作 者    : z00228752
-*****************************************************************************/
 int bsp_anten_get_outer_rfswitch(unsigned int *status)
 {
     unsigned int i      = 0;
@@ -1044,18 +794,7 @@ int bsp_anten_get_outer_rfswitch(unsigned int *status)
     return 0;
 }
 
-/*****************************************************************************
-* 函 数    : bsp_anten_set_mode
-* 功 能    : DSP专用接口,GPIO共天线设置
-* 输 入    : @mode:天线模式
-*                   ANT_LTE     =  0, lte分集天线
-*                   ANT_GSM     =  1, GSM副卡天线
 
-* 输 出    : @status 1:外接Modem天线功能，0：非外接Modem天线功能
-
-* 返 回    : 0:正确，-1:错误
-* 作 者    : z00228752
-*****************************************************************************/
 int bsp_anten_set_mode(GPIO_ANT_MODESET_E mode)
 {
     unsigned int i     = 0;
@@ -1114,18 +853,7 @@ int bsp_anten_set_mode(GPIO_ANT_MODESET_E mode)
     return ret;
 }
 
-/*****************************************************************************
-* 函 数    : bsp_anten_int_install
-* 功 能    : 注册oam的天线插拔回调函数
-* 输 入    : @modem id
-                     @routine 回调函数
-                     @ para 参数
 
-* 输 出    : 无
-* 返 回    : 非0为成功，-1为失败
-* 作 者    :z00228752
-* 说 明    :内部接口
-*****************************************************************************/
 void bsp_anten_int_install(PWC_COMM_MODEM_E modem_id, void* routine,int para)
 {
     if(NULL == routine || (modem_id >= PWC_COMM_MODEM_BUTT))
@@ -1136,16 +864,7 @@ void bsp_anten_int_install(PWC_COMM_MODEM_E modem_id, void* routine,int para)
     g_detect.routine[modem_id] = (ANTEN_FUNCPTR)routine;
 }
 
-/*****************************************************************************
-* 函 数    : bsp_rf_gpio_comm_config
-* 功 能    : 射频gpio通用配置函数(参照18022nv )
-* 输 入    : @nv_index nv编号
 
-* 输 出    : 无
-* 返 回    : 非0为成功，-1为失败
-* 作 者    :z00228752
-* 说 明    :内部接口
-*****************************************************************************/
 int bsp_rf_gpio_comm_config(u32 nv_index, u32 modify_dts, u32 dts_mode)
 {
     int ret = 0 ;
@@ -1163,31 +882,13 @@ int bsp_rf_gpio_comm_config(u32 nv_index, u32 modify_dts, u32 dts_mode)
     return ret;
 }
 
-/*****************************************************************************
-* 函 数    : bsp_rf_mipi_comm_config
-* 功 能    : 射频mipi通用配置函数(参照18022nv )
-* 输 入    : @nv_index nv编号
 
-* 输 出    : 无
-* 返 回    : 非0为成功，-1为失败
-* 作 者    : z00228752
-* 说 明    : 内部接口
-*****************************************************************************/
 int bsp_rf_mipi_comm_config(u32 nv_index)
 {
     return balong_rf_mipi_comm_config(nv_index);
 }
 
-/*****************************************************************************
-* 函 数    : balong_rf_config_anten_init
-* 功 能    : 天线配置初始化
-* 输 入    : 无
 
-* 输 出    : 无
-* 返 回    : 非0为成功，-1为失败
-* 作 者    : z00228752
-* 说 明    : 内部接口
-*****************************************************************************/
 int balong_rf_config_anten_init(void)
 {
     int ret = 0;

@@ -37,7 +37,6 @@ VOID DHCPM_AlarmTimerProc(VOID);
 VOID DHCPM_CDBRegCallBack(VOID);
 ULONG DHCPM_ModDhcpServerGroupNode(LAP_DHCP_CFG_S * pstDhcpServerGrpInfo);
 ULONG DHCPM_RemoveDhcpServerByIndex(ULONG ulDhcpIndex);
-/*m00221573  全文件pclint 2012-10-16 start*/
 extern ULONG DHCPM_GetDhcpSrvCfgByIndex(ULONG ulDhcpIndex, LAP_DHCP_CFG_S *pstDhcpServer);
 extern inline ULONG DHCPM_GetRetransmitTimeOutByIndex(ULONG ulDhcpIndex, UCHAR *pucRetransmitTimeOut);
 extern ULONG DHCPM_DbgInit(VOID);
@@ -45,7 +44,6 @@ extern VOID DHCPM_AlarmProcByDhcpServerIndex(ULONG ulDhcpIndex, ULONG ulAlarmDow
 extern ULONG DHCPM_CommInit1(VOID);
 extern ULONG DHCPM_CommInit3(VOID);
 extern ULONG DHCPM_StartWorkProc(VOID);
-/*m00221573  全文件pclint 2012-10-16 end*/
 extern VOS_BOOL PSM_Inf_IsOnlySGRestarted(VOID);
 
 

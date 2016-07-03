@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : dmac_fcs.c
-  版 本 号   : 初稿
-  作    者   : g00196511 gaolin
-  生成日期   : 2012年12月13日
-  最近修改   :
-  功能描述   : 调度算法
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年12月13日
-    作    者   : gaolin
-    修改内容   : 创建文件
-
-******************************************************************************/
 #ifdef  __cplusplus
 #if     __cplusplus
 extern  "C" {
@@ -80,22 +63,7 @@ OAL_STATIC oal_void mac_fcs_notify_chain_init(mac_fcs_notify_chain_stru *pst_cha
 {
     oal_memset(pst_chain, 0, sizeof(mac_fcs_notify_chain_stru));
 }
-/*****************************************************************************
- 函 数 名  : mac_fcs_set_channel
- 功能描述  : 用于FCS的设置信道接口，不会重启MAC
- 输入参数  : mac_device_stru    *pst_mac_device
-             mac_channel_stru   *pst_channel
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月22日
-    作    者   : gaolin
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  mac_fcs_set_channel(mac_device_stru    *pst_mac_device,
                                 mac_channel_stru   *pst_channel)
 {
@@ -163,23 +131,7 @@ oal_uint32  mac_fcs_set_channel(mac_device_stru    *pst_mac_device,
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_fcs_init
- 功能描述  : FCS初始化接口
- 输入参数  : mac_fcs_mgr_stru  *pst_fcs_mgr
-             oal_uint8           uc_chip_id
-             oal_uint8           uc_device_id
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月22日
-    作    者   : gaolin
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32    mac_fcs_init(mac_fcs_mgr_stru  *pst_fcs_mgr,
                             oal_uint8         uc_chip_id,
                             oal_uint8         uc_device_id)
@@ -217,23 +169,7 @@ oal_uint32    mac_fcs_init(mac_fcs_mgr_stru  *pst_fcs_mgr,
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_fcs_request
- 功能描述  : 申请占用FCS
- 输入参数  : mac_fcs_mgr_stru             *pst_fcs_mgr
-             mac_fcs_state_enum_uint8     *puc_state
-             mac_fcs_cfg_stru             *pst_fcs_cfg
- 输出参数  : 无
- 返 回 值  : mac_fcs_err_enum_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月22日
-    作    者   : gaolin
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 mac_fcs_err_enum_uint8  mac_fcs_request(mac_fcs_mgr_stru             *pst_fcs_mgr,
                                         mac_fcs_state_enum_uint8     *puc_state,
                                         mac_fcs_cfg_stru             *pst_fcs_cfg)
@@ -281,21 +217,7 @@ mac_fcs_err_enum_uint8  mac_fcs_request(mac_fcs_mgr_stru             *pst_fcs_mg
 
     return en_ret;
 }
-/*****************************************************************************
- 函 数 名  : mac_fcs_release
- 功能描述  : 释放FCS
- 输入参数  : mac_fcs_mgr_stru *pst_fcs_mgr
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月22日
-    作    者   : gaolin
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void    mac_fcs_release(mac_fcs_mgr_stru *pst_fcs_mgr)
 {
 #if 0
@@ -312,21 +234,7 @@ oal_void    mac_fcs_release(mac_fcs_mgr_stru *pst_fcs_mgr)
     pst_fcs_mgr->en_fcs_state = MAC_FCS_STATE_STANDBY;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_fcs_flush_event_by_channel
- 功能描述  : fcs切信道之前flush事件队列
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月20日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void  mac_fcs_flush_event_by_channel(mac_device_stru *pst_mac_device, mac_channel_stru *pst_chl)
 {
     oal_uint8               uc_vap_idx;
@@ -348,21 +256,7 @@ OAL_STATIC oal_void  mac_fcs_flush_event_by_channel(mac_device_stru *pst_mac_dev
     }
 }
 
-/*****************************************************************************
- 函 数 名  : mac_fcs_wait_one_packet_done
- 功能描述  : 等待one packet中断
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月20日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  mac_fcs_wait_one_packet_done(mac_fcs_mgr_stru *pst_fcs_mgr)
 {
     oal_uint32 ul_delay_cnt = 0;
@@ -385,21 +279,7 @@ OAL_STATIC oal_uint32  mac_fcs_wait_one_packet_done(mac_fcs_mgr_stru *pst_fcs_mg
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_fcs_send_one_packet_start
- 功能描述  : 发送一次one packet 报文
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月20日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void mac_fcs_send_one_packet_start(mac_fcs_mgr_stru *pst_fcs_mgr,
                                             hal_one_packet_cfg_stru *pst_one_packet_cfg,
                                             hal_to_dmac_device_stru *pst_device,
@@ -439,24 +319,7 @@ oal_void mac_fcs_send_one_packet_start(mac_fcs_mgr_stru *pst_fcs_mgr,
     }
 }
 
-/*****************************************************************************
- 函 数 名  : mac_fcs_start
- 功能描述  : 启动one packet，将发送队列保存到虚假队列，切信道
- 输入参数  : pst_fcs_mgr: fcs mgr
-             pst_fcs_cfg: fcs配置
-             uc_fake_tx_q_id: 将当前硬件队列帧保存到哪个虚假队列中去
-             mac_fcs_cfg_stru    *pst_fcs_cfg
- 输出参数  : pst_status: 获取one packet的状态
- 返 回 值  : mac_fcs_err_enum_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月22日
-    作    者   : gaolin
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 mac_fcs_err_enum_uint8    mac_fcs_start(
                 mac_fcs_mgr_stru            *pst_fcs_mgr,
                 mac_fcs_cfg_stru            *pst_fcs_cfg,
@@ -515,7 +378,6 @@ mac_fcs_err_enum_uint8    mac_fcs_start(
     /* 函数封装 */
     mac_fcs_send_one_packet_start(pst_fcs_mgr, &pst_fcs_mgr->pst_fcs_cfg->st_one_packet_cfg, pst_device, pst_status, OAL_TRUE);
 
-    /* DTS2015080801407 发null data等待ACK时可能导致one packet超时，开关一下pa */
 #if (_PRE_PRODUCT_ID == _PRE_PRODUCT_ID_HI1102_DEV)
     hal_disable_machw_phy_and_pa(pst_device);
 #ifdef _PRE_WLAN_FEATURE_BTCOEX
@@ -560,24 +422,7 @@ mac_fcs_err_enum_uint8    mac_fcs_start(
 }
 
 
-/*****************************************************************************
- 函 数 名  : mac_fcs_start_enhanced
- 功能描述  : 增强版FCS接口，启动两次onepacket 用于双STA背景扫描
- 输入参数  : pst_fcs_mgr: fcs mgr
-             pst_fcs_cfg: fcs配置
-             uc_fake_tx_q_id: 将当前硬件队列帧保存到哪个虚假队列中去
-             mac_fcs_cfg_stru    *pst_fcs_cfg
- 输出参数  : pst_status: 获取one packet的状态
- 返 回 值  : mac_fcs_err_enum_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月22日
-    作    者   : gaolin
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 mac_fcs_err_enum_uint8    mac_fcs_start_enhanced(
                 mac_fcs_mgr_stru            *pst_fcs_mgr,
                 mac_fcs_cfg_stru            *pst_fcs_cfg)
@@ -691,24 +536,7 @@ mac_fcs_err_enum_uint8    mac_fcs_start_enhanced(
     return MAC_FCS_SUCCESS;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_fcs_notify_chain_register
- 功能描述  : 注册FCS通知链
- 输入参数  : mac_fcs_mgr_stru               *pst_fcs_mgr
-             mac_fcs_notify_type_enum_uint8  uc_notify_type
-             mac_fcs_hook_id_enum_uint8      en_hook_id
-             mac_fcs_notify_func             p_func
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月22日
-    作    者   : gaolin
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 mac_fcs_notify_chain_register(mac_fcs_mgr_stru               *pst_fcs_mgr,
                                          mac_fcs_notify_type_enum_uint8  uc_notify_type,
                                          mac_fcs_hook_id_enum_uint8      en_hook_id,
@@ -728,22 +556,7 @@ oal_uint32 mac_fcs_notify_chain_register(mac_fcs_mgr_stru               *pst_fcs
 
     return  OAL_SUCC;
 }
-/*****************************************************************************
- 函 数 名  : mac_fcs_notify
- 功能描述  : 触发FCS通知链
- 输入参数  : mac_fcs_mgr_stru                *pst_fcs_mgr
-             mac_fcs_notify_type_enum_uint8   uc_notify_type
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月22日
-    作    者   : gaolin
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 mac_fcs_notify(mac_fcs_mgr_stru                *pst_fcs_mgr,
                           mac_fcs_notify_type_enum_uint8   uc_notify_type)
 {
@@ -774,23 +587,7 @@ oal_uint32 mac_fcs_notify(mac_fcs_mgr_stru                *pst_fcs_mgr,
 
     return OAL_SUCC;
 }
-/*****************************************************************************
- 函 数 名  : mac_fcs_notify_chain_unregister
- 功能描述  : 注销FCS通知链
- 输入参数  : mac_fcs_mgr_stru               *pst_fcs_mgr
-             mac_fcs_notify_type_enum_uint8  uc_notify_type
-             mac_fcs_hook_id_enum_uint8      en_hook_id
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月22日
-    作    者   : gaolin
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 mac_fcs_notify_chain_unregister(mac_fcs_mgr_stru               *pst_fcs_mgr,
                                            mac_fcs_notify_type_enum_uint8  uc_notify_type,
                                            mac_fcs_hook_id_enum_uint8      en_hook_id)
@@ -808,21 +605,7 @@ oal_uint32 mac_fcs_notify_chain_unregister(mac_fcs_mgr_stru               *pst_f
 
     return OAL_SUCC;
 }
-/*****************************************************************************
- 函 数 名  : mac_fcs_notify_chain_destroy
- 功能描述  : 销毁FCS通知链
- 输入参数  : mac_fcs_mgr_stru *pst_fcs_mgr
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月22日
-    作    者   : gaolin
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 mac_fcs_notify_chain_destroy(mac_fcs_mgr_stru *pst_fcs_mgr)
 {
     oal_uint8   uc_idx;
@@ -840,41 +623,13 @@ oal_uint32 mac_fcs_notify_chain_destroy(mac_fcs_mgr_stru *pst_fcs_mgr)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_fcs_get_prot_mode
- 功能描述  : 获取保护帧发送模式
- 输入参数  : mac_vap_stru *pst_src_vap
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月31日
-    作    者   : gaolin
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  mac_fcs_get_prot_mode(mac_vap_stru *pst_src_vap)
 {
     return 0;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_fcs_get_prot_datarate
- 功能描述  : 获取保护帧速率
- 输入参数  : mac_vap_stru *pst_src_vap
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月31日
-    作    者   : gaolin
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  mac_fcs_get_prot_datarate(mac_vap_stru *pst_src_vap)
 {
     /* OFDM 6M: 0x004b0113 */
@@ -889,21 +644,7 @@ oal_uint32  mac_fcs_get_prot_datarate(mac_vap_stru *pst_src_vap)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : mac_fcs_prepare_one_packet_cfg
- 功能描述  : 准备one packet参数
- 输入参数  : us_protect_time: ms, 用于设置CTS的duration
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月21日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  mac_fcs_prepare_one_packet_cfg(
                 mac_vap_stru                *pst_mac_vap,
                 hal_one_packet_cfg_stru     *pst_one_packet_cfg,
@@ -922,7 +663,6 @@ oal_void  mac_fcs_prepare_one_packet_cfg(
 
     if (HAL_FCS_PROTECT_TYPE_NULL_DATA == pst_one_packet_cfg->en_protect_type)
     {
-        /* DTS2015081100355 背景扫描发送的null data BSSID填错，改为0x1100表示ToAP */
         mac_null_data_encap(pst_one_packet_cfg->auc_protect_frame,
                     (WLAN_PROTOCOL_VERSION | WLAN_FC0_TYPE_DATA | WLAN_FC0_SUBTYPE_NODATA | 0x1100),
                     pst_mac_vap->auc_bssid,
@@ -932,21 +672,7 @@ oal_void  mac_fcs_prepare_one_packet_cfg(
 
 
 #ifdef _PRE_WLAN_FEATURE_DBAC
-/*****************************************************************************
- 函 数 名  : alg_dbac_get_fake_q_id
- 功能描述  : 根据vap获取虚假队列q id
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月9日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  mac_fcs_get_fake_q_id(mac_vap_stru *pst_mac_vap, oal_uint8 *puc_q_id)
 {
     mac_device_stru     *pst_mac_device;
@@ -983,21 +709,7 @@ oal_uint32  mac_fcs_get_fake_q_id(mac_vap_stru *pst_mac_vap, oal_uint8 *puc_q_id
 }
 
 
-/*****************************************************************************
- 函 数 名  : mac_fcs_update_dbac_config
- 功能描述  : 更新dbac运行中的信道配置信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月7日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  mac_fcs_update_dbac_config(mac_vap_stru *pst_mac_vap)
 {
     mac_device_stru     *pst_mac_device;
@@ -1074,21 +786,7 @@ oal_module_symbol(mac_fcs_update_dbac_config);
 
 OAL_STATIC mac_fcs_verify_stat_stru   g_st_fcs_verify_stat;
 
-/*****************************************************************************
- 函 数 名  : mac_fcs_verify_init
- 功能描述  : 初始化统计
- 输入参数  : oal_void
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月19日
-    作    者   : gaolin
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void mac_fcs_verify_init(oal_void)
 {
     OAL_MEMZERO(&g_st_fcs_verify_stat, OAL_SIZEOF(g_st_fcs_verify_stat));
@@ -1100,21 +798,7 @@ oal_void mac_fcs_verify_init(oal_void)
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : mac_fcs_verify_start
- 功能描述  : 开始统计
- 输入参数  : oal_void
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月19日
-    作    者   : gaolin
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void mac_fcs_verify_start(oal_void)
 {
     OAL_MEMZERO(&g_st_fcs_verify_stat, OAL_SIZEOF(g_st_fcs_verify_stat));
@@ -1129,21 +813,7 @@ oal_void mac_fcs_verify_start(oal_void)
 
 }
 
-/*****************************************************************************
- 函 数 名  : mac_fcs_verify_timestamp
- 功能描述  : 打时间戳
- 输入参数  : mac_fcs_stage_enum_uint8 en_stage
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月19日
-    作    者   : gaolin
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void mac_fcs_verify_timestamp(mac_fcs_stage_enum_uint8 en_stage)
 {
     if(g_st_fcs_verify_stat.en_enable)
@@ -1170,21 +840,7 @@ oal_void mac_fcs_verify_timestamp(mac_fcs_stage_enum_uint8 en_stage)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : mac_fcs_verify_stop
- 功能描述  : 停止统计
- 输入参数  : oal_void
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月19日
-    作    者   : gaolin
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void mac_fcs_verify_stop(oal_void)
 {
     oal_uint16  us_item_idx;

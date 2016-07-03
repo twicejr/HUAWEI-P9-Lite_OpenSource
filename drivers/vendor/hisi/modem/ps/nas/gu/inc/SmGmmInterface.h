@@ -1,19 +1,4 @@
-/*******************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : SmGmmInterface.h
-  Description : SM与GMM接口头文件
-  History     :
-      1.  张志勇     2003.12.05   文件头作成
-      2.日    期  : 2006年12月4日
-        作    者  : luojian id:60022475
-        修改内容  : 增加 #pragma pack(4)，问题单号:A32D07779
-      3.日    期   : 2007年10月27日
-        作    者   : L47619
-        修改内容   : 问题单号:A32D13038
-      4.日    期   : 2011年04月23日
-        作    者   : L00171473
-        修改内容   : for V7R1 porting, 去掉枚举成员最后的逗号，避免编译WARNING
-*******************************************************************************/
+
 
 /*******************************************************************************
 **************************  GMM－SM 原语标识  **********************************
@@ -59,15 +44,7 @@ extern "C" {
 #define GMM_SM_CAUSE_GMM_NW_CAUSE_OFFSET    GMM_SM_CAUSE_GMM_NW_SECTION_BEGIN
 
 
-/*****************************************************************************
- 枚举名  : GMM_SM_CAUSE_ENUM
- 枚举说明: GMM上报的原因值
 
- 修改历史      :
-  1.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : 新增枚举
-*****************************************************************************/
 enum GMM_SM_CAUSE_ENUM
 {
     /*----------------------------------------------------------------------
@@ -139,13 +116,7 @@ enum GMM_SM_CAUSE_ENUM
 typedef VOS_UINT16 GMM_SM_CAUSE_ENUM_UINT16 ;
 
 
-/*****************************************************************************
- 结构名    : GMMSM_ABORT_REQ_STRU
- 结构说明  : 原语GMMSM_ABORT_REQ的结构体
-  1.日    期   : 2011年12月20日
-    作    者   : A00165503
-    修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;        /* 消息头     */    /* _H2ASN_Skip */
@@ -167,15 +138,7 @@ typedef struct
 #define    GMM_SM_EST_SUCCESS       1                                           /* 注册成功                                 */
 #define    GMM_SM_EST_FAILURE       0                                           /* 注册失败                                 */
 
-/*****************************************************************************
- 结构名  : GMMSM_ESTABLISH_CNF_STRU
- 结构说明: GMMSM_ESTABLISH_CNF原语结构
 
- 修改历史      :
-  1.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : 新增成员
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;          /* 消息头              */
@@ -193,13 +156,7 @@ typedef struct
     Reject cause = "No PDP context activated"*/
 #define  GMM_SM_SER_REJ_CAUSE_PDP_NOEXIT     2
 
-/*****************************************************************************
- 枚举名    : GMM_SM_STATUS_IND_CAUSE_ENUM
- 结构说明  :
- 1.日    期   : 2012年7月27日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 enum GMM_SM_STATUS_IND_CAUSE_ENUM
 {
     GMM_SM_STATUS_IND_CAUSE_LTE_MO_DETACH,       /* LTE mo detach */
@@ -207,15 +164,7 @@ enum GMM_SM_STATUS_IND_CAUSE_ENUM
 };
 typedef VOS_UINT8 GMM_SM_STATUS_IND_CAUSE_ENUM_UINT32;
 
-/*****************************************************************************
- 结构名  : GMMSM_STATUS_IND_STRU
- 结构说明: GMMSM_STATUS_IND原语结构
 
- 修改历史      :
-  1.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : 新增成员
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;          /* 消息头                                   */
@@ -225,15 +174,7 @@ typedef struct
     VOS_UINT8                           aucRsv[2];          /* 四字节对齐 */
 } GMMSM_STATUS_IND_STRU;
 
-/*****************************************************************************
- 结构名  : GMMSM_PDP_STATUS_IND_STRU
- 结构说明: GMMSM_PDP_STATUS_IND原语结构
 
- 修改历史      :
-  1.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : 新增成员
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;                              /* 消息头                                   */
@@ -275,15 +216,7 @@ typedef struct
     NAS_MSG_STRU            SmMsg;                                              /* SM MSG                                   */
 }GMMSM_DATA_IND_STRU;
 
-/*****************************************************************************
- 结构名  : GMMSM_SERVICE_REJ_STRU
- 结构说明: GMMSM_SERVICE_REJ原语结构
 
- 修改历史      :
-  1.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : 新增成员
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;          /* 消息头 */
@@ -329,13 +262,7 @@ typedef struct
     VOS_UINT32              ulPdpContextStatus;                                 /* PDP context状态                          */
 }GMMSM_PDP_DEACTIVATED_IND_STRU;
 
-/*****************************************************************************
- 结构名    : GMMSM_PDP_MODIFY_IND_STRU
- 结构说明  : 指定NSAPI对应的PDP上下文修改信息
- 1.日    期   : 2012年2月27日
-   作    者   : z00161729
-   修改内容   : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU         stMsgHeader;                                        /* 消息头 */
@@ -345,27 +272,13 @@ typedef struct
 
 
 
-/*****************************************************************************
- 结构名    : GMMSM_SIG_CONN_IND_STRU
- 协议表格  :
- ASN.1描述 :
- 结构说明  : 信令连接建立成功指示
-  1.日    期   : 2012年8月1日
-    作    者   : A00165503
-    修改内容   : 新增结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /* 消息头 */
 }GMMSM_SIG_CONN_IND_STRU;
 
-/*****************************************************************************
- 枚举名    : GMMSM_SESSION_TYPE_ENUM_UINT8
- 枚举说明  : PS域信令流程的SESSION类型
- 1.日    期   : 2014年5月28日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 enum GMMSM_SESSION_TYPE_ENUM
 {
     GMMSM_SESSION_TYPE_CONVERSAT_CALL,
@@ -377,13 +290,7 @@ enum GMMSM_SESSION_TYPE_ENUM
 };
 typedef VOS_UINT8 GMMSM_SESSION_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 结构名    : GMMSM_BEGIN_SESSION_NOTIFY_STRU
- 结构说明  : SESSION开始指示
- 1.日    期   : 2014年5月28日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /*_H2ASN_Skip*/
@@ -391,13 +298,7 @@ typedef struct
     VOS_UINT8                           aucReserved[3];
 } GMMSM_BEGIN_SESSION_NOTIFY_STRU;
 
-/*****************************************************************************
- 结构名    : GMMSM_END_SESSION_NOTIFY_STRU
- 结构说明  : SESSION结束指示
- 1.日    期   : 2014年5月28日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /*_H2ASN_Skip*/

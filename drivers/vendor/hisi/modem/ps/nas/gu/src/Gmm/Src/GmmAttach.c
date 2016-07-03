@@ -1,146 +1,4 @@
-/*******************************************************************************
-  Copyright     : 2005-2007, Huawei Tech. Co., Ltd.
-  File name     : GmmAttach.c
-  Description   : GMM ATTACH功能相关处理用源文件
-  Function List :
-    01.   Gmm_FillRaiForRcv
-    02.   Gmm_AttachRauAcceptJudgeRai
-    03.   Gmm_FillPtmsiSignature
-    04.   Gmm_FillRaiForSnd
-    05.   Gmm_FillPtmsi
-    06.   Gmm_FillDrxPara
-    07.   Gmm_AttachRequestMsgMake
-    08.   Gmm_AttachCompleteMsgMake
-    09.   Gmm_DelPsLocInfoUpdateUsim
-    10.   Gmm_AttachRejectCause3
-    11.   Gmm_AttachRejectCause11
-    12.   Gmm_AttachRejectCause11
-    13.   Gmm_AttachRejectCause12
-    14.   Gmm_AttachRejectCause14
-    15.   Gmm_AttachAttemptCounter
-    16.   Gmm_RcvAttachRejectMsg
-    17.   Gmm_AttachRauAcceptCause16
-    18.   Gmm_AttachRauAcceptCause2
-    19.   Gmm_SaveTimerValue
-    20.   Gmm_AttachAcceptResolveIe
-    21.   Gmm_AttachAcceptGprsOnly
-    22.   Gmm_AttachAcceptCombined
-    23.   Gmm_AttachAcceptHandle
-    24.   Gmm_SndAttachReq
-    25.   Gmm_AttachInitiate
-    26.   Gmm_RcvSmEstablishReq
-    27.   Gmm_RcvSmEstablishReq
-    28.   Gmm_RcvAttachAcceptMsg
-    29.   Gmm_RcvMmcGmmAttachReq
-    30.   Gmm_RcvMmcGmmAttachReq_RegInit
-    31.   Gmm_RcvMmcGmmAttachReq_RauInit
-    32.   Gmm_RcvMmcGmmAttachReq_ServReqInit
-    33.   Gmm_RcvMmcGmmAttachReq_DeregNmlServ
-    34.   Gmm_RcvMmcGmmAttachReq_DeregLimitServ
-    35.   Gmm_RcvMmcGmmAttachReq_RegLimitServ
-    36.   Gmm_RcvMmcGmmAttachReq_DeregAtmpToAtch
-    37.   Gmm_RcvMmcGmmAttachReq_RegNmlServ
-    38.   Gmm_RcvMmcGmmAttachReq_RegAtmpToUpdt
-    39.   Gmm_RcvMmcGmmAttachReq_RegAtmpToUpdtMm
-    40.   Gmm_AttachAcceptMsgJudge
-  History       :
-    1.  张志勇  2003.12.08  新规作成
-    2.  s46746  2006.04.20  根据问题单A32D03221修改
-    3.  s46746  2006.04.28  根据问题单A32D03507修改
-    4.  l40632  2006.04.29  根据问题单A32D03506修改
-    5.  x51137 2006/4/28 A32D02889
-    6.  l40632  2006.05.20  根据问题单A32D03865修改
-    7.  l40632  2006.05.29  根据问题单A32D04010修改
-    8.  l40632  2006.06.19  根据问题单A32D04282修改
-    9. 日    期   : 2006年9月9日
-       作    者   : sunxibo id:46746
-       修改内容   : 根据问题单号：A32D05604
-    10.x51137 2006/11/3 A32D06511
-    11.日    期   : 2006年11月7日
-       作    者   : sunxibo id:46746
-       修改内容   : 根据问题单号：A32D06823
-    12.日    期   : 2006年11月8日
-       作    者   : s46746
-       修改内容   : 问题单号:A32D06867
-    13.日    期   : 2007年1月10日
-       作    者   : x51137
-       修改内容   : A32D08308
-    14.日    期   : 2007年1月10日
-       作    者   : x51137
-       修改内容   : A32D08318
-    15.日    期   : 2007年02月01日
-       作    者   : luojian id:60022475
-       修改内容   : 根据问题单号：A32D08656
-    16.日    期   : 2007年04月20日
-       作    者   : s46746
-       修改内容   : 根据问题单号：A32D10240
-    17.日    期   : 2007年06月16日
-       作    者   : luojian id:60022475
-       修改内容   : 根据问题单号：A32D11726
-    18.日    期   : 2007年07月05日
-       作    者   : luojian id:60022475
-       修改内容   : 根据问题单号：A32D11970,检查消息IE，对spare位不做检查.
-    19.日    期   : 2007年11月12日
-       作    者   : luowei id:39007
-       修改内容   : 根据问题单A32D13044,GSM网络,ATTACH失败5次,通知MM发起一次LAU
-                    的时机更改为在GMM回了ATTACH COMPLETE之后
-    20.日    期   : 2007年12月04日
-       作    者   : s46746
-       修改内容   : 1.GMM模块进行ATTACH和RAU时，如果此时接入层进行临区任务，
-                      会导致LLC将ATTACH和RAU延迟发送，使得ATTACH和RAU时间过长；
-                    2.GMM在进行RAU请求时，如果DRX参数不改变，将不会在消息中
-                      带DRX参数，这样跨SGSN的RAU时，可能导致网侧不识别UE的DR
-                      X参数，  使得RAU不能成功。
-    21.日    期   : 2007年12月12日
-       作    者   : luojian id:107747
-       修改内容   : 根据问题单号：A32D13866,目前网络模式III时只支持CS，需要同时支持PS
-    22.日    期   : 2007年12月15日
-       作    者   : l00107747
-       修改内容   : 问题单号:A32D13897,SIM卡在W下进行GMM ATTACH，将CKSN置为无效
-    23.日    期   : 2007年12月21日
-       作    者   : l00107747
-       修改内容   : 问题单号:A32D13951
-    24.日    期   : 2007年12月28日
-       作    者   : s46746
-       修改内容   : 根据问题单号：A32D13954,修改GMM在2G3过程中缓存消息机制
-    25.日    期   : 2008年7月2日
-       作    者   : l00107747
-       修改内容   : 根据问题单号：AT2D03900,GMM在ATTACH ACCEPT处理完成时没有清除FOLLOW ON标志
-    26.日    期   : 2008年7月24日
-       作    者   : luojian 00107747
-       修改内容   : 根据问题单号：AT2D04627/AT2D04237,
-                    ATTEMPT TO UPDATE/ATTACH 状态对CM服务处理
-    27.日    期   : 2008年7月25日
-       作    者   : luojian 00107747
-       修改内容   : 根据问题单号AT2D04142/AT2D04677,修改RAU ATTEMPT次数等于5次的处理
-    28.日    期   : 2008年10月20日
-       作    者   : o00132663
-       修改内容   : 问题单号:AT2D06266, 增加对不支持CELL NOTIFICATION的处理
-    29.日    期   : 2009年02月13日
-       作    者   : o00132663
-       修改内容   : 问题单号:AT2D08906,【TA 认证】【外场用例-HK】smartone UE没有处于attach状态,就发起了业务请求.
-    30.日    期   : 2009年05月14日
-       作    者   : h44270
-       修改内容   : 问题单号:AT2D11898/AT2D11828,在IDLE态下发送PS域短信，没有按照ATTACH ACCEPT消息中Radio Priority for SMS来请求资源
-    31.日    期   : 2009年6月30日
-       作    者   : s46746
-       修改内容   : AT2D12561,3G2情形GPRS下未启动加密，NAS指派层2加密算法后，层2对上行数据进行了加密
-    32.日    期   : 2009年08月24日
-       作    者   : x00115505
-       修改内容   : AT2D14023,测试GCF用例44.2.2.1.9失败
-    33.日    期   : 2009年09月30日
-       作    者   : x00115505
-       修改内容   : AT2D14857,驻留到FPLMN上，GMM将更新状态修改为GU3了
-    34.日    期   : 2009年11月03日
-       作    者   : x00115505
-       修改内容   : 问题单号：AT2D15222,接入阻塞还可以注册
-    35.日    期   : 2010年11月30日
-       作    者   : h44270
-       修改内容   : 问题单号:DTS2010112400547/DTs010112303273,没有指派新的TLLI,导致PS域注册失败
-    36.日    期   : 2013年07月11日
-       作    者   : l00208543
-       修改内容   : 添加函数向STK上报Network Rejection Event
-*******************************************************************************/
+
 #include "GmmInc.h"
 #include "GmmCasGlobal.h"
 #include "GmmCasComm.h"
@@ -156,9 +14,7 @@
 #include "NasMmlCtx.h"
 #include "NasUsimmApi.h"
 
- /* Added by l00208543 for V9R1 STK升级, 2013-07-10, begin */
 #include "NasStkInterface.h"
- /* Added by l00208543 for V9R1 STK升级, 2013-07-10, end */
 #include "NasMmlLib.h"
 
 #include "NasGmmSndOm.h"
@@ -184,21 +40,7 @@ extern VOS_UINT16 NAS_MMC_GetUserSetGsmBand(VOS_VOID);
 
 /*lint -save -e958 */
 
-/*****************************************************************************
- 函 数 名  : NAS_MNTN_ServiceUnavailableType
- 功能描述  : 判断RAU或LAU被网络拒绝的原因值是否触发写事件
- 输入参数  : VOS_UINT8   ucCause            RAU或LAU被网络拒绝的原因值
- 输出参数  : VOS_BOOL   *pbEventRequired    是否触发写事件
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年9月14日
-    作    者   : 傅映君/f62575
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MNTN_ServiceUnavailableType(
     VOS_UINT16                          usCause,
     VOS_BOOL                           *pbEventRequired
@@ -229,22 +71,7 @@ VOS_VOID NAS_MNTN_ServiceUnavailableType(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_StorePsUnavailableInfo
- 功能描述  : CS域不可用信息存储
- 输入参数  : VOS_UINT8   ucCause            RAU或LAU被网络拒绝的原因值
- 输出参数  : NAS_MNTN_PS_UNAVAILABLE_INFO_STRU  *pstPsUnavailableInfo
-                                            PS域不可用信息
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年9月17日
-    作    者   : 傅映君/f62575
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_GMM_StorePsUnavailableInfo(
     VOS_UINT8                           ucCause,
     NAS_MNTN_PS_UNAVAILABLE_INFO_STRU  *pstPsUnavailableInfo
@@ -333,20 +160,7 @@ VOS_VOID Gmm_FillRaiForRcv(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : NAS_GMM_JudgeLaiIfLegal
-功能描述  : 判断RAU ACCPECT消息中的LAI是否合法
-输入参数  : pMsg - 指向NAS_MSG_STRU结构的指针
-输出参数  : 无
-返 回 值  : VOS_TRUE - 合法
-            VOS_FALSE - 非法
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2010年11月28日
-    作    者   : z00161729
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 NAS_GMM_JudgeLaiIfLegal(NAS_MSG_FOR_PCLINT_STRU *pMsg)
 {
     if (((pMsg->aucNasMsg[4] & 0x0F) > 9)
@@ -370,20 +184,7 @@ VOS_UINT32 NAS_GMM_JudgeLaiIfLegal(NAS_MSG_FOR_PCLINT_STRU *pMsg)
 
 }
 
-/*******************************************************************************
-  Module   : Gmm_AttachRauAcceptJudgeRai
-  Function : 判断收到的ATTACH & RAU ACCEPT消息中的RAI与系统信息中的RAI是否一致
-  Input    : NAS_MSG_STRU *pMsg  指向NAS_MSG_STRU结构的指针
-  Output   : 无
-  NOTE     : 无
-  Return   : GMM_TRUE   相同
-             GMM_FALSE  不同
-  History  :
-    1. 张志勇  2003.12.09  新规作成
-    2. 日    期   : 2010年5月10日
-       作    者   : z00161729
-       修改内容  : DTS2010112604710:周期性LAU accpet消息中如果LAI信息改变且合法，需更新相应全局变量的值
-*******************************************************************************/
+
 VOS_UINT8 Gmm_AttachRauAcceptJudgeRai(
                                   NAS_MSG_FOR_PCLINT_STRU *pMsg
                                   )
@@ -456,18 +257,7 @@ VOS_UINT8 Gmm_AttachRauAcceptJudgeRai(
 
 
 /*==>A32D11726*/
-/*******************************************************************************
-  Module   : GMM_FillReadyTimerParaIe
-  Function : 填写空口消息中的Requested READY timer value
-  Input    : VOS_UINT8 *pAddr  填写Requested READY timer value的首地址
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-     1.日    期   : 2007年06月16日
-       作    者   : luojian id:60022475
-       修改内容   : 根据问题单号：A32D11726创建
-*******************************************************************************/
+
 VOS_VOID    GMM_FillReadyTimerParaIe (VOS_UINT8 *pAddr)
 {
     /* IEI  */
@@ -478,19 +268,7 @@ VOS_VOID    GMM_FillReadyTimerParaIe (VOS_UINT8 *pAddr)
 }
 /*<==A32D11726*/
 
-/*******************************************************************************
-  Module   : Gmm_FillPtmsi
-  Function : 填写空口消息中的P-TMSI
-  Input    : VOS_UINT8 *pAddr  填写P-TMSI的首地址
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1.张志勇  2003.12.09  新规作成
-  2.日    期   : 2011年7月27日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-*******************************************************************************/
+
 VOS_VOID Gmm_FillPtmsi(
                    VOS_UINT8 *pAddr                                                 /* 填写P-TMSI的首地址                       */
                    )
@@ -512,22 +290,7 @@ VOS_VOID Gmm_FillPtmsi(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_FillPtmsiFromSrc
- 功能描述  : NAS_GMM_FillPtmsiFromSrc
- 输入参数  : VOS_UINT8                           *pucDestAddr
-             VOS_UINT8                           *pucSrcAddr
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月13日
-    作    者   : W00167002
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_GMM_Fill_IE_PtmsiFromSrc(
     VOS_UINT8                           *pucDestAddr,
     VOS_UINT8                           *pucSrcAddr
@@ -544,22 +307,7 @@ VOS_VOID NAS_GMM_Fill_IE_PtmsiFromSrc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_Fill_IE_RaiFromSrc
- 功能描述  : NAS_GMM_FillPtmsiFromSrc
- 输入参数  : VOS_UINT8                           *pucDestAddr
-             VOS_UINT8                           *pucSrcAddr
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月13日
-    作    者   : W00167002
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_GMM_Fill_IE_RaiFromSrc(
     VOS_UINT8                          *pucDestAddr,                           /* 填写P-TMSI的首地址                       */
     GMM_RAI_STRU                       *pstRaiAddr
@@ -585,25 +333,7 @@ VOS_VOID NAS_GMM_Fill_IE_RaiFromSrc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_Fill_IE_RaiFromSrc
- 功能描述  : NAS_GMM_FillPtmsiFromSrc
- 输入参数  : VOS_UINT8                           *pucDestAddr
-              VOS_UINT8                           *pucSrcAddr
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月13日
-    作    者   : W00167002
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年12月26日
-    作    者   : w00167002
-    修改内容   : DTS2011122602440:修改AdditionalOldRai选项IEI的长度值为6
-*****************************************************************************/
 VOS_VOID NAS_GMM_Fill_IE_AdditionalOldRaiFromSrc(
     VOS_UINT8                          *pucDestAddr,                            /* 填写P-TMSI的首地址                       */
     GMM_RAI_STRU                       *pucSrcRaiAddr
@@ -637,30 +367,7 @@ VOS_VOID NAS_GMM_Fill_IE_AdditionalOldRaiFromSrc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_Gmm_Fill_IE_AttachTypeAndCksn
- 功能描述  : 填充当前的ATTACH类型和CKSN
- 输入参数  : VOS_UINT8                          *pucAddr
- 输出参数  : VOS_UINT8                          *pucAddr
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年4月13日
-   作    者   : W00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2011年7月25日
-   作    者   : h44270
-   修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
- 3.日    期   : 2012年2月23日
-   作    者   : w00176964
-   修改内容   : DTS2012022107470:WG之间有语音业务来回切换时,从G切到W进行RAU后
-                被拒#9,NAS发起联合RAU导致语音中断
-  4.日    期   : 2016年1月20日
-    作    者   : c00318887
-    修改内容   : DTS2015123110917: usim卡在GSM下做2G鉴权后，csfb到3G下鉴权错误
-*****************************************************************************/
 VOS_UINT8 NAS_Gmm_Fill_IE_AttachTypeAndCksn(
     VOS_UINT8                          *pucAddr
 )
@@ -721,22 +428,7 @@ VOS_UINT8 NAS_Gmm_Fill_IE_AttachTypeAndCksn(
     return ucNumber;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_FillPtmsiFromSrc
- 功能描述  : NAS_GMM_FillPtmsiFromSrc
- 输入参数  : VOS_UINT8                           *pucDestAddr
-             VOS_UINT8                           *pucSrcAddr
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月13日
-    作    者   : W00167002
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_GMM_Fill_IE_PtmsiSignFromSrc(
     VOS_UINT8                           *pucDestAddr,                           /* 填写P-TMSI的首地址                       */
     VOS_UINT8                           *pucSrcAddr
@@ -750,18 +442,7 @@ VOS_VOID NAS_GMM_Fill_IE_PtmsiSignFromSrc(
     return;
 }
 
-/*******************************************************************************
-  Module   : MM_Fill_IE_ClassMark2
-  Function : 填写空口消息中的ClassMark2 IE (TLV)
-  Input    : VOS_VOID *pAddr  填写ClassMark2 IE的地址
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1. 日    期   : 2014年10月8日
-     作    者   : b00269685
-     修改内容   : 新生成函数
-*******************************************************************************/
+
 VOS_VOID GMM_Fill_IE_ClassMark2(
     VOS_UINT8                          *pClassMark2                             /* 填写ClassMark2 IE的首地址   */
 )
@@ -779,18 +460,7 @@ VOS_VOID GMM_Fill_IE_ClassMark2(
     return;
 }
 
-/*******************************************************************************
-  Module   : GMM_Fill_IE_FDD_ClassMark3
-  Function : 填写FDD空口消息中的ClassMark3 IE (TLV)
-  Input    : VOS_VOID *pAddr  填写ClassMark3 IE的地址
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1. 日    期   : 2014年10月8日
-     作    者   : b00269685
-     修改内容   : 新生成函数
-*******************************************************************************/
+
 VOS_UINT8 GMM_Fill_IE_FDD_ClassMark3(
     VOS_UINT8                          *pClassMark3                             /* 填写ClassMark3 IE的首地址   */
 )
@@ -811,18 +481,7 @@ VOS_UINT8 GMM_Fill_IE_FDD_ClassMark3(
     return ucLen;
 }
 
-/*******************************************************************************
-  Module   : GMM_Fill_IE_TDD_ClassMark3
-  Function : 填写TDD空口消息中的ClassMark3 IE (TLV)
-  Input    : VOS_VOID *pAddr  填写ClassMark3 IE的地址
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1. 日    期   : 2014年10月8日
-     作    者   : b00269685
-     修改内容   : 新生成函数
-*******************************************************************************/
+
 VOS_UINT8 GMM_Fill_IE_TDD_ClassMark3(
     VOS_UINT8                          *pClassMark3                             /* 填写ClassMark3 IE的首地址   */
 )
@@ -843,20 +502,7 @@ VOS_UINT8 GMM_Fill_IE_TDD_ClassMark3(
     return ucLen;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_FillUmtsSupCodecList
- 功能描述  : 填写UMTS支持的codec list
- 输入参数  : 无
- 输出参数  : punCodecList :当前UMTS支持的codec类型
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月8日
-    作    者   : b00269685
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  GMM_CALL_FillUmtsSupCodecList(
     GMM_CALL_SUPPORT_CODEC_UNION       *punCodecList
 )
@@ -888,21 +534,7 @@ VOS_VOID  GMM_CALL_FillUmtsSupCodecList(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : GMM_CALL_FillGsmSupCodecList
- 功能描述  : 填写GSM支持的codec list
- 输入参数  : 无
- 输出参数  : punCodecList :当前GSM支持的codec类型
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月8日
-    作    者   : b00269685
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  GMM_CALL_FillGsmSupCodecList(
     GMM_CALL_SUPPORT_CODEC_UNION       *punCodecList
 )
@@ -946,21 +578,7 @@ VOS_VOID  GMM_CALL_FillGsmSupCodecList(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : GMM_CALL_FillIeSupCodecList
- 功能描述  : 填写支持的codec list列表
- 输入参数  : 无
- 输出参数  : pstCodecList - 支持的codec list  (TLV)
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月8日
-    作    者   : b00269685
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8  GMM_CALL_FillIeSupCodecList(
     VOS_UINT8                          *pstCodecList                            /* 填写support codec IE的首地址   */
 )
@@ -997,126 +615,20 @@ VOS_UINT8  GMM_CALL_FillIeSupCodecList(
 }
 
 
-/*******************************************************************************
-  Module   : Gmm_FillDrxPara
-  Function : 填写空口消息中的DRX parameter的Value部分
-  Input    : VOS_VOID *pAddr  填写DRX parameter的首地址
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1. 张志勇  2003.12.18  新规作成
 
-  2.日    期   : 2012年8月14日
-    作    者   : t00212959
-    修改内容   : DCM定制需求和遗留问题
-*******************************************************************************/
 VOS_VOID Gmm_FillDrxPara(
                      VOS_UINT8 *pAddr                                               /* 填写DRX parameter的首地址                */
                      )
 {
-    /* Modified by t00212959 for DCM定制需求和遗留问题, 2012-8-14, begin */
     pAddr[0]  = NAS_MML_GetSplitPgCycleCode();                                  /* 填写SPLIT PG CYCLE CODE                  */
     pAddr[1]  = NAS_MML_GetNonDrxTimer();                                       /* 填写non-DRXtimer                         */
     pAddr[1] |= (VOS_UINT8)(NAS_MML_GetSplitOnCcch() << NAS_MML_OCTET_MOVE_THREE_BITS);     /* 填写SPLIT on CCCH                        */
     pAddr[1] |= (VOS_UINT8)(NAS_MML_GetUeUtranPsDrxLen() << NAS_MML_OCTET_MOVE_FOUR_BITS);  /* CN Specific DRX cycle length coefficient */
-    /* Modified by t00212959 for DCM定制需求和遗留问题, 2012-8-14, end */
 
     return;
 }
 
-/*******************************************************************************
-  Module   : Gmm_Fill_NetworkCapability
-  Function : 填写空口消息中的NetworkCapability IE (LV)
-  Input    : VOS_VOID *pAddr  填写NetworkCapability IE的首地址
-  Output   : 无
-  NOTE     : 无
-  Return   : IE长度。
-  History  :
-    1. 欧阳飞  2009.05.10  新规作成
-    2. 日    期   : 2009年09月1日
-       作    者   : 欧阳飞 o00132663
-       修改内容   : AT2D14179,根据当前支持的版本信息更新Revision Level Indicator IE
-    3. 日    期   : 2011年07月26日
-       作    者   : z00161729
-       修改内容   : 全局变量调整
-     4.日    期   : 2011年10月27日
-       作    者   : s46746
-       修改内容   : V7R1 PhaseIII,支持L模联合注册
-     5.日    期   : 2012年03月15日
-       作    者   : s46746
-       修改内容   : 对于R7、R8新增信息单元,使用协议版本控制
 
-     6.日    期   : 2012年3月24日
-       作    者   : z40661
-       修改内容   : DTS2012032004429 MS networkcapablity能力的刷新
-    7.日    期   : 2012年2月27日
-      作    者   : z00161729
-      修改内容   : V7R1 C50 支持ISR修改
-    8.日    期   : 2012年5月21日
-       作    者   : z40661
-       修改内容   : DTS2012051702389 EPC的能力需要判断支持L模和当前是SIM卡
-    9.日    期   : 2012年6月9日
-      作    者   : z00161729
-      修改内容   : V7R1C50 GUL 背景搜修改，如果L已经disable，协议规定无需上报ISR能力
-   10.日    期   : 2013年5月23日
-     作    者   : z00234330
-     修改内容   : DTS2013052301419, ISR能力通过NVIM项控制
-  11.日    期   : 2014年5月9日
-     作    者   : b00269685
-     修改内容   : DTS2014042103974, 不支持LTE时不需要上报SRVCC能力
-  12.日    期   : 2014年6月17日
-    作    者   : z00234330
-    修改内容   : PCINT清理
-
-  13.日    期   : 2014年8月29日
-     作    者   : w00167002
-     修改内容   : DTS2014082609066:在武汉网络下，当前设置为UG后，再设置为LUG，在
-                  L下发起TAU时候被网络拒绝17。检测为在不支持L后，我们将EPC能力设置为了0，在L下注册失败。修改为
-                  1后，在L下注册成功。
-
-                  在如下CR升级中，有对EPC设置的描述:
-                  C1-122511
-                  Reason for change:
-If the UE set the EPC capability to "EPC not supported" when the UE disables E-UTRA capability,
-ongoing data transmission would be disconnected when the UE re-enable E-UTRA capability.
-So, the LTE-capable UE should always set the EPC capability to "EPC supported" even if the
-UE disables E-UTRA capability.
-However, in current specification, the setting method of EPC capability bit of the
-MS network capability IE is not described. So, the clarification of setting method of this IE is needed.
-
-Summary of change:
-Following clarification is introduced.
-- The LTE-capable UE should always set the EPC capability to "EPC supported" even if the UE disables E-UTRA capability.
-Consequences if
-not approved:The UE might make a mistake in setting method of EPC capability bit of the MS network capability IE and this would cause a disconnection of data transmission.
-
-                   修改PS INTER RAT HO FORM GERAN TO E-UTRAN 能力的CR描述如下(C1-143148)
-So to provide a clear guidance on the UE implementation, it should be clearly specified that
-which bit needs to be changed after disabling of the UE's E-UTRA capability. When seeing the
-bits in the MS network capability IE, there are below capabilities related to LTE:
-
-"<PS inter-RAT HO from GERAN to E-UTRAN S1 mode capability: bit>
-<EMM Combined procedures Capability: bit>
-<ISR support: bit>
-<SRVCC to GERAN/UTRAN capability: bit>
-<EPC capability: bit>"
-
-<ISR support: bit> and <EPC capability: bit> were already clearly covered in the above bullets.
-For <EMM Combined procedures Capability: bit>, it is not related to the inter-RAT mobility so
-the UE needs not to change it due to disabling of the UE's E-UTRA capability.
-Furthermore, the PS/CS mode 1 UE needs to set this bit to indicate
-the SGSN to initiate the Gs association establishment for the UE if CSFB is supported.
-
-For <SRVCC to GERAN/UTRAN capability: bit>, it will not enable the SGSN to move
-the UE back to LTE, so the UE needs not to change this bit due to disabling of the UE's E-UTRA capability.
-
-So only for <PS inter-RAT HO from GERAN to E-UTRAN S1 mode capability: bit>, the UE
-needs not set this bit to avoid the NW initiating the PSHO to move the UE back to LTE.
- 14.日    期   : 2015年4月19日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-*******************************************************************************/
 VOS_UINT8 Gmm_Fill_IE_NetworkCapability(
                                      VOS_UINT8 *pAddr                           /* 填写NetworkCapability IE的首地址                */
                                     )
@@ -1202,7 +714,6 @@ VOS_UINT8 Gmm_Fill_IE_NetworkCapability(
         ulLteCapDisablFlg = NAS_MML_IsLteCapabilityDisabled(NAS_MML_GetLteCapabilityStatus(),
                                                             NAS_MML_GetDisableLteRoamFlg());
 
-        /* Modified by z00234330 for PCLINT清理, 2014-06-24, begin */
         if ((VOS_FALSE == NAS_MML_IsNetRatSupported(NAS_MML_NET_RAT_TYPE_LTE))
          || (VOS_TRUE  == ulLteCapDisablFlg))
         {
@@ -1225,15 +736,12 @@ VOS_UINT8 Gmm_Fill_IE_NetworkCapability(
             pAddr[3] &= 0xBF;
 
         }
-        /* Modified by z00234330 for PCLINT清理, 2014-06-24, end */
 
 
-        /* Modified by z00234330 for PCLINT清理, 2014-06-24, begin */
         if ((VOS_TRUE == NAS_MML_IsNetRatSupported(NAS_MML_NET_RAT_TYPE_LTE))
          && (VOS_FALSE == ulLteCapDisablFlg)
          && (VOS_TRUE == ucIsrSupport))
 
-        /* Modified by z00234330 for PCLINT清理, 2014-06-24, end */
         {
             pAddr[3] |= 0x10;
         }
@@ -1251,23 +759,7 @@ VOS_UINT8 Gmm_Fill_IE_NetworkCapability(
 
     return ucLen;
 }
-/*******************************************************************************
-  Module   : Gmm_Fill_RadioAccessCapability
-  Function : 填写空口消息中的Gmm_Fill_RadioAccessCapability IE (LV)
-  Input    : VOS_VOID *pAddr  填写Gmm_Fill_RadioAccessCapability IE的首地址
-  Output   : 无
-  NOTE     : 无
-  Return   : IE长度。
-  History  :
-    1. 欧阳飞  2009.05.10  新规作成
 
-    2.日    期   : 2012年7月14日
-      作    者   : W00176964
-      修改内容   : V7R1 C50 GUTL PhaseI调整:发送给WRR的消息统一用适配层函数替换
-    3.日    期   : 2014年2月27日
-      作    者   : w00242748
-      修改内容   : DTS2014022805239
-*******************************************************************************/
 VOS_UINT8 Gmm_Fill_IE_RadioAccessCapability(VOS_UINT8 *pAddr)
 {
     VOS_UINT8                                               ucLen;
@@ -1346,30 +838,7 @@ VOS_UINT8 Gmm_Fill_IE_RadioAccessCapability(VOS_UINT8 *pAddr)
 
 #if (FEATURE_ON == FEATURE_LTE)
 
-/*****************************************************************************
- 函 数 名  : NAS_Gmm_FillPtmsiIeForSnd
- 功能描述  : 填充ATTCH 的PTMSI的IE内容
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 填写的IE的长度ucNumber
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年4月13日
-   作    者   : W00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2011年7月27日
-   作    者   : h44270
-   修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
- 3.日    期   : 2013年05月21日
-   作    者   : l65478
-   修改内容   : DTS2013053002449希腊问题:当不支持LTE时,使用GU下的ID
- 4.日    期   :2013年8月29日
-   作    者   :z00161729
-   修改内容  :DTS2013082702039:syscfg不支持l或l disable时，gmm rau和attach不需携带ue network capability
-
-*****************************************************************************/
 VOS_UINT8 NAS_Gmm_FillPtmsiIeWhenGUL(
     VOS_UINT8                          *pucAddr
 )
@@ -1464,24 +933,7 @@ VOS_UINT8 NAS_Gmm_FillPtmsiIeWhenGUL(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_Gmm_FillPtmsiIeForSnd
- 功能描述  : 填充ATTCH 的PTMSI的IE内容
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 填写的IE的长度ucNumber
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年4月13日
-   作    者   : W00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2011年7月27日
-   作    者   : h44270
-   修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-
-*****************************************************************************/
 VOS_UINT8 NAS_Gmm_FillPtmsiIeForSnd(
     VOS_UINT8                          *pucAddr
 )
@@ -1532,29 +984,7 @@ VOS_UINT8 NAS_Gmm_FillPtmsiIeForSnd(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_Gmm_FillPtmsiIeForSnd
- 功能描述  : 填充ATTCH 的Old P-TMSI signature的IE内容
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 填写的IE的长度ucNumber
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月13日
-    作    者   : W00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2013年05月21日
-    作    者   : l65478
-    修改内容   : DTS2013053002449希腊问题:当不支持LTE时,使用GU下的ID
-  3.日    期   :2013年8月29日
-    作    者   :z00161729
-    修改内容  :DTS2013082702039:syscfg不支持l或l disable时，gmm rau和attach不需携带ue network capability
-  4.日    期   : 2014年02月25日
-    作    者   : z00161729
-    修改内容   : DTS2014022206794:GCF 9.2.1.2.1b/9.2.3.2.3/9.2.1.2.1失败disable lte时rau需要从L获取安全上下文
-*****************************************************************************/
 VOS_UINT8 NAS_Gmm_FillPtmsiSignatureIeForSnd(
     VOS_UINT8                          *pucAddr
 )
@@ -1670,29 +1100,7 @@ VOS_UINT8 NAS_Gmm_FillPtmsiSignatureIeForSnd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_Gmm_FillPtmsiIeForSnd
- 功能描述  : 填充ATTCH 的Old routing area identification的IE内容
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 填写的IE的长度ucNumber
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月13日
-    作    者   : W00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2013年05月21日
-    作    者   : l65478
-    修改内容   : DTS2013053002449希腊问题:当不支持LTE时,使用GU下的ID
-  3.日    期   :2013年8月29日
-    作    者   :z00161729
-    修改内容   :DTS2013082702039:syscfg不支持l或l disable时，gmm rau和attach不需携带ue network capability
-  4.日    期   : 2014年02月25日
-    作    者   : z00161729
-    修改内容   : DTS2014022206794:GCF 9.2.1.2.1b/9.2.3.2.3/9.2.1.2.1失败disable lte时rau需要从L获取安全上下文
-*****************************************************************************/
 VOS_UINT8 NAS_Gmm_FillRaiForSnd(
     VOS_UINT8                          *pucAddr
 )
@@ -1785,24 +1193,7 @@ VOS_UINT8 NAS_Gmm_FillRaiForSnd(
 
 #if (FEATURE_ON == FEATURE_LTE)
 
-/*****************************************************************************
- 函 数 名  : NAS_Gmm_Fill_IE_AdditionalOldRAI
- 功能描述  : 填充ATTCH 的Additional old routing area identification的IE内容
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 填写的IE的长度ucNumber
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月13日
-    作    者   : W00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月28日
-    作    者   : s46746
-    修改内容   : DSDA GUNAS C CORE项目，重新封装LMM提供的接口函数
-
-*****************************************************************************/
 VOS_UINT8 NAS_Gmm_Fill_IE_AdditionalOldRAI(
     VOS_UINT8                          *pucAddr
 )
@@ -1855,24 +1246,7 @@ VOS_UINT8 NAS_Gmm_Fill_IE_AdditionalOldRAI(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_Gmm_Fill_IE_AdditionalMobileIdentity
- 功能描述  : 填充ATTCH 的Additional mobile identity的IE内容
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 填写的IE的长度ucNumber
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月13日
-    作    者   : W00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月28日
-    作    者   : s46746
-    修改内容   : DSDA GUNAS C CORE项目，重新封装LMM提供的接口函数
-
-*****************************************************************************/
 VOS_UINT8 NAS_Gmm_Fill_IE_AdditionalMobileIdentity(
     VOS_UINT8                          *pucAddr
 )
@@ -1922,30 +1296,7 @@ VOS_UINT8 NAS_Gmm_Fill_IE_AdditionalMobileIdentity(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_Fill_IE_UeNetwrokCapacity
- 功能描述  : 填充UE Network Capacility
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月14日
-    作    者   : zhoujun 40661
-    修改内容   : 新生成函数
-  2.日    期   : 2011年10月27日
-    作    者   : s46746
-    修改内容   : V7R1 PhaseIII,支持L模联合注册
-  3.日    期   : 2011年10月27日
-    作    者   : s46746
-    修改内容   : V7R1 PhaseIII,支持L模联合注册
-
-  4.日    期   : 2012年5月10日
-    作    者   : z40661
-    修改内容   : DTS2012041105159,UE Network Capability能力修改为由LMM更新
-*****************************************************************************/
 VOS_UINT8  NAS_GMM_Fill_IE_UeNetwrokCapacity(
     VOS_UINT8                          *pucAddr
 )
@@ -1982,40 +1333,7 @@ VOS_UINT8  NAS_GMM_Fill_IE_UeNetwrokCapacity(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_Fill_IE_VoiceDomainPreferenceAndUeUsageSetting
- 功能描述  : 填充UE Voice domain preference and UE's usage setting IE项
- 输入参数  : 无
- 输出参数  : pucAddr,返回Voice domain preference and UE's usage setting IE项的填充内容
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月15日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-
-    TS24008-960 :Table 10.5.166A/3GPP TS 24.008: Voice domain preference and UE's usage setting information element
-
-    Voice domain preference and UE's usage setting value (octet 3, bit 1 to 3)
-    UE's usage setting (1 bit field)
-    Bit
-    3
-    0               Voice centric
-    1               Data centric
-
-    Voice domain preference for E-UTRAN (2 bit field)
-    Bit
-    2   1
-    0   0           CS Voice only
-    0   1           IMS PS Voice only
-    1   0           CS voice preferred, IMS PS Voice as secondary
-    1   1           IMS PS voice preferred, CS Voice as secondary
-    MS not supporting IMS voice shall indicate “CS Voice only”.
-    MS only supporting IMS voice shall indicate “IMS PS Voice only”.
-
-*****************************************************************************/
 VOS_UINT8  NAS_GMM_Fill_IE_VoiceDomainPreferenceAndUeUsageSetting(
     VOS_UINT8                          *pucAddr
 )
@@ -2070,21 +1388,7 @@ VOS_UINT8  NAS_GMM_Fill_IE_VoiceDomainPreferenceAndUeUsageSetting(
 #endif
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_GetAttachRequestMsgIELength
- 功能描述  : 填充的IE的长度，见24008 Table 9.4.1
-             该长度是所要填充IE的最大长度,IE的实际长度有后续字段负责
- 输入参数  : 无
- 输出参数  : 返回所要填充IE的最大长度
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月8日
-    作    者   : z00161729
-    修改内容   : 24008 23122 R11 CR升级项目修改
-*****************************************************************************/
 VOS_UINT32  NAS_GMM_GetAttachRequestMsgIELength( VOS_VOID )
 {
     VOS_UINT32                          ulMsgLen;
@@ -2173,84 +1477,7 @@ VOS_UINT32  NAS_GMM_GetAttachRequestMsgIELength( VOS_VOID )
 
 
 
-/*******************************************************************************
-  Module   : Gmm_AttachRequestMsgMake
-  Function : ATTACH Request消息制作
-  Input    : 无
-  Output   : 无
-  NOTE     : 无
-  Return   : NAS_MSG_STRU *pAttachRequest  指向NAS_MSG_STRU结构的指针
-  History  :
-  1. 张志勇  2003.12.09  新规作成
-  2.日    期   : 2007年06月16日
-    作    者   : luojian id:60022475
-    修改内容   : 根据问题单号：A32D11726
-  3.日    期   : 2007年12月15日
-    作    者   : l00107747
-    修改内容   : 问题单号:A32D13897
-  4.日    期  : 2007年12月21日
-    作    者  : l00107747
-    修改内容  : 问题单号:A32D13951
-  5.日    期  : 2011年03月04日
-    作    者  : f00179208
-    修改内容  : 问题单号:DTS2011030202965,WCDMA2100/900接入类测试(开环功控、ON-OFF TIME MASK、PRACH接入)，单板第一次回环连接进行测试，无数据显示，导致测试异常
-  6.日    期   : 2011年7月27日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-  7.日    期   : 2011年10月27日
-    作    者   : s46746
-    修改内容   : V7R1 PhaseIII,支持L模联合注册
-  8.日    期   : 2012年02月23日
-    作    者   : l65478
-    修改内容   : DTS2012021304254,GCF测试，PS ATTACH/RAU发送的数据包含REL9之后的信息
-  9.日    期   : 2012年2月15日
-    作    者   : w00167002
-    修改内容   : V7R1C50 CSFB&PPAC&ETWS&ISR:调整，如果UE支持E-UTRAN能力且支持
-                  CS fallback and SMS over SGs,则ATTACH和RAU请求消息中需要带Voice
-                  domain preference and UE's usage setting IE项。
-                  This IE shall be included:
 
-             TS24008 9.4.1.11 Voice domain preference and UE's usage setting
-                This IE shall be included:
-                  if the MS supports CS fallback and SMS over SGs, or the MS is configured to support IMS voice, or both; and
-                  if the MS is E-UTRAN capable.
-  9.日    期   : 2012年5月15日
-    作    者   : l00130025
-    修改内容   : DTS2012041002516: L下默认承载存在数据连接时设置W only失败
-  10.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
- 10.日    期   : 2012年8月14日
-    作    者   : t00212959
-    修改内容   : DCM定制需求和遗留问题
- 11.日    期   : 2012年8月15日
-    作    者   : z00161729
-    修改内容   : DCM定制需求和遗留问题修改
- 12.日    期   : 2012年12月28日
-    作    者   : s46746
-    修改内容   : DSDA GUNAS C CORE项目，重新封装LMM提供的接口函数
- 13.日    期   : 2013年02月18日
-    作    者   : l65478
-    修改内容   : DTS2013021700426:LTE disable时还上报了UE CAPABILITY信息
- 14.日    期   : 2013年7月8日
-    作    者   : w00167002
-    修改内容   : DTS2013070506409:fortify报警清除
- 15.日    期   :2013年8月29日
-    作    者   :z00161729
-    修改内容   :DTS2013082702039:syscfg不支持l或l disable时，gmm rau和attach不需携带ue network capability
- 16.日    期   : 2014年10月8日
-    作    者   : b00269685
-    修改内容   : 若支持srvcc，需要填写classmark1,classmark2,support code
- 17.日    期   : 2015年2月12日
-    作    者   : s00217060
-    修改内容   : VOLTE SWITCH修改：voice domain变化时需要做RAU
- 18.日    期   : 2015年6月8日
-    作    者   : z00161729
-    修改内容   : 24008 23122 R11 CR升级项目修改
- 19.日    期   : 2015年8月13日
-    作    者   : l00289540
-    修改内容   : User_Exp_Improve修改
-*******************************************************************************/
 NAS_MSG_STRU *Gmm_AttachRequestMsgMake(VOS_VOID)
 {
     NAS_MSG_STRU                               *pAttachRequest = VOS_NULL_PTR;          /* 指向NAS_MSG_STRU结构的指针变量           */
@@ -2298,9 +1525,7 @@ NAS_MSG_STRU *Gmm_AttachRequestMsgMake(VOS_VOID)
     Gmm_FillDrxPara(&pAttachRequest->aucNasMsg[ucNumber]);                      /* DRX parameter                            */
     ucNumber += 2;                                                              /* DRX parameter长度为2                     */
 
-    /* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-16, begin */
     g_GmmGlobalCtrl.UeInfo.enLatestAttachOrRauContainDrx = NAS_MML_GU_PS_REG_CONTAIN_DRX_PARA;
-    /* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-16, end */
 
     /* 填写 P-TMSI or imsi IE */
     /* 状态为DEREGISTERED_NORMAL_SERVICE,U2时 填充使用IMSI    */
@@ -2324,11 +1549,9 @@ NAS_MSG_STRU *Gmm_AttachRequestMsgMake(VOS_VOID)
     ucNumber += NAS_Gmm_FillRaiForSnd(&pAttachRequest->aucNasMsg[ucNumber]);                    /* 填写RAI                                  */
 
     /* 无线接入能力填写 */
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-17, begin */
 #if (FEATURE_ON == FEATURE_LTE)
     g_GmmGlobalCtrl.UeInfo.ucMsRadioCapSupportLteFromRegReq = g_GmmGlobalCtrl.UeInfo.ucMsRadioCapSupportLteFromAs;
 #endif
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-17, end */
 
     ucNumber += Gmm_Fill_IE_RadioAccessCapability(&pAttachRequest->aucNasMsg[ucNumber]);
 
@@ -2446,23 +1669,7 @@ NAS_MSG_STRU *Gmm_AttachRequestMsgMake(VOS_VOID)
     return pAttachRequest;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_GetAttachComPleteMsgLen
- 功能描述  : 获取ATTACH COMPLETE消息的长度
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : ATTACH COMPLETE消息的长度
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年5月12日
-   作    者   : w00166186
-   修改内容   : 新生成函数
- 2.日    期   : 2012年12月13日
-   作    者   : L00171473
-   修改内容   : DTS2012121802573, TQE清理
-*****************************************************************************/
 VOS_UINT16 NAS_GMM_GetAttachComPleteMsgLen()
 {
     VOS_UINT16                          usMsgLen;
@@ -2535,26 +1742,7 @@ VOS_UINT16 NAS_GMM_GetAttachComPleteMsgLen()
 
 }
 
-/*******************************************************************************
-  Module   : Gmm_AttachCompleteMsgMake
-  Function : ATTACH Complete消息制作
-  Input    : 无
-  Output   : 无
-  NOTE     : 无
-  Return   : NAS_MSG_STRU *pAttachComplete    指向NAS_MSG_STRU结构的指针
-  History  :
-  1. 张志勇  2003.12.09  新规作成
 
-  2.日    期   : 2010年3月29日
-    作    者   : o00132663
-    修改内容   : NAS R7协议升级，InterRatHandoverInfo信息接口变更
- 12.日    期   : 2012年05月13日
-    作    者   : W00166186
-    修改内容   : DTS201204261955,RAU COMPLETE没有回复
- 13.日    期   : 2012年12月13日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-*******************************************************************************/
 NAS_MSG_STRU* Gmm_AttachCompleteMsgMake(VOS_VOID)
 {
     NAS_MSG_STRU                       *pAttachComplete = VOS_NULL_PTR;                                       /* 指向NAS_MSG_STRU结构的指针变量           */
@@ -2647,26 +1835,7 @@ NAS_MSG_STRU* Gmm_AttachCompleteMsgMake(VOS_VOID)
     return pAttachComplete;
 }
 
-/*******************************************************************************
-  Module   : Gmm_DelPsLocInfoUpdateUsim
-  Function : 删除SIM卡相关信息的处理
-  Input    : 无
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1. 张志勇  2003.12.08  新规作成
-  2. 张志勇  2004.10.27  CK，IK存储结构变更
-  3. 日    期   : 2006年11月7日
-     作    者   : sunxibo id:46746
-     修改内容   : 根据问题单号：A32D06823
-  2.日    期   : 2011年7月27日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-  3.日    期   : 2013年08月23日
-    作    者   : f00179208
-    修改内容   : ErrLog&FTM项目,PTMSI发生改变时上报给OM
-*******************************************************************************/
+
 VOS_VOID Gmm_DelPsLocInfoUpdateUsim(VOS_VOID)
 {
     NAS_MML_RAI_STRU                       *pstLastSuccRai;
@@ -2731,26 +1900,7 @@ VOS_VOID Gmm_DelPsLocInfoUpdateUsim(VOS_VOID)
     return;
 }
 
-/*******************************************************************************
-  Module   : Gmm_AttachRejectCause3
-  Function : 空口消息ATTACH REJECT原因值为#3,#6,#7,#8的处理
-  Input    : VOS_UINT32 ulGmmCause  失败原因
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1.张志勇  2003.12.08  新规作成
-  2.日    期   : 2006年9月9日
-    作    者   : sunxibo id:46746
-    修改内容   : 根据问题单号：A32D05604
-  3.日    期   : 2011年7月14日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
-  4.日    期   : 2011年10月08日
-    作    者   : W00167002
-    修改内容  : V7R1 PhaseII阶段调整，保存/删除Eplmn的功能由原先的MMC模块调整为
-                 GMM/MM模块处理
-*******************************************************************************/
+
 VOS_VOID Gmm_AttachRejectCause3(
                             VOS_UINT32 ulGmmCause                                    /* 失败原因                                 */
                             )
@@ -2801,23 +1951,7 @@ VOS_VOID Gmm_AttachRejectCause3(
     return;
 }
 
-/*******************************************************************************
-  Module   : Gmm_AttachRejectCause11
-  Function : 空口消息ATTACH REJECT原因值为#11的处理
-  Input    : 无
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1.张志勇  2004.02.03  新规作成
-  2.日    期   : 2011年7月14日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
-  3.日    期   : 2011年10月08日
-    作    者   : W00167002
-    修改内容  : V7R1 PhaseII阶段调整，保存/删除Eplmn的功能由原先的MMC模块调整为
-                 GMM/MM模块处理
-*******************************************************************************/
+
 VOS_VOID Gmm_AttachRejectCause11(VOS_VOID)
 {
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16  enCause;
@@ -2869,22 +2003,7 @@ VOS_VOID Gmm_AttachRejectCause11(VOS_VOID)
 
     return;
 }
-/*******************************************************************************
-  Module   : Gmm_AttachRejectCause12
-  Function : 空口消息ATTACH REJECT原因值为#12,#13,#15的处理
-  Input    : VOS_UINT32 ulGmmCause  失败原因
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1.张志勇  2004.02.03  新规作成
-  2.日    期   : 2011年7月14日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
-  3.日    期   : 2011年10月8日
-    作    者   : s46746
-    修改内容   : V7R1 phase II,将EPLMN、RPLMN移到MM/GMM维护
-*******************************************************************************/
+
 VOS_VOID Gmm_AttachRejectCause12(
                              VOS_UINT32 ulGmmCause,                                   /* 失败原因                                 */
                              VOS_BOOL   bUpdateSimFlg
@@ -2951,31 +2070,12 @@ VOS_VOID Gmm_AttachRejectCause12(
     return;
 }
 
-/*******************************************************************************
-  Module   : Gmm_AttachRejectCause14
-  Function : 空口消息ATTACH REJECT原因值为#14的处理
-  Input    : 无
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1.张志勇  2004.02.03  新规作成
-  2.日    期   : 2011年7月14日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
-  3.日    期   : 2015年6月3日
-    作    者   : z00161729
-    修改内容   : 24008 23122 R11 CR升级项目修改
-*******************************************************************************/
+
 VOS_VOID Gmm_AttachRejectCause14(VOS_BOOL   bUpdateSimFlg)
 {
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16  enCause;
 
-    /* 24008_CR1229R1_(Rel-8)_C1-085365 24008 4.7.3.1.4章节描述如下:
-    #14 The MS shall delete any RAI, P-TMSI, P-TMSI signature, and GPRS ciphering
-    key sequence number stored, shall set the GPRS update status to GU3 ROAMING
-    NOT ALLOWED (and shall store it according to subclause 4.1.3.2), shall reset
-    the GPRS attach attempt counter and shall change to state GMM-DEREGISTERED */
+    
 
     g_GmmAttachCtrl.ucAttachAttmptCnt = 0;
 
@@ -3022,29 +2122,7 @@ VOS_VOID Gmm_AttachRejectCause14(VOS_BOOL   bUpdateSimFlg)
     return;
 }
 
-/*******************************************************************************
-  Module   : Gmm_AttachAttemptCounter
-  Function : Attach Attempt Counter的处理
-  Input    : VOS_UINT32 ulGmmCause  失败原因
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1.张志勇  2003.12.09  新规作成
-  2.日    期   : 2011年7月14日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
-  3.日    期   : 2011年10月08日
-    作    者   : W00167002
-    修改内容  : V7R1 PhaseII阶段调整，保存/删除Eplmn的功能由原先的MMC模块调整为
-                 GMM/MM模块处理
-  4.日    期   : 2011年10月08日
-    作    者   : m00217266
-    修改内容  : PS域错误码上报修改, GMM/SM接口调整, 增加原因值上报
-  5.日    期   : 2015年1月14日
-    作    者   : z00161729
-    修改内容   : AT&T 支持DAM特性修改
-*******************************************************************************/
+
 VOS_VOID Gmm_AttachAttemptCounter(
                               VOS_UINT32 ulGmmCause                                  /* 失败原因                                 */
                               )
@@ -3126,26 +2204,7 @@ VOS_VOID Gmm_AttachAttemptCounter(
 }
 
 
-/*******************************************************************************
-  Module   : Gmm_RcvAttachRejectMsg_T3302_Handling
-  Function : 接收空口消息ATTACH REJECT,对T3302定时器的处理
-  Input    : NAS_MSG_STRU *pMsg  指向NAS_MSG_STRU结构的指针
-  Output   : 无
-  NOTE     : 无
-  Return   : VOS_UINT8, GMM_FAILURE/GMM_SUCCESS
-  History  :
-    1. 欧阳飞  2010.01.03  降复杂度，生成新函数
-    2.日    期   : 2011年3月3日
-      作    者   : z00161729
-      修改内容   : DTS2011021201997:PS、CS完整性保护是否开启由GMM和MM分开维护,MMC不再维护
-    3.日    期   : 2013年11月18日
-      作    者   : w00167002
-      修改内容   : DTS2013112006986:控制在3G TDD模式下是否需要开启SMC验证标记:中国移动拉萨网络设备在
-                   TD下不发起SMC流程。
-    4.日    期   : 2015年6月10日
-      作    者   : z00161729
-      修改内容   : 24008 23122 R11 CR升级项目修改
-*******************************************************************************/
+
 VOS_UINT8 Gmm_RcvAttachRejectMsg_T3302_Handling(NAS_MSG_FOR_PCLINT_STRU *pMsg)
 {
     NAS_MSG_STRU        *pGmmStatus;
@@ -3202,19 +2261,7 @@ VOS_UINT8 Gmm_RcvAttachRejectMsg_T3302_Handling(NAS_MSG_FOR_PCLINT_STRU *pMsg)
     return GMM_SUCCESS;
 }
 
-/*******************************************************************************
-  Module   : Gmm_RcvAttachRejectMsg_Cause_Handling_Other_Cause
-  Function : 接收空口消息空口消息ATTACH REJECT,对Rej Cause:缺省原因值的处理
-  Input    : VOS_UINT8 ucCause : Reject Cause
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1.欧阳飞  2010.01.03  降复杂度，生成新函数
-  2.日    期   : 2011年7月14日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
-*******************************************************************************/
+
 VOS_VOID Gmm_RcvAttachRejectMsg_Cause_Handling_Other_Cause(VOS_UINT8 ucCause)
 {
     PS_NAS_LOG(WUEPS_PID_GMM, VOS_NULL, PS_LOG_LEVEL_WARNING, "Gmm_RcvAttachRejectMsg:WARNING: GMM CAUSE is abnormal");
@@ -3237,32 +2284,7 @@ VOS_VOID Gmm_RcvAttachRejectMsg_Cause_Handling_Other_Cause(VOS_UINT8 ucCause)
 
 }
 
-/*****************************************************************************
- 函 数 名  : Gmm_RcvAttachRejectMsg_Cause_Handling
- 功能描述  :对ATTACH拒绝的原因分发处理
- 输入参数  : ucGmmCause   拒绝的原因
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2010年5月20日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2. 日    期   : 2011年7月10日
-     作    者   : w00166186
-     修改内容   : V7R1 PHASE II ATTACH/DETACH调整
-  3.日    期   : 2011年7月14日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
-
-  4.日    期   : 2012年8月25日
-    作    者   : m00217266
-    修改内容   : 删除GMM_SaveErrCode，添加Gmm_Save_Detach_Cause，
-                保存导致Attach失败的原因值
-*****************************************************************************/
 VOS_VOID Gmm_RcvAttachRejectMsg_Cause_Handling(VOS_UINT8 ucCause)
 {
     /* 保存注册失败原因值 */
@@ -3308,23 +2330,8 @@ VOS_VOID Gmm_RcvAttachRejectMsg_Cause_Handling(VOS_UINT8 ucCause)
     NAS_GMM_CheckCauseToStartT3340(ucCause);
 }
 
-/* Added by l00208543 for V9R1 STK升级, 2013-07-09, begin */
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_ConvertGmmAttachTypeToStkRauType
- 功能描述  : 进行类型转换:NAS_GMM_SPEC_PROC_TYPE_ENUM_UINT8->NAS_STK_UPDATE_TYPE_ENUM_UINT8
- 输入参数  : NAS_GMM_SPEC_PROC_TYPE_ENUM_UINT8 enGmmRauType MM层的Attach TYPE
- 输出参数  :
- 返 回 值  : NAS_STK_UPDATE_TYPE_ENUM_UINT8 上报给STK的Attach TYPE
- 调用函数  : NAS_GMM_SndStkAttachRej
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月22日
-    作    者   : l00208543
-    修改内容   : V9R1 STK升级，新增函数
-
-*****************************************************************************/
 NAS_STK_UPDATE_TYPE_ENUM_UINT8 NAS_GMM_ConvertGmmAttachTypeToStkRauType (
     NAS_GMM_SPEC_PROC_TYPE_ENUM_UINT8   enGmmAttachType
 )
@@ -3350,21 +2357,7 @@ NAS_STK_UPDATE_TYPE_ENUM_UINT8 NAS_GMM_ConvertGmmAttachTypeToStkRauType (
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_ReportStkAttachRej
- 功能描述  : GMM上报Network Rejection Event
- 输入参数  : ucGmmCause   拒绝的原因值
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  : Gmm_RcvAttachRejectMsg()
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月9日
-    作    者   : l00208543
-    修改内容   : V9R1 STK升级，新增函数
-
-*****************************************************************************/
 VOS_VOID NAS_GMM_SndStkAttachRej(VOS_UINT8 ucCause)
 {
     NAS_STK_NETWORK_REJECTION_EVENT_STRU                   *pstMsg = VOS_NULL_PTR;
@@ -3409,22 +2402,8 @@ VOS_VOID NAS_GMM_SndStkAttachRej(VOS_UINT8 ucCause)
 
     return;
 }
-/* Added by l00208543 for V9R1 STK升级, 2013-07-09, end */
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_ResetRejCauseChangedCounter
- 功能描述  : 收到Accept消息时reset全局变量
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期  : 2014年10月27日
-    作    者  : h00285180
-    修改内容  : 问题单号:DTS2014110307415
-*****************************************************************************/
 VOS_VOID NAS_GMM_ResetRejCauseChangedCounter (VOS_VOID)
 {
     NAS_MML_ResetHplmnPsRejCauseChangedCounter();
@@ -3432,21 +2411,7 @@ VOS_VOID NAS_GMM_ResetRejCauseChangedCounter (VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_HandleHplmnRejCauseChange
- 功能描述  : HPLMN修改拒绝原因值，如果需要将拒绝原因值修改为#17，维护修改为#17次数的全局变量
- 输入参数  : NAS_MML_CHANGE_REJ_TYPE_ENUM_UINT8  enChangeRejType流程类型
-             VOS_UINT8                          *pucRcvMsg原有拒绝原因值
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月20日
-    作    者   : h00285180
-    修改内容   : 拒绝原因值优化PhaseII DTS2014110307415
-*****************************************************************************/
 VOS_VOID NAS_GMM_HandleHplmnRejCauseChange(
     NAS_MML_CHANGE_REJ_TYPE_ENUM_UINT8  enChangeRejType,
     VOS_UINT8                          *pucRcvMsg
@@ -3477,21 +2442,7 @@ VOS_VOID NAS_GMM_HandleHplmnRejCauseChange(
     *pucRcvMsg = ucAdaptCause;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_HandleVplmnRejCauseChange
- 功能描述  : VPLMN修改拒绝原因值，如果需要将拒绝原因值修改为#17，维护修改为#17次数的全局变量
- 输入参数  : NAS_MML_CHANGE_REJ_TYPE_ENUM_UINT8  enChangeRejType流程类型
-             VOS_UINT8                          *pucRcvMsg原有拒绝原因值
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月20日
-    作    者   : h00285180
-    修改内容   : 拒绝原因值优化PhaseII DTS2014110307415
-*****************************************************************************/
 VOS_VOID NAS_GMM_HandleVplmnRejCauseChange(
     NAS_MML_CHANGE_REJ_TYPE_ENUM_UINT8  enChangeRejType,
     VOS_UINT8                          *pucRcvMsg
@@ -3522,20 +2473,7 @@ VOS_VOID NAS_GMM_HandleVplmnRejCauseChange(
     *pucRcvMsg = ucAdaptCause;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_ChangeRegRejCauseAvoidInvalidSim
- 功能描述  : 注册过程(ATTACH/RAU)拒绝原因值自适应
- 输入参数  : VOS_UINT8 *pucRcvMsg  指向原始拒绝原因值的指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月20日
-    作    者   : h00285180
-    修改内容   : 拒绝原因值PhaseII DTS2014110307415
-*****************************************************************************/
 VOS_VOID NAS_GMM_ChangeRegRejCauseAvoidInvalidSim(VOS_UINT8 *pucRcvMsg)
 {
     NAS_MML_PLMN_ID_STRU               *pstCurrCampPlmnId    = VOS_NULL_PTR;
@@ -3565,31 +2503,7 @@ VOS_VOID NAS_GMM_ChangeRegRejCauseAvoidInvalidSim(VOS_UINT8 *pucRcvMsg)
     }
 }
 
-/*******************************************************************************
-  Module   : Gmm_RcvAttachRejectMsg
-  Function : 接收空口消息空口消息ATTACH REJECT的处理
-  Input    : NAS_MSG_STRU *pMsg  指向NAS_MSG_STRU结构的指针
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1. 张志勇  2003.12.08  新规作成
-    2. 日    期   : 2006年11月7日
-       作    者   : sunxibo id:46746
-       修改内容   : 根据问题单号：A32D06823
-    3.日    期   : 2011年3月6日
-      作    者   : l65478
-      修改内容   : DTS2011052703809,GCF用例9.4.2.2.1失败,因为GMM向仪器发送了GMM STATUS消息
-    4.日    期   : 2013年7月13日
-      作    者   : l00208543
-      修改内容   : STK升级项目，增加NAS_GMM_ReportStkAttachRej的调用向STK上报reject消息
-    5.日    期   : 2013年10月9日
-      作    者   : l00208543
-      修改内容   : DTS2013100904573
-    6.日    期   : 2014年10月20日
-      作    者   : h00285180
-      修改内容   : 拒绝原因值优化PhaseII DTS2014110307415
-*******************************************************************************/
+
 VOS_VOID Gmm_RcvAttachRejectMsg(
                             NAS_MSG_FOR_PCLINT_STRU *pMsg
                             )
@@ -3625,9 +2539,7 @@ VOS_VOID Gmm_RcvAttachRejectMsg(
 
     NAS_GMM_ChangeRegRejCauseAvoidInvalidSim(&(pMsg->aucNasMsg[2]));
 
-    /* Added by l00208543 for V9R1 STK升级, 2013-07-11, begin */
     NAS_GMM_SndStkAttachRej(pMsg->aucNasMsg[2]);
-    /* Added by l00208543 for V9R1 STK升级, 2013-07-11, end */
 
     Gmm_TimerStop(GMM_TIMER_T3310);                                             /* 停止Timer3310                            */
     Gmm_TimerStop(GMM_TIMER_T3318);                                             /* 停止T3318                                */
@@ -3665,22 +2577,7 @@ VOS_VOID Gmm_RcvAttachRejectMsg(
     return;
 }
 
-/*******************************************************************************
-  Module   : Gmm_AttachRauAcceptCause16
-  Function : ATTACH或RAU被接收时原因值为16，17，22的处理
-  Input    : 无
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1. 张志勇  2003.12.08  新规作成
-    2.日    期   : 2008年7月25日
-      作    者   : luojian 00107747
-      修改内容   : 根据问题单号AT2D04142/AT2D04677
-    3.日    期   : 2015年6月5日
-      作    者   : z00161729
-      修改内容   : 24008 23122 R11 CR升级项目修改
-*******************************************************************************/
+
 VOS_VOID Gmm_AttachRauAcceptCause16(
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16  enGmmCause
 )
@@ -3735,20 +2632,7 @@ VOS_VOID Gmm_AttachRauAcceptCause16(
 
 
 
-/*******************************************************************************
-  Module   : Gmm_SaveTimerValue
-  Function : 存储T3302/T3312时长
-  Input    : VOS_UINT8 ucTimNam   Timer名称
-             VOS_UINT8 ucMsgByte  消息中时长位置的字节
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1. 张志勇  2003.12.08  新规作成
-    2.日    期   : 2011年3月3日
-      作    者   : z00161729
-      修改内容   : DTS2011021201997:PS、CS完整性保护是否开启由GMM和MM分开维护,MMC不再维护
-*******************************************************************************/
+
 VOS_VOID Gmm_SaveTimerValue(
                         VOS_UINT8 ucTimNam,                                         /* Timer名称                                */
                         VOS_UINT8 ucMsgByte                                         /* 消息中时长位置的字节                     */
@@ -3815,22 +2699,7 @@ VOS_VOID Gmm_SaveTimerValue(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  :NAS_GMM_DecodeT3323ValueIERcvAttachAccept
- 功能描述  :将圈复杂度，从attach accept消息中解析T3323 value IE内容
- 输入参数  :pRauAcceptIe - 指向GMM_MSG_RESOLVE_STRU结构的指针
-            pMsg         - 指向NAS_MSG_STRU结构的指针
-            ucIeOffset   - T3323 value IE在消息内容中位置
- 输出参数  :无
- 返 回 值  :VOS_TRUE  - 处理成功
-            VOS_FALSE - 处理失败
- 调用函数  :无
 
- 修改历史      :
-  1.日    期   : 2015年6月11日
-    作    者   : z00161729
-    修改内容   : 24008 23122 R11 CR升级项目修改
-*****************************************************************************/
 VOS_UINT32 NAS_GMM_DecodeT3323ValueIERcvAttachAccept(
     GMM_MSG_RESOLVE_STRU              *pAttachAcceptIe,
     NAS_MSG_FOR_PCLINT_STRU           *pMsg,
@@ -3860,22 +2729,7 @@ VOS_UINT32 NAS_GMM_DecodeT3323ValueIERcvAttachAccept(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  :NAS_GMM_DecodeT3312ExtendedValueIE_RcvAttachAccept
- 功能描述  :从attach accept消息中解析T3312 extended value IE内容
- 输入参数  :pRauAcceptIe - 指向GMM_MSG_RESOLVE_STRU结构的指针
-            pMsg         - 指向NAS_MSG_STRU结构的指针
-            ucIeOffset   - T3312 extended value IE在消息内容中位置
- 输出参数  :无
- 返 回 值  :VOS_TRUE  - 处理成功
-            VOS_FALSE - 处理失败
- 调用函数  :无
 
- 修改历史      :
-  1.日    期   : 2015年6月11日
-    作    者   : z00161729
-    修改内容   : 24008 23122 R11 CR升级项目修改
-*****************************************************************************/
 VOS_UINT32 NAS_GMM_DecodeT3312ExtendedValueIE_RcvAttachAccept(
     GMM_MSG_RESOLVE_STRU              *pAttachAcceptIe,
     NAS_MSG_FOR_PCLINT_STRU           *pMsg,
@@ -3914,20 +2768,7 @@ VOS_UINT32 NAS_GMM_DecodeT3312ExtendedValueIE_RcvAttachAccept(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_Gmm_SaveAttachAcceptGmmCause
- 功能描述  : 保存Attach accept中的gmm cause
- 输入参数  : GMM_MSG_RESOLVE_STRU  *pstAttachAcceptIe 指向GMM_MSG_RESOLVE_STRU
-             结构的指针
- 输出参数  : 无
- 返 回 值  : rau 类型
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2015年8月13日
-    作    者   : g00322017
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_VOID NAS_Gmm_SaveAttachAcceptGmmCause(
     NAS_MSG_FOR_PCLINT_STRU            *pMsg,
     GMM_MSG_RESOLVE_STRU               *pstAttachAcceptIe
@@ -3949,40 +2790,7 @@ VOS_VOID NAS_Gmm_SaveAttachAcceptGmmCause(
     NAS_MML_SetOriginalRejectCause(ucGmmCause);
     return;
 }
-/*******************************************************************************
-  Module   : Gmm_AttachAcceptResolveIe
-  Function : 解析ATTACH ACCEPT的IE
-  Input    : GMM_MSG_RESOLVE_STRU  *pAttachAcceptIe     指向GMM_MSG_RESOLVE_STRU
-                                                        结构的指针
-             NAS_MSG_STRU          *pMsg                指向NAS_MSG_STRU结构
-                                                        的指针
-  Output   : GMM_MSG_RESOLVE_STRU  *pAttachAcceptIe     指向GMM_MSG_RESOLVE_STRU
-                                                        结构的指针
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1. 张志勇  2003.12.08  新规作成
-    2.日    期   : 2012年3月20日
-      作    者   : z00161729
-      修改内容   : 支持ISR特性修改
-    3.日    期   : 2012年3月27日
-      作    者   : w00166186
-      修改内容   : CSFB&PPAC&ETWS&ISR 开发 ENERGENCY CALL
-    4.日    期   : 2013年09月10日
-      作    者   : l65478
-      修改内容   : DTS2013090202323:可选IE的检查错误时不返回FAIL
-    5.日    期   : 2013年10月25日
-      作    者   : w00167002
-      修改内容   : DTS2013102201891:增加对紧急呼长度异常的处理。
-                 1.按照紧急呼填写的总长度值解析，会超过整个消息的长度，则认为异常；
-                 2.按照每个子紧急呼消息的长度值解析，超过了紧急呼填写的总长度值，则认为异常；
 
-                 调整NAS_MM_DecodeEMC函数到MML中NAS_MML_DecodeEmergencyNumList，
-                 供GMM/MM解码紧急呼列表使用。
-    6.日    期   : 2015年6月8日
-      作    者   : z00161729
-      修改内容   : 24008 23122 R11 CR升级项目修改
-*******************************************************************************/
 VOS_VOID Gmm_AttachAcceptResolveIe(
                                GMM_MSG_RESOLVE_STRU *pAttachAcceptIe,           /* 指向GMM_MSG_RESOLVE_STRU结构的指针       */
                                NAS_MSG_FOR_PCLINT_STRU         *pMsg
@@ -4282,46 +3090,7 @@ VOS_VOID Gmm_AttachAcceptResolveIe(
     return;
 }
 
-/*******************************************************************************
-  Module   : Gmm_AttachAcceptGprsOnly
-  Function : ATTACH ACCEPT的结果是GPRS only attached的处理
-  Input    : GMM_MSG_RESOLVE_STRU *pAttachAcceptIe  指向GMM_MSG_RESOLVE_STRU
-                                                    结构的指针
-             NAS_MSG_STRU         *pMsg             指向NAS_MSG_STRU结构的指针
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1.张志勇  2003.12.08  新规作成
-  2.日    期   : 2007年11月12日
-    作    者   : luowei id:39007
-    修改内容   : A32D13044
-  3.日    期   : 2008年11月25日
-    作    者   : l65478
-    修改内容   : 根据问题单号：AT2D06903，GSM模式下，连续收到两次ATTACH accept消息后，
-                 GMM发送attach complete
-  4.日    期   : 2011年7月10日
-    作    者   : w00166186
-    修改内容   : V7R1 PHASE II ATTACH/DETACH调整
-  5.日    期   : 2011年7月14日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
-  6.日    期   : 2012年03月30日
-    作    者   : l00130025
-    修改内容   : DTS2012032307791,发给LMM注册结果,CombineReg时需要区分结果域
-  7.日    期   : 2012年08月24日
-    作    者   : m00217266
-    修改内容   : 修改Gmm_SndSmEstablishCnf接口，添加原因值
-  7.日    期   : 2012年8月14日
-    作    者   : t00212959
-    修改内容   : DCM定制需求和遗留问题
-  8.日    期   : 2014年8月5日
-    作    者   : b00269685
-    修改内容   : DTS2014072107208修改
-  9.日    期   : 2015年6月5日
-    作    者   : z00161729
-    修改内容   : 24008 23122 R11 CR升级项目修改
- *******************************************************************************/
+
 VOS_VOID Gmm_AttachAcceptGprsOnly(
     GMM_MSG_RESOLVE_STRU                *pAttachAcceptIe,
     NAS_MSG_FOR_PCLINT_STRU             *pMsg,
@@ -4331,10 +3100,8 @@ VOS_VOID Gmm_AttachAcceptGprsOnly(
 {
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16  enGmmCause;                                                    /* 定义临时变量存储GMM CAUSE                */
 
-    /* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-15, begin */
     VOS_UINT8                           ucDrxLength;
     VOS_UINT8                           ucSysInfoDrxLength;
-    /* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-15, end */
 
     enGmmCause = NAS_MML_REG_FAIL_CAUSE_NULL;
 
@@ -4417,12 +3184,7 @@ VOS_VOID Gmm_AttachAcceptGprsOnly(
                 g_GmmAttachCtrl.ucSmCnfFlg = GMM_FALSE;                         /* 清ucSmCnfFlg标志                         */
             }
 
-            /* 24008_CR1253R1_(Rel-8)_C1-090834 24008 4.7.3.2.3.2章节描述如下:
-            #2:The MS shall stop timer T3310 if still running and shall reset the
-            routing area updating attempt counter. The MS shall set the update
-            status to U3 ROAMING NOT ALLOWED and shall delete any TMSI, LAI and
-            ciphering key sequence number. The MS shall enter state GMM-REGISTERED.NORMAL-SERVICE.
-            The new MM state is MM IDLE*/
+            
             Gmm_TimerStop(GMM_TIMER_T3310);
             g_GmmAttachCtrl.ucAttachAttmptCnt = 0;
             Gmm_ComStaChg(GMM_REGISTERED_NORMAL_SERVICE);
@@ -4503,7 +3265,6 @@ VOS_VOID Gmm_AttachAcceptGprsOnly(
         }
     }
 
-    /* Modified by t00212959 for DCM定制需求和遗留问题, 2012-8-14, begin */
     ucDrxLength        = NAS_MML_GetUeUtranPsDrxLen();
     ucSysInfoDrxLength = NAS_MML_GetWSysInfoDrxLen();
     if (GMM_TRUE == GMM_IsCasGsmMode())
@@ -4515,7 +3276,6 @@ VOS_VOID Gmm_AttachAcceptGprsOnly(
     {                                                                           /* DRX length参数变更                       */
         Gmm_SndRrmmNasInfoChangeReq(RRC_NAS_MASK_DRX);                          /* 通知RRC DRX参数变更                      */
     }
-    /* Modified by t00212959 for DCM定制需求和遗留问题, 2012-8-14, end */
     else
     {
     }
@@ -4523,34 +3283,12 @@ VOS_VOID Gmm_AttachAcceptGprsOnly(
     return;
 }
 
-/*******************************************************************************
-  Module   : Gmm_AttachAcceptCombined
-  Function : ATTACH ACCEPT的结果是combined attached的处理
-  Input    : GMM_MSG_RESOLVE_STRU  *pAttachAcceptIe     指向GMM_MSG_RESOLVE_STRU
-                                                        结构的指针
-             NAS_MSG_STRU          *pMsg                指向NAS_MSG_STRU结构
-                                                        的指针
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1.张志勇  2003.12.08  新规作成
-  2.日    期   : 2011年7月10日
-    作    者   : w00166186
-    修改内容  : V7R1 PHASE II ATTACH/DETACH调整
-  3.日    期   : 2011年7月14日
-    作    者   : h44270
-    修改内容  : V7R1 PhaseII阶段调整，注册结果简化
-  4.日    期   : 2012年8月14日
-    作    者   : t00212959
-    修改内容   : DCM定制需求和遗留问题
-*******************************************************************************/
+
 VOS_VOID Gmm_AttachAcceptCombined(
                               GMM_MSG_RESOLVE_STRU  *pAttachAcceptIe,           /* 指向GMM_MSG_RESOLVE_STRU结构的指针       */
                               NAS_MSG_FOR_PCLINT_STRU          *pMsg
                               )
 {
-    /* Modified by t00212959 for DCM定制需求和遗留问题, 2012-8-14, begin */
     VOS_UINT8                           ucDrxLength;
     VOS_UINT8                           ucSysInfoDrxLength;
 
@@ -4568,7 +3306,6 @@ VOS_VOID Gmm_AttachAcceptCombined(
     {                                                                           /* DRX length参数变更                       */
         Gmm_SndRrmmNasInfoChangeReq(RRC_NAS_MASK_DRX);                          /* 通知RRC DRX参数变更                      */
     }
-    /* Modified by t00212959 for DCM定制需求和遗留问题, 2012-8-14, end */
     else
     {
     }
@@ -4618,25 +3355,7 @@ VOS_VOID Gmm_AttachAcceptCombined(
     return;
 }
 
-/*******************************************************************************
-  Module   : Gmm_AttachAcceptHandle_Emergency_Num_Handling
-  Function : Gmm_AttachAcceptHandle函数将复杂度: 紧急呼号码处理
-  Input    :
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1. 欧阳飞 2009.06.15  新规作成
-    2.日    期   : 2012年3月20日
-      作    者   : z00161729
-      修改内容   : 紧急呼号码全局变量替换
-    3.日    期   : 2012年3月27日
-      作    者   : w00166186
-      修改内容   : CSFB&PPAC&ETWS&ISR 开发 ENERGENCY CALL
-    4.日    期   : 2015年6月5日
-      作    者   : z00161729
-      修改内容   : 24008 23122 R11 CR升级项目修改
-*******************************************************************************/
+
 VOS_VOID Gmm_AttachAcceptHandle_Emergency_Num_Handling(
                                    GMM_MSG_RESOLVE_STRU        AttachAcceptIe
                             )
@@ -4696,25 +3415,7 @@ VOS_VOID Gmm_AttachAcceptHandle_Emergency_Num_Handling(
     return;
 }
 
-/*******************************************************************************
-  Module   : Gmm_AttachAcceptHandle_PTMSI_Handling
-  Function : Gmm_AttachAcceptHandle函数将复杂度: PTMSI/PTMSI SIGNATURE处理
-  Input    :
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1. 欧阳飞 2009.06.15  新规作成
-  2.日    期   : 2011年7月27日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-  3.日    期   : 2013年08月23日
-    作    者   : f00179208
-    修改内容   : ErrLog&FTM项目,PTMSI发生改变时上报给OM
-  4.日    期   : 2015年6月5日
-    作    者   : z00161729
-    修改内容   : 24008 23122 R11 CR升级项目修改
-*******************************************************************************/
+
 VOS_VOID Gmm_AttachAcceptHandle_PTMSI_Handling(
                                    NAS_MSG_FOR_PCLINT_STRU    *pMsg,
                                    GMM_MSG_RESOLVE_STRU        AttachAcceptIe,
@@ -4763,26 +3464,7 @@ VOS_VOID Gmm_AttachAcceptHandle_PTMSI_Handling(
     return;
 }
 
-/*******************************************************************************
-  Module   : Gmm_AttachAcceptHandle_REQUESTED_MS_INFORMATION_IE_Handling
-  Function : Gmm_AttachAcceptHandle函数将复杂度: REQUESTED_MS_INFORMATION IE处理
-  Input    :
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1. 欧阳飞 2009.06.15  新规作成
-    2. 日    期   : 2012年05月13日
-       作    者   : W00166186
-       修改内容   : DTS201204261955,RAU COMPLETE没有回复
-    3. 日    期   : 2012年12月26日
-       作    者   : s46746
-       修改内容   : DSDA GUNAS C CORE项目，增加平台能力检查
-    4.日    期   : 2015年6月5日
-      作    者   : z00161729
-      修改内容   : 24008 23122 R11 CR升级项目修改
 
-*******************************************************************************/
 VOS_VOID Gmm_AttachAcceptHandle_REQUESTED_MS_INFORMATION_IE_Handling(
     NAS_MSG_FOR_PCLINT_STRU            *pMsg,
     GMM_MSG_RESOLVE_STRU                AttachAcceptIe,
@@ -4850,28 +3532,7 @@ VOS_VOID Gmm_AttachAcceptHandle_REQUESTED_MS_INFORMATION_IE_Handling(
     return;
 }
 
-/*******************************************************************************
-  Module   : Gmm_AttachAcceptHandle_Attach_Result_IE_Handling
-  Function : Gmm_AttachAcceptHandle函数将复杂度: Attach_Result IE处理
-  Input    :
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1. 欧阳飞 2009.06.15  新规作成
- 2.日    期   : 2012年8月13日
-   作    者   : L65478
-   修改内容   : DTS2012080301606:注册失败后发起手动搜网失败
- 3.日    期  : 2012年08月24日
-   作    者  : m00217266
-   修改内容  : 修改Gmm_SndSmEstablishCnf接口，添加原因值
- 4.日    期  : 2014年08月4日
-   作    者  : b00269685
-   修改内容  : 联合注册时收到ps only accept，按照cs失败，ps成功处理
- 5.日    期   : 2015年6月5日
-   作    者   : z00161729
-   修改内容   : 24008 23122 R11 CR升级项目修改
-*******************************************************************************/
+
 VOS_UINT8 Gmm_AttachAcceptHandle_Attach_Result_IE_Handling(
                                    NAS_MSG_FOR_PCLINT_STRU    *pMsg,
                                    GMM_MSG_RESOLVE_STRU        AttachAcceptIe,
@@ -4920,34 +3581,7 @@ VOS_UINT8 Gmm_AttachAcceptHandle_Attach_Result_IE_Handling(
     return GMM_TRUE;
 }
 
-/*******************************************************************************
- 函 数 名  : Gmm_AttachAcceptHandle_ucSndCompleteFlg_Handling
- 功能描述  : ucSndCompleteFlg 处理
- 输入参数  : VOS_UINT8                     ucSndCompleteFlg
-             VOS_UINT8                     ucInterRatInfoFlg
-             VOS_UINT8                     ucReadychangFLG
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年4月12日
-    作    者   : l65478
-    修改内容   : 新生成函数
-  2.日    期   : 2010年3月29日
-    作    者   : o00132663
-    修改内容   : NAS R7协议升级，InterRatHandoverInfo信息接口变更
-  3.日    期   : 2010年4月12日
-    作    者   : l65478
-    修改内容   : AT2D18389,在初始小区更新时，GMM应该通知LLC发送NULL帧
-  4.日    期   : 2014年6月13日
-    作    者   : w00242748
-    修改内容   : DSDS 新特性
-  5.日    期   : 2014年6月13日
-    作    者   : b00269685
-    修改内容   : DSDS IV修改
-*******************************************************************************/
 VOS_VOID Gmm_AttachAcceptHandle_ucSndCompleteFlg_Handling(
     VOS_UINT8                     ucSndCompleteFlg,
     VOS_UINT8                     ucInterRatInfoFlg,
@@ -5027,19 +3661,7 @@ VOS_VOID Gmm_AttachAcceptHandle_ucSndCompleteFlg_Handling(
     return;
 }
 
-/*******************************************************************************
-  Module   : Gmm_AttachAcceptHandle_TLLI_Handling
-  Function : Gmm_AttachAcceptHandle函数将复杂度: TLLI 处理
-  Input    :
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1. 欧阳飞 2009.06.15  新规作成
-  2.日    期   : 2011年7月27日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-*******************************************************************************/
+
 VOS_VOID Gmm_AttachAcceptHandle_TLLI_Handling(
                                    VOS_BOOL                bTlliUpdateFlg
                             )
@@ -5075,48 +3697,7 @@ VOS_VOID Gmm_AttachAcceptHandle_TLLI_Handling(
     return;
 }
 
-/*******************************************************************************
-  Module   : Gmm_AttachAcceptHandle
-  Function : 处理ATTACH ACCEPT消息
-  Input    : NAS_MSG_STRU *pMsg     指向NAS_MSG_STRU结构的指针
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1. 张志勇  2003.12.08  新规作成
-    2. x51137 2006/4/28 A32D02889
-    3. 日    期   : 2006年11月8日
-       作    者   : s46746
-       修改内容   : 问题单号:A32D06867
-    4. 日    期   : 2008年10月20日
-       作    者   : o00132663
-       修改内容   : 问题单号:AT2D06266, 增加对不支持CELL NOTIFICATION的处理
-    5. 日    期   : 2008年11月25日
-       作    者   : l65478
-       修改内容   : 根据问题单号：AT2D06903，GSM模式下，连续收到两次ATTACH accept消息后，GMM发送attach complete
-    6.日    期   : 2011年10月08日
-      作    者   : W00167002
-      修改内容  : V7R1 PhaseII阶段调整，保存Eplmn的功能由原先的MMC模块调整为
-                   GMM/MM模块处理
-    7.日    期   : 2012年1月08日
-      作    者   : z00161729
-      修改内容   : V7R1 PhaseIV阶段调整,TIN type直接更新MML全局变量并写nv不通过消息通知MMC由MMC更新
-    8.日    期   : 2013年12月24日
-      作    者   : f00261443
-      修改内容   : 记录GU下IMS Voice的能力
-    9.日    期   : 2014年6月13日
-      作    者   : w00242748
-      修改内容   : DSDS 新特性
-   10.日    期   : 2014年7月18日
-      作    者   : b00269685
-      修改内容   : DSDS IV修改
-   11.日    期   : 2014年9月30日
-      作    者   : z00161729
-      修改内容   : DTS2014073003377: attach成功网络重新分配了ptmsi后通过nas comm info通知接入层的ptmsi是老的，导致后续ps service请求被#10拒绝
-   12.日    期   : 2015年6月5日
-      作    者   : z00161729
-      修改内容   : 24008 23122 R11 CR升级项目修改
-*******************************************************************************/
+
 VOS_VOID Gmm_AttachAcceptHandle(
                             NAS_MSG_FOR_PCLINT_STRU *pMsg,
                             VOS_BOOL                bTlliUpdateFlg
@@ -5156,17 +3737,13 @@ VOS_VOID Gmm_AttachAcceptHandle(
     Gmm_AttachAcceptHandle_Emergency_Num_Handling(AttachAcceptIe);
 
 
-    /* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-24, begin */
     /* report network feature information in UMTS. According to VoLTE SRS document,
      * In utran network, the related capability information reported is not supported
      * now.
      */
-    /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2014-01-13, begin */
     NAS_GMM_SndMmcNetworkCapabilityInfoInd(GMM_MMC_NW_EMC_BS_NOT_SUPPORTED,
                                            NAS_MML_NW_IMS_VOICE_NOT_SUPPORTED,
                                            GMM_MMC_LTE_CS_CAPBILITY_NOT_SUPPORTED);
-    /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2014-01-13, end */
-    /* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-24, end */
 
 
     ucRst = Gmm_AttachAcceptHandle_Attach_Result_IE_Handling(pMsg,
@@ -5257,55 +3834,7 @@ VOS_VOID Gmm_AttachAcceptHandle(
 
     return;
 }
-/*******************************************************************************
-  Module   : Gmm_SndAttachReq
-  Function : 发送ATTACH REQUEST
-  Input    : 无
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1.张志勇  2003.12.08  新规作成
-  2.日    期   : 2010年09月14日
-    作    者   : l65478
-    修改内容   : 问题单号:DTS2010091402018, CS only时，G->W->G后，PDP激活失败
-  3.日    期   : 2010年11月30日
-    作    者   : h44270
-    修改内容   : 问题单号:DTS2010112400547/DTs010112303273,没有指派新的TLLI,导致PS域注册失败
-  4.日    期   : 2011年7月14日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
-  5.日    期   : 2012年2月23日
-    作    者   : w00176964
-    修改内容   : DTS2012022107470:WG之间有语音业务来回切换时,从G切到W进行RAU后
-                 被拒#9,NAS发起联合RAU导致语音中断
-  6.日    期   : 2012年2月15日
-    作    者   : w00166186
-    修改内容   : CSFB&PPAC&ETWS&ISR 开发
-  7.日    期   : 2012年2月23日
-    作    者   : w00176964
-    修改内容   : DTS2012061907255:UE在G下小区驻留,重选到LA禁止的W小区,限制服务驻留
-                 后续回到G小区,pdp激活后,PING服务器不通
-  8.日    期   : 2012年10月22日
-    作    者   : t00212959
-    修改内容   : DTS2012101907218:NAS向接入层发送Attach请求时，Establishment cause按照协议写为Registration
-  9.日    期   : 2012年9月1日
-    作    者   : s46746
-    修改内容   : DTS2012082907374:UE在G下小区驻留,进行GCF测试用例44.2.1.2.8时,
-                 不需要每次Attach都去指派层2
- 10.日    期   : 2013年1月4日
-    作    者   : w00176964
-    修改内容   : DTS2013010400031:全局变量g_ucGcfInd替换为USIM提供API函数USIMM_IsTestCard
- 11.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
- 12.日    期   : 2013年6月5日
-    作    者   : w00242748
-    修改内容   : svlte和usim接口调整
- 13.日    期   : 2015年6月5日
-    作    者   : z00161729
-    修改内容   : 24008 23122 R11 CR升级项目修改
-*******************************************************************************/
+
 VOS_VOID Gmm_SndAttachReq(VOS_VOID)
 {
     NAS_MSG_STRU    *pSendNasMsg = VOS_NULL_PTR;                                /* 定义NAS_MSG_STRU类型的指针变量           */
@@ -5342,9 +3871,7 @@ VOS_VOID Gmm_SndAttachReq(VOS_VOID)
     gstGmmCasGlobalCtrl.ucSysRauFlg = GMM_FALSE;                                /* 系统信息要求的RAU过程标志清除 */
     if (GMM_TRUE == GMM_IsCasGsmMode())
     {
-        /* deleted by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
 
-        /* deleted by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
         /*When ciphering is requested at GPRS attach, the authentication and
         ciphering procedure shall be performed since the MS does not store
@@ -5430,37 +3957,11 @@ VOS_VOID Gmm_SndAttachReq(VOS_VOID)
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : NAS_GMM_SndAttachReq
- 功能描述  : 发送ATTACH REQUEST
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月11日
-    作    者   : luokaihui /00167671
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月2日
-    作    者   : s46746
-    修改内容   : 从L异系统改变到GU后，没有指派加密密钥到GU接入层
-  3.日    期   : 2012年8月15日
-    作    者   : z00161729
-    修改内容   : DCM定制需求和遗留问题修改
-  4.日    期   :2013年8月29日
-    作    者   :z00161729
-    修改内容   :DTS2013082702039:syscfg不支持l或l disable时，gmm rau和attach不需携带ue network capability
-  5.日    期   : 2014年6月13日
-    作    者   : w00242748
-    修改内容   : DSDS 新特性
-*****************************************************************************/
 VOS_VOID NAS_GMM_SndAttachReq(VOS_VOID)
 {
 
 #if (FEATURE_ON == FEATURE_LTE)
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, begin */
     VOS_UINT32                          ucIsSupportLteCapaFlg;
 
     ucIsSupportLteCapaFlg  = NAS_MML_IsSupportLteCapability();
@@ -5476,7 +3977,6 @@ VOS_VOID NAS_GMM_SndAttachReq(VOS_VOID)
         Gmm_ComStaChg(GMM_REGISTERED_INITIATED);
         return;
     }
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, end */
 
 
     /* 支持L能力，tin值为guti情况下才需获取L的安全上下文 */
@@ -5510,49 +4010,7 @@ VOS_VOID NAS_GMM_SndAttachReq(VOS_VOID)
 
 }
 
-/*******************************************************************************
-  Module   : Gmm_AttachInitiate
-  Function : GMM ATTACH功能的入口函数
-  Input    : VOS_UINT8   ucSpecProc         指定attach过程类型
-                       = GMM_NULL_PROCEDURE 默认类型
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1.张志勇  2003.12.08  新规作成
-  2.日    期   : 2007年1月10日
-    作    者   : x51137
-    修改内容   : A32D08318
-  3.日    期   : 2007年12月12日
-    作    者   : luojian id:60022475
-    修改内容   : 根据问题单号：A32D13866
-  4.日    期   : 2011年7月25日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-  5.日    期   : 2012年2月15日
-    作    者   : w00167002
-    修改内容   : V7R1C50 CSFB&PPAC&ETWS&ISR:调整，若当前存在CSFB业务标志，则只做ATTACH
-  6.日    期   : 2012年2月15日
-    作    者   : w00166186
-    修改内容   : CSFB&PPAC&ETWS&ISR 开发
-  7.日    期   : 2012年9月25日
-    作    者   : h00216089
-    修改内容   : DTS2012090304976:调整，网侧Detach(re-attach not required)后，MM定时器超时发起LU，
-                  LU结束后收到系统消息GMM不会再发起Attach
-  8.日    期   : 2013年2月4日
-    作    者   : w00176964
-    修改内容   : DTS2011022802215:CS ONLY,网络模式I下也进行联合注册
-  9.日    期   : 2014年6月17日
-    作    者   : s00217060
-    修改内容   : DTS2014061003286:attach发起后，清除3311定时器超时标志
-  10.日    期   : 2015年1月15日
-     作    者   : z00161729
-     修改内容   : AT&T 支持DAM特性修改
-  11.日    期   : 2015年4月3日
-     作    者   : w00167002
-     修改内容   : DTS2015040102624:attach发起，清除T3212超时标记，否则attach成功
-                  后续立即发起周期RAU
-*******************************************************************************/
+
 VOS_VOID Gmm_AttachInitiate(VOS_UINT8 ucSpecProc)
 {
     VOS_UINT8                           ucCsRestrictRegister;
@@ -5674,77 +4132,12 @@ VOS_VOID Gmm_AttachInitiate(VOS_UINT8 ucSpecProc)
     return;
 }
 
-/*******************************************************************************
-  Module   : Gmm_RcvSmEstablishReq
-  Function : 接收SM的GMMSM_ESTABLISH_REQ原语的处理
-  Input    : VOS_VOID *pMsg         指向原语GMMSM_ESTABLISH_REQ的指针
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1. 张志勇  2003.12.08  新规作成
-    2. 张志勇  2005.03.23  NAS_IT_BUG_026对应
-    3. 日    期   : 2007年1月10日
-       作    者   : x51137
-       修改内容   : A32D08308
-    4. 日    期   : 2007年12月12日
-       作    者   : luojian id:60022475
-       修改内容   : 根据问题单号：A32D13866
-    5. 日    期   : 2008年7月24日
-       作    者   : luojian 00107747
-       修改内容   : 根据问题单号：AT2D04627/AT2D04237
-    6. 日    期   : 2010年9月9日
-       作    者   : s46746
-       修改内容   : 根据问题单号：DTS2010090600355，高优先级列表搜索时，CS ONLY下仍然需要能触发PS Attach
-    7. 日    期   : 2010年10月05日
-       作    者   : o00132663
-       修改内容   : 根据问题单号：DTS2010093001174，GCF12.9.6,在PS允许注册时，如果当前GMM处于未注册搜网状态，
-                    拒绝SM的请求
-    8. 日    期   : 2010年12月05日
-       作    者   : o00132663
-       修改内容   : 根据问题单号：DTS2010120203079，GCF12.9.6用例修改后，导致开机搜网中，如果用户直接发起PDP激活，
-                    也会被GMM拒绝，MP显示619错误，因此增加GCF测试桩，
-    9. 日    期   : 2010年12月31日
-       作    者   : A00165503
-       修改内容   : 问题单号：DTS2010123000205，注册到错误的网络，GMM在搜网状态下，若SIM卡无效，对SM发起的注册请求直接返回失败
-    10.日    期   : 2011年7月25日
-       作    者   : h44270
-       修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-   11. 日    期   : 2011年05月13日
-       作    者   : h44270
-       修改内容   : 根据问题单号：DTS2011051203553，在ATTACH过程中发生重选，异系统RAi相同时，GMM状态不正确，导致业务不可用
-   12.日    期  : 2012年08月24日
-       作    者  : m00217266
-       修改内容  : 修改Gmm_SndSmEstablishCnf接口，添加原因值
-   13.日    期   : 2012年8月15日
-      作    者   : z00161729
-      修改内容   : DCM定制需求和遗留问题修改
-   14.日    期   : 2012年9月15日
-      作    者   : z00161729
-      修改内容   : DTS2012091707434:pdp激活网络模式II,gmm发起attach类型不对应该为gprs-attach
-   15.日    期   : 2012年11月02日
-      作    者   : l65478
-      修改内容   : DTS2012110104636:在禁止PLMN上进行了ATTACH
-   16.日    期   : 2013年1月4日
-      作    者   : w00176964
-      修改内容   : DTS2013010400031:全局变量g_ucGcfInd替换为USIM提供API函数USIMM_IsTestCard
-   17.日    期   : 2013年3月8日
-      作    者   : t00212959
-      修改内容   : DTS2013030407991
-   18.日    期   : 2013年6月5日
-      作    者   : w00242748
-      修改内容   : svlte和usim接口调整
-   19.日    期   : 2014年02月13日
-      作    者   : f62575
-      修改内容   : DTS2014012902032: 禁止SVLTE产品出现双PS注册
-*******************************************************************************/
+
 VOS_VOID Gmm_RcvSmEstablishReq(VOS_VOID  *pMsg)
 {
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-30, begin */
 #if (FEATURE_ON == FEATURE_LTE)
     NAS_MML_LTE_CAPABILITY_STATUS_ENUM_UINT32               enLteCapabilityStatus;
 #endif
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-30, end */
     VOS_UINT32                                              ulIsTestCard;
     VOS_UINT32                                              ulPsAttachAllowFlg;
     VOS_UINT32                                              ulCsOnlyDataServiceSupportFlg;
@@ -5809,7 +4202,6 @@ VOS_VOID Gmm_RcvSmEstablishReq(VOS_VOID  *pMsg)
 
         NAS_MML_SetPsAttachAllowFlg(VOS_TRUE);
 
-        /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, begin */
         Gmm_SndMmcGprsServiceInd(NAS_MMC_GMM_GPRS_SERVICE_ATTACH);
 
         g_GmmAttachCtrl.ucSmCnfFlg             = GMM_TRUE;                      /* 置给SM回EST_CNF标志为TRUE                */
@@ -5837,7 +4229,6 @@ VOS_VOID Gmm_RcvSmEstablishReq(VOS_VOID  *pMsg)
 #endif
 
         Gmm_AttachInitiate(GMM_NULL_PROCEDURE);                                                  /* 调用函数触发attach 过程                  */
-        /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, end */
 
         break;
 
@@ -5862,9 +4253,7 @@ VOS_VOID Gmm_RcvSmEstablishReq(VOS_VOID  *pMsg)
                 g_GmmGlobalCtrl.ucFollowOnFlg          = GMM_TRUE;              /* 设置follow on 标志                       */
                 NAS_MML_SetPsServiceBufferStatusFlg(VOS_TRUE);
 
-                /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, begin */
                 Gmm_SndMmcGprsServiceInd(NAS_MMC_GMM_GPRS_SERVICE_ATTACH);
-                /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, end */
 
             }
         }
@@ -5882,58 +4271,7 @@ VOS_VOID Gmm_RcvSmEstablishReq(VOS_VOID  *pMsg)
     return;
 }
 
-/*******************************************************************************
-  Module   : Gmm_RcvAttachAcceptMsg
-  Function : 接收空口消息空口消息ATTACH ACCEPT的处理
-  Input    : NAS_MSG_STRU *pMsg     指向NAS_MSG_STRU结构的指针
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1. 张志勇  2003.12.08  新规作成
-    2.日    期   : 2008年7月2日
-      作    者   : l00107747
-      修改内容   : 根据问题单号：AT2D03900,GMM在ATTACH ACCEPT处理完成时没有清除FOLLOW ON标志
-    3.日    期   : 2008年11月25日
-      作    者   : l65478
-      修改内容   : 根据问题单号：AT2D06903，GSM模式下，连续收到两次ATTACH accept消息后，GMM发送attach complete
-    4.日    期   : 2010年09月24日
-      作    者   : l00167671
-      修改内容   : 问题单号: DTS2010092001266，恢复GPRS服务的RAU过程中出服务区，重新进相同路由区没有再次发起RAU流程
-    5.日    期   : 2011年7月14日
-      作    者   : h44270
-      修改内容   : V7R1 PhaseII阶段调整，注册结果简化
-    6.日    期   : 2012年01月12日
-      作    者   : l65478
-      修改内容   : 问题单号：DTS2012010602762:SYSCFG设置成支持CS ONLY后
-                 PS仍然显示正常服务
-    7.日    期   : 2012年08月24日
-      作    者   : m00217266
-      修改内容   : 删除GMM_ClearErrCode（PS域错误码上报项目）
-    8.日    期   : 2012年8月14日
-      作    者   : t00212959
-      修改内容   : DCM定制需求和遗留问题
 
-    9.日    期   : 2013年6月26日
-      作    者   : w00167002
-      修改内容   : SVLTE STC:在ATTACH时候，G下，用户发起PS detach，UE给网络发起
-                   detach 请求，和网侧下发的ATTACH ACEPT 对冲，需要丢弃ATTACH ACPT
-                   消息；
-
-   10.日    期   : 2013年11月19日
-      作    者   : l00208543
-      修改内容   : DTS2013111904411 拒绝原因值转换
-
-   11.日    期   : 2014年2月18日
-      作    者   : l00215384
-      修改内容   : DTS2014021006453，注册成功后鉴权拒绝计数清零
-   12.日    期   : 2014年10月20日
-      作    者   : h00285180
-      修改内容   : 拒绝原因值优化PhaseII DTS2014110307415
-   13.日    期   : 2014年12月17日
-      作    者   : b00269685
-      修改内容   : 在Attach成功后停止3314定时器
-*******************************************************************************/
 VOS_VOID Gmm_RcvAttachAcceptMsg(
                             NAS_MSG_FOR_PCLINT_STRU *pMsg
                             )
@@ -6022,14 +4360,12 @@ VOS_VOID Gmm_RcvAttachAcceptMsg(
     pstAuthRejInfo->ucHplmnPsAuthRejCounter = 0;
 
 
-    /* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-14, begin */
     /*attach 成功，更新Drx参数携带状态*/
     NAS_MML_SetPsRegContainDrx(g_GmmGlobalCtrl.UeInfo.enLatestAttachOrRauContainDrx);
 
     /* 可维可测增加消息打印 */
     NAS_GMM_LogPsRegContainDrxInfo(g_GmmGlobalCtrl.UeInfo.enLatestAttachOrRauContainDrx);
 
-    /* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-14, end */
 
 
     /* 取得当前注册成功的RAI信息，注意:此信息的获取要放在解析完RAI信息之后 */
@@ -6096,31 +4432,7 @@ VOS_VOID Gmm_RcvAttachAcceptMsg(
     }
     return;
 }
-/*******************************************************************************
-  Module   : Gmm_RcvMmcGmmAttachReq
-  Function : 收到原语MMCGMM_ATTACH_REQ的处理
-  Input    : VOS_VOID   *pMsg                     消息指针
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1.张志勇  2004.03.11  新规作成
-  2.日    期   : 2007年12月12日
-    作    者   : luojian id:60022475
-    修改内容   : 根据问题单号：A32D13866
-  3.日    期   : 2011年7月10日
-    作    者   : w00166186
-    修改内容   : V7R1 PHASE II ATTACH/DETACH调整
-  4.日    期   : 2011年7月14日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
 
-  4.日    期   : 2013年4月1日
-    作    者   : w00167002
-    修改内容   : DTS2013032708183:L下注册成功，用户设置CGATT=0，到W下搜网,在
-                  搜网过程中，用户设置CGATT=1。结果UE在L下搜网注册成功，MM/GMM
-                  没有回复ATTACH CNF,导致AT通道一致被阻塞，GCF9.2.2.1.8用例测试失败。
-*******************************************************************************/
 VOS_VOID Gmm_RcvMmcGmmAttachReq(
     VOS_VOID                           *pMsg                                       /* 消息指针                                 */
 )
@@ -6212,19 +4524,7 @@ VOS_VOID Gmm_RcvMmcGmmAttachReq(
     }
     return;
 }
-/*******************************************************************************
-  Module   : Gmm_RcvMmcGmmAttachReq_RegInit
-  Function : 收到原语MMCGMM_ATTACH_REQ在GMM_REGISTERED_INITIATED状态的处理
-  Input    : MMCGMM_ATTACH_REQ_STRU   *pMsg        消息指针
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1. 张志勇  2004.03.11  新规作成
-    2.日    期   : 2013年2月4日
-      作    者   : w00176964
-      修改内容   : DTS2011022802215:CS ONLY,网络模式I下也进行联合注册
-*******************************************************************************/
+
 VOS_VOID Gmm_RcvMmcGmmAttachReq_RegInit(
                                     MMCGMM_ATTACH_REQ_STRU    *pMsg             /* 消息指针                                 */
                                     )
@@ -6245,20 +4545,7 @@ VOS_VOID Gmm_RcvMmcGmmAttachReq_RegInit(
     }
     return;
 }
-/*******************************************************************************
- 函 数 名  : Gmm_RcvMmcGmmAttachReq_DeregInit
- 功能描述  : 收到原语MMCGMM_ATTACH_REQ在GMM_DEREGISTERED_INITIATED状态的处理
- 输入参数  : MMCGMM_ATTACH_REQ_STRU   *pMsg        消息指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年3月5日
-    作    者   : t00212959
-    修改内容   : 新生成函数
-*******************************************************************************/
 VOS_VOID Gmm_RcvMmcGmmAttachReq_DeregInit(
                                     MMCGMM_ATTACH_REQ_STRU    *pMsg             /* 消息指针*/
                                     )
@@ -6287,20 +4574,7 @@ VOS_VOID Gmm_RcvMmcGmmAttachReq_DeregInit(
     return;
 }
 
-/*******************************************************************************
-  Module   : Gmm_RcvMmcGmmAttachReq_RauInit
-  Function : 收到原语MMCGMM_ATTACH_REQ在GMM_ROUTING_AREA_UPDATING_INITIATED
-             状态的处理
-  Input    : MMCGMM_ATTACH_REQ_STRU   *pMsg        消息指针
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1. 张志勇  2004.03.11  新规作成
-    2.日    期   : 2013年2月4日
-      作    者   : w00176964
-      修改内容   : DTS2011022802215:CS ONLY,网络模式I下也进行联合注册
-*******************************************************************************/
+
 VOS_VOID Gmm_RcvMmcGmmAttachReq_RauInit(
                                      MMCGMM_ATTACH_REQ_STRU    *pMsg            /* 消息指针                                 */
                                      )
@@ -6321,19 +4595,7 @@ VOS_VOID Gmm_RcvMmcGmmAttachReq_RauInit(
     }
     return;
 }
-/*******************************************************************************
-  Module   : Gmm_RcvMmcGmmAttachReq_ServReqInit
-  Function : 收到原语MMCGMM_ATTACH_REQ在GMM_SERVICE_REQUEST_INITIATED状态的处理
-  Input    : MMCGMM_ATTACH_REQ_STRU   *pMsg        消息指针
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1. 张志勇  2004.03.11  新规作成
-    2.日    期   : 2013年2月4日
-      作    者   : w00176964
-      修改内容   : DTS2011022802215:CS ONLY,网络模式I下也进行联合注册
-*******************************************************************************/
+
 VOS_VOID Gmm_RcvMmcGmmAttachReq_ServReqInit(
                                         MMCGMM_ATTACH_REQ_STRU    *pMsg         /* 消息指针                                 */
                                         )
@@ -6352,28 +4614,7 @@ VOS_VOID Gmm_RcvMmcGmmAttachReq_ServReqInit(
     }
     return;
 }
-/*******************************************************************************
-  Module   : Gmm_RcvMmcGmmAttachReq_DeregNmlServ
-  Function : 收到原语MMCGMM_ATTACH_REQ在GMM_DEREGISTERED_NORMAL_SERVICE状态的处理
-  Input    : MMCGMM_ATTACH_REQ_STRU   *pMsg        消息指针
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1.张志勇  2004.03.11  新规作成
-  2.日    期   : 2007年02月01日
-    作    者   : luojian id:60022475
-    修改内容   : 根据问题单号：A32D08656
-  3.日    期   : 2011年7月10日
-    作    者   : w00166186
-    修改内容   : V7R1 PHASE II ATTACH/DETACH调整
-  4.日    期   : 2011年7月14日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
-  5.日    期   : 2012年2月15日
-    作    者   : w00166186
-    修改内容   : CSFB&PPAC&ETWS&ISR 开发
-*******************************************************************************/
+
 VOS_VOID Gmm_RcvMmcGmmAttachReq_DeregNmlServ(
                                          MMCGMM_ATTACH_REQ_STRU    *pMsg        /* 消息指针                                 */
                                          )
@@ -6427,28 +4668,7 @@ VOS_VOID Gmm_RcvMmcGmmAttachReq_DeregNmlServ(
     }
     return;
 }
-/*******************************************************************************
-  Module   : Gmm_RcvMmcGmmAttachReq_DeregLimitServ
-  Function : 收到原语MMCGMM_ATTACH_REQ在GMM_DEREGISTERED_LIMITED_SERVICE状态的处理
-  Input    : MMCGMM_ATTACH_REQ_STRU   *pMsg        消息指针
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1.张志勇  2004.03.11  新规作成
-  2.日    期   : 2011年7月10日
-    作    者   : w00166186
-    修改内容  : V7R1 PHASE II ATTACH/DETACH调整
-  3.日    期   : 2011年7月14日
-    作    者   : h44270
-    修改内容  : V7R1 PhaseII阶段调整，注册结果简化
-  4.日    期   : 2011年7月25日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-  5.日    期   : 2013年2月4日
-    作    者   : w00176964
-    修改内容   : DTS2011022802215:CS ONLY,网络模式I下也进行联合注册
-*******************************************************************************/
+
 VOS_VOID Gmm_RcvMmcGmmAttachReq_DeregLimitServ(
                                           MMCGMM_ATTACH_REQ_STRU    *pMsg       /* 消息指针                                 */
                                           )
@@ -6519,28 +4739,7 @@ VOS_VOID Gmm_RcvMmcGmmAttachReq_DeregLimitServ(
 
     return;
 }
-/*******************************************************************************
-  Module   : Gmm_RcvMmcGmmAttachReq_RegLimitServ
-  Function : 收到原语MMCGMM_ATTACH_REQ在GMM_REGISTERED_LIMITED_SERVICE状态的处理
-  Input    : MMCGMM_ATTACH_REQ_STRU   *pMsg        消息指针
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1.张志勇  2004.03.12  新规作成
-  2.日    期   : 2011年7月10日
-    作    者   : w00166186
-    修改内容   : V7R1 PHASE II ATTACH/DETACH调整
-  3.日    期   : 2011年7月14日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
-  4.日    期   : 2011年7月25日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-  5.日    期   : 2013年2月4日
-    作    者   : w00176964
-    修改内容   : DTS2011022802215:CS ONLY,网络模式I下也进行联合注册
-*******************************************************************************/
+
 VOS_VOID Gmm_RcvMmcGmmAttachReq_RegLimitServ(
                                          MMCGMM_ATTACH_REQ_STRU    *pMsg        /* 消息指针                                 */
                                          )
@@ -6614,22 +4813,7 @@ VOS_VOID Gmm_RcvMmcGmmAttachReq_DeregAtmpToAtch(
     Gmm_AttachInitiate(GMM_NULL_PROCEDURE);                                                       /* 触发ATTACH流程                           */
     return;
 }
-/*******************************************************************************
-  Module   : Gmm_RcvMmcGmmAttachReq_RegNmlServ
-  Function : 收到原语MMCGMM_ATTACH_REQ在GMM_REGISTERED_NORMAL_SERVICE状态的处理
-  Input    : MMCGMM_ATTACH_REQ_STRU   *pMsg        消息指针
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1.张志勇  2004.03.12  新规作成
-  2.日    期   : 2011年7月25日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-  3.日    期   : 2013年2月4日
-    作    者   : w00176964
-    修改内容   : DTS2011022802215:CS ONLY,网络模式I下也进行联合注册
-*******************************************************************************/
+
 VOS_VOID Gmm_RcvMmcGmmAttachReq_RegNmlServ(
                                        MMCGMM_ATTACH_REQ_STRU    *pMsg          /* 消息指针                                 */
                                        )
@@ -6701,20 +4885,7 @@ VOS_VOID Gmm_RcvMmcGmmAttachReq_RegAtmpToUpdt(
 
     return;
 }
-/*******************************************************************************
-  Module   : Gmm_RcvMmcGmmAttachReq_RegAtmpToUpdtMm
-  Function : 收到原语MMCGMM_ATTACH_REQ在GMM_REGISTERED_ATTEMPTING_TO_UPDATE_MM
-             状态的处理
-  Input    : MMCGMM_ATTACH_REQ_STRU   *pMsg        消息指针
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1. 张志勇  2004.03.12  新规作成
-    2.日    期   : 2013年2月4日
-      作    者   : w00176964
-      修改内容   : DTS2011022802215:CS ONLY,网络模式I下也进行联合注册
-*******************************************************************************/
+
 VOS_VOID Gmm_RcvMmcGmmAttachReq_RegAtmpToUpdtMm(
                                             MMCGMM_ATTACH_REQ_STRU    *pMsg     /* 消息指针                                 */
                                             )
@@ -6750,22 +4921,7 @@ VOS_VOID Gmm_RcvMmcGmmAttachReq_RegAtmpToUpdtMm(
 }
 
 
-/*******************************************************************************
-  Module   : Gmm_AttachAccept_Mandatory_Ie_Check
-  Function : 对Attach Accept消息中的必选项进行检查
-  Input    : NAS_MSG_STRU *pMsg
-  Output   : 无
-  NOTE     : 无
-  Return   : GMM_SUCCESS   检查成功
-             GMM_FAILURE   检查失败
-  History  :
-    1.日    期 : 2009年06月10日
-      作    者 : x00115505
-      修改内容 : Created
-    2.日    期 : 2011年08月01日
-      作    者 : k66584
-      修改内容 : 问题单号:DTS2011070804524, 删除对RAI判断部分代码
-*******************************************************************************/
+
 VOS_UINT8 Gmm_AttachAccept_Mandatory_Ie_Check(NAS_MSG_FOR_PCLINT_STRU *pMsg,
                                                   VOS_UINT8    *pNeedReturn)
 {
@@ -6808,20 +4964,7 @@ VOS_UINT8 Gmm_AttachAccept_Mandatory_Ie_Check(NAS_MSG_FOR_PCLINT_STRU *pMsg,
 
     return GMM_SUCCESS;
 }
-/*******************************************************************************
-  Module   : Gmm_IECheck_Allocated_Ptmsi
-  Function : 对IE Allocated P-TMSI进行检查
-  Input    : NAS_MSG_STRU *pMsg
-             VOS_UINT8     ucIeOffset
-  Output   : 无
-  NOTE     : 无
-  Return   : GMM_SUCCESS   检查成功
-             GMM_FAILURE   检查失败
-  History  :
-    1.日    期 : 2009年06月10日
-      作    者 : x00115505
-      修改内容 : Created
-*******************************************************************************/
+
 VOS_UINT8 Gmm_IeCheck_Allocated_Ptmsi(NAS_MSG_FOR_PCLINT_STRU *pMsg,
                                                   VOS_UINT8    ucIeOffset,
                                                   VOS_UINT8    *pNeedReturn)
@@ -6859,23 +5002,7 @@ VOS_UINT8 Gmm_IeCheck_Allocated_Ptmsi(NAS_MSG_FOR_PCLINT_STRU *pMsg,
 
     return GMM_SUCCESS;
 }
-/*******************************************************************************
-  Module   : Gmm_IeCheck_Ms_Identity_Imsi
-  Function : 对IE MS identity Imsi进行检查
-  Input    : NAS_MSG_STRU *pMsg
-             VOS_UINT8     ucIeOffset
-  Output   : 无
-  NOTE     : 无
-  Return   : GMM_SUCCESS   检查成功
-             GMM_FAILURE   检查失败
-  History  :
-    1.日    期 : 2009年06月10日
-      作    者 : x00115505
-      修改内容 : Created
-    2.日    期 : 2013年09月10日
-      作    者 : l65478
-      修改内容 : DTS2013090202323:可选IE的检查错误时不返回FAIL
-*******************************************************************************/
+
 VOS_UINT8 Gmm_IeCheck_Ms_Identity_Imsi(NAS_MSG_FOR_PCLINT_STRU *pMsg,
                                                   VOS_UINT8    *ucIeOffset,
                                                   VOS_UINT8    *pNeedReturn)
@@ -6891,23 +5018,7 @@ VOS_UINT8 Gmm_IeCheck_Ms_Identity_Imsi(NAS_MSG_FOR_PCLINT_STRU *pMsg,
 
     return GMM_SUCCESS;
 }
-/*******************************************************************************
-  Module   : Gmm_IeCheck_Ms_Identity
-  Function : 对IE MS identity进行检查
-  Input    : NAS_MSG_STRU *pMsg
-             VOS_UINT8     ucIeOffset
-  Output   : 无
-  NOTE     : 无
-  Return   : GMM_SUCCESS   检查成功
-             GMM_FAILURE   检查失败
-  History  :
-    1.日    期 : 2009年06月10日
-      作    者 : x00115505
-      修改内容 : Created
-    2.日    期 : 2013年09月10日
-      作    者 : l65478
-      修改内容 : DTS2013090202323:可选IE的检查错误时不返回FAIL
-*******************************************************************************/
+
 VOS_UINT8 Gmm_IeCheck_Ms_Identity(NAS_MSG_FOR_PCLINT_STRU *pMsg,
                                                   VOS_UINT8    *ucIeOffset,
                                                   VOS_UINT8    *pNeedReturn)
@@ -6968,23 +5079,7 @@ VOS_UINT8 Gmm_IeCheck_Ms_Identity(NAS_MSG_FOR_PCLINT_STRU *pMsg,
 
     return GMM_SUCCESS;
 }
-/*******************************************************************************
-  Module   : Gmm_IeCheck_T3302_Value
-  Function : 对IE T3302 value进行检查
-  Input    : NAS_MSG_STRU *pMsg
-             VOS_UINT8     ucIeOffset
-  Output   : 无
-  NOTE     : 无
-  Return   : GMM_SUCCESS   检查成功
-             GMM_FAILURE   检查失败
-  History  :
-    1.日    期 : 2009年06月10日
-      作    者 : x00115505
-      修改内容 : Created
-    2.日    期 : 2013年09月10日
-      作    者 : l65478
-      修改内容 : DTS2013090202323:可选IE的检查错误时不返回FAIL
-*******************************************************************************/
+
 VOS_UINT8 Gmm_IeCheck_T3302_Value(NAS_MSG_FOR_PCLINT_STRU *pMsg,
                                               VOS_UINT8    ucIeOffset,
                                               VOS_UINT8    *pNeedReturn)
@@ -7006,23 +5101,7 @@ VOS_UINT8 Gmm_IeCheck_T3302_Value(NAS_MSG_FOR_PCLINT_STRU *pMsg,
 
     return GMM_SUCCESS;
 }
-/*******************************************************************************
-  Module   : Gmm_IeCheck_Equivalent_Plmns
-  Function : 对IE Equivalent PLMNs value进行检查
-  Input    : NAS_MSG_STRU *pMsg
-             VOS_UINT8     ucIeOffset
-  Output   : 无
-  NOTE     : 无
-  Return   : GMM_SUCCESS   检查成功
-             GMM_FAILURE   检查失败
-  History  :
-    1.日    期 : 2009年06月10日
-      作    者 : x00115505
-      修改内容 : Created
-    2.日    期 : 2013年09月10日
-      作    者 : l65478
-      修改内容 : DTS2013090202323:可选IE的检查错误时不返回FAIL
-*******************************************************************************/
+
 VOS_UINT8 Gmm_IeCheck_Equivalent_Plmns(NAS_MSG_FOR_PCLINT_STRU *pMsg,
                                               VOS_UINT8    ucIeOffset,
                                               VOS_UINT8    *pNeedReturn)
@@ -7058,30 +5137,7 @@ VOS_UINT8 Gmm_IeCheck_Equivalent_Plmns(NAS_MSG_FOR_PCLINT_STRU *pMsg,
     return GMM_SUCCESS;
 }
 
-/*******************************************************************************
-  Module   : Gmm_IECheck_AttachAccept
-  Function : 对空口消息AttachAccept的IE进行检查
-  Input    : NAS_MSG_STRU *pMsg
-  Output   : 无
-  NOTE     : 无
-  Return   : GMM_SUCCESS   检查成功
-             GMM_FAILURE   检查失败
-  History  :
-    1. 张志勇  2005.01.27  新规作成
-    2. 张志勇  2005.04.02  NAS_IT_BUG_044对应
-    3.日    期   : 2007年07月05日
-      作    者   : luojian id:60022475
-      修改内容   : 根据问题单号：A32D11970,检查消息IE，对spare位不做检查.
-    4.日    期   : 2009年05月14日
-      作    者   : h44270
-      修改内容   : 问题单号:AT2D11898/AT2D11828,在IDLE态下发送PS域短信，没有按照ATTACH ACCEPT消息中Radio Priority for SMS来请求资源
-    5.日    期   : 2013年09月10日
-      作    者   : l65478
-      修改内容   : DTS2013090202323:可选IE的检查错误时不返回FAIL
-    6.日    期   : 2015年6月8日
-      作    者   : z00161729
-      修改内容   : 24008 23122 R11 CR升级项目修改
-*******************************************************************************/
+
 VOS_UINT8 Gmm_IECheck_AttachAccept(NAS_MSG_FOR_PCLINT_STRU *pMsg)
 {
     VOS_UINT8   ucIeOffset = GMM_MSG_LEN_ATTACH_ACCEPT;                         /* 定义临时变量存储存储IE的偏移量           */
@@ -7209,33 +5265,7 @@ VOS_UINT8 Gmm_IECheck_AttachAccept(NAS_MSG_FOR_PCLINT_STRU *pMsg)
     return GMM_SUCCESS;
 
 }
-/*****************************************************************************
- 函 数 名  : NAS_GMM_AttachAcceptHandle_UpdateEPlmn
- 功能描述  : 处理ATTACH Accept消息中EPLMN信息
- 输入参数  : pstAcceptIe:   Attach Accept消息IE信息
-              pstMsg    :    Attach Accept消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月8日
-    作    者   : W00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2012年03月15日
-    作    者   : l00130025
-    修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-  3.日    期   : 2012年10月26日
-    作    者   : W00176964
-    修改内容   : DTS2012090303157:更新EPLMN有效标记
-  4.日    期   : 2012年12月13日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-  5.日    期   : 2015年6月5日
-    作    者   : z00161729
-    修改内容   : 24008 23122 R11 CR升级项目修改
-*****************************************************************************/
 VOS_VOID NAS_GMM_AttachAcceptHandle_UpdateEPlmn(
     GMM_MSG_RESOLVE_STRU               *pstAcceptIe,
     NAS_MSG_FOR_PCLINT_STRU            *pstMsg
@@ -7282,22 +5312,7 @@ VOS_VOID NAS_GMM_AttachAcceptHandle_UpdateEPlmn(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_IsAttachOtherCause
- 功能描述  : 判断GMM的拒绝原因值是否是不能提供CM服务。
- 输入参数  : ucGmmCause   拒绝的原因
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2011年4月9日
-    作    者   : c00173809
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  NAS_GMM_IsAttachOtherCause(VOS_UINT16 usGmmCause )
 {
      switch (usGmmCause)

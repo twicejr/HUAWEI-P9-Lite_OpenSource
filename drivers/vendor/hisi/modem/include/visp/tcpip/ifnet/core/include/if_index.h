@@ -1,27 +1,4 @@
-/************************************************************************
- *
- *              Copyright 2005, Huawei Technologies Co. Ltd.
- *                          ALL RIGHTS RESERVED
- * 
- *-----------------------------------------------------------------------*
- *
- *                        IF_INDEX.H
- *
- *  Project Code: VISP1.5
- *   Module Name: IFNET
- *  Date Created: 2000/02/28  
- *        Author: yuanjie
- *   Description: Ifnet索引头文件
- *               
- *-----------------------------------------------------------------------*
- *  Modification History
- *  DATE            NAME            DESCRIPTION
- *  2000/02/28      yuanjie         Create
- *  2006/03/30      liai            Adjust for D00654
- *  2006/04/21      liai            Adjust for D00878
- *  2006-05-13      l48923          Delete useless code
- *
- ************************************************************************/
+
 
 /*
  * 请将这里的模块宏换成该头文件所属模块的模块宏。

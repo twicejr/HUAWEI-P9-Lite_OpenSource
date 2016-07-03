@@ -162,7 +162,6 @@ typedef enum enumL2IfErrCode
 /* 以位图方式表示VLAN ID时的位图长度(ULONG为单位) */
 #define VLAN_BITMAP_LEN         (L2IF_MAX_VLAN_NUM/(sizeof(ULONG) * 8))
 
-/* Modified by luogaowei, for DTS2013080906587 ,L2IF接口扩充为256, 2013/8/12 */
 /* 系统支持的最大端口个数 */
 #define L2IF_MAX_PORT_NUM       256
 
@@ -296,7 +295,6 @@ typedef struct tagTCPIP_FDB_ENTRY_S
     UCHAR  ucType;                       /* physical地址表项类型 */
     UCHAR  ucFdbFlag;                    /* VLAN/QINQ 标志,仅在静态和黑洞表项下有效,动态FDB表项时无效 */
     USHORT usOutCeVlanId;                /* 用户侧VLAN ID,仅在静态和黑洞表项下有效,动态FDB表项时无效 */
-    /* Add by zhaoyue00171897, at 2011-08-17. 修改原因: 支持获取动态FDB表项,表项增加老化时间 */
     ULONG  ulAgingTime;                  /* 老化时间,仅在动态FDB表项时有效,静态和黑洞表项下不必关注 */
 }TCPIP_FDB_ENTRY_S;
 
@@ -409,78 +407,16 @@ extern ULONG TCPIP_RegFuncPortPhyIoCtlHook(PORT_PHYIOCTL_HOOK_FUNC pfFunc);
 *******************************************************************************/
 extern ULONG TCPIP_RegFuncGetPortPhyLinkHook(PORT_GETPHYLINK_HOOK_FUNC pfFunc);
 
-/*******************************************************************************
-*    Func Name: TCPIP_AddSubVlan
-* Date Created: 2008-10-23
-*       Author: z00104207
-*  Description: 添加Sub VLAN到S***r VLAN
-*        Input: USHORT usSuperVlanId: S***r VLAN的VLAN ID
-*               USHORT usSubVlanId: Sub VLAN的VLAN ID
-*       Output: 
-*       Return: 
-*      Caution: 直接将COMMON VLAN添加到S***r VLAN中，COMMON VLAN直接自动转换为Sub VLAN
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-10-23   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_AddSubVlan(USHORT usSuperVlanId, USHORT usSubVlanId);
 
-/*******************************************************************************
-*    Func Name: TCPIP_CreateVlan
-* Date Created: 2008-10-20
-*       Author: z00104207
-*  Description: 创建VLAN
-*        Input: USHORT usVlanId: VLAN ID
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-10-20   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_CreateVlan(USHORT usVlanId);
 
-/*******************************************************************************
-*    Func Name: TCPIP_RemoveSubVlan
-* Date Created: 2008-10-23
-*       Author: z00104207
-*  Description: 将Sub VLAN从S***r VLAN中移出
-*        Input: USHORT usSuperVlanId: S***r VLAN的VLAN ID
-*               USHORT usSubVlanId: Sub VLAN的VLAN ID
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-10-23   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_RemoveSubVlan(USHORT usSuperVlanId, USHORT usSubVlanId);
 
-/*******************************************************************************
-*    Func Name: TCPIP_DeleteVlan
-* Date Created: 2008-10-23
-*       Author: z00104207
-*  Description: 删除VLAN
-*        Input: USHORT usVlanId: VLAN ID
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-10-23   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_DeleteVlan(USHORT usVlanId);
 
 /*******************************************************************************
@@ -502,199 +438,35 @@ extern ULONG TCPIP_DeleteVlan(USHORT usVlanId);
 *******************************************************************************/
 extern ULONG TCPIP_DeleteBatchVlan(USHORT usBeginVlan, USHORT usEndVlan);
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetPortInfoByIfIndex
-* Date Created: 2008-10-23
-*       Author: z00104207
-*  Description: 根据物理口接口索引获取二层端口配置信息
-*        Input: ULONG ulIfIndex: 端口对应的接口索引
-*               TCPIP_L2IF_PORT_INFO_S *pulPortInfo: 端口配置信息输出缓冲区
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-10-23   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_GetPortInfoByIfIndex(ULONG ulIfIndex, TCPIP_L2IF_PORT_INFO_S *pstPortInfo);
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetUsedPort
-* Date Created: 2008-10-23
-*       Author: z00104207
-*  Description: 获取当前在用的端口数目和对应的接口索引列表
-*        Input: ULONG *pulPortNum: 当前在用的端口数目
-*               ULONG  ulIfIndexList[L2IF_MAX_PORT_NUM]: 在用的二层端口对应的接口索引列表
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-10-23   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_GetUsedPort(ULONG *pulPortNum, ULONG ulIfIndexList[L2IF_MAX_PORT_NUM]);
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetUsedVlan
-* Date Created: 2008-10-23
-*       Author: z00104207
-*  Description: 获取当前在用的VLAN数目和VLAN ID列表
-*        Input: 
-*       Output: ULONG *pulVlanNum: 当前在用的VLAN数
-*               ULONG ulVlanIDBitMap[VLAN_BITMAP_LEN]: vlan id 位图
-*       Return: 成功返回L2IF_OK，其它错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-10-23   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_GetUsedVlan(ULONG *pulVlanNum, ULONG ulVlanIDBitMap[VLAN_BITMAP_LEN]);
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetVlanInfo
-* Date Created: 2008-10-24
-*       Author: z00104207
-*  Description: 根据VLAN ID获取VLAN的信息
-*        Input: USHORT usVlanId: VLAN ID
-*       Output: TCPIP_L2IF_VLAN_INFO_S *pstVlanInfo: VLAN信息输出缓冲区
-*       Return: 成功返回L2IF_OK，其它错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-10-24   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_GetVlanInfo(USHORT usVlanId, TCPIP_L2IF_VLAN_INFO_S *pstVlanInfo);
 
-/*******************************************************************************
-*    Func Name: TCPIP_SetPortMacLearn
-* Date Created: 2008-10-24
-*       Author: z00104207
-*  Description: 使能/去使能二层端口physical地址学习功能
-*        Input: ULONG ulIfIndex: 端口对应的接口索引
-*               ULONG ulFlag: 使能/去使能标记, L2IF_FLAG_SET_NO / L2IF_FLAG_SET_YES
-*       Output: 
-*       Return: 成功返回L2IF_OK，其它错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-10-24   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_SetPortMacLearn(ULONG ulIfIndex, UCHAR ucFlag);
 
-/*******************************************************************************
-*    Func Name: TCPIP_SetPortPriority
-* Date Created: 2008-10-24
-*       Author: z00104207
-*  Description: 设置二层端口优先级
-*        Input: ULONG ulIfIndex: 端口对应的接口索引
-*               UCHAR ucPriority: 优先级范围是0~7
-*       Output: 
-*       Return: 成功返回L2IF_OK，失败返回错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-10-24   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_SetPortPriority(ULONG ulIfIndex, UCHAR ucPriority);
 
-/*******************************************************************************
-*    Func Name: TCPIP_SetPortSuppressRatio
-* Date Created: 2008-10-24
-*       Author: z00104207
-*  Description: 设置二层端口流量抑制比例,ucSuppressRatio 值为100表示不设置抑制功能
-*        Input: ULONG ulIfIndex: 端口对应的接口索引
-*               ULONG ulLimitType: 需要抑制的报文类型，包括上行/下行单播报文、
-*               上行/下行多播报文、上行/下行广播报文
-*               UCHAR ucSuppressRatio: 限制速率的百分数
-*       Output: 
-*       Return: 成功返回L2IF_OK，失败返回错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-10-24   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_SetPortSuppressRatio(ULONG ulIfIndex, ULONG ulLimitType, UCHAR ucSuppressRatio);
 
 
-/*******************************************************************************
-*    Func Name: TCPIP_SetPortSuppressValue
-* Date Created: 2008-10-23
-*       Author: z00104207
-*  Description: 设置限制二层端口速率的绝对值,值为0或全f表示不限制速率
-*        Input: ULONG ulIfIndex: 端口对应的接口索引
-*               ULONG ulLimitType: 需要抑制的报文类型，包括上行/下行单播报文、
-*               上行/下行多播报文、上行/下行广播报文
-*               ULONG ulSuppressValue: 限制速率的绝对值
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-10-23   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_SetPortSuppressValue(ULONG ulIfIndex, ULONG ulLimitType, ULONG ulSuppressValue);
 
-/*******************************************************************************
-*    Func Name: TCPIP_SetPortType
-* Date Created: 2008-10-24
-*       Author: z00104207
-*  Description: 设置二层端口的链路类型
-*        Input: ULONG ulIfIndex: 端口对应的接口索引
-*               UCHAR ucPortType: 要设置成的端口类型，共有PORT_TYPE_ACCESS,
-*               PORT_TYPE_TRUNK, PORT_TYPE_HYBRID和PORT_TYPE_QINQ四种类型
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-10-24   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_SetPortType(ULONG ulIfIndex, UCHAR ucPortType);
 
-/*******************************************************************************
-*    Func Name: TCPIP_SetStackingDefaultVlan
-* Date Created: 2008-10-24
-*       Author: z00104207
-*  Description: 设置端口的默认Stacking VLAN
-*        Input: ULONG ulIfIndex: 端口对应的接口索引
-*               USHORT usVlanID: VLAN ID
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-10-24   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_SetStackingDefaultVlan(ULONG ulIfIndex, USHORT usVlanID);
 
 /*******************************************************************************
@@ -716,43 +488,10 @@ extern ULONG TCPIP_SetStackingDefaultVlan(ULONG ulIfIndex, USHORT usVlanID);
 extern ULONG TCPIP_UndoStackingDefaultVlan(ULONG ulIfIndex);
 
 
-/*******************************************************************************
-*    Func Name: TCPIP_SetSuperVlan
-* Date Created: 2008-10-23
-*       Author: z00104207
-*  Description: 设置VLAN为Su*** VLAN或将Su*** VLAN恢复为Commond VLAN
-*        Input: USHORT usVlanId: VLAN ID
-*               UCHAR ucFlag: L2IF_FLAG_SET_NO / L2IF_FLAG_SET_YES
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-10-23   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_SetSuperVlan(USHORT usVlanId, UCHAR ucFlag);
 
-/*******************************************************************************
-*    Func Name: TCPIP_SetVlanBroadCast
-* Date Created: 2008-10-23
-*       Author: z00104207
-*  Description: 设置VLAN内广播报文的处理方式
-*        Input: USHORT usVlanID: VLAN ID
-*               UCHAR ucFlag: L2IF_UNKNOW_FRAME_DROP / L2IF_UNKNOW_FRAME_2CPU
-*                             / L2IF_UNKNOW_FRAME_BC
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-10-23   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_SetVlanBroadCast(USHORT usVlanID, UCHAR ucFlag);
 
 
@@ -777,192 +516,34 @@ extern ULONG TCPIP_SetVlanBroadCast(USHORT usVlanID, UCHAR ucFlag);
 *******************************************************************************/
 ULONG TCPIP_SetVlanUnknowMulti(USHORT usVlanID, UCHAR ucFlag);
 
-/*******************************************************************************
-*    Func Name: TCPIP_SetVlanMacLearn
-* Date Created: 2008-10-23
-*       Author: z00104207
-*  Description: 设置指定VLAN的physical地址学习是否使能
-*        Input: USHORT usVlanId: VLAN ID
-*               UCHAR ucFlag: MAC_LEARNING_DISABLE / MAC_LEARNING_ENABLE
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-10-23   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_SetVlanMacLearn(USHORT usVlanId, UCHAR ucFlag);
 
-/*******************************************************************************
-*    Func Name: TCPIP_SetVlanUnknowUnicast
-* Date Created: 2008-10-23
-*       Author: z00104207
-*  Description: 设置VLAN内未知单播报文的处理方式，默认的处理方式是广播方式。未知
-*               单播报文是指，根据报文的上的MAC和VLAN TAG无法找到匹配的二层转发
-*               表项的单播报文
-*        Input: USHORT usVlanId: VLAN ID
-*               UCHAR ucFlag: 未知单播报文的处理方式。包括: L2IF_UNKNOW_FRAME_DROP
-*               / L2IF_UNKNOW_FRAME_2CPU / L2IF_UNKNOW_FRAME_BC
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-10-23   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_SetVlanUnknowUnicast(USHORT usVlanId, UCHAR ucFlag);
 
-/*******************************************************************************
-*    Func Name: TCPIP_ShowAllVlanInfo
-* Date Created: 2008-10-24
-*       Author: z00104207
-*  Description: 显示所有VLAN的信息
-*        Input: 
-*       Output: 
-*       Return: VOID
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-10-24   z00104207               Create
-*
-*******************************************************************************/
+
 extern VOID TCPIP_ShowAllVlanInfo(VOID);
 
-/*******************************************************************************
-*    Func Name: TCPIP_ShowPortInfoByIfName
-* Date Created: 2008-10-23
-*       Author: z00104207
-*  Description: 根据物理口接口显示二层端口配置信息
-*        Input: ULONG ulIfIndex: 端口对应的接口索引
-*       Output: 
-*       Return: VOID
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-10-23   z00104207               Create
-*
-*******************************************************************************/
+
 extern VOID TCPIP_ShowPortInfoByIfName(UCHAR *pucIfName);
 
-/*******************************************************************************
-*    Func Name: TCPIP_ShowVlan
-* Date Created: 2008-10-24
-*       Author: z00104207
-*  Description: 根据VLAN ID显示VLAN的详细配置信息
-*        Input: USHORT usVlanId: VLAN ID
-*       Output: 
-*       Return: VOID
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-10-24   z00104207               Create
-*
-*******************************************************************************/
+
 extern VOID TCPIP_ShowVlan(USHORT usVlanId);
 
-/*******************************************************************************
-*    Func Name: TCPIP_ShutdownVlan
-* Date Created: 2008-10-23
-*       Author: z00104207
-*  Description: Shut down指定的VLAN
-*        Input: USHORT usVlanId: VLAN ID
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-10-23   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_ShutdownVlan(USHORT usVlanId);
 
-/*******************************************************************************
-*    Func Name: TCPIP_UpVlan
-* Date Created: 2008-10-23
-*       Author: z00104207
-*  Description: 将shout down的VLAN置UP
-*        Input: USHORT usVlanId: VLAN ID
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-10-23   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_UpVlan(USHORT usVlanId);
 
-/*******************************************************************************
-*    Func Name: TCPIP_AddPortToVlan
-* Date Created: 2008-10-31
-*       Author: z00104207
-*  Description: 把Hybrid类型或Trunk类型的二层端口添加到VLAN
-*        Input: ULONG ulIfIndex: 二层端口对应的接口索引
-*               USHORT usVlanId: 目标VLAN ID
-*               ULONG ulTagFlag: 端口加入VLAN的方式: VLAN_UNTAGGED/VLAN_TAGGED
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-10-31   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_AddPortToVlan(ULONG ulIfIndex, USHORT usVlanId, ULONG ulTagFlag);
 
-/*******************************************************************************
-*    Func Name: TCPIP_SetDefaultVlan
-* Date Created: 2008-11-04
-*       Author: z00104207
-*  Description: 设置二层端口的默认VLAN
-*        Input: ULONG ulIfIndex: 二层端口对应的接口索引
-*               USHORT usVlanId: 目标VLAN ID
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-11-04   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_SetDefaultVlan(ULONG ulIfIndex, USHORT usVlanId);
 
-/*******************************************************************************
-*    Func Name: TCPIP_UndoDefaultVlan
-* Date Created: 2008-11-06
-*       Author: z00104207
-*  Description: 取消端口的PVID
-*        Input: ULONG ulIfIndex: 接口索引
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-11-06   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_UndoDefaultVlan(ULONG ulIfIndex);
 
 /*******************************************************************************
@@ -1043,65 +624,15 @@ extern ULONG TCPIP_DelPortFromVlan(ULONG ulIfIndex, USHORT usVlanId);
 *******************************************************************************/
 extern ULONG TCPIP_DelPortFromAllVlan(ULONG ulIfIndex);
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetPortListInVlan
-* Date Created: 2008-11-04
-*       Author: h00121208
-*  Description: 获取加入VLAN的端口数目和端口IFIndex列表
-*        Input: USHORT usVlanId:       VLAN id
-*               ULONG *pulPortNum:     端口数目
-*               ULONG ulIfList[L2IF_MAX_PORT_NUM]:  端口数组 
-*       Output: ULONG *pulPortNum:     加入VLAN的端口数目
-*               ULONG ulIfList[L2IF_MAX_PORT_NUM]:  加入VLAN的端口IFIndex列表 
-*       Return: 成功返回L2IF_OK，其它错误码
-*      Caution: 传入的Ifnet List数组大小和清零由用户保证
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-11-04   h00121208               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_GetPortListInVlan(USHORT usVlanId, ULONG *pulPortNum, ULONG ulIfList[L2IF_MAX_PORT_NUM]);
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetVlanListInPort
-* Date Created: 2008-11-04
-*       Author: h00121208
-*  Description: 获取端口加入的VLAN数目和VLAN列表
-*        Input: ULONG ulIfIndex:         接口索引
-*       Output: ULONG *pulVlanNum:       端口加入的VLAN数目
-*               ULONG ulVlanList[VLAN_BITMAP_LEN]:   端口加入的VLAN位图数组
-*               ULONG ulTagList[VLAN_BITMAP_LEN]:    端口加入的VLAN的Tag标记位图数组
-*       Return: 成功返回L2IF_OK，其它错误码
-*      Caution: 传入的VLAN List数组大小和清零由用户保证
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-11-04   h00121208               Create
-*  2011-08-04   s00176784               Modify
-*******************************************************************************/
+
 ULONG TCPIP_GetVlanListInPort(ULONG ulIfIndex, ULONG *pulVlanNum, 
                               ULONG ulVlanList[VLAN_BITMAP_LEN], ULONG ulTagList[VLAN_BITMAP_LEN]);
 
 
-/*******************************************************************************
-*    Func Name: TCPIP_ShowPortListInVlan
-* Date Created: 2008-11-04
-*       Author: h00121208
-*  Description: 显示加入VLAN的接口名称
-*        Input: USHORT usVlanID: VLAN id
-*       Output: 
-*       Return: VOID
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-11-04   h00121208               Create
-*
-*******************************************************************************/
+
 extern VOID TCPIP_ShowPortListInVlan(USHORT usVlanID);
 
 /*******************************************************************************

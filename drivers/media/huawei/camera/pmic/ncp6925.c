@@ -78,7 +78,6 @@ typedef struct {
 static struct ncp6925_private_data_t ncp6925_pdata;
 static struct i2c_driver ncp6925_i2c_driver;
 struct hisi_pmic_ctrl_t ncp6925_ctrl;
-volatile bool pmic_power_on = 0;
 
 static voltage_map_t voltage_map[VOUT_MAX] =
 {
@@ -193,11 +192,6 @@ static int ncp6925_init(struct hisi_pmic_ctrl_t *pmic_ctrl)
     }
 #endif
 
-    ret = gpio_direction_output(pdata->pin[PMIC_POWER_CTRL], 0);
-    if (ret < 0) {
-        cam_err("%s: gpio_direction_output low failed ", __func__);
-        goto err1;
-    }
 
     return ret;
 err2:
@@ -246,14 +240,6 @@ static int ncp6925_on(struct hisi_pmic_ctrl_t *pmic_ctrl, void *data)
 
     gpio_value = gpio_get_value(pdata->pin[PMIC_POWER_CTRL]);
     cam_info("%s: pmic enable gpio value = %d.", __func__, gpio_value);
-    ret = gpio_direction_output(pdata->pin[PMIC_POWER_CTRL], 1);
-    if (ret < 0){
-        cam_err("%s: fail to set pmic gpio enable, result = %d.", __func__, ret);
-    }
-    msleep(10);
-    pmic_power_on = 1;
-    gpio_value = gpio_get_value(pdata->pin[PMIC_POWER_CTRL]);
-    cam_info("%s: pmic enable gpio value = %d.", __func__, gpio_value);
 
     i2c_func->i2c_write(i2c_client, CHX_ERR, 0x00);
 
@@ -263,7 +249,6 @@ static int ncp6925_on(struct hisi_pmic_ctrl_t *pmic_ctrl, void *data)
 static int ncp6925_off(struct hisi_pmic_ctrl_t *pmic_ctrl)
 {
     struct ncp6925_private_data_t *pdata;
-    int ret = 0;
     cam_info("%s enter.", __func__);
 
     if (NULL == pmic_ctrl) {
@@ -276,13 +261,6 @@ static int ncp6925_off(struct hisi_pmic_ctrl_t *pmic_ctrl)
         cam_err("%s pdata is NULL.", __func__);
         return -1;
     }
-    ret = gpio_direction_output(pdata->pin[PMIC_POWER_CTRL], 0);
-    msleep(2);
-    if (ret < 0) {
-        cam_err("%s: gpio_direction_output low failed ", __func__);
-        return -1;
-    }
-    pmic_power_on = 0;
 
     return 0;
 }

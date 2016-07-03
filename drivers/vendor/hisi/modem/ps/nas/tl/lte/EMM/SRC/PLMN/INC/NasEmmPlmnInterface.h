@@ -1,15 +1,4 @@
-/******************************************************************************
 
-    Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : NasEmmPlmnInterface.h
-  Description     : NasEmmPlmnInterface.h header file
-  History         :
-     1.lining 00141619       2008-11-13     Draft Enact
-     2.leili 00132387        2009-02-20 问题单BA8D00962
-     描述:在REG + REG_WAIT_MRRC_REL_CNF状态下增加了收到MrrcRelCnf消息的处理
-******************************************************************************/
 #ifndef __NASEMMPLMNINTERFACE_H__
 #define __NASEMMPLMNINTERFACE_H__
 

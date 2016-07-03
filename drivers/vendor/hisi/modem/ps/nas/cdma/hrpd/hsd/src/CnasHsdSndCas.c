@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2015, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasHsdSndCas.c
-  版 本 号   : 初稿
-  作    者   : h00300778
-  生成日期   : 2014年7月7日
-  最近修改   :
-  功能描述   : HSD发送给CAS的消息处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年12月12日
-    作    者   : h00300778
-    修改内容   : 新生成函数
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -52,25 +35,7 @@ extern "C" {
   3 函数实现
 *****************************************************************************/
 /*lint -save -e958*/
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndCasStartReq
- 功能描述  : 向CAS发送开机请求
- 输入参数  : pstMsg - 开机接入技术
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月12日
-    作    者   : h00300778
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年4月15日
-    作    者   : y00245242
-    修改内容   : iteration 13开发
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SndCasStartReq(MSCC_HSD_START_REQ_STRU *pstMsg)
 {
     CNAS_CAS_HRPD_START_REQ_STRU       *pstStartrReq;
@@ -111,21 +76,7 @@ VOS_VOID CNAS_HSD_SndCasStartReq(MSCC_HSD_START_REQ_STRU *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndCasPowerOffReq
- 功能描述  : 向CAS发送关机请求
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月12日
-    作    者   : h00300778
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SndCasPowerOffReq(VOS_VOID)
 {
     CNAS_CAS_HRPD_POWER_OFF_REQ_STRU     *pstPowerOffReq;
@@ -152,26 +103,7 @@ VOS_VOID CNAS_HSD_SndCasPowerOffReq(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndCasSysSyncReq
- 功能描述  : 向CAS发送ID_CNAS_CAS_HSD_SYSTEM_SYNC_REQ消息
- 输入参数  : ulFreqNum   : 下发搜网频点个数
-             pstFreqList : 下发搜网频点地址
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年12月12日
-    作    者   : h00300778
-    修改内容   : 新生成函数
-  2.日    期   : 2015年1月19日
-    作    者   : d00212987
-    修改内容   : 增加每次下发搜网频点参数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SndCasSysSyncReq(
     VOS_UINT32                          ulFreqNum,
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstFreqList
@@ -207,21 +139,7 @@ VOS_VOID CNAS_HSD_SndCasSysSyncReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndCasStopSysSyncReq
- 功能描述  : 向CAS发送停止HRPD搜网请求
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月12日
-    作    者   : h00300778
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SndCasStopSysSyncReq(VOS_VOID)
 {
     CNAS_CAS_HRPD_STOP_SYSTEM_SYNC_REQ_STRU                *pstStopSysAcqReq;
@@ -248,21 +166,7 @@ VOS_VOID CNAS_HSD_SndCasStopSysSyncReq(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndCasOocNtf
- 功能描述  : 向CAS发送ID_CNAS_CAS_HRPD_OOC_NTF消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月12日
-    作    者   : h00300778
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SndCasOocNtf(VOS_VOID)
 {
     CNAS_CAS_HRPD_OOC_NTF_STRU          *pstOocNtf;
@@ -287,21 +191,7 @@ VOS_VOID CNAS_HSD_SndCasOocNtf(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndCasPilotSearchSuccNtf
- 功能描述  : 向CAS发送ID_CNAS_CAS_HRPD_PILOT_SEARCH_SUCC_NTF消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年01月15日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SndCasPilotSearchSuccNtf(VOS_VOID)
 {
     CNAS_CAS_HRPD_PILOT_SEARCH_SUCC_NTF_STRU               *pstPilotSearchSuccNft;
@@ -327,21 +217,7 @@ VOS_VOID CNAS_HSD_SndCasPilotSearchSuccNtf(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndCasPilotSearchFailNtf
- 功能描述  : 向CAS发送ID_CNAS_CAS_HRPD_PILOT_SEARCH_FAIL_NTF消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年01月15日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SndCasPilotSearchFailNtf(VOS_VOID)
 {
     CNAS_CAS_HRPD_PILOT_SEARCH_FAIL_NTF_STRU               *pstPilotSearchFailNft;
@@ -367,21 +243,7 @@ VOS_VOID CNAS_HSD_SndCasPilotSearchFailNtf(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndCasSysCfgReq
- 功能描述  : 向CAS发送ID_CNAS_CAS_SYS_CFG_SET_REQ消息
- 输入参数  : pstSysCfg -- 系统配置请求消息地址
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年04月13日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SndCasSysCfgReq(
     MSCC_HSD_SYS_CFG_REQ_STRU          *pstSysCfg
 )
@@ -437,21 +299,7 @@ VOS_VOID CNAS_HSD_SndCasSysCfgReq(
     (VOS_VOID)PS_SEND_MSG(UEPS_PID_HSD, pstSysCfgReq);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndCasSuspendReq
- 功能描述  : 向CAS发送ID_CNAS_CAS_HRPD_SUSPEND_REQ消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年04月03日
-    作    者   : h00300778
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SndCasSuspendReq(VOS_VOID)
 {
     CNAS_CAS_HRPD_SUSPEND_REQ_STRU     *pstSuspendReq;
@@ -474,21 +322,7 @@ VOS_VOID CNAS_HSD_SndCasSuspendReq(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndCasDisableLteNtfReq
- 功能描述  : 向CAS发送ID_CNAS_CAS_HRPD_DISABLE_LTE_NTF消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年04月03日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SndCasDisableLteNtf(VOS_VOID)
 {
     CNAS_CAS_HRPD_DISABLE_LTE_NTF_STRU *pstDisableReq;
@@ -520,21 +354,7 @@ VOS_VOID CNAS_HSD_SndCasDisableLteNtf(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndCasBsrLteReq
- 功能描述  : 向CAS发送ID_CNAS_CAS_HRPD_BSR_LTE_REQ消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年04月03日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SndCasBsrLteReq(VOS_VOID)
 {
     CNAS_CAS_HRPD_BSR_LTE_REQ_STRU *pstBsrLteReq;
@@ -564,21 +384,7 @@ VOS_VOID CNAS_HSD_SndCasBsrLteReq(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndCasStopBsrLteReq
- 功能描述  : 向CAS发送ID_CNAS_CAS_HRPD_STOP_BSR_LTE_REQ消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年04月03日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SndCasStopBsrLteReq(VOS_VOID)
 {
     CNAS_CAS_HRPD_STOP_BSR_LTE_REQ_STRU                    *pstStopBsrLteReq;
@@ -610,23 +416,7 @@ VOS_VOID CNAS_HSD_SndCasStopBsrLteReq(VOS_VOID)
 
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndCasFreqListReq
- 功能描述  : 向CAS发送ID_CNAS_CAS_HRPD_BSR_FREQ_LIST_QUERY_CNF消息
- 输入参数  : ulFreqNum   : 下发搜网频点个数
-             pstFreqList : 下发搜网频点地址
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年04月16日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SndCasFreqListCnf(
     VOS_UINT32                          ulFreqNum,
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstFreqList
@@ -668,22 +458,7 @@ VOS_VOID CNAS_HSD_SndCasFreqListCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndCasSubnetIdChkCnf
- 功能描述  : 向CAS发送ID_CNAS_CAS_HRPD_SUBNET_ID_CHECK_CNF消息
- 输入参数  : enValidFlag   : subnetId是否有效
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年06月02日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SndCasSubnetIdChkCnf(
     PS_BOOL_ENUM_UINT8                  enIsValidFlag
 )
@@ -717,22 +492,7 @@ VOS_VOID CNAS_HSD_SndCasSubnetIdChkCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndCasSuspendRsp
- 功能描述  : 向CAS发送ID_CNAS_CAS_HRPP_RESUME_RSP消息
- 输入参数  : enValidFlag   : subnetId是否有效
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年06月02日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SndCasSuspendRsp(
     CAS_CNAS_HRPD_RSLT_ENUM_UINT16      enRslt
 )
@@ -766,22 +526,7 @@ VOS_VOID CNAS_HSD_SndCasSuspendRsp(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndCasResumeRsp
- 功能描述  : 向CAS发送ID_CNAS_CAS_HRPP_RESUME_RSP消息
- 输入参数  : enValidFlag   : subnetId是否有效
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年06月02日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SndCasResumeRsp(VOS_VOID)
 {
     CNAS_CAS_HRPD_RESUME_RSP_STRU      *pstResumeRsp;
@@ -812,21 +557,7 @@ VOS_VOID CNAS_HSD_SndCasResumeRsp(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndCasCFreqLockNtf
- 功能描述  : 向接入层发送CNAS_CAS_1X_FREQ_LOCK_NTF_STRU消息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月14日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_SndCasCFreqLockNtf(MSCC_HSD_CFREQ_LOCK_NTF_STRU   *pstCFreqLockNtf)
 {
     CNAS_CAS_HRPD_FREQ_LOCK_NTF_STRU     *pstCnasCasCFreqLockNtf   = VOS_NULL_PTR;
@@ -862,20 +593,7 @@ VOS_UINT32 CNAS_HSD_SndCasCFreqLockNtf(MSCC_HSD_CFREQ_LOCK_NTF_STRU   *pstCFreqL
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndCasBeginSessionNotify
- 功能描述  : HSD通知CAS开始Session通知
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月15日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SndCasBeginSessionNotify(VOS_VOID)
 {
     CNAS_CAS_HRPD_SESSION_BEGIN_NTF_STRU                   *pstBeginSessionNotify = VOS_NULL_PTR;
@@ -906,20 +624,7 @@ VOS_VOID CNAS_HSD_SndCasBeginSessionNotify(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndCasEndSessionNotify
- 功能描述  : HSD通知CAS开结束Session通知
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月15日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SndCasEndSessionNotify(VOS_VOID)
 {
     CNAS_CAS_HRPD_SESSION_END_NTF_STRU                     *pstEndSessionNotify = VOS_NULL_PTR;
@@ -951,20 +656,7 @@ VOS_VOID CNAS_HSD_SndCasEndSessionNotify(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndCasHdrCsqSetReq
- 功能描述  : HSD通知CAS hdr csq set req
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_SndCasHdrCsqSetReq(
     MSCC_HSD_HDR_CSQ_SET_REQ_STRU      *psrHdrSetReq
 )
@@ -1004,20 +696,7 @@ VOS_UINT32 CNAS_HSD_SndCasHdrCsqSetReq(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndCasSuspendRelReq
- 功能描述  : HSD通知CAS ID_CNAS_CAS_HRPD_SUSPEND_REL_REQ消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月29日
-    作    者   : g00256031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_SndCasSuspendRelReq(VOS_VOID)
 {
     CNAS_CAS_HRPD_SUSPEND_REL_REQ_STRU *pstSuspendRelReq = VOS_NULL_PTR;

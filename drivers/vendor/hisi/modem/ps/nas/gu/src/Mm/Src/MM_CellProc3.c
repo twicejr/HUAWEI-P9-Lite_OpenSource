@@ -1,34 +1,4 @@
-/*******************************************************************************
-  Copyright    : 2005-2007, Huawei Tech. Co., Ltd.
-  File name    : MM_CellProc3.c
-  Description  : MM公共处理
-  Function List:
 
-  History:
-   1.日    期   : 2009年09月23日
-     作    者   : x00115505
-     修改内容   : AT2D14632,开机注册失败，查询CREG返回1
-  2.日    期   : 2009年11月03日
-     作    者   : x00115505
-     修改内容   : 问题单号：AT2D15222,接入阻塞还可以注册
-  3.日    期   : 2009年11月09日
-     作    者   : s46746
-     修改内容   : 问题单号：AT2D15401,CS关机Detach保护时间太短，没有等到网络释放连接就超时主动释放了
-
-  4.日    期   : 2010年3月2日
-    作    者   : zhoujun /z40661
-    修改内容   : NAS R7协议升级
-
-  5.日    期   : 2010年3月23日
-    作    者   : zhoujun /z40661
-    修改内容   : AMR速率调整
-  6.日    期   : 2010年5月3日
-    作    者   : x00115505
-    修改内容   : 问题单号：AT2D18886,MM处理WRR发过来的连接建立结果有误
-  7.日    期   : 2010年11月22日
-    作    者   : h44270
-    修改内容   : DTS201011700067,没有处理系统消息，导致电话挂断后，没有发起LAU。
-*******************************************************************************/
 
 #include        "MM_Inc.h"
 #include        "GmmMmInterface.h"
@@ -36,12 +6,8 @@
 #include        "NasMmSndOm.h"
 
 
- /* Added by l00208543 for V9R1 STK升级, 2013-07-10, begin */
 #include "NasStkInterface.h"
- /* Added by l00208543 for V9R1 STK升级, 2013-07-10, end */
-/* Added by w00176964 for V3R3C60_eCall项目, 2014-4-22, begin */
 #include "NasMmEcall.h"
-/* Added by w00176964 for V3R3C60_eCall项目, 2014-4-22, end */
 #include "NasUtranCtrlInterface.h"
 
 #ifdef __cplusplus
@@ -60,23 +26,7 @@ extern VOS_UINT8 GMM_IsGasCellReselect(VOS_VOID);
 
 /*lint -save -e958 */
 
-/*******************************************************************************
-  MODULE   : Mm_Cell_S10_E66
-  FUNCTION : 在MM CONNECTION ACTIVE状态下收到MMSS_REL_REQ的处理
-  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
-  OUTPUT   : VOS_VOID
-  RETURN   : VOS_VOID
-  NOTE     :
-  HISTORY  :
-     1.  张志勇      04-03-24  新版作成
 
-     2.日    期   : 2011年7月14日
-       作    者   : zhoujun 40661
-       修改内容   : 更新MML_CTX中的业务存在状态
-     3.日    期   : 2012年04月03日
-       作    者   : l65478
-       修改内容   : DTS2012032702913:在CS存在呼叫时收到SS的释放请求清除了CS连接标志
-*******************************************************************************/
 VOS_VOID Mm_Cell_S10_E66(
                         VOS_VOID            *pRcvMsg                            /* 接收消息的头地址                         */
                     )
@@ -136,25 +86,7 @@ VOS_VOID Mm_Cell_S10_E66(
 
     return;
 }
-/*******************************************************************************
-  MODULE   : Mm_Cell_S12_E66
-  FUNCTION : 在WAIT FOR RR CONNECTION (MM CONNECTION)状态下收到MMSS_REL_REQ的处理
-  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
-  OUTPUT   : VOS_VOID
-  RETURN   : VOS_VOID
-  NOTE     :
-  HISTORY  :
-     1.  s46746      06-11-21  Create for A32D07452
-     2.日    期   :2013年8月13日
-       作    者   :z00161729
-       修改内容   :DTS2013081207431:mm挂起状态收到cc的t303超时abort消息，需要缓存，收到resume ind时再处理
-     3.日    期   : 2014年5月22日
-       作    者   : z00161729
-       修改内容   : DTS2014050601476:L打电话重定向到g过程中电话挂断，mm缓存cc abort，g查询csfb状态是存在，lau结束后没有启动自主FR流程到L
-     4.日    期   : 2014年6月13日
-       作    者   : w00242748
-       修改内容   : DSDS 新特性
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S12_E66(
                         VOS_VOID            *pRcvMsg                            /* 接收消息的头地址                         */
                        )
@@ -229,26 +161,12 @@ VOS_VOID Mm_Cell_S12_E66(
 
     return;
 }
-/*******************************************************************************
-  MODULE   : Mm_Cell_S24_E13
-  FUNCTION : 在LOCATION UPDATE REJECTED状态下,收到MMCMM_NETWORK_DETACH_IND的处理
-  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
-  OUTPUT   : VOS_VOID
-  RETURN   : VOS_VOID
-  NOTE     :
-  HISTORY  :
-     1.  张志勇    2004.03.12  新版作成
-     2.日    期   : 2014年4月2日
-       作    者   : w00176964
-       修改内容   : V3R3C60_eCall项目修改:g_MmGlobalInfo.MsCsInfo.OldLai替换成MML中的
-*******************************************************************************/
+
 
 VOS_VOID Mm_Cell_S24_E13(VOS_VOID *pMsg)
 {
     GMMMM_NETWORK_DETACH_IND_STRU       *pstNetWkDetachInd;
-    /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-4-3, begin */
 
-    /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-4-3, end */
 
     if (MM_FALSE == NAS_MM_RcvGmmNetworkDetechInd(pMsg))
     {
@@ -287,9 +205,7 @@ VOS_VOID Mm_Cell_S24_E13(VOS_VOID *pMsg)
                                      (VOS_UINT8)pstNetWkDetachInd->ulDetachCause);/* 记录流程和原因值                         */
             g_MmGlobalInfo.ucMmServiceState = MM_NO_IMSI;                       /* 设置服务状态                             */
             PS_NAS_LOG(WUEPS_PID_MM, VOS_NULL, PS_LOG_LEVEL_INFO, "Mm_Cell_S24_E13:INFO: MmServiceState is MM_NO_IMSI");
-            /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-3, begin */
             Mm_ComToNoImsiHandle();                                             /* 调用删除IMSI的公共处理                   */
-            /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-3, end */
             g_MmGlobalInfo.ucPreState = g_MmGlobalInfo.ucState;                 /* 记录前状态                               */
             Mm_ComSetMmState(WAIT_FOR_NETWORK_COMMAND);
             PS_NAS_LOG(WUEPS_PID_MM, VOS_NULL, PS_LOG_LEVEL_NORMAL, "Mm_Cell_S24_E13:NORMAL: STATUS is WAIT_FOR_NETWORK_COMMAND");
@@ -315,33 +231,7 @@ VOS_VOID Mm_Cell_S24_E13(VOS_VOID *pMsg)
 
 }
 
-/*******************************************************************************
-  Module:   Mm_Cell_S3_E14
-  Function: 在MM IDLE NORMAL SERVICE状态下,
-                收到GMMMM_GMM_ACTION_RESULT_IND的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.张志勇     2004.03.10  新版做成
-      2.日    期   : 2011年7月26日
-        作    者   : l00130025
-        修改内容   : V7R1 PhaseII阶段调整，删除UserDelay标志，由MMC处理
-      3.日    期   : 2011年11月22日
-        作    者   : w00166186
-        修改内容   : DTS2011111003960,PS业务建链不成功，原因值32位强制转换为8位出错
-      4.日    期   : 2013年2月4日
-        作    者   : w00176964
-        修改内容   : DTS2011022802215:CS ONLY,网络模式I下也进行联合注册
-      5.日    期   : 2013年06月04日
-        作    者   : s46746
-        修改内容   : SS FDN&Call Control项目，PS被原因值12拒绝,CS注册状态需要更新为0
-      6.日    期   : 2013年11月29日
-        作    者   : w00242748
-        修改内容   : DTS2013112612348:CS被拒原因值15后释放链接，回LIMIT SERVICE
-                     PS被拒原因值12，此时不发起搜网。
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S3_E14(VOS_VOID* pMsg)
 {
     VOS_UINT8                                ucActionType = MM_NULL_PROC;
@@ -379,9 +269,7 @@ VOS_VOID Mm_Cell_S3_E14(VOS_VOID* pMsg)
             break;
         }
 
-        /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-29, begin */
         if (VOS_TRUE == NAS_MM_IsClassAAndNmoIMode(g_MmGlobalInfo.ucNtMod))
-        /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-29, end */
         {                                                                       /* 如果为A+I,且不是类似B或A+II处理的场合    */
             if (MM_GMM_SR_PROC == ucActionType)
             {
@@ -407,36 +295,13 @@ VOS_VOID Mm_Cell_S3_E14(VOS_VOID* pMsg)
         }
     }
 }
-/*******************************************************************************
-  Module:   Mm_Cell_S24_E14
-  Function: 在LOCATION UPDATE REJECTED状态下,
-                收到GMMMM_GMM_ACTION_RESULT_IND的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇     2004.03.10  新版做成
-      2.日    期   : 2011年03月31日
-        作    者   : c00173809
-        修改内容   : 问题单号:DTS2011032802664,UE驻留VPLMN发起BG搜,驻留高优先级
-                     网络,COMBINED RAU PS成功,CS拒绝原因15,没搜当前网络.
-      3.日    期   : 2012年11月30日
-        作    者   : l00167671
-        修改内容   : 问题单号:dts2012112800374,W下CS域先被拒绝原因值15，PS域被拒
-                     15后，MM进入NORMAL SERVICE状态
-      4.日    期   : 2014年4月2日
-        作    者   : w00176964
-        修改内容   : V3R3C60_eCall项目修改:g_MmGlobalInfo.MsCsInfo.OldLai替换成MML中的
-*******************************************************************************/
+
 
 VOS_VOID Mm_Cell_S24_E14(VOS_VOID* pMsg)
 {
     VOS_UINT8                               ucActionType = MM_NULL_PROC;
     GMMMM_GMM_ACTION_RESULT_IND_STRU       *pstGmmActionRstInd;
-    /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-4-3, begin */
 
-    /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-4-3, end */
 
     if (MM_FALSE == Mm_RcvGmmGmmActionResultInd(pMsg))
     {
@@ -478,9 +343,7 @@ VOS_VOID Mm_Cell_S24_E14(VOS_VOID* pMsg)
                                           (VOS_UINT8)pstGmmActionRstInd->enCause); /* 记录流程和原因值                         */
                 g_MmGlobalInfo.ucMmServiceState = MM_NO_IMSI;               /* 设置服务状态                             */
                 PS_NAS_LOG(WUEPS_PID_MM, VOS_NULL, PS_LOG_LEVEL_INFO, "Mm_Cell_S24_E14:INFO: MmServiceState is MM_NO_IMSI");
-                /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-3, begin */
                 Mm_ComToNoImsiHandle();                                     /* 调用删除IMSI的公共处理                   */
-                /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-3, end */
                 Mm_ComSetMmState(WAIT_FOR_NETWORK_COMMAND);
                 PS_NAS_LOG(WUEPS_PID_MM, VOS_NULL, PS_LOG_LEVEL_NORMAL, "Mm_Cell_S24_E14:NORMAL: STATUS is WAIT_FOR_NETWORK_COMMAND");
                 break;
@@ -493,9 +356,7 @@ VOS_VOID Mm_Cell_S24_E14(VOS_VOID* pMsg)
                                        (VOS_UINT8)pstGmmActionRstInd->enCause);   /* 记录流程和原因值                         */
                     g_MmGlobalInfo.ucMmServiceState = MM_NO_IMSI;               /* 设置服务状态                             */
                     PS_NAS_LOG(WUEPS_PID_MM, VOS_NULL, PS_LOG_LEVEL_INFO, "Mm_Cell_S24_E14:INFO: MmServiceState is MM_NO_IMSI");
-                    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-3, begin */
                     Mm_ComToNoImsiHandle();                                     /* 调用删除IMSI的公共处理                   */
-                    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-3, end */
                     Mm_ComSetMmState(WAIT_FOR_NETWORK_COMMAND);
                     PS_NAS_LOG(WUEPS_PID_MM, VOS_NULL, PS_LOG_LEVEL_NORMAL, "Mm_Cell_S24_E14:NORMAL: STATUS is WAIT_FOR_NETWORK_COMMAND");
                 }
@@ -551,23 +412,7 @@ VOS_VOID Mm_Cell_S24_E16(VOS_VOID* pMsg)
     PS_NAS_LOG(WUEPS_PID_MM, VOS_NULL, PS_LOG_LEVEL_NORMAL, "Mm_Cell_S24_E16:NORMAL: STATUS is WAIT_FOR_NETWORK_COMMAND");
 }
 
-/*******************************************************************************
-  Module:   Mm_Cell_S25_E16
-  Function: 在WAIT FOR RR CONNECTION (IMSI DETACH)状态下,
-                            收到GMMMM_AUTHENTICATON_FAILURE_IND的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇     2004.03.12  新版做成
-      2. 日    期   : 2007年08月19日
-         作    者   : luojian id:60022475
-         修改内容   : 根据问题单号：A32D12706
-       3.日    期   : 2013年05月15日
-         作    者   : s46746
-         修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S25_E16(VOS_VOID* pMsg)
 {
     if (MM_FALSE == Mm_RcvGmmAuthFailInd(pMsg))
@@ -604,48 +449,7 @@ VOS_VOID Mm_Cell_S26_E16(VOS_VOID* pMsg)
 
     Mm_ComToNoImsiHandle();
 }
-/*******************************************************************************
-  Module:   Mm_Cell_S3_E22
-  Function: 在MM IDLE NORMAL SERVICE状态下,收到MMCMM_DETACH_REQ的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.  张志勇     2004.03.12  新版做成
-  2. 张志勇        2005.01.27  007037 for MM
-  3.  日    期   : 2008年09月03日
-      作    者   : l00130025
-      修改内容   : 问题单号：AT2D05403,mm注册状态修改
-  4.日    期   : 2011年7月26日
-    作    者   : h44270
-    修改内容   : V7R1 PHASE II ATTACH/DETACH调整
-  5.日    期   : 2011年7月25日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-  6. 日    期   : 2012年1月12日
-     作    者   : w00166186
-     修改内容   : DTS2011122704039:开机搜网后CS注册被拒#12,PS注册被拒#14，在ON
-                   PLMN状态，服务域被设置为不支持MM需要将服务域不支持信息通知给MMC.
-  7. 日    期   : 2012年3月15日
-     作    者   : w00166186
-     修改内容   : V7R1 C50 CSFB&PPAC&ETWS&ISR开发
-   8.日    期   : 2013年2月4日
-     作    者   : w00176964
-     修改内容   : DTS2011022802215:CS ONLY,网络模式I下也进行联合注册
-   9.日    期   : 2013年05月15日
-     作    者   : s46746
-     修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-   10.日    期   : 2013年6月18日
-     作    者   : w00167002
-     修改内容  : SVLTE 和usim接口调整修改
-   11.日    期   : 2013年11月11日
-     作    者   : l65478
-     修改内容  : DTS2013110800070:3方后台在搜网过程中下发了USSD业务,导致CS业务异常
-  12.日    期   : 2014年6月13日
-     作    者   : w00242748
-     修改内容   : DSDS 新特性
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S3_E22(VOS_VOID* pMsg)
 {
     MMCMM_DETACH_REQ_STRU*          pMmcDetachReq;
@@ -751,42 +555,7 @@ VOS_VOID Mm_Cell_S3_E22(VOS_VOID* pMsg)
     }
 
 }
-/*******************************************************************************
-  Module:   Mm_Cell_S4_E22
-  Function: 在MM IDLE LIMITED SERVICE状态下,收到MMCMM_DETACH_REQ的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.  张志勇     2004.03.12  新版做成
-  2.  日    期   : 2008年09月03日
-      作    者   : l00130025
-      修改内容   : 问题单号：AT2D05403,mm注册状态修改
-  3.日    期   : 2011年7月26日
-    作    者   : h44270
-    修改内容   : V7R1 PHASE II ATTACH/DETACH调整
-  4.日    期   : 2011年7月25日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-  5. 日    期   : 2012年1月12日
-     作    者   : w00166186
-     修改内容   : DTS2011122704039:开机搜网后CS注册被拒#12,PS注册被拒#14，在ON
-                   PLMN状态，服务域被设置为不支持MM需要将服务域不支持信息通知给MMC.
-  6. 日    期   : 2012年2月15日
-     作    者   : w00166186
-     修改内容   : CSFB&PPAC&ETWS&ISR 开发
-  7.日    期   : 2012年12月25日
-    作    者   : l00167671
-    修改内容   : 问题单号DTS2012122509118，L下搜网打紧急呼时到W下搜到与上次注册相同的小区
-                   先发起了LU
-  8.日    期   : 2013年05月15日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  9.日    期   : 2013年6月8日
-    作    者   : w00167002
-    修改内容   : V9R1_SVLTE:检视意见修改:nO CELL AVAILABLE状态时其实也不需要迁移状态
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S4_E22(VOS_VOID* pMsg)
 {
     MMCMM_DETACH_REQ_STRU*   pMmcDetachReq;
@@ -830,21 +599,7 @@ VOS_VOID Mm_Cell_S4_E22(VOS_VOID* pMsg)
         PS_NAS_LOG(WUEPS_PID_MM, VOS_NULL, PS_LOG_LEVEL_NORMAL, "Mm_Cell_S4_E22:NORMAL: STATUS is MM_IDLE_LIMITED_SERVICE");
     }
 }
-/*****************************************************************************
- 函 数 名  : Mm_Cell_S6_E22
- 功能描述  : 在MM_IDLE_LOCATION_UPDATE_NEEDED状态收到DETACH REQ的处理
- 输入参数  : VOS_VOID* pMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年2月15日
-   作    者   : w00166186
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID Mm_Cell_S6_E22(VOS_VOID* pMsg)
 {
     NAS_MM_COM_SERVICE_STATUS_ENUM_UINT8                    enServiceStatus;
@@ -861,24 +616,7 @@ VOS_VOID Mm_Cell_S6_E22(VOS_VOID* pMsg)
         Mm_Cell_S4_E22(pMsg);
     }
 }
-/*******************************************************************************
-  Module:   Mm_Cell_S8_E22
-  Function: 在MM IDLE NO IMSI状态下,收到MMCMM_DETACH_REQ的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇     2004.03.12  新版做成
-      2. 日    期   : 2012年1月12日
-         作    者   : w00166186
-         修改内容   : DTS2011122704039:开机搜网后CS注册被拒#12,PS注册被拒#14，在ON
-                       PLMN状态，服务域被设置为不支持MM需要将服务域不支持信息通知给MMC.
 
-      3.日    期   : 2013年6月21日
-        作    者   : w00167002
-        修改内容   : 如果当前卡无效，需要通知状态为NO IMSI
-*******************************************************************************/
 VOS_VOID Mm_Cell_S8_E22(VOS_VOID* pMsg)
 {
     MMCMM_DETACH_REQ_STRU*   pMmcDetachReq;
@@ -912,56 +650,7 @@ VOS_VOID Mm_Cell_S8_E22(VOS_VOID* pMsg)
 
     }
 }
-/*******************************************************************************
-  Module:   Mm_Cell_S9_E22
-  Function: 在WAIT FOR OUTGOING MM CONNECTION状态下,收到MMCMM_DETACH_REQ的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.张志勇     2004.03.12  新版做成
-  2.日    期   : 2008年09月03日
-    作    者   : l00130025
-    修改内容   : 问题单号：AT2D05403,mm注册状态修改
-  3.日    期   : 2011年7月22日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
-  4.日    期   : 2011年7月26日
-    作    者   : h44270
-    修改内容   : V7R1 PHASE II ATTACH/DETACH调整
-  5.日    期   : 2011年7月25日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-  6. 日    期   : 2012年1月12日
-     作    者   : w00166186
-     修改内容   : DTS2011122704039:开机搜网后CS注册被拒#12,PS注册被拒#14，在ON
-                   PLMN状态，服务域被设置为不支持MM需要将服务域不支持信息通知给MMC.
-  7.日    期   : 2012年10月29日
-    作    者   : z00161729
-    修改内容   : DTS2012083102536:支持cc呼叫重建
-  8.日    期   : 2012年12月18日
-    作    者   : l65478
-    修改内容   : DTS2012121405450:释放连接原因值错误
-  9.日    期   : 2013年2月4日
-    作    者   : w00176964
-    修改内容   : DTS2011022802215:CS ONLY,网络模式I下也进行联合注册
- 10.日    期   : 2013年05月15日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
- 11.日    期   : 2013年6月8日
-    作    者   : w00167002
-    修改内容   : V9R1_SVLTE:封装函数判别是否由GMM处理CS的DETACH。
- 12.日    期   :2013年9月14日
-    作    者   :z00161729
-    修改内容  :DTS2013082903019:支持ss重发功能
- 13.日    期   : 2014年6月13日
-    作    者   : w00242748
-    修改内容   : DSDS 新特性
- 14.日    期   :2014年9月24日
-    作    者   :s00217060
-    修改内容   :for cs_err_log
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S9_E22(VOS_VOID* pMsg)
 {
     MMCMM_DETACH_REQ_STRU*          pMmcDetachReq;
@@ -999,9 +688,7 @@ VOS_VOID Mm_Cell_S9_E22(VOS_VOID* pMsg)
                 Mm_ComSetMmState(IMSI_DETACH_PENDING);
 
                 PS_NAS_LOG(WUEPS_PID_MM, VOS_NULL, PS_LOG_LEVEL_NORMAL, "Mm_Cell_S9_E22:NORMAL: STATUS is IMSI_DETACH_PENDING");
-        /* Deleted by s00217060 for K3V3 多模多天线特性, 2014-07-22, begin */
         /* Mm_SndMmcCmSvcInd在Mm_ComRelAllMmConn中上报 */
-        /* Deleted by s00217060 for K3V3 多模多天线特性, 2014-07-22, end */
 
                 if (MMC_MM_PS_DETACH != pMmcDetachReq->enDetachType)
                 {
@@ -1060,58 +747,7 @@ VOS_VOID Mm_Cell_S9_E22(VOS_VOID* pMsg)
 
     }
 }
-/*******************************************************************************
-  Module:   Mm_Cell_S12_E22
-  Function: 在WAIT FOR RR CONNECTION (MM CONNECTION)状态下,收到MMCMM_DETACH_REQ的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.  张志勇     2004.03.12  新版做成
-  2.  张志勇     2005.01.27  007037 for MM
-  3. 日    期   : 2008年09月03日
-     作    者   : l00130025
-     修改内容   : 问题单号：AT2D05403,mm注册状态修改
-  4.日    期   : 2011年7月26日
-    作    者   : h44270
-    修改内容   : V7R1 PHASE II ATTACH/DETACH调整
-  5.日    期   : 2011年7月25日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-  6. 日    期   : 2012年1月12日
-     作    者   : w00166186
-     修改内容   : DTS2011122704039:开机搜网后CS注册被拒#12,PS注册被拒#14，在ON
-                   PLMN状态，服务域被设置为不支持MM需要将服务域不支持信息通知给MMC.
-  7.日    期   : 2012年10月29日
-    作    者   : z00161729
-    修改内容   : DTS2012083102536:支持cc呼叫重建
- 8.日    期   : 2013年2月4日
-   作    者   : w00176964
-   修改内容   : DTS2011022802215:CS ONLY,网络模式I下也进行联合注册
- 9.日    期   : 2013年05月15日
-   作    者   : s46746
-   修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-10.日    期   : 2013年6月5日
-   作    者   : w00167002
-   修改内容   : SVLTE:sunxibo检视意见修改，状态不是迁移到NO IMSI,迁移到LIMIT
-                    SERVICE状态。
-                2. 停止WAIT_FOR_REESTABLISH_WAIT_FOR_REEST_REQ状态的保护定时器;
-                3. 如果当前的CS detach由GMM进行处理，则释放当前的链接，GMM收到GPRS
-                   RESUME指示消息后，发起DETACH;
- 11.日    期   :2013年9月12日
-    作    者   :z00161729
-    修改内容   :DTS2013082903019:支持ss重发功能
- 12.日    期   : 2013年11月11日
-    作    者   : l65478
-    修改内容  : DTS2013110800070:3方后台在搜网过程中下发了USSD业务,导致CS业务异常
- 13.日    期   : 2014年6月13日
-    作    者   : w00242748
-    修改内容   : DSDS 新特性
- 14.日    期   :2014年9月24日
-    作    者   :s00217060
-    修改内容   :for cs_err_log
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S12_E22(VOS_VOID* pMsg)
 {
     MMCMM_DETACH_REQ_STRU*          pMmcDetachReq;
@@ -1139,9 +775,7 @@ VOS_VOID Mm_Cell_S12_E22(VOS_VOID* pMsg)
         g_MmGlobalInfo.ucPreState = g_MmGlobalInfo.ucState;
         Mm_ComSetMmState(IMSI_DETACH_PENDING);
 
-        /* Deleted by s00217060 for K3V3 多模多天线特性, 2014-07-22, begin */
         /* Mm_SndMmcCmSvcInd在Mm_ComRelAllMmConn中上报 */
-        /* Deleted by s00217060 for K3V3 多模多天线特性, 2014-07-22, end */
         if (MMC_MM_PS_DETACH != pMmcDetachReq->enDetachType)
         {
             g_MmGlobalInfo.ucDetachType = MM_DETACH_CS_NORMAL;
@@ -1194,51 +828,7 @@ VOS_VOID Mm_Cell_S12_E22(VOS_VOID* pMsg)
         }
     }
 }
-/*******************************************************************************
-  Module:   Mm_Cell_S14_E22
-  Function: 在WAIT FOR REESTABLISH（WAIT FOR EST_CNF）状态下,收到MMCMM_DETACH_REQ的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.  张志勇     2004.03.12  新版做成
-  2. 张志勇        2005.01.27  007037 for MM
-  3. 日    期   : 2008年09月03日
-     作    者   : l00130025
-     修改内容   : 问题单号：AT2D05403,mm注册状态修改
-  4.日    期   : 2011年7月25日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-  5. 日    期   : 2012年1月12日
-     作    者   : w00166186
-     修改内容   : DTS2011122704039:开机搜网后CS注册被拒#12,PS注册被拒#14，在ON
-                   PLMN状态，服务域被设置为不支持MM需要将服务域不支持信息通知给MMC.
-  6.日    期   : 2012年10月29日
-    作    者   : z00161729
-    修改内容   : DTS2012083102536:支持cc呼叫重建
-  7.日    期   : 2013年2月4日
-    作    者   : w00176964
-    修改内容   : DTS2011022802215:CS ONLY,网络模式I下也进行联合注册
-  8.日    期   : 2013年05月15日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
 
-  7.日    期   : 2013年6月5日
-    作    者   : w00167002
-    修改内容   : SVLTE:发起CS域的Detach,则需要启动保护定时器:SYSCFG触发的Detach的
-                 保护时间为15s，cgcatt触发的Detach的时长为90s
-                 2.sunxibo检视意见:Mm_Cell_S14_E22的状态当前没有信令链接，处理参考
-                 Mm_Cell_S12_E22
-                 3. 如果当前的CS detach由GMM进行处理，则释放当前的链接，GMM收到GPRS
-                   RESUME指示消息后，发起DETACH;
-  8.日    期   :2013年9月12日
-    作    者   :z00161729
-    修改内容   :DTS2013082903019:支持ss重发功能
-  9.日    期   :2014年9月24日
-    作    者   :s00217060
-    修改内容   :for cs_err_log
-*******************************************************************************/
 VOS_VOID Mm_Cell_S14_E22(VOS_VOID* pMsg)
 {
     MMCMM_DETACH_REQ_STRU*          pMmcDetachReq;
@@ -1264,9 +854,7 @@ VOS_VOID Mm_Cell_S14_E22(VOS_VOID* pMsg)
         g_MmGlobalInfo.ucPreState = g_MmGlobalInfo.ucState;
         Mm_ComSetMmState(IMSI_DETACH_PENDING);
 
-        /* Deleted by s00217060 for K3V3 多模多天线特性, 2014-07-22, begin */
         /* Mm_SndMmcCmSvcInd在Mm_ComRelAllMmConn中上报 */
-        /* Deleted by s00217060 for K3V3 多模多天线特性, 2014-07-22, end */
 
         if (MMC_MM_PS_DETACH != pMmcDetachReq->enDetachType)
         {
@@ -1299,25 +887,7 @@ VOS_VOID Mm_Cell_S14_E22(VOS_VOID* pMsg)
         }
     }
 }
-/*******************************************************************************
-  Module:   Mm_Cell_S0_E23
-  Function: 在MM_NULL状态下,收到MMCMM_POWER_OFF_REQ的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.  张志勇     2004.03.12  新版做成
-  2. 日    期   : 2006年9月9日
-     作    者   : sunxibo id:46746
-     修改内容   : 根据问题单号：A32D05803
-  3.日    期   : 2011年7月25日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-  4.日    期   : 2013年05月15日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S0_E23(VOS_VOID* pMsg)
 {
 
@@ -1342,45 +912,7 @@ VOS_VOID Mm_Cell_S0_E23(VOS_VOID* pMsg)
 
     PS_NAS_LOG(WUEPS_PID_MM, VOS_NULL, PS_LOG_LEVEL_NORMAL, "Mm_Cell_S0_E23:NORMAL: STATUS is MM_STATE_NULL");
 }
-/*******************************************************************************
-  Module:   Mm_Cell_S3_E23
-  Function: 在MM IDLE NORMAL SERVICE状态下,收到MMCMM_POWER_OFF_REQ的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.  张志勇     2004.03.12  新版做成
-  2.  张志勇        2005.01.27  007037 for MM
-  3. 日    期   : 2006年9月9日
-     作    者   : sunxibo id:46746
-     修改内容   : 根据问题单号：A32D05803
-  4. 日    期   : 2008年09月03日
-     作    者   : l00130025
-     修改内容   : 问题单号：AT2D05403,mm注册状态修改
-  5.日    期   : 2011年7月25日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
 
-  6.日    期   : 2012年2月23日
-    作    者   : z40661
-    修改内容   : 支持L模联合注册时，收到L模下发的关机请求无响应
-  7.日    期   : 2012年3月15日
-    作    者   : w00166186
-    修改内容   : V7R1 C50 CSFB&PPAC&ETWS&ISR开发
-  8.日    期   : 2012年9月07日
-    作    者   : l00171473
-    修改内容   : DTS2012081701006, 添加MM关机保护定时器
-  9.日    期   : 2013年2月4日
-    作    者   : w00176964
-    修改内容   : DTS2011022802215:CS ONLY,网络模式I下也进行联合注册
- 10.日    期   : 2013年05月15日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
- 11.日    期   : 2014年6月13日
-    作    者   : w00242748
-    修改内容   : DSDS 新特性
-*******************************************************************************/
 VOS_VOID Mm_Cell_S3_E23(VOS_VOID* pMsg)
 {
 
@@ -1489,52 +1021,7 @@ VOS_VOID Mm_Cell_S3_E23(VOS_VOID* pMsg)
     }
     return;
 }
-/*******************************************************************************
-  Module:   Mm_Cell_S9_E23
-  Function: 在WAIT FOR OUTGOING MM CONNECTION状态下,收到MMCMM_POWER_OFF_REQ的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.  张志勇     2004.03.12  新版做成
-  2. 日    期   : 2007年3月20日
-     作    者   : s46746
-     修改内容   : 问题单号：A32D09497
-  3. 日    期   : 2007年08月19日
-     作    者   : luojian id:60022475
-     修改内容   : 根据问题单号：A32D12706
-  4. 日    期   : 2008年09月03日
-     作    者   : l00130025
-     修改内容   : 问题单号：AT2D05403,mm注册状态修改
-  5.日    期   : 2011年7月25日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-  6.日    期   : 2012年3月15日
-    作    者   : w00166186
-    修改内容   : V7R1 C50 CSFB&PPAC&ETWS&ISR开发
-  8.日    期   : 2012年9月07日
-    作    者   : l00171473
-    修改内容   : DTS2012081701006, 添加MM关机保护定时器
-  9.日    期   : 2012年10月29日
-    作    者   : z00161729
-    修改内容   : DTS2012083102536:支持cc呼叫重建
- 10.日    期   : 2013年2月4日
-    作    者   : w00176964
-    修改内容   : DTS2011022802215:CS ONLY,网络模式I下也进行联合注册
- 11.日    期   : 2013年05月15日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
- 12.日    期   :2013年9月12日
-    作    者   :z00161729
-     修改内容  :DTS2013082903019:支持ss重发功能
- 13.日    期   : 2014年6月13日
-    作    者   : w00242748
-    修改内容   : DSDS 新特性
- 14.日    期   :2014年9月24日
-    作    者   :s00217060
-    修改内容   :for cs_err_log
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S9_E23(VOS_VOID* pMsg)
 {
 
@@ -1614,50 +1101,7 @@ VOS_VOID Mm_Cell_S9_E23(VOS_VOID* pMsg)
         PS_NAS_LOG(WUEPS_PID_MM, VOS_NULL, PS_LOG_LEVEL_NORMAL, "Mm_Cell_S9_E23:NORMAL: STATUS is MM_STATE_NULL");
     }
 }
-/*******************************************************************************
-  Module:   Mm_Cell_S12_E23
-  Function: 在WAIT FOR RR CONNECTION (MM CONNECTION)状态下,收到MMCMM_POWER_OFF_REQ的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.  张志勇     2004.03.12  新版做成
-  2. 张志勇        2005.01.27  007037 for MM
-  3. 日    期   : 2007年08月19日
-     作    者   : luojian id:60022475
-     修改内容   : 根据问题单号：A32D12706
-  4. 日    期   : 2008年09月03日
-     作    者   : l00130025
-     修改内容   : 问题单号：AT2D05403,mm注册状态修改
-  5.日    期   : 2011年7月25日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-  6.日    期   : 2012年3月15日
-    作    者   : w00166186
-    修改内容   : V7R1 C50 CSFB&PPAC&ETWS&ISR开发
-  7.日    期   : 2012年9月07日
-    作    者   : l00171473
-    修改内容   : DTS2012081701006, 添加MM关机保护定时器
-  8.日    期   : 2012年10月29日
-    作    者   : z00161729
-    修改内容   : DTS2012083102536:支持cc呼叫重建
-  9.日    期   : 2013年2月4日
-    作    者   : w00176964
-    修改内容   : DTS2011022802215:CS ONLY,网络模式I下也进行联合注册
- 10.日    期   : 2013年05月15日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
- 11.日    期   :2013年9月12日
-    作    者   :z00161729
-    修改内容   :DTS2013082903019:支持ss重发功能
- 12.日    期   : 2014年6月13日
-    作    者   : w00242748
-    修改内容   : DSDS 新特性
- 13.日    期   :2014年9月24日
-    作    者   :s00217060
-    修改内容   :for cs_err_log
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S12_E23(VOS_VOID* pMsg)
 {
 
@@ -1735,54 +1179,7 @@ VOS_VOID Mm_Cell_S12_E23(VOS_VOID* pMsg)
     }
 }
 
-/*******************************************************************************
-  Module:   Mm_Cell_S14_E23
-  Function: 在WAIT FOR REESTABLISH（WAIT FOR EST_CNF）状态下,
-            收到MMCMM_POWER_OFF_REQ的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.  张志勇     2004.03.15  新版做成
-  2. 张志勇        2005.01.27  007037 for MM
-  3. 日    期   : 2007年3月20日
-     作    者   : s46746
-     修改内容   : 问题单号：A32D09497
-  4. 日    期   : 2007年08月19日
-     作    者   : luojian id:60022475
-     修改内容   : 根据问题单号：A32D12706
-  5. 日    期   : 2008年09月03日
-     作    者   : l00130025
-         修改内容   : 问题单号：AT2D05403,mm注册状态修改
-  6.日    期   : 2011年7月25日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-  7.日    期   : 2012年3月15日
-    作    者   : w00166186
-    修改内容   : V7R1 C50 CSFB&PPAC&ETWS&ISR开发
-  8.日    期   : 2012年9月07日
-    作    者   : l00171473
-    修改内容   : DTS2012081701006, 添加MM关机保护定时器
-  9.日    期   : 2012年10月29日
-    作    者   : z00161729
-    修改内容   : DTS2012083102536:支持cc呼叫重建
- 10.日    期   : 2013年2月4日
-    作    者   : w00176964
-    修改内容   : DTS2011022802215:CS ONLY,网络模式I下也进行联合注册
- 11.日    期   : 2013年05月15日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
- 12.日    期   :2013年9月12日
-   作    者   :z00161729
-   修改内容  :DTS2013082903019:支持ss重发功能
- 13.日    期   : 2014年6月13日
-    作    者   : w00242748
-    修改内容   : DSDS 新特性
- 14.日    期   :2014年9月24日
-    作    者   :s00217060
-    修改内容   :for cs_err_log
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S14_E23(VOS_VOID* pMsg)
 {
 
@@ -1878,18 +1275,7 @@ VOS_VOID Mm_Cell_S14_E23(VOS_VOID* pMsg)
         PS_NAS_LOG(WUEPS_PID_MM, VOS_NULL, PS_LOG_LEVEL_NORMAL, "Mm_Cell_S14_E23:NORMAL: STATUS is MM_STATE_NULL");
     }
 }
-/*******************************************************************************
-  Module:   Mm_Cell_S22_E23
-  Function: WAIT FOR RR CONNECTION (LOCATION UPDATING)状态下,收到MMCMM_POWER_OFF_REQ的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.日    期   : 2007年06月01日
-        作    者   : luojian id:60022475
-        修改内容   : 根据问题单A32D10964修改
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S22_E23(VOS_VOID* pMsg)
 {
 
@@ -1922,21 +1308,7 @@ VOS_VOID Mm_Cell_S25_E23(VOS_VOID* pMsg)
     g_MmGlobalInfo.ucDetachType = MM_DETACH_CS_POWEROFF;                        /* 设置DETACH类型                           */
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_IsNeedStopT3213_EstCnf
- 功能描述  : 判断是不是需要停止3213定时器的原因值
- 输入参数  : RRC_NAS_EST_RESULT_ENUM_UINT32
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月25日
-    作    者   : n00269697
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MM_IsNeedStopT3213_EstCnf(
     RRC_NAS_EST_RESULT_ENUM_UINT32      ulResult
 )
@@ -1954,133 +1326,9 @@ VOS_UINT32 NAS_MM_IsNeedStopT3213_EstCnf(
     }
 }
 
-/*******************************************************************************
-  Module:   Mm_Cell_S22_E32
-  Function: 在WAIT FOR RR CONNECTION (LOCATION UPDATING)状态下,收到RRMM_EST_CNF的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.  张志勇     2004.03.15  新版做成
-  2.  张志勇     2005.01.27  007037 for MM
-  3. 日    期   : 2006年11月22日
-     作    者   : l60022475
-     修改内容   : 问题单号：A32D07583
-  4. 日    期   : 2007年08月03日
-     作    者   : l65478
-     修改内容   : 问题单号：A32D12650
-  5. 日    期   : 2008年09月03日
-     作    者   : l00130025
-     修改内容   : 问题单号：AT2D05403,mm注册状态修改
-  6.日    期   : 2008年11月22日
-    作    者   : l65478
-    修改内容   : 问题单号：AT2D06900,mm注册状态修改
-  7.日    期   : 2009年08月25日
-    作    者   : o00132663
-    修改内容   : 问题单号：AT2D14020,MM LU过程中，建链失败，cause: RRC_EST_EST_CONN_FAIL，从规范来说，
-                 并没有要求清空LAI及等效PLMN，如果清空了，会导致手动搜网模式下，MMC转发给GMM的系统消息
-                 中将forbidden标志置位。
-  8.日    期   : 2009年08月27日
-    作    者   : o00132663
-    修改内容   : 问题单号：AT2D14089,【正向质量】G下，LU建链失败，cause: RR_CONN_FAIL，T3211超时后未发起LU.
-  9.日    期   : 2011年11月22日
-    作    者   : z00161729
-    修改内容  : 问题单号：DTS2010111602266,G下CS注册失败原因立即指派拒绝,MM在收到
-                RRMM_AC_INFORMATION_CHANGE_IND T3122超时消息后反复尝试LU,导致PS反复挂起恢复,影响数传性能
-  10.日    期   : 2011年01月27日
-     作    者   : w00176964
-     修改内容   : 问题单号：DTS2011012701891,Cs connfail 4次后，进入到LAI相同的不同小区，没有发起LAU
-  11.日    期   : 2011年7月16日
-     作    者   : h44270
-     修改内容   : V7R1 PhaseII阶段调整，注册结果简化
-  12.日    期   : 2011年7月25日
-     作    者   : h44270
-     修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-  13.日    期   : 2012年2月15日
-     作    者   : w00166186
-     修改内容   : CSFB&PPAC&ETWS&ISR 开发
-  14.日    期   : 2012年11月20日
-     作    者   : l65478
-     修改内容   :DTS2012111901564:没有通知MMC注册结果，导致MMC异常发起搜网
-  15.日    期   : 2013年05月15日
-     作    者   : s46746
-     修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  16.日    期   : 2013年6月11日
-     作    者   : w00167002
-     修改内容   : V9R1_SVLTE检视意见修改:在LAU建链的时候收到CS域的DETACH，则等到
-                  收到建链结果后进行处理。如果建链成功，则直接向网侧发起DETACH,否则
-                  直接本地DETACH.
-  17.日    期   : 2013年08月07日
-     作    者   : l65478
-     修改内容   : 修改问题单DTS2013080502397,在重选到G下进行LU后,然后GAS指示重定向到W原来的小区时，如果Gs口不存在,需要发起联合RAU
-  18.日    期   : 2013年6月11日
-     作    者   : w00167002
-     修改内容   : DTS2013080802492:立即指派拒绝不删除EPLMN.
 
-  19.日    期   : 2013年8月22日
-     作    者   : w00167002
-     修改内容   : DTS2013081604476:w重选到G下后，被立即指派拒绝，GAS启动T3122
-                  定时器，接着用户发起电话，NAS发起LAU,GAS由于T3122运行，直接回复
-                  建联失败。MM启动了T3211,在这种场景下，NAS不需要启动T3211定时器。
-
-                  TS24.008:4.4.4.9 Abnormal cases on the mobile station side
-                  d)RR connection failure
-                    The procedure is aborted and the mobile station proceeds as specified below.
-                    In cases d) to h) (except in the case f.1) above and for repeated failures as defined in c) above the mobile station proceeds as follows. Timer T3210 is stopped if still running. The RR Connection is aborted in case of timer T3210 timeout. The attempt counter is incremented. The next actions depend on the Location Area Identities (stored and received from the BCCH of the current serving cell) and the value of the attempt counter.
-                    -the update status is UPDATED, and the stored LAI is equal to the one received on the BCCH from the current serving cell and the attempt counter is smaller than 4:
-                    The mobile station shall keep the update status to UPDATED, the MM IDLE sub-state after the RR connection release is NORMAL SERVICE. The mobile station shall memorize the location updating type used in the location updating procedure. It shall start timer T3211 when the RR connection is released. When timer T3211 expires the location updating procedure is triggered again with the memorized location updating type;
-
-                    -either the update status is different from UPDATED, or the stored LAI is different from the
-                    one received on the BCCH from the current serving cell, or the attempt counter is greater or
-                    equal to 4:
-                    When the RR connection is released the mobile station shall delete any LAI, TMSI, ciphering key
-                    sequence number stored in the SIM/USIM, and list of equivalent PLMNs,
-                    set the update status to NOT UPDATED and
-                    enter the MM IDLE sub-state ATTEMPTING TO UPDATE
-                    (see subclause 4.2.2.2 for the subsequent actions) or optionally the MM IDLE sub-state PLMN SEARCH (see subclause 4.2.1.2) in order to perform a PLMN selection according to 3GPP TS 23.122 [14]. If the attempt counter is smaller than 4, the mobile station shall
-
-   20.日    期   : 2014年4月2日
-      作    者   : w00176964
-      修改内容   : V3R3C60_eCall项目修改:g_MmGlobalInfo.MsCsInfo.OldLai替换成MML中的
-  21.日    期   : 2014年6月4日
-     作    者   : w00167002
-     修改内容   : DTS2014052603967:CS only，在A小区注册失败17后迁移到B小区，在B小区
-                是禁止PLMN小区，MM迁移到LIMIT service状态，后续搜网到A小区网络后，
-                发起了LAU.
-                在LAU失败迁移到U2状态时候记录当前的LAI信息；在开机，用户发起CS/CS_PS
-                DETACH时候或或者重新发起LAU时候则清除该LAI信息；
-                在后续搜索到该小区后，在U2状态，如果当前的LAI在记录的LAI里面，则
-                不发起LAU.
-    22.日    期   : 2013年3月28日
-       作    者   : y00176023
-       修改内容   : DSDS GUNAS II项目:增加对RRC_EST_RJ_NO_RF的处理
-    23.日    期   : 2014年8月14日
-       作    者   : z00161729
-       修改内容   : gas下lau建链失败原因值random access reject no valid information场景未按协议实现8s内不发起lau，t3213 4s超时就发起了lau
-
-    24.日    期   : 2015年1月27日
-       作    者   : w00167002
-       修改内容   : DTS2015012305099:BETA出现手机被叫关机，当前手机状态为22，没有
-                    问题LOG，进行正向质量分析。在迁移状态时候停保护定时器，否则不停。
-	25.日    期   : 2015年3月17日
-       作    者   : b00269685
-       修改内容   : 增加对access bar的处理
-    26.日    期   : 2015年3月16日
-       作    者   : w00167002
-       修改内容   : DTS2015030305199:建联失败后，启动T3212定时器，导致一个小时后才
-                    LAU成功，用户体验差。修改为在RR建联失败后，启动T3212定时器时长
-                   可由NV进行配置。
-   27.日    期   : 2015年6月3日
-      作    者   : z00161729
-      修改内容   : 24008 23122 R11 CR升级项目修改
-   28.日    期   : 2015年8月13日
-      作    者   : l00289540
-      修改内容   : User_Exp_Improve修改
-*******************************************************************************/
 VOS_VOID Mm_Cell_S22_E32(VOS_VOID* pMsg)
 {
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-3, begin */
     RRMM_EST_CNF_STRU*                                      pRrcEstCnf;
     VOS_UINT8                                               ucTiValidFlg;
     NAS_MML_LOCATION_UPDATE_STATUS_ENUM_UINT8               enCsUpdateStatus;
@@ -2091,7 +1339,6 @@ VOS_VOID Mm_Cell_S22_E32(VOS_VOID* pMsg)
 
     ulIsTestCard    = NAS_USIMMAPI_IsTestCard();
     ucTiValidFlg = MM_TRUE;
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-3, end */
 
     if (MM_FALSE == Mm_RcvRrcEstCnf(pMsg))
     {
@@ -2143,7 +1390,6 @@ VOS_VOID Mm_Cell_S22_E32(VOS_VOID* pMsg)
             PS_NAS_LOG(WUEPS_PID_MM, VOS_NULL, PS_LOG_LEVEL_NORMAL, "Mm_Cell_S22_E32:NORMAL: STATUS is MM_IDLE_LIMITED_SERVICE");
             Mm_ComCheckDelayMmConn(MM_FALSE);
 
-            /* Added by w00176964 for V3R3C60_eCall项目, 2014-5-22, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
             /* PS ONLY在ECALL ONLY模式下不设置CS不允许attach标记*/
             if (NAS_MML_ECALL_ONLY == NAS_MML_GetCallMode())
@@ -2151,7 +1397,6 @@ VOS_VOID Mm_Cell_S22_E32(VOS_VOID* pMsg)
                 return;
             }
 #endif
-            /* Added by w00176964 for V3R3C60_eCall项目, 2014-5-22, end */
 
             NAS_MML_SetCsAttachAllowFlg(VOS_FALSE);
             return;
@@ -2293,7 +1538,6 @@ VOS_VOID Mm_Cell_S22_E32(VOS_VOID* pMsg)
                 pstAttLaiInfo->PlmnId.ulMnc = pstCampLaiInfo->stPlmnId.ulMnc;
                 pstAttLaiInfo->ulLac        = ((pstCampLaiInfo->aucLac[0] << 8)| (pstCampLaiInfo->aucLac[1]));
 
-                /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-15, begin */
                 NAS_MM_UpdateEquPlmnInfo(NAS_MML_REG_FAIL_CAUSE_RR_CONN_EST_FAIL);
 
                 NAS_MM_SndMmcCsRegResultInd(MM_MMC_LU_PROC_TRUE,
@@ -2305,7 +1549,6 @@ VOS_VOID Mm_Cell_S22_E32(VOS_VOID* pMsg)
 
                 /* 进U2的公共处理 */
                 Mm_ComToU2Handle();
-                /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-15, end */
 
                 Mm_TimerStart(MM_TIMER_T3211);                                  /* 启动T3211                                */
             }
@@ -2323,7 +1566,6 @@ VOS_VOID Mm_Cell_S22_E32(VOS_VOID* pMsg)
             pstAttLaiInfo->PlmnId.ulMnc = pstCampLaiInfo->stPlmnId.ulMnc;
             pstAttLaiInfo->ulLac        = ((pstCampLaiInfo->aucLac[0] << 8)| (pstCampLaiInfo->aucLac[1]));
 
-            /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-15, begin */
             NAS_MM_UpdateEquPlmnInfo(NAS_MML_REG_FAIL_CAUSE_RR_CONN_EST_FAIL);
 
             NAS_MM_SndMmcCsRegResultInd(MM_MMC_LU_PROC_TRUE,
@@ -2335,7 +1577,6 @@ VOS_VOID Mm_Cell_S22_E32(VOS_VOID* pMsg)
 
             /* 进U2的公共处理 */
             Mm_ComToU2Handle();
-            /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-15, end */
 
             NAS_MM_StartT3212Timer(NAS_MM_ConvertLauEstCnfRsltToT3212StartScean(pRrcEstCnf->ulResult));
         }
@@ -2467,72 +1708,7 @@ VOS_VOID Mm_Cell_S22_E32(VOS_VOID* pMsg)
     g_MmGlobalInfo.LuInfo.ucPsRandomAccessFailCnt = 0;
 
 }
-/*******************************************************************************
-  Module:   Mm_Cell_S25_E32
-  Function: 在WAIT FOR RR CONNECTION (IMSI DETACH)状态下,收到RRMM_EST_CNF的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.  张志勇     2004.03.15  新版做成
-  2.  张志勇     2005.01.27  006044 for MM
-  3.  张志勇     2005.01.27  007037 for MM
-  4. 日    期   : 2007年01月17日
-     作    者   : luojian id:60022475
-     修改内容   : 问题单号：A32D08396
-  5. 日    期   : 2007年3月20日
-     作    者   : s46746
-     修改内容   : 问题单号：A32D09497
-  6. 日    期   : 2007年9月29日
-     作    者   : luojian id:107747
-     修改内容   : 问题单号 A32D12966
-  7. 日    期   : 2008年7月21日
-     作    者   : luojian 00107747
-     修改内容   : 问题单号：AT2D04201/AT2D04536
-  8. 日    期   : 2008年09月03日
-     作    者   : l00130025
-     修改内容   : 问题单号：AT2D05403,mm注册状态修改
-  9.日    期   : 2011年7月26日
-    作    者   : h44270
-    修改内容   : V7R1 PHASE II ATTACH/DETACH调整
-  10.日    期   : 2011年7月25日
-     作    者   : h44270
-     修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-  11.日    期   : 2012年2月15日
-     作    者   : w00166186
-     修改内容   : CSFB&PPAC&ETWS&ISR 开发
-  12.日    期   : 2012年12月11日
-     作    者   : w00176964
-     修改内容   : 删除设置小区禁止业务标记,统一由MMC收到系统消息和AC INFO CHANGE维护
-  13.日    期   : 2013年05月15日
-     作    者   : s46746
-     修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  14.日    期   : 2013年08月15日
-     作    者   : l65478
-     修改内容   : DTS2013081404782MM连接释放后没有通知GMM CS业务结束
-  15.日    期   : 2013年8月22日
-     作    者   : w00167002
-     修改内容   : DTS2013081604476:w重选到G下后，被立即指派拒绝，GAS启动T3122
-                  定时器，接着用户发起电话，NAS发起LAU,GAS由于T3122运行，直接回复
-                  建联失败。MM启动了T3211,在这种场景下，NAS不需要启动T3211定时器。
-  16.日    期   : 2013年4月10日
-     作    者   : y00176023
-     修改内容   : DSDS GUNAS II项目:增加对RRC_EST_RJ_NO_RF的处理
-  17.日    期   : 2014年8月14日
-     作    者   : z00161729
-     修改内容   : gas下lau建链失败原因值random access reject no valid information场景未按协议实现8s内不发起lau，t3213 4s超时就发起了lau
 
-
- 18.日    期   : 2014年9月29日
-    作    者   : w00167002
-    修改内容   : DTS2014092501419:在进行DETACH时候，处理RRC_EST_OTHER_ACCESS_BARRED消息
- 19.日    期   : 2015年7月22日
-    作    者   : z00161729
-    修改内容   : DTS2015060807763:ap通过cgcatt下发imsi detach，建链失败后mm
-                 本地detach，回复detach cnf时应该带limit service而不是normal
-                 service，at命令回复ok而不是error
-*******************************************************************************/
 VOS_VOID Mm_Cell_S25_E32(VOS_VOID* pMsg)
 {
     RRMM_EST_CNF_STRU*      pRrcEstCnf;
@@ -2610,7 +1786,6 @@ VOS_VOID Mm_Cell_S25_E32(VOS_VOID* pMsg)
             NAS_MML_SetCsRestrictRegisterFlg(VOS_TRUE);
         }
 
-        /* Modified by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-18, begin */
         /* 非紧急呼叫才设置限制注册和寻呼标记 */
         if  (((RRC_EST_ACCESS_BARRED  == pRrcEstCnf->ulResult)
            || (RRC_EST_RJ_CELL_BAR == pRrcEstCnf->ulResult))
@@ -2619,7 +1794,6 @@ VOS_VOID Mm_Cell_S25_E32(VOS_VOID* pMsg)
             NAS_MML_SetCsRestrictPagingFlg(VOS_TRUE);
             NAS_MML_SetCsRestrictRegisterFlg(VOS_TRUE);
         }
-        /* Modified by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-18, end */
 
 
         if (MM_DETACH_CS_POWEROFF == g_MmGlobalInfo.ucDetachType)
@@ -2653,71 +1827,7 @@ VOS_VOID Mm_Cell_S25_E32(VOS_VOID* pMsg)
     }
 
 }
-/*****************************************************************************
- 函 数 名  :  Mm_Cell_S22_E33
- 功能描述  : 在WAIT FOR RR CONNECTION (LOCATION UPDATING)状态下
-             收到RRMM_REL_IND的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2008年10月15日
-   作    者   : x00115505
-   修改内容   : 问题单AT2D06189
-
- 2.日    期   : 2010年8月9日
-   作    者   : 欧阳飞
-   修改内容   : DTS2010080502211，建链过程中直接回复RRMM_REL_IND消息，MM未
-                启动T3211重新发起LU.
- 3.日    期   : 2011年7月16日
-   作    者   : h44270
-   修改内容   : V7R1 PhaseII阶段调整，注册结果简化
- 4.日    期   : 2011年11月10日
-   作    者   : w00167002
-   修改内容   : 删除代码:g_MmGlobalInfo.LuInfo.ucLuAttmptCnt = 0;
-                 注册失败次数达到最大时，不清零，而是等到协议(24008: 4.4.4.5 Attempt Counter)
-                 描述场景进行清零操作,否则如下场景存在问题:CS域注册失败4次，PS失败5次，MMC
-                 依旧等待CS注册结果上报.原因是CS失败4次后，收到RRMM_REL_IND后，收到系统消息，
-                 MM假流程中上报的系统消息的中Attemp Counter指示为0，MMC会继续等待CS注册结果的上报。
- 5.日    期   : 2012年2月28日
-   作    者   : w00176964
-   修改内容   : DTS2012021405430:W下注册PS被拒15，CS注册未完成被网测释放RRC连接，
-                后续在W下注册成功后，异常清除了LAC信息，导致在收到新的系统消息异
-                常发起了LAU
- 6.日    期   : 2012年11月14日
-   作    者   : t00212959
-   修改内容   : DTS2012111304815:TD下建链失败，直接回复rel_ind,MM的处理有误
-  7.日    期   : 2012年12月11日
-    作    者   : l00167671
-    修改内容   : DTS2012121802573, TQE清理
-  8.日    期   : 2013年05月15日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  9.日    期   : 2014年01月09日
-    作    者   : l65478
-    修改内容   : DTS2014010704608:第一次鉴权响应和网络发起的第二次鉴权请求冲突
- 10.日    期   : 2014年4月2日
-    作    者   : w00176964
-    修改内容   : V3R3C60_eCall项目修改:g_MmGlobalInfo.MsCsInfo.OldLai替换成MML中的
- 11.日    期   : 2014年6月4日
-    作    者   : w00167002
-    修改内容   : DTS2014052603967:CS only，在A小区注册失败17后迁移到B小区，在B小区
-                是禁止PLMN小区，MM迁移到LIMIT service状态，后续搜网到A小区网络后，
-                发起了LAU.
-                在LAU失败迁移到U2状态时候记录当前的LAI信息；在开机，用户发起CS/CS_PS
-                DETACH时候或或者重新发起LAU时候则清除该LAI信息；
-                在后续搜索到该小区后，在U2状态，如果当前的LAI在记录的LAI里面，则
-                不发起LAU.
-
- 12.日    期   : 2015年3月16日
-    作    者   : w00167002
-    修改内容   : DTS2015030305199:建联失败后，启动T3212定时器，导致一个小时后才
-                 LAU成功，用户体验差。修改为在RR建联失败后，启动T3212定时器时长
-                 可由NV进行配置。
-*****************************************************************************/
 VOS_VOID Mm_Cell_S22_E33(VOS_VOID *pRcvMsg)
 {
     VOS_UINT8                           ucValidFlg;
@@ -2780,7 +1890,6 @@ VOS_VOID Mm_Cell_S22_E33(VOS_VOID *pRcvMsg)
                  PS_NAS_LOG(WUEPS_PID_MM, VOS_NULL, PS_LOG_LEVEL_NORMAL, "Mm_Cell_S22_E33:NORMAL: STATUS is MM_IDLE_LIMITED_SERVICE");
                  Mm_ComCheckDelayMmConn(MM_FALSE);
 
-                 /* Added by w00176964 for V3R3C60_eCall项目, 2014-5-22, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
                 /* PS ONLY在ECALL ONLY模式下不设置CS不允许attach标记*/
                 if (NAS_MML_ECALL_ONLY == NAS_MML_GetCallMode())
@@ -2788,7 +1897,6 @@ VOS_VOID Mm_Cell_S22_E33(VOS_VOID *pRcvMsg)
                     return;
                 }
 #endif
-                /* Added by w00176964 for V3R3C60_eCall项目, 2014-5-22, end */
                 NAS_MML_SetCsAttachAllowFlg(VOS_FALSE);
                 return;
             }
@@ -2824,7 +1932,6 @@ VOS_VOID Mm_Cell_S22_E33(VOS_VOID *pRcvMsg)
                 pstAttLaiInfo->PlmnId.ulMnc = pstCampLaiInfo->stPlmnId.ulMnc;
                 pstAttLaiInfo->ulLac        = ((pstCampLaiInfo->aucLac[0] << 8)| (pstCampLaiInfo->aucLac[1]));
 
-                /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-15, begin */
                 NAS_MM_UpdateEquPlmnInfo(NAS_MML_REG_FAIL_CAUSE_RR_CONN_EST_FAIL);
 
                 NAS_MM_SndMmcCsRegResultInd(MM_MMC_LU_PROC_TRUE,
@@ -2836,7 +1943,6 @@ VOS_VOID Mm_Cell_S22_E33(VOS_VOID *pRcvMsg)
 
                 /* 进U2的公共处理 */
                 Mm_ComToU2Handle();
-                /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-15, end */
 
 
                 /* T3212定时器启动处理 */
@@ -2858,86 +1964,13 @@ VOS_VOID Mm_Cell_S22_E33(VOS_VOID *pRcvMsg)
     }
 }
 
-/*******************************************************************************
-  Module:   Mm_Cell_S23_E33
-  Function: 在LOCATION UPDATING INITIATED状态下,收到RRMM_REL_IND的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.  张志勇     2004.03.15  新版做成
 
-  2.日    期   : 2006年4月14日
-    作    者   : liuyang id:48197
-    修改内容   : 问题单号：A32D03031
-  3.日    期   : 2006年11月22日
-    作    者   : luojian id:60022475
-    修改内容   : 问题单号：A32D07583
-  4.日    期   : 2007年3月5日
-    作    者   : liurui id:40632
-    修改内容   : 根据问题单号：A32D09094
-  5.日    期   : 2010年8月24日
-    作    者   : w00167002
-    修改内容   : 根据问题单号：DTS2010081802144
-  6.日    期   : 2011年7月16日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
-  7.日    期   : 2011年7月25日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-  8.日    期   : 2011年11月10日
-    作    者   : w00167002
-    修改内容   : 删除代码:g_MmGlobalInfo.LuInfo.ucLuAttmptCnt = 0;
-                 注册失败次数达到最大时，不清零，而是等到协议(24008: 4.4.4.5 Attempt Counter)
-                 描述场景进行清零操作,否则如下场景存在问题:CS域注册失败4次，PS失败5次，MMC
-                 依旧等待CS注册结果上报.原因是CS失败4次后，收到RRMM_REL_IND后，收到系统消息，
-                 MM假流程中上报的系统消息的中Attemp Counter指示为0，MMC会继续等待CS注册结果的上报。
-  9.日    期   : 2012年2月28日
-    作    者   : w00176964
-    修改内容   : DTS2012021405430:W下注册PS被拒15，CS注册未完成被网测释放RRC连接，
-                 后续在W下注册成功后，异常清除了LAC信息，导致在收到新的系统消息异
-                 常发起了LAU
- 10.日    期   : 2013年05月15日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
- 11.日    期   : 2014年01月09日
-    作    者   : l65478
-    修改内容   : DTS2014010704608:第一次鉴权响应和网络发起的第二次鉴权请求冲突
- 12.日    期   : 2014年4月2日
-    作    者   : w00176964
-    修改内容   : V3R3C60_eCall项目修改:g_MmGlobalInfo.MsCsInfo.OldLai替换成MML中的
- 13.日    期   : 2014年5月5日
-    作    者   : w00167002
-    修改内容   : dsds_ii:降圈复杂度，在REL:NO RF异常情况下，
-                 处理同RRC_REL_CAUSE_OTHER_REASON
- 14.日    期   : 2014年6月4日
-    作    者   : w00167002
-    修改内容   : DTS2014052603967:CS only，在A小区注册失败17后迁移到B小区，在B小区
-                是禁止PLMN小区，MM迁移到LIMIT service状态，后续搜网到A小区网络后，
-                发起了LAU.
-                在LAU失败迁移到U2状态时候记录当前的LAI信息；在开机，用户发起CS/CS_PS
-                DETACH时候或或者重新发起LAU时候则清除该LAI信息；
-                在后续搜索到该小区后，在U2状态，如果当前的LAI在记录的LAI里面，则
-                不发起LAU.
- 15.日    期   : 2014年06月15日
-    作    者   : s00217060
-    修改内容   : DTS2014061003286:TD2G重选，G下RAU过程中，用户指定搜TD的网络，网络不回应数据业务accept
- 16.日    期   : 2015年6月23日
-    作    者   : z00161729
-    修改内容   : 24008 23122 R11 CR升级项目修改
- 17.日    期   :2016年1月9日
-    作    者   :z00359541
-    修改内容   :DTS2015111402223:增加小区是否支持CSMO标识
-*******************************************************************************/
 VOS_VOID Mm_Cell_S23_E33(VOS_VOID* pMsg)
 {
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-15, begin */
     RRMM_REL_IND_STRU*                                      pRrcRelInd;
     VOS_UINT8                                               ucTiValidFlg = MM_TRUE;
     VOS_UINT8                                               ucRrConnRelFlg = MM_TRUE;
     VOS_UINT8                                               ucRst;
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-15, end */
     if (MM_FALSE == Mm_RcvRrcRelInd(pMsg))
     {
         return;
@@ -3018,32 +2051,7 @@ VOS_VOID Mm_Cell_S23_E33(VOS_VOID* pMsg)
         NAS_MM_LocalDetach();
     }
 }
-/*******************************************************************************
-  Module:   Mm_Cell_S24_E33
-  Function: 在LOCATION UPDATE REJECTED状态下,收到RRMM_REL_IND的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.  张志勇     2004.03.15  新版做成
-  2. 日    期   : 2008年7月11日
-     作    者   : l0010747
-     修改内容   : 问题单号:AT2D03814
-  3.日    期   : 2011年11月10日
-    作    者   : w00167002
-    修改内容   : 删除代码:if (g_MmGlobalInfo.LuInfo.ucLuAttmptCnt >= MM_CONST_NUM_4)
-                            {
-                                g_MmGlobalInfo.LuInfo.ucLuAttmptCnt = 0;
-                            }
-                 注册失败次数达到最大时，不清零，而是等到协议(24008: 4.4.4.5 Attempt Counter)
-                 描述场景进行清零操作,否则如下场景存在问题:CS域注册失败4次，PS失败5次，MMC
-                 依旧等待CS注册结果上报.原因是CS失败4次后，收到RRMM_REL_IND后，收到系统消息，
-                 MM假流程中上报的系统消息的中Attemp Counter指示为0，MMC会继续等待CS注册结果的上报。
-  4.日    期   :2014年01月09日
-    作    者   :l65478
-    修改内容  :DTS2014010704608:第一次鉴权响应和网络发起的第二次鉴权请求冲突
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S24_E33(VOS_VOID* pMsg)
 {
     VOS_UINT8                   ucOldCsUpdateStatus;
@@ -3093,43 +2101,7 @@ VOS_VOID Mm_Cell_S24_E33(VOS_VOID* pMsg)
 
     Mm_ComCheckDelayDetach();
 }
-/*****************************************************************************
- 函 数 名  : Mm_Cell_S25_E33
- 功能描述  : 在WAIT FOR RR CONNECTION (IMSI DETACH)状态下
-             收到RRMM_REL_IND的处理,此种情况认为AS异常,完成Detach流程
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月29日
-    作    者   : luojian id:107747
-    修改内容   : 新生成函数,根据问题单号 A32D12966
-  2.日    期   : 2008年7月21日
-    作    者   : luojian 00107747
-    修改内容   : 问题单号：AT2D04201/AT2D04536
-  3.日    期   : 2011年7月25日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-  4.日    期   : 2012年2月28日
-    作    者   : w00176964
-    修改内容   : DTS2012021405430:W下注册PS被拒15，CS注册未完成被网测释放RRC连接，
-                 后续在W下注册成功后，异常清除了LAC信息，导致在收到新的系统消息异
-                 常发起了LAU
-  5.日    期   : 2013年05月15日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  6.日    期   :2014年01月09日
-    作    者   :l65478
-    修改内容  :DTS2014010704608:第一次鉴权响应和网络发起的第二次鉴权请求冲突
-  7.日    期   : 2015年7月22日
-    作    者   : z00161729
-    修改内容   : DTS2015060807763:ap通过cgcatt下发imsi detach，建链失败后mm
-                本地detach，回复detach cnf时应该带limit service而不是normal service，
-                at命令回复ok而不是error
-*****************************************************************************/
 VOS_VOID  Mm_Cell_S25_E33( VOS_VOID* pMsg )
 {
     VOS_UINT8                           ucValidFlg;
@@ -3179,54 +2151,7 @@ VOS_VOID  Mm_Cell_S25_E33( VOS_VOID* pMsg )
     }
     return;
 }
-/*******************************************************************************
-  Module:   Mm_Cell_S26_E33
-  Function: 在IMSI DETACH INITIATED状态下,收到RRMM_REL_IND的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.  张志勇     2004.03.15  新版做成
 
-  2.日    期   : 2006年5月27日
-    作    者   : liuyang id:48197
-    修改内容   : A32D04016
-  3.日    期   : 2007年06月01日
-    作    者   : luojian id:60022475
-    修改内容   : 根据问题单A32D10964修改
-  4.日    期   : 2007年01月05日
-    作    者   : l60022475
-    修改内容   : 根据问题单号：A32D12621
-  5.日    期   : 2007年08月19日
-    作    者   : luojian id:60022475
-    修改内容   : 根据问题单号：A32D12706
-  6.日    期   : 2011年7月14日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
-  7.日    期   : 2011年7月26日
-    作    者   : h44270
-    修改内容   : V7R1 PHASE II ATTACH/DETACH调整
-  8.日    期   : 2011年7月25日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-  5. 日    期   : 2012年1月12日
-     作    者   : w00166186
-     修改内容   : DTS2011122704039:开机搜网后CS注册被拒#12,PS注册被拒#14，在ON
-                   PLMN状态，服务域被设置为不支持MM需要将服务域不支持信息通知给MMC.
-   6.日    期   : 2012年2月28日
-     作    者   : w00176964
-     修改内容   : DTS2012021405430:W下注册PS被拒15，CS注册未完成被网测释放RRC连接，
-                  后续在W下注册成功后，异常清除了LAC信息，导致在收到新的系统消息异
-                  常发起了LAU
-   7.日    期   : 2013年05月15日
-     作    者   : s46746
-     修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-   8.日    期   :2014年01月09日
-     作    者   :l65478
-     修改内容  :DTS2014010704608:第一次鉴权响应和网络发起的第二次鉴权请求冲突
-
-*******************************************************************************/
 VOS_VOID Mm_Cell_S26_E33(VOS_VOID* pMsg)
 {
     VOS_UINT8  ucTiValidFlg = MM_TRUE;
@@ -3310,28 +2235,7 @@ VOS_VOID Mm_Cell_S26_E33(VOS_VOID* pMsg)
     /* 需要清除MM保存的GMM的cause值 */
     Mm_ComProcCauseClear();
 }
-/*******************************************************************************
-  Module:   Mm_Cell_S23_E51
-  Function: 在LOCATION UPDATING INITIATED状态下,接收到T3210溢出的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.  张志勇     2004.03.15  新版做成
-  2. 日    期   : 2008年7月11日
-     作    者   : l0010747
-     修改内容   : 问题单号:AT2D03814
-  3. 日    期   : 2008年09月03日
-     作    者   : l00130025
-     修改内容   : 问题单号：AT2D05403,mm注册状态修改
-  4.日    期   : 2011年7月16日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
-  5.日    期   : 2013年05月15日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S23_E51(VOS_VOID* pMsg)
 {
     NAS_MML_LOCATION_UPDATE_STATUS_ENUM_UINT8   enCsUpdateStatus;
@@ -3381,25 +2285,7 @@ VOS_VOID Mm_Cell_S23_E51(VOS_VOID* pMsg)
                              NAS_MML_REG_FAIL_CAUSE_TIMER_TIMEOUT);
     PS_NAS_LOG(WUEPS_PID_MM, VOS_NULL, PS_LOG_LEVEL_NORMAL, "Mm_Cell_S23_E51:NORMAL: STATUS is LOCATION_UPDATE_REJECTED");
 }
-/*******************************************************************************
-  Module:   Mm_Cell_S3_E52
-  Function: 在MM IDLE NORMAL SERVICE状态下,接收到T3211溢出的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇     2004.03.15  新版做成
-      2.日    期   : 2009年05月11日
-        作    者   : h44270
-        修改内容   : AT2D11661/AT2D11804,发起手动搜网打断LAU过程，导致搜网成功后发起两次LAU
-      3.日    期   : 2012年2月11日
-        作    者   : l00130025
-        修改内容   : DTS2012020402238, GU->L->GU,CS支持且卡有效时，T3211超时后，LAU类型填写错误
-      4.日    期   : 2015年1月5日
-        作    者   : z00161729
-        修改内容   : AT&T 支持DAM特性修改
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S3_E52(VOS_VOID* pMsg)
 {
     /* AT&T 测试用例GSM-BTR-1-0644和GSM-BTR-1-0650和GSM-BTR-1-0652
@@ -3424,33 +2310,7 @@ VOS_VOID Mm_Cell_S9_E52(VOS_VOID* pMsg)
 {
     Mm_TimerStart(MM_TIMER_T3211);
 }
-/*******************************************************************************
-  Module:   Mm_Cell_S1_E53
-  Function: 在MM IDLE NO CELL AVAILABLE状态下,接收到T3212溢出的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇     2004.03.15  新版做成
-      2.  x51137  2006/4/14 A32D02955
-      3.日    期   : 2012年07月02日
-        作    者   : l65478
-        修改内容   : DTS2012070206731, 手动搜网模式在出服务区后T3212超时重进服务区后没有发起LAU
-      4.日    期   : 2013年2月4日
-        作    者   : w00176964
-        修改内容   : DTS2011022802215:CS ONLY,网络模式I下也进行联合注册
 
-      5.日    期   : 2014年9月20日
-        作    者   : w00167002
-        修改内容   : DTS2014092400817:在A网络上注册被拒17达到最大次数后，启动T3212定时器
-                     在周期搜网定时器超时后触发搜网，在搜网时候T3212超时，代码中没有
-                     清除ATTEMPT COUNTER,导致后续只发起了一次LAU,后又启动了T3212.
-                     GCF26.7.4.3.3失败。
-      6.日    期   : 2015年1月5日
-        作    者   : z00161729
-        修改内容   : AT&T 支持DAM特性修改
-*******************************************************************************/
 
 VOS_VOID Mm_Cell_S1_E53(VOS_VOID* pMsg)
 {
@@ -3467,9 +2327,7 @@ VOS_VOID Mm_Cell_S1_E53(VOS_VOID* pMsg)
         return;
     }
 
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-29, begin */
     if (VOS_TRUE == NAS_MM_IsClassAAndNmoIMode(g_MmGlobalInfo.ucNtMod))
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-29, end */
     {
         if (MM_TRUE == g_MmGlobalInfo.ucLikeNetmode2)
         {
@@ -3493,37 +2351,7 @@ VOS_VOID Mm_Cell_S1_E53(VOS_VOID* pMsg)
         g_MmGlobalInfo.LuInfo.ucLuAttmptCnt = 0;
     }
 }
-/*******************************************************************************
-  Module:   Mm_Cell_S3_E53
-  Function: 在MM IDLE NORMAL SERVICE状态下,接收到T3212溢出的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇     2004.03.15  新版做成
-      2.  x51137  2006/4/14 A32D02955
-      3.日    期   : 2007年05月11日
-        作    者   : luojian id:60022475
-        修改内容   : 问题单号:A32D10713
-      4.日    期   : 2010年07月16日
-        作    者   : l65478
-        修改内容   : 问题单号:DTS2010070600029,网络模式I下,ATTACH失败后进行LU,T3212超时后执行LU用例失败
-      5.日    期   : 2012年2月15日
-        作    者   : w00166186
-        修改内容   : CSFB&PPAC&ETWS&ISR 开发
-      6.日    期   : 2013年2月4日
-        作    者   : w00176964
-        修改内容   : DTS2011022802215:CS ONLY,网络模式I下也进行联合注册
-      7.日    期   : 2013年12月6日
-        作    者   : w00242748
-        修改内容   : DTS2013120505497:G NMOI，PS联合RAU被拒#17 5次后LAU成功，T3212
-                     应进行LAU；但DTS2010070600029这个单又需要在GCF测试时不进行LAU，
-                     所以需要区分是GCF还是现网
-      8.日    期   : 2015年1月5日
-        作    者   : z00161729
-        修改内容   : AT&T 支持DAM特性修改
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S3_E53(VOS_VOID* pMsg)
 {
     VOS_UINT8                    ucPsRestrictionFlg;
@@ -3552,10 +2380,8 @@ VOS_VOID Mm_Cell_S3_E53(VOS_VOID* pMsg)
         }
     }
 
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-29, begin */
     if ((VOS_TRUE  == NAS_MM_IsClassAAndNmoIMode(g_MmGlobalInfo.ucNtMod))
      && (VOS_FALSE == ucPsRestrictionFlg))
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-29, end */
     {
         if (MM_TRUE == g_MmGlobalInfo.ucLikeNetmode2)
         {
@@ -3572,35 +2398,7 @@ VOS_VOID Mm_Cell_S3_E53(VOS_VOID* pMsg)
     }
 }
 
-/*******************************************************************************
-  Module:   Mm_Cell_S5_E53
-  Function: 在MM IDLE ATTEMPTING TO UPDATE状态下,接收到T3212溢出的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇     2004.03.15  新版做成
-      2.  x51137  2006/4/14 A32D02955
-      3.日    期   : 2010年11月21日
-        作    者   : z00161729
-        修改内容   : 问题单号：DTS2010111602266:G下CS注册失败原因立即指派拒绝,MM在收到
-                     RRMM_AC_INFORMATION_CHANGE_IND T3122超时消息后反复尝试LU,导致PS反复挂起恢复,影响数传性能
-      4.日    期   : 2011年11月10日
-        作    者   : w00167002
-        修改内容   : The attempt counter is reset in case of service state
-                      ATTEMPTING to UPDATE, expiry of timer T3212;
-                      见协议(24008: 4.4.4.5 Attempt Counter)
-      5.日    期   : 2012年2月15日
-        作    者   : w00166186
-        修改内容   : CSFB&PPAC&ETWS&ISR 开发
-      6.日    期   : 2013年2月4日
-        作    者   : w00176964
-        修改内容   : DTS2011022802215:CS ONLY,网络模式I下也进行联合注册
-      7.日    期   : 2015年1月5日
-        作    者   : z00161729
-        修改内容   : AT&T 支持DAM特性修改
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S5_E53(VOS_VOID* pMsg)
 {
     VOS_UINT8                    ucPsRestrictionFlg;
@@ -3618,10 +2416,8 @@ VOS_VOID Mm_Cell_S5_E53(VOS_VOID* pMsg)
 
     g_MmGlobalInfo.LuInfo.ucLuAttmptCnt = 0;
 
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-29, begin */
     if ((VOS_TRUE  == NAS_MM_IsClassAAndNmoIMode(g_MmGlobalInfo.ucNtMod))
      && (VOS_FALSE == ucPsRestrictionFlg))
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-29, end */
     {
         if (MM_TRUE == g_MmGlobalInfo.ucLikeNetmode2)
         {
@@ -3639,26 +2435,7 @@ VOS_VOID Mm_Cell_S5_E53(VOS_VOID* pMsg)
 
 }
 
-/*******************************************************************************
-  Module:   Mm_Cell_S6_E54
-  Function: 在MM_IDLE_LOCATION_UPDATE_NEEDED状态下,
-            接收到T3213溢出的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  l40632  2006.04.20 create
-      2.日    期   : 2009年08月6日
-        作    者   : l65478
-        修改内容   : 问题单号：AT2D13610，测试GCF用例26.7.4.3.1失败，原因是在重选到原来的小区后发起了LAU
-      3.日    期   : 2014年8月14日
-        作    者   : z00161729
-        修改内容   : gas下lau建链失败原因值random access reject no valid information场景未按协议实现8s内不发起lau，t3213 4s超时就发起了lau
-      4.日    期   : 2015年8月13日
-        作    者   : l00289540
-        修改内容   : User_Exp_Improve修改
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S6_E54(VOS_VOID* pMsg)
 {
     RRC_NAS_EST_RESULT_ENUM_UINT32      enEstCnfResult;
@@ -3706,39 +2483,7 @@ VOS_VOID Mm_Cell_S6_E54(VOS_VOID* pMsg)
         }
     }
 }
-/*******************************************************************************
-  Module:   Mm_Cell_S26_E58
-  Function: 在IMSI DETACH INITIATED状态下,接收到T3220溢出的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.  张志勇     2004.03.15  新版做成
-  2. 日    期   : 2007年08月19日
-     作    者   : luojian id:60022475
-     修改内容   : 根据问题单号：A32D12706
-  3. 日    期   : 2008年09月03日
-     作    者   : l00130025
-     修改内容   : 问题单号：AT2D05403,mm注册状态修改
-  4.日    期   : 2011年7月26日
-    作    者   : h44270
-    修改内容   : V7R1 PHASE II ATTACH/DETACH调整
-  5.日    期   : 2011年7月25日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-  6. 日    期   : 2012年1月12日
-     作    者   : w00166186
-     修改内容   : DTS2011122704039:开机搜网后CS注册被拒#12,PS注册被拒#14，在ON
-                   PLMN状态，服务域被设置为不支持MM需要将服务域不支持信息通知给MMC.
 
-  6.日    期   : 2012年11月16日
-    作    者   : z40661
-    修改内容   : DTS2012111403885,T3220定时器超时,未通知接入层释放连接
-  7.日    期   : 2013年05月15日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-*******************************************************************************/
 VOS_VOID Mm_Cell_S26_E58(VOS_VOID* pMsg)
 {
     VOS_UINT8  ucTiValidFlg = MM_TRUE;
@@ -3827,92 +2572,11 @@ VOS_VOID Mm_Cell_S24_E60(VOS_VOID* pMsg)
     Mm_T3240Expire();
 }
 
-/*****************************************************************************
- 函 数 名  : Mm_Cell_S23_E45
- 功能描述  : 在LOCATION UPDATING INITIATED状态下,
-            收到RRMM_DATA_IND(LOCATION UPDATING ACCEPT)的处理
- 输入参数  : VOS_VOID* pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.张志勇     2004.03.15  新版做成
-
-  2.日    期   : 2010年8月18日
-    作    者   : 欧阳飞
-    修改内容   : DTS2010081702506,Normal LAU成功后，36秒后又发起了周期性LAU
-  3.日    期   : 2010年9月8日
-    作    者   : 王毛/00166186
-    修改内容   : DTS2010081902050
-  4.日    期   : 2010年9月30日
-    作    者   : 欧阳飞 00132663
-    修改内容   : 根据问题单号DTS2010092902368,TMSI只在等效PLMN内有效
-  5.日    期   : 2010年11月28日
-    作    者   : z00161729
-    修改内容  : DTS2010112604710:周期性LAU accpet消息中如果LAI信息改变且合法，需更新相应全局变量的值
-  6.日    期   : 2011年7月16日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
-  7.日    期   : 2011年7月25日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-  8.日    期   : 2011年10月8日
-    作    者   : z00161729
-    修改内容   : V7R1 PHASEII EPLMN/RPLMN在MM/GMM维护修改
-  9.日    期   : 2012年03月17日
-    作    者   : s46746
-    修改内容   : DTS2012030705720:RAI和网络模式发生改变,需要进行LAU流程
- 10.日    期   : 2012年03月15日
-    作    者   : l00130025
-    修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
- 11.日    期   : 2012年3月6日
-    作    者   : z00161729
-    修改内容   : V7R1 C50 支持ISR修改
- 12.日    期   : 2012年3月27日
-    作    者   : w00166186
-    修改内容   : CSFB&PPAC&ETWS&ISR 开发 ENERGENCY CALL
- 13.日    期   : 2012年10月12日
-    作    者   : s00217060
-    修改内容   : DTS2012082204735:LAU不带紧急呼列表时,上次RAU中的紧急呼号码仍然有效
- 14.日    期   : 2012年09月21日
-    作    者   : z00161729
-    修改内容   : DTS2012090706407 :法电lau accept中携带与系统消息中不同的non broadcast lai时需要出发lau
- 15.日    期   : 2012年10月26日
-    作    者   : W00176964
-    修改内容   : DTS2012090303157:更新EPLMN有效标记
- 16.日    期   : 2012年12月13日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
- 17.日    期   : 2013年4月22日
-    作    者   : w00176964
-    修改内容   : DTS2013032507710:follow ON标记存在时增加MM的服务状态上报
- 18.日    期   : 2013年4月26日
-    作    者   : z00161729
-    修改内容   : 主动上报AT命令控制下移至C核及mma和mmc接口调整
- 19.日    期   : 2013年05月15日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
- 20.日    期   : 2013年07月5日
-    作    者  : w00176964
-    修改内容  : DTS2013062503351:LAU成功时更新当前的RAC信息
- 21.日    期   : 2014年2月18日
-    作    者   : l00215384
-    修改内容   : DTS2014021006453，注册成功后鉴权拒绝计数清零
- 22.日    期   : 2014年4月2日
-    作    者   : w00176964
-    修改内容   : V3R3C60_eCall项目修改:g_MmGlobalInfo.MsCsInfo.OldLai和CurLai替换成MML中的
- 23.日    期   : 2015年6月5日
-    作    者   : z00161729
-    修改内容   : 24008 23122 R11 CR升级项目修改
-*****************************************************************************/
 VOS_VOID Mm_Cell_S23_E45(VOS_VOID* pMsg)
 {
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-3, begin */
     MM_LAI_STRU                                             stCurLai;
     NAS_MML_LAI_STRU                                       *pstCurrCampLai = VOS_NULL_PTR;
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-3, end */
     VOS_UINT32                                              i;
     VOS_UINT32                                              j;
     VOS_UINT8                                               ucLacChangeFlg;
@@ -3931,12 +2595,10 @@ VOS_VOID Mm_Cell_S23_E45(VOS_VOID* pMsg)
 
     pstCsSuccLai    = NAS_MML_GetCsLastSuccLai();
 
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-4-3, begin */
     pstCurrCampLai = NAS_MML_GetCurrCampLai();
 
     PS_MEM_SET(&stCurLai, 0x0 ,sizeof(stCurLai));
     NAS_MM_ConvertMmlLaiFormatToMMFormat(pstCurrCampLai, &stCurLai);
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-4-3, end */
 
     pstEmergencyNumList     = NAS_MML_GetEmergencyNumList();
 
@@ -3948,25 +2610,19 @@ VOS_VOID Mm_Cell_S23_E45(VOS_VOID* pMsg)
 
     if (MM_TRUE == g_MmMsgLuAccpt.ucEmcFlg)
     {
-        /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-26, begin */
-        /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-3, begin */
         pstEmergencyNumList->ulMcc = NAS_MML_GetCurrCampPlmnId()->ulMcc;
-        /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-3, end */
 
         Mm_SndCcEmergencyNumberList(pstEmergencyNumList);
-        /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-26, end */
     }
 
     else if (0 != pstEmergencyNumList->ucEmergencyNumber)
     {
-        /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-3, begin */
         /* 消息中包不含紧急呼列表但之前存储了紧急呼列表,如果不是同一个国家的mcc则，删除之前存储的紧急呼叫列表
         24008_CR2107R1_(Rel-11)_C1-121605 24008 4.4.4.6、4.7.3.1.3、4.7.5.1.3描述如下:
         The emergency number(s) received in the Emergency Number List IE are valid only
         in networks with in.the same MCCcountry as in  the cell on which this IE
         is received.*/
         if (VOS_FALSE == NAS_MML_ComparePlmnMcc(pstEmergencyNumList->ulMcc, pstCurrCampLai->stPlmnId.ulMcc))
-        /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-3, end */
         {
             pstEmergencyNumList->ulMcc = 0xFFFFFFFF;
 
@@ -3989,9 +2645,7 @@ VOS_VOID Mm_Cell_S23_E45(VOS_VOID* pMsg)
     {
     }
 
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-3, begin */
     if (VOS_FALSE ==  MM_ComCmpLai(g_MmMsgLuAccpt.MmIeLAI.IeLai, stCurLai))
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-3, end */
     {
         PS_NAS_LOG(WUEPS_PID_MM, VOS_NULL, PS_LOG_LEVEL_WARNING, "Mm_Cell_S23_E45:WARNING: LU ACCEPTED LAI ERROR!");
         ucLacChangeFlg = VOS_TRUE;
@@ -4017,20 +2671,16 @@ VOS_VOID Mm_Cell_S23_E45(VOS_VOID* pMsg)
     PS_NAS_LOG(WUEPS_PID_MM, VOS_NULL, PS_LOG_LEVEL_INFO, "Mm_Cell_S23_E45:INFO: MmServiceState is MM_NORMAL_SERVICE");
     g_MmGlobalInfo.LuInfo.ucLuAttmptCnt = MM_CONST_NUM_0;
 
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-3, begin */
     g_MmGlobalInfo.LuInfo.ucLuType = MM_IE_LUT_TYPE_BUTT;
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-3, end */
 
     /* 记录注册成功的RAC，用于网络模式改变,比较RAI是否发生改变 */
     g_MmGlobalInfo.MsCsInfo.ucOldRac
         = NAS_MML_GetCurrCampRac();
 
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-3, begin */
     pstCsSuccLai->stPlmnId.ulMcc = pstCurrCampLai->stPlmnId.ulMcc;
     pstCsSuccLai->stPlmnId.ulMnc = pstCurrCampLai->stPlmnId.ulMnc;
     pstCsSuccLai->aucLac[0]      = pstCurrCampLai->aucLac[0];
     pstCsSuccLai->aucLac[1]      = pstCurrCampLai->aucLac[1];
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-3, end */
 
     pstCsSuccLai->ucRac = g_MmGlobalInfo.MsCsInfo.ucOldRac;
 
@@ -4038,14 +2688,12 @@ VOS_VOID Mm_Cell_S23_E45(VOS_VOID* pMsg)
     if ((VOS_TRUE == ucLacChangeFlg)
      && (MM_INVALID_LAI != g_MmMsgLuAccpt.MmIeLAI.IeLai.ulLac))
     {
-        /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-3, begin */
         pstCsSuccLai->stPlmnId.ulMcc                  = g_MmMsgLuAccpt.MmIeLAI.IeLai.PlmnId.ulMcc;
         pstCsSuccLai->stPlmnId.ulMnc                  = g_MmMsgLuAccpt.MmIeLAI.IeLai.PlmnId.ulMnc;
         pstCsSuccLai->aucLac[0]                       = (g_MmMsgLuAccpt.MmIeLAI.IeLai.ulLac >> 8) & (0x00FF);
         pstCsSuccLai->aucLac[1]                       = (g_MmMsgLuAccpt.MmIeLAI.IeLai.ulLac) & (0x00FF);
 
         PS_MEM_CPY(pstCurrCampLai, pstCsSuccLai, sizeof(NAS_MML_LAI_STRU));
-        /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-3, end */
         g_MmGlobalInfo.ucLauAcceptContainDiffNbLaiFlg = VOS_TRUE;
     }
 
@@ -4069,10 +2717,8 @@ VOS_VOID Mm_Cell_S23_E45(VOS_VOID* pMsg)
                        g_MmMsgLuAccpt.MmIeMobileId.MobileID.aucTmsi,
                        NAS_MML_MAX_TMSI_LEN);
 
-            /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-3, begin */
             g_MmGlobalInfo.MsCsInfo.stPlmnId.ulMcc = NAS_MML_GetCsLastSuccMcc();
             g_MmGlobalInfo.MsCsInfo.stPlmnId.ulMnc = NAS_MML_GetCsLastSuccMnc();
-            /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-3, end */
             Mm_ComMsgTmsiRelocCpltSnd();                                        /* 向网侧发送TMSI REALLOCATION COMPLETE     */
         }
         else
@@ -4095,9 +2741,7 @@ VOS_VOID Mm_Cell_S23_E45(VOS_VOID* pMsg)
     }
 
 
-    /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-4-3, begin */
 
-    /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-4-3, end */
 
     /* 回复MMCMM_ATTACH_CNF的操作,清除等待ATTACH结果标志位 */
     if (MM_WAIT_CS_ATTACH == (g_MmGlobalInfo.stAttachInfo.enAttachType
@@ -4128,10 +2772,8 @@ VOS_VOID Mm_Cell_S23_E45(VOS_VOID* pMsg)
     else
     {
         stTempEplmnAddr.ucEquPlmnNum = 0x1;
-        /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-3, begin */
         stTempEplmnAddr.astEquPlmnAddr[0].ulMcc = NAS_MML_GetCurrCampPlmnId()->ulMcc;
         stTempEplmnAddr.astEquPlmnAddr[0].ulMnc = NAS_MML_GetCurrCampPlmnId()->ulMnc;
-        /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-3, end */
     }
 
     pstEplmnAddr = NAS_MML_GetEquPlmnList();
@@ -4146,7 +2788,6 @@ VOS_VOID Mm_Cell_S23_E45(VOS_VOID* pMsg)
     NAS_MM_WriteEplmnNvim(pstEplmnAddr);
 
 
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-3, begin */
     if (VOS_TRUE == NAS_MM_IsGURplmnChanged(NAS_MML_GetCurrCampPlmnId(), NAS_MML_GetCurrNetRatType()))
     {
         /* 保存RPlmn信息到全局变量中 */
@@ -4154,16 +2795,13 @@ VOS_VOID Mm_Cell_S23_E45(VOS_VOID* pMsg)
 
         NAS_MM_WriteRplmnWithRatNvim(NAS_MML_GetRplmnCfg());
     }
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-3, end */
 
     NAS_MM_SndMmcCsRegResultInd(MM_MMC_LU_PROC_TRUE,
                                 MM_MMC_LU_RESULT_SUCCESS,
                                 NAS_MML_REG_FAIL_CAUSE_NULL);
     NAS_MM_SndGmmLuResultInd(MMGMM_LU_SUCCESS,
                              NAS_MML_REG_FAIL_CAUSE_NULL);
-    /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-4-3, begin */
 
-    /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-4-3, end */
 
     NAS_MM_RecordErrorLogInfo(NAS_ERR_LOG_BASE_STATE_LAU_ACCEPT,
                               NAS_MML_REG_FAIL_CAUSE_NULL);
@@ -4200,28 +2838,11 @@ VOS_VOID Mm_Cell_S23_E45(VOS_VOID* pMsg)
     }
 #endif
 
-    /* Deleted by s00261364 for V3R360_eCall项目, 2014-4-11, begin */
 
-    /* Deleted by s00261364 for V3R360_eCall项目, 2014-4-11, end */
 }
 
-/* Added by l00208543 for V9R1 STK升级, 2013-07-09, begin */
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_ConvertMmLuTypeToStkLuType
- 功能描述  : 进行类型转换:LAU_TYPE_ENUM_UINT8->NAS_STK_UPDATE_TYPE_ENUM_UINT8
- 输入参数  : LAU_TYPE_ENUM_UINT8 enMmLuType MM层的LAU TYPE
- 输出参数  :
- 返 回 值  : PS_STK_UPDATE_TYPE_ENUM_UINT8 上报给STK的LAU TYPE
- 调用函数  : NAS_MM_SndStkLauRej
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月22日
-    作    者   : l00208543
-    修改内容   : V9R1 STK升级，新增函数
-
-*****************************************************************************/
 NAS_STK_UPDATE_TYPE_ENUM_UINT8 NAS_MM_ConvertMmLuTypeToStkLuType (LAU_TYPE_ENUM_UINT8 enMmLuType)
 {
     switch (enMmLuType)
@@ -4241,24 +2862,7 @@ NAS_STK_UPDATE_TYPE_ENUM_UINT8 NAS_MM_ConvertMmLuTypeToStkLuType (LAU_TYPE_ENUM_
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_ConvertMmRatTypeToStkRatType
- 功能描述  : 进行RAT类型转换:NAS_MML_NET_RAT_TYPE_ENUM_UINT8->TAF_MMA_RAT_TYPE_ENUM_UINT8
- 输入参数  : NAS_MML_NET_RAT_TYPE_ENUM_UINT8 enMmRatType MM层的RAT TYPE
- 输出参数  : 无
- 返 回 值  : TAF_PH_RAT_TYPE_ENUM_UINT8上报给STK的RAT TYPE
- 调用函数  : NAS_MM_SndStkLauRej
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月22日
-    作    者   : l00208543
-    修改内容   : V9R1 STK升级，新增函数
-
-  2.日    期   : 2015年4月10日
-    作    者   : h00313353
-    修改内容   : SysCfg重构
-*****************************************************************************/
 TAF_MMA_RAT_TYPE_ENUM_UINT8 NAS_MM_ConvertMmRatTypeToStkRatType (NAS_MML_NET_RAT_TYPE_ENUM_UINT8 enMmRatType)
 {
     switch (enMmRatType)
@@ -4278,21 +2882,7 @@ TAF_MMA_RAT_TYPE_ENUM_UINT8 NAS_MM_ConvertMmRatTypeToStkRatType (NAS_MML_NET_RAT
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_SndStkLauRej
- 功能描述  : MM上报STK Network Rejection Event
- 输入参数  : ucCause   拒绝的原因值
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  : Mm_Cell_S23_E46
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月9日
-    作    者   : l00208543
-    修改内容   : V9R1 STK升级，新增函数
-
-*****************************************************************************/
 VOS_VOID NAS_MM_SndStkLauRej(VOS_UINT8 ucCause)
 {
     NAS_STK_NETWORK_REJECTION_EVENT_STRU                   *pstMsg = VOS_NULL_PTR;
@@ -4336,65 +2926,8 @@ VOS_VOID NAS_MM_SndStkLauRej(VOS_UINT8 ucCause)
 
     return;
 }
-/* Added by l00208543 for V9R1 STK升级, 2013-07-09, end */
 
-/*******************************************************************************
-  Module:   Mm_Cell_S23_E46
-  Function: 在LOCATION UPDATING INITIATED状态下,
-            接收到RRMM_DATA_IND(LOCATION UPDATING REJECT)的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.  张志勇     2004.03.15  新版做成
-  2. 日    期   : 2007年3月5日
-     作    者   : liurui id:40632
-     修改内容   : 根据问题单号：A32D09094
-  3. 日    期   : 2008年7月11日
-     作    者   : l0010747
-     修改内容   : 问题单号:AT2D03814
-  4. 日    期   : 2008年8月13日
-     作    者   : l0010747
-     修改内容   : 问题单号:AT2D04996/AT2D05037
-  5. 日    期   : 2008年09月03日
-     作    者   : l00130025
-     修改内容   : 问题单号：AT2D05403,mm注册状态修改
-  6. 日    期   : 2009年01月22日
-     作    者   : l65478
-     修改内容   : 问题单号：AT2D08462,MM支持了协议版本REL-6，GSM模式下GCF测试为REL-4，在原因值为95,96,97,99,111时，GCF测试无法通过
 
-  7.日    期   : 2010年11月18日
-    作    者   : zhoujun /40661
-    修改内容   : 问题单DTS2010111601893,收到拒绝原因值为102-110的
-                 处理应该和原因值111的处理一致
-  8.日    期   : 2011年01月14日
-    作    者   : w00176964
-    修改内容   : 问题单DTS2011011301553,[V3R1B067][漫游专题]UE正常驻留W，改为
-                手动搜网，G下LAU被拒，原因值为11#,改为自动搜网后驻留到原W下
-                小区，此时为发起LAU/RAU，接受不到paging
-  9.日    期   : 2011年7月16日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
-  10.日    期   : 2011年7月25日
-     作    者   : z00161729
-     修改内容   : V7R1 PhaseII阶段全局变量调整
-  11.日    期   : 2012年3月6日
-     作    者   : z00161729
-     修改内容   : 支持ISR特性修改
-  12.日    期   : 2013年05月15日
-     作    者   : s46746
-     修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  13.日    期   : 2013年07月13日
-     作    者   : l00208543
-     修改内容   : 增加NAS_MM_ReportStkLauRej的上报，向STK上报reject消息
-  14.日    期   : 2014年5月21日
-     作    者   : w00167002
-     修改内容   : DTS2014051602857:在SOR打开时候，如果CS注册失败达到4次，则等周期
-                搜网定时器超时发起LIST搜网，如果当前仅有原有网络，则发起LAU,否则
-                触发MM发起LAU;如果LIST搜后，发现有其他网络，则发起其他网络的搜网注册。
-                MM删除对SOR的特殊处理。
-*******************************************************************************/
 VOS_VOID Mm_Cell_S23_E46(VOS_VOID* pMsg)
 {
     NAS_MML_LOCATION_UPDATE_STATUS_ENUM_UINT8               enCsUpdateStatus;
@@ -4413,9 +2946,7 @@ VOS_VOID Mm_Cell_S23_E46(VOS_VOID* pMsg)
     Mm_ComSaveProcAndCauseVal(MM_LU_PROC,
                               g_MmMsgLuRjct.MmIeRejCause.ucRejCause);           /* 记录流程和原因值                         */
 
-    /* Added by l00208543 for V9R1 STK升级, 2013-07-11, begin */
     NAS_MM_SndStkLauRej(g_MmMsgLuRjct.MmIeRejCause.ucRejCause);
-    /* Added by l00208543 for V9R1 STK升级, 2013-07-11, end */
 
     NAS_MM_RecordErrorLogInfo(NAS_ERR_LOG_BASE_STATE_LAU_REJECT,
                               g_MmMsgLuRjct.MmIeRejCause.ucRejCause);
@@ -4545,20 +3076,7 @@ VOS_VOID Mm_Cell_S23_E46(VOS_VOID* pMsg)
     Mm_TimerStart(MM_TIMER_T3240);                                              /* 停止T3240                                */
 }
 
-/*******************************************************************************
-  Module:   Mm_Cell_S0_E2
-  Function: 在MM VOS_NULL_PTR state状态下,
-            接收到MMCMM_ATTACH_REQ的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  x51137     2006.04.11  新版做成
-      2.日    期   : 2011年07月18日
-        作    者   : w00166186
-        修改内容   : V7R1 PHASE II ATTACH/DETACH调整
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S0_E2(VOS_VOID* pMsg)
 {
     VOS_UINT8   ucRet;
@@ -4580,27 +3098,7 @@ VOS_VOID Mm_Cell_S0_E2(VOS_VOID* pMsg)
     }
     g_MmGlobalInfo.stAttachInfo.enAttachType = MM_WAIT_NULL_ATTACH;
 }
-/*******************************************************************************
-  Module:   Mm_Cell_S1_E2
-  Function: 在MM IDLE NO CELL AVAILABLE状态下,
-            接收到MMCMM_ATTACH_REQ的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇     2004.03.20  新版做成
-      2.日    期   : 2011年07月18日
-        作    者   : w00166186
-        修改内容   : V7R1 PHASE II ATTACH/DETACH调整
-      3.日    期   : 2012年12月25日
-        作    者   : l00167671
-        修改内容   : 问题单号DTS2012122509118，L下搜网打紧急呼时到W下搜到与上次注册相同的小区
-                     先发起了LU
-      4.日    期   : 2013年1月22日
-        作    者   : W00176964
-        修改内容   : DTS2013012105162:MM在某些状态不需要上报服务状态给MMC
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S1_E2(VOS_VOID* pMsg)
 {
     VOS_UINT8                           ucRet;
@@ -4636,47 +3134,7 @@ VOS_VOID Mm_Cell_S1_E2(VOS_VOID* pMsg)
         }
     }
 }
-/*******************************************************************************
-  Module:   Mm_Cell_S4_E2
-  Function: 在MM IDLE LIMITED SERVICE状态下,
-            接收到MMCMM_ATTACH_REQ的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.  张志勇     2004.03.20  新版做成
-  2.日    期   : 2010年12月24日
-    作    者   : 欧阳飞
-    修改内容   : 问题单DTS2010122402276，网络模式I，用户进行联合去注册后，再
-                 发起CS注册，失败
-  3.日    期   : 2011年7月16日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
-  4.日    期   : 2011年07月18日
-    作    者   : w00166186
-    修改内容   : V7R1 PHASE II ATTACH/DETACH调整
-  5.日    期   : 2011年7月25日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-  6.日    期   : 2012年2月15日
-    作    者   : w00166186
-    修改内容   : CSFB&PPAC&ETWS&ISR 开发
 
-  7.日    期   : 2012年9月27日
-    作    者   : z40661
-    修改内容   : DTS2012082705793,网络模式I下，PS域access bar时,用户发起attach cs域，未进行注册
-  8.日    期   : 2013年2月4日
-    作    者   : w00176964
-    修改内容   : DTS2011022802215:CS ONLY,网络模式I下也进行联合注册
-  9.日    期   : 2013年05月15日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
- 10.日    期   : 2015年3月20日
-    作    者   : w00167002
-    修改内容   : DTS2015030305199:LAU建联失败达到最大次数后，使用NV中定制的T3212时长,T3212启动统一
-                 进行封装。
-*******************************************************************************/
 VOS_VOID Mm_Cell_S4_E2(VOS_VOID* pMsg)
 {
     VOS_UINT8   ucRet;
@@ -4773,38 +3231,7 @@ VOS_VOID Mm_Cell_S4_E2(VOS_VOID* pMsg)
     }
 }
 
-/*******************************************************************************
-  Module:   Mm_Cell_S19_E2
-  Function: 在WAIT FOR ATTACH状态下,
-            接收到MMCMM_ATTACH_REQ的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.  张志勇     2004.03.20  新版做成
-  2.  s46746  2005.11.23  修改
-  3.  s46746  2006-08-03  根据问题单A32D03975修改
-  4.日    期   : 2011年7月14日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
-  5.日    期   : 2011年07月18日
-    作    者   : w00166186
-    修改内容   : V7R1 PHASE II ATTACH/DETACH调整
-  6.日    期   : 2011年7月25日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-  7.日    期   : 2013年2月4日
-    作    者   : w00176964
-    修改内容   : DTS2011022802215:CS ONLY,网络模式I下也进行联合注册
-  8.日    期   : 2013年05月15日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  9.日    期   : 2015年3月20日
-    作    者   : w00167002
-    修改内容   : DTS2015030305199:LAU建联失败达到最大次数后，使用NV中定制的T3212时长,T3212启动统一
-                 进行封装。
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S19_E2(VOS_VOID* pMsg)
 {
     VOS_UINT8                                   ucRet;
@@ -4817,9 +3244,7 @@ VOS_VOID Mm_Cell_S19_E2(VOS_VOID* pMsg)
     }
     else
     {
-        /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-29, begin */
         if (VOS_TRUE == NAS_MM_IsClassAAndNmoIMode(g_MmGlobalInfo.ucNtMod))
-        /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-29, end */
         {                                                                       /* 网络模式I                                */
             ;
         }
@@ -4865,20 +3290,7 @@ VOS_VOID Mm_Cell_S19_E2(VOS_VOID* pMsg)
         }
     }
 }
-/*******************************************************************************
-  Module:   Mm_Cell_S1_E20
-  Function: 在MM IDLE NO CELL AVAILABLE状态下,
-            接收到MMCMM_ MODE_CHANGE_REQ的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.  张志勇     2004.03.20  新版做成
-  2.日    期   : 2014年05月22日
-    作    者   : w00176964
-    修改内容   : V3R3C60_eCall项目调整
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S1_E20(VOS_VOID* pMsg)
 {
     VOS_UINT8                    ucRet;
@@ -4898,7 +3310,6 @@ VOS_VOID Mm_Cell_S1_E20(VOS_VOID* pMsg)
             NAS_MML_SetCsAttachAllowFlg(VOS_TRUE);
             break;
         case NAS_MML_MS_MODE_PS_ONLY:                                                    /* CG模式的场合                             */
-            /* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-22, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
             /* ecall only模式配置为PS ONLY不影响CS的attach标记 */
             if (NAS_MML_ECALL_ONLY == NAS_MML_GetCallMode())
@@ -4906,7 +3317,6 @@ VOS_VOID Mm_Cell_S1_E20(VOS_VOID* pMsg)
                 return;
             }
 #endif
-            /* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-22, end */
 
             NAS_MML_SetCsAttachAllowFlg(VOS_FALSE);
             break;
@@ -4922,36 +3332,9 @@ VOS_VOID Mm_Cell_S1_E20(VOS_VOID* pMsg)
     }
 }
 
-/* Deleted by w00176964 for V3R3C60_eCall项目, 2014-4-1, begin */
 
-/* Deleted by w00176964 for V3R3C60_eCall项目, 2014-4-1, end */
 
-/*******************************************************************************
-  Module:   Mm_Cell_S22_E1
-  Function: 在WAIT FOR RR CONNECTION (LOCATION UPDATING)状态下,
-            接收到MMCMM_START_REQ的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.  张志勇     2004.03.20  新版做成
-  2.日    期   : 2011年7月25日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-  3.日    期   : 2012年10月29日
-    作    者   : z00161729
-    修改内容   : DTS2012083102536:支持cc呼叫重建
-  4.日    期   : 2013年05月15日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  5.日    期   :2013年9月12日
-    作    者   :z00161729
-    修改内容   :DTS2013082903019:支持ss重发功能
-  6.日    期   :2014年9月24日
-    作    者   :s00217060
-    修改内容   :for cs_err_log
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S22_E1(VOS_VOID* pMsg)
 {
     VOS_UINT8   ucRet;
@@ -4978,21 +3361,7 @@ VOS_VOID Mm_Cell_S22_E1(VOS_VOID* pMsg)
         Mm_ComStart();                                                          /* 调用收到MMCMM_START_REQ的公共处理        */
     }
 }
-/*******************************************************************************
-  Module:   Mm_Cell_S9_E2
-  Function: 在WAIT FOR OUTGOING MM CONNECTION状态下,
-            接收到MMCMM_ATTACH_REQ的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇     2004.03.20  新版做成
-      2.  搜6746     2006.08.03  根据问题单A32D03975修改
-      3.日    期   : 2011年07月18日
-        作    者   : w00166186
-        修改内容   : V7R1 PHASE II ATTACH/DETACH调整
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S9_E2(VOS_VOID* pMsg)
 {
     VOS_UINT8                                               ucRet;
@@ -5012,30 +3381,7 @@ VOS_VOID Mm_Cell_S9_E2(VOS_VOID* pMsg)
         g_MmGlobalInfo.stAttachInfo.enAttachType = MM_WAIT_NULL_ATTACH;
     }
 }
-/*******************************************************************************
-  Module:   Mm_Cell_S3_E12
-  Function: 在MM IDLE NORMAL SERVICE状态下,
-            接收到GMMMM_GPRS_DETACH_COMPLETED的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇     2004.03.20  新版做成
-      2. 日    期   : 2009年06月09日
-         作    者   : l00130025
-         修改内容   : 问题单AT2D12278,NMO I，GPRS Detach后，MS没有发起LAU（IMSI ATTACH），CS进行呼叫被拒,原因为IMSI unkown in VLR
-      3. 日    期   : 2012年11月07日
-         作    者   : l65478
-         修改内容   : DTS2012110503477,设置成CS ONLY后MM没有发起LU
-       4.日    期   : 2013年2月4日
-         作    者   : w00176964
-         修改内容   : DTS2011022802215:CS ONLY,网络模式I下也进行联合注册
-       2.日    期   : 2015年3月20日
-         作    者   : w00167002
-         修改内容   : DTS2015030305199:LAU建联失败达到最大次数后，使用NV中定制的T3212时长,T3212启动统一
-                      进行封装。
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S3_E12(VOS_VOID* pMsg)
 {
     VOS_UINT8   ucRet;
@@ -5072,35 +3418,7 @@ VOS_VOID Mm_Cell_S3_E12(VOS_VOID* pMsg)
         }
     }
 }
-/*******************************************************************************
-  Module:   Mm_Cell_S4_E12
-  Function: 在MM IDLE LIMITED SERVICE状态下,
-            接收到GMMMM_GPRS_DETACH_COMPLETED的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇     2004.03.20  新版做成
 
-  1.日    期   : 2012年9月7日
-    作    者   : z40661
-    修改内容   : DTS2012081605654,网络模式I下，RAU被#9拒绝后,MM未进行LAU
-
-  2.日    期   : 2012年12月7日
-    作    者   : w00167002
-    修改内容   : DTS2012120608772:CS域打电话时候，用户设置PS detach，PS DETACH
-                 成功后，用户无法挂断电话。由于打电话时候，MM处于MM CONNECTION
-                 ACTIVE状态，此时收到PS detach，将状态迁移到IDLE NORMAL SERVICE了，
-                 导致不处理CC给MM的链接释放请求消息，导致异常。
-  3.日    期   : 2013年2月4日
-    作    者   : w00176964
-    修改内容   : DTS2011022802215:CS ONLY,网络模式I下也进行联合注册
-  4.日    期   : 2015年3月20日
-    作    者   : w00167002
-    修改内容   : DTS2015030305199:LAU建联失败达到最大次数后，使用NV中定制的T3212时长,T3212启动统一
-                 进行封装。
-*******************************************************************************/
 VOS_VOID Mm_Cell_S4_E12(VOS_VOID* pMsg)
 {
     VOS_UINT8   ucRet;
@@ -5159,25 +3477,7 @@ VOS_VOID Mm_Cell_S4_E12(VOS_VOID* pMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : Mm_Cell_S17_E12
- 功能描述  : 在LOCATION UPDATING PENDING状态下,
-             接收到GMMMM_GPRS_DETACH_COMPLETED的处理
- 输入参数  : VOS_VOID                           *pMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月4日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2015年3月20日
-    作    者   : w00167002
-    修改内容   : DTS2015030305199:LAU建联失败达到最大次数后，使用NV中定制的T3212时长,T3212启动统一
-                 进行封装。
-*****************************************************************************/
 VOS_VOID Mm_Cell_S17_E12(
     VOS_VOID                           *pMsg
 )
@@ -5232,30 +3532,7 @@ VOS_VOID Mm_Cell_S17_E12(
 }
 
 
-/*******************************************************************************
-  Module:   Mm_Cell_S0_E20
-  Function: 在MM_NULL状态下,
-            接收到MMCMM_ MODE_CHANGE_REQ的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.张志勇     2004.03.20  新版做成
-  2.x51137  2006/4/14 A32D02955
-  3.日    期   : 2008年8月21日
-    作    者   : l00130025
-    修改内容   : 问题单号:At2D05016,MM注册状态修改
-  4.日    期   : 2011年7月25日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-  5.日    期   : 2013年05月15日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  6.日    期   : 2014年05月22日
-    作    者   : w00176964
-    修改内容   : V3R3C60_eCall项目调整
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S0_E20(VOS_VOID* pMsg)
 {
     VOS_UINT8                        ucRet;
@@ -5311,7 +3588,6 @@ VOS_VOID Mm_Cell_S0_E20(VOS_VOID* pMsg)
             }
             break;
         case NAS_MML_MS_MODE_PS_ONLY:                                                    /* CG模式的场合                             */
-            /* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-22, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
             /* ecall only模式配置为PS ONLY不影响CS的attach标记 */
             if (NAS_MML_ECALL_ONLY == NAS_MML_GetCallMode())
@@ -5319,7 +3595,6 @@ VOS_VOID Mm_Cell_S0_E20(VOS_VOID* pMsg)
                 return;
             }
 #endif
-            /* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-22, end */
 
             NAS_MML_SetCsAttachAllowFlg(VOS_FALSE);
             break;
@@ -5356,23 +3631,7 @@ VOS_VOID Mm_Cell_S0_E20(VOS_VOID* pMsg)
         }
     }
 }
-/*******************************************************************************
-  Module:   Mm_Cell_S3_E20
-  Function: 在MM IDLE NORMAL SERVICE状态下,
-            接收到MMCMM_ MODE_CHANGE_REQ的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇     2004.03.20  新版做成
-      2.  日    期   : 2009年01月20日
-          作    者   : l00130025
-          修改内容   : 问题单号:AT2D08378,当服务域改变时,MM/GMM没有对UE的mode进行改变;GMM在RAU过程中收到Detach请求时,直接返回,没有处理
-      3.  日    期   : 2014年05月22日
-          作    者   : w00176964
-          修改内容   : V3R3C60_eCall项目调整
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S3_E20(VOS_VOID* pMsg)
 {
     VOS_UINT8                        ucRet;
@@ -5399,7 +3658,6 @@ VOS_VOID Mm_Cell_S3_E20(VOS_VOID* pMsg)
             }
             break;
         case NAS_MML_MS_MODE_PS_ONLY:                                                    /* CG模式的场合                             */
-            /* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-22, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
             /* ecall only模式配置为PS ONLY不影响CS的attach标记 */
             if (NAS_MML_ECALL_ONLY == NAS_MML_GetCallMode())
@@ -5407,7 +3665,6 @@ VOS_VOID Mm_Cell_S3_E20(VOS_VOID* pMsg)
                 return;
             }
 #endif
-            /* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-22, end */
 
             NAS_MML_SetCsAttachAllowFlg(VOS_FALSE);
             PS_NAS_LOG(WUEPS_PID_MM, VOS_NULL, PS_LOG_LEVEL_WARNING, "Mm_Cell_S3_E20:WARNING: MsMode Abnormal");
@@ -5421,23 +3678,7 @@ VOS_VOID Mm_Cell_S3_E20(VOS_VOID* pMsg)
         }
     }
 }
-/*******************************************************************************
-  Module:   Mm_Cell_S3_E20
-  Function: 在WAIT FOR OUTGOING MM CONNECTION状态下,
-            接收到MMCMM_ MODE_CHANGE_REQ的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇     2004.03.20  新版做成
-      2.  日    期   : 2009年01月20日
-          作    者   : l00130025
-          修改内容   : 问题单号:AT2D08378,当服务域改变时,MM/GMM没有对UE的mode进行改变;GMM在RAU过程中收到Detach请求时,直接返回,没有处理
-      3.  日    期   : 2014年05月22日
-          作    者   : w00176964
-          修改内容   : V3R3C60_eCall项目调整
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S9_E20(VOS_VOID* pMsg)
 {
     VOS_UINT8                        ucRet;
@@ -5465,7 +3706,6 @@ VOS_VOID Mm_Cell_S9_E20(VOS_VOID* pMsg)
             }
             break;
         case NAS_MML_MS_MODE_PS_ONLY:                                                    /* CG模式的场合                             */
-            /* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-22, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
             /* ecall only模式配置为PS ONLY不影响CS的attach标记 */
             if (NAS_MML_ECALL_ONLY == NAS_MML_GetCallMode())
@@ -5473,7 +3713,6 @@ VOS_VOID Mm_Cell_S9_E20(VOS_VOID* pMsg)
                 return;
             }
 #endif
-            /* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-22, end */
 
             NAS_MML_SetCsAttachAllowFlg(VOS_FALSE);
             PS_NAS_LOG(WUEPS_PID_MM, VOS_NULL, PS_LOG_LEVEL_WARNING, "Mm_Cell_S9_E20:WARNING: MsMode Abnormal");
@@ -5570,47 +3809,13 @@ VOS_VOID Mm_Cell_S14_E50(
 
     return;
 }
-/*******************************************************************************
-  Module:   Mm_Cell_S22_E5
-  Function: 在WAIT FOR RR CONNECTION (LOCATION UPDATING)状态下,
-            收到MMCMM_SYS_INFO_IND的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.    张志勇     2004.04.13  新版做成
-  2.  张志勇        2005.01.27  007037 for MM
-  3.日    期   : 2006年10月6日
-    作    者   : s46746
-    修改内容   : 问题单号：A32D05960
-  4.日    期   : 2011年7月14日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
-  5.日    期   : 2012年03月17日
-    作    者   : s46746
-    修改内容   : DTS2012030705720:RAI和网络模式发生改变,需要进行LAU流程
-  6.日    期   : 2013年05月15日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  7.日    期   : 2013年12月5日
-    作    者   : w00167002
-    修改内容   : DTS2013113006231:W下，开机在LAC1上注册成功，重选到LAC2上，CS注册成功
-                  PS注册被拒#13,重选回LAC1上，注册成功。丢网后任意小区驻留在LAC2
-                  上，不发起注册，重选回LAC1上，检测不发起注册。
-                  修改为在收到系统消息时候，不进行UPDATE状态的更新
-  8.日    期   : 2014年04月1日
-    作    者   : w00176964
-    修改内容   : V3R3C60_eCall项目:系统消息处理优化
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S22_E5(VOS_VOID* pMsg)
 {
 
     VOS_UINT8  ucTiValidFlg = MM_TRUE;
 
-    /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-4-1, begin */
 
-    /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-4-1, end */
 
     if ((MMCMM_NO_FORBIDDEN !=
          g_MmGlobalInfo.MsCsInfo.ulCurFobidnFlg)
@@ -5652,42 +3857,10 @@ VOS_VOID Mm_Cell_S22_E5(VOS_VOID* pMsg)
         g_MmGlobalInfo.ucNtMod = g_MmGlobalInfo.ucNewNtMod;
     }
 }
-/*******************************************************************************
-  Module:   Mm_Cell_S23_E5
-  Function: 在LOCATION UPDATING INITIATED状态下, 收到MMCMM_SYS_INFO_IND的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.  张志勇     2004.04.13  新版做成
-  2.日    期   : 2006年10月6日
-    作    者   : s46746
-    修改内容   : 问题单号：A32D05960
-  3.日    期   : 2008年7月11日
-    作    者   : l0010747
-    修改内容   : 问题单号:AT2D03814
-  4.日    期   : 2008年09月03日
-    作    者   : l00130025
-    修改内容   : 问题单号：AT2D05403,mm注册状态修改
-  5.日    期   : 2011年7月14日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
-  6.日    期   : 2012年03月17日
-    作    者   : s46746
-    修改内容   : DTS2012030705720:RAI和网络模式发生改变,需要进行LAU流程
-  7.日    期   : 2013年05月15日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  8.日    期   : 2014年04月1日
-    作    者   : w00176964
-    修改内容   : V3R3C60_eCall项目:系统消息处理优化
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S23_E5(VOS_VOID* pMsg)
 {
-    /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-4-1, begin */
 
-    /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-4-1, end */
 
     if ((MMCMM_NO_FORBIDDEN !=
          g_MmGlobalInfo.MsCsInfo.ulCurFobidnFlg)
@@ -5734,42 +3907,9 @@ VOS_VOID Mm_Cell_S23_E5(VOS_VOID* pMsg)
     }
 }
 
-/* Deleted by w00176964 for V3R3C60_eCall项目, 2014-4-1, begin */
 
-/* Deleted by w00176964 for V3R3C60_eCall项目, 2014-4-1, end */
 
-/*******************************************************************************
-  Module:   Mm_Cell_S23_E22
-  Function: 在LOCATION UPDATING INITIATED状态下,
-            收到MMCMM_DETACH_REQ的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.  张志勇    2005.01.31  新版做成
-  2.日    期   : 2008年7月21日
-    作    者   : luojian 00107747
-    修改内容   : 问题单号：AT2D04201/AT2D04536
-  3.日    期   : 2011年7月26日
-    作    者   : h44270
-    修改内容   : V7R1 PHASE II ATTACH/DETACH调整
 
-  3.日    期   : 2013年6月5日
-    作    者   : w00167002
-    修改内容   : 如果当前RR链接存在，则直接在当前的RR链路上发起CS域的去注册；
-                 否则重新建立RR链接；
-                 在鉴权过程中，则清除鉴权标志信息；
-  4.日    期   : 2013年6月24日
-    作    者   : w00167002
-    修改内容   : 设置DETACH类型，否则在收到REL时候，不回复MMC的DETACH CNF
-  5.日    期   : 2014年6月13日
-    作    者   : w00242748
-    修改内容   : DSDS 新特性
-  6.日    期   : 2015年6月3日
-    作    者   : z00161729
-    修改内容   : 24008 23122 R11 CR升级项目修改
-*******************************************************************************/
 VOS_VOID Mm_Cell_S23_E22(VOS_VOID* pMsg)
 {
     MM_MSG_IMSI_DETACH_IND_STRU         stMsg;
@@ -5822,39 +3962,7 @@ VOS_VOID Mm_Cell_S23_E22(VOS_VOID* pMsg)
     return;
 
 }
-/*******************************************************************************
-  Module:   Mm_Cell_S24_E22
-  Function: 在LOCATION UPDATE REJECTED状态下,
-            收到MMCMM_DETACH_REQ的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.  张志勇    2005.01.31  新版做成
-  2. 日    期   : 2008年09月03日
-     作    者   : l00130025
-     修改内容   : 问题单号：AT2D05403,mm注册状态修改
-  3.日    期   : 2011年7月26日
-    作    者   : h44270
-    修改内容   : V7R1 PHASE II ATTACH/DETACH调整
-  4.日    期   : 2013年2月4日
-    作    者   : w00176964
-    修改内容   : DTS2011022802215:CS ONLY,网络模式I下也进行联合注册
-  5.日    期   : 2013年05月15日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  6.日    期   : 2013年6月8日
-    作    者   : w00167002
-    修改内容   : V9R1_SVLTE:如果注册结果导致卡无效，则返回
-                 检视意见修改:删除是否由GMM处理用户detach统一归类
-  7.日    期   : 2013年6月24日
-    作    者   : w00167002
-    修改内容   : 设置DETACH类型，否则在收到REL时候，不回复MMC的DETACH CNF
-  8.日    期   : 2014年6月13日
-    作    者   : w00242748
-    修改内容   : DSDS 新特性
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S24_E22(VOS_VOID* pMsg)
 {
     MMCMM_DETACH_REQ_STRU*          pMmcDetachReq;
@@ -5908,19 +4016,7 @@ VOS_VOID Mm_Cell_S24_E22(VOS_VOID* pMsg)
     }
 }
 
-/*******************************************************************************
-  Module:   Mm_Cell_S6_E53
-  Function: 在MM IDLE LOCATION UPDATE NEEDED状态下,接收到T3212溢出的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇     2004.05.08  新版做成
-      2.日    期   : 2015年1月5日
-        作    者   : z00161729
-        修改内容   : AT&T 支持DAM特性修改
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S6_E53(VOS_VOID* pMsg)
 {
     Mm_TimerStop(MM_TIMER_T3212);                                               /* 停止T3212                                */
@@ -5969,23 +4065,7 @@ VOS_VOID Mm_Cell_S0_E13(VOS_VOID* pMsg)
     }
 
 }
-/*******************************************************************************
-  Module:   Mm_Cell_S4_E13
-  Function: 在MM IDLE LIMITED SERVICE状态下收到GMMMM_NETWORK_DETACH_IND的处理
-  Input:    VOS_VOID *pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.  张志勇     2005.01.13  003018 for MM
-  2.日    期   : 2011年7月25日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
 
-  3.日    期   : 2013年2月4日
-    作    者   : w00176964
-    修改内容   : DTS2011022802215:CS ONLY,网络模式I下也进行联合注册
-*******************************************************************************/
 VOS_VOID Mm_Cell_S4_E13(VOS_VOID *pMsg)
 {
     GMMMM_NETWORK_DETACH_IND_STRU       *pstNetWkDetachInd = VOS_NULL_PTR;
@@ -6056,30 +4136,7 @@ VOS_VOID Mm_Cell_S4_E13(VOS_VOID *pMsg)
         }
     }
 }
-/*******************************************************************************
-  Module:   Mm_Cell_S5_E13
-  Function: 在MM IDLE ATTEMPT TO UPDATE状态下收到GMMMM_NETWORK_DETACH_IND的处理
-  Input:    VOS_VOID *pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇     2005.01.13  003018 for MM
-      2. 日    期   : 2008年8月23日
-         作    者   : l00130025
-         修改内容   : 问题单号:At2D05016,MM注册状态修改
 
-      3. 日    期   : 2013年2月4日
-         作    者   : w00176964
-         修改内容   : DTS2011022802215:CS ONLY,网络模式I下也进行联合注册
-       4.日    期   : 2013年05月15日
-         作    者   : s46746
-         修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-      5.日    期   : 2015年3月20日
-        作    者   : w00167002
-        修改内容   : DTS2015030305199:LAU建联失败达到最大次数后，使用NV中定制的T3212时长,T3212启动统一
-                     进行封装。
-*******************************************************************************/
 VOS_VOID Mm_Cell_S5_E13(VOS_VOID *pMsg)
 {
     GMMMM_NETWORK_DETACH_IND_STRU      *pstNetWkDetachInd;
@@ -6156,49 +4213,7 @@ VOS_VOID Mm_Cell_S5_E13(VOS_VOID *pMsg)
     }
 }
 
-/* add by 张志勇    2005-1-31 for MM 003018 end */
-/*******************************************************************************
-  Module:   Mm_Cell_S6_E24
-  Function: 在MM IDLE LOCATION UPDATE NEEDED状态下,接收到MMCC_EST_REQ的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇     2004.05.19  新版做成
-      2.  s46746  2005-11-15  修改
-      3.  日    期   : 2011年10月27日
-          作    者   : s46746
-          修改内容   : V7R1 PhaseIII,支持L模联合注册
-      4.日    期   : 2012年2月15日
-        作    者   : w00166186
-        修改内容   : CSFB&PPAC&ETWS&ISR 开发
-      5.日    期   : 2012年8月13日
-        作    者   : z00161729
-        修改内容   : DCM定制需求和遗留问题修改,支持L紧急呼叫修改
-      6.日    期   : 2012年9月25日
-        作    者   : z00161729
-        修改内容   : DTS2012071907985:cs被bar，mm收到cc的建链请求应回复rel ind而不是等t303超时
-      7.日    期   : 2012年10月29日
-        作    者   : z00161729
-        修改内容   : DTS2012083102536:支持cc呼叫重建
-      8.日    期   : 2012年12月11日
-        作    者   : w00176964
-        修改内容   : 修改 NAS_MML_GetCsRestrictNormalServiceFlg函数名
-      9.日    期   : 2012年12月21日
-        作    者   : L00171473
-        修改内容   : DTS2012122007141:L单模时收到呼叫请求直接向CC回复失败
-      10.日    期   :2013年9月12日
-         作    者   :z00161729
-         修改内容   :DTS2013082903019:支持ss重发功能
-      11.日    期   : 2014年8月4日
-         作    者   : w00167002
-         修改内容   : DTS2014080407625:在L下注册成功后ACCESS BAR,MM状态迁移到LOCATION
-                      UPDATE NEEDED,此时用户发起电话失败。
-      12.日    期   :2014年9月24日
-         作    者   :s00217060
-         修改内容   :for cs_err_log
-*******************************************************************************/
+
 VOS_VOID    Mm_Cell_S6_E24( VOS_VOID* pMsg)
 {
 #if (FEATURE_ON == FEATURE_LTE)
@@ -6222,7 +4237,6 @@ VOS_VOID    Mm_Cell_S6_E24( VOS_VOID* pMsg)
             return;
         }
 
-        /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-14, begin */
         if (NAS_MML_NET_RAT_TYPE_LTE == NAS_MML_GetCurrNetRatType())
         {
 
@@ -6232,13 +4246,10 @@ VOS_VOID    Mm_Cell_S6_E24( VOS_VOID* pMsg)
             NAS_MM_RcvCcEstReq_CSFB();
             return;
         }
-        /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-14, end */
 #endif
 
         /* 非紧急呼，当前小区主叫业务受限则不处理 */
-        /* Modified by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, begin */
         if ((VOS_TRUE == NAS_MML_GetCsRestrictNormalServiceFlg())
-        /* Modified by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, end */
          && (MMCC_EMERGENCY_CALL != g_MmCcEstReq.ulCallType))
         {
             /* 通知CC建立失败 */
@@ -6288,28 +4299,7 @@ VOS_VOID    Mm_Cell_S6_E24( VOS_VOID* pMsg)
         }
     }
 }
-/*******************************************************************************
-  Module:   Mm_Cell_S6_E62
-  Function: 在MM IDLE LOCATION UPDATE NEEDED状态下,接收到MMSMS_EST_REQ的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇     2004.05.19  新版做成
-      2.日    期   : 2012年2月15日
-        作    者   : w00166186
-        修改内容   : CSFB&PPAC&ETWS&ISR 开发
-      3.日    期   : 2012年12月11日
-        作    者   : w00176964
-        修改内容   : 修改 NAS_MML_GetCsRestrictNormalServiceFlg函数名
-      4.日    期   :2013年9月12日
-        作    者   :z00161729
-        修改内容  :DTS2013082903019:支持ss重发功能
-      5.日    期   :2014年9月24日
-        作    者   :s00217060
-        修改内容   :for cs_err_log
-*******************************************************************************/
+
 VOS_VOID    Mm_Cell_S6_E62( VOS_VOID* pMsg)
 {
     MM_MSG_CM_SVC_REQ_STRU              stCmSvcReq;
@@ -6322,9 +4312,7 @@ VOS_VOID    Mm_Cell_S6_E62( VOS_VOID* pMsg)
     else
     {
         /* 当前小区主叫业务受限则不处理 */
-        /* Modified by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, begin */
         if (VOS_TRUE == NAS_MML_GetCsRestrictNormalServiceFlg())
-        /* Modified by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, end */
         {
             Mm_SndSmsRelInd(g_MmSmsEstReq.ulTi,
                             NAS_MMCM_REL_CAUSE_MM_INTER_ERR_CS_ACCESS_BAR);            /* 通知SMS建立失败                           */
@@ -6398,38 +4386,7 @@ VOS_VOID    Mm_Cell_S6_E62( VOS_VOID* pMsg)
         }
     }
 }
-/*******************************************************************************
-  Module:   Mm_Cell_S6_E65
-  Function: 在MM IDLE LOCATION UPDATE NEEDED状态下,接收到MMSS_EST_REQ的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇     2004.05.19  新版做成
-      2. 日    期   : 2007年07月31日
-         作    者   : luojian id:60022475
-         修改内容   : 问题单号:A32D12640
-      3. 日    期   : 2012年2月15日
-         作    者   : w00166186
-         修改内容   : CSFB&PPAC&ETWS&ISR 开发
-      4. 日    期   : 2012年2月15日
-         作    者   : w00166186
-         修改内容   : CSFB&PPAC&ETWS&ISR 开发
-      5.日    期   : 2012年12月11日
-        作    者   : w00176964
-        修改内容   : 修改 NAS_MML_GetCsRestrictNormalServiceFlg函数名
-      6.日    期   :2013年9月12日
-        作    者   :z00161729
-        修改内容  :DTS2013082903019:支持ss重发功能
-      7.日    期   : 2014年8月4日
-        作    者   : w00167002
-        修改内容   : DTS2014080407625:在L下注册成功后ACCESS BAR,MM状态迁移到LOCATION
-                      UPDATE NEEDED,此时用户发起电话失败。 NAS修改不作屏蔽。
-      8.日    期   :2014年9月24日
-        作    者   :s00217060
-        修改内容   :for cs_err_log
-*******************************************************************************/
+
 
 VOS_VOID    Mm_Cell_S6_E65( VOS_VOID* pMsg)
 {
@@ -6443,9 +4400,7 @@ VOS_VOID    Mm_Cell_S6_E65( VOS_VOID* pMsg)
     else
     {
         /* 当前小区主叫业务受限则不处理 */
-        /* Modified by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, begin */
         if (VOS_TRUE == NAS_MML_GetCsRestrictNormalServiceFlg())
-        /* Modified by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, end */
         {
             Mm_SndSsRelInd(g_MmSsEstReq.ulTi, NAS_MMCM_REL_CAUSE_MM_INTER_ERR_CS_ACCESS_BAR);
 
@@ -6519,53 +4474,7 @@ VOS_VOID    Mm_Cell_S6_E65( VOS_VOID* pMsg)
         }
     }
 }
-/*******************************************************************************
-  Module:   Mm_Cell_S5_E24
-  Function: 在MM IDLE ATTEMPTING TO UPDATE状态下,接收到MMCC_EST_REQ的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇     2004.05.19  新版做成
-      2.  日    期   : 2011年10月27日
-          作    者   : s46746
-          修改内容   : V7R1 PhaseIII,支持L模联合注册
-      3. 日    期   : 2012年2月15日
-         作    者   : w00166186
-         修改内容   : CSFB&PPAC&ETWS&ISR 开发
-      4. 日    期   : 2012年8月14日
-         作    者   : z00161729
-         修改内容   : DCM定制需求和遗留问题修改,支持L紧急呼叫修改
-      5.日    期   : 2012年9月25日
-        作    者   : z00161729
-        修改内容   : DTS2012071907985:cs被bar，mm收到cc的建链请求应回复rel ind而不是等t303超时
-      6.日    期   : 2012年10月29日
-        作    者   : z00161729
-        修改内容   : DTS2012083102536:支持cc呼叫重建
-      7.日    期   : 2012年12月11日
-        作    者   : w00176964
-        修改内容   : 修改 NAS_MML_GetCsRestrictNormalServiceFlg函数名
-      8.日    期   : 2012年12月21日
-        作    者   : L00171473
-        修改内容   : DTS2012122007141:L单模时收到呼叫请求直接向CC回复失败
-      9.日    期   : 2013年2月4日
-        作    者   : w00176964
-        修改内容   : DTS2011022802215:CS ONLY,网络模式I下也进行联合注册
-      10.日    期   :2013年9月12日
-         作    者   :z00161729
-         修改内容   :DTS2013082903019:支持ss重发功能
 
-      11.日    期   : 2014年8月11日
-         作    者   : w00167002
-         修改内容   : DTS2014080407625:在ATTEMPT TO UPDATE状态也尝试发起普通呼叫。
-      12.日    期   :2014年9月24日
-         作    者   :s00217060
-         修改内容   :for cs_err_log
-      13.日    期   : 2015年1月5日
-         作    者   : z00161729
-         修改内容   : AT&T 支持DAM特性修改
-*******************************************************************************/
 VOS_VOID    Mm_Cell_S5_E24( VOS_VOID* pMsg)
 {
 #if (FEATURE_ON == FEATURE_LTE)
@@ -6591,7 +4500,6 @@ VOS_VOID    Mm_Cell_S5_E24( VOS_VOID* pMsg)
             return;
         }
 
-        /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-14, begin */
         if (NAS_MML_NET_RAT_TYPE_LTE == NAS_MML_GetCurrNetRatType())
         {
             /* 如果当前驻留LTE,则也尝试发起普通呼叫 */
@@ -6599,13 +4507,10 @@ VOS_VOID    Mm_Cell_S5_E24( VOS_VOID* pMsg)
             NAS_MM_RcvCcEstReq_CSFB();
             return;
         }
-        /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-14, end */
 #endif
 
         /* 非紧急呼，当前小区主叫业务受限则不处理 */
-        /* Modified by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, begin */
         if ((VOS_TRUE == NAS_MML_GetCsRestrictNormalServiceFlg())
-        /* Modified by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, end */
          && (MMCC_EMERGENCY_CALL != g_MmCcEstReq.ulCallType))
         {
             /* 通知CC建立失败 */
@@ -6617,9 +4522,7 @@ VOS_VOID    Mm_Cell_S5_E24( VOS_VOID* pMsg)
         g_MmGlobalInfo.ucStaOfRcvXXEstReq =
             g_MmGlobalInfo.ucState;                                             /* 记录收到建立请求时的状态                 */
 
-        /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-20, begin */
         if (VOS_FALSE == NAS_MM_IsCcTiValid())
-        /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-20, end */
         {
             /* TI不合法                                 */
             Mm_SndCcRelInd(g_MmCcEstReq.ulTransactionId,
@@ -6655,9 +4558,7 @@ VOS_VOID    Mm_Cell_S5_E24( VOS_VOID* pMsg)
                 /* 缓存消息 */
                 NAS_MM_UpdateConnCtrlInfo(MM_CONN_CTRL_CC);
 
-                /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-29, begin */
                 if (VOS_TRUE == NAS_MM_IsClassAAndNmoIMode(g_MmGlobalInfo.ucNtMod))
-                /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-29, end */
                 {
                     NAS_MM_SndGmmRegisterInit();                                    /* 通知GMM进行注册                          */
                 }
@@ -6671,29 +4572,7 @@ VOS_VOID    Mm_Cell_S5_E24( VOS_VOID* pMsg)
         }
     }
 }
-/*******************************************************************************
-  Module:   Mm_Cell_S0_E22
-  Function: 在MM NULL状态下,收到MMCMM_DETACH_REQ的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.  张志勇     2004.05.28  新版做成
-  2.日    期   : 2011年7月26日
-    作    者   : h44270
-    修改内容   : V7R1 PHASE II ATTACH/DETACH调整
-  3.日    期   : 2011年7月25日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-  4. 日    期   : 2012年1月12日
-     作    者   : w00166186
-     修改内容   : DTS2011122704039:开机搜网后CS注册被拒#12,PS注册被拒#14，在ON
-                   PLMN状态，服务域被设置为不支持MM需要将服务域不支持信息通知给MMC.
-  5.日    期   : 2013年6月13日
-    作    者   : w00167002
-    修改内容   : V9R1_SVLTE:非NULL状态下才迁移到LIMIT SERVICE状态
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S0_E22(VOS_VOID* pMsg)
 {
     MMCMM_DETACH_REQ_STRU*   pMmcDetachReq;
@@ -6769,21 +4648,7 @@ VOS_VOID Mm_Cell_S0_E60(VOS_VOID* pMsg)
 {
     Mm_TimerStop(MM_TIMER_T3240);                                               /* 停止TIMER3230                            */
 }
-/*******************************************************************************
-  Module:   Mm_Cell_S11_E36
-  Function: 在WAIT FOR NETWORK COMMAND状态下,收到AUTHENTICATION REQUEST的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇     2004.05.31  新版做成
-      2.日    期   : 2013年7月23日
-        作    者   : w00167002
-        修改内容   : DTS2013072205858:2g rf 13.2用例测试异常。
-                      收到寻呼时候，网侧不下发SETUP,测试底层性能指标。
-                      T3240超时后，释放了当前链接，导致用例测试失败。
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S11_E36(VOS_VOID* pMsg)
 {
     NAS_EventReport(WUEPS_PID_MM, NAS_OM_EVENT_AUTH_REQ,
@@ -6796,22 +4661,7 @@ VOS_VOID Mm_Cell_S11_E36(VOS_VOID* pMsg)
 
     Mm_ComAuthenRcvAuthenReq();
 }
-/*******************************************************************************
-  Module:   Mm_Cell_S11_E37
-  Function: 在WAIT FOR NETWORK COMMAND状态下,收到AUTHENTICATION REJECT的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.张志勇     2004.05.31  新版做成
-  2.日    期   : 2011年7月14日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
-  3.日    期   : 2015年6月8日
-    作    者   : z00161729
-    修改内容   : 24008 23122 R11 CR升级项目修改
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S11_E37(VOS_VOID* pMsg)
 {
     g_MmGlobalInfo.ucRcvAgentFlg &= ~MM_RCV_AUTH_CNF_FLG;
@@ -6854,21 +4704,7 @@ VOS_VOID Mm_Cell_S11_E37(VOS_VOID* pMsg)
                     VOS_NULL_PTR, NAS_OM_EVENT_NO_PARA);
 }
 
-/*******************************************************************************
-  Module:   Mm_Cell_S11_E38
-  Function: 在WAIT FOR NETWORK COMMAND状态下,收到IDENTITY REQUEST的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇     2004.05.31  新版做成
-      2.日    期   : 2013年7月23日
-        作    者   : w00167002
-        修改内容   : DTS2013072205858:2g rf 13.2用例测试异常。
-                  收到寻呼时候，网侧不下发SETUP,测试底层性能指标。
-                  T3240超时后，释放了当前链接，导致用例测试失败。
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S11_E38(VOS_VOID* pMsg)
 {
     Mm_TimerStop( MM_TIMER_T3212 );                                             /* 停T3212                                  */
@@ -6881,21 +4717,7 @@ VOS_VOID Mm_Cell_S11_E38(VOS_VOID* pMsg)
 
     return;
 }
-/*******************************************************************************
-  Module:   Mm_Cell_S11_E39
-  Function: 在WAIT FOR NETWORK COMMAND状态下,收到TMSI REALLOCATION COMMAND的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇     2004.05.31  新版做成
-      2.日    期   : 2013年7月23日
-        作    者   : w00167002
-        修改内容   : DTS2013072205858:2g rf 13.2用例测试异常。
-                  收到寻呼时候，网侧不下发SETUP,测试底层性能指标。
-                  T3240超时后，释放了当前链接，导致用例测试失败。
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S11_E39(VOS_VOID* pMsg)
 {
     Mm_TimerStop( MM_TIMER_T3212 );                                             /* 停T3212                                  */
@@ -6908,21 +4730,7 @@ VOS_VOID Mm_Cell_S11_E39(VOS_VOID* pMsg)
     return;
 }
 
-/*******************************************************************************
-  Module:   Mm_Cell_S11_E43
-  Function: 在WAIT FOR NETWORK COMMAND状态下,收到MM INFORMATION的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇     2004.05.31  新版做成
-      2.日    期   : 2013年7月23日
-        作    者   : w00167002
-        修改内容   : DTS2013072205858:2g rf 13.2用例测试异常。
-                      收到寻呼时候，网侧不下发SETUP,测试底层性能指标。
-                    T3240超时后，释放了当前链接，导致用例测试失败。
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S11_E43(VOS_VOID* pMsg)
 {
     Mm_TimerStop( MM_TIMER_T3212 );                                             /* 停T3212                                  */
@@ -6935,21 +4743,7 @@ VOS_VOID Mm_Cell_S11_E43(VOS_VOID* pMsg)
     return;
 }
 
-/*******************************************************************************
-  Module:   Mm_Cell_S11_E44
-  Function: 在WAIT FOR NETWORK COMMAND状态下,收到MM STATUS的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇     2004.05.31  新版做成
-      2.日    期   : 2013年7月23日
-        作    者   : w00167002
-        修改内容   : DTS2013072205858:2g rf 13.2用例测试异常。
-                      收到寻呼时候，网侧不下发SETUP,测试底层性能指标。
-                    T3240超时后，释放了当前链接，导致用例测试失败。
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S11_E44(VOS_VOID* pMsg)
 {
     Mm_TimerStop( MM_TIMER_T3212 );                                             /* 停T3212                                  */
@@ -6961,20 +4755,7 @@ VOS_VOID Mm_Cell_S11_E44(VOS_VOID* pMsg)
     return;
 }
 
-/*******************************************************************************
-  Module:   Mm_Cell_S11_E47
-  Function: 在WAIT FOR NETWORK COMMAND状态下,收到CM SERVICE PROMPT的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇     2004.05.31  新版做成
-      2.  张志勇     2005.01.27  007037 for MM
-      3.  日    期   : 2012年8月10日
-          作    者   : L00171473
-          修改内容   : DTS2012082204471, TQE清理
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S11_E47(VOS_VOID* pMsg)
 {
     MM_MSG_MM_STATUS_STRU          MsgMmStatus;                                 /* MM STATUS 消息结构体                     */
@@ -7010,38 +4791,7 @@ VOS_VOID Mm_Cell_S11_E47(VOS_VOID* pMsg)
     return;
 }
 
-/*******************************************************************************
-  Module:   Mm_Cell_S5_E62
-  Function: 在MM IDLE ATTEMPTING TO UPDATE状态下,收到MMSMS_EST_REQ的处理
-            收到MMSMS_EST_REQ的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇     2004.06.08  新版做成
-      2.  日    期   : 2011年10月27日
-          作    者   : s46746
-          修改内容   : V7R1 PhaseIII,支持L模联合注册
-        3.日    期   : 2012年2月15日
-          作    者   : w00166186
-          修改内容   : CSFB&PPAC&ETWS&ISR 开发
-        4.日    期   : 2012年12月11日
-          作    者   : w00176964
-          修改内容   : 修改 NAS_MML_GetCsRestrictNormalServiceFlg函数名
-        5.日    期   : 2013年2月4日
-          作    者   : w00176964
-          修改内容   : DTS2011022802215:CS ONLY,网络模式I下也进行联合注册
-        6.日    期   :2013年9月12日
-          作    者   :z00161729
-          修改内容   :DTS2013082903019:支持ss重发功能
-        7.日    期   :2014年9月24日
-          作    者   :s00217060
-          修改内容   :for cs_err_log
-        8.日    期   : 2015年1月5日
-          作    者   : z00161729
-          修改内容   : AT&T 支持DAM特性修改
-*******************************************************************************/
+
 VOS_VOID    Mm_Cell_S5_E62( VOS_VOID*pMsg )
 {
 
@@ -7053,9 +4803,7 @@ VOS_VOID    Mm_Cell_S5_E62( VOS_VOID*pMsg )
     else
     {                                                                           /* 消息检查结果成功                         */
         /* 当前小区主叫业务受限则不处理 */
-        /* Modified by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, begin */
         if (VOS_TRUE == NAS_MML_GetCsRestrictNormalServiceFlg())
-        /* Modified by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, end */
         {
             Mm_SndSmsRelInd( g_MmSmsEstReq.ulTi, NAS_MMCM_REL_CAUSE_MM_INTER_ERR_CS_ACCESS_BAR);/* 通知SMS建立失败                          */
             return;
@@ -7112,40 +4860,7 @@ VOS_VOID    Mm_Cell_S5_E62( VOS_VOID*pMsg )
     return;
 }
 
-/*******************************************************************************
-  Module:   Mm_Cell_S5_E65
-  Function: 在MM IDLE ATTEMPTING TO UPDATE状态下,收到MMSS_EST_REQ的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇     2004.06.08  新版做成
-      2.  日    期   : 2011年10月27日
-          作    者   : s46746
-          修改内容   : V7R1 PhaseIII,支持L模联合注册
-      3. 日    期   : 2012年2月15日
-         作    者   : w00166186
-         修改内容   : CSFB&PPAC&ETWS&ISR 开发
-       4.日    期   : 2012年12月11日
-         作    者   : w00176964
-         修改内容   : 修改 NAS_MML_GetCsRestrictNormalServiceFlg函数名
-       5.日    期   : 2013年2月4日
-         作    者   : w00176964
-         修改内容   : DTS2011022802215:CS ONLY,网络模式I下也进行联合注册
-       6.日    期   :2013年9月12日
-         作    者   :z00161729
-         修改内容  :DTS2013082903019:支持ss重发功能
-       7.日    期   : 2014年8月11日
-         作    者   : w00167002
-         修改内容   : DTS2014080407625:在ATTEMPT TO UPDATE状态也尝试发起普通呼叫。
-       8.日    期   :2014年9月24日
-         作    者   :s00217060
-         修改内容   :for cs_err_log
-       9.日    期   : 2015年1月5日
-         作    者   : z00161729
-         修改内容   : AT&T 支持DAM特性修改
-*******************************************************************************/
+
 VOS_VOID    Mm_Cell_S5_E65( VOS_VOID*pMsg )
 {
     if ( MM_FALSE == Mm_RcvSsEstReq(pMsg) )
@@ -7155,9 +4870,7 @@ VOS_VOID    Mm_Cell_S5_E65( VOS_VOID*pMsg )
     else
     {                                                                           /* 消息检查结果成功                         */
         /* 当前小区主叫业务受限则不处理 */
-        /* Modified by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, begin */
         if (VOS_TRUE == NAS_MML_GetCsRestrictNormalServiceFlg())
-        /* Modified by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, end */
         {
             Mm_SndSsRelInd(g_MmSsEstReq.ulTi, NAS_MMCM_REL_CAUSE_MM_INTER_ERR_CS_ACCESS_BAR);
 
@@ -7215,44 +4928,7 @@ VOS_VOID    Mm_Cell_S5_E65( VOS_VOID*pMsg )
     return;
 }
 
-/*******************************************************************************
-  Module:   Mm_Cell_S22_E24
-  Function: 在WAIT FOR RR CONNECTION (LOCATION UPDATING)状态下,收到MMCC_EST_REQ的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇     2004.06.08  新版做成
-      2.  日    期   : 2011年10月27日
-          作    者   : s46746
-          修改内容   : V7R1 PhaseIII,支持L模联合注册
-      3. 日    期   : 2012年2月15日
-         作    者   : w00166186
-         修改内容   : CSFB&PPAC&ETWS&ISR 开发
-      4. 日    期   : 2012年6月9日
-         作    者   : z00161729
-         修改内容   : DTS2012060705413:V7R1C50 GUL背景搜修改，L下收到系统消息mm迁到location update pending状态
-                      未缓存cc呼叫请求
-      5.日    期   : 2012年8月14日
-        作    者   : z00161729
-        修改内容   : DCM定制需求和遗留问题修改,紧急呼叫修改
-      6.日    期   : 2012年10月29日
-        作    者   : z00161729
-        修改内容   : DTS2012083102536:支持cc呼叫重建
-      7.日    期   : 2012年12月11日
-        作    者   : w00176964
-        修改内容   : 修改 NAS_MML_GetCsRestrictNormalServiceFlg函数名
-      8.日    期   : 2012年12月21日
-        作    者   : L00171473
-        修改内容   : DTS2012122007141:L单模时收到呼叫请求直接向CC回复失败
-      9.日    期   :2014年9月24日
-        作    者   :s00217060
-        修改内容   :for cs_err_log
-      10.日    期   : 2015年5月6日
-         作    者   : z00161729
-         修改内容   : 24301 R11 CR升级项目修改
-*******************************************************************************/
+
 VOS_VOID    Mm_Cell_S22_E24( VOS_VOID*pMsg )
 {
 #if (FEATURE_ON == FEATURE_LTE)
@@ -7276,7 +4952,6 @@ VOS_VOID    Mm_Cell_S22_E24( VOS_VOID*pMsg )
             return;
         }
 
-        /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-14, begin */
         if (NAS_MML_NET_RAT_TYPE_LTE == NAS_MML_GetCurrNetRatType())
         {
             if (LOCATION_UPDATING_PENDING != g_MmGlobalInfo.ucState)
@@ -7294,15 +4969,11 @@ VOS_VOID    Mm_Cell_S22_E24( VOS_VOID*pMsg )
             return;
 
 
-            /* DTS2012060705413如果当前驻留LTE,MM LOCATION_UPDATING_PENDING状态收到普通呼叫需要缓存，
-               但不给LMM发起ID_MM_LMM_CSFB_SERVICE_START_NOTIFY*/
+            
         }
-        /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-14, end */
 #endif
         /* 非紧急呼，当前小区主叫业务受限则不处理 */
-        /* Modified by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, begin */
         if ((VOS_TRUE == NAS_MML_GetCsRestrictNormalServiceFlg())
-        /* Modified by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, end */
          && (MMCC_EMERGENCY_CALL != g_MmCcEstReq.ulCallType))
         {
             Mm_SndCcRelInd(g_MmCcEstReq.ulTransactionId,
@@ -7370,40 +5041,7 @@ VOS_VOID Mm_Cell_S11_E40(
     return;
 }
 
-/*******************************************************************************
-  MODULE   : Mm_Cell_S1_E24
-  FUNCTION : 在MM IDLE NO CELL AVAILABLE状态下收到MMCC_EST_REQ的处理
-  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
-  OUTPUT   : VOS_VOID
-  RETURN   : VOS_VOID
-  NOTE     :
-  HISTORY  :
-     1.  张志勇   2004.06.15 新规作成
-     4.  张志勇        2005.01.27  007037 for MM
-     5.  日    期   : 2011年10月27日
-         作    者   : s46746
-         修改内容   : V7R1 PhaseIII,支持L模联合注册
-     6.  日    期   : 2012年8月13日
-         作    者   : z00161729
-         修改内容   : DCM定制需求和遗留问题修改,支持L下紧急呼叫
-     7.日    期   : 2012年10月29日
-       作    者   : z00161729
-       修改内容   : DTS2012083102536:支持cc呼叫重建
-     8 .日    期   : 2012年12月21日
-        作    者   : L00171473
-        修改内容   : DTS2012122007141:L单模时收到呼叫请求直接向CC回复失败
-     9.日    期   :2014年9月24日
-       作    者   :s00217060
-       修改内容   :for cs_err_log
-    10.日    期   : 2014年12月29日
-       作    者   : z00161729
-       修改内容   : DSDS业务重拨时no rf未触发搜网导致业务失败，
-                    mm在no cell available状态no rf时给mmc发送cm service ind触发搜网
-    11.日    期   : 2015年8月3日
-       作    者   : n00269697
-       修改内容   : DTS2015072802941，如果当前驻留LTE，普通呼叫跟紧急呼叫一样，
-                    尝试CSFB
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S1_E24(
                         VOS_VOID            *pRcvMsg                                /* 接收消息的头地址                         */
                     )
@@ -7431,7 +5069,6 @@ VOS_VOID Mm_Cell_S1_E24(
             return;
         }
 
-        /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-14, begin */
         if (NAS_MML_NET_RAT_TYPE_LTE == NAS_MML_GetCurrNetRatType())
         {
 
@@ -7439,13 +5076,10 @@ VOS_VOID Mm_Cell_S1_E24(
             NAS_MM_RcvCcEstReq_CSFB();
             return;
         }
-        /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-14, end */
 #endif
 
-        /* Modified by c00318887 for 预置频点搜网优化, 2015-9-9, begin */
         /* 当前no rf时收到业务请求，mm需要通知mmc先触发搜网，普通呼叫需要卡有效，缓存业务请求 */
         if (VOS_TRUE == NAS_MM_IsCcServiceNeedTriggerPlmnSearch())
-        /* Modified by c00318887 for 预置频点搜网优化, 2015-9-9, end */
         {
             /*缓存该服务请求 */
             NAS_MM_UpdateConnCtrlInfo(MM_CONN_CTRL_CC);
@@ -7556,21 +5190,7 @@ VOS_VOID Mm_Cell_S31_E72(
                 RRC_NAS_MSG_PRIORTY_HIGH);                                      /* 将TC的消息传送下去                       */
 }
 
-/*******************************************************************************
-  MODULE   : Mm_Cell_S9_E73
-  FUNCTION : 在WAIT FOR OUTGOING MM CONNECTION状态下收到RRMM_DATA_IND(TC MSG)的处理
-  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
-  OUTPUT   : VOS_VOID
-  RETURN   : VOS_VOID
-  NOTE     :
-  HISTORY  :
-     1.  张志勇   2004.06.18 新规作成
 
-  1.日    期   : 2012年9月21日
-    作    者   : z40661
-    修改内容   : DTS2012092702799 支持AGPS时，上报TC消息后续TC模块无EST_REQ请求，导致T3240定时器未停止
-                 超时后链接释放
-*******************************************************************************/
 
 VOS_VOID Mm_Cell_S9_E73(
                         VOS_VOID            *pRcvMsg                                /* 接收消息的头地址                         */
@@ -7588,31 +5208,7 @@ VOS_VOID Mm_Cell_S9_E73(
                 pRrmmDataInd->RcvNasMsg.aucNasMsg);
 }
 
-/*******************************************************************************
-  MODULE   : Mm_Cell_S31_E71
-  FUNCTION : 在TEST_CONTROL_ACTIVE状态下收到TCMM_TEST_REQ的处理
-  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
-  OUTPUT   : VOS_VOID
-  RETURN   : VOS_VOID
-  NOTE     :
-  HISTORY  :
-     1.  张志勇   2004.06.18 新规作成
-     2.  日    期   : 2008年09月03日
-         作    者   : l00130025
-         修改内容   : 问题单号：AT2D05487,mm注册状态修改
-       3.日    期   : 2013年05月15日
-         作    者   : s46746
-         修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-       4.日    期   : 2013年9月12日
-         作    者   : w00242748
-         修改内容   : DTS2013090308589:MM处于重建状态时，收到CC REL REQ请求，迁回
-                      原状态(IDLE NORMAL SERVICE)，未启动T3212定时器，导致搜网重回
-                      G下原小区时做LAU
-       5.日    期   : 2015年3月20日
-         作    者   : w00167002
-         修改内容   : DTS2015030305199:LAU建联失败达到最大次数后，使用NV中定制的T3212时长,T3212启动统一
-                      进行封装。
-*******************************************************************************/
+
 
 VOS_VOID Mm_Cell_S31_E71(
                         VOS_VOID            *pRcvMsg                                /* 接收消息的头地址                         */
@@ -7680,22 +5276,7 @@ VOS_VOID Mm_Cell_S31_E71(
 
 }
 
-/*******************************************************************************
-  MODULE   : Mm_Cell_S31_E33
-  FUNCTION : 在TEST_CONTROL_ACTIVE状态下收到RRMM_REL_IND的处理
-  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
-  OUTPUT   : VOS_VOID
-  RETURN   : VOS_VOID
-  NOTE     :
-  HISTORY  :
-     1.  张志勇   2004.06.18 新规作成
-     2.  日    期   : 2008年12月26日
-         作    者   : o00132663
-         修改内容   : 问题单AT2D07880,环回测试时，T3240没有及时停止。
-     3.  日    期   : 2011年10月11日
-         作    者   : l00171473
-         修改内容   : V7R1 phase II, TC环回调整
-*******************************************************************************/
+
 
 VOS_VOID Mm_Cell_S31_E33(
     VOS_VOID                           *pRcvMsg                                 /* 接收消息的头地址                         */
@@ -7761,22 +5342,7 @@ VOS_VOID Mm_Cell_S3_E34(
 
 
 
-/*******************************************************************************
-  MODULE   : Mm_Cell_S25_E24
-  FUNCTION : 在WAIT FOR RR CONNECTION (IMSI DETACH)状态下收到MMCC_EST_REQ的处理
-  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
-  OUTPUT   : VOS_VOID
-  RETURN   : VOS_VOID
-  NOTE     :
-  HISTORY  :
-     1.  张志勇        2005.01.27  006045 for MM
-     2.日    期   : 2012年10月29日
-       作    者   : z00161729
-       修改内容   : DTS2012083102536:支持cc呼叫重建
-     3.日    期   :2014年9月24日
-       作    者   :s00217060
-       修改内容   :for cs_err_log
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S25_E24(
                         VOS_VOID            *pRcvMsg                                /* 接收消息的头地址                         */
                     )
@@ -7794,31 +5360,13 @@ VOS_VOID Mm_Cell_S25_E24(
     return;
 }
 
-/*******************************************************************************
-  MODULE   : Mm_Cell_S22_E13
-  FUNCTION : 在WAIT FOR RR CONNECTION (LOCATION UPDATING)状态下收到
-                GMMMM_NETWORK_DETACH_IND的处理
-  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
-  OUTPUT   : VOS_VOID
-  RETURN   : VOS_VOID
-  NOTE     :
-  HISTORY  :
-  1.张志勇    2005.01.27 新规作成
-  2.日    期   : 2011年7月22日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
-  3.日    期   : 2014年4月2日
-    作    者   : w00176964
-    修改内容   : V3R3C60_eCall项目修改:g_MmGlobalInfo.MsCsInfo.OldLai替换成MML中的
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S22_E13(
                         VOS_VOID            *pRcvMsg                                /* 接收消息的头地址                         */
                     )
 {
     GMMMM_NETWORK_DETACH_IND_STRU       *pstNetWkDetachInd;
-    /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-4-3, begin */
 
-    /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-4-3, end */
 
     if ( MM_FALSE == NAS_MM_RcvGmmNetworkDetechInd(pRcvMsg) )
     {
@@ -7827,9 +5375,7 @@ VOS_VOID Mm_Cell_S22_E13(
         return;
     }
 
-    /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-4-3, begin */
 
-    /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-4-3, end */
 
     pstNetWkDetachInd = (GMMMM_NETWORK_DETACH_IND_STRU*)pRcvMsg;
 
@@ -7848,9 +5394,7 @@ VOS_VOID Mm_Cell_S22_E13(
         /*WUEPS_TRACE( MM_LOG_LEVEL_6,                                          */
         /*    " \nMM:MmServiceState is MM_ATTEMPTING_TO_UPDATE \r " );          */
         PS_NAS_LOG(WUEPS_PID_MM, VOS_NULL, PS_LOG_LEVEL_INFO, "Mm_Cell_S22_E13:INFO: MmServiceState is MM_ATTEMPTING_TO_UPDATE");
-        /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-3, begin */
         Mm_ComToU2Handle();                                                     /* 调用MM进U2的处理                         */
-        /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-3, end */
         Mm_SndRrRelReq(RRC_CELL_UNBARRED);
         Mm_SndMmcCmSvcInd(MM_CS_SERV_NOT_EXIST);
 
@@ -7921,39 +5465,14 @@ VOS_VOID Mm_Cell_S22_E13(
     }
 }
 
-/*******************************************************************************
-  MODULE   : Mm_Cell_S23_E13
-  FUNCTION : 在LOCATION UPDATING INITIATED状态下收到
-                GMMMM_NETWORK_DETACH_IND的处理
-  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
-  OUTPUT   : VOS_VOID
-  RETURN   : VOS_VOID
-  NOTE     :
-  HISTORY  :
-     1.  张志勇  2005.01.27 新规作成
-     2.  日    期   : 2008年09月03日
-         作    者   : l00130025
-         修改内容   : 问题单号：AT2D05403,mm注册状态修改
-     3.  日    期   : 2013年05月15日
-         作    者   : s46746
-         修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-     4.  日    期   : 2014年4月2日
-         作    者   : w00176964
-         修改内容   : V3R3C60_eCall项目修改:g_MmGlobalInfo.MsCsInfo.OldLai替换成MML中的
-     5.  日    期   : 2015年3月20日
-         作    者   : w00167002
-         修改内容   : DTS2015030305199:LAU建联失败达到最大次数后，使用NV中定制的T3212时长,T3212启动统一
-                      进行封装。
-*******************************************************************************/
+
 
 VOS_VOID Mm_Cell_S23_E13(
                         VOS_VOID            *pRcvMsg                                /* 接收消息的头地址                         */
                     )
 {
     GMMMM_NETWORK_DETACH_IND_STRU       *pstNetWkDetachInd;
-    /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-4-3, begin */
 
-    /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-4-3, end */
 
     if ( MM_FALSE == NAS_MM_RcvGmmNetworkDetechInd(pRcvMsg) )
     {
@@ -7962,9 +5481,7 @@ VOS_VOID Mm_Cell_S23_E13(
         return;
     }
 
-    /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-4-3, begin */
 
-    /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-4-3, end */
 
     pstNetWkDetachInd = (GMMMM_NETWORK_DETACH_IND_STRU*)pRcvMsg;
 
@@ -7997,9 +5514,7 @@ VOS_VOID Mm_Cell_S23_E13(
             /*WUEPS_TRACE( MM_LOG_LEVEL_6,                                      */
             /*    " \nMM:MmServiceState is MM_NO_IMSI \r " );                   */
             PS_NAS_LOG(WUEPS_PID_MM, VOS_NULL, PS_LOG_LEVEL_INFO, "Mm_Cell_S23_E13:INFO: MmServiceState is MM_NO_IMSI");
-            /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-3, begin */
             Mm_ComToNoImsiHandle();                                             /* 调用删除IMSI的公共处理                   */
-            /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-3, end */
             g_MmGlobalInfo.ucPreState = g_MmGlobalInfo.ucState;                 /* 记录前状态                               */
             Mm_ComSetMmState(WAIT_FOR_NETWORK_COMMAND);
             PS_NAS_LOG(WUEPS_PID_MM, VOS_NULL, PS_LOG_LEVEL_NORMAL, "Mm_Cell_S23_E13:NORMAL: STATUS is WAIT_FOR_NETWORK_COMMAND");
@@ -8041,19 +5556,7 @@ VOS_VOID Mm_Cell_S23_E13(
     }
 }
 
-/*******************************************************************************
-  MODULE   : Mm_Cell_S0_E16
-  FUNCTION : 在NULL状态下收到GMMMM_AUTHENTICATON_FAILURE_IND的处理
-  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
-  OUTPUT   : VOS_VOID
-  RETURN   : VOS_VOID
-  NOTE     :
-  HISTORY  :
-  1.  张志勇   2005.01.27 新规作成
-  2.日    期   : 2011年7月25日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-*******************************************************************************/
+
 
 VOS_VOID Mm_Cell_S0_E16(
                         VOS_VOID            *pRcvMsg                                /* 接收消息的头地址                         */
@@ -8102,43 +5605,15 @@ VOS_VOID Mm_Cell_S0_E33(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  :  Mm_Cell_S2_E33
- 功能描述  : 在MM IDLE PLMN SEARCH状态下
-             收到RRMM_REL_IND的处理,此种情况认为AS异常,释放掉所有的MM连接
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2007年9月29日
-   作    者   : luojian id:107747
-   修改内容   : 新生成函数,根据问题单号 A32D12966
- 2.日    期   : 2011年7月11日
-   作    者   : sunxibo 46746
-   修改内容   : V7R1 phase II,autoplmnsrch状态机调整为PlmnSelection状态机
- 3.日    期   : 2012年2月28日
-   作    者   : w00176964
-   修改内容   : DTS2012021405430:W下注册PS被拒15，CS注册未完成被网测释放RRC连接，
-                后续在W下注册成功后，异常清除了LAC信息，导致在收到新的系统消息异
-                常发起了LAU
- 4.日    期   : 2012年10月29日
-   作    者   : z00161729
-   修改内容   : DTS2012083102536:支持cc呼叫重建
- 5.日    期   :2013年9月12日
-   作    者   :z00161729
-   修改内容  :DTS2013082903019:支持ss重发功能
- 6.日    期   :2014年9月24日
-   作    者   :s00217060
-   修改内容   :for cs_err_log
-*****************************************************************************/
 VOS_VOID Mm_Cell_S2_E33(VOS_VOID *pRcvMsg )
 {
     VOS_UINT8                           ucValidFlg;
+    NAS_MMCM_REL_CAUSE_ENUM_UINT32      enRelCause;
 
     ucValidFlg                          = Mm_RcvRrcRelInd(pRcvMsg);
+    enRelCause                          = NAS_MM_GetMmCmRelCause();
+
     if ( MM_TRUE == ucValidFlg )
     {
         Mm_TimerStop(MM_TIMER_WAIT_CONNECT_REL);
@@ -8147,9 +5622,10 @@ VOS_VOID Mm_Cell_S2_E33(VOS_VOID *pRcvMsg )
         Mm_SndMmcRrConnInfInd(MMC_MM_RR_CONN_ABSENT);
         NAS_MM_SndGmmCsConnectInd(MMGMM_CS_CONNECT_NOT_EXIST);
         /* 释放所有MM连接,正在建的MM连接 */
-        /* IDLE PLMN SERCH、wait for attach、imsi detach pending等状态收到rel ind，
+        /* imsi detach pending状态收到rel ind，
            底层有异常，CS域应该未注册成功，释放所有的MM连接，不重拨 */
-        Mm_ComRelAllMmConn(NAS_MMCM_REL_CAUSE_MM_INTER_ERR_CS_DETACH);
+        NAS_NORMAL_LOG1(WUEPS_PID_MM, "Mm_Cell_S2_E33: MM Substate ", g_MmGlobalInfo.ucState);
+        Mm_ComRelAllMmConn(enRelCause);
 
 
         /* 需要清除MM保存的GMM的cause值 */
@@ -8162,26 +5638,7 @@ VOS_VOID Mm_Cell_S2_E33(VOS_VOID *pRcvMsg )
 }
 
 
-/*******************************************************************************
-  Module:   Mm_Cell_S26_E37
-  Function: 在IMSI DETACH INITIATED状态下,
-                            收到RRMM_DATA_IND(AUTHENTICATION REJECT)的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.张志勇     2005.01.27  003025 for MM
-  2.日    期   : 2011年7月14日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
-  3.日    期   : 2011年7月26日
-    作    者   : h44270
-    修改内容   : V7R1 PHASE II ATTACH/DETACH调整
-  4.日    期   : 2015年6月8日
-    作    者   : z00161729
-    修改内容   : 24008 23122 R11 CR升级项目修改
-*******************************************************************************/
+
 
 VOS_VOID Mm_Cell_S26_E37(VOS_VOID* pMsg)
 {
@@ -8218,23 +5675,7 @@ VOS_VOID Mm_Cell_S26_E37(VOS_VOID* pMsg)
 
 }
 
-/*******************************************************************************
-  MODULE   : Mm_Cell_S17_E22
-  FUNCTION : 在LOCATION UPDATING PENDING状态下收到MMCMM_DETACH_REQ的处理
-  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
-  OUTPUT   : VOS_VOID
-  RETURN   : VOS_VOID
-  NOTE     :
-  HISTORY  :
-  1.  张志勇   2005.01.07 新规作成
-  2.日    期   : 2011年7月26日
-    作    者   : h44270
-    修改内容   : V7R1 PHASE II ATTACH/DETACH调整
-  3.日    期   : 2012年01月12日
-    作    者   : l65478
-    修改内容   : 问题单号：DTS2012010602762:SYSCFG设置成支持CS ONLY后
-                 PS仍然显示正常服务
-*******************************************************************************/
+
 
 VOS_VOID Mm_Cell_S17_E22(
                         VOS_VOID            *pRcvMsg                                /* 接收消息的头地址                         */
@@ -8259,29 +5700,7 @@ VOS_VOID Mm_Cell_S17_E22(
     }
 }
 
-/*******************************************************************************
-  MODULE   : Mm_Cell_S17_E23
-  FUNCTION : 在LOCATION UPDATING PENDING状态下收到MMCMM_POWER_OFF_REQ的处理
-  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
-  OUTPUT   : VOS_VOID
-  RETURN   : VOS_VOID
-  NOTE     :
-  HISTORY  :
-     1.  张志勇   2005.01.07 新规作成
 
-  1.日    期   : 2012年8月24日
-    作    者   : z40661
-    修改内容   : DTS2012081702937
-    2.日    期   : 2012年9月07日
-      作    者   : l00171473
-      修改内容   : DTS2012081701006, 添加MM关机保护定时器
-    3.日    期   : 2013年05月15日
-      作    者   : s46746
-      修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-    4.日    期   : 2014年04月03日
-      作    者   : w00176964
-      修改内容   : V3R3C60_eCall项目调整
-*******************************************************************************/
 
 VOS_VOID Mm_Cell_S17_E23(
                         VOS_VOID            *pRcvMsg                                /* 接收消息的头地址                         */
@@ -8295,7 +5714,6 @@ VOS_VOID Mm_Cell_S17_E23(
         return;
     }
 
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-7, begin */
 #if (FEATURE_ON == FEATURE_LTE)
 
     /* 如果当前驻留LTE,则直接回复关机 */
@@ -8313,54 +5731,19 @@ VOS_VOID Mm_Cell_S17_E23(
     {
         Mm_SndMmcPowerOffCnf();                                                     /* 向MMC发送MMCMM_POWER_OFF_CNF             */
 
-        /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-8, begin */
         Mm_ComSetMmState(MM_NULL);
-        /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-8, end */
     }
     else
     {
 
         Mm_TimerStart(MM_TIMER_MODE_I_CS_PS_POWER_OFF_PROTECT);
     }
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-7, end */
 
 
     g_MmGlobalInfo.ucDetachType = MM_DETACH_CS_POWEROFF;                        /* 设置DETACH类型                           */
 }
 
-/*******************************************************************************
-  MODULE   : Mm_Cell_S25_E76
-  FUNCTION : 在WAIT FOR RR CONNECTION (IMSI DETACH)状态下MM_TIMER_PROTECT_DETACH溢出
-  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
-  OUTPUT   : VOS_VOID
-  RETURN   : VOS_VOID
-  NOTE     :
-  HISTORY  :
-  1.  张志勇        2005.01.27  007037 for MM
-  2.  日    期   : 2007年3月20日
-      作    者   : s46746
-      修改内容   : 问题单号：A32D09497
-  3. 日    期   : 2007年06月01日
-     作    者   : luojian id:60022475
-     修改内容   : 根据问题单A32D10964修改
-  4.日    期   : 2008年7月21日
-    作    者   : luojian 00107747
-    修改内容   : 问题单号：AT2D04201/AT2D04536
-  5.日    期   : 2011年7月26日
-    作    者   : h44270
-    修改内容   : V7R1 PHASE II ATTACH/DETACH调整
-  6.日    期   : 2011年7月25日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-  7.日    期   : 2013年05月15日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  8.日    期   : 2015年7月22日
-    作    者   : z00161729
-    修改内容   : DTS2015060807763:ap通过cgcatt下发imsi detach，建链失败后mm
-                本地detach，回复detach cnf时应该带limit service而不是normal service，
-                at命令回复ok而不是error
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S25_E76(
                         VOS_VOID            *pRcvMsg                                /* 接收消息的头地址                         */
                     )
@@ -8433,30 +5816,7 @@ VOS_VOID Mm_Cell_S9_E75(
 {
     /* WUEPS_ASSERT(0); */
 }
-/*******************************************************************************
-  MODULE   : Mm_Cell_S12_E77
-  FUNCTION : 在WAIT FOR RR CONNECTION (MM CONNECTION)状态下MM_TIMER_PROTECT_SIGNALLING溢出
-  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
-  OUTPUT   : VOS_VOID
-  RETURN   : VOS_VOID
-  NOTE     :
-  HISTORY  :
-     1.  张志勇        2005.01.27  007037 for MM
-     2.  s46746     2006.01.21  根据问题单A32D01682修改
 
-  2.日    期   : 2012年3月2日
-    作    者   : z40661
-    修改内容   : DTS2012021703361，等待GAS、WAS建链定时器超时后的处理
-  3.日    期   : 2012年10月29日
-    作    者   : z00161729
-    修改内容   : DTS2012083102536:支持cc呼叫重建
-  2.日    期   :2013年9月12日
-    作    者   :z00161729
-    修改内容   :DTS2013082903019:支持ss重发功能
-  3.日    期   :2014年9月24日
-    作    者   :s00217060
-    修改内容   :for cs_err_log
-*******************************************************************************/
 VOS_VOID Mm_Cell_S12_E77(
                         VOS_VOID            *pRcvMsg                                /* 接收消息的头地址                         */
                     )
@@ -8585,30 +5945,7 @@ VOS_VOID Mm_Cell_S22_E77(
 {
     Mm_RcvRrmmEstCnf();
 }
-/*******************************************************************************
-  MODULE   : Mm_Cell_S14_E77
-  FUNCTION : 在WAIT FOR REESTABLISH(WAIT FOR EST_CNF)状态下MM_TIMER_PROTECT_SIGNALLING溢出
-  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
-  OUTPUT   : VOS_VOID
-  RETURN   : VOS_VOID
-  NOTE     :
-  HISTORY  :
-     1.  s46746     2006.04.17  Create
 
-     2.日    期   : 2011年7月14日
-       作    者   : zhoujun 40661
-       修改内容   : 更新MML_CTX中的业务存在状态
-
-     3.日    期   : 2012年10月29日
-       作    者   : z00161729
-       修改内容   : DTS2012083102536:支持cc呼叫重建
-     4.日    期   :2013年9月12日
-       作    者   :z00161729
-       修改内容   :DTS2013082903019:支持ss重发功能
-     5.日    期   :2014年9月24日
-       作    者   :s00217060
-       修改内容   :for cs_err_log
-*******************************************************************************/
 VOS_VOID Mm_Cell_S14_E77(
                         VOS_VOID            *pRcvMsg                                /* 接收消息的头地址                         */
                     )
@@ -8722,39 +6059,7 @@ VOS_VOID Mm_Cell_S14_E77(
 }
 
 
-/*******************************************************************************
-  MODULE   : Mm_Cell_S6_E74
-  FUNCTION : 在MM IDLE LOCATION UPDATE NEEDED状态下收到RRMM_AC_INFORMATION_CHANGE_IND的处理
-  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
-  OUTPUT   : VOS_VOID
-  RETURN   : VOS_VOID
-  NOTE     :
-  HISTORY  :
-     1.  张志勇       2005.01.10  004005 for MM
-     2.  日    期   : 2008年09月03日
-         作    者   : l00130025
-         修改内容   : 问题单号：AT2D05403,mm注册状态修改
-     3.  日    期   : 2010年12月05日
-         作    者   : o00132663
-         修改内容   : 问题单号：DTS2010120400767,W下，CS被bar，PS UNBAR,网络模式II，PDP激活连接后
-                      用户手动将CS改为不bar,MM未发起LAU。
-       4.日    期   : 2012年2月15日
-         作    者   : w00166186
-         修改内容   : CSFB&PPAC&ETWS&ISR 开发
-       5.日    期   : 2012年12月11日
-         作    者   : w00176964
-         修改内容   : 更新小区禁止正常业务标记
-       6.日    期   : 2013年2月4日
-         作    者   : w00176964
-         修改内容   : DTS2011022802215:CS ONLY,网络模式I下也进行联合注册
-       7.日    期   : 2013年05月15日
-         作    者   : s46746
-         修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-       8.日    期   : 2015年3月20日
-         作    者   : w00167002
-         修改内容   : DTS2015030305199:LAU建联失败达到最大次数后，使用NV中定制的T3212时长,T3212启动统一
-                      进行封装。
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S6_E74(VOS_VOID *pRcvMsg)
 {
     RRMM_AC_INFO_CHANGE_IND_STRU               *pRrMmAcInfoChgInd;
@@ -8776,9 +6081,7 @@ VOS_VOID Mm_Cell_S6_E74(VOS_VOID *pRcvMsg)
         {
             NAS_MML_SetCsRestrictRegisterFlg(VOS_FALSE);
             NAS_MML_SetCsRestrictPagingFlg(VOS_FALSE);
-            /* Modified by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, begin */
             NAS_MML_SetCsRestrictNormalServiceFlg(VOS_FALSE);
-            /* Modified by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, end */
         }
 
         if ((VOS_TRUE == NAS_MM_IsClassAAndNmoIMode(g_MmGlobalInfo.ucNtMod))
@@ -8825,25 +6128,7 @@ VOS_VOID Mm_Cell_S6_E74(VOS_VOID *pRcvMsg)
     }
 }
 
-/*******************************************************************************
-  MODULE   : Mm_Cell_S0_E24
-  FUNCTION : 在NULL状态下收到MMCC_EST_REQ的处理
-  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
-  OUTPUT   : VOS_VOID
-  RETURN   : VOS_VOID
-  NOTE     :
-  HISTORY  :
-     1.  张志勇        2005.01.08  001030 for MM
-     2.日    期   : 2012年10月29日
-       作    者   : z00161729
-       修改内容   : DTS2012083102536:支持cc呼叫重建
-     3.日    期   :2013年9月12日
-       作    者   :z00161729
-       修改内容   :DTS2013082903019:支持ss重发功能
-     4.日    期   :2014年9月24日
-       作    者   :s00217060
-       修改内容   :for cs_err_log
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S0_E24(
                         VOS_VOID            *pRcvMsg                            /* 接收消息的头地址                         */
                     )
@@ -8883,34 +6168,7 @@ VOS_VOID Mm_Cell_S10_E40(
     Mm_ComMsgMmStatusSnd(&Msg);
 }
 
-/*******************************************************************************
-  Module:   Mm_Cell_S31_E1
-  Function: 在TEST_CONTROL_ACTIVE状态下,收到MMCMM_START_REQ的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.  张志勇     2005.01.27  新版作成
-  2.日    期   : 2011年7月25日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-  3.日    期   : 2012年8月29日
-    作    者   : l00171473
-    修改内容   : DTS2012081701006, TC状态开机时不发送REL_REQ
-  4.日    期   : 2012年10月29日
-    作    者   : z00161729
-    修改内容   : DTS2012083102536:支持cc呼叫重建
-  5.日    期   : 2013年05月15日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  6.日    期   :2013年9月12日
-    作    者   :z00161729
-    修改内容  :DTS2013082903019:支持ss重发功能
-  7.日    期   :2014年9月24日
-    作    者   :s00217060
-    修改内容   :for cs_err_log
-*******************************************************************************/
+
 
 VOS_VOID Mm_Cell_S31_E1(VOS_VOID* pMsg)
 {
@@ -8919,9 +6177,7 @@ VOS_VOID Mm_Cell_S31_E1(VOS_VOID* pMsg)
 
 
         g_MmGlobalInfo.ucPreState = g_MmGlobalInfo.ucState;                     /* 设置ucPreState                           */
-        /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-4-8, begin */
 
-        /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-4-8, end */
         Mm_ComSetMmState(MM_STATE_NULL);
 
 
@@ -8943,19 +6199,7 @@ VOS_VOID Mm_Cell_S31_E1(VOS_VOID* pMsg)
     return;                                                                     /* 返回                                     */
 }
 
-/*******************************************************************************
-  Module:   Mm_Cell_S0_E78
-  Function: 在MM NULL状态下,收到MM_AGENT_INQUIRE的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇     2005.01.28  新版作成
-      2. 日    期   : 2007年01月26日
-         作    者   : h44270
-         修改内容   : 问题单号：A32D08575,该问题属于演示性质,后续还要修改
-*******************************************************************************/
+
 
 VOS_VOID Mm_Cell_S0_E78(VOS_VOID* pMsg)
 {
@@ -8976,52 +6220,7 @@ VOS_VOID Mm_Cell_S0_E78(VOS_VOID* pMsg)
     }
 #endif
 }
-/*******************************************************************************
-  Module:   Mm_Cell_S31_E23
-  Function: 在TEST_CONTROL_ACTIVE状态下,收到MMCMM_POWER_OFF_REQ的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.  张志勇     2005.01.28  新规做成
-  2. 日    期   : 2007年3月20日
-     作    者   : s46746
-     修改内容   : 问题单号：A32D09497
-  3. 日    期   : 2007年08月19日
-     作    者   : luojian id:60022475
-     修改内容   : 根据问题单号：A32D12706
-  4. 日    期   : 2008年09月03日
-     作    者   : l00130025
-     修改内容   : 问题单号：AT2D05403,mm注册状态修改
-  5.日    期   : 2011年7月25日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-  6.日    期   : 2012年3月15日
-    作    者   : w00166186
-    修改内容   : V7R1 C50 CSFB&PPAC&ETWS&ISR开发
-  7.日    期   : 2012年9月07日
-    作    者   : l00171473
-    修改内容   : DTS2012081701006, 添加MM关机保护定时器
-  8.日    期   : 2012年10月29日
-    作    者   : z00161729
-    修改内容   : DTS2012083102536:支持cc呼叫重建
-  9.日    期   : 2013年2月4日
-    作    者   : w00176964
-    修改内容   : DTS2011022802215:CS ONLY,网络模式I下也进行联合注册
- 10.日    期   : 2013年05月15日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
- 11.日    期   :2013年9月12日
-   作    者   :z00161729
-   修改内容  :DTS2013082903019:支持ss重发功能
- 12.日    期   : 2014年6月13日
-   作    者   : w00242748
-   修改内容   : DSDS 新特性
- 13.日    期   :2014年9月24日
-    作    者   :s00217060
-    修改内容   :for cs_err_log
-*******************************************************************************/
+
 
 VOS_VOID Mm_Cell_S31_E23(VOS_VOID* pMsg)
 {
@@ -9159,22 +6358,7 @@ VOS_VOID Mm_Cell_S12_E79(
 
 }
 
-/*******************************************************************************
-  MODULE   : Mm_Cell_S13_E79
-  FUNCTION : 在WAIT FOR REESTABLISH(WAIT FOR REEST REQ)状态下MM_TIMER_PROTECT_CC溢出
-  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
-  OUTPUT   : VOS_VOID
-  RETURN   : VOS_VOID
-  NOTE     :
-  HISTORY  :
-     1.  s46746        2006.04.17  Create
-     2.日    期   : 2012年10月29日
-       作    者   : z00161729
-       修改内容   : DTS2012083102536:支持cc呼叫重建
-     3.日    期   :2014年9月24日
-       作    者   :s00217060
-       修改内容   :for cs_err_log
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S13_E79(
                         VOS_VOID            *pRcvMsg                                /* 接收消息的头地址                         */
                     )
@@ -9283,47 +6467,13 @@ VOS_VOID Mm_Cell_S9_E15(
     }
 }
 
-/*******************************************************************************
-  Module:   Mm_Cell_S9_E5
-  Function: 在WAIT_FOR_OUTGOING_MM_CONNECTION状态下,
-            接收到MMCMM_SYS_INFO_IND的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇     2005.02.01  新版做成
-      2.  日    期   : 2006年10月6日
-          作    者   : s46746
-          修改内容   : 问题单号：A32D05960
-      3.  日    期   : 2009年05月25日
-          作    者   : l65478
-          修改内容   : 问题单:AT2D10870,在MM连接建立过程中发生LAI改变,没有发起LU,导致呼叫失败
-      4.  日    期   : 2009年8月25日
-          作    者   : 欧阳飞 00132663
-          修改内容   : AT2D14050,【NAS R6协议升级测试】驻留后系统消息改变，指示DSAC PS域被BAR，
-                       拨打普通电话,通话期间T3312超时，释放后发起了错误的周期性LAU。
-      5.  日    期   : 2010年10月11日
-          作    者   : w00166186
-          修改内容   : DTS2010093000095,通话过程LAI改变，通话结束后第一次LAU总是失败。
-      6.  日    期   : 2010年11月22日
-          作    者   : h44270
-          修改内容   : DTS201011700067,没有处理系统消息，导致电话挂断后，没有发起LAU。
-      7.  日    期   : 2013年2月4日
-          作    者   : w00176964
-          修改内容   : DTS2011022802215:CS ONLY,网络模式I下也进行联合注册
-      8.  日    期   : 2014年04月1日
-          作    者   : w00176964
-          修改内容   : V3R3C60_eCall项目:系统消息处理优化
-*******************************************************************************/
+
 
 VOS_VOID Mm_Cell_S9_E5(VOS_VOID* pMsg)
 {
     MMCMM_SYS_INFO_IND_STRU            *pstSysInfoMsg;
 
-    /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-4-1, begin */
 
-    /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-4-1, end */
 
     g_MmGlobalInfo.ucConnRcvSysFlg = MM_TRUE;
 
@@ -9350,9 +6500,7 @@ VOS_VOID Mm_Cell_S9_E5(VOS_VOID* pMsg)
     if (  (VOS_TRUE == pstSysInfoMsg->ucPsChanged2UnBarFlg)
         &&(MM_TRUE == g_MmGlobalInfo.LuInfo.ucT3212ExpiredFlg ))
     {
-        /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-29, begin */
         if (VOS_TRUE == NAS_MM_IsClassAAndNmoIMode(g_MmGlobalInfo.ucNewNtMod))
-        /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-29, end */
         {
             g_MmGlobalInfo.LuInfo.ucT3212ExpiredFlg = MM_FALSE;
         }
@@ -9364,73 +6512,7 @@ VOS_VOID Mm_Cell_S9_E5(VOS_VOID* pMsg)
     }
 }
 
-/*******************************************************************************
-  Module:   Mm_Cell_S12_E5
-  Function: 在WAIT_FOR_RR_CONNECTION_MM_CONNECTION状态下,
-            接收到MMCMM_SYS_INFO_IND的处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.z40661     2009.07.23  新版做成
-  2.日    期   : 2009年08月07日
-    作    者   : o00132663
-    修改内容   : 问题单:AT2D13560,在MM连接建立过程中发生LAI改变,没有发起LU,导致呼叫失败
-  3.日    期   : 2010年05月14日
-    作    者   : l65478
-    修改内容   : 问题单号:AT2D19292,MM在寻呼建立连接时，收到系统信息，把状态迁到NORMAL状态，导致GCF失败
-  4.日    期   : 2011年7月22日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
-  5.日    期   : 2011年05月13日
-    作    者   : f00179208
-    修改内容   : 问题单号：DTS201104300028，出服务区拨打紧急呼，释放紧急呼后MM异常重启了T3212
-  6.日    期   : 2011年03月18日
-    作    者   : c00173809
-    修改内容   : 问题单号：DTSs2011031600590，在无H3G信号区域,紧急呼概率不成功
-  7.日    期   : 2012年2月15日
-    作    者   : w00166186
-    修改内容   : CSFB&PPAC&ETWS&ISR 开发
-  8.日    期   : 2012年10月22日
-    作    者   : t00212959
-    修改内容   : DTS2012101907218:NAS向接入层发送LAU请求时，Establishment cause按照协议写为Registration
-  9.日    期   : 2012年10月29日
-    作    者   : z00161729
-    修改内容   : DTS2012083102536:支持cc呼叫重建
- 10.日    期   : 2013年7月21日
-    作    者   : w00242748
-    修改内容   : DTS2013071802235:拨号过程中，异系统切换到G，位置区变化，进行LAU后，重新发送拨号请求
- 11.日    期   : 2013年08月15日
-    作    者   : l65478
-    修改内容   : DTS2013081404782MM业务结束后没有通知GMM CS业务结束
- 12.日    期   : 2013年09月03日
-    作    者   : l65478
-    修改内容   : DTS2013041602825:CSFB连接建立失败后没有发起LU
- 13.日    期   :2013年9月23日
-    作    者   :w00242748
-    修改内容   :DTS2013091407626:W下UE被叫，未收到网侧建联CNF前，发生重定向到G后，未发起LAU
- 14.日    期   :2013年9月12日
-    作    者   :z00161729
-    修改内容   :DTS2013082903019:支持ss重发功能
- 15.日    期   : 2013年12月5日
-    作    者   : w00167002
-    修改内容   : DTS2013113006231:W下，开机在LAC1上注册成功，重选到LAC2上，CS注册成功
-                  PS注册被拒#13,重选回LAC1上，注册成功。丢网后任意小区驻留在LAC2
-                  上，不发起注册，重选回LAC1上，检测不发起注册。
-                  修改为在收到系统消息时候，不进行UPDATE状态的更新。
 
-                  删除函数Mm_ComIsLaiForbidden，复用封装函数NAS_MM_ProcNoGprsForbidenFlg_RcvSysInfoInd
- 16.日    期   : 2014年04月1日
-    作    者   : w00176964
-    修改内容   : V3R3C60_eCall项目:系统消息处理优化
- 17.日    期   :2014年9月24日
-    作    者   :s00217060
-    修改内容   :for cs_err_log
- 18.日    期   :2015年5月21日
-    作    者   :b00269685
-    修改内容   :若LAI变化缓存一下paging
-*******************************************************************************/
 
 VOS_VOID Mm_Cell_S12_E5(VOS_VOID* pMsg)
 {
@@ -9439,10 +6521,8 @@ VOS_VOID Mm_Cell_S12_E5(VOS_VOID* pMsg)
 
     VOS_UINT32                          ulCsfbEmgCallLaiChgLauFirstFlg;
 
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-1, begin */
     ucLaiChange    = NAS_MML_IsCsLaiChanged();
     ulCsServExist  = Mm_ComJudgeCsServExist();
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-1, end */
 
     /* 如果当前CS注册变为受限，需要重新设置建链前状态 */
     if (VOS_TRUE == NAS_MML_GetCsRestrictRegisterFlg())
@@ -9496,9 +6576,7 @@ VOS_VOID Mm_Cell_S12_E5(VOS_VOID* pMsg)
         return;
     }
 
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-17, begin */
     if (VOS_TRUE == NAS_MM_IsCsForbidden())
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-17, end */
     {
         Mm_TimerStop(MM_TIMER_PROTECT_SIGNALLING);
 
@@ -9642,32 +6720,7 @@ VOS_VOID Mm_Cell_S10_E50(
 
     return;
 }
-/*******************************************************************************
-  MODULE   : Mm_Cell_S5_E80
-  FUNCTION : 在MM IDLE ATTEMPTING TO UPDATE,WAIT FOR NETWORK COMMAND状态下收到
-             MMSS_ABORT_REQ的处理
-  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
-  OUTPUT   : VOS_VOID
-  RETURN   : VOS_VOID
-  NOTE     :
-  HISTORY  :
-       1.日    期   : 2007年3月9日
-         作    者   : luojian id:60022475
-         修改内容   : 根据问题单A32D09099创建
-       2.日    期   : 2012年2月29日
-         作    者   : w00167002
-         修改内容   : V7R1C50 支持CSFB特性修改:
-                      当前存在补充业务的CSFB流程，则清空CSFB存在标志
-       3.日    期   : 2014年6月13日
-         作    者   : w00242748
-         修改内容   : DSDS 新特性
-       4.日    期   : 2014年9月23日
-         作    者   : z00161729
-         修改内容   : DTS2014092302846:L下拨打电话搜网到w下被#12拒绝的小区，电话失败后重选回l，mm会给cc多发一次mmcc rel ind
-       5.日    期   : 2016年2月2日
-         作    者   : z00359541
-         修改内容   : DTS2016011809099:不需要发送CSFB ABORT消息打断状态机，CSFB结束后收到SS STARTUS NOTIFY消息时会打断
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S5_E80(
                         VOS_VOID            *pRcvMsg                                /* 接收消息的头地址                         */
                     )
@@ -9716,23 +6769,7 @@ VOS_VOID Mm_Cell_S5_E80(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : Mm_Cell_S32_E80
- 功能描述  : 在MM_INTER_RAT_CHANGE状态收到ss abort req消息处理
- 输入参数  : pRcvMsg - 收到的原语头指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月22日
-    作    者   : z00161729
-    修改内容   : DTS2014050601476:L打电话重定向到g过程中电话挂断，mm缓存cc abort，g查询csfb状态是存在，lau结束后没有启动自主FR流程到L
-  2.日    期   : 2014年6月13日
-    作    者   : w00242748
-    修改内容   : DSDS 新特性
-*****************************************************************************/
 VOS_VOID Mm_Cell_S32_E80(
     VOS_VOID                           *pRcvMsg
 )
@@ -9786,23 +6823,7 @@ VOS_VOID Mm_Cell_S32_E80(
 
 
 
-/*******************************************************************************
-  MODULE   : Mm_Cell_S9_E80
-  FUNCTION : 在WAIT FOR OUTGOING MM CONNECTION状态下收到MMSS_ABORT_REQ的处理
-  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
-  OUTPUT   : VOS_VOID
-  RETURN   : VOS_VOID
-  NOTE     :
-  HISTORY  :
-     1.  张志勇   05-02-01  新版作成
-     2.日    期   : 2012年2月29日
-       作    者   : w00167002
-       修改内容   : V7R1C50 支持CSFB特性修改:
-                      当前存在补充业务的CSFB流程，则清空CSFB存在标志
-     3.日    期   : 2014年7月7日
-       作    者   : w00242748
-       修改内容   : DSDS III新特性
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S9_E80(
                         VOS_VOID            *pRcvMsg                                /* 接收消息的头地址                         */
                     )
@@ -9871,19 +6892,7 @@ VOS_VOID Mm_Cell_S9_E80(
 
     return;
 }
-/*******************************************************************************
-  MODULE   : Mm_Cell_S5_E81
-  FUNCTION : 在MM IDLE ATTEMPTING TO UPDATE,WAIT FOR NETWORK COMMAND状态下收到
-             MMSMS_ABORT_REQ的处理
-  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
-  OUTPUT   : VOS_VOID
-  RETURN   : VOS_VOID
-  NOTE     :
-  HISTORY  :
-      1. 日    期   : 2007年3月9日
-         作    者   : luojian id:60022475
-         修改内容   : 根据问题单A32D09099创建
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S5_E81(
                         VOS_VOID            *pRcvMsg                                /* 接收消息的头地址                         */
                     )
@@ -9961,24 +6970,7 @@ VOS_VOID Mm_Cell_S9_E81(
     return;
 }
 
-/*******************************************************************************
-  MODULE   : Mm_Cell_S10_E80
-  FUNCTION : 在MM CONNECTION ACTIVE状态下收到MMSS_ABORT_REQ的处理
-  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
-  OUTPUT   : VOS_VOID
-  RETURN   : VOS_VOID
-  NOTE     :
-  HISTORY  :
-     1.  张志勇   05-02-01  新版作成
 
-     2.日    期   : 2011年7月14日
-       作    者   : zhoujun 40661
-       修改内容   : 更新MML_CTX中的业务存在状态
-     3.日    期   : 2012年2月29日
-       作    者   : w00167002
-       修改内容   : V7R1C50 支持CSFB特性修改:
-                     当前存在补充业务的CSFB流程，则清空CSFB存在标志
-*******************************************************************************/
 VOS_VOID Mm_Cell_S10_E80(
                         VOS_VOID            *pRcvMsg                                /* 接收消息的头地址                         */
                     )
@@ -10068,20 +7060,7 @@ VOS_VOID Mm_Cell_S10_E80(
     return;
 }
 
-/*******************************************************************************
-  MODULE   : Mm_Cell_S10_E81
-  FUNCTION : 在MM CONNECTION ACTIVE状态下收到MMSMS_ABORT_REQ的处理
-  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
-  OUTPUT   : VOS_VOID
-  RETURN   : VOS_VOID
-  NOTE     :
-  HISTORY  :
-     1.  张志勇   05-02-01  新版作成
 
-     2.日    期   : 2011年7月14日
-       作    者   : zhoujun 40661
-       修改内容   : 更新MML_CTX中的业务存在状态
-*******************************************************************************/
 VOS_VOID Mm_Cell_S10_E81(
                         VOS_VOID            *pRcvMsg                                /* 接收消息的头地址                         */
                     )
@@ -10148,23 +7127,7 @@ VOS_VOID Mm_Cell_S10_E81(
     return;
 }
 
-/*******************************************************************************
-  MODULE   : Mm_Cell_S12_E80
-  FUNCTION : 在WAIT FOR RR CONNECTION (MM CONNECTION)状态下收到MMSS_ABORT_REQ的处理
-  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
-  OUTPUT   : VOS_VOID
-  RETURN   : VOS_VOID
-  NOTE     :
-  HISTORY  :
-     1.  张志勇   05-02-01  新版作成
-     2.日    期   : 2012年2月29日
-       作    者   : w00167002
-       修改内容   : V7R1C50 支持CSFB特性修改:
-                     当前存在补充业务的CSFB流程，则清空CSFB存在标志
-     3.日    期   :2013年8月13日
-       作    者   :z00161729
-       修改内容   :DTS2013081207431:mm挂起状态收到cc的t303超时abort消息，需要缓存，收到resume ind时再处理
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S12_E80(
                         VOS_VOID            *pRcvMsg                                /* 接收消息的头地址                         */
                     )
@@ -10304,21 +7267,7 @@ VOS_VOID Mm_Cell_S12_E81(
     return;
 }
 
-/*******************************************************************************
-  MODULE   : Mm_Cell_S16_E80
-  FUNCTION : 在WAIT FOR ADDITIONAL OUTGOING MM CONNECTION状态下
-             收到MMSS_ABORT_REQ的处理
-  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
-  OUTPUT   : VOS_VOID
-  RETURN   : VOS_VOID
-  NOTE     :
-  HISTORY  :
-     1.  张志勇   05-02-01  新版作成
-     2.日    期   : 2012年2月29日
-       作    者   : w00167002
-       修改内容   : V7R1C50 支持CSFB特性修改:
-                     当前存在补充业务的CSFB流程，则清空CSFB存在标志
-*******************************************************************************/
+
 VOS_VOID Mm_Cell_S16_E80(
                         VOS_VOID            *pRcvMsg                                /* 接收消息的头地址                         */
                     )
@@ -10566,35 +7515,7 @@ VOS_VOID Mm_Cell_S27_E82(
 
 
 
-/*****************************************************************************
- Prototype      : Mm_Cell_S9_E83
- Description    : 在状态下WAIT FOR OUTGOING MM CONNECTION
-                  收到GRRMM_EST_SAPI3_CNF的处理
- Input          : *pRcvMsg  收到的原语头指针
- Output         :
- Return Value   : 无
- Calls          :
- Called By      :
- History        : ---
-  1.Date        : 2005-10-22
-    Author      : sxbo
-    Modification: Created function
 
-  2.日    期   : 2011年7月14日
-    作    者   : zhoujun 40661
-    修改内容   : 更新MML_CTX中的业务存在状态
-
-  3.日    期   : 2013年5月16日
-    作    者   : w00167002
-    修改内容   : DTS2013051408623:发短信建立时候，用户发起电话，缓存电话发起时，
-                 PD被清除，导致电话发起失败。
-  4.日    期   :2013年9月12日
-    作    者   :z00161729
-    修改内容  :DTS2013082903019:支持ss重发功能
-  5.日    期   :2014年9月24日
-    作    者   :s00217060
-    修改内容   :for cs_err_log
-*****************************************************************************/
 VOS_VOID Mm_Cell_S9_E83(VOS_VOID *pRcvMsg)
 {
     GRRMM_EST_SAPI3_CNF_ST             *pstEstSapi3Cnf;
@@ -10670,27 +7591,7 @@ VOS_VOID Mm_Cell_S9_E83(VOS_VOID *pRcvMsg)
 
     return;
 }
-/*****************************************************************************
- Prototype      : Mm_Cell_S9_E86
- Description    : 在状态下WAIT FOR OUTGOING MM CONNECTION
-                  收到GRRMM_EST_SAPI3_CNF的处理
- Input          : *pRcvMsg  收到的原语头指针
- Output         :
- Return Value   : 无
- Calls          :
- Called By      :
- History        : ---
-  1.Date        : 2005-10-22
-    Author      : sxbo
-    Modification: Created function
- 2.日    期  : 2008年12月2日
-   作    者  : s62952
-   修改内容  : 根据问题单A32D07110修改
 
-  3.日    期   : 2010年3月23日
-    作    者   : zhoujun /z40661
-    修改内容   : AMR速率调整
-*****************************************************************************/
 VOS_VOID Mm_Cell_S6_E86(VOS_VOID *pRcvMsg)
 {
     GAS_RR_CHAN_MOD_IND_ST   *pChanMod;
@@ -10719,48 +7620,10 @@ VOS_VOID Mm_Cell_S6_E86(VOS_VOID *pRcvMsg)
     Mm_SndCcSyncInd();
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_ProcInterRatReselInLuProcedure
- 功能描述  : 在进行LU的过程中，发生系统间重选的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月25日
-    作    者   : l65478
-    修改内容   : 新生成函数
-  2.日    期   : 2013年05月15日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  3.日    期   : 2014年4月2日
-    作    者   : w00176964
-    修改内容   : V3R3C60_eCall项目修改:g_MmGlobalInfo.MsCsInfo.OldLai替换成MML中的
-
-  4.日    期   : 2014年6月4日
-    作    者   : w00167002
-    修改内容   : DTS2014052603967:CS only，在A小区注册失败17后迁移到B小区，在B小区
-                是禁止PLMN小区，MM迁移到LIMIT service状态，后续搜网到A小区网络后，
-                发起了LAU.
-                在LAU失败迁移到U2状态时候记录当前的LAI信息；在开机，用户发起CS/CS_PS
-                DETACH时候或或者重新发起LAU时候则清除该LAI信息；
-                在后续搜索到该小区后，在U2状态，如果当前的LAI在记录的LAI里面，则
-                不发起LAU.删除不用的全局变量.
-  5.日    期   : 2015年3月20日
-    作    者   : w00167002
-    修改内容   : DTS2015030305199:LAU建联失败达到最大次数后，使用NV中定制的T3212时长,T3212启动统一
-                 进行封装。
-  6.日    期   : 2015年6月23日
-    作    者   : z00161729
-    修改内容   : 24008 23122 R11 CR升级项目修改
-*****************************************************************************/
 VOS_VOID NAS_MM_ProcInterRatReselInLuProcedure(VOS_VOID)
 {
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-15, begin */
     NAS_MML_LOCATION_UPDATE_STATUS_ENUM_UINT8               enCsUpdateStatus;
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-15, end */
     MM_LAI_STRU                                            *pstAttLaiInfo   = VOS_NULL_PTR;
     NAS_MML_LAI_STRU                                       *pstCampLaiInfo  = VOS_NULL_PTR;
 
@@ -10813,7 +7676,6 @@ VOS_VOID NAS_MM_ProcInterRatReselInLuProcedure(VOS_VOID)
             g_MmGlobalInfo.ucMmServiceState = MM_ATTEMPTING_TO_UPDATE;
             PS_NAS_LOG(WUEPS_PID_MM, VOS_NULL, PS_LOG_LEVEL_INFO, "NAS_MM_ProcInterRatReselInLuProcedure:INFO: MmServiceState is MM_ATTEMPTING_TO_UPDATE");
 
-            /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-15, begin */
             NAS_MM_SndMmcCsRegResultInd(MM_MMC_LU_PROC_TRUE,
                                         MM_MMC_LU_RESULT_FAILURE,
                                         NAS_MML_REG_FAIL_CAUSE_RR_CONN_FAIL);
@@ -10823,7 +7685,6 @@ VOS_VOID NAS_MM_ProcInterRatReselInLuProcedure(VOS_VOID)
 
             /* 进U2的公共处理 */
             Mm_ComToU2Handle();
-            /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-15, end */
 
             Mm_TimerStop(MM_TIMER_T3211);
             Mm_TimerStart(MM_TIMER_T3211);                                      /* 启动T3211                                */
@@ -10842,7 +7703,6 @@ VOS_VOID NAS_MM_ProcInterRatReselInLuProcedure(VOS_VOID)
         pstAttLaiInfo->PlmnId.ulMnc = pstCampLaiInfo->stPlmnId.ulMnc;
         pstAttLaiInfo->ulLac        = ((pstCampLaiInfo->aucLac[0] << 8)| (pstCampLaiInfo->aucLac[1]));
 
-        /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-15, begin */
         NAS_MM_SndMmcCsRegResultInd(MM_MMC_LU_PROC_TRUE,
                                     MM_MMC_LU_RESULT_FAILURE,
                                     NAS_MML_REG_FAIL_CAUSE_RR_CONN_FAIL);
@@ -10852,7 +7712,6 @@ VOS_VOID NAS_MM_ProcInterRatReselInLuProcedure(VOS_VOID)
 
         /* 进U2的公共处理 */
         Mm_ComToU2Handle();
-        /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-15, end */
 
         Mm_TimerStop(MM_TIMER_T3212);                                           /* T3212先进行停止                                */
         NAS_MM_StartT3212Timer(NAS_MM_T3212_START_SCENE_NORMAL_START);
@@ -10869,21 +7728,7 @@ VOS_VOID NAS_MM_ProcInterRatReselInLuProcedure(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_ProcDelayService
- 功能描述  : 处理缓存的MM业务
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月25日
-    作    者   : l65478
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MM_ProcDelayService(VOS_VOID)
 {
     VOS_UINT8                                   ucRrConnRelFlg;
@@ -10913,21 +7758,7 @@ VOS_VOID NAS_MM_ProcDelayService(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : Mm_Cell_S2_E15
- 功能描述  : mm在idle limite service/idle plmn search/no cell available状态收到GMMMM_LU_INITIATION的处理
- 输入参数  : pRcvMsg - 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月13日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID Mm_Cell_S2_E15(
     VOS_VOID                           *pRcvMsg
 )
@@ -10949,21 +7780,7 @@ VOS_VOID Mm_Cell_S2_E15(
 
 
 
-/*****************************************************************************
- 函 数 名  : Mm_Cell_S3_E54
- 功能描述  : mm在MM IDLE NORMAL SERVICE 状态收到T3213定时器超时的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月26日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID Mm_Cell_S3_E54(VOS_VOID* pMsg)
 {
     VOS_UINT32                          ulIsTestCard;

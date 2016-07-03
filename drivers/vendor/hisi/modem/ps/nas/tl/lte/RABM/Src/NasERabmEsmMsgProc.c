@@ -1,14 +1,4 @@
-/******************************************************************************
 
-   Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : NasERabmEsmMsgProc.c
-  Description     : 该C文件给出了SM_MSG模块的实现
-  History         :
-     1.yangqianhui 00135146      2008-9-11  Draft Enact
-
-******************************************************************************/
 
 
 /*****************************************************************************
@@ -42,16 +32,7 @@ extern "C" {
   3 Function
 *****************************************************************************/
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_EsmMsgDistr()
- Description     : RABM模块SM消息分发处理
- Input           : VOS_VOID *pRcvMsg-----------消息指针
- Output          : VOS_VOID
- Return          : VOS_VOID
- History         :
-      1.yangqianhui 00135146      2008-9-11  Draft Enact
 
-*****************************************************************************/
 /*lint -e960*/
 /*lint -e961*/
 VOS_VOID NAS_ERABM_EsmMsgDistr( VOS_VOID *pRcvMsg )
@@ -107,17 +88,7 @@ VOS_VOID NAS_ERABM_EsmMsgDistr( VOS_VOID *pRcvMsg )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_SrchOnlyActiveAndNoUlTftEpsb
- Description     : 遍历承载激活表，检查是否只有一条激活承载
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-7-12  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ERABM_SrchOnlyActiveAndNoUlTftEpsb( VOS_VOID )
 {
 
@@ -157,16 +128,7 @@ VOS_VOID  NAS_ERABM_SrchOnlyActiveAndNoUlTftEpsb( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_SaveUeIpAddr
- Description     : 保存ue的IP地址
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.yangqianhui 00135146      2009-7-8  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ERABM_SaveUeIpAddr(const ESM_ERABM_ACT_IND_STRU *pRcvMsg, VOS_UINT32 ulEpsbId)
 {
     VOS_UINT8                           ucIpType   = ESM_ERABM_PDN_TYPE_IPV4;
@@ -235,18 +197,7 @@ VOS_VOID NAS_ERABM_SaveUeIpAddr(const ESM_ERABM_ACT_IND_STRU *pRcvMsg, VOS_UINT3
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_SaveEpsbActInfo()
- Description     : 收到承载激活消息时，记录新的承载激活信息
- Input           : ESM_ERABM_ACT_IND_STRU *pRcvMsg
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.yangqianhui 00135146      2008-9-11  Draft Enact
-    2.lihong 00150010           2009-5-27  Modify
-
-*****************************************************************************/
 VOS_VOID NAS_ERABM_SaveEpsbActInfo(const ESM_ERABM_ACT_IND_STRU *pRcvMsg, VOS_UINT32 ulEpsbId )
 {
     VOS_UINT32                          ulEpsTftPfNum           = pRcvMsg->ulTftPfNum;
@@ -298,17 +249,7 @@ VOS_VOID NAS_ERABM_SaveEpsbActInfo(const ESM_ERABM_ACT_IND_STRU *pRcvMsg, VOS_UI
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_ClearEpsbResource
- Description     : 清空EPS承载的相关信息
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.yangqianhui 00135146      2008-9-23  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ERABM_ClearEpsbResource( VOS_UINT32 ulEpsbId )
 {
     VOS_UINT32                          ulEpsTftPfNum   = NAS_ERABM_NULL;
@@ -337,18 +278,7 @@ VOS_VOID NAS_ERABM_ClearEpsbResource( VOS_UINT32 ulEpsbId )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_RcvRabmEsmActInd()
- Description     : RABM模块ESM_ERABM_ACT_IND_STRU消息分发处理
- Input           : ESM_ERABM_ACT_IND_STRU *pRcvMsg-----------消息指针
- Output          : VOS_VOID
- Return          : VOS_VOID
 
- History         :
-     1.yangqianhui 00135146      2008-9-11  Draft Enact
-     2.lihong 00150010           2009-12-24  Modify
-     3.sunjitan 00193151         2016-01-14  Mofify for CL多模互操作
-*****************************************************************************/
 VOS_VOID  NAS_ERABM_RcvRabmEsmActInd(const ESM_ERABM_ACT_IND_STRU *pRcvMsg )
 {
     VOS_UINT32               ulEpsbId          = 0;                         /*用来记录EPS承载激活表中的EPSID*/
@@ -657,16 +587,7 @@ VOS_VOID NAS_ERABM_RcvRabmEsmRelInd( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_SndRabmEsmRelReq()
- Description     : 构建和发送ESM_ERABM_REL_REQ消息
- Input           : VOS_VOID
- Output          : None
- Return          : VOS_VOID
- History         :
-     1.yangqianhui 00135146      2008-9-11  Draft Enact
 
-*****************************************************************************/
 
 VOS_VOID NAS_ERABM_SndRabmEsmRelReq( VOS_VOID )
 {
@@ -750,17 +671,7 @@ VOS_VOID NAS_ERABM_SndRabmEsmBearerStatusReq(const VOS_UINT32 *pulEpsbId,
 }
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- Function Name   : NAS_ERABM_SaveEhrpdbActInfo
- Description     : 收到EHRPD承载激活消息时，记录新的承载激活信息
- Input           : *pRcvMsg              承载激活消息
-                   ulEhrpbBearerId
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.sunjitan 00193151      2016-01-14  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ERABM_SaveEhrpdbActInfo(
     const ESM_ERABM_ACT_IND_STRU       *pRcvMsg
 )
@@ -800,17 +711,7 @@ VOS_VOID NAS_ERABM_SaveEhrpdbActInfo(
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_RcvRabmEsmClearClBearerNotify
- Description     : RABM模块ID_ESM_ERABM_CLEAR_CL_BEARER_NOTIFY消息分发处理,
-                   收到此消息时，ERABM清除所有LTE下和EHRPD承载记录
- Input           : VOS_VOID
- Output          : VOS_VOID
- Return          : VOS_VOID
 
- History         :
-    1.sunjitan 00193151      2016-01-14  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ERABM_RcvRabmEsmClearClBearerNotify(VOS_VOID)
 {
     VOS_UINT32                          ulLoop;

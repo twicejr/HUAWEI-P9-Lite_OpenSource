@@ -30,22 +30,7 @@ extern "C" {
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : AT_SetActiveModem
- 功能描述  : 命令^ACTIVEMODEM设置处理函数
-             命令格式:AT^ACTIVEMODEM=<enable>
- 输入参数  : ucIndex - 用户索引
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年09月21日
-    作    者   : l00198894
-    修改内容   : DSDS单/双卡模式
-
-*****************************************************************************/
 VOS_UINT32 AT_SetActiveModem(VOS_UINT8 ucIndex)
 {
     TAF_NV_DSDS_ACTIVE_MODEM_MODE_STRU  stMode;
@@ -71,20 +56,7 @@ VOS_UINT32 AT_SetActiveModem(VOS_UINT8 ucIndex)
 
 #if(FEATURE_ON == FEATURE_LTE)
 #if(FEATURE_ON == FEATURE_LTE_MBMS)
-/*****************************************************************************
- 函 数 名  : AT_SetMBMSServiceOptPara
- 功能描述  : ^MBMSCMD="MBMS_SERVICE_ENABLER",<param1>
- 输入参数  : ucIndex - 端口索引
- 输出参数  : 无
- 返 回 值  : AT_XXX
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_SetMBMSServiceOptPara(VOS_UINT8 ucIndex)
 {
     AT_MTA_MBMS_SERVICE_OPTION_SET_REQ_STRU         stMBMSServiceOption;
@@ -141,22 +113,7 @@ VOS_UINT32 AT_SetMBMSServiceOptPara(VOS_UINT8 ucIndex)
     return AT_WAIT_ASYNC_RETURN;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SetMBMSServiceStatePara
- 功能描述  : ^MBMSCMD="ACTIVATE",<param1>,<param2>
-             ^MBMSCMD="DEACTIVATE",<param1>,<param2>
-             ^MBMSCMD="DEACTIVATE_ALL"
- 输入参数  : ucIndex - 端口索引
- 输出参数  : 无
- 返 回 值  : AT_XXX
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_SetMBMSServiceStatePara(VOS_UINT8 ucIndex)
 {
     AT_MTA_MBMS_SERVICE_STATE_SET_REQ_STRU          stMBMSServiceState;
@@ -253,20 +210,7 @@ VOS_UINT32 AT_SetMBMSServiceStatePara(VOS_UINT8 ucIndex)
     return AT_WAIT_ASYNC_RETURN;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SetMBMSPreferencePara
- 功能描述  : ^MBMSCMD="MBMS_PREFERENCE",<param1>
- 输入参数  : ucIndex - 端口索引
- 输出参数  : 无
- 返 回 值  : AT_XXX
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_SetMBMSPreferencePara(VOS_UINT8 ucIndex)
 {
     AT_MTA_MBMS_PREFERENCE_SET_REQ_STRU             stMBMSCastMode;
@@ -321,20 +265,7 @@ VOS_UINT32 AT_SetMBMSPreferencePara(VOS_UINT8 ucIndex)
     return AT_WAIT_ASYNC_RETURN;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SetMBMSCMDPara
- 功能描述  : ^MBMSCMD
- 输入参数  : ucIndex - 端口索引
- 输出参数  : 无
- 返 回 值  : AT_XXX
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_SetMBMSCMDPara(VOS_UINT8 ucIndex)
 {
     VOS_UINT32                          ulRst;
@@ -399,20 +330,7 @@ VOS_UINT32 AT_SetMBMSCMDPara(VOS_UINT8 ucIndex)
     return ulRst;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SetMBMSEVPara
- 功能描述  : ^MBMSEV
- 输入参数  : ucIndex - 端口索引
- 输出参数  : 无
- 返 回 值  : AT_XXX
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_SetMBMSEVPara(VOS_UINT8 ucIndex)
 {
     AT_MTA_MBMS_UNSOLICITED_CFG_SET_REQ_STRU        stMBMSUnsolicitedCfg;
@@ -472,20 +390,7 @@ VOS_UINT32 AT_SetMBMSEVPara(VOS_UINT8 ucIndex)
     return AT_WAIT_ASYNC_RETURN;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SetMBMSInterestListPara
- 功能描述  : ^MBMSINTERESTLIST
- 输入参数  : ucIndex - 端口索引
- 输出参数  : 无
- 返 回 值  : AT_XXX
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_SetMBMSInterestListPara(VOS_UINT8 ucIndex)
 {
     AT_MTA_MBMS_INTERESTLIST_SET_REQ_STRU           stMBMSInterestList;
@@ -569,20 +474,7 @@ VOS_UINT32 AT_SetMBMSInterestListPara(VOS_UINT8 ucIndex)
     return AT_WAIT_ASYNC_RETURN;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_QryMBMSSib16NetworkTimePara
- 功能描述  : ^MBMSCMD="SIB16_GET_NETWORK_TIME"
- 输入参数  : ucIndex - 端口索引
- 输出参数  : 无
- 返 回 值  : AT_XXX
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_QryMBMSSib16NetworkTimePara(VOS_UINT8 ucIndex)
 {
     VOS_UINT32                                      ulRst;
@@ -607,20 +499,7 @@ VOS_UINT32 AT_QryMBMSSib16NetworkTimePara(VOS_UINT8 ucIndex)
     return AT_WAIT_ASYNC_RETURN;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_QryMBMSBssiSignalLevelPara
- 功能描述  : ^MBMSCMD="BSSI_SIGNAL_LEVEL"
- 输入参数  : ucIndex - 端口索引
- 输出参数  : 无
- 返 回 值  : AT_XXX
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_QryMBMSBssiSignalLevelPara(VOS_UINT8 ucIndex)
 {
     VOS_UINT32                                      ulRst;
@@ -645,20 +524,7 @@ VOS_UINT32 AT_QryMBMSBssiSignalLevelPara(VOS_UINT8 ucIndex)
     return AT_WAIT_ASYNC_RETURN;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_QryMBMSNetworkInfoPara
- 功能描述  : ^MBMSCMD="NETWORK_INFORMATION"
- 输入参数  : ucIndex - 端口索引
- 输出参数  : 无
- 返 回 值  : AT_XXX
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_QryMBMSNetworkInfoPara(VOS_UINT8 ucIndex)
 {
     VOS_UINT32                                      ulRst;
@@ -683,20 +549,7 @@ VOS_UINT32 AT_QryMBMSNetworkInfoPara(VOS_UINT8 ucIndex)
     return AT_WAIT_ASYNC_RETURN;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_QryMBMSModemStatusPara
- 功能描述  : ^MBMSCMD="MODEM_STATUS"
- 输入参数  : ucIndex - 端口索引
- 输出参数  : 无
- 返 回 值  : AT_XXX
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_QryMBMSModemStatusPara(VOS_UINT8 ucIndex)
 {
     VOS_UINT32                                      ulRst;
@@ -721,20 +574,7 @@ VOS_UINT32 AT_QryMBMSModemStatusPara(VOS_UINT8 ucIndex)
     return AT_WAIT_ASYNC_RETURN;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_QryMBMSCmdPara
- 功能描述  : ^MBMSCMD查询命令处理函数
- 输入参数  : ucIndex - 用户索引
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月22日
-    作    者   : w00316404
-    修改内容   :新增查询函数
-*****************************************************************************/
 VOS_UINT32 AT_QryMBMSCmdPara(VOS_UINT8 ucIndex)
 {
     VOS_UINT32                          ulResult;
@@ -764,20 +604,7 @@ VOS_UINT32 AT_QryMBMSCmdPara(VOS_UINT8 ucIndex)
     return AT_WAIT_ASYNC_RETURN;
 }
 
-/*****************************************************************************
- 函 数 名  : At_TestMBMSCMDPara
- 功能描述  : ^MBMSCMD=?
- 输入参数  : ucIndex - 用户索引
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月22日
-    作    者   : w00316404
-    修改内容   :新增函数
-*****************************************************************************/
 
 VOS_UINT32 At_TestMBMSCMDPara(VOS_UINT8 ucIndex)
 {
@@ -794,20 +621,7 @@ VOS_UINT32 At_TestMBMSCMDPara(VOS_UINT8 ucIndex)
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaMBMSServiceOptSetCnf
- 功能描述  : 收到MTA设置MBMS服务特性的回复
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaMBMSServiceOptSetCnf(
     VOS_VOID                           *pMsg
 )
@@ -859,21 +673,7 @@ VOS_UINT32 AT_RcvMtaMBMSServiceOptSetCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaMBMSServiceStateSetCnf
- 功能描述  : 收到MTA设置MBMS服务状态的回复
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaMBMSServiceStateSetCnf(
     VOS_VOID                           *pMsg
 )
@@ -925,21 +725,7 @@ VOS_UINT32 AT_RcvMtaMBMSServiceStateSetCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaMBMSPreferenceSetCnf
- 功能描述  : 收到MTA设置MBMS广播模式的回复
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaMBMSPreferenceSetCnf(
     VOS_VOID                           *pMsg
 )
@@ -991,21 +777,7 @@ VOS_UINT32 AT_RcvMtaMBMSPreferenceSetCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaMBMSSib16NetworkTimeQryCnf
- 功能描述  : 收到MTA查询SIB16网络时间的回复
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaMBMSSib16NetworkTimeQryCnf(
     VOS_VOID                           *pMsg
 )
@@ -1071,21 +843,7 @@ VOS_UINT32 AT_RcvMtaMBMSSib16NetworkTimeQryCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaMBMSBssiSignalLevelQryCnf
- 功能描述  : 收到MTA查询BSSI信号强度的回复
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaMBMSBssiSignalLevelQryCnf(
     VOS_VOID                           *pMsg
 )
@@ -1146,21 +904,7 @@ VOS_UINT32 AT_RcvMtaMBMSBssiSignalLevelQryCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaMBMSNetworkInfoQryCnf
- 功能描述  : 收到MTA查询网络信息的回复
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaMBMSNetworkInfoQryCnf(
     VOS_VOID                           *pMsg
 )
@@ -1221,21 +965,7 @@ VOS_UINT32 AT_RcvMtaMBMSNetworkInfoQryCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaMBMSModemStatusQryCnf
- 功能描述  : 收到MTA查询EMBMS功能状态的回复
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaMBMSModemStatusQryCnf(
     VOS_VOID                           *pMsg
 )
@@ -1296,21 +1026,7 @@ VOS_UINT32 AT_RcvMtaMBMSModemStatusQryCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaMBMSEVSetCnf
- 功能描述  : 收到MTA设置MBMS主动上报配置的回复
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaMBMSEVSetCnf(
     VOS_VOID                           *pMsg
 )
@@ -1362,21 +1078,7 @@ VOS_UINT32 AT_RcvMtaMBMSEVSetCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaMBMSServiceEventInd
- 功能描述  : AT收到MTA ID_MTA_AT_MBMS_SERVICE_EVENT_IND消息处理函数
- 输入参数  : VOS_VOID *pstMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaMBMSServiceEventInd(VOS_VOID *pstMsg)
 {
     AT_MTA_MSG_STRU                        *pstRcvMsg      = VOS_NULL_PTR;
@@ -1411,21 +1113,7 @@ VOS_UINT32 AT_RcvMtaMBMSServiceEventInd(VOS_VOID *pstMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaMBMSInterestListSetCnf
- 功能描述  : 收到MTA设置Interest List的回复
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaMBMSInterestListSetCnf(
     VOS_VOID                           *pMsg
 )
@@ -1477,21 +1165,7 @@ VOS_UINT32 AT_RcvMtaMBMSInterestListSetCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_ReportMBMSCmdQryCnf
- 功能描述  : 打印MBMS可用服务列表信息
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_ReportMBMSCmdQryCnf(
     MTA_AT_MBMS_AVL_SERVICE_LIST_QRY_CNF_STRU      *pstMtaCnf,
     VOS_UINT8                                       ucIndex
@@ -1571,21 +1245,7 @@ VOS_VOID AT_ReportMBMSCmdQryCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaMBMSCmdQryCnf
- 功能描述  : 收到MTA查询MBMS可用服务列表信息的回复
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaMBMSCmdQryCnf(
     VOS_VOID                           *pMsg
 )
@@ -1642,20 +1302,7 @@ VOS_UINT32 AT_RcvMtaMBMSCmdQryCnf(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : AT_SetLteLowPowerPara
- 功能描述  : ^LTELOWPOWER
- 输入参数  : ucIndex - 端口索引
- 输出参数  : 无
- 返 回 值  : AT_XXX
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_SetLteLowPowerPara(VOS_UINT8 ucIndex)
 {
     AT_MTA_LOW_POWER_CONSUMPTION_SET_REQ_STRU       stPowerConsumption;
@@ -1715,20 +1362,7 @@ VOS_UINT32 AT_SetLteLowPowerPara(VOS_UINT8 ucIndex)
     return AT_WAIT_ASYNC_RETURN;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetIsmCoexParaValue
- 功能描述  : GetIsmCoexPara
- 输入参数  : pucBegain,ppEnd
- 输出参数  : 无
- 返 回 值  : AT_XXX
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_INT32 AT_GetIsmCoexParaValue(VOS_UINT8 *pucBegain, VOS_UINT8 **ppEnd)
 {
     VOS_UINT32 ulTotal      = 0;
@@ -1765,20 +1399,7 @@ VOS_INT32 AT_GetIsmCoexParaValue(VOS_UINT8 *pucBegain, VOS_UINT8 **ppEnd)
     return lRstTotal;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_CheckIsmCoexParaValue
- 功能描述  : 检查^ISMCOEX参数的有效性
- 输入参数  : usVal,ulParaNum
- 输出参数  : 无
- 返 回 值  : AT_XXX
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_CheckIsmCoexParaValue(VOS_INT32 ulVal, VOS_UINT32 ulParaNum)
 {
     VOS_UINT32                          ulRst = AT_SUCCESS;
@@ -1836,20 +1457,7 @@ VOS_UINT32 AT_CheckIsmCoexParaValue(VOS_INT32 ulVal, VOS_UINT32 ulParaNum)
     return ulRst;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SetL4AIsmCoexParaValue
- 功能描述  : 填充发往L4A的消息参数
- 输入参数  : stIsmCoex
- 输出参数  : pstReqToL4A
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_SetL4AIsmCoexParaValue(AT_MTA_LTE_WIFI_COEX_SET_REQ_STRU stIsmCoex, L4A_ISMCOEX_REQ_STRU *pstReqToL4A, VOS_UINT8 ucIndex)
 {
     VOS_UINT32                          i;
@@ -1871,20 +1479,7 @@ VOS_VOID AT_SetL4AIsmCoexParaValue(AT_MTA_LTE_WIFI_COEX_SET_REQ_STRU stIsmCoex, 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SetIsmCoexPara
- 功能描述  : ^ISMCOEX
- 输入参数  : ucIndex - 端口索引
- 输出参数  : 无
- 返 回 值  : AT_XXX
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_SetIsmCoexPara(VOS_UINT8 ucIndex)
 {
     AT_MTA_LTE_WIFI_COEX_SET_REQ_STRU               stIsmCoex;
@@ -1969,20 +1564,7 @@ VOS_UINT32 AT_SetIsmCoexPara(VOS_UINT8 ucIndex)
     return AT_WAIT_ASYNC_RETURN;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_QryIsmCoexPara
- 功能描述  : ^ISMCOEX查询命令处理函数,查询
- 输入参数  : ucIndex - 用户索引
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月22日
-    作    者   : w00316404
-    修改内容   :新增查询函数
-*****************************************************************************/
 VOS_UINT32 AT_QryIsmCoexPara(VOS_UINT8 ucIndex)
 {
     VOS_UINT32                                      ulRst;
@@ -2012,21 +1594,7 @@ VOS_UINT32 AT_QryIsmCoexPara(VOS_UINT8 ucIndex)
     return AT_WAIT_ASYNC_RETURN;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaLteLowPowerSetCnf
- 功能描述  : 收到MTA设置低功耗的回复
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaLteLowPowerSetCnf(
     VOS_VOID                           *pMsg
 )
@@ -2078,21 +1646,7 @@ VOS_UINT32 AT_RcvMtaLteLowPowerSetCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaIsmCoexSetCnf
- 功能描述  : 收到MTA设置命令 ^ISMCOEX的回复
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaIsmCoexSetCnf(
     VOS_VOID                           *pMsg
 )
@@ -2144,21 +1698,7 @@ VOS_UINT32 AT_RcvMtaIsmCoexSetCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvL4AIsmCoexSetCnf
- 功能描述  : 收到L4A设置命令 ^ISMCOEX的回复
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvL4AIsmCoexSetCnf(
     VOS_VOID                           *pMsg
 )
@@ -2167,21 +1707,7 @@ VOS_UINT32 AT_RcvL4AIsmCoexSetCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaIsmCoexQryCnf
- 功能描述  : 收到MTA查询命令 ^ISMCOEX的回复
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaIsmCoexQryCnf(
     VOS_VOID                           *pMsg
 )
@@ -2253,20 +1779,7 @@ VOS_UINT32 AT_RcvMtaIsmCoexQryCnf(
 #endif
 
 
-/*****************************************************************************
- 函 数 名  : AT_SetLogEnablePara
- 功能描述  : ^LOGENABLE
- 输入参数  : ucIndex - 端口索引
- 输出参数  : 无
- 返 回 值  : AT_XXX
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : z00301431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_SetLogEnablePara(VOS_UINT8 ucIndex)
 {
     /* 参数检查 */
@@ -2301,20 +1814,7 @@ VOS_UINT32 AT_SetLogEnablePara(VOS_UINT8 ucIndex)
     return AT_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_QryLogEnable
- 功能描述  : ^LOGENABLE
- 输入参数  : ucIndex - 端口索引
- 输出参数  : 无
- 返 回 值  : AT_XXX
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : z00301431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_QryLogEnable(VOS_UINT8 ucIndex)
 {
     VOS_UINT16                          usLength;
@@ -2357,20 +1857,7 @@ VOS_UINT32 AT_QryLogEnable(VOS_UINT8 ucIndex)
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_SetActPdpStubPara
- 功能描述  : ^ACTPDPSTUB
- 输入参数  : ucIndex - 端口索引
- 输出参数  : 无
- 返 回 值  : AT_XXX
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月04日
-    作    者   : z00301431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_SetActPdpStubPara(VOS_UINT8 ucIndex)
 {
     VOS_UINT8                           ucFlag;
@@ -2418,21 +1905,7 @@ VOS_UINT32 AT_SetActPdpStubPara(VOS_UINT8 ucIndex)
     return AT_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SetNVCHKPara
- 功能描述  : AT_CMD_NVCHK
- 输入参数  : ucIndex --- 端口索引
- 输出参数  : 无
- 返 回 值  : AT_XXX  --- ATC返回码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月19日
-    作    者   : x00316382
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_SetNVCHKPara(VOS_UINT8 ucIndex)
 {
     VOS_UINT8           ucLoopIndex;
@@ -2516,21 +1989,7 @@ VOS_UINT32 AT_SetNVCHKPara(VOS_UINT8 ucIndex)
 
 
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaAfcClkInfo
- 功能描述  : 处理来自mta模块AFC_INFO消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月24日
-    作    者   : C00299064
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaAfcClkInfoCnf(
     VOS_VOID                           *pMsg
 )
@@ -2607,20 +2066,7 @@ VOS_UINT32 AT_RcvMtaAfcClkInfoCnf(
 
 
 
-/*****************************************************************************
- 函 数 名  : AT_SetSecureStatePara
- 功能描述  : 命令AT^SECURESTATE设置Secure State
- 输入参数  : ucIndex    -- AT通道索引
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月24日
-    作    者   : h00360002
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_UINT32 AT_SetSecureStatePara(VOS_UINT8 ucIndex)
 {
     VOS_INT                                 iRst;
@@ -2662,20 +2108,7 @@ VOS_UINT32 AT_SetSecureStatePara(VOS_UINT8 ucIndex)
     return AT_CME_UNKNOWN;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SetKcePara
- 功能描述  : 命令AT^KCE设置128bit的key值用于image加密
- 输入参数  : ucIndex    -- AT通道索引
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月25日
-    作    者   : h00360002
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_UINT32 AT_SetKcePara(VOS_UINT8 ucIndex)
 {
     VOS_UINT32                              ulResult;
@@ -2727,20 +2160,7 @@ VOS_UINT32 AT_SetKcePara(VOS_UINT8 ucIndex)
     return AT_CME_UNKNOWN;
 }
 
-/*****************************************************************************
- 函 数 名  : At_QrySecureStatePara
- 功能描述  : 命令AT^SECURESTATE查询Secure State
- 输入参数  : ucIndex    -- AT通道索引
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月24日
-    作    者   : h00360002
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_UINT32 AT_QrySecureStatePara(VOS_UINT8 ucIndex)
 {
     VOS_INT                             iResult;
@@ -2785,20 +2205,7 @@ VOS_UINT32 AT_QrySecureStatePara(VOS_UINT8 ucIndex)
     return AT_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_QrySocidPara
- 功能描述  : 命令AT^SOCID查询SOCID
- 输入参数  : ucIndex    -- AT通道索引
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月29日
-    作    者   : h00360002
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_UINT32 AT_QrySocidPara(VOS_UINT8 ucIndex)
 {
     VOS_INT                                 iResult;
@@ -2853,21 +2260,7 @@ VOS_UINT32 AT_QrySocidPara(VOS_UINT8 ucIndex)
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_SetPdmCtrlPara
- 功能描述  : AT_CMD_PDMCTRL
- 输入参数  : ucIndex --- 端口索引
- 输出参数  : 无
- 返 回 值  : AT_XXX  --- ATC返回码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月19日
-    作    者   : x00316382
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_SetPdmCtrlPara(VOS_UINT8 ucIndex)
 {
     AT_HPA_PDM_CTRL_REQ_STRU                *pstMsg;
@@ -2927,20 +2320,7 @@ VOS_UINT32 AT_SetPdmCtrlPara(VOS_UINT8 ucIndex)
     return AT_WAIT_ASYNC_RETURN;                                                /* 等待异步事件返回 */
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SetCtzuPara
- 功能描述  : +CTZU
- 输入参数  : ucIndex - 端口索引
- 输出参数  : 无
- 返 回 值  : AT_XXX  - ATC返回码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月8日
-    作    者   : z00301431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_SetCtzuPara(VOS_UINT8 ucIndex)
 {
     /* 参数检查 */
@@ -2967,20 +2347,7 @@ VOS_UINT32 AT_SetCtzuPara(VOS_UINT8 ucIndex)
     return AT_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_QryCtzuPara
- 功能描述  : 查询CTZU
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月8日
-    作    者   : z00301431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_QryCtzuPara(VOS_UINT8 ucIndex)
 {
     VOS_UINT16                           usLength;

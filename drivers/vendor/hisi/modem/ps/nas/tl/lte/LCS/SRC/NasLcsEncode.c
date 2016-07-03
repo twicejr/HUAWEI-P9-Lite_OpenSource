@@ -39,18 +39,7 @@ extern "C" {
 /*****************************************************************************
   3 Function
 *****************************************************************************/
-/*****************************************************************************
- Function Name   : NAS_LCS_EncodeRelComplete
- Description     : 编码Release Complete空口消息
- Input           : pucEncodeOutMsg              :编码后码流
-                   stEncodeInfo                 :编码所需要的信息
- Output          : pusIeLen                     :已编码长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :编码结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_EncodeRelComplete
 (
     VOS_UINT8                           *pucEncodeOutMsg,
@@ -130,18 +119,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_EncodeRelComplete
     return enRslt;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_EncodeRegister
- Description     : 编码register空口消息
- Input           : pucEncodeOutMsg              :编码后码流
-                   stEncodeInfo                 :编码所需要的信息
- Output          : pusIeLen                     :已编码长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :编码结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_EncodeRegister
 (
     VOS_UINT8                           *pucEncodeOutMsg,
@@ -181,18 +159,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_EncodeRegister
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_EncodeFacility
- Description     : 编码FACILITY空口消息
- Input           : pucEncodeOutMsg              :编码后码流
-                   stEncodeInfo                 :编码所需要的信息
- Output          : pusIeLen                     :已编码长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :编码结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_EncodeFacility
 (
     VOS_UINT8                           *pucEncodeOutMsg,
@@ -232,20 +199,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_EncodeFacility
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_EncodeIeFacility
- Description     : 编码空口信元Facility
- Input           : pucEncodeOutMsg              :编码后码流
-                   stEncodeInfo                 :编码所需要的信息
-                   enMsgType                    :空口消息类型
-                   enComponent                  :Component类型
- Output          : pusIeLen                     :已编码长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :编码结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_EncodeIeFacility
 (
     VOS_UINT8                           *pucEncodeOutMsg,
@@ -342,18 +296,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_EncodeIeFacility
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_EncodeRegisterIeFacility
- Description     : 编码Register空口信元Facility
- Input           : pucEncodeOutMsg              :编码后码流
-                   stEncodeInfo                 :编码所需要的信息
- Output          : pusIeLen                     :已编码长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :编码结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_EncodeRegisterIeFacility
 (
     VOS_UINT8                           *pucEncodeOutMsg,
@@ -426,18 +369,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_EncodeRegisterIeFacility
     return enRslt;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_EncodeAssDataMoLrReq
- Description     : 编码请求辅助信息的MoLr请求的Paramesters
- Input           : pucEncodeOutMsg              :编码后码流
-                   stEncodeInfo                 :编码所需要的信息
- Output          : pusIeLen                     :已编码长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :编码结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_EncodeAssDataMoLrReq
 (
     VOS_UINT8                           *pucEncodeOutMsg,
@@ -477,17 +409,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_EncodeAssDataMoLrReq
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_EncodeMuliPosPDUS
- Description     : 编码信元mutiplePositioningProtocolPDUs
- Input           : pucEncodeOutMsg              :编码后码流
- Output          : pusIeLen                     :已编码长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :编码结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_EncodeMuliPosPDUS
 (
     VOS_UINT8                           *pucEncodeOutMsg,
@@ -529,17 +451,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_EncodeMuliPosPDUS
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_EncodeLppMsg
- Description     : 编码信元单个PositioningProtocolPDU
- Input           : pucEncodeOutMsg              :编码后码流
- Output          : pusIeLen                     :已编码长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :编码结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_EncodePosPDU
 (
     VOS_UINT8                           *pucEncodeOutMsg,
@@ -572,17 +484,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_EncodePosPDU
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_EncodeLocEstimateMoLrReq
- Description     : 编码LocationEstimate类型的MoLr请求的Paramesters
- Input           : pucEncodeOutMsg              :编码后码流
- Output          : pusIeLen                     :已编码长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :编码结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_EncodeLocEstimateMoLrReq
 (
     VOS_UINT8                           *pucEncodeOutMsg,
@@ -629,18 +531,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_EncodeLocEstimateMoLrReq
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_EncodeSuppGADShapes
- Description     : 编码supportedGADShapes
- Input           : pucEncodeOutMsg              :编码后码流
-                   pstTafMsgRecord              :Taf下发的MoLr请求参数
- Output          : pusIeLen                     :已编码长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :编码结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_EncodeSuppGADShapes
 (
     VOS_UINT8                           *pucEncodeOutMsg,
@@ -679,18 +570,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_EncodeSuppGADShapes
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_EncodeClentExtId
- Description     : 编码lcsClientExternalId
- Input           : pucEncodeOutMsg              :编码后码流
-                   pstTafMsgRecord              :Taf下发的MoLr请求参数
- Output          : pusIeLen                     :已编码长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :编码结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_EncodeClentExtId
 (
     VOS_UINT8                           *pucEncodeOutMsg,
@@ -738,18 +618,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_EncodeClentExtId
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_EncodeLcsQos
- Description     : 编码lcs-qos
- Input           : pucEncodeOutMsg              :编码后码流
-                   pstTafMsgRecord              :Taf下发的MoLr请求参数
- Output          : pusIeLen                     :已编码长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :编码结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_EncodeLcsQos
 (
     VOS_UINT8                           *pucEncodeOutMsg,
@@ -812,18 +681,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_EncodeLcsQos
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_EncodeMolrType
- Description     : 编码信元Mo-lr type
- Input           : pucEncodeOutMsg              :编码后码流
-                   enMolrType                   :mo-lr type
- Output          : pusIeLen                     :已编码长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :编码结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_EncodeMolrType
 (
     VOS_UINT8                           *pucEncodeOutMsg,
@@ -844,18 +702,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_EncodeMolrType
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_EncodeLocationMethod
- Description     : 编码信元Location Method
- Input           : pucEncodeOutMsg              :编码后码流
-                   enMethod                     :At下发的Loc method
- Output          : pusIeLen                     :已编码长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :编码结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_LCS_EncodeLocationMethod
 (
     VOS_UINT8                           *pucEncodeOutMsg,
@@ -881,17 +728,7 @@ VOS_VOID NAS_LCS_EncodeLocationMethod
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_MapLocationMethod
- Description     : 把TAF消息中的Method转换为空口中的LocationMethod
- Input           : enMethod                             :编码前的method
- Output          : NULL
- Return          : NAS_LCS_NW_MOLR_METHOD_ENUM_UINT8    :转换后的method
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_NW_MOLR_METHOD_ENUM_UINT8 NAS_LCS_MapLocationMethod(LCS_MOLR_METHOD_ENUM_UINT8  enMethod)
 {
     NAS_LCS_NW_MOLR_METHOD_ENUM_UINT8 enMoLrMethod = NAS_LCS_NW_MOLR_METHOD_BUTT;
@@ -918,18 +755,7 @@ NAS_LCS_NW_MOLR_METHOD_ENUM_UINT8 NAS_LCS_MapLocationMethod(LCS_MOLR_METHOD_ENUM
     return enMoLrMethod;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_EncodeLocNtyReslt
- Description     : 编码Mtlr location notification Result空口消息信元
- Input           : pucEncodeOutMsg              :编码后码流
-                   stEncodeInfo                 :编码所需要的信息
- Output          : pusIeLen                     :已编码长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :编码结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_EncodeLocNtyReslt
 (
     VOS_UINT8                           *pucEncodeOutMsg,
@@ -971,19 +797,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_EncodeLocNtyReslt
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_EncodeRelCmpIeFacility
- Description     : 编码Release Complete空口消息信元Facility
- Input           : pucEncodeOutMsg              :编码后码流
-                   stEncodeInfo                 :编码所需要的信息
-                   enComponent                  :Component类型
- Output          : pusIeLen                     :已编码长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :编码结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_EncodeRelCmpIeFacility
 (
     VOS_UINT8                           *pucEncodeOutMsg,
@@ -1069,18 +883,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_EncodeRelCmpIeFacility
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_EncodeRelCmpIeFacility
- Description     : 编码LOCATION NOTIFICATION RESULT PARA
- Input           : pucEncodeOutMsg              :编码后码流
-                   stEncodeInfo                 :编码所需要的信息
- Output          : pusIeLen                     :已编码长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :编码结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_EncodeLocNtfRsp
 (
     VOS_UINT8                           *pucEncodeOutMsg,
@@ -1120,18 +923,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_EncodeLocNtfRsp
     return enRslt;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_EncodeVerifyRsp
- Description     : 编码LOCATION NOTIFICATION RESULT PARA中的信元verificationResponse
- Input           : pucEncodeOutMsg              :编码后码流
-                   stEncodeInfo                 :编码所需要的信息
- Output          : pusIeLen                     :已编码长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :编码结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_EncodeVerifyRsp
 (
     VOS_UINT8                           *pucEncodeOutMsg,
@@ -1167,18 +959,7 @@ NAS_LCS_CAUSE_ENUM_UINT32 NAS_LCS_EncodeVerifyRsp
     return enRslt;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_PackTL
- Description     : 编码TAG和LEN
- Input           : pucEncodeOutMsg              :编码后码流
-                   stEncodeInfo                 :编码所需要的信息
- Output          : pusCodeLen                   :已编码长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :编码结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32  NAS_LCS_PackTL
 (
     VOS_UINT8                           ucTag,
@@ -1226,18 +1007,7 @@ NAS_LCS_CAUSE_ENUM_UINT32  NAS_LCS_PackTL
     return NAS_LCS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_EncodeLength
- Description     : 编码LEN
- Input           : pucEncodeOutMsg              :编码后码流
-                   usSrcLen                     :信元中LEN值
- Output          : pusCodeLen                   :已编码长度
- Return          : NAS_LCS_CAUSE_ENUM_UINT32    :编码结果
 
- History         :
-    1.leixiantiao 00258641    2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_CAUSE_ENUM_UINT32  NAS_LCS_EncodeLength
 (
     VOS_UINT16                           usSrcLen,

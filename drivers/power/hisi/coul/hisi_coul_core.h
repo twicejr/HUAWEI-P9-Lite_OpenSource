@@ -220,6 +220,10 @@ struct coul_device_ops{
     void  (*enter_eco)(void);
     void  (*exit_eco)(void);
     int   (*calculate_eco_leak_uah)(void);
+    void  (*save_last_soc)(short soc);
+    void  (*get_last_soc)(short *soc);
+    void  (*clear_last_soc_flag)(void);
+    void  (*get_last_soc_flag)(bool *valid);
 };
 
 enum coul_fault_type{
@@ -302,6 +306,8 @@ struct smartstar_coul_device
     struct device *dev;    
     int is_nv_read;
     int is_nv_need_save;
+    int last_soc_enable;
+    int startup_delta_soc;
 
 #ifdef SMARTSTAR_DEBUG
     unsigned int dbg_ocv_cng_0; /*ocv change count by wake up*/

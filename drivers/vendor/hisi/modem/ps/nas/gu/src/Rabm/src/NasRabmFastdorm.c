@@ -1,22 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasRabmFastdorm.c
-  版 本 号   : 初稿
-  作    者   : marenkun / m00217266
-  生成日期   : 2014年06月16日
-  最近修改   :
-  功能描述   :
-  函数列表   :
-
-  修改历史   :
-  1.日    期   : 2014年06月16日
-    作    者   : marenkun / m00217266
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -47,40 +29,7 @@ NAS_RABM_FASTDORM_CTX_STRU              g_stNasRabmFastDormCtx;
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : NAS_RABM_RcvApsFastDormStartReq
- 功能描述  : 处理APS发来的TAFRABM_FASTDORM_START_REQ消息
- 输入参数  : pstMsg - NASRABM_FASTDORM_START_REQ消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
-  1.日    期   : 2011年10月18日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年12月20日
-    作    者   : o00132663
-    修改内容   : PS融合项目，启动FD定时器时，将数据计数器清零
-
-  3.日    期   : 2012年3月20日
-    作    者   : l60609
-    修改内容   : B070 Project:Fastdormancy增加NV项控制
-
-  4.日    期   : 2013年7月11日
-    作    者   : M00217266
-    修改内容   : 添加查询GMM状态标志入参
-
-  5.日    期   : 2013年09月09日
-    作    者   : Y00213812
-    修改内容   : DTS2013090403562,修改RABM_TIMER_FASTDORM_FLUX_DETECT的定时器
-
-  6.日    期   : 2014年06月16日
-    作    者   : m00217266
-    修改内容   : modify for FD Optimize
-*****************************************************************************/
 VOS_VOID NAS_RABM_RcvAtFastDormStartReq(
     AT_RABM_SET_FASTDORM_PARA_REQ_STRU *pstFastDormPara
 )
@@ -123,36 +72,7 @@ VOS_VOID NAS_RABM_RcvAtFastDormStartReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_RcvApsFastDormStopReq
- 功能描述  : 处理APS发来的TAFRABM_FASTDORM_STOP_REQ消息
- 输入参数  : pstMsg        - TAFRABM_FASTDORM_STOP_REQ消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
-  1.日    期   : 2011年10月18日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年3月20日
-    作    者   : l60609
-    修改内容   : B070 Project:Fastdormancy增加NV项控制
-
-  3.日    期   : 2013年06月19日
-    作    者   : Y00213812
-    修改内容   : DTS2013032204300,FASTDORM retry定时器精度改为32K
-
-  4.日    期   : 2013年09月09日
-    作    者   : Y00213812
-    修改内容   : DTS2013090403562,修改RABM_TIMER_FASTDORM_FLUX_DETECT的定时器
-
-  5.日    期   : 2014年06月16日
-    作    者   : m00217266
-    修改内容   : modify for FD Optimize
-*****************************************************************************/
 VOS_VOID NAS_RABM_RcvAtFastDormStopReq(
     AT_RABM_SET_FASTDORM_PARA_REQ_STRU *pstFastDormPara
 )
@@ -177,28 +97,7 @@ VOS_VOID NAS_RABM_RcvAtFastDormStopReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_ProcSetFastDormParaReq
- 功能描述  : AT触发，启动或者停止FAST DORMANCY
- 输入参数  : pstFastDormPara - AT的设置消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月19日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年3月20日
-    作    者   : l60609
-    修改内容   : B070 Project:Fastdormancy增加NV项控制
-
-  3.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-*****************************************************************************/
 VOS_VOID NAS_RABM_RcvSetFastDormParaReq(
     AT_RABM_SET_FASTDORM_PARA_REQ_STRU *pstFastDormPara
 )
@@ -247,28 +146,7 @@ VOS_VOID NAS_RABM_RcvSetFastDormParaReq(
     /*lint +e958 */
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_ProcGetFastDormParaReq
- 功能描述  : AT触发，获取当前FAST DORMANCY参数
- 输入参数  : pstFastDormPara - AT的设置消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月19日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年3月20日
-    作    者   : l60609
-    修改内容   : B070 Project:Fastdormancy增加NV项控制
-
-  3.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-*****************************************************************************/
 VOS_VOID NAS_RABM_RcvGetFastDormParaReq(
     AT_RABM_QRY_FASTDORM_PARA_REQ_STRU *pstFastDormPara
 )
@@ -297,24 +175,7 @@ VOS_VOID NAS_RABM_RcvGetFastDormParaReq(
     /*lint +e958 */
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_SysModeChgProcFastDorm
- 功能描述  : 系统模式发生变化时，FAST DORMANCY特性的处理
- 输入参数  : struct MsgCB                       *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年10月19日
-   作    者   : h44270
-   修改内容   : 新生成函数
-
- 2.日    期   : 2013年3月22日
-   作    者   : z60575
-   修改内容   : DTS2013032203256,W2L切换后无法进入FD
-*****************************************************************************/
 VOS_VOID NAS_RABM_SysModeChgProcFastDorm(
     GMM_RABM_NET_RAT_ENUM_UINT32        enOldSysMode,
     GMM_RABM_NET_RAT_ENUM_UINT32        enNewSysMode
@@ -337,29 +198,7 @@ VOS_VOID NAS_RABM_SysModeChgProcFastDorm(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_SuspendFastDorm
- 功能描述  : 当前FAST DORMANCY正在运行，挂起
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年10月19日
-   作    者   : h44270
-   修改内容   : 新生成函数
- 2.日    期   : 2013年06月19日
-   作    者   : Y00213812
-   修改内容   : DTS2013032204300,FASTDORM retry定时器精度改为32K
- 3.日    期   : 2013年09月09日
-   作    者   : Y00213812
-   修改内容   : DTS2013090403562,修改RABM_TIMER_FASTDORM_FLUX_DETECT的定时器
- 4.日    期   : 2014年06月16日
-   作    者   : m00217266
-   修改内容   : modify for FD optimize
-*****************************************************************************/
 VOS_VOID NAS_RABM_SuspendFastDorm(VOS_VOID)
 {
     /* 如果当前FD功能没有激活则不处理 */
@@ -378,32 +217,7 @@ VOS_VOID NAS_RABM_SuspendFastDorm(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_ResumeFastDorm
- 功能描述  : 当前FAST DORMANCY正挂起，恢复
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年10月19日
-   作    者   : h44270
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年12月20日
-   作    者   : o00132663
-   修改内容   : PS融合项目，增加FD数据计数器清零
-
- 3.日    期   : 2013年09月09日
-   作    者   : Y00213812
-   修改内容   : DTS2013090403562,修改RABM_TIMER_FASTDORM_FLUX_DETECT的定时器
-
- 4.日    期   : 2014年06月16日
-   作    者   : m00217266
-   修改内容   : modify for FD optimize
-*****************************************************************************/
 VOS_VOID NAS_RABM_ResumeFastDorm(VOS_VOID)
 {
     /* 如果当前FD功能没有激活则不处理 */
@@ -429,22 +243,7 @@ VOS_VOID NAS_RABM_ResumeFastDorm(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_CheckPdpRbStatus
- 功能描述  : 检测各PDP实体是否有RB建立
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  :  VOS_TRUE - 当前存在RB建立的PDP激活
-              VOS_FALSE - 当前不存在RB建立的PDP激活
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月17日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 NAS_RABM_CheckPdpRbStatus(VOS_VOID)
 {
     VOS_UINT8                               ucEntId;
@@ -465,22 +264,7 @@ VOS_UINT8 NAS_RABM_CheckPdpRbStatus(VOS_VOID)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_CheckGmmAndRabmStatus
- 功能描述  : 检测发起FD的条件是否满足
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  :  VOS_TRUE - 可以发起fast dormancy功能
-              VOS_FALSE - 不可以发起fast dormancy功能
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月17日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 NAS_RABM_CheckGmmAndRabmStatus(
     GMM_RABM_MML_PROC_STATUS_QRY_CNF_STRU    *pstProcStatus
 )
@@ -508,22 +292,7 @@ VOS_UINT8 NAS_RABM_CheckGmmAndRabmStatus(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_ConvertAtFasTDormTypeToWrrFasTDormType
- 功能描述  : 处理来自AT的消息
- 输入参数  : enAtFastDormType   - AT的操作类型
-              penWrrFastDormType - WRR的操作类型
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年10月19日
-   作    者   : h44270
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_RABM_ConvertAtFasTDormTypeToWrrFasTDormType(
     AT_RABM_FASTDORM_OPERATION_ENUM_UINT32                enAtFastDormType,
     RRC_FASTDORM_START_TYPE_ENUM_UINT32                 *penWrrFastDormType
@@ -552,29 +321,7 @@ VOS_VOID NAS_RABM_ConvertAtFasTDormTypeToWrrFasTDormType(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_ProcWasFastDormInfoInd
- 功能描述  : 处理WAS的
- 输入参数  : struct MsgCB                       *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月19日
-    作    者   : h44270
-    修改内容   : 新生成函数
-  2.日    期   : 2013年02月25日
-    作    者   : t00212959
-    修改内容   : DTS2013022202832:增加保护，在存在RAB的时候收到retry才需要状态迁移并启动定时器
-  3.日    期   : 2013年06月19日
-    作    者   : Y00213812
-    修改内容   : DTS2013032204300,FASTDORM retry定时器精度改为32K
-  4.日    期   : 2014年6月17日
-    作    者   : m00217266
-    修改内容   : modify for FD optimize
-*****************************************************************************/
 VOS_VOID NAS_RABM_RcvWasFastDormInfoInd(
     struct MsgCB                       *pMsg
 )
@@ -617,20 +364,7 @@ VOS_VOID NAS_RABM_RcvWasFastDormInfoInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_ProcFastDormStatusInUlTransfer
- 功能描述  : 数据传输过程中，FD状态处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月18日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_RABM_ProcFastDormStatusInTransfer( VOS_VOID )
 {
     if (VOS_TRUE == NAS_RABM_GET_FD_ACT_FLG())
@@ -651,25 +385,7 @@ VOS_VOID NAS_RABM_ProcFastDormStatusInTransfer( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_RevertFastDormEnv
- 功能描述  : 还原Fastdormancy的工作环境，主要是还原流量统计数据，无流量时长
-             ，和相关定时器
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月19日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年1月9日
-    作    者   : A00165503
-    修改内容   : DTS2014123000271: RRC释放流程增加停止控制
-*****************************************************************************/
 VOS_VOID NAS_RABM_RevertFastDormEnv(VOS_VOID)
 {
     /* 向WAS发送RRRABM_FASTDORM_STOP_REQ */
@@ -695,20 +411,7 @@ VOS_VOID NAS_RABM_RevertFastDormEnv(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_AbortRelRrcProcedure
- 功能描述  : 终止释放RRC流程
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月9日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_RABM_AbortRelRrcProcedure(VOS_VOID)
 {
     /* FD功能开启时, 以FD的处理流程为准 */
@@ -726,20 +429,7 @@ VOS_VOID NAS_RABM_AbortRelRrcProcedure(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_RcvReleaseRrcReq
- 功能描述  : rabm处理快速拆除rrc连接at命令
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月11日
-    作    者   : M00217266
-    修改内容   : Optimize RIL:
-*****************************************************************************/
 VOS_VOID NAS_RABM_RcvReleaseRrcReq(
     AT_RABM_RELEASE_RRC_REQ_STRU *pstMsg
 )
@@ -767,28 +457,7 @@ VOS_VOID NAS_RABM_RcvReleaseRrcReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_InitFastDormCtx
- 功能描述  : 初始化FAST DORMANCY的上下文
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
-  1.日    期   : 2011年10月18日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年12月20日
-    作    者   : o00132663
-    修改内容   : PS融合项目，增加新计数器变量初始化
-
-  3.日    期   : 2015年1月9日
-    作    者   : A00165503
-    修改内容   : DTS2014123000271: RRC释放流程增加停止控制
-*****************************************************************************/
 VOS_VOID NAS_RABM_InitFastDormCtx(VOS_VOID)
 {
     g_stNasRabmFastDormCtx.enCurrFastDormStatus    = NAS_RABM_FASTDORM_INIT;
@@ -808,36 +477,7 @@ VOS_VOID NAS_RABM_InitFastDormCtx(VOS_VOID)
     g_ulNasRabmFDWaitGmmQryRsltTimer               = NAS_RABM_TIMER_STATUS_STOP;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_FastDormFluxDetectExpired
- 功能描述  : 收到周期流量检测定时器RABM_TIMER_FASTDORM_FLUX_DETECT消息的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年10月18日
-   作    者   : h44270
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年12月20日
-   作    者   : o00132663
-   修改内容   : PS融合项目，流量获取方式改为判断数据计数器值
- 3.日    期   : 2013年1月30日
-   作    者   : z60575
-   修改内容   : DTS2013013004885修改，没有RAB时不做FD流程
- 4.日    期   : 2013年06月19日
-   作    者   : Y00213812
-   修改内容   : DTS2013030104863,FASTDORM retry定时器精度改为32K
- 5.日    期   : 2013年7月11日
-   作    者   : M00217266
-   修改内容   : 添加查询GMM状态入参
- 6.日    期   : 2014年06月16日
-   作    者   : m00217266
-   修改内容   : modify for FD Optimize
-*****************************************************************************/
 VOS_VOID NAS_RABM_FastDormFluxDetectExpired(VOS_VOID)
 {
     VOS_UINT32                              ulUserDefNoFluxCnt;
@@ -896,29 +536,7 @@ VOS_VOID NAS_RABM_FastDormFluxDetectExpired(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_FastDormRetryExpired
- 功能描述  : 收到周期流量检测定时器RABM_TIMER_FASTDORM_FLUX_DETECT消息的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年10月18日
-   作    者   : h44270
-   修改内容   : 新生成函数
- 2.日    期   : 2013年1月6日
-   作    者   : t00212959
-   修改内容   : DTS2013010505101
- 3.日    期   : 2013年7月11日
-   作    者   : M00217266
-   修改内容   : 增加GMM状态查询入参
- 4.日    期   : 2014年06月16日
-   作    者   : m00217266
-   修改内容   : modify for FD Optimize
-*****************************************************************************/
 VOS_VOID NAS_RABM_FastDormRetryExpired(VOS_VOID)
 {
     /* 把retry定时器的状态设置为stop */
@@ -937,26 +555,7 @@ VOS_VOID NAS_RABM_FastDormRetryExpired(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_FastDormWaitGmmProcQryRsltExpired
- 功能描述  : 收到周期流量检测定时器RABM_TIMER_FASTDORM_FLUX_DETECT消息的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年10月18日
-   作    者   : h44270
-   修改内容   : 新生成函数
- 2.日    期   : 2013年09月09日
-   作    者   : Y00213812
-   修改内容   : DTS2013090403562,修改RABM_TIMER_FASTDORM_FLUX_DETECT的定时器
- 3.日    期   : 2014年06月16日
-   作    者   : m00217266
-   修改内容   : modify for FD Optimize
-*****************************************************************************/
 VOS_VOID NAS_RABM_FastDormWaitGmmProcQryRsltExpired(VOS_VOID)
 {
     /* 把定时器状态置为stop */
@@ -974,26 +573,7 @@ VOS_VOID NAS_RABM_FastDormWaitGmmProcQryRsltExpired(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_RcvGmmFastDormMmlProcStatusQryCnf
- 功能描述  : 处理GMM发来的ID_GMM_RABM_MML_PROC_STATUS_QRY_CNF消息
- 输入参数  : pstMsg  - ID_GMM_RABM_MML_PROC_STATUS_QRY_CNF消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年10月18日
-   作    者   : h44270
-   修改内容   : 新生成函数
- 2.日    期   : 2013年06月18日
-   作    者   : Y00213812
-   修改内容   : DTS2013030104863，FASTDORM retry定时器精度改为32K
- 3.日    期   : 2014年06月16日
-   作    者   : m00217266
-   修改内容   : modify for FD Optimize
-*****************************************************************************/
 VOS_VOID NAS_RABM_RcvGmmFastDormMmlProcStatusQryCnf(
     struct MsgCB                       *pstMsg
 )
@@ -1023,21 +603,7 @@ VOS_VOID NAS_RABM_RcvGmmFastDormMmlProcStatusQryCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_RcvGmmMmlProcStatusQryCnf
- 功能描述  : 快速拆除rrc连接
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月11日
-    作    者   : M00217266
-    修改内容   : Optimize RIL:
-
-*****************************************************************************/
 VOS_VOID NAS_RABM_RcvGmmMmlProcStatusQryCnf(
     struct MsgCB                       *pstMsg
 )
@@ -1066,24 +632,7 @@ VOS_VOID NAS_RABM_RcvGmmMmlProcStatusQryCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_RcvGmmMmlProcStatusQryCnf
- 功能描述  : 快速拆除rrc连接
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月11日
-    作    者   : M00217266
-    修改内容   : Optimize RIL
-
-  2.日    期   : 2015年1月9日
-    作    者   : A00165503
-    修改内容   : DTS2014123000271: RRC释放流程增加停止控制
-*****************************************************************************/
 VOS_VOID NAS_RABM_RcvGmmReleaseRrcMmlProcStatusQryCnf(
     struct MsgCB                       *pstMsg
 )
@@ -1104,29 +653,7 @@ VOS_VOID NAS_RABM_RcvGmmReleaseRrcMmlProcStatusQryCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_SndWasFastDormStartReq
- 功能描述  : 向WAS发送RRRABM_FASTDORM_START_REQ
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月19日
-    作    者   : h44270
-    修改内容   : 新生成函数
-  2.日    期   : 2012年7月14日
-    作    者   : W00176964
-    修改内容   : V7R1 C50 GUTL PhaseI调整:发送给WRR的消息统一用适配层函数替换
-  3.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  4.日    期   : 2013年7月11日
-    作    者   : M00217266
-    修改内容   : 添加release rrc和fastdorm命令判断
-*****************************************************************************/
 VOS_VOID NAS_RABM_SndWasFastDormStartReq(
     RABM_RELRRC_OPERATE_ENUM_UINT32     enOptFlag
 )
@@ -1181,23 +708,7 @@ VOS_VOID NAS_RABM_SndWasFastDormStartReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_SndWasFastDormStopReq
- 功能描述  : 向WAS发送RRRABM_FASTDORM_STOP_REQ
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月19日
-    作    者   : h44270
-    修改内容   : 新生成函数
-  2.日    期   : 2012年7月14日
-    作    者   : W00176964
-    修改内容   : V7R1 C50 GUTL PhaseI调整:发送给WRR的消息统一用适配层函数替换
-*****************************************************************************/
 VOS_VOID NAS_RABM_SndWasFastDormStopReq(VOS_VOID)
 {
     VOS_UINT32                          ulRet;                                  /* 定义调用VOS发送函数的返回值 */
@@ -1231,23 +742,7 @@ VOS_VOID NAS_RABM_SndWasFastDormStopReq(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_SndGmmMmlProcStatusQryReq
- 功能描述  : 向WAS发送ID_RABM_GMM_MML_RPOC_STATUS_QRY_REQ
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月19日
-    作    者   : h44270
-    修改内容   : 新生成函数
-  2.日    期   : 2013年7月11日
-    作    者   : M00217266
-    修改内容   : 增加入参enOptFlag，区分RELEASERRC和FASTDORM操作
-*****************************************************************************/
 VOS_VOID NAS_RABM_SndGmmMmlProcStatusQryReq(
     RABM_RELRRC_OPERATE_ENUM_UINT32     enOptFlag
 )
@@ -1284,26 +779,7 @@ VOS_VOID NAS_RABM_SndGmmMmlProcStatusQryReq(
 }
 
 /*lint -e958 */
-/*****************************************************************************
- 函 数 名  : NAS_RABM_SndAtSetFastDormParaCnf
- 功能描述  : 向WAS发送ID_RABM_AT_SET_FASTDORM_PARA_CNF
- 输入参数  : MN_CLIENT_ID_T                      usClientId
-             MN_OPERATION_ID_T                   ucOpId
-             AT_RABM_PARA_SET_RSLT_ENUM_UINT32   enRslt
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月19日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年3月20日
-    作    者   : l60609
-    修改内容   : B070 Project:Fastdormancy增加NV项控制
-*****************************************************************************/
 VOS_VOID NAS_RABM_SndAtSetFastDormParaCnf(
     MN_CLIENT_ID_T                      usClientId,                             /* AT发消息给RABM所带的ClientId */
     MN_OPERATION_ID_T                   ucOpId,                                 /* AT发消息给RABM所带的OpId */
@@ -1345,26 +821,7 @@ VOS_VOID NAS_RABM_SndAtSetFastDormParaCnf(
 }
 /*lint +e958 */
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_SndAtQryFastDormParaCnf
- 功能描述  : 向AT发送ID_RABM_AT_QRY_FASTDORM_PARA_CNF
- 输入参数  : MN_CLIENT_ID_T                      usClientId
-             MN_OPERATION_ID_T                   ucOpId
-             VOS_UINT8                           ucRslt
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月19日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年3月20日
-    作    者   : l60609
-    修改内容   : B070 Project:Fastdormancy增加NV项控制
-*****************************************************************************/
 VOS_VOID NAS_RABM_SndAtQryFastDormParaCnf(
     MN_CLIENT_ID_T                      usClientId,
     MN_OPERATION_ID_T                   ucOpId,
@@ -1409,23 +866,7 @@ VOS_VOID NAS_RABM_SndAtQryFastDormParaCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndOmFastdormStatus
- 功能描述  : 发送消息给OM模块，当前RABM中FAST DORMANCY的运行状况
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年10月31日
-   作    者   : h44270
-   修改内容   : 新生成函数
- 2.日    期   : 2014年06月16日
-   作    者   : m00217266
-   修改内容   : modify for FD optimize
-*****************************************************************************/
 VOS_VOID  NAS_RABM_SndOmFastdormStatus(VOS_VOID)
 {
     NAS_RABM_LOG_FASTDORM_INFO_STRU    *pstMsg;

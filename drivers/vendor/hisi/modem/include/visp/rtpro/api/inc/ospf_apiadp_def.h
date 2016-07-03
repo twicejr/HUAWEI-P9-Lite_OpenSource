@@ -92,12 +92,10 @@ extern "C"{
 #define OSPF_SUMM_NO_AREA_SUMMARY     1
 #define OSPF_SUMM_SEND_AREA_SUMMARY   2
 
-/*ADD for BC3D02758 增加默认路由控制 l00147446 10-03-02*/  
 #define OSPF_NO_AREA_DEFAULT_LSA  1
 #define OSPF_AREA_DEFAULT_LSA     2
 /*End for BC3D02758*/
 
-/*Add by q62011 for DTS2010090302774:【OSPF】增加实现 路由器的 no-import-route 选项的功能*/
 #define OSPF_AREA_NSSA_NO_IMPORT  1
 #define OSPF_AREA_NSSA_IMPORT     2
 
@@ -112,9 +110,7 @@ extern "C"{
 #define OSPF_AREA_ADMIN_STATUS_UP   1
 #define OSPF_AREA_ADMIN_STATUS_DOWN 2
 
-/*Added by jijianhua00169178, V2R3C02以上版本为32 个, 2011/3/4   问题单号:DTS2011030203676 */
 #define OSPF_MAX_PROCESSES 32          /*最大进程数*/
-/* End of Added by jijianhua00169178, 2011/3/4   问题单号:DTS2011030203676 */
 
 /*Begin BC3D01086 liangjicheng 09-01-14*/
 #define OSPF_GR_MIN_PERIOD 1          /*最小GR周期时间 1s*/
@@ -144,12 +140,10 @@ extern "C"{
 #define OSPF_CFG_SPF_CALC_ITVL 6
 #define OSPF_CFG_ROUTER_ID 7
 #define OSPF_CFG_ADMIN_STATUS 8
-/*Modified by liangjicheng 00103192, Calc Delay, 2011/10/27   问题单号: REQ-201106295399-OSPF-PER */
 #define OSPF_CFG_CMD_CALC_DELAY 9
 
 #define OSPF_CALC_DELAY_MIN  1         /*最小延迟时间 ms*/
 #define OSPF_CALC_DELAY_MAX  10000     /*最大延迟时间 ms*/
-/*End of Modified by liangjicheng 00103192, 2011/10/27   问题单号: REQ-201106295399-OSPF-PER */
 
 /*配置ospf if相关的类型*/
 #define OSPF_CFG_IF_AUTHKEY 1

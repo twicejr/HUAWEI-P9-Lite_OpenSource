@@ -1,21 +1,4 @@
-/*************************************************************************************
-*
-*                       dhcpv6c_pkt.h
-*
-*  项目代码：           UGW9811 V900R010C00
-*  创建日期：           2012-06-28
-*  作者：               Y00170683
-*  修改历史列表：
-*  参考文档：       
-*  功能：               DHCPV6C模块消息处理头文件                 
-*  其他：                  
-*
-*-----------------------------------------------------------------------------------
-*
-*  Copyright  Beijing Institute HuaWei Tech, Inc.
-*                     ALL RIGHTS RESERVED
-*
-*************************************************************************************/
+
 #ifndef __DHCPV6C_PKT_H__
 #define __DHCPV6C_PKT_H__
 
@@ -233,7 +216,6 @@ extern ULONG DHCPV6C_QuryTeidcBySeqNum(USHORT usSeqNum, ULONG *pulTeidc, UCHAR *
 extern VOID DHCPV6C_FreeSeqNum(USHORT usSeqNum);
 
 extern USHORT LAP_IPv6GetAddrType( in6_addr *addr );
-/*m00221573 全文件pclint 2012-10-16 start*/
 extern ULONG DHCPV6C_MsgDecode(DHCPV6C_MSG_INFO_S *pstMsgInfo);
 extern ULONG DHCPV6C_CheckOption(DHCPV6C_OPTION_INFO_S *pstDhcpv6cOptionInfo,
                                       DHCPC_CTRLBLK *pstDhcpcContext);
@@ -243,7 +225,6 @@ extern VOID DHCPV6C_SaveOptionToContext(DHCPC_CTRLBLK *pstDhcpcContext,
 extern ULONG DHCPM_GetDhcpSrvVpnByIndex(ULONG ulDhcpIndex, ULONG *pulVpnIndex);
 extern ULONG DHCPC_SelectAndGetServerCfg(DHCPC_CTRLBLK *pstDhcpcContext, ULONG aulServerIp[LAP_IP_ULONG_NUM]);
 extern VOID DHCPCv6_OmMsgTrc(UCHAR *pucDhcpv6Msg,DHCPC_CTRLBLK *pstDhcpcContext, UCHAR ucMsgType,ULONG ulMsgLen, UCHAR MsgDirection);
-/*m00221573 全文件pclint 2012-10-16 end*/
 extern VOID DHCPV6C_GetSeqNumByMsg(USHORT *pusSeqNum, UCHAR *pucMsg);
 #ifdef    __cplusplus
 }

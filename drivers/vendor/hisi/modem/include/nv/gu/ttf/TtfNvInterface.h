@@ -464,9 +464,10 @@ typedef struct
 
 typedef struct
 {
-    VOS_UINT8               ucDisableReadAdvised;    /*Range:[0,1]*//*当调度消息中消息描述类型为advised时，对应DRX周期内消息是否接受； PS_FALSE为不接受，PS_TRUE为接受*/
-    VOS_UINT8               ucDisableReadOptional;   /*Range:[0,1]*//*当调度消息中消息描述类型为optional时，对应DRX周期内消息是否接受；PS_FALSE为不接受，PS_TRUE为接受*/
-    VOS_UINT8               ucReserved[2];
+    VOS_UINT8               ucDisableReadAdvised;       /*Range:[0,1]*//*当调度消息中消息描述类型为advised时，对应DRX周期内消息是否接受； PS_FALSE为不接受，PS_TRUE为接受*/
+    VOS_UINT8               ucDisableReadOptional;      /*Range:[0,1]*//*当调度消息中消息描述类型为optional时，对应DRX周期内消息是否接受；PS_FALSE为不接受，PS_TRUE为接受*/
+    VOS_UINT8               ucDisableRepetitionMsg;     /*Range:[0,1]*//*当调度消息中消息描述类型为Repetition msg时，对应DRX周期内消息是否接受；PS_FALSE为不接受，PS_TRUE为接受*/
+    VOS_UINT8               ucDisableOldMsg;            /*Range:[0,1]*//*当调度消息中消息描述类型为old msg时，对应DRX周期内消息是否接受；PS_FALSE为不接受，PS_TRUE为接受*/
 }BMC_CBS_MSG_READ_NV_STRU;
 
 
@@ -498,14 +499,7 @@ typedef struct
     NV_MODEM_RF_SHARE_CFG_STRU          astNvModemRfShareCfg[8];
 }NV_MODEM_RF_SHARE_CFG_EX_STRU;
 
-/*****************************************************************************
-结构名    : PLATFORM_RAT_TYPE_ENUM
-结构说明  : 接入技术
 
-  1.日    期   : 2015年4月27日
-    作    者   : g00260269
-    修改内容   : 创建
-*******************************************************************************/
 enum NV_PLATFORM_RAT_TYPE_ENUM
 {
     NV_PLATFORM_RAT_GSM,                                                       /*GSM接入技术 */
@@ -519,27 +513,14 @@ enum NV_PLATFORM_RAT_TYPE_ENUM
 };
 typedef VOS_UINT16 NV_PLATFORM_RAT_TYPE_ENUM_UINT16;
 
-/*****************************************************************************
-结构名    : NV_PLATAFORM_RAT_CAPABILITY_STRU
-结构说明  : 平台支持的接入技术
 
-  1.日    期   : 2015年4月27日
-    作    者   : g00260269
-    修改内容   : 创建
-*******************************************************************************/
 typedef struct
 {
     VOS_UINT16                           usRatNum;                          /* 接入技术的数目*/
     NV_PLATFORM_RAT_TYPE_ENUM_UINT16     aenRatList[NV_PLATFORM_MAX_RAT_NUM];  /* 接入技术 */
 }NV_PLATAFORM_RAT_CAPABILITY_STRU;
 
-/*****************************************************************************
-结构名    : BASTET_SUPPORT_FLG_STRU
-结构说明  : BASTET_SUPPORT_FLG_STRU结构
-  1.日    期   : 2014年11月22日
-    作    者   : z00128442
-    修改内容   : 新增bastet配置nv
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucActiveFlg;        /* 是否激活功能 */
@@ -547,14 +528,7 @@ typedef struct
     VOS_UINT8                           aucSubFun[2];
 }BASTET_SUPPORT_FLG_STRU;
 
-/*****************************************************************************
-结构名    : NV_CTTF_BOOL_ENUM_UINT8
-结构说明  :
 
-  1.日    期   : 2015年9月9日
-    作    者   : c00309867
-    修改内容   : 创建
-*******************************************************************************/
 enum NV_CTTF_BOOL_ENUM
 {
     NV_CTTF_BOOL_FALSE,                /* 条件为真 */
@@ -563,13 +537,7 @@ enum NV_CTTF_BOOL_ENUM
 };
 typedef VOS_UINT8 NV_CTTF_BOOL_ENUM_UINT8;
 
-/*****************************************************************************
-结构名    : NV_SUPPORT_PROBE_INIT_ADJ_CFG_STRU
-结构说明  : NV_SUPPORT_PROBE_INIT_ADJ_CFG_STRU结构
-  1.日    期   : 2015年9月0日
-    作    者   : c00309867
-    修改内容   : 新增nv
-*****************************************************************************/
+
 typedef struct
 {
     NV_CTTF_BOOL_ENUM_UINT8             enSupportFlg;                   /* 是否支持通过NV项配置cProbeInitialAdjust。NV_CTTF_BOOL_TRUE:不支持；NV_CTTF_BOOL_TRUE支持*/
@@ -578,13 +546,7 @@ typedef struct
 }NV_CTTF_PROBE_INIT_POWER_CTRL_STRU;
 
 
-/*****************************************************************************
-结构名    : TTF_PPPC_NVIM_CONFIG_OPTIONS_STRU
-结构说明  : TTF_PPPC_NVIM_CONFIG_OPTIONS_STRU结构
-  1.日    期   : 2015年08月29日
-    作    者   : w00316385
-    修改内容   : 新增配置nv
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usMru;                  /* PPP帧最大接收单元长度 */
@@ -593,13 +555,7 @@ typedef struct
     VOS_UINT32                          ulPppInactTimerLen;     /* MAX PPP Inactive Timer时长，单位s */
 }TTF_PPPC_NVIM_CONFIG_OPTIONS_STRU;
 
-/*****************************************************************************
-结构名    : NV_TTF_NODE_RESET_CTRL_STRU
-结构说明  : NV_TTF_NODE_RESET_CTRL_STRU结构
-  1.日    期   : 2016年01月26日
-    作    者   : m00314743
-    修改内容   : 新增nv
-*****************************************************************************/
+
 typedef struct
 {
     NV_CTTF_BOOL_ENUM_UINT8             enResetEnable;                  /* TTF_Node主动复位时能 */
@@ -607,13 +563,7 @@ typedef struct
     VOS_UINT16                          usTotalStat;               /* 节点申请统计总次数 */
 }NV_RATIO_RESET_CTRL_STRU;
 
-/*****************************************************************************
-结构名    : NV_NODE_RESET_CTRL_STRU
-结构说明  : NV_NODE_RESET_CTRL_STRU结构
-  1.日    期   : 2016年01月26日
-    作    者   : m00314743
-    修改内容   : 新增nv
-*****************************************************************************/
+
 typedef struct
 {
     NV_RATIO_RESET_CTRL_STRU                  astNvResetCtrl[RATIO_RESET_TYPE_BUTT];

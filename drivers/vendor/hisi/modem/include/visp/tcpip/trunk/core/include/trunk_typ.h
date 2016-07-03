@@ -55,7 +55,6 @@ typedef struct tagTrunkInfoTbl
     UCHAR ucIsTrunkNeedKeepUp;                       /* Trunk在UP成员端口均DOWN掉时是否需要DOWN, 1-不报DOWN，0-报DOWN(默认) */
     UCHAR ucPadding[3];                              /* 保留字段 */
     ULONG ulLbCheckTimerId;                          /* 环回检测定时器 */ 
-    /*Added by z00208058, for USN产品需求，支持基于Trunk组配置系统MAC, 2014/10/15 */
     UCHAR ucTrunkIdSysMac[TRUNK_MACADDR_LEN];        /* 基于TRUNK组配置系统MAC*/
     UCHAR ucReserve[2];                              /* 保留字段*/
 }TRUNK_INFO_TBL_S;
@@ -69,7 +68,6 @@ typedef struct tagTrunkPortPktStat
     ULONG ulInSum;        /* 接收的报文总数 */
     ULONG ulInLacp;       /* 接收的LACP报文数 */
     ULONG ulInDrop;       /* 接收时丢弃的报文数 */
-    /* Add for V2R3C07, by z00208058/w00207740, at 2012-4-16. 修改原因: TRUNK LACP下移需求开发 */
     ULONG ulLacpExpired;  /* NP上报超时统计 */
     ULONG ulLacpPPIPKT;   /* LACP下发NP后，透传报文统计 */
 }TRUNK_PORT_PKT_STAT_S;
@@ -115,7 +113,7 @@ typedef struct tagLacpFsm
 typedef struct tagLacpTimers
 {
     BOOL_T bActive;                 /*定时器是否开启*/
-    USHORT usValue;                 /* 定时器的值,即定时器超时次数,DTS2013060100805 m59090 */
+    USHORT usValue;
 }LACP_TIMERS_S;
 
 /* LACP协商状态机信息表 */
@@ -152,7 +150,6 @@ typedef struct tagLacpPortFsm
 #define BITS_FLAG_CLR(t,f)    ((t) &= ~(f))
 #define BITS_FLAG_ISSET(t,f)  (((t) & (f)) ? 1 : 0)
 
-/*Added by z00208058/w00207740, TRUNK LACP下移需求开发, 2012/5/2 */
 #define LACP_UNDOWNLOAD 0
 #define LACP_DOWNLOAD   1
 
@@ -175,9 +172,8 @@ typedef struct tagTrunkPortInfo
     USHORT usPortPri;                          /* 记录端口优先级 */
     USHORT usPortIndex;                        /* 记录端口号 */
 
-    ULONG  ulNeedResendArpFlag;                /* DTS2011022802677 重传distribute，collect置位前发送的ARP请求报文*/
+    ULONG  ulNeedResendArpFlag;
     ULONG  ulDownReason;                       /* LACP协议down 原因ID */
-    /* Add for V2R3C07, by z00208058/w00207740, at 2012-4-16. 修改原因: TRUNK LACP下移需求开发 */
     ULONG  ulLacpLinkMode;                      /*Lacp收发模式 1，数据面收发；0，控制面收发*/
 #if (TCPIP_NSR == VRP_YES)    
     ULONG  ulTrunkNsrFailReason;                /* NSR失败原因记录 */

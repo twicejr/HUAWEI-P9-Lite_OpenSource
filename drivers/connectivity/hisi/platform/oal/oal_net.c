@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : oal_net.c
-  版 本 号   : 初稿
-  作    者   : t00231215
-  生成日期   : 2012年11月30日
-  最近修改   :
-  功能描述   : to be delete
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年11月30日
-    作    者   : t00231215
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -74,21 +57,7 @@ oal_sock_stru g_st_sock;
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : oal_netbuf_is_dhcp_port
- 功能描述  : 判断是否是dhcp帧 port
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月27日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
  OAL_INLINE oal_bool_enum_uint8 oal_netbuf_is_dhcp_port(oal_udp_header_stru *pst_udp_hdr)
 {
     if (((OAL_HOST2NET_SHORT(pst_udp_hdr->source) == 68)
@@ -103,21 +72,7 @@ oal_sock_stru g_st_sock;
 }
 
 
-/*****************************************************************************
- 函 数 名  : mac_is_nd
- 功能描述  : 判断是否是nd帧
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月7日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_bool_enum_uint8 oal_netbuf_is_nd(oal_ipv6hdr_stru  *pst_ipv6hdr)
 {
     //oal_ipv6hdr_stru       *pst_ipv6hdr          = OAL_PTR_NULL;
@@ -141,21 +96,7 @@ oal_bool_enum_uint8 oal_netbuf_is_nd(oal_ipv6hdr_stru  *pst_ipv6hdr)
     return OAL_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_is_dhcp6
- 功能描述  : 判断是否是DHCP6帧
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月7日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_bool_enum_uint8 oal_netbuf_is_dhcp6(oal_ipv6hdr_stru  *pst_ipv6hdr)
 {
     //oal_ipv6hdr_stru       *pst_ipv6hdr          = OAL_PTR_NULL;
@@ -181,25 +122,7 @@ oal_bool_enum_uint8 oal_netbuf_is_dhcp6(oal_ipv6hdr_stru  *pst_ipv6hdr)
 
 
 #ifdef _PRE_WLAN_FEATURE_FLOWCTL
-/*****************************************************************************
- 函 数 名  : oal_netbuf_get_txtid
- 功能描述  : 从lan过来报文的业务识别
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月10日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-  2.日    期   : 2014年3月3日
-    作    者   : xiechunhui
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  oal_netbuf_get_txtid(oal_netbuf_stru *pst_buf, oal_uint8 *puc_tos)
 {
     oal_ether_header_stru  *pst_ether_header;
@@ -299,21 +222,7 @@ oal_void  oal_netbuf_get_txtid(oal_netbuf_stru *pst_buf, oal_uint8 *puc_tos)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_is_tcp_ack
- 功能描述  : 判断ipv4 tcp报文是否为tcp ack
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月18日
-    作    者   : x00189397
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_bool_enum_uint8 oal_netbuf_is_tcp_ack(oal_ip_header_stru  *pst_ip_hdr)
 {
     oal_tcp_header_stru    *pst_tcp_hdr;
@@ -335,21 +244,7 @@ oal_bool_enum_uint8 oal_netbuf_is_tcp_ack(oal_ip_header_stru  *pst_ip_hdr)
 
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_is_icmp
- 功能描述  : 判断ipv4 是否为icmp报文
- 输入参数  : pst_ip_hdr: IP报文头部
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月11日
-    作    者   : ywx282918
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_bool_enum_uint8 oal_netbuf_is_icmp(oal_ip_header_stru  *pst_ip_hdr)
 {
     oal_uint8  uc_protocol;
@@ -366,21 +261,7 @@ oal_bool_enum_uint8 oal_netbuf_is_icmp(oal_ip_header_stru  *pst_ip_hdr)
 
 #ifdef _PRE_WLAN_FEATURE_OFFLOAD_FLOWCTL
 
-/*****************************************************************************
- 函 数 名  : mac_is_tcp_ack6
- 功能描述  : 判断ipv6 tcp报文是否为tcp ack
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月18日
-    作    者   : x00189397
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_bool_enum_uint8 oal_netbuf_is_tcp_ack6(oal_ipv6hdr_stru  *pst_ipv6hdr)
 {
     oal_tcp_header_stru    *pst_tcp_hdr;
@@ -399,21 +280,7 @@ oal_bool_enum_uint8 oal_netbuf_is_tcp_ack6(oal_ipv6hdr_stru  *pst_ipv6hdr)
     return OAL_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_select_queue
- 功能描述  : 为以太网来包选择合的subqueue入队
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月18日
-    作    者   : x00189397
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint16 oal_netbuf_select_queue(oal_netbuf_stru *pst_buf)
 {
     oal_ether_header_stru  *pst_ether_header;
@@ -974,6 +841,7 @@ oal_int32 dev_netlink_send (oal_uint8 *data, oal_int data_len)
     if (OAL_PTR_NULL == dev_excp_handler_data.nlsk)
     {
         OAL_IO_PRINT("WIFI DFR: NULL Pointer_sock.\n");
+        kfree_skb(skb);
         return -OAL_EFAIL;
     }
 

@@ -1,21 +1,4 @@
-/************************************************************************
-*                                                                      *
-*                             ipv6cp.c                                   *
-*                                                                      *
-*  Project Code:       IPV6CP .1                                          *
-*  Create Date:        2009/12/29                                      *
-*  Author:             z00129699                                      *
-*  Modify Date:                                                        *
-*  Document:                                                           *
-*  Function:           PPP的IPv6CP协议模块                               *
-*  Others:                                                             *
-*----------------------------------------------------------------------*
-*                                                                      *
-*----------------------------------------------------------------------*
-*                                                                      *
-*   这个文件定义了IPV6CP协议模块的全部接口函数和内部处理函数             *
-*                                                                      *
-************************************************************************/
+
 
 /*****************************************************************************
   1 头文件包含
@@ -75,26 +58,7 @@ PPPFSMCALLBACK_S g_stIpv6cpCallbacks =
 *****************************************************************************/
 /*lint -save -e958 */
 /*lint -e572*/
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：IPCP接收外部事件.事件包括：Up、Down、Open、Close           *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-*                ulCmd:命令字,可以为如下值:                                 *
-*                      PPPFSMLOWERDOWN:下层Down                             *
-*                      PPPFSMLOWERUP:下层Up                                 *
-*                      PPPFSMOPEN:Open事件                                  *
-*                      PPPFSMCLOSE:Down事件                                 *
-*                pPara:事件的参数,为NULL                                    *
-* OUTPUT       ：                                                           *
-* RETURN       ：NULL                                                       *
-* CALLED BY    ：PPP_Core_ReceiveEventFromShell、PPP_Core_RejectProtocol    *
- 修改历史      :
-  1.日    期   : 2009年12月24日
-    作    者   : zhaichao
-    修改内容   : 针对ipv6cp进行修改
-****************************************************************************/
+
 VOID PPP_IPV6CP_ReceiveEventFromCore (VOID *pstIpcpInfo, VOS_UINT32 ulCmd, char *pPara)
 {
     PPPFSM_S *pstFsm;
@@ -129,23 +93,7 @@ VOID PPP_IPV6CP_ReceiveEventFromCore (VOID *pstIpcpInfo, VOS_UINT32 ulCmd, char 
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：IPCP接收报文                                               *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstIpcpInfo:IPCP控制块                                     *
-*                pHead:存放报文内存的头指针,应负责释放这段内存              *
-*                pPacket:报文头位置                                         *
-*                ulLen:报文长度                                             *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_Core_ReceivePacketFromShell                            *
- 修改历史      :
-  1.日    期   : 2009年12月24日
-    作    者   : zhaichao
-    修改内容   : 针对ipv6cp进行修改
-****************************************************************************/
+
 VOID PPP_IPV6CP_ReceivePacket (VOID *pstIpV6cpInfo, UCHAR* pHead, UCHAR* pPacket, VOS_UINT32 ulLen)
 {
     PPPFSM_S                           *pstFsm;
@@ -161,20 +109,7 @@ VOID PPP_IPV6CP_ReceivePacket (VOID *pstIpV6cpInfo, UCHAR* pHead, UCHAR* pPacket
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：                                                *
-* CREATED BY   ：                                               *
-* FUNCTION     ：确定IPv6CP需要协商那些参数,在IPv6CP初始化时进行                  *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm    :状态机                                          *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：状态机中执行tls动作的宏PPP_FSM_tls                         *
- 修改历史      :
-  1.日    期   : 2009年12月24日
-    作    者   : zhaichao
-    修改内容   : 针对ipv6cp进行修改
-****************************************************************************/
+
 VOID PPP_IPV6CP_resetci(PPPFSM_S *pstFsm)
 {
     PPPINFO_S           *pstPppInfo;
@@ -225,8 +160,8 @@ VOID PPP_IPV6CP_resetci(PPPFSM_S *pstFsm)
     pstAllowOptions->req_dnsaddr1     = 0;
     pstAllowOptions->neg_nbnsaddr1    = 0;
     pstAllowOptions->req_nbnsaddr1    = 0;
-    pstAllowOptions->accept_dnsaddr0  = 0;  /* modified by gxf 20030414 不接受对方的DNS */
-    pstAllowOptions->accept_dnsaddr1  = 0;  /* modified by gxf 20030414 不接受对方的DNS */
+    pstAllowOptions->accept_dnsaddr0  = 0;
+    pstAllowOptions->accept_dnsaddr1  = 0;
     pstAllowOptions->accept_nbnsaddr0 = 0;
     pstAllowOptions->accept_nbnsaddr1 = 0;
 
@@ -247,20 +182,7 @@ VOID PPP_IPV6CP_resetci(PPPFSM_S *pstFsm)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：计算要发送的Config Request报文数据部分长度                 *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm: 状态机                                             *
-* OUTPUT       ：                                                           *
-* RETURN       ：Config Request报文长度                                     *
-* CALLED BY    ：PPP_FSM_SendConfigReq                                      *
- 修改历史      :
-  1.日    期   : 2009年12月24日
-    作    者   : zhaichao
-    修改内容   : 针对ipv6cp进行修改
-****************************************************************************/
+
 VOS_UINT16 PPP_IPV6CP_cilen(PPPFSM_S *pstFsm)
 {
     PPP_IPV6CP_OPTION_S *pstGotOptions;
@@ -275,22 +197,7 @@ VOS_UINT16 PPP_IPV6CP_cilen(PPPFSM_S *pstFsm)
                    IPV6CP_LENCIVJ(pstGotOptions->neg_vj));
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：组织一个Config Request报文内容                             *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm: 状态机                                             *
-*                pPacket:报文头位置                                         *
-* OUTPUT       ：                                                           *
-*                pPacket:组装好的报文                                       *
-* RETURN       ：                                                           *
-* CALLED BY    ：PPP_FSM_SendConfigReq                                      *
- 修改历史      :
-  1.日    期   : 2009年12月24日
-    作    者   : zhaichao
-    修改内容   : 针对ipv6cp进行修改
-****************************************************************************/
+
 VOID PPP_IPV6CP_addci(PPPFSM_S *pstFsm, UCHAR *pPacket)
 {
     PPP_IPV6CP_OPTION_S *pstGotOptions;
@@ -307,22 +214,7 @@ VOID PPP_IPV6CP_addci(PPPFSM_S *pstFsm, UCHAR *pPacket)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：处理收到的Config ACK报文                                   *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm: 状态机                                             *
-*                pPacket:报文头位置                                         *
-*                ulLen:  报文长度                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：VOS_OK,合法的ACK报文;VOS_ERR:非法的ACK报文                 *
-* CALLED BY    ：                                     *
- 修改历史      :
-  1.日    期   : 2009年12月25日
-    作    者   : zhaichao
-    修改内容   : 针对ipv6cp协议重新进行设计
-****************************************************************************/
+
 VOS_UINT16 PPP_IPV6CP_ackci(PPPFSM_S *pstFsm, UCHAR *pPacket, VOS_UINT32 ulLen)
 {
     PPP_IPV6CP_OPTION_S *pstGotOptions;
@@ -381,22 +273,7 @@ bad:
     /*lint +e801*/
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：处理收到的Config Nak报文                                   *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm: 状态机                                             *
-*                pPacket:报文头位置                                         *
-*                ulLen:  报文长度                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：VOS_OK,合法的NAK报文;VOS_ERR:非法的NAK报文                 *
-* CALLED BY    ：PPP_FSM_ReceiveConfNakRej                                  *
- 修改历史      :
-  1.日    期   : 2009年12月25日
-    作    者   : zhaichao
-    修改内容   : 针对ipv6cp在ipv4基础上进行修改
-****************************************************************************/
+
 VOS_UINT16 PPP_IPV6CP_nakci(PPPFSM_S *pstFsm, UCHAR *pPacket, VOS_UINT32 ulLen)
 {
     PPP_IPV6CP_OPTION_S *pstGotOptions, *pstWantOptions;
@@ -533,21 +410,7 @@ bad:
     /*lint +e801*/
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：处理收到的Config Reject报文                                *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm: 状态机                                             *
-*                pPacket:报文头位置                                         *
-*                ulLen:  报文长度                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：VOS_OK,合法的reject报文;VOS_ERR:非法的reject报文           *
-* CALLED BY    ：PPP_FSM_ReceiveConfNakRej                                  *
-修改日期:2009-12-26
-修改原因 ipv6cp特性做出适应性调整
-修改人 z00129699
-****************************************************************************/
+
 VOS_UINT16 PPP_IPV6CP_rejci(PPPFSM_S *pstFsm, UCHAR *pPacket, VOS_UINT32 ulLen)
 {
     PPP_IPV6CP_OPTION_S *pstGotOptions;
@@ -596,25 +459,7 @@ bad:
     return VOS_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_IPCP_IsSip
- 功能描述  : 判断IPCP请求包中是否有IP选项：有，是SIP，否则是MIP
- 输入参数  : UCHAR *pPacket
-             VOS_UINT32 *pulLen
- 输出参数  : 无
- 返 回 值  : 1: SIP  0: MIP
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2003年4月15日
-    作    者   : gxf
-    修改内容   : 新生成函数
- 修改历史      :
-    日    期   : 2009年12月24日
-    作    者   : ZHAICHAO
-    修改内容   : 根据ipv6cp协议修改地址类型
-*****************************************************************************/
 UCHAR PPP_IPV6CP_IsSip(UCHAR *pPacket, VOS_UINT32 *pulLen)
 {
     UCHAR *p;              /* Pointer to current and next CIs */
@@ -649,24 +494,7 @@ UCHAR PPP_IPV6CP_IsSip(UCHAR *pPacket, VOS_UINT32 *pulLen)
     return 0;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：分析收到的config Request报文                               *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm: 状态机                                             *
-*                pPacket:报文头位置                                         *
-*                pulLen: 报文长度                                           *
-* OUTPUT       ：                                                           *
-*                pPacket:要发给对方的报文(ACK或NAK或REJ)内容                *
-*                pulLen: 要发给对方的报文的长度                             *
-* RETURN       ：发给对方的报文类型:CONFACK、CONFNAK或者CONFREJ             *
-* CALLED BY    ：
- 修改历史      :
-  1.日    期   : 2009年12月24日
-    作    者   : zhaichao
-    修改内容   : 针对ipv6cp在ipv4上进行修改
-****************************************************************************/
+
 UCHAR PPP_IPV6CP_reqci(PPPFSM_S *pstFsm, UCHAR *pPacket, VOS_UINT32 *pulLen)
 {
     PPP_IPV6CP_OPTION_S *pstWantOptions;
@@ -867,20 +695,7 @@ endswitch:
     return (rc);            /* Return final code */
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：状态机up的处理函数                                         *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm:状态机                                              *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：是回调函数，由状态机tlu动作宏(PPP_FSM_tlu)调用             *
- 修改历史      :
-  1.日    期   : 2009年12月26日
-    作    者   : zhaichao
-    修改内容   : 针对ipv6cp在ipv4上进行修改而来
-****************************************************************************/
+
 VOID PPP_IPV6CP_up(PPPFSM_S *pstFsm)
 {
     VOS_UINT32 ulAccept;
@@ -903,21 +718,7 @@ VOID PPP_IPV6CP_up(PPPFSM_S *pstFsm)
     }
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：状态机down的处理函数                                       *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm:状态机                                              *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：是回调函数，由状态机tld动作宏(PPP_FSM_tld)调用             *
- 修改历史      :
-  1.日    期   : 2009年12月26日
-    作    者   : zhaichao
-    修改内容   : 针对ipv6cp在ipv4上进行修改而来
 
-****************************************************************************/
 VOID PPP_IPV6CP_down(PPPFSM_S *pstFsm)
 {
     /* 重传定时器在PPP_FSM_tld中已经删除 */
@@ -927,21 +728,7 @@ VOID PPP_IPV6CP_down(PPPFSM_S *pstFsm)
                                       NULL);
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：状态机finished的处理函数                                   *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm:状态机                                              *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：是回调函数，由状态机tlf动作宏(PPP_FSM_tlf)调用             *
- 修改历史      :
-  1.日    期   : 2009年12月26日
-    作    者   : zhaichao
-    修改内容   : 针对ipv6cp在ipv4上进行修改而来
 
-****************************************************************************/
 VOID PPP_IPV6CP_finished(PPPFSM_S *pstFsm)
 {
     PPP_Core_ReceiveEventFromProtocol(((PPPINFO_S *)pstFsm->pPppInfo),
@@ -949,21 +736,7 @@ VOID PPP_IPV6CP_finished(PPPFSM_S *pstFsm)
                                       NULL);
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：状态机starting的处理函数                                   *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm:状态机                                              *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：是回调函数，由状态机tls动作宏(PPP_FSM_tls)调用             *
- 修改历史      :
-  1.日    期   : 2009年12月26日
-    作    者   : zhaichao
-    修改内容   : 针对ipv6cp在ipv4上进行修改而来
 
-****************************************************************************/
 VOID PPP_IPV6CP_starting(PPPFSM_S *pstFsm)
 {
     PPP_Core_ReceiveEventFromProtocol(((PPPINFO_S *)pstFsm->pPppInfo),
@@ -971,23 +744,7 @@ VOID PPP_IPV6CP_starting(PPPFSM_S *pstFsm)
                                       NULL);
 }
 
-/****************************************************************************
-* CREATE DATE  ：2009/12/23                                                 *
-* CREATED BY   ：zhaichao                                                 *
-* FUNCTION     ：初始化IPv6CP控制块                                           *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块                                       *
-*                ausMyIpAddr:我的IP地址                                      *
-*                ausPeerIpAddr:分配给对方的IP地址                            *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：                                                           *
- 修改历史      :
-  1.日    期   : 2009年12月23日
-    作    者   : zhaichao
-    修改内容   : 针对ipv6cp在ipv4上进行修改而来
 
-****************************************************************************/
 VOID PPP_IPV6CP_Init(PPPINFO_S* pstPppInfo, VOS_UINT16 *ausMyIpAddr, VOS_UINT16 *ausPeerIpAddr)
 {
     PPPFSM_S            *pstFsm;
@@ -1100,17 +857,7 @@ VOID PPP_IPV6CP_Init(PPPINFO_S* pstPppInfo, VOS_UINT16 *ausMyIpAddr, VOS_UINT16 
     PPP_MemSet((VOID*)pstHisOptions, 0, sizeof(PPP_IPV6CP_OPTION_S));
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：IPCP up后对协商结果进行检查,主要是为了以后扩展留下的接口   *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块                                       *
-* OUTPUT       ：                                                           *
-* RETURN       ：VOS_ERR:协商结果不可接受,调用者应结束协商                  *
-*                VOS_OK :协商结果可以接受,调用者应向上层协议报UP            *
-* CALLED BY    ：PPP_IPCP_up                                                *
-****************************************************************************/
+
 VOS_UINT32 PPP_IPV6CP_UpResetCi(PPPINFO_S *pstPppInfo)
 {
     /* success */
@@ -1212,16 +959,7 @@ VOS_UINT16 PPP_IPv6_GetAddrType( in6_addr *addr )
 }
 
 
-/****************************************************************************
-* CREATE DATE  ：2009/12/22                                                 *
-* CREATED BY   ：T62595                                                  *
-* FUNCTION     ：ipv6地址检查                                               *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：                                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：
-* CALLED BY    ：vos_ok:ip地址有效；vos_err:ip地址无效
-****************************************************************************/
+
 VOS_UINT32 PPP_ipv6_addr_check(VOS_UINT16 *pstIpv6addr)
 {
     VOS_UINT16 ultype;
@@ -1251,16 +989,7 @@ VOS_UINT32 PPP_ipv6_addr_check(VOS_UINT16 *pstIpv6addr)
 }
 /*lint +e778*/
 
-/****************************************************************************
-* CREATE DATE  ：2009/12/22                                                 *
-* CREATED BY   ：z00129699                                                  *
-* FUNCTION     ：ipv6 interface id 检查                                               *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：                                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：
-* CALLED BY    ：vos_ok:ip地址有效；vos_err:ip地址无效
-****************************************************************************/
+
 VOS_UINT32 PPP_ipv6_intfid_check(VOS_UINT16 *pstIpv6addr, VOS_UINT32 ullen)
 {
     VOS_UINT32  ulReturn = 0;
@@ -1283,16 +1012,7 @@ VOS_UINT32 PPP_ipv6_intfid_check(VOS_UINT16 *pstIpv6addr, VOS_UINT32 ullen)
 }
 
 
-/****************************************************************************
-* CREATE DATE  ：2009/12/22                                                 *
-* CREATED BY   ：z00129699                                                  *
-* FUNCTION     ：ipv6cp入口函数                                              *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：                                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：
-* CALLED BY    ：
-****************************************************************************/
+
 VOID PPP_Ipv6cp_Proc(PPPINFO_S *pstPppInfo)
 {
     VOS_UINT32   ulResult   = VOS_ERR;
@@ -1341,16 +1061,7 @@ VOID PPP_Ipv6cp_Proc(PPPINFO_S *pstPppInfo)
 }
 
 
-/****************************************************************************
-* CREATE DATE  ：2009/12/23                                                 *
-* CREATED BY   ：z00129699                                                  *
-* FUNCTION     ：ipv6cp协商报文处理函数                                              *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：                                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：
-* CALLED BY    ：
-****************************************************************************/
+
 
 VOID PPP_IPV6CP_Pactket_Proc(PPPINFO_S *pstPppInfo,
                                          UCHAR*     pHead,

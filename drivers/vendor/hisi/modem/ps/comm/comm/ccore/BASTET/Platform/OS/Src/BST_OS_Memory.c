@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : BST_OS_Memory.h
-  版 本 号   : 初稿
-  作    者   : d00173029
-  生成日期   : 2014年06月30日
-  最近修改   :
-  功能描述   : 实现内存处理相关函数
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年06月30日
-    作    者   : d00173029
-    修改内容   : 建立文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -163,19 +146,7 @@ BST_MEM_STATUE_CALLBACK_INFO            g_acBstMemCallBackInfo[BST_MEM_TYPE_BUTT
 /******************************************************************************
    6 函数实现
 ******************************************************************************/
-/*****************************************************************************
- 函 数 名  : BST_OS_StaticMemCtrlBlkInit
- 功能描述  : 静态内存处理初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年05月27日
-      作    者   : z00128442
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 
 BST_VOID BST_OS_StaticMemCtrlBlkInit( BST_MEM_CTRL_BLOCK *BST_MemCtrlBlock,
                       BST_INT32 lBlockLength, BST_INT32 lTotalBlockNumber,
@@ -256,19 +227,7 @@ BST_VOID BST_OS_StaticMemCtrlBlkInit( BST_MEM_CTRL_BLOCK *BST_MemCtrlBlock,
 }
 
 
- /*****************************************************************************
-  函 数 名  : BST_OS_StaticMemInit
-  功能描述  : 静态内存处理初始化
-  输入参数  : 无
-  输出参数  : 无
-  返 回 值  : 无
-  调用函数  :
-  被调函数  :
-  修改历史  :
-     1.日    期   : 2015年05月27日
-       作    者   : z00128442
-       修改内容   : 新生成函数
- *****************************************************************************/
+ 
 BST_UINT32 BST_OS_StaticMemInit( BST_VOID )
 {
     BST_INT32                           i;
@@ -374,19 +333,7 @@ BST_UINT32 BST_OS_StaticMemInit( BST_VOID )
     return BST_MEM_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_OS_StaticMemCtrlBlkMalloc
- 功能描述  : 静态内存分配
- 输入参数  : BST_MemCtrlBlock  需要申请的内存对应的控制块
- 输出参数  :
- 返 回 值  :  ulMemAddress 返回对应的地址
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年05月27日
-      作    者   : z00128442
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 
 BST_VOID* BST_OS_StaticMemCtrlBlkMalloc( BST_MEM_CTRL_BLOCK *BST_MemCtrlBlock)
 {
@@ -435,20 +382,7 @@ BST_VOID* BST_OS_StaticMemCtrlBlkMalloc( BST_MEM_CTRL_BLOCK *BST_MemCtrlBlock)
 }
 
 
-/*****************************************************************************
- 函 数 名  : BST_OS_StaticMemCtrlBlkFree
- 功能描述  : 释放指定内存块的地址
- 输入参数  : BST_MemCtrlBlock  --需要释放的控制块地址
-                           Block                      --需要释放的block地址
- 输出参数  : BST_MEM_ERROR  free地址
- 返 回 值  : BST_MEM_OK  代表释放完成，其他代码异常
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年05月27日
-      作    者   : z00128442
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 
 BST_UINT32 BST_OS_StaticMemCtrlBlkFree( BST_MEM_CTRL_BLOCK *BST_MemCtrlBlock,
                                BST_MEM_HEAD_BLOCK *Block )
@@ -486,21 +420,7 @@ BST_UINT32 BST_OS_StaticMemCtrlBlkFree( BST_MEM_CTRL_BLOCK *BST_MemCtrlBlock,
 }
 
 
-/*****************************************************************************
- 函 数 名  : BST_OS_StaticMemCheck
- 功能描述  : 对传入要释放的地址的内存进行合法性检查
-                           并返回释放的内存的地址段
- 输入参数  : *pAddr --需要检查的内存地址
- 输出参数  :pulBlock  --需要释放内存地址对应的block地址
-                          pulCtrl  --需要释放内存地址对应的控制块地址
- 返 回 值  : BST_UINT32  BST_MEM_OK--代表地址合法，其他为非法地址
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年05月27日
-      作    者   : z00128442
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 
 BST_UINT32 BST_OS_StaticMemCheck( BST_VOID *pAddr, BST_UINT_PTR *pulBlock,
                          BST_UINT_PTR *pulCtrl)
@@ -586,20 +506,7 @@ BST_UINT32 BST_OS_StaticMemCheck( BST_VOID *pAddr, BST_UINT_PTR *pulBlock,
     return BST_MEM_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_OS_StaticMemAlloc
- 功能描述  : BST内部静态内存申请
- 输入参数  : enType --需要查询的内存块类型
-                           ulSize  --  需要查询的内存块大小
- 输出参数  : 无
- 返 回 值  : 返回申请内存的首地址，BST_NULL_PTR代表申请失败
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年05月27日
-      作    者   : z00128442
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID * BST_OS_StaticMemAlloc(BST_MEM_TYPE_ENUM_UINT8 enType, BST_UINT32 ulSize )
 {
     BST_INT32                  i;
@@ -662,19 +569,7 @@ BST_VOID * BST_OS_StaticMemAlloc(BST_MEM_TYPE_ENUM_UINT8 enType, BST_UINT32 ulSi
 }
 
 
-/*****************************************************************************
- 函 数 名  : BST_OS_StaticMemFree
- 功能描述  : BST 内存申请的内存释放函数
- 输入参数  : ppAddr  需要释放的内存地址的地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年05月27日
-      作    者   : z00128442
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 
 BST_UINT32 BST_OS_StaticMemFree(BST_VOID **ppAddr)
 {
@@ -699,20 +594,7 @@ BST_UINT32 BST_OS_StaticMemFree(BST_VOID **ppAddr)
 }
 
 
-/*****************************************************************************
- 函 数 名  : BST_OS_StaticMemGetIdleBlockNum
- 功能描述  : 获取当前指定类型和大小的内存块剩余数
- 输入参数  : enType --需要查询的内存块类型
-                           ulSize  --  需要查询的内存块大小
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年05月27日
-      作    者   : z00128442
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 
 BST_INT32 BST_OS_StaticMemGetIdleBlockNum( BST_MEM_TYPE_ENUM_UINT8 enType, BST_UINT32 ulSize)
 {
@@ -753,20 +635,7 @@ BST_INT32 BST_OS_StaticMemGetIdleBlockNum( BST_MEM_TYPE_ENUM_UINT8 enType, BST_U
 
 
 
-/*****************************************************************************
- 函 数 名  : BST_OS_RegisgerMemStatus
- 功能描述  : 提供外部注册指定类型的内存空间状态的回调函数
- 输入参数  : enType --需要查询的内存块类型
-            pfCallBack  --注册的回调函数
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年08月05日
-      作    者   : z00128442
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_OS_RegisgerMemStatus( BST_MEM_TYPE_ENUM_UINT8 enType, BST_MEM_STATUS_CALLBACK_FUNC pfCallBack )
 {
     BST_UINT32                          ulIndex;
@@ -795,19 +664,7 @@ BST_ERR_ENUM_UINT8 BST_OS_RegisgerMemStatus( BST_MEM_TYPE_ENUM_UINT8 enType, BST
     return BST_ERR_NOT_SUPPORT;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_OS_MemStatusReport
- 功能描述  : 检查内存状态，是否达到内存不足或者充足的门限
- 输入参数  : enType --需要查询的内存块类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年08月05日
-      作    者   : z00128442
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_OS_MemStatusReport( BST_MEM_TYPE_ENUM_UINT8 enType )
 {
     BST_UINT32                          ulIndex;
@@ -863,40 +720,14 @@ BST_VOID BST_OS_MemStatusReport( BST_MEM_TYPE_ENUM_UINT8 enType )
     }
     return ;
 }
-/*****************************************************************************
- 函 数 名  : BST_OS_PalMemInit
- 功能描述  : 内存处理初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_OS_MemInit( BST_VOID )
 {
     BST_OS_PalMemInit();
     BST_OS_StaticMemInit();
 }
 
-/*****************************************************************************
- 函 数 名  : BST_OS_Memset
- 功能描述  : 写内存
- 输入参数  : BST_VOID *pData            地址
-             BST_INT32 lValue           值
-             BST_OS_MEMSIZE_T ulSize    空间
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 /*lint -sem(BST_OS_PalMemset,custodial(1))*/
 BST_VOID BST_OS_Memset(
     BST_VOID           *pData,
@@ -906,21 +737,7 @@ BST_VOID BST_OS_Memset(
     BST_OS_PalMemset( pData, lValue, ulSize );
 }
 
-/*****************************************************************************
- 函 数 名  : BST_OS_Memcmp
- 功能描述  : mem比较
- 输入参数  : BST_VOID *pData1         内存1
-             BST_VOID *pData2         内存2
-             BST_OS_MEMSIZE_T ulSize  空间大小
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_INT8 BST_OS_Memcmp(
     const BST_VOID     *pData1,
     const BST_VOID     *pData2,
@@ -929,21 +746,7 @@ BST_INT8 BST_OS_Memcmp(
     return( ( BST_INT8 )BST_OS_PalMemcmp( pData1, pData2, ulSize ) );
 }
 
-/*****************************************************************************
- 函 数 名  : BST_OS_Memcpy
- 功能描述  : mem复制
- 输入参数  : BST_VOID *pDst           内存1
-             BST_VOID *pSrc           内存2
-             BST_OS_MEMSIZE_T ulSize  空间大小
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 /*lint -sem(BST_OS_PalMemcpy,custodial(1))*/
 BST_VOID BST_OS_Memcpy(
     BST_VOID           *pDst,
@@ -953,21 +756,7 @@ BST_VOID BST_OS_Memcpy(
     BST_OS_PalMemcpy( pDst, pSrc, ulSize );
 }
 
-/*****************************************************************************
- 函 数 名  : BST_OS_Memmove
- 功能描述  : 内存搬移
- 输入参数  : BST_VOID *pDst           目的地址
-             BST_VOID *pSrc           源地址
-             BST_OS_MEMSIZE_T ulSize  空间大小
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID    BST_OS_Memmove (
     BST_VOID           *pDst,
     BST_VOID           *pSrc,
@@ -976,19 +765,7 @@ BST_VOID    BST_OS_Memmove (
     BST_OS_PalMemmove( pDst, pSrc, ulSize );
 }
 
-/*****************************************************************************
- 函 数 名  : BST_OS_MALLOC
- 功能描述  : UT专用申请内存函数
- 输入参数  : BST_INT32 ulSize        空间大小
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年06月26日
-      作    者   : w00178404
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 #if (BST_VER_TYPE == BST_UT_VER )
 BST_VOID    *BST_OS_MALLOC( BST_INT32 ulSize )
 {

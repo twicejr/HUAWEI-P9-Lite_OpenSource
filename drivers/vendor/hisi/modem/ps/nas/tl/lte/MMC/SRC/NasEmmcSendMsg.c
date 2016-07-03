@@ -280,17 +280,7 @@ VOS_UINT32  NAS_LMM_RrcPlmnCnfTypeCheck
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_SendEmmStartCnf
- Description     : EMMC发送EMMC_EMM_START_CNF消息处理
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.    leili  00132387      2011-2-22  Draft Enact
-
-*****************************************************************************/
 /*lint -e960*/
 /*lint -e961*/
 VOS_VOID  NAS_EMMC_SendEmmStartCnf(VOS_VOID)
@@ -326,17 +316,7 @@ VOS_VOID  NAS_EMMC_SendEmmStartCnf(VOS_VOID)
 
 
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_SendEmmStopCnf
- Description     : EMMC发送EMMC_EMM_STOP_CNF消息处理
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.    leili  00132387      2011-2-22  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMMC_SendEmmStopCnf(VOS_VOID)
 {
     EMMC_EMM_STOP_CNF_STRU             *pstStopCnf;
@@ -369,17 +349,7 @@ VOS_VOID  NAS_EMMC_SendEmmStopCnf(VOS_VOID)
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_SendEmmPlmnInd
- Description     : EMMC发送EMMC_EMM_PLMN_IND消息处理
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.    leili  00132387      2011-2-22  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMMC_SendEmmPlmnInd(VOS_VOID)
 {
     EMMC_EMM_PLMN_IND_STRU             *pstPlmnInd;
@@ -413,17 +383,7 @@ VOS_VOID  NAS_EMMC_SendEmmPlmnInd(VOS_VOID)
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_SendRrcPlmnSrchReq
- Description     : EMMC发送RRC_MM_PLMN_SEARCH_REQ消息处理
- Input           : pstRsvMsg-------MMC发送的消息
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.    leili  00132387      2011-2-22  Draft Enact
-
-*****************************************************************************/
 /*lint -specific(-e433)*/
 VOS_VOID NAS_EMMC_SendRrcPlmnSrchReq(const MMC_LMM_PLMN_SRCH_REQ_STRU *pstRcvMsg)
 {
@@ -621,17 +581,7 @@ VOS_VOID NAS_EMMC_SendRrcPlmnSrchReq(const MMC_LMM_PLMN_SRCH_REQ_STRU *pstRcvMsg
 /*lint -specific(+e433)*/
 
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_SendMmcPlmnSrchCnf
- Description     : EMMC发送LMM_MMC_PLMN_SRCH_CNF消息处理
- Input           : pstRsvMsg--------RRC发送的消息
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili  00132387      2011-2-22  Draft Enact
-    2.zhengjunyan 00148421 2010-11-16  MMC和LMM之间的消息修改为MMC内部消息
-*****************************************************************************/
 /*lint -specific(-e433)*/
 VOS_VOID  NAS_EMMC_SendMmcPlmnSrchCnf(const LRRC_LMM_PLMN_SEARCH_CNF_STRU *pstRcvMsg )
 {
@@ -766,16 +716,7 @@ VOS_VOID  NAS_EMMC_SendMmcPlmnSrchCnf(const LRRC_LMM_PLMN_SEARCH_CNF_STRU *pstRc
 }
 /*lint -specific(+e433)*/
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_SendMmcPlmnListSrchRej
- Description     :  建链过程中收到LIST搜，直接回复拒绝，EMMC发送LMM_MMC_PLMN_SRCH_CNF消息处理
- Input           : pstRsvMsg--------RRC发送的消息
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.wangchen      00209181      2012-11-2  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_EMMC_SendMmcPlmnListSrchRej(VOS_VOID )
 {
     LMM_MMC_PLMN_SRCH_CNF_STRU        *pstPlmnCnfMsg = NAS_EMMC_NULL_PTR;
@@ -821,20 +762,7 @@ VOS_VOID  NAS_EMMC_SendMmcPlmnListSrchRej(VOS_VOID )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_SendEmmSysInfoInd
- Description     : EMMC发送EMMC_EMM_SYS_INFO_IND消息处理
- Input           : ulChangeInfo -------系统消息是否改变信息
-                   ulCellState---------RRC上报的小区状态信息
-                   ulForbdInfo---------被禁信息
- Output          : None
- Return          : VOS_VOID
 
- History         :
-
-        1.    leili  00132387      2011-2-25  Draft Enact
-        2.    lihong 00150010      2012-12-17 Modify:Emergency
-*****************************************************************************/
 VOS_VOID    NAS_EMMC_SendEmmSysInfoInd
 (
     EMMC_EMM_CHANGE_INFO_ENUM_UINT32 ulChangeInfo,
@@ -903,17 +831,7 @@ VOS_VOID    NAS_EMMC_SendEmmSysInfoInd
 
 
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_SendMmcSysInfo
- Description     : EMMC发送LMM_MMC_SYS_INFO_IND消息处理
- Input           : pstRcvMsg------RRC发送的消息
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2011-2-25  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMMC_SendMmcSysInfo(const LRRC_LMM_SYS_INFO_IND_STRU  *pstRcvMsg  )
 {
     LMM_MMC_SYS_INFO_IND_STRU          *pstSysInfoIndMsg = NAS_EMMC_NULL_PTR;
@@ -970,7 +888,6 @@ VOS_VOID  NAS_EMMC_SendMmcSysInfo(const LRRC_LMM_SYS_INFO_IND_STRU  *pstRcvMsg  
 
     pstSysInfoIndMsg->stLteSysInfo.ulCellId       = pstRcvMsg->ulCellId;
 
-/* s00193151 mod for GU NAS LAU 停止T3212定时器的问题 begin */
     /* GU NAS让LNAS在收到RRC系统消息时先判断小区状态是否是NORMAL上报给MMC，以便GU NAS判断是否停止3212等定时器 */
 
     /* 初始化小区状态为NORMAL */
@@ -1014,7 +931,6 @@ VOS_VOID  NAS_EMMC_SendMmcSysInfo(const LRRC_LMM_SYS_INFO_IND_STRU  *pstRcvMsg  
     }
 
     pstSysInfoIndMsg->stLteSysInfo.enCellStatusInd = enCellStatus;
-/* s00193151 mod for GU NAS LAU 停止T3212定时器的问题 end */
 
     pstSysInfoIndMsg->stLteSysInfo.ulArfcn        = pstRcvMsg->ulArfcn;
     /* 添加bandwidth信息 */
@@ -1041,17 +957,7 @@ VOS_VOID  NAS_EMMC_SendMmcSysInfo(const LRRC_LMM_SYS_INFO_IND_STRU  *pstRcvMsg  
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_SendRrcEplmnNotifyReq
- Description     : EMMC发送RRC_MM_EQU_PLMN_NOTIFY_REQ消息处理
- Input           : pstRcvMsg-------MMC发送的消息
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2011-2-28  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMMC_SendRrcEplmnNotifyReq(const MMC_LMM_EPLMN_NOTIFY_REQ_STRU *pstRcvMsg)
 {
     LRRC_LMM_EQU_PLMN_NOTIFY_REQ_STRU   *pstEplmnReq;
@@ -1121,17 +1027,7 @@ VOS_VOID  NAS_EMMC_SendRrcEplmnNotifyReq(const MMC_LMM_EPLMN_NOTIFY_REQ_STRU *ps
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_SendRrcPlmnSrchStopReq
- Description     : EMMC发送RRC_MM_PLMN_SEARCH_STOP_REQ消息处理
- Input           : pstRcvMsg------MMC发送的消息
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2011-2-28  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMMC_SendRrcPlmnSrchStopReq(VOS_VOID)
 {
     LRRC_LMM_PLMN_SEARCH_STOP_REQ_STRU    *pstPlmnSrchStopReq;
@@ -1164,17 +1060,7 @@ VOS_VOID  NAS_EMMC_SendRrcPlmnSrchStopReq(VOS_VOID)
     NAS_LMM_SEND_MSG(                    pstPlmnSrchStopReq);
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_SendMmcStopSrchCnf
- Description     : EMMC发送LMM_MMC_STOP_SRCH_CNF消息处理
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2011-3-1  Draft Enact
-    2.zhengjunyan 00148421 2010-11-16  MMC和LMM之间的消息修改为MMC内部消息
-*****************************************************************************/
 VOS_VOID  NAS_EMMC_SendMmcStopSrchCnf(VOS_VOID )
 {
     LMM_MMC_STOP_PLMN_SRCH_CNF_STRU    *pstStopSrchMsg = NAS_EMMC_NULL_PTR;
@@ -1216,17 +1102,7 @@ VOS_VOID  NAS_EMMC_SendMmcStopSrchCnf(VOS_VOID )
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_SendEmmCoverageLostInd
- Description     : EMMC发送EMMC_EMM_COVERAGE_LOST_IND消息处理
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2011-3-1  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMMC_SendEmmCoverageLostInd( VOS_VOID )
 {
     EMMC_EMM_COVERAGE_LOST_IND_STRU     *pstCoverageLostInd;
@@ -1264,19 +1140,7 @@ VOS_VOID  NAS_EMMC_SendEmmCoverageLostInd( VOS_VOID )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_SendMmcAreaLostInd
- Description     :
- Input           : MMC_LMM_AREA_LOST_REASON_UINT32  enAreaLostReason
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2011-3-1  Draft Enact
-    2.c00134407           2014-7-11 DSDS特性发送消息时携带原因值
-    3.chengmin 00285307   2015-10-25 搜网优化云端预置频点特性携带进行过的搜网类型
-
-*****************************************************************************/
 /*lint -specific(-e433)*/
 VOS_VOID  NAS_EMMC_SendMmcAreaLostInd
 (
@@ -1336,17 +1200,7 @@ VOS_VOID  NAS_EMMC_SendMmcAreaLostInd
 }
 /*lint -specific(+e433)*/
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_SendRrcCellSelectionReq
- Description     : EMMC发送RRC_MM_CELL_SELECTION_CTRL_REQ消息处理
- Input           : ulReselType------小区搜索类型
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2011-3-3  Draft Enact
-
-*****************************************************************************/
 /*lint -specific(-e433)*/
 VOS_VOID  NAS_EMMC_SendRrcCellSelectionReq
 (
@@ -1501,16 +1355,7 @@ VOS_VOID NAS_EMMC_SendRrcBgPlmnSearchStopReq(const MMC_LMM_STOP_BG_PLMN_SEARCH_R
 }
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- Function Name   : NAS_EMMC_SendRrcBgSearchHrpdReq
- Description     : 向LRRC发送背景搜EHRPD请求
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_EMMC_SendRrcBgSearchHrpdReq(VOS_VOID)
 {
     LRRC_LMM_BG_SEARCH_HRPD_REQ_STRU   *pLrrcMsg = NAS_EMMC_NULL_PTR;
@@ -1546,16 +1391,7 @@ VOS_VOID NAS_EMMC_SendRrcBgSearchHrpdReq(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_SendRrcBgSearchHrpdStopReq
- Description     : 向LRRC发送停止背景搜EHRPD请求
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_EMMC_SendRrcBgSearchHrpdStopReq(VOS_VOID)
 {
     LRRC_LMM_BG_SEARCH_HRPD_STOP_REQ_STRU *pLrrcMsg = NAS_EMMC_NULL_PTR;
@@ -1744,16 +1580,7 @@ VOS_VOID NAS_EMMC_SendMmcNotCampOnInd(VOS_VOID)
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_SendMmcSearchPlmnInfoInd
- Description     : 向MMC发送ID_LMM_MMC_SEARCHED_PLMN_INFO_IND消息
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.sunjitan 00193151     2014-11-20  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_EMMC_SendMmcSearchPlmnInfoInd
 (
     const LRRC_LMM_SEARCHED_PLMN_INFO_IND_STRU *pstLrrcMsg
@@ -1800,16 +1627,7 @@ VOS_VOID NAS_EMMC_SendMmcSearchPlmnInfoInd
 }
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- Function Name   : NAS_EMMC_SendMmcBgSearchHrpdCnf
- Description     : 向MMC发送ID_LMM_MMC_BG_SEARCH_HRPD_CNF消息
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_EMMC_SendMmcBgSearchHrpdCnf
 (
     const LRRC_LMM_BG_SEARCH_HRPD_CNF_STRU       *pstLrrcMsg
@@ -1857,16 +1675,7 @@ VOS_VOID NAS_EMMC_SendMmcBgSearchHrpdCnf
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_SendMmcStopBgSearchHrpdCnf
- Description     : 向MMC发送ID_LMM_MMC_STOP_BG_SEARCH_HRPD_CNF消息
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_EMMC_SendMmcStopBgSearchHrpdCnf(VOS_VOID)
 {
     LMM_MMC_STOP_BG_SEARCH_HRPD_CNF_STRU         *pstMmcMsg = NAS_LMM_NULL_PTR;
@@ -1905,15 +1714,7 @@ VOS_VOID NAS_EMMC_SendMmcStopBgSearchHrpdCnf(VOS_VOID)
 }
 #endif
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_SendEsmPlmnChangeInd
- Description     : 向ESM发送ID_EMM_ESM_PLMN_CHANGE_IND消息
- Input           : VOS_VOID
- Output          : VOS_VOID
- Return          : VOS_VOID
- History         :
-    1.sunjitan 00193151     2015-01-15  Draft Enact
-*****************************************************************************/
+
 VOS_VOID    NAS_EMMC_SendEsmPlmnChangeInd (VOS_VOID)
 {
     EMM_ESM_PLMN_CHANGE_IND_STRU     *pEmmEsmPlmnChangeMsg;
@@ -1945,15 +1746,7 @@ VOS_VOID    NAS_EMMC_SendEsmPlmnChangeInd (VOS_VOID)
 
 }
 #if(FEATURE_ON == FEATURE_CSG)
-/*****************************************************************************
- Function Name   : NAS_EMMC_SendRrcCsgWhiteListNotify
- Description     : 向RRC发送ID_EMMC_LMM_CSG_WHITE_LIST_NOTIFY消息
- Input           : VOS_VOID
- Output          : VOS_VOID
- Return          : VOS_VOID
- History         :
-    1.yanglei 00307272     2015-09-18  Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_EMMC_SendRrcCsgWhiteListNotify
 (
     MMC_LMM_CSG_WHITE_LIST_NOTIFY_STRU *pstRcvMsg
@@ -2002,17 +1795,7 @@ VOS_VOID NAS_EMMC_SendRrcCsgWhiteListNotify
 
     NAS_LMM_SEND_MSG(pstCsgWhiteListMsg);
 }
-/*****************************************************************************
- Function Name   : NAS_EMMC_SendMmcCsgListSrchRej
- Description     : 建链过程中收到CSG LIST搜，直接回复拒绝，EMMC发送
-                   ID_LMM_MMC_CSG_LIST_SEARCH_CNF消息处理
- Input           : pstRsvMsg--------RRC发送的消息
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.yanglei      00307272      2015-10-27  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_EMMC_SendMmcCsgListSrchRej(VOS_VOID )
 {
     LMM_MMC_CSG_LIST_SEARCH_CNF_STRU        *pstPlmnCnfMsg = NAS_EMMC_NULL_PTR;
@@ -2056,17 +1839,7 @@ VOS_VOID  NAS_EMMC_SendMmcCsgListSrchRej(VOS_VOID )
 
     return;
 }
-/*****************************************************************************
- Function Name   : NAS_EMMC_SendRrcCsgListSrchReq
- Description     : EMMC发送RRC_MM_PLMN_SEARCH_REQ消息处理
- Input           : pstRsvMsg-------MMC发送的消息
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.    yanglei  00307272      2015-2-22  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_EMMC_SendRrcCsgListSrchReq
 (
     const MMC_LMM_CSG_LIST_SEARCH_REQ_STRU *pstRcvMsg
@@ -2111,16 +1884,7 @@ VOS_VOID NAS_EMMC_SendRrcCsgListSrchReq
     return;
 
 }
-/*****************************************************************************
- Function Name   : NAS_EMMC_FillSendMmcCsgListSrchCnfNotSuccMsg
- Description     : 填充LMM_MMC_CSG_LIST_SEARCH_CNF(没有succ)消息处理,
- Input           :
- Output          :
- Return          : VOS_VOID
 
- History         :
-    1.yanglei 00307272      2015-11-2  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_EMMC_FillSendMmcCsgListSrchCnfNotSuccMsg
 (
     const LRRC_LMM_CSG_LIST_SEARCH_CNF_STRU      *pstLrrcMsg
@@ -2177,16 +1941,7 @@ VOS_VOID  NAS_EMMC_FillSendMmcCsgListSrchCnfNotSuccMsg
     NAS_LMM_SendLmmMmcMsg((VOS_VOID*)pstPlmnCnfMsg);
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_FillSendMmcCsgListSrchCnfMsg
- Description     : 填充LMM_MMC_CSG_LIST_SEARCH_CNF消息处理,
- Input           :
- Output          :
- Return          : VOS_VOID
 
- History         :
-    1.yanglei 00307272      2015-11-2  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_EMMC_FillSendMmcCsgListSrchCnfMsg
 (
     const LRRC_LMM_CSG_LIST_SEARCH_CNF_STRU      *pstLrrcMsg,
@@ -2277,16 +2032,7 @@ VOS_VOID  NAS_EMMC_FillSendMmcCsgListSrchCnfMsg
     /* 发送MMC消息 */
     NAS_LMM_SendLmmMmcMsg((VOS_VOID*)pstPlmnCnfMsg);
 }
-/*****************************************************************************
- Function Name   : NAS_EMMC_FillSendSecMmcCsgListSrchCnfMsg
- Description     : 填充LMM_MMC_CSG_LIST_SEARCH_CNF消息处理,
- Input           :
- Output          :
- Return          : VOS_VOID
 
- History         :
-    1.yanglei 00307272      2015-11-30  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_EMMC_FillSendMmcSecCsgListSrchCnfMsg
 (
     const LRRC_LMM_CSG_LIST_SEARCH_CNF_STRU      *pstLrrcMsg,
@@ -2378,17 +2124,7 @@ VOS_VOID  NAS_EMMC_FillSendMmcSecCsgListSrchCnfMsg
     NAS_LMM_SendLmmMmcMsg((VOS_VOID*)pstPlmnCnfMsg);
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_SendMmcCsgListSrchCnf
- Description     : EMMC发送LMM_MMC_CSG_LIST_SEARCH_CNF消息处理,分条上报，每条最多20
-                   (32+64*n<1500)
- Input           : pstRsvMsg--------RRC发送的消息
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.yanglei 00307272      2015-10-27  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_EMMC_SendMmcCsgListSrchCnf
 (
     const LRRC_LMM_CSG_LIST_SEARCH_CNF_STRU *pstLrrcMsg

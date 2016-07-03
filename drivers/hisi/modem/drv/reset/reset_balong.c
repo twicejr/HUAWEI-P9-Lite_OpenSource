@@ -193,7 +193,7 @@ s32 drv_reset_cb (DRV_RESET_CB_MOMENT_E stage, int userdata)
 			ipc_modem_reset_cb(stage, 0);
 			/* 在C核drv启动之后，icc需要准备好 */
 			ccore_msg_switch_on(g_modem_reset_ctrl.multicore_msg_switch, CCORE_STATUS);
-            
+
 			ret = bsp_sec_call(FUNC_ICC_MSG_SWITCH_ON, 0);
 			if (BSP_ERROR == ret)
 			{

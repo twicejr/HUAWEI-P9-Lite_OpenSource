@@ -1,21 +1,4 @@
-/******************************************************************************
 
-    Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : OmCommon.h
-  Description     : OmCommon.h header file
-  History         :
-     1.heliping         2008-10-30  Draft Enact
-     2.xiaojun 58160  2009-05-19  BJ9D00828  AppMmInterface.h中关于路测
-                                    的公共定义移植到OmCommon.h中，利于各个模块公共使
-                                    用、维护
-     3.xiaojun 58160  2009-05-22  BJ9D00873  MSP组提供的key event id和air msg id
-                                 的取值都超过了原来协议栈定义的8bit，需要做相应的修改
-     4.zhangwei 00103912  2009-06-5  BJ9D01039 L2新增关键事件ID定义
-     5.linyu    00161178  2009-10-23 BJ9D20173 RRC新增关键事件ID定义
-
-******************************************************************************/
 
 #ifndef __OMCOMMON_H__
 #define __OMCOMMON_H__
@@ -440,7 +423,6 @@ enum OM_PS_KEY_EVENT_ENUM
     MM_KEY_EVENT_EMM_DOWNLINK_GENERIC_NAS_TRANSPORT,
     MM_KEY_EVENT_EMM_UPLINK_GENERIC_NAS_TRANSPORT,
 
-    /*V7R2-DT增加MCE激活/去激活SCell、DeactivationTimer超时去激活SCell、RRC去激活SCELL事件枚举的代码 q00208938 2014/03/24，begin*/
     L2_MCE_DEACTIVE_SCELL1,
     L2_MCE_DEACTIVE_SCELL2,
     L2_MCE_DEACTIVE_SCELL3,
@@ -472,7 +454,6 @@ enum OM_PS_KEY_EVENT_ENUM
     RRC_DEACTIVE_SCELL5,
     RRC_DEACTIVE_SCELL6,
     RRC_DEACTIVE_SCELL7
-    /*V7R2-DT增加MCE激活/去激活SCell、DeactivationTimer超时去激活SCell、RRC去激活SCELL事件枚举的代码 q00208938 2014/03/24，end*/
 };
 typedef VOS_UINT8 OM_PS_KEY_EVENT_ENUM_UINT8;
 
@@ -2227,7 +2208,6 @@ typedef struct
     VOS_UINT32                          ulLossMsgID[TDS_MAC_LOSS_MSG_MAX_NUM];
     VOS_UINT32                          ulLossMsgIndex;
 
-/*added by z00275692 for TDS L2 可维可测特性开发2015-8-4*/
    VOS_UINT32                          ulAsSearchRfReqNum;
    VOS_UINT32                          ulAsSearchRfRelNum;
    VOS_UINT32                          ulAsSearchRfCnfNum;
@@ -3631,7 +3611,6 @@ extern VOS_VOID LPS_OM_LOG4( const VOS_CHAR   *pcFileName, VOS_UINT32  ulLineNum
                                    VOS_INT32  lPara4);
 extern VOS_UINT32  OM_GetTimeStamp(void);/*获取精度为0.1毫秒的时间戳*/
 
-/*z00282933，多模OM融合添加 - BEGIN*/
 extern VOS_VOID TL_OM_ReportSingleUpEvent(
                                                 TL_UP_EVENT_ENUM_UINT16 usEvent,
                                                 VOS_UINT16 usPid,
@@ -3641,7 +3620,6 @@ extern VOS_VOID TL_OM_ReportSingleUpEvent(
                                                 VOS_UINT32 ulModeType);
 
 extern VOS_VOID TL_OM_ReportAllUpEvent(VOS_UINT32 ulModeType);
-/*z00282933, 多模OM融合添加 - END*/
 
 #if (VOS_OS_VER != VOS_WIN32)
 #pragma pack()

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : uttest_AtCmdMsgProc.h
-  版 本 号   : 初稿
-  作    者   :
-  生成日期   : 2012年5月17日
-  最近修改   :
-  功能描述   : uttest_AtCmdMsgProc.cpp 的头文件
-  函数列表   : 
-  修改历史   :
-  1.日    期   : 2012年5月17日
-    作    者   : l60609
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __TEST_ATCMDMSGPROC_H__
 #define __TEST_ATCMDMSGPROC_H__
@@ -36,7 +19,7 @@
 #include "TafDrvAgent.h"
 #include "AtCmdMsgProc.h"
 #include "AtEventReport.h"
-#include "AtRabmInterface.h" // V3R2和V7R1共用 z40661 c00149739 20111221
+#include "AtRabmInterface.h"
 #include "AtRnicInterface.h"
 #include "AtDeviceCmd.h"
 #if (FEATURE_ON==FEATURE_LTE)
@@ -298,19 +281,15 @@ extern VOS_UINT32 AT_RcvMmaCipherInfoQueryCnf(VOS_VOID *pMsg);
 extern VOS_UINT32 AT_RcvMmaCmmSetCmdRsp(VOS_VOID *pMsg);
 extern VOS_UINT32 AT_RcvMmaLocInfoQueryCnf(VOS_VOID *pMsg);
 
-/* Modified by w00167002 for L-C互操作项目, 2014-2-21, begin */
 extern VOS_UINT32 AT_RcvMmaOmMaintainInfoInd(
     VOS_VOID                           *pstMsg
 );
-/* Modified by w00167002 for L-C互操作项目, 2014-2-21, end */
 extern VOS_VOID AT_RcvNdisMsg(MsgBlock* pMsg);
 extern VOS_UINT32 AT_RcvRnicDialModeCnf(MsgBlock *pstMsg);
 extern VOS_UINT32 AT_RcvRnicDsflowRsp(MsgBlock *pstMsg);
 extern VOS_UINT32 At_RcvRnicMsg(MsgBlock *pstMsg);
 
-/* Modified by w00167002 for L-C互操作项目, 2014-2-21, begin */
 extern VOS_UINT32 AT_RcvSimLockQryRsp(VOS_VOID *pMsg);
-/* Modified by w00167002 for L-C互操作项目, 2014-2-21, end */
 extern VOS_VOID At_RcvVcMsgQryModeCnfProc(MN_AT_IND_EVT_STRU *pstData);
 extern VOS_VOID At_RcvVcMsgQryPortCnfProc(MN_AT_IND_EVT_STRU *pstData);
 extern VOS_VOID At_RcvVcMsgSetPortCnfProc(MN_AT_IND_EVT_STRU *pstData);

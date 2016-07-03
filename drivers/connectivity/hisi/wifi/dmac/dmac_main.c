@@ -102,21 +102,7 @@ extern oal_int32 dmac_hcc_adapt_init(oal_void);
 
 #if (_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC == _PRE_MULTI_CORE_MODE)
 
-/*****************************************************************************
- 函 数 名  : dmac_cfg_vap_init_event
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月6日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 dmac_cfg_vap_init_event(frw_event_mem_stru *pst_event_mem)
 {
     frw_event_stru        *pst_event;             /* 事件结构体 */
@@ -174,6 +160,7 @@ oal_uint32 dmac_cfg_vap_init_event(frw_event_mem_stru *pst_event_mem)
     st_param.en_vap_mode = WLAN_VAP_MODE_CONFIG;
 #ifdef _PRE_PLAT_FEATURE_CUSTOMIZE
     st_param.bit_11ac2g_enable = OAL_TRUE;
+    st_param.bit_disable_capab_2ght40 = OAL_FALSE;
 #endif
     mac_vap_init(&(pst_dmac_vap->st_vap_base_info), pst_device->uc_chip_id, pst_device->uc_device_id, pst_device->uc_cfg_vap_id, &st_param);
 }
@@ -216,25 +203,7 @@ oal_uint32 dmac_cfg_vap_init_event(frw_event_mem_stru *pst_event_mem)
 
 #if 0
 #if (_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC == _PRE_MULTI_CORE_MODE)
-/*****************************************************************************
- 函 数 名  : dmac_init_event_create_cfg_vap
- 功能描述  : hmac 抛给dmac的创建配置VAP事件, 只有offload情况下才会用到
- 输入参数  : pst_event_mem: 事件结构体
- 输出参数  :
 
- 返 回 值  : 错误码
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年1月15日
-    作    者   : c00178899
-    修改内容   : 新生成函数
-  2.日    期   : 2014年10月22日
-    作    者   : z00273164
-    修改内容   : cfg_vap初始化只需要更新device chip id
-
-*****************************************************************************/
 oal_uint32 dmac_init_event_create_cfg_vap(frw_event_mem_stru *pst_event_mem)
 {
     frw_event_stru        *pst_event;             /* 事件结构体 */
@@ -291,21 +260,7 @@ oal_uint32 dmac_init_event_create_cfg_vap(frw_event_mem_stru *pst_event_mem)
 
 
 #ifdef _PRE_WLAN_REALTIME_CALI
-/*****************************************************************************
- 函 数 名  : dmac_rf_cali_realtime_timeout
- 功能描述  : realtime校准超时入口函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月10日
-    作    者   : z00285102
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_rf_realtime_cali_timeout(oal_void * p_arg)
 {
     mac_device_stru           *pst_mac_device = (mac_device_stru *)p_arg;
@@ -344,21 +299,7 @@ oal_uint32  dmac_rf_realtime_cali_timeout(oal_void * p_arg)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : dmac_init_hardware
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月30日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_init_hardware(mac_board_stru *pst_board)
 {
     oal_uint8                  uc_chip_idx;
@@ -429,22 +370,7 @@ OAL_STATIC oal_uint32  dmac_init_hardware(mac_board_stru *pst_board)
     return OAL_SUCC;
 }
 #if (_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC == _PRE_MULTI_CORE_MODE)
-/*****************************************************************************
- 函 数 名  : dmac_init_event_process
- 功能描述  : hmac 抛给dmac的初始化事件
- 输入参数  : pst_event_mem: 事件结构体
- 输出参数  :
 
- 返 回 值  : 错误码
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年1月15日
-    作    者   : c00178899
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 dmac_init_event_process(frw_event_mem_stru *pst_event_mem)
 {
     frw_event_stru        *pst_event;             /* 事件结构体 */
@@ -525,22 +451,7 @@ oal_uint32 dmac_init_event_process(frw_event_mem_stru *pst_event_mem)
     return ul_relt;
 }
 #else
-/*****************************************************************************
- 函 数 名  : dmac_init_event_process
- 功能描述  : hmac 抛给dmac的初始化事件
- 输入参数  : pst_event_mem: 事件结构体
- 输出参数  :
 
- 返 回 值  : 错误码
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年1月15日
-    作    者   : c00178899
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 dmac_init_event_process(frw_event_mem_stru *pst_event_mem)
 {
     frw_event_stru        *pst_event;             /* 事件结构体 */
@@ -581,21 +492,7 @@ oal_uint32 dmac_init_event_process(frw_event_mem_stru *pst_event_mem)
     return ul_relt;
 }
 #endif
-/*****************************************************************************
- 函 数 名  : dmac_sdt_recv_reg_cmd
- 功能描述  : dmac处理hmac抛来的SDT下发读写寄存器命令
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月31日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_sdt_recv_reg_cmd(frw_event_mem_stru *pst_event_mem)
 {
     oal_uint32                ul_reg_val = 0;
@@ -666,21 +563,7 @@ OAL_STATIC oal_uint32  dmac_sdt_recv_reg_cmd(frw_event_mem_stru *pst_event_mem)
 }
 
 #if (_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC == _PRE_MULTI_CORE_MODE)
-/*****************************************************************************
- 函 数 名  : dmac_event_fsm_tx_adapt_subtable_register
- 功能描述  : dmac模块事件发送适配函数子表注册
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : OAL_SUCC
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月20日
-    作    者   : h00217255
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void dmac_event_fsm_tx_adapt_subtable_register(oal_void)
 {
     /* 注册WLAN_DRX事件子表 */
@@ -735,29 +618,15 @@ OAL_STATIC oal_void dmac_event_fsm_tx_adapt_subtable_register(oal_void)
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_event_fsm_rx_adapt_subtable_register
- 功能描述  : dmac模块事件接收适配处理子表注册
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月20日
-    作    者   : h00217255
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void dmac_event_fsm_rx_adapt_subtable_register(oal_void)
 {
     /*default reset to dmac_hcc_rx_convert_netbuf_to_event_default*/
-    frw_event_sub_rx_adapt_table_init(g_ast_dmac_host_crx_table, 
+    frw_event_sub_rx_adapt_table_init(g_ast_dmac_host_crx_table,
                                         OAL_SIZEOF(g_ast_dmac_host_crx_table)/OAL_SIZEOF(frw_event_sub_table_item_stru),
                                         dmac_hcc_rx_convert_netbuf_to_event_default);
 
-    frw_event_sub_rx_adapt_table_init(g_ast_dmac_wlan_ctx_event_sub_table, 
+    frw_event_sub_rx_adapt_table_init(g_ast_dmac_wlan_ctx_event_sub_table,
                                         OAL_SIZEOF(g_ast_dmac_wlan_ctx_event_sub_table)/OAL_SIZEOF(frw_event_sub_table_item_stru),
                                         dmac_hcc_rx_convert_netbuf_to_event_default);
 
@@ -779,21 +648,7 @@ OAL_STATIC oal_void dmac_event_fsm_rx_adapt_subtable_register(oal_void)
 }
 
 #endif
-/*****************************************************************************
- 函 数 名  : dmac_event_fsm_action_subtable_register
- 功能描述  : dmac模块事件执行函数子表注册
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月20日
-    作    者   : h00217255
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void  dmac_event_fsm_action_subtable_register(oal_void)
 {
     /* 注册DMAC模块HOST_CRX事件 */
@@ -877,7 +732,6 @@ OAL_STATIC oal_void  dmac_event_fsm_action_subtable_register(oal_void)
 
     /* 注册DMAC模块WLAN_DRX事件子表 */
     g_ast_dmac_wlan_drx_event_sub_table[HAL_WLAN_DRX_EVENT_SUB_TYPE_RX].p_func = dmac_rx_process_data_event;
-    g_ast_dmac_wlan_drx_event_sub_table[HAL_WLAN_DRX_EVENT_VAP_INVALID].p_func = dmac_rx_invalid_vap_event;
 
     /* 注册DMAC模块WLAN_CRX事件子表 */
     g_ast_dmac_wlan_crx_event_sub_table[HAL_WLAN_CRX_EVENT_SUB_TYPE_RX].p_func = dmac_rx_process_data_event;
@@ -890,8 +744,9 @@ OAL_STATIC oal_void  dmac_event_fsm_action_subtable_register(oal_void)
 
     /* 注册DMAC模块ERR事件子表 */
     g_ast_dmac_high_prio_event_sub_table[HAL_EVENT_ERROR_IRQ_MAC_ERROR].p_func = dmac_mac_error_process_event;
+#if (_PRE_PRODUCT_ID == _PRE_PRODUCT_ID_HI1151)
     g_ast_dmac_high_prio_event_sub_table[HAL_EVENT_ERROR_IRQ_SOC_ERROR].p_func = dmac_soc_error_process_event;
-
+#endif
     /* 注册DMAC模块MISC事件字表 */
     g_ast_dmac_misc_event_sub_table[HAL_EVENT_DMAC_MISC_CH_STATICS_COMP].p_func = dmac_scan_channel_statistics_complete;
     g_ast_dmac_misc_event_sub_table[HAL_EVENT_DMAC_CALI_TO_HMAC].p_func = dmac_cali_to_hmac;
@@ -913,21 +768,7 @@ OAL_STATIC oal_void  dmac_event_fsm_action_subtable_register(oal_void)
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_event_fsm_register
- 功能描述  : dmac模块事件及其处理函数的注册函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : OAL_SUCC
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月20日
-    作    者   : h00217255
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_event_fsm_register(oal_void)
 {
 
@@ -949,41 +790,13 @@ oal_uint32  dmac_event_fsm_register(oal_void)
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_alg_syn_event_register
- 功能描述  : 注册算法配置命令钩子
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月11日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  dmac_alg_config_event_register(oal_uint32 p_func(frw_event_mem_stru *))
 {
     g_ast_dmac_host_crx_table[HMAC_TO_DMAC_SYN_ALG].p_func = p_func;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_alg_syn_event_register
- 功能描述  : 去注册算法配置命令钩子
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月11日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  dmac_alg_config_event_unregister(oal_void)
 {
     g_ast_dmac_host_crx_table[HMAC_TO_DMAC_SYN_ALG].p_func = OAL_PTR_NULL;
@@ -992,21 +805,7 @@ oal_void  dmac_alg_config_event_unregister(oal_void)
 
 #ifdef _PRE_WLAN_DFT_REG
 
-/*****************************************************************************
- 函 数 名  : dmac_reg_report
- 功能描述  : 上报寄存器数据到app
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月21日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 dmac_reg_report(frw_event_mem_stru *pst_event_mem)
 {
 
@@ -1020,21 +819,7 @@ oal_uint32 dmac_reg_report(frw_event_mem_stru *pst_event_mem)
 
 OAL_STATIC dmac_timeStamp_stru g_ast_dmac_timestamp[WLAN_FRW_MAX_NUM_CORES];
 
-/*****************************************************************************
- 函 数 名  : dmac_timestamp_update_timer
- 功能描述  : dmac更新时钟
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月12日
-    作    者   : caohaibin
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32 dmac_timestamp_update_timer(oal_void* p_NULL)
 {
     oal_uint32 ul_timestamp = 0;   /* 获取硬时钟计数 */
@@ -1062,21 +847,7 @@ OAL_STATIC oal_uint32 dmac_timestamp_update_timer(oal_void* p_NULL)
     return OAL_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_timestamp_get
- 功能描述  : 获取dmac提供的时钟
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月12日
-    作    者   : caohaibin
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_timestamp_get(oal_time_us_stru *pst_usec)
 {
 #if (_PRE_PRODUCT_ID_HI1151 ==_PRE_PRODUCT_ID)
@@ -1095,21 +866,7 @@ oal_void dmac_timestamp_get(oal_time_us_stru *pst_usec)
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_timestamp_init
- 功能描述  : 利用系统提供时钟和硬件时钟结合的方式，维护dmac自身时钟
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月12日
-    作    者   : caohaibin
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void dmac_timestamp_init(oal_void)
 {
     oal_uint32  ul_core_id;
@@ -1133,21 +890,7 @@ OAL_STATIC oal_void dmac_timestamp_init(oal_void)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_timestamp_exit
- 功能描述  : 注销dmac timer的定时器
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月12日
-    作    者   : caohaibin
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void dmac_timestamp_exit(oal_void)
 {
     oal_uint32      ul_core_id;
@@ -1196,21 +939,7 @@ OAL_STATIC void timer_test_setup(void)
 }
 
 #endif
-/*****************************************************************************
- 函 数 名  : dmac_param_check
- 功能描述  : Check the struct and var used in hmac
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : OAL_SUCC means ok, others failed!
- 调用函数  : 无
- 被调函数  : 无
 
- 修改历史      :
-  1.日    期   : 2015年5月20日
-    作    者   : z00262551 zhouxinfeng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_int32 dmac_param_check(oal_void)
 {
     /*netbuf's cb size!*/
@@ -1231,25 +960,7 @@ oal_int32 dmac_param_check(oal_void)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_main_init
- 功能描述  : DMAC模块初始化总入口，包含DMAC模块内部所有特性的初始化。
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 初始化返回码，成功或失败原因
- 调用函数  : 无
- 被调函数  : 无
 
- 修改历史      :
-  1.日    期   : 2012年9月18日
-    作    者   : 康国昌
-    修改内容   : 新生成函数
-
-  2.日    期   : 2013年5月24日
-    作    者   : 张禹
-    修改内容   : 删除dmac_event_fsm_register异常分支判断，目前函数无异常返回
-
-*****************************************************************************/
 oal_int32  dmac_main_init(oal_void)
 {
     frw_init_enum_uint16 en_init_state = 0;
@@ -1363,21 +1074,7 @@ oal_int32  dmac_main_init(oal_void)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_main_exit
- 功能描述  : DMAC模块卸载
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 模块卸载返回值，成功或失败原因
- 调用函数  : 无
- 被调函数  : 无
 
- 修改历史      :
-  1.日    期   : 2012年9月18日
-    作    者   : 康国昌
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  dmac_main_exit(oal_void)
 {
     oal_uint32           ul_ret;

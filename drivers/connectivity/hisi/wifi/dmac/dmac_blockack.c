@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : dmac_blockack.c
-  版 本 号   : 初稿
-  作    者   : huxiaotong
-  生成日期   : 2013年4月8日
-  最近修改   :
-  功能描述   : AMPDU聚合、BA处理接口定义源文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年4月8日
-    作    者   : huxiaotong
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -113,21 +96,7 @@ extern oal_int32 g_l_proxysta_feature;
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : dmac_ba_check_rx_aggr
- 功能描述  : 检查是否能做ba重排序处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月28日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32  dmac_ba_check_rx_aggr(
                                                         mac_vap_stru                   *pst_vap,
                                                         mac_ieee80211_frame_stru       *pst_frame_hdr)
@@ -156,21 +125,7 @@ OAL_STATIC OAL_INLINE oal_uint32  dmac_ba_check_rx_aggr(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_ba_filter_serv
- 功能描述  : 过滤ampdu的每一个mpdu 有未确认报文需要入重传队列
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月10日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_ba_filter_serv(
                 mac_vap_stru                   *pst_vap,
                 dmac_user_stru                 *pst_dmac_user,
@@ -267,21 +222,7 @@ oal_uint32  dmac_ba_filter_serv(
 
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_ba_reset_rx_handle
- 功能描述  : 重置rx ba结构体,重置Mac Ba lut信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月30日
-    作    者   : h00217255
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  dmac_ba_reset_rx_handle(mac_device_stru *pst_device, dmac_ba_rx_stru **ppst_rx_ba, oal_uint8 uc_tid, dmac_user_stru *pst_dmac_user)
 {
     if ((OAL_PTR_NULL == *ppst_rx_ba) || (OAL_PTR_NULL == pst_dmac_user))
@@ -312,21 +253,7 @@ oal_void  dmac_ba_reset_rx_handle(mac_device_stru *pst_device, dmac_ba_rx_stru *
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : dmac_nontxop_txba_num_updata
- 功能描述  : 统计device短AMPDU聚合的TX会话个数,用于策略 协商聚合个数少时 使能TXOP
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月31日
-    作    者   : s00304087
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_nontxop_txba_num_updata(dmac_user_stru *pst_dmac_user, oal_uint8 uc_tid, oal_bool_enum_uint8 en_is_addba)
 {
     oal_uint32       ul_max_ampdu_length;
@@ -371,21 +298,7 @@ oal_void dmac_nontxop_txba_num_updata(dmac_user_stru *pst_dmac_user, oal_uint8 u
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_ba_reset_tx_handle
- 功能描述  : 重置发送TX ba窗
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月16日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  dmac_ba_reset_tx_handle(mac_device_stru *pst_device, dmac_ba_tx_stru **ppst_tx_ba, oal_uint8 uc_tid)
 {
     dmac_tid_stru  *pst_tid;
@@ -423,21 +336,7 @@ oal_void  dmac_ba_reset_tx_handle(mac_device_stru *pst_device, dmac_ba_tx_stru *
     dmac_tid_resume(pst_device->pst_device_stru, pst_tid, DMAC_TID_PAUSE_RESUME_TYPE_BA);
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_ba_get_min_len_ht
- 功能描述  : ht协议模式下，获取mpdu最小间隔
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月28日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint16  dmac_ba_get_min_len_ht(hal_tx_txop_alg_stru *pst_txop_alg,
                                                                 wlan_phy_protocol_enum_uint8    en_protocl_mode,
                                                                 hal_channel_assemble_enum_uint8 en_channel_bandwidth,
@@ -493,21 +392,7 @@ OAL_STATIC oal_uint16  dmac_ba_get_min_len_ht(hal_tx_txop_alg_stru *pst_txop_alg
     return us_min_mpdu_len;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_ba_get_min_len_ht
- 功能描述  : ht协议模式下，获取mpdu最小间隔
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月28日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint16  dmac_ba_get_min_len_vht(hal_tx_txop_alg_stru *pst_txop_alg,
                                                                 wlan_phy_protocol_enum_uint8    en_protocl_mode,
                                                                 hal_channel_assemble_enum_uint8 en_channel_bandwidth,
@@ -566,21 +451,7 @@ OAL_STATIC oal_uint16  dmac_ba_get_min_len_vht(hal_tx_txop_alg_stru *pst_txop_al
     return us_min_mpdu_len;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_ba_calculate_min_mpdu_len
- 功能描述  : 根据mcs查表计算最小mpdu长度
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月7日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint16  dmac_ba_calculate_min_mpdu_len(dmac_user_stru *pst_dmac_user, hal_tx_txop_alg_stru *pst_txop_alg)
 {
     oal_uint16                      us_min_mpdu_len = 0;
@@ -630,21 +501,7 @@ oal_uint16  dmac_ba_calculate_min_mpdu_len(dmac_user_stru *pst_dmac_user, hal_tx
     return us_min_mpdu_len;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_ba_send_bar
- 功能描述  : 发送bar帧，并暂停tid队列
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月7日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_ba_send_bar(dmac_ba_tx_stru *pst_tx_ba_handle, dmac_user_stru *pst_dmac_user, dmac_tid_stru *pst_tid_queue)
 {
     dmac_vap_stru   *pst_dmac_vap;
@@ -707,21 +564,7 @@ oal_uint32  dmac_ba_send_bar(dmac_ba_tx_stru *pst_tx_ba_handle, dmac_user_stru *
 }
 
 #if 0
-/*****************************************************************************
- 函 数 名  : dmac_ba_addto_baw_multi
- 功能描述  : 多个mpdu加入ampdu 更新记录seq num的窗口
- 输入参数  : uc_new_mpdu_num   :  ampdu中全新mpdu的数目， 处于ampdu的后面
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月16日
-    作    者   : c00260463
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_INLINE void dmac_ba_addto_baw_multi(dmac_ba_tx_stru *pst_tx_ba_handle, oal_uint8 uc_new_mpdu_num)
 {
     oal_uint16 us_first_mpdu_index;   /*本次新传输的第一个mpdu index*/
@@ -775,21 +618,7 @@ OAL_INLINE void dmac_ba_addto_baw_multi(dmac_ba_tx_stru *pst_tx_ba_handle, oal_u
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : dmac_ba_window_ahead
- 功能描述  : 更新ba窗口的ssn
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月15日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  dmac_move_ba_window_ahead(dmac_ba_tx_stru *pst_ba_hdl, oal_uint16 us_lsn)
 {
     OAM_ERROR_LOG0(0, OAM_SF_BA, "{dmac_move_ba_window_ahead::ATTENTION: the seq num of a retried packet has been reassigned by HW.}");
@@ -798,21 +627,7 @@ oal_void  dmac_move_ba_window_ahead(dmac_ba_tx_stru *pst_ba_hdl, oal_uint16 us_l
     dmac_ba_update_start_seq_num(pst_ba_hdl, us_lsn + 1);
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_ba_get_aggr_mpdu_num_limit
- 功能描述  : 告诉调度算法可以发送的个数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月18日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint8  dmac_ba_get_aggr_mpdu_num_limit(dmac_tid_stru *pst_tid_queue)
 {
     oal_uint8 uc_mpdu_num = 0;
@@ -838,21 +653,7 @@ oal_uint8  dmac_ba_get_aggr_mpdu_num_limit(dmac_tid_stru *pst_tid_queue)
 #ifdef _PRE_WLAN_FEATURE_AMPDU
 //#if ((_PRE_TARGET_PRODUCT_TYPE_5610DMB != _PRE_CONFIG_TARGET_PRODUCT) )
 #if 0
-/*****************************************************************************
- 函 数 名  : dmac_ba_track_tail_update
- 功能描述  : 更新track tail
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月10日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  dmac_ba_track_tail_update(oal_uint8 uc_device_id, oal_uint8 uc_lut_idx)
 {
     dmac_tx_ba_track_stru *pst_ba_track_log = OAL_PTR_NULL;
@@ -886,21 +687,7 @@ oal_void  dmac_ba_track_tail_update(oal_uint8 uc_device_id, oal_uint8 uc_lut_idx
     }
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_ba_track_ba_hander
- 功能描述  : 记录发送BA状况
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月10日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  dmac_ba_track_ba_hander(oal_uint8 uc_device_id, dmac_ba_tx_stru *pst_tx_ba, oal_uint8 uc_tid, oal_bool_enum_uint8 en_is_before_tx)
 {
     oal_uint16 us_tail;
@@ -939,21 +726,7 @@ oal_void  dmac_ba_track_ba_hander(oal_uint8 uc_device_id, dmac_ba_tx_stru *pst_t
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_ba_track_report_seqnum
- 功能描述  : 记录发送完成流程中需要处理的seqnum
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月16日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  dmac_ba_track_report_seqnum(oal_uint8 uc_device_id, oal_uint8 uc_lut_idx, oal_uint8 uc_dscr_idx, oal_uint16 us_seq_num)
 {
     dmac_tx_ba_track_stru *pst_ba_track_log = OAL_PTR_NULL;
@@ -981,21 +754,7 @@ oal_void  dmac_ba_track_report_seqnum(oal_uint8 uc_device_id, oal_uint8 uc_lut_i
 
 
 
-/*****************************************************************************
- 函 数 名  : dmac_ba_track_tid_queue
- 功能描述  : 记录tid队列情况
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月16日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  dmac_ba_track_tid_queue(oal_uint8 uc_device_id, hal_to_dmac_device_stru * pst_hal_device, oal_uint8 uc_lut_idx, dmac_tid_stru *pst_tid_queue)
 {
     dmac_tx_ba_track_stru *pst_ba_track_log = OAL_PTR_NULL;
@@ -1040,21 +799,7 @@ oal_void  dmac_ba_track_tid_queue(oal_uint8 uc_device_id, hal_to_dmac_device_str
 
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_ba_track_schedule_seqnum
- 功能描述  : 记录调度队列的seqnum
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月16日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  dmac_ba_track_schedule_seqnum(oal_uint8 uc_device_id, oal_uint8 uc_lut_idx, oal_dlist_head_stru *pst_sch_dscr_head)
 {
     dmac_tx_ba_track_stru *pst_ba_track_log = OAL_PTR_NULL;
@@ -1099,21 +844,7 @@ oal_void  dmac_ba_track_schedule_seqnum(oal_uint8 uc_device_id, oal_uint8 uc_lut
 	return ;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_ba_track_stop
- 功能描述  : 停止跟踪
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月16日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_ba_track_stop(oal_uint8 uc_device_id, oal_uint8 uc_lut_idx)
 {
     dmac_tx_ba_track_stru *pst_ba_track_log = OAL_PTR_NULL;

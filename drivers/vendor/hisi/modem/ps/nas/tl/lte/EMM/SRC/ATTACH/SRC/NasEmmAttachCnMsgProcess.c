@@ -63,19 +63,7 @@ VOS_UINT32        gstEmmAttRejCauseProcTblLen = sizeof(gstEmmAttRejCauseProcTbl)
 *****************************************************************************/
 /*lint -e960*/
 
-/*****************************************************************************
- Function Name   : NAS_EMM_CnAttachAccMsgChk
- Description     : 检查空口消息ATTACH ACCEPT的消息内容是否正确
- Input           :
- Output          :
- Return          :
 
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-    2.zhengjunyan 00148421   2010-11-03  MOD:添加判断:如果UE没有GUTI，且ATTACH ACP
-                                         中没有GUTI，则返回PARA_INVALID
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_CnAttachAcpMsgChk(const NAS_EMM_CN_ATTACH_ACP_STRU  *pMsgMsg)
 {
 
@@ -102,17 +90,7 @@ VOS_UINT32  NAS_EMM_CnAttachAcpMsgChk(const NAS_EMM_CN_ATTACH_ACP_STRU  *pMsgMsg
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_CnAttachRejMsgChk
- Description     : 检查空口消息ATTACH REJECT的消息内容是否正确
- Input           :
- Output          :
- Return          :
 
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_CnAttachRejMsgChk(const NAS_EMM_CN_ATTACH_REJ_STRU *pMsgMsg)
 {
 
@@ -125,18 +103,7 @@ VOS_UINT32  NAS_EMM_CnAttachRejMsgChk(const NAS_EMM_CN_ATTACH_REJ_STRU *pMsgMsg)
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_EsmSendEstCnf
- Description     : 向ESM发送ID_EMM_ESM_EST_CNF消息
 
- Input           :
- Output          :
- Return          :
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-
-*****************************************************************************/
 /*lint -e960*/
 VOS_VOID    NAS_EMM_EsmSendEstCnf (EMM_ESM_ATTACH_STATUS_ENUM_UINT32 ucEstRst)
 {
@@ -172,19 +139,7 @@ VOS_VOID    NAS_EMM_EsmSendEstCnf (EMM_ESM_ATTACH_STATUS_ENUM_UINT32 ucEstRst)
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_EsmSendDataInd
- Description     : 向ESM发送ID_EMM_ESM_DATA_IND
-                   (ACTIVATE DEFAULT EPS BEARER REQUEST)消息
 
- Input           :
- Output          :
- Return          :
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-
-*****************************************************************************/
 VOS_VOID    NAS_EMM_EsmSendDataInd (const NAS_EMM_CN_MSGCON_STRU *pstEsmBearerReq)
 {
     EMM_ESM_DATA_IND_STRU                *pEmmEsmBearerReqMsg;
@@ -235,16 +190,7 @@ VOS_VOID    NAS_EMM_EsmSendDataInd (const NAS_EMM_CN_MSGCON_STRU *pstEsmBearerRe
     return;
 
 }
-/*****************************************************************************
- Function Name  : NAS_LMM_SendCssStartInd()
- Description    : LMM通知CSS开机消息
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-05-14  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_LMM_SendCssStartInd
 (
     VOS_VOID
@@ -282,16 +228,7 @@ VOS_VOID NAS_LMM_SendCssStartInd
     return ;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LMM_SendCssStoptInd()
- Description    : LMM通知CSS关机消息
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-05-14  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_LMM_SendCssStopInd
 (
     VOS_VOID
@@ -329,18 +266,7 @@ VOS_VOID NAS_LMM_SendCssStopInd
     return ;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_EsmSendStopNotifyInd
- Description     : 向ESM发送ID_EMM_ESM_STOP_NOTIFY_IND消息
 
- Input           :
- Output          :
- Return          :
-
- History         :
-    1.wangchen 00209181     2014-09-05  Draft Enact
-
-*****************************************************************************/
 VOS_VOID    NAS_EMM_EsmSendStopNotifyInd (VOS_VOID)
 {
     EMM_ESM_STOP_NOTIFY_IND_STRU                *pEmmEsmStopNotifyMsg;
@@ -373,17 +299,7 @@ VOS_VOID    NAS_EMM_EsmSendStopNotifyInd (VOS_VOID)
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_TcSendDataInd
- Description     : 向TC发送ID_EMM_ETC_DATA_IND消息
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2009-10-16  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_TcSendDataInd
 (
     const NAS_EMM_CN_MSGCON_STRU       *pstTcMsg
@@ -440,18 +356,7 @@ VOS_VOID  NAS_EMM_TcSendDataInd
     TLPS_PRINT2LAYER_INFO(NAS_EMM_TcSendDataInd_ENUM,LNAS_END);
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_CountEsmDataIndLen
- Description     : 计算ID_EMM_ESM_DATA_IND消息长度
 
- Input           :
- Output          :
- Return          :
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_CountEsmDataIndLen(VOS_UINT32 ulNasEsmMsgLen)
 {
     VOS_UINT32                          ulMsgLen;
@@ -463,18 +368,7 @@ VOS_UINT32  NAS_EMM_CountEsmDataIndLen(VOS_UINT32 ulNasEsmMsgLen)
     return ulMsgLen;
 
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_CountTcDataIndLen
- Description     : 计算ID_EMM_ETC_DATA_IND消息长度
 
- Input           : ulNasTcMsgLen------TC消息长度
- Output          : None
- Return          : VOS_UINT32
-
- History         :
-    1.lihong00150010         2009-10-16  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_CountTcDataIndLen(VOS_UINT32 ulNasTcMsgLen)
 {
     VOS_UINT32                          ulMsgLen;
@@ -486,19 +380,7 @@ VOS_UINT32  NAS_EMM_CountTcDataIndLen(VOS_UINT32 ulNasTcMsgLen)
     return ulMsgLen;
 
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_AttDataUpdate
- Description     :
- Input           :
- Output          :
- Return          :
 
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-    2.zhengjunyan 148421     2009-09-23  BJ9D01922:ATTACH REJ #14协议不要求
-                                          reset attach attempt counter
-    3.zhengjunyan 00148421   2011-12-13  MOD:删除KSIasme修改为删除所有安全上下文
-*****************************************************************************/
 
 VOS_VOID    NAS_EMM_AttDataUpdate(VOS_UINT32 ulDeleteRplmn)
 {
@@ -542,17 +424,7 @@ VOS_VOID    NAS_EMM_AttDataUpdate(VOS_UINT32 ulDeleteRplmn)
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcRejCauseVal2
- Description     : 原因值为#2的处理
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2011-7-5  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ProcRejCauseVal2(VOS_VOID)
 {
 
@@ -576,18 +448,7 @@ VOS_VOID  NAS_EMM_ProcRejCauseVal2(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcRejCauseVal5
- Description     : 对ATTACH拒绝原因值#5的处理
 
- Input           : None
- Output          : None
- Return          : VOS_VOID
-
- History         :
-    1.lihong 00150010         2012-10-30  Draft Enact
-
-*****************************************************************************/
 VOS_VOID    NAS_EMM_ProcRejCauseVal5(NAS_EMM_CN_CAUSE_ENUM_UINT8 ucRejCauseVal)
 {
     (VOS_VOID)ucRejCauseVal;
@@ -614,18 +475,7 @@ VOS_VOID    NAS_EMM_ProcRejCauseVal5(NAS_EMM_CN_CAUSE_ENUM_UINT8 ucRejCauseVal)
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcRejCauseVal3678
- Description     : 对ATTACH拒绝原因值#3#6#7#8的处理
 
- Input           :
- Output          :
- Return          :
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-
-*****************************************************************************/
 VOS_VOID    NAS_EMM_ProcRejCauseVal3678(NAS_EMM_CN_CAUSE_ENUM_UINT8 ucRejCauseVal)
 {
     (VOS_VOID)ucRejCauseVal;
@@ -674,18 +524,7 @@ VOS_VOID    NAS_EMM_ProcRejCauseVal3678(NAS_EMM_CN_CAUSE_ENUM_UINT8 ucRejCauseVa
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcRejCauseVal11
- Description     : 对ATTACH拒绝原因值#11的处理
 
- Input           :
- Output          :
- Return          :
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-
-*****************************************************************************/
 VOS_VOID    NAS_EMM_ProcRejCauseVal11(NAS_EMM_CN_CAUSE_ENUM_UINT8 ucRejCauseVal)
 {
     (VOS_VOID)ucRejCauseVal;
@@ -721,18 +560,7 @@ VOS_VOID    NAS_EMM_ProcRejCauseVal11(NAS_EMM_CN_CAUSE_ENUM_UINT8 ucRejCauseVal)
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcRejCauseVal12
- Description     : 对ATTACH拒绝原因值#12的处理
 
- Input           :
- Output          :
- Return          :
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-
-*****************************************************************************/
 VOS_VOID    NAS_EMM_ProcRejCauseVal12(NAS_EMM_CN_CAUSE_ENUM_UINT8 ucRejCauseVal)
 {
     NAS_MM_TA_STRU                      stTa;
@@ -777,19 +605,7 @@ VOS_VOID    NAS_EMM_ProcRejCauseVal12(NAS_EMM_CN_CAUSE_ENUM_UINT8 ucRejCauseVal)
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcRejCauseVal13
- Description     : 对ATTACH拒绝原因值#13的处理
 
- Input           :
- Output          :
- Return          :
-
- History         :
-    1.leili    00132387      2008-09-09  Draft Enact
-    2.liuhua   00212067      2012-05-30  Notify RRC when TA is added into
-                                         forbidden list for roaming
-*****************************************************************************/
 VOS_VOID    NAS_EMM_ProcRejCauseVal13(NAS_EMM_CN_CAUSE_ENUM_UINT8 ucRejCauseVal)
 {
     NAS_MM_TA_STRU                      stTa;
@@ -837,18 +653,7 @@ VOS_VOID    NAS_EMM_ProcRejCauseVal13(NAS_EMM_CN_CAUSE_ENUM_UINT8 ucRejCauseVal)
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcRejCauseVal14
- Description     : 对ATTACH拒绝原因值#14的处理
 
- Input           :
- Output          :
- Return          :
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-
-*****************************************************************************/
 VOS_VOID    NAS_EMM_ProcRejCauseVal14(NAS_EMM_CN_CAUSE_ENUM_UINT8 ucRejCauseVal)
 {
     (VOS_VOID)ucRejCauseVal;
@@ -884,19 +689,7 @@ VOS_VOID    NAS_EMM_ProcRejCauseVal14(NAS_EMM_CN_CAUSE_ENUM_UINT8 ucRejCauseVal)
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcRejCauseVal15
- Description     :对ATTACH拒绝原因值#15的处理
 
- Input           :
- Output          :
- Return          :
-
- History         :
-    1.leili    00132387      2008-09-09  Draft Enact
-    2.liuhua   00212067      2012-05-30  Notify RRC when TA is added into
-                                         forbidden list for roaming
-*****************************************************************************/
 VOS_VOID    NAS_EMM_ProcRejCauseVal15(NAS_EMM_CN_CAUSE_ENUM_UINT8 ucRejCauseVal)
 {
     /* 删掉无用变量 */
@@ -974,17 +767,7 @@ VOS_VOID    NAS_EMM_ProcRejCauseVal15(NAS_EMM_CN_CAUSE_ENUM_UINT8 ucRejCauseVal)
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcRejCauseVal1617
- Description     : 原因值为#16#17#22的处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2011-7-5  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ProcRejCauseVal1617(VOS_VOID )
 {
 
@@ -1011,17 +794,7 @@ VOS_VOID  NAS_EMM_ProcRejCauseVal1617(VOS_VOID )
     NAS_EMM_SndOmLogEpsLocInfo();
     return;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcRejCauseVal22
- Description     : 原因值为#22的处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.wangchen 00209181     2014-09-03  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ProcRejCauseVal22(VOS_VOID )
 {
 
@@ -1042,17 +815,7 @@ VOS_VOID  NAS_EMM_ProcRejCauseVal22(VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcRejCauseVal18
- Description     : 原因值为#2的处理
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2011-7-5  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ProcRejCauseVal18(VOS_VOID)
 {
 
@@ -1077,17 +840,7 @@ VOS_VOID  NAS_EMM_ProcRejCauseVal18(VOS_VOID)
     return;
 }
 #if(FEATURE_ON == FEATURE_CSG)
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcRejCauseVal25
- Description     : 原因值为#25的处理
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.yanglei 00307272      2015-09-20  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ProcRejCauseVal25(NAS_EMM_CN_CAUSE_ENUM_UINT8 ucRejCauseVal)
 {
     if(NAS_EMM_NO == NAS_LMM_IsCsgCampOn())
@@ -1130,18 +883,7 @@ VOS_VOID  NAS_EMM_ProcRejCauseVal25(NAS_EMM_CN_CAUSE_ENUM_UINT8 ucRejCauseVal)
 }
 #endif
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcRejCauseVal11
- Description     : 对ATTACH拒绝原因值#11的处理
 
- Input           :
- Output          :
- Return          :
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-
-*****************************************************************************/
 VOS_VOID    NAS_EMM_ProcRejCauseVal35(NAS_EMM_CN_CAUSE_ENUM_UINT8 ucRejCauseVal)
 {
     if (NAS_RELEASE_R10)
@@ -1153,17 +895,7 @@ VOS_VOID    NAS_EMM_ProcRejCauseVal35(NAS_EMM_CN_CAUSE_ENUM_UINT8 ucRejCauseVal)
         NAS_EMM_ProcRejCauseValOther(ucRejCauseVal);
     }
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcRejCauseVal42
- Description     :对ATTACH拒绝原因值#42的处理
 
- Input           :
- Output          :
- Return          :
-
- History         :
-    1.wangchen 00209181     2014-09-01  Draft Enact
-*****************************************************************************/
 VOS_VOID    NAS_EMM_ProcRejCauseVal42(NAS_EMM_CN_CAUSE_ENUM_UINT8 ucRejCauseVal)
 {
     if (NAS_RELEASE_R11)
@@ -1208,22 +940,7 @@ VOS_VOID    NAS_EMM_ProcRejCauseVal42(NAS_EMM_CN_CAUSE_ENUM_UINT8 ucRejCauseVal)
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcRejCauseValOther
- Description     : 对ATTACH拒绝原因值为其它值的处理
-                  1.the UE should set the attach attempt counter to 5
-                  2.the UE shall delete any GUTI, TAI list, last visited
-                    registered TAI,list of equivalent PLMNs and KSI
-                  3.the update status to EU2 NOT UPDATED, and shall
-                    start timer T3402
- Input           :
- Output          :
- Return          :
 
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-
-*****************************************************************************/
 VOS_VOID    NAS_EMM_ProcRejCauseValOther(NAS_EMM_CN_CAUSE_ENUM_UINT8 ucRejCauseVal)
 {
     if((NAS_LMM_CAUSE_SEMANTICALLY_INCORRECT_MSG == ucRejCauseVal) ||
@@ -1231,7 +948,7 @@ VOS_VOID    NAS_EMM_ProcRejCauseValOther(NAS_EMM_CN_CAUSE_ENUM_UINT8 ucRejCauseV
        (NAS_LMM_CAUSE_MSG_NONEXIST_NOTIMPLEMENTE == ucRejCauseVal)  ||
        (NAS_LMM_CAUSE_IE_NONEXIST_NOTIMPLEMENTED == ucRejCauseVal)  ||
        (NAS_LMM_CAUSE_PROTOCOL_ERROR == ucRejCauseVal)||
-       (VOS_TRUE == NAS_LMM_GetRoamingRejectNoRetryFlg(ucRejCauseVal)))/* 产品线刘海波定制需求DTS2014073107501 */
+       (VOS_TRUE == NAS_LMM_GetRoamingRejectNoRetryFlg(ucRejCauseVal)))
     {
         NAS_EMM_GLO_AD_GetAttAtmpCnt()  = 5;
     }
@@ -1284,20 +1001,7 @@ VOS_VOID    NAS_EMM_ProcRejCauseValOther(NAS_EMM_CN_CAUSE_ENUM_UINT8 ucRejCauseV
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_RejCauseValProc
- Description     : 根据网络侧拒绝ATTACH REQUEST的原因值不同进行不同处理
 
- Input           :
- Output          :
- Return          :
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-    2.zhengjunyan 00148421   2011-12-23  DTS2011122103346:CSG功能尚未实现，收到
-                                         REJ #25按非CSG处理，进入default处理分支
-    3.wangchen 00209181     2014-09-28  Modify:R11,降圈复杂度
-*****************************************************************************/
 VOS_VOID    NAS_EMM_RejCauseValProc(NAS_EMM_CN_CAUSE_ENUM_UINT8 ucRejCauseVal)
 {
     VOS_UINT32                          ulIndex = 0;
@@ -1322,17 +1026,7 @@ VOS_VOID    NAS_EMM_RejCauseValProc(NAS_EMM_CN_CAUSE_ENUM_UINT8 ucRejCauseVal)
     NAS_EMM_ProcRejCauseValOther(ucRejCauseVal);
 
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcEpsOnlySucc
- Description     : 联合注册时，仅EPS ONLY注册成功，对携带不同原因值的处理
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2011-7-5  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ProcEpsOnlySucc
 (
     VOS_VOID                *pstRcvMsg
@@ -1362,17 +1056,7 @@ VOS_VOID  NAS_EMM_ProcEpsOnlySucc
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcEpsOnlyWithCause
- Description     : 联合注册时，仅EPS ONLY注册成功，对携带不同原因值的处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2011-7-5  Draft Enact
-    2.wangchen 00209181     2014-09-03  Modify:R11
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ProcEpsOnlyWithCause
 (
     VOS_VOID                *pstRcvMsg
@@ -1410,17 +1094,7 @@ VOS_VOID  NAS_EMM_ProcEpsOnlyWithCause
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcEpsOnlyNoCause
- Description     : 联合注册时，仅EPS ONLY注册成功，但不携带原因值
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2011-7-5  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ProcEpsOnlyNoCause( VOS_VOID)
 {
     NAS_MML_SetOriginalRejectCause(NAS_LMM_CAUSE_NULL);
@@ -1429,18 +1103,7 @@ VOS_VOID  NAS_EMM_ProcEpsOnlyNoCause( VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_TimerValTransfer
- Description     : 将定时器的值转换为毫秒
 
- Input           :
- Output          :
- Return          :
-
- History         :
-    1.leili 00132387         2008-11-19  Draft Enact
-    2.zhengjunyan 00148421   2009-10-21  MOD:BJ9D02171
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_TimerValTransfer(NAS_EMM_TIMER_UNIT_ENUM_UINT8        ucUnit,
                                   VOS_UINT8                           ucTimerVal)
 {
@@ -1474,17 +1137,7 @@ VOS_UINT32 NAS_EMM_TimerValTransfer(NAS_EMM_TIMER_UNIT_ENUM_UINT8        ucUnit,
     return ulTimerValue;
 
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_AttSetLai
- Description     : 设置LAI
 
- Input           :
- Output          :
- Return          :
-
- History         :
-    1.z00179470         2011-12-13      Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_EMM_AttSetLai(VOS_VOID                *pstRcvMsg)
 {
     NAS_EMM_CN_ATTACH_ACP_STRU          *pstAttAcp;
@@ -1519,17 +1172,7 @@ VOS_VOID NAS_EMM_AttSetLai(VOS_VOID                *pstRcvMsg)
     }
     return;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_AttSetEplms
- Description     : 设置EPLMNS
 
- Input           :
- Output          :
- Return          :
-
- History         :
-    1.z00179470         2011-12-13      Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_EMM_AttSetEplms(VOS_VOID                *pstRcvMsg)
 {
     NAS_EMM_CN_ATTACH_ACP_STRU          *pstAttAcp;
@@ -1564,17 +1207,7 @@ VOS_VOID NAS_EMM_AttSetEplms(VOS_VOID                *pstRcvMsg)
     }
     return;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_AttSetMsId
- Description     : 设置MsId
 
- Input           :
- Output          :
- Return          :
-
- History         :
-    1.z00179470         2011-12-13      Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_EMM_AttSetMsId(VOS_VOID                *pstRcvMsg)
 {
     NAS_EMM_CN_ATTACH_ACP_STRU          *pstAttAcp;
@@ -1610,17 +1243,7 @@ VOS_VOID NAS_EMM_AttSetMsId(VOS_VOID                *pstRcvMsg)
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SaveAttachAcpIe
- Description     : 存储ATTACH ACCPET中携带的信元
- Input           : pMsgStru------------ATTACH ACCEPT消息指针
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2012-02-27  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SaveAttachAcpIe
 (
     VOS_VOID                           *pMsgStru
@@ -1749,17 +1372,7 @@ VOS_VOID  NAS_EMM_SaveAttachAcpIe
 }
 /*lint +e960*/
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SaveAttachAcpIe
- Description     : 存储ATTACH ACCPET中携带的信元
- Input           : pMsgStru------------ATTACH ACCEPT消息指针
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2012-02-27  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SaveAttachRejIe
 (
     VOS_VOID                           *pMsgStru
@@ -1793,21 +1406,7 @@ VOS_VOID  NAS_EMM_SaveAttachRejIe
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegInitSsWtCnAttCnfMsgCnAttachAccept
- Description     : 主状态REG_INIT+子状态ATTACH_WAIT_CN_ATTACH_CNF下收到网侧发送的
-                   ATTACH ACCEPT消息
- Input           :
- Output          :
- Return          :
- History         :
-    1.leili       00132387   2008-09-09  Draft Enact
-    2.zhengjunyan 00148421   2009-08-11  BJ9D01646:T3402定时器时长
-    3.zhengjunyan 00148421   2011-12-21  DTS2011122004363:清除TAU/service/detach资源
-    4.lihong      00150010   2012-12-18  Modify:参照标杆做法，在收到ATTACH ACCEPT时就
-                                                更新GUTI, LAST VISIT TAI，EU值，并写卡或者NV
-    5.houzhiyuan  00285180   2014-10-20  Add: 拒绝原因值优化PhaseII DTS2014110307415
-*****************************************************************************/
+
 VOS_UINT32  NAS_EMM_MsRegInitSsWtCnAttCnfMsgCnAttachAcp(VOS_UINT32  ulMsgId,
                                                 VOS_VOID   *pMsgStru)
 {
@@ -1924,18 +1523,7 @@ VOS_UINT32  NAS_EMM_MsRegInitSsWtCnAttCnfMsgCnAttachAcp(VOS_UINT32  ulMsgId,
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   :  NAS_EMM_SendRejEventToSTK
- Description     :  在nas收到attach and TAU 拒绝的时候上报消息给STK
- Input           :  ucCauseCode 表示网络拒绝原因
-                    enUpdateType区分attach类型还是tau类型
- Output          :  发消息给STK
- Return          :
 
- History         :
-    1.lifuxin 00253982         2013-10-10  新增文件
-
-*****************************************************************************/
 /*lint -e960*/
 VOS_VOID    NAS_EMM_SendRejEventToSTK(VOS_UINT8 ucCauseCode,
                       LNAS_STK_UPDATE_TYPE_ENUM_UINT8          enUpdateType)
@@ -1991,26 +1579,7 @@ VOS_VOID    NAS_EMM_SendRejEventToSTK(VOS_UINT8 ucCauseCode,
 }
 /*lint +e960*/
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegInitSsWtCnAttCnfMsgCnAttachReject
- Description     : 主状态REG_INIT+子状态ATTACH_WAIT_CN_ATTACH_CNF下收到
-                   ATTACH REJECT消息
-                   拒绝原因值#3(Illegal MS)#6(Illegal ME)
-                   拒绝原因值#7(GPRS services not allowed)
-                   拒绝原因值#8(GPRS services and non-GPRS services not allowed)
-                   拒绝原因值#11(PLMN not allowed)
-                   拒绝原因值#12(Tracking area not allowed)
-                   拒绝原因值#13(Roaming not allowed in this tracking area)
-                   拒绝原因值#14(GPRS services not allowed in this PLMN)
-                   拒绝原因值#15(No suitable cells in tracking area)
- Input           :
- Output          :
- Return          :
 
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsRegInitSsWtCnAttCnfMsgCnAttachReject(
                                                 VOS_UINT32  ulMsgId,
                                                 VOS_VOID   *pMsgStru )
@@ -2066,10 +1635,8 @@ VOS_UINT32  NAS_EMM_MsRegInitSsWtCnAttCnfMsgCnAttachReject(
     /* 收到ATTACH REJ，将注册状态设置为RCV CN REJ */
     NAS_EMM_GLO_AD_SetAttClRegStatus(MMC_LMM_CL_REG_STATUS_ATTACH_RCV_CN_REJ);
 
-    /* s00193151 begin for 自适应网络拒绝原因值 */
     /* 根据当前场景考虑是否修改原因值 */
     NAS_LMM_AdaptRegRejCau(&NAS_EMM_GLO_AD_GetAttRejCau());
-    /* s00193151 end for 自适应网络拒绝原因值 */
 
     #if (FEATURE_PTM == FEATURE_ON)
     NAS_EMM_AttachErrRecord(pMsgStru, EMM_OM_ERRLOG_TYPE_CN_REJ);
@@ -2096,13 +1663,11 @@ VOS_UINT32  NAS_EMM_MsRegInitSsWtCnAttCnfMsgCnAttachReject(
 
     }
 
-    /* s00193151 begin for 自适应网络拒绝原因值 */
     /*在ATTACH过程中出现rej，将rej事件报告给STK*/
     NAS_EMM_SendRejEventToSTK(NAS_EMM_GLO_AD_GetAttRejCau(), uAttachType);
 
     /*判断拒绝原因值,根据不同原因值进行处理*/
     NAS_EMM_RejCauseValProc(NAS_EMM_GLO_AD_GetAttRejCau());
-    /* s00193151 end for 自适应网络拒绝原因值 */
 
     return  NAS_LMM_MSG_HANDLED;
 }

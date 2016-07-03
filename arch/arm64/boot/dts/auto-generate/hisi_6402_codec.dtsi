@@ -44,53 +44,6 @@
 			status = "disabled";
 		}; /* end of vad */
 
-		gpio28: gpio@0{
-			compatible = "hisilicon,hi6402-gpio";
-			reg-offset = <0x20008000>;
-			interrupt-parent = <&hi6402_irq>;
-			awake-irq-number;
-			interrupts = <8 0>, <24 0>, <25 0>, <26 0>, <27 0>, <28 0>, <29 0>, <30 0>, <31 0>;
-			interrupt-names = "hi6402_gpio", "pos_awake_irq0", "neg_awake_irq0", "pos_awake_irq1", "neg_awake_irq1",
-						"pos_awake_irq2", "neg_awake_irq2", "pos_awake_irq3", "neg_awake_irq3";
-			linux,gpio-base = <224>;
-			#gpio-cells = <2>;
-			gpio-ranges = <&pmx4 0 4 8>;
-			status = "disabled";
-		};
-
-		gpio29: gpio@1{
-			compatible = "hisilicon,hi6402-gpio";
-			reg-offset = <0x20009000>;
-			interrupt-parent = <&hi6402_irq>;
-			interrupts = <9 0>;
-			interrupt-names = "hi6402_gpio";
-			#gpio-cells = <2>;
-			gpio-ranges = <&pmx4 0 12 8>;
-			status = "disabled";
-		};
-
-		gpio30: gpio@2{
-			compatible = "hisilicon,hi6402-gpio";
-			reg-offset = <0x2000a000>;
-			interrupt-parent = <&hi6402_irq>;
-			interrupts = <10 0>;
-			interrupt-names = "hi6402_gpio";
-			#gpio-cells = <2>;
-			gpio-ranges = <&pmx4 0 20 8>;
-			status = "disabled";
-		};
-
-		gpio31: gpio@3{
-			compatible = "hisilicon,hi6402-gpio";
-			reg-offset = <0x2000b000>;
-			interrupt-parent = <&hi6402_irq>;
-			interrupts = <11 0>;
-			interrupt-names = "hi6402_gpio";
-			#gpio-cells = <2>;
-			gpio-ranges = <&pmx4 0 28 7>;
-			status = "disabled";
-		};
-
 		pmx4: hi6402_pinctrl {
 			compatible = "hisilicon,pinctrl-hi6402";
 			pinctrl-hi6402,base-reg = <0x20001000>;

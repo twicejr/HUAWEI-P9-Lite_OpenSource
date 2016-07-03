@@ -133,15 +133,7 @@ extern "C" {
   3 枚举定义
 *****************************************************************************/
 
-/*****************************************************************************
- 枚举名称: TAF_PS_MSG_ID_ENUM
- 枚举说明: PS域接口消息ID
 
- 修改历史      :
-  1.日    期   : 2013年06月18日
-    作    者   : A00165503
-    修改内容   : 新增枚举
-*****************************************************************************/
 enum TAF_PS_MSG_ID_ENUM
 {
     /*----------------------------------------------------------------------
@@ -306,15 +298,7 @@ enum TAF_PS_MSG_ID_ENUM
 };
 typedef VOS_UINT32 TAF_PS_MSG_ID_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名称: TAF_PS_EVT_ID_ENUM
- 枚举说明: TAF和APP之间的事件原语
 
- 修改历史      :
-  1.日    期   : 2011年10月19日
-    作    者   : A00165503
-    修改内容   : 新增枚举
-*****************************************************************************/
 enum TAF_PS_EVT_ID_ENUM
 {
     /* PS CALL */
@@ -481,15 +465,7 @@ enum TAF_PS_EVT_ID_ENUM
 typedef VOS_UINT32 TAF_PS_EVT_ID_ENUM_UINT32;
 
 
-/*****************************************************************************
- 枚举名称: TAF_PS_CAUSE_ENUM
- 枚举说明: TAF上报的PS域呼叫原因值
 
- 修改历史      :
-  1.日    期   : 2012年8月23日
-    作    者   : A00165503
-    修改内容   : 新增枚举
-*****************************************************************************/
 enum TAF_PS_CAUSE_ENUM
 {
     /*----------------------------------------------------------------------
@@ -804,15 +780,7 @@ enum TAF_PS_CDATA_BEAR_STATUS_ENUM
 typedef VOS_UINT8 TAF_PS_CDATA_BEAR_STATUS_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名称: TAF_PDP_TYPE_ENUM
- 枚举说明: PDP类型
 
- 修改历史      :
-  1.日    期   : 2011年10月19日
-    作    者   : A00165503
-    修改内容   : 新增枚举
-*****************************************************************************/
 enum TAF_PDP_TYPE_ENUM
 {
     TAF_PDP_IPV4                        = 0x01,
@@ -825,19 +793,7 @@ enum TAF_PDP_TYPE_ENUM
 typedef VOS_UINT8 TAF_PDP_TYPE_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名称: TAF_PDP_AUTH_TYPE_ENUM
- 枚举说明: 鉴权类型
 
- 修改历史      :
-  1.日    期   : 2013年07月18日
-    作    者   : Y00213812
-    修改内容   : 新增枚举
-
-  2.日    期   : 2015年12月9日
-    作    者   : y00322978
-    修改内容   : 枚举值修改
-*****************************************************************************/
 enum TAF_PDP_AUTH_TYPE_ENUM
 {
     TAF_PDP_AUTH_TYPE_NONE              = 0x00,
@@ -851,14 +807,7 @@ enum TAF_PDP_AUTH_TYPE_ENUM
 typedef VOS_UINT8 TAF_PDP_AUTH_TYPE_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名称: TAF_AUTH_TYPE_ENUM
- 枚举说明: PDP激活时鉴权标志
- 修改历史      :
-  1.日    期   : 2013年07月18日
-    作    者   : Y00213812
-    修改内容   : 新增枚举
-*****************************************************************************/
+
 enum TAF_AUTH_TYPE_ENUM
 {
     TAF_PDP_ACTIVATE_NO_AUTH            = 0x00,                                 /*PDP激活时不需要鉴权用户*/
@@ -869,14 +818,7 @@ enum TAF_AUTH_TYPE_ENUM
 typedef VOS_UINT8 TAF_AUTH_TYPE_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名称: TAF_PDP_ACTIVE_STATUS_ENUM
- 枚举说明: PDP激活/未激活标志
- 修改历史      :
-  1.日    期   : 2013年07月18日
-    作    者   : Y00213812
-    修改内容   : 新增枚举
-*****************************************************************************/
+
 enum TAF_PDP_ACTIVE_STATUS_ENUM
 {
     TAF_PDP_INACTIVE                    = 0x00,                                 /*PDP未激活*/
@@ -887,15 +829,7 @@ enum TAF_PDP_ACTIVE_STATUS_ENUM
 typedef VOS_UINT8 TAF_PDP_ACTIVE_STATUS_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名称: TAF_GPRS_ACTIVE_TYPE_ENUM
- 枚举说明: D命令GPRS激活类型
 
- 修改历史      :
-  1.日    期   : 2011年10月19日
-    作    者   : A00165503
-    修改内容   : 新增枚举
-*****************************************************************************/
 enum TAF_GPRS_ACTIVE_TYPE_ENUM
 {
     TAF_IP_ACTIVE_TE_PPP_MT_PPP_TYPE            = 0x00,
@@ -907,15 +841,7 @@ enum TAF_GPRS_ACTIVE_TYPE_ENUM
 typedef VOS_UINT8 TAF_GPRS_ACTIVE_TYPE_UINT8;
 
 
-/*****************************************************************************
- 结构名称: TAF_L2P_TYPE_ENUM
- 结构说明: L2P类型
 
- 修改历史      :
- 1.日    期   : 2011年10月19日
-   作    者   : A00165503
-   修改内容   : 创建文件
-*****************************************************************************/
 enum TAF_L2P_TYPE_ENUM
 {
     TAF_L2P_PPP                         = 0x00,
@@ -926,15 +852,7 @@ enum TAF_L2P_TYPE_ENUM
 typedef VOS_UINT8 TAF_L2P_TYPE_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名称: TAF_PDP_H_COMP_ENUM
- 枚举说明: PDP header compression type
 
- 修改历史      :
-  1.日    期   : 2013年07月18日
-    作    者   : Y00213812
-    修改内容   : 新增枚举
-*****************************************************************************/
 enum TAF_PDP_H_COMP_ENUM
 {
     TAF_PDP_H_COMP_OFF                  = 0x00,             /* default if value is omitted */
@@ -947,14 +865,7 @@ enum TAF_PDP_H_COMP_ENUM
 typedef VOS_UINT8 TAF_PDP_H_COMP_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名称: TAF_PDP_D_COMP_ENUM
- 枚举说明: PDP data compression type, refer to TS 44.065 (section 6.6.1.1.4)
- 修改历史      :
-  1.日    期   : 2013年07月18日
-    作    者   : Y00213812
-    修改内容   : 新增枚举
-*****************************************************************************/
+
 enum TAF_PDP_D_COMP_ENUM
 {
     TAF_PDP_D_COMP_OFF                  = 0x00,             /* default if value is omitted */
@@ -966,15 +877,7 @@ enum TAF_PDP_D_COMP_ENUM
 typedef VOS_UINT8 TAF_PDP_D_COMP_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名称: TAF_UMTS_QOS_TRAFFIC_CLASS_ENUM
- 枚举说明: QOS Traffic Class
 
- 修改历史      :
-  1.日    期   : 2011年10月19日
-    作    者   : A00165503
-    修改内容   : 新增枚举
-*****************************************************************************/
 enum TAF_UMTS_QOS_TRAFFIC_CLASS_ENUM
 {
     TAF_UMTS_QOS_TRAFFIC_CLASS_SUBS     = 0x00,                                 /* Subscribed                  */
@@ -988,13 +891,7 @@ enum TAF_UMTS_QOS_TRAFFIC_CLASS_ENUM
 typedef VOS_UINT8 TAF_UMTS_QOS_TRAFFIC_CLASS_ENUM_UINT8;
 
 
-/*****************************************************************************
- 结构名称: TAF_PF_TRANS_DIRECTION_ENUM
- 结构说明: TFT过滤器方向
- 1.日    期   : 2011年12月18日
-   作    者   : l00198894
-   修改内容   : Added for PS融合
-*****************************************************************************/
+
 enum TAF_PF_TRANS_DIRECTION_ENUM
 {
     TAF_PF_TRANS_DIRECTION_PRE_REL7     = 0x00,             /* 0 - Pre-Release 7 TFT filter (see 3GPP TS 24.008 [8], table 10.5.162) */
@@ -1007,13 +904,7 @@ enum TAF_PF_TRANS_DIRECTION_ENUM
 typedef VOS_UINT8 TAF_PF_TRANS_DIRECTION_ENUM_UINT8;
 
 
-/*****************************************************************************
- 结构名    : TAF_DSFLOW_CLEAR_MODE_ENUM
- 结构说明  : DS FLOW流量清除模式定义
- 1.日    期   : 2011年12月14日
-   作    者   : 欧阳飞 00132663
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_DSFLOW_CLEAR_MODE_ENUM
 {
     TAF_DSFLOW_CLEAR_TOTAL              = 1,   /*清零所有RABID的流量*/
@@ -1024,14 +915,7 @@ enum TAF_DSFLOW_CLEAR_MODE_ENUM
 typedef VOS_UINT8 TAF_DSFLOW_CLEAR_MODE_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名称: TAF_PDP_EMC_IND_ENUM
- 枚举说明: PDP上下文是否为紧急呼
- 修改历史      :
-  1.日    期   : 2013年07月18日
-    作    者   : Y00213812
-    修改内容   : 新增枚举
-*****************************************************************************/
+
 enum TAF_PDP_EMC_IND_ENUM
 {
     TAF_PDP_NOT_FOR_EMC                 = 0x00,
@@ -1042,14 +926,7 @@ enum TAF_PDP_EMC_IND_ENUM
 typedef VOS_UINT8 TAF_PDP_EMC_IND_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名称: TAF_PDP_IPV4_ADDR_ALLOC_TYPE_ENUM
- 枚举说明: IPV4类型地址分配类型
- 修改历史      :
-  1.日    期   : 2013年07月18日
-    作    者   : Y00213812
-    修改内容   : 新增枚举
-*****************************************************************************/
+
 enum TAF_PDP_IPV4_ADDR_ALLOC_TYPE_ENUM
 {
     TAF_PDP_IPV4_ADDR_ALLOC_TYPE_NAS    = 0x00,
@@ -1060,15 +937,7 @@ enum TAF_PDP_IPV4_ADDR_ALLOC_TYPE_ENUM
 typedef VOS_UINT8 TAF_PDP_IPV4_ADDR_ALLOC_TYPE_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名  : TAF_PDP_PCSCF_DISCOVERY_ENUM
- 枚举说明: P-CSCF DISCOVERY
 
- 修改历史      :
-  1.日    期   : 2013年07月18日
-    作    者   : Y00213812
-    修改内容   : 新增枚举
-*****************************************************************************/
 enum TAF_PDP_PCSCF_DISCOVERY_ENUM
 {
     TAF_PDP_PCSCF_DISCOVERY_NOT_INFLUENCED  = 0x00,
@@ -1080,15 +949,7 @@ enum TAF_PDP_PCSCF_DISCOVERY_ENUM
 typedef VOS_UINT8 TAF_PDP_PCSCF_DISCOVERY_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名  : TAF_PDP_IM_CN_SIG_FLAG_ENUM
- 枚举说明: IMS专有承载标志
 
- 修改历史      :
-  1.日    期   : 2013年07月18日
-    作    者   : Y00213812
-    修改内容   : 新增枚举
-*****************************************************************************/
 enum TAF_PDP_IM_CN_SIG_FLAG_ENUM
 {
     TAF_PDP_NOT_FOR_IMS_CN_SIG_ONLY     = 0x00,
@@ -1099,15 +960,7 @@ enum TAF_PDP_IM_CN_SIG_FLAG_ENUM
 typedef VOS_UINT8 TAF_PDP_IM_CN_SIG_FLAG_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名称: TAF_PDP_ANSWER_TYPE_ENUM
- 枚举说明: 应答类型
 
- 修改历史      :
-  1.日    期   : 2013年07月18日
-    作    者   : Y00213812
-    修改内容   : 新增枚举
-*****************************************************************************/
 enum TAF_PDP_ANSWER_TYPE_ENUM
 {
     TAF_PDP_ANSWER_TYPE_ACCEPT             = 0x00,             /* 接受呼叫 */
@@ -1118,15 +971,7 @@ enum TAF_PDP_ANSWER_TYPE_ENUM
 typedef VOS_UINT8 TAF_PDP_ANSWER_TYPE_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名称: TAF_PDP_ANSWER_MODE_ENUM
- 枚举说明: 应答模式
 
- 修改历史      :
-  1.日    期   : 2013年07月18日
-    作    者   : Y00213812
-    修改内容   : 新增枚举
-*****************************************************************************/
 enum TAF_PDP_ANSWER_MODE_ENUM
 {
     TAF_PDP_ANSWER_MODE_MANUAL             = 0x00,             /* 人工应答方式 */
@@ -1151,14 +996,7 @@ typedef VOS_UINT32 TAF_SRVCC_CANCEL_NOTIFY_ENUM_UINT32;
 
 #endif
 
-/* Added by l60609 for L-C互操作项目, 2014-01-06, Begin */
-/*****************************************************************************
- 枚举名   :TAF_PDP_REQUEST_TYPE_ENUM_UINT8
- 枚举说明 :PDN连接请求类型
- 1.日    期   : 2014年01月08日
-   作    者   : l60609
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_PDP_REQUEST_TYPE_ENUM
 {
     TAF_PDP_REQUEST_TYPE_INITIAL        = 0x1,
@@ -1168,7 +1006,6 @@ enum TAF_PDP_REQUEST_TYPE_ENUM
     TAF_PDP_REQUEST_TYPE_BUTT
 };
 typedef VOS_UINT8 TAF_PDP_REQUEST_TYPE_ENUM_UINT8;
-/* Added by l60609 for L-C互操作项目, 2014-01-06, End */
 
 /** ****************************************************************************
  * Name        : TAF_PS_CDATA_1X_QOS_NON_ASSURED_PRI_ENUM_UINT8
@@ -1186,13 +1023,7 @@ enum TAF_PS_CDATA_1X_QOS_NON_ASSURED_PRI_ENUM
 typedef VOS_UINT8 TAF_PS_CDATA_1X_QOS_NON_ASSURED_PRI_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名    : TAF_PS_CDATA_DIAL_MODE_ENUM_UINT32
- 结构说明  : 当前的接入技术
- 1.日    期   : 2015年04月02日
-   作    者   : y00314741
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_PS_CDATA_DIAL_MODE_ENUM
 {
     TAF_PS_CDATA_DIAL_MODE_ASYNC_CALL   = 0x00,
@@ -1203,14 +1034,7 @@ enum TAF_PS_CDATA_DIAL_MODE_ENUM
 typedef VOS_UINT32 TAF_PS_CDATA_DIAL_MODE_ENUM_UINT32;
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- 枚举名    : TAF_APS_READ_SIM_FILES_CNF_ENUM
- 结构说明  : 用于标记读取USIM文件的回复消息
-1.日    期   : 2015年11月30日
-  作    者   : Y00322978
-  修改内容   : AT&T 支持EONS特性修改
 
-*****************************************************************************/
 enum  TAF_APS_READ_SIM_FILES_CNF_ENUM
 {
     TAF_APS_READ_USIM_FILE_FLG_NULL                         = 0x0,
@@ -1252,15 +1076,7 @@ typedef VOS_UINT32 TAF_APS_READ_SIM_FILES_CNF_ENUM_UINT32;
   7 STRUCT定义
 *****************************************************************************/
 
-/*****************************************************************************
- 结构名称: TAF_PS_EVT_STRU
- 结构说明: PS域事件结构
 
- 修改历史      :
-  1.日    期   : 2013年07月18日
-    作    者   : Y00213812
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stHeader;
@@ -1270,13 +1086,7 @@ typedef struct
 } TAF_PS_EVT_STRU;
 
 
-/*****************************************************************************
- 结构名    : TAF_DSFLOW_INFO_STRU
- 结构说明  : DS FLOW连接流量信息结构体定义
- 1.日    期   : 2011年12月14日
-   作    者   : 欧阳飞 00132663
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulDSLinkTime;                           /* DS连接时间 */
@@ -1288,13 +1098,7 @@ typedef struct
 } TAF_DSFLOW_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : TAF_DSFLOW_REPORT_STRU
- 结构说明  : 流量信息上报结构定义
- 1.日    期   : 2011年12月17日
-   作    者   : 欧阳飞 00132663
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulCurrentSendRate;                      /*当前发送速率*/
@@ -1306,13 +1110,7 @@ typedef struct
 } TAF_DSFLOW_REPORT_STRU;
 
 
-/*****************************************************************************
- 结构名    : TAF_DSFLOW_QUERY_INFO_STRU
- 结构说明  : DS FLOW 流量查询结构体
- 1.日    期   : 2011年12月14日
-   作    者   : 欧阳飞 00132663
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     TAF_DSFLOW_INFO_STRU                stCurrentFlowInfo;  /*当前连接流量信息*/
@@ -1321,14 +1119,7 @@ typedef struct
 } TAF_DSFLOW_QUERY_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : TAF_EPS_QOS_STRU
- 结构说明  : EPS QOS 参数结构, 仅提供给LTE使用
- 修改记录  :
- 1.日    期   : 2012年01月04日
-   作    者   : l00198894
-   修改内容   : 新增结构
-*****************************************************************************/
+
 typedef struct
 {
     /* 0 QCI is selected by network
@@ -1353,14 +1144,7 @@ typedef struct
 }TAF_EPS_QOS_STRU;
 
 
-/*****************************************************************************
- 结构名    : TAF_PDP_AUTH_STRU
- 结构说明  : 鉴权参数结构
- 修改记录  :
- 1.日    期   : 2012年01月04日
-   作    者   : l00198894
-   修改内容   : PS Project，4字节对齐, 扩展用户名, 密码最大长度为255
-*****************************************************************************/
+
 typedef struct
 {
     TAF_AUTH_TYPE_ENUM_UINT8            enAuth;                                   /*目前仅支持是否鉴权，以后扩充为支持哪种鉴权算法*/
@@ -1376,15 +1160,7 @@ typedef struct
 } TAF_PDP_AUTH_STRU;
 
 
-/*****************************************************************************
- 结构名称: TAF_PDP_APN_STRU
- 结构说明: PDP上下文中APN信息
 
- 修改历史      :
-  1.日    期   : 2013年07月18日
-    作    者   : Y00213812
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucLength;
@@ -1393,15 +1169,7 @@ typedef struct
 } TAF_PDP_APN_STRU;
 
 
-/*****************************************************************************
- 结构名称: TAF_PDP_DNS_STRU
- 结构说明: DNS信息
 
- 修改历史      :
-  1.日    期   : 2013年07月18日
-    作    者   : Y00213812
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          bitOpPrimDnsAddr    : 1;
@@ -1414,15 +1182,7 @@ typedef struct
 } TAF_PDP_DNS_STRU;
 
 
-/*****************************************************************************
- 结构名称: TAF_PDP_NBNS_STRU
- 结构说明: NBNS信息
 
- 修改历史      :
-  1.日    期   : 2013年07月18日
-    作    者   : Y00213812
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          bitOpPrimNbnsAddr   : 1;
@@ -1435,15 +1195,7 @@ typedef struct
 } TAF_PDP_NBNS_STRU;
 
 
-/*****************************************************************************
- 结构名称: TAF_PDP_GATEWAY_STRU
- 结构说明: 网关地址结构
 
- 修改历史      :
-  1.日    期   : 2013年07月18日
-    作    者   : Y00213812
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          bitOpGateWayAddr    : 1;
@@ -1454,15 +1206,7 @@ typedef struct
 } TAF_PDP_GATEWAY_STRU;
 
 
-/*****************************************************************************
- 结构名称: TAF_PDP_PCSCF_STRU
- 结构说明: P-CSCF地址结构
 
- 修改历史      :
-  1.日    期   : 2013年07月18日
-    作    者   : Y00213812
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          bitOpPrimPcscfAddr  : 1;
@@ -1477,15 +1221,7 @@ typedef struct
 } TAF_PDP_PCSCF_STRU;
 
 
-/*****************************************************************************
- 结构名称: TAF_PDP_IPV6_PCSCF_STRU
- 结构说明: IPv6 P-CSCF地址结构体
 
- 修改历史      :
-  1.日    期   : 2013年07月18日
-    作    者   : Y00213812
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          bitOpPrimPcscfAddr  : 1;
@@ -1500,15 +1236,7 @@ typedef struct
 } TAF_PDP_IPV6_PCSCF_STRU;
 
 
-/*****************************************************************************
- 结构名称: TAF_PDP_IPV6_DNS_STRU
- 结构说明: IPv6 DNS地址结构
 
- 修改历史      :
-  1.日    期   : 2013年07月18日
-    作    者   : Y00213812
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          bitOpPrimDnsAddr    : 1;
@@ -1521,15 +1249,7 @@ typedef struct
 } TAF_PDP_IPV6_DNS_STRU;
 
 
-/*****************************************************************************
- 结构名称: TAF_PDP_ADDR_STRU
- 结构说明: IP地址结构
 
- 修改历史      :
-  1.日    期   : 2013年07月18日
-    作    者   : Y00213812
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     /* IPV4:1, IPV6:2, IPV4V6:3, PPP:4 */
@@ -1540,14 +1260,7 @@ typedef struct
 } TAF_PDP_ADDR_STRU;
 
 
-/*****************************************************************************
- 结构名    : TAF_PDP_PRIM_CONTEXT_STRU
- 结构说明  : 主PDP上下文结构
- 修改记录  :
- 1.日    期   : 2012年01月04日
-   作    者   : l00198894
-   修改内容   : PS Project，确保4字节对齐
-*****************************************************************************/
+
 typedef struct
 {
     TAF_PDP_ADDR_STRU                   stPdpAddr;
@@ -1571,15 +1284,7 @@ typedef struct
 
 }TAF_PDP_PRIM_CONTEXT_STRU;
 
-/*****************************************************************************
- 结构名称: TAF_PDP_AUTHDATA_STRU
- 结构说明: NDIS鉴权参数结构
 
- 修改历史      :
-  1.日    期   : 2013年07月18日
-    作    者   : Y00213812
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     TAF_PDP_AUTH_TYPE_ENUM_UINT8        enAuthType;
@@ -1589,17 +1294,7 @@ typedef struct
 }TAF_PDP_AUTHDATA_STRU;
 
 
-/*****************************************************************************
- 结构名    : TAF_PDP_PF_STRU
- 结构说明  : TFT参数结构表
- 修改记录  :
- 1.日    期   : 2012年01月04日
-   作    者   : l00198894
-   修改内容   : PS Project, 调整为与LTE的TFT表结构一致
- 2.日    期   : 2015年9月28日
-   作    者   : W00316404
-   修改内容   : R11 TFT 协议升级
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          bitOpRmtIpv4AddrAndMask     : 1;
@@ -1659,14 +1354,7 @@ typedef struct
 }TAF_PDP_PF_STRU;
 
 
-/*****************************************************************************
- 结构名    : TAF_UMTS_QOS_STRU
- 结构说明  : QOS参数结构
- 修改记录  :
- 1.日    期   : 2012年01月04日
-   作    者   : l00198894
-   修改内容   : PS Project，4字节对齐调整
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucTrafficClass;                         /*UMTS承载服务优化类型*/
@@ -1689,15 +1377,7 @@ typedef struct
 }TAF_UMTS_QOS_STRU;
 
 
-/*****************************************************************************
- 结构名称: TAF_PRI_PDP_QUERY_INFO_STRU
- 结构说明: ID_EVT_TAF_PS_GET_PRIM_PDP_CONTEXT_INFO_CNF消息结构
 
- 修改历史      :
-  1.日    期   : 2013年07月18日
-    作    者   : Y00213812
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucCid;
@@ -1707,15 +1387,7 @@ typedef struct
 }TAF_PRI_PDP_QUERY_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名称: TAF_TFT_QUREY_INFO_STRU
- 结构说明: ID_EVT_TAF_PS_GET_TFT_INFO_CNF消息结构
 
- 修改历史      :
-  1.日    期   : 2013年07月18日
-    作    者   : Y00213812
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucCid;
@@ -1725,15 +1397,7 @@ typedef struct
 
 }TAF_TFT_QUREY_INFO_STRU;
 
-/*****************************************************************************
- 结构名称: TAF_UMTS_QOS_QUERY_INFO_STRU
- 结构说明: QOS查询消息结构
 
- 修改历史      :
-  1.日    期   : 2013年07月18日
-    作    者   : Y00213812
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucCid;
@@ -1743,15 +1407,7 @@ typedef struct
 } TAF_UMTS_QOS_QUERY_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名称: TAF_DNS_QUERY_INFO_STRU
- 结构说明: DNS查询消息结构
 
- 修改历史      :
-  1.日    期   : 2013年07月18日
-    作    者   : Y00213812
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucCid;
@@ -1760,15 +1416,7 @@ typedef struct
 
 }TAF_DNS_QUERY_INFO_STRU;
 
-/*****************************************************************************
- 结构名称: TAF_AUTH_QUERY_INFO_STRU
- 结构说明: 鉴权参数查询
 
- 修改历史      :
-  1.日    期   : 2013年07月18日
-    作    者   : Y00213812
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucCid;
@@ -1777,15 +1425,7 @@ typedef struct
 
 }TAF_AUTH_QUERY_INFO_STRU;
 
-/*****************************************************************************
- 结构名称: TAF_AUTHDATA_QUERY_INFO_STRU
- 结构说明: ID_EVT_TAF_PS_GET_AUTHDATA_INFO_CNF鉴权参数查询消息结构
 
- 修改历史      :
-  1.日    期   : 2013年07月18日
-    作    者   : Y00213812
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucCid;
@@ -1794,30 +1434,14 @@ typedef struct
 
 }TAF_AUTHDATA_QUERY_INFO_STRU;
 
-/*****************************************************************************
- 结构名称: TAF_PDP_TFT_STRU
- 结构说明: TFT信息结构
 
- 修改历史      :
-  1.日    期   : 2014年06月16日
-    作    者   : f00179208
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          ulPfNum;                                /* pf个数 */
     TAF_PDP_PF_STRU                     astPf[TAF_MAX_SDF_PF_NUM];              /* pf表 */
 }TAF_PDP_TFT_STRU;
 
-/*****************************************************************************
- 结构名称: TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU
- 结构说明: 主动PDP激活成功返回结果的结构
 
- 修改历史      :
-  1.日    期   : 2013年07月18日
-    作    者   : Y00213812
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -1857,26 +1481,10 @@ typedef struct
 } TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU;
 
 
-/*****************************************************************************
- 结构名称: TAF_PS_CALL_PDP_ACTIVATE_IND_STRU
- 结构说明: 网侧PDP激活上报的结构
 
- 修改历史      :
-  1.日    期   : 2013年07月18日
-    作    者   : Y00213812
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU TAF_PS_CALL_PDP_ACTIVATE_IND_STRU;
 
-/*****************************************************************************
- 结构名称: TAF_PS_CALL_PDP_ACTIVATE_REJ_STRU
- 结构说明: PDP激活被拒
 
- 修改历史      :
-  1.日    期   : 2013年07月18日
-    作    者   : Y00213812
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -1913,15 +1521,7 @@ typedef struct
 
 } TAF_PS_CALL_PDP_ACTIVATE_REJ_STRU;
 
-/*****************************************************************************
- 结构名称: TAF_PS_CALL_PDP_MANAGE_IND_STRU
- 结构说明: 网侧PDP激活，等待手动应答
 
- 修改历史      :
-  1.日    期   : 2013年07月18日
-    作    者   : Y00213812
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -1946,16 +1546,7 @@ typedef struct
 } TAF_PS_CALL_PDP_MANAGE_IND_STRU;
 
 
-/*****************************************************************************
- 结构名称: TAF_PS_CALL_PDP_MODIFY_CNF_STRU
- 结构说明: 主动MODIFY成功
 
- 修改历史      :
-  1.日    期   : 2013年07月18日
-    作    者   : Y00213812
-    修改内容   : 新增结构
-
-*****************************************************************************/
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -1982,26 +1573,10 @@ typedef struct
     TAF_PDP_TFT_STRU                    stTft;
 } TAF_PS_CALL_PDP_MODIFY_CNF_STRU;
 
-/*****************************************************************************
- 结构名称: TAF_PS_CALL_PDP_MODIFY_IND_STRU
- 结构说明: 网络MODIFY上报
 
- 修改历史      :
-  1.日    期   : 2013年07月18日
-    作    者   : Y00213812
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef TAF_PS_CALL_PDP_MODIFY_CNF_STRU TAF_PS_CALL_PDP_MODIFY_IND_STRU;
 
-/*****************************************************************************
- 结构名称: TAF_PS_CALL_PDP_MODIFY_REJ_STRU
- 结构说明: MODIFY被拒
 
- 修改历史      :
-  1.日    期   : 2013年07月18日
-    作    者   : Y00213812
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -2014,15 +1589,7 @@ typedef struct
 } TAF_PS_CALL_PDP_MODIFY_REJ_STRU;
 
 
-/*****************************************************************************
- 结构名称: TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU
- 结构说明: 主动去激活成功
 
- 修改历史      :
-  1.日    期   : 2013年07月18日
-    作    者   : Y00213812
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -2036,27 +1603,11 @@ typedef struct
 } TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU;
 
 
-/*****************************************************************************
- 结构名称: TAF_PS_CALL_PDP_DEACTIVATE_IND_STRU
- 结构说明: 网络侧去激活
 
- 修改历史      :
-  1.日    期   : 2013年07月18日
-    作    者   : Y00213812
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU TAF_PS_CALL_PDP_DEACTIVATE_IND_STRU;
 
 
-/*****************************************************************************
- 结构名称: TAF_PS_CALL_PDP_PDP_DISCONNECT_IND_STRU
- 结构说明: 断开连接
 
- 修改历史      :
-  1.日    期   : 2013年07月18日
-    作    者   : Y00213812
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -2064,13 +1615,7 @@ typedef struct
 } TAF_PS_CALL_PDP_PDP_DISCONNECT_IND_STRU;
 
 
-/*****************************************************************************
- 结构名    : TAF_PS_COMMON_CNF_STRU
- 结构说明  : PS域事件通用结构体
- 1.日    期   : 2011年10月19日
-   作    者   : A00165503
-   修改内容   : 创建文件
-*****************************************************************************/
+
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -2079,13 +1624,7 @@ typedef struct
 } TAF_PS_COMMON_CNF_STRU;
 
 
-/*****************************************************************************
- 结构名    : TAF_PDP_PRIM_CONTEXT_EXT_STRU
- 结构说明  : +CGDCONT命令参数, 见TS 27.007 section 10.1.1
- 1.日    期 : 2011年10月19日
-   作    者 : A00165503
-   修改内容 : 创建文件
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          bitOpPdpType        : 1;                /* PdpType*/
@@ -2150,16 +1689,7 @@ typedef struct
 
 }TAF_PDP_PRIM_CONTEXT_EXT_STRU;
 
-/*****************************************************************************
- 结构名称: TAF_PS_SET_PRIM_PDP_CONTEXT_INFO_REQ_STRU
- 结构说明: ID_MSG_TAF_PS_SET_PRIM_PDP_CONTEXT_INFO_REQ、
-           ID_EVT_TAF_PS_SET_PRIM_PDP_CONTEXT_INFO_CNF消息
 
- 修改历史      :
-  1.日    期   : 2013年07月18日
-    作    者   : Y00213812
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -2169,15 +1699,7 @@ typedef struct
 
 typedef TAF_PS_COMMON_CNF_STRU TAF_PS_SET_PRIM_PDP_CONTEXT_INFO_CNF_STRU;
 
-/*****************************************************************************
- 结构名称: TAF_SET_IMS_PDP_CFG_STRU
- 结构说明: ^IMSPDPCFG命令参数
 
- 修改历史      :
-  1.日    期   : 2015年07月30日
-    作    者   : z00301431
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucCid;
@@ -2185,16 +1707,7 @@ typedef struct
     VOS_UINT8                           aucReserved[2];
 } TAF_IMS_PDP_CFG_STRU;
 
-/*****************************************************************************
- 结构名称: TAF_PS_SET_IMS_PDP_CFG_REQ_STRU
- 结构说明: ID_MSG_TAF_PS_SET_IMS_PDP_CFG_REQ
-           ID_EVT_TAF_PS_SET_IMS_PDP_CFG_CNF消息
 
- 修改历史      :
-  1.日    期   : 2015年07月30日
-    作    者   : z00301431
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -2204,14 +1717,7 @@ typedef struct
 
 typedef TAF_PS_COMMON_CNF_STRU TAF_PS_SET_IMS_PDP_CFG_CNF_STRU;
 
-/*****************************************************************************
- 结构名称  : TAF_PS_SET_1X_DORMANT_TIMER_REQ_STRU
- 结构说明  : ID_MSG_TAF_PS_SET_1X_MAX_NO_DATA_TIME_LEN_REQ消息结构体
 
-  1.日    期   : 2015年4月20日
-    作    者   : y00314741
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -2222,27 +1728,13 @@ typedef struct
 
 typedef TAF_PS_COMMON_CNF_STRU TAF_PS_SET_1X_DORM_TIMER_CNF_STRU;
 
-/*****************************************************************************
- 结构名称  : TAF_PS_GET_1X_DORM_TIMER_VALUE_REQ_STRU
- 结构说明  : ID_MSG_TAF_PS_GET_CGMTU_VALUE_REQ消息结构体
 
-  1.日    期   : 2015年4月20日
-    作    者   : y00314741
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
 }TAF_PS_GET_1X_DORM_TIMER_REQ_STRU;
 
-/*****************************************************************************
- 结构名称  : TAF_PS_GET_CGMTU_VALUE_CNF_STRU
- 结构说明  : ID_EVT_TAF_PS_GET_CGMTU_VALUE_CNF消息结构体
 
-  1.日    期   : 2015年4月20日
-    作    者   : y00314741
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -2251,30 +1743,14 @@ typedef struct
     VOS_UINT8                           aucReserved[2];
 }TAF_PS_GET_1X_DORM_TIMER_CNF_STRU;
 
-/*****************************************************************************
- 结构名称: TAF_PS_GET_PRIM_PDP_CONTEXT_INFO_REQ_STRU
- 结构说明: ID_MSG_TAF_PS_GET_PRIM_PDP_CONTEXT_INFO_REQ消息
 
- 修改历史      :
-  1.日    期   : 2013年07月18日
-    作    者   : Y00213812
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
 } TAF_PS_GET_PRIM_PDP_CONTEXT_INFO_REQ_STRU;
 
 
-/*****************************************************************************
- 结构名称: TAF_PS_GET_PRIM_PDP_CONTEXT_INFO_REQ_STRU
- 结构说明: ID_MSG_TAF_PS_GET_PRIM_PDP_CONTEXT_INFO_CNF消息
 
- 修改历史      :
-  1.日    期   : 2013年07月18日
-    作    者   : Y00213812
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -2312,14 +1788,7 @@ typedef struct
 } TAF_PDP_SEC_CONTEXT_EXT_STRU;
 
 
-/*****************************************************************************
- 结构名    : TAF_PDP_SEC_CONTEXT_STRU
- 结构说明  : 次PDP上下文结构
- 修改记录  :
- 1.日    期   : 2012年07月24日
-   作    者   : Y00213812
-   修改内容   : 新增结构
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucCid;              /* [1，11] */
@@ -2330,14 +1799,7 @@ typedef struct
 }TAF_PDP_SEC_CONTEXT_STRU;
 
 
-/*****************************************************************************
- 结构名    : TAF_PS_SET_SEC_PDP_CONTEXT_INFO_REQ_STRU
- 结构说明  : 次PDP上下文设置结构
- 修改记录  :
- 1.日    期   : 2012年07月24日
-   作    者   : Y00213812
-   修改内容   : 新增结构
-*****************************************************************************/
+
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -2363,36 +1825,13 @@ typedef struct
 } TAF_PS_GET_SEC_PDP_CONTEXT_INFO_CNF_STRU;
 
 
-/*****************************************************************************
- 描述 : 针对命令 +CGACT
- ID   : ID_MSG_TAF_PS_SET_PDP_CONTEXT_STATE_REQ
-        ID_MSG_TAF_PS_SET_PDP_STATE_CNF
-        ID_MSG_TAF_PS_GET_PDP_CONTEXT_STATE_REQ
-        ID_MSG_TAF_PS_GET_PDP_STATE_CNF
- REQ  : TAF_PS_SET_PDP_STATE_REQ_STRU     TAF_PS_GET_PDP_STATE_REQ_STRU
- CNF  : TAF_PS_SET_PDP_STATE_CNF_STRU TAF_PS_GET_PDP_STATE_CNF_STRU
- IND  : -
- 说明 : ...
-*****************************************************************************
-*****************************************************************************
- 结构名    : TAF_CID_LIST_STRU
- 结构说明  : CID列表结构体
- 1.日    期   : 2011年10月19日
-   作    者   : A00165503
-   修改内容   : 创建文件
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           aucCid[TAF_MAX_CID + 1];
 } TAF_CID_LIST_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_CID_STATE_STRU
- 结构说明  : CID状态结构体
- 1.日    期   : 2011年10月19日
-   作    者   : A00165503
-   修改内容   : 创建文件
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucCid;
@@ -2400,13 +1839,7 @@ typedef struct
     VOS_UINT8                           aucReserved[2];
 } TAF_CID_STATE_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_CID_LIST_STATE_STRU
- 结构说明  : CID列表状态结构体
- 1.日    期   : 2011年10月19日
-   作    者   : A00165503
-   修改内容   : 创建文件
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucState;                                /* 0 - deactivated,1 - activated */
@@ -2415,13 +1848,7 @@ typedef struct
     VOS_UINT8                           aucCid[TAF_MAX_CID + 1];
 } TAF_CID_LIST_STATE_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_PS_SET_PDP_STATE_REQ_STRU
- 结构说明  : CID状态结构体
- 1.日    期   : 2011年10月19日
-   作    者   : A00165503
-   修改内容   : 创建文件
-*****************************************************************************/
+
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -2429,19 +1856,7 @@ typedef struct
     TAF_CID_LIST_STATE_STRU             stCidListStateInfo;
 } TAF_PS_SET_PDP_STATE_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_PS_CALL_END_REQ_STRU
- 结构说明  : ID_EVT_TAF_PS_SET_PDP_CONTEXT_STATE_CNF事件结构
 
- 修改历史      :
-  1.日    期   : 2011年08月22日
-    作    者   : A00165503
-    修改内容   : 新增结构
-
-  2.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : 修改成员
-*****************************************************************************/
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -2678,15 +2093,7 @@ typedef struct
     TAF_CTRL_STRU                       stCtrl;
 } TAF_PS_GET_UMTS_QOS_INFO_REQ_STRU;
 
-/*****************************************************************************
- 结构名称: TAF_UMTS_QOS_QUERY_INFO_STRU
- 结构说明: ID_EVT_TAF_PS_GET_UMTS_QOS_INFO_CNF消息结构
 
- 修改历史      :
-  1.日    期   : 2013年07月18日
-    作    者   : Y00213812
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -2722,15 +2129,7 @@ typedef struct
     TAF_CTRL_STRU                       stCtrl;
 } TAF_PS_GET_UMTS_QOS_MIN_INFO_REQ_STRU;
 
-/*****************************************************************************
- 结构名称: TAF_UMTS_QOS_QUERY_INFO_STRU
- 结构说明: ID_EVT_TAF_PS_GET_UMTS_QOS_MIN_INFO_CNF消息结构
 
- 修改历史      :
-  1.日    期   : 2013年07月18日
-    作    者   : Y00213812
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -3166,13 +2565,7 @@ typedef struct
 } TAF_PS_GET_DYNAMIC_EPS_QOS_INFO_CNF_STRU;
 
 
-/*****************************************************************************
- 结构名    : TAF_PS_GET_DSFLOW_INFO_REQ_STRU
- 结构说明  : ID_MSG_TAF_PS_GET_DSFLOW_INFO_REQ消息结构体, 获取流量信息
- 1.日    期   : 2011年10月19日
-   作    者   : A00165503
-   修改内容   : 创建文件
-*****************************************************************************/
+
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -3180,17 +2573,7 @@ typedef struct
     VOS_UINT8                           aucReserve[4];
 } TAF_PS_GET_DSFLOW_INFO_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_PS_GET_DSFLOW_INFO_CNF_STRU
- 结构说明  : ID_MSG_TAF_PS_GET_DSFLOW_INFO_CNF消息结构体, 获取流量信息
-  1.日    期   : 2011年10月19日
-   作    者   : A00165503
-   修改内容   : 创建文件
 
-  2.日    期   : 2011年12月23日
-    作    者   : o00132663
-    修改内容   : PS融合项目，流量上报使用新结构
-*****************************************************************************/
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -3220,13 +2603,7 @@ typedef struct
     VOS_UINT8                           aucReserved[2];
 } TAF_DSFLOW_CLEAR_CONFIG_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_PS_CLEAR_DSFLOW_REQ_STRU
- 结构说明  : ID_MSG_TAF_PS_CLEAR_DSFLOW_REQ消息结构体, 清除流量信息
- 1.日    期   : 2011年10月19日
-   作    者   : A00165503
-   修改内容   : 创建文件
-*****************************************************************************/
+
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -3234,13 +2611,7 @@ typedef struct
     TAF_DSFLOW_CLEAR_CONFIG_STRU        stClearConfigInfo;
 } TAF_PS_CLEAR_DSFLOW_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_PS_CLEAR_DSFLOW_CNF_STRU
- 结构说明  : ID_MSG_TAF_PS_CLEAR_DSFLOW_CNF消息结构体, 清除流量信息
- 1.日    期   : 2011年10月19日
-   作    者   : A00165503
-   修改内容   : 创建文件
-*****************************************************************************/
+
 typedef TAF_PS_COMMON_CNF_STRU TAF_PS_CLEAR_DSFLOW_CNF_STRU;
 
 
@@ -3253,26 +2624,14 @@ typedef TAF_PS_COMMON_CNF_STRU TAF_PS_CLEAR_DSFLOW_CNF_STRU;
  IND  : -
  说明 : ...
 *****************************************************************************/
-/*****************************************************************************
- 结构名    : TAF_DSFLOW_REPORT_CONFIG_STRU
- 结构说明  : 流量上报配置结构体
- 1.日    期   : 2011年10月19日
-   作    者   : A00165503
-   修改内容   : 创建文件
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulRptEnabled;       /* 流量上报开启标记   */
     VOS_UINT32                          ulTimerLength;      /* 流量上报定时器时长 */
 } TAF_DSFLOW_REPORT_CONFIG_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_PS_CONFIG_DSFLOW_RPT_REQ_STRU
- 结构说明  : ID_MSG_TAF_PS_CONFIG_DSFLOW_RPT_REQ消息结构体, 控制流量上报
- 1.日    期   : 2011年10月19日
-   作    者   : A00165503
-   修改内容   : 创建文件
-*****************************************************************************/
+
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -3280,27 +2639,10 @@ typedef struct
     TAF_DSFLOW_REPORT_CONFIG_STRU       stReportConfigInfo;
 } TAF_PS_CONFIG_DSFLOW_RPT_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_PS_CONFIG_DSFLOW_RPT_CNF_STRU
- 结构说明  : ID_MSG_TAF_PS_CONFIG_DSFLOW_RPT_CNF消息结构体, 控制流量上报
- 1.日    期   : 2011年10月19日
-   作    者   : A00165503
-   修改内容   : 创建文件
-*****************************************************************************/
+
 typedef TAF_PS_COMMON_CNF_STRU TAF_PS_CONFIG_DSFLOW_RPT_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_PS_DSFLOW_RPT_IND_STRU
- 结构说明  : ID_MSG_TAF_PS_DSFLOW_RPT_IND消息结构体, 流量上报信息
- 1.日    期   : 2011年10月19日
-   作    者   : A00165503
-   修改内容   : 创建文件
 
-  2.日    期   : 2011年12月23日
-    作    者   : o00132663
-    修改内容   : PS融合项目，流量上报结构使用新结构TAF_DSFLOW_REPORT_STRU
-
-*****************************************************************************/
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -3319,14 +2661,7 @@ typedef struct
  IND  : -
  说明 : ...
 *****************************************************************************/
-/*****************************************************************************
- 结构名称  : TAF_APDSFLOW_RPT_CFG_STRU
- 结构说明  : AP流量上报配置结构体
 
-  1.日    期   : 2015年2月2日
-    作    者   : A00165503
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          ulRptEnabled;       /* 流量上报开启标记   */
@@ -3334,14 +2669,7 @@ typedef struct
 } TAF_APDSFLOW_RPT_CFG_STRU;
 
 
-/*****************************************************************************
- 结构名    : TAF_APDSFLOW_REPORT_STRU
- 结构说明  : 流量信息上报结构定义
 
-  1.日    期   : 2015年2月2日
-    作    者   : A00165503
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          ulCurrentTxRate;    /*当前发送速率*/
@@ -3351,14 +2679,7 @@ typedef struct
 } TAF_APDSFLOW_REPORT_STRU;
 
 
-/*****************************************************************************
- 结构名称  : TAF_PS_CONFIG_APDSFLOW_RPT_REQ_STRU
- 结构说明  : ID_MSG_TAF_PS_SET_APDSFLOW_CFG_REQ消息结构体
 
-  1.日    期   : 2015年2月2日
-    作    者   : A00165503
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -3367,39 +2688,18 @@ typedef struct
 } TAF_PS_SET_APDSFLOW_RPT_CFG_REQ_STRU;
 
 
-/*****************************************************************************
- 结构名称  : TAF_PS_SET_APDSFLOW_RPT_CFG_CNF_STRU
- 结构说明  : ID_EVT_TAF_PS_SET_APDSFLOW_RPT_CFG_CNF消息结构体
 
-  1.日    期   : 2015年2月2日
-    作    者   : A00165503
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef TAF_PS_COMMON_CNF_STRU TAF_PS_SET_APDSFLOW_RPT_CFG_CNF_STRU;
 
 
-/*****************************************************************************
- 结构名称  : TAF_PS_GET_APDSFLOW_RPT_CFG_REQ_STRU
- 结构说明  : ID_MSG_TAF_PS_GET_APDSFLOW_RPT_CFG_REQ消息结构体
 
-  1.日    期   : 2015年2月2日
-    作    者   : A00165503
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
 } TAF_PS_GET_APDSFLOW_RPT_CFG_REQ_STRU;
 
 
-/*****************************************************************************
- 结构名称  : TAF_PS_GET_APDSFLOW_RPT_CFG_CNF_STRU
- 结构说明  : ID_EVT_TAF_PS_GET_APDSFLOW_RPT_CFG_CNF消息结构体
 
-  1.日    期   : 2015年2月2日
-    作    者   : A00165503
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -3409,14 +2709,7 @@ typedef struct
 } TAF_PS_GET_APDSFLOW_RPT_CFG_CNF_STRU;
 
 
-/*****************************************************************************
- 结构名称  : TAF_PS_APDSFLOW_REPORT_IND_STRU
- 结构说明  : ID_EVT_TAF_PS_APDSFLOW_REPORT_IND消息结构体
 
-  1.日    期   : 2015年2月2日
-    作    者   : A00165503
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -3425,14 +2718,7 @@ typedef struct
 } TAF_PS_APDSFLOW_REPORT_IND_STRU;
 
 
-/*****************************************************************************
- 结构名称  : TAF_DSFLOW_NV_WRITE_CFG_STRU
- 结构说明  : 流量写NV配置结构体
 
-  1.日    期   : 2015年2月2日
-    作    者   : A00165503
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucEnabled;          /* 流量写NV开启标记   */
@@ -3441,14 +2727,7 @@ typedef struct
 } TAF_DSFLOW_NV_WRITE_CFG_STRU;
 
 
-/*****************************************************************************
- 结构名称  : TAF_PS_SET_DSFLOW_NV_WRITE_CFG_REQ_STRU
- 结构说明  : ID_MSG_TAF_PS_SET_DSFLOW_NV_WRITE_CFG_REQ消息结构体
 
-  1.日    期   : 2015年2月12日
-    作    者   : A00165503
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -3457,39 +2736,18 @@ typedef struct
 } TAF_PS_SET_DSFLOW_NV_WRITE_CFG_REQ_STRU;
 
 
-/*****************************************************************************
- 结构名称  : TAF_PS_SET_DSFLOW_NV_WRITE_CFG_CNF_STRU
- 结构说明  : ID_EVT_TAF_PS_SET_DSFLOW_NV_WRITE_CFG_CNF消息结构体
 
-  1.日    期   : 2015年2月12日
-    作    者   : A00165503
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef TAF_PS_COMMON_CNF_STRU TAF_PS_SET_DSFLOW_NV_WRITE_CFG_CNF_STRU;
 
 
-/*****************************************************************************
- 结构名称  : TAF_PS_GET_DSFLOW_NV_WRITE_CFG_REQ_STRU
- 结构说明  : ID_MSG_TAF_PS_GET_DSFLOW_NV_WRITE_CFG_REQ消息结构体
 
-  1.日    期   : 2015年2月12日
-    作    者   : A00165503
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
 } TAF_PS_GET_DSFLOW_NV_WRITE_CFG_REQ_STRU;
 
 
-/*****************************************************************************
- 结构名称  : TAF_PS_GET_DSFLOW_NV_WRITE_CFG_CNF_STRU
- 结构说明  : ID_EVT_TAF_PS_GET_DSFLOW_NV_WRITE_CFG_CNF消息结构体
 
-  1.日    期   : 2015年2月12日
-    作    者   : A00165503
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -3498,14 +2756,7 @@ typedef struct
     TAF_DSFLOW_NV_WRITE_CFG_STRU        stNvWriteCfg;
 } TAF_PS_GET_DSFLOW_NV_WRITE_CFG_CNF_STRU;
 
-/*****************************************************************************
- 结构名称  : TAF_PS_SET_CTA_INFO_REQ_STRU
- 结构说明  : ID_MSG_TAF_PS_SET_1X_MAX_NO_DATA_TIME_LEN_REQ消息结构体
 
-  1.日    期   : 2015年4月20日
-    作    者   : c00299063
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -3514,14 +2765,7 @@ typedef struct
     VOS_UINT8                           aucReserved[3];
 }TAF_PS_SET_CTA_INFO_REQ_STRU;
 
-/*****************************************************************************
- 结构名称  : TAF_PS_GET_CTA_INFO_REQ_STRU
- 结构说明  : ID_MSG_TAF_PS_GET_1X_MAX_NO_DATA_TIME_LEN_REQ消息结构体
 
-  1.日    期   : 2015年4月20日
-    作    者   : c00299063
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -3530,14 +2774,7 @@ typedef struct
 
 
 
-/*****************************************************************************
- 结构名称  : TAF_PS_SET_CTA_INFO_CNF_STRU
- 结构说明  : ID_MSG_TAF_PS_SET_1X_MAX_NO_DATA_TIME_LEN_CNF消息结构体
 
-  1.日    期   : 2015年4月20日
-    作    者   : c00299063
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -3545,14 +2782,7 @@ typedef struct
 
 }TAF_PS_SET_CTA_INFO_CNF_STRU;
 
-/*****************************************************************************
- 结构名称  : TAF_PS_GET_CTA_INFO_CNF_STRU
- 结构说明  : ID_MSG_TAF_PS_GET_1X_MAX_NO_DATA_TIME_LEN_CNF消息结构体
 
-  1.日    期   : 2015年4月20日
-    作    者   : c00299063
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -3564,41 +2794,20 @@ typedef struct
 }TAF_PS_GET_CTA_INFO_CNF_STRU;
 
 
-/*****************************************************************************
- 结构名称  : TAF_PS_GET_CGMTU_VALUE_REQ_STRU
- 结构说明  : ID_MSG_TAF_PS_GET_CGMTU_VALUE_REQ消息结构体
 
-  1.日    期   : 2015年5月24日
-    作    者   : g00261581
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
 }TAF_PS_GET_CGMTU_VALUE_REQ_STRU;
 
-/*****************************************************************************
- 结构名称  : TAF_PS_GET_CGMTU_VALUE_CNF_STRU
- 结构说明  : ID_EVT_TAF_PS_GET_CGMTU_VALUE_CNF消息结构体
 
-  1.日    期   : 2015年5月24日
-    作    者   : g00261581
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
     VOS_UINT32                          ulMtuValue;
 }TAF_PS_GET_CGMTU_VALUE_CNF_STRU;
 
-/*****************************************************************************
- 结构名称  : TAF_PS_CGMTU_VALUE_CHG_IND_STRU
- 结构说明  : ID_EVT_TAF_PS_CGMTU_VALUE_CHG_IND消息结构体
 
-  1.日    期   : 2015年5月24日
-    作    者   : g00261581
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -3836,13 +3045,7 @@ typedef struct
 
 } TAF_PS_DIAL_PARA_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_PS_CALL_ORIG_REQ_STRU
- 结构说明  : ID_MSG_TAF_PS_CALL_ORIG_REQ消息结构
- 1.日    期   : 2011年10月19日
-   作    者   : A00165503
-   修改内容   : 创建文件
-*****************************************************************************/
+
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -3850,19 +3053,7 @@ typedef struct
     TAF_PS_DIAL_PARA_STRU               stDialParaInfo;
 } TAF_PS_CALL_ORIG_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_PS_CALL_END_REQ_STRU
- 结构说明  : ID_MSG_TAF_PS_GET_DIAL_PARA_INFO_CNF事件结构
 
- 修改历史      :
-  1.日    期   : 2011年08月22日
-    作    者   : A00165503
-    修改内容   : 新增结构
-
-  2.日    期   : 2012年8月23日
-    作    者   : A00165503
-    修改内容   : 修改成员
-*****************************************************************************/
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -3872,13 +3063,7 @@ typedef struct
     TAF_PS_CAUSE_ENUM_UINT32            enCause;
 } TAF_PS_CALL_ORIG_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_PS_CALL_END_REQ_STRU
- 结构说明  : ID_MSG_TAF_PS_CALL_END_REQ消息结构, 挂断PS CALL
-1.日    期   : 2011年10月19日
-   作    者   : A00165503
-   修改内容   : 创建文件
-*****************************************************************************/
+
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -3914,13 +3099,7 @@ typedef struct
  CNF  : TAF_PS_SET_AUTHDATA_INFO_CNF_STRU; TAF_PS_GET_AUTHDATA_INFO_CNF_STRU
  说明 : ...
 *****************************************************************************/
-/*****************************************************************************
- 结构名    : TAF_PDP_AUTHDATA_EXT_STRU
- 结构说明  : 鉴权参数(NDIS)
- 1.日    期   : 2011年10月19日
-   作    者   : A00165503
-   修改内容   : 创建文件
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          bitOpAuthType       : 1;
@@ -3939,13 +3118,7 @@ typedef struct
     VOS_UINT8                           aucUserName[TAF_MAX_AUTHDATA_PASSWORD_LEN + 1];
 } TAF_AUTHDATA_EXT_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_PS_SET_AUTHDATA_INFO_REQ_STRU
- 结构说明  : ID_MSG_TAF_PS_SET_AUTHDATA_INFO_REQ消息结构体, 设置鉴权参数(NDIS)
- 1.日    期   : 2011年10月19日
-   作    者   : A00165503
-   修改内容   : 创建文件
-*****************************************************************************/
+
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -3953,34 +3126,16 @@ typedef struct
     TAF_AUTHDATA_EXT_STRU               stAuthDataInfo;
 } TAF_PS_SET_AUTHDATA_INFO_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_PS_SET_AUTHDATA_INFO_CNF_STRU
- 结构说明  : ID_MSG_TAF_PS_SET_AUTHDATA_INFO_CNF消息结构体, 设置鉴权参数(NDIS)
- 1.日    期   : 2011年10月19日
-   作    者   : A00165503
-   修改内容   : 创建文件
-*****************************************************************************/
+
 typedef TAF_PS_COMMON_CNF_STRU TAF_PS_SET_AUTHDATA_INFO_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_PS_GET_AUTHDATA_INFO_REQ_STRU
- 结构说明  : ID_MSG_TAF_PS_GET_AUTHDATA_INFO_REQ消息结构体, 获取鉴权参数(NDIS)
- 1.日    期   : 2011年10月19日
-   作    者   : A00165503
-   修改内容   : 创建文件
-*****************************************************************************/
+
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
 } TAF_PS_GET_AUTHDATA_INFO_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_PS_GET_AUTHDATA_INFO_CNF_STRU
- 结构说明  : ID_EVT_TAF_PS_GET_AUTHDATA_INFO_CNF消息结构体, 获取鉴权参数(NDIS)
- 1.日    期   : 2011年10月19日
-   作    者   : A00165503
-   修改内容   : 创建文件
-*****************************************************************************/
+
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -4002,13 +3157,7 @@ typedef struct
  说明 : ...
 *****************************************************************************/
 
-/*****************************************************************************
- 结构名    : TAF_ATD_PARA_STRU
- 结构说明  : D命令拨号参数
- 1.日    期   : 2011年10月19日
-   作    者   : A00165503
-   修改内容   : 创建文件
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          bitOpL2p            : 1;
@@ -4019,13 +3168,7 @@ typedef struct
     VOS_UINT8                           aucReserved[2];
 } TAF_ATD_PARA_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_CID_GPRS_ACTIVE_TYPE_STRU
- 结构说明  : CID对应的GPRS激活类型
- 1.日    期   : 2011年10月19日
-   作    者   : A00165503
-   修改内容   : 创建文件
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucCid;
@@ -4033,13 +3176,7 @@ typedef struct
     VOS_UINT8                           aucReserved[2];
 } TAF_CID_GPRS_ACTIVE_TYPE_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_PS_GET_D_GPRS_ACTIVE_TYPE_REQ_STRU
- 结构说明  : ID_MSG_TAF_PS_GET_D_GPRS_ACTIVE_TYPE_REQ消息结构体, 获取D命令GPRS类型
- 1.日    期   : 2011年10月19日
-   作    者   : A00165503
-   修改内容   : 创建文件
-*****************************************************************************/
+
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -4047,13 +3184,7 @@ typedef struct
     TAF_ATD_PARA_STRU                   stAtdPara;
 } TAF_PS_GET_D_GPRS_ACTIVE_TYPE_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_PS_GET_D_GPRS_ACTIVE_TYPE_CNF_STRU
- 结构说明  : ID_EVT_TAF_PS_GET_D_GPRS_ACTIVE_TYPE_CNF消息结构体, 获取D命令GPRS类型
- 1.日    期   : 2011年10月19日
-   作    者   : A00165503
-   修改内容   : 创建文件
-*****************************************************************************/
+
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -4135,13 +3266,7 @@ typedef struct
  CNF  : TAF_PS_PPP_DIAL_ORIG_CNF_STRU
  说明 : ...
 *****************************************************************************/
-/*****************************************************************************
- 结构名    : TAF_PS_PPP_DIAL_ORIG_REQ_STRU
- 结构说明  : ID_MSG_TAF_PS_PPP_DIAL_ORIG_REQ消息结构体, PPP拨号
- 1.日    期   : 2011年10月19日
-   作    者   : A00165503
-   修改内容   : 创建文件
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          bitOpPppConfigInfo  : 1;
@@ -4152,13 +3277,7 @@ typedef struct
     TAF_PPP_REQ_CONFIG_INFO_STRU        stPppReqConfigInfo;
 } TAF_PPP_DIAL_PARA_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_PS_PPP_DIAL_ORIG_REQ_STRU
- 结构说明  : ID_MSG_TAF_PS_PPP_DIAL_ORIG_REQ消息结构体, PPP拨号
- 1.日    期   : 2011年10月19日
-   作    者   : A00165503
-   修改内容   : 创建文件
-*****************************************************************************/
+
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -4166,19 +3285,7 @@ typedef struct
     TAF_PPP_DIAL_PARA_STRU              stPppDialParaInfo;
 } TAF_PS_PPP_DIAL_ORIG_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_PS_PPP_DIAL_ORIG_CNF_STRU
- 结构说明  : ID_EVT_TAF_PS_PPP_DIAL_ORIG_CNF事件结构
 
- 修改历史      :
-  1.日    期   : 2011年10月19日
-    作    者   : A00165503
-    修改内容   : 创建文件
-
-  2.日    期   : 2012年8月23日
-    作    者   : A00165503
-    修改内容   : 修改成员
-*****************************************************************************/
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -4186,13 +3293,7 @@ typedef struct
     TAF_PS_CAUSE_ENUM_UINT32            enCause;
 } TAF_PS_PPP_DIAL_ORIG_CNF_STRU;
 
-/*****************************************************************************
-结构名    : TAF_PDP_IPV6_PREFIX_STRU
-结构说明  : IPV6 前缀信息结构
-  1.日    期   : 2011年12月24日
-    作    者   : 陈志敏/c00173809
-    修改内容   : 定义结构
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulBitL          :1;                     /* 1: VALID; 0: INVALID*/
@@ -4205,13 +3306,7 @@ typedef struct
     VOS_UINT8                           aucPrefix[TAF_IPV6_ADDR_LEN];
 }TAF_PDP_IPV6_PREFIX_STRU;
 
-/*****************************************************************************
-结构名    : TAF_PDP_IPV6_RA_INFO_STRU
-结构说明  : IPV6 RA参数结构
-  1.日    期   : 2011年12月24日
-    作    者   : 陈志敏/c00173809
-    修改内容   : 定义结构
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          bitOpMtu            :1;
@@ -4229,17 +3324,7 @@ typedef struct
 } TAF_PDP_IPV6_RA_INFO_STRU;
 
 
-/*****************************************************************************
-结构名    : TAF_PS_IPV6_INFO_IND_STRU
-结构说明  : ID_EVT_TAF_PS_IPV6_INFO_IND事件结构体
-  1.日    期   : 2011年12月24日
-    作    者   : 陈志敏/c00173809
-    修改内容   : 定义结构
 
-  2.日    期   : 2012年6月30日
-    作    者   : A00165503
-    修改内容   : DTS2012062900707: IPv6拨号成功, 应用获取IPv6地址前缀异常
-*****************************************************************************/
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -4251,13 +3336,7 @@ typedef struct
 
 } TAF_PS_IPV6_INFO_IND_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_PS_GET_NEGOTIATION_DNS_REQ_STRU
- 结构说明  : ID_MSG_TAF_PS_GET_NEGOTIATION_DNS_REQ事件结构体
-   1.日    期   : 2012年02月17日
-     作    者   : l00198894
-     修改内容   : 新增结构
-*****************************************************************************/
+
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -4266,13 +3345,7 @@ typedef struct
     VOS_UINT8                           aucReserved[3];
 } TAF_PS_GET_NEGOTIATION_DNS_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_PS_GET_NEGOTIATION_DNS_CNF_STRU
- 结构说明  : ID_EVT_TAF_PS_GET_NEGOTIATION_DNS_CNF事件结构体
-   1.日    期   : 2012年02月17日
-     作    者   : l00198894
-     修改内容   : 新增结构
-*****************************************************************************/
+
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -4284,13 +3357,7 @@ typedef struct
 
 #if (FEATURE_ON == FEATURE_LTE)
 
-/*****************************************************************************
-结构名    : TAF_PH_LTECS_STRU
-结构说明  : ^LTECS命令LPS返回的信息
-  1.日    期   : 2012年04月22日
-    作    者   : h00135900
-    修改内容   : AT 融合新增结构体说明
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucSG;
@@ -4301,25 +3368,13 @@ typedef struct
     VOS_UINT8                           aucReserved[3];
 }TAF_PH_LTECS_STRU;
 
-/*****************************************************************************
-结构名    : TAF_PH_LTECS_STRU
-结构说明  : ^LTECS命令PS返回的信息
-  1.日    期   : 2012年04月22日
-    作    者   : h00135900
-    修改内容   : AT 融合新增结构体说明
-*****************************************************************************/
+
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
 }TAF_PS_LTECS_REQ_STRU;
 
-/*****************************************************************************
-结构名    : TAF_PS_LTECS_CNF_STRU
-结构说明  : ^LTECS命令TAF返回给AT 模块的消息格式
-  1.日    期   : 2012年04月22日
-    作    者   : h00135900
-    修改内容   : AT 融合新增结构体说明
-*****************************************************************************/
+
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -4328,13 +3383,7 @@ typedef struct
 }TAF_PS_LTECS_CNF_STRU;
 
 
-/*****************************************************************************
-结构名    : TAF_PH_CEMODE_STRU
-结构说明  : ^CEMODE命令PS返回的信息
-  1.日    期   : 2012年04月22日
-    作    者   : h00135900
-    修改内容   : AT 融合新增结构体说明
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          enCurrentUeMode;                        /*当前UE模式*/
@@ -4342,25 +3391,13 @@ typedef struct
     VOS_UINT32                          aenSupportModeList[4];                  /*UE能够支持的模式*/
 }TAF_PH_CEMODE_STRU;
 
-/*****************************************************************************
-结构名    : TAF_PS_CEMODE_REQ_STRU
-结构说明  : ^CEMODE命令请求消息结构
-  1.日    期   : 2012年04月22日
-    作    者   : h00135900
-    修改内容   : AT 融合新增结构体说明
-*****************************************************************************/
+
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
 }TAF_PS_CEMODE_REQ_STRU;
 
-/*****************************************************************************
-结构名    : TAF_PS_CEMODE_CNF_STRU
-结构说明  : ^CEMODE命令回复命令格式
-  1.日    期   : 2012年04月22日
-    作    者   : h00135900
-    修改内容   : AT 融合新增结构体说明
-*****************************************************************************/
+
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -4370,14 +3407,7 @@ typedef struct
 
 
 
-/* DTS2012031901936            : x00126983 2012-3-19 字节对齐 + */
-/*****************************************************************************
- 结构名    : TAF_PDP_PROFILE_EXT_STRU
- 结构说明  : ^PDPROFMOD命令参数
- 日    期 : 2012年3月12日
- 作    者 : x00126983
- 修改内容 : 创建文件
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          bitOpPdpType        : 1;                /* PdpType*/
@@ -4407,15 +3437,8 @@ typedef struct
     VOS_UINT8                           aucReserved2[3];
 
 }TAF_PDP_PROFILE_EXT_STRU;
-/* DTS2012031901936            : x00126983 2012-3-19 字节对齐 - */
 
-/*****************************************************************************
- 结构名    : TAF_PS_SET_PROFILE_INFO_REQ_STRU
- 结构说明  : ID_MSG_TAF_PS_SET_AUTHDATA_INFO_REQ消息结构体, 设置鉴权参数(NDIS)
- 1.日    期   : 2011年10月19日
-   作    者   : A00165503
-   修改内容   : 创建文件
-*****************************************************************************/
+
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -4496,26 +3519,14 @@ typedef struct
 
 } TAF_SDF_PARA_QUERY_INFO_STRU;
 
-/*****************************************************************************
-结构名    : TAF_SDF_PARA_QUERY_INFO_STRU
-结构说明  : SDF配置参数异步查询结构体
-  1.日    期   : 2013年07月22日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目新增
-*****************************************************************************/
+
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
 }TAF_PS_SDF_INFO_REQ_STRU;
 
 
-/*****************************************************************************
-结构名    : TAF_PS_SDF_INFO_CNF_STRU
-结构说明  : SDF配置参数异步查询结构体
-  1.日    期   : 2013年07月22日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目新增
-*****************************************************************************/
+
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
@@ -4524,13 +3535,7 @@ typedef struct
 }TAF_PS_SDF_INFO_CNF_STRU;
 
 
-/*****************************************************************************
- 结构名    : TAF_PS_PDP_QOS_QUERY_PARA_STRU
- 结构说明  : QOS查询参数集，包括QOS参数、MIN QOS参数
- 1.日    期   : 2013年06月29日
-   作    者   : l60609
-   修改内容   : 创建文件
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucQosFlag;                              /* 0：Qos表无效，1：Qos表有效 */
@@ -4541,13 +3546,7 @@ typedef struct
     TAF_UMTS_QOS_STRU                   stMinQos;                               /* MINQos表 */
 }TAF_PS_PDP_QOS_QUERY_PARA_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_PS_PDP_QOS_SET_PARA_STRU
- 结构说明  : QOS查询参数集，包括QOS参数、MIN QOS参数
- 1.日    期   : 2013年06月29日
-   作    者   : l60609
-   修改内容   : 创建文件
-*****************************************************************************/
+
 typedef struct
 {
     TAF_UMTS_QOS_EXT_STRU               stQos;                                  /* Qos表 */
@@ -4567,13 +3566,7 @@ typedef struct
 }TAF_SRVCC_CANCEL_NOTIFY_IND_STRU;
 #endif
 
-/******************************************************************************
- 结构名    : TAF_PS_SET_1X_CQOS_PRI_REQ_STRU
- 结构说明  : 配置CDMA QOS请求结构体
-   1.日    期   : 2013年10月15日
-     作    者   : Y00213812
-     修改内容   : CDMA 1X 项目新增
- *******************************************************************************/
+
 typedef struct
 {
     TAF_CTRL_STRU                                           stCtrl;
@@ -4581,26 +3574,14 @@ typedef struct
     VOS_UINT8                                               aucReserved[3];
 }TAF_PS_SET_1X_CQOS_PRI_REQ_STRU;
 
-/******************************************************************************
- 结构名    : TAF_PS_SET_CQOS_PRI_CNF_STRU
- 结构说明  : 配置CDMA QOS结果结构体
-   1.日    期   : 2013年10月15日
-     作    者   : Y00213812
-     修改内容   : CDMA 1X 项目新增
- *******************************************************************************/
+
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;
     VOS_UINT32                          ulRslt;
 }TAF_PS_SET_CQOS_PRI_CNF_STRU;
 
-/** ****************************************************************************
- 结构名    : TAF_PS_CALL_DORMANT_IND_STRU
- 结构说明  : CDMA模式下数据服务进入DORMANT状态结构体
-   1.日    期   : 2013年10月15日
-     作    者   : Y00213812
-     修改内容   : CDMA 1X 项目新增
- *******************************************************************************/
+
 typedef struct
 {
     TAF_CTRL_STRU                       stCtrl;

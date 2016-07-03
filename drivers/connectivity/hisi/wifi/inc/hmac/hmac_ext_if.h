@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : hmac_ext_if.h
-  版 本 号   : 初稿
-  作    者   : 康国昌
-  生成日期   : 2012年9月20日
-  最近修改   :
-  功能描述   : hmac对外公共接口头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年9月20日
-    作    者   : 康国昌
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __HMAC_EXT_IF_H__
 #define __HMAC_EXT_IF_H__
@@ -482,6 +465,7 @@ extern oal_uint32  hmac_config_rssi_switch(mac_vap_stru *pst_mac_vap, oal_uint16
 extern oal_uint32  hmac_config_report_vap_info(mac_vap_stru *pst_mac_vap, oal_uint16 us_len, oal_uint8 *puc_param);
 extern oal_uint32  hmac_config_wfa_cfg_aifsn(mac_vap_stru *pst_mac_vap, oal_uint16 us_len, oal_uint8 *puc_param);
 extern oal_uint32  hmac_config_wfa_cfg_cw(mac_vap_stru *pst_mac_vap, oal_uint16 us_len, oal_uint8 *puc_param);
+extern oal_uint32  hmac_config_lte_gpio_mode(mac_vap_stru *pst_mac_vap, oal_uint16 us_len, oal_uint8 *puc_param);
 #endif
 
 extern oal_uint32  hmac_config_log_level(mac_vap_stru *pst_mac_vap, oal_uint16 us_len, oal_uint8 *puc_param);

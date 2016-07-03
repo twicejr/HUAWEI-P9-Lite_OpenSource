@@ -31,9 +31,7 @@
 /*lint -e737*/
 
 
-/* Added by y00142674 for GSM编解码单编译, 2015-11-23, begin */
 ENCODIX_GSM_SEM_STRU                    gstSemDesc;
-/* Added by y00142674 for GSM编解码单编译, 2015-11-23, end */
 
 
 long ENCODE_c_LocationAreaId (char* ED_CONST Buffer, ED_CONST long BitOffset, const c_LocationAreaId* ED_CONST Source)
@@ -4867,22 +4865,7 @@ long DECODE_c_CellChannel (const char* ED_CONST Buffer, ED_CONST long BitOffset,
   
 }
 
-/*****************************************************************************
- 函 数 名  : GAS_ENCODIX_CheckGprsCellOptionExtVersion
- 功能描述  : 该函数用于44.060协议中的12.24 GPRS Cell Options中的Extension Information域
-             进行再次解码，以保证该部分解码的正确性
- 输入参数  : c_SI13RestOctets_NoPBCCH_GPRS_Cell_Options *pstGprsCellOption
- 输出参数  : 无
- 返 回 值  : VOS_INT32
- 调用函数  : 
- 被调函数  : 
- 
- 修改历史      :
-  1.日    期   : 2010年2月8日
-    作    者   : f48555
-    修改内容   : 新生成函数GSM_R6协议升级Phase2, 2010_02_08
 
-*****************************************************************************/
 ED_LONG GAS_ENCODIX_CheckGprsCellOptionExtVersion( c_SI13RestOctets_NoPBCCH_GPRS_Cell_Options *pstGprsCellOption )
 {
     int                                             lMinR99Len      = 3;

@@ -36,18 +36,7 @@ extern VOS_BOOL g_bAtDataLocked;
   3 Function
 *****************************************************************************/
 
-/*****************************************************************************
- Function Name   : diag_FsClose
- Description     : 关闭文件
- Input           :VOS_VOID
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.w00182550      2013-1-29  Draft Enact
-    2.c64416         2014-11-18  适配新的诊断架构
-
-*****************************************************************************/
 VOS_VOID diag_FsClose(VOS_VOID)
 {
     mm_segment_t old_fs;
@@ -66,19 +55,7 @@ VOS_VOID diag_FsClose(VOS_VOID)
 }
 
 
-/*****************************************************************************
- Function Name   : diag_FsGetDirInfo
- Description     : 获取文件、文件夹数目
- Input           :VOS_CHAR *pDirName
-                VOS_UINT32 *pulTotalNum
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.w00182550      2013-1-29  Draft Enact
-    2.c64416         2014-11-18  适配新的诊断架构
-
-*****************************************************************************/
 VOS_UINT32  diag_FsGetDirInfo(VOS_CHAR *pDirName, VOS_UINT32 *pulTotalNum)
 {
     VOS_INT32 				dir_handle =0;
@@ -174,19 +151,7 @@ VOS_UINT32  diag_FsGetDirInfo(VOS_CHAR *pDirName, VOS_UINT32 *pulTotalNum)
     return VOS_OK;
 }
 
-/*****************************************************************************
- Function Name   : diag_FsGetItemInfo
- Description     : 获取文件或文件夹信息
-               VOS_CHAR *pDirName
-               DIAG_DIR_FILE_INFO_STRU *pstDirFileInfo
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.w00182550      2013-1-29  Draft Enact
-    2.c64416         2014-11-18  适配新的诊断架构
-
-*****************************************************************************/
 VOS_UINT32 diag_FsGetItemInfo(VOS_CHAR *pDirectory,DIAG_DIR_FILE_INFO_STRU *pstDirFileInfo)
 {
     DIAG_DIRENT_STRU        *pstTmpDirent;
@@ -311,19 +276,7 @@ VOS_INT32 diag_FsOpen(const VOS_CHAR *pcFileName, VOS_INT lFlag)
     return (VOS_INT32)fp;
 }
 
-/*****************************************************************************
- Function Name   : diag_FsQueryProc
- Description     : 查询根目录
- Input           :VOS_UINT8* pstReq
-                VOS_UINT32 ulCmdId
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.w00182550      2013-1-29  Draft Enact
-    2.c64416         2014-11-18  适配新的诊断架构
-
-*****************************************************************************/
 VOS_UINT32 diag_FsQueryProc(VOS_UINT8* pstReq)
 {
     DIAG_CMD_FS_QUERY_REQ* pstFsReq = NULL;
@@ -379,19 +332,7 @@ VOS_UINT32 diag_FsQueryProc(VOS_UINT8* pstReq)
 }
 
 
-/*****************************************************************************
- Function Name   : diag_FsScanProc
- Description     : 扫描所有文件或文件夹信息
- Input           :VOS_UINT8* pstReq
-                VOS_UINT32 ulCmdId
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.w00182550      2013-1-29  Draft Enact
-    2.c64416         2014-11-18  适配新的诊断架构
-
-*****************************************************************************/
 VOS_UINT32 diag_FsScanProc(VOS_UINT8* pstReq)
 {
     DIAG_CMD_FS_SCAN_DIR_REQ* pstFsReq = NULL;
@@ -445,19 +386,7 @@ VOS_UINT32 diag_FsScanProc(VOS_UINT8* pstReq)
 
 }
 
-/*****************************************************************************
- Function Name   : diag_FsMkdirProc
- Description     : 创建目录
- Input           :VOS_UINT8* pstReq
-                VOS_UINT32 ulCmdId
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.w00182550      2013-1-29  Draft Enact
-    2.c64416         2014-11-18  适配新的诊断架构
-
-*****************************************************************************/
 VOS_UINT32 diag_FsMkdirProc(VOS_UINT8* pstReq)
 {
     DIAG_CMD_FS_MAKE_DIR_REQ* pstFsReq = NULL;
@@ -488,19 +417,7 @@ VOS_UINT32 diag_FsMkdirProc(VOS_UINT8* pstReq)
     return DIAG_MsgReport(&stDiagInfo, &stFsCnf, sizeof(stFsCnf));
 }
 
-/*****************************************************************************
- Function Name   : diag_FsOpenProc
- Description     : 打开或创建文件
- Input           :VOS_UINT8* pstReq
-                VOS_UINT32 ulCmdId
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.w00182550      2013-1-29  Draft Enact
-    2.c64416         2014-11-18  适配新的诊断架构
-
-*****************************************************************************/
 VOS_UINT32 diag_FsOpenProc(VOS_UINT8* pstReq)
 {
     DIAG_CMD_FS_OPEN_REQ* pstFsReq = NULL;
@@ -556,19 +473,7 @@ VOS_UINT32 diag_FsOpenProc(VOS_UINT8* pstReq)
     return DIAG_MsgReport(&stDiagInfo, &stFsCnf, sizeof(stFsCnf));
 }
 
-/*****************************************************************************
- Function Name   : diag_FsImportProc
- Description     : 导入文件
- Input           :VOS_UINT8* pstReq
-                VOS_UINT32 ulCmdId
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.w00182550      2013-1-29  Draft Enact
-    2.c64416         2014-11-18  适配新的诊断架构
-
-*****************************************************************************/
 VOS_UINT32 diag_FsImportProc(VOS_UINT8* pstReq)
 {
     DIAG_CMD_FS_IMPORT_REQ* pstFsReq = NULL;
@@ -615,7 +520,6 @@ VOS_UINT32 diag_FsImportProc(VOS_UINT8* pstReq)
 
     set_fs(old_fs);
 
-    /*写文件操作失败或者写入长度不正确*/
     if ((DIAG_FS_ERROR == lResult)||(lResult != (VOS_INT32)(pstFsReq->ulSize)))
     {
 		diag_fs_log();
@@ -644,19 +548,7 @@ VOS_UINT32 diag_FsImportProc(VOS_UINT8* pstReq)
     return DIAG_MsgReport(&stDiagInfo, &stFsCnf, sizeof(stFsCnf));
 }
 
-/*****************************************************************************
- Function Name   : diag_FsExportProc
- Description     : 导出文件
- Input           :VOS_UINT8* pstReq
-                VOS_UINT32 ulCmdId
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.w00182550      2013-1-29  Draft Enact
-    2.c64416         2014-11-18  适配新的诊断架构
-
-*****************************************************************************/
 VOS_UINT32 diag_FsExportProc(VOS_UINT8* pstReq)
 {
     DIAG_CMD_FS_EXPORT_CNF *pstFsCnf = NULL;
@@ -746,19 +638,7 @@ VOS_UINT32 diag_FsExportProc(VOS_UINT8* pstReq)
     return ret;
 }
 
-/*****************************************************************************
- Function Name   : diag_FsDeleteProc
- Description     : 删除文件或文件夹
- Input           :VOS_UINT8* pstReq
-                VOS_UINT32 ulCmdId
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.w00182550      2013-1-29  Draft Enact
-    2.c64416         2014-11-18  适配新的诊断架构
-
-*****************************************************************************/
 VOS_UINT32 diag_FsDeleteProc(VOS_UINT8* pstReq)
 {
     DIAG_CMD_FS_DELETE_REQ* pstFsReq = NULL;
@@ -795,19 +675,7 @@ VOS_UINT32 diag_FsDeleteProc(VOS_UINT8* pstReq)
     return DIAG_MsgReport(&stDiagInfo, &stFsCnf, sizeof(stFsCnf));
 }
 
-/*****************************************************************************
- Function Name   : diag_FsSpaceProc
- Description     : 查询使用及可用空间
- Input           :VOS_UINT8* pstReq
-                VOS_UINT32 ulCmdId
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.w00182550      2013-1-29  Draft Enact
-    2.c64416         2014-11-18  适配新的诊断架构
-
-*****************************************************************************/
 VOS_UINT32 diag_FsSpaceProc(VOS_UINT8* pstReq)
 {
     DIAG_CMD_FS_SPACE_REQ* pstFsReq = NULL;

@@ -1,0 +1,17 @@
+/*
+ * Hisilicon Ltd Balong SOC
+ */
+
+/include/ "skeleton.dtsi"
+
+/{
+	psam_app:psam1@ff040000 {
+		compatible = "hisilicon,psam_balong_app";
+		reg = <0x0 0xff040000 0x0 0x10000>;
+		clocks = <&aclk_gate_psam>;
+		clock-names = "psam_aclk";
+		interrupts = <0 250 4>;
+		idle_ctrl = <0xe8a09000 0xa4 0x1>;
+		status = "ok";
+	};
+};

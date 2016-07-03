@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafMmaCtx.h
-  版 本 号   : 初稿
-  作    者   : w00176964
-  生成日期   : 2013年07月9日
-  最近修改   :
-  功能描述   : TafMmaCtx.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年07月9日
-    作    者   : W00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 #ifndef _TAF_MMA_CTX_H_
 #define _TAF_MMA_CTX_H_
 
@@ -55,9 +38,7 @@ extern "C" {
 #define TAF_MMA_ExtractMsgNameFromEvtType(ulEventType)     ((VOS_UINT16)((ulEventType) & 0x0000FFFF))          /* 从EventType中获取MsgName     */
 #define TAF_MMA_MAX_MSG_QUEUE_SIZE                      (11)                    /* 内部消息队列最大的长度 */
 
-/* Added by s00261364 for L-C互操作项目, 2014-1-26, begin */
 #define TAF_MMA_MAX_OPER_NUM                            (5)
-/* Added by s00261364 for L-C互操作项目, 2014-1-26, end */
 
 #define TAF_MMA_MAX_PHONE_MODE_SET_MODULE_NUM           (4)                     /* 当前需要发送开关机命令模块的最大个数 */
 
@@ -104,13 +85,7 @@ typedef VOS_UINT16   TAF_MMA_SYS_CFG_OPER_TYPE;
 /*****************************************************************************
   3 枚举定义
 *****************************************************************************/
-/*****************************************************************************
- 枚举名    : TAF_MMA_MSG_CACHE_PRIO_ENUM
- 结构说明  : MMA缓存消息的优先级枚举
- 1.日    期   : 2013年7月20日
-   作    者   : w00176964
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_MMA_MSG_CACHE_PRIO_ENUM
 {
     TAF_MMA_MSG_CACHE_PRIO_HIGH              ,                           /* 高优先级缓存 */
@@ -122,16 +97,7 @@ enum TAF_MMA_MSG_CACHE_PRIO_ENUM
 typedef VOS_UINT32 TAF_MMA_MSG_CACHE_PRIO_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名    : TAF_MMA_FSM_ID_ENUM
- 枚举说明  : 状态机ID枚举定义
-  1.日    期   : 2013年7月9日
-    作    者   : w00176964
-    修改内容   : 新建
-  1.日    期   : 2015年02月03日
-    作    者   : f00179208
-    修改内容   : IMS动态开关配置项目，新增IMS SWITCH状态机
-*****************************************************************************/
+
 enum TAF_MMA_FSM_ID_ENUM
 {
     TAF_MMA_FSM_MAIN                                            = 0X00,
@@ -146,13 +112,7 @@ enum TAF_MMA_FSM_ID_ENUM
 };
 typedef VOS_UINT32 TAF_MMA_FSM_ID_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : TAF_MMA_INIT_CTX_TYPE_ENUM
- 结构说明  : 初始化MMA CTX类型
- 1.日    期   : 2013年7月9日
-   作    者   : W00176964
-   修改内容   : 新增
-*****************************************************************************/
+
 enum TAF_MMA_INIT_CTX_TYPE_ENUM
 {
     TAF_MMA_INIT_CTX_STARTUP                    = 0,
@@ -161,17 +121,9 @@ enum TAF_MMA_INIT_CTX_TYPE_ENUM
 };
 typedef VOS_UINT8 TAF_MMA_INIT_CTX_TYPE_ENUM_UINT8;
 
-/* Added by s00261364 for L-C互操作项目, 2014-1-26, begin */
-/*****************************************************************************
- 枚举名    : TAF_MMA_OPER_TYPE_ENUM_UINT32
- 结构说明  : 初始化MMA CTX类型
- 1.日    期   : 2013年7月9日
-   作    者   : W00176964
-   修改内容   : 新增
-*****************************************************************************/
+
 enum TAF_MMA_OPER_TYPE_ENUM
 {
-    /* Modified by b00269685 for L-C互操作项目, 2014-2-14, begin */
 
     TAF_MMA_OPER_SYS_CFG_REQ                    = 0,
     TAF_MMA_OPER_ACQ_REQ                        = 1,
@@ -202,20 +154,11 @@ enum TAF_MMA_OPER_TYPE_ENUM
 
     TAF_MMA_OPER_BUTT
 
-    /* Modified by b00269685 for L-C互操作项目, 2014-2-14, end */
 };
 typedef VOS_UINT32 TAF_MMA_OPER_TYPE_ENUM_UINT32;
 
-/* Added by s00261364 for L-C互操作项目, 2014-1-26, end */
 
-/*****************************************************************************
- 枚举名    : TAF_MMA_READ_SIM_FILES_CNF_ENUM
- 结构说明  : 用于标记读取USIM文件的回复消息
-1.日    期   : 2015年3月13日
-  作    者   : z00161729
-  修改内容   : AT&T 支持EONS特性修改
 
-*****************************************************************************/
 enum  TAF_MMA_READ_SIM_FILES_CNF_ENUM
 {
     TAF_MMA_READ_USIM_FILE_FLG_NULL                         = 0x0,
@@ -243,13 +186,7 @@ enum  TAF_MMA_READ_SIM_FILES_CNF_ENUM
 };
 
 typedef VOS_UINT32 TAF_MMA_READ_SIM_FILES_CNF_ENUM_UINT32;
-/*****************************************************************************
- 枚举名    : TAF_MMA_DELAY_CL_REPORT_TYPE_ENUM
- 结构说明  : 延迟上报CL无服务状态的类型
- 1.日    期   : 2015年01月07日
-   作    者   : h00313353
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_MMA_DELAY_CL_REPORT_TYPE_ENUM
 {
     TAF_MMA_DELAY_CL_REPORT_TYPE_DO,
@@ -313,29 +250,14 @@ typedef struct
     VOS_UINT32      aulModuleID[TAF_MMA_MAX_PHONE_MODE_SET_MODULE_NUM];         /* 存放设置开机需要发给底层模块的先后顺序 */
 }TAF_MMA_PHONE_MODE_SET_ORDER_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_MMA_FSM_PHONE_MODE_CTX_STRU
- 结构说明  : 模式控制状态机上下文
- 1.日    期   : 2013年7月9日
-   作    者   : W00176964
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     TAF_ERROR_CODE_ENUM_UINT32          enPhoneError;       /* 开关机的错误原因值 */
     TAF_MMA_PHONE_MODE_SET_ORDER_STRU   stPhoneModeOrder;                    /* TAF MMA开机顺序队列 */
 }TAF_MMA_FSM_PHONE_MODE_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_MMA_FSM_SYSCFG_CTX_STRU
- 结构说明  : 系统配置状态机上下文
- 1.日    期   : 2015年4月9日
-   作    者   : h00313353
-   修改内容   : 新增
- 2.日    期   : 2015年12月3日
-   作    者   : w00176964
-   修改内容   : DTS2015061601845:增加原始syscfg触发的操作类型,用户SYSCFG失败时回退用户操作
-*****************************************************************************/
+
 typedef struct
 {
     TAF_MMA_SYS_CFG_OPER_TYPE           usOperType;                             /* 记录SYSCFG的操作类型-实时刷新 */
@@ -347,13 +269,7 @@ typedef struct
     TAF_MMA_SYS_CFG_PARA_STRU           stSysCfgPara;
 }TAF_MMA_FSM_SYS_CFG_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_MMA_FSM_EXTRA_CTX_UNION
- 结构说明  : 状态机状态描述结构,状态机上下文信息
- 1.日    期   : 2013年7月13日
-   作    者   : W00176964
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef union
 {
     TAF_MMA_FSM_PHONE_MODE_CTX_STRU                         stPhoneModeCtx;
@@ -361,13 +277,7 @@ typedef union
 
 }TAF_MMA_FSM_EXTRA_CTX_UNION;
 
-/*****************************************************************************
- 结构名    : TAF_MMA_FSM_CTX_STRU
- 结构说明  : 状态机状态描述结构
- 1.日    期   : 2013年7月9日
-   作    者   : W00176964
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     /* 状态机描述指针,指针为NULL表示当前状态机无效  */
@@ -386,13 +296,7 @@ typedef struct
     TAF_MMA_FSM_EXTRA_CTX_UNION         unFsmCtx;
 }TAF_MMA_FSM_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_MMA_FSM_STACK_STRU
- 结构说明  : 状态机栈描述结构
- 1.日    期   : 2013年7月13日
-   作    者   : W00176964
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usStackDepth;                           /* 当前压栈的状态机数 */
@@ -401,26 +305,14 @@ typedef struct
 }TAF_MMA_FSM_STACK_STRU;
 
 
-/*****************************************************************************
- 结构名    : TAF_MMA_CACH_MSG_INFO_STRU
- 结构说明  : 缓存的消息内容
- 1.日    期   : 2013年7月12日
-   作    者   : W00176964
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     TAF_MMA_ENTRY_MSG_STRU              stMsgEntry;     /* 缓存的具体内容   */
 }TAF_MMA_CACH_MSG_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : TAF_MMA_MSG_QUEUE_STRU
- 结构说明  : 缓存的消息队列
- 1.日    期   : 2013年7月13日
-   作    者   : W00176964
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucCacheMsgNum;                          /* 缓存消息的个数 */
@@ -428,13 +320,7 @@ typedef struct
     TAF_MMA_CACH_MSG_INFO_STRU          astMsgQueue[TAF_MMA_MAX_MSG_QUEUE_NUM]; /* MMA的消息队列数组，存储的是带通用消息头的消息 */
 }TAF_MMA_MSG_QUEUE_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_MMA_INTERNAL_MSG_BUF_STRU
- 结构说明  : 内部消息队列的结构
- 1.日    期   : 2013年7月19日
-   作    者   : W00176964
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -445,13 +331,7 @@ typedef struct
 }TAF_MMA_INTERNAL_MSG_BUF_STRU;
 
 
-/*****************************************************************************
- 结构名    : TAF_MMA_INTERNAL_MSG_QUEUE_STRU
- 结构说明  : 保存MMA内部消息的链表
- 1.日    期   : 2013年7月19日
-   作    者   : W00176964
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     /* TAF MMA内部消息队列 */
@@ -470,13 +350,7 @@ typedef struct
     VOS_UINT16                          usReserved;
 } TAF_MMA_INTERNAL_MSG_QUEUE_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_MMA_PHONE_MODE_CTRL_CTX_STRU
- 结构说明  : 手机模式控制信息
- 1.日    期   : 2013年7月11日
-   作    者   : w00176964
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           aucRsv[4];
@@ -484,39 +358,20 @@ typedef struct
     VOS_UINT32                          ulAutoSwitchOnFlg;                      /* 上电是否自动开机(发送内部搜网请求给MSCC) */
 }TAF_MMA_PHONE_MODE_CTRL_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_MMA_MAINTAIN_CTX_STRU
- 结构说明  : MMA软调信息结构体
- 1.日    期   : 2013年9月4日
-   作    者   : s00217060
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucMmaLogInfoFlag;
     VOS_UINT8                           aucReserve[3];
 }TAF_MMA_MAINTAIN_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_MMA_EXTERNAl_MODULE_INIT_STATUS_STRU
- 结构说明  : MMA开机所依赖模块初始化信息
- 1.日    期   : 2014年3月12日
-   作    者   : y00176023
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MMA_UPHY_INIT_STATUS_ENUM_UINT16    enPhyInitStatus;
     VOS_UINT8                           aucReserved[2];
 }TAF_MMA_EXTERNAl_MODULE_INIT_STATUS_STRU;
-/* Added by s00261364 for L-C互操作项目, 2014-1-26, begin */
-/*****************************************************************************
- 结构名    : TAF_MMA_OPER_CTX_STRU
- 结构说明  : MMA设置标记运行上下文
- 1.日    期   : 2014年2月17日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     TAF_MMA_CTRL_STRU                   stCtrl;
@@ -525,18 +380,8 @@ typedef struct
     TAF_MMA_OPER_TYPE_ENUM_UINT32       enOperType;
     VOS_VOID                           *pPara;
 } TAF_MMA_OPER_CTX_STRU;
-/* Added by s00261364 for L-C互操作项目, 2014-1-26, end */
 
-/*****************************************************************************
- 结构名    : TAF_MMA_DELAY_REPORT_SERVICE_STATUS_STRU
- 结构说明  : en_NV_Item_DELAY_REPORT_SERVICE_STATUS_CFG NV项结构
- 1. 日    期   : 2015年02月11日
-    作    者   : l00305157
-    修改内容   : Service_State_Optimize_PhaseII 项目修改
- 2. 日    期   : 2015年09月30日
-    作    者   : j00354216
-    修改内容   : CDMA Iteration_18修改
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucEnable;                               /* 0:NV 未激活; 1:NV 激活 */
@@ -544,13 +389,7 @@ typedef struct
     VOS_UINT32                          ulRptSrvStaDelayTimerValue;             /* 延时上报定时器时长,单位:毫秒 */
 }TAF_MMA_GUL_DELAY_REPORT_SERVICE_STATUS_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_MMA_CL_DELAY_REPORT_SERVICE_STATUS_STRU
- 结构说明  : C模延迟上报定时器 NV项结构
- 1. 日    期   : 2015年09月30日
-    作    者   : j00354216
-    修改内容   : CDMA Iteration_18新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucClDelayRptEnable;             /* CL模式下，延时上报功能开关，TRUE为打开，FALSE为关闭 */
@@ -558,13 +397,7 @@ typedef struct
     VOS_UINT32                          ulClRptSrvStaDelayTimerValue;   /* 延时上报时长，单位:毫秒 */
 }TAF_MMA_CL_DELAY_REPORT_SERVICE_STATUS_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_MMA_DELAY_SND_SERVICE_STATUS_STRU
- 结构说明  : C模延迟上报定时器 NV项结构
- 1. 日    期   : 2016年01月06日
-    作    者   : h00313353
-    修改内容   : DTS2016010508602
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                               ucCLNoServiceDelayRptLen;                   /* CL模式下，延时上报无服务功能开关，0为关闭，其他时长为打开，单位为秒 */
@@ -573,13 +406,7 @@ typedef struct
     VOS_UINT8                               ucReserved;
 }TAF_MMA_CL_NO_SERVICE_DELAY_RPT_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_MMA_DELAY_REPORT_SERVICE_STATUS_STRU
- 结构说明  : 延迟上报定时器 NV项结构，分为GUL和CL
- 1. 日    期   : 2015年09月30日
-    作    者   : j00354216
-    修改内容   : CDMA Iteration_18新增
-*****************************************************************************/
+
 typedef struct
 {
     TAF_MMA_GUL_DELAY_REPORT_SERVICE_STATUS_STRU            stGulDelayRptCtrlInfo;  /* GUL模下，延时上报功能控制项 */
@@ -588,13 +415,7 @@ typedef struct
 
 } TAF_MMA_DELAY_REPORT_SERVICE_STATUS_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_MMA_GET_GEO_NV_CFG_STRU
- 结构说明  : 获取国家码相关的NV配置
- 1.日    期   : 2015年05月22日
-   作    者   : n00269697
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucCfgGetGeoFlag;                        /* 获取国家码的开关 */
@@ -605,13 +426,7 @@ typedef struct
     VOS_UINT32                          ulGeoEffectiveTimeLen;                  /* 国家码有效时长，单位为分钟 */
 } TAF_MMA_GET_GEO_NV_CFG_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SDC_CDMA_LOC_INFO_STRU
- 结构说明  : 初始获得的X模的位置信息，其中sid和nid由Get_Geo_cnf消息带上来，mcc由sid通过表g_astTafCountryList查找
- 1.日    期   : 2015年12月10日
-   作    者   : l00324781
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32   ulMcc;
@@ -620,16 +435,7 @@ typedef struct
 }TAF_SDC_CDMA_LOC_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : TAF_MMA_GET_GEO_CTX_STRU
- 结构说明  : 获取国家码上下文
- 1.日    期   : 2015年05月22日
-   作    者   : f00179208
-   修改内容   : 新建
- 2.日    期   : 2015年12月10日
-   作    者   : l00324781
-   修改内容   : CL_MUTIMODE_OPTIMIZE 修改，增加stCdmaLocInfo
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulGetGeoTickTime;                       /* LTE位置信息的时间戳，单位为秒 */
@@ -639,13 +445,7 @@ typedef struct
     VOS_UINT32                          ulGetGeoCdmaTickTime;                      /* CDMA位置信息的时间戳，单位为秒 */
 } TAF_MMA_GET_GEO_CTX_STRU;
 
-/*****************************************************************************
- 枚举名    : TAF_MMA_AP_PRESET_DPLMN_SCENE_ENUM
- 结构说明  : AP设置Dplmn的场景
- 1.日    期 : 2015年11月02日
-   作    者 : l00289540
-   修改内容 : 新增结构
-*****************************************************************************/
+
 enum TAF_MMA_AP_PRESET_DPLMN_SCENE_ENUM
 {
     TAF_MMA_AP_PRESET_DPLMN_SCENE_SWITCH_ON,                                     /* 上电开机预置DPLMN场景 */
@@ -655,13 +455,7 @@ enum TAF_MMA_AP_PRESET_DPLMN_SCENE_ENUM
 };
 typedef VOS_UINT8 TAF_MMA_AP_PRESET_DPLMN_SCENE_ENUM_UINT8;
 
-/*****************************************************************************
- 结构名    : TAF_MMA_GET_HPLMN_STRU
- 结构说明  : 保存查询HPLMN的标志
- 1.日    期   : 2012年4月19日
-   作    者   : w00166186
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     TAF_MMA_AP_PRESET_DPLMN_SCENE_ENUM_UINT8                enApPresetDplmnScene;
@@ -669,13 +463,7 @@ typedef struct
 }TAF_MMA_SET_DPLMN_CTX_STRU;
 
 
-/*****************************************************************************
- 结构名    : TAF_MMA_GET_HPLMN_STRU
- 结构说明  : 保存查询HPLMN的标志
- 1.日    期   : 2012年4月19日
-   作    者   : w00166186
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     TAF_MMA_CTRL_STRU                                       stCtrl;
@@ -686,13 +474,7 @@ typedef struct
     TAF_SDC_PLMN_ID_STRU                                    astEHplmnList[TAF_SDC_MAX_EHPLMN_NUM];
 }TAF_MMA_GET_HPLMN_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_MMA_CSG_LIST_CTX_STRU
- 结构说明  : 记录CSG List搜索结果上下文
- 1.日    期   : 2015年9月28日
-   作    者   : z00161729
-   修改内容   : 支持LTE CSG功能新增
-*****************************************************************************/
+
 typedef struct
 {
     TAF_MMA_PLMN_LIST_ABORT_PROC_ENUM_UINT8                 enCsgListAbortProc;
@@ -702,17 +484,7 @@ typedef struct
 } TAF_MMA_CSG_LIST_CTX_STRU;
 
 
-/*******************************************************************************
- 结构名    : TAF_MMA_USER_PREF_BAND_STRU
- 协议表格  :
- ASN.1描述 :
- 结构说明  : GSM/WCDMA频段
-             bit位置1表示该频段有效
 
- 1.日    期   : 2015年4月11日
-   作    者   : y00245242
-   修改内容   : iteration 13开发
-*******************************************************************************/
 typedef struct
 {
     VOS_UINT32  BandSpare7                   : 7;
@@ -737,20 +509,7 @@ typedef struct
     VOS_UINT32  Spare2                       : 2;
 }TAF_MMA_USER_PREF_BAND_STRU;
 
-/*******************************************************************************
- 结构名    :TAF_MMA_GSM_PREF_BAND_STRU
- 协议表格  :
- ASN.1描述 :
- 结构说明  : union GSM_BAND_SET_UN成员BitBand定义
-             bit位置1表示该频段有效
-1.日    期 : 2012年3月5日
-  作    者 : w00176964
-  修改内容 : DTS201212345678:增加BAND6，BAND19的支持
 
-2.日    期   : 2015年4月11日
-  作    者   : y00245242
-  修改内容   : iteration 13开发
-*******************************************************************************/
 typedef struct
 {
     VOS_UINT32                          BandGsm450      :1;
@@ -765,20 +524,7 @@ typedef struct
     VOS_UINT32                          BandSpare7      :23;
 }TAF_MMA_GSM_PREF_BAND_STRU;
 
-/*******************************************************************************
- 结构名    : TAF_MMA_WCDMA_PREF_BAND_STRU
- 协议表格  :
- ASN.1描述 :
- 结构说明  : union WCDMA_BAND_SET_UN成员BitBand定义
-             bit位置1表示该频段有效
 
- 1.日    期   : 2012年2月18日
-   作    者   : w00181244
-   修改内容   : DTS2012020802332，添加W BAND XI的定义
- 2.日    期: 2012年3月5日
-   作    者: w00176964
-   修改内容: DTS201212345678:增加BAND6，BAND19的支持
-*******************************************************************************/
 typedef struct
 {
     VOS_UINT32                          BandWCDMA_I_2100      :1;
@@ -797,66 +543,28 @@ typedef struct
     VOS_UINT32                          BandSpare13           :13;
 }TAF_MMA_WCDMA_PREF_BAND_STRU;
 
-/*******************************************************************************
- 结构名    : TAF_MMA_USER_BAND_SET_UN
- 协议表格  :
- ASN.1描述 :
- 结构说明  : 用户设置的GU band
- 1.日    期   : 2015年4月11日
-   作    者   : y00245242
-   修改内容   : iteration 13开发
-*******************************************************************************/
+
 typedef union
 {
     VOS_UINT32                          ulPrefBand;
     TAF_MMA_USER_PREF_BAND_STRU         BitBand;
 }TAF_MMA_USER_BAND_SET_UN;
 
-/*******************************************************************************
- 结构名    : TAF_MMA_WCDMA_BAND_SET_UN
- 协议表格  :
- ASN.1描述 :
- 结构说明  : WCDMA频段union定义
- 1.日    期: 2012年3月5日
-   作    者: w00176964
-   修改内容: 增加BAND6，BAND19的支持
- 2.日    期   : 2015年4月11日
-   作    者   : y00245242
-   修改内容   : iteration 13开发
-*******************************************************************************/
+
 typedef union
 {
     VOS_UINT32                          ulBand;
     TAF_MMA_WCDMA_PREF_BAND_STRU        BitBand;
 }TAF_MMA_WCDMA_BAND_SET_UN;
 
-/*******************************************************************************
- 结构名    : TAF_MMA_GSM_BAND_SET_UN
- 协议表格  :
- ASN.1描述 :
- 结构说明  : GSM频段union定义
-1.日    期 : 2012年3月5日
-  作    者 : w00176964
-  修改内容 : DTS201212345678:增加BAND6，BAND19的支持
-*******************************************************************************/
+
 typedef union
 {
     VOS_UINT32                          ulBand;
     TAF_MMA_GSM_PREF_BAND_STRU          BitBand;
 }TAF_MMA_GSM_BAND_SET_UN;
 
-/*******************************************************************************
- 结构名    : TAF_MMA_UE_SUPPORT_FREQ_BAND_STRU
- 协议表格  :
- ASN.1描述 :
- 结构说明  : 频段定义
- 1.日    期 : 2014年8月1日
-   作    者 : b00269685
-   修改内容 : 拆分NV8229
- 2.日    期   : 2015年4月11日
-   作    者   : y00245242
-   修改内容   : iteration 13开发
-*******************************************************************************/
+
 typedef struct
 {
     TAF_MMA_WCDMA_BAND_SET_UN               unWcdmaBand;
@@ -865,17 +573,7 @@ typedef struct
     VOS_UINT8                               aucReserved2[12];
 }TAF_MMA_UE_SUPPORT_FREQ_BAND_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_MMA_SYSCFG_USER_SET_BAND_STRU
- 结构说明  : 保存当前用户通过syscfg设置的频段信息
- 1.日    期   : 2011年7月18日
-   作    者   : z00161729
-   修改内容   : 新增
 
-  2.日    期   : 2015年4月11日
-    作    者   : y00245242
-    修改内容   : iteration 13开发
-*****************************************************************************/
 typedef struct
 {
     TAF_MMA_USER_BAND_SET_UN            uUserSetGuBand;                         /* 上次用户设置成功当前生效的GU频段 */
@@ -886,21 +584,7 @@ typedef struct
 #endif
 }TAF_MMA_SYSCFG_USER_SET_BAND_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_MMA_LAST_SETTED_SYSCFG_SET_STRU
- 结构说明  : 保存当前用户通过syscfg设置的参数值
- 1.日    期   : 2011年7月18日
-   作    者   : z00161729
-   修改内容   : 新增
 
-  2.日    期   : 2012年4月20日
-    作    者   : z40661
-    修改内容   : DTS2012033105463
-
-  3.日    期   : 2015年4月11日
-    作    者   : y00245242
-    修改内容   : iteration 13开发
-*****************************************************************************/
 typedef struct
 {
     TAF_MMA_RAT_ORDER_STRU              stRatPrioList;                          /* 上次用户设置成功当前生效的接入模式优先级*/
@@ -911,17 +595,7 @@ typedef struct
     TAF_MMA_SYSCFG_USER_SET_BAND_STRU   stUserSetBand;                          /* 上次用户设置成功当前生效的频段信息 */
 }TAF_MMA_LAST_SETTED_SYSCFG_SET_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_MMA_UE_BAND_CAPA_ST
- 结构说明  : UE支持的频段信息
- 1.日    期   : 2011年7月11日
-   作    者   : z00161729
-   修改内容   : 增加UE支持的LTE频段信息
 
- 2.日    期   : 2015年4月11日
-   作    者   : y00245242
-   修改内容   : iteration 13开发
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          ulUeGSptBand;
@@ -936,26 +610,14 @@ typedef struct
 }TAF_MMA_UE_BAND_CAPA_ST;
 
 
-/*****************************************************************************
- 结构名    : TAF_MMA_DSDS_INFO_STRU
- 结构说明  : DSDS相关的信息
- 1.日    期   : 2015年5月15日
-   作    者   : L00301449
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     TAF_MMA_SRV_ACQ_RAT_LIST_STRU       stSrvAcqRatList;
 }TAF_MMA_DSDS_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : TAF_MMA_ATTACH_INFO_STRU
- 结构说明  : ATTACH相关的信息
- 1.日    期   : 2015年5月15日
-   作    者   : L00301449
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucAttachOpId;
@@ -964,17 +626,7 @@ typedef struct
 
 
 
-/*****************************************************************************
 
- 结构名    : TAF_MMA_CONTEXT_STRU
- 结构说明  : TAF MMA 模块运行上下文
- 1.日    期   : 2013年7月11日
-   作    者   : W00176964
-   修改内容   : 新建
- 2.日    期   : 2015年9月30日
-   作    者   : z00161729
-   修改内容   : 支持LTE CSG功能新增
-*****************************************************************************/
 typedef struct
 {
     /**************************************************************************
@@ -987,10 +639,8 @@ typedef struct
 
     TAF_MMA_TIMER_CTX_STRU                                  astMmaTimerCtx[TAF_MMA_MAX_TIMER_NUM];  /* MMA当前正在运行的定时器资源 */
     TAF_MMA_EXTERNAl_MODULE_INIT_STATUS_STRU                stMmaExternalModuleInitStatusCtx;       /* MMA初始化状态信息 */
-    /* Added by s00261364 for L-C互操作项目, 2014-1-26, begin */
     TAF_MMA_OPER_CTX_STRU               astMmaOperCtx[TAF_MMA_MAX_OPER_NUM];  /* MMA L-C互操作上下文 */
 
-    /* Added by s00261364 for L-C互操作项目, 2014-1-26, end */
 
     /**************************************************************************
                         TAF MMA缓存消息队列
@@ -1153,9 +803,7 @@ VOS_VOID  TAF_MMA_SetAutoSwitchOnFlg(
 
 VOS_UINT32  TAF_MMA_GetAutoSwitchOnFlg(VOS_VOID);
 
-/* Deleted by w00176964 for VoLTE_PhaseIII 项目, 2013-12-25, begin */
 
-/* Deleted by w00176964 for VoLTE_PhaseIII 项目, 2013-12-25, end */
 
 
 TAF_MMA_TIMER_CTX_STRU*  TAF_MMA_GetTimerCtxAddr( VOS_VOID );
@@ -1179,7 +827,6 @@ VOS_VOID TAF_MMA_SetPhyInitStatus(
 MMA_UPHY_INIT_STATUS_ENUM_UINT16 TAF_MMA_GetPhyInitStatus(VOS_VOID);
 
 VOS_UINT16 TAF_MMA_IsExternalModuleInitCompeleted(VOS_VOID);
-/* Added by b00269685 for L-C互操作项目, 2014-2-14, begin */
 TAF_MMA_OPER_CTX_STRU*  TAF_MMA_GetOperCtxAddr( VOS_VOID );
 VOS_UINT32 TAF_MMA_IsOperTypeUsed(
     TAF_MMA_OPER_TYPE_ENUM_UINT32       enOperType
@@ -1203,7 +850,6 @@ VOS_VOID TAF_MMA_SetOperCtx(
 VOS_VOID TAF_MMA_ClearOperCtx(
     VOS_UINT8                           ucCtxIndex
 );
-/* Added by b00269685 for L-C互操作项目, 2014-2-14, end */
 
 
 VOS_VOID TAF_MMA_SetDelayReportServiceStatusFlg(VOS_UINT8 ucDelayReportServiceStatusFlg);

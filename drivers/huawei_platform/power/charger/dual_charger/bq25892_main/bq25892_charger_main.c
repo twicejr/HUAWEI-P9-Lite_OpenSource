@@ -53,6 +53,8 @@ static unsigned int rilim = 124;//this should be configured in dts file based on
 static unsigned int adc_channel_iin = 10;//this should be configured in dts file based on the real adc channel number
 static unsigned int adc_channel_vbat_sys = 14;
 static u32 is_board_type = 0; /*0:sft 1:udp 2:asic*/
+static bool first_charging_done = FALSE; /* has ever reach charge done state after connect charger. ? */
+static bool charging_again_after_charging_done = FALSE;
 /**********************************************************
 *  Function:       bq25892_main_write_block
 *  Discription:    register write block interface
@@ -241,7 +243,7 @@ int bq25892_main_get_ichg_adc(void)
     }
     ichg_adc = ichg_adc_reg * 50;
     hwlog_info("bq25892 main get ichg adc = %d\n", ichg_adc);
-    return ichg_adc;
+    return ichg_adc - 50;
 }
 #define CONFIG_SYSFS_BQ
 #ifdef CONFIG_SYSFS_BQ
@@ -664,6 +666,89 @@ static int bq25892_main_chip_init(void)
     return ret;
 }
 
+/**********************************************************
+*  Function:       bq25892_main_set_adc_conv_rate
+*  Discription:    set adc conversion rate
+*  Parameters:   mode:0-One shot ADC conversion
+*                              1-Start 1s Continuous Conversion
+*  return value:  0-sucess or others-fail
+**********************************************************/
+
+static int bq25892_main_set_adc_conv_rate(int mode)
+{
+    if(mode)
+    {
+        mode = 1;
+    }
+
+    hwlog_debug("adc conversion rate mode is set to %d\n",mode);
+
+    return bq25892_main_write_mask(BQ25892_MAIN_REG_02,BQ25892_MAIN_REG_02_CONV_RATE_MASK,BQ25892_MAIN_REG_02_CONV_RATE_SHIFT,mode);
+}
+
+/**********************************************************
+*  Function:       bq25892_check_input_current_exit_PFM_when_CD
+*  Discription:    ONLY TI bq25892 charge chip has a bug.
+                       When charger is in charging done state and under PFM mode,
+                       there is risk to slowly drive Q4 to open when unplug charger.
+                       The result is VSYS drops to 2.0V and reach milliseconds interval.
+                       The VSYS drop can be captured by hi6421 that result in SMPL.
+                       The solution that TI suggest: when charger chip is bq25892, and under charging done state,
+                       set IINLIM(reg00 bit0-bit5) to 400mA or below to force chargeIC to exit PFM
+*  Parameters:   value:input current value that upper layer suggests
+*  return:          current that upper layer suggests  or  current that force bq25892 to exit PFM
+**********************************************************/
+static int bq25892_check_input_current_exit_PFM_when_CD(unsigned int limit_default)
+{
+    u8 reg0B = 0;
+    u8 reg14 = 0;
+    int ret = 0;
+
+    ret |= bq25892_main_read_byte(BQ25892_MAIN_REG_0B,&reg0B);
+    ret |= bq25892_main_read_byte(BQ25892_MAIN_REG_14,&reg14);
+    if(ret != 0 )
+    {
+            hwlog_err("read main bq25892 reg OB or 14 fail ret:%d, then return default current:%d\n", ret, limit_default);
+            return limit_default;
+    }
+
+    if( ((reg14 & BQ25892_MAIN_REG_14_REG_PN_MASK) == BQ25892_MAIN_REG_14_REG_PN_IS_25892 ) &&  /* bq25892 */
+         ( limit_default > IINLIM_FOR_BQ25892_EXIT_PFM) )
+    {
+            if( (reg0B & BQ25892_MAIN_REG_0B_CHRG_STAT_MASK) == BQ25892_MAIN_CHGR_STAT_CHARGE_DONE ) /* charging done */
+            {
+                    if( FALSE == first_charging_done ) /* first time charging done */
+                    {
+                            first_charging_done = TRUE;
+                            limit_default = IINLIM_FOR_BQ25892_EXIT_PFM;
+                    }
+                    else if( FALSE == charging_again_after_charging_done ) /* charging done and there is NOT second charging */
+                    {
+                            limit_default = IINLIM_FOR_BQ25892_EXIT_PFM;
+                    }
+                    else
+                    {
+                            /* charging done but thers is second charging, keep iinlim as upper layer suggests */
+                    }
+
+                    if( IINLIM_FOR_BQ25892_EXIT_PFM == limit_default )
+                    {
+                         hwlog_err("this is bq25892 and CD, 1stCD(%d), 2nd FC(%d), limit input current to %d to force exit PFM\n",
+                                           first_charging_done, charging_again_after_charging_done, limit_default);
+                    }
+            }
+            else if( TRUE == first_charging_done ) /* fast charging,  is it ever charging done? */
+            {
+                charging_again_after_charging_done = TRUE; /* keep iinlim as upper layer suggests */
+            }
+            else
+            {
+                /* keep iinlim as upper layer suggests, as normal charging before first charging done */
+            }
+    }
+
+    return limit_default;
+}
 
 /**********************************************************
 *  Function:       bq25892_main_set_input_current
@@ -692,6 +777,13 @@ static int bq25892_main_set_input_current(int value)
     {
         //do nothing
     }
+
+    hwlog_debug("bq25892 main input current is set %dmA\n",limit_current);
+
+    /* in order to avoid smpl because bq25892 bug,
+        set iinlim to 400mA if under charging done and chip ic is bq25892, OTHERWISE keep it change */
+    limit_current = bq25892_check_input_current_exit_PFM_when_CD(limit_current);
+
     hwlog_debug("bq25892 main input current is set %dmA\n",limit_current);
     Iin_limit = (limit_current -IINLIM_MIN_100)/IINLIM_STEP_50;
     return bq25892_main_write_mask(BQ25892_MAIN_REG_00,BQ25892_MAIN_REG_00_IINLIM_MASK,BQ25892_MAIN_REG_00_IINLIM_SHIFT,Iin_limit);
@@ -1289,6 +1381,11 @@ static int bq25892_main_check_input_dpm_state(void)
 static int bq25892_main_stop_charge_config(void)
 {
     int ret=0;
+
+    /* reset to prepare for next charger plug */
+    first_charging_done = FALSE;
+    charging_again_after_charging_done = FALSE;
+
     /* as vindpm of bq25892_main won't be reset after watchdog timer out,if vindpm is higher than 5v ,IC will not supply power with USB/AC  */
     ret = bq25892_main_set_dpm_voltage(CHARGE_VOLTAGE_4520_MV);
     return ret;
@@ -1297,6 +1394,7 @@ static int bq25892_main_stop_charge_config(void)
 struct charge_device_ops bq25892_main_ops = {
     .chip_init = bq25892_main_chip_init,
     .dev_check = bq25892_main_device_check,
+    .set_adc_conv_rate = bq25892_main_set_adc_conv_rate,
     .set_input_current = bq25892_main_set_input_current,
     .set_charge_current = bq25892_main_set_charge_current,
     .set_terminal_voltage = bq25892_main_set_terminal_voltage,

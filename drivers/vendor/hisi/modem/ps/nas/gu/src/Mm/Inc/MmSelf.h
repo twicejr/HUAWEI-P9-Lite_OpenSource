@@ -1,18 +1,4 @@
-/************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : MmSelf.h
-  Author      : sxbo
-  Version     : V200R001
-  Date        : 2005-08-15
-  Description : 该头文件定义了MM模块新增数据结构及宏定义
-  History     :
-  1. Date:2005-08-15
-     Author: sxbo
-     Modification:Create
-  2.日    期   : 2006年08月09日
-    作    者   : 蒋丽萍j60010247
-    修改内容   : 问题单A32D03479，在PC机上实现时将#pragma pack(0)和#pragma pack()加编译开关
-************************************************************************/
+
 
 #ifndef _MM_SELF_H_
 #define _MM_SELF_H_

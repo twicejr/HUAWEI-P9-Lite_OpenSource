@@ -101,17 +101,7 @@ VOS_UINT32 diag_ProcAppAgentMsg(MsgBlock* pMsgBlock)
     return ret;
 }
 
-/*****************************************************************************
- Function Name   : diag_AgentSocpVoteCnfMsgProc
- Description     : 投票回复消息处理，只处理LDSP首次初始化时的反对票回复
- Input           : MsgBlock * pMsgBlock
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.w00182550      2012-12-20  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 diag_AgentSocpVoteCnfMsgProc(MsgBlock * pMsgBlock)
 {
 #if(FEATURE_SOCP_ON_DEMAND == FEATURE_ON)
@@ -134,17 +124,7 @@ VOS_UINT32 diag_AgentSocpVoteCnfMsgProc(MsgBlock * pMsgBlock)
     return ERR_MSP_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : diag_AgentVoteToSocp
- Description     : DIAG AGENT向SOCP投票
- Input           : SOCP_VOTE_TYPE_ENUM_U32 voteType
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.w00182550      2012-12-20  Draft Enact
-
-*****************************************************************************/
 VOS_VOID diag_AgentVoteToSocp(SOCP_VOTE_TYPE_ENUM_U32 voteType)
 {
 #if(FEATURE_SOCP_ON_DEMAND == FEATURE_ON)
@@ -176,17 +156,7 @@ VOS_VOID diag_AgentVoteToSocp(SOCP_VOTE_TYPE_ENUM_U32 voteType)
 }
 
 
-/*****************************************************************************
- Function Name   : diag_AgentMsgProcInit
- Description     : DIAG AGENT初始化
- Input           :enum VOS_INIT_PHASE_DEFINE ip
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.w00182550      2012-12-7  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 diag_AgentMsgProcInit(enum VOS_INIT_PHASE_DEFINE ip)
 {
     switch( ip )
@@ -244,17 +214,7 @@ VOS_VOID diag_AgentPsTransRcv(MsgBlock* pMsgBlock)
     (VOS_VOID)DIAG_TransReport(&stData);
 }
 
-/*****************************************************************************
- Function Name   : diag_AgentMsgProc
- Description     : DIAG AGENT接收到的消息处理入口
- Input           :MsgBlock* pMsgBlock
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.y00171698      2012-11-19  Draft Enact
-
-*****************************************************************************/
 VOS_VOID diag_AgentMsgProc(MsgBlock* pMsgBlock)
 {
     REL_TIMER_MSG *pTimer =NULL;
@@ -311,17 +271,7 @@ VOS_VOID diag_AgentMsgProc(MsgBlock* pMsgBlock)
     return;
 }
 
-/*****************************************************************************
- Function Name   : MSP_DiagFidInit
- Description     : C核DIAG 任务注册
- Input           :enum VOS_INIT_PHASE_DEFINE ip
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.w00182550      2012-11-19  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 MSP_DiagFidInit(enum VOS_INIT_PHASE_DEFINE ip)
 {
     VOS_UINT32 ulRelVal = 0;

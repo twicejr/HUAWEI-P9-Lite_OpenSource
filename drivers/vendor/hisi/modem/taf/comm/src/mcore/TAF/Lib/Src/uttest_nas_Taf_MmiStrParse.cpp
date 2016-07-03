@@ -203,14 +203,7 @@ extern void UT_STUB_INIT(void);
 
 
 #if (NAS_FEATURE_CCBS == FEATURE_ON)
-/******************************************************************************
-类名     : Test_MMI_FillInDeactivateCCBSPara
-功能描述 : MMI_FillInDeactivateCCBSPara UT工程类
-修改历史 :
- 1.日   期  : 2014-05-28
-   作   者  : Y00213812
-   修改内容 : 64bit ut修改
-******************************************************************************/
+
 class Test_MMI_FillInDeactivateCCBSPara: public ::testing::Test
 {
 public:
@@ -225,15 +218,7 @@ public:
     }
 
 };
-/*******************************************************************
-*测试项:           填写Deactivate CCBS操作需要的参数,不带Ccbsindex参数
-*被测函数功能描述: 填写Deactivate CCBS操作需要的参数,不带Ccbsindex参数的处理
-*预期结果：        返回成功
-************************* 修改记录 *************************
-#  1.日    期: 2009年12月28日
-#    作    者: z161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_MMI_FillInDeactivateCCBSPara,Test_MMI_FillInDeactivateCCBSPara_01)
 {
     MN_MMI_SC_SI_PARA_STRU              stScSiPara;
@@ -253,15 +238,7 @@ TEST_F(Test_MMI_FillInDeactivateCCBSPara,Test_MMI_FillInDeactivateCCBSPara_01)
 
 }
 
-/*******************************************************************
-*测试项:           填写Deactivate CCBS操作需要的参数,带合法Ccbsindex参数
-*被测函数功能描述: 填写Deactivate CCBS操作需要的参数,带合法Ccbsindex参数的处理
-*预期结果：        返回成功
-************************* 修改记录 *************************
-#  1.日    期: 2009年12月28日
-#    作    者: z161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_MMI_FillInDeactivateCCBSPara,Test_MMI_FillInDeactivateCCBSPara_02)
 {
     MN_MMI_SC_SI_PARA_STRU              stScSiPara;
@@ -282,15 +259,7 @@ TEST_F(Test_MMI_FillInDeactivateCCBSPara,Test_MMI_FillInDeactivateCCBSPara_02)
 
 }
 
-/*******************************************************************
-*测试项:           填写Deactivate CCBS操作需要的参数,带Ccbsindex但取值不合法>5
-*被测函数功能描述: 填写Deactivate CCBS操作需要的参数,带Ccbsindex但取值不合法大于5的处理
-*预期结果：        返回成功
-************************* 修改记录 *************************
-#  1.日    期: 2009年12月28日
-#    作    者: z161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_MMI_FillInDeactivateCCBSPara,Test_MMI_FillInDeactivateCCBSPara_03)
 {
     MN_MMI_SC_SI_PARA_STRU              stScSiPara;
@@ -308,15 +277,7 @@ TEST_F(Test_MMI_FillInDeactivateCCBSPara,Test_MMI_FillInDeactivateCCBSPara_03)
 
 }
 
-/*******************************************************************
-*测试项:           填写Deactivate CCBS操作需要的参数,带Ccbsindex但取值不合法<1
-*被测函数功能描述: 填写Deactivate CCBS操作需要的参数,带Ccbsindex但取值不合法小于1的处理
-*预期结果：        返回成功
-************************* 修改记录 *************************
-#  1.日    期: 2009年12月28日
-#    作    者: z161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_MMI_FillInDeactivateCCBSPara,Test_MMI_FillInDeactivateCCBSPara_04)
 {
     MN_MMI_SC_SI_PARA_STRU              stScSiPara;
@@ -336,14 +297,7 @@ TEST_F(Test_MMI_FillInDeactivateCCBSPara,Test_MMI_FillInDeactivateCCBSPara_04)
 
 #endif
 
-/******************************************************************************
-类名     : Test_MMI_MatchSsOpTbl
-功能描述 : MMI_MatchSsOpTbl UT工程类
-修改历史 :
- 1.日   期  : 2014-05-28
-   作   者  : Y00213812
-   修改内容 : 64bit ut修改
-******************************************************************************/
+
 class Test_MMI_MatchSsOpTbl: public ::testing::Test
 {
 public:
@@ -358,15 +312,7 @@ public:
     }
 
 };
-/*******************************************************************
-*测试项:           判断是否是呼叫无关补充业务相关的操作,解析MMI字串的Sc和Si失败
-*被测函数功能描述: 判断是否是呼叫无关补充业务相关的操作,解析MMI字串的Sc和Si失败的处理
-*预期结果：        函数返回VOS_FALSE,ulErrCode为MN_ERR_INVALIDPARM
-************************* 修改记录 *************************
-#  1.日    期: 2009年12月28日
-#    作    者: z161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_MMI_MatchSsOpTbl,Test_MMI_MatchSsOpTbl_01)
 {
     VOS_CHAR                            inMmiStr;
@@ -390,15 +336,7 @@ TEST_F(Test_MMI_MatchSsOpTbl,Test_MMI_MatchSsOpTbl_01)
 
 }
 
-/*******************************************************************
-*测试项:           判断是否是呼叫无关补充业务相关的操作,将Mmi字串中的Ss Code转换成网络定义的Ss Code失败,且不是USSD操作
-*被测函数功能描述: 判断是否是呼叫无关补充业务相关的操作,将Mmi字串中的Ss Code转换成网络定义的Ss Code失败,且不是USSD操作的处理
-*预期结果：        函数返回VOS_FALSE,ulErrorCode为MN_ERR_INVALIDPARM
-************************* 修改记录 *************************
-#  1.日    期: 2009年12月28日
-#    作    者: z161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_MMI_MatchSsOpTbl,Test_MMI_MatchSsOpTbl_02)
 {
     VOS_CHAR                            inMmiStr;
@@ -430,15 +368,7 @@ TEST_F(Test_MMI_MatchSsOpTbl,Test_MMI_MatchSsOpTbl_02)
 
 }
 
-/*******************************************************************
-*测试项:           判断是否是呼叫无关补充业务相关的操作,将Mmi字串中的Ss Code转换成网络定义的Ss Code失败,但是USSD操作
-*被测函数功能描述: 判断是否是呼叫无关补充业务相关的操作,将Mmi字串中的Ss Code转换成网络定义的Ss Code失败,但是USSD操作的处理
-*预期结果：        函数返回VOS_TRUE
-************************* 修改记录 *************************
-#  1.日    期: 2009年12月28日
-#    作    者: z161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_MMI_MatchSsOpTbl,Test_MMI_MatchSsOpTbl_03)
 {
     VOS_CHAR                            inMmiStr;
@@ -470,15 +400,7 @@ TEST_F(Test_MMI_MatchSsOpTbl,Test_MMI_MatchSsOpTbl_03)
 
 }
 #if(NAS_FEATURE_CCBS == FEATURE_ON)
-/*******************************************************************
-*测试项:           判断是否是呼叫无关补充业务相关的操作,是去激活CCBS的操作
-*被测函数功能描述: 判断是否是呼叫无关补充业务相关的操作,是去激活CCBS的操作处理
-*预期结果：        函数返回VOS_TRUE
-************************* 修改记录 *************************
-#  1.日    期: 2009年12月28日
-#    作    者: z161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_MMI_MatchSsOpTbl,Test_MMI_MatchSsOpTbl_04)
 {
     VOS_CHAR                            inMmiStr;
@@ -509,15 +431,7 @@ TEST_F(Test_MMI_MatchSsOpTbl,Test_MMI_MatchSsOpTbl_04)
 
 }
 
-/*******************************************************************
-*测试项:           判断是否是呼叫无关补充业务相关的操作,是查询CCBS的操作
-*被测函数功能描述: 判断是否是呼叫无关补充业务相关的操作,是查询CCBS的操作处理
-*预期结果：        函数返回VOS_TRUE
-************************* 修改记录 *************************
-#  1.日    期: 2009年12月28日
-#    作    者: z161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_MMI_MatchSsOpTbl,Test_MMI_MatchSsOpTbl_05)
 {
     VOS_CHAR                            inMmiStr;
@@ -548,15 +462,7 @@ TEST_F(Test_MMI_MatchSsOpTbl,Test_MMI_MatchSsOpTbl_05)
 
 }
 #endif
-/*******************************************************************
-*测试项:           判断是否是呼叫无关补充业务相关的操作,是非CCBS相关操作
-*被测函数功能描述: 判断是否是呼叫无关补充业务相关的操作,是非CCBS相关的操作处理
-*预期结果：        函数返回VOS_TRUE
-************************* 修改记录 *************************
-#  1.日    期: 2009年12月28日
-#    作    者: z161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_MMI_MatchSsOpTbl,Test_MMI_MatchSsOpTbl_06)
 {
     VOS_CHAR                            inMmiStr;
@@ -586,14 +492,7 @@ TEST_F(Test_MMI_MatchSsOpTbl,Test_MMI_MatchSsOpTbl_06)
 
 }
 
-/******************************************************************************
-类名     : Test_MMI_JudgeSsOperation
-功能描述 : MMI_JudgeSsOperation UT工程类
-修改历史 :
- 1.日   期  : 2014-05-28
-   作   者  : Y00213812
-   修改内容 : 64bit ut修改
-******************************************************************************/
+
 class Test_MMI_JudgeSsOperation: public ::testing::Test
 {
 public:
@@ -608,15 +507,7 @@ public:
     }
 
 };
-/*******************************************************************
-*测试项:           判断是否是呼叫无关补充业务相关的操作,SsOpTbl中找到相应操作,是CHLD操作
-*被测函数功能描述: 判断是否是呼叫无关补充业务相关的操作,SsOpTbl中找到相应操作,是CHLD操作的处理
-*预期结果：        函数返回VOS_TRUE
-************************* 修改记录 *************************
-#  1.日    期: 2009年12月28日
-#    作    者: z161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_MMI_JudgeSsOperation,Test_MMI_JudgeSsOperation_01)
 {
     VOS_CHAR                            inMmiStr = '0';
@@ -641,15 +532,7 @@ TEST_F(Test_MMI_JudgeSsOperation,Test_MMI_JudgeSsOperation_01)
 
 }
 
-/*******************************************************************
-*测试项:           判断是否是呼叫无关补充业务相关的操作,SsOpTbl中找到相应操作,不是CHLD操作
-*被测函数功能描述: 判断是否是呼叫无关补充业务相关的操作,SsOpTbl中找到相应操作,不是CHLD操作的处理
-*预期结果：        函数返回VOS_FALSE
-************************* 修改记录 *************************
-#  1.日    期: 2009年12月28日
-#    作    者: z161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_MMI_JudgeSsOperation,Test_MMI_JudgeSsOperation_02)
 {
     VOS_CHAR                            inMmiStr = '0';
@@ -674,15 +557,7 @@ TEST_F(Test_MMI_JudgeSsOperation,Test_MMI_JudgeSsOperation_02)
 
 }
 
-/*******************************************************************
-*测试项:           判断是否是呼叫无关补充业务相关的操作,SsOpTbl中未找到相应操作,不是USSD操作
-*被测函数功能描述: 判断是否是呼叫无关补充业务相关的操作,SsOpTbl中未找到相应操作,不是USSD操作的处理
-*预期结果：        函数返回VOS_FALSE
-************************* 修改记录 *************************
-#  1.日    期: 2009年12月28日
-#    作    者: z161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_MMI_JudgeSsOperation,Test_MMI_JudgeSsOperation_03)
 {
     VOS_CHAR                            inMmiStr = '0';
@@ -707,15 +582,7 @@ TEST_F(Test_MMI_JudgeSsOperation,Test_MMI_JudgeSsOperation_03)
 
 }
 
-/*******************************************************************
-*测试项:           判断是否是呼叫无关补充业务相关的操作,SsOpTbl中未找到相应操作,是USSD操作
-*被测函数功能描述: 判断是否是呼叫无关补充业务相关的操作,SsOpTbl中未找到相应操作,是USSD操作的处理
-*预期结果：        函数返回VOS_FALSE
-************************* 修改记录 *************************
-#  1.日    期: 2009年12月28日
-#    作    者: z161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_MMI_JudgeSsOperation,Test_MMI_JudgeSsOperation_04)
 {
     VOS_CHAR                            inMmiStr = '0';
@@ -742,14 +609,7 @@ TEST_F(Test_MMI_JudgeSsOperation,Test_MMI_JudgeSsOperation_04)
 
 }
 
-/******************************************************************************
-类名     : Test_MMI_JudgeMmiOperationType
-功能描述 : MMI_JudgeMmiOperationType UT工程类
-修改历史 :
- 1.日   期  : 2014-05-28
-   作   者  : Y00213812
-   修改内容 : 64bit ut修改
-******************************************************************************/
+
 class Test_MMI_JudgeMmiOperationType: public ::testing::Test
 {
 public:
@@ -764,15 +624,7 @@ public:
     }
 
 };
-/*******************************************************************
-*测试项:           判断是否是呼叫无关补充业务相关的操作,操作类型是TAF_MMI_REGISTER_SS
-*被测函数功能描述: 判断是否是呼叫无关补充业务相关的操作,操作类型是TAF_MMI_REGISTER_SS的处理
-*预期结果：        调用MMI_FillInRegisterSSPara()返回成功
-************************* 修改记录 *************************
-#  1.日    期: 2009年12月28日
-#    作    者: z161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_MMI_JudgeMmiOperationType,Test_MMI_JudgeMmiOperationType_01)
 {
     VOS_CHAR                            inMmiStr;
@@ -798,15 +650,7 @@ TEST_F(Test_MMI_JudgeMmiOperationType,Test_MMI_JudgeMmiOperationType_01)
 
 }
 
-/*******************************************************************
-*测试项:           判断是否是呼叫无关补充业务相关的操作,操作类型是TAF_MMI_ERASE_SS
-*被测函数功能描述: 判断是否是呼叫无关补充业务相关的操作,操作类型是TAF_MMI_ERASE_SS的处理
-*预期结果：        调用MMI_FillInEraseSSPara()返回成功
-************************* 修改记录 *************************
-#  1.日    期: 2009年12月28日
-#    作    者: z161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_MMI_JudgeMmiOperationType,Test_MMI_JudgeMmiOperationType_02)
 {
     VOS_CHAR                            inMmiStr;
@@ -832,15 +676,7 @@ TEST_F(Test_MMI_JudgeMmiOperationType,Test_MMI_JudgeMmiOperationType_02)
 
 }
 
-/*******************************************************************
-*测试项:           判断是否是呼叫无关补充业务相关的操作,操作类型是TAF_MMI_ACTIVATE_SS
-*被测函数功能描述: 判断是否是呼叫无关补充业务相关的操作,操作类型是TAF_MMI_ACTIVATE_SS的处理
-*预期结果：        调用MMI_FillInEraseSSPara()返回成功
-************************* 修改记录 *************************
-#  1.日    期: 2009年12月28日
-#    作    者: z161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_MMI_JudgeMmiOperationType,Test_MMI_JudgeMmiOperationType_03)
 {
     VOS_CHAR                            inMmiStr;
@@ -866,15 +702,7 @@ TEST_F(Test_MMI_JudgeMmiOperationType,Test_MMI_JudgeMmiOperationType_03)
 
 }
 
-/*******************************************************************
-*测试项:           判断是否是呼叫无关补充业务相关的操作,操作类型是TAF_MMI_DEACTIVATE_SS
-*被测函数功能描述: 判断是否是呼叫无关补充业务相关的操作,操作类型是TAF_MMI_DEACTIVATE_SS的处理
-*预期结果：        调用MMI_FillInDeactivateSSPara()返回成功
-************************* 修改记录 *************************
-#  1.日    期: 2009年12月28日
-#    作    者: z161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_MMI_JudgeMmiOperationType,Test_MMI_JudgeMmiOperationType_04)
 {
     VOS_CHAR                            inMmiStr;
@@ -900,15 +728,7 @@ TEST_F(Test_MMI_JudgeMmiOperationType,Test_MMI_JudgeMmiOperationType_04)
 
 }
 
-/*******************************************************************
-*测试项:           判断是否是呼叫无关补充业务相关的操作,操作类型是TAF_MMI_INTERROGATE_SS
-*被测函数功能描述: 判断是否是呼叫无关补充业务相关的操作,操作类型是TAF_MMI_INTERROGATE_SS的处理
-*预期结果：        调用MMI_FillInInterrogateSSPara()返回成功
-************************* 修改记录 *************************
-#  1.日    期: 2009年12月28日
-#    作    者: z161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_MMI_JudgeMmiOperationType,Test_MMI_JudgeMmiOperationType_05)
 {
     VOS_CHAR                            inMmiStr;
@@ -934,15 +754,7 @@ TEST_F(Test_MMI_JudgeMmiOperationType,Test_MMI_JudgeMmiOperationType_05)
 
 }
 
-/*******************************************************************
-*测试项:           判断是否是呼叫无关补充业务相关的操作,操作类型是TAF_MMI_INTERROGATE_CCBS
-*被测函数功能描述: 判断是否是呼叫无关补充业务相关的操作,操作类型是TAF_MMI_INTERROGATE_CCBS的处理
-*预期结果：        调用MMI_FillInInterrogateSSPara()返回成功
-************************* 修改记录 *************************
-#  1.日    期: 2009年12月28日
-#    作    者: z161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_MMI_JudgeMmiOperationType,Test_MMI_JudgeMmiOperationType_06)
 {
     VOS_CHAR                            inMmiStr;
@@ -968,15 +780,7 @@ TEST_F(Test_MMI_JudgeMmiOperationType,Test_MMI_JudgeMmiOperationType_06)
 
 }
 
-/*******************************************************************
-*测试项:           判断是否是呼叫无关补充业务相关的操作,操作类型是TAF_MMI_PROCESS_USSD_REQ
-*被测函数功能描述: 判断是否是呼叫无关补充业务相关的操作,操作类型是TAF_MMI_PROCESS_USSD_REQ的处理
-*预期结果：        调用MMI_FillInProcessUssdReqPara()返回成功
-************************* 修改记录 *************************
-#  1.日    期: 2009年12月28日
-#    作    者: z161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_MMI_JudgeMmiOperationType,Test_MMI_JudgeMmiOperationType_07)
 {
     VOS_CHAR                            inMmiStr;
@@ -1002,15 +806,7 @@ TEST_F(Test_MMI_JudgeMmiOperationType,Test_MMI_JudgeMmiOperationType_07)
 
 }
 #if (NAS_FEATURE_CCBS == FEATURE_ON)
-/*******************************************************************
-*测试项:           判断是否是呼叫无关补充业务相关的操作,操作类型是TAF_MMI_DEACTIVATE_CCBS
-*被测函数功能描述: 判断是否是呼叫无关补充业务相关的操作,操作类型是TAF_MMI_DEACTIVATE_CCBS的处理
-*预期结果：        调用MMI_FillInProcessUssdReqPara()返回成功
-************************* 修改记录 *************************
-#  1.日    期: 2009年12月28日
-#    作    者: z161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_MMI_JudgeMmiOperationType,Test_MMI_JudgeMmiOperationType_08)
 {
     VOS_CHAR                            inMmiStr;

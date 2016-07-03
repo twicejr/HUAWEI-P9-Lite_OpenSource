@@ -54,7 +54,6 @@ typedef struct socp_compress_ops
     socp_compress_clear     clear;
 }socp_compress_ops_stru;
 #if (FEATURE_SOCP_DECODE_INT_TIMEOUT == FEATURE_ON)
-/*2014年2月22日14:23:11 l00258701 v711增加定义begin*/
 typedef enum timeout_module
 {
     DECODE_TIMEOUT_INT_TIMEOUT = 0,
@@ -63,7 +62,6 @@ typedef enum timeout_module
 
 } DECODE_TIMEOUT_MODULE;
 
-/*2014年2月22日14:23:11 l00258701 v711增加定义end*/
 #endif
 
 typedef struct

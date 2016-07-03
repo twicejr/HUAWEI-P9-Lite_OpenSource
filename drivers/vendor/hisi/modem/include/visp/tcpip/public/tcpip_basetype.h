@@ -372,7 +372,6 @@ typedef union tagDULONG
 #endif
 
 /*与v_typdef.h定义冲突*/
-/*End of Modified by l61496, u32类型定义冲突，问题单号:DTS2012121300451 ,2012/12/14 */
 #ifdef TCPIP_DOPRA_VER2
 #ifndef VOS_UINT32
 #define VOS_UINT32 unsigned int
@@ -422,9 +421,7 @@ typedef union tagDULONG
 
 
 
-/*产品包含此头文件时，必须定义VOS_HARDWARE_PLATFORM,因为此宏控制
-XXX_api.h中的数据结构对齐方式,此处屏蔽了pc_lint告警，因为这个宏
-是需要用户在makefile中显式指定值，如果不指定，编译错误*/
+
 /*lint -save -e309*/
 #ifndef VOS_HARDWARE_PLATFORM
 #error "please define VOS_HARDWARE_PLATFORM in makefile"

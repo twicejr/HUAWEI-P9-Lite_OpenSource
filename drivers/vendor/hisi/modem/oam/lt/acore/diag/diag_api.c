@@ -53,32 +53,14 @@ DIAG_TraceMatchFunc  g_pMatchFunc  = VOS_NULL;
 *****************************************************************************/
 
 
-/*****************************************************************************
- Function Name   : DIAG_GetConnState
- Description     : 获取当前工具连接状态
- Return          : 1:connect; 0:disconnect
 
- History         :
-    1.c00326366      2015-6-24  Draft Enact
-*****************************************************************************/
 VOS_UINT32 DIAG_GetConnState(VOS_VOID)
 {
     return (VOS_UINT32)((DIAG_IS_CONN_ON)?1:0);
 }
 
 
-/*****************************************************************************
- Function Name   : diag_GetMsgCfg
- Description     : 获取层间消息过滤开关
- Input           :VOS_UINT32 ulCatId
-                VOS_UINT32 ulMsgId
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.w00182550      2012-12-5  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 diag_GetLayerMsgCfg(VOS_UINT32 ulCatId, VOS_UINT32 ulMsgId)
 {
     DIAG_CFG_LOG_CAT_MSG_CFG_STRU *pstItemCfg =NULL;
@@ -166,19 +148,7 @@ VOS_UINT32 diag_GetLayerDstCfg(VOS_UINT32 ulModuleId)
     return ERR_MSP_CFG_LOG_NOT_ALLOW;
 }
 
-/*****************************************************************************
- Function Name   : diag_GetLayerCfg
- Description     : 获取层间消息开关状态
- Input           :VOS_UINT32 ulSrcModuleId
-                VOS_UINT32 ulDstModuleId
-                VOS_UINT32 ulMsgId
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.w00182550      2012-12-5  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 diag_GetLayerCfg(VOS_UINT32 ulSrcModuleId, VOS_UINT32 ulDstModuleId, VOS_UINT32 ulMsgId)
 {
     VOS_UINT32 ret = ERR_MSP_CFG_LOG_NOT_ALLOW;
@@ -210,18 +180,7 @@ VOS_UINT32 diag_GetLayerCfg(VOS_UINT32 ulSrcModuleId, VOS_UINT32 ulDstModuleId, 
     }
 }
 
-/*****************************************************************************
- Function Name   : diag_GetPrintCfg
- Description     : 获取打印开关状态
- Input           :VOS_UINT32 ulModuleId
-                VOS_UINT32 ulLevel
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.w00182550      2012-12-6  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 diag_GetPrintCfg(VOS_UINT32 ulModuleId, VOS_UINT32 ulLevel)
 {
     VOS_UINT32 ulLevelFilter = 0;
@@ -644,19 +603,7 @@ VOS_UINT32 DIAG_TransReport_Ex(DIAG_TRANS_IND_STRU *pstData)
 }
 
 
-/*****************************************************************************
- 函 数 名  : DIAG_TransReport
- 功能描述  : 结构化数据上报接口(替换原来的DIAG_ReportCommand)
- 输入参数  : DIAG_TRANS_IND_STRU->ulModule( 31-24:modemid,23-16:modeid )
-             DIAG_TRANS_IND_STRU->ulMsgId(透传命令ID)
-             DIAG_TRANS_IND_STRU->ulLength(透传信息的长度)
-             DIAG_TRANS_IND_STRU->pData(透传信息)
 
- History   :
-    1.w00182550      2012-11-20  Draft Enact
-    2.c64416         2014-11-18  适配新的诊断架构
-
-*****************************************************************************/
 VOS_UINT32 DIAG_TransReport(DIAG_TRANS_IND_STRU *pstData)
 {
     /*检查DIAG是否初始化且HSO是否连接上*/
@@ -681,19 +628,7 @@ VOS_UINT32 DIAG_TransReport(DIAG_TRANS_IND_STRU *pstData)
 }
 
 
-/*****************************************************************************
- 函 数 名  : DIAG_EventReport
- 功能描述  : 事件上报接口，给PS使用(替换原来的DIAG_ReportEventLog)
- 输入参数  : DIAG_EVENT_IND_STRU->ulModule( 31-24:modemid,23-16:modeid,15-12:level,11-0:pid )
-             DIAG_EVENT_IND_STRU->ulEventId(event ID)
-             DIAG_EVENT_IND_STRU->ulLength(event的长度)
-             DIAG_EVENT_IND_STRU->pData(event信息)
 
- History         :
-    1.w00182550      2012-11-20  Draft Enact
-    2.c64416         2014-11-18  适配新的诊断架构
-
-*****************************************************************************/
 VOS_UINT32 DIAG_EventReport(DIAG_EVENT_IND_STRU *pstEvent)
 {
     VOS_UINT32 ret = ERR_MSP_SUCCESS;
@@ -760,20 +695,7 @@ VOS_UINT32 DIAG_EventReport(DIAG_EVENT_IND_STRU *pstEvent)
 }
 
 
-/*****************************************************************************
- 函 数 名  : DIAG_AirMsgReport
- 功能描述  : 空口消息上报接口，给PS使用(替换原来的DIAG_ReportAirMessageLog)
- 输入参数  : DIAG_AIR_IND_STRU->ulModule( 31-24:modemid,23-16:modeid,15-12:level,11-0:pid )
-             DIAG_AIR_IND_STRU->ulMsgId(空口消息ID)
-             DIAG_AIR_IND_STRU->ulDirection(空口消息的方向)
-             DIAG_AIR_IND_STRU->ulLength(空口消息的长度)
-             DIAG_AIR_IND_STRU->pData(空口消息信息)
 
- History         :
-    1.w00182550      2012-11-20  Draft Enact
-    2.c64416         2014-11-18  适配新的诊断架构
-
-*****************************************************************************/
 VOS_UINT32 DIAG_AirMsgReport(DIAG_AIR_IND_STRU *pstAir)
 {
     VOS_UINT32 ret = ERR_MSP_SUCCESS;
@@ -918,16 +840,7 @@ VOS_UINT32 DIAG_ReportVoLTELog(DIAG_VOLTE_LOG_STRU* pRptMessage)
 }
 
 
-/*****************************************************************************
- 函 数 名  : DIAG_TraceReport
- 功能描述  : 层间消息上报接口，给PS使用(替换原来的DIAG_ReportLayerMessageLog)
- 输入参数  : pMsg(标准的VOS消息体，源模块、目的模块信息从消息体中获取)
 
- History         :
-    1.w00182550      2012-11-20  Draft Enact
-    2.c64416         2014-11-18  适配新的诊断架构
-
-*****************************************************************************/
 VOS_VOID DIAG_TraceReport(VOS_VOID *pMsg)
 {
     VOS_UINT32 ret, ulSrcModule, ulDstModule, ulMsgId;
@@ -1055,18 +968,7 @@ VOS_UINT32 DIAG_TraceFilterFuncReg(DIAG_TraceFilterFunc pFun)
 }
 
 
-/*****************************************************************************
- Function Name   : DIAG_TraceMatchFuncReg
- Description     : 层间消息匹配注册接口(此接口不支持重复注册，多次注册返还失败)
-                    此注册接口提供给TTF使用，匹配处理接口中可能对消息体进行替换
- Input           : 过滤处理函数
- Output          : None
- Return          : 返回值为注册结果: 0-注册成功；其他-注册失败
 
- History         :
-    1.c00326366      2015-06-16  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 DIAG_TraceMatchFuncReg(DIAG_TraceMatchFunc pFun)
 {
     if(VOS_NULL == g_pMatchFunc)
@@ -1081,19 +983,7 @@ VOS_UINT32 DIAG_TraceMatchFuncReg(DIAG_TraceMatchFunc pFun)
 }
 
 
-/*****************************************************************************
- 函 数 名  : DIAG_UserPlaneReport
- 功能描述  : 用户面上报接口，给PS使用(替换原来的DIAG_ReportUserPlaneMessageLog)
- 输入参数  : DIAG_USER_IND_STRU->ulModule( 31-24:modemid,23-16:modeid,15-12:level,11-0:pid )
-             DIAG_USER_IND_STRU->ulMsgId(用户面消息ID)
-             DIAG_USER_IND_STRU->ulLength(用户面消息的长度)
-             DIAG_USER_IND_STRU->pData(用户面信息)
 
- History         :
-    1.w00182550      2012-11-20  Draft Enact
-    2.c64416         2014-11-18  适配新的诊断架构
-
-*****************************************************************************/
 VOS_UINT32 DIAG_UserPlaneReport(DIAG_USER_IND_STRU *pstUser)
 {
     VOS_UINT32 ret;
@@ -1163,21 +1053,7 @@ VOS_UINT32 DIAG_ErrorLog(VOS_CHAR * cFileName,VOS_UINT32 ulFileId, VOS_UINT32 ul
 }
 
 
-/*****************************************************************************
- Function Name   : diag_SendMsg
- Description     : DIAG各模块发消息封装接口
- Input           :VOS_UINT32 ulSenderId
-                VOS_UINT32 ulRecverId
-                VOS_UINT32 ulMsgId
-                VOS_VOID* pDta
-                VOS_UINT32 dtaSize
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.w00182550      2012-11-20  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 diag_SendMsg(VOS_UINT32 ulSenderId, VOS_UINT32 ulRecverId, VOS_UINT32 ulMsgId, VOS_UINT8* pDta, VOS_UINT32 dtaSize)
 {
     VOS_UINT32 ret = ERR_MSP_UNKNOWN;

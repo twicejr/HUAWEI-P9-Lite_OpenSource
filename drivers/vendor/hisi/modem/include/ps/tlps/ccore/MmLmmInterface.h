@@ -195,13 +195,7 @@ enum  MM_LMM_SRVCC_STATUS_ENUM
 };
 typedef VOS_UINT32 MM_LMM_SRVCC_STATUS_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : MM_LMM_SESSION_TYPE_ENUM_UINT8
- 枚举说明  : SESSION类型
- 1.日    期   : 2014年5月22日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 enum MM_LMM_SESSION_TYPE_ENUM
 {
 
@@ -413,13 +407,7 @@ typedef struct
     MM_LMM_GU_SECU_CONTEXT_STRU         stHoSecuCntxt;
 }LMM_MM_HO_SECU_INFO_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : MM_LMM_BEGIN_SESSION_NOTIFY_STRU
- 结构说明  : SESSION开始指示
- 1.日    期   : 2014年5月22日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stMsgHeader;          /* 消息头    */   /*_H2ASN_Skip*/
@@ -428,13 +416,7 @@ typedef struct
 }MM_LMM_BEGIN_SESSION_NOTIFY_STRU;
 
 
-/*****************************************************************************
- 结构名    : MM_LMM_END_SESSION_NOTIFY_STRU
- 结构说明  : SESSION开始指示
- 1.日    期   : 2014年5月22日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stMsgHeader;          /* 消息头 */   /*_H2ASN_Skip*/

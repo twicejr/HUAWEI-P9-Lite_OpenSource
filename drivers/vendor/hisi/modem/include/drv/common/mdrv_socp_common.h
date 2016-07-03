@@ -156,7 +156,6 @@ enum tagSOCP_DECSRC_CHNMODE_E
 typedef unsigned int SOCP_DECSRC_CHNMODE_ENUM_UIN32;
 
 /* 超时选择及使能数据结构体SOCP_TIMEOUT_DECODE_TRF */
-/* 2014年2月22日15:34:11 l00258701 modify add */
 enum tagSOCP_TIMEOUT_EN_E
 {
     SOCP_TIMEOUT_BUFOVF_DISABLE        = 0,       /* buffer溢出，不上报中断 */

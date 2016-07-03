@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2015, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasHsdSndMscc.c
-  版 本 号   : 初稿
-  作    者   : h00300778
-  生成日期   : 2014年12月7日
-  最近修改   :
-  功能描述   : HSD发送给MMA的消息处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年12月12日
-    作    者   : h00300778
-    修改内容   : 新生成函数
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -47,21 +30,7 @@ extern "C" {
   3 函数实现
 *****************************************************************************/
 /*lint -save -e958*/
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndMsccStartCnf
- 功能描述  : 向MSCC发送开机结果
- 输入参数  : enRslt - 开机结果
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月17日
-    作    者   : h00300778
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SndMsccStartCnf(
     HSD_MSCC_START_RESULT_ENUM_UINT32    enRslt
 )
@@ -89,21 +58,7 @@ VOS_VOID CNAS_HSD_SndMsccStartCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndMsccPowerOffCnf
- 功能描述  : 向MSCC发送关机结果
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月17日
-    作    者   : h00300778
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SndMsccPowerOffCnf(VOS_VOID)
 {
     HSD_MSCC_POWER_OFF_CNF_STRU         *pstPowerOffCnf  = VOS_NULL_PTR;
@@ -128,21 +83,7 @@ VOS_VOID CNAS_HSD_SndMsccPowerOffCnf(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndMsccSysAcqCnf
- 功能描述  : 向MMA发送ID_HSD_MMA_SYSTEM_ACQUIRE_CNF消息
- 输入参数  : HSD_MMA_ACQUIRED_RESULT_ENUM_UINT32 enRslt
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月17日
-    作    者   : h00300778
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SndMsccSysAcqCnf(NAS_MSCC_PIF_ACQUIRED_RESULT_ENUM_UINT32 enRslt)
 {
     HSD_MSCC_SYSTEM_ACQUIRE_CNF_STRU    *pstSysAcqCnf;
@@ -168,21 +109,7 @@ VOS_VOID CNAS_HSD_SndMsccSysAcqCnf(NAS_MSCC_PIF_ACQUIRED_RESULT_ENUM_UINT32 enRs
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndMsccSysAcqInd
- 功能描述  : 向MSCC发送ID_HSD_MSCC_SYSTEM_ACQUIRE_IND消息
- 输入参数  : NAS_MSCC_PIF_ACQUIRED_RESULT_ENUM_UINT32 enRslt
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月17日
-    作    者   : h00300778
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SndMsccSysAcqInd(NAS_MSCC_PIF_ACQUIRED_RESULT_ENUM_UINT32 enRslt)
 {
     HSD_MSCC_SYSTEM_ACQUIRE_END_IND_STRU                   *pstSysAcqInd;
@@ -208,21 +135,7 @@ VOS_VOID CNAS_HSD_SndMsccSysAcqInd(NAS_MSCC_PIF_ACQUIRED_RESULT_ENUM_UINT32 enRs
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndMsccSysAcqStartInd
- 功能描述  : 给MSCC发送ID_HSD_MSCC_SYSTEM_ACQUIRE_START_IND消息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月17日
-    作    者   : h00300778
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SndMsccSysAcqStartInd(VOS_VOID)
 {
     HSD_MSCC_SYSTEM_ACQUIRE_START_IND_STRU                  *pstSysAcqStartInd;
@@ -245,21 +158,7 @@ VOS_VOID CNAS_HSD_SndMsccSysAcqStartInd(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndMsccHrpdIratToLteNtf
- 功能描述  : 给SCC发送ID_HSD_MSCC_HRPD_IRAT_TO_LTE_NTF消息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年01月14日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SndMsccHrpdIratToLteNtf(VOS_VOID)
 {
     HSD_MSCC_HRPD_IRAT_TO_LTE_NTF_STRU  *pstHrpdIratToLteNtf;
@@ -284,21 +183,7 @@ VOS_VOID CNAS_HSD_SndMsccHrpdIratToLteNtf(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndMsccDataCallRedialSysAcqCnf
- 功能描述  : 给MSCC发送HSD_MSCC_DATA_CALL_REDIAL_SYS_ACQ_CNF_STRU消息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年01月14日
-    作    者   : d00212987
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SndMsccDataCallRedialSysAcqCnf(NAS_MSCC_PIF_ACQUIRED_RESULT_ENUM_UINT32 enRslt)
 {
     HSD_MSCC_DATA_CALL_REDIAL_SYS_ACQ_CNF_STRU  *pstDataCallSysAcqCnf;
@@ -417,21 +302,7 @@ VOS_VOID CNAS_HSD_SndMsccOverheadMsgInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndMsccSysCfgCnf
- 功能描述  : 给MSCC发送HSD_MSCC_SYS_CFG_CNF消息
- 输入参数  : pstRcvMsg -- 收到的消息指针
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年04月13日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SndMsccSysCfgCnf(
     CAS_CNAS_HRPD_SYS_CFG_CNF_STRU     *pstRcvMsg
 )
@@ -466,21 +337,7 @@ VOS_VOID CNAS_HSD_SndMsccSysCfgCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndMsccPowerSaveCnf
- 功能描述  : 向MSCC发送POWER SAVE结果
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年04月03日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SndMsccPowerSaveCnf(
     NAS_MSCC_PIF_POWER_SAVE_RESULT_ENUM_UINT8               enRslt
 )
@@ -509,21 +366,7 @@ VOS_VOID CNAS_HSD_SndMsccPowerSaveCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndMsccBgSearchCnf
- 功能描述  : 向MSCC发送Bg Search结果
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年04月03日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SndMsccBgSearchCnf(
     CAS_CNAS_HRPD_BSR_LTE_CNF_STRU     *pstMsg
 )
@@ -568,21 +411,7 @@ VOS_VOID CNAS_HSD_SndMsccBgSearchCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndMsccHrpdSysInfoCnf
- 功能描述  : 向MSCC发送qry hrpd sys info结果
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月04日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SndMsccHrpdSysInfoCnf(
     VOS_UINT8                            ucHrpdSysNum,
     MSCC_HSD_HRPD_SYS_INFO_STRU         *pstHrpdSysInfoList
@@ -616,21 +445,7 @@ VOS_VOID CNAS_HSD_SndMsccHrpdSysInfoCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndMsccStopBgSearchCnf
- 功能描述  : 向MSCC发送ID_HSD_MSCC_STOP_BG_SEARCH_CNF
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年04月03日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SndMsccStopBgSearchCnf(VOS_VOID)
 {
     HSD_MSCC_STOP_BG_SEARCH_CNF_STRU                        *pstStopBgSearchCnf  = VOS_NULL_PTR;
@@ -656,21 +471,7 @@ VOS_VOID CNAS_HSD_SndMsccStopBgSearchCnf(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndMsccSystemSyncInd
- 功能描述  : 同步成功后向MSCC发送SYNC IND消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年04月07日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SndMsccSystemSyncInd(VOS_VOID)
 {
     HSD_MSCC_SYSTEM_SYNC_IND_STRU      *pstSyncInd  = VOS_NULL_PTR;
@@ -722,24 +523,7 @@ VOS_VOID CNAS_HSD_SndMsccHrpdCasStatusInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndMsccInterSysStartInd
- 功能描述  : 同步成功后向MSCC发送INTERSYS_START_IND消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月02日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-  2.日    期   : 2015年11月13日
-    作    者   : y00346957
-    修改内容   : DTS2015070910837修改，intersys cause 枚举统一用mscc pif中的
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SndMsccInterSysStartInd(
     VOS_RATMODE_ENUM_UINT32                                 enOrignRatMode,
     VOS_RATMODE_ENUM_UINT32                                 enDestRatMode,
@@ -772,21 +556,7 @@ VOS_VOID CNAS_HSD_SndMsccInterSysStartInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndMsccInterSysEndInd
- 功能描述  : 同步成功后向MSCC发送INTERSYS_END_IND消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月02日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SndMsccInterSysEndInd(
     VOS_RATMODE_ENUM_UINT32             enCurrRatMode
 )
@@ -815,22 +585,7 @@ VOS_VOID CNAS_HSD_SndMsccInterSysEndInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndMsccRfAvailInd
- 功能描述  : 向MSCC发送RF资源是否可用指示
- 输入参数  : VOS_UINT8 : ucRfAvail - RF是否可用
-             VOS_TRUE  : 射频可用
-             VOS_FALSE : 射频不可用
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年07月14日
-   作    者   : x00306642
-   修改内容   : 新建
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SndMsccRfAvailInd(
     VOS_UINT8                           ucRfAvail
 )
@@ -864,22 +619,7 @@ VOS_VOID CNAS_HSD_SndMsccRfAvailInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndMsccHrpdNoSrvInd
- 功能描述  : 向MSCC通知HSD无服务可用，MSCC收到该消息向MMA通知HRPD无服务，MMA启动无服务延时上报定时器
-             调用场景:IDLE态下收到CAS_CNAS_HRPD_NETWORK_LOST_IND消息，发起搜网
-                      IDLE态下收到HSM_HSD_SESSION_NEG_RESULT_IND消息，enNegResult不等于SUCCESS
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年09月30日
-   作    者   : l00324781
-   修改内容   : 新建
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SndMsccHrpdNoSrvInd(VOS_VOID)
 {
     HSD_MSCC_HRPD_NO_SERVICE_IND_STRU                      *pstRptHrpdNoSrvInd = VOS_NULL_PTR;
@@ -909,20 +649,7 @@ VOS_VOID CNAS_HSD_SndMsccHrpdNoSrvInd(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndMsccHdrCsqSetCnf
- 功能描述  : 向MSCC发送HDRCSQ_SET_CNF
- 输入参数  : NAS_MSCC_PIF_CDMACSQ_SET_RESULT_ENUM_UINT8      enRslt
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年07月14日
-   作    者   : C00299064
-   修改内容   : 新建
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SndMsccHdrCsqSetCnf(
     NAS_MSCC_PIF_CDMACSQ_SET_RESULT_ENUM_UINT8      enRslt
 )
@@ -955,20 +682,7 @@ VOS_VOID CNAS_HSD_SndMsccHdrCsqSetCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndMsccHdrCsqQualityInd
- 功能描述  : 向MSCC发送HDRCSQ_IND
- 输入参数  : NAS_MSCC_PIF_CDMACSQ_SET_RESULT_ENUM_UINT8      enRslt
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年07月14日
-   作    者   : C00299064
-   修改内容   : 新建
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SndMsccHdrCsqQualityInd(
     VOS_INT16                            sHrpdRssi,
     VOS_INT16                            sHrpdSnr,

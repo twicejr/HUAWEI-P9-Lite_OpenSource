@@ -1,18 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasHsmCtx.c
-  版 本 号   : w00176964
-  生成日期   : 2014年06月27日
-  功能描述   : HSM模块上下文操作文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年02月3日
-    作    者   : w00176964
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -147,27 +133,13 @@ CNAS_HSM_KEEP_ALIVE_CTRL_CTX_STRU* CNAS_HSM_GetKeepAliveCtrlCtxAddr(VOS_VOID)
 }
 
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_InitCacheMsgQueue
-Description     :   Init the cached message queue
-Input parameters:   pstCacheMsgQueue ----thecahed message queue pointer
-Outout parameters:  NONE
-Return Value    :   VOS_VOID
-Modify History  :
-1)  Date           : 2015-01-27
-    Author         : w00176964
-    Modify content : Create
- 2.Date            : 8/9/2015
-   Author          : w00176964
-   Modification    : CNAS内存裁剪
-*****************************************************************************/
+
 
 VOS_VOID CNAS_HSM_InitCacheMsgQueue(
     CNAS_HSM_INIT_CTX_TYPE_ENUM_UINT8   enInitType,
     CNAS_HSM_CACHE_MSG_QUEUE_STRU      *pstCacheMsgQueue
 )
 {
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-8, begin */
     VOS_UINT32                          i;
 
     if (CNAS_HSM_INIT_CTX_STARTUP == enInitType)
@@ -196,7 +168,6 @@ VOS_VOID CNAS_HSM_InitCacheMsgQueue(
         pstCacheMsgQueue->ucCacheMsgNum = 0;
     }
 
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-8, end */
 }
 
 
@@ -206,30 +177,7 @@ CNAS_HSM_CACHE_MSG_QUEUE_STRU* CNAS_HSM_GetCacheMsgAddr(VOS_VOID)
     return &(CNAS_HSM_GetHsmCtxAddr()->stCacheMsgQueue);
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_SaveCacheMsgInMsgQueue
-Description     :   save the message to the cache message queue
-Input parameters:   ulEventType--message ID+PID
-                    pstMsg-------message content
-Outout parameters:  NONE
-Return Value    :   VOS_VOID
-Modify History  :
-1)  Date           : 2015-01-27
-    Author         : w00176964
-    Modify content : Create
-2)  Date           : 2015-06-11
-    Author         : m00312079
-    Modify content : Add the priority to cached message
-3)  Date           : 2015-08-31
-    Author         : y00307564
-    Modify content : DTS2015081400901 Modify
-4) Date            : 8/9/2015
-   Author          : w00176964
-   Modification    : CNAS内存裁剪
-5)  Date           : 2015-09-22
-    Author         : t00323010
-    Modify content : HSM MNTN(DTS2015092201636): log msg buff index
-*****************************************************************************/
+
 
 VOS_VOID CNAS_HSM_SaveCacheMsgInMsgQueue(
     VOS_UINT32                          ulEventType,
@@ -267,7 +215,6 @@ VOS_VOID CNAS_HSM_SaveCacheMsgInMsgQueue(
     {
         enOperateType   = CNAS_HSM_BUFFER_MSG_OPERATE_TYPE_REPLACE;
 
-        /* Modified by w00176964 for CNAS内存裁剪, 2015-9-8, begin */
         if (VOS_NULL_PTR != pstMsgQueue->astCacheMsg[ucIndex].pucMsgBuffer)
         {
             PS_MEM_FREE(UEPS_PID_HSM, pstMsgQueue->astCacheMsg[ucIndex].pucMsgBuffer);
@@ -285,7 +232,6 @@ VOS_VOID CNAS_HSM_SaveCacheMsgInMsgQueue(
                       pstMsgHeader->ulLength + VOS_MSG_HEAD_LENGTH,
                       pstMsgHeader,
                       pstMsgHeader->ulLength + VOS_MSG_HEAD_LENGTH);
-        /* Modified by w00176964 for CNAS内存裁剪, 2015-9-8, end */
     }
     else
     {
@@ -301,7 +247,6 @@ VOS_VOID CNAS_HSM_SaveCacheMsgInMsgQueue(
             return;
         }
 
-        /* Modified by w00176964 for CNAS内存裁剪, 2015-9-8, begin */
         NAS_MEM_CPY_S(pstMsgQueue->astCacheMsg[pstMsgQueue->ucCacheMsgNum].pucMsgBuffer,
                       pstMsgHeader->ulLength + VOS_MSG_HEAD_LENGTH,
                       pstMsgHeader,
@@ -340,24 +285,7 @@ VOS_UINT32  CNAS_HSM_SaveCacheMsg(
 }
 
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_ClearCacheMsgByIndex
-Description     :   clear the cached message according to the speical index
-Input parameters:   ucIndex----the index in the cache message queue
-Outout parameters:  NONE
-Return Value    :   VOS_VOID
 
-Modify History  :
-1)  Date           : 2015-01-27
-    Author         : w00176964
-    Modify content : Create
- 2.Date            : 8/9/2015
-   Author          : w00176964
-   Modification    : CNAS内存裁剪
-3)  Date           : 2015-09-23
-    Author         : t00323010
-    Modify content : HSM MNTN(DTS2015092201636): log buffer msg index
-*****************************************************************************/
 VOS_VOID CNAS_HSM_ClearCacheMsgByIndex(
     VOS_UINT8                           ucIndex
 )
@@ -376,7 +304,6 @@ VOS_VOID CNAS_HSM_ClearCacheMsgByIndex(
     {
         pstMsgQueue->ucCacheMsgNum--;
 
-        /* Modified by w00176964 for CNAS内存裁剪, 2015-9-8, begin */
         if (VOS_NULL_PTR != pstMsgQueue->astCacheMsg[ucIndex].pucMsgBuffer)
         {
             /* log buff msg queue and msg info before delete the msg */
@@ -400,25 +327,10 @@ VOS_VOID CNAS_HSM_ClearCacheMsgByIndex(
                       sizeof(CNAS_HSM_CACHE_MSG_INFO_STRU),
                       0x0,
                       sizeof(CNAS_HSM_CACHE_MSG_INFO_STRU));
-        /* Modified by w00176964 for CNAS内存裁剪, 2015-9-8, end */
     }
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_GetHighestPriCachedMsg
-Description     :   Get the most highest priority message in the cache message queue
-Input parameters:   CNAS_HSM_CACHE_MSG_QUEUE_STRU      *pstMsgQueue
-Outout parameters:
-Return Value    :   VOS_UINT8                           ucIndex
 
-Modify History  :
-1)  Date           : 2015-06-11
-    Author         : m00312079
-    Modify content : Create
- 2.Date            : 8/9/2015
-   Author          : w00176964
-   Modification    : CNAS内存裁剪
-*****************************************************************************/
 VOS_UINT8 CNAS_HSM_GetHighestPriCachedMsg(
      CNAS_HSM_CACHE_MSG_QUEUE_STRU      *pstMsgQueue
 )
@@ -435,9 +347,7 @@ VOS_UINT8 CNAS_HSM_GetHighestPriCachedMsg(
 
     for (ucLoop = 0; ucLoop < ucSize; ucLoop++)
     {
-        /* Modified by w00176964 for CNAS内存裁剪, 2015-9-8, begin */
         enTmpMsgPri = pstMsgQueue->astCacheMsg[ucLoop].enMsgPri;
-        /* Modified by w00176964 for CNAS内存裁剪, 2015-9-8, end */
 
         if (enTmpMsgPri < enMsgPri)
         {
@@ -449,42 +359,21 @@ VOS_UINT8 CNAS_HSM_GetHighestPriCachedMsg(
     return ucIndex;
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_GetCacheIndexByEventType
-Description     :   get hsm cache index by EventType
-Input parameters:   VOS_UINT32                          ulEventType
 
-Outout parameters:
-Return Value    :   VOS_UINT8
-
-Modify History  :
-1)  Date           : 2015-06-25
-    Author         : m00312079
-    Modify content : Create
-2)  Date           : 2015-08-31
-    Author         : y00307564
-    Modify content : DTS2015081400901 Modify
-3) Date            : 8/9/2015
-   Author          : w00176964
-   Modification    : CNAS内存裁剪
-*****************************************************************************/
 VOS_UINT8 CNAS_HSM_GetCacheIndexByEventType(
      VOS_UINT32                          ulEventType
 )
 {
     CNAS_HSM_CACHE_MSG_QUEUE_STRU      *pstMsgQueue;
     VOS_UINT8                           ucLoop;
-    /* Added by w00176964 for CNAS内存裁剪, 2015-9-8, begin */
     MSG_HEADER_STRU                    *pstCacheMsgHdr;
     VOS_UINT32                          ulCacheMsgEventType;
     REL_TIMER_MSG                      *pstTimerMsg;
-    /* Added by w00176964 for CNAS内存裁剪, 2015-9-8, end */
 
     pstMsgQueue  = CNAS_HSM_GetCacheMsgAddr();
 
     for (ucLoop = 0; ucLoop < pstMsgQueue->ucCacheMsgNum; ucLoop++)
     {
-        /* Modified by w00176964 for CNAS内存裁剪, 2015-9-8, begin */
         pstCacheMsgHdr = (MSG_HEADER_STRU *)(pstMsgQueue->astCacheMsg[ucLoop].pucMsgBuffer);
 
         if (VOS_NULL_PTR == pstCacheMsgHdr)
@@ -507,30 +396,12 @@ VOS_UINT8 CNAS_HSM_GetCacheIndexByEventType(
         {
             return ucLoop;
         }
-        /* Modified by w00176964 for CNAS内存裁剪, 2015-9-8, end */
     }
 
     return CNAS_HSM_INVAILD_CACHE_INDEX;
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_GetNextCachedMsg
-Description     :   Get next cached message in the cache message queue
-Input parameters:   NONE
-Outout parameters:  pstEntryMsg------the next cached message
-Return Value    :   VOS_UINT32
 
-Modify History  :
-1)  Date           : 2015-01-27
-    Author         : w00176964
-    Modify content : Create
-2)  Date           : 2015-06-11
-    Author         : m00312079
-    Modify content : Add the logic to process the highest priority message
- 3.Date            : 8/9/2015
-   Author          : w00176964
-   Modification    : CNAS内存裁剪
-*****************************************************************************/
 
 VOS_UINT32 CNAS_HSM_GetNextCachedMsg(
     CNAS_HSM_MSG_STRU                  *pstCachedMsg
@@ -538,10 +409,8 @@ VOS_UINT32 CNAS_HSM_GetNextCachedMsg(
 {
     CNAS_HSM_CACHE_MSG_QUEUE_STRU      *pstMsgQueue = VOS_NULL_PTR;
     VOS_UINT8                           ucIndex;
-    /* Added by w00176964 for CNAS内存裁剪, 2015-9-8, begin */
     MSG_HEADER_STRU                    *pstCacheMsgHdr;
     REL_TIMER_MSG                      *pstTimerMsg;
-    /* Added by w00176964 for CNAS内存裁剪, 2015-9-8, end */
 
     pstMsgQueue = CNAS_HSM_GetCacheMsgAddr();
 
@@ -554,7 +423,6 @@ VOS_UINT32 CNAS_HSM_GetNextCachedMsg(
 
     ucIndex = CNAS_HSM_GetHighestPriCachedMsg(pstMsgQueue);
 
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-8, begin */
     pstCacheMsgHdr = (MSG_HEADER_STRU *)pstMsgQueue->astCacheMsg[ucIndex].pucMsgBuffer;
 
     if (VOS_NULL_PTR == pstCacheMsgHdr)
@@ -579,7 +447,6 @@ VOS_UINT32 CNAS_HSM_GetNextCachedMsg(
     }
 
     pstCachedMsg->enMsgPri    = pstMsgQueue->astCacheMsg[ucIndex].enMsgPri;
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-8, end */
 
     CNAS_HSM_ClearCacheMsgByIndex(ucIndex);
 
@@ -696,9 +563,7 @@ VOS_UINT32 CNAS_HSM_GetIntMsgNum(VOS_VOID)
     return pstMsgQueue->ucIntMsgNum;
 }
 
-/* Deleted by w00176964 for CNAS内存裁剪, 2015-9-18, begin */
 
-/* Deleted by w00176964 for CNAS内存裁剪, 2015-9-18, end */
 
 
 CNAS_HSM_HARDWARE_ID_INFO_STRU* CNAS_HSM_GetHardwareIdInfo(VOS_VOID)
@@ -1104,9 +969,7 @@ VOS_VOID CNAS_HSM_InitCtx(
 
     CNAS_HSM_InitCurFsmCtx(&pstHsmCtx->stCurFsmCtx);
 
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-18, begin */
     CNAS_HSM_InitCacheMsgQueue(enInitType, &(pstHsmCtx->stCacheMsgQueue));
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-18, end */
 
     CNAS_HSM_InitIntMsgQueue(&(pstHsmCtx->stIntMsgQueue));
 
@@ -1204,22 +1067,7 @@ VOS_VOID CNAS_HSM_ResetUATIReqFailedCnt(VOS_VOID)
     (CNAS_HSM_GetHsmCtxAddr()->stCurFsmCtx.stUatiReqFsmCtx.ucUATIReqFailedCnt) = 0;
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_SetCurrMainState
-Description     :   Set Current Main State
-Input parameters:   ulMainState---the main state
-Outout parameters:  None
-Return Value    :   VOS_VOID
 
-Modify History  :
-1)  Date           : 2015-01-27
-    Author         : w00176964
-    Modify content : Create
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-*****************************************************************************/
 
 VOS_VOID  CNAS_HSM_SetCurrMainState(
     CNAS_HSM_L1_STA_ENUM_UINT32         enMainState
@@ -1734,61 +1582,19 @@ VOS_UINT8 CNAS_HSM_GetFirstSysAcqFlag(VOS_VOID)
     return (CNAS_HSM_GetSessionCtrlInfoAddr()->ucIsFirstSysAcq);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSM_SetActivatedSessionType
- 功能描述  : set current session type
- 输入参数  : enSessionType EHSM_HSM_SESSION_TYPE_ENUM_UINT32
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月30日
-    作    者   : x00314862
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSM_SetReqSessionType(CNAS_HSM_SESSION_TYPE_ENUM_UINT8 enSessionType)
 {
     CNAS_HSM_GetSessionCtrlInfoAddr()->enReqSessionType = enSessionType;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSM_GetReqSessionType
- 功能描述  : get req session type
- 输入参数  : 无
- 输出参数  : enSessionType EHSM_HSM_SESSION_TYPE_ENUM_UINT32
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月30日
-    作    者   : x00314862
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_HSM_SESSION_TYPE_ENUM_UINT8 CNAS_HSM_GetReqSessionType(VOS_VOID)
 {
     return CNAS_HSM_GetSessionCtrlInfoAddr()->enReqSessionType;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSM_SetNegoSessionType
- 功能描述  : set nego session type
- 输入参数  : enSessionType EHSM_HSM_SESSION_TYPE_ENUM_UINT32
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月30日
-    作    者   : x00314862
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSM_SetNegoSessionType(
     CNAS_HSM_SESSION_TYPE_ENUM_UINT8 enNegoSessionType
 )
@@ -1796,105 +1602,31 @@ VOS_VOID CNAS_HSM_SetNegoSessionType(
     CNAS_HSM_GetSessionCtrlInfoAddr()->enNegoSessionType = enNegoSessionType;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSM_GetNegoSessionType
- 功能描述  : get cur session type
- 输入参数  : 无
- 输出参数  : enSessionType EHSM_HSM_SESSION_TYPE_ENUM_UINT32
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月30日
-    作    者   : x00314862
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_HSM_SESSION_TYPE_ENUM_UINT8 CNAS_HSM_GetNegoSessionType(VOS_VOID)
 {
     return CNAS_HSM_GetSessionCtrlInfoAddr()->enNegoSessionType;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSM_ClearNegoSessionType
- 功能描述  : clear current session type
- 输入参数  : 无
- 输出参数  :
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月03日
-    作    者   : x00314862
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSM_ClearNegoSessionType(VOS_VOID)
 {
     CNAS_HSM_GetSessionCtrlInfoAddr()->enNegoSessionType = CNAS_HSM_SESSION_TYPE_BUTT;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSM_SetLastSessionType
- 功能描述  : set current session type
- 输入参数  : enSessionType EHSM_HSM_SESSION_TYPE_ENUM_UINT32
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月30日
-    作    者   : x00314862
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSM_SetLastSessionType(CNAS_HSM_SESSION_TYPE_ENUM_UINT8 enSessionType)
 {
     CNAS_HSM_GetLastHrpdSessionInfoCtxAddr()->enSessionType = enSessionType;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSM_GetLastSessionType
- 功能描述  : get current session type
- 输入参数  : 无
- 输出参数  : enSessionType EHSM_HSM_SESSION_TYPE_ENUM_UINT32
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月30日
-    作    者   : x00314862
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_HSM_SESSION_TYPE_ENUM_UINT8 CNAS_HSM_GetLastSessionType(VOS_VOID)
 {
     return CNAS_HSM_GetLastHrpdSessionInfoCtxAddr()->enSessionType;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSM_IsCurrentCapSupportEhrpd
- 功能描述  : Judge if eHrpd is supported in current scenrio
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_BOOL VOS_TRUE represent support eHRPD,else not suport
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月30日
-    作    者   : x00314862
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年12月21日
-    作    者   : m00312079
-    修改内容   : DTS2015120208895,使用NV3600来判断UE是否支持EHRPD
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSM_IsCurrentCapSupportEhrpd(VOS_VOID)
 {
     VOS_UINT8                                               ucIsEhrpdSupportFlag;
@@ -1995,21 +1727,7 @@ VOS_VOID CNAS_HSM_ResetWaitCardReadCnfFlag(VOS_VOID)
     pstCardReadInfo->ulWaitCardReadFlag = CNAS_HSM_WAIT_CARD_READ_CNF_FLAG_NULL;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSM_GetHrpdAmpNegAttribAddr
- 功能描述  : 获取HRPD SESSION中AMP协商参数首地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : HRPD SESSION中AMP协商参数首地址
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年05月30日
-   作    者   : y00307564
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_HSM_HRPD_AMP_NEG_ATTRIB_STRU*  CNAS_HSM_GetHrpdAmpNegAttribAddr(VOS_VOID)
 {
     return &(CNAS_HSM_GetHsmCtxAddr()->stHrpdAmpNegAttibInfo);

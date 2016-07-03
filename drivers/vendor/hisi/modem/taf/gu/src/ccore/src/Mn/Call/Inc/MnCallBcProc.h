@@ -1,28 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : MnCallBcproc.h
-  版 本 号   : 初稿
-  作    者   : 丁庆 49431
-  生成日期   : 2006年12月1日
-  最近修改   : 2006年12月1日
-  功能描述   : 定义CCA能力参数处理子模块的外部接口
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2006年12月1日
-    作    者   : 丁庆 49431
-    修改内容   : 创建文件
-
-  2.日    期   : 2010年4月7日
-    作    者   : zhoujun /z40661
-    修改内容   : 可配置当前CODEC类型
-
-  3.日    期   : 2011年04月23日
-    作    者   : L00171473
-    修改内容   : for V7R1 porting, 去掉BUTT后的逗号，避免编译WARNING
-******************************************************************************/
 
 #ifndef _CCA_CAPABILITY_H_
 #define _CCA_CAPABILITY_H_
@@ -171,21 +147,7 @@ typedef union
 
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_CapaProcInit
- 功能描述  : 初始化Capability Proc模块。主要是初始化语音编码版本列表和
-             BC字段信息列表。
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 初始化的结果，VOS_OK表示初始化成功，VOS_ERROR表示初始化失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2006年12月1日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID MN_CALL_CapaProcInit(VOS_VOID);
 
 
@@ -255,9 +217,7 @@ VOS_UINT32  MN_CALL_BuildBcForSns(
     VOS_UINT8                           *pucBcRepInd
 );
 
-/* Deleted by w00176964 for VoLTE_PhaseIII 项目, 2013-12-16, begin */
 
-/* Deleted by w00176964 for VoLTE_PhaseIII 项目, 2013-12-16, end */
 
 VOS_UINT32 MN_CALL_ConfigGsmCapaProc(
     NAS_OM_GSM_CODEC_CONFIG_ENUM_U8     enCapaConfig
@@ -281,9 +241,7 @@ VOS_VOID  MN_CALL_FillUmtsSupCodecList(
 );
 
 
-/* Deleted by w00176964 for VoLTE_PhaseIII 项目, 2013-12-16, begin */
 
-/* Deleted by w00176964 for VoLTE_PhaseIII 项目, 2013-12-16, end */
 
 #if ((VOS_OS_VER == VOS_WIN32) || (VOS_OS_VER == VOS_NUCLEUS))
 #pragma pack()

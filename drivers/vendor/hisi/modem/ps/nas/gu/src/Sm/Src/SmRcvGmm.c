@@ -157,22 +157,7 @@ VOS_UINT8 SM_ComSaveTICheck(
     return ucRet;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_ComSaveLlcSapi
- 功能描述  : 存储IE项中LLC SAPI的内容
- 输入参数  : VOS_UINT8      **ppucMsg - 网侧消息
-             VOS_UINT32     *pulSum   - 计数器
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年6月29日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_SM_ComSaveLlcSapi(
     VOS_UINT8                           **ppucMsg,
     VOS_UINT32                          *pulSum
@@ -192,23 +177,7 @@ VOS_VOID NAS_SM_ComSaveLlcSapi(
 }
 
 #if (FEATURE_ON == FEATURE_IPV6)
-/*****************************************************************************
- 函 数 名  : NAS_SM_ComSaveSmCauseTwo
- 功能描述  : 存储IE项中SM CAUSE的内容
- 输入参数  : VOS_UINT8      **ppucMsg - 网侧消息
-             VOS_UINT32     *pulSum   - 计数器
- 输出参数  : SM_MSG_IE_COMMON_STRU  *pstIE    - 存储IE内容的结构指针
- 返 回 值  : VOS_VOID
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2011年5月13日
-    作    者   : s62952
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_SM_ComSaveSmCauseTwo(
     VOS_UINT32                          ulPduLen,
     VOS_UINT8                         **ppucMsg,
@@ -252,23 +221,7 @@ VOS_VOID NAS_SM_ComSaveSmCauseTwo(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_ComProcUnknowIEs
- 功能描述  : 处理不识别的IE
- 输入参数  : VOS_UINT32             ulPduLen   - 网侧消息长度
-             VOS_UINT8              **ppucMsg  - 网侧消息
-             VOS_UINT32             *pulSum    - 计数器
- 输出参数  : VOS_UINT8
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年6月29日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_SM_ComProcUnknowIE(
     VOS_UINT32                          ulPduLen,
     VOS_UINT8                           **ppucMsg,
@@ -322,23 +275,7 @@ VOS_UINT32 NAS_SM_ComProcUnknowIE(
     return SM_RETURN_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_ComSaveIEValue
- 功能描述  : 存储Optional项中的IE内容
- 输入参数  : VOS_UINT32             ulPduLen  - 网侧消息长度
-             VOS_UINT8              **ppucMsg - 网侧消息
-             VOS_UINT32             *pulSum   - 计数器
- 输出参数  : SM_MSG_IE_COMMON_STRU  *pstIE    - 存储IE内容的结构指针
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年6月29日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_SM_ComSaveIEValue(
     VOS_UINT32                          ulPduLen,
     VOS_UINT8                           **ppucMsg,
@@ -738,17 +675,7 @@ SM_NW_MSG_STRU    *SM_ComReqPdpCntxtActMsgCheck(
     return pMsgIE;                                                              /* 返回存储的结构体指针                     */
 }
 
-/*******************************************************************************
-  Module:      SM_ComModifyPdpCntxtAccCheck
-  Function:    检查存储网侧发给MS的MODIFY PDP CONTEXT ACCEPT消息的处理
-  Input:       VOS_UINT8   *pMsg                      网侧消息
-               VOS_UINT32   ulSmPduLen                 网侧消息长度
-  Output:      VOS_VOID
-  NOTE:
-  Return:      SM_NW_MSG_STRU    *pMsgIE
-  History:
-      1.  张志勇      2003.12.08   新规作成
-*******************************************************************************/
+
 SM_NW_MSG_STRU    *SM_ComModifyPdpCntxtAccCheck(
                                                      VOS_UINT8   *pMsg,             /* 网侧消息                                 */
                                                      VOS_UINT32   ulSmPduLen         /* 网侧消息长度                             */
@@ -808,17 +735,7 @@ SM_NW_MSG_STRU    *SM_ComModifyPdpCntxtAccCheck(
     return pMsgIE;                                                              /* 返回存储的结构体指针                     */
 }
 
-/*******************************************************************************
-  Module:      SM_ComModifyPdpCntxtReqCheck
-  Function:    检查存储网侧发给MS的MODIFY PDP CONTEXT REQUEST消息的处理
-  Input:       VOS_UINT8   *pMsg                      网侧消息
-               VOS_UINT32   ulSmPduLen                 网侧消息长度
-  Output:      VOS_VOID
-  NOTE:
-  Return:      SM_NW_MSG_STRU    *pMsgIE
-  History:
-      1.  张志勇      2003.12.08   新规作成
-*******************************************************************************/
+
 SM_NW_MSG_STRU    *SM_ComModifyPdpCntxtReqCheck(
                                                      VOS_UINT8   *pMsg,             /* 网侧消息                                 */
                                                      VOS_UINT32   ulSmPduLen         /* 网侧消息长度                             */
@@ -1097,17 +1014,7 @@ SM_NW_MSG_STRU    *SM_ComActSecPdpCntxtRejCheck(
     return pMsgIE;                                                              /* 返回存储的结构体指针                     */
 }
 
-/*******************************************************************************
-  Module:      SM_ComModifyPdpCntxtRejCheck
-  Function:    检查存储网侧发给MS的MODIFY PDP CONTEXT REJECT消息的处理
-  Input:       VOS_UINT8   *pMsg                      网侧消息
-               VOS_UINT32   ulSmPduLen                 网侧消息长度
-  Output:      VOS_VOID
-  NOTE:
-  Return:      SM_NW_MSG_STRU    *pMsgIE
-  History:
-      1.  张志勇      2003.12.08   新规作成
-*******************************************************************************/
+
 SM_NW_MSG_STRU    *SM_ComModifyPdpCntxtRejCheck(
                                                      VOS_UINT8   *pMsg,             /* 网侧消息                                 */
                                                      VOS_UINT32   ulSmPduLen         /* 网侧消息长度                             */
@@ -1292,23 +1199,7 @@ SM_NW_MSG_STRU    *SM_ComDeActPdpCntxtAccCheck(
 }
 /*lint +e438 +e830*/
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_ComMsgCheck
- 功能描述  : 检查存储网侧发给MS的消息
- 输入参数  : VOS_UINT8              ucMsgType   - 消息类型
-             VOS_UINT32             ulPduLen    - 网侧消息长度
-             VOS_UINT8              *pucMsg     - 网侧消息
- 输出参数  : SM_NW_MSG_STRU         **ppstMsgIe - 存储网侧消息内容
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月9日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_SM_ComMsgCheck(
     VOS_UINT8                           ucMsgType,
     VOS_UINT32                          ulPduLen,
@@ -1378,22 +1269,7 @@ VOS_UINT32 NAS_SM_ComMsgCheck(
     return ucStatus;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_ValidNasMsg
- 功能描述  : 检查L3消息，并获取SM消息类型和TI
- 输入参数  : GMMSM_DATA_IND_STRU    *pRcvMsg    - 网侧消息
- 输出参数  : VOS_UINT8              *pucMsgType - 消息类型
-             VOS_UINT8              *pucTi      - TI值
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月9日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_SM_ValidNasMsg(
     GMMSM_DATA_IND_STRU                 *pRcvMsg,
     VOS_UINT8                           *pucMsgType,
@@ -1455,24 +1331,7 @@ VOS_UINT32 NAS_SM_ValidNasMsg(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_RcvGmmSmDataInd
- 功能描述  : 接收GMMSM_DATA_IND消息处理
- 输入参数  : GMMSM_STATUS_IND_STRU      *pRcvMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年6月25日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-  2.日    期  : 2013年03月13日
-    作    者  : z00214637
-    修改内容  : BodySAR项目
-
-*****************************************************************************/
 VOS_VOID NAS_SM_RcvGmmSmDataInd(
     GMMSM_DATA_IND_STRU                 *pstRcvMsg
 )
@@ -1562,42 +1421,7 @@ VOS_VOID NAS_SM_RcvGmmSmDataInd(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : SM_RcvGmmSmEstabishCnf
- 功能描述  : 接收GMMSM_ESTABLISH_CNF消息处理
- 输入参数  : GMMSM_ESTABLISH_CNF_STRU           *pRcvMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2003年12月09日
-    作    者   : 郑伟
-    修改内容   : 新生成函数
-
-  2.日    期   : 2010年12月21日
-    作    者   : A00165503
-    修改内容   : 问题单号: DTS2010122305913，CS Only下PDP去激活后GMM在完成Detach前，
-                 又发起PDP激活，导致SM在受到GMM的Detach指示后，做本地去激活
-
-  3.日    期   : 2011年5月5日
-    作    者   : c00173809
-    修改内容   : 问题单号: DTS2011042804771,UE PPP拨号失败.在GPRS挂起时,用户PDP激活,
-                 然后解挂后,RAU失败原因为9,SM重发PDP激活,GMM ATTACH失败,导致UE与PPP的
-                 状态不一致.
-
-  4.日    期   : 2014年6月28日
-    作    者   : A00165503
-    修改内容   : DSDS III 项目, 信令流程结束后释放资源
-
-  5.日    期   : 2015年1月12日
-    作    者   : A00165503
-    修改内容   : DTS2015011001363: PS域注册成功后, 处理缓存未释放内存
-  6.日    期   : 2015年4月28日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-*****************************************************************************/
 VOS_VOID SM_RcvGmmSmEstabishCnf(
     GMMSM_ESTABLISH_CNF_STRU           *pRcvMsg                                 /* 接收到的消息                             */
 )
@@ -1733,31 +1557,7 @@ VOS_VOID SM_RcvGmmSmEstabishCnf(
 }
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_SM_ProcGmmLteMoDetachInd
- 功能描述  : 处理GMM的LTE去附着指示
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月10日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2014年6月28日
-    作    者   : A00165503
-    修改内容   : DSDS III 项目, 信令流程结束后释放资源
-
-  3.日    期   : 2014年12月06日
-    作    者   : A00165503
-    修改内容   : DTS2014120207400: 连续去激活多个PDP, 网侧不释放RRC连接
-  4.日    期   : 2015年4月28日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-*****************************************************************************/
 VOS_VOID NAS_SM_ProcGmmLteMoDetachInd(VOS_VOID)
 {
     NAS_SM_PDP_CONTEXT_INFO_STRU       *pstPdpCtxInfo = VOS_NULL_PTR;
@@ -1807,59 +1607,7 @@ VOS_VOID NAS_SM_ProcGmmLteMoDetachInd(VOS_VOID)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : SM_RcvGmmSmStatusInd
- 功能描述  : 接收GMMSM_STATUS_IND消息处理
- 输入参数  : GMMSM_STATUS_IND_STRU         *pRcvMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2003年12月09日
-    作    者   : 郑伟
-    修改内容   : 新生成函数
-
-  2.日    期   : 2010年10月25日
-    作    者   : z00161729
-    修改内容   : CS Only情况,PDP去激活后,SM需要通过pdp_deactive_ind消息通知GMM进行detach
-
-  3.日    期   : 2010年12月21日
-    作    者   : A00165503
-    修改内容   : 问题单号: DTS2010122305913，CS Only下PDP去激活后GMM在完成Detach前，
-                 又发起PDP激活，导致SM在受到GMM的Detach指示后，做本地去激活
-
-  4.日    期   : 2012-07-27
-    作    者   : A00165503
-    修改内容   : DTS2012072600458:cs ps mode 2 L下联合注册成功，用户detach ps disable lte
-                 到W搜网成功cs注册成功，gmm 收到lmm的mo detach ind未通知sm当前detach状态，
-                 导致后续ndis拨号sm没通知gmm attach拨号失败
-
-  5.日    期   : 2012年08月07日
-    作    者   : f00179208
-    修改内容   : 问题单:DTS2012080604402, PDP激活去激活后发生内存泄露
-
-  6.日    期   : 2014年3月10日
-    作    者   : A00165503
-    修改内容   : DTS2014030708580: PDP激活过程中搜LTE, 上策下发PS域去附着请
-                 求, LTE本地去附着后, SM状态维护异常, 没有终止PDP激活流程
-
-  7.日    期   : 2014年05月05日
-    作    者   : Y00213812
-    修改内容   : 如果当前为正在注册状态需要停止定时器
-
-  8.日    期   : 2014年6月28日
-    作    者   : A00165503
-    修改内容   : DSDS III 项目, 信令流程结束后释放资源
-
-  9.日    期   : 2014年12月06日
-    作    者   : A00165503
-    修改内容   : DTS2014120207400: 连续去激活多个PDP, 网侧不释放RRC连接
-  10.日    期   : 2015年4月28日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-*****************************************************************************/
 VOS_VOID SM_RcvGmmSmStatusInd(GMMSM_STATUS_IND_STRU *pRcvMsg)
 {
     VOS_UINT8                           i;
@@ -1974,36 +1722,7 @@ VOS_VOID SM_RcvGmmSmStatusInd(GMMSM_STATUS_IND_STRU *pRcvMsg)
 }
 
 
-/*******************************************************************************
-  Module:   SM_RcvGmmSmServiceRej
-  Function: 接收GMMSM_SERVICE_REJ消息处理
-  Input:    VOS_VOID
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.   L47619  2007.10.27   Create function
-  2. 日    期  : 2009年3月11日
-     作    者  : ouyangfei 00132663
-     修改内容  : 根据问题单号：AT2D09927，如果PS域不可用，回复SM SERVICE REJ，
-                 中止当前请求，避免SM启定时器，重复发起请求。
 
-  3.日    期   : 2010年10月25日
-    作    者   : z00161729
-    修改内容   : CS Only情况,PDP去激活后,SM需要通过pdp_deactive_ind消息通知GMM进行detach
-
-  4.日    期   : 2012年03月05日
-    作    者   : f00179208
-    修改内容   : 问题单号:DTS2012022405416，G下正常驻留，发起PDP MOD REQ,
-                 PDP修改完成异系统到W下，PS被BAR，SM没有GMM的处理拒绝消息
-
-  5.日    期   : 2014年6月28日
-    作    者   : A00165503
-    修改内容   : DSDS III 项目, 信令流程结束后释放资源
-  6.日    期   : 2015年4月28日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-*******************************************************************************/
 VOS_VOID SM_RcvGmmSmServiceRej(GMMSM_SERVICE_REJ_STRU  *pRcvMsg)
 {
     VOS_UINT8                           i;
@@ -2067,30 +1786,7 @@ VOS_VOID SM_RcvGmmSmServiceRej(GMMSM_SERVICE_REJ_STRU  *pRcvMsg)
 }
 
 
-/*******************************************************************************
-  Module:   SM_RcvGmmSysInfoInd
-  Function: 接收GMMSM_SYS_INFO_IND_STRU消息处理
-  Input:    GMMSM_SYS_INFO_IND_STRU *pRcvMsg
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1. L47619  2009.05.06   Create function
-  2.日    期   : 2010年10月25日
-    作    者   : z00161729
-    修改内容   : CS Only情况,PDP去激活后,SM需要通过pdp_deactive_ind消息通知GMM进行detach
 
-  3.日    期   : 2014年6月28日
-    作    者   : A00165503
-    修改内容   : DSDS III 项目, 信令流程结束后释放资源
-
-  4.日    期   : 2014年12月06日
-    作    者   : A00165503
-    修改内容   : DTS2014120207400: 连续去激活多个PDP, 网侧不释放RRC连接
-  5.日    期   : 2015年4月28日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-*******************************************************************************/
 VOS_VOID SM_RcvGmmSysInfoInd(GMMSM_SYS_INFO_IND_STRU *pRcvMsg)
 {
     VOS_UINT8                           ucCntxtIndex;
@@ -2174,32 +1870,7 @@ VOS_VOID SM_RcvGmmSysInfoInd(GMMSM_SYS_INFO_IND_STRU *pRcvMsg)
 }
 
 
-/*******************************************************************************
-  Module:   SM_RcvGmmSmPdpStatusInd
-  Function: 接收GMMSM_PDP_STATUS_IND消息处理
-  Input:    GMMSM_PDP_STATUS_IND_STRU *pRcvMsg
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1. L47619  2007.10.27   Create function
 
-  2.日    期   : 2010年10月25日
-    作    者   : z00161729
-    修改内容   : CS Only情况,PDP去激活后,SM需要通过pdp_deactive_ind消息通知GMM进行detach
-
-  3.日    期   : 2012年3月17日
-    作    者   : z00161729
-    修改内容   : V7R1C50支持ISR修改
-
-  4.日    期   : 2014年6月28日
-    作    者   : A00165503
-    修改内容   : DSDS III 项目, 信令流程结束后释放资源
-
-  5.日    期   : 2014年12月06日
-    作    者   : A00165503
-    修改内容   : DTS2014120207400: 连续去激活多个PDP, 网侧不释放RRC连接
-*******************************************************************************/
 VOS_VOID SM_RcvGmmSmPdpStatusInd(GMMSM_PDP_STATUS_IND_STRU *pRcvMsg)
 {
     VOS_UINT8       i;
@@ -2335,23 +2006,7 @@ VOS_VOID SM_RcvGmmRelInd(GMMSM_REL_IND_STRU *pRcvMsg)
 }
 
 
-/*******************************************************************************
-  Module:   SM_RcvNwReqPdpCntxtActMsg
-  Function: 接收REQUEST PDP CONTEXT ACTIVATION消息的处理
-  Input:    SM_NW_MSG_STRU     *pMsgIe
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.郑 伟   2003.12.09   新规作成
-  2.日    期   : 2012年8月25日
-    作    者   : m00217266
-    修改内容   : 修改接口SM_SndTafSmPdpDeActInd原因值类型,修改上报错误码
 
-  3.日    期   : 2014年12月06日
-    作    者   : A00165503
-    修改内容   : DTS2014120207400: 连续去激活多个PDP, 网侧不释放RRC连接
-*******************************************************************************/
 VOS_VOID SM_RcvNwReqPdpCntxtActMsg(SM_NW_MSG_STRU *pMsgIe)
 {
     VOS_UINT8       i;
@@ -2505,42 +2160,7 @@ VOS_VOID SM_RcvNwReqPdpCntxtActMsg(SM_NW_MSG_STRU *pMsgIe)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SM_RcvNwActPdpCntxtAccMsg
- 功能描述  : 接收ACTIVATE PDP CONTEXT ACCEPT消息的处理
- 输入参数  : SM_NW_MSG_STRU     *pMsgIe
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2003年12月10日
-    作    者   : 郑 伟
-    修改内容   : 新生成函数
-
-  2.日    期   : 2010年11月10日
-    作    者   : A00165503
-    修改内容   : 问题单号:DTS2010101601395，SM-STATUS报给网侧的原因值错误
-
-  3.日    期   : 2010年11月10日
-    作    者   : A00165503
-    修改内容   : 问题单号: DTS2011012600147，UE连续发送两条PDP激活请求给网侧，
-                 网侧连续下发两条PDP ACTIVATE ACCEPT消息，且消息中的IP地址不
-                 同，有可能导致无法数传
-
-  4.日    期   : 2012年04月09日
-    作    者   : s62952
-    修改内容   : 问题单号:DTS2012031904228
-
-  5.日    期   : 2014年6月28日
-    作    者   : A00165503
-    修改内容   : DSDS III 项目, 信令流程结束后释放资源
-
-  6.日    期   : 2014年12月06日
-    作    者   : A00165503
-    修改内容   : DTS2014120207400: 连续去激活多个PDP, 网侧不释放RRC连接
-*****************************************************************************/
 VOS_VOID SM_RcvNwActPdpCntxtAccMsg(SM_NW_MSG_STRU *pMsgIe)
 {
     VOS_UINT8                           ucCntxtIndex;
@@ -2640,32 +2260,7 @@ VOS_VOID SM_RcvNwActPdpCntxtAccMsg(SM_NW_MSG_STRU *pMsgIe)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SM_RcvNwActPdpCntxtRejMsg
- 功能描述  : 接收ACTIVATE PDP CONTEXT REJECT消息的处理
- 输入参数  : SM_NW_MSG_STRU     *pMsgIe
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2003年12月10日
-    作    者   : 郑 伟
-    修改内容   : 新生成函数
-
-  2.日    期   : 2010年10月25日
-    作    者   : z00161729
-    修改内容   : CS Only情况,PDP去激活后,SM需要通过pdp_deactive_ind消息通知GMM进行detach
-
-  3.日    期   : 2010年11月10日
-    作    者   : A00165503
-    修改内容   : 问题单号:DTS2010101601395，SM-STATUS报给网侧的原因值错误
-
-  4.日    期   : 2014年6月28日
-    作    者   : A00165503
-    修改内容   : DSDS III 项目, 信令流程结束后释放资源
-*****************************************************************************/
 VOS_VOID SM_RcvNwActPdpCntxtRejMsg(SM_NW_MSG_STRU *pMsgIe)
 {
     VOS_UINT8                           ucCntxtIndex;
@@ -2726,32 +2321,7 @@ VOS_VOID SM_RcvNwActPdpCntxtRejMsg(SM_NW_MSG_STRU *pMsgIe)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SM_RcvNwActSecPdpCntxtAccMsg
- 功能描述  : 接收ACTIVATE SECONDARY PDP CONTEXT ACCEPT消息的处理
- 输入参数  : SM_NW_MSG_STRU     *pMsgIe
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2003年12月10日
-    作    者   : 郑 伟
-    修改内容   : 新生成函数
-
-  2.日    期   : 2010年11月10日
-    作    者   : A00165503
-    修改内容   : 问题单号:DTS2010101601395，SM-STATUS报给网侧的原因值错误
-
-  3.日    期   : 2014年6月28日
-    作    者   : A00165503
-    修改内容   : DSDS III 项目, 信令流程结束后释放资源
-
-  4.日    期   : 2014年12月06日
-    作    者   : A00165503
-    修改内容   : DTS2014120207400: 连续去激活多个PDP, 网侧不释放RRC连接
-*****************************************************************************/
 VOS_VOID SM_RcvNwActSecPdpCntxtAccMsg(SM_NW_MSG_STRU *pMsgIe)
 {
     VOS_UINT8                           ucCntxtIndex;
@@ -2797,28 +2367,7 @@ VOS_VOID SM_RcvNwActSecPdpCntxtAccMsg(SM_NW_MSG_STRU *pMsgIe)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SM_RcvNwActSecPdpCntxtRejMsg
- 功能描述  :
- 输入参数  : SM_NW_MSG_STRU     *pMsgIe
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2003年12月10日
-    作    者   : 郑 伟
-    修改内容   : 新生成函数
-
-  2.日    期   : 2010年11月10日
-    作    者   : A00165503
-    修改内容   : 问题单号:DTS2010101601395，SM-STATUS报给网侧的原因值错误
-
-  3.日    期   : 2014年6月28日
-    作    者   : A00165503
-    修改内容   : DSDS III 项目, 信令流程结束后释放资源
-*****************************************************************************/
 VOS_VOID SM_RcvNwActSecPdpCntxtRejMsg(SM_NW_MSG_STRU *pMsgIe)
 {
     VOS_UINT8       i,j;
@@ -2874,23 +2423,7 @@ VOS_VOID SM_RcvNwActSecPdpCntxtRejMsg(SM_NW_MSG_STRU *pMsgIe)
     return;
 }
 
-/*******************************************************************************
-  Module:   SM_RcvNwModifyPdpCntxtReqMsg
-  Function: 接收MODIFY PDP CONTEXT REQUEST消息的处理
-  Input:    SM_NW_MSG_STRU     *pMsgIe
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.   郑 伟   2003.12.10   新规作成
 
-  2.日    期   : 2014年6月28日
-    作    者   : A00165503
-    修改内容   : DSDS III 项目, 信令流程发起前申请资源
-  3.日    期   : 2015年4月28日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-*******************************************************************************/
 VOS_VOID SM_RcvNwModifyPdpCntxtReqMsg(SM_NW_MSG_STRU *pMsgIe)
 {
     VOS_UINT8               ucCntxtIndex;
@@ -2963,32 +2496,7 @@ VOS_VOID SM_RcvNwModifyPdpCntxtReqMsg(SM_NW_MSG_STRU *pMsgIe)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SM_RcvNwModifyPdpCntxtAccMsg
- 功能描述  : 接收MODIFY PDP CONTEXT ACCEPT消息的处理
- 输入参数  : SM_NW_MSG_STRU     *pMsgIe
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2003年12月10日
-    作    者   : 郑 伟
-    修改内容   : 新生成函数
-
-  2.日    期   : 2010年11月10日
-    作    者   : A00165503
-    修改内容   : 问题单号:DTS2010101601395，SM-STATUS报给网侧的原因值错误
-
-  3.日    期   : 2012年3月31日
-    作    者   : z00161729
-    修改内容   : 支持ISR修改
-
-  4.日    期   : 2014年6月28日
-    作    者   : A00165503
-    修改内容   : DSDS III 项目, 信令流程结束后释放资源
-*****************************************************************************/
 VOS_VOID SM_RcvNwModifyPdpCntxtAccMsg(SM_NW_MSG_STRU *pMsgIe)
 {
     VOS_UINT8               ucCntxtIndex;
@@ -3045,28 +2553,7 @@ VOS_VOID SM_RcvNwModifyPdpCntxtAccMsg(SM_NW_MSG_STRU *pMsgIe)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SM_RcvNwModifyPdpCntxtRejMsg
- 功能描述  : 接收MODIFY PDP CONTEXT REJECT消息的处理
- 输入参数  : SM_NW_MSG_STRU     *pMsgIe
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2003年12月10日
-    作    者   : 郑 伟
-    修改内容   : 新生成函数
-
-  2.日    期   : 2010年11月10日
-    作    者   : A00165503
-    修改内容   : 问题单号:DTS2010101601395，SM-STATUS报给网侧的原因值错误
-
-  3.日    期   : 2014年6月28日
-    作    者   : A00165503
-    修改内容   : DSDS III 项目, 信令流程结束后释放资源
-*****************************************************************************/
 VOS_VOID SM_RcvNwModifyPdpCntxtRejMsg(SM_NW_MSG_STRU *pMsgIe)
 {
     VOS_UINT8       ucCntxtIndex;
@@ -3105,36 +2592,7 @@ VOS_VOID SM_RcvNwModifyPdpCntxtRejMsg(SM_NW_MSG_STRU *pMsgIe)
     return;
 }
 
-/*******************************************************************************
-  Module:   SM_RcvNwDeActPdpCntxtReqMsg
-  Function: 接收DEACTIVATE PDP CONTEXT REQUEST消息的处理
-  Input:    SM_NW_MSG_STRU     *pMsgIe
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.郑 伟   2003.12.10   新规作成
 
-  2.日    期   : 2010年10月25日
-    作    者   : z00161729
-    修改内容   : CS Only情况,PDP去激活后,SM需要通过pdp_deactive_ind消息通知GMM进行detach
-
-  3.日    期   : 2014年6月28日
-    作    者   : A00165503
-    修改内容   : DSDS III 项目, 信令流程发起前申请资源
-
-  4.日    期   : 2014年12月06日
-    作    者   : A00165503
-    修改内容   : DTS2014120207400: 连续去激活多个PDP, 网侧不释放RRC连接
-
-  5.日    期   : 2015年4月28日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-
-  6.日    期   : 2015年7月23日
-    作    者   : wx270776
-    修改内容   : OM融合
-*******************************************************************************/
 VOS_VOID SM_RcvNwDeActPdpCntxtReqMsg(SM_NW_MSG_STRU *pMsgIe)
 {
     VOS_UINT8               i;
@@ -3142,9 +2600,7 @@ VOS_VOID SM_RcvNwDeActPdpCntxtReqMsg(SM_NW_MSG_STRU *pMsgIe)
     VOS_UINT8               ucAddrIndex;
     VOS_UINT8               ucLinkNsapi;
     VOS_UINT8               ucInitType;
-    /* Deleted by wx270776 for OM融合, 2015-7-23, begin */
 
-    /* Deleted by wx270776 for OM融合, 2015-7-23, end */
 
     ucCntxtIndex = g_TiMapToNsapi[pMsgIe->ucTi];                                /* 根据TI获取ucCntxtIndex                   */
 
@@ -3183,8 +2639,6 @@ VOS_VOID SM_RcvNwDeActPdpCntxtReqMsg(SM_NW_MSG_STRU *pMsgIe)
                 SM_TRUE);
 
             /* 绿色通道 */
-            /* Deleted by wx270776 for OM融合, 2015-7-23, begin */
-            /* Deleted by wx270776 for OM融合, 2015-7-23, end */
 
             for(i=0;i<g_SmPdpAddrApn.aPdpAddrlist[ucAddrIndex].ucNsapiCnt;i++)
             {                                                                   /* Nsapi列表                                */
@@ -3230,8 +2684,6 @@ VOS_VOID SM_RcvNwDeActPdpCntxtReqMsg(SM_NW_MSG_STRU *pMsgIe)
                     SM_FALSE);
 
                 /* 绿色通道 */
-                /* Deleted by wx270776 for OM融合, 2015-7-23, begin */
-                /* Deleted by wx270776 for OM融合, 2015-7-23, end */
                 SM_ComClearPdpCntxt(ucCntxtIndex);                              /* 释放实体                                 */
                 SM_ComDelNsapiFromAddr(ucAddrIndex,ucCntxtIndex);               /* 从PDP Addr and Apn实体中删除Nsapi        */
                 g_SmEntity.aPdpCntxtList[ucCntxtIndex].ucState
@@ -3255,36 +2707,7 @@ VOS_VOID SM_RcvNwDeActPdpCntxtReqMsg(SM_NW_MSG_STRU *pMsgIe)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SM_RcvNwDeActPdpCntxtAccMsg
- 功能描述  : 接收DEACTIVATE PDP CONTEXT ACCEPT消息的处理
- 输入参数  : SM_NW_MSG_STRU     *pMsgIe
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2003年12月10日
-    作    者   : 郑 伟
-    修改内容   : 新生成函数
-
-  2.日    期   : 2010年08月13日
-    作    者   : A00165503
-    修改内容   : 问题单号:DTS2010070502076，接收到PDP去激活时，CS ONLY下待SM指示PDP去激活完成后进行PS DETACH
-
-  3.日    期   : 2010年11月10日
-    作    者   : A00165503
-    修改内容   : 问题单号:DTS2010101601395，SM-STATUS报给网侧的原因值错误
-
-  4.日    期   : 2014年6月28日
-    作    者   : A00165503
-    修改内容   : DSDS III 项目, 信令流程结束后释放资源
-
-  5.日    期   : 2014年12月06日
-    作    者   : A00165503
-    修改内容   : DTS2014120207400: 连续去激活多个PDP, 网侧不释放RRC连接
-*****************************************************************************/
 VOS_VOID SM_RcvNwDeActPdpCntxtAccMsg(SM_NW_MSG_STRU *pMsgIe)
 {
     VOS_UINT8                           ucCntxtIndex;
@@ -3348,20 +2771,7 @@ VOS_UINT8 SM_ComFindNullAddrApn()
     return SM_MAX_NSAPI_NUM;                                                    /* 返回无效，没有未使用的索引               */
 }
 
-/*******************************************************************************
-  Module:   SM_ComClearPdpCntxt
-  Function: 维护内部全局变量
-  Input:    VOS_UINT8          ucCntxtIndex
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.   郑 伟   2003.12.10   新规作成
 
-  2.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : SM保存的QOS和APN由动态内存改为静态数组
-*******************************************************************************/
 VOS_VOID SM_ComClearPdpCntxt(
      VOS_UINT8                          ucCntxtIndex                            /* PDPcontext实体的索引                     */
  )
@@ -3395,20 +2805,7 @@ VOS_VOID SM_ComClearPdpCntxt(
     return;
 }
 
-/*******************************************************************************
-  Module:   SM_ComClearPdpAddrApn
-  Function: 释放PDP Addr和APN实体
-  Input:    VOS_UINT8          ucAddrIndex
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.   郑 伟   2003.12.10   新规作成
 
-  2.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : SM保存的QOS和APN由动态内存改为静态数组
-*******************************************************************************/
 VOS_VOID SM_ComClearPdpAddrApn(
     VOS_UINT8                           ucAddrIndex                             /* PDPAddr实体的索引                        */
 )
@@ -3517,23 +2914,7 @@ VOS_VOID SM_RcvNwReqPdpCnxtActMsg_S00(
     return;
 }
 
-/*******************************************************************************
-  Module:   SM_RcvNwReqPdpCnxtActMsg_S01
-  Function: 比较PDP type, PDP address and APN是否相同
-  Input:    SM_NW_MSG_STRU    *pMsgIe            收到的消息
-            VOS_UINT8             ucCntxtIndex       PDP context的索引
-            VOS_UINT8             ucTi               网侧Ti
-  Output:   VOS_VOID
-  NOTE:     VOS_VOID
-  Return:   SM_TRUE     PDP type, PDP address and APN相同
-            SM_FALSE    PDP type, PDP address and APN不相同
-  History:
-      1.   郑 伟   2003.12.10   新规作成
 
-  2.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : SM保存的QOS和APN由动态内存改为静态数组
-*******************************************************************************/
 VOS_UINT8 SM_RcvNwReqPdpCnxtActMsg_S01(
     SM_NW_MSG_STRU                     *pMsgIe,             /* 收到的消息                               */
     VOS_UINT8                           ucCntxtIndex,       /* PDP context的索引                        */
@@ -3572,29 +2953,7 @@ VOS_UINT8 SM_RcvNwReqPdpCnxtActMsg_S01(
     return SM_FALSE;
 }
 
-/*******************************************************************************
-  Module:   SM_RcvNwReqPdpCnxtActMsg_S02
-  Function: SM_PDP_ACTIVE状态接收到REQUEST PDP CONTEXT ACTIVATION消息的处理
-  Input:    SM_NW_MSG_STRU    *pMsgIe            收到的消息
-            VOS_UINT8             ucCntxtIndex       PDP context的索引
-  Output:   VOS_VOID
-  NOTE:     8-2
-  Return:   VOS_VOID
-  History:
-      1.   郑 伟   2003.12.10   新规作成
 
-  2.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : SM保存的QOS和APN由动态内存改为静态数组
-
-  3.日    期   : 2012年8月27日
-    作    者   : m00217266
-    修改内容   : 修改接口SM_SndTafSmPdpDeActInd，添加原因值
-
-  4.日    期   : 2014年12月06日
-    作    者   : A00165503
-    修改内容   : DTS2014120207400: 连续去激活多个PDP, 网侧不释放RRC连接
-*******************************************************************************/
 VOS_VOID SM_RcvNwReqPdpCnxtActMsg_S02(
     SM_NW_MSG_STRU                     *pMsgIe,
     VOS_UINT8                           ucCntxtIndex
@@ -3711,23 +3070,7 @@ VOS_VOID SM_RcvNwReqPdpCnxtActMsg_S02(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_ComparePdpAddr
- 功能描述  : 比较两个PDP ADDRESS是否完全相同
- 输入参数  : SM_MSG_IE_COMMON_STRU  *pstReqPdpAddr
-             SM_PDP_ADDR_STRU       *pstExistPdpAddr
- 输出参数  : 无
- 返 回 值  : VOS_TURE   - 相同
-             VOS_FALSE  - 不相同
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年2月10日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_BOOL NAS_SM_ComparePdpAddr(
     SM_MSG_IE_COMMON_STRU              *pstReqPdpAddr,
     SM_PDP_ADDR_STRU                   *pstExistPdpAddr
@@ -3747,22 +3090,7 @@ VOS_BOOL NAS_SM_ComparePdpAddr(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_RcvGmmSigConnInd
- 功能描述  : 处理 GMMSM_SIG_CONN_IND 连接建立成功原语, 根据当前SM状态重启
-             T3380, T3381或T3390
- 输入参数  : pstSigConnInd - 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月1日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_SM_RcvGmmSigConnInd(
     GMMSM_SIG_CONN_IND_STRU            *pstSigConnInd
 )

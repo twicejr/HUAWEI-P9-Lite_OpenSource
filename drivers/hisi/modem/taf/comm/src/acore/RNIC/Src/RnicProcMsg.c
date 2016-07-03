@@ -57,34 +57,12 @@ const RNIC_RCV_TI_EXPRIED_PROC_STRU g_astRnicTiExpriedProcTab[]=
     {TI_RNIC_DEMAND_DIAL_PROTECT,           RNIC_RcvTiDemandDialProtectExpired}
  };
 
-/* Deleted by wx270776 for OM融合, 2015-08-21, Begin */
-/* Deleted by wx270776 for OM融合, 2012-08-21, End */
 
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : RNIC_MNTN_TraceDialConnEvt
- 功能描述  : 可维可测钩包: 输出拨号连接事件
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月6日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年6月18日
-    作    者   : A00165503
-    修改内容   : DTS2012061800997: 修改按需拨号可维可测钩包方式
-  3.日    期   : 2012年12月11日
-    作    者   : l00167671
-    修改内容   : DTS2012121802573, TQE清理
-*****************************************************************************/
 VOS_VOID RNIC_MNTN_TraceDialConnEvt(VOS_VOID)
 {
     RNIC_MNTN_DIAL_CONN_EVT_STRU       *pstDialEvt = VOS_NULL_PTR;
@@ -113,28 +91,7 @@ VOS_VOID RNIC_MNTN_TraceDialConnEvt(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : RNIC_MNTN_TraceDialDisconnEvt
- 功能描述  : 可维可测钩包: 输出拨号断开事件
- 输入参数  : ulPktNum      - 拨号断开时收到的数据包个数
-             ulUsrExistFlg - 用户连接状态(USB或者WIFI)
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月6日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年6月18日
-    作    者   : A00165503
-    修改内容   : DTS2012061800997: 修改按需拨号可维可测钩包方式
-  3.日    期   : 2012年12月11日
-    作    者   : l00167671
-    修改内容   : DTS2012121802573, TQE清理
-*****************************************************************************/
 VOS_VOID RNIC_MNTN_TraceDialDisconnEvt(
     VOS_UINT32                          ulPktNum,
     VOS_UINT32                          ulUsrExistFlg
@@ -170,21 +127,7 @@ VOS_VOID RNIC_MNTN_TraceDialDisconnEvt(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : RNIC_SendDialInfoMsg
- 功能描述  : RNIC发送给自己的拨号模式信息用于可维可测
- 输入参数  : RNIC_DEMAND_DIAL_INFO_MSG_ID_ENUM_UINT32                enMsgId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月1日
-    作    者   : w00199382
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 RNIC_SendDialInfoMsg(
     RNIC_MSG_ID_ENUM_UINT32            enMsgId
 )
@@ -223,21 +166,7 @@ VOS_UINT32 RNIC_SendDialInfoMsg(
 
 }
 
-/*****************************************************************************
- 函 数 名  : RNIC_SendDialEvent
- 功能描述  : RNIC通过netlink通知APP拨号或断开
- 输入参数  : ulDeviceId :设备号
-             ulEventId  :事件ID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年12月13日
-   作    者   : S62952
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 RNIC_SendDialEvent(
     VOS_UINT32                          ulDeviceId,
     VOS_UINT32                          ulEventId
@@ -267,24 +196,7 @@ VOS_UINT32 RNIC_SendDialEvent(
 
 }
 
-/*****************************************************************************
- 函 数 名  : RNIC_GetDsflowTimerIdByNetId
- 功能描述  : 通过网卡ID得到流量统计定时器ID
- 输入参数  : ucRmNetId :网卡ID
- 输出参数  : 无
- 返 回 值  : RNIC_TIMER_ID_ENUM_UINT16 定时器ID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月28日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年5月27日
-    作    者   : l00198894
-    修改内容   : TSTS
-*****************************************************************************/
 RNIC_TIMER_ID_ENUM_UINT16 RNIC_GetDsflowTimerIdByNetId(VOS_UINT8 ucRmNetId)
 {
     RNIC_TIMER_ID_ENUM_UINT16           enTimerId;
@@ -330,24 +242,7 @@ RNIC_TIMER_ID_ENUM_UINT16 RNIC_GetDsflowTimerIdByNetId(VOS_UINT8 ucRmNetId)
     return enTimerId;
 }
 
-/*****************************************************************************
- 函 数 名  : RNIC_GetNetIdByTimerId
- 功能描述  : 根据定时器ID获取网卡ID
- 输入参数  : ucRmNetId :网卡ID
- 输出参数  : 无
- 返 回 值  : VOS_UINT8 网卡ID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月28日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年5月27日
-    作    者   : l00198894
-    修改内容   : TSTS
-*****************************************************************************/
 VOS_UINT8 RNIC_GetNetIdByTimerId(VOS_UINT32 ulMsgId)
 {
     VOS_UINT8                           ucRmNedId;
@@ -398,25 +293,7 @@ VOS_UINT8 RNIC_GetNetIdByTimerId(VOS_UINT32 ulMsgId)
     return ucRmNedId;
 }
 
-/*****************************************************************************
- 函 数 名  : RNIC_BuildRabIdByModemId
- 功能描述  : 根据ModemId生成Rabid
- 输入参数  : enModemId : Modem ID
-             ucRabId   : RabId
- 输出参数  : pucRabId  : 生成的RabId
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月06日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年5月28日
-    作    者   : l00198894
-    修改内容   : TSTS
-*****************************************************************************/
 VOS_UINT32 RNIC_BuildRabIdByModemId(
     MODEM_ID_ENUM_UINT16                enModemId,
     VOS_UINT8                           ucRabId,
@@ -449,22 +326,7 @@ VOS_UINT32 RNIC_BuildRabIdByModemId(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : RNIC_SaveNetIdByRabId
- 功能描述  : 根据rabid存储网卡ID
- 输入参数  : enModemId : Modem ID
-             ucRmNetId : 网卡ID
-             ucRabId   : RabId
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年12月10日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 RNIC_SaveNetIdByRabId(
     MODEM_ID_ENUM_UINT16                enModemId,
     VOS_UINT8                           ucRabId,
@@ -488,33 +350,7 @@ VOS_UINT32 RNIC_SaveNetIdByRabId(
 
 }
 
-/*****************************************************************************
- 函 数 名  : RNIC_RcvIpv4PdpActInd
- 功能描述  : RNIC收到AT消息ID_AT_RNIC_IPV4_PDP_ACT_IND的处理
- 输入参数  : pMsg:消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年12月06日
-   作    者   : f00179208
-   修改内容   : 新生成函数
- 2.日    期   : 2012年1月31日
-   作    者   : w00199382
-   修改内容   : 拨号保护定时器超时删除
- 3.日    期   : 2012年6月6日
-   作    者   : A00165503
-   修改内容   : DTS2012060502819: 灌包方式触发按需拨号, 导致频繁上报事件
- 4.日    期   : 2012年11月23日
-   作    者   : f00179208
-   修改内容   : DSDA Phase I: RNIC多实例
-
- 5.日    期   : 2014年11月7日
-   作    者   : y00218312
-   修改内容   : 增加CDMA模式下的处理
-*****************************************************************************/
 VOS_UINT32 RNIC_RcvAtIpv4PdpActInd(
     MsgBlock                           *pstMsg
 )
@@ -553,9 +389,7 @@ VOS_UINT32 RNIC_RcvAtIpv4PdpActInd(
         return VOS_ERR;
     }
 
-    /* Modified by l60609 for L-C互操作项目, 2014-1-14, begin */
     pstSpecNetCardCtx->enModemType        = RNIC_MODEM_TYPE_INSIDE;
-    /* Modified by l60609 for L-C互操作项目, 2014-1-14, end */
 
     /* 更新PDP上下文信息 */
     pstPdpAddr->stIpv4PdpInfo.enRegStatus = RNIC_PDP_REG_STATUS_ACTIVE;
@@ -584,26 +418,7 @@ VOS_UINT32 RNIC_RcvAtIpv4PdpActInd(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : RNIC_RcvIpv6PdpActInd
- 功能描述  : RNIC收到AT消息ID_AT_RNIC_IPV6_PDP_ACT_IND的处理
- 输入参数  : pMsg:消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年12月06日
-   作    者   : f00179208
-   修改内容   : 新生成函数
- 2.日    期   : 2012年11月23日
-   作    者   : f00179208
-   修改内容   : DSDA Phase I: RNIC多实例
- 3.日    期   : 2015年1月22日
-   作    者   : Y00213812
-   修改内容   : 增加CDMA模式下PPP在ACUP时的处理
-*****************************************************************************/
 VOS_UINT32 RNIC_RcvAtIpv6PdpActInd(
     MsgBlock                           *pstMsg
 )
@@ -642,9 +457,7 @@ VOS_UINT32 RNIC_RcvAtIpv6PdpActInd(
         return VOS_ERR;
     }
 
-    /* Modified by l60609 for L-C互操作项目, 2014-1-14, begin */
     pstSpecNetCardCtx->enModemType        = RNIC_MODEM_TYPE_INSIDE;
-    /* Modified by l60609 for L-C互操作项目, 2014-1-14, end */
 
     /* 更新PDP上下文信息 */
     pstPdpAddr->stIpv6PdpInfo.enRegStatus = RNIC_PDP_REG_STATUS_ACTIVE;
@@ -671,30 +484,7 @@ VOS_UINT32 RNIC_RcvAtIpv6PdpActInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : RNIC_RcvIpvv46PdpActInd
- 功能描述  : RNIC收到AT消息ID_AT_RNIC_IPV4V6_PDP_ACT_IND的处理
- 输入参数  : pMsg:消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年12月17日
-   作    者   : f00179208
-   修改内容   : 新生成函数
- 2.日    期   : 2012年6月6日
-   作    者   : A00165503
-   修改内容   : DTS2012060502819: 灌包方式触发按需拨号, 导致频繁上报事件
- 3.日    期   : 2012年11月23日
-   作    者   : f00179208
-   修改内容   : DSDA Phase I: RNIC多实例
- 4.日    期   : 2015年1月22日
-   作    者   : Y00213812
-   修改内容   : 增加CDMA模式下PPP在ACUP时的处理
-
-*****************************************************************************/
 VOS_UINT32 RNIC_RcvAtIpv4v6PdpActInd(
     MsgBlock                           *pstMsg
 )
@@ -733,9 +523,7 @@ VOS_UINT32 RNIC_RcvAtIpv4v6PdpActInd(
         return VOS_ERR;
     }
 
-    /* Modified by l60609 for L-C互操作项目, 2014-1-14, begin */
     pstSpecNetCardCtx->enModemType          = RNIC_MODEM_TYPE_INSIDE;
-    /* Modified by l60609 for L-C互操作项目, 2014-1-14, end */
 
     /* 更新PDP上下文信息 */
     pstPdpAddr->stIpv4v6PdpInfo.enRegStatus = RNIC_PDP_REG_STATUS_ACTIVE;
@@ -764,27 +552,7 @@ VOS_UINT32 RNIC_RcvAtIpv4v6PdpActInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : RNIC_RcvPdpDeactInd
- 功能描述  : RNIC收到AT消息ID_AT_RNIC_PDP_DEACT_IND的处理
- 输入参数  : pMsg:消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年12月06日
-   作    者   : f00179208
-   修改内容   : 新生成函数
- 2.日    期   : 2012年6月16日
-   作    者   : z60575
-   修改内容   : DTS2012061502207: 上报按需断开时间时增加投票不睡眠，避免应用
-                处理消息前又进入深睡
- 3.日    期   : 2012年11月23日
-   作    者   : f00179208
-   修改内容   : DSDA Phase I: RNIC多实例
-*****************************************************************************/
 VOS_UINT32 RNIC_RcvAtPdpDeactInd(
     MsgBlock                           *pstMsg
 )
@@ -848,9 +616,7 @@ VOS_UINT32 RNIC_RcvAtPdpDeactInd(
         /* 清除流量统计信息 */
         RNIC_ClearNetDsFlowStats(ucRmNetId);
 
-        /* Modified by l60609 for L-C互操作项目, 2014-1-14, begin */
         pstSpecNetCardCtx->enModemType = RNIC_MODEM_TYPE_INSIDE;
-        /* Modified by l60609 for L-C互操作项目, 2014-1-14, end */
     }
 
 #if (FEATURE_ON == FEATURE_LTE)
@@ -869,20 +635,7 @@ VOS_UINT32 RNIC_RcvAtPdpDeactInd(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : RNIC_RcvAtDialModeReq
- 功能描述  : RNIC收到AT消息ID_AT_RNIC_DIAL_MODE_REQ的处理
- 输入参数  : pMsg:消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年12月21日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 RNIC_RcvAtDialModeReq(
     MsgBlock                           *pstMsg
 )
@@ -927,23 +680,7 @@ VOS_UINT32 RNIC_RcvAtDialModeReq(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : RNIC_RcvDsflowInd
- 功能描述  : RNIC收到AT消息ID_AT_RNIC_DSFLOW_IND的处理
- 输入参数  : pMsg:消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年12月06日
-   作    者   : f00179208
-   修改内容   : 新生成函数
- 2.日    期   : 2012年11月23日
-   作    者   : f00179208
-   修改内容   : DSDA Phase I: RNIC多实例
-*****************************************************************************/
 VOS_UINT32 RNIC_RcvAtDsflowInd(
     MsgBlock                           *pstMsg
 )
@@ -997,20 +734,7 @@ VOS_UINT32 RNIC_RcvAtDsflowInd(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : RNIC_RcvAtPdnInfoCfgInd
- 功能描述  : RNIC收到AT消息ID_AT_RNIC_PDN_INFO_CFG_IND的处理
- 输入参数  : pMsg:消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月4日
-    作    者   : z00214637
-    修改内容   : V3R3 Share-PDP项目新增
-*****************************************************************************/
 VOS_UINT32 RNIC_RcvAtPdnInfoCfgInd(
     MsgBlock                           *pstMsg
 )
@@ -1050,9 +774,7 @@ VOS_UINT32 RNIC_RcvAtPdnInfoCfgInd(
         return VOS_ERR;
     }
 
-    /* Modified by l60609 for L-C互操作项目, 2014-1-14, begin */
     pstSpecNetCardCtx->enModemType        = RNIC_MODEM_TYPE_INSIDE;
-    /* Modified by l60609 for L-C互操作项目, 2014-1-14, end */
 
     if (VOS_TRUE == pstRnicPdnCfgInd->bitOpIpv4PdnInfo)
     {
@@ -1096,20 +818,7 @@ VOS_UINT32 RNIC_RcvAtPdnInfoCfgInd(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : RNIC_RcvAtPdnInfoRelInd
- 功能描述  : RNIC收到AT消息ID_AT_RNIC_PDN_INFO_REL_REQ的处理
- 输入参数  : pMsg:消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月4日
-    作    者   : z00214637
-    修改内容   : V3R3 Share-PDP项目新增
-*****************************************************************************/
 VOS_UINT32 RNIC_RcvAtPdnInfoRelInd(
     MsgBlock                           *pstMsg
 )
@@ -1161,9 +870,7 @@ VOS_UINT32 RNIC_RcvAtPdnInfoRelInd(
         /* 停止流量统计定时器 */
         RNIC_StopTimer(enTimerId);
 
-        /* Modified by l60609 for L-C互操作项目, 2014-1-14, begin */
         pstSpecNetCardCtx->enModemType        = RNIC_MODEM_TYPE_INSIDE;
-        /* Modified by l60609 for L-C互操作项目, 2014-1-14, end */
 
         /* 清除流量统计信息 */
         RNIC_ClearNetDsFlowStats(ucRmNetId);
@@ -1183,27 +890,7 @@ VOS_UINT32 RNIC_RcvAtPdnInfoRelInd(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : RNIC_RcvTiAppDsflowExpired
- 功能描述  : 流量统计定时器超时处理，计算RNIC数传中当前的速率
- 输入参数  : pstMsg:定时器消息首地址
-             enRmNetId:网卡ID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年12月06日
-   作    者   : f00179208
-   修改内容   : 新生成函数
- 2.日    期   : 2012年3月02日
-   作    者   : f00179208
-   修改内容   : 问题单;DTS2012032406513,数传过程中，查询流量为0
- 3.日    期   : 2012年11月23日
-   作    者   : f00179208
-   修改内容   : DSDA Phase I: RNIC多实例
-*****************************************************************************/
 VOS_UINT32  RNIC_RcvTiDsflowStatsExpired(
     MsgBlock                           *pstMsg,
     VOS_UINT8                           ucRmNetId
@@ -1220,9 +907,7 @@ VOS_UINT32  RNIC_RcvTiDsflowStatsExpired(
     /* 根据网卡ID获取流量统计的定时器ID */
     enTimerId   = RNIC_GetDsflowTimerIdByNetId(ucRmNetId);
 
-    /* Added by f00179208 for DTS2012032406513，2012-03-24 Begin */
     RNIC_StopTimer(enTimerId);
-    /* Added by f00179208 for DTS2012032406513，2012-03-24 End */
 
     /* 获取2秒的下行流量 */
     ulTaBytes   = pstNetCntxt->stDsFlowStats.ulTotalRecvFluxLow;
@@ -1247,34 +932,7 @@ VOS_UINT32  RNIC_RcvTiDsflowStatsExpired(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : RNIC_RcvTiAppDemandDialDownExpired
- 功能描述  : 拨号断开定时器超时处理，通知应用断开拨号
- 输入参数  : pstMsg:定时器消息首地址
-             enRmNetId - 网卡ID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年12月06日
-   作    者   : f00179208
-   修改内容   : 新生成函数
- 2.日    期   : 2012年3月02日
-   作    者   : w00199382
-   修改内容   : DTS201203025734
- 3.日    期   : 2012年6月6日
-   作    者   : A00165503
-   修改内容   : DTS2012060502819: 灌包方式触发按需拨号, 导致频繁上报事件
- 4.日    期   : 2012年6月15日
-   作    者   : z60575
-   修改内容   : DTS2012061502207: 上报按需断开时间时增加投票不睡眠，避免应用
-                处理消息前又进入深睡
- 5.日    期   : 2012年11月23日
-   作    者   : f00179208
-   修改内容   : DSDA Phase I: RNIC多实例
-*****************************************************************************/
 VOS_UINT32 RNIC_RcvTiDemandDialDisconnectExpired(
     MsgBlock                           *pstMsg,
     VOS_UINT8                           ucRmNetId
@@ -1296,9 +954,7 @@ VOS_UINT32 RNIC_RcvTiDemandDialDisconnectExpired(
     /* 将用户设置的时长按定时器时长等分 */
     ulExpiredCount  = (pstDialMode->ulIdleTime * TI_RNIC_UNIT) / TI_RNIC_DEMAND_DIAL_DISCONNECT_LEN;
 
-    /* Added by w00199382 for DTS201203025734，2012-03-02,  Begin */
     RNIC_StopTimer(TI_RNIC_DEMAND_DIAL_DISCONNECT);
-    /* Added by w00199382 for DTS201203025734，2012-03-02,  End */
 
     /* 如果当前是手动拨号,则直接返回,不需要通知 */
     if (RNIC_DIAL_MODE_DEMAND_CONNECT != pstDialMode->enDialMode)
@@ -1360,22 +1016,7 @@ VOS_UINT32 RNIC_RcvTiDemandDialDisconnectExpired(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : RNIC_RcvTiDemandDialProtectExpired
- 功能描述  : 拨号保护定时器超时处理, 显式停止定时器, 定时器状态置为停止
- 输入参数  : pstMsg  - 定时器消息
-             enRmNetId - 网卡ID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月6日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 RNIC_RcvTiDemandDialProtectExpired(
     MsgBlock                           *pstMsg,
     VOS_UINT8                           ucRmNetId
@@ -1387,22 +1028,7 @@ VOS_UINT32 RNIC_RcvTiDemandDialProtectExpired(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : RNIC_GetTiExpiredFuncByMsgId
- 功能描述  : 获取消息处理函数
- 输入参数  : ulMsgId            - 消息ID
- 输出参数  : 无
- 返 回 值  : pTiExpriedProcFunc - 定时器超时处理函数地址
-             VOS_NULL_PTR       - 空
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月28日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 RNIC_RCV_TI_EXPRIED_PROC_FUNC RNIC_GetTiExpiredFuncByMsgId(VOS_UINT32 ulMsgId)
 {
     VOS_UINT8                           i;
@@ -1423,23 +1049,7 @@ RNIC_RCV_TI_EXPRIED_PROC_FUNC RNIC_GetTiExpiredFuncByMsgId(VOS_UINT32 ulMsgId)
     return VOS_NULL_PTR;
 }
 
-/*****************************************************************************
- 函 数 名  : RNIC_RcvCcpuResetStartInd
- 功能描述  : RNIC收到RNIC消息ID_CCPU_RESET_RNIC_START_IND的处理
- 输入参数  : pMsg:消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
-  1.日    期   : 2013年04月15日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-  2.日    期   : 2014年02月14日
-    作    者   : m00217266
-    修改内容   : 添加L-C互操作项目新添加的全局变量的初始化
-*****************************************************************************/
 VOS_UINT32 RNIC_RcvCcpuResetStartInd(
     MsgBlock                           *pstMsg
 )
@@ -1469,9 +1079,7 @@ VOS_UINT32 RNIC_RcvCcpuResetStartInd(
         /* 初始化的时候就已经确定了哪张网卡对应哪个MODEM */
         pstRnicCtx->astSpecCtx[ucIndex].enModemId        = RNIC_GET_MODEM_ID_BY_NET_ID(ucIndex);
 
-        /* Added by m00217266 for L-C互操作项目, 2014-1-27, begin */
         pstRnicCtx->astSpecCtx[ucIndex].enModemType      = RNIC_MODEM_TYPE_INSIDE;
-        /* Added by m00217266 for L-C互操作项目, 2014-1-27, end */
     }
 
     /* 初始化RABID信息 */
@@ -1480,10 +1088,8 @@ VOS_UINT32 RNIC_RcvCcpuResetStartInd(
         RNIC_InitRabidInfo(&pstRnicCtx->astRabIdInfo[ucIndex]);
     }
 
-    /* Added by m00217266 for L-C互操作项目, 2014-1-27, begin */
     /* 初始化PDNID信息 */
     RNIC_InitPdnIdInfo(&(pstRnicCtx->stPdnIdInfo));
-    /* Added by m00217266 for L-C互操作项目, 2014-1-27, end */
 
     /* 初始化RNIC定时器上下文 */
     RNIC_InitAllTimers(pstRnicCtx->astTimerCtx);
@@ -1500,28 +1106,13 @@ VOS_UINT32 RNIC_RcvCcpuResetStartInd(
     /* 释放信号量，使得调用API任务继续运行 */
     VOS_SmV(RNIC_GetResetSem());
 
-    /* Added by m00217266 for L-C互操作项目, 2014-2-17, begin */
     /* 此处是否要清空sdio下行注册函数 */
-    /* Added by m00217266 for L-C互操作项目, 2014-2-17, end */
     printk("\n RNIC_RcvCcpuResetStartInd leave, %u \n", VOS_GetSlice());
     return VOS_OK;
 }
 
 #if (FEATURE_ON == FEATURE_IMS)
-/*****************************************************************************
- 函 数 名  : RNIC_RcvImsaPdnActInd
- 功能描述  : RNIC收到IMSA消息ID_IMSA_RNIC_PDN_ACT_IND的处理
- 输入参数  : pMsg:消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年07月31日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 RNIC_RcvImsaPdnActInd(
     MsgBlock                           *pstMsg
 )
@@ -1591,20 +1182,7 @@ VOS_UINT32 RNIC_RcvImsaPdnActInd(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : RNIC_RcvImsaPdnDeactInd
- 功能描述  : RNIC收到IMSA消息ID_IMSA_RNIC_PDN_DEACT_IND的处理
- 输入参数  : pMsg:消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年07月31日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 RNIC_RcvImsaPdnDeactInd(
     MsgBlock                           *pstMsg
 )
@@ -1668,22 +1246,7 @@ VOS_UINT32 RNIC_RcvImsaPdnDeactInd(
 #endif
 
 
-/* Modified by l60609 for L-C互操作项目, 2014-01-06, Begin */
-/*****************************************************************************
- 函 数 名  : RNIC_ProcInsideModemIpv4ActInd
- 功能描述  : 内modem ipv4激活
- 输入参数  : RNIC_RMNET_CONFIG_REQ_STRU           *pstPdpStatusInd
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月27日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID RNIC_ProcInsideModemIpv4ActInd(
     RNIC_RMNET_CONFIG_REQ_STRU         *pstPdpStatusInd
 )
@@ -1744,21 +1307,7 @@ VOS_VOID RNIC_ProcInsideModemIpv4ActInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : RNIC_ProcInsideModemIpv6ActInd
- 功能描述  : 内modem ipv6激活
- 输入参数  : RNIC_RMNET_CONFIG_REQ_STRU           *pstPdpStatusInd
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月27日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID RNIC_ProcInsideModemIpv6ActInd(
     RNIC_RMNET_CONFIG_REQ_STRU           *pstPdpStatusInd
 )
@@ -1814,21 +1363,7 @@ VOS_VOID RNIC_ProcInsideModemIpv6ActInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : RNIC_ProcRnicPdpActInd
- 功能描述  : 处理PDP激活消息
- 输入参数  : RNIC_PDP_STATUS_IND_STRU           *pstPdpStatusInd
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月7日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID RNIC_ProcRnicPdpActInd(
     RNIC_RMNET_CONFIG_REQ_STRU           *pstPdpStatusInd
 )
@@ -1870,21 +1405,7 @@ VOS_VOID RNIC_ProcRnicPdpActInd(
 }
 
 #if (FEATURE_ON == FEATURE_CL_INTERWORK)
-/*****************************************************************************
- 函 数 名  : RNIC_SaveNetIdByPdnId
- 功能描述  : 根据pdn id保存网卡id
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月7日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 RNIC_SaveNetIdByPdnId(
     VOS_UINT8                           ucPdnId,
     VOS_UINT8                           ucRmNetId
@@ -1908,21 +1429,7 @@ VOS_UINT32 RNIC_SaveNetIdByPdnId(
 }
 
 
-/*****************************************************************************
- 函 数 名  : RNIC_ProcOutsideModemIpv4ActInd
- 功能描述  : 外modem ipv4激活
- 输入参数  : RNIC_RMNET_CONFIG_REQ_STRU           *pstPdpStatusInd
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月27日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID RNIC_ProcOutsideModemIpv4ActInd(
     RNIC_RMNET_CONFIG_REQ_STRU           *pstPdpStatusInd
 )
@@ -1968,21 +1475,7 @@ VOS_VOID RNIC_ProcOutsideModemIpv4ActInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : RNIC_ProcOutsideModemIpv6ActInd
- 功能描述  : 外modem ipv6激活
- 输入参数  : RNIC_RMNET_CONFIG_REQ_STRU           *pstPdpStatusInd
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月27日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID RNIC_ProcOutsideModemIpv6ActInd(
     RNIC_RMNET_CONFIG_REQ_STRU           *pstPdpStatusInd
 )
@@ -2027,21 +1520,7 @@ VOS_VOID RNIC_ProcOutsideModemIpv6ActInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : RNIC_ClearIpv4PdpCtxInSwitch
- 功能描述  : 在内外网卡切换过程中清空网卡的ipv4 pdp上下文
- 输入参数  : VOS_UINT8  ucRmNetId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月19日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID RNIC_ClearIpv4PdpCtxInSwitch(
     VOS_UINT8                           ucRmNetId
 )
@@ -2090,21 +1569,7 @@ VOS_VOID RNIC_ClearIpv4PdpCtxInSwitch(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : RNIC_ClearIpv6PdpCtxInSwitch
- 功能描述  : 在内外网卡切换过程中清空网卡的ipv6 pdp上下文
- 输入参数  : VOS_UINT8  ucRmNetId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月19日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID RNIC_ClearIpv6PdpCtxInSwitch(
     VOS_UINT8                           ucRmNetId
 )
@@ -2153,21 +1618,7 @@ VOS_VOID RNIC_ClearIpv6PdpCtxInSwitch(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : RNIC_ClearIpv4v6PdpCtxInSwitch
- 功能描述  : 在内外网卡切换过程中清空网卡的ipv4v6 pdp上下文
- 输入参数  : VOS_UINT8 ucRmNetId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月19日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID RNIC_ClearIpv4v6PdpCtxInSwitch(
     VOS_UINT8                           ucRmNetId
 )
@@ -2216,21 +1667,7 @@ VOS_VOID RNIC_ClearIpv4v6PdpCtxInSwitch(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : RNIC_ClearSwitchPdpCtx
- 功能描述  : 在内外网卡切换过程中清空pdp上下文
- 输入参数  : ucRmNetId
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月10日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID RNIC_ClearPdpCtxInSwitch(
     VOS_UINT8                           ucRmNetId
 )
@@ -2256,21 +1693,7 @@ VOS_VOID RNIC_ClearPdpCtxInSwitch(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : RNIC_ProcRnicPdpHandoverInd
- 功能描述  : 处理PDP handover消息
- 输入参数  : RNIC_PDP_STATUS_IND_STRU           *pstPdpStatusInd
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月6日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID RNIC_ProcRnicPdpHandoverInd(
     RNIC_RMNET_CONFIG_REQ_STRU           *pstPdpStatusInd
 )
@@ -2297,21 +1720,7 @@ VOS_VOID RNIC_ProcRnicPdpHandoverInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : RNIC_ProcOutsideModemDeactInd
- 功能描述  : 处理外部modem PDP去激活
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月8日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID RNIC_ProcOutsideModemDeactInd(
     RNIC_RMNET_CONFIG_REQ_STRU         *pstPdpStatusInd
 )
@@ -2381,21 +1790,7 @@ VOS_VOID RNIC_ProcOutsideModemDeactInd(
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : RNIC_ProcInsideModemDeactInd
- 功能描述  : 处理内部modem PDP去激活
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月8日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID RNIC_ProcInsideModemDeactInd(
     RNIC_RMNET_CONFIG_REQ_STRU         *pstPdpStatusInd
 )
@@ -2476,21 +1871,7 @@ VOS_VOID RNIC_ProcInsideModemDeactInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : RNIC_ProcRnicPdpDeactInd
- 功能描述  : 处理PDP去激活消息
- 输入参数  : RNIC_PDP_STATUS_IND_STRU           *pstPdpStatusInd
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月6日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID RNIC_ProcRnicPdpDeactInd(
     RNIC_RMNET_CONFIG_REQ_STRU           *pstPdpStatusInd
 )
@@ -2512,23 +1893,7 @@ VOS_VOID RNIC_ProcRnicPdpDeactInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : RNIC_RcvRnicRmnetConfigReq
- 功能描述  : 处理ID_RNIC_RMNET_CONFIG_REQ消息
- 输入参数  : MsgBlock                           *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月6日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-  2.日    期   : 2014年6月3日
-    作    者   : m00217266
-    修改内容   : DTS2014052902453
-*****************************************************************************/
 VOS_UINT32 RNIC_RcvRnicRmnetConfigReq(
     MsgBlock                           *pstMsg
 )
@@ -2569,32 +1934,9 @@ VOS_UINT32 RNIC_RcvRnicRmnetConfigReq(
 
     return VOS_OK;
 }
-/* Modified by l60609 for L-C互操作项目, 2014-01-06, End */
 
 
-/*****************************************************************************
- 函 数 名  : Rnic_RcvAtMsg
- 功能描述  : RNIC收到AT消息的分发
- 输入参数  : pMsg:AT的发来的消息
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_OK, VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年12月06日
-   作    者   : f00179208
-   修改内容   : 新生成函数
- 2.日    期   : 2012年1月31日
-   作    者   : w00199382
-   修改内容   : ID_AT_RNIC_DIAL_MODE_IND ID_AT_RNIC_DIAL_MODE_REQ删除
-  3.日    期   : 2012年11月23日
-    作    者   : f00179208
-    修改内容   : DSDA Phase I: 增加MTU更改消息
-  4.日    期   : 2013年6月4日
-    作    者   : z00214637
-    修改内容   : V3R3 Share-PDP项目修改
-*****************************************************************************/
 VOS_UINT32 RNIC_RcvAtMsg(MsgBlock *pstMsg)
 {
     MSG_HEADER_STRU                    *pstMsgHeader;
@@ -2643,26 +1985,7 @@ VOS_UINT32 RNIC_RcvAtMsg(MsgBlock *pstMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : RNIC_ProcTimerMsg
- 功能描述  : RNIC收到定时器消息超时的分发
- 输入参数  : pMsg:定时器超时消息
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_OK, VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
-  1.日    期   : 2011年12月06日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-  2.日    期   : 2012年1月31日
-    作    者   : w00199382
-    修改内容   : 拨号保护定时器超时删除
-  3.日    期   : 2012年11月23日
-    作    者   : f00179208
-    修改内容   : DSDA Phase I: RNIC多实例
-*****************************************************************************/
 VOS_UINT32 RNIC_RcvTimerMsg(MsgBlock *pstMsg)
 {
     REL_TIMER_MSG                      *pstRcvMsg;
@@ -2696,20 +2019,7 @@ VOS_UINT32 RNIC_RcvTimerMsg(MsgBlock *pstMsg)
 
 }
 
-/*****************************************************************************
- 函 数 名  : RNIC_RcvRnicMsg
- 功能描述  : RNIC收到RNIC消息的分发
- 输入参数  : pstMsg:RNIC消息
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_OK, VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
-  1.日    期   : 2013年04月15日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 RNIC_RcvRnicMsg(MsgBlock *pstMsg)
 {
     MSG_HEADER_STRU                    *pstMsgHeader;
@@ -2728,12 +2038,10 @@ VOS_UINT32 RNIC_RcvRnicMsg(MsgBlock *pstMsg)
             RNIC_NORMAL_LOG(ACPU_PID_RNIC, "RNIC_RcvRnicMsg: rcv ID_CCPU_RNIC_RESET_END_IND");
             break;
 
-        /* Modified by l60609 for L-C互操作项目, 2014-01-06, Begin */
         case ID_RNIC_RMNET_CONFIG_REQ:
             RNIC_RcvRnicRmnetConfigReq(pstMsg);
             break;
 
-        /* Modified by l60609 for L-C互操作项目, 2014-01-06, End */
 
         default:
             RNIC_NORMAL_LOG1(ACPU_PID_RNIC, "RNIC_RcvRnicMsg: rcv error msg id %d\r\n", pstMsgHeader->ulMsgName);
@@ -2744,20 +2052,7 @@ VOS_UINT32 RNIC_RcvRnicMsg(MsgBlock *pstMsg)
 }
 
 #if (FEATURE_ON == FEATURE_IMS)
-/*****************************************************************************
- 函 数 名  : RNIC_RcvImsaMsg
- 功能描述  : RNIC收到IMSA消息的分发
- 输入参数  : pstMsg:IMSA消息
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_OK, VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
-  1.日    期   : 2014年07月31日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 RNIC_RcvImsaMsg(MsgBlock *pstMsg)
 {
     MSG_HEADER_STRU                    *pstMsgHeader;
@@ -2783,21 +2078,7 @@ VOS_UINT32 RNIC_RcvImsaMsg(MsgBlock *pstMsg)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : RNIC_PidMsgProc
- 功能描述  : RNIC数据接收task消息处理函数
- 输入参数  : pMsg:待处理消息
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_OK, VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年12月06日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 RNIC_ProcMsg (MsgBlock *pstMsg)
 {
     if (VOS_NULL_PTR == pstMsg)
@@ -2843,22 +2124,7 @@ VOS_UINT32 RNIC_ProcMsg (MsgBlock *pstMsg)
     return VOS_OK;
 }
 
-/* Modified by m00217266 for L-C互操作项目, 2014-01-06, Begin */
-/*****************************************************************************
- 函 数 名  : RNIC_SndRnicRmnetConfigReq
- 功能描述  : RNIC内部发送PDP 状态信息
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月18日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 RNIC_SndRnicRmnetConfigReq(
     RNIC_RMNET_CONFIG_STRU             *pstConfigInfo
 )
@@ -2901,21 +2167,7 @@ VOS_UINT32 RNIC_SndRnicRmnetConfigReq(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : RNIC_SendConfigInfoMsg
- 功能描述  : 可维可测，记录外部调用点的初始入参
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月28日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID RNIC_MNTN_SndRmnetConfigInfoMsg(
     RNIC_RMNET_CONFIG_STRU             *pstConfigInfo
 )
@@ -2957,7 +2209,6 @@ VOS_VOID RNIC_MNTN_SndRmnetConfigInfoMsg(
     return;
 }
 
-/* Modified by m00217266 for L-C互操作项目, 2014-01-06, End */
 
 #ifdef __cplusplus
     #if __cplusplus

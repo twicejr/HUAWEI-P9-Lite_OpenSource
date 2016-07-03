@@ -1,14 +1,4 @@
-/******************************************************************************
 
-   Copyright(C)2013,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : CssProcSrchRslt.c
-  Description     : 该C文件给出了CSS模块处理收到的搜网结果和存储结果的实现
-  History           :
-     1.chengmin 00285307    2015-05-15  Draft Enact
-
-******************************************************************************/
 
 /*****************************************************************************
   1 Include HeadFile
@@ -43,15 +33,7 @@ extern "C" {
 *****************************************************************************/
 
 
-/*****************************************************************************
- Function Name   : CSS_RssiCompare
- Description     : 能量从大到小排序函数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
- History         :
-    1.    chengmin 00285307      2015-05-15  Draft Enact
-*****************************************************************************/
+
 VOS_INT32 CSS_RssiCompare( const VOS_VOID *arg1, const VOS_VOID *arg2 )
 {
     CSS_FREQ_RANGE_STRU             *pstFreqRange1;
@@ -74,15 +56,7 @@ VOS_INT32 CSS_RssiCompare( const VOS_VOID *arg1, const VOS_VOID *arg2 )
 }
 
 
-/*****************************************************************************
- Function Name   : CSS_FreqCompare
- Description     : 能量从小到大排序函数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
- History         :
-    1.    chengmin 00285307      2015-05-15  Draft Enact
-*****************************************************************************/
+
 VOS_INT32 CSS_FreqCompare( const VOS_VOID *arg1, const VOS_VOID *arg2 )
 {
     CSS_FREQ_RANGE_STRU             *pstFreqRange1;
@@ -104,15 +78,7 @@ VOS_INT32 CSS_FreqCompare( const VOS_VOID *arg1, const VOS_VOID *arg2 )
     }
 }
 
-/*****************************************************************************
- Function Name   : CSS_GetThreshold
- Description     : 获取能量门限
- Input           : None
- Output          : None
- Return          : VOS_UINT32
- History         :
-    1.    chengmin 00285307      2015-05-15  Draft Enact
-*****************************************************************************/
+
 VOS_INT16 CSS_GetThreshold(VOS_VOID)
 {
     VOS_INT16                           sThreshold = INT16_MAX;
@@ -158,15 +124,7 @@ VOS_INT16 CSS_GetThreshold(VOS_VOID)
 
     return sThreshold;
 }
-/*****************************************************************************
- Function Name   : CSS_DivideToFreqRangeByBand
- Description     : 按照协议将某个BAND分成若干段，用于向LPHY下发扫频请求
- Input           : None
- Output          : None
- Return          : VOS_UINT32
- History         :
-    1.    chengmin 00285307      2015-05-15  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32 CSS_DivideToFreqRangeByBand
 (
     CSS_LPHY_BAND_IND_ENUM_UINT16       usBand,
@@ -248,15 +206,7 @@ VOS_UINT32 CSS_DivideToFreqRangeByBand
     return CSS_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : CSS_GetSuportFlagFromRatList
- Description     : 根据请求的RATLIST获取各制式的支持情况
- Input           : None
- Output          : 是否成功
- Return          : VOS_UINT32
- History         :
-    1.    chengmin 00285307      2015-05-15  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32 CSS_GetSuportFlagFromRatList
 (
     const CSS_RAT_LIST  *pstRatList,
@@ -286,15 +236,7 @@ VOS_UINT32 CSS_GetSuportFlagFromRatList
     return CSS_TRUE;
 }
 
-/*****************************************************************************
- Function Name   : CSS_GetLteSuportFlag
- Description     : 根据BAND、NV是否支持、UE的BAND支持能力、请求的制式来决定是否处理L模
- Input           : None
- Output          : 是否处理
- Return          :
- History         :
-    1.    chengmin 00285307      2015-05-15  Draft Enact
-*****************************************************************************/
+
 VOS_VOID CSS_GetLteSuportFlag
 (
     VOS_UINT8                          ucBand,
@@ -323,15 +265,7 @@ VOS_VOID CSS_GetLteSuportFlag
     }
 }
 
-/*****************************************************************************
- Function Name   : CSS_GetGsmSuportFlag
- Description     : 根据BAND、NV是否支持、UE的BAND支持能力、请求的制式来决定是否处理G模
- Input           : None
- Output          : 是否处理
- Return          :
- History         :
-    1.    chengmin 00285307      2015-05-15  Draft Enact
-*****************************************************************************/
+
 VOS_VOID CSS_GetGsmSuportFlag
 (
     VOS_UINT8                          ucBand,
@@ -379,15 +313,7 @@ VOS_VOID CSS_GetGsmSuportFlag
     }
 }
 
-/*****************************************************************************
- Function Name   : CSS_GetWcdmaSuportFlag
- Description     : 根据BAND、NV是否支持、UE的BAND支持能力、请求的制式来决定是否处理W模
- Input           : None
- Output          :
- Return          :
- History         :
-    1.    chengmin 00285307      2015-05-15  Draft Enact
-*****************************************************************************/
+
 VOS_VOID CSS_GetWcdmaSuportFlag
 (
     VOS_UINT8                          ucBand,
@@ -415,15 +341,7 @@ VOS_VOID CSS_GetWcdmaSuportFlag
 
 
 
-/*****************************************************************************
- Function Name   : CSS_RatSuportFlagForCommBandScan
- Description     : 根据UE的BAND能力、NV中配置、扫频请求获得BAND支持哪些制式
- Input           : None
- Output          : 是否处理
- Return          : VOS_UINT32
- History         :
-    1.    chengmin 00285307      2015-05-15  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32 CSS_RatSuportFlagForCommBandScan
 (
     CSS_BAND_PARA_STRU                *pstBandInfo,
@@ -487,15 +405,7 @@ VOS_UINT32 CSS_RatSuportFlagForCommBandScan
     return CSS_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : CSS_RatSuportFlagForAllBandScan
- Description     : 根据UE的BAND能力看某BAND是否支持
- Input           : None
- Output          :
- Return          : VOS_UINT32
- History         :
-    1.    chengmin 00285307      2015-05-25  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32 CSS_RatSuportFlagForAllBandScan
 (
     VOS_UINT8                          ucBand,
@@ -1091,15 +1001,7 @@ VOS_UINT32 CSS_IsCommScanNeedSndLphyNextBandScanReq(VOS_VOID)
     return CSS_FALSE;
 }
 
-/*****************************************************************************
- Function Name   : CSS_GetOneGsmBandScanInfo
- Description     : 获取G的band信息
- Input           : None
- Output          : None
- Return          : VOS_UINT32
- History         :
-    1.wangchen 00209181     2015-06-04  Draft Enact
-*****************************************************************************/
+
 VOS_VOID CSS_GetOneRatBandScanInfo
 (
     CSS_BAND_SCAN_LIST_INFO_STRU    *pstCssBandInfo,
@@ -1112,11 +1014,9 @@ VOS_VOID CSS_GetOneRatBandScanInfo
     VOS_UINT8                           ucBandNum  = *pucBandNum;
     VOS_UINT16                          ucLoop;
     VOS_UINT16                          usFreqNum = pstCssBandInfo->astScanRange[ucBandNum].usFreqNum;
-    /* c00285307 add for 多制式和重叠频段BAND优化 Begin */
     CSS_CONTROL_STRU                   *pstCssControl;
 
     pstCssControl = CSS_GetControlAddr();
-    /* c00285307 add for 多制式和重叠频段BAND优化 End */
 
     if (CSS_MAX_BAND_NUM <= ucBandNum)
     {
@@ -1154,7 +1054,6 @@ VOS_VOID CSS_GetOneRatBandScanInfo
                   (CSS_COMP_FUNC)CSS_FreqCompare);
             /*lint +e586*/
 
-            /* c00285307 add for 多制式和重叠频段BAND优化 Begin */
             if (CSS_OP_TRUE == pBandNode->stBandInfo.bitOpGsmSupport)
             {
                 pstCssControl->aucRatSupportFlag[ucBandNum] |= CSS_GSM_SUPORT_OP;
@@ -1167,7 +1066,6 @@ VOS_VOID CSS_GetOneRatBandScanInfo
             {
                 pstCssControl->aucRatSupportFlag[ucBandNum] |= CSS_LTE_SUPORT_OP;
             }
-            /* c00285307 add for 多制式和重叠频段BAND优化 End */
 
             ucBandNum ++;
             *pucBandNum = ucBandNum;
@@ -1310,13 +1208,11 @@ CSS_RESULT_ENUM_UINT32 CSS_GetBandScanInfo
         return CSS_RESULT_FAIL;
     }
 
-    /* c00285307 add for 多制式和重叠频段BAND优化 Begin */
     /* 对扫频结果重新排序，将支持最少制式的BAND放最前面，支持更多制式的BAND放后面 */
     CSS_SortRsltByRatSupport(pstCssBandInfo, CSS_GetControlAddr()->aucRatSupportFlag);
 
     /* 将与扫频结果中有重叠频段的BAND新增在扫频结果中 */
     CSS_AddOverlapBandToRslt(&stRatCoverage, pstCssBandInfo);
-    /* c00285307 add for 多制式和重叠频段BAND优化 End */
 
     CSS_SendOmBandApiInfoInd(&stRatCoverage, pstCssBandInfo);
 
@@ -1324,16 +1220,7 @@ CSS_RESULT_ENUM_UINT32 CSS_GetBandScanInfo
 }
 
 
-/*****************************************************************************
- Function Name   : CSS_SortRsltByRatSupport
- Description     : 对扫频结果重新排序，将支持最少制式的BAND放最前面，支持更多制式的BAND放后面
- Input           : pstCssBandInfo   - 扫频结果指针
-                   pcRatSupportFlag - BAND的各制式支持能力
- Output          : pstCssBandInfo   - 排序后的扫频结果指针
- Return          : None
- History         :
-    1.    chengmin 00285307      2015-07-15  Draft Enact
-*****************************************************************************/
+
 VOS_VOID CSS_SortRsltByRatSupport
 (
     CSS_BAND_SCAN_LIST_INFO_STRU       *pstCssBandInfo,
@@ -1406,16 +1293,7 @@ VOS_VOID CSS_SortRsltByRatSupport
     pstCssBandInfo->ucBandNum = ucNum;
 }
 
-/*****************************************************************************
- Function Name   : CSS_AddBandToRslt
- Description     : 将需要新增的扫频结果加入目标数组中
- Input           : pstSour - 源结果
-                   usBand  - 新加入的BAND值
- Output          : pstDest - 目标结果
- Return          : None
- History         :
-    1.    chengmin 00285307      2015-07-15  Draft Enact
-*****************************************************************************/
+
 VOS_VOID CSS_AddBandToRslt
 (
     CSS_RAT_COVERAGE_STRU                        *pstRatCoverage,
@@ -1483,16 +1361,7 @@ VOS_VOID CSS_AddBandToRslt
 }
 
 
-/*****************************************************************************
- Function Name   : CSS_AddOverlapBandToRslt
- Description     : 将与扫频结果有重叠频段的BAND新增到扫频结果中
- Input           : pstRatCoverage - 请求扫频结果的参数
-                   pstCssBandInfo - 扫频结果指针
- Output          : pstCssBandInfo - 扫频结果指针
- Return          : None
- History         :
-    1.    chengmin 00285307      2015-07-15  Draft Enact
-*****************************************************************************/
+
 VOS_VOID CSS_AddOverlapBandToRslt
 (
     CSS_RAT_COVERAGE_STRU              *pstRatCoverage,
@@ -1556,16 +1425,7 @@ VOS_VOID CSS_AddOverlapBandToRslt
     }
 }
 
-/*****************************************************************************
- Function Name   : CSS_IsUeSupportBandByReq
- Description     : 根据UE的能力和请求参数来判断是否需要新增到扫频结果中
- Input           : pstRatCoverage - 请求扫频结果的参数
-                   ucBand         - 新增BAND的值
- Output          : None
- Return          : 是否需要加入
- History         :
-    1.    chengmin 00285307      2015-07-15  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32 CSS_IsUeSupportBandByReq
 (
     CSS_RAT_COVERAGE_STRU              *pstRatCoverage,
@@ -1608,17 +1468,7 @@ VOS_UINT32 CSS_IsUeSupportBandByReq
 }
 
 
-/*****************************************************************************
- Function Name   : CSS_IsNeedAddToRslt
- Description     : 判断是否需要将该有重叠频段的BAND新增到扫频结果中
- Input           : pstRatCoverage - 请求扫频结果的参数
-                   pstCssBandInfo - 扫频结果指针
-                   ucBand         - 新增的共频段的BAND值
- Output          : None
- Return          : 是否需要加入
- History         :
-    1.    chengmin 00285307      2015-07-15  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32 CSS_IsNeedAddToRslt
 (
     CSS_BAND_SCAN_LIST_INFO_STRU       *pstCssBandInfo,

@@ -26,14 +26,7 @@ using namespace testing;
 //12、比较异常 EXPECT_THROW
 //13、结构体类型比较ASSERT_SAME_DATA ASSERT_SAME_MEMORY
 
-/*****************************************************************************
-类名 : Test_GetSecondAddr
-功能描述 : GetSecondAddr UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_GetSecondAddr: public ::testing::Test
 {
 public:
@@ -48,15 +41,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_GetSecondAddr_001
-被测函数功能描述  : 从pData 的usLen范围内 找到第二个匹配的命令，将字符串首地址存储在参数3中，返回查找结果
-预期结果          : 返回处理结果
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_GetSecondAddr, Test_GetSecondAddr_001)
 {
     VOS_UINT32 ulRet=0;
@@ -88,14 +73,7 @@ TEST_F(Test_GetSecondAddr, Test_GetSecondAddr_001)
 
 }
 
-/*****************************************************************************
-类名 : Test_GetFirstCmdLen
-功能描述 : GetFirstCmdLen UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_GetFirstCmdLen: public ::testing::Test
 {
 public:
@@ -110,15 +88,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_GetFirstCmdLen_001
-被测函数功能描述  : 获取第一个命令的长度
-预期结果          : 返回处理结果
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_GetFirstCmdLen, Test_GetFirstCmdLen_001)
 {
     VOS_UINT32 ulRet = 0;
@@ -158,14 +128,7 @@ TEST_F(Test_GetFirstCmdLen, Test_GetFirstCmdLen_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名 : Test_AT_ResetCombinCmdInfo
-功能描述 : AT_ResetCombinCmdInfo UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_ResetCombinCmdInfo: public ::testing::Test
 {
 public:
@@ -180,15 +143,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_ResetCombinCmdInfo_001
-被测函数功能描述  : 重置AT组合命令解析的信息
-预期结果          : 返回处理结果
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ResetCombinCmdInfo, Test_AT_ResetCombinCmdInfo_001)
 {
     AT_FW_COMBINE_CMD_INFO_STRU stCombineCmdInfo={0};
@@ -220,15 +175,7 @@ TEST_F(Test_AT_ResetCombinCmdInfo, Test_AT_ResetCombinCmdInfo_001)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_AT_ResetCombinCmdInfo_002
-被测函数功能描述  : 重置AT组合命令解析的信息
-预期结果          : 返回处理结果
-修改历史      :
-1.日    期   : 2011年12月25日
-  作    者   : 黎客来/00130025
-  修改内容   : 问题单DTS2011120703681，组合命令解析使用空指针导致单板复位
-*******************************************************************/
+
 TEST_F(Test_AT_ResetCombinCmdInfo, Test_AT_ResetCombinCmdInfo_002)
 {
     AT_FW_COMBINE_CMD_INFO_STRU stCombineCmdInfo={0};
@@ -243,14 +190,7 @@ TEST_F(Test_AT_ResetCombinCmdInfo, Test_AT_ResetCombinCmdInfo_002)
 }
 
 
-/*****************************************************************************
-类名 : Test_At_ResetCombinParseInfo
-功能描述 : At_ResetCombinParseInfo UT工程类
-修改历史     :
-  1.日    期   : 2011年12月25日
-    作    者   : 黎客来/00130025
-    修改内容   : 问题单DTS2011120703681，组合命令解析使用空指针导致单板复位
-*****************************************************************************/
+
 class Test_At_ResetCombinParseInfo: public ::testing::Test
 {
 public:
@@ -265,15 +205,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_ResetCombinParseInfo_001
-被测函数功能描述  : 重置AT组合命令解析的信息
-预期结果          : 返回处理结果
-修改历史      :
-  1.日    期   : 2011年12月25日
-    作    者   : 黎客来/00130025
-    修改内容   : 问题单DTS2011120703681，组合命令解析使用空指针导致单板复位
-*******************************************************************/
+
 TEST_F(Test_At_ResetCombinParseInfo, Test_At_ResetCombinParseInfo_001)
 {
     MOCKER(At_ResetCombinCmdInfo)
@@ -285,15 +217,7 @@ TEST_F(Test_At_ResetCombinParseInfo, Test_At_ResetCombinParseInfo_001)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_ResetCombinParseInfo_002
-被测函数功能描述  : 重置AT组合命令解析的信息
-预期结果          : 返回处理结果
-修改历史      :
-1.日    期   : 2011年12月25日
-  作    者   : 黎客来/00130025
-  修改内容   : 问题单DTS2011120703681，组合命令解析使用空指针导致单板复位
-*******************************************************************/
+
 TEST_F(Test_At_ResetCombinParseInfo, Test_At_ResetCombinParseInfo_002)
 {
    PS_MEM_SET(&g_stParseContext, 0x00, sizeof(g_stParseContext)),
@@ -308,15 +232,7 @@ TEST_F(Test_At_ResetCombinParseInfo, Test_At_ResetCombinParseInfo_002)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_ResetCombinParseInfo_003
-被测函数功能描述  : 重置AT组合命令解析的信息
-预期结果          : 返回处理结果
-修改历史      :
-1.日    期   : 2011年12月25日
-  作    者   : 黎客来/00130025
-  修改内容   : 问题单DTS2011120703681，组合命令解析使用空指针导致单板复位
-*******************************************************************/
+
 TEST_F(Test_At_ResetCombinParseInfo, Test_At_ResetCombinParseInfo_003)
 {
    PS_MEM_SET(&g_stParseContext, 0xFF, sizeof(g_stParseContext)),
@@ -331,14 +247,7 @@ TEST_F(Test_At_ResetCombinParseInfo, Test_At_ResetCombinParseInfo_003)
 
 }
 #if 0
-/*****************************************************************************
-类名 : Test_atfwPrintCombinCmd
-功能描述 : atfwPrintCombinCmd UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_atfwPrintCombinCmd: public ::testing::Test
 {
 public:
@@ -353,28 +262,13 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_atfwPrintCombinCmd_001
-被测函数功能描述  : 打印解析出的组合命令信息，调试用
-预期结果          : 返回处理结果
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_atfwPrintCombinCmd, Test_atfwPrintCombinCmd_001)
 {
 
 }
 
-/*****************************************************************************
-类名 : Test_StoreSubCombCmd
-功能描述 : StoreSubCombCmd UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_StoreSubCombCmd: public ::testing::Test
 {
 public:
@@ -389,15 +283,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_StoreSubCombCmd_001
-被测函数功能描述  : 存储命令于链表中
-预期结果          : ERR_MSP_MALLOC_FAILUE
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_StoreSubCombCmd, Test_StoreSubCombCmd_001)
 {
     AT_FW_COMBINE_CMD_NODE_STRU* pstCombCmdNode = NULL;
@@ -436,14 +322,7 @@ TEST_F(Test_StoreSubCombCmd, Test_StoreSubCombCmd_001)
 
 }
 
-/*****************************************************************************
-类名 : Test_BasicCombineCmdParse
-功能描述 : BasicCombineCmdParse UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_BasicCombineCmdParse: public ::testing::Test
 {
 public:
@@ -458,15 +337,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_BasicCombineCmdParse_001
-被测函数功能描述  : 基础组合命令解析
-预期结果          : 返回处理结果
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_BasicCombineCmdParse, Test_BasicCombineCmdParse_001)
 {
     //该函数在 pDataIn 的 usLenIn 长度的内容 中检索命令名存入pstCombList 中。
@@ -493,14 +364,7 @@ TEST_F(Test_BasicCombineCmdParse, Test_BasicCombineCmdParse_001)
 
 }
 #endif
-/*****************************************************************************
-类名 : Test_BasicExCombineCmdParse
-功能描述 : BasicExCombineCmdParse UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_BasicExCombineCmdParse: public ::testing::Test
 {
 public:
@@ -515,15 +379,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_BasicExCombineCmdParse_001
-被测函数功能描述  : 基础命令和扩展命令组合解析
-预期结果          : 返回处理结果
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_BasicExCombineCmdParse, Test_BasicExCombineCmdParse_001)
 {
     AT_FW_COMBINE_CMD_NODE_STRU* pstCombCmdNode = NULL;
@@ -554,14 +410,7 @@ TEST_F(Test_BasicExCombineCmdParse, Test_BasicExCombineCmdParse_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名 : Test_SemicolonCmdParse
-功能描述 : SemicolonCmdParse UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_SemicolonCmdParse: public ::testing::Test
 {
 public:
@@ -576,15 +425,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_SemicolonCmdParse_001
-被测函数功能描述  : 每个;前的命令的解析
-预期结果          : 返回处理结果
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_SemicolonCmdParse, Test_SemicolonCmdParse_001)
 {
     AT_FW_COMBINE_CMD_NODE_STRU* pstCombCmdNode = NULL;
@@ -631,14 +472,7 @@ TEST_F(Test_SemicolonCmdParse, Test_SemicolonCmdParse_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名 : Test_CombineCmdPreProc
-功能描述 : CombineCmdPreProc UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_CombineCmdPreProc: public ::testing::Test
 {
 public:
@@ -653,15 +487,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_CombineCmdPreProc_001
-被测函数功能描述  : 组合命令的预处理,把命令拆分放入缓存中
-预期结果          : 返回处理结果
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_CombineCmdPreProc, Test_CombineCmdPreProc_001)
 {
     AT_FW_COMBINE_CMD_NODE_STRU* pstCombCmdNode = NULL;
@@ -682,14 +508,7 @@ TEST_F(Test_CombineCmdPreProc, Test_CombineCmdPreProc_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名 : Test_CombineCmdProc
-功能描述 : CombineCmdProc UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_CombineCmdProc: public ::testing::Test
 {
 public:
@@ -704,15 +523,7 @@ public:
     }
 };
 #if 0
-/*******************************************************************
-测试用例编号      : Test_CombineCmdProc_001
-被测函数功能描述  : 组合命令的预处理,把命令拆分放入缓存中
-预期结果          : 返回处理结果
-修改历史      :
-1.日    期   : 2011年10月13日
-作    者   : c64416
-修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_CombineCmdProc, Test_CombineCmdProc_001)
 {
     VOS_UINT8 ucClientId = 0;
@@ -744,15 +555,7 @@ TEST_F(Test_CombineCmdProc, Test_CombineCmdProc_001)
     EXPECT_EQ(ulRet,AT_OK);
 }
 
-/*******************************************************************
-测试用例编号      : Test_CombineCmdProc_002
-被测函数功能描述  : 组合命令的预处理,把命令拆分放入缓存中
-预期结果          : 返回处理结果
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_CombineCmdProc, Test_CombineCmdProc_002)
 {
     VOS_UINT8 ucClientId = 0;
@@ -780,14 +583,7 @@ TEST_F(Test_CombineCmdProc, Test_CombineCmdProc_002)
 #if 0
 
 
-/*****************************************************************************
-类名 : Test_atfwCombineCmdChkProc
-功能描述 : atfwCombineCmdChkProc UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_atfwCombineCmdChkProc: public ::testing::Test
 {
 public:
@@ -802,15 +598,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_atfwCombineCmdChkProc_001
-被测函数功能描述  : 组合命令检查、处理
-预期结果          : 返回处理结果
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_atfwCombineCmdChkProc, Test_atfwCombineCmdChkProc_001)
 {
     VOS_UINT32 ulRet = 0;
@@ -852,14 +640,7 @@ TEST_F(Test_atfwCombineCmdChkProc, Test_atfwCombineCmdChkProc_001)
 
 }
 
-/*****************************************************************************
-类名 : Test_atfwCombCmdProcAfterCmd
-功能描述 : atfwCombCmdProcAfterCmd UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_atfwCombCmdProcAfterCmd: public ::testing::Test
 {
 public:
@@ -874,15 +655,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_atfwCombCmdProcAfterCmd_001
-被测函数功能描述  : 组合命令检查、处理
-预期结果          : 返回处理结果
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_atfwCombCmdProcAfterCmd, Test_atfwCombCmdProcAfterCmd_001)
 {
     VOS_UINT8 ucClientId = 0;
@@ -905,14 +678,7 @@ TEST_F(Test_atfwCombCmdProcAfterCmd, Test_atfwCombCmdProcAfterCmd_001)
 
 }
 #endif
-/*****************************************************************************
-类名 : Test_AT_CombCmdisFinal
-功能描述 : AT_CombCmdisFinal UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_CombCmdisFinal: public ::testing::Test
 {
 public:
@@ -927,15 +693,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_CombCmdisFinal_001
-被测函数功能描述  : 判断是否是组合命令的最后一个子命令，用来AT上报AT_OK输出用
-预期结果          : 返回处理结果
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_CombCmdisFinal, Test_AT_CombCmdisFinal_001)
 {
     VOS_BOOL ret = 0;
@@ -948,15 +706,7 @@ TEST_F(Test_AT_CombCmdisFinal, Test_AT_CombCmdisFinal_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_CombCmdisFinal_002
-被测函数功能描述  : 判断是否是组合命令的最后一个子命令，用来AT上报AT_OK输出用
-预期结果          : 返回处理结果
-修改历史      :
-1.日    期   : 2011年10月13日
-作    者   : c64416
-修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_CombCmdisFinal, Test_AT_CombCmdisFinal_002)
 {
     VOS_BOOL ret = 0;
@@ -970,14 +720,7 @@ TEST_F(Test_AT_CombCmdisFinal, Test_AT_CombCmdisFinal_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名 : Test_At_FilterDCmdSpecCharacter
-功能描述 : At_FilterDCmdSpecCharacter UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_FilterDCmdSpecCharacter: public ::testing::Test
 {
 public:
@@ -992,18 +735,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_FilterDCmdSpecCharacter_001
-被测函数功能描述  : 数据长度小于3
-预期结果          : 不处理
-修改历史      :
- 1.日    期   : 2013年05月13日
-   作    者   : L65478
-   修改内容   : 新建CASE
- 2.日    期   : 2013年12月14日
-   作    者   : f62575
-   修改内容   : DTS2013121606723
-*******************************************************************/
+
 TEST_F(Test_At_FilterDCmdSpecCharacter, Test_At_FilterDCmdSpecCharacter_001)
 {
     VOS_UINT8                  *aucAtData = VOS_NULL_PTR;
@@ -1025,18 +757,7 @@ TEST_F(Test_At_FilterDCmdSpecCharacter, Test_At_FilterDCmdSpecCharacter_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_FilterDCmdSpecCharacter_002
-被测函数功能描述  : 第一个数字不是A
-预期结果          : 不处理
-修改历史      :
- 1.日    期   : 2013年05月13日
-   作    者   : L65478
-   修改内容   : 新建CASE
- 2.日    期   : 2013年12月14日
-   作    者   : f62575
-   修改内容   : DTS2013121606723
-*******************************************************************/
+
 TEST_F(Test_At_FilterDCmdSpecCharacter, Test_At_FilterDCmdSpecCharacter_002)
 {
     VOS_UINT8                  *aucAtData = VOS_NULL_PTR;
@@ -1073,18 +794,7 @@ TEST_F(Test_At_FilterDCmdSpecCharacter, Test_At_FilterDCmdSpecCharacter_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_FilterDCmdSpecCharacter_003
-被测函数功能描述  : 第二个数字不是T
-预期结果          : 不处理
-修改历史      :
- 1.日    期   : 2013年05月13日
-   作    者   : L65478
-   修改内容   : 新建CASE
- 2.日    期   : 2013年12月14日
-   作    者   : f62575
-   修改内容   : DTS2013121606723
-*******************************************************************/
+
 TEST_F(Test_At_FilterDCmdSpecCharacter, Test_At_FilterDCmdSpecCharacter_003)
 {
     VOS_UINT8                  *aucAtData = VOS_NULL_PTR;
@@ -1121,18 +831,7 @@ TEST_F(Test_At_FilterDCmdSpecCharacter, Test_At_FilterDCmdSpecCharacter_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_FilterDCmdSpecCharacter_004
-被测函数功能描述  : 第三个数字不是D
-预期结果          : 不处理
-修改历史      :
- 1.日    期   : 2013年05月13日
-   作    者   : L65478
-   修改内容   : 新建CASE
- 2.日    期   : 2013年12月14日
-   作    者   : f62575
-   修改内容   : DTS2013121606723
-*******************************************************************/
+
 TEST_F(Test_At_FilterDCmdSpecCharacter, Test_At_FilterDCmdSpecCharacter_004)
 {
     VOS_UINT8                  *aucAtData = VOS_NULL_PTR;
@@ -1169,18 +868,7 @@ TEST_F(Test_At_FilterDCmdSpecCharacter, Test_At_FilterDCmdSpecCharacter_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_FilterDCmdSpecCharacter_005
-被测函数功能描述  : 包含有特殊字符串ATD+1234567890*#ABCDabcd,TP!W@>IiGg$&;
-预期结果          : 删除0-9，a-c，A-C和i,I,g,G,>外的字符
-修改历史      :
- 1.日    期   : 2013年05月13日
-   作    者   : L65478
-   修改内容   : 新建CASE
- 2.日    期   : 2013年12月14日
-   作    者   : f62575
-   修改内容   : DTS2013121606723
-*******************************************************************/
+
 TEST_F(Test_At_FilterDCmdSpecCharacter, Test_At_FilterDCmdSpecCharacter_005)
 {
     VOS_UINT8                  *aucAtData = VOS_NULL_PTR;
@@ -1226,15 +914,7 @@ TEST_F(Test_At_FilterDCmdSpecCharacter, Test_At_FilterDCmdSpecCharacter_005)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_FilterDCmdSpecCharacter_006
-被测函数功能描述  : 被叫号码字符串中间的+ ATD*7+41796915248;
-预期结果          : +会被丢弃
-修改历史      :
- 1.日    期   : 2013年12月14日
-   作    者   : f62575
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_FilterDCmdSpecCharacter, Test_At_FilterDCmdSpecCharacter_006)
 {
     VOS_UINT8                  *aucAtData = VOS_NULL_PTR;
@@ -1272,15 +952,7 @@ TEST_F(Test_At_FilterDCmdSpecCharacter, Test_At_FilterDCmdSpecCharacter_006)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_FilterDCmdSpecCharacter_007
-被测函数功能描述  : 被叫号码字符串后的呼叫属性字符I：ATD13901100335I;
-预期结果          : 字符I会保留
-修改历史      :
- 1.日    期   : 2013年12月14日
-   作    者   : f62575
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_FilterDCmdSpecCharacter, Test_At_FilterDCmdSpecCharacter_007)
 {
     VOS_UINT8                  *aucAtData = VOS_NULL_PTR;
@@ -1317,15 +989,7 @@ TEST_F(Test_At_FilterDCmdSpecCharacter, Test_At_FilterDCmdSpecCharacter_007)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_FilterDCmdSpecCharacter_008
-被测函数功能描述  : 被叫号码字符串后的呼叫属性字符G：ATD13901100335G;
-预期结果          : 字符G会保留
-修改历史      :
- 1.日    期   : 2013年12月14日
-   作    者   : f62575
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_FilterDCmdSpecCharacter, Test_At_FilterDCmdSpecCharacter_008)
 {
     VOS_UINT8                  *aucAtData = VOS_NULL_PTR;
@@ -1362,15 +1026,7 @@ TEST_F(Test_At_FilterDCmdSpecCharacter, Test_At_FilterDCmdSpecCharacter_008)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_FilterDCmdSpecCharacter_009
-被测函数功能描述  : 被叫号码字符串后的呼叫属性字符i：ATD13901100335i;
-预期结果          : 字符i会保留
-修改历史      :
- 1.日    期   : 2013年12月14日
-   作    者   : f62575
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_FilterDCmdSpecCharacter, Test_At_FilterDCmdSpecCharacter_009)
 {
     VOS_UINT8                  *aucAtData = VOS_NULL_PTR;
@@ -1407,15 +1063,7 @@ TEST_F(Test_At_FilterDCmdSpecCharacter, Test_At_FilterDCmdSpecCharacter_009)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_FilterDCmdSpecCharacter_010
-被测函数功能描述  : 被叫号码字符串后的呼叫属性字符g：ATD13901100335g;
-预期结果          : 字符g会保留
-修改历史      :
- 1.日    期   : 2013年12月14日
-   作    者   : f62575
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_FilterDCmdSpecCharacter, Test_At_FilterDCmdSpecCharacter_010)
 {
     VOS_UINT8                  *aucAtData = VOS_NULL_PTR;
@@ -1452,15 +1100,7 @@ TEST_F(Test_At_FilterDCmdSpecCharacter, Test_At_FilterDCmdSpecCharacter_010)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_FilterDCmdSpecCharacter_011
-被测函数功能描述  : 呼叫电话本中的索引：ATD>1;
-预期结果          : >符号不会被丢弃
-修改历史      :
- 1.日    期   : 2013年12月14日
-   作    者   : f62575
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_FilterDCmdSpecCharacter, Test_At_FilterDCmdSpecCharacter_011)
 {
     VOS_UINT8                  *aucAtData = VOS_NULL_PTR;
@@ -1487,15 +1127,7 @@ TEST_F(Test_At_FilterDCmdSpecCharacter, Test_At_FilterDCmdSpecCharacter_011)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_FilterDCmdSpecCharacter_012
-被测函数功能描述  : 被叫号码字符串第4个字符为I：ATDI1234;
-预期结果          : 删除第4个字符I输出字符串为ATD1234;
-修改历史      :
- 1.日    期   : 2013年12月14日
-   作    者   : f62575
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_FilterDCmdSpecCharacter, Test_At_FilterDCmdSpecCharacter_012)
 {
     VOS_UINT8                  *aucAtData = VOS_NULL_PTR;
@@ -1524,15 +1156,7 @@ TEST_F(Test_At_FilterDCmdSpecCharacter, Test_At_FilterDCmdSpecCharacter_012)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_FilterDCmdSpecCharacter_013
-被测函数功能描述  : 被叫号码中包含字符I：ATD12I3G4;
-预期结果          : 属性字符保留一份移动到电话号码结尾处，输出字符串为ATD1234IG;
-修改历史      :
- 1.日    期   : 2013年12月14日
-   作    者   : f62575
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_FilterDCmdSpecCharacter, Test_At_FilterDCmdSpecCharacter_013)
 {
     VOS_UINT8                  *aucAtData = VOS_NULL_PTR;
@@ -1563,15 +1187,7 @@ TEST_F(Test_At_FilterDCmdSpecCharacter, Test_At_FilterDCmdSpecCharacter_013)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_FilterDCmdSpecCharacter_014
-被测函数功能描述  : 被叫号码包含属性字符串GG：ATD12I3GG4;
-预期结果          : 属性字符保留一份移动到电话号码结尾处，输出字符串为ATD1234IG;
-修改历史      :
- 1.日    期   : 2013年12月14日
-   作    者   : f62575
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_FilterDCmdSpecCharacter, Test_At_FilterDCmdSpecCharacter_014)
 {
     VOS_UINT8                  *aucAtData = VOS_NULL_PTR;
@@ -1602,15 +1218,7 @@ TEST_F(Test_At_FilterDCmdSpecCharacter, Test_At_FilterDCmdSpecCharacter_014)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_FilterDCmdSpecCharacter_015
-被测函数功能描述  : 被叫号码包含冲突的属性字符串Ii：ATD12I3IigG4;
-预期结果          : 冲突属性字符保留最后一份移动到电话号码结尾处，输出字符串为ATD1234iG;
-修改历史      :
- 1.日    期   : 2013年12月14日
-   作    者   : f62575
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_FilterDCmdSpecCharacter, Test_At_FilterDCmdSpecCharacter_015)
 {
     VOS_UINT8                  *aucAtData = VOS_NULL_PTR;
@@ -1641,15 +1249,7 @@ TEST_F(Test_At_FilterDCmdSpecCharacter, Test_At_FilterDCmdSpecCharacter_015)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_FilterDCmdSpecCharacter_016
-被测函数功能描述  : 被叫号码包含冲突的属性字符串Ii：ATD1i2I3gG4;
-预期结果          : 冲突属性字符保留最后一份移动到电话号码结尾处，输出字符串为ATD1234iG;
-修改历史      :
- 1.日    期   : 2013年12月14日
-   作    者   : f62575
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_FilterDCmdSpecCharacter, Test_At_FilterDCmdSpecCharacter_016)
 {
     VOS_UINT8                  *aucAtData = VOS_NULL_PTR;
@@ -1680,15 +1280,7 @@ TEST_F(Test_At_FilterDCmdSpecCharacter, Test_At_FilterDCmdSpecCharacter_016)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_FilterDCmdSpecCharacter_017
-被测函数功能描述  : 被叫号码前包含属性字符串i：ATDi123gG4;
-预期结果          : 属性字符串i保留移动到电话号码结尾处，输出字符串为ATD1234iG;
-修改历史      :
- 1.日    期   : 2013年12月14日
-   作    者   : f62575
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_FilterDCmdSpecCharacter, Test_At_FilterDCmdSpecCharacter_017)
 {
     VOS_UINT8                  *aucAtData = VOS_NULL_PTR;

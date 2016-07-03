@@ -58,13 +58,7 @@ VOS_UINT8           g_aucTraceData[MNTN_IP_INFO_LEN + OM_TRANS_DATA_OFFSET_LEN];
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
-用例公共函数，用于初始化测试环境阶段
 
-1.日    期   : 2014年5月21日
-  作    者   : liukai
-  修改内容   : created
-*****************************************************************************/
 void test_init_IPS_MNTN(void)
 {
     VOS_UINT8               *pucData;
@@ -85,33 +79,14 @@ void test_init_IPS_MNTN(void)
     memset(&g_aucTraceData, 0x0, sizeof(g_aucTraceData));
 }
 
-/*****************************************************************************
-用例公共函数，用于恢复测试环境阶段
 
-1.日    期   : 2014年5月21日
-  作    者   : liukai
-  修改内容   : created
-*****************************************************************************/
 void test_recover_IPS_MNTN(void)
 {
     test_init_IPS_MNTN();
     g_pstIpsToOmMsg = VOS_NULL_PTR;
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_SndCfgCnf2Om
-功能描述:向OM发送配置确认消息，申请内存失败
-测试编号:Test_IPS_MNTN_SndCfgCnf2Om_001
-测试标题:向OM发送配置确认消息，申请内存失败
-预期结果:
 
-1.日    期: 2011年8月11日
-  作    者: f00166181
-  修改内容: 新建CASE
-2.日    期   : 2014年5月21日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 void test_IPS_MNTN_SndCfgCnf2Om_001(void)
 {
     IPS_MNTN_TRACE_CONFIG_CNF_STRU         *pstIpsMntnCfgCnf;
@@ -123,20 +98,7 @@ void test_IPS_MNTN_SndCfgCnf2Om_001(void)
             sizeof(IPS_MNTN_TRACE_CONFIG_CNF_STRU), pstIpsMntnCfgCnf);
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_SndCfgCnf2Om
-功能描述:向OM发送配置确认消息，发送消息成功
-测试编号:Test_IPS_MNTN_SndCfgCnf2Om_002
-测试标题:向OM发送配置确认消息，发送消息成功
-预期结果:
 
-1.日    期: 2011年8月11日
-  作    者: f00166181
-  修改内容: 新建CASE
-2.日    期   : 2014年5月21日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 int test_IPS_MNTN_SndCfgCnf2Om_002(void)
 {
     IPS_MNTN_TRACE_CONFIG_CNF_STRU                  *pstIpsMntnCfgCnf;
@@ -185,20 +147,7 @@ int test_IPS_MNTN_SndCfgCnf2Om_002(void)
     return 0;   /* 返回成功 */
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_SndCfgCnf2Om
-功能描述:向OM发送配置确认消息，发送消息失败
-测试编号:Test_IPS_MNTN_SndCfgCnf2Om_003
-测试标题:向OM发送配置确认消息，发送消息失败
-预期结果:
 
-1.日    期: 2011年8月11日
-  作    者: f00166181
-  修改内容: 新建CASE
-2.日    期   : 2014年5月21日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 int test_IPS_MNTN_SndCfgCnf2Om_003(void)
 {
     IPS_MNTN_TRACE_CONFIG_CNF_STRU                  *pstIpsMntnCfgCnf;
@@ -247,20 +196,7 @@ int test_IPS_MNTN_SndCfgCnf2Om_003(void)
     return 0;   /* 返回成功 */
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_TransMsg
-功能描述:发送消息成功
-测试编号:Test_IPS_MNTN_TransMsg_002
-测试标题:发送消息成功
-预期结果:
 
-1.日    期: 2011年8月11日
-  作    者: f00166181
-  修改内容: 新建CASE
-2.日    期   : 2014年5月20日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 int test_IPS_MNTN_TransMsg_002(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -321,20 +257,7 @@ int test_IPS_MNTN_TransMsg_002(void)
     return 0;   /* 返回成功 */
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_GetPktLenByTraceCfg
-功能描述:不捕获报文的情况
-测试编号:Test_IPS_MNTN_GetPktLenByTraceCfg_001
-测试标题:不捕获报文的情况
-预期结果:
 
-1.日    期: 2011年8月11日
-  作    者: f00166181
-  修改内容: 新建CASE
-2.日    期   : 2014年5月21日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 unsigned int test_IPS_MNTN_GetPktLenByTraceCfg_001(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -353,20 +276,7 @@ unsigned int test_IPS_MNTN_GetPktLenByTraceCfg_001(void)
 #endif
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_GetPktLenByTraceCfg
-功能描述:捕获消息头部的情况
-测试编号:Test_IPS_MNTN_GetPktLenByTraceCfg_002
-测试标题:捕获消息头部的情况
-预期结果:
 
-1.日    期: 2011年8月11日
-  作    者: f00166181
-  修改内容: 新建CASE
-2.日    期   : 2014年5月21日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 int test_IPS_MNTN_GetPktLenByTraceCfg_002(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -393,20 +303,7 @@ int test_IPS_MNTN_GetPktLenByTraceCfg_002(void)
     return 0;   /* 返回成功 */
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_GetPktLenByTraceCfg
-功能描述:配置捕获固定报文长度，捕获不全的情况
-测试编号:Test_IPS_MNTN_GetPktLenByTraceCfg_003
-测试标题:配置捕获固定报文长度，捕获不全的情况
-预期结果:
 
-1.日    期: 2011年8月11日
-  作    者: f00166181
-  修改内容: 新建CASE
-2.日    期   : 2014年5月21日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 int test_IPS_MNTN_GetPktLenByTraceCfg_003(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -434,20 +331,7 @@ int test_IPS_MNTN_GetPktLenByTraceCfg_003(void)
     return 0;
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_GetPktLenByTraceCfg
-功能描述:配置捕获固定报文长度，捕获全的情况
-测试编号:Test_IPS_MNTN_GetPktLenByTraceCfg_004
-测试标题:配置捕获固定报文长度，捕获全的情况
-预期结果:
 
-1.日    期: 2011年8月11日
-  作    者: f00166181
-  修改内容: 新建CASE
-2.日    期   : 2014年5月21日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 int test_IPS_MNTN_GetPktLenByTraceCfg_004(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -475,20 +359,7 @@ int test_IPS_MNTN_GetPktLenByTraceCfg_004(void)
     return 0;
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_GetPktLenByTraceCfg
-功能描述:配置捕获全部报文
-测试编号:Test_IPS_MNTN_GetPktLenByTraceCfg_005
-测试标题:配置捕获全部报文
-预期结果:
 
-1.日    期: 2011年8月11日
-  作    者: f00166181
-  修改内容: 新建CASE
-2.日    期   : 2014年5月21日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 int test_IPS_MNTN_GetPktLenByTraceCfg_005(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -516,20 +387,7 @@ int test_IPS_MNTN_GetPktLenByTraceCfg_005(void)
     return 0;
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_GetPktLenByTraceCfg
-功能描述:配置捕获类型错误
-测试编号:Test_IPS_MNTN_GetPktLenByTraceCfg_006
-测试标题:配置捕获类型错误
-预期结果:
 
-1.日    期: 2011年8月11日
-  作    者: f00166181
-  修改内容: 新建CASE
-2.日    期   : 2014年5月22日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 int test_IPS_MNTN_GetPktLenByTraceCfg_006(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -552,20 +410,7 @@ int test_IPS_MNTN_GetPktLenByTraceCfg_006(void)
     return 0;
 }
 
-/*****************************************************************************
-测试项:  test_IPS_MNTN_CtrlPktInfoCB
-功能描述:捕获控制报文成功
-测试编号:test_IPS_MNTN_CtrlPktInfoCB_002
-测试标题:捕获控制报文成功
-预期结果:
 
-1.日    期: 2011年8月11日
-  作    者: f00166181
-  修改内容: 新建CASE
-2.日    期   : 2014年5月22日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 int test_IPS_MNTN_CtrlPktInfoCB_002(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -611,20 +456,7 @@ int test_IPS_MNTN_CtrlPktInfoCB_002(void)
     return 0;
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_CtrlPktInfoCB
-功能描述:捕获控制报文成功
-测试编号:Test_IPS_MNTN_CtrlPktInfoCB_003
-测试标题:申请内存失败
-预期结果:
 
-1.日    期: 2011年8月11日
-  作    者: f00166181
-  修改内容: 新建CASE
-2.日    期   : 2014年5月26日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 int test_IPS_MNTN_CtrlPktInfoCB_003(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -683,20 +515,7 @@ int test_IPS_MNTN_CtrlPktInfoCB_003(void)
 #endif
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_CtrlPktInfoCB
-功能描述:捕获控制报文成功，报文长度超长
-测试编号:test_IPS_MNTN_CtrlPktInfoCB_004
-测试标题:捕获控制报文成功，报文长度超长
-预期结果:
 
-1.日    期: 2011年8月11日
-  作    者: f00166181
-  修改内容: 新建CASE
-2.日    期   : 2014年5月26日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 void test_IPS_MNTN_CtrlPktInfoCB_004(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -740,20 +559,7 @@ void test_IPS_MNTN_CtrlPktInfoCB_004(void)
 #endif
 }
 
-/*****************************************************************************
-测试项: Test_IPS_MNTN_PktInfoCB
-功能描述:申请内存失败
-测试编号:Test_IPS_MNTN_PktInfoCB_003
-测试标题:申请内存失败
-预期结果:
 
-1.日  期: 2011年8月11日
-  作    者: f00166181
-  修改内容: 新建CASE
-2.日    期   : 2014年5月26日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 void test_IPS_MNTN_PktInfoCB_003(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -800,20 +606,7 @@ void test_IPS_MNTN_PktInfoCB_003(void)
 #endif
 }
 
-/*****************************************************************************
-测试项: Test_IPS_MNTN_PktInfoCB
-功能描述:配置不捕获接收报文
-测试编号:Test_IPS_MNTN_PktInfoCB_005
-测试标题:配置不捕获接收报文
-预期结果:
 
-1.日  期: 2011年8月11日
-  作    者: f00166181
-  修改内容: 新建CASE
-2.日    期   : 2014年5月26日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 void test_IPS_MNTN_PktInfoCB_005(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -831,20 +624,7 @@ void test_IPS_MNTN_PktInfoCB_005(void)
 #endif
 }
 
-/*****************************************************************************
-测试项: Test_IPS_MNTN_PktInfoCB
-功能描述:捕获接收报文成功
-测试编号:Test_IPS_MNTN_PktInfoCB_006
-测试标题:捕获接收报文成功
-预期结果:
 
-1.日  期: 2011年8月11日
-  作    者: f00166181
-  修改内容: 新建CASE
-2.日    期   : 2014年5月26日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 void test_IPS_MNTN_PktInfoCB_006(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -891,20 +671,7 @@ void test_IPS_MNTN_PktInfoCB_006(void)
 #endif
 }
 
-/*****************************************************************************
-测试项: Test_IPS_MNTN_PktInfoCB
-功能描述:捕获发送报文成功
-测试编号:Test_IPS_MNTN_PktInfoCB_007
-测试标题:捕获发送报文成功
-预期结果:
 
-1.日  期: 2011年8月11日
-  作    者: f00166181
-  修改内容: 新建CASE
-2.日    期   : 2014年5月26日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 void test_IPS_MNTN_PktInfoCB_007(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -953,20 +720,7 @@ void test_IPS_MNTN_PktInfoCB_007(void)
 #endif
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_BridgePktInfoCB
-功能描述:配置不捕获接收报文
-测试编号:Test_IPS_MNTN_BridgePktInfoCB_003
-测试标题:配置不捕获接收报文
-预期结果:
 
-1.日    期: 2011年8月11日
-  作    者: f00166181
-  修改内容: 新建CASE
-2.日    期   : 2014年5月27日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 void test_IPS_MNTN_BridgePktInfoCB_003(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -986,20 +740,7 @@ void test_IPS_MNTN_BridgePktInfoCB_003(void)
 #endif
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_BridgePktInfoCB
-功能描述:捕获网桥中转报文成功
-测试编号:Test_IPS_MNTN_BridgePktInfoCB_004
-测试标题:捕获网桥中转报文成功
-预期结果:
 
-1.日    期: 2011年8月11日
-  作    者: f00166181
-  修改内容: 新建CASE
-2.日    期   : 2014年5月27日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 void test_IPS_MNTN_BridgePktInfoCB_004(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -1049,20 +790,7 @@ void test_IPS_MNTN_BridgePktInfoCB_004(void)
 #endif
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_BridgePktInfoCB
-功能描述:申请内存失败
-测试编号:Test_IPS_MNTN_BridgePktInfoCB_005
-测试标题:申请内存失败
-预期结果:
 
-1.日    期: 2011年8月11日
-  作    者: f00166181
-  修改内容: 新建CASE
-2.日    期   : 2014年5月27日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 void test_IPS_MNTN_BridgePktInfoCB_005(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -1112,20 +840,7 @@ void test_IPS_MNTN_BridgePktInfoCB_005(void)
 #endif
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_BridgeTraceCfgChkParam
-功能描述:检测捕获网桥中转配置失败
-测试编号:Test_IPS_MNTN_BridgeTraceCfgChkParam_001
-测试标题:检测捕获网桥中转配置失败
-预期结果:
 
-1.日    期: 2011年8月11日
-  作    者: f00166181
-  修改内容: 新建CASE
-2.日    期   : 2014年5月28日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 unsigned char test_IPS_MNTN_BridgeTraceCfgChkParam_001(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -1142,20 +857,7 @@ unsigned char test_IPS_MNTN_BridgeTraceCfgChkParam_001(void)
 #endif
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_BridgeTraceCfgChkParam
-功能描述:检测捕获网桥中转配置成功
-测试编号:Test_IPS_MNTN_BridgeTraceCfgChkParam_002
-测试标题:检测捕获网桥中转配置成功
-预期结果:
 
-1.日    期: 2011年8月11日
-  作    者: f00166181
-  修改内容: 新建CASE
-2.日    期   : 2014年5月28日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 unsigned char test_IPS_MNTN_BridgeTraceCfgChkParam_002(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -1172,20 +874,7 @@ unsigned char test_IPS_MNTN_BridgeTraceCfgChkParam_002(void)
 #endif
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_TraceCfgChkParam
-功能描述:检测捕获协议栈接收报文配置失败
-测试编号:Test_IPS_MNTN_TraceCfgChkParam_001
-测试标题:检测捕获协议栈接收报文配置失败
-预期结果:
 
-1.日    期: 2011年8月11日
-  作    者: f00166181
-  修改内容: 新建CASE
-2.日    期   : 2014年5月28日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 unsigned char test_IPS_MNTN_TraceCfgChkParam_001(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -1202,20 +891,7 @@ unsigned char test_IPS_MNTN_TraceCfgChkParam_001(void)
 #endif
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_TraceCfgChkParam
-功能描述:检测捕获协议栈发送报文配置失败
-测试编号:Test_IPS_MNTN_TraceCfgChkParam_002
-测试标题:检测捕获协议栈发送报文配置失败
-预期结果:
 
-1.日    期: 2011年8月11日
-  作    者: f00166181
-  修改内容: 新建CASE
-2.日    期   : 2014年5月28日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 unsigned char test_IPS_MNTN_TraceCfgChkParam_002(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -1233,20 +909,7 @@ unsigned char test_IPS_MNTN_TraceCfgChkParam_002(void)
 #endif
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_TraceCfgChkParam
-功能描述:检测捕获协议栈报文配置成功
-测试编号:Test_IPS_MNTN_TraceCfgChkParam_003
-测试标题:检测捕获协议栈报文配置成功
-预期结果:
 
-1.日    期: 2011年8月11日
-  作    者: f00166181
-  修改内容: 新建CASE
-2.日    期   : 2014年5月28日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 unsigned char test_IPS_MNTN_TraceCfgChkParam_003(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -1264,20 +927,7 @@ unsigned char test_IPS_MNTN_TraceCfgChkParam_003(void)
 #endif
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_TraceAdvancedCfgChkParam
-功能描述:检测捕获网桥中转配置失败
-测试编号:Test_IPS_MNTN_TraceAdvancedCfgChkParam_001
-测试标题:检测捕获网桥中转配置失败
-预期结果:
 
-1.日    期: 2011年8月11日
-  作    者: f00166181
-  修改内容: 新建CASE
-2.日    期   : 2014年5月28日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 unsigned char test_IPS_MNTN_TraceAdvancedCfgChkParam_001(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -1294,20 +944,7 @@ unsigned char test_IPS_MNTN_TraceAdvancedCfgChkParam_001(void)
 #endif
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_TraceAdvancedCfgChkParam
-功能描述:检测捕获协议栈报文配置失败
-测试编号:Test_IPS_MNTN_TraceAdvancedCfgChkParam_002
-测试标题:检测捕获协议栈报文配置失败
-预期结果:
 
-1.日    期: 2011年8月11日
-  作    者: f00166181
-  修改内容: 新建CASE
-2.日    期   : 2014年5月28日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 unsigned char test_IPS_MNTN_TraceAdvancedCfgChkParam_002(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -1326,20 +963,7 @@ unsigned char test_IPS_MNTN_TraceAdvancedCfgChkParam_002(void)
 #endif
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_TraceAdvancedCfgChkParam
-功能描述:检测捕获报文配置成功
-测试编号:Test_IPS_MNTN_TraceAdvancedCfgChkParam_003
-测试标题:检测捕获报文配置成功
-预期结果:
 
-1.日    期: 2011年8月11日
-  作    者: f00166181
-  修改内容: 新建CASE
-2.日    期   : 2014年5月28日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 unsigned char test_IPS_MNTN_TraceAdvancedCfgChkParam_003(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -1358,20 +982,7 @@ unsigned char test_IPS_MNTN_TraceAdvancedCfgChkParam_003(void)
 #endif
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_TraceAdvancedCfgReq
-功能描述:接收到勾包配置，参数检查不合法
-测试编号:Test_IPS_MNTN_TraceAdvancedCfgReq_001
-测试标题:接收到勾包配置，参数检查不合法
-预期结果:
 
-1.日    期: 2011年8月11日
-  作    者: f00166181
-  修改内容: 新建CASE
-2.日    期   : 2014年5月28日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 int test_IPS_MNTN_TraceAdvancedCfgReq_001(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -1443,20 +1054,7 @@ int test_IPS_MNTN_TraceAdvancedCfgReq_001(void)
     return 0;    /* SUCC */
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_TraceAdvancedCfgReq
-功能描述:接收到勾包配置，注册回调函数失败
-测试编号:Test_IPS_MNTN_TraceAdvancedCfgReq_002
-测试标题:接收到勾包配置，注册回调函数失败
-预期结果:
 
-1.日    期: 2011年8月11日
-  作    者: f00166181
-  修改内容: 新建CASE
-2.日    期   : 2014年5月28日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 int test_IPS_MNTN_TraceAdvancedCfgReq_002(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -1517,20 +1115,7 @@ int test_IPS_MNTN_TraceAdvancedCfgReq_002(void)
     return 0;    /* SUCC */
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_TraceAdvancedCfgReq
-功能描述:接收到勾包配置，配置成功
-测试编号:Test_IPS_MNTN_TraceAdvancedCfgReq_003
-测试标题:接收到勾包配置，配置成功
-预期结果:
 
-1.日    期: 2011年8月11日
-  作    者: f00166181
-  修改内容: 新建CASE
-2.日    期   : 2014年5月28日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 int test_IPS_MNTN_TraceAdvancedCfgReq_003(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -1589,17 +1174,7 @@ int test_IPS_MNTN_TraceAdvancedCfgReq_003(void)
     return 0;    /* SUCC */
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_IPInfoCfgChkParam
-功能描述:接收到勾包配置，配置成功
-测试编号:Test_IPS_MNTN_IPInfoCfgChkParam
-测试标题:参数检查1
-预期结果:
 
-1.日    期   : 2014年5月28日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 unsigned int test_IPS_MNTN_IPInfoCfgChkParam_001(void)
 {
     IPS_MNTN_IP_INFO_CONFIG_REQ_STRU stIpInfoCfg;
@@ -1613,17 +1188,7 @@ unsigned int test_IPS_MNTN_IPInfoCfgChkParam_001(void)
     return ulRst;
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_IPInfoCfgChkParam
-功能描述:接收到勾包配置，配置成功
-测试编号:Test_IPS_MNTN_IPInfoCfgChkParam
-测试标题:参数检查2
-预期结果:
 
-1.日    期   : 2014年5月28日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 unsigned int test_IPS_MNTN_IPInfoCfgChkParam_002(void)
 {
     IPS_MNTN_IP_INFO_CONFIG_REQ_STRU stIpInfoCfg;
@@ -1637,17 +1202,7 @@ unsigned int test_IPS_MNTN_IPInfoCfgChkParam_002(void)
     return ulRst;
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_IPInfoCfgChkParam
-功能描述:接收到勾包配置，配置成功
-测试编号:Test_IPS_MNTN_IPInfoCfgChkParam
-测试标题:参数检查3
-预期结果:
 
-1.日    期   : 2014年5月28日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 unsigned int test_IPS_MNTN_IPInfoCfgChkParam_003(void)
 {
     IPS_MNTN_IP_INFO_CONFIG_REQ_STRU stIpInfoCfg;
@@ -1661,17 +1216,7 @@ unsigned int test_IPS_MNTN_IPInfoCfgChkParam_003(void)
     return ulRst;
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_IPInfoCfgReq
-功能描述:接收到勾包配置，配置成功
-测试编号:Test_IPS_MNTN_IPInfoCfgReq
-测试标题:收到配置请求
-预期结果:
 
-1.日    期   : 2014年5月29日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 void test_IPS_MNTN_IPInfoCfgReq_001(void)
 {
     IPS_MNTN_IP_INFO_CONFIG_REQ_STRU   *pstCfgReq;
@@ -1705,17 +1250,7 @@ void test_IPS_MNTN_IPInfoCfgReq_001(void)
  #endif
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_IPInfoCfgReq
-功能描述:收到配置请求为FALSE
-测试编号:Test_IPS_MNTN_IPInfoCfgReq
-测试标题:收到配置请求为FALSE
-预期结果:
 
-1.日    期   : 2014年5月29日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 void test_IPS_MNTN_IPInfoCfgReq_002(void)
 {
     IPS_MNTN_IP_INFO_CONFIG_REQ_STRU   *pstCfgReq;
@@ -1735,17 +1270,7 @@ void test_IPS_MNTN_IPInfoCfgReq_002(void)
        通过OM_Log来判断分支 */
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_IPInfoCfgReq
-功能描述:收到配置请求参数错误
-测试编号:Test_IPS_MNTN_IPInfoCfgReq
-测试标题:收到配置请求参数错误
-预期结果:
 
-1.日    期   : 2014年5月29日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 void test_IPS_MNTN_IPInfoCfgReq_003(void)
 {
     IPS_MNTN_IP_INFO_CONFIG_REQ_STRU   *pstCfgReq;
@@ -1762,17 +1287,7 @@ void test_IPS_MNTN_IPInfoCfgReq_003(void)
     IPS_MNTN_IPInfoCfgReq((VOS_VOID *)pMsg);
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_Ipv4DataParse
-功能描述:IPv4_TCP数据解析
-测试编号:Test_IPS_MNTN_Ipv4DataParse
-测试标题:IPv4_TCP数据解析
-预期结果:
 
-1.日    期   : 2014年5月29日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 int test_IPS_MNTN_Ipv4DataParse_001(void)
 {
     IPS_MNTN_IP_INFO_STRU stIpInfo;
@@ -1815,17 +1330,7 @@ int test_IPS_MNTN_Ipv4DataParse_001(void)
     return 0;   /* SUCC */
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_Ipv4DataParse
-功能描述:IPv4_UDP数据解析
-测试编号:Test_IPS_MNTN_Ipv4DataParse
-测试标题:IPv4_UDP数据解析
-预期结果:
 
-1.日    期   : 2014年5月29日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 int test_IPS_MNTN_Ipv4DataParse_002(void)
 {
     IPS_MNTN_IP_INFO_STRU stIpInfo;
@@ -1868,17 +1373,7 @@ int test_IPS_MNTN_Ipv4DataParse_002(void)
     return 0;   /* SUCC */
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_Ipv4DataParse
-功能描述:IPv4_ICMP数据解析
-测试编号:Test_IPS_MNTN_Ipv4DataParse
-测试标题:IPv4_ICMP数据解析
-预期结果:
 
-1.日    期   : 2014年5月29日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 int test_IPS_MNTN_Ipv4DataParse_003(void)
 {
     IPS_MNTN_IP_INFO_STRU stIpInfo;
@@ -1916,17 +1411,7 @@ int test_IPS_MNTN_Ipv4DataParse_003(void)
     return 0;   /* SUCC */
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_Ipv4DataParse
-功能描述:IPv4_其它协议数据解析
-测试编号:Test_IPS_MNTN_Ipv4DataParse
-测试标题:IPv4_其它协议数据解析
-预期结果:
 
-1.日    期   : 2014年5月29日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 int test_IPS_MNTN_Ipv4DataParse_004(void)
 {
     IPS_MNTN_IP_INFO_STRU stIpInfo;
@@ -1964,17 +1449,7 @@ int test_IPS_MNTN_Ipv4DataParse_004(void)
     return 0;   /* SUCC */
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_Ipv4DataParse
-功能描述:IPv6_TCP数据解析
-测试编号:Test_IPS_MNTN_Ipv4DataParse
-测试标题:IPv6_TCP数据解析
-预期结果:
 
-1.日    期   : 2014年5月29日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 int test_IPS_MNTN_Ipv4DataParse_005(void)
 {
     IPS_MNTN_IP_INFO_STRU stIpInfo;
@@ -2018,17 +1493,7 @@ int test_IPS_MNTN_Ipv4DataParse_005(void)
     return 0;   /* SUCC */
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_Ipv4DataParse
-功能描述:IPv6_UDP数据解析
-测试编号:Test_IPS_MNTN_Ipv4DataParse
-测试标题:IPv6_UDP数据解析
-预期结果:
 
-1.日    期   : 2014年5月29日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 int test_IPS_MNTN_Ipv4DataParse_006(void)
 {
     IPS_MNTN_IP_INFO_STRU stIpInfo;
@@ -2072,17 +1537,7 @@ int test_IPS_MNTN_Ipv4DataParse_006(void)
     return 0;   /* SUCC */
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_Ipv4DataParse
-功能描述:IPv6_ICMP数据解析
-测试编号:Test_IPS_MNTN_Ipv4DataParse
-测试标题:IPv6_ICMP数据解析
-预期结果:
 
-1.日    期   : 2014年5月29日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 int test_IPS_MNTN_Ipv4DataParse_007(void)
 {
     IPS_MNTN_IP_INFO_STRU stIpInfo;
@@ -2126,17 +1581,7 @@ int test_IPS_MNTN_Ipv4DataParse_007(void)
     return 0;   /* SUCC */
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_Ipv4DataParse
-功能描述:IPv6_其它协议数据解析
-测试编号:Test_IPS_MNTN_Ipv4DataParse
-测试标题:IPv6_其它协议数据解析
-预期结果:
 
-1.日    期   : 2014年5月29日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 int test_IPS_MNTN_Ipv4DataParse_008(void)
 {
     IPS_MNTN_IP_INFO_STRU stIpInfo;
@@ -2180,17 +1625,7 @@ int test_IPS_MNTN_Ipv4DataParse_008(void)
     return 0;   /* SUCC */
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_GetIPInfoCfg
-功能描述:获取ADS配置开关
-测试编号:Test_IPS_MNTN_GetIPInfoCfg
-测试标题:获取ADS配置开关
-预期结果:
 
-1.日    期   : 2014年5月30日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 int test_IPS_MNTN_GetIPInfoCfg_001(void)
 {
     VOS_UINT32      ulRst = PS_FALSE;
@@ -2216,17 +1651,7 @@ int test_IPS_MNTN_GetIPInfoCfg_001(void)
     }
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_GetIPInfoCfg
-功能描述:获取USB配置开关
-测试编号:Test_IPS_MNTN_GetIPInfoCfg
-测试标题:获取USB配置开关
-预期结果:
 
-1.日    期   : 2014年5月30日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 int test_IPS_MNTN_GetIPInfoCfg_002(void)
 {
     VOS_UINT32      ulRst = PS_TRUE;
@@ -2253,17 +1678,7 @@ int test_IPS_MNTN_GetIPInfoCfg_002(void)
     }
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_TraceIpInfo
-功能描述:USB不抓包配置
-测试编号:Test_IPS_MNTN_TraceIpInfo
-测试标题:USB不抓包配置
-预期结果:
 
-1.日    期   : 2014年5月30日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 void test_IPS_MNTN_TraceIpInfo_001(void)
 {
     struct sk_buff skb;
@@ -2279,17 +1694,7 @@ void test_IPS_MNTN_TraceIpInfo_001(void)
     g_stIpsMntnIPInfoCfg.aucRsv[1] = 0x0;
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_TraceIpInfo
-功能描述:不存在的抓包点不进行抓包
-测试编号:Test_IPS_MNTN_TraceIpInfo
-测试标题:不存在的抓包点不进行抓包
-预期结果:
 
-1.日    期   : 2014年5月30日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 void test_IPS_MNTN_TraceIpInfo_002(void)
 {
     struct sk_buff skb;
@@ -2305,17 +1710,7 @@ void test_IPS_MNTN_TraceIpInfo_002(void)
     g_stIpsMntnIPInfoCfg.aucRsv[1] = 0x0;
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_TraceIpInfo
-功能描述:skb为空不进行抓包
-测试编号:Test_IPS_MNTN_TraceIpInfo
-测试标题:skb为空不进行抓包
-预期结果:
 
-1.日    期   : 2014年5月30日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 void test_IPS_MNTN_TraceIpInfo_003(void)
 {
     struct sk_buff *skb = VOS_NULL_PTR;
@@ -2331,17 +1726,7 @@ void test_IPS_MNTN_TraceIpInfo_003(void)
     g_stIpsMntnIPInfoCfg.aucRsv[1] = 0x0;
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_TraceIpInfo
-功能描述:skb数据为空不进行抓包
-测试编号:Test_IPS_MNTN_TraceIpInfo
-测试标题:skb数据为空不进行抓包
-预期结果:
 
-1.日    期   : 2014年5月30日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 void test_IPS_MNTN_TraceIpInfo_004(void)
 {
     struct sk_buff skb;
@@ -2360,17 +1745,7 @@ void test_IPS_MNTN_TraceIpInfo_004(void)
     g_stIpsMntnIPInfoCfg.aucRsv[1] = 0x0;
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_TraceIpInfo
-功能描述:IPv4数据抓包
-测试编号:Test_IPS_MNTN_TraceIpInfo
-测试标题:IPv4数据抓包
-预期结果:
 
-1.日    期   : 2014年5月30日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 void test_IPS_MNTN_TraceIpInfo_005(void)
 {
     struct sk_buff               skb;
@@ -2412,17 +1787,7 @@ void test_IPS_MNTN_TraceIpInfo_005(void)
     g_stIpsMntnIPInfoCfg.aucRsv[1] = 0x0;
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_TraceIpInfo
-功能描述:IPv6数据抓包
-测试编号:Test_IPS_MNTN_TraceIpInfo
-测试标题:IPv6数据抓包
-预期结果:
 
-1.日    期   : 2014年5月30日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 void test_IPS_MNTN_TraceIpInfo_006(void)
 {
     struct sk_buff               skb;
@@ -2464,17 +1829,7 @@ void test_IPS_MNTN_TraceIpInfo_006(void)
     g_stIpsMntnIPInfoCfg.aucRsv[1] = 0x0;
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_TraceIpInfo
-功能描述:USB带MAC头的IPv4数据抓包
-测试编号:Test_IPS_MNTN_TraceIpInfo
-测试标题:USB带MAC头的IPv4数据抓包
-预期结果:
 
-1.日    期   : 2014年5月31日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 void test_IPS_MNTN_TraceIpInfo_007(void)
 {
     struct sk_buff               skb;
@@ -2517,17 +1872,7 @@ void test_IPS_MNTN_TraceIpInfo_007(void)
     g_stIpsMntnIPInfoCfg.aucRsv[1] = 0x0;
 }
 
-/*****************************************************************************
-测试项:  Test_IPS_MNTN_TraceIpInfo
-功能描述:USB带MAC头的IPv6数据抓包
-测试编号:Test_IPS_MNTN_TraceIpInfo
-测试标题:USB带MAC头的IPv6数据抓包
-预期结果:
 
-1.日    期   : 2014年5月31日
-  作    者   : liukai
-  修改内容   : 改造到WinGDB
-*****************************************************************************/
 void test_IPS_MNTN_TraceIpInfo_008(void)
 {
     struct sk_buff               skb;

@@ -70,23 +70,7 @@ struct semaphore               g_stCoreNvSem;
 /* NV 写互斥信号量 */
 struct semaphore               g_stNvWriteSem;
 
-/*****************************************************************************
- 函 数 名  : _VOS_SmMCreate
- 功能描述  : 创建互斥信号量操作
- 输入参数  : acSmName: 信号量名字
-             ulSmInit: 信号量初始化值
-             ulFlags: 信号量类型
-             pulSmID: 保存信号量ID的地址
 
- 输出参数  : pulSmID: 保存信号量ID的地址
-
- 返 回 值  : VOS_OK:成功、VOS_ERR:失败
-
- 修改历史      :
- 1.日    期    : 2013年5月2日
-   作    者    : j00168360
-   修改内容    : C核单独复位项目开发
-*****************************************************************************/
 VOS_UINT32 _VOS_SmMCreate(VOS_CHAR   acSmName[4],
                           VOS_UINT32 ulSmInit,
                           VOS_UINT32 ulFlags,
@@ -99,23 +83,7 @@ VOS_UINT32 _VOS_SmMCreate(VOS_CHAR   acSmName[4],
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : _VOS_SmCCreate
- 功能描述  : 创建信号量操作
- 输入参数  : acSmName: 信号量名字
-             ulSmInit: 信号量初始化值
-             ulFlags: 信号量类型
-             pulSmID: 保存信号量ID的地址
 
- 输出参数  : pulSmID: 保存信号量ID的地址
-
- 返 回 值  : VOS_OK:成功、VOS_ERR:失败
-
- 修改历史      :
- 1.日    期    : 2012年13月26日
-   作    者    : d00212987
-   修改内容    : A核循环等待修改为与C核信号量同步方案开发
-*****************************************************************************/
 VOS_UINT32 _VOS_SmCCreate(VOS_CHAR   acSmName[4],
                           VOS_UINT32 ulSmInit,
                           VOS_UINT32 ulFlags,
@@ -128,21 +96,7 @@ VOS_UINT32 _VOS_SmCCreate(VOS_CHAR   acSmName[4],
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : _VOS_SmP
- 功能描述  : 等待信号量
- 输入参数  : ulSemId: 信号量ID
-             ulTimeOutInMillSec: 超时时间(ms)
 
- 输出参数  : 无
-
- 返 回 值  : VOS_OK:成功、VOS_ERR:失败
-
- 修改历史      :
- 1.日    期    : 2012年13月26日
-   作    者    : d00212987
-   修改内容    : A核循环等待修改为与C核信号量同步方案开发
-*****************************************************************************/
 VOS_UINT32 _VOS_SmP(VOS_SEM ulSemId, VOS_UINT32 ulTimeOutInMillSec)
 {
     down((struct semaphore *)ulSemId);
@@ -150,20 +104,7 @@ VOS_UINT32 _VOS_SmP(VOS_SEM ulSemId, VOS_UINT32 ulTimeOutInMillSec)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : _VOS_SmV
- 功能描述  : 释放信号量
- 输入参数  : ulSemId: 信号量ID
 
- 输出参数  : 无
-
- 返 回 值  : VOS_OK:成功、VOS_ERR:失败
-
- 修改历史      :
- 1.日    期    : 2012年13月26日
-   作    者    : d00212987
-   修改内容    : A核循环等待修改为与C核信号量同步方案开发
-*****************************************************************************/
 VOS_UINT32 _VOS_SmV(VOS_SEM ulSemId)
 {
     up((struct semaphore *)ulSemId);
@@ -172,19 +113,7 @@ VOS_UINT32 _VOS_SmV(VOS_SEM ulSemId)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : NV_ACoreInitIpcIsr
- 功能描述  : C 核NV初始化完毕中断处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 初始化结果
 
- 修改历史      :
-  1.日    期   : 2013年03月26日
-    作    者   : d00212987
-    修改内容   : A核循环等待修改为与C核信号量同步方案开发
-
-*****************************************************************************/
 VOS_VOID NV_ACoreInitIpcIsr(VOS_VOID)
 {
     mdrv_ipc_int_disable((IPC_INT_LEV_E)IPC_ACPU_INT_SRC_CCPU_NVIM);
@@ -197,20 +126,7 @@ VOS_VOID NV_ACoreInitIpcIsr(VOS_VOID)
     mdrv_ipc_int_enable((IPC_INT_LEV_E)IPC_ACPU_INT_SRC_CCPU_NVIM);
 }
 
-/*****************************************************************************
- 函 数 名  : NV_ACoreInitSync
- 功能描述  : NV A核信号量同步
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
 
- 修改历史      :
- 修改历史      :
-  1.日    期   : 2013年03月26日
-    作    者   : d00212987
-    修改内容   : A核循环等待修改为与C核信号量同步方案开发
-
-*****************************************************************************/
 VOS_VOID NV_ACoreInitSync(VOS_VOID)
 {
 #if (VOS_LINUX == VOS_OS_VER)
@@ -223,19 +139,7 @@ VOS_VOID NV_ACoreInitSync(VOS_VOID)
     mdrv_ipc_int_enable((IPC_INT_LEV_E)IPC_ACPU_INT_SRC_CCPU_NVIM);
 }
 
-/*****************************************************************************
- 函 数 名  : NV_Init
- 功能描述  : Acpu Nv 初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 初始化结果
 
- 修改历史      :
-  1.日    期   : 2011年10月03日
-    作    者   : zhuli 00168360
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NV_Init(VOS_VOID)
 {
     VOS_UINT8           aucMagicNum[NV_MAGIC_NUM_LEN];

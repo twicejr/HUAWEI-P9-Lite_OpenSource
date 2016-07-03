@@ -110,21 +110,7 @@ VOS_UINT16                              g_usPppcUlDataProto = 0x0021;
   3 函数实现
 *****************************************************************************/
 /*lint -save -e958 */
-/*****************************************************************************
- 函 数 名  : PPPC_ShowPppContext
- 功能描述  : 获取PPP上下文信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月25日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_ShowPppContext(VOS_VOID)
 {
     vos_printf("********************PPPC测试信息************************\n");
@@ -138,21 +124,7 @@ VOS_VOID PPPC_ShowPppContext(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_ShowDLProcStats
- 功能描述  : 获取PPP下行数据信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年01月27日
-    作    者   : w00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_ShowDLProcStats(VOS_VOID)
 {
     vos_printf("\n");
@@ -180,21 +152,7 @@ VOS_VOID PPPC_ShowDLProcStats(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_ShowULProcStats
- 功能描述  : 获取PPP上行数据信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年01月27日
-    作    者   : w00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_ShowULProcStats(VOS_VOID)
 {
     vos_printf("\n");
@@ -225,124 +183,40 @@ VOS_VOID PPPC_ShowULProcStats(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_GetUlEncapDataPtr
- 功能描述  : 获取上行封装PPP帧数据缓存地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月19日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 *PPP_GetUlEncapDataPtr(VOS_VOID)
 {
     return g_aucUlEncapData;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_InitEncapDataPtr
- 功能描述  : 初始化上行封装PPP帧数据缓存数据
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月19日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_InitEncapDataPtr(VOS_VOID)
 {
     PS_MEM_SET(g_aucUlEncapData, 0, sizeof(g_aucUlEncapData));
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_SetInitAccessAuthMode
- 功能描述  : 设置初始携手模式
- 输入参数  : enAccessAuth    初始携手模式
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月8日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_SetInitAccessAuthMode(PS_BOOL_ENUM_UINT8 enAccessAuth)
 {
     g_enInitAccessAuth  = enAccessAuth;
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_GetInitAccessAuthMode
- 功能描述  : 获取初始协商模式
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : PS_BOOL_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月8日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 PS_BOOL_ENUM_UINT8 PPPC_GetInitAccessAuthMode(VOS_VOID)
 {
     return g_enInitAccessAuth;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_1X_IncreaseNegoRcvCnt
- 功能描述  : 收到的PPP协商报文数加一
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月18日
-    作    者   : w00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_1X_IncreaseNegoRcvCnt(VOS_VOID)
 {
     g_stPppcDataQueueStats.ul1xDlNegoRcvCnt++;
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_HRPD_IncreaseNegoRcvCnt
- 功能描述  : 收到的PPP协商报文数加一
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月18日
-    作    者   : w00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_HRPD_IncreaseNegoRcvCnt(VOS_VOID)
 {
     g_stPppcDataQueueStats.ulHrpdDlNegoRcvCnt++;
@@ -351,21 +225,7 @@ VOS_VOID PPPC_HRPD_IncreaseNegoRcvCnt(VOS_VOID)
 
 
 
-/*****************************************************************************
- 函 数 名  : PPP_GetActPppHeadNode
- 功能描述  : 获取激活PPP消息的头节点
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月15日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID *PPP_GetActPppHeadNode()
 {
     TTF_LINK_ST                            *pstApsPppCmdLink;
@@ -380,24 +240,7 @@ VOS_VOID *PPP_GetActPppHeadNode()
     return (VOS_VOID *)pstApsCurrHeadNode;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_GetConfigUserName
- 功能描述  : 获取用户名
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月21日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-  2.日    期   : 2015年05月29日
-    作    者   : W00316385
-    修改内容   : 区分模式
-
-*****************************************************************************/
 VOS_UINT32 PPP_GetConfigUserName
 (
     VOS_UINT8                          *pucUserName,
@@ -448,24 +291,7 @@ VOS_UINT32 PPP_GetConfigUserName
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_GetConfigPassWord
- 功能描述  : 获取密码
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月21日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-  2.日    期   : 2015年05月29日
-    作    者   : W00316385
-    修改内容   : 区分模式
-
-*****************************************************************************/
 VOS_UINT32 PPP_GetConfigPassWord
 (
     VOS_UINT8                          *pucPassWd
@@ -494,81 +320,25 @@ VOS_UINT32 PPP_GetConfigPassWord
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_GetDefaultMru
- 功能描述  : 获取默认的MRU值
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月29日
-    作    者   : W00316385
-    修改内容   :
-
-*****************************************************************************/
 VOS_UINT16 PPP_GetDefaultMru(VOS_VOID)
 {
     return g_stPppContext.usMru;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_GetModemId
- 功能描述  : 获取PPP的Modem ID
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月30日
-    作    者   : c00199705
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT16 PPPC_GetModemId(VOS_VOID)
 {
     return g_stPppContext.enModemId;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_HRPD_GetAppType
- 功能描述  : 获取ApplicationType
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT16
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月20日
-    作    者   : w00316385
-    修改内容   :
-
-*****************************************************************************/
 VOS_UINT16 PPPC_HRPD_GetAppType(VOS_VOID)
 {
     return g_stPppContext.stHrpdContext.aenApplicationType[1];
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_HRPD_GetStreamNumber
- 功能描述  : 获取StreamNumber
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月25日
-    作    者   : c00184031
-    修改内容   :
-
-*****************************************************************************/
 VOS_UINT8 PPPC_HRPD_GetStreamNumber(VOS_UINT8 ucPppId)
 {
     PPPC_CONTEXT_INFO_STRU             *pstPppContext;
@@ -619,20 +389,7 @@ VOS_UINT8 PPPC_HRPD_GetStreamNumber(VOS_UINT8 ucPppId)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_FidTask
- 功能描述  : PPPC任务处理函数
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-12-11
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_FidTask(VOS_VOID)
 {
     MsgBlock*               pMsg;
@@ -735,20 +492,7 @@ VOS_VOID PPPC_FidTask(VOS_VOID)
     /*lint +e716*/
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_FidInit
- 功能描述  : PPPC在C核任务初始化
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-01-03
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 PPPC_FidInit(enum VOS_INIT_PHASE_DEFINE ip)
 {
     VOS_UINT32  ulResult = PS_FAIL;
@@ -802,20 +546,7 @@ VOS_UINT32 PPPC_FidInit(enum VOS_INIT_PHASE_DEFINE ip)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_QueueInit
- 功能描述  : 初始化上下行队列
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014-10-30
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_QueueInit(VOS_VOID)
 {
     TTF_LINK_ST                        *pstPppcDlDataQ;
@@ -840,21 +571,7 @@ VOS_VOID PPPC_QueueInit(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_ClearDlDataQ
- 功能描述  : 清除下行报文队列
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月4日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_ClearDlDataQ(VOS_VOID)
 {
     TTF_LINK_ST                        *pstPppcDlDataQ;
@@ -891,21 +608,7 @@ VOS_VOID PPPC_ClearDlDataQ(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_ClearUlDataQ
- 功能描述  : 清除上行报文队列
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月4日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_ClearUlDataQ(VOS_VOID)
 {
     TTF_LINK_ST                        *pstPppcUlDataQ;
@@ -948,21 +651,7 @@ VOS_VOID PPPC_ClearUlDataQ(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_AdapterTtfMemorytoMBuf
- 功能描述  : TtfMemory数据类型转换成MBUF
- 输入参数  : pstTtfMem        TTFMemory类型数据
- 输出参数  : 无
- 返 回 值  : PMBUF_S *        MBUF类型的数据
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月31日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 PMBUF_S *PPPC_AdapterTtfMemorytoMBuf(TTF_MEM_ST *pstTtfMem)
 {
     PMBUF_S                            *pstMBuf = VOS_NULL_PTR;
@@ -1022,24 +711,7 @@ PMBUF_S *PPPC_AdapterTtfMemorytoMBuf(TTF_MEM_ST *pstTtfMem)
     return pstMBuf;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_AdapterMBuftoTtfMemory
- 功能描述  : MBUF数据类型转换成TTFMemory
- 输入参数  : pstMBuf          MBUF类型数据
-             ulMemPoolId      申请的内存池Id
-             ulOffset         MBUF类型数据偏移量
-             ulLength         MBUF类型数据转换为TTFMemory类型的长度
- 输出参数  : 无
- 返 回 值  : TTF_MEM_ST *     TTFMemory类型的数据
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月31日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TTF_MEM_ST *PPPC_AdapterMBuftoTtfMemory
 (
     PMBUF_S                            *pstMBuf,
@@ -1074,21 +746,7 @@ TTF_MEM_ST *PPPC_AdapterMBuftoTtfMemory
 }
 
 
-/*****************************************************************************
- 函 数 名  : PPPC_RcvRlpDlFrame
- 功能描述  : PPP模块收到RLP的下行报文
- 输入参数  : pstData          数据
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月21日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_RcvRlpDlFrame
 (
     VOS_UINT16                          usSeqNr,
@@ -1106,21 +764,7 @@ VOS_VOID PPPC_RcvRlpDlFrame
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_PrepareUlEncapMem
- 功能描述  : 为封装上行数据准备内存
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月2日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_PrepareUlEncapMem(VOS_UINT16 usLen)
 {
     VOS_UINT16                          usFrmedMaxLen;
@@ -1186,21 +830,7 @@ VOS_UINT32 PPPC_PrepareUlEncapMem(VOS_UINT16 usLen)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_DlEnqueueData
- 功能描述  : 1X和HRPD公用的下行报文入队接口,内存不在这个接口中释放
- 输入参数  : pstPppSdu         PPP数据
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月4日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_DlEnqueueData
 (
     PPPC_DATA_LINK_NODE_STRU           *pstDlNode,
@@ -1225,23 +855,7 @@ VOS_UINT32 PPPC_DlEnqueueData
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_SendDlDataNotifyCommon
- 功能描述  : 下行有数据需要发送通知，1X和HRPD都使用该接口
- 输入参数  : pstDataLink         链表
-             ulNonEmptyEvent     记录队列是否发生了由空到非空的转变
-             ulSendMsgCnt        发送个数
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月4日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_SendDlDataNotifyCommon
 (
     TTF_LINK_ST                        *pstDataLink,
@@ -1270,21 +884,7 @@ VOS_VOID PPPC_SendDlDataNotifyCommon
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_HRPD_DlEnqueueData
- 功能描述  : 下行HRPD报文入队
- 输入参数  : pstPppSdu         PPP数据
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月4日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_HRPD_DlEnqueueData(RLP_PPP_HRPD_TRANS_DATA_STRU * pstPackets)
 {
     VOS_UINT32                          ulNonEmptyEvent = PS_FALSE;   /* 记录队列是否发生了由空到非空的转变 */
@@ -1333,21 +933,7 @@ VOS_VOID PPPC_HRPD_DlEnqueueData(RLP_PPP_HRPD_TRANS_DATA_STRU * pstPackets)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_FreePacketsTtmMem
- 功能描述  : 释放下行报文中的TTF内存
- 输入参数  : pstPackets         下行报文
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月17日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_FreePacketsTtmMem(CTTF_1X_RLP_PPP_DELIVER_DATA_STRU * pstPackets)
 {
     VOS_UINT32                          ulLoop;
@@ -1367,21 +953,7 @@ VOS_VOID PPPC_FreePacketsTtmMem(CTTF_1X_RLP_PPP_DELIVER_DATA_STRU * pstPackets)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_DlEnqueueData
- 功能描述  : 下行1X报文入队
- 输入参数  : pstPppSdu         PPP数据
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月4日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_1X_DlEnqueueData(CTTF_1X_RLP_PPP_DELIVER_DATA_STRU * pstPackets)
 {
     VOS_UINT32                          ulLoop;
@@ -1515,21 +1087,7 @@ VOS_VOID PPPC_1X_DlEnqueueData(CTTF_1X_RLP_PPP_DELIVER_DATA_STRU * pstPackets)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_UlEnqueueData
- 功能描述  : 1X和HRPD公用的上行数据入队接口,节点内存在这个接口中释放
- 输入参数  : pstNode         上行节点
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月05日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_UlEnqueueData(PPPC_DATA_LINK_NODE_STRU *pstUlNode)
 {
     VOS_UINT32                          ulNonEmptyEvent = PS_FALSE;    /* 记录队列是否发生了由空到非空的转变 */
@@ -1583,21 +1141,7 @@ VOS_VOID PPPC_UlEnqueueData(PPPC_DATA_LINK_NODE_STRU *pstUlNode)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_HRPD_UlEnqueueData
- 功能描述  : PPP模块上行HRPD数据报文入队
- 输入参数  : pstNode         数据
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月05日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_HRPD_UlEnqueueData(const CDS_CDMA_HRPD_TRANS_DATA_STRU *pstPppSdu)
 {
     PPPC_DATA_LINK_NODE_STRU           *pstUlNode;
@@ -1641,21 +1185,7 @@ VOS_VOID PPPC_HRPD_UlEnqueueData(const CDS_CDMA_HRPD_TRANS_DATA_STRU *pstPppSdu)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_1X_UlEnqueueData
- 功能描述  : PPP模块上行1X数据报文入队
- 输入参数  : pstNode         数据
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月04日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_1X_UlEnqueueData(const CDS_CDMA_1X_TRANS_DATA_STRU *pstPppSdu)
 {
     PPPC_DATA_LINK_NODE_STRU           *pstUlNode;
@@ -1706,22 +1236,7 @@ VOS_VOID PPPC_1X_UlEnqueueData(const CDS_CDMA_1X_TRANS_DATA_STRU *pstPppSdu)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_DlSoftProc
- 功能描述  : PPP下行软件处理
- 输入参数  : pstDlDataLink         下行链路
-             ucPppId                PPP ID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月10日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_DlSoftProc
 (
     TTF_LINK_ST                        *pstDlDataLink,
@@ -1786,21 +1301,7 @@ VOS_VOID PPPC_DlSoftProc
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_SetupAAPppByState
- 功能描述  : 判断接入鉴权PPP的状态决定是否需要Setup
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月14日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_SetupAAPppByState(VOS_VOID)
 {
     PPPINFO_S                          *pstPppInfo;
@@ -1832,21 +1333,7 @@ VOS_VOID PPPC_SetupAAPppByState(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_ActAccessAuth
- 功能描述  : 进行接入鉴权
- 输入参数  : pstPppInfo             PPP实体
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月6日
-    作    者   : t00359887
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_ActAccessAuth(PPPINFO_S *pstPppInfo)
 {
     VOS_UINT8                           ucPppId;
@@ -1884,21 +1371,7 @@ VOS_VOID PPPC_ActAccessAuth(PPPINFO_S *pstPppInfo)
      }
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_DlDequeueProc
- 功能描述  : 下行报文出队处理
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月4日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_DlDequeueProc()
 {
     TTF_LINK_ST                        *pstDlDataLink;
@@ -1979,21 +1452,7 @@ VOS_VOID PPPC_DlDequeueProc()
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_UlDequeueProc
- 功能描述  : 上行报文出队处理
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月4日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_UlDequeueProc(VOS_VOID)
 {
     TTF_LINK_ST                        *pstUlDataLink;
@@ -2112,21 +1571,7 @@ VOS_UINT32 PPPC_UlDequeueProc(VOS_VOID)
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_ProcLinkNodeByDirection
- 功能描述  : 按照时间戳处理或者处理上行队列、下行队列
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月15日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_ProcLinkNodeByDirection
 (
     VOS_UINT32                              ulDlStamp,
@@ -2179,21 +1624,7 @@ VOS_UINT32 PPPC_ProcLinkNodeByDirection
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_DequeueProc
- 功能描述  : 上下行报文按入队时间顺序出队
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月4日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_DequeueProc(PPPC_PROC_LINK_DIRECTION_ENUM_UINT16 enProcDire)
 {
     TTF_LINK_ST                        *pstDlLink;
@@ -2307,21 +1738,7 @@ VOS_VOID PPPC_DequeueProc(PPPC_PROC_LINK_DIRECTION_ENUM_UINT16 enProcDire)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_AwakeSelfProcUlDataTimeoutProc
- 功能描述  : 当内存不足时PPPC每300ms唤醒自己处理数据
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月3日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_AwakeSelfProcUlDataTimeoutProc(VOS_VOID)
 {
     PPPC_DequeueProc(PPPC_PROC_BY_STAMP);
@@ -2329,22 +1746,7 @@ VOS_VOID PPPC_AwakeSelfProcUlDataTimeoutProc(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_TracePackets
- 功能描述  : PPPC模块报文跟踪
- 输入参数  : CTTF_PPPC_TRACE_DATA_STRU          *pstMntnInfo
-             TTF_MEM_ST                         *pstTtfMem
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月16日
-    作    者   : w00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_TracePackets
 (
     CTTF_PPPC_TRACE_DATA_STRU          *pstMntnInfo,
@@ -2383,21 +1785,7 @@ VOS_VOID PPPC_TracePackets
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_CheckRlpPacketsAndFreeMem
- 功能描述  : 1X模式检查PPPC模块收到RLP的下行报文队列有效性
- 输入参数  : pstPackets          PPP报文
- 输出参数  : 无
- 返 回 值  : VOS_ERR or VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年04月24日
-    作    者   : c001114540
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_1X_CheckRlpPacketsAndFreeMem
 (
     CTTF_1X_RLP_PPP_DELIVER_DATA_STRU  *pstPackets
@@ -2440,21 +1828,7 @@ VOS_UINT32 PPPC_1X_CheckRlpPacketsAndFreeMem
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_PushRlpPacketsEvent
- 功能描述  : 1X模式PPPC模块收到RLP的下行报文入队
- 输入参数  : pstPackets          PPP报文
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年04月23日
-    作    者   : c001114540
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_PushRlpPacketsEvent(CTTF_1X_RLP_PPP_DELIVER_DATA_STRU * pstPackets)
 {
     CDS_CDMA_1X_TRANS_DATA_STRU         stPppSdu;
@@ -2492,21 +1866,7 @@ VOS_UINT32 PPPC_PushRlpPacketsEvent(CTTF_1X_RLP_PPP_DELIVER_DATA_STRU * pstPacke
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_HRPD_CheckRpaPackets
- 功能描述  : HRPD模式检查PPPC模块收到RPA的下行报文队列有效性
- 输入参数  : pstPppSdu          PPP报文
- 输出参数  : 无
- 返 回 值  : VOS_ERR or VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月16日
-    作    者   : w00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_HRPD_CheckRpaPackets
 (
     RLP_PPP_HRPD_TRANS_DATA_STRU       *pstPppSdu
@@ -2536,22 +1896,7 @@ VOS_UINT32 PPPC_HRPD_CheckRpaPackets
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_HRPD_IsPacketByPass
- 功能描述  : HRPD/eHRPD模式RLP下行报文是否透传到CDS,发送给RN的报文要递交到PPP 0,
-             然后判断是否是中继模式,中继模式透传,网络模式PPPC自己处理
- 输入参数  : ucStreamNum      流号,用于判断报文是否是发送给RN的
- 输出参数  : 无
- 返 回 值  : PS_BOOL_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月8日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 PS_BOOL_ENUM_UINT8 PPPC_HRPD_IsPacketByPass(VOS_UINT8 ucStreamNum)
 {
     VOS_UINT32                          ulRet;
@@ -2584,21 +1929,7 @@ PS_BOOL_ENUM_UINT8 PPPC_HRPD_IsPacketByPass(VOS_UINT8 ucStreamNum)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HRPD_DL_DataInd
- 功能描述  : HRPD/eHRPD模式RLP下行报文发送到PPPC
- 输入参数  : pstPppSdu      下行数据
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月1日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_HRPD_DL_DataInd(RLP_PPP_HRPD_TRANS_DATA_STRU *pstPppSdu)
 {
     CTTF_PPPC_TRACE_DATA_STRU          *pstMntnInfo;
@@ -2656,21 +1987,7 @@ VOS_VOID PPP_HRPD_DL_DataInd(RLP_PPP_HRPD_TRANS_DATA_STRU *pstPppSdu)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_1X_CheckCdsPackets
- 功能描述  : 1X模式检查PPPC模块收到CDS的上行报文队列有效性
- 输入参数  : pstPppSdu          PPP报文
- 输出参数  : 无
- 返 回 值  : VOS_ERR or VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月16日
-    作    者   : w00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_1X_CheckCdsPackets
 (
     const CDS_CDMA_1X_TRANS_DATA_STRU  *pstPppSdu
@@ -2705,21 +2022,7 @@ VOS_UINT32 PPPC_1X_CheckCdsPackets
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_1X_PullPacketEvent
- 功能描述  : 1X模式下PPP模块收到CDS的上行报文入队处理
- 输入参数  : pstPppSdu        PPP报文
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月21日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_1X_PullPacketEvent(const CDS_CDMA_1X_TRANS_DATA_STRU *pstPppSdu)
 {
     CTTF_PPPC_TRACE_DATA_STRU          *pstMntnInfo;
@@ -2803,21 +2106,7 @@ VOS_VOID PPPC_1X_PullPacketEvent(const CDS_CDMA_1X_TRANS_DATA_STRU *pstPppSdu)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_HRPD_CheckCdsPackets
- 功能描述  : HRPD模式检查PPPC模块收到CDS的上行报文队列有效性
- 输入参数  : pstPppSdu          PPP报文
- 输出参数  : 无
- 返 回 值  : VOS_ERR or VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月16日
-    作    者   : w00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_HRPD_CheckCdsPackets
 (
     const CDS_CDMA_HRPD_TRANS_DATA_STRU    *pstPppSdu
@@ -2852,21 +2141,7 @@ VOS_UINT32 PPPC_HRPD_CheckCdsPackets
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_HRPD_PullPacketEvent
- 功能描述  : HRPD模式下PPP模块收到CDS的上行报文入队处理
- 输入参数  : pstPppSdu        PPP报文
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月04日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_HRPD_PullPacketEvent(const CDS_CDMA_HRPD_TRANS_DATA_STRU *pstPppSdu)
 {
     CTTF_PPPC_TRACE_DATA_STRU          *pstMntnInfo;
@@ -2945,20 +2220,7 @@ VOS_VOID PPPC_HRPD_PullPacketEvent(const CDS_CDMA_HRPD_TRANS_DATA_STRU *pstPppSd
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_SendTafOrHsmReconnInd
- 功能描述  : Send reconnection indication msg to Taf or Hsm when PPP finds no link.
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-11-24
-    作    者   : d00314740
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_SendTafOrHsmReconnInd
 (
     VOS_UINT8                           ucPdnId
@@ -2993,20 +2255,7 @@ VOS_VOID PPPC_SendTafOrHsmReconnInd
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_SendEhsmReconnInd
- 功能描述  : Send reconnection indication msg to Ehsm when PPP finds no link.
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-11-24
-    作    者   : d00314740
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_SendEhsmReconnInd(VOS_VOID)
 {
     CTTF_CNAS_EHRPD_RECONN_IND_STRU    *pstReconnInd;
@@ -3037,20 +2286,7 @@ VOS_VOID PPPC_SendEhsmReconnInd(VOS_VOID)
     return;
 }
 #if (PPPC_FEATURE_OFF == PPPC_FEATURE_MULTI_MODEM)
-/*****************************************************************************
- 函 数 名  : I1_TAF_APS_GetPppLinkStatus
- 功能描述  : 不存在多modem时打桩Modem1获取链路状态，防止单编译时编译失败
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : TAF_APS_PPP_LINK_STATUS_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014-12-18
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 TAF_APS_PPP_LINK_STATUS_ENUM_UINT8 I1_TAF_APS_GetPppLinkStatus(VOS_VOID)
 {
     PPPC_WARNING_LOG("Do not support multi modem,modem1!");
@@ -3060,20 +2296,7 @@ TAF_APS_PPP_LINK_STATUS_ENUM_UINT8 I1_TAF_APS_GetPppLinkStatus(VOS_VOID)
 #endif
 
 #if (PPPC_FEATURE_OFF == PPPC_FEATURE_MODEM_2)
-/*****************************************************************************
- 函 数 名  : I2_TAF_APS_GetPppLinkStatus
- 功能描述  : 不存在多modem时打桩Modem2获取链路状态，防止单编译时编译失败
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : TAF_APS_PPP_LINK_STATUS_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014-12-18
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 TAF_APS_PPP_LINK_STATUS_ENUM_UINT8 I2_TAF_APS_GetPppLinkStatus(VOS_VOID)
 {
     PPPC_WARNING_LOG("Do not support multi modem,modem2!");
@@ -3082,20 +2305,7 @@ TAF_APS_PPP_LINK_STATUS_ENUM_UINT8 I2_TAF_APS_GetPppLinkStatus(VOS_VOID)
 }
 
 #endif
-/*****************************************************************************
- 函 数 名  : PPPC_GetLinkStatus
- 功能描述  : 获取链路状态
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : TAF_APS_PPP_LINK_STATUS_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014-12-18
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 TAF_APS_PPP_LINK_STATUS_ENUM_UINT8 PPPC_GetLinkStatus(VOS_VOID)
 {
     TAF_APS_PPP_LINK_STATUS_ENUM_UINT8  enLinkStatus;
@@ -3116,39 +2326,13 @@ TAF_APS_PPP_LINK_STATUS_ENUM_UINT8 PPPC_GetLinkStatus(VOS_VOID)
     return enLinkStatus;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_GetConnectionStatus
- 功能描述  : 获取connection的状态
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : connection状态
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016-01-28
-    作    者   : t00359887
-    修改内容   : 新生成函数
-*****************************************************************************/
 CTTF_HRPD_PA_CONNECTION_STATUS_ENUM_UINT8 PPPC_GetConnectionStatus(VOS_VOID)
 {
     return g_stPppContext.stHrpdContext.enConnectionStatus;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_SendRpaReConnInd
- 功能描述  : 给PA发送conneciton重建消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016-01-28
-    作    者   : t00359887
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_SendRpaReConnReq(VOS_VOID)
 {
     CTTF_HRPD_PPP_PA_RECONN_REQ_STRU   *pstPppReConnReq;
@@ -3176,20 +2360,7 @@ VOS_VOID PPPC_SendRpaReConnReq(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : PPPC_ULSendNegoFrame
- 功能描述  : 上行发送PPP协商报文
- 输入参数  : pstMBuf    PPP协商数据
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014-11-05
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 PPPC_ULSendNegoFrame(PMBUF_S *pstMBuf, VOS_UINT32 ulRPIndex)
 {
     TTF_MEM_ST                         *pstTtfMem;
@@ -3399,21 +2570,7 @@ VOS_UINT32 PPPC_ULSendNegoFrame(PMBUF_S *pstMBuf, VOS_UINT32 ulRPIndex)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_RcvCdsUlFrame
- 功能描述  : 收到CDS上行报文处理
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月4日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_RcvCdsUlFrame
 (
     VOS_UINT8                           ucPdnId,
@@ -3617,22 +2774,7 @@ VOS_VOID PPP_TraceDlHighLayerInfo
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_SendRlpDlDatatoCds
- 功能描述  : 下行报文发送到CDS
- 输入参数  : ucPdnId      承载号
-             pstSynMBuf   MBUF格式的数据
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月4日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_SendRlpDlDatatoCds
 (
     VOS_UINT16                          usStartSeq,
@@ -3725,21 +2867,7 @@ VOS_VOID PPP_SendRlpDlDatatoCds
 
 #if (FEATURE_ON == FEATURE_HARDWARE_HDLC_ON_CCPU)
 
-/*****************************************************************************
- 函 数 名  : PPPC_ProcAsFrmDataInd
- 功能描述  : 按照数据帧处理
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月22日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_ProcAsFrmDataInd(struct MsgCB * pMsg)
 {
     HDLC_PROC_AS_FRM_PACKET_IND_MSG_STRU    *pstHdlcEnable;
@@ -3763,21 +2891,7 @@ VOS_VOID PPPC_ProcAsFrmDataInd(struct MsgCB * pMsg)
 #endif
 
 
-/*****************************************************************************
- 函 数 名  : PPPC_AwakeSelfReachMaxProcTimeoutProc
- 功能描述  : 当处理次数达到门限时,PPPC每定时唤醒自己处理上下行数据
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月15日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_AwakeSelfReachMaxProcTimeoutProc(VOS_VOID)
 {
     g_hReachMaxProcTimer = VOS_NULL_PTR;
@@ -3787,21 +2901,7 @@ VOS_VOID PPPC_AwakeSelfReachMaxProcTimeoutProc(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_AccessAuthDelayTimeoutproc
- 功能描述  : PPPC收到PA的接入鉴权消息时延时5s等到收到BSC的LCP协商报文后再处理
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月11日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_AccessAuthDelayTimeoutproc()
 {
     g_hAADelayTimer = VOS_NULL_PTR;
@@ -3825,21 +2925,7 @@ VOS_VOID PPPC_AccessAuthDelayTimeoutproc()
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_AccessAuthDelayProcTimeoutProc
- 功能描述  : 接入鉴权超时处理函数
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月10日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_AccessAuthDelayProcTimeoutProc
 (
     PPPC_ACCESS_AUTH_ACT_MODE_ENUM_UINT16 enActMode
@@ -3905,82 +2991,26 @@ VOS_VOID PPPC_AccessAuthDelayProcTimeoutProc
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_GetDialMode
- 功能描述  : 获取拨号模式
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月28日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_APS_PPP_CDATA_DIAL_MODE_ENUM_UINT8 PPPC_GetDialMode(VOS_VOID)
 {
     return g_stPppContext.enDialMode;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_SetDialMode
- 功能描述  : 设置拨号模式，只支持中继和网络模式
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月01日
-    作    者   : w00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_SetDialMode(TAF_APS_PPP_CDATA_DIAL_MODE_ENUM_UINT8 enDialMode)
 {
     g_stPppContext.enDialMode = enDialMode;
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_GetRatMode
- 功能描述  : 获取当前模式是1X,HRPD或者eHRPD
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月02日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 PPPC_RAT_MODE_ENUM_UINT8 PPPC_GetRatMode(VOS_VOID)
 {
     return g_stPppContext.enRatMode;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_SetRatMode
- 功能描述  : 设定当前模式1X,HRPD或者eHRPD
- 输入参数  : PPPC_RAT_MODE_ENUM_UINT8 enRatMode
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月02日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_SetRatMode(PPPC_RAT_MODE_ENUM_UINT8 enRatMode)
 {
     g_stPppContext.enRatMode = enRatMode;
@@ -3988,21 +3018,7 @@ VOS_VOID PPPC_SetRatMode(PPPC_RAT_MODE_ENUM_UINT8 enRatMode)
 }
 
 
-/*****************************************************************************
- 函 数 名  : PPPC_GetCurrentPdnId
- 功能描述  : 获取当前的PDN ID,此接口可以在PPP协商过程中使用
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月02日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_GetCurrentPdnId(VOS_UINT8 *pucPdnId)
 {
     PPPC_DATA_LINK_NODE_STRU           *pstApsCurrHeadNode  = VOS_NULL_PTR;
@@ -4034,21 +3050,7 @@ VOS_UINT32 PPPC_GetCurrentPdnId(VOS_UINT8 *pucPdnId)
     return VOS_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_1X_GetPdnId
- 功能描述  : 1X模式获取当前的PDN ID
- 输入参数  : VOS_UINT8 ucPppId
- 输出参数  : VOS_UINT8 *pucPdnId
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月27日
-    作    者   : w00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_1X_GetPdnId(VOS_UINT8 ucPppId, VOS_UINT8 *pucPdnId)
 {
     PPPC_CONTEXT_INFO_STRU             *pstPppContext;
@@ -4068,21 +3070,7 @@ VOS_UINT32 PPPC_1X_GetPdnId(VOS_UINT8 ucPppId, VOS_UINT8 *pucPdnId)
     return VOS_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_GetServicePppId
- 功能描述  : 获取业务PPP Id
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月28日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_GetServicePppId(VOS_VOID)
 {
     PPPC_CONTEXT_INFO_STRU             *pstPppContext;
@@ -4109,21 +3097,7 @@ VOS_UINT32 PPPC_GetServicePppId(VOS_VOID)
     return ulIndex;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_GetCurrentPppId
- 功能描述  : 获取PPP Id
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月27日
-    作    者   : w00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_GetCurrentPppId
 (
     PPPC_RAT_MODE_ENUM_UINT8            enRateMode,
@@ -4170,22 +3144,7 @@ VOS_UINT32 PPPC_GetCurrentPppId
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_1XHrpdGetPdnId
- 功能描述  : 根据PPP Id和PDN ID之间的映射关系获取Pdn Id,只有1X和HRPD可以使用,
-             eHRPD模式一个PPP Id可以对应多个PDN ID不可以通过这种方式获取
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月11日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_1XHrpdGetPdnId(VOS_UINT16 usPppId, VOS_UINT8 *pucPdnId)
 {
     PPPC_CONTEXT_INFO_STRU             *pstPppContext;
@@ -4211,21 +3170,7 @@ VOS_UINT32 PPPC_1XHrpdGetPdnId(VOS_UINT16 usPppId, VOS_UINT8 *pucPdnId)
     return VOS_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_GetPppIdByPdn
- 功能描述  : 根据PPP Id和PDN Id之间的映射关系获取PPP Id
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月11日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_GetPppIdByPdn(VOS_UINT8 ucPdnId, VOS_UINT8 *pucPppId)
 {
     PPPC_CONTEXT_INFO_STRU             *pstPppContext;
@@ -4252,21 +3197,7 @@ VOS_UINT32 PPPC_GetPppIdByPdn(VOS_UINT8 ucPdnId, VOS_UINT8 *pucPppId)
     return VOS_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_IsPdnIdUnique
- 功能描述  : 判断当前PDN ID是不是唯一的
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月05日
-    作    者   : w00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_IsPdnIdUnique(VOS_UINT8 ucPdnId)
 {
     PPPC_CONTEXT_INFO_STRU             *pstPppContext;
@@ -4295,24 +3226,7 @@ VOS_UINT32 PPPC_IsPdnIdUnique(VOS_UINT8 ucPdnId)
     return VOS_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_MappingPppIdandPdnId
- 功能描述  : 记录PPP Id和Pdn Id之间的映射关系
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月11日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-  1.日    期   : 2015年05月27日
-    作    者   : w00316385
-    修改内容   : RabId改为PdnId
-
-*****************************************************************************/
 VOS_VOID PPPC_MappingPppIdandPdnId(VOS_UINT8 ucPppId, VOS_UINT8 ucPdnId)
 {
     PPPC_CONTEXT_INFO_STRU             *pstPppContext;
@@ -4326,24 +3240,7 @@ VOS_VOID PPPC_MappingPppIdandPdnId(VOS_UINT8 ucPppId, VOS_UINT8 ucPdnId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_ClearMappingByPppId
- 功能描述  : 根据Ppp Id清除PPP Id和Pdn Id之间的映射关系
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月11日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-  1.日    期   : 2015年05月27日
-    作    者   : w00316385
-    修改内容   : RabId改为PdnId
-
-*****************************************************************************/
 VOS_VOID PPPC_ClearMappingByPppId(VOS_UINT8 ucPppId)
 {
     PPPC_CONTEXT_INFO_STRU             *pstPppContext;
@@ -4354,21 +3251,7 @@ VOS_VOID PPPC_ClearMappingByPppId(VOS_UINT8 ucPppId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_ClearMappingByPdnId
- 功能描述  : 根据Pdn Id清除PPP Id和Pdn Id之间的映射关系
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月27日
-    作    者   : w00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_ClearMappingByPdnId(VOS_UINT8 ucPdnId)
 {
     PPPC_CONTEXT_INFO_STRU             *pstPppContext;
@@ -4384,21 +3267,7 @@ VOS_VOID PPPC_ClearMappingByPdnId(VOS_UINT8 ucPdnId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_CheckPdnId
- 功能描述  : 检查PDN id是否有效
- 输入参数  : VOS_UINT8 ucPdnId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-05-24
-    作    者   : w00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_CheckPdnId(VOS_UINT8 ucPdnId)
 {
     /* PDN ID的取值范围为0~14 */
@@ -4411,21 +3280,7 @@ VOS_UINT32 PPPC_CheckPdnId(VOS_UINT8 ucPdnId)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_CheckRateMode
- 功能描述  : 检查Rate mode是否有效
- 输入参数  : TAF_APS_PPP_RAT_MODE_ENUM_UINT8 enMode
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-05-24
-    作    者   : w00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_CheckRateMode(TAF_APS_PPP_RAT_MODE_ENUM_UINT8 enMode)
 {
     VOS_UINT32                          ulRet = VOS_ERR;
@@ -4442,21 +3297,7 @@ VOS_UINT32 PPPC_CheckRateMode(TAF_APS_PPP_RAT_MODE_ENUM_UINT8 enMode)
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_CheckPdnType
- 功能描述  : 检查Pdn Type是否有效
- 输入参数  : TAF_APS_PPP_ADDR_TYPE_ENUM_UINT8 enPdnType
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-05-24
-    作    者   : w00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_CheckPdnType(TAF_APS_PPP_ADDR_TYPE_ENUM_UINT8 enPdnType)
 {
     VOS_UINT32                          ulRet = VOS_ERR;
@@ -4474,21 +3315,7 @@ VOS_UINT32 PPPC_CheckPdnType(TAF_APS_PPP_ADDR_TYPE_ENUM_UINT8 enPdnType)
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_IsPdnIdUsing
- 功能描述  : 检查PDN id是否在使用中
- 输入参数  : VOS_UINT8 ucPdnId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-05-24
-    作    者   : w00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 PS_BOOL_ENUM_UINT8 PPPC_IsPdnIdUsing(VOS_UINT8 ucPdnId)
 {
     PPPC_CONTEXT_INFO_STRU             *pstPppContext;
@@ -4507,21 +3334,7 @@ PS_BOOL_ENUM_UINT8 PPPC_IsPdnIdUsing(VOS_UINT8 ucPdnId)
     return PS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_IsDoingAccessAuth
- 功能描述  : 是否正在进行接入鉴权
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : PS_BOOL_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-07-23
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 PS_BOOL_ENUM_UINT8 PPPC_IsDoingAccessAuth(VOS_UINT8 ucPppId)
 {
     PPPINFO_S                          *pstPppInfo;
@@ -4538,21 +3351,7 @@ PS_BOOL_ENUM_UINT8 PPPC_IsDoingAccessAuth(VOS_UINT8 ucPppId)
     return pstPppInfo->enIsDoingAccessAuth;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_ChangeAccessAuthState
- 功能描述  : 设置接入鉴权状态
- 输入参数  : PS_BOOL_ENUM_UINT8
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-07-23
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_ChangeAccessAuthState
 (
     PS_BOOL_ENUM_UINT8                  enIsDoingAcessAuth,
@@ -4568,21 +3367,7 @@ VOS_VOID PPPC_ChangeAccessAuthState
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_AddPppId
- 功能描述  : 新增一个PppId
- 输入参数  : 无
- 输出参数  : VOS_UINT8 *pucPppId
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-05-24
-    作    者   : w00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_AddPppId(VOS_UINT8 *pucPppId)
 {
     PPPC_CONTEXT_INFO_STRU             *pstPppContext;
@@ -4614,21 +3399,7 @@ VOS_UINT32 PPPC_AddPppId(VOS_UINT8 *pucPppId)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_DeletePppId
- 功能描述  : 删除一个PppId
- 输入参数  : 无
- 输出参数  : VOS_UINT8 ucPppId
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-05-24
-    作    者   : w00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_DeletePppId(VOS_UINT8 ucPppId)
 {
     PPPC_CONTEXT_INFO_STRU             *pstPppContext;
@@ -4643,21 +3414,7 @@ VOS_UINT32 PPPC_DeletePppId(VOS_UINT8 ucPppId)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_SndUlDataNotify
- 功能描述  : PPP上行消息队列内结点个数为0时，向PPP发送数据处理指示
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月4日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_SndUlDataNotify(VOS_VOID)
 {
 
@@ -4667,21 +3424,7 @@ VOS_UINT32 PPPC_SndUlDataNotify(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_SndDlDataNotify
- 功能描述  : PPP下行消息队列内结点个数为0时，向PPP发送数据处理指示
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月4日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_SndDlDataNotify(VOS_VOID)
 {
     (VOS_VOID)VOS_EventWrite(g_ulPppcTaskId, PPPC_DL_PKT_EVENT);
@@ -4690,21 +3433,7 @@ VOS_UINT32 PPPC_SndDlDataNotify(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_ApsCmdLinkInit
- 功能描述  : 初始化APS的消息链表,目前需要挂入链表的只有激活和去激活消息,
-             收到本地去激活IND直接清除资源无需链表管理
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014-11-05
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_ApsCmdLinkInit(VOS_VOID)
 {
     TTF_LinkInit(MSPS_PID_PPPC, &g_stApsCmdLink);
@@ -4712,20 +3441,7 @@ VOS_VOID PPPC_ApsCmdLinkInit(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_ClearApsCmdLinkNode
- 功能描述  : 清除APS发给PPP的消息链表
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014-11-06
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_ClearApsCmdLinkNode(VOS_VOID)
 {
     PPPC_APS_MSG_LINK_NODE_STRU            *pstApsCurrHeadNode;
@@ -4750,20 +3466,7 @@ VOS_VOID PPPC_ClearApsCmdLinkNode(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_ClearEhsmPdnCmdLinkNode
- 功能描述  : 清除EHSM发给PPP的PDN消息链表
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-05-24
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_ClearEhsmPdnCmdLinkNode(VOS_UINT8 ucPdnId)
 {
     PPPC_APS_MSG_LINK_NODE_STRU            *pstCurrentHeadNode;
@@ -4791,20 +3494,7 @@ VOS_VOID PPPC_ClearEhsmPdnCmdLinkNode(VOS_UINT8 ucPdnId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_SetIpCapability
- 功能描述  : 设置IP地址类型
- 输入参数  : VOS_UINT8 ucPdnType
- 输出参数  : PPPINFO_S *pstPppInfo
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-06-12
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_SetIpCapability
 (
     VOS_UINT8                           ucPdnType,
@@ -4845,20 +3535,7 @@ VOS_VOID PPPC_SetIpCapability
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_ClearUlEncapMem
- 功能描述  : 清除上行数据内存
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-07-02
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_ClearUlEncapMem(VOS_VOID)
 {
     VOS_UINT32                          ulIndex;
@@ -4877,20 +3554,7 @@ VOS_VOID PPPC_ClearUlEncapMem(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_SetupPpp
- 功能描述  : 创建PPP链路，触发发送LCP配置请求消息
- 输入参数  : ucPppId    PPP Id
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014-11-04
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_SetupPpp(VOS_UINT8 ucPppId)
 {
     PPP_LUPPARA_S                       stPPPMsg;
@@ -4916,20 +3580,7 @@ VOS_VOID PPPC_SetupPpp(VOS_UINT8 ucPppId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_LinkDown
- 功能描述  : 协商删除PPP链路
- 输入参数  : ucPppId    PPP Id
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014-11-04
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_LinkDown
 (
     VOS_UINT8                           ucPppId,
@@ -4962,20 +3613,7 @@ VOS_VOID PPPC_LinkDown
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_FillPdnInfo
- 功能描述  : 拷贝信息到PDN context
- 输入参数  : PPPC_APS_MSG_LINK_NODE_STRU        *pstCurrentHeadNode
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-06-05
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_FillPdnInfo
 (
     PPPC_APS_MSG_LINK_NODE_STRU        *pstCurrentHeadNode
@@ -5013,20 +3651,7 @@ VOS_VOID PPPC_FillPdnInfo
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_ExtractPdnInfoFromHeadNode
- 功能描述  : 从头结点里提取PDN 上下文信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016-01-26
-    作    者   : h00309869
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_ExtractPdnInfoFromHeadNode(VOS_VOID)
 {
     PPPC_APS_MSG_LINK_NODE_STRU        *pstCurrentHeadNode;
@@ -5049,21 +3674,7 @@ VOS_VOID PPPC_ExtractPdnInfoFromHeadNode(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_SetAuthSwitch
- 功能描述  : 设置鉴权开关
- 输入参数  : VOS_UINT32        ulPapSwitch
-             VOS_UINT32        ulChapSwitch
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-11-19
-    作    者   : c003338085
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_SetAuthSwitch
 (
     VOS_UINT32        ulPapSwitch,
@@ -5076,22 +3687,7 @@ VOS_VOID PPPC_SetAuthSwitch
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_GetAuthSwitch
- 功能描述  : 根据配置的鉴权类型及密码、用户名信息，获得鉴权开关取值
- 输入参数  : TAF_APS_PPP_AUTH_TYPE_ENUM_UINT8    enAuthType
-             PPPC_CONTEXT_INFO_STRU             *pstPppCont
- 输出参数  : VOS_UINT32*                         pulPapSwitch
-             VOS_UINT32*                         pulChapSwitch
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-11-20
-    作    者   : c003338085
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_GetAuthSwitch
 (
     TAF_APS_PPP_AUTH_TYPE_ENUM_UINT8    enAuthType,
@@ -5143,20 +3739,7 @@ VOS_VOID PPPC_GetAuthSwitch
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_AttachReqMsgNodeProc
- 功能描述  : PPPC模块Attach Request消息节点处理(为保证串行处理将消息按节点入队)
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-05-24
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_AttachReqMsgNodeProc()
 {
     PPPC_APS_MSG_LINK_NODE_STRU            *pstCurrentHeadNode;
@@ -5217,20 +3800,7 @@ VOS_VOID PPPC_AttachReqMsgNodeProc()
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_DisConnAllPDN
- 功能描述  : 断开所有PDN连接
- 输入参数  : ucPppId    PPP ID
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016-01-20
-    作    者   : t00359887
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_DisConnAllPDN(VOS_UINT8 ucPppId)
 {
     VOS_UINT8                           ucPdnId;
@@ -5273,20 +3843,7 @@ VOS_VOID PPPC_DisConnAllPDN(VOS_UINT8 ucPppId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_DetachReqMsgNodeProc
- 功能描述  : PPPC模块Detach Request消息节点处理(为保证串行处理将消息按节点入队)
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-05-24
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_DetachReqMsgNodeProc()
 {
     PPPC_APS_MSG_LINK_NODE_STRU            *pstCurrentHeadNode;
@@ -5316,20 +3873,7 @@ VOS_VOID PPPC_DetachReqMsgNodeProc()
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_PdnConnectReqMsgNodeProc
- 功能描述  : PPPC模块PDN Connect Request消息节点处理(为保证串行处理将消息按节点入队)
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-05-24
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_PdnConnectReqMsgNodeProc()
 {
     PPPC_APS_MSG_LINK_NODE_STRU        *pstCurrentHeadNode;
@@ -5364,20 +3908,7 @@ VOS_VOID PPPC_PdnConnectReqMsgNodeProc()
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_PdnDisconnectReqMsgNodeProc
- 功能描述  : PPPC模块PDN Disconnect Request消息节点处理(为保证串行处理将消息按节点入队)
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-05-24
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_PdnDisconnectReqMsgNodeProc()
 {
     PPPC_APS_MSG_LINK_NODE_STRU            *pstCurrentHeadNode;
@@ -5411,20 +3942,7 @@ VOS_VOID PPPC_PdnDisconnectReqMsgNodeProc()
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EhsmMsgNodeProc
- 功能描述  : PPPC模块消息节点处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-05-24
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_EhsmMsgNodeProc(VOS_VOID)
 {
     PPPC_APS_MSG_LINK_NODE_STRU            *pstCurrentHeadNode;
@@ -5488,20 +4006,7 @@ VOS_VOID PPPC_EhsmMsgNodeProc(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EhsmAttachCheckParam
- 功能描述  : 检查Attach消息参数
- 输入参数  : CNAS_CTTF_EHRPD_ATTACH_REQ_STRU    *pstAttachReq
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-05-24
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 PPPC_EhsmAttachCheckParam
 (
     CNAS_CTTF_EHRPD_ATTACH_REQ_STRU    *pstAttachReq
@@ -5535,20 +4040,7 @@ VOS_UINT32 PPPC_EhsmAttachCheckParam
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EhsmAttachReqProc
- 功能描述  : PPPC模块处理Ehsm的Attach请求
- 输入参数  : CNAS_CTTF_EHRPD_ATTACH_REQ_STRU    *pstAttachReq
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-05-24
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_EhsmAttachReqProc
 (
     CNAS_CTTF_EHRPD_ATTACH_REQ_STRU    *pstAttachReq
@@ -5692,20 +4184,7 @@ VOS_VOID PPPC_EhsmAttachReqProc
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EhsmDetachReqProc
- 功能描述  : PPPC模块处理Ehsm的Detach请求
- 输入参数  : pstDetachReq    TAF命令
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-05-24
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_EhsmDetachReqProc
 (
     CNAS_CTTF_EHRPD_DETACH_REQ_STRU    *pstDetachReq
@@ -5764,20 +4243,7 @@ VOS_VOID PPPC_EhsmDetachReqProc
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EhsmPdnConnectCheckParam
- 功能描述  : 检查PdnConnect消息参数
- 输入参数  : CNAS_CTTF_EHRPD_PDN_CONN_REQ_STRU    *pstPdnConnectReq
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-05-24
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 PPPC_EhsmPdnConnectCheckParam
 (
     CNAS_CTTF_EHRPD_PDN_CONN_REQ_STRU  *pstPdnConnectReq
@@ -5805,20 +4271,7 @@ VOS_UINT32 PPPC_EhsmPdnConnectCheckParam
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EhsmPdnConnectReqProc
- 功能描述  : PPPC模块处理Ehsm的PDN Connect请求
- 输入参数  : pstPdnConnectReq    EHSM命令
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-05-24
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_EhsmPdnConnectReqProc
 (
     CNAS_CTTF_EHRPD_PDN_CONN_REQ_STRU  *pstPdnConnectReq
@@ -5945,20 +4398,7 @@ VOS_VOID PPPC_EhsmPdnConnectReqProc
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EhsmDisconnReqProcWhenAccessAuth
- 功能描述  : 接入鉴权时收到Disconn请求处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-10-10
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 PS_BOOL_ENUM_UINT8 PPPC_EhsmDisconnReqProcWhenAccessAuth(VOS_VOID)
 {
     VOS_UINT32                          ulRet;
@@ -5992,20 +4432,7 @@ PS_BOOL_ENUM_UINT8 PPPC_EhsmDisconnReqProcWhenAccessAuth(VOS_VOID)
     return PS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EhsmDetachProcWhenAccessAuth
- 功能描述  : 接入鉴权时收到Detach请求处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-10-10
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 PS_BOOL_ENUM_UINT8 PPPC_EhsmDetachProcWhenAccessAuth(VOS_VOID)
 {
     VOS_UINT32                          ulRet;
@@ -6042,20 +4469,7 @@ PS_BOOL_ENUM_UINT8 PPPC_EhsmDetachProcWhenAccessAuth(VOS_VOID)
     return PS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EhsmPdnDisconnectReqProc
- 功能描述  : PPPC模块处理Ehsm的PDN Disconnect请求
- 输入参数  : pMsg    TAF命令
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-05-24
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_EhsmPdnDisconnectReqProc
 (
     CNAS_CTTF_EHRPD_PDN_DISC_REQ_STRU  *pstPdnDisconnectReq
@@ -6117,20 +4531,7 @@ VOS_VOID PPPC_EhsmPdnDisconnectReqProc
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EhsmPdnDisconnectIndProc
- 功能描述  : PPPC模块处理EHSM的本地去激活命令
- 输入参数  : pstDeActInd    EHSM命令
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-05-24
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_EhsmPdnDisconnectIndProc
 (
     CNAS_CTTF_EHRPD_PDN_LOC_DISC_IND_STRU *pstPdnDisconnectInd
@@ -6165,20 +4566,7 @@ VOS_VOID PPPC_EhsmPdnDisconnectIndProc
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_DetachSelf
- 功能描述  : 如果本地是eHRPD模式收到切换到1X/HRPD模式的消息需要先本地去激活
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-12-29
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_DetachSelf(VOS_VOID)
 {
     PPPINFO_S                              *pstPppInfo;
@@ -6202,20 +4590,7 @@ VOS_VOID PPPC_DetachSelf(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EhsmLocDetachIndProc
- 功能描述  : PPPC模块处理EHSM的本地去激活命令
- 输入参数  : pstDetachInd    EHSM命令
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-05-24
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_EhsmLocDetachIndProc(CNAS_CTTF_EHRPD_LOC_DETACH_IND_STRU *pstDetachInd)
 {
     PPPC_DetachSelf();
@@ -6223,20 +4598,7 @@ VOS_VOID PPPC_EhsmLocDetachIndProc(CNAS_CTTF_EHRPD_LOC_DETACH_IND_STRU *pstDetac
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_MsgEhsmProc
- 功能描述  : PPPC模块处理EHSM命令
- 输入参数  : pMsg    EHSM命令
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-05-24
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_MsgEhsmProc(struct MsgCB * pMsg)
 {
     Cnas_cttf_ehrpd_ehsm_ppp_pif_MSG       *pstEhsmPppPublicInfo;
@@ -6322,20 +4684,7 @@ VOS_VOID PPPC_MsgEhsmProc(struct MsgCB * pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_ActReqMsgNodeProc
- 功能描述  : PPPC模块激活消息节点处理(为保证串行处理将消息按节点入队)
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014-11-04
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_ActReqMsgNodeProc()
 {
     PPPC_APS_MSG_LINK_NODE_STRU            *pstApsCurrHeadNode;
@@ -6397,20 +4746,7 @@ VOS_VOID PPPC_ActReqMsgNodeProc()
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_DeActReqMsgNodeProc
- 功能描述  : PPPC模块去激活消息节点处理(为保证串行处理将消息按节点入队)
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014-11-04
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_DeActReqMsgNodeProc()
 {
     PPPC_APS_MSG_LINK_NODE_STRU            *pstApsCurrHeadNode;
@@ -6449,20 +4785,7 @@ VOS_VOID PPPC_DeActReqMsgNodeProc()
 }
 
 
-/*****************************************************************************
- 函 数 名  : PPPC_TafMsgNodeProc
- 功能描述  : PPPC模块消息节点处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-05-24
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_TafMsgNodeProc(VOS_VOID)
 {
     PPPC_APS_MSG_LINK_NODE_STRU            *pstCurrentHeadNode;
@@ -6514,22 +4837,7 @@ VOS_VOID PPPC_TafMsgNodeProc(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : PPPC_RespApsPdnIsActived
-功能描述  : 成功建立1X连接后，以重复的PdnId再次激活，PPP回复成功激活的消息
-输入参数  :    APS_PPP_ACT_REQ_STRU    *pApsActReq,
-                VOS_VOID               *pPppInfo,
-                VOS_UINT32              ulResult
-输出参数  : 无
-返 回 值  : VOID
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2015-07-28
-作    者   : zWX297122
-修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_RespApsPdnIsActived
 (
     APS_PPP_ACT_REQ_STRU               *pApsActReq,
@@ -6612,21 +4920,7 @@ VOS_VOID PPPC_RespApsPdnIsActived
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_AccessAuthSuccProc
- 功能描述  : 初始接入鉴权成功时的处理,需要停定时器并处理激活消息,另外不能忘记释放
-             激活消息的内存
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-10-10
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_AccessAuthSuccProc(VOS_VOID)
 {
     VOS_UINT32                          ulIndex;
@@ -6671,21 +4965,7 @@ VOS_VOID PPPC_AccessAuthSuccProc(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_StopAccessAuthDelayProcTimer
- 功能描述  : TAF去激活PPP时需要判断当前是否正在做接入鉴权.如果正在做初始接入鉴权,
-             检查是否有HRPD的延时定时器在运行,有则停定时器.
- 输入参数  : pstPppActReq    TAF激活消息
- 输出参数  : 无
- 返 回 值  : PS_BOOL_ENUM_UINT8 PS_TRUE:继续向后执行 PS_FALSE:返回
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-10-9
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_StopAllAccessAuthDelayProcTimer(VOS_VOID)
 {
     VOS_UINT32                          ulIndex;
@@ -6730,21 +5010,7 @@ VOS_VOID PPPC_StopAllAccessAuthDelayProcTimer(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_TafDeactProcWhenAccessAuth
- 功能描述  : TAF去激活PPP时需要判断当前是否正在做接入鉴权.如果正在做初始接入鉴权,
-             检查是否有HRPD的延时定时器在运行,有则停定时器.
- 输入参数  : pstPppActReq    TAF激活消息
- 输出参数  : 无
- 返 回 值  : PS_BOOL_ENUM_UINT8 PS_TRUE:继续向后执行 PS_FALSE:返回
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-10-9
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 PS_BOOL_ENUM_UINT8 PPPC_TafDeactProcWhenAccessAuth
 (
     TAF_APS_PPP_RAT_MODE_ENUM_UINT8     enRateMode
@@ -6798,21 +5064,7 @@ PS_BOOL_ENUM_UINT8 PPPC_TafDeactProcWhenAccessAuth
     }
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_TafActProcWhenInitAccessAuth
- 功能描述  : TAF激活PPP时需要判断当前是否正在做接入鉴权.如果正在做初始接入鉴权,
-             激活1X时需要停定时器,且停止接入鉴权;激活HRPD时启定时器延时处理.
- 输入参数  : pstPppActReq    TAF激活消息
- 输出参数  : 无
- 返 回 值  : PS_BOOL_ENUM_UINT8 PS_TRUE:继续向后执行 PS_FALSE:返回
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-10-9
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 PS_BOOL_ENUM_UINT8 PPPC_TafActProcWhenInitAccessAuth
 (
     APS_PPP_ACT_REQ_STRU               *pstPppActReq
@@ -6881,20 +5133,7 @@ PS_BOOL_ENUM_UINT8 PPPC_TafActProcWhenInitAccessAuth
     }
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_TafActReqProc
- 功能描述  : PPPC模块处理TAF的PPP激活命令
- 输入参数  : pMsg    TAF命令
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014-11-24
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_TafActReqProc
 (
     APS_PPP_ACT_REQ_STRU               *pstPppActReq
@@ -7037,20 +5276,7 @@ VOS_VOID PPPC_TafActReqProc
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_TafDeActReqProc
- 功能描述  : PPPC模块处理TAF的PPP去激活命令
- 输入参数  : pMsg    TAF命令
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014-11-24
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_TafDeActReqProc(APS_PPP_DEACT_REQ_STRU *pstPppDeActReq)
 {
     PPPC_APS_MSG_LINK_NODE_STRU            *pstApsMsgNode;
@@ -7121,20 +5347,7 @@ VOS_VOID PPPC_TafDeActReqProc(APS_PPP_DEACT_REQ_STRU *pstPppDeActReq)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_TafDeActIndProc
- 功能描述  : PPPC模块处理TAF的本地去激活命令
- 输入参数  : pstDeActInd    TAF命令
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-05-24
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_TafDeActIndProc(APS_PPP_DEACT_IND_STRU *pstDeActInd)
 {
     PPPINFO_S                              *pstPppInfo;
@@ -7172,20 +5385,7 @@ VOS_VOID PPPC_TafDeActIndProc(APS_PPP_DEACT_IND_STRU *pstDeActInd)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_TafModeChangeNtfProc
- 功能描述  : PPPC模块处理TAF的模式切换命令
- 输入参数  : pstModeChangeNtf   TAF命令
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-06-04
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_TafModeChangeNtfProc(APS_PPP_MODE_CHANGE_NTF_STRU *pstModeChangeNtf)
 {
     PPPC_RAT_MODE_ENUM_UINT8            enRatMode;
@@ -7242,20 +5442,7 @@ VOS_VOID PPPC_TafModeChangeNtfProc(APS_PPP_MODE_CHANGE_NTF_STRU *pstModeChangeNt
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_TafDialModeNtfProc
- 功能描述  : PPPC模块处理TAF的拨号模式切换命令
- 输入参数  : pstDialModeNtf   TAF命令
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-07-01
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_TafDialModeNtfProc(APS_PPP_DIAL_MODE_NTF_STRU *pstDialModeNtf)
 {
     /* 内部调用保证指针入参非空 */
@@ -7275,20 +5462,7 @@ VOS_VOID PPPC_TafDialModeNtfProc(APS_PPP_DIAL_MODE_NTF_STRU *pstDialModeNtf)
 }
 
 
-/*****************************************************************************
- 函 数 名  : PPPC_HRPD_RcvCommittedIndProc
- 功能描述  : PPPC模块收到RPA的committed配置消息处理,保存APP和Stream的映射关系
- 输入参数  : pMsg    PA配置消息
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-06-03
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_HRPD_RcvCommittedIndProc(struct MsgCB * pMsg)
 {
     CTTF_PPP_HRPD_COMMITTED_IND_STRU   *pstCommttedInd;
@@ -7317,20 +5491,7 @@ VOS_VOID PPPC_HRPD_RcvCommittedIndProc(struct MsgCB * pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_HRPD_RcvReservationsIndProc
- 功能描述  : PPPC模块收到RPA的Reservation个数配置消息处理,保存到上下文中
- 输入参数  : pMsg    PA配置消息
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-06-03
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_HRPD_RcvReservationsIndProc(struct MsgCB * pMsg)
 {
     CTTF_PPP_HRPD_RESERVATIONS_IND_STRU    *pstReservationsInd;
@@ -7343,20 +5504,7 @@ VOS_VOID PPPC_HRPD_RcvReservationsIndProc(struct MsgCB * pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_HRPD_SendOpenStreamReq
- 功能描述  : PPPC模块准备好收发数据时通知PA打开Stream
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-06-03
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_HRPD_SendOpenStreamReq(VOS_VOID)
 {
     PPPC_HRPD_CONTEXT_STRU                 *pstHrpdContext;
@@ -7395,20 +5543,7 @@ VOS_VOID PPPC_HRPD_SendOpenStreamReq(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_HRPD_SendCloseStreamReq
- 功能描述  : PPPC模块不能收发数据时通知PA关闭Stream
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-06-03
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_HRPD_SendCloseStreamReq(VOS_VOID)
 {
     PPPC_HRPD_CONTEXT_STRU              *pstHrpdContext;
@@ -7446,20 +5581,7 @@ VOS_VOID PPPC_HRPD_SendCloseStreamReq(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_HRPD_GetStreamNumByAppType
- 功能描述  : 根据应用类型从上下文中获取流号
- 输入参数  : enAppType    应用携带的QoS信息
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-06-03
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 PPPC_HRPD_GetStreamNumByAppType
 (
     CTTF_HRPD_PA_APPLICATION_TYPE_ENUM_UINT16   enAppType,
@@ -7485,20 +5607,7 @@ VOS_UINT32 PPPC_HRPD_GetStreamNumByAppType
     return VOS_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_HRPD_GetAppTypeByStreamNum
- 功能描述  : 根据流号获取应用类型
- 输入参数  : ucStreamNum    流号
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-09-29
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 PPPC_HRPD_GetAppTypeByStreamNum
 (
     CTTF_HRPD_PA_APPLICATION_TYPE_ENUM_UINT16  *penAppType,
@@ -7521,20 +5630,7 @@ VOS_UINT32 PPPC_HRPD_GetAppTypeByStreamNum
 }
 
 
-/*****************************************************************************
- 函 数 名  : PPPC_HRPD_SendOpenQoSReq
- 功能描述  : PPPC模块通知PA做QoS协商
- 输入参数  : pstQoSInfo    应用携带的QoS信息
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-06-03
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_HRPD_SendOpenQoSReq(PPPC_HRPD_RESERVATION_QOS_INFO_STRU *pstQoSInfo)
 {
     PPP_CTTF_HRPD_MFPA_QOS_REQ_STRU    *pstQoSReq;
@@ -7586,20 +5682,7 @@ VOS_VOID PPPC_HRPD_SendOpenQoSReq(PPPC_HRPD_RESERVATION_QOS_INFO_STRU *pstQoSInf
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_HRPD_SendCloseQoSReq
- 功能描述  : PPPC模块通知PA做关闭QoS协商
- 输入参数  : pstCloseQoSInfo    应用携带的QoS信息
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-06-03
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_HRPD_SendCloseQoSReq
 (
     PPPC_HRPD_RESERVATION_QOS_CLOSE_INFO_STRU *pstQoSCloseInfo
@@ -7646,20 +5729,7 @@ VOS_VOID PPPC_HRPD_SendCloseQoSReq
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_HRPD_GetFileReq
- 功能描述  : 读取文件通知
- 输入参数  : USIMM_DEF_FILEID_ENUM_UINT32 enFileID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-07-25
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 PPPC_HRPD_GetFileReq(USIMM_DEF_FILEID_ENUM_UINT32 enFileID)
 {
     USIMM_READFILE_REQ_STRU            *pstMsg;
@@ -7709,39 +5779,13 @@ VOS_UINT32 PPPC_HRPD_GetFileReq(USIMM_DEF_FILEID_ENUM_UINT32 enFileID)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_IsCaveAlgorithmEnable
- 功能描述  : HRPD模式接入鉴权是否支持CAVE算法
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : PS_BOOL_ENUM_UINT8 PS_FALSE不支持，PS_TRUE支持
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月01日
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 PS_BOOL_ENUM_UINT8 PPPC_IsCaveAlgorithmEnable(VOS_VOID)
 {
     return g_stPppContext.enCaveEnable;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_SaveAccessAuthUserNameInfo
- 功能描述  : 保存接入鉴权的用户名信息
- 输入参数  : pstMsg:消息内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月25日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_SaveAccessAuthUserNameInfo(VOS_UINT8 *pstMsg)
 {
     VOS_UINT8                          *pucTemp = pstMsg;
@@ -7769,59 +5813,20 @@ VOS_VOID PPPC_SaveAccessAuthUserNameInfo(VOS_UINT8 *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_SaveRunCaveRandu
- 功能描述  : 保存RAND
- 输入参数  : VOS_UINT32 ulRandu
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月08日
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_SaveRunCaveRandu(VOS_UINT32 ulRandu)
 {
     g_stPppContext.stHrpdContext.ulRandu = ulRandu;
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_GetRunCaveRandu
- 功能描述  : 保存RAND
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月08日
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 PPPC_GetRunCaveRandu(VOS_VOID)
 {
     return g_stPppContext.stHrpdContext.ulRandu;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_UsimmCdmaSpecAuthProc
- 功能描述  : CHAP鉴权MD5算法计算回复处理函数
- 输入参数  : pstMsg:消息内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月29日
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_UsimmCdmaSpecAuthProc(USIMM_CDMASPECAUTH_CNF_STRU *pstMsg)
 {
     PPPC_APS_MSG_LINK_NODE_STRU        *pstActPppNode = VOS_NULL_PTR;
@@ -7898,21 +5903,7 @@ VOS_VOID PPPC_UsimmCdmaSpecAuthProc(USIMM_CDMASPECAUTH_CNF_STRU *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_UsimCaveAuthCnfProc
- 功能描述  : 收到CAVE鉴权结果消息的处理
- 输入参数  : USIMM_AUTHENTICATION_CNF_STRU  *pUsimAuthCnf
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月06日
-    作    者   : t00359887
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_UsimCaveAuthCnfProc(USIMM_AUTHENTICATION_CNF_STRU  *pUsimAuthCnf)
 {
     PS_BOOL_ENUM_UINT8                      enIsDoingAccessAuth;
@@ -7969,21 +5960,7 @@ VOS_UINT32 PPPC_UsimCaveAuthCnfProc(USIMM_AUTHENTICATION_CNF_STRU  *pUsimAuthCnf
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_UsimEapAuthCnfProc
- 功能描述  : 收到EAP鉴权结果消息的处理
- 输入参数  : USIMM_AUTHENTICATION_CNF_STRU  *pUsimAuthCnf
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月06日
-    作    者   : t00359887
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_UsimEapAuthCnfProc(USIMM_AUTHENTICATION_CNF_STRU  *pstUsimAuthCnf)
 {
     PPPC_EAP_AUTH_RESULT_STRU           stAuthRes;
@@ -8034,21 +6011,7 @@ VOS_UINT32 PPPC_UsimEapAuthCnfProc(USIMM_AUTHENTICATION_CNF_STRU  *pstUsimAuthCn
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_UsimmAuthenticationCnfProc
- 功能描述  : 收到鉴权结果消息的处理
- 输入参数  : USIMM_AUTHENTICATION_CNF_STRU  *pUsimAuthCnf
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月08日
-    作    者   : w00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_UsimmAuthenticationCnfProc(USIMM_AUTHENTICATION_CNF_STRU  *pUsimAuthCnf)
 {
     USIMM_AUTH_TYPE_ENUM_UINT32             enAuthType;
@@ -8084,20 +6047,7 @@ VOS_UINT32 PPPC_UsimmAuthenticationCnfProc(USIMM_AUTHENTICATION_CNF_STRU  *pUsim
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_MsgTafProc
- 功能描述  : PPPC模块处理TAF命令
- 输入参数  : pMsg    TAF命令
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014-11-04
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_MsgTafProc(struct MsgCB * pMsg)
 {
     Taf_aps_ppp_pif_MSG                    *pstApsPppPublicInfo;
@@ -8173,21 +6123,7 @@ VOS_VOID PPPC_MsgTafProc(struct MsgCB * pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_GetDataLinkStatus
- 功能描述  : 获取上下行链表的是否为空的状态
- 输入参数  : 无
- 输出参数  : penUlDataLinkNotNull    PS_FALSE:上行空 PS_TRUE:上行非空
-             penDlDataLinkNotNull    PS_FALSE:下行空 PS_TRUE:下行非空
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014-12-28
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_GetUlDlDataLinkStatus
 (
     PS_BOOL_ENUM_UINT8                 *penUlDataLinkNotNull,
@@ -8220,21 +6156,7 @@ VOS_VOID PPPC_GetUlDlDataLinkStatus
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_WakeSelf
- 功能描述  : 当定时器为空且还有数据需要处理时PPPC唤醒自己
- 输入参数  : penUlDataLinkNotNull    PS_FALSE:上行空 PS_TRUE:上行非空
-             penDlDataLinkNotNull    PS_FALSE:下行空 PS_TRUE:下行非空
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014-12-28
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_WakeSelf
 (
     PS_BOOL_ENUM_UINT8                  enUlDataLinkNotNull,
@@ -8273,21 +6195,7 @@ VOS_VOID PPPC_WakeSelf
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_HRPD_SendRpaAccessAuthPhaseInd
- 功能描述  : PPPC通知PA接入鉴权开始
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月28日
-    作    者   : t00359887
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_HRPD_SendRpaAccessAuthPhaseInd(VOS_VOID)
 {
     CTTF_HRPD_PPP_PA_ACCESS_AUTH_PHASE_IND_STRU    *pstPppAccessAuthPhase;
@@ -8324,20 +6232,7 @@ VOS_VOID PPPC_HRPD_SendRpaAccessAuthPhaseInd(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_HRPD_SendRpaAccessAuthRsp
- 功能描述  : PPPC通知PA接入鉴权结束
- 输入参数  : enResult       接入鉴权结果
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月28日
-    作    者   : t00359887
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_HRPD_SendRpaAccessAuthRsp
 (
     CTTF_HRPD_PPP_ACCESS_AUTH_RESULT_ENUM_UINT8 enResult
@@ -8381,20 +6276,7 @@ VOS_VOID PPPC_HRPD_SendRpaAccessAuthRsp
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_HRPD_AccessAuthProc
- 功能描述  : PPPC模块收到CTTF_PID_HRPD_RPA任务发来消息的处理
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-12-11
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_HRPD_AccessAuthProc(struct MsgCB * pMsg)
 {
     PPPC_RAT_MODE_ENUM_UINT8            enRateMode;
@@ -8421,20 +6303,7 @@ VOS_VOID PPPC_HRPD_AccessAuthProc(struct MsgCB * pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_HRPD_AccessAuthFinsh
- 功能描述  : PPPC收到PA发送的ACCESS AUTH Finsh处理
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016-01-28
-    作    者   : t00359887
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_HRPD_AccessAuthFinsh(VOS_VOID)
 {
     PPPINFO_S                          *pstPppInfo;
@@ -8446,20 +6315,7 @@ VOS_VOID PPPC_HRPD_AccessAuthFinsh(VOS_VOID)
     PPP_Core_ReceiveEventFromProtocol(pstPppInfo, PPP_EVENT_LCPDOWN, NULL);
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_HRPD_UpdateConnectionStatus
- 功能描述  : 更新connection的状态
- 输入参数  : pMsg       PA发给PPP的链路状态消息
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016-01-28
-    作    者   : t00359887
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_HRPD_UpdateConnectionStatus(struct MsgCB * pMsg)
 {
     CTTF_HRPD_PA_PPP_CONNECTION_STATUS_IND_STRU    *pstConnectionStatus;
@@ -8480,20 +6336,7 @@ VOS_VOID PPPC_HRPD_UpdateConnectionStatus(struct MsgCB * pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_MsgHrpdRpaProc
- 功能描述  : PPPC模块收到CTTF_PID_HRPD_RPA任务发来消息的处理
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-06-03
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_HRPD_MsgRpaProc(struct MsgCB * pMsg)
 {
     CTTF_HRPD_PA_PPP_PIF_MSG_TYPE_ENUM_UINT16     enMsgType;
@@ -8558,20 +6401,7 @@ VOS_VOID PPPC_HRPD_MsgRpaProc(struct MsgCB * pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_MsgUsimmProc
- 功能描述  : PPPC模块收到WUEPS_PID_USIM任务发来消息的处理
- 输入参数  : PPPC_UIM_MSG_STRU *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-06-29
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_MsgUsimmProc(PPPC_UIM_MSG_STRU *pstMsg)
 {
     switch (pstMsg->ulMsgName)
@@ -8600,20 +6430,7 @@ VOS_VOID PPPC_MsgUsimmProc(PPPC_UIM_MSG_STRU *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_MsgPihProc
- 功能描述  : PPPC模块收到MAPS_PIH_PID任务发来消息的处理
- 输入参数  : PPPC_UIM_MSG_STRU *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-08-13
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_MsgPihProc(PPPC_UIM_MSG_STRU *pstMsg)
 {
     switch (pstMsg->ulMsgName)
@@ -8629,20 +6446,7 @@ VOS_VOID PPPC_MsgPihProc(PPPC_UIM_MSG_STRU *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_Init
- 功能描述  : PPPC模块初始化
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014-10-30
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 PPPC_Init(enum VOS_INIT_PHASE_DEFINE enPhase )
 {
     TTF_PPPC_NVIM_CONFIG_OPTIONS_STRU   stNvCfgOptions;
@@ -8749,21 +6553,7 @@ VOS_UINT32 PPPC_Init(enum VOS_INIT_PHASE_DEFINE enPhase )
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_MsgProc
- 功能描述  : PPP模块中的消息处理函数，他处理定时器消息以及从AT模块接
-             收到的命令。如果成功将返回VOS_OK，否则为VOS_ERR。
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014-10-30
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_MsgProc(struct MsgCB * pMsg)
 {
     if(VOS_NULL_PTR == pMsg)
@@ -8836,20 +6626,7 @@ VOS_VOID PPPC_MsgProc(struct MsgCB * pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_RespApsActFail
- 功能描述  : PPP回复APS Act失败
- 输入参数  : pstPppActReq   APS_PPP_ACT_REQ_STRU
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-05-24
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_RespApsActFail
 (
     APS_PPP_ACT_REQ_STRU               *pstPppActReq
@@ -8899,20 +6676,7 @@ VOS_VOID PPPC_RespApsActFail
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_RespApsDeActFail
- 功能描述  : PPP回复APS DeAct失败
- 输入参数  : pstPppDeActReq   APS_PPP_DEACT_REQ_STRU
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-05-24
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_RespApsDeActFail
 (
     APS_PPP_DEACT_REQ_STRU             *pstPppDeActReq
@@ -8949,21 +6713,7 @@ VOS_VOID PPPC_RespApsDeActFail
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_RespApsActCmd
- 功能描述  : PPP回复APS激活PPP命令
- 输入参数  : pPppInfo       PPP信息，激活失败时填VOS_NULL_PTR,否则非空
-             ulResult       VOS_OK/VOS_ERR
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014-11-05
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_RespApsActCmd(VOS_VOID* pPppInfo, VOS_UINT32 ulResult, TAF_APS_PPP_ADDR_TYPE_ENUM_UINT8 enPdnType)
 {
     PPPINFO_S                          *pstPppInfo;
@@ -9089,20 +6839,7 @@ VOS_VOID PPPC_RespApsActCmd(VOS_VOID* pPppInfo, VOS_UINT32 ulResult, TAF_APS_PPP
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_RespApsDeActCmd
- 功能描述  : 不需要协商直接回复去激活消息
- 输入参数  : ulResult   去激活结果
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-10-10
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_RespApsDeActDirect
 (
     VOS_UINT32                          ulResult,
@@ -9140,20 +6877,7 @@ VOS_VOID PPPC_RespApsDeActDirect
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_RespApsDeActCmd
- 功能描述  : 回复去激活消息
- 输入参数  : ulResult   去激活结果
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014-11-05
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_RespApsDeActCmd(VOS_UINT32 ulResult)
 {
     PPP_APS_DEACT_CNF_STRU             *pstApsDeActCnf;
@@ -9215,20 +6939,7 @@ VOS_VOID PPPC_RespApsDeActCmd(VOS_UINT32 ulResult)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_IsNegoComplete
- 功能描述  : 判断IPV4V6协商是否完成了
- 输入参数  : pstPppInfo
- 输出参数  : penUsedPdnType         PPP实际使用的地址类型
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-08-31
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 PPPC_IsNegoComplete
 (
     VOS_VOID                           *pPppInfo,
@@ -9289,20 +7000,7 @@ VOS_UINT32 PPPC_IsNegoComplete
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_RespApsModifyIndCmd
- 功能描述  : 回复APS IP地址修改消息
- 输入参数  : pstPppInfo
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-08-31
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_RespApsModifyIndCmd(PPPINFO_S* pstPppInfo)
 {
     PPP_APS_MODIFY_IND_STRU            *pstApsModifyInd;
@@ -9396,20 +7094,7 @@ VOS_VOID PPPC_RespApsModifyIndCmd(PPPINFO_S* pstPppInfo)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_IsReadyToRespActCmd
- 功能描述  : 网络协商完成后，根据PDNType来判断是否通知APS
- 输入参数  : pPppInfo       PPP信息，激活失败时填VOS_NULL_PTR,否则非空
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-05-24
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_IsReadyToRespActCmd(VOS_VOID* pPppInfo)
 {
     PPPINFO_S                          *pstPppInfo;
@@ -9447,20 +7132,7 @@ VOS_VOID PPPC_IsReadyToRespActCmd(VOS_VOID* pPppInfo)
 
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_RespEhsmAttachFail
- 功能描述  : PPP回复Ehsm Attach失败
- 输入参数  : pstAttachReq   CNAS_CTTF_EHRPD_ATTACH_REQ_STRU
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-05-24
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_RespEhsmAttachFail
 (
     CNAS_CTTF_EHRPD_ATTACH_REQ_STRU    *pstAttachReq
@@ -9516,21 +7188,7 @@ VOS_VOID PPPC_RespEhsmAttachFail
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_RespEhsmDetach
- 功能描述  : PPP回复Ehsm Detach失败
- 输入参数  : enResult       回复成功或失败
-             pstDetachReq   CNAS_CTTF_EHRPD_DETACH_REQ_STRU
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-05-24
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_RespEhsmDetach
 (
     CNAS_CTTF_EHRPD_RSLT_ENUM_UINT8     enResult,
@@ -9567,20 +7225,7 @@ VOS_VOID PPPC_RespEhsmDetach
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_RespEhsmPdnConnectFail
- 功能描述  : PPP回复PDN Connect失败
- 输入参数  : pstPdnConnectReq   CNAS_CTTF_EHRPD_PDN_CONN_REQ_STRU
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-05-24
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_RespEhsmPdnConnectFail
 (
     CNAS_CTTF_EHRPD_PDN_CONN_REQ_STRU  *pstPdnConnectReq
@@ -9629,20 +7274,7 @@ VOS_VOID PPPC_RespEhsmPdnConnectFail
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_RespEhsmPdnDisconnect
- 功能描述  : PPP回复Ehsm PDN Disconnect失败
- 输入参数  : pstPdnDisconnectReq   CNAS_CTTF_EHRPD_PDN_DISC_REQ_STRU
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-05-24
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_RespEhsmPdnDisconnect
 (
     CNAS_CTTF_EHRPD_RSLT_ENUM_UINT8     enResult,
@@ -9680,21 +7312,7 @@ VOS_VOID PPPC_RespEhsmPdnDisconnect
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_RespEhsmAttachCmd
- 功能描述  : PPP回复Ehsm激活PPP命令
- 输入参数  : pIpcpInfo      IPCP信息，激活失败时填VOS_NULL_PTR,否则非空
-             ulResult       VOS_OK/VOS_ERR
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-05-24
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_RespEhsmAttachCmd(VOS_VOID* pVsncpInfo, VOS_UINT32 ulResult)
 {
     PPPINFO_S                          *pstPppInfo;
@@ -9846,20 +7464,7 @@ VOS_VOID PPPC_RespEhsmAttachCmd(VOS_VOID* pVsncpInfo, VOS_UINT32 ulResult)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_RespEhsmDetachCmd
- 功能描述  : 回复去激活消息
- 输入参数  : ulResult   去激活结果
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-05-24
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_RespEhsmDetachCmd(VOS_UINT32 ulResult)
 {
     CTTF_CNAS_EHRPD_DETACH_CNF_STRU    *pstDetachCnf;
@@ -9937,21 +7542,7 @@ VOS_VOID PPPC_RespEhsmDetachCmd(VOS_UINT32 ulResult)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_SendPdnConnectCnf
- 功能描述  : 发送PDN Connect Cnf消息
- 输入参数  : pstMsgLinkNode      节点信息
-             ulResult            VOS_OK/VOS_ERR
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-07-13
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_SendPdnConnectCnf
 (
     PPPC_APS_MSG_LINK_NODE_STRU        *pstMsgLinkNode,
@@ -10043,21 +7634,7 @@ VOS_VOID PPPC_SendPdnConnectCnf
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_RespEhsmPdnConnectCmd
- 功能描述  : PPP回复Ehsm PDN Connect Request消息
- 输入参数  : pIpcpInfo      IPCP信息，激活失败时填VOS_NULL_PTR,否则非空
-             ulResult       VOS_OK/VOS_ERR
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-05-24
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_RespEhsmPdnConnectCmd
 (
     VOS_VOID                           *pVsncpInfo,
@@ -10117,20 +7694,7 @@ VOS_VOID PPPC_RespEhsmPdnConnectCmd
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_RespEhsmPdnDisconnectCmd
- 功能描述  : 回复Ehsm PDN Disconnect Request消息
- 输入参数  : ulResult   PDN Disconnect结果
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-05-24
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_RespEhsmPdnDisconnectCmd(VOS_UINT32 ulResult)
 {
     CTTF_CNAS_EHRPD_PDN_DISC_CNF_STRU  *pstPdnDisconnectCnf;
@@ -10206,21 +7770,7 @@ VOS_VOID PPPC_RespEhsmPdnDisconnectCmd(VOS_UINT32 ulResult)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_JudgeApsCmdRseultWhenDeleteCB
- 功能描述  : 判断当删除PPP控制块时是否需要及填写什么响应消息和结果,如果是去激活
-             消息,即使协商失败也会删除PPP控制块因此可以直接回复成功
- 输入参数  : ucPppId
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014-11-05
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_JudgeApsCmdRseultWhenDeleteCB(VOS_UINT8 ucPppId)
 {
     TTF_LINK_ST                            *pstApsPppCmdLink;
@@ -10258,21 +7808,7 @@ VOS_VOID PPPC_JudgeApsCmdRseultWhenDeleteCB(VOS_UINT8 ucPppId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_JudgeEhsmCmdRseultWhenDeleteCB
- 功能描述  : 判断当删除PPP控制块时是否需要及填写什么响应消息和结果,如果是去激活
-             消息,即使协商失败也会删除PPP控制块因此可以直接回复成功
- 输入参数  : ucPppId
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-05-24
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_JudgeEhsmCmdRseultWhenDeleteCB(VOS_UINT8 ucPppId)
 {
     TTF_LINK_ST                                        *pstEhsmPppCmdLink;
@@ -10338,21 +7874,7 @@ VOS_VOID PPPC_JudgeEhsmCmdRseultWhenDeleteCB(VOS_UINT8 ucPppId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_JudgeCmdRseultWhenDeleteCB
- 功能描述  : 判断当删除PPP控制块时是否需要及填写什么响应消息和结果,如果是去激活
-             消息,即使协商失败也会删除PPP控制块因此可以直接回复成功
- 输入参数  : ucPppId
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-05-24
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_JudgeCmdRseultWhenDeleteCB(VOS_UINT8 ucPppId)
 {
     PPPC_RAT_MODE_ENUM_UINT8            enRatMode;
@@ -10390,20 +7912,7 @@ VOS_VOID PPPC_JudgeCmdRseultWhenDeleteCB(VOS_UINT8 ucPppId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_SendApsDeactNotify
- 功能描述  : 给APS发送去激活通知
- 输入参数  : ucPppId    PPP ID
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014-11-05
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_SendApsDeactNotify(VOS_UINT8 ucPppId)
 {
     PPP_APS_DEACT_NTF_STRU             *pstDeactNotify;
@@ -10452,20 +7961,7 @@ VOS_VOID PPPC_SendApsDeactNotify(VOS_UINT8 ucPppId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_SendEhsmPdnDisconnectNotify
- 功能描述  : 给EHSM发送PDN Disconnect通知
- 输入参数  : ucPdnId    PDN ID
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-05-24
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_SendEhsmPdnDisconnectNotify(VOS_UINT8 ucPdnId)
 {
     CTTF_CNAS_EHRPD_PDN_DISC_IND_STRU  *pstPdnDiscNotify;
@@ -10533,20 +8029,7 @@ VOS_VOID PPPC_SendEhsmPdnDisconnectNotify(VOS_UINT8 ucPdnId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_SendEhsmDetachNotify
- 功能描述  : 给EHSM发送去激活通知
- 输入参数  : ucPppId    PPP ID
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-05-24
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_SendEhsmDetachNotify(VOS_UINT8 ucPppId)
 {
     CTTF_CNAS_EHRPD_DETACH_IND_STRU    *pstDetachNotify;
@@ -10593,20 +8076,7 @@ VOS_VOID PPPC_SendEhsmDetachNotify(VOS_UINT8 ucPppId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_ReceiveLCPTermReq
- 功能描述  : 收到网侧去激活通知
- 输入参数  : ucPppId    PPP ID
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-05-24
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_ReceiveLCPTermReq(VOS_UINT8 ucPppId)
 {
     PPPC_RAT_MODE_ENUM_UINT8            enRatMode;
@@ -10637,20 +8107,7 @@ VOS_VOID PPPC_ReceiveLCPTermReq(VOS_UINT8 ucPppId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_UIM_MD5ChapAuthReq
- 功能描述  : HRPD模式，CHAP鉴权，由UIM卡使用MD5算法计算，由SIM卡产生Response
- 输入参数  : PPPINFO_S *pstPppInfo, PPPAUTHMSG_S *pstAuthMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-06-29
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 PPPC_UIM_MD5ChapAuthReq(PPPINFO_S *pstPppInfo, PPPC_AUTH_MSG_STRU *pstAuthMsg)
 {
     USIMM_CDMASPECAUTH_REQ_STRU        *pstMsg;
@@ -10700,20 +8157,7 @@ VOS_UINT32 PPPC_UIM_MD5ChapAuthReq(PPPINFO_S *pstPppInfo, PPPC_AUTH_MSG_STRU *ps
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : PPPC_GetPppAuthInfo
- 功能描述  : 获取pppContext
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-12-10
-    作    者   : q00359829
-    修改内容   : 新生成函数
-*****************************************************************************/
 
 VOS_VOID PPPC_GetPppAuthInfo(CTTF_PPPC_AUTH_INFO_STRU *pstPppAuthInfo)
 {
@@ -10729,20 +8173,7 @@ VOS_VOID PPPC_GetPppAuthInfo(CTTF_PPPC_AUTH_INFO_STRU *pstPppAuthInfo)
                     sizeof(pstPppAuthInfo->aucAANai));
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_StartPppInactiveTimer
- 功能描述  : 启动MAX PPP Inactive Timer
- 输入参数  : ucPppId         PPP ID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-12-31
-    作    者   : t00359887
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_StartPppInactiveTimer(VOS_UINT8 ucPppId)
 {
     PPPINFO_S                          *pstPppInfo;
@@ -10785,20 +8216,7 @@ VOS_VOID PPPC_StartPppInactiveTimer(VOS_UINT8 ucPppId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_InactivePppTimeoutProc
- 功能描述  : MAX PPP Inactive Timer超时
- 输入参数  : ucPppId         PPP ID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-12-31
-    作    者   : t00359887
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_InactivePppTimeoutProc(VOS_UINT8 ucPppId)
 {
     PPPINFO_S                          *pstPppInfo;
@@ -10842,20 +8260,7 @@ VOS_VOID PPPC_InactivePppTimeoutProc(VOS_UINT8 ucPppId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_SetAttachErrorCode
- 功能描述  : 设置Attach失败的原因值
- 输入参数  : enErrorCode         失败的原因值
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016-01-12
-    作    者   : t00359887
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_SetAttachErrorCode(CNAS_CTTF_EHRPD_ERROR_CODE_ENUM_UINT16  enErrorCode)
 {
     VOS_UINT32                          ulRet;
@@ -10891,21 +8296,7 @@ VOS_VOID PPPC_SetAttachErrorCode(CNAS_CTTF_EHRPD_ERROR_CODE_ENUM_UINT16  enError
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_SendNasModify
- 功能描述  : 通知NAS Modify
- 输入参数  : pstVSNCPInfo       VSNCP实体
-             pstPDNContext      PDN上下文
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016-01-12
-    作    者   : t00359887
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_SendEhsmModifyInd(PPPVSNCPINFO_S *pstVSNCPInfo)
 {
     CTTF_CNAS_EHRPD_MODIFY_IND_STRU    *pstModify;

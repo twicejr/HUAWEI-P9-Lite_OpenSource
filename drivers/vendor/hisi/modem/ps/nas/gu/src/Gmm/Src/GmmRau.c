@@ -1,186 +1,4 @@
-/*******************************************************************************
-  Copyright     : 2005-2007, Huawei Tech. Co., Ltd.
-  File name     : GmmRau.c
-  Description   : GMM RAU功能相关处理用源文件
-  Function List :
-    01.   Gmm_ComCmpMmLai
-    02.   Gmm_Com_CmpMmPlmnid
-    03.   Gmm_Com_CmpRai
-    04.   Gmm_FillPdpContext
-    05.   Gmm_PeriodRoutingAreaUpdateType
-    06.   Gmm_RcvRoutingAreaUpdateAcceptMsg
-    07.   Gmm_RcvRoutingAreaUpdateRejectMsg
-    08.   Gmm_RoutingAreaUpdataAcceptCombined
-    09.   Gmm_RoutingAreaUpdataAcceptRaOnly
-    10.   Gmm_RoutingAreaUpdateAcceptMsgJudge
-    11.   Gmm_RoutingAreaUpdateAttemptCounter
-    12.   Gmm_RoutingAreaUpdateCompleteMsgMake
-    13.   Gmm_RoutingAreaUpdateHandle
-    14.   Gmm_RoutingAreaUpdateHandleFollowOn
-    15.   Gmm_RoutingAreaUpdateInitiate
-    16.   Gmm_RoutingAreaUpdateRejectCause11
-    17.   Gmm_RoutingAreaUpdateRejectCause13
-    18.   Gmm_RoutingAreaUpdateRejectCause3
-    19.   Gmm_RoutingAreaUpdateRejectCause9
-    20.   Gmm_RoutingAreaUpdateRequestMsgMake
-    21.   Gmm_RoutingAreaUpdateResolveIe
-    22.   Gmm_SndRoutingAreaUpdateReq
-  History       :
-    1.  张志勇  2003.12.05  新规作成
-    2.  s46746  2006-03-08  根据问题单A32D02368修改
-    3.  s46746  2006-03-15  根据问题单A32D02466修改
-    4.日    期   : 2006年3月24日
-      作    者   : liuyang id:48197
-      修改内容   : 问题单号：A32D01882，网侧释放RR连接指示重建连接，当前重建时
-                   所填建立RR连接原因错误
-    5.  s46746  2006-04-03  根据问题单A32D01509修改
-    6.  s46746  2006-04-03  根据问题单A32D02921修改
-    7.  l40632  2006-04-18  根据问题单A32D03250修改
-    8.  s46746  2006-04-21  根据问题单A32D02855修改
-    9.  x51137 2006/4/28 A32D02889
-   10.  s46746  2006-05-08  根据问题单A32D03487修改
-   11.  l40632  2006.05.20  根据问题单A32D03865修改
-   12.  l40632  2006.05.29  根据问题单A32D04010修改
-   13.  l40632  2006.06.08  根据问题单A32D04196修改
-                            根据问题单A32D04193修改
-   14.  s46746 2006-06-27   根据问题单A32D04528修改
-   15.日    期   : 2006年9月13日
-      作    者   : liurui id:40632
-      修改内容   : 根据问题单号：A32D05874
-   16.日    期   : 2006年11月1日
-      作    者   : s46746
-      修改内容   : 根据问题单号：A32D06572
-   17.日    期   : 2006年11月7日
-      作    者   : sunxibo id:46746
-      修改内容   : 根据问题单号：A32D06823
-   18.日    期   : 2006年11月8日
-      作    者   : s46746
-      修改内容   : 问题单号:A32D06867
-   19.日    期   : 2007年01月16日
-      作    者   : s46746
-      修改内容   : 根据问题单号：A32D08381
-   20.日    期   : 2007年3月5日
-      作    者   : liurui id:40632
-      修改内容   : 根据问题单号：A32D09094
-   21.日    期   : 2007年05月11日
-      作    者   : luojian id:60022475
-      修改内容   : 问题单号:A32D10713
-   22.日    期   : 2007年06月16日
-      作    者   : luojian id:60022475
-      修改内容   : 根据问题单号：A32D11635,gas上报GPRS RESUME FAILURE时,仍然通知
-                   RABM 恢复成功,如果存在PDP激活时,发起RAU,如果在这个RAU过程中系
-                   统消息指示RAI发生改变就不再发起RAU.
-   23.日    期   : 2007年07月05日
-      作    者   : luojian id:60022475
-      修改内容   : 根据问题单号：A32D11970,检查消息IE，对spare位不做检查.
-   24.日    期   : 2007年10月27日
-      作    者   : luojian id:107747
-      修改内容   : 根据问题单号：A32D13038
-   25.日    期   : 2007年11月12日
-      作    者   : l39007
-      修改内容   : 根据问题单A32D13044,GSM网络,ATTACH失败5次,通知MM发起一次LAU
-                   的时机更改为在GMM回了ATTACH COMPLETE之后
-   26.日    期   : 2007年11月12日
-      作    者   : s46746
-      修改内容   : 根据问题单号：A32D13123,RAU请求消息中携带ready timer和MS Network Cap
-                   去掉PDP上下文状态.
-   27.日    期   : 2007年11月22日
-      作    者   : s46746
-      修改内容   : 根据问题单号：A32D13475,修改异系统改变后指派的old TLLI和开机加密密钥为全0问题
-   28.日    期   : 2007年12月04日
-      作    者   : s46746
-      修改内容   : 1.GMM模块进行ATTACH和RAU时，如果此时接入层进行临区任务，
-                   会导致LLC将ATTACH和RAU延迟发送，使得ATTACH和RAU时间过长；
-                   2.GMM在进行RAU请求时，如果DRX参数不改变，将不会在消息中
-                   带DRX参数，这样跨SGSN的RAU时，可能导致网侧不识别UE的DR
-                   X参数，使得RAU不能成功。
-   29.日    期   : 2007年12月14日
-      作    者   : s46746
-      修改内容   : 问题单A32D13638，保证进行RAU之前不向网侧发送其它数据，并且RAU不成功，不恢复层2
-   30.日    期   : 2007年12月15日
-      作    者   : l00107747
-      修改内容   : 问题单号:A32D13897,重建RR连接时的RAU启动函数增加:清除释放标志
-   31.日    期   : 2007年12月20日
-      作    者   : s46746
-      修改内容   : 2G3切换，W下RAU过程中挂断电话，RAU ACCEPT消息接收到后，
-                   在RAU COMPLETE消息未发送就进行联合RAU
-   32.日    期   : 2007年12月21日
-      作    者   : l00107747
-      修改内容   : 问题单号:A32D13951
-   33.日    期   : 2007年12月28日
-      作    者   : s46746
-      修改内容   : 根据问题单号：A32D13954,修改GMM在2G3过程中缓存消息机制
-   34.日    期   : 2007年12月28日
-      作    者   : s46746
-      修改内容   : 根据问题单号：A32D13987,RAU之后没有清除SPEC标志
-   35.日    期   : 2008年7月28日
-      作    者   : s46746
-      修改内容   : 问题单号:AT2D03915,修改联合RAU类型,CS如果已经单独LAU成功，需要
-                   发起with IMSI Attach的RAU
-   36.日    期   : 2008年9月26日
-      作    者   : x00115505
-      修改内容   : 问题单号:AT2D05431
-   37.日    期   : 2008年10月20日
-      作    者   : o00132663
-      修改内容   : 问题单号:AT2D06266, 增加对不支持CELL NOTIFICATION的处理
-   38.日    期   : 2008年11月03日
-      作    者   : x00115505
-      修改内容   : 问题单号:AT2D06494
-   39.日    期   : 2008年11月19日
-      作    者   : x00115505
-      修改内容   : 问题单号:AT2D06723
-   40.日    期   : 2008年11月20日
-      作    者   : x00115505
-      修改内容   : 问题单号:AT2D06857
-   41.日    期   : 2009年02月06日
-      作    者   : o00132663
-      修改内容   : 问题单号:AT2D08277,小区重选导致的网络模式改变后RAU流程异常。
-   42.日    期   : 2009年2月18日
-      作    者   : h44270
-      修改内容   : 问题单号:AT2D08904,【外场用例-HK】D态丢网后，反复搜网过了很长时间，重新搜到小区，PS域注册失败，去激活PDP仍然注册失败
-   43.日    期   : 2009年2月21日
-      作    者   : x00115505
-      修改内容   : 问题单号:AT2D09315,开机联合注册后，变化LAC, 联合RAU失败，
-                   原因值Roaming not allowed in this location area,重新搜网，
-                   搜网结束后，应当发起Rau，类型为Combined RA/LA updating with IMSI attach，
-                   而实际发起Attach流程。
-   44.日    期   : 2009年4月30日
-      作    者   : x00115505
-      修改内容   : 问题单号:AT2D11607,CS域呼叫过程中，PS域进行了一次Normal Rau，
-                   CS域回到空闲后没有发起Combined Rau。
-   45.日    期   : 2009年5月13日
-      作    者   : h44270
-      修改内容   : 根据问题单号：AT2D11658/AT2D11861，数传过程中，收到RAU，PDP状态为去激活，导致MS进行PDP去激活
-   46.日    期   : 2009年07月07日
-      作    者   : x00115505
-      修改内容   : 问题单号:AT2D12817,2G下，MS发起的detach过程中RAI改变，
-                   Rau结束后没有重新发起detach过程
-   47.日    期   : 2009年07月14日
-      作    者   : x00115505
-      修改内容   : 问题单号:AT2D12996,W下RAB重建过程位置区改变发生Rau，Rau过程
-                   中重选到G下，G下Rau结束后仍然发送Service Request请求。
-   48.日    期   : 2009年08月19日
-      作    者   : x00115505
-      修改内容   : 问题单号:AT2D13829,TLLI维护错误
-   49.日    期   : 2009年08月24日
-      作    者   : x00115505
-      修改内容   : AT2D14023,测试GCF用例44.2.2.1.9失败
-   50.日    期   : 2009年09月07日
-      作    者   : x00115505
-      修改内容   : AT2D14252,数传过程中，跨RNC迁移到新RNC下，MS发起RAU过程，没有设置Follow-on
-   51.日    期   : 2009年09月30日
-      作    者   : x00115505
-      修改内容   : AT2D14857,驻留到FPLMN上，GMM将更新状态修改为GU3了
-   52.日    期   : 2009年11月09日
-      作    者   : x00115505
-      修改内容   : AT2D15398,数传态从G重选到W下，PDP被网侧去激活，缓存的RABM请求被发起
-   53.日    期   : 2010年03月15日
-      作    者   : x00115505
-      修改内容   : AT2D17570,某些情况Rau发起时没有上报EVENT事件
-   54.日    期   : 2010年04月14日
-      作    者   : x00115505
-      修改内容   : AT2D18080,Direct Signalling Re-establish触发的Rau，Counter维护错误
-*******************************************************************************/
+
 
 #include "GmmInc.h"
 #include "GmmCasGlobal.h"
@@ -195,10 +13,8 @@
 #include "NasGmmProcLResult.h"
 #endif
 
- /* Added by l00208543 for V9R1 STK升级, 2013-07-10, begin */
 #include "NasStkInterface.h"
 #include "NasUsimmApi.h"
- /* Added by l00208543 for V9R1 STK升级, 2013-07-10, end */
 #include "NasUtranCtrlInterface.h"
 
 
@@ -217,19 +33,7 @@ extern "C" {
 
 /*lint -save -e958 */
 
-/*******************************************************************************
-  Module   : Gmm_FillPdpContext
-  Function : 填写PDP Context status
-  Input    : VOS_UINT8 *pAddr  填写PDP Context status的首地址
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1. 张志勇  2003.12.10  新规作成
-    2.日    期   : 2012年3月7日
-      作    者   : z00161729
-      修改内容   : V7R1 C50 支持ISR修改
-*******************************************************************************/
+
 VOS_VOID Gmm_FillPdpContext(
                         VOS_UINT8 *pAddr                                        /* 填写PDP Context status的首地址           */
                         )
@@ -249,29 +53,7 @@ VOS_VOID Gmm_FillPdpContext(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_Gmm_FillRoutingPtmsiIE
- 功能描述  : 填充的PTMSI IE内容
- 输入参数  : VOS_UINT8                          *pstAddr
- 输出参数  : VOS_UINT8                          *pstAddr
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月15日
-    作    者   : W00167002
-    修改内容   : 新生成函数
-  2.日    期   :2013年8月29日
-    作    者   :z00161729
-    修改内容  :DTS2013082702039:syscfg不支持l或l disable时，gmm rau和attach不需携带ue network capability
-  3.日    期   :2014年1月14日
-    作    者   :z00161729
-    修改内容   :DTS2014011413748:disable lte时，到gu下搜网注册发起rau时，如果本地ptmsi是有效的应该携带本地ptmsi和ptmsi type
-  4.日    期   : 2014年02月25日
-    作    者   : z00161729
-    修改内容   : DTS2014022206794:GCF 9.2.1.2.1b/9.2.3.2.3/9.2.1.2.1失败disable lte时rau需要从L获取安全上下文
-*****************************************************************************/
 VOS_UINT8  NAS_Gmm_FillRoutingPtmsiIE(
     VOS_UINT8                          *pucAddr
 )
@@ -397,37 +179,7 @@ VOS_UINT8  NAS_Gmm_FillRoutingPtmsiIE(
 
 #if (FEATURE_ON == FEATURE_LTE)
 
-/*****************************************************************************
- 函 数 名  : NAS_Gmm_FillRoutingPtmsiTypeIE
- 功能描述  : 填充的PTMSI TYPE IE内容
- 输入参数  : VOS_UINT8                          *pstAddr
- 输出参数  : VOS_UINT8                          *pstAddr
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 协议描述  :
-             10.5.5.29   P-TMSI type
-             The purpose of the P-TMSI type information element is to indicate whether the P-TMSI included in the P-TMSI information element represents a native P-TMSI or mapped P-TMSI when Type of Identity in the P-TMSI information element is "TMSI/P-TMSI/M-TMSI".
-             The P-TMSI type information element information element is coded as shown in figure 10.5.5.29.1 and table 10.5.5.29.1.
-             The P-TMSI type is a type 1 information element.
 
- 修改历史      :
-  1.日    期   : 2011年4月15日
-    作    者   : W00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2012年5月12日
-    作    者   : w00166186
-    修改内容   : DTS201205845812:L和G之间来回重选，RAU概率失败
-  3.日    期   :2013年8月29日
-    作    者   :z00161729
-    修改内容   :DTS2013082702039:syscfg不支持l或l disable时，gmm rau和attach不需携带ue network capability,不使用从guti映射的ptmsi
-  4.日    期   :2014年1月14日
-    作    者   :z00161729
-    修改内容   :DTS2014011413748:disable lte时，到gu下搜网注册发起rau时，如果本地ptmsi是有效的应该携带本地ptmsi和ptmsi type
-  5.日    期   : 2014年02月25日
-    作    者   : z00161729
-    修改内容   : DTS2014022206794:GCF 9.2.1.2.1b/9.2.3.2.3/9.2.1.2.1失败disable lte时rau需要从L获取安全上下文
-*****************************************************************************/
 VOS_UINT8 NAS_Gmm_FillRoutingPtmsiTypeIE(
     VOS_UINT8                          *pucAddr
 )
@@ -523,43 +275,7 @@ VOS_UINT8 NAS_Gmm_FillRoutingPtmsiTypeIE(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_GetRoutingAreaUpdateRequestMsgIELength
- 功能描述  : 填充的IE的长度，见Table 9.4.14/3GPP TS 24.008: ROUTING AREA UPDATE REQUEST message content
-              该长度是所要填充IE的最大长度,IE的实际长度有后续字段负责
- 输入参数  : 无
- 输出参数  : 返回所要填充IE的最大长度
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月15日
-    作    者   : W00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2011年7月25日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-
-  3.日    期   : 2012年3月24日
-    作    者   : z40661
-    修改内容   : DTS2012032004429 MS networkcapablity能力的刷新
-  4.日    期   : 2012年2月15日
-    作    者   : w00167002
-    修改内容   : 增加长度GMM_MSG_LEN_TLV_VOICE_DOMAIN_PREFERANCE_AND_UE_USAGE_SETTING_LEN
-  5.日    期   : 2012年8月14日
-    作    者   : t00212959
-    修改内容   : DCM定制需求和遗留问题
-  6.日    期   : 2013年02月18日
-    作    者   : l65478
-    修改内容   : DTS2013021700426:LTE disable时还上报了UE CAPABILITY信息
-  7.日    期   : 2014年10月9日
-    作    者   : b00269685
-    修改内容   : 支持srvcc时需要携带classmark2,classmark3, supported codec list
-  8.日    期   : 2015年6月8日
-    作    者   : z00161729
-    修改内容   : 24008 23122 R11 CR升级项目修改,按最大值申请内存
-*****************************************************************************/
 VOS_UINT32  NAS_GMM_GetRoutingAreaUpdateRequestMsgIELength( VOS_VOID )
 {
     VOS_UINT32                          ulMsgLen;
@@ -585,12 +301,10 @@ VOS_UINT32  NAS_GMM_GetRoutingAreaUpdateRequestMsgIELength( VOS_VOID )
     /* Requested READY timer value IE */
     ulMsgLen += 2;
 
-    /* Modified by t00212959 for DCM定制需求和遗留问题, 2012-8-18, begin */
     /* DRX parameter IE */
     /* 这个可选IE ,现在并不是永远存在的，当LTE Attach/TAU 未携带过DRX 参数时，RAU才携带*/
     ulMsgLen += 3;
 
-    /* Modified by t00212959 for DCM定制需求和遗留问题, 2012-8-18, end */
 
 
     /* TMSI status IE */
@@ -663,87 +377,7 @@ VOS_UINT32  NAS_GMM_GetRoutingAreaUpdateRequestMsgIELength( VOS_VOID )
 
 }
 
-/*******************************************************************************
-  Module   : Gmm_RoutingAreaUpdateRequestMsgMake
-  Function : RAU Request消息制作
-  Input    : VOS_UINT8 ucRauType     RAU的类型
-  Output   : 无
-  NOTE     : 无
-  Return   : NAS_MSG_STRU *pRauRequest    指向NAS_MSG_STRU结构的指针
-  History  :
-    1. 张志勇  2003.12.09  新规作成
-    2.日    期  : 2007年12月21日
-      作    者  : l00107747
-      修改内容  : 问题单号:A32D13951
-    3.日    期  : 2009年06月17日
-      作    者  : ouyangfei, o00132663
-      修改内容  : 根据终端可配置需求修改，R99以前版本无P-TMSI(含)及后续可选IE
-    4.日    期   : 2009年08月14日
-      作    者   : ouyangfei o00132663
-      修改内容   : AT2D13748:获取3GPP协议版本，函数参数错误，应该查询PS域版本。
-    5.日    期   : 2010年11月29日
-      作    者   : z00161729
-      修改内容  : 问题单号:DTS2010112900029:W下RAU过程中迁移失败，网侧进行DSCR,UE重新驻留，进行RAU结束后又立即发起了RAU
-    6.日    期   : 2011年8月8日
-      作    者   : luokaihui / 00167671
-      修改内容   : 问题单号DTS2011080200129, PDP Context长度没有增加
-    7.日    期   : 2011年10月27日
-      作    者   : s46746
-      修改内容   : V7R1 PhaseIII,支持L模联合注册
-    8.日    期   : 2012年02月16日
-      作    者   : l65478
-      修改内容   : 问题单号：DTS2012021304254，GCF测试时上报了REL9及以后的IE用例失败
-    9.日    期   : 2012年2月15日
-      作    者   : w00167002
-      修改内容   : 增加可选IE的填充:VOICE_DOMAIN_PREFERANCE_AND_UE_USAGE_SETTING
-              TS24008 9.4.1.11 Voice domain preference and UE's usage setting
-                This IE shall be included:
-                  if the MS supports CS fallback and SMS over SGs, or the MS is configured to support IMS voice, or both; and
-                  if the MS is E-UTRAN capable.
-    9.日    期   : 2012年5月15日
-      作    者   : l00130025
-      修改内容   : DTS2012041002516: L下默认承载存在数据连接时设置W only失败
-   11.日    期   : 2012年8月13日
-      作    者   : t00212959
-      修改内容   : DCM定制需求和遗留问题
-   12.日    期   : 2012年8月15日
-      作    者   : z00161729
-      修改内容   : DCM定制需求和遗留问题修改
-   13.日    期   : 2012年10月20日
-      作    者   : t00212959
-      修改内容   : DTS2012101805471,IE项Voice domain preference and UE's usage setting 在UE支持L模时才需要携带
-   14.日    期   : 2012年12月28日
-      作    者   : s46746
-      修改内容   : DSDA GUNAS C CORE项目，重新封装LMM提供的接口函数
-   15.日    期   : 2013年02月18日
-      作    者   : l65478
-      修改内容   : DTS2013021700426:LTE disable时还上报了UE CAPABILITY信息
 
-   16.日    期   : 2013年7月8日
-      作    者   : w00167002
-      修改内容   : DTS2013070506409:fortify报警清除
-   17.日    期   :2013年8月29日
-      作    者   :z00161729
-      修改内容   :DTS2013082702039:syscfg不支持l或l disable时，gmm rau和attach不需携带ue network capability
-   18.日    期   :2013年8月29日
-      作    者   :l65478
-      修改内容   :DTS2013100802302:从L切换到W发起RAU时没有设置follow on标志
-   19.日    期   : 2014年10月9日
-      作    者   : b00269685
-      修改内容   : 支持srvcc时需要携带classmark2,classmark3,supported codec list
-   20.日    期   : 2015年2月12日
-      作    者   : s00217060
-      修改内容   : VOLTE SWITCH修改:voice domain发生变化时需要做RAU
-   21.日    期   : 2015年6月8日
-      作    者   : z00161729
-      修改内容   : 24008 23122 R11 CR升级项目修改
-   22.日    期   : 2015年8月13日
-      作    者   : l00289540
-      修改内容   : User_Exp_Improve修改
-  22.日    期   : 2016年1月20日
-     作    者   : c00318887
-     修改内容   : DTS2015123110917: usim卡在GSM下做2G鉴权后，csfb到3G下鉴权错误
-*******************************************************************************/
 NAS_MSG_STRU *Gmm_RoutingAreaUpdateRequestMsgMake(
     VOS_UINT8                           ucRauType                               /* RAU的类型                                */
 )
@@ -821,11 +455,9 @@ NAS_MSG_STRU *Gmm_RoutingAreaUpdateRequestMsgMake(
     ucNumber += NAS_Gmm_FillRaiForSnd(&pRauRequest->aucNasMsg[ucNumber]);       /* 填写RAI                                  */
 
     /* 无线接入能力填写 */
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-17, begin */
 #if (FEATURE_ON == FEATURE_LTE)
      g_GmmGlobalCtrl.UeInfo.ucMsRadioCapSupportLteFromRegReq = g_GmmGlobalCtrl.UeInfo.ucMsRadioCapSupportLteFromAs;
 #endif
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-17, end */
 
     ucNumber += Gmm_Fill_IE_RadioAccessCapability(&pRauRequest->aucNasMsg[ucNumber]);
 
@@ -835,7 +467,6 @@ NAS_MSG_STRU *Gmm_RoutingAreaUpdateRequestMsgMake(
     GMM_FillReadyTimerParaIe(&pRauRequest->aucNasMsg[ucNumber]);
     ucNumber += 2;
 
-    /* Modified by t00212959 for DCM定制需求和遗留问题, 2012-8-14, begin */
     g_GmmGlobalCtrl.UeInfo.enLatestAttachOrRauContainDrx = NAS_MML_GU_PS_REG_NOT_CONTAIN_DRX_PARA;
 
     if (NAS_MML_LTE_PS_REG_CONTAIN_DRX_PARA != NAS_MML_GetPsRegContainDrx())
@@ -851,7 +482,6 @@ NAS_MSG_STRU *Gmm_RoutingAreaUpdateRequestMsgMake(
 
         g_GmmGlobalCtrl.UeInfo.enLatestAttachOrRauContainDrx = NAS_MML_GU_PS_REG_CONTAIN_DRX_PARA;
     }
-    /* Modified by t00212959 for DCM定制需求和遗留问题, 2012-8-14, end */
 
     if (VOS_TRUE == NAS_GMM_IsRegNeedFillTmsiStatusIE())
     {                                                                           /* TMSI status                              */
@@ -982,23 +612,7 @@ NAS_MSG_STRU *Gmm_RoutingAreaUpdateRequestMsgMake(
     return (NAS_MSG_STRU *)pRauRequest;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_GetRauComPleteMsgLen
- 功能描述  : 获取RAU COMPLETE消息的长度
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : RAU COMPLETE消息的长度
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年5月12日
-   作    者   : w00166186
-   修改内容   : 新生成函数
- 2.日    期   : 2012年12月13日
-   作    者   : L00171473
-   修改内容   : DTS2012121802573, TQE清理
-*****************************************************************************/
 VOS_UINT16 NAS_GMM_GetRauComPleteMsgLen()
 {
     VOS_UINT16                          usMsgLen;
@@ -1061,29 +675,7 @@ VOS_UINT16 NAS_GMM_GetRauComPleteMsgLen()
     return  usMsgLen;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_RoutingAreaUpdateHandle_Handling_REQUESTED_MS_INFORMATION_IE
- 功能描述  : 解析RAU消息中的REQUESTED MS INFORMATION IE
- 输入参数  : pMsg
-             pRauAcceptIe
- 输出参数  : pucSndCompleteFlg 发送complete标志
-             pucInterRatInfoFlg 获取INTER RAT INFO 标志
 
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2012年5月12日
-   作    者   : w00166186
-   修改内容   : 新生成函数
- 2.日    期   : 2012年12月26日
-   作    者   : s46746
-   修改内容   : DSDA GUNAS C CORE项目，增加平台能力检查
- 3.日    期   : 2015年6月9日
-   作    者   : z00161729
-   修改内容   : 24008 23122 R11 CR升级项目修改
-*****************************************************************************/
 VOS_VOID NAS_GMM_RoutingAreaUpdateHandle_Handling_REQUESTED_MS_INFORMATION_IE(
     NAS_MSG_FOR_PCLINT_STRU            *pMsg,
     GMM_MSG_RESOLVE_STRU               *pRauAcceptIe,
@@ -1138,30 +730,7 @@ VOS_VOID NAS_GMM_RoutingAreaUpdateHandle_Handling_REQUESTED_MS_INFORMATION_IE(
 }
 
 
-/*******************************************************************************
-  Module   : Gmm_RoutingAreaUpdateCompleteMsgMake
-  Function : RAU Complete消息制作
-  Input    : 无
-  Output   : 无
-  NOTE     : 无
-  Return   : NAS_MSG_STRU *pRauComplete    指向NAS_MSG_STRU结构的指针
-  History  :
-  1. 张志勇  2003.12.10  新规作成
 
-  2.日    期   : 2010年3月17日
-    作    者   : o00132663
-    修改内容   : NAS R7协议升级，InterRatInfo IE通过消息接口获取
-  3.日    期   : 2011年01月27日
-    作    者   : A00165503
-    修改内容   : 问题单号: DTS2011012501578，如果RAU ACCEPT消息中不携带IE项NPDU NUMBER LIST，
-                 则RAU COMPLETE消息中不需要携带IE项NPDU NUMBER LIST
- 2. 日    期   : 2012年05月13日
-    作    者   : W00166186
-    修改内容   : DTS201204261955,RAU COMPLETE没有回复
- 3. 日    期   : 2012年12月13日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-*******************************************************************************/
 NAS_MSG_STRU *Gmm_RoutingAreaUpdateCompleteMsgMake(VOS_VOID)
 {
     NAS_MSG_STRU    *pRauComplete = VOS_NULL_PTR;
@@ -1284,28 +853,7 @@ VOS_VOID Gmm_RoutingAreaUpdateRejectCause13(VOS_BOOL   bUpdateSimFlg)
 
     return;
 }
-/*******************************************************************************
-  Module   : Gmm_RoutingAreaUpdateRejectCause11
-  Function : 空口消息RAU REJECT原因值为#11,#12,#14的处理
-  Input    : VOS_UINT32 ulGmmCause   失败原因值
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1. 张志勇  2003.12.10  新规作成
-    4.日    期   : 2009年01月14日
-      作    者   : l65478
-      修改内容   : 问题单号：AT2D07971,在搜网状态下上报的接入技术错误
-    5. 日    期   : 2009年2月18日
-       作    者   : h44270
-       修改内容  : 问题单号:AT2D08904,【外场用例-HK】D态丢网后，反复搜网过了很长时间，重新搜到小区，PS域注册失败，去激活PDP仍然注册失败
-    6.日    期   : 2011年10月8日
-      作    者   : s46746
-      修改内容   : V7R1 phase II,将EPLMN、RPLMN移到MM/GMM维护
-    7.日    期   : 2015年6月3日
-      作    者   : z00161729
-      修改内容   : 24008 23122 R11 CR升级项目修改
-*******************************************************************************/
+
 VOS_VOID Gmm_RoutingAreaUpdateRejectCause11(
                                         VOS_UINT32 ulGmmCause,                 /* 失败原因值                               */
                                         VOS_BOOL   bUpdateSimFlg
@@ -1316,11 +864,7 @@ VOS_VOID Gmm_RoutingAreaUpdateRejectCause11(
         g_GmmGlobalCtrl.ucLaNotAllowFlg = GMM_TRUE;
     }
 
-    /* 24008_CR1229R1_(Rel-8)_C1-085365 24008 4.7.5.1.4章节描述如下:
-    #11/#14:The MS shall delete any RAI, P-TMSI, P-TMSI signature and GPRS ciphering
-    key sequence number, shall set the GPRS update status to GU3 ROAMING NOT ALLOWED
-    (and shall store it according to subclause 4.1.3.2), shall reset the routing area
-    updating attempt counter and enter the state GMM-DEREGISTERED*/
+    
 
     g_GmmRauCtrl.ucRauAttmptCnt = 0;
 
@@ -1360,31 +904,7 @@ VOS_VOID Gmm_RoutingAreaUpdateRejectCause11(
 
     return;
 }
-/*******************************************************************************
-  Module   : Gmm_RoutingAreaUpdateRejectCause9
-  Function : 空口消息RAU REJECT原因值为#9,#10的处理
-  Input    : VOS_UINT32 ulGmmCause   失败原因值
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1. 张志勇  2003.12.10  新规作成
-    2.日    期   : 2011年02月12日
-      作    者   : c00173809
-      修改内容   : 问题单号：DTS2011021100487,
-                 在LAU被拒,RAU也被拒(原因值9或10)的情况下,单板不能立即上报ERROR.
-    3.日    期   : 2011年03月08日
-      作    者   : z00161729
-      修改内容   : 问题单号DTS2011030102593:W下rau被拒原因值9、10重新attach失败丢网到
-                    G下做attach之前未去指派TLLI导致层二丢弃网侧消息。
-    4.日    期   : 2011年08月02日
-      作    者   : f00179208
-      修改内容   : 问题单号:DTS2011080200067,【沙特外场】手动列表搜网后选择漫游网络注册失败，改回自动模式发起HPLMN
-                   注册，发起CS注册，PS异常，拨号失败
-    5.日    期   : 2012年3月21日
-      作    者   : z40661
-      修改内容   : DTS2011110201060:L重选到W，被网络拒绝#9后携带的PTMSI不正确
-*******************************************************************************/
+
 VOS_VOID Gmm_RoutingAreaUpdateRejectCause9(
     VOS_UINT32                              ulGmmCause,
     VOS_UINT8                              *pucAttachFlg
@@ -1450,20 +970,7 @@ VOS_VOID Gmm_RoutingAreaUpdateRejectCause9(
 
     return;
 }
-/*******************************************************************************
-  Module   : Gmm_RoutingAreaUpdateRejectCause3
-  Function : 空口消息RAU REJECT原因值为#3,#6,#7,#8的处理
-  Input    : VOS_UINT32 ulGmmCause   失败原因值
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1. 张志勇  2003.12.10  新规作成
-    2.日    期   : 2011年10月8日
-      作    者   : s46746
-      修改内容   : V7R1 phase II,将EPLMN、RPLMN移到MM/GMM维护
 
-*******************************************************************************/
 VOS_VOID Gmm_RoutingAreaUpdateRejectCause3(
                                        VOS_UINT32 ulGmmCause                    /* 失败原因值                               */
                                        )
@@ -1481,26 +988,7 @@ VOS_VOID Gmm_RoutingAreaUpdateRejectCause3(
     return;
 }
 
-/***********************************************************************
- *  MODULE   : Gmm_RcvRoutingAreaUpdateRejectMsg_T3302_Handling
- *  FUNCTION : Gmm_RcvRoutingAreaUpdateRejectMsg函数降复杂度: T3302的处理
- *  INPUT    : VOS_VOID
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8 ucEventID
- *  NOTE     :
- *  HISTORY  :
-     1.  欧阳飞   2009.06.11  新版作成
-     2.日    期   : 2011年3月3日
-       作    者   : z00161729
-       修改内容   : DTS2011021201997:PS、CS完整性保护是否开启由GMM和MM分开维护,MMC不再维护
-     3.日    期   : 2013年11月18日
-       作    者   : w00167002
-       修改内容   : DTS2013112006986:控制在3G TDD模式下是否需要开启SMC验证标记:中国移动拉萨网络设备在
-                    TD下不发起SMC流程。
-     4.日    期   : 2015年6月10日
-       作    者   : z00161729
-       修改内容   : 24008 23122 R11 CR升级项目修改
- ************************************************************************/
+
 VOS_VOID Gmm_RcvRoutingAreaUpdateRejectMsg_T3302_Handling(
                                        NAS_MSG_FOR_PCLINT_STRU *pMsg
                                        )
@@ -1571,29 +1059,7 @@ VOS_VOID Gmm_RcvRoutingAreaUpdateRejectMsg_T3302_Handling(
     return;
 }
 
-/***********************************************************************
- *  MODULE   : Gmm_RcvRoutingAreaUpdateRejectMsg_Default_Cause_Handling
- *  FUNCTION : Gmm_RcvRoutingAreaUpdateRejectMsg函数降复杂度: Default Rej Cause的处理
- *  INPUT    : VOS_VOID
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8 ucEventID
- *  NOTE     :
- *  HISTORY  :
-     1.  欧阳飞   2009.06.11  新版作成
 
-  1.日    期   : 2010年11月18日
-    作    者   : zhoujun /40661
-    修改内容   : 问题单DTS2010111601893,收到拒绝原因值为102-110的
-                 处理应该和原因值111的处理一致
-   2.日    期   : 2011年12月12日
-     作    者   : luokaihui /l00167671
-     修改内容   : 问题单DTS201111303439, L2G 重选RAU被拒111,未启动T3302并删除EPLMN
-   3.日    期   : 2011年2月11日
-     作    者   : w00176964
-     修改内容   : DTS2012021003156:GMM注册被拒原因值为4时，处理与协议不一致，发起
-                  无效attach或RAU请求
-
-  ************************************************************************/
  VOS_VOID Gmm_RcvRoutingAreaUpdateRejectMsg_Default_Cause_Handling(
                                                  NAS_MSG_FOR_PCLINT_STRU *pMsg,
                                                  VOS_UINT8       *pucAbnormalCaseFlg)
@@ -1649,36 +1115,7 @@ VOS_VOID Gmm_RcvRoutingAreaUpdateRejectMsg_T3302_Handling(
     return;
 }
 
-/***********************************************************************
- *  MODULE   : Gmm_RcvRoutingAreaUpdateRejectMsg_Cause_Handling
- *  FUNCTION : Gmm_RcvRoutingAreaUpdateRejectMsg函数降复杂度: Rej Cause的处理
- *  INPUT    : VOS_VOID
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8 ucEventID
- *  NOTE     :
- *  HISTORY  :
- 1.欧阳飞       2009.06.11  新版作成
- 2.日    期   : 2010年01月03日
-   作    者   : o00132663
-   修改内容   : 问题单号：xxxx,NAS R7协议升级，引入监控PS 信令链接释放定时器T3340
- 3.日    期   : 2011年7月14日
-   作    者   : h44270
-   修改内容   : V7R1 PhaseII阶段调整，注册结果简化
- 4.日    期   : 2011年08月02日
-   作    者   : f00179208
-   修改内容   : 问题单号:DTS2011080200067,【沙特外场】手动列表搜网后选择漫游网络注册失败，改回自动模式发起HPLMN
-                     注册，发起CS注册，PS异常，拨号失败
- 5.日    期   : 2011年10月8日
-   作    者   : s46746
-   修改内容   : V7R1 phase II,将EPLMN、RPLMN移到MM/GMM维护
- 6.日    期   : 2011年12月20日
-   作    者   : w00166186
-   修改内容   : 非联合注册周期性RAU,网侧异常8号原因拒绝,导致卡无效
- 7.日    期   : 2012年8月25日
-   作    者   : m00217266
-   修改内容   : 删除GMM_SaveErrCode，添加Gmm_Save_Detach_Cause，
-               保存导致Attach失败的原因值
-************************************************************************/
+
 VOS_VOID Gmm_RcvRoutingAreaUpdateRejectMsg_Cause_Handling(
                                        NAS_MSG_FOR_PCLINT_STRU *pMsg,
                                        VOS_UINT8       *pucAttachFlg,
@@ -1761,25 +1198,7 @@ VOS_VOID Gmm_RcvRoutingAreaUpdateRejectMsg_Cause_Handling(
     return;
 }
 
-/***********************************************************************
- *  MODULE   : Gmm_RcvRoutingAreaUpdateRejectMsg_AttachFlg_Handling
- *  FUNCTION : Gmm_RcvRoutingAreaUpdateRejectMsg函数降复杂度: AttachFlg的处理
- *  INPUT    : VOS_VOID
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8 ucEventID
- *  NOTE     :
- *  HISTORY  :
-    1.  欧阳飞   2009.06.11  新版作成
-    2.日    期   : 2011年7月25日
-      作    者   : h44270
-      修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-    3.日    期   : 2012年12月5日
-      作    者   : t00212959
-      修改内容   : DTS2012120504420:CS有业务时，应该发起的是NORMAL ATTACH
-    4.日    期   : 2013年2月4日
-      作    者   : w00176964
-      修改内容   : DTS2011022802215:CS ONLY,网络模式I下也进行联合注册
-************************************************************************/
+
 VOS_VOID Gmm_RcvRoutingAreaUpdateRejectMsg_AttachFlg_Handling(VOS_VOID)
 {
     VOS_UINT8                           ucSimCsRegStatus;
@@ -1812,19 +1231,7 @@ VOS_VOID Gmm_RcvRoutingAreaUpdateRejectMsg_AttachFlg_Handling(VOS_VOID)
     return;
 }
 
-/***********************************************************************
- *  MODULE   : Gmm_RcvRoutingAreaUpdateRejectMsg_Not_AbnormalCaseFlg_Handling
- *  FUNCTION : Gmm_RcvRoutingAreaUpdateRejectMsg函数降复杂度: Not AbnormalCase的处理
- *  INPUT    : VOS_VOID
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8 ucEventID
- *  NOTE     :
- *  HISTORY  :
- 1.欧阳飞   2009.06.11  新版作成
- 2.日    期   : 2011年7月14日
-   作    者   : h44270
-   修改内容   : V7R1 PhaseII阶段调整，注册结果简化
-************************************************************************/
+
 VOS_VOID Gmm_RcvRoutingAreaUpdateRejectMsg_Not_AbnormalCaseFlg_Handling(NAS_MSG_FOR_PCLINT_STRU *pMsg)
 {
     if ((GMM_RAU_NORMAL == g_GmmGlobalCtrl.ucSpecProc)
@@ -1863,23 +1270,8 @@ VOS_VOID Gmm_RcvRoutingAreaUpdateRejectMsg_Not_AbnormalCaseFlg_Handling(NAS_MSG_
 }
 
 
-/* Added by l00208543 for V9R1 STK升级, 2013-07-09, begin */
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_ConvertGmmRauTypeToStkRauType
- 功能描述  : 进行类型转换:NAS_GMM_SPEC_PROC_TYPE_ENUM_UINT8->NAS_STK_UPDATE_TYPE_ENUM_UINT8
- 输入参数  : NAS_GMM_SPEC_PROC_TYPE_ENUM_UINT8 enGmmRauType MM层的RAU TYPE
- 输出参数  :
- 返 回 值  : PS_STK_UPDATE_TYPE_ENUM_UINT8 上报给STK的RAU TYPE
- 调用函数  : NAS_GMM_SndStkRauRej
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月22日
-    作    者   : l00208543
-    修改内容   : V9R1 STK升级，新增函数
-
-*****************************************************************************/
 NAS_STK_UPDATE_TYPE_ENUM_UINT8 NAS_GMM_ConvertGmmRauTypeToStkRauType (
    NAS_GMM_SPEC_PROC_TYPE_ENUM_UINT8    enGmmRauType
 )
@@ -1907,24 +1299,7 @@ NAS_STK_UPDATE_TYPE_ENUM_UINT8 NAS_GMM_ConvertGmmRauTypeToStkRauType (
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_ConvertGmmRatTypeToStkRatType
- 功能描述  : 进行RAT类型转换:NAS_MML_NET_RAT_TYPE_ENUM_UINT8->TAF_MMA_RAT_TYPE_ENUM_UINT8
- 输入参数  : NAS_MML_NET_RAT_TYPE_ENUM_UINT8 enMmRatType GMM层的RAT TYPE
- 输出参数  : 无
- 返 回 值  : TAF_PH_RAT_TYPE_ENUM_UINT8上报给STK的RAT TYPE
- 调用函数  : NAS_GMM_SndStkRauRej  NAS_GMM_SndStkAttachRej
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月22日
-    作    者   : l00208543
-    修改内容   : V9R1 STK升级，新增函数
-
-  2.日    期   : 2015年4月10日
-    作    者   : h00313353
-    修改内容   : SysCfg重构
-*****************************************************************************/
 
 TAF_MMA_RAT_TYPE_ENUM_UINT8 NAS_GMM_ConvertGmmRatTypeToStkRatType (
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enGmmRatType
@@ -1948,21 +1323,7 @@ TAF_MMA_RAT_TYPE_ENUM_UINT8 NAS_GMM_ConvertGmmRatTypeToStkRatType (
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_SndStkRauRej
- 功能描述  : GMM上报STK Network Rejection Event
- 输入参数  : ucCause   拒绝的原因值
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :Gmm_RcvRoutingAreaUpdateRejectMsg()
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月9日
-    作    者   : l00208543
-    修改内容   : V9R1 STK升级
-
-*****************************************************************************/
 VOS_VOID NAS_GMM_SndStkRauRej(VOS_UINT8 ucCause)
 {
     NAS_STK_NETWORK_REJECTION_EVENT_STRU                   *pstMsg = VOS_NULL_PTR;
@@ -2012,82 +1373,8 @@ VOS_VOID NAS_GMM_SndStkRauRej(VOS_UINT8 ucCause)
     return;
 }
 
-/* Added by l00208543 for V9R1 STK升级, 2013-07-09, end */
 
-/*******************************************************************************
-  Module   : Gmm_RcvRoutingAreaUpdateRejectMsg
-  Function : 接收空口消息空口消息RAU REJECT的处理
-  Input    : NAS_MSG_STRU *pMsg     指向NAS_MSG_STRU结构的指针
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1. 张志勇  2003.12.08  新规作成
-  2. x51137 2006/4/28 A32D02889
-  3. s46746 2006-06-27 根据问题单A32D04528修改
-  4. 日    期   : 2006年11月7日
-     作    者   : sunxibo id:46746
-     修改内容   : 根据问题单号：A32D06823
-  5.日    期   : 2007年01月16日
-    作    者   : s46746
-    修改内容   : 根据问题单号：A32D08381
-  6.日    期   : 2007年3月5日
-    作    者   : liurui id:40632
-    修改内容   : 根据问题单号：A32D09094
-  7.日    期   : 2007年05月11日
-    作    者   : luojian id:60022475
-    修改内容   : 问题单号:A32D10713
-  8.日    期   : 2007年06月16日
-    作    者   : luojian id:60022475
-    修改内容   : 根据问题单号：A32D11635,gas上报GPRS RESUME FAILURE时,仍然通知
-                 RABM 恢复成功,如果存在PDP激活时,发起RAU,如果在这个RAU过程中系
-                 统消息指示RAI发生改变就不再发起RAU.
-  9.日    期    : 2009年9月03日
-    作    者    : l65478
-    修改内容    : created AT2D14239,detach完成后,再次发起ATTATCH REQ时,GAS使用旧的TLLI建立的TBF发送数据,没有及时使用新的TLLI,导致MS和仪器侧维护的TLLI不一致,从而导致GAS因为TLLI不匹配丢弃了建立下行TBF的指派命令,最终导致用例失败
-  10.日    期   : 2009年9月16日
-      作    者   : l65478
-      修改内容   : 问题单号:AT2D13861,RAU失败通知OM口的原因值错误 不应该是rr－connect fail
-  11.日    期   : 2011年7月27日
-     作    者   : h44270
-     修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-  12.日    期   : 2011年8月19日
-     作    者   : l00130025
-     修改内容   : PhaseI 问题单修改:DTS2011080305247,G模要使用映射的P-TMSI导出TLLI
-   13.日    期   : 2011年3月6日
-      作    者   : l65478
-      修改内容   : DTS2011052703809,GCF用例9.4.2.2.1失败,因为GMM向仪器发送了GMM STATUS消息
-   14.日    期   : 2011年4月29日
-      作    者   : c00173809
-      修改内容   : DTS2011042804013,UE在网络模式I下,通过设置W单模搜网到W下相同RAI
-                   的小区,先在W下发起电话,然后PDP激活,然后释放CS电话,UE进行的联合RAU
-                   是通过EST_REQ而不是通过DATE_REQ发送的.
-   15.日    期   : 2012年3月21日
-      作    者   : z40661
-      修改内容   : DTS2011110201060:L重选到W，被网络拒绝#9后携带的PTMSI不正确
-   16.日    期   : 2012年3月3日
-      作    者   : z00161729
-      修改内容   : V7R1 C50 支持ISR修改,T3312启动停止超时均需通知L
-   15.日    期   : 2012年5月21日
-      作    者   : l65478
-      修改内容   : DTS2012052101009:在detach过程中RAI改变后,后续没有继续进行DETACH
-   16.日    期   : 2012年9月10日
-      作    者   : z40661
-      修改内容   : DTS2012081608654:网络模式I下，RAU被#9拒绝后,MM未进行LAU
-   17.日    期   : 2013年5月20日
-      作    者   : s00217060
-      修改内容   : coverity和foritfy修改
-   18.日    期   : 2013年7月13日
-      作    者   : l00208543
-      修改内容   : STK升级项目，增加NAS_GMM_ReportStkRauRej的调用，向STK上报reject消息
-   19.日    期   : 2013年08月16日
-      作    者   : l65478
-      修改内容   : DTS2013081400197,T3314超时后,不能终止当前的注册过程
-   20.日    期   : 2013年10月9日
-      作    者   : l00208543
-      修改内容   : DTS2013100904573
 
-*******************************************************************************/
 VOS_VOID Gmm_RcvRoutingAreaUpdateRejectMsg(
     NAS_MSG_FOR_PCLINT_STRU            *pMsg
 )
@@ -2162,9 +1449,7 @@ VOS_VOID Gmm_RcvRoutingAreaUpdateRejectMsg(
 
     NAS_GMM_ChangeRegRejCauseAvoidInvalidSim(&(pMsg->aucNasMsg[2]));
 
-    /* Added by l00208543 for V9R1 STK升级, 2013-07-11, begin */
     NAS_GMM_SndStkRauRej(pMsg->aucNasMsg[2]);
-    /* Added by l00208543 for V9R1 STK升级, 2013-07-11, end */
 
     Gmm_RcvRoutingAreaUpdateRejectMsg_T3302_Handling(pMsg);
 
@@ -2212,10 +1497,8 @@ VOS_VOID Gmm_RcvRoutingAreaUpdateRejectMsg(
     PS_NAS_LOG(WUEPS_PID_GMM, VOS_NULL, PS_LOG_LEVEL_INFO, "Gmm_RcvRoutingAreaUpdateRejectMsg:INFO: specific procedure ended");
 
 
-    /* Modified by s00217060 for coverity和foritfy修改 , 2013-05-20, begin */
     /* 初始化 */
     PS_MEM_SET(aucPtmsi, 0, sizeof(aucPtmsi));
-    /* Modified by s00217060 for coverity和foritfy修改 , 2013-05-20, end */
 
     ulPtmsiValidFlag   = NAS_GMM_GetPTmsiForTLLI(aucPtmsi);
 
@@ -2302,33 +1585,7 @@ VOS_VOID Gmm_RcvRoutingAreaUpdateRejectMsg(
 
     return;
 }
-/*******************************************************************************
-  Module   : Gmm_Com_CmpRai
-  Function : 判断收到的RAU ACCEPT消息中的RAI与系统信息中的RAI是否一致
-  Input    : GMM_RAI_STRU *pRaiTemp  GMM_RAI_STRU类型的指针变量
-  Output   : 无
-  NOTE     : 无
-  Return   : GMM_TRUE    相同
-             GMM_FALSE   不同
-  History  :
-    1. 张志勇  2003.12.10  新规作成
-    2.日    期   : 2012年3月7日
-      作    者   : z00161729
-      修改内容   : V7R1 C50 支持ISR修改
-    3. 日    期   : 2012年7月17日
-       作    者   : z00161729
-       修改内容   : DTS2012071606177:W(LAI1)-L(TAI2/LAI2 ISR激活CS LAI改变)-W(LAI1网络模式I)需要
-                    发起联合rau
-    4. 日    期   : 2012年7月17日
-        作    者   : z00161729
-        修改内容   : DTS2012073106360:ISR激活CSFB重定向或CCO到GU,idle态位置区不变无需做RAU
-    5. 日    期   : 2012年09月08日
-       作    者   : l65478
-       修改内容   : DTS012090302087,L->GU时,RAI没有改变时,GMM发起了RAU
-    6.日    期   : 2015年1月5日
-      作    者   : z00161729
-      修改内容   : AT&T 支持DAM特性修改
-*******************************************************************************/
+
 VOS_UINT8 Gmm_Com_CmpRai(
     GMM_RAI_STRU                       *pstNewRai,
     GMM_RAI_STRU                       *pstOldRai,
@@ -2383,80 +1640,12 @@ VOS_UINT8 Gmm_Com_CmpRai(
 
     return ucRet;
 }
-/*******************************************************************************
-  Module   : Gmm_RoutingAreaUpdateAttemptCounter
-  Function : RAU Attempt Counter的处理
-  Input    : VOS_UINT32 ulGmmCause       失败原因
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1.张志勇  2003.12.10  新规作成
-  2.日    期   : 2007年01月16日
-    作    者   : s46746
-    修改内容   : 根据问题单号：A32D08381
-  3.日    期   : 2007年05月11日
-    作    者   : luojian id:60022475
-    修改内容   : 问题单号:A32D10713
-  4.日    期   : 2007年06月16日
-    作    者   : luojian id:60022475
-    修改内容   : 根据问题单号：A32D11635
-  5.日    期   : 2009年09月25日
-    作    者   : l00130025
-    修改内容   : 问题单号:AT2D14675,RAU/Attach过程中，list搜网失败
-  6.日    期   : 2010年9月09日
-    作    者   : l65478
-    修改内容   : DTS2010090302562,PDP激活过程中发生重选，PDP激活事件比标杆慢
-  7.日    期   : 2011年7月14日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
-  8.日    期   : 2011年07月13日
-    作    者   : w00166186
-    修改内容   : V7R1 PHASE II ATTACH/DETACH调整
-  9.日    期   : 2011年7月26日
-    作    者   : l00130025
-    修改内容   : V7R1 PhaseII阶段调整，删除UserDelay标志，由MMC处理
- 10.日    期   : 2011年10月8日
-    作    者   : s46746
-    修改内容   : V7R1 phase II,将EPLMN、RPLMN移到MM/GMM维护
- 11.日    期   : 2012年7月17日
-    作    者   : z00161729
-    修改内容   : DTS2012071606177:W(LAI1)-L(TAI2/LAI2 ISR激活CS LAI改变)-W(LAI1网络模式I)需要
-                 发起联合rau
- 12.日    期   : 2012年10月25日
-    作    者   : w00167002
-    修改内容   : DTS2012101600008:TS24008a60:4.7.5.1.5:协议升级，如果当前RAI没有
-                 发生改变，且当前的TIN不为GUTI，当前处在U1态，GMM将迁移到NORMAL
-                 SERVICE.
- 13.日    期   : 2012年11月27日
-    作    者   : t00212959
-    修改内容   : DTS2012021004490:RAU被拒#111，GMM向MMC上报的PS_REG_RESULT中携带的注册次数为6
- 14.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
- 15.日    期   : 2013年8月7日
-    作    者   : w00167002
-    修改内容   : DTS2013080207367:在CS only时候，用户发起PDP激活，网络模式I时候，
-                 会触发联合注册.用户发起PDP去激活，会导致PS域的去注册。收到网侧
-                 的去注册成功后需要通知MM，否则MM当前在NORMAL SERVICE状态，不
-                 触发T3212定时器的启动，长时间可能导致丢寻呼.
- 16.日    期   : 2013年10月05日
-    作    者   : l65478
-    修改内容   : DTS2013092509860:GPRS detach过程被BG搜索终止后,GMM又自动发起了注册
- 17.日    期   : 2015年2月6日
-    作    者   : h00313353
-    修改内容   : USIMM卡接口调整
- 18.日    期   : 2015年6月10日
-    作    者   : z00161729
-    修改内容   : 24008 23122 R11 CR升级项目修改
-*******************************************************************************/
+
 VOS_VOID Gmm_RoutingAreaUpdateAttemptCounter(
                                          VOS_UINT32 ulGmmCause                  /* 失败原因                                 */
                                          )
 {
-    /* deleted by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
 
-    /* deleted by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
     NAS_MML_RAI_STRU                           *pstLastSuccRai;
     GMM_RAI_STRU                                stGmmRai;
@@ -2472,9 +1661,7 @@ VOS_VOID Gmm_RoutingAreaUpdateAttemptCounter(
     stGmmRai.Lai.aucLac[0]  = pstLastSuccRai->stLai.aucLac[0];
     stGmmRai.Lai.aucLac[1]  = pstLastSuccRai->stLai.aucLac[1];
 
-    /* deleted by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
 
-    /* deleted by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
     /* 已经达到最大尝试次数，则没有继续加1的必要，只要达到或超过5次处理都是一样的*/
     if (GMM_ATTACH_RAU_ATTEMPT_MAX_CNT > g_GmmRauCtrl.ucRauAttmptCnt)
@@ -2524,9 +1711,7 @@ VOS_VOID Gmm_RoutingAreaUpdateAttemptCounter(
     else
     {                                                                           /* ucRauAttmptCnt大于等于5                  */
 
-        /* deleted by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
 
-        /* deleted by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
         NAS_MML_SetPsUpdateStatus(NAS_MML_ROUTING_UPDATE_STATUS_NOT_UPDATED);     /* 置更新状态为GU2                          */
 
@@ -2671,40 +1856,7 @@ VOS_VOID Gmm_RoutingAreaUpdateAttemptCounter(
 
     return;
 }
-/*******************************************************************************
-  Module   : Gmm_RoutingAreaUpdataAcceptRaOnly
-  Function : RAU ACCEPT的结果是GPRS only attached的处理
-  Input    : GMM_MSG_RESOLVE_STRU  *pRauAcceptIe     指向GMM_MSG_RESOLVE_STRU
-                                                     结构的指针
-             NAS_MSG_STRU          *pMsg             指向NAS_MSG_STRU结构
-                                                     的指针
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1.张志勇  2003.12.10  新规作成
-  2.日    期   : 2007年11月12日
-    作    者   : l39007
-    修改内容   : 根据问题单A32D13044
-  3.日    期   : 2011年7月14日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
-  4.日    期   : 2012年03月30日
-    作    者   : l00130025
-    修改内容   : DTS2012032307791,发给LMM注册结果,CombineReg时需要区分结果域
-  5.日    期   : 2012年08月24日
-    作    者   : m00217266
-    修改内容   : 删除GMM_ClearErrCode（PS域错误码上报项目）
-  6.日    期   : 2014年08月5日
-    作    者   : b00269685
-    修改内容   : DTS2014072107208修改
-  6.日    期   : 2014年9月3日
-    作    者   : w00167002
-    修改内容   : DTS2014090300904:周期TAU, RA UPDATING SUCC也同联合注册成功
-  7.日    期   : 2015年6月9日
-    作    者   : z00161729
-    修改内容   : 24008 23122 R11 CR升级项目修改
-*******************************************************************************/
+
 VOS_VOID Gmm_RoutingAreaUpdataAcceptRaOnly(
     GMM_MSG_RESOLVE_STRU                *pRauAcceptIe,
     NAS_MSG_FOR_PCLINT_STRU             *pMsg
@@ -2798,12 +1950,7 @@ VOS_VOID Gmm_RoutingAreaUpdataAcceptRaOnly(
 
         if (NAS_MML_REG_FAIL_CAUSE_IMSI_UNKNOWN_IN_HLR == enCause)
         {                                                                       /* 原因值为2                                */
-            /* 24008_CR1229R1_(Rel-8)_C1-085365 24008 4.7.5.2.3.2章节描述如下:
-            #2:The MS shall stop timer T3330 if still running and shall reset the
-            routing area updating attempt counter. The MS shall set the update
-            status to U3 ROAMING NOT ALLOWED and shall delete any TMSI, LAI and
-            ciphering key sequence number. The MS shall enter state GMM-REGISTERED.NORMAL-SERVICE.
-            The new MM state is MM IDLE*/
+            
             g_GmmRauCtrl.ucRauAttmptCnt = 0;
             Gmm_TimerStop(GMM_TIMER_T3330);
             Gmm_ComStaChg(GMM_REGISTERED_NORMAL_SERVICE);
@@ -2848,28 +1995,7 @@ VOS_VOID Gmm_RoutingAreaUpdataAcceptRaOnly(
 
     return;
 }
-/*******************************************************************************
-  Module   : Gmm_RoutingAreaUpdataAcceptCombined
-  Function : RAU ACCEPT的结果是combined updated的处理
-  Input    : GMM_MSG_RESOLVE_STRU  *pRauAcceptIe     指向GMM_MSG_RESOLVE_STRU
-                                                     结构的指针
-             NAS_MSG_STRU          *pMsg             指向NAS_MSG_STRU结构
-                                                     的指针
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1.张志勇  2003.12.10  新规作成
-  2.日    期   : 2011年7月14日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
-  3.日    期   : 2012年3月30日
-    作    者   : l00130025
-    修改内容   : DTS2012032307791,发给LMM注册结果,CombineReg时需要区分结果域
-  4.日    期   : 2012年08月24日
-    作    者   : m00217266
-    修改内容   : 删除GMM_ClearErrCode（PS域错误码上报项目）
-*******************************************************************************/
+
 VOS_VOID Gmm_RoutingAreaUpdataAcceptCombined(
                                      GMM_MSG_RESOLVE_STRU    *pRauAcceptIe,     /* 指向GMM_MSG_RESOLVE_STRU结构的指针       */
                                      NAS_MSG_FOR_PCLINT_STRU *pMsg
@@ -2926,22 +2052,7 @@ VOS_VOID Gmm_RoutingAreaUpdataAcceptCombined(
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : NAS_GMM_CheckNpduValid
- 功能描述  : 检查NPDU是否有效
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE : NPDU有效
-             VOS_FALSE: NPDU无效
- 调用函数  :
- 被调函数  :
-获取
- 修改历史      :
-  1.日    期   : 2013年7月22日
-    作    者   : l65478
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_UINT32 NAS_GMM_CheckNpduValid(
     VOS_UINT8                           ucNpduLen,
     VOS_UINT8                          *pucNpdu
@@ -2989,22 +2100,7 @@ VOS_UINT32 NAS_GMM_CheckNpduValid(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  :NAS_GMM_DecodeT3312ExtendedValueIE_RcvRauAccept
- 功能描述  :从rau accept消息中解析T3312 extended value IE内容
- 输入参数  :pRauAcceptIe - 指向GMM_MSG_RESOLVE_STRU结构的指针
-            pMsg         - 指向NAS_MSG_STRU结构的指针
-            ucIeOffset   - T3312 extended value IE在消息内容中位置
- 输出参数  :无
- 返 回 值  :VOS_TRUE  - 处理成功
-            VOS_FALSE - 处理失败
- 调用函数  :无
 
- 修改历史      :
-  1.日    期   : 2015年6月11日
-    作    者   : z00161729
-    修改内容   : 24008 23122 R11 CR升级项目修改
-*****************************************************************************/
 VOS_UINT32 NAS_GMM_DecodeT3312ExtendedValueIE_RcvRauAccept(
     GMM_MSG_RESOLVE_STRU               *pRauAcceptIe,
     NAS_MSG_FOR_PCLINT_STRU            *pMsg,
@@ -3033,44 +2129,7 @@ VOS_UINT32 NAS_GMM_DecodeT3312ExtendedValueIE_RcvRauAccept(
 }
 
 
-/*******************************************************************************
-  Module   : Gmm_RoutingAreaUpdateResolveIe
-  Function : 解析RAU ACCEPT的IE
-  Input    : GMM_MSG_RESOLVE_STRU  *pRauAcceptIe     指向GMM_MSG_RESOLVE_STRU
-                                                     结构的指针
-             NAS_MSG_STRU          *pMsg             指向NAS_MSG_STRU结构
-                                                     的指针
-  Output   : GMM_MSG_RESOLVE_STRU  *pRauAcceptIe     指向GMM_MSG_RESOLVE_STRU
-                                                     结构的指针
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1. 张志勇  2003.12.10  新规作成
 
-    2.日    期   : 2012年3月20日
-      作    者   : z00161729
-      修改内容   : 新生成函数
-    3.日    期   : 2012年3月27日
-      作    者   : w00166186
-      修改内容   : CSFB&PPAC&ETWS&ISR 开发 ENERGENCY CALL
-    4.日    期   : 2013年8月30日
-      作    者   : w00242748
-      修改内容   : KLOC告警清理
-    5.日    期   : 2013年09月10日
-      作    者   : l65478
-      修改内容   : DTS2013090202323:可选IE的检查错误时不返回FAIL
-    6.日    期   : 2013年10月25日
-      作    者   : w00167002
-      修改内容   : DTS2013102201891:增加对紧急呼长度异常的处理。
-                 1.按照紧急呼填写的总长度值解析，会超过整个消息的长度，则认为异常；
-                 2.按照每个子紧急呼消息的长度值解析，超过了紧急呼填写的总长度值，则认为异常；
-
-                 调整NAS_MM_DecodeEMC函数到MML中NAS_MML_DecodeEmergencyNumList，
-                 供GMM/MM解码紧急呼列表使用。
-    7.日    期   : 2015年6月8日
-      作    者   : z00161729
-      修改内容   : 24008 23122 R11 CR升级项目修改
-*******************************************************************************/
 VOS_VOID Gmm_RoutingAreaUpdateResolveIe(
                                     GMM_MSG_RESOLVE_STRU    *pRauAcceptIe,      /* 指向GMM_MSG_RESOLVE_STRU结构的指针       */
                                     NAS_MSG_FOR_PCLINT_STRU *pMsg               /* 指向NAS_MSG_FOR_PCLINT_STRU结构          */
@@ -3393,30 +2452,7 @@ VOS_VOID Gmm_RoutingAreaUpdateResolveIe(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : Gmm_RoutingAreaUpdateHandle_Under_Gsm
- 功能描述  : GSM下RAU的处理
- 输入参数  : VOS_UINT8               ucInterRatInfoFlg
-             VOS_UINT8               ucReadychangFLG
-             VOS_BOOL                bTlliUpdateFlag
-             VOS_UINT8               ucSndCompleteFlg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年4月12日
-    作    者   : l65478
-    修改内容   : 新生成函数
-  2.日    期   : 2010年4月12日
-    作    者   : l65478
-    修改内容   : AT2D18389,在初始小区更新时，GMM应该通知LLC发送NULL帧
-  3.日    期   : 2010年9月09日
-    作    者   : l65478
-    修改内容   : DTS2010090302562,PDP激活过程中发生重选，PDP激活事件比标杆慢
-
-*****************************************************************************/
 VOS_VOID Gmm_RoutingAreaUpdateHandle_Under_Gsm(
                                  VOS_UINT8               ucInterRatInfoFlg,
                                  VOS_UINT8               ucReadychangFLG,
@@ -3524,19 +2560,7 @@ VOS_VOID Gmm_RoutingAreaUpdateHandle_Under_Gsm(
     return;
 }
 
-/***********************************************************************
- *  MODULE   : Gmm_RoutingAreaUpdateHandle_Under_W
- *  FUNCTION : Gmm_RoutingAreaUpdateHandle函数降复杂度: WCDMA下的处理
- *  INPUT    : VOS_VOID
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8 ucEventID
- *  NOTE     :
- *  HISTORY  :
-     1.  欧阳飞   2009.06.11  新版作成
-     2.日    期   : 2012年3月7日
-      作    者   : z00161729
-      修改内容   : V7R1 C50 支持ISR修改
- ************************************************************************/
+
 VOS_VOID Gmm_RoutingAreaUpdateHandle_Under_W(VOS_VOID)
 {
     if (VOS_TRUE == NAS_MML_IsPsBearerExist())
@@ -3562,27 +2586,7 @@ VOS_VOID Gmm_RoutingAreaUpdateHandle_Under_W(VOS_VOID)
     return;
 }
 
-/***********************************************************************
- *  MODULE   : Gmm_RoutingAreaUpdateHandle_T3302_Handling
- *  FUNCTION : Gmm_RoutingAreaUpdateHandle函数降复杂度: T3302的处理
- *  INPUT    : VOS_VOID
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8 ucEventID
- *  NOTE     :
- *  HISTORY  :
-     1.  欧阳飞   2009.06.11  新版作成
-     2.日    期   : 2011年3月3日
-       作    者   : z00161729
-       修改内容   : DTS2011021201997:PS、CS完整性保护是否开启由GMM和MM分开维护,MMC不再维护
 
-     3.日    期   : 2013年11月18日
-       作    者   : w00167002
-       修改内容   : DTS2013112006986:控制在3G TDD模式下是否需要开启SMC验证标记:中国移动拉萨网络设备在
-                    TD下不发起SMC流程。
-     4.日    期   : 2015年6月9日
-       作    者   : z00161729
-       修改内容   : 24008 23122 R11 CR升级项目修改
- ************************************************************************/
 VOS_VOID Gmm_RoutingAreaUpdateHandle_T3302_Handling(GMM_MSG_RESOLVE_STRU           *pRauAcceptIe,
                                                     NAS_MSG_FOR_PCLINT_STRU        *pMsg)
 {
@@ -3640,33 +2644,7 @@ VOS_VOID Gmm_RoutingAreaUpdateHandle_T3302_Handling(GMM_MSG_RESOLVE_STRU        
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_HandleRoutingAreaUpdateEPlmn
- 功能描述  : 处理RAU Accept消息中EPLMN信息
- 输入参数  : pstRauAcceptIe,RAU Accept消息IE信息
-             pstMsg,RAU Accept消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月8日
-    作    者   : s46746
-    修改内容   : 新生成函数
-  2.日    期   : 2012年03月15日
-    作    者   : l00130025
-    修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-  3.日    期   : 2012年10月26日
-    作    者   : W00176964
-    修改内容   : DTS2012090303157:更新EPLMN有效标记
-  4.日    期   : 2012年12月13日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-  5.日    期   : 2015年6月9日
-    作    者   : z00161729
-    修改内容   : 24008 23122 R11 CR升级项目修改
-*****************************************************************************/
 VOS_VOID NAS_GMM_HandleRoutingAreaUpdateEPlmn(
     GMM_MSG_RESOLVE_STRU               *pstRauAcceptIe,
     NAS_MSG_FOR_PCLINT_STRU            *pstMsg
@@ -3712,22 +2690,7 @@ VOS_VOID NAS_GMM_HandleRoutingAreaUpdateEPlmn(
     return;
 }
 
-/***********************************************************************
- *  MODULE   : Gmm_RoutingAreaUpdateHandle_PTMSI_SIGNATURE_Handling
- *  FUNCTION : Gmm_RoutingAreaUpdateHandle函数降复杂度: PTMSI_SIGNATURE的处理
- *  INPUT    : VOS_VOID
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8 ucEventID
- *  NOTE     :
- *  HISTORY  :
-    1.  欧阳飞   2009.06.11  新版作成
-    2.日    期   : 2011年7月27日
-      作    者   : h44270
-      修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-    3.日    期   : 2015年6月9日
-      作    者   : z00161729
-      修改内容   : 24008 23122 R11 CR升级项目修改
- ************************************************************************/
+
 VOS_VOID Gmm_RoutingAreaUpdateHandle_PTMSI_SIGNATURE_Handling(GMM_MSG_RESOLVE_STRU   *pRauAcceptIe,
                                                     NAS_MSG_FOR_PCLINT_STRU          *pMsg)
 {
@@ -3752,19 +2715,7 @@ VOS_VOID Gmm_RoutingAreaUpdateHandle_PTMSI_SIGNATURE_Handling(GMM_MSG_RESOLVE_ST
     return;
 }
 
-/***********************************************************************
- *  MODULE   : Gmm_RoutingAreaUpdateHandle_READY_TIMER_Handling
- *  FUNCTION : Gmm_RoutingAreaUpdateHandle函数降复杂度: READY_TIMER的处理
- *  INPUT    : VOS_VOID
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8 ucEventID
- *  NOTE     :
- *  HISTORY  :
-     1.  欧阳飞   2009.06.11  新版作成
-     2.日    期   : 2015年6月9日
-       作    者   : z00161729
-       修改内容   : 24008 23122 R11 CR升级项目修改
- ************************************************************************/
+
 VOS_VOID Gmm_RoutingAreaUpdateHandle_READY_TIMER_Handling(GMM_MSG_RESOLVE_STRU   *pRauAcceptIe,
                                                     NAS_MSG_FOR_PCLINT_STRU      *pMsg,
                                                     VOS_UINT8                    *pucReadychangFLG)
@@ -3789,19 +2740,7 @@ VOS_VOID Gmm_RoutingAreaUpdateHandle_READY_TIMER_Handling(GMM_MSG_RESOLVE_STRU  
     return;
 }
 
-/***********************************************************************
- *  MODULE   : Gmm_RoutingAreaUpdateHandle_Handling_Local_TLLI
- *  FUNCTION : Gmm_RoutingAreaUpdateHandle函数降复杂度: Local_TLLI的处理
- *  INPUT    : VOS_VOID
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8 ucEventID
- *  NOTE     :
- *  HISTORY  :
-    1.  欧阳飞   2009.06.11  新版作成
-    2.日    期   : 2011年7月27日
-     作    者   : h44270
-     修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-************************************************************************/
+
 VOS_VOID Gmm_RoutingAreaUpdateHandle_Handling_Local_TLLI(VOS_BOOL                bTlliUpdateFlag)
 {
     VOS_UINT32                  ulNewTlli        = 0;
@@ -3829,29 +2768,7 @@ VOS_VOID Gmm_RoutingAreaUpdateHandle_Handling_Local_TLLI(VOS_BOOL               
     return;
 }
 
-/***********************************************************************
- *  MODULE   : Gmm_RoutingAreaUpdateHandle_Handling_RAU_RESULT_IE
- *  FUNCTION : Gmm_RoutingAreaUpdateHandle函数降复杂度: RAU_RESULT_IE的处理
- *  INPUT    : VOS_VOID
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8 ucEventID
- *  NOTE     :
- *  HISTORY  :
-     1.  欧阳飞   2009.06.11  新版作成
-     2. 日    期   : 2009年10月3日
-        作    者   : l00130025
-        修改内容   : 根据问题单号：AT2D14889,G网络模式I下,Combined RAU过程中，
-                     设置需要CS detach的SYSCFG失败
-     3. 日    期   : 2012年3月21日
-        作    者   : z00161729
-        修改内容   : 支持ISR特性修改
-     4. 日    期   : 2013年1月23日
-        作    者   : W00176964
-        修改内容   : DTS2013012290625:DCM测试:ISR激活后周期性RAU后进行了联合RAU
-     5.日    期   : 2015年6月9日
-       作    者   : z00161729
-       修改内容   : 24008 23122 R11 CR升级项目修改
- ************************************************************************/
+
 VOS_VOID Gmm_RoutingAreaUpdateHandle_Handling_RAU_RESULT_IE(
                                  GMM_MSG_RESOLVE_STRU           *pRauAcceptIe,          /* 指向GMM_MSG_RESOLVE_STRU结构的指针       */
                                  NAS_MSG_FOR_PCLINT_STRU        *pMsg,
@@ -3973,82 +2890,7 @@ VOS_VOID Gmm_RoutingAreaUpdateHandle_Handling_SndComplete_Flag(
     }
 }
 
-/*******************************************************************************
-  Module   : Gmm_RoutingAreaUpdateHandle
-  Function : 处理RAU ACCEPT消息
-  Input    : NAS_MSG_STRU          *pMsg         指向NAS_MSG_STRU结构的指针
-             GMM_MSG_RESOLVE_STRU  *pRauAcceptIe 指向GMM_MSG_RESOLVE_STRU
-                                                 结构的指针
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1. 张志勇  2003.12.09  新规作成
-  2. 张志勇  2005.03.31  NAS_IT_BUG_043对应
-  3. x51137 2006/4/28 A32D02889
-  4. 日    期   : 2006年11月8日
-     作    者   : s46746
-     修改内容   : 问题单号:A32D06867
-  5. 日    期   : 2008年10月20日
-     作    者   : o00132663
-     修改内容   : 问题单号:AT2D06266, 增加对不支持CELL NOTIFICATION的处理
-  6.日    期   : 2008年11月25日
-    作    者   : l65478
-    修改内容   : 根据问题单号：AT2D06903，GSM模式下，连续收到两次RAU accept消息后，GMM发送RAU complete
-  7.日    期   : 2010年11月29日
-    作    者   : z00161729
-    修改内容   : 问题单号:DTS2010112900029:W下RAU过程中迁移失败，网侧进行DSCR,UE重新驻留，进行RAU结束后又立即发起了RAU
-  8. 日    期   : 2011年01月27日
-     作    者   : A00165503
-     修改内容   : 问题单号: DTS2011012501578，如果RAU ACCEPT消息中不携带IE项NPDU NUMBER LIST，
-                  则RAU COMPLETE消息中不需要携带IE项NPDU NUMBER LIST
-  9.日    期   : 2011年7月27日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
- 10.日    期   : 2011年4月29日
-    作    者   : c00173809
-    修改内容   : DTS2011042804013,UE在网络模式I下,通过设置W单模搜网到W下相同RAI
-                      的小区,先在W下发起电话,然后PDP激活,然后释放CS电话,UE进行的联合RAU
-                      是通过EST_REQ而不是通过DATE_REQ发送的.
- 11.日    期   : 2011年10月8日
-    作    者   : s46746
-    修改内容   : V7R1 phase II,将EPLMN、RPLMN移到MM/GMM维护
- 12.日    期   : 2012年4月17日
-     作    者   : z00161729
-     修改内容  : DTS2012041402264：L小区下发起CS语音业务，通过重定向CS Fallback到W小区。激活PDP后释放CS语音，未上系统消息，UE不会发起联合RAU
- 12.日    期   : 2012年05月13日
-    作    者   : W00166186
-    修改内容   : DTS201204261955,RAU COMPLETE没有回复
- 13.日    期   : 2012年06月8日
-    作    者   : z00161729
-    修改内容   : DTS2012052103216: g_GmmGlobalCtrl.ucSpecProc为GMM_RAU_NORMAL_CS_TRANS时未判断当前网络模式是否为A+I,直接做了联合注册，增加保护
- 14.日    期   : 2012年08月24日
-    作    者   : m00217266
-    修改内容   : 修改Gmm_SndSmEstablishCnf接口，添加原因值
- 15.日    期   : 2012年8月14日
-    作    者   : t00212959
-    修改内容   : DCM定制需求和遗留问题
- 16.日    期   : 2012年10月16日
-    作    者   : t00212959
-    修改内容   : DTS2012082202926,CSFB从L到W，LAI和RAI都发生改变，LAU被#13拒绝，normal RAU成功,进行了两次联合RAU
- 17.日    期   : 2013年2月4日
-    作    者   : w00176964
-    修改内容   : DTS2011022802215:CS ONLY,网络模式I下也进行联合注册
- 18.日    期   : 2014年6月13日
-    作    者   : w00242748
-    修改内容   : DSDS 新特性
- 19.日    期   : 2014年7月18日
-    作    者   : b00269685
-    修改内容   : DSDS IV修改
- 20.日    期   : 2015年6月9日
-    作    者   : z00161729
-    修改内容   : 24008 23122 R11 CR升级项目修改
- 21.日    期   : 2015年10月14日
-    作    者   : w00167002
-    修改内容   : DTS2015091104629:当前发起PDP激活，SM通知pdp ACTIVE PENDING，此时LAC
-                 改变，触发了RAU. RAU成功后，判断有PDP状态，但网侧指示没有PDP上下文。
-                 错误的清除了缓存的PDP激活请求。
-*******************************************************************************/
+
 VOS_VOID Gmm_RoutingAreaUpdateHandle(
     GMM_MSG_RESOLVE_STRU               *pRauAcceptIe,          /* 指向GMM_MSG_RESOLVE_STRU结构的指针       */
     NAS_MSG_FOR_PCLINT_STRU            *pMsg,
@@ -4061,10 +2903,8 @@ VOS_VOID Gmm_RoutingAreaUpdateHandle(
     VOS_UINT8                           ucOffSet;
     VOS_UINT8                           ucInterRatInfoFlg = GMM_FALSE;
 
-    /* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-16, begin */
     VOS_UINT8                           ucUeWDrxlength;
     VOS_UINT8                           ucWSysinfoDrxlength;
-    /* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-16, end */
 
 
     GMMSM_DATA_REQ_STRU                 *pstSmDataReqMsg = VOS_NULL_PTR;
@@ -4200,14 +3040,12 @@ VOS_VOID Gmm_RoutingAreaUpdateHandle(
         Gmm_SndAgentUsimUpdateFileReq(USIMM_GSM_EFLOCIGPRS_ID);
     }
 
-    /* Modified by t00212959 for DCM定制需求和遗留问题, 2012-8-14, begin */
     ucUeWDrxlength      = NAS_MML_GetUeUtranPsDrxLen();
     ucWSysinfoDrxlength = NAS_MML_GetWSysInfoDrxLen();
     if (ucWSysinfoDrxlength != ucUeWDrxlength)
     {                                                                           /* DRX参数发生变化                          */
         Gmm_SndRrmmNasInfoChangeReq(RRC_NAS_MASK_DRX);                          /* 通知RRC协商后的PS域DRX参数               */
     }
-    /* Modified by t00212959 for DCM定制需求和遗留问题, 2012-8-14, end */
 
     if (GMM_TRUE == GMM_IsCasGsmMode())
     {
@@ -4269,25 +3107,7 @@ VOS_VOID Gmm_RoutingAreaUpdateHandle(
 
     return;
 }
-/*******************************************************************************
-  Module   : Gmm_RoutingAreaUpdateHandleFollowOn
-  Function : RAU结束后处理follow on
-  Input    : 无
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1. 张志勇  2003.12.09  新规作成
 
-    2. 日    期   : 2010年7月17日
-       作    者   : 欧阳飞
-       修改内容   : DTS2010071601574, 对于缓冲的RABM的建链请求，应调用函数
-                    Gmm_ServiceRequestMsgMake_ForData生成service request消息。
-    3.日    期   : 2012年8月1日
-      作    者   : A00165503
-      修改内容   : DTS2012072705055: GMM和SM之间增加信令连接建立指示原语, SM根
-                   据该原语重启T3380, T3381或T3390
-*******************************************************************************/
 VOS_VOID Gmm_RoutingAreaUpdateHandleFollowOn(VOS_VOID)
 {
     NAS_MSG_STRU          *pSendNasMsg;                                         /* 用来存储制作的service request消息        */
@@ -4426,85 +3246,7 @@ VOS_VOID Gmm_RoutingAreaUpdateHandleFollowOn(VOS_VOID)
     PS_NAS_LOG(WUEPS_PID_GMM, VOS_NULL, PS_LOG_LEVEL_INFO, "Gmm_RoutingAreaUpdateHandleFollowOn:INFO: specific procedure ended");
 }
 
-/*******************************************************************************
-  Module   : Gmm_RcvRoutingAreaUpdateAcceptMsg
-  Function : 接收空口消息空口消息RAU ACCEPT的处理
-  Input    : NAS_MSG_STRU *pMsg     指向NAS_MSG_STRU结构的指针
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1.张志勇  2003.12.09  新规作成
-  2.日    期   : 2006年11月1日
-    作    者   : s46746
-    修改内容   : 根据问题单号：A32D06572
-  3.日    期   : 2007年05月11日
-    作    者   : luojian id:60022475
-    修改内容   : 问题单号:A32D10713
-  4.日    期   : 2007年06月16日
-    作    者   : luojian id:60022475
-    修改内容   : 根据问题单号：A32D11635
-  5.日    期   : 2008年11月25日
-    作    者   : l65478
-    修改内容   : 根据问题单号：AT2D06903，GSM模式下，连续收到两次RAU accept消息后，GMM发送RAU complete
-  6.日    期   : 2010年01月03日
-    作    者   : o00132663
-    修改内容   : 问题单号：AT2D17661,NAS R7协议升级，引入监控PS 信令链接释放定时器T3340
-  7.日    期   : 2010年5月10日
-    作    者   : o00132663
-    修改内容   : AT2D18802,在PDP Context存在的情况下，不启动T3340
-  8.日    期   : 2011年7月14日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
-  9.日    期   : 2011年10月8日
-    作    者   : s46746
-    修改内容   : V7R1 phase II,将EPLMN、RPLMN移到MM/GMM维护
 
-  10.日    期   : 2012年1月08日
-     作    者   : z00161729
-     修改内容   : V7R1 PhaseIV阶段调整,TIN type直接更新MML全局变量并写nv不通过消息通知MMC由MMC更新
-  11.日    期   : 2012年2月27日
-     作    者   : z00161729
-     修改内容   : V7R1 C50 支持ISR修改
-  12.日    期   : 2012年3月27日
-     作    者   : w00166186
-     修改内容   : CSFB&PPAC&ETWS&ISR 开发 ENERGENCY CALL
-  13. 日    期   : 2012年6月12日
-     作    者   : w00166186
-     修改内容   : AT&T&DCM项目
-  14.日    期   : 2012年8月13日
-     作    者   : L65478
-     修改内容   : DTS2012080301606:注册失败后发起手动搜网失败
-  15.日    期   : 2012年8月14日
-     作    者   : t00212959
-     修改内容   : DCM定制需求和遗留问题
-  16.日    期   : 2013年7月24日
-     作    者   : y00245242
-     修改内容   : VoLTE开发，上报UTRAN network capability information
-  17.日    期  :2014年01月09日
-     作    者  :l65478
-     修改内容  :DTS2014010704608:第一次鉴权响应和网络发起的第二次鉴权请求冲突
-
-  18.日    期   : 2014年01月10日
-     作    者   : w00176964
-     修改内容   : VoLTE_PhaseIII项目
-
-  19.日    期   : 2014年2月18日
-      作    者   : l00215384
-      修改内容   : DTS2014021006453，RAU成功后鉴权拒绝计数清零
-  20.日    期  : 2014年08月4日
-     作    者  : b00269685
-     修改内容  : 联合RAU时收到ps only accept，按照cs失败，ps成功处理
-  21.日    期   : 2014年9月30日
-      作    者   : z00161729
-      修改内容   : DTS2014073003377: attach成功网络重新分配了ptmsi后通过nas comm info通知接入层的ptmsi是老的，导致后续ps service请求被#10拒绝
-  22.日    期   : 2014年12月17日
-     作    者   : b00269685
-     修改内容   : 在Rau成功后停止3314定时器
-  23.日    期   : 2015年6月5日
-     作    者   : z00161729
-     修改内容   : 24008 23122 R11 CR升级项目修改
-*******************************************************************************/
 VOS_VOID Gmm_RcvRoutingAreaUpdateAcceptMsg(
                                        NAS_MSG_FOR_PCLINT_STRU *pMsg
                                        )
@@ -4603,14 +3345,12 @@ VOS_VOID Gmm_RcvRoutingAreaUpdateAcceptMsg(
 
     Gmm_RoutingAreaUpdateResolveIe(&RauAcceptIe, pMsg);                         /* 调用函数解析RAU ACCEPT消息的IE           */
     NAS_Gmm_SaveRauAcceptGmmCause(pMsg, &RauAcceptIe);
-    /* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-14, begin */
     /*RAU 成功，更新Drx参数携带状态*/
     NAS_MML_SetPsRegContainDrx(g_GmmGlobalCtrl.UeInfo.enLatestAttachOrRauContainDrx);
 
     /* 可维可测增加消息打印 */
     NAS_GMM_LogPsRegContainDrxInfo(g_GmmGlobalCtrl.UeInfo.enLatestAttachOrRauContainDrx);
 
-    /* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-14, end */
 
     if (GMM_RAU_ACCEPT_IE_EMERGENCY_NUMBER_LIST_FLG
         == (RauAcceptIe.ulOptionalIeMask
@@ -4656,17 +3396,13 @@ VOS_VOID Gmm_RcvRoutingAreaUpdateAcceptMsg(
     {
     }
 
-    /* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-24, begin */
     /* report network feature information in UMTS. According to VoLTE SRS document,
      * In utran network, the related capability information reported is not supported
      * now.
      */
-    /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2014-01-13, begin */
     NAS_GMM_SndMmcNetworkCapabilityInfoInd(GMM_MMC_NW_EMC_BS_NOT_SUPPORTED,
                                            NAS_MML_NW_IMS_VOICE_NOT_SUPPORTED,
                                            GMM_MMC_LTE_CS_CAPBILITY_NOT_SUPPORTED);
-    /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2014-01-13, end */
-    /* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-24, end */
 
 
     Gmm_TimerStop(GMM_TIMER_T3330);                                             /* 停止Timer3330                            */
@@ -4761,80 +3497,7 @@ VOS_VOID Gmm_RcvRoutingAreaUpdateAcceptMsg(
     pstAuthRejInfo->ucHplmnPsAuthRejCounter = 0;
     return;
 }
-/*******************************************************************************
-  Module   : Gmm_SndRoutingAreaUpdateReq
-  Function : 发送RAU REQUEST
-  Input    : VOS_UINT8 ucUpdataType         发送RAU REQUEST的类型
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1. 张志勇  2003.12.09  新规作成
-    2.日    期   : 2006年9月13日
-      作    者   : liurui id:40632
-      修改内容   : 根据问题单号：A32D05874
-    3.日    期   : 2009年01月03日
-      作    者   : l65478
-      修改内容   : 根据问题单号：AT2D07726,没有通知LLC加密算法
-    4.日    期    : 2009年03月18日
-      作    者    : l65478
-      修改内容    : 根据问题单号：AT2D08671,数传状态下，W出服务区后，切到G，数传恢复失败，因为GMM没有配置LL加密算法
-    5.日    期   : 2009年05月23日
-      作    者   : L65478
-      修改内容   : 问题单号:AT2D06770,RAU失败，因为GRM建链的原因是DATA，实际应该是信令
-    6.日    期   : 2009年06月30日
-      作    者   : l65478
-      修改内容   : 问题单：AT2D12655,增加清除LLC数据类型的处理
-    7.日    期   : 2010年9月09日
-      作    者   : l65478
-      修改内容   : DTS2010090302562,PDP激活过程中发生重选，PDP激活事件比标杆慢
-    8.日    期   : 2011年01月07日
-      作    者   : A00165503
-      修改内容   : 问题单号：DTS2011010703265，GPRS小区PDP激活，重选至GSM ONLY小
-                   区下PDP去激活，重选回原GPRS小区后第一次PDP激活失败
-    9.日    期   : 2011年04月25日
-      作    者   : f00179208
-      修改内容   : 问题单号：DTS2011042501657，MTS网络下，3G与2G相同LAI和RAI，异系统重选
-                   时，概率性出现RAU失败，导致PDP去激活
-   10.日     期  : 2011年4月29日
-      作    者   : c00173809
-      修改内容   : DTS2011042804013,UE在网络模式I下,通过设置W单模搜网到W下相同RAI
-                   的小区,先在W下发起电话,然后PDP激活,然后释放CS电话,UE进行的联合RAU
-                   是通过EST_REQ而不是通过DATE_REQ发送的.
-   11.日     期  : 2011年9月26日
-      作    者   : c00173809
-      修改内容   : DTS2011092001088,GCF 44.2.2.2.4测试失败
-   16.日    期   : 2012年2月15日
-      作    者   : w00167002
-      修改内容   : V7R1C50 CSFB&PPAC&ETWS&ISR:调整，若当前存在CSFB业务标志，则只做RAU
-   17.日    期   : 2012年2月15日
-      作    者   : w00166186
-      修改内容   : CSFB&PPAC&ETWS&ISR 开发
-   18.日    期   : 2012年4月17日
-     作    者   : z00161729
-     修改内容  : DTS2012041402264：L小区下发起CS语音业务，通过重定向CS Fallback到W小区。激活PDP后释放CS语音，未上系统消息，UE不会发起联合RAU
-   12.日     期  : 2012年5月17日
-      作    者   : w00166186
-      修改内容   : DTS2012051205814,L->G重选，RAU概率失败
-   13.日    期   : 2012年06月8日
-      作    者   : z00161729
-      修改内容  : DTS2012052103216:网络模式I时再g_GmmGlobalCtrl.ucSpecProc为GMM_RAU_NORMAL_CS_TRANS
-   14.日    期   : 2012年07月27日
-      作    者   : z40661
-      修改内容  : DTS2012071603415:L2U 重定向在U建链的原因填的是interrat cell reselection，标杆填的是registration，影响IOT
-   15.日    期   : 2012年10月22日
-      作    者   : t00212959
-      修改内容   : DTS2012101907218:NAS向接入层发送RAU请求时，Establishment cause按照协议写为Registration
-   16.日    期   : 2012年10月25日
-      作    者   : t00212959
-      修改内容   : DTS2012102403382,RAU后,清除释放原因值,否则有可能会多做RAU
-   17.日    期   : 2013年3月30日
-      作    者   : l00167671
-      修改内容   : 主动上报AT命令控制下移至C核
-   18.日    期   : 2015年6月5日
-      作    者   : z00161729
-      修改内容   : 24008 23122 R11 CR升级项目修改
-*******************************************************************************/
+
 VOS_VOID Gmm_SndRoutingAreaUpdateReq(
                                  VOS_UINT8 ucUpdataType                         /* 发送RAU REQUEST的类型                    */
                                  )
@@ -4902,9 +3565,7 @@ VOS_VOID Gmm_SndRoutingAreaUpdateReq(
         g_GmmRauCtrl.ucPeriodicRauFlg = GMM_FALSE;
     }
 
-    /* deleted by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
 
-    /* deleted by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
     GMM_CasFsmStateChangeTo(GMM_ROUTING_AREA_UPDATING_INITIATED);
 
@@ -5054,46 +3715,13 @@ VOS_VOID Gmm_SndRoutingAreaUpdateReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcStartReqInNull
- 功能描述  : 发送RAU REQUEST
- 输入参数  : ucUpdataType:发送RAU REQUEST的类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年3月19日
-    作    者   : luokaihui /l00167671
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月2日
-    作    者   : s46746
-    修改内容   : 从L异系统改变到GU后，没有指派加密密钥到GU接入层
-  3.日    期   : 2012年8月15日
-    作    者   : z00161729
-    修改内容   : DCM定制需求和遗留问题修改
-  4.日    期   :2013年8月29日
-    作    者   :z00161729
-    修改内容   :DTS2013082702039:syscfg不支持l或l disable时，gmm rau和attach不需携带ue network capability
-  5.日    期   :2013年11月19日
-    作    者   :l65478
-    修改内容   :DTS2013112003014在发起RAU时,错误的先通知LL恢复数传
-  6.日    期   : 2014年02月25日
-    作    者   : z00161729
-    修改内容   : DTS2014022206794:GCF 9.2.1.2.1b/9.2.3.2.3/9.2.1.2.1失败disable lte时rau需要从L获取安全上下文
-  7.日    期   : 2014年9月4日
-    作    者   : b00269685
-    修改内容   : DTS2014083001793:在给LL发送suspend前需要先判断是否有指派
-
-*****************************************************************************/
 
 VOS_VOID NAS_GMM_SndRoutingAreaUpdateReq(
     VOS_UINT8                           ucUpdataType
 )
 {
 #if (FEATURE_ON == FEATURE_LTE)
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, begin */
     VOS_UINT32                          ucIsSupportLteCapaFlg;
 
     VOS_UINT8                           ucLDisabledRauUseLSecuInfoFlag;
@@ -5126,7 +3754,6 @@ VOS_VOID NAS_GMM_SndRoutingAreaUpdateReq(
 
         return;
     }
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, end */
 
     if ((NAS_MML_TIN_TYPE_GUTI == NAS_MML_GetTinType())
      && (VOS_FALSE == gstGmmSuspendCtrl.ucGetLteSecContext)
@@ -5171,19 +3798,7 @@ VOS_VOID NAS_GMM_SndRoutingAreaUpdateReq(
 
 }
 
-/*******************************************************************************
-  Module   : Gmm_PeriodRoutingAreaUpdateType
-  Function : 填写周期性的RAU的类型
-  Input    : 无
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1.张志勇  2003.12.09  新规作成
-  2.日    期   : 2011年7月25日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-*******************************************************************************/
+
 VOS_VOID Gmm_PeriodRoutingAreaUpdateType(VOS_VOID)
 {
     if (VOS_TRUE == NAS_MML_GetSimCsRegStatus())
@@ -5225,47 +3840,7 @@ VOS_VOID Gmm_PeriodRoutingAreaUpdateType(VOS_VOID)
     }
     return;
 }
-/*******************************************************************************
-  Module   : Gmm_RoutingAreaUpdateInitiate
-  Function : RAU功能的入口函数
-  Input    : VOS_UINT8 ucUpdataType  RAU的类型
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1.张志勇  2003.12.09  新规作成
-  2.日    期   : 2006年11月8日
-    作    者   : s46746
-    修改内容   : 问题单号:A32D06867
-  3.日    期   : 2010年11月6日
-    作    者   : w00166186
-    修改内容   : 问题单号:DTS2010110500511,G->W后发起多余RAU
-  4.日    期   : 2011年7月25日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-  5.日    期   : 2012年2月15日
-    作    者   : w00167002
-    修改内容   : V7R1C50 CSFB&PPAC&ETWS&ISR:调整，若当前存在CSFB业务标志，则只做RAU
-  6.日    期   : 2012年2月15日
-    作    者   : w00166186
-    修改内容   : CSFB&PPAC&ETWS&ISR 开发
-  7.日    期   : 2012年6月4日
-    作    者   : z00161729
-    修改内容   : V7R1C50 GUL背景搜修改，L->G的CCO,发起rau类型为GMM_COMBINED_RALAU_WITH_IMSI_ATTACH，
-                 网侧无响应，T3330超时，发起rau类型为GMM_COMBINED_RALA_UPDATING不一致
-  8.日    期   : 2012年06月08日
-    作    者   : L65478
-    修改内容   : DTS2012060805375:在#13,#15时到GU下发起的RAU类型错误
-  9.日    期   : 2013年2月4日
-    作    者   : w00176964
-    修改内容   : DTS2011022802215:CS ONLY,网络模式I下也进行联合注册
- 10.日    期   : 2014年6月17日
-    作    者   : s00217060
-    修改内容   : DTS2014061003286:RAU发起后，清除3311定时器超时标志
- 11.日    期   : 2015年1月5日
-    作    者   : z00161729
-    修改内容   : AT&T 支持DAM特性修改
-*******************************************************************************/
+
 VOS_VOID Gmm_RoutingAreaUpdateInitiate(
                                    VOS_UINT8 ucUpdataType                       /* RAU的类型                                */
                                    )
@@ -5418,25 +3993,7 @@ VOS_VOID Gmm_RoutingAreaUpdateInitiate(
     return;
 }
 
-/*******************************************************************************
-  Module   : Gmm_RauAccept_Mandatory_Ie_Check
-  Function : 对Rau Accept消息中的必选项进行检查
-  Input    : NAS_MSG_STRU *pMsg
-  Output   : 无
-  NOTE     : 无
-  Return   : GMM_SUCCESS   检查成功
-             GMM_FAILURE   检查失败
-  History  :
-    1.日    期 : 2009年06月10日
-      作    者 : x00115505
-      修改内容 : Created
-    2.日    期 : 2011年08月01日
-      作    者 : k66584
-      修改内容 : 问题单号:DTS2011070804524, 删除对RAI判断部分代码
-    3.日    期 : 2012年03月21日
-      作    者 : z00161729
-      修改内容 : 支持ISR特性修改
-*******************************************************************************/
+
 VOS_UINT8 Gmm_RauAccept_Mandatory_Ie_Check(NAS_MSG_FOR_PCLINT_STRU *pMsg,
                                                   VOS_UINT8    *pNeedReturn)
 {
@@ -5483,23 +4040,7 @@ VOS_UINT8 Gmm_RauAccept_Mandatory_Ie_Check(NAS_MSG_FOR_PCLINT_STRU *pMsg,
 
     return GMM_SUCCESS;
 }
-/*******************************************************************************
-  Module   : Gmm_IeCheck_Npdu_Numbers
-  Function : 对IE List of Receive N-PDU Numbers进行检查
-  Input    : NAS_MSG_STRU *pMsg
-             VOS_UINT8     ucIeOffset
-  Output   : 无
-  NOTE     : 无
-  Return   : GMM_SUCCESS   检查成功
-             GMM_FAILURE   检查失败
-  History  :
-    1.日    期 : 2009年06月10日
-      作    者 : x00115505
-      修改内容 : Created
-    2.日    期 : 2013年09月10日
-      作    者 : l65478
-      修改内容 : DTS2013090202323:可选IE的检查错误时不返回FAIL
-*******************************************************************************/
+
 VOS_UINT8 Gmm_IeCheck_Npdu_Numbers(NAS_MSG_FOR_PCLINT_STRU *pMsg,
                                                   VOS_UINT8    ucIeOffset,
                                                   VOS_UINT8    *pNeedReturn)
@@ -5520,27 +4061,7 @@ VOS_UINT8 Gmm_IeCheck_Npdu_Numbers(NAS_MSG_FOR_PCLINT_STRU *pMsg,
 
     return GMM_SUCCESS;
 }
-/*******************************************************************************
-  Module   : Gmm_IECheck_RauAccept
-  Function : 对空口消息Routing area update accept的IE进行检查
-  Input    : NAS_MSG_STRU *pMsg
-  Output   : 无
-  NOTE     : 无
-  Return   : GMM_SUCCESS   检查成功
-             GMM_FAILURE   检查失败
-  History  :
-    1. 张志勇  2005.01.27  新规作成
-    2. 张志勇  2005.04.02  NAS_IT_BUG_044对应
-    3.日    期   : 2007年07月05日
-      作    者   : luojian id:60022475
-      修改内容   : 根据问题单号：A32D11970,检查消息IE，对spare位不做检查.
-    4.日    期   : 2013年09月10日
-      作    者   : l65478
-      修改内容   : DTS2013090202323:可选IE的检查错误时不返回FAIL
-    5.日    期   : 2015年6月8日
-      作    者   : z00161729
-      修改内容   : 24008 23122 R11 CR升级项目修改
-*******************************************************************************/
+
 VOS_UINT8 Gmm_IECheck_RauAccept(NAS_MSG_FOR_PCLINT_STRU *pMsg)
 {
     VOS_UINT8   ucIeOffset = GMM_MSG_LEN_RAU_ACCEPT;                            /* 定义临时变量存储存储IE的偏移量           */
@@ -5684,38 +4205,7 @@ VOS_UINT8 Gmm_IECheck_RauAccept(NAS_MSG_FOR_PCLINT_STRU *pMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : Gmm_RoutingAreaUpdateInitiateWithReEstRR
- 功能描述  : 收到RR连接释放，携带原因值为16，要求重建RR连接时的RAU启动函数
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2006年3月22日
-   作    者   : liuyang id:48197
-   修改内容   : 新生成函数，问题单号:A32D01882
- 2.日    期   : 2007年12月15日
-   作    者   : l00107747
-   修改内容   : 问题单号:A32D13897
- 3.日    期   : 2010年11月29日
-   作    者   : z00161729
-   修改内容   : 问题单号:DTS2010112900029:W下RAU过程中迁移失败，网侧进行DSCR,UE重新驻留，进行RAU结束后又立即发起了RAU
- 4.日    期   : 2011年7月25日
-   作    者   : h44270
-   修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
- 5.日    期   : 2011年8月26日
-   作    者   : c00173809
-   修改内容   : 问题单号:DTS2011082500573,在PS业务过程中，RR连接异常释放，原因为rRC_REL_CAUSE_RR_DRIECT_SIGN_CONN_EST
-                 然后驻留在不同RAI的小区，RAU成功后无法拨打CC电话，
- 5.日    期   : 2012年2月15日
-   作    者   : w00167002
-   修改内容   : V7R1C50 CSFB&PPAC&ETWS&ISR:调整，若当前存在CSFB业务标志，则只做RAU
- 6.日    期   : 2013年2月4日
-   作    者   : w00176964
-   修改内容   : DTS2011022802215:CS ONLY,网络模式I下也进行联合注册
-*****************************************************************************/
 VOS_VOID Gmm_RoutingAreaUpdateInitiateWithReEstRR()
 {
 
@@ -5823,25 +4313,7 @@ VOS_VOID Gmm_RoutingAreaUpdateInitiateWithReEstRR()
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : Gmm_SndRoutingAreaUpdateReqWithReEstRR
- 功能描述  : 在RR释放指示中带有重建RR连接的指示，发送RAU REQUEST,
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2006年3月22日
-    作    者   : liuyang id:48197
-    修改内容   : 新生成函数，问题单号:A32D01882
-  2.日    期   : 2006年9月13日
-    作    者   : liurui id:40632
-    修改内容   : 根据问题单号：A32D05874
-  3.日    期   : 2010年9月09日
-    作    者   : l65478
-    修改内容   : DTS2010090302562,PDP激活过程中发生重选，PDP激活事件比标杆慢
-*****************************************************************************/
 VOS_VOID Gmm_SndRoutingAreaUpdateReqWithReEstRR(
                                  VOS_UINT8 ucUpdataType                         /* 发送RAU REQUEST的类型                    */
                                  )
@@ -5926,22 +4398,7 @@ VOS_VOID Gmm_SndRoutingAreaUpdateReqWithReEstRR(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : GMM_RauFailureInterSys
- 功能描述  : 异系统切换后，RAU失败处理
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2006年5月6日
-    作    者   : s46746
-    修改内容   : 新生成函数
-  2.日    期   : 2010年7月21日
-    作    者   : s46746
-    修改内容   : 问题单号DTS2010072801975，异系统RAU失败后不需要再次进行连接释放处理
-*****************************************************************************/
 VOS_VOID GMM_RauFailureInterSys()
 {
     GMM_LOG_INFO("GMM_RauFailureInterSys:Gmm rau failure for intersystem change.");
@@ -5965,20 +4422,7 @@ VOS_VOID GMM_RauFailureInterSys()
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : GMM_RauSuccessInterSys
- 功能描述  : 异系统切换后，RAU成功处理
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2006年5月6日
-    作    者   : s46746
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID GMM_RauSuccessInterSys()
 {
     GMM_LOG_INFO("GMM_RauSuccessInterSys:Gmm rau success for intersystem change.");
@@ -5990,39 +4434,7 @@ VOS_VOID GMM_RauSuccessInterSys()
     GMM_ResumeSuccess();
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_ProcMmLuResult
- 功能描述  : 处理LU结果
- 输入参数  : VOS_VOID                            *pRcvMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年3月6日
-    作    者   : l65478
-    修改内容   : 新生成函数
-  2.日    期   : 2011年08月02日
-    作    者   : f00179208
-    修改内容   : 问题单号:DTS2011080200067,【沙特外场】手动列表搜网后选择漫游网络注册失败，改回自动模式发起HPLMN
-                 注册，发起CS注册，PS异常，拨号失败
-  3.日    期   : 2011年10月17日
-    作    者   : h44270
-    修改内容   : GUL NAS 2阶段，当GMM收到MM，注册原因值11，此时如果在HPLMN上，则
-                  GMM不处理MM的注册结果，仍然进行注册，不进入受限服务
-  4.日    期   : 2012年4月20日
-    作    者   : l00130025
-    修改内容   : DTS2012031502528，GMM GPRS Suspension状态没有处理LuRsltInd，
-                 W->G Rej 11->W原小区时,没有做Attach，导致后续SM业务失败
-  5.日    期  : 2012年08月24日
-    作    者  : m00217266
-    修改内容  : 修改Gmm_SndSmEstablishCnf接口，添加原因值，删除GMM_SaveErrCode，
-                添加NAS_GMM_SetAttach2DetachErrCode，保存导致Attach失败的原因值
-  6.日    期  : 2013年01月7日
-    作    者  : t00212959
-    修改内容  : DTS2013010907158:CS先被#11拒绝后，RAU被拒绝没有通知MMC
-*****************************************************************************/
 VOS_VOID NAS_GMM_ProcMmLuResult(
     VOS_VOID                           *pstRcvMsg
 )
@@ -6134,24 +4546,7 @@ VOS_VOID NAS_GMM_ProcMmLuResult(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_GetRoutingAreaUpdateType
- 功能描述  : 获取rau类型
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : rau 类型
- 调用函数  :
- 被调函数  :
-获取
- 修改历史      :
-  1.日    期   : 2013年7月22日
-    作    者   : z00161729
-    修改内容   : 新生成函数
 
-  2.日    期   : 2013年12月11日
-    作    者   : z00234330
-    修改内容   : dts2013121106833,降圈复杂度
-*****************************************************************************/
 VOS_UINT8 NAS_GMM_GetRoutingAreaUpdateType(VOS_VOID)
 {
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enCurRat;
@@ -6238,20 +4633,7 @@ VOS_UINT8 NAS_GMM_GetRoutingAreaUpdateType(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_Gmm_SaveRauAcceptGmmCause
- 功能描述  : 保存RAU accept中的gmm cause
- 输入参数  : GMM_MSG_RESOLVE_STRU  *pRauAcceptIe 指向GMM_MSG_RESOLVE_STRU
-             结构的指针
- 输出参数  : 无
- 返 回 值  : rau 类型
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2015年8月13日
-    作    者   : g00322017
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_VOID NAS_Gmm_SaveRauAcceptGmmCause(
     NAS_MSG_FOR_PCLINT_STRU            *pMsg,
     GMM_MSG_RESOLVE_STRU               *pstRauAcceptIe

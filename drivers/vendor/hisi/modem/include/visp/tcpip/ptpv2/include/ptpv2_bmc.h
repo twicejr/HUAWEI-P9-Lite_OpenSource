@@ -100,7 +100,6 @@ VOID PTPV2_PPI_PassiveRole(ULONG ulCmd, PTPV2_PORT_S* pstPortInfo);
     || (g_pstPtpGlobalInfo->stCfgDefaultDs.ucClass2 == clkclass)\
     || (g_pstPtpGlobalInfo->stCfgDefaultDs.ucClass3 == clkclass))\
 
-/*Add by heyijun 00218462 for AR-IP-PTP.001 支持PTSF配置参与选源, 2014-11 */
 /*是否有PTSF*/
 #define PTPV2_IS_FOREMASTER_GOT_PTSF(pstForeignMaster) (0 != pstForeignMaster->ulPtsfSync)
 

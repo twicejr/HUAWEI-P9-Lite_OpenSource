@@ -128,14 +128,7 @@ VOS_VOID NAS_EMM_SndLppStartInd(  VOS_VOID )
     NAS_LMM_SEND_MSG(pstEmmLppStartInd);
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SndLppStopInd
- Description     : 通知LPP系统关机
- Input           :
- Output          : None
- Return          : VOS_VOID
- History         : lifuxin  00253982   2015-08-026  Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_EMM_SndLppStopInd(  VOS_VOID )
 {
     LMM_LPP_STOP_IND_STRU               *pstEmmLppStopInd = NAS_EMM_NULL_PTR;
@@ -177,19 +170,7 @@ VOS_VOID NAS_EMM_SndLppCnf
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SomeStateRcvLppMsgCommProc
- Description     :
-                   REG.NORMAL_SERVICE
-                   REG.ATTEMPTING_TO_UPDATE_MM
- Input           : ulMsgId------------------消息ID
-                   ulOpId-------------------OPID
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lifuxin 00253982      2015-08-01  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_SomeStateRcvLppMsgCommProc
 (
     VOS_UINT32                          ulMsgId,
@@ -541,15 +522,7 @@ VOS_VOID NAS_EMM_SendMrrcDataReq_UplinkGenericNasTransport
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SndUplinkGenericTransportSuccProc
- Description     : UplinkGenericTransport发送成功的处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         : lifuxin  00253982   2015-07-17  Draft Enact
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_SndUplinkGenericTransportSuccProc(VOS_VOID* pMsg)
 {
     LRRC_LMM_DATA_CNF_STRU              *pstRrcMmDataCnf    = NAS_EMM_NULL_PTR;
@@ -578,15 +551,7 @@ VOS_UINT32 NAS_EMM_SndUplinkGenericTransportSuccProc(VOS_VOID* pMsg)
     return NAS_EMM_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SndUplinkGenericTransportFailProc
- Description     : Uplink Generic Transport发送失败的处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         : lifuxin  00253982   2015-03-12  Draft Enact
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_SndUplinkGenericTransportFailProc(VOS_VOID* pMsg, VOS_UINT32 *pulIsDelBuff)
 {
     LRRC_LMM_DATA_CNF_STRU              *pstRrcMmDataCnf    = NAS_EMM_NULL_PTR;
@@ -653,14 +618,7 @@ VOS_UINT32 NAS_EMM_SndUplinkGenericTransportFailProc(VOS_VOID* pMsg, VOS_UINT32 
     return NAS_EMM_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SendLppCellChangeInd
- Description     : 当LRRC驻留的物理小区ID发生变化的时候，发送给LPP
- Input           : None
- Output          : None
- Return          : VOS_VOID
- History         : lifuxin  00253982   2015-07-16  Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_EMM_SendLppCellChangeInd
 (
     VOS_UINT32          ulCellId,
@@ -703,14 +661,7 @@ VOS_VOID NAS_EMM_SendLppCellChangeInd
     NAS_LMM_SEND_MSG(pstEmmLppCellChangeInd);
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SendLppRelInd
- Description     : 当LRRC释放链路之后，也需要透传给LPP，方便起测量业务的连续性
- Input           : None
- Output          : None
- Return          : VOS_VOID
- History         : lifuxin  00253982   2015-07-16  Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_EMM_SendLppRelInd()
 {
     LMM_LPP_REL_IND_STRU                *pstEmmLppRelInd = NAS_EMM_NULL_PTR;

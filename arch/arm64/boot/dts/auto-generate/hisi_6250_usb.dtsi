@@ -1,0 +1,26 @@
+
+
+  /{
+		hisi_usb2phy:usb@fe000000 {
+                          compatible = "hisilicon,hisi-usb2phy";
+                          reg = <0x0 0xfe000000 0x0 0x100000>;
+                };//address is not right,the phy address would be given by chenliang
+
+		hisi_usb:hisi_usb@ff100000 {
+			compatible = "hisilicon,hi6250-usb-otg";
+			reg = <0x0 0xff100000 0x0 0x40000>;
+			interrupts = <0 159 4>;
+			interrupt-names = "irq";
+			otgdebugsubsys-supply = <&usbotg>;
+			eyePattern = <0x01ee66e7>;
+			bc_again_flag = <1>;
+
+			clocks = <&clk_gate_abb_usb &hclk_gate_usb2otg>;
+			clock-names = "clk_abb_192", "hclk_usb2otg";
+		};
+
+		usb_otg_ahbif@ff200000 {
+			compatible = "hisilicon,usb-otg-ahbif";
+			reg = <0x0 0xff200000 0x0 0x40000>;
+		};
+  };

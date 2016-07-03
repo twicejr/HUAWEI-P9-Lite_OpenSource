@@ -5,38 +5,7 @@ p+25Dla32ZW7omB5iYtHEGPqMDW7TpB3q4yvDckVri1GoBL4gKI3k0M86wMC5hMD5fQLRyjt
 hU2r34ZLfiqc2ejWRk2Iedq639isOkVz9qClVDwndCHH6Ikgf8vCX52dIFe0mIFdXgETYijs
 IUfTizf5IPt+qq3nqKDPkGgiDN6l8GBZbw42bpRWFOXdUQtFXgvFdhP37y/LMA==*/
 /*--------------------------------------------------------------------------------------------------------------------------*/
-/******************************************************************************
 
-  版权所有 (C), 2001-2011, 华为技术有限公司
-
-******************************************************************************
-    文 件 名   : avs_vfmw.c
-    版 本 号   : 初稿
-    作    者   : y62639
-    生成日期   : 2007年12月14日
-    最近修改   :
-    功能描述   : firmware file
-    修改历史   :
-    1.日    期   : 2007年12月14日
-    作    者   : y62639
-    修改内容   : 创建文件
-
-    2.日    期   : 2007年12月17日
-    作    者   : y62639
-    修改内容   : 加入AVS slice以上头解析函数
-
-    3.日    期   : 2007年12月20日
-    作    者   : y62639
-    修改内容   : 加入资源管理和解码框架函数
-
-    4.日    期   : 2008年1月11日
-    作    者   : y62639
-    修改内容   : 修改扩展头解析，加入扩展头和用户头入口函数
-
-    5.日    期   : 2008年5月7日
-    作    者   : y62639
-    修改内容   : 为EDA和FPGA准备
-******************************************************************************/
 
 #ifndef __AVS_C__
 #define __AVS_C__
@@ -179,23 +148,7 @@ do{\
 #define AVS_CLEARREFNUM do{pCodecInf->RefNum=0;}while(0)
 
 
-/*****************************************************************************
-函 数 名  : avs_u_v
-功能描述  : 从码流中取无符号数
-输入参数  : BS *pBs      
-SINT32 v     
-SINT8 *Name  
-输出参数  : 无
-返 回 值  : UINT32
-调用函数  : 
-被调函数  : 
 
-  修改历史      :
-  1.日    期   : 2008年1月9日
-  作    者   : y62639
-  修改内容   : 新生成函数
-  
-*****************************************************************************/
 UINT32 avs_u_v(BS *pBs,SINT32 v, SINT8 *Name)
 {
     UINT32 Code;
@@ -207,23 +160,7 @@ UINT32 avs_u_v(BS *pBs,SINT32 v, SINT8 *Name)
 }
 
 
-/*****************************************************************************
-函 数 名  : f_v
-功能描述  : 从码流中取固定值
-输入参数  : BS *pBs      
-SINT32 v     
-SINT8 *Name  
-输出参数  : 无
-返 回 值  : UINT32
-调用函数  : 
-被调函数  : 
 
-  修改历史      :
-  1.日    期   : 2008年1月9日
-  作    者   : y62639
-  修改内容   : 新生成函数
-  
-*****************************************************************************/
 UINT32 avs_f_v(BS *pBs,SINT32 v, SINT8 *Name)
 {
     UINT32 Code;
@@ -235,22 +172,7 @@ UINT32 avs_f_v(BS *pBs,SINT32 v, SINT8 *Name)
 }
 
 
-/*****************************************************************************
-函 数 名  : avs_ue_v
-功能描述  : 解0 阶无符号哥伦布码
-输入参数  : BS *pBs  
-SINT8 *Name
-输出参数  : 无
-返 回 值  : UINT32
-调用函数  : 
-被调函数  : 
 
-  修改历史      :
-  1.日    期   : 2007年12月17日
-  作    者   : y62639
-  修改内容   : 新生成函数
-  
-*****************************************************************************/
 UINT32 avs_ue_v(BS *pBs, SINT8 *Name)
 {
     UINT32 NumBits, tmpbits;
@@ -280,22 +202,7 @@ UINT32 avs_ue_v(BS *pBs, SINT8 *Name)
 }
 
 
-/*****************************************************************************
-函 数 名  : se_v
-功能描述  : 解0 阶有符号哥伦布码
-输入参数  : BS *pBs  
-SINT8 *Name
-输出参数  : 无
-返 回 值  : SINT32
-调用函数  : 
-被调函数  : 
 
-  修改历史      :
-  1.日    期   : 2007年12月17日
-  作    者   : y62639
-  修改内容   : 新生成函数
-  
-*****************************************************************************/
 SINT32 avs_se_v(BS *pBs, SINT8 *Name)
 { 
     UINT32 NumBits, tmpbits;
@@ -329,22 +236,7 @@ SINT32 avs_se_v(BS *pBs, SINT8 *Name)
 }
 
 
-/*****************************************************************************
-函 数 名  : AVS_ParseHeader
-功能描述  : 解析AVS slice以上层的语法
-输入参数  : AVS_CODECINF *pCodecInf
-AVS_SYNTAX *pSyntax
-输出参数  : 无
-返 回 值  : SINT32
-调用函数  :
-被调函数  :
 
-  修改历史      :
-  1.日    期   : 2007年12月17日
-  作    者   : y62639
-  修改内容   : 新生成函数
-
-*****************************************************************************/
 SINT32 AVS_ParseHeader(AVS_CTX_S *pCtx)
 {
     UINT32 Code;
@@ -538,24 +430,7 @@ SINT32 AVS_ParseHeader(AVS_CTX_S *pCtx)
 }
 
 
-/*****************************************************************************
-函 数 名  : AVS_next_start_code
-功能描述  : 在AVS码流中搜索下一个起始码
-输入参数  : BS *pBs
-输出参数  : 无
-返 回 值  : SINT32
-调用函数  :
-被调函数  :
 
-  修改历史      :
-  1.日    期   : 2007年12月14日
-  作    者   : y62639
-  修改内容   : 新生成函数
-
-    2.日    期   : 2007年12月17日
-    作    者   : y62639
-    修改内容   : 暂时屏蔽stuffing的值检查
-*****************************************************************************/
 SINT32 AVS_next_start_code(BS *pBs)
 {
     SINT32 i, RemainByte;
@@ -577,22 +452,7 @@ SINT32 AVS_next_start_code(BS *pBs)
 }
 
 
-/*****************************************************************************
-函 数 名  : AVS_sequence_header
-功能描述  : 解AVS 序列头
-输入参数  : AVS_CODECINF *pCodecInf
-AVS_SYNTAX *pSyntax
-输出参数  : 无
-返 回 值  : SINT32
-调用函数  :
-被调函数  :
 
-  修改历史      :
-  1.日    期   : 2007年12月17日
-  作    者   : y62639
-  修改内容   : 新生成函数
-
-*****************************************************************************/
 SINT32 AVS_sequence_header(AVS_CTX_S *pCtx, AVS_SYNTAX *pSyntax)
 {
     AVS_CODECINF *pCodecInf = &pCtx->CodecInfo;
@@ -640,22 +500,7 @@ SINT32 AVS_sequence_header(AVS_CTX_S *pCtx, AVS_SYNTAX *pSyntax)
 }
 
 
-/*****************************************************************************
-函 数 名  : AVS_i_picture_header
-功能描述  : 解AVS I图图像头
-输入参数  : AVS_CODECINF *pCodecInf
-AVS_SYNTAX *pSyntax
-输出参数  : 无
-返 回 值  : SINT32
-调用函数  :
-被调函数  :
 
-  修改历史      :
-  1.日    期   : 2007年12月17日
-  作    者   : y62639
-  修改内容   : 新生成函数
-
-*****************************************************************************/
 SINT32 AVS_i_picture_header(AVS_CODECINF *pCodecInf, AVS_SYNTAX *pSyntax)
 {
     SINT32 i;
@@ -767,22 +612,7 @@ SINT32 AVS_i_picture_header(AVS_CODECINF *pCodecInf, AVS_SYNTAX *pSyntax)
 }
 
 
-/*****************************************************************************
-函 数 名  : AVS_pb_picture_header
-功能描述  : 解AVS pb 图图像头
-输入参数  : AVS_CODECINF *pCodecInf
-AVS_SYNTAX *pSyntax
-输出参数  : 无
-返 回 值  : SINT32
-调用函数  :
-被调函数  :
 
-  修改历史      :
-  1.日    期   : 2007年12月17日
-  作    者   : y62639
-  修改内容   : 新生成函数
-
-*****************************************************************************/
 SINT32 AVS_pb_picture_header(AVS_CODECINF *pCodecInf, AVS_SYNTAX *pSyntax)
 {
     UINT32 i;
@@ -919,22 +749,7 @@ SINT32 AVS_pb_picture_header(AVS_CODECINF *pCodecInf, AVS_SYNTAX *pSyntax)
 
 
 UINT8  g_tmp[MAX_USRDAT_SIZE];
-/*****************************************************************************
-函 数 名  : AVS_user_data
-功能描述  : 解AVS 的user data
-输入参数  : AVS_CODECINF *pCodecInf
-AVS_SYNTAX *pSyntax
-输出参数  : 无
-返 回 值  : SINT32
-调用函数  :
-被调函数  :
 
-  修改历史      :
-  1.日    期   : 2007年12月17日
-  作    者   : y62639
-  修改内容   : 新生成函数
-
-*****************************************************************************/
 SINT32 AVS_user_data(AVS_CTX_S *pCtx, SINT32 ExtFrm)
 {
     BS *pBs;
@@ -1043,22 +858,7 @@ SINT32 AVS_user_data(AVS_CTX_S *pCtx, SINT32 ExtFrm)
 }
 
 
-/*****************************************************************************
-函 数 名  : AVS_extension
-功能描述  : 解AVS 扩展头
-输入参数  : AVS_CODECINF *pCodecInf
-AVS_SYNTAX *pSyntax
-输出参数  : 无
-返 回 值  : SINT32
-调用函数  :
-被调函数  :
 
-  修改历史      :
-  1.日    期   : 2007年12月17日
-  作    者   : y62639
-  修改内容   : 新生成函数
-
-*****************************************************************************/
 SINT32 AVS_extension(AVS_CODECINF *pCodecInf, AVS_SYNTAX *pSyntax)
 {
     UINT32 Code;
@@ -1090,22 +890,7 @@ SINT32 AVS_extension(AVS_CODECINF *pCodecInf, AVS_SYNTAX *pSyntax)
 }
 
 
-/*****************************************************************************
-函 数 名  : AVS_extension_and_userdata
-功能描述  : 扩展头和用户数据头入口函数
-输入参数  : AVS_CODECINF *pCodecInf
-AVS_SYNTAX *pSyntax
-输出参数  : 无
-返 回 值  : SINT32
-调用函数  :
-被调函数  :
 
-  修改历史      :
-  1.日    期   : 2008年1月11日
-  作    者   : y62639
-  修改内容   : 新生成函数
-
-*****************************************************************************/
 SINT32 AVS_extension_and_userdata(AVS_CTX_S *pCtx, SINT32 ExtFrm)
 {
     BS *pBs;
@@ -1144,22 +929,7 @@ SINT32 AVS_extension_and_userdata(AVS_CTX_S *pCtx, SINT32 ExtFrm)
 }
 
 
-/*****************************************************************************
-函 数 名  : AVS_sequence_display_extension
-功能描述  : 解AVS 序列显示扩展
-输入参数  : AVS_CODECINF *pCodecInf
-AVS_SYNTAX *pSyntax
-输出参数  : 无
-返 回 值  : SINT32
-调用函数  :
-被调函数  :
 
-  修改历史      :
-  1.日    期   : 2007年12月17日
-  作    者   : y62639
-  修改内容   : 新生成函数
-
-*****************************************************************************/
 SINT32 AVS_sequence_display_extension(AVS_CODECINF *pCodecInf, AVS_SYNTAX *pSyntax)
 {
     BS *pBs = pCodecInf->pBs;
@@ -1186,22 +956,7 @@ SINT32 AVS_sequence_display_extension(AVS_CODECINF *pCodecInf, AVS_SYNTAX *pSynt
 }
 
 
-/*****************************************************************************
-函 数 名  : AVS_copyright_extension
-功能描述  : 解AVS 版权扩展
-输入参数  : AVS_CODECINF *pCodecInf
-AVS_SYNTAX *pSyntax
-输出参数  : 无
-返 回 值  : SINT32
-调用函数  :
-被调函数  :
 
-  修改历史      :
-  1.日    期   : 2007年12月17日
-  作    者   : y62639
-  修改内容   : 新生成函数
-
-*****************************************************************************/
 SINT32 AVS_copyright_extension(AVS_CODECINF *pCodecInf, AVS_SYNTAX *pSyntax)
 {
     BS *pBs = pCodecInf->pBs;
@@ -1224,22 +979,7 @@ SINT32 AVS_copyright_extension(AVS_CODECINF *pCodecInf, AVS_SYNTAX *pSyntax)
 }
 
 
-/*****************************************************************************
-函 数 名  : AVS_camera_parameters_extension
-功能描述  : 解AVS 摄像机参数扩展
-输入参数  : AVS_CODECINF *pCodecInf
-AVS_SYNTAX *pSyntax
-输出参数  : 无
-返 回 值  : SINT32
-调用函数  :
-被调函数  :
 
-  修改历史      :
-  1.日    期   : 2007年12月17日
-  作    者   : y62639
-  修改内容   : 新生成函数
-
-*****************************************************************************/
 SINT32 AVS_camera_parameters_extension(AVS_CODECINF *pCodecInf, AVS_SYNTAX *pSyntax)
 {
     BS *pBs = pCodecInf->pBs;
@@ -1288,22 +1028,7 @@ SINT32 AVS_camera_parameters_extension(AVS_CODECINF *pCodecInf, AVS_SYNTAX *pSyn
 }
 
 
-/*****************************************************************************
-函 数 名  : AVS_picture_display_extension
-功能描述  : 解AVS图像显示扩展
-输入参数  : AVS_CODECINF *pCodecInf
-AVS_SYNTAX *pSyntax
-输出参数  : 无
-返 回 值  : SINT32
-调用函数  :
-被调函数  :
 
-  修改历史      :
-  1.日    期   : 2007年12月17日
-  作    者   : y62639
-  修改内容   : 新生成函数
-
-*****************************************************************************/
 SINT32 AVS_picture_display_extension(AVS_CODECINF *pCodecInf, AVS_SYNTAX *pSyntax)
 {
     BS *pBs = pCodecInf->pBs;
@@ -1362,22 +1087,7 @@ SINT32 AVS_picture_display_extension(AVS_CODECINF *pCodecInf, AVS_SYNTAX *pSynta
 }
 
 
-/*****************************************************************************
-函 数 名  : AVS_DecodeArbiter
-功能描述  : 对完成头解析的码流进行是否可以解码进行判定
-输入参数  : AVS_CODECINF *pCodecInf
-AVS_SYNTAX *pSyntax
-输出参数  : 无
-返 回 值  : SINT32
-调用函数  :
-被调函数  :
 
-  修改历史      :
-  1.日    期   : 2007年12月19日
-  作    者   : y62639
-  修改内容   : 新生成函数
-
-*****************************************************************************/
 SINT32 AVS_DecodeArbiter(AVS_CTX_S *pCtx)
 {
     SINT32  DecMode;
@@ -1465,21 +1175,7 @@ SINT32 AVS_DecodeArbiter(AVS_CTX_S *pCtx)
 }
 
 
-/*****************************************************************************
-函 数 名  : AVS_AllocateVHB
-功能描述  : 分配VHB帧存
-输入参数  : AVS_CODECINF *pCodecInf
-输出参数  : 无
-返 回 值  : SINT32
-调用函数  :
-被调函数  :
 
-  修改历史      :
-  1.日    期   : 2007年12月19日
-  作    者   : y62639
-  修改内容   : 新生成函数
-
-*****************************************************************************/
 SINT32 AVS_AllocateVHB(AVS_CTX_S *pCtx)
 {
 	AVS_CODECINF pCodecInf = pCtx->CodecInfo;
@@ -1596,21 +1292,7 @@ SINT32 AVS_AllocateVHB(AVS_CTX_S *pCtx)
 }
 
 
-/*****************************************************************************
-函 数 名  : AVS_GetStreamInf
-功能描述  : 对码流信息信息进行检查和处理，生成解码所需要的各种码流和配置信息
-输入参数  : AVS_CODECINF *pCodecInf
-输出参数  : 无
-返 回 值  : SINT32
-调用函数  :
-被调函数  :
 
-  修改历史      :
-  1.日    期   : 2007年12月19日
-  作    者   : y62639
-  修改内容   : 新生成函数
-
-*****************************************************************************/
 SINT32 AVS_GetStreamInf(AVS_CTX_S *pCtx)
 {
 	UINT32 i;
@@ -1881,21 +1563,7 @@ SINT32 AVS_GetStreamInf(AVS_CTX_S *pCtx)
 }
 
 
-/*****************************************************************************
-函 数 名  : AVS_PrepareDecode
-功能描述  : 为开始解码整理码流信息和解码器资源
-输入参数  : AVS_CODECINF *pCodecInf
-输出参数  : 无
-返 回 值  : SINT32
-调用函数  :
-被调函数  :
 
-  修改历史      :
-  1.日    期   : 2007年12月20日
-  作    者   : y62639
-  修改内容   : 新生成函数
-
-*****************************************************************************/
 SINT32 AVS_PrepareDecode(AVS_CTX_S *pCtx)
 {
     SINT32 ret = AVS_FALSE;
@@ -1915,21 +1583,7 @@ SINT32 AVS_PrepareDecode(AVS_CTX_S *pCtx)
 }
 
 
-/*****************************************************************************
-函 数 名  : AVS_StartDecode
-功能描述  : 根据已知信息配置启动VDM
-输入参数  : AVS_CODECINF *pCodecInf
-输出参数  : 无
-返 回 值  : SINT32
-调用函数  :
-被调函数  :
 
-  修改历史      :
-  1.日    期   : 2007年12月20日
-  作    者   : y62639
-  修改内容   : 新生成函数
-
-*****************************************************************************/
 SINT32 AVS_StartDecode(AVS_CTX_S *pCtx)
 {
     SINT32 iCnt;
@@ -2137,21 +1791,7 @@ VOID AVS_SetImgFormat(AVS_CTX_S *pCtx)
 }
 
 
-/*****************************************************************************
-函 数 名  : AVS_GetImageBuffer
-功能描述  : 获取一个帧存空间
-输入参数  : AVS_CODECINF *pCodecInf
-输出参数  : 无
-返 回 值  : SINT32
-调用函数  :
-被调函数  :
 
-  修改历史      :
-  1.日    期   : 2007年12月20日
-  作    者   : y62639
-  修改内容   : 新生成函数
-
-*****************************************************************************/
 SINT32 AVS_GetImageBuffer(AVS_CTX_S *pCtx)
 {
     SINT32 ret = AVS_FALSE;
@@ -2209,22 +1849,7 @@ SINT32 AVS_GetImageBuffer(AVS_CTX_S *pCtx)
 
 }
 
-/*****************************************************************************
-函 数 名  : AVS_OutputOneFrame
-功能描述  : 输出重构图像
-输入参数  : FRAME_OBJ *pOutput
-AVS_CODECINF *pCodecInf
-输出参数  : 无
-返 回 值  : SINT32
-调用函数  :
-被调函数  :
 
-  修改历史      :
-  1.日    期   : 2007年12月20日
-  作    者   : y62639
-  修改内容   : 新生成函数
-
-*****************************************************************************/
 SINT32 AVS_OutputOneFrame(FRAME_OBJ *pOutput, AVS_CTX_S *pCtx)
 {
 	IMAGE *pImage = NULL;
@@ -2695,21 +2320,7 @@ SINT32 AVS_VerifyMemPara(VOID)
 }
 
 
-/*****************************************************************************
-函 数 名  : AVSDEC_Init
-功能描述  : 初始化AVS firmware
-输入参数  : VOID
-输出参数  : 无
-返 回 值  : SINT32
-调用函数  :
-被调函数  :
 
-  修改历史      :
-  1.日    期   : 2007年12月17日
-  作    者   : y62639
-  修改内容   : 新生成函数
-
-*****************************************************************************/
 SINT32 AVSDEC_Init(AVS_CTX_S *pCtx, SYNTAX_EXTRA_DATA_S *pstExtraData)
 {
     AVS_CODECINF *pAvsCodecInfo;
@@ -2758,21 +2369,7 @@ SINT32 AVSDEC_Init(AVS_CTX_S *pCtx, SYNTAX_EXTRA_DATA_S *pstExtraData)
 }
 
 
-/*****************************************************************************
-函 数 名  : AVSDEC_Destroy
-功能描述  : 销毁AVS firmware
-输入参数  : VOID
-输出参数  : 无
-返 回 值  : SINT32
-调用函数  :
-被调函数  :
 
-  修改历史      :
-  1.日    期   : 2007年12月17日
-  作    者   : y62639
-  修改内容   : 新生成函数
-
-*****************************************************************************/
 SINT32 AVSDEC_Destroy(AVS_CTX_S *pCtx)
 {
 
@@ -2780,21 +2377,7 @@ SINT32 AVSDEC_Destroy(AVS_CTX_S *pCtx)
 }
 
 
-/*****************************************************************************
-函 数 名  : AVSDEC_Decode
-功能描述  : 对一个AVS 帧或者场对进行解码
-输入参数  : STREAM_PARAM *p_Packet
-输出参数  : 无
-返 回 值  : SINT32
-调用函数  :
-被调函数  :
 
-  修改历史      :
-  1.日    期   : 2007年12月17日
-  作    者   : y62639
-  修改内容   : 新生成函数
-
-*****************************************************************************/
 SINT32 AVSDEC_Decode(AVS_CTX_S *pCtx, DEC_STREAM_PACKET_S *p_Packet)
 {
     SINT32 ret = AVS_TRUE;
@@ -2850,21 +2433,7 @@ SINT32 AVSDEC_Decode(AVS_CTX_S *pCtx, DEC_STREAM_PACKET_S *p_Packet)
 }
 
 
-/*****************************************************************************
-函 数 名  : AVSDEC_RecycleImage
-功能描述  : 回收一个已经显示的帧存
-输入参数  : UINT32 img_id
-输出参数  : 无
-返 回 值  : SINT32
-调用函数  :
-被调函数  :
 
-  修改历史      :
-  1.日    期   : 2007年12月17日
-  作    者   : y62639
-  修改内容   : 新生成函数
-
-*****************************************************************************/
 SINT32 AVSDEC_RecycleImage(AVS_CTX_S *pCtx, UINT32 img_id)
 {
     AVS_CODECINF  *pAvsCodecInfo;
@@ -3213,21 +2782,7 @@ SINT32 AVS_GetPacketState(AVS_CTX_S *pCtx)
 
     return ret;
 }
-/*****************************************************************************
- 函 数 名  : Avs_Vfmw_WQMatrix
- 功能描述  : 生成 加权量化矩阵
- 输入参数  : AVS_SEDINFO_S *pSedInfo
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月20日
-     作    者   :  y00226912
-     修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID  Avs_Vfmw_WQMatrix(AVS_SYNTAX *pSyntax)
 {
     UINT32 i, j, k;

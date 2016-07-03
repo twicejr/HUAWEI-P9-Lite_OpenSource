@@ -366,22 +366,7 @@ typedef struct
     CNAS_HSM_MNTN_MSG_ID_ENUM_UINT32    enMsgId;
 }CNAS_HSM_MNTN_LOG_BUFF_MSG_QUEUE_FULL_IND_STRU;
 
-/*****************************************************************************
- Structure Name    : CNAS_HSM_MNTN_LOG_SESSION_RECOVERY_JUDGE_INFO_IND_STRU
- Description       : structure of log session recovery judge related info
- 1.Date            : 2015-09-22
-   Author          : t00323010
-   Modification    : HSM MNTN(DTS2015092201636): Create
-2. Date            : 2015-10-10
-   Author          : w00351686
-   Modification    : HSM MNTN(DTS2015092201636): Modified the structure name
-3. Date            : 2015-10-13
-   Author          : y00307564
-   Modification    : DTS2015082403731: 增加换卡逻辑新增的ESN_MEID_ME和ppp an鉴权信息
-4. Date            : 2015-12-22
-   Author          : m00312079
-   Modification    : DTS2015120208895: 增加UE支持的版本信息
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* _H2ASN_Skip */

@@ -125,7 +125,6 @@ typedef struct tagMBufIp6PacketInfo
     下一跳的结构应该是IN6ADDR_S,但是因为头文件引用的关系,
     定义后将导致原有的文件无法编译通过,只能定义一个相同的结构代替
     */
-    /* Modified by z00208058/w00207740, U8定义冲突, 2012/5/7 */
     struct {
         UCHAR ucaddr[16];
     }stNextHopIpAddr;       /*下一跳的地址，从路由表中获得*/
@@ -278,7 +277,6 @@ typedef struct tagMBuf
     USHORT usIpv6SourcePort;        /*对TCP、UDP报文，是源端口号，对ICMP6报文是type*/
     USHORT usIpv6DestinationPort;   /*对TCP、UDP报文，是目的端口号，对ICMP6报文是code*/
     ULONG ulIpVersion;             /*ip version*/
-    /*Added by zhoushisong202096, 更改TCP重组队列, 2013/11/5 */ 
     struct tagMBuf * pstPrevMBuf;/*上一个mbuf， NULL表示无效，其他表示有效*/        
     UCHAR *pu8NetLayerHeader;    /* 指向报文的网络层首部 */
     ULONG ulReserved[4];           /*保留为以后使用*/

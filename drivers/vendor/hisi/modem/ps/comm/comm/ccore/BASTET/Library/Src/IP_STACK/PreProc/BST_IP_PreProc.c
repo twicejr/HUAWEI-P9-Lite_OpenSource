@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : BST_IP_PreProc.c
-  版 本 号   : 初稿
-  作    者   : d00173029
-  生成日期   : 2014年4月16日
-  最近修改   :
-  功能描述   : 这个文件定义了在数据包到达LwIP协议栈前的端口解析处理和流量统计工作
-  函数列表   :
-
-  修改历史   :
-  1.日    期 : 2014年04月16日
-    作    者 : d00173029
-    修改内容 : 创建文件
-******************************************************************************/
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -89,20 +72,7 @@ extern sys_mbox_t                       mbox;
    5 函数实现
 ******************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : BST_IP_PreprocTimerCb
- 功能描述  : 定时器超时回调函数
- 输入参数  : BST_OS_TIMERID_T ulTimerId
-             BST_VOID* pvArg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_IP_PreprocTimerCb( BST_OS_TIMERID_T ulTimerId, BST_VOID* pvArg )
 {
     if( ulTimerId != g_BstPreprocFreeTimer )
@@ -113,20 +83,7 @@ BST_VOID BST_IP_PreprocTimerCb( BST_OS_TIMERID_T ulTimerId, BST_VOID* pvArg )
     BST_IP_ClearAllPkt();
 }
 
-/*****************************************************************************
-函 数 名  :
-功能描述  :
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
 
-修改历史  :
-1.日期    :
-  作者    :
-  修改内容:
-*****************************************************************************/
 BST_VOID BST_IP_FdTimerCb( BST_OS_TIMERID_T ulTimerId, BST_VOID* pvArg )
 {
     BST_DRV_STRU                       *pAsDrvHandle;
@@ -145,19 +102,7 @@ BST_VOID BST_IP_FdTimerCb( BST_OS_TIMERID_T ulTimerId, BST_VOID* pvArg )
     BST_RLS_LOG( "Rubbish Proc Release RRC of 4G" );
 }
 
-/*****************************************************************************
- 函 数 名  : BST_IP_ApiInitPortPreproc
- 功能描述  : 初始化端口预处理接口
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_IP_ApiInitPortPreproc( BST_VOID )
 {
     BST_OS_LOCKCNT_T                    tThreadLockCnt;
@@ -180,20 +125,7 @@ BST_VOID BST_IP_ApiInitPortPreproc( BST_VOID )
     BST_OS_ThreadUnLock( tThreadLockCnt );
 }
 
-/*****************************************************************************
- 函 数 名  : BST_IP_ApiAddPort
- 功能描述  : 将端口添加到链表中
- 输入参数  : BST_IP_PROTOCOL_TYPE usProtocol 协议类型
-             BST_UINT16 usPortNum 端口号
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 /*lint -e438*/
 /*如果是长连接，那么必须在Connect之前添加端口*/
 BST_VOID *BST_IP_ApiAddPort( BST_IP_PROTOCOL_TYPE usProtocol, BST_UINT16 usPortNum )
@@ -265,20 +197,7 @@ BST_VOID *BST_IP_ApiAddPort( BST_IP_PROTOCOL_TYPE usProtocol, BST_UINT16 usPortN
     BST_DBG_LOG1("BST_IP_ApiAddPort success usPortNum:%u", usPortNum);
     return pstPortPreproc;
 }
-/*****************************************************************************
- 函 数 名  : BST_IP_ApiRmvPort
- 功能描述  : 将端口从链表删除
- 输入参数  : BST_IP_PROTOCOL_TYPE usProtocol 协议类型
-             BST_UINT16 usPortNum 端口号
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 /*lint -e438*/
 BST_VOID BST_IP_ApiRmvPort(
     BST_IP_PROTOCOL_TYPE        usProtocol,
@@ -312,25 +231,7 @@ BST_VOID BST_IP_ApiRmvPort(
     BST_IP_UpdateFCT();
 }
 /*lint +e438*/
-/*****************************************************************************
- 函 数 名  : BST_IP_ApiChkPort
- 功能描述  : 快速匹配下行端口号
- 输入参数  : 
-             const BST_UINT16 usProtocol,协议类型
-             const BST_UINT16 usPortNumber 端口号
 
- 输出参数  : 无
- 返 回 值  : 
-             BST_IP_PKT_TO_AP,  传给AP处理
-             BST_IP_PKT_TO_BST, 传给bastet处理 
-             BST_IP_PKT_FREE,   不处理
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
 BST_UINT32 BST_IP_ApiChkPort(
     const BST_UINT16 usProtocol,
     const BST_UINT16 usPortNumber )
@@ -369,23 +270,7 @@ BST_UINT32 BST_IP_ApiChkPort(
     return BST_IP_PKT_TO_AP;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_IP_ApiFastCheckDL
- 功能描述  : 快速检查下行数据包
- 输入参数  : const BST_UINT8 aucPkt[]
-             const BST_UINT32 ulPktLen
- 输出参数  : 无
- 返 回 值  : 
-             BST_IP_PKT_TO_AP,  传给AP处理
-             BST_IP_PKT_TO_BST, 传给bastet处理 
-             BST_IP_PKT_FREE,   不处理
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 /*lint -e438 -e550*/
 /*该函数在接收到空口OTA-IP包后立即调用*/
 BST_IP_PKT_PROC_ENUM_INT8 BST_IP_ApiFastCheckDL(
@@ -465,21 +350,7 @@ BST_IP_PKT_PROC_ENUM_INT8 BST_IP_ApiFastCheckDL(
 #endif
 }
 /*lint +e438 +e550*/
-/*****************************************************************************
- 函 数 名  : BST_IP_ApiFastCheckUL
- 功能描述  : 快速检查上行数据包
- 输入参数  : const BST_UINT8 aucPkt[]
-             const BST_UINT32 ulPktLen
- 输出参数  : 无
- 返 回 值  : BST_TRUE  将数据包发送到对应端口失败
-             BST_FALSE 成功将数据包发送到对应的端口
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 /*该函数在IP包送入空口之前调用*/
 BST_UINT8 BST_IP_ApiFastCheckUL(
     const BST_UINT8     aucPkt[],
@@ -552,20 +423,7 @@ BST_UINT8 BST_IP_ApiFastCheckUL(
     return BST_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_IP_ApiRegistPacket
- 功能描述  : 注册数据包的接口
- 输入参数  : BST_IP_PKT_ID_T stPktId
-             BST_VOID *pstPktItem
- 输出参数  : 无
- 返 回 值  : BST_UINT16 PortNumber
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 /*lint -e429*/
 /*该函数在调用netif->tcp_input之前调用*/
 BST_UINT16 BST_IP_ApiRegistPacket( BST_IP_PKT_ID_T stPktId, BST_VOID *pstPktItem )
@@ -638,19 +496,7 @@ BST_UINT16 BST_IP_ApiRegistPacket( BST_IP_PKT_ID_T stPktId, BST_VOID *pstPktItem
     return usPortNum;
 }
 /*lint +e429*/
-/*****************************************************************************
- 函 数 名  : BST_IP_ApiUnRegistPacket
- 功能描述  : 解注册数据包的接口
- 输入参数  : BST_IP_PKT_ID_T stPktId
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 /*lint -e438*/
 BST_VOID BST_IP_ApiUnRegistPacket( BST_IP_PKT_ID_T stPktId )
 {
@@ -697,19 +543,7 @@ BST_VOID BST_IP_ApiUnRegistPacket( BST_IP_PKT_ID_T stPktId )
     BST_OS_FREE( pstPktLstMem );
 }
 /*lint +e438*/
-/*****************************************************************************
- 函 数 名  : BST_IP_ApiForwordPacket
- 功能描述  : 数据包转发的接口
- 输入参数  : BST_IP_PKT_ID_T stPktId
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_IP_ApiForwordPacket( BST_IP_PKT_ID_T stPktId )
 {
     BST_IP_PORT_PREPROC_STRU           *pstPortPreproc;
@@ -762,19 +596,7 @@ BST_VOID BST_IP_ApiForwordPacket( BST_IP_PKT_ID_T stPktId )
                  pstPortPreproc->stLastSktProperty.ulRxByte);
 }
 
-/*****************************************************************************
- 函 数 名  : BST_IP_ApiRecordLastSktProp
- 功能描述  : 
- 输入参数  : BST_IP_PKT_ID_T stPktId
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_IP_ApiRecordLastSktProp( BST_IP_PKT_ID_T stPktId )
 {
     BST_IP_PORT_PREPROC_STRU           *pstPortPreproc;
@@ -813,20 +635,7 @@ BST_VOID BST_IP_ApiRecordLastSktProp( BST_IP_PKT_ID_T stPktId )
 
 }
 
-/*****************************************************************************
- 函 数 名  : BST_IP_ApiSetPreprocWorking
- 功能描述  : 
- 输入参数  : BST_IP_PROTOCOL_TYPE usProtocol 协议类型
-             BST_UINT16 usPortNum 端口号
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_IP_ApiSetPreprocWorking(
     BST_IP_PROTOCOL_TYPE            usProtocol,
     BST_UINT16                      usPortNum,
@@ -867,20 +676,7 @@ BST_VOID BST_IP_ApiSetPreprocWorking(
     BST_OS_SpinUnLock( &g_BstPreprocSpinLock , ulSpinlockCnt );
 }
 
-/*****************************************************************************
- 函 数 名  : BST_IP_ApiSetPreprocSuspend
- 功能描述  :
- 输入参数  : BST_IP_PROTOCOL_TYPE usProtocol 协议类型
-             BST_UINT16 usPortNum 端口号
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_IP_ApiSetPreprocSuspend( BST_IP_PROTOCOL_TYPE usProtocol, BST_UINT16 usPortNum )
 {
     BST_IP_PORT_PREPROC_STRU           *pstPortPreproc;
@@ -915,20 +711,7 @@ BST_VOID BST_IP_ApiSetPreprocSuspend( BST_IP_PROTOCOL_TYPE usProtocol, BST_UINT1
     BST_OS_SpinUnLock( &g_BstPreprocSpinLock , ulSpinlockCnt );
 }
 
-/*****************************************************************************
- 函 数 名  : BST_IP_ApiSetPreprocStop
- 功能描述  :
- 输入参数  : BST_IP_PROTOCOL_TYPE usProtocol 协议类型
-             BST_UINT16 usPortNum 端口号
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_IP_ApiSetPreprocStop( BST_IP_PROTOCOL_TYPE usProtocol, BST_UINT16 usPortNum )
 {
     BST_IP_PKT_INFO_STRU               *pstPktLstMem;
@@ -989,20 +772,7 @@ BST_VOID BST_IP_ApiSetPreprocStop( BST_IP_PROTOCOL_TYPE usProtocol, BST_UINT16 u
     BST_OS_SpinUnLock( &g_BstPreprocSpinLock , ulSpinlockCnt );
 }
 
-/*****************************************************************************
- 函 数 名  : BST_IP_ApiUpdateTrafficFlow
- 功能描述  :
- 输入参数  : BST_UINT32 ulTrfcAction
-             BST_UINT32 ulTrfcFlow
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_UINT32 BST_IP_ApiUpdateTrafficFlow( BST_UINT32 ulTrfcAction, BST_UINT32 ulTrfcFlow  )
 {
     extern BST_UINT32                   g_ulTrfcFlowLmt;
@@ -1066,19 +836,7 @@ BST_UINT32 BST_IP_ApiUpdateTrafficFlow( BST_UINT32 ulTrfcAction, BST_UINT32 ulTr
     return BST_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_IP_UpdateFCT
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID   BST_IP_UpdateFCT( BST_VOID )
 {
     BST_IP_PORT_PREPROC_STRU           *pstPortPreproc;
@@ -1119,19 +877,7 @@ BST_VOID   BST_IP_UpdateFCT( BST_VOID )
     BST_OS_SpinUnLock( &g_BstPreprocSpinLock , ulSpinlockCnt );
 }
 
-/*****************************************************************************
- 函 数 名  : BST_IP_ClearPortPkt
- 功能描述  : 删除数据包及其申请的空间
- 输入参数  : BST_IP_PORT_PREPROC_STRU *pstPortPreproc
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_IP_ClearPortPkt( BST_IP_PORT_PREPROC_STRU *pstPortPreproc )
 {
     BST_IP_PKT_INFO_STRU               *pstPktLstMem;
@@ -1177,19 +923,7 @@ BST_VOID BST_IP_ClearPortPkt( BST_IP_PORT_PREPROC_STRU *pstPortPreproc )
     }
 }
 
-/*****************************************************************************
- 函 数 名  : BST_IP_ClearAllPkt
- 功能描述  : 清除全部数据包
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 /*清除全部数据包，但是代理不停止*/
 BST_VOID BST_IP_ClearAllPkt( BST_VOID )
 {
@@ -1212,19 +946,7 @@ BST_VOID BST_IP_ClearAllPkt( BST_VOID )
     }
 }
 
-/*****************************************************************************
- 函 数 名  : BST_IP_SrchPackItem
- 功能描述  :
- 输入参数  : BST_IP_PKT_ID_T stPktId
- 输出参数  : 无
- 返 回 值  : BST_IP_PKT_INFO_STRU
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_IP_PKT_INFO_STRU *BST_IP_SrchPackItem( BST_IP_PKT_ID_T stPktId )
 {
     BST_IP_PORT_PREPROC_STRU           *pstPortPreproc;
@@ -1278,19 +1000,7 @@ BST_IP_PKT_INFO_STRU *BST_IP_SrchPackItem( BST_IP_PKT_ID_T stPktId )
     }
 }
 
-/*****************************************************************************
- 函 数 名  : BST_IP_SrchPreprocByPktId
- 功能描述  :
- 输入参数  : BST_IP_PKT_ID_T stPktId
- 输出参数  : 无
- 返 回 值  : BST_IP_PORT_PREPROC_STRU
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_IP_PORT_PREPROC_STRU *BST_IP_SrchPreprocByPktId( BST_IP_PKT_ID_T stPktId )
 {
     BST_IP_PORT_PREPROC_STRU           *pstPortPreproc;
@@ -1343,20 +1053,7 @@ BST_IP_PORT_PREPROC_STRU *BST_IP_SrchPreprocByPktId( BST_IP_PKT_ID_T stPktId )
     }
 }
 
-/*****************************************************************************
- 函 数 名  : BST_IP_SrchPreprocByPort
- 功能描述  :
- 输入参数  : BST_IP_PROTOCOL_TYPE ucProtocol 协议类型
-             BST_UINT16 usPortNum 端口号
- 输出参数  : 无
- 返 回 值  : BST_IP_PORT_PREPROC_STRU
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_IP_PORT_PREPROC_STRU *BST_IP_SrchPreprocByPort(
     BST_IP_PROTOCOL_TYPE ucProtocol,
     BST_UINT16 usPortNum )
@@ -1396,19 +1093,7 @@ BST_IP_PORT_PREPROC_STRU *BST_IP_SrchPreprocByPort(
     return BST_NULL_PTR;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_IP_SrchPcbByPort
- 功能描述  :
- 输入参数  : BST_UINT16 usPortNum 端口号
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 struct tcp_pcb* BST_IP_SrchPcbByPort( BST_UINT16 usPortNum )
 {
     struct tcp_pcb         *pstPcb;
@@ -1435,19 +1120,7 @@ struct tcp_pcb* BST_IP_SrchPcbByPort( BST_UINT16 usPortNum )
     return BST_NULL_PTR;
 }
 
-/*****************************************************************************
- 函 数 名  : GetTcpipSrcPort
- 功能描述  : 获取一个数据包的端口号
- 输入参数  : @pcPkt, @usPktLen
- 输出参数  : BST_VOID
- 返 回 值  : BST_INT32
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年4月12日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_IP_GetULPortProtocol(
     const BST_UINT8         aucPkt[],
     const BST_UINT32        ulPktLen,
@@ -1486,22 +1159,7 @@ BST_ERR_ENUM_UINT8 BST_IP_GetULPortProtocol(
     return BST_NO_ERROR_MSG;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_IP_GetDLPortProtocol
- 功能描述  : 获取一个数据包的端口号
- 输入参数  : const BST_UINT8 aucPkt[]
-             const BST_UINT32 ulPktLen
-             BST_IP_PROTOCOL_TYPE *pucProtocol
-             BST_UINT16 *pusPortNum
- 输出参数  : 无
- 返 回 值  : BST_ERR_ENUM_UINT8
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年4月12日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_IP_GetDLPortProtocol(
     const BST_UINT8         aucPkt[],
     const BST_UINT32        ulPktLen,
@@ -1588,21 +1246,7 @@ BST_ERR_ENUM_UINT8 BST_IP_GetDLPortProtocol(
     return BST_NO_ERROR_MSG;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_IP_ApiGetPcbTrafficFlow
- 功能描述  : 获取一个数据包的端口号
- 输入参数  : struct tcp_pcb *pstPcb
-             BST_IP_TRAFFIC_FLOW_STRU *pstCurrentProperty
-             BST_BOOL  bIsReset
- 输出参数  : 无
- 返 回 值  : BST_ERR_ENUM_UINT8
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年6月12日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8  BST_IP_ApiGetTrafficFlow(
     BST_UINT16                  usIsReset,
     BST_UINT16                  ulLocalPort,
@@ -1640,20 +1284,7 @@ BST_ERR_ENUM_UINT8  BST_IP_ApiGetTrafficFlow(
     return BST_NO_ERROR_MSG;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_IP_ParseRubbish
- 功能描述  :
- 输入参数  : const BST_UINT8 aucPkt[]
-             const BST_UINT32 ulPktLent
- 输出参数  : 无
- 返 回 值  : BST_ERR_ENUM_UINT8
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年6月12日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_IP_ParseRubbish( const BST_UINT8 aucPkt[], const BST_UINT32 ulPktLen )
 {
     BST_IP_IPHDR_STRU      *pstIpHdr;
@@ -1706,21 +1337,7 @@ BST_ERR_ENUM_UINT8 BST_IP_ParseRubbish( const BST_UINT8 aucPkt[], const BST_UINT
     return enRtnVal;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_IP_ProcRubbish
- 功能描述  :
- 输入参数  : const BST_IP_IPHDR_STRU  *pstIpHdr
-             const BST_IP_TCPHDR_STRU *pstTcpHdr
-             BST_UINT16                usTotLen
- 输出参数  : 无
- 返 回 值  : BST_ERR_ENUM_UINT8
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年6月12日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_IP_ProcRubbish(
     const BST_IP_IPHDR_STRU  *pstIpHdr,
     const BST_IP_TCPHDR_STRU *pstTcpHdr,
@@ -1797,21 +1414,7 @@ BST_ERR_ENUM_UINT8 BST_IP_ProcRubbish(
     BST_OS_ThreadUnLock ( tThreadLockCnt );
     return ucRtnVal;
 }
-/*****************************************************************************
- 函 数 名  : BST_IP_ProcFinRubbish
- 功能描述  :
- 输入参数  : 
-            const BST_IP_TCPHDR_STRU *pstTcpHdr,        TCP头
-            const BST_IP_IPHDR_STRU  *pstIpHdr          IP头
- 输出参数  : 无
- 返 回 值  : BST_ERR_ENUM_UINT8
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年6月12日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_IP_ProcFinRubbish(
     const BST_IP_TCPHDR_STRU   *pstTcpHdr,
     const BST_IP_IPHDR_STRU    *pstIpHdr,
@@ -1889,20 +1492,7 @@ BST_ERR_ENUM_UINT8 BST_IP_ProcFinRubbish(
     return BST_NO_ERROR_MSG;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_IP_ProcPshRubbish
- 功能描述  :
- 输入参数  : const BST_UINT8 aucPkt[]
-             const BST_UINT32 ulPktLent
- 输出参数  : 无
- 返 回 值  : BST_ERR_ENUM_UINT8
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年6月12日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_IP_ProcPshRubbish(
     const BST_UINT8     aucPkt[],
     const BST_UINT32    ulPktLen,

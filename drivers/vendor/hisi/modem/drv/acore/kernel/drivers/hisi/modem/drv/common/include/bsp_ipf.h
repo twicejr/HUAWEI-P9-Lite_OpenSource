@@ -454,18 +454,7 @@ void ipf_drx_restore_reg(void);
 int	bsp_ipf_init(void);
 
 #ifdef CONFIG_BALONG_MODEM_RESET
-/*****************************************************************************
-* 函 数 名  : bsp_ipf_reset_ccore_lpm3_cb
-*
-* 功能描述  : 在ccore单独复位流程中，设置ipf reset标记
-*
-* 输入参数  : 
-*             
-* 输出参数  : 无
-* 返 回 值  : 无
-*
-* 修改记录  : 2012年11月29日   z00212992  创建
-*****************************************************************************/
+
 int bsp_ipf_reset_ccore_lpm3_cb(DRV_RESET_CB_MOMENT_E eparam, int userdata);
 #endif
 

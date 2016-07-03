@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafMmaFsmMain.h
-  版 本 号   : 初稿
-  作    者   : w00176964
-  生成日期   : 2013年7月9日
-  最近修改   :
-  功能描述   : TafMmaFsmMain.C 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年7月9日
-    作    者   : W00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef _TAF_MMA_FSM_MAIN_H
 #define _TAF_MMA_FSM_MAIN_H
@@ -80,20 +63,16 @@ VOS_UINT32 TAF_MMA_RcvAppPhoneModeSetReq_Main(
     struct MsgCB                       *pstMsg
 );
 
-/* Added by w00167002 for L-C互操作项目, 2014-2-14, begin */
 VOS_UINT32 TAF_MMA_RcvTafPhoneModeSetReq_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 );
-/* Added by w00167002 for L-C互操作项目, 2014-2-14, end */
 
 
-/* Added by w00167002 for L-C互操作项目, 2014-2-14, begin */
 VOS_UINT32 TAF_MMA_RcvSysCfgSetReq_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 );
-/* Added by w00167002 for L-C互操作项目, 2014-2-14, end */
 VOS_UINT32 TAF_MMA_RcvMmaPlmnListReq_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -133,12 +112,10 @@ VOS_UINT32 TAF_MMA_RcvUsimRefreshIndMsg_Main(
     struct MsgCB                       *pstMsg
 );
 
-/* Added by s00246516 for L-C互操作项目, 2014-02-14, Begin */
 VOS_UINT32 TAF_MMA_RcvDetachReq_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 );
-/* Added by s00246516 for L-C互操作项目, 2014-02-14, End */
 
 VOS_UINT32 TAF_MMA_RcvMmaInterPowerInit_Main(
     VOS_UINT32                          ulEventType,

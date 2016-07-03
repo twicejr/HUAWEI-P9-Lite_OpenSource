@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : hal_common_ops.h
-  版 本 号   : 初稿
-  作    者   : z00241943
-  生成日期   : 2014年10月23日
-  最近修改   :
-  功能描述   : hal层规格定义
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年10月23日
-    作    者   : z00241943
-    修改内容   : 创建文件
-
-******************************************************************************/
 #ifndef __HAL_COMMOM_OPS_H__
 #define __HAL_COMMOM_OPS_H__
 
@@ -381,7 +364,6 @@ typedef oal_uint8 wlan_phy_protocol_enum_uint8;
 typedef enum
 {
     HAL_WLAN_DRX_EVENT_SUB_TYPE_RX,     /* WLAN DRX 流程 */
-    HAL_WLAN_DRX_EVENT_VAP_INVALID,     /* WLAN接收VAP不合理 */
 
     HAL_WLAN_DRX_EVENT_SUB_TYPE_BUTT
 }hal_wlan_drx_event_sub_type_enum;
@@ -1758,6 +1740,16 @@ typedef struct
 }hal_tx_excp_info_stru;
 #endif
 
+typedef struct
+{
+    oal_uint32          ul_tkipccmp_rep_fail_cnt;    /* 重放攻击检测计数TKIP + CCMP */
+    oal_uint32          ul_tx_mpdu_cnt;              /* 发送计数非ampdu高优先级 + 普通优先级 + ampdu中mpdu */
+    oal_uint32          ul_rx_passed_mpdu_cnt;       /* 属于AMPDU MPDU的FCS正确的MPDU数量 */
+    oal_uint32          ul_rx_failed_mpdu_cnt;       /* 属于AMPDU MPDU的FCS错误的MPDU数量 */
+    oal_uint32          ul_rx_tkipccmp_mic_fail_cnt; /* kip mic + ccmp mic fail的帧数 */
+    oal_uint32          ul_key_search_fail_cnt;      /* 接收key serach fail的帧数 */
+}hal_mac_key_statis_info_stru;
+
 typedef struct tag_hal_to_dmac_device_stru
 {
     oal_uint8                       uc_chip_id;
@@ -1952,6 +1944,7 @@ extern oal_void hi1151_tx_get_dscr_mpdu_num(hal_tx_dscr_stru *pst_tx_dscr, oal_u
 extern oal_void hi1151_tx_set_dscr_status(hal_tx_dscr_stru *pst_tx_dscr, oal_uint8 uc_status);
 extern oal_void hi1151_tx_get_dscr_chiper_type(hal_tx_dscr_stru *pst_tx_dscr, oal_uint8 *puc_chiper_type, oal_uint8 *puc_chiper_key_id);
 extern oal_void hi1151_tx_get_dscr_status(hal_tx_dscr_stru *pst_tx_dscr, oal_uint8 *puc_status);
+extern oal_void  hi1151_tx_get_dscr_send_rate_rank(hal_tx_dscr_stru *pst_tx_dscr, oal_uint8 *puc_send_rate_rank);
 extern oal_void hi1151_tx_get_dscr_ba_ssn(hal_tx_dscr_stru *pst_tx_dscr, oal_uint16 *pus_ba_ssn);
 extern oal_void hi1151_tx_get_dscr_ba_bitmap(hal_tx_dscr_stru *pst_tx_dscr, oal_uint32 *pul_ba_bitmap);
 extern oal_void hi1151_tx_put_dscr(hal_to_dmac_device_stru * pst_hal_device, hal_tx_queue_type_enum_uint8 en_tx_queue_type, hal_tx_dscr_stru *past_tx_dscr);
@@ -2194,6 +2187,9 @@ extern oal_void hi1151_set_counter1_clear(hal_to_dmac_device_stru * pst_hal_devi
 extern oal_void hi1151_get_txrx_frame_time(hal_to_dmac_device_stru * pst_hal_device, oal_uint32 * pul_reg_val);
 extern oal_void hi1151_set_mac_clken(hal_to_dmac_device_stru *pst_hal_device, oal_bool_enum_uint8 en_wctrl_enable);
 #endif
+extern oal_void hi1151_get_mac_statistics_data(hal_to_dmac_device_stru *pst_hal_device, hal_mac_key_statis_info_stru *pst_mac_key_statis);
+
+
 #ifdef _PRE_WLAN_FEATURE_CCA_OPT
 extern oal_void hi1151_get_ed_high_th(hal_to_dmac_device_stru *pst_hal_device, oal_int8 *pl_ed_high_reg_val);
 extern oal_void hi1151_set_ed_high_th(hal_to_dmac_device_stru *pst_hal_device, oal_int32 l_ed_high_20_reg_val, oal_int32 l_ed_high_40_reg_val);
@@ -2353,7 +2349,6 @@ extern oal_void hi1102_get_chip_version(hal_to_dmac_chip_stru *pst_hal_chip, oal
 /************************  1102  DEVICE********************************************/
 #define HAL_DEVICE_LEVEL_FUNC_EXTERN
 extern oal_void hi1102_rx_init_dscr_queue(hal_to_dmac_device_stru *pst_device,oal_uint8 uc_set_hw);
-extern oal_void hi1102_rx_dscr_add_netbuf(hal_to_dmac_device_stru  *pst_hal_device, oal_uint32 *pul_ret);
 extern oal_void hi1102_rx_destroy_dscr_queue(hal_to_dmac_device_stru * pst_device,oal_uint8 uc_destroy_netbuf);
 extern oal_void hi1102_al_rx_init_dscr_queue(hal_to_dmac_device_stru * pst_device);
 
@@ -2363,7 +2358,6 @@ extern oal_void hi1102_tx_destroy_dscr_queue(hal_to_dmac_device_stru * pst_devic
 extern oal_void hi1102_init_hw_rx_isr_list(hal_to_dmac_device_stru *pst_device);
 extern oal_void hi1102_free_rx_isr_list(oal_dlist_head_stru  *pst_rx_isr_list);
 extern oal_void hi1102_destroy_hw_rx_isr_list(hal_to_dmac_device_stru *pst_device);
-extern oal_void hi1102_get_tx_dscr_queue_total_ppdu_num(hal_to_dmac_device_stru *pst_hal_device, oal_uint16 *pus_ppdu_cnt);
 
 extern oal_void hi1102_tx_fill_basic_ctrl_dscr(hal_tx_dscr_stru * p_tx_dscr, hal_tx_mpdu_stru *pst_mpdu);
 extern oal_void hi1102_tx_ctrl_dscr_link(hal_tx_dscr_stru *pst_tx_dscr_prev, hal_tx_dscr_stru *pst_tx_dscr);
@@ -2386,9 +2380,10 @@ extern oal_void hi1102_tx_get_vap_id(hal_tx_dscr_stru * pst_tx_dscr, oal_uint8 *
 extern oal_void hi1102_tx_get_dscr_ctrl_one_param(hal_tx_dscr_stru * pst_tx_dscr, hal_tx_dscr_ctrl_one_param *pst_tx_dscr_one_param);
 extern oal_void hi1102_tx_get_dscr_seq_num(hal_tx_dscr_stru *pst_tx_dscr, oal_uint16 *pus_seq_num);
 extern oal_void hi1102_tx_get_dscr_tx_cnt(hal_tx_dscr_stru *pst_tx_dscr, oal_uint8 *puc_tx_count);
-extern oal_void hi1102_tx_get_dscr_mpdu_num(hal_tx_dscr_stru *pst_tx_dscr, oal_uint8 *puc_mpdu_num);
+extern oal_void hi1102_tx_dscr_get_rate3(hal_tx_dscr_stru *pst_tx_dscr, oal_uint8 *puc_rate);
 extern oal_void hi1102_tx_set_dscr_status(hal_tx_dscr_stru *pst_tx_dscr, oal_uint8 uc_status);
 extern oal_void hi1102_tx_get_dscr_status(hal_tx_dscr_stru *pst_tx_dscr, oal_uint8 *puc_status);
+extern oal_void  hi1102_tx_get_dscr_send_rate_rank(hal_tx_dscr_stru *pst_tx_dscr, oal_uint8 *puc_send_rate_rank);
 extern oal_void hi1102_tx_get_dscr_chiper_type(hal_tx_dscr_stru *pst_tx_dscr, oal_uint8 *puc_chiper_type, oal_uint8 *puc_chiper_key_id);
 extern oal_void hi1102_tx_get_dscr_ba_ssn(hal_tx_dscr_stru *pst_tx_dscr, oal_uint16 *pus_ba_ssn);
 extern oal_void hi1102_tx_get_dscr_ba_bitmap(hal_tx_dscr_stru *pst_tx_dscr, oal_uint32 *pul_ba_bitmap);
@@ -2398,15 +2393,12 @@ extern oal_void hi1102_tx_get_ampdu_len(hal_to_dmac_device_stru * pst_hal_device
 #ifdef _PRE_DEBUG_MODE_USER_TRACK
 extern oal_void hi1102_tx_get_protocol_mode(hal_to_dmac_device_stru * pst_hal_device, hal_tx_dscr_stru *pst_dscr, oal_uint8 *puc_protocol_mode);
 #endif
-extern oal_void hi1102_rx_get_size_dscr(oal_uint32 * pul_dscr_size);
 extern oal_void hi1102_rx_get_info_dscr(oal_uint32 *pul_rx_dscr, hal_rx_ctl_stru * pst_rx_ctl, hal_rx_status_stru * pst_rx_status, hal_rx_statistic_stru * pst_rx_statistics);
 extern oal_void hi1102_get_hal_vap(hal_to_dmac_device_stru * pst_hal_device, oal_uint8 uc_vap_id, hal_to_dmac_vap_stru **ppst_hal_vap);
 extern oal_void hi1102_rx_get_netbuffer_addr_dscr(oal_uint32 *pul_rx_dscr, oal_netbuf_stru ** ppul_mac_hdr_addr);
-extern oal_void hi1102_rx_get_mac_hdr_addr_dscr(oal_uint32 *pul_rx_dscr, oal_uint32 ** ppul_mac_hdr_address_dscr);
 extern oal_void hi1102_rx_show_dscr_queue_info(hal_to_dmac_device_stru * pst_hal_device, hal_rx_dscr_queue_id_enum_uint8 en_rx_dscr_type);
 extern oal_void hi1102_rx_sync_invalid_dscr(hal_to_dmac_device_stru * pst_hal_device, oal_uint32 *pul_dscr, oal_uint8 en_queue_num);
 extern oal_void hi1102_rx_free_dscr_list(hal_to_dmac_device_stru * pst_hal_device, hal_rx_dscr_queue_id_enum_uint8 en_queue_num, oal_uint32 *pul_rx_dscr);
-extern oal_void hi1102_dump_rx_dscr(oal_uint32 *pul_rx_dscr);
 extern oal_void hi1102_dump_tx_dscr(oal_uint32 *pul_tx_dscr);
 extern oal_void hi1102_reg_write(hal_to_dmac_device_stru *pst_hal_device, oal_uint32 ul_addr, oal_uint32 ul_val);
 extern oal_void hi1102_reg_write16(hal_to_dmac_device_stru *pst_hal_device, oal_uint32 ul_addr, oal_uint16 us_val);
@@ -2523,7 +2515,6 @@ extern oal_void hi1102_en_soc_intr(hal_to_dmac_device_stru *pst_hal_device);
 extern oal_void hi1102_enable_beacon_filter(hal_to_dmac_device_stru *pst_hal_device);
 extern oal_void hi1102_disable_beacon_filter(hal_to_dmac_device_stru *pst_hal_device);
 extern oal_void hi1102_enable_non_frame_filter(hal_to_dmac_device_stru *pst_hal_device);
-extern oal_void hi1102_disable_non_frame_filter(hal_to_dmac_device_stru *pst_hal_device);
 extern oal_void hi1102_enable_monitor_mode(hal_to_dmac_device_stru *pst_hal_device);
 extern oal_void hi1102_disable_monitor_mode(hal_to_dmac_device_stru *pst_hal_device);
 extern oal_void hi1102_set_pmf_crypto(hal_to_dmac_vap_stru *pst_hal_vap, oal_bool_enum_uint8 en_crypto);
@@ -2635,6 +2626,8 @@ extern oal_void hi1102_set_counter1_clear(hal_to_dmac_device_stru * pst_hal_devi
 extern oal_void hi1102_get_txrx_frame_time(hal_to_dmac_device_stru * pst_hal_device, oal_uint32 * ul_reg_val);
 extern oal_void hi1102_set_mac_clken(hal_to_dmac_device_stru *pst_hal_device, oal_bool_enum_uint8 en_wctrl_enable);
 #endif
+extern oal_void hi1102_get_mac_statistics_data(hal_to_dmac_device_stru *pst_hal_device, hal_mac_key_statis_info_stru *pst_mac_key_statis);
+
 #ifdef _PRE_WLAN_FEATURE_CCA_OPT
 extern oal_void hi1102_get_ed_high_th(hal_to_dmac_device_stru *pst_hal_device, oal_int8 *l_ed_high_reg_val);
 extern oal_void hi1102_set_ed_high_th(hal_to_dmac_device_stru *pst_hal_device, oal_int32 l_ed_high_20_reg_val, oal_int32 l_ed_high_40_reg_val);
@@ -2819,16 +2812,6 @@ extern oal_void hi1102_btcoex_post_event(hal_to_dmac_device_stru *pst_hal_device
 extern oal_void hi1102_btcoex_have_small_ampdu(hal_to_dmac_device_stru *pst_hal_base_device, oal_uint32 *pul_have_ampdu);
 extern oal_void hi1102_btcoex_process_bt_status(hal_to_dmac_device_stru *pst_hal_device);
 #ifdef _PRE_WLAN_FEATURE_LTECOEX
-extern oal_void  hi1102_ltecoex_enable(oal_uint8 ltecoex_enable);
-extern oal_void  hi1102_ltecoex_lte_pol_ctl(oal_uint8 uc_lte_inactive);
-extern oal_void  hi1102_ltecoex_lte_pol_ctl_get(oal_uint8 *uc_lte_inactive);
-extern oal_void  hi1102_ltecoex_lte_pol_ctl_set(oal_uint8 uc_lte_inactive);
-extern oal_void  hi1102_ltecoex_lte_tx_delay_cnt_get(oal_uint8 *uc_tx_delay_cnt);
-extern oal_void  hi1102_ltecoex_lte_tx_delay_cnt_set(oal_uint8 uc_tx_delay_cnt);
-extern oal_void  hi1102_ltecoex_rx_abort_timeout(oal_uint32 uc_pri_time);
-extern oal_void  hi1102_ltecoex_sw_hw_mode(oal_uint8 uc_sw_hd_mode);
-extern oal_void  hi1102_ltecoex_wlan_priority_set(oal_uint8 uc_man_set);
-extern oal_void  hi1102_ltecoex_wlan_priority_time(oal_uint32 uc_pri_time);
 extern oal_void  hi1102_ltecoex_req_mask_ctrl(oal_uint16 req_mask_ctrl);
 #endif
 extern oal_void hi1102_set_btcoex_abort_null_buff_addr(oal_uint32 ul_abort_null_buff_addr);
@@ -2846,7 +2829,6 @@ extern oal_void hi1102_set_btcoex_soc_gpreg1(oal_uint8 uc_val, oal_uint16 us_mas
 extern oal_void hi1102_tx_get_dscr_iv_word(hal_tx_dscr_stru *pst_dscr, oal_uint32 *pul_iv_ms_word, oal_uint32 *pul_iv_ls_word, oal_uint8 uc_chiper_type, oal_uint8 uc_chiper_keyid);
 extern oal_void hi1102_rx_dscr_opt_reset_normal(hal_to_dmac_device_stru * pst_device);
 #ifdef _PRE_WLAN_DFT_STAT
-extern oal_void  hi1102_dft_clear_machw_stat_info(hal_to_dmac_device_stru * pst_hal_device);
 extern oal_void  hi1102_dft_get_machw_stat_info(hal_to_dmac_device_stru * pst_hal_device,oal_uint32 *pst_machw_stat,oal_uint8 us_bank_select, oal_uint32 *pul_len);
 extern oal_void  hi1102_dft_set_phy_stat_node(hal_to_dmac_device_stru * pst_hal_device,oam_stats_phy_node_idx_stru *pst_phy_node_idx);
 extern oal_void  hi1102_dft_get_phyhw_stat_info(hal_to_dmac_device_stru * pst_hal_device,oal_uint32 *pst_phyhw_stat,oal_uint8 us_bank_select, oal_uint32 *pul_len);
@@ -2858,6 +2840,8 @@ extern oal_void  hi1102_dft_print_rfhw_stat(hal_to_dmac_device_stru * pst_hal_de
 extern oal_void  hi1102_dft_report_all_reg_state(hal_to_dmac_device_stru   *pst_hal_device);
 
 #endif
+extern oal_void hi1102_set_lte_gpio_mode(oal_uint32 ul_mode_value);
+
 #endif
 
 #ifdef __cplusplus

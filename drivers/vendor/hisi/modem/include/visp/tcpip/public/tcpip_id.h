@@ -1,29 +1,4 @@
-/*************************************************************************
- *
- *              Copyright 2005, Huawei Technologies Co. Ltd.
- *                          ALL RIGHTS RESERVED
- * 
- *-----------------------------------------------------------------------*
- *
- *                             tcpip_id.h
- *
- *  Project Code: VISP1.5
- *   Module Name: Public
- *  Date Created: 2004-06-28
- *        Author: VISP Team
- *   Description: Defines Moudule ID, Sub-module ID, Waitlist ID,
- *                CID & IID, etc. in VISP stack
- *
- *-----------------------------------------------------------------------*
- *  Modification History
- *  DATE            NAME            DESCRIPTION
- *  2004-06-28      VISP Team       Create
- *  2004-11-15      VISP Team       Redefine all Macro
- *  2006-03-30      VISP Team       Adjust for D00645
- *  2008-01-17      VISP Team       删除头文件中定义的一些SID
- *  2008-08-13      f54882          Modify for BC3D00237
- *
- ************************************************************************/
+
 
 #ifdef  __cplusplus
 extern  "C"{
@@ -498,12 +473,10 @@ extern  "C"{
 /*LLDP组建模块ID*/
 #define MID_COMP_LLDP               ( MID_COMP_BASE + 0x00470000 )
 
-/*Added by dutianyi00217007，for PTPV2*/
 #define MID_COMP_PTPV2              ( MID_COMP_BASE + 0x00480000 )
 
 #define MID_COMP_DISTIP               ( MID_COMP_BASE + 0x00490000 )
 
-/* Added by a00900892，on 03-08-2014 for IP attack statistics module. */
 #define MID_COMP_ATK                ( MID_COMP_BASE + 0x004A0000 )
 
 /* Added by LY(57500) for A82D13999, IR模块ID使用VISP统一提供的模块ID, 修改需要同步修改TCPIP_MidInfo_IPV6*/
@@ -534,7 +507,6 @@ extern  "C"{
 *  注意: 下面这部分宏只在给IR的tcpip_id.h头文件中定义,不在VISP自用的tcpip_id.h(即本文件)中定义，
 *  否则visp编译时这些宏会与vos_id.h中定义一致，导致编译时产生大量warning
 */
-/* End Add by LY(57500) for A82D13999, IR模块ID使用VISP统一提供的模块ID, 2007-4-18 */
 
 /*******************************************************
                    Waitlist ID   
@@ -574,7 +546,6 @@ extern  "C"{
 /* Begin:VISP1.8C03 SYNCE r62469 , 2009-12-21 */
 #define WAITLIST_COMP_SYNCE_IFINFO      ( WAITLIST_COMP_BASE + 25 )
 /* End:VISP1.8C03 SYNCE r62469 , 2009-12-21 */
-/* Add by y00176567/z00171897, at 2011-06-29. 修改原因: 增加VLAN一致性告警显示功能 */
 #define WAITLIST_COMP_ETHVLAN_CONSISTENCY_WARNING_IFINFO      ( WAITLIST_COMP_BASE + 26 )
 #define WAITLIST_COMP_IGMP_CONFIG      ( WAITLIST_COMP_BASE + 27)
 #define WAITLIST_COMP_TWAMP_CTTRL_SESS (WAITLIST_COMP_BASE + 28)
@@ -582,7 +553,6 @@ extern  "C"{
 
 #define WAITLIST_COMP_ARP_IPCONFLICT (WAITLIST_COMP_BASE + 30)
 
-/* Add by d00217007, 2014-01-27, TCP维测接口,查询监听socket */
 /* Q0队列 */
 #define WAITLIST_COMP_SOCK_LISTENSOCKQ0 (WAITLIST_COMP_BASE + 31)
 /* Q队列 */
@@ -868,7 +838,6 @@ typedef enum TCPIP_PRECONFIG_INFO_Etag
 
     ETHARP_CHECK_PKT_SRCMAC,         /* 87 是否检查ETH报文的源MAC,1为检查,0为不检查,默认为1 , 2 :src mac will be checked inside ARP packet**/
 
-    /* Added by z43740 for for BC3D01909: 支持使用系统定时器,2009-08-16 */
     PPP_CFG_GLOBAL_TIMER,            /* 88,PPP定时器模式，缺省全局模式1，可设置为单独模式0 */
     /* End of addition */
 
@@ -906,21 +875,17 @@ typedef enum TCPIP_PRECONFIG_INFO_Etag
     SYNCE_DEFAULT_QL,                    /*102 同步以太默认配置值*/                                 
     TCP_SYN_USE_CONFIG_TOS,         /* 103 TCP三次握手时，不使用对端报文中携带的TOS值，而是使用本端配置的TOS值 */
     SOCK_RAND_PORT_ENHANCE,         /* 104 优化SOCKET随机端口的生成方式 */
-    BFD_MULTI_HOP_TTL,                     /* 105  SGSN需求，支持预配置BFD多跳会话的发送方向报文的TTL取值b00177000 2011-01-15 */
+    BFD_MULTI_HOP_TTL,
     BFD_TOTAL_SESSION_NUM,          /* 106  BFD total session number 缺省为512~5120，根据产品需要设置*/
     OSPF_DEFUALT_COST,              /*107  OSPF 接口默认 COST值*/
     OSPF_DEFAULT_PRIORITY,          /*108  OSPF 接口默认 DR优先级*/
     PPP_IPCP_SUBOPTION_AUTO_ADAPT,    /*109  PPP IP-Compression-Protocol 子选项自适应协商IPHC: 
                                           0表示不自适应协商;1表示自适应协商，但仅在本端未使能IPHC子选项协商的情况下有效!! */
     TCPIP_TRACE_ROUTE_USE_DIP_FOR_SIP, /* 110 0:ICMP响应的源地址是入接口最匹配的地址，1:ICMP响应的源地址是接收到的报文的目的IP*/
-    /* Add for V2R3C07, by z00208058/w00207740, at 2012-4-16. 修改原因: TRUNK LACP下移需求开发 */
     TRUNK_NP_MODE,                  /*111 Lacp保活模式: 1,由NP收发lacp报文；0，由协议栈收发 */
-    /*Added by z00208058/w00207740, BFD会话规格扩展, 2012/5/8 */
     BFD_MAX_SESSION_NUM,            /*112  BFD会话规格扩展1000~5120*/
 
-    /*Added by limin00188004, LLDP任务优先级可配置, 2012/10/12   问题单号:DTS2012101007308 */
     LLDP_CFG_TASK_PRI,              /*113  LLDP任务优先级,默认100,范围0~255*/
-    /* End of Added by limin00188004, 2012/10/12   问题单号:DTS2012101007308 */
 
     SOCK_BIND_MAX_PORT,             /*114  socket  端口号最大值预配置，默认50000，范围50000~65535*/
     OAM3AH_BOARD_STATE,             /* 115 是否使用3AH与接口状态联动功能 */
@@ -931,23 +896,20 @@ typedef enum TCPIP_PRECONFIG_INFO_Etag
     ETHIF_MAX_NUM,      /*119 可创建的最大接口数，默认4096，范围4096~65535*/
     ETHIF_UPDATE_TIMER_PERIOD,      /*120 ARP 定时器更新周期 ，范围100~5000ms*/
     OAM1AG_CC_ENABLE_MODE,         /*121  ￡?·??§0-1, ??è??a0:??·￠±íê????ˉ   1 ???ˉì?2aDèòaμ￥?à????*/ 
-    SKT_TASK_SOCK_LINUX_STACKSIZE, /* 122 linux??è???????′óD??￡è??μ·??§8K~16M￡???è??μ?a8M*/
+    SKT_TASK_SOCK_LINUX_STACKSIZE,
     
     ETH_ARP_PPI_UPDATE_ON_REF,    /*123 Product has to use this key in pre-config if refreshed expire time and fake ARP entry has to be updated on NP using PPI*/
 
     ETHARP_EXPIRETIME,   /*124, Using this user can set the expiry time, Entry will not be deleted within this time if ARP Response is not recieved*/
     SUBIF_MAX_VIDNUM,   /* 125,Maximum VLAN ID */
-    LINK_IO_CTL_QUEUE_LENGTH,    /*126,底层链路控制信息消息队列大小预配置,默认为1024,该队列消息是SOCK RUN任务处理,DTS2013052902550*/	
+    LINK_IO_CTL_QUEUE_LENGTH,
     ETHARP_ARP_PKTS_ONETIME,     /*127 ARP报文一次处理的个数，默认40个，最大1000个*/
     LLDP_ADD_PORT_MODE,  /*128,提供预配置，可以由产品将接口添加到LLDP的端口表，默认VISP在创建接口时联动添加,DTS*/
     ETHARP_MAX_SYS_DYNAM_ARP,    /*129 配置系统级动态APR个数 */
     TCP_LAND_ATTACK_SWITCH,      /*130 TCP LAND防攻击开关，VRP_NO表示关闭，VRP_YES表示打开，默认VRP_NO:0 关闭*/
     ETH_ARP_DEL_DELAY_TIME,      /* 131 是否支持接口物理down延迟删除接口下的ARP表项 0:不支持;1-5:延迟时间 */
-    /*Added by guojianjun178934, NSR功能预配置项, 2012/11/26   问题单号:20121126_NSR_01 */
     NSR_OSPF_ENABLE,          /*132 是否使能OSPF NSR, 0-不使能, 1-使能, 默认值:0*/
     NSR_CFG_TASK_PRI,         /*133  NSR任务优先级,默认100,范围0~255*/
-    /* End of Added by guojianjun178934, 2012/11/26   问题单号:20121126_NSR_01 */
-    /*Added by w00207740, NSR TRUNK,NSR功能裁剪宏, 2013/8/2 */
     TRUNK_NSR_FEATURE,              /* 134 TRUNK NSR特性裁剪宏 */
     BFD_NSR_FEATURE,                /* 135 BFD NSR特性裁剪宏 */
     OAM1AG_MD_NUM,              /*136 内存优化支持预配置MD个数 */
@@ -958,21 +920,14 @@ typedef enum TCPIP_PRECONFIG_INFO_Etag
     PLC_ROUTE_MAX_POLICY_NODE,
 
     NSR_ENABLE,                 /*142 是否使能NSR, 0-不使能, 1-使能, 默认值:0*/
-    /*Added by zhoushisong202096, 支持MBUF预留长度可扩展, 2013/11/25 */
     MBUF_CFG_USER_RESERVE_SPACE,    /*143 支持MBUF预留长度可扩展宏*/
-    /*Added by w00207740, Trunk Msp大规格需求,若此处最大规格有变，需要修改IF_Sh_RegIFClass中if_ulEndNum、if_ulMaxNum字段 2014/1/9 */
     TRUNK_IFNUM_MAX,                /*144 支持可配置Trunk最大接口数目，默认32，范围32~128*/
-    /*Added by fengjing209023, TCP4,6 cookie开关 2014/1/21 */
     TCP4_COOKIE_SWITCH,             /*145 TCP4 COOKIE开关 */
     TCP6_COOKIE_SWITCH,             /*146 TCP6 COOKIE开关 */
 
-    /*Added by fengjing209023, MAC功能开关 2014/3/21 */
     MAC_CHANGE_IP6_STATE_SWITCH,    /*147 MAC功能开关 */  
-    /*Added by fengjing209023, MAC功能开关 2014/3/21 */
 
-    /*add by wuling 00201943 for IPv6协议DOWN不下发邻居删除PPI 2014-03-25 :S-IP-003-IPv6-008--start*/
     IP6_DOWN_NO_PPI_DEL_ND,  /*148*/
-    /*add by wuling 00201943 for IPv6协议DOWN不下发邻居删除PPI 2014-03-25 :S-IP-003-IPv6-008--end*/
     
     ETH_STATICARP_REF_DIFFNET,   /* 149 在不使能严格学习的场景下不同网段的ARP报文是否刷新静态ARP表项(0 刷新ARP表项 1 不刷新) */
     ARP_STRICT_LEARN_SWITCH_MODE, /* 150 ARP严格学习全局模式和接口模式配置开关(0全局模式 1接口模式，默认0) */
@@ -990,10 +945,8 @@ typedef enum TCPIP_PRECONFIG_INFO_Etag
 
     SFIB_ROUTE_CACHE_SWITCH,    /*155 路由缓存开关，0-关闭，1-打开，默认值:1*/
 
-    /* Added by fengjing209023 for DTS2014061301920 BALONG DAD优化需求，打开后不做DAD和initial delay */
     IPV6_ND_NO_DAD_SWITCH,      /*156 不做DAD开关，0-关闭，1-打开，默认值:0 当前只支持在主机模式 */
 
-    /*Added by guojianjun178934, 【SIT-集成测试-公共基础】预配置值在V3各版本中不统一, 2014/11/11   问题单号:DTS2014111000166 */
     /*所有版本预配置项需要保持一致，当前修改：在C10基础上新增C20配置项*/
     /* Added by fengjing209023 for 全局动态黑名单规格 */
     ARP_BLACKLIST_SYS_MAXNUM,   /*157 控制整个系统的动态黑名单个数，范围[0,256000]，默认为0表示不做限制。 */
@@ -1017,7 +970,6 @@ typedef enum TCPIP_PRECONFIG_INFO_Etag
     ACLFW6_MAX_IFINDEX,         /*165 Maximum interface Index supported for acl6 firewall*/
 
     IPV6_ADDR_SUPPORT_SAME_SUBNET,    /* 166 Set as 1 to support same subnet address on multiple interface */
-    /* End of Added by guojianjun178934, 2014/11/11   问题单号:DTS2014111000166 */
 
     /* Added by caiqizheng for S-IP-C20-005-VRF.001 */
     RTM_SCK_COM_SWITCH,    /*167 动态路由模式下SCK组件裁剪开关，0-关闭，1-打开，默认值:1*/

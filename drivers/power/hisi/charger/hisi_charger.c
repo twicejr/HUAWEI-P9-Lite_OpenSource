@@ -326,8 +326,14 @@ static void charge_send_uevent(struct charge_device_info *di)
         events = VCHRG_START_USB_CHARGING_EVENT;
         hisi_coul_charger_event_rcv(events);
     }
+    else if(di->charger_source == POWER_SUPPLY_TYPE_BATTERY)
+    {
+        events = VCHRG_STOP_CHARGING_EVENT;
+        hisi_coul_charger_event_rcv(events);
+    }
     else
     {
+        hwlog_err("[%s]error charger source!\n",__func__);
         //do nothing
     }
 }
@@ -901,6 +907,7 @@ static void charge_start_charging(struct charge_device_info *di)
     int ret = 0;
 
     hwlog_info("---->START CHARGING\n");
+    charge_wake_lock();
     di->sysfs_data.charge_enable = TRUE;
     di->check_full_count = 0;
     /*chip init*/
@@ -918,14 +925,11 @@ static void charge_start_charging(struct charge_device_info *di)
 static void charge_stop_charging(struct charge_device_info *di)
 {
     int ret =0;
-    enum charge_status_event events  = VCHRG_STOP_CHARGING_EVENT;
 
     hwlog_info("---->STOP CHARGING\n");
     charge_wake_lock();
     di->sysfs_data.charge_enable = FALSE;
     di->check_full_count = 0;
-    di->charger_source = POWER_SUPPLY_TYPE_BATTERY;
-    hisi_coul_charger_event_rcv(events);
     ret = di->ops->set_charge_enable(FALSE);
     if(ret)
         hwlog_err("[%s]set charge enable fail!\n",__func__);
@@ -988,7 +992,7 @@ static void charge_start_usb_otg(struct charge_device_info *di)
     int ret = 0;
 
     hwlog_info("---->START OTG MODE\n");
-
+    charge_wake_lock();
     ret = di->ops->set_charge_enable(FALSE);
     if(ret)
         hwlog_err("[%s]set charge enable fail!\n",__func__);

@@ -1,14 +1,4 @@
-/******************************************************************************
 
-
-        @(#)Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : LRrcLHpaInterface.h
-    Description : 描述RRC与NAS之间的接口
-    History     :
-      1.  gaojshan   00180260  2011-05-11  Draft Enact
-******************************************************************************/
 
 #ifndef __LRRCLHPAINTERFACE_H__
 #define __LRRCLHPAINTERFACE_H__

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmcProcUsim.h
-  版 本 号   : 初稿
-  作    者   : luokaihui / 00167671
-  生成日期   : 2011年5月10日
-  最近修改   :
-  功能描述   : NasMmcProcUsim.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年5月10日
-    作    者   : luokaihui / 00167671
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 其他头文件包含
@@ -96,14 +79,12 @@ typedef struct
 }PS_USIM_GET_FILE_RSP_FOR_PCLINT_STRU;
 
 
-/* Added by c00318887 for file refresh需要触发背景搜, 2015-4-28, begin */
 typedef struct
 {
     VOS_UINT16                          usEfNum;        /* 更新的文件的个数 */
     VOS_UINT8                           aucRsv[2];      /* 预留对齐 */
     USIM_REFRESH_FILE_STRU              astRefreshFile[USIMM_MAX_REFRESH_FILE_NUM];
 }NAS_MMC_USIMM_REFRESH_FILE_CONTENT_STRU;
-/* Added by c00318887 for file refresh需要触发背景搜, 2015-4-28, end */
 
 /*****************************************************************************
   8 UNION定义
@@ -263,7 +244,6 @@ VOS_VOID  NAS_MMC_UpdateOPlmnInfoFromNvim(
     VOS_UINT16                          usOPlmnNum
 );
 
-/* Added by c00318887 for file refresh需要触发背景搜, 2015-4-28, Begin */
 VOS_UINT8  NAS_MMC_GetUsimAllRefreshFileNumber(VOS_VOID);
 VOS_UINT16  NAS_MMC_GetUsimAllRefreshFileId(VOS_UINT8 ucIndex);
 
@@ -272,7 +252,6 @@ VOS_VOID NAS_MMC_BuildRefreshFileList(
     NAS_MMC_USIMM_REFRESH_FILE_CONTENT_STRU     *pstRefreshFile
 );
 
-/* Added by c00318887 for file refresh需要触发背景搜, 2015-4-28, end */
 
 
 #if (VOS_OS_VER == VOS_WIN32)

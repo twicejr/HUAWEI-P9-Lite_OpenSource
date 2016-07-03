@@ -2160,22 +2160,7 @@ VOS_UINT32 APP_GetPdpManageInfo(APP_ESM_PDP_MANAGE_INFO_STRU *pstPdpManageInfo)
     return APP_SUCCESS;
 }
 
-/*****************************************************************************
- 函 数 名  : APP_GetCidImsSuppFlag
- 功能描述  : 获取CID对应的IMS配置
- 输入参数  : ucCid                      - CID
- 输出参数  : pucImsSuppFlag             - CID支持IMS配置
- 返 回 值  : APP_FAILURE                - 函数执行异常
-             APP_SUCCESS                - 函数执行成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月1日
-    作    者   : z00301431
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 APP_GetCidImsSuppFlag(VOS_UINT8 ucCid ,VOS_UINT8 *pucImsSuppFlag)
 {
     if(NULL == pucImsSuppFlag)

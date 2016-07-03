@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasXccCtx.h
-  版 本 号   : 初稿
-  作    者   : Y00213812
-  生成日期   : 2014年7月4日
-  最近修改   :
-  功能描述   : CnasXccCtx.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年7月4日
-    作    者   : Y00213812
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __CNAS_XCC_CTX_H__
 #define __CNAS_XCC_CTX_H__
@@ -91,13 +74,7 @@ and 6 (inclusive). 根据这段协议，暂定SR_ID的最大个数应该是6 */
 /*****************************************************************************
   3 枚举定义
 *****************************************************************************/
-/*****************************************************************************
- 枚举名    : CNAS_XCC_FSM_ID_ENUM
- 枚举说明  : 状态机ID枚举定义
- 1.日    期   : 2014年07月04日
-   作    者   : Y00213812
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CNAS_XCC_FSM_ID_ENUM
 {
     /***********************************************************************
@@ -121,13 +98,7 @@ enum CNAS_XCC_FSM_ID_ENUM
 };
 typedef VOS_UINT32 CNAS_XCC_FSM_ID_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : CNAS_XCC_TX_ORDER_TYPE_ENUM
- 枚举说明  : ORDER消息类型
- 1.日    期   : 2014年9月15日
-   作    者   : h00246512
-   修改内容   : 新增
-*****************************************************************************/
+
 enum CNAS_XCC_TX_ORDER_TYPE_ENUM
 {
     CNAS_XCC_TX_ORDER_TYPE_CONNECT_ORDER,                       /* Connect Order */
@@ -138,13 +109,7 @@ enum CNAS_XCC_TX_ORDER_TYPE_ENUM
 };
 typedef VOS_UINT8 CNAS_XCC_TX_ORDER_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : CNAS_XCC_INIT_TYPE_ENUM
- 枚举说明  : 初始化类型
- 1.日    期   : 2014年9月15日
-   作    者   : y00245242
-   修改内容   : 新增
-*****************************************************************************/
+
 enum CNAS_XCC_INIT_TYPE_ENUM
 {
     CNAS_XCC_INIT_TYPE_POWER_ON,                                /* 初始化类型为开机 */
@@ -155,13 +120,7 @@ enum CNAS_XCC_INIT_TYPE_ENUM
 };
 typedef VOS_UINT8 CNAS_XCC_INIT_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : CNAS_XCC_INIT_CALLINFO_SCENE_ENUM
- 枚举说明  : 初始化类型
- 1.日    期   : 2014年9月20日
-   作    者   : w00242748
-   修改内容   : 新增
-*****************************************************************************/
+
 enum CNAS_XCC_INIT_CALLINFO_SCENE_ENUM
 {
     CNAS_XCC_INIT_CALLINFO_SCENE_POWER_ON,                      /* 初始化类型为开机 */
@@ -172,14 +131,7 @@ enum CNAS_XCC_INIT_CALLINFO_SCENE_ENUM
 };
 typedef VOS_UINT8  CNAS_XCC_INIT_CALLINFO_SCENE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : CNAS_XCC_SERVICE_SUSPEND_FLG_ENUM
- 结构说明  : 用于标记读取卡文件的回复消息
- 1.日    期   : 2014年9月19日
-   作    者   : h00246512
-   修改内容   : 新增
 
-*****************************************************************************/
 enum   CNAS_XCC_SERVICE_SUSPEND_FLG_ENUM
 {
     CNAS_XCC_SERVICE_SUSPEND_FLG_NULL                       = 0x00,
@@ -211,30 +163,14 @@ typedef VOS_UINT8 CNAS_XCC_SERVICE_SUSPEND_FLG_ENUM_UINT8;
 /*****************************************************************************
   7 STRUCT定义
 *****************************************************************************/
-/*****************************************************************************
- 结构名    : CNAS_XCC_ENTRY_MSG_STRU
- 结构说明  : XCC消息结构，状态机保存的入口消息和CACHE消息都使用此结构
- 1.日    期   : 2014年07月04日
-   作    者   : Y00213812
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          ulEventType;
     VOS_UINT8                           aucMsgBuffer[CNAS_XCC_MAX_MSG_BUFFER_LEN];
 }CNAS_XCC_ENTRY_MSG_STRU;
 
-/*****************************************************************************
-结构名    : CNAS_XCC_BUFFER_MSG_QUEUE_STRU
-结构说明  : 缓存的消息队列，
-1.日    期   : 2014年09月15日
-  作    者   : y00245242
-  修改内容   : 新建
-2.日    期   : 2015年09月08日
-  作    者   : w00176964
-  修改内容   : CNAS内存裁剪
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucMsgNum;                                /* 缓存消息的个数 */
@@ -242,14 +178,7 @@ typedef struct
     VOS_UINT8                          *pastBufferMsg[CNAS_XCC_MAX_BUFFER_MSG_QUEUE_NUM]; /* 缓存用户的请求消息，根据业务类型缓存 */
 }CNAS_XCC_BUFFER_MSG_QUEUE_STRU;
 
- /*****************************************************************************
- 结构名    : CNAS_XCC_INT_MSG_QUEUE_STRU
- 结构说明  : 缓存的消息队列
- 1.日    期   : 2014年07月04日
-   作    者   : Y00213812
-   修改内容   : 新建
-
-*****************************************************************************/
+ 
 typedef struct
 {
     VOS_UINT8                           ucIntMsgNum;                                /* 缓存消息的个数 */
@@ -257,40 +186,19 @@ typedef struct
     VOS_UINT8                          *pastIntMsg[CNAS_XCC_MAX_INT_MSG_QUEUE_NUM]; /* XCC的消息队列数组，存放消息指针 */
 }CNAS_XCC_INT_MSG_QUEUE_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XCC_FSM_MO_CALLING_CTX_STRU
- 结构说明  : 存放MO CALLING状态机的上下文信息
-  1.日    期   : 2014年11月19日
-    作    者   : w00176964
-    修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           aucReserved[4];
 }CNAS_XCC_FSM_MO_CALLING_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XCC_FSM_MT_CALLING_CTX_STRU
- 结构说明  : 存放MT CALLING状态机的上下文信息
-  1.日    期   : 2014年11月19日
-    作    者   : w00176964
-    修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           aucReserved[4];
 }CNAS_XCC_FSM_MT_CALLING_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XCC_FSM_L1_MAIN_CTX_STRU
- 结构说明  : 存放L1 MAIN状态机的上下文信息
-  1.日    期   : 2014年11月19日
-    作    者   : w00176964
-    修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           aucReserved[4];
@@ -298,13 +206,7 @@ typedef struct
 
 
 
-/*****************************************************************************
- 结构名    : CNAS_XCC_FSM_EXTRA_CTX_UNION
- 结构说明  : 状态机状态描述结构,状态机上下文信息
- 1.日    期   : 2014年11月19日
-   作    者   : W00176964
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef union
 {
     CNAS_XCC_FSM_MO_CALLING_CTX_STRU    stMoCallingCtx;
@@ -313,18 +215,7 @@ typedef union
 }CNAS_XCC_FSM_EXTRA_CTX_UNION;
 
 
-/*****************************************************************************
- 结构名    : CNAS_XCC_FSM_CTX_STRU
- 结构说明  : 状态机状态描述结构
- 1.日    期   : 2014年07月04日
-   作    者   : Y00213812
-   修改内容   : 新建
 
- 2.日    期   : 2014年11月19日
-   作    者   : w00176964
-   修改内容   : CDMA 1X项目迭代5修改:新增状态机上下文结构体
-
-*****************************************************************************/
 typedef struct
 {
     /* 状态机描述指针,指针为NULL表示当前状态机无效  */
@@ -352,13 +243,7 @@ typedef struct
     CNAS_XCC_FSM_EXTRA_CTX_UNION        unFsmCtx;
 }CNAS_XCC_FSM_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XCC_FSM_STACK_STRU
- 结构说明  : 状态机栈描述结构
- 1.日    期   : 2014年07月04日
-   作    者   : Y00213812
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usStackDepth;                           /* 当前压栈的状态机数 */
@@ -367,13 +252,7 @@ typedef struct
 }CNAS_XCC_FSM_STACK_STRU;
 
 
-/*****************************************************************************
- 结构名    : CNAS_XCC_AWI_EAWI_INFO_RECO_BUFFER_STRU
- 结构说明  : 在WFO状态收到AWI/EAWI，需要缓存解析出的Info record
- 1.日    期   : 2014年11月12日
-   作    者   : L00256032
-   修改内容   : 1X SS Project修改
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                               ucIsBufferValid;            /* 缓存是否有效:VOS_TRUE:有效; VOS_FALSE:无效 */
@@ -386,13 +265,7 @@ typedef struct
     }u;
 }CNAS_XCC_AWI_EAWI_INFO_RECO_BUFFER_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XCC_EMERGENCY_CALL_CTRL_STRU
- 结构说明  : emgency call ctrl info
- 1.日    期   : 2014年11月25日
-   作    者   : w00176964
-   修改内容   : CDMA 1X Iteration 5 Modified
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucWaitFlashMsgRspFlg;                 /* wait emgency call flash msg response flag */
@@ -402,13 +275,7 @@ typedef struct
 }CNAS_XCC_EMERGENCY_CALL_CTRL_STRU;
 
 
-/*****************************************************************************
- 结构名    : CNAS_XCC_PREV_HRPD_ACT_DATA_NET_INFO_STRU
- 结构说明  : Prev hrpd net info
- 1.日    期   : 2015年7月9日
-   作    者   : g00261581
-   修改内容   : CDMA DTS2015041700164
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usPzid;
@@ -417,22 +284,7 @@ typedef struct
     VOS_UINT8                           aucReserved[2];
 } CNAS_XCC_PREV_HRPD_ACT_DATA_NET_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XCC_CALL_INFO_CTX_STRU
- 结构说明  : 呼叫信息上下文
- 1.日    期   : 2014年09月09日
-   作    者   : h00246512
-   修改内容   : 新建
- 2.日    期   : 2014年11月19日
-   作    者   : w00176964
-   修改内容   : CDMA 1X项目迭代5修改
- 3.日    期   : 2015年1月3日
-   作    者   : y00245242
-   修改内容   : NDSS ORIG功能开发
- 4.日    期   : 2015年7月27日
-   作    者   : l00324781
-   修改内容   : Iter16修改:删除无用元素，增加ucContDtmfSeqNum，ucIsContDtmfAckWait
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                      bitOpCallingPartyNum:1;
@@ -494,14 +346,7 @@ typedef struct
     VOS_UINT8                                       aucReserved[2];
 }CNAS_XCC_CALL_INFO_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XCC_FSM_ENTITY_STRU
- 结构说明  : 状态机实例描述结构
- 1.日    期   : 2014年07月09日
-   作    者   : l60609
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     CNAS_XCC_FSM_CTX_STRU               stCurFsm;                              /* 状态机当前的状态机数组 */
@@ -510,14 +355,7 @@ typedef struct
     CNAS_XCC_CALL_INFO_CTX_STRU         stCallInfoCtx;
 }CNAS_XCC_FSM_ENTITY_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XCC_RECORD_ORIG_CALL_INDEX_ORDER_STRU
- 结构说明  : 状态机实例描述结构
- 1.日    期   : 2015年01月08日
-   作    者   : y00245242
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucCallNum;                                  /* 记录激活的呼叫数目*/
@@ -526,20 +364,7 @@ typedef struct
                                                                                        当某路呼叫释放后，会重新排序 */
 }CNAS_XCC_RECORD_ORIG_CALL_INDEX_ORDER_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XCC_MAIN_CTRL_CTX_STRU
- 结构说明  : main control上下文信息
- 1.日    期   : 2014年09月10日
-   作    者   : y00245242
-   修改内容   : 新建
- 2.日    期   : 2014年11月26日
-   作    者   : w00176964
-   修改内容   : CDMA 1X Iteration 5 Modified
- 3.日    期   : 2015年1月6日
-   作    者   : y00245242
-   修改内容   : 增加NDSS ORIG功能
 
-*****************************************************************************/
 typedef struct
 {
     CNAS_XCC_BUFFER_MSG_QUEUE_STRU                          stBufferMsgQueue;     /* 缓存用户请求消息 */
@@ -553,14 +378,7 @@ typedef struct
 }CNAS_XCC_MAIN_CTRL_CTX_STRU;
 
 
-/*****************************************************************************
- 结构名    : CNAS_XCC_SRID_INFO_STRU
- 结构说明  : SR_ID的上下文信息
- 1.日    期   : 2015年1月4日
-   作    者   : h00246512
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                                               ucIsUsed;
@@ -571,14 +389,7 @@ typedef struct
 }CNAS_XCC_SRID_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : CNAS_XCC_CALL_NVIM_CFG_STRU
- 结构说明  : 呼叫nv控制
- 1.日    期   : 2015年6月15日
-   作    者   : c00299063
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                                               ucIsL3ErrReOrigCount;
@@ -593,28 +404,14 @@ typedef struct
 }CNAS_XCC_CALL_NVIM_CFG_STRU;
 
 
-/*****************************************************************************
- 结构名    : CNAS_XCC_1X_PAGING_RSP_SO_CFG_STRU
- 结构说明  : 1x paging rsp中带so值的控制
- 1.日    期   : 2015年11月02日
-   作    者   : L00301449
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucNoDataSrvRspSo33Flg;                  /* 没有数据业务时，Paging rsp的回复。0 - Paging Rsp中SO带0； 1 - Paging Rsp中SO带33 */
     VOS_UINT8                           aucReserved[3];
 }CNAS_XCC_1X_PAGING_RSP_SO_CFG_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XCC_CTX_STRU
- 结构说明  : CNAS XCC 模块运行上下文
- 1.日    期   : 2014年07月04日
-   作    者   : Y00213812
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     /**************************************************************************
@@ -680,17 +477,13 @@ VOS_UINT16 CNAS_XCC_GetFsmStackPopFlg(VOS_VOID);
 
 VOS_UINT8 CNAS_XCC_GetBufferedMsgNum(VOS_VOID);
 
-/* Modified by w00176964 for CNAS内存裁剪, 2015-9-8, begin */
 VOS_UINT8 *CNAS_XCC_GetNextBufferMsg(VOS_VOID);
-/* Modified by w00176964 for CNAS内存裁剪, 2015-9-8, end */
 
 VOS_VOID CNAS_XCC_FreeCurrentBufferMsg(VOS_VOID);
 
-/* Modified by w00176964 for CNAS内存裁剪, 2015-9-8, begin */
 VOS_UINT8 *CNAS_XCC_GetSpecifiedIndexBufferMsg(
     VOS_UINT8                           ucIndex
 );
-/* Modified by w00176964 for CNAS内存裁剪, 2015-9-8, end */
 
 VOS_VOID CNAS_XCC_FreeSpecifiedIndexBufferMsg(VOS_UINT8 ucIndex);
 

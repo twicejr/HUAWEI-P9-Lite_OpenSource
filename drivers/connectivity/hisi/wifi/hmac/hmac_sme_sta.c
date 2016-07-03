@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : hmac_sme_sta.c
-  版 本 号   : 初稿
-  作    者   : y00184180
-  生成日期   : 2013年6月28日
-  最近修改   :
-  功能描述   : HMAC层 STA模式SME文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年6月28日
-    作    者   : y00184180
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -74,22 +57,7 @@ OAL_STATIC oal_void  hmac_cfg80211_scan_comp_cb(void  *p_scan_record);
 oal_void  hmac_send_rsp_to_sme_sta(hmac_vap_stru *pst_hmac_vap, hmac_sme_rsp_enum_uint8 en_type, oal_uint8 *puc_msg);
 
 
-/*****************************************************************************
- 函 数 名  : hmac_prepare_scan_req
- 功能描述  : 准备扫描请求
- 输入参数  : ul_chip_ver: 芯片版本
-             pc_desired_ssid: mib中设置的ssid
- 输出参数  : pst_scan_params: 扫描参数
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月1日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void  hmac_prepare_scan_req(mac_scan_req_stru *pst_scan_params, oal_int8 *pc_desired_ssid)
 {
 
@@ -192,21 +160,7 @@ OAL_STATIC oal_void  hmac_prepare_scan_req(mac_scan_req_stru *pst_scan_params, o
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_cfg80211_scan_comp_cb
- 功能描述  : wpa_supplicant下发的扫描请求的回调函数，用于对扫描完成时对结果的处理
- 输入参数  : void  *p_scan_record，扫描记录，包括扫描发起者信息和扫描结果
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月20日
-    作    者   : l00279018
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void  hmac_cfg80211_scan_comp_cb(void  *p_scan_record)
 {
     hmac_scan_record_stru           *pst_scan_record = (hmac_scan_record_stru *)p_scan_record;
@@ -232,26 +186,12 @@ OAL_STATIC oal_void  hmac_cfg80211_scan_comp_cb(void  *p_scan_record)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_cfg80211_prepare_scan_req_sta
- 功能描述  : 解析内核下发的扫描命令参数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月10日
-    作    者   : y00184180
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void  hmac_cfg80211_prepare_scan_req_sta(mac_vap_stru *pst_mac_vap, mac_scan_req_stru *pst_scan_params, oal_int8 *puc_param)
 {
     oal_uint8                       uc_loop;            /* for循环数组下标 */
     oal_uint8                       uc_channel_number;  /* 信道号 */
-    oal_uint8                       uc_channel_idx;     /* 信道号索引 */
+    oal_uint8                       uc_channel_idx = 0;     /* 信道号索引 */
     mac_cfg80211_scan_param_stru   *pst_cfg80211_scan_param;
     mac_device_stru                *pst_mac_device;
 #ifdef _PRE_WLAN_FEATURE_P2P
@@ -339,7 +279,6 @@ OAL_STATIC oal_void  hmac_cfg80211_prepare_scan_req_sta(mac_vap_stru *pst_mac_va
     pst_scan_params->uc_bssid_num = 1;  /* 初始扫描请求指定1个bssid，为广播地址 */
 
 #if (_PRE_PRODUCT_ID == _PRE_PRODUCT_ID_HI1151)
-    /* DTS:DTS2015102705738, 针对51双芯片, chip0只支持2G, chip1只支持5G, 需要根据各自支持频段选择支持的信道进行扫描  */
     if (WLAN_BAND_2G == pst_mac_device->en_max_band || WLAN_BAND_BUTT == pst_mac_device->en_max_band)
 #endif
     {
@@ -408,21 +347,7 @@ OAL_STATIC oal_void  hmac_cfg80211_prepare_scan_req_sta(mac_vap_stru *pst_mac_va
 #endif  /* _PRE_WLAN_FEATURE_P2P */
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_prepare_join_req
- 功能描述  : 准备加入请求
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月1日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void  hmac_prepare_join_req(hmac_join_req_stru *pst_join_req, mac_bss_dscr_stru *pst_bss_dscr)
 {
     OAL_MEMZERO(pst_join_req, OAL_SIZEOF(hmac_join_req_stru));
@@ -433,21 +358,7 @@ OAL_STATIC oal_void  hmac_prepare_join_req(hmac_join_req_stru *pst_join_req, mac
     pst_join_req->us_probe_delay  = WLAN_PROBE_DELAY_TIME;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_prepare_auth_req
- 功能描述  : 准备认证请求
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月1日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void  hmac_prepare_auth_req(mac_vap_stru *pst_mac_vap, hmac_auth_req_stru *pst_auth_req)
 {
     OAL_MEMZERO(pst_auth_req, OAL_SIZEOF(hmac_auth_req_stru));
@@ -456,21 +367,7 @@ OAL_STATIC oal_void  hmac_prepare_auth_req(mac_vap_stru *pst_mac_vap, hmac_auth_
     pst_auth_req->us_timeout = (oal_uint16)pst_mac_vap->pst_mib_info->st_wlan_mib_sta_config.ul_dot11AuthenticationResponseTimeOut >> 1;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_prepare_asoc_req
- 功能描述  : 准备关联请求
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月1日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void  hmac_prepare_asoc_req(mac_vap_stru *pst_mac_vap, hmac_asoc_req_stru *pst_asoc_req)
 {
     OAL_MEMZERO(pst_asoc_req, OAL_SIZEOF(hmac_asoc_req_stru));
@@ -479,21 +376,7 @@ OAL_STATIC oal_void  hmac_prepare_asoc_req(mac_vap_stru *pst_mac_vap, hmac_asoc_
     pst_asoc_req->us_assoc_timeout = (oal_uint16)pst_mac_vap->pst_mib_info->st_wlan_mib_sta_config.ul_dot11AssociationResponseTimeOut >> 1;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_sta_initiate_scan
- 功能描述  : STA发起初始扫描
- 输入参数  : pst_hmac_vap: HMAC VAP
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月1日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_sta_initiate_scan(mac_vap_stru *pst_mac_vap, oal_uint16 us_len, oal_uint8 *puc_param)
 {
     oal_uint32              ul_ret;
@@ -573,21 +456,7 @@ oal_uint32  hmac_sta_initiate_scan(mac_vap_stru *pst_mac_vap, oal_uint16 us_len,
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_cfg80211_check_can_start_sched_scan
- 功能描述  : 检测是否可以启动调度扫描
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月9日
-    作    者   : l00279018
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_cfg80211_check_can_start_sched_scan(mac_vap_stru *pst_mac_vap)
 {
     hmac_device_stru      *pst_hmac_device;
@@ -632,21 +501,7 @@ oal_uint32  hmac_cfg80211_check_can_start_sched_scan(mac_vap_stru *pst_mac_vap)
 }
 
 
-/*****************************************************************************
- 函 数 名  : hmac_cfg80211_start_sched_scan
- 功能描述  : 根据内核下发命令启动扫描
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月9日
-    作    者   : l00279018
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_cfg80211_start_sched_scan(mac_vap_stru *pst_mac_vap, oal_uint16 us_len, oal_uint8 *puc_param)
 {
     hmac_vap_stru                       *pst_hmac_vap;
@@ -723,21 +578,7 @@ oal_uint32  hmac_cfg80211_start_sched_scan(mac_vap_stru *pst_mac_vap, oal_uint16
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_cfg80211_stop_sched_scan
- 功能描述  : 根据内核下发命令停止PNO调度扫描
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月9日
-    作    者   : l00279018
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_cfg80211_stop_sched_scan(mac_vap_stru *pst_mac_vap, oal_uint16 us_len, oal_uint8 *puc_param)
 {
     oal_uint32      ul_ret;
@@ -758,21 +599,7 @@ oal_uint32  hmac_cfg80211_stop_sched_scan(mac_vap_stru *pst_mac_vap, oal_uint16 
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_cfg80211_start_scan_sta
- 功能描述  : 根据内核下发命令启动扫描
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月10日
-    作    者   : y00184180
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_cfg80211_start_scan_sta(mac_vap_stru *pst_mac_vap, oal_uint16 us_len, oal_uint8 *puc_param)
 {
     mac_scan_req_stru                    st_scan_params;
@@ -818,12 +645,10 @@ oal_uint32  hmac_cfg80211_start_scan_sta(mac_vap_stru *pst_mac_vap, oal_uint16 u
     hmac_cfg80211_prepare_scan_req_sta(pst_mac_vap, &st_scan_params, (oal_int8 *)pst_cfg80211_scan_param_pst->pst_mac_cfg80211_scan_param);
 
     /* 设置P2P/WPS IE 信息到 vap 结构体中 */
-    /* BEGIN:DTS2015080801057 WLAN发送的 probe request 不携带P2P IE */
     if (IS_LEGACY_VAP(pst_mac_vap))
     {
         hmac_config_del_p2p_ie((oal_uint8 *)(pst_cfg80211_scan_param_pst->pst_mac_cfg80211_scan_param->puc_ie), &(pst_cfg80211_scan_param_pst->pst_mac_cfg80211_scan_param->ul_ie_len));
     }
-    /* END:DTS2015080801057 WLAN发送的 probe request 不携带P2P IE */
 
 #ifdef _PRE_WLAN_FEATURE_P2P
     /* P2P0 扫描时记录P2P listen channel */
@@ -880,21 +705,7 @@ ERROR_STEP:
     return OAL_ERR_CODE_PTR_NULL;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_sta_initiate_join
- 功能描述  : 发起加入
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月1日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_sta_initiate_join(mac_vap_stru *pst_mac_vap, mac_bss_dscr_stru *pst_bss_dscr)
 {
     hmac_join_req_stru  st_join_req;
@@ -913,7 +724,6 @@ oal_uint32  hmac_sta_initiate_join(mac_vap_stru *pst_mac_vap, mac_bss_dscr_stru 
         OAM_WARNING_LOG0(pst_mac_vap->uc_vap_id, OAM_SF_ASSOC, "{hmac_sta_initiate_join::mac_res_get_hmac_vap null.}");
         return OAL_ERR_CODE_PTR_NULL;
     }
-    /*DTS2015052811128:将需要关联的速率放入hmac_vap中*/
     oal_memcopy(pst_hmac_vap->auc_supp_rates,pst_bss_dscr->auc_supp_rates ,pst_bss_dscr->uc_num_supp_rates);
     pst_hmac_vap->uc_rs_nrates = pst_bss_dscr->uc_num_supp_rates;
 
@@ -930,21 +740,7 @@ oal_uint32  hmac_sta_initiate_join(mac_vap_stru *pst_mac_vap, mac_bss_dscr_stru 
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_sta_initiate_auth
- 功能描述  : 发起认证
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月1日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_sta_initiate_auth(mac_vap_stru *pst_mac_vap)
 {
     hmac_auth_req_stru  st_auth_req;
@@ -977,21 +773,7 @@ oal_uint32  hmac_sta_initiate_auth(mac_vap_stru *pst_mac_vap)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_sta_initiate_asoc
- 功能描述  : 发起关联
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月1日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_sta_initiate_asoc(mac_vap_stru *pst_mac_vap)
 {
     hmac_asoc_req_stru  st_asoc_req;
@@ -1026,21 +808,7 @@ oal_uint32  hmac_sta_initiate_asoc(mac_vap_stru *pst_mac_vap)
 
 
 #if  defined(_PRE_WIFI_DMT ) || (_PRE_OS_VERSION_WIN32 == _PRE_OS_VERSION)
-/*****************************************************************************
- 函 数 名  : hmac_join_bss_sta
- 功能描述  : 加入扫描到的期望的AP列表
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月3日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void  hmac_join_bss_sta(hmac_vap_stru *pst_hmac_vap)
 {
     mac_bss_dscr_stru   *pst_bss_dscr;
@@ -1071,21 +839,7 @@ OAL_STATIC oal_void  hmac_join_bss_sta(hmac_vap_stru *pst_hmac_vap)
 }
 
 
-/*****************************************************************************
- 函 数 名  : hmac_prepare_bss_list
- 功能描述  : 生成期望加入的bss列表
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  hmac_prepare_bss_list(hmac_vap_stru *pst_hmac_vap)
 {
     oal_int8               *pc_mib_ssid;
@@ -1156,21 +910,7 @@ oal_void  hmac_prepare_bss_list(hmac_vap_stru *pst_hmac_vap)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : hmac_handle_scan_rsp_sta
- 功能描述  : 处理扫描结果
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月1日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  hmac_handle_scan_rsp_sta(hmac_vap_stru *pst_hmac_vap, oal_uint8 *puc_msg)
 {
     frw_event_mem_stru  *pst_event_mem;
@@ -1213,21 +953,7 @@ oal_void  hmac_handle_scan_rsp_sta(hmac_vap_stru *pst_hmac_vap, oal_uint8 *puc_m
 
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_handle_join_rsp_sta
- 功能描述  : 处理加入结果
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月1日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  hmac_handle_join_rsp_sta(hmac_vap_stru *pst_hmac_vap, oal_uint8 *puc_msg)
 {
     hmac_join_rsp_stru  *pst_join_rsp = (hmac_join_rsp_stru *)puc_msg;
@@ -1248,21 +974,7 @@ oal_void  hmac_handle_join_rsp_sta(hmac_vap_stru *pst_hmac_vap, oal_uint8 *puc_m
     }
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_report_connect_failed_result
- 功能描述  : 发送关联失败结果到wpa_supplicant
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月30日
-    作    者   : d00223710
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void hmac_report_connect_failed_result(hmac_vap_stru *pst_hmac_vap, mac_status_code_enum_uint16 reason_code)
 {
     frw_event_mem_stru  *pst_event_mem;
@@ -1303,21 +1015,7 @@ oal_void hmac_report_connect_failed_result(hmac_vap_stru *pst_hmac_vap, mac_stat
 
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_handle_auth_rsp_sta
- 功能描述  : 处理认证结果
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月1日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  hmac_handle_auth_rsp_sta(hmac_vap_stru *pst_hmac_vap, oal_uint8 *puc_msg)
 {
     hmac_auth_rsp_stru     *pst_auth_rsp = (hmac_auth_rsp_stru *)puc_msg;
@@ -1395,21 +1093,7 @@ oal_void  hmac_handle_auth_rsp_sta(hmac_vap_stru *pst_hmac_vap, oal_uint8 *puc_m
 
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_handle_asoc_rsp_sta
- 功能描述  : 处理认证结果
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月1日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  hmac_handle_asoc_rsp_sta(hmac_vap_stru *pst_hmac_vap, oal_uint8 *puc_msg)
 {
     frw_event_mem_stru  *pst_event_mem;
@@ -1476,6 +1160,7 @@ oal_void  hmac_handle_asoc_rsp_sta(hmac_vap_stru *pst_hmac_vap, oal_uint8 *puc_m
 
             /* 上报关联失败到wpa_supplicant */
             hmac_report_connect_failed_result(pst_hmac_vap, pst_asoc_rsp->en_status_code);
+
         }
         else
         {
@@ -1494,21 +1179,7 @@ oal_void  hmac_handle_asoc_rsp_sta(hmac_vap_stru *pst_hmac_vap, oal_uint8 *puc_m
 
 
 
-/*****************************************************************************
- 函 数 名  : hmac_send_rsp_to_sme
- 功能描述  : 将连接状态机结果上报给SME
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月1日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  hmac_send_rsp_to_sme_sta(hmac_vap_stru *pst_hmac_vap, hmac_sme_rsp_enum_uint8 en_type, oal_uint8 *puc_msg)
 {
 
@@ -1555,21 +1226,7 @@ oal_void  hmac_send_rsp_to_sme_sta(hmac_vap_stru *pst_hmac_vap, hmac_sme_rsp_enu
     g_handle_rsp_func_sta[en_type](pst_hmac_vap, puc_msg);
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_send_rsp_to_sme_ap
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月5日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  hmac_send_rsp_to_sme_ap(hmac_vap_stru *pst_hmac_vap, hmac_ap_sme_rsp_enum_uint8 en_type, oal_uint8 *puc_msg)
 {
     /* 目前只有DMT使用 */
@@ -1597,21 +1254,7 @@ oal_void  hmac_send_rsp_to_sme_ap(hmac_vap_stru *pst_hmac_vap, hmac_ap_sme_rsp_e
 }
 
 
-/*****************************************************************************
- 函 数 名  : hmac_send_connect_fail_to_dmac_sta
- 功能描述  : 入网失败通知DMAC
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月15日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  hmac_send_connect_result_to_dmac_sta(hmac_vap_stru *pst_hmac_vap, oal_uint32 ul_result)
 {
     frw_event_mem_stru             *pst_event_mem;

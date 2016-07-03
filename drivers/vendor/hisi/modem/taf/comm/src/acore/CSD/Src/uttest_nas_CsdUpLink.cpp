@@ -28,14 +28,7 @@ using namespace testing;
 #if 0
 
 #if( FEATURE_ON == FEATURE_CSD )
-/*****************************************************************************
-类名 : Test_CSD_FidInit_Test
-功能描述 : Test_CSD_UL_ProcMsg_Test UT工程类
-修改历史     :
-1.日   期  : 2011-12-10
-  作   者  : w00199382
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_CSD_UL_ProcMsg: public ::testing::Test
 {
 public:
@@ -62,16 +55,7 @@ protected:
 
 };
 
-/*******************************************************************
-测试用例编号      : TEST_CSD_UL_RcvAtMsg_001
-测试用例标题      : CSD_UL_ProcMsg收到未知消息
-预期结果          : 打印错误信息为未知消息
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_RcvAtMsg_001 )
 {
     /* 输入码流配置 */
@@ -91,16 +75,7 @@ TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_RcvAtMsg_001 )
 
 
 }
-/*******************************************************************
-测试用例编号      : TEST_CSD_UL_ProcMsg_001
-测试用例标题      : CSD_UL_ProcMsg收到消息为空
-预期结果          : 打印错误信息为消息为空
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_ProcMsg_001 )
 {
     /* 输入码流配置 */
@@ -122,17 +97,7 @@ TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_ProcMsg_001 )
 
 
 }
-/*******************************************************************
-测试用例编号      : TEST_CSD_UL_ProcMsg_002
-测试用例标题      : CSD_UL_ProcMsg收到ID_AT_CSD_CALL_STATE_IND，ulSenderPid不是WUEPS_PID_AT
-预期结果          : 打印错误信息，显示当前sendid
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
-ulSenderPid
 
-*******************************************************************/
 TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_ProcMsg_002 )
 {
     /* 输入码流配置 */
@@ -152,16 +117,7 @@ TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_ProcMsg_002 )
 
 }
 
-/*******************************************************************
-测试用例编号      : TEST_CSD_UL_RcvAtCallStateInd_001
-测试用例标题      : CSD_UL_ProcMsg收到ID_AT_CSD_CALL_STATE_IND，消息携带状态为AT_CSD_CALL_STATE_BUTT
-预期结果          : 返回vos_err,打印错误信息
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_RcvAtCallStateInd_001 )
 {
     /* 输入码流配置 */
@@ -183,16 +139,7 @@ TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_RcvAtCallStateInd_001 )
     GlobalMockObject::verify();
 
 }
-/*******************************************************************
-测试用例编号      : TEST_CSD_UL_RcvAtCallStateOn_001
-测试用例标题      : CSD_UL_ProcMsg收到ID_AT_CSD_CALL_STATE_IND，消息携带状态为AT_CSD_CALL_STATE_ON
-预期结果          : 进入CSD_UL_RcvAtCallStateOn函数返回vos_ok。创建队列头结点
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_RcvAtCallStateOn_001 )
 {
     IMM_ZC_HEAD_STRU                    *pstULQueue;
@@ -224,16 +171,7 @@ TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_RcvAtCallStateOn_001 )
 
 }
 
-/*******************************************************************
-测试用例编号      : TEST_CSD_UL_RcvAtCallStateOff_001
-测试用例标题      : CSD_UL_ProcMsg收到ID_AT_CSD_CALL_STATE_IND，消息携带状态为AT_CSD_CALL_STATE_OFF
-预期结果          : 进入CSD_UL_RcvAtCallStateOff函数挂断电话流程,返回vos_ok。缓存队列清除
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_RcvAtCallStateOff_001 )
 {
     IMM_ZC_HEAD_STRU                    *pstULQueue;
@@ -265,17 +203,7 @@ TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_RcvAtCallStateOff_001 )
 
 }
 
-/*******************************************************************
-测试用例编号      : TEST_CSD_UL_RcvAtCallStateOff_002
-测试用例标题      : CSD_UL_ProcMsg收到ID_AT_CSD_CALL_STATE_IND，消息携带状态为AT_CSD_CALL_STATE_OFF
-                    再次收到同样消息和携带状态
-预期结果          : 再次进入CSD_UL_RcvAtCallStateOff函数挂断电话流程,缓存队列头为空，返回vos_ok
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_RcvAtCallStateOff_002 )
 {
     /* 输入码流配置 */
@@ -307,17 +235,7 @@ TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_RcvAtCallStateOff_002 )
 
 
 }
-/*******************************************************************
-测试用例编号      : TEST_CSD_UL_RcvAtCallStateOff_003
-测试用例标题      : CSD_UL_ProcMsg收到ID_AT_CSD_CALL_STATE_IND，消息携带状态为AT_CSD_CALL_STATE_OFF
-                    释放缓存队列失败，从队列中移出节点失败
-预期结果          : 返回VOS_OK，打印错误信息。缓存队列无变化
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_RcvAtCallStateOff_003 )
 {
     IMM_ZC_HEAD_STRU                   *pstULQueue;
@@ -349,17 +267,7 @@ TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_RcvAtCallStateOff_003 )
 
 }
 
-/*******************************************************************
-测试用例编号      : TEST_CSD_UL_FreeQueue_001
-测试用例标题      : CSD_UL_ProcMsg收到ID_AT_CSD_CALL_STATE_IND，消息携带状态为AT_CSD_CALL_STATE_OFF
-                    释放缓存队列成功，缓存节点为零
-预期结果          : 进入CSD_UL_RcvAtCallStateOff函数挂断电话流程,返回vos_ok.缓存队列为空
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_FreeQueue_001 )
 {
     IMM_ZC_HEAD_STRU                    *pstULQueue;
@@ -413,17 +321,7 @@ TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_FreeQueue_001 )
 
 
 }
-/*******************************************************************
-测试用例编号      : TEST_CSD_UL_FreeQueue_002
-测试用例标题      : CSD_UL_ProcMsg收到ID_AT_CSD_CALL_STATE_IND，消息携带状态为AT_CSD_CALL_STATE_OFF
-                    释放缓存队列成功，缓存节点为不为零，头结点的下个节点指针指向头结点
-预期结果          : 返回VOS_ERR，打印错误信息。缓存队列无变化
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_FreeQueue_002 )
 {
     IMM_ZC_HEAD_STRU                         *pstULQueue;
@@ -467,17 +365,7 @@ TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_FreeQueue_002 )
 
 
 }
-/*******************************************************************
-测试用例编号      : TEST_CSD_UL_FreeQueue_003
-测试用例标题      : CSD_UL_ProcMsg收到ID_AT_CSD_CALL_STATE_IND，消息携带状态为AT_CSD_CALL_STATE_OFF
-                    释放缓存队列成功，缓存节点为不为零，头结点的下个节点指针指向头结点
-预期结果          : 返回VOS_ERR，打印错误信息。缓存队列无变化
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_FreeQueue_003 )
 {
     IMM_ZC_HEAD_STRU                   *pstULQueue;
@@ -538,17 +426,7 @@ TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_FreeQueue_003 )
 
 }
 
-/*******************************************************************
-测试用例编号      : TEST_CSD_UL_InitQueue_001
-测试用例标题      : CSD_UL_ProcMsg收到ID_AT_CSD_CALL_STATE_IND，消息携带状态为AT_CSD_CALL_STATE_ON，CSD_UL_InitQueue初始化队列失败
-                    分配内存失败
-预期结果          : 返回vos_err，CSD_UL_RcvAtCallStateOn也返回vos_err。队列头指针未分配内存
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_InitQueue_001 )
 {
     /* 输入码流配置 */
@@ -569,17 +447,7 @@ TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_InitQueue_001 )
     EXPECT_EQ(AT_CSD_CALL_STATE_OFF, CSD_GetCallState());
 
 }
-/*******************************************************************
-测试用例编号      : TEST_CSD_UL_InitQueue_002
-测试用例标题      : CSD_UL_ProcMsg收到ID_AT_CSD_CALL_STATE_IND，消息携带状态为AT_CSD_CALL_STATE_ON，CSD_UL_InitQueue初始化队列
-                    头结点不为空
-预期结果          : 返回VOS_OK，CSD_UL_RcvAtCallStateOn也返回VOS_OK。节点头指针未变化。
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_InitQueue_002 )
 {
     IMM_ZC_HEAD_STRU                         *pstULQueue;
@@ -609,17 +477,7 @@ TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_InitQueue_002 )
 
 }
 
-/*******************************************************************
-测试用例编号      : TEST_CSD_UL_InsertQueue_001
-测试用例标题      : CSD_UL_ProcMsg收到ID_AT_CSD_CALL_STATE_IND，消息携带状态为AT_CSD_CALL_STATE_ON，
-                    CSD_UL_InitQueue初始化队列失败,AT发送来数据
-预期结果          : CSD_UL_InsertQueue返回VOS_ERR,释放数据内存。缓存队列长度无变化
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_InsertQueue_001 )
 {
     IMM_ZC_STRU                        *pstZcData;
@@ -646,17 +504,7 @@ TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_InsertQueue_001 )
 
 }
 
-/*******************************************************************
-测试用例编号      : TEST_CSD_UL_InsertQueue_003
-测试用例标题      : CSD_UL_ProcMsg收到ID_AT_CSD_CALL_STATE_IND，消息携带状态为AT_CSD_CALL_STATE_ON，
-                    CSD_UL_InsertQueue成功
-预期结果          : VOS_OK,数据入缓存队列，缓存队列长度加一
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_InsertQueue_003 )
 {
     IMM_ZC_STRU                        *pstZcData;
@@ -697,17 +545,7 @@ TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_InsertQueue_003 )
 }
 
 
-/*******************************************************************
-测试用例编号      : TEST_CSD_UL_ProcDataTask_001
-测试用例标题      : CSD_UL_ProcMsg收到ID_AT_CSD_CALL_STATE_IND，消息携带状态为AT_CSD_CALL_STATE_ON
-                    CSD_UL_SendData未接收到数据，信号量未释放，
-预期结果          : CSD_UL_ProcDataTask无法获取到信号量，打印异常
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_ProcDataTask_001 )
 {
     /* 输入码流配置 */
@@ -731,16 +569,7 @@ TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_ProcDataTask_001 )
     GlobalMockObject::verify();
 
 }
-/*******************************************************************
-测试用例编号      : TEST_CSD_UL_ProcDataTask_002
-测试用例标题      : 当前处于AT_CSD_CALL_STATE_OFF状态
-预期结果          : 打印警告信息，不进入CSD_UL_SendDataToDICC，
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_ProcDataTask_002 )
 {
     /* 输入码流配置 */
@@ -767,16 +596,7 @@ TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_ProcDataTask_002 )
 
 
 }
-/*******************************************************************
-测试用例编号      : TEST_CSD_UL_ProcDataTask_003
-测试用例标题      : 中断间隔不满足AT_CSD_CALL_STATE_ON
-预期结果          : task_delay不进入CSD_UL_SendDataToDICC,缓存队列长度无变化
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_ProcDataTask_003 )
 {
     /* 输入码流配置 */
@@ -808,16 +628,7 @@ TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_ProcDataTask_003 )
 
 }
 
-/*******************************************************************
-测试用例编号      : TEST_CSD_UL_SendData_001
-测试用例标题      : CSD_UL_InitQueue成功，CSD_UL_SendData接收到数据，数据头指针为空
-预期结果          : 打印错误信息，队列长度不增加
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_SendData_001 )
 {
     IMM_ZC_HEAD_STRU                   *pstULQueue;
@@ -850,16 +661,7 @@ TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_SendData_001 )
 
 
 }
-/*******************************************************************
-测试用例编号      : TEST_CSD_UL_SendData_002
-测试用例标题      : CSD_UL_InitQueue成功，CSD_UL_SendData接收到数据，数据指针为空
-预期结果          : 打印错误信息，队列长度不增加
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_SendData_002 )
 {
     IMM_ZC_STRU                        *pstZcData;
@@ -899,17 +701,7 @@ TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_SendData_002 )
 
 
 }
-/*******************************************************************
-测试用例编号      : TEST_CSD_UL_SendData_003
-测试用例标题      : CSD_UL_ProcMsg收到ID_AT_CSD_CALL_STATE_IND，消息携带状态为AT_CSD_CALL_STATE_ON
-                    CSD_UL_InitQueue成功，CSD_UL_SendData接收到数据，数据长度为空
-预期结果          : 打印错误信息，队列长度不增加
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_SendData_003 )
 {
     IMM_ZC_STRU                        *pstZcData;
@@ -951,17 +743,7 @@ TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_SendData_003 )
 
 }
 
-/*******************************************************************
-测试用例编号      : TEST_CSD_UL_SendDataToDICC_001
-测试用例标题      : CSD_UL_ProcMsg收到ID_AT_CSD_CALL_STATE_IND，消息携带状态为AT_CSD_CALL_STATE_ON
-                    CSD_UL_SendData接收到数据，DICC_GetChannelFreeSpaceCnt中ulCnt值为零
-预期结果          : 直接触发DICC取中断，缓存队列长度无变化
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_SendDataToDICC_001 )
 {
 
@@ -1017,18 +799,7 @@ TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_SendDataToDICC_001 )
 
 }
 
-/*******************************************************************
-测试用例编号      : TEST_CSD_UL_SendDataToDICC_002
-测试用例标题      : CSD_UL_ProcMsg收到ID_AT_CSD_CALL_STATE_IND，消息携带状态为AT_CSD_CALL_STATE_ON
-                    CSD_UL_InitQueue成功，CSD_UL_SendData接收到数据，从DICC中插入数据失败
-预期结果          : 返回CSD_UL_SEND_DATA_CONTINUE，
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-
-*******************************************************************/
 TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_SendDataToDICC_002 )
 {
     IMM_ZC_HEAD_STRU                    *pstULQueue;
@@ -1091,17 +862,7 @@ TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_SendDataToDICC_002 )
 
 }
 
-/*******************************************************************
-测试用例编号      : TEST_CSD_UL_SendDataToDICC_003
-测试用例标题      : CSD_UL_ProcMsg收到ID_AT_CSD_CALL_STATE_IND，消息携带状态为AT_CSD_CALL_STATE_ON
-                    CSD_UL_InitQueue成功，CSD_UL_SendData接收到数据，发送数据成功
-预期结果          : 返回CSD_UL_SEND_DATA_NOT_CONTINUE，打印错误信息
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_SendDataToDICC_003 )
 {
     IMM_ZC_HEAD_STRU                    *pstULQueue;
@@ -1158,17 +919,7 @@ TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_SendDataToDICC_003 )
 
 
 }
-/*******************************************************************
-测试用例编号      : TEST_CSD_UL_SendDataToDICC_004
-测试用例标题      : CSD_UL_ProcMsg收到ID_AT_CSD_CALL_STATE_IND，消息携带状态为AT_CSD_CALL_STATE_ON
-                    CSD_UL_InitQueue成功，CSD_UL_SendData接收到数据，触发DICC中断失败
-预期结果          : 打印错误信息，,缓存队列长度不改变
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_SendDataToDICC_004 )
 {
     IMM_ZC_HEAD_STRU                    *pstULQueue;
@@ -1228,17 +979,7 @@ TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_SendDataToDICC_004 )
 
 
 }
-/*******************************************************************
-测试用例编号      : TEST_CSD_UL_SendDataToDICC_005
-测试用例标题      : CSD_UL_ProcMsg收到ID_AT_CSD_CALL_STATE_IND，消息携带状态为AT_CSD_CALL_STATE_ON
-                    CSD_UL_InitQueue成功，CSD_UL_SendData接收到数据，缓存节点数为零
-预期结果          : 打印错误信息，,缓存队列长度不改变
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_SendDataToDICC_005 )
 {
     IMM_ZC_HEAD_STRU                         *pstULQueue;
@@ -1289,17 +1030,7 @@ TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_SendDataToDICC_005 )
     GlobalMockObject::verify();
 
 }
-/*******************************************************************
-测试用例编号      : TEST_CSD_UL_SendDataToDICC_006
-测试用例标题      : CSD_UL_ProcMsg收到ID_AT_CSD_CALL_STATE_IND，消息携带状态为AT_CSD_CALL_STATE_ON
-                    CSD_UL_InitQueue成功，CSD_UL_SendData接收到数据，获取到DICC节点数非法
-预期结果          : 打印错误信息，,缓存队列长度不改变
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_SendDataToDICC_006 )
 {
     IMM_ZC_HEAD_STRU                         *pstULQueue;
@@ -1351,16 +1082,7 @@ TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_SendDataToDICC_006 )
 
 }
 
-/*******************************************************************
-测试用例编号      : TEST_CSD_UL_CalcIsrSlice_001
-测试用例标题      : 当前slice小于上次获取到的slice
-预期结果          : 返回是两次slice差值
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_CalcIsrSlice_001 )
 {
 
@@ -1389,16 +1111,7 @@ TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_CalcIsrSlice_001 )
 
 }
 
-/*******************************************************************
-测试用例编号      : TEST_CSD_UL_CalcIsrSlice_002
-测试用例标题      : 当前slice大于上次获取到的slice
-预期结果          : 返回是最大值减去当前，再加上上次的值
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_UL_ProcMsg, TEST_CSD_UL_CalcIsrSlice_002 )
 {
     VOS_UINT32  ulRslt;

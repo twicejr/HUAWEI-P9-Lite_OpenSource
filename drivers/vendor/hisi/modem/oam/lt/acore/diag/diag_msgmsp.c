@@ -70,15 +70,7 @@ void diag_MspMsgInit(void)
     }
 }
 
-/*****************************************************************************
- Function Name   : diag_GetModemNum
- Description     : 获取modem num
- Input           : pstReq 待处理数据
- Output          : None
- Return          : VOS_UINT32
 
-    1.c00326366      2012-11-22  Draft Enact
-*****************************************************************************/
 VOS_UINT32 diag_GetModemNum(VOS_UINT8* pstReq)
 {
     VOS_UINT ret = ERR_MSP_SUCCESS;
@@ -135,17 +127,7 @@ VOS_UINT32 diag_AppTransMspProc(MsgBlock* pMsgBlock)
 
 DIAG_GTR_DATA_RCV_PFN g_pfnDiagGtrCallBack = VOS_NULL;
 
-/*****************************************************************************
- Function Name   : DIAG_GtrRcvCallBackReg
- Description     : GTR回调注册
- Input           :DIAG_GTR_DATA_RCV_PFN pfnGtrRcv
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.w00182550      2012-12-26  Draft Enact
-
-*****************************************************************************/
 VOS_VOID DIAG_GtrRcvCallBackReg(DIAG_GTR_DATA_RCV_PFN pfnGtrRcv)
 {
     g_pfnDiagGtrCallBack = pfnGtrRcv;
@@ -154,19 +136,7 @@ VOS_VOID DIAG_GtrRcvCallBackReg(DIAG_GTR_DATA_RCV_PFN pfnGtrRcv)
 #endif
 
 
-/*****************************************************************************
- Function Name   : diag_GuGtrProcEntry
- Description     : GU的RTT测试命令处理，只需要透传，不需要回复
-                    1. 原值透传，不改变senderpid
-                    2. 由于是GU协议栈的任务，需要在C核去申请消息发送消息
-                       (senderpid不能是A核的PID，否则申请消息会失败)
-                    3. 不需要回复，GTR通过层间消息的勾包码流判断成功失败
-                    4. GU的RTT测试不分正常版本和RTT版本(版本归一)
 
- History         :
-    1.c00326366      2015-9-6  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 diag_GuGtrProcEntry(VOS_UINT8* pstReq)
 {
     VOS_UINT32 ulRet                    = ERR_MSP_SUCCESS;
@@ -219,21 +189,7 @@ DIAG_ERROR:
 }
 
 
-/*****************************************************************************
- Function Name   : diag_GtrProcEntry
- Description     : GTR命令处理接口入口
-                    此功能只在回片前RTT联调时使用，会单独编译RTT联调版本
-                    由PS的打桩接口注册到MSP，MSP在从工具侧接收到GTR命令时回调PS
-                    的打桩接口，PS通过邮箱把消息转发给DSP
-                    PS接收到DSP的回复后，调用(DIAG_TransReport)接口把应答结果上
-                    报到工具侧
-                    GTR测试软件-->HIDS-->MSP-->PS-->DSP-->PS-->MSP-->HIDS-->GTR
 
- History         :
-    1.w00182550      2012-12-26  Draft Enact
-    2.c64416         2014-11-18  适配新的诊断架构
-
-*****************************************************************************/
 VOS_UINT32 diag_GtrProcEntry(VOS_UINT8* pstReq)
 {
     DIAG_CMD_GTR_SET_CNF_STRU stGtrCnf = {0};

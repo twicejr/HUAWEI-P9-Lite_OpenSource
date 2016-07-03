@@ -352,6 +352,8 @@ static int tusb320_read_attachment_reg(void)
 
     hwlog_info("%s: register value of 09H is 0x%x\n", __func__, reg_status_val);
 
+    tusb320_clean_mask();
+
     return reg_val;
 }
 

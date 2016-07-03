@@ -125,9 +125,7 @@ extern long int syscall (long int __sysno, ...);
 
 extern void TCPIP_ProductLock(void);
 extern void TCPIP_ProductUnLock(void);
-/* Modified by yanlei00216869, 【代码检视】通过增加编译宏控制，使得以.so方式提供给bluestar的visp，不依赖产品代码, 2014/10/25   问题单号:DTS2014102504024  */
 #if ( (VOS_OS_VER == VOS_LINUX) && (TCPIP_FOR_BLUESTAR == VRP_NO) )
-/*End of Modified by yanlei00216869, 2014/10/25   问题单号:DTS2014102504024  */
 #define VRP_LOCK()  TCPIP_ProductLock()
 #define VRP_UNLOCK() TCPIP_ProductUnLock()
 #else

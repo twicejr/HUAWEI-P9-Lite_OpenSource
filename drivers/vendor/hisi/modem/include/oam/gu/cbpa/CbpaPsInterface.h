@@ -1,18 +1,6 @@
 
 
-/************************************************************************
-  Copyright   : 2013-2015, Huawei Tech. Co., Ltd.
-  File name   : CbpaPsInterface.h
-  Author      : l00256032
-  Version     : V900R001
-  Date        : 2014-1-24
-  Description : L+C共SIM卡项目头文件相关定义
-  History     :
-   1.Date:2014-1-24
-     Author: l00256032
-     Modification:create
 
-************************************************************************/
 
 #ifndef __CBPA_PS_INTERFACE_H__
 #define __CBPA_PS_INTERFACE_H__

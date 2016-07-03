@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : hmac_roam_alg.c
-  版 本 号   : 初稿
-  作    者   : guyanjie 00260350
-  生成日期   : 2015年3月18日
-  最近修改   :
-  功能描述   : 漫游模块算法实现
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年3月18日
-    作    者   : guyanjie 00260350
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -83,21 +66,7 @@ hmac_roam_rssi_capacity_stru   gst_rssi_table_vht80_ofdm[ROAM_RSSI_LEVEL] = {
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : hmac_roam_alg_init
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或 失败错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月10日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void hmac_roam_alg_init(hmac_roam_info_stru *pst_roam_info, oal_int8 c_current_rssi)
 {
     hmac_roam_alg_stru         *pst_roam_alg;
@@ -132,21 +101,7 @@ oal_void hmac_roam_alg_init(hmac_roam_info_stru *pst_roam_info, oal_int8 c_curre
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_roam_alg_get_delta_rssi
- 功能描述  : 调整rssi增益
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或 失败错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月8日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_int8 hmac_roam_alg_adjust_rssi_increase(hmac_roam_info_stru *pst_roam_info, mac_bss_dscr_stru *pst_bss_dscr)
 {
     oal_int8  c_current_rssi;
@@ -200,21 +155,7 @@ OAL_STATIC oal_int8 hmac_roam_alg_adjust_rssi_increase(hmac_roam_info_stru *pst_
     return (c_target_rssi - c_current_rssi - ROAM_RSSI_DIFF_4_DB);
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_roam_alg_add_list
- 功能描述  : 将bssid添加到列表中
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或 失败错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月8日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32 hmac_roam_alg_add_bsslist(hmac_roam_bss_list_stru *pst_roam_bss_list, oal_uint8 *puc_bssid, roam_blacklist_type_enum_uint8 list_type)
 {
     hmac_roam_bss_info_stru    *pst_cur_bss;
@@ -302,21 +243,7 @@ OAL_STATIC oal_uint32 hmac_roam_alg_add_bsslist(hmac_roam_bss_list_stru *pst_roa
     return OAL_FAIL;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_roam_find_in_blacklist
- 功能描述  : 检查列表中是否存在该bssid
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或 失败错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月8日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_bool_enum_uint8 hmac_roam_alg_find_in_bsslist(hmac_roam_bss_list_stru *pst_roam_bss_list, oal_uint8 *puc_bssid)
 {
     hmac_roam_bss_info_stru    *pst_cur_bss;
@@ -352,21 +279,7 @@ OAL_STATIC oal_bool_enum_uint8 hmac_roam_alg_find_in_bsslist(hmac_roam_bss_list_
     return OAL_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_roam_alg_add_blacklist
- 功能描述  : 将bssid添加到黑名单列表中
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或 失败错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月8日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_roam_alg_add_blacklist(hmac_roam_info_stru *pst_roam_info, oal_uint8 *puc_bssid, roam_blacklist_type_enum_uint8 list_type)
 {
     oal_uint32      ul_ret;
@@ -385,21 +298,7 @@ oal_uint32 hmac_roam_alg_add_blacklist(hmac_roam_info_stru *pst_roam_info, oal_u
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_roam_find_in_blacklist
- 功能描述  : 检查黑名单列表中是否存在该bssid
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或 失败错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月8日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_bool_enum_uint8 hmac_roam_alg_find_in_blacklist(hmac_roam_info_stru *pst_roam_info, oal_uint8 *puc_bssid)
 {
     if ((pst_roam_info == OAL_PTR_NULL) || (puc_bssid == OAL_PTR_NULL))
@@ -411,21 +310,7 @@ oal_bool_enum_uint8 hmac_roam_alg_find_in_blacklist(hmac_roam_info_stru *pst_roa
 }
 
 
-/*****************************************************************************
- 函 数 名  : hmac_roam_add_bss_history
- 功能描述  : 将bssid添加到历史优选AP列表中
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或 失败错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月8日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_roam_alg_add_history(hmac_roam_info_stru *pst_roam_info, oal_uint8 *puc_bssid)
 {
     oal_uint32      ul_ret;
@@ -446,21 +331,7 @@ oal_uint32 hmac_roam_alg_add_history(hmac_roam_info_stru *pst_roam_info, oal_uin
 }
 
 
-/*****************************************************************************
- 函 数 名  : hmac_roam_find_in_blacklist
- 功能描述  : 检查历史优选列表中是否存在该bssid
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或 失败错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月8日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_bool_enum_uint8 hmac_roam_alg_find_in_history(hmac_roam_info_stru *pst_roam_info, oal_uint8 *puc_bssid)
 {
     if ((pst_roam_info == OAL_PTR_NULL) || (puc_bssid == OAL_PTR_NULL))
@@ -471,21 +342,7 @@ oal_bool_enum_uint8 hmac_roam_alg_find_in_history(hmac_roam_info_stru *pst_roam_
     return hmac_roam_alg_find_in_bsslist(&pst_roam_info->st_alg.st_history, puc_bssid);
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_roam_alg_scan_channel_init
- 功能描述  : chu
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或 失败错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月8日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_roam_alg_scan_channel_init(hmac_roam_info_stru *pst_roam_info, mac_scan_req_stru *pst_scan_params)
 {
     oal_uint32         ul_ret;
@@ -580,21 +437,7 @@ oal_uint32 hmac_roam_alg_scan_channel_init(hmac_roam_info_stru *pst_roam_info, m
 
     return OAL_SUCC;
 }
-/*****************************************************************************
- 函 数 名  : hmac_roam_alg_get_capacity_by_rssi
- 功能描述  : chu
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或 失败错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月8日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32 hmac_roam_alg_get_capacity_by_rssi(wlan_protocol_enum_uint8 en_protocol, wlan_bw_cap_enum_uint8 en_bw_cap, oal_int8 c_rssi)
 {
     hmac_roam_rssi_capacity_stru   *pst_rssi_table = OAL_PTR_NULL;
@@ -651,21 +494,7 @@ OAL_STATIC oal_uint32 hmac_roam_alg_get_capacity_by_rssi(wlan_protocol_enum_uint
 
     return 0;
 }
-/*****************************************************************************
- 函 数 名  : hmac_roam_alg_calc_avail_channel_capacity
- 功能描述  : chu
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或 失败错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月8日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32 hmac_roam_alg_calc_avail_channel_capacity(mac_bss_dscr_stru *pst_bss_dscr)
 {
     oal_uint32                 ul_capacity = 0;
@@ -703,21 +532,7 @@ OAL_STATIC oal_uint32 hmac_roam_alg_calc_avail_channel_capacity(mac_bss_dscr_str
 
     return ul_avail_channel_capacity;
 }
-/*****************************************************************************
- 函 数 名  : hmac_roam_alg_bss_in_ess
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或 失败错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月25日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_roam_alg_bss_in_ess(hmac_roam_info_stru *pst_roam_info, mac_bss_dscr_stru *pst_bss_dscr)
 {
     hmac_vap_stru              *pst_hmac_vap;
@@ -758,21 +573,7 @@ oal_uint32 hmac_roam_alg_bss_in_ess(hmac_roam_info_stru *pst_roam_info, mac_bss_
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_roam_alg_bss_check
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或 失败错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月18日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_roam_alg_bss_check(hmac_roam_info_stru *pst_roam_info, mac_bss_dscr_stru *pst_bss_dscr)
 {
     hmac_vap_stru              *pst_hmac_vap;
@@ -864,21 +665,7 @@ oal_uint32 hmac_roam_alg_bss_check(hmac_roam_info_stru *pst_roam_info, mac_bss_d
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_roam_alg_need_to_stop_roam_trigger
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或 失败错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月10日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_bool_enum_uint8 hmac_roam_alg_need_to_stop_roam_trigger(hmac_roam_info_stru *pst_roam_info)
 {
     hmac_vap_stru              *pst_hmac_vap;
@@ -918,21 +705,7 @@ oal_bool_enum_uint8 hmac_roam_alg_need_to_stop_roam_trigger(hmac_roam_info_stru 
     return OAL_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_roam_alg_bss_check
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或 失败错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月10日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 mac_bss_dscr_stru *hmac_roam_alg_select_bss(hmac_roam_info_stru *pst_roam_info)
 {
     hmac_vap_stru              *pst_hmac_vap;

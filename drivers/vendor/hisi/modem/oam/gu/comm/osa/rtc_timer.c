@@ -1380,23 +1380,7 @@ VOS_UINT32 R_Get32KRelTmRemainTime( HTIMER * phTm, VOS_UINT32 * pulTime,
     }
 }
 
-/*****************************************************************************
- 函 数 名  : RTC_CheckTimer
- 功能描述  : 检查TIMER是否正确
- 输入参数  : HTIMER  *phTm
-             VOS_UINT32 ulFileID
-             VOS_INT32 usLineNo
- 输出参数  : VOS_UINT32 *ulTimerID
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月5日
-    作    者   : s00207770
-    修改内容   : 规避TimerId被修改导致的检查错误发起主动复位
-
-*****************************************************************************/
 VOS_UINT32 RTC_CheckTimer( HTIMER  *phTm, VOS_UINT32 *ulTimerID,
                            VOS_UINT32 ulFileID, VOS_INT32 usLineNo )
 {
@@ -1890,24 +1874,7 @@ VOS_VOID VOS_ShowUsed32KTimerInfo( VOS_VOID )
 
 
 #if (OSA_CPU_CCPU == VOS_OSA_CPU)
-/*****************************************************************************
- 函 数 名  : VOS_DrxCheckTimer
- 功能描述  : 检测输入的timer句柄合法性
- 输入参数  : HTIMER *phTm
-             VOS_UINT32 *ulTimerID
-             VOS_UINT32  ulFileID
-             VOS_INT32   lLineNo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月29日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 VOS_DrxCheckTimer( HTIMER *phTm, VOS_UINT32 ulFileID, VOS_INT32 lLineNo )
 {
     VOS_UINT32                i;

@@ -1,29 +1,10 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmcMsgPrioCompare.c
-  版 本 号   : 初稿
-  作    者   : zhoujun 40661
-  生成日期   : 2011年9月27日
-  最近修改   :
-  功能描述   : NasMmcMsgCompare.h的实现
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年9月27日
-    作    者   : zhoujun 40661
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
 *****************************************************************************/
 #include  "NasComm.h"
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-7, begin */
 /* 删除ExtAppMmcInterface.h*/
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-7, end */
 #include  "MmcMmInterface.h"
 #include  "MmcGmmInterface.h"
 #include  "NasMmcSndInternalMsg.h"
@@ -39,9 +20,7 @@
 #include  "NasMmlLib.h"
 #include  "siappstk.h"
 
-/* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
 #include "MsccMmcInterface.h"
-/* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
 #include "PsRrmInterface.h"
 
@@ -65,13 +44,7 @@ extern "C" {
 *****************************************************************************/
 
 
-/*****************************************************************************
- 全局变量名    : g_astMmcMsgPrioCompareWithInterSysCcoTbl
- 全局变量说明  : MMC CCO 状态机消息优先级比较处理的比较表
- 1.日    期   : 2011年9月28日
-   作    者   : zhoujun 40661
-   修改内容   : 新建
-*****************************************************************************/
+
 
 NAS_MMC_MSG_COMPARE_STRU g_astMmcMsgPrioCompareWithInterSysCcoTbl[] =
 {
@@ -80,13 +53,7 @@ NAS_MMC_MSG_COMPARE_STRU g_astMmcMsgPrioCompareWithInterSysCcoTbl[] =
                              NAS_MMC_CompareMmcMsgPrioWithInterSysCco),
 };
 
-/*****************************************************************************
- 全局变量名    : g_astMmcMsgPrioCompareWithInterSysHoTbl
- 全局变量说明  : MMC HO 状态机消息优先级比较处理的比较表
- 1.日    期   : 2011年9月28日
-   作    者   : zhoujun 40661
-   修改内容   : 新建
-*****************************************************************************/
+
 NAS_MMC_MSG_COMPARE_STRU g_astMmcMsgPrioCompareWithInterSysHoTbl[] =
 {
 
@@ -96,17 +63,7 @@ NAS_MMC_MSG_COMPARE_STRU g_astMmcMsgPrioCompareWithInterSysHoTbl[] =
 
 };
 
-/* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
-/*****************************************************************************
- 全局变量名    : g_astMmcMsgPrioCompareWithInterSysCellReselTbl
- 全局变量说明  : MMC cell resel 状态机消息优先级比较处理的比较表
- 1.日    期   : 2011年9月28日
-   作    者   : zhoujun 40661
-   修改内容   : 新建
- 2.日    期   : 2012年11月15日
-   作    者   : s00217060
-   修改内容   : DTS2012082007133:SYSCFG和用户指定搜可以打断小区重选状态机
-*****************************************************************************/
+
 NAS_MMC_MSG_COMPARE_STRU g_astMmcMsgPrioCompareWithInterSysCellReselTbl[] =
 {
     /* InterSys cellresel过程中收到用户指定搜网请求的消息优先级比较 */
@@ -139,16 +96,7 @@ NAS_MMC_MSG_COMPARE_STRU g_astMmcMsgPrioCompareWithInterSysCellReselTbl[] =
                              NAS_MMC_CompareMmcMsgPrioWithInterSysCellResel),
 };
 
-/*****************************************************************************
- 全局变量名    : g_astMmcMsgPrioCompareWithInterSysOosTbl
- 全局变量说明  : MMC OOS 状态机消息优先级比较处理的比较表
- 1.日    期   : 2011年9月28日
-   作    者   : zhoujun 40661
-   修改内容   : 新建
- 2.日    期   : 2015年9月7日
-   作    者   : z00161729
-   修改内容   : 支持LTE CSG功能新增
-*****************************************************************************/
+
 NAS_MMC_MSG_COMPARE_STRU g_astMmcMsgPrioCompareWithInterSysOosTbl[] =
 {
 
@@ -193,12 +141,10 @@ NAS_MMC_MSG_COMPARE_STRU g_astMmcMsgPrioCompareWithInterSysOosTbl[] =
     NAS_MMC_COMPARE_TBL_ITEM(NAS_BuildEventType(VOS_PID_TIMER, TI_NAS_MMC_AVAILABLE_TIMER),
                              NAS_MMC_CompareTiAvailableTimerExpiredPrioWithInterSysOos),
 
-    /* Added by c00318887 for 预置频点搜网优化, 2015-9-11, begin */
     /* OOS过程中收到TI_NAS_MMC_PLMN_SEARCH_PHASE_ONE_TOTAL_TIMER设置请求的消息优先级比较 */
     NAS_MMC_COMPARE_TBL_ITEM(NAS_BuildEventType(VOS_PID_TIMER, TI_NAS_MMC_PLMN_SEARCH_PHASE_ONE_TOTAL_TIMER),
                              NAS_MMC_CompareTiPlmnSearchPhaseOneTotalTimerExpiredPrioWithInterSysOos),
 
-    /* Added by c00318887 for 预置频点搜网优化, 2015-9-11, end */
 
 
     /* OOS过程中收到TI_NAS_MMC_FORBID_LA_TIMER_LEN设置请求的消息优先级比较 */
@@ -210,25 +156,7 @@ NAS_MMC_MSG_COMPARE_STRU g_astMmcMsgPrioCompareWithInterSysOosTbl[] =
                              NAS_MMC_CompareCmServiceIndPrioWithInterSysOos),
 };
 
-/*****************************************************************************
- 全局变量名    : g_astMmcMsgPrioCompareWithPlmnSelectionTbl
- 全局变量说明  : MMC plmn selection 状态机消息优先级比较处理的比较表
- 1.日    期   : 2011年9月28日
-   作    者   : zhoujun 40661
-   修改内容   : 新建
- 2.日    期   : 2012年8月13日
-   作    者   : z00161729
-   修改内容   : DCM定制需求和遗留问题修改
- 3.日    期   : 2014年1月28日
-   作    者   : s00246516
-   修改内容   : L-C互操作项目:增加获取和注册请求的处理
- 4.日    期   : 2015年5月7日
-   作    者   : b00269685
-   修改内容   : 增加打断csfb 触发的搜网处理
- 5.日    期   : 2015年9月7日
-   作    者   : z00161729
-   修改内容   : 支持LTE CSG功能新增
-*****************************************************************************/
+
 NAS_MMC_MSG_COMPARE_STRU g_astMmcMsgPrioCompareWithPlmnSelectionTbl[] =
 {
 
@@ -236,7 +164,6 @@ NAS_MMC_MSG_COMPARE_STRU g_astMmcMsgPrioCompareWithPlmnSelectionTbl[] =
     NAS_MMC_COMPARE_TBL_ITEM(NAS_BuildEventType(UEPS_PID_MSCC, ID_MSCC_MMC_POWER_OFF_REQ),
                              NAS_MMC_ComparePowerOffPrioWithPlmnSelection),
 
-    /* Added by s00246516 for L-C互操作项目, 2014-01-28, Begin */
     /* PlmnSelection过程中收到PowerSave请求的消息优先级比较 */
     NAS_MMC_COMPARE_TBL_ITEM(NAS_BuildEventType(UEPS_PID_MSCC, ID_MSCC_MMC_POWER_SAVE_REQ),
                              NAS_MMC_ComparePowerSavePrioWithPlmnSelection),
@@ -246,7 +173,6 @@ NAS_MMC_MSG_COMPARE_STRU g_astMmcMsgPrioCompareWithPlmnSelectionTbl[] =
 
     NAS_MMC_COMPARE_TBL_ITEM(NAS_BuildEventType(UEPS_PID_MSCC, ID_MSCC_MMC_REG_REQ),
                              NAS_MMC_CompareRegReqPrioWithPlmnSelection),
-    /* Added by s00246516 for L-C互操作项目, 2014-01-28, End */
 
 #if (FEATURE_ON == FEATURE_DSDS)
      NAS_MMC_COMPARE_TBL_ITEM(NAS_BuildEventType(UEPS_PID_MSCC, ID_MSCC_MMC_SRV_ACQ_REQ),
@@ -288,7 +214,6 @@ NAS_MMC_MSG_COMPARE_STRU g_astMmcMsgPrioCompareWithPlmnSelectionTbl[] =
     NAS_MMC_COMPARE_TBL_ITEM(NAS_BuildEventType(WUEPS_PID_MM, MMCMM_CM_SERVICE_IND),
                              NAS_MMC_CompareCmServiceIndPrioWithPlmnSelection),
 
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-13, begin */
 #if (FEATURE_ON == FEATURE_LTE)
     /* PlmnSelection过程中收到用户MMCMM_CM_SERVICE_IND请求的消息优先级比较 */
     NAS_MMC_COMPARE_TBL_ITEM(NAS_BuildEventType(WUEPS_PID_MM, MMCMM_CSFB_ABORT_IND),
@@ -299,45 +224,21 @@ NAS_MMC_MSG_COMPARE_STRU g_astMmcMsgPrioCompareWithPlmnSelectionTbl[] =
                              NAS_MMC_CompareLmmServiceResultIndPrioWithPlmnSelection),
 
 #endif
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-13, end */
 
     /* PlmnSelection过程中收到用户MMCMM_PLMN_SEARCH_IND请求的消息优先级比较 */
     NAS_MMC_COMPARE_TBL_ITEM(NAS_BuildEventType(WUEPS_PID_MM, MMCMM_PLMN_SEARCH_IND),
                              NAS_MMC_ComparePlmnSearchIndPrioWithPlmnSelection),
 
-    /* Added by c00318887 for 预置频点搜网优化, 2015-8-31, begin */
     /* PlmnSelection过程中收到TI_NAS_MMC_CONTROL_FIRST_SEARCH_PLMN_TIMER消息优先级比较 */
     NAS_MMC_COMPARE_TBL_ITEM(NAS_BuildEventType(VOS_PID_TIMER, TI_NAS_MMC_PLMN_SEARCH_PHASE_ONE_TOTAL_TIMER),
                              NAS_MMC_ComparePlmnSearchPhaseOneTotalTimePrioWithPlmnSelection),
-    /* Added by c00318887 for 预置频点搜网优化, 2015-8-31, end */
 
     NAS_MMC_COMPARE_TBL_ITEM(NAS_BuildEventType(WUEPS_PID_MMC, MMCMMC_INTER_DPLMN_SET_REQ),
                              NAS_MMC_CompareDplmnSetReqPrioWithPlmnSelection),
 
 };
 
-/*****************************************************************************
- 全局变量名    : g_astMmcMsgPrioCompareWithAnyCellTbl
- 全局变量说明  : MMC any cell 状态机消息优先级比较处理的比较表
- 1.日    期   : 2011年9月28日
-   作    者   : zhoujun 40661
-   修改内容   : 新建
- 2.日    期   : 2012年5月12日
-   作    者   : w00176964
-   修改内容   : GUL BG项目调整
- 3.日    期   : 2012年8月13日
-   作    者   : z00161729
-   修改内容   : DCM定制需求和遗留问题修改
- 4.日    期   : 2014年1月28日
-   作    者   : s00246516
-   修改内容   : L-C互操作项目:增加获取和注册请求的处理
- 5.日    期   : 2014年7月3日
-   作    者   : z00161729
-   修改内容   : DSDS III新增
- 6.日    期   : 2015年9月7日
-   作    者   : z00161729
-   修改内容   : 支持LTE CSG功能新增
-*****************************************************************************/
+
 NAS_MMC_MSG_COMPARE_STRU g_astMmcMsgPrioCompareWithAnyCellTbl[] =
 {
     /* anycell过程中收到SYSCFG设置请求的消息优先级比较 */
@@ -348,7 +249,6 @@ NAS_MMC_MSG_COMPARE_STRU g_astMmcMsgPrioCompareWithAnyCellTbl[] =
     NAS_MMC_COMPARE_TBL_ITEM(NAS_BuildEventType(UEPS_PID_MSCC, ID_MSCC_MMC_POWER_OFF_REQ),
                              NAS_MMC_ComparePowerOffPrioWithPlmnSelection),
 
-    /* Added by s00246516 for L-C互操作项目, 2014-01-28, Begin */
     /* PlmnSelection过程中收到PowerSave请求的消息优先级比较 */
     NAS_MMC_COMPARE_TBL_ITEM(NAS_BuildEventType(UEPS_PID_MSCC, ID_MSCC_MMC_POWER_SAVE_REQ),
                              NAS_MMC_ComparePowerSavePrioWithPlmnSelection),
@@ -358,7 +258,6 @@ NAS_MMC_MSG_COMPARE_STRU g_astMmcMsgPrioCompareWithAnyCellTbl[] =
 
     NAS_MMC_COMPARE_TBL_ITEM(NAS_BuildEventType(UEPS_PID_MSCC, ID_MSCC_MMC_REG_REQ),
                              NAS_MMC_CompareRegReqPrioWithPlmnSelection),
-    /* Added by s00246516 for L-C互操作项目, 2014-01-28, End */
 
     /* anycell过程中收到用户重选请求的消息优先级比较 */
     NAS_MMC_COMPARE_TBL_ITEM(NAS_BuildEventType(UEPS_PID_MSCC, ID_MSCC_MMC_PLMN_USER_RESEL_REQ),
@@ -382,11 +281,9 @@ NAS_MMC_MSG_COMPARE_STRU g_astMmcMsgPrioCompareWithAnyCellTbl[] =
     NAS_MMC_COMPARE_TBL_ITEM(NAS_BuildEventType(UEPS_PID_MSCC, ID_MSCC_MMC_PLMN_SPECIAL_REQ),
                              NAS_MMC_CompareUserPlmnSpecPrioWithPlmnSelection),
 
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-13, begin */
     /* anycell过程中收到用户MMCMM_CM_SERVICE_IND请求的消息优先级比较 */
     NAS_MMC_COMPARE_TBL_ITEM(NAS_BuildEventType(WUEPS_PID_MM, MMCMM_CM_SERVICE_IND),
                              NAS_MMC_CompareCmServiceIndPrioWithAnyCellSearch),
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-13, end */
 
 #if (FEATURE_ON == FEATURE_LTE)
     NAS_MMC_COMPARE_TBL_ITEM(NAS_BuildEventType(WUEPS_PID_MM, MMCMM_CSFB_ABORT_IND),
@@ -405,20 +302,12 @@ NAS_MMC_MSG_COMPARE_STRU g_astMmcMsgPrioCompareWithAnyCellTbl[] =
     /* anycell过程中收到用户MMCMM_PLMN_SEARCH_IND请求的消息优先级比较 */
     NAS_MMC_COMPARE_TBL_ITEM(NAS_BuildEventType(WUEPS_PID_MM, MMCMM_PLMN_SEARCH_IND),
                              NAS_MMC_ComparePlmnSearchIndPrioWithAnyCellSearch),
-    /* Added by c00318887 for 预置频点搜网优化, 2015-8-31, begin */
     /* PlmnSelection过程中收到TI_NAS_MMC_CONTROL_FIRST_SEARCH_PLMN_TIMER消息优先级比较 */
     NAS_MMC_COMPARE_TBL_ITEM(NAS_BuildEventType(VOS_PID_TIMER, TI_NAS_MMC_PLMN_SEARCH_PHASE_ONE_TOTAL_TIMER),
                              NAS_MMC_CompareTiPlmnSearchPhaseOneTotalTimePrioWithAnyCellSearch),
-    /* Added by c00318887 for 预置频点搜网优化, 2015-8-31, end */
 };
 
-/*****************************************************************************
- 全局变量名    : g_astMmcMsgPrioCompareWithSysCfgTbl
- 全局变量说明  : MMC syscfg 状态机消息优先级比较处理的比较表
- 1.日    期   : 2011年9月28日
-   作    者   : zhoujun 40661
-   修改内容   : 新建
-*****************************************************************************/
+
 NAS_MMC_MSG_COMPARE_STRU g_astMmcMsgPrioCompareWithSysCfgTbl[] =
 {
 
@@ -428,31 +317,7 @@ NAS_MMC_MSG_COMPARE_STRU g_astMmcMsgPrioCompareWithSysCfgTbl[] =
 
 };
 
-/*****************************************************************************
- 全局变量名    : g_astMmcMsgPrioCompareWithPlmnListTbl
- 全局变量说明  : MMC Plmn List 状态机消息优先级比较处理的比较表
- 1.日    期   : 2011年9月28日
-   作    者   : zhoujun 40661
-   修改内容   : 新建
- 2.日    期   : 2012年5月10日
-   作    者   : w00176964
-   修改内容   : GUL BG搜网项目调整
- 3.日    期   : 2012年6月4日
-   作    者   : t00212959
-   修改内容   : GUL BG搜网项目调整
- 4.日    期   : 2012年8月13日
-   作    者   : z00161729
-   修改内容   : DCM定制需求和遗留问题修改
- 5.日    期   : 2014年1月28日
-   作    者   : s00246516
-   修改内容   : L-C互操作项目:增加获取和注册请求的处理
- 6.日    期   : 2014年7月3日
-   作    者   : z00161729
-   修改内容   : DSDS III新增
- 7.日    期   : 2015年9月8日
-   作    者   : z00161729
-   修改内容   : 支持LTE CSG功能新增
-*****************************************************************************/
+
 NAS_MMC_MSG_COMPARE_STRU g_astMmcMsgPrioCompareWithPlmnListTbl[] =
 {
 
@@ -460,7 +325,6 @@ NAS_MMC_MSG_COMPARE_STRU g_astMmcMsgPrioCompareWithPlmnListTbl[] =
     NAS_MMC_COMPARE_TBL_ITEM(NAS_BuildEventType(UEPS_PID_MSCC, ID_MSCC_MMC_POWER_OFF_REQ),
                              NAS_MMC_ComparePowerOffPrioWithPlmnList),
 
-    /* Added by s00246516 for L-C互操作项目, 2014-01-28, Begin */
     /* PlmnSelection过程中收到PowerSave请求的消息优先级比较 */
     NAS_MMC_COMPARE_TBL_ITEM(NAS_BuildEventType(UEPS_PID_MSCC, ID_MSCC_MMC_POWER_SAVE_REQ),
                              NAS_MMC_ComparePowerSavePrioWithPlmnList),
@@ -470,7 +334,6 @@ NAS_MMC_MSG_COMPARE_STRU g_astMmcMsgPrioCompareWithPlmnListTbl[] =
 
     NAS_MMC_COMPARE_TBL_ITEM(NAS_BuildEventType(UEPS_PID_MSCC, ID_MSCC_MMC_REG_REQ),
                              NAS_MMC_CompareRegReqPrioWithPlmnList),
-    /* Added by s00246516 for L-C互操作项目, 2014-01-28, End */
 
     /* 内部list搜网过程中收到ID_MSCC_MMC_SYS_CFG_SET_REQ的消息优先级比较 */
     NAS_MMC_COMPARE_TBL_ITEM(NAS_BuildEventType(UEPS_PID_MSCC, ID_MSCC_MMC_SYS_CFG_SET_REQ),
@@ -518,54 +381,24 @@ NAS_MMC_MSG_COMPARE_STRU g_astMmcMsgPrioCompareWithPlmnListTbl[] =
     NAS_MMC_COMPARE_TBL_ITEM(NAS_BuildEventType(PS_PID_MM, ID_LMM_MMC_SUSPEND_IND ),
                              NAS_MMC_CompareLmmSuspendIndPrioWithPlmnList),
 
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-13, begin */
     /* LIST搜网过程中收到ID_LMM_MMC_SERVICE_RESULT_IND消息优先级比较 */
     NAS_MMC_COMPARE_TBL_ITEM(NAS_BuildEventType(PS_PID_MM, ID_LMM_MMC_SERVICE_RESULT_IND),
                              NAS_MMC_CompareLmmServiceResultIndPrioWithPlmnList),
 
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-13, end */
 
 #endif
 
     NAS_MMC_COMPARE_TBL_ITEM(NAS_BuildEventType(UEPS_PID_RRM, ID_RRM_PS_STATUS_IND),
                              NAS_MMC_CompareRrmPsStatusIndPrioWithPlmnList),
 
-    /* Added by c00318887 for 预置频点搜网优化, 2015-9-11, begin */
     /* OOS过程中收到TI_NAS_MMC_PLMN_SEARCH_PHASE_ONE_TOTAL_TIMER设置请求的消息优先级比较 */
     NAS_MMC_COMPARE_TBL_ITEM(NAS_BuildEventType(VOS_PID_TIMER, TI_NAS_MMC_PLMN_SEARCH_PHASE_ONE_TOTAL_TIMER),
                              NAS_MMC_CompareTiPlmnSearchPhaseOneTotalTimerExpiredPrioWithPlmnList),
 
-    /* Added by c00318887 for 预置频点搜网优化, 2015-9-11, end */
 
 };
 
-/*****************************************************************************
- 全局变量名    : g_astMmcMsgPrioCompareWithBgSearchTbl
- 全局变量说明  : MMC Bg search 状态机消息优先级比较处理的比较表
- 1.日    期   : 2011年9月28日
-   作    者   : zhoujun 40661
-   修改内容   : 新建
 
- 2.日    期   : 2011年11月10日
-   作    者   : zhoujun 40661
-   修改内容   : 增加RRMM_SUSPEND_IND原语的优先级比较
-
- 3.日    期   : 2012年4月27日
-   作    者   : w00176964
-   修改内容   : GUL BG搜网调整:BG搜网和高优先级搜网状态机合并,增加L下的消息比较
- 4.日    期   : 2012年8月13日
-   作    者   : z00161729
-   修改内容   : DCM定制需求和遗留问题修改
- 5.日    期   : 2014年1月28日
-   作    者   : s00246516
-   修改内容   : L-C互操作项目:增加获取和注册请求的处理
- 6.日    期   : 2014年7月3日
-   作    者   : z00161729
-   修改内容   : DSDS III新增
- 7.日    期   : 2015年9月7日
-   作    者   : z00161729
-   修改内容   : 支持LTE CSG功能新增
-*****************************************************************************/
 NAS_MMC_MSG_COMPARE_STRU g_astMmcMsgPrioCompareWithBgSearchTbl[] =
 {
 
@@ -573,7 +406,6 @@ NAS_MMC_MSG_COMPARE_STRU g_astMmcMsgPrioCompareWithBgSearchTbl[] =
     NAS_MMC_COMPARE_TBL_ITEM(NAS_BuildEventType(UEPS_PID_MSCC, ID_MSCC_MMC_POWER_OFF_REQ),
                              NAS_MMC_ComparePoweroffPrioWithBgSearch),
 
-    /* Added by s00246516 for L-C互操作项目, 2014-01-28, Begin */
     /* PlmnSelection过程中收到PowerSave请求的消息优先级比较 */
     NAS_MMC_COMPARE_TBL_ITEM(NAS_BuildEventType(UEPS_PID_MSCC, ID_MSCC_MMC_POWER_SAVE_REQ),
                              NAS_MMC_ComparePowerSavePrioWithBgSearch),
@@ -583,7 +415,6 @@ NAS_MMC_MSG_COMPARE_STRU g_astMmcMsgPrioCompareWithBgSearchTbl[] =
 
     NAS_MMC_COMPARE_TBL_ITEM(NAS_BuildEventType(UEPS_PID_MSCC, ID_MSCC_MMC_REG_REQ),
                              NAS_MMC_CompareRegReqPrioWithBgSearch),
-    /* Added by s00246516 for L-C互操作项目, 2014-01-28, End */
 
     /* BG搜网过程中收到ID_MSCC_MMC_PLMN_LIST_REQ的消息优先级比较 */
     NAS_MMC_COMPARE_TBL_ITEM(NAS_BuildEventType(UEPS_PID_MSCC, ID_MSCC_MMC_PLMN_LIST_REQ),
@@ -593,12 +424,10 @@ NAS_MMC_MSG_COMPARE_STRU g_astMmcMsgPrioCompareWithBgSearchTbl[] =
     NAS_MMC_COMPARE_TBL_ITEM(NAS_BuildEventType(VOS_PID_TIMER, TI_NAS_MMC_PERIOD_TRYING_USER_PLMN_LIST),
                              NAS_MMC_CompareUserPlmnListPrioWithBgSearch),
 
-    /* Added by c00318887 for 预置频点搜网优化, 2015-9-11, begin */
     /* BG搜过程中收到TI_NAS_MMC_PLMN_SEARCH_PHASE_ONE_TOTAL_TIMER设置请求的消息优先级比较 */
     NAS_MMC_COMPARE_TBL_ITEM(NAS_BuildEventType(VOS_PID_TIMER, TI_NAS_MMC_PLMN_SEARCH_PHASE_ONE_TOTAL_TIMER),
                              NAS_MMC_CompareTiPlmnSearchPhaseOneTotalTimerExpiredPrioWithBgSearch),
 
-    /* Added by c00318887 for 预置频点搜网优化, 2015-9-11, end */
 #if (FEATURE_ON == FEATURE_CSG)
     /* BG搜网过程中收到用户CSG 列表请求的消息优先级比较 */
     NAS_MMC_COMPARE_TBL_ITEM(NAS_BuildEventType(UEPS_PID_MSCC, ID_MSCC_MMC_CSG_LIST_SEARCH_REQ),
@@ -662,12 +491,10 @@ NAS_MMC_MSG_COMPARE_STRU g_astMmcMsgPrioCompareWithBgSearchTbl[] =
     NAS_MMC_COMPARE_TBL_ITEM(NAS_BuildEventType(PS_PID_MM, ID_LMM_MMC_SUSPEND_IND ),
                              NAS_MMC_CompareLmmSuspendIndPrioWithBgSearch),
 
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-13, begin */
     /* BG搜网过程中收到ID_LMM_MMC_SERVICE_RESULT_IND消息优先级比较 */
     NAS_MMC_COMPARE_TBL_ITEM(NAS_BuildEventType(PS_PID_MM, ID_LMM_MMC_SERVICE_RESULT_IND),
                              NAS_MMC_CompareLmmServiceResultIndPrioWithBgSearch),
 
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-13, end */
 #endif
 
     NAS_MMC_COMPARE_TBL_ITEM(NAS_BuildEventType(WUEPS_PID_MMC, MMCMMC_INTER_NVIM_OPLMN_REFRESH_IND),
@@ -676,30 +503,16 @@ NAS_MMC_MSG_COMPARE_STRU g_astMmcMsgPrioCompareWithBgSearchTbl[] =
 
 
 };
-/* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
 
-/*****************************************************************************
- 全局变量名    : g_astMmcMsgPrioCompareWithGetGeoTbl
- 全局变量说明  : MMC GET GEO状态机消息优先级比较处理的比较表
- 1.日    期   : 2015年05月08日
-   作    者   : sunjitan 00193151
-   修改内容   : 新建
-*****************************************************************************/
+
 NAS_MMC_MSG_COMPARE_STRU g_astMmcMsgPrioCompareWithGetGeoTbl[] =
 {
     NAS_MMC_COMPARE_TBL_ITEM(NAS_BuildEventType(UEPS_PID_MSCC, ID_MSCC_MMC_POWER_OFF_REQ),
                              NAS_MMC_ComparePowerOffPrioWithGetGeo),
 };
 
-/*****************************************************************************
- 全局变量名    : g_astMmcMsgPrioCompareWithPowerOffTbl
- 全局变量说明  : MMC power off 状态机消息优先级比较处理的比较表
- 1.日    期   : 2015年7月9日
-   作    者   : w00242748
-   修改内容   : 新建
 
-*****************************************************************************/
 NAS_MMC_MSG_COMPARE_STRU g_astMmcMsgPrioCompareWithPowerOffTbl[] =
 {
 
@@ -710,13 +523,7 @@ NAS_MMC_MSG_COMPARE_STRU g_astMmcMsgPrioCompareWithPowerOffTbl[] =
 
 
 
-/*****************************************************************************
- 全局变量名    : g_astMmcMsgPrioHighPlmnSearchCompareTbl
- 全局变量说明  : MMC状态机比较函数表单
- 1.日    期   : 2011年9月28日
-   作    者   : zhoujun 40661
-   修改内容   : 新建
-*****************************************************************************/
+
 NAS_MMC_FSM_MSG_COMPARE_STRU g_astMmcMsgCompareTbl[] =
 {
      /* CCO状态机比较函数表*/
@@ -775,27 +582,7 @@ NAS_MMC_FSM_MSG_COMPARE_STRU g_astMmcMsgCompareTbl[] =
 *****************************************************************************/
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsTrigerDisableLte_MoDetach
- 功能描述  : 判断用户detach的时候是否需要触发disable LTE
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:需要disable LTE
-             VOS_FALSE:不需要disable LTE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年05月10日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2012年12月28日
-   作    者   : s46746
-   修改内容   : DSDA GUNAS C CORE项目，增加平台是否支持LTE判断
- 3.日    期   : 2015年4月17日
-   作    者   : y00245242
-   修改内容   : iteration 13开发
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsTrigerDisableLte_MoDetach(
     MSCC_MMC_DETACH_REQ_STRU           *pstDetachReq
 )
@@ -852,22 +639,7 @@ VOS_UINT32 NAS_MMC_IsTrigerDisableLte_MoDetach(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareMmcMsgPrioWithInterSysCco
- 功能描述  : 将MMC收到的消息与CCO状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月27日
-   作    者   : zhoujun 40661
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareMmcMsgPrioWithInterSysCco(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -878,22 +650,7 @@ VOS_UINT32 NAS_MMC_CompareMmcMsgPrioWithInterSysCco(
     return NAS_MMC_MSG_COMPARE_PRIO_RSLT_STORE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareMmcMsgPrioWithInterSysHo
- 功能描述  : 将MMC收到的消息与HO状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月27日
-   作    者   : zhoujun 40661
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareMmcMsgPrioWithInterSysHo(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -905,22 +662,7 @@ VOS_UINT32 NAS_MMC_CompareMmcMsgPrioWithInterSysHo(
     return NAS_MMC_MSG_COMPARE_PRIO_RSLT_STORE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareUserPlmnSpecPrioWithInterSysCellResel
- 功能描述  : 将用户指定搜网消息与cell resel状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年11月15日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareUserPlmnSpecPrioWithInterSysCellResel(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -933,22 +675,7 @@ VOS_UINT32 NAS_MMC_CompareUserPlmnSpecPrioWithInterSysCellResel(
     return NAS_MMC_MSG_COMPARE_PRIO_RSLT_ABORT;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareSysCfgSetPrioWithInterSysCellResel
- 功能描述  : 将SYSCFG消息与cell resel状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年11月15日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareSysCfgSetPrioWithInterSysCellResel(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -961,22 +688,7 @@ VOS_UINT32 NAS_MMC_CompareSysCfgSetPrioWithInterSysCellResel(
     return NAS_MMC_MSG_COMPARE_PRIO_RSLT_ABORT;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ComparePowerOffPrioWithInterSysCellResel
- 功能描述  : 将关机请求消息与cell resel状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年11月19日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_ComparePowerOffPrioWithInterSysCellResel(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -990,22 +702,7 @@ VOS_UINT32 NAS_MMC_ComparePowerOffPrioWithInterSysCellResel(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ComparePowerSavePrioWithInterSysCellResel
- 功能描述  : 将power save请求消息与cell resel状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年11月6日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_ComparePowerSavePrioWithInterSysCellResel(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -1019,27 +716,7 @@ VOS_UINT32 NAS_MMC_ComparePowerSavePrioWithInterSysCellResel(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareDetachReqPrioWithInterSysCellResel
- 功能描述  : 将DetachReq消息与cell resel状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年11月20日
-   作    者   : s00217060
-   修改内容   : 新生成函数
- 2.日    期   : 2012年11月27日
-   作    者   : w00176964
-   修改内容   : PS域的detach需要打断状态机
- 3.日    期   : 2013年3月30日
-   作    者   : l00167671
-   修改内容   : 主动上报AT命令控制下移至C核
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareDetachReqPrioWithInterSysCellResel(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -1065,23 +742,7 @@ VOS_UINT32 NAS_MMC_CompareDetachReqPrioWithInterSysCellResel(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ComparePlmnSearchIndPrioWithInterSysCellResel
- 功能描述  : MMCMM_PLMN_SEARCH_IND和异系统状态机的优先级比较
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
-             NAS_MMC_ABORT_FSM_TYPE_UINT8       *penAbortType
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月30日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_ComparePlmnSearchIndPrioWithInterSysCellResel(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -1104,22 +765,7 @@ VOS_UINT32 NAS_MMC_ComparePlmnSearchIndPrioWithInterSysCellResel(
      return NAS_MMC_MSG_COMPARE_PRIO_RSLT_ABORT;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareMmcMsgPrioWithInterSysCellResel
- 功能描述  : 将MMC收到的消息与cell resel状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月27日
-   作    者   : zhoujun 40661
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareMmcMsgPrioWithInterSysCellResel(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -1131,22 +777,7 @@ VOS_UINT32 NAS_MMC_CompareMmcMsgPrioWithInterSysCellResel(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ComparePowerOffPrioWithInterSysOos
- 功能描述  : 将关机消息与OOS状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月27日
-   作    者   : zhoujun 40661
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_ComparePowerOffPrioWithInterSysOos(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -1158,22 +789,7 @@ VOS_UINT32 NAS_MMC_ComparePowerOffPrioWithInterSysOos(
     return NAS_MMC_MSG_COMPARE_PRIO_RSLT_ABORT;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareUserReselPrioWithInterSysOos
- 功能描述  : 将用户重选消息与OOS状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月27日
-   作    者   : zhoujun 40661
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareUserReselPrioWithInterSysOos(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -1186,21 +802,7 @@ VOS_UINT32 NAS_MMC_CompareUserReselPrioWithInterSysOos(
 }
 
 #if (FEATURE_ON == FEATURE_CSG)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareUserCsgListPrioWithInterSysOos
- 功能描述  : 将用户CSG LIST搜网消息与OOS状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年9月7日
-   作    者   : z00161729
-   修改内容   : 支持LTE CSG功能新增
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareUserCsgListPrioWithInterSysOos(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -1213,22 +815,7 @@ VOS_UINT32 NAS_MMC_CompareUserCsgListPrioWithInterSysOos(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareUserPlmnListPrioWithInterSysOos
- 功能描述  : 将用户LIST搜网消息与OOS状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月27日
-   作    者   : zhoujun 40661
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareUserPlmnListPrioWithInterSysOos(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -1241,22 +828,7 @@ VOS_UINT32 NAS_MMC_CompareUserPlmnListPrioWithInterSysOos(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareUserPlmnSpecPrioWithInterSysOos
- 功能描述  : 将用户SPEC搜网消息与OOS状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月27日
-   作    者   : zhoujun 40661
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareUserPlmnSpecPrioWithInterSysOos(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -1269,22 +841,7 @@ VOS_UINT32 NAS_MMC_CompareUserPlmnSpecPrioWithInterSysOos(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareSysCfgSetPrioWithInterSysOos
- 功能描述  : 将SYSCFG设置消息与OOS状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月27日
-   作    者   : zhoujun 40661
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareSysCfgSetPrioWithInterSysOos(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -1296,22 +853,7 @@ VOS_UINT32 NAS_MMC_CompareSysCfgSetPrioWithInterSysOos(
     return NAS_MMC_MSG_COMPARE_PRIO_RSLT_ABORT;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareTiAvailableTimerExpiredPrioWithInterSysOos
- 功能描述  : 将available timer超时消息与OOS状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月27日
-   作    者   : zhoujun 40661
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareTiAvailableTimerExpiredPrioWithInterSysOos(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -1323,23 +865,7 @@ VOS_UINT32 NAS_MMC_CompareTiAvailableTimerExpiredPrioWithInterSysOos(
     return NAS_MMC_MSG_COMPARE_PRIO_RSLT_STORE;
 }
 
-/* Added by c00318887 for 预置频点搜网优化, 2015-9-11, begin */
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareTiPlmnSearchPhaseOneTotalTimerExpiredPrioWithInterSysOos
- 功能描述  : 将TI_NAS_MMC_PLMN_SEARCH_PHASE_ONE_TOTAL_TIMER超时消息与OOS状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年9月11日
-   作    者   : c00318887
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareTiPlmnSearchPhaseOneTotalTimerExpiredPrioWithInterSysOos(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -1351,24 +877,8 @@ VOS_UINT32 NAS_MMC_CompareTiPlmnSearchPhaseOneTotalTimerExpiredPrioWithInterSysO
     return NAS_MMC_MSG_COMPARE_PRIO_RSLT_STORE;
 }
 
-/* Added by c00318887 for 预置频点搜网优化, 2015-9-11, end */
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareTiForbidLaTimerExpiredPrioWithInterSysOos
- 功能描述  : 将forbid la timer超时消息与OOS状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月27日
-   作    者   : zhoujun 40661
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareTiForbidLaTimerExpiredPrioWithInterSysOos(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -1380,22 +890,7 @@ VOS_UINT32 NAS_MMC_CompareTiForbidLaTimerExpiredPrioWithInterSysOos(
     return NAS_MMC_MSG_COMPARE_PRIO_RSLT_STORE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareCmServiceIndPrioWithInterSysOos
- 功能描述  : 将CM Service Ind消息与oos状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年7月15日
-   作    者   : z00161729
-   修改内容   : DTS2013062406563:WAS连接态OOS,T305运行期间只会在本系统下搜等效plmn，
-                 不会驻留到本系统其他网络，也不会异系统下进行搜网，导致无法很快在软银网络注册，nas配合修改
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareCmServiceIndPrioWithInterSysOos(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -1420,22 +915,7 @@ VOS_UINT32 NAS_MMC_CompareCmServiceIndPrioWithInterSysOos(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ComparePowerOffPrioWithPlmnSelection
- 功能描述  : 将关机消息与搜网状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月27日
-   作    者   : zhoujun 40661
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_ComparePowerOffPrioWithPlmnSelection(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -1447,23 +927,7 @@ VOS_UINT32 NAS_MMC_ComparePowerOffPrioWithPlmnSelection(
     return NAS_MMC_MSG_COMPARE_PRIO_RSLT_ABORT;
 }
 
-/* Added by s00246516 for L-C互操作项目, 2014-01-28, Begin */
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ComparePowerSavePrioWithPlmnSelection
- 功能描述  : 将Power Save消息与搜网状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年1月28日
-   作    者   : s00246516
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_ComparePowerSavePrioWithPlmnSelection(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -1475,22 +939,7 @@ VOS_UINT32 NAS_MMC_ComparePowerSavePrioWithPlmnSelection(
     return NAS_MMC_MSG_COMPARE_PRIO_RSLT_ABORT;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareAcqReqPrioWithPlmnSelection
- 功能描述  : 将获取消息与搜网状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年1月28日
-   作    者   : s00246516
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareAcqReqPrioWithPlmnSelection(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -1502,22 +951,7 @@ VOS_UINT32 NAS_MMC_CompareAcqReqPrioWithPlmnSelection(
     return NAS_MMC_MSG_COMPARE_PRIO_RSLT_ABORT;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareRegReqPrioWithPlmnSelection
- 功能描述  : 将注册消息与搜网状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年1月28日
-   作    者   : s00246516
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareRegReqPrioWithPlmnSelection(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -1529,27 +963,8 @@ VOS_UINT32 NAS_MMC_CompareRegReqPrioWithPlmnSelection(
     return NAS_MMC_MSG_COMPARE_PRIO_RSLT_ABORT;
 }
 
-/* Added by s00246516 for L-C互操作项目, 2014-01-28, End */
 
-/* Added by c00318887 for 预置频点搜网优化, 2015-8-31, begin */
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ComparePlmnSearchPhaseOneTotalTimePrioWithPlmnSelection
- 功能描述  : 将TI_NAS_MMC_PLMN_SEARCH_PHASE_ONE_TOTAL_TIMER超时消息与Plmn selection 状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年8月31日
-   作    者   : c00318887
-   修改内容   : 新建
-  2.日    期   : 2015年12月22日
-    作    者   : c00318887
-    修改内容   : DTS2015121106060: phaseI定时器超时不打断用户指定搜等场景
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_ComparePlmnSearchPhaseOneTotalTimePrioWithPlmnSelection(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -1573,25 +988,8 @@ VOS_UINT32 NAS_MMC_ComparePlmnSearchPhaseOneTotalTimePrioWithPlmnSelection(
     
 }
 
-/* Added by c00318887 for 预置频点搜网优化, 2015-8-31, end */
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareDplmnSetReqPrioWithPlmnSelection
- 功能描述  : AP下发的预置DPLMN时和选网状态机优先级比较
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
-             NAS_MMC_ABORT_FSM_TYPE_UINT8       *penAbortType
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月13日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareDplmnSetReqPrioWithPlmnSelection(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -1712,23 +1110,7 @@ VOS_UINT32 NAS_MMC_CompareDplmnSetReqPrioWithPlmnSelection(
 
 
 
-/* Added by c00318887 for 预置频点搜网优化, 2015-9-11, begin */
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareTiPlmnSearchPhaseOneTotalTimePrioWithAnyCellSearch
- 功能描述  : 将available timer超时消息与AnyCell状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年9月11日
-   作    者   : c00318887
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareTiPlmnSearchPhaseOneTotalTimePrioWithAnyCellSearch(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -1740,26 +1122,10 @@ VOS_UINT32 NAS_MMC_CompareTiPlmnSearchPhaseOneTotalTimePrioWithAnyCellSearch(
     return NAS_MMC_MSG_COMPARE_PRIO_RSLT_STORE;
 }
 
-/* Added by c00318887 for 预置频点搜网优化, 2015-9-11, end */
 
 
 #if (FEATURE_ON == FEATURE_DSDS)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareSrvAcqReqPrioWithPlmnSelection
- 功能描述  : 将ID_MSCC_MMC_SRV_ACQ_REQ与搜网状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年6月23日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareSrvAcqReqPrioWithPlmnSelection(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -1783,22 +1149,7 @@ VOS_UINT32 NAS_MMC_CompareSrvAcqReqPrioWithPlmnSelection(
     return NAS_MMC_MSG_COMPARE_PRIO_RSLT_STORE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareSrvAcqReqPrioWithAnyCellSearch
- 功能描述  : 将ID_MSCC_MMC_SRV_ACQ_REQ与anycell状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年6月23日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareSrvAcqReqPrioWithAnyCellSearch(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -1811,22 +1162,7 @@ VOS_UINT32 NAS_MMC_CompareSrvAcqReqPrioWithAnyCellSearch(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareSrvAcqReqPrioWithPlmnList
- 功能描述  : 将ID_MSCC_MMC_SRV_ACQ_REQ与list搜网状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年6月23日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareSrvAcqReqPrioWithPlmnList(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -1838,22 +1174,7 @@ VOS_UINT32 NAS_MMC_CompareSrvAcqReqPrioWithPlmnList(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareSrvAcqReqPrioWithBgSearch
- 功能描述  : 将ID_MSCC_MMC_SRV_ACQ_REQ与bg搜网状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年6月23日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareSrvAcqReqPrioWithBgSearch(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -1867,31 +1188,7 @@ VOS_UINT32 NAS_MMC_CompareSrvAcqReqPrioWithBgSearch(
 #endif
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareSysCfgSetPrioWithPlmnSelection
- 功能描述  : 将SYSCFG设置消息与搜网状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月27日
-   作    者   : zhoujun 40661
-   修改内容   : 新生成函数
- 2.日    期   : 2012年07月02日
-   作    者   : s46746
-   修改内容   : For CS/PS mode 1，增加EPS连接释放的处理
- 3.日    期   : 2013年3月30日
-   作    者   : l00167671
-   修改内容   : 主动上报AT命令控制下移至C核
- 4.日    期   : 2014年7月14日
-   作    者   : w00242748
-   修改内容   : DTS2014063003419:SYSCFG触发高优先级接入技术搜网增加NV控制，同时
-                打断搜网状态机(包括等待CS/PS注册结果状态)
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareSysCfgSetPrioWithPlmnSelection(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -1952,22 +1249,7 @@ VOS_UINT32 NAS_MMC_CompareSysCfgSetPrioWithPlmnSelection(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareUserReselPrioWithPlmnSelection
- 功能描述  : 将用户重选消息与搜网状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月27日
-   作    者   : zhoujun 40661
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareUserReselPrioWithPlmnSelection(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -1980,22 +1262,7 @@ VOS_UINT32 NAS_MMC_CompareUserReselPrioWithPlmnSelection(
 }
 
 #if (FEATURE_ON == FEATURE_CSG)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareUserCsgListPrioWithPlmnSelection
- 功能描述  : 将用户CSG LIST搜网消息与搜网状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年9月7日
-   作    者   : z00161729
-   修改内容   : 支持LTE CSG功能新增
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareUserCsgListPrioWithPlmnSelection(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -2008,22 +1275,7 @@ VOS_UINT32 NAS_MMC_CompareUserCsgListPrioWithPlmnSelection(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareUserPlmnListPrioWithPlmnSelection
- 功能描述  : 将用户LIST搜网消息与搜网状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月27日
-   作    者   : zhoujun 40661
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareUserPlmnListPrioWithPlmnSelection(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -2036,27 +1288,7 @@ VOS_UINT32 NAS_MMC_CompareUserPlmnListPrioWithPlmnSelection(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareUserPlmnSpecPrioWithPlmnSelection
- 功能描述  : 将用户SPEC搜网消息与搜网状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月27日
-   作    者   : zhoujun 40661
-   修改内容   : 新生成函数
- 1.日    期   : 2012年06月07日
-   作    者   : s00217060
-   修改内容   : For CS/PS mode 1，增加重新驻留LTE网络的状态判断
- 3.日    期   : 2013年3月30日
-   作    者   : l00167671
-   修改内容   : 主动上报AT命令控制下移至C核
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareUserPlmnSpecPrioWithPlmnSelection(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -2136,27 +1368,7 @@ VOS_UINT32 NAS_MMC_CompareUserPlmnSpecPrioWithPlmnSelection(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareCmServiceIndPrioWithPlmnSelection
- 功能描述  : 将CM Service Ind消息与搜网状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月27日
-   作    者   : zhoujun 40661
-   修改内容   : 新生成函数
- 2.日    期   : 2012年8月13日
-   作    者   : z00161729
-   修改内容   : DCM定制需求和遗留问题修改
- 3.日    期   : 2012年12月27日
-   作    者   : t00212959
-   修改内容   : DTS2012122607665 L下搜网可能时间比较长，影响紧急呼，需要立即打断
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareCmServiceIndPrioWithPlmnSelection(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -2188,7 +1400,6 @@ VOS_UINT32 NAS_MMC_CompareCmServiceIndPrioWithPlmnSelection(
         return NAS_MMC_MSG_COMPARE_PRIO_RSLT_ABORT;
     }
 
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-13, begin */
 #if (FEATURE_ON == FEATURE_LTE)
     /* 等L的搜网结果状态或等L挂起回复状态需要打断当前状态机 */
     if ((NAS_MMC_FSM_PLMN_SELECTION == NAS_MMC_GetCurrFsmId())
@@ -2200,27 +1411,12 @@ VOS_UINT32 NAS_MMC_CompareCmServiceIndPrioWithPlmnSelection(
          return NAS_MMC_MSG_COMPARE_PRIO_RSLT_ABORT;
     }
 #endif
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-13, end */
 
     return NAS_MMC_MSG_COMPARE_PRIO_RSLT_DISCARD;
 }
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareCsfbAbortIndPrioWithPlmnSelection
- 功能描述  : 将csfb abort ind消息与搜网状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年5月7日
-   作    者   : b00269685
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareCsfbAbortIndPrioWithPlmnSelection(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -2254,21 +1450,7 @@ VOS_UINT32 NAS_MMC_CompareCsfbAbortIndPrioWithPlmnSelection(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ComparePlmnSearchIndPrioWithPlmnSelection
- 功能描述  : 将Plmn Search Ind消息与搜网状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年8月13日
-   作    者   : l00289540
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_ComparePlmnSearchIndPrioWithPlmnSelection(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -2311,22 +1493,7 @@ VOS_UINT32 NAS_MMC_ComparePlmnSearchIndPrioWithPlmnSelection(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ComparePlmnSearchIndPrioWithAnyCellSearch
- 功能描述  : anycell过程中收到用户MMCMM_PLMN_SEARCH_IND请求的消息优先级比较
- 输入参数  : ulEventType :消息类型
-             pstMsg      :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月25日
-    作    者   : l00289540
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_ComparePlmnSearchIndPrioWithAnyCellSearch(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -2354,22 +1521,7 @@ VOS_UINT32 NAS_MMC_ComparePlmnSearchIndPrioWithAnyCellSearch(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareMmcMsgPrioWithSysCfg
- 功能描述  : 将MMC收到的消息与SYSCFG状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月27日
-   作    者   : zhoujun 40661
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareMmcMsgPrioWithSysCfg(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -2383,22 +1535,7 @@ VOS_UINT32 NAS_MMC_CompareMmcMsgPrioWithSysCfg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ComparePowerOffPrioWithPlmnList
- 功能描述  : 将关机消息与LIST搜网状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月27日
-   作    者   : zhoujun 40661
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_ComparePowerOffPrioWithPlmnList(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -2410,23 +1547,7 @@ VOS_UINT32 NAS_MMC_ComparePowerOffPrioWithPlmnList(
     return NAS_MMC_MSG_COMPARE_PRIO_RSLT_ABORT;
 }
 
-/* Added by s00246516 for L-C互操作项目, 2014-01-28, Begin */
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ComparePowerSavePrioWithPlmnList
- 功能描述  : 将Power Save消息与LIST状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年1月28日
-   作    者   : s00246516
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_ComparePowerSavePrioWithPlmnList(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -2438,22 +1559,7 @@ VOS_UINT32 NAS_MMC_ComparePowerSavePrioWithPlmnList(
     return NAS_MMC_MSG_COMPARE_PRIO_RSLT_ABORT;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareAcqReqPrioWithPlmnSelection
- 功能描述  : 将获取消息与LIST状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年1月28日
-   作    者   : s00246516
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareAcqReqPrioWithPlmnList(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -2465,22 +1571,7 @@ VOS_UINT32 NAS_MMC_CompareAcqReqPrioWithPlmnList(
     return NAS_MMC_MSG_COMPARE_PRIO_RSLT_ABORT;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareRegReqPrioWithPlmnSelection
- 功能描述  : 将注册消息与LIST状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年1月28日
-   作    者   : s00246516
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareRegReqPrioWithPlmnList(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -2492,25 +1583,9 @@ VOS_UINT32 NAS_MMC_CompareRegReqPrioWithPlmnList(
     return NAS_MMC_MSG_COMPARE_PRIO_RSLT_ABORT;
 }
 
-/* Added by s00246516 for L-C互操作项目, 2014-01-28, End */
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareSysCfgSetPrioWithPlmnList
- 功能描述  : 将SYSCFG设置消息与LIST搜网状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月27日
-   作    者   : zhoujun 40661
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareSysCfgSetPrioWithPlmnList(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -2523,22 +1598,7 @@ VOS_UINT32 NAS_MMC_CompareSysCfgSetPrioWithPlmnList(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareUserReselPrioWithPlmnList
- 功能描述  : 将用户重选消息与LIST搜网状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月27日
-   作    者   : zhoujun 40661
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareUserReselPrioWithPlmnList(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -2551,22 +1611,7 @@ VOS_UINT32 NAS_MMC_CompareUserReselPrioWithPlmnList(
 }
 
 #if (FEATURE_ON == FEATURE_CSG)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareUserCsgListPrioWithPlmnList
- 功能描述  : 将用户CSG列表搜网消息与LIST搜网状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年9月7日
-   作    者   : z00161729
-   修改内容   : 支持LTE CSG功能新增
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareUserCsgListPrioWithPlmnList(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -2579,22 +1624,7 @@ VOS_UINT32 NAS_MMC_CompareUserCsgListPrioWithPlmnList(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsPlmnListWaitGuSearchCnfState
- 功能描述  : 判断是否是list搜网等gu搜网回复状态
- 输入参数  : ulState - 状态
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:是list搜网状态机等gu搜网回复状态
-             VOS_FALSE:不是list搜网状态机等gu搜网回复状态
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年10月22日
-   作    者   : z00161729
-   修改内容   : 支持LTE CSG功能新增
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsPlmnListWaitGuSearchCnfState(
     VOS_UINT32                          ulCurrState
 )
@@ -2614,22 +1644,7 @@ VOS_UINT32 NAS_MMC_IsPlmnListWaitGuSearchCnfState(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareUserPlmnSpecPrioWithPlmnList
- 功能描述  : 将用户指定搜网消息与LIST搜网状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月27日
-   作    者   : zhoujun 40661
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareUserPlmnSpecPrioWithPlmnList(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -2642,21 +1657,7 @@ VOS_UINT32 NAS_MMC_CompareUserPlmnSpecPrioWithPlmnList(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareUserPlmnListPrioWithPlmnList
- 功能描述  : 将用户LIST搜网消息与LIST搜网状态机的优先级进行比较
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月9日
-    作    者   : zhoujun /40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_CompareUserPlmnListPrioWithPlmnList(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -2668,26 +1669,7 @@ VOS_UINT32  NAS_MMC_CompareUserPlmnListPrioWithPlmnList(
     return NAS_MMC_MSG_COMPARE_PRIO_RSLT_INITFSM;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareUserDetachReqPrioWithPlmnList
- 功能描述  : 将用户detach消息与LIST搜网状态机的优先级进行比较
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月10日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月13日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-  3.日    期   : 2015年4月16日
-    作    者   : y00245242
-    修改内容   : iteration 13开发
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_CompareUserDetachReqPrioWithPlmnList(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -2742,26 +1724,7 @@ VOS_UINT32  NAS_MMC_CompareUserDetachReqPrioWithPlmnList(
     return NAS_MMC_MSG_COMPARE_PRIO_RSLT_DISCARD;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareSuspendIndPrioWithPlmnList
- 功能描述  : 将RRMM_SUSPEND_IND消息与LIST搜网状态机的优先级进行比较
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月4日
-    作    者   : t00212959
-    修改内容   : 新生成函数
-  2.日    期   : 2014年8月1日
-    作    者   : w00167002
-    修改内容   : 在等系统消息时候收到异系统信息，则打断当前状态机进行异系统操作。
-  3.日    期   : 2015年9月8日
-    作    者   : z00161729
-    修改内容   : 支持LTE CSG功能新增
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_CompareSuspendIndPrioWithPlmnList(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -2816,25 +1779,7 @@ VOS_UINT32  NAS_MMC_CompareSuspendIndPrioWithPlmnList(
     return NAS_MMC_MSG_COMPARE_PRIO_RSLT_DISCARD;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareRrmPsStatusIndPrioWithPlmnList
- 功能描述  : 将ID_RRM_PS_STATUS_IND与list搜网状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年7月9日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2015年9月8日
-   作    者   : z00161729
-   修改内容   : 支持LTE CSG功能新增
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareRrmPsStatusIndPrioWithPlmnList(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -2876,23 +1821,7 @@ VOS_UINT32 NAS_MMC_CompareRrmPsStatusIndPrioWithPlmnList(
 
 
 
-/* Added by c00318887 for 预置频点搜网优化, 2015-9-11, begin */
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareTiPlmnSearchPhaseOneTotalTimerExpiredPrioWithPlmnList
- 功能描述  : 将TI_NAS_MMC_PLMN_SEARCH_PHASE_ONE_TOTAL_TIMER超时消息与PLMN LIST状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年9月11日
-   作    者   : c00318887
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareTiPlmnSearchPhaseOneTotalTimerExpiredPrioWithPlmnList(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -2904,29 +1833,10 @@ VOS_UINT32 NAS_MMC_CompareTiPlmnSearchPhaseOneTotalTimerExpiredPrioWithPlmnList(
     return NAS_MMC_MSG_COMPARE_PRIO_RSLT_STORE;
 }
 
-/* Added by c00318887 for 预置频点搜网优化, 2015-9-11, end */
 
 
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-13, begin */
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareCmServiceIndPrioWithAnyCellSearch
- 功能描述  : 将CM Service Ind消息与anycell状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年8月13日
-   作    者   : z00161729
-   修改内容   : 新生成函数
- 2.日    期   : 2012年12月28日
-   作    者   : t00212959
-   修改内容   : DTS2012122607665 L下等系统消息打断后，紧急呼无法发起
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareCmServiceIndPrioWithAnyCellSearch(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -2978,25 +1888,10 @@ VOS_UINT32 NAS_MMC_CompareCmServiceIndPrioWithAnyCellSearch(
 }
 
 
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-13, end */
 
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareCsfbAbortIndPrioWithAnyCellSearch
- 功能描述  : 将CM Service Ind消息与anycell状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年5月11日
-   作    者   : b00269685
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareCsfbAbortIndPrioWithAnyCellSearch(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -3029,24 +1924,7 @@ VOS_UINT32 NAS_MMC_CompareCsfbAbortIndPrioWithAnyCellSearch(
     return NAS_MMC_MSG_COMPARE_PRIO_RSLT_DISCARD;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareLmmSuspendIndPrioWithPlmnList
- 功能描述  : List搜网状态机与ID_LMM_MMC_SUSPEND_IND消息的优先级比较
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年6月4日
-   作    者   : t00212959
-   修改内容   : 新生成函数
- 2.日    期   : 2015年9月8日
-   作    者   : z00161729
-   修改内容   : 支持LTE CSG功能新增
-
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_CompareLmmSuspendIndPrioWithPlmnList(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -3088,34 +1966,7 @@ VOS_UINT32  NAS_MMC_CompareLmmSuspendIndPrioWithPlmnList(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareLmmServiceResultIndPrioWithPlmnList
- 功能描述  : List搜网状态机与ID_LMM_MMC_SERVICE_RESULT_IND消息的优先级比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年8月13日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-
-
- 2.日    期   : 2015年8月10日
-   作    者   : w00167002
-   修改内容   : DTS2015080700349:在L下内部LIST搜时候，收到被叫，收到L的SERVICE
-                RESULT消息没有进行处理。
-
- 3.日    期   : 2015年9月6日
-   作    者   : z00359541
-   修改内容   : DTS2015081407087: 接口调整，删除bitOpReqType项
- 4.日    期   : 2015年9月8日
-   作    者   : z00161729
-   修改内容   : 支持LTE CSG功能新增
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_CompareLmmServiceResultIndPrioWithPlmnList(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -3149,31 +2000,7 @@ VOS_UINT32  NAS_MMC_CompareLmmServiceResultIndPrioWithPlmnList(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareLmmServiceResultIndPrioWithPlmnSelection
- 功能描述  : 将ID_LMM_MMC_SERVICE_RESULT_IND消息与搜网状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年8月13日
-   作    者   : z00161729
-   修改内容   : 新生成函数
- 2.日    期   : 2012年12月27日
-   作    者   : t00212959
-   修改内容   : DTS2012122607665 L下紧急呼,csps mode1 回L的vplmn链接释放时需要打断当前状态机
- 3.日    期   : 2015年3月20日
-   作    者   : z00161729
-   修改内容   : DTS2015031709266:l下csfb到gu搜网无任何网络搜l的rplmn成功，tau成功，等ims cap ind时，
-               cc重发定时器超时，l回复service result ind指示搜网导致mmc获取下一个lte网络注册被拒限制驻留，available超时搜lte rplmn成恢复，呼叫失败
- 4.日    期   : 2015年9月6日
-   作    者   : z00359541
-   修改内容   : DTS2015081407087: 接口调整，删除bitOpReqType项
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareLmmServiceResultIndPrioWithPlmnSelection(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -3224,26 +2051,10 @@ VOS_UINT32 NAS_MMC_CompareLmmServiceResultIndPrioWithPlmnSelection(
 
     return NAS_MMC_MSG_COMPARE_PRIO_RSLT_DISCARD;
 }
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-13, end */
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ComparePoweroffPrioWithBgSearch
- 功能描述  : 将关机消息与用户背景搜网状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月27日
-   作    者   : zhoujun 40661
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_ComparePoweroffPrioWithBgSearch(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -3256,23 +2067,7 @@ VOS_UINT32 NAS_MMC_ComparePoweroffPrioWithBgSearch(
     return NAS_MMC_MSG_COMPARE_PRIO_RSLT_ABORT;
 }
 
-/* Added by s00246516 for L-C互操作项目, 2014-01-28, Begin */
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ComparePowerSavePrioWithBgSearch
- 功能描述  : 将Power Save消息与BG状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年1月28日
-   作    者   : s00246516
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_ComparePowerSavePrioWithBgSearch(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -3284,22 +2079,7 @@ VOS_UINT32 NAS_MMC_ComparePowerSavePrioWithBgSearch(
     return NAS_MMC_MSG_COMPARE_PRIO_RSLT_ABORT;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareAcqReqPrioWithBgSearch
- 功能描述  : 将获取消息与BG状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年1月28日
-   作    者   : s00246516
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareAcqReqPrioWithBgSearch(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -3311,22 +2091,7 @@ VOS_UINT32 NAS_MMC_CompareAcqReqPrioWithBgSearch(
     return NAS_MMC_MSG_COMPARE_PRIO_RSLT_ABORT;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareRegReqPrioWithBgSearch
- 功能描述  : 将注册消息与BG状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年1月28日
-   作    者   : s00246516
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareRegReqPrioWithBgSearch(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -3337,29 +2102,8 @@ VOS_UINT32 NAS_MMC_CompareRegReqPrioWithBgSearch(
 
     return NAS_MMC_MSG_COMPARE_PRIO_RSLT_ABORT;
 }
-/* Added by s00246516 for L-C互操作项目, 2014-01-28, End */
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareSysCfgSetPrioWithBgSearch
- 功能描述  : 将SYSCFG搜网消息与BG搜网状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月27日
-   作    者   : zhoujun 40661
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月27日
-   作    者   : w00176964
-   修改内容   : GUL BG搜网调整:增减LTE模不切换状态机
- 3.日    期   : 2013年3月30日
-   作    者   : l00167671
-   修改内容   : 主动上报AT命令控制下移至C核
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareSysCfgSetPrioWithBgSearch(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -3394,23 +2138,7 @@ VOS_UINT32 NAS_MMC_CompareSysCfgSetPrioWithBgSearch(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareUserReselPrioWithBgSearch
- 功能描述  : 将user resel重选消息与BG搜网状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2011年10月9日
-    作    者   : zhoujun /40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_CompareUserReselPrioWithBgSearch(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -3421,28 +2149,7 @@ VOS_UINT32  NAS_MMC_CompareUserReselPrioWithBgSearch(
     return NAS_MMC_MSG_COMPARE_PRIO_RSLT_ABORT;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareStkRoamingIndPrioWithBgSearch
- 功能描述  : 将stk steer of roaming ind消息与用户高优先级搜网状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月27日
-   作    者   : zhoujun 40661
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年11月8日
-   作    者   : w00167002
-   修改内容   : 收到STK_NAS_STEERING_OF_ROAMING_IND,则立即打断当前流程
- 3.日    期   : 2012年5月18日
-   作    者   : w00176964
-   修改内容   : GUL BG项目调整
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareStkRoamingIndPrioWithBgSearch(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -3457,47 +2164,7 @@ VOS_UINT32 NAS_MMC_CompareStkRoamingIndPrioWithBgSearch(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareUsimRefreshPrioWithBgSearch
- 功能描述  : 将usim refresh ind消息与BG搜网状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月27日
-   作    者   : zhoujun 40661
-   修改内容   : 新生成函数
- 2.日    期   : 2011年11月07日
-   作    者   : l00130025
-   修改内容   : 适配V3R1的 Usim接口
- 3.日    期   : 2011年11月8日
-   作    者   : w00167002
-   修改内容   : HPLMN/UPLMN/OPLMN文件发生更新，则立即打断当前的高优先级搜网，
-                 而非延迟打断，这样可以初始化当前的高优先级网络列表。
- 4.日    期   : 2012年5月14日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改,如果卡中UPLMN和OPLMN个数为0，初始化高优先级搜网列表
-                时使用的是卡中PLMN Sel文件，该场景PLMN Sel文件改变也需打断
- 5.日    期   : 2012年5月18日
-   作    者   : w00176964
-   修改内容   : GUL BG项目调整
- 6.日    期   : 2012年6月11日
-   作    者   : w00166186
-   修改内容   : AT&T&DCM项目
- 7.日    期   : 2013年6月4日
-   作    者   : z00161729
-   修改内容   : SVLTE 和usim接口调整修改
- 8.日    期    : 2013年11月26日
-   作    者    : s00190137
-   修改内容    : 将最大支持设置的OPLMN扩展到256个
- 9.日    期   : 2015年02月06日
-   作    者   : h00313353
-   修改内容   : USIMM卡接口调整
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareUsimRefreshPrioWithBgSearch(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -3558,22 +2225,7 @@ VOS_UINT32 NAS_MMC_CompareUsimRefreshPrioWithBgSearch(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareMsccUpdateUplmnNtfPrioWithBgSearch
- 功能描述  : 将ID_MSCC_MMC_UPDATE_UPLMN_NTF消息与BG搜网状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年7月31日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareMsccUpdateUplmnNtfPrioWithBgSearch(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -3589,21 +2241,7 @@ VOS_UINT32 NAS_MMC_CompareMsccUpdateUplmnNtfPrioWithBgSearch(
 
 
 #if (FEATURE_ON == FEATURE_CSG)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareUserCsgListPrioWithBgSearch
- 功能描述  : 将用户CSG List搜网消息与BG搜网状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年9月7日
-   作    者   : z00161729
-   修改内容   : 支持LTE CSG功能新增
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareUserCsgListPrioWithBgSearch(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -3615,22 +2253,7 @@ VOS_UINT32 NAS_MMC_CompareUserCsgListPrioWithBgSearch(
     return NAS_MMC_MSG_COMPARE_PRIO_RSLT_ABORT;
 }
 #endif
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareUserPlmnListPrioWithBgSearch
- 功能描述  : 将用户List搜网消息与BG搜网状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月27日
-   作    者   : zhoujun 40661
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareUserPlmnListPrioWithBgSearch(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -3646,22 +2269,7 @@ VOS_UINT32 NAS_MMC_CompareUserPlmnListPrioWithBgSearch(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareUserPlmnSpecPrioWithBgSearch
- 功能描述  : 将用户SpEC搜网消息与BG搜网状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月27日
-   作    者   : zhoujun 40661
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareUserPlmnSpecPrioWithBgSearch(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -3676,23 +2284,7 @@ VOS_UINT32 NAS_MMC_CompareUserPlmnSpecPrioWithBgSearch(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareSuspendIndPrioWithBgSearch
- 功能描述  : BG搜网状态机与RRMM_SUSPEND_IND消息的优先级比较
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年11月7日
-   作    者   : zhoujun 40661
-   修改内容   : 新生成函数
- 2.日    期   : 2012年5月24日
-   作    者   : w00176964
-   修改内容   : GUL BG项目调整:异系统与BG搜网请求对冲
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_CompareSuspendIndPrioWithBgSearch(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -3730,23 +2322,7 @@ VOS_UINT32  NAS_MMC_CompareSuspendIndPrioWithBgSearch(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareUserDetachReqPrioWithBgSearch
- 功能描述  : BG搜网状态机与ID_MSCC_MMC_DETACH_REQ消息的优先级比较
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年5月10日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2015年4月16日
-   作    者   : y00245242
-   修改内容   : iteration 13开发
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_CompareUserDetachReqPrioWithBgSearch(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -3807,21 +2383,7 @@ VOS_UINT32  NAS_MMC_CompareUserDetachReqPrioWithBgSearch(
 }
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareLmmSuspendIndPrioWithBgSearch
- 功能描述  : BG搜网状态机与ID_LMM_MMC_SUSPEND_IND消息的优先级比较
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年4月27日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_CompareLmmSuspendIndPrioWithBgSearch(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -3856,29 +2418,7 @@ VOS_UINT32  NAS_MMC_CompareLmmSuspendIndPrioWithBgSearch(
     return NAS_MMC_MSG_COMPARE_PRIO_RSLT_DISCARD;
 }
 
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-13, begin */
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareLmmServiceResultIndPrioWithBgSearch
- 功能描述  : BG搜网状态机与ID_LMM_MMC_SERVICE_RESULT_IND消息的优先级比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年8月13日
-   作    者   : z00161729
-   修改内容   : 新生成函数
- 2.日    期   : 2015年9月6日
-   作    者   : z00359541
-   修改内容   : DTS2015081407087: 接口调整，删除bitOpReqType项
- 3.日    期   : 2015年12月7日
-   作    者   : z00359541
-   修改内容   : DTS2015113009064: CSFB需要打断背景搜
-   
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_CompareLmmServiceResultIndPrioWithBgSearch(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -3926,25 +2466,9 @@ VOS_UINT32  NAS_MMC_CompareLmmServiceResultIndPrioWithBgSearch(
 }
 
 
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-13, end */
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ComparePowerOffPrioWithGetGeo
- 功能描述  : 将Power Off消息与GETGEO状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年05月08日
-   作    者   : sunjitan 00193151
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_ComparePowerOffPrioWithGetGeo(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -3957,24 +2481,7 @@ VOS_UINT32 NAS_MMC_ComparePowerOffPrioWithGetGeo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_FindMsgPrioCompareFun
- 功能描述  : 查找消息比较函数
- 输入参数  : ulEventType:待处理的消息类型
-             pstMsg     :待处理的消息内容
-             ulFsmEntryEventType    :状态机的入口消息
-             enFsmId                :状态机的ID
- 输出参数  : 无
- 返 回 值  : 当前待处理消息的优先级
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年9月29日
-    作    者   : zhoujun 40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 NAS_MMC_MSG_COMPARE_FUNC  NAS_MMC_FindMsgPrioCompareFun(
     VOS_UINT32                          ulEventType,
@@ -4021,25 +2528,7 @@ NAS_MMC_MSG_COMPARE_FUNC  NAS_MMC_FindMsgPrioCompareFun(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetMsgComparePrio
- 功能描述  : 获取消息优先级比较后的结果
- 输入参数  : ulEventType:待处理的消息类型
-             pstMsg     :待处理的消息内容
- 输出参数  : pulAbortType:返回值为打断时,返回的打断类型
- 返 回 值  : 当前待处理消息的优先级
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年9月29日
-    作    者   : zhoujun 40661
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年12月11日
-    作    者   : l00167671
-    修改内容   : DTS2012121802573, TQE清理
-*****************************************************************************/
 NAS_MMC_MSG_COMPARE_PRIO_RSLT_ENUM_UINT32 NAS_MMC_GetMsgComparePrioRslt(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -4075,21 +2564,7 @@ NAS_MMC_MSG_COMPARE_PRIO_RSLT_ENUM_UINT32 NAS_MMC_GetMsgComparePrioRslt(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareMmcNvimOPlmnRefreshIndPrioWithBgSearch
- 功能描述  : 如果处于背景搜则推迟消息处理
- 输入参数  : ulEventType:待处理的消息类型
-             pstMsg     :待处理的消息内容
- 输出参数  : pulAbortType:返回值为打断时,返回的打断类型
- 返 回 值  : 当前待处理消息的优先级
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月16日
-    作    者   : x65241
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareMmcNvimOPlmnRefreshIndPrioWithBgSearch(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -4114,23 +2589,7 @@ VOS_UINT32 NAS_MMC_CompareMmcNvimOPlmnRefreshIndPrioWithBgSearch(
     return NAS_MMC_MSG_COMPARE_PRIO_RSLT_STORE;
 }
 
-/* Added by c00318887 for 预置频点搜网优化, 2015-9-11, begin */
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareTiAvailableTimerExpiredPrioWithInterSysOos
- 功能描述  : 将available timer超时消息与BG 搜状态机的优先级进行比较
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : penAbortType:打断类型
- 返 回 值  : 比较结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年9月11日
-   作    者   : c00318887
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareTiPlmnSearchPhaseOneTotalTimerExpiredPrioWithBgSearch(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -4141,23 +2600,8 @@ VOS_UINT32 NAS_MMC_CompareTiPlmnSearchPhaseOneTotalTimerExpiredPrioWithBgSearch(
 
     return NAS_MMC_MSG_COMPARE_PRIO_RSLT_STORE;
 }
-/* Added by c00318887 for 预置频点搜网优化, 2015-9-11, end */
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CompareRrmPsStatusIndPrioWithPowerOff
- 功能描述  : power off状态机时，收到资源可用消息的处理
- 输入参数  : ulEventType:待处理的消息类型
-             pstMsg     :待处理的消息内容
- 输出参数  : pulAbortType:返回值为打断时,返回的打断类型
- 返 回 值  : 当前待处理消息的优先级
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月9日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_CompareRrmPsStatusIndPrioWithPowerOff(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,

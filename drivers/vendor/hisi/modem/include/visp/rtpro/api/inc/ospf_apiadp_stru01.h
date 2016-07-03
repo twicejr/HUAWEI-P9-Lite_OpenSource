@@ -159,23 +159,19 @@ typedef struct if_cfg_list_entry_tag
   UCHAR  ucNetworkType;
   UCHAR  ucPriority;
   USHORT usRetransInterval;
-  NBB_BOOL	auth_configured;	/*DTS2010101601584 licheng lKF35457 2010-10-18 是否配置认证方式*/
+  NBB_BOOL	auth_configured;
   NBB_LONG auth_type;
   CFG_AUTH_DATA auth_data;   /*指针变数组*/ 
-  /*Modified by liangjicheng 00103192, MTU基于接口配置, 2010/11/18   问题单号:DTS2010110104080  */
   NBB_ULONG ulMtuIgnore;
-  /*End of Modified by liangjicheng 00103192, 2010/11/18   问题单号:DTS2010110104080  */
 
   NBB_ULONG ulReserved1;
   NBB_ULONG ulReserved2;
 }IF_CFG_LIST_ENTRY;
 
-/*Added by guojianjun178934, 适配中保持的OSPF NSR信息, 2012/12/10   问题单号:20121208_1 */
 typedef struct nsr_ospf_api_adapt_info
 {
     NSR_OSPF_ADP_STATISTICS stNSRAdpOSPFStat;
 }NSR_OSPF_API_ADAPT_INFO;
-/* End of Added by guojianjun178934, 2012/12/10   问题单号:20121208_1 */
 
 /*进程全局管理*/
 /*此数据结构用来标示一个ospf是否已经被使用*/
@@ -185,9 +181,7 @@ typedef struct tagOSPF_PROCESS_USED
     USHORT usUsedFlg;            /*1表明已经使用，0表示没有使用*/
     ULONG ulDclPid;              /*DCL内部使用的伪进程id*/
     
-    /*Added by guojianjun178934, 适配中保存OSPF NSR信息, 2012/12/8   问题单号:20121208_1 */
     NSR_OSPF_API_ADAPT_INFO stNSRInfo;
-    /* End of Added by guojianjun178934, 2012/12/8   问题单号:20121208_1 */
 }OSPF_PROCESS_USED_S;
 
 /*内部维护测试结构*/

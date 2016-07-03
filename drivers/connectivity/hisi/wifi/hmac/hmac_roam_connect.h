@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : hmac_roam_connect.h
-  版 本 号   : 初稿
-  作    者   : guyanjie 00260350
-  生成日期   : 2015年3月18日
-  最近修改   :
-  功能描述   : hmac_roam_connect.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年3月18日
-    作    者   : guyanjie 00260350
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __HMAC_ROAM_CONNECT_H__
 #define __HMAC_ROAM_CONNECT_H__
@@ -41,7 +24,7 @@ extern "C" {
 #define ROAM_JOIN_TIME_MAX        (1 * 1000)       /* JOIN超时时间 单位ms*/
 #define ROAM_AUTH_TIME_MAX        (3 * 1000)       /* AUTH超时时间 单位ms*/
 #define ROAM_ASSOC_TIME_MAX       (3 * 1000)       /* ASSOC超时时间 单位ms*/
-#define ROAM_HANDSHAKE_TIME_MAX   (5 * 1000)       /* 握手超时时间 单位ms*/
+#define ROAM_HANDSHAKE_TIME_MAX   (7 * 1000)       /* 握手超时时间 单位ms*/
 
 #define ROAM_MAC_ADDR(_puc_mac)   ((oal_uint32)(((oal_uint32)_puc_mac[2] << 24) |\
                                               ((oal_uint32)_puc_mac[3] << 16) |\

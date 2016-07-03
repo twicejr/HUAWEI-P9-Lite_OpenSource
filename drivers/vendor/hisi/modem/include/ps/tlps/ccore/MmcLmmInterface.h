@@ -226,9 +226,7 @@ enum MMC_LMM_DISABLE_LTE_REASON_ENUM
     MMC_LMM_DISABLE_LTE_REASON_PS_DETACH                            =0,
     MMC_LMM_DISABLE_LTE_REASON_PS_USIM_INVALID                      =1,
     MMC_LMM_DISABLE_LTE_REASON_LTE_ROAMING_NOT_ALLOWED              =2,
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-18, begin */
     MMC_LMM_DISABLE_LTE_REASON_LTE_VOICE_NOT_AVAILABLE              =3,
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-18, end */
     MMC_LMM_DISABLE_LTE_REASON_EMERGENCY_CALL                       =4,
     MMC_LMM_DISABLE_LTE_REASON_SIM_CARD_SWITCH_ON                   =5,
     MMC_LMM_DISABLE_LTE_REASON_IMSI_IN_FORBIDDEN_LIST               =6,
@@ -283,10 +281,8 @@ enum MMC_LMM_PLMN_SRCH_TYPE_ENUM
 
     MMC_LMM_PLMN_SRCH_NCELL_SPEC        = 5,               /* SVLTE特性开启时根据modem1 g上报的L邻区频点信息搜网类型 */
 
-    /*modified by z00234330 for 搜网优化,2015-02-05,begin*/
     MMC_LMM_PLMN_SRCH_HISTORY           = 6,               /*历史信息搜索*/
     MMC_LMM_PLMN_SRCH_GET_GEO           = 7,               /*获取地理信息*/
-    /*modified by z00234330 for 搜网优化,2015-02-05,begin*/
 
     /*搜索预置band，接入层不需要进行全band搜索，仅需要搜索预置band,但如果预置band
     和硬件支持的band完全重叠，接入层需要在搜网结果中将进行过全band扫频的标志位置位*/
@@ -315,7 +311,6 @@ enum MMC_LMM_PLMN_SRCH_RLT_ENUM
     MMC_LMM_PLMN_SRCH_RLT_SPEC_NO_RF    = 4,
     MMC_LMM_PLMN_SRCH_RLT_LIST_NO_RF    = 5,
 
-    /*modified by z00234330 for 搜网优化,2015-02-05,begin*/
     MMC_LMM_PLMN_SRCH_RLT_HISTORY_FAIL  = 6,
     MMC_LMM_PLMN_SRCH_RLT_HISTORY_SUCC  = 7,
     MMC_LMM_PLMN_SRCH_RLT_HISTORY_NO_RF = 8,
@@ -323,7 +318,6 @@ enum MMC_LMM_PLMN_SRCH_RLT_ENUM
     MMC_LMM_PLMN_SRCH_RLT_GET_GEO_FAIL  = 9,
     MMC_LMM_PLMN_SRCH_RLT_GET_GEO_SUCC  = 10,
     MMC_LMM_PLMN_SRCH_RLT_GET_GEO_NO_RF = 11,
-    /*modified by z00234330 for 搜网优化,2015-02-05,end*/
 
     MMC_LMM_PLMN_SRCH_RLT_PREF_BAND_FAIL    = 12,
     MMC_LMM_PLMN_SRCH_RLT_PREF_BAND_SUCC    = 13,
@@ -1171,13 +1165,7 @@ typedef VOS_UINT32  MMC_LMM_COVERAGE_TYPE_ENUM_UINT32;
 
 
 
-/*****************************************************************************
- 枚举名    : NASUTRANCTRL_UTRAN_MODE_ENUM
- 结构说明  : MS当前具体的UTRAN模式:WCDMA/TD-SCAMA
- 1.日    期   : 2012年7月27日
-   作    者   : w00176964
-   修改内容   : 新建
-*****************************************************************************/
+
 enum MMC_LMM_UTRAN_MODE_ENUM
 {
     MMC_LMM_UTRAN_MODE_FDD          = 0,     /* 当前工作模式为WCDMA */
@@ -1188,13 +1176,7 @@ enum MMC_LMM_UTRAN_MODE_ENUM
 typedef VOS_UINT8  MMC_LMM_UTRAN_MODE_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名    : MMC_LMM_SESSION_TYPE_ENUM_UINT8
- 枚举说明  : SESSION类型
- 1.日    期   : 2014年5月22日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 enum MMC_LMM_SESSION_TYPE_ENUM
 {
     MMC_LMM_SESSION_TYPE_CS_MO_NORMAL_CALL,
@@ -1210,13 +1192,7 @@ enum MMC_LMM_SESSION_TYPE_ENUM
 };
 typedef VOS_UINT8 MMC_LMM_SESSION_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : MMC_LMM_AREA_LOST_REASON_UINT32
- 枚举说明  : 丢网原因
- 1.日    期   : 2014年5月22日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 enum MMC_LMM_AREA_LOST_REASON_ENUM
 {
     MMC_LMM_AREA_LOST_REASON_NO_COVERAGE,
@@ -1228,13 +1204,7 @@ typedef  VOS_UINT32 MMC_LMM_AREA_LOST_REASON_UINT32;
 
 
 
-/*****************************************************************************
- 枚举名    : MMC_LMM_IMS_VOICE_CAP_CHANGE_ENUM_UINT8
- 结构说明  : IMS VOICE CAP是否改变
- 1.日    期   : 2013年12月13日
-   作    者   : l00132387
-   修改内容   : 新建
-*****************************************************************************/
+
 enum MMC_LMM_IMS_VOICE_CAP_ENUM
 {
     MMC_LMM_IMS_VOICE_CAP_UNAVAILABLE             = 0,
@@ -1369,13 +1339,7 @@ enum LMM_MMC_SRV_DOMAIN_ENUM
 };
 typedef VOS_UINT8  LMM_MMC_SRV_DOMAIN_ENUM_UINT8;
 
-/*****************************************************************************
- 结构名    : MMC_LMM_VOICE_DOMAIN_ENUM_UINT8
- 结构说明  : MMC上报的VOIDE DOMAIN类型
-  1.日    期   : 2015年01月21日
-    作    者   : f00179208
-    修改内容   : 新建
- *****************************************************************************/
+
 enum MMC_LMM_VOICE_DOMAIN_ENUM
 {
     MMC_LMM_VOICE_DOMAIN_CS_ONLY            = 0,    /* CS voice only */
@@ -2226,18 +2190,7 @@ typedef struct
 
 } LMM_MMC_SERVICE_RESULT_IND_STRU;
 
-/*******************************************************************************
- 结构名    : MMC_LMM_NCELL_INFO_STRU
- 结构说明  : GSM下LTE邻区的频点列表
 
- 1.日    期   : 2013年12月16日
-   作    者   : z00161729
-   修改内容   : 新生成结构
- 2.日    期   : 2015年7月20日
-   作    者   : w000316404
-   修改内容   : R11协议升级(LTE频点配置值扩展)
-
-*******************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucLteArfcnNum;                          /* 0表示LTE频点不存在 */
@@ -2250,7 +2203,6 @@ typedef struct
     VOS_UINT16                          ausLteCellIdList[MMC_LMM_LTE_CELL_ID_MAX_NUM];
 }MMC_LMM_NCELL_INFO_STRU;
 
-/*modified by z00234330 for 搜网优化,2015-02-05,begin*/
 /*****************************************************************************
  结构名    : MMC_LMM_PLMN_SRCH_REQ_STRU
  协议表格  :
@@ -2291,7 +2243,6 @@ typedef struct
     MMC_LMM_PLMN_WITH_CSG_ID_LIST_STRU  stPlmnWithCsgIdList;
 }MMC_LMM_PLMN_SRCH_REQ_STRU;
 
-/*modified by z00234330 for 搜网优化,2015-02-05,end*/
 
 /*****************************************************************************
  结构名    : LMM_MMC_PLMN_SRCH_CNF_STRU
@@ -3035,13 +2986,7 @@ typedef struct
 
 } MMC_LMM_PUB_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : MMC_LMM_DISABLE_LTE_NOTIFY_STRU
- 结构说明  : 通知L disable LTE
-  1.日    期   : 2011年11月7日
-    作    者   : z00161729
-    修改内容   : 新建
- *****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                /*_H2ASN_Skip*/
@@ -3050,13 +2995,7 @@ typedef struct
     MMC_LMM_DISABLE_LTE_REASON_ENUM_UINT32    enDisableLteReason;
 } MMC_LMM_DISABLE_LTE_NOTIFY_STRU;
 
-/*****************************************************************************
- 结构名    : MMC_LMM_ENABLE_LTE_NOTIFY_STRU
- 结构说明  : 通知L enable LTE
-  1.日    期   : 2011年11月7日
-    作    者   : z00161729
-    修改内容   : 新建
- *****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                /*_H2ASN_Skip*/
@@ -3096,17 +3035,7 @@ typedef struct
     VOS_UINT8                           aucRsv[4];
 } MMC_LMM_SUSPEND_REL_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : MMC_LMM_UTRAN_MODE_REQ_STRU
- 结构说明  : UTRAN的工作模式信息
- 1.日    期   : 2012年7月14日
-   作    者   : w00176964
-   修改内容   : 新建
 
-  2.日    期   : 2012年8月8日
-    作    者   : w00167002
-    修改内容   : 接口命名调整
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                         /*_H2ASN_Skip*/
@@ -3115,26 +3044,14 @@ typedef struct
     VOS_UINT8                           aucRsv[3];
 } MMC_LMM_UTRAN_MODE_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : MMC_UTRAN_MODE_CNF_STRU
- 结构说明  : UTRAN的工作模式回复信息
- 1.日    期   : 2012年8月8日
-   作    者   : w00167002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                          /*_H2ASN_Skip*/
     MMC_LMM_MSG_ID_ENUM_UINT32          ulMsgId;            /*_H2ASN_Skip*/
 }LMM_MMC_UTRAN_MODE_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : LMM_MMC_SUSPEND_REL_CNF_STRU
- 结构说明  :
- 1.日    期   : 2012年11月21日
-   作    者   : w00209181
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                          /*_H2ASN_Skip*/
@@ -3192,13 +3109,7 @@ typedef struct
     VOS_UINT8                           aucRsv[4];      /* 预留 */
 }LMM_MMC_SUSPEND_INFO_CHANGE_NOTIFY_STRU;
 
-/*****************************************************************************
- 结构名    : MMC_LMM_WCDMA_SYS_INFO_IND_STRU
- 结构说明  : 通知L WCDMA系统消息
-  1.日    期   : 2012年6月15日
-    作    者   : n00181501
-    修改内容   : 新建
- *****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                /*_H2ASN_Skip*/
@@ -3213,13 +3124,7 @@ typedef struct
     VOS_UINT8                                 ucRsv1;
 } MMC_LMM_WCDMA_SYS_INFO_IND_STRU;
 
-/*****************************************************************************
- 结构名    : MMC_LMM_GSM_SYS_INFO_IND_STRU
- 结构说明  : 通知L GSM系统消息
-  1.日    期   : 2012年6月15日
-    作    者   : n00181501
-    修改内容   : 新建
- *****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                /*_H2ASN_Skip*/
@@ -3234,13 +3139,7 @@ typedef struct
     VOS_UINT8                                 ucRsv1;
 } MMC_LMM_GSM_SYS_INFO_IND_STRU;
 
-/*****************************************************************************
- 结构名    : LMM_MMC_EMC_PDP_STATUS_NOTIFY_STRU
- 结构说明  : 通知MMC紧急承载的状态
-  1.日    期   : 2013年12月03日
-    作    者   : lihong00150010
-    修改内容   : 新建
- *****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                /*_H2ASN_Skip*/
@@ -3282,13 +3181,7 @@ typedef struct
     MMC_LMM_PLMN_ID_STRU        stCurrCampPlmnId;
 }MMC_LMM_OTHER_MODEM_INFO_NOTIFY_STRU;
 
-/*****************************************************************************
- 结构名    : MMC_LMM_BEGIN_SESSION_NOTIFY_STRU
- 结构说明  : SESSION开始指示
- 1.日    期   : 2014年5月22日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stMsgHeader;                /*_H2ASN_Skip*/
@@ -3296,13 +3189,7 @@ typedef struct
     VOS_UINT8                                       aucReserved[3];
 }MMC_LMM_BEGIN_SESSION_NOTIFY_STRU;
 
-/*****************************************************************************
- 结构名    : MMC_LMM_END_SESSION_NOTIFY_STRU
- 结构说明  : SESSION开结束指示
- 1.日    期   : 2014年5月22日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stMsgHeader;                /*_H2ASN_Skip*/
@@ -3459,13 +3346,7 @@ typedef struct
     VOS_UINT32                              ulT3402Len;   /* 3402定时器时长，单位:毫秒 */
 } LMM_MMC_T3402_LEN_NOTIFY_STRU;
 
-/*****************************************************************************
- 结构名    : MMC_LMM_VOICE_DOMAIN_CHANGE_IND_STRU
- 结构说明  : ID_MMC_LMM_VOICE_DOMAIN_CHANGE_IND的结构体
-  1.日    期   : 2015年01月21日
-    作    者   : f00179208
-    修改内容   : 新建
- *****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/

@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafXCallProcAppEccTestMode.c
-  版 本 号   : 初稿
-  作    者   : c000177591
-  生成日期   : 2015年10月23日
-  功能描述   : TAF X CALL处理来自APP电信加密通话测试模式相关的消息
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年10月23日
-    作    者   : c00177591
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -43,20 +28,7 @@ extern "C"{
 *****************************************************************************/
 #if (FEATURE_ON == FEATURE_CHINA_TELECOM_VOICE_ENCRYPT)
 #if (FEATURE_ON == FEATURE_CHINA_TELECOM_VOICE_ENCRYPT_TEST_MODE)
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvAppEccTestModeCfgReq
- 功能描述  : 收到用户的ECC测试模式设置消息
- 输入参数  : pstMsg -- 测试模式设置消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : c00177591
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvAppEccTestModeCfgReq(VOS_VOID *pstMsg)
 {
     TAF_CALL_APP_SET_EC_TEST_MODE_REQ_STRU                 *pstSetTestModeReq = VOS_NULL_PTR;
@@ -75,20 +47,7 @@ VOS_VOID TAF_XCALL_RcvAppEccTestModeCfgReq(VOS_VOID *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvAppEccTestModeQryReq
- 功能描述  : 收到用户的ECC测试模式获取消息
- 输入参数  : pstMsg -- 密话测试模式获取消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : c00177591
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvAppEccTestModeQryReq(VOS_VOID *pstMsg)
 {
     TAF_CALL_APP_GET_EC_TEST_MODE_REQ_STRU                 *pstGetTestModeReq = VOS_NULL_PTR;
@@ -108,20 +67,7 @@ VOS_VOID TAF_XCALL_RcvAppEccTestModeQryReq(VOS_VOID *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvAppEccKmcKeyCfgReq
- 功能描述  : 收到用户的ECC KMC密钥设置消息
- 输入参数  : pstMsg -- ECC KMC密钥设置消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : c00177591
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvAppEccKmcKeyCfgReq(VOS_VOID *pstMsg)
 {
     TAF_CALL_APP_SET_EC_KMC_REQ_STRU                       *pstSetKmcKeyReq = VOS_NULL_PTR;
@@ -150,20 +96,7 @@ VOS_VOID TAF_XCALL_RcvAppEccKmcKeyCfgReq(VOS_VOID *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvAppEccKmcKeyQryReq
- 功能描述  : 收到用户的ECC KMC密钥获取消息
- 输入参数  : pstMsg -- ECC KMC密钥获取消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvAppEccKmcKeyQryReq(VOS_VOID *pstMsg)
 {
     TAF_CALL_APP_GET_EC_KMC_REQ_STRU                       *pstGetKmcKeyReq = VOS_NULL_PTR;
@@ -179,20 +112,7 @@ VOS_VOID TAF_XCALL_RcvAppEccKmcKeyQryReq(VOS_VOID *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvAppEccRandomQryReq
- 功能描述  : 收到用户的ECC随机数获取消息
- 输入参数  : pstMsg -- ECC随机数获取消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : c00177591
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvAppEccRandomQryReq(VOS_VOID *pstMsg)
 {
     VOS_UINT8                                               i;

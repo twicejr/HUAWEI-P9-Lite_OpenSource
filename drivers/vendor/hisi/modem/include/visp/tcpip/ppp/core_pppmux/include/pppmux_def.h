@@ -44,7 +44,6 @@ extern "C"{
 #define PPPMUX_MIN_SUBFRAMELEN  1
 #define PPPMUX_MAX_SUBFRAMELEN  512
 #define PPPMUX_DEF_SUBFRAMELEN  192
-/*Added by luogaowei, for MBSC PPPMUX最大子帧长度扩展, 2013/3/5 */
 #define PPPMUX_MAX_SUBFRAMELENEX 1498
 
 /* 最大复合帧长度 */
@@ -82,7 +81,6 @@ extern "C"{
 #define PPPMUX_QUE_REGLEN        1024    /* 队列的缺省注册长度 */
 #define PPPMUX_QUE_MAXLEN        1024    /* 队列最大长度 */
 
-/* Added by l57500 for 同步VISPV1R5问题单SWID00221,2007-05-09 */
 #define PPPMUX_MBUF_RESERVE_SPACE 200    /* PPPMUX子帧报文解复合后报文头预留空间 */
 /* End of addition */
 

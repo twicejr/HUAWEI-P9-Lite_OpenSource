@@ -141,7 +141,6 @@ SINT32 SEC_EventReport(SINT32 ChanID, SINT32 Type, VOID* pArgs, UINT32 Len)
     eType = s_pstVfmwChan[ChanID]->eAdapterType;
 
     // 安全侧上报消息过滤，只上报会处理的消息，防止队列溢出
-    // 注意，如新增消息处理，这里需要同步放开  y00226912
     if (ADAPTER_TYPE_OMXVDEC == eType)
     {
         if (eType != EVNT_NEED_ARRANGE && eType != EVNT_NEED_ARRANGE_L

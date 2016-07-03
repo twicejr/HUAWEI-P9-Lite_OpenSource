@@ -28,19 +28,7 @@ extern "C" {
 
 VOS_UINT32  g_ulPbrRecordNum = 0;
 
-/*****************************************************************************
-函 数 名  :SI_PB_CheckSupportAP
-功能描述  :判断当前是否支持AP
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_TRUE/VOS_FALSE
-调用函数  :
-被调函数  : 外部接口
-History     :
-1.日    期  : 2013年11月19日
-  作    者  : H59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_BOOL SI_PB_CheckSupportAP(VOS_VOID)
 {
     NAS_NVIM_SYSTEM_APP_CONFIG_STRU     stAPPConfig;
@@ -64,20 +52,7 @@ VOS_BOOL SI_PB_CheckSupportAP(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_HexToAsciiCode
-功能描述  :转换字符串格式
-输入参数  :
 
-输出参数  :无
-返 回 值  :VOS_OK    :失败
-           VOS_ERR   :成功
-
-修订记录  :
-1. 日    期   : 2015年2月12日
-   作    者   : z00100318
-   修改内容   : Creat
-*****************************************************************************/
 
 VOS_UINT32 SI_PB_HexToAsciiCode(VOS_UINT8 ucSrc,VOS_CHAR *pcDst)
 {
@@ -97,20 +72,7 @@ VOS_UINT32 SI_PB_HexToAsciiCode(VOS_UINT8 ucSrc,VOS_CHAR *pcDst)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_AsciiToHexCode
-功能描述  :转换字符串格式
-输入参数  :
 
-输出参数  :无
-返 回 值  :VOS_OK    :失败
-           VOS_ERR   :成功
-
-修订记录  :
-1. 日    期   : 2015年2月12日
-   作    者   : z00100318
-   修改内容   : Creat
-*****************************************************************************/
 
 VOS_UINT32 SI_PB_AsciiToHexCode(VOS_CHAR cSrc, VOS_UINT8 *pucDst)
 {
@@ -134,20 +96,7 @@ VOS_UINT32 SI_PB_AsciiToHexCode(VOS_CHAR cSrc, VOS_UINT8 *pucDst)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_GetEFIDFromPath
-功能描述  :从文件路径中获取EF的ID
-输入参数  :
 
-输出参数  :无
-返 回 值  :VOS_OK    :失败
-           VOS_ERR   :成功
-
-修订记录  :
-1. 日    期   : 2015年2月12日
-   作    者   : z00100318
-   修改内容   : Creat
-*****************************************************************************/
 
 VOS_VOID SI_PB_GetEFIDFromPath(USIMM_FILEPATH_INFO_STRU *pstFilePath,VOS_UINT16 *pusEFID)
 {
@@ -171,19 +120,7 @@ VOS_VOID SI_PB_GetEFIDFromPath(USIMM_FILEPATH_INFO_STRU *pstFilePath,VOS_UINT16 
     return ;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_ChageFileToPathStr
-功能描述  :转换文件ID到文件路径
-输入参数  :
 
-输出参数  :无
-返 回 值  :
-
-修订记录  :
-1. 日    期   : 2015年2月12日
-   作    者   : z00100318
-   修改内容   : Creat
-*****************************************************************************/
 
 VOS_VOID SI_PB_ChangeFileToPathStr(VOS_UINT16 usEFID, USIMM_FILEPATH_INFO_STRU *pstFilePath)
 {
@@ -242,17 +179,7 @@ VOS_VOID SI_PB_ChangeFileToPathStr(VOS_UINT16 usEFID, USIMM_FILEPATH_INFO_STRU *
     return;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_CheckFileID
-功能描述  :读取文件操作　
-输入参数  :
-输出参数  :无
-返 回 值  :
-修订记录  :
-1. 日    期   : 2015年2月12日
-   作    者   : z00100318
-   修改内容   : Creat
-*****************************************************************************/
+
 
 VOS_UINT32 SI_PB_CheckFileID(VOS_UINT16 usFileID)
 {
@@ -270,17 +197,7 @@ VOS_UINT32 SI_PB_CheckFileID(VOS_UINT16 usFileID)
     }
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_GetFileReq
-功能描述  :读取文件操作　
-输入参数  :
-输出参数  :无
-返 回 值  :
-修订记录  :
-1. 日    期   : 2015年2月12日
-   作    者   : z00100318
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PB_GetFileReq(SI_PB_GETFILE_INFO_STRU    *pstGetFileInfo)
 {
     USIMM_READFILE_REQ_STRU     *pstMsg;
@@ -314,17 +231,7 @@ VOS_UINT32 SI_PB_GetFileReq(SI_PB_GETFILE_INFO_STRU    *pstGetFileInfo)
     return VOS_SendMsg(MAPS_PB_PID , pstMsg);
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_GetFileReq
-功能描述  :更新文件操作　
-输入参数  :
-输出参数  :无
-返 回 值  :
-修订记录  :
-1. 日    期   : 2015年2月12日
-   作    者   : z00100318
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PB_SetFileReq(SI_PB_SETFILE_INFO_STRU    *pstSetFileInfo)
 {
     USIMM_UPDATEFILE_REQ_STRU          *pstMsg;
@@ -370,17 +277,7 @@ VOS_UINT32 SI_PB_SetFileReq(SI_PB_SETFILE_INFO_STRU    *pstSetFileInfo)
     return VOS_SendMsg(MAPS_PB_PID , pstMsg);
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_QueryFileReq
-功能描述  :获取文件信息　
-输入参数  :usEfId:文件ID
-输出参数  :无
-返 回 值  :
-修订记录  :
-1. 日    期   : 2015年2月12日
-   作    者   : z00100318
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PB_QueryFileReq(VOS_UINT16 usEFID)
 {
     USIMM_QUERYFILE_REQ_STRU    *pstMsg;
@@ -413,18 +310,7 @@ VOS_UINT32 SI_PB_QueryFileReq(VOS_UINT16 usEFID)
     return VOS_SendMsg(MAPS_PB_PID, pstMsg);
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_SearchReq
-功能描述  :查询文件请求
-输入参数  :
-输出参数  :无
-返 回 值  :VOS_OK
-           VOS_ERR
-修订记录  :
-1. 日    期   : 2015年2月12日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PB_SearchFileReq(USIMM_U8_LVDATA_STRU    *pstData,
                                 VOS_UINT16               usFileId)
 {
@@ -461,23 +347,7 @@ VOS_UINT32 SI_PB_SearchFileReq(USIMM_U8_LVDATA_STRU    *pstData,
     return VOS_SendMsg(MAPS_PB_PID, pstMsg);
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_SetSPBFileReq
-功能描述  : 复合电话本更新请求
-输入参数  : pstSPBReq  文件搜索参数
-输出参数  : 无
-返 回 值  : VOS_UINT32 函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1. 日    期  : 2015年2月12日
-   作    者  : z00100318
-   修改内容  : Create
 
-2. 日    期   : 2015年3月31日
-   作    者   : d00212987
-   修改内容   : 卡多应用迭代II开发
-*****************************************************************************/
 VOS_UINT32 SI_PB_SetSPBFileReq(SI_PB_SPBDATA_STRU *pstSPBReq)
 {
     VOS_UINT32                      i;
@@ -543,20 +413,7 @@ VOS_UINT32 SI_PB_SetSPBFileReq(SI_PB_SPBDATA_STRU *pstSPBReq)
 }
 
 
-/*****************************************************************************
-函 数 名  : SI_PB_ClearPBContent
-功能描述  : 释放缓冲电话本的内容
-输入参数  : ulClearType:决定是清除所有电话本还是除ECC之外的电话本
-输出参数  : 无
-返 回 值  : 无
-调用函数  : VOS_MemFree
-被调函数  :
-修订记录  :
-1.  日    期   : 2008年10月15日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID SI_PB_ClearPBContent(VOS_UINT32 ulClearType)
 {
     VOS_UINT32 i;
@@ -621,20 +478,7 @@ VOS_VOID SI_PB_ClearPBContent(VOS_UINT32 ulClearType)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_ClearSPBContent
-功能描述  : 释放缓冲复合电话本的内容
-输入参数  : ulClearType:决定是清除所有电话本还是除ECC之外的电话本
-输出参数  : 无
-返 回 值  : 无
-调用函数  : VOS_MemFree
-被调函数  :
-修订记录  :
-1.  日    期   : 2008年10月15日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID SI_PB_ClearSPBContent(VOS_UINT32 ulClearType)
 {
     VOS_UINT32 i;
@@ -674,20 +518,7 @@ VOS_VOID SI_PB_ClearSPBContent(VOS_UINT32 ulClearType)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_ExtExceptionProc
-功能描述  : EXT文件出现异常状态的处理函数
-输入参数  : ulClearType:要处理的EXT文件类型
-输出参数  : 无
-返 回 值  : 无
-调用函数  : VOS_MemFree
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年5月16日
-    作    者   : h59254
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID SI_PB_ExtExceptionProc(VOS_UINT16 usExtFileId)
 {
     VOS_UINT8   i;
@@ -726,21 +557,7 @@ VOS_VOID SI_PB_ExtExceptionProc(VOS_UINT16 usExtFileId)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_CheckXDNFileID
-功能描述  : 检查是否是XDN电话本文件
-输入参数  : usFileID:文件ID
-输出参数  : 无
-返 回 值  : VOS_OK
-            VOS_ERR
-调用函数  : 无
-被调函数  :
-修订记录  :
-1.  日    期   : 2008年10月15日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 SI_PB_CheckXDNFileID(VOS_UINT16 usFileID)
 {
     switch(usFileID)
@@ -757,21 +574,7 @@ VOS_UINT32 SI_PB_CheckXDNFileID(VOS_UINT16 usFileID)
     }
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_CheckSYNCHFileID
-功能描述  : 检查是否是3G重同步文件
-输入参数  : usFileID:文件ID
-输出参数  : 无
-返 回 值  : VOS_OK
-            VOS_ERR
-调用函数  : 无
-被调函数  :
-修订记录  :
-1.  日    期   : 2008年10月15日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 SI_PB_CheckSYNCHFileID(VOS_UINT16 usFileID)
 {
     switch(usFileID)
@@ -796,20 +599,7 @@ VOS_UINT32 SI_PB_CheckSYNCHFileID(VOS_UINT16 usFileID)
     }
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_CheckExtFileID
-功能描述  : 检查是否是EXT文件
-输入参数  : usFileID:文件ID
-输出参数  : 无
-返 回 值  : VOS_OK
-            VOS_ERR
-调用函数  : 无
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年5月7日
-    作    者   : h59254
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PB_CheckExtFileID(VOS_UINT16 usFileID)
 {
     switch(usFileID)
@@ -836,20 +626,7 @@ VOS_UINT32 SI_PB_CheckExtFileID(VOS_UINT16 usFileID)
     return VOS_ERR;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_JumpToNextPB
-功能描述  : 进入下一个电话本
-输入参数  : ulPBType:当前正在初始化的电话本
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2008年10月15日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID SI_PB_JumpToNextPB(VOS_UINT32 ulPBType)
 {
     if ( PB_ADN_CONTENT == ulPBType )
@@ -864,22 +641,7 @@ VOS_VOID SI_PB_JumpToNextPB(VOS_UINT32 ulPBType)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitSYNCHGetProc
-功能描述  : 处理3G重同步文件内容
-输入参数  : pstMsg
-输出参数  : gstPBCtrlInfo
-            gstPBInitState
-返 回 值  : VOS_OK
-            VOS_ERR
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2008年10月15日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID SI_PB_InitSYNCHGetProc(PBMsgBlock *pstMsg)
 {
     USIMM_READFILE_CNF_STRU    *pstPBMsg;
@@ -976,22 +738,7 @@ VOS_VOID SI_PB_InitSYNCHGetProc(PBMsgBlock *pstMsg)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitSYNCHSetProc
-功能描述  : 处理3G重同步文件内容
-输入参数  : pstMsg
-输出参数  : gstPBCtrlInfo
-            gstPBInitState
-返 回 值  : VOS_OK
-            VOS_ERR
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2008年10月15日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID SI_PB_InitSYNCHSetProc(PBMsgBlock *pstMsg)
 {
     USIMM_UPDATEFILE_CNF_STRU       *pstPBMsg;
@@ -1030,21 +777,7 @@ VOS_VOID SI_PB_InitSYNCHSetProc(PBMsgBlock *pstMsg)
 
     return;
 }
-/*****************************************************************************
-函 数 名  : SI_PB_InitPBStateProc
-功能描述  : 根据对USIMM模块回复的处理情况，确定下一个初始化步骤
-输入参数  : enPBInitState:初始化状态
-输出参数  : gulPBFileCnt
-            gulPBRecordCnt
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2008年10月31日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID SI_PB_InitPBStateProc(SI_PB_INIT_STATUS_ENUM_UNIT32 enPBInitState)
 {
     VOS_UINT32  ulPBType = 0xFF;
@@ -1221,22 +954,7 @@ VOS_VOID SI_PB_InitPBStateProc(SI_PB_INIT_STATUS_ENUM_UNIT32 enPBInitState)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitPBStatusJudge
-功能描述  : 根据当前的卡类型和服务状态，确定下一个初始化步骤
-输入参数  : 无
-输出参数  : gstPBInitState
-            gulPBInitFileNum
-返 回 值  : VOS_Ok
-            VOS_ERR
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2008年10月31日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 SI_PB_InitPBStatusJudge(VOS_VOID)
 {
 
@@ -1307,21 +1025,7 @@ VOS_UINT32 SI_PB_InitPBStatusJudge(VOS_VOID)
 
     return VOS_OK;
 }
-/*****************************************************************************
-函 数 名  : SI_PB_InitEFpbrReq
-功能描述  : 向USIMM模块发送获取EFPBR内容的请求，并确定下一步初始化步骤
-输入参数  : 无
-输出参数  : gstPBInitState
-返 回 值  : VOS_OK:成功
-            VOS_ERR:失败
-调用函数  : USIMM_GetFileReq
-被调函数  :
-修订记录  :
-1.  日    期   : 2008年10月31日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 SI_PB_InitEFpbrReq(VOS_VOID)
 {
     VOS_UINT32                  ulResult;
@@ -1431,21 +1135,7 @@ VOS_UINT32 SI_PB_InitEFpbrReq(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitXDNSpaceReq
-功能描述  : 向USIMM模块发送初始化XDN电话本的请求，并设定下一步初始化步骤
-输入参数  : 无
-输出参数  : gstPBInitState
-返 回 值  : VOS_OK
-            VOS_ERR
-调用函数  : SI_PB_QueryFileReq
-被调函数  :
-修订记录  :
-1.  日    期   : 2008年10月31日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 SI_PB_InitXDNSpaceReq(VOS_VOID)
 {
     VOS_UINT32 ulResult = VOS_OK;
@@ -1484,20 +1174,7 @@ VOS_UINT32 SI_PB_InitXDNSpaceReq(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitANRSpaceReq
-功能描述  : 向USIMM模块发送初始化ANR空间的请求，并设定下一步初始化步骤
-输入参数  : 无
-输出参数  :
-返 回 值  : VOS_OK
-            VOS_ERR
-调用函数  : SI_PB_QueryFileReq
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年5月8日
-    作    者   : m00128685
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PB_InitANRSpaceReq(VOS_VOID)
 {
     VOS_UINT16  usANRFileId;
@@ -1544,20 +1221,7 @@ VOS_UINT32 SI_PB_InitANRSpaceReq(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitEMLSpaceReq
-功能描述  : 向USIMM模块发送初始化ANR空间的请求，并设定下一步初始化步骤
-输入参数  : 无
-输出参数  :
-返 回 值  : VOS_OK
-            VOS_ERR
-调用函数  : SI_PB_QueryFileReq
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年6月15日
-    作    者   : m00128685
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PB_InitEMLSpaceReq(VOS_VOID)
 {
     VOS_UINT16  usEMLFileId;
@@ -1595,20 +1259,7 @@ VOS_UINT32 SI_PB_InitEMLSpaceReq(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitIAPSpaceReq
-功能描述  : 向USIMM模块发送初始化IAP空间的请求，并设定下一步初始化步骤
-输入参数  : 无
-输出参数  :
-返 回 值  : VOS_OK
-            VOS_ERR
-调用函数  : SI_PB_QueryFileReq
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年6月15日
-    作    者   : m00128685
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PB_InitIAPSpaceReq(VOS_VOID)
 {
     VOS_UINT16  usIAPFileId;
@@ -1646,20 +1297,7 @@ VOS_UINT32 SI_PB_InitIAPSpaceReq(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitEXTSpaceReq
-功能描述  : 向USIMM模块发送初始化EXT空间的请求，并设定下一步初始化步骤
-输入参数  : 无
-输出参数  :
-返 回 值  : VOS_OK
-            VOS_ERR
-调用函数  : SI_PB_QueryFileReq
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年6月3日
-    作    者   : m00128685
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PB_InitEXTSpaceReq(VOS_VOID)
 {
     VOS_UINT16  usExtFileId;
@@ -1724,21 +1362,7 @@ VOS_UINT32 SI_PB_InitEXTSpaceReq(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitIAPContentReq
-功能描述  : 向USIMM模块发送获取ADN电话本内容的请求，并设定下一步初始化步骤
-输入参数  : 无
-输出参数  : gstPBInitState
-返 回 值  : VOS_OK
-            VOS_ERR
-调用函数  : USIMM_GetFileReq
-被调函数  :
-修订记录  :
-1.  日    期   : 2008年10月31日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 SI_PB_InitIAPContentReq(VOS_VOID)
 {
     VOS_UINT32                  ulResult;
@@ -1783,20 +1407,7 @@ VOS_UINT32 SI_PB_InitIAPContentReq(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitEXTContentReq
-功能描述  : 向USIMM模块发送获取EXT内容的请求，并设定下一步初始化步骤
-输入参数  : 无
-输出参数  : gstPBInitState
-返 回 值  : VOS_OK
-            VOS_ERR
-调用函数  : USIMM_GetFileReq
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年5月8日
-    作    者   : h59254
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PB_InitEXTContentReq(VOS_VOID)
 {
     VOS_UINT32                  ulResult;
@@ -1842,20 +1453,7 @@ VOS_UINT32 SI_PB_InitEXTContentReq(VOS_VOID)
 
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitIAPSearchReq
-功能描述  : 向USIMM模块发送IAP文件的查找请求
-输入参数  : 无
-输出参数  : gstPBInitState
-返 回 值  : VOS_OK
-            VOS_ERR
-调用函数  : SI_PB_SearchReq
-被调函数  :
-修订记录  :
-1.  日    期   : 2010年01月19日
-    作    者   : H59254
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PB_InitIAPSearchReq(VOS_VOID)
 {
     VOS_UINT32              ulResult;
@@ -1902,20 +1500,7 @@ VOS_UINT32 SI_PB_InitIAPSearchReq(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitEmailSearchReq
-功能描述  : 向USIMM模块发送EMAIL文件的查找请求
-输入参数  : 无
-输出参数  : gstPBInitState
-返 回 值  : VOS_OK
-            VOS_ERR
-调用函数  : SI_PB_SearchReq
-被调函数  :
-修订记录  :
-1.  日    期   : 2010年01月19日
-    作    者   : H59254
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PB_InitEmailSearchReq(VOS_VOID)
 {
     VOS_UINT32              ulResult;
@@ -1964,20 +1549,7 @@ VOS_UINT32 SI_PB_InitEmailSearchReq(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitANRSearchReq
-功能描述  : 向USIMM模块发送ANR文件的查找请求
-输入参数  : 无
-输出参数  : gstPBInitState
-返 回 值  : VOS_OK
-            VOS_ERR
-调用函数  : SI_PB_SearchReq
-被调函数  :
-修订记录  :
-1.  日    期   : 2010年01月20日
-    作    者   : H59254
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PB_InitANRSearchReq(VOS_VOID)
 {
     VOS_UINT32              ulResult;
@@ -2049,20 +1621,7 @@ VOS_UINT32 SI_PB_InitANRSearchReq(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitXDNSearchReq
-功能描述  : 向USIMM模块发送XDN文件的查找请求
-输入参数  : 无
-输出参数  : gstPBInitState
-返 回 值  : VOS_OK
-            VOS_ERR
-调用函数  : SI_PB_SearchReq
-被调函数  :
-修订记录  :
-1.  日    期   : 2010年01月21日
-    作    者   : H59254
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PB_InitXDNSearchReq(VOS_VOID)
 {
     VOS_UINT32              ulResult;
@@ -2132,20 +1691,7 @@ VOS_UINT32 SI_PB_InitXDNSearchReq(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitPBCSearchReq
-功能描述  : 向USIMM模块发送PBC文件的查找请求
-输入参数  : 无
-输出参数  : gstPBInitState
-返 回 值  : VOS_OK
-            VOS_ERR
-调用函数  : SI_PB_SearchReq
-被调函数  :
-修订记录  :
-1.  日    期   : 2010年02月02日
-    作    者   : H59254
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PB_InitPBCSearchReq(VOS_VOID)
 {
     VOS_UINT32              ulResult;
@@ -2196,20 +1742,7 @@ VOS_UINT32 SI_PB_InitPBCSearchReq(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitIAPContentReq2
-功能描述  : 根据查找结果向USIMM模块发送IAP文件的读取请求
-输入参数  : 无
-输出参数  : gstPBInitState
-返 回 值  : VOS_OK
-            VOS_ERR
-调用函数  : USIMM_GetFileReq
-被调函数  :
-修订记录  :
-1.  日    期   : 2010年01月19日
-    作    者   : H59254
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PB_InitIAPContentReq2(VOS_VOID)
 {
     VOS_UINT32                  ulResult;
@@ -2262,20 +1795,7 @@ VOS_UINT32 SI_PB_InitIAPContentReq2(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitEmailContentReq
-功能描述  : 根据查找结果向USIMM模块发送EMAIL文件的读取请求
-输入参数  : 无
-输出参数  : gstPBInitState
-返 回 值  : VOS_OK
-            VOS_ERR
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2010年01月20日
-    作    者   : H59254
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PB_InitEmailContentReq(VOS_VOID)
 {
     VOS_UINT32                  ulResult;
@@ -2328,20 +1848,7 @@ VOS_UINT32 SI_PB_InitEmailContentReq(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitANRContentReq2
-功能描述  : 根据查找结果向USIMM模块发送ANR文件的读取请求
-输入参数  : 无
-输出参数  : gstPBInitState
-返 回 值  : VOS_OK
-            VOS_ERR
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2010年01月20日
-    作    者   : H59254
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PB_InitANRContentReq2(VOS_VOID)
 {
     VOS_UINT32                  ulResult;
@@ -2395,20 +1902,7 @@ VOS_UINT32 SI_PB_InitANRContentReq2(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitXDNContentReq2
-功能描述  : 根据查找结果向USIMM模块发送XDN文件的读取请求
-输入参数  : 无
-输出参数  : gstPBInitState
-返 回 值  : VOS_OK
-            VOS_ERR
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2010年01月21日
-    作    者   : H59254
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PB_InitXDNContentReq2(VOS_VOID)
 {
     VOS_UINT32                  ulResult;
@@ -2481,20 +1975,7 @@ VOS_UINT32 SI_PB_InitXDNContentReq2(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitPBCContentReq2
-功能描述  : 根据查找结果向USIMM模块发送PBC文件的读取请求
-输入参数  : 无
-输出参数  : gstPBInitState
-返 回 值  : VOS_OK
-            VOS_ERR
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2010年02月02日
-    作    者   : H59254
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PB_InitPBCContentReq2(VOS_VOID)
 {
     VOS_UINT32                  ulResult;
@@ -2543,20 +2024,7 @@ VOS_UINT32 SI_PB_InitPBCContentReq2(VOS_VOID)
     }
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitPBCContentReq
-功能描述  : 向USIMM模块发送PBC文件的读取请求
-输入参数  : 无
-输出参数  : gstPBInitState
-返 回 值  : VOS_OK
-            VOS_ERR
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2010年02月02日
-    作    者   : H59254
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PB_InitPBCContentReq(VOS_VOID)
 {
     VOS_UINT32                  ulResult;
@@ -2604,21 +2072,7 @@ VOS_UINT32 SI_PB_InitPBCContentReq(VOS_VOID)
     }
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitXDNContentReq
-功能描述  : 向USIMM模块发送获取XDN电话本内容的请求，并设定下一步初始化步骤
-输入参数  : 无
-输出参数  : gstPBInitState
-返 回 值  : VOS_OK
-            VOS_ERR
-调用函数  : USIMM_GetFileReq
-被调函数  :
-修订记录  :
-1.  日    期   : 2008年10月31日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 SI_PB_InitXDNContentReq(VOS_VOID)
 {
     VOS_UINT32                  ulResult;
@@ -2694,21 +2148,7 @@ VOS_UINT32 SI_PB_InitXDNContentReq(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitANRContentReq
-功能描述  : 向USIMM模块发送获取ADN电话本内容的请求，并设定下一步初始化步骤
-输入参数  : 无
-输出参数  : gstPBInitState
-返 回 值  : VOS_OK
-            VOS_ERR
-调用函数  : USIMM_GetFileReq
-被调函数  :
-修订记录  :
-1.  日    期   : 2008年10月31日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 SI_PB_InitANRContentReq(VOS_VOID)
 {
     VOS_UINT32                  ulResult;
@@ -2761,20 +2201,7 @@ VOS_UINT32 SI_PB_InitANRContentReq(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitEMLContentReq
-功能描述  : 向USIMM模块发送获取EXT内容的请求，并设定下一步初始化步骤
-输入参数  : 无
-输出参数  : gstPBInitState
-返 回 值  : VOS_OK
-            VOS_ERR
-调用函数  : USIMM_GetFileReq
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年6月3日
-    作    者   : m00128685
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PB_InitEXTRContentReq(VOS_VOID)
 {
     VOS_UINT32                  ulResult;
@@ -2816,20 +2243,7 @@ VOS_UINT32 SI_PB_InitEXTRContentReq(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitEXTRContentReq
-功能描述  : 向USIMM模块发送获取EXT内容的请求，并设定下一步初始化步骤
-输入参数  : 无
-输出参数  : gstPBInitState
-返 回 值  : VOS_OK
-            VOS_ERR
-调用函数  : USIMM_GetFileReq
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年6月3日
-    作    者   : m00128685
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PB_InitEMLContentReq(VOS_VOID)
 {
     VOS_UINT32                  ulResult;
@@ -2875,21 +2289,7 @@ VOS_UINT32 SI_PB_InitEMLContentReq(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitSYNCHReq
-功能描述  : 向USIMM模块发送获取3G重同步所需文件的请求，并设定下一步初始化步骤
-输入参数  : 无
-输出参数  : VOS_OK
-            VOS_ERR
-返 回 值  :
-调用函数  : USIMM_GetFileReq
-被调函数  :
-修订记录  :
-1.  日    期   : 2008年10月31日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 SI_PB_InitSYNCHReq(VOS_VOID)
 {
     VOS_UINT32                  ulResult;
@@ -2975,20 +2375,7 @@ VOS_UINT32 SI_PB_InitSYNCHReq(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitInfoApp
-功能描述  : 初始化最后一步，通过消息发送给Acpu同步全局变量
-输入参数  : 无
-输出参数  : gstPBInitState
-返 回 值  : VOS_OK
-            VOS_ERR
-调用函数  : SI_PBSendGobalToAcpu
-被调函数  :
-修订记录  :
-1.  日    期   : 2008年10月31日
-    作    者   : m00128685
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PB_InitInfoApp(VOS_VOID)
 {
     VOS_UINT32              ulBdnState;
@@ -3044,24 +2431,7 @@ VOS_UINT32 SI_PB_InitInfoApp(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitEccProc
-功能描述  : 处理USIMM模块上报的ECC号码
-输入参数  : pstMsg:USIMM模块上报的消息
-输出参数  : gastPBContent[PB_ECC_CONTENT].pContent:ECC号码内容
-            gastPBContent[PB_ECC_CONTENT].usTotalNum:ECC号码数目
-            gastPBContent[PB_ECC_CONTENT].enInitialState:ECC电话本初始化状态
 
-返 回 值  :
-调用函数  : VOS_MemAlloc
-            VOS_MemCpy
-被调函数  :
-修订记录  :
-1.  日    期   : 2008年10月15日
-    作    者   : m00128685
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 SI_PB_InitEccProc(PBMsgBlock *pstMsg)
 {
     USIMM_ECCNUMBER_IND_STRU           *pstPBMsg;
@@ -3125,16 +2495,7 @@ VOS_UINT32 SI_PB_InitEccProc(PBMsgBlock *pstMsg)
 }
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
-函 数 名  : SI_PB_InitXeccProc
-功能描述  : 处理USIMM模块上报的XECC号码
-输入参数  : pstMsg:USIMM模块上报的消息
-输出参数  : 无
-修订记录  :
-1.  日    期   : 2015年06月11日
-    作    者   : h00300778
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PB_InitXeccProc(PBMsgBlock *pstMsg)
 {
     USIMM_XECCNUMBER_IND_STRU          *pstPBMsg;
@@ -3185,20 +2546,7 @@ VOS_UINT32 SI_PB_InitXeccProc(PBMsgBlock *pstMsg)
 }
 #endif
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitStateProc
-功能描述  : 处理USIMM模块上报的卡状态信息,判断电话本激活状态，并进入下一步初始化
-输入参数  : pstMsg:USIMM模块上报的消息
-输出参数  : gstPBInitState
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2008年10月15日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID SI_PB_InitPBStatusProc(PBMsgBlock *pstMsg)
 {
 
@@ -3256,21 +2604,7 @@ VOS_VOID SI_PB_InitPBStatusProc(PBMsgBlock *pstMsg)
 
     return;
 }
-/*****************************************************************************
-函 数 名  : SI_PB_InitEFpbrProc
-功能描述  : 解析EFPBR文件，获取ADN、UID等文件的FID信息
-输入参数  : pstMsg:USIMM模块回复的消息
-输出参数  : gstPBInitState
-返 回 值  :
-调用函数  : SI_PB_InitXDNSpace
-            SI_PB_DecodeEFPBR
-被调函数  :
-修订记录  :
-1.  日    期   : 2008年10月15日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID SI_PB_InitEFpbrProc(PBMsgBlock *pstMsg)
 {
     USIMM_READFILE_CNF_STRU     *pstPBMsg;
@@ -3324,21 +2658,7 @@ VOS_VOID SI_PB_InitEFpbrProc(PBMsgBlock *pstMsg)
 
     return;
 }
-/*****************************************************************************
-函 数 名  : SI_PB_AllocPBSpace
-功能描述  : 为电话本分配内存，并设置默认值
-输入参数  :
-输出参数  :
 
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年9月5日
-    作    者   : m00128685
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 SI_PB_AllocPBSpace(VOS_UINT8 **ppPBContent,VOS_UINT32 ulPBSize,VOS_CHAR cDefaultVal)
 {
     *ppPBContent = (VOS_UINT8 *)PB_MALLOC(ulPBSize);
@@ -3357,20 +2677,7 @@ VOS_UINT32 SI_PB_AllocPBSpace(VOS_UINT8 **ppPBContent,VOS_UINT32 ulPBSize,VOS_CH
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_CheckXDNPara
-功能描述  : 检查USIMM模块回复消息的参数
-输入参数  : pstPBMsg:USIMM模块回复的消息
-输出参数  : 无
 
-返 回 值  : 无
-
-修订记录  :
-1.  日    期   : 2011年7月1日
-    作    者   : j00168360
-    修改内容   : Creat[DTS2011070102597]，SIM卡FDN功能开启，ADN文件可读可更新时电话本无法操作
-
-*****************************************************************************/
 VOS_UINT32 SI_PB_CheckXDNPara(USIMM_QUERYFILE_CNF_STRU *pstPBMsg)
 {
     VOS_UINT16                          usEFID;
@@ -3409,20 +2716,7 @@ VOS_UINT32 SI_PB_CheckXDNPara(USIMM_QUERYFILE_CNF_STRU *pstPBMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_CardStatusInd
-功能描述  : 上报卡状态
-输入参数  : null
-输出参数  : null
 
-返 回 值  :
-
-修订记录  :
-1.  日    期   : 2012年06月9日
-    作    者   : j00168360
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_VOID SI_PB_CardStatusInd(VOS_VOID)
 {
     USIMM_CARDSTATUS_IND_STRU          *pUsimMsg;
@@ -3457,21 +2751,7 @@ VOS_VOID SI_PB_CardStatusInd(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_XDNSpaceCheck
-功能描述  : 检查XDN空间
-输入参数  : ulPBType:电话本类型
-            pstPBMsg:
-输出参数  : null
 
-返 回 值  :
-
-修订记录  :
-1.  日    期   : 2012年06月9日
-    作    者   : j00168360
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 SI_PB_XDNSpaceCheck(VOS_UINT32 ulPBType, USIMM_QUERYFILE_CNF_STRU *pstPBMsg)
 {
     if(PB_ADN_CONTENT == ulPBType)
@@ -3499,25 +2779,7 @@ VOS_UINT32 SI_PB_XDNSpaceCheck(VOS_UINT32 ulPBType, USIMM_QUERYFILE_CNF_STRU *ps
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitXDNSpaceMsgProc
-功能描述  : 初始化ADN、FDN、BDN和MSISDN号码的空间
-输入参数  : pstMsg:USIMM模块回复的消息
-输出参数  : gastPBContent
-            gstPBInitState
-            gstPBCtrlInfo
 
-返 回 值  :
-调用函数  : SI_PB_InitSYNCH //Huashan
-            SI_PB_InitXDNContent //Balong
-            SI_PB_InitXDNSpace
-被调函数  :
-修订记录  :
-1.  日    期   : 2008年10月15日
-    作    者   : m00128685
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_VOID SI_PB_InitXDNSpaceMsgProc(PBMsgBlock *pstMsg)
 {
     USIMM_QUERYFILE_CNF_STRU  *pstPBMsg;
@@ -3637,25 +2899,7 @@ VOS_VOID SI_PB_InitXDNSpaceMsgProc(PBMsgBlock *pstMsg)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitANRSpaceMsgProc
-功能描述  : 初始化ANR号码的空间
-输入参数  : pstMsg:USIMM模块回复的消息
-输出参数  : gastPBContent
-            gstPBInitState
-            gstPBCtrlInfo
 
-返 回 值  :
-调用函数  : SI_PB_InitSYNCH //Huashan
-            SI_PB_InitXDNContent //Balong
-            SI_PB_InitXDNSpace
-被调函数  :
-修订记录  :
-1.  日    期   : 2008年10月15日
-    作    者   : m00128685
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_VOID SI_PB_InitANRSpaceMsgProc(PBMsgBlock *pstMsg)
 {
     USIMM_QUERYFILE_CNF_STRU    *pstPBMsg;
@@ -3752,25 +2996,7 @@ VOS_VOID SI_PB_InitANRSpaceMsgProc(PBMsgBlock *pstMsg)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitEMLSpaceMsgProc
-功能描述  : 初始化Email的空间
-输入参数  : pstMsg:USIMM模块回复的消息
-输出参数  : gastPBContent
-            gstPBInitState
-            gstPBCtrlInfo
 
-返 回 值  :
-调用函数  : SI_PB_InitSYNCH //Huashan
-            SI_PB_InitXDNContent //Balong
-            SI_PB_InitXDNSpace
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年10月15日
-    作    者   : m00128685
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_VOID SI_PB_InitEMLSpaceMsgProc(PBMsgBlock *pstMsg)
 {
     USIMM_QUERYFILE_CNF_STRU    *pstPBMsg;
@@ -3855,25 +3081,7 @@ VOS_VOID SI_PB_InitEMLSpaceMsgProc(PBMsgBlock *pstMsg)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitIAPSpaceMsgProc
-功能描述  : 初始化IAP的空间
-输入参数  : pstMsg:USIMM模块回复的消息
-输出参数  : gastPBContent
-            gstPBInitState
-            gstPBCtrlInfo
 
-返 回 值  :
-调用函数  : SI_PB_InitSYNCH //Huashan
-            SI_PB_InitXDNContent //Balong
-            SI_PB_InitXDNSpace
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年10月15日
-    作    者   : m00128685
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_VOID SI_PB_InitIAPSpaceMsgProc(PBMsgBlock *pstMsg)
 {
     USIMM_QUERYFILE_CNF_STRU  *pstPBMsg;
@@ -3944,24 +3152,7 @@ VOS_VOID SI_PB_InitIAPSpaceMsgProc(PBMsgBlock *pstMsg)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitEXTSpaceMsgProc
-功能描述  : 初始化ADN、FDN、BDN和MSISDN号码的EXT空间
-输入参数  : pstMsg:USIMM模块回复的消息
-输出参数  : gastPBContent
-            gstPBInitState
-            gstPBCtrlInfo
 
-返 回 值  :
-调用函数  : SI_PB_InitSYNCH //Huashan
-            SI_PB_InitXDNContent //Balong
-            SI_PB_InitXDNSpace
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年5月8日
-    作    者   : h59254
-    修改内容   : Creat
-*****************************************************************************/
 VOS_VOID SI_PB_InitEXTSpaceMsgProc(PBMsgBlock *pstMsg)
 {
     USIMM_QUERYFILE_CNF_STRU    *pstPBMsg;
@@ -4044,27 +3235,7 @@ VOS_VOID SI_PB_InitEXTSpaceMsgProc(PBMsgBlock *pstMsg)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitIAPContentMsgProc
-功能描述  : 根据IAP内容，初始化ADN和Type2类型Email记录号的对应关系
-输入参数  : pstMsg:USIMM模块回复的消息
-输出参数  : gastPBContent
-            gstPBInitState
-            gstPBCtrlInfo
-            gulPBRecordCnt
-返 回 值  :
-调用函数  : SI_PB_CountADNIndex
-            VOS_MemCpy
-            SI_PB_CheckContentValidity
-            SI_PB_InitXDNContent
-            VOS_MemFree
-被调函数  :
-修订记录  :
-1.  日    期   : 2008年06月05日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID SI_PB_InitIAPContentMsgProc(PBMsgBlock *pstMsg)
 {
     USIMM_READFILE_CNF_STRU     *pstPBMsg;
@@ -4146,27 +3317,7 @@ VOS_VOID SI_PB_InitIAPContentMsgProc(PBMsgBlock *pstMsg)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitXDNContentMsgProc
-功能描述  : 初始化XDN电话本缓存，完成后进入初始化下一步
-输入参数  : pstMsg:USIMM模块回复的消息
-输出参数  : gastPBContent
-            gstPBInitState
-            gstPBCtrlInfo
-            gulPBRecordCnt
-返 回 值  :
-调用函数  : SI_PB_CountADNIndex
-            VOS_MemCpy
-            SI_PB_CheckContentValidity
-            SI_PB_InitXDNContent
-            VOS_MemFree
-被调函数  :
-修订记录  :
-1.  日    期   : 2008年10月15日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID SI_PB_InitXDNContentMsgProc(PBMsgBlock *pstMsg)
 {
     USIMM_READFILE_CNF_STRU            *pstPBMsg;
@@ -4322,19 +3473,7 @@ VOS_VOID SI_PB_InitXDNContentMsgProc(PBMsgBlock *pstMsg)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitExtContentMsgProc
-功能描述  : 初始化EXT内容，完成后进入初始化下一步
-输入参数  : pstMsg:USIMM模块回复的消息
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年5月6日
-    作    者   : h59254
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID SI_PB_InitEXTContentMsgProc(PBMsgBlock *pstMsg)
 {
     USIMM_READFILE_CNF_STRU      *pstPBMsg;
@@ -4443,9 +3582,7 @@ VOS_VOID SI_PB_InitEXTContentMsgProc(PBMsgBlock *pstMsg)
         /*复制EXT内容到缓存，如果记录为有效记录，已使用记录才加1*/
         ulExtInfoNum = gastPBContent[ulPBType].ulExtInfoNum;
 
-        /*lint -e420 -e534 修改人: j00174725; 检视人: xucheng*/
         VOS_MemCpy(gastEXTContent[ulExtInfoNum].pExtContent + ulOffset, pstPBMsg->aucEf, SI_PB_EXT_LEN);
-        /*lint +e420 +e534 修改人: j00174725; 检视人: xucheng*/
 
         if( 0 != *(pstPBMsg->aucEf+1))
         {
@@ -4456,19 +3593,7 @@ VOS_VOID SI_PB_InitEXTContentMsgProc(PBMsgBlock *pstMsg)
     }
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitIAPSearchMsgProc
-功能描述  : 根据IAP查找结果处理函数
-输入参数  : pstMsg:USIMM模块回复的消息
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2010年01月18日
-    作    者   : h59254
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID SI_PB_InitIAPSearchMsgProc(PBMsgBlock *pstMsg)
 {
     USIMM_SEARCHFILE_CNF_STRU       *pstPBMsg;
@@ -4532,19 +3657,7 @@ VOS_VOID SI_PB_InitIAPSearchMsgProc(PBMsgBlock *pstMsg)
 }
 
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitEmailSearchMsgProc
-功能描述  : EMAIL查找结果处理函数
-输入参数  : pstMsg:USIMM模块回复的消息
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2010年01月19日
-    作    者   : h59254
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID SI_PB_InitEmailSearchMsgProc(PBMsgBlock *pstMsg)
 {
     USIMM_SEARCHFILE_CNF_STRU   *pstPBMsg;
@@ -4617,19 +3730,7 @@ VOS_VOID SI_PB_InitEmailSearchMsgProc(PBMsgBlock *pstMsg)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitANRSearchMsgProc
-功能描述  : ANR查找结果处理函数
-输入参数  : pstMsg:USIMM模块回复的消息
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2010年01月20日
-    作    者   : h59254
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID SI_PB_InitANRSearchMsgProc(PBMsgBlock *pstMsg)
 {
     USIMM_SEARCHFILE_CNF_STRU       *pstPBMsg;
@@ -4714,19 +3815,7 @@ VOS_VOID SI_PB_InitANRSearchMsgProc(PBMsgBlock *pstMsg)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitXDNSearchMsgProc
-功能描述  : XDN查找结果处理函数
-输入参数  : pstMsg:USIMM模块回复的消息
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2010年01月21日
-    作    者   : h59254
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID SI_PB_InitXDNSearchMsgProc(PBMsgBlock *pstMsg)
 {
     USIMM_SEARCHFILE_CNF_STRU       *pstPBMsg;
@@ -4837,19 +3926,7 @@ VOS_VOID SI_PB_InitXDNSearchMsgProc(PBMsgBlock *pstMsg)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitPBCSearchMsgProc2
-功能描述  : PBC查找结果处理函数
-输入参数  : pstMsg:USIMM模块回复的消息
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2010年02月02日
-    作    者   : h59254
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID SI_PB_InitPBCSearchMsgProc(PBMsgBlock *pstMsg)
 {
     USIMM_SEARCHFILE_CNF_STRU       *pstPBMsg;
@@ -4911,19 +3988,7 @@ VOS_VOID SI_PB_InitPBCSearchMsgProc(PBMsgBlock *pstMsg)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitIAPContentMsgProc2
-功能描述  : 根据IAP查找结果初始化IAP的内容
-输入参数  : pstMsg:USIMM模块回复的消息
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2010年01月18日
-    作    者   : h59254
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID SI_PB_InitIAPContentMsgProc2(PBMsgBlock *pstMsg)
 {
     USIMM_READFILE_CNF_STRU      *pstPBMsg;
@@ -4988,19 +4053,7 @@ VOS_VOID SI_PB_InitIAPContentMsgProc2(PBMsgBlock *pstMsg)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitEmailContentMsgProc
-功能描述  : 根据EMAIL查找结果初始化MEAIL的内容
-输入参数  : pstMsg:USIMM模块回复的消息
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2010年01月20日
-    作    者   : h59254
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID SI_PB_InitEmailContentMsgProc(PBMsgBlock *pstMsg)
 {
     USIMM_READFILE_CNF_STRU      *pstPBMsg;
@@ -5079,19 +4132,7 @@ VOS_VOID SI_PB_InitEmailContentMsgProc(PBMsgBlock *pstMsg)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitANRContentMsgProc2
-功能描述  : 根据ANR查找结果初始化ANR的内容
-输入参数  : pstMsg:USIMM模块回复的消息
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2010年01月20日
-    作    者   : h59254
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID SI_PB_InitANRContentMsgProc2(PBMsgBlock *pstMsg)
 {
     USIMM_READFILE_CNF_STRU            *pstPBMsg;
@@ -5246,19 +4287,7 @@ VOS_VOID SI_PB_InitANRContentMsgProc2(PBMsgBlock *pstMsg)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitANRContentMsgProc2
-功能描述  : 根据XDN查找结果初始化XDN的内容
-输入参数  : pstMsg:USIMM模块回复的消息
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2010年01月21日
-    作    者   : h59254
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID SI_PB_InitXDNContentMsgProc2(PBMsgBlock *pstMsg)
 {
     USIMM_READFILE_CNF_STRU         *pstPBMsg;
@@ -5413,19 +4442,7 @@ VOS_VOID SI_PB_InitXDNContentMsgProc2(PBMsgBlock *pstMsg)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitPBCContentMsgProc2
-功能描述  : 根据PBC查找结果初始化PBC的内容
-输入参数  : pstMsg:USIMM模块回复的消息
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2010年02月02日
-    作    者   : h59254
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID SI_PB_InitPBCContentMsgProc2(PBMsgBlock *pstMsg)
 {
     USIMM_READFILE_CNF_STRU      *pstPBMsg;
@@ -5473,19 +4490,7 @@ VOS_VOID SI_PB_InitPBCContentMsgProc2(PBMsgBlock *pstMsg)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitPBCContentMsgProc
-功能描述  : 根据PBC查找结果初始化PBC的内容
-输入参数  : pstMsg:USIMM模块回复的消息
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2010年02月02日
-    作    者   : h59254
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID SI_PB_InitPBCContentMsgProc(PBMsgBlock *pstMsg)
 {
     USIMM_READFILE_CNF_STRU     *pstPBMsg;
@@ -5533,21 +4538,7 @@ VOS_VOID SI_PB_InitPBCContentMsgProc(PBMsgBlock *pstMsg)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitANRType2ValidJudge
-功能描述  : 对于Type2类型有效ANR记录,确认IAP对应关系是否正确，如果不正确则不计为有效记录
-输入参数  :
-输出参数  :
-返 回 值  : VOS_OK  有效
-            VOS_ERR 无效
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年09月14日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 SI_PB_InitANRType2ValidJudge(VOS_UINT8 ucXSuffix, VOS_UINT8 ucYSuffix,
                                                     VOS_UINT8 ucRecordNum,VOS_UINT16 *pusRealIndex)
 {
@@ -5574,27 +4565,7 @@ VOS_UINT32 SI_PB_InitANRType2ValidJudge(VOS_UINT8 ucXSuffix, VOS_UINT8 ucYSuffix
         return VOS_OK;
     }
 }
-/*****************************************************************************
-函 数 名  : SI_PB_InitANRContentMsgProc
-功能描述  : 初始化XDN电话本缓存，完成后进入初始化下一步
-输入参数  : pstMsg:USIMM模块回复的消息
-输出参数  : gastPBContent
-            gstPBInitState
-            gstPBCtrlInfo
-            gulPBRecordCnt
-返 回 值  :
-调用函数  : SI_PB_CountADNIndex
-            VOS_MemCpy
-            SI_PB_CheckContentValidity
-            SI_PB_InitXDNContent
-            VOS_MemFree
-被调函数  :
-修订记录  :
-1.  日    期   : 2008年10月15日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID SI_PB_InitANRContentMsgProc(PBMsgBlock *pstMsg)
 {
     USIMM_READFILE_CNF_STRU     *pstPBMsg;
@@ -5750,19 +4721,7 @@ VOS_VOID SI_PB_InitANRContentMsgProc(PBMsgBlock *pstMsg)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitEXTRContentMsgProc
-功能描述  : 初始化ANR EXT内容，完成后进入初始化下一步
-输入参数  : pstMsg:USIMM模块回复的消息
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年6月3日
-    作    者   : m00128685
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID SI_PB_InitEXTRContentMsgProc(PBMsgBlock *pstMsg)
 {
     USIMM_READFILE_CNF_STRU     *pstPBMsg;
@@ -5861,9 +4820,7 @@ VOS_VOID SI_PB_InitEXTRContentMsgProc(PBMsgBlock *pstMsg)
         /*复制EXT内容到缓存，如果记录为有效记录，已使用记录才加1*/
         ulExtInfoNum = gastPBContent[PB_ADN_CONTENT].ulExtInfoNum;
 
-        /*lint -e420 -e534 修改人: j00174725; 检视人: xucheng*/
         VOS_MemCpy(gastEXTContent[ulExtInfoNum].pExtContent + ulOffset, pstPBMsg->aucEf, SI_PB_EXT_LEN);
-        /*lint +e420 +e534 修改人: j00174725; 检视人: xucheng*/
 
         if( 0 != *(pstPBMsg->aucEf+1))
         {
@@ -5874,19 +4831,7 @@ VOS_VOID SI_PB_InitEXTRContentMsgProc(PBMsgBlock *pstMsg)
     }
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitEXTRContentMsgProc
-功能描述  : 初始化Email内容，完成后进入初始化下一步
-输入参数  : pstMsg:USIMM模块回复的消息
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年5月6日
-    作    者   : m00128685
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID SI_PB_InitEMLContentMsgProc(PBMsgBlock *pstMsg)
 {
     USIMM_READFILE_CNF_STRU      *pstPBMsg;
@@ -5969,20 +4914,7 @@ VOS_VOID SI_PB_InitEMLContentMsgProc(PBMsgBlock *pstMsg)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitSYNCHProc
-功能描述  : 处理3G重同步文件内容
-输入参数  : pstMsg
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2008年10月15日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID SI_PB_InitSYNCHProc(PBMsgBlock *pstMsg)
 {
     if(USIMM_READFILE_CNF == pstMsg->ulMsgName)
@@ -6002,19 +4934,7 @@ VOS_VOID SI_PB_InitSYNCHProc(PBMsgBlock *pstMsg)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_InitInfoAppDebug
-功能描述  : INFO APP过程的DEBUG函数
-输入参数  : pstMsg
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2015年3月12日
-    作    者   : H00300778
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID SI_PB_InitInfoAppDebug(PBMsgBlock *pstMsg)
 {
     /*设置初始化状态为已初始化*/
@@ -6030,19 +4950,7 @@ VOS_VOID SI_PB_InitInfoAppDebug(PBMsgBlock *pstMsg)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_TransferFileCnt2ExtFileID
-功能描述  : 从当前初始化的XDN文件的计数转换到EXT文件的ID
-输入参数  : PBFileCnt
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年5月8日
-    作    者   : h59254
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT16  SI_PB_TransferFileCnt2ExtFileID(VOS_UINT32 PBFileCnt,
                                                     VOS_UINT32 *pulPBType)
 {
@@ -6095,19 +5003,7 @@ VOS_UINT16  SI_PB_TransferFileCnt2ExtFileID(VOS_UINT32 PBFileCnt,
     }
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_SearchResultProc
-功能描述  : 查找结果处理函数，通过输入的匹配记录号得到需要读取的记录号
-输入参数  : PBFileCnt
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2010年01月18日
-    作    者   : h59254
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID SI_PB_SearchResultProc(VOS_UINT8           *pucReadString,
                                             VOS_UINT8         *pucSearchResult,
                                             VOS_UINT16        usMatchNum,
@@ -6166,21 +5062,7 @@ VOS_VOID SI_PB_SearchResultProc(VOS_UINT8           *pucReadString,
 }
 
 
-/*****************************************************************************
-函 数 名  : SI_PB_EMLContentProc
-功能描述  : Email文件内容的处理函数，需要判断是否为TYPE2类型的文件。
-            如果EMAIL文件的使用情况与IAP不一致，需要将内容中的EMAIL设置为
-            未使用，并清空内容
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2010年01月20日
-    作    者   : h59254
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PB_EMLContentProc(USIMM_READFILE_CNF_STRU *pstPBMsg,
                                             VOS_UINT8               ucSuffix,
                                             VOS_UINT16              usEmailIndex)
@@ -6253,19 +5135,7 @@ VOS_UINT32 SI_PB_EMLContentProc(USIMM_READFILE_CNF_STRU *pstPBMsg,
     }
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_RefreshUIDFile_Stub
-功能描述  :刷新UID文件内容的桩函数，用于在GCF测试的时候调用
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_OK 解析成功
-           VOS_ERR 解析失败
-修订记录  :
-1. 日    期   : 2007年10月15日
-    作    者   : z00100318
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID SI_PB_RefreshUIDFile_Stub(VOS_UINT8 ucAdnIndex)
 {
     VOS_UINT8                   aucIndex[2];
@@ -6344,28 +5214,7 @@ VOS_VOID SI_PB_RefreshUIDFile_Stub(VOS_UINT8 ucAdnIndex)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_UpdateCCFile
 
-功能描述  :更新电话本CC计数器和PSC计数器的内容
-
-输入参数  :usIncValue:输入增加的计数器
-
-输出参数  :无
-
-返 回 值  :VOS_OK 解析成功
-           VOS_ERR 解析失败
-
-调用函数  :无
-
-被调函数  :无
-
-修订记录  :
-1. 日    期   : 2007年10月15日
-    作    者   : z00100318
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_VOID SI_PB_IncreaceCCValue(VOS_UINT16 usIncValue,VOS_UINT8 ucAdnIndex)
 {
     VOS_UINT16                  usCCTemp;

@@ -128,12 +128,10 @@ typedef struct tagPORT_STAT_INFO
     ULONG ulInSum;      /* 接收的报文总数 */
     ULONG ulInLacp;     /* 接收的LACP报文数 */
     ULONG ulInDrop;     /* 接收时丢弃的报文数 */
-    /* Add for V2R3C07, by z00208058/w00207740, at 2012-4-16. 修改原因: TRUNK LACP下移需求开发 */
     ULONG ulLacpExpired;  /* NP上报超时统计 */
     ULONG ulLacpPPIPKT;   /* LACP下发NP后，透传报文统计 */
 }PORT_STAT_INFO_S;
 
-/* Add for V2R3C07, by z00208058/w00207740, at 2012-4-16. 修改原因: TRUNK LACP下移需求开发 */
 typedef struct tagTRUNK_LACP_NOTIFY
 {
     UCHAR  ucOper;             /* 通知消息类型：LACP_WARNING_TIMEOUT*/
@@ -145,7 +143,6 @@ typedef struct tagTRUNK_LACP_NOTIFY
 #define TRUNK_PORT_MIN_NUM      1
 
 /* Trunk接口最大成员端口数目 */
-/* Modified by w00207740, Trunk Msp大规格需求，上调每个Trunk接口下最大成员端口数目, 2014/1/9 */
 #define TRUNK_PORT_MAX_NUM      32
 
 /* SGSN Trunk跨板协商需求:根据三维值获取PortId的钩子函数原型 */
@@ -277,7 +274,6 @@ enum enumTrunkType
     TRUNK_INNERERR,         /* 端口内部异常 */
 };
 
-/*Added by wangtong207740, LACP下移需求，DTS2012052505387 , 2012/5/26 */
 typedef enum enumTcpipLacpWarning
 {
     LACP_WARNING_NO = 0,
@@ -286,7 +282,6 @@ typedef enum enumTcpipLacpWarning
     LACP_WARNING_NOTIFY_MAX,
 }TCPIP_LACP_WARNING_E;
 
-/*Added by w00207740, NSR TRUNK,新增消息与PPI下发命令, 2013/9/10 */
 enum tagTrunkNsrPpiType
 {
     PPI_TRUNK_NSR_GET_LINKINFO  ,                       /* 从底层获取信息 */
@@ -319,7 +314,6 @@ enum tagTrunkNsrPpiType
 #define   TRUNK_MIN_ACTIVE_NUMBER       1 /* M:N模式最小激活端口数 */
 #define   TRUNK_MAX_ACTIVE_NUMBER       8 /* M:N模式最大激活端口数 */
 
-/* Add by shuxieliu00176784/baiweiqiang00177000, at 2011-06-30. 修改原因:  产品定制策略类型 */
 #define   TRUNK_POLICY_DEFAULT_PROCESS          0 /* VISP默认处理方式 */
 #define   TRUNK_POLICY_PROTMAC_NOTREFRESH       1 /* 定制TRUNK组网优化功能策略(TRUNK成员端口physical地址不变更,TRUNK physical地址与当前UP的成员端口physical地址一致） */
 
@@ -339,7 +333,6 @@ typedef ULONG (*TRUNK_GETMACADDRRESS_HOOK_FUNC)(ULONG ulTrunkId, UCHAR* pucMacAd
 /* 释放physical地址 */
 typedef VOID  (*TRUNK_FREEMACADDRRESS_HOOK_FUNC)(ULONG ulTrunkId, UCHAR* pucMacAddr);
 
-/*Added by w00207740, NSR TRUNK,新增钩子函数, 2013/8/7 */
 typedef ULONG (*TRUNK_NSR_PPI_HOOK)(ULONG ulIfIndex, ULONG ulCmd, UCHAR *pucData);
     
 /* api declare  */
@@ -1218,70 +1211,12 @@ extern VOID TCPIP_ShowTrunkPortInfo(CHAR *szIfName);
 *******************************************************************************/
 ULONG TCPIP_RegFuncGetLACPPortIDHook(TRUNK_GETLACPPORTID_HOOK_FUNC pfHookFunc);
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetTrunkPortOriginalMac
-* Date Created: 2011-06-27
-*       Author: shuxieliu00176784/baiweiqiang00177000
-*      Purpose: 获取TRUNK成员端口的原始physical地址
-*  Description: 
-*        Input: ULONG ulIfIndex: 成员端口IFNET索引
-*               UCHAR* pucMac:   成员端口原始的physical地址，保证长度大于等于6字节
-*       Output: UCHAR* pucMac:   成员端口原始的physical地址
-*       Return: VOS_OK           成功
-*               其他             失败
-*      Caution: 
-*        Since: V2R3C05
-*    Reference: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-06-27   shuxieliu00176784       Create the first version.
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_GetTrunkPortOriginalMac(ULONG ulIfIndex, UCHAR* pucMac);
 
-/*******************************************************************************
-*    Func Name: TCPIP_SetTrunkProductProcPolicy
-* Date Created: 2011-06-28
-*       Author: shuxieliu00176784/baiweiqiang00177000
-*      Purpose: 设置产品的定制策略
-*  Description: 
-*        Input: ULONG ulTrunkId:  TRUNK Id号
-*               ULONG ulPolicy:   TRUNK产品处理策略
-*                                 取值: TRUNK_POLICY_DEFAULT_PROCESS     0 VISP默认处理方式 
-*                                       TRUNK_POLICY_PROTMAC_NOTREFRESH  1 定制TRUNK组网优化功能策略
-*
-*       Output: 
-*       Return: VOS_OK           成功
-*               其他             失败
-*      Caution: 
-*        Since: V2R3C05
-*    Reference: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-06-27   shuxieliu00176784       Create the first version.
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_SetTrunkProductProcPolicy(ULONG ulTrunkId, ULONG ulPolicy);
-/*******************************************************************************
-*    Func Name: TCPIP_NotifyTrunkLacp
-* Date Created: 2012-04-13
-*       Author: z00208058/w00207740
-*  Description: 处理NP的LACP Expired消息
-*        Input: TRUNK_LACP_NOTIFY_S *pstData
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2012-04-13   z00208058/w00207740               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_NotifyTrunkLacp(TRUNK_LACP_NOTIFY_S *pstData);
 
 /*******************************************************************************
@@ -1327,60 +1262,13 @@ extern ULONG TCPIP_SetTrunkPartnerMacChangeDropSwitch(ULONG ulSwitch);
 *  默认不丢包，丢包对带来协商时间长达6秒，问题由产品自行组网保证
 *******************************************************************************/
 extern ULONG TCPIP_GetTrunkPartnerMacChangeDropSwitch(ULONG *pulSwitch);
-/*******************************************************************************
-*    Func Name: TCPIP_NSR_TrunkSendMsg
-* Date Created: 2013-04-10
-*       Author: w00207740
-*  Description: 对于Trunk在NSR其间产生的所有消息通过这个接口上报Trunk模块
-*        Input: ULONG ulMsgType:
-*               UCHAR ucpData:
-*               ULONG ulLength:
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2013-04-10   w00207740               Create
-*
-*******************************************************************************/
+
 extern VOID TCPIP_NSR_TrunkSendMsg(ULONG ulMsgType, UCHAR *pucData, ULONG ulLength);
 
-/*******************************************************************************
-*    Func Name: TCPIP_NSR_SetCheckTrunkNsrFinishTimer
-* Date Created: 2013-07-29
-*       Author: w00207740
-*  Description: 
-*        Input: ULONG ulTime:0 -- 关闭定时器
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2013-07-29   w00207740               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_NSR_SetCheckTrunkNsrFinishTimer(ULONG ulTime);
 
-/*******************************************************************************
-*    Func Name: TCPIP_NSR_TrunkPpiDownLoadHook
-* Date Created: 2013-08-06
-*       Author: w00207740
-*  Description: 
-*        Input: TRUNK_NSR_PPI_HOOK pstTrunkNspPpiHook:
-*       Output: 
-*       Return: 
-*      Caution: 在协议栈
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2013-08-06   w00207740               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_NSR_TrunkPpiDownLoadHook(TRUNK_NSR_PPI_HOOK pstTrunkNspPpiHook);
 
 extern ULONG TCPIP_NSR_GetCheckTrunkNsrFinishTimer(ULONG *pulTime);
@@ -1389,113 +1277,19 @@ extern ULONG TCPIP_NSR_GetTrunkNsrGobalInfo(TRUNK_NSR_GLOBAL_INFO_S *pstTrunkNsr
 extern ULONG TCPIP_NSR_EnableTrunkNsr(UCHAR ucEnable);
 
 extern ULONG TCPIP_NSR_GetTrunkNsrLinkInfo(CHAR *pIfname, TRUNK_NSR_LINK_INFO_S *pstTrunkNsrLinkInfo);
-/*******************************************************************************
-*    Func Name: TCPIP_SetDropNoLacpPacketSwitch
-* Date Created: 2014-01-10
-*       Author: w00207740
-*  Description: 配置非LACP报文丢弃
-*        Input: ULONG ulSwitch: 0 - 关闭，不丢弃；1 - 开启，丢弃；默认为 0
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-01-10   w00207740               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_SetDropNoLacpPacketSwitch(ULONG ulSwitch);
-/*******************************************************************************
-*    Func Name: TCPIP_GetDropNoLacpPacketSwitch
-* Date Created: 2014-01-10
-*       Author: w00207740
-*  Description: 获取非LACP报文丢弃配置
-*        Input: ULONG *pulSwitch:不可为空
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-01-10   w00207740               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_GetDropNoLacpPacketSwitch(ULONG *pulSwitch);
-/*******************************************************************************
-*    Func Name: TCPIP_SetTrunkSystemMac
-* Date Created: 2014-02-11
-*       Author: w00207740
-*  Description: 配置Trunk系统mac
-*        Input: UCHAR *pucMac:
-*       Output: 
-*       Return: 
-*      Caution: 对于VISP任务Trunk Systme Mac唯一，若对其进行动态修改，会导致链路闪断
-*               为了避免不同设备特殊处理，请不要将系统MAC设置为全0或全F
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-02-11   w00207740               Create
-*
-*******************************************************************************/
+
 ULONG TCPIP_SetTrunkSystemMac(UCHAR *pucMac);
-/*******************************************************************************
-*    Func Name: TCPIP_GetTrunkSystemMac
-* Date Created: 2014-02-11
-*       Author: w00207740
-*  Description: 获取Trunk System Mac
-*        Input: UCHAR *pucMac:
-*       Output: 
-*       Return: 
-*      Caution: 输入指向空间的大小需要保证不小于6字节
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-02-11   w00207740               Create
-*
-*******************************************************************************/
+
 ULONG TCPIP_GetTrunkSystemMac(UCHAR *pucMac);
 
-/*******************************************************************************
-*    Func Name: TCPIP_SetTrunkIdSystemMac
-* Date Created: 2014-10-15
-*       Author: z00208058
-*  Description: 支持基于Trunk组配置系统MAC
-*        Input: ULONG ulTrunkId:Trunk组Id
-*               UCHAR *pucMac:返回的系统MAC(6个字节)
-*       Output: 
-*       Return: 成功:VOS_OK 失败:其他错误码
-*      Caution: 在Trunk组创建后且在Trunk成员端口添加前；
-*               如果在添加Trunk成员端口后修改系统MAC，NP模式下立即下发新模板给产品，根据对端的LACP报文进行重协商。
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-10-15   z00208058               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_SetTrunkIdSystemMac(ULONG ulTrunkId, UCHAR *pucMac);
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetTrunkIdSystemMac
-* Date Created: 2014-10-15
-*       Author: z00208058
-*  Description: 支持基于Trunk组配置系统MAC
-*        Input: ULONG ulTrunkId:Trunk组Id
-*               UCHAR *pucMac:返回的系统MAC(6个字节)
-*       Output: 
-*       Return: 成功:VOS_OK 失败:其他错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-10-15   z00208058               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_GetTrunkIdSystemMac(ULONG ulTrunkId, UCHAR *pucMac);
 
 #ifdef __cplusplus

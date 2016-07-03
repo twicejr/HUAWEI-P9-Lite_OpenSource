@@ -30,15 +30,7 @@ using namespace testing;
 
 #if (FEATURE_ON == FEATURE_ECALL)
 
-/* Added by n00269697 for V3R3C60_eCall项目, 2014-3-29, begin */
-/*****************************************************************************
-类名       : Test_AT_SetCecallPara
-功能描述   : AT_SetCecallPara UT工程类
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_SetCecallPara: public ::testing::Test
 {
 public:
@@ -76,16 +68,7 @@ protected:
     VOS_UINT8                           ucIndex;
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetCecallPara_001
-测试用例标题      : 合法参数测试,AT+CECALL=0
-预期结果          : gastAtClientTab[0].CmdCurrentOpt等于AT_CMD_CECALL_SET
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_AT_SetCecallPara, Test_AT_SetCecallPara_001)
 {
     char *pucCmdString                                      = "AT+CECALL=0";
@@ -105,16 +88,7 @@ TEST_F(Test_AT_SetCecallPara, Test_AT_SetCecallPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetCecallPara_002
-测试用例标题      : 合法参数测试,AT+CECALL=1
-预期结果          : gastAtClientTab[0].CmdCurrentOpt等于AT_CMD_CECALL_SET
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_AT_SetCecallPara, Test_AT_SetCecallPara_002)
 {
     char *pucCmdString                                      = "AT+CECALL=1";
@@ -134,16 +108,7 @@ TEST_F(Test_AT_SetCecallPara, Test_AT_SetCecallPara_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetCecallPara_003
-测试用例标题      : 合法参数测试,AT+CECALL=2
-预期结果          : gastAtClientTab[0].CmdCurrentOpt等于AT_CMD_CECALL_SET
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_AT_SetCecallPara, Test_AT_SetCecallPara_003)
 {
     char *pucCmdString                                      = "AT+CECALL=2";
@@ -163,16 +128,7 @@ TEST_F(Test_AT_SetCecallPara, Test_AT_SetCecallPara_003)
    GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetCecallPara_004
-测试用例标题      : 合法参数测试,AT+CECALL=3
-预期结果          : gastAtClientTab[0].CmdCurrentOpt等于AT_CMD_CECALL_SET
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_AT_SetCecallPara, Test_AT_SetCecallPara_004)
 {
     char *pucCmdString                                      = "AT+CECALL=3";
@@ -192,16 +148,7 @@ TEST_F(Test_AT_SetCecallPara, Test_AT_SetCecallPara_004)
    GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetCecallPara_005
-测试用例标题      : 异常参数测试,AT+CECALL=
-预期结果          : gastAtClientTab[0].CmdCurrentOpt等于AT_CMD_CURRENT_OPT_BUTT
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_AT_SetCecallPara, Test_AT_SetCecallPara_005)
 {
     char *pucCmdString                                      = "AT+CECALL=";
@@ -224,16 +171,7 @@ TEST_F(Test_AT_SetCecallPara, Test_AT_SetCecallPara_005)
    GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetCecallPara_006
-测试用例标题      : 异常参数测试,AT+CECALL=,
-预期结果          : gastAtClientTab[0].CmdCurrentOpt等于AT_CMD_CURRENT_OPT_BUTT
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_AT_SetCecallPara, Test_AT_SetCecallPara_006)
 {
     char *pucCmdString                                      = "AT+CECALL=,";
@@ -254,16 +192,7 @@ TEST_F(Test_AT_SetCecallPara, Test_AT_SetCecallPara_006)
    GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetCecallPara_007
-测试用例标题      : 异常分支测试,default
-预期结果          : gastAtClientTab[0].CmdCurrentOpt等于AT_CMD_CURRENT_OPT_BUTT
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_AT_SetCecallPara, Test_AT_SetCecallPara_007)
 {
     /* 变量定义 */
@@ -283,16 +212,7 @@ TEST_F(Test_AT_SetCecallPara, Test_AT_SetCecallPara_007)
    GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetCecallPara_008
-测试用例标题      : 异常分支测试,return AT_ERROR
-预期结果          : AT_SetCecallPara返回AT_ERROR
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_AT_SetCecallPara, Test_AT_SetCecallPara_008)
 {
     /* 变量定义 */
@@ -317,14 +237,7 @@ TEST_F(Test_AT_SetCecallPara, Test_AT_SetCecallPara_008)
    GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名       : Test_AT_SetEclstartPara
-功能描述   : AT_SetEclstartPara UT工程类
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_SetEclstartPara: public ::testing::Test
 {
 public:
@@ -362,16 +275,7 @@ protected:
     VOS_UINT8                           ucIndex;
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetEclstartPara_001
-测试用例标题      : 合法参数测试,AT^ECLSTART=0,0,"13911110008"
-预期结果          : gastAtClientTab[0].CmdCurrentOpt等于AT_CMD_ECLSTART_SET
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 //TEST_F(Test_AT_SetEclstartPara, Test_AT_SetEclstartPara_001)
 //{
 //    char *pucCmdString                                      = "AT^ECLSTART=0,0,\"13911110008\"";
@@ -391,16 +295,7 @@ protected:
 //   GlobalMockObject::verify();
 //}
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetEclstartPara_002
-测试用例标题      : 合法参数测试,AT^ECLSTART=0,1,"112"
-预期结果          : gastAtClientTab[0].CmdCurrentOpt等于AT_CMD_ECLSTART_SET
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 //TEST_F(Test_AT_SetEclstartPara, Test_AT_SetEclstartPara_002)
 //{
 //    char *pucCmdString                                      = "AT^ECLSTART=0,1,\"112\"";
@@ -420,16 +315,7 @@ protected:
 //   GlobalMockObject::verify();
 //}
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetEclstartPara_003
-测试用例标题      : 合法参数测试,AT^ECLstaRT=1,0
-预期结果          : gastAtClientTab[0].CmdCurrentOpt等于AT_CMD_ECLSTART_SET
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_AT_SetEclstartPara, Test_AT_SetEclstartPara_003)
 {
     char *pucCmdString                                      = "AT^ECLSTART=1,0";
@@ -449,16 +335,7 @@ TEST_F(Test_AT_SetEclstartPara, Test_AT_SetEclstartPara_003)
    GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetEclstartPara_004
-测试用例标题      : 合法参数测试,AT^ECLSTarT=1,1
-预期结果          : gastAtClientTab[0].CmdCurrentOpt等于AT_CMD_ECLSTART_SET
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_AT_SetEclstartPara, Test_AT_SetEclstartPara_004)
 {
     char *pucCmdString                                      = "AT^ECLSTART=1,1";
@@ -478,16 +355,7 @@ TEST_F(Test_AT_SetEclstartPara, Test_AT_SetEclstartPara_004)
    GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetEclstartPara_005
-测试用例标题      : 异常参数测试,AT^ECLSTarT=,1,"112"
-预期结果          : gastAtClientTab[0].CmdCurrentOpt等于AT_CMD_CURRENT_OPT_BUTT
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 //TEST_F(Test_AT_SetEclstartPara, Test_AT_SetEclstartPara_005)
 //{
 //    char *pucCmdString                                      = "AT^ECLSTART=,1,\"112\"";
@@ -511,16 +379,7 @@ TEST_F(Test_AT_SetEclstartPara, Test_AT_SetEclstartPara_004)
 //   GlobalMockObject::verify();
 //}
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetEclstartPara_006
-测试用例标题      : 异常参数测试,AT^ECLSTART=1,,"112"
-预期结果          : gastAtClientTab[0].CmdCurrentOpt等于AT_CMD_CURRENT_OPT_BUTT
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 //TEST_F(Test_AT_SetEclstartPara, Test_AT_SetEclstartPara_006)
 //{
 //    char *pucCmdString                                      = "AT^ECLSTART=1,,\"112\"";
@@ -544,16 +403,7 @@ TEST_F(Test_AT_SetEclstartPara, Test_AT_SetEclstartPara_004)
 //   GlobalMockObject::verify();
 //}
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetEclstartPara_007
-测试用例标题      : 异常参数测试,AT^ECLSTART=1,1,\"112\",1
-预期结果          : gastAtClientTab[0].CmdCurrentOpt等于AT_CMD_CURRENT_OPT_BUTT
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 //TEST_F(Test_AT_SetEclstartPara, Test_AT_SetEclstartPara_007)
 //{
 //    char *pucCmdString                                      = "AT^ECLSTART=1,1,\"112\",1";
@@ -577,16 +427,7 @@ TEST_F(Test_AT_SetEclstartPara, Test_AT_SetEclstartPara_004)
 //   GlobalMockObject::verify();
 //}
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetEclstartPara_008
-测试用例标题      : 异常参数测试,AT^ECLSTarT=1,1,
-预期结果          : gastAtClientTab[0].CmdCurrentOpt等于AT_CMD_CURRENT_OPT_BUTT
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_AT_SetEclstartPara, Test_AT_SetEclstartPara_008)
 {
     char *pucCmdString                                      = "AT^ECLSTART=1,1,";
@@ -608,17 +449,7 @@ TEST_F(Test_AT_SetEclstartPara, Test_AT_SetEclstartPara_008)
    GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetEclstartPara_009
-测试用例标题      : 异常参数测试,AT^ECLSTarT=1,0,"1502683289923456789"
-                    电话号码长度大于18
-预期结果          : gastAtClientTab[0].CmdCurrentOpt等于AT_CMD_CURRENT_OPT_BUTT
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 //TEST_F(Test_AT_SetEclstartPara, Test_AT_SetEclstartPara_009)
 //{
 //    char *pucCmdString = "AT^ECLSTART=1,0,\"1502683289923456789\"";
@@ -642,16 +473,7 @@ TEST_F(Test_AT_SetEclstartPara, Test_AT_SetEclstartPara_008)
 //   GlobalMockObject::verify();
 //}
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetEclstartPara_010
-测试用例标题      : 异常参数测试,AT^ECLSTART=1,0,"&15026832899"
-预期结果          : gastAtClientTab[0].CmdCurrentOpt等于AT_CMD_CURRENT_OPT_BUTT
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 //TEST_F(Test_AT_SetEclstartPara, Test_AT_SetEclstartPara_010)
 //{
 //    char *pucCmdString = "AT^ECLSTART=1,0,\"&15026832899\"";
@@ -675,16 +497,7 @@ TEST_F(Test_AT_SetEclstartPara, Test_AT_SetEclstartPara_008)
 //   GlobalMockObject::verify();
 //}
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetEclstartPara_011
-测试用例标题      : 异常分支测试,return AT_ERROR;
-预期结果          : AT_SetEclstartPara返回AT_ERROR
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_AT_SetEclstartPara, Test_AT_SetEclstartPara_011)
 {
     /* 变量定义 */
@@ -714,14 +527,7 @@ TEST_F(Test_AT_SetEclstartPara, Test_AT_SetEclstartPara_011)
    GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名       : Test_AT_SetEclstopPara
-功能描述   : AT_SetEclstopPara UT工程类
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_SetEclstopPara: public ::testing::Test
 {
 public:
@@ -760,16 +566,7 @@ protected:
     VOS_UINT8                           ucIndex;
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetEclstopPara_001
-测试用例标题      : 合法参数设置,AT^ECLSTOP
-预期结果          : gastAtClientTab[0].CmdCurrentOpt等于AT_CMD_ECLSTART_SET
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_AT_SetEclstopPara, Test_AT_SetEclstopPara_001)
 {
     char *pucCmdString                                 = "AT^ECLSTOP";
@@ -789,16 +586,7 @@ TEST_F(Test_AT_SetEclstopPara, Test_AT_SetEclstopPara_001)
    GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetEclstopPara_002
-测试用例标题      : 非法参数设置,AT^ECLSTOP=
-预期结果          : gastAtClientTab[0].CmdCurrentOpt等于AT_CMD_ECLSTART_SET
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_AT_SetEclstopPara, Test_AT_SetEclstopPara_002)
 {
     char *pucCmdString                                 = "AT^ECLSTOP=";
@@ -818,16 +606,7 @@ TEST_F(Test_AT_SetEclstopPara, Test_AT_SetEclstopPara_002)
    GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetEclstopPara_003
-测试用例标题      : 异常分支测试,return AT_ERROR;
-预期结果          : AT_SetEclstopPara返回AT_ERROR
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_AT_SetEclstopPara, Test_AT_SetEclstopPara_003)
 {
     /* 变量定义 */
@@ -851,14 +630,7 @@ TEST_F(Test_AT_SetEclstopPara, Test_AT_SetEclstopPara_003)
    GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名       : AT_SetEclcfgPara
-功能描述   : AT_SetEclcfgPara UT工程类
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_SetEclcfgPara: public ::testing::Test
 {
 public:
@@ -896,16 +668,7 @@ protected:
     VOS_UINT8                           ucIndex;
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetEclcfgPara_001
-测试用例标题      : 合法参数设置,AT^ECLCFG=0,0
-预期结果          : gastAtClientTab[0].CmdCurrentOpt等于AT_CMD_ECLSTART_SET
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_AT_SetEclcfgPara, Test_AT_SetEclcfgPara_001)
 {
     char *pucCmdString                                      = "AT^ECLCFG=0";
@@ -925,16 +688,7 @@ TEST_F(Test_AT_SetEclcfgPara, Test_AT_SetEclcfgPara_001)
    GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetEclcfgPara_002
-测试用例标题      : 合法参数设置,AT^ECLCFG=0,1
-预期结果          : gastAtClientTab[0].CmdCurrentOpt等于AT_CMD_ECLSTART_SET
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_AT_SetEclcfgPara, Test_AT_SetEclcfgPara_002)
 {
     char *pucCmdString                                      = "AT^ECLCFG=0,1";
@@ -954,16 +708,7 @@ TEST_F(Test_AT_SetEclcfgPara, Test_AT_SetEclcfgPara_002)
    GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetEclcfgPara_003
-测试用例标题      : 异常参数设置,AT^ECLCFG=
-预期结果          : gastAtClientTab[0].CmdCurrentOpt等于AT_CMD_CURRENT_OPT_BUTT
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_AT_SetEclcfgPara, Test_AT_SetEclcfgPara_003)
 {
     char *pucCmdString                                      = "AT^ECLCFG=";
@@ -983,16 +728,7 @@ TEST_F(Test_AT_SetEclcfgPara, Test_AT_SetEclcfgPara_003)
    GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetEclcfgPara_004
-测试用例标题      : 异常参数设置,AT^ECLCFG=0,0,
-预期结果          : gastAtClientTab[0].CmdCurrentOpt等于AT_CMD_CURRENT_OPT_BUTT
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_AT_SetEclcfgPara, Test_AT_SetEclcfgPara_004)
 {
     char *pucCmdString                                      = "AT^ECLCFG=0,0,";
@@ -1012,16 +748,7 @@ TEST_F(Test_AT_SetEclcfgPara, Test_AT_SetEclcfgPara_004)
    GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetEclcfgPara_005
-测试用例标题      : 异常参数设置,AT^ECLCFG=0,
-预期结果          : gastAtClientTab[0].CmdCurrentOpt等于AT_CMD_CURRENT_OPT_BUTT
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_AT_SetEclcfgPara, Test_AT_SetEclcfgPara_005)
 {
     char *pucCmdString                                      = "AT^ECLCFG=0,";
@@ -1041,16 +768,7 @@ TEST_F(Test_AT_SetEclcfgPara, Test_AT_SetEclcfgPara_005)
    GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetEclcfgPara_006
-测试用例标题      : 异常分支测试,return AT_ERROR;
-预期结果          : AT_SetEclstopPara返回AT_ERROR
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_AT_SetEclcfgPara, Test_AT_SetEclcfgPara_006)
 {
     /* 变量定义 */
@@ -1079,14 +797,7 @@ TEST_F(Test_AT_SetEclcfgPara, Test_AT_SetEclcfgPara_006)
 
 }
 #if 0
-/*****************************************************************************
-类名       : AT_SetEclmsdPara
-功能描述   : AT_SetEclmsdPara UT工程类
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_SetEclmsdPara: public ::testing::Test
 {
 public:
@@ -1124,16 +835,7 @@ protected:
     VOS_UINT8                           ucIndex;
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetEclmsdPara_001
-测试用例标题      : 合法参数设置
-预期结果          : gastAtClientTab[0].CmdCurrentOpt等于AT_CMD_ECLMSD_SET
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_AT_SetEclmsdPara, Test_AT_SetEclmsdPara_001)
 {
     char *pucCmdString = "AT^ECLMSD=\"010108414141414141414141414131313131313188\
@@ -1156,16 +858,7 @@ TEST_F(Test_AT_SetEclmsdPara, Test_AT_SetEclmsdPara_001)
    GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetEclmsdPara_002
-测试用例标题      : 非法参数设置，参数个数为0
-预期结果          : gastAtClientTab[0].CmdCurrentOpt等于AT_CMD_CURRENT_OPT_BUTT
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_AT_SetEclmsdPara, Test_AT_SetEclmsdPara_002)
 {
     char *pucCmdString                                      = "AT^ECLMSD=";
@@ -1185,16 +878,7 @@ TEST_F(Test_AT_SetEclmsdPara, Test_AT_SetEclmsdPara_002)
    GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetEclmsdPara_003
-测试用例标题      : 非法参数设置，MSD数据长度不是280
-预期结果          : gastAtClientTab[0].CmdCurrentOpt等于AT_CMD_CURRENT_OPT_BUTT
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_AT_SetEclmsdPara, Test_AT_SetEclmsdPara_003)
 {
     char *pucCmdString                                      = "AT^ECLMSD=\"00\"";
@@ -1214,16 +898,7 @@ TEST_F(Test_AT_SetEclmsdPara, Test_AT_SetEclmsdPara_003)
    GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetEclmsdPara_004
-测试用例标题      : 非法参数设置，MSD数据不对
-预期结果          : gastAtClientTab[0].CmdCurrentOpt等于AT_CMD_CURRENT_OPT_BUTT
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_AT_SetEclmsdPara, Test_AT_SetEclmsdPara_004)
 {
     char *pucCmdString = "AT^ECLMSD=\"&&0108414141414141414141414131313131313188\
@@ -1246,16 +921,7 @@ TEST_F(Test_AT_SetEclmsdPara, Test_AT_SetEclmsdPara_004)
    GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetEclmsdPara_005
-测试用例标题      : 异常分支测试,return AT_ERROR;
-预期结果          : AT_SetEclmsdPara返回AT_ERROR
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_AT_SetEclmsdPara, Test_AT_SetEclmsdPara_005)
 {
     /* 变量定义 */
@@ -1286,14 +952,7 @@ TEST_F(Test_AT_SetEclmsdPara, Test_AT_SetEclmsdPara_005)
 }
 #endif
 
-/*****************************************************************************
-类名       : AT_QryCecallPara
-功能描述   : AT_QryCecallPara UT工程类
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryCecallPara: public ::testing::Test
 {
 public:
@@ -1331,16 +990,7 @@ protected:
     VOS_UINT8                           ucIndex;
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryCecallPara_001
-测试用例标题      : 查询命令,AT+CECALL?
-预期结果          : gastAtClientTab[0].CmdCurrentOpt等于AT_CMD_CECALL_QRY
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_AT_QryCecallPara, Test_AT_QryCecallPara_001)
 {
     char *pucCmdString = "AT+CECALL?";
@@ -1360,16 +1010,7 @@ TEST_F(Test_AT_QryCecallPara, Test_AT_QryCecallPara_001)
    GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryCecallPara_002
-测试用例标题      : 异常分支测试,return AT_ERROR;
-预期结果          : AT_QryCecallPara返回AT_ERROR
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_AT_QryCecallPara, Test_AT_QryCecallPara_002)
 {
     /* 变量定义 */
@@ -1393,14 +1034,7 @@ TEST_F(Test_AT_QryCecallPara, Test_AT_QryCecallPara_002)
 
 }
 
-/*****************************************************************************
-类名       : AT_QryEclcfgPara
-功能描述   : AT_QryEclcfgPara UT工程类
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryEclcfgPara: public ::testing::Test
 {
 public:
@@ -1438,16 +1072,7 @@ protected:
     VOS_UINT8                           ucIndex;
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryEclcfgPara_001
-测试用例标题      : 查询命令,AT^ECLCFG?
-预期结果          : gastAtClientTab[0].CmdCurrentOpt等于AT_CMD_ECLCFG_QRY
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_AT_QryEclcfgPara, Test_AT_QryEclcfgPara_001)
 {
     char *pucCmdString = "AT^ECLCFG?";
@@ -1467,16 +1092,7 @@ TEST_F(Test_AT_QryEclcfgPara, Test_AT_QryEclcfgPara_001)
    GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryEclcfgPara_002
-测试用例标题      : 异常分支测试,return AT_ERROR;
-预期结果          : AT_QryEclcfgPara返回AT_ERROR
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_AT_QryEclcfgPara, Test_AT_QryEclcfgPara_002)
 {
     /* 变量定义 */
@@ -1500,14 +1116,7 @@ TEST_F(Test_AT_QryEclcfgPara, Test_AT_QryEclcfgPara_002)
 
 }
 
-/*****************************************************************************
-类名       : AT_QryEclmsdPara
-功能描述   : AT_QryEclmsdPara UT工程类
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryEclmsdPara: public ::testing::Test
 {
 public:
@@ -1545,16 +1154,7 @@ protected:
     VOS_UINT8                           ucIndex;
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryEclmsdPara_001
-测试用例标题      : 查询命令,AT^ECLMSD?
-预期结果          : gastAtClientTab[0].CmdCurrentOpt等于AT_CMD_ECLMSD_QRY
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_AT_QryEclmsdPara, Test_AT_QryEclmsdPara_001)
 {
     char *pucCmdString = "AT^ECLMSD?";
@@ -1574,16 +1174,7 @@ TEST_F(Test_AT_QryEclmsdPara, Test_AT_QryEclmsdPara_001)
    GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryEclmsdPara_002
-测试用例标题      : 异常分支测试,return AT_ERROR;
-预期结果          : AT_QryEclmsdPara返回AT_ERROR
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_AT_QryEclmsdPara, Test_AT_QryEclmsdPara_002)
 {
     /* 变量定义 */
@@ -1608,14 +1199,7 @@ TEST_F(Test_AT_QryEclmsdPara, Test_AT_QryEclmsdPara_002)
 }
 
 
-/*****************************************************************************
-类名       : AT_TestEclstartPara
-功能描述   : AT_TestEclstartPara UT工程类
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_TestEclstartPara: public ::testing::Test
 {
 public:
@@ -1653,16 +1237,7 @@ protected:
     VOS_UINT8                           ucIndex;
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_TestEclstartPara_001
-测试用例标题      : 测试命令,AT^ECLSTART=?
-预期结果          : At_sprintf函数将被调用一次
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_AT_TestEclstartPara, Test_AT_TestEclstartPara_001)
 {
     char *pucCmdString = "AT^ECLSTART=?";
@@ -1679,14 +1254,7 @@ TEST_F(Test_AT_TestEclstartPara, Test_AT_TestEclstartPara_001)
    GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名       : AT_TestEclmsdPara
-功能描述   : AT_TestEclmsdPara UT工程类
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_TestEclmsdPara: public ::testing::Test
 {
 public:
@@ -1724,16 +1292,7 @@ protected:
     VOS_UINT8                           ucIndex;
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_TestEclmsdPara_001
-测试用例标题      : 测试命令,AT^ECLMSD=?
-预期结果          :
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_AT_TestEclmsdPara, Test_AT_TestEclmsdPara_001)
 {
     char *pucCmdString = "AT^ECLMSD=?";
@@ -1751,7 +1310,6 @@ TEST_F(Test_AT_TestEclmsdPara, Test_AT_TestEclmsdPara_001)
 }
 
 
-/* Added by n00269697 for V3R3C60_eCall项目, 2014-3-29, end */
 #endif
 
 

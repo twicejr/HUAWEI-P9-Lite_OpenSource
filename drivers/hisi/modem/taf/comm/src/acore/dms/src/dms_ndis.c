@@ -39,20 +39,7 @@ USBNdisAtRecvFunc       g_atCmdRcv          = NULL;
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : DMS_NcmOpen
- 功能描述  : 打开NDIS CTRL通道
- 输入参数  :
 
- 输出参数  :
- 返 回 值  : ERR_MSP_FAILURE/ERR_MSP_SUCCESS
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2012年8月27日
-     作    者  : heliping
-     修改内容  : Creat Function
-*****************************************************************************/
 VOS_UINT32 DMS_NcmOpen(VOS_VOID)
 {
     VOS_UINT32                          ulRet = ERR_MSP_SUCCESS;
@@ -90,20 +77,7 @@ VOS_UINT32 DMS_NcmOpen(VOS_VOID)
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : DMS_NcmClose
- 功能描述  : NDIS CTRL通道关闭
- 输入参数  :
 
- 输出参数  :
- 返 回 值  : -1/ERR_MSP_SUCCESS
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2012年8月27日
-     作    者  : heliping
-     修改内容  : Creat Function
-*****************************************************************************/
 VOS_UINT32 DMS_NcmClose(VOS_VOID)
 {
     VOS_INT32                           lRet = ERR_MSP_SUCCESS;
@@ -124,20 +98,7 @@ VOS_UINT32 DMS_NcmClose(VOS_VOID)
     return (VOS_UINT32)lRet;
 }
 
-/*****************************************************************************
- 函 数 名  : DMS_NcmSendData
- 功能描述  : NDIS CTRL通道数据发送接口
- 输入参数  : pData: 发送buf
-             ulLen: 发送长度
- 输出参数  :
- 返 回 值  : ERR_MSP_INVALID_PARAMETER/ERR_MSP_FAILURE/ERR_MSP_SUCCESS
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2012年8月27日
-     作    者  : heliping
-     修改内容  : Creat Function
-*****************************************************************************/
+
 VOS_UINT32 DMS_NcmSendData(VOS_UINT8 *pData, VOS_UINT32 ulLen)
 {
     VOS_INT32                           lRet = ERR_MSP_SUCCESS;
@@ -179,20 +140,7 @@ VOS_UINT32 DMS_NcmSendData(VOS_UINT8 *pData, VOS_UINT32 ulLen)
     return ERR_MSP_SUCCESS;
 }
 
-/*****************************************************************************
- 函 数 名  : DMS_NcmStatusChangeReg
- 功能描述  : ndis通道速率配置函数
- 输入参数  : pPdpStru: 配置数据
 
- 输出参数  :
- 返 回 值  : ERR_MSP_INVALID_PARAMETER/-1/0
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2012年8月27日
-     作    者  : heliping
-     修改内容  : Creat Function
-*****************************************************************************/
 VOS_INT32 DMS_NcmStatusChangeReg(NAS_PRO_STRU * pPdpStru)
 {
     DMS_PHY_BEAR_PROPERTY_STRU         *pstPhyBearProp = NULL;
@@ -219,20 +167,7 @@ VOS_INT32 DMS_NcmStatusChangeReg(NAS_PRO_STRU * pPdpStru)
     return lRet;
 }
 
-/*****************************************************************************
- 函 数 名  : DMS_NcmExtFuncReg
- 功能描述  : ndis通道回调函数注册函数封装
- 输入参数  : connectBrk: 连接状态处理函数
-             atCmdRcv: 数据接收回调函数
- 输出参数  :
- 返 回 值  : ERR_MSP_SUCCESS
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2012年8月27日
-     作    者  : heliping
-     修改内容  : Creat Function
-*****************************************************************************/
+
 int DMS_NcmExtFuncReg(USBNdisStusChgFunc connectBrk,USB_NAS_AT_CMD_RECV atCmdRcv)
 {
 
@@ -245,20 +180,7 @@ int DMS_NcmExtFuncReg(USBNdisStusChgFunc connectBrk,USB_NAS_AT_CMD_RECV atCmdRcv
 }
 
 
-/*****************************************************************************
- 函 数 名  : DMS_NcmExtFuncReg
- 功能描述  : ndis通道回调函数注册函数
- 输入参数  : connectBrk: 连接状态处理函数
-             atCmdRcv: 数据接收回调函数
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2012年8月27日
-     作    者  : heliping
-     修改内容  : Creat Function
-*****************************************************************************/
+
 VOS_VOID DMS_NcmProcCbReg(USBNdisStusChgFunc connectBrk,USB_NAS_AT_CMD_RECV atCmdRcv)
 {
     DMS_PHY_BEAR_PROPERTY_STRU         *pstPhyBearProp = NULL;
@@ -298,22 +220,7 @@ VOS_VOID DMS_NcmProcCbReg(USBNdisStusChgFunc connectBrk,USB_NAS_AT_CMD_RECV atCm
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : DMS_SetNdisChanStatus
- 功能描述  : 设置NDIS通道是否允许上报主动上报
- 输入参数  : VOS_UINT8 *ucStatus
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年10月09日
-    作    者   : h00135900
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID DMS_SetNdisChanStatus(ACM_EVT_E enStatus)
 {
     DMS_PHY_BEAR_PROPERTY_STRU         *pstPhyBearProp = DMS_GetPhyBearProperty(DMS_PHY_BEAR_USB_NCM);

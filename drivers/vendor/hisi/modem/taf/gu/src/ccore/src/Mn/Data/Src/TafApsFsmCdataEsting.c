@@ -1,22 +1,4 @@
-/******************************************************************************
 
-                   版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafApsFsmCdataEsting.c　
-  版 本 号   : 初稿
-  作    者   : y00213812
-  生成日期   : 2014年10月14日
-  最近修改   :
-  功能描述   : DORMANT状态下的处理
-  函数列表   :
-
-  修改历史   :
-  1.日    期   : 2014年10月14日
-    作    者   : y00213812
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -90,26 +72,7 @@
    5 函数实现
 ******************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPsCallOrigReq_CdataEsting_Init
- 功能描述  : CDATA ESTING INIT子状态下收到ID_MSG_TAF_PS_CALL_ORIG_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月16日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月24日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPsCallOrigReq_CdataEsting_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -231,26 +194,7 @@ VOS_UINT32 TAF_APS_RcvPsCallOrigReq_CdataEsting_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPppDialOrigReq_CdataEsting_Init
- 功能描述  : CDATA ESTING INIT子状态下收到ID_MSG_TAF_PS_PPP_DIAL_ORIG_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月16日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月24日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPppDialOrigReq_CdataEsting_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -393,22 +337,7 @@ VOS_UINT32 TAF_APS_RcvPppDialOrigReq_CdataEsting_Init(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvXccIncomingCallInd_CdataEsting_Init
- 功能描述  : CDATA ESTING INIT子状态下收到ID_XCC_APS_INCOMING_CALL_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月16日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvXccIncomingCallInd_CdataEsting_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -455,22 +384,7 @@ VOS_UINT32 TAF_APS_RcvXccIncomingCallInd_CdataEsting_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvCdsServiceInd_CdataEsting_Init
- 功能描述  : CDATA ESTING INIT子状态下收到ID_CDS_APS_SERVICE_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月16日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvCdsServiceInd_CdataEsting_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -550,22 +464,7 @@ VOS_UINT32 TAF_APS_RcvCdsServiceInd_CdataEsting_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPppReConnInd_CdataEsting_Init
- 功能描述  : CDATA ESTING INIT子状态下收到ID_PPP_APS_RECONN_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPppReConnInd_CdataEsting_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -630,22 +529,7 @@ VOS_UINT32 TAF_APS_RcvPppReConnInd_CdataEsting_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPsInterEpdszidReOrigReq_CdataEsting_Init
- 功能描述  : During CDATA ESTING INIT state, Rcv ID_MSG_TAF_PS_EPDSZID_REORIG_REQ msg
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年01月04日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPsInterEpdszidReOrigReq_CdataEsting_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -682,22 +566,7 @@ VOS_UINT32 TAF_APS_RcvPsInterEpdszidReOrigReq_CdataEsting_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPsInterHrpdTo1XHandOff_CdataEsting_Init
- 功能描述  : CDATA ESTING INIT子状态下收到ID_MSG_TAF_PS_INTER_HRPD_TO_1X_HANDOFF_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年03月25日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPsInterHrpdTo1XHandOff_CdataEsting_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -725,22 +594,7 @@ VOS_UINT32 TAF_APS_RcvPsInterHrpdTo1XHandOff_CdataEsting_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPsInterHrpdTo1XHandOff_CdataEsting_Init
- 功能描述  : CDATA ESTING INIT子状态下收到ID_MSG_TAF_PS_INTER_DORMANT_END_1X_SERVICE_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月04日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPsInterDormantEnd1xSvc_CdataEsting_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -765,23 +619,7 @@ VOS_UINT32 TAF_APS_RcvPsInterDormantEnd1xSvc_CdataEsting_Init(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvXccOrigDataCallCnf_CdataEsting_WaitXccOrigCallCnf
- 功能描述  : TAF_APS_CDATA_ESTING_SUBSTA_WAIT_XCC_ORIG_CALL_CNF子状态下
-             收到ID_XCC_APS_ORIG_DATA_CALL_CNF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月16日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvXccOrigDataCallCnf_CdataEsting_WaitXccOrigCallCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -906,23 +744,7 @@ VOS_UINT32 TAF_APS_RcvXccOrigDataCallCnf_CdataEsting_WaitXccOrigCallCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPsCallEndReq_CdataEsting_WaitXccOrigCallCnf
- 功能描述  : TAF_APS_CDATA_ESTING_SUBSTA_WAIT_XCC_ORIG_CALL_CNF子状态下
-             收到ID_MSG_TAF_PS_CALL_END_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月16日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPsCallEndReq_CdataEsting_WaitXccOrigCallCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -988,23 +810,7 @@ VOS_UINT32 TAF_APS_RcvPsCallEndReq_CdataEsting_WaitXccOrigCallCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiCdataEstingExpired_CdataEsting_WaitXccOrigCallCnf
- 功能描述  : TAF_APS_CDATA_ESTING_SUBSTA_WAIT_XCC_ORIG_CALL_CNF子状态下，
-             收到TI_TAF_APS_CDATA_ESTING消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月16日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiCdataEstingExpired_CdataEsting_WaitXccOrigCallCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1023,23 +829,7 @@ VOS_UINT32 TAF_APS_RcvTiCdataEstingExpired_CdataEsting_WaitXccOrigCallCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvXccDataServiceConnInd_CdataEsting_WaitXccSoConnected
- 功能描述  : TAF_APS_CDATA_ESTING_SUBSTA_WAIT_XCC_SO_CONNECTED子状态下，
-             收到ID_XCC_APS_DATA_SERVICE_CONNECT_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月16日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvXccDataServiceConnInd_CdataEsting_WaitXccSoConnected(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1073,23 +863,7 @@ VOS_UINT32 TAF_APS_RcvXccDataServiceConnInd_CdataEsting_WaitXccSoConnected(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPsCallEndReq_CdataEsting_WaitXccSoConnected
- 功能描述  : TAF_APS_CDATA_ESTING_SUBSTA_WAIT_XCC_SO_CONNECTED子状态下
-             收到ID_MSG_TAF_PS_CALL_END_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月16日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPsCallEndReq_CdataEsting_WaitXccSoConnected(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1149,23 +923,7 @@ VOS_UINT32 TAF_APS_RcvPsCallEndReq_CdataEsting_WaitXccSoConnected(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvInterEndCdmaCallReq_CdataEsting_WaitXccSoConnected
- 功能描述  : TAF_APS_CDATA_ESTING_SUBSTA_WAIT_XCC_SO_CONNECTED子状态下
-             收到ID_MSG_TAF_PS_INTER_END_CDMA_CALL_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月16日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvInterEndCdmaCallReq_CdataEsting_WaitXccSoConnected(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1185,22 +943,7 @@ VOS_UINT32 TAF_APS_RcvInterEndCdmaCallReq_CdataEsting_WaitXccSoConnected(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvXccDataCallDiscInd_CdataEsting_WaitXccSoConnected
- 功能描述  : TAF_APS_CDATA_ESTING_SUBSTA_WAIT_XCC_SO_CONNECTED子状态下
-             收到ID_XCC_APS_DATA_CALL_DISC_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
 
-
- 修改历史      :
-  1.日    期   : 2014年10月17日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_RcvXccDataCallDiscInd_CdataEsting_WaitXccSoConnected(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1230,23 +973,7 @@ VOS_UINT32  TAF_APS_RcvXccDataCallDiscInd_CdataEsting_WaitXccSoConnected(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiCdataEstingExpired_CdataEsting_WaitXccSoConnected
- 功能描述  : TAF_APS_CDATA_ESTING_SUBSTA_WAIT_XCC_SO_CONNECTED子状态下，
-             收到TI_TAF_APS_CDATA_ESTING消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月16日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiCdataEstingExpired_CdataEsting_WaitXccSoConnected(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1319,23 +1046,7 @@ VOS_UINT32 TAF_APS_RcvTiCdataEstingExpired_CdataEsting_WaitXccSoConnected(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvXccAnsCallCnf_CdataEsting_WaitXccAnsCallCnf
- 功能描述  : TAF_APS_CDATA_ESTING_SUBSTA_WAIT_XCC_ANS_CALL_CNF子状态下,
-             收到ID_XCC_APS_ANSWER_DATA_CALL_CNF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月16日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvXccAnsCallCnf_CdataEsting_WaitXccAnsCallCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1372,23 +1083,7 @@ VOS_UINT32 TAF_APS_RcvXccAnsCallCnf_CdataEsting_WaitXccAnsCallCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPsCallEndReq_CdataEsting_WaitXccAnsCallCnf
- 功能描述  : TAF_APS_CDATA_ESTING_SUBSTA_WAIT_XCC_ANS_CALL_CNF子状态下
-             收到ID_MSG_TAF_PS_CALL_END_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月16日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPsCallEndReq_CdataEsting_WaitXccAnsCallCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1410,23 +1105,7 @@ VOS_UINT32 TAF_APS_RcvPsCallEndReq_CdataEsting_WaitXccAnsCallCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvXccDataCallDiscInd_CdataEsting_WaitXccAnsCallCnf
- 功能描述  : TAF_APS_CDATA_ESTING_SUBSTA_WAIT_XCC_ANS_CALL_CNF子状态下,
-             收到ID_XCC_APS_DATA_CALL_DISC_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月17日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_RcvXccDataCallDiscInd_CdataEsting_WaitXccAnsCallCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1455,23 +1134,7 @@ VOS_UINT32  TAF_APS_RcvXccDataCallDiscInd_CdataEsting_WaitXccAnsCallCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiCdataEstingExpired_CdataEsting_WaitXccAnsCallCnf
- 功能描述  : TAF_APS_CDATA_ESTING_SUBSTA_WAIT_XCC_ANS_CALL_CNF子状态下,
-             收到TI_TAF_APS_CDATA_ESTING消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月16日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiCdataEstingExpired_CdataEsting_WaitXccAnsCallCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1489,23 +1152,7 @@ VOS_UINT32 TAF_APS_RcvTiCdataEstingExpired_CdataEsting_WaitXccAnsCallCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvXccCallConnectedInd_CdataEsting_WaitXccCallConnectedInd
- 功能描述  : TAF_APS_CDATA_ESTING_SUBSTA_WAIT_XCC_CALL_CONNECTED_IND子状态下，
-             收到ID_XCC_APS_DATA_CALL_CONN_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月16日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvXccCallConnectedInd_CdataEsting_WaitXccCallConnectedInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1527,23 +1174,7 @@ VOS_UINT32 TAF_APS_RcvXccCallConnectedInd_CdataEsting_WaitXccCallConnectedInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPsCallEndReq_CdataEsting_WaitXccCallConnectedInd
- 功能描述  : TAF_APS_CDATA_ESTING_SUBSTA_WAIT_XCC_CALL_CONNECTED_IND子状态下
-             收到ID_MSG_TAF_PS_CALL_END_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月16日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPsCallEndReq_CdataEsting_WaitXccCallConnectedInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1565,23 +1196,7 @@ VOS_UINT32 TAF_APS_RcvPsCallEndReq_CdataEsting_WaitXccCallConnectedInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvXccDataCallDiscInd_CdataEsting_WaitXccCallConnectedInd
- 功能描述  : TAF_APS_CDATA_ESTING_SUBSTA_WAIT_XCC_CALL_CONNECTED_IND子状态下
-             收到ID_XCC_APS_DATA_CALL_CONN_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月17日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_RcvXccDataCallDiscInd_CdataEsting_WaitXccCallConnectedInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1610,23 +1225,7 @@ VOS_UINT32  TAF_APS_RcvXccDataCallDiscInd_CdataEsting_WaitXccCallConnectedInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiRedialIntervalExpired_CdataEsting_WaitRedial
- 功能描述  : TAF_APS_CDATA_ESTING_SUBSTA_WAIT_INTERVAL_REDIAL子状态下,
-             收到TI_TAF_APS_CDATA_WAIT_CALL_REDIAL_INTERVAL消息,发起重拨
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月12日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiRedialIntervalExpired_CdataEsting_WaitRedial(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1732,28 +1331,7 @@ VOS_UINT32 TAF_APS_RcvTiRedialIntervalExpired_CdataEsting_WaitRedial(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPsCallEndReq_CdataEsting_WaitRedial
- 功能描述  : TAF_APS_CDATA_ESTING_SUBSTA_WAIT_INTERVAL_REDIAL子状态下,
-             收到ID_MSG_TAF_PS_CALL_END_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月12日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年11月18日
-    作    者   : g00261581
-    修改内容   : 重拨过程中收到去激活，此时由于没有链路，直接通知PPP本地去激
-                 活，上报去激活成功
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPsCallEndReq_CdataEsting_WaitRedial(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1815,23 +1393,7 @@ VOS_UINT32 TAF_APS_RcvPsCallEndReq_CdataEsting_WaitRedial(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPsInterSrvStaChangeReq_CdataEsting_WaitRedial
- 功能描述  : TAF_APS_CDATA_ESTING_SUBSTA_WAIT_INTERVAL_REDIAL子状态下,
-             收到ID_MSG_TAF_PS_INTER_SERVICE_STATUS_CHANGE_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月24日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPsInterSrvStaChangeReq_CdataEsting_WaitRedial(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1966,23 +1528,7 @@ VOS_UINT32 TAF_APS_RcvPsInterSrvStaChangeReq_CdataEsting_WaitRedial(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvMmaHrpdDataCallSysAcqInd_CdataEsting_WaitRedial
- 功能描述  : TAF_APS_CDATA_ESTING_SUBSTA_WAIT_INTERVAL_REDIAL子状态下,
-             收到ID_MMA_APS_HRPD_DATA_CALL_SYS_ACQ_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月24日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvMmaHrpdDataCallSysAcqInd_CdataEsting_WaitRedial(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2082,23 +1628,7 @@ VOS_UINT32 TAF_APS_RcvMmaHrpdDataCallSysAcqInd_CdataEsting_WaitRedial(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvXccIncomingCallInd_CdataEsting_WaitRedial
- 功能描述  : TAF_APS_CDATA_ESTING_SUBSTA_WAIT_INTERVAL_REDIAL子状态下,
-             收到ID_XCC_APS_INCOMING_CALL_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月12日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvXccIncomingCallInd_CdataEsting_WaitRedial(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2147,22 +1677,7 @@ VOS_UINT32 TAF_APS_RcvXccIncomingCallInd_CdataEsting_WaitRedial(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvHsmConnectInd_CdataEsting_WaitRedial
- 功能描述  : 等待Redial阶段收到HSM发送的ID_HSM_APS_CONNECT_IND消息
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月7日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvHsmConnectInd_CdataEsting_WaitRedial(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2191,21 +1706,7 @@ VOS_UINT32 TAF_APS_RcvHsmConnectInd_CdataEsting_WaitRedial(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_Proc1xOrigDataCall_CdataEsting_1XMode
- 功能描述  : 处理用户激活/上行数传/去激活请求时的，拨号处理
- 输入参数  : VOS_UINT8                           ucIsDormDataCall
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月21日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_Proc1xOrigDataCall_CdataEsting_1XMode(
     VOS_UINT8                           ucIsDormDataCall,
     VOS_UINT8                           ucDrsFlg,
@@ -2275,22 +1776,7 @@ VOS_UINT32 TAF_APS_Proc1xOrigDataCall_CdataEsting_1XMode(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ProcCdataRedialReOrig_CdataEsting_1XMode
- 功能描述  : 处理用户激活/上行数传/去激活请求时的，拨号处理
- 输入参数  : VOS_UINT8                           ucIsDormDataCall
-             VOS_UINT8                           ucDrsFlg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月25日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_ProcCdataRedialReOrig_CdataEsting_1XMode(
     VOS_UINT8                           ucIsDormDataCall,
     VOS_UINT8                           ucDrsFlg
@@ -2327,22 +1813,7 @@ VOS_UINT32 TAF_APS_ProcCdataRedialReOrig_CdataEsting_1XMode(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ProcCdataEstSucc_CdataEsting
- 功能描述  : CDATA数据服务建链成功的处理
- 输入参数  : VOS_UINT8                           ucPdpId
-             TAF_MMA_CDMA_CALL_TYPE_ENUM_UINT8   enCallType
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月15日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_ProcCdataEstSucc_CdataEsting(
     VOS_UINT8                           ucPdpId
 )
@@ -2533,22 +2004,7 @@ VOS_VOID TAF_APS_ProcCdataEstSucc_CdataEsting(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ProcEhrpdPdnActSucc_CdataEsting
- 功能描述  : EHRPD下单个PDN激活成功的处理
- 输入参数  : VOS_UINT8                           ucPdpId
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月27日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_ProcEhrpdPdnActSucc_CdataEsting(
     VOS_UINT8                           ucPdpId,
     struct MsgCB                       *pstMsg
@@ -2596,6 +2052,8 @@ VOS_VOID TAF_APS_ProcEhrpdPdnActSucc_CdataEsting(
     {
         TAF_APS_SndNdPdpActInd(pstPdpEntity->ucNsapi,
                                    pstPdpEntity->PdpAddr.aucIpV6Addr);
+                                   
+        pstPdpEntity->ulNdClientActiveFlg = VOS_TRUE;                           
 
         pstPdpIpv6Dns = (MN_APS_PDP_IPV6_DNS_STRU *)&pstPdnActCnf->stIpv6Dns;
 
@@ -2613,6 +2071,8 @@ VOS_VOID TAF_APS_ProcEhrpdPdnActSucc_CdataEsting(
     {
         TAF_APS_SndNdPdpActInd(pstPdpEntity->ucNsapi,
                                    pstPdpEntity->PdpAddr.aucIpV6Addr);
+                                   
+        pstPdpEntity->ulNdClientActiveFlg = VOS_TRUE;                           
 
         pstPdpIpv6Dns = (MN_APS_PDP_IPV6_DNS_STRU *)&pstPdnActCnf->stIpv6Dns;
 
@@ -2642,6 +2102,8 @@ VOS_VOID TAF_APS_ProcEhrpdPdnActSucc_CdataEsting(
         {
             TAF_APS_SndNdPdpActInd(pstPdpEntity->ucNsapi,
                                    pstPdpEntity->PdpAddr.aucIpV6Addr);
+                                   
+            pstPdpEntity->ulNdClientActiveFlg = VOS_TRUE;                       
 
             TAF_APS_SndDhcpDnsIpv6Req(ucPdpId);
 
@@ -2672,22 +2134,7 @@ VOS_VOID TAF_APS_ProcEhrpdPdnActSucc_CdataEsting(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ProcCdataEstFail_CdataEsting
- 功能描述  : CDATA数据服务建链时失败或超时的处理
- 输入参数  : VOS_UINT8                               ucPdpId
-             TAF_PS_CAUSE_ENUM_UINT32                enCause
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月23日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_ProcCdataEstFail_CdataEsting(
     VOS_UINT8                               ucPdpId,
     TAF_PS_CAUSE_ENUM_UINT32                enCause
@@ -2859,22 +2306,7 @@ VOS_UINT32 TAF_APS_ProcCdataEstFail_CdataEsting(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ProcHrpdOirgDataCall_CdataEsting_HybridMode
- 功能描述  : HRPD模式下的拨号
- 输入参数  : VOS_UINT8                           ucPdpId
-             VOS_UINT32                          ulNeedSearchSys
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月5日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_ProcHrpdOirgDataCall_CdataEsting_HybridMode(
     VOS_UINT8                           ucPdpId,
     VOS_UINT32                          ulDoQuickAcq
@@ -2952,25 +2384,7 @@ VOS_VOID TAF_APS_ProcHrpdOirgDataCall_CdataEsting_HybridMode(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ProcCdataCallOrig_CdataEsting_EhrpdMode
- 功能描述  : EHRPD模式下的拨号
- 输入参数  : VOS_UINT8                           ucPdpId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月14日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月24日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID TAF_APS_ProcCdataCallOrig_CdataEsting_EhrpdMode(
     VOS_UINT8                           ucPdpId,
     TAF_APS_ORIG_TYPE_ENUM_UINT8        enDailType
@@ -3059,23 +2473,7 @@ VOS_VOID TAF_APS_ProcCdataCallOrig_CdataEsting_EhrpdMode(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvHsmOrigCnf_CdataEsting_WaitHsmOrigCnf
- 功能描述  : TAF_APS_CDATA_ESTING_SUBSTA_WAIT_HSM_ORIG_CALL_CNF子状态下
-             收到ID_HSM_APS_ORIG_CNF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月3日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvHsmOrigCnf_CdataEsting_WaitHsmOrigCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3167,23 +2565,7 @@ VOS_UINT32 TAF_APS_RcvHsmOrigCnf_CdataEsting_WaitHsmOrigCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPsCallEndReq_CdataEsting_WaitHsmOrigCnf
- 功能描述  : TAF_APS_CDATA_ESTING_SUBSTA_WAIT_HSM_ORIG_CALL_CNF子状态下
-             收到ID_MSG_TAF_PS_CALL_END_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月6日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPsCallEndReq_CdataEsting_WaitHsmOrigCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3249,23 +2631,7 @@ VOS_UINT32 TAF_APS_RcvPsCallEndReq_CdataEsting_WaitHsmOrigCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPsCallEndReq_CdataEsting_WaitHsmOrigCnf
- 功能描述  : TAF_APS_CDATA_ESTING_SUBSTA_WAIT_HSM_ORIG_CALL_CNF子状态下
-             收到ID_MSG_TAF_PS_CALL_END_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月6日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiCdataEstingExpired_CdataEsting_WaitHsmOrigCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3278,23 +2644,7 @@ VOS_UINT32 TAF_APS_RcvTiCdataEstingExpired_CdataEsting_WaitHsmOrigCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvInterEndCdmaCallReq_WaitHsmOrigCnf
- 功能描述  : TAF_APS_CDATA_ESTING_SUBSTA_WAIT_HSM_ORIG_CALL_CNF子状态下
-             收到ID_MSG_TAF_PS_INTER_END_CDMA_CALL_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月16日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvInterEndCdmaCallReq_WaitHsmOrigCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3315,23 +2665,7 @@ VOS_UINT32 TAF_APS_RcvInterEndCdmaCallReq_WaitHsmOrigCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEhsmPdnActCnf_CdataEsting_WaitEhsmPdnActCnf
- 功能描述  : TAF_APS_CDATA_ESTING_SUBSTA_WAIT_EHSM_PDN_ACTIVATE_CNF子状态下
-             收到ID_EHSM_APS_PDN_ACTIVATE_CNF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月14日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEhsmPdnActCnf_CdataEsting_WaitEhsmPdnActCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3374,23 +2708,7 @@ VOS_UINT32 TAF_APS_RcvEhsmPdnActCnf_CdataEsting_WaitEhsmPdnActCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPsCallEndReq_CdataEsting_WaitEhsmPdnActCnf
- 功能描述  : TAF_APS_CDATA_ESTING_SUBSTA_WAIT_EHSM_PDN_ACTIVATE_CNF子状态下
-             收到ID_MSG_TAF_PS_CALL_END_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月14日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPsCallEndReq_CdataEsting_WaitEhsmPdnActCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3430,23 +2748,7 @@ VOS_UINT32 TAF_APS_RcvPsCallEndReq_CdataEsting_WaitEhsmPdnActCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiCdataEstingExpired_CdataEsting_WaitEhsmPdnActCnf
- 功能描述  : TAF_APS_CDATA_ESTING_SUBSTA_WAIT_EHSM_PDN_ACTIVATE_CNF子状态下
-             收到TI_TAF_APS_CDATA_ESTING消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月16日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiCdataEstingExpired_CdataEsting_WaitEhsmPdnActCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3467,22 +2769,7 @@ VOS_UINT32 TAF_APS_RcvTiCdataEstingExpired_CdataEsting_WaitEhsmPdnActCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ProcEhprdPdnAttachSucc_CdataEsting
- 功能描述  : 用户发起激活，APS处理Attach成功的处理
- 输入参数  : VOS_UINT8                           ucPdpId
-             EHSM_APS_PDN_ATTACH_CNF_STRU       *pstPdnAttachCnf
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月25日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_ProcEhprdPdnAttachSucc_CdataEsting(
     VOS_UINT8                           ucPdpId,
     EHSM_APS_PDN_ATTACH_CNF_STRU       *pstPdnAttachCnf
@@ -3532,6 +2819,8 @@ VOS_VOID TAF_APS_ProcEhprdPdnAttachSucc_CdataEsting(
     {
         TAF_APS_SndNdPdpActInd(pstPdpEntity->ucNsapi,
                                    pstPdpEntity->PdpAddr.aucIpV6Addr);
+                                   
+        pstPdpEntity->ulNdClientActiveFlg = VOS_TRUE;                           
 
         pstPdpIpv6Dns = (MN_APS_PDP_IPV6_DNS_STRU *)&pstPdnAttachCnf->stIpv6Dns;
 
@@ -3549,6 +2838,8 @@ VOS_VOID TAF_APS_ProcEhprdPdnAttachSucc_CdataEsting(
     {
         TAF_APS_SndNdPdpActInd(pstPdpEntity->ucNsapi,
                                    pstPdpEntity->PdpAddr.aucIpV6Addr);
+                                   
+        pstPdpEntity->ulNdClientActiveFlg = VOS_TRUE;                           
 
         pstPdpIpv6Dns = (MN_APS_PDP_IPV6_DNS_STRU *)&pstPdnAttachCnf->stIpv6Dns;
 
@@ -3576,6 +2867,8 @@ VOS_VOID TAF_APS_ProcEhprdPdnAttachSucc_CdataEsting(
         {
             TAF_APS_SndNdPdpActInd(pstPdpEntity->ucNsapi,
                                    pstPdpEntity->PdpAddr.aucIpV6Addr);
+                                   
+            pstPdpEntity->ulNdClientActiveFlg = VOS_TRUE;                       
 
             TAF_APS_SndDhcpDnsIpv6Req(ucPdpId);
             pstPdpEntity->ucNeedGetDnsFlg = VOS_TRUE;
@@ -3604,23 +2897,7 @@ VOS_VOID TAF_APS_ProcEhprdPdnAttachSucc_CdataEsting(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEhsmPdnAttachCnf_CdataEsting_WaitEhsmAttachCnf
- 功能描述  : TAF_APS_CDATA_ESTING_SUBSTA_WAIT_EHSM_PDN_ATTACH_CNF子状态下收
-             到消息ID_EHSM_APS_PDN_ATTACH_CNF的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月25日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEhsmPdnAttachCnf_CdataEsting_WaitEhsmAttachCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3669,23 +2946,7 @@ VOS_UINT32 TAF_APS_RcvEhsmPdnAttachCnf_CdataEsting_WaitEhsmAttachCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPsCallEndReq_CdataEsting_WaitEhsmAttachCnf
- 功能描述  : TAF_APS_CDATA_ESTING_SUBSTA_WAIT_EHSM_PDN_ATTACH_CNF子状态下收
-             到消息ID_MSG_TAF_PS_CALL_END_REQ的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月25日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPsCallEndReq_CdataEsting_WaitEhsmAttachCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3728,23 +2989,7 @@ VOS_UINT32 TAF_APS_RcvPsCallEndReq_CdataEsting_WaitEhsmAttachCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiCdataEstingExpired_CdataEsting_WaitEhsmAttachCnf
- 功能描述  : TAF_APS_CDATA_ESTING_SUBSTA_WAIT_EHSM_PDN_ATTACH_CNF子状态下收
-             到定时器TI_TAF_APS_CDATA_ESTING超时消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月25日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiCdataEstingExpired_CdataEsting_WaitEhsmAttachCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3772,23 +3017,7 @@ VOS_UINT32 TAF_APS_RcvTiCdataEstingExpired_CdataEsting_WaitEhsmAttachCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvInterAttachBearerActivateInd_CdataEsting_Suspend
- 功能描述  : TAF_APS_CDATA_ESTING_SUBSTA_SUSPEND子状态下
-             收到ID_EHSM_APS_PDN_ACTIVATE_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月21日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvInterAttachBearerActivateInd_CdataEsting_Suspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3829,23 +3058,7 @@ VOS_UINT32 TAF_APS_RcvInterAttachBearerActivateInd_CdataEsting_Suspend(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiCdataEstingExpired_CdataEsting_Suspend
- 功能描述  : TAF_APS_CDATA_ESTING_SUBSTA_SUSPEND子状态下
-             收到TI_TAF_APS_CDATA_ESTING消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月21日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiCdataEstingExpired_CdataEsting_Suspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3868,23 +3081,7 @@ VOS_UINT32 TAF_APS_RcvTiCdataEstingExpired_CdataEsting_Suspend(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallEndReq_CdataEsting_Suspend
- 功能描述  : TAF_APS_CDATA_ESTING_SUBSTA_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_CALL_END_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月21日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallEndReq_CdataEsting_Suspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3922,26 +3119,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallEndReq_CdataEsting_Suspend(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPsInterSrvStaChangeReq_CdataEsting_Suspend
- 功能描述  : TAF_APS_CDATA_ESTING_SUBSTA_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_INTER_SERVICE_STATUS_CHANGE_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月22日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年8月19日
-    作    者   : Y00213812
-    修改内容   : 有服务模式后，modem侧只关注是否可以拨号，不关注是否需要切换
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPsInterSrvStaChangeReq_CdataEsting_Suspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4001,23 +3179,7 @@ VOS_UINT32 TAF_APS_RcvPsInterSrvStaChangeReq_CdataEsting_Suspend(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPppActCnf_CdataEsting_WaitPppActCnf
- 功能描述  : TAF_APS_CDATA_ESTING_SUBSTA_WAIT_PPP_ACT_CNF子状态下收到
-             ID_PPP_APS_ACT_CNF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月9日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPppActCnf_CdataEsting_WaitPppActCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4077,6 +3239,8 @@ VOS_UINT32 TAF_APS_RcvPppActCnf_CdataEsting_WaitPppActCnf(
             TAF_APS_SndNdPdpActInd(pstPdpEntity->ucNsapi,
                                    pstPdpEntity->PdpAddr.aucIpV6Addr);
 
+            pstPdpEntity->ulNdClientActiveFlg = VOS_TRUE;
+
             TAF_APS_SndDhcpDnsIpv6Req(ucPdpId);
         }
         else if (TAF_APS_PPP_ADDR_TYPE_IPV4V6 == pstPppActCnf->enPdnType)
@@ -4090,6 +3254,8 @@ VOS_UINT32 TAF_APS_RcvPppActCnf_CdataEsting_WaitPppActCnf(
 
             TAF_APS_SndNdPdpActInd(pstPdpEntity->ucNsapi,
                                    pstPdpEntity->PdpAddr.aucIpV6Addr);
+
+            pstPdpEntity->ulNdClientActiveFlg = VOS_TRUE;
 
             if ((VOS_TRUE != pstPppActCnf->stIpv4Dns.bitOpIpv4PrimDNS) || (VOS_TRUE != pstPppActCnf->stIpv4Dns.bitOpIpv4SecDNS))
             {
@@ -4158,23 +3324,7 @@ VOS_UINT32 TAF_APS_RcvPppActCnf_CdataEsting_WaitPppActCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPppReConnInd_CdataEsting_WaitPppActCnf
- 功能描述  : TAF_APS_CDATA_ESTING_SUBSTA_WAIT_PPP_ACT_CNF子状态下收到
-             ID_PPP_APS_RECONN_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月9日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPppReConnInd_CdataEsting_WaitPppActCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4233,23 +3383,7 @@ VOS_UINT32 TAF_APS_RcvPppReConnInd_CdataEsting_WaitPppActCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvXccDataCallDiscInd_CdataEsting_WaitPppActCnf
- 功能描述  : TAF_APS_CDATA_ESTING_SUBSTA_WAIT_PPP_ACT_CNF子状态下收到
-             ID_XCC_APS_DATA_CALL_DISC_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月9日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvXccDataCallDiscInd_CdataEsting_WaitPppActCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4302,23 +3436,7 @@ VOS_UINT32 TAF_APS_RcvXccDataCallDiscInd_CdataEsting_WaitPppActCnf(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvHsmDiscInd_CdataEsting_WaitPppActCnf
- 功能描述  : TAF_APS_CDATA_ESTING_SUBSTA_WAIT_PPP_ACT_CNF子状态下收到
-             ID_HSM_APS_DISC_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月9日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvHsmDiscInd_CdataEsting_WaitPppActCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4345,23 +3463,7 @@ VOS_UINT32 TAF_APS_RcvHsmDiscInd_CdataEsting_WaitPppActCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPsCallEndReq_CdataEsting_WaitPppActCnf
- 功能描述  : TAF_APS_CDATA_ESTING_SUBSTA_WAIT_PPP_ACT_CNF子状态下收到
-             ID_MSG_TAF_PS_CALL_END_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月9日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPsCallEndReq_CdataEsting_WaitPppActCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4411,23 +3513,7 @@ VOS_UINT32 TAF_APS_RcvPsCallEndReq_CdataEsting_WaitPppActCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvInterEndCdmaCallReq_CdataEsting_WaitPppActCnf
- 功能描述  : TAF_APS_CDATA_ESTING_SUBSTA_WAIT_PPP_ACT_CNF子状态下收到
-             ID_MSG_TAF_PS_INTER_END_CDMA_CALL_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月9日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvInterEndCdmaCallReq_CdataEsting_WaitPppActCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4441,23 +3527,7 @@ VOS_UINT32 TAF_APS_RcvInterEndCdmaCallReq_CdataEsting_WaitPppActCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiPppActCnfExpired_CdataEsting_WaitPppActCnf
- 功能描述  : TAF_APS_CDATA_ESTING_SUBSTA_WAIT_PPP_ACT_CNF子状态下收到
-             PPP激活协商超时消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月9日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiPppActCnfExpired_CdataEsting_WaitPppActCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4506,23 +3576,7 @@ VOS_UINT32 TAF_APS_RcvTiPppActCnfExpired_CdataEsting_WaitPppActCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPppActCnf_CdataEsting_WaitXccOrigCallCnf
- 功能描述  : 子状态TAF_APS_CDATA_ESTING_SUBSTA_WAIT_XCC_ORIG_CALL_CNF下收到
-             消息ID_PPP_APS_ACT_CNF的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPppActCnf_CdataEsting_WaitXccOrigCallCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4565,23 +3619,7 @@ VOS_UINT32 TAF_APS_RcvPppActCnf_CdataEsting_WaitXccOrigCallCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiPppActCnfExpired_CdataEsting_WaitXccOrigCallCnf
- 功能描述  : 子状态TAF_APS_CDATA_ESTING_SUBSTA_WAIT_XCC_ORIG_CALL_CNF下收到
-             消息定时器TI_TAF_APS_CDATA_ESTING_WAIT_PPP_ACT_CNF超时的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiPppActCnfExpired_CdataEsting_WaitXccOrigCallCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4624,22 +3662,7 @@ VOS_UINT32 TAF_APS_RcvTiPppActCnfExpired_CdataEsting_WaitXccOrigCallCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiPppDeactCnfExpired_CdataEsting_WaitXccOrigCallCnf
- 功能描述  : 等待XCC Orig Cnf的时候收到PPP去激活协商定时器超时消息
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月19日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiPppDeactCnfExpired_CdataEsting_WaitXccOrigCallCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4674,22 +3697,7 @@ VOS_UINT32 TAF_APS_RcvTiPppDeactCnfExpired_CdataEsting_WaitXccOrigCallCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvInterEndCdmaCallReq_CdataEsting_WaitXccOrigCallCnf
- 功能描述  : 等待XCC ORIG CNF的子状态收到内部去激活的消息
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvInterEndCdmaCallReq_CdataEsting_WaitXccOrigCallCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4709,23 +3717,7 @@ VOS_UINT32 TAF_APS_RcvInterEndCdmaCallReq_CdataEsting_WaitXccOrigCallCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPppActCnf_CdataEsting_WaitXccSoConnected
- 功能描述  : 子状态TAF_APS_CDATA_ESTING_SUBSTA_WAIT_XCC_SO_CONNECTED下收到消
-             息ID_PPP_APS_ACT_CNF的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPppActCnf_CdataEsting_WaitXccSoConnected(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4762,23 +3754,7 @@ VOS_UINT32 TAF_APS_RcvPppActCnf_CdataEsting_WaitXccSoConnected(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiPppActCnfExpired_CdataEsting_WaitXccSoConnected
- 功能描述  : 子状态TAF_APS_CDATA_ESTING_SUBSTA_WAIT_XCC_SO_CONNECTED下收到定时器
-             TI_TAF_APS_CDATA_ESTING_WAIT_PPP_ACT_CNF超时消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiPppActCnfExpired_CdataEsting_WaitXccSoConnected(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4815,22 +3791,7 @@ VOS_UINT32 TAF_APS_RcvTiPppActCnfExpired_CdataEsting_WaitXccSoConnected(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiPppDeactCnfExpired_CdataEsting_WaitXccSoConnected
- 功能描述  : 等待SO Connect消息时候收到PPP去激活定时器超时
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月19日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiPppDeactCnfExpired_CdataEsting_WaitXccSoConnected(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4859,23 +3820,7 @@ VOS_UINT32 TAF_APS_RcvTiPppDeactCnfExpired_CdataEsting_WaitXccSoConnected(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPppActCnf_CdataEsting_WaitRedial
- 功能描述  : 子状态TAF_APS_CDATA_ESTING_SUBSTA_WAIT_INTERVAL_REDIAL下收到消
-             息ID_PPP_APS_ACT_CNF的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPppActCnf_CdataEsting_WaitRedial(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4925,23 +3870,7 @@ VOS_UINT32 TAF_APS_RcvPppActCnf_CdataEsting_WaitRedial(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiPppActCnfExpired_CdataEsting_WaitRedial
- 功能描述  : 子状态TAF_APS_CDATA_ESTING_SUBSTA_WAIT_INTERVAL_REDIAL下收到定时器
-             TI_TAF_APS_CDATA_ESTING_WAIT_PPP_ACT_CNF超时消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiPppActCnfExpired_CdataEsting_WaitRedial(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4991,23 +3920,7 @@ VOS_UINT32 TAF_APS_RcvTiPppActCnfExpired_CdataEsting_WaitRedial(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPppActCnf_CdataEsting_WaitHsmOrigCnf
- 功能描述  : 子状态TAF_APS_CDATA_ESTING_SUBSTA_WAIT_HSM_ORIG_CALL_CNF下收到消
-             息ID_PPP_APS_ACT_CNF的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPppActCnf_CdataEsting_WaitHsmOrigCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -5051,23 +3964,7 @@ VOS_UINT32 TAF_APS_RcvPppActCnf_CdataEsting_WaitHsmOrigCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiPppActCnfExpired_CdataEsting_WaitHsmOrigCnf
- 功能描述  : 子状态TAF_APS_CDATA_ESTING_SUBSTA_WAIT_HSM_ORIG_CALL_CNF下收到定时器
-             TI_TAF_APS_CDATA_ESTING_WAIT_PPP_ACT_CNF超时消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiPppActCnfExpired_CdataEsting_WaitHsmOrigCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -5110,22 +4007,7 @@ VOS_UINT32 TAF_APS_RcvTiPppActCnfExpired_CdataEsting_WaitHsmOrigCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiPppDeactCnfExpired_CdataEsting_WaitHsmOrigCnf
- 功能描述  : 等待TAF_APS_CDATA_ESTING_SUBSTA_WAIT_HSM_ORIG_CALL_CNF时候收到PPP去激活协商定时器超时消息
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月19日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiPppDeactCnfExpired_CdataEsting_WaitHsmOrigCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg

@@ -161,21 +161,7 @@ VOS_VOID DHCPV4S_DebugCmdInit(UINT64 ul64Csi)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  :DHCPV4S_ShowDbgCommand
- 功能描述  : dhcpv4s模块的调试信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010-08-10
-    作    者   : jiahuidong 00142544
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPV4S_ShowDbgCommand( ULONG argc,CHAR *argv[] )
 {
     if ( argc ==0 )
@@ -251,9 +237,7 @@ VOID DHCPV4S_ShowExpired(ULONG argc,CHAR *argv[])
         VOS_StrCpy(acApnName, argv [0]);
     }
 
-    /* z00175135 DTS2012012003193 全文件pclint 2012-02-09 start */
     if (CdbGetApnIndexByApnName((VOS_UINT8 *)acApnName, &usApnIndex) != VOS_OK)
-    /* z00175135 DTS2012012003193 全文件pclint 2012-02-09 end   */
     {
         OutString ( "\r\n CdbGetApnIndexByApnName err !");
         return;
@@ -789,21 +773,7 @@ VOID DHCPS_DebugOut(ULONG ulLevel, CHAR* pszFile, ULONG ulLineNo, CHAR *pszFuncN
 }
 
 
-/*****************************************************************************
- 函 数 名  :Dhcp4vs_Debug_OnOff
- 功能描述  : dhcpv4s模块的调试开关
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010-08-10
-    作    者   : jiahuidong 00142544
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID Dhcp4vs_Debug_OnOff( ULONG argc, CHAR * argv [ ] )
 {
     ULONG ulRet = 0;
@@ -839,19 +809,7 @@ VOID Dhcp4vs_Debug_OnOff( ULONG argc, CHAR * argv [ ] )
 }
 
 
-/*****************************************************************************
- 函 数 名  : DHCPV4S_OutString
- 功能描述  :DHCPV4S模块的调试打印函数
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
- 修改历史       :
-  1.日      期   : 2009年07月04日
-    作      者   : jiahuidong00142544
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 //[EBCC]2847
 VOID DHCPV4S_OutString(CHAR *fmt,...)
 {
@@ -872,24 +830,7 @@ VOID DHCPV4S_OutString(CHAR *fmt,...)
     return;
 }
 
-/*****************************************************************************
- 函 数 名   : DHCPV4S_PrintMemInfo
- 功能描述   : 获取显示dhcpv4s在sc上的内存信息
- 输入参数   : ULONG argc, CHAR* argv[], UCHAR ucParIdx
- 输出参数   : ULONG *pulParValue
- 返 回 值   :
 
- 调用函数   :
- 被调函数   :
-
- 修改历史   :
- 1.日    期 : 2012年1月18日
-   作    者 : guolixian
-   修改内容 : 新增函数
- 2.日    期 : 2012年2月18日
-   作    者 : z00175135
-   修改内容 : 修改函数 DTS2011120504839 全pclint修改 2012-02-18
-*****************************************************************************/
 VOID DHCPV4S_PrintMemInfo(UCHAR *pucStructName,ULONG ulUnitSize, ULONG ulUnitNum, ULONG ulMemSize, UCHAR *pucMemType, UCHAR ucStatic)
 {
     ULONG ulCpuId = 0;
@@ -913,21 +854,7 @@ VOID DHCPV4S_PrintMemInfo(UCHAR *pucStructName,ULONG ulUnitSize, ULONG ulUnitNum
 }
 
 
-/*****************************************************************************
- 函 数 名   : DHCPC_DebugShowMemInfo
- 功能描述   : 获取显示dhcpc的内存信息
- 输入参数   : ULONG argc, CHAR* argv[], UCHAR ucParIdx
- 输出参数   : ULONG *pulParValue
- 返 回 值   :
 
- 调用函数   :
- 被调函数   :
-
- 修改历史   :
- 1.日    期 : 2012年1月18日
-   作    者 : guolixian
-   修改内容 : 新增函数
-*****************************************************************************/
 VOID DHCPV4S_DebugShowMemInfo(ULONG argc, CHAR* argv[])
 {
     if( 0 == DHCPS_SELF_CSI )
@@ -940,7 +867,6 @@ VOID DHCPV4S_DebugShowMemInfo(ULONG argc, CHAR* argv[])
 
     DHCPV4S_OutString("\r\n    StructName,            UnitSize,   UnitNum,    ulMemSize,  MemType,    Static, Mid,      Sub-System, CPU, vCPU\r\n");
 
-    /* z00175135 DTS2012012003193 全文件pclint 2012-02-09 start */
     DHCPV4S_PrintMemInfo(((UCHAR *)"g_ulDhcpStatisc"),(sizeof(ULONG) * DHCPS_MAX_STATISC),1,
         (sizeof(ULONG) * DHCPS_MAX_STATISC), ((UCHAR *)"SC"),('N'));
 
@@ -957,25 +883,11 @@ VOID DHCPV4S_DebugShowMemInfo(ULONG argc, CHAR* argv[])
 
     DHCPV4S_PrintMemInfo(((UCHAR *)"g_aulDHCPSDbgCnt"),(sizeof(ULONG)),(DHCPS_MAX_FAILURE_COUNTER),
         (sizeof(ULONG)*DHCPS_MAX_FAILURE_COUNTER), ((UCHAR *)"SC"),('Y'));
-    /* z00175135 DTS2012012003193 全文件pclint 2012-02-09 end   */
     DHCPV4S_OutString("\r\n *************************************The DHCPV4S memory info END*********************************************************\r\n ");
     DHCPV4S_OutString("\r\n ---------------------------------------------------------------------------------\r\n");
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPS_RegLogCnt
- 功能描述  : 注册计数打印日志
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年1月17日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPS_RegLogCnt(VOID)
 {
     ULONG ulResult = VOS_OK;

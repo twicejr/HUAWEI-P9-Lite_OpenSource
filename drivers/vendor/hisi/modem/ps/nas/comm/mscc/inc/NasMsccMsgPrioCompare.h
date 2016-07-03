@@ -265,12 +265,10 @@ NAS_MSCC_MSG_COMPARE_PRIO_RSLT_ENUM_UINT8 NAS_MSCC_CompareCdmaMoCallRedialSysAcq
     struct MsgCB                       *pstMsg
 );
 
-/* Added by w00176964 for CL数传切换优化, 2015-12-11, begin */
 NAS_MSCC_MSG_COMPARE_PRIO_RSLT_ENUM_UINT8 NAS_MSCC_CompareCdmaMoCallRedialSysAcqNtfPrioWithSysCfg(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 );
-/* Added by w00176964 for CL数传切换优化, 2015-12-11, end */
 
 
 #if (VOS_OS_VER == VOS_WIN32)

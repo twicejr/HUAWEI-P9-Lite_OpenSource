@@ -1,0 +1,131 @@
+/*
+ * Hisilicon Ltd. hi3xxxASIC SoC
+ *
+ * Copyright (C) 2013 Hisilicon Technologies CO., Ltd.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * publishhed by the Free Software Foundation.
+ */
+/ {
+	aliases {
+		serial0 = &serial0;
+		serial1 = &serial1;
+		serial2 = &serial2;
+		serial3 = &serial3;
+		serial4 = &serial4;
+		serial5 = &serial5;
+		serial6 = &serial6;
+           };
+
+	   amba {
+		serial0: uart@fdf02000 {
+			compatible = "arm,pl011", "arm,primecell";
+			reg = <0x0 0xfdf02000 0x0 0x1000>;
+			interrupts = <0 74 4>;
+			dma-names = "rx", "tx";
+			dmas =  <&dma0 0	/* read(rx) request */
+				&dma0 1>;	/* write(tx) request */
+			fifo-deep-size = <64>;
+			clocks = <&clk_factor_uart0 &pclk>;
+			clock-names = "clk_uart0_fac", "apb_pclk";
+			reset-enable-flag = <0>;
+			reset-reg-base = <0x0 0xFFF35000 0x0 0x1000>; /* PERI_CRG */
+			reset-controller-reg = <0x78 0x7c 0x80 10>;
+			status = "disabled";
+		};
+
+		serial1: uart@fdf00000 {
+			compatible = "arm,pl011", "arm,primecell";
+			reg = <0x0 0xfdf00000 0x0 0x1000>;
+			interrupts = <0 75 4>;
+			dma-names = "rx", "tx";
+			dmas =  <&dma0 2	/* read(rx) request */
+				&dma0 3>;	/* write(tx) request */
+			fifo-deep-size = <64>;
+			clocks = <&clk_gate_uart1 &clk_gate_uart1>;
+			clock-names = "clk_uart1", "apb_pclk";
+			reset-enable-flag = <0>;
+			reset-reg-base = <0x0 0xFFF35000 0x0 0x1000>; /* PERI_CRG */
+			reset-controller-reg = <0x78 0x7c 0x80 11>;
+			status = "disabled";
+		};
+
+		serial2: uart@fdf03000 {
+			compatible = "arm,pl011", "arm,primecell";
+			reg = <0x0 0xfdf03000 0x0 0x1000>;
+			interrupts = <0 76 4>;
+			dma-names = "rx", "tx";
+			dmas =	<&dma0 4	  /* read(rx) request */
+				&dma0 5>;	  /* write(tx) request */
+			fifo-deep-size = <64>;
+			clocks = <&clk_gate_uart2 &pclk>;
+			clock-names = "clk_uart2", "apb_pclk";
+			reset-enable-flag = <0>;
+			reset-reg-base = <0x0 0xFFF35000 0x0 0x1000>; /* PERI_CRG */
+			reset-controller-reg = <0x78 0x7c 0x80 12>;
+			status = "disabled";
+		};
+
+		serial3: uart@ffd74000 {
+			compatible = "arm,pl011", "arm,primecell";
+			reg = <0x0 0xffd74000 0x0 0x1000>;
+			interrupts = <0 114 4>;
+			dma-names = "rx", "tx";
+			dmas =  <&iomcu_dma 8		/* read(rx) request */
+				&iomcu_dma 9>;		/* write(tx) request */
+			fifo-deep-size = <64>;
+			clocks = <&clk_gate_uart3 &clk_gate_uart3>;
+			clock-names = "clk_uart3", "apb_pclk";
+			reset-enable-flag = <0>;
+			reset-reg-base = <0x0 0xFFD7E000 0x0 0x1000>; /* IOMCU_CONFIG */
+			reset-controller-reg = <0x20 0x24 0x28 11>;
+			status = "disabled";
+	        };
+
+		serial4: uart@fdf01000 {
+			compatible = "arm,pl011", "arm,primecell";
+			reg = <0x0 0xfdf01000 0x0 0x1000>;
+			interrupts = <0 77 4>;
+			dma-names = "rx", "tx";
+			dmas =	<&dma0 6		/* read(rx) request */
+				&dma0 7>;		/* write(tx) request */
+			fifo-deep-size = <64>;
+			clocks = <&clk_gate_uart4 &pclk_gate_uart4>;
+			clock-names = "clk_uart4", "apb_pclk";
+			reset-enable-flag = <0>;
+			reset-reg-base = <0x0 0xFFF35000 0x0 0x1000>; /* PERI_CRG */
+			reset-controller-reg = <0x78 0x7c 0x80 14>;
+			status = "disabled";
+		};
+
+		serial5: uart@fdf05000 {
+			compatible = "arm,pl011", "arm,primecell";
+			reg = <0x0 0xfdf05000 0x0 0x1000>;
+			interrupts = <0 78 4>;
+			dma-names = "rx", "tx";
+			dmas =	<&dma0 8	   	/* read(rx) request */
+				&dma0 9>;	   	/* write(tx) request */
+			fifo-deep-size = <64>;
+			clocks = <&clk_gate_uart5 &clk_gate_uart5>;
+			clock-names = "clk_uart5", "apb_pclk";
+			reset-enable-flag = <0>;
+			reset-reg-base = <0x0 0xFFF35000 0x0 0x1000>; /* PERI_CRG */
+			reset-controller-reg = <0x78 0x7c 0x80 15>;
+			status = "disabled";
+		};
+
+		serial6: uart@fff32000 {
+			compatible = "arm,pl011", "arm,primecell";
+			reg = <0x0 0xfff32000 0x0 0x1000>;
+			interrupts = <0 79 4>;
+			fifo-deep-size = <64>;
+			clocks = <&clk_uart6 &pclk>;
+			clock-names = "uart6clk", "apb_pclk";
+			reset-enable-flag = <0>;
+			reset-reg-base = <0x0 0xFFF0A000 0x0 0x1000>; /* SCTRL */
+			reset-controller-reg = <0x504 0x508 0x50c 9>;
+			status = "disabled";
+		};
+	};
+};

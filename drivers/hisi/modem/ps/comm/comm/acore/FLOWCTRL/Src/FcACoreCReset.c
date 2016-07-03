@@ -34,21 +34,7 @@ VOS_SEM         g_ulFcACoreCResetDoneSem;    /* FcACore完成回调事务信号量 */
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : FC_ACORE_CResetSendNotify
- 功能描述  : 底软C核复位过程模块通知FcACore进行复位处理或者发送复位成功的通知
- 输入参数  : FC_MSG_TYPE_ENUM_UINT16     usMsgName      消息名称
- 输出参数  : 无
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月22日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  FC_ACORE_CResetSendNotify(FC_MSG_TYPE_ENUM_UINT16     usMsgName)
 {
     FC_ACORE_CRESET_IND_STRU    *pstMsg;
@@ -76,22 +62,7 @@ VOS_UINT32  FC_ACORE_CResetSendNotify(FC_MSG_TYPE_ENUM_UINT16     usMsgName)
 }
 
 
-/*****************************************************************************
- 函 数 名  : FC_ACORE_CResetCallback
- 功能描述  : FcACore需要注册到底软C核复位接口中的回调函数
- 输入参数  : DRV_RESET_CALLCBFUN_MOMENT enParam 指示时复位处理前还是复位成功后
-             int userdata                       用户自定义数据
- 输出参数  : 无
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月22日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_INT FC_ACORE_CResetCallback(DRV_RESET_CB_MOMENT_E enParam, VOS_INT userdata)
 {
     VOS_UINT32                   ulResult;
@@ -123,21 +94,7 @@ VOS_INT FC_ACORE_CResetCallback(DRV_RESET_CB_MOMENT_E enParam, VOS_INT userdata)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : FC_ACORE_CResetProc
- 功能描述  : FcACore收到底软C核复位过程处理模块发来的复位及复位成功的通知后的处理函数
- 输入参数  : FC_ACORE_CRESET_MOMENT_ENUM_UINT8 enCResetMoment 指示时复位处理前还是复位成功后
- 输出参数  : 无
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月22日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 FC_ACORE_CResetProc(FC_ACORE_CRESET_MOMENT_ENUM_UINT8 enCResetMoment)
 {
     VOS_UINT32                          ulFcPointLoop;
@@ -200,21 +157,7 @@ VOS_UINT32 FC_ACORE_CResetProc(FC_ACORE_CRESET_MOMENT_ENUM_UINT8 enCResetMoment)
 }
 
 
-/*****************************************************************************
- 函 数 名  : FC_ACORE_CResetRcvStartRsp
- 功能描述  : 收到ID_FC_ACORE_CRESET_START_RSP消息后的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月22日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID FC_ACORE_CResetRcvStartRsp(VOS_VOID)
 {
     VOS_SmV(g_ulFcACoreCResetDoneSem);

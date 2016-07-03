@@ -3083,7 +3083,7 @@ HI_S32 VENC_DRV_EflInitEncParaCfgH264_LowPwr0( VeduEfl_EncPara_S  *pEncPara)
     pEncParaCfg->lambda21 = 0x6d;
     pEncParaCfg->lambda22 = 0x89;
     pEncParaCfg->lambda23 = 0xad;
-    pEncParaCfg->lambda24 = 0xda;//0xad;改善效果 l00214825
+    pEncParaCfg->lambda24 = 0xda;
     pEncParaCfg->lambda25 = 0x112;
     pEncParaCfg->lambda26 = 0x159;
     pEncParaCfg->lambda27 = 0x1b3;
@@ -3867,7 +3867,7 @@ HI_S32 VENC_DRV_EflInitEncParaCfgH264_LowPwr1( VeduEfl_EncPara_S  *pEncPara)
     pEncParaCfg->lambda21 = 0x6d;
     pEncParaCfg->lambda22 = 0x89;
     pEncParaCfg->lambda23 = 0xad;
-    pEncParaCfg->lambda24 = 0xda;//0xad;改善效果 l00214825
+    pEncParaCfg->lambda24 = 0xda;
     pEncParaCfg->lambda25 = 0x112;
     pEncParaCfg->lambda26 = 0x159;
     pEncParaCfg->lambda27 = 0x1b3;
@@ -4229,7 +4229,6 @@ HI_VOID VENC_DRV_EflWakeUpThread( HI_VOID)
     return ;
 }
 
-//按照优先级排序，优先级高的在前面  l00214825
 HI_VOID VENC_DRV_EflSortPriority(HI_VOID)
 {
    HI_U32 i = 0;
@@ -4254,7 +4253,7 @@ HI_VOID VENC_DRV_EflSortPriority(HI_VOID)
 HI_S32 VENC_DRV_EflSortPriority_2(HI_S8 priority)
 {
    HI_U32 i                = 0;
-   HI_U32 cnt              = 0;//记录共找到多少个优先级为priority的通道 l00214825
+   HI_U32 cnt              = 0;
    HI_U32 id               = MAX_VEDU_CHN - 1;
    HI_BOOL bFind           = HI_FALSE;
    HI_U32 chnID_temp       = 0;
@@ -4552,7 +4551,6 @@ HI_S32 VENC_DRV_EflStartOneFrameVenc( HI_HANDLE EncHandle, VeduEfl_EncIn_S *pEnc
         pEncPara->PTS1 = pEncIn->PTS1;
 
         pEncPara->RcnIdx = !pEncPara->RcnIdx;
-		// add by l00214825 MV信息，每帧进行交换
 		SWAP(pEncPara->VEDU_NBI_MVLD_ADDR,pEncPara->VEDU_NBI_MVST_ADDR);
 		SWAP(pEncPara->VEDU_PMELD_ADDR,pEncPara->VEDU_PMEST_ADDR);
 
@@ -4616,7 +4614,6 @@ HI_S32 VENC_DRV_EflStartOneFrameVenc( HI_HANDLE EncHandle, VeduEfl_EncIn_S *pEnc
         pEncPara->PTS1 = pEncIn->PTS1;
 
         pEncPara->RcnIdx = !pEncPara->RcnIdx;
-		// add by l00214825 MV信息，每帧进行交换
 		SWAP(pEncPara->VEDU_NBI_MVLD_ADDR,pEncPara->VEDU_NBI_MVST_ADDR);
 		SWAP(pEncPara->VEDU_PMELD_ADDR,pEncPara->VEDU_PMEST_ADDR);
 
@@ -5850,7 +5847,6 @@ HI_S32 VENC_DRV_EflCreateVenc( HI_HANDLE *pEncHandle, VeduEfl_EncCfg_S *pEncCfg,
     /* other */
     pEncPara->NumRefIndex = 0;
 
-    //pEncPara->iSliceSplitNum = 1; //先设置成划分两个slice   l00214825
     pEncPara->iCurrentStreamCnt = 0;
 #ifdef OUTPUT_LOWDELAY_EN
 	pEncPara->iLastEncodedStreamCnt = 0;
@@ -7199,7 +7195,7 @@ static HI_S32 VENC_DRV_EflQueryChn_X(HI_U32 u32ChnID, VeduEfl_EncIn_S *pEncIn ) 
 
 #ifdef HARDWARE_SPLIT_SPS_PPS_EN
     //if ( pEncPara->vcpi_protocol == VEDU_H265 && pEncPara->)
-    if (pEncPara->bFirstNal2Send || pEncPara->bRequestIFrame) //这里是否需要加锁 l00214825
+    if (pEncPara->bFirstNal2Send || pEncPara->bRequestIFrame)
     {
     iNeedStreamCnt++;
     }
@@ -7230,7 +7226,7 @@ static HI_S32 VENC_DRV_EflQueryChn_X(HI_U32 u32ChnID, VeduEfl_EncIn_S *pEncIn ) 
     HI_DBG_VENC("pEncPara->stImage_OMX.picHeight:%d\n",pEncPara->stImage_OMX.picHeight);
 
 
-#if 0 //动态分辨率暂时不支持 l00214825 0721
+#if 0
 	/* configured the resolving power dynamically */
     if ((pEncPara->stImage_OMX.picWidth != pEncPara->vcpi_imgwidth_pix)||(pEncPara->stImage_OMX.picHeight != pEncPara->vcpi_imgheight_pix))
     {
@@ -7298,7 +7294,6 @@ static HI_S32 VENC_DRV_EflQueryChn_X(HI_U32 u32ChnID, VeduEfl_EncIn_S *pEncIn ) 
         HI_ERR_VENC("stImg cfg erro!!\n");
         pEncPara->stStat.ErrCfgSkip++;
 
-        //begin---本帧错误，将本帧empty buffer done  l00214825 2015/2/27
         s32Ret = VENC_DRV_EflPutMsg_OMX(pEncPara->MsgQueue_OMX, VENC_MSG_RESP_INPUT_DONE, HI_SUCCESS , &pEncPara->stImage_OMX);
         pEncPara->stStat.MsgQueueNum++;
 
@@ -7493,7 +7488,6 @@ static HI_HANDLE VENC_DRV_EflQueryChn( VeduEfl_EncIn_S *pEncIn )
             pEncPara->stSrcInfo.handle = VeduChnCtx[s32StartChnID].EncHandle;
         }
 
-        // 获取一帧编码原始帧存 l00214825
         if (HI_SUCCESS != VENC_DRV_EflQueryChn_X(u32ChnID, pEncIn))
         {
             //HI_DBG_VENC("no YUV\n");
@@ -7506,7 +7500,6 @@ static HI_HANDLE VENC_DRV_EflQueryChn( VeduEfl_EncIn_S *pEncIn )
 
 	if (MAX_VEDU_CHN != u32StartQueryNo)
 	{
-	   //相同优先级之间再排序，防止同一优先级在前面的总先处理 l00214825
 		if( HI_SUCCESS != VENC_DRV_EflSortPriority_2(PriorityTab[1][u32StartQueryNo]))
 		HI_WARN_VENC("%s, can't fine the channel match with priority(%d)\n", __func__, PriorityTab[1][u32StartQueryNo]);
 	}
@@ -7873,7 +7866,6 @@ static HI_VOID Venc_ISR( HI_VOID )
 		{
 		    /* next frame to encode */
 	        //VENC_DRV_OsalLock( VeduIpCtx.pChnLock, &flag);
-	        //新的一次编码，先获取通道和yuv l00214825
 			EncHandle = VENC_DRV_EflQueryChn( &EncIn );
 
             HI_DBG_VENC("Save YUV,EncHandle:0x%x\n",EncHandle);
@@ -8085,7 +8077,6 @@ static HI_VOID VENC_DRV_EflQueryMode( HI_VOID )
 
     while (!VeduIpCtx.StopTask)
     {
-        // 没有获得通道，不进行以下判断 l00214825
         if (VeduIpCtx.CurrHandle == 0)
         {
             msleep(10);
@@ -8125,7 +8116,6 @@ HI_S32 VENC_DRV_EflOpenVedu( HI_VOID )
     HI_U32 i = 0;
 	HI_INFO_VENC("enter %s()\n", __func__);
 
-    //l00214825 0909  全局变量，开始置为0 否则第2次open会有问题
     memset((HI_VOID *)&VeduIpCtx, 0, sizeof(VeduIpCtx));
 
     /* creat channel control mutex */
@@ -8144,7 +8134,6 @@ HI_S32 VENC_DRV_EflOpenVedu( HI_VOID )
 	}
 #endif
     /* map reg_base_addr to virtual address */
-	// 注意寄存器基地址 l00214825
     VeduIpCtx.pRegBase = (HI_U32 *)ioremap(gVencRegBaseAddr, gVencRegRange);
 	if (HI_NULL == VeduIpCtx.pRegBase)
 	{

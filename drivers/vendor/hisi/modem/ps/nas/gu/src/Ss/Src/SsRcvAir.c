@@ -34,23 +34,7 @@
 
 /*lint -save -e958 */
 
-/***********************************************************************
-*  MODULE   : Ss_RcvRegister
-*  FUNCTION : 收到网侧来的REGISTER消息的处理
-*  INPUT    : VOS_VOID      *pMsg       接收到空口消息的指针
-*             VOS_UINT32     ulMsgLen    消息的长度
-*             VOS_UINT8     ucTi        对应的TI
-*  OUTPUT   : VOS_VOID
-*  RETURN   : VOS_VOID
-*  NOTE     : 无
-*  HISTORY  :
-*     1.  张志勇 04-03-08  新版作成
-*     2.  丁  庆 06-12-26  问题单A32D07990
 
-  3.日    期   : 2014年6月24日
-    作    者   : w00167002
-    修改内容   : DSDS III项目
-************************************************************************/
 
 VOS_VOID Ss_RcvRegister(
                     VOS_VOID *pMsg,
@@ -133,26 +117,7 @@ VOS_VOID Ss_RcvFacility(
     }
 }
 
-/***********************************************************************
-*  MODULE   : Ss_RcvRelCmpl
-*  FUNCTION : 收到网侧来的RELEASE COMPLETE消息的处理
-*  INPUT    : VOS_VOID      *pMsg       接收到空口消息的指针
-*             VOS_UINT32     ulMsgLen    消息的长度
-*             VOS_UINT8     ucTi        对应的TI
-*  OUTPUT   : VOS_VOID
-*  RETURN   : VOS_VOID
-*  NOTE     : 无
-*  HISTORY  :
-*     1.  张志勇 04-03-08  新版作成
-*     2.  丁  庆 07-08-07  问题单A32D12052
-      3.日    期   : 2014年6月24日
-         作    者   : z00161729
-         修改内容   : DSDS III新增
-      4.日    期   : 2014年9月23日
-        作    者   : b00269685
-        修改内容   : 先clear，否则需要重发的话会TI不可用
 
-************************************************************************/
 
 VOS_VOID Ss_RcvRelCmpl(
                    VOS_VOID *pMsg,

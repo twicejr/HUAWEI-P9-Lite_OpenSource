@@ -22,5 +22,6 @@ struct dfu_status {
 #define DFUIOCDOWNLOAD(len)		_IOC(_IOC_WRITE|_IOC_READ, 'D', 0x2, len)
 #define DFUIOCGETSTATUS			_IOR('D', 0x3, struct dfu_status)
 #define DFUIOCABORT			_IO('D', 0x4)
+#define DFUIOCFINISHDNLOAD		_IO('D', 0x5)
 
 #endif /* _UAPI_DFU_H */

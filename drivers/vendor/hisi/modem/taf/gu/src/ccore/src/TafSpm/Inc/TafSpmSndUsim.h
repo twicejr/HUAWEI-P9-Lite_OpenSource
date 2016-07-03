@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafSpmSndUsim.h
-  版 本 号   : 初稿
-  作    者   : w00176964
-  生成日期   : 2013年5月22日
-  最近修改   :
-  功能描述   : TafSpmSndUsim.c的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年5月22日
-    作    者   : w00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 #ifndef _TAF_SPM_SND_USIM_H_
 #define _TAF_SPM_SND_USIM_H_
 
@@ -128,12 +111,10 @@ VOS_UINT32 TAF_SPM_BuildUssdStringInfo(
     TAF_SS_USSD_STRING_STRU            *pstDstUssd
 );
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-14, begin */
 VOS_UINT32 TAF_SPM_SendPbCallFdnCheckReq(
     VOS_UINT16                          usClientId,
     struct MsgCB                       *pstMsg
 );
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-14, end */
 
 VOS_UINT32  TAF_SPM_SendUsimCallEnvelopeReq_Call(
     VOS_UINT16                          usClientId,

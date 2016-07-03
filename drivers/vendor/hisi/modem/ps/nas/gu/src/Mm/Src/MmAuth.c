@@ -1,29 +1,4 @@
-/************************************************************************
-  Copyright    : 2005-2007, Huawei Tech. Co., Ltd.
-  File name    : MmAuth.c
-  Author       : s46746
-  Version      : V200R001
-  Date         : 2005-08-16
-  Description  : 该C文件给出了MM模块AuthProc子模块的实现
-  Function List:
-        1) MM_AuthProc
-        2) MM_HandleGsmAuthenFail
-        3) MM_RcvGsmAuthenticationCnf
-        4) MM_RcvSimAuthCnf
-        7) MM_SimAuth
-        8) MM_SndGsmAuthenReq
-        9) MM_UsimGsmAuth
 
-  History      :
-  1. Date:2005-04-19
-     Author: ---
-     Modification:Create
-  2. s46746 2006-02-09 根据问题单A32D03324修改
-  3. s46746 2006-03-07 根据问题单A32D02191修改
-  4.日    期   : 2006年12月5日
-    作    者   : s46746
-    修改内容   : 问题单号:A32D07740
-************************************************************************/
 
 /*****************************************************************************
    1 头文件包含
@@ -53,36 +28,7 @@
 /*****************************************************************************
    3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- Prototype      : MM_AuthProc
- Description    : 新增鉴权过程入口，对 SIM 卡和 USIM GSM 鉴权进行处理
- Input          :
- Output         :
- Return Value   : 无
- Calls          :
 
- Called By      :
- History        : ---
- 1.Date        : 2005-08-16
-   Author      : s46746
-   Modification: Created function
- 2.日    期   : 2006年12月5日
-   作    者   : s46746
-   修改内容   : 问题单号:A32D07740
- 3.日    期   : 2010年11月19日
-   作    者   : s46746
-   修改内容   : 问题单号:DTS2010111604811,鉴权过程中接收到相同鉴权消息处理
- 4.日    期   : 2011年7月25日
-   作    者   : h44270
-   修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-
- 5.日    期   : 2014年10月20日
-   作    者   : w00167002
-   修改内容   : DTS2014102000868:在鉴权成功后才更新CKSN
-  6.日    期   : 2016年1月20日
-    作    者   : c00318887
-    修改内容   : DTS2015123110917: usim卡在GSM下做2G鉴权后，csfb到3G下鉴权错误
-*****************************************************************************/
 VOS_VOID MM_GsmAuthProc()
 {
 
@@ -202,22 +148,7 @@ VOS_VOID MM_UsimGsmAuth()
     return;
 }
 
-/*****************************************************************************
- Prototype      : MM_SimAuth
- Description    : SIM卡的对鉴权请求消息的处理
- Input          :
- Output         :
- Return Value   : 无
- Calls          :
- Called By      : AuthProc
- History        : ---
-  1.Date        : 2005-08-16
-    Author      : s46746
-    Modification: Created function
- 2.日    期   : 2013年10月31日
-   作    者   : l65478
-   修改内容   : DTS2013103002259:SIM卡W下收到鉴权MM返回失败
-*****************************************************************************/
+
 VOS_VOID MM_SimAuth()
 {
     /* 24.008 If a SIM is inserted in the MS, the MS shall ignore
@@ -230,36 +161,7 @@ VOS_VOID MM_SimAuth()
     return;
 }
 
-/*****************************************************************************
- Prototype      : MM_SndGsmAuthenReq
- Description    : 向网络侧发送 GSM 鉴权请求
- Input          :
- Output         :
- Return Value   : 无
- Calls          :
- Called By      :
- History        : ---
-  1.Date        : 2005-09-06
-    Author      : s46746
-    Modification: Created function
-  2.日    期  : 2006年11月25日
-    作    者  : luojian id:60022475
-    修改内容  : 问题单号:A32D06583
-  3.日    期  : 2012年12月26日
-    作    者  : 张鹏 id:00214637
-    修改内容  : USIM对外接口函数变更的处理 ，Client ID 到 PID的转换处理。
-  4.日    期  : 2013年6月4日
-    作    者  : w00242748
-    修改内容  : USIMM_AuthReq修改为NAS_USIMMAPI_AuthReq，后者会根据当前模式自动
-                适配
-  5.日    期  : 2013年11月30日
-    作    者  : l65478
-    修改内容  : DTS2013121919477,连续收到网络的两条鉴权消息,网络把第一条消息的响应作为第二条请求的响应,导致鉴权失败
 
-  6.日    期  : 2014年1月3日
-    作    者  : s00261364
-    修改内容  : mm模块Converity告警消除
-*****************************************************************************/
 VOS_VOID MM_SndGsmAuthenReq()
 {
     VOS_UINT8        ucTempOpId = 0;
@@ -339,32 +241,7 @@ VOS_VOID MM_RcvSimAuthCnf(VOS_VOID* pMsg)
     return;
 }
 
-/*****************************************************************************
- Prototype      : MM_RcvGsmAuthenticationCnf
- Description    : 接收到 USIM/SIM 卡对 GSM 类型鉴权请求的返回消息
- Input          : pMsg 指向接收到 USIM/SIM 卡的鉴权结果消息
- Output         :
- Return Value   : MM_TRUE  正确的鉴权回应
-                  MM_FALSE 错误的鉴权回应
- Calls          :
- Called By      :
- History        : ---
- 1.Date        : 2005-09-06
-   Author      : s46746
-   Modification: Created function
- 2.日    期   : 2011年7月27日
-   作    者   : h44270
-   修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
- 3.日    期  : 2013年7月22日
-   作    者  : y00245242
-   修改内容  : VoIP开发，适配新的USIM接口
- 4.日    期   : 2014年4月175日
-   作    者   : s00246516
-   修改内容   : DTS2014041700472:使用2G SIM卡，PAD形态上出现鉴权被网络拒绝
- 5.日    期   : 2014年10月20日
-   作    者   : w00167002
-   修改内容   : DTS2014102000868:在鉴权成功后才更新CKSN
-*****************************************************************************/
+
 VOS_UINT8 MM_RcvGsmAuthenticationCnf(VOS_VOID* pMsg)
 {
     /* 清除鉴权前置的全局标志 ucRcvAgentFlg */
@@ -383,9 +260,7 @@ VOS_UINT8 MM_RcvGsmAuthenticationCnf(VOS_VOID* pMsg)
     }
 
     /* 将 USIM/SIM 的鉴权消息写入全局变量 g_AgentUsimAuthCnf 中 */
-    /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-24, begin */
     Mm_Com_UsimAuthenticationCnfChgFormat((USIMM_AUTHENTICATION_CNF_STRU *)pMsg);
-    /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-24, end */
 
     /* 处理 g_AgentUsimAuthCnf 中的鉴权结果 */
     if (AGENT_AUTH_RST_SUCCESS == g_AgentUsimAuthCnf.ucCheckRst) /* 鉴权成功 */

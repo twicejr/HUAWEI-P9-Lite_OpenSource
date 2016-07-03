@@ -178,7 +178,6 @@ extern "C"
     pstGroupInfo->ulRuleNum = pstGroup->ulRuleNum;\
 }
 
-/* Modify for DTS2011111806790, by zhaoyue00171897, at 2011-11-18. 修改原因: 掩码长度为128时会导致内存越界 */
 #define ACL6_SUBADDR_BUILD(pAddr,ulMaskLen,pSubAddr)\
 {\
     CHAR szMask[ACL6_IPV6_ADDR_LEN];\

@@ -1,24 +1,4 @@
-/************************************************************************
-*                                                                      *
-*                             ipcp.c                                   *
-*                                                                      *
-*  Project Code:       VRP3.0                                          *
-*  Create Date:        2000/04/04                                      *
-*  Author:             Deng Yi Ou                                      *
-*  Modify Date:                                                        *
-*  Document:                                                           *
-*  Function:           PPP的IPCP协议模块                               *
-*  Others:                                                             *
-*----------------------------------------------------------------------*
-*                                                                      *
-*  Copyright 2000-2002 VRP3.0 Team Beijing Institute HuaWei Tech, Inc. *
-*                      ALL RIGHTS RESERVED                             *
-*                                                                      *
-*----------------------------------------------------------------------*
-*                                                                      *
-*   这个文件定义了IPCP协议模块的全部接口函数和内部处理函数             *
-*                                                                      *
-************************************************************************/
+
 
 /*****************************************************************************
   1 头文件包含
@@ -77,22 +57,7 @@ PPPFSMCALLBACK_S g_stIpcpCallbacks =
 *****************************************************************************/
 /*lint -save -e958 */
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：IPCP接收外部事件.事件包括：Up、Down、Open、Close           *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-*                ulCmd:命令字,可以为如下值:                                 *
-*                      PPPFSMLOWERDOWN:下层Down                             *
-*                      PPPFSMLOWERUP:下层Up                                 *
-*                      PPPFSMOPEN:Open事件                                  *
-*                      PPPFSMCLOSE:Down事件                                 *
-*                pPara:事件的参数,为NULL                                    *
-* OUTPUT       ：                                                           *
-* RETURN       ：NULL                                                       *
-* CALLED BY    ：PPP_Core_ReceiveEventFromShell、PPP_Core_RejectProtocol    *
-****************************************************************************/
+
 VOID PPP_IPCP_ReceiveEventFromCore (VOID *pstIpcpInfo, VOS_UINT32 ulCmd, char *pPara)
 {
     PPPFSM_S *pstFsm;
@@ -120,19 +85,7 @@ VOID PPP_IPCP_ReceiveEventFromCore (VOID *pstIpcpInfo, VOS_UINT32 ulCmd, char *p
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：IPCP接收报文                                               *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstIpcpInfo:IPCP控制块                                     *
-*                pHead:存放报文内存的头指针,应负责释放这段内存              *
-*                pPacket:报文头位置                                         *
-*                ulLen:报文长度                                             *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_Core_ReceivePacketFromShell                            *
-****************************************************************************/
+
 VOID PPP_IPCP_ReceivePacket (VOID *pstIpcpInfo, UCHAR* pHead, UCHAR* pPacket, VOS_UINT32 ulLen)
 {
     PPPFSM_S                           *pstFsm;
@@ -149,21 +102,12 @@ VOID PPP_IPCP_ReceivePacket (VOID *pstIpcpInfo, UCHAR* pHead, UCHAR* pPacket, VO
     pstFsm = &(((PPPIPCPINFO_S*)pstIpcpInfo)->stFsm);
     pstPppInfo  = (PPPINFO_S*)PPPC_MEMBER2PARENT(PPPINFO_S, pstIpcpInfo);
     /*lint +e413*/
-    PPP_FSM_ReceivePacket(pstFsm, pHead, pPacket, ulLen, pstPppInfo->ulRPIndex);/* Modified by liutao 38563 at 2004-09-22 V800R002 for PPP压缩移植 */
+    PPP_FSM_ReceivePacket(pstFsm, pHead, pPacket, ulLen, pstPppInfo->ulRPIndex);
 
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：确定IPCP需要协商那些参数,在IPCP初始化时进行                  *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm    :状态机                                          *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：状态机中执行tls动作的宏PPP_FSM_tls                         *
-****************************************************************************/
+
 VOID PPP_IPCP_resetci(PPPFSM_S *pstFsm)
 {
     PPPIPCPINFO_S *pstInfo;
@@ -200,8 +144,8 @@ VOID PPP_IPCP_resetci(PPPFSM_S *pstFsm)
     pstWantOptions->req_dnsaddr1     = 1;
     pstWantOptions->neg_nbnsaddr1    = 0;
     pstWantOptions->req_nbnsaddr1    = 0;
-    pstWantOptions->accept_dnsaddr0  = 1;/* modified by chenmin00265046 接受对方的DNS,会影响到收到IPCP NAK后再次发送ConfigReq选项 */
-    pstWantOptions->accept_dnsaddr1  = 1;/* modified by chenmin00265046 接受对方的DNS,会影响到收到IPCP NAK后再次发送ConfigReq选项*/
+    pstWantOptions->accept_dnsaddr0  = 1;
+    pstWantOptions->accept_dnsaddr1  = 1;
     pstWantOptions->accept_nbnsaddr0 = 0;
     pstWantOptions->accept_nbnsaddr1 = 0;
 
@@ -214,8 +158,8 @@ VOID PPP_IPCP_resetci(PPPFSM_S *pstFsm)
     pstAllowOptions->req_dnsaddr1     = 1;
     pstAllowOptions->neg_nbnsaddr1    = 0;
     pstAllowOptions->req_nbnsaddr1    = 0;
-    pstAllowOptions->accept_dnsaddr0  = 0;  /* modified by gxf 20030414 不接受对方的DNS */
-    pstAllowOptions->accept_dnsaddr1  = 0;  /* modified by gxf 20030414 不接受对方的DNS */
+    pstAllowOptions->accept_dnsaddr0  = 0;
+    pstAllowOptions->accept_dnsaddr1  = 0;
     pstAllowOptions->accept_nbnsaddr0 = 0;
     pstAllowOptions->accept_nbnsaddr1 = 0;
 
@@ -259,16 +203,7 @@ VOID PPP_IPCP_resetci(PPPFSM_S *pstFsm)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：计算要发送的Config Request报文数据部分长度                 *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm: 状态机                                             *
-* OUTPUT       ：                                                           *
-* RETURN       ：Config Request报文长度                                     *
-* CALLED BY    ：PPP_FSM_SendConfigReq                                      *
-****************************************************************************/
+
 VOS_UINT16 PPP_IPCP_cilen(PPPFSM_S *pstFsm)
 {
     PPP_IPCP_OPTION_S *pstGotOptions;
@@ -288,18 +223,7 @@ VOS_UINT16 PPP_IPCP_cilen(PPPFSM_S *pstFsm)
     );
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：组织一个Config Request报文内容                             *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm: 状态机                                             *
-*                pPacket:报文头位置                                         *
-* OUTPUT       ：                                                           *
-*                pPacket:组装好的报文                                       *
-* RETURN       ：                                                           *
-* CALLED BY    ：PPP_FSM_SendConfigReq                                      *
-****************************************************************************/
+
 VOID PPP_IPCP_addci(PPPFSM_S *pstFsm, UCHAR *pPacket)
 {
     PPP_IPCP_OPTION_S *pstGotOptions;
@@ -344,18 +268,7 @@ VOID PPP_IPCP_addci(PPPFSM_S *pstFsm, UCHAR *pPacket)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：处理收到的Config ACK报文                                   *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm: 状态机                                             *
-*                pPacket:报文头位置                                         *
-*                ulLen:  报文长度                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：VOS_OK,合法的ACK报文;VOS_ERR:非法的ACK报文                 *
-* CALLED BY    ：PPP_FSM_ReceiveConfAck                                     *
-****************************************************************************/
+
 VOS_UINT16 PPP_IPCP_ackci(PPPFSM_S *pstFsm, UCHAR *pPacket, VOS_UINT32 ulLen)
 {
     PPP_IPCP_OPTION_S *pstGotOptions;
@@ -431,18 +344,7 @@ bad:
     return VOS_ERR;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：处理收到的Config Nak报文                                   *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm: 状态机                                             *
-*                pPacket:报文头位置                                         *
-*                ulLen:  报文长度                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：VOS_OK,合法的NAK报文;VOS_ERR:非法的NAK报文                 *
-* CALLED BY    ：PPP_FSM_ReceiveConfNakRej                                  *
-****************************************************************************/
+
 VOS_UINT16 PPP_IPCP_nakci(PPPFSM_S *pstFsm, UCHAR *pPacket, VOS_UINT32 ulLen)
 {
     PPP_IPCP_OPTION_S *pstGotOptions, *pstWantOptions;
@@ -689,18 +591,7 @@ bad:
     /*lint +e801*/
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：处理收到的Config Reject报文                                *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm: 状态机                                             *
-*                pPacket:报文头位置                                         *
-*                ulLen:  报文长度                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：VOS_OK,合法的reject报文;VOS_ERR:非法的reject报文           *
-* CALLED BY    ：PPP_FSM_ReceiveConfNakRej                                  *
-****************************************************************************/
+
 /*lint -e529*/
 VOS_UINT16 PPP_IPCP_rejci(PPPFSM_S *pstFsm, UCHAR *pPacket, VOS_UINT32 ulLen)
 {
@@ -777,22 +668,7 @@ bad:
 }
 /*lint +e529*/
 
-/*****************************************************************************
- 函 数 名  : PPP_IPCP_IsSip
- 功能描述  : 判断IPCP请求包中是否有IP选项：有，是SIP，否则是MIP
- 输入参数  : UCHAR *pPacket
-             VOS_UINT32 *pulLen
- 输出参数  : 无
- 返 回 值  : 1: SIP  0: MIP
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2003年4月15日
-    作    者   : gxf
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 UCHAR PPP_IPCP_IsSip(UCHAR *pPacket, VOS_UINT32 *pulLen)
 {
     UCHAR *p;              /* Pointer to current and next CIs */
@@ -827,20 +703,7 @@ UCHAR PPP_IPCP_IsSip(UCHAR *pPacket, VOS_UINT32 *pulLen)
     return 0;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：分析收到的config Request报文                               *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm: 状态机                                             *
-*                pPacket:报文头位置                                         *
-*                pulLen: 报文长度                                           *
-* OUTPUT       ：                                                           *
-*                pPacket:要发给对方的报文(ACK或NAK或REJ)内容                *
-*                pulLen: 要发给对方的报文的长度                             *
-* RETURN       ：发给对方的报文类型:CONFACK、CONFNAK或者CONFREJ             *
-* CALLED BY    ：PPP_FSM_ReceiveConfReq函数中由PPP_FSM_reqci宏调用          *
-****************************************************************************/
+
 UCHAR PPP_IPCP_reqci(PPPFSM_S *pstFsm, UCHAR *pPacket, VOS_UINT32 *pulLen)
 {
     PPP_IPCP_OPTION_S *pstWantOptions;
@@ -872,7 +735,6 @@ UCHAR PPP_IPCP_reqci(PPPFSM_S *pstFsm, UCHAR *pPacket, VOS_UINT32 *pulLen)
     (VOID)VOS_MemSet(pstHisOptions, 0, sizeof(PPP_IPCP_OPTION_S));
 
     /*luofeng37050notify */
-    /* added by gxf 20030415    判断SIP/MIP */
     if (!PPP_IPCP_IsSip(pPacket, pulLen))
     {
     }
@@ -982,11 +844,9 @@ UCHAR PPP_IPCP_reqci(PPPFSM_S *pstFsm, UCHAR *pPacket, VOS_UINT32 *pulLen)
 
             case IPCP_CI_ADDR:
 
-                /* BEGIN: Modified for PN:aaa分配ip无效或不下发 by wangyong 00138171, 2012/8/3 */
                 if (!pstWantOptions->neg_addr
                    || (cilen != IPCP_CILEN_ADDR)
                    || (0xffffffff == pstPppInfo->ulPeerIPAddr))
-                /* END:   Modified for PN:aaa分配ip无效或不下发 by wangyong 00138171, 2012/8/3 */
                 {
                     /* Check CI length */
                     orc = CONFREJ;  /* Reject CI */
@@ -1272,16 +1132,7 @@ endswitch:
 }
 /*lint +e529*/
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：状态机up的处理函数                                         *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm:状态机                                              *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：是回调函数，由状态机tlu动作宏(PPP_FSM_tlu)调用             *
-****************************************************************************/
+
 VOID PPP_IPCP_up(PPPFSM_S *pstFsm)
 {
     VOS_UINT32 ulAccept = 0;
@@ -1304,16 +1155,7 @@ VOID PPP_IPCP_up(PPPFSM_S *pstFsm)
                                       NULL);
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：状态机down的处理函数                                       *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm:状态机                                              *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：是回调函数，由状态机tld动作宏(PPP_FSM_tld)调用             *
-****************************************************************************/
+
 VOID PPP_IPCP_down(PPPFSM_S *pstFsm)
 {
     /* 重传定时器在PPP_FSM_tld中已经删除 */
@@ -1331,16 +1173,7 @@ VOID PPP_IPCP_down(PPPFSM_S *pstFsm)
                                       NULL);
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：状态机finished的处理函数                                   *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm:状态机                                              *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：是回调函数，由状态机tlf动作宏(PPP_FSM_tlf)调用             *
-****************************************************************************/
+
 VOID PPP_IPCP_finished(PPPFSM_S *pstFsm)
 {
     PPP_Core_ReceiveEventFromProtocol(((PPPINFO_S *)pstFsm->pPppInfo),
@@ -1348,16 +1181,7 @@ VOID PPP_IPCP_finished(PPPFSM_S *pstFsm)
                                       NULL);
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：状态机starting的处理函数                                   *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm:状态机                                              *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：是回调函数，由状态机tls动作宏(PPP_FSM_tls)调用             *
-****************************************************************************/
+
 VOID PPP_IPCP_starting(PPPFSM_S *pstFsm)
 {
     PPP_Core_ReceiveEventFromProtocol(((PPPINFO_S *)pstFsm->pPppInfo),
@@ -1365,18 +1189,7 @@ VOID PPP_IPCP_starting(PPPFSM_S *pstFsm)
                                       NULL);
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：初始化IPCP控制块                                           *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块                                       *
-*                ulMyIpAddr:我的IP地址                                      *
-*                ulPeerIpAddr:分配给对方的IP地址                            *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：                                                           *
-****************************************************************************/
+
 VOID PPP_IPCP_Init(PPPINFO_S* pstPppInfo, VOS_UINT32 ulMyIpAddr, VOS_UINT32 ulPeerIpAddr)
 {
     PPPIPCPINFO_S *pstIpcpInfo;
@@ -1458,7 +1271,6 @@ VOID PPP_IPCP_Init(PPPINFO_S* pstPppInfo, VOS_UINT32 ulMyIpAddr, VOS_UINT32 ulPe
     pstAllowOptions->accept_nbnsaddr0 = 0;
     pstAllowOptions->accept_nbnsaddr1 = 0;
 
-    /* added by gxf 20030414    初始化dns */
     pstAllowOptions->dnsaddr0 = pstPppInfo->ulDNSAddr1;
     pstAllowOptions->dnsaddr1 = pstPppInfo->ulDNSAddr2;
 
@@ -1466,17 +1278,7 @@ VOID PPP_IPCP_Init(PPPINFO_S* pstPppInfo, VOS_UINT32 ulMyIpAddr, VOS_UINT32 ulPe
     PPP_MemSet((VOID*)pstHisOptions, 0, sizeof(PPP_IPCP_OPTION_S));
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：IPCP up后对协商结果进行检查,主要是为了以后扩展留下的接口   *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块                                       *
-* OUTPUT       ：                                                           *
-* RETURN       ：VOS_ERR:协商结果不可接受,调用者应结束协商                  *
-*                VOS_OK :协商结果可以接受,调用者应向上层协议报UP            *
-* CALLED BY    ：PPP_IPCP_up                                                *
-****************************************************************************/
+
 VOS_UINT32 PPP_IPCP_UpResetCi(PPPINFO_S *pstPppInfo)
 {
     PPPIPCPINFO_S * pstIpcpInfo = NULL;
@@ -1510,21 +1312,7 @@ VOS_UINT32 PPP_IPCP_UpResetCi(PPPINFO_S *pstPppInfo)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_Ipv4cp_Proc
- 功能描述  : 获取ipv4地址后的ipcp流程处理函数
- 输入参数  : PPPINFO_S *pstPppInfo
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月12日
-    作    者   : T62595
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID PPP_Ipv4cp_Proc( PPPINFO_S *pstPppInfo )
 {
     /* 获取IPCP控制块 */
@@ -1570,7 +1358,6 @@ VOID PPP_Ipv4cp_Proc( PPPINFO_S *pstPppInfo )
             && (0 != pstPppInfo->pstPppRenegoInfo->stIpcpOptions.neg_vj))
         {
 
-             /* 重协商时不限制VJ压缩 y00125257 DTS2011111102645*/
              ((PPPCONFIGINFO_S*)pstPppInfo->pstConfigInfo)->bEnableVJComp = 1;
              PPP_DBG_OK_CNT(PPP_PHOK_900);
         }

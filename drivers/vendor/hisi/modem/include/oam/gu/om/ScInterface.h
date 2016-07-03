@@ -1,23 +1,6 @@
 
 
-/******************************************************************************
 
-                  版权所有 (C), 2001-2012, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : ScInterface.h
-  版 本 号   : 初稿
-  作    者   : 王笑非
-  生成日期   : 2012年4月3日
-  最近修改   :
-  功能描述   : SC模块提供给外部模块的接口
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年4月3日
-    作    者   : w00184875
-    修改内容   : V7R1C51 锁网锁卡项目新增
-
-******************************************************************************/
 
 #ifndef __SCINTERFACE_H__
 #define __SCINTERFACE_H__
@@ -64,14 +47,7 @@ extern "C" {
 /*****************************************************************************
   3 枚举定义
 *****************************************************************************/
-/*****************************************************************************
-枚举名    : SC_ERROR_CODE_ENUM
-枚举说明  : SC模块错误码枚举定义
 
-  1.日    期   : 2012年4月3日
-    作    者   : w00184875
-    修改内容   : V7R1C51 锁网锁卡项目新增
-*****************************************************************************/
 enum SC_ERROR_CODE_ENUM
 {
     SC_ERROR_CODE_NO_ERROR = 0,                     /* 操作成功 */
@@ -111,14 +87,7 @@ enum SC_ERROR_CODE_ENUM
 };
 typedef VOS_UINT32  SC_ERROR_CODE_ENUM_UINT32;
 
-/*****************************************************************************
-枚举名    : SC_PERSONALIZATION_CATEGORY_ENUM
-枚举说明  : 锁网锁卡的category类型
 
-  1.日    期   : 2012年4月3日
-    作    者   : w00184875
-    修改内容   : V7R1C51 锁网锁卡项目新增
-*****************************************************************************/
 enum SC_PERSONALIZATION_CATEGORY_ENUM
 {
     SC_PERSONALIZATION_CATEGORY_NETWORK                     = 0x00, /* category:锁网 */
@@ -132,14 +101,7 @@ enum SC_PERSONALIZATION_CATEGORY_ENUM
 typedef VOS_UINT8 SC_PERSONALIZATION_CATEGORY_ENUM_UINT8;
 
 
-/*****************************************************************************
-枚举名    : SC_PERSONALIZATION_INDICATOR_ENUM
-枚举说明  : 指定的锁网锁卡类型是否激活
 
-  1.日    期   : 2012年4月3日
-    作    者   : w00184875
-    修改内容   : V7R1C51 锁网锁卡项目新增
-*****************************************************************************/
 enum SC_PERSONALIZATION_INDICATOR_ENUM
 {
     SC_PERSONALIZATION_INDICATOR_INACTIVE                   = 0x00, /* 未激活 */
@@ -150,14 +112,7 @@ enum SC_PERSONALIZATION_INDICATOR_ENUM
 typedef VOS_UINT8 SC_PERSONALIZATION_INDICATOR_ENUM_UINT8;
 
 
-/*****************************************************************************
-枚举名    : SC_PERSONALIZATION_STATUS_ENUM
-枚举说明  : 指定的锁网锁卡类型的状态
 
-  1.日    期   : 2012年4月3日
-    作    者   : w00184875
-    修改内容   : V7R1C51 锁网锁卡项目新增
-*****************************************************************************/
 enum SC_PERSONALIZATION_STATUS_ENUM
 {
     SC_PERSONALIZATION_STATUS_READY     = 0x00, /* 已经解锁 */
@@ -169,14 +124,7 @@ enum SC_PERSONALIZATION_STATUS_ENUM
 typedef VOS_UINT8 SC_PERSONALIZATION_STATUS_ENUM_UINT8;
 
 
-/*****************************************************************************
-枚举名    : SC_VERIFY_SIMLOCK_RESULT_ENUM
-枚举说明  : 锁卡校验的结果
 
-  1.日    期   : 2012年4月3日
-    作    者   : w00184875
-    修改内容   : V7R1C51 锁网锁卡项目新增
-*****************************************************************************/
 enum SC_VERIFY_SIMLOCK_RESULT_ENUM
 {
     SC_VERIFY_SIMLOCK_RESULT_READY            = 0x00, /* READY: MT is not pending for any simlock */
@@ -192,14 +140,7 @@ enum SC_VERIFY_SIMLOCK_RESULT_ENUM
 typedef VOS_UINT8 SC_VERIFY_SIMLOCK_RESULT_ENUM_UINT8;
 
 
-/*****************************************************************************
-枚举名    : SC_PORT_STATUS_ENUM
-枚举说明  : 端口锁状态(HSIC的OM端口)
 
-  1.日    期   : 2012年4月4日
-    作    者   : w00184875
-    修改内容   : V7R1C51 锁网锁卡项目新增
-*****************************************************************************/
 enum SC_PORT_STATUS_ENUM
 {
     SC_PORT_STATUS_OFF                  = 0x00, /* 端口关闭 */
@@ -209,15 +150,7 @@ enum SC_PORT_STATUS_ENUM
 };
 typedef VOS_UINT32 SC_PORT_STATUS_ENUM_UINT32;
 
-/*****************************************************************************
-枚举名    : SC_DH_KEY_TYPE_ENUM
-枚举说明  : DH算法使用的秘钥类型
 
-  1.日    期   : 2013年8月27日
-    作    者   : L47619
-    修改内容   : V9R1 vSIM项目修改
-
-*****************************************************************************/
 enum SC_DH_KEY_TYPE_ENUM
 {
     SC_DH_KEY_SERVER_PUBLIC_KEY         = 0x00,             /* 服务器公钥 */
@@ -241,14 +174,7 @@ typedef VOS_UINT32 SC_DH_KEY_TYPE_ENUM_UINT32;
 /*****************************************************************************
   7 STRUCT定义
 *****************************************************************************/
-/*****************************************************************************
-结构名    : SC_PH_LOCK_CODE_STRU
-结构说明  : 锁网锁卡号段结构
 
-  1.日    期   : 2012年4月3日
-    作    者   : w00184875
-    修改内容   : 初始生成
-*****************************************************************************/
 typedef struct
 {
    VOS_UINT8                            aucPhLockCodeBegin[SC_MAX_CODE_LEN];
@@ -256,16 +182,7 @@ typedef struct
 }SC_PH_LOCK_CODE_STRU;
 
 
-/*****************************************************************************
-结构名    : SC_SIMLOCK_CATEGORY_STRU
-结构说明  : 提供给NAS获取SIMLOCK信息的基础数据结构，
-            包括锁网锁卡的Catetory、对应Indicator、对应Status、最大解锁次数、剩余解锁次数
-            号段数、号段数组的begin/end
 
-  1.日    期   : 2012年4月3日
-    作    者   : w00184875
-    修改内容   : 初始生成
-*****************************************************************************/
 typedef struct
 {
     SC_PERSONALIZATION_CATEGORY_ENUM_UINT8                  enCategory;                  /* 锁网锁卡的category类别 */
@@ -278,14 +195,7 @@ typedef struct
     SC_PH_LOCK_CODE_STRU                                    astLockCode[SC_MAX_CODE_NUM];/* 锁网锁卡的号段内容*/
 }SC_SIMLOCK_CATEGORY_STRU;
 
-/*****************************************************************************
-结构名    : SC_WRITE_SIMLOCK_DATA_STRU
-结构说明  : 提供给NAS命令AT^SIMLOCKDATAWRITE写入SIMLOCK信息的数据结构，
 
-  1.日    期   : 2012年4月3日
-    作    者   : w00184875
-    修改内容   : 初始生成
-*****************************************************************************/
 typedef struct
 {
     SC_PERSONALIZATION_CATEGORY_ENUM_UINT8                  enCategory;                  /* 锁网锁卡的category类别 */
@@ -305,14 +215,7 @@ typedef struct
 
 
 
-/*****************************************************************************
-结构名    : SC_SET_FAC_AUTH_PUB_KEY_STRU
-结构说明  : 提供给NAS命令AT^FACAUTHPUBKEY写入鉴权公钥的数据结构
 
-  1.日    期   : 2012年4月3日
-    作    者   : w00184875
-    修改内容   : 初始生成
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8       aucAuthPubKey[SC_AUTH_PUB_KEY_LEN];   /* 鉴权公钥 */
@@ -320,14 +223,7 @@ typedef struct
 }SC_SET_FAC_AUTH_PUB_KEY_STRU;
 
 
-/*****************************************************************************
-结构名    : SC_IDENTIFY_START_RESPONSE_STRU
-结构说明  : 提供给NAS命令AT^IDENTIFYSTART用于获取<identify_start_response>码流的数据结构
 
-  1.日    期   : 2012年4月3日
-    作    者   : w00184875
-    修改内容   : 初始生成
-*****************************************************************************/
 typedef struct
 {
     /* SC获取随机数并采用公钥进行RSA加密后的码流 */
@@ -335,14 +231,7 @@ typedef struct
 }SC_IDENTIFY_START_RESPONSE_STRU;
 
 
-/*****************************************************************************
-结构名    : SC_IDENTIFY_END_REQUEST_STRU
-结构说明  : NAS将命令AT^IDENTIFYEND中的<identify_end_request>码流提交给SC时使用的数据结构
 
-  1.日    期   : 2012年4月3日
-    作    者   : w00184875
-    修改内容   : 初始生成
-*****************************************************************************/
 typedef struct
 {
     /* 后台通过私钥和<identify_start_response>解密生成随机数，再用私钥对随机数加密生成<identify_end_request>，
@@ -352,14 +241,7 @@ typedef struct
 }SC_IDENTIFY_END_REQUEST_STRU;
 
 
-/*****************************************************************************
-结构名    : SC_SET_PORT_ATTRIBUTE_STRU
-结构说明  : NAS将命令AT^PORTATTRSET中的<onoff>和<port_passwd>提交给SC时使用的数据结构
 
-  1.日    期   : 2012年4月3日
-    作    者   : w00184875
-    修改内容   : 初始生成
-*****************************************************************************/
 typedef struct
 {
     /* AT命令^IDENTIFYEND中的参数<onoff>的值 */
@@ -370,14 +252,7 @@ typedef struct
     VOS_UINT8                           aucRsaPwd[SC_RSA_ENCRYPT_LEN];
 }SC_SET_PORT_ATTRIBUTE_STRU;
 
-/*****************************************************************************
- 结构名    : SC_CK_CATEGORY_STRU
- 结构说明  : 每一个类别的CK/UK密码保存方式
 
-  1.日    期   : 2012年4月7日
-    作    者   : w00184875
-    修改内容   : AP-Modem锁网锁卡项目新增结构
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           aucCKCryptoPwd[SC_CRYPTO_PWD_LEN]; /* CK密文 */
@@ -385,14 +260,7 @@ typedef struct
 }SC_CK_CATEGORY_STRU;
 
 
-/*****************************************************************************
- 结构名    : SC_PI_FILE_STRU
- 结构说明  : PI文件的数据结构
 
-  1.日    期   : 2012年04月07日
-    作    者   : w00184875
-    修改内容   : AP-Modem锁网锁卡项目新增结构
-*****************************************************************************/
 
 typedef struct
 {
@@ -400,29 +268,14 @@ typedef struct
     SC_SIMLOCK_CATEGORY_STRU            astSimlockCategory[SC_MAX_SUPPORT_CATEGORY];
 }SC_PI_FILE_STRU;
 
-/*****************************************************************************
- 结构名    : SC_CK_FILE_STRU
- 结构说明  : CK-FILE的存储结构
-             包括3种Category的相应的CK/UK密码，密文存储
 
-  1.日    期   : 2012年04月07日
-    作    者   : w00184875
-    修改内容   : AP-Modem锁网锁卡项目新增结构
-*****************************************************************************/
 typedef struct
 {
     /* 目前支持3种category，结构体数组按照network->network subset->SP的顺序排列 */
     SC_CK_CATEGORY_STRU                 astCKCategory[SC_MAX_SUPPORT_CATEGORY];
 }SC_CK_FILE_STRU;
 
-/*****************************************************************************
- 结构名    : SC_DK_FILE_STRU
- 结构说明  : DK文件的数据结构
 
-  1.日    期   : 2012年04月07日
-    作    者   : w00184875
-    修改内容   : AP-Modem锁网锁卡项目新增结构
-*****************************************************************************/
 typedef struct
 {
     SC_PORT_STATUS_ENUM_UINT32          enPortStatus;       /* 端口锁状态，明文 */
@@ -430,42 +283,20 @@ typedef struct
 }SC_DK_FILE_STRU;
 
 
-/*****************************************************************************
- 结构名    : SC_AK_FILE_STRU
- 结构说明  : AK文件的数据结构
 
-  1.日    期   : 2012年04月07日
-    作    者   : w00184875
-    修改内容   : AP-Modem锁网锁卡项目新增结构
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           aucAuthPubKey[SC_AUTH_PUB_KEY_LEN];    /* AK明文 */
 }SC_AK_FILE_STRU;
 
 
-/*****************************************************************************
- 结构名    : SC_SIGN_FILE_STRU
- 结构说明  : 签名文件的数据结构
 
-  1.日    期   : 2012年04月09日
-    作    者   : w00184875
-    修改内容   : AP-Modem锁网锁卡项目新增结构
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           aucSignature[SC_SIGNATURE_LEN];    /* 签名文件码流 */
 }SC_SIGN_FILE_STRU;
 
-/*****************************************************************************
-结构名    : SC_SIMLOCK_INFO_STRU
-结构说明  : 提供给NAS获取SIMLOCK信息的数据结构，
-            包括3种Category的相应锁网锁卡信息
 
-  1.日    期   : 2012年4月3日
-    作    者   : w00184875
-    修改内容   : AP-Modem锁网锁卡项目新增结构
-*****************************************************************************/
 typedef SC_PI_FILE_STRU SC_SIMLOCK_INFO_STRU;
 
 /*****************************************************************************
@@ -480,96 +311,23 @@ typedef SC_PI_FILE_STRU SC_SIMLOCK_INFO_STRU;
 /*****************************************************************************
   10 函数声明
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : SC_PERS_GetSimlockInfo
- 功能描述  : NAS通过该接口获取SIMLOCK信息
- 输入参数  : pstSimlockInfo:获取SIMLOCK信息的数据结构，由调用者申请内存
- 输出参数  : NA
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月3日
-    作    者   : w00184875
-    修改内容   : 初始生成
-
-*****************************************************************************/
 extern SC_ERROR_CODE_ENUM_UINT32 SC_PERS_GetSimlockInfo(SC_SIMLOCK_INFO_STRU *pstSimlockInfo);
 
 
-/*****************************************************************************
- 函 数 名  : SC_PERS_WriteSimLockData
- 功能描述  : NAS收到AT^SIMLOCKDATAWRITE命令，通过该接口写入SIMLOCK信息
- 输入参数  : pstWriteSimLockData: 需写入PI-FILE和CK-File的SIMLOCK信息
 
- 输出参数  : NA
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年4月3日
-    作    者   : w00184875
-    修改内容   : 初始生成
-
-*****************************************************************************/
 extern SC_ERROR_CODE_ENUM_UINT32 SC_PERS_WriteSimLockData(SC_WRITE_SIMLOCK_DATA_STRU *pstWriteSimLockData);
 
-/*****************************************************************************
- 函 数 名  : SC_PERS_VerifySimLock
- 功能描述  : 进行锁网锁卡校验
- 输入参数  : enModemID:Modem ID
 
- 输出参数  : pucSimLockResult:锁网锁卡状态
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年04月07日
-    作    者   : w00184875
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 extern SC_ERROR_CODE_ENUM_UINT32 SC_PERS_VerifySimLock(
     SC_VERIFY_SIMLOCK_RESULT_ENUM_UINT8 *penVerifySimlockRslt,
     MODEM_ID_ENUM_UINT16                enModemID
 );
 
-/*****************************************************************************
- 函 数 名  : SC_PERS_VerifyIMEI
- 功能描述  : Android形态下，提供给NAS检测IMEI是否验证通过API。
- 输入参数  :  enModemID    : 卡0 或者卡1
 
- 输出参数  : NA
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年5月9日
-    作    者   : d00212987
-    修改内容   : IMEI验证
-*****************************************************************************/
 extern SC_ERROR_CODE_ENUM_UINT32 SC_PERS_VerifyIMEI(MODEM_ID_ENUM_UINT16 enModemID);
 
-/*****************************************************************************
- 函 数 名  : SC_PERS_NoVerifyNvReadImei
- 功能描述  : 读取存在NV里的IMEI
-             说明:不去校验，直接去读NV,区别于NV_Read接口，SC_PERS_NoVerifyNvReadImei接口在modem2 IMEI没写的情况下，读取modem0
- 输入参数  : enModemID : Modem ID
-             usID      : Nv id
-             ulLength  : Nv 长度
 
- 输出参数  : *pItem    : 获取NV 内容
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
-
- 修改历史      :
-  1.日    期   : 2015年11月30日
-    作    者   : d00212987
-    修改内容   : IMEI验证
-*****************************************************************************/
 SC_ERROR_CODE_ENUM_UINT32 SC_PERS_NoVerifyNvReadImei(
     MODEM_ID_ENUM_UINT16                enModemID,
     VOS_UINT16                          usID,
@@ -577,22 +335,7 @@ SC_ERROR_CODE_ENUM_UINT32 SC_PERS_NoVerifyNvReadImei(
     VOS_UINT32                          ulLength
 );
 
-/*****************************************************************************
- 函 数 名  : SC_PERS_VerifyNvReadImei
- 功能描述  : 读取存在NV里的IMEI,增加IMEI验证(返回值为:SC_ERROR_CODE_NO_ERROR,读取的NV内容可用，否则不可用)
-             说明:先校验IMEI号的合法性，然后再读取NV，如果IMEI号非法返回全0 IMEI,并且在modem2 imei 没写的情况下，读取modem0
- 输入参数  : enModemID : Modem ID
-             usID      : Nv id
-             ulLength  : Nv 长度
 
- 输出参数  : *pItem    : 获取NV 内容
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
-
- 修改历史      :
-  1.日    期   : 2013年5月25日
-    作    者   : d00212987
-    修改内容   : IMEI验证
-*****************************************************************************/
 SC_ERROR_CODE_ENUM_UINT32 SC_PERS_VerifyNvReadImei(
     MODEM_ID_ENUM_UINT16                enModemID,
     VOS_UINT16                          usID,
@@ -600,23 +343,7 @@ SC_ERROR_CODE_ENUM_UINT32 SC_PERS_VerifyNvReadImei(
     VOS_UINT32                          ulLength
 );
 
-/*****************************************************************************
- 函 数 名  : SC_PERS_UnLock
- 功能描述  : 解锁或UNBLOC操作
- 输入参数  : pcPwd: 解锁密码
-             ucLen: 密码长度
-             enModemID:Modem ID
- 输出参数  : pucSimLockResult:解锁操作后的锁网锁卡状态
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年04月07日
-    作    者   : w00184875
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 extern SC_ERROR_CODE_ENUM_UINT32 SC_PERS_UnLock(
     VOS_UINT8                          *pucPwd,
     VOS_UINT8                           ucLen,
@@ -624,83 +351,19 @@ extern SC_ERROR_CODE_ENUM_UINT32 SC_PERS_UnLock(
     MODEM_ID_ENUM_UINT16                enModemID
 );
 
-/*****************************************************************************
- 函 数 名  : SC_FAC_SetFacAuthPubKey
- 功能描述  : NAS收到AT^FACAUTHPUBKEY后，通过该接口写入鉴权公钥
- 输入参数  : pstSetFacAuthPubKey: 鉴权公钥数据结构
 
- 输出参数  : NA
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年4月3日
-    作    者   : w00184875
-    修改内容   : 初始生成
-
-*****************************************************************************/
 extern SC_ERROR_CODE_ENUM_UINT32 SC_FAC_SetFacAuthPubKey(SC_SET_FAC_AUTH_PUB_KEY_STRU *pstSetFacAuthPubKey);
 
 
-/*****************************************************************************
- 函 数 名  : SC_FAC_StartIdentify
- 功能描述  : NAS收到AT^IDENTIFYSTART后，通过该接口获取<identify_start_response>码流
- 输入参数  : NA
 
- 输出参数  : pstIdentifyStartRsp: 用于获取<identify_start_response>码流的数据结构，
-             由调用者申请内存
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年4月3日
-    作    者   : w00184875
-    修改内容   : 初始生成
-
-*****************************************************************************/
 extern SC_ERROR_CODE_ENUM_UINT32 SC_FAC_StartIdentify(SC_IDENTIFY_START_RESPONSE_STRU *pstIdentifyStartRsp);
 
 
-/*****************************************************************************
- 函 数 名  : SC_FAC_EndIdentify
- 功能描述  : NAS收到AT^IDENTIFYEND命令后，通过该接口将<identify_end_request>码流提交给SC
- 输入参数  : pstIdentifyEndReq: 用于存储<identify_end_request>码流的数据结构
 
- 输出参数  : NA
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年4月3日
-    作    者   : w00184875
-    修改内容   : 初始生成
-
-*****************************************************************************/
 extern SC_ERROR_CODE_ENUM_UINT32 SC_FAC_EndIdentify(SC_IDENTIFY_END_REQUEST_STRU *pstIdentifyEndReq);
 
 
-/*****************************************************************************
- 函 数 名  : SC_FAC_RsaEncrypt
- 功能描述  : NAS收到AT^PHONEPHYNUM?查询命令，通过该接口对物理号进行RSA加密
- 输入参数  : pcRawData: 物理号，明文存储
-             ulLen: 物理号长度
-             pcCipherData: RSA加密后的密文
-             pulCipherLen: RSA加密后的密文长度
 
- 输出参数  : NA
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年4月3日
-    作    者   : w00184875
-    修改内容   : 初始生成
-
-*****************************************************************************/
 extern SC_ERROR_CODE_ENUM_UINT32 SC_FAC_RsaEncrypt(
     VOS_UINT8   *pucRawData,
     VOS_UINT32   ulLen,
@@ -709,25 +372,7 @@ extern SC_ERROR_CODE_ENUM_UINT32 SC_FAC_RsaEncrypt(
 );
 
 
-/*****************************************************************************
- 函 数 名  : SC_FAC_RsaDecrypt
- 功能描述  : NAS收到AT^PHONEPHYNUM设置命令，通过该接口对物理号进行RSA解密
- 输入参数  : pcCipherData: 物理号，密文存储
-             ucCipherLen: 物理号密文长度
-             pcRawData: RSA解密后的物理号明文
-             pucLen: RSA解密后的物理号明文长度
 
- 输出参数  : NA
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年4月3日
-    作    者   : w00184875
-    修改内容   : 初始生成
-
-*****************************************************************************/
 extern SC_ERROR_CODE_ENUM_UINT32 SC_FAC_RsaDecrypt(
     VOS_UINT8  *pucCipherData,
     VOS_UINT32  ulCipherLen,
@@ -735,167 +380,36 @@ extern SC_ERROR_CODE_ENUM_UINT32 SC_FAC_RsaDecrypt(
     VOS_UINT32 *pulLen
 );
 
-/*****************************************************************************
- 函 数 名  : SC_FAC_WriteHUK
- 功能描述  : NAS收到AT^HUK命令，通过该SC封装的接口写入HUK
- 输入参数  : pcHuk: HUK码流，128bit
-             ucLen: HUK码流长度
 
- 输出参数  : NA
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年4月3日
-    作    者   : w00184875
-    修改内容   : 初始生成
-
-*****************************************************************************/
 extern SC_ERROR_CODE_ENUM_UINT32 SC_FAC_WriteHUK(VOS_UINT8 *pucHuk, VOS_UINT32 ulLen);
 
-/*****************************************************************************
- 函 数 名  : SC_FAC_WriteIMEI
- 功能描述  : NAS收到AT^PHONEPHYNUM令，通过该SC封装的接口把IMEI密文写入IMEIFile.bin并生成签名
- 输入参数  : enModemID    : 卡0 或者卡1
-             pucCipherData: IMEI密文码流
-             ulCipherLen  : IMEI密文码流长度
 
- 输出参数  : NA
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年5月9日
-    作    者   : d00212987
-    修改内容   : IMEI验证
-*****************************************************************************/
 extern SC_ERROR_CODE_ENUM_UINT32 SC_FAC_WriteIMEI(MODEM_ID_ENUM_UINT16    enModemID,
                                                   VOS_UINT8              *pucCipherData,
                                                   VOS_UINT32              ulCipherLen);
 
-/*****************************************************************************
- 函 数 名  : SC_FAC_SetPortAttrib
- 功能描述  : NAS收到AT^PORTATTRIBSET设置命令后，通过该接口将端口锁属性信息提交给SC
- 输入参数  : pstSetPortAttrib: 端口锁属性相关信息
 
- 输出参数  : NA
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年4月3日
-    作    者   : w00184875
-    修改内容   : 初始生成
-
-*****************************************************************************/
 extern SC_ERROR_CODE_ENUM_UINT32 SC_FAC_SetPortAttrib(SC_SET_PORT_ATTRIBUTE_STRU *pstSetPortAttrib);
 
 
-/*****************************************************************************
- 函 数 名  : SC_FAC_GetPortAttrib
- 功能描述  : 该函数用于如下两个场景:
-             1.NAS收到AT^PORTATTRIBSET查询命令后，通过该接口读取端口锁属性信息中的端口锁状态
-             2.上电初始化时，C核OM通过该接口获取端口锁状态后，通知A核OM根据端口锁状态决定是否挂接HSIC OM口
- 输入参数  : NA
 
- 输出参数  : penStatus: 端口状态
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年4月3日
-    作    者   : w00184875
-    修改内容   : 初始生成
-
-*****************************************************************************/
 extern SC_ERROR_CODE_ENUM_UINT32 SC_FAC_GetPortAttrib(SC_PORT_STATUS_ENUM_UINT32   *penStatus);
 
-/*****************************************************************************
- 函 数 名  : SC_FAC_VerifyPortPassword
- 功能描述  : NAS收到AT^PORTCTRLTMP命令，调用该接口进行端口锁密码校验
- 输入参数  : pcPwd: 端口锁密码，密码为明文传送(密码为16个“0”-“9”字符组成)
-             ucLen: 端口锁密码长度
 
- 输出参数  : NA
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年4月3日
-    作    者   : w00184875
-    修改内容   : 初始生成
-
-*****************************************************************************/
 extern SC_ERROR_CODE_ENUM_UINT32 SC_FAC_VerifyPortPassword(VOS_UINT8 *pucPwd, VOS_UINT8 ucLen);
 
-/*****************************************************************************
- 函 数 名  : SC_APSEC_ParseSecPacket
- 功能描述  : 解析安全封包
- 输入参数  : VOS_UINT32 *pulSPLen       -- 安全封包长度字节数
-             VOS_UINT8  *pucSecPacket   -- 安全封包二进制码流
- 输出参数  : VOS_UINT32 *pulSPLen       -- 回复安全封包长度字节数
-             VOS_UINT8  *pucSecPacket   -- 回复安全封包二进制码流
- 返 回 值  : VOS_OK     -- 安全封包解析成功
-             VOS_ERR    -- 安全封包解析失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月31日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 extern VOS_UINT32 SC_APSEC_ParseSecPacket(
     VOS_UINT32                         *pulSPLen,
     VOS_UINT8                          *pucSecPacket );
 
-/*****************************************************************************
- 函 数 名  : SC_PERS_SimlockUnlock
- 功能描述  : 解锁Simlock锁网锁卡
- 输入参数  : enCategory         -- 锁网锁卡类型
-             *pucPwd            -- 解锁密码
- 输出参数  : 无
- 返 回 值  : VOS_OK     -- 解锁成功
-             VOS_ERR    -- 解锁失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年09月18日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 extern VOS_UINT32 SC_PERS_SimlockUnlock(
     SC_PERSONALIZATION_CATEGORY_ENUM_UINT8  enCategory,
     VOS_UINT8                              *pucPwd );
 
 #if (FEATURE_ON == FEATURE_VSIM)
-/*****************************************************************************
- 函 数 名  : SC_FAC_SetDhKey
- 功能描述  : NAS收到AT^HVPDH设置命令后，通过该接口将DH KEY提交给SC
- 输入参数  : MODEM_ID_ENUM_UINT16         enModemID,
-             SC_DH_KEY_TYPE_ENUM_UINT32   enKeyType,
-             VOS_UINT32                   ulKeyLen,
-             VOS_UINT8                   *pucKey
 
- 输出参数  : NA
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年8月27日
-    作    者   : L47619
-    修改内容   : V9R1 vSIM项目修改
-
-*****************************************************************************/
 SC_ERROR_CODE_ENUM_UINT32 SC_FAC_SetDhKey(
     MODEM_ID_ENUM_UINT16                enModemID,
     SC_DH_KEY_TYPE_ENUM_UINT32          enKeyType,
@@ -904,20 +418,7 @@ SC_ERROR_CODE_ENUM_UINT32 SC_FAC_SetDhKey(
 );
 #endif
 
-/*****************************************************************************
-函 数 名  :SC_COMM_Backup
-功能描述  : SC文件备份处理
-输入参数  :
 
-输出参数  :无
-返 回 值  :
-
-被调函数  :
-修订记录  :
-1.日    期   : 2014年6月5日
-  作    者   : d00212987
-  修改内容   : 初始生成
-*****************************************************************************/
 VOS_UINT32 SC_COMM_Backup(VOS_VOID);
 
 #if ((VOS_OS_VER == VOS_WIN32) || (VOS_OS_VER == VOS_NUCLEUS))

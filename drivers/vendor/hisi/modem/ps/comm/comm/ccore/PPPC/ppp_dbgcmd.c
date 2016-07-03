@@ -142,7 +142,7 @@ VOID SRPppCfgCompress( VOS_UINT32 argc, CHAR * argv []   )
     if (((argc >= 1) && !VOS_StrCmp ( argv [ argc - 1 ], "?")))
     {
         vos_printf ( "\r\ncConfig PPP compress.");
-        vos_printf ( "\r\nUsage: ppp compress {mppc|stac|vj} {0|1}");/* Modified by liutao 38563 at 2004-10-30 R002 for PPP压缩调试 */
+        vos_printf ( "\r\nUsage: ppp compress {mppc|stac|vj} {0|1}");
         return;
     }
 
@@ -1087,21 +1087,7 @@ VOID SRPppShowCBDetailInfo( VOS_UINT32 argc, CHAR * argv []   )
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : PPP_PrintFsmStat
- 功能描述  : 打印状态机计数
- 输入参数  :
- 输出参数  :
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月14日
-    作    者   : h50774
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID PPP_ShowFsmStat(VOS_UINT32 *pulState)
 {
     VOS_UINT32 i, j , len;
@@ -1895,26 +1881,7 @@ VOID PPP_SetDebugInfo( VOS_UINT32 argc, CHAR * argv [] )
     vos_printf( "\r\n ok \r\n");
 }
 
-/*****************************************************************************
-函 数 名  : PPP_PrintMemInfo
-功能描述  : 打印PPP模块结构内存信息
-输入参数  : UCHAR *pucStructName
-          VOS_UINT32 ulUnitSize
-          VOS_UINT32 ulUnitNum
-          VOS_UINT32 ulMemSize
-          UCHAR *pucMemType
-          UCHAR ucStatic
-输出参数  : 无
-返 回 值  : VOID
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2012年2月1日
- 作    者   : baoxin 144601
- 修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID PPP_PrintMemInfo(UCHAR *pucStructName, VOS_UINT32 ulUnitSize, VOS_UINT32 ulUnitNum, VOS_UINT32 ulMemSize, UCHAR *pucMemType, UCHAR ucStatic)
 {
     if ((NULL == pucStructName) || (NULL == pucMemType))
@@ -1934,22 +1901,7 @@ VOID PPP_PrintMemInfo(UCHAR *pucStructName, VOS_UINT32 ulUnitSize, VOS_UINT32 ul
     return ;
 }
 
-/*****************************************************************************
-函 数 名  : PPP_DbgShowMemInfo
-功能描述  : 打印PPP模块内存信息
-输入参数  : VOS_UINT32 argc
-          CHAR* argv[]
-输出参数  : 无
-返 回 值  : VOID
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2013年2月28日
- 作    者   : zhaichao 00129699
- 修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID PPP_DbgShowMemInfo(VOS_UINT32 argc, CHAR* argv[])
 {
     if (0 == PPP_SELF_CSI)
@@ -1962,7 +1914,6 @@ VOID PPP_DbgShowMemInfo(VOS_UINT32 argc, CHAR* argv[])
     (VOID)vos_printf("\r\n    StructName,            UnitSize,   UnitNum,    ulMemSize,  MemType,    Static, Mid,      Sub-System, CPU, vCPU\r\n");
 
     //D板和E板
-    /* z00175135 DTS2012012003193 全文件pclint 2012-02-09 start */
     PPP_PrintMemInfo((UCHAR *)"g_ulPppDBGStatisc", sizeof(VOS_UINT32), PPP_DBG_BUTT, sizeof(VOS_UINT32)*PPP_DBG_BUTT, (UCHAR *)"SC", 'N');
 
     PPP_PrintMemInfo((UCHAR *)"g_ulPppFsmStat", sizeof(VOS_UINT32), 5 * PPP_EVENT_FSM_BUTT * PPP_STATE_BUTT,
@@ -2008,7 +1959,6 @@ VOID PPP_DbgShowMemInfo(VOS_UINT32 argc, CHAR* argv[])
     PPP_PrintMemInfo((UCHAR *)"g_stPppPerfStatistic", sizeof(PPPPERFSTATISTIC_S), 1,
                  sizeof(PPPPERFSTATISTIC_S), (UCHAR *)"SC", 'N');
 
-    /* z00175135 DTS2012012003193 全文件pclint 2012-02-09 end   */
 
     (VOID)vos_printf("\r\n *************************************The PPP memory info END***********************************************************\r\n ");
 

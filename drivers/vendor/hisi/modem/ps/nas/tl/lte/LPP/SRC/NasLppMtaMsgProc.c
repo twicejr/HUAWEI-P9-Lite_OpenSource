@@ -1,13 +1,4 @@
-/******************************************************************************
 
-        @(#)Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : NasLppMtaMsgProc.c
-    Description : 处理EMM发给SM的消息
-    History     :
-    1. lifuxin 00253982 2015-7-7 新开发
-******************************************************************************/
 
 /*****************************************************************************
   1 Include HeadFile
@@ -49,16 +40,7 @@ extern "C" {
 /*****************************************************************************
   3 Function
 *****************************************************************************/
-/*****************************************************************************
- Function Name  : NAS_LPP_GetOneRunningTransWaitGnssCapCnf
- Description    : 得到一个transaction正在running 等待GNSS能力回复
- Input          :
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-    1. lifuxin 00253982 2015-10-24 新开发
-*****************************************************************************/
  VOS_BOOL   NAS_LPP_GetOneRunningTransWaitGnssCapCnf( VOS_UINT8  *pucTransIndx)
  {
     VOS_UINT8                                  ucLoop              = 0;
@@ -84,16 +66,7 @@ extern "C" {
     return PS_FALSE;
  }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetSessionIndxAndSesssionTransIndxByTransIndx
- Description    : 通过transactionIndx找到对应的sessionIndx以及SessionTransaIndx
- Input          :
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-    1. lifuxin 00253982 2015-10-24 新开发
-*****************************************************************************/
 VOS_VOID   NAS_LPP_GetSessionIndxAndSesssionTransIndxByTransIndx
 (
     VOS_UINT8                           ucTransIndx,
@@ -132,16 +105,7 @@ VOS_VOID   NAS_LPP_GetSessionIndxAndSesssionTransIndxByTransIndx
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_RcvMtaLppGnssCapCnf
- Description    : LPP模块Mta消息处理函数
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-    1. wangensheng 00324863 2015-10-19 新开发
-*****************************************************************************/
  VOS_VOID   NAS_LPP_RcvMtaLppGnssCapCnf
  (
     MTA_LPP_GNSS_PROVIDE_CAPABITY_CNF_STRU                *pstMtaLppGnssProvideCap
@@ -222,16 +186,7 @@ VOS_VOID   NAS_LPP_GetSessionIndxAndSesssionTransIndxByTransIndx
     }
  }
 
-/*****************************************************************************
-Function Name  : NAS_LPP_ResetGnssMeasRslt
-Description    : 清空当前GNSS的测量信息
-Input          :
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-1. lifuxin 00253982 2015-10-20 新开发
-*****************************************************************************/
 VOS_VOID   NAS_LPP_ResetGnssMeasRslt
 (
     NAS_LPP_GNSS_MEAS_RESLT_STRU           *pstGnssMeasRslt
@@ -272,16 +227,7 @@ VOS_VOID   NAS_LPP_ResetGnssMeasRslt
 
     return;
 }
-/*****************************************************************************
-Function Name  : NAS_LPP_RcvMtaLppGnssLocInfoInd
-Description    : LPP模块Mta消息处理函数位置测量IND消息
-Input          : VOS_VOID *pRcvMsg
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-1. wangensheng 00324863 2015-10-20 新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_SndRrcMtaGnssLocInfo
 (
      MTA_LPP_GNSS_RROVIDE_LOCATION_INFO_IND_STRU          *pstMtaLppGnssProvideLocInfoInd
@@ -327,16 +273,7 @@ VOS_VOID NAS_LPP_SndRrcMtaGnssLocInfo
                        TI_NAS_LPP_LOCATION_INVALID);
 }
 
-/*****************************************************************************
-Function Name  : NAS_LPP_RcvMtaLppGnssLocInfoInd
-Description    : LPP模块Mta消息处理函数位置测量IND消息
-Input          : VOS_VOID *pRcvMsg
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-1. lifuxin 00253982 2015-10-20 新开发
-*****************************************************************************/
 VOS_VOID   NAS_LPP_RcvMtaLppGnssLocInfoInd
 (
     MTA_LPP_GNSS_RROVIDE_LOCATION_INFO_IND_STRU          *pstMtaLppGnssProvideLocInfoInd
@@ -416,16 +353,7 @@ VOS_VOID   NAS_LPP_RcvMtaLppGnssLocInfoInd
     return;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LPP_GetOneSessionIndx
-Description    : 找到一个正在running的session，返回sessionIndx
-Input          :
-Output         : VOS_VOID
-Return Value   : sessionIndx
 
-History        :
-1. lifuxin 00253982 2015-10-20 新开发
-*****************************************************************************/
 VOS_UINT8   NAS_LPP_GetOneRunningSessionIndx( VOS_VOID )
 {
     VOS_UINT8                   ucLoop      = 0;
@@ -449,16 +377,7 @@ VOS_UINT8   NAS_LPP_GetOneRunningSessionIndx( VOS_VOID )
     return PS_NULL_UINT8;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LPP_SndLcsGnssAssistDataReq
-Description    : 发送GNSS辅助数据的码流到LCS
-Input          :
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-1. lifuxin 00253982 2015-10-22 新开发
-*****************************************************************************/
 VOS_VOID   NAS_LPP_SndLcsGnssAssistDataReq
 (
     VOS_UINT8                                  *pucEncodeOutMsg,
@@ -512,16 +431,7 @@ VOS_VOID   NAS_LPP_SndLcsGnssAssistDataReq
     NAS_LPP_SND_MSG(pstLcsAssistDataReq);
 }
 
-/*****************************************************************************
-Function Name  : NAS_LPP_EncodeGnssAssistReq
-Description    : 产生辅助数据的码流
-Input          :
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-1. lifuxin 00253982 2015-10-22 新开发
-*****************************************************************************/
 VOS_UINT32   NAS_LPP_EncodeGnssAssistDataReq
 (
     MTA_LPP_GNSS_ASSIST_DATA_REQ_STRU          *pstMtaLppGnssAssistDataReq,
@@ -592,16 +502,7 @@ VOS_UINT32   NAS_LPP_EncodeGnssAssistDataReq
     return NAS_LPP_SUCCESS;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LPP_RcvMtaGnssAssistDataReqNoSessionRunningHandle
-Description    : LPP模块MtaGnssAssistDataReq的处理，当前没有正在running的Session
-Input          :
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-1. lifuxin 00253982 2015-10-22 新开发
-*****************************************************************************/
 VOS_VOID   NAS_LPP_RcvMtaGnssAssistDataReqNoSessionRunningHandle
 (
         MTA_LPP_GNSS_ASSIST_DATA_REQ_STRU          *pstMtaLppGnssAssistDataReq
@@ -642,16 +543,7 @@ VOS_VOID   NAS_LPP_RcvMtaGnssAssistDataReqNoSessionRunningHandle
     return;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LPP_RcvMtaLppGnssAssistDataReq
-Description    : LPP模块MtaGnssAssistDataReq的处理
-Input          :
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-1. lifuxin 00253982 2015-10-20 新开发
-*****************************************************************************/
 VOS_VOID   NAS_LPP_RcvMtaLppGnssAssistDataReq
 (
     MTA_LPP_GNSS_ASSIST_DATA_REQ_STRU          *pstMtaLppGnssAssistDataReq
@@ -689,16 +581,7 @@ VOS_VOID   NAS_LPP_RcvMtaLppGnssAssistDataReq
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_MtaMsgDistr
- Description    : LPP模块Mta消息处理函数
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-    1. lifuxin 00253982 2015-7-7 新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_MtaMsgDistr( VOS_VOID *pRcvMsg )
 {
     PS_MSG_HEADER_STRU         *pMtaMsg  = VOS_NULL_PTR;

@@ -1,18 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : lte_sleepFlow.h
-  版 本 号   : 初稿
-  作    者   : fuxin 00221597
-  生成日期   : 2005年3月7日
-  最近修改   :
-  功能描述   : SleepFlow.c 的头文件
-  函数列表   :
-  修改历史   :
-
-******************************************************************************/
 #ifndef __LTE_SLEEPFLOW_H__
 #define __LTE_SLEEPFLOW_H__
 
@@ -23,14 +9,6 @@ extern "C"
 #endif
 
 #include "product_config.h"
-
-
-#if defined (CHIP_BB_HI6210)
-#define MSP_IN_V9R1
-#else
-#undef MSP_IN_V9R1
-#endif
-
 #include "mdrv.h"
 #include "vos.h"
 #include <VosPidDef.h>
@@ -41,21 +19,17 @@ extern "C"
 #include <msp_nv_id.h>
 #include <msp_nv_def.h>
 #include <mdrv_dsp.h>
-#ifndef MSP_IN_V9R1
 #include <drv_nv_id.h>
 #include <drv_nv_def.h>
 #include <soc_memmap_comm.h>
 #include <hi_bbp_ltedrx.h>
-#else
-#include "NVIM_Interface.h"
-#include <NvIdList.h>
-#endif
 
 /* 目前版本不会超过4通道 */
 #define MSP_SLEEP_CHAN_NUM          3
 
 /* 目前版本不会超过2TCXO */
 #define MSP_SLEEP_TCXO_NUM          2
+#define MSP_DSP_REQ_FREQ_INIT       (0x5a5a5a5a)
 
 #define MSP_PWR_SYSTEM_RUN          (1<<0)      /*当前DSP状态为RUN*/
 #define MSP_PWR_HALT_INT            (1<<1)      /*标志当前有halt中断到来，且对此中断还没有处理完成*/
@@ -120,52 +94,6 @@ typedef struct
     VOS_UINT32      ulResume;
 }MSP_SLEEP_MNTN_MSG_STRU;
 
-#ifndef MSP_IN_V9R1
-/* 调试用的共享内存
-#define DEBUG_TIMESTAMP_ADDR        (SHM_TIMESTAMP_ADDR + 0x200)
-#define DEBUG_FOR_DSP_ADDR          (SHM_TIMESTAMP_ADDR + 0x8)
-*/
-#else
-
-typedef struct
-{
-    VOS_UINT8 ucABBSwitch; /*对应模式使用的ABB物理通道，0 通道0, 1: 通道1, 2: 同时使用两个通道*/
-    VOS_UINT8 ucRFSwitch;  /*对应模式使用的RF物理通道，0 通道0, 1: 通道1, 2: 同时使用两个通道*/
-    VOS_UINT8 ucTCXOSwitch; /*对应模式使用的TCXO ID 0 TCXO0, 1: TCXO1*/
-    VOS_UINT8 reserve;
-}NV_TLMODE_BASIC_PARA_STRU;
-
-typedef struct
-{
-    NV_TLMODE_BASIC_PARA_STRU stModeBasicParam[2];/*下标为0:LTE, 1:TDS*/
-}NV_TLMODE_CHAN_PARA_STRU;
-
-/* drx delay flag */
-typedef struct
-{
-    VOS_UINT8         lpm3_flag;         /* 0x11 代表lpm3 */
-    VOS_UINT8         lpm3_0;            /* 1打开delay,其他关闭delay */
-    VOS_UINT8         lpm3_1;
-    VOS_UINT8         lpm3_2;
-    VOS_UINT8         lpm3_3;
-    VOS_UINT8         lpm3_4;
-    VOS_UINT8         lpm3_5;
-    VOS_UINT8         drv_flag;          /* 0x22 代表drv */
-    VOS_UINT8         drv_0;             /* 1打开delay,其他关闭delay */
-    VOS_UINT8         drv_1;
-    VOS_UINT8         drv_2;
-    VOS_UINT8         drv_3;
-    VOS_UINT8         drv_4;
-    VOS_UINT8         drv_5;
-    VOS_UINT8         msp_flag;          /* 0x33 代表msp */
-    VOS_UINT8         msp_0;             /* 1打开delay,其他关闭delay */
-    VOS_UINT8         msp_1;
-    VOS_UINT8         msp_2;
-    VOS_UINT8         msp_3;
-    VOS_UINT8         msp_4;
-}DRV_DRX_DELAY_STRU;
-
-#endif
 /*可维可测内存分配*/
 /*当前的状态机*/
 #define MSP_EXC_PWR_STATUS_OFFSET                   ((VOS_UINT)(g_msp_pwrctrl.dump_base))
@@ -361,6 +289,7 @@ struct msp_power_control
 	LPHY_RTT_LPC_MODE_ENUM      dsp_sleep_flag;         /*DSP深睡浅睡标志,1 浅睡 2 深睡*/
     VOS_UINT32                  SleepRecordFlag;        /*开关记录sleepTimeRecord*/
     VOS_UINT32                  DspLowPowerFlag;        /*TL物理层进入低功耗标志，0x5a5a5a5a 已进入低功耗，0 未进入低功耗*/
+    VOS_UINT32                  DspReqDdrFreq;          /*DSP当前对DDR的频率需求*/
     TLSLEEP_RECORD_STRU         SleepTimeRecord;        /*记录可维可测信息的结构体，*/
 };
 struct msp_delay_control
@@ -474,7 +403,6 @@ do{\
     }\
 }while(0);
 
-#ifndef MSP_IN_V9R1
 #define  mspsleep_print_info(fmt,...)\
 do\
 {\
@@ -483,35 +411,19 @@ do\
         g_msp_hidsctrl.PrintVErrorNo = DIAG_LogReport(DIAG_GEN_LOG_MODULE(0, 0, 1), MSP_PID_DRX, (VOS_CHAR*)__FILE__, __LINE__,""fmt"\n", ##__VA_ARGS__);\
     }\
 }while(0)
-#define TLSLEEP_DFS_BUS_150M           (0)
+#define TLSLEEP_DFS_BUS_150M           (150000)
 #define TLSLEEP_DFS_DDR_120M           (120000)
-#define TLSLEEP_DFS_DDR_150M           (0)
+#define TLSLEEP_DFS_DDR_150M           (150000)
 #define TLSLEEP_DFS_DDR_240M           (240000)
-#define TLSLEEP_DFS_CCPU_600M          (0)
+#define TLSLEEP_DFS_CCPU_600M          (600000)
 
-#define TLSLEEP_DFS_BUS_75M            (0)
-#define TLSLEEP_DFS_DDR_75M            (0)
-#define TLSLEEP_DFS_CCPU_150M          (0)
+#define TLSLEEP_DFS_BUS_75M            (75000)
+#define TLSLEEP_DFS_DDR_75M            (75000)
+#define TLSLEEP_DFS_DDR_0M             (0)
+#define TLSLEEP_DFS_CCPU_150M          (150000)
 
 #define TLSLEEP_DfsQosRequest(qos_id, req_value, req_id)            mdrv_pm_dfs_qos_get(qos_id, req_value, req_id)
 #define TLSLEEP_DfsQosRelease(qos_id, req_id)                       (0)
-#define TLSLEEP_DfsQosUpdate(qos_id, req_id, req_value)             mdrv_pm_dfs_qos_update(qos_id, req_id, req_value)
-#else
-#define  mspsleep_print_info(fmt,...)
-/*做DFS投票 V9R1需要 V7R2 不需要*/
-
-#define TLSLEEP_DFS_BUS_150M            (150000)
-#define TLSLEEP_DFS_DDR_150M            (150000)
-#define TLSLEEP_DFS_CCPU_600M           (600000)
-
-#define TLSLEEP_DFS_BUS_75M             (75000)
-#define TLSLEEP_DFS_DDR_75M             (75000)
-#define TLSLEEP_DFS_CCPU_150M           (150000)
-
-#define TLSLEEP_DfsQosRequest(qos_id, req_value, req_id)           mdrv_pm_dfs_qos_get(qos_id, req_value, req_id)
-#define TLSLEEP_DfsQosRelease(qos_id, req_id)                      mdrv_pm_dfs_qos_put(qos_id, req_id)
-#define TLSLEEP_DfsQosUpdate(qos_id, req_id, req_value)            mdrv_pm_dfs_qos_update(qos_id, req_id, req_value)
-#endif
 #define TLSLEEP_GetTime(ulIndex)        (g_msp_pwrctrl.SleepTimeRecord.astRecord[ulIndex].ulTime)
 #define TLSLEEP_GetType(ulIndex)        (g_msp_pwrctrl.SleepTimeRecord.astRecord[ulIndex].acType)
 

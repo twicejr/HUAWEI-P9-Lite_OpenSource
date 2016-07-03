@@ -33,10 +33,8 @@ extern "C" {
 /* 向底软最大重传次数 */
 #define AT_NDIS_MAX_RESEND_TIMES            (60)
 
-/* Modified by s62952 for AT Project，2011-10-17,  Begin*/
 /*AT数据初始长度*/
 #define AT_INIT_DATA_LEN                    (0)
-/* Modified by s62952 for AT Project，2011-10-17,  end*/
 
 #define AT_MODEM_UL_DATA_BUFF_SIZE      (1536)
 #define AT_MODEM_UL_DATA_BUFF_NUM       (16)
@@ -86,14 +84,7 @@ extern "C" {
 /*****************************************************************************
   3 枚举定义
 *****************************************************************************/
-/*****************************************************************************
- 结构名称: AT_MEM_SOURCE_TYPE_ENUM
- 协议表格:
- 结构说明: MODEM设备内存来源类型
- 1.日    期   : 2011年10月17日
-  作    者   : s62952
-  修改内容   : 创建文件
-*****************************************************************************/
+
 enum AT_MEM_SOURCE_TYPE_ENUM
 {
     AT_MEM_SOURCE_UDI_UL_BUF,                                                   /*MODEM设备buffer内存*/
@@ -128,13 +119,7 @@ extern UDI_HANDLE                              g_alAtUdiHandle[AT_CLIENT_BUTT];
 /*****************************************************************************
   7 STRUCT定义
 *****************************************************************************/
-/*****************************************************************************
- 结构名    : AT_HSIC_CONTEXT_STRU
- 结构说明  : AP-MODEM新增3个HSIC AT通道，该结构用于这三个AT通道的统一管理及配置
- 1.日    期   : 2012年02月20日
-   作    者   : L47619
-   修改内容   : 新增结构
-*****************************************************************************/
+
 typedef struct
 {
     UDI_DEVICE_ID_E         enAcmChannelId;   /* 目前HSIC AT通道所用的HSIC ACM通道ID为:
@@ -164,11 +149,9 @@ typedef struct
 }AT_HSIC_CONTEXT_STRU;
 
 
-/* Added by j00174725 for V3R3 Cut Out Memory，2013-11-07,  Begin */
 #if (FEATURE_ON == FEATURE_AT_HSIC)
 extern AT_HSIC_CONTEXT_STRU                    g_astAtHsicCtx[];
 #endif
-/* Added by j00174725 for V3R3 Cut Out Memory，2013-11-07,  End */
 
 
 /*****************************************************************************
@@ -184,29 +167,11 @@ extern AT_HSIC_CONTEXT_STRU                    g_astAtHsicCtx[];
 /*****************************************************************************
   10 函数声明
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : AT_SendDataToModem
- 功能描述  : 下行发送数据给modem口
- 输入参数  : pucDataBuf   ----    待发送下行数据内存指针
-             usLen        ----    数据长度
- 输出参数  :
- 返 回 值  : AT_SUCCESS ----      成功；
-             AT_FAILURE ----      失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月22日
-    作    者   : sunshaohua
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 extern VOS_INT OM_RcvDiagCmdFromPC(VOS_UINT8 ucPortNo, VOS_UINT8 *pData, VOS_UINT16 uslength);
-/* Modified by L60609 for AT Project，2011-10-20,  Begin*/
 #if (VOS_WIN32 == VOS_OS_VER)
 extern VOS_INT32 Sock_RecvCallbackRegister(VOS_UINT8 ucPortNo, pSockRecv pCallback);
 #endif
-/* Modified by L60609 for AT Project，2011-10-20,  End*/
 
 extern int  App_VcomRecvCallbackRegister(unsigned char  uPortNo, pComRecv pCallback);
 extern VOS_INT32 AT_AppComEst(VOS_VOID);
@@ -600,7 +565,6 @@ VOS_VOID AT_RcvTiVoiceRiExpired(REL_TIMER_MSG *pstTmrMsg);
 VOS_VOID AT_ProcFormatResultMsc(VOS_UINT8 ucIndex, VOS_UINT32 ulReturnCode);
 
 
-/* Added by j00174725 for V3R3 Cut Out Memory，2013-11-07,  Begin */
 #if (FEATURE_ON == FEATURE_AT_HSIC)
 extern VOS_VOID AT_HsicFourFreeDlDataBuf(VOS_UINT8 *pucBuf);
 extern VOS_VOID AT_HsicFourReadDataCB( VOS_VOID );
@@ -651,7 +615,6 @@ extern VOS_VOID AT_HsicModemEnableCB(VOS_UINT8 ucEnable);
 extern VOS_VOID AT_HsicModemReadDataCB( VOS_VOID );
 extern VOS_VOID AT_HsicModemReadMscCB(AT_DCE_MSC_STRU *pstRcvedMsc);
 #endif
-/* Added by j00174725 for V3R3 Cut Out Memory，2013-11-07,  End */
 
 #if (VOS_OS_VER == VOS_WIN32)
 #pragma pack()

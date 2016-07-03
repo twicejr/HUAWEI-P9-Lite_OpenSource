@@ -350,25 +350,12 @@ static void snd_complete_urb(struct urb *urb)
 	struct snd_usb_endpoint *ep = ctx->ep;
 	int err;
 
-	if (!ctx->ep) {
-		snd_printk(KERN_ERR "ctx->ep is null in snd_complete_urb\n");
-		return;
-	}
-
 	if (unlikely(urb->status == -ENOENT ||		/* unlinked */
-			urb->status == -ENODEV ||		/* device removed */
-			urb->status == -ECONNRESET ||		/* unlinked */
-			urb->status == -ESHUTDOWN)		/* device disabled */
-			) {
-		snd_printk(KERN_ERR "urb->status is invalid in snd_complete_urb\n");
-		return;
-	}
-
-	/* device disconnected */
-	if (ep->chip->shutdown) {
-		snd_printk(KERN_ERR "ep->chip->shutdown is true in snd_complete_urb\n");
+		     urb->status == -ENODEV ||		/* device removed */
+		     urb->status == -ECONNRESET ||	/* unlinked */
+		     urb->status == -ESHUTDOWN ||	/* device disabled */
+		     ep->chip->shutdown))		/* device disconnected */
 		goto exit_clear;
-	}
 
 	if (usb_pipeout(ep->pipe)) {
 		retire_outbound_urb(ep, ctx);

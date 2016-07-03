@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : hmac_tcp_opt.c
-  版 本 号   : 初稿
-  作    者   : zengjun
-  生成日期   : 2015年5月16日
-  最近修改   :
-  功能描述   :
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年5月16日
-    作    者   : zengjun
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -79,23 +62,7 @@ oal_bool_enum_uint8 time_before_eq(oal_uint32 a,oal_uint32 b)
 /*****************************************************************************
   4 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : hmac_tcp_opt_ack_count_reset
- 功能描述  : 复位TCP ACK的统计值
- 输入参数  : struct hcc_handler *hcc
-             hcc_chan_type dir
-             oal_uint16 stream
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月12日
-    作    者   : z00185449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void hmac_tcp_opt_ack_count_reset(hmac_vap_stru    *pst_hmac_vap,hcc_chan_type dir, oal_uint16 stream)
 {
     OAL_BUG_ON(!pst_hmac_vap);
@@ -105,23 +72,7 @@ void hmac_tcp_opt_ack_count_reset(hmac_vap_stru    *pst_hmac_vap,hcc_chan_type d
     oal_spin_unlock_bh(&pst_hmac_vap->st_hamc_tcp_ack[dir].hmac_tcp_ack.hmac_tcp_ack_lock);
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_tcp_opt_ack_all_count_reset
- 功能描述  : 复位所有TCP ACK的统计值
- 输入参数  : struct hcc_handler *hcc
-             hcc_chan_type dir
-             oal_uint16 stream
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月12日
-    作    者   : z00185449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void hmac_tcp_opt_ack_all_count_reset(hmac_vap_stru    *pst_hmac_vap)
 {
     oal_uint16     us_dir_index = 0;
@@ -133,23 +84,7 @@ void hmac_tcp_opt_ack_all_count_reset(hmac_vap_stru    *pst_hmac_vap)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_tcp_opt_ack_show_count
- 功能描述  : 复位所有TCP ACK的统计值
- 输入参数  : struct hcc_handler *hcc
-             hcc_chan_type dir
-             oal_uint16 stream
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月12日
-    作    者   : z00185449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void hmac_tcp_opt_ack_show_count(hmac_vap_stru    *pst_hmac_vap)
 {
     oal_uint16     us_dir_index = 0;
@@ -172,22 +107,7 @@ void hmac_tcp_opt_ack_show_count(hmac_vap_stru    *pst_hmac_vap)
         }
     }
 }
-/*****************************************************************************
- 函 数 名  : hmac_tcp_opt_find_oldest_node
- 功能描述  : 查找时间最旧的node
- 输入参数  : struct hcc_handler *hcc
-             hcc_chan_type dir
- 输出参数  : 无
- 返 回 值  : struct tcp_list_node *
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月12日
-    作    者   : z00185449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 struct tcp_list_node *hmac_tcp_opt_find_oldest_node(hmac_vap_stru    *pst_hmac_vap, hcc_chan_type dir)
 {
     struct tcp_list_node *node;
@@ -219,22 +139,7 @@ struct tcp_list_node *hmac_tcp_opt_find_oldest_node(hmac_vap_stru    *pst_hmac_v
         OAM_ERROR_LOG0(0,OAM_SF_ANY,"can't find oldest node xx");
     return oldest_node;
 }
-/*****************************************************************************
- 函 数 名  : hmac_tcp_opt_get_buf
- 功能描述  : get buf for tcp ack
- 输入参数  : struct hcc_handler *hcc
-             hcc_chan_type dir
- 输出参数  : 无
- 返 回 值  : struct tcp_list_node *
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月12日
-    作    者   : z00185449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 struct tcp_list_node *hmac_tcp_opt_get_buf(hmac_vap_stru    *pst_hmac_vap, hcc_chan_type dir)
 {
     struct tcp_list_node *node = NULL;
@@ -263,23 +168,7 @@ struct tcp_list_node *hmac_tcp_opt_get_buf(hmac_vap_stru    *pst_hmac_vap, hcc_c
     return node;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_tcp_opt_free_buf
- 功能描述  : free buf to tcp buf pool
- 输入参数  : struct hcc_handler *hcc
-             struct tcp_list_node *node
-             hcc_chan_type dir
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月12日
-    作    者   : z00185449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void hmac_tcp_opt_free_buf(hmac_vap_stru    *pst_hmac_vap, struct tcp_list_node *node, hcc_chan_type dir)
 {
     pst_hmac_vap->st_hamc_tcp_ack[dir].hmac_tcp_ack.aul_hcc_tcp_ack_no[node->ul_index] = 0;
@@ -293,23 +182,7 @@ void hmac_tcp_opt_free_buf(hmac_vap_stru    *pst_hmac_vap, struct tcp_list_node 
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_tcp_opt_add_node
- 功能描述  : add node to ack list
- 输入参数  : struct hcc_handler *hcc
-             struct wlan_tcp_flow *tcp_info
-             hcc_chan_type dir
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月12日
-    作    者   : z00185449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_tcp_opt_add_node(hmac_vap_stru    *pst_hmac_vap, struct wlan_tcp_flow *tcp_info, hcc_chan_type dir)
 {
     struct tcp_list_node *node;
@@ -343,21 +216,7 @@ oal_uint32 hmac_tcp_opt_add_node(hmac_vap_stru    *pst_hmac_vap, struct wlan_tcp
     return node->ul_index;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_tcp_opt_init_filter_tcp_ack_pool
- 功能描述  : init tcp ack pool
- 输入参数  : struct hcc_handler* hcc
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月12日
-    作    者   : z00185449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_tcp_opt_init_filter_tcp_ack_pool(hmac_vap_stru    *pst_hmac_vap)
 {
     oal_uint16     us_dir_index = 0;
@@ -396,21 +255,7 @@ oal_uint32 hmac_tcp_opt_init_filter_tcp_ack_pool(hmac_vap_stru    *pst_hmac_vap)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_tcp_opt_free_ack_list
- 功能描述  : 删除vap时释放ack list
- 输入参数  : struct hcc_handler *hcc
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月12日
-    作    者   : z00185449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void hmac_tcp_opt_free_ack_list(hmac_vap_stru *pst_hmac_vap,oal_uint8 dir,oal_uint8 type)
 {
 #if !defined(WIN32)
@@ -431,21 +276,7 @@ void hmac_tcp_opt_free_ack_list(hmac_vap_stru *pst_hmac_vap,oal_uint8 dir,oal_ui
     oal_spin_unlock_bh(&pst_hmac_vap->st_hamc_tcp_ack[dir].data_queue_lock[type]);
 #endif
 }
-/*****************************************************************************
- 函 数 名  : hmac_tcp_opt_deinit_list
- 功能描述  : deinit tcp ack list
- 输入参数  : struct hcc_handler *hcc
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月12日
-    作    者   : z00185449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void hmac_tcp_opt_deinit_list(hmac_vap_stru *pst_hmac_vap)
 {
     hmac_tcp_opt_free_ack_list(pst_hmac_vap,HCC_TX,HMAC_TCP_ACK_QUEUE);
@@ -455,24 +286,7 @@ void hmac_tcp_opt_deinit_list(hmac_vap_stru *pst_hmac_vap)
 }
 
 
-/*****************************************************************************
- 函 数 名  : hmac_tcp_opt_get_flow_index
- 功能描述  : get follow index for each tcp ack
- 输入参数  : struct hcc_handler     *hcc
-             oal_ip_header_stru  *ip_hdr
-             oal_tcp_header_stru *tcp_hdr
-             hcc_chan_type dir
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月12日
-    作    者   : z00185449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_tcp_opt_get_flow_index(hmac_vap_stru    *pst_hmac_vap,
                                              oal_ip_header_stru     *pst_ip_hdr,
                                              oal_tcp_header_stru *pst_tcp_hdr,
@@ -525,24 +339,7 @@ oal_uint32 hmac_tcp_opt_get_flow_index(hmac_vap_stru    *pst_hmac_vap,
 
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_tcp_opt_get_tcp_ack_type
- 功能描述  : get follow index for each tcp ack
- 输入参数  : hmac_vap_stru    *pst_hmac_vap
-             oal_ip_header_stru     *pst_ip_hdr
-             hcc_chan_type dir
-             oal_uint16 ul_index
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月20日
-    作    者   : z00185449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_tcp_opt_get_tcp_ack_type(hmac_vap_stru    *pst_hmac_vap,
                                              oal_ip_header_stru     *pst_ip_hdr,
                                              hcc_chan_type dir,
@@ -583,21 +380,7 @@ oal_uint32 hmac_tcp_opt_get_tcp_ack_type(hmac_vap_stru    *pst_hmac_vap,
 
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_judge_rx_netbuf_is_tcp_ack
- 功能描述  : 判断接收帧是否是TCP_ACK帧
- 输入参数  : mac_llc_snap *pst_snap
- 输出参数  : 无
- 返 回 值  : oal_bool_enum_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月15日
-    作    者   : z00185449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_bool_enum_uint8 hmac_judge_rx_netbuf_is_tcp_ack(mac_llc_snap_stru *pst_snap)
 {
     oal_ip_header_stru  *pst_ip_hdr;
@@ -652,21 +435,7 @@ oal_bool_enum_uint8 hmac_judge_rx_netbuf_is_tcp_ack(mac_llc_snap_stru *pst_snap)
     return en_is_tcp_ack;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_judge_rx_netbuf_classify
- 功能描述  : 接收帧进行分类
- 输入参数  : oal_netbuf_stru* netbuf
- 输出参数  : 无
- 返 回 值  : oal_bool_enum_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月20日
-    作    者   : z00185449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_bool_enum_uint8 hmac_judge_rx_netbuf_classify(oal_netbuf_stru *pst_netbuff)
 {
     mac_llc_snap_stru             *pst_snap;
@@ -683,21 +452,7 @@ oal_bool_enum_uint8 hmac_judge_rx_netbuf_classify(oal_netbuf_stru *pst_netbuff)
 }
 
 
-/*****************************************************************************
- 函 数 名  : hmac_judge_tx_netbuf_is_tcp_ack
- 功能描述  : 判断接收帧是否是TCP_ACK帧
- 输入参数  : oal_ether_header_stru *ps_ethmac_hdr
- 输出参数  : 无
- 返 回 值  : oal_bool_enum_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月15日
-    作    者   : z00185449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_bool_enum_uint8 hmac_judge_tx_netbuf_is_tcp_ack(oal_ether_header_stru *ps_ethmac_hdr)
 {
     oal_ip_header_stru     *pst_ip;
@@ -748,24 +503,7 @@ oal_bool_enum_uint8 hmac_judge_tx_netbuf_is_tcp_ack(oal_ether_header_stru *ps_et
     return en_is_tcp_ack;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_tcp_opt_get_tcp_ack
- 功能描述  : get tcp ack from the skb data
- 输入参数  : struct oal_netbuf_stru *skb
-             struct hcc_handler *hcc
-             oal_uint16 *p_us_index
-             uint8 dir
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月12日
-    作    者   : z00185449
-    修改内容   : 新生成函数
-
-******************************************************************************/
 oal_uint32  hmac_tcp_opt_rx_get_tcp_ack(oal_netbuf_stru *skb, hmac_vap_stru    *pst_hmac_vap, oal_uint16 *p_us_index, oal_uint8 dir)
 {
     oal_ip_header_stru  *pst_ip_hdr;
@@ -805,24 +543,7 @@ oal_uint32  hmac_tcp_opt_rx_get_tcp_ack(oal_netbuf_stru *skb, hmac_vap_stru    *
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_tcp_opt_tx_get_tcp_ack
- 功能描述  : get tcp ack from the skb data
- 输入参数  : struct oal_netbuf_stru *skb
-             struct hcc_handler *hcc
-             oal_uint16*p_us_index
-             uint8 dir
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月12日
-    作    者   : z00185449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_tcp_opt_tx_get_tcp_ack(oal_netbuf_stru *skb, hmac_vap_stru    *pst_hmac_vap, oal_uint16 *p_us_index, oal_uint8 dir)
 {
     oal_ip_header_stru  *pst_ip_hdr;
@@ -860,24 +581,7 @@ oal_uint32  hmac_tcp_opt_tx_get_tcp_ack(oal_netbuf_stru *skb, hmac_vap_stru    *
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_tcp_opt_tcp_ack_list_filter
- 功能描述  : TCP ACK过滤函数
- 输入参数  : struct hcc_handler* hcc
-             hmac_tcp_opt_queue type
-             hcc_chan_type dir
-             oal_netbuf_head_stru  *head
- 输出参数  : 无
- 返 回 值  : oal_uint16
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月12日
-    作    者   : z00185449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint16 hmac_tcp_opt_tcp_ack_list_filter(hmac_vap_stru    *pst_hmac_vap, hmac_tcp_opt_queue type,hcc_chan_type dir, oal_netbuf_head_stru  *head)
 {
     struct tcp_list_node *node;
@@ -951,24 +655,7 @@ oal_uint16 hmac_tcp_opt_tcp_ack_list_filter(hmac_vap_stru    *pst_hmac_vap, hmac
     return 0;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_tcp_opt_rx_tcp_ack_filter
- 功能描述  : 接收TCP ACK过滤函数
- 输入参数  : struct hcc_handler* hcc
-             hmac_tcp_opt_queue type
-             hcc_chan_type dir
-             void* data
- 输出参数  : 无
- 返 回 值  : oal_uint16
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月12日
-    作    者   : z00185449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint16 hmac_tcp_opt_rx_tcp_ack_filter(void *hmac_vap, hmac_tcp_opt_queue type,hcc_chan_type dir, void* data)
 {
     hmac_vap_stru    *pst_hmac_vap;
@@ -996,24 +683,7 @@ oal_uint16 hmac_tcp_opt_rx_tcp_ack_filter(void *hmac_vap, hmac_tcp_opt_queue typ
     return hmac_tcp_opt_tcp_ack_list_filter(pst_hmac_vap, type, dir, head);
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_tcp_opt_tx_tcp_ack_filter
- 功能描述  : 发送TCP ACK过滤函数
- 输入参数  : struct hcc_handler* hcc
-             hmac_tcp_opt_queue type
-             hcc_chan_type dir
-             void* data
- 输出参数  : 无
- 返 回 值  : oal_uint16
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月12日
-    作    者   : z00185449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint16 hmac_tcp_opt_tx_tcp_ack_filter(void *hmac_device, hmac_tcp_opt_queue type,hcc_chan_type dir, void* data)
 {
     hmac_vap_stru    *pst_hmac_vap;
@@ -1041,23 +711,7 @@ oal_uint16 hmac_tcp_opt_tx_tcp_ack_filter(void *hmac_device, hmac_tcp_opt_queue 
 }
 
 
-/*****************************************************************************
- 函 数 名  : hmac_tcp_opt_tcp_ack_filter
- 功能描述  : save it to tcp ack queue
- 输入参数  : struct oal_netbuf_stru *skb
-             struct hcc_handler *hcc
-             hcc_chan_type dir
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月12日
-    作    者   : z00185449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_tcp_opt_tcp_ack_filter(oal_netbuf_stru *skb, hmac_vap_stru    *pst_hmac_vap, hcc_chan_type dir)
 {
 

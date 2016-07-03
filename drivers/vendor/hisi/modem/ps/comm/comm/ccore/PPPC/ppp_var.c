@@ -1,24 +1,4 @@
-/************************************************************************
-*                                                                      *
-*                             ppp_var.c                                *
-*                                                                      *
-*  Project Code:       VRP3.0                                          *
-*  Create Date:        2000/03/27                                      *
-*  Author:             Deng Yi Ou                                      *
-*  Modify Date:                                                        *
-*  Document:                                                           *
-*  Function:           PPP模块的全局变量定义                           *
-*  Others:                                                             *
-*----------------------------------------------------------------------*
-*                                                                      *
-*  Copyright 2000-2002 VRP3.0 Team Beijing Institute HuaWei Tech, Inc. *
-*                      ALL RIGHTS RESERVED                             *
-*                                                                      *
-*----------------------------------------------------------------------*
-*                                                                      *
-*   这个文件定义了PPP模块的所有全局变量                                *
-*                                                                      *
-************************************************************************/
+
 
 
 
@@ -153,10 +133,8 @@ PPP_CCP_INFO_S   g_astPppCcpPool[PPP_MAX_USER_NUM + 1];
 PPPCONFIGINFO_S  g_astPppConfifPool[PPP_MAX_USER_NUM + 1];
 
 PPP_NEGO_NODE_S  *g_pstPppNegoList = VOS_NULL_PTR;
-/* BEGIN: Added for PN:解决ppp协商定时器资源挂死问题 by wangyong 00138171, 2013/12/21 */
 PPP_NEGO_NODE_S  *g_pstPppPDNNegoList = VOS_NULL_PTR;
 PPP_NEGO_NODE_S  *g_pstPppRPNegoList = VOS_NULL_PTR;
-/* END:   Added for PN:解决ppp协商定时器资源挂死问题 by wangyong 00138171, 2013/12/21 */
 /* PPPIPV6CPINFO_S  *g_astPppIpv6cpPool = VOS_NULL_PTR; */
 PPPIPV6CPINFO_S  g_astPppIpv6cpPool[PPP_MAX_USER_NUM + 1];
 
@@ -188,7 +166,7 @@ VOS_UINT32 g_ulPppDhcpQueID;     /* DHCP消息队列 */
 VOS_UINT32 g_ulPppTimeQueID;     /* 定时器消息队列 */
 VOS_UINT32 g_ulPppCcpQueID; /* 压缩数据消息队列 */ /*WGGSN_B03_L2TP_PPPC_COMP*/
 VOS_UINT32 g_ulPppCompressQueID;
-VOS_UINT32 g_ulPppGspcQueID;     /* Added by liutao 38563 at 2004-09-21 V800R002 for PPP压缩移植 */
+VOS_UINT32 g_ulPppGspcQueID;
 VOS_UINT32 g_ulPppPcrfcQueID;    /*与PCRFC交互消息队列*/
 LONG g_ulPppL2tpMaxUserNum;/* L2TP最大用户数 */
 LONG g_ulPppCcpMaxUserNum;

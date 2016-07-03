@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmcComFunc.h
-  版 本 号   : 初稿
-  作    者   : l00130025
-  生成日期   : 2011年8月7日
-  最近修改   :
-  功能描述   : MMC的公共处理函数
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年8月7日
-    作    者   : l00130025
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef _NAS_MMC_COM_FUNC_H__
 #define _NAS_MMC_COM_FUNC_H__
@@ -150,9 +133,7 @@ VOS_UINT32  NAS_MMC_GetOptMask_WasSysinfo(
     RRMM_SYS_INFO_IND_STRU             *pstRrMmSysInfoInd
 );
 
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-16, begin */
 /*删除NAS_MMC_ConvertUserSpecAccessMode2MmlRat函数*/
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-16, end */
 
 TAF_SYS_SUBMODE_ENUM_UINT8 NAS_MMC_CovertMmlSysSubModeToMsccSysSubMode(
     NAS_MML_RRC_SYS_SUBMODE_ENUM_UINT8  enSysSubMode
@@ -385,7 +366,6 @@ VOS_UINT32 NAS_MMC_IsNeedEnableLte_AttachCsPs(VOS_VOID);
 VOS_UINT32 NAS_MMC_IsNeedDisableLte_DetachCsPs(VOS_VOID);
 VOS_UINT32 NAS_MMC_IsNeedEnableLte_DetachCsPs(VOS_VOID);
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-10, begin */
 #if (FEATURE_ON == FEATURE_LTE)
 VOS_UINT32 NAS_MMC_IsNeedDisableLte_ImsVoiceNotAvail(VOS_VOID);
 
@@ -406,7 +386,6 @@ VOS_VOID  NAS_MMC_DelPlmnSelectionRatInfoInDisabledPlmnWithForbiddenPeriodList (
 
 
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-10, end */
 
 VOS_UINT32 NAS_MMC_IsNeedDisableLteRoam(
     VOS_UINT32                          ulMcc
@@ -452,9 +431,7 @@ VOS_UINT32 NAS_MMC_IsRejectedBySpecCause(
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16  enCause
 );
 
-/* Modified by z40661 for 泰国AIS特性 2012-05-17, begin */
 VOS_UINT32  NAS_MMC_IsAisRoamingEffect( VOS_VOID );
-/* Modified by z40661 for 泰国AIS特性 2012-05-17, end */
 
 VOS_VOID NAS_MMC_UpdateUserSpecPlmnRegisterStatusWhenRegFail(
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16  enRegFailCause
@@ -488,12 +465,10 @@ VOS_VOID NAS_MMC_UpdateUserSpecPlmnRegisterStatus(
 
 #if (FEATURE_LTE == FEATURE_ON)
 
-/* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-14, begin */
 VOS_VOID  NAS_MMC_RcvGuSysInfoIndSetLteRoamAbility(
     VOS_UINT32                                              ulSysInfoMcc,
     NAS_MML_LTE_CAPABILITY_STATUS_ENUM_UINT32               enLCapabilityStatus
 );
-/* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-14, end */
 
 VOS_UINT32 NAS_MCC_IsNeedDisableLteWBand(
     VOS_UINT32                         ulBand
@@ -596,16 +571,13 @@ VOS_VOID  NAS_MMC_UpdateRegStateSpecPlmnSearch(VOS_VOID);
 
 VOS_VOID  NAS_MMC_UpdateRegStateAnyCellSearchSucc(VOS_VOID);
 
-/* Added by s00261364 for V3R360_eCall项目, 2014-4-14, begin */
 VOS_VOID  NAS_MMC_UpdateServiceStateSpecPlmnSearch(VOS_VOID);
-/* Added by s00261364 for V3R360_eCall项目, 2014-4-14, end */
 
 
 VOS_VOID  NAS_MMC_UpdateCsRegStateCsRegSucc(VOS_VOID);
 
 VOS_VOID  NAS_MMC_UpdatePsRegStatePsRegSucc(VOS_VOID);
 
-/* Added by s00261364 for V3R360_eCall项目, 2014-4-4, begin */
 VOS_VOID NAS_MMC_ConvertToMsccSrvStatus(
     NAS_MMC_SERVICE_ENUM_UINT8          enMmcServiceState,
     NAS_MSCC_PIF_SERVICE_STATUS_ENUM_UINT32 *penMsccServiceState
@@ -614,7 +586,6 @@ VOS_VOID  NAS_MMC_ChangeServiceState(
     VOS_UINT32                          ulCnDomainId,
     NAS_MMC_SERVICE_ENUM_UINT8          enServiceState
 );
-/* Added by s00261364 for V3R360_eCall项目, 2014-4-4, end */
 
 VOS_VOID NAS_MMC_ProcCsRegStateAndCsServiceState_DetachCnfSucc(VOS_VOID);
 VOS_VOID NAS_MMC_ProcPsRegStateAndPsServiceState_DetachCnfSucc(VOS_VOID);
@@ -664,11 +635,9 @@ VOS_UINT32  NAS_MMC_IsSingleDomainRegFailNeedPlmnSrch(
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16      enRegFailDomain
 );
 
-/* Added by s00246516 for L-C互操作项目, 2014-02-13, Begin */
 VOS_UINT32 NAS_MMC_IsRegReqTriggerPlmnSrch_L1Main(
     MSCC_MMC_REG_REQ_STRU                         *pstRegReq
 );
-/* Added by s00246516 for L-C互操作项目, 2014-02-13, End */
 
 VOS_VOID NAS_MMC_BuildEquPlmnInfo(
      NAS_MML_EQUPLMN_INFO_STRU         *pstOutEplmnInfo
@@ -751,7 +720,6 @@ VOS_UINT32 NAS_MMC_IsNeedStartHighPrioRatHPlmnTimer_CsfbEnd( VOS_VOID );
 
 VOS_UINT32  NAS_MMC_IsSorTriggerAdditionalLau(VOS_VOID);
 
-/* Added by s00246516 for L-C互操作项目, 2014-02-12, Begin */
 NAS_MSCC_PIF_PLMN_PRIORITY_CLASS_ENUM_UINT8 NAS_MMC_GetPlmnPrioClass(
     NAS_MML_PLMN_ID_STRU               *pstPlmnId
 );
@@ -768,14 +736,11 @@ VOS_UINT32 NAS_MMC_IsSuccRegInSpecCellInfo(
 NAS_MMC_PLMN_SEARCH_SCENE_ENUM_UINT32 NAS_MMC_GetPlmnSearchSceneMsccRegReq(
     MSCC_MMC_REG_REQ_STRU               *pstRegReq
 );
-/* Added by s00246516 for L-C互操作项目, 2014-02-12, End */
 
-/* Added by w00167002 for L-C互操作项目, 2014-2-19, begin */
 VOS_VOID   NAS_MMC_Convert3GPP2RatType(
     NAS_MSCC_PIF_3GPP2_RAT_TYPE_ENUM_UINT8   enMSCC3GPP2RatType,
     NAS_MML_3GPP2_RAT_TYPE_ENUM_UINT8  *penMML3GPP2RatType
 );
-/* Added by w00167002 for L-C互操作项目, 2014-2-19, end */
 
 VOS_VOID NAS_MMC_SndMsccCurrServiceRelatedInfo(VOS_VOID);
 
@@ -902,9 +867,7 @@ VOS_UINT32  NAS_MMC_IsRatPrioChangeTriggerPlmnSrch(
     NAS_MSCC_PIF_RAT_PRIO_STRU         *pstNewRatList
 );
 
-/* Added by c00318887 for 预置频点搜网优化, 2015-8-26, begin */
 VOS_UINT32 NAS_MMC_StartPlmnSearchPhaseOneTotalTimer(VOS_VOID);
-/* Added by c00318887 for 预置频点搜网优化, 2015-8-26, end */
 
 NAS_ERR_LOG_RATMODE_ENUM_UINT8 NAS_MMC_ConvertRatTypeFromNasMsccToNasErr (
     NAS_MSCC_PIF_NET_RAT_TYPE_ENUM_UINT8 msccRatType

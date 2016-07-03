@@ -30,24 +30,7 @@ int get_random_number(void)
     return randNum%400;
 }
 
-/*****************************************************************************
- 函 数 名  : exm_util_fill_pattern
- 功能描述  : 数据pattern填写函数
- 输入参数  : ExmCtx * ctx
-             exmbist_uint32 * p
-             exmbist_uint32 b_rand
-             exmbist_uint32 val
- 输出参数  : 无
- 返 回 值  : exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月15日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 exmbist_uint32 exm_util_fill_pattern (ExmCtx * ctx, exmbist_uint32 * p, exmbist_uint32 b_rand, exmbist_uint32 val) 
 {
     exmbist_uint32 uiret = EXMBIST_OK;
@@ -64,21 +47,7 @@ exmbist_uint32 exm_util_fill_pattern (ExmCtx * ctx, exmbist_uint32 * p, exmbist_
     return uiret;
 }
 
-/*****************************************************************************
- 函 数 名  : exm_util_get_error_num
- 功能描述  : 获取diag fifo中出错记录个数
- 输入参数  : ExmCtx * ctx
- 输出参数  : 无
- 返 回 值  : exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月16日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 exmbist_uint32 exm_util_get_error_num(ExmCtx * ctx)
 {
     exmbist_uint32 error_in_fifo_cnt;
@@ -98,22 +67,7 @@ exmbist_uint32 exm_util_get_error_num(ExmCtx * ctx)
     return error_in_fifo_cnt;
 }
 
-/*****************************************************************************
- 函 数 名  : exm_util_display_ExmDiag
- 功能描述  : 显示一次错误记录
- 输入参数  : ExmCtx * ctx
-             ExmDiag * diag
- 输出参数  : 无
- 返 回 值  : exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月15日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 exmbist_uint32 exm_util_display_ExmDiag(ExmCtx * ctx, ExmDiag * diag)
 {
     exmbist_uint32 uiret = EXMBIST_OK;
@@ -140,21 +94,7 @@ exmbist_uint32 exm_util_display_ExmDiag(ExmCtx * ctx, ExmDiag * diag)
     EXMBIST_error("-------------------------------------\n");
     return uiret;
 }
-/*****************************************************************************
- 函 数 名  : exm_util_print_status
- 功能描述  : 打印exmbsit 状态
- 输入参数  : ExmCtx * ctx
- 输出参数  : 无
- 返 回 值  : exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月15日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 exmbist_uint32 exm_util_print_status (ExmCtx * ctx)
 {
     exmbist_uint32 uiret = EXMBIST_OK;
@@ -169,21 +109,7 @@ exmbist_uint32 exm_util_print_status (ExmCtx * ctx)
     return uiret;
 }
 
-/*****************************************************************************
- 函 数 名  : exm_util_reset_cfg
- 功能描述  : 复位cfg配置
- 输入参数  : ExmCtx * ctx
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月16日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void exm_util_reset_cfg (ExmCtx * ctx) {
 
     ctx->stage_id               = 0;
@@ -204,21 +130,7 @@ void exm_util_reset_cfg (ExmCtx * ctx) {
     ctx->status_code            = EXMBIST_STATUS_CODE_INITIAL_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : exm_util_inc_error
- 功能描述  : error计时器加一
- 输入参数  : ExmCtx * ctx
- 输出参数  : 无
- 返 回 值  : static exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月16日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 #if 0
 static exmbist_uint32 exm_util_inc_error (ExmCtx * ctx)
 {
@@ -227,23 +139,7 @@ static exmbist_uint32 exm_util_inc_error (ExmCtx * ctx)
     return uiret;
 }
 #endif
-/*****************************************************************************
- 函 数 名  : exm_util_init_array
- 功能描述  : 数组初始化函数
- 输入参数  : exmbist_uint32 array[]
-             exmbist_uint32 length
-             exmbist_uint32 data
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月16日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void exm_util_init_array(exmbist_uint32 array[],exmbist_uint32 length,exmbist_uint32 data)
 {
     exmbist_uint32 i;
@@ -252,21 +148,7 @@ void exm_util_init_array(exmbist_uint32 array[],exmbist_uint32 length,exmbist_ui
     }
 }
 
-/*****************************************************************************
- 函 数 名  : exm_util_get_bist_status
- 功能描述  : 获取mbist状态
- 输入参数  : ExmCtx * ctx
- 输出参数  : 无
- 返 回 值  : exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月16日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 exmbist_uint32 exm_util_get_bist_status (ExmCtx * ctx)
 {
     exmbist_uint32 uiret = EXMBIST_OK;
@@ -283,21 +165,7 @@ exmbist_uint32 exm_util_get_bist_status (ExmCtx * ctx)
     return uiret;
 }
 
-/*****************************************************************************
- 函 数 名  : exm_util_wait_bist_ready
- 功能描述  : 等待mbist 结束并检查
- 输入参数  : ExmCtx * ctx
- 输出参数  : 无
- 返 回 值  : static exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月16日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 #if 0
 static exmbist_uint32 flag = 0;
 static exmbist_uint32 exm_util_wait_bist_ready (ExmCtx * ctx)
@@ -363,21 +231,7 @@ static exmbist_uint32 exm_util_wait_bist_ready (ExmCtx * ctx)
         }
     }while (1);
 }
-/*****************************************************************************
- 函 数 名  : exm_util_wait_bist_pass
- 功能描述  : 测试结果检查
- 输入参数  : ExmCtx * ctx
- 输出参数  : 无
- 返 回 值  : exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月16日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 exmbist_uint32 exm_util_wait_bist_pass (ExmCtx * ctx)
 {
     exmbist_uint32 uiret = EXMBIST_OK;

@@ -1,26 +1,4 @@
-/************************************************************************
- *                                                                      *
- *                                                                      *
- *  Project Code:       VRP3.0                                          *
- *  Create Date:        2000/03/25                                      *
- *  Author:                                                             *
- *  Modify Date:                                                        *
- *  Document:                                                           *
- *  Function:                                                           *
- *  Others:                                                             *
- *  History：                                                           *
- *      VRP3R001M07，刘凯(L03198)，2002/10                              *
- *          --  增加了MID_IPHC和MID_VJCOMP的模块定义。这两个模块有单独的    *
- *              模块号，而没有和PPP模块使用相同的模块号                 *
- *----------------------------------------------------------------------*
- *                                                                      *
- *  Copyright 2000-2002 VRP3.0 Team Beijing Institute HuaWei Tech, Inc. *
- *                      ALL RIGHTS RESERVED                             *
- *                                                                      *
- *----------------------------------------------------------------------*
- *                                                                      *
- *                                                                      *
- ************************************************************************/
+
 #ifndef _VOS_ID_H_
 #define _VOS_ID_H_
 
@@ -1483,7 +1461,6 @@ R8070_MODULE_ATMEXTEND-END
 #define MID_IPV6_DEBUG            0x04620000  
 #define MID_IPV6_MIB              0x04630000 
 
-/*Added by guojianjun178934, 宏定义同Tcpip_id.h中重复, 2013/12/19   问题单号:20131219_1_Compile */
 /*注意如果在VRP模式下，需要此宏定义,如果非VRP模式直接使用Tcpip_id.h中的定义*/
 #if (VRP_YES == TCPIP_IN_VRP)
 #define MID_IP6_ADDR              0x04640000
@@ -1494,7 +1471,6 @@ R8070_MODULE_ATMEXTEND-END
 #define MID_PMTU                  0x04690000
 #define MID_PING6                 0x046a0000
 #endif
-/* End of Added by guojianjun178934, 2013/12/19   问题单号:20131219_1_Compile */
 
 #define MID_IP6_ADDR_CmdProc      0x046b0000
 /* Begin : Defect ID: BYAD12114,     Modifier:Rajesh,   Date:2004/10/21 
@@ -1511,12 +1487,10 @@ Reason   : IPC RPC synch call must not be called from sock run context*/
 #define MID_NATPT                 0x04710000 /* IPv6 Natpt Module */
 #endif
 
-/*Added by guojianjun178934, 宏定义同Tcpip_id.h中重复, 2013/12/19   问题单号:20131219_1_Compile */
 /*注意如果在VRP模式下，需要此宏定义,如果非VRP模式直接使用Tcpip_id.h中的定义*/
 #if (VRP_YES == TCPIP_IN_VRP)
 #define MID_TCP6                  0x04720000 
 #endif
-/* End of Added by guojianjun178934, 2013/12/19   问题单号:20131219_1_Compile */
 
 
 #if (VRP_MODULE_IPV6_TUNNEL == VRP_YES)  
@@ -1844,7 +1818,6 @@ Reason   : IPC RPC synch call must not be called from sock run context*/
 
 #endif
 
-/*Added by pengjimei for 8070 IP特性移植项目. 2004/04/21*/
 #define MID_IP_RPC      0xdd330000
 /*END*/
 #define  MID_IP_PBR                      0xe0000000
@@ -2302,7 +2275,6 @@ Reason   : IPC RPC synch call must not be called from sock run context*/
 /* RM */
 #define WAITLIST_RM_VRIBLIST_TYPE     1070
 
-/* 组播路由表MRT和组播转发表MFC的WaitList定义, sunshengtao 2002/8/14 added */
 #define MRT_SRC_WAITLIST_TYPE         1071
 #define MFC_SRC_WAITLIST_TYPE         1072
 

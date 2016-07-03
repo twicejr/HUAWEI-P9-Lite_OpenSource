@@ -102,16 +102,12 @@ extern "C" {
 #define    MN_ERR_CLASS_CBS_TOO_CBMIDS                      (MN_ERR_CLASS_MSG + 103)
 #define    MN_ERR_CLASS_FDN_CHECK_DN_FAILURE                (MN_ERR_CLASS_MSG + 104)
 #define    MN_ERR_CLASS_FDN_CHECK_SC_FAILURE                (MN_ERR_CLASS_MSG + 105)
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
 #define    MN_ERR_CLASS_INVALID_TP_ADDRESS                  (MN_ERR_CLASS_MSG + 106)
 #define    MN_ERR_CLASS_INVALID_TP_UD                       (MN_ERR_CLASS_MSG + 107)
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 
-/* Added by y00245242 for VoLTE_PhaseII 项目, 2013-10-17, begin */
 #define    MN_ERR_CLASS_SMS_DOMAIN_SELECTION_FAILURE        (MN_ERR_CLASS_MSG + 108)  /* 业务域选择失败 */
 #define    MN_ERR_CLASS_SMS_DOMAIN_SELECTION_TIMER_EXPIRED  (MN_ERR_CLASS_MSG + 109)  /* 业务域选择缓存定时器超时 */
 #define    MN_ERR_CLASS_SMS_POWER_OFF                       (MN_ERR_CLASS_MSG + 110)  /* 业务域选择收到关机指示触发缓存处理 */
-/* Added by y00245242 for VoLTE_PhaseII 项目, 2013-10-17, end */
 
 #define    MN_ERR_CLASS_SMS_REDIAL_BUFFER_FULL              (MN_ERR_CLASS_MSG + 111)  /* 短信重拨缓存满 */
 

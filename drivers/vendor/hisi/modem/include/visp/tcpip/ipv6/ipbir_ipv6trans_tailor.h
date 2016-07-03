@@ -63,8 +63,6 @@ extern "C"{
 
 
 
-/*Added by guojianjun178934, 删除此宏定义，直接使用vos_id.h中的定义, 2013/12/19   问题单号:20131219_1_Compile */
-/* End of Added by guojianjun178934, 2013/12/19   问题单号:20131219_1_Compile */
 
 
 #ifdef  __cplusplus

@@ -538,13 +538,7 @@ typedef struct
     VOS_UINT8                               aucNvInfo[4];/* NV内容 */
 }NAS_MSCC_MNTN_LOG_READ_NV_INFO_IND_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_LOG_CL_SYSTEM_ACQUIRE_STRATEGY_RELATED_INFO_STRU
- 结构说明  : 输出CL系统捕获策略相关的可维可测信息结构体
- 1.日    期   : 2015年12月15日
-   作    者   : W00176964
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* _H2ASN_Skip */
@@ -555,13 +549,7 @@ typedef struct
     VOS_UINT8                                               aucRsv[3];
 }NAS_MSCC_LOG_CL_SYSTEM_ACQUIRE_STRATEGY_RELATED_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_LOG_FSM_L1_MAIN_CTX_RELATED_INFO_STRU
- 结构说明  : 输出L1状态机上下文相关的可维可测信息结构体
- 1.日    期   : 2015年12月15日
-   作    者   : W00176964
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* _H2ASN_Skip */
@@ -573,13 +561,7 @@ typedef struct
 }NAS_MSCC_LOG_FSM_L1_MAIN_CTX_RELATED_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_MNTN_DISCARD_MSG_STRU
- 结构说明  : 复位分析要忽略的消息的结构体
- 1.日    期   : 2016年01月23日
-   作    者   : l00324781
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_PID                             ulSenderPid;        /* 消息发送方PID */
@@ -677,8 +659,6 @@ VOS_VOID NAS_MSCC_MNTN_LogNvimMmssLastLocInfo(
     NAS_NVIM_MMSS_LAST_LOCATION_INFO_STRU                 *pstMmssNvimLastLocInfo
 );
 
-/* Deleted by wx270776 for OM融合, 2015-08-21, Begin */
-/* Deleted by wx270776 for OM融合, 2012-08-21, End */
 
 VOS_VOID NAS_MSCC_LogReadNVInfo(
     VOS_UINT16                          enNvItem,

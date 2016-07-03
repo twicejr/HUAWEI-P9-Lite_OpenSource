@@ -1,22 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2006, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CdsIpFragmentProc.c
-  版 本 号   : 初稿
-  作    者   : y00151394
-  生成日期   : 2011年12月12日
-  最近修改   :
-  功能描述   : CDS软调信息
-  函数列表   :
-
-  修改历史   :
-  1.日    期   : 2011年12月12日
-    作    者   : y00151394
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -58,22 +40,7 @@ CDS_IP_FRAGMENT_BUFF_STRU       g_stCdsIpFragBuff;
    5 函数实现
 ******************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : CDS_DecodeIpv4Pkt
- 功能描述  : 获取IPV4分片信息
- 输入参数  :
- 输出参数  :
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2012年05月08日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_DecodeIpv4Pkt( const TTF_MEM_ST  *pstIpPkt,
                                    CDS_IPV4_FRAGMENT_INFO_STRU *pstIpv4FragInfo)
 {
@@ -91,22 +58,7 @@ VOS_VOID CDS_DecodeIpv4Pkt( const TTF_MEM_ST  *pstIpPkt,
 }
 
 
-/*****************************************************************************
- 函 数 名  : CDS_Ipv4FragmentInfoEqual
- 功能描述  : 比较两个IPV4分片信息是否相同
- 输入参数  :
- 输出参数  :
- 返 回 值  : 相同返回PS_TRUE；不同返回PS_FALSE.
 
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2012年05月08日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CDS_Ipv4FragmentInfoEqual(const CDS_IPV4_FRAGMENT_INFO_STRU *pstSrc,
                                              const CDS_IPV4_FRAGMENT_INFO_STRU *pstTarget)
 {
@@ -132,22 +84,7 @@ VOS_UINT32 CDS_Ipv4FragmentInfoEqual(const CDS_IPV4_FRAGMENT_INFO_STRU *pstSrc,
 }
 
 
-/*****************************************************************************
- 函 数 名  : CDS_SaveIpv4FragmentInfo
- 功能描述  : 保存IPV4分片信息
- 输入参数  :
- 输出参数  :
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2012年05月08日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_SaveIpv4FragmentInfo(const CDS_IPV4_FRAGMENT_INFO_STRU *pstSrcInfo)
 {
     CDS_IPV4_FRAGMENT_BUFF_STRU     *pstIpv4FragBuff;
@@ -163,22 +100,7 @@ VOS_VOID CDS_SaveIpv4FragmentInfo(const CDS_IPV4_FRAGMENT_INFO_STRU *pstSrcInfo)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_GetEpsbIDByIpv4FragInfo
- 功能描述  : 根据IPV4分片信息从分片缓存中查找对应的EPSBID。
- 输入参数  :
- 输出参数  :
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2012年05月08日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CDS_GetEpsbIDByIpv4FragInfo(VOS_UINT8 *pucEpsbID,
                                                  const CDS_IPV4_FRAGMENT_INFO_STRU *pstSrcInfo)
 {
@@ -204,22 +126,7 @@ VOS_UINT32 CDS_GetEpsbIDByIpv4FragInfo(VOS_UINT8 *pucEpsbID,
 
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_IpV4FragmentProc
- 功能描述  : 处理IPV4分片信息
- 输入参数  :
- 输出参数  :
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2012年05月08日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CDS_Ipv4FragmentProc(VOS_UINT8 *pucEpsbID,
                                        const TTF_MEM_ST  *pstIpPkt,
                                        const IPF_RESULT_STRU *pstIpfRslt )
@@ -258,22 +165,7 @@ VOS_UINT32 CDS_Ipv4FragmentProc(VOS_UINT8 *pucEpsbID,
 
 
 
-/*****************************************************************************
- 函 数 名  : CDS_DecodeIpv6Pkt
- 功能描述  : 解析IPV6信息，获得IPV6分片信息。
- 输入参数  :
- 输出参数  :
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2012年05月08日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_DecodeIpv6Pkt(const TTF_MEM_ST  *pstIpPkt, CDS_IPV6_FRAGMENT_INFO_STRU *pstIpv6FragInfo)
 {
     IPV6_HDR_STRU         *pstIpv6Hdr;
@@ -326,22 +218,7 @@ VOS_VOID CDS_DecodeIpv6Pkt(const TTF_MEM_ST  *pstIpPkt, CDS_IPV6_FRAGMENT_INFO_S
 }
 
 
-/*****************************************************************************
- 函 数 名  : CDS_Ipv6FragmentInfoEqual
- 功能描述  : 比较IPV6分片信息，判断是否是同一个IPV6分片
- 输入参数  :
- 输出参数  :
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2012年05月08日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CDS_Ipv6FragmentInfoEqual(const CDS_IPV6_FRAGMENT_INFO_STRU *pstSrc,
                                             const CDS_IPV6_FRAGMENT_INFO_STRU *pstTarget)
 {
@@ -367,22 +244,7 @@ VOS_UINT32 CDS_Ipv6FragmentInfoEqual(const CDS_IPV6_FRAGMENT_INFO_STRU *pstSrc,
 }
 
 
-/*****************************************************************************
- 函 数 名  : CDS_SaveIpV6FragmentInfo
- 功能描述  : 保存IPV6分片信息
- 输入参数  :
- 输出参数  :
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2012年05月08日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_SaveIpv6FragmentInfo(const CDS_IPV6_FRAGMENT_INFO_STRU *pstSrcInfo)
 {
     CDS_IPV6_FRAGMENT_BUFF_STRU     *pstIpv6FragBuff;
@@ -397,22 +259,7 @@ VOS_VOID CDS_SaveIpv6FragmentInfo(const CDS_IPV6_FRAGMENT_INFO_STRU *pstSrcInfo)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_GetEpsbIDByIpv6FragInfo
- 功能描述  : 根据IPV6分片信息查找IPV6分片对应的承载信息。
- 输入参数  :
- 输出参数  :
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2012年05月08日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CDS_GetEpsbIDByIpv6FragInfo(VOS_UINT8 *pucEpsbID,
                                                 const CDS_IPV6_FRAGMENT_INFO_STRU *pstSrcInfo)
 {
@@ -438,22 +285,7 @@ VOS_UINT32 CDS_GetEpsbIDByIpv6FragInfo(VOS_UINT8 *pucEpsbID,
 
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_Ipv6FragmentProc
- 功能描述  : 处理IP分片信息
- 输入参数  :
- 输出参数  :
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2012年05月08日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CDS_Ipv6FragmentProc( VOS_UINT8 *pucEpsbID,
                                         const TTF_MEM_ST      *pstIpPkt,
                                         const IPF_RESULT_STRU *pstIpfRslt )
@@ -487,22 +319,7 @@ VOS_UINT32 CDS_Ipv6FragmentProc( VOS_UINT8 *pucEpsbID,
 
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_IpFragmentProc
- 功能描述  : 处理IP分片信息
- 输入参数  :
- 输出参数  :
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2012年05月08日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CDS_IpFragmentProc( VOS_UINT8       *pucEpsbID,
                                       TTF_MEM_ST      *pstIpPkt,
                                       const IPF_RESULT_STRU *pstIpfRslt,
@@ -545,22 +362,7 @@ VOS_UINT32 CDS_IpFragmentProc( VOS_UINT8       *pucEpsbID,
 }
 
 
-/*****************************************************************************
- 函 数 名  : CDS_PrintPktData
- 功能描述  : 打印数据包内存
- 输入参数  :
- 输出参数  :
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2012年05月08日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_PrintPktData(const VOS_UINT8 *pucPkt, VOS_UINT32 ulLen)
 {
     VOS_UINT32   ulCnt;
@@ -582,22 +384,7 @@ VOS_VOID CDS_PrintPktData(const VOS_UINT8 *pucPkt, VOS_UINT32 ulLen)
 }
 
 
-/*****************************************************************************
- 函 数 名  : CDS_ClearIpFragBuff
- 功能描述  : 清空本地IP分片缓存信息
- 输入参数  :
- 输出参数  :
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2012年05月08日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_ClearIpFragBuff(VOS_VOID)
 {
     PS_MEM_SET(&g_stCdsIpFragBuff,0, sizeof(CDS_IP_FRAGMENT_BUFF_STRU));

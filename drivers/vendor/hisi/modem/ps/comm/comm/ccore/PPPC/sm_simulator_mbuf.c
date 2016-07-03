@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : sm_simulator_mbuf.c
-  版 本 号   : 初稿
-  作    者   : m60687
-  生成日期   : Sat Mar 02 10:15:44 2013
-  最近修改   :
-  功能描述   : MBUF相关处理
-
-  修改历史   :
-  1.日    期   : Sat Mar 02 10:15:44 2013
-    作    者   : mengguangxin 60687
-    修改内容   : 创建文件
-
-****************************************************************************/
 
 
 
@@ -72,21 +55,7 @@ SM_ULONG    g_ulPktIdIndex = 0;    /* 存储Mbuf和packet id的对应关系的索引 */
 *****************************************************************************/
 /*lint -save -e958 */
 
-/*****************************************************************************
- 函 数 名  : PMBUF_Destroy
- 功能描述  : 删除MBUF内存,需要将pData和DataBlock链一起清除。
-             如果成功将返回VOS_OK，否则为VOS_ERR。
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-01-21
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 PMBUF_Destroy(PMBUF_S * pstMbuf)
 {
     MBUF_DATABLOCKDESCRIPTOR_S         *pstNextDataBlock    = VOS_NULL_PTR;
@@ -122,22 +91,7 @@ VOS_UINT32 PMBUF_Destroy(PMBUF_S * pstMbuf)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PMBUF_GetPMbuf
- 功能描述  : 按照报文长度申请MBUF内存。VOS大于2k的内存块数有限应尽量避免申请大内存。
-             因此当数据长度大于1744字节(256字节为保留字,总大小为2000字节),需要申请链式MBUF。
-             如果成功将返回PMBUF_S *，否则为VOS_NULL_PTR。
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-01-21
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 PMBUF_S *PMBUF_GetPMbuf(VOS_UINT32 ulSubMod, VOS_UINT32 ulMBufLen)
 {
     MBUF_DATABLOCKDESCRIPTOR_S         *pstNextDataBlock    = VOS_NULL_PTR;
@@ -213,22 +167,7 @@ PMBUF_S *PMBUF_GetPMbuf(VOS_UINT32 ulSubMod, VOS_UINT32 ulMBufLen)
     return pstMbuf;
 }
 
-/*****************************************************************************
- 函 数 名  : PMBUF_DataBlockDestroy
- 功能描述  : 按照报文长度申请链式内存。VOS大于2k的内存块数有限应尽量避免申请大内存。
-             因此当数据长度大于1744字节(256字节为保留字,总大小为2000字节),需要申请链式MBUF。
-             如果成功将返回MBUF_DATABLOCKDESCRIPTOR_S *，否则为VOS_NULL_PTR。
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : MBUF_DATABLOCKDESCRIPTOR_S *
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-01-21
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 PMBUF_DataBlockDestroy(MBUF_DATABLOCKDESCRIPTOR_S *pstHeadDataBlock)
 {
     MBUF_DATABLOCKDESCRIPTOR_S         *pstNextDataBlock    = VOS_NULL_PTR;
@@ -263,22 +202,7 @@ VOS_UINT32 PMBUF_DataBlockDestroy(MBUF_DATABLOCKDESCRIPTOR_S *pstHeadDataBlock)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PMBUF_GetNextDataBlock
- 功能描述  : 按照报文长度申请链式内存。VOS大于2k的内存块数有限应尽量避免申请大内存。
-             因此当数据长度大于1744字节(256字节为保留字,总大小为2000字节),需要申请
-             下一块链式DataBlock。如果成功将返回MBUF_DATABLOCKDESCRIPTOR_S *，否则为VOS_NULL_PTR。
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : MBUF_DATABLOCKDESCRIPTOR_S *
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-01-21
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 MBUF_DATABLOCKDESCRIPTOR_S *PMBUF_GetNextDataBlock
 (
     VOS_UINT32                               ulSubMod,
@@ -399,27 +323,7 @@ PF_VOID MBUF_UPDATE_LENGTH(PMBUF_S* pstMBuf,PF_LONG lLen)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PMBUF_ReleasePMbuf
- 功能描述  : 释放MBUF，DBD链
- 输入参数  : PMBUF_S *pMbuf
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年6月12日
-    作    者   : l60020798
-    修改内容   : 新生成函数
-  2.日    期   : 2008年6月3日
-    作    者   : l00102694
-    修改内容   : 增加新增结构成员的处理
-  3.日    期   : 2009年8月27日
-    作    者   : w58574
-    修改内容   : 重构函数
-
-*****************************************************************************/
 VOID PMBUF_ReleasePMbuf(PMBUF_S *pMbuf)
 {
     /* 不支持Mbuf链释放 */
@@ -462,26 +366,7 @@ SM_MBUF_S* PMBUF_DBDescToMbuf(SM_MBUF_DATABLOCKDESCRIPTOR_S *pstDataBlockDescrip
 }
 
 
-/*****************************************************************************
- 函 数 名  : PMBUF_PullUp
- 功能描述  : 保证指定的MBUF中(单个MBUF)有ulLength的数据，
-             否则就从下一个DATA中提上来，并且释放数据为空的MBUF数据块
-             注意，此函数处理的MBUF使用DBD串的链，并且ulLength不得大于2368字节
- 输入参数  : UCHAR * pstMBuf       指向MBUF指针
-             VOS_UINT32 ulLength,       要保证的数据长度
-             VOS_UINT32 ulModuleID      使用者的模块ID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  : PMBUF_TAILING_SPACE()
-             PMBUF_MIN()
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年6月14日
-    作    者   : l60020798
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PMBUF_PullUp(SM_MBUF_S * pstMBuf, VOS_UINT32 ulLength, VOS_UINT32 ulModuleID)
 {
     SM_MBUF_S *pstDelMBuf = VOS_NULL_PTR;
@@ -688,22 +573,7 @@ SM_MBUF_S * sm_plt_mbufReferenceCopy(SM_MBUF_S * pstMBuf, VOS_UINT32 ulOffset, V
 }
 
 
-/*****************************************************************************
- 函 数 名  : PMBUF_CutHeadInMultiDataBlock
- 功能描述  : 从头部开始在多个数据块中切除数据,如果本MBUF数据块长度为0，并不释放
- 输入参数  : PMBUF_S * pstMBuf
-             VOS_UINT32 ulLength
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年7月19日
-    作    者   : l60020798
-    修改内容   : 老函数，没有修改，加了个函数头而已
-
-*****************************************************************************/
 VOID PMBUF_CutHeadInMultiDataBlock(PMBUF_S * pstMBuf, VOS_UINT32 ulLength)
 {
     VOS_UINT32 ulMyLength = 0;
@@ -744,24 +614,7 @@ VOID PMBUF_CutHeadInMultiDataBlock(PMBUF_S * pstMBuf, VOS_UINT32 ulLength)
 
 
 
-/*****************************************************************************
- 函 数 名  : PMBUF_CopyDataFromPMBufToBuffer
- 功能描述  : 将MBUF中的数据拷贝到BUFFER中
- 输入参数  : PMBUF_S * pstMBuf
-             VOS_UINT32 ulOffset
-             VOS_UINT32 ulLength
-             UCHAR * pucBuffer
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年7月19日
-    作    者   : l60020798
-    修改内容   : 老函数，没有修改，加了函数头而已
-
-*****************************************************************************/
 VOS_UINT32 PMBUF_CopyDataFromPMBufToBuffer(SM_MBUF_S * pstMBuf, VOS_UINT32 ulOffset, VOS_UINT32 ulLength, UCHAR * pucBuffer)
 {
     SM_MBUF_DATABLOCKDESCRIPTOR_S * pstDataBlockDescriptor;
@@ -823,26 +676,7 @@ VOS_UINT32 PMBUF_CopyDataFromPMBufToBuffer(SM_MBUF_S * pstMBuf, VOS_UINT32 ulOff
 
 
 /*lint -e613*/
-/*****************************************************************************
- 函 数 名  : PMBUF_CopyDataFromBufferToPMBuf
- 功能描述  : 将BUF数据拷贝到MBUF指定位置,最长拷贝16K数据
-             并且新的MBUF链是使用DBD串起来的MBUF链
- 输入参数  : PMBUF_S * pstMBuf   指向MBUF指针
-             VOS_UINT32 ulOffset     MBUF中的偏移
-             VOS_UINT32 ulLength     数据长度
-             UCHAR * pucBuffer  BUF
-             VOS_UINT32 ulModuleID
- 输出参数  : 无
- 返 回 值  : 成功返回MBUF_OK;失败返回MBUF_FAIL;
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年7月4日
-    作    者   : l60020798
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PMBUF_CopyDataFromBufferToPMBuf(SM_MBUF_S * pstMBuf, VOS_UINT32 ulOffset,
                               VOS_UINT32 ulLength, UCHAR * pucBuffer, VOS_UINT32 ulModuleID)
 {
@@ -1381,20 +1215,7 @@ SM_ULONG sm_pgpAdapt_getMbufMsgCode
     return *pulMsgCode;
 }
 
-/*****************************************************************************
- 函 数 名  : _pgpAdapt_clearLinkInMbufAndPktid
- 功能描述  : 清除Mbuf和pkt Id的对应关系
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  : sm_pgpAdapt_releaseMbuf
 
- 修改历史      :
-  1.日    期   : 2010年12月22日
-    作    者   : jinhua
-    修改内容   : 新生成函数
-*****************************************************************************/
 SM_VOID _pgpAdapt_clearLinkInMbufAndPktid
 (
     IN      SM_ULONG    ulPacketId
@@ -1414,20 +1235,7 @@ SM_VOID _pgpAdapt_clearLinkInMbufAndPktid
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : sm_pgpAdapt_findFreeMbuf
- 功能描述  : 在全局变量中查找非使用态的Mbuf
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  : sm_pgpAdapt_getPktIdByMbuf
 
- 修改历史      :
-  1.日    期   : 2010年12月18日
-    作    者   : jinhua
-    修改内容   : 新生成函数
-*****************************************************************************/
 SM_ULONG sm_pgpAdapt_findFreeMbuf
 (
     OUT     MBUF_S**     ppstMbuf
@@ -1497,20 +1305,7 @@ SM_ULONG sm_pgpAdapt_findFreeMbuf
     return SM_RET_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : sm_pgpAdapt_getMbufDataBlock
- 功能描述  : 为Mbuf申请pucDataBlock，申请个数增加
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  : sm_pgpAdapt_getMbuf
 
- 修改历史      :
-  1.日    期   : 2010年12月20日
-    作    者   : jinhua
-    修改内容   : 新生成函数
-*****************************************************************************/
 SM_VOID sm_pgpAdapt_getMbufDataBlock
 (
     IN      MBUF_S*                         pstMbuf,
@@ -1543,38 +1338,13 @@ SM_VOID sm_pgpAdapt_getMbufDataBlock
 
 
 
-/*****************************************************************************
- 函 数 名  :
- 功能描述  : 通过datablock返回Mbuf指针
- 输入参数  : UCHAR *pData
- 输出参数  :
- 返 回 值  :  MBUF_S* sm_pgpAdapt_DTOM
 
- 修改历史      :
-  1.日    期   : Mon Aug 08 14:33:03 2011
-    作    者   : m60687
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 MBUF_S* sm_pgpAdapt_DTOM(UCHAR *pData)
 {
     return (MBUF_S*)(pData - sizeof(MBUF_S));
 }
 
-/*****************************************************************************
- 函 数 名  : sm_pgpAdapt_getMbuf
- 功能描述  : 申请Mbuf，申请个数增加，并建立Mbuf和pkt Id的对应关系
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  : sm_mbuf_getMbuf
 
- 修改历史      :
-  1.日    期   : 2010年12月20日
-    作    者   : jinhua
-    修改内容   : 新生成函数
-*****************************************************************************/
 MBUF_S* sm_pgpAdapt_getMbuf
 (
     IN      SM_ULONG ulMID
@@ -1608,20 +1378,7 @@ MBUF_S* sm_pgpAdapt_getMbuf
     return pstMbuf;
 }
 
-/*****************************************************************************
- 函 数 名  : sm_pgpAdapt_getMbuf
- 功能描述  : 释放Mbuf，释放个数增加，并删除对应pkt Id与Mbuf的对应关系
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  : sm_mbuf_releaseMbuf
 
- 修改历史      :
-  1.日    期   : 2010年12月20日
-    作    者   : jinhua
-    修改内容   : 新生成函数
-*****************************************************************************/
 SM_ULONG g_ulCurMbufReleaseIndex = 0;
 SM_VOID sm_pgpAdapt_releaseMbuf
 (
@@ -1669,21 +1426,7 @@ SM_VOID sm_pgpAdapt_releaseMbuf
 }
 
 
-/*****************************************************************************
- 函 数 名  : sm_pgpAdapt_releaseMbufLink
- 功能描述  : 多个datablock时，都需要释放
- 输入参数  : IN  MBUF_S* pstMBuf
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月8日
-    作    者   : Qmi 108047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 SM_VOID sm_pgpAdapt_releaseMbufLink
 (
     IN  MBUF_S* pstMBuf
@@ -1707,20 +1450,7 @@ SM_ULONG sm_pgpAdapt_copyMbuf()
     return SM_RET_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : sm_pgpAdapt_getPktIdByMbuf
- 功能描述  : 根据Mnuf查找对应的packet ID，以用于报文内容的检查
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  : _pfAdapt_sendPktProc，sm_pfAdapt_recvPacketProc
 
- 修改历史      :
-  1.日    期   : 2010年12月20日
-    作    者   : jinhua
-    修改内容   : 新生成函数
-*****************************************************************************/
 SM_VOID sm_pgpAdapt_getPktIdByMbuf
 (
     IN      MBUF_S*     pPFData,
@@ -1748,20 +1478,7 @@ SM_VOID sm_pgpAdapt_getPktIdByMbuf
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : sm_pgpAdapt_getMbufByPktId
- 功能描述  : 根据packet ID查找对应的Mbuf
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年12月20日
-    作    者   : jinhua
-    修改内容   : 新生成函数
-*****************************************************************************/
 SM_VOID sm_pgpAdapt_getMbufByPktId
 (
     IN       SM_ULONG     ulPktId,
@@ -1788,22 +1505,7 @@ SM_VOID sm_pgpAdapt_getMbufByPktId
 }
 
 
-/*****************************************************************************
- 函 数 名  : sm_pgpAdapt_getMbufByPktId_headen
- 功能描述  : 头增强专用，通过packet id获取mbuf函数
- 输入参数  : IN       SM_ULONG     ulPktId
-             OUT      MBUF_S**     ppPFData
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月5日
-    作    者   : Qmi 108047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 SM_VOID sm_pgpAdapt_getMbufByPktId_headen
 (
     IN       SM_ULONG     ulPktId,
@@ -1832,20 +1534,7 @@ SM_VOID sm_pgpAdapt_getMbufByPktId_headen
 }
 
 
-/*****************************************************************************
- 函 数 名  : _pgpAdapt_checkMbufInfo
- 功能描述  : 检查Mbuf的信息
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  : _pgpAdapt_checkResByUser
 
- 修改历史      :
-  1.日    期   : 2010年12月22日
-    作    者   : jinhua
-    修改内容   : 新生成函数
-*****************************************************************************/
 SM_BOOL _pgpAdapt_checkMbufInfo
 (
     OUT  SM_PGPADAPT_MBUF_CHECK_RESULT_S* pstResult
@@ -1903,20 +1592,7 @@ SM_BOOL _pgpAdapt_checkMbufInfo
     return SM_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : _pgpAdapt_reportMbufFailureInfo
- 功能描述  : 打印PGP 的resoure检查结果
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  : _pgpAdapt_checkResByUser
 
- 修改历史      :
-  1.日    期   : 2010年12月22日
-    作    者   : jinhua
-    修改内容   : 新生成函数
-*****************************************************************************/
 SM_VOID _pgpAdapt_reportMbufFailureInfo
 (
     IN      SM_PGPADAPT_MBUF_CHECK_RESULT_S* pstResult,
@@ -1952,20 +1628,7 @@ SM_VOID _pgpAdapt_reportMbufFailureInfo
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : _pgpAdapt_clearResInfo
- 功能描述  : 清除使用状态
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  : _pgpAdapt_checkResByUser
 
- 修改历史      :
-  1.日    期   : 2010年12月22日
-    作    者   : jinhua
-    修改内容   : 新生成函数
-*****************************************************************************/
 SM_VOID _pgpAdapt_clearMbufInfo
 (
     IN      SM_PGPADAPT_MBUF_CHECK_RESULT_S*  pstMbufCheckResult

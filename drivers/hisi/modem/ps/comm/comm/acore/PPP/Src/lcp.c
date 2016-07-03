@@ -244,21 +244,7 @@ lcp_Init(struct lcp *lcp, /*struct bundle *bundle, */struct link *l,
   lcp_Setup(lcp, lcp->cfg.openmode);
 }
 
-/*****************************************************************************
- 函 数 名  : lcp_Setup
- 功能描述  :
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年8月1日
-    作    者   : liukai
-    修改内容   : 增加对控制Option MRRU和ShortSeq的全局变量的初始化
-
-*****************************************************************************/
 void
 lcp_Setup(struct lcp *lcp, VOS_INT32 openmode)
 {
@@ -507,20 +493,7 @@ lcp_SendProtoRej(struct lcp *lcp, VOS_CHAR *option, VOS_INT32 count)
 }
 
 /*lint -e578 by liukai*/
-/*****************************************************************************
- 函 数 名  : lcp_SendIdentification
- 功能描述  : 向LCP包填写Identification
- 输入参数  : lcp - LCP控制结构
- 输出参数  : 无
- 返 回 值  : 指示是否填写, 未填写 - 0, 填写 - 1
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年5月21日
-    作    者   : liukai
-    修改内容   : AT2D03379
-*****************************************************************************/
 VOS_INT32
 lcp_SendIdentification(struct lcp *lcp)
 {

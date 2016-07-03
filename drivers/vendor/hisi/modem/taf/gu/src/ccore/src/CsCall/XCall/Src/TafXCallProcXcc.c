@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafXCallProcXcc.c
-  版 本 号   : 初稿
-  作    者   : l60609
-  生成日期   : 2014年09月03日
-  功能描述   : TAF X CALL处理来自XCC的消息
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年09月03日
-    作    者   : l60609
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -56,26 +41,7 @@ extern "C"{
   3 函数定义
 *****************************************************************************/
 /*lint -save -e958*/
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvXccCallOrigCnf
- 功能描述  : 收到XCC的ID_XCC_XCALL_ORIG_CALL_CNF消息处理
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月4日
-    作    者   : y00213812
-    修改内容   : 新生成函数
-  2.日    期   : 2014年11月17日
-    作    者   : w00176964
-    修改内容   : CDMA 1x项目迭代5修改
-  3.日    期   : 2015年4月11日
-    作    者   : y00245242
-    修改内容   : iteration 13开发
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvXccCallOrigCnf(VOS_VOID *pMsg)
 {
     XCC_XCALL_ORIG_CALL_CNF_STRU       *pstOrigCnf = VOS_NULL_PTR;
@@ -256,26 +222,7 @@ VOS_VOID TAF_XCALL_RcvXccCallOrigCnf(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvXccCallHangUpCnf
- 功能描述  : 收到XCC的ID_XCC_XCALL_HANGUP_CALL_CNF消息处理
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月4日
-    作    者   : l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2014年11月17日
-    作    者   : w00176964
-    修改内容   : CDMA 1x项目迭代5修改
-  3.日    期   : 2015年4月11日
-    作    者   : y00245242
-    修改内容   : iteration 13开发
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvXccCallHangUpCnf(VOS_VOID *pMsg)
 {
     XCC_XCALL_HANGUP_CALL_CNF_STRU                         *pstHangUpCnf = VOS_NULL_PTR;
@@ -353,38 +300,7 @@ VOS_VOID TAF_XCALL_RcvXccCallHangUpCnf(VOS_VOID *pMsg)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvXccCallDiscInd
- 功能描述  : 收到XCC的ID_XCC_XCALL_CALL_DISC_IND消息处理
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月4日
-    作    者   : l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2014年11月17日
-    作    者   : w00176964
-    修改内容   : CDMA 1x项目迭代5修改
-  3.日    期   : 2015年1月3日
-    作    者   : y00245242
-    修改内容   : NDSS ORIG功能开发
-  4.日    期   : 2015年4月11日
-    作    者   : y00245242
-    修改内容   : iteration 13开发
-  5.日    期   : 2015年7月24日
-    作    者   : l00324781
-    修改内容   : iteration 16开发
-  6.日    期   : 2015年8月24日
-    作    者   : l00324781
-    修改内容   : DTS2015081708770修改
-  7.日    期   : 2015年10月24日
-    作    者   : y00245242
-    修改内容   : 电信语音加密项目修改
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvXccCallDiscInd(VOS_VOID *pMsg)
 {
     XCC_XCALL_CALL_DISC_IND_STRU                           *pstCallDiscInd = VOS_NULL_PTR;
@@ -525,26 +441,7 @@ VOS_VOID TAF_XCALL_RcvXccCallDiscInd(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvXccCallIncomingInd
- 功能描述  : 收到XCC的ID_XCC_XCALL_INCOMING_CALL_IND消息处理
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月4日
-    作    者   : l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2014年11月17日
-    作    者   : w00176964
-    修改内容   : CDMA 1x项目迭代5修改
-  3.日    期   : 2015年4月11日
-    作    者   : y00245242
-    修改内容   : iteration 13开发
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvXccCallIncomingInd(VOS_VOID *pMsg)
 {
     XCC_XCALL_INCOMING_CALL_IND_STRU   *pstIncomingCallInd = VOS_NULL_PTR;
@@ -704,26 +601,7 @@ VOS_VOID TAF_XCALL_RcvXccCallIncomingInd(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvXccCallAnswerCnf
- 功能描述  : 收到XCC的ID_XCC_XCALL_ANSWER_CALL_CNF消息处理
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月4日
-    作    者   : l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2014年11月17日
-    作    者   : w00176964
-    修改内容   : CDMA 1x项目迭代5修改
-  3.日    期   : 2015年4月11日
-    作    者   : y00245242
-    修改内容   : iteration 13开发
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvXccCallAnswerCnf(VOS_VOID *pMsg)
 {
     XCC_XCALL_ANSWER_CALL_CNF_STRU     *pstCallAnsCnf = VOS_NULL_PTR;
@@ -822,24 +700,7 @@ VOS_VOID TAF_XCALL_RcvXccCallAnswerCnf(VOS_VOID *pMsg)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvXccCallConnectInd
- 功能描述  : 收到XCC的ID_XCC_XCALL_CALL_CONNECT_IND消息处理
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月4日
-    作    者   : l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2014年11月17日
-    作    者   : w00176964
-    修改内容   : CDMA 1x项目迭代5修改
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvXccCallConnectInd(VOS_VOID *pMsg)
 {
     XCC_XCALL_CALL_CONNECT_IND_STRU    *pstCallConnectInd = VOS_NULL_PTR;
@@ -883,23 +744,7 @@ VOS_VOID TAF_XCALL_RcvXccCallConnectInd(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvXccSendFlashCnf
- 功能描述  : 收到XCC的ID_XCC_XCALL_SEND_FLASH_CNF消息处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月4日
-    作    者   : l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2015年08月11日
-    作    者   : y00307564
-    修改内容   : DTS2015080608576修改
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvXccSendFlashCnf(VOS_VOID *pMsg)
 {
     XCC_XCALL_SEND_FLASH_CNF_STRU      *pstSndFlashCnf  = VOS_NULL_PTR;
@@ -956,24 +801,7 @@ VOS_VOID TAF_XCALL_RcvXccSendFlashCnf(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvXccInfoRecInd
- 功能描述  : 收到XCC的ID_XCC_XCALL_INFO_REC_IND消息处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月4日
-    作    者   : l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2014年11月11日
-    作    者   : y00307564
-    修改内容   : 1X SS Project 修改
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvXccInfoRecInd(VOS_VOID *pMsg)
 {
     XCC_XCALL_INFO_REC_IND_STRU        *pstInfoRecInd = VOS_NULL_PTR;
@@ -1012,21 +840,7 @@ VOS_VOID TAF_XCALL_RcvXccInfoRecInd(VOS_VOID *pMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvXccCodecOpenInd
- 功能描述  : 收到XCC的ID_XCC_XCALL_CODEC_OPEN_IND消息处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月10日
-    作    者   : y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvXccCodecOpenInd(VOS_VOID *pMsg)
 {
     CALL_VC_CHANNEL_INFO_STRU           stChannelInfo;
@@ -1067,21 +881,7 @@ VOS_VOID TAF_XCALL_RcvXccCodecOpenInd(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvXccCodecCloseInd
- 功能描述  : 收到XCC的ID_XCC_XCALL_CODEC_CLOSE_IND消息处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月10日
-    作    者   : y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvXccCodecCloseInd(VOS_VOID *pMsg)
 {
     CALL_VC_CHANNEL_INFO_STRU           stChannelInfo;
@@ -1098,21 +898,7 @@ VOS_VOID TAF_XCALL_RcvXccCodecCloseInd(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvXccCodecChangedInd
- 功能描述  : 收到XCC的ID_XCC_XCALL_CODEC_CHANGED_IND消息处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月10日
-    作    者   : y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvXccCodecChangedInd(VOS_VOID *pMsg)
 {
     CALL_VC_CHANNEL_INFO_STRU           stChannelInfo;
@@ -1152,21 +938,7 @@ VOS_VOID TAF_XCALL_RcvXccCodecChangedInd(VOS_VOID *pMsg)
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvXccSoCtrlMsgInd
- 功能描述  : 收到XCC的ID_XCC_XCALL_SO_CTRL_MSG_IND消息处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月10日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvXccSoCtrlMsgInd(VOS_VOID *pMsg)
 {
     XCC_XCALL_SO_CTRL_MSG_IND_STRU     *pstSoCtrlMsg = VOS_NULL_PTR;
@@ -1192,21 +964,7 @@ VOS_VOID TAF_XCALL_RcvXccSoCtrlMsgInd(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvXccSoCtrlOrderInd
- 功能描述  : 收到XCC的ID_XCC_XCALL_SO_CTRL_ORDER_IND消息处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月10日
-    作    者   : y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvXccSoCtrlOrderInd(VOS_VOID *pMsg)
 {
     XCC_XCALL_SO_CTRL_ORDER_IND_STRU   *pstSoCtrlOrder = VOS_NULL_PTR;
@@ -1231,22 +989,7 @@ VOS_VOID TAF_XCALL_RcvXccSoCtrlOrderInd(VOS_VOID *pMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_MapSoToCodecType
- 功能描述  : 把SO类型映射为CODEC类型
- 输入参数  : TAF_CDMA_SO_TYPE_ENUM_UINT16        enSo
-             CALL_VC_CODEC_TYPE_ENUM_U8         *penCodecType
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月17日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XCALL_MapSoToCodecType(
     TAF_CDMA_SO_TYPE_ENUM_UINT16        enSo,
     CALL_VC_CODEC_TYPE_ENUM_U8         *penCodecType
@@ -1268,21 +1011,7 @@ VOS_UINT32 TAF_XCALL_MapSoToCodecType(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ConvertXccSoToXcallSo
- 功能描述  : 将XCC上报的SO转成XCALL的SO
- 输入参数  : TAF_CDMA_SO_TYPE_ENUM_UINT16        enXccSo
- 输出参数  : 无
- 返 回 值  : TAF_XCALL_SO_TYPE_ENUM_UINT16
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月20日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_XCALL_SO_TYPE_ENUM_UINT16 TAF_XCALL_ConvertXccSoToXcallSo(
     TAF_CDMA_SO_TYPE_ENUM_UINT16        enXccSo
 )
@@ -1309,28 +1038,7 @@ TAF_XCALL_SO_TYPE_ENUM_UINT16 TAF_XCALL_ConvertXccSoToXcallSo(
     return enXcallSo;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvXccSendBurstDTMFCnf
- 功能描述  : 收到XCC的ID_XCC_XCALL_BURST_DTMF_CNF消息处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月11日
-    作    者   : f279542
-    修改内容   : 新生成函数
-  2.日    期   : 2015年7月24日
-    作    者   : l00324781
-    修改内容   : Iter16 修改, 增加TAF_XCC_CAUSE_L2_ACK_FAIL，
-                  TAF_XCC_CAUSE_CANNOT_FIND_CALL_INSTANCE修改为清除缓存
-                CONT DTMF和BURST DTMF缓存合一
-  3.日    期   : 2015年8月18日
-    作    者   : l00324781
-    修改内容   : DTS2015081708770 修改
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvXccSendBurstDTMFCnf(VOS_VOID *pMsg)
 {
     XCC_XCALL_BURST_DTMF_CNF_STRU      *pstSndBurstDTMFCnf = VOS_NULL_PTR;
@@ -1397,23 +1105,7 @@ VOS_VOID TAF_XCALL_RcvXccSendBurstDTMFCnf(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_IsNeedSilentRedial
- 功能描述  : 根据失败原因值判定是否需要进行重拨
- 输入参数  : enCause-------------失败原因值
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月17日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2015年11月26日
-    作    者   : w00242748
-    修改内容   : DTS2015012804417:根据RSSI的值进行重播
-*****************************************************************************/
 VOS_UINT32 TAF_XCALL_IsNeedSilentRedial(
     TAF_XCC_CAUSE_ENUM_UINT32           enCause
 )
@@ -1450,21 +1142,7 @@ VOS_UINT32 TAF_XCALL_IsNeedSilentRedial(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_IsNeedRedialSystemAcquire
- 功能描述  : 根据失败原因值判定是否需要进行重拨
- 输入参数  : enCause-------------失败原因值
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月17日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XCALL_IsNeedRedialSystemAcquire(
     TAF_XCC_CAUSE_ENUM_UINT32           enCause,
     VOS_INT32                           lRssi
@@ -1498,21 +1176,7 @@ VOS_UINT32 TAF_XCALL_IsNeedRedialSystemAcquire(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_VoiceOrigRedialCount
- 功能描述  : 语音主叫重拨计数
- 输入参数  : VOS_UINT8                           ucPdpId,
-             TAF_XCC_FAIL_LAYER_ENUM_UINT8       enFailLayer
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月30日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_VoiceOrigRedialCount(
     VOS_UINT8                           ucPdpId,
     TAF_XCC_FAIL_LAYER_ENUM_UINT8       enFailLayer
@@ -1571,25 +1235,7 @@ VOS_VOID TAF_XCALL_VoiceOrigRedialCount(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvXccNdssResultInd
- 功能描述  : 收到XCC的ID_XCC_XCALL_NDSS_RESULT_IND消息处理
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月3日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年4月11日
-    作    者   : y00245242
-    修改内容   : iteration 13开发
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvXccNdssResultInd(VOS_VOID *pMsg)
 {
     VOS_UINT8                           ucCallFound;
@@ -1651,23 +1297,7 @@ VOS_VOID TAF_XCALL_RcvXccNdssResultInd(VOS_VOID *pMsg)
     return;
 }
 
-/****************s*************************************************************
- 函 数 名  : TAF_XCALL_RcvXccSendContDTMFCnf
- 功能描述  : 收到XCC的ID_XCC_XCALL_CONT_DTMF_CNF消息处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月24日
-    作    者   : l00324781
-    修改内容   : Iter16 新生成函数
-  2.日    期   : 2015年8月18日
-    作    者   : l00324781
-    修改内容   : DTS2015081708770 修改，收到Start Cont Dtmf Req的Cnf，启动定时器，超时后，再发送Stop
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvXccSendContDTMFCnf(VOS_VOID *pMsg)
 {
     XCC_XCALL_SEND_CONT_DTMF_CNF_STRU  *pstSndContDTMFCnf = VOS_NULL_PTR;
@@ -1853,21 +1483,7 @@ VOS_VOID TAF_XCALL_RcvXccContDtmfInd(VOS_VOID *pMsg)
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvXccTchAssignCmplInd
- 功能描述  : 处理收到来在XCC的TCH指派完成指示
- 输入参数  : pMsg  -- TCH信道指派完成指示消息
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvXccTchAssignCmplInd(VOS_VOID *pMsg)
 {
     VOS_UINT32                          ulCallIdNum;
@@ -1898,21 +1514,7 @@ VOS_VOID TAF_XCALL_RcvXccTchAssignCmplInd(VOS_VOID *pMsg)
 }
 
 #if (FEATURE_ON == FEATURE_CHINA_TELECOM_VOICE_ENCRYPT)
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvXccEccServiceCnf
- 功能描述  : 处理收到来在XCC的ECC业务协商结果
- 输入参数  : pMsg  -- ECC业务协商结果消息
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvXccEccServiceCnf(VOS_VOID *pMsg)
 {
     TAF_XCALL_ProcEccEvent(TAF_XCALL_XCC_MSG_EVENT_ECC_SERVICE_CNF,
@@ -1923,21 +1525,7 @@ VOS_VOID TAF_XCALL_RcvXccEccServiceCnf(VOS_VOID *pMsg)
 #endif
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvXccPrivacyModeSetCnf
- 功能描述  : 处理收到来在XCC的privacy mode设置结果
- 输入参数  : pMsg  -- privacy mode confirm消息地址
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年12月22日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvXccPrivacyModeSetCnf(VOS_VOID *pMsg)
 {
     XCC_XCALL_PRIVACY_MODE_SET_CNF_STRU                    *pstPmSetCnf = VOS_NULL_PTR;
@@ -1954,21 +1542,7 @@ VOS_VOID TAF_XCALL_RcvXccPrivacyModeSetCnf(VOS_VOID *pMsg)
                                       (TAF_CALL_APP_RESULT_TYPE_ENUM_UINT32)pstPmSetCnf->enResult);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvXccPrivacyModeQryCnf
- 功能描述  : 处理收到来在XCC的privacy mode查询结果
- 输入参数  : pMsg  -- privacy mode confirm消息地址
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年12月22日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvXccPrivacyModeQryCnf(VOS_VOID *pMsg)
 {
     XCC_XCALL_PRIVACY_MODE_QRY_CNF_STRU                    *pstPmQryCnf   = VOS_NULL_PTR;
@@ -2006,21 +1580,7 @@ VOS_VOID TAF_XCALL_RcvXccPrivacyModeQryCnf(VOS_VOID *pMsg)
                                       &astCallVoicePrivacyInfo[0]);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvXccPrivacyModeInd
- 功能描述  : 处理收到来在XCC的privacy mode激活指示
- 输入参数  : pMsg  -- privacy mode indication
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年12月22日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvXccPrivacyModeInd(VOS_VOID *pMsg)
 {
     XCC_XCALL_PRIVACY_MODE_IND_STRU    *pstPrivacyModeInd = VOS_NULL_PTR;
@@ -2044,22 +1604,7 @@ VOS_VOID TAF_XCALL_RcvXccPrivacyModeInd(VOS_VOID *pMsg)
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ProcPrivacyMode
- 功能描述  : 处理Privacy Mode 主动上报
- 输入参数  :  VOS_UINT8                           ucCallId,
-              TAF_CALL_PRIVACY_MODE_ENUM_UINT8    enPrivacyModeSetting
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2016-1-6
-    作    者   : l00359089
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ProcPrivacyModeInd(
     VOS_UINT8                           ucCallId,
     TAF_CALL_PRIVACY_MODE_ENUM_UINT8    enPrivacyModeSetting

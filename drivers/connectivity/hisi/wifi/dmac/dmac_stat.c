@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : dmac_stat.c
-  版 本 号   : 初稿
-  作    者   : x00189397
-  生成日期   : 2014年1月10日
-  最近修改   :
-  功能描述   :
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年1月10日
-    作    者   : x00189397
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -70,21 +53,7 @@ OAL_STATIC oal_uint32  dmac_stat_update_thrpt(mac_vap_stru *pst_vap,
 /*****************************************************************************
   4 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : dmac_stat_int
- 功能描述  : dmac模块性能统计模块初始化。
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 0:代表正常，其他代表异常
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月10日
-    作    者   : x00189397
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_stat_init(oal_void)
 {
     oal_uint8   uc_loop = 0;
@@ -106,21 +75,7 @@ oal_uint32  dmac_stat_init(oal_void)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_stat_exit
- 功能描述  : dmac模块性能统计模块卸载
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 初始化成功或返回其他错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月10日
-    作    者   : x00189397
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_stat_exit(oal_void)
 {
     mac_stat_type_enum_uint8     uc_stat_type       = 0;
@@ -151,24 +106,7 @@ oal_uint32  dmac_stat_exit(oal_void)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_stat_register
- 功能描述  : 注册统计节点
- 输入参数  : en_module_id:模块名称
-             en_stat_type:统计类型;
-             p_void: dmac_stat_param_stru结构体指针:用于存储每个周期的统计值；
-             p_func:统计周期到期处理函数指针，函数指针类型:dmac_stat_timeout_func)(dmac_stat_param_stru *);
- 输出参数  : 无
- 返 回 值  : 初始化成功或返回其他错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月10日
-    作    者   : x00189397
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32	dmac_stat_register(oam_module_id_enum_uint16        en_module_id,
                                 mac_stat_type_enum_uint8        en_stat_type,
                                 oal_void                       *p_void,
@@ -290,21 +228,7 @@ oal_uint32	dmac_stat_register(oam_module_id_enum_uint16        en_module_id,
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_stat_unregister
- 功能描述  : 注销统计节点
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 初始化成功或返回其他错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月10日
-    作    者   : x00189397
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32	dmac_stat_unregister(oam_module_id_enum_uint16      en_module_id,
                                  mac_stat_type_enum_uint8       en_stat_type,
                                  oal_void                      *p_void)
@@ -345,25 +269,7 @@ oal_uint32	dmac_stat_unregister(oam_module_id_enum_uint16      en_module_id,
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_stat_start
- 功能描述  : 停止stat_stat定时器
- 输入参数  : en_module_id: 模块名称，如果没有，请添加；
-             en_stat_type: 见结构体说明；
-             us_stat_period: 统计周期;
-             us_stat_num: 统计周期数量;
-             p_void: 统计对象指针:dmac_tid_stru *, mac_user_stru *, mac_vap_stru *;
- 输出参数  : 无
- 返 回 值  : 初始化成功或返回其他错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月10日
-    作    者   : x00189397
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32	dmac_stat_start( oam_module_id_enum_uint16      en_module_id,
                              mac_stat_type_enum_uint8       en_stat_type,
                              oal_uint16                     us_stat_period,
@@ -425,23 +331,7 @@ oal_uint32	dmac_stat_start( oam_module_id_enum_uint16      en_module_id,
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_stat_stop
- 功能描述  : 启动stat定时器，开始统计
- 输入参数  : en_module_id:模块名称
-             en_stat_type: 统计类型；
-             p_void: 统计对象指针:dmac_tid_stru *, mac_user_stru *, mac_vap_stru *;
- 输出参数  : 无
- 返 回 值  : 初始化成功或返回其他错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月10日
-    作    者   : x00189397
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32	dmac_stat_stop(oam_module_id_enum_uint16      en_module_id,
                              mac_stat_type_enum_uint8     en_stat_type,
                              oal_void                    *p_void)
@@ -472,21 +362,7 @@ oal_uint32	dmac_stat_stop(oam_module_id_enum_uint16      en_module_id,
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_stat_tid_delay
- 功能描述  : 根据每次调度结果统计时延
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 初始化成功或返回其他错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月10日
-    作    者   : x00189397
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_stat_tid_delay(dmac_tid_stru *pst_dmac_tid)
 {
     dmac_stat_stru          *pst_stat           = &(g_ast_pfm_stat[MAC_STAT_TYPE_TID_DELAY]);
@@ -562,21 +438,7 @@ oal_uint32  dmac_stat_tid_delay(dmac_tid_stru *pst_dmac_tid)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_stat_tid_per
- 功能描述  : 根据每次发送完成中断结果，统计per
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 初始化成功或返回其他错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月10日
-    作    者   : x00189397
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 dmac_stat_tid_per(mac_user_stru *pst_user,
                              oal_uint8 uc_tidno,
                              oal_uint16 us_mpdu_num,
@@ -674,21 +536,7 @@ oal_uint32 dmac_stat_tid_per(mac_user_stru *pst_user,
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_stat_tx_thrpt
- 功能描述  : 根据每次发送完成中断结果统计吞吐量
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 初始化成功或返回其他错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月10日
-    作    者   : x00189397
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 dmac_stat_tx_thrpt(dmac_user_stru *pst_dmac_user, oal_uint8 uc_tidno, hal_tx_dscr_ctrl_one_param st_tx_dscr_param)
 {
     dmac_tid_stru               *pst_tid            = OAL_PTR_NULL;
@@ -729,21 +577,7 @@ oal_uint32 dmac_stat_tx_thrpt(dmac_user_stru *pst_dmac_user, oal_uint8 uc_tidno,
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_stat_rx_thrpt
- 功能描述  : 根据每次接收完成中断统计吞吐量
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 初始化成功或返回其他错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月10日
-    作    者   : x00189397
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 dmac_stat_rx_thrpt(frw_event_hdr_stru *pst_event_hdr, mac_vap_stru *pst_vap, dmac_rx_ctl_stru *pst_rx_ctl)
 {
     dmac_user_stru             *pst_dmac_user   = OAL_PTR_NULL;
@@ -805,21 +639,7 @@ oal_uint32 dmac_stat_rx_thrpt(frw_event_hdr_stru *pst_event_hdr, mac_vap_stru *p
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_stat_update_thrpt
- 功能描述  : 更新发送或者接收吞吐量
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 初始化成功或返回其他错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月10日
-    作    者   : x00189397
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32 dmac_stat_update_thrpt(mac_vap_stru *pst_vap,
                                               mac_user_stru *pst_user,
                                               dmac_tid_stru *pst_tid,
@@ -872,21 +692,7 @@ OAL_STATIC oal_uint32 dmac_stat_update_thrpt(mac_vap_stru *pst_vap,
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_stat_get_rx_tid
- 功能描述  : 停止stat_stat定时器
- 输入参数  :
- 输出参数  :
- 返 回 值  : 如果找到，则返回OAL_SUCC
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月10日
-    作    者   : x00189397
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_stat_get_rx_tid(mac_vap_stru *pst_vap, dmac_rx_ctl_stru *pst_rx_ctl, oal_uint8 *puc_tidno)
 {
     mac_ieee80211_frame_stru   *pst_frame_hdr   = OAL_PTR_NULL;
@@ -931,22 +737,7 @@ oal_uint32  dmac_stat_get_rx_tid(mac_vap_stru *pst_vap, dmac_rx_ctl_stru *pst_rx
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_stat_search_node
- 功能描述  : 停止stat_stat定时器
- 输入参数  : pst_node_dlist_head:统计节点指针
-             p_void:统计节点的tid,user或者vap的指针；
- 输出参数  : pst_stat_node:找到的统计节点，如果为空，表示没有找到
- 返 回 值  : 如果找到，则返回OAL_SUCC
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月10日
-    作    者   : x00189397
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC dmac_stat_node_stru* dmac_stat_search_node(oal_dlist_head_stru        *pst_node_dlist_head,
                                                       oam_module_id_enum_uint16   en_module_id,
                                                       oal_void                   *p_void)
@@ -981,21 +772,7 @@ OAL_STATIC dmac_stat_node_stru* dmac_stat_search_node(oal_dlist_head_stru       
     return OAL_PTR_NULL;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_stat_display
- 功能描述  : 显示统计结果
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 初始化成功或返回其他错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月10日
-    作    者   : x00189397
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32	dmac_stat_display(oam_module_id_enum_uint16         en_module_id,
                                  mac_stat_type_enum_uint8       en_stat_type,
                                  oal_void                      *p_void)
@@ -1029,21 +806,7 @@ oal_uint32	dmac_stat_display(oam_module_id_enum_uint16         en_module_id,
     return ul_ret;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_stat_unregister_node
- 功能描述  : 注销某个节点
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 初始化成功或返回其他错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月10日
-    作    者   : x00189397
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32	dmac_stat_unregister_node(dmac_stat_node_stru   *pst_stat_node)
 {
     if (OAL_PTR_NULL == pst_stat_node)
@@ -1074,21 +837,7 @@ OAL_STATIC oal_uint32	dmac_stat_unregister_node(dmac_stat_node_stru   *pst_stat_
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_stat_timer_handler
- 功能描述  : 定时器到期处理函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 初始化成功或返回其他错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月10日
-    作    者   : x00189397
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32	dmac_stat_timer_handler(oal_void * p_void)
 {
     dmac_stat_param_stru    *pst_stat_param     = OAL_PTR_NULL;
@@ -1243,21 +992,7 @@ OAL_STATIC oal_uint32	dmac_stat_timer_handler(oal_void * p_void)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_stat_format_title_string
- 功能描述  : 将数据信息格式化
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 函数返回成功或其他错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月15日
-    作    者   : x00189397
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_stat_format_title_string(oal_int8                  *pac_output_data,
                                                       oal_uint16                 ul_data_len,
                                                       dmac_stat_node_stru       *pst_stat_node)
@@ -1328,21 +1063,7 @@ OAL_STATIC oal_uint32  dmac_stat_format_title_string(oal_int8                  *
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_stat_format_data_string
- 功能描述  : 将打印信息格式化
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 函数返回成功或其他错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月15日
-    作    者   : x00189397
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_stat_format_data_string(oal_int8                  *pac_output_data,
                                                      oal_uint16                 ul_data_len,
                                                      mac_stat_type_enum_uint8   en_stat_type,
@@ -1397,21 +1118,7 @@ OAL_STATIC oal_uint32  dmac_stat_format_data_string(oal_int8                  *p
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_stat_print
- 功能描述  : 将性能统计信息用不同的方式进行输出
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 函数返回成功或其他错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月15日
-    作    者   : x00189397
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_stat_print(dmac_stat_node_stru     *pst_stat_node,
                                        oam_output_type_enum_uint8 en_output_type)
 {

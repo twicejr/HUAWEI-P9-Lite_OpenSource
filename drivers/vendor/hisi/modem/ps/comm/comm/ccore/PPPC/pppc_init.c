@@ -1,24 +1,4 @@
-/************************************************************************
-*                                                                      *
-*                             ppp_init.c                               *
-*                                                                      *
-*  Project Code:       VRP3.0                                          *
-*  Create Date:        2000/03/27                                      *
-*  Author:             Deng Yi Ou                                      *
-*  Modify Date:                                                        *
-*  Document:                                                           *
-*  Function:           PPP模块初始化流程                               *
-*  Others:                                                             *
-*----------------------------------------------------------------------*
-*                                                                      *
-*  Copyright 2000-2002 VRP3.0 Team Beijing Institute HuaWei Tech, Inc. *
-*                      ALL RIGHTS RESERVED                             *
-*                                                                      *
-*----------------------------------------------------------------------*
-*                                                                      *
-*   这个文件定义了PPP模块的初始化函数                                  *
-*                                                                      *
-************************************************************************/
+
 
 
 
@@ -62,20 +42,7 @@ extern PPPC_CONTEXT_INFO_STRU           g_stPppContext;
 *****************************************************************************/
 /*lint -save -e958 */
 /*lint -e572*/
-/*****************************************************************************
- 函 数 名  : PPPC_MsgTimerProc
- 功能描述  : PPP模块中的定时器消息处理函数
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014-10-30
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_MsgTimerProc( struct MsgCB * pMsg )
 {
     REL_TIMER_MSG                      *pPsMsg  = (REL_TIMER_MSG  *)pMsg;
@@ -236,20 +203,7 @@ VOS_VOID PPPC_MsgTimerProc( struct MsgCB * pMsg )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_SoftPara18_CallBack
- 功能描述  : 回调函数, 本软参控制L2TP隧道建立消息中携带的IMSI信息格式
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012-10-14
-    作    者   : zhaichao
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOID PPP_SoftPara534_CallBack(VOS_UINT32 ulParaID, UCHAR ucOldValue, UCHAR ucNewValue)
 {
     PPP_DBG_OK_CNT(PPP_PHOK_1146);
@@ -257,21 +211,7 @@ VOID PPP_SoftPara534_CallBack(VOS_UINT32 ulParaID, UCHAR ucOldValue, UCHAR ucNew
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_SoftPara89_CallBack
- 功能描述  : 回调函数, 本软参控制lcp协商时是否进行地址域与协议域压缩的协商
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012-10-14
-    作    者   : zhaichao
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID PPP_SoftPara89_CallBack(VOS_UINT32 ulParaID, UCHAR ucOldValue, UCHAR ucNewValue)
 {
     PPP_DBG_OK_CNT(PPP_PHOK_1147);
@@ -281,20 +221,7 @@ VOID PPP_SoftPara89_CallBack(VOS_UINT32 ulParaID, UCHAR ucOldValue, UCHAR ucNewV
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_SoftPara20_CallBack
- 功能描述  : 回调函数, 本软参控制允许压缩协商的CPU门限
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012-10-14
-    作    者   : zhaichao
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOID PPP_SoftPara20_CallBack(VOS_UINT32 ulParaID, UCHAR ucOldValue, UCHAR ucNewValue)
 {
     PPP_DBG_OK_CNT(PPP_PHOK_1148);
@@ -304,20 +231,7 @@ VOID PPP_SoftPara20_CallBack(VOS_UINT32 ulParaID, UCHAR ucOldValue, UCHAR ucNewV
 }
 
 
-/*****************************************************************************
- 函 数 名  : PPP_SoftPara21_CallBack
- 功能描述  : 回调函数, 本软参控制允许压缩协商的VJ用户数
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012-10-14
-    作    者   : zhaichao
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOID PPP_SoftPara21_CallBack(VOS_UINT32 ulParaID, UCHAR ucOldValue, UCHAR ucNewValue)
 {
     PPP_DBG_OK_CNT(PPP_PHOK_1149);
@@ -327,20 +241,7 @@ VOID PPP_SoftPara21_CallBack(VOS_UINT32 ulParaID, UCHAR ucOldValue, UCHAR ucNewV
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_SoftPara99_CallBack
- 功能描述  : 回调函数
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012-10-14
-    作    者   : zhaichao
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOID PPP_SoftPara99_CallBack(VOS_UINT32 ulParaID, UCHAR ucOldValue, UCHAR ucNewValue)
 {
     PPP_DBG_OK_CNT(PPP_PHOK_1150);
@@ -353,20 +254,7 @@ VOID PPP_SoftPara99_CallBack(VOS_UINT32 ulParaID, UCHAR ucOldValue, UCHAR ucNewV
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_SoftPara100_CallBack
- 功能描述  : 回调函数
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012-10-14
-    作    者   : zhaichao
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOID PPP_SoftPara100_CallBack(VOS_UINT32 ulParaID, UCHAR ucOldValue, UCHAR ucNewValue)
 {
     PPP_DBG_OK_CNT(PPP_PHOK_1152);
@@ -380,20 +268,7 @@ VOID PPP_SoftPara100_CallBack(VOS_UINT32 ulParaID, UCHAR ucOldValue, UCHAR ucNew
 
     return ;
 }
-/*****************************************************************************
- 函 数 名  : PPP_SoftPara569_CallBack
- 功能描述  : 回调函数
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013-01-31
-    作    者   : zhaichao
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOID PPP_SoftPara569_CallBack(VOS_UINT32 ulParaID, UCHAR ucOldValue, UCHAR ucNewValue)
 {
     PPP_DBG_OK_CNT(PPP_PHOK_1154);
@@ -401,20 +276,7 @@ VOID PPP_SoftPara569_CallBack(VOS_UINT32 ulParaID, UCHAR ucOldValue, UCHAR ucNew
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_SoftPara101_CallBack
- 功能描述  : 回调函数
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012-10-14
-    作    者   : zhaichao
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOID PPP_SoftPara101_CallBack(VOS_UINT32 ulParaID, UCHAR ucOldValue, UCHAR ucNewValue)
 {
     PPP_DBG_OK_CNT(PPP_PHOK_1155);
@@ -429,20 +291,7 @@ VOID PPP_SoftPara101_CallBack(VOS_UINT32 ulParaID, UCHAR ucOldValue, UCHAR ucNew
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_SoftPara66_CallBack
- 功能描述  : 回调函数, 用户名中不携带域信息时是否需要匹配到PDSN构造域,软参值为0时,不匹配构造域;否则,匹配
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012-10-14
-    作    者   : zhaichao
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOID PPP_SoftPara66_CallBack(VOS_UINT32 ulParaID, UCHAR ucOldValue, UCHAR ucNewValue)
 {
     PPP_DBG_OK_CNT(PPP_PHOK_1157);
@@ -450,20 +299,7 @@ VOID PPP_SoftPara66_CallBack(VOS_UINT32 ulParaID, UCHAR ucOldValue, UCHAR ucNewV
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_SoftPara71_CallBack
- 功能描述  : 回调函数, Chap Response消息中是否允许不带用户属性,软参值为0时,不允许不带;否则,允许不带
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-1.日    期   : 2012-10-14
-  作    者   : zhaichao
-  修改内容   : 新生成函数
-*****************************************************************************/
 VOID PPP_SoftPara71_CallBack(VOS_UINT32 ulParaID, UCHAR ucOldValue, UCHAR ucNewValue)
 {
     PPP_DBG_OK_CNT(PPP_PHOK_1158);
@@ -471,20 +307,7 @@ VOID PPP_SoftPara71_CallBack(VOS_UINT32 ulParaID, UCHAR ucOldValue, UCHAR ucNewV
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_SoftPara76_CallBack
- 功能描述  : 回调函数, IPCP协商阶段PDSN发送的Request消息中携带的IP地址是2.2.2.2还是RP逻辑口地址
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012-10-14
-    作    者   : zhaichao
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOID PPP_SoftPara76_CallBack(VOS_UINT32 ulParaID, UCHAR ucOldValue, UCHAR ucNewValue)
 {
     PPP_DBG_OK_CNT(PPP_PHOK_1159);
@@ -497,21 +320,7 @@ VOS_UINT32 SPM_GetByteValue(VOS_UINT32 ulSoftparaNum, UCHAR* ucByteValue)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_SoftParaInit
- 功能描述  : 初始化PPP模块软参
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月8日
-    作    者   : luofang
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID PPP_SoftParaInit()
 {
     VOS_UINT32 ulRet = VOS_OK;
@@ -620,18 +429,7 @@ VOID PPP_SoftParaInit()
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：创建PPP控制块,并链接到PPP控制块链表中                      *
-* MODIFY DATE  ：modified by gxf for GGSN80 20030212                        *
-* 输入参数     : VOS_UINT32 ulRpIndex                                            *
-*                VOS_UINT16 usDomainIndex                                       *
-*                VOS_UINT16 usVpnId                                             *
-* OUTPUT       ：                                                           *
-* RETURN       ：VOS_OK:成功;VOS_ERR:失败                                   *
-* CALLED BY    ：PPP封装函数                                                *
-****************************************************************************/
+
 VOS_UINT32 PPP_CreateCB(VOS_UINT32 ulRPIndex, PPP_LUPPARA_S *pstUpPara)
 {
     PPPINFO_S *pstPppInfo = VOS_NULL_PTR;
@@ -728,21 +526,7 @@ VOS_UINT32 PPP_CreateCB(VOS_UINT32 ulRPIndex, PPP_LUPPARA_S *pstUpPara)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_DeleteCB
- 功能描述  : 删除PPP控制块,并从PPP控制块链表中删除它
- 输入参数  : PPPINFO_S *pstPppInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月30日
-    作    者   : luofang
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_DeleteCB(PPPINFO_S *pstPppInfo, PS_BOOL_ENUM_UINT8 enNeedCnf)
 {
     VOS_UINT8                           ucPppId;
@@ -816,23 +600,13 @@ VOS_UINT32 PPP_DeleteCB(PPPINFO_S *pstPppInfo, PS_BOOL_ENUM_UINT8 enNeedCnf)
 
 
 
-/****************************************************************************
-* CREATE DATE  ：2009-02-25                                                 *
-* CREATED BY   ：c00127007                                                  *
-* FUNCTION     ：PPP_ClearCB_LCP清除PPP控制块LCP数据                        *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：PPPLCPINFO_S *pstPppLcpInfo                                *
-* OUTPUT       ：无                                                         *
-* RETURN       ：无                                                         *
-* CALLED BY    ：PPP_ClearCB                                                *
-****************************************************************************/
+
 VOID PPP_ClearCB_LCP(PPPLCPINFO_S *pstPppLcpInfo)
 {
     PPPLCPINFO_S * pstLcpInfo = (PPPLCPINFO_S *)pstPppLcpInfo;
     /*添加对于定时器的保护*/
     if (pstLcpInfo->stFsm.ulTimeOutID)
     {
-        /*modified by huzhiyong 去掉断言，在这里删除重传定时器属正常流程2002/03/08*/
 
         /*
             VOS_DBGASSERT(0);
@@ -850,16 +624,7 @@ VOID PPP_ClearCB_LCP(PPPLCPINFO_S *pstPppLcpInfo)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2009-03-17                                                 *
-* CREATED BY   ：c00127007                                                  *
-* FUNCTION     ：PPP_ClearCB_PAP清除PPP控制块PAP数据                        *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：PPPPAPINFO_S *pstPppPapInfo                                *
-* OUTPUT       ：无                                                         *
-* RETURN       ：无                                                         *
-* CALLED BY    ：PPP_ClearCB                                                *
-****************************************************************************/
+
 VOID PPP_ClearCB_PAP(PPPPAPINFO_S *pstPppPapInfo)
 {
     PPPPAPINFO_S * pstPapInfo = pstPppPapInfo;
@@ -887,16 +652,7 @@ VOID PPP_ClearCB_PAP(PPPPAPINFO_S *pstPppPapInfo)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2009-03-17                                                 *
-* CREATED BY   ：c00127007                                                  *
-* FUNCTION     ：PPP_ClearCB_CHAP清除PPP控制块CHAP数据                      *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：PPPCHAPINFO_S *pstPppChapInfo                              *
-* OUTPUT       ：无                                                         *
-* RETURN       ：无                                                         *
-* CALLED BY    ：PPP_ClearCB                                                *
-****************************************************************************/
+
 VOID PPP_ClearCB_CHAP(PPPCHAPINFO_S *pstPppChapInfo)
 {
     PPPCHAPINFO_S * pstChapInfo = pstPppChapInfo;
@@ -925,16 +681,7 @@ VOID PPP_ClearCB_CHAP(PPPCHAPINFO_S *pstPppChapInfo)
 }
 
 #if (VRP_MODULE_LINK_PPP_EAP == VRP_YES)
-/****************************************************************************
-* CREATE DATE  ：2010-07-17                                                 *
-* CREATED BY   ：WANGYONG                                                   *
-* FUNCTION     ：PPP_ClearCB_EAP清除PPP控制块EAP数据                        *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：PPPC_EAP_INFO_STRU *pstPppEapInfo                                *
-* OUTPUT       ：无                                                         *
-* RETURN       ：无                                                         *
-* CALLED BY    ：PPP_ClearCB                                                *
-****************************************************************************/
+
 VOID PPP_ClearCB_EAP(PPPC_EAP_INFO_STRU *pstPppEapInfo)
 {
     PPPC_EAP_INFO_STRU *pstEapInfo = pstPppEapInfo;
@@ -953,21 +700,7 @@ VOID PPP_ClearCB_EAP(PPPC_EAP_INFO_STRU *pstPppEapInfo)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : PPP_ClearCB_IPCP
- 功能描述  : PPP_ClearCB_IPCP清除PPP控制块IPCP数据
- 输入参数  : PPPIPCPINFO_S *pstIpcpInfo
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月30日
-    作    者   : luofang
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID PPP_ClearCB_IPCP(PPPIPCPINFO_S *pstIpcpInfo)
 {
     if (VOS_NULL_PTR == pstIpcpInfo)
@@ -999,21 +732,7 @@ VOID PPP_ClearCB_IPCP(PPPIPCPINFO_S *pstIpcpInfo)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_ClearCB_IPV6CP
- 功能描述  : 清除PPP控制块IPV6CP数据
- 输入参数  : PPPIPV6CPINFO_S *pstPppIpv6cpInfo
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月30日
-    作    者   : luofang
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID PPP_ClearCB_IPV6CP(PPPIPV6CPINFO_S *pstPppIpv6cpInfo)
 {
     PPPIPV6CPINFO_S * pstIpv6cpInfo = pstPppIpv6cpInfo;
@@ -1048,16 +767,7 @@ VOID PPP_ClearCB_IPV6CP(PPPIPV6CPINFO_S *pstPppIpv6cpInfo)
 }
 
 #if (VRP_MODULE_LINK_PPP_CCP == VRP_YES)
-/****************************************************************************
-* CREATE DATE  ：2009-03-17                                                 *
-* CREATED BY   ：c00127007                                                  *
-* FUNCTION     ：PPP_ClearCB_CCP清除PPP控制块CCP数据                        *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：PPPMSIDINFO_S *pstPppCcpInfo                               *
-* OUTPUT       ：无                                                         *
-* RETURN       ：无                                                         *
-* CALLED BY    ：PPP_ClearCB                                                *
-****************************************************************************/
+
 VOID PPP_ClearCB_CCP(PPP_CCP_INFO_S *pstCcpInfo)
 {
     PPPINFO_S *pstPppInfo = VOS_NULL_PTR;
@@ -1106,17 +816,7 @@ VOID PPP_ClearCB_CCP(PPP_CCP_INFO_S *pstCcpInfo)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2009-03-17                                                 *
-* CREATED BY   ：c00127007                                                  *
-* FUNCTION     ：PPP_ClearCB_STAC清除PPP控制块STAC数据                      *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：STAC_COMPRESSINFO_S *pstPppStacCompressInfo                *
-*                STAC_DECOMPRESSINFO_S *pstPppStacDecompressInfo            *
-* OUTPUT       ：无                                                         *
-* RETURN       ：无                                                         *
-* CALLED BY    ：PPP_ClearCB                                                *
-****************************************************************************/
+
 VOID PPP_ClearCB_STAC(STAC_COMPRESSINFO_S *pstPppStacCompressInfo, STAC_DECOMPRESSINFO_S* pstPppStacDecompressInfo)
 {
     if (pstPppStacCompressInfo)
@@ -1141,16 +841,7 @@ VOID PPP_ClearCB_STAC(STAC_COMPRESSINFO_S *pstPppStacCompressInfo, STAC_DECOMPRE
 }
 #endif
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：清除PPP控制块内部数据                                      *
-* MODIFY DATE  ：modified by gxf 20030317                                   *
-* INPUT        ：pstPppInfo:PPP控制块                                       *
-* OUTPUT       ：                                                           *
-* RETURN       ：VOS_OK:成功;VOS_ERR:失败                                   *
-* CALLED BY    ：PPP_DeleteCB、PPP_CreateCB                                 *
-****************************************************************************/
+
 VOS_UINT32 PPP_ClearCB_TestStub(PPPINFO_S *pstPppInfo)
 {
     if (!pstPppInfo)
@@ -1211,16 +902,7 @@ VOS_UINT32 PPP_ClearCB_TestStub(PPPINFO_S *pstPppInfo)
     return VOS_OK;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：清除PPP控制块内部数据                                      *
-* MODIFY DATE  ：modified by gxf 20030317                                   *
-* INPUT        ：pstPppInfo:PPP控制块                                       *
-* OUTPUT       ：                                                           *
-* RETURN       ：VOS_OK:成功;VOS_ERR:失败                                   *
-* CALLED BY    ：PPP_DeleteCB、PPP_CreateCB                                 *
-****************************************************************************/
+
 VOS_UINT32 PPP_ClearCB(PPPINFO_S *pstPppInfo)
 {
     if ( VOS_TRUE == g_ulHsgwA10TestDbgFlg )
@@ -1299,20 +981,7 @@ VOS_UINT32 PPP_ClearCB(PPPINFO_S *pstPppInfo)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_DelAllResource
- 功能描述  : 删除ppp控制块资源
- 被调函数  :
- 调用函数  :
- 输入参数  : VOS_UINT32 ulRpIndex
- 输出参数  :
- 返 回 值  : VOID
 
- 修改历史      :
-  1.日    期   : 2013年8月19日
-    作    者   : w00138171
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOID PPP_DelAllResource(VOS_UINT32 ulRpIndex)
 {
     PPPINFO_S *pstPppInfo = VOS_NULL_PTR;
@@ -1343,16 +1012,7 @@ VOID PPP_DelAllResource(VOS_UINT32 ulRpIndex)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：初始化PPP控制块                                            *
-* MODIFY DATE  ：modified by gxf for GGSN80 20030212                        *
-* INPUT        ：pstPppInfo:PPP控制块                                       *
-* OUTPUT       ：                                                           *
-* RETURN       ：VOS_OK:成功;VOS_ERR:失败                                   *
-* CALLED BY    ：PPP_CreateCB                                               *
-****************************************************************************/
+
 VOS_UINT32 PPP_InitCB(PPPINFO_S *pstPppInfo)
 {
     if (!pstPppInfo)
@@ -1414,20 +1074,10 @@ VOS_UINT32 PPP_InitCB(PPPINFO_S *pstPppInfo)
     return VOS_OK;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2009-03-16                                                 *
-* CREATED BY   ：c00127007                                                  *
-* FUNCTION     ：压缩配置值初始化                                           *
-* MODIFY DATE  ：modified by c00127007 for AP8D06810                        *
-* INPUT        ：                                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：                                                           *
-* CALLED BY    ：PPP_InitConfigInfo                                         *
-****************************************************************************/
+
 VOID PPP_CompInitInfo(PPPCONFIGINFO_S *pstConfigInfo)
 {
  #ifdef    __PRODUCT_TYPE_PDSN80
-    /* Modified start by liutao 38563 at 2004-10-29 V800R002 for PPPC移植 */
     if (g_ucPppCcpType & M_PPPCOMPRESS_MPPC_FLAG)
     {
         pstConfigInfo->bMppcCompress = 1;
@@ -1446,25 +1096,10 @@ VOID PPP_CompInitInfo(PPPCONFIGINFO_S *pstConfigInfo)
         pstConfigInfo->bStacCompress = 0;
     }
 
-    /* Modified end by liutao 38563 at 2004-10-29 V800R002 for PPPC移植 */
  #endif
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_GetUserMru
- 功能描述  : 根据用户角色获取mru
- 输入参数  : VOS_UINT32 ulEhrpdFlg
- 输出参数  : 无
- 返 回 值  : VOS_UINT16
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月6日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT16 PPP_GetUserMru(VOS_UINT32 ulEhrpdFlg)
 {
     /* (CR-0000050651---MRU长度变化)
@@ -1479,16 +1114,7 @@ VOS_UINT16 PPP_GetUserMru(VOS_UINT32 ulEhrpdFlg)
 
     return g_stPppCfgInfo.usMru;
 }
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：初始化PPP配置信息                                          *
-* MODIFY DATE  ：modified by gxf for GGSN80 20030212                        *
-* INPUT        ：pstPppInfo:PPP控制块                                       *
-* OUTPUT       ：                                                           *
-* RETURN       ：VOS_OK:成功;VOS_ERR:失败                                   *
-* CALLED BY    ：PPP_InitCB                                                 *
-****************************************************************************/
+
 VOS_UINT32 PPP_InitConfigInfo(PPPINFO_S *pstPppInfo)
 {
     PPPCONFIGINFO_S *pstConfigInfo = VOS_NULL_PTR;
@@ -1539,9 +1165,7 @@ VOS_UINT32 PPP_InitConfigInfo(PPPINFO_S *pstPppInfo)
 
     }
 
-    /* mod begin by y00138047 for (CR-0000050651---MRU长度变化) */
     pstConfigInfo->usMru = PPP_GetUserMru(pstPppInfo->bEhrpdUser);
-    /* mod end by y00138047 for (CR-0000050651---MRU长度变化) */
 
     VOS_StrCpy((CHAR*)pstConfigInfo->cChapHostName, (CHAR*)g_stPppCfgInfo.aucHostname);
     if ((g_stPppCfgInfo.ucTimeout > 0) && (g_stPppCfgInfo.ucTimeout <= (PPP_MAXTIMEOUTTIME / 1000)))
@@ -1602,16 +1226,7 @@ VOS_UINT32 PPP_InitConfigInfo(PPPINFO_S *pstPppInfo)
     return VOS_OK;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：清除PPP配置信息                                            *
-* MODIFY DATE  ：modified by gxf for GGSN80 20030212                        *
-* INPUT        ：pstPppInfo:PPP控制块                                       *
-* OUTPUT       ：                                                           *
-* RETURN       ：                                                           *
-* CALLED BY    ：PPP_ClearCB                                                *
-****************************************************************************/
+
 VOID PPP_ClearConfigInfo(PPPINFO_S *pstPppInfo)
 {
     if (!pstPppInfo)
@@ -1632,22 +1247,7 @@ VOID PPP_ClearConfigInfo(PPPINFO_S *pstPppInfo)
 }
 
 
-/*****************************************************************************
- 函 数 名  : PPP_UP
- 功能描述  : PPP模块提供给A11的接口函数，当A10链路建好后，直接通知PPP，避免任务切换
- 输入参数  : VOS_UINT32 ulRPIndex
-             PPP_LUPPARA_S*pstUpPara
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 VOS_OK/VOS_ERR
- 调用函数  : PPP_A11_IoCtl
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2005年9月24日
-    作    者   : ZhangJun HT04406
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_UP(VOS_UINT32 ulRPIndex, PPP_LUPPARA_S*pstUpPara)
 {
     PPPINFO_S *pstPppInfo = VOS_NULL_PTR;
@@ -1682,30 +1282,14 @@ VOS_UINT32 PPP_UP(VOS_UINT32 ulRPIndex, PPP_LUPPARA_S*pstUpPara)
         return VOS_ERR;
     }
 
-    PPP_Core_ReceiveEventFromShell(pstPppInfo, (VOS_UINT32)PPPISLUP, VOS_NULL_PTR);/* Added by l61463 at 2008-07-14 PDSN V9 for PPP协商 */
+    PPP_Core_ReceiveEventFromShell(pstPppInfo, (VOS_UINT32)PPPISLUP, VOS_NULL_PTR);
 
     /* 处理成功 */
     return VOS_OK;
 }
 
-/* Added End by ZhangJun HT04406 at 2005/09/24 for PDSN激活优化 */
 
-/*****************************************************************************
- 函 数 名  : PPP_A11_IsLupProc
- 功能描述  : 激活用户时，PPP的处理函数
- 输入参数  : VOS_UINT32 ulRPIndex
-             CHAR *pPara
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009-03-17
-    作    者   : c00127007
-    修改内容   : 新生成函数 for reduce CC
-
-*****************************************************************************/
 VOS_UINT32 PPP_A11_IsLupProc(VOS_UINT32 ulRPIndex, CHAR *pPara)
 {
     if (!pPara)
@@ -1721,25 +1305,11 @@ VOS_UINT32 PPP_A11_IsLupProc(VOS_UINT32 ulRPIndex, CHAR *pPara)
         return VOS_ERR;
     }
 
-    return VOS_OK;       /* Added by l61463 at 2008-07-14 PDSN V9 for PPP协商 */
+    return VOS_OK;
 }
 
 
-/*****************************************************************************
- 函 数 名  : PPP_UsmIsLdownProc
- 功能描述  :PPP模块提供给USM的 去活通知函数(写PPP的消息队列)
- 输入参数  : VOS_UINT32 ulRPIndex
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009-03-17
-    作    者   : c00127007
-    修改内容   : 新生成函数 for reduce CC
-   zhaichao for pdsn 切平台 mod
-*****************************************************************************/
 VOS_UINT32 PPP_UsmIsLdownProc(VOS_UINT32 ulRPIndex, UCHAR* pucPara)
 {
     PPP_A11MSG_S stMsg = {0};
@@ -1807,23 +1377,7 @@ VOS_UINT32 PPP_UsmIsLdownProc(VOS_UINT32 ulRPIndex, UCHAR* pucPara)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : Ppp_UsmIoCtl
- 功能描述  : USM通知PPP底层UP和底层DOWN
- 输入参数  : VOS_UINT32 ulRPIndex
-             VOS_UINT32 ulCmd
-             CHAR *pPara
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月30日
-    作    者   : luofang
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 Ppp_UsmIoCtl(VOS_UINT32 ulRPIndex, VOS_UINT32 ulCmd, CHAR *pPara)
 {
     VOS_UINT32 ulRet = VOS_OK;
@@ -1887,8 +1441,7 @@ VOS_UINT32 PPP_ModDomainInfoForCMIP(VOS_UINT32 ulRpIndex, VOS_UINT16 usDomainIdx
         return VOS_ERR;
     }
 
-    /* mode for DTS2012062600952 cmip用户支持压缩特性时需要将压缩用户数进行重新统计，
-    此类型用户ipcp协商成功后的域不一定是用户真正所在的域*/
+    
     if (pstPppInfo->usCDBIndex != usDomainIdx)
     {
         if (VOS_TRUE == pstPppInfo->bVjFlag)
@@ -1958,10 +1511,8 @@ VOS_UINT32 PPP_GetDomainInfoByName(PPPINFO_S *pstPppInfo, UCHAR* pucName)
     PPP_MemSet((void *)szUsername, 0, A11_MAX_NAI_LENGTH + 1);
     VOS_StrCpy((CHAR*)szUsername, (CHAR *)pucName);
 
-    /* Modified start by l61463 at 2007-11-12 PDSNR5C2B018SP01 for 取消域名匹配用户名功能 */
     if(0 == (g_ulSoftPara562 & 0x01))
     {
-        /* Modified start by lvyanfang 00110869 at 2009-10-24 PDSN V9R7C02SPC201 for 大写的用户名被PDSN该成小写问题 */
         usVirtualDomainIdx = (VOS_UINT16)GetDomainIndexByName(szUsername);
 
         if ((usVirtualDomainIdx > 0) && (usVirtualDomainIdx < RM_MAX_APN_NUM))
@@ -2102,16 +1653,7 @@ VOS_UINT32 PPP_GetDomainInfoByName(PPPINFO_S *pstPppInfo, UCHAR* pucName)
     return VOS_OK;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2009-03-16                                                 *
-* CREATED BY   ：c00127007                                                  *
-* FUNCTION     ：创建与鉴权相关的统计信息                                   *
-* MODIFY DATE  ：modified by c00127007 for AP8D06810                        *
-* INPUT        ：                                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：                                                           *
-* CALLED BY    ：PPP_OmInitial                                              *
-****************************************************************************/
+
 VOS_UINT32 PPP_OmAuthInitial()
 {
     /* PAP认证尝试次数 */
@@ -2129,16 +1671,7 @@ VOS_UINT32 PPP_OmAuthInitial()
     return VOS_OK;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2009-03-17                                                 *
-* CREATED BY   ：c00127007                                                  *
-* FUNCTION     ：创建与压缩相关的统计信息                                   *
-* MODIFY DATE  ：modified by c00127007 for AP8D06810                        *
-* INPUT        ：                                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：                                                           *
-* CALLED BY    ：PPP_OmInitial                                              *
-****************************************************************************/
+
 VOS_UINT32 PPP_OmCompInitial()
 {
     return VOS_OK;
@@ -2153,7 +1686,6 @@ VOS_UINT32 PPP_OmInitial()
         return VOS_OK;
     }
 
-    /* BEGIN: Deleted for PN:切平台 by wangyong 00138171, 2012/9/26 */
     /* 注册性能统计 */
     /* 收到的协商报文数 */
     g_stPppPerfStatistic.ulReceiveNego = 0;
@@ -2202,7 +1734,6 @@ VOS_UINT32 PPP_OmInitial()
     g_stPppPerfStatistic.ulCcpSuccess = 0;
 
 
-    /* BEGIN: Add by h50774 for 增加压缩用户数统计, 2010/7/17 */
     g_stPppPerfStatistic.ulCurVjUser = 0;
 
     g_stPppPerfStatistic.ulCurMppcUser = 0;
@@ -2227,21 +1758,7 @@ VOS_UINT32 PPP_OmInitial()
     return VOS_OK;
 }
 
-/*=======================================================================
- *  函数名称:  PPP_OmMsg_LCP
- *  初稿完成:  2009-02-25
- *  作    者:  c00127007
- *  函数功能:  LCP消息跟踪
- *  输入参数:  UCHAR uccode
- *             VOS_UINT32 *pulGiMsgType
- *             UCHAR ucflag
- *             VOS_UINT32 ulIndex
- *  输出参数:  无
- *  返回类型:  VOID
- *  其他说明:  在CONFREQ分支中, 删除 AM_PPP_ST_1 相关消息 for reduce CC
- *  调用函数:  PPP_OmMsgTrc
- *  主调函数:
- *=======================================================================*/
+
 VOID PPP_OmMsg_LCP(UCHAR uccode, VOS_UINT32 *pulGiMsgType, UCHAR ucflag, VOS_UINT32 ulIndex)
 {
     switch (uccode)
@@ -2293,21 +1810,7 @@ VOID PPP_OmMsg_LCP(UCHAR uccode, VOS_UINT32 *pulGiMsgType, UCHAR ucflag, VOS_UIN
     return;
 }
 
-/*=======================================================================
- *  函数名称:  PPP_OmMsg_IPV6CP
- *  初稿完成:  2010-02-28
- *  作    者:  yangxiangkun 00202564
- *  函数功能:  IPV6CP消息跟踪
- *  输入参数:  UCHAR uccode
- *             VOS_UINT32 *pulGiMsgType
- *             UCHAR ucflag
- *             VOS_UINT32 ulIndex
- *  输出参数:  无
- *  返回类型:  VOID
- *  其他说明:
- *  调用函数:  PPP_OmMsgTrc
- *  主调函数:
- *=======================================================================*/
+
 VOID PPP_OmMsg_IPV6CP(UCHAR uccode, VOS_UINT32 *pulGiMsgType, UCHAR ucflag, VOS_UINT32 ulIndex)
 {
     switch (uccode)
@@ -2344,21 +1847,7 @@ VOID PPP_OmMsg_IPV6CP(UCHAR uccode, VOS_UINT32 *pulGiMsgType, UCHAR ucflag, VOS_
     return;
 }
 
-/*=======================================================================
- *  函数名称:  PPP_OmMsg_IPCP
- *  初稿完成:  2009-02-25
- *  作    者:  c00127007
- *  函数功能:  IPCP消息跟踪
- *  输入参数:  UCHAR uccode
- *             VOS_UINT32 *pulGiMsgType
- *             UCHAR ucflag
- *             VOS_UINT32 ulIndex
- *  输出参数:  无
- *  返回类型:  VOID
- *  其他说明:
- *  调用函数:  PPP_OmMsgTrc
- *  主调函数:
- *=======================================================================*/
+
 VOID PPP_OmMsg_IPCP(UCHAR uccode, VOS_UINT32 *pulGiMsgType, UCHAR ucflag, VOS_UINT32 ulIndex)
 {
     switch (uccode)
@@ -2398,19 +1887,7 @@ VOID PPP_OmMsg_IPCP(UCHAR uccode, VOS_UINT32 *pulGiMsgType, UCHAR ucflag, VOS_UI
     return;
 }
 
-/*=======================================================================
- *  函数名称:  PPP_OmMsg_SCCP
- *  初稿完成:  2009-02-25
- *  作    者:  c00127007
- *  函数功能:  SCCP消息跟踪
- *  输入参数:  UCHAR uccode
-               VOS_UINT32 *pulGiMsgType
- *  输出参数:  无
- *  返回类型:  VOID
- *  其他说明:
- *  调用函数:  PPP_OmMsgTrc
- *  主调函数:
- *=======================================================================*/
+
 VOID PPP_OmMsg_SCCP(UCHAR uccode, VOS_UINT32 *pulGiMsgType)
 {
     switch (uccode)
@@ -2453,19 +1930,7 @@ VOID PPP_OmMsg_SCCP(UCHAR uccode, VOS_UINT32 *pulGiMsgType)
     return;
 }
 
-/*=======================================================================
- *  函数名称:  PPP_OmMsg_PAP
- *  初稿完成:  2009-02-25
- *  作    者:  c00127007
- *  函数功能:  PAP消息跟踪
- *  输入参数:  UCHAR uccode
-               VOS_UINT32 *pulGiMsgType
- *  输出参数:  无
- *  返回类型:  VOID
- *  其他说明:
- *  调用函数:  PPP_OmMsgTrc
- *  主调函数:
- *=======================================================================*/
+
 VOID PPP_OmMsg_PAP(UCHAR uccode, VOS_UINT32 *pulGiMsgType)
 {
     switch (uccode)
@@ -2487,20 +1952,7 @@ VOID PPP_OmMsg_PAP(UCHAR uccode, VOS_UINT32 *pulGiMsgType)
     return;
 }
 
-/*=======================================================================
- *  函数名称:  PPP_OmMsg_CHAP
- *  初稿完成:  2009-02-25
- *  作    者:  c00127007
- *  函数功能:  CHAP消息跟踪
- *  输入参数:  UCHAR uccode
-               VOS_UINT32 *pulGiMsgType
-               VOS_UINT32 ulIndex
- *  输出参数:  无
- *  返回类型:  VOID
- *  其他说明:
- *  调用函数:  PPP_OmMsgTrc
- *  主调函数:
- *=======================================================================*/
+
 VOID PPP_OmMsg_CHAP(UCHAR uccode, VOS_UINT32 *pulGiMsgType, VOS_UINT32 ulIndex)
 {
     switch (uccode)
@@ -2527,20 +1979,7 @@ VOID PPP_OmMsg_CHAP(UCHAR uccode, VOS_UINT32 *pulGiMsgType, VOS_UINT32 ulIndex)
     return;
 }
 
-/*=======================================================================
- *  函数名称:  PPP_OmMsg_EAP
- *  初稿完成:  2012-02-25
- *  作    者:  w00138171
- *  函数功能:  EAP消息跟踪
- *  输入参数:  UCHAR uccode
-               VOS_UINT32 *pulGiMsgType
-               VOS_UINT32 ulIndex
- *  输出参数:  无
- *  返回类型:  VOID
- *  其他说明:
- *  调用函数:  PPP_OmMsgTrc
- *  主调函数:
- *=======================================================================*/
+
 VOID PPP_OmMsg_EAP(UCHAR uccode, VOS_UINT32 *pulGiMsgType)
 {
     switch (uccode)
@@ -2565,21 +2004,7 @@ VOID PPP_OmMsg_EAP(UCHAR uccode, VOS_UINT32 *pulGiMsgType)
     return;
 }
 
-/*=======================================================================
- *  函数名称:  PPP_OmMsg_VSNCP
- *  初稿完成:  2009-02-25
- *  作    者:  c00127007
- *  函数功能:  IPCP消息跟踪
- *  输入参数:  UCHAR uccode
- *             VOS_UINT32 *pulGiMsgType
- *             UCHAR ucflag
- *             VOS_UINT32 ulIndex
- *  输出参数:  无
- *  返回类型:  VOID
- *  其他说明:
- *  调用函数:  PPP_OmMsgTrc
- *  主调函数:
- *=======================================================================*/
+
 VOID PPP_OmMsg_VSNCP(UCHAR uccode, VOS_UINT32 *pulGiMsgType)
 {
     switch (uccode)
@@ -2616,20 +2041,7 @@ VOID PPP_OmMsg_VSNCP(UCHAR uccode, VOS_UINT32 *pulGiMsgType)
     return;
 }
 
-/*=======================================================================
- *  函数名称:  PPP_OmMsgUserCheck
- *  初稿完成:  2009-03-16
- *  作    者:  c00127007
- *  函数功能:  Rp消息跟踪检查
- *  输入参数:  UCHAR ulCheckRpFlg
-               VOS_UINT32 ulIndex
- *  输出参数:  VOS_UINT32 *pulIP
- *  返回类型:  VOID
- *  全局变量:
- *  其他说明:
- *  调用函数:
- *  主调函数: PPP_OmMsgTrc
- *=======================================================================*/
+
 VOS_UINT32 PPP_OmMsgUserCheck(UCHAR ulCheckRpFlg, VOS_UINT32 ulIndex, VOS_UINT32 *pulIP)
 {
     VOS_UINT32 ulResult = VOS_ERR;
@@ -2660,7 +2072,6 @@ VOS_UINT32 PPP_OmMsgUserCheck(UCHAR ulCheckRpFlg, VOS_UINT32 ulIndex, VOS_UINT32
         return VOS_ERR;
     }
 
-    /* BEGIN: Added by longsirui 41291, 2008/3/1   问题单号:AX4D00767 */
     /*客户端模式ppp不会有GN口跟踪*/
     if (1 == pstPppInfo->bPppClient)
     {
@@ -2680,22 +2091,7 @@ VOS_UINT32 PPP_OmMsgUserCheck(UCHAR ulCheckRpFlg, VOS_UINT32 ulIndex, VOS_UINT32
     return VOS_OK;
 }
 
-/*=======================================================================
- *  函数名称:  PPP_OmMsgRpTrc
- *  初稿完成:  2009-03-16
- *  作    者:  c00127007
- *  函数功能:  Rp接口跟踪
- *  输入参数:  VOS_UINT32 ulIndex
-               VOS_UINT32 ulGiMsgType
-               VOS_UINT32 ulLen
-               UCHAR *pMsg
- *  输出参数:  无
- *  返回类型:  VOID
- *  全局变量:
- *  其他说明:
- *  调用函数:
- *  主调函数: PPP_OmMsgTrc
- *=======================================================================*/
+
 VOID PPP_OmMsgRpTrc(VOS_UINT32 ulIndex, VOS_UINT32 ulGiMsgType, VOS_UINT32 ulLen, UCHAR *pMsg, IMSI_S *pstImsi)
 {
 
@@ -2729,22 +2125,7 @@ VOID PPP_OmMsgRpTrc(VOS_UINT32 ulIndex, VOS_UINT32 ulGiMsgType, VOS_UINT32 ulLen
     return;
 }
 
-/*=======================================================================
- *  函数名称:  PPP_OmMsgUserTrc
- *  初稿完成:  2009-03-16
- *  作    者:  c00127007
- *  函数功能:  用户跟踪
- *  输入参数:  IMSI_S *pstImsi
-               VOS_UINT32 ulGiMsgType
-               VOS_UINT32 ulLen
-               UCHAR *pMsg
- *  输出参数:  无
- *  返回类型:  VOID
- *  全局变量:
- *  其他说明:
- *  调用函数:
- *  主调函数: PPP_OmMsgTrc
- *=======================================================================*/
+
 VOID PPP_OmMsgUserTrc(IMSI_S *pstImsi, VOS_UINT32 ulGiMsgType, VOS_UINT32 ulLen, UCHAR *pMsg)
 {
 
@@ -2793,22 +2174,7 @@ VOID PPP_OmMsgUserTrc(IMSI_S *pstImsi, VOS_UINT32 ulGiMsgType, VOS_UINT32 ulLen,
     return;
 }
 
-/*=======================================================================
- *  函数名称:  PPP_OmMsgTrc
- *  初稿完成:  2003年7月
- *  作    者:  KF1199 heyajun
- *  函数功能:  消息跟踪
- *  输入参数:  pstPppInfo       控制块指针
- *             usProtocol       协议类型
- *             pMsg             被跟踪的消息指针
- *             usMsgLen         消息长度
- *  输出参数:  无
- *  返回类型:  VOID
- *  全局变量:  g_struTrcTraceFlag  接口跟踪标志
- *  其他说明:
- *  调用函数:  FamTrcSendTrcMsg
- *  主调函数:
- *=======================================================================*/
+
 VOID PPP_OmMsgTrc(VOS_UINT32 ulIndex, VOS_UINT16 usProtocol, UCHAR* pPacket, VOS_UINT32 ulLen, UCHAR ucflag, VOS_UINT32 ulLnsIP,
                   IMSI_S *pstImsi, UCHAR ucEhrpdMode)
 {
@@ -2839,12 +2205,10 @@ VOID PPP_OmMsgTrc(VOS_UINT32 ulIndex, VOS_UINT16 usProtocol, UCHAR* pPacket, VOS
             PPP_OmMsg_IPCP(uccode, &ulGiMsgType, ucflag, ulIndex);
             break;
 
-        /* BEGIN: Added for  IPV6CP消息跟踪 by yangxiangkun 00202564, 2012/02/28 */
         case PPP_IPV6CP:
 
             PPP_OmMsg_IPV6CP(uccode, &ulGiMsgType, ucflag, ulIndex);
             break;
-        /* END:   Added for IPV6CP消息跟踪 by yangxiangkun 00202564, 2012/02/28 */
         case PPP_SCCP:
 
             PPP_OmMsg_SCCP(uccode, &ulGiMsgType);
@@ -2896,29 +2260,14 @@ VOID PPP_OmMsgTrc(VOS_UINT32 ulIndex, VOS_UINT16 usProtocol, UCHAR* pPacket, VOS
     return;
 }
 
-/*=======================================================================
- *  函数名称:  PPP_IpcCallback
- *  初稿完成:  2003年7月
- *  作    者:  KF1199 heyajun
- *  函数功能:  IPC消息回调函数
- *  输入参数:
- *  输出参数:  无
- *  返回类型:  VOID
- *  全局变量:
- *  其他说明:
- *  调用函数:
- *  主调函数:
- *=======================================================================*/
+
 VOS_UINT32 PPP_NodeAdd(VOS_UINT32 ulRpIndex, VOS_UINT32 ulPDNIndex, UCHAR ucNodeType)
 {
     PPP_NEGO_NODE_S* pNode;
 /*    SDB_PDSN_RP_CONTEXT_S *pstRpContext = VOS_NULL_PTR;
     VOS_UINT32 ulReturn = 0; */
 
-    /* BEGIN: Added for PN:解决ppp协商定时器资源挂死问题 by wangyong 00138171, 2013/12/21 */
     (VOID)PPP_NodeDelete(ulRpIndex);
-    /* END:   Added for PN:解决ppp协商定时器资源挂死问题 by wangyong 00138171, 2013/12/21 */
-    /* modified by luofang  切平台 20120925 */
     pNode = (PPP_NEGO_NODE_S*)PPP_Malloc(sizeof(PPP_NEGO_NODE_S));
     if (!pNode)
     {
@@ -2944,7 +2293,6 @@ VOS_UINT32 PPP_NodeAdd(VOS_UINT32 ulRpIndex, VOS_UINT32 ulPDNIndex, UCHAR ucNode
 
     /* check with liukai */
 #if 0
-    /* BEGIN: Added for PN:解决ppp协商定时器资源挂死问题 by wangyong 00138171, 2013/12/21 */
     ulReturn = (VOS_UINT32)SDB_GetRpContextByIndex(ulRpIndex, (UCHAR **)&pstRpContext);
     if (VOS_OK != ulReturn)
     {
@@ -2962,7 +2310,6 @@ VOS_UINT32 PPP_NodeAdd(VOS_UINT32 ulRpIndex, VOS_UINT32 ulPDNIndex, UCHAR ucNode
             }
         }
     }
-    /* END:   Added for PN:解决ppp协商定时器资源挂死问题 by wangyong 00138171, 2013/12/21 */
 #endif
     return VOS_OK;
 }
@@ -3079,28 +2426,13 @@ VOID PPP_NegoListProc(VOID* pPara)
             }
         }
     }
-    /* BEGIN: Added for PN:解决ppp协商定时器资源挂死问题 by wangyong 00138171, 2013/12/23 */
     PPP_PDNNegoListProc(pPara);
     PPP_RPNegoListProc(pPara);
-    /* END:   Added for PN:解决ppp协商定时器资源挂死问题 by wangyong 00138171, 2013/12/23 */
 }
 
 
-/* BEGIN: Added for PN:解决ppp协商定时器资源挂死问题 by wangyong 00138171, 2013/12/21 */
 
-/*=======================================================================
- *  函数名称:  PPP_IpcCallback
- *  初稿完成:  2003年7月
- *  作    者:  KF1199 heyajun
- *  函数功能:  IPC消息回调函数
- *  输入参数:
- *  输出参数:  无
- *  返回类型:  VOID
- *  全局变量:
- *  其他说明:
- *  调用函数:
- *  主调函数:
- *=======================================================================*/
+
 VOS_UINT32 PPP_PDNNodeAdd(VOS_UINT32 ulRpIndex, VOS_UINT32 ulPDNIndex, UCHAR ucNodeType)
 {
     PPP_NEGO_NODE_S* pNode = VOS_NULL_PTR;
@@ -3229,19 +2561,7 @@ VOID PPP_PDNNegoListProc(VOID* pPara)
 }
 
 
-/*=======================================================================
- *  函数名称:  PPP_RPNodeAdd
- *  初稿完成:  2003年7月
- *  作    者:  KF1199 heyajun
- *  函数功能:  IPC消息回调函数
- *  输入参数:
- *  输出参数:  无
- *  返回类型:  VOID
- *  全局变量:
- *  其他说明:
- *  调用函数:
- *  主调函数:
- *=======================================================================*/
+
 VOS_UINT32 PPP_RPNodeAdd(VOS_UINT32 ulRpIndex, VOS_UINT32 ulReleaseCode, UCHAR ucNodeType)
 {
     PPP_NEGO_NODE_S* pNode = VOS_NULL_PTR;
@@ -3345,7 +2665,6 @@ VOID PPP_RPNegoListProc(VOID* pPara)
 
 }
 
-/* END:   Added for PN:解决ppp协商定时器资源挂死问题 by wangyong 00138171, 2013/12/21 */
 
 
 /************************************************************
@@ -3364,9 +2683,9 @@ VOID PPPGetPPPConfig(VOID)
 
     (VOID)VOS_MemSet(&stPppCfgRec, 0, sizeof(stPppCfgRec));     /* 初始化PPP_CFG_INFO_REC_S */
 
-    g_stPppCfgInfo.ucAuthmod = PPPCFG_AUTHMODE_NONE; /*mod by chenmin 00265046,控制是否主动鉴权的参数,不主动鉴权时设置为PPPCFG_AUTHMODE_NONE,chap鉴权时手机被动接受鉴权,要设置为none*/
+    g_stPppCfgInfo.ucAuthmod = PPPCFG_AUTHMODE_NONE;
     VOS_StrCpy((CHAR*)g_stPppCfgInfo.aucHostname, PPPCFG_HOSTNAME_DEFAULT_PDSN);
-    g_stPppCfgInfo.usMru = PPP_GetDefaultMru();      /* mod by w00316385, 使用默认的MRU，从NV项中读取 */
+    g_stPppCfgInfo.usMru = PPP_GetDefaultMru();
     g_stPppCfgInfo.ucTimeout = PPPCFG_TIMEOUT_DEFAULT;
     g_stPppCfgInfo.ucAuthoption = PPPCFG_AUTHOPTION_DEFAULT;
     g_stPppCfgInfo.ucIpv6Flag = 1;
@@ -3455,7 +2774,6 @@ VOID CDB_PppCompressGetGlobalVar(PPP_COMPRESS_CFG *pstCompCfg)
    {
        g_ucPppVjSwitch = 0;
 
-       /* Modified start by liutao 38563 at 2004-10-29 V800R002 for PPPC移植 */
    }
 
    g_ucPppCcpSwitch = 0;
@@ -3676,22 +2994,7 @@ VOS_UINT32 PPP_A11_GetDnsAddress(VOS_UINT32 ulRpIndex, VOS_UINT32 * pulDNSAddres
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_GetIpV6Capbility
- 功能描述  : 获取IPv6能力配置
- 输入参数  :
- 输出参数  :
- 返 回 值  : VOS_OK 使能IPv6
-             VOS_ERR 未使能IPv6
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月8日
-    作    者   : h50774
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_GetIpV6Capbility(VOID)
 {
     /* 是否支持ipv6,0表示支持*/
@@ -3703,21 +3006,7 @@ VOS_UINT32 PPP_GetIpV6Capbility(VOID)
     return VOS_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_GetRetryInterval
- 功能描述  : 获取PPP发送消息间隔时长配置
- 输入参数  :
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月8日
-    作    者   : h50774
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_GetRetryInterval(VOID)
 {
     return (VOS_UINT32)g_stPppCfgInfo.ucTimeout;
@@ -3725,21 +3014,7 @@ VOS_UINT32 PPP_GetRetryInterval(VOID)
 
 
 
-/*****************************************************************************
- 函 数 名  : PPP_CheckVjLimit
- 功能描述  : 决策是否允许VJ压缩
- 输入参数  :
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月14日
-    作    者   : h50774
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_CheckVjLimit()
 {
     if (CRM_BOARD_TYPE_SPUD == g_enPppBoardType)
@@ -3775,21 +3050,7 @@ VOS_UINT32 PPP_CheckVjLimit()
     return VOS_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_CheckCcpLimit
- 功能描述  : 决策是否允许CCP压缩
- 输入参数  :
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月14日
-    作    者   : h50774
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_CheckCcpLimit( )
 {
     /* 目前只支持MPPC压缩 */
@@ -3797,21 +3058,7 @@ VOS_UINT32 PPP_CheckCcpLimit( )
     return PPP_CheckMppcLimit();
     /*lint +e746*/
 }
-/*****************************************************************************
- 函 数 名  : PPP_CheckMppcLimit
- 功能描述  : 决策是否允许MPPC压缩
- 输入参数  :
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月14日
-    作    者   : h50774
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_CheckMppcLimit( )
 {
     if (CRM_BOARD_TYPE_SPUD == g_enPppBoardType)
@@ -3842,21 +3089,7 @@ VOS_UINT32 PPP_CheckMppcLimit( )
     return VOS_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_CheckStacLimit
- 功能描述  : 决策是否允许STAC压缩
- 输入参数  :
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月14日
-    作    者   : h50774
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_CheckStacLimit( )
 {
     return VOS_ERR;
@@ -3864,21 +3097,7 @@ VOS_UINT32 PPP_CheckStacLimit( )
 
 
 
-/*****************************************************************************
- 函 数 名  : PPP_CompUserNumAdd
- 功能描述  : 压缩用户数统计
- 输入参数  :
- 输出参数  :
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月15日
-    作    者   : h50774
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID PPP_CompUserNumAdd(PPPINFO_S *pstPppInfo, VOS_UINT32 ulCompType)
 {
 #if 0
@@ -4025,21 +3244,7 @@ VOID PPP_CompUserNumAdd(PPPINFO_S *pstPppInfo, VOS_UINT32 ulCompType)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_CompUserNumDel
- 功能描述  : 压缩用户数统计
- 输入参数  :
- 输出参数  :
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月15日
-    作    者   : h50774
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID PPP_CompUserNumDel(PPPINFO_S *pstPppInfo, VOS_UINT32 ulCompType)
 {
 
@@ -4172,41 +3377,13 @@ VOID PPP_CompUserNumDel(PPPINFO_S *pstPppInfo, VOS_UINT32 ulCompType)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_CompUserClear
- 功能描述  : 将压缩统计数清零
- 输入参数  :
- 输出参数  :
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月16日
-    作    者   : h50774
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_CompUserClear(  )
 {
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_CompRescSyn
- 功能描述  : 定时同步压缩资源使用情况
- 输入参数  : VOID* pPara
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年8月7日
-    作    者   : h50774
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_CompRescSyn()
 {
     VOS_UINT32 ulRmiIndex = 0;
@@ -4295,22 +3472,7 @@ VOS_VOID PPP_CompRescSyn()
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_CompCheckVjUserNum
- 功能描述  : 判断vj用户数
- 输入参数  :
- 输出参数  : UCHAR *pucDmpuId
 
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年1月16日
-    作    者   : y00225787
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 VOS_UINT32 PPP_CompCheckVjUserNum(UCHAR *pucDmpuId)
 {
@@ -4357,22 +3519,7 @@ VOS_UINT32 PPP_CompCheckVjUserNum(UCHAR *pucDmpuId)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_CompCheckMppcUserNum
- 功能描述  : 判断vj用户数
- 输入参数  :
- 输出参数  : UCHAR *pucDmpuId
 
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年1月16日
-    作    者   : y00225787
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 VOS_UINT32 PPP_CompCheckMppcUserNum(UCHAR *pucDmpuId)
 {
@@ -4420,22 +3567,7 @@ VOS_UINT32 PPP_CompCheckMppcUserNum(UCHAR *pucDmpuId)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_CompSelectDmpuDpe
- 功能描述  : 选择子卡及子卡的DPE
- 输入参数  :
- 输出参数  : UCHAR *pucDmpuId 子卡
-             UCHAR* pucDpeId DPEID
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年8月7日
-    作    者   : h50774
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_CompSelectDmpuDpe(UCHAR *pucDmpuId, UCHAR* pucDpeId)
 {
     VOS_UINT32 ulRand = 0;
@@ -4534,23 +3666,7 @@ LONG PPP_CompBinSelectDpe(LONG llow, LONG lhigh, VOS_UINT32 ulSearchData)
     return llow;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_CheckRenegoFlag
- 功能描述  : 检查重协商标致
- 输入参数  : VOS_UINT32 ulRpIndex
 
-
- 输出参数  : UCHAR * pucRegoFlag
- 返 回 值  : VOS_UINT32
- 调用函数  : 该函数提供给AUTH模块鉴权后使用
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2010年9月20日
-    作    者   : y00125257
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_CheckRenegoFlag
 (       VOS_UINT32 ulRpIndex,
         UCHAR * pucRegoFlag)
@@ -4582,23 +3698,7 @@ VOS_UINT32 PPP_CheckRenegoFlag
 }
 
 
-/*****************************************************************************
- 函 数 名  : PPP_L2tpIpcpMsgProc
- 功能描述  : 处理转发截取的L2TP用户的IPCP消息，更新到RP上下文中
- 输入参数  : MBUF_S *pMbuf
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年10月18日
-    作    者   : h50774
-    修改内容   : 新生成函数，台湾ATP需求
- 2.日    期   : 2013年3月4日
-    作    者   : zhaichao 00129699
-    修改内容   : 新架构下重新适配
-*****************************************************************************/
 VOS_UINT32 PPP_L2tpIpcpMsgProc(PMBUF_S *pMbuf )
 {
 #if 0
@@ -4680,23 +3780,7 @@ VOS_UINT32 PPP_L2tpIpcpMsgProc(PMBUF_S *pMbuf )
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_GetIpAddrFromPacket
- 功能描述  : 从报文中解出IP地址
- 输入参数  : UCHAR *pHend
-             VOS_UINT32 ulLen
-             VOS_UINT32 ulIpAddr
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年10月18日
-    作    者   : h50774
-    修改内容   : 新生成函数，台湾ATP需求
-
-*****************************************************************************/
 VOS_UINT32 PPP_GetIpAddrFromPacket(UCHAR *pPacket, VOS_UINT32 ulLen, VOS_UINT32 *pulIpAddr )
 {
     VOS_UINT32 ulOffset = 0;
@@ -4764,22 +3848,7 @@ VOS_UINT32 PPP_GetIpAddrFromPacket(UCHAR *pPacket, VOS_UINT32 ulLen, VOS_UINT32 
     return VOS_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_GetIpAddrByBufReq
- 功能描述  : 从缓存的IPCP消息中获取用户请求的地址,PMIPv6支持静态地址
- 输入参数  : VOS_UINT32 ulRpIndex
-             VOS_UINT32 *pulReqIpAddr
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年3月26日
-    作    者   : h50774
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_GetIpAddrByBufReq( VOS_UINT32 ulRpIndex, VOS_UINT32 *pulReqIpAddr )
 {
     VOS_UINT32 ulRet = VOS_OK;
@@ -4819,21 +3888,7 @@ VOS_UINT32 PPP_GetIpAddrByBufReq( VOS_UINT32 ulRpIndex, VOS_UINT32 *pulReqIpAddr
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_SendInnerMsg
- 功能描述  : 发送消息到内部队列处理
- 输入参数  : VOS_UINT32 ulPara
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月13日
-    作    者   : y00225787
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 VOS_VOID PPP_SendInnerMsg(VOS_UINT32 ulPara)
 {
@@ -4854,21 +3909,7 @@ VOS_VOID PPP_SendInnerMsg(VOS_UINT32 ulPara)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_ClearVjFlag
- 功能描述  : 清除rp上下文中的vj压缩标记
- 输入参数  : VOS_UINT32 ulPara
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月13日
-    作    者   : y00225787
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 VOID PPP_ClearVjFlag(VOS_UINT32  ulRpIndex)
 {
@@ -4888,20 +3929,7 @@ VOID PPP_ClearVjFlag(VOS_UINT32  ulRpIndex)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_A11_GetSubBoardStat
- 功能描述  : PPP模块提供给A11获取子卡在位信息
- 输入参数  : UCHAR ucDmpuId, VOS_UINT32 *pulSubBoardStat
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 20014-01-10
-    作    者   : y00225787
-    修改内容   : 新生成函数
-*****************************************************************************/
 
 VOS_UINT32 PPP_A11_GetSubBoardStat( UCHAR ucDmpuId )
 {
@@ -4929,20 +3957,7 @@ VOS_UINT32 PPP_A11_GetSubBoardStat( UCHAR ucDmpuId )
 
 #define __PPP__BACKUP__PROC__
 
-/*****************************************************************************
- 函 数 名  : PPP_EncapL2tpPppcUpInfo
- 功能描述  : l2tp用户激活备板处理,由ppp从pdn上下文中获取相关信息封装l2tp所需备份数据
- 被调函数  :
- 调用函数  :
- 输入参数  : PDN_CONTEXT_S *pstPdnContext, L2TP_NOTIFY_PPPC_UP_INFO *pstL2tpUpInfo
- 输出参数  :
- 返 回 值  : VOID
 
- 修改历史      :
-  1.日    期   : 2013年5月14日
-    作    者   : z00136627
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 PPP_EncapL2tpPppcUpInfo(PDN_CONTEXT_S *pstPdnContext, L2TP_NOTIFY_PPPC_UP_INFO *pstL2tpUpInfo)
 {
 #if 0
@@ -4984,20 +3999,7 @@ VOS_UINT32 PPP_EncapL2tpPppcUpInfo(PDN_CONTEXT_S *pstPdnContext, L2TP_NOTIFY_PPP
 
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_BackupUpdateData
- 功能描述  : 备板更新ppp控制块,以ppp备份信息数据更新到ppp控制块中
- 被调函数  :
- 调用函数  :
- 输入参数  : PPPINFO_S *pstPppInfo, CKP_BACKUP_PPPALLINFO_S *pstPppInfobkp
- 输出参数  :
- 返 回 值  : VOID
 
- 修改历史      :
-  1.日    期   : 2013年5月14日
-    作    者   : z00136627
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOID PPP_BackupUpdateData(PPPINFO_S *pstPppInfo, CKP_BACKUP_PPPALLINFO_S *pstPppInfobkp)
 {
     PPPLCPINFO_S* pstLcpInfo = VOS_NULL_PTR;
@@ -5032,7 +4034,7 @@ VOID PPP_BackupUpdateData(PPPINFO_S *pstPppInfo, CKP_BACKUP_PPPALLINFO_S *pstPpp
             pstIpcpInfo->stFsm.ucPktId = pstPppInfobkp->ucIpcpPktId;
             if (1 == pstIpcpInfo->stGotOptions.neg_vj)
             {
-                pstPppInfo->pstConfigInfo->bEnableVJComp = 1;        /* Added by liutao 38563 at 2004-11-02 V800R002 for PPPC移植 */
+                pstPppInfo->pstConfigInfo->bEnableVJComp = 1;
             }
         }
         /* 无控制块则需要新建 */
@@ -5147,20 +4149,7 @@ VOID PPP_BackupUpdateData(PPPINFO_S *pstPppInfo, CKP_BACKUP_PPPALLINFO_S *pstPpp
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_BackupCreateData
- 功能描述  : 备板新建ppp控制块从ppp备份信息恢复数据到ppp控制块中
- 被调函数  :
- 调用函数  :
- 输入参数  : PPPINFO_S *pstPppInfo, CKP_BACKUP_PPPALLINFO_S *pstPppInfobkp
- 输出参数  :
- 返 回 值  : VOID
 
- 修改历史      :
-  1.日    期   : 2013年5月14日
-    作    者   : z00136627
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 PPP_BackupCreateData(PPPINFO_S *pstPppInfo, CKP_BACKUP_PPPALLINFO_S *pstPppInfobkp)
 {
     PPPLCPINFO_S *pstPppLcpInfo = VOS_NULL_PTR;
@@ -5230,9 +4219,7 @@ VOS_UINT32 PPP_BackupCreateData(PPPINFO_S *pstPppInfo, CKP_BACKUP_PPPALLINFO_S *
         /* 更新state为success */
         pstPppInfo->bPppStateFlg = PPP_STATE_SUCCESS;
 
-        /* Added start by g00127633 at 2010-02-27 PDSNC03SPC200 for 问题单号为：AP8D09259 */
         PPP_IPCP_resetci(&pstPppIpcpInfo->stFsm);
-        /* Added end by g00127633 at 2010-02-27 PDSNC03SPC200 for 问题单号为：AP8D09259 */
 
         pstPppIpcpInfo->stFsm.ucState = PPP_STATE_OPENED;
         VOS_MemCpy((VOID*)&(pstPppIpcpInfo->stGotOptions),
@@ -5242,9 +4229,7 @@ VOS_UINT32 PPP_BackupCreateData(PPPINFO_S *pstPppInfo, CKP_BACKUP_PPPALLINFO_S *
         pstPppInfo->bVjFlag = VOS_FALSE;
         if (1 == pstPppIpcpInfo->stGotOptions.neg_vj)
         {
-            /* Added start by liutao 38563 at 2004-11-03 V800R002 for PPPC移植 */
             pstPppInfo->pstConfigInfo->bEnableVJComp = 1;
-            /* Added end by liutao 38563 at 2004-11-03 V800R002 for PPPC移植 */
         }
     }
 
@@ -5313,20 +4298,7 @@ VOS_UINT32 PPP_BackupCreateData(PPPINFO_S *pstPppInfo, CKP_BACKUP_PPPALLINFO_S *
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_BackupRestoreVsncp
- 功能描述  : ehrpd用户pdn模块备板恢复数据调用此接口恢复pdn上下文中的vsncp信息
- 被调函数  : PDN_BackupDecapEhrpdInfo
- 调用函数  :
- 输入参数  : PDN_CONTEXT_S *pstPdnContext, UCHAR ucPDNID, UCHAR ucPktId
- 输出参数  :
- 返 回 值  : VOID
 
- 修改历史      :
-  1.日    期   : 2013年5月14日
-    作    者   : z00136627
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOID PPP_BackupRestoreVsncp(PDN_CONTEXT_S *pstPdnContext, UCHAR ucPDNID, UCHAR ucPktId)
 {
 #if 0
@@ -5340,20 +4312,7 @@ VOID PPP_BackupRestoreVsncp(PDN_CONTEXT_S *pstPdnContext, UCHAR ucPDNID, UCHAR u
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_BackupRestoreCompData
- 功能描述  : 备板解封装ppp的备份结构体信息，恢复压缩相关数据
- 被调函数  :
- 调用函数  :
- 输入参数  : PPPINFO_S *pstPppInfo, CKP_BACKUP_PPPALLINFO_S *pstPppInfobkp
- 输出参数  :
- 返 回 值  : VOID
 
- 修改历史      :
-  1.日    期   : 2013年5月14日
-    作    者   : z00136627
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOID PPP_BackupRestoreCompData(PPPINFO_S *pstPppInfo, CKP_BACKUP_PPPALLINFO_S *pstPppInfobkp)
 {
     PPP_CCP_INFO_S* pstCcpInfo = VOS_NULL;
@@ -5383,20 +4342,7 @@ VOID PPP_BackupRestoreCompData(PPPINFO_S *pstPppInfo, CKP_BACKUP_PPPALLINFO_S *p
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_BackupEncapUpdatePppInfo
- 功能描述  : 主板封装ppp控制块对应的备份结构体信息
- 被调函数  :
- 调用函数  :
- 输入参数  : PPPINFO_S *pstPppInfo, UCHAR **ppucCurrent, VOS_UINT32 *pulEncapLen
- 输出参数  :
- 返 回 值  : VOS_UINT32
 
- 修改历史      :
-  1.日    期   : 2013年5月14日
-    作    者   : z00136627
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOID PPP_BackupEncapUpdatePppInfo(PPPINFO_S *pstPppInfo, UCHAR **ppucCurrent, VOS_UINT32 *pulEncapLen)
 {
     VOS_UINT32                     ulEncapLen      = 0;
@@ -5559,21 +4505,7 @@ VOID PPP_BackupEncapUpdatePppInfo(PPPINFO_S *pstPppInfo, UCHAR **ppucCurrent, VO
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_BackupDecapUpdatePppInfo
- 功能描述  : 备板解封装ppp的备份结构体信息，恢复到ppp控制块中
- 被调函数  :
- 调用函数  :
- 输入参数  : SDB_PDSN_RP_CONTEXT_S *pstRpContext,
-             PPPINFO_S *pstPppInfo, UCHAR *pucCurrent
- 输出参数  :
- 返 回 值  : VOID
 
- 修改历史      :
-  1.日    期   : 2013年5月14日
-    作    者   : z00136627
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOID PPP_BackupDecapUpdatePppInfo(SDB_PDSN_RP_CONTEXT_S *pstRpContext,
                                                 PPPINFO_S *pstPppInfo, UCHAR *pucCurrent)
 {
@@ -5662,22 +4594,7 @@ VOID PPP_BackupDecapUpdatePppInfo(SDB_PDSN_RP_CONTEXT_S *pstRpContext,
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_BackupMasterCreUpdPppProc
- 功能描述  : 主板ppp控制块备份处理函数，注册到ckp模块
-             用户激活或者ppp自己的更新都会触发该函数
- 被调函数  :
- 调用函数  :
- 输入参数  : VOS_UINT32 ulRpIndex, VOS_UINT32 ulOperType,
-             UCHAR **ppucCurrent, VOS_UINT32 *pulEncapLen
- 输出参数  :
- 返 回 值  : VOS_UINT32
 
- 修改历史      :
-  1.日    期   : 2013年5月14日
-    作    者   : z00136627
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 PPP_BackupMasterCreUpdPppProc(VOS_UINT32 ulRpIndex, VOS_UINT32 ulOperType,
                                                   UCHAR **ppucCurrent, VOS_UINT32 *pulEncapLen)
 {
@@ -5736,20 +4653,7 @@ VOS_UINT32 PPP_BackupMasterCreUpdPppProc(VOS_UINT32 ulRpIndex, VOS_UINT32 ulOper
 
 
 
-/*****************************************************************************
- 函 数 名  : PPP_BackupRebuildDynAAACB
- 功能描述  : 备板重建dyn aaa cb
- 被调函数  :
- 调用函数  :
- 输入参数  :
- 输出参数  :
- 返 回 值  : VOS_UINT32
 
- 修改历史      :
-  1.日    期   : 2013年10月22日
-    作    者   : wangyong 00138171
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 PPP_BackupRebuildDynAAACB(PPPINFO_S *pstPppInfo, CKP_BACKUP_PPPALLINFO_S *pstCkpPppBkInfo)
 {
     VOS_UINT32 ulRet = 0;
@@ -5806,20 +4710,7 @@ VOS_UINT32 PPP_BackupRebuildDynAAACB(PPPINFO_S *pstPppInfo, CKP_BACKUP_PPPALLINF
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_BackupSlaveCreUpdPppProc
- 功能描述  : 备板ppp控制块备份处理函数，注册到ckp模块,完成创建更新ppp控制块等操作
- 被调函数  :
- 调用函数  :
- 输入参数  : UCHAR *pucCurrent
- 输出参数  :
- 返 回 值  : VOS_UINT32
 
- 修改历史      :
-  1.日    期   : 2013年5月14日
-    作    者   : z00136627
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 PPP_BackupSlaveCreUpdPppProc(UCHAR *pucCurrent)
 {
     VOS_UINT32 ulRet = 0;
@@ -5892,20 +4783,7 @@ VOS_UINT32 PPP_BackupSlaveCreUpdPppProc(UCHAR *pucCurrent)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_BackupSlaveDelResource
- 功能描述  : 备板删除ppp控制块资源
- 被调函数  :
- 调用函数  :
- 输入参数  : VOS_UINT32 ulRpIndex
- 输出参数  :
- 返 回 值  : VOID
 
- 修改历史      :
-  1.日    期   : 2013年5月14日
-    作    者   : z00136627
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOID PPP_BackupSlaveDelResource(VOS_UINT32 ulRpIndex)
 {
     PPPINFO_S *pstPppInfo = VOS_NULL_PTR;
@@ -5926,20 +4804,7 @@ VOID PPP_BackupSlaveDelResource(VOS_UINT32 ulRpIndex)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_BackupSmoothPppInfo
- 功能描述  : 平滑时完成ppp控制块的平滑处理
- 被调函数  :
- 调用函数  :
- 输入参数  : SDB_PDSN_RP_CONTEXT_S *pstRpContext
- 输出参数  :
- 返 回 值  : VOS_UINT32
 
- 修改历史      :
-  1.日    期   : 2013年5月14日
-    作    者   : z00136627
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 PPP_BackupSmoothPppInfo(SDB_PDSN_RP_CONTEXT_S *pstRpContext)
 {
     VOS_UINT32 ulPdnType = 0;
@@ -6020,20 +4885,7 @@ VOID PPP_BackupSmoothSubBoardDown()
 #endif
     return;
 }
-/*****************************************************************************
- 函 数 名  : PPP_LI_SetAuInfo
- 功能描述  : 设置监听上报时的ppp鉴权信息
- 被调函数  :
- 调用函数  :
- 输入参数  : LI_CDMA2000_PDPINFO_S *pstLiContextInfo
- 输出参数  :
- 返 回 值  : VOS_UINT32
 
- 修改历史      :
-  1.日    期   : 2013年5月14日
-    作    者   : z00136627
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOID PPP_LI_SetAuInfo(LI_CDMA2000_PDPINFO_S *pstLiContextInfo, VOS_UINT32 ulRpindex)
 {
     PPPINFO_S *pstPppInfo = VOS_NULL_PTR;

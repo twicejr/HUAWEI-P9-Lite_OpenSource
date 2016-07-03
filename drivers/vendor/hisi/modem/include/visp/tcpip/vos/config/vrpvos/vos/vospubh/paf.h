@@ -35,7 +35,6 @@ extern "C" {
 #define     FUNCTION_AVAILABLE      PAF_ON
 #define     FUNCTION_UNAVAILABLE    PAF_OFF
 
-/* Modified by X36317, 将MAX_PAF_LCS_KEY_LEN从64改为67，以解决ARM CPU 4字节对齐问题, A82D02016, 2006/6/7 */
 #define MAX_PAF_LCS_KEY_LEN 67
 
 /*used for paf and license resource specs.*/

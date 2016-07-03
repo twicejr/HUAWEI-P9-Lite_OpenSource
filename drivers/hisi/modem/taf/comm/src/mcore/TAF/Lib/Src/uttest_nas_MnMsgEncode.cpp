@@ -2,13 +2,11 @@
 #include "llt_mockcpp.h"
 
 #include "MnMsgTs.h"
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
 #include "MnErrorCode.h"
 #include "mnmsgcbencdec.h"
 #include "TafStdlib.h"
 #include "Taf_MmiStrParse.h"
 
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 
 
 //建议这样引用，避免下面用关键字时需要加前缀 testing::
@@ -20,7 +18,6 @@ using namespace testing;
   #endif
 #endif
 
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
 #define    THIS_FILE_ID        PS_FILE_ID_MNMSG_ENCODE_C
 
 extern VOS_UINT32 MSG_EncodeUserData(
@@ -39,7 +36,6 @@ extern MN_MSG_CBLANG_ENUM_U8 MN_MSG_Iso639LangToDef(
     MN_MSG_ISO639_LANG_ENUM_U16         enIso639Lang
 );
 
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 extern VOS_BOOL MMI_DecodeScAndSi(
                            VOS_CHAR                            *pInMmiStr,
                            MN_MMI_OPERATION_PARAM_STRU         *pMmiOpParam,
@@ -83,15 +79,7 @@ extern void UT_STUB_INIT(void);
 //12、比较异常 EXPECT_THROW
 //13、结构体类型比较ASSERT_SAME_DATA ASSERT_SAME_MEMORY
 
-/*****************************************************************************
-类名     : Test_MN_MSG_EncodeTpRd
-功能描述 : Test_MN_MSG_EncodeTpRd UT工程类
-修改历史     :
 
-1.日   期  : 2012-11-10
-  作   者  : f62575
-  修改内容 : 新生成类
-*****************************************************************************/
 class Test_MN_MSG_EncodeTpRd: public ::testing::Test
 {
 public:
@@ -106,14 +94,7 @@ public:
 protected:
 };
 
-/*******************************************************************
-测试用例编号      : Test_MN_MSG_EncodeTpRd_001
-测试用例标题      : 编码TP-RD参数到TP-FO：设置TP-RD为1
-预期结果          : 输出正确置位的TP-FO
-1.日   期  : 2012-11-10
-  作   者  : f62575
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_MN_MSG_EncodeTpRd, Test_MN_MSG_EncodeTpRd_001)
 {
     /*变量定义*/
@@ -138,14 +119,7 @@ TEST_F(Test_MN_MSG_EncodeTpRd, Test_MN_MSG_EncodeTpRd_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_MN_MSG_EncodeTpRd_002
-测试用例标题      : 编码TP-RD参数到TP-FO：设置TP-RD为0
-预期结果          : 输出正确置位的TP-FO
-1.日   期  : 2012-11-10
-  作   者  : f62575
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_MN_MSG_EncodeTpRd, Test_MN_MSG_EncodeTpRd_002)
 {
     /*变量定义*/
@@ -171,16 +145,7 @@ TEST_F(Test_MN_MSG_EncodeTpRd, Test_MN_MSG_EncodeTpRd_002)
 }
 
 
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
-/*****************************************************************************
-类名     : Test_MN_MSG_EncodeAddress
-功能描述 : MN_MSG_EncodeAddress UT工程类
-修改历史     :
 
-1.日    期   : 2013年6月26日
-  作    者   : f62575
-  修改内容   : V9R1 STK升级
-*****************************************************************************/
 class Test_MN_MSG_EncodeAddress: public ::testing::Test
 {
 public:
@@ -195,14 +160,7 @@ public:
 protected:
 };
 
-/*******************************************************************
-测试用例编号      : Test_MN_MSG_EncodeAddress_001
-测试用例标题      : 短信中心号码编码失败；
-预期结果          : 输出正确置位的TP-FO
-1.日    期   : 2013年6月26日
-  作    者   : f62575
-  修改内容   : V9R1 STK升级
-*******************************************************************/
+
 TEST_F(Test_MN_MSG_EncodeAddress, Test_MN_MSG_EncodeAddress_001)
 {
     /*变量定义*/
@@ -232,15 +190,7 @@ TEST_F(Test_MN_MSG_EncodeAddress, Test_MN_MSG_EncodeAddress_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_MSG_EncodeUserData
-功能描述 : MSG_EncodeUserData UT工程类
-修改历史     :
 
-1.日    期   : 2013年6月26日
-  作    者   : f62575
-  修改内容   : V9R1 STK升级
-*****************************************************************************/
 class Test_MSG_EncodeUserData: public ::testing::Test
 {
 public:
@@ -255,14 +205,7 @@ public:
 protected:
 };
 
-/*******************************************************************
-测试用例编号      : Test_MSG_EncodeUserData_001
-测试用例标题      : 短信中心号码编码失败；
-预期结果          : 输出正确置位的TP-FO
-1.日    期   : 2013年6月26日
-  作    者   : f62575
-  修改内容   : V9R1 STK升级
-*******************************************************************/
+
 TEST_F(Test_MSG_EncodeUserData, Test_MSG_EncodeUserData_001)
 {
     /*变量定义*/
@@ -292,16 +235,8 @@ TEST_F(Test_MSG_EncodeUserData, Test_MSG_EncodeUserData_001)
 }
 
 
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 
-/*****************************************************************************
-类名     : Test_MN_MSG_DecodeCbsDcs
-功能描述 : MN_MSG_DecodeCbsDcs UT工程类
-修改历史 :
-1.日   期  : 2013-07-24
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_MN_MSG_DecodeCbsDcs: public ::testing::Test
 {
 public:
@@ -316,15 +251,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_MN_MSG_DecodeCbsDcs_001
-测试用例标题      : 编码消息内容长度非法
-预期结果          : 返回MN_ERR_CLASS_SMS_INVALID_MSG_LANG
-修改历史          :
-1.日   期  : 2013-07-24
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_MN_MSG_DecodeCbsDcs, Test_MN_MSG_DecodeCbsDcs_001)
 {
     // 变量声明
@@ -351,15 +278,7 @@ TEST_F(Test_MN_MSG_DecodeCbsDcs, Test_MN_MSG_DecodeCbsDcs_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_MN_MSG_DecodeCbsDcs_002
-测试用例标题      : 编码消息内容长度非法
-预期结果          : 返回MN_ERR_CLASS_SMS_INVALID_MSG_LANG
-修改历史          :
-1.日   期  : 2013-07-24
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_MN_MSG_DecodeCbsDcs, Test_MN_MSG_DecodeCbsDcs_002)
 {
     // 变量声明

@@ -1,171 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : MnMsgSmCommProc.c
-  版 本 号   : 初稿
-  作    者   : 周君 40661
-  生成日期   : 2008年2月19日
-  最近修改   :
-  功能描述   : 实现sms模块公共处理部分,包括事件上报,与NVIM,USIM的交互
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2008年2月19日
-    作    者   : 周君 40661
-    修改内容   : 创建文件
-  2.日    期   : 2008年6月16日
-    作    者   : 傅映君 62575
-    修改内容   : 问题单号：AT2D03830, 修改en_NV_Item_SMS_SERVICE_Para项读写相关代码
-  3.日    期   : 2008年6月16日
-    作    者   : 傅映君 62575
-    修改内容   : 问题单号：AT2D03832, EFSMSP文件中若存在全FF的无效地址则解析出错
-  4.日    期   : 2008年6月16日
-    作    者   : 傅映君 62575
-    修改内容   : 存储短消息设备满时，修改接收短消息处理方式为不存储，没有发送SMMA消息
-  5.日    期   : 2008年8月14日
-    作    者   : 傅映君 62575
-    修改内容   : 问题单号：AT2D04859,设置SMS发送域PS域优先，在电话过程中无法发送短信
-  6.日    期   : 2008年8月14日
-    作    者   : 傅映君 62575
-    修改内容   : 问题单号 AT2D04609,CMMS命令的增加；
-  7.日    期   : 2008年8月14日
-    作    者   : fuyingjun
-    修改内容   : 问题单号:AT2D04545, SMS相关AT模块和MN模块新增代码复杂度超过要求数值20
-  8.日    期   : 2008年8月21日
-    作    者   : fuyingjun
-    修改内容   : 问题单号:AT2D05119
-  9.日    期   : 2008年8月25日
-    作    者   : fuyingjun
-    修改内容   : 问题单号:AT2D04608
- 10.日    期   : 2008年8月29日
-    作    者   : fuyingjun
-    修改内容   : 问题单号:AT2D05344, 短消息模块初始化过程结束后进行SDT工具与单板反复进行连接和断开操作,协议栈会重复上报初始化完成事件;
- 11.日    期   : 2008年09月08日
-    作    者   : f62575
-    修改内容   : 问题单AT2D05583,CBS功能模块代码PC-lint错误
- 12.日    期   : 2008年09月11日
-    作    者   : f62575
-    修改内容   : 问题单号AT2D05684, SMSP文件操作相关修改
- 13.日    期   : 2008年09月26日
-    作    者   : f62575
-    修改内容   : 问题单号：AT2D05700, UE收到短信后, TAF上报给应用的短信长度不对问题。
- 14.日    期   : 2008年10月10日
-    作    者   : f62575
-    修改内容   : 问题单号：AT2D06152（AT2D06151）, USIMM优化合入后，SMSP文件相关读写操作失败
- 15.日    期   : 2008年10月20日
-    作    者   : f62575
-    修改内容   : 问题单号：AT2D06072, SIM卡中存在编码错误的短消息后，该条记录不可读写；
- 16.日    期   : 2008-11-17
-    作    者   : f62575
-    修改内容   : 问题单号:AT2D06843, 短信状态报告的读，删除和上报接口与终端工具需求不符问题
- 17.日    期   : 2008年12月25日
-    作    者   : 傅映君 62575
-    修改内容   : 问题单号 AT2D07869, SIM卡中短信息存储区满后接收一条需要存储的短信溢出，短信模块写(U)SIM卡的SMSS文件失败
- 18.Date         : 2009-01-12
-    Author       : f62575
-    Modification : 问题单号:AT2D07548, 短信中心查询操作失败需要返回准确原因
- 19.日    期   : 2009年02月20日
-    作    者   : 傅映君 62575
-    修改内容   : 问题单号 AT2D08974, 开机时串口打印PR地址,短消息中心地址错误
- 20.日    期   : 2009年3月3日
-    作    者   : z40661
-    修改内容   : 问题单号：AT2D07942（AT2D09557）, 短信中心号码上报时间较长
- 21.日    期   : 2009年3月3日
-    作    者   : z40661
-    修改内容   : 问题单号：AT2D08974, 短信打印级别过高
- 22.日    期   : 2009年3月23日
-    作    者   : f62575
-    修改内容   : AT2D10320, PDU格式写入短信与读出短信内容不是完全一致的；
- 23.日    期   : 2009年3月23日
-    作    者   : f62575
-    修改内容   : AT2D10321, SMMA重复发送问题；
- 24.日    期   : 2009年3月30日
-    作    者   : f62575
-    修改内容   : AT2D10546, 短信状态报告无TP-PI，TP-PID，TP-DCS等可选项，必然会读取失败；
- 25.日    期   : 2009年3月30日
-    作    者   : f62575
-    修改内容   : AT2D10538, 发送短信命令并保存在USIM卡中，读取时会当成一条短信状态报告；
- 26.日    期   : 2009年4月1日
-    作    者   : 周君 40661
-    修改内容   : 问题单号:AT2D09786, 用AT+CMGD=,4删除短信时，长时间不回应，导致自动化脚本检测不到单板
- 27.日    期   : 2009年4月7日
-    作    者   : f62575
-    修改内容   : 问题单号 AT2D06392, 不支持短信和状态报告的NV存储相关代码通过宏开关关闭
- 28.日    期   : 2009-04-22
-    作    者   : f62575
-    修改内容   : 问题单号:AT2D11256, 打开后台，再插上单板，无法接收到短信。
- 29.日    期   : 2009年05月11日
-    作    者   : f62575
-    修改内容   : 问题单号：AT2D11136，PICS表设置为仅支持SM存储，执行GCF测试用例34.2.5.3，测试用例失败
- 30.日    期   : 2009年05月15日
-    作    者   : f62575
-    修改内容   : 问题单号：AT2D11703，由于勾包过大,申请内存失败,导致单板复位
- 31.日    期   : 2009年7月18日
-    作    者   : z40661
-    修改内容   : 终端可配置需求合入
- 32.日    期   : 2009年07月24日
-    作    者   : f62575
-    修改内容   : 问题单号：AT2D13258，执行AT&F0恢复出厂设置后，短信功能不可用
- 33.日    期   : 2009年08月02日
-    作    者   : f62575
-    修改内容   : 问题单号：AT2D13420，短信SIM卡相关设置过程中，UE软复位导致设置操作无返回；
- 34.日    期   : 2009年08月7日
-    作    者   : f62575
-    修改内容   : STK特性合入
- 35.日    期   : 2009年08月20日
-    作    者   : f62575
-    修改内容   : CLASS0类短信的上报方式参考27005协议，详细描述参考《定制需求汇总_Individual05.SRS.Class0短信实现方式.doc》
- 36.日    期   : 2009年08月25日
-    作    者   : f62575
-    修改内容   : 问题单号：AT2D14054，【EF_USIM_UST配置】EF_USIM_UST配置的实现代码与产品线提供的需求不一致
- 37.日    期   : 2009年9月02日
-    作    者   : f62575
-    修改内容   : 问题单号:AT2D14189, 执行GCF协议34123的用例16.1.2和16.2.2失败
- 38.日    期   : 2009年10月16日
-     作    者   : f62575
-     修改内容   : 问题单号:AT2D15127, 服务域为PS ONLY，发送域为CS PREFER，参照标杆
-                  短信首先尝试从CS域发送；
- 39.日    期   : 2009年10月23日
-     作    者   : f62575
-     修改内容   : 问题单号:AT2D15225, 启用短信重发功能后短信无法在PS域发送问题；
- 40.日    期   : 2009年10月28日
-    作    者   : f62575
-    修改内容   : AT2D15641, STK短信发送需要支持长短信的分段发送功能
- 41.日    期   : 2009年12月9日
-     作    者   : f62575
-     修改内容   : 问题单号:AT2D15782, 短信存储区满时接收到短信状态报告给网络回复RP-ACK消息，
-                                  与标竿相同情况下回复RP-ERROR(错误原因值22内存满不一致)；
- 42.日    期   : 2009年12月11日
-     作    者   : f62575
-     修改内容   : 问题单号:AT2D15875, 单板上电时接收到短信状态报告修改为存储到SIM卡；
- 43.日    期   : 2009年12月31日
-     作    者   : f62575
-     修改内容   : PC工程桩合入；
- 44.日    期   : 2009年12月16日
-    作    者   : f62575
-    修改内容   : AT2D16304, STK PP DOWN功能完善和SMS相关的(U)SIM文件REFRESH
- 45.日    期   : 2010年2月23日
-    作    者   : f62575
-    修改内容   : 问题单号: AT2D16941：增加短信功能任意点回放功能
- 46.日    期   : 2010年4月15日
-    作    者   : f62575
-    修改内容   : AT2D18539, SMSP文件编码错误时, 短信中心地址读取失败;
- 47.日    期   : 2010年04月30日
-    作    者   : F62575
-    修改内容   : 问题单号AT2D15403
-                 短信以CMT方式上报且CSMS配置为1时若应用不下发CNMA命令确认新短信接收,
-                 则后续短信既不上报也不存储到本地;
- 48.日    期   : 2010年6月10日
-    作    者   : f62575
-    修改内容   : DTS2010061000153, 关闭从SMSP文件文件中获取TP-DCS,TP-VP和TP-PID的功能;
- 49.日    期   : 2010年7月14日
-    作    者   : 傅映君/f62575
-    修改内容   : DTS2010071302170: PP DOWNLODAD操作导致内存泄漏
- 50.日    期   : 2010年6月30日
-    作    者   : 傅映君
-    修改内容   : 问题单号DTS2010071500596，STK短信的定制缓存
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -182,10 +15,8 @@
 #include "MnMsgProcNvim.h"
 #include "MnComm.h"
 
-/* Added by l00167671 for NV拆分项目 , 2013-05-17, begin */
 #include "NasNvInterface.h"
 #include "TafNvInterface.h"
-/* Added by l00167671 for NV拆分项目 , 2013-05-17, end*/
 #include "NasUsimmApi.h"
 
 #include "MnMsgSendSpm.h"
@@ -212,9 +43,7 @@
 VOS_UINT32 MN_MSG_CheckMemAvailable(VOS_VOID);
 #define MN_MSG_EF_FIRST_RECORD                              (1)
 
-/* Added by l00208543 for V9R1 STK升级, 2013-07-09, begin */
 MN_MSG_USIM_EFUST_NEED_REFRESH_STRU stUsimFilesNeedRefreshFlag;
-/* Added by l00208543 for V9R1 STK升级, 2013-07-09, end */
 
 #define MN_MSG_USIM_FILL_BYTE                               0xff
 
@@ -229,9 +58,7 @@ MN_MSG_USIM_EFUST_NEED_REFRESH_STRU stUsimFilesNeedRefreshFlag;
 #define MN_MSG_MAX_NVIM_SMS_REC_NUM                         0                   /*NVIM中短信的最大条数*/
 #endif
 
-/* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
 #define MN_MSG_MAX_NVIM_SMSR_REC_NUM                        255                 /*NVIM中短信报告的最大条数*/
-/* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
 VOS_CHAR *g_pucSmsFileOnFlash                               = VOS_NULL_PTR;
 
@@ -309,16 +136,7 @@ typedef struct
     VOS_UINT8                           aucReserved[3];
 }MN_MSG_MO_SMS_CTRL_STRU;
 
-/*****************************************************************************
- Structure      : NAS_MSG_OUTSIDE_RUNNING_CONTEXT_ST
- Description    : PC回放工程，存储所有MSG相关的全局变量
- Message origin :
- Note: 该结构已经需要55k的内存，新增全局变量请放入NAS_MSG_OUTSIDE_RUNNING_CONTEXT_PART2_ST，
-       以防内存申请失败导致系统复位。
- 2.日    期   : 2011年11月08日
-   作    者   : 傅映君/f62575
-   修改内容   : DCM&DEVICE，DCM短信接收定制需求，新增enMtCustomize
-*****************************************************************************/
+
 #define MN_MSG_BUFFER_SMS_SEG_NUM                             1                 /*USIM中短信的最大条数*/
 typedef struct
 {
@@ -331,9 +149,7 @@ typedef struct
     VOS_UINT8                        ucMoSmsCtrlFlag;
     MN_MSG_MT_CUSTOMIZE_ENUM_UINT8   enMtCustomize;
     MN_MSG_RETRY_INFO_STRU           f_stMsgRetryInfo;
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     SMR_SMT_MO_REPORT_STRU           f_stMsgRpErrInfo;
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
     MN_MSG_STORE_MSG_STRU            f_stMsgSmSaved[MN_MSG_BUFFER_SMS_SEG_NUM]; /**/
 } NAS_MSG_OUTSIDE_RUNNING_CONTEXT_PART1_ST;
 
@@ -426,9 +242,7 @@ LOCAL MN_MSG_LINK_CTRL_U8              f_enMsgLinkCtrl = MN_MSG_LINK_CTRL_ENABLE
 LOCAL VOS_BOOL                         f_bNeedSendUsim[MN_MSG_MAX_USIM_SMS_NUM];
 LOCAL MN_MSG_SEND_FAIL_FLAG_U8         f_enMsgSendFailFlag = MN_MSG_SEND_FAIL_NO_DOMAIN;
 LOCAL MN_MSG_RETRY_INFO_STRU           f_stMsgRetryInfo;
-/* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
 LOCAL SMR_SMT_MO_REPORT_STRU           f_stMsgRpErrInfo;
-/* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 MN_MSG_CLASS0_TAILOR_U8                g_enMsgClass0Tailor;
 #if ( VOS_WIN32 == VOS_OS_VER )
 VOS_UINT8                              g_ucSetEfSmspNoRsp = 0;
@@ -443,28 +257,7 @@ VOS_UINT8                              g_ucDisableMoRetry = 0;
 *****************************************************************************/
 #ifdef __PS_WIN32_RECUR__
 
-/*****************************************************************************
- 函 数 名  : NAS_MSG_RestoreContextData_Part1
- 功能描述  : 恢复MSG全局变量。
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2009年05月14日
-    作    者   : 傅映君 62575
-    修改内容   : 新生成函数
-  2.日    期   : 2009年10月28日
-    作    者   : f62575
-    修改内容   : AT2D15641, STK短信发送需要支持长短信的分段发送功能
-  3.日    期   : 2010年2月23日
-    作    者   : f62575
-    修改内容   : 问题单号: AT2D16941：增加短信功能任意点回放功能
-  4.日    期   : 2011年11月08日
-    作    者   : 傅映君/f62575
-    修改内容   : DTS2012111201995，DCM短信接收定制需求
-*****************************************************************************/
+
 VOS_UINT32 NAS_MSG_RestoreContextData_Part1(struct MsgCB * pMsg)
 {
     NAS_MSG_SDT_MSG_PART1_ST                      *pRcvMsgCB;
@@ -513,23 +306,7 @@ VOS_UINT32 NAS_MSG_RestoreContextData_Part1(struct MsgCB * pMsg)
     return MN_ERR_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSG_RestoreContextData_Part2
- 功能描述  : 恢复MSG全局变量。
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年01月04日
-    作    者   : 欧阳飞 00132663
-    修改内容   : 新生成函数
-  2.日    期   : 2010年2月23日
-    作    者   : f62575
-    修改内容   : 问题单号: AT2D16941：增加短信功能任意点回放功能
-*****************************************************************************/
 VOS_UINT32 NAS_MSG_RestoreContextData_Part2(struct MsgCB * pMsg)
 {
     NAS_MSG_SDT_MSG_PART2_ST                      *pRcvMsgCB;
@@ -567,20 +344,7 @@ VOS_UINT32 NAS_MSG_RestoreContextData_Part2(struct MsgCB * pMsg)
     return MN_ERR_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSG_RestoreContextData_Part3
- 功能描述  : 恢复MSG全局变量。
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年2月22日
-    作    者   : f62575
-    修改内容   : 新生成函数，问题单号：AT2D16941，任意时间点回放
-*****************************************************************************/
 VOS_UINT32 NAS_MSG_RestoreContextData_Part3(struct MsgCB * pMsg)
 {
     NAS_MSG_SDT_MSG_PART3_ST                      *pRcvMsgCB;
@@ -603,28 +367,7 @@ VOS_UINT32 NAS_MSG_RestoreContextData_Part3(struct MsgCB * pMsg)
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_MSG_SndOutsideContextData_Part1
- 功能描述  : 把MSG外部上下文作为SDT消息发送出去，以便在回放时通过桩函数还原
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2009年05月14日
-    作    者   : 傅映君 62575
-    修改内容   : 新生成函数
-  2.日    期   : 2009年10月28日
-    作    者   : f62575
-    修改内容   : AT2D15641, STK短信发送需要支持长短信的分段发送功能
-  3.日    期   : 2010年2月23日
-    作    者   : f62575
-    修改内容   : 问题单号: AT2D16941：增加短信功能任意点回放功能
-  4.日    期   : 2011年11月08日
-    作    者   : 傅映君/f62575
-    修改内容   : DTS2012111201995，DCM短信接收定制需求
-*****************************************************************************/
+
 VOS_VOID NAS_MSG_SndOutsideContextData_Part1()
 {
     NAS_MSG_SDT_MSG_PART1_ST                      *pSndMsgCB     = VOS_NULL_PTR;
@@ -674,25 +417,7 @@ VOS_VOID NAS_MSG_SndOutsideContextData_Part1()
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSG_SndOutsideContextData_Part2
- 功能描述  : 把MSG外部上下文作为SDT消息发送出去，以便在回放时通过桩函数还原
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年01月03日
-    作    者   : 欧阳飞 00132663
-    修改内容   : 新生成函数
-  Note:
-      MSG的变量占内存太大，需要分开发送，否则申请内存会失败，导致单板复位。
-  2.日    期   : 2010年2月23日
-    作    者   : f62575
-    修改内容   : 问题单号: AT2D16941：增加短信功能任意点回放功能
-*****************************************************************************/
 VOS_VOID NAS_MSG_SndOutsideContextData_Part2()
 {
     NAS_MSG_SDT_MSG_PART2_ST                      *pSndMsgCB     = VOS_NULL_PTR;
@@ -740,19 +465,7 @@ VOS_VOID NAS_MSG_SndOutsideContextData_Part2()
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSG_SndOutsideContextData_Part3
- 功能描述  : 把MSG外部上下文作为SDT消息发送出去，以便在回放时通过桩函数还原
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2010年2月22日
-    作    者   : f62575
-    修改内容   : 新生成函数，问题单号：AT2D16941，任意时间点回放
-*****************************************************************************/
+
 VOS_VOID NAS_MSG_SndOutsideContextData_Part3()
 {
     NAS_MSG_SDT_MSG_PART3_ST                      *pSndMsgCB     = VOS_NULL_PTR;
@@ -808,20 +521,7 @@ VOS_VOID NAS_MSG_SndOutsideContextData_Part3()
     return;
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_PrintConfigParmStru
-功能描述  : 打印MN_MSG_CONFIG_PARM_STRU结构数据
-输入参数  : pstCfg MN_MSG_CONFIG_PARM_STRU结构数据
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2008年6月17日
-   作    者   : f62575
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_VOID MN_MSG_PrintConfigParmStru(
     MN_MSG_CONFIG_PARM_STRU             *pstCfg
 )
@@ -834,20 +534,7 @@ VOS_VOID MN_MSG_PrintConfigParmStru(
     MN_INFO_LOG1("MN_MSG_PrintConfigParmStru:enAppMemStatus ", pstCfg->enAppMemStatus);
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_PrintMsgEntityStru
-功能描述  : 打印MN_MSG_MO_ENTITY_STRU结构数据
-输入参数  : pstEntity MN_MSG_MO_ENTITY_STRU结构数据
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2008年6月17日
-   作    者   : f62575
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_VOID MN_MSG_PrintMsgEntityStru(
     MN_MSG_MO_ENTITY_STRU               *pstEntity
 )
@@ -867,21 +554,7 @@ VOS_VOID MN_MSG_PrintMsgEntityStru(
     MN_INFO_LOG1("MN_MSG_PrintMsgEntityStru: bStaRptInd        ", (VOS_INT32)pstEntity->bStaRptInd);
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_PrintMsgEntityStru
-功能描述  : 打印MN_MSG_STORE_MSG_STRU结构数据
-输入参数  : pstSmSaved MN_MSG_STORE_MSG_STRU结构数据
-            ulSmNum    需要打印短消息的个数
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2008年6月17日
-   作    者   : f62575
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_VOID MN_MSG_PrintStoreMsgStru(
     MN_MSG_STORE_MSG_STRU               *pstSmSaved,
     VOS_UINT32                          ulSmNum
@@ -903,20 +576,7 @@ VOS_VOID MN_MSG_PrintStoreMsgStru(
 
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_PrintSmsrInfoStru
-功能描述  : 打印MN_MSG_USIM_EFSMSR_INFO_STRU结构数据
-输入参数  : pstUsimSmsr MN_MSG_USIM_EFSMSR_INFO_STRU结构数据
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2008年6月17日
-   作    者   : f62575
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_VOID MN_MSG_PrintSmsrInfoStru(
     MN_MSG_USIM_EFSMSR_INFO_STRU        *pstUsimSmsr
 )
@@ -935,20 +595,7 @@ VOS_VOID MN_MSG_PrintSmsrInfoStru(
     }
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_PrintSmsInfoStru
-功能描述  : 打印MN_MSG_USIM_EFSMS_INFO_STRU结构数据
-输入参数  : pstUsimSms MN_MSG_USIM_EFSMS_INFO_STRU结构数据
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2008年6月17日
-   作    者   : f62575
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_VOID MN_MSG_PrintSmsInfoStru(
     MN_MSG_USIM_EFSMS_INFO_STRU         *pstUsimSms
 )
@@ -965,20 +612,7 @@ VOS_VOID MN_MSG_PrintSmsInfoStru(
     }
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_PrintSmspInfoStru
-功能描述  : 打印MN_MSG_USIM_EFSMS_INFO_STRU结构数据
-输入参数  : pstUsimSmsp MN_MSG_USIM_EFSMSP_INFO_STRU结构数据
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2008年6月17日
-   作    者   : f62575
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_VOID MN_MSG_PrintSmspInfoStru(
     MN_MSG_USIM_EFSMSP_INFO_STRU        *pstUsimSmsp
 )
@@ -999,20 +633,7 @@ VOS_VOID MN_MSG_PrintSmspInfoStru(
     }
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_PrintSmssInfoStru
-功能描述  : 打印MN_MSG_USIM_SMSS_INFO_STRU结构数据
-输入参数  : pstUsimSmss MN_MSG_USIM_SMSS_INFO_STRU结构数据
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2008年6月17日
-   作    者   : f62575
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_VOID MN_MSG_PrintSmssInfoStru(
     MN_MSG_SMSS_INFO_STRU          *pstUsimSmss
 )
@@ -1021,23 +642,7 @@ VOS_VOID MN_MSG_PrintSmssInfoStru(
     MN_INFO_LOG1("MN_MSG_PrintSmssInfoStru: enMemCapExcNotFlag", pstUsimSmss->enMemCapExcNotFlag);
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_PrintEfUstInfo
-功能描述  : 打印静态变量f_stEfUstInfo
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2008年6月17日
-   作    者   : f62575
-   修改内容   : 新生成函数
-  2.日    期   : 2012年4月5日
-    作    者   : l00171473
-    修改内容   : for V7R1C50 CSFB&PPAC&ETWS&ISR
-************************************************************************/
 VOS_VOID MN_MSG_PrintEfUstInfo(VOS_VOID)
 {
     MN_INFO_LOG1("MN_MSG_PrintEfUstInfo: EF UST bEfSmssFlag", (VOS_INT32)f_stEfUstInfo.bEfSmssFlag);
@@ -1048,194 +653,64 @@ VOS_VOID MN_MSG_PrintEfUstInfo(VOS_VOID)
     MN_INFO_LOG1("MN_MSG_PrintEfUstInfo: EF UST bSmsPpDataFlag", (VOS_INT32)f_stEfUstInfo.bSmsPpDataFlag);
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_PrintMsgMoEntity
-功能描述  : 打印静态变量f_stMsgMoEntity
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2008年6月17日
-   作    者   : f62575
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_VOID MN_MSG_PrintMsgMoEntity(VOS_VOID)
 {
     MN_MSG_PrintMsgEntityStru(&f_stMsgMoEntity);
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_PrintMsgMtEntity
-功能描述  : 打印静态变量f_stMsgMoEntity
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2008年6月17日
-   作    者   : f62575
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_VOID MN_MSG_PrintMsgMtEntity(VOS_VOID)
 {
     MN_INFO_LOG1("MN_MSG_PrintMsgMtEntity: f_stMsgMtEntity.enSmaMtState is ",
                  f_stMsgMtEntity.enSmaMtState);
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_PrintSmsrInfo
-功能描述  : 打印静态变量f_stMsgEfSmsrInfo
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2008年6月17日
-   作    者   : f62575
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_VOID MN_MSG_PrintSmsrInfo(VOS_VOID)
 {
     MN_MSG_PrintSmsrInfoStru(&f_stMsgEfSmsrInfo);
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_PrintSmsInfo
-功能描述  : 打印静态变量f_stMsgEfSmsInfo
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2008年6月17日
-   作    者   : f62575
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_VOID MN_MSG_PrintSmsInfo(VOS_VOID)
 {
     MN_MSG_PrintSmsInfoStru(&f_stMsgEfSmsInfo);
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_PrintSmspInfo
-功能描述  : 打印静态变量f_stMsgEfSmspInfo
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2008年6月17日
-   作    者   : f62575
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_VOID MN_MSG_PrintSmspInfo(VOS_VOID)
 {
     MN_MSG_PrintSmspInfoStru(&f_stMsgEfSmspInfo);
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_PrintSmssInfo
-功能描述  : 打印静态变量f_stMsgEfSmssInfo
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2008年6月17日
-   作    者   : f62575
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_VOID MN_MSG_PrintSmssInfo(VOS_VOID)
 {
     MN_INFO_LOG1("MN_MSG_PrintSmssInfo: bEfSmssState", (VOS_INT32)f_stMsgEfSmssInfo.bEfSmssState);
     MN_MSG_PrintSmssInfoStru(&f_stMsgEfSmssInfo.stEfSmssInfo);
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_PrintInterTpMr
-功能描述  : 打印静态变量f_ucMsgInterTpMr
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2008年6月17日
-   作    者   : f62575
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_VOID MN_MSG_PrintInterTpMr(VOS_VOID)
 {
     MN_INFO_LOG1("MN_MSG_PrintInterTpMr: TpMr", f_ucMsgInterTpMr);
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_PrintCfgParm
-功能描述  : 打印静态变量f_stMsgCfgParm
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2008年6月17日
-   作    者   : f62575
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_VOID MN_MSG_PrintCfgParm(VOS_VOID)
 {
     MN_MSG_PrintConfigParmStru(&f_stMsgCfgParm);
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_PrintUsimStatusInfo
-功能描述  : 打印静态变量f_stMsgCfgParm
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2008年6月17日
-   作    者   : f62575
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_VOID MN_MSG_PrintUsimStatusInfo(VOS_VOID)
 {
     MN_INFO_LOG1("MN_MSG_PrintUsimStatusInfo: ucUsimStatus", f_stMsgUsimStatusInfo.ucUsimStatus);
     MN_INFO_LOG1("MN_MSG_PrintUsimStatusInfo: enPowerState", f_stMsgUsimStatusInfo.enPowerState);
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_PrintSetUsimRec
-功能描述  : 打印静态变量f_stMsgSetUsimRec
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2008年6月17日
-   作    者   : f62575
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_VOID MN_MSG_PrintSetUsimRec(VOS_VOID)
 {
     MN_INFO_LOG1("MN_MSG_PrintSetUsimRec: ucList", f_stMsgSetUsimRec.ucList);
@@ -1249,39 +724,13 @@ VOS_VOID MN_MSG_PrintSetUsimRec(VOS_VOID)
     MN_INFO_LOG1("MN_MSG_PrintSetUsimRec: bDeleteEfSmspReportFlag", (VOS_INT32)f_stMsgSetUsimRec.bDeleteEfSmspReportFlag);
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_PrintOpId
-功能描述  : 打印静态变量f_tMsgOpId
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2008年6月17日
-   作    者   : f62575
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_VOID MN_MSG_PrintOpId(VOS_VOID)
 {
     MN_INFO_LOG1("MN_MSG_PrintOpId: f_tMsgOpId", f_tMsgOpId);
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_PrintDomainRegFlag
-功能描述  : 打印SMT中PS域和CS域的注册标志
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2008年8月13日
-   作    者   : f62575
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_VOID MN_MSG_PrintDomainRegFlag(
     VOS_VOID
 )
@@ -1291,41 +740,14 @@ VOS_VOID MN_MSG_PrintDomainRegFlag(
 }
 
 
-/***********************************************************************
-函 数 名  : MN_MSG_GetLinkCtrlParam
-功能描述  : 获取中继协议链路连续性的控制标志
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 中继协议链路连续性的控制标志
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2008年7月21日
-   作    者   : f62575
-   修改内容   : 新生成函数
-************************************************************************/
 MN_MSG_LINK_CTRL_U8 MN_MSG_GetLinkCtrlParam(VOS_VOID)
 {
     MN_INFO_LOG1("MN_MSG_GetLinkCtrlParam:f_enMsgLinkCtrl ", f_enMsgLinkCtrl);
     return f_enMsgLinkCtrl;
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_SetLinkCtrl
-功能描述  : 设置中继协议链路连续性的控制标志
-输入参数  : setValue - 中继协议链路连续性的控制标志
-输出参数  : 无
-返 回 值  : MN_ERR_NO_ERROR - 设置操作成功
-            其他            - 设置操作失败
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2008年7月21日
-   作    者   : f62575
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_UINT32 MN_MSG_UpdateLinkCtrlParam(
     MN_MSG_LINK_CTRL_U8                 setValue
 )
@@ -1342,24 +764,7 @@ VOS_UINT32 MN_MSG_UpdateLinkCtrlParam(
 
 #if (NAS_FEATURE_SMS_NVIM_SMSEXIST  == FEATURE_ON)
 #if (NAS_FEATURE_SMS_FLASH_SMSEXIST == FEATURE_ON)
-/*****************************************************************************
- 函 数 名  : MSG_InitFlashMsg
- 功能描述  : 初始化FLASH存储介质的ME短信
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月20日
-    作    者   : 傅映君/f62575
-    修改内容   : 新生成函数
-                  DTS2011091503912, FLASH文件不存在情况下不做记录读取操作
-  2.日    期   : 2013年07月222日
-    作    者   : j00177245
-    修改内容   : 清理Coverity
-*****************************************************************************/
 VOS_VOID MSG_InitFlashMsg(VOS_VOID)
 {
     VOS_UINT32                          ulIndex;
@@ -1414,21 +819,7 @@ VOS_VOID MSG_InitFlashMsg(VOS_VOID)
 }
 #else
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_DeliverMsgNotSupport
- 功能描述  : 判断UE不支持的短信类型
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月23日
-    作    者   : 傅映君/f62575
-    修改内容   : 新生成函数
-                  DTS2011091503912, NV_Read接口已经不支持ME短信，此处功能不可用
-*****************************************************************************/
 
 LOCAL VOS_VOID MSG_InitNvMsg(VOS_VOID)
 {
@@ -1440,21 +831,7 @@ LOCAL VOS_VOID MSG_InitNvMsg(VOS_VOID)
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : MSG_InitMeMsg
- 功能描述  : ME短信初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月23日
-    作    者   : 傅映君/f62575
-    修改内容   : 新生成函数
-                  DTS2011091503912, FLASH文件不存在情况下不做记录读取操作
-*****************************************************************************/
 VOS_VOID MSG_InitMeMsg(VOS_VOID)
 {
 
@@ -1468,34 +845,7 @@ VOS_VOID MSG_InitMeMsg(VOS_VOID)
 #endif
 
 
-/***********************************************************************
-函 数 名  : MSG_GetNvimParmInfo
-功能描述  : 从NVIM中获取保存在NVIM中的短消息参数信息
-输入参数  : None
-输出参数  : 无
-返 回 值  :
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2007年10月15日
-   作    者   : z40661
-   修改内容   : 新生成函数
- 2.日    期   : 2009年12月11日
-   作    者   : f62575
-   修改内容   : 问题单号:AT2D15875, 单板上电时接收到短信状态报告修改为存储到SIM卡；
- 3.日    期   : 2011年3月21日
-   作    者   : 傅映君/f62575
-   修改内容   : DTS2011031800199，移动短信业务参数初始化过程到MN_MSG_SmInit
-
- 4.日    期   : 2011年12月23日
-   作    者   : w00167002
-   修改内容   : DTS2011091503912:ME短信文件不存在时，未考虑此异常情况。
-                 封装初始化读取短信函数。
-  5.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-************************************************************************/
 LOCAL VOS_VOID MSG_GetNvimParmInfo(VOS_VOID)
 {
     VOS_UINT32                                      ulRet;
@@ -1590,28 +940,7 @@ LOCAL VOS_VOID MSG_GetNvimParmInfo(VOS_VOID)
                stNvimRetryCmSrvRejCfg.ucSmsRetryCmSrvRejCauseNum);
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_ReadAddressFromUsim
- 功能描述  : 读取(U)SIM卡中存储的地址到内存；
- 输入参数  : pucAddrStr 地址首地址
-             bRpAddr    指示地址字符串的编码格式: TP层的TPDU格式的地址或RP层地址编码
-                 VOS_TRUE   RP层的地址编码, 参考协议23040 9.1.2.5 Address fields
-                 VOS_FALSE  TP层的地址编码, 参考RP层的地址，Refer to 24011 8.2.5.1
- 输出参数  : pstBcdAddr MN_MSG_BCD_ADDR_STRU结构的地址
- 返 回 值  : 地址获取结果: MN_ERR_NO_ERROR获取成功;
-                            其他,获取失败;
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年4月13日
-    作    者   : f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月24日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseIII项目
-
-*****************************************************************************/
 VOS_UINT32  MN_MSG_ReadAddressFromUsim(
     const VOS_UINT8                     *pucAddrStr,
     VOS_BOOL                            bRpAddr,
@@ -1635,9 +964,7 @@ VOS_UINT32  MN_MSG_ReadAddressFromUsim(
             return ulRet;
         }
 
-        /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, begin */
         ulRet = TAF_STD_ConvertAsciiAddrToBcd(&stAsciiAddr, pstBcdAddr);
-        /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, end */
         if (MN_ERR_NO_ERROR != ulRet)
         {
             return ulRet;
@@ -1651,40 +978,7 @@ VOS_UINT32  MN_MSG_ReadAddressFromUsim(
     return MN_ERR_NO_ERROR;
 }
 
-/***********************************************************************
-函 数 名  : MSG_ParseSmsp
-功能描述  : 将EFSMSP文件的内容解析为MN_MSG_SRV_PARM_STRU定义的结构
-输入参数  : ucLen:EFSMSP文件的长度
-            pucSmspContent:EFSMSP文件的内容
-输出参数  : pbSrvParmPresent:该文件中是否有参数有效
-            pstSrvParm:解析后的数据
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2007年10月15日
-   作    者   : z40661
-   修改内容   : 新生成函数
- 2.日    期   : 2010年4月15日
-   作    者   : f62575
-   修改内容   : AT2D18539, SMSP文件编码错误时, 短信中心地址读取失败;
- 3.日    期   : 2010年6月10日
-   作    者   : f62575
-   修改内容   : DTS2010061000153, 关闭从SMSP文件文件中获取TP-DCS,TP-VP和TP-PID的功能;
- 4.日    期   : 2012年03月03日
-   作    者   : s62952
-   修改内容   : BalongV300R002 Build优化项目
- 5.日    期   : 2013年6月26日
-   作    者   : f62575
-   修改内容   : V9R1 STK升级
- 6.日    期   : 2013年08月23日
-   作    者   : f62575
-   修改内容   : DTS2011051605439，短信模块短信重新初始化会TP-VP和TP-DCS
- 7.日    期   : 2014年9月16日
-   作    者   : z00161729
-   修改内容   : DTS2014091200106:中国电信4G卡，0x6f42里短信中心号码存在，但indication指示bit为1，表示没有，手机漫游到国外无法获取到短信中心，发不了短信
-************************************************************************/
 LOCAL VOS_VOID MSG_ParseSmsp(
     VOS_UINT8                           ucLen,
     const VOS_UINT8                     *pucSmspContent,
@@ -1694,12 +988,10 @@ LOCAL VOS_VOID MSG_ParseSmsp(
 {
     VOS_UINT32                          ulPos;
     VOS_UINT32                          ulRet;
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     MN_MSG_CUSTOM_CFG_INFO_STRU        *pstCustomCfgAddr;
 
     /* 获取特性控制NV地址 */
     pstCustomCfgAddr                    = MN_MSG_GetCustomCfgInfo();
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
 
     if (ucLen < MN_MSG_MIN_SRV_PARM_LEN)
@@ -1774,7 +1066,6 @@ LOCAL VOS_VOID MSG_ParseSmsp(
     }
     ulPos += MN_MSG_EFSMSP_ADDR_UNIT_LEN;
 
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     if ( MN_MSG_NV_ITEM_ACTIVE == pstCustomCfgAddr->ucGetCsmpParaFromUsimSupportFlg )
     {
         /*TP-PID:*/
@@ -1787,8 +1078,6 @@ LOCAL VOS_VOID MSG_ParseSmsp(
             pstSrvParam->ucPid = 0;
         }
     }
-    /* Deleted by f62575 for V9R1 STK升级, 2013-6-26, begin */
-    /* Deleted by f62575 for V9R1 STK升级, 2013-6-26, end */
     ulPos++;
 
     if ( MN_MSG_NV_ITEM_ACTIVE == pstCustomCfgAddr->ucGetCsmpParaFromUsimSupportFlg )
@@ -1803,8 +1092,6 @@ LOCAL VOS_VOID MSG_ParseSmsp(
             pstSrvParam->ucDcs = 0;
         }
     }
-    /* Deleted by f62575 for V9R1 STK升级, 2013-6-26, begin */
-    /* Deleted by f62575 for V9R1 STK升级, 2013-6-26, end */
     ulPos++;
 
     if ( MN_MSG_NV_ITEM_ACTIVE == pstCustomCfgAddr->ucGetCsmpParaFromUsimSupportFlg )
@@ -1822,32 +1109,10 @@ LOCAL VOS_VOID MSG_ParseSmsp(
         }
     }
 
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
     return;
 }
 
-/***********************************************************************
-函 数 名  : MSG_GetUsimFileReq
-功能描述  : 请求USIM获取相关文件，请求失败后,如果未超过次数限制,则继续尝试
-输入参数  : usEfId:请求获取文件的ID
-输出参数  : 无
-返 回 值  : VOS_UINT32:向USIM发送请求的结果
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2007年10月26日
-   作    者   : z40661
-   修改内容   : 新生成函数
-
-  2.日    期   : 2010年3月15日
-    作    者   : zhoujun /z40661
-    修改内容   : VOS_TaskDelay清理
-  3.日    期   : 2011年11月26日
-    作    者   : f62575
-    修改内容   : DTS2011112100079 EFSMSP文件存在第0条以外记录错误时，
-                 解决短信中心读取失败问题，只读取目前使用到的第一条记录，
-************************************************************************/
 LOCAL VOS_UINT32 MSG_GetUsimFileReq(
     VOS_UINT16                          usEfId
 )
@@ -1892,26 +1157,7 @@ LOCAL VOS_UINT32 MSG_GetUsimFileReq(
     return ulRet;
 }
 
-/* Added by l00208543 for V9R1 STK升级, 2013-07-09, begin */
-/*****************************************************************************
- 函 数 名  : MN_MSG_SetSmsFileRefreshFlag
- 功能描述  : 设置SMS文件是否需要更新的标示
- 输入参数  : VOS_UINT16    usEfId, VOS_UINT8 ucFileRefreshFlag
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月9日
-    作    者   : l00208543
-    修改内容   : V9R1 STK升级
-
-  2.日    期   : 2015年03月14日
-    作    者   : y00245242
-    修改内容   : USIMM卡接口调整
-
-*****************************************************************************/
  VOS_VOID MN_MSG_SetSmsFileRefreshFlag (VOS_UINT16 usEfId, VOS_UINT8 ucFileRefreshFlag)
 {
     switch (usEfId)
@@ -1937,24 +1183,8 @@ LOCAL VOS_UINT32 MSG_GetUsimFileReq(
             break;
     }
 }
-/* Added by l00208543 for V9R1 STK升级, 2013-07-09, end */
 
-/* Added by l00208543 for V9R1 STK升级, 2013-07-09, begin */
-/*****************************************************************************
- 函 数 名  : MN_MSG_GetSmsFileRefreshFlag
- 功能描述  : 设置SMS文件是否需要更新的标示
- 输入参数  : VOS_UINT16    usEfId
- 输出参数  : VOS_UINT8
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月9日
-    作    者   : l00208543
-    修改内容   : V9R1 STK升级
-
-*****************************************************************************/
 VOS_UINT8 MN_MSG_GetSmsFileRefreshFlag (VOS_UINT16 usEfId)
 {
     switch (usEfId)
@@ -1980,38 +1210,14 @@ VOS_UINT8 MN_MSG_GetSmsFileRefreshFlag (VOS_UINT16 usEfId)
             return VOS_FALSE;
     }
 }
-/* Added by l00208543 for V9R1 STK升级, 2013-07-09, end */
 
-/***********************************************************************
-函 数 名  : MN_MSG_GetUsimParmReq
-功能描述  : 请求USIM获取相关文件的参数
-输入参数  : usEfId:请求获取文件的ID
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2007年10月26日
-   作    者   : z40661
-   修改内容   : 新生成函数
- 2.日    期   : 2009年10月28日
-   作    者   : f62575
-   修改内容   : AT2D15641, STK短信发送需要支持长短信的分段发送功能
- 3.日    期   : 2010年2月23日
-   作    者   : f62575
-   修改内容   : 问题单号：增加短信功能任意点回放功能
- 4.日    期   : 2013年7月9日
-   作    者   : l00208543
-   修改内容   :  V9R1 STK升级项目
-************************************************************************/
 VOS_VOID MN_MSG_GetUsimParmReq(
     VOS_UINT16                          usEfId
 )
 {
     VOS_UINT32                          ulRet;
 
-     /* Modified by l00208543 for V9R1 STK升级, 2013-07-09, begin  */
      /* 读取文件的条件发生变化，由文件存在就读取改为文件存在且需要更新才读取 */
 
     switch (usEfId)
@@ -2072,7 +1278,6 @@ VOS_VOID MN_MSG_GetUsimParmReq(
                     }
                 }
             }
-        /* Modified by l00208543 for V9R1 STK升级, 2013-07-09, end */
 
             /* fall through */
        default:
@@ -2097,21 +1302,7 @@ VOS_VOID MN_MSG_GetUsimParmReq(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_ReadMsgNvimInfo
- 功能描述  : 读取短信NVIM
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月1日
-    作    者   : z40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  MN_MSG_ReadMsgNvimInfo( VOS_VOID )
 {
     MN_MSG_ME_STORAGE_STATUS_ENUM_UINT8 enMeStorageEnable;
@@ -2122,50 +1313,7 @@ VOS_VOID  MN_MSG_ReadMsgNvimInfo( VOS_VOID )
     MN_MSG_CloseSmsCapabilityFeatureInit();
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_SmInit
-功能描述  : 初始化短信模块的静态变量
-输入参数  : None
-输出参数  : 无
-返 回 值  :
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2007年10月15日
-   作    者   : z40661
-   修改内容   : 新生成函数
- 2.日    期   : 2009年12月9日
-    作    者   : f62575
-    修改内容   : 问题单号:AT2D15782, 短信存储区满时接收到短信状态报告给网络回复RP-ACK消息，
-                                 与标竿相同情况下回复RP-ERROR(错误原因值22内存满不一致)；
- 3.日    期   : 2011年02月09日
-   作    者   : w00166186
-   修改内容   : 增加对FLASH存储短信的处理
- 4.日    期   : 2011年3月21日
-   作    者   : 傅映君/f62575
-   修改内容   : DTS2011031800199，移动短信业务参数初始化过程到MN_MSG_SmInit
- 5.日    期   : 2011年6月10日
-   作    者   : 傅映君/f62575
-   修改内容   : DTS2011061006066, EM三期短信定制需求
- 6.日    期   : 2012年3月17日
-   作    者   : w00176964
-   修改内容   : DTS2012031900095 V7R1 C30 SBM&EM定制需求:增加关闭短信功能定制
- 7.日    期   : 2012年3月2日
-   作    者   : 傅映君/f62575
-   修改内容   : C50_IPC Project, 短信初始化过程增加FDN本地配置获取
- 8.日    期   : 2013年7月13日
-   作    者   : l00208543
-   修改内容   : STK升级项目，MSG_GetNvimParmInfo修改为始终调用
- 9.日    期   : 2013年10月18日
-   作    者   : w00167002
-   修改内容   : NETSCAN:将CNMI设置的MT type类型传输给TAF。在<MT>=3，收到CLASS3
-                 短信时候，按照+CMT方式上报。
-                初始话TAF MSG模块中保存的<MT>=0,跟AT模块保持一致;
-10.日    期   : 2014年03月04日
-   作    者   : f62575
-   修改内容   : DTS2013091009786 支持通过产品形态和版本区分FLASH文件根目录
-************************************************************************/
 VOS_VOID MN_MSG_SmInit(VOS_VOID)
 {
     VOS_UINT32                          i;
@@ -2234,50 +1382,19 @@ VOS_VOID MN_MSG_SmInit(VOS_VOID)
     /*初始化定时器相关参数*/
     MN_MSG_InitAllTimers();
 
-    /* Modified by l00208543 for V9R1 STK升级, 2013-07-10, begin */
     MSG_GetNvimParmInfo();
-    /* Modified by l00208543 for V9R1 STK升级, 2013-07-10, end */
 
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_GetMoState
- 功能描述  : 获取当前是否有短信正在发送
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : MN_MSG_MO_STATE_ENUM_U8  - 当前的enSmaMoState状态
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2007年12月05日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
 MN_MSG_MO_STATE_ENUM_U8 MN_MSG_GetMoState(VOS_VOID)
 {
     MN_INFO_LOG1("MN_MSG_GetMoState: f_stMsgMoEntity.enSmaMoState is ", f_stMsgMoEntity.enSmaMoState);
     return f_stMsgMoEntity.enSmaMoState;
 }
 
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-11, begin */
-/*****************************************************************************
- 函 数 名  : MN_MSG_SetMtRouteStackType
- 功能描述  : 设置MT MSG消息从哪种栈路由，即IMS or PS stack
- 输入参数  : enSendOnStackType  短消息路由类型
- 输出参数  : 无
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年7月9日
-    作    者   : y0024524
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID MN_MSG_SetMoRouteStackType(
     TAF_MSG_SIGNALLING_TYPE_ENUM_UINT32 enMsgSignallingType
 )
@@ -2285,63 +1402,19 @@ VOS_VOID MN_MSG_SetMoRouteStackType(
     f_stMsgMoEntity.enMsgSignallingType = enMsgSignallingType;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_GetMoRouteStackType
- 功能描述  : 获取MO MSG消息从哪种栈路由，IMS or PS stack
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : TAF_MSG_SIGNALLING_TYPE_ENUM_UINT32  - 消息路由栈类型
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年7月9日
-    作    者   : y0024524
-    修改内容   : 新生成函数
-*****************************************************************************/
 TAF_MSG_SIGNALLING_TYPE_ENUM_UINT32 MN_MSG_GetMoRouteStackType(VOS_VOID)
 {
     return f_stMsgMoEntity.enMsgSignallingType;
 }
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-11, end */
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_GetMtState
- 功能描述  : 获取当前是否有短信增长接收
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : MN_MSG_MT_STATE_ENUM_U8  - 当前的enSmaMtState状态
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2007年12月05日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
 MN_MSG_MT_STATE_ENUM_U8 MN_MSG_GetMtState(VOS_VOID)
 {
     return f_stMsgMtEntity.enSmaMtState;
 }
 
-/* Added by s00217060 for VoLTE_PhaseII  项目, 2013-10-21, begin */
-/*****************************************************************************
- 函 数 名  : TAF_MSG_SetMtState
- 功能描述  : 设置MT 状态
- 输入参数  : enSendOnStackType  MT状态
- 输出参数  : 无
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年10月21日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MSG_SetMtState(
     MN_MSG_MT_STATE_ENUM_U8             enSmaMtState
 )
@@ -2349,24 +1422,8 @@ VOS_VOID TAF_MSG_SetMtState(
     f_stMsgMtEntity.enSmaMtState = enSmaMtState;
 }
 
-/* Added by s00217060 for VoLTE_PhaseII  项目, 2013-10-21, end */
 
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-11, begin */
-/*****************************************************************************
- 函 数 名  : MN_MSG_SetMtRouteStackType
- 功能描述  : 设置MT MSG消息从哪种栈路由，即IMS or PS stack
- 输入参数  : enSendOnStackType  短消息路由类型
- 输出参数  : 无
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年7月9日
-    作    者   : y0024524
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID MN_MSG_SetMtRouteStackType(
     TAF_MSG_SIGNALLING_TYPE_ENUM_UINT32 enMsgSignallingType
 )
@@ -2374,43 +1431,14 @@ VOS_VOID MN_MSG_SetMtRouteStackType(
     f_stMsgMtEntity.enMsgSignallingType = enMsgSignallingType;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_GetMtRouteStackType
- 功能描述  : 获取MT MSG消息从哪种栈路由，IMS or PS stack
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : MN_MSG_ROUTE_STACK_TYPE_ENUM_UINT32  - 消息路由栈类型
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年7月9日
-    作    者   : y0024524
-    修改内容   : 新生成函数
-*****************************************************************************/
 TAF_MSG_SIGNALLING_TYPE_ENUM_UINT32 MN_MSG_GetMtRouteStackType(VOS_VOID)
 {
     return f_stMsgMtEntity.enMsgSignallingType;
 }
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-11, end */
 
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_GetMoEntity
- 功能描述  : 获取当前发送短信的相关状态
- 输入参数  : 无
- 输出参数  : pstMoEntity:当前发送短信的相关状态
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2007年12月05日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID MN_MSG_GetMoEntity(
     MN_MSG_MO_ENTITY_STRU               *pstMoEntity
 )
@@ -2418,31 +1446,7 @@ VOS_VOID MN_MSG_GetMoEntity(
     PS_MEM_CPY(pstMoEntity,&f_stMsgMoEntity,sizeof(MN_MSG_MO_ENTITY_STRU));
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_GetStoreMsgIndex
- 功能描述  : 获取当前是否还有空间缓存短信
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 当前缓存短信的位置
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2007年12月05日
-    作    者   : z40661
-    修改内容   : 新生成函数
-  2.日    期   : 2010年6月29日
-    作    者   : 傅映君
-    修改内容   : 问题单号DTS2010071500596，STK短信的定制缓存
-  3.日    期   : 2011年12月25日
-    作    者   : w00167002
-    修改内容   : DTS2011102003157:软关机时Shell口异常打印;短消息的无效索引指示
-                  由0xff更改为0xffffffff。
-  4.日    期   : 2012年9月20日
-    作    者   : f62575
-    修改内容   : 2012082906141 解决数据卡STK短信群发失败问题
-*****************************************************************************/
 VOS_UINT32 MN_MSG_GetStoreMsgIndex(VOS_VOID)
 {
     VOS_UINT32                          i;
@@ -2463,23 +1467,7 @@ VOS_UINT32 MN_MSG_GetStoreMsgIndex(VOS_VOID)
     return ulIndex;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_SaveStoreMsg
- 功能描述  : 将短信存入缓存空间
- 输入参数  : ulIndex:存入短信的位置
-             pstMoEntity:存入短信的相关参数
-             pucEfSmContent:存入EFSMS文件中短信的内容
- 输出参数  : 无
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2007年12月05日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  MN_MSG_SaveStoreMsg(
     VOS_UINT32                          ulIndex,
     const MN_MSG_MO_ENTITY_STRU         *pstMoEntity,
@@ -2519,26 +1507,7 @@ VOS_VOID  MN_MSG_SaveStoreMsg(
     PS_MEM_CPY(pstMoBuffer->aucEfSmContent, pucEfSmContent, MN_MSG_EFSMS_LEN);
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_GetStoreMsg
- 功能描述  : 获取缓存中的一条短信
- 输入参数  : 无
- 输出参数  : pstStoreMsg:缓存中的消息内容
- 返 回 值  : 缓存所在的索引,如果为MN_MSG_NO_AVAILABLE_REC,则表明没有缓存消息
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2007年12月05日
-    作    者   : z40661
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年12月25日
-    作    者   : w00167002
-    修改内容   : DTS2011102003157:软关机时Shell口异常打印;短消息的无效索引指示
-                  由0xff更改为0xffffffff。
-*****************************************************************************/
 VOS_UINT32  MN_MSG_GetStoreMsg(
     MN_MSG_STORE_MSG_STRU               *pstStoreMsg
 )
@@ -2564,21 +1533,7 @@ VOS_UINT32  MN_MSG_GetStoreMsg(
     return ulSaveIndex;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_FreeStoreMsg
- 功能描述  : 释放缓存中的一条消息
- 输入参数  : ulIndex:释放消息的索引
- 输出参数  : 无
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2007年12月05日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  MN_MSG_FreeStoreMsg(
     VOS_UINT32                          ulIndex
 )
@@ -2598,34 +1553,13 @@ VOS_VOID  MN_MSG_FreeStoreMsg(
     PS_MEM_SET(&pstMoBuffer->stMoInfo, 0X00, sizeof(MN_MSG_MO_ENTITY_STRU));
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_CreateMoInfo
- 功能描述  : 根据输入参数创建f_stMsgMoEntity中相关参数
- 输入参数  : pstMoEntity    - 当前发送短信相关信息
- 输出参数  : 无
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2007年12月05日
-    作    者   : z40661
-    修改内容   : 新生成函数
-  2.日    期   : 2013年6月17日
-    作    者   : s00217060
-    修改内容   : V9R1_SVLTE
-  3.日    期   : 2013年08月19日
-    作    者   : l00198894
-    修改内容   : V9R1 干扰控制项目，给MTC上报CS域业务状态
-*****************************************************************************/
 VOS_VOID MN_MSG_CreateMoInfo(
     const MN_MSG_MO_ENTITY_STRU         *pstMoEntity
 )
 {
     PS_MEM_CPY(&f_stMsgMoEntity,pstMoEntity,sizeof(MN_MSG_MO_ENTITY_STRU));
 
-    /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-09-22, begin */
     /* 更新短信业务是否存在标志 */
     if (TAF_MSG_SIGNALLING_TYPE_CS_OVER_IP == f_stMsgMoEntity.enMsgSignallingType)
     {
@@ -2637,39 +1571,21 @@ VOS_VOID MN_MSG_CreateMoInfo(
         {
             TAF_SDC_SetCsSmsSrvExistFlg(VOS_TRUE);
 
-            /* Added by l00198894 for V9R1 干扰控制, 2013/08/19, begin */
 #if (FEATURE_MULTI_MODEM == FEATURE_ON)
             /* 给MTC模块上报当前CS域业务状态 */
             TAF_SendMtcCsSrvInfoInd();
 #endif
-            /* Added by l00198894 for V9R1 干扰控制, 2013/08/19, end */
         }
         else
         {
             TAF_SDC_SetPsSmsSrvExistFlg(VOS_TRUE);
         }
     }
-    /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-09-22, end */
 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_UpdateMoSaveInfo
- 功能描述  : 更新f_stMsgMoEntity中存储的相关参数
- 输入参数  : enSaveArea     - 发送短信的存储区域
-             ucSaveIndex    - 发送短信的存储位置
- 输出参数  : 无
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2007年12月05日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID MN_MSG_UpdateMoSaveInfo(
     MN_MSG_MEM_STORE_ENUM_U8            enSaveArea,
     VOS_UINT32                          ulSaveIndex
@@ -2685,20 +1601,7 @@ VOS_VOID MN_MSG_UpdateMoSaveInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_UpdateSmaMoState
- 功能描述  : 更新短信发送实体状态
- 输入参数  : MN_MSG_MO_STATE_ENUM_U8             enSmaMoState  待更新的短信发送实体状态
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月22日
-    作    者   : 傅映君/f62575
-    修改内容   : 新生成函数 DTS2011062201273 MO SMS CONTROL
-*****************************************************************************/
 VOS_VOID MN_MSG_UpdateSmaMoState(
     MN_MSG_MO_STATE_ENUM_U8             enSmaMoState
 )
@@ -2706,23 +1609,7 @@ VOS_VOID MN_MSG_UpdateSmaMoState(
     f_stMsgMoEntity.enSmaMoState = enSmaMoState;
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_MoRetryFlag
-功能描述  : 获取短信重传功能标记
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_TRUE 当前启用了短信重传功能，VOS_FALSE 当前没有启用重传功能；
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2009年09月01日
-   作    者   : f62575
-   修改内容   : 新生成函数
- 2.日    期   : 2013年8月3日
-   作    者   : z60575
-   修改内容   : TQE修改
-************************************************************************/
 VOS_UINT32 MN_MSG_MoRetryFlag(
     VOS_VOID
 )
@@ -2742,24 +1629,7 @@ VOS_UINT32 MN_MSG_MoRetryFlag(
     }
 }
 
-/* Added by s00217060 for VoLTE_PhaseII  项目, 2013-09-22, begin */
-/***********************************************************************
-函 数 名  : TAF_MSG_UpdateSmsExistFlg_DestroyMoInfo
-功能描述  : Destroy MO时，更新SMS业务是否存在标志
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2013年09月23日
-   作    者   : s00217060
-   修改内容   : 新生成函数
- 2.日    期   : 2014年03月01日
-   作    者   : s00217060
-   修改内容   : CS域业务状态变化时通知MTC
-************************************************************************/
 VOS_VOID TAF_MSG_UpdateSmsExistFlg_DestroyMoInfo(VOS_VOID)
 {
     /*
@@ -2776,12 +1646,10 @@ VOS_VOID TAF_MSG_UpdateSmsExistFlg_DestroyMoInfo(VOS_VOID)
         TAF_SDC_SetCsSmsSrvExistFlg(VOS_FALSE);
         TAF_SDC_SetPsSmsSrvExistFlg(VOS_FALSE);
 
-        /* Added by s00217060 for CS域业务状态变化时通知MTC, 2014/03/01, begin */
 #if (FEATURE_MULTI_MODEM == FEATURE_ON)
         /* 给MTC模块上报当前CS域业务状态 */
         TAF_SendMtcCsSrvInfoInd();
 #endif
-        /* Added by s00217060 for CS域业务状态变化时通知MTC, 2014/03/01, end */
 
         return;
     }
@@ -2806,12 +1674,10 @@ VOS_VOID TAF_MSG_UpdateSmsExistFlg_DestroyMoInfo(VOS_VOID)
         {
             TAF_SDC_SetCsSmsSrvExistFlg(VOS_FALSE);
 
-            /* Added by s00217060 for CS域业务状态变化时通知MTC, 2014/03/01, begin */
 #if (FEATURE_MULTI_MODEM == FEATURE_ON)
             /* 给MTC模块上报当前CS域业务状态 */
             TAF_SendMtcCsSrvInfoInd();
 #endif
-            /* Added by s00217060 for CS域业务状态变化时通知MTC, 2014/03/01, end */
         }
         /* Destroy PS域MO时,不存在PS域MT流程,把PS标志置为FALSE */
         else if ( (MN_MSG_SEND_DOMAIN_PS == f_stMsgMoEntity.enSendDomain)
@@ -2825,23 +1691,7 @@ VOS_VOID TAF_MSG_UpdateSmsExistFlg_DestroyMoInfo(VOS_VOID)
     }
 }
 
-/***********************************************************************
-函 数 名  : TAF_MSG_UpdateSmsExistFlg_DestroyMtInfo
-功能描述  : Destryoy MT时，更新SMS业务是否存在标志
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2013年09月23日
-   作    者   : s00217060
-   修改内容   : 新生成函数
- 2.日    期   : 2014年03月01日
-   作    者   : s00217060
-   修改内容   : CS域业务状态变化时通知MTC
-************************************************************************/
 VOS_VOID TAF_MSG_UpdateSmsExistFlg_DestroyMtInfo(VOS_VOID)
 {
     /*
@@ -2858,12 +1708,10 @@ VOS_VOID TAF_MSG_UpdateSmsExistFlg_DestroyMtInfo(VOS_VOID)
         TAF_SDC_SetCsSmsSrvExistFlg(VOS_FALSE);
         TAF_SDC_SetPsSmsSrvExistFlg(VOS_FALSE);
 
-        /* Added by s00217060 for CS域业务状态变化时通知MTC, 2014/03/01, begin */
 #if (FEATURE_MULTI_MODEM == FEATURE_ON)
         /* 给MTC模块上报当前CS域业务状态 */
         TAF_SendMtcCsSrvInfoInd();
 #endif
-        /* Added by s00217060 for CS域业务状态变化时通知MTC, 2014/03/01, end */
         return;
     }
 
@@ -2884,12 +1732,10 @@ VOS_VOID TAF_MSG_UpdateSmsExistFlg_DestroyMtInfo(VOS_VOID)
 
             TAF_SDC_SetCsSmsSrvExistFlg(VOS_FALSE);
 
-            /* Added by s00217060 for CS域业务状态变化时通知MTC, 2014/03/01, begin */
 #if (FEATURE_MULTI_MODEM == FEATURE_ON)
             /* 给MTC模块上报当前CS域业务状态 */
             TAF_SendMtcCsSrvInfoInd();
 #endif
-            /* Added by s00217060 for CS域业务状态变化时通知MTC, 2014/03/01, end */
         }
 
         /* Destroy PS域MT时,不存在PS域MO流程,把PS标志置为FALSE */
@@ -2904,41 +1750,12 @@ VOS_VOID TAF_MSG_UpdateSmsExistFlg_DestroyMtInfo(VOS_VOID)
     }
 
 }
-/* Added by s00217060 for VoLTE_PhaseII  项目, 2013-09-22, end */
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_DestroyMoInfo
- 功能描述  : 清空f_stMsgMoEntity中相关参数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2007年12月05日
-    作    者   : z40661
-    修改内容   : 新生成函数
-  2.日    期   : 2013年6月17日
-    作    者   : s00217060
-    修改内容   : V9R1_SVLTE
-  3.日    期   : 2013年7月15日
-    作    者   : y00245242
-    修改内容   : 增加对MO的栈路由初始化，default为TAF_MSG_SIGNALLING_TYPE_BUTT
-
-  4.日    期   : 2013年08月19日
-    作    者   : l00198894
-    修改内容   : V9R1 干扰控制项目，给MTC上报CS域业务状态
-  5.日    期   : 2013年09月24日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseII项目，清除发送域
-*****************************************************************************/
 VOS_VOID MN_MSG_DestroyMoInfo(VOS_VOID)
 {
     VOS_UINT32                          ulRet;
 
-    /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-09-22, begin */
     /* 更新业务标识时，要用到MO实体信息，要求清除实体信息放在更新标识后面 */
     TAF_MSG_UpdateSmsExistFlg_DestroyMoInfo();
 
@@ -2952,12 +1769,8 @@ VOS_VOID MN_MSG_DestroyMoInfo(VOS_VOID)
     f_stMsgMoEntity.clientId = 0x00;
     f_stMsgMoEntity.ucMr = 0x00;
     f_stMsgMoEntity.ucRpDataLen = 0X00;
-    /* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-11, begin */
     f_stMsgMoEntity.enMsgSignallingType = TAF_MSG_SIGNALLING_TYPE_BUTT;
-    /* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-11, end */
-    /* Added by s00217060 for VoLTE_PhaseII  项目, 2013-09-24, begin */
     f_stMsgMoEntity.enSendDomain        = MN_MSG_SEND_DOMAIN_NO;
-    /* Added by s00217060 for VoLTE_PhaseII  项目, 2013-09-24, end */
 
     PS_MEM_SET(f_stMsgMoEntity.aucRpDataInfo,0X00,MN_MSG_MAX_RPDATA_LEN);
     PS_MEM_SET(&f_stMsgRpErrInfo,0,sizeof(f_stMsgRpErrInfo));
@@ -2969,35 +1782,14 @@ VOS_VOID MN_MSG_DestroyMoInfo(VOS_VOID)
     {
         MN_MSG_UpdateSendFailFlag(MN_MSG_SEND_FAIL_NO_DOMAIN);
     }
-    /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-09-22, end */
 
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_CreateMtInfo
- 功能描述  : 创建g_stSmaMtEntity中相关参数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年12月05日
-    作    者   : z40661
-    修改内容   : 新生成函数
-  2.日    期   : 2013年6月17日
-    作    者   : s00217060
-    修改内容   : V9R1_SVLTE
-  3.日    期   : 2013年08月19日
-    作    者   : l00198894
-    修改内容   : V9R1 干扰控制项目，给MTC上报CS域业务状态
-*****************************************************************************/
 VOS_VOID MN_MSG_CreateMtInfo(VOS_VOID)
 {
     f_stMsgMtEntity.enSmaMtState = MN_MSG_MT_STATE_WAIT_REPORT_REQ;
 
-    /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-09-22, begin */
     /* 更新短信业务是否存在标志 */
     if (TAF_MSG_SIGNALLING_TYPE_CS_OVER_IP == f_stMsgMtEntity.enMsgSignallingType)
     {
@@ -3009,83 +1801,37 @@ VOS_VOID MN_MSG_CreateMtInfo(VOS_VOID)
         {
             TAF_SDC_SetCsSmsSrvExistFlg(VOS_TRUE);
 
-            /* Added by l00198894 for V9R1 干扰控制, 2013/08/19, begin */
 #if (FEATURE_MULTI_MODEM == FEATURE_ON)
             /* 给MTC模块上报当前CS域业务状态 */
             TAF_SendMtcCsSrvInfoInd();
 #endif
-            /* Added by l00198894 for V9R1 干扰控制, 2013/08/19, end */
         }
         else
         {
             TAF_SDC_SetPsSmsSrvExistFlg(VOS_TRUE);
         }
     }
-    /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-09-22, end */
 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_DestroyMtInfo
- 功能描述  : 清空g_stSmaMtEntity中相关参数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2007年12月05日
-    作    者   : z40661
-    修改内容   : 新生成函数
-  2.日    期   : 2013年6月17日
-    作    者   : s00217060
-    修改内容   : V9R1_SVLTE
-  3.日    期   : 2013年7月15日
-    作    者   : y00245242
-    修改内容   : 增加初始化MT栈路由初始化，default为TAF_MSG_SIGNALLING_TYPE_BUTT
-  4.日    期   : 2013年08月19日
-    作    者   : l00198894
-    修改内容   : V9R1 干扰控制项目，给MTC上报CS域业务状态
-*****************************************************************************/
 VOS_VOID MN_MSG_DestroyMtInfo(VOS_VOID)
 {
-    /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-09-22, begin */
 
     /* 更新业务标识时，要用到MT实体信息，要求清除实体信息放在更新标识后面 */
     TAF_MSG_UpdateSmsExistFlg_DestroyMtInfo();
 
     f_stMsgMtEntity.enSmaMtState = MN_MSG_MT_STATE_NULL;
 
-    /* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-11, begin */
     f_stMsgMtEntity.enMsgSignallingType = TAF_MSG_SIGNALLING_TYPE_BUTT;
-    /* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-11, end */
 
     f_stMsgMtEntity.enRcvDomain  = MN_MSG_RCV_DOMAIN_BUTT;
 
-    /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-09-22, end */
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_CreateNewUsimNode
- 功能描述  : 向USIM发起异步操作,由于USIM的节点数有限,调用此函数查看是否有空闲的节点数,
-             如果有空闲节点,则填写该节点相关信息
- 输入参数  : pstSmaUsimInfo  - 创建节点相关信息
- 输出参数  : pulIndex        - 节点所在索引
- 返 回 值  : VOS_OK        - 找到空闲的f_astMsgSetUsimInfo
-             VOS_ERR       - 未找到空闲的f_astMsgSetUsimInfo
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2007年12月05日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 MN_MSG_CreateNewUsimNode(
     const MN_MSG_USIM_INFO_STRU         *pstSmaUsimInfo,
     VOS_UINT32                          *pulIndex
@@ -3111,19 +1857,7 @@ VOS_UINT32 MN_MSG_CreateNewUsimNode(
     return VOS_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_DestroyUsimNode
- 功能描述  : 清空内存中索引为ucIndex的USIM节点相关信息
- 输入参数  : ulIndex - 操作USIM节点的记录数
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2007年12月14日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_VOID MN_MSG_DestroyUsimNode(
     VOS_UINT32                          ulIndex
 )
@@ -3136,50 +1870,15 @@ VOS_VOID MN_MSG_DestroyUsimNode(
     PS_MEM_SET(&f_astMsgSetUsimInfo[ulIndex],0X00,sizeof(MN_MSG_USIM_INFO_STRU));
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_UpdateUstInfo
-功能描述  : 更新内存中保留的EFSMSS文件存在的标志以
-输入参数  : pstSmsUstInfo:EFSMSS文件的内容
-输出参数  : 无
-返 回 值  : 无
 
-调用函数  :
-被调函数  :
-
-修改历史      :
- 1.日    期   : 2007年12月12日
-   作    者   : z40661
-   修改内容   : 新生成函数
- 2.日    期   : 2010年10月29日
-   作    者   : lijun 00171473
-   修改内容   : DTS2010102300072, 关闭E5的短信功能
- 3.日    期   : 2011年6月16日
-   作    者   : 傅映君/f62575
-   修改内容   : 问题单号DTS2011062201273 MO SMS CONTROL
- 4.日    期   : 2012年03月03日
-   作    者   : s62952
-   修改内容   : BalongV300R002 Build优化项目
- 5.日    期   : 2012年4月5日
-   作    者   : l00171473
-   修改内容   : for V7R1C50 CSFB&PPAC&ETWS&ISR
- 6.日    期   : 2013年6月5日
-   作    者   : w00242748
-   修改内容   : svlte和usim接口调整
- 7.日    期   : 2013年7月29日
-   作    者   : y00245242
-   修改内容   : 适配新的USIM接口
-************************************************************************/
 VOS_VOID MN_MSG_UpdateUstInfo()
 {
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     MN_MSG_CUSTOM_CFG_INFO_STRU        *pstCustomCfgAddr;
 
     /* 获取特性控制NV地址 */
     pstCustomCfgAddr                    = MN_MSG_GetCustomCfgInfo();
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
     /* E5关闭短信功能 */
-    /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-29, begin */
     f_stEfUstInfo.bEfSmsFlag = NAS_USIMMAPI_IsServiceAvailable(NAS_USIM_SVR_SMS);
     f_stEfUstInfo.bEfSmssFlag = NAS_USIMMAPI_IsServiceAvailable(NAS_USIM_SVR_SMS);
 
@@ -3194,42 +1893,14 @@ VOS_VOID MN_MSG_UpdateUstInfo()
 
     f_stEfUstInfo.bMoSmsCtrlFlag = NAS_USIMMAPI_IsServiceAvailable(NAS_USIM_SVR_MOSMS_CONTROL);
 
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     if (MN_MSG_NV_ITEM_ACTIVE == pstCustomCfgAddr->ucSmsPpDownlodSupportFlg)
     {
         f_stEfUstInfo.bSmsPpDataFlag = NAS_USIMMAPI_IsServiceAvailable(NAS_USIM_SVR_DATA_DL_SMSPP);
     }
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
-    /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-29, end */
 
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_MoFeatureAvailable
-功能描述  : 获取MO功能可用标志
-输入参数  : VOS_VOID
-输出参数  : 无
-返 回 值  : MN_ERR_NO_ERROR - MO功能可用
-            其他            - MO功能不可用
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2008年4月13日
-   作    者   : f62575
-   修改内容   : 新生成函数
- 2.日    期   : 2010年10月29日
-   作    者   : lijun 00171473
-   修改内容   : DTS2010102300072, 关闭E5的短信功能
-
-  3.日    期   : 2011年2月26日
-    作    者   : 傅映君/f62575
-    修改内容   : C31版本支持SMS功能后打开短信发送功能
-  4.日    期   : 2012年3月17日
-    作    者   : w00176964
-    修改内容   : DTS2012031900095 V7R1 C30 SBM&EM定制需求:增加关闭短信功能定制
-
-************************************************************************/
 VOS_UINT32 MN_MSG_MoFeatureAvailable(VOS_VOID)
 {
     VOS_UINT8                           ucActFlg;
@@ -3255,22 +1926,7 @@ VOS_UINT32 MN_MSG_MoFeatureAvailable(VOS_VOID)
 }
 
 
-/***********************************************************************
-函 数 名  : MN_MSG_UpdateSmssInfo
-功能描述  : 更新内存中保留的EFSMSS文件存在的标志以及文件的内容
-输入参数  : bEfSmssState:文件存在的标志
-            pstSmssInfo:EFSMSS文件的内容
-输出参数  : 无
-返 回 值  : 无
 
-调用函数  :
-被调函数  :
-
-修改历史      :
- 1.日    期   : 2007年12月12日
-   作    者   : z40661
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_VOID MN_MSG_UpdateSmssInfo(
     VOS_BOOL                            bEfSmssState,
     const MN_MSG_SMSS_INFO_STRU         *pstSmssInfo,
@@ -3282,21 +1938,7 @@ VOS_VOID MN_MSG_UpdateSmssInfo(
     PS_MEM_CPY(&f_stMsgEfSmssInfo.stEfSmssInfo,pstSmssInfo,sizeof(f_stMsgEfSmssInfo.stEfSmssInfo));
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_GetTpMR
-功能描述  : 获取当前EFSMSS文件中的TP-MR的值
-输入参数  : 无
-输出参数  : pucTpMr:当前TP-MR的值,获取USIM,NVIM都失败后,从内存中取
-返 回 值  : 无
 
-调用函数  :
-被调函数  :
-
-修改历史      :
- 1.日    期   : 2007年12月12日
-   作    者   : z40661
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_VOID MN_MSG_GetTpMR(
     VOS_UINT8                           *pucTpMr
 )
@@ -3312,28 +1954,12 @@ VOS_VOID MN_MSG_GetTpMR(
     }
     else
     {
-        /* Modified by z00234330 for PCLINT清理, 2014-06-24, begin */
         *pucTpMr = f_ucMsgInterTpMr;
         f_ucMsgInterTpMr++;
-        /* Modified by z00234330 for PCLINT清理, 2014-06-24, end */
     }
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_AddTpMR
-功能描述  : 更新当前EFSMSS文件中的TP-MR的值
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
 
-调用函数  :
-被调函数  :
-
-修改历史      :
- 1.日    期   : 2007年12月12日
-   作    者   : z40661
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_VOID MN_MSG_AddTpMR(VOS_VOID)
 {
     MN_MSG_SMSS_INFO_STRU               stSmssInfo;
@@ -3349,24 +1975,7 @@ VOS_VOID MN_MSG_AddTpMR(VOS_VOID)
     }
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_ReadSmssInfo
-功能描述  : 获取保存在USIM或NVIM中的SMSS的内容,优先获取保存在USIM的EFSMSS文件的内容
-输入参数  : 无
-输出参数  : pstSmssInfo:获取EFSMSS的内容
-返 回 值  : VOS_OK:获取成功
-            VOS_ERR:获取失败
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2007年10月26日
-   作    者   : z40661
-   修改内容   : 新生成函数
- 2.日    期   : 2013年05月20日
-   作    者   : m00217266
-   修改内容   : nv项拆分
-************************************************************************/
 VOS_UINT32  MN_MSG_ReadSmssInfo(
     MN_MSG_SMSS_INFO_STRU               *pstSmssInfo
 )
@@ -3402,29 +2011,7 @@ VOS_UINT32  MN_MSG_ReadSmssInfo(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_Internal_SendRpt
- 功能描述  : 协议栈内部调用此函数发送RP-ACK或RP-ERROR消息到网侧
- 输入参数  : bRpAck:是发送RpAck还是RpError
-             enRpCause:发送RpError时有效,具体R层的原因值
-             enTpCause:发送RpError时有效,具体T层的原因值
- 输出参数  : 无
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2007年10月15日
-    作    者   : z40661
-    修改内容   : 新生成函数
-  2.日    期   : 2013年7月15日
-    作    者   : y00245242
-    修改内容   : 在发送RP REPORT之前，获取路由栈标识
-  3.日    期   :2014年9月28日
-    作    者   :s00217060
-    修改内容   :for cs_err_log
-*****************************************************************************/
 VOS_VOID MN_MSG_Internal_SendRpt(
     VOS_BOOL                            bRpAck   ,                              /*is Rp-Ack or Rp-Error*/
     MN_MSG_RP_CAUSE_ENUM_U8             enRpCause,                              /*used when bRpAck==FALSE*/
@@ -3437,9 +2024,7 @@ VOS_VOID MN_MSG_Internal_SendRpt(
     MN_MSG_RP_ACK_STRU                  stRpAck;
     MN_MSG_RP_ERR_STRU                  stRpErr;
     VOS_UINT8                           ucIdx = 0;
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-11, begin */
     TAF_MSG_SIGNALLING_TYPE_ENUM_UINT32 enMsgSignallingType;
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-11, end */
 
     PS_MEM_SET(aucSendData,0X00,MN_MSG_MAX_LEN);
     if (VOS_TRUE == bRpAck)
@@ -3472,13 +2057,9 @@ VOS_VOID MN_MSG_Internal_SendRpt(
                         sizeof(MN_MSG_RP_CAUSE_ENUM_U8));
     }
 
-    /* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-11, begin */
     enMsgSignallingType = MN_MSG_GetMtRouteStackType();
-    /* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-11, end */
 
-    /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-11, begin */
     ulRet = MN_MSG_SendSmsRpReportReq(aucSendData,ucSendLen, enMsgSignallingType);
-    /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-11, end */
 
     if (VOS_OK != ulRet)
     {
@@ -3486,24 +2067,7 @@ VOS_VOID MN_MSG_Internal_SendRpt(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : MSG_RequireDelete
- 功能描述  : 判断短信存储状态与删除类型是否匹配，匹配则是待删除消息
-                                                 否则不是待删除消息
- 输入参数  : enDeleteType    - 删除类型
-             ucStatus        - 短消息存储状态
- 输出参数  : 无
- 返 回 值  : VOS_TRUE         -  短信存储状态与删除类型匹配
-             VOS_FALSE        -  短信存储状态与删除类型不匹配
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2008年7月19日
-    作    者   : f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 LOCAL VOS_BOOL MSG_RequireDelete(
     MN_MSG_DELETE_TYPE_ENUM_U8          enDeleteType,
     VOS_UINT8                           ucStatus
@@ -3552,26 +2116,7 @@ LOCAL VOS_BOOL MSG_RequireDelete(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_DeleteMultiSm
- 功能描述  : 删除多条短信,NVIM:直接删除NVIM中的短信,USIM,下发删除命令到USIM中
- 输入参数  : clientId        - 发起该请求的Client的ID
-             opId            - Operation ID, 标识本次操作
-             enMemStore      - 当前短信的存储位置
-             enDeleteType    - 删除类型
- 输出参数  : pbDeleteAll     - 是否已删除所有短信
-             pucDeleteCount  - 本次删除的个数
- 返 回 值  : MN_ERR_NO_ERROR - 删除成功或下发命令到USIM成功
-             其他             - 删除出错
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2007年10月15日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 MN_MSG_DeleteMultiSm(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId,
@@ -3701,25 +2246,7 @@ VOS_UINT32 MN_MSG_DeleteMultiSm(
     return MN_ERR_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_DeleteMultiStaRpt
- 功能描述  : 删除多条短信状态报告,NVIM:直接删除NVIM中的短信状态报告,USIM,下发删除命令到USIM中
- 输入参数  : clientId        - 发起该请求的Client的ID
-             opId            - Operation ID, 标识本次操作
-             enMemStore      - 当前短信的存储位置
- 输出参数  : pbDeleteAll     - 是否已删除所有短信状态报告
-             pucDeleteCount  - 本次删除的个数
- 返 回 值  : MN_ERR_NO_ERROR - 删除成功或下发命令到USIM成功
-             其他             - 删除出错
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2007年10月15日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  MN_MSG_DeleteMultiStaRpt(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId,
@@ -3814,20 +2341,7 @@ VOS_UINT32  MN_MSG_DeleteMultiStaRpt(
     return MN_ERR_NO_ERROR;
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_UpdateSmsRecNumInfo
-功能描述  : 收到USIM发送过来的EFSMS的文件内容后,更新内存中EFSMS的记录数和文件存在标志
-输入参数  : bEfSmsState:文件存在标志
-            ucEFSmNum:USIM中文件记录数,
-输出参数  : 无
-返 回 值  :
-调用函数  :
-被调函数  :
-修改历史      :
- 1.日    期   : 2007年11月26日
-   作    者   : z40661
-   修改内容   : 新生成函数
-************************************************************************/
+
 VOS_VOID  MN_MSG_UpdateSmsInfo(
     VOS_BOOL                            bEfSmsState,
     VOS_UINT8                           ucEFSmNum
@@ -3837,21 +2351,7 @@ VOS_VOID  MN_MSG_UpdateSmsInfo(
     f_stMsgEfSmsInfo.ucSmsRealRecNum = ucEFSmNum;
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_UpdateUsimStateInfo
-功能描述  : 更新当前USIM卡及其USIM卡上电的状态
-输入参数  : enPowerState:USIM卡的上电状态
-输出参数  : 无
-返 回 值  :
 
-调用函数  :
-被调函数  :
-
-修改历史      :
- 1.日    期   : 2007年10月26日
-   作    者   : z40661
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_VOID  MN_MSG_UpdateUsimStateInfo(
     MN_MSG_USIM_POWER_STATE_ENUM_U8     enPowerState
 )
@@ -3860,36 +2360,7 @@ VOS_VOID  MN_MSG_UpdateUsimStateInfo(
 }
 
 
-/***********************************************************************
-函 数 名  : MN_MSG_StartMo
-功能描述  : 发送完一条短信后,如果当前有消息缓存,调用此函数继续发送消息
-输入参数  : 无
-输出参数  : penSendDomain:当前发送短信的发送域
-返 回 值  : VOS_OK:发送缓存消息成功
-            VOS_ERR:发送缓存消息失败
 
-调用函数  :
-被调函数  :
-
-修改历史      :
- 1.日    期   : 2007年11月26日
-   作    者   : z40661
-   修改内容   : 新生成函数
- 2.日    期   : 2010年6月30日
-   作    者   : 傅映君
-   修改内容   : 问题单号DTS2010071500596，STK短信的定制缓存
- 3.日    期   : 2011年6月24日
-   作    者   : 傅映君/f62575
-   修改内容   : DTS2011062201273 MO SMS CONTROL
- 4.日    期   : 2011年10月11日
-   作    者   : k66584
-   修改内容   : DTS2011093003995,缓存短信发送前重新构建发送实体
- 2.日    期   : 2011年12月25日
-   作    者   : w00167002
-   修改内容   : DTS2011102003157:软关机时Shell口异常打印;
-                短消息的无效索引指示由0xff更改为0xffffffff;
-                删除当前索引为0XFF就返回的判断。
-************************************************************************/
 VOS_UINT32 MN_MSG_StartMo(
     MN_MSG_SEND_DOMAIN_ENUM_U8          *penSendDomain
 )
@@ -3980,20 +2451,7 @@ VOS_UINT32 MN_MSG_StartMo(
 }
 
 
-/***********************************************************************
-函 数 名  : MN_MSG_StartMemNotification
-功能描述  : 根据当前存储器的情况决定是否要向网侧发起内存可用通知
-输入参数  : 无
-输出参数  : 无
-返 回 值  :
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2007年11月26日
-   作    者   : z40661
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_VOID MN_MSG_StartMemNotification(VOS_VOID)
 {
     MN_MSG_SMSS_INFO_STRU               stSmssInfo;
@@ -4026,30 +2484,7 @@ VOS_VOID MN_MSG_StartMemNotification(VOS_VOID)
 }
 
 
-/***********************************************************************
-函 数 名  : MN_MSG_SendSmma
-功能描述  : 发送SMMA消息到网侧
-输入参数  : clientId       - 发起该请求的Client的ID
-            opId           - Operation ID, 标识本次操作
-            bReportFlag    - 上报标志
-输出参数  : 无
-返 回 值  :
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2007年11月26日
-   作    者   : z40661
-   修改内容   : 新生成函数
- 2.日    期   : 2013年7月3日
-   作    者   : y00245242
-   修改内容   : 增加SMS发送路由判断，决定SMS发送给IMS栈还是PS栈
- 3.日    期   : 2014年7月29日
-   作    者   : w00242748
-   修改内容   : DTS2014052806022:卡文件6F43指示SIM卡内存满，但实际开机后，
-                发现SIM卡内存还有余量，所以这时需要通知网络当前能接受短信，
-                但SVLTE主modem不应通知(主modem PS only，不支持发送短信)。
-************************************************************************/
 VOS_UINT32  MN_MSG_SendSmma(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId,
@@ -4077,9 +2512,7 @@ VOS_UINT32  MN_MSG_SendSmma(
         return ulRet;
     }
 
-/* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-10, begin */
     ulRet = MN_MSG_SendSmsSmmaReq(enRealDomain, enMsgSignallingType);
-/* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-10, end */
     if (VOS_ERR == ulRet)
     {
         ulRet = MN_ERR_CLASS_SMS_INTERNAL;
@@ -4096,44 +2529,12 @@ VOS_UINT32  MN_MSG_SendSmma(
     stMoEntity.bReportFlag = bReportFlag;
     stMoEntity.ucRpDataLen = 0;
     stMoEntity.enSmaMoState = MN_MSG_MO_STATE_WAIT_REPORT_IND;
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-8-29, begin */
     stMoEntity.enMsgSignallingType = enMsgSignallingType;
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-8-29, end */
     MN_MSG_CreateMoInfo(&stMoEntity);
     return ulRet;
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_SendMemAvail
-功能描述  : 向网侧发起内存可用通知
-输入参数  : 无
-输出参数  : 无
-返 回 值  :
 
-调用函数  :
-被调函数  :
-
-修改历史      :
- 1.日    期   : 2007年11月26日
-   作    者   : z40661
-   修改内容   : 新生成函数
- 2.日    期   : 2010年6月30日
-   作    者   : 傅映君
-   修改内容   : 问题单号DTS2010071500596，STK短信的定制缓存
- 3.日    期   : 2011年12月25日
-    作    者   : w00167002
-    修改内容   : DTS2011102003157:软关机时Shell口异常打印;短消息的无效索引指示
-                  由0xff更改为0xffffffff。
- 4.日    期   : 2013年7月15日
-    作    者   : y00245242
-    修改内容   : 获取消息路由标识，确定SMMA路由
- 5.日    期   : 2013年09月24日
-   作    者   : s00217060
-   修改内容   : VoLTE_PhaseII项目
- 6.日    期   : 2015年4月13日
-   作    者   : s00217060
-   修改内容   : DTS2015041007878:ID_TAF_SPM_MSG_REPORT_IND中的client id不对，重拨缓存未清除
-************************************************************************/
 VOS_VOID MN_MSG_SendMemAvail(VOS_VOID)
 {
     MN_MSG_MO_STATE_ENUM_U8             enMoState;
@@ -4141,8 +2542,6 @@ VOS_VOID MN_MSG_SendMemAvail(VOS_VOID)
     VOS_UINT8                           aucSmContent[MN_MSG_EFSMS_LEN];
     MN_MSG_MO_ENTITY_STRU               stMoEntity;
     MN_MSG_SEND_DOMAIN_ENUM_U8          enRealDomain;
-    /* Deleted by s00217060 for VoLTE_PhaseII  项目, 2013-09-24, begin */
-    /* Deleted by s00217060 for VoLTE_PhaseII  项目, 2013-09-24, end */
 
     PS_MEM_SET(&stMoEntity, 0x00, sizeof(stMoEntity));
 
@@ -4172,34 +2571,17 @@ VOS_VOID MN_MSG_SendMemAvail(VOS_VOID)
     }
     else
     {
-        /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-09-24, begin */
         /* Here send SMMA request to SPM module */
 #if (FEATURE_IMS == FEATURE_ON)
         /* 如果IMS宏打开需要到SPM模块做域选择，否则直接走NAS信令 */
         TAF_MSG_SendSpmSmmaInd();
 #else
-        /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-29, begin */
         (VOS_VOID)MN_MSG_SendSmma(stMoEntity.clientId, stMoEntity.opId, VOS_FALSE, TAF_MSG_SIGNALLING_TYPE_NAS_SIGNALLING);
-        /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-29, end */
 #endif
-        /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-09-24, end */
     }
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_IsUsimFileExist
-功能描述  : 获取USIM中该文件是否存在
-输入参数  : usEfId:USIM中的文件ID
-输出参数  : NONE
-返 回 值  : VOS_TRUE:该文件存在
-            VOS_FALSE:该文件不存在
-调用函数  :
-被调函数  :
-修改历史      :
- 1.日    期   : 2007年12月06日
-   作    者   : z40661
-   修改内容   : 新生成函数
-************************************************************************/
+
 VOS_BOOL MN_MSG_IsUsimFileExist(
     VOS_UINT16                          usEfId
 )
@@ -4242,21 +2624,7 @@ VOS_BOOL MN_MSG_IsUsimFileExist(
     return VOS_FALSE;
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_ReadUstInfo
-功能描述  : 获取USIM保存在内存短信服务表
-输入参数  : 无
-输出参数  : pstEfUstInfo:USIM保留在内存的(U)SIM Service Table的内容
-返 回 值  : 无
 
-调用函数  :
-被调函数  :
-
-修改历史      :
- 1.日    期   : 2007年11月26日
-   作    者   : z40661
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_VOID   MN_MSG_ReadUstInfo(
     MN_MSG_USIM_EFUST_INFO_STRU         *pstEfUstInfo
 )
@@ -4265,24 +2633,7 @@ VOS_VOID   MN_MSG_ReadUstInfo(
     MN_MSG_PrintEfUstInfo();
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_ReadSmsInfo
-功能描述  : 从内存中读取存在USIM的短信或读取NVIM中的短信
-输入参数  : enMemStore:短信的存储位置,NVIM或USIM
-            ulIndex:需要读取短信的索引号
-输出参数  : pucSmsContent:该条短信的内容
-返 回 值  : MN_ERR_NO_ERROR:函数执行成功
-            其他:函数执行成功
-调用函数  :
-被调函数  :
-修改历史      :
- 1.日    期   : 2007年12月06日
-   作    者   : z40661
-   修改内容   : 新生成函数
- 2.日    期   : 2010年01月27日
-   作    者   : w00166186
-   修改内容   : 增加对FLASH读写的处理
-************************************************************************/
+
 VOS_UINT32 MN_MSG_ReadSmsInfo(
     MN_MSG_MEM_STORE_ENUM_U8            enMemStore,
     VOS_UINT32                          ulIndex,
@@ -4363,25 +2714,7 @@ VOS_UINT32 MN_MSG_ReadSmsInfo(
     return MN_ERR_NO_ERROR;
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_UpdateEachMemSmInfo
-功能描述  : 更新USIM保存在内存中的短信内容
-输入参数  : ucIndex:更新记录的index
-            pucEFContent:EFSMS的文件内容
-            ucEFSmsLen:EFSMS文件的长度
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2007年11月26日
-   作    者   : z40661
-   修改内容   : 新生成函数
- 2.日    期   : 2014年07月07日
-   作    者   : z00234330
-   修改内容   : coverity清理
-************************************************************************/
 VOS_VOID  MN_MSG_UpdateEachMemSmInfo(
     VOS_UINT32                          ulIndex,
     VOS_UINT8                           *pucEFContent,
@@ -4413,22 +2746,7 @@ VOS_VOID  MN_MSG_UpdateEachMemSmInfo(
     return;
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_ReadSmsrInfo
-功能描述  : 从内存中读取存在USIM的短信状态报告或读取NVIM中的短信状态报告
-输入参数  : enMemStore:短信的存储位置,NVIM或USIM
-            ulIndex:需要读取短信状态报告的索引号
-输出参数  : pucSmsrContent:该条短信状态报告的内容
-返 回 值  : MN_ERR_NO_ERROR:函数执行成功
-            其他:执行失败
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2007年12月06日
-   作    者   : z40661
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_UINT32 MN_MSG_ReadSmsrInfo(
     MN_MSG_MEM_STORE_ENUM_U8            enMemStore,
     VOS_UINT32                          ulIndex,
@@ -4436,7 +2754,6 @@ VOS_UINT32 MN_MSG_ReadSmsrInfo(
 )
 {
     VOS_UINT32                          ulLen = MN_MSG_EFSMSR_LEN;
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     MN_MSG_CUSTOM_CFG_INFO_STRU        *pstCustomCfgAddr;
     VOS_UINT32                          ulFileId;
 
@@ -4451,7 +2768,6 @@ VOS_UINT32 MN_MSG_ReadSmsrInfo(
 
     /* 获取特性控制NV地址 */
     pstCustomCfgAddr                    = MN_MSG_GetCustomCfgInfo();
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
     if (MN_MSG_MEM_STORE_SIM == enMemStore)
     {
@@ -4473,7 +2789,6 @@ VOS_UINT32 MN_MSG_ReadSmsrInfo(
 
         PS_MEM_CPY(pucSmsrContent, (f_stMsgEfSmsrInfo.aucEfSmsrList+ (ulIndex*MN_MSG_EFSMSR_LEN)), MN_MSG_EFSMSR_LEN);
     }
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     else if (MN_MSG_MEM_STORE_NV == enMemStore)
     {
         if (MN_MSG_NV_ITEM_ACTIVE == pstCustomCfgAddr->ucSmsNvSmsRexitSupportFlg)
@@ -4497,7 +2812,6 @@ VOS_UINT32 MN_MSG_ReadSmsrInfo(
         return MN_ERR_NO_ERROR;
 
     }
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     else
     {
         MN_NORM_LOG("MN_MSG_ReadSmsrInfo: Memory type is not support.");
@@ -4508,22 +2822,7 @@ VOS_UINT32 MN_MSG_ReadSmsrInfo(
 
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_UpdateEachMemSmsrInfo
-功能描述  : 更新USIM保存在内存中的短信状态报告内容
-输入参数  : ucIndex:更新记录的index
-            pucEFContent:EFSMSR的文件内容
-            ucEFSmsLen:EFSMSR文件的长度
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2007年11月26日
-   作    者   : z40661
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_VOID  MN_MSG_UpdateEachMemSmsrInfo(
     VOS_UINT8                           ucIndex,
     VOS_UINT8                           *pucEFContent,
@@ -4540,24 +2839,7 @@ VOS_VOID  MN_MSG_UpdateEachMemSmsrInfo(
     return;
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_UpdateTotalSmsrInfo
-功能描述  : 收到USIM发送过来的EFSMSR的文件内容后,更新内存中EFSMSR的内容
-输入参数  : bEfSmspState:EFSMSR的文件是否存在
-            ucSmsrRec:EFSMSR的文件个数
-            ucEfLen:EFSMSR文件的长度
-            pucSmspContent:EFSMSR文件的内容
-输出参数  : 无
-返 回 值  :
 
-调用函数  :
-被调函数  :
-
-修改历史      :
- 1.日    期   : 2007年10月26日
-   作    者   : z40661
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_VOID  MN_MSG_UpdateTotalSmsrInfo(
     VOS_BOOL                            bEfSmspState,
     VOS_UINT8                           ucSmsrRec,
@@ -4577,22 +2859,7 @@ VOS_VOID  MN_MSG_UpdateTotalSmsrInfo(
     }
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_UpdateSmspInfo
-功能描述  : 更新保留在内存中的USIM的短信参数
-输入参数  : ucIndex:需要更新的短信参数索引
-            bUsed:该短信参数是否有效
-            pstScvParm:更新的内容
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2007年12月06日
-   作    者   : z40661
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_VOID MN_MSG_UpdateEachMemSmspInfo(
     VOS_UINT8                           ucIndex,
     VOS_BOOL                            bUsed,
@@ -4612,31 +2879,7 @@ VOS_VOID MN_MSG_UpdateEachMemSmspInfo(
     return;
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_ReadSmspInfo
-功能描述  : 读出索引为ulIndex的短信参数的内容
-输入参数  : enMemStore:短信参数的存储器,NVIM或USIM
-            ulIndex:短信参数的索引
-输出参数  : pstSmspPara:读出短信参数的内容
-返 回 值  : MN_ERR_NO_ERROR:读取成功
-            其他:读取失败
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2007年12月06日
-   作    者   : z40661
-   修改内容   : 新生成函数
- 2.日    期   : 2011年10月17日
-   作    者   : f62575
-   修改内容   : 新生成函数
- 3.日    期   : 2013年05月20日
-   作    者   : m00217266
-   修改内容   : nv项拆分
- 4.日    期   : 2013年08月23日
-   作    者   : f62575
-   修改内容   : DTS2011051605439，短信模块短信重新初始化会TP-VP和TP-DCS
-************************************************************************/
 VOS_UINT32 MN_MSG_ReadSmspInfo(
     MN_MSG_MEM_STORE_ENUM_U8            enMemStore,
     VOS_UINT32                          ulIndex,
@@ -4667,7 +2910,6 @@ VOS_UINT32 MN_MSG_ReadSmspInfo(
         ulRet = MN_MSG_CheckUsimStatus();
         if (MN_ERR_NO_ERROR != ulRet)
         {
-            /* Modified by f62575 for AT Project，2011-10-17,  Begin*/
             MN_WARN_LOG1("MN_MSG_ReadSmspInfo: ErrCode ", (VOS_INT32)ulRet);
             if (MN_ERR_CLASS_SMS_UPDATE_USIM != ulRet)
             {
@@ -4679,7 +2921,6 @@ VOS_UINT32 MN_MSG_ReadSmspInfo(
             {
                 return MN_ERR_CLASS_SMS_UPDATE_USIM;
             }
-            /* Modified by f62575 for AT Project，2011-10-17,  End*/
         }
 
         if (VOS_FALSE == MN_MSG_IsUsimFileExist((VOS_UINT16)ulFileId))
@@ -4723,26 +2964,7 @@ VOS_UINT32 MN_MSG_ReadSmspInfo(
     return MN_ERR_NO_ERROR;
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_UpdateTotalSmspInfo
-功能描述  : 收到USIM发送过来的EFSMSP的文件内容后,更新内存中EFSMSP的内容
-输入参数  : bEfSmspState:EFSMSP文件存在标志
-            ucNumofSmsp:EFSMSP文件的个数
-            ucEfLen:EFSMSP文件的长度
-            pucSmspContent:EFSMSP文件的内容
-输出参数  : 无
-返 回 值  :
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2007年10月26日
-   作    者   : z40661
-   修改内容   : 新生成函数
- 2.日    期   : 2013年08月23日
-   作    者   : f62575
-   修改内容   : DTS2011051605439，短信模块短信重新初始化会TP-VP和TP-DCS
-************************************************************************/
 VOS_VOID  MN_MSG_UpdateTotalSmspInfo(
     VOS_BOOL                            bEfSmspState,
     VOS_UINT8                           ucNumofSmsp,
@@ -4789,21 +3011,7 @@ VOS_VOID  MN_MSG_UpdateTotalSmspInfo(
     }
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_GetSmStorageList
-功能描述  : 获取当前USIM或NVIM中短信的storage list
-输入参数  : enMemStore:当前的存储器,USIM或NVIM
-输出参数  : pusTotalRec:当前存储器的总容量
-            psUsedRec:当前存储器的已用空间
-            pulEachStatusRec:每种状态的短信的记录数
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修改历史      :
- 1.日    期   : 2007年12月06日
-   作    者   : z40661
-   修改内容   : 新生成函数
-************************************************************************/
+
 VOS_VOID MN_MSG_GetSmStorageList(
     MN_MSG_MEM_STORE_ENUM_U8            enMemStore,
     VOS_UINT32                          *pulTotalRec,
@@ -4891,24 +3099,7 @@ VOS_VOID MN_MSG_GetSmStorageList(
     }
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_GetSmsrStorageList
-功能描述  : 获取当前USIM或NVIM中短信状态报告的storage list
-输入参数  : enMemStore:当前的存储器,USIM或NVIM
-输出参数  : pusTotalRec:当前存储器的总容量
-            psUsedRec:当前存储器的已用空间
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2007年12月06日
-   作    者   : z40661
-   修改内容   : 新生成函数
- 2.日    期   : 2012年03月03日
-   作    者   : s62952
-   修改内容   : BalongV300R002 Build优化项目
-************************************************************************/
 VOS_VOID MN_MSG_GetSmsrStorageList(
     MN_MSG_MEM_STORE_ENUM_U8            enMemStore,
     VOS_UINT32                          *pulTotalRec,
@@ -4918,12 +3109,10 @@ VOS_VOID MN_MSG_GetSmsrStorageList(
     VOS_UINT32                          i;
     VOS_UINT8                           aucSmsrContent[MN_MSG_EFSMSR_LEN];
     VOS_UINT32                          ulLen = MN_MSG_EFSMSR_LEN;
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     MN_MSG_CUSTOM_CFG_INFO_STRU        *pstCustomCfgAddr;
 
     /* 获取特性控制NV地址 */
     pstCustomCfgAddr                    = MN_MSG_GetCustomCfgInfo();
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
 
     *pulUsedRec = 0;
@@ -4940,7 +3129,6 @@ VOS_VOID MN_MSG_GetSmsrStorageList(
             }
         }
     }
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     else if (MN_MSG_MEM_STORE_NV == enMemStore)
     {
         if (MN_MSG_NV_ITEM_ACTIVE == pstCustomCfgAddr->ucSmsNvSmsRexitSupportFlg)
@@ -4960,7 +3148,6 @@ VOS_VOID MN_MSG_GetSmsrStorageList(
             }
         }
     }
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
     else
     {
        MN_WARN_LOG("MN_MSG_GetSmsrStorageList: Memory type is not support.");
@@ -4968,28 +3155,7 @@ VOS_VOID MN_MSG_GetSmsrStorageList(
 
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_GetSmspStorageList
-功能描述  : 获取当前USIM或NVIM中短信参数的storage list
-输入参数  : enMemStore:当前的存储器,USIM或NVIM
-输出参数  : pulTotalRec:当前存储器的总容量
-            pulUsedRec:当前存储器的已用空间
-            pstSrvParam:短信参数列表
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2007年12月06日
-   作    者   : z40661
-   修改内容   : 新生成函数
- 2.日    期   : 2013年05月20日
-   作    者   : m00217266
-   修改内容   : nv项拆分
- 3.日    期   : 2013年08月23日
-   作    者   : f62575
-   修改内容   : DTS2011051605439，短信模块短信重新初始化会TP-VP和TP-DCS
-************************************************************************/
 VOS_VOID MN_MSG_GetSmspStorageList(
     MN_MSG_MEM_STORE_ENUM_U8            enMemStore,
     VOS_UINT32                          *pulTotalRec,
@@ -5053,25 +3219,7 @@ VOS_VOID MN_MSG_GetSmspStorageList(
     }
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_GetStatus
-功能描述  : 获取存在USIM或NVIM中的短信状态
-输入参数  : enMemStore:需要获取短信状态的存储位置,USIM或NVIM中
-            ulIndex:需要获取短信状态的索引号
-输出参数  : pucStatus:索引为ulIndex的短信状态
-返 回 值  : MN_ERR_NO_ERROR:获取成功
-            其他:获取失败
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2007年12月06日
-   作    者   : z40661
-   修改内容   : 新生成函数
- 2.日    期   : 2011年3月21日
-   作    者   : 傅映君/f62575
-   修改内容   : DTS2011031800199，获取SM消息状态增加调用函数返回值判断
-************************************************************************/
 VOS_UINT32 MN_MSG_GetStatus(
     MN_MSG_MEM_STORE_ENUM_U8            enMemStore,
     VOS_UINT32                          ulIndex,
@@ -5124,20 +3272,7 @@ VOS_UINT32 MN_MSG_GetStatus(
 }
 
 
-/***********************************************************************
-函 数 名  : MN_MSG_GetAvailSmRecIndex
-功能描述  : 获取存在USIM或NVIM中的一条空闲的短信索引
-输入参数  : enMemStore:需要获取空闲短信索引的存储位置,USIM或NVIM中
-输出参数  : NONE
-返 回 值  : 空闲短信索引号,无空闲短信,则返回MSG_NO_AVAILABLE_REC
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2007年12月06日
-   作    者   : z40661
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_UINT32 MN_MSG_GetAvailSmRecIndex(
     MN_MSG_MEM_STORE_ENUM_U8            enMemStore
 )
@@ -5179,26 +3314,7 @@ VOS_UINT32 MN_MSG_GetAvailSmRecIndex(
     return ulIndex;
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_GetAvailSmsrRecIndex
-功能描述  : 获取存在USIM或NVIM中的空闲的短信状态报告索引
-输入参数  : enMemStore:需要获取空闲短信状态报告索引的存储位置,USIM或NVIM中
-输出参数  : NONE
-返 回 值  : 空闲短信状态报告索引号,无空闲短信状态报告,则返回MN_MSG_NO_AVAILABLE_SMS_REC
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2007年12月06日
-   作    者   : z40661
-   修改内容   : 新生成函数
- 2.日    期   : 2011年7月1日
-   作    者   : 傅映君/f62575
-   修改内容   : 问题单号:DTS2011060803050 STATUS REPORT in ME
- 3.日    期   : 2012年03月03日
-   作    者   : s62952
-   修改内容   : BalongV300R002 Build优化项目
-************************************************************************/
 VOS_UINT32 MN_MSG_GetAvailSmsrRecIndex(
     MN_MSG_MEM_STORE_ENUM_U8            enMemStore
 )
@@ -5207,12 +3323,10 @@ VOS_UINT32 MN_MSG_GetAvailSmsrRecIndex(
     VOS_UINT32                          ulIndex = MN_MSG_NO_AVAILABLE_SMS_REC;
     VOS_UINT8                           aucSmsrContent[MN_MSG_EFSMSR_LEN];
     VOS_UINT32                          ulLen;
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     MN_MSG_CUSTOM_CFG_INFO_STRU        *pstCustomCfgAddr;
 
     /* 获取特性控制NV地址 */
     pstCustomCfgAddr                    = MN_MSG_GetCustomCfgInfo();
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
 
     if (MN_MSG_MEM_STORE_SIM == enMemStore)
@@ -5226,7 +3340,6 @@ VOS_UINT32 MN_MSG_GetAvailSmsrRecIndex(
             }
         }
     }
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     else if (MN_MSG_MEM_STORE_NV == enMemStore)
     {
        if (MN_MSG_NV_ITEM_ACTIVE == pstCustomCfgAddr->ucSmsNvSmsRexitSupportFlg)
@@ -5250,7 +3363,6 @@ VOS_UINT32 MN_MSG_GetAvailSmsrRecIndex(
            }
        }
     }
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     else
     {
         MN_WARN_LOG1("MN_MSG_GetAvailSmsrRecIndex: enMemStore is ", enMemStore);
@@ -5259,20 +3371,7 @@ VOS_UINT32 MN_MSG_GetAvailSmsrRecIndex(
 
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_GetAvailSmspRecIndex
-功能描述  : 获取存在USIM中的空闲的短信参数索引
-输入参数  : NONE
-输出参数  : NONE
-返 回 值  : 空闲短信参数索引号,无空闲短信参数,则返回MSG_NO_AVAILABLE_REC
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2008年01月30日
-   作    者   : z40661
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_UINT8 MN_MSG_GetAvailSmspRecIndex(VOS_VOID)
 {
     VOS_UINT8                           i;
@@ -5289,38 +3388,17 @@ VOS_UINT8 MN_MSG_GetAvailSmspRecIndex(VOS_VOID)
     return  ucIndex;
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_GetReplaceSmsrRecIndex
-功能描述  : 获取存在USIM或NVIM中的替换的短信状态报告索引,即寻找最老的一条短信状态报告索引记录
-输入参数  : enMemStore:需要获取空闲短信状态报告索引的存储位置,USIM或NVIM中
-输出参数  : NONE
-返 回 值  : 最老的一条短信状态报告索引记录
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2007年12月06日
-   作    者   : z40661
-   修改内容   : 新生成函数
- 2.日    期   : 2011年7月1日
-   作    者   : 傅映君/f62575
-   修改内容   : 问题单号:DTS2011060803050 STATUS REPORT in ME
- 3.日    期   : 2012年03月03日
-    作    者   : s62952
-    修改内容   : BalongV300R002 Build优化项目
-************************************************************************/
 VOS_UINT32 MN_MSG_GetReplaceSmsrRecIndex(
     MN_MSG_MEM_STORE_ENUM_U8            enMemStore
 )
 {
 
     VOS_UINT32                          ulSaveIndex;
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     MN_MSG_CUSTOM_CFG_INFO_STRU        *pstCustomCfgAddr;
 
     /* 获取特性控制NV地址 */
     pstCustomCfgAddr                    = MN_MSG_GetCustomCfgInfo();
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
     ulSaveIndex = MN_MSG_NO_AVAILABLE_SMS_REC;
 
@@ -5336,18 +3414,14 @@ VOS_UINT32 MN_MSG_GetReplaceSmsrRecIndex(
         ulSaveIndex = f_stMsgEfSmsrInfo.ucSmsrCurRecNum;
     }
 
-/*->f62575 PC-LINT error 且协议栈不支持NVIM存储短信 begin*/
     else if (MN_MSG_MEM_STORE_NV == enMemStore)
     {
-        /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
         if (MN_MSG_NV_ITEM_ACTIVE == pstCustomCfgAddr->ucSmsNvSmsRexitSupportFlg)
         {
             f_ucMsgNvimSmsrCurReNum = (f_ucMsgNvimSmsrCurReNum + 1) % MN_MSG_MAX_NVIM_SMSR_REC_NUM;
             ulSaveIndex = f_ucMsgNvimSmsrCurReNum;
         }
-        /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
     }
-/*->f62575 PC-LINT error 且协议栈不支持NVIM存储短信 end */
     else
     {
         MN_WARN_LOG1("MN_MSG_GetReplaceSmsrRecIndex: enMemStore is ", enMemStore);
@@ -5357,19 +3431,7 @@ VOS_UINT32 MN_MSG_GetReplaceSmsrRecIndex(
 
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_GetUsimPowerState
-功能描述  : 获取USIM当前的上电状态
-输入参数  : 无
-输出参数  : penPowerState:获取USIM当前的上电状态
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修改历史      :
- 1.日    期   : 2007年12月06日
-   作    者   : z40661
-   修改内容   : 新生成函数
-************************************************************************/
+
 VOS_VOID  MN_MSG_GetUsimPowerState(
     MN_MSG_USIM_POWER_STATE_ENUM_U8     *penPowerState
 )
@@ -5378,25 +3440,7 @@ VOS_VOID  MN_MSG_GetUsimPowerState(
     MN_INFO_LOG1("MN_MSG_GetUsimPowerState: f_stMsgUsimStatusInfo.enPowerState", f_stMsgUsimStatusInfo.enPowerState);
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_CheckUsimStatus
-功能描述  : 检查当前USIM的状态是否可以正常发送接收短信
-输入参数  : 无
-输出参数  : 无
-返 回 值  : MN_ERR_NO_ERROR:USIM卡状态正常
-            其他:USIM卡状态不正常
 
-调用函数  :
-被调函数  :
-
-修改历史      :
- 1.日    期   : 2007年12月06日
-   作    者   : z40661
-   修改内容   : 新生成函数
- 2.日    期   : 2012年12月11日
-   作    者   : L00171473
-   修改内容   : DTS2012121802573, TQE清理
-************************************************************************/
 VOS_UINT32 MN_MSG_CheckUsimStatus(VOS_VOID)
 {
     VOS_UINT8                           ucCardStatus;
@@ -5441,20 +3485,7 @@ VOS_UINT32 MN_MSG_CheckUsimStatus(VOS_VOID)
 }
 
 
-/***********************************************************************
-函 数 名  : MN_MSG_GetSmCapacity
-功能描述  : 获取最大能存在USIM或NVIM中短信的容量
-输入参数  : enMemStore:需要获取短信容量的存储位置,USIM或NVIM中
-输出参数  : NONE
-返 回 值  : 当前存储器的短信容量
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2007年12月06日
-   作    者   : z40661
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_UINT32 MN_MSG_GetSmCapacity(
     MN_MSG_MEM_STORE_ENUM_U8            enMemStore
 )
@@ -5476,20 +3507,7 @@ VOS_UINT32 MN_MSG_GetSmCapacity(
     }
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_GetSmspCapacity
-功能描述  : 获取最大能存在USIM或NVIM中短信参数的容量
-输入参数  : enMemStore:需要获取短信容量的存储位置,USIM或NVIM中
-输出参数  : NONE
-返 回 值  : 当前存储器的短信容量
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2007年12月06日
-   作    者   : z40661
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_UINT32 MN_MSG_GetSmspCapacity(
     MN_MSG_MEM_STORE_ENUM_U8            enMemStore
 )
@@ -5509,40 +3527,21 @@ VOS_UINT32 MN_MSG_GetSmspCapacity(
     }
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_GetSmsrCapacity
-功能描述  : 获取最大存在USIM或NVIM中短信状态报告的容量
-输入参数  : enMemStore:需要获取短信状态报告容量的存储位置,USIM或NVIM中
-输出参数  : NONE
-返 回 值  : 当前存储器的短信状态报告容量
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2007年12月06日
-   作    者   : z40661
-   修改内容   : 新生成函数
- 2.日    期   : 2012年03月03日
-   作    者   : s62952
-   修改内容   : BalongV300R002 Build优化项目
-************************************************************************/
 VOS_UINT32 MN_MSG_GetSmsrCapacity(
     MN_MSG_MEM_STORE_ENUM_U8            enMemStore
 )
 {
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     MN_MSG_CUSTOM_CFG_INFO_STRU        *pstCustomCfgAddr;
 
     /* 获取特性控制NV地址 */
     pstCustomCfgAddr                    = MN_MSG_GetCustomCfgInfo();
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
 
     if (MN_MSG_MEM_STORE_SIM == enMemStore)
     {
         return f_stMsgEfSmsrInfo.ucSmsrRealRecNum;
     }
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     else if (MN_MSG_MEM_STORE_NV == enMemStore)
     {
         if (MN_MSG_NV_ITEM_ACTIVE == pstCustomCfgAddr->ucSmsNvSmsRexitSupportFlg)
@@ -5555,7 +3554,6 @@ VOS_UINT32 MN_MSG_GetSmsrCapacity(
         }
 
     }
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     else
     {
         MN_WARN_LOG1("MN_MSG_GetSmsrCapacity: enMemStore is ", enMemStore);
@@ -5564,22 +3562,7 @@ VOS_UINT32 MN_MSG_GetSmsrCapacity(
 
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_IsValidSmIndex
-功能描述  : 判断当前输入的Index是合法的还是非法的
-输入参数  : enMemStore:需要判断输入短信index的存储位置,USIM或NVIM中
-            ucIndex:输入短信的索引
-输出参数  : NONE
-返 回 值  : VOS_TRUE:输入index合法
-            VOS_FALSE:输入index非法
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2007年12月06日
-   作    者   : z40661
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_BOOL MN_MSG_IsValidSmIndex(
     MN_MSG_MEM_STORE_ENUM_U8            enMemStore,
     VOS_UINT32                          ulIndex
@@ -5608,21 +3591,7 @@ VOS_BOOL MN_MSG_IsValidSmIndex(
     return VOS_FALSE;
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_IsValidSmspIndex
-功能描述  : 判断当前输入的Index是合法的还是非法的
-输入参数  : ucIndex:输入短信参数的索引
-输出参数  : NONE
-返 回 值  : VOS_TRUE:输入index合法
-            VOS_FALSE:输入index非法
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2007年12月06日
-   作    者   : z40661
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_BOOL MN_MSG_IsValidSmspIndex(
     VOS_UINT8                           ucIndex
 )
@@ -5634,21 +3603,7 @@ VOS_BOOL MN_MSG_IsValidSmspIndex(
     return VOS_FALSE;
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_IsEmptySmsp
-功能描述  : 判断当前记录是否是空记录
-输入参数  : usSmsIndex:输入短信参数的索引
-输出参数  : NONE
-返 回 值  : VOS_TRUE:输入索引合法
-            VOS_FALSE:输入索引非法
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2007年12月06日
-   作    者   : z40661
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_BOOL MN_MSG_IsEmptySmsp(
     VOS_UINT8                           ucIndex
 )
@@ -5664,20 +3619,7 @@ VOS_BOOL MN_MSG_IsEmptySmsp(
     return VOS_FALSE;
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_GetCurRcvMsgPath
-功能描述  : 获取当前短信的相关参数
-输入参数  : NONE
-输出参数  : pstCfgParm:当前短信的相关参数
-返 回 值  :
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2007年12月06日
-   作    者   : z40661
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_VOID  MN_MSG_GetCurCfgParm(
     MN_MSG_CONFIG_PARM_STRU             *pstCfgParm
 )
@@ -5686,20 +3628,7 @@ VOS_VOID  MN_MSG_GetCurCfgParm(
     MN_MSG_PrintConfigParmStru(&f_stMsgCfgParm);
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_UpdateRegState
-功能描述  : 更新当前CS,PS域的注册情况
-输入参数  : pstRcvPath:需要更新的接收短信的路径
-输出参数  : NONE
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2007年12月06日
-   作    者   : z40661
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_VOID  MN_MSG_UpdateRegState(
     VOS_UINT8                           ucDomain,
     VOS_BOOL                            bAttachFlag
@@ -5717,31 +3646,7 @@ VOS_VOID  MN_MSG_UpdateRegState(
     }
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_UpdateRcvMsgPath
-功能描述  : 更新当前接收短信的路径
-输入参数  : pstRcvPath:需要更新的接收短信的路径
-输出参数  : NONE
-返 回 值  : MN_ERR_NO_ERROR:更新成功
-            其他:更新失败
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2007年12月06日
-   作    者   : z40661
-   修改内容   : 新生成函数
- 2.日    期   : 2012年12月11日
-   作    者   : L00171473
-   修改内容   : DTS2012121802573, TQE清理
- 3.日    期   : 2013年05月20日
-   作    者   : m00217266
-   修改内容   : nv项拆分
- 4.日    期   : 2013年10月17日
-   作    者   : w00167002
-   修改内容   : NETSCAN:将CNMI设置的MT type类型传输给TAF。在<MT>=3，收到CLASS3
-                短信时候，按照+CMT方式上报。
-************************************************************************/
 VOS_UINT32  MN_MSG_UpdateRcvMsgPath(
     const MN_MSG_SET_RCVMSG_PATH_PARM_STRU *pstRcvPath
 )
@@ -5801,24 +3706,7 @@ VOS_UINT32  MN_MSG_UpdateRcvMsgPath(
     return MN_ERR_NO_ERROR;
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_GetRcvMsgPath
-功能描述  : 获取当前接收短信的路径
-输入参数  : 无
-输出参数  : pstRcvPath:需要更新的接收短信的路径
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2007年12月06日
-   作    者   : z40661
-   修改内容   : 新生成函数
- 2.日    期   : 2013年10月17日
-   作    者   : w00167002
-   修改内容   : NETSCAN:将CNMI设置的MT type类型传输给TAF。在<MT>=3，收到CLASS3
-                短信时候，按照+CMT方式上报。
-************************************************************************/
 VOS_VOID  MN_MSG_GetCurRcvMsgPath(
     MN_MSG_SET_RCVMSG_PATH_PARM_STRU    *pstRcvPath
 )
@@ -5834,43 +3722,7 @@ VOS_VOID  MN_MSG_GetCurRcvMsgPath(
 
 }
 
-/***********************************************************************
-函 数 名  : MSG_PreferedGetCurSendDomain
-功能描述  : PS域或CS域优先发送时,获取当前短信的实际发送域
-输入参数  : penHopeSendDomain:当前发送短信时,优先期望的短信发送域
-输出参数  :
-返 回 值  : 当前发送短信时,实际的短信发送域
-调用函数  :
-被调函数  :
-修改历史      :
- 1.日    期   : 2009年7月06日
-   作    者   : z40661
-   修改内容   : 新生成函数
-PS域优先发送
-                 CSPS域发送无失败   CS域发送失败    PS域发送失败    CSPS域都发送失败
-CS域可用         CS域发送           CS域发送        CS域发送        CS域发送
-PS域可用         PS域发送           PS域发送        PS域发送        PS域发送
-CSPS域都可用     PS域发送           PS域发送        CS域发送        CS域发送
-CSPS域都不可用   无可用域           无可用域        无可用域        无可用域
 
-CS域优先发送
-                 CSPS域发送无失败   CS域发送失败    PS域发送失败    CSPS域都发送失败
-CS域可用         CS域发送           CS域发送        CS域发送        CS域发送
-PS域可用         PS域发送           PS域发送        PS域发送        PS域发送
-CSPS域都可用     CS域发送           PS域发送        CS域发送        CS域发送
-CSPS域都不可用   无可用域           无可用域        无可用域        无可用域
-  2.日    期   : 2009年10月16日
-    作    者   : f62575
-    修改内容   : 问题单号:AT2D15127, 服务域为PS ONLY，发送域为CS PREFER，参照标杆
-                 短信首先尝试从CS域发送；
-  3.日    期   : 2009年10月23日
-     作    者   : f62575
-     修改内容   : 问题单号AT2D15225:, 启用短信重发功能后短信无法在PS域发送问题；
-  4.日    期   : 2011年3月29日
-    作    者   : 傅映君/f62575
-    修改内容   : DTS2011030500602，增加CS域可用的判断标准，UE服务域为非PS
-                 ONLY, IMSI在CS域有效且CS域未被BAR情况下可以尝试重发，支持在PS域重发短信
-************************************************************************/
 LOCAL MN_MSG_SEND_DOMAIN_ENUM_U8 MSG_PreferedGetCurSendDomain(
     MN_MSG_SEND_DOMAIN_ENUM_U8          enHopeSendDomain
 )
@@ -5940,26 +3792,7 @@ LOCAL MN_MSG_SEND_DOMAIN_ENUM_U8 MSG_PreferedGetCurSendDomain(
     return enRealSendDomain;
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_GetCurSendDomain
-功能描述  : 获取当前发送短信时,短信的实际发送域
-输入参数  : penHopeSendDomain:当前发送短信时,期望的短信发送域
-输出参数  : penRealSendDomain:当前发送短信时,实际的短信发送域
-返 回 值  :
-调用函数  :
-被调函数  :
-修改历史      :
- 1.日    期   : 2007年12月06日
-   作    者   : z40661
-   修改内容   : 新生成函数
- 2.日    期   : 2011年3月29日
-   作    者   : 傅映君/f62575
-   修改内容   : DTS2011030500602，增加CS域可用的判断标准，UE服务域为非PS
-                ONLY, IMSI在CS域有效且CS域未被BAR情况下可以尝试重发，支持在PS域重发短信
- 3.日    期   : 2012年5月7日
-   作    者   : z00161729
-   修改内容   : GUL BG搜网修改
-************************************************************************/
+
 VOS_VOID   MN_MSG_GetCurSendDomain(
     MN_MSG_SEND_DOMAIN_ENUM_U8          enHopeSendDomain,
     MN_MSG_SEND_DOMAIN_ENUM_U8          *penRealSendDomain
@@ -6011,20 +3844,7 @@ VOS_VOID   MN_MSG_GetCurSendDomain(
     MN_INFO_LOG1("MN_MSG_GetCurSendDomain :send domain is ", (VOS_INT32)*penRealSendDomain);
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_GetCurAppMemStatus
-功能描述  : 获取当前APP的内存使用状态
-输入参数  : NONE
-输出参数  : penMemStatus:当前APP的内存使用状态
-返 回 值  :
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2007年12月06日
-   作    者   : z40661
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_VOID  MN_MSG_GetCurAppMemStatus(
     MN_MSG_MEM_FLAG_ENUM_U8             *penMemStatus
 )
@@ -6033,27 +3853,7 @@ VOS_VOID  MN_MSG_GetCurAppMemStatus(
     MN_INFO_LOG1("MN_MSG_GetCurAppMemStatus: f_stMsgCfgParm.enAppMemStatus is ", f_stMsgCfgParm.enAppMemStatus);
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_UpdateAppMemStatus
-功能描述  : 更新APP的内存使用状态
-输入参数  : enMemStatus:需要更新的APP的内存使用状态
-输出参数  : NONE
-返 回 值  : MN_ERR_NO_ERROR:更新成功
-            MN_ERR_CLASS_SMS_NVIM:更新失败
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2007年12月06日
-   作    者   : z40661
-   修改内容   : 新生成函数
- 2.日    期   : 2012年12月11日
-   作    者   : L00171473
-   修改内容   : DTS2012121802573, TQE清理
- 3.日    期   : 2013年05月20日
-   作    者   : m00217266
-   修改内容   : nv项拆分
-************************************************************************/
 VOS_UINT32  MN_MSG_UpdateAppMemStatus(
     MN_MSG_MEM_FLAG_ENUM_U8             enMemStatus
 )
@@ -6100,23 +3900,7 @@ VOS_UINT32  MN_MSG_UpdateAppMemStatus(
 }
 
 
-/***********************************************************************
-函 数 名  : MN_MSG_FindNodeByUsimResult
-功能描述  : 收到从USIM返回的结果记录时,找到该条记录当前进行操作的节点信息f_astMsgSetUsimInfo
-输入参数  : ucRecIndex:操作USIM的记录数
-            usEfId:操作USIM的文件EFID
-输出参数  : pstSmaUsimInfo:找到的节点信息f_astMsgSetUsimInfo
-            pucIndex:找到节点在USIM节点列表的索引
-返 回 值  : VOS_OK:成功找到
-            VOS_ERR:未能找到
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2007年12月06日
-   作    者   : z40661
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_UINT32  MN_MSG_FindNodeByUsimResult(
     VOS_UINT8                           ucRecIndex,
     VOS_UINT16                          usEfId,
@@ -6141,20 +3925,7 @@ VOS_UINT32  MN_MSG_FindNodeByUsimResult(
     return VOS_ERR;
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_GetUsimRec
-功能描述  : 获取当前同一种类型的操作(如list,delete等等),设置USIM的记录数
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 当前同一种类型的操作(如list,delete等等),设置USIM的记录数
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2007年12月06日
-   作    者   : z40661
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_UINT8  MN_MSG_GetUsimRec(
     MN_MSG_SET_USIM_ENUM_U8                enType
 )
@@ -6185,21 +3956,7 @@ VOS_UINT8  MN_MSG_GetUsimRec(
     }
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_GetDeleteReportFlag
-功能描述  : 获取当前操作(如list,delete等等),是否已经上报
-输入参数  : enType:当前操作的类型
-输出参数  : 无
-返 回 值  : 当前操作(如list,delete等等),是否已经上报
-            VOS_TRUE:已经上报
-            VOS_FALSE:未能上报
-调用函数  :
-被调函数  :
-修改历史      :
- 1.日    期   : 2007年12月19日
-   作    者   : z40661
-   修改内容   : 新生成函数
-************************************************************************/
+
 VOS_BOOL  MN_MSG_GetDeleteReportFlag(
     MN_MSG_SET_USIM_ENUM_U8                enType
 )
@@ -6222,20 +3979,7 @@ VOS_BOOL  MN_MSG_GetDeleteReportFlag(
     }
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_SetDeleteReportFlag
-功能描述  : 设置当前操作(如list,delete等等),是否上报
-输入参数  : enType:当前操作的类型
-            bReportFlag:上报标志
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修改历史      :
- 1.日    期   : 2007年12月19日
-   作    者   : z40661
-   修改内容   : 新生成函数
-************************************************************************/
+
 VOS_VOID  MN_MSG_SetDeleteReportFlag(
     MN_MSG_SET_USIM_ENUM_U8                enType,
     VOS_BOOL                            bReportFlag
@@ -6259,21 +4003,7 @@ VOS_VOID  MN_MSG_SetDeleteReportFlag(
     }
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_SetUsimRec
-功能描述  : 重新设置向USIM设置的记录数,
-输入参数  : enType:当前操作类型
-            ucRec:需要设置的记录数
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2007年12月06日
-   作    者   : z40661
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_VOID  MN_MSG_SetUsimRec(
     MN_MSG_SET_USIM_ENUM_U8                enType,
     VOS_UINT8                           ucRec
@@ -6305,39 +4035,7 @@ VOS_VOID  MN_MSG_SetUsimRec(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_MoSmsControlEnvelopeReq
- 功能描述  : SMS MO CONTROL功能开启时,下发Envelope datadownload到USIM卡
- 输入参数  : pstAddrObj1: SC Addr
-             pstAddrObj2: Dest Addr
-             pucLI:       Location Information
- 输出参数  : VOS_TRUE:返回成功
-             VOS_FALSE:返回失败
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2011年6月16日
-    作    者   : 傅映君/f62575
-    修改内容   : 新生成函数 DTS2011062201273 MO SMS CONTROL
-  2.日    期   : 2012年09月20日
-    作    者   : f62575
-    修改内容   : STK&DCM 项目
-  3.日    期   : 2012年12月26日
-    作    者   : 张鹏 id:00214637
-    修改内容   : USIM对外接口函数变更的处理 ，Client ID 到 PID的转换处理 。
-  4.日    期   : 2013年5月16日
-    作    者   : w00176964
-    修改内容   : SS FDN&Call Control项目:MN_MSG_MoSmsControlEnvelopeReq增加client ID参数
-  5.日    期   : 2013年05月06日
-    作    者   : f62575
-    修改内容   : SS FDN&Call Control项目，MN_GetLaiForMoCtrl=>TAF_SDC_GetCurrentLai
-  6.日    期   : 2013年6月5日
-    作    者   : w00242748
-    修改内容   : SVLTE和USIM接口整合
-*****************************************************************************/
 VOS_UINT32  MN_MSG_MoSmsControlEnvelopeReq(
     VOS_UINT16                          usClientId,
     MN_MSG_BCD_ADDR_STRU               *pstRpDestAddr,
@@ -6385,35 +4083,7 @@ VOS_UINT32  MN_MSG_MoSmsControlEnvelopeReq(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_SmsPPEnvelopeReq
- 功能描述  : 收到Class 2 和PID为USIM DataDownLad短信时,需要下发Envelope datadownload到USIM卡
- 输入参数  : pstAddr:     SC Addr
-             pucTpduData: SMS TPDU (SMS-DELIVER)
- 输出参数  : 无
- 返 回 值  : VOS_TRUE; 返回成功
-             VOS_FALSE:返回失败
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2007年10月15日
-    作    者   : z40661
-    修改内容   : 新生成函数
-  2.日    期   : 2010年7月14日
-    作    者   : 傅映君/f62575
-    修改内容   : DTS2010071302170: PP DOWNLODAD操作导致内存泄漏
-  3.日    期   : 2012年12月26日
-    作    者   : 张鹏 id:00214637
-    修改内容   : USIM对外接口函数变更的处理 ，Client ID 到 PID的转换处理 。
-  4.日    期   : 2013年5月16日
-    作    者   : w00176964
-    修改内容   : SS FDN&Call Control项目:SI_STK_EnvelopeDownload接口增加client ID
-  5.日    期   : 2013年6月5日
-    作    者   : w00242748
-    修改内容   : SVLTE和USIM接口整合
-*****************************************************************************/
 VOS_UINT32  MN_MSG_SmsPPEnvelopeReq(
     const MN_MSG_BCD_ADDR_STRU          *pstAddr,
     const VOS_UINT8                     *pucTpduData,
@@ -6470,30 +4140,7 @@ VOS_UINT32  MN_MSG_SmsPPEnvelopeReq(
     return ulRet;
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_WriteSmssFile
-功能描述  : 更新内存,USIM中和NVIM保留的SMSS文件值,无论USIM,NVIM是否更新成功,
-            内存中更新成功,优先更新USIM中的EFSMSS的内容
-输入参数  : pstSmssInfo:需要更新EFSMSS的内容
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2008年01月20日
-   作    者   : z40661
-   修改内容   : 新生成函数
- 2.日    期   : 2012年8月10日
-   作    者   : y00213812
-   修改内容   : DTS2012082204471, TQE清理
- 3.日    期   : 2012年12月26日
-   作    者   : 张鹏 id:00214637
-   修改内容  : USIM对外接口函数变更的处理 ，Client ID 到 PID的转换处理 。
- 4.日    期   : 2013年05月20日
-   作    者   : m00217266
-   修改内容   : nv项拆分
-************************************************************************/
 VOS_VOID  MN_MSG_WriteSmssFile(
     const MN_MSG_SMSS_INFO_STRU         *pstSmssInfo
 )
@@ -6562,13 +4209,11 @@ VOS_VOID  MN_MSG_WriteSmssFile(
         stUsimInfo.ucRecIndex = MN_MSG_USIM_DEF_REC;
         stUsimInfo.enSmaUsimAction = MN_MSG_USIM_SET_EFSMSS;
 
-        /*modified by Y00213812 for DTS2012082204471 TQE清理, 2012-08-10, begin*/
         ulRet = MN_MSG_CreateNewUsimNode(&stUsimInfo,&ulUsimIndex);
         if (VOS_OK != ulRet)
         {
             MN_ERR_LOG("MN_MSG_WriteSmssFile:CreateNewUsimNode Error");
         }
-        /*modified by Y00213812 for DTS2012082204471 TQE清理, 2012-08-10, end*/
     }
     else
     {
@@ -6583,24 +4228,7 @@ VOS_VOID  MN_MSG_WriteSmssFile(
 
 #if ((NAS_FEATURE_SMS_FLASH_SMSEXIST == FEATURE_ON)\
   && (NAS_FEATURE_SMS_NVIM_SMSEXIST == FEATURE_ON))
-/***********************************************************************
-函 数 名  : MN_MSG_WriteSmsFile
-功能描述  : 更新内存,USIM中和NVIM保留的SMS文件值
-输入参数  : enMemStore:当前的存储器,USIM或NVIM
-            pulMeIndex:向FLASH写短信是的索引值
-            pstWriteUsimInfo:往USIM中写入信息时,USIM节点的相关信息
-            pucContentInfo:需要存入的内容
-输出参数  : 无
-返 回 值  : MN_ERR_NO_ERROR:更新成功,
-            其他:失败以及失败的原因值
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2011年02月11日
-   作    者   : z40661
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_UINT32  MN_MSG_WriteSmsFile(
     MN_MSG_MEM_STORE_ENUM_U8            enMemStore,
     const VOS_UINT32                   *pulMeIndex,
@@ -6705,23 +4333,7 @@ VOS_UINT32  MN_MSG_WriteSmsFile(
     }
 }
 #else
-/***********************************************************************
-函 数 名  : MN_MSG_WriteSmsFile
-功能描述  : 更新内存,USIM中和NVIM保留的SMS文件值
-输入参数  : enMemStore:当前的存储器,USIM或NVIM
-            pstSmaUsimInfo:往USIM中写入信息时,USIM节点的相关信息
-            pucContentInfo:需要存入的内容
-输出参数  : 无
-返 回 值  : MN_ERR_NO_ERROR:更新成功,
-            其他:失败以及失败的原因值
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2007年10月26日
-   作    者   : z40661
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_UINT32  MN_MSG_WriteSmsFile(
     MN_MSG_MEM_STORE_ENUM_U8            enMemStore,
     VOS_BOOL                            bCreateNode,
@@ -6817,23 +4429,7 @@ VOS_UINT32  MN_MSG_WriteSmsFile(
 
 #endif
 
-/***********************************************************************
-函 数 名  : MN_MSG_WriteSmsrFile
-功能描述  : 更新内存,USIM中和NVIM保留的EFSMSR文件值
-输入参数  : enMemStore:当前的存储器,USIM或NVIM
-            pstSmaUsimInfo:往USIM中写入信息时,USIM节点的相关信息
-            pucContentInfo:需要存入的内容
-输出参数  : 无
-返 回 值  : MN_ERR_NO_ERROR:更新成功,
-            其他:失败以及失败的原因值
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2007年10月26日
-   作    者   : z40661
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_UINT32  MN_MSG_WriteSmsrFile(
     MN_MSG_MEM_STORE_ENUM_U8            enMemStore,
     const MN_MSG_USIM_INFO_STRU         *pstSmaUsimInfo,
@@ -6843,7 +4439,6 @@ VOS_UINT32  MN_MSG_WriteSmsrFile(
     VOS_UINT32                          ulRet;
     VOS_UINT32                          ulUsimIndex = 0;
     VOS_UINT8                           ucOrgIndex;
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     MN_MSG_CUSTOM_CFG_INFO_STRU        *pstCustomCfgAddr;
     TAF_SDC_SIM_TYPE_ENUM_UINT8         enSimType;
 
@@ -6852,7 +4447,6 @@ VOS_UINT32  MN_MSG_WriteSmsrFile(
 
     /* 获取特性控制NV地址 */
     pstCustomCfgAddr                    = MN_MSG_GetCustomCfgInfo();
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
     if (MN_MSG_MEM_STORE_SIM == enMemStore)
     {
@@ -6891,7 +4485,6 @@ VOS_UINT32  MN_MSG_WriteSmsrFile(
                    pucContentInfo,
                    MN_MSG_EFSMSR_LEN);
     }
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     else if(MN_MSG_MEM_STORE_NV == enMemStore)
     {
         if (MN_MSG_NV_ITEM_ACTIVE == pstCustomCfgAddr->ucSmsNvSmsRexitSupportFlg)
@@ -6903,7 +4496,6 @@ VOS_UINT32  MN_MSG_WriteSmsrFile(
             }
         }
     }
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
     else
     {
         MN_WARN_LOG1("MN_MSG_WriteSmsrFile: enMemStore is ", enMemStore);
@@ -6913,26 +4505,7 @@ VOS_UINT32  MN_MSG_WriteSmsrFile(
 
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_WriteSmspFile
-功能描述  : 更新内存,USIM中和NVIM保留的SMS文件值
-输入参数  : enMemStore:当前的存储器,USIM或NVIM
-            pstSmaUsimInfo:往USIM中写入信息时,USIM节点的相关信息
-            pstSrvParm:需要存入的内容
-输出参数  : 无
-返 回 值  : MN_ERR_NO_ERROR:更新成功,
-            其他:更新失败以及失败的原因值
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2007年10月26日
-   作    者   : z40661
-   修改内容   : 新生成函数
- 2.日    期   : 2013年05月20日
-   作    者   : m00217266
-   修改内容   : nv项拆分
-************************************************************************/
 VOS_UINT32  MN_MSG_WriteSmspFile(
     MN_MSG_MEM_STORE_ENUM_U8            enMemStore,
     const MN_MSG_USIM_INFO_STRU         *pstSmaUsimInfo,
@@ -7119,20 +4692,7 @@ VOS_UINT32  MN_MSG_WriteSmspFile(
 }
 
 
-/***********************************************************************
-函 数 名  : MN_MSG_RecoverOrgSrvParm
-功能描述  : 删除或写短信参数,USIM返回失败,需要将内存中的短信参数恢复回来
-输入参数  : ucIndex:恢复短信参数存入的索引
-输出参数  : pstSrvParm:需要恢复的短信参数的内容
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2007年10月26日
-   作    者   : z40661
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_VOID  MN_MSG_RecoverOrgSrvParm(
     VOS_UINT8                           ucIndex,
     MN_MSG_USIM_EFSMSP_DTL_INFO_STRU    *pstSrvParam
@@ -7148,20 +4708,7 @@ VOS_VOID  MN_MSG_RecoverOrgSrvParm(
     PS_MEM_CPY(pstSrvParam,&f_astMsgOrgSmspInfo[ucIndex],sizeof(MN_MSG_USIM_EFSMSP_DTL_INFO_STRU));
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_RecoverOrgSm
-功能描述  : 删除或写短信,USIM返回失败,需要将内存中的短信恢复回来
-输入参数  : ucIndex:恢复短信存入的索引
-输出参数  : pucSmContent:需要恢复的短信的内容
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2007年10月26日
-   作    者   : z40661
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_VOID  MN_MSG_RecoverOrgSm(
     VOS_UINT8                           ucIndex,
     VOS_UINT8                           *pucSmContent
@@ -7179,20 +4726,7 @@ VOS_VOID  MN_MSG_RecoverOrgSm(
               MN_MSG_EFSMS_LEN);
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_RecoverOrgSmsr
-功能描述  : 删除或写短信状态报告时,USIM返回失败,需要将内存中的短信状态报告恢复回来
-输入参数  : ucIndex:恢复短信状态报告存入的索引
-输出参数  : pucSmsrContent:需要恢复的短信状态报告的内容
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2007年10月26日
-   作    者   : z40661
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_VOID  MN_MSG_RecoverOrgSmsr(
     VOS_UINT8                           ucIndex,
     VOS_UINT8                           *pucSmsrContent
@@ -7210,34 +4744,13 @@ VOS_VOID  MN_MSG_RecoverOrgSmsr(
                MN_MSG_EFSMSR_LEN);
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_SmCfgDataInit
-功能描述  : TAF模块收到USIM卡在位与否的消息后,调用此函数初始化SM模块变量
-            如果卡在位,则向USIM发送请求获取USIM中的SM相关参数,并获取NVIM中
-            SM相关参数
-输入参数  : ucUsimState:USIM卡是否在位
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2007年10月26日
-   作    者   : z40661
-   修改内容   : 新生成函数
- 2.日    期   : 2013年7月13日
-   作    者   : l00208543
-   修改内容   : STK升级项目，删除MSG_GetNvimParmInfo的调用
-
-************************************************************************/
 VOS_VOID MN_MSG_SmCfgDataInit(
     MNPH_USIM_STATUS_ENUM_U32           enUsimStatus
 )
 {
     MN_INFO_LOG("MN_MSG_SmCfgDataInit:Step into function.");
 
-    /* Deleted by l00208543 for V9R1 STK升级, 2013-7-11, begin */
-    /* Deleted by l00208543 for V9R1 STK升级, 2013-7-11, end */
 
     MN_INFO_LOG1("MN_MSG_SmCfgDataInit:enUsimStatus is ", (VOS_INT32)enUsimStatus);
     MN_INFO_LOG1("MN_MSG_SmCfgDataInit: current enUsimStatus is ",f_stMsgUsimStatusInfo.ucUsimStatus);
@@ -7275,24 +4788,7 @@ VOS_VOID MN_MSG_SmCfgDataInit(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_CreateEFSmContent
- 功能描述  : 根据SC Addr和TPDU创建一条短信,短信格式为USIM卡中EFSMS的格式
- 输入参数  : pstScAddr:短信中心的地址
-             pstRawData:TPDU的内容
-             ucStatus:短信的状态
- 输出参数  : pucContent:短信内容,USIM卡中EFSMS的格式
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2008年01月18日
-    作    者   : z40661
-    修改内容   : 新生成函数
-  2.日    期   : 2009年02月02日
-    作    者   : s62952
-    修改内容   : 问题单号：AT2D08614
-*****************************************************************************/
+
 VOS_VOID MN_MSG_CreateEFSmContent(
     const MN_MSG_BCD_ADDR_STRU          *pstScAddr,
     const MN_MSG_RAW_TS_DATA_STRU       *pstRawData,
@@ -7331,27 +4827,7 @@ VOS_VOID MN_MSG_CreateEFSmContent(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : MSG_DecodeScAddress
- 功能描述  : 根据RP-OA数据结构解码成对应的BCD码数据结构
-             Refer to 24011 8.2.5.1
- 输入参数  : RP层的地址，Refer to 24011 8.2.5.1
- 输出参数  : pstAsciiAddr MN_MSG_ASCII_ADDR_STRU结构表示的地址
-             pulLen RP-OA RP-DA等在消息中占用OCTET的个数
- 返 回 值  : 解码结果 MN_ERR_NO_ERROR解码成功
-                      其他           解码失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年09月26日
-    作    者   : 傅映君 62575
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月24日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseIII项目
-
-*****************************************************************************/
 VOS_UINT32 MSG_DecodeScAddress(
     const VOS_UINT8                     *pucAddr,
     MN_MSG_BCD_ADDR_STRU                *pstBcdAddr,
@@ -7379,11 +4855,9 @@ VOS_UINT32 MSG_DecodeScAddress(
         pstBcdAddr->addrType = 0x80;
         pstBcdAddr->addrType |= (stAsciiAddr.enNumPlan & 0x0f);
         pstBcdAddr->addrType |= (VOS_UINT8)((stAsciiAddr.enNumType << 4) & 0x70);
-        /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, begin */
         ulRet = TAF_STD_ConvertAsciiNumberToBcd((VOS_CHAR *)stAsciiAddr.aucAsciiNum,
                                     pstBcdAddr->aucBcdNum,
                                     &pstBcdAddr->ucBcdLen);
-        /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, end */
         if (MN_ERR_NO_ERROR != ulRet)
         {
             return ulRet;
@@ -7393,20 +4867,7 @@ VOS_UINT32 MSG_DecodeScAddress(
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : MSG_GetTpduLen
- 功能描述  : 获取短信/短信命令/短信状态报告的TPDU长度，不包含短信中心部分
- 输入参数  : pstTsDataInfo   - 短信的TEXT格式数据结构指针
- 输出参数  : pulLen:短信/短信命令/短信状态报告的TPDU长度
- 返 回 值  : MN_ERR_NO_ERROR:获取成功
-             其他:获取失败
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2009年03月22日
-    作    者   : f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_UINT32 MSG_GetTpduLen(
     MN_MSG_TS_DATA_INFO_STRU            *pstTsDataInfo,
     VOS_UINT32                          *pulLen
@@ -7436,22 +4897,7 @@ VOS_UINT32 MSG_GetTpduLen(
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_ParseEFSmContent
- 功能描述  : 将短信格式为USIM卡中EFSMS的格式解析为SCAddr和TPDU
- 输入参数  : pucContent:短信内容,USIM卡中EFSMS的格式
- 输出参数  : pstScAddr:短信中心的地址
-             pstRawData:TPDU的内容
-             ucStatus:短信的状态
- 返 回 值  : MN_ERR_NO_ERROR:解析成功
-             其他:解析失败
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2008年01月18日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_UINT32 MN_MSG_ParseEFSmContent(
     const VOS_UINT8                     *pucContent,
     MN_MSG_BCD_ADDR_STRU                *pstScAddr,
@@ -7543,20 +4989,7 @@ VOS_UINT32 MN_MSG_ParseEFSmContent(
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_GetAppStatus
- 功能描述  : 根据USIM卡中的短信状态获取对APP提供的短信状态
- 输入参数  : ucStatus:USIM卡的短信状态
- 输出参数  : penStatus:APP的短信状态
 
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2008年01月18日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID MN_MSG_GetAppStatus(
     VOS_UINT8                           ucStatus,
     MN_MSG_STATUS_TYPE_ENUM_U8          *penStatus
@@ -7584,20 +5017,7 @@ VOS_VOID MN_MSG_GetAppStatus(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_GetPsStatus
- 功能描述  : 根据APP提供的短信状态获取USIM卡中的短信状态
- 输入参数  : enStatus:APP的短信状态
- 输出参数  : pucStatus:USIM卡的短信状态
 
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2008年01月18日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID MN_MSG_GetPsStatus(
     MN_MSG_STATUS_TYPE_ENUM_U8          enStatus,
     VOS_UINT8                           *pucStatus
@@ -7625,22 +5045,7 @@ VOS_VOID MN_MSG_GetPsStatus(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : MSG_BuildDeliverEvtParm
- 功能描述  : 构造Deliver事件上报的结构
- 输入参数  : pstCfgParm:短信当前的接收路径
-             pstScAddr:短信中心地址
-             pstRawData:短信的TPDU的值
- 输出参数  : pstDeliverEvt:Deliver事件上报的结构
 
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2008年01月18日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID MSG_BuildDeliverEvtParm(
     const MN_MSG_CONFIG_PARM_STRU       *pstCfgParm,
     const MN_MSG_BCD_ADDR_STRU          *pstScAddr,
@@ -7659,39 +5064,13 @@ VOS_VOID MSG_BuildDeliverEvtParm(
     pstDeliverEvt->enRcvSmAct = pstCfgParm->enRcvSmAct;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_GetBCopId
- 功能描述  : 广播上报时,获取OPID的值
- 输入参数  : 无
- 输出参数  : 无
 
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2008年01月18日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
 MN_OPERATION_ID_T  MN_MSG_GetBCopId(VOS_VOID)
 {
     return f_tMsgOpId++;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_UpdateNeedSendUsim
- 功能描述  : 更新需要发送到USIM的结构
- 输入参数  : ulInedx - 需要更新的发往USIM的结构
- 输出参数  : 无
 
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2008年01月18日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID MN_MSG_UpdateNeedSendUsim(
     VOS_UINT32                          ulInedx,
     VOS_BOOL                            bUpdateStatus
@@ -7704,20 +5083,7 @@ VOS_VOID MN_MSG_UpdateNeedSendUsim(
     f_bNeedSendUsim[ulInedx] = bUpdateStatus;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_GetNeedSendUsim
- 功能描述  : 更新需要发送到USIM的结构
- 输入参数  : 无
- 输出参数  : pulRealRec - 当前实际的短信容量
-             pbNeedSendUsim - 是否需要通知USIM修改短信状态
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2008年01月18日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_VOID MN_MSG_GetNeedSendUsim(
     VOS_UINT32                          *pulRealRec,
     VOS_BOOL                            *pbNeedSendUsim
@@ -7727,24 +5093,7 @@ VOS_VOID MN_MSG_GetNeedSendUsim(
     PS_MEM_CPY(pbNeedSendUsim,f_bNeedSendUsim,sizeof(VOS_BOOL)*MN_MSG_MAX_USIM_SMS_NUM);
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_CheckMemFull
-功能描述  : 判断短信存储空间是否满
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_TRUE      存储空间满
-            其他        存储空间未满
-调用函数  :
-被调函数  :
 
-修改历史      :
-  1.日    期   : 2012年11月8日
-    作    者   : f62575
-    修改内容   : DTS2012111201995 新生成函数
-  2.日    期   : 2013年8月3日
-    作    者   : z60575
-    修改内容   : TQE修改
-************************************************************************/
 LOCAL VOS_UINT32 MN_MSG_CheckMemFull(VOS_VOID)
 {
     VOS_UINT32                          ulRet;
@@ -7794,31 +5143,7 @@ LOCAL VOS_UINT32 MN_MSG_CheckMemFull(VOS_VOID)
 
 }
 
-/*****************************************************************************
-*  Prototype       : MN_MSG_FailToWriteEfsms
-*  Description     : 接收网络过来的短信写SIM卡的EFSMS文件失败后,MS按协议要求回复网络RP-ERROR并修改EFSMSS文件；
-*  Input           : enMemStore  --- 发生存储失败的存储介质类型
-                     ucFailCause --- 当前存储失败的原因
-                        存储区满；
-                        存储区不可用；
-*  Output          :
-*  Return Value    : void
-*  Calls           :
-*  Called By       :
-*  History         :
-*  1. Date         : 2009-04-12
-*     Author       : 傅映君
-*     Modification : Created function
-   2.日    期   : 2011年3月21日
-     作    者   : 傅映君/f62575
-     修改内容   : DTS2011031800199，短信溢出存储介质总是SM，没有对ME存储溢出显示问题
-   3.日    期   : 2012年11月08日
-     作    者   : f62575
-     修改内容   : DTS2012111201995 ： 删除参数ucClassType，错误原因值更新；
-   4.日    期   : 2012年12月08日
-     作    者   : f62575
-     修改内容   : DTS2012120608883 ： USIM卡存储区满时收短信DCM分支也要修改EFSMSS的溢出标志
-*****************************************************************************/
+
 VOS_VOID MN_MSG_FailToWriteEfsms(
     MN_MSG_MEM_STORE_ENUM_U8            enMemStore,
     MN_MSG_WRITE_EFSMS_CAUSE_ENUM_U32   enFailCause
@@ -7926,27 +5251,7 @@ VOS_VOID MN_MSG_FailToWriteEfsms(
     return f_enMsgSendFailFlag;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_GetRetryPeriod
- 功能描述  : 获取当前短信重发时间周期和时间间隔
- 输入参数  : 无
- 输出参数  :  当前短信重发时间周期
- 返 回 值  :无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2009年7月06日
-    作    者   : z40661
-    修改内容   : 新生成函数
-  2.日    期   : 2012年01月04日
-    作    者   : f62575
-    修改内容   : DTS2013010400027, 支持GCF测试流程自动识别
-  3.日    期   : 2013年6月5日
-    作    者   : w00242748
-    修改内容   : SVLTE和USIM接口调整
-*****************************************************************************/
 VOS_VOID MN_MSG_GetRetryInfo(
     MN_MSG_RETRY_INFO_STRU              *pstRetryInfo
 )
@@ -7974,76 +5279,19 @@ VOS_VOID MN_MSG_GetRetryInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_SaveRpErrInfo
- 功能描述  : 保存最近一次网侧过来的rP-Error消息,定时器超时后无可用域时,取此消息上报
- 输入参数  : ucDataLen:网侧过来的数据长度
-             pucData:网侧过来的数据
- 输出参数  :  无
- 返 回 值  :无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2009年7月06日
-    作    者   : z40661
-    修改内容   : 新生成函数
-  2.日    期   : 2013年07月11日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级项目
-*****************************************************************************/
 VOS_VOID MN_MSG_SaveRpErrInfo(SMR_SMT_MO_REPORT_STRU *pstMsg)
 {
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     PS_MEM_CPY(&f_stMsgRpErrInfo, pstMsg, sizeof(f_stMsgRpErrInfo));
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_GetRpErrInfo
- 功能描述  : 获取最近一次网侧过来的rP-Error消息,定时器超时后无可用域时,取此消息上报
- 输入参数  : 无
- 输出参数  : pstRpErrInfo:最近一次网侧过来的数据信息
- 返 回 值  :无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2009年7月06日
-    作    者   : z40661
-    修改内容   : 新生成函数
-  2.日    期   : 2013年07月11日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级项目
-*****************************************************************************/
 VOS_VOID MN_MSG_GetRpErrInfo(SMR_SMT_MO_REPORT_STRU *pstRpErrInfo)
 {
     PS_MEM_CPY(pstRpErrInfo,&f_stMsgRpErrInfo,sizeof(f_stMsgRpErrInfo));
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_GetClass0Tailor
- 功能描述  : 获取Class0短信实现方式
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :Class0短信实现方式
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2009年7月06日
-    作    者   : z40661
-    修改内容   : 新生成函数
-  2.日    期   : 2012年01月04日
-    作    者   : f62575
-    修改内容   : DTS2013010400027, 支持GCF测试流程自动识别
-  3.日    期   : 2013年6月5日
-    作    者   : w00242748
-    修改内容   : SVLTE和USIM接口调整
-*****************************************************************************/
 MN_MSG_CLASS0_TAILOR_U8 MN_MSG_GetClass0Tailor(VOS_VOID)
 {
     VOS_UINT32                          bTestCard;
@@ -8059,45 +5307,13 @@ MN_MSG_CLASS0_TAILOR_U8 MN_MSG_GetClass0Tailor(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_SetClass0Tailor
- 功能描述  : 设置Class0短信实现方式
- 输入参数  : enClass0Tailor Class0短信实现方式
- 输出参数  : 无
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2009年12月31日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID MN_MSG_SetClass0Tailor(MN_MSG_CLASS0_TAILOR_U8                 enClass0Tailor)
 {
     g_enMsgClass0Tailor = enClass0Tailor;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_GetRealPrefSendDomain
- 功能描述  : 获取当前实际的优先发送域
- 输入参数  : enHopeDomain:当前的实际发送域
-             enHopeDomain:当前期望的优先发送域
- 输出参数  : 无
- 返 回 值  :当前实际的优先发送域
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2009年7月06日
-    作    者   : z40661
-    修改内容   : 新生成函数
-
-当前如果支持CS+PS域发送短信,如果CS域发送失败,则下次发送短信时优先从PS域发送,反之
-亦然,此时实际的优先发送域时PS域优先发送
-*****************************************************************************/
 MN_MSG_SEND_DOMAIN_ENUM_U8  MN_MSG_GetRealPrefSendDomain(
     MN_MSG_SEND_DOMAIN_ENUM_U8          enSendDomain,
     MN_MSG_SEND_DOMAIN_ENUM_U8          enHopeDomain
@@ -8131,20 +5347,7 @@ MN_MSG_SEND_DOMAIN_ENUM_U8  MN_MSG_GetRealPrefSendDomain(
     return enHopeDomain;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_GetMtTpPidAndDcs
- 功能描述  : 获取当前接收到短信的TP-PID和TP-DCS
- 输入参数  : 无
- 输出参数  : MN_MSG_TP_PID_TYPE_ENUM_U8          *penPid 当前接收到短信的TP-PID
-             MN_MSG_DCS_CODE_STRU                *pstDcs 当前接收到短信的TP-DCS解析获得的DCS结构
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2009年12月16日
-    作    者   : f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_VOID  MN_MSG_GetMtTpPidAndDcs(
     MN_MSG_TP_PID_TYPE_ENUM_U8          *penPid,
     MN_MSG_DCS_CODE_STRU                *pstDcs
@@ -8154,20 +5357,7 @@ VOS_VOID  MN_MSG_GetMtTpPidAndDcs(
     PS_MEM_CPY(pstDcs, &f_stMsgMtEntity.stDcs, sizeof(f_stMsgMtEntity.stDcs));
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_SetMtTpPidAndDcs
- 功能描述  : 保存当前接收到短信的TP-PID和TP-DCS到短信接收实体
- 输入参数  : 无
- 输出参数  : MN_MSG_TP_PID_TYPE_ENUM_U8          enPid 当前接收到短信的TP-PID
-             MN_MSG_DCS_CODE_STRU                stDcs 当前接收到短信的TP-DCS解析获得的DCS结构
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2009年12月16日
-    作    者   : f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_VOID  MN_MSG_SetMtTpPidAndDcs(
     MN_MSG_TP_PID_TYPE_ENUM_U8          enPid,
     MN_MSG_DCS_CODE_STRU                stDcs
@@ -8177,23 +5367,7 @@ VOS_VOID  MN_MSG_SetMtTpPidAndDcs(
     PS_MEM_CPY(&f_stMsgMtEntity.stDcs, &stDcs, sizeof(f_stMsgMtEntity.stDcs));
 }
 
-/*****************************************************************************
- 函 数 名  : MSG_UpdateUsimForList
- 功能描述  : LIST短信时需更新USIM中短信状态
- 输入参数  : clientId     -   上报客户端口号
-             ucChangeNum  -   需更改个数
-             enMemStore   -   当前存储器
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年3月15日
-    作    者   : zhoujun /z40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MSG_UpdateUsimForList(
     MN_CLIENT_ID_T                      clientId,
     VOS_UINT8                           ucChangeNum,
@@ -8220,31 +5394,7 @@ VOS_VOID MSG_UpdateUsimForList(
 
 /*lint -e438 -e830*/
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_RptMsg
- 功能描述  : 上报短信内容给APP模块
- 输入参数  : clientId         - 上报Client
-             opId             - 上报OpId
-             ucListStatus     - 列表状态
-             ulLeftReportNum  - 剩余上报个数
-             pstList           - 列表条件
-             pstListRptEvt     - 上报事件
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年3月15日
-    作    者   : zhoujun /z40661
-    修改内容   : 新生成函数
-  2.日    期   : 2013年9月27日
-     作    者   : w00167002
-     修改内容   : DTS2013092100149:删除C核TASKDELAY处理，在V9低功耗时，会导致
-                   TASKDELAY后未被唤醒，导致AT消息没有回复。
-                   删除定时器TI_MN_MSG_LIST_WAIT_APP_READY 修改为AT手动上报后
-                   同时做SMS再上报剩余的SMS.
-*****************************************************************************/
 VOS_VOID MN_MSG_RptMsg(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId,
@@ -8389,20 +5539,7 @@ VOS_VOID MN_MSG_RptMsg(
 }
 /*lint +e438 +e830*/
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_InitRcvPath
- 功能描述  : 初始化短信接收路径
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2010年4月29日
-    作    者   : f62575
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID  MN_MSG_InitRcvPath( VOS_VOID )
 {
     MN_OPERATION_ID_T                   bcOpId;
@@ -8425,25 +5562,7 @@ VOS_VOID  MN_MSG_InitRcvPath( VOS_VOID )
 
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_OutputSmsMoFailureInfo
- 功能描述  : 短信发送相关信息导出到异常事件记录
- 输入参数  : TAF_MSG_ERROR_ENUM_UINT32 enErrorCode RP-ERROR的错误原因
- 输出参数  : NAS_MNTN_SMS_MO_INFO_STRU          *pstSmsMo
-                                 短信发送失败的直接相关信息
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年9月9日
-    作    者   : 傅映君/f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2013年6月26日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级
-
-*****************************************************************************/
 VOS_VOID MN_MSG_OutputSmsMoFailureInfo(
     TAF_MSG_ERROR_ENUM_UINT32           enErrorCode,
     NAS_MNTN_SMS_MO_INFO_STRU          *pstSmsMo
@@ -8467,29 +5586,12 @@ VOS_VOID MN_MSG_OutputSmsMoFailureInfo(
                                 &pstSmsMo->stScAddr,
                                 &pstSmsMo->stDestAddr);
 
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     pstSmsMo->ulMoFailCause = enErrorCode;
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_ReadMsgInFlashByIndex
- 功能描述  : 按索引读取Flash的一条短消息
- 输入参数  : VOS_UINT32   ulIndex 索引值
- 输出参数  : VOS_UINT8    *pucSmContent 读取的Buffer
 
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2011年01月24日
-    作    者   : 王毛/W00166186
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MN_MSG_ReadMsgInFlashByIndex(
     VOS_UINT32                          ulIndex,
     VOS_UINT8                          *pucSmContent
@@ -8543,24 +5645,7 @@ VOS_UINT32 MN_MSG_ReadMsgInFlashByIndex(
 
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_WriteMsgInFlashByIndex
- 功能描述  : 按索引向Flash写一条短消息
- 输入参数  : VOS_UINT32   ulIndex 索引值
- 输出参数  : VOS_UINT8    *pucSmContent 要写入短信的Buffer
 
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2011年01月24日
-    作    者   : 王毛/W00166186
-    修改内容   : 新生成函数
-  2.日    期   : 2014年03月04日
-    作    者   : f62575
-    修改内容   : DTS2013091009786 支持通过产品形态和版本区分FLASH文件根目录
-*****************************************************************************/
 VOS_UINT32 MN_MSG_WriteMsgInFlashByIndex(
     VOS_UINT32                          ulIndex,
     VOS_UINT8                          *pucSmContent
@@ -8636,33 +5721,7 @@ VOS_UINT32 MN_MSG_WriteMsgInFlashByIndex(
     return MN_ERR_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_GetSmsServicePara
- 功能描述  : 获取短信业务参数
- 输入参数  : 无
- 输出参数  : MN_MSG_CONFIG_PARM_STRU  *pstMsgCfgParm  短信业务参数
-             MN_MSG_ME_STORAGE_STATUS_UINT8     *penMeStorageEnable ME使能状态
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年2月11日
-    作    者   : 傅映君/f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2011年3月21日
-    作    者   : 傅映君/f62575
-    修改内容   : DTS2011031800199，支持ME短信容量可配置
-  3.日    期   : 2011年6月16日
-    作    者   : 傅映君/f62575
-    修改内容   : 问题单号DTS2011062201273 MO SMS CONTROL
-  4.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  5.日    期   : 2013年05月20日
-    作    者   : m00217266
-    修改内容   : nv项拆分
-*****************************************************************************/
 VOS_VOID MN_MSG_GetSmsServicePara(
     MN_MSG_CONFIG_PARM_STRU             *pstMsgCfgParm,
     MN_MSG_ME_STORAGE_STATUS_ENUM_UINT8 *penMeStorageEnable
@@ -8743,20 +5802,7 @@ VOS_VOID MN_MSG_GetSmsServicePara(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_GetMoSmsCtrlFlag
- 功能描述  : 获取MO SMS CONTROL特性的激活标志
- 输入参数  : 无
- 输出参数  : VOS_UINT8 *pucMoSmsCtrlFlag  MO SMS CONTROL特性的激活标志
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月22日
-    作    者   : 傅映君/f62575
-    修改内容   : 新生成函数 DTS2011062201273 MO SMS CONTROL
-*****************************************************************************/
 VOS_VOID MN_MSG_GetMoSmsCtrlFlag(
     VOS_UINT8                           *pucMoSmsCtrlFlag
 )
@@ -8765,20 +5811,7 @@ VOS_VOID MN_MSG_GetMoSmsCtrlFlag(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_UpdateMoSmsCtrlFlag
- 功能描述  : 设置MO SMS CONTROL特性的激活标志
- 输入参数  : 无
- 输出参数  : VOS_UINT8 ucMoSmsCtrlFlag  MO SMS CONTROL特性的激活标志
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月22日
-    作    者   : 傅映君/f62575
-    修改内容   : 新生成函数 DTS2011062201273 MO SMS CONTROL
-*****************************************************************************/
 VOS_VOID MN_MSG_UpdateMoSmsCtrlFlag(
     VOS_UINT8                           ucMoSmsCtrlFlag
 )
@@ -8787,21 +5820,7 @@ VOS_VOID MN_MSG_UpdateMoSmsCtrlFlag(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MGS_UpdateSmsCapability
- 功能描述  : 更新SMS存储介质的容量
- 输入参数  : MN_MSG_MEM_STORE_ENUM_U8            enSmMemStore 存储介质类型
-             VOS_UINT32                          ulNum        指定存储介质的容量
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月20日
-    作    者   : 傅映君/f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID MN_MGS_UpdateSmsCapability(
     MN_MSG_MEM_STORE_ENUM_U8            enSmMemStore,
     VOS_UINT32                          ulNum
@@ -8821,24 +5840,7 @@ VOS_VOID MN_MGS_UpdateSmsCapability(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_GetSpecificStatusMoEntity
- 功能描述  : 获取指定状态的发送短息实体
- 输入参数  : MN_MSG_MO_STATE_ENUM_U8             enMoStatus  要获取的短信实体状态
- 输出参数  : MN_MSG_MO_ENTITY_STRU              *pstMoEntity 待发送的短信实体
-             VOS_BOOL                           *pbBufferEntity 是否缓存实体
-             VOS_UINT32                         *pulIndex       缓存实体索引
- 返回值    : VOS_UINT32
-                MN_ERR_NO_ERROR                 找到了指定的发送短息实体
-                其他，                          没有找到指定的发送短息实体
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月20日
-    作    者   : f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 MN_MSG_GetSpecificStatusMoEntity(
     MN_MSG_MO_STATE_ENUM_U8             enMoStatus,
     VOS_BOOL                           *pbBufferEntity,
@@ -8874,23 +5876,7 @@ VOS_UINT32 MN_MSG_GetSpecificStatusMoEntity(
     return MN_ERR_UNSPECIFIED;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_CreateMoEntity
- 功能描述  : 更新发送短息实体状态
- 输入参数  : VOS_BOOL                            bBufferEntity 是否缓存实体
-             VOS_UINT32                          ulIndex       缓存实体索引
-             MN_MSG_MO_ENTITY_STRU              *pstMoEntity 待发送的短信实体
-             VOS_UINT8                           aucEfSmContent[] 待发送的短信
- 输出参数  : 无
- 返回值    : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月20日
-    作    者   : f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID MN_MSG_CreateMoEntity(
     VOS_BOOL                            bBufferEntity,
     VOS_UINT32                          ulIndex,
@@ -8908,22 +5894,7 @@ VOS_VOID MN_MSG_CreateMoEntity(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_UpdateSpecificMoEntityStatus
- 功能描述  : 更新发送短息实体状态
- 输入参数  : MN_MSG_MO_STATE_ENUM_U8             enMoStatus  短信实体状态
-             VOS_BOOL                            bBufferEntity 是否缓存实体
-             VOS_UINT32                          ulIndex       缓存实体索引
- 输出参数  : 无
- 返回值    : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月20日
-    作    者   : f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID MN_MSG_UpdateSpecificMoEntityStatus(
     VOS_BOOL                            bBufferEntity,
     VOS_UINT32                          ulIndex,
@@ -8942,21 +5913,7 @@ VOS_VOID MN_MSG_UpdateSpecificMoEntityStatus(
     pstMoBuffer->stMoInfo.enSmaMoState = enMoStatus;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_UpdateSpecificMoEntityStatus
- 功能描述  : 清空发送短息实体状态
- 输入参数  : VOS_BOOL                            bBufferEntity 是否缓存实体
-             VOS_UINT32                          ulIndex       缓存实体索引
- 输出参数  : 无
- 返回值    : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月20日
-    作    者   : f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID MN_MSG_DestroySpecificMoEntity(
     VOS_BOOL                            bBufferEntity,
     VOS_UINT32                          ulIndex
@@ -8973,26 +5930,7 @@ VOS_VOID MN_MSG_DestroySpecificMoEntity(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_InitMoBuffer
- 功能描述  : 缓存发送短信实体初始化
- 输入参数  : 无
- 输出参数  : 无
- 返回值    : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月20日
-    作    者   : f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-  3.日    期   : 2013年8月8日
-    作    者   : y00245242
-    修改内容   : 初始化stTotalMsg变量
-*****************************************************************************/
 VOS_VOID MN_MSG_InitMoBuffer(VOS_VOID)
 {
     VOS_UINT32                          ulRet;
@@ -9006,9 +5944,7 @@ VOS_VOID MN_MSG_InitMoBuffer(VOS_VOID)
         f_stMsgMoBuffer.ulTotal = 0;
     }
 
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-8-8, begin */
     stTotalMsg.ulTotalMsg = 0;
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-8-8, end */
 
     ulRet = NV_Read(en_NV_Item_NVIM_SMS_BUFFER_CAPABILITY,
                     &stTotalMsg,
@@ -9042,39 +5978,13 @@ VOS_VOID MN_MSG_InitMoBuffer(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_GetMoBufferCap
- 功能描述  : 获取缓存发送短信实体容量
- 输入参数  : 无
- 输出参数  : 无
- 返回值    : 缓存发送短信实体容量
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月20日
-    作    者   : f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 MN_MSG_GetMoBufferCap(VOS_VOID)
 {
     return f_stMsgMoBuffer.ulTotal;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MSG_SetUsimStatus
- 功能描述  : 设置SIM卡状态
- 输入参数  : SIM卡状态
- 输出参数  : 无
- 返回值    : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月5日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MSG_SetUsimStatus(
     VOS_UINT8                           ucUsimStatus
 )
@@ -9082,39 +5992,13 @@ VOS_VOID TAF_MSG_SetUsimStatus(
     f_stMsgUsimStatusInfo.ucUsimStatus = ucUsimStatus;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MSG_GetUsimStatus
- 功能描述  : 获取SIM卡状态
- 输入参数  : 无
- 输出参数  : 无
- 返回值    : SIM卡状态
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月5日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 TAF_MSG_GetUsimStatus(VOS_VOID)
 {
     return f_stMsgUsimStatusInfo.ucUsimStatus;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MSG_UpdateMtRcvDomain
- 功能描述  : 接收短信时，更新MT实体的接收域
- 输入参数  : 接收域 0:PS域；1:CS域
- 输出参数  : 无
- 返回值    : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月5日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MSG_UpdateMtRcvDomain(
     VOS_UINT8                           ucRcvDomain
 )
@@ -9132,20 +6016,7 @@ VOS_VOID TAF_MSG_UpdateMtRcvDomain(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MSG_GetMtRcvDomain
- 功能描述  : 获取MT实体的接收域
- 输入参数  : 无
- 输出参数  : 无
- 返回值    : 接收域 MN_MSG_RCV_DOMAIN_PS:PS域；MN_MSG_RCV_DOMAIN_CS:CS域
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月5日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 MN_MSG_RCV_DOMAIN_ENUM_U8 TAF_MSG_GetMtRcvDomain(VOS_VOID)
 {
     return f_stMsgMtEntity.enRcvDomain;

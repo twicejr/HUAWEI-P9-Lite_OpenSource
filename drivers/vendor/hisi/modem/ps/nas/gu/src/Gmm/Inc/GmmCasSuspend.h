@@ -1,18 +1,4 @@
-/************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : GmmCasSuspend.h
-  Author      : Roger Leo
-  Version     : V200R001
-  Date        : 2005-10-21
-  Description : GmmCasSuspend模块的内部头文件
-  History     :
-  1. Date:2005-11-25
-     Author: Roger Leo
-     Modification:update
-  2.日    期   : 2006年08月09日
-    作    者   : 蒋丽萍j60010247
-    修改内容   : 问题单A32D03479，在PC机上实现时将#pragma pack(0)和#pragma pack()加编译开关
-************************************************************************/
+
 
 #ifndef _GMM_CAS_SUSPEND_H_
 #define _GMM_CAS_SUSPEND_H_

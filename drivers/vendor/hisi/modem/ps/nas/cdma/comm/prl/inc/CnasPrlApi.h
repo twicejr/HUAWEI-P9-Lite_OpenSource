@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasPrlApi.h
-  版 本 号   : 初稿
-  作    者   : y00245242
-  生成日期   : 2014年8月2日
-  最近修改   :
-  功能描述   : CnasPrlApi.c头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年8月2日
-    作    者   : y00245242
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __CNAS_PRL_API_H__
 #define __CNAS_PRL_API_H__
@@ -91,14 +74,7 @@ extern "C" {
 /*****************************************************************************
   3 枚举定义
 *****************************************************************************/
-/*****************************************************************************
- 枚举名    : CNAS_PRL_MAP_PCS_BLOCK_FLG_ENUM
- 结构说明  : 用于标记在一条ACQ REC里面，是否已经转换过一次的标记
- 1.日    期   : 2014年8月14日
-   作    者   : h00246512
-   修改内容   : 新建
 
-*****************************************************************************/
 enum CNAS_PRL_MAP_PCS_BLOCK_FLG_ENUM
 {
     CNAS_PRL_MAP_PCS_BLOCK_NULL_FLG                         = 0x0,
@@ -113,15 +89,7 @@ enum CNAS_PRL_MAP_PCS_BLOCK_FLG_ENUM
 };
 typedef VOS_UINT32 CNAS_PRL_MAP_PCS_BLOCK_FLG_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : CNAS_PRL_SID_NID_MATCH_ENUM
- 结构说明  : 做SID和NID匹配时，匹配的程度
 
- 1.日    期   : 2014年08月06日
-   作    者   : h00246512
-   修改内容   : 新增
-
-*****************************************************************************/
 enum CNAS_PRL_SID_NID_MATCH_ENUM
 {
   CNAS_PRL_SID_NID_MATCH_LVL_NOT_MATCH,                                         /* 不匹配 */
@@ -132,15 +100,7 @@ enum CNAS_PRL_SID_NID_MATCH_ENUM
 } ;
 typedef VOS_UINT16 CNAS_PRL_SID_NID_MATCH_LVL_ENUM_UINT16;
 
-/*****************************************************************************
- 枚举名    : CNAS_PRL_BAND_CHANNEL_MATCH_ENUM
- 结构说明  : Band与channel match类型
 
- 1.日    期   : 2014年12月31日
-   作    者   : y00245242
-   修改内容   : 新增
-
-*****************************************************************************/
 enum CNAS_PRL_BAND_CHANNEL_MATCH_TYPE_ENUM
 {
   CNAS_PRL_BAND_CHANNEL_NOT_MATCH,                                              /* 不匹配 */
@@ -151,15 +111,7 @@ enum CNAS_PRL_BAND_CHANNEL_MATCH_TYPE_ENUM
 } ;
 typedef VOS_UINT8 CNAS_PRL_BAND_CHANNEL_MATCH_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : CNAS_PRL_1X_MATCH_PRIO_LVL_ENUM
- 结构说明  : 1X系统在GEO中的匹配优先级枚举
 
- 1.日    期   : 2015年4月08日
-   作    者   : w00176964
-   修改内容   : 新增
-
-*****************************************************************************/
 enum CNAS_PRL_1X_MATCH_PRIO_LVL_ENUM
 {
     CNAS_PRL_1X_MATCH_PRIO_LEVLE_NULL = 0,                                                 /* not in current GEO */
@@ -174,15 +126,7 @@ enum CNAS_PRL_1X_MATCH_PRIO_LVL_ENUM
 typedef VOS_UINT8 CNAS_PRL_1X_MATCH_PRIO_LVL_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名    : CNAS_PRL_PRIO_LVL_ENUM
- 结构说明  : SubNet匹配的程度枚举
 
- 1.日    期   : 2014年12月09日
-   作    者   : d00212987
-   修改内容   : 新增
-
-*****************************************************************************/
 enum CNAS_PRL_PRIO_LVL_ENUM
 {
     CNAS_PRL_PRIO_LEVEL_0 = 0,                                                    /* Level 0 MRU */
@@ -198,15 +142,7 @@ enum CNAS_PRL_PRIO_LVL_ENUM
 } ;
 typedef VOS_UINT8 CNAS_PRL_PRIO_LVL_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : CNAS_PRL_CHECK_ASSN_INCL_ENUM
- 结构说明  : 检查ASSN INCL枚举
 
- 1.日    期   : 2014年12月09日
-   作    者   : d00212987
-   修改内容   : 新增
-
-*****************************************************************************/
 enum CNAS_PRL_CHECK_ASSN_INCL_ENUM
 {
     CNAS_PRL_CHECK_ASSN_INCL = 0,                                       /* 需检查ASSN INCL */
@@ -216,15 +152,7 @@ enum CNAS_PRL_CHECK_ASSN_INCL_ENUM
 } ;
 typedef VOS_UINT16 CNAS_PRL_CHECK_ASSN_INCL_ENUM_UINT16;
 
-/*****************************************************************************
- 枚举名    : CNAS_PRL_SORT_ENUM
- 结构说明  : 排序枚举
 
- 1.日    期   : 2014年12月09日
-   作    者   : d00212987
-   修改内容   : 新增
-
-*****************************************************************************/
 enum CNAS_PRL_SORT_ENUM
 {
     CNAS_PRL_SORT_NEEDED     = 0,                                            /* 需要排序 */
@@ -234,18 +162,7 @@ enum CNAS_PRL_SORT_ENUM
 } ;
 typedef VOS_UINT16 CNAS_PRL_SORT_ENUM_UINT16;
 
-/*****************************************************************************
- 枚举名    : CNAS_PRL_SUBNET_MATCH_LVL_ENUM
- 结构说明  : SubNet匹配的程度枚举
 
- 1.日    期   : 2014年12月09日
-   作    者   : d00212987
-   修改内容   : 新增
- 2.日    期   : 2015年12月30日
-   作    者   : z00316370
-   修改内容   : 增加通配情况下频点匹配等级
-
-*****************************************************************************/
 enum CNAS_PRL_SUBNET_MATCH_LVL_ENUM
 {
     CNAS_PRL_SUBNET_MATCH_LVL_NOT_MATCH = 0,                                      /* 不匹配 */
@@ -257,15 +174,7 @@ enum CNAS_PRL_SUBNET_MATCH_LVL_ENUM
 } ;
 typedef VOS_UINT16 CNAS_PRL_SUBNET_MATCH_LVL_ENUM_UINT16;
 
-/*****************************************************************************
- 枚举名    : CNAS_HSD_FREQ_TYPE_INDICATION_ENUM
- 结构说明  : 频点是否是MRU
 
- 1.日    期   : 2014年12月10日
-   作    者   : j00304117
-   修改内容   : 新增
-
-*****************************************************************************/
 enum CNAS_HSD_FREQ_TYPE_INDICATION_ENUM
 {
     CNAS_HSD_FREQ_TYPE_MRU,
@@ -275,15 +184,7 @@ enum CNAS_HSD_FREQ_TYPE_INDICATION_ENUM
 };
 typedef VOS_UINT8 CNAS_HSD_FREQ_TYPE_INDICATION_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : CNAS_PRL_SPREADING_RATE_ENUM
- 结构说明  : 做SID和NID匹配时，匹配的程度
 
- 1.日    期   : 2014年08月06日
-   作    者   : h00246512
-   修改内容   : 新增
-
-*****************************************************************************/
 enum CNAS_PRL_SPREADING_RATE_ENUM
 {
     CNAS_SPREADING_RATE_1,
@@ -292,15 +193,7 @@ enum CNAS_PRL_SPREADING_RATE_ENUM
 };
 typedef VOS_UINT8 CNAS_PRL_SPREADING_RATE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : CNAS_PRL_WILDCARD_TYPE_ENUM
- 结构说明  : 通配符类型
 
- 1.日    期   : 2014年08月15日
-   作    者   : h00246512
-   修改内容   : 新增
-
-*****************************************************************************/
 enum CNAS_PRL_WILDCARD_TYPE_ENUM
 {
   CNAS_PRL_WILDCARD_TYPE_NOT_WILDCARD,          /* 非通配符 */
@@ -311,15 +204,7 @@ enum CNAS_PRL_WILDCARD_TYPE_ENUM
 } ;
 typedef VOS_UINT8 CNAS_PRL_WILDCARD_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : CNAS_PRL_SYS_PRI_TYPE_ENUM
- 结构说明  : 系统优先级类型
 
- 1.日    期   : 2014年11月28日
-   作    者   : c00299063
-   修改内容   : 新增
-
-*****************************************************************************/
 enum CNAS_PRL_SYS_PRI_TYPE_ENUM
 {
     CNAS_PRL_SYS_PRI_HIGH,
@@ -332,15 +217,7 @@ enum CNAS_PRL_SYS_PRI_TYPE_ENUM
 typedef VOS_UINT32 CNAS_PRL_SYS_PRI_TYPE_ENUM_UINT32;
 
 
-/*****************************************************************************
- 枚举名    : CNAS_PRL_BAND_CHANNEL_MATCH_CMP_ENUM
- 结构说明  : 系统优先级类型
 
- 1.日    期   : 2015年6月8日
-   作    者   : c00299063
-   修改内容   : 新增
-
-*****************************************************************************/
 enum CNAS_PRL_BAND_CHANNEL_MATCH_CMP_ENUM
 {
     CNAS_PRL_BAND_CHANNEL_MATCH_CMP_FIR_RECORD_HIGH,
@@ -353,15 +230,7 @@ enum CNAS_PRL_BAND_CHANNEL_MATCH_CMP_ENUM
 typedef VOS_UINT8 CNAS_PRL_BAND_CHANNEL_MATCH_CMP_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名    : CNAS_PRL_INCLUDE_RELATION_ENUM
- 结构说明  : 系统优先级类型
 
- 1.日    期   : 2015年6月8日
-   作    者   : c00299063
-   修改内容   : 新增
-
-*****************************************************************************/
 enum CNAS_PRL_ACQ_RECORD_INCLUDE_RELATION_ENUM
 {
     CNAS_PRL_ACQ_RECORD_INCLUDE_RELATION_FIR_INCLUDE_SEC,
@@ -374,15 +243,7 @@ enum CNAS_PRL_ACQ_RECORD_INCLUDE_RELATION_ENUM
 typedef VOS_UINT8 CNAS_PRL_ACQ_RECORD_INCLUDE_RELATION_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名    : CNAS_PRL_CUSTOM_MATCH_LVL_ENUM
- 结构说明  : 自定义匹配模式
 
- 1.日    期   : 2015年12月3日
-   作    者   : w00242748
-   修改内容   : 新增
-
-*****************************************************************************/
 enum CNAS_PRL_CUSTOM_MATCH_LVL_ENUM
 {
     CNAS_PRL_CUSTOM_MATCH_LVL_NOT_MATCH,                                         /* 不匹配 */
@@ -412,13 +273,7 @@ typedef VOS_UINT16 CNAS_PRL_CUSTOM_MATCH_LVL_ENUM_UINT16;
 /*****************************************************************************
   7 STRUCT定义
 *****************************************************************************/
-/*****************************************************************************
- 结构名    : CNAS_MAP_BAND_CHANNEL_INFO_STRU
- 结构说明  : 根据捕获表获取的频段和频点信息
-   1.日    期   : 2013年8月6日
-    作    者   : h00246512
-    修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                              ulNum;
@@ -426,16 +281,7 @@ typedef struct
 }CNAS_PRL_ACQ_REC_FREQ_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : CNAS_SUITED_GEO_INFO_STRU
- 结构说明  : 系统表中匹配的GEO信息
- 1.日    期   : 2014年8月08日
-   作    者   : h00246512
-   修改内容   : 新增
- 2.日    期   : 2015年7月7日
-   作    者   : w00242748
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     CNAS_PRL_SID_NID_MATCH_LVL_ENUM_UINT16                  enMatchLvl;             /* SID和NID的匹配等级 */
@@ -444,13 +290,7 @@ typedef struct
     VOS_UINT16                                              usMostMatchedIndex;
 }CNAS_PRL_MATCHED_GEO_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_MATCHING_GEO_LIST_STRU
- 结构说明  : 系统表中匹配的GEO列表信息
- 1.日    期   : 2014年8月08日
-   作    者   : h00246512
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                                              usSid;                                        /* 待匹配的SID */
@@ -460,26 +300,14 @@ typedef struct
     CNAS_PRL_MATCHED_GEO_INFO_STRU                          astGeoInfoList[CNAS_PRL_MAX_MATCHING_GEO_NUM];    /* 匹配的GEO信息 */
 }CNAS_PRL_MATCHED_GEO_LIST_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_HSD_DRPD_MOST_MATCHED_GEO_INFO
- 结构说明  : 在所有匹配1x系统GEO中查找最匹配的GEO
-   1.日    期   : 2013年12月11日
-    作    者   : j00304117
-    修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8               ucNumOfMostMatchGeo;
     VOS_UINT8               aucIndexInGeoList[CNAS_HSD_MAX_MATCHED_GEO_NUM];
 }CNAS_HSD_DRPD_MOST_MATCHED_GEO_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_PRL_MATCHED_1X_GEO_INFO_EX_STRU
- 结构说明  : 系统表中匹配的GEO信息
- 1.日    期   : 2014年12月09日
-   作    者   : d00212987
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     CNAS_PRL_SID_NID_MATCH_LVL_ENUM_UINT16                  enMatchLvl;             /* SID和NID的匹配等级 */
@@ -489,13 +317,7 @@ typedef struct
     VOS_UINT16                                              aus1xSysIndex[CNAS_HSD_MAX_MATCH_LVL_SYS_REC_INDEX_NUM];
 }CNAS_PRL_MATCHED_1X_GEO_INFO_EX_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_PRL_MATCHED_1X_GEO_LIST_INFO_EX_STRU
- 结构说明  : 系统表中匹配的GEO列表信息
- 1.日    期   : 2014年12月09日
-   作    者   : d00212987
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                                              usSid;                                        /* 待匹配的SID */
@@ -505,26 +327,14 @@ typedef struct
     CNAS_PRL_MATCHED_1X_GEO_INFO_EX_STRU                    ast1xGeoInfoListEx[CNAS_PRL_MAX_MATCHING_GEO_NUM];/* 匹配的GEO信息 */
 }CNAS_PRL_MATCHED_1X_GEO_LIST_INFO_EX_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_SUITED_GEO_INFO_STRU
- 结构说明  : 系统表中的GEO信息
- 1.日    期   : 2015年7月7日
-   作    者   : w00242748
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                                              usGeoFirstSysRecIndex;  /* 相匹配的GEO中的第一个系统记录在系统表中的位置 */
     VOS_UINT8                                               aucReserved[2];
 }CNAS_PRL_GEO_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_MATCHING_GEO_LIST_STRU
- 结构说明  : 系统表中的GEO列表信息
- 1.日    期   : 2015年7月7日
-   作    者   : w00242748
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                                              usGeoNum;  /* GEO列表个数 */
@@ -532,13 +342,7 @@ typedef struct
     CNAS_PRL_GEO_INFO_STRU                                 *pstGeoInfoList;    /* GEO信息仅包含GEO的第一条记录索引 */
 }CNAS_PRL_GEO_LIST_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_PRL_MATCHED_INDEX_LIST_STRU
- 结构说明  : 匹配的索引列表
- 2.日    期   : 2015年12月4日
-   作    者   : w00242748
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                                              usMatchedIndexNum;
@@ -546,13 +350,7 @@ typedef struct
     VOS_UINT16                                              ausMostMatchedIndex[CNAS_PRL_MAX_MATCHED_SYSTEM_NUM];
 }CNAS_PRL_MATCHED_INDEX_LIST_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_SUITED_GEO_INFO_STRU
- 结构说明  : 系统表中匹配的GEO信息
- 2.日    期   : 2015年7月7日
-   作    者   : w00242748
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     CNAS_PRL_CUSTOM_MATCH_LVL_ENUM_UINT16                   enGeoMostMatchLvl;          /* SID和NID的匹配等级 */
@@ -562,13 +360,7 @@ typedef struct
     CNAS_PRL_MATCHED_INDEX_LIST_STRU                        astIndexList[CNAS_PRL_CUSTOM_MATCH_LVL_BUTT];
 }CNAS_PRL_MULTI_MATCHED_GEO_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_MATCHING_GEO_LIST_STRU
- 结构说明  : 系统表中匹配的GEO列表信息
- 1.日    期   : 2014年8月08日
-   作    者   : h00246512
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                                              usSid;                                        /* 待匹配的SID */

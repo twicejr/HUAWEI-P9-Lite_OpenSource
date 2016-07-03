@@ -88,7 +88,6 @@ typedef struct tagFIB6_FILTER_KEY
     ULONG ulFilterType;                                /*Type of the filter applied.*/
 }FIB6_FILTER_KEY_S;
 
-/* End of Added by pengbinquan pKF34550, 2011/02/18   问题单号:DTS2011022100676 */
 
 typedef VOID (*Rm6_NextNetEntry_Get_FUNC)(SFIB6_RT_ENTRY_S **pstRtEntry);
 typedef VOID (*Rm6_NetEntry_Free_FUNC)(SFIB6_RT_ENTRY_S *pstRtEntry);
@@ -229,11 +228,9 @@ typedef struct tagSFIB_VLINK6_IFNETMSG
 
 
 
-/*End of Added by limin00188004, 2011/8/12   问题单号:C06新需求 */
 ULONG IP6_RIB_OpenRib6Table (UINTPTR *pulHandle, CHAR * pszVrfName);
 ULONG IP6_RIB_CloseObject_RIB (UINTPTR ulHandle);
 ULONG IP6_RIB_GetRib6Entry (UINTPTR ulHandle, SFIB6_RT_ENTRY_S *pstRIBData);
-/*End of Added by limin00188004, 2011/8/12   问题单号:C06新需求 */
 
 
 /********************** extern  and inner   function ********************************/

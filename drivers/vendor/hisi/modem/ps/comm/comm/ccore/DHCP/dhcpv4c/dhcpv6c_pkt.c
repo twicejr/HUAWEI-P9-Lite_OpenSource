@@ -1,21 +1,4 @@
-/*************************************************************************************
-*
-*                       dhcpv6c_pkt.c
-*
-*  项目代码：           UGW9811 V900R010C00
-*  创建日期：           2012-06-28
-*  作者：               y00170683
-*  修改历史列表：
-*  参考文档：
-*  功能：               DHCPV6C模块编解码处理
-*  其他：
-*
-*-----------------------------------------------------------------------------------
-*
-*  Copyright  Beijing Institute HuaWei Tech, Inc.
-*                     ALL RIGHTS RESERVED
-*
-*************************************************************************************/
+
 
 #ifdef    __cplusplus
 extern "C" {
@@ -104,18 +87,7 @@ ULONG DHCPV6C_IPv6ValidCheck(in6_addr* pstAddr)
     return VOS_ERR;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6C_CheckCiDuidData
- *  初稿完成:       2012-07-09
- *  作    者:       y00170683
- *  函数功能:       检查CiDuidData
- *  输入参数:       UCHAR *pucData,DHCPC_CTRLBLK *pstDhcpcContext
- *  输出参数:       无
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 ULONG DHCPV6C_CheckCiDuidData(UCHAR *pucData,
                                           DHCPC_CTRLBLK *pstDhcpcContext)
 {
@@ -144,20 +116,7 @@ ULONG DHCPV6C_CheckCiDuidData(UCHAR *pucData,
     return VOS_OK;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6C_CheckClientIdOption
- *  初稿完成:       2012-07-09
- *  作    者:       y00170683
- *  函数功能:       检查ClientId的合法性
- *  输入参数:       DHCPV6C_TLV_OPTION_S *pstClientIdOption,
-                    DHCPV6C_DUID_EN_OPTION_S *pstDuidEn,
-                    DHCPC_CTRLBLK *pstDhcpcContext
- *  输出参数:       无
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 ULONG DHCPV6C_CheckClientIdOption(DHCPV6C_TLV_OPTION_S *pstClientIdOption,
                                                 DHCPV6C_DUID_EN_OPTION_S *pstDuidEn,
                                                 DHCPC_CTRLBLK *pstDhcpcContext)
@@ -173,7 +132,6 @@ ULONG DHCPV6C_CheckClientIdOption(DHCPV6C_TLV_OPTION_S *pstClientIdOption,
         return VOS_ERR;
     }
 
-    /* deleted by t00265288 start 参照的码流里面没有带DUID-en，所以把这个check注释掉 */
 #if 0
     /* 没有携带DUID-EN类型的DUID */
     if (VOS_NULL == pstDuidEn)
@@ -213,18 +171,7 @@ ULONG DHCPV6C_CheckClientIdOption(DHCPV6C_TLV_OPTION_S *pstClientIdOption,
     return VOS_OK;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6C_CheckSiDuidTypeLen
- *  初稿完成:       2012-07-09
- *  作    者:       y00170683
- *  函数功能:       检查CiDuidData
- *  输入参数:       UCHAR *pucData,DHCPC_CTRLBLK *pstDhcpcContext
- *  输出参数:       无
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 ULONG DHCPV6C_CheckSiDuidTypeLen(USHORT usType, USHORT usLen)
 {
     ULONG ulRet = VOS_OK;
@@ -259,18 +206,7 @@ ULONG DHCPV6C_CheckSiDuidTypeLen(USHORT usType, USHORT usLen)
     return ulRet;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6C_CheckServerIdOption
- *  初稿完成:       2012-07-09
- *  作    者:       y00170683
- *  函数功能:       检查ServerId的合法性
- *  输入参数:       DHCPV6C_TLV_OPTION_S *pstServerIdOption, DHCPC_CTRLBLK *pstDhcpcContext
- *  输出参数:       无
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 ULONG DHCPV6C_CheckServerIdOption(DHCPV6C_TLV_OPTION_S *pstServerIdOption,
                                                 DHCPC_CTRLBLK *pstDhcpcContext)
 {
@@ -327,18 +263,7 @@ ULONG DHCPV6C_CheckServerIdOption(DHCPV6C_TLV_OPTION_S *pstServerIdOption,
     return VOS_OK;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6C_CheckIaNaOption
- *  初稿完成:       2012-07-09
- *  作    者:       y00170683
- *  函数功能:       检查IaNa的合法性
- *  输入参数:       DHCPV6C_IANA_OPTION_S *pstIaNaOption, DHCPC_CTRLBLK *pstDhcpcContext
- *  输出参数:       无
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 ULONG DHCPV6C_CheckIaNaOption(DHCPV6C_IANA_OPTION_S *pstIaNaOption,
                                            DHCPC_CTRLBLK *pstDhcpcContext)
 {
@@ -380,18 +305,7 @@ ULONG DHCPV6C_CheckIaNaOption(DHCPV6C_IANA_OPTION_S *pstIaNaOption,
     return VOS_OK;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6C_CheckIaAddrOption
- *  初稿完成:       2012-07-09
- *  作    者:       y00170683
- *  函数功能:       检查IaAddr的合法性
- *  输入参数:       DHCPV6C_IAADDR_OPTION_S *pstIaAddrOption, DHCPC_CTRLBLK *pstDhcpcContext
- *  输出参数:       无
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 ULONG DHCPV6C_CheckIaAddrOption(DHCPV6C_IAADDR_OPTION_S *pstIaAddrOption,
                                               DHCPC_CTRLBLK *pstDhcpcContext)
 {
@@ -423,18 +337,7 @@ ULONG DHCPV6C_CheckIaAddrOption(DHCPV6C_IAADDR_OPTION_S *pstIaAddrOption,
     return VOS_OK;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6C_CheckDnsOption
- *  初稿完成:       2012-07-28
- *  作    者:       y00170683
- *  函数功能:       检查DNS的合法性
- *  输入参数:       DHCPV6C_TLV_OPTION_S *pstDnsOption
- *  输出参数:       UCHAR *pucMainDnsFlg, UCHAR *pucSecdDnsFlg
- *  返回类型:       VOID
- *  其他说明:       CR20120726042 DNS-option只取最后一个的前两个地址作为主备DNS
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOID DHCPV6C_CheckDnsOption(DHCPV6C_TLV_OPTION_S *pstDnsOption,
                                           UCHAR *pucMainDnsFlg, UCHAR *pucSecdDnsFlg)
 {
@@ -491,7 +394,6 @@ VOID DHCPV6C_CheckDnsOption(DHCPV6C_TLV_OPTION_S *pstDnsOption,
         }
     }
 
-    /* 主备都合法时需要检查一致性,如果一致则认为只携带了主----DTS2012080906701 y00170683 */
     if ((VOS_TRUE == *pucMainDnsFlg) && (VOS_TRUE == *pucSecdDnsFlg))
     {
         lRet = VOS_MemCmp(&stMainDnsAddr, &stSecdDnsAddr, sizeof(in6_addr));
@@ -506,19 +408,7 @@ VOID DHCPV6C_CheckDnsOption(DHCPV6C_TLV_OPTION_S *pstDnsOption,
     return;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6C_CheckOption
- *  初稿完成:       2012-07-11
- *  作    者:       y00170683
- *  函数功能:       检查DHCPV6C-OPTION
- *  输入参数:       DHCPV6C_OPTION_INFO_S *pstDhcpv6cOptionInfo
-                    DHCPC_CTRLBLK *pstDhcpcContext
- *  输出参数:       无
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 ULONG DHCPV6C_CheckOption(DHCPV6C_OPTION_INFO_S *pstDhcpv6cOptionInfo,
                                       DHCPC_CTRLBLK *pstDhcpcContext)
 {
@@ -541,7 +431,6 @@ ULONG DHCPV6C_CheckOption(DHCPV6C_OPTION_INFO_S *pstDhcpv6cOptionInfo,
         return ulRet;
     }
 
-    /* deleted by t00265288 start 参照的码流里面没有带IaNa，所以把这个check注释掉 */
 #if 0
     /* 检查IaNa */
     ulRet = DHCPV6C_CheckIaNaOption(pstDhcpv6cOptionInfo->pstIaNaOption,
@@ -570,24 +459,12 @@ ULONG DHCPV6C_CheckOption(DHCPV6C_OPTION_INFO_S *pstDhcpv6cOptionInfo,
 }
 
 #define _MESSAGE_DECODE_
-/*****************************************************************************
- *  函数名称:       DHCPV6C_SaveOptionToContext
- *  初稿完成:       2012-07-12
- *  作    者:       y00170683
- *  函数功能:       保存消息内容至控制块
- *  输入参数:       DHCPV6C_OPTION_INFO_S *pstDhcpv6Option
- *  输出参数:       DHCPC_CTRLBLK *pstDhcpcContext
- *  返回类型:       VOID
- *  其他说明:       CR20120726042 DNS-option只取最后一个的前两个地址作为主备DNS
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOID DHCPV6C_SaveDnsOptionToContext(DHCPC_CTRLBLK *pstDhcpcContext,
                                                      DHCPV6C_TLV_OPTION_S *pstDnsOption,
                                                      UCHAR ucMainDnsFlg,
                                                      UCHAR ucSecdDnsFlg)
 {
-    /* 保存DNS 以reply为准,因此DNS需要实时刷新 --DTS2012072307085 DNS无效值是全F y00170683 */
     /* 没有携带或者都非法时清空控制块内容 */
     if ((VOS_FALSE == ucMainDnsFlg) && (VOS_FALSE == ucSecdDnsFlg))
     {
@@ -620,18 +497,7 @@ VOID DHCPV6C_SaveDnsOptionToContext(DHCPC_CTRLBLK *pstDhcpcContext,
     return;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6C_SaveOptionToContext
- *  初稿完成:       2012-07-12
- *  作    者:       y00170683
- *  函数功能:       保存消息内容至控制块
- *  输入参数:       DHCPV6C_OPTION_INFO_S *pstDhcpv6Option
- *  输出参数:       DHCPC_CTRLBLK *pstDhcpcContext
- *  返回类型:       VOID
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOID DHCPV6C_SaveOptionToContext(DHCPC_CTRLBLK *pstDhcpcContext,
                                                  DHCPV6C_OPTION_INFO_S *pstDhcpv6Option)
 {
@@ -673,18 +539,7 @@ VOID DHCPV6C_SaveOptionToContext(DHCPC_CTRLBLK *pstDhcpcContext,
     return;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6C_ConvertDnsToHomeOrder
- *  初稿完成:       2012-07-27
- *  作    者:       y00170683
- *  函数功能:       将dns-option中字段转换为本地序
- *  输入参数:       DHCPV6C_TLV_OPTION_S **ppstDnsOption
- *  输出参数:       DHCPV6C_DNS_OPTION_S **ppstDnsOption, UCHAR *pucMainDnsFlg, UCHAR *pucSecdDnsFlg
- *  返回类型:       VOID
- *  其他说明:       CR20120726042 DNS-option只取最后一个的前两个地址作为主备DNS
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOID DHCPV6C_ConvertDnsToHomeOrder(DHCPV6C_TLV_OPTION_S **ppstDnsOption,
                                                     UCHAR *pucMainDnsFlg, UCHAR *pucSecdDnsFlg)
 {
@@ -722,18 +577,7 @@ VOID DHCPV6C_ConvertDnsToHomeOrder(DHCPV6C_TLV_OPTION_S **ppstDnsOption,
     return;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6C_ConvertToHomeOrder
- *  初稿完成:       2012-07-09
- *  作    者:       y00170683
- *  函数功能:       将option中字段转换为本地序
- *  输入参数:       DHCPV6C_OPTION_INFO_S *pstDhcpv6cOption
- *  输出参数:       DHCPV6C_OPTION_INFO_S *pstDhcpv6cOption
- *  返回类型:       VOID
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOID DHCPV6C_ConvertToHomeOrder(DHCPV6C_OPTION_INFO_S *pstDhcpv6cOption)
 {
     /* clientId */
@@ -802,18 +646,7 @@ VOID DHCPV6C_ConvertToHomeOrder(DHCPV6C_OPTION_INFO_S *pstDhcpv6cOption)
     return;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6C_IaAddrOptionDecode
- *  初稿完成:       2012-07-04
- *  作    者:       y00170683
- *  函数功能:       解析IaAddrOption
- *  输入参数:       UCHAR *pucMsg, ULONG ulMsgLen,
- *  输出参数:       DHCPV6C_OPTION_INFO_S *pstDhcpv6cOption
- *  返回类型:       VOID
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOID DHCPV6C_IaAddrOptionDecode(UCHAR *pucMsg,
                                                ULONG ulMsgLen,
                                                DHCPV6C_OPTION_INFO_S *pstDhcpv6cOption)
@@ -855,18 +688,7 @@ VOID DHCPV6C_IaAddrOptionDecode(UCHAR *pucMsg,
     return;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6C_IaNaOptionDecode
- *  初稿完成:       2012-07-04
- *  作    者:       y00170683
- *  函数功能:       解析IaNaOption
- *  输入参数:       UCHAR *pucMsg, ULONG ulMsgLen,
- *  输出参数:       DHCPV6C_OPTION_INFO_S *pstDhcpv6cOption
- *  返回类型:       VOID
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOID DHCPV6C_IaNaOptionDecode(UCHAR *pucMsg,
                                             ULONG ulMsgLen,
                                             DHCPV6C_OPTION_INFO_S *pstDhcpv6cOption)
@@ -927,18 +749,7 @@ VOID DHCPV6C_IaNaOptionDecode(UCHAR *pucMsg,
     return;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6C_OptionDecode
- *  初稿完成:       2012-06-29
- *  作    者:       y00170683
- *  函数功能:       解析Option
- *  输入参数:       UCHAR *pucMsg,  ULONG ulMsgLen
- *  输出参数:       DHCPV6C_OPTION_INFO_S *pstDhcpv6cOption
- *  返回类型:       VOID
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOID DHCPV6C_OptionDecode(UCHAR *pucMsg,
                                       ULONG ulMsgLen,
                                       DHCPV6C_OPTION_INFO_S *pstDhcpv6cOption)
@@ -1020,18 +831,7 @@ VOID DHCPV6C_OptionDecode(UCHAR *pucMsg,
     return ;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6C_GetSeqNumByMsg
- *  初稿完成:       2012-07-07
- *  作    者:       y00170683
- *  函数功能:       根据消息得出sequenceNum
- *  输入参数:       USHORT *pusSeqNum
- *  输出参数:       USHORT *pusSeqNum
- *  返回类型:       VOID
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOID DHCPV6C_GetSeqNumByMsg(USHORT *pusSeqNum,
                                             UCHAR *pucMsg)
 {
@@ -1055,18 +855,7 @@ VOID DHCPV6C_GetSeqNumByMsg(USHORT *pusSeqNum,
     return;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6C_MsgDecode
- *  初稿完成:       2012-07-10
- *  作    者:       y00170683
- *  函数功能:       消息解码
- *  输入参数:       DHCPV6C_MSG_INFO_S *pstMsgInfo
- *  输出参数:       无
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 ULONG DHCPV6C_MsgDecode(DHCPV6C_MSG_INFO_S *pstMsgInfo)
 {
     ULONG ulOffset = sizeof(DHCPV6C_MSG_S);
@@ -1093,18 +882,7 @@ ULONG DHCPV6C_MsgDecode(DHCPV6C_MSG_INFO_S *pstMsgInfo)
 }
 
 #define _MESSAGE_ENCODE_
-/*****************************************************************************
- *  函数名称:       DHCPV6C_CalcuTransId
- *  初稿完成:       2012-07-07
- *  作    者:       y00170683
- *  函数功能:       计算TransctionId
- *  输入参数:       DHCPV6C_MSG_S *pstDhcpv6cMsg,  ULONG ulTeidc
- *  输出参数:       USHORT usSeqNum
- *  返回类型:       VOID
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOID DHCPV6C_CalcuTransId(DHCPV6C_MSG_S *pstDhcpv6cMsg,
                                      ULONG ulTeidc,
                                      USHORT usSeqNum)
@@ -1129,18 +907,7 @@ VOID DHCPV6C_CalcuTransId(DHCPV6C_MSG_S *pstDhcpv6cMsg,
     return;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6C_GetCiDuidData
- *  初稿完成:       2012-07-07
- *  作    者:       y00170683
- *  函数功能:       获取CI-DUID-DATA
- *  输入参数:       DHCPC_CTRLBLK *pstDhcpcContext
- *  输出参数:       UCHAR *pucData
- *  返回类型:       VOID
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOID DHCPV6C_GetCiDuidData(UCHAR *pucData,
                                        DHCPC_CTRLBLK *pstDhcpcContext)
 {
@@ -1167,18 +934,7 @@ VOID DHCPV6C_GetCiDuidData(UCHAR *pucData,
     return;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6C_FillClientIdOption
- *  初稿完成:       2012-06-29
- *  作    者:       y00170683
- *  函数功能:       填充Client Identifier Option
- *  输入参数:       DHCPC_CTRLBLK *pstDhcpcContext
- *  输出参数:       UCHAR *pucMsgBuff, ULONG *pulOffset
- *  返回类型:       VOID
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOID DHCPV6C_FillClientIdOption(UCHAR *pucMsgBuff,
                                            ULONG *pulOffset,
                                            DHCPC_CTRLBLK *pstDhcpcContext)
@@ -1204,18 +960,7 @@ VOID DHCPV6C_FillClientIdOption(UCHAR *pucMsgBuff,
     return;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6C_FillServerIdOption
- *  初稿完成:       2012-06-29
- *  作    者:       y00170683
- *  函数功能:       填充Server Identifier Option
- *  输入参数:       UCHAR aucSiDuid[]
- *  输出参数:       UCHAR *pucMsgBuff,  ULONG *pulOffset
- *  返回类型:       VOID
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOID DHCPV6C_FillServerIdOption(UCHAR *pucMsgBuff,
                                             ULONG *pulOffset,
                                             UCHAR aucSiDuid[])
@@ -1232,18 +977,7 @@ VOID DHCPV6C_FillServerIdOption(UCHAR *pucMsgBuff,
     return;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6C_FillIaAddrOption
- *  初稿完成:       2012-06-29
- *  作    者:       y00170683
- *  函数功能:       填充IA Address Option
- *  输入参数:       DHCPC_CTRLBLK *pstDhcpcContext
- *  输出参数:       UCHAR *pucMsgBuff, ULONG *pulOffset
- *  返回类型:       VOID
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOID DHCPV6C_FillIaAddrOption(UCHAR *pucMsgBuff,
                                          ULONG *pulOffset,
                                          DHCPC_CTRLBLK *pstDhcpcContext)
@@ -1267,18 +1001,7 @@ VOID DHCPV6C_FillIaAddrOption(UCHAR *pucMsgBuff,
     return;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6C_FillIaNaOption
- *  初稿完成:       2012-06-29
- *  作    者:       y00170683
- *  函数功能:       填充Identity Association for Non-temporary Addresses Option
- *  输入参数:       UCHAR ucIsSolictFlg, DHCPC_CTRLBLK *pstDhcpcContext
- *  输出参数:       UCHAR *pucMsgBuff,   ULONG *pulOffset
- *  返回类型:       VOID
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOID DHCPV6C_FillIaNaOption(UCHAR *pucMsgBuff,
                                        ULONG *pulOffset,
                                        UCHAR ucIsSolictFlg,
@@ -1310,18 +1033,7 @@ VOID DHCPV6C_FillIaNaOption(UCHAR *pucMsgBuff,
     return;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6C_FillRapidComOption
- *  初稿完成:       2012-07-27
- *  作    者:       y00170683
- *  函数功能:       填充rapid-commit-option
- *  输入参数:       无
- *  输出参数:       UCHAR *pucMsgBuff, ULONG *pulOffset
- *  返回类型:       VOID
- *  其他说明:       CR20120726042 rapid-commit-option作为单独的option携带
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOID DHCPV6C_FillRapidComOption(UCHAR *pucMsgBuff, ULONG *pulOffset)
 {
     DHCPV6C_TLV_OPTION_S *pstRapidComOption = (DHCPV6C_TLV_OPTION_S *)pucMsgBuff;
@@ -1335,18 +1047,7 @@ VOID DHCPV6C_FillRapidComOption(UCHAR *pucMsgBuff, ULONG *pulOffset)
     return;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6C_FillOROption
- *  初稿完成:       2012-06-29
- *  作    者:       y00170683
- *  函数功能:       填充Option Request Option
- *  输入参数:       无
- *  输出参数:       UCHAR *pucMsgBuff, ULONG *pulOffset
- *  返回类型:       VOID
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOID DHCPV6C_FillOROption(UCHAR *pucMsgBuff, ULONG *pulOffset)
 {
     USHORT usOptionLen = 0;
@@ -1356,8 +1057,6 @@ VOID DHCPV6C_FillOROption(UCHAR *pucMsgBuff, ULONG *pulOffset)
     pstOROption->usType = VOS_HTONS(DHCPV6_MSG_OPTION_ORO);
 
     /* 请求快速流程和DNS */
-    /* Deleted start by y00170683 at 2012-07-27 UGW10.0-DHCPV6C特性 for CR20120726042 rapid-commit-option作为单独的option携带 */
-    /* Deleted end by y00170683 at 2012-07-27 UGW10.0-DHCPV6C特性 for CR20120726042 rapid-commit-option作为单独的option携带 */
     *(USHORT*)(pstOROption->ucData) = VOS_HTONS(DHCPV6_MSG_OPTION_DNS_SERVERS);
     usOptionLen += sizeof(USHORT);
     pstOROption->usLen = VOS_HTONS(usOptionLen);
@@ -1367,19 +1066,7 @@ VOID DHCPV6C_FillOROption(UCHAR *pucMsgBuff, ULONG *pulOffset)
     return;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6C_FillElapTimeOption
- *  初稿完成:       2012-06-29
- *  作    者:       y00170683
- *  函数功能:       填充Elapsed_Time Option
- *  输入参数:       UCHAR ucResendTime,   UCHAR ucResendTimeout
- *  输出参数:       UCHAR *pucMsgBuff, ULONG *pulOffset
- *  返回类型:       VOID
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
- *  修改记录:       DTS2012083106081 填自第一条消息已经等待的时间,备sever时继续累加,不是从0开始
-*****************************************************************************/
+
 VOID DHCPV6C_FillElapTimeOption(UCHAR *pucMsgBuff,
                                             ULONG *pulOffset,
                                             UCHAR ucResendTime,
@@ -1403,18 +1090,7 @@ VOID DHCPV6C_FillElapTimeOption(UCHAR *pucMsgBuff,
     return;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6C_FillDnsOption
- *  初稿完成:       2012-06-29
- *  作    者:       y00170683
- *  函数功能:       填充DNS Option
- *  输入参数:       in6_addr *pstDnsAddr
- *  输出参数:       UCHAR *pucMsgBuff, ULONG *pulOffset
- *  返回类型:       VOID
- *  其他说明:       CR20120726042 DNS-option只取最后一个的前两个地址作为主备DNS
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOID DHCPV6C_FillDnsOption(UCHAR *pucMsgBuff,
                                       ULONG *pulOffset,
                                       DHCPC_CTRLBLK *pstDhcpcContext)
@@ -1445,18 +1121,7 @@ VOID DHCPV6C_FillDnsOption(UCHAR *pucMsgBuff,
     return;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6C_FillMustOption
- *  初稿完成:       2012-06-29
- *  作    者:       y00170683
- *  函数功能:       填充必选Option
- *  输入参数:       UCHAR ucIsSolictFlg,DHCPC_CTRLBLK *pstDhcpcContext
- *  输出参数:       UCHAR *pucMsgBuff,  ULONG *pulMsgLen,
- *  返回类型:       VOID
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOID DHCPV6C_FillMustOption(UCHAR *pucMsgBuff,
                                        ULONG *pulMsgLen,
                                        UCHAR ucIsSolictFlg,
@@ -1484,18 +1149,7 @@ VOID DHCPV6C_FillMustOption(UCHAR *pucMsgBuff,
     return;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6C_FillMsg
- *  初稿完成:       2012-07-18
- *  作    者:       y00170683
- *  函数功能:       填充消息
- *  输入参数:       ULONG ulDhpcv6MsgType, DHCPC_CTRLBLK *pstDhcpcContext
- *  输出参数:       UCHAR *pucMsgBuff,  ULONG *pulMsgLen
- *  返回类型:       VOID
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOID DHCPV6C_FillMsg(UCHAR *pucMsgBuff,
                              ULONG *pulMsgLen,
                              ULONG ulDhpcv6MsgType,
@@ -1530,7 +1184,6 @@ VOID DHCPV6C_FillMsg(UCHAR *pucMsgBuff,
     /* request消息 填充DnsServer Option */
     if (DHCPV6_MSG_TYPE_REQUEST == ulDhpcv6MsgType)
     {
-        /* mod by t00265288 start 我们改为不依赖上下文，request中携带DNS的选项 */
 #if 0
         /* 上下文中存在有效的主DNS地址时才进行携带 */
         if (VOS_FALSE == DHCPC_CHECK_V6ADDR_IS_NULL(pstDhcpcContext->aulMainDnsAddr))
@@ -1545,18 +1198,7 @@ VOID DHCPV6C_FillMsg(UCHAR *pucMsgBuff,
     return;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6C_CheckSendMsgType
- *  初稿完成:       2012-07-18
- *  作    者:       y00170683
- *  函数功能:       判断消息类型
- *  输入参数:       ulDhpcv6MsgType
- *  输出参数:       无
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 ULONG DHCPV6C_CheckSendMsgType(ULONG ulDhpcv6MsgType)
 {
     ULONG ulRet = VOS_OK;
@@ -1579,18 +1221,7 @@ ULONG DHCPV6C_CheckSendMsgType(ULONG ulDhpcv6MsgType)
     return ulRet;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6C_UdpOutPut
- *  初稿完成:       2012-07-07
- *  作    者:       y00170683
- *  函数功能:       封装buff,发包
- *  输入参数:       UCHAR *pucMsg, ULONG ulMsgLen, DHCPC_CTRLBLK *pstDhcpcContext
- *  输出参数:       无
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 ULONG DHCPV6C_UdpOutPut(UCHAR *pucMsg, ULONG ulMsgLen, DHCPC_CTRLBLK *pstDhcpcContext)
 {
     LONG lRet = 0;
@@ -1687,19 +1318,7 @@ ULONG DHCPV6C_UdpOutPut(UCHAR *pucMsg, ULONG ulMsgLen, DHCPC_CTRLBLK *pstDhcpcCo
 }
 
 
-/*****************************************************************************
- *  函数名称:       DHCPV6C_SendDhcpDlDatatoCds
- *  初稿完成:       2015-04-28
- *  作    者:       t00265288
- *  功能描述:       下行DHCP报文发送到CDS
- *  输入参数:       pstTtfMem    TTF Mem
-                    ulMsgLen     长度
-                    enModemId
-                    ucRabId      承载号
- *  输出参数:       无
- *  返回类型:       ULONG
- *  其他说明:       无
-*****************************************************************************/
+
 VOS_VOID DHCPV6C_SendDhcpDlDatatoCds(TTF_MEM_ST *pstTtfMem, ULONG ulMsgLen, USHORT enModemId, UCHAR ucRabId)
 {
     CDS_CDMA_TRANS_DATA_STRU            stPppSdu;
@@ -1715,18 +1334,7 @@ VOS_VOID DHCPV6C_SendDhcpDlDatatoCds(TTF_MEM_ST *pstTtfMem, ULONG ulMsgLen, USHO
     return;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6C_SendMsgToServer
- *  初稿完成:       2015-02-28
- *  作    者:       t00265288
- *  函数功能:       发送dhcp报文到dhcp服务器
- *  输入参数:       UCHAR *pucMsg, ULONG ulMsgLen, DHCPC_CTRLBLK *pstDhcpcContext
- *  输出参数:       无
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 ULONG DHCPV6C_SendMsgToServer(UCHAR *pucMsg, ULONG ulMsgLen, DHCPC_CTRLBLK *pstDhcpcContext)
 {
     in6_addr stDstAddr;    /* 目的地址 */
@@ -1807,18 +1415,7 @@ ULONG DHCPV6C_SendMsgToServer(UCHAR *pucMsg, ULONG ulMsgLen, DHCPC_CTRLBLK *pstD
 }
 
 
-/*****************************************************************************
- *  函数名称:       DHCPV6C_CalcSuccSendPacketNum
- *  初稿完成:       2012-07-18
- *  作    者:       y00170683
- *  函数功能:       统计发消息成功计数
- *  输入参数:       ulDhpcv6MsgType
- *  输出参数:
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOID DHCPV6C_CalcSuccSendPacketNum(ULONG ulDhpcv6MsgType)
 {
     /* 消息计数 */
@@ -1854,18 +1451,7 @@ VOID DHCPV6C_CalcSuccSendPacketNum(ULONG ulDhpcv6MsgType)
     return;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6C_CalcFailSendPacketNum
- *  初稿完成:       2012-07-18
- *  作    者:       y00170683
- *  函数功能:       统计发消息失败计数
- *  输入参数:       ulDhpcv6MsgType
- *  输出参数:
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOID DHCPV6C_CalcFailSendPacketNum(ULONG ulDhpcv6MsgType)
 {
     /* 消息计数 */
@@ -1899,18 +1485,7 @@ VOID DHCPV6C_CalcFailSendPacketNum(ULONG ulDhpcv6MsgType)
     return;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6C_SendPacket
- *  初稿完成:       2012-07-07
- *  作    者:       y00170683
- *  函数功能:       封装消息发包
- *  输入参数:       DHCPC_CTRLBLK *pstDhcpcContext, ULONG ulDhpcv6MsgType
- *  输出参数:       无
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 ULONG DHCPV6C_SendPacket(DHCPC_CTRLBLK *pstDhcpcContext, ULONG ulDhpcv6MsgType)
 {
     ULONG ulRet = VOS_OK;
@@ -1966,18 +1541,7 @@ ULONG DHCPV6C_SendPacket(DHCPC_CTRLBLK *pstDhcpcContext, ULONG ulDhpcv6MsgType)
 }
 
 #define _SEQUENCENUM_MANAGE_
-/*****************************************************************************
- *  函数名称:       DHCPV6C_ReleaseNode
- *  初稿完成:       2012-07-09
- *  作    者:       y00170683
- *  函数功能:       释放SequenceNum节点到空闲链
- *  输入参数:       DHCPV6C_SEQNUM_FREELINK_S* pstFreeLink, VOS_UINT16 usIndex
- *  输出参数:       无
- *  返回类型:       VOID
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOID DHCPV6C_ReleaseNode(DHCPV6C_SEQNUM_FREELINK_S* pstFreeLink, USHORT usIndex, USHORT usTotalNum)
 {
     DHCPC_DebugPrint(PTM_LOG_DEBUG, "enter, usIndex = %u", usIndex);
@@ -2014,18 +1578,7 @@ VOID DHCPV6C_ReleaseNode(DHCPV6C_SEQNUM_FREELINK_S* pstFreeLink, USHORT usIndex,
     return;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6C_InitFreeLink
- *  初稿完成:       2012-07-09
- *  作    者:       y00170683
- *  函数功能:       初始化SequenceNum空闲链
- *  输入参数:       DHCPV6C_SEQNUM_FREELINK_S* pstFreeLink, USHORT usTotalNum
- *  输出参数:       无
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 ULONG DHCPV6C_InitFreeLink(DHCPV6C_SEQNUM_FREELINK_S* pstFreeLink, USHORT usTotalNum)
 {
     USHORT usIndex = 0;
@@ -2054,18 +1607,7 @@ ULONG DHCPV6C_InitFreeLink(DHCPV6C_SEQNUM_FREELINK_S* pstFreeLink, USHORT usTota
     return VOS_OK;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6C_RebuildFreeLink
- *  初稿完成:       2012-08-01
- *  作    者:       y00170683
- *  函数功能:       重建SequenceNum空闲链
- *  输入参数:       DHCPV6C_SEQNUM_FREELINK_S* pstFreeLink, USHORT usTotalNum
- *  输出参数:       无
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOID DHCPV6C_RebuildFreeLink(DHCPV6C_SEQNUM_FREELINK_S* pstFreeLink, USHORT usTotalNum)
 {
     USHORT usIndex = 0;
@@ -2088,18 +1630,7 @@ VOID DHCPV6C_RebuildFreeLink(DHCPV6C_SEQNUM_FREELINK_S* pstFreeLink, USHORT usTo
     return;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6C_GetFreeNode
- *  初稿完成:       2012-07-09
- *  作    者:       y00170683
- *  函数功能:       获取SequenceNum空闲节点
- *  输入参数:       无
- *  输出参数:       无
- *  返回类型:       USHORT
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 USHORT DHCPV6C_GetFreeNode(DHCPV6C_SEQNUM_FREELINK_S* pstFreeLink)
 {
     USHORT usIndex = 0;
@@ -2145,18 +1676,7 @@ USHORT DHCPV6C_GetFreeNode(DHCPV6C_SEQNUM_FREELINK_S* pstFreeLink)
     return usIndex;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6C_AllocSeqNum
- *  初稿完成:       2012-07-09
- *  作    者:       y00170683
- *  函数功能:       分配SEQnum
- *  输入参数:       ULONG ulTeidc, UCHAR ucIpAddrType
- *  输出参数:       USHORT *pusSeqNum
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 ULONG DHCPV6C_AllocSeqNum(USHORT *pusSeqNum, ULONG ulTeidc, UCHAR ucIpAddrType)
 {
     USHORT usIndex = DHCPV6C_MAX_SEQUENCE_NUM;
@@ -2186,18 +1706,7 @@ ULONG DHCPV6C_AllocSeqNum(USHORT *pusSeqNum, ULONG ulTeidc, UCHAR ucIpAddrType)
     return VOS_OK;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6C_QuryTeidcBySeqNum
- *  初稿完成:       2012-07-09
- *  作    者:       y00170683
- *  函数功能:       根据SequenceNum确定teidc
- *  输入参数:       USHORT usSeqNum
- *  输出参数:       ULONG *pulTeidc, UCHAR *pucIpAddrType
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 ULONG DHCPV6C_QuryTeidcBySeqNum(USHORT usSeqNum, ULONG *pulTeidc, UCHAR *pucIpAddrType)
 {
     USHORT usTotalNum = DHCPV6C_MAX_SEQUENCE_NUM;
@@ -2236,18 +1745,7 @@ ULONG DHCPV6C_QuryTeidcBySeqNum(USHORT usSeqNum, ULONG *pulTeidc, UCHAR *pucIpAd
     return VOS_OK;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6C_FreeSeqNum
- *  初稿完成:       2012-07-09
- *  作    者:       y00170683
- *  函数功能:       释放SequenceNum节点到空闲链
- *  输入参数:       usSeqNum
- *  输出参数:       无
- *  返回类型:       VOID
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOID DHCPV6C_FreeSeqNum(USHORT usSeqNum)
 {
     USHORT usTotalNum = DHCPV6C_MAX_SEQUENCE_NUM;
@@ -2283,18 +1781,7 @@ VOID DHCPV6C_FreeSeqNum(USHORT usSeqNum)
     return;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6C_AgeingSeqNum
- *  初稿完成:       2012-09-10
- *  作    者:       y00170683
- *  函数功能:       SequenceNum老化处理
- *  输入参数:       usSeqNum
- *  输出参数:       无
- *  返回类型:       VOID
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOID DHCPV6C_AgeingSeqNum()
 {
     ULONG ulSeqNum = 0;

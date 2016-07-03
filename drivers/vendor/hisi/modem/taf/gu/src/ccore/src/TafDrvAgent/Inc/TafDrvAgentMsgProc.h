@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafDrvAgentMsgProc.h
-  版 本 号   : 初稿
-  作    者   : o00132663
-  生成日期   : 2011年10月4日
-  最近修改   :
-  功能描述   : DRVAGENTMsgProc.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年10月4日
-    作    者   : o00132663
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __DRVAGENTMSGPROC_H__
 #define __DRVAGENTMSGPROC_H__
@@ -131,11 +114,9 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentAuthorityVerReq(VOS_VOID *pMsg);
 
 VOS_UINT32 DRVAGENT_RcvDrvAgentDloadVerQryReq(VOS_VOID *pMsg);
 
-/* Added by 傅映君/f62575 for E5宏开关打开后编译问题, 2011/11/15, begin */
 VOS_UINT32 DRVAGENT_RcvDrvAgentCpuloadQry(VOS_VOID *pMsg);
 
 VOS_UINT32 DRVAGENT_RcvDrvAgentMfreelocksizeQry(VOS_VOID *pMsg);
-/* Added by 傅映君/f62575 for E5宏开关打开后编译问题, 2011/11/15, end */
 
 
 VOS_UINT32 DRVAGENT_RcvDrvAgentDeviceGpioplSet(VOS_VOID *pMsg);
@@ -196,11 +177,9 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentNandDevInfoReq(VOS_VOID *pMsg);
 VOS_UINT32 DRVAGENT_RcvDrvAgentChipTempReq(VOS_VOID *pMsg);
 VOS_VOID DRVAGENT_RcvDrvAgentAntStateInd(VOS_VOID *pMsg);
 VOS_UINT32 DRVAGENT_RcvDrvAgentSARReductionSet(VOS_VOID *pMsg);
-/*DTS2012041102190 : h00135900 start in 2011-04-11 AT代码融合*/
 #if ( FEATURE_ON == FEATURE_LTE )
 VOS_UINT32 DRVAGENT_RcvDrvAgentInfoRrsSet(VOS_VOID *pMsg);
 #endif
-/*DTS2012041102190 : h00135900 end in 2011-04-11 AT代码融合*/
 
 VOS_UINT32 DRVAGENT_RcvDrvAgentSetMaxLockTms(VOS_VOID *pMsg);
 
@@ -229,9 +208,7 @@ VOS_UINT32 DRVAGENT_GetSimLockRemainUnlockTimes(TAF_CUSTOM_CARDLOCK_STATUS_STRU 
 VOS_UINT32 DRVAGENT_RcvDrvAgentHvpdhSetReq(VOS_VOID *pMsg);
 #endif
 
-/* Added by d00212987 for BalongV9R1 NV备份数据丢失容错&恢复 项目 2013-10-24, begin */
 VOS_UINT32 DRVAGENT_RcvDrvAgentNvManufactureExtSet(VOS_VOID *pMsg);
-/* Added by d00212987 for BalongV9R1 NV备份数据丢失容错&恢复 项目 2013-10-24, end */
 
 VOS_UINT32 DRVAGENT_RcvDrvAgentSetAntSwitchReq(VOS_VOID *pMsg);
 VOS_UINT32 DRVAGENT_RcvDrvAgentQryAntSwitchReq(VOS_VOID *pMsg);

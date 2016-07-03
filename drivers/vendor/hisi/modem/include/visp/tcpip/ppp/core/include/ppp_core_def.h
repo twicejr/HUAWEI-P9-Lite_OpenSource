@@ -1,31 +1,4 @@
-/*************************************************************************
- *
- *              Copyright 2005, Huawei Technologies Co. Ltd.
- *                          ALL RIGHTS RESERVED
- *
- *-----------------------------------------------------------------------*
- *
- *                             ppp_core_def.h
- *
- *  Project Code: VISP1.5
- *   Module Name: PPP
- *  Date Created: 2004-07-01
- *        Author: YiAn
- *   Description: PPP组件使用的宏定义声明
- *
- *-----------------------------------------------------------------------*
- *  Modification History
- *  DATE            NAME            DESCRIPTION
- *  2004-07-01      YiAn            Create
- *  2004-12-05      YiAn            Modify
- *  2006-03-31      ZhuKun          Adjust for D00661
- *  2006-04-21      ZhuKun          Adjust for D00875
- *  2006-05-13      l48923          Delete useless code
- *  2006-06-20      ZhouTong        A82D02377:删除PFC/ACFC/MC/PPPMUX预配置参数
- *  2006-09-12      fuxiaodong      A82D06326:修改宏PPP_GETSHORT，PPP_GETLONG
- *  2008-08-25      f54882          Modified for BC3D00262
- *
-************************************************************************/
+
 
 #ifndef _PPP_CORE_DEF_H_
 #define _PPP_CORE_DEF_H_
@@ -223,7 +196,6 @@ enum enumPPP_EVENT_ShellToCore
     PPPDISABLEPPPMUX, /*去使能PPP MUX*/
     /* End of addition */
 
-    /* add by L00105073 for BC3D01546，协商来的地址与本机其他接口地址有冲突时删除 */
     PPPDELIPADDFORINVALID,
 
     PPPMAX_END
@@ -324,7 +296,6 @@ enum enumPPP_EVENT_ProtocolToCore
 /* 内核向外壳报的事件 */
 enum enumPPP_EVENT_CoreToShell
 {
-    /* 支持np xiehuaguo add for support np 2006-05-08 */
     PPP_LCP_UP = 0,
     PPP_LCP_DOWN ,
     PPP_IPCP_UP,
@@ -403,7 +374,6 @@ enum ePppNegoType
 #define PPP_HDRLEN  4     /* 标准ppp头字节数 octets for standard ppp header ff+03+protocol*/
 #define PPP_FCSLEN  2     /* FCS字节数 octets for FCS */
 
-/* PPP首部压缩  Added by z43740 for PPP HeaderCompression, 2006/05/12*/
 #define PPP_HDRLEN_MIN 1  /* 最小PPP首部长度 */
 /*
 |--------- PPP_HDRLEN ----------|--------- FSM_HDRLEN ----------|
@@ -601,7 +571,6 @@ enum ePppNegoType
     cp += sizeof(ULONG) ; \
 }
 #endif
-/* PPP首部压缩  Added by z43740 for PPP HeaderCompression,2006/05/12 */
 #define PPP_HDRLEN_PF(bNegPfc,usProtocol) \
     (bNegPfc ? ((usProtocol & 0xff00) ? 2:1) : 2)
 
@@ -628,7 +597,6 @@ enum ePppNegoType
  * 为报文增加首部
  * PPP_MAKEHEADER - Add Header fields to a packet.
  */
-/* PPP首部压缩  Modified by z43740 for PPP HeaderCompression,2006/05/12*/
 #define PPP_MAKEHEADER(bPfc,bAcfc,p, t) \
 { \
     if ((PPP_LCP == t) || (!bAcfc)) \
@@ -989,7 +957,6 @@ Events| Initial   Starting  Closed    Stopped   Closing   Stopping   Req-Sent  A
     } \
 }
 
-/* Add for DTS2011042101452, by z00166124, at 2011-04-21. 修改原因: 创建定时器的入参通过回调方式获取处理函数 */
 /* 设置重传定时器 */
 /* 使用循环定时器，避免因消息丢失导致状态机无法继续运行 */
 #define PPP_FSM_SetRetransmitTimer(pstFsm) \
@@ -1013,11 +980,7 @@ Events| Initial   Starting  Closed    Stopped   Closing   Stopping   Req-Sent  A
     } \
 }
 
-/* Add for DTS2011042101452, by z00166124, at 2011-04-21. 修改原因: 创建定时器的入参通过回调方式获取处理函数 */
-/* Added by z43740 for BC3D01909,2009-08-16
-   设置重传定时器,减少额外100毫秒
-   避免本端重传时间和对端相同时，本端定时器先创建晚超时的情况
- */
+
 #define PPP_FSM_SetRetransmitTimerWithLessDelay(pstFsm) \
 { \
     ULONG ulRetValue; \
@@ -1183,7 +1146,6 @@ enum enPppProNameIndex
     PPP_PRONAMEINDEX_PPPMUX      /* 26 */
     /* End of addition */
 
-    /* Added by z43740 for IPHC debug，2006/06/07*/
     ,PPP_PRONAMEINDEX_FULL_HEADER,          /* 27 */
     PPP_PRONAMEINDEX_Compressed_TCP,        /* 28 */
     PPP_PRONAMEINDEX_Compressed_TCP_NODELTA,/* 29 */
@@ -1228,7 +1190,6 @@ enum enPppProNameIndex
 /************************ 同异步转换宏 *************************/
 
 
-/* 将下行流量记录到PPP控制块 Add by xiaoshouhe31170 2003/10/16 */
 #define PPP_FLOW_STAT_OUT(pstPppInfo, ulLen) \
 {\
     (pstPppInfo)->stStatisticInfo.ulOutOctets += (ulLen);\
@@ -1239,7 +1200,6 @@ enum enPppProNameIndex
     (pstPppInfo)->stStatisticInfo.ulOutPackets++;\
 }
 
-/* 将上行流量记录到PPP控制块 Add by xiaoshouhe31170 2003/10/16 */
 #define PPP_FLOW_STAT_IN(pstPppInfo, ulLen) \
 {\
     (pstPppInfo)->stStatisticInfo.ulInOctets += (ulLen);\
@@ -1435,14 +1395,12 @@ if ((pstWantOptions->parameter != pstGotOptions->parameter)\
 #define PPP_MP_NoPppMultilink(ulIfIndex)\
             g_pstPppMpFunTable->pfMP_NoPppMultilink(ulIfIndex)
 
-/*(同步问题单A82D11804)Modified by f54882, 2007-02-01, HDLC自动侦听非标需求开发*/
 #define PPP_MP_GetDiscr(ulIfIndex, pucDiscr_addr, pucClass, pucLength)  \
             g_pstPppMpFunTable->pfMP_GetDiscr(ulIfIndex, pucDiscr_addr, pucClass, pucLength)
 
 #define PPP_MP_IsCfgDiscriminator(ulIfIndex)\
             g_pstPppMpFunTable->pfMP_IsCfgDiscriminator(ulIfIndex)
 
-/* Added by z43740 for TR报文发送增强,2009-04-09 */
 #define PPP_MP_IsCfgDiscardReq(ulIfIndex) \
             g_pstPppMpFunTable->pfMP_IsCfgDiscardReq(ulIfIndex)
 

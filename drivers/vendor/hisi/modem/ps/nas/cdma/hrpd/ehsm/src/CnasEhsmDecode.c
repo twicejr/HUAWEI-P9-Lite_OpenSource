@@ -48,21 +48,7 @@ extern "C"{
 *****************************************************************************/
 /*lint -save -e958*/
 
-/*****************************************************************************
- Function Name   : CNAS_EHSM_DecodePcoIpv4Item
- Description     : 译码PCO信元中的IP项，如P-CSCF IPV4 ADDRESS，P-CSCF IPV6
-                   ADDRESS，DNS SERVER IPV4 ADDRESS,DNS SERVER IPV6 ADDRESS
-                   等
- Input           : None
- Output          : None
- Return          : CNAS_EHSM_CAUSE_ENUM_UINT8
 
- History         :
-  1.日    期    : 2015年6月8日
-    作    者    : f00279542
-    修改内容    : 新生成函数
-
-*****************************************************************************/
 CNAS_EHSM_CAUSE_ENUM_UINT8  CNAS_EHSM_DecodePcoIpv4Item
 (
     VOS_UINT8                          *pucMsg,
@@ -94,20 +80,7 @@ CNAS_EHSM_CAUSE_ENUM_UINT8  CNAS_EHSM_DecodePcoIpv4Item
     return CNAS_EHSM_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : CNAS_EHSM_DecodePcoIpv6Item
- Description     : 译码PCO信元中的IP项，如P-CSCF IPV6 ADDRESS，DNS SERVER IPV6 ADDRESS
-                   等
- Input           : None
- Output          : None
- Return          : CNAS_EHSM_CAUSE_ENUM_UINT8
 
- History         :
-  1.日    期    : 2015年6月8日
-    作    者    : f00279542
-    修改内容    : 新生成函数
-
-*****************************************************************************/
 CNAS_EHSM_CAUSE_ENUM_UINT8  CNAS_EHSM_DecodePcoIpv6Item
 (
     VOS_UINT8                          *pucMsg,
@@ -139,20 +112,7 @@ CNAS_EHSM_CAUSE_ENUM_UINT8  CNAS_EHSM_DecodePcoIpv6Item
     return CNAS_EHSM_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : CNAS_EHSM_DecodePcoIpv6Dns
- Description     : 译码PCO信元中的IPV6 DNS SERVER
-                   等
- Input           : None
- Output          : None
- Return          : CNAS_EHSM_CAUSE_ENUM_UINT8
 
- History         :
-  1.日    期    : 2015年6月8日
-    作    者    : f00279542
-    修改内容    : 新生成函数
-
-*****************************************************************************/
 CNAS_EHSM_CAUSE_ENUM_UINT8  CNAS_EHSM_DecodePcoIpv6Dns
 (
     VOS_UINT8                          *pucTmpMsg,
@@ -194,20 +154,7 @@ CNAS_EHSM_CAUSE_ENUM_UINT8  CNAS_EHSM_DecodePcoIpv6Dns
 
     return CNAS_EHSM_CAUSE_SUCCESS;
 }
-/*****************************************************************************
- Function Name   : CNAS_EHSM_DecodePcoIpv4Dns
- Description     : 译码PCO信元中的IPV4 DNS SERVER
-                   等
- Input           : None
- Output          : None
- Return          : CNAS_EHSM_CAUSE_ENUM_UINT8
 
- History         :
-  1.日    期    : 2015年6月8日
-    作    者    : f00279542
-    修改内容    : 新生成函数
-
-*****************************************************************************/
 CNAS_EHSM_CAUSE_ENUM_UINT8  CNAS_EHSM_DecodePcoIpv4Dns
 (
     VOS_UINT8                          *pucTmpMsg,
@@ -247,20 +194,7 @@ CNAS_EHSM_CAUSE_ENUM_UINT8  CNAS_EHSM_DecodePcoIpv4Dns
     return CNAS_EHSM_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : CNAS_EHSM_DecodePcoIpv4Pcscf
- Description     : 译码PCO信元中的IPV4 P-CSCF
-                   等
- Input           : None
- Output          : None
- Return          : CNAS_EHSM_CAUSE_ENUM_UINT8
 
- History         :
-  1.日    期    : 2015年6月8日
-    作    者    : f00279542
-    修改内容    : 新生成函数
-
-*****************************************************************************/
 CNAS_EHSM_CAUSE_ENUM_UINT8  CNAS_EHSM_DecodePcoIpv4Pcscf
 (
     VOS_UINT8                          *pucTmpMsg,
@@ -299,20 +233,7 @@ CNAS_EHSM_CAUSE_ENUM_UINT8  CNAS_EHSM_DecodePcoIpv4Pcscf
     *pulSum += ulSum;
     return CNAS_EHSM_CAUSE_SUCCESS;
 }
-/*****************************************************************************
- Function Name   : CNAS_EHSM_DecodePcoIpv6Pcscf
- Description     : 译码PCO信元中的IPV6 P-CSCF
-                   等
- Input           : None
- Output          : None
- Return          : CNAS_EHSM_CAUSE_ENUM_UINT8
 
- History         :
-  1.日    期    : 2015年6月8日
-    作    者    : f00279542
-    修改内容    : 新生成函数
-
-*****************************************************************************/
 CNAS_EHSM_CAUSE_ENUM_UINT8  CNAS_EHSM_DecodePcoIpv6Pcscf
 (
     VOS_UINT8                          *pucTmpMsg,
@@ -351,20 +272,7 @@ CNAS_EHSM_CAUSE_ENUM_UINT8  CNAS_EHSM_DecodePcoIpv6Pcscf
     *pulSum += ulSum;
     return CNAS_EHSM_CAUSE_SUCCESS;
 }
-/*****************************************************************************
- Function Name   : CNAS_EHSM_DecodePcoIpv6Pcscf
- Description     : 译码PCO信元中的IPV6 P-CSCF
-                   等
- Input           : None
- Output          : None
- Return          : CNAS_EHSM_CAUSE_ENUM_UINT8
 
- History         :
-  1.日    期    : 2015年6月8日
-    作    者    : f00279542
-    修改内容    : 新生成函数
-
-*****************************************************************************/
 CNAS_EHSM_CAUSE_ENUM_UINT8  CNAS_EHSM_DecodeLocalAddress
 (
     VOS_UINT8                          *pucTmpMsg,
@@ -384,19 +292,7 @@ CNAS_EHSM_CAUSE_ENUM_UINT8  CNAS_EHSM_DecodeLocalAddress
     return CNAS_EHSM_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : CNAS_EHSM_DecodePcoBcm
- Description     : 译码PCO信元中的BCM
- Input           : pucMsg
- Output          : pstPco
- Return          : VOS_VOID
 
- History         :
-  1.日    期    : 2015年6月8日
-    作    者    : f00279542
-    修改内容    : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  CNAS_EHSM_DecodePcoBcm
 (
     VOS_UINT8                          *pucMsg,
@@ -426,19 +322,7 @@ VOS_VOID  CNAS_EHSM_DecodePcoBcm
 }
 
 
-/*****************************************************************************
- Function Name   : CNAS_EHSM_ValidatePcoLen
- Description     : 判断IPCP信元长度的合法性
- Input           : pucMsg       -- 空口消息码流
-                   ucIpcpLength -- IPCP结构长度
- Output          : None
- Return          : CNAS_EHSM_CAUSE_ENUM_UINT8
 
- History         :
-  1.日    期    : 2015年6月8日
-    作    者    : f00279542
-    修改内容    : 新生成函数
-*****************************************************************************/
 CNAS_EHSM_CAUSE_ENUM_UINT8  CNAS_EHSM_ValidateIpcpLen
 (
      VOS_UINT8                         *pucMsg
@@ -498,19 +382,7 @@ CNAS_EHSM_CAUSE_ENUM_UINT8  CNAS_EHSM_ValidateIpcpLen
     return CNAS_EHSM_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : CNAS_EHSM_CheckIpAddrIsEmpty
- Description     : 检查IP地址是否为空
- Input           :
- Output          : None
- Return          : BOOL
 
- History         :
-  1.日    期    : 2015年6月8日
-    作    者    : f00279542
-    修改内容    : 新生成函数
-
-*****************************************************************************/
 
 VOS_UINT8 CNAS_EHSM_CheckIpv4AddrIsEmpty( CNAS_EHSM_IPV4_ADDR_STRU *pstIpAddr)
 {
@@ -525,19 +397,7 @@ VOS_UINT8 CNAS_EHSM_CheckIpv4AddrIsEmpty( CNAS_EHSM_IPV4_ADDR_STRU *pstIpAddr)
     return VOS_FALSE;
 
 }
-/*****************************************************************************
- Function Name   : CNAS_EHSM_OptimizeDnsServer
- Description     : 重新组合DNS
- Input           :
- Output          : None
- Return          : VOS_VOID
 
- History         :
-  1.日    期    : 2015年6月8日
-    作    者    : f00279542
-    修改内容    : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_OptimizeDnsServer
 (
     CNAS_EHSM_CONTEXT_PCO_STRU         *pstPco
@@ -582,19 +442,7 @@ VOS_VOID CNAS_EHSM_OptimizeDnsServer
 
 }
 
-/*****************************************************************************
- Function Name   : CNAS_EHSM_DecodeIpcpOptionContent
- Description     : 解码IPCP Option内容
- Input           :
- Output          : None
- Return          : CNAS_EHSM_CAUSE_ENUM_UINT8
 
- History         :
-      1.日    期    : 2015年6月8日
-    作    者    : f00279542
-    修改内容    : 新生成函数
-
-*****************************************************************************/
 CNAS_EHSM_CAUSE_ENUM_UINT8 CNAS_EHSM_DecodeIpcpOptionContent
 (
     VOS_UINT8                          *pucMsg,
@@ -709,55 +557,7 @@ CNAS_EHSM_CAUSE_ENUM_UINT8 CNAS_EHSM_DecodeIpcpOptionContent
     return CNAS_EHSM_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : CNAS_EHSM_DecodeIpcpContent
- Description     : 译码IPCP的码流
-IPCP
- 0                   1                   2                   3
- 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|     Code      |  Identifier   |            Length             |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-| Options ...
-+-+-+-+-+
 
-IP:
-  0                   1                   2                   3
-  0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
- +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
- |     Type      |    Length     |           IP-Address
- +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-         IP-Address (cont)       |
- +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-DNS Server Address
-  0                   1                   2                   3
-  0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
- +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
- |     Type      |    Length     |      Primary-NBNS-Address
- +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    Primary-NBNS-Address (cont)  |
- +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-NBNS Server Address
-  0                   1                   2                   3
-  0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
- +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
- |     Type      |    Length     |      Secondary-NBNS-Address
- +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   Secondary-NBNS-Address (cont) |
- +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
- Input           : None
- Output          : None
- Return          : VOS_UINT32
-
- History         :
-  1.日    期    : 2015年6月8日
-    作    者    : f00279542
-    修改内容    : 新生成函数
-
-*****************************************************************************/
 CNAS_EHSM_CAUSE_ENUM_UINT8  CNAS_EHSM_DecodeIpcpContent
 (
     VOS_UINT8                          *pucMsg,
@@ -804,20 +604,7 @@ CNAS_EHSM_CAUSE_ENUM_UINT8  CNAS_EHSM_DecodeIpcpContent
 
     return CNAS_EHSM_CAUSE_SUCCESS;
 }
-/*****************************************************************************
- Function Name   : CNAS_EHSM_ValidatePcoLen
- Description     : 判断PCO信元长度的合法性
- Input           : pucMsg      -- 空口消息码流
-                   ucPcoLength -- PCO结构长度
- Output          : usDecodeLen -- 要解码的长度
- Return          : CNAS_EHSM_CAUSE_ENUM_UINT8
 
- History         :
-  1.日    期    : 2015年6月8日
-    作    者    : f00279542
-    修改内容    : 新生成函数
-
-*****************************************************************************/
 CNAS_EHSM_CAUSE_ENUM_UINT8  CNAS_EHSM_ValidatePcoLen
 (
     VOS_UINT8                          *pucMsg,
@@ -888,20 +675,7 @@ CNAS_EHSM_CAUSE_ENUM_UINT8  CNAS_EHSM_ValidatePcoLen
     return CNAS_EHSM_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : CNAS_EHSM_DecodePcoContent
- Description     : 译码PCO内容
- Input           : pucMsg---------------------空口消息码流
-                   pstMsgIE-------------------译码后的空口消息
- Output          : pulIndex-------------------此函数译码的消息长度指针
- Return          : CNAS_EHSM_CAUSE_ENUM_UINT8
 
- History         :
-  1.日    期    : 2015年6月8日
-    作    者    : f00279542
-    修改内容    : 新生成函数
-
-*****************************************************************************/
 CNAS_EHSM_CAUSE_ENUM_UINT8  CNAS_EHSM_DecodePcoContent
 (
     VOS_UINT16                          usMsgLen,
@@ -1010,20 +784,7 @@ CNAS_EHSM_CAUSE_ENUM_UINT8  CNAS_EHSM_DecodePcoContent
     return CNAS_EHSM_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name  : CNAS_EHSM_DecodePco()
- Description    : SM模块解析PCO信息
- Input          :
 
- Output         : VOS_VOID
- Return Value   : VOS_VOID
-
- History        :
-  1.日    期    : 2015年6月8日
-    作    者    : f00279542
-    修改内容    : 新生成函数
-
-*****************************************************************************/
 /*lint -e415 -e416 -e661 -e662*/
 CNAS_EHSM_CAUSE_ENUM_UINT8  CNAS_EHSM_DecodePco
 (
@@ -1057,21 +818,7 @@ CNAS_EHSM_CAUSE_ENUM_UINT8  CNAS_EHSM_DecodePco
     return CNAS_EHSM_CAUSE_SUCCESS;
 }/*lint +e415 +e416 +e661 +e662*/
 
-/*****************************************************************************
- Function Name   : CNAS_EHSM_DecodeNwPDNValue
- Description     : PDN地址解码
- Input           :VOS_UINT16             usMsgLen
-                VOS_UINT8             *pucMsg
-                CNAS_EHSM_NW_MSG_STRU   *pstMsgIE
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-  1.日    期    : 2015年6月8日
-    作    者    : f00279542
-    修改内容    : 新生成函数
-
-*****************************************************************************/
 CNAS_EHSM_CAUSE_ENUM_UINT8 CNAS_EHSM_DecodeNwPDNValue
 (
     VOS_UINT16                          usMsgLen,

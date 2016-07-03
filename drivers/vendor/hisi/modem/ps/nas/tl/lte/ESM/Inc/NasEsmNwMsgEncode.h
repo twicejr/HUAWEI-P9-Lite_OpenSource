@@ -1,15 +1,4 @@
-/******************************************************************************
 
-        @(#)Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : NasEsmNwMsgEncode.h
-    Description :
-    History     :
-     1.∂°¿ˆ 00128736      2008-09-01  Draft Enact
-     2.ÀÔ±¯ 49683         2009-01-06  BA8D00870
-     3.—Ó‹Áª› 00135146    2009-03-06  Modify  BA8D01127
-******************************************************************************/
 
 #ifndef _NASESMNWMSGENCODE_H
 #define _NASESMNWMSGENCODE_H
@@ -375,13 +364,11 @@ extern VOS_UINT32  NAS_ESM_ApnTransformaton
     const APP_ESM_APN_INFO_STRU  *pstAPNInfoBeforeTrans
 );
 
-/* leixiantiao 00258641 ΩµµÕ»¶∏¥‘”∂» 2014-7-20 begin */
 extern VOS_UINT32 NAS_ESM_CheckApnReverseTransformationParaValid
 (
     const APP_ESM_APN_INFO_STRU  *pstAPNInfoAfterTrans,
     const NAS_ESM_CONTEXT_APN_STRU  *pstAPNInfoBeforeTrans
 );
-/* leixiantiao 00258641 ΩµµÕ»¶∏¥‘”∂» 2014-7-20 end */
 
 
 extern VOS_UINT32  NAS_ESM_ApnReverseTransformation

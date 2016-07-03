@@ -319,7 +319,6 @@ typedef struct tagPTPV2_FOREIGN_MASTER_S
     USHORT          usRcvAnnSequenceId;                 /*master announce 序列号 主机顺序*/
     USHORT          usStepsRemoved;                     /*网络序*/
 
-    /*Add by heyijun 00218462 for AR-IP-PTP.001 支持PTSF配置参与选源, 2014-11 */
     ULONG            ulPtsfSync;                        /*Sync PTSF*/
     ULONG            ulPtsfUnused;                      /*当前未使用*/
     ULONG            ulRecvAnnCount;                    /*接收到的ann报文统计,少于2个则不能参与选源*/

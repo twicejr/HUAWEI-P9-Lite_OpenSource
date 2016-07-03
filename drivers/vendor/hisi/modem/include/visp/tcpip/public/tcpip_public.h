@@ -1,26 +1,4 @@
-/*******************************************************************************
-*
-*
-*                Copyright 2007, Huawei Technologies Co. Ltd.
-*                            ALL RIGHTS RESERVED
-*
-*-------------------------------------------------------------------------------
-*
-*                              tcpip_public.h
-*
-*  Project Code: VISPV100R006C02
-*   Module Name: PUBLIC
-*  Date Created: 2007-07-30
-*        Author: luogaowei61496
-*   Description: PUBLIC模块对外头文件
-*
-*-------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  -----------------------------------------------------------------------------
-*  2007-07-30   luogaowei61496          Create
-*  2007-09-19   y62007                  modify for A82D20269
-*******************************************************************************/
+
 
 #ifndef  _TCPIP_PUBLIC_H_
 #define  _TCPIP_PUBLIC_H_

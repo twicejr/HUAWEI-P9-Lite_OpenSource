@@ -1,38 +1,4 @@
-/*******************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : MmcMmInterface.h
-  Description : MMC与MM接口头文件
-  History     :
-      1.  张志勇   2003.11.26   新版作成
 
-      2.日    期   : 2006年3月28日
-        作    者   : liuyang id:48197
-        修改内容   : 问题单号：A32D02606
-      3.  s46746   2006-03-39   根据问题单A32D02486修改
-
-      4.日    期   : 2006年5月4日
-        作    者   : liuyang id:48197
-        修改内容   : 问题单号:A32D03487
-      5.日    期  : 2006年12月4日
-        作    者  : luojian id:60022475
-        修改内容  : 增加 #pragma pack(4)，问题单号:A32D07779
-      6.日    期  : 2007年9月21日
-        作    者  : luojian id:107747
-        修改内容  : 问题单号：AT2D01703,MMCMM_COMBINED_RAU_ACCEPTED消息增加
-                    RealFlag标志
-      7.日    期  : 2007年10月06日
-        作    者  : l65478
-        修改内容  : 问题单号：A32D12977
-      8.日    期   : 2009年01月15日
-        作    者   : l00130025
-        修改内容   : 问题单号:AT2D07018,LAU或RAU过程中搜网和SYSCFG设置,发起底层释放链接的操作
-      9.日    期   : 2012年01月11日
-        作    者   : w00176964
-        修改内容   : asn 解析统一调整接口头文件
-     10.日    期   : 2012年02月02日
-        作    者   : w00176964
-        修改内容   : V7R1 PhaseIV 合入
-*******************************************************************************/
 #ifndef _MMC_MM_INTERFACE_H_
 #define _MMC_MM_INTERFACE_H_
 
@@ -98,13 +64,7 @@
 /*****************************************************************************
   3 枚举定义
 *****************************************************************************/
-/*****************************************************************************
- 枚举名    : MMC_MM_MSG_TYPE_ENUM
- 结构说明  : MMC和MM之间的原语ulMsgName
- 1.日    期   : 2012年1月11日
-   作    者   : w00176964
-   修改内容   : ASN解析统一调整
-*****************************************************************************/
+
 enum MMC_MM_MSG_TYPE_ENUM
 {
     /* 消息名称 */                      /*消息ID*/  /* 备注 */
@@ -150,9 +110,7 @@ enum MMC_MM_MSG_TYPE_ENUM
     MMCMM_START_CNF                     = 5,   /* _H2ASN_MsgChoice MMCMM_START_CNF_STRU */
     MMCMM_DETACH_CNF                    = 7,   /* _H2ASN_MsgChoice MMCMM_DETACH_CNF_STRU */
     MMCMM_POWER_OFF_CNF                 = 9,   /* _H2ASN_MsgChoice MMCMM_POWER_OFF_CNF_STRU */
-    /* Deleted by s00261364 for V3R360_eCall项目, 2014-4-15, begin */
 
-    /* Deleted by s00261364 for V3R360_eCall项目, 2014-4-15, end */
     MMCMM_RR_CONN_INFO_IND              = 13,  /* _H2ASN_MsgChoice MMCMM_RR_CONN_INFO_IND_STRU */
     MMCMM_RESUME_RSP                    = 15,  /* _H2ASN_MsgChoice MMCMM_RESUME_RSP_STRU */
     MMCMM_REGISTER_STATE_CHANGE_IND     = 17,  /* _H2ASN_MsgChoice MMCMM_REGISTER_STATE_CHANGE_IND_ST */
@@ -207,13 +165,7 @@ enum MM_MMC_LU_PROC_ENUM
 };
 typedef VOS_UINT32 MM_MMC_LU_PROC_ENUM_U32;
 
-/*****************************************************************************
- 枚举名: MMC_MM_DETACH_TYPE_ENUM
- 枚举说明:ATTACH类型
- 1.日    期   : 2011年7月01日
-   作    者   : w00166186
-   修改内容   : 调整消息结构体内容
-*****************************************************************************/
+
 enum MMC_MM_DETACH_TYPE_ENUM
 {
     MMC_MM_PS_DETACH        = 1,
@@ -223,13 +175,7 @@ enum MMC_MM_DETACH_TYPE_ENUM
 };
 typedef VOS_UINT32 MMC_MM_DETACH_TYPE_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : MMC_MM_DETACH_REASON_ENUM
- 结构说明  : detach原因
- 1.日    期   : 2015年4月11日
-   作    者   : y00245242
-   修改内容   : iteration 13开发
-*****************************************************************************/
+
 enum MMC_MM_DETACH_REASON_ENUM
 {
     MMC_MM_DETACH_REASON_USER_DETACH           = 0,/* 用户触发的detach操作 */
@@ -240,13 +186,7 @@ enum MMC_MM_DETACH_REASON_ENUM
 };
 typedef VOS_UINT32 MMC_MM_DETACH_REASON_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名: MMC_MM_ATTACH_TYPE_ENUM
- 枚举说明:ATTACH类型
- 1.日    期   : 2011年7月01日
-   作    者   : w00166186
-   修改内容   : 新建
-*****************************************************************************/
+
 enum MMC_MM_ATTACH_TYPE_ENUM
 {
     MMC_MM_ATTACH_TYPE_NULL          = 0,
@@ -258,13 +198,7 @@ enum MMC_MM_ATTACH_TYPE_ENUM
 typedef VOS_UINT32 MMC_MM_ATTACH_TYPE_ENUM_UINT32;
 
 
-/*****************************************************************************
- 枚举名: MMC_MM_LAU_REQ_REASON_ENUM
- 枚举说明:MMC通知MM的LAU的原因
- 1.日    期   : 2014年5月21日
-   作    者   : w00167002
-   修改内容   : 新建
-*****************************************************************************/
+
 enum MMC_MM_LAU_REQ_REASON_ENUM
 {
     MMC_MM_LAU_REQ_REASON_SOR          = 0,
@@ -273,13 +207,7 @@ enum MMC_MM_LAU_REQ_REASON_ENUM
 typedef VOS_UINT32 MMC_MM_LAU_REQ_REASON_ENUM_UINT32;
 
 
-/*****************************************************************************
- 枚举名: MMC_MM_SYS_INFO_TYPE_ENUM
- 枚举说明:MMC通知MM的sys info type
- 1.日    期   : 2015年6月11日
-   作    者   : b00269685
-   修改内容   : 新建
-*****************************************************************************/
+
 enum MMC_MM_SYS_INFO_TYPE_ENUM
 {
     MMC_MM_SYS_INFO_TYPE_OTA           = 0,                /* 当前是ota */
@@ -359,21 +287,7 @@ typedef struct
     VOS_UINT32              ulReserve;                                          /* 保留                                     */
 }MMCMM_COVERAGE_LOST_IND_STRU;
 
-/*******************************************************************************
- 结构名    : MMMMC_CS_REG_RESULT_IND_STRU
- 结构说明  : MM向MMC发送LAU结果消息的结构体
- 1.日    期   : 2011年7月11日
-   作    者   : h44270
-   修改内容   : 新建
 
- 2.日    期   : 2012年2月9日
-   作    者   : w00167002
-   修改内容   : 删除真假流程的判断字段
- 3.日    期   : 2012年3月1日
-   作    者   : w00176964
-   修改内容   : DTS2012022407450:CS注册结果中指示MMC是否为联合注册的结果
-
-*******************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /*_H2ASN_Skip*/
@@ -452,16 +366,7 @@ typedef struct
     VOS_UINT32              ulReserve;                                          /* 保留                                     */
 } MMCMM_START_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : MMCMM_DETACH_REQ_STRU
- 结构说明  : MMCMM_DETACH_REQ消息的数据结构
- 1.日    期   : 2011年7月01日
-   作    者   : w00166186
-   修改内容   : 调整消息结构体内容
- 2.日    期   : 2015年4月11日
-   作    者   : y00245242
-   修改内容   : iteration 13开发
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;                              /* 消息头                                   */ /*_H2ASN_Skip*/
@@ -470,13 +375,7 @@ typedef struct
     MMC_MM_DETACH_REASON_ENUM_UINT32    enDetachReason;
 } MMCMM_DETACH_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : MMCMM_DETACH_CNF_STRU
- 结构说明  : MMCMM_DETACH_CNF消息的数据结构
- 1.日    期   : 2011年7月01日
-   作    者   : w00166186
-   修改内容   : 调整消息结构体内容
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;                              /* 消息头                                   */ /*_H2ASN_Skip*/
@@ -485,13 +384,7 @@ typedef struct
     VOS_UINT32                          ulDetachType;                           /* detach 类型 */
 } MMCMM_DETACH_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : MMCMM_W_AC_INFO_CHANGE_IND_STRU
- 结构说明  : MMCMM_W_AC_INFO_CHANGE_IND消息的数据结构
- 1.日    期   : 2012年2月15日
-   作    者   : w00166186
-   修改内容   : 新增结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                         MsgHeader;                          /* 消息头                                   */ /*_H2ASN_Skip*/
@@ -547,13 +440,7 @@ typedef struct
     MMC_MM_ATTACH_TYPE_ENUM_UINT32      enAttachType;                           /* 注册请求类型                                 */
 } MMCMM_ATTACH_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : MMCMM_ATTACH_CNF_STRU
- 结构说明  : MMCMM_ATTACH_CNF消息的数据结构
- 1.日    期   : 2011年7月01日
-   作    者   : w00166186
-   修改内容   : 调整消息结构体内容
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;                              /* 消息头                                   */ /*_H2ASN_Skip*/
@@ -611,9 +498,7 @@ typedef struct
 
     VOS_UINT8           ucUserSpecificSearchFlg;     /* 标志是否本次驻留的小区为用户指定搜网引起 : 0: 否， 1: 是 */
 
-    /* Modified by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, begin */
     RRC_NAS_RESTRICTION_UN              unAcInfo;
-    /* Modified by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, end */
 
     VOS_UINT8           ucCsChanged2UnBarFlg;             /* 是否CS域从bar转为不bar: 0 无，1 有 */
     VOS_UINT8           ucPsChanged2UnBarFlg;             /* 是否PS域从bar转为不bar: 0 无，1 有 */
@@ -647,16 +532,7 @@ typedef struct
 }MMCMM_RESUME_RSP_STRU;
 
 
-/*****************************************************************************
- 结构名称: MMCMM_RESUME_IND_STRU
- 结构说明: MMCMM_RESUME_IND消息的结构体内容
- 1.日    期   : 2011年7月12日
-   作    者   : h44270
-   修改内容   : V7R1 PhaseII阶段调整，增加MMCMM_RESUME_IND消息的结构
- 2.日    期   : 2013年11月26日
-   作    者   : w00176964
-   修改内容   : Volte PhaseII调整:增加信令连接存在标记
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;                              /*_H2ASN_Skip*/
@@ -667,13 +543,7 @@ typedef struct
 }MMCMM_RESUME_IND_STRU;
 
 
-/*****************************************************************************
- 结构名称: MMCMM_SUSPEND_IND_STRU
- 结构说明: MMCMM_SUSPEND_IND消息的结构体内容
- 1.日    期   : 2011年7月12日
-   作    者   : h44270
-   修改内容   : V7R1 PhaseII阶段调整，增加MMCMM_RESUME_IND消息的结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;                              /*_H2ASN_Skip*/
@@ -685,13 +555,7 @@ typedef struct
 }MMCMM_SUSPEND_IND_STRU;
 
 
-/*****************************************************************************
- 结构名称: MMMMC_ABORT_IND_STRU
- 结构说明: MMMMC_ABORT_IND消息的结构体内容
- 1.日    期   : 2012年7月12日
-   作    者   : s00217060
-   修改内容   : for sync lmm cs state，增加MMMMC_ABORT_IND消息的结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                              /*_H2ASN_Skip*/
@@ -699,13 +563,7 @@ typedef struct
     VOS_UINT8                           aucReserve1[2];                         /* 保留 */
 }MMMMC_ABORT_IND_STRU;
 
-/*****************************************************************************
- 结构名    : MMCMM_SIM_AUTH_FAIL_IND_STRU
- 结构说明  : MMCMM_SIM_AUTH_FAIL_IND_STRU的数据结构
- 1.日    期: 2013年11月16日
-   作    者: m00217266
-   修改内容:
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                         MsgHeader;                          /* 消息头  */ /*_H2ASN_Skip*/
@@ -714,13 +572,7 @@ typedef struct
     NAS_MM_COM_SERVICE_DOMAIN_ENUM_UINT8    enSrvDomain;
 }MMCMM_SIM_AUTH_FAIL_IND_STRU;
 
-/*****************************************************************************
- 结构名称: MMCMM_SRVCC_INFO_NOTIFY_STRU
- 结构说明: MMCMM_SRVCC_INFO_NOTIFY消息的结构体内容
- 1.日    期   : 2013年11月26日
-   作    者   : W00176964
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                 MsgHeader;                                          /* 消息头                                   */ /*_H2ASN_Skip*/
@@ -729,13 +581,7 @@ typedef struct
 
 
 
-/*****************************************************************************
- 结构名    : RRMM_RAT_CHANGE_IND_STRU
- 结构说明  : RRMM_RAT_CHANGE_IND_STRU的数据结构
- 1.日    期: 2014年3月27日
-   作    者: y00176023
-   修改内容: V8R1 DSDS II 增加RAT变化时的通知
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;          /*_H2ASN_Skip*/
@@ -743,13 +589,7 @@ typedef struct
     VOS_UINT8                           aucReserve1[3];     /* 保留 */
 }MMCMM_RAT_CHANGE_IND_STRU;
 
-/*****************************************************************************
- 结构名称: MMCMM_LAU_REQ_STRU
- 结构说明: MMCMM_LAU_REQ_STRU消息的结构体内容
- 1.日    期   : 2013年11月26日
-   作    者   : W00167002
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;                                         /* 消息头                                   */ /*_H2ASN_Skip*/
@@ -758,78 +598,30 @@ typedef struct
 
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 结构名    : MMCMM_LMM_ATTACH_IND_STRU
- 结构说明  : MMCMM_LMM_ATTACH_IND的数据结构
- 1.日    期: 2011年10月26日
-   作    者: w00176964
-   修改内容: V7R1 PhaseIII阶段调整:新增MMC通知MM关于LMM的attach结果的数据结构
-*****************************************************************************/
+
 typedef  LMM_MMC_ATTACH_IND_STRU MMCMM_LMM_ATTACH_IND_STRU;
 
-/*****************************************************************************
- 结构名    : MMCMM_LMM_TAU_RESULT_IND_STRU
- 结构说明  : MMCMM_LMM_TAU_RESULT_IND的数据结构
- 1.日    期: 2011年10月26日
-   作    者: w00176964
-   修改内容: V7R1 PhaseIII阶段调整:新增MMC通知MM关于LMM的TAU结果的数据结构
-*****************************************************************************/
+
 typedef  LMM_MMC_TAU_RESULT_IND_STRU MMCMM_LMM_TAU_RESULT_IND_STRU;
 
 
-/*****************************************************************************
- 结构名    : MMCMM_LMM_MT_DETACH_IND_STRU
- 结构说明  : MMCMM_LMM_MT_DETACH_IND的数据结构
- 1.日    期: 2011年10月26日
-   作    者: w00176964
-   修改内容: V7R1 PhaseIII阶段调整:新增MMC通知MM关于LMM的detach结果的数据结构
-*****************************************************************************/
+
 typedef  LMM_MMC_DETACH_IND_STRU MMCMM_LMM_MT_DETACH_IND_STRU;
 
-/*****************************************************************************
- 结构名    : MMCMM_LMM_SERVICE_RESULT_IND_STRU
- 结构说明  : MMCMM_LMM_SERVICE_RESULT_IND的数据结构
- 1.日    期: 2011年10月26日
-   作    者: w00176964
-   修改内容: V7R1 PhaseIII阶段调整:新增MMC通知MM关于LMM的service结果的数据结构
-*****************************************************************************/
+
 typedef  LMM_MMC_SERVICE_RESULT_IND_STRU MMCMM_LMM_SERVICE_RESULT_IND_STRU;
 
-/*****************************************************************************
- 结构名    : MMCMM_LMM_MO_DETACH_IND_STRU
- 结构说明  : MMCMM_LMM_MO_DETACH_IND的数据结构
- 1.日    期: 2011年11月28日
-   作    者: w00176964
-   修改内容: V7R1 PhaseIV阶段调整:新增MMC通知MM关于LMM的UE detach结果的数据结构
-*****************************************************************************/
+
 typedef  LMM_MMC_DETACH_CNF_STRU MMCMM_LMM_MO_DETACH_IND_STRU;
 
-/*****************************************************************************
- 结构名    : MMCMM_LMM_LOCAL_DETACH_IND_STRU
- 结构说明  : MMCMM_LMM_LOCAL_DETACH_IND_STRU的数据结构
- 1.日    期: 2011年12月6日
-   作    者: w00176964
-   修改内容: V7R1 PhaseIV阶段调整:新增MMC通知MM关于LMM的LOCAL detach结果的数据结构
-*****************************************************************************/
+
 typedef  LMM_MMC_DETACH_IND_STRU MMCMM_LMM_LOCAL_DETACH_IND_STRU;
 
-/*****************************************************************************
- 结构名    : MMC_MM_LTE_SYS_INFO_IND_STRU
- 结构说明  : MMC_MM_LTE_SYS_INFO_IND的数据结构
- 1.日    期: 2012年04月26日
-   作    者: w00166186
-   修改内容: 新增结构
-*****************************************************************************/
+
 typedef  LMM_MMC_SYS_INFO_IND_STRU MMC_MM_LTE_SYS_INFO_IND_STRU;
 
 
-/*****************************************************************************
- 结构名    : MMCMM_LMM_TIMER_STATE_NOTIFY_STRU
- 结构说明  : MMCMM_LMM_TIMER_STATUS_NOTIFY_STRU的数据结构
- 1.日    期: 2012年2月27日
-   作    者: z00161729
-   修改内容: V7R1 C50 支持ISR功能调整:新增MMC通知MM关于LMM定时器状态的数据结构
-*****************************************************************************/
+
 typedef  LMM_MMC_TIMER_STATE_NOTIFY_STRU MMCMM_LMM_TIMER_STATE_NOTIFY_STRU;
 
 #endif

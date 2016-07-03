@@ -29,7 +29,6 @@
 extern "C" {
 #endif
 
-/*Mod By t00110672 For BC3D01422,2009.5.7,增加最后一个参数lTmpLenth*/
 ULONG PTP_SIG_ProcRequestUnicast(PTP_PORT_S *pstPtpPort, CHAR *pcTlv, PTP_MSGHEADER_S*pstHeader, PTP_ADDRINFO_S *pstAddrInfo,LONG lTmpLenth);
 /*End*/
 
@@ -63,7 +62,6 @@ VOID PTP_SIG_PrintSig(PTP_SIGNALING_HEARDER_S *pstSigMsgHeader, PTP_ADDRINFO_S *
 
 ULONG PTP_SIG_BuildReqTlv(PTP_PORT_S *pstPtpPort,CHAR *pcTlv,CHAR *pcExtenTlv,ULONG ulMsgType,BOOL_T bTwoTlv);
 
-/*Mod By t00110672/z00146309  10-1-11,支持路由器关于实现最新草案的需求 */
 /*增加pstDstPortAddr参数*/
 ULONG PTP_SIG_BuildGrantTlv(PTP_PORT_S * pstPtpPort, PTP_UNI_SLAVE_NODE_S * pstUnicastSlave, CHAR * pcTlv, ULONG ulMsgType, BOOL_T bR);
 /*Mod End*/
@@ -72,7 +70,6 @@ ULONG PTP_SIG_BuildCancelTlv(PTP_PORT_S *pstPtpPort,CHAR *pcTlv,ULONG ulMsgType)
 
 ULONG PTP_SIG_BuildAckTlv(PTP_PORT_S *pstPtpPort,CHAR *pcTlv,ULONG ulMsgType);
 
-/*ST问题: 增加DELAY的多播处理 20080715 l00128792*/
 ULONG PTP_SIG_ProcMDelayAckCancel(USHORT usMsgType, PTP_PORT_S *pstPtpPort, PTP_PPI_S *pstPtpPpi);
 /*ST问题: END*/
 VOID PTP_SIG_ProcRequestOtherMsg(PTP_PORT_S * pstPtpPort, PTP_REQUEST_UNICAST_TLV_S * pstReqUniTranTLV, PTP_MSGHEADER_S * pstHeader, PTP_ADDRINFO_S * pstAddrInfo, PTP_UNI_SLAVE_NODE_S * pstUnicastSlave);

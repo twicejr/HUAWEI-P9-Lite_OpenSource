@@ -1,56 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : MnMsgUsimProc.c
-  版 本 号   : 初稿
-  作    者   : 周君 40661
-  生成日期   : 2008年2月15日
-  最近修改   :
-  功能描述   : 实现MSG模块接收到USIM模块发送过来消息的函数接口
-  函数列表   :
-
-  修改历史   :
-  1.日    期   : 2008年2月15日
-    作    者   : 周君 40661
-    修改内容   : 创建文件
-  2.日    期   : 2008年8月14日
-    作    者   : 傅映君 62575
-    修改内容   : 问题单号 AT2D03741,编程规范问题：   1。枚举类型定义   2。全局变量的外部声名   3。文件或函数的注释问题；   打印信息不完整   1。增加调试打印代码
-  3.日    期   : 2008年8月25日
-    作    者   : 傅映君 62575
-    修改内容   : 问题单号 AT2D04608,
-  4.日    期   : 2008年12月25日
-    作    者   : 傅映君 62575
-    修改内容   : 问题单号 AT2D07869, SIM卡中短信息存储区满后接收一条需要存储的短信溢出，短信模块写(U)SIM卡的SMSS文件失败
-  5.日    期   : 2009年3月3日
-    作    者   : z40661
-    修改内容   : 问题单号：AT2D07942（AT2D09557）, 短信中心号码上报时间较长
-  6.日    期   : 2009年3月3日
-    作    者   : z40661
-    修改内容   : 问题单号：AT2D08974, 短信打印级别过高
-  7.日    期   : 2009年4月22日
-    作    者   : f62575
-    修改内容   : 问题单号 AT2D11196, [SMS]短信状态报告接收存储后，查询短信存储状态，已使用的短信记录条数没有增加
-  8.日    期   : 2009年05月11日
-    作    者   : f62575
-    修改内容   : 问题单号：AT2D11136，PICS表设置为仅支持SM存储，执行GCF测试用例34.2.5.3，测试用例失败
-  9.日    期   : 2009年08月7日
-    作    者   : f62575
-    修改内容   : STK特性合入
- 10.日    期   : 2009年10月28日
-    作    者   : f62575
-    修改内容   : PC工程桩合入；
- 11.日    期   : 2009年12月9日
-    作    者   : f62575
-    修改内容   : 问题单号:AT2D15782, 短信存储区满时接收到短信状态报告给网络回复RP-ACK消息，
-                                 与标竿相同情况下回复RP-ERROR(错误原因值22内存满不一致)；
-
- 12.日    期   : 2009年12月16日
-    作    者   : f62575
-    修改内容   : AT2D16304, STK PP DOWN功能完善和SMS相关的(U)SIM文件REFRESH
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -62,9 +10,7 @@
 
 #include "NasUsimmApi.h"
 
-/* Added by l00208543 for V9R1 STK升级, 2013-07-10, begin */
 #include "MnMsgSmCommProc.h"
-/* Added by l00208543 for V9R1 STK升级, 2013-07-10, end */
 
 #include "TafSdcCtx.h"
 
@@ -125,20 +71,7 @@ VOS_UINT8                              g_ucSetEfSmsNoResponse = 0;
 /*****************************************************************************
   5 函数实现
 *****************************************************************************/
-/***********************************************************************
-函 数 名  : MSG_PrintUsimReturnRecStru
-功能描述  : 打印MN_MSG_USIM_RETURN_REC_STRU结构数据
-输入参数  : pstUsimReturnRec MN_MSG_USIM_RETURN_REC_STRU结构数据
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2008年8月13日
-   作    者   : f62575
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_VOID MSG_PrintUsimReturnRecStru(
     MN_MSG_USIM_RETURN_REC_STRU        *pstUsimReturnRec
 )
@@ -153,30 +86,7 @@ VOS_VOID MSG_PrintUsimReturnRecStru(
     MN_INFO_LOG1("MSG_PrintUsimReturnRecStru: ucDeleteSrvParmSuccRec ", (VOS_INT32)pstUsimReturnRec->ucDeleteSrvParmSuccRec);
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_Usim_Stub
- 功能描述  : 模拟卡操作后给请求卡操作的模块回应响应
- 输入参数  : ulDestTskId   -  响应消息发送的目的PID
-             usEfId        -  操作失败的USIM文件ID
-             ucResult      -  响应消息中的操作结果数据，如成功或失败
-             ucRecordNum   -  linear fixed或cycle fixed类型EF记录号
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月15日
-    作    者   : 周君 40661
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月11日
-    作    者   : l00167671
-    修改内容   : DTS2012121802573, TQE清理
-  3.日    期   : 2015年02月06日
-    作    者   : h00313353
-    修改内容   : USIMM卡接口调整
-
-*****************************************************************************/
 VOS_VOID MN_MSG_Usim_Stub(
     VOS_UINT32                          ulDestTskId,
     VOS_UINT16                          usEfId,
@@ -225,22 +135,7 @@ VOS_VOID MN_MSG_Usim_Stub(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : MSG_SmssFileContentToMem
- 功能描述  : 将EFSMSS文件中的有效信息存储到短信内存中
- 输入参数  : pucEf      文件内容首地址
-             usEfLen    文件长度
- 输出参数  : 无
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2009年12月16日
-    作    者   : f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID MSG_SmssFileContentToMem(
     VOS_UINT8                           *pucEf,
     VOS_UINT16                          usEfLen
@@ -262,23 +157,7 @@ VOS_VOID MSG_SmssFileContentToMem(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MSG_UpdateMemSmStatus
- 功能描述  : 写USIM卡失败后,需要将内存中的短信状态恢复为原来的状态,该函数主要用于
- Read,List,Modify Sm等操作
- 输入参数  : ucRecIndex   -  需要更新的索引位置
-             ucStatus     - 需要更新内存中的状态
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月15日
-    作    者   : 周君 40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL VOS_VOID MSG_UpdateMemSmStatus(
     VOS_UINT8                           ucRecIndex,
     VOS_UINT8                           ucStatus
@@ -296,28 +175,7 @@ LOCAL VOS_VOID MSG_UpdateMemSmStatus(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : MSG_ProcEfSmssGetFileRsp
- 功能描述  : 处理接收到USIM发送过来EFSMSS文件的内容
- 输入参数  : pMsg:USIM发送过来的获取文件的内容
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2007年11月27日
-    作    者   : z40661
-    修改内容   : 新生成函数
-  2.日    期   : 2009年12月16日
-    作    者   : f62575
-    修改内容   : AT2D16304, STK PP DOWN功能完善和SMS相关的(U)SIM文件REFRESH
-  3.日    期   : 2012年12月26日
-    作    者   : 张鹏 /z00214637
-    修改内容   : PS_USIM_GET_FILE_RLT_SUCCESS替换为VOS_OK
-  4.日    期   : 2015年02月06日
-    作    者   : h00313353
-    修改内容   : USIMM卡接口调整
-*****************************************************************************/
+
 LOCAL VOS_VOID MSG_ProcEfSmssGetFileRsp(
     VOS_VOID                            *pMsg
 )
@@ -359,27 +217,7 @@ LOCAL VOS_VOID MSG_ProcEfSmssGetFileRsp(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : MSG_ProcEfSmspGetFileRsp
- 功能描述  : 处理接收到USIM发送过来EFSMSP文件的内容
- 输入参数  : pMsg:USIM发送过来的获取文件的内容
- 输出参数  : 无
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2007年12月12日
-    作    者   : z40661
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月26日
-    作    者   : 张鹏 /z00214637
-    修改内容   : PS_USIM_GET_FILE_RLT_SUCCESS替换为VOS_OK
-  3.日    期   : 2015年02月06日
-    作    者   : h00313353
-    修改内容   : USIMM卡接口调整
-*****************************************************************************/
 LOCAL VOS_VOID MSG_ProcEfSmspGetFileRsp(
     VOS_VOID                            *pMsg
 )
@@ -422,27 +260,7 @@ LOCAL VOS_VOID MSG_ProcEfSmspGetFileRsp(
     MN_INFO_LOG("MSG_ProcEfSmspGetFileRsp: step out of function.");
 }
 
-/*****************************************************************************
- 函 数 名  : MSG_ProcEfSmsGetFileRsp
- 功能描述  : 处理接收到USIM发送过来EFSMS文件的内容
- 输入参数  : pMsg:USIM发送过来的获取文件的内容
- 输出参数  : 无
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2007年12月12日
-    作    者   : z40661
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月26日
-    作    者   : 张鹏 /z00214637
-    修改内容   : PS_USIM_GET_FILE_RLT_SUCCESS替换为VOS_OK
-  3.日    期   : 2015年02月06日
-    作    者   : h00313353
-    修改内容   : USIMM卡接口调整
-*****************************************************************************/
 LOCAL VOS_VOID MSG_ProcEfSmsGetFileRsp(
     VOS_VOID                            *pMsg
 )
@@ -511,27 +329,7 @@ LOCAL VOS_VOID MSG_ProcEfSmsGetFileRsp(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : MSG_ProcEfSmsrGetFileRsp
- 功能描述  : 处理接收到USIM发送过来EFSMSR文件的内容
- 输入参数  : pMsg:USIM发送过来的获取文件的内容
- 输出参数  : 无
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2007年12月12日
-    作    者   : z40661
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月26日
-    作    者   : 张鹏 /z00214637
-    修改内容   : PS_USIM_GET_FILE_RLT_SUCCESS替换为VOS_OK
-  3.日    期   : 2015年02月06日
-    作    者   : h00313353
-    修改内容   : USIMM卡接口调整
-*****************************************************************************/
 LOCAL VOS_VOID MSG_ProcEfSmsrGetFileRsp(
     VOS_VOID                            *pMsg
 )
@@ -564,28 +362,7 @@ LOCAL VOS_VOID MSG_ProcEfSmsrGetFileRsp(
     }
 }
 
-/***********************************************************************
-函 数 名  : MSG_ReadSaveUsimMsgRsp
-功能描述  : 读短信时,如果短信状态发生了改变,需要写入USIM中,USIM中写入完成后,
-            此函数根据写入结果进行处理
-输入参数  : pMsg:USIM中收到的消息
-输出参数  : 无
-返 回 值  :
 
-调用函数  :
-被调函数  :
-
-修改历史      :
- 1.日    期   : 2007年11月26日
-   作    者   : z40661
-   修改内容   : 新生成函数
- 2.日    期   : 2012年12月26日
-   作    者   : 张鹏/z00214637
-   修改内容   : PS_USIM_SET_FILE_RLT_SUCCESS转换为VOS_OK
- 3.日    期   : 2015年02月06日
-   作    者   : h00313353
-   修改内容   : USIMM卡接口调整
-************************************************************************/
 LOCAL VOS_VOID  MSG_ReadSaveUsimMsgRsp(
     VOS_VOID                            *pMsg,
     MN_CLIENT_ID_T                      clientId
@@ -611,28 +388,7 @@ LOCAL VOS_VOID  MSG_ReadSaveUsimMsgRsp(
     }
 }
 
-/***********************************************************************
-函 数 名  : MSG_ListSaveUsimMsgRsp
-功能描述  : 列表短信时,如果短信状态发生了改变,需要写入USIM中,USIM中写入完成后,
-            此函数根据写入结果进行处理
-输入参数  : pMsg:USIM中收到的消息
-输出参数  : 无
-返 回 值  :
 
-调用函数  :
-被调函数  :
-
-修改历史      :
- 1.日    期   : 2007年11月26日
-   作    者   : z40661
-   修改内容   : 新生成函数
- 2.日    期   : 2012年12月26日
-   作    者   : 张鹏/z00214637
-   修改内容   : PS_USIM_SET_FILE_RLT_SUCCESS转换为VOS_OK
- 3.日    期   : 2015年02月06日
-   作    者   : h00313353
-   修改内容   : USIMM卡接口调整
-************************************************************************/
 LOCAL VOS_VOID MSG_ListSaveUsimMsgRsp(
     VOS_VOID                            *pMsg,
     MN_CLIENT_ID_T                      clientId
@@ -673,34 +429,7 @@ LOCAL VOS_VOID MSG_ListSaveUsimMsgRsp(
     }
 }
 
-/***********************************************************************
-函 数 名  : MSG_WriteSaveUsimMsgRsp
-功能描述  : 向USIM中写短信是,USIM返回写入短信成功或失败的结果后,调用此函数进行上报等处理
-输入参数  : pMsg:USIM中收到的消息
-            pstSmaUsimInfo:当前进行操作的节点信息
-输出参数  : 无
-返 回 值  :
 
-调用函数  :
-被调函数  :
-
-修改历史      :
- 1.日    期   : 2007年11月26日
-   作    者   : z40661
-   修改内容   : 新生成函数
- 2.日    期   : 2012年8月10日
-   作    者   : L00171473
-   修改内容   : DTS2012082204471, TQE清理
- 3.日    期   : 2012年12月11日
-   作    者   : l00167671
-   修改内容   : DTS2012121802573, TQE清理
- 4.日    期   : 2012年12月26日
-   作    者   : 张鹏/z00214637
-   修改内容   : PS_USIM_SET_FILE_RLT_SUCCESS转换为VOS_OK
- 5.日    期   : 2015年02月06日
-   作    者   : h00313353
-   修改内容   : USIMM卡接口调整
-************************************************************************/
 LOCAL VOS_VOID MSG_WriteSaveUsimMsgRsp(
     VOS_VOID                            *pMsg,
     const MN_MSG_USIM_INFO_STRU         *pstSmaUsimInfo
@@ -757,31 +486,7 @@ LOCAL VOS_VOID MSG_WriteSaveUsimMsgRsp(
     }
 }
 
-/***********************************************************************
-函 数 名  : MSG_DeleteSaveUsimMsgRsp
-功能描述  : 删除短信时,根据USIM返回的结果,调用此函数进行处理
-输入参数  : pMsg:USIM中收到的消息
-            pstSmaUsimInfo:当前进行操作的节点信息
-输出参数  : 无
-返 回 值  :
 
-调用函数  :
-被调函数  :
-
-修改历史      :
- 1.日    期   : 2007年11月26日
-   作    者   : z40661
-   修改内容   : 新生成函数
- 2.日    期   : 2012年8月10日
-   作    者   : L00171473
-   修改内容   : DTS2012082204471, TQE清理
- 3.日    期   : 2012年12月26日
-   作    者   : 张鹏/z00214637
-   修改内容   : PS_USIM_SET_FILE_RLT_SUCCESS转换为VOS_OK
- 4.日    期   : 2015年02月06日
-   作    者   : h00313353
-   修改内容   : USIMM卡接口调整
-************************************************************************/
 LOCAL VOS_VOID MSG_DeleteSaveUsimMsgRsp(
     VOS_VOID                            *pMsg,
     const MN_MSG_USIM_INFO_STRU         *pstSmaUsimInfo
@@ -938,28 +643,7 @@ LOCAL VOS_VOID MSG_DeleteSaveUsimMsgRsp(
     }
 }
 
-/***********************************************************************
-函 数 名  : MSG_ModifySaveUsimMsgRsp
-功能描述  : 修改短信状态时,USIM返回写入短信成功或失败的结果后,调用此函数进行上报等处理
-输入参数  : pMsg:USIM中收到的消息
-            pstSmaUsimInfo:当前进行操作的节点信息
-输出参数  : 无
-返 回 值  :
 
-调用函数  :
-被调函数  :
-
-修改历史      :
- 1.日    期   : 2007年11月26日
-   作    者   : z40661
-   修改内容   : 新生成函数
- 2.日    期   : 2012年12月26日
-   作    者   : 张鹏/z00214637
-   修改内容   : PS_USIM_SET_FILE_RLT_SUCCESS转换为VOS_OK
- 3.日    期   : 2015年02月06日
-   作    者   : h00313353
-   修改内容   : USIMM卡接口调整
-************************************************************************/
 LOCAL VOS_VOID MSG_ModifySaveUsimMsgRsp(
     VOS_VOID                            *pMsg,
     const MN_MSG_USIM_INFO_STRU         *pstSmaUsimInfo
@@ -1021,39 +705,7 @@ LOCAL VOS_VOID MSG_ModifySaveUsimMsgRsp(
     }
 }
 
-/***********************************************************************
-函 数 名  : MSG_RcvSaveUsimMsgRsp
-功能描述  : 收到一条新短信存入USIM后,USIM返回了结果,此函数根据USIM返回结果进行处理
-输入参数  : pMsg:USIM中收到的消息
-输出参数  : 无
-返 回 值  :
 
-调用函数  :
-被调函数  :
-
-修改历史      :
- 1.日    期   : 2007年11月26日
-   作    者   : z40661
-   修改内容   : 新生成函数
- 2.日    期   : 2011年3月21日
-   作    者   : 傅映君/f62575
-   修改内容   : DTS2011031105471，短信溢出存储介质总是SM，没有对ME存储溢出显示问题
- 3.日    期   : 2011年11月08日
-   作    者   : 傅映君/f62575
-   修改内容   : DCM&DEVICE，DCM短信接收定制需求
-  4.日    期   : 2012年12月11日
-    作    者   : l00167671
-    修改内容   : DTS2012121802573, TQE清理
-  5.日    期   : 2012年12月26日
-    作    者   : 张鹏/z00214637
-    修改内容   : PS_USIM_SET_FILE_RLT_SUCCESS转换为VOS_OK
-  6.日    期   : 2014年7月7号
-    作    者   : z00234330
-    修改内容   : coverity清理
-  7.日    期   : 2015年02月06日
-    作    者   : h00313353
-    修改内容   : USIMM卡接口调整
-************************************************************************/
 LOCAL VOS_VOID MSG_RcvSaveUsimMsgRsp(
     VOS_VOID                            *pMsg,
     const MN_MSG_USIM_INFO_STRU         *pstSmaUsimInfo
@@ -1127,27 +779,7 @@ LOCAL VOS_VOID MSG_RcvSaveUsimMsgRsp(
     }
 }
 
-/***********************************************************************
-函 数 名  : MSG_SendSaveUsimMsgRsp
-功能描述  : 发送短信时存入USIM后(状态为not sent),USIM返回了结果,此函数根据USIM返回结果进行处理
-输入参数  : pMsg:USIM中收到的消息
-输出参数  : 无
-返 回 值  :
 
-调用函数  :
-被调函数  :
-
-修改历史      :
- 1.日    期   : 2007年11月26日
-   作    者   : z40661
-   修改内容   : 新生成函数
- 2.日    期   : 2012年12月26日
-   作    者   : 张鹏/z00214637
-   修改内容   : PS_USIM_SET_FILE_RLT_SUCCESS转换为VOS_OK
- 3.日    期   : 2015年02月06日
-   作    者   : h00313353
-   修改内容   : USIMM卡接口调整
-************************************************************************/
 LOCAL VOS_VOID  MSG_SendSaveUsimMsgRsp(
     VOS_VOID                            *pMsg,
     MN_CLIENT_ID_T                      clientId
@@ -1176,27 +808,7 @@ LOCAL VOS_VOID  MSG_SendSaveUsimMsgRsp(
     }
 }
 
-/***********************************************************************
-函 数 名  : MSG_RcvMoRptSaveUsimMsgRsp
-功能描述  : 发送短信时,收到短信报告,更改USIM中短信状态(修改为sent),收到USIM的回复
-输入参数  : pMsg:USIM中收到的消息
-输出参数  : 无
-返 回 值  :
 
-调用函数  :
-被调函数  :
-
-修改历史      :
- 1.日    期   : 2007年11月26日
-   作    者   : z40661
-   修改内容   : 新生成函数
- 2.日    期   : 2012年12月26日
-   作    者   : 张鹏/z00214637
-   修改内容   : PS_USIM_SET_FILE_RLT_SUCCESS转换为VOS_OK
- 3.日    期   : 2015年02月06日
-   作    者   : h00313353
-   修改内容   : USIMM卡接口调整
-************************************************************************/
 LOCAL VOS_VOID MSG_RcvMoRptSaveUsimMsgRsp(
     VOS_VOID                            *pMsg,
     MN_CLIENT_ID_T                      clientId
@@ -1226,27 +838,7 @@ LOCAL VOS_VOID MSG_RcvMoRptSaveUsimMsgRsp(
     }
 }
 
-/***********************************************************************
-函 数 名  : MN_MSG_SetEfSmspUsimInfo
-功能描述  : 设置短信相关参数USIM中文件EFSMSP时,根据USIM返回的结果,调用此函数进行处理
-输入参数  : pMsg:USIM中收到的消息
-            pstSmaUsimInfo:当前进行操作的节点信息
-输出参数  : 无
-返 回 值  :
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2007年11月26日
-   作    者   : z40661
-   修改内容   : 新生成函数
- 2.日    期   : 2012年12月26日
-   作    者   : 张鹏/z00214637
-   修改内容   : PS_USIM_SET_FILE_RLT_SUCCESS转换为VOS_OK
- 3.日    期   : 2015年02月06日
-   作    者   : h00313353
-   修改内容   : USIMM卡接口调整
-************************************************************************/
 LOCAL VOS_VOID MSG_WriteEfSmspUsimRsp(
     VOS_VOID                            *pMsg,
     const MN_MSG_USIM_INFO_STRU         *pstSmaUsimInfo
@@ -1304,29 +896,7 @@ LOCAL VOS_VOID MSG_WriteEfSmspUsimRsp(
     }
 }
 
-/***********************************************************************
-函 数 名  : MSG_DeleteEfSmspUsimRsp
-功能描述  : 删除短信参数EFSMSP文件时,根据USIM返回的结果,调用此函数进行处理
-输入参数  : pMsg:USIM中收到的消息
-            pstSmaUsimInfo:当前进行操作的节点信息
-输出参数  : 无
-返 回 值  :
 
-调用函数  :
-被调函数  :
-
-修改历史      :
- 1.日    期   : 2007年11月26日
-   作    者   : z40661
-   修改内容   : 新生成函数
- 2.日    期   : 2012年12月26日
-   作    者   : 张鹏/z00214637
-   修改内容   : PS_USIM_SET_FILE_RLT_SUCCESS转换为VOS_OK
- 3.日    期   : 2015年02月06日
-   作    者   : h00313353
-   修改内容   : USIMM卡接口调整
-
-************************************************************************/
 LOCAL VOS_VOID MSG_DeleteEfSmspUsimRsp(
     VOS_VOID                            *pMsg,
     const MN_MSG_USIM_INFO_STRU         *pstSmaUsimInfo
@@ -1431,28 +1001,7 @@ LOCAL VOS_VOID MSG_DeleteEfSmspUsimRsp(
     }
 }
 
-/***********************************************************************
-函 数 名  : MSG_DeleteStaRptSaveUsimMsgRsp
-功能描述  : 删除短信状态报告时,根据USIM返回的结果,调用此函数进行处理
-输入参数  : pMsg:USIM中收到的消息
-            pstSmaUsimInfo:当前进行操作的节点信息
-输出参数  : 无
-返 回 值  :
 
-调用函数  :
-被调函数  :
-
-修改历史      :
- 1.日    期   : 2007年11月26日
-   作    者   : z40661
-   修改内容   : 新生成函数
- 2.日    期   : 2012年12月26日
-   作    者   : 张鹏/z00214637
-   修改内容   : PS_USIM_SET_FILE_RLT_SUCCESS转换为VOS_OK
- 3.日    期   : 2015年02月06日
-   作    者   : h00313353
-   修改内容   : USIMM卡接口调整
-************************************************************************/
 LOCAL VOS_VOID  MSG_DeleteStaRptSaveUsimMsgRsp(
     VOS_VOID                            *pMsg,
     const MN_MSG_USIM_INFO_STRU         *pstSmaUsimInfo
@@ -1572,27 +1121,7 @@ LOCAL VOS_VOID  MSG_DeleteStaRptSaveUsimMsgRsp(
     }
 }
 
-/***********************************************************************
-函 数 名  : MSG_SetEfSmssUsimRsp
-功能描述  : 设置短信相关参数USIM中文件EFSMSS时,根据USIM返回的结果,调用此函数进行处理
-输入参数  : pMsg:USIM中收到的消息
-输出参数  : 无
-返 回 值  :
 
-调用函数  :
-被调函数  :
-
-修改历史      :
- 1.日    期   : 2007年11月26日
-   作    者   : z40661
-   修改内容   : 新生成函数
- 2.日    期   : 2012年12月26日
-   作    者   : 张鹏/z00214637
-   修改内容   : PS_USIM_SET_FILE_RLT_SUCCESS转换为VOS_OK
- 3.日    期   : 2015年02月06日
-   作    者   : h00313353
-   修改内容   : USIMM卡接口调整
-************************************************************************/
 LOCAL VOS_VOID MSG_SetEfSmssUsimRsp(
     VOS_VOID                            *pMsg
 )
@@ -1606,63 +1135,21 @@ LOCAL VOS_VOID MSG_SetEfSmssUsimRsp(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_InitParm
- 功能描述  : 开机时需要初始化当前设置USIM的记录数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月15日
-    作    者   : 周君 40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MN_MSG_InitParm(VOS_VOID)
 {
     /*初始化设置USIM的记录数*/
     PS_MEM_SET(&f_stMsgUsimReturnRec,0X00,sizeof(f_stMsgUsimReturnRec));
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_GetSmCurrRecFromUsim
- 功能描述  : 获取当前向USIM取短信的记录数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月15日
-    作    者   : 周君 40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8  MN_MSG_GetSmCurrRecFromUsim(VOS_VOID)
 {
     MN_INFO_LOG1("MN_MSG_GetSmCurrRecFromUsim: f_ucMsgCurrSmRec", (VOS_INT32)f_ucMsgCurrSmRec);
     return f_ucMsgCurrSmRec;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_SetSmCurrRecFromUsim
- 功能描述  : 设置当前向USIM取短信的记录数
- 输入参数  : ucCurrRec  - 需要设置的记录数
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月15日
-    作    者   : 周君 40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  MN_MSG_SetSmCurrRecFromUsim(
     VOS_UINT8                           ucCurrRec
 )
@@ -1670,28 +1157,7 @@ VOS_VOID  MN_MSG_SetSmCurrRecFromUsim(
     f_ucMsgCurrSmRec = ucCurrRec;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_SndUsimGetFileReq
- 功能描述  : 调用USIM的函数获取指定文件和指定记录号的内容
- 输入参数  : usEfId:所要读取的文件的ID
-             ucRecNum:要求读取的记录号,为0表示需要读取所有的记录数
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年12月12日
-    作    者   : z40661
-    修改内容   : 新生成函数
-  2.日    期  : 2012年12月26日
-    作    者  : 张鹏 id:00214637
-    修改内容  : USIM对外接口函数变更的处理 ，
-                Client ID 到 PID的转换处理 ，入参封装成结构体。
-  3.日    期   : 2013年6月3日
-    作    者   : z00161729
-    修改内容   : SVLTE 和usim接口调整修改
-*****************************************************************************/
 VOS_UINT32  MN_MSG_SndUsimGetFileReq(
     VOS_UINT16                          usEfId,
     VOS_UINT8                           ucRecNum
@@ -1743,25 +1209,7 @@ VOS_UINT32  MN_MSG_SndUsimGetFileReq(
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_SndUsimGetMaxRecReq
- 功能描述  : 获取USIM文件中EFSMS文件的记录数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2007年12月12日
-    作    者   : z40661
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月26日
-    作    者   : 张鹏 id:00214637
-    修改内容   : USIM对外接口函数变更的处理 ，Client ID 到 PID的转换处理 。
-  3.日    期   : 2013年6月5日
-    作    者   : w00242748
-    修改内容   : svlte和usim接口调整
-*****************************************************************************/
+
 VOS_UINT32  MN_MSG_SndUsimGetMaxRecReq(
     VOS_UINT16                          usEfId
 )
@@ -1780,26 +1228,7 @@ VOS_UINT32  MN_MSG_SndUsimGetMaxRecReq(
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_RcvUsimGetMaxRecRsp
- 功能描述  : 处理接收到USIM发送过来的SMS文件的记录数的原语
- 输入参数  : pMsg:USIM发送过来的获取文件记录数的内容
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年12月12日
-    作    者   : z40661
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月26日
-    作    者   : 张鹏 /z00214637
-    修改内容   : PS_USIM_GET_FILE_RLT_SUCCESS替换为VOS_OK
-  3.日    期   : 2015年02月06日
-    作    者   : h00313353
-    修改内容   : USIMM卡接口调整
-*****************************************************************************/
 VOS_VOID  MN_MSG_RcvUsimGetMaxRecRsp(
     VOS_VOID                            *pMsg
 )
@@ -1872,27 +1301,7 @@ VOS_VOID  MN_MSG_RcvUsimGetMaxRecRsp(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_RcvUsimGetFileRsp
- 功能描述  : 处理接收到USIM发送过来的GetFileRsp的原语
- 输入参数  : pMsg:USIM发送过来的获取文件的内容
- 输出参数  : 无
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2007年11月27日
-    作    者   : z40661
-    修改内容   : 新生成函数
-  2.日    期   : 2012年3月20日
-    作    者   : l00171473
-    修改内容   : for V7R1C50 CSFB&PPAC&ETWS&ISR
-  3.日    期   : 2015年02月06日
-    作    者   : h00313353
-    修改内容   : USIMM卡接口调整
-*****************************************************************************/
 VOS_VOID  MN_MSG_RcvUsimGetFileRsp(
     VOS_VOID                           *pMsg
 )
@@ -1943,33 +1352,7 @@ VOS_VOID  MN_MSG_RcvUsimGetFileRsp(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_SndUsimSetFileReq
- 功能描述  : 发送设置USIM内容请求到USIM卡
- 输入参数  : pMsg:USIM发送过来的设置文件的内容
- 输出参数  : usEfId:EF文件标识
-             *pucEf:需要设置的内容
-             ucEfLen:需要设置的长度
-             ucRecNum:需要设置的记录号
- 返 回 值  : USIMM_API_SUCCESS:下发命令到USIM成功
-             其他:下发命令到USIM失败
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2007年11月27日
-    作    者   : z40661
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月26日
-    作    者   : 张鹏 id:00214637
-    修改内容   : USIM对外接口函数变更的处理 ，Client ID 到 PID的转换处理 ，入参封装成结构体
-                  PS_USIM_SET_FILE_RLT_FAILURE转换为VOS_ERR
-  3.日    期   : 2013年6月3日
-    作    者   : z00161729
-    修改内容   : SVLTE 和usim接口调整修改
-  4.日    期   : 2015年2月6日
-    作    者   : h00313353
-    修改内容   : USIMM卡接口调整
-*****************************************************************************/
+
 VOS_UINT32 MN_MSG_SndUsimSetFileReq(
     VOS_UINT16                          usEfId,
     VOS_UINT8                           *pucEf,
@@ -2010,35 +1393,7 @@ VOS_UINT32 MN_MSG_SndUsimSetFileReq(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_EnvelopRspRpAckWithTpdu
- 功能描述  : 发送带TPDU部分的RP-ACK消息作为ENVELOPE消息接收的 确认；
- 输入参数  : pstEnvelope 卡回复的ENVELOPE操作结果；
- 输出参数  : 无
- 返 回 值  : MN_ERR_NO_ERROR：成功
-             其他：失败及其失败的原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年12月16日
-    作    者   : f62575
-    修改内容   : 新生成函数
-
-  2.日    期   : 2010年8月21日
-    作    者   : zhoujun /40661
-    修改内容   : DTS2010081901387,网络下发的长度过短时,短信有可能内存越界
-
-  3.日    期   : 2013年7月15日
-    作    者   : y00245242
-    修改内容   : 增加消息路由标识
-  4.日    期   :2014年9月28日
-    作    者   :s00217060
-    修改内容   :for cs_err_log
-  5.日    期   : 2015年02月06日
-    作    者   : h00313353
-    修改内容   : USIMM卡接口调整
-*****************************************************************************/
 VOS_UINT32 MN_MSG_EnvelopRspRpAckWithTpdu(
     SI_STK_ENVELOPEDWON_CNF_STRU       *pstEnvelope
 )
@@ -2052,9 +1407,7 @@ VOS_UINT32 MN_MSG_EnvelopRspRpAckWithTpdu(
     VOS_UINT32                          ulRet;
     VOS_UINT8                           ucSendLen;
     VOS_UINT8                           *pucSendData;
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-11, begin */
     TAF_MSG_SIGNALLING_TYPE_ENUM_UINT32  enMsgSignallingType;
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-11, end */
 
     PS_MEM_SET(&stRpAck, 0, sizeof(MN_MSG_RP_ACK_STRU));
     PS_MEM_SET(&stDcs, 0, sizeof(MN_MSG_DCS_CODE_STRU));
@@ -2126,14 +1479,10 @@ VOS_UINT32 MN_MSG_EnvelopRspRpAckWithTpdu(
     }
     MN_MSG_EncodeRpAck(&stRpAck, pucSendData,&ucSendLen);
 
-    /* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-11, begin */
     enMsgSignallingType = MN_MSG_GetMtRouteStackType();
-    /* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-11, end */
 
     /*8. RP-ACK消息中RP-ACK消息发送*/
-    /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-11, begin */
     ulRet = MN_MSG_SendSmsRpReportReq(pucSendData,ucSendLen, enMsgSignallingType);
-    /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-11, end */
     if (VOS_OK != ulRet)
     {
         MN_WARN_LOG("MN_MSG_EnvelopRspRpAckWithTpdu: Send Msg Failed");
@@ -2143,34 +1492,7 @@ VOS_UINT32 MN_MSG_EnvelopRspRpAckWithTpdu(
     return MN_ERR_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_EnvelopRspRpErrorWithTpdu
- 功能描述  : 发送带TPDU部分的RP-ERROR消息作为ENVELOPE消息接收的 确认；
- 输入参数  : pstEnvelope 卡回复的ENVELOPE操作结果；
- 输出参数  : 无
- 返 回 值  : MN_ERR_NO_ERROR：成功
-             其他：失败及其失败的原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年12月16日
-    作    者   : f62575
-    修改内容   : 新生成函数
-
-  2.日    期   : 2010年8月21日
-    作    者   : zhoujun /40661
-    修改内容   : DTS2010081901387,网络下发的长度过短时,短信有可能内存越界
-  3.日    期   : 2013年11月04日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseII项目
-  4.日    期   :2014年9月28日
-    作    者   :s00217060
-    修改内容   :for cs_err_log
-  5.日    期   : 2015年02月06日
-    作    者   : h00313353
-    修改内容   : USIMM卡接口调整
-*****************************************************************************/
 VOS_UINT32 MN_MSG_EnvelopRspRpErrorWithTpdu(
     SI_STK_ENVELOPEDWON_CNF_STRU       *pstEnvelope
 )
@@ -2184,9 +1506,7 @@ VOS_UINT32 MN_MSG_EnvelopRspRpErrorWithTpdu(
     VOS_UINT32                          ulRet;
     VOS_UINT8                           ucSendLen;
     VOS_UINT8                           *pucSendData;
-    /* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-11, begin */
     TAF_MSG_SIGNALLING_TYPE_ENUM_UINT32 enMsgSignallingType;
-    /* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-11, end */
 
     PS_MEM_SET(&stRpErr, 0, sizeof(MN_MSG_RP_ERR_STRU));
     PS_MEM_SET(&stDcs, 0, sizeof(MN_MSG_DCS_CODE_STRU));
@@ -2267,14 +1587,10 @@ VOS_UINT32 MN_MSG_EnvelopRspRpErrorWithTpdu(
                     &(stRpErr.stRpCause.enRpCause),
                     sizeof(MN_MSG_RP_CAUSE_ENUM_U8));
 
-    /* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-11, begin */
     enMsgSignallingType = MN_MSG_GetMtRouteStackType();
-    /* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-11, end */
 
     /*8. RP-ERROR消息中RP-ERROR消息发送*/
-    /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-11, begin */
     ulRet = MN_MSG_SendSmsRpReportReq(pucSendData,ucSendLen, enMsgSignallingType);
-    /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-11, end */
 
     if (VOS_OK != ulRet)
     {
@@ -2285,31 +1601,7 @@ VOS_UINT32 MN_MSG_EnvelopRspRpErrorWithTpdu(
     return MN_ERR_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_RcvUsimEnvelopRsp
- 功能描述  : 处理接收到USIM发送过来的SetFileRsp的原语
- 输入参数  : pstEnvelope:USIM发送过来的设置文件的内容
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2009年08月07日
-    作    者   : f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2009年12月16日
-    作    者   : f62575
-    修改内容   : AT2D16304, 增加对RP-ACK中带TPDU部分的处理
-  3.日    期   : 2011年6月24日
-    作    者   : 傅映君/f62575
-    修改内容   : DTS2011062201273 MO SMS CONTROL
-  4.日    期   : 2012年12月26日
-    作    者   : 张鹏/z00214637
-    修改内容   : PS_USIM_SET_FILE_RLT_SUCCESS转换为VOS_OK
-  5.日    期   : 2015年02月06日
-    作    者   : h00313353
-    修改内容   : USIMM卡接口调整
-*****************************************************************************/
+
 VOS_VOID  MN_MSG_RcvUsimEnvelopRsp(
     SI_STK_ENVELOPEDWON_CNF_STRU       *pstEnvelope
 )
@@ -2362,40 +1654,13 @@ VOS_VOID  MN_MSG_RcvUsimEnvelopRsp(
 
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_RcvUsimRefreshInd
- 功能描述  : 处理接收到USIM发送过来的PS_USIM_REFRESH_FILE_IND的原语
- 输入参数  : pMsg:USIM发送过来的更新文件的内容文件的内容
- 输出参数  : 无
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2009年12月16日
-    作    者   : f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月11日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-  3.日    期   : 2013年6月4日
-    作    者   : z00161729
-    修改内容   : SVLTE 和usim接口调整修改
-  4.日    期   : 2013年6月26日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级
-  5.日    期   : 2015年02月06日
-    作    者   : h00313353
-    修改内容   : USIMM卡接口调整
-*****************************************************************************/
 VOS_VOID  MN_MSG_RcvUsimRefreshInd(
     VOS_VOID                            *pMsg
 )
 {
     USIMM_STKREFRESH_IND_STRU           *pstRefreshInd;
 
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     USIMM_CARDAPP_ENUM_UINT32           enAppType;
     VOS_UINT32                          ulRequireRefresh;
     VOS_UINT32                          aulFileId[4];
@@ -2465,39 +1730,11 @@ VOS_VOID  MN_MSG_RcvUsimRefreshInd(
     }
 
     MN_MSG_CfgDataInit(MNPH_USIM_STATUS_AVILABLE);
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_RcvUsimSetFileRsp
- 功能描述  : 处理接收到USIM发送过来的SetFileRsp的原语
- 输入参数  : pMsg:USIM发送过来的设置文件的内容
- 输出参数  : 无
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2007年11月27日
-    作    者   : z40661
-    修改内容   : 新生成函数
- 2.日    期   : 2009年12月9日
-    作    者   : f62575
-    修改内容   : 问题单号:AT2D15782, 短信存储区满时接收到短信状态报告给网络回复RP-ACK消息，
-                                 与标竿相同情况下回复RP-ERROR(错误原因值22内存满不一致)；
- 3.日    期   : 2012年3月20日
-   作    者   : l00171473
-   修改内容   : for V7R1C50 CSFB&PPAC&ETWS&ISR
- 4.日    期   : 2013年8月3日
-   作    者   : z60575
-   修改内容   : TQE修改
- 5.日    期   : 2015年02月06日
-   作    者   : h00313353
-   修改内容   : USIMM卡接口调整
-*****************************************************************************/
 VOS_VOID  MN_MSG_RcvUsimSetFileRsp(
     VOS_VOID                            *pMsg
 )
@@ -2616,29 +1853,7 @@ VOS_VOID  MN_MSG_RcvUsimSetFileRsp(
     MN_MSG_DestroyUsimNode(ulIndex);
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_RcvUsimMoControlRsp
- 功能描述  : 处理MO SMS CONTROL过程USIM模块的响应消息
- 输入参数  : SI_STK_ENVELOPEDWON_CNF_STRU          *pstEnvelope
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月24日
-    作    者   : 傅映君/f62575
-    修改内容   : DTS2011062201273 MO SMS CONTROL
-  2.日    期   : 2012年12月03日
-    作    者   : 傅映君/f62575
-    修改内容   : DTS2012120305230,FDN和MO SMS CONTROL流程定时器未停止问题；
-  7.日    期   : 2013年8月3日
-    作    者   : z60575
-    修改内容   : TQE修改
-  8.日    期   : 2015年02月06日
-    作    者   : h00313353
-    修改内容   : USIMM卡接口调整
-*****************************************************************************/
 VOS_VOID MN_MSG_RcvUsimMoControlRsp(
     SI_STK_ENVELOPEDWON_CNF_STRU       *pstEnvelope
 )
@@ -2737,28 +1952,7 @@ VOS_VOID MN_MSG_RcvUsimMoControlRsp(
 
 /* MN_MSG_ProcUsimFdnInd */
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_ProcFdnCnf
- 功能描述  : 处理从USIM过来的FDN检查结果消息
- 输入参数  : pstMsg - 收到的消息
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年02月23日
-    作    者   : 傅映君/f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月03日
-    作    者   : 傅映君/f62575
-    修改内容   : DTS2012120305230, FDN和MO SMS CONTROL流程定时器未停止问题；
-  3.日    期   : 2013年5月21日
-    作    者   : w00176964
-    修改内容   : SS FDN&Call Control项目:比较FDN回复的client ID,不一致则丢弃消息
-  4.日    期   : 2013年8月3日
-    作    者   : z60575
-    修改内容   : TQE修改
-*****************************************************************************/
 VOS_VOID MN_MSG_ProcFdnCnf(struct MsgCB * pstMsg)
 {
     MN_MSG_MO_ENTITY_STRU               stMoEntity;
@@ -2929,20 +2123,7 @@ VOS_VOID MN_MSG_ProcFdnCnf(struct MsgCB * pstMsg)
 
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_GetFdnMeCfg
- 功能描述  : 获取MSG模块ME的FDN配置信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年02月23日
-    作    者   : 傅映君/f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID MN_MSG_GetFdnMeCfg(VOS_VOID)
 {
     if (NV_OK != NV_Read(en_NV_Item_FDN_Info,
@@ -2955,26 +2136,7 @@ VOS_VOID MN_MSG_GetFdnMeCfg(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_CheckFdn
- 功能描述  : 发送短信流程中的FDN检查
-             STK客户不做FDN检查
- 输入参数  : MN_MSG_MO_ENTITY_STRU              *pstMoEntity    短信发送信息结构
- 输出参数  : VOS_BOOL                           *pbCheckFdn      是否检查FDN
- 返 回 值  : VOS_UINT32
-                MN_ERR_NO_ERROR                 MO SMS CONTROL检查执行正确
-                其他，                          MO SMS CONTROL检查执行失败，需要拒绝用户的短信发送请求
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月23日
-    作    者   : 傅映君/f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2013年6月5日
-    作    者   : z00161729
-    修改内容   : SVLTE 和usim接口调整修改
-*****************************************************************************/
 VOS_UINT32 MN_MSG_CheckFdn(
     MN_MSG_MO_ENTITY_STRU              *pstMoEntity,
     VOS_BOOL                           *pbCheckFdn
@@ -3036,28 +2198,7 @@ VOS_UINT32 MN_MSG_CheckFdn(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_DispatchUsimMsg
- 功能描述  : 处理从USIM过来的消息
- 输入参数  : pstMsg - 收到的消息
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年02月23日
-    作    者   : 傅映君/f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2013年6月4日
-    作    者   : z00161729
-    修改内容   : SVLTE 和usim接口调整修改
-  3.日    期   : 2013年6月26日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级 Deleted USIMM_STKENVELOPE_CNF
-  4.日    期   : 2015年02月06日
-    作    者   : h00313353
-    修改内容   : USIMM卡接口调整
-*****************************************************************************/
 VOS_VOID MN_MSG_DispatchUsimMsg(struct MsgCB * pstMsg)
 {
     switch (((MSG_HEADER_STRU *)pstMsg)->ulMsgName)
@@ -3071,10 +2212,8 @@ VOS_VOID MN_MSG_DispatchUsimMsg(struct MsgCB * pstMsg)
         case USIMM_QUERYFILE_CNF:
             MN_MSG_RcvUsimGetMaxRecRsp((VOS_VOID*)pstMsg);
             break;
-        /* Deleted by f62575 for V9R1 STK升级, 2013-6-26, begin */
         /* Deleted USIMM_STKENVELOPE_CNF */
         /* Deleted USIMM_STKREFRESH_IND */
-        /* Deleted by f62575 for V9R1 STK升级, 2013-6-26, end */
 
         case SI_PB_EVENT_FDNCHECK_CNF:
             /* FDN检查结果处理 */
@@ -3091,25 +2230,7 @@ VOS_VOID MN_MSG_DispatchUsimMsg(struct MsgCB * pstMsg)
 
 
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_SendMsgAvailable
- 功能描述  : 判断当前短信是否可以发送
- 输入参数  : VOS_BOOL                                bBufferEntity是否缓存短信
-             VOS_UINT32                              ulIndex 缓存短信索引
-             MN_MSG_MO_ENTITY_STRU                  *pstMoEntity 短信实体
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年09月23日
-    作    者   : 傅映君/f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2013年8月3日
-    作    者   : z60575
-    修改内容   : TQE修改
-*****************************************************************************/
 VOS_UINT32 MN_MSG_SendMsgAvailable(
     VOS_BOOL                                bBufferEntity,
     VOS_UINT32                              ulIndex,

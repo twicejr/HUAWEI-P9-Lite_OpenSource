@@ -13,11 +13,9 @@
 #include  "TafDrvAgent.h"
 #include  "AtMtaInterface.h"
 #include  "AtInternalMsg.h"
-/* Added by y00213812 for VoLTE_PhaseII 项目, 2013-9-22, begin */
 #if (FEATURE_ON == FEATURE_IMS)
 #include  "AtImsaInterface.h"
 #endif
-/* Added by y00213812 for VoLTE_PhaseII 项目, 2013-9-22, end */
 
 #include  "TafAppMma.h"
 
@@ -71,11 +69,9 @@ typedef VOS_UINT32 (*pAtProcMsgFromDrvAgentFunc)(VOS_VOID *pMsg);
 /*AT与MTA模块间消息处理函数指针*/
 typedef VOS_UINT32 (*AT_MTA_MSG_PROC_FUNC)(VOS_VOID *pMsg);
 
-/* Added by w00167002 for L-C互操作项目, 2014-2-21, begin */
 
 /*AT与MMA模块间消息处理函数指针*/
 typedef VOS_UINT32 (*AT_MMA_MSG_PROC_FUNC)(VOS_VOID *pMsg);
-/* Added by w00167002 for L-C互操作项目, 2014-2-21, end */
 
 typedef VOS_UINT32 (*AT_XCALL_MSG_PROC_FUNC)(VOS_VOID *pMsg);
 
@@ -162,7 +158,6 @@ typedef struct
 }AT_PROC_MSG_FROM_MTA_STRU;
 /*lint +e958 +e959 修改人:l60609;原因:64bit*/
 
-/* Added by w00167002 for L-C互操作项目, 2014-2-21, begin */
 /*****************************************************************************
  结构名    : AT_PROC_MSG_FROM_MTA_STRU
  结构说明  : AT与MTA消息与对应处理函数的结构
@@ -174,7 +169,6 @@ typedef struct
     AT_MMA_MSG_PROC_FUNC                pProcMsgFunc;
 }AT_PROC_MSG_FROM_MMA_STRU;
 /*lint +e958 +e959 修改人:l60609;原因:64bit*/
-/* Added by w00167002 for L-C互操作项目, 2014-2-21, end */
 
 
 /*****************************************************************************
@@ -331,11 +325,9 @@ VOS_UINT32 AT_RcvDrvAgentAntStateIndRsp(VOS_VOID *pMsg);
 VOS_VOID  AT_ReadSystemAppConfigNV(VOS_VOID);
 
 
-/* Modified by w00167002 for L-C互操作项目, 2014-2-21, begin */
 VOS_UINT32 AT_RcvMmaOmMaintainInfoInd(
     VOS_VOID                           *pstMsg
 );
-/* Modified by w00167002 for L-C互操作项目, 2014-2-21, end */
 VOS_UINT32 AT_RcvDrvAgentSetMaxLockTmsRsp(VOS_VOID *pMsg);
 
 VOS_UINT32 AT_RcvDrvAgentSetApSimstRsp(VOS_VOID *pMsg);
@@ -378,10 +370,8 @@ VOS_UINT32 AT_RcvMtaWrrFreqLockQryCnf( VOS_VOID *pMsg );
 VOS_UINT32 AT_RcvMtaWrrRrcVersionSetCnf( VOS_VOID *pMsg );
 VOS_UINT32 AT_RcvMtaWrrRrcVersionQryCnf( VOS_VOID *pMsg );
 
-/* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, begin */
 VOS_UINT32 AT_RcvMmaAcInfoQueryCnf(VOS_VOID *pstMsg);
 
-/* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, end */
 
 extern VOS_VOID AT_ReadWasCapabilityNV(VOS_VOID);
 
@@ -410,7 +400,6 @@ VOS_UINT32 AT_RcvHifiResetEndInd(
 extern VOS_UINT32 At_PidInit(enum VOS_INIT_PHASE_DEFINE enPhase);
 #endif
 
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-1, begin */
 VOS_UINT32 AT_RcvMtaQryCurcCnf(VOS_VOID *pstMsg);
 VOS_UINT32 AT_RcvMtaSetUnsolicitedRptCnf(VOS_VOID *pstMsg);
 VOS_UINT32 AT_RcvMtaQryUnsolicitedRptCnf(VOS_VOID *pstMsg);
@@ -419,7 +408,6 @@ VOS_UINT32 AT_ProcMtaUnsolicitedRptQryCnf(
     VOS_VOID                               *pstMsg
 );
 
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-1, end */
 VOS_UINT32 AT_RcvMmaCerssiInfoQueryCnf(VOS_VOID *pstMsg);
 
 /*****************************************************************************
@@ -477,9 +465,7 @@ VOS_VOID AT_RcvSwitchCmdModeMsg(VOS_UINT8 ucIndex);
 
 VOS_VOID AT_RcvWaterLowMsg(VOS_UINT8 ucIndex);
 
-/* Added by l00198894 for 新增+ECID命令, 2013-12-09, begin */
 VOS_UINT32 AT_RcvMtaEcidSetCnf(VOS_VOID *pMsg);
-/* Added by l00198894 for 新增+ECID命令, 2013-12-09, end */
 
 VOS_UINT32 AT_RcvMtaMipiInfoCnf(
     VOS_VOID                           *pMsg
@@ -490,7 +476,6 @@ VOS_UINT32 AT_RcvMtaMipiInfoInd(
 );
 
 
-/* Added by w00167002 for L-C互操作项目, 2014-2-18, begin */
 
 VOS_UINT32 AT_RcvMmaSysCfgSetCnf(
     VOS_VOID                           *pMsg
@@ -502,7 +487,6 @@ VOS_UINT32 AT_RcvMmaPhoneModeSetCnf(
 VOS_UINT32 AT_RcvMmaDetachCnf(
     VOS_VOID                           *pMsg
 );
-/* Added by w00167002 for L-C互操作项目, 2014-2-18, end */
 
 VOS_UINT32 AT_RcvMmaAttachCnf(
     VOS_VOID                           *pstMsg

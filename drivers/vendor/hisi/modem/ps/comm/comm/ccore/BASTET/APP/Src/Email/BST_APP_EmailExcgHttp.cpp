@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2006, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : BST_APP_Exchange.cpp
-  版 本 号   : 初稿
-  作    者   : z00220931
-  生成日期   : 2013年10月9日
-  最近修改   :
-  功能描述   : exchange邮箱的发包的实现
-  函数列表   :
-
-  修改历史   :
-  1.日    期   : 2013年10月9日
-    作    者   : z00220931
-    修改内容   : 创建文件
-******************************************************************************/
 /*****************************************************************************
   1 头文件包含
 *****************************************************************************/
@@ -47,19 +30,7 @@
 /******************************************************************************
    6 函数实现
 ******************************************************************************/
-/*****************************************************************************
-函 数 名   : BST_APP_CExcgHttp
-功能描述   : 构造函数,初始化成员变量
-输入参数   : pstInAccountInfo 账号信息
-输出参数   : 无
-返 回 值   : BST_VOID
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年4月17日
-   作者    : z00220931
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_APP_CExcgHttp::BST_APP_CExcgHttp()
 {
     m_pstrWbxml     = BST_LIB_StrCreat( BST_LIB_SHORT_STR_LEN );
@@ -71,19 +42,7 @@ BST_APP_CExcgHttp::BST_APP_CExcgHttp()
     m_pstrReqCal    = BST_LIB_StrCreat( BST_LIB_LONG_STR_LEN );
     m_enCmdType     = INVALID_SYNC_CMD;
 }
-/*****************************************************************************
-函 数 名   : ConfigRqst
-功能描述   : 创建http请求
-输入参数   :
-输出参数   : 无
-返 回 值   : BST_VOID
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年4月17日
-   作者    : z00220931
-   修改内容: 新函数
-*****************************************************************************/
+
 /*lint -e438*/
 BST_BOOL BST_APP_CExcgHttp::ConfigRqst(
     const BST_CHAR                      *strUserName,
@@ -140,19 +99,7 @@ BST_BOOL BST_APP_CExcgHttp::ConfigRqst(
     return BST_TRUE;
 }
 /*lint +e438*/
-/*****************************************************************************
-函 数 名   : CreateRqstLine
-功能描述   : 创建http请求行
-输入参数   :
-输出参数   : 无
-返 回 值   : BST_VOID
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年4月17日
-   作者    : z00220931
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_VOID BST_APP_CExcgHttp::CreateRqstLine(
     const BST_CHAR *strUserName,
     const BST_CHAR *strDeviceId,
@@ -182,19 +129,7 @@ BST_VOID BST_APP_CExcgHttp::CreateRqstLine(
     BST_LIB_StrAddStr( m_pstrRequest, BST_EMAIL_HTTP_VERSION );
     BST_LIB_StrAddStr( m_pstrRequest, BST_EMAIL_HTTP_CRLF );
 }
-/*****************************************************************************
-函 数 名   : CreateRqstHeader
-功能描述   : 创建http消息的报头
-输入参数   :
-输出参数   : 无
-返 回 值   : BST_VOID
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年4月17日
-   作者    : z00220931
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_VOID BST_APP_CExcgHttp::CreateRqstHeader(
     const BST_CHAR * strUserNameAndPass,
     const BST_CHAR * strBodyLen,
@@ -236,19 +171,7 @@ BST_VOID BST_APP_CExcgHttp::CreateRqstHeader(
     BST_LIB_StrAddStr( m_pstrHttpBody, BST_EMAIL_HTTP_CRLF );
     BST_LIB_StrAddStr( m_pstrHttpBody, BST_EMAIL_HTTP_CRLF );
 }
-/*****************************************************************************
-函 数 名   : CreateRqstBody
-功能描述   : 创建http消息的正文，主要是webxml协议内容
-输入参数   : enCmdType 同步类型 pstWbxmlBody xml的内容
-输出参数   : 无
-返 回 值   : BST_VOID
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年4月17日
-   作者    : z00220931
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_UINT16 BST_APP_CExcgHttp::CreatePingBody(
     const BST_EMAIL_WBXML_BODY_STRU    *pstWbxmlBody )
 {
@@ -263,19 +186,7 @@ BST_UINT16 BST_APP_CExcgHttp::CreatePingBody(
 
     return usLen;
 }
-/*****************************************************************************
-函 数 名   : CreateRqstBody
-功能描述   : 创建http消息的正文，主要是webxml协议内容
-输入参数   : enCmdType 同步类型 pstWbxmlBody xml的内容
-输出参数   : 无
-返 回 值   : BST_VOID
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年4月17日
-   作者    : z00220931
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_UINT16 BST_APP_CExcgHttp::CreateSyncBody(
     const BST_EMAIL_WBXML_BODY_STRU    *pstWbxmlBody,
     BST_UINT16                          usType )
@@ -292,19 +203,7 @@ BST_UINT16 BST_APP_CExcgHttp::CreateSyncBody(
     return usLen;
 }
 
-/*****************************************************************************
-函 数 名   : CreateWbxmlHeader
-功能描述   : 创建webxml的头
-输入参数   :
-输出参数   : 无
-返 回 值   : BST_VOID
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年4月17日
-   作者    : z00220931
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_UINT16 BST_APP_CExcgHttp::CreateWbxmlHeader( BST_VOID )
 {
     BST_LIB_StrAddByte( m_pstrWbxml,  0x03 );
@@ -313,19 +212,7 @@ BST_UINT16 BST_APP_CExcgHttp::CreateWbxmlHeader( BST_VOID )
     BST_LIB_StrAddByte( m_pstrWbxml,  0x00 );
     return BST_WBXML_HEADER;
 }
-/*****************************************************************************
-函 数 名   : CreatePingWbxml
-功能描述   : 创建ping的webxml内容
-输入参数   :
-输出参数   : 无
-返 回 值   : BST_VOID
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年4月17日
-   作者    : z00220931
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_UINT16 BST_APP_CExcgHttp::CreatePingWbxml(
     const BST_EMAIL_WBXML_BODY_STRU *pstWbxmlBody )
 {
@@ -357,19 +244,7 @@ BST_UINT16 BST_APP_CExcgHttp::CreatePingWbxml(
     usLength    = m_pstrWbxml->usUsed - usLength;
     return usLength;
 }
-/*****************************************************************************
-函 数 名   : CreateSyncWbxml
-功能描述   : 创建sync的webxml内容
-输入参数   : pstWbxmlBody xml内容
-输出参数   : 无
-返 回 值   : BST_VOID
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年4月17日
-   作者    : z00220931
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_UINT16 BST_APP_CExcgHttp::CreateSyncWbxml(
     const BST_EMAIL_WBXML_BODY_STRU *pstWbxmlBody,
     BST_UINT16                       usType )
@@ -431,38 +306,14 @@ BST_UINT16 BST_APP_CExcgHttp::CreateSyncWbxml(
     usLength        = m_pstrWbxml->usUsed - usLength;
     return usLength;
 }
-/*****************************************************************************
-函 数 名   : CreateWbxmlTag
-功能描述   : 创建webxml的tag
-输入参数   :
-输出参数   : 无
-返 回 值   : BST_VOID
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年4月17日
-   作者    : z00220931
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_VOID BST_APP_CExcgHttp::CreateWbxmlTag(
     BST_CHAR cTag,
     BST_BOOL bNoContent )
 {
     BST_LIB_StrAddByte( m_pstrWbxml, bNoContent ? cTag : cTag | BST_EMAIL_WITH_CONTENT );
 }
-/*****************************************************************************
-函 数 名   : CreateWbxmlData
-功能描述   : 创建webxml的数据内容
-输入参数   :
-输出参数   : 无
-返 回 值   : BST_VOID
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年4月17日
-   作者    : z00220931
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_VOID BST_APP_CExcgHttp::CreateWbxmlData(
     const BST_CHAR     *strData,
     const BST_CHAR      cTag )
@@ -473,19 +324,7 @@ BST_VOID BST_APP_CExcgHttp::CreateWbxmlData(
     BST_LIB_StrAddByte( m_pstrWbxml, 0 );
     BST_LIB_StrAddByte( m_pstrWbxml, BST_EMAIL_END );
 }
-/*****************************************************************************
-函 数 名   : ParseRspns
-功能描述   : 解析收到的http内容，判断是否有新邮件
-输入参数   :
-输出参数   : 无
-返 回 值   : BST_VOID
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年4月17日
-   作者    : z00220931
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_EMAIL_SERVER_STATE_ENUM_UINT8 BST_APP_CExcgHttp::ParseRspns(
     const BST_CHAR *pcResponse,
     BST_UINT16      usLength )
@@ -549,19 +388,7 @@ BST_EMAIL_SERVER_STATE_ENUM_UINT8 BST_APP_CExcgHttp::ParseRspns(
         return BST_APP_SERVER_UNUSUAL;
     }
 }
-/*****************************************************************************
-函 数 名   : ParsePingStatus
-功能描述   : 解析ping包的状态
-输入参数   :
-输出参数   : 无
-返 回 值   : BST_VOID
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年4月17日
-   作者    : z00220931
-   修改内容: 新函数
-*****************************************************************************/
+
 
 BST_INT32 BST_APP_CExcgHttp::ParsePingStatus(
     const BST_CHAR  *pstRspStr,
@@ -595,19 +422,7 @@ BST_INT32 BST_APP_CExcgHttp::ParsePingStatus(
 
     return lStatus;
 }
-/*****************************************************************************
-函 数 名   : ParsePingRspns
-功能描述   : 解析ping包的回复
-输入参数   :
-输出参数   : 无
-返 回 值   : BST_VOID
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2015年4月17日
-   作者    : z00220931
-   修改内容: 新函数
-*****************************************************************************/
+
 
 BST_EMAIL_SERVER_STATE_ENUM_UINT8 BST_APP_CExcgHttp::ParsePingRspns(
     const BST_CHAR  *pstRspStr,
@@ -758,19 +573,7 @@ BST_EMAIL_SERVER_STATE_ENUM_UINT8 BST_APP_CExcgHttp::ParsePingRspns(
         return BST_APP_SERVER_PARSE_EXCEPT;
     }
 }
-/*****************************************************************************
-函 数 名   : ParseSyncRspns
-功能描述   : 解析sync命令的回复
-输入参数   :
-输出参数   : 无
-返 回 值   : BST_VOID
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年4月17日
-   作者    : z00220931
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_EMAIL_SERVER_STATE_ENUM_UINT8 BST_APP_CExcgHttp::ParseSyncRspns(
     const BST_CHAR  *pstRspStr,
     const BST_UINT16 usLength)
@@ -868,19 +671,7 @@ BST_EMAIL_SERVER_STATE_ENUM_UINT8 BST_APP_CExcgHttp::ParseSyncRspns(
         return BST_APP_SERVER_PARSE_EXCEPT;
     }
 }
-/*****************************************************************************
-函 数 名   : GetRequest
-功能描述   : 获取组好的http请求
-输入参数   :
-输出参数   : 无
-返 回 值   : BST_VOID
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年4月17日
-   作者    : z00220931
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_LIB_StrStru *BST_APP_CExcgHttp::GetRequest(
     BST_UINT16              usType )
 {
@@ -901,20 +692,7 @@ BST_LIB_StrStru *BST_APP_CExcgHttp::GetRequest(
             return BST_NULL_PTR;
     }
 }
-/*****************************************************************************
-函 数 名   : HexStrToInt
-功能描述   : 十六进制字符串转化为整数
-输入参数   : pHexStr:十六进制字符串的指针
-            usLen ：字符串长度
-输出参数   : 无
-返 回 值   : BST_VOID
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年4月17日
-   作者    : z00220931
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_INT32 BST_APP_CExcgHttp::HexStrToInt(
     const BST_UINT8* pHexStr,
     BST_UINT16       usLen)
@@ -957,19 +735,7 @@ BST_INT32 BST_APP_CExcgHttp::HexStrToInt(
     }
     return lTemp;
 }
-/*****************************************************************************
-函 数 名   : ~BST_APP_CExcgHttp
-功能描述   : 析构函数
-输入参数   :
-输出参数   : 无
-返 回 值   : BST_VOID
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年4月17日
-   作者    : z00220931
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_APP_CExcgHttp::~BST_APP_CExcgHttp()
 {
     /*析构函数将所有变量状态置为初始值*/

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : hmac_scan.c
-  版 本 号   : 初稿
-  作    者   : gaolin 00196511
-  生成日期   : 2015年06月04日
-  最近修改   :
-  功能描述   : 扫描模块 hmac功能
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年06月04日
-    作    者   : gaolin 00196511
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifdef _PRE_SUPPORT_ACS
 
@@ -61,21 +44,7 @@ extern "C" {
 *****************************************************************************/
 #ifdef _PRE_SUPPORT_ACS
 #define ACS_DIV(a, b) ((b)==0 ? 0 : (a)/(b))
-/*****************************************************************************
- 功能描述  : 根据扫描运行结果，获取acs需要的简单的bss统计信息
- 输入参数  : mac_scan_bss_stats_simple_stru   *pst_simple_bss_stats,
-             hmac_scan_record_stru            *pst_scan_record
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月14日
-    作    者   : l00279018
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void hmac_acs_get_simple_bss_stats_info(mac_scan_bss_stats_simple_stru  *pst_simple_bss_stats,
                                                        hmac_scan_record_stru           *pst_scan_record)
 {
@@ -119,22 +88,7 @@ OAL_STATIC oal_void hmac_acs_get_simple_bss_stats_info(mac_scan_bss_stats_simple
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_acs_get_simple_channel_stats_info
- 功能描述  : 根据扫描运行结果，获取acs需要的简单信道统计信息
- 输入参数  : mac_scan_bss_stats_simple_stru   *pst_simple_bss_stats,
-             hmac_scan_record_stru            *pst_scan_record
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  : 由调用者保证入参的合法性
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月14日
-    作    者   : l00279018
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void hmac_acs_get_simple_channel_stats_info(mac_scan_chan_stats_simple_stru  *pst_simple_channel_stats,
                                                            hmac_scan_record_stru            *pst_scan_record)
 {
@@ -174,22 +128,7 @@ OAL_STATIC oal_void hmac_acs_get_simple_channel_stats_info(mac_scan_chan_stats_s
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_acs_setup_scan_result
- 功能描述  : 构造扫描结果
- 输入参数  : hmac_scan_runtime_record_stru *pst_scan_record
-             oal_bool_enum_uint8            en_need_rank
- 输出参数  : 无
- 返 回 值  : frw_event_mem_stru *
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月27日
-    作    者   : gaolin
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 frw_event_mem_stru *hmac_acs_setup_scan_result(hmac_scan_record_stru   *pst_scan_record,
                                                oal_bool_enum_uint8      en_need_rank)
 {
@@ -288,23 +227,7 @@ frw_event_mem_stru *hmac_acs_setup_scan_result(hmac_scan_record_stru   *pst_scan
 
     return pst_event_mem;
 }
-/*****************************************************************************
- 函 数 名  : hmac_acs_got_init_rank
- 功能描述  : 处理来自APP的初始信道选择结果
- 输入参数  : mac_device_stru *pst_mac_dev
-             mac_vap_stru *pst_mac_vap
-             mac_acs_cmd_stru *pst_cmd
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月27日
-    作    者   : gaolin
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_acs_got_init_rank(hmac_device_stru *pst_hmac_device, mac_vap_stru *pst_mac_vap, mac_acs_cmd_stru *pst_cmd)
 {
     mac_channel_stru    *pst_ch = pst_hmac_device->ast_best_channel;
@@ -385,22 +308,7 @@ oal_uint32  hmac_acs_got_init_rank(hmac_device_stru *pst_hmac_device, mac_vap_st
 
     return OAL_SUCC;
 }
-/*****************************************************************************
- 函 数 名  : hmac_acs_init_scan_hook
- 功能描述  :
- 输入参数  : hmac_scan_record_stru   *pst_scan_record
-             hmac_device_stru        *pst_dev
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月2日
-    作    者   : gaolin
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_acs_init_scan_hook(hmac_scan_record_stru   *pst_scan_record,
                                     hmac_device_stru        *pst_dev)
 {
@@ -422,21 +330,7 @@ oal_uint32  hmac_acs_init_scan_hook(hmac_scan_record_stru   *pst_scan_record,
 
     return OAL_SUCC;
 }
-/*****************************************************************************
- 函 数 名  : hmac_acs_idle_device
- 功能描述  : 判断是否是空闲的device可用于重新ACS
- 输入参数  : mac_device_stru *pst_mac_dev
- 输出参数  : 无
- 返 回 值  : oal_bool_enum_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月2日
-    作    者   : gaolin
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_bool_enum_uint8 hmac_acs_idle_device(mac_device_stru *pst_mac_dev)
 {
     oal_uint8       uc_vap_idx;
@@ -461,21 +355,7 @@ oal_bool_enum_uint8 hmac_acs_idle_device(mac_device_stru *pst_mac_dev)
 
     return OAL_TRUE;
 }
-/*****************************************************************************
- 函 数 名  : hmac_acs_rescan_handler
- 功能描述  : ACS运行时重新扫描对应钩子函数
- 输入参数  : void *p_arg
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月2日
-    作    者   : gaolin
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_acs_rescan_handler(void *p_arg)
 {
     hmac_device_stru    *pst_dev = hmac_res_get_mac_dev((oal_uint32)p_arg);
@@ -520,21 +400,7 @@ oal_uint32  hmac_acs_rescan_handler(void *p_arg)
 
     return OAL_SUCC;
 }
-/*****************************************************************************
- 函 数 名  : hmac_acs_init
- 功能描述  : 初始化动态扫描定时器
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月2日
-    作    者   : gaolin
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_acs_init(oal_void)
 {
     oal_uint32           ul_dev_id;
@@ -557,21 +423,7 @@ oal_uint32  hmac_acs_init(oal_void)
 
     return OAL_SUCC;
 }
-/*****************************************************************************
- 函 数 名  : hmac_acs_init
- 功能描述  : 销毁动态扫描定时器
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月2日
-    作    者   : gaolin
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_acs_exit(oal_void)
 {
     oal_uint32           ul_dev_id;

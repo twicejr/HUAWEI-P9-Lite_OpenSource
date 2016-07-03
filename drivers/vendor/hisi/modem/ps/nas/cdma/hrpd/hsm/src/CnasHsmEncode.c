@@ -53,25 +53,7 @@ VOS_VOID CNAS_HSM_EncodeUATIReq(
     CNAS_HSM_LogUatiReqMsg(&stUatiReq);
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_EncodeUATIComplete
-Description     :   Encode UATIComplete message
-Input parameters:   pInMsgData          - ptr to CNAS_HSM_UATI_COMP_MSG_STRU
-Output parameters:  *pusOutBitLen       - ptr to output message bit length
-                    pstOutBuff          - ptr to output UATIComplete message
-Return Value    :   VOS_VOID
 
-Modify History  :
-1)  Date           : 2015-02-04
-    Author         : s00250401
-    Modify content : Create
-2)  Date           : 2015-06-30
-    Author         : m00312079
-    Modify content : 修改Upper OLD UATI的字节序
-3)  Date           : 2015-09-23
-    Author         : t00323010
-    Modify content : HSM MNTN(DTS2015092201636): 对和协议实现不一致的代码注释说明
-*****************************************************************************/
 VOS_VOID CNAS_HSM_EncodeUATIComplete(
     VOS_VOID                           *pInMsgData,
     VOS_UINT16                         *pusOutBitLen,
@@ -161,22 +143,7 @@ VOS_UINT8 CNAS_HSM_GetHardwareIdLength(
 }
 
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_EncodeHwIdResponse
-Description     :   Encode HardwareIDResponse message
-Input parameters:   pInMsgData          - ptr to CNAS_HSM_HARDWARE_ID_RESPONSE_MSG_STRU
-Output parameters:  *pusOutBitLen       - ptr to output message bit length
-                    pstOutBuff          - ptr to output HardwareIdResponse message
-Return Value    :   VOS_VOID
 
-Modify History  :
-1)  Date           : 2015-02-04
-    Author         : s00250401
-    Modify content : Create
-2)  Date           : 2015-12-04
-    Author         : y00307564
-    Modify content : 根据大小端，修改hardware rsp消息中esn/meid的字节序
-*****************************************************************************/
 VOS_VOID CNAS_HSM_EncodeHardwareIdResponse(
     VOS_VOID                           *pInMsgData,
     VOS_UINT16                         *pusOutBitLen,
@@ -209,10 +176,7 @@ VOS_VOID CNAS_HSM_EncodeHardwareIdResponse(
 
     if (CNAS_HSM_HARDWARE_ID_TYPE_MEID == pstHardwareIdInfo->enHwidType)
     {
-        /* Modified by y00307564 for DTS2015120209882 2015-12-3 begin
-           此时该空口消息中HardwareIDValue携带的是meid，其中meid[0]存储的是最高位，
-           meid[6]存储的是最低位，pInMsgData携带的meid[0]存储的是最低位， meid[6]
-           存储的是最高位，所以需要转换meid的顺序 */
+        
         for (i = 0; i < CNAS_HSM_MEID_OCTET_NUM; i++)
         {
             aucMeId[CNAS_HSM_MEID_OCTET_NUM - i - 1] = pstHardwareIdInfo->aucMeId[i];
@@ -222,10 +186,7 @@ VOS_VOID CNAS_HSM_EncodeHardwareIdResponse(
     }
     else if (CNAS_HSM_HARDWARE_ID_TYPE_ESN == pstHardwareIdInfo->enHwidType)
     {
-        /* Modified by y00307564 for DTS2015120209882 2015-12-3 begin
-           此时该空口消息中HardwareIDValue携带的是esn，其中esn[0]存储的是最高位，
-           esn[3]存储的是最低位，若目前存储的字节序是按小端模式存储，pInMsgData携带的
-           esn[0]存储的是最低位， esn[3]存储的是最高位，所以需要转换esn的顺序 */
+        
         ulEsn       = CNAS_HTONL(pstHardwareIdInfo->ulEsn);
         pucHwIdInfo = (VOS_UINT8 *)(&(ulEsn));
     }

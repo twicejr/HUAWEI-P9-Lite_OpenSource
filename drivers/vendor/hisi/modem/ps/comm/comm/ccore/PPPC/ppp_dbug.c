@@ -1,24 +1,4 @@
-/************************************************************************
-*                                                                      *
-*                             ppp_dbug.c                               *
-*                                                                      *
-*  Project Code:       VRP3.0                                          *
-*  Create Date:        2000/03/27                                      *
-*  Author:             Deng Yi Ou                                      *
-*  Modify Date:                                                        *
-*  Document:                                                           *
-*  Function:           PPP模块的debug信息处理                          *
-*  Others:                                                             *
-*----------------------------------------------------------------------*
-*                                                                      *
-*  Copyright 2000-2002 VRP3.0 Team Beijing Institute HuaWei Tech, Inc. *
-*                      ALL RIGHTS RESERVED                             *
-*                                                                      *
-*----------------------------------------------------------------------*
-*                                                                      *
-*   这个文件包括了PPP模块debug信息处理的全部代码                       *
-*                                                                      *
-************************************************************************/
+
 
 
 
@@ -61,24 +41,7 @@ CTTF_OM_PPPC_MNTN_STATISTICS_IND_STRU g_stPppcStatRpt;
 *****************************************************************************/
 /*lint -save -e958 */
 /*lint -e813*/
-/*****************************************************************************
- 函 数 名  : PPP_PrintDbgCntInteligently
- 功能描述  : PPP模块调试打印失败与成功日志函数
- 输入参数  : VOS_UINT32 ulCounter 失败或成功索引号(0~799为失败，800~为成功)
-             VOS_UINT32 ulValue 失败或成功的次数
-             UCHAR *pucDefaultStrHead 默认打印头
-             ...
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月6日
-    作    者   : chenmin00265046
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID PPP_PrintDbgCntInteligently(VOS_UINT32 ulCounter, VOS_UINT32 ulValue, UCHAR *pucDefaultStrHead)
 {
     if (ulValue != 0)
@@ -89,24 +52,7 @@ VOID PPP_PrintDbgCntInteligently(VOS_UINT32 ulCounter, VOS_UINT32 ulValue, UCHAR
 }
 
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：设置所有调试开关状态，可以对一个接口进行，也可以是全局的。 *
-*                对于接口的开关状态有一个规则:任何时候允许打开开关，但在    *
-*                对应的全局开关状态为on时，不能单独关闭接口开关状态。为了   *
-*                解决这个问题，加了一个判断：如果是对接口执行no debug操作， *
-*                则将接口开关状态置为全局开关的当前值。                     *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppDebugInfo:要处理的开关数据结构指针                   *
-*                ucSet:为VRP_YES表明打开所有开关，为VRP_NO表明关闭所有开关  *
-* OUTPUT       ：无                                                         *
-* RETURN       ：0:成功, 其他:错误码                                        *
-* CALLED BY    ：PPP_DebugAll                                               *
-*                PPP_NoDebugAll                                             *
-*                PPP_Debug_SetInterfaceOption                               *
-*                PPP_Debug_SetGlobalOption                                  *
-****************************************************************************/
+
 VOID PPP_Debug_SetAllOptions( PPPDEBUGINFO_S *pstPppDebugInfo, UCHAR ucSet )
 {
     g_ulPppDebugSwitch = (VOS_UINT32)ucSet;
@@ -277,26 +223,7 @@ VOID PPP_Debug_SetAllOptions( PPPDEBUGINFO_S *pstPppDebugInfo, UCHAR ucSet )
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：设置单个调试开关状态，可以对一个接口进行，也可以是全局的。 *
-*                对于接口的开关状态有一个规则:任何时候允许打开开关，但在    *
-*                对应的全局开关状态为on时，不能单独关闭接口开关状态。为了   *
-*                解决这个问题，加了一个判断：如果是对接口执行no debug操作， *
-*                则将接口开关状态置为全局开关的当前值。                     *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppDebugInfo:要处理的开关数据结构指针                   *
-*                ucSet:为VRP_YES表明打开所有开关，为VRP_NO表明关闭所有开关  *
-*                ulType    :debug类型，包括event、error、packet、state      *
-*                usProtocol:协议号(如0xc021表示LCP)，为0表示"core"          *
-* OUTPUT       ：无                                                         *
-* RETURN       ：0:成功, 其他:错误码                                        *
-* CALLED BY    ：PPP_DebugAll                                               *
-*                PPP_NoDebugAll                                             *
-*                PPP_Debug_SetInterfaceOption                               *
-*                PPP_Debug_SetGlobalOption                                  *
-****************************************************************************/
+
 VOID PPP_Debug_SetOneOption( PPPDEBUGINFO_S *pstPppDebugInfo,
                              UCHAR           ucSet,
                              VOS_UINT32           ulType,
@@ -491,18 +418,7 @@ VOID PPP_Debug_SetOneOption( PPPDEBUGINFO_S *pstPppDebugInfo,
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：获取指定调试开关状态。                                     *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppDebugInfo:要处理的开关数据结构指针                   *
-*                ulType    :debug类型，包括event、error、packet、state      *
-*                usProtocol:协议号(如0xc021表示LCP)，为0表示"core"          *
-* OUTPUT       ：无                                                         *
-* RETURN       ：指定选项的状态                                             *
-* CALLED BY    ：PPP_Debug_SetOneOption                                     *
-****************************************************************************/
+
 UCHAR PPP_Debug_GetOption( PPPDEBUGINFO_S *pstPppDebugInfo,
                            VOS_UINT32           ulType,
                            VOS_UINT16          usProtocol)
@@ -691,22 +607,7 @@ UCHAR PPP_Debug_GetOption( PPPDEBUGINFO_S *pstPppDebugInfo,
     return ucSet;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：输出关于报文的调试信息,只针对符合PPP状态机的控制协议       *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块                                       *
-*                pPacket:报文头位置                                         *
-*                ulLen:报文长度                                             *
-*                ucIsInPacket:是否是输入报文                                *
-*                usProtocol:报文协议号                                      *
-*                ucIsInPacket:是输入报文(PPP_DEBUG_PACKET_IN)               *
-*                             还是输出报文(PPP_DEBUG_PACKET_OUT)            *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_LCP_ReceivePacket等                                    *
-****************************************************************************/
+
 VOID PPP_Debug_FsmPacket(PPPINFO_S* pstPppInfo,
                          UCHAR *    pPacket,
                          VOS_UINT32      ulLen,
@@ -864,17 +765,7 @@ VOID PPP_Debug_FsmPacket(PPPINFO_S* pstPppInfo,
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：输出子协议状态转换的调试信息                               *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm:状态机                                              *
-*                ucNewState:状态机新状态                                    *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_FSM_ChangeState                                        *
-****************************************************************************/
+
 VOID PPP_Debug_FsmStateChange(PPPFSM_S *pstFsm, UCHAR ucNewState)
 {
     PPPINFO_S *pstPppInfo;
@@ -973,17 +864,7 @@ VOID PPP_Debug_FsmStateChange(PPPFSM_S *pstFsm, UCHAR ucNewState)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：输出子协议发生外部事件的调试信息                           *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm:状态机                                              *
-*                ulEvent:状态机事件                                         *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_FSM_ReceiveEvent等                                     *
-****************************************************************************/
+
 VOID PPP_Debug_FsmEvent(PPPFSM_S* pstFsm, VOS_UINT32 ulEvent)
 {
     PPPINFO_S* pstPppInfo;
@@ -1106,17 +987,7 @@ VOID PPP_Debug_FsmEvent(PPPFSM_S* pstFsm, VOS_UINT32 ulEvent)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：输出状态机错误事件(即状态机中的'-')信息                    *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm:状态机                                              *
-*                ulEvent:状态机事件                                         *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_FSM_ReceiveEvent等                                     *
-****************************************************************************/
+
 VOID PPP_Debug_FsmIllegalEvent(PPPFSM_S* pstFsm, VOS_UINT32 ulEvent)
 {
     PPPINFO_S *pstPppInfo;
@@ -1177,18 +1048,7 @@ VOID PPP_Debug_FsmIllegalEvent(PPPFSM_S* pstFsm, VOS_UINT32 ulEvent)
     PPP_DebugOutString(szDebugBuf, (pBuf - szDebugBuf), (PPPINFO_S*)pstFsm->pPppInfo);
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：输出子协议出现错误的信息                                   *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm:状态机                                              *
-*                usLogLevel:LOG级别                                         *
-*                pString   :要输出的字串                                    *
-* OUTPUT       ：                                                           *
-* RETURN       ：                                                           *
-* CALLED BY    ：各子协议                                                   *
-****************************************************************************/
+
 VOID PPP_Debug_Error(PPPFSM_S *pstFsm, VOS_UINT16 usLogLevel, CHAR *pString)
 {
     PPPINFO_S *pstPppInfo;
@@ -1261,18 +1121,7 @@ VOID PPP_Debug_Error(PPPFSM_S *pstFsm, VOS_UINT16 usLogLevel, CHAR *pString)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：输出PPP内核发生的事件                                      *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-*                usLogLevel:LOG级别                                         *
-*                pString   :要输出的字串                                    *
-* OUTPUT       ：                                                           *
-* RETURN       ：                                                           *
-* CALLED BY    ：协议控制模块                                               *
-****************************************************************************/
+
 VOID PPP_Debug_CoreEvent(PPPINFO_S *pstPppInfo,
                          VOS_UINT16     usLogLevel,
                          CHAR *     pString)
@@ -1308,16 +1157,7 @@ VOID PPP_Debug_CoreEvent(PPPINFO_S *pstPppInfo,
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：获得接口名                                                 *
-* MODIFY DATE  ：modified by gxf for GGSN80 20030224                        *
-* INPUT        ：pstPppInfo:PPP控制块                                       *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_Debug_LcpPacket等                                      *
-****************************************************************************/
+
 CHAR *PPP_Debug_GetInterfaceName(PPPINFO_S *pstPppInfo)
 {
     static CHAR szDebugStr[256];
@@ -1350,16 +1190,7 @@ CHAR *PPP_Debug_GetInterfaceName(PPPINFO_S *pstPppInfo)
     return szDebugStr;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：获得报文类型名                                             *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块                                       *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_Debug_FsmPacket                                        *
-****************************************************************************/
+
 CHAR *PPP_Debug_GetCode(UCHAR ucCode)
 {
     /* 15: RESETACK */
@@ -1373,17 +1204,7 @@ CHAR *PPP_Debug_GetCode(UCHAR ucCode)
     }
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：获得协商选项类型名                                         *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：usProtocol:协议号                                          *
-*                ucType:报文类型                                            *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_Debug_LcpPacket等                                      *
-****************************************************************************/
+
 CHAR *PPP_Debug_GetTypeName(VOS_UINT16 usProtocol, UCHAR ucType)
 {
     static CHAR szDebugStr[256];
@@ -1413,16 +1234,7 @@ CHAR *PPP_Debug_GetTypeName(VOS_UINT16 usProtocol, UCHAR ucType)
     return szDebugStr;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：获得协议名                                                 *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：usProtocol:协议号                                          *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_Debug_LcpPacket等                                      *
-****************************************************************************/
+
 CHAR *PPP_Debug_GetProtocolName(VOS_UINT16 usProtocol)
 {
     VOS_UINT32 ulIndex;
@@ -1508,17 +1320,7 @@ CHAR *PPP_Debug_GetProtocolName(VOS_UINT16 usProtocol)
     return g_cPPP_Debug_Protocol_Name[ulIndex];
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：获得字符串的16进制表示方式                                 *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pStr:字符串首指针                                          *
-*                ucLen:字符串长度                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_Debug_LcpPacket等                                      *
-****************************************************************************/
+
 CHAR *PPP_Debug_GetValueStr(UCHAR *pStr, UCHAR ucLen)
 {
     UCHAR i;
@@ -1547,17 +1349,7 @@ CHAR *PPP_Debug_GetValueStr(UCHAR *pStr, UCHAR ucLen)
     return szDebugStr;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：获得协议状态                                               *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块                                       *
-*                usProtocol:协议号                                          *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_Debug_LcpPacket等                                      *
-****************************************************************************/
+
 CHAR *PPP_Debug_GetProtoState(PPPINFO_S *pstPppInfo, VOS_UINT16 usProtocol)
 {
     PPPFSM_S *pstFsm = NULL;
@@ -1625,16 +1417,7 @@ CHAR *PPP_Debug_GetProtoState(PPPINFO_S *pstPppInfo, VOS_UINT16 usProtocol)
     }
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：获得LCP协商选项类型名                                      *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：ucType:报文类型                                            *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_Debug_GetTypeName                                      *
-****************************************************************************/
+
 CHAR *PPP_Debug_GetLcpTypeName(UCHAR ucType)
 {
     int iIndex;
@@ -1670,16 +1453,7 @@ CHAR *PPP_Debug_GetLcpTypeName(UCHAR ucType)
 }
 
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：获得IPCP协商选项类型名                                     *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：ucType:报文类型                                            *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_Debug_GetTypeName                                      *
-****************************************************************************/
+
 CHAR *PPP_Debug_GetIpcpTypeName(UCHAR ucType)
 {
     int iIndex;
@@ -1707,16 +1481,7 @@ CHAR *PPP_Debug_GetIpcpTypeName(UCHAR ucType)
 }
 
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：获得CCP协商选项类型名                                      *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：ucType:报文类型                                            *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_Debug_GetTypeName                                      *
-****************************************************************************/
+
 CHAR *PPP_Debug_GetCcpTypeName(UCHAR ucType)
 {
     switch (ucType)
@@ -1732,17 +1497,7 @@ CHAR *PPP_Debug_GetCcpTypeName(UCHAR ucType)
 }
 
 
-/****************************************************************************
-* CREATE DATE  ：2000/06/20                                                 *
-* CREATED BY   ：Zhu Feng Zhi                                                 *
-* FUNCTION     ：为字符添加显示终止符"/0",以便显示                            *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pStr:字符串首指针                                          *
-*                ucLen:字符串长度                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PAP_Debug_Packet,CHAP_Debug_Packet                         *
-****************************************************************************/
+
 CHAR *PPP_Debug_GetString(UCHAR *pStr, UCHAR ucLen)
 {
     static CHAR szDebugStr[256];
@@ -1766,22 +1521,7 @@ CHAR *PPP_Debug_GetString(UCHAR *pStr, UCHAR ucLen)
     return szDebugStr;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_MNTN_SndEvent
- 功能描述  : pppc发送事件信息
- 输入参数  :   pEvent               上报报文指针
-                            ulDataLen           上报报文长度
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : q00359829
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_MNTN_SndEvent
 (
     VOS_UINT32                          ulPid,
@@ -1838,21 +1578,7 @@ VOS_VOID PPPC_MNTN_SndEvent
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_InitDebugInfo
- 功能描述  : 初始化PPP模块调试信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年9月27日
-    作    者   : g00127633
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_InitDebugInfo()
 {
     PPP_MemSet((void *)&(g_pstPppInnerDebugInfo[0]), 0, sizeof(PPP_DEBUG_INFO_S) * PPP_INNER_COUTNER_END);
@@ -2470,20 +2196,7 @@ VOS_UINT32 PPP_InitDebugInfo()
 
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_MntnTraceAuthResult
- 功能描述  : PPP鉴权成功报文跟踪
- 输入参数  : VOS_UINT8 ucPppId, VOS_UINT16 ucAuthType
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-10-26
-    作    者   : t00359887
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_MntnTraceAuthResult
 (
     VOS_UINT8                           ucPppId,
@@ -2526,21 +2239,7 @@ VOS_VOID PPPC_MntnTraceAuthResult
     (VOS_VOID)pstMntnInfo;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_MNTN_CalcOtherFailCnt
- 功能描述  : 更新OM可维可测信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月5日
-    作    者   : h00309869
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_MNTN_CalcOtherFailCnt(VOS_VOID)
 {
     VOS_UINT32                                  ulFailCnt;
@@ -2559,21 +2258,7 @@ VOS_VOID PPP_MNTN_CalcOtherFailCnt(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_MNTN_SendOmResourceStateInfo
- 功能描述  : PPP上报OM可维可测信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月18日
-    作    者   : q00359829
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_MNTN_CMO_SendOmResourceStateInfo(VOS_VOID)
 {
     DIAG_TRANS_IND_STRU                 stTransMsg;
@@ -2609,21 +2294,7 @@ VOS_VOID PPP_MNTN_CMO_SendOmResourceStateInfo(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CTTF_MNTN_CMO_SndPppConfigCnf
- 功能描述  : 回复到OM配置的ppp可维可测信息
- 输入参数  : MsgBlock *pMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月15日
-    作    者   : q00359829
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_MNTN_CMO_SndPppConfigCnf
 (
     PPP_MNTN_OM_RESULT_TYPE_ENUM_UINT8      enResult,
@@ -2679,21 +2350,7 @@ VOS_VOID PPP_MNTN_CMO_SndPppConfigCnf
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CTTF_MNTN_CMO_RcvPppConfigReq
- 功能描述  : 接收到OM配置的ppp可维可测信息捕获配置请求
- 输入参数  : MsgBlock *pMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月15日
-    作    者   : q00359829
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_MNTN_CMO_RcvPppConfigReq
 (
     CTTF_OM_PPP_MNTN_CONFIG_REQ_STRU        *pMsg
@@ -2737,21 +2394,7 @@ VOS_VOID PPP_MNTN_CMO_RcvPppConfigReq
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CTTF_MNTN_CMO_MsgProc
- 功能描述  : CTTF维测模块消息处理入口函数
- 输入参数  : pstMsg - 接收的消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月4日
-    作    者   : liukai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_MNTN_CMO_MsgProc(MsgBlock *pstRcvMsg)
 {
     CTTF_OM_PPP_MNTN_CONFIG_REQ_STRU         *pRcvCmoMsg;
@@ -2773,21 +2416,7 @@ VOS_VOID PPP_MNTN_CMO_MsgProc(MsgBlock *pstRcvMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CTTF_MNTN_CMO_MsgProc
- 功能描述  : CTTF维测模块消息处理入口函数
- 输入参数  : pstMsg - 接收的消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月15日
-    作    者   : q00359829
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_MNTN_CMO_Init(VOS_VOID)
 {
     g_enPppcRptRunning = PS_FALSE;

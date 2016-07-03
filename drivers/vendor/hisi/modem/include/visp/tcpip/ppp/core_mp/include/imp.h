@@ -104,7 +104,6 @@ DECLARE_INTERFACE (IIF_MP_ComIntFUN)
     METHOD_(ULONG, pfMP_LastWord_BatchCheckup)(CHAR *pstBuf, ULONG *pulLastWordLen);
     METHOD_(ULONG, pfMP_LastWord_StatisticCheckup)(CHAR *pstBuf, ULONG *pulLastWordLen);
     METHOD_(ULONG, pfMP_JudgeIfType)(ULONG ulIfIndex);/*Add by Q62011 for BC3D01354*/
-    /* Added by z43740 for TR报文发送增强, 2009-04-09 */
     METHOD_(ULONG, pfMP_IsCfgDiscardReq)(ULONG ulIfIndex);
     METHOD_(ULONG, pfMP_GetGoodSonChannel)(ULONG ulIfIndex, ULONG *pulSonIfIndex);
     METHOD_(ULONG, pfMP_GetNeedDownSonChannel)(ULONG ulIfIndex,ULONG ulOurMagicNumber, \
@@ -145,7 +144,6 @@ DECLARE_INTERFACE (IIF_MP_ComIntCFG)
     METHOD_( ULONG, pfMP_DelMcPrefixE) (ULONG ulIfIndex, UCHAR ucClass);
     METHOD_( ULONG, pfMP_PppMultilinkSsnhf) (ULONG ulIfIndex, ULONG ulSetYes);
     /* End of addition */
-    /* Added by z43740 for A82D20089: 重组窗口扩大,2007-09-13 */
     METHOD_(ULONG, pfMP_SetReorderWindowTimes)(ULONG ulTimes);
     METHOD_(VOID,  pfMP_IN_SetReorderWindowTimes)(ULONG ulTimes);
     METHOD_(ULONG, pfMP_GetReorderWindowTimes)(VOID);
@@ -154,7 +152,6 @@ DECLARE_INTERFACE (IIF_MP_ComIntCFG)
     /* End of addition */
     METHOD_( ULONG, pfMP_SetUpSublinkLowLimit) (ULONG ulIfIndex, ULONG ulValue );
     METHOD_( ULONG, pfMP_GetUpSublinkLowLimit) (ULONG ulIfIndex, ULONG *pulValue );
-    /* Added by z43740 for TR报文发送增强, 2009-04-09 */
     METHOD_( ULONG, pfMP_SetDiscReq)(ULONG ulIfIndex, ULONG ulSetYes);
     METHOD_( ULONG, pfMP_GetDiscReq)(ULONG ulIfIndex, ULONG *pulSetYes);
     /* End of addition */

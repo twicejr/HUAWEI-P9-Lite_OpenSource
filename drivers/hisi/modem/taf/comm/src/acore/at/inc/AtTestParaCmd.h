@@ -102,9 +102,7 @@ extern VOS_UINT32 At_TestCgscontrdp(VOS_UINT8 ucIndex);
 
 extern VOS_UINT32 At_TestCgtftrdp(VOS_UINT8 ucIndex);
 
-/* Add by w00199382 for V7代码同步, 2012-04-07, Begin   */
 extern VOS_UINT32 AT_TestChrgEnablePara(VOS_UINT8 ucIndex);
-/* Add by w00199382 for V7代码同步, 2012-04-07, End   */
 
 extern VOS_UINT32 AT_TestCposrPara(VOS_UINT8 ucIndex);
 

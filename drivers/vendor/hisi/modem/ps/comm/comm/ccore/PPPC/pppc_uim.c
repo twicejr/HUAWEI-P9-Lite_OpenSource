@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2015, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : pppc_uim.c
-  版 本 号   : 初稿
-  作    者   : w00316385
-  生成日期   : 2015年08月08日
-  最近修改   :
-  功能描述   : 读取和更新UIM卡信息
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年08月08日
-    作    者   : w00316385
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 /*****************************************************************************
@@ -52,23 +35,7 @@ PPPC_HRPD_FIXED_DATA_STRU               g_astPppcFixedData[MODEM_ID_BUTT];
 *****************************************************************************/
 /*lint -save -e958 */
 
-/*****************************************************************************
- 函 数 名  : PPPC_UIM_SndMsg
- 功能描述  : 向UIM发送的消息
- 输入参数  : VOS_UINT32              ulSenderPid,
-             VOS_UINT32              ulReceiverPid,
-             VOS_VOID               *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月08日
-    作    者   : w00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  PPPC_UIM_SndMsg
 (
     VOS_UINT32                          ulSenderPid,
@@ -99,21 +66,7 @@ VOS_UINT32  PPPC_UIM_SndMsg
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_UIM_GetModemId
- 功能描述  : 检查ModemeId并返回
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月30日
-    作    者   : c00199705
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT16 PPPC_UIM_GetModemId(VOS_VOID)
 {
     VOS_UINT16                          usModemId;
@@ -129,23 +82,7 @@ VOS_UINT16 PPPC_UIM_GetModemId(VOS_VOID)
     return usModemId;
 }
 
-/*****************************************************************************
-函 数 名  :PPPC_UIM_ReadFileReq
-功能描述  :读取文件请求
-输入参数  :ulSenderPid:发送请求的PID
-           pstGetFileInfo 文件信息
 
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :
-
-修改历史      :
- 1.日    期   : 2015年08月08日
-   作    者   : w00316385
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  PPPC_UIM_ReadFileReq
 (
     VOS_UINT32                          ulSenderPid,
@@ -216,21 +153,7 @@ VOS_UINT32  PPPC_UIM_ReadFileReq
 
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_INIT_SndUimReadReq
- 功能描述  : 向UIM发送读取指定文件请求的接口
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32   是否发送成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月08日
-    作    者   : w00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_INIT_SndUimReadReq(VOS_VOID)
 {
     VOS_UINT32                          ulRslt;
@@ -315,22 +238,7 @@ VOS_UINT32 PPPC_INIT_SndUimReadReq(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : PPPC_INIT_SaveCst
- 功能描述  : 保存USIM卡文件的信息
- 输入参数  : USIMM_READFILE_CNF_STRU  *pstUsimRead  消息码流
-             PPPC_HRPD_CST_STRU *pstCst
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月08日
-    作    者   : w00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_INIT_SaveCst(USIMM_READFILE_CNF_STRU *pstUsimRead, PPPC_HRPD_CST_STRU *pstCst)
 {
     if (PPPC_INIT_USIM_ELEMENT_CST_FILE_SIZE < pstUsimRead->usEfLen)
@@ -351,21 +259,7 @@ VOS_VOID PPPC_INIT_SaveCst(USIMM_READFILE_CNF_STRU *pstUsimRead, PPPC_HRPD_CST_S
 /*lint -e416*/
 /*lint -e661*/
 /*lint -e662*/
-/*****************************************************************************
- 函 数 名  : PPPC_INIT_SaveHrpdupp
- 功能描述  : 保存USIM卡文件的信息
- 输入参数  : USIMM_READFILE_CNF_STRU  *pstUsimRead  消息码流
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月08日
-    作    者   : w00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_INIT_SaveHrpdupp
 (
     USIMM_READFILE_CNF_STRU            *pstUsimRead,
@@ -448,22 +342,7 @@ VOS_VOID PPPC_INIT_SaveHrpdupp
 /*lint -e416*/
 /*lint -e661*/
 /*lint -e662*/
-/*****************************************************************************
- 函 数 名  : PPPC_INIT_SaveEsnMeid
- 功能描述  : 保存USIM卡文件的信息
- 输入参数  : USIMM_READFILE_CNF_STRU  *pstUsimRead
-             PPPC_HRPD_ESN_MEID_STRU  *pstEsnMeid
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月08日
-    作    者   : w00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_INIT_SaveEsnMeid
 (
     USIMM_READFILE_CNF_STRU            *pstUsimRead,
@@ -524,22 +403,7 @@ VOS_VOID PPPC_INIT_SaveEsnMeid
 /*lint -e416*/
 /*lint -e661*/
 /*lint -e662*/
-/*****************************************************************************
- 函 数 名  : PPPC_INIT_SaveRuimid
- 功能描述  : 保存USIM卡文件的信息
- 输入参数  : USIMM_READFILE_CNF_STRU  *pstUsimRead
-             PPPC_HRPD_RUIMID_STRU    *pstRuimid
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月08日
-    作    者   : w00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_INIT_SaveRuimid(USIMM_READFILE_CNF_STRU *pstUsimRead, PPPC_HRPD_RUIMID_STRU *pstRuimid)
 {
     VOS_UINT32                          ulLoop;
@@ -590,22 +454,7 @@ VOS_VOID PPPC_INIT_SaveRuimid(USIMM_READFILE_CNF_STRU *pstUsimRead, PPPC_HRPD_RU
 /*lint +e661*/
 /*lint +e662*/
 
-/*****************************************************************************
- 函 数 名  : PPPC_INIT_SaveUsgInd
- 功能描述  : 保存USIM卡文件的信息
- 输入参数  : USIMM_READFILE_CNF_STRU  *pstUsimRead  消息码流
-             VOS_UINT8 *pucSlotCycleIndex             SlotCycleIndex
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月08日
-    作    者   : w00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_INIT_SaveUsgInd(USIMM_READFILE_CNF_STRU *pstUsimRead, PPPC_HRPD_USGIND_STRU *pstUsgind)
 {
     /* C.S0065 5.2.14 */
@@ -623,22 +472,7 @@ VOS_VOID PPPC_INIT_SaveUsgInd(USIMM_READFILE_CNF_STRU *pstUsimRead, PPPC_HRPD_US
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_Uim_ChangeNum
- 功能描述  : 按照协议计还原算值
- 输入参数  : ulSrcValude  -- BCD码存放的位置
-             ulCodeMode   -- BCD码长度
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 -按照协议还原计算值
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年10月06日
-    作    者   :
-    修改内容   : 新生成函数
-*****************************************************************************/
 
 VOS_UINT32 PPPC_Uim_ChangeNum(VOS_UINT32 ulSrcValude, VOS_UINT32 ulCodeMode)
 {
@@ -675,21 +509,7 @@ VOS_UINT32 PPPC_Uim_ChangeNum(VOS_UINT32 ulSrcValude, VOS_UINT32 ulCodeMode)
     return ulDstValue;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_UIM_NumToStr
- 功能描述  : 将数字转为不带'/0'的字符数组
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月06日
-    作    者   : t00359887
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_UIM_NumToStr(VOS_UINT8 *pucArr, VOS_UINT32 ulNum, VOS_UINT8 ucLen)
 {
     VOS_UINT8                           ucIndex;
@@ -704,22 +524,7 @@ VOS_VOID PPPC_UIM_NumToStr(VOS_UINT8 *pucArr, VOS_UINT32 ulNum, VOS_UINT8 ucLen)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_INIT_SaveIMSI
- 功能描述  : 保存USIM卡IMSI的信息
- 输入参数  : VOS_UINT8 *pucCIMSI     保存IMSI文件码流
-             VOS_UINT8 *pucStrCIMSI  卡IMSI
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月06日
-    作    者   : t00359887
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_INIT_SaveIMSI
 (
     VOS_UINT8                           *pucCIMSI,
@@ -838,22 +643,7 @@ VOS_UINT32 PPPC_INIT_SaveIMSI
 
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_INIT_SaveUsimAD
- 功能描述  : 保存USIM卡AD的信息
- 输入参数  : VOS_UINT8 *pucCIMSI     保存IMSI文件码流
-             VOS_UINT8 *pucStrCIMSI  卡IMSI
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月08日
-    作    者   : t00359887
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_INIT_SaveUsimAD
 (
     USIMM_READFILE_CNF_STRU            *pstUsimRead,
@@ -892,22 +682,7 @@ VOS_VOID PPPC_INIT_SaveUsimAD
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_INIT_SaveUsimIMSI
- 功能描述  : 保存USIM卡IMSI的信息
- 输入参数  : VOS_UINT8 *pucCIMSI     保存IMSI文件码流
-             VOS_UINT8 *pucStrCIMSI  卡IMSI
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月08日
-    作    者   : t00359887
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_INIT_SaveUsimIMSI
 (
     VOS_UINT8                          *pucIMSI,
@@ -951,21 +726,7 @@ VOS_VOID PPPC_INIT_SaveUsimIMSI
     pstUsimInfo->ucImsiLen = ucImsiNum;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_INIT_SaveUsimInfo
- 功能描述  : 保存USIM卡文件的信息
- 输入参数  : USIMM_READFILE_CNF_STRU  *pstUsimRead  消息码流
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月08日
-    作    者   : w00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_INIT_SaveUsimInfo(USIMM_READFILE_CNF_STRU  *pstUsimRead)
 {
     PPPC_HRPD_UIM_INFO_STRU            *pstUimInfo;
@@ -1078,22 +839,7 @@ VOS_VOID PPPC_INIT_SaveUsimInfo(USIMM_READFILE_CNF_STRU  *pstUsimRead)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_GetpEsnByMeid
- 功能描述  : 通过MEID获取pESN
- 输入参数  : PPPC_HRPD_MEID_STRU *pucMeid
-             VOS_UINT32 *pulEsn
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月08日
-    作    者   : w00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_GetpEsnByMeid(PPPC_HRPD_MEID_STRU *pstMeid, VOS_UINT32 *pulEsn)
 {
     VOS_UINT8                           aucValue[20];
@@ -1145,26 +891,7 @@ VOS_UINT32 PPPC_GetpEsnByMeid(PPPC_HRPD_MEID_STRU *pstMeid, VOS_UINT32 *pulEsn)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_InitEsnMeidWhenB1B2Eq00
- 功能描述  :
-            C.S0065卡协议中，当读卡的 6F42 数据即 EF(USGIND)时，若其B1B2的值为'00'时，
-            则根据C.S0073协议2.3.1.4章节中的表格描述，使用MEID作为MEID，使用pESN作为ESN
 
-            若有MEID，则使用MEID计算pESN作为ESN，否则，则直接使用ESN。
-
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年08月08日
-    作    者   : w00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_InitEsnMeidWhenB1B2Eq00(VOS_VOID)
 {
     PPPC_HRPD_UIM_INFO_STRU            *pstUimInfo;
@@ -1199,26 +926,7 @@ VOS_VOID PPPC_InitEsnMeidWhenB1B2Eq00(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_InitEsnMeidWhenB1B2Eq01
- 功能描述  :
-            C.S0065卡协议中，当读卡的 6F42 数据即 EF(USGIND)时，若其B1B2的值为'01'时，
-            则根据C.S0073协议2.3.1.4章节中的表格描述，使用MEID作为MEID，使用pUIMID作为ESN
 
-            若有EUIMID，则使用EUIMID计算pUIMID作为ESN，否则，则直接使用pUIMID作为ESN。
-
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年08月08日
-    作    者   : w00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_InitEsnMeidWhenB1B2Eq01(VOS_VOID)
 {
     PPPC_HRPD_UIM_INFO_STRU            *pstUimInfo;
@@ -1263,26 +971,7 @@ VOS_VOID PPPC_InitEsnMeidWhenB1B2Eq01(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_InitEsnMeidWhenB1B2Eq10
- 功能描述  :
-            C.S0065卡协议中，当读卡的 6F42 数据即 EF(USGIND)时，若其B1B2的值为'10'时，
-            则根据C.S0073协议2.3.1.4章节中的表格描述，使用EUIMID作为MEID，使用pESN作为ESN
 
-            若有MEID，则使用MEID计算pESN作为ESN，否则，则直接使用ESN。
-
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年08月08日
-    作    者   : w00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_InitEsnMeidWhenB1B2Eq10(VOS_VOID)
 {
     PPPC_HRPD_UIM_INFO_STRU            *pstUimInfo;
@@ -1328,26 +1017,7 @@ VOS_VOID PPPC_InitEsnMeidWhenB1B2Eq10(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : PPPC_InitEsnMeidWhenB1B2Eq11
- 功能描述  :
-            C.S0065卡协议中，当读卡的 6F42 数据即 EF(USGIND)时，若其B1B2的值为'11'时，
-            则根据C.S0073协议2.3.1.4章节中的表格描述，使用EUIMID作为MEID，使用pUIMID作为ESN
 
-            若有EUIMID，则使用EUIMID计算pUIMID作为ESN，否则，则直接使用UIMID作为ESN。
-
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年08月08日
-    作    者   : w00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_InitEsnMeidWhenB1B2Eq11(VOS_VOID)
 {
     PPPC_HRPD_UIM_INFO_STRU            *pstUimInfo;
@@ -1384,56 +1054,7 @@ VOS_VOID PPPC_InitEsnMeidWhenB1B2Eq11(VOS_VOID)
 
 
 
-/*****************************************************************************
- 函 数 名  : PPPC_InitEsnMeidByUim
- 功能描述  :
 
- 3GPP2 C.S0065-B v2.0
- 5.2.33  EFUSGIND (UIM_ID/SF_EUIMID Usage Indicator)
-
-     This EF indicates whether the UIM_ID or ESN_ME is used as the 'ESN' value for
-     CAVE authentication and MS identification, as per Section 4.6.1 of [46].
-     This EF also indicates whether the SF_EUIMID or MEID_ME shall be used as the
-     MEID field over the air when Service n34 is available.
-
-     b1=0:   ESN_ME is used for CAVE Authentication and MS Identification.
-     b1=1:    UIM_IDUIMID is used for CAVE Authentication and MS Identification.
-     b2=0:    MEID MEID_ME is used for MS Identification.
-     b2=1:    SF_EUIMID is used for MS Identification.
-
- C.S0073-A v1.0
- 2.3.1.4  Method of Measurement
-
-     Table 2 MEID and ESN fields in Extended Status Response Message
-    -----------------------------------------------------------------------------------------
-     No. | Mobile station support |         R-UIM            | Fields of Status Response Message
-         |   of R-UIM             |     Configuration        |   MEID     |  ESN
-    -----------------------------------------------------------------------------------------
-     6.  |  R-UIM supported       | SF_EUIMID with bits b2b1 |   MEID     |  pESN
-         |  as per [6] or [7]     | of EFUSGIND set to '00'  |            |
-    -----------------------------------------------------------------------------------------
-     7.  |  R-UIM supported       | SF_EUIMID with bits b2b1 |   MEID     |  pUIMID
-         |  as per [6] or [7]     | of EFUSGIND set to '01'  |            |
-    -----------------------------------------------------------------------------------------
-     8.  |  R-UIM supported       | SF_EUIMID with bits b2b1 | SF_EUIMID  |  pESN
-         |  as per [6] or [7]     | of EFUSGIND set to '10'  |            |
-    -----------------------------------------------------------------------------------------
-     9.  |  R-UIM supported       | SF_EUIMID with bits b2b1 | SF_EUIMID  |  pUIMID
-         |  as per [6] or [7]     | of EFUSGIND set to '11'  |            |
-    -----------------------------------------------------------------------------------------
-
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年08月08日
-    作    者   : w00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_InitEsnMeidByUim(VOS_VOID)
 {
     PPPC_HRPD_UIM_INFO_STRU            *pstUimInfo;
@@ -1470,21 +1091,7 @@ VOS_VOID PPPC_InitEsnMeidByUim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_UIM_GetCIMSI
- 功能描述  : 获取CSIM卡IMSI
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 卡IMSI
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : t00359887
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_UIM_GetCIMSI(VOS_UINT8 aucIMSI[])
 {
     VOS_UINT8                          *pucIMSI;
@@ -1506,21 +1113,7 @@ VOS_UINT32 PPPC_UIM_GetCIMSI(VOS_UINT8 aucIMSI[])
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_UIM_GetUsimIMSI
- 功能描述  : 获取USIM卡IMSI
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 卡IMSI
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月08日
-    作    者   : t00359887
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_UIM_GetUsimIMSI(VOS_UINT8 aucIMSI[])
 {
     VOS_UINT8                          *pucIMSI;
@@ -1542,21 +1135,7 @@ VOS_UINT32 PPPC_UIM_GetUsimIMSI(VOS_UINT8 aucIMSI[])
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_HRPD_UimClearnReadTimer
- 功能描述  : 清除卡读文件定时器
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : t00359887
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_HRPD_UimClearnReadTimer(VOS_VOID)
 {
     PPPC_HRPD_FIXED_DATA_STRU          *pstUimInfo;
@@ -1569,21 +1148,7 @@ VOS_VOID PPPC_HRPD_UimClearnReadTimer(VOS_VOID)
     pstUimInfo->stUimReadTimer.hTimer = VOS_NULL_PTR;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_InitFixedData
- 功能描述  : 初始化FidData中的数据
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : t00359887
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  PPPC_InitFixedData(VOS_VOID)
 {
     PPPC_HRPD_FIXED_DATA_STRU          *pstUimInfo;
@@ -1595,21 +1160,7 @@ VOS_VOID  PPPC_InitFixedData(VOS_VOID)
     PS_MEM_SET(pstUimInfo, 0, sizeof(PPPC_HRPD_FIXED_DATA_STRU));
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_ReadFixedData
- 功能描述  : 从SIM卡中读取的数据以及NVIM中读出的数据等
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月11日
-    作    者   : t00359887
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  PPPC_ReadFixedData(VOS_VOID)
 {
     PPPC_HRPD_UIM_STATUS_ENUM_UINT8     enUimStatus;
@@ -1692,21 +1243,7 @@ VOS_UINT32  PPPC_ReadFixedData(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_MD5Active
- 功能描述  : MD5算法是否可用
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月8日
-    作    者   : w00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 PS_BOOL_ENUM_UINT8 PPPC_MD5Active(VOS_VOID)
 {
     VOS_UINT8                           ucType;
@@ -1733,21 +1270,7 @@ PS_BOOL_ENUM_UINT8 PPPC_MD5Active(VOS_VOID)
     return PS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_UIM_RunCaveAuthReq
- 功能描述  : 向UIM发送RUN CAVE命令
- 输入参数  : VOS_UINT32 ulRandu
- 输出参数  : 无
- 返 回 值  : VOS_UINT32   是否发送成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月08日
-    作    者   : w00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_UIM_RunCaveAuthReq(VOS_UINT32 ulRandu)
 {
     USIMM_AUTHENTICATION_REQ_STRU      *pstMsg;
@@ -1821,20 +1344,7 @@ VOS_UINT32 PPPC_UIM_RunCaveAuthReq(VOS_UINT32 ulRandu)
 
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_UsimmReadFileCnfProc
- 功能描述  : PPPC模块读取文件请求回复处理函数
- 输入参数  : pstMsg:消息内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月25日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_UsimmReadFileCnfProc(USIMM_READFILE_CNF_STRU *pstMsg)
 {
     VOS_UINT32                          ulEFID;
@@ -1879,21 +1389,7 @@ VOS_VOID PPPC_UsimmReadFileCnfProc(USIMM_READFILE_CNF_STRU *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_PihUsimStatusIndProc
- 功能描述  : 收到PIH模块上报的卡状态指示消息的预处理
- 输入参数  : USIMM_CARDSTATUS_IND_STRU  *pstUsimMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月13日
-    作    者   : w00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_PihUsimStatusIndProc(USIMM_CARDSTATUS_IND_STRU  *pstUsimMsg)
 {
     VOS_UINT8                           ucSimType;
@@ -1943,21 +1439,7 @@ VOS_UINT32 PPPC_PihUsimStatusIndProc(USIMM_CARDSTATUS_IND_STRU  *pstUsimMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_UIM_BuildNAIByIMSI
- 功能描述  : 根据IMSI构造接入鉴权使用的NAI信息
- 输入参数  : VOS_UINT32 ulNAIBuffLen
- 输出参数  : VOS_UINT8 *pucNAIBuff
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月02日
-    作    者   : c00338085
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_UIM_BuildNAIByIMSI(VOS_UINT8 *pucNAIBuff, VOS_UINT32 ulNAIBuffLen)
 {
     PPPC_HRPD_UIM_INFO_STRU            *pstUimInfo;
@@ -1999,23 +1481,7 @@ VOS_UINT32 PPPC_UIM_BuildNAIByIMSI(VOS_UINT8 *pucNAIBuff, VOS_UINT32 ulNAIBuffLe
     return VOS_ERR;
 }
 
-/*****************************************************************************
-  函 数 名  : PPPC_UIM_SendEapAuthReq
-  功能描述  : 向卡发送EAP鉴权请求
-  输入参数  : pucRand        AT_RAND
-              pucAutn        AT_AUTN
-              ucIdentifier   透传参数
-  输出参数  : 无
-  返 回 值  : VOS_UINT32
-  调用函数  :
-  被调函数  :
 
-  修改历史      :
-  1.日    期   : 2015年10月06日
-    作    者   : t00359887
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_UIM_SendEapAuthReq
 (
     VOS_UINT8                          *pucRand,
@@ -2075,21 +1541,7 @@ VOS_UINT32 PPPC_UIM_SendEapAuthReq
     return VOS_OK;
 }
 
-/*****************************************************************************
-  函 数 名  : PPPC_UIM_GetImsiMncLen
-  功能描述  : 获取MNC长度
-  输入参数  : 无
-  输出参数  : 无
-  返 回 值  : VOS_UINT8
-  调用函数  :
-  被调函数  :
 
-  修改历史      :
-  1.日    期   : 2016年1月25日
-    作    者   : t00359887
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 PPPC_UIM_GetImsiMncLen(VOS_VOID)
 {
     VOS_UINT16                          usModemId;

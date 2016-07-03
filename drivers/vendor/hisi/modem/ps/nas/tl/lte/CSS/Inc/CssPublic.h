@@ -1,16 +1,4 @@
-/******************************************************************************
 
-
-        @(#)Copyright(C)2013,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : CssPublic.h
-    Description : CSS实体头文件
-    History     :
-      1.wangchen 00209181   2015-05-14  Draft Enact
-
-
-******************************************************************************/
 
 #ifndef __CSSPUBLIC_H__
 #define __CSSPUBLIC_H__
@@ -110,6 +98,7 @@ extern "C" {
 
 #define CSS_OCTET_LOW_4_BITS            (0x0f)                  /* 获取一个字节中的低4位 */
 #define CSS_OCTET_HIGH_4_BITS           (0xf0)                  /* 获取一个字节中的高4位 */
+#define CSS_DEC_DIGIT_9                 (9)                     /* 十进制数9 */
 
 #define CSS_OCTET_MOVE_4_BITS           (0x04)
 #define CSS_OCTET_MOVE_8_BITS           (0x08)
@@ -656,18 +645,14 @@ typedef struct
 
     CSS_COMM_SCAN_BAND_LIST_STRU        stCommScanBandList;
     CSS_COMM_SCAN_BAND_LIST_STRU        stAsScanBandList;          /* 保存TDS请求的BAND和扫频后的结果 */
-    /* c00285307 add for 多制式和重叠频段BAND优化 Begin */
     VOS_UINT8                           aucRatSupportFlag[CSS_MAX_BAND_NUM];       /* 用来保存API结果中各个BAND的制式支持情况 */
-    /* c00285307 add for 多制式和重叠频段BAND优化 End */
 }CSS_CONTROL_STRU;
 
-/* c00285307 add for 多制式和重叠频段BAND优化 Begin */
 typedef struct
 {
     VOS_UINT16                          ucBand1;
     VOS_UINT16                          ucBand2;
 }CSS_OVERLAP_BAND_STRU;
-/* c00285307 add for 多制式和重叠频段BAND优化 End */
 
 #if(FEATURE_ON == FEATURE_CSS_CLOUD_MEMORY_IMPROVE)
 /*****************************************************************************
@@ -706,10 +691,8 @@ typedef struct
   7 Extern Global Variable
 *****************************************************************************/
 extern CSS_LPHY_FREQ_RANGE_INFO_STRU                  g_ausCssLteBandFreq[];
-/* c00285307 add for 多制式和重叠频段BAND优化 Begin */
 extern CSS_OVERLAP_BAND_STRU                          g_aucOverLapBand[];
 extern const VOS_UINT32                               g_aucOverLapBandSize;
-/* c00285307 add for 多制式和重叠频段BAND优化 End */
 
 
 extern CSS_CONTROL_STRU                               g_stCssControl;

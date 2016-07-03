@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafApsComFunc.h
-  版 本 号   : 初稿
-  作    者   : h44270
-  生成日期   : 2011年12月26日
-  最近修改   :
-  功能描述   : TafApsComFunc.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年12月26日
-    作    者   : h44270
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __TAFAPS_COMFUNC_H__
 #define __TAFAPS_COMFUNC_H__
@@ -294,13 +277,11 @@ TAF_PS_CAUSE_ENUM_UINT32 TAF_APS_MapEsmCause(
 
 TAF_PDP_TYPE_ENUM_UINT8 TAF_APS_ConvertPdpType(VOS_UINT8 ucPdpTypeNum);
 
-/* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
 VOS_UINT32 TAF_APS_GetCtrlHdrFromCmdBufferQueue(
     TAF_CTRL_STRU                      *pstCtrl,
     TAF_APS_TIMER_ID_ENUM_UINT32        enTimer,
     VOS_UINT32                          ulPara
 );
-/* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
 #if (FEATURE_ON == FEATURE_PTM)
 VOS_VOID TAF_APS_PsCallFailErrRecord(TAF_PS_CAUSE_ENUM_UINT32 enCause);

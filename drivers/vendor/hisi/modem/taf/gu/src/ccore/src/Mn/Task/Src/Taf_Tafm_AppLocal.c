@@ -9,17 +9,14 @@
 /* History       :                                                            */
 /*               :2005-04-13 初稿                                             */
 /*               :2005-10-07 增加获取当前ATTACH，DETACH状态函数，修改人:刘飏  */
-/*               :2006-02-23 l47619     Modify 问题单:A32D02143               */
 /******************************************************************************/
 
 #include "Taf_Tafm_Remote.h"
 #include "ExtAppRabmInterface.h"
 #include "MmaAppLocal.h"
-/* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, begin */
 #include "TafClientApi.h"
 #include "TafApsApi.h"
 #include "TafAppRabm.h"
-/* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, end */
 
 #ifdef  __cplusplus
   #if  __cplusplus
@@ -35,9 +32,7 @@
 #define    THIS_FILE_ID        PS_FILE_ID_TAF_TAFM_APPLOCAL_C
 /*lint +e767 修改人:罗建 107747;检视人:sunshaohua*/
 
-/* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-13, begin */
 
-/* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-13, end */
 VOS_UINT32   g_enClientIdRegChk = TAF_TRUE;
 
 /*数传接口RabId与ClientId对应表*/
@@ -51,23 +46,10 @@ VOS_UINT16 g_PsRabToClientId[TAF_MAX_RABID + 1] =
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 };
 
-/* Deleted by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, begin */
-/* Deleted by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, end */
 
 
 
-/**********************************************************
- Function:       Api_AppRabmDataInd
- Description:    协议栈数据发送请求函数
- Calls:          协议栈
- Data Accessed:
- Data Updated:
- Input:          p - 数传参数
- Output:
- Return:
- Others:
-    1.2006-02-23 l47619     Modify 问题单:A32D02143
-**********************************************************/
+
 VOS_VOID Api_AppRabmDataInd(ST_APP_RABM_DATA *p)
 {
     /* 对g_stMnCallBackFunc[i].regFunc.pDataIndFunc回调的清理 */
@@ -124,24 +106,7 @@ VOS_VOID Api_AppRabmDataInd(ST_APP_RABM_DATA *p)
     return;
 }
 
-/**********************************************************
- Function:       Api_AppRabmStatusInd
- Description:    协议栈数据发送状态上报函数
- Calls:          协议栈
- Data Accessed:
- Data Updated:
- Input:          p - 状态参数
- Output:
- Return:
- Others:
-    1.2005-09-27 l47619     Create
-    2.2006-02-23 l47619     Modify 问题单:A32D02143
-    3.2011-10-22 l00171473  DTS2011102202670, 在At_DataStatusIndProc的处理中未对此上报做处理, 注掉
-                            该函数的实现, 避免发数据失败时频繁发OSA消息导致消息队列满
-    4.日    期   : 2011年10月19日
-      作    者   : f00179208
-      修改内容   : AT移植项目, CallBack的清理
-**********************************************************/
+
 VOS_VOID Api_AppRabmStatusInd(ST_APP_RABM_STATUS *p)
 {
 #if 0
@@ -175,22 +140,7 @@ VOS_VOID Api_AppRabmStatusInd(ST_APP_RABM_STATUS *p)
     return;
 }
 
-/**********************************************************
- Function:       Api_AppRabmErrInd
- Description:    协议栈数据发送错误信息上报函数
- Calls:          协议栈
- Data Accessed:
- Data Updated:
- Input:          p - 错误信息参数
- Output:
- Return:
- Others:
-    1.2005-09-27 l47619     Create
-    2.2006-02-23 l47619     Modify 问题单:A32D02143
-    2.日    期   : 2011年10月19日
-      作    者   : f00179208
-      修改内容   : AT移植项目,CallBack的清理
-**********************************************************/
+
 VOS_VOID Api_AppRabmErrInd(ST_APP_RABM_ERROR *p)
 {
     VOS_UINT16 ClientId;
@@ -223,8 +173,6 @@ VOS_VOID Api_AppRabmErrInd(ST_APP_RABM_ERROR *p)
     return;
 }
 
-/* Deleted by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
-/* Deleted by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
 
 

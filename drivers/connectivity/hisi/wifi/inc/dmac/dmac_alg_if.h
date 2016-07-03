@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : dmac_alg_if.h
-  版 本 号   : 初稿
-  作    者   : 陈艳
-  生成日期   : 2013年3月21日
-  最近修改   :
-  功能描述   : DMAC to ALG的API接口文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年3月21日
-    作    者   : 陈艳
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __DMAC_ALG_IF_H__
 #define __DMAC_ALG_IF_H__
@@ -336,6 +319,16 @@ typedef enum
     DMAC_ALG_PROBE_REQ_RX_BUTT
 }dmac_alg_probe_req_rx_notify_enum;
 typedef oal_uint8 dmac_alg_probe_req_rx_notify_enum_uint8;
+
+typedef enum
+{
+    DMAC_ALG_OFDM_NULL_FRM_SUCC_TH = 6,
+    DMAC_ALG_NULL_FRM_INC_CNT = 8,
+    DMAC_ALG_NULL_FRM_INIT_CNT = 10,
+
+    DMAC_ALG_NULL_FRM_BUTT
+}dmac_alg_ar_null_frm_notify_enum;
+typedef oal_uint8 dmac_alg_ar_null_frm_notify_enum_uint8;
 
 
 /* 发送流程上获取发送参数的回调函数 */

@@ -750,6 +750,10 @@ static void charge_select_charging_current(struct charge_device_info *di)
             di->input_current = di->core_data->iin_ac;
             di->charge_current = di->core_data->ichg_ac;
             break;
+        case CHARGER_TYPE_VR:
+            di->input_current = di->core_data->iin_vr;
+            di->charge_current = di->core_data->ichg_vr;
+            break;
         case CHARGER_TYPE_FCP:
             di->input_current = di->core_data->iin_fcp;
             di->charge_current = di->core_data->ichg_fcp;
@@ -1039,6 +1043,9 @@ static void charge_stop_charging(struct charge_device_info *di)
     hwlog_info("---->STOP CHARGING\n");
     charge_wake_lock();
     di->sysfs_data.charge_enable = FALSE;
+    di->sysfs_data.adc_conv_rate = 0;
+    if (di->ops->set_adc_conv_rate)
+	   di->ops->set_adc_conv_rate(di->sysfs_data.adc_conv_rate);
     di->check_full_count = 0;
     ret = di->ops->set_charge_enable(FALSE);
     if(ret)
@@ -1354,6 +1361,54 @@ static void charge_usb_work(struct work_struct *work)
         break;
     }
 }
+
+/**********************************************************
+*  Function:       charge_process_vr_charge_event
+*  Description:    deal with vr charge events
+*  Parameters:     charge_device_info * di
+*  return value:   NULL
+**********************************************************/
+static void charge_process_vr_charge_event(struct charge_device_info * di)
+{
+    charge_stop_charging(di);
+    charge_wake_lock();
+
+    switch(di->sysfs_data.vr_charger_type) {
+        case CHARGER_TYPE_SDP:
+            di->charger_type = CHARGER_TYPE_USB;
+            di->charger_source = POWER_SUPPLY_TYPE_USB;
+            charge_send_uevent(di);
+            charge_start_charging(di);
+            break;
+        case CHARGER_TYPE_CDP:
+            di->charger_type = CHARGER_TYPE_BC_USB;
+            di->charger_source = POWER_SUPPLY_TYPE_USB;
+            charge_send_uevent(di);
+            charge_start_charging(di);
+            break;
+        case CHARGER_TYPE_DCP:
+            di->charger_type = CHARGER_TYPE_VR;
+            di->charger_source = POWER_SUPPLY_TYPE_MAINS;
+            charge_send_uevent(di);
+            charge_start_charging(di);
+            break;
+        case CHARGER_TYPE_UNKNOWN:
+            di->charger_type = CHARGER_TYPE_NON_STANDARD;
+            di->charger_source = POWER_SUPPLY_TYPE_MAINS;
+            charge_send_uevent(di);
+            charge_start_charging(di);
+            break;
+        case CHARGER_TYPE_NONE:
+            di->charger_type = USB_EVENT_OTG_ID;
+            di->charger_source = POWER_SUPPLY_TYPE_BATTERY;
+            charge_send_uevent(di);
+            charge_start_usb_otg(di);
+            break;
+        default:
+            hwlog_info("Invalid vr charger type! vr_charge_type = %d\n", di->sysfs_data.vr_charger_type);
+            break;
+    }
+}
 /**********************************************************
 *  Function:       charge_resume_wakelock_work
 *  Description:    apply wake_lock when resume
@@ -1448,6 +1503,7 @@ struct charge_sysfs_field_info {
 };
 
 static struct charge_sysfs_field_info charge_sysfs_field_tbl[] = {
+    CHARGE_SYSFS_FIELD_RW(adc_conv_rate, ADC_CONV_RATE),
     CHARGE_SYSFS_FIELD_RW(iin_thermal,    IIN_THERMAL),
     CHARGE_SYSFS_FIELD_RW(ichg_thermal,    ICHG_THERMAL),
     CHARGE_SYSFS_FIELD_RW(iin_thermal_aux,    IIN_THERMAL_AUX),
@@ -1474,6 +1530,7 @@ static struct charge_sysfs_field_info charge_sysfs_field_tbl[] = {
     CHARGE_SYSFS_FIELD_RO(ichg_adc,    ICHG_ADC),
     CHARGE_SYSFS_FIELD_RO(ichg_reg_aux,    ICHG_REG_AUX),
     CHARGE_SYSFS_FIELD_RO(ichg_adc_aux,    ICHG_ADC_AUX),
+    CHARGE_SYSFS_FIELD_RW(vr_charger_type,   VR_CHARGER_TYPE),
 };
 
 static struct attribute *charge_sysfs_attrs[ARRAY_SIZE(charge_sysfs_field_tbl) + 1];
@@ -1537,6 +1594,8 @@ static ssize_t charge_sysfs_show(struct device *dev,
         return -EINVAL;
 
     switch(info->name){
+    case CHARGE_SYSFS_ADC_CONV_RATE:
+        return snprintf(buf,PAGE_SIZE, "%u\n", di->sysfs_data.adc_conv_rate);
     case CHARGE_SYSFS_IIN_THERMAL:
         if(!di->is_dual_charger)
             return snprintf(buf,PAGE_SIZE, "%u\n", di->sysfs_data.iin_thl);
@@ -1637,6 +1696,8 @@ static ssize_t charge_sysfs_show(struct device *dev,
         }
         mutex_unlock(&di->sysfs_data.bootloader_info_lock);
         return ret;
+    case CHARGE_SYSFS_VR_CHARGER_TYPE:
+        return snprintf(buf,PAGE_SIZE, "%d\n", di->sysfs_data.vr_charger_type);
     default:
         hwlog_err("(%s)NODE ERR!!HAVE NO THIS NODE:(%d)\n",__func__,info->name);
         break;
@@ -1669,6 +1730,14 @@ static ssize_t charge_sysfs_store(struct device *dev,
           it will be charging with default current when the current node has been set to 0/1,
           include iin_thermal/ichg_thermal/iin_runningtest/ichg_runningtest node
         */
+    case CHARGE_SYSFS_ADC_CONV_RATE:
+        if ((strict_strtol(buf, 10, &val) < 0) || (val < 0) || (val > 1))
+            return -EINVAL;
+        di->sysfs_data.adc_conv_rate= val;
+        if (di->ops->set_adc_conv_rate)
+           di->ops->set_adc_conv_rate(di->sysfs_data.adc_conv_rate);
+        hwlog_info("set adc conversion rate mode = %d\n", di->sysfs_data.adc_conv_rate);
+        break;
     case CHARGE_SYSFS_IIN_THERMAL:
 #ifndef CONFIG_HLTHERM_RUNTEST
         if((strict_strtol(buf, 10, &val) < 0)||(val < 0)||(val > 3000))
@@ -1886,6 +1955,13 @@ static ssize_t charge_sysfs_store(struct device *dev,
         di->ops->set_input_current(di->sysfs_data.inputcurrent);
         hwlog_info("set input currrent is: %d\n",val);
         break;
+    case CHARGE_SYSFS_VR_CHARGER_TYPE:
+        if ((strict_strtol(buf, 10, &val) < 0) || (val < 0) || (val > 4))
+            return -EINVAL;
+        di->sysfs_data.vr_charger_type= val;
+        hwlog_info("Set vr_charger_type = %d\n", di->sysfs_data.vr_charger_type);
+        charge_process_vr_charge_event(di);
+        break;
     default:
         hwlog_err("(%s)NODE ERR!!HAVE NO THIS NODE:(%d)\n",__func__,info->name);
         break;
@@ -2051,6 +2127,7 @@ static int charge_probe(struct platform_device *pdev)
        hwlog_err("charge_fault_register_notifier failed\n");
        goto charge_fail_2;
     }
+    di->sysfs_data.adc_conv_rate = 0;
     di->sysfs_data.iin_thl = di->core_data->iin_max;
     di->sysfs_data.ichg_thl = di->core_data->ichg_max;
     di->sysfs_data.iin_thl_main = di->core_data->iin_max/2;
@@ -2067,6 +2144,7 @@ static int charge_probe(struct platform_device *pdev)
     di->sysfs_data.hiz_enable= FALSE;
     di->sysfs_data.charge_done_status = CHARGE_DONE_NON;
     di->sysfs_data.charge_done_sleep_status = CHARGE_DONE_SLEEP_DISABLED;
+    di->sysfs_data.vr_charger_type = CHARGER_TYPE_NONE;
     mutex_init(&di->sysfs_data.dump_reg_lock);
     mutex_init(&di->sysfs_data.dump_reg_head_lock);
     mutex_init(&charge_wakelock_flag_lock);

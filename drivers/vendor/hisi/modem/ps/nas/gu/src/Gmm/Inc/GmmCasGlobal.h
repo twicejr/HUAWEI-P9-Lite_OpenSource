@@ -1,21 +1,4 @@
-/************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : GmmCasGlobal.h
-  Author      : Roger Leo
-  Version     : V200R001
-  Date        : 2005-08-25
-  Description : 定义了GMM模块公共接入层全局共享的数据结构
-  History     :
-  1. Date:2005-08-25
-     Author: Roger Leo
-     Modification:update
-  2.日    期   : 2006年08月09日
-    作    者   : 蒋丽萍j60010247
-    修改内容   : 问题单A32D03479，在PC机上实现时将#pragma pack(0)和#pragma pack()加编译开关
-  3.日    期   : 2007年05月15日
-    作    者   : luojian id:60022475
-    修改内容   : 问题单号：A32D10978
-************************************************************************/
+
 
 #ifndef _GMM_CAS_GLOBAL_H_
 #define _GMM_CAS_GLOBAL_H_
@@ -43,7 +26,6 @@ extern "C" {
 #define GMM_PRINT_WARNING                   PS_LOG_LEVEL_WARNING
 #define GMM_PRINT_ERROR                     PS_LOG_LEVEL_ERROR
 
-/* Modified by L00171473 for V7R1 porting, 2011-04-23, begin, 避免重定义WARNING */
 
 /* 打印输出宏定义 */
 #ifndef SUBMOD_NULL

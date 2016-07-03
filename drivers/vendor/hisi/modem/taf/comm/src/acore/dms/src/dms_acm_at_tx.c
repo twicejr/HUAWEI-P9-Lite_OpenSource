@@ -42,25 +42,7 @@ VOS_UINT8                              *g_aucStaticBuf = NULL;
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : DMS_WriteData
- 功能描述  : AT写数据总入口
- 输入参数  : ucPortNo: 通道ID
-             pData: 发送数据指针
-             uslength:发送长度
- 输出参数  :
- 返 回 值  : ERR_MSP_FAILURE/ERR_MSP_SUCCESS
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2012年8月27日
-     作    者  : heliping
-     修改内容  : Creat Function
 
-   2.日    期   : 2015年6月25日
-     作    者   : l00198894
-     修改内容   : TSTS
-*****************************************************************************/
 VOS_INT32 DMS_WriteData(DMS_PHY_BEAR_ENUM enPhyBear, VOS_UINT8 *pucData, VOS_UINT16 usLen)
 {
     VOS_UINT8                          *pucSenBuf = NULL;
@@ -120,20 +102,7 @@ VOS_INT32 DMS_WriteData(DMS_PHY_BEAR_ENUM enPhyBear, VOS_UINT8 *pucData, VOS_UIN
     return lRet;
 }
 
-/*****************************************************************************
- 函 数 名  : Dms_StaticBufInit
- 功能描述  : AT发送静态buf初始化
- 输入参数  :
 
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2012年8月27日
-     作    者  : heliping
-     修改内容  : Creat Function
-*****************************************************************************/
 VOS_VOID Dms_StaticBufInit(VOS_VOID)
 {
     VOS_UINT32 i = 0;
@@ -170,20 +139,7 @@ VOS_VOID Dms_StaticBufInit(VOS_VOID)
     return ;
 
 }
-/*****************************************************************************
-函 数 名  : Dms_GetStaticBuf
-功能描述  : AT发送获取静态buf
-输入参数  : ulLen :需要buf的长度
 
-输出参数  :
-返 回 值  : VOS_NULL/addr
-调用函数  :
-被调函数  :
-修改历史  :
- 1.日    期  : 2012年8月27日
-   作    者  : heliping
-   修改内容  : Creat Function
-*****************************************************************************/
 VOS_UINT8* Dms_GetStaticBuf(VOS_UINT32 ulLen)
 {
     VOS_UINT32 i = 0;
@@ -222,20 +178,7 @@ VOS_UINT8* Dms_GetStaticBuf(VOS_UINT32 ulLen)
 
 }
 
-/*****************************************************************************
-函 数 名  : Dms_IsStaticBuf
-功能描述  : 判断是否是静态地址
-输入参数  : buf: buf地址
 
-输出参数  :
-返 回 值  : TRUE/FALSE
-调用函数  :
-被调函数  :
-修改历史  :
-1.日    期  : 2012年8月27日
-  作    者  : heliping
-  修改内容  : Creat Function
-*****************************************************************************/
 
  VOS_BOOL Dms_IsStaticBuf(VOS_UINT8 *buf)
  {
@@ -252,20 +195,7 @@ VOS_UINT8* Dms_GetStaticBuf(VOS_UINT32 ulLen)
 
 }
 
-/*****************************************************************************
- 函 数 名  : Dms_FreeStaticBuf
- 功能描述  : 释放静态空间
- 输入参数  : buf: 被释放的buf地址
 
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2012年8月27日
-     作    者  : heliping
-     修改内容  : Creat Function
-*****************************************************************************/
 VOS_VOID Dms_FreeStaticBuf( VOS_UINT8 * buf)
 {
     VOS_UINT32 i = 0;
@@ -296,21 +226,7 @@ VOS_VOID Dms_FreeStaticBuf( VOS_UINT8 * buf)
 
     return ;
 }
-/*****************************************************************************
- 函 数 名  : DMS_VcomWriteAsync
- 功能描述  : USB异步写接口
- 输入参数  : VcomId: 通道ID
-             pucDataBuf: 发送指针
-             slLen:发送长度
- 输出参数  :
- 返 回 值  : ERR_MSP_FAILURE/ERR_MSP_SUCCESS
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2012年8月27日
-     作    者  : heliping
-     修改内容  : Creat Function
-*****************************************************************************/
+
 VOS_UINT32 DMS_VcomWriteAsync(
     DMS_PHY_BEAR_ENUM                   enPhyBear,
     VOS_UINT8                          *pucDataBuf,

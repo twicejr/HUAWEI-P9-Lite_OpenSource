@@ -426,38 +426,7 @@ extern UINT32  SRE_CpupPeak(VOID);
 */
 extern VOID  SRE_CpupPeakClear(VOID);
 
-/**
- *@ingroup SRE_cpup
- *@brief 补偿IDLE钩子执行时间。
- *
- *@par 描述:
- *根据用户输入的指定IDLE钩子补偿时间，对指定的IDLE钩子执行时间进行补偿。
- *@attention
- *<ul>
- * <li>该接口必须在CPUP模块裁剪开关打开，并在其初始化之后才能使用。</li>
- * <li>当且仅当CPUP模式配置为系统级时，该接口有效。</li>
- * <li>若对指定的IDLE钩子执行时间进行补偿，则该钩子执行时间不计算在负载内。</li>
- * <li>对单个IDLE钩子进行多次补偿，以及所有IDLE钩子的补偿值会进行累加,补偿值总大小的合法性由用户保证。</li>
- * <li>用户在对IDLE钩子进行补偿时，必须保证补偿值的准确性(需要考虑IDLE钩子执行时Cache是否命中的因素)，否则会导致系统CPU占用率统计不准确。</li>
- * <li>若IDLE钩子时间补偿值错误，可能造成CPU占用率计算异常（超过10000或低于0）。此种情况，操作系统对计算值做容错处理，若CPU占用率超过10000，则将计算值更正为10000。若CPU占用率低于0，则将计算值更正为0。</li>
- *</ul>
- *
- *@param  pfnHook    [IN] 类型#OS_VOID_FUNC，输入的ILDE钩子。
- *@param  uwAddCycle [IN] 类型#UINT32，针对指定IDLE钩子补偿值大小。
- *
- *@retval #OS_ERRNO_CPUP_NOT_INITED             0x02000C0B，CPUP裁剪开关未打开，或者未初始化。
- *@retval #OS_ERRNO_CPUP_MODE_NOT_CORRECT       0x02000C06，CPUP模式配置为线程级。
- *@retval #OS_ERRNO_CPUP_OS_NOT_STARTED         0x02000C05，在osStart之前调用。
- *@retval #OS_ERRNO_CPUP_COMPEN_HOOK_NULL       0x02000C0E，输入的IDLE钩子为NULL。
- *@retval #OS_ERRNO_CPUP_COMPEN_VALUE_ZERO      0x02000C0F，输入的补偿值大小为0。
- *@retval #OS_ERRNO_CPUP_COMPEN_HOOK_NO_REG     0x02000C10，输入的的IDLE钩子未注册。
- *@retval #OS_ERRNO_CPUP_COMPEN_VALUE_TOO_LARGE 0x02000C11，输入的补偿值大小太大，超过了采样周期。
- *@retval #SRE_OK                               0x00000000，补偿成功。
- *@par 依赖:
- *<ul><li>sre_cpup.h：该接口声明所在的头文件。</li></ul>
- *@since RTOSck V100R002C00
- *@see SRE_CpupNow
- */
+
 extern UINT32 SRE_CpupIdleHookLoadAdd(OS_VOID_FUNC pfnHook, UINT32 uwAddCycle);
 
 /**

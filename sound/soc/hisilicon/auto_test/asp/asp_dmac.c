@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : asp_dmac.c
-  版 本 号   : 初稿
-  作    者   : w00262566
-  生成日期   : 2015年1月26日
-  最近修改   :
-  功能描述   : asp dmac 模块
-  函数列表   :
-
-  修改历史   :
-  1.日    期   : 2015年1月26日
-    作    者   : w00262566
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -155,21 +138,7 @@ static struct device* dmac_device = NULL;
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : asp_dmac_reg_read
- 功能描述  : 寄存器读函数
- 输入参数  : unsigned int reg   寄存器偏移
- 输出参数  : 无
- 返 回 值  : int                寄存器值
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月26日
-    作    者   : w00262566
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int asp_dmac_reg_read(unsigned int reg)
 {
     volatile unsigned int ret = 0;
@@ -177,43 +146,14 @@ int asp_dmac_reg_read(unsigned int reg)
     return ret;
 }
 
-/*****************************************************************************
- 函 数 名  : asp_dmac_reg_write
- 功能描述  : 寄存器写函数
- 输入参数  : unsigned int reg   寄存器偏移
-             unsigned int value 寄存器写入值
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月26日
-    作    者   : w00262566
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void asp_dmac_reg_write(unsigned int reg, unsigned int value)
 {
     writel(value, g_dmac_base_addr + reg);
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : asp_dmac_clear_interrupt
- 功能描述  : dmac中断清除
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月26日
-    作    者   : w00262566
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 static void asp_dmac_clear_interrupt()
 {
     asp_dmac_reg_write(HI3650_ASP_EDMAC_INT_TC1_RAW_REG,  CH_INT_CLR);
@@ -223,21 +163,7 @@ static void asp_dmac_clear_interrupt()
     asp_dmac_reg_write(HI3650_ASP_EDMAC_INT_ERR3_RAW_REG, CH_INT_CLR);
 }
 
-/*****************************************************************************
- 函 数 名  : asp_dmac_unmask
- 功能描述  : dmac中断解屏蔽
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月26日
-    作    者   : w00262566
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 static void asp_dmac_unmask(u32 cpu_num)
 {
     asp_dmac_reg_write(HI3650_ASP_EDMAC_INT_TC1_MASK_0_REG + 0x40 * cpu_num, CH_UNMASK);
@@ -249,27 +175,7 @@ static void asp_dmac_unmask(u32 cpu_num)
 }
 
 
-/*****************************************************************************
- 函 数 名  : asp_dmac_fill_list_cfg
- 功能描述  : 链式传输，链表配置
- 输入参数  : struct asp_dmac_list_cfg* 链表配置指针
-             dma_addr_t                链表物理地址
-             dma_addr_t                源物理地址
-             dma_addr_t                目的物理地址
-             unsigned int              链表大小
-             unsigned int              DMA 通道配置
-             unsigned int              传输方向
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月26日
-    作    者   : w00262566
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 static void asp_dmac_fill_list_cfg(struct asp_dmac_list_cfg *list_cfg,
                     dma_addr_t      lli_dma_addr,
                     dma_addr_t      src_dma_addr,
@@ -320,25 +226,7 @@ static void asp_dmac_fill_list_cfg(struct asp_dmac_list_cfg *list_cfg,
     list_cfg[size - 1].next_addr_phys = 0x0;
 }
 
-/*****************************************************************************
- 函 数 名  : asp_dmac_set_list_first
- 功能描述  : 链式传输，第一次传输配置
- 输入参数  : u32                       逻辑通道号
-             u32                       传输数据长度
-             u32                       传输配置
-             dma_addr_t                源物理地址
-             dma_addr_t                目的物理地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月26日
-    作    者   : w00262566
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 static void asp_dmac_set_list_first( u32 channel_num,
                                     u32 cnt_num,
                                     u32 config,
@@ -353,42 +241,13 @@ static void asp_dmac_set_list_first( u32 channel_num,
     pr_info("%s end\n",__FUNCTION__);
 }
 
-/*****************************************************************************
- 函 数 名  : asp_dmac_set_list
- 功能描述  : dmac使能链表传输
- 输入参数  : u32    逻辑通道号
-             u32    使能配置
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月26日
-    作    者   : w00262566
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 static void asp_dmac_set_list(u32 channel_num, u32 val)
 {
     asp_dmac_reg_write(HI3650_ASP_EDMAC_CX_LLI_0_REG + 0x40 * channel_num, val);
 }
 
-/*****************************************************************************
- 函 数 名  : asp_dmac_wait_transit_finish
- 功能描述  : dmac等待传输完成函数
- 输入参数  : u32    逻辑通道号
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月26日
-    作    者   : w00262566
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 static void asp_dmac_wait_transit_finish(unsigned int channel)
 {
     u32 value = 0;
@@ -440,22 +299,7 @@ static void asp_dmac_wait_transit_finish(unsigned int channel)
 }
 
 
-/*****************************************************************************
- 函 数 名  : asp_dmac_move_line
- 功能描述  : dmac线性传输
- 输入参数  : u32    逻辑通道号
-             u32    使能配置
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月26日
-    作    者   : w00262566
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int asp_dmac_move_line( unsigned int src,   unsigned int des,
                                unsigned int size,  unsigned int channel)
 {
@@ -515,22 +359,7 @@ int asp_dmac_move_line( unsigned int src,   unsigned int des,
     return ret;
 }
 
-/*****************************************************************************
- 函 数 名  : asp_dmac_move_list
- 功能描述  : dmac链式传输
- 输入参数  : u32    逻辑通道号
-             u32    使能配置
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月26日
-    作    者   : w00262566
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int asp_dmac_move_list( unsigned int src,   unsigned int des,
                               unsigned int size,  unsigned int channel,
                               unsigned int req,   unsigned int type)
@@ -588,42 +417,13 @@ int asp_dmac_move_list( unsigned int src,   unsigned int des,
 }
 
 
-/*****************************************************************************
- 函 数 名  : asp_dmac_reg_rw_test
- 功能描述  : dmac寄存器读写测试
- 输入参数  : struct at_util_reg_test_type 寄存器测试数组
-             int                          寄存器测试数组大小
- 输出参数  : 无
- 返 回 值  : int 测试结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月26日
-    作    者   : w00262566
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int asp_dmac_reg_rw_test(struct at_util_reg_test_type regs[], int size)
 {
     return at_util_reg_test (regs, size, asp_dmac_reg_read, asp_dmac_reg_write);
 }
 
-/*****************************************************************************
- 函 数 名  : asp_dmac_probe
- 功能描述  : asp dmac 驱动初始化
- 输入参数  : struct platform_device* 设备指针
- 输出参数  : 无
- 返 回 值  : 初始化结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月26日
-    作    者   : w00262566
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 static int asp_dmac_probe(struct platform_device *pdev)
 {
     dmac_device = &pdev->dev;
@@ -639,21 +439,7 @@ static int asp_dmac_probe(struct platform_device *pdev)
     return 0;
 }
 
-/*****************************************************************************
- 函 数 名  : asp_dmac_remove
- 功能描述  : asp dmac 驱动移除
- 输入参数  : struct platform_device* 设备指针
- 输出参数  : 无
- 返 回 值  : 驱动移除结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月26日
-    作    者   : w00262566
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 static int asp_dmac_remove(struct platform_device *pdev)
 {
     pr_info("%s\n",__FUNCTION__);
@@ -666,21 +452,7 @@ static int asp_dmac_remove(struct platform_device *pdev)
 }
 
 
-/*****************************************************************************
- 函 数 名  : asp_dmac_init
- 功能描述  : asp dmac 模块初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 模块初始化结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月26日
-    作    者   : w00262566
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 static int __init asp_dmac_init(void)
 {
     pr_info("%s \n",__FUNCTION__);
@@ -689,21 +461,7 @@ static int __init asp_dmac_init(void)
 }
 module_init(asp_dmac_init);
 
-/*****************************************************************************
- 函 数 名  : asp_dmac_exit
- 功能描述  : asp dmac 模块移除
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 模块移除结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月26日
-    作    者   : w00262566
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 static void __exit asp_dmac_exit(void)
 {
     pr_info("%s\n",__FUNCTION__);

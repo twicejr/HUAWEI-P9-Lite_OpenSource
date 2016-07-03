@@ -735,7 +735,6 @@ ULONG IP6_ND_SetNDSpecialProxyFlag(ULONG ulIfIndex, UCHAR ucFalg);
 ULONG IP6_ND_GetSpecialProxy(IP6_ND_SPECIAL_PROXY_PARA_S *pstSpecProxyPara);
 ULONG IP6_ND_GetProxyIfByAddr(ULONG ulVrfIndex, IN6ADDR_S *pstIP6Addr);
 
-/*Added by guojianjun178934, 接口状态变化或physical地址变化主动发送通告NA报文, 2014/1/27   问题单号:S-IP-005-PUBLIC-FUNC-003 */
 LONG IP6_ND_NATimerNodeCmp(VOID *pVal, SLL_NODE_S *pNode);
 ND_NA_TIMER_NODE *IP6_ND_NATimer_Lookup(const NDINFO_S *pstNDInfo, const IP6IFADDR_S *pstIPv6Addr);
 ULONG IP6_ND_NAStart(IP6IFADDR_S *pstIpIfAddr);
@@ -750,11 +749,9 @@ ULONG IP6_ND_SetNAInterval(ULONG ulIfnetIndex, ULONG ulValue,
                                       IP6_ND_SETFLAG_E enFlag);
 ULONG IP6_ND_GetNAInterval(ULONG ulIfnetIndex , ULONG *pulRetVal);
 
-/* End of Added by guojianjun178934, 2014/1/27   问题单号:S-IP-005-PUBLIC-FUNC-003 */
 
 ULONG IP6_ND_GetResSpecs(SPECS_RES_VALUE_S  *pstResSpecs);
 
-/*Added by guojianjun178934, 【检视问题单---DAD告警优化】产品定期发送地址冲突检测的NS报文，如果收到了NA我们需要启动DAD探测。, 2014/2/22   问题单号:DTS2014021206259  */
 LONG IP6_ND_DADExt_TimerNodeCmp(VOID *pVal, SLL_NODE_S *pNode);
 ULONG IP6_ND_DADExtStart(IP6IFADDR_S *pstIpIfAddr);
 VOID IP6_ND_DADExtStop(const IP6IFADDR_S *pstIp6IfAddr);
@@ -762,7 +759,6 @@ VOID IP6_ND_DADExtStopAll(VOID *pvIf);
 VOID IP6_ND_DADExt_Update(const IP6IFADDR_S *pstIp6IfAddr);
 VOID IP6_ND_DADExt_Timeout(ND_TIMER_S *pstTimerMsg);
 VOID IP6_ND_DADExt_Duplicate(IP6IFADDR_S *pstIp6IfAddr, UCHAR *pucDuplicateLLA);
-/* End of Added by guojianjun178934, 2014/2/22   问题单号:DTS2014021206259  */
 
 /*******************************************************************************
 *    Func Name: IP6_ND_GetNextNBInfoByFilter

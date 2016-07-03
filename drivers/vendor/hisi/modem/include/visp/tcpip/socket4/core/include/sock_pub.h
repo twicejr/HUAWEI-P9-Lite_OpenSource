@@ -466,7 +466,6 @@ extern   "C"{
 /* macro for select()                                                  */
 /*---------------------------------------------------------------------*/
 
-/*Added by zhoushisong202096, 支持大规格SOCKET, 2013/11/7 */
 #ifdef TCPIP_NOVRP_HUGE_SOCKET
 #define FD_SETSIZE      128*1024
 #else

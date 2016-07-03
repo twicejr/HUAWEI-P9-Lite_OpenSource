@@ -27,17 +27,7 @@ extern "C" {
   3 Function
 *****************************************************************************/
 
-/*****************************************************************************
- Function Name   : CSS_CmdHelp
- Description     : CSS∞Ô÷˙√¸¡Ó
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.wangchen 00209181  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  CSS_CmdHelp( VOS_VOID )
 {
     (VOS_VOID)vos_printf("\r\n");

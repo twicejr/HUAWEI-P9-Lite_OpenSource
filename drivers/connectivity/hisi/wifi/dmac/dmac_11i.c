@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : dmac_11i.c
-  版 本 号   : 初稿
-  作    者   : louyueyun
-  生成日期   : 2013年8月15日
-  最近修改   :
-  功能描述   : 11i DMAC功能处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年8月15日
-    作    者   : louyueyun
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -60,22 +43,7 @@ extern "C" {
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : dmac_check_igtk_exist
- 功能描述  : 通过igtk index检查igtk是否存在
- 输入参数  : uc_igtk_index : igtk的index值
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
-            <由于Hi1102 Device内存有限，暂时删除aes.c/h,oam_config.c/h文件，所以此函数搬移到此处。
-            原型为oal_check_igtk_exist>
- 修改历史      :
-  1.日    期   : 2014年5月3日
-    作    者   : z00273164
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 oal_uint32 dmac_check_igtk_exist(oal_uint8 uc_igtk_index)
 {
     /* igtk的key index 为4或5 */
@@ -88,21 +56,7 @@ oal_uint32 dmac_check_igtk_exist(oal_uint8 uc_igtk_index)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_11i_update_key_to_ce
- 功能描述  : 调用增加密钥写寄存器接口，将一个密钥写入硬件Lut表
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月27日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_11i_update_key_to_ce(mac_vap_stru *pst_mac_vap, hal_security_key_stru *pst_key, oal_uint8 *puc_addr)
 {
     dmac_vap_stru           *pst_dmac_vap;
@@ -132,21 +86,7 @@ oal_uint32  dmac_11i_update_key_to_ce(mac_vap_stru *pst_mac_vap, hal_security_ke
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_11i_del_key_to_ce
- 功能描述  : 将一个密钥从硬件LUT表中删除
- 输入参数  :
- 输出参数  : oal_uint32
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月8日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_11i_del_key_to_ce(mac_vap_stru                   *pst_mac_vap,
                                             oal_uint8                       uc_key_id,
                                             hal_cipher_key_type_enum_uint8  en_key_type,
@@ -177,21 +117,7 @@ oal_uint32  dmac_11i_del_key_to_ce(mac_vap_stru                   *pst_mac_vap,
     hal_ce_del_key(pst_dmac_vap->pst_hal_device, &st_security_key);
     return OAL_SUCC;
 }
-/*****************************************************************************
- 函 数 名  : dmac_11i_get_auth_type
- 功能描述  : 根据vap，获取认证类型
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月27日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC hal_key_origin_enum_uint8 dmac_11i_get_auth_type(mac_vap_stru *pst_mac_vap)
 {
     if (IS_AP(pst_mac_vap))
@@ -200,21 +126,7 @@ OAL_STATIC hal_key_origin_enum_uint8 dmac_11i_get_auth_type(mac_vap_stru *pst_ma
     }
     return HAL_SUPP_KEY;
 }
-/*****************************************************************************
- 函 数 名  : dmac_11i_get_key_type
- 功能描述  : 根据vap，获取密钥类型
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月27日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC hal_cipher_key_type_enum_uint8 dmac_11i_get_gtk_key_type(mac_vap_stru *pst_mac_vap, wlan_ciper_protocol_type_enum_uint8 en_cipher_type)
 {
     oal_uint8           uc_rx_gtk        = HAL_KEY_TYPE_RX_GTK;
@@ -259,21 +171,7 @@ OAL_STATIC hal_cipher_key_type_enum_uint8 dmac_11i_get_gtk_key_type(mac_vap_stru
     return uc_rx_gtk;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_reset_gtk_token
- 功能描述  : 复位gtk乒乓位
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月27日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 dmac_reset_gtk_token(mac_vap_stru *pst_mac_vap)
 {
     mac_user_stru  *pst_multi_user          = OAL_PTR_NULL;
@@ -289,21 +187,7 @@ oal_uint32 dmac_reset_gtk_token(mac_vap_stru *pst_mac_vap)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_11i_del_peer_macaddr
- 功能描述  : 将一个密钥从硬件LUT表中删除
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月21日
-    作    者   : louyueyun 218984
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_11i_del_peer_macaddr(mac_vap_stru *pst_mac_vap, oal_uint8 uc_lut_index)
 {
     dmac_vap_stru           *pst_dmac_vap       = OAL_PTR_NULL;
@@ -319,21 +203,7 @@ oal_uint32  dmac_11i_del_peer_macaddr(mac_vap_stru *pst_mac_vap, oal_uint8 uc_lu
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_11i_add_ptk_key
- 功能描述  : 设置单播密钥
- 输入参数  :
- 输出参数  : oal_uint32
- 返 回 值  : 0:成功,其他:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月27日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
  oal_uint32  dmac_11i_add_ptk_key(mac_vap_stru *pst_mac_vap, oal_uint8 *puc_mac_addr, oal_uint8 uc_key_index)
 {
     oal_uint32                          ul_ret;
@@ -464,21 +334,7 @@ oal_uint32  dmac_11i_del_peer_macaddr(mac_vap_stru *pst_mac_vap, oal_uint8 uc_lu
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_11i_add_gtk_key
- 功能描述  : 设置组播密钥
- 输入参数  : mac_vap_stru *pst_mac_vap, oal_uint8 uc_len, oal_uint8 *puc_param
- 输出参数  : oal_uint32
- 返 回 值  : 0:成功,其他:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月27日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_11i_add_gtk_key(mac_vap_stru *pst_mac_vap, oal_uint8 uc_key_index)
 {
     oal_uint32                          ul_ret;
@@ -524,13 +380,21 @@ oal_uint32  dmac_11i_add_gtk_key(mac_vap_stru *pst_mac_vap, oal_uint8 uc_key_ind
         return OAL_ERR_CODE_SECURITY_CHIPER_TYPE;
     }
 
+    /* 规避AP更新组播密钥使用的是相同的keyid，导致组播密钥槽的keyid一致，组播解密失败
+       keyid一致，采用原有密钥槽重新配置密钥 */
+    if (uc_key_index == pst_multi_user->st_key_info.uc_last_gtk_key_idx)
+    {
+        pst_multi_user->st_key_info.bit_gtk ^= BIT0; /* GTK 槽位乒乓使用 */
+    }
 
     st_security_key.en_cipher_type = (oal_uint8)pst_key->ul_cipher;
     st_security_key.uc_key_id      = uc_key_index;
     st_security_key.en_key_type    = dmac_11i_get_gtk_key_type(pst_mac_vap, st_security_key.en_cipher_type);
-
     pst_multi_user->st_key_info.bit_gtk ^= BIT0; /* GTK 槽位乒乓使用 */
-    OAM_WARNING_LOG1(pst_mac_vap->uc_vap_id, OAM_SF_WPA, "{dmac_11i_add_gtk_key::new bit_gtk=%u .}", pst_multi_user->st_key_info.bit_gtk);
+    pst_multi_user->st_key_info.uc_last_gtk_key_idx = uc_key_index;
+
+    OAM_WARNING_LOG2(pst_mac_vap->uc_vap_id, OAM_SF_WPA, "{dmac_11i_add_gtk_key::new bit_gtk=%u, keyidx = %u.}",
+                     pst_multi_user->st_key_info.bit_gtk, pst_multi_user->st_key_info.uc_last_gtk_key_idx);
 
     st_security_key.en_key_origin  = dmac_11i_get_auth_type(pst_mac_vap);
     st_security_key.en_update_key  = OAL_TRUE;
@@ -578,21 +442,7 @@ oal_uint32  dmac_11i_add_gtk_key(mac_vap_stru *pst_mac_vap, oal_uint8 uc_key_ind
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_11i_add_wep_key
- 功能描述  : 设置组播密钥
- 输入参数  : mac_vap_stru *pst_mac_vap, oal_uint8 uc_len, oal_uint8 *puc_param
- 输出参数  : oal_uint32
- 返 回 值  : 0:成功,其他:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月20日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_11i_add_wep_key(mac_vap_stru *pst_mac_vap, oal_uint8 uc_key_index)
 {
     mac_user_stru                      *pst_multi_user;
@@ -700,21 +550,7 @@ oal_uint32  dmac_11i_add_wep_key(mac_vap_stru *pst_mac_vap, oal_uint8 uc_key_ind
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_11i_del_ptk_key
- 功能描述  : 删除单播密钥
- 输入参数  : mac_vap_stru *pst_mac_vap, oal_uint8 uc_len, oal_uint8 *puc_param
- 输出参数  : oal_uint32
- 返 回 值  : 0:成功,其他:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月27日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_11i_del_ptk_key(mac_vap_stru *pst_mac_vap, oal_uint8 uc_key_index, oal_uint8 *puc_mac_addr)
 {
     oal_uint32                          ul_ret;
@@ -767,21 +603,7 @@ OAL_STATIC oal_uint32  dmac_11i_del_ptk_key(mac_vap_stru *pst_mac_vap, oal_uint8
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_11i_del_gtk_key
- 功能描述  : 删除组播密钥
- 输入参数  : mac_vap_stru *pst_mac_vap, oal_uint8 uc_len, oal_uint8 *puc_param
- 输出参数  : oal_uint32
- 返 回 值  : 0:成功,其他:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月27日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_11i_del_gtk_key(mac_vap_stru *pst_mac_vap, oal_uint8 uc_key_index)
 {
     oal_uint32                          ul_ret;
@@ -828,6 +650,7 @@ OAL_STATIC oal_uint32  dmac_11i_del_gtk_key(mac_vap_stru *pst_mac_vap, oal_uint8
 
     /*4.1 关闭1X端口认证状态*/
     mac_user_set_port(pst_current_mac_user, OAL_FALSE);
+    pst_current_mac_user->st_key_info.uc_last_gtk_key_idx = 0xFF;
 
     /*5.1 关闭发送描述符的加密属性*/
     if (HAL_KEY_TYPE_TX_GTK == en_key_type)
@@ -838,21 +661,7 @@ OAL_STATIC oal_uint32  dmac_11i_del_gtk_key(mac_vap_stru *pst_mac_vap, oal_uint8
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_11i_add_key_from_user
- 功能描述  : 设置用户的加密套件
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月2日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_11i_add_key_from_user(mac_vap_stru *pst_mac_vap, dmac_user_stru *pst_dmac_user)
 {
     oal_uint8                           uc_key_id;
@@ -910,21 +719,7 @@ oal_uint32  dmac_11i_add_key_from_user(mac_vap_stru *pst_mac_vap, dmac_user_stru
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_remove_key_from_user
- 功能描述  : 删除用户加密套件
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月2日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_11i_remove_key_from_user(mac_vap_stru *pst_mac_vap, dmac_user_stru *pst_dmac_user)
 {
     oal_uint8   uc_key_id;
@@ -968,21 +763,7 @@ oal_uint32  dmac_11i_remove_key_from_user(mac_vap_stru *pst_mac_vap, dmac_user_s
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_config_11i_init_port
- 功能描述  : 初始化port
- 输入参数  :
- 输出参数  : oal_uint32
- 返 回 值  : 0:成功,其他:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月15日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 dmac_config_11i_init_port(mac_vap_stru *pst_mac_vap, oal_uint8 uc_len, oal_uint8 *puc_param)
 {
 #if (_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC == _PRE_MULTI_CORE_MODE)
@@ -1001,21 +782,7 @@ oal_uint32 dmac_config_11i_init_port(mac_vap_stru *pst_mac_vap, oal_uint8 uc_len
 
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_config_11i_add_key_set_reg
- 功能描述  : add key 处理
- 输入参数  : mac_vap_stru *pst_mac_vap, oal_uint8 uc_len, oal_uint8 *puc_param
- 输出参数  : oal_uint32
- 返 回 值  : 0:成功,其他:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月27日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_config_11i_add_key_set_reg(mac_vap_stru *pst_mac_vap, oal_uint8 uc_key_index, oal_uint8 *puc_mac_addr)
 {
     oal_uint32                            ul_ret;
@@ -1044,23 +811,7 @@ oal_uint32  dmac_config_11i_add_key_set_reg(mac_vap_stru *pst_mac_vap, oal_uint8
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_config_11i_add_key
- 功能描述  : add key处理key,需要更新寄存器和相关的mib，还有其他配置
- 输入参数  : mac_vap_stru *pst_mac_vap, oal_uint8 uc_len, oal_uint8 *puc_param
- 输出参数  :
- 返 回 值  : 0:成功,其他:失败
- 调用函数  :
- 被调函数  :
- 其他说明  :1.由于1102 hmac2dmac跨实体，目前一个事件内存大约为52字节，所以addkey
-                事件必须分成两个事件下发。
-            2.由于跨实体，hmac的内容必须同步到dmac。
- 修改历史      :
-  1.日    期   : 2014年11月21日
-    作    者   : z00260280
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 oal_uint32  dmac_config_11i_add_key(mac_vap_stru *pst_mac_vap, oal_uint8 uc_len, oal_uint8 *puc_param)
 {
     oal_uint32                       ul_ret;
@@ -1158,21 +909,7 @@ oal_uint32  dmac_config_11i_add_key(mac_vap_stru *pst_mac_vap, oal_uint8 uc_len,
 }
 
 #ifdef _PRE_WLAN_FEATURE_WAPI
-/*****************************************************************************
- 函 数 名  : dmac_config_wapi_add_key
- 功能描述  :
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 其他说明  :1.
- 修改历史      :
-  1.日    期   : 2015年5月27日
-    作    者   : z00260280
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 oal_uint32  dmac_config_wapi_add_key(mac_vap_stru *pst_mac_vap, oal_uint8 uc_len, oal_uint8 *puc_param)
 {
     dmac_vap_stru       *pst_dmac_vap;
@@ -1195,21 +932,7 @@ oal_uint32  dmac_config_wapi_add_key(mac_vap_stru *pst_mac_vap, oal_uint8 uc_len
 
 
 
-/*****************************************************************************
- 函 数 名  : dmac_config_11i_remove_key
- 功能描述  : remove key
- 输入参数  : mac_vap_stru *pst_mac_vap, oal_uint8 uc_len, oal_uint8 *puc_param
- 输出参数  : oal_uint32
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月4日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_config_11i_remove_key(mac_vap_stru *pst_mac_vap, oal_uint8 uc_len, oal_uint8 *puc_param)
 {
     oal_uint32                       ul_ret;
@@ -1260,25 +983,7 @@ oal_uint32  dmac_config_11i_remove_key(mac_vap_stru *pst_mac_vap, oal_uint8 uc_l
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_11i_set_default_key
- 功能描述  : set deault key 逻辑处理
- 输入参数  : mac_vap_stru *pst_mac_vap, oal_uint8 uc_len, oal_uint8 *puc_param
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月8日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-2.日    期   : 2014年11月25日
-  作    者   : 即使不用更新寄存器，02也需要同步hmac的配置，因此把 非加密套件的
-                判断挪到dmac
-  修改内容   : 新生成函数
-*****************************************************************************/
 oal_uint32  dmac_config_11i_set_default_key(mac_vap_stru *pst_mac_vap, oal_uint8 uc_len, oal_uint8 *puc_param)
 {
     mac_setdefaultkey_param_stru    *pst_defaultkey_params = OAL_PTR_NULL;
@@ -1314,7 +1019,7 @@ oal_uint32  dmac_config_11i_set_default_key(mac_vap_stru *pst_mac_vap, oal_uint8
         OAM_ERROR_LOG0(pst_mac_vap->uc_vap_id, OAM_SF_WPA, "{dmac_config_11i_set_default_key::invalid mode.}");
         return OAL_FAIL;
     }
- 
+
 #if (_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC == _PRE_MULTI_CORE_MODE)
 
     if (uc_key_index >= WLAN_NUM_TK)
@@ -1352,21 +1057,7 @@ oal_uint32  dmac_config_11i_set_default_key(mac_vap_stru *pst_mac_vap, oal_uint8
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_11i_tkip_mic_failure_handler
- 功能描述  : 将mic事件上报到hmac
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月28日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_11i_tkip_mic_failure_handler(mac_vap_stru *pst_mac_vap, oal_uint8 *puc_user_mac, oal_nl80211_key_type en_key_type)
 {
     frw_event_mem_stru           *pst_event_mem;          /* 申请事件返回的内存指针 */

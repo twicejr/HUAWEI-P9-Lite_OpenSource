@@ -270,8 +270,27 @@ s32 bsp_ipc_spin_trylock (u32 u32SignalNum);
 *
 * 修改记录  :  2013年1月9日 lixiaojie
 *****************************************************************************/
-
 s32 bsp_ipc_spin_unlock (u32 u32SignalNum);
+
+/*****************************************************************************
+* 函 数 名  : bsp_ipc_spin_lock_timeout_irqsave
+*
+* 功能描述  : 在超时时间内锁中断并查询等待获取信号量
+*
+* 输入参数  : u32SignalNum:要获取的信号量
+              TimeoutMs:超时时间，单位为毫秒
+			  flags:锁中断标志，
+					注意: 获取成功与bsp_ipc_spin_unlock_irqrestore配对使用
+						  获取失败不需要bsp_ipc_spin_unlock_irqrestore
+						  参考spin_lock_irqsave用法
+* 输出参数  : 无
+*
+* 返 回 值  : MDRV_ERROR&MDRV_OK
+*
+* 修改记录  : 2016年2月26日 nieluhua 
+*****************************************************************************/
+s32 bsp_ipc_spin_lock_timeout_irqsave(unsigned int u32SignalNum, unsigned int TimeoutMs, unsigned long *flags);
+
 /*****************************************************************************
 * 函 数 名     : bsp_ipc_spin_lock_irqsave
 *
@@ -322,6 +341,7 @@ static inline s32 bsp_ipc_sem_give(u32 u32SignalNum) {return 0;}
 static inline s32 bsp_ipc_spin_lock (u32 u32SignalNum) {return 0;}
 static inline s32 bsp_ipc_spin_trylock(u32 u32SignalNum) {return 0;}
 static inline s32 bsp_ipc_spin_unlock (u32 u32SignalNum) {return 0;}
+static inline s32 bsp_ipc_spin_lock_timeout_irqsave(unsigned int u32SignalNum, unsigned int TimeoutMs, unsigned long *flags); {return 0;}
 #define bsp_ipc_spin_lock_irqsave(u32SignalNum,flags)  \
 	do{flags = flags;}while(0)
 #define bsp_ipc_spin_unlock_irqrestore(u32SignalNum,flags) \

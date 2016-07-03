@@ -48,7 +48,9 @@
 #define BST_IOC_UID_PROP_MONITOR		_IOW(BST_IOC_MAGIC, 26, struct app_monitor_prop)
 #define BST_IOC_SET_HRTAPP_ACTIVITY		_IOW(BST_IOC_MAGIC, 27, int32_t)
 #define BST_IOC_FAST_GRAB_INFO			_IOW(BST_IOC_MAGIC, 28, fastgrab_info)
-
+#define BST_IOC_SET_PROC_INFO			_IOWR(BST_IOC_MAGIC, 29, struct set_process_info)
+#define BST_IOC_SET_SPECIAL_UID			_IOW(BST_IOC_MAGIC, 30, int32_t)
+#define BST_IOC_NF_CONTROL				_IOW(BST_IOC_MAGIC, 31, bool)
 typedef enum {
 	BST_SOCK_NOT_USED = 0,
 	BST_SOCK_INVALID,
@@ -88,7 +90,11 @@ typedef enum {
 	CMD_ADD_UID,
 	CMD_DEL_UID,
 } monitor_cmd;
-
+typedef enum {
+    CMD_ADD_PROC_INFO,
+    CMD_DEL_PROC_INFO,
+    CMD_DEL_ALL_INFO,
+} bastet_filter_cmd;
 struct bst_device_ind {
 	uint32_t cons;
 	bst_ind_type type;
@@ -226,7 +232,11 @@ struct bst_monitor_ind_prop {
 	struct bst_sock_id sock_id;
 	struct bst_sock_comm_prop comm;
 };
-
+struct set_process_info {
+	bastet_filter_cmd cmd;
+	int32_t uid;
+	int32_t pid;
+};
 #define BST_MAX_WRITE_PAYLOAD			(2048)
 #define BST_MAX_READ_PAYLOAD			(BST_MAX_WRITE_PAYLOAD + sizeof(bst_device_ind))
 

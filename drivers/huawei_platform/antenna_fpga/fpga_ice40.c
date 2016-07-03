@@ -90,6 +90,7 @@ HWLOG_REGIST();
 #define SPI_DATA_LEN 10
 #define SPI_OUTPUT_DATA_LEN 8+3
 #define TEST_MODE_INPUT_LEN 9+2
+#define BYPASS_INPUT_LEN 12
 #define INVALID_VERSION1 "00000000"
 #define INVALID_VERSION2 "ffffffff"
 #define INVALID_CRC_GPIO 0
@@ -1069,6 +1070,42 @@ static ssize_t show_testmode(struct device *pdev, struct device_attribute *attr,
     return FPGA_TALBE_OUTPUT_LEN;
 }
 
+static ssize_t set_bypass(struct device *dev, struct device_attribute *attr, const char *buf, size_t count)
+{
+    int ret = 0;
+    unsigned char indata[SPI_DATA_LEN] = {0};
+    unsigned char input_address[BYPASS_INPUT_LEN/2] = {0};
+    fpga_data *drv_data = get_fpga_data();
+    fpga_plat_data *plat_data = NULL;
+    if(!drv_data) {
+    hwlog_err("%s drv data is null.\n", __func__);
+        return 1;
+    }
+    plat_data = &drv_data->plat_data;
+    ret = sscanf(buf, "%6s",input_address );
+    kstrtoint(input_address, BASE_HEX, &ret);
+    hwlog_info("%s ret high = %d\n", __func__, ret);
+    memset(indata, 0, SPI_DATA_LEN);
+    indata[0] = FPGA_WRITE;
+    indata[1] = FPGA_REGISTER_VERSION;
+    indata[2] = 0;
+    indata[4] = ((ret>>BYTE_PER_COUNT*2) & 0x03);
+    indata[5] = ((ret>>BYTE_PER_COUNT) & 0xff);
+    indata[6] = (ret & 0xff);
+    ret = sscanf(&buf[6], "%6s",input_address );
+    kstrtoint(input_address, BASE_HEX, &ret);
+    hwlog_info("%s ret low = %d\n", __func__, ret);
+    indata[7] = ((ret>>BYTE_PER_COUNT*2) & 0xff);
+    indata[8] = ((ret>>BYTE_PER_COUNT) & 0xff);
+    indata[9] = (ret & 0xff);
+    ice40_set_cs_callback(NORMAL_RATE, plat_data->spi_cs_gpio);
+    ret = ice40_data_spi_write(indata, SPI_DATA_LEN);
+    if(ret) {
+        hwlog_err("%s write bypass fail!\n", __func__);
+    }
+    return count;
+}
+
 static ssize_t show_gpio_crc(struct device *pdev, struct device_attribute *attr, char *buf)
 {
     fpga_data *drv_data = get_fpga_data();
@@ -1096,6 +1133,7 @@ static DEVICE_ATTR(spics,  S_IRUGO , show_spics, NULL);
 static DEVICE_ATTR(crc,  S_IRUGO , show_gpio_crc, NULL);
 static DEVICE_ATTR(preimagename,  S_IRUGO , show_preimagename, NULL);
 static DEVICE_ATTR(testmode,  S_IRUGO |S_IWUSR , show_testmode, set_testmode);
+static DEVICE_ATTR(bypass,  S_IWUSR, NULL, set_bypass);
 static DEVICE_ATTR(download_times,  S_IRUGO , show_download_times, NULL);
 
 static struct attribute *download_times_attributes[] = {
@@ -1123,6 +1161,15 @@ static struct attribute *testmode_attributes[] = {
 
 static const struct attribute_group testmode_attr_group = {
         .attrs = testmode_attributes,
+};
+
+static struct attribute *bypass_attributes[] = {
+        &dev_attr_bypass.attr,
+        NULL
+};
+
+static const struct attribute_group bypass_attr_group = {
+        .attrs = bypass_attributes,
 };
 
 static struct attribute *preimagename_attributes[] = {
@@ -1252,6 +1299,11 @@ static int create_system_group()
     ret =  sysfs_create_group(&fpga_ice40_dev.dev.kobj, &testmode_attr_group);
     if (ret){
         hwlog_err("Error creating testmode_attr_group sysfs entries\n");
+        return FAIL;
+    }
+    ret =  sysfs_create_group(&fpga_ice40_dev.dev.kobj, &bypass_attr_group);
+    if (ret){
+        hwlog_err("Error creating bypass_attr_group sysfs entries\n");
         return FAIL;
     }
     ret =  sysfs_create_group(&fpga_ice40_dev.dev.kobj, &crc_attr_group);

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafSpmFsmServiceCtrlTbl.c
-  版 本 号   : 初稿
-  作    者   : w00176964
-  生成日期   : 2013年5月8日
-  最近修改   :
-  功能描述   : SPM模块业务控制状态机状态转移表
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年5月78
-    作    者   : w00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -88,8 +71,6 @@ TAF_ACT_STRU        g_astTafSpmServiceCtrlInitActTbl[]   =
                       TAF_MSG_PROCESS_USS_MSG,
                       TAF_SPM_RcvAtSSReqMsg_ServiceCtrl_Init ),
 
-    /* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-17, begin */
-    /* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-17, end */
 
     /* STK SS message */
     TAF_ACT_TBL_ITEM( MAPS_STK_PID,
@@ -120,14 +101,11 @@ TAF_ACT_STRU        g_astTafSpmServiceCtrlInitActTbl[]   =
                       STK_SS_USSD_REQ,
                       TAF_SPM_RcvStkSSReqMsg_ServiceCtrl_Init ),
 
-    /* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-23, begin */
     /* AT CALL message */
     TAF_ACT_TBL_ITEM( WUEPS_PID_AT,
                       MN_CALL_APP_ORIG_REQ,
                       TAF_SPM_RcvAtCallReqMsg_ServiceCtrl_Init ),
 
-    /* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-17, begin */
-    /* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-17, end */
 
     /* AT SMS message */
     TAF_ACT_TBL_ITEM( WUEPS_PID_AT,
@@ -143,14 +121,11 @@ TAF_ACT_STRU        g_astTafSpmServiceCtrlInitActTbl[]   =
                       STK_CALL_CALLORIG_REQ,
                       TAF_SPM_RcvStkCallReqMsg_ServiceCtrl_Init ),
 
-    /* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-17, begin */
-    /* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-17, end */
 
     /* STK SMS message */
     TAF_ACT_TBL_ITEM( MAPS_STK_PID,
                       STK_MSG_SEND_REQ,
                       TAF_SPM_RcvStkSmsReqMsg_ServiceCtrl_Init ),
-    /* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-23, end */
 
 #if (FEATURE_ON == FEATURE_IMS)
     TAF_ACT_TBL_ITEM( WUEPS_PID_AT,
@@ -174,11 +149,9 @@ TAF_ACT_STRU        g_astTafSpmServiceCtrlWaitPbFdnCheckCnfActTbl[]   =
 /* TAF_SPM_SERVICE_CTRL_STA_WAIT_USIM_CALL_CTRL_CNF 动作表 */
 TAF_ACT_STRU        g_astTafSpmServiceCtrlWaitUsimCallCtrlCnfActTbl[]   =
 {
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     TAF_ACT_TBL_ITEM( MAPS_STK_PID,
                       SI_STK_ENVELOPE_CNF,
                       TAF_SPM_RcvUsimEnvelopeCnf_ServiceCtrl_WaitUsimCallCtrlCnf ),
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
     TAF_ACT_TBL_ITEM( VOS_PID_TIMER,
                       TI_TAF_SPM_WAIT_USIM_CALL_CTRL_CNF,
@@ -202,41 +175,13 @@ TAF_STA_STRU        g_astTafSpmServiceCtrlStaTbl[]   =
                       g_astTafSpmServiceCtrlWaitUsimCallCtrlCnfActTbl )
 };
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_GetServiceCtrlStaTblSize
- 功能描述  : 获取SPM模块业务控制状态机的大小
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:SPM模块业务控制状态机的大小
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月8日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_GetServiceCtrlStaTblSize(VOS_VOID)
 {
     return (sizeof(g_astTafSpmServiceCtrlStaTbl)/sizeof(TAF_STA_STRU));
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_GetServiceCtrlFsmDescAddr
- 功能描述  : 获取SPM模块业务控制状态机的描述表
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : TAF_FSM_DESC_STRU:指向SPM模块业务控制状态机的描述表
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月8日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_FSM_DESC_STRU * TAF_SPM_GetServiceCtrlFsmDescAddr(VOS_VOID)
 {
     return (&g_stTafSpmServiceCtrlFsmDesc);

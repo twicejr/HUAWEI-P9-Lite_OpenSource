@@ -1,23 +1,4 @@
-/******************************************************************************
 
-    Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : AppMmInterface.h
-  Description     : AppMmInterface.h header file
-  History           :
-     1 zhyiqiang:00138739      2008-08-30  Draft Enact
-     2.sunbing 49683           2008-09-20  Modify
-     3.sunbing 49683           2008-09-27  Modify
-     4.lining 00141619         2008-10-29  合并MM
-     5.sunbing 49683           2008-10-30  设置SM消息ID值和规范SM命名
-     6.leili 00132387          2008-12-03  完善APP与MM的接口
-     7.hanlufeng 41410         2009-03-11  BA8D01164 增加和APP的接口
-     8.hanlufeng 41410         2009-05-12  BJ9D00722 增加和APP的接口
-     9.xiaojun 58160           2009-05-19  BJ9D00828  AppMmInterface.h中关于路测
-                               的公共定义移植到OmCommon.h中，利于各个模块公共使
-                               用、维护
-******************************************************************************/
 
 #ifndef __APPMMINTERFACE_H__
 #define __APPMMINTERFACE_H__
@@ -1230,7 +1211,6 @@ typedef struct
 /*niuxiufan DT begin */
 typedef APP_MM_INQ_CMD_REQ_STRU           APP_MM_INQ_LTE_GUTI_REQ_STRU;
 
-/*V7R2-DT ,l00195322,2014/4/23,CNF 不上报消息体，在IND上报, begin*/
 typedef struct
 {
     VOS_MSG_HEADER                                  /*_H2ASN_Skip*/
@@ -1239,7 +1219,6 @@ typedef struct
     VOS_UINT32                            ulOpId;
     VOS_UINT32                            ulRslt;           /*0成功，1失败*/
 } APP_MM_INQ_LTE_GUTI_CNF_STRU;
-/*V7R2-DT ,l00195322,2014/4/23,CNF 不上报消息体，在IND上报, end*/
 
 typedef struct
 {
@@ -1287,7 +1266,6 @@ typedef struct
 }NAS_OM_EMM_STATE_STRU;
 
 
-/*V7R2-DT ,l00195322,2014/4/23,CNF 不上报消息体，在IND上报, begin*/
 typedef struct
 {
     VOS_MSG_HEADER                                /*_H2ASN_Skip*/
@@ -1296,7 +1274,6 @@ typedef struct
     VOS_UINT32                            ulOpId;
     VOS_UINT32                            ulRslt;           /*0成功，1失败*/
 } APP_MM_INQ_EMM_STATE_CNF_STRU;
-/*V7R2-DT ,l00195322,2014/4/23, CNF 不上报消息体，在IND上报,end*/
 
 typedef struct
 {

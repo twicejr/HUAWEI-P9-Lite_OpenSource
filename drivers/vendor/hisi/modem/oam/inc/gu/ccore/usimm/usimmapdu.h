@@ -1,16 +1,4 @@
-/************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : UsimmAPDU.h
-  Author      : zhuli 00100318
-  Version     : V100R002
-  Date        : 2008-5-15
-  Description : 该头文件定义了---
-  History     :
-  1.Date:2008-07-02
-     Author: m00128685
-     Modification:Modify the definition of enum
 
-************************************************************************/
 
 #ifndef __USIMM_APDU_H__
 #define __USIMM_APDU_H__
@@ -101,7 +89,6 @@ enum USIMM_STATUS_P2_PARA_ENUM
 typedef VOS_UINT8      USIMM_STATUS_P2_PARA_ENUM_UINT8;
 
 
-/* USIM卡select命令P1参数含义，协议TS102221 11.1.1.2 */
 enum USIMM_SELECT_P1_PARA_ENUM
 {
     USIMM_SELECT_BY_FILE_ID         = 0x00,   /* select DF,EF or MF by file id */
@@ -115,7 +102,6 @@ enum USIMM_SELECT_P1_PARA_ENUM
 typedef VOS_UINT8      USIMM_SELECT_P1_PARA_ENUM_UINT8;
 
 
-/* USIM卡select命令P2参数含义，协议TS102221 11.1.1.2 */
 enum USIMM_SELECT_P2_PARA_ENUM
 {
     USIMM_SELECT_ACTIVATE_AID         = 0x00,   /* Application session control,激活应用，仅当P1参数为04时，这个值才有意义 */

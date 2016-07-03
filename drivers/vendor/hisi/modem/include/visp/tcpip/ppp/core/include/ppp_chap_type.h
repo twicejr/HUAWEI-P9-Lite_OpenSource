@@ -1,28 +1,4 @@
-/*************************************************************************
- *
- *              Copyright 2005, Huawei Technologies Co. Ltd.
- *                          ALL RIGHTS RESERVED
- * 
- *-----------------------------------------------------------------------*
- *
- *                             ppp_chap_type.h
- *
- *  Project Code: VISP1.5
- *   Module Name: PPP
- *  Date Created: 2000-06-05
- *        Author: ZhuFengzhi
- *   Description: PPP的CHAP协议处理模块数据结构
- *
- *-----------------------------------------------------------------------*
- *  Modification History
- *  DATE            NAME            DESCRIPTION
- *  2000-06-05      ZhuFengzhi      Create
- *  2004-07-01      YiAn            Modified for VISP
- *  2006-03-31      ZhuKun          Adjust for D00661
- *  2006-04-21      ZhuKun          Adjust for D00875
- *  2006-05-11      luyao           为支持ARM CPU字节对齐特性，修改结构。
- *
- ************************************************************************/
+
 
 #ifndef _CHAP_TYPE_H_
 #define _CHAP_TYPE_H_

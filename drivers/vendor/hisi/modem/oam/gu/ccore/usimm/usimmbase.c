@@ -1,13 +1,4 @@
-/************************************************************************
-  Copyright    : 2005-2007, Huawei Tech. Co., Ltd.
-  File name    : UsimmBase.c
-  Author       : zhuli 00100318
-  Version      : v00R002
-  Date         : 2008-5-15
-  Description  : 该C文件给出了---Base模块实现
-  Function List:
-  History      :
-************************************************************************/
+
 #include "vos_Id.h"
 #include "usimmbase.h"
 #include "usimmapdu.h"
@@ -35,28 +26,7 @@ extern "C" {
 
 #if (FEATURE_ON == FEATURE_UE_UICC_MULTI_APP_SUPPORT)
 
-/*****************************************************************************
-函 数 名  : USIMM_RefreshHandle
-功能描述  : 实现了卡重启相关操作
-输入参数  : API层下发消息内容
-输出参数  : 无
-返 回 值  : VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-2. 日    期   : 2011年6月20日
-   作    者   : j00184875
-   修改内容   : [DTS2011042900838]卡初始化流程优化
-3. 日    期   : 2011年7月6日
-   作    者   : j00184875
-   修改内容   : [DTS2011070600422]GCF 27.22.4.7.2-2 Refresh测试用例失败
-4. 日    期   : 2013年11月26日
-   作    者   : L00256032
-   修改内容   : [DTS2013112302273]GCF 27.22.4.7.2 SIM卡Refresh测试用例1.1/1.3/1.4/2.2失败
 
-*****************************************************************************/
 VOS_UINT32 USIMM_RefreshHandle(
     USIMM_CMDHEADER_REQ_STRU            *pMsg)
 {
@@ -104,24 +74,7 @@ VOS_UINT32 USIMM_RefreshHandle(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_SAT_Fetch
-功能描述  : 实现了主动命令内容的获取和上报，如果是setupmenu则回复结果
-输入参数  : usLen : 主动命令的长度
-输出参数  : 无
-返 回 值  : VOS_ERR
-           VOS_OK
-调用函数  : USIMM_Fetch_APDU
-          USIMM_CheckSW
-          USIMM_FindTagInSMPTLV
-          USIMM_TerminalResponse_APDU
-          USIMM_SatDataCnf
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_SAT_Fetch(
     VOS_UINT16                          usLen)
 {
@@ -262,21 +215,7 @@ VOS_VOID USIMM_SAT_Fetch(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_SAT_Envelope
-功能描述  : 实现了Envelope的下发和结果的回复
-输入参数  : API层下发消息内容
-输出参数  : 无
-返 回 值  : VOS_ERR
-           VOS_OK
-调用函数  : USIMM_Envelope_APDU
-          USIMM_CheckSW
-          USIMM_EnvelopeCnf
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_SAT_Envelope(
     USIMM_CMDHEADER_REQ_STRU            *pMsg)
 {
@@ -322,7 +261,7 @@ VOS_UINT32 USIMM_SAT_Envelope(
 
     stCnfInfo.ucSW2 = stRspData.ucSW2;
 
-    if (VOS_OK != ulResult)/*检查结果*/
+    if (USIMM_SW_SENDCMD_ERROR == ulResult)/*检查结果*/
     {
         USIMM_ERROR_LOG("USIMM_SAT_Envelope: Send APDU Command is Failed");
 
@@ -361,21 +300,7 @@ VOS_UINT32 USIMM_SAT_Envelope(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_SAT_TerminalResopnse
-功能描述  : 实现了主动命令执行结果的下发和结果的回复
-输入参数  : API层下发消息内容
-输出参数  : 无
-返 回 值  : VOS_ERR
-           VOS_OK
-调用函数  : USIMM_TerminalResponse_APDU
-           USIMM_CheckSW
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_SAT_TerminalResopnse(
     USIMM_CMDHEADER_REQ_STRU            *pMsg)
 {
@@ -433,19 +358,7 @@ VOS_UINT32 USIMM_SAT_TerminalResopnse(
     return ulResult;
 }
 
-/****************************************************************************
-函 数 名  : USIMM_PinStatusCheck
-功能描述  : pin操作的状态检查函数，
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_UINT32，表示函数执行结果
-调用函数  :
-被调函数  :
-修订记录  :
-1. 日    期   : 2009年3月14日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32  USIMM_PinStatusCheck(
     USIMM_CARDAPP_ENUM_UINT32           enAppType,
     USIMM_PIN_CMD_TYPE_ENUM_UINT32      enCmdType,
@@ -685,17 +598,7 @@ VOS_UINT32  USIMM_PinStatusCheck(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_PinPreProcHandle
-功能描述  : USIMM模块PIN码请求消息预处理
-输入参数  : pstMsg : PIN码请求消息
-输出参数  : pstMsg : PIN码请求消息
-返 回 值  : 无
-History     :
-1.日    期  : 2015年01月30日
-  作    者  : h00300778
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 USIMM_PinPreProcHandle(
     USIMM_CARDAPP_ENUM_UINT32           enAppType,
     USIMM_PINHANDLE_REQ_STRU           *pstMsg
@@ -748,17 +651,7 @@ VOS_UINT32 USIMM_PinPreProcHandle(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_PinHandleCardStatusCheck
-功能描述  : USIMM模块PIN码请求处理当前卡状态检查处理函数
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-History     :
-1.日    期  : 2015年02月11日
-  作    者  : h00300778
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 USIMM_PinHandleCardStatusCheck(
     USIMM_CARDAPP_ENUM_UINT32           enAppType)
 {
@@ -798,18 +691,7 @@ VOS_UINT32 USIMM_PinHandleCardStatusCheck(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_BuildPrePinInfo
-功能描述  : 获取回复PIN信息
-输入参数  : 无
-输出参数  : pstPINInfo
-返 回 值  :
-修订记录  :
-1. 日    期   : 2014年3月20日
-   作    者   : g00256031
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_BuildPrePinInfo(
     USIMM_CARDAPP_ENUM_UINT32           enAppType,
     USIMM_PIN_INFO_STRU                *pstPINInfo
@@ -843,25 +725,7 @@ VOS_VOID USIMM_BuildPrePinInfo(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_PINHandle
-功能描述  : 实现了PIN码操作和结果的回复
-输入参数  : API层下发消息内容
-输出参数  : 无
-返 回 值  : VOS_ERR
-           VOS_OK
-调用函数  : USIMM_SelectDFFile
-          USIMM_PINVerify
-          USIMM_ChangePIN
-          USIMM_UnblockPIN
-          USIMM_InitCardSecondStep
-          USIMM_VerifyNCK
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_PINHandle(
     USIMM_CMDHEADER_REQ_STRU            *pMsg)
 {
@@ -1027,19 +891,7 @@ VOS_UINT32 USIMM_PINHandle(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_CheckChangeCardByICCID
-功能描述  : 通过ICCID判断是否有换卡
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2011年7月5日
-    作    者   : j00168360
-    修改内容   : Creat[DTS2011070102767]，马来外场，数传时修改PIN码错误，UE进入限制驻留
 
-*****************************************************************************/
 VOS_UINT32 USIMM_CheckChangeCardByICCID(VOS_VOID)
 {
     VOS_UINT32                      ulResult;
@@ -1080,18 +932,7 @@ VOS_UINT32 USIMM_CheckChangeCardByICCID(VOS_VOID)
     return USIMM_COMM_INIT_SUCC;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_IccProtectFirstStep
-功能描述  :ICC卡保护性复位第一步
-输入参数  :无
-输出参数  :无
-返 回 值  :USIMM_INIT_FAIL_CONTINUE/USIMM_INIT_OK
 
-修订记录  :
-1. 日    期   : 2015年4月10日
-   作    者   : h00300778
-   修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_IccProtectFirstStep(VOS_VOID)
 {
     VOS_UINT32                          ulResult;
@@ -1181,18 +1022,7 @@ VOS_UINT32 USIMM_IccProtectFirstStep(VOS_VOID)
     return USIMM_COMM_INIT_SUCC;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_IccProtectAutoVerifyPin
-功能描述  :ICC卡保护性复位自动验证PIN码过程
-输入参数  :无
-输出参数  :无
-返 回 值  :USIMM_INIT_OK
 
-修订记录  :
-1. 日    期   : 2015年4月10日
-   作    者   : h00300778
-   修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_IccProtectAutoVerifyPin(VOS_VOID)
 {
     USIMM_CARDAPP_ENUM_UINT32           enMainAppType;
@@ -1212,18 +1042,7 @@ VOS_UINT32 USIMM_IccProtectAutoVerifyPin(VOS_VOID)
     return USIMM_COMM_INIT_SUCC;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_IccProtectProfileDownloadStep
-功能描述  :ICC卡保护性复位重新下载PROFILE过程
-输入参数  :无
-输出参数  :无
-返 回 值  :USIMM_INIT_OK
 
-修订记录  :
-1. 日    期   : 2015年4月10日
-   作    者   : h00300778
-   修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_IccProtectProfileDownloadStep(VOS_VOID)
 {
     USIMM_CARDAPP_ENUM_UINT32           enAppType;
@@ -1243,18 +1062,7 @@ VOS_UINT32 USIMM_IccProtectProfileDownloadStep(VOS_VOID)
 }
 
 
-/*****************************************************************************
-函 数 名  :USIMM_IccProtectFdnBdnStep
-功能描述  :ICC卡保护性复位后的FDNBDN过程
-输入参数  :无
-输出参数  :无
-返 回 值  :USIMM_INIT_OK
 
-修订记录  :
-1. 日    期   : 2015年4月10日
-   作    者   : h00300778
-   修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_IccProtectFdnBdnStep(VOS_VOID)
 {
 
@@ -1285,18 +1093,7 @@ VOS_UINT32 USIMM_IccProtectFdnBdnStep(VOS_VOID)
     return USIMM_COMM_INIT_SUCC;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UiccProtectFirstStep
-功能描述  :UICC卡保护性复位第一步
-输入参数  :无
-输出参数  :无
-返 回 值  :USIMM_INIT_FAIL_CONTINUE/USIMM_INIT_OK
 
-修订记录  :
-1. 日    期   : 2015年3月7日
-   作    者   : h00300778
-   修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_UiccProtectFirstStep(VOS_VOID)
 {
     VOS_UINT32                          ulResult;
@@ -1345,18 +1142,7 @@ VOS_UINT32 USIMM_UiccProtectFirstStep(VOS_VOID)
     return USIMM_COMM_INIT_SUCC;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UiccProtectProfileDownloadStep
-功能描述  :UICC卡保护性复位重新下载PROFILE过程
-输入参数  :无
-输出参数  :无
-返 回 值  :USIMM_INIT_OK
 
-修订记录  :
-1. 日    期   : 2015年4月7日
-   作    者   : h00300778
-   修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_UiccProtectProfileDownloadStep(VOS_VOID)
 {
     VOS_UINT32                          i;
@@ -1379,18 +1165,7 @@ VOS_UINT32 USIMM_UiccProtectProfileDownloadStep(VOS_VOID)
     return USIMM_COMM_INIT_SUCC;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UiccProtectResumeAppStep
-功能描述  :UICC卡保护性复位重新打开逻辑通道及初始化各个APP的过程
-输入参数  :无
-输出参数  :无
-返 回 值  :USIMM_INIT_OK
 
-修订记录  :
-1. 日    期   : 2015年3月7日
-   作    者   : h00300778
-   修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_UiccProtectResumeAppStep(VOS_VOID)
 {
     VOS_UINT32                          ulRslt = VOS_OK;
@@ -1432,18 +1207,7 @@ VOS_UINT32 USIMM_UiccProtectResumeAppStep(VOS_VOID)
 
     return USIMM_UiccProtectReactiveChannels();
 }
-/*****************************************************************************
-函 数 名  :USIMM_UiccProtectResumeAppStep
-功能描述  :UICC卡保护性复位重新打开逻辑通道及初始化各个APP的过程
-输入参数  :无
-输出参数  :无
-返 回 值  :USIMM_INIT_OK
 
-修订记录  :
-1. 日    期   : 2015年3月7日
-   作    者   : h00300778
-   修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_UiccProtectReactiveChannels(VOS_VOID)
 {
     USIMM_UICC_ADF_INFO_STRU           *pstCurAidInfo           = VOS_NULL_PTR;
@@ -1542,18 +1306,7 @@ PUSIMPROTECTPROC g_astIccProtectResetFuncTbl[] =
     USIMM_IccProtectProfileDownloadStep,
     USIMM_IccProtectFdnBdnStep,
 };
-/*****************************************************************************
-函 数 名  :USIMM_IccProtectResetProc
-功能描述  :ICC卡保护性复位处理函数
-输入参数  :enCardType:卡类型
-输出参数  :无
-返 回 值  :USIMM_INIT_OK/USIMM_INIT_FATAL_EXIT/USIMM_INIT_FAIL_CONTINUE
 
-修订记录  :
-1. 日    期   : 2015年4月7日
-   作    者   : h00300778
-   修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_IccProtectResetProc(VOS_VOID)
 {
     VOS_UINT32                          ulRslt;
@@ -1580,18 +1333,7 @@ PUSIMPROTECTPROC g_astUiccProtectResetFuncTbl[] =
     USIMM_UiccProtectResumeAppStep,
 };
 
-/*****************************************************************************
-函 数 名  :USIMM_UiccProtectResetProc
-功能描述  :UICC卡保护性复位处理函数
-输入参数  :enCardType:卡类型
-输出参数  :无
-返 回 值  :USIMM_INIT_OK/USIMM_INIT_FATAL_EXIT/USIMM_INIT_FAIL_CONTINUE
 
-修订记录  :
-1. 日    期   : 2015年4月7日
-   作    者   : h00300778
-   修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_UiccProtectResetProc(VOS_VOID)
 {
     VOS_UINT32                          ulRslt;
@@ -1610,18 +1352,7 @@ VOS_UINT32 USIMM_UiccProtectResetProc(VOS_VOID)
     return ulRslt;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ProtectResetProc
-功能描述  :卡保护性复位处理函数
-输入参数  :enCardType:卡类型
-输出参数  :无
-返 回 值  :USIMM_INIT_OK/USIMM_INIT_FATAL_EXIT/USIMM_INIT_FAIL_CONTINUE
 
-修订记录  :
-1. 日    期   : 2015年4月7日
-   作    者   : h00300778
-   修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_ProtectResetProc(
     USIMM_PHYCARD_TYPE_ENUM_UINT32      enCardType)
 {
@@ -1639,24 +1370,7 @@ VOS_UINT32 USIMM_ProtectResetProc(
     return ulRslt;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_ProtectReset
-功能描述  : 当与卡交互异常时的处理函数
-输入参数  : pstMsg:PIH下属的保护性复位消息
-输出参数  : 无
-返 回 值  : VOS_ERR/VOS_OK
 
-修订记录  :
-1. 日    期   : 2009年11月5日
-    作    者   : m00128685
-    修改内容   : Creat
-2. 日    期   : 2011年6月20日
-    作    者   : j00168360
-    修改内容   : [DTS2011042900838]卡初始化流程优化
-3.日    期  : 2011年7月5日
-  作    者  : j00168360
-  修改内容  : [DTS2011070102767]，马来外场，数传时修改PIN码错误，UE进入限制驻留
-*****************************************************************************/
 VOS_UINT32 USIMM_ProtectReset(
     USIMM_CMDHEADER_REQ_STRU            *pstMsg)
 {
@@ -1752,19 +1466,7 @@ VOS_UINT32 USIMM_ProtectReset(
 }
 
 #if (FEATURE_ON == FEATURE_PTM)
-/*****************************************************************************
-函 数 名  : USIMM_CardErrorLogReport
-功能描述  :
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
 
-修订记录  :
-1. 日    期   : 2014年2月20日
-   作    者   : j00168360
-   修改内容   : Creat
-
-*****************************************************************************/
 VOS_VOID USIMM_CardErrorLogReport(VOS_VOID)
 {
     OM_ERR_LOG_REPORT_CNF_STRU                *pstCnfMsg;
@@ -1802,18 +1504,7 @@ VOS_VOID USIMM_CardErrorLogReport(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_RecordCardErrorLog
-功能描述  : 记录卡的errorlog
-输入参数  : enErrorReason--故障原因
-输出参数  : enAlmLevel -- 故障级别
-返 回 值  : 无
-修订记录  :
-1. 日    期   : 2014年2月20日
-   作    者   : j00168360
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_RecordCardErrorLog(
     USIMM_MNTN_STATE_ERROR_REASON_ENUM_UINT32                   enErrorReason,
     USIMM_MNTN_ERROR_LEVEL_ENUM_UINT16                          enAlmLevel)
@@ -1854,22 +1545,7 @@ VOS_VOID USIMM_RecordCardErrorLog(
 }
 #endif
 
-/*****************************************************************************
-函 数 名  : USIMM_StatusHandle
-功能描述  : 实现周期查卡的操作和结果回复　
-输入参数  : API层下发消息内容
-输出参数  : 无
-返 回 值  : VOS_ERR
-           VOS_OK
-调用函数  :
-          USIMM_STATUSProc
-          USIMM_SingleCmdCnf
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_StatusHandle(
     USIMM_CMDHEADER_REQ_STRU            *pMsg)
 {
@@ -1924,25 +1600,7 @@ VOS_UINT32 USIMM_StatusHandle(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_UpdateFile
-功能描述  : 实现文件更新操作
-输入参数  : enEFFileType -- 文件类型
-           ucRecordNum -- 记录数
-           usDataLen -- 更新数据长度
-           pucData -- 更新数据
-输出参数  : 无
-返 回 值  : VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2013年06月26日
-   作    者   : j00168360
-   修改内容   : Creat
 
-2. 日    期   : 2015年3月31日
-   作    者   : d00212987
-   修改内容   : 卡多应用迭代II开发
-*****************************************************************************/
 VOS_UINT32 USIMM_UpdateFile(
     USIMM_EF_TYPE_ENUM_UINT32           enEFFileType,
     USIMM_CARDAPP_ENUM_UINT32           enAppType,
@@ -1999,23 +1657,7 @@ VOS_UINT32 USIMM_UpdateFile(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_SelectFile
-功能描述  : 实现了文件的选择控制
-输入参数  : enFileApp :   应用类型
-           enEfFcpFlag : 针对EF文件是否需要带FCP
-           ulPathLen :   文件路径长度
-           pusFilePath : 选择文件路径
-输出参数  : 无
-返 回 值  : VOS_ERR
-           VOS_OK
-调用函数  : USIMM_SelectFileHandle
 
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_SelectFile
 (
     USIMM_CARDAPP_ENUM_UINT32           enAppType,
@@ -2124,21 +1766,7 @@ VOS_UINT32 USIMM_SelectFile
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_CheckSetFilePara
-功能描述  : 对待更新的文件进行参数检查
-输入参数  : pstCurEFFcp -- 指向当前EF信息
-           ucRecordNum -- 待更新文件记录数
-           usDataLen  -- 待更新文件长度
-输出参数  : 无
-返 回 值  : VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2013年7月22日
-   作    者   : j00168360
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_CheckSetFilePara(
     USIMM_EFFCP_ST                      *pstCurEFFcp,
     VOS_UINT8                           ucRecordNum,
@@ -2183,22 +1811,7 @@ VOS_UINT32 USIMM_CheckSetFilePara(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_SetIsimFileHandle
-功能描述  : 更新ISIM文件
-输入参数  : pstMsg--指向更新文件消息结构
-输出参数  : 无
-返 回 值  : VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2013年7月22日
-   作    者   : j00168360
-   修改内容   : Creat
 
-2. 日    期   : 2015年3月31日
-   作    者   : d00212987
-   修改内容   : 卡多应用迭代II开发
-*****************************************************************************/
 VOS_UINT32 USIMM_SetIsimFileHandle(
     USIMM_UPDATEFILE_REQ_STRU           *pstUpdateMsg,
     VOS_UINT16                          usEFID)
@@ -2279,27 +1892,7 @@ VOS_UINT32 USIMM_SetIsimFileHandle(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_SetRealFile
-功能描述  : 实现了更新文件操作和结果返回
-输入参数  : API层下发消息内容
-输出参数  : 无
-返 回 值  : VOS_ERR
-           VOS_OK
-调用函数  : USIMM_SelectFile
-          USIMM_UpdateTFFile
-          USIMM_UpdateLFFile
-          USIMM_UpdateCLFFile
-          USIMM_SetFileCnf
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-2. 日    期   : 2015年3月31日
-   作    者   : d00212987
-   修改内容   : 卡多应用迭代II开发
-*****************************************************************************/
 VOS_UINT32 USIMM_SetRealFile(
     USIMM_UPDATEFILE_REQ_STRU           *pstUpdateMsg,
     VOS_UINT16                          usEFID)
@@ -2330,22 +1923,7 @@ VOS_UINT32 USIMM_SetRealFile(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_GetFileFromCard
-功能描述  : 从卡中读取文件
-输入参数  : pstFileInfo --指向读取文件信息结构
-输出参数  : pstCnfInfo -- 指向回复消息结构
-返 回 值  : VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2013年7月22日
-   作    者   : j00168360
-   修改内容   : Creat
 
-2. 日    期   : 2015年3月31日
-   作    者   : d00212987
-   修改内容   : 卡多应用迭代II开发
-*****************************************************************************/
 VOS_UINT32 USIMM_GetFileFromCard(
     USIMM_GET_COMM_FILE_STRU           *pstFileInfo,
     USIMM_GETCNF_INFO_STRU             *pstCnfInfo)
@@ -2426,22 +2004,7 @@ VOS_UINT32 USIMM_GetFileFromCard(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_GetFileCommHandle
-功能描述  : 读取USIM/SIM卡文件
-输入参数  : pstFileInfo --指向读取文件信息结构
-输出参数  : pstCnfInfo -- 指向回复消息结构
-返 回 值  : VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2013年7月22日
-   作    者   : j00168360
-   修改内容   : Creat
 
-2. 日    期   : 2015年3月31日
-   作    者   : d00212987
-   修改内容   : 卡多应用迭代II开发
-*****************************************************************************/
 VOS_UINT32 USIMM_GetFileCommHandle(
     USIMM_READFILE_REQ_STRU            *pstReadMsg,
     USIMM_GETCNF_INFO_STRU             *pstCnfInfo,
@@ -2517,19 +2080,7 @@ VOS_UINT32 USIMM_GetFileCommHandle(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_GetIsimIMPI
-功能描述  : 根据imsi计算文件IMPI的内容
-输入参数  : 无
-输出参数  : pstCnfInfo -- 指向回复消息结构
-返 回 值  : VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2013年7月22日
-   作    者   : j00168360
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_GetIsimIMPI(
     USIMM_GETCNF_INFO_STRU              *pstCnfInfo)
 {
@@ -2597,19 +2148,7 @@ VOS_UINT32 USIMM_GetIsimIMPI(
     return USIMM_SW_OK;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_GetIsimIMPU
-功能描述  : 根据imsi计算文件IMPU的内容
-输入参数  : 无
-输出参数  : pstCnfInfo -- 指向回复消息结构
-返 回 值  : VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2013年7月22日
-   作    者   : j00168360
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_GetIsimIMPU(
     USIMM_GETCNF_INFO_STRU              *pstCnfInfo)
 {
@@ -2681,19 +2220,7 @@ VOS_UINT32 USIMM_GetIsimIMPU(
     return USIMM_SW_OK;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_GetIsimDOMAIN
-功能描述  : 根据imsi计算文件DOMAIN的内容
-输入参数  : 无
-输出参数  : pstCnfInfo -- 指向回复消息结构
-返 回 值  : VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2013年7月22日
-   作    者   : j00168360
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_GetIsimDOMAIN(
     USIMM_GETCNF_INFO_STRU              *pstCnfInfo)
 {
@@ -2753,18 +2280,7 @@ VOS_UINT32 USIMM_GetIsimDOMAIN(
     return USIMM_SW_OK;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_GetIsimIST
-功能描述  : 根据USIM的UST文件计算ISIM的文件IST的内容
-输入参数  : 无
-输出参数  : pstCnfInfo -- 指向回复消息结构
-返 回 值  : VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2013年7月22日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_GetIsimIST(
     USIMM_GETCNF_INFO_STRU              *pstCnfInfo)
 {
@@ -2822,22 +2338,7 @@ VOS_UINT32 USIMM_GetIsimIST(
     return USIMM_SW_OK;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_GetIsimFileHandle
-功能描述  : 读取ISIM卡文件
-输入参数  : pstFileInfo --指向读取文件信息结构
-输出参数  : pstCnfInfo -- 指向回复消息结构
-返 回 值  : VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2013年7月22日
-   作    者   : j00168360
-   修改内容   : Creat
 
-2. 日    期   : 2015年3月31日
-   作    者   : d00212987
-   修改内容   : 卡多应用迭代II开发
-*****************************************************************************/
 VOS_UINT32 USIMM_GetIsimFileHandle(
     USIMM_READFILE_REQ_STRU            *pstReadMsg,
     USIMM_GETCNF_INFO_STRU             *pstCnfInfo,
@@ -2937,26 +2438,7 @@ VOS_UINT32 USIMM_GetIsimFileHandle(
 
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_GetRealFile
-功能描述  : 实现了读取文件的操作和结果的返回
-输入参数  : API层下发消息内容
-输出参数  : 无
-返 回 值  : VOS_ERR
-           VOS_OK
-调用函数  : USIMM_SelectFile
-          USIMM_SendReadBinaryApdu
-          USIMM_ReadLFFile
-          USIMM_GetFileCnf
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-2. 日    期   : 2015年3月31日
-   作    者   : d00212987
-   修改内容   : 卡多应用迭代II开发
-*****************************************************************************/
 VOS_UINT32 USIMM_GetRealFile(
     USIMM_READFILE_REQ_STRU             *pstReadMsg,
     VOS_UINT16                          usEFID)
@@ -2991,21 +2473,7 @@ VOS_UINT32 USIMM_GetRealFile(
     return ulResult;
 }
 
-/********************************************************************
-  Function :       USIMM_RAccessPathHandle
-  Description :    完成CRSM命令的路径处理和文件选择
-  Input :          ulCmdType：命令类型
-                  usFileID：文件ID
-                  ulPathLen：文件长度
-                  pusPath：文件路径
-  Output :         无
-  Return :         文件选择结果，VOS_OK成功，其它为失败
-  Others :
-  修订记录  :
-  1. 日    期   : 2012年5月5日
-     作    者   : h59254
-     修改内容   : Creat
-********************************************************************/
+
 VOS_UINT32 USIMM_RAccessPathHandle(
     USIMM_CARDAPP_ENUM_UINT32           enAppType,
     VOS_UINT16                          usFileID,
@@ -3063,21 +2531,7 @@ VOS_UINT32 USIMM_RAccessPathHandle(
     return ulResult;
 }
 
-/********************************************************************
-  Function :       USIMM_AccessCmdHandle
-  Description :    完成CRSM命令的路径处理和文件选择
-  Input :          ulCmdType：命令类型
-                  usFileID：文件ID
-                  ulPathLen：文件长度
-                  pusPath：文件路径
-  Output :         无
-  Return :         文件选择结果，VOS_OK成功，其它为失败
-  Others :
-  修订记录  :
-  1. 日    期   : 2012年5月5日
-     作    者   : h59254
-     修改内容   : Creat
-********************************************************************/
+
 VOS_UINT32 USIMM_AccessCmdHandle(
     USIMM_CARDAPP_ENUM_UINT32           enAppType,
     USIMM_RESTRIC_CMD_ENUM_UINT32       enCmdType,
@@ -3157,32 +2611,7 @@ VOS_UINT32 USIMM_AccessCmdHandle(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_RAccessHandle
-功能描述  : 实现受限制访问卡的操作
-输入参数  : API层下发消息内容
-输出参数  : 无
-返 回 值  : VOS_ERR
-           VOS_OK
-调用函数  : USIMM_SelectFileHandle
-          USIMM_ReadBinary_APDU
-          USIMM_ReadRecord_APDU
-          USIMM_UpdateRecord_APDU
-          USIMM_UpdateRecord_APDU
-          USIMM_Status_APDU
-          USIMM_CheckSW
-          USIMM_RAccessCnf
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-2. 日    期   : 2011年4月27日
-   作    者   : j00168360
-   修改内容   : [DTS2011042702232]新西兰外场，使用2Degrees的卡启用PIN码会发生掉卡
-3. 日    期  : 2011年8月18日
-   作    者  : j00168360
-   修改内容  : [DTS2011081805771]使用MOVISTAR后台打开单板，后台不可用，AT口不通
-*****************************************************************************/
+
 VOS_UINT32 USIMM_RAccessHandle(
     USIMM_CMDHEADER_REQ_STRU            *pMsg)
 {
@@ -3306,18 +2735,7 @@ VOS_UINT32 USIMM_RAccessHandle(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_SearchHandle
-功能描述  : 查询处理函数
-输入参数  : API层下发消息内容
-输出参数  : 无
-返 回 值  : VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2010年01月08日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32  USIMM_SearchHandle(
     USIMM_SEARCHFILE_REQ_STRU           *pstSearchMsg,
     VOS_UINT16                          usEFID)
@@ -3399,18 +2817,7 @@ VOS_UINT32  USIMM_SearchHandle(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_PBInitStatusIndHandle
-功能描述  : 电话本初始化状态指示处理
-输入参数  : API层下发消息内容
-输出参数  : 无
-返 回 值  : VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2009年06月26日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_PBInitStatusIndHandle(
     USIMM_CMDHEADER_REQ_STRU            *pMsg)
 {
@@ -3436,18 +2843,7 @@ VOS_UINT32 USIMM_PBInitStatusIndHandle(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_SIMAuthHandle
-功能描述  : SIM卡鉴权处理
-输入参数  : 鉴权消息
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-调用函数  :
-修订记录  :
-1. 日    期   : 2013年07月24日
-   作    者   : g47350
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_SIMAuthHandle(
     USIMM_AUTHENTICATION_REQ_STRU       *pstMsg)
 {
@@ -3550,18 +2946,7 @@ VOS_UINT32 USIMM_SIMAuthHandle(
 
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_USIMAuthHandle
-功能描述  : USIM卡鉴权处理
-输入参数  : 鉴权消息
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-调用函数  :
-修订记录  :
-1. 日    期   : 2013年07月24日
-   作    者   : g47350
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_USIMAuthHandle(
     USIMM_AUTHENTICATION_REQ_STRU       *pstMsg)
 {
@@ -3720,18 +3105,7 @@ VOS_UINT32 USIMM_USIMAuthHandle(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_IsimAuthenticationProc
-功能描述  : ISIM卡鉴权处理
-输入参数  : pstMsg:鉴权消息
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-调用函数  :
-修订记录  :
-1. 日    期   : 2015年04月08日
-   作    者   : H00300778
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_IsimAuthenticationProc(
     USIMM_AUTHENTICATION_REQ_STRU       *pstMsg)
 {
@@ -3840,19 +3214,7 @@ VOS_UINT32 USIMM_IsimAuthenticationProc(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_IsimAkaAuthRspProc
-功能描述  : ISIM卡AKA鉴权处理
-输入参数  : pstMsg:鉴权消息
-            ptRspData:鉴权响应数据
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-调用函数  :
-修订记录  :
-1. 日    期   : 2015年04月08日
-   作    者   : H00300778
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID USIMM_IsimAkaAuthRspProc(
     USIMM_AUTHENTICATION_REQ_STRU      *pstMsg,
     USIMM_APDU_RSP_STRU                *pstRspData)
@@ -3894,19 +3256,7 @@ VOS_VOID USIMM_IsimAkaAuthRspProc(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_IsimHttpAuthRspProc
-功能描述  : ISIM卡HTTP鉴权处理
-输入参数  : pstMsg:鉴权消息
-            ptRspData:鉴权响应数据
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-修订记录  :
-1. 日    期   : 2015年04月08日
-   作    者   : H00300778
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID USIMM_IsimHttpAuthRspProc(
     USIMM_AUTHENTICATION_REQ_STRU      *pstMsg,
     USIMM_APDU_RSP_STRU                *pstRspData)
@@ -3938,19 +3288,7 @@ VOS_VOID USIMM_IsimHttpAuthRspProc(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_IsimGbaAuthRspProc
-功能描述  : ISIM卡GBA鉴权处理
-输入参数  : pstMsg:鉴权消息
-            ptRspData:鉴权响应数据
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-修订记录  :
-1. 日    期   : 2015年04月08日
-   作    者   : H00300778
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID USIMM_IsimGbaAuthRspProc(
     USIMM_AUTHENTICATION_REQ_STRU      *pstMsg,
     USIMM_APDU_RSP_STRU                *pstRspData)
@@ -3984,19 +3322,7 @@ VOS_VOID USIMM_IsimGbaAuthRspProc(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_IsimNafAuthRspProc
-功能描述  : ISIM卡NAF鉴权处理
-输入参数  : pstMsg:鉴权消息
-            ptRspData:鉴权响应数据
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-修订记录  :
-1. 日    期   : 2015年04月08日
-   作    者   : H00300778
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID USIMM_IsimNafAuthRspProc(
     USIMM_AUTHENTICATION_REQ_STRU      *pstMsg,
     USIMM_APDU_RSP_STRU                *pstRspData)
@@ -4024,18 +3350,7 @@ VOS_VOID USIMM_IsimNafAuthRspProc(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_ISIMAuthParaCheck
-功能描述  : ISIM卡鉴权类型检测
-输入参数  : 鉴权消息
-输出参数  : 鉴权P2参数值
-返 回 值  : VOS_OK/VOS_ERR
-调用函数  :
-修订记录  :
-1. 日    期   : 2013年07月24日
-   作    者   : g47350
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_ISIMAuthParaCheck(
     USIMM_AUTHENTICATION_REQ_STRU       *pstMsg,
     VOS_UINT8                           *pucMode)
@@ -4069,18 +3384,7 @@ VOS_UINT32 USIMM_ISIMAuthParaCheck(
     return VOS_ERR;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_ISIMAuthHandle
-功能描述  : ISIM卡鉴权处理
-输入参数  : 鉴权消息
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-调用函数  :
-修订记录  :
-1. 日    期   : 2013年07月24日
-   作    者   : g47350
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_ISIMAuthHandle(
     USIMM_AUTHENTICATION_REQ_STRU       *pstMsg)
 {
@@ -4224,19 +3528,7 @@ VOS_UINT32 USIMM_ISIMAuthHandle(
     return VOS_ERR;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_AuthenticationDataFillDataProc
-功能描述  :实现了虚拟卡鉴权下发和结果回复　
-输入参数  :协议栈下发的消息内容
-输出参数  :得到的鉴权数据
-返 回 值  :VOS_ERR
-           VOS_OK
 
-修订记录  :
-1. 日    期   : 2015年3月7日
-   作    者   : h00300778
-   修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_AuthenticationDataFillDataProc(
     USIMM_AUTHENTICATION_REQ_STRU      *pstMsg,
     USIMM_U8_DATA_STRU                 *pstData)
@@ -4525,19 +3817,7 @@ VOS_UINT32 USIMM_AuthenticationDataFillDataProc(
 }
 
 
-/*****************************************************************************
-函 数 名  :USIMM_GutlAuthenticationProc
-功能描述  :实现了虚拟卡鉴权下发和结果回复　
-输入参数  :协议栈下发的消息内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
 
-修订记录  :
-1. 日    期   : 2015年3月7日
-   作    者   : h00300778
-   修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_GutlAuthenticationProc(
     USIMM_AUTHENTICATION_REQ_STRU       *pstMsg)
 {
@@ -4559,18 +3839,7 @@ VOS_UINT32 USIMM_GutlAuthenticationProc(
 }
 
 
-/*****************************************************************************
-函 数 名  :USIMM_ImsAuthenticationProc
-功能描述  :ISIM APP类型鉴权处理
-输入参数  :pMsg:API层下发消息内容
-输出参数  :无
-返 回 值  :VOS_ERR/VOS_OK
 
-修订记录  :
-1. 日    期   : 2015年4月9日
-   作    者   : H00300778
-   修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_ImsAuthenticationProc(
     USIMM_AUTHENTICATION_REQ_STRU       *pstMsg)
 {
@@ -4588,18 +3857,7 @@ VOS_UINT32 USIMM_ImsAuthenticationProc(
     return ulRslt;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CdmaAuthHandle
-功能描述  :实现了获取CDMA文件的操作和结果的返回
-输入参数  :pMsg:API层下发消息内容
-输出参数  :无
-返 回 值  :VOS_ERR/VOS_OK
 
-修订记录  :
-1. 日    期   : 2014年7月4日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_CdmaAuthHandle(
     USIMM_AUTHENTICATION_REQ_STRU       *pstMsg)
 {
@@ -4809,23 +4067,7 @@ VOS_UINT32 USIMM_CdmaAuthHandle(
 }
 
 
-/*****************************************************************************
-函 数 名  : USIMM_AuthenticationHandle
-功能描述  : 实现了鉴权下发和结果回复　
-输入参数  : API层下发消息内容
-输出参数  : 无
-返 回 值  : VOS_ERR
-           VOS_OK
-调用函数  : USIMM_SelectDFFile
-          USIMM_Authentication_APDU
-          USIMM_CheckSW
-          USIMM_AuthencitionCnf
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_AuthenticationHandle(
     USIMM_CMDHEADER_REQ_STRU            *pMsg)
 {
@@ -4866,19 +4108,7 @@ VOS_UINT32 USIMM_AuthenticationHandle(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_3Gpp2FDNHandle
-功能描述  : 实现了CDMA的FDN操作
-输入参数  : API层下发消息内容
-输出参数  : 无
-返 回 值  : VOS_ERR
-           VOS_OK
 
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_3Gpp2FDNHandle(
     USIMM_FDNPROCESS_REQ_STRU           *pstMsg)
 {
@@ -4981,19 +4211,7 @@ VOS_UINT32 USIMM_3Gpp2FDNHandle(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_3GppFDNHandle
-功能描述  : 实现了GUTL的FDN操作
-输入参数  : API层下发消息内容
-输出参数  : 无
-返 回 值  : VOS_ERR
-           VOS_OK
 
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_3GppFDNHandle(
     USIMM_FDNPROCESS_REQ_STRU           *pstMsg)
 {
@@ -5102,19 +4320,7 @@ VOS_UINT32 USIMM_3GppFDNHandle(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_FDNHandle
-功能描述  : 实现FDN功能的操作和结果回复
-输入参数  : API层下发消息内容
-输出参数  : 无
-返 回 值  : VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_FDNHandle(
     USIMM_CMDHEADER_REQ_STRU            *pMsg)
 {
@@ -5152,21 +4358,7 @@ VOS_UINT32 USIMM_FDNHandle(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_DeactiveRealCard
-功能描述  : 下电SIM卡并且释放所有资源
-输入参数  : 外部消息
-输出参数  : 无
-返 回 值  : VOS_ERR
-            VOS_OK
-调用函数  :
 
-修订记录  :
-1. 日    期   : 2010年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 USIMM_DeactiveRealCard(
     USIMM_MsgBlock                      *pMsg)
 {
@@ -5213,21 +4405,7 @@ VOS_UINT32 USIMM_DeactiveRealCard(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_DeactiveCardHandle
-功能描述  : 下电SIM卡并且释放所有资源
-输入参数  : 外部消息
-输出参数  : 无
-返 回 值  : VOS_ERR
-            VOS_OK
-调用函数  :
 
-修订记录  :
-1. 日    期   : 2010年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 USIMM_DeactiveCardHandle(
     USIMM_CMDHEADER_REQ_STRU            *pMsg)
 {
@@ -5242,21 +4420,7 @@ VOS_UINT32 USIMM_DeactiveCardHandle(
     return USIMM_DeactiveRealCard((USIMM_MsgBlock*)pMsg);
 }
 
-/*****************************************************************************
-函 数 名  :
-功能描述  :
-输入参数  :
-输出参数  : 无
-返 回 值  : VOS_ERR
-           VOS_OK
-调用函数  :
 
-修订记录  :
-1. 日    期   : 2012年4月10日
-   作    者   : z00100318
-   修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 USIMM_CardInOutHandle(
     USIMM_CMDHEADER_REQ_STRU            *pMsg)
 {
@@ -5289,22 +4453,7 @@ VOS_UINT32 USIMM_CardInOutHandle(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_InitRealCard
-功能描述  : 完成卡初始化的主控函数
-输入参数  : pMsg ->消息指针
-输出参数  : 无
-返 回 值  : VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-2. 日    期   : 2011年6月20日
-   作    者   : j00168360
-   修改内容   :  [DTS2011042900838]卡初始化流程优化
 
-*****************************************************************************/
 VOS_UINT32 USIMM_InitCardHandle(
     USIMM_CMDHEADER_REQ_STRU            *pMsg)
 {
@@ -5343,18 +4492,7 @@ VOS_UINT32 USIMM_InitCardHandle(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_OpenChannelHandle
-功能描述  : 打开通道消息处理
-输入参数  : USIMM_MsgBlock : API下发消息内容
-输出参数  : 无
-返 回 值  : VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2013年5月15日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_OpenChannelHandle(
     USIMM_CMDHEADER_REQ_STRU            *pMsg)
 {
@@ -5395,17 +4533,21 @@ VOS_UINT32 USIMM_OpenChannelHandle(
         return VOS_ERR;
     }
 
-    if (VOS_TRUE == USIMM_SearchAllAID(pstMsg->stChannelInfo.ulAIDLen,
-                                       pstMsg->stChannelInfo.aucADFName,
-                                       &ucChannelNo))
+    if (VOS_FALSE == g_stUsimmFeatureCfg.unCfg.stFeatureCfg.ulOpenChParaNoCheck)
     {
-        USIMM_OpenChannelCnf(pstMsg->stMsgHeader.ulSenderPid,
-                             pstMsg->stMsgHeader.ulSendPara,
-                             TAF_ERR_NO_ERROR,
-                             VOS_OK,
-                             ucChannelNo);
+        USIMM_ERROR_LOG("USIMM_OpenChannelHandle: Start USIMM_SearchAllAID.");
+        if (VOS_TRUE == USIMM_SearchAllAID(pstMsg->stChannelInfo.ulAIDLen,
+                                           pstMsg->stChannelInfo.aucADFName,
+                                           &ucChannelNo))
+        {
+            USIMM_OpenChannelCnf(pstMsg->stMsgHeader.ulSenderPid,
+                                 pstMsg->stMsgHeader.ulSendPara,
+                                 TAF_ERR_NO_ERROR,
+                                 VOS_OK,
+                                 ucChannelNo);
 
-        return VOS_OK;
+            return VOS_OK;
+        }
     }
 
     /* 一个通道使用者只允许打开一个通道，如果之前没有打开，则下发MANAGE CHANNEL命令打开通道 */
@@ -5473,18 +4615,7 @@ VOS_UINT32 USIMM_OpenChannelHandle(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_CloseChannelHandle
-功能描述  : 关闭通道消息处理
-输入参数  : USIMM_MsgBlock : API下发消息内容
-输出参数  : 无
-返 回 值  : VOS_ERR
-            VOS_OK
-修订记录  :
-1. 日    期   : 2013年5月15日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_CloseChannelHandle(
     USIMM_CMDHEADER_REQ_STRU            *pMsg)
 {
@@ -5571,18 +4702,7 @@ VOS_UINT32 USIMM_CloseChannelHandle(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_CardStatusHandle
-功能描述  : CE上SIM卡热插拨处理
-输入参数  : USIMM_MsgBlock : API下发消息内容
-输出参数  : 无
-返 回 值  : VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2013年9月25日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_CardStatusHandle(
     USIMM_CMDHEADER_REQ_STRU            *pstMsg)
 {
@@ -5615,24 +4735,7 @@ VOS_UINT32 USIMM_CardStatusHandle(
     }
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_Read_OpenSpeedFile
-功能描述  : 读取快速开机文件
-输入参数  : pstMsg : 消息头
-           usFileID : 读取文件ID
-输出参数  : 无
-返 回 值  : VOS_OK    : 失败
-           VOS_ERR   : 成功
 
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-
-2. 日    期   : 2015年3月31日
-   作    者   : d00212987
-   修改内容   : 卡多应用迭代II开发
-*****************************************************************************/
 VOS_UINT32 USIMM_Read_OpenSpeedFile(
     USIMM_READFILE_REQ_STRU             *pstReadMsg,
     VOS_UINT16                          usEFID)
@@ -5717,23 +4820,7 @@ VOS_UINT32 USIMM_Read_OpenSpeedFile(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_ReadFileHandle
-功能描述  : 读取卡文件
-输入参数  : pstMsgHeader : 消息头
-输出参数  : 无
-返 回 值  : VOS_OK    : 失败
-           VOS_ERR   : 成功
 
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-
-2. 日    期   : 2015年3月31日
-   作    者   : d00212987
-   修改内容   : 卡多应用迭代II开发
-*****************************************************************************/
 VOS_UINT32 USIMM_ReadFileHandle(
     USIMM_CMDHEADER_REQ_STRU            *pstMsgHeader)
 {
@@ -5786,23 +4873,7 @@ VOS_UINT32 USIMM_ReadFileHandle(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_UpdateFileHandle
-功能描述  : 更新卡文件
-输入参数  : pstMsgHeader : 消息头
-输出参数  : 无
-返 回 值  : VOS_OK    : 失败
-           VOS_ERR   : 成功
 
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-
-2. 日    期   : 2015年3月31日
-   作    者   : d00212987
-   修改内容   : 卡多应用迭代II开发
-*****************************************************************************/
 VOS_UINT32 USIMM_UpdateFileHandle(
     USIMM_CMDHEADER_REQ_STRU            *pstMsgHeader)
 {
@@ -5850,22 +4921,7 @@ VOS_UINT32 USIMM_UpdateFileHandle(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_SetRealFileCommHandle
-功能描述  : 更新USIM/SIM卡文件
-输入参数  : pstMsg--指向更新文件消息结构
-输出参数  : 无
-返 回 值  : VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2013年7月22日
-   作    者   : j00168360
-   修改内容   : Creat
 
-2. 日    期   : 2015年3月31日
-   作    者   : d00212987
-   修改内容   : 卡多应用迭代II开发
-*****************************************************************************/
 VOS_UINT32 USIMM_SetFileCommHandle(
     USIMM_UPDATEFILE_REQ_STRU           *pstUpdateMsg,
     VOS_UINT16                          usEFID)
@@ -5948,19 +5004,7 @@ VOS_UINT32 USIMM_SetFileCommHandle(
     return USIMM_SW_OK;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_QueryFileHandle
-功能描述  : 查询卡文件
-输入参数  : pstMsgHeader : 消息头
-输出参数  : 无
-返 回 值  : VOS_OK    : 失败
-           VOS_ERR   : 成功
 
-修订记录  :
-1. 日    期   : 2015年02月12日
-   作    者   : z00100318
-   修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_QueryFileHandle(
     USIMM_CMDHEADER_REQ_STRU            *pstMsgHeader)
 {
@@ -6031,23 +5075,7 @@ VOS_UINT32 USIMM_QueryFileHandle(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_SearchFileHandle
-功能描述  : 读取卡文件
-输入参数  : pstMsgHeader : 消息头
-输出参数  : 无
-返 回 值  : VOS_OK    : 失败
-           VOS_ERR   : 成功
 
-修订记录  :
-1. 日    期   : 2015年02月12日
-   作    者   : z00100318
-   修改内容   : Creat
-
-2. 日    期   : 2015年3月31日
-   作    者   : d00212987
-   修改内容   : 卡多应用迭代II开发
-*****************************************************************************/
 VOS_UINT32 USIMM_SearchFileHandle(
     USIMM_CMDHEADER_REQ_STRU            *pstMsgHeader)
 {
@@ -6081,22 +5109,7 @@ VOS_UINT32 USIMM_SearchFileHandle(
     return USIMM_SearchHandle(pstSearchMsg, usEFID);
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_SetSPBFileHandle
-功能描述  : 实现复合电话本多个文件的更新操作
-输入参数  : API层下发消息内容
-输出参数  : 无
-返 回 值  : VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2015年02月12日
-   作    者   : z00100318
-   修改内容   : Creat
 
-2. 日    期   : 2015年3月31日
-   作    者   : d00212987
-   修改内容   : 卡多应用迭代II开发
-*****************************************************************************/
 VOS_UINT32 USIMM_SetSPBFileHandle(
     USIMM_CMDHEADER_REQ_STRU            *pstMsgHeader)
 {
@@ -6147,18 +5160,7 @@ VOS_UINT32 USIMM_SetSPBFileHandle(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_ChannelCmdParaCheck
-功能描述  : CGLA上参数检查
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2013年5月15日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_ChannelCmdParaCheck(
     USIMM_SENDTPDUDATA_REQ_STRU         *pstMsg)
 {
@@ -6217,18 +5219,7 @@ VOS_UINT32 USIMM_ChannelCmdParaCheck(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_CheckAIDFcp
-功能描述  : 查询当前是否可以上报缓冲AID FCP
-输入参数  : pstMsg 输入的消息内容
-输出参数  : pstDataCnf 返回是数据内容
-返 回 值  : VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_CheckAIDFcp(
     USIMM_SENDTPDUDATA_REQ_STRU         *pstMsg,
     USIMM_SENDTPDU_CNFINFO_STRU         *pstDataCnf)
@@ -6291,18 +5282,7 @@ VOS_UINT32 USIMM_CheckAIDFcp(
     return VOS_ERR;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_SelectTPDUProc
-功能描述  : 完成选择文件的命令处理
-输入参数  : pstMsg 输入的消息内容
-输出参数  : pstRspData 卡返回的数据内容
-返 回 值  : VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_SelectTPDUProc(
     USIMM_SENDTPDUDATA_REQ_STRU        *pstMsg,
     USIMM_APDU_RSP_STRU                *pstRspData
@@ -6317,14 +5297,18 @@ VOS_UINT32 USIMM_SelectTPDUProc(
     USIMM_U8_LVDATA_STRU                stTpduData;
     USIMM_CURFILEINFO_ST               *pstCurFile;
 
-    if ((pstMsg->stTPDUData.aucTPDUHead[P1] == USIMM_SELECT_BY_DF_NAME)
-        &&((   (pstMsg->stTPDUData.aucTPDUHead[P2] == USIMM_SELECT_ACTIVATE_AID)
-            || (pstMsg->stTPDUData.aucTPDUHead[P2] == USIMM_SELECT_TERMINATION_AID)
-            || (pstMsg->stTPDUData.aucTPDUHead[P3] > USIMM_MAX_PATH_LEN*2))))
+    if (VOS_FALSE == g_stUsimmFeatureCfg.unCfg.stFeatureCfg.ulSelectParaNoCheck)
     {
-        USIMM_ERROR_LOG("USIMM_SelectTPDUProc: The Select Para Error");
+        USIMM_ERROR_LOG("USIMM_SelectTPDUProc:");
+        if ((pstMsg->stTPDUData.aucTPDUHead[P1] == USIMM_SELECT_BY_DF_NAME)
+            &&((   (pstMsg->stTPDUData.aucTPDUHead[P2] == USIMM_SELECT_ACTIVATE_AID)
+                || (pstMsg->stTPDUData.aucTPDUHead[P2] == USIMM_SELECT_TERMINATION_AID)
+                || (pstMsg->stTPDUData.aucTPDUHead[P3] > USIMM_MAX_PATH_LEN*2))))
+        {
+            USIMM_ERROR_LOG("USIMM_SelectTPDUProc: The Select Para Error");
 
-        return VOS_ERR;
+            return VOS_ERR;
+        }
     }
 
     stTpduHead.ucChannel    = USIMM_CCB_GetAppChNO(pstMsg->stMsgHeader.enAppType);
@@ -6397,18 +5381,7 @@ VOS_UINT32 USIMM_SelectTPDUProc(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_TPDUDataProc
-功能描述  : 完成其他的命令处理
-输入参数  : pstMsg 输入的消息内容
-输出参数  : pstRspData 卡返回的数据内容
-返 回 值  : VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_TPDUDataProc(
     USIMM_SENDTPDUDATA_REQ_STRU        *pstMsg,
     USIMM_APDU_RSP_STRU                *pstRspData
@@ -6461,22 +5434,23 @@ VOS_UINT32 USIMM_TPDUDataProc(
 
         pstRspData->usRspLen = VOS_NULL;
     }
+    if (VOS_TRUE == g_stUsimmFeatureCfg.unCfg.stFeatureCfg.ulSsaveVerify)
+    {
+        USIMM_ERROR_LOG("USIMM_TPDUDataProc: ulP2ActiveAID");
+        ulResult = USIMM_CheckSW(stTpduHead.ucINS, pstRspData->ucSW1, pstRspData->ucSW2);
+
+        if((USIMM_SW_WARNING == ulResult)
+        && (CMD_INS_LCS_SSAVE_VERIFY == pstMsg->stTPDUData.aucTPDUHead[INS]))
+        {
+            pstRspData->usRspLen = VOS_NULL;
+            USIMM_ERROR_LOG("USIMM_TPDUDataProc: pstRspData->usRspLen = VOS_NULL");
+        }
+    }
 
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_GetResponseTPDUProc
-功能描述  : 完成GetResponse的命令处理
-输入参数  : pstMsg 输入的消息内容
-输出参数  : pstRspData 卡返回的数据内容
-返 回 值  : VOS_ERR
-            VOS_OK
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_GetResponseTPDUProc(
     USIMM_SENDTPDUDATA_REQ_STRU        *pstMsg,
     USIMM_APDU_RSP_STRU                *pstRspData
@@ -6519,19 +5493,7 @@ VOS_UINT32 USIMM_GetResponseTPDUProc(
     return USIMM_TPDUDataProc(pstMsg, pstRspData);
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_SendTPDUDataHandle
-功能描述  : 实现TPDU的数据发送
-输入参数  : 下发消息内容
-输出参数  : 无
-返 回 值  : VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2015年02月11日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_SendTPDUDataHandle(
     USIMM_CMDHEADER_REQ_STRU            *pstMsgHeader)
 {
@@ -6597,7 +5559,9 @@ VOS_UINT32 USIMM_SendTPDUDataHandle(
     {
         ulResult = USIMM_SelectTPDUProc(pstMsg, &stRspData);
     }
-    else if (CMD_INS_GET_RESPONSE == pstMsg->stTPDUData.aucTPDUHead[INS])
+    /*  如果期望返回最终的sw，需要将get resp发给卡 */
+    else if ((CMD_INS_GET_RESPONSE == pstMsg->stTPDUData.aucTPDUHead[INS])
+          && (VOS_TRUE != g_stUsimmFeatureCfg.unCfg.stFeatureCfg.ulTpduGetRspSw))
     {
         ulResult = USIMM_GetResponseTPDUProc(pstMsg, &stRspData);
     }
@@ -6608,8 +5572,18 @@ VOS_UINT32 USIMM_SendTPDUDataHandle(
 
     if (VOS_OK == ulResult)
     {
-        stDataCnf.ucSw1         = stRspData.ucApduSW1;
-        stDataCnf.ucSw2         = stRspData.ucApduSW2;
+        if (VOS_TRUE == g_stUsimmFeatureCfg.unCfg.stFeatureCfg.ulTpduGetRspSw)
+        {
+            stDataCnf.ucSw1         = stRspData.ucSW1;
+            stDataCnf.ucSw2         = stRspData.ucSW2;
+            USIMM_ERROR_LOG("USIMM_SendTPDUDataHandle: ucSw1 ucSw2");
+        }
+        else
+        {
+            stDataCnf.ucSw1         = stRspData.ucApduSW1;
+            stDataCnf.ucSw2         = stRspData.ucApduSW2;
+            USIMM_ERROR_LOG("USIMM_SendTPDUDataHandle: ucApduSW1 ucApduSW2");
+        }
         stDataCnf.usDataLen     = stRspData.usRspLen;
         stDataCnf.pucData       = stRspData.aucRsp;
 
@@ -6625,20 +5599,7 @@ VOS_UINT32 USIMM_SendTPDUDataHandle(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_BSChallengeHandle
-功能描述  :实现了BASE STATION CHALLENGE的操作和结果的返回
-输入参数  :pstMsg:API层下发消息内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :
 
-修订记录  :
-1. 日    期   : 2014年7月4日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_BSChallengeHandle(
     USIMM_CMDHEADER_REQ_STRU            *pstMsg)
 {
@@ -6708,20 +5669,7 @@ VOS_UINT32 USIMM_BSChallengeHandle(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ManageSsdHandle
-功能描述  :实现了MANAGE SSD的操作和结果的返回
-输入参数  :pMsg:API层下发消息内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :
 
-修订记录  :
-1. 日    期   : 2014年7月4日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_ManageSsdHandle(
     USIMM_CMDHEADER_REQ_STRU            *pMsg)
 {
@@ -6838,20 +5786,7 @@ VOS_UINT32 USIMM_ManageSsdHandle(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_GenerateKeyVpmHandle
-功能描述  :实现了GENERATE KEY/VPM的操作和结果的返回
-输入参数  :pMsg:API层下发消息内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :
 
-修订记录  :
-1. 日    期   : 2014年7月4日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_GenerateKeyVpmHandle(
     USIMM_CMDHEADER_REQ_STRU            *pMsg)
 {
@@ -6928,20 +5863,7 @@ VOS_UINT32 USIMM_GenerateKeyVpmHandle(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CdmaSpecAuthHandle
-功能描述  :实现了CDMA特殊鉴权的操作和结果的返回
-输入参数  :pMsg:API层下发消息内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :
 
-修订记录  :
-1. 日    期   : 2016年6月14日
-   作    者   : zhuli
-   修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_CdmaSpecAuthHandle(
     USIMM_CMDHEADER_REQ_STRU            *pMsg)
 {
@@ -7039,20 +5961,7 @@ VOS_UINT32 USIMM_CdmaSpecAuthHandle(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_QueryEsnMeidRsltHandle
-功能描述  : CDMA Store ESN MEID查询结果的返回
-输入参数  : pMsg :API层下发消息内容
-输出参数  : 无
-返 回 值  : VOS_ERR
-            VOS_OK
-调用函数  :
 
-修订记录  :
-1. 日    期   : 2015年10月14日
-   作    者   : d00212987
-   修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_QueryEsnMeidRsltHandle(
     USIMM_CMDHEADER_REQ_STRU            *pMsg)
 {
@@ -7061,14 +5970,7 @@ VOS_UINT32 USIMM_QueryEsnMeidRsltHandle(
     return VOS_OK;
 }
 
-/*****************************************************************************
-功能描述  : USIMM消息处理函数
 
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-*****************************************************************************/
 static USIMMAPP_FUNCLIST_ST gastUSIMMAppFuncList[] =
 {
     {USIMM_ACTIVECARD_REQ           , USIMM_InitCardHandle},
@@ -7101,18 +6003,7 @@ static USIMMAPP_FUNCLIST_ST gastUSIMMAppFuncList[] =
     {USIMM_QUERYESNMEIDRSLT_REQ     , USIMM_QueryEsnMeidRsltHandle},
 };
 
-/*****************************************************************************
-函 数 名  : USIMM_CardStateChangeProc
-功能描述  : 卡状态变更时处理卡状态上报
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2013年5月15日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID USIMM_CardStateChangeProc(VOS_VOID)
 {
     VOS_UINT32                          i;
@@ -7137,18 +6028,7 @@ VOS_VOID USIMM_CardStateChangeProc(VOS_VOID)
 }
 
 #if (FEATURE_ON == FEATURE_PTM)
-/*****************************************************************************
-函 数 名  : USIMM_ErrorLogProc
-功能描述  : USIM模块error log消息处理函数
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
 
-修订记录  :
-1. 日    期   : 2014年2月20日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
 VOS_VOID USIMM_ErrorLogProc(
     USIMM_CMDHEADER_REQ_STRU            *pMsg)
 {
@@ -7182,19 +6062,7 @@ VOS_VOID USIMM_ErrorLogProc(
 }
 #endif
 
-/*****************************************************************************
-函 数 名  : USIMM_ApplicationMsgProc
-功能描述  : USIM模块业务消息处理函数
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
 
-修订记录  :
-1. 日    期   : 2014年2月20日
-   作    者   : j00168360
-   修改内容   : Creat
-
-*****************************************************************************/
 VOS_VOID USIMM_ApplicationMsgProc(
     USIMM_CMDHEADER_REQ_STRU            *pMsg)
 {
@@ -7248,19 +6116,7 @@ VOS_VOID USIMM_ApplicationMsgProc(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_MsgProc
-功能描述  : USIM模块消息处理函数
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
 
-修订记录  :
-1. 日    期   : 2014年2月20日
-   作    者   : j00168360
-   修改内容   : Creat
-
-*****************************************************************************/
 VOS_VOID USIMM_MsgProc(
     USIMM_CMDHEADER_REQ_STRU            *pMsg)
 {
@@ -7283,24 +6139,7 @@ VOS_VOID USIMM_MsgProc(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_FID_Init
-功能描述  : 实现了USIMM FID初始化
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_OK
-           VOS_ERR
-调用函数  :
-          VOS_RegisterPIDInfo
-          VOS_RegisterMsgTaskPrio
-          USIMM_InitGlobeVariable
-          USIMM_InitCard
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_FID_Init(enum VOS_INIT_PHASE_DEFINE ip)
 {
     VOS_UINT32                              ulResult = VOS_OK;
@@ -7371,28 +6210,7 @@ VOS_UINT32 USIMM_FID_Init(enum VOS_INIT_PHASE_DEFINE ip)
 
 #else
 
-/*****************************************************************************
-函 数 名  :USIMM_RefreshHandle
-功能描述  :实现了卡重启相关操作
-输入参数  :API层下发消息内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-2. 日    期   : 2011年6月20日
-   作    者   : j00184875
-   修改内容   : [DTS2011042900838]卡初始化流程优化
-3. 日    期   : 2011年7月6日
-   作    者   : j00184875
-   修改内容   : [DTS2011070600422]GCF 27.22.4.7.2-2 Refresh测试用例失败
-4. 日    期   : 2013年11月26日
-   作    者   : L00256032
-   修改内容   : [DTS2013112302273]GCF 27.22.4.7.2 SIM卡Refresh测试用例1.1/1.3/1.4/2.2失败
 
-*****************************************************************************/
 VOS_UINT32 USIMM_RefreshHandle(USIMM_CMDHEADER_REQ_STRU *pMsg)
 {
     USIMM_STKREFRESH_REQ_STRU             *pstMsg;
@@ -7526,24 +6344,7 @@ VOS_UINT32 USIMM_RefreshHandle(USIMM_CMDHEADER_REQ_STRU *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SAT_Fetch
-功能描述  :实现了主动命令内容的获取和上报，如果是setupmenu则回复结果
-输入参数  :usLen:主动命令的长度
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_Fetch_APDU
-          USIMM_CheckSW
-          USIMM_FindTagInSMPTLV
-          USIMM_TerminalResponse_APDU
-          USIMM_SatDataCnf
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_SAT_Fetch(VOS_UINT16 usLen)
 {
     USIMM_APP_TYPE_ENUM_UINT32          enAppType;
@@ -7672,22 +6473,7 @@ VOS_VOID USIMM_SAT_Fetch(VOS_UINT16 usLen)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SAT_Envelope
-功能描述  :实现了Envelope的下发和结果的回复
-输入参数  :API层下发消息内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_Envelope_APDU
-          USIMM_CheckSW
-          USIMM_EnvelopeCnf
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_SAT_Envelope(USIMM_CMDHEADER_REQ_STRU *pMsg)
 {
     VOS_UINT32                          ulResult;
@@ -7767,21 +6553,7 @@ VOS_UINT32 USIMM_SAT_Envelope(USIMM_CMDHEADER_REQ_STRU *pMsg)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SAT_TerminalResopnse
-功能描述  :实现了主动命令执行结果的下发和结果的回复
-输入参数  :API层下发消息内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_TerminalResponse_APDU
-           USIMM_CheckSW
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_SAT_TerminalResopnse(USIMM_CMDHEADER_REQ_STRU *pMsg)
 {
     VOS_UINT32                      ulResult;
@@ -7829,19 +6601,7 @@ VOS_UINT32 USIMM_SAT_TerminalResopnse(USIMM_CMDHEADER_REQ_STRU *pMsg)
 }
 
 
-/****************************************************************************
-函 数 名  : USIMM_PinStatusCheck
-功能描述  : pin操作的状态检查函数，
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_UINT32，表示函数执行结果
-调用函数  :
-被调函数  :
-修订记录  :
-1. 日    期   : 2009年3月14日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32  USIMM_PinStatusCheck(USIMM_PIN_CMD_TYPE_ENUM_UINT32  enCmdType,
                                            USIMM_PIN_TYPE_ENUM_UINT32      enPINType,
                                            VOS_UINT32                      *pulResult)
@@ -8065,17 +6825,7 @@ VOS_UINT32  USIMM_PinStatusCheck(USIMM_PIN_CMD_TYPE_ENUM_UINT32  enCmdType,
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_PinPreProcHandle
-功能描述  : USIMM模块PIN码请求消息预处理
-输入参数  : pNewstMsg:新的PIN码请求消息
-输出参数  : pPreMsg:旧的PIN码请求消息
-返 回 值  : 无
-History     :
-1.日    期  : 2015年01月30日
-  作    者  : h00300778
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 USIMM_PinPreProcHandle(
     USIMM_PINHANDLE_REQ_STRU            *pNewstMsg,
     USIMM_PIN_REQ_STRU                  *pPreMsg)
@@ -8116,17 +6866,7 @@ VOS_UINT32 USIMM_PinPreProcHandle(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_PinHandleCardStatusCheck
-功能描述  : USIMM模块PIN码请求处理当前卡状态检查处理函数
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-History     :
-1.日    期  : 2015年02月11日
-  作    者  : h00300778
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 USIMM_PinHandleCardStatusCheck(VOS_VOID)
 {
     if ((gastUSIMMCardAppInfo[USIMM_UICC_USIM].enCardService <= USIMM_CARD_SERVIC_UNAVAILABLE)
@@ -8147,25 +6887,7 @@ VOS_UINT32 USIMM_PinHandleCardStatusCheck(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_PINHandle
-功能描述  :实现了PIN码操作和结果的回复
-输入参数  :API层下发消息内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_SelectDFFile
-          USIMM_PINVerify
-          USIMM_ChangePIN
-          USIMM_UnblockPIN
-          USIMM_InitCardSecondStep
-          USIMM_VerifyNCK
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_PINHandle(USIMM_CMDHEADER_REQ_STRU *pMsg)
 {
     USIMM_PIN_REQ_STRU                  stMsg;
@@ -8298,22 +7020,7 @@ VOS_UINT32 USIMM_PINHandle(USIMM_CMDHEADER_REQ_STRU *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_AutoVerifyPIN
-功能描述  :自动验证PIN
-输入参数  :enPinEnable -- pin码使能标志
-           penPinVerified -- pin码验证状态
-           ucPinRefNum -- PIN码参考次数
-           paucPin -- 缓存的PIN码
-输出参数  :penPinVerified -- 下发验证pin后，需要修改PIN验证状态
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2011年6月20日
-    作    者   : w00184875
-    修改内容   : Creat[DTS2011042900838]卡初始化流程优化
 
-*****************************************************************************/
 VOS_UINT32 USIMM_AutoVerifyPIN(USIMM_PIN_ENABLE_STATUS_ENUM_UINT32 enPinEnable,
                                      USIMM_PIN_VERIY_STATUS_ENUM_UINT32  *penPinVerified,
                                      VOS_UINT8                           ucPinRefNum,
@@ -8361,19 +7068,7 @@ VOS_UINT32 USIMM_AutoVerifyPIN(USIMM_PIN_ENABLE_STATUS_ENUM_UINT32 enPinEnable,
     return USIMM_INIT_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CheckChangeCardByICCID
-功能描述  :通过ICCID判断是否有换卡
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2011年7月5日
-    作    者   : j00168360
-    修改内容   : Creat[DTS2011070102767]，马来外场，数传时修改PIN码错误，UE进入限制驻留
 
-*****************************************************************************/
 VOS_UINT32 USIMM_CheckChangeCardByICCID(VOS_VOID)
 {
     VOS_UINT32                      ulResult;
@@ -8412,19 +7107,7 @@ VOS_UINT32 USIMM_CheckChangeCardByICCID(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ProtectFirstStep
-功能描述  :电复位卡，若为SIM同时进行电压切换
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2011年10月24日
-    作    者   : j00168360
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_ProtectFirstStep(VOS_UINT32  ulOldCardType)
 {
     VOS_UINT32  ulResult;
@@ -8501,19 +7184,7 @@ VOS_UINT32 USIMM_ProtectFirstStep(VOS_UINT32  ulOldCardType)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ProtectSecondStep
-功能描述  :进行保护性复位第二步操作
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2011年10月24日
-    作    者   : j00168360
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_ProtectSecondStep(VOS_VOID)
 {
     if(USIMM_CARD_USIM == gastUSIMMCardAppInfo[USIMM_UICC_USIM].enCardType)
@@ -8544,18 +7215,7 @@ VOS_UINT32 USIMM_ProtectSecondStep(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ResumeAppChannel
-功能描述  :保护性复位时，当LC开关打开的时候，则恢复之前打开的CSIM通道
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2014年1月21日
-    作    者   : j00168360
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID USIMM_ResumeAppChannel(VOS_VOID)
 {
     VOS_UINT32      ulAIDLen = 0;
@@ -8706,19 +7366,7 @@ VOS_VOID USIMM_ResumeAppChannel(VOS_VOID)
 }
 
 #if(FEATURE_ON == FEATURE_PTM)
-/*****************************************************************************
-函 数 名  :USIMM_CardErrorLogReport
-功能描述  :
-输入参数  :无
-输出参数  :无
-返 回 值  :无
 
-修订记录  :
-1. 日    期   : 2014年2月20日
-   作    者   : j00168360
-   修改内容   : Creat
-
-*****************************************************************************/
 VOS_VOID USIMM_CardErrorLogReport(VOS_VOID)
 {
     OM_ERR_LOG_REPORT_CNF_STRU                  *pstCnfMsg;
@@ -8768,18 +7416,7 @@ VOS_VOID USIMM_CardErrorLogReport(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_AddErrorInfo
-功能描述  : 记录卡的errorlog
-输入参数  : enErrorReason--故障原因
-输出参数  : enAlmLevel -- 故障级别
-返 回 值  : 无
-修订记录  :
-1. 日    期   : 2014年2月20日
-   作    者   : j00168360
-   修改内容   : Creat
 
-*****************************************************************************/
 
 VOS_VOID USIMM_AddErrorInfo(
     USIMM_MNTN_INFODATA_STRU           *pstInfoData,
@@ -8810,18 +7447,7 @@ VOS_VOID USIMM_AddErrorInfo(
     return ;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_RecordCardErrorLog
-功能描述  : 记录卡的errorlog
-输入参数  : enErrorReason--故障原因
-输出参数  : enAlmLevel -- 故障级别
-返 回 值  : 无
-修订记录  :
-1. 日    期   : 2014年2月20日
-   作    者   : j00168360
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_RecordCardErrorLog(
     USIMM_MNTN_MODULE_ENUM_UINT32       enMoudleType,
     VOS_UINT8                           ucErrorInfo,
@@ -8878,27 +7504,7 @@ VOS_VOID USIMM_RecordCardErrorLog(
 }
 #endif
 
-/*****************************************************************************
-函 数 名  :USIMM_ProtectReset
-功能描述  :当与卡交互异常时的处理函数
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_GetTFFile
-           USIMM_ReadLFFile
-           USIMM_SelectFile_APDU
-修订记录  :
-1. 日    期   : 2009年11月5日
-    作    者   : m00128685
-    修改内容   : Creat
-2. 日    期   : 2011年6月20日
-    作    者   : j00168360
-    修改内容   : [DTS2011042900838]卡初始化流程优化
-3.日    期  : 2011年7月5日
-  作    者  : j00168360
-  修改内容  : [DTS2011070102767]，马来外场，数传时修改PIN码错误，UE进入限制驻留
-*****************************************************************************/
+
 VOS_UINT32 USIMM_ProtectReset(USIMM_CMDHEADER_REQ_STRU *pstMsg)
 {
     VOS_UINT32                          ulResult = VOS_ERR;
@@ -9088,22 +7694,7 @@ VOS_UINT32 USIMM_ProtectReset(USIMM_CMDHEADER_REQ_STRU *pstMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_StatusHandle
-功能描述  :实现周期查卡的操作和结果回复　
-输入参数  :API层下发消息内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :
-          USIMM_STATUSProc
-          USIMM_SingleCmdCnf
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_StatusHandle(USIMM_CMDHEADER_REQ_STRU *pMsg)
 {
     VOS_UINT32                          ulResult = VOS_ERR;
@@ -9160,22 +7751,7 @@ VOS_UINT32 USIMM_StatusHandle(USIMM_CMDHEADER_REQ_STRU *pMsg)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UpdateFile
-功能描述  :实现文件更新操作
-输入参数  :enEFFileType -- 文件类型
-           ucRecordNum -- 记录数
-           usDataLen -- 更新数据长度
-           pucData -- 更新数据
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2013年06月26日
-   作    者   : j00168360
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_UpdateFile(USIMM_EF_TYPE_ENUM_UINT32  enEFFileType,
                                  VOS_UINT8                   ucRecordNum,
                                  VOS_UINT16                  usDataLen,
@@ -9212,24 +7788,7 @@ VOS_UINT32 USIMM_UpdateFile(USIMM_EF_TYPE_ENUM_UINT32  enEFFileType,
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SelectFile
-功能描述  :实现了文件的选择控制
-输入参数  :enFileApp:   应用类型
-           enEfFcpFlag: 针对EF文件是否需要带FCP
-           ulPathLen:   文件路径长度
-           pusFilePath: 选择文件路径
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_SelectFileHandle
 
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 USIMM_SelectFile(USIMM_APP_TYPE_ENUM_UINT32         enFileApp,
                                 USIMM_FILE_NEED_FCP_ENUM_UINT32     enEfFcpFlag,
                                 VOS_UINT32                          ulPathLen,
@@ -9264,18 +7823,7 @@ VOS_UINT32 USIMM_SelectFile(USIMM_APP_TYPE_ENUM_UINT32         enFileApp,
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_GetFileAllPath
-功能描述  :实现了文件的选择控制
-输入参数  :
-输出参数  :无
-返 回 值  :VOS_OK/VOS_ERR
-调用函数  :
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_GetFileAllPath(USIMM_SELECT_PARA_STUR       *pstSelectPara,
                                         USIMM_U16_LVDATA_STRU      *pstFilePathIn,
                                         USIMM_U16_LVDATA_STRU      *pstFilePathOut)
@@ -9392,19 +7940,7 @@ VOS_UINT32 USIMM_GetFileAllPath(USIMM_SELECT_PARA_STUR       *pstSelectPara,
 
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SelectFileHandle
-功能描述  :实现了文件的选择控制
-输入参数  :pstSelectPara 保存选择文件参数
-           pstFilePath 保存选择文件路径信息
-输出参数  :无
-返 回 值  :USIMM_SW_NOFILE_FOUND / USIMM_SW_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_SelectFileHandle(USIMM_SELECT_PARA_STUR        *pstSelectPara,
                                         USIMM_U16_LVDATA_STRU          *pstFilePath)
 {
@@ -9465,21 +8001,7 @@ VOS_UINT32 USIMM_SelectFileHandle(USIMM_SELECT_PARA_STUR        *pstSelectPara,
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CheckSetFilePara
-功能描述  :对待更新的文件进行参数检查
-输入参数  :pstCurEFFcp -- 指向当前EF信息
-           ucRecordNum -- 待更新文件记录数
-           usDataLen  -- 待更新文件长度
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2013年7月22日
-   作    者   : j00168360
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_CheckSetFilePara(USIMM_EFFCP_ST *pstCurEFFcp, VOS_UINT8 ucRecordNum, VOS_UINT16 usDataLen)
 {
     VOS_UINT32                          ulResult = USIMM_SW_OK;
@@ -9521,19 +8043,7 @@ VOS_UINT32 USIMM_CheckSetFilePara(USIMM_EFFCP_ST *pstCurEFFcp, VOS_UINT8 ucRecor
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SetFileCommHandle
-功能描述  :更新USIM/SIM卡文件
-输入参数  :pstMsg--指向更新文件消息结构
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2013年7月22日
-   作    者   : j00168360
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_SetFileCommHandle(USIMM_SET_COMM_FILE_STRU  *pstSetFileInfo)
 {
     VOS_UINT32                          ulResult;
@@ -9619,19 +8129,7 @@ VOS_UINT32 USIMM_SetFileCommHandle(USIMM_SET_COMM_FILE_STRU  *pstSetFileInfo)
     return USIMM_SW_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SetUsimFileHandle
-功能描述  :更新USIM/SIM卡文件
-输入参数  :pstMsg--指向更新文件消息结构
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2013年7月22日
-   作    者   : j00168360
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_SetUsimFileHandle(USIMM_SETFILE_REQ_STRU *pstMsg)
 {
     USIMM_SET_COMM_FILE_STRU            stSetFileInfo = {0};
@@ -9645,19 +8143,7 @@ VOS_UINT32 USIMM_SetUsimFileHandle(USIMM_SETFILE_REQ_STRU *pstMsg)
     return USIMM_SetFileCommHandle(&stSetFileInfo);
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SetPBFileHandle
-功能描述  :更新电话本文件
-输入参数  :pstMsg--指向更新文件消息结构
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2013年7月22日
-   作    者   : j00168360
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_SetPBFileHandle(USIMM_SETFILE_REQ_STRU *pstMsg)
 {
     USIMM_SET_COMM_FILE_STRU            stSetFileInfo;
@@ -9681,19 +8167,7 @@ VOS_UINT32 USIMM_SetPBFileHandle(USIMM_SETFILE_REQ_STRU *pstMsg)
     return USIMM_SetFileCommHandle(&stSetFileInfo);
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SetIsimFileHandle
-功能描述  :更新ISIM文件
-输入参数  :pstMsg--指向更新文件消息结构
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2013年7月22日
-   作    者   : j00168360
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_SetIsimFileHandle(USIMM_SETFILE_REQ_STRU *pstMsg)
 {
     USIMM_SET_COMM_FILE_STRU            stSetFileInfo;
@@ -9740,24 +8214,7 @@ VOS_UINT32 USIMM_SetIsimFileHandle(USIMM_SETFILE_REQ_STRU *pstMsg)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SetRealFile
-功能描述  :实现了更新文件操作和结果返回
-输入参数  :API层下发消息内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_SelectFile
-          USIMM_UpdateTFFile
-          USIMM_UpdateLFFile
-          USIMM_UpdateCLFFile
-          USIMM_SetFileCnf
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_SetRealFile(USIMM_MsgBlock *pMsg, USIMM_UPDATEFILE_REQ_STRU *pstNewMsg)
 {
     USIMM_SETFILE_REQ_STRU              *pstMsg;
@@ -9793,21 +8250,7 @@ VOS_UINT32 USIMM_SetRealFile(USIMM_MsgBlock *pMsg, USIMM_UPDATEFILE_REQ_STRU *ps
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SetFileHandle
-功能描述  :实现了读取文件的操作和结果的返回
-输入参数  :API层下发消息内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_SetRealFile
-          USIMM_SetVSimFile
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_SetFileHandle(USIMM_MsgBlock *pMsg, USIMM_UPDATEFILE_REQ_STRU *pstNewMsg)
 {
 #if (FEATURE_VSIM == FEATURE_ON)
@@ -9821,19 +8264,7 @@ VOS_UINT32 USIMM_SetFileHandle(USIMM_MsgBlock *pMsg, USIMM_UPDATEFILE_REQ_STRU *
     return USIMM_SetRealFile(pMsg, pstNewMsg);
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_GetFileFromCard
-功能描述  :从卡中读取文件
-输入参数  :pstFileInfo --指向读取文件信息结构
-输出参数  :pstCnfInfo -- 指向回复消息结构
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2013年7月22日
-   作    者   : j00168360
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_GetFileFromCard(USIMM_GET_COMM_FILE_STRU *pstFileInfo, USIMM_GETCNF_INFO_STRU *pstCnfInfo)
 {
     VOS_UINT32                          ulResult;
@@ -9896,19 +8327,7 @@ VOS_UINT32 USIMM_GetFileFromCard(USIMM_GET_COMM_FILE_STRU *pstFileInfo, USIMM_GE
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_GetFileCommHandle
-功能描述  :读取USIM/SIM卡文件
-输入参数  :pstFileInfo --指向读取文件信息结构
-输出参数  :pstCnfInfo -- 指向回复消息结构
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2013年7月22日
-   作    者   : j00168360
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_GetFileCommHandle(USIMM_GET_COMM_FILE_STRU *pstFileInfo, USIMM_GETCNF_INFO_STRU *pstCnfInfo)
 {
     VOS_UINT32                  ulResult;
@@ -9961,37 +8380,13 @@ VOS_UINT32 USIMM_GetFileCommHandle(USIMM_GET_COMM_FILE_STRU *pstFileInfo, USIMM_
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_GetUsimFileHandle
-功能描述  :读取USIM/SIM卡文件
-输入参数  :pstFileInfo --指向读取文件信息结构
-输出参数  :pstCnfInfo -- 指向回复消息结构
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2013年7月22日
-   作    者   : j00168360
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_GetUsimFileHandle(USIMM_GET_COMM_FILE_STRU *pstFileInfo, USIMM_GETCNF_INFO_STRU *pstCnfInfo)
 {
     return USIMM_GetFileCommHandle(pstFileInfo, pstCnfInfo);
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_GetIsimIMPI
-功能描述  :根据imsi计算文件IMPI的内容
-输入参数  :无
-输出参数  :pstCnfInfo -- 指向回复消息结构
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2013年7月22日
-   作    者   : j00168360
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_GetIsimIMPI(USIMM_GETCNF_INFO_STRU *pstCnfInfo)
 {
     VOS_UINT8                           aucAsciiImsi[USIMM_EF_IMSI_LEN*2];
@@ -10056,19 +8451,7 @@ VOS_UINT32 USIMM_GetIsimIMPI(USIMM_GETCNF_INFO_STRU *pstCnfInfo)
     return USIMM_SW_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_GetIsimIMPU
-功能描述  :根据imsi计算文件IMPU的内容
-输入参数  :无
-输出参数  :pstCnfInfo -- 指向回复消息结构
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2013年7月22日
-   作    者   : j00168360
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_GetIsimIMPU(USIMM_GETCNF_INFO_STRU *pstCnfInfo)
 {
     VOS_UINT8                           aucAsciiImsi[USIMM_EF_IMSI_LEN*2] = {0};
@@ -10137,19 +8520,7 @@ VOS_UINT32 USIMM_GetIsimIMPU(USIMM_GETCNF_INFO_STRU *pstCnfInfo)
     return USIMM_SW_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_GetIsimDOMAIN
-功能描述  :根据imsi计算文件DOMAIN的内容
-输入参数  :无
-输出参数  :pstCnfInfo -- 指向回复消息结构
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2013年7月22日
-   作    者   : j00168360
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_GetIsimDOMAIN(USIMM_GETCNF_INFO_STRU *pstCnfInfo)
 {
     VOS_UINT8                           aucAsciiImsi[USIMM_EF_IMSI_LEN*2] = {0};
@@ -10206,18 +8577,7 @@ VOS_UINT32 USIMM_GetIsimDOMAIN(USIMM_GETCNF_INFO_STRU *pstCnfInfo)
     return USIMM_SW_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_GetIsimIST
-功能描述  :根据USIM的UST文件计算ISIM的文件IST的内容
-输入参数  :无
-输出参数  :pstCnfInfo -- 指向回复消息结构
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2013年7月22日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_GetIsimIST(USIMM_GETCNF_INFO_STRU *pstCnfInfo)
 {
     VOS_UINT32                          i;
@@ -10274,19 +8634,7 @@ VOS_UINT32 USIMM_GetIsimIST(USIMM_GETCNF_INFO_STRU *pstCnfInfo)
     return USIMM_SW_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_GetIsimFileHandle
-功能描述  :读取ISIM卡文件
-输入参数  :pstFileInfo --指向读取文件信息结构
-输出参数  :pstCnfInfo -- 指向回复消息结构
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2013年7月22日
-   作    者   : j00168360
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_GetIsimFileHandle(USIMM_GET_COMM_FILE_STRU *pstFileInfo, USIMM_GETCNF_INFO_STRU *pstCnfInfo)
 {
     VOS_UINT16                          usFileID = VOS_NULL_WORD;
@@ -10343,23 +8691,7 @@ VOS_UINT32 USIMM_GetIsimFileHandle(USIMM_GET_COMM_FILE_STRU *pstFileInfo, USIMM_
 
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_GetRealFile
-功能描述  :实现了读取文件的操作和结果的返回
-输入参数  :API层下发消息内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_SelectFile
-          USIMM_ReadTFFile
-          USIMM_ReadLFFile
-          USIMM_GetFileCnf
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_GetRealFile(USIMM_GETFILE_REQ_STRU* pstOldMsg, USIMM_READFILE_REQ_STRU *pstNewMsg)
 {
     VOS_UINT32                          ulResult;
@@ -10400,20 +8732,7 @@ VOS_UINT32 USIMM_GetRealFile(USIMM_GETFILE_REQ_STRU* pstOldMsg, USIMM_READFILE_R
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_GetFileHandle
-功能描述  :实现了读取文件的操作和结果的返回　
-输入参数  :API层下发消息内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_GetRealFile
-           USIMM_GetVSimFile
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_GetFileHandle(USIMM_GETFILE_REQ_STRU* pstOldMsg, USIMM_READFILE_REQ_STRU *pstNewMsg)
 {
 #if (FEATURE_VSIM == FEATURE_ON)
@@ -10428,18 +8747,7 @@ VOS_UINT32 USIMM_GetFileHandle(USIMM_GETFILE_REQ_STRU* pstOldMsg, USIMM_READFILE
 }
 
 #if (FEATURE_UE_MODE_CDMA == FEATURE_ON)
-/*****************************************************************************
-函 数 名  :USIMM_GetCdmaFileMaxRecordNum
-功能描述  :实现了CDMA卡获取文件最大记录数的选文件操作
-输入参数  :usFildId:文件ID
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2014年10月17日
-   作    者   : h00300778
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_GetCdmaFileMaxRecordNum(VOS_UINT16 usFildId)
 {
     VOS_UINT32                          ulResult;
@@ -10473,23 +8781,7 @@ VOS_UINT32 USIMM_GetCdmaFileMaxRecordNum(VOS_UINT16 usFildId)
 }
 #endif
 
-/*****************************************************************************
-函 数 名  :USIMM_GetMaxRecordNum
-功能描述  :实现了获取文件最大记录数的操作和结果的返回　
-输入参数  :API层下发消息内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_SelectFile
-           USIMM_MaxRecordNumCnf
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-2.日    期  : 2011年7月5日
-  作    者  : j00168360
-  修改内容  : [DTS2011070102597]，SIM卡FDN功能开启，ADN文件可读可更新时电话本无法操作
-*****************************************************************************/
+
 VOS_UINT32 USIMM_GetMaxRecordNum(USIMM_MsgBlock *pMsg, USIMM_QUERYFILE_REQ_STRU *pstNewMsg)
 {
     VOS_UINT32                  ulResult;
@@ -10550,23 +8842,7 @@ VOS_UINT32 USIMM_GetMaxRecordNum(USIMM_MsgBlock *pMsg, USIMM_QUERYFILE_REQ_STRU 
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_GAccessHandle
-功能描述  :实现了通用访问卡操作和结果返回　
-输入参数  :API层下发消息内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_DLHandle
-           USIMM_GAccessCnf
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-2. 日    期   : 2011年4月29日
-   作    者   : j00168360
-   修改内容   : [DTS2011042700921]一卡双号切换过程中电话本功能不正常
-*****************************************************************************/
+
 VOS_UINT32 USIMM_GAccessHandle(USIMM_MsgBlock *pMsg)
 {
     VOS_UINT32                          ulResult;
@@ -10719,21 +8995,7 @@ VOS_UINT32 USIMM_GAccessHandle(USIMM_MsgBlock *pMsg)
     return ulResult;
 }
 
-/********************************************************************
-  Function:       USIMM_RAccessPathHandle
-  Description:    完成CRSM命令的路径处理和文件选择
-  Input:          ulCmdType：命令类型
-                  usFileID：文件ID
-                  ulPathLen：文件长度
-                  pusPath：文件路径
-  Output:         无
-  Return:         文件选择结果，VOS_OK成功，其它为失败
-  Others:
-  修订记录  :
-  1. 日    期   : 2012年5月5日
-     作    者   : h59254
-     修改内容   : Creat
-********************************************************************/
+
 VOS_UINT32 USIMM_RAccessPathHandle(
     VOS_UINT16                          usFileID,
     VOS_UINT16                          usPathLen,
@@ -10803,32 +9065,7 @@ VOS_UINT32 USIMM_RAccessPathHandle(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_RAccessHandle
-功能描述  :实现受限制访问卡的操作
-输入参数  :API层下发消息内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_SelectFileHandle
-          USIMM_ReadBinary_APDU
-          USIMM_ReadRecord_APDU
-          USIMM_UpdateRecord_APDU
-          USIMM_UpdateRecord_APDU
-          USIMM_Status_APDU
-          USIMM_CheckSW
-          USIMM_RAccessCnf
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-2. 日    期   : 2011年4月27日
-   作    者   : j00168360
-   修改内容   : [DTS2011042702232]新西兰外场，使用2Degrees的卡启用PIN码会发生掉卡
-3. 日    期  : 2011年8月18日
-   作    者  : j00168360
-   修改内容  : [DTS2011081805771]使用MOVISTAR后台打开单板，后台不可用，AT口不通
-*****************************************************************************/
+
 VOS_UINT32 USIMM_RAccessHandle(USIMM_CMDHEADER_REQ_STRU *pMsg)
 {
     VOS_UINT32                          ulResult   = VOS_OK;
@@ -10992,18 +9229,7 @@ VOS_UINT32 USIMM_RAccessHandle(USIMM_CMDHEADER_REQ_STRU *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SearchHandle
-功能描述  :查询处理函数
-输入参数  :API层下发消息内容
-输出参数  :无
-返 回 值  :VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2010年01月08日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32  USIMM_SearchHandle(USIMM_SEARCH_REQ_STRU *pstOldMsg, USIMM_SEARCHFILE_REQ_STRU *pstNewMsg)
 {
     VOS_UINT32                  ulResult;
@@ -11056,18 +9282,7 @@ VOS_UINT32  USIMM_SearchHandle(USIMM_SEARCH_REQ_STRU *pstOldMsg, USIMM_SEARCHFIL
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_PBInitStatusIndHandle
-功能描述  :电话本初始化状态指示处理
-输入参数  :API层下发消息内容
-输出参数  :无
-返 回 值  :VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2009年06月26日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_PBInitStatusIndHandle(USIMM_CMDHEADER_REQ_STRU *pMsg)
 {
     USIMM_PBINIT_STATUS_IND_STRU       *pstMsg;
@@ -11092,18 +9307,7 @@ VOS_UINT32 USIMM_PBInitStatusIndHandle(USIMM_CMDHEADER_REQ_STRU *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SIMAuthHandle
-功能描述  :SIM卡鉴权处理
-输入参数  :鉴权消息
-输出参数  :无
-返 回 值  :VOS_OK/VOS_ERR
-调用函数  :
-修订记录  :
-1. 日    期   : 2013年07月24日
-   作    者   : g47350
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_SIMAuthHandle(USIMM_AUTH_REQ_STRU *pstMsg)
 {
     USIMM_TELECOM_AUTH_INFO_STRU        stCnfInfo;
@@ -11212,18 +9416,7 @@ VOS_UINT32 USIMM_SIMAuthHandle(USIMM_AUTH_REQ_STRU *pstMsg)
 
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_USIMAuthHandle
-功能描述  :USIM卡鉴权处理
-输入参数  :鉴权消息
-输出参数  :无
-返 回 值  :VOS_OK/VOS_ERR
-调用函数  :
-修订记录  :
-1. 日    期   : 2013年07月24日
-   作    者   : g47350
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_USIMAuthHandle(USIMM_AUTH_REQ_STRU *pstMsg)
 {
     USIMM_TELECOM_AUTH_INFO_STRU        stCnfInfo;
@@ -11377,18 +9570,7 @@ VOS_UINT32 USIMM_USIMAuthHandle(USIMM_AUTH_REQ_STRU *pstMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ISIMAuthParaCheck
-功能描述  :ISIM卡鉴权类型检测
-输入参数  :鉴权消息
-输出参数  :鉴权P2参数值
-返 回 值  :VOS_OK/VOS_ERR
-调用函数  :
-修订记录  :
-1. 日    期   : 2013年07月24日
-   作    者   : g47350
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_ISIMAuthParaCheck(USIMM_AUTH_REQ_STRU *pstMsg, VOS_UINT8 *pucMode)
 {
     VOS_UINT32                          ulIMSSVR;
@@ -11420,18 +9602,7 @@ VOS_UINT32 USIMM_ISIMAuthParaCheck(USIMM_AUTH_REQ_STRU *pstMsg, VOS_UINT8 *pucMo
     return VOS_ERR;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ISIMAuthHandle
-功能描述  :ISIM卡鉴权处理
-输入参数  :鉴权消息
-输出参数  :无
-返 回 值  :VOS_OK/VOS_ERR
-调用函数  :
-修订记录  :
-1. 日    期   : 2013年07月24日
-   作    者   : g47350
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_ISIMAuthHandle(USIMM_AUTH_REQ_STRU *pstMsg)
 {
     USIMM_IMS_AUTH_INFO_STRU            stCnfInfo;
@@ -11568,19 +9739,7 @@ VOS_UINT32 USIMM_ISIMAuthHandle(USIMM_AUTH_REQ_STRU *pstMsg)
     return VOS_ERR;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_AuthMsgTransferProc
-功能描述  : 将新消息中鉴权数据填充到原来的鉴权消息中
-输入参数  : pstNewMsg:新消息结构
-输出参数  : pstPrvMsg:原来消息结构
-返 回 值  : VOS_OK/VOS_ERR
-调用函数  :
-被调函数  :
-修订记录  :
-1.日    期  : 2015年01月30日
-  作    者  : H00300778
-  修改内容  : 新建函数
-*****************************************************************************/
+
 VOS_VOID USIMM_AuthMsgTransferFillDataProc(
     USIMM_AUTHENTICATION_REQ_STRU      *pstNewMsg,
     USIMM_AUTH_REQ_STRU                *pstPrvMsg)
@@ -11784,19 +9943,7 @@ VOS_VOID USIMM_AuthMsgTransferFillDataProc(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_AuthMsgTransferProc
-功能描述  : 将新消息转换成原来的鉴权消息
-输入参数  : pstNewMsg:新消息结构
-输出参数  : pstPrvMsg:原来消息结构
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修订记录  :
-1.日    期  : 2015年01月30日
-  作    者  : H00300778
-  修改内容  : 新建函数
-*****************************************************************************/
+
 VOS_UINT32 USIMM_AuthMsgTransferProc(
     USIMM_AUTHENTICATION_REQ_STRU      *pstNewMsg,
     USIMM_AUTH_REQ_STRU                *pstPrvMsg)
@@ -11895,23 +10042,7 @@ VOS_UINT32 USIMM_AuthMsgTransferProc(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_AuthenticationHandle
-功能描述  :实现了鉴权下发和结果回复　
-输入参数  :API层下发消息内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_SelectDFFile
-          USIMM_Authentication_APDU
-          USIMM_CheckSW
-          USIMM_AuthencitionCnf
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_AuthenticationHandle(USIMM_CMDHEADER_REQ_STRU *pMsg)
 {
     USIMM_AUTH_REQ_STRU                 stMsg;
@@ -11966,23 +10097,7 @@ VOS_UINT32 USIMM_AuthenticationHandle(USIMM_CMDHEADER_REQ_STRU *pMsg)
     return VOS_ERR;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_FDNHandle
-功能描述  :实现FDN功能的操作和结果回复
-输入参数  :API层下发消息内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_PINVerify
-          USIMM_FDNEnable
-          USIMM_FDNDisable
-          USIMM_FDNCnf
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_FDNHandle(USIMM_CMDHEADER_REQ_STRU *pMsg)
 {
     VOS_UINT32                          ulResult;
@@ -12104,22 +10219,7 @@ VOS_UINT32 USIMM_FDNHandle(USIMM_CMDHEADER_REQ_STRU *pMsg)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_DeactiveRealCard
-功能描述  : 下电SIM卡并且释放所有资源
-输入参数  : 外部消息
-输出参数  : 无
-返 回 值  : VOS_ERR
-            VOS_OK
-调用函数  :
 
-
-修订记录  :
-1. 日    期   : 2010年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 USIMM_DeactiveRealCard(USIMM_MsgBlock *pMsg)
 {
     VOS_UINT32                          ulErrlogNumber;
@@ -12170,21 +10270,7 @@ VOS_UINT32 USIMM_DeactiveRealCard(USIMM_MsgBlock *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_DeactiveCardHandle
-功能描述  : 下电SIM卡并且释放所有资源
-输入参数  : 外部消息
-输出参数  : 无
-返 回 值  : VOS_ERR
-            VOS_OK
-调用函数  :
 
-修订记录  :
-1. 日    期   : 2010年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 USIMM_DeactiveCardHandle(USIMM_CMDHEADER_REQ_STRU *pMsg)
 {
 #if (FEATURE_VSIM == FEATURE_ON)
@@ -12198,22 +10284,7 @@ VOS_UINT32 USIMM_DeactiveCardHandle(USIMM_CMDHEADER_REQ_STRU *pMsg)
     return USIMM_DeactiveRealCard((USIMM_MsgBlock*)pMsg);
 }
 
-/*****************************************************************************
-函 数 名  :
-功能描述  :
-输入参数  :
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :
 
-
-修订记录  :
-1. 日    期   : 2012年4月10日
-   作    者   : z00100318
-   修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 USIMM_CardInOutHandle(USIMM_CMDHEADER_REQ_STRU *pMsg)
 {
     USIMM_CARD_INOUT_IND_STRU           *pstMsg;
@@ -12247,22 +10318,7 @@ VOS_UINT32 USIMM_CardInOutHandle(USIMM_CMDHEADER_REQ_STRU *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_InitRealCard
-功能描述  :完成卡初始化的主控函数
-输入参数  :pMsg ->消息指针
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-2. 日    期   : 2011年6月20日
-   作    者   : j00168360
-   修改内容   :  [DTS2011042900838]卡初始化流程优化
 
-*****************************************************************************/
 VOS_UINT32 USIMM_InitCardHandle(USIMM_CMDHEADER_REQ_STRU *pMsg)
 {
     VOS_UINT32                      ulResult;
@@ -12307,18 +10363,7 @@ VOS_UINT32 USIMM_InitCardHandle(USIMM_CMDHEADER_REQ_STRU *pMsg)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_IsdbAccessHandle
-功能描述  :实现了ISDB访问卡操作和结果返回　
-输入参数  :USIMM_MsgBlock: API下发消息内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2012年8月28日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_IsdbAccessHandle(USIMM_MsgBlock *pMsg)
 {
     VOS_UINT32                          ulResult;
@@ -12381,18 +10426,7 @@ VOS_UINT32 USIMM_IsdbAccessHandle(USIMM_MsgBlock *pMsg)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SearchCHFree
-功能描述  :查找空闲通道
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2013年5月15日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_SearchCHFree(VOS_VOID)
 {
     VOS_UINT8                           ucIndex;
@@ -12408,18 +10442,7 @@ VOS_UINT32 USIMM_SearchCHFree(VOS_VOID)
     return VOS_ERR;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SearchCHCtrl
-功能描述  :查找通道控制块
-输入参数  :ulSessionId: 会话ID
-输出参数  :NA
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2013年5月15日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT8 USIMM_SearchCHCtrl(VOS_UINT32 ulSessionId)
 {
     VOS_UINT8                          ucIndex;
@@ -12435,18 +10458,7 @@ VOS_UINT8 USIMM_SearchCHCtrl(VOS_UINT32 ulSessionId)
     return USIMM_CHANNEL_NUM_MAX;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CloseChannel
-功能描述  :关闭逻辑通道
-输入参数  :ucChannelID: 逻辑通道号的地址
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2013年5月15日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_CloseChannel(VOS_UINT8 ucChannelID)
 {
     VOS_UINT32                          ulResult;
@@ -12473,18 +10485,7 @@ VOS_UINT32 USIMM_CloseChannel(VOS_UINT8 ucChannelID)
 }
 
 
-/*****************************************************************************
-函 数 名  :USIMM_OpenChannel
-功能描述  :打开逻辑通道
-输入参数  :pucChannelID: 存放逻辑通道号的地址
-输出参数  :pucChannelID: 返回逻辑通道号
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2013年5月15日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_OpenChannel(VOS_UINT8 *pucChannelID, VOS_UINT32 *pulSessionId)
 {
     VOS_UINT32                          ulResult;
@@ -12564,18 +10565,7 @@ VOS_UINT32 USIMM_OpenChannel(VOS_UINT8 *pucChannelID, VOS_UINT32 *pulSessionId)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_OpenChannelHandle
-功能描述  :打开通道消息处理
-输入参数  :USIMM_MsgBlock: API下发消息内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2013年5月15日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_OpenChannelHandle(USIMM_CMDHEADER_REQ_STRU *pMsg)
 {
     VOS_UINT32                          ulResult;
@@ -12784,18 +10774,7 @@ VOS_UINT32 USIMM_OpenChannelHandle(USIMM_CMDHEADER_REQ_STRU *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ChannelCmdParaCheck
-功能描述  :CGLA上参数检查
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2013年5月15日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_ChannelCmdParaCheck(VOS_VOID)
 {
     /* 中移动要求对鉴权命令也下发，非中移动版本要做检查 */
@@ -12853,18 +10832,7 @@ VOS_UINT32 USIMM_ChannelCmdParaCheck(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CloseChannelHandle
-功能描述  :关闭通道消息处理
-输入参数  :USIMM_MsgBlock: API下发消息内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2013年5月15日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_CloseChannelHandle(USIMM_CMDHEADER_REQ_STRU *pMsg)
 {
     VOS_UINT32                          ulResult;
@@ -12962,18 +10930,7 @@ VOS_UINT32 USIMM_CloseChannelHandle(USIMM_CMDHEADER_REQ_STRU *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_OpenChannelForCSIM
-功能描述  :为CSIM应用打开通道，仅在CL制式起作用
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2015年5月16日
-   作    者   : z00185430
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_OpenChannelForCSIM(VOS_VOID)
 {
     VOS_UINT32                          ulResult;
@@ -13086,18 +11043,7 @@ VOS_UINT32 USIMM_OpenChannelForCSIM(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CheckAIDFcp
-功能描述  :查询当前是否可以上报缓冲AID FCP
-输入参数  :
-输出参数  :
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2013年5月15日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_CheckAIDFcp(VOS_UINT32                   ulChannelId,
                                         USIMM_APDU_ST               *pstUsimmApdu,
                                         USIMM_SENDTPDU_CNFINFO_STRU *pstDataCnf)
@@ -13132,18 +11078,7 @@ VOS_UINT32 USIMM_CheckAIDFcp(VOS_UINT32                   ulChannelId,
     return VOS_ERR;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_AccessChannelHandle
-功能描述  :访问逻辑通道消息处理
-输入参数  :USIMM_MsgBlock: API下发消息内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2013年5月15日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_AccessChannelHandle(USIMM_MsgBlock *pMsg)
 {
     VOS_UINT32                          ulResult;
@@ -13311,18 +11246,7 @@ VOS_UINT32 USIMM_AccessChannelHandle(USIMM_MsgBlock *pMsg)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CardStatusHandle
-功能描述  :CE上SIM卡热插拨处理
-输入参数  :USIMM_MsgBlock: API下发消息内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2013年9月25日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_CardStatusHandle(USIMM_CMDHEADER_REQ_STRU *pstMsg)
 {
     USIMM_CARD_STATUS_IND_STRU         *pstCardStatus;
@@ -13351,18 +11275,7 @@ VOS_UINT32 USIMM_CardStatusHandle(USIMM_CMDHEADER_REQ_STRU *pstMsg)
     }
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SendTPDUHandle
-功能描述  :访问通道下发命令消息处理
-输入参数  :USIMM_MsgBlock: API下发消息内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2014年1月15日
-   作    者   : zhuli
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_SendTPDUHandle(USIMM_MsgBlock *pMsg)
 {
     VOS_UINT32                          ulResult;
@@ -13438,20 +11351,7 @@ VOS_UINT32 USIMM_SendTPDUHandle(USIMM_MsgBlock *pMsg)
 }
 
 /*lint -e732*/
-/*****************************************************************************
-函 数 名  :USIMM_ChangeToOldApp
-功能描述  :新旧应用转换函数
-输入参数  :
 
-输出参数  :无
-返 回 值  :VOS_OK    :失败
-           VOS_ERR   :成功
-
-修订记录  :
-1. 日    期   : 2015年2月10日
-   作    者   : z00100318
-   修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_ChangeToOldApp(
     VOS_UINT32                          ulSenderPID,
     USIMM_FILEPATH_INFO_STRU           *pstFilePath,
@@ -13502,20 +11402,7 @@ VOS_UINT32 USIMM_ChangeToOldApp(
 }
 /*lint +e732*/
 
-/*****************************************************************************
-函 数 名  :USIMM_Read_OpenSpeedFile
-功能描述  :读取快速开机文件
-输入参数  :pstMsg:消息头
-           usFileID:读取文件ID
-输出参数  :无
-返 回 值  :VOS_OK    :失败
-           VOS_ERR   :成功
 
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-*****************************************************************************/
 
 VOS_UINT32 USIMM_Read_OpenSpeedFile(USIMM_READFILE_REQ_STRU *pstMsg, VOS_UINT16 usFileID)
 {
@@ -13590,19 +11477,7 @@ VOS_UINT32 USIMM_Read_OpenSpeedFile(USIMM_READFILE_REQ_STRU *pstMsg, VOS_UINT16 
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ReadFileHandle
-功能描述  :读取卡文件
-输入参数  :pstMsgHeader:消息头
-输出参数  :无
-返 回 值  :VOS_OK    :失败
-           VOS_ERR   :成功
 
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_ReadFileHandle(USIMM_CMDHEADER_REQ_STRU *pstMsgHeader)
 {
     USIMM_READFILE_REQ_STRU     *pstMsg;
@@ -13690,19 +11565,7 @@ VOS_UINT32 USIMM_ReadFileHandle(USIMM_CMDHEADER_REQ_STRU *pstMsgHeader)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UpdateFileHandle
-功能描述  :更新卡文件
-输入参数  :pstMsgHeader:消息头
-输出参数  :无
-返 回 值  :VOS_OK    :失败
-           VOS_ERR   :成功
 
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-*****************************************************************************/
 
 VOS_UINT32 USIMM_UpdateFileHandle(USIMM_CMDHEADER_REQ_STRU *pstMsgHeader)
 {
@@ -13796,19 +11659,7 @@ VOS_UINT32 USIMM_UpdateFileHandle(USIMM_CMDHEADER_REQ_STRU *pstMsgHeader)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_QueryFileHandle
-功能描述  :查询卡文件
-输入参数  :pstMsgHeader:消息头
-输出参数  :无
-返 回 值  :VOS_OK    :失败
-           VOS_ERR   :成功
 
-修订记录  :
-1. 日    期   : 2015年02月12日
-   作    者   : z00100318
-   修改内容   : Creat
-*****************************************************************************/
 
 VOS_UINT32 USIMM_QueryFileHandle(USIMM_CMDHEADER_REQ_STRU *pstMsgHeader)
 {
@@ -13855,19 +11706,7 @@ VOS_UINT32 USIMM_QueryFileHandle(USIMM_CMDHEADER_REQ_STRU *pstMsgHeader)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SearchFileHandle
-功能描述  :读取卡文件
-输入参数  :pstMsgHeader:消息头
-输出参数  :无
-返 回 值  :VOS_OK    :失败
-           VOS_ERR   :成功
 
-修订记录  :
-1. 日    期   : 2015年02月12日
-   作    者   : z00100318
-   修改内容   : Creat
-*****************************************************************************/
 
 VOS_UINT32 USIMM_SearchFileHandle(USIMM_CMDHEADER_REQ_STRU *pstMsgHeader)
 {
@@ -13920,19 +11759,7 @@ VOS_UINT32 USIMM_SearchFileHandle(USIMM_CMDHEADER_REQ_STRU *pstMsgHeader)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SetSPBFileHandle
-功能描述  :实现复合电话本多个文件的更新操作
-输入参数  :API层下发消息内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2015年02月12日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_SetSPBFileHandle(USIMM_CMDHEADER_REQ_STRU *pstMsgHeader)
 {
     VOS_UINT32                  i;
@@ -13979,19 +11806,7 @@ VOS_UINT32 USIMM_SetSPBFileHandle(USIMM_CMDHEADER_REQ_STRU *pstMsgHeader)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SendTPDUDataHandle
-功能描述  :实现TPDU的数据发送
-输入参数  :下发消息内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2015年02月11日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_SendTPDUDataHandle(USIMM_CMDHEADER_REQ_STRU *pstMsgHeader)
 {
     USIMM_SENDTPDUDATA_REQ_STRU         *pstNewMsg;
@@ -14088,18 +11903,7 @@ VOS_UINT32 USIMM_SendTPDUDataHandle(USIMM_CMDHEADER_REQ_STRU *pstMsgHeader)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ApplicationMsgProc
-功能描述  :USIMM消息处理函数
-输入参数  :消息内容
-输出参数  :无
-返 回 值  :无
 
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-*****************************************************************************/
 static USIMMAPP_FUNCLIST_ST gastUSIMMAppFuncList[] =
 {
     {USIMM_ACTIVECARD_REQ      , USIMM_InitCardHandle},
@@ -14133,18 +11937,7 @@ static USIMMAPP_FUNCLIST_ST gastUSIMMAppFuncList[] =
 #endif
 };
 
-/*****************************************************************************
-函 数 名  :USIMM_ISIMStateChangeWithUsim
-功能描述  :判断ISIM的状态是否要跟着USIM变化
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2013年7月31日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID USIMM_ISIMStateChangeWithUsim(VOS_VOID)
 {
     if (USIMM_CARD_STATE_CHANGED == gastUSIMMCardAppInfo[USIMM_UICC_USIM].enStateChange)
@@ -14163,18 +11956,7 @@ VOS_VOID USIMM_ISIMStateChangeWithUsim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CardStateChangeProc
-功能描述  :卡状态变更时处理卡状态上报
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2013年5月15日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID USIMM_CardStateChangeProc(VOS_VOID)
 {
     VOS_UINT32                          i;
@@ -14202,18 +11984,7 @@ VOS_VOID USIMM_CardStateChangeProc(VOS_VOID)
 }
 
 #if(FEATURE_ON == FEATURE_PTM)
-/*****************************************************************************
-函 数 名  :USIMM_ErrorLogProc
-功能描述  :USIM模块error log消息处理函数
-输入参数  :无
-输出参数  :无
-返 回 值  :无
 
-修订记录  :
-1. 日    期   : 2014年2月20日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
 VOS_VOID USIMM_ErrorLogProc(USIMM_CMDHEADER_REQ_STRU * pMsg)
 {
     OM_ERROR_LOG_CTRL_IND_STRU   *pstCrtlInd;
@@ -14243,19 +12014,7 @@ VOS_VOID USIMM_ErrorLogProc(USIMM_CMDHEADER_REQ_STRU * pMsg)
 }
 #endif
 
-/*****************************************************************************
-函 数 名  :USIMM_ApplicationMsgProc
-功能描述  :USIM模块业务消息处理函数
-输入参数  :无
-输出参数  :无
-返 回 值  :无
 
-修订记录  :
-1. 日    期   : 2014年2月20日
-   作    者   : j00168360
-   修改内容   : Creat
-
-*****************************************************************************/
 VOS_VOID USIMM_ApplicationMsgProc(USIMM_CMDHEADER_REQ_STRU * pMsg)
 {
     VOS_UINT32                          ulQueueSize = 0;
@@ -14306,19 +12065,7 @@ VOS_VOID USIMM_ApplicationMsgProc(USIMM_CMDHEADER_REQ_STRU * pMsg)
     }
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_MsgProc
-功能描述  :USIM模块消息处理函数
-输入参数  :无
-输出参数  :无
-返 回 值  :无
 
-修订记录  :
-1. 日    期   : 2014年2月20日
-   作    者   : j00168360
-   修改内容   : Creat
-
-*****************************************************************************/
 VOS_VOID USIMM_MsgProc(USIMM_CMDHEADER_REQ_STRU *pMsg)
 {
     if (VOS_NULL_PTR == pMsg)
@@ -14340,24 +12087,7 @@ VOS_VOID USIMM_MsgProc(USIMM_CMDHEADER_REQ_STRU *pMsg)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_FID_Init
-功能描述  :实现了USIMM FID初始化
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_OK
-           VOS_ERR
-调用函数  :
-          VOS_RegisterPIDInfo
-          VOS_RegisterMsgTaskPrio
-          USIMM_InitGlobeVariable
-          USIMM_InitCard
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_FID_Init(enum VOS_INIT_PHASE_DEFINE ip)
 {
     VOS_UINT32                              ulResult = VOS_OK;

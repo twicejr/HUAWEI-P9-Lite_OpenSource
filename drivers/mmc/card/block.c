@@ -3714,6 +3714,7 @@ static int mmc_blk_cmdq_issue_rq(struct mmc_queue *mq, struct request *req)
 
 	ret = mmc_blk_cmdq_switch(card, md, true);
 	if (ret) {
+		pr_err("%s curr part config is %u\n", __func__, card->ext_csd.part_config);
 		/* TODO: put a limit on the number of requeues if switch fails
 		 * and if possible disable cmd queing for buggy cards.
 		 */
@@ -4223,6 +4224,8 @@ static int mmc_blk_probe(struct device *dev)
 	struct mmcpart_notifier *nt;
 	int i, index;
 	char cap_str[10];
+	char cfq_name[15];
+	int ret = 0;
 #ifdef CONFIG_BALONG_MTD
 	int sequence;
 	int err;
@@ -4250,6 +4253,14 @@ static int mmc_blk_probe(struct device *dev)
 
 	if (mmc_blk_alloc_parts(card, md))
 		goto out;
+
+	if (mmc_card_sd(card)) {
+		memset(cfq_name, 0 , sizeof(cfq_name));
+		snprintf(cfq_name, sizeof(cfq_name), "cfq");
+		ret = elevator_change(md->queue.queue, cfq_name);
+		if (ret)
+			pr_err("%s change SD scheduler to cfq failed. %d\n", __func__, ret);
+	}
 
 	dev_set_drvdata(dev, md);
 	mmc_fixup_device(card, blk_fixups);
@@ -4411,24 +4422,33 @@ static int mmc_blk_remove(struct device *dev)
 }
 
 
-static int _mmc_blk_suspend(struct device *dev)
+static int _mmc_blk_suspend(struct device *dev,int wait)
 {
 	struct mmc_blk_data *part_md;
 	struct mmc_blk_data *md = dev_get_drvdata(dev);
 
 	if (md) {
-		mmc_queue_suspend(&md->queue);
+		if(mmc_queue_suspend(&md->queue,wait))
+                                goto out;
 		list_for_each_entry(part_md, &md->part, part) {
-			mmc_queue_suspend(&part_md->queue);
+			if(mmc_queue_suspend(&part_md->queue,wait))
+                                                goto out_resume;
 		}
 	}
 	return 0;
+out_resume:
+      mmc_queue_resume(&md->queue);
+      list_for_each_entry(part_md, &md->part, part) {
+              mmc_queue_resume(&part_md->queue);
+      }
+out:
+      return -EBUSY;
 }
 
 static void mmc_blk_shutdown(struct device *dev)
 {
 	printk("%s:%d ++\n", __func__, __LINE__);
-	_mmc_blk_suspend(dev);
+	_mmc_blk_suspend(dev,1);
 	printk("%s:%d --\n", __func__, __LINE__);
 }
 
@@ -4437,7 +4457,7 @@ static int mmc_blk_suspend(struct device *dev)
 {
 	int ret;
 	printk("%s:%d ++\n", __func__, __LINE__);
-	ret = _mmc_blk_suspend(dev);
+	ret = _mmc_blk_suspend(dev,0);
 	printk("%s:%d --\n", __func__, __LINE__);
 	return ret;
 }
@@ -4446,14 +4466,28 @@ static int mmc_blk_resume(struct device *dev)
 {
 	struct mmc_blk_data *part_md;
 	struct mmc_blk_data *md = dev_get_drvdata(dev);
+	struct mmc_card *card = md->queue.card;
+	u8 part_config = card->ext_csd.part_config;
 
 	printk("%s:%d ++\n", __func__, __LINE__);
 	if (md) {
+#if 0
 		/*
 		 * Resume involves the card going into idle state,
 		 * so current partition is always the main one.
 		 */
 		md->part_curr = md->part_type;
+#else
+		/*don't use the mainline code,because the card
+		 *may in rpmb partition;so we use the card's
+		 *real part access type.
+		 */
+		part_config &= EXT_CSD_PART_CONFIG_ACC_MASK;
+		md->part_curr = part_config;
+		if (md->part_curr != md->part_type)
+			pr_err("%s md part_curr is %u,part_type is %u\n",
+				__func__, md->part_curr, md->part_type);
+#endif
 		mmc_queue_resume(&md->queue);
 		list_for_each_entry(part_md, &md->part, part) {
 			mmc_queue_resume(&part_md->queue);

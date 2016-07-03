@@ -265,7 +265,6 @@ extern PPI_TIME_S  g_stNPPpiTime[PPI_TYPE_END];/*NP下发耗时统计处理变量*/
 /* add by l57500 for trunk np, 06-12-06*/
 #define g_pfTCPIP_PPI_TRUNKPORT_Update g_stPPIHook.pfTCPIP_PPI_TRUNKPORT_Update
 
-/*Add by z62474 for 2007-09-10 ,增加OSI对NP的支持*/
 #define g_pfTCPIP_PPI_OSI_Output    g_stPPIHook.pfTCPIP_PPI_OSI_Output
 
 /* 3ah ppi update */
@@ -303,7 +302,6 @@ extern PPI_TIME_S  g_stNPPpiTime[PPI_TYPE_END];/*NP下发耗时统计处理变量*/
 
 #define g_pfTCPIP_PPI_PPPOE_Update g_stPPIHook.pfTCPIP_PPI_PPPOE_Update
 
-/* Add for V2R3C07, by z00208058/w00207740, at 2012-4-16. 修改原因: TRUNK LACP下移需求开发 */
 #define g_pfTCPIP_PPI_TRUNK_LACP_Update g_stPPIHook.pfTCPIP_PPI_TRUNK_LACP_Update
     /* Chandra */
 #define g_pfTCPIP_PPI_POLICYRT_Update g_stPPIHook.pfTCPIP_PPI_POLICYRT_Update
@@ -314,9 +312,7 @@ extern PPI_TIME_S  g_stNPPpiTime[PPI_TYPE_END];/*NP下发耗时统计处理变量*/
 /*******************************全局变量声明***************************************/
 extern TCPIP_PPI_HOOK_S   g_stPPIHook; /*PPI接口钩子函数集*/
 
-/* Add by heyijun 00218462 for DTS2012092900232 维测需求开发, 2012-9 */
 extern struct IIF_IPV4_IP_AM4_ComIntFUNVtbl       *g_pstPp4Am4Vtbl;
-/* End of Add by heyijun 00218462 for DTS2012092900232 维测需求开发, 2012-9 */
 
 
 /*******************************函数声明***************************************/
@@ -329,7 +325,6 @@ VOID TCPIP_PPI_LogMapMsg(ULONG ulRet, ULONG ulOprType, PPI_MAP_S  *pstMapInfo);
 
 VOID TCPIP_PPI_LogOutpkt();
 VOID TCPIP_PPI_LogIp6Outpkt();
-/*Add by z62474 for 2007-09-10 ,增加OSI对NP的支持*/
 VOID TCPIP_PPI_OSI_LogOutpkt();
 
 
@@ -383,19 +378,15 @@ extern VOID TCPIP_PPI_LogVRF6Msg(ULONG ulRet, VRF6_PPI_S *pstVrfPpiInfo, ULONG u
 extern VOID TCPIP_PPI_LogPolicyRtMsg(ULONG ulRet, PPI_POLICYRT_S *pstPolicyRtPpiInfo, ULONG ulOprType);
 
 extern VOID TCPIP_PPI_TRUNKBIND_LogMsg(ULONG ulRet, ULONG ulOperType, PPI_TRUNK_BIND_S *pstTrunkBind);
-/*Added by z00208058/w00207740, TRUNK LACP下移需求开发, 2012/5/2 */
 extern VOID TCPIP_PPI_TRUNKUpdate_LogMsg(ULONG ulRet, ULONG ulOperType, PPI_TRUNK_LACP_S *pstTrunkPPI);
 extern VOID TCPIP_PPI_AM4_LogMsg(ULONG ulRet, ULONG ulOperType, PPI_IPADDR_INFO_S *pstIpAddrInfo);
 
 extern VOID TCPIP_PPI_VPN_LogOutputPkt();
 extern VOID TCPIP_PPI_VPN_LogInputPkt();
 extern VOID TCPIP_PPI_VPN_LogErrorPkt();
-/* Add by heyijun 00218462 for DTS2012092900232 维测需求开发, 2012-9 */
 extern VOID TCPIP_PPI_LogIFOutPkt(ULONG ulOutIndexIf, BOOL_T bIsPpiProcessed, BOOL_T bIsBcast, BOOL_T bIsMcast);
 
-/* End of Add by heyijun 00218462 for DTS2012092900232 维测需求开发, 2012-9 */
 
-/*Added by w00207740, NSR TRUNK,下发日志记录, 2013/7/2 */
 extern VOID TCPIP_PPI_NsrTrunk_LogMsg(ULONG ulRet, ULONG ulIfIndex, ULONG ulOperType, UCHAR *pucData);
 
 #ifdef  __cplusplus

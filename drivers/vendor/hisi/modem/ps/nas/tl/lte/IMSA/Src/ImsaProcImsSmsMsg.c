@@ -211,16 +211,7 @@ VOS_VOID IMSA_SMS_ProcNwSmsErr(const IMSA_IMS_OUTPUT_SMS_EVENT_STRU  *pstOutSms)
     IMSA_CommonDeregProc();
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SMS_ProcNwSmsRpError()
- Description    : 收到网络回复的RP-ERROR的处理
- Input          : IMSA_IMS_OUTPUT_SMS_EVENT_STRU  *pstOutSms
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2013-10-10  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SMS_ProcNwSmsRpError(const IMSA_IMS_OUTPUT_SMS_EVENT_STRU  *pstOutSms)
 {
     IMSA_SMS_SMR_MO_STRU                *pstSmrMoEntity;
@@ -476,15 +467,7 @@ VOS_VOID IMSA_ImsMsgSmsEvent(VOS_VOID *pSmsEvent)
 
 }
 #if (FEATURE_ON == FEATURE_DSDS)
-/*****************************************************************************
- Function Name  : IMSA_SMSProcMoResourceApplyCnf
- Discription    : 申请MO SMS资源定时器超时的处理
- Input          :
- Output         : None
- Return         : None
- History:
-      1. wangchen 00209181  2015-11-23  Draft Enact
-*****************************************************************************/
+
 VOS_VOID IMSA_SMSProcMtResourceApplyCnf
 (
     const IMSA_IMS_OUTPUT_SMS_EVENT_STRU  *pstOutSms

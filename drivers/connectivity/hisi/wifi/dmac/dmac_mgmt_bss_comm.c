@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : dmac_mgmt_bss_comm.c
-  版 本 号   : 初稿
-  作    者   : huxiaotong
-  生成日期   : 2013年4月9日
-  最近修改   :
-  功能描述   : DMAC模块下，AP与STA公用的管理帧处理的源文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年4月9日
-    作    者   : huxiaotong
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -68,21 +51,7 @@ extern oal_int32 g_l_proxysta_feature;
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : dmac_ba_encap_blockack_req
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月18日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint16  dmac_ba_encap_blockack_req(
                 dmac_vap_stru     *pst_dmac_vap,
                 oal_netbuf_stru   *pst_netbuf,
@@ -155,21 +124,7 @@ oal_uint16  dmac_ba_encap_blockack_req(
     return WLAN_MAX_BAR_DATA_LEN;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_mgmt_tx_addba_req
- 功能描述  : ADDBA_REQ函数，需要将HMAC模块的生成的信息同步到DMAC模块
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月10日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_mgmt_tx_addba_req(
                 mac_device_stru                *pst_device,
                 dmac_vap_stru                  *pst_dmac_vap,
@@ -257,7 +212,6 @@ oal_uint32  dmac_mgmt_tx_addba_req(
 #if (_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC == _PRE_MULTI_CORE_MODE)
     *(oal_uint16 *)&puc_data[7] = (oal_uint16)((oal_host_to_le16(pst_dmac_user->aus_txseqs[uc_tidno])) << WLAN_SEQ_SHIFT);
 #else
-    /* Hi1151设置ssn，1151管理帧帧头和帧体存放在一起.DTS2015052811315  */
     *(oal_uint16 *)&puc_data[MAC_80211_FRAME_LEN+7] = (oal_uint16)((oal_host_to_le16(pst_dmac_user->aus_txseqs[uc_tidno])) << WLAN_SEQ_SHIFT);
 #endif
     /* 填写netbuf的cb字段，共发送管理帧和发送完成接口使用 */
@@ -289,21 +243,7 @@ oal_uint32  dmac_mgmt_tx_addba_req(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_mgmt_tx_addba_rsp
- 功能描述  : ADDBA_RSP函数，需要将HMAC模块的获取的信息同步到DMAC模块
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月14日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_mgmt_tx_addba_rsp(
                 mac_device_stru                *pst_device,
                 dmac_vap_stru                  *pst_dmac_vap,
@@ -433,21 +373,7 @@ oal_uint32  dmac_mgmt_tx_addba_rsp(
     return ul_ret;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_mgmt_tx_delba
- 功能描述  : HMAC模块删除BA会话后，DMAC需要进行同步的处理函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月14日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_mgmt_tx_delba(
                 mac_device_stru                *pst_device,
                 dmac_vap_stru                  *pst_dmac_vap,
@@ -523,21 +449,7 @@ oal_uint32  dmac_mgmt_tx_delba(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_mgmt_rx_succstatus_addba_rsp
- 功能描述  : 从空口接收到addba_rsp帧状态正确的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月12日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void  dmac_mgmt_rx_succstatus_addba_rsp(
                 mac_device_stru                *pst_device,
                 dmac_vap_stru                  *pst_dmac_vap,
@@ -623,21 +535,7 @@ OAL_STATIC oal_void  dmac_mgmt_rx_succstatus_addba_rsp(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_mgmt_rx_addba_rsp
- 功能描述  : 从空口接收到相应帧的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月18日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_mgmt_rx_addba_rsp(
                 mac_device_stru                *pst_device,
                 dmac_vap_stru                  *pst_dmac_vap,
@@ -713,21 +611,7 @@ oal_uint32  dmac_mgmt_rx_addba_rsp(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_mgmt_rx_delba
- 功能描述  : 从空口接收到DELBA帧的处理(HMAC模块抛事件同步到DMAC调用该函数)
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月18日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_mgmt_rx_delba(
                 mac_device_stru                *pst_device,
                 dmac_vap_stru                  *pst_dmac_vap,
@@ -778,21 +662,7 @@ oal_uint32  dmac_mgmt_rx_delba(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_mgmt_delba
- 功能描述  : DMAC触发删除BA会话的接口
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月14日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_mgmt_delba(
                 dmac_vap_stru          *pst_dmac_vap,
                 dmac_user_stru         *pst_dmac_user,
@@ -851,21 +721,7 @@ oal_uint32  dmac_mgmt_delba(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_mgmt_rx_ampdu_start
- 功能描述  : 设置开启ampdu需要的参数,自定义管理帧(A_MPDU_START)的操作函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月26日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_mgmt_rx_ampdu_start(
                 mac_device_stru                *pst_device,
                 dmac_vap_stru                  *pst_dmac_vap,
@@ -949,21 +805,7 @@ oal_uint32  dmac_mgmt_rx_ampdu_start(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_mgmt_rx_ampdu_end
- 功能描述  : 设置关闭ampdu需要的参数,自定义管理帧(A_MPDU_END)的操作函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月7日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_mgmt_rx_ampdu_end(
                 mac_device_stru                *pst_device,
                 dmac_vap_stru                  *pst_dmac_vap,
@@ -997,26 +839,7 @@ oal_uint32  dmac_mgmt_rx_ampdu_end(
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_mgmt_switch_channel
- 功能描述  : 切换信道
- 输入参数  : pst_mac_device: 指向device的结构体
-             pst_channel: 信道
- 输出参数  : 无
- 返 回 值  : OAL_SUCC
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月17日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-  2.日    期   : 2014年4月15日
-    作    者   : zhangheng
-    修改内容   : 切换信道只需关闭mac/phy, 不需要挂起发送
-
-*****************************************************************************/
 oal_uint32  dmac_mgmt_switch_channel(mac_device_stru *pst_mac_device, mac_channel_stru *pst_channel)
 {
     hal_to_dmac_device_stru *pst_hal_device;
@@ -1103,24 +926,7 @@ oal_module_symbol(dmac_mgmt_switch_channel);
 /*lint +e19*/
 
 #if (_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC == _PRE_MULTI_CORE_MODE)
-/*****************************************************************************
- 函 数 名  : dmac_mgmt_encap_csa_action
- 功能描述  : 封装channel switch announcement action 管理帧
- 输入参数  : pst_dmac_vap: DMAC VAP
-             puc_buffer: buffer起始地址
-             uc_channel: 新的主信道号
-             en_bw: 带宽模式
- 输出参数  : 无
- 返 回 值  : 封装后的帧长度
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月15日
-    作    者   : sunxiaolin
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_mgmt_encap_csa_action(dmac_vap_stru *pst_dmac_vap, oal_netbuf_stru *pst_buffer, oal_uint8 uc_channel, oal_uint8 uc_csa_cnt, wlan_channel_bandwidth_enum_uint8 en_bw)
 {
     oal_uint8        uc_mgmt_len = 0;
@@ -1228,24 +1034,7 @@ oal_uint32  dmac_mgmt_encap_csa_action(dmac_vap_stru *pst_dmac_vap, oal_netbuf_s
 }
 
 #else
-/*****************************************************************************
- 函 数 名  : dmac_mgmt_encap_csa_action
- 功能描述  : 封装channel switch announcement action 管理帧
- 输入参数  : pst_dmac_vap: DMAC VAP
-             puc_buffer: buffer起始地址
-             uc_channel: 新的主信道号
-             en_bw: 带宽模式
- 输出参数  : 无
- 返 回 值  : 封装后的帧长度
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月24日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_mgmt_encap_csa_action(dmac_vap_stru *pst_dmac_vap, oal_uint8 *puc_buffer, oal_uint8 uc_channel, oal_uint8 uc_csa_cnt, wlan_channel_bandwidth_enum_uint8 en_bw)
 {
     oal_uint8       *puc_origin = puc_buffer;
@@ -1346,26 +1135,7 @@ oal_uint32  dmac_mgmt_encap_csa_action(dmac_vap_stru *pst_dmac_vap, oal_uint8 *p
 
 #endif
 #if (_PRE_PRODUCT_ID == _PRE_PRODUCT_ID_HI1151)
-/*****************************************************************************
- 函 数 名  : dmac_mgmt_encap_ext_csa_action
- 功能描述  : 封装extended channel switch announcement action 管理帧
- 输入参数  : pst_dmac_vap  : DMAC VAP结构体指针
-             puc_buffer    : 帧内存
-             uc_opert_class:
-             uc_channel    : 新信道号
-             uc_csa_cnt    : 信道切换计数
-             en_bw         : 带宽模式
- 输出参数  : 无
- 返 回 值  : 封装后的帧长度
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月28日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_mgmt_encap_ext_csa_action(dmac_vap_stru *pst_dmac_vap, oal_uint8 *puc_buffer, oal_uint8 uc_opert_class, oal_uint8 uc_channel, oal_uint8 uc_csa_cnt, wlan_channel_bandwidth_enum_uint8 en_bw)
 {
     oal_uint8       *puc_origin = puc_buffer;
@@ -1454,23 +1224,7 @@ oal_uint32  dmac_mgmt_encap_ext_csa_action(dmac_vap_stru *pst_dmac_vap, oal_uint
     return (oal_uint32)(puc_buffer - puc_origin);
 }
 #endif
-/*****************************************************************************
- 函 数 名  : dmac_mgmt_send_csa_action
- 功能描述  : 发送信道切换广播管理帧
- 输入参数  : pst_dmac_vap: DMAC VAP
-             uc_channel   : 新的信道
-             en_bw        : 新的带宽模式
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月14日
-    作    者   : wangshanbo
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_mgmt_send_csa_action(dmac_vap_stru *pst_dmac_vap, oal_uint8 uc_channel, oal_uint8 uc_csa_cnt, wlan_channel_bandwidth_enum_uint8 en_bw)
 {
     oal_netbuf_stru        *pst_mgmt_buf;
@@ -1540,21 +1294,7 @@ oal_uint32  dmac_mgmt_send_csa_action(dmac_vap_stru *pst_dmac_vap, oal_uint8 uc_
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_mgmt_scan_vap_down
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月8日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_mgmt_scan_vap_down(mac_vap_stru *pst_mac_vap)
 {
     mac_device_stru *pst_mac_device = mac_res_get_dev(pst_mac_vap->uc_device_id);
@@ -1590,21 +1330,7 @@ oal_uint32  dmac_mgmt_scan_vap_down(mac_vap_stru *pst_mac_vap)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_set_cap_info_field
- 功能描述  : hmac组帧设置cap info field
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月18日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  dmac_set_cap_info_field(oal_void *pst_vap, oal_uint8 *puc_buffer)
 {
 #ifdef   _PRE_WLAN_FEATURE_P2P
@@ -1615,7 +1341,6 @@ oal_void  dmac_set_cap_info_field(oal_void *pst_vap, oal_uint8 *puc_buffer)
     mac_set_cap_info_ap(pst_vap, puc_buffer);
 
 #ifdef   _PRE_WLAN_FEATURE_P2P
-    /* DTS2015022500399 解决P2P模式下Listen 状态下发送的帧的capability info ess bit不为0的问题 */
     if (dmac_vap_is_in_p2p_listen(pst_mac_vap))
     {
         pst_cap_info->bit_ess = 0;

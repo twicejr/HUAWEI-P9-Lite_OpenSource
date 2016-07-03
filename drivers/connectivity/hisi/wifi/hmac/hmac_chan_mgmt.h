@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : hmac_chan_mgmt_ap.h
-  版 本 号   : 初稿
-  作    者   : mayuan
-  生成日期   : 2014年2月22日
-  最近修改   :
-  功能描述   : hmac_chan_mgmt.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年2月22日
-    作    者   : mayuan
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __HMAC_CHAN_MGMT_H__
 #define __HMAC_CHAN_MGMT_H__
@@ -178,24 +161,7 @@ extern oal_uint32  hmac_chan_start_bss(hmac_vap_stru *pst_hmac_vap);
 /*****************************************************************************
   11 inline函数定义
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : hmac_chan_initiate_switch_to_20MHz_ap
- 功能描述  : 设置VAP信道参数，准备切换至20MHz运行
- 输入参数  : pst_mac_vap: MAC VAP指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 备    注  : 频宽切换，不会改变频带(2.4G or 5G)、以及主信道号，因此不用设置
-             vap.st_channel.uc_chan_number和vap.st_channel.en_band，只需改变
-             带宽模式vap.st_channel.en_bandwidth
 
- 修改历史      :
-  1.日    期   : 2014年2月21日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  hmac_chan_initiate_switch_to_20MHz_ap(mac_vap_stru *pst_mac_vap)
 {
 
@@ -207,21 +173,7 @@ OAL_STATIC OAL_INLINE oal_void  hmac_chan_initiate_switch_to_20MHz_ap(mac_vap_st
 
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_chan_scan_availability
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月16日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_bool_enum_uint8  hmac_chan_scan_availability(
                 mac_device_stru       *pst_mac_device,
                 mac_ap_ch_info_stru   *pst_channel_info)
@@ -246,21 +198,7 @@ OAL_STATIC OAL_INLINE oal_bool_enum_uint8  hmac_chan_scan_availability(
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_chan_is_ch_op_allowed
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月4日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_bool_enum_uint8  hmac_chan_is_ch_op_allowed(hmac_eval_scan_report_stru *pst_chan_scan_report, oal_uint8 uc_chan_idx)
 {
     if (pst_chan_scan_report[uc_chan_idx].en_chan_op & HMAC_OP_ALLOWED)

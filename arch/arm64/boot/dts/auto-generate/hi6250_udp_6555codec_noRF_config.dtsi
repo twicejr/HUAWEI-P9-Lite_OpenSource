@@ -1,0 +1,15 @@
+
+/**
+ * Copyright (C) 2014 Hisilicon Ltd.
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/include/ "hi6250_udp_6555codec_config.dtsi"
+/ {
+	hisi,boardid = <4 0 1 0>;
+	hisi,boardname = "hi6250_udp_6555codec_noRF";
+
+};

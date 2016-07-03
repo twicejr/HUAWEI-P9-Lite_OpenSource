@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafSpmSndUsim.c
-  版 本 号   : 初稿
-  作    者   : W00176964
-  生成日期   : 2013年5月8日
-  最近修改   :
-  功能描述   : TafSpmSndUsim.C文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年5月22日
-    作    者   : w00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -33,17 +16,13 @@
 #include "MnErrorCode.h"
 #include "TafStdlib.h"
 #include "MnMsgApi.h"
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
 #include "mnmsgcbencdec.h"
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 
 #include "NasUsimmApi.h"
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-16, begin */
 #include "NasCcIe.h"
 #include "MnCallBcProc.h"
 #include "TafSpmComFunc.h"
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-16, end */
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -74,28 +53,7 @@ extern "C" {
 /*****************************************************************************
   6 函数定义
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : TAF_SPM_SendUsimSsEnvelopeReq
- 功能描述  : 调用USIMAPI发送SS业务请求的envelope消息 请求进行call ctrl结果
- 输入参数  : usClientId:状态机的client ID
-             pstMsg     待CALL CONTROL的SS业务请求消息
- 输出参数  : 无
- 返 回 值  : VOS_TRUE            发起SS的call ctrl检查请求成功
-             VOS_FALSE           发起SS的call ctrl检查请求失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月06日
-    作    者   : f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2013年6月5日
-    作    者   : w00242748
-    修改内容   : SVLTE和USIM接口整合
-  3.日    期   : 2013年12月24日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseIII项目
-*****************************************************************************/
 VOS_UINT32  TAF_SPM_SendUsimSsEnvelopeReq(
     VOS_UINT16                          usClientId,
     struct MsgCB                       *pstMsg
@@ -155,11 +113,9 @@ VOS_UINT32  TAF_SPM_SendUsimSsEnvelopeReq(
         aucSsString[0] = pstRegister->stTafSsRegisterSsReq.NumType;
     }
 
-    /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, begin */
     ulRet = TAF_STD_ConvertAsciiNumberToBcd(pcSscString,
                                 &aucSsString[TAF_SPM_SSC_OFFSET],
                                 &ucSscStringBcdLen);
-    /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, end */
     PS_MEM_FREE(WUEPS_PID_TAF, pcSscString);
     if (MN_ERR_NO_ERROR != ulRet)
     {
@@ -225,25 +181,7 @@ VOS_UINT32  TAF_SPM_SendUsimSsEnvelopeReq(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_BuildUssdStringInfo
- 功能描述  : 根据编码方式构造USSD STRING
- 输入参数  : TAF_SS_DATA_CODING_SCHEME           ucDatacodingScheme
-             TAF_SS_USSD_STRING_STRU            *pstSrcUssd
- 输出参数  : TAF_SS_USSD_STRING_STRU            *pstDstUssd
- 返 回 值  : VOS_TRUE            构造DCS指示格式USSD结构成功
-             VOS_FALSE           构造DCS指示格式USSD结构失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月06日
-    作    者   : f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2013年6月26日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_BuildUssdStringInfo(
     TAF_SS_DATA_CODING_SCHEME           ucDatacodingScheme,
     TAF_SS_USSD_STRING_STRU            *pstSrcUssd,
@@ -256,12 +194,10 @@ VOS_UINT32 TAF_SPM_BuildUssdStringInfo(
     PS_MEM_SET(&stDcsInfo, 0, sizeof(stDcsInfo));
 
     /* USSD与CBS的DCS的协议相同，调用CBS的DCS解析函数解码，详细情况参考23038 */
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     ulRslt = MN_MSG_DecodeCbsDcs(ucDatacodingScheme,
                                  pstSrcUssd->aucUssdStr,
                                  pstSrcUssd->usCnt,
                                  &stDcsInfo);
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
     if (MN_ERR_NO_ERROR != ulRslt)
     {
         TAF_WARNING_LOG(WUEPS_PID_TAF, "TAF_SPM_BuildUssdStringInfo:WARNING: Decode Failure");
@@ -318,25 +254,7 @@ VOS_UINT32 TAF_SPM_BuildUssdStringInfo(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_SendUsimUssdEnvelopeReq
- 功能描述  : 调用USIMAPI发送USSD业务请求的envelope消息 请求进行call ctrl结果
- 输入参数  : usClientId:状态机的client ID
-             pstMsg     待CALL CONTROL的USSD业务请求消息
- 输出参数  : 无
- 返 回 值  : VOS_TRUE            发起USSD的call ctrl检查请求成功
-             VOS_FALSE           发起USSD的call ctrl检查请求失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月06日
-    作    者   : f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2013年6月5日
-    作    者   : w00242748
-    修改内容   : SVLTE和USIM接口整合
-*****************************************************************************/
 VOS_UINT32  TAF_SPM_SendUsimUssdEnvelopeReq(
     VOS_UINT16                          usClientId,
     struct MsgCB                       *pstMsg
@@ -441,24 +359,7 @@ VOS_UINT32  TAF_SPM_SendUsimUssdEnvelopeReq(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_BuildSsFdnInfo
- 功能描述  : 构造SS的FDN信息
- 输入参数  : pstMsg:at或STK发过来的SS请求消息
- 输出参数  : pstFdnInfo:构造好的SS的FDN信息
- 返 回 值  : VOS_TRUE            构造消息成功
-             VOS_FALSE           构造消息失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月22日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月24日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseIII项目
-*****************************************************************************/
 VOS_UINT32  TAF_SPM_BuildSsFdnInfo(
     struct MsgCB                       *pstMsg,
     SI_PB_FDN_NUM_STRU                 *pstFdnInfo
@@ -487,9 +388,7 @@ VOS_UINT32  TAF_SPM_BuildSsFdnInfo(
         return VOS_FALSE;
     }
 
-    /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, begin */
     ulRet = TAF_STD_ConvertAsciiNumberToBcd(pcMmiStr, pstFdnInfo->aucNum1, (VOS_UINT8 *)&(pstFdnInfo->ulNum1Len));
-    /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, end */
     PS_MEM_FREE(WUEPS_PID_TAF, pcMmiStr);
 
     if (MN_ERR_NO_ERROR != ulRet)
@@ -501,24 +400,7 @@ VOS_UINT32  TAF_SPM_BuildSsFdnInfo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_SendPbSsFdnCheckReq
- 功能描述  : 调用PB的API发起SS的FDN检查请求
- 输入参数  : usClientId:状态机的client ID
-             pstMsg:SS业务请求消息
- 返 回 值  : VOS_TRUE            发起SS的FDN检查请求成功
-             VOS_FALSE           发起SS的FDN检查请求失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月06日
-    作    者   : f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2013年6月5日
-    作    者   : w00242748
-    修改内容   : SVLTE和USIM接口整合
-*****************************************************************************/
 VOS_UINT32  TAF_SPM_SendPbSsFdnCheckReq(
     VOS_UINT16                          usClientId,
     struct MsgCB                       *pstMsg
@@ -547,21 +429,7 @@ VOS_UINT32  TAF_SPM_SendPbSsFdnCheckReq(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_GetUssdStringSeptetLength
- 功能描述  : 获取USSD 7位位组长度
- 输入参数  : ulOctetLength USSD STRING的8位位组长度
-             ucLastByte    USSD STRING的8位位组最后一个字节
- 输出参数  : 无
- 返 回 值  : USSD 7位位组长度
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年05月06日
-    作    者   : f62575
-    修改内容   : SS FDN&Call Control项目，
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_GetUssdStringSeptetLength(
     VOS_UINT32                          ulOctetLength,
     VOS_UINT8                           ucLastByte
@@ -593,32 +461,7 @@ VOS_UINT32 TAF_SPM_GetUssdStringSeptetLength(
     return ulSeptetLength;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_TransUssdMsgToAsciiStr
- 功能描述  : 完成SS的7BIT压缩编码后的ASCII码字符串到ASCII码流的转换
- 输入参数  : pstUssdMsg---需要转换的USSD消息
- 输出参数  : pucAsciiStr     - ASCII码流
-             pulUnpackStrLen - ASCII码流长度
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月06日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2013年05月06日
-    作    者   : f62575
-    修改内容   : SS FDN&Call Control项目，
-                 TAF_SPM_TransUssdMsgToAsciiStr => TAF_SDC_TransUssdMsgToAsciiStr
-                 扩展功能为公共接口，不限制在FDN使用
-  3.日    期   : 2013年6月26日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级
-  4.日    期   : 2013年10月11日
-    作    者   : z00161729
-    修改内容  : DTS2013071808373:TQE告警清理
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_TransUssdMsgToAsciiStr(
     TAF_SS_PROCESS_USS_REQ_STRU        *pstUssdMsg,
     VOS_UINT8                          *pucAsciiStr,
@@ -636,12 +479,10 @@ VOS_UINT32 TAF_SPM_TransUssdMsgToAsciiStr(
 
     PS_MEM_SET(&stDcsInfo, 0, sizeof(stDcsInfo));
 
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     ulRet = MN_MSG_DecodeCbsDcs(pstUssdMsg->DatacodingScheme,
                                 pstUssdMsg->UssdStr.aucUssdStr,
                                 pstUssdMsg->UssdStr.usCnt,
                                 &stDcsInfo);
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
     if (MN_ERR_NO_ERROR != ulRet)
     {
         TAF_WARNING_LOG(WUEPS_PID_TAF, "TAF_SPM_TransUssdMsgToAsciiStr:WARNING: Decode Failure");
@@ -731,20 +572,16 @@ VOS_UINT32 TAF_SPM_TransUssdMsgToAsciiStr(
     /*lint +e961*/
 
     PS_MEM_SET(aucUnpackUssdStr, 0, sizeof(aucUnpackUssdStr));
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
-    /* Added by b00269685 for Coverify清理, 2014-7-24, begin */
     if (ulUssdStrLength > TAF_SS_MAX_USSDSTRING_LEN)
     {
         ulUssdStrLength = TAF_SS_MAX_USSDSTRING_LEN;
     }
-    /* Added by b00269685 for Coverify清理, 2014-7-24, end */
     ulRet = TAF_STD_UnPack7Bit(pucUssdStr, ulUssdStrLength, 0, aucUnpackUssdStr);
 
     if (VOS_OK != ulRet)
     {
         TAF_WARNING_LOG(WUEPS_PID_TAF, "TAF_SPM_TransUssdMsgToAsciiStr:TAF_STD_UnPack7Bit Err.");
     }
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
     PS_MEM_FREE(WUEPS_PID_TAF, pucUssdStr);
 
     /*
@@ -761,24 +598,7 @@ VOS_UINT32 TAF_SPM_TransUssdMsgToAsciiStr(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_BuildUssdFdnInfo
- 功能描述  : 构造USSD的FDN信息
- 输入参数  : pstMsg:at或STK发过来的ussd请求消息
- 输出参数  : pstFdnInfo:构造好的ussd的FDN信息
- 返 回 值  : VOS_TRUE            构造消息成功
-             VOS_FALSE           构造消息失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月22日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月24日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseIII项目
-*****************************************************************************/
 VOS_UINT32  TAF_SPM_BuildUssdFdnInfo(
     struct MsgCB                       *pstMsg,
     SI_PB_FDN_NUM_STRU                 *pstFdnInfo
@@ -815,9 +635,7 @@ VOS_UINT32  TAF_SPM_BuildUssdFdnInfo(
     /* FDN中的num1只能保存40个ascii码 */
     PS_MEM_SET(pucAsciiStr + TAF_SPM_FDN_CHECK_STR_MAX_LEN, 0, TAF_SPM_FDN_CHECK_7BIT_MAX_LEN - TAF_SPM_FDN_CHECK_STR_MAX_LEN);
 
-    /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, begin */
     ulRet = TAF_STD_ConvertAsciiNumberToBcd((VOS_CHAR *)pucAsciiStr, pstFdnInfo->aucNum1, (VOS_UINT8 *)&pstFdnInfo->ulNum1Len);
-    /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, end */
     PS_MEM_FREE(WUEPS_PID_TAF, pucAsciiStr);
     if (MN_ERR_NO_ERROR != ulRet)
     {
@@ -827,24 +645,7 @@ VOS_UINT32  TAF_SPM_BuildUssdFdnInfo(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_SendPbUssdFdnCheckReq
- 功能描述  : 调用PB的API发起USSD的FDN检查请求
- 输入参数  : usClientId:状态机的client ID
-             pstMsg:USSD业务请求消息
- 返 回 值  : VOS_TRUE            发起USSD的FDN检查请求成功
-             VOS_FALSE           发起USSD的FDN检查请求失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月06日
-    作    者   : f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2013年6月5日
-    作    者   : w00242748
-    修改内容   : SVLTE和USIM接口整合
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_SendPbUssdFdnCheckReq(
     VOS_UINT16                          usClientId,
     struct MsgCB                       *pstMsg
@@ -871,25 +672,7 @@ VOS_UINT32 TAF_SPM_SendPbUssdFdnCheckReq(
     return VOS_TRUE;
 }
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-14, begin */
-/*****************************************************************************
- 函 数 名  : TAF_SPM_SendPbCallFdnCheckReq
- 功能描述  : 调用PB的API发起CALL的FDN检查请求
- 输入参数  : usClientId:状态机的client ID
-             pstMsg:语音业务请求消息
- 返 回 值  : VOS_TRUE            发起USSD的FDN检查请求成功
-             VOS_FALSE           发起USSD的FDN检查请求失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月14日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2014年11月28日
-    作    者   : j00174725
-    修改内容   : 增强型多方通话
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_SendPbCallFdnCheckReq(
     VOS_UINT16                          usClientId,
     struct MsgCB                       *pstMsg
@@ -939,27 +722,8 @@ VOS_UINT32 TAF_SPM_SendPbCallFdnCheckReq(
 
     return VOS_TRUE;
 }
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-14, end */
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_SendUsimCallEnvelopeReq
- 功能描述  : 调用USIMAPI发送CALL业务请求的envelope消息 请求进行call ctrl结果
- 输入参数  : pstCalledNumber -- 电话号码结构体
-             pstDataCfgInfo  -- 数据配置结构体
-             ulSendPara      -- 消息参数
-             enCallType      -- call Type
-             enCallMode      -- Call Mode
- 输出参数  : 无
- 返 回 值  : VOS_TRUE            发起call的call ctrl检查请求成功
-             VOS_FALSE           发起call的call ctrl检查请求失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月28日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  TAF_SPM_SendUsimCallEnvelopeReq(
     MN_CALL_CALLED_NUM_STRU            *pstCalledNumber,
     MN_CALL_CS_DATA_CFG_INFO_STRU      *pstDataCfgInfo,
@@ -1049,21 +813,7 @@ VOS_UINT32  TAF_SPM_SendUsimCallEnvelopeReq(
 }
 
 #if (FEATURE_ON == FEATURE_IMS)
-/*****************************************************************************
- 函 数 名  : TAF_SPM_SendUsimEconfEnvelopeReq
- 功能描述  : 发起增强型多方通话的Call Ctrl检查
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE            发起call的call ctrl检查请求成功
-             VOS_FALSE           发起call的call ctrl检查请求失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月28日
-    作    者   : j00174725
-    修改内容   : 增强型多方通话
-*****************************************************************************/
 VOS_UINT32  TAF_SPM_SendUsimEconfEnvelopeReq(
     VOS_UINT16                          usClientId,
     struct MsgCB                       *pstMsg
@@ -1127,21 +877,7 @@ VOS_UINT32  TAF_SPM_SendUsimEconfEnvelopeReq(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_SendUsimEconfFdnReq
- 功能描述  : 发起增强型多方通话的Fdn检查
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE            发起call的call ctrl检查请求成功
-             VOS_FALSE           发起call的call ctrl检查请求失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月28日
-    作    者   : j00174725
-    修改内容   : 增强型多方通话
-*****************************************************************************/
 VOS_UINT32  TAF_SPM_SendUsimEconfFdnReq(
     VOS_UINT16                          usClientId,
     struct MsgCB                       *pstMsg
@@ -1198,22 +934,7 @@ VOS_UINT32  TAF_SPM_SendUsimEconfFdnReq(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_SendUsimCallEnvelopeReq_Call
- 功能描述  : 发送CALL业务请求的envelope消息 请求进行call ctrl结果
- 输入参数  : usClientId:状态机的client ID
-             pstMsg     待CALL CONTROL的call业务请求消息
- 输出参数  : 无
- 返 回 值  : VOS_TRUE            发起call的call ctrl检查请求成功
-             VOS_FALSE           发起call的call ctrl检查请求失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月28日
-    作    者   : j00174725
-    修改内容   : 增强型多方通话
-*****************************************************************************/
 VOS_UINT32  TAF_SPM_SendUsimCallEnvelopeReq_Call(
     VOS_UINT16                          usClientId,
     struct MsgCB                       *pstMsg

@@ -1,26 +1,4 @@
-/*******************************************************************************
-*
-*
-*                Copyright 2011, Huawei Technologies Co. Ltd.
-*                            ALL RIGHTS RESERVED
-*
-*-------------------------------------------------------------------------------
-*
-*                              lldp_shell.h
-*
-*  Project Code: V2R3C06
-*   Module Name:   
-*  Date Created: 2011-09-27
-*        Author: liangjicheng 00103192
-*   Description: Shell头文件
-*
-*-------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  -----------------------------------------------------------------------------
-*  2011-09-27   liangjicheng 00103192   Create
-*
-*******************************************************************************/
+
 #ifndef _LLDP_SHELL_H_
 #define _LLDP_SHELL_H_
 
@@ -86,9 +64,7 @@ ULONG LLDP_IsEthernetType(ULONG ulIndex);
 ULONG LLDP_GetVlanHead(MBUF_S* pstMbuf, ULONG* pulVlanHead);
 LONG LLDP_InetPToN(const CHAR *szSrcAddr, VOID *pDstAddr);
 ULONG LLDP_Shell_TrunkReceivePacket(MBUF_S * pMBuf);
-/*Added by zhangliangzhi00187023, 【检视发现问题】需要支持下发组播地址过滤功能, 2012/8/29   问题单号:DTS2012082907401 */
 ULONG LLDP_PPI_MultiMac_Update(ULONG ulIfIndex, ULONG ulOptType, UCHAR *pszMacAddr, UCHAR *pszMacMask);
-/* End of Added by zhangliangzhi00187023, 2012/8/29   问题单号:DTS2012082907401 */
 extern VOID VOS_T_Delay( ULONG ulMillisecond );
 
 ULONG LLDP_GetPhyStatus(ULONG ulIfIndex, ULONG *pulPhyStatus);

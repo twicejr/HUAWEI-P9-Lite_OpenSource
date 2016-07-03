@@ -1,15 +1,4 @@
-/******************************************************************************
 
-  Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : LRrcWRrcInterface.h
-  Description     : LTE RRC与WRRC之间接口文件
-  History         :
-      1.liutao 38432       2010-12-30   Draft Enact
-      2.lidui 143774       2011-09-22 DTS2011091702682:直接用该.h文件生成的.dll文件，消息解析失败
-
-******************************************************************************/
 
 #ifndef __LRRCWRRCINTERFACE_H__
 #define __LRRCWRRCINTERFACE_H__
@@ -857,10 +846,8 @@ typedef struct
     /* L通知W当前驻留的国家码 */
     VOS_UINT8                                               aucMcc[3];
 
-    /* begin：add for chr */
     VOS_UINT32                                              ulHoBeginTimeStampHigh;
     VOS_UINT32                                              ulHoBeginTimeStampLow;
-    /* end：add for chr */
 
     VOS_UINT8                                               aucReserved[2];
 

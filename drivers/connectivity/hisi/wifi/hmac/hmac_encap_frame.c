@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : hmac_encap_frame.c
-  版 本 号   : 初稿
-  作    者   : y00184180
-  生成日期   : 2013年6月28日
-  最近修改   :
-  功能描述   : AP模式和STA模式共有帧的组帧文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年6月28日
-    作    者   : y00184180
-    修改内容   : 创建文件
-
-*******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -42,24 +25,7 @@ extern "C" {
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
-     函 数 名  : hmac_encap_sa_query_req
-     功能描述  : 组sa query 请求帧
-     输入参数  : pst_mac_vap :mac vap结构体
-                 puc_data    :netbuf data指针
-                 puc_da      :目标用户的mac地址
-                 trans_id    :sa query ie,用于辨别response和request是否一致
-     输出参数  : 无
-     返 回 值  : 帧头+帧体的长度
-     调用函数  :
-     被调函数  :
 
-     修改历史      :
-      1.日    期   : 2014年4月19日
-        作    者   : z00273164
-        修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint16 hmac_encap_sa_query_req(mac_vap_stru *pst_mac_vap, oal_uint8 *puc_data, oal_uint8 *puc_da,oal_uint16 us_trans_id)
 {
     oal_uint16 us_len = 0;
@@ -109,22 +75,7 @@ oal_uint16 hmac_encap_sa_query_req(mac_vap_stru *pst_mac_vap, oal_uint8 *puc_dat
      return us_len;
 }
 
-/*****************************************************************************
-     函 数 名  : hmac_encap_sa_query_rsp
-     功能描述  : 组sa query 反馈帧
-     输入参数  : pst_hdr:sa query request frame
-                 puc_data:sa query response frame
-     输出参数  : 无
-     返 回 值  : 帧头+帧体的长度
-     调用函数  :
-     被调函数  :
 
-     修改历史      :
-      1.日    期   : 2014年4月19日
-        作    者   : z00273164
-        修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint16 hmac_encap_sa_query_rsp(mac_vap_stru *pst_mac_vap, oal_uint8 *pst_hdr, oal_uint8 *puc_data)
 {
     oal_uint16 us_len = 0;
@@ -173,21 +124,7 @@ oal_uint16 hmac_encap_sa_query_rsp(mac_vap_stru *pst_mac_vap, oal_uint8 *pst_hdr
     return us_len;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_mgmt_prepare_deauth
- 功能描述  : 组去认证帧
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月1日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint16  hmac_mgmt_encap_deauth(mac_vap_stru *pst_mac_vap, oal_uint8 *puc_data, oal_uint8 *puc_da, oal_uint16 us_err_code)
 {
     oal_uint16          us_deauth_len = 0;
@@ -290,21 +227,7 @@ oal_uint16  hmac_mgmt_encap_deauth(mac_vap_stru *pst_mac_vap, oal_uint8 *puc_dat
     return us_deauth_len;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_mgmt_encap_disassoc
- 功能描述  : 组去关联帧
- 输入参数  : vap指针,DA,ErrCode
- 输出参数  : 帧缓冲区
- 返 回 值  : 帧长度
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月28日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint16  hmac_mgmt_encap_disassoc(mac_vap_stru *pst_mac_vap, oal_uint8 *puc_data, oal_uint8 *puc_da, oal_uint16 us_err_code)
 {
     oal_uint16 us_disassoc_len = 0;
@@ -363,21 +286,7 @@ oal_uint16  hmac_mgmt_encap_disassoc(mac_vap_stru *pst_mac_vap, oal_uint8 *puc_d
     return us_disassoc_len;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_check_sta_base_rate
- 功能描述  : 检查当前STA是否支持AP的基本速率
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月9日
-    作    者   : z00241943
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  hmac_check_sta_base_rate(oal_uint8 *pst_user, mac_status_code_enum_uint16 *pen_status_code)
 {
     oal_uint8            num_basic_rates;
@@ -425,21 +334,7 @@ oal_void  hmac_check_sta_base_rate(oal_uint8 *pst_user, mac_status_code_enum_uin
         }
     }
 }
-/*****************************************************************************
- 函 数 名  : hmac_encap_notify_chan_width
- 功能描述  : 组装Notify Channel Width Action帧
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月28日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint16 hmac_encap_notify_chan_width(mac_vap_stru *pst_mac_vap, oal_uint8 *puc_data, oal_uint8 *puc_da)
 {
     oal_uint16 us_len = 0;

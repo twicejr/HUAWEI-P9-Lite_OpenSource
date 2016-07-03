@@ -48,35 +48,19 @@ VOS_UINT32 VOS_MCQueueShow(MC_QUE_ID MCQueId, VOS_VOID* pMCQueInfo,
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : LAP2_McQue_IsEmpty
- 功能描述  : 判断共享队列是否为空的函数
- 输入参数  : VOID *pvMCQueId 共享队列ID
- 输出参数  : 无
- 返 回 值  : VOS_OK 队列非空, VOS_ERR 队列空或者有其他错误.
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年01月15日
-    作    者   : jiahuidong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 LAP2_McQue_IsEmpty( VOS_VOID *pvMCQueId )
 {
     VOS_UINT32 ulRet = 0;
     VOS_UINT32 ulLen = 0;
     MC_QUE_Info stQueInfo = {0};
 
-    /* zhangjinquan DTS2011120300506 对于windows版本，直接返回OK 2011-12-03 start */
 #ifdef __WIN32_PLATFORM__
     if (1)
     {
         return VOS_OK;
     }
 #endif
-    /* zhangjinquan DTS2011120300506 对于windows版本，直接返回OK 2011-12-03 end   */
 
     if( NULL == pvMCQueId )
     {
@@ -140,32 +124,7 @@ VOID PTM_Print_Exception_Loop(UCHAR *pucStr, ULONG ulLoop, ULONG ulValue)
     return;
 }
 
-/************************************************************
-    函数名:      CDBRegCallBackCmd
 
-    功能：初始化回调函数描述区
-
-    输入：
-      CDB_DBID             m_nDatabase,   数据库号
-      CDB_TBLID             nTbl,         表号
-      CDB_CALLBACK_FUN    pFun,           函数指针
-      PID                   nPid,         那个任务注册的函数
-      VOS_UINT8             ucFunType,    回调函数的类型
-      VOS_UINT8             ucBoardType,  注册在哪一种单板上
-      VOS_INT8             *pcName)       函数的名称
-
-    输出：
-    无。
-
-    返回值：
-    无。
-
-    其它：
-    注册失败需要调用VosFatalError。
-  1.Date         : 2013/5/12
-    Author       : w00221550
-    Modification : 适配CDB多实例
-**************************************************************/
 VOS_VOID  CDBRegCallBackCmd(CDB_TBLID         nTbl,       /* 表号 */
                                       CDB_CALLBACK_FUN pFun,        /* 函数指针 */
                                       ULONG64          ullCSI,      /* 那个任务注册的函数 */
@@ -231,26 +190,7 @@ VOS_UINT32 VOS_MCRWLockCreate (VOS_CHAR* pName, MC_RWLOCK_ID *pIndex, VOS_UINT32
 }
 
 
-/************************************************************
-函数名:      DBApiQueryFirst()
-描述:        查询指定CDB表中满足条件的第一条记录
-调用:        CDB相应核心函数
-被调用:
-输入:        nTableId    -- CDB表号
-             dwCondNum   -- 条件个数
-             pCond       -- 条件数组
-输出:        pTuple      -- 查询结果记录值
-             pudwQueryId -- 本次查询操作标识
-返回:        M_CFG_DB_API_SUCCESS           -- 成功
-             M_CFG_DB_API_EMPTY             -- 表空
-             M_CFG_DB_API_NOTFOUND          -- 记录不存在
-             M_CFG_DB_API_DBERROR           -- 数据库错误
-其他:        无
-  1.Date         : 2013/4/1
-    Author       : w00221550
-    Modification : 适配CDB多实例，SPU接口，SPU只有一个DB所以DBID写0，
-                   内部自动适配。
-**************************************************************/
+
 VOS_UINT32 DBApiQueryFirst(CDB_TBLID nTableId,
                            VOS_INT32 dwCondNum,
                            S_CFG_CDB_CONDITION *pCond,
@@ -423,27 +363,7 @@ CHAR *LAP_Ipv6AddrToStr( ULONG* pulAddr, CHAR *szStr )
     return szStr;
 }
 
-/*****************************************************************************
- 函 数 名  : PTM_StrNCpy
- 功能描述  : VOS_StrNcpy函数的优化版本:
-             1、效率提升
-             2、极端情况下考虑以'\0'结尾
-             注意: ulMaxLength 必须小于pucDestStr的实际长度，推荐填充为实际长度-1
 
- 输入参数  : CHAR *pucDestStr
-             CHAR *pucSrcStr
-             ULONG ulMaxLength
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年12月29日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID PTM_StrNCpy(CHAR *pucDestStr, CHAR *pucSrcStr, ULONG ulMaxLength)
 {
     ULONG ulCopyLength = VOS_StrLen(pucSrcStr);
@@ -461,33 +381,7 @@ VOID PTM_StrNCpy(CHAR *pucDestStr, CHAR *pucSrcStr, ULONG ulMaxLength)
 }
 
 
-/*****************************************************************************
- 函 数 名  : PTM_LogCnt_RecordReg
- 功能描述  : 注册计数定时打印日志。
 
- 功能说明:
- 1、调用该接口后,注册的计数会被定时打印到日志中。
- 2、打印周期为1小时。
- 3、每个线程最大支持注册数:PTM_LOG_CNT_MAX_REC_NUM
-
- !!!!!!!!注意
- 1、注册该接口的组件、如果自身不支持处理定时器消息,
-    一定要把 ulIsTimerSupport设置为VOS_FALSE。
- 2、接口调用时机,进程内第一次调用该接口,可能会创建定时器.
-    所以调用该接口的时,必须到了可以创建循环定时器的阶段。
-
- 输入参数  : PTM_LogCnt_RecRegInfo_S *pstRegInfo
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年1月14日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG PTM_LogCnt_RecordReg(PTM_LogCnt_RecRegInfo_S *pstRegInfo)
 {
     return VOS_OK;
@@ -522,25 +416,7 @@ VOID OutString ( char * szString )
 {
 }
 
-/************************************************************
-函数名:      DBApiQueryDirect()
-描述:        按记录号查询指定CDB表中单条记录
-调用:        CDB相应核心函数
-被调用:
-输入:        nTableId   -- CDB表号
-             dwTupleNo  -- 记录号
-输出:        pTuple     -- 查询结果记录值
-返回:        M_CFG_DB_API_SUCCESS           -- 成功
-             M_CFG_DB_API_EMPTY             -- 表空
-             M_CFG_DB_API_NOTFOUND          -- 记录不存在
-             M_CFG_DB_API_PERMISSION_DENIED -- 表不允许修改
-             M_CFG_DB_API_DBERROR           -- 数据库错误
-其他:        无
-  1.Date         : 2013/4/1
-    Author       : w00221550
-    Modification : 适配CDB多实例，SPU接口，SPU只有一个DB所以DBID写0，
-                   内部自动适配。
-**************************************************************/
+
 VOS_UINT32 DBApiQueryDirect(CDB_TBLID nTableId,
                             VOS_INT32 dwTupleNo,
                             VOS_INT8 *pTuple)
@@ -568,23 +444,7 @@ ULONG SPM_GetBitValue(ULONG ulSoftparaNum, UCHAR* ucByteValue)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AM_IsNeedChecksum
- 功能描述  : 判断是否需要消息中携带checksum
-             VOS_YES:需要携带checksum
-             VOS_NO:不需要携带checksum
- 输入参数  : ULONG ulMsgCode
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月6日
-    作    者   : m00221593
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG AM_IsNeedChecksum(ULONG ulMsgCode)
 {
     return VOS_NO;
@@ -605,81 +465,26 @@ ULONG CRM_GetSpuWorkModeOfSelfGroup(VOID)
     return 0;
 }
 
-/*=============================================================*
- *  函数名称:  AM_USM_NotifyBackupByIndex
- *  初稿完成:  2012/03/12
- *  作    者:  mawen 00180902
- *  函数功能:  根据索引备份上下文
- *  输入参数:  ulIndex：  上下文索引
- *             ucType：   备份类型
- *  输出参数:  无
- *  返回类型:  操作成功:  SDB_SUCCESS
- *             系统失败:  SDB_SYSTEM_FAILURE
- *             无效输入:  SDB_INVALID_INPUT
- *  其他说明:
- *  主调函数:  需要通知备份的业务模块                          *
- *============================================================*/
+
 
 ULONG  AM_USM_NotifyBackupByIndex (ULONG ulIndex, UCHAR ucType)
 {
     return SDB_SUCCESS;
 }
 
-/*============================================================================
- *  函数名称: SDB_GTPC_GetRelatedContextsByTeidc
- *  函数功能: 利用TEID(C)信息查询GSPU板上相应的关联上下文记录。
- *  输入参数: ulTeidc：控制平面TEID
- *  输出参数: pulNum：指向查询到的相关联的上下文数量，未查到时为0；
- *                           pucContextDim：指向存放相关联的所有上下文的指针数组。
- *  返 回 值: SDB_SUCCESS，查询成功；
- *                         SDB_INVALID_INPUT，输入参数越界；
- *                         SDB_RECORD_NOT_EXIST，记录不存在；
- *  调用函数: SDB_GetSameKeyChainHead、SDB_GetRecHeadByIndex
- *  主调函数: GTP-C模块函数
- *  初稿完成: 2001/04/25
- *  作    者: liuhuaxin22082
- *  其他说明:
- *============================================================================*/
+
 ULONG SDB_GTPC_GetRelatedContextsByTeidc(ULONG ulTeidc,  ULONG *pulNum, UCHAR *pucContextDim[])
 {
     return SDB_SUCCESS;
 }
 
-/*****************************************************************************
- 函 数 名  : Sccg_SdbGetContextByIndex
- 功能描述  :  根据Sdbindex来获取上下文
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月21日
-    作    者   : g00131462
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG SDB_GetContextByIndex(ULONG ulSdbIndex, UCHAR **ppucContext)
 {
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_SendAddrMsgToLAP
- 功能描述  : LAP提供给dhcpc的函数接口，用于dhcpc向lap发送消息
- 输入参数  : VOID *pMsg,ULONG ulMsgLegth,UCHAR ucLapNo
- 输出参数  : 无
- 返 回 值  : VOS_OK:成功；VOS_ERR:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年07月23日
-    作    者   : jiahuidong00142544
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DHCPC_SendAddrMsgToLAP(VOS_VOID *pMsg, VOS_UINT32 ulMsgLegth, ULONG ulUserIpAddr, VOS_UINT8 ucLapNo)
 {
     return VOS_OK;
@@ -700,42 +505,14 @@ VOS_UINT32 PGP_URTDistributeSend(VOS_UINT64 ul64SrcCSI,
     return 0;
 }
 
-/*****************************************************************************
- 函 数 名  : GTPC_RadiusHlrIPValidCheck
- 功能描述  : 对Radius分配的地址以及静态用户携带的静态地址进行有效性检查
- 输入参数  : ULONG ulAddr     被比较对象地址
- 输出参数  : 无
- 返 回 值  : GTPC_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年10月27日
-    作    者   : heguangwei
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG GTPC_RadiusHlrIPValidCheck(ULONG ulAddr)
 {
     return VOS_OK;
 }
 
 
-/*****************************************************************************
- 函 数 名  : TrcGetTraceFlag
- 功能描述  : 查询跟踪任务是否存在
- 输入参数  : ULONG ulTrcType
- 输出参数  : 无
- 返 回 值  : VOS_BOOL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年1月25日
-    作    者   : sunhuijian
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_BOOL TrcGetTraceFlag(ULONG ulTrcType)
 {
     return VOS_FALSE;
@@ -761,13 +538,11 @@ ULONG ipv6_addr_any(in6_addr *a)
          a->s6_addr32[2] | a->s6_addr32[3] ) == 0);
 }
 
-/* Modified start by 张明 at 2009-03-24 UGW for BI8D00164 */
 ULONG ipv6_addr_all_one(in6_addr *a)
 {
     return ((a->s6_addr32[0] & a->s6_addr32[1] &
          a->s6_addr32[2] & a->s6_addr32[3] ) == 0xFFFFFFFF);
 }
-/* Modified end by 张明 at 2009-03-24 UGW for BI8D00164 */
 
 void ipv6_addr_copy(in6_addr *a1, in6_addr *a2)
 {

@@ -215,11 +215,8 @@ Non Usability of the address(es) given configuration */
 extern gpfIP6NDSpecialNDProxy g_pfIP6NDSpecialProxy;
 extern gpfIP6GetDADProxyIfIndex g_pfIP6GetDADProxyIfIndex;
 
-/*add by wuling 00201943 for IPv6协议DOWN不下发邻居删除PPI 2014-03-25 :S-IP-003-IPv6-008--start*/
 extern ULONG g_ulNDNPDelNBSwitch;
-/*add by wuling 00201943 for IPv6协议DOWN不下发邻居删除PPI 2014-03-25 :S-IP-003-IPv6-008--end*/
 
-/* Added by fengjing209023 for DTS2014061301920 BALONG DAD优化需求，打开后不做DAD和initial delay */
 extern ULONG g_ulNDNODADSwitch;
 
 /* 复用地址模块的OPEN,CLOSE函数 */

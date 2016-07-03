@@ -1,22 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafApsSndEsm.c　
-  版 本 号   : 初稿
-  作    者   : w00316404
-  生成日期   : 2015年12月7日
-  最近修改   :
-  功能描述   : 给Esm的消息发送函数
-  函数列表   :
-
-  修改历史   :
-  1.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : 创建文件
-
-******************************************************************************/
 #ifdef __cplusplus
 #if __cplusplus
     extern "C" {
@@ -50,21 +32,7 @@
 /******************************************************************************
    5 函数实现
 ******************************************************************************/
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndEsmPdpSetupReq
- 功能描述  : 发送ID_APP_ESM_PDP_SETUP_REQ消息函数
- 输入参数  : pstSetPdpCtxStateReq       - +CGACT命令信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SndEsmSetCgactPdpSetupReq(
     TAF_PS_SET_PDP_STATE_REQ_STRU      *pstSetPdpCtxStateReq
 )
@@ -108,21 +76,7 @@ VOS_VOID TAF_APS_SndEsmSetCgactPdpSetupReq(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndEsmPdpReleaseReq
- 功能描述  : 发送ID_APP_ESM_PDP_RELEASE_REQ消息函数
- 输入参数  : pstSetPdpCtxStateReq       - +CGACT命令信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SndEsmSetCgactPdpReleaseReq(
     TAF_PS_SET_PDP_STATE_REQ_STRU      *pstSetPdpCtxStateReq
 )
@@ -166,22 +120,7 @@ VOS_VOID TAF_APS_SndEsmSetCgactPdpReleaseReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndEsmSetCgactReq
- 功能描述  : +CGACT REQ入口函数
- 输入参数  : ucPdpId                    - APS实体索引
-             pstSetPdpCtxStateReq       - +CGACT命令信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SndEsmSetCgactMsgDistr(
     VOS_UINT8                           ucPdpId,
     TAF_PS_SET_PDP_STATE_REQ_STRU      *pstSetPdpCtxStateReq
@@ -200,22 +139,7 @@ VOS_VOID TAF_APS_SndEsmSetCgactMsgDistr(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndEsmPppDialSetupReq
- 功能描述  : 发送ID_APP_ESM_PDP_SETUP_REQ消息, 发起拨号
- 输入参数  : pstPppDialOrigReq          - 拨号参数
-             pstAuthInfo                - 鉴权信息
-             pstIpcpInfo                - IPCP信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_APS_SndEsmPppDialSetupReq(
     TAF_PS_PPP_DIAL_ORIG_REQ_STRU      *pstPppDialOrigReq,
     TAF_APS_AUTH_INFO_STRU             *pstAuthInfo,
@@ -259,21 +183,7 @@ VOS_VOID TAF_APS_SndEsmPppDialSetupReq(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndEsmNdisconnReq
- 功能描述  : 发送ID_APP_ESM_NDISCONN_REQ消息, 发起拨号
- 输入参数  : pstCallOrigReq             - 拨号参数
- 输出参数  : 无
- 返 回 值  : VOS_OK                     - 发送消息成功
-             VOS_ERR                    - 发送消息失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_SndEsmNdisconnReq(
     TAF_PS_CALL_ORIG_REQ_STRU          *pstCallOrigReq
 )
@@ -372,21 +282,7 @@ VOS_UINT32 TAF_APS_SndEsmNdisconnReq(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndEsmPdpModifyReq
- 功能描述  : 发送ID_APP_ESM_PDP_MODIFY_REQ消息, 断开拨号
- 输入参数  : pstCallModifyReq           - 修改EPS承载参数
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SndEsmPdpModifyReq(
     TAF_PS_CALL_MODIFY_REQ_STRU        *pstCallModifyReq
 )
@@ -436,20 +332,7 @@ VOS_VOID TAF_APS_SndEsmPdpModifyReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndEsmPdpReleaseReq
- 功能描述  : 发送ID_APP_ESM_PDP_RELEASE_REQ消息, 断开拨号
- 输入参数  : pstCalEndReq               - 断开拨号参数
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_APS_SndEsmPdpReleaseReq(
     TAF_PS_CALL_END_REQ_STRU           *pstCalEndReq
 )
@@ -481,22 +364,7 @@ VOS_VOID TAF_APS_SndEsmPdpReleaseReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndEsmPdpManagerRsp
- 功能描述  : 发送ID_APP_ESM_PDP_MANAGE_RSP消息, 应答网络激活
- 输入参数  : ulSetupRslt           - 应答EPS激活是否接受
-             ucCid                 - CID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SndEsmPdpManagerRsp(
     APS_ESM_BEARER_ACT_RESULT_ENUM_UINT32   ulSetupRslt,
     VOS_UINT8                               ucCid

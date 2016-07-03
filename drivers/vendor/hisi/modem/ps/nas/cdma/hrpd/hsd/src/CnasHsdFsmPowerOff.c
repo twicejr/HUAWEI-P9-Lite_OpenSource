@@ -1,19 +1,4 @@
-/*******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasHsdFsmPowerOff.c
-  版 本 号   : 初稿
-  作    者   : y00245242
-  生成日期   : 2014年07月03日
-  功能描述   : HRPD SD L2关机状态机事件处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年12月9日
-    作    者   : h00300778
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -55,25 +40,7 @@ extern "C"{
 *****************************************************************************/
 /*lint -save -e958*/
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_RcvMsccPowerOffReq_PowerOff_Init
- 功能描述  : POWER_OFF状态机初始化状态收到ID_MMA_HSD_POWER_OFF_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年12月9日
-   作    者   : h00300778
-   修改内容   : 新生成函数
- 2.日    期   : 2015年06月07日
-   作    者   : z00316370
-   修改内容   : 先给EHSM发送关机
-
-*****************************************************************************/
 VOS_UINT32  CNAS_HSD_RcvMsccPowerOffReq_PowerOff_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -99,22 +66,7 @@ VOS_UINT32  CNAS_HSD_RcvMsccPowerOffReq_PowerOff_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_RcvHsmPowerOffCnf_PowerOff_WaitXccPowerOffCnf
- 功能描述  : HSD在WAIT_HSM_POWER_OFF_CNF状态下，收到HSM的关机确认回复消息
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32：VOS_TRUE,VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年12月9日
-   作    者   : h00300778
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  CNAS_HSD_RcvHsmPowerOffCnf_PowerOff_WaitHsmPowerOffCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -134,22 +86,7 @@ VOS_UINT32  CNAS_HSD_RcvHsmPowerOffCnf_PowerOff_WaitHsmPowerOffCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_RcvTiWaitXccPowerOffCnfExpired_PowerOff_WaitXccPowerOffCnf
- 功能描述  : 等待HSM关机确认回复消息超时
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年12月9日
-   作    者   : h00300778
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  CNAS_HSD_RcvTiWaitHsmPowerOffCnfExpired_PowerOff_WaitHsmPowerOffCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -169,22 +106,7 @@ VOS_UINT32  CNAS_HSD_RcvTiWaitHsmPowerOffCnfExpired_PowerOff_WaitHsmPowerOffCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_RcvXregPowerOffCnf_PowerOff_WaitXregPowerOffCnf
- 功能描述  : HSD在WAIT_HLU_POWEROFF_CNF状态下，收到HLU的的关机确认回复消息
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年12月9日
-   作    者   : h00300778
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_RcvHluPowerOffCnf_PowerOff_WaitHluPowerOffCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -203,22 +125,7 @@ VOS_UINT32 CNAS_HSD_RcvHluPowerOffCnf_PowerOff_WaitHluPowerOffCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_RcvTiWaitHluPowerOffCnfExpired_PowerOff_WaitHluPowerOffCnf
- 功能描述  : 等待HLU模块的关机确认消息，定时器超时
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  :
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年12月9日
-   作    者   : h00300778
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  CNAS_HSD_RcvTiWaitHluPowerOffCnfExpired_PowerOff_WaitHluPowerOffCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -237,22 +144,7 @@ VOS_UINT32  CNAS_HSD_RcvTiWaitHluPowerOffCnfExpired_PowerOff_WaitHluPowerOffCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_RcvCasPowerOffCnf_PowerOff_WaitCasPowerOffCnf
- 功能描述  : HSD在WAIT_CAS_POWER_OFF_CNF状态下，收到CAS的关机确认回复消息
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32：VOS_TRUE,VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年12月9日
-   作    者   : h00300778
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  CNAS_HSD_RcvCasPowerOffCnf_PowerOff_WaitCasPowerOffCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -275,22 +167,7 @@ VOS_UINT32  CNAS_HSD_RcvCasPowerOffCnf_PowerOff_WaitCasPowerOffCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_RcvTiWaitCasPowerOffCnfExpired_PowerOff_WaitCasPowerOffCnf
- 功能描述  : 等待接入层的关机确认消息超时
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年12月9日
-   作    者   : h00300778
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_RcvTiWaitCasPowerOffCnfExpired_PowerOff_WaitCasPowerOffCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -312,22 +189,7 @@ VOS_UINT32 CNAS_HSD_RcvTiWaitCasPowerOffCnfExpired_PowerOff_WaitCasPowerOffCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_RcvEhsmPowerOffCnf_PowerOff_WaitEhsmPowerOffCnf
- 功能描述  : HSD在WAIT_EHSM_POWER_OFF_CNF状态下，收到EHSM的关机确认回复消息
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32：VOS_TRUE,VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年06月05日
-   作    者   : z00316370
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  CNAS_HSD_RcvEhsmPowerOffCnf_PowerOff_WaitEhsmPowerOffCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -347,22 +209,7 @@ VOS_UINT32  CNAS_HSD_RcvEhsmPowerOffCnf_PowerOff_WaitEhsmPowerOffCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_RcvTiWaitEhsmPowerOffCnfExpired_PowerOff_WaitEhsmPowerOffCnf
- 功能描述  : 等待EHSM关机确认回复消息超时
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年06月05日
-   作    者   : z00316370
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  CNAS_HSD_RcvTiWaitEhsmPowerOffCnfExpired_PowerOff_WaitEhsmPowerOffCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg

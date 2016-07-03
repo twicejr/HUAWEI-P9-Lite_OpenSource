@@ -123,6 +123,24 @@ static int dual_charger_device_check(void)
     }
 }
 /**********************************************************
+*  Function:       dual_charger_set_adc_conv_rate
+*  Discription:    set adc conversion rate
+*  Parameters:   enable:charger in hiz or not
+*  return value:  0-sucess or others-fail
+**********************************************************/
+static int dual_charger_set_adc_conv_rate(int mode)
+{
+    int ret = 0;
+
+    IF_OPS(g_main_ops, set_adc_conv_rate)
+        ret |= g_main_ops->set_adc_conv_rate(mode);
+    IF_OPS(g_aux_ops, set_adc_conv_rate)
+        ret |= g_aux_ops->set_adc_conv_rate(mode);
+
+    return ret;
+}
+
+/**********************************************************
 *  Function:       dual_charger_set_input_current_thermal
 *  Discription:    record the input current by thermal limit in charging process
 *  Parameters:   main--main charger  aux--aux charger
@@ -695,6 +713,7 @@ struct charge_device_ops dual_charger_ops =
     .chip_init = dual_charger_chip_init,
     .fcp_chip_init = dual_charger_fcp_chip_init,
     .dev_check = dual_charger_device_check,
+    .set_adc_conv_rate = dual_charger_set_adc_conv_rate,
     .set_input_current = dual_charger_set_input_current,
     .set_charge_current = dual_charger_set_charge_current,
     .set_input_current_thermal = dual_charger_set_input_current_thermal,

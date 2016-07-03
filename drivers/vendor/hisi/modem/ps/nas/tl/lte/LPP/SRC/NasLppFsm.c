@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasLppFsm.c
-  版 本 号   : 初稿
-  作    者   : XiaoJun
-  生成日期   : 2015年9月8日
-  最近修改   :
-  功能描述   : NAS lpp的状态机
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年9月8日
-    作    者   : XiaoJun
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -880,16 +863,7 @@ VOS_VOID NAS_LPP_ChangeTransFsmState
 
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetLppMainState
- Description    : 获取当前的主状态
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_UINT8
 
- History        :
-      1.lifuxin 00253982 2015-7-20  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_GetLppMainState
 (
     VOS_UINT8                           ucSessionIndx,
@@ -912,16 +886,7 @@ VOS_UINT32  NAS_LPP_GetLppMainState
     return (pstTransElementEntity->enLppMainState);
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetLppSubState
- Description    : 获取当前的子状态
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_UINT8
 
- History        :
-      1.lifuxin 00253982 2015-7-20  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_GetLppSubState
 (
     VOS_UINT8                           ucSessionIndx,

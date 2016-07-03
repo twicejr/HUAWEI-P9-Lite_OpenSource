@@ -42,21 +42,7 @@ VOS_VOID RNIC_SetPrintUlDataFlg(VOS_UINT32 ulFlg)
     g_ulRnicPrintUlDataFlg = ulFlg;
 }
 
-/*****************************************************************************
- 函 数 名  : RNIC_ShowRnicPdpStats
- 功能描述  : 显示RNIC pdp的信息
- 输入参数  : ucRmNetId : 网卡ID
- 输出参数  : 无
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2012年11月23日
-      作    者   : f00179208
-      修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID RNIC_ShowRnicPdpStats(VOS_UINT8 ucRmNetId)
 {
     RNIC_PDP_CTX_STRU                  *pstPdpCtx;
@@ -86,24 +72,7 @@ VOS_VOID RNIC_ShowRnicPdpStats(VOS_UINT8 ucRmNetId)
     PS_PRINTF("RNIC %d IPV4V6 PDP IPV6ADDR                 %s\n", ucRmNetId, pstPdpCtx->stIpv4v6PdpInfo.aucIpv6Addr);
 }
 
-/*****************************************************************************
- 函 数 名  : RNIC_ShowUlProcStats
- 功能描述  : 显示RNIC上行统计信息
- 输入参数  : ucRmNetId : 网卡ID
- 输出参数  : 无
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2012年01月12日
-      作    者   : S62952
-      修改内容   : 新生成函数
-    2.日    期   : 2012年11月23日
-      作    者   : f00179208
-      修改内容   : DSDA Phase I: RNIC多实例
-*****************************************************************************/
 VOS_VOID RNIC_ShowULProcStats(VOS_UINT8 ucRmNetId)
 {
     PS_PRINTF("NET TX RMNETID ERR NUM                                 %d\n", g_stRnicMntnStats.ulNetTxRmNetIdErrNum);
@@ -151,24 +120,7 @@ VOS_VOID RNIC_ShowULProcStats(VOS_UINT8 ucRmNetId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : RNIC_ShowDLProcStats
- 功能描述  : 显示RNIC下行统计信息
- 输入参数  : ucRmNetId : 网卡ID
- 输出参数  : 无
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2012年01月12日
-      作    者   : S62952
-      修改内容   : 新生成函数
-    2.日    期   : 2012年11月23日
-      作    者   : f00179208
-      修改内容   : DSDA Phase I: RNIC多实例
-*****************************************************************************/
 VOS_VOID RNIC_ShowDLProcStats(VOS_UINT8 ucRmNetId)
 {
     if (ucRmNetId >= RNIC_NET_ID_MAX_NUM)
@@ -193,21 +145,7 @@ VOS_VOID RNIC_ShowDLProcStats(VOS_UINT8 ucRmNetId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : RNIC_ShowResetStats
- 功能描述  : 显示RNIC信号量初始化信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2013年04月15日
-      作    者   : f00179208
-      修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID RNIC_ShowResetStats(VOS_VOID)
 {
     PS_PRINTF("模块初始化标识                              %d\n", g_astRnicStats[0].ulSemInitFlg);
@@ -219,22 +157,7 @@ VOS_VOID RNIC_ShowResetStats(VOS_VOID)
     PS_PRINTF("复位成功的次数                              %d\n", g_astRnicStats[0].ulResetSucessNum);
 }
 
-/* Added by m00217266 for L-C互操作项目, 2014-2-19, begin */
-/*****************************************************************************
- 函 数 名  : RNIC_Rmnet_Config_Check_Info
- 功能描述  : 打印网卡配置信息检验失败的统计信息
- 输入参数  : VOID
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月19日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID RNIC_ShowRmnetConfigCheckInfo(VOS_VOID)
 {
     PS_PRINTF("Totla req                           %d\n", g_stRnicRmnetConfigCheckInfo.ucTotlaCnt);
@@ -248,26 +171,8 @@ VOS_VOID RNIC_ShowRmnetConfigCheckInfo(VOS_VOID)
     PS_PRINTF("Send err                            %d\n", g_stRnicRmnetConfigCheckInfo.ucSendErrCnt);
     PS_PRINTF("Success                             %d\n", g_stRnicRmnetConfigCheckInfo.ucSuccCnt);
 }
-/* Added by m00217266 for L-C互操作项目, 2014-2-19, end */
 
-/*****************************************************************************
- 函 数 名  : RNIC_Help
- 功能描述  : RNIC调试信息
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2012年01月12日
-      作    者   : S62952
-      修改内容   : 新生成函数
-    2.日    期   : 2012年11月23日
-      作    者   : f00179208
-      修改内容   : DSDA Phase I: RNIC多实例
-*****************************************************************************/
 VOS_VOID RNIC_Help(VOS_VOID)
 {
 
@@ -280,20 +185,7 @@ VOS_VOID RNIC_Help(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : RNIC_ShowDataFromIpStack
- 功能描述  : 打印收到IP协议栈的数据
- 输入参数  : pstSkb   :SKBUF数据首地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年04月25日
-   作    者   : 范晶
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID RNIC_ShowDataFromIpStack(
     struct sk_buff                     *pstSkb
 )

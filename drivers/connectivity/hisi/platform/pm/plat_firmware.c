@@ -1,45 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : plat_firmware.c
-  版 本 号   : 初稿
-  作    者   :
-  生成日期   :
-  最近修改   :
-  功能描述   : firmware加载
-  函数列表   : read_msg
-               send_msg
-               recv_expect_result
-               msg_send_and_recv_except
-               malloc_cmd_buf
-               delete_space
-               string_to_num
-               open_file_to_readm
-               recv_device_mem
-               check_version
-               number_type_cmd_send
-               update_device_cali_count
-               download_bfgx_cali_data
-               exec_number_type_cmd
-               exec_quit_type_cmd
-               exec_file_type_cmd
-               exec_shutdown_type_cmd
-               execute_download_cmd
-               firmware_read_cfg
-               firmware_parse_cmd
-               firmware_parse_cfg
-               firmware_get_cfg
-               firmware_download
-               firmware_cfg_init
-               firmware_cfg_clear
-  修改历史   :
-  1.日    期   :
-    作    者   :
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -92,24 +51,7 @@ uint32 g_ulJumpCmdResult = CMD_JUMP_EXEC_RESULT_SUCC;
   4 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : read_msg
- 功能描述  : host接收device发来的消息
- 输入参数  : data: 接收消息的buffer
-             len : 接收buffer的长度
- 输出参数  : 无
- 返 回 值  : -1表示失败，否则返回实际接收的长度
- 调用函数  : sdio_patch_readsb
- 被调函数  : recv_expect_result
-             check_version
-             recv_device_mem
 
- 修改历史      :
-  1.日    期   : 2015年4月28日
-    作    者   : g00206014
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int32 read_msg(uint8 *data, int32 len)
 {
     int32  l_len;
@@ -143,24 +85,7 @@ int32 read_msg_timeout(uint8 *data, int32 len, uint32 timeout)
 }
 
 
-/*****************************************************************************
- 函 数 名  : send_msg
- 功能描述  : host往device发送消息
- 输入参数  : data: 发送buffer
-             len : 发送数据的长度
- 输出参数  : 无
- 返 回 值  : -1表示失败，否则返回实际发送的长度
- 调用函数  : sdio_patch_writesb
- 被调函数  : msg_send_and_recv_except
-             check_version
-             number_type_cmd_send
 
- 修改历史      :
-  1.日    期   : 2015年4月28日
-    作    者   : g00206014
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int32 send_msg(uint8 *data, int32 len)
 {
     int32   l_ret;
@@ -175,22 +100,7 @@ int32 send_msg(uint8 *data, int32 len)
     return l_ret;
 }
 
-/*****************************************************************************
- 函 数 名  : recv_expect_result
- 功能描述  : 接收host期望device正确返回的内容
- 输入参数  : expect: 期望device正确返回的内容
- 输出参数  : 无
- 返 回 值  : 0表示成功，-1表示失败
- 调用函数  : read_msg
- 被调函数  : msg_send_and_recv_except
-             exec_number_type_cmd
 
- 修改历史      :
-  1.日    期   : 2015年4月28日
-    作    者   : g00206014
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int32 recv_expect_result(const uint8 *expect)
 {
     uint8 auc_buf[RECV_BUF_LEN];
@@ -260,26 +170,7 @@ int32 recv_expect_result_timeout(const uint8 *expect, uint32 timeout)
 }
 
 
-/*****************************************************************************
- 函 数 名  : msg_send_and_recv_except
- 功能描述  : host向device发送消息并等待device返回消息
- 输入参数  : data  : 发送buffer
-             len   : 发送内容的长度
-             expect: 期望device回复的内容
- 输出参数  : 无
- 返 回 值  : -1表示失败，0表示成功
- 调用函数  : send_msg
-             recv_expect_result
- 被调函数  : down_firmware_file
-             exec_quit_type_cmd
-             exec_quit_type_cmd
 
- 修改历史      :
-  1.日    期   : 2015年4月28日
-    作    者   : g00206014
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int32 msg_send_and_recv_except(uint8 *data, int32 len, const uint8 *expect)
 {
     int32  i;
@@ -303,22 +194,7 @@ int32 msg_send_and_recv_except(uint8 *data, int32 len, const uint8 *expect)
     return -EFAIL;
 }
 
-/*****************************************************************************
- 函 数 名  : malloc_cmd_buf
- 功能描述  : 解析cfg文件，将解析的结果保存在g_st_cfg_info全局变量中
- 输入参数  : puc_cfg_info_buf: 保存有cfg文件内容的buffer
-             ul_index        : 保存解析结果的数组索引值
- 输出参数  : 无
- 返 回 值  : NULL表示分配内存失败，否则返回指向保存解析cfg文件命令数组的首地址
- 调用函数  :
- 被调函数  : firmware_parse_cfg
 
- 修改历史      :
-  1.日    期   : 2015年4月28日
-    作    者   : g00206014
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void *malloc_cmd_buf(uint8 *puc_cfg_info_buf, uint32 ul_index)
 {
     int32           l_len;
@@ -360,22 +236,7 @@ void *malloc_cmd_buf(uint8 *puc_cfg_info_buf, uint32 ul_index)
     return p_buf;
 }
 
-/*****************************************************************************
- 函 数 名  : delete_space
- 功能描述  : 删除字符串两边多余的空格
- 输入参数  : string: 原始字符串
-             len   : 字符串的长度
- 输出参数  : 无
- 返 回 值  : 错误返回NULL，否则返回删除两边空格以后字符串的首地址
- 调用函数  :
- 被调函数  : firmware_parse_cmd
 
- 修改历史      :
-  1.日    期   : 2015年4月28日
-    作    者   : g00206014
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 uint8 *delete_space(uint8 *string, int32 *len)
 {
     int i;
@@ -417,21 +278,7 @@ uint8 *delete_space(uint8 *string, int32 *len)
     return NULL;
 }
 
-/*****************************************************************************
- 函 数 名  : string_to_num
- 功能描述  : 将字符串转换成正整数
- 输入参数  : string:输入的字符串
- 输出参数  : number:字符串转换以后的正整数
- 返 回 值  : 0表示成功，-1表示失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月28日
-    作    者   : g00206014
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int32 string_to_num(uint8 *string, int32 *number)
 {
     int32       i;
@@ -454,21 +301,7 @@ int32 string_to_num(uint8 *string, int32 *number)
     return SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : num_to_string
- 功能描述  : 将正整数转换成字符串
- 输入参数  : number:输入的正整数
- 输出参数  : number:正整数转换以后的字符串
- 返 回 值  : 0表示成功，-1表示失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月17日
-    作    者   : z00299054
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int32 num_to_string(uint8 *string, uint32 number)
 {
     int32  i = 0, j = 0;
@@ -497,21 +330,7 @@ int32 num_to_string(uint8 *string, uint32 number)
     return SUCC;
 }
 
-/*************************************************************************************
- 函 数 名  : open_file_to_readm
- 功能描述  : 打开文件，保存read mem读上来的内容
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回打开文件的描述符
- 调用函数  :
- 被调函数  : exec_number_type_cmd
 
- 修改历史      :
-  1.日    期   : 2015年4月28日
-    作    者   : g00206014
-    修改内容   : 新生成函数
-
-*************************************************************************************/
 OS_KERNEL_FILE_STRU * open_file_to_readm(uint8 *name)
 {
     OS_KERNEL_FILE_STRU *fp;
@@ -526,30 +345,15 @@ OS_KERNEL_FILE_STRU * open_file_to_readm(uint8 *name)
         file_name = name;
     }
 
-    fp = filp_open(file_name, O_RDWR | O_CREAT, 0777);
+    fp = filp_open(file_name, O_RDWR | O_CREAT, 0664);
 
     return fp;
 }
 
-/*************************************************************************************
- 函 数 名  : recv_device_mem
- 功能描述  : 接收device发送上来的内存，保存到指定的文件中
- 输入参数  : fp : 保存内存的文件指针
-             len: 需要保存的内存的长度
- 输出参数  : 无
- 返 回 值  : -1表示失败，否则返回实际保存的内存的长度
- 调用函数  : read_msg
- 被调函数  : exec_number_type_cmd
 
- 修改历史      :
-  1.日    期   : 2015年4月28日
-    作    者   : g00206014
-    修改内容   : 新生成函数
-
-*************************************************************************************/
 int32 recv_device_mem(OS_KERNEL_FILE_STRU *fp, uint8 *pucDataBuf, int32 len)
 {
-    int32 l_ret;
+    int32 l_ret = -EFAIL;
     mm_segment_t fs;
     uint8 retry = 3;
     int32 lenbuf = 0;
@@ -570,7 +374,7 @@ int32 recv_device_mem(OS_KERNEL_FILE_STRU *fp, uint8 *pucDataBuf, int32 len)
 
     fs = get_fs();
     set_fs(KERNEL_DS);
-    l_ret = vfs_llseek(fp, 0, SEEK_END);
+    //l_ret = vfs_llseek(fp, 0, SEEK_END);
     PS_PRINT_DBG("pos = %d\n", (int)fp->f_pos);
     while (len > lenbuf)
     {
@@ -601,22 +405,7 @@ int32 recv_device_mem(OS_KERNEL_FILE_STRU *fp, uint8 *pucDataBuf, int32 len)
     return l_ret;
 }
 
-/*************************************************************************************
- 函 数 名  : check_version
- 功能描述  : 发送命令读device版本号，并检查device上报的版本号和host的版本号是否匹配
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : -1表示失败，0表示成功
- 调用函数  : send_msg
-             read_msg
- 被调函数  : exec_number_type_cmd
 
- 修改历史      :
-  1.日    期   : 2015年4月28日
-    作    者   : g00206014
-    修改内容   : 新生成函数
-
-*************************************************************************************/
 int32 check_version(void)
 {
     int32   l_ret;
@@ -672,22 +461,7 @@ int32 check_version(void)
     return -EFAIL;
 }
 
-/*****************************************************************************
- 函 数 名  : number_type_cmd_send
- 功能描述  : 处理number类型的命令，并发送到device
- 输入参数  : Key  : 命令的关键字
-             Value: 命令的参数
- 输出参数  : 无
- 返 回 值  : -1表示失败，非零表示成功
- 调用函数  : send_msg
- 被调函数  : exec_number_type_cmd
 
- 修改历史      :
-  1.日    期   : 2015年4月28日
-    作    者   : g00206014
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int32 number_type_cmd_send(uint8 *Key, uint8 *Value)
 {
     int32       l_ret;
@@ -745,22 +519,7 @@ int32 number_type_cmd_send(uint8 *Key, uint8 *Value)
     return l_ret;
 }
 
-/*****************************************************************************
- 函 数 名  : update_device_cali_count
- 功能描述  : 使用WRITEM命令更新device的校准次数，首次上电时为全0
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : -1表示失败，0表示成功
- 调用函数  : number_type_cmd_send
-             recv_expect_result
- 被调函数  : exec_number_type_cmd
 
- 修改历史      :
-  1.日    期   : 2015年7月16日
-    作    者   : z00299054
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int32 update_device_cali_count(uint8 *Key, uint8 *Value)
 {
     int32  l_ret;
@@ -817,22 +576,7 @@ int32 update_device_cali_count(uint8 *Key, uint8 *Value)
     return SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : download_bfgx_cali_data
- 功能描述  : 使用files命令加载bfgx的校准数据
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : -1表示失败，0表示成功
- 调用函数  : number_type_cmd_send
-             recv_expect_result
- 被调函数  : exec_number_type_cmd
 
- 修改历史      :
-  1.日    期   : 2015年7月16日
-    作    者   : z00299054
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int32 download_bfgx_cali_data(uint8 *Key, uint8 *Value)
 {
     int32  l_ret;
@@ -901,23 +645,7 @@ int32 download_bfgx_cali_data(uint8 *Key, uint8 *Value)
     return SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : parse_file_cmd
- 功能描述  : 解析file命令参数
- 输入参数  : string   : file命令的参数
-             addr     : 发送的数据地址
-             file_path: 发送文件的路径
- 输出参数  : 无
- 返 回 值  : -1表示失败，0表示成功
- 调用函数  : string_to_num
- 被调函数  : exec_file_type_cmd
 
- 修改历史      :
-  1.日    期   : 2015年4月28日
-    作    者   : z00299054
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int32 parse_file_cmd(uint8 *string, ulong *addr, int8 **file_path)
 {
     uint8 *tmp;
@@ -979,22 +707,7 @@ int32 parse_file_cmd(uint8 *string, ulong *addr, int8 **file_path)
     return SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : sdio_read_device_mem
- 功能描述  : 当device处于bootloader时从DEVICE读取内存
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 小于0表示失败
- 调用函数  :
 
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年8月5日
-    作    者   : z00262551
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int32 sdio_read_device_mem(struct st_wifi_dump_mem_info *pst_mem_dump_info,
                                   OS_KERNEL_FILE_STRU *fp,
                                   uint8 *pucDataBuf,
@@ -1037,36 +750,28 @@ int32 sdio_read_device_mem(struct st_wifi_dump_mem_info *pst_mem_dump_info,
     return ret;
 }
 
-/*****************************************************************************
- 函 数 名  : sdio_device_mem_dump
- 功能描述  : firmware加载时读取wifi的内存
- 输入参数  : pst_mem_dump_info  : 需要读取的内存信息
-             count              : 需要读取的内存块个数
- 输出参数  : 无
- 返 回 值  : -1表示失败，0表示成功
- 调用函数  : num_to_string
-             recv_device_mem
-             open_file_to_readm
- 被调函数  : wifi_exception_mem_dump
 
- 修改历史      :
-  1.日    期   : 2015年8月1日
-    作    者   : z00299054
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int32 sdio_device_mem_dump(struct st_wifi_dump_mem_info *pst_mem_dump_info, uint32 count)
 {
     OS_KERNEL_FILE_STRU *fp;
     int32 ret = -EFAIL;
     uint32 i;
     char filename[100] = {0};
-    struct timeval tv;
-    struct rtc_time tm;
+
     ktime_t time_start, time_stop;
     oal_uint64  trans_us;
     uint8 *pucDataBuf = NULL;
     uint32 sdio_transfer_limit = oal_sdio_func_max_req_size(oal_get_sdio_default_handler());
+
+#ifdef PLATFORM_DEBUG_ENABLE
+    struct timeval tv;
+    struct rtc_time tm;
+
+    do_gettimeofday(&tv);
+    rtc_time_to_tm(tv.tv_sec, &tm);
+    PS_PRINT_INFO("%4d-%02d-%02d  %02d:%02d:%02d\n",
+           tm.tm_year + 1900, tm.tm_mon+1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+#endif
 
     /*导内存先考虑成功率,页大小对齐的内存容易申请成功。*/
     sdio_transfer_limit = OAL_MIN(PAGE_SIZE, sdio_transfer_limit);
@@ -1096,19 +801,18 @@ int32 sdio_device_mem_dump(struct st_wifi_dump_mem_info *pst_mem_dump_info, uint
 
     PS_PRINT_INFO("mem dump data buf len is [%d]\n", sdio_transfer_limit);
 
-    do_gettimeofday(&tv);
-    rtc_time_to_tm(tv.tv_sec, &tm);
-    PS_PRINT_INFO("%4d-%02d-%02d  %02d:%02d:%02d\n",
-                   tm.tm_year + 1900, tm.tm_mon+1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
-
     for (i = 0; i < count; i++)
     {
         time_start = ktime_get();
         /*打开文件，准备接受wifi mem dump*/
         OS_MEM_SET(filename, 0, sizeof(filename));
-        snprintf(filename, sizeof(filename),"/data/memdump/%04d%02d%02d%02d%02d%02d_%s.bin",
-        tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday,
-        tm.tm_hour, tm.tm_min, tm.tm_sec,pst_mem_dump_info[i].file_name);
+
+#ifdef PLATFORM_DEBUG_ENABLE
+        snprintf(filename, sizeof(filename),"/data/memdump/%s_%04d%02d%02d%02d%02d%02d_%s.bin", SDIO_STORE_WIFI_MEM, tm.tm_year + 1900,
+           tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec, pst_mem_dump_info[i].file_name);
+#else
+        snprintf(filename, sizeof(filename),"/data/memdump/%s_%s.bin", SDIO_STORE_WIFI_MEM, pst_mem_dump_info[i].file_name);
+#endif
 
         PS_PRINT_INFO("readm %s\n",filename);
 
@@ -1204,27 +908,7 @@ int32 sdio_read_mem(uint8 *Key, uint8 *Value)
     return l_ret;
 }
 
-/*****************************************************************************
- 函 数 名  : exec_file_type_cmd
- 功能描述  : 执行number类型的命令
- 输入参数  : Key  : 命令的关键字
-             Value: 命令的参数
- 输出参数  : 无
- 返 回 值  : -1表示失败，0表示成功
- 调用函数  : check_version
-             number_type_cmd_send
-             recv_expect_result
-             open_file_to_readm
-             string_to_num
-             recv_device_mem
- 被调函数  : execute_download_cmd
 
- 修改历史      :
-  1.日    期   : 2015年4月28日
-    作    者   : g00206014
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int32 exec_number_type_cmd(uint8 *Key, uint8 *Value)
 {
     int32       l_ret = -EFAIL;
@@ -1328,21 +1012,7 @@ int32 exec_number_type_cmd(uint8 *Key, uint8 *Value)
     return l_ret;
 }
 
-/*****************************************************************************
- 函 数 名  : exec_file_type_cmd
- 功能描述  : 执行quit类型的命令
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : -1表示失败，0表示成功
- 调用函数  : msg_send_and_recv_except
- 被调函数  : execute_download_cmd
 
- 修改历史      :
-  1.日    期   : 2015年4月28日
-    作    者   : g00206014
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int32 exec_quit_type_cmd(void)
 {
     int32   l_ret;
@@ -1362,23 +1032,7 @@ int32 exec_quit_type_cmd(void)
     return l_ret;
 }
 
-/*****************************************************************************
- 函 数 名  : exec_file_type_cmd
- 功能描述  : 执行file类型的命令
- 输入参数  : Key  : 命令的关键字
-             Value: 命令的参数
- 输出参数  : 无
- 返 回 值  : -1表示失败，0表示成功
- 调用函数  : parse_file_cmd
-             msg_send_and_recv_except
- 被调函数  : execute_download_cmd
 
- 修改历史      :
-  1.日    期   : 2015年4月28日
-    作    者   : g00206014
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int32 exec_file_type_cmd(uint8 *Key, uint8 *Value)
 {
     ulong addr;
@@ -1485,23 +1139,7 @@ int32 exec_file_type_cmd(uint8 *Key, uint8 *Value)
     return SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : exec_shutdown_type_cmd
- 功能描述  : 执行shutdown cpu type的命令
- 输入参数  : which_cpu: 要关闭的cpu
- 输出参数  : 无
- 返 回 值  : -1表示失败，非负数表示成功
- 调用函数  : exec_file_type_cmd
-             exec_number_type_cmd
-             exec_quit_type_cmd
- 被调函数  : firmware_download
 
- 修改历史      :
-  1.日    期   : 2015年8月17日
-    作    者   : z00299054
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int32 exec_shutdown_type_cmd(uint32 which_cpu)
 {
     int32 l_ret = -EFAIL;
@@ -1561,25 +1199,7 @@ int32 exec_shutdown_type_cmd(uint32 which_cpu)
     return SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : execute_download_cmd
- 功能描述  : 执行firmware download的命令
- 输入参数  : cmd_type: 加载命令的类型
-             cmd_name: 命令的关键字
-             cmd_para: 命令的参数
- 输出参数  : 无
- 返 回 值  : -1表示失败，非负数表示成功
- 调用函数  : exec_file_type_cmd
-             exec_number_type_cmd
-             exec_quit_type_cmd
- 被调函数  : firmware_download
 
- 修改历史      :
-  1.日    期   : 2015年4月28日
-    作    者   : g00206014
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int32 execute_download_cmd(int32 cmd_type, uint8 *cmd_name, uint8 *cmd_para)
 {
     int32 l_ret;
@@ -1616,22 +1236,7 @@ int32 execute_download_cmd(int32 cmd_type, uint8 *cmd_name, uint8 *cmd_para)
     return l_ret;
 }
 
-/*****************************************************************************
- 函 数 名  : firmware_read_cfg
- 功能描述  : 读取cfg文件的内容，放到驱动动态分配的buffer中
- 输入参数  : puc_CfgPatch    : cfg文件的路径
-             puc_read_buffer : 保存cfg文件内容的buffer
- 输出参数  : 无
- 返 回 值  : 0表示成功，-1表示失败
- 调用函数  :
- 被调函数  : firmware_get_cfg
 
- 修改历史      :
-  1.日    期   : 2015年4月28日
-    作    者   : g00206014
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int32 firmware_read_cfg(uint8 *puc_CfgPatch, uint8 *puc_read_buffer)
 {
     OS_KERNEL_FILE_STRU    *fp;
@@ -1660,23 +1265,7 @@ int32 firmware_read_cfg(uint8 *puc_CfgPatch, uint8 *puc_read_buffer)
     return l_ret;
 }
 
-/*****************************************************************************
- 函 数 名  : firmware_parse_cmd
- 功能描述  : 解析cfg文件中的命令
- 输入参数  : puc_cfg_buffer: 保存cfg文件内容的buffer
-             puc_cmd_name  : 保存解析以后命令关键字的buffer
-             puc_cmd_para  : 保存解析以后命令参数的buffer
- 输出参数  : 无
- 返 回 值  : 返回命令的类型
- 调用函数  : delete_space
- 被调函数  : firmware_parse_cfg
 
- 修改历史      :
-  1.日    期   : 2015年4月28日
-    作    者   : g00206014
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int32 firmware_parse_cmd(uint8 *puc_cfg_buffer, uint8 *puc_cmd_name, uint8 *puc_cmd_para)
 {
     int32       l_ret;
@@ -1794,24 +1383,7 @@ int32 firmware_parse_cmd(uint8 *puc_cfg_buffer, uint8 *puc_cmd_name, uint8 *puc_
     return l_ret;
 }
 
-/*****************************************************************************
- 函 数 名  : firmware_parse_cfg
- 功能描述  : 解析cfg文件，将解析的结果保存在g_st_cfg_info全局变量中
- 输入参数  : puc_cfg_info_buf: 保存了cfg文件内容的buffer
-             l_buf_len       : puc_cfg_info_buf的长度
-             ul_index        : 保存解析结果的数组索引值
- 输出参数  : 无
- 返 回 值  : 0表示成功，-1表示失败
- 调用函数  : malloc_cmd_buf
-             firmware_parse_cmd
- 被调函数  : firmware_get_cfg
 
- 修改历史      :
-  1.日    期   : 2015年4月28日
-    作    者   : g00206014
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int32 firmware_parse_cfg(uint8 *puc_cfg_info_buf, int32 l_buf_len, uint32 ul_index)
 {
     int32           i;
@@ -1906,23 +1478,7 @@ int32 firmware_parse_cfg(uint8 *puc_cfg_info_buf, int32 l_buf_len, uint32 ul_ind
     return SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : firmware_get_cfg
- 功能描述  : 读取cfg文件并解析，将解析的结果保存在g_st_cfg_info全局变量中
- 输入参数  : puc_CfgPatch: cfg文件的路径
-             ul_index     : 保存解析结果的数组索引值
- 输出参数  : 无
- 返 回 值  : 0表示成功，-1表示失败
- 调用函数  : firmware_read_cfg
-             firmware_parse_cfg
- 被调函数  : firmware_cfg_init
 
- 修改历史      :
-  1.日    期   : 2015年4月28日
-    作    者   : g00206014
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int32 firmware_get_cfg(uint8 *puc_CfgPatch, uint32 ul_index)
 {
     uint8   *puc_read_cfg_buf;
@@ -1976,21 +1532,7 @@ int32 firmware_get_cfg(uint8 *puc_CfgPatch, uint32 ul_index)
     return l_ret;
 }
 
-/*****************************************************************************
- 函 数 名  : firmware_download
- 功能描述  : firmware加载
- 输入参数  : ul_index: 有效加载命令数组的索引
- 输出参数  : 无
- 返 回 值  : 0表示成功，-1表示失败
- 调用函数  : execute_download_cmd
- 被调函数  : firmware_download_function
 
- 修改历史      :
-  1.日    期   : 2015年4月28日
-    作    者   : g00206014
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int32 firmware_download(uint32 ul_index)
 {
     int32 l_ret;
@@ -2118,23 +1660,7 @@ int32 print_cfg_file_cmd(void)
     return 0;
 }
 
-/*****************************************************************************
- 函 数 名  : firmware_cfg_cmd_fill
- 功能描述  :
- 输入参数  : uint32 index
-             uint32 cmd_count
-             uint8* cmd_str
- 输出参数  : 无
- 返 回 值  : static int32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月4日
-    作    者   : k00355907
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 static int32 firmware_cfg_cmd_fill(uint32 index, uint32 cmd_count, uint8* cmd_str)
 {
     if ((NULL == cmd_str) || (cmd_count > g_st_cfg_info.al_count[index] + CFG_INFO_RESERVE_LEN - 1))
@@ -2148,22 +1674,7 @@ static int32 firmware_cfg_cmd_fill(uint32 index, uint32 cmd_count, uint8* cmd_st
 
     return 0;
 }
-/*****************************************************************************
- 函 数 名  : firmware_cfg_fill
- 功能描述  :
- 输入参数  : uint32 index
-             uint32 cmd_count
- 输出参数  : 无
- 返 回 值  : static int32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月4日
-    作    者   : k00355907
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 static int32 firmware_cfg_fill (uint32 index, uint32 cmd_count)
 {
     int32  result = 0;
@@ -2195,22 +1706,7 @@ static int32 firmware_cfg_fill (uint32 index, uint32 cmd_count)
 
     return result;
 }
-/*****************************************************************************
- 函 数 名  : firmware_cfg_init_extra
- 功能描述  : firmware加载的cfg文件初始化，读取并解析cfg文件，将解析的结果保存在
-             g_st_cfg_info全局变量中
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 0表示成功，-1表示失败
- 调用函数  : firmware_get_cfg
- 被调函数  : firmware_download_function
 
- 修改历史      :
-  1.日    期   : 2015年4月28日
-    作    者   : g00206014
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int32 firmware_cfg_init_extra(void)
 {
     oal_int32  result;
@@ -2218,16 +1714,25 @@ int32 firmware_cfg_init_extra(void)
     uint32 index = BFGX_AND_WIFI_CFG;
     uint32 cmd_count = g_st_cfg_info.al_count[BFGX_AND_WIFI_CFG];
 
-    result = get_cust_conf_int32(CUST_MODU_DTS, CHECK_5G_ENABLE, &wifi_5g_enable_info);
+    result = get_cust_conf_int32(INI_MODU_WIFI, CHECK_5G_ENABLE, &wifi_5g_enable_info);
     if (0 > result)
     {
-        PS_PRINT_WARNING("host get wifi 5g enable info fail\n");
-        /* 读取失败,默认为5G */
-        wifi_5g_enable_info = WIFI_MODE_5G;
+        /*读取ini失败，则尝试从dts中读取*/
+        result = get_cust_conf_int32(CUST_MODU_DTS, CHECK_5G_ENABLE, &wifi_5g_enable_info);
+        if (0 > result)
+        {
+            PS_PRINT_WARNING("host get wifi 5g enable info fail\n");
+            /* 读取失败,默认为5G */
+            wifi_5g_enable_info = WIFI_MODE_5G;
+        }
+        else
+        {
+            PS_PRINT_INFO("read wifi mode from dts succ\n");
+        }
     }
     else
     {
-        PS_PRINT_INFO("read wifi mode from dts succ\n");
+        PS_PRINT_INFO("read wifi mode from ini succ\n");
     }
 
     /*先判断WIFI是否是2.4G*/
@@ -2249,22 +1754,7 @@ int32 firmware_cfg_init_extra(void)
 }
 
 
-/*****************************************************************************
- 函 数 名  : firmware_cfg_init
- 功能描述  : firmware加载的cfg文件初始化，读取并解析cfg文件，将解析的结果保存在
-             g_st_cfg_info全局变量中
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 0表示成功，-1表示失败
- 调用函数  : firmware_get_cfg
- 被调函数  : firmware_download_function
 
- 修改历史      :
-  1.日    期   : 2015年4月28日
-    作    者   : g00206014
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int32 firmware_cfg_init(void)
 {
     int32  l_ret;
@@ -2314,21 +1804,7 @@ cfg_file_init_fail:
 
 EXPORT_SYMBOL(firmware_cfg_init);
 
-/*****************************************************************************
- 函 数 名  : firmware_cfg_clear
- 功能描述  : 释放firmware_cfg_init时申请的内存
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 总是返回0，表示成功
- 调用函数  :
- 被调函数  : low_power_exit
 
- 修改历史      :
-  1.日    期   : 2015年4月28日
-    作    者   : g00206014
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int32 firmware_cfg_clear(void)
 {
     int32 i;

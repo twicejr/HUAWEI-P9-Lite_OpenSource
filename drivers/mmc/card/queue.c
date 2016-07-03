@@ -660,10 +660,11 @@ void mmc_cmdq_clean(struct mmc_queue *mq, struct mmc_card *card)
  * complete any outstanding requests.  This ensures that we
  * won't suspend while a request is being processed.
  */
-void mmc_queue_suspend(struct mmc_queue *mq)
+int mmc_queue_suspend(struct mmc_queue *mq,int wait)
 {
 	struct request_queue *q = mq->queue;
 	unsigned long flags;
+	int rc = 0;
 
 	if (!test_and_set_bit(MMC_QUEUE_SUSPENDED_BIT, &mq->flags)) {
 
@@ -671,8 +672,24 @@ void mmc_queue_suspend(struct mmc_queue *mq)
 		blk_stop_queue(q);
 		spin_unlock_irqrestore(q->queue_lock, flags);
 
-		down(&mq->thread_sem);
+		rc = down_trylock(&mq->thread_sem);
+		if (rc && !wait){
+			pr_err("fail to down sem in mmc_queue_suspend");
+			/*
+			 * Failed to take the lock so better to abort the
+			 * suspend because mmcqd thread is processing requests.
+			 */
+			clear_bit(MMC_QUEUE_SUSPENDED, &mq->flags);
+			spin_lock_irqsave(q->queue_lock, flags);
+			blk_start_queue(q);
+			spin_unlock_irqrestore(q->queue_lock, flags);
+			rc = -EBUSY;
+		} else if (rc && wait) {
+			down(&mq->thread_sem);
+			rc = 0;
+		}
 	}
+	return rc;
 }
 
 /**

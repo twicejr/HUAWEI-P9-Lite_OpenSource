@@ -1,29 +1,4 @@
-/*******************************************************************************
-*
-*
-*                Copyright 2006, Huawei Technologies Co. Ltd.
-*                            ALL RIGHTS RESERVED
-*
-*-------------------------------------------------------------------------------
-*
-*                              ieth.h
-*
-*  Project Code: VISPV100R005
-*   Module Name: Etharp  
-*  Date Created: 2004-7-7
-*        Author: Zhang Hongyan(19316)
-*   Description: Defines Component ID, and All Interface IDs for ethernet Component
-*
-*-------------------------------------------------------------------------------
-*  Modification History
-*  DATE          NAME                   DESCRIPTION    
-*  -----------------------------------------------------------------------------
-*  2004-7-7      Zhang Hongyan(19316)   Create the first version.
-*  2006-4-27     wang xin(03278)        根据编程规范，对文件进行规范化整理
-*  2008-11-29    q62011                 Add for BC3D00792
-*                                       DR.131获取链路层状态
-*                                       DR.133以太模块需提供发送ARP 报文的接口
-*******************************************************************************/
+
 
 #ifdef  __cplusplus
 extern  "C"{
@@ -85,15 +60,10 @@ DECLARE_INTERFACE( IIF_COMP_ETHERNET_ComIntFUN )
     METHOD_(ULONG, pfTCPIP_CheckSrcMac)(UCHAR * ucSrcMacAddr);
     METHOD_(ULONG, pfETHARP_Guard_Proc_Hook_Register)(ETHARP_GUARD_PROC_HOOK_S * pfHookFunc);
     
-    /* Begin Add by zhaoyue00171897/shuxieliu00176784, at 2011-06-04. 修改原因: 支持VLAN配置不一致的告警 */
     METHOD_(ULONG, pfETHARP_GetPktInfo)(MBUF_S *pstMBuf, ETHARP_PKT_INFO_S *pstEthPktInfo);
-    /* End Add by zhaoyue00171897/shuxieliu00176784, at 2011-06-04. 修改原因: 支持VLAN配置不一致的告警 */
-    /* Add for DTS2011061505815, by zhaoyue00171897, at 2011-06-15. 修改原因: 使用组件调用 */
     METHOD_(ULONG, pfETHARP_ARPCaptureQue_Save)(MBUF_S *pMBuf, MBUF_QUEUE_S *pstArpPktQue);
 
-    /* Added by likaikun213099, 地址冲突消除, 2014/10/24   问题单号:DTS2014101104716 */
     METHOD_(ULONG, pfETHARP_ClearIPConflict)(IFNET_S*  pIf, ULONG ulIpAddr);
-    /* End of Added by likaikun213099, 2014/10/24   问题单号:DTS2014101104716 */
 };
 
 DECLARE_INTERFACE( IIF_COMP_ETHERNET_ComIntCFG )
@@ -170,16 +140,13 @@ DECLARE_INTERFACE( IIF_COMP_ETHERNET_ComIntCFG )
     METHOD_( ULONG , pfETHARP_SetVlanTag)(ULONG ulIfIndex , ULONG ulVlanTag);
     METHOD_( ULONG , pfETHARP_GetVlanTag)(ULONG ulIfIndex , ULONG *pulVlanTag);
     METHOD_( ULONG , pfETHARP_AddDynamicARPEntry)(ULONG ulIfIndex, UCHAR *pucMacAddr, ULONG ulDstIpAddr);
-    /*Added by z00208058, for PTN需求，支持指定VLAN恢复ARP, 2013/1/17 */
     METHOD_( ULONG , pfETHARP_AddDynamicARPEntryWithVlan)(ULONG ulIfIndex, UCHAR *pucMacAddr, ULONG ulDstIpAddr, USHORT usVlanid);
     METHOD_( ULONG , pfETHARP_SendArpRequest)(ULONG ulIfIndex, ULONG ulDstIpAddr);
     METHOD_( ULONG , pfETHARP_SetARPExpireTimeByIndex)(ULONG ulTime, ULONG ulIfIndex);
     METHOD_( ULONG , pfETHARP_GetARPExpireTimeByIndex)(ULONG *pulTime, ULONG ulIfIndex);
-    /* Modify by z00171897/s00176784, at 2011-06-02. 修改原因: 支持节点老化前发送单播ARP请求 */
     METHOD_( ULONG , pfETHARP_SetUnicastARPCount)(ULONG ulCount);
     METHOD_( ULONG , pfETHARP_GetUnicastARPCount)(ULONG *pulCount);
    
-    /* Modify by z00171897/s00176784, at 2011-06-02. 修改原因: 支持获取保存ARP报文队列 */
     METHOD_( ULONG , pfETHARP_SetARPCapture)(ULONG ulIfIndex, ULONG ulRcvCaptureQueLen, ULONG ulSndCaptureQueLen);
     METHOD_( ULONG , pfETHARP_GetARPCapture)(ULONG ulIfIndex, ULONG *pulRcvCaptureQueLen, ULONG *pulSndCaptureQueLen);
     METHOD_( ULONG , pfETHARP_GetARPCaptureQue)(ULONG ulIfIndex, ULONG *pulRcvQueMbufNum, MBUF_S **ppstRcvMbuf,

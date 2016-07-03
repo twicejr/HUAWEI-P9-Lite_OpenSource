@@ -67,17 +67,7 @@ struct wake_lock diag_wakelock;
 extern VOS_VOID SCM_StopAllSrcChan(VOS_VOID);
 
 
-/***********************************************************************
- Function Name   : diag_SocpVoteMsgProc
- Description     : DIAG APP AGENT SOCP投票处理
- Input           : MsgBlock* pMsgBlock
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.z00212940      2014-2-21  Draft Enact
-
-*****************************************************************************/
 VOS_VOID diag_SocpVoteMsgProc(MsgBlock* pMsgBlock)
 {
 #if(FEATURE_SOCP_ON_DEMAND == FEATURE_ON)
@@ -133,17 +123,7 @@ VOS_VOID diag_SocpVoteMsgProc(MsgBlock* pMsgBlock)
 #endif
 }
 
-/*****************************************************************************
- Function Name   : diag_AgentVoteToSocp
- Description     : DIAG AGENT向SOCP投票
- Input           : SOCP_VOTE_TYPE_ENUM_U32 voteType
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.w00182550      2012-12-20  Draft Enact
-
-*****************************************************************************/
 VOS_VOID diag_AgentVoteToSocp(SOCP_VOTE_TYPE_ENUM_U32 voteType)
 {
 #if(FEATURE_SOCP_ON_DEMAND == FEATURE_ON)
@@ -244,17 +224,7 @@ VOS_INT diag_ResetCcoreCB(DRV_RESET_CB_MOMENT_E enParam, int userdata)
     return ERR_MSP_SUCCESS;
 }
 
-/***********************************************************************
- Function Name   : diag_AppAgentMsgProcInit
- Description     : DIAG APP AGENT初始化
- Input           :enum VOS_INIT_PHASE_DEFINE ip
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.w00182550      2012-12-7  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 diag_AppAgentMsgProcInit(enum VOS_INIT_PHASE_DEFINE ip)
 {
     VOS_UINT32 ret = ERR_MSP_SUCCESS;
@@ -305,18 +275,7 @@ VOS_UINT32 diag_AppAgentMsgProcInit(enum VOS_INIT_PHASE_DEFINE ip)
 }
 
 
-/*****************************************************************************
- Function Name   : diag_DumpMsgInfo
- Description     : 保存A核最后收到的64条消息
- Input           : 
 
- 注意事项:
-    不支持重入，由调用者保证不会重复进入
-
- History         :
-    1.c00326366      2015-12-23  Draft Enact
-
-*****************************************************************************/
 VOS_VOID diag_DumpMsgInfo(VOS_UINT32 ulSenderPid, VOS_UINT32 ulMsgId, VOS_UINT32 ulSize)
 {
     VOS_UINT32 ulPtr = g_stDumpInfo.ulMsgCur;
@@ -339,18 +298,7 @@ VOS_VOID diag_DumpMsgInfo(VOS_UINT32 ulSenderPid, VOS_UINT32 ulMsgId, VOS_UINT32
 /* DUMP存储的消息的最大长度，其中64表示包含0xaa5555aa、帧头、消息内容的总的最大长度 */
 #define DIAG_DUMP_MAX_FRAME_LEN          (80)
 
-/*****************************************************************************
- Function Name   : diag_DumpDFInfo
- Description     : 保存A核最后收到的码流信息，每条码流的保存长度不超过100字节
- Input           : 
 
- 注意事项:
-    不支持重入，由调用者保证不会重复进入
-
- History         :
-    1.c00326366      2015-12-23  Draft Enact
-
-*****************************************************************************/
 VOS_VOID diag_DumpDFInfo(DIAG_FRAME_INFO_STRU * pFrame)
 {
     VOS_UINT32 ulPtr;
@@ -399,22 +347,7 @@ VOS_VOID diag_DumpDFInfo(DIAG_FRAME_INFO_STRU * pFrame)
 }
 
 
-/*****************************************************************************
- Function Name   : diag_AppAgentMsgProc
- Description     : DIAG APP AGENT接收到的消息处理入口
- Input           : MsgBlock* pMsgBlock
 
- 注意事项:
-    由于errorlog的消息不能识别发送PID，所以需要进入errorlog的处理函数中检查
-    当已知消息被成功处理时，则不需要再进行errorlog的消息检查
-    通过ulErrorLog的值判断是否进行errorlog的消息检查
-    后续函数扩展时需要注意
-
- History         :
-    1.w00182550      2012-11-19  Draft Enact
-    1.c00326366      2015-08-04  增加errorlog的消息处理
-
-*****************************************************************************/
 VOS_VOID diag_AppAgentMsgProc(MsgBlock* pMsgBlock)
 {
     VOS_UINT32  ulErrorLog = ERR_MSP_CONTINUE; /* 见函数头中的注意事项的描述 */
@@ -604,17 +537,7 @@ DIAG_TRANS_NODE_STRU* diag_AddTransInfoToList(VOS_UINT8 * pstReq, VOS_UINT32 ulR
 }
 
 
-/*****************************************************************************
- Function Name   : diag_TransReqProcEntry
- Description     : 该函数用于透传命令的REQ处理
- Input           : VOS_UINT8* pstReq
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.c00326366      2015-06-14  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 diag_TransReqProcEntry(DIAG_FRAME_INFO_STRU *pstReq, DIAG_TRANS_HEADER_STRU *pstHead)
 {
     VOS_UINT32              ret = ERR_MSP_FAILURE;
@@ -844,18 +767,7 @@ VOS_VOID diag_GetTransInfo(MSP_DIAG_CNF_INFO_STRU *pstInfo,
     return ;
 }
 
-/*****************************************************************************
- Function Name   : diag_TransCnfProc
- Description     : 透传命令的应答处理
- Input           :  VOS_UINT8* pstCnf
-                    VOS_UINT32 ulLen
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.c00326366      2015-06-14  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 diag_TransCnfProc(VOS_UINT8* pstCnf ,VOS_UINT32 ulLen, DIAG_MESSAGE_TYPE_U32 ulGroupId, DIAG_TRANS_HEADER_STRU *pstHead)
 {
     VOS_UINT32              ret = 0;
@@ -915,16 +827,7 @@ VOS_UINT32 diag_TransCnfProc(VOS_UINT8* pstCnf ,VOS_UINT32 ulLen, DIAG_MESSAGE_T
 }
 
 
-/*****************************************************************************
- Function Name   : DIAG_LogShowToFile
- Description     : 给AT命令提供的调用接口，保存DIAG的log到文件中(AT^PULLOMLOG)
- Input           : bIsSendMsg 是否给A核发送消息保存A核log
- Return          : VOS_VOID
 
- History         :
-    1.c00326366      2015-6-20  Draft Enact
-
-*****************************************************************************/
 VOS_VOID DIAG_LogShowToFile(VOS_BOOL bIsSendMsg)
 {
 }
@@ -1001,17 +904,7 @@ static const struct file_operations diag_debug_fops = {
 };
 
 
-/*****************************************************************************
- Function Name   : MSP_AppDiagFidInit
- Description     : A核DIAG 任务注册
- Input           :enum VOS_INIT_PHASE_DEFINE ip
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.w00182550      2012-11-19  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 MSP_AppDiagFidInit(enum VOS_INIT_PHASE_DEFINE ip)
 {
     VOS_UINT32 ulRelVal = 0;

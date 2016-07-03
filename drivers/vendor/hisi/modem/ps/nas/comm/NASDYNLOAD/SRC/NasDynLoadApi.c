@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasDynLoadApi.c
-  版 本 号   : 初稿
-  作    者   : w00242748
-  生成日期   : 2015年8月11日
-  最近修改   :
-  功能描述   : NasDynLoadApi.c文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年8月11日
-    作    者   : w00242748
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -62,20 +45,7 @@ WAS_QueryCSNR                           g_pfTafQueryCsnrCb = VOS_NULL_PTR;
   6 函数定义
 *****************************************************************************/
 /*lint -save -e958*/
-/*****************************************************************************
- 函 数 名  : TAF_RegQueryCSNR
- 功能描述  : 加载回调函数WAS_MNTN_QUERYCSNR的注册函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_RegQueryCsnrCallBack(
     WAS_QueryCSNR                      pfQueryCsnr
 )
@@ -83,20 +53,7 @@ VOS_VOID TAF_RegQueryCsnrCallBack(
     g_pfTafQueryCsnrCb = pfQueryCsnr;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_GetTafQueryCsnrAddr
- 功能描述  : 加载回调函数WAS_MNTN_QUERYCSNR的注册函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : WAS_QueryCSNR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-*****************************************************************************/
 WAS_QueryCSNR TAF_GetWasQueryCsnrAddr(VOS_VOID)
 {
     return g_pfTafQueryCsnrCb;
@@ -104,20 +61,7 @@ WAS_QueryCSNR TAF_GetWasQueryCsnrAddr(VOS_VOID)
 
 
 #if (FEATURE_ON == FEATURE_TDS_WCDMA_DYNAMIC_LOAD)
-/*****************************************************************************
- 函 数 名  : NAS_DYNLOAD_ReadDynloadExceptionCtrlNvim
- 功能描述  : 从NVIM中获取动态加载次数控制信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_DYNLOAD_ReadDynloadExceptionCtrlNvim(VOS_VOID)
 {
     NAS_NVIM_DYNLOAD_EXCEPTION_CTRL_STRU                    stDynloadExceptionCtrl;
@@ -163,20 +107,7 @@ VOS_VOID NAS_DYNLOAD_ReadDynloadExceptionCtrlNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_DYNLOAD_ReadDynloadCtrlNvim
- 功能描述  : 从NVIM中获取动态加载控制信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_DYNLOAD_ReadDynloadCtrlNvim(VOS_VOID)
 {
     NAS_NVIM_DYNLOAD_CTRL_STRU          stDynloadCtrl;
@@ -229,21 +160,7 @@ VOS_VOID NAS_DYNLOAD_ReadDynloadCtrlNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_DYNLOAD_ConvertVosRatTypeToDrvType
- 功能描述  : RAT TYPE类型转换
- 输入参数  : VOS_RATMODE_ENUM_UINT32    enVosRatType
- 输出参数  : 无
- 返 回 值  : NAS_DYNLOAD_RAT_TYPE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月11日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 DRV_RAT_MODE_ENUM NAS_DYNLOAD_ConvertVosRatTypeToDrvType(
     VOS_RATMODE_ENUM_UINT32             enVosRatType
 )
@@ -268,24 +185,7 @@ DRV_RAT_MODE_ENUM NAS_DYNLOAD_ConvertVosRatTypeToDrvType(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_DYNLOAD_SaveCbRatInfo
- 功能描述  : 保存特定模块的加载回调函数
- 输入参数  : NAS_DYNLOAD_RAT_TYPE_ENUM_UINT32 enRatMode
-             VOS_UINT32 ulPID
-             NAS_DYNLOAD_INIT_CB pfInit
-             NAS_DYNLOAD_UNLOAD_CB pfUnload
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月11日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_DYNLOAD_SaveCbRatInfo(
     VOS_RATMODE_ENUM_UINT32             enRatMode,
     VOS_UINT32                          ulPID,
@@ -335,22 +235,7 @@ VOS_UINT32 NAS_DYNLOAD_SaveCbRatInfo(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_DYNLOAD_ClearCbRatInfo
- 功能描述  : 清除特定模块的加载回调函数
- 输入参数  : VOS_RATMODE_ENUM_UINT32 enRatMode
-             VOS_UINT32 ulPID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月11日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_DYNLOAD_ClearCbRatInfo(
     VOS_RATMODE_ENUM_UINT32             enRatMode,
     VOS_UINT32                          ulPID
@@ -391,24 +276,7 @@ VOS_UINT32 NAS_DYNLOAD_ClearCbRatInfo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_DYNLOAD_RegLoadCallBack
- 功能描述  : 加载回调函数的注册函数
- 输入参数  : VOS_RATMODE_ENUM_UINT32 enRatMode
-             VOS_UINT32 ulPID
-             NAS_DYNLOAD_INIT_CB pfInit
-             NAS_DYNLOAD_UNLOAD_CB pfUnload
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月11日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_DYNLOAD_RegLoadCallBack(
     VOS_RATMODE_ENUM_UINT32             enRatMode,
     VOS_UINT32                          ulPID,
@@ -426,22 +294,7 @@ VOS_UINT32 NAS_DYNLOAD_RegLoadCallBack(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_DYNLOAD_DeRegLoadCallBack
- 功能描述  : 去注册回调函数
- 输入参数  : VOS_RATMODE_ENUM_UINT32             enRatMode
-             VOS_UINT32                          ulPID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月1日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_DYNLOAD_DeRegLoadCallBack(
     VOS_RATMODE_ENUM_UINT32             enRatMode,
     VOS_UINT32                          ulPID
@@ -456,22 +309,7 @@ VOS_UINT32 NAS_DYNLOAD_DeRegLoadCallBack(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_DYNLOAD_UnloadAS
- 功能描述  : 卸载接入层的API函数
- 输入参数  : VOS_RATMODE_ENUM_UINT32                                 enRatType
-             NAS_DYNLOAD_LOAD_RATCOMB_TYPE_ENUM_UINT32               enRatCombType
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月1日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_DYNLOAD_UnloadAS(
     NAS_DYNLOAD_LOAD_RATCOMB_TYPE_ENUM_UINT32               enRatCombType,
     VOS_RATMODE_ENUM_UINT32                                 enRatType
@@ -512,22 +350,7 @@ VOS_UINT32 NAS_DYNLOAD_UnloadAS(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_DYNLOAD_LoadAS
- 功能描述  : 加载接入层的API函数
- 输入参数  : VOS_RATMODE_ENUM_UINT32                                 enRatType
-             NAS_DYNLOAD_LOAD_RATCOMB_TYPE_ENUM_UINT32               enRatCombType
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月1日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_DYNLOAD_LoadAS(
     NAS_DYNLOAD_LOAD_RATCOMB_TYPE_ENUM_UINT32               enRatCombType,
     VOS_RATMODE_ENUM_UINT32                                 enRatType
@@ -607,21 +430,7 @@ VOS_UINT32 NAS_DYNLOAD_LoadAS(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_DYNLOAD_GetCurRatInCached
- 功能描述  : 获取当前cache中的接入技术
- 输入参数  : NAS_DYNLOAD_LOAD_RATCOMB_TYPE_ENUM_UINT32               enRatCombType
- 输出参数  : 无
- 返 回 值  : VOS_RATMODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月31日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_RATMODE_ENUM_UINT32 NAS_DYNLOAD_GetCurRatInCached(
     NAS_DYNLOAD_LOAD_RATCOMB_TYPE_ENUM_UINT32               enRatCombType
 )
@@ -629,22 +438,7 @@ VOS_RATMODE_ENUM_UINT32 NAS_DYNLOAD_GetCurRatInCached(
     return g_enCurRatModeInCached[enRatCombType];
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_DYNLOAD_SetCurRatInCached
- 功能描述  : 设置cache中的接入技术
- 输入参数  : NAS_DYNLOAD_LOAD_RATCOMB_TYPE_ENUM_UINT32               enRatCombType
-             VOS_RATMODE_ENUM_UINT32                                 enRatMode
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月31日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_DYNLOAD_SetCurRatInCached(
     NAS_DYNLOAD_LOAD_RATCOMB_TYPE_ENUM_UINT32               enRatCombType,
     VOS_RATMODE_ENUM_UINT32                                 enRatMode
@@ -654,58 +448,19 @@ VOS_VOID NAS_DYNLOAD_SetCurRatInCached(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_DYNLOAD_GetEnableDynloadTWFlg
- 功能描述  : 获取TW是否动态加载的标记
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年08月27日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 NAS_DYNLOAD_CTRL_STRU* NAS_DYNLOAD_GetDynloadCtrl(VOS_VOID)
 {
     return &g_stNasDynloadCtrl;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_DYNLOAD_GetEnableDynloadTWFlg
- 功能描述  : 获取TW是否动态加载的标记
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年08月27日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 NAS_DYNLOAD_GetEnableDynloadTWFlg(VOS_VOID)
 {
     return NAS_DYNLOAD_GetDynloadCtrl()->ucEnableDynloadTW;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_DYNLOAD_SetEnableDynloadTWFlg
- 功能描述  : 获取TW是否动态加载的标记
- 输入参数  : VOS_UINT8
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年08月27日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_DYNLOAD_SetEnableDynloadTWFlg(
     VOS_UINT8                           ucEnableFlg
 )
@@ -713,39 +468,13 @@ VOS_VOID NAS_DYNLOAD_SetEnableDynloadTWFlg(
     NAS_DYNLOAD_GetDynloadCtrl()->ucEnableDynloadTW = ucEnableFlg;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_DYNLOAD_GetEnableDynloadTWFlg
- 功能描述  : 获取TW是否动态加载的标记
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年08月27日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 NAS_DYNLOAD_GetTWMaxAttemptCount(VOS_VOID)
 {
     return NAS_DYNLOAD_GetDynloadCtrl()->ucTWMaxAttemptCount;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_DYNLOAD_SetEnableDynloadTWFlg
- 功能描述  : 获取TW是否动态加载的标记
- 输入参数  : VOS_UINT8
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年08月27日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_DYNLOAD_SetTWMaxAttemptCount(
     VOS_UINT8                           ucTWMaxAttemptCount
 )
@@ -754,20 +483,7 @@ VOS_VOID NAS_DYNLOAD_SetTWMaxAttemptCount(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_DYNLOAD_GetEnableDynloadTWFlg
- 功能描述  : 获取TW是否动态加载的标记
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年08月27日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 NAS_DYNLOAD_CB_RAT_INFO_STRU* NAS_DYNLOAD_GetSpecCbRatInfo(
     VOS_RATMODE_ENUM_UINT32             enRatMode
 )

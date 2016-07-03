@@ -1,25 +1,5 @@
 
-/************************************************************************
- *                                                                      *
- *                             chap_def.h                               *
- *                                                                      *
- *  Project Code:       VRP3.0                                          *
- *  Create Date:        2000/06/05                                      *
- *  Author:             Zhu Fengzhi                                      *
- *  Modify Date:                                                        *
- *  Document:                                                           *
- *  Function:           PPP的CHAP协议模块私有宏定义                      *
- *  Others:                                                             *
- *----------------------------------------------------------------------*
- *                                                                      *
- * Copyright 2000-2002 VRP3.0 Team Beijing Institute HuaWei Tech, Inc.  *
- *                     ALL RIGHTS RESERVED                              *
- *                                                                      *
- *----------------------------------------------------------------------*
- *                                                                      *
- *   这个文件定义了CHAP协议模块的全部私有宏定义                          *
- *                                                                      *
- ************************************************************************/
+
 
 #if( VRP_MODULE_LINK_PPP == VRP_YES )
 
@@ -64,7 +44,7 @@ extern "C" {
 /*  Timeouts. */
 #define CHAP_DEFTIMEOUT		5000 /* Timeout time in milliseconds */
 #define CHAP_DEFTRANSMITS	10	/* max # times to send challenge */
-#define CHAP_WAITAAARSPTIMEOUT	20000   /* modified by gxf 20030516  AAA向主备server各发三次请求,每次间隔3s,3*6=18s */
+#define CHAP_WAITAAARSPTIMEOUT	20000
 #define CHAP_MAXAUTHTRANSMITS	1	/* max # times to send AUTH msg */
 #define CHAP_WAITLNSAUTHTIME         10000;
 

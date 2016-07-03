@@ -1,16 +1,4 @@
-/******************************************************************************
 
-
-        @(#)Copyright(C)2013,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : ImsaImsInterface.h
-    Description : IMSA与IMS消息接口头文件
-    History     :
-      1.sunbing 00049683    2013-07-5  Draft Enact
-
-
-******************************************************************************/
 
 #ifndef __IMSAIMSINTERFACE_H__
 #define __IMSAIMSINTERFACE_H__

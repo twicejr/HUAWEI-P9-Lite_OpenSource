@@ -20,8 +20,6 @@ CFG_PRODUCT_CFG_CHIP_SOLUTION_NAME    ="Balong"
 # VERSION
 CFG_BUILD_TYPE                        =RELEASE
 CFG_PRODUCT_VERSION                   =V700R200C31B120
-# 修改以下版本号前8个字符需知会工具组同事(lixin 00105438)
-# 修改以下版本号前8个字符需知会工具组同事(lixin 00105438)
 CFG_PRODUCT_VERSION_STR               ="V700R200C31B120"
 CFG_PRODUCT_FULL_VERSION_STR          ="Balong V700R200C31B120"
 CFG_PRODUCT_FILE_VERSION_STR          ="2.1.6.8"

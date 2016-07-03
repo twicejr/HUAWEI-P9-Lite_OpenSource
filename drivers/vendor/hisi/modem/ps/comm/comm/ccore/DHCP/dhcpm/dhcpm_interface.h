@@ -43,7 +43,5 @@ extern ULONG DHCPM_RegDhcpServer();
 extern ULONG inline DHCPM_GetRetransmitCfgByIndex(ULONG ulDhcpIndex, UCHAR *pucRetransmitNum, UCHAR *pucRetransmitTimeOut);
 extern ULONG inline DHCPM_TrySetPrimStatusAbnormalByIndex(ULONG ulDhcpIndex);
 extern ULONG inline DHCPM_TrySetSecStatusAbnormalByIndex(ULONG ulDhcpIndex);
-/*m00221573 全文件pclint 2012-10-15 start*/
 extern ULONG DHCPM_GetDhcpSrvStatusByIndex(ULONG ulDhcpIndex, DHCP_SERVER_STATUS_S *pstDhcpServerStatus);
-/*m00221573 全文件pclint 2012-10-15 end*/
 #endif /* end of __DHCP_INC_H__ */

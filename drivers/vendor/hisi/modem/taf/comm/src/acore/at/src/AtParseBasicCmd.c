@@ -124,22 +124,7 @@ AT_MAIN_STATE_STRU AT_W_CMD_MAIN_STATE_TAB[] =
 
 };
 
-/******************************************************************************
- 函数名称: atParseBasicCmd
- 功能描述: 解析AT基本命令字符串,得出命令名,参数,命令类型,命令操作类型
 
- 参数说明:
-   pData [in] 输入的字符串
-   usLen [in] 字符串的长度
-
- 返 回 值:
-    AT_SUCCESS: 成功
-    AT_FAILURE: 失败
-
- 调用要求: TODO: ...
- 调用举例: TODO: ...
- 作    者: 崔军强/00064416 [2009-08-11]
-******************************************************************************/
 
 VOS_UINT32 atParseBasicCmd(VOS_UINT8 * pData, VOS_UINT16 usLen)
 {
@@ -230,22 +215,7 @@ VOS_UINT32 atParseBasicCmd(VOS_UINT8 * pData, VOS_UINT16 usLen)
     return AT_SUCCESS;                          /*  返回正确*/
 }
 
-/******************************************************************************
- 函数名称: atCheckCharWcmd
- 功能描述: 比较、匹配字符&
 
- 参数说明:
-   pData [in] 输入的字符串
-   usLen [in] 字符串的长度
-
- 返 回 值:
-    AT_SUCCESS: 成功
-    AT_FAILURE: 失败
-
- 调用要求: TODO: ...
- 调用举例: TODO: ...
- 作    者: 崔军强/00064416 [2009-08-11]
-******************************************************************************/
 
 VOS_UINT32 atCheckCharWcmd( VOS_UINT8 * pData, VOS_UINT16 usLen)
 {
@@ -266,22 +236,7 @@ VOS_UINT32 atCheckCharWcmd( VOS_UINT8 * pData, VOS_UINT16 usLen)
     }
 }
 
-/******************************************************************************
- 函数名称: atParseWCmd
- 功能描述: 解析AT基本命令字符串,得出命令名,参数,命令类型,命令操作类型
 
- 参数说明:
-   pData [in] 输入的字符串
-   usLen [in] 字符串的长度
-
- 返 回 值:
-    AT_SUCCESS: 成功
-    AT_FAILURE: 失败
-
- 调用要求: TODO: ...
- 调用举例: TODO: ...
- 作    者: 崔军强/00064416 [2009-08-11]
-******************************************************************************/
 
 VOS_UINT32 atParseWCmd( VOS_UINT8 * pData, VOS_UINT16 usLen)
 {

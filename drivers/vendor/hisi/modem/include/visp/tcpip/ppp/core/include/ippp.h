@@ -36,7 +36,6 @@ DECLARE_INTERFACE( IIF_COMP_PPP_ComIntFUN )
 
     METHOD_( ULONG, pfPPP_GetPppFsmState)(ULONG ulIfIndex, ULONG* pulPppPhase, 
                                           ULONG* pulPppNegoType, ULONG* pulPppFsmState);
-    /* Added by z43740 for PPP接口整改, 2006/06/07 */
     METHOD_( ULONG, pfPPP_GetFsmState)(ULONG ulIfIndex, USHORT usProtocol, ULONG* pulFsmState);
     METHOD_( ULONG, pfPPP_GetPppPhase)(ULONG ulIfIndex, ULONG *pulPhase);
     /* End of modification */
@@ -147,16 +146,13 @@ DECLARE_INTERFACE( IIF_COMP_PPP_ComIntCFG )
     METHOD_( ULONG , pfPPP_HA_GetVerboseDbg) (ULONG *pulDbg);
     METHOD_( VOID , pfPPP_HA_DebugOutPut)(UCHAR *pBuf,ULONG ulMsgLen,ULONG ulCmd);
 
-    /*(同步问题单A82D11804)Added by f54882, 2007-2-2, HDLC自动侦听非标需求功能开关*/
     METHOD_(ULONG, pfPPP_SetDiscrSpecial) (ULONG ulSet);     
-    /*(同步问题单A82D17438)add by wuhailan, 2007-7-5.设置PPP复位定时器*/
     METHOD_(ULONG, pfPPP_SetPPPResetTime) (ULONG ulTime); 
     /* 增加LQM 模块接口 */
     METHOD_( ULONG , pfPPP_ProcessLQMNeg)( ULONG ulIfIndex, ULONG ulSetYes);
     METHOD_( ULONG , pfPPP_ProcessLQMPeriod)( ULONG ulIfIndex, USHORT usLqrPeriod);
     METHOD_( ULONG , pfPPP_ProcessLQMLimit)( ULONG ulIfIndex, ULONG ulCloseValue,ULONG ulResumeValue);
     METHOD_(ULONG, pfPPP_SetIpcpNegoDns)(ULONG ulIfIndex, ULONG ulSetYes);
-    /*add by wuhailan for A82D18512, 2007-8-2.设置MP终端描述符一致性检测开关*/
     METHOD_(ULONG, pfPPP_SetMpEDConsistent) (ULONG ulSetYes);
     METHOD_(ULONG, pfPPP_GetMpEDConsistent) (VOID);
 

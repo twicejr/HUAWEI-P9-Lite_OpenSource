@@ -300,23 +300,7 @@ VOS_UINT16 NAS_LPP_EncodeEPDUSequence
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeInitiator
- Description     : LPP pucInitiator编码
- Input           : pucInitiator         需要编码的LPP消息
-                   pusBitPos              编码之后码流的总的BIT数
-                   pucEncodeOutMsg        编码之后存放的buf
- Asn             :
-             Initiator ::= ENUMERATED {
-                 locationServer,
-                 targetDevice,
-                 ...
-             }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982      2015-04-28  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeInitiator
 (
     LPP_INITIATOR_TYPE_ENUM_UINT8      *pucInitiator,
@@ -341,23 +325,7 @@ VOS_UINT16 NAS_LPP_EncodeInitiator
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeTransactionId
- Description     : LPP transationId编码
- Input           : psLppTranscationId   需要编码的LPP消息
-                   pusBitPos              编码之后码流的总的BIT数
-                   pucEncodeOutMsg        编码之后存放的buf
- Asn             :
-         LPP-TransactionID ::= SEQUENCE {
-             initiator               Initiator,
-             transactionNumber       TransactionNumber,
-             ...
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982      2015-04-28  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeTransactionId
 (
     LPP_TRANSACTION_ID_STRU             *pstLppTranscationId,
@@ -385,23 +353,7 @@ VOS_UINT16 NAS_LPP_EncodeTransactionId
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeAcknowLedgement
- Description     : LPP AcknowLedgment编码
- Input           : pstLppAcknowLedgement    需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         Acknowledgement ::= SEQUENCE {
-             ackRequested    BOOLEAN,
-             ackIndicator    SequenceNumber      OPTIONAL
-         }
 
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982      2015-05-8  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeAcknowLedgement
 (
     LPP_ACKNOWLEDGEMENT_STRU           *pstLppAcknowLedgement,
@@ -427,21 +379,7 @@ VOS_UINT16 NAS_LPP_EncodeAcknowLedgement
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeCommonIEsProvideCapabilities
- Description     : 编码pstCommonIesProvideCap
- Input           : pstCommonIesProvideCap   需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         CommonIEsProvideCapabilities ::= SEQUENCE {
-             ...
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982      2015-05-8  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeCommonIEsProvideCapabilities
 (
     LPP_COMMON_IES_PROVIDE_CAP_STRU    *pstCommonIesProvideCap,
@@ -455,22 +393,7 @@ VOS_UINT16 NAS_LPP_EncodeCommonIEsProvideCapabilities
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeGnssId
- Description     : 编码GnssId
- Input           : pstGnssId                需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         GNSS-ID ::= SEQUENCE {
-             gnss-id             ENUMERATED{ gps, sbas, qzss, galileo, glonass, ...},
-             ...
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982      2015-05-8  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeGnssId
 (
     LPP_GNSS_ID_STRU                   *pstGnssId,
@@ -496,25 +419,7 @@ VOS_UINT16 NAS_LPP_EncodeGnssId
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeSbasIds
- Description     : 编码SbasIds
- Input           : pstSbasIds               需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         SBAS-IDs ::= SEQUENCE {
-             sbas-IDs        BIT STRING {    waas        (0),
-                                             egnos       (1),
-                                             msas        (2),
-                                             gagan       (3)  } (SIZE (1..8)),
-             ...
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982      2015-05-8  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeSbasIds
 (
     LPP_SBAS_IDS_STRU                  *pstSbasIds,
@@ -544,24 +449,7 @@ VOS_UINT16 NAS_LPP_EncodeSbasIds
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodePositionMode
- Description     : 编码PositionMode
- Input           : pstPositionMode          需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         PositioningModes ::= SEQUENCE {
-             posModes        BIT STRING {    standalone  (0),
-                                             ue-based    (1),
-                                             ue-assisted (2)  } (SIZE (1..8)),
-             ...
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982      2015-05-8  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodePositionMode
 (
     LPP_POSITIONING_MODES_STRU         *pstPositionMode,
@@ -592,23 +480,7 @@ VOS_UINT16 NAS_LPP_EncodePositionMode
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeGnssSignalIds
- Description     : 编码GnssSignalIds
- Input           : pstGnssSignalIds         需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         GNSS-SignalIDs  ::= SEQUENCE {
-             gnss-SignalIDs      BIT STRING (SIZE(8)),
-             ...
-         }
 
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982      2015-05-8  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeGnssSignalIds
 (
     LPP_GNSS_SIGNAL_IDS_STRU           *pstGnssSignalIds,
@@ -625,24 +497,7 @@ VOS_UINT16 NAS_LPP_EncodeGnssSignalIds
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeAccessTypes
- Description     : 编码AccessTypes
- Input           : pstAccessTypes           需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         AccessTypes ::= SEQUENCE {
-             accessTypes     BIT STRING {    eutra       (0),
-                                             utra        (1),
-                                             gsm         (2)  } (SIZE (1..8)),
-             ...
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982      2015-05-8  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeAccessTypes
 (
     LPP_ACCESS_TYPES_STRU                       *pstAccessTypes,
@@ -672,23 +527,7 @@ VOS_UINT16 NAS_LPP_EncodeAccessTypes
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodePositionMode
- Description     : 编码FtaMeasSupport
- Input           : pstFtaMeasSupport        需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         fta-MeasSupport                 SEQUENCE {
-                                             cellTime    AccessTypes,
-                                             mode        PositioningModes,
-                                             ...
-                                         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982      2015-05-8  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeFtaMeasSupport
 (
     LPP_FTA_MEAS_SUPPORT_STRU          *pstFtaMeasSupport,
@@ -719,34 +558,7 @@ VOS_UINT16 NAS_LPP_EncodeFtaMeasSupport
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeAGNSSIEsProvideCapabilitiesGnssSuportList
- Description     : 编码AgnssSupporElement
- Input           : pstAgnssSupporElement    需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         GNSS-SupportList ::= SEQUENCE (SIZE(1..16)) OF GNSS-SupportElement
 
-         GNSS-SupportElement ::= SEQUENCE {
-             gnss-ID                         GNSS-ID,
-             sbas-IDs                        SBAS-IDs                    OPTIONAL,   -- Cond GNSS-ID-SBAS
-             agnss-Modes                     PositioningModes,
-             gnss-Signals                    GNSS-SignalIDs,
-             fta-MeasSupport                 SEQUENCE {
-                                                 cellTime    AccessTypes,
-                                                 mode        PositioningModes,
-                                                 ...
-                                             }                           OPTIONAL,   -- Cond fta
-             adr-Support                     BOOLEAN,
-             velocityMeasurementSupport      BOOLEAN,
-             ...
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982      2015-05-8  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeAGNSSIEsProvideCapGnssSupportElement
 (
     LPP_GNSS_SUPPORT_ELEMENT_STRU      *pstAgnssSupporElement,
@@ -817,34 +629,7 @@ VOS_UINT16 NAS_LPP_EncodeAGNSSIEsProvideCapGnssSupportElement
 
     return NAS_LPP_ENCODE_SUCC;
 }
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeAGNSSIEsProvideCapabilitiesGnssSuportList
- Description     : 编码AgnssSupportList
- Input           : pstAgnssSupportList    需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         GNSS-SupportList ::= SEQUENCE (SIZE(1..16)) OF GNSS-SupportElement
 
-         GNSS-SupportElement ::= SEQUENCE {
-             gnss-ID                         GNSS-ID,
-             sbas-IDs                        SBAS-IDs                    OPTIONAL,   -- Cond GNSS-ID-SBAS
-             agnss-Modes                     PositioningModes,
-             gnss-Signals                    GNSS-SignalIDs,
-             fta-MeasSupport                 SEQUENCE {
-                                                 cellTime    AccessTypes,
-                                                 mode        PositioningModes,
-                                                 ...
-                                             }                           OPTIONAL,   -- Cond fta
-             adr-Support                     BOOLEAN,
-             velocityMeasurementSupport      BOOLEAN,
-             ...
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982      2015-05-8  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeAGNSSIEsProvideCapabilitiesGnssSupportList
 (
     LPP_GNSS_SUPPORT_LIST_STRU         *pstAgnssSupportList,
@@ -887,26 +672,7 @@ VOS_UINT16 NAS_LPP_EncodeAGNSSIEsProvideCapabilitiesGnssSupportList
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeGnssSystemTime
- Description     : 编码GnssIdBitMap
- Input           : pstGnssIdBitMap                  需要编码的LPP消息
-                   pusBitPos                          编码之后码流的总的BIT数
-                   pucEncodeOutMsg                    编码之后存放的buf
- Asn             :
-     GNSS-ID-Bitmap ::= SEQUENCE {
-         gnss-ids            BIT STRING {    gps         (0),
-                                             sbas        (1),
-                                             qzss        (2),
-                                             galileo     (3),
-                                             glonass     (4)  } (SIZE (1..16)),
-         ...
-     }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982      2015-05-8  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeGnssSystemTime
 (
     LPP_GNSS_ID_BITMAP_STRU            *pstGnssIdBitMap,
@@ -938,23 +704,7 @@ VOS_UINT16 NAS_LPP_EncodeGnssSystemTime
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeGNSSCommonAssistanceDataSupportRefTime
- Description     : 编码GnssRefTimeSupport
- Input           : pstGnssRefTimeSupport            需要编码的LPP消息
-                   pusBitPos                          编码之后码流的总的BIT数
-                   pucEncodeOutMsg                    编码之后存放的buf
- Asn             :
-     GNSS-ReferenceTimeSupport ::=   SEQUENCE {
-         gnss-SystemTime     GNSS-ID-Bitmap,
-         fta-Support         AccessTypes                                     OPTIONAL, -- Cond fta
-         ...
-     }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982      2015-05-8  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeGNSSCommonAssistanceDataSupportRefTime
 (
     LPP_GNSS_REFERENCE_TIME_SUPPORT_STRU                    *pstGnssRefTimeSupport,
@@ -994,21 +744,7 @@ VOS_UINT16 NAS_LPP_EncodeGNSSCommonAssistanceDataSupportRefTime
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeGNSSCommonAssistanceDataSupportLocSupport
- Description     : 编码GnssLocationSupport
- Input           : pstGnssLocationSupport           需要编码的LPP消息
-                   pusBitPos                          编码之后码流的总的BIT数
-                   pucEncodeOutMsg                    编码之后存放的buf
- Asn             :
-     GNSS-ReferenceLocationSupport ::=   SEQUENCE {
-         ...
-     }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982      2015-05-8  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeGNSSCommonAssistanceDataSupportLocSupport
 (
     LPP_GNSS_REFERENCE_LOCATION_SUPPORT_STRU                *pstGnssLocationSupport,
@@ -1022,23 +758,7 @@ VOS_UINT16 NAS_LPP_EncodeGNSSCommonAssistanceDataSupportLocSupport
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeGNSSCommonAssistanceDataSupportInonModelSupport
- Description     : 编码GnssIonModeSupport
- Input           : pstGnssIonModeSupport            需要编码的LPP消息
-                   pusBitPos                          编码之后码流的总的BIT数
-                   pucEncodeOutMsg                    编码之后存放的buf
- Asn             :
-     GNSS-IonosphericModelSupport ::=    SEQUENCE {
-         ionoModel       BIT STRING {    klobuchar   (0),
-                                         neQuick     (1) } (SIZE (1..8)),
-         ...
-     }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982      2015-05-8  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeGNSSCommonAssistanceDataSupportInonModelSupport
 (
     LPP_GNSS_IONOSPHERIC_MODE_SUPPORT_STRU                  *pstGnssIonModeSupport,
@@ -1069,21 +789,7 @@ VOS_UINT16 NAS_LPP_EncodeGNSSCommonAssistanceDataSupportInonModelSupport
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeGNSSCommonAssistanceDataSupportEarthOrientParaSupport
- Description     : 编码GnssEarthOrientParaSupport
- Input           : pstGnssEarthOrientParaSupport    需要编码的LPP消息
-                   pusBitPos                          编码之后码流的总的BIT数
-                   pucEncodeOutMsg                    编码之后存放的buf
- Asn             :
-     GNSS-EarthOrientationParametersSupport ::=  SEQUENCE {
-         ...
-     }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982      2015-05-8  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeGNSSCommonAssistanceDataSupportEarthOrientParaSupport
 (
     LPP_GNSS_EARTH_ORIENTATION_PARAMETERS_SUPPORT_STRU      *pstGnssEarthOrientParaSupport,
@@ -1097,29 +803,7 @@ VOS_UINT16 NAS_LPP_EncodeGNSSCommonAssistanceDataSupportEarthOrientParaSupport
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeGNSSCommonAssistanceDataSupport
- Description     : 编码CommonAssitDataSupport
- Input           : pstCommonAssitDataSupport        需要编码的LPP消息
-                   pusBitPos                          编码之后码流的总的BIT数
-                   pucEncodeOutMsg                    编码之后存放的buf
- Asn             :
-     GNSS-CommonAssistanceDataSupport ::= SEQUENCE {
-         gnss-ReferenceTimeSupport               GNSS-ReferenceTimeSupport
-                                                                     OPTIONAL, -- Cond RefTimeSup
-         gnss-ReferenceLocationSupport           GNSS-ReferenceLocationSupport
-                                                                     OPTIONAL, -- Cond RefLocSup
-         gnss-IonosphericModelSupport            GNSS-IonosphericModelSupport
-                                                                     OPTIONAL, -- Cond IonoModSup
-         gnss-EarthOrientationParametersSupport  GNSS-EarthOrientationParametersSupport
-                                                                     OPTIONAL, -- Cond EOPSup
-         ...
-     }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982      2015-05-8  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeGNSSCommonAssistanceDataSupport
 (
     LPP_GNSS_COMMON_ASSISTANCE_DATA_SUPPORT_STRU            *pstCommonAssitDataSupport,
@@ -1179,22 +863,7 @@ VOS_UINT16 NAS_LPP_EncodeGNSSCommonAssistanceDataSupport
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeSbasId
- Description     : 编码SbasId
- Input           : pstSbasId                需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         SBAS-ID ::= SEQUENCE {
-             sbas-id             ENUMERATED { waas, egnos, msas, gagan, ...},
-             ...
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982      2015-05-8  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeSbasId
 (
     LPP_SBAS_ID_STRU                   *pstSbasId,
@@ -1223,21 +892,7 @@ VOS_UINT16 NAS_LPP_EncodeSbasId
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeGnssTimeModelListSupport
- Description     : 编码GnssTimeModeListSupport
- Input           : pstGnssTimeModeListSupport   需要编码的LPP消息
-                   pusBitPos                      编码之后码流的总的BIT数
-                   pucEncodeOutMsg                编码之后存放的buf
- Asn             :
-         GNSS-TimeModelListSupport ::=   SEQUENCE {
-             ...
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982      2015-05-8  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeGnssTimeModelListSupport
 (
     LPP_GNSS_TIME_MODE_LIST_SUPPORT_STRU                   *pstGnssTimeModeListSupport,
@@ -1250,23 +905,7 @@ VOS_UINT16 NAS_LPP_EncodeGnssTimeModelListSupport
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeGnssDifferentialCorrectionsSupport
- Description     : 编码GnssDiffCorrectSupport
- Input           : pstGnssDiffCorrectSupport    需要编码的LPP消息
-                   pusBitPos                      编码之后码流的总的BIT数
-                   pucEncodeOutMsg                编码之后存放的buf
- Asn             :
-         GNSS-DifferentialCorrectionsSupport ::=     SEQUENCE {
-             gnssSignalIDs           GNSS-SignalIDs,
-             dgnss-ValidityTimeSup   BOOLEAN,
-             ...
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982      2015-05-8  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeGnssDifferentialCorrectionsSupport
 (
     LPP_GNSS_DIFFERENTIAL_CORRECTIONS_SUPPORT_STRU         *pstGnssDiffCorrectSupport,
@@ -1287,31 +926,7 @@ VOS_UINT16 NAS_LPP_EncodeGnssDifferentialCorrectionsSupport
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeGnssNavigationModelSupport
- Description     : 编码GnssNavigationModeSupport
- Input           : pstGnssNavigationModeSupport 需要编码的LPP消息
-                   pusBitPos                      编码之后码流的总的BIT数
-                   pucEncodeOutMsg                编码之后存放的buf
- Asn             :
-         GNSS-NavigationModelSupport ::= SEQUENCE {
-             clockModel      BIT STRING {    model-1     (0),
-                                             model-2     (1),
-                                             model-3     (2),
-                                             model-4     (3),
-                                             model-5     (4) } (SIZE (1..8))     OPTIONAL,
-             orbitModel      BIT STRING {    model-1     (0),
-                                             model-2     (1),
-                                             model-3     (2),
-                                             model-4     (3),
-                                             model-5     (4) } (SIZE (1..8))     OPTIONAL,
-             ...
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982      2015-05-8  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeGnssNavigationModelSupport
 (
     LPP_GNSS_NAVIGATION_MODE_SUPPORT_STRU                  *pstGnssNavigationModeSupport,
@@ -1377,21 +992,7 @@ VOS_UINT16 NAS_LPP_EncodeGnssNavigationModelSupport
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeRealTimeIntegritySupport
- Description     : 编码GnssRealTimeIntegritySupport
- Input           : pstGnssRealTimeIntegritySupport  需要编码的LPP消息
-                   pusBitPos                          编码之后码流的总的BIT数
-                   pucEncodeOutMsg                    编码之后存放的buf
- Asn             :
-         GNSS-RealTimeIntegritySupport ::=   SEQUENCE {
-             ...
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982      2015-05-8  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeRealTimeIntegritySupport
 (
     LPP_GNSS_REAL_TIME_INTEGRITY_SUPPORT_STRU              *pstGnssRealTimeIntegritySupport,
@@ -1404,21 +1005,7 @@ VOS_UINT16 NAS_LPP_EncodeRealTimeIntegritySupport
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeDataBitAssistanceSupport
- Description     : 编码GnssDataBitAssitSupport
- Input           : pstGnssDataBitAssitSupport  需要编码的LPP消息
-                   pusBitPos                     编码之后码流的总的BIT数
-                   pucEncodeOutMsg               编码之后存放的buf
- Asn             :
-         GNSS-DataBitAssistanceSupport ::=   SEQUENCE {
-             ...
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982      2015-05-8  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeDataBitAssistanceSupport
 (
     LPP_GNSS_DATA_BIT_ASSISTANCE_SUPPORT_STRU              *pstGnssDataBitAssitSupport,
@@ -1431,23 +1018,7 @@ VOS_UINT16 NAS_LPP_EncodeDataBitAssistanceSupport
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeAcquisitionAssistanceSupport
- Description     : 编码GnssAcquistionAssitSupport
- Input           : pstGnssAcquistionAssitSupport    需要编码的LPP消息
-                   pusBitPos                          编码之后码流的总的BIT数
-                   pucEncodeOutMsg                    编码之后存放的buf
- Asn             :
-         GNSS-AcquisitionAssistanceSupport ::=   SEQUENCE {
-             ...,
-             confidenceSupport-r10                   ENUMERATED { true }     OPTIONAL,
-             dopplerUncertaintyExtSupport-r10        ENUMERATED { true }     OPTIONAL
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982      2015-05-8  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeAcquisitionAssistanceSupport
 (
     LPP_GNSS_ACQUISITION_ASSISTANCE_SUPPORT_STRU           *pstGnssAcquistionAssitSupport,
@@ -1504,27 +1075,7 @@ VOS_UINT16 NAS_LPP_EncodeAcquisitionAssistanceSupport
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeAlmanacSupport
- Description     : 编码GnssAlanacSupport
- Input           : pstGnssAlanacSupport    需要编码的LPP消息
-                   pusBitPos                 编码之后码流的总的BIT数
-                   pucEncodeOutMsg           编码之后存放的buf
- Asn             :
-         GNSS-AlmanacSupport ::=     SEQUENCE {
-             almanacModel        BIT STRING {    model-1     (0),
-                                                 model-2     (1),
-                                                 model-3     (2),
-                                                 model-4     (3),
-                                                 model-5     (4),
-                                                 model-6     (5) } (SIZE (1..8))     OPTIONAL,
-             ...
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982      2015-05-8  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeAlmanacSupport
 (
     LPP_GNSS_ALMANAC_SUPPORT_STRU      *pstGnssAlanacSupport,
@@ -1562,25 +1113,7 @@ VOS_UINT16 NAS_LPP_EncodeAlmanacSupport
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeUTCModelSupport
- Description     : 编码GnssUtcModelSupport
- Input           : pstGnssUtcModelSupport       需要编码的LPP消息
-                   pusBitPos                      编码之后码流的总的BIT数
-                   pucEncodeOutMsg                编码之后存放的buf
- Asn             :
-         GNSS-UTC-ModelSupport ::=   SEQUENCE {
-             utc-Model       BIT STRING {    model-1     (0),
-                                             model-2     (1),
-                                             model-3     (2),
-                                             model-4     (3) } (SIZE (1..8))     OPTIONAL,
-             ...
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982      2015-05-8  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeUTCModelSupport
 (
     LPP_GNSS_UTC_MODEL_SUPPORT_STRU    *pstGnssUtcModelSupport,
@@ -1621,21 +1154,7 @@ VOS_UINT16 NAS_LPP_EncodeUTCModelSupport
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeAuxiliaryInformationSupport
- Description     : 编码GnssAuxiliaryInfoSupport
- Input           : pstGnssAuxiliaryInfoSupport  需要编码的LPP消息
-                   pusBitPos                      编码之后码流的总的BIT数
-                   pucEncodeOutMsg                编码之后存放的buf
- Asn             :
-         GNSS-AuxiliaryInformationSupport ::=    SEQUENCE {
-             ...
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982      2015-05-8  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeAuxiliaryInformationSupport
 (
     LPP_GNSS_AUXILIARY_INFORMATION_SUPPORT_STRU            *pstGnssAuxiliaryInfoSupport,
@@ -1648,41 +1167,7 @@ VOS_UINT16 NAS_LPP_EncodeAuxiliaryInformationSupport
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeAGNSSIEsProvideCapGenericAssitDataSupportList
- Description     : 编码GnssGenericAssitDataSupportElement
- Input           : pstGnssGenericAssitDataSupportElement    需要编码的LPP消息
-                   pusBitPos                          编码之后码流的总的BIT数
-                   pucEncodeOutMsg                    编码之后存放的buf
- Asn             :
-     GNSS-GenericAssistDataSupportElement ::= SEQUENCE {
-         gnss-ID                             GNSS-ID,
-         sbas-ID                             SBAS-ID                     OPTIONAL, -- Cond GNSS ID SBAS
-         gnss-TimeModelsSupport              GNSS-TimeModelListSupport
-                                                                         OPTIONAL, -- Cond TimeModSup
-         gnss-DifferentialCorrectionsSupport GNSS-DifferentialCorrectionsSupport
-                                                                         OPTIONAL, -- Cond DGNSS-Sup
-         gnss-NavigationModelSupport         GNSS-NavigationModelSupport
-                                                                         OPTIONAL, -- Cond NavModSup
-         gnss-RealTimeIntegritySupport       GNSS-RealTimeIntegritySupport
-                                                                         OPTIONAL, -- Cond RTISup
-         gnss-DataBitAssistanceSupport       GNSS-DataBitAssistanceSupport
-                                                                         OPTIONAL, -- Cond DataBitsSup
-         gnss-AcquisitionAssistanceSupport   GNSS-AcquisitionAssistanceSupport
-                                                                         OPTIONAL, -- Cond AcquAssistSup
-         gnss-AlmanacSupport                 GNSS-AlmanacSupport
-                                                                         OPTIONAL, -- Cond AlmanacSup
-         gnss-UTC-ModelSupport               GNSS-UTC-ModelSupport
-                                                                         OPTIONAL, -- Cond UTCModSup
-         gnss-AuxiliaryInformationSupport    GNSS-AuxiliaryInformationSupport
-                                                                         OPTIONAL, -- Cond AuxInfoSup
-         ...
-     }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982      2015-05-8  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeAGNSSIEsProvideCapGenericAssitDataSupportList
 (
     LPP_GNSS_GENERIC_ASSISTANCE_DATA_SUPPORT_ELEMENT_STRU   *pstGnssGenericAssitDataSupportElement,
@@ -1810,21 +1295,7 @@ VOS_UINT16 NAS_LPP_EncodeAGNSSIEsProvideCapGenericAssitDataSupportList
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeGNSSGenericAssistanceDataSupport
- Description     : 编码GenericAssitDataSupport
- Input           : pstGenericAssitDataSupport       需要编码的LPP消息
-                   pusBitPos                          编码之后码流的总的BIT数
-                   pucEncodeOutMsg                    编码之后存放的buf
- Asn             :
-     GNSS-GenericAssistanceDataSupport ::=
-                                     SEQUENCE (SIZE (1..16)) OF GNSS-GenericAssistDataSupportElement
 
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982      2015-05-8  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeGNSSGenericAssistanceDataSupport
 (
     LPP_GNSS_GENERIC_ASSISTANCE_DATA_SUPPORT_STRU          *pstGenericAssitDataSupport,
@@ -1865,23 +1336,7 @@ VOS_UINT16 NAS_LPP_EncodeGNSSGenericAssistanceDataSupport
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeAGNSSIEsProvideCapabilitiesAssistanceDataSupportList
- Description     : 编码AgnssAssitDataSupportList
- Input           : pstAgnssAssitDataSupportList     需要编码的LPP消息
-                   pusBitPos                          编码之后码流的总的BIT数
-                   pucEncodeOutMsg                    编码之后存放的buf
- Asn             :
-     AssistanceDataSupportList ::= SEQUENCE {
-         gnss-CommonAssistanceDataSupport    GNSS-CommonAssistanceDataSupport,
-         gnss-GenericAssistanceDataSupport   GNSS-GenericAssistanceDataSupport,
-         ...
-     }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982      2015-05-8  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeAGNSSIEsProvideCapabilitiesAssistanceDataSupportList
 (
     LPP_ASSISTANCE_DATA_SUPPORT_LIST_STRU                  *pstAgnssAssitDataSupportList,
@@ -1913,28 +1368,7 @@ VOS_UINT16 NAS_LPP_EncodeAGNSSIEsProvideCapabilitiesAssistanceDataSupportList
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeAGNSSIEsProvideCapabilitiesLocationCoordinateTypes
- Description     : 编码AgnssLocCoordinateType
- Input           : pstAgnssLocCoordinateType        需要编码的LPP消息
-                   pusBitPos                          编码之后码流的总的BIT数
-                   pucEncodeOutMsg                    编码之后存放的buf
- Asn             :
-     LocationCoordinateTypes ::= SEQUENCE {
-         ellipsoidPoint                                          BOOLEAN,
-         ellipsoidPointWithUncertaintyCircle                     BOOLEAN,
-         ellipsoidPointWithUncertaintyEllipse                    BOOLEAN,
-         polygon                                                 BOOLEAN,
-         ellipsoidPointWithAltitude                              BOOLEAN,
-         ellipsoidPointWithAltitudeAndUncertaintyEllipsoid       BOOLEAN,
-         ellipsoidArc                                            BOOLEAN,
-         ...
-     }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982      2015-05-8  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeAGNSSIEsProvideCapabilitiesLocationCoordinateTypes
 (
     LPP_LOCATION_COORDINATE_TYPE_STRU                      *pstAgnssLocCoordinateType,
@@ -1976,25 +1410,7 @@ VOS_UINT16 NAS_LPP_EncodeAGNSSIEsProvideCapabilitiesLocationCoordinateTypes
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeAGNSSIEsProvideCapabilitiesLocationVelocityTypes
- Description     : 编码AgnssLocVelocityTypes
- Input           : pstAgnssLocVelocityTypes        需要编码的LPP消息
-                   pusBitPos                          编码之后码流的总的BIT数
-                   pucEncodeOutMsg                    编码之后存放的buf
- Asn             :
-     VelocityTypes ::= SEQUENCE {
-         horizontalVelocity                                      BOOLEAN,
-         horizontalWithVerticalVelocity                          BOOLEAN,
-         horizontalVelocityWithUncertainty                       BOOLEAN,
-         horizontalWithVerticalVelocityAndUncertainty            BOOLEAN,
-         ...
-     }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982      2015-05-8  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeAGNSSIEsProvideCapabilitiesLocationVelocityTypes
 (
     LPP_VELOCITY_TYPES_STRU                                *pstAgnssLocVelocityTypes,
@@ -2024,25 +1440,7 @@ VOS_UINT16 NAS_LPP_EncodeAGNSSIEsProvideCapabilitiesLocationVelocityTypes
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeAGNSSIEsProvideCapabilities
- Description     : 编码AGNSSIesProvideCap
- Input           : pstAGNSSIesProvideCap    需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         A-GNSS-ProvideCapabilities ::= SEQUENCE {
-             gnss-SupportList            GNSS-SupportList                OPTIONAL,
-             assistanceDataSupportList   AssistanceDataSupportList       OPTIONAL,
-             locationCoordinateTypes     LocationCoordinateTypes         OPTIONAL,
-             velocityTypes               VelocityTypes                   OPTIONAL,
-             ...
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982      2015-05-8  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeAGNSSIEsProvideCapabilities
 (
     LPP_AGNSS_PROVIDE_CAP_STRU                             *pstAGNSSIesProvideCap,
@@ -2103,20 +1501,7 @@ VOS_UINT16 NAS_LPP_EncodeAGNSSIEsProvideCapabilities
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeOTDOAMode
- Description     : 编码LPP_OTDOA_MODE_STRU
- Input           : pstOTDOAIesProvideCap    需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
- otdoa-Mode      BIT STRING {    ue-assisted (0) } (SIZE (1..8)),
 
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.wangensheng 00324863      2015-05-15  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeOTDOAMode
 (
     LPP_OTDOA_MODE_STRU                *pstOTDOAMode,
@@ -2142,24 +1527,7 @@ VOS_UINT16 NAS_LPP_EncodeOTDOAMode
 
     return NAS_LPP_ENCODE_SUCC;
 }
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeSupBandEUTRA
- Description     : 编码LPP_SUPPORTED_BAND_EUTRA_STRU
- Input           : pstOTDOAIesProvideCap    需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
- SupportedBandEUTRA ::= SEQUENCE {
-        bandEUTRA                           INTEGER (1..maxFBI)
-    }
 
-    maxFBI                          INTEGER::=64-- Maximum value of frequency band indicator
-
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.wangensheng 00324863      2015-05-15  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeSupBandEUTRA
 (
     LPP_SUPPORTED_BAND_EUTRA_STRU      *pstSupBandEUTRA,
@@ -2180,20 +1548,7 @@ VOS_UINT16 NAS_LPP_EncodeSupBandEUTRA
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeSupBandListEUTRA
- Description     : 编码LPP_SUPPORTED_BAND_LIST_EUTRA_STRU
- Input           : pstOTDOAIesProvideCap    需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
- supportedBandListEUTRA      SEQUENCE (SIZE (1..maxBands)) OF SupportedBandEUTRA
 
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.wangensheng 00324863      2015-05-15  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeSupBandListEUTRA
 (
     LPP_SUPPORTED_BAND_LIST_EUTRA_STRU *pstSupBandListEUTRA,
@@ -2249,25 +1604,7 @@ VOS_UINT16 NAS_LPP_EncodeSupBandListEUTRA
 
     return NAS_LPP_ENCODE_SUCC;
 }
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeSupBandEUTRAV9A0
- Description     : 编码LPP_SUPPORTED_BAND_EUTRA_V9A0_STRU
- Input           : pstOTDOAIesProvideCap    需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-     SupportedBandEUTRA-v9a0 ::=     SEQUENCE {
-        bandEUTRA-v9a0                      INTEGER (maxFBI-Plus1..maxFBI2)     OPTIONAL
-    }
 
-    maxFBI-Plus1                        INTEGER ::= 65  -- lowest value extended FBI range
-    maxFBI2                             INTEGER ::= 256 -- highest value extended FBI range
-
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.wangensheng 00324863      2015-05-15  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeSupBandEUTRAV9A0
 (
     LPP_SUPPORTED_BAND_EUTRA_V9A0_STRU *pstSupBandEUTRAV9A0,
@@ -2298,20 +1635,7 @@ VOS_UINT16 NAS_LPP_EncodeSupBandEUTRAV9A0
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeSupBandListEUTRAV9A0
- Description     : 编码LPP_SUPPORTED_BAND_LIST_EUTRA_V9A0_STRU
- Input           : pstOTDOAIesProvideCap    需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
- supportedBandListEUTRA-v9a0 SEQUENCE (SIZE (1..maxBands)) OF SupportedBandEUTRA-v9a0
 
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.wangensheng 00324863      2015-05-15  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeSupBandListEUTRAV9A0
 (
     LPP_SUPPORTED_BAND_LIST_EUTRA_V9A0_STRU                *pstSupBandListEUTRAV9a0,
@@ -2381,20 +1705,7 @@ VOS_UINT16 NAS_LPP_EncodeSupBandListEUTRAV9A0
 
     return NAS_LPP_ENCODE_SUCC;
 }
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeFreqRSTDMeasurementR10
- Description     : 编码LPP_INTER_FREQ_RSTD_MEASUREMENT_R10_ENUM_UINT32
- Input           : pstOTDOAIesProvideCap    需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
- interFreqRSTDmeasurement-r10        ENUMERATED { supported }
 
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.wangensheng 00324863      2015-05-15  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeFreqRSTDMeasurementR10
 (
     LPP_INTER_FREQ_RSTD_MEASUREMENT_R10_ENUM_UINT32        *pstFreqRSTDMeasurementR10,
@@ -2418,20 +1729,7 @@ VOS_UINT16 NAS_LPP_EncodeFreqRSTDMeasurementR10
 
     return NAS_LPP_ENCODE_SUCC;
 }
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeAdNeighbourCellInfoListR10
- Description     : 编码LPP_ADDITIONAL_NEIGH_CELL_INFO_LIST_R10_ENUM_UINT32
- Input           : pstOTDOAIesProvideCap    需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
- additionalNeighbourCellInfoList-r10 ENUMERATED { supported }
 
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.wangensheng 00324863      2015-05-15  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeAdNeighbourCellInfoListR10
 (
     LPP_ADDITIONAL_NEIGH_CELL_INFO_LIST_R10_ENUM_UINT32    *pstAdNeighbourCellInfoListR10,
@@ -2457,27 +1755,7 @@ VOS_UINT16 NAS_LPP_EncodeAdNeighbourCellInfoListR10
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeOTDOAIEsProvideCapabilities
- Description     : 编码OTDOAIesProvideCap
- Input           : pstOTDOAIesProvideCap    需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         OTDOA-ProvideCapabilities ::= SEQUENCE {
-             otdoa-Mode      BIT STRING {    ue-assisted (0) } (SIZE (1..8)),
-             ...,
-             supportedBandListEUTRA      SEQUENCE (SIZE (1..maxBands)) OF SupportedBandEUTRA     OPTIONAL,
-             supportedBandListEUTRA-v9a0 SEQUENCE (SIZE (1..maxBands)) OF SupportedBandEUTRA-v9a0
-                                                                                                 OPTIONAL,
-             interFreqRSTDmeasurement-r10        ENUMERATED { supported }                        OPTIONAL,
-             additionalNeighbourCellInfoList-r10 ENUMERATED { supported }                        OPTIONAL
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982      2015-05-8  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeOTDOAIEsProvideCapabilities
 (
     LPP_OTDOA_PROVIDE_CAP_STRU                             *pstOTDOAIesProvideCap,
@@ -2601,22 +1879,7 @@ VOS_UINT16 NAS_LPP_EncodeOTDOAIEsProvideCapabilities
 
     return NAS_LPP_ENCODE_SUCC;
 }
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeECIDMeasSupported
- Description     : 编码LPP_ECID_MEAS_SUPPORTED_STRU
- Input           : pstEPDUIesProvideCap     需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
- ecid-MeasSupported  BIT STRING {    rsrpSup     (0),
-                                                  rsrqSup     (1),
-                                                  ueRxTxSup   (2) } (SIZE(1..8))
 
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.wangensheng 00324863      2015-05-15  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeECIDMeasSupported
 (
     LPP_ECID_MEAS_SUPPORTED_STRU                           *pstECIDMeasSupported,
@@ -2646,24 +1909,7 @@ VOS_UINT16 NAS_LPP_EncodeECIDMeasSupported
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeECIDIEsProvideCapabilities
- Description     : 编码ECIDIesProvideCap
- Input           : pstECIDIesProvideCap     需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         ECID-ProvideCapabilities ::= SEQUENCE {
-             ecid-MeasSupported  BIT STRING {    rsrpSup     (0),
-                                                 rsrqSup     (1),
-                                                 ueRxTxSup   (2) } (SIZE(1..8)),
-             ...
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.wangensheng 00324863      2015-05-15  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeECIDIEsProvideCapabilities
 (
     LPP_ECID_PROVIDE_CAP_STRU                              *pstECIDIesProvideCap,
@@ -2740,26 +1986,7 @@ VOS_UINT16 NAS_LPP_EncodeEPDUIEsProvideCapabilities
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeProvideCapaBilityR9IEs
- Description     : 编码ProvideCapability
- Input           : pstProvideCapR9Ies       需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         ProvideCapabilities-r9-IEs ::= SEQUENCE {
-             commonIEsProvideCapabilities        CommonIEsProvideCapabilities        OPTIONAL,
-             a-gnss-ProvideCapabilities          A-GNSS-ProvideCapabilities          OPTIONAL,
-             otdoa-ProvideCapabilities           OTDOA-ProvideCapabilities           OPTIONAL,
-             ecid-ProvideCapabilities            ECID-ProvideCapabilities            OPTIONAL,
-             epdu-ProvideCapabilities            EPDU-Sequence                       OPTIONAL,
-             ...
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982      2015-05-8  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeProvideCapaBilityR9IEs
 (
     LPP_PROVIDE_CAPABILITIES_R9_IES_STRU                   *pstProvideCapR9Ies,
@@ -2839,28 +2066,7 @@ VOS_UINT16 NAS_LPP_EncodeProvideCapaBilityR9IEs
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeProvideCapaBilityC1
- Description     : 编码ProvideCapability
- Input           : pstExtProvideCapability          需要编码的LPP消息
-                   pusBitPos                          编码之后码流的总的BIT数
-                   pucEncodeOutMsg                    编码之后存放的buf
- Asn             :
-         ProvideCapabilities ::= SEQUENCE {
-             criticalExtensions      CHOICE {
-                 c1                      CHOICE {
-                     provideCapabilities-r9      ProvideCapabilities-r9-IEs,
-                     spare3 NULL, spare2 NULL, spare1 NULL
-                 },
-                 criticalExtensionsFuture    SEQUENCE {}
-             }
-         }
 
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982      2015-05-8  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeProvideCapaBilityC1
 (
     LPP_CRITI_EXT_PROVIDE_CAPABILITIES_STRU                *pstExtProvideCapability,
@@ -2899,27 +2105,7 @@ VOS_UINT16 NAS_LPP_EncodeProvideCapaBilityC1
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeProvideCapability
- Description     : 编码ProvideCapability
- Input           : pstProvideCapabilty      需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         ProvideCapabilities ::= SEQUENCE {
-             criticalExtensions      CHOICE {
-                 c1                      CHOICE {
-                     provideCapabilities-r9      ProvideCapabilities-r9-IEs,
-                     spare3 NULL, spare2 NULL, spare1 NULL
-                 },
-                 criticalExtensionsFuture    SEQUENCE {}
-             }
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982      2015-05-8  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeProvideCapability
 (
     LPP_MESSAGE_PROVIDE_CAPABILITIES_STRU                  *pstProvideCapabilty,
@@ -5148,23 +4334,7 @@ VOS_UINT16 NAS_LPP_EncodeRequestAssistData
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeEllipsoidPoint
- Description     : 编码pstEllipsoidPoint
- Input           : pstEllipsoidPoint        需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         Ellipsoid-Point ::= SEQUENCE {
-             latitudeSign                ENUMERATED {north, south},
-             degreesLatitude             INTEGER (0..8388607),           -- 23 bit field
-             degreesLongitude            INTEGER (-8388608..8388607)     -- 24 bit field
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-2  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeEllipsoidPoint
 (
     LPP_ELLIPSOID_POINT_STRU           *pstEllipsoidPoint,
@@ -5187,24 +4357,7 @@ VOS_UINT16 NAS_LPP_EncodeEllipsoidPoint
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeEllipsoidPointWithUncertaintyCircle
- Description     : 编码pstEllipsoidPoint
- Input           : pstEllipsoidPoint        需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         Ellipsoid-PointWithUncertaintyCircle ::= SEQUENCE {
-             latitudeSign                ENUMERATED {north, south},
-             degreesLatitude             INTEGER (0..8388607),           -- 23 bit field
-             degreesLongitude            INTEGER (-8388608..8388607),    -- 24 bit field
-             uncertainty                 INTEGER (0..127)
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-2  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeEllipsoidPointWithUncertaintyCircle
 (
     LPP_ELLIPSOID_POINT_WITH_UNCERTAINTY_CIRCLE_STRU       *pstEllipsoidPointWithCircle,
@@ -5227,28 +4380,7 @@ VOS_UINT16 NAS_LPP_EncodeEllipsoidPointWithUncertaintyCircle
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeEllipsoidPointWithUncertaintyEllipse
- Description     : 编码EllipsoidPointWithUncertaintyEllipse
- Input           : pstEllipsoidPointWithUncertaintyEllipse        需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         EllipsoidPointWithUncertaintyEllipse ::= SEQUENCE {
-             latitudeSign                ENUMERATED {north, south},
-             degreesLatitude             INTEGER (0..8388607),           -- 23 bit field
-             degreesLongitude            INTEGER (-8388608..8388607),    -- 24 bit field
-             uncertaintySemiMajor        INTEGER (0..127),
-             uncertaintySemiMinor        INTEGER (0..127),
-             orientationMajorAxis        INTEGER (0..179),
-             confidence                  INTEGER (0..100)
-         }
 
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-2  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeEllipsoidPointWithUncertaintyEllipse
 (
     LPP_ELLIPSOID_POINT_WITH_UNCERTAINTY_ELLIPSE_STRU      *pstEllipsoidPointWithUncertaintyEllipse,
@@ -5314,25 +4446,7 @@ VOS_UINT16 NAS_LPP_EncodeEllipsoidPointWithUncertaintyEllipse
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodePolygonPoints
- Description     : 编码PolygonPoints
- Input           : pstPolygonPoints         需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         Polygon ::= SEQUENCE (SIZE (3..15)) OF PolygonPoints
 
-         PolygonPoints ::= SEQUENCE {
-             latitudeSign                ENUMERATED {north, south},
-             degreesLatitude             INTEGER (0..8388607),           -- 23 bit field
-             degreesLongitude            INTEGER (-8388608..8388607)     -- 24 bit field
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-2  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodePolygonPoints
 (
     LPP_POLYGON_POINTS_STRU            *pstPolygonPoints,
@@ -5366,25 +4480,7 @@ VOS_UINT16 NAS_LPP_EncodePolygonPoints
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodePolygon
- Description     : 编码Polygon
- Input           : pstPolygon               需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         Polygon ::= SEQUENCE (SIZE (3..15)) OF PolygonPoints
 
-         PolygonPoints ::= SEQUENCE {
-             latitudeSign                ENUMERATED {north, south},
-             degreesLatitude             INTEGER (0..8388607),           -- 23 bit field
-             degreesLongitude            INTEGER (-8388608..8388607)     -- 24 bit field
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-2  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodePolygon
 (
     LPP_POLYGON_STRU                   *pstPolygon,
@@ -5418,26 +4514,7 @@ VOS_UINT16 NAS_LPP_EncodePolygon
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeEllipsoidPointWithaltitude
- Description     : 编码EllipsoidPointWithAltitude
- Input           : pstEllipsoidPointWithAltitude  需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         EllipsoidPointWithAltitude ::= SEQUENCE {
-             latitudeSign                ENUMERATED {north, south},
-             degreesLatitude             INTEGER (0..8388607),           -- 23 bit field
-             degreesLongitude            INTEGER (-8388608..8388607),    -- 24 bit field
-             altitudeDirection           ENUMERATED {height, depth},
-             altitude                    INTEGER (0..32767)              -- 15 bit field
-         }
 
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-2  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeEllipsoidPointWithaltitude
 (
     LPP_ELLIPSOID_POINT_WITH_ALTITUDE_STRU                 *pstEllipsoidPointWithAltitude,
@@ -5483,30 +4560,7 @@ VOS_UINT16 NAS_LPP_EncodeEllipsoidPointWithaltitude
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeEllipsoidPointWithAltitudeAndEllipoid
- Description     : 编码EllipsoidPointWithAltitudeAndUncertaintyEllipsoid
- Input           : pstEllipPointAndUncertEllip  需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         EllipsoidPointWithAltitudeAndUncertaintyEllipsoid ::= SEQUENCE {
-             latitudeSign                ENUMERATED {north, south},
-             degreesLatitude             INTEGER (0..8388607),           -- 23 bit field
-             degreesLongitude            INTEGER (-8388608..8388607),    -- 24 bit field
-             altitudeDirection           ENUMERATED {height, depth},
-             altitude                    INTEGER (0..32767),             -- 15 bit field
-             uncertaintySemiMajor        INTEGER (0..127),
-             uncertaintySemiMinor        INTEGER (0..127),
-             orientationMajorAxis        INTEGER (0..179),
-             uncertaintyAltitude         INTEGER (0..127),
-             confidence                  INTEGER (0..100)
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-2  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeEllipsoidPointWithAltitudeAndEllipoid
 (
     LPP_ELLIPSOID_POINT_WITH_ALTITUDE_AND_UNCERTAINTY_ELLIPSOID_STRU    *pstEllipPointAndUncertEllip,
@@ -5579,29 +4633,7 @@ VOS_UINT16 NAS_LPP_EncodeEllipsoidPointWithAltitudeAndEllipoid
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeEllipsoidArc
- Description     : 编码EllipsoidArc
- Input           : pstEllipsoidArc          需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         EllipsoidArc ::= SEQUENCE {
-             latitudeSign                ENUMERATED {north, south},
-             degreesLatitude             INTEGER (0..8388607),           -- 23 bit field
-             degreesLongitude            INTEGER (-8388608..8388607),    -- 24 bit field
-             innerRadius                 INTEGER (0..65535),             -- 16 bit field,
-             uncertaintyRadius           INTEGER (0..127),
-             offsetAngle                 INTEGER (0..179),
-             includedAngle               INTEGER (0..179),
-             confidence                  INTEGER (0..100)
-         }
 
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-2  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeEllipsoidArc
 (
     LPP_ELLIPSOIDARC_STRU              *pstEllipsoidArc,
@@ -5674,30 +4706,7 @@ VOS_UINT16 NAS_LPP_EncodeEllipsoidArc
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeLoctionEstimate
- Description     : 编码LocationCoordinates
- Input           : pstLocationCoordinate    需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         LocationCoordinates ::= CHOICE {
-             ellipsoidPoint                              Ellipsoid-Point,
-             ellipsoidPointWithUncertaintyCircle         Ellipsoid-PointWithUncertaintyCircle,
-             ellipsoidPointWithUncertaintyEllipse        EllipsoidPointWithUncertaintyEllipse,
-             polygon                                     Polygon,
-             ellipsoidPointWithAltitude                  EllipsoidPointWithAltitude,
-             ellipsoidPointWithAltitudeAndUncertaintyEllipsoid
-                                                         EllipsoidPointWithAltitudeAndUncertaintyEllipsoid,
-             ellipsoidArc                                EllipsoidArc,
-             ...
-         }
 
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-2  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeLoctionEstimate
 (
     LPP_LOCATION_COORDINATE_STRU       *pstLocationCoordinate,
@@ -5788,22 +4797,7 @@ VOS_UINT16 NAS_LPP_EncodeLoctionEstimate
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeHorizontalVelcoctiy
- Description     : 编码HorizontalVelocity
- Input           : pstHorizontalVelcoctiy   需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         HorizontalVelocity ::= SEQUENCE {
-             bearing                     INTEGER(0..359),
-             horizontalSpeed             INTEGER(0..2047)
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-2  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeHorizontalVelcoctiy
 (
     LPP_HORIZONTAL_VELCOCTIY_STRU      *pstHorizontalVelcoctiy,
@@ -5826,24 +4820,7 @@ VOS_UINT16 NAS_LPP_EncodeHorizontalVelcoctiy
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeHorizontalWithVerticalVelocity
- Description     : 编码HorizontalWithVerticalVelocity
- Input           : pstHorizontalWithVelocity   需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         HorizontalWithVerticalVelocity ::= SEQUENCE {
-             bearing                     INTEGER(0..359),
-             horizontalSpeed             INTEGER(0..2047),
-             verticalDirection           ENUMERATED{upward, downward},
-             verticalSpeed               INTEGER(0..255)
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-2  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeHorizontalWithVerticalVelocity
 (
     LPP_HORIZONTAL_WITH_VERTICAL_VELOCITY_STRU             *pstHorizontalWithVelocity,
@@ -5884,24 +4861,7 @@ VOS_UINT16 NAS_LPP_EncodeHorizontalWithVerticalVelocity
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeHorizontalWithUnceritanity
- Description     : 编码HorizontalVelocityWithUncertainty
- Input           : pstHorizontalWithUncertainty   需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         HorizontalVelocityWithUncertainty ::= SEQUENCE {
-             bearing                     INTEGER(0..359),
-             horizontalSpeed             INTEGER(0..2047),
-             uncertaintySpeed            INTEGER(0..255)
-         }
 
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-2  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeHorizontalWithUnceritanity
 (
     LPP_HORIZONTAL_VELCCITY_WITH_UNCERTAINTY_STRU          *pstHorizontalWithUncertainty,
@@ -5930,28 +4890,7 @@ VOS_UINT16 NAS_LPP_EncodeHorizontalWithUnceritanity
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeHorizontalWithVeloctiyAndUncertaainty
- Description     : 编码HorizontalWithVerticalVelocityAndUncertainty
- Input           : pstHorizontalWithVelocityAndUncerta   需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         HorizontalWithVerticalVelocityAndUncertainty ::= SEQUENCE {
-             bearing                     INTEGER(0..359),
-             horizontalSpeed             INTEGER(0..2047),
-             verticalDirection           ENUMERATED{upward, downward},
-             verticalSpeed               INTEGER(0..255),
-             horizontalUncertaintySpeed  INTEGER(0..255),
-             verticalUncertaintySpeed    INTEGER(0..255)
-         }
 
-
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-2  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeHorizontalWithVeloctiyAndUncertaainty
 (
     LPP_HORIZONTAL_WITH_VERTICAL_VELOCITY_AND_UNCERTAINTY_STRU      *pstHorizontalWithVelocityAndUncerta,
@@ -6001,26 +4940,7 @@ VOS_UINT16 NAS_LPP_EncodeHorizontalWithVeloctiyAndUncertaainty
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeVelocityEstimate
- Description     : 编码Velocity
- Input           : pstVelocityCoordinate    需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         Velocity ::= CHOICE {
-             horizontalVelocity                          HorizontalVelocity,
-             horizontalWithVerticalVelocity              HorizontalWithVerticalVelocity,
-             horizontalVelocityWithUncertainty           HorizontalVelocityWithUncertainty,
-             horizontalWithVerticalVelocityAndUncertainty
-                                                         HorizontalWithVerticalVelocityAndUncertainty,
-             ...
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-2  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeVelocityEstimate
 (
     LPP_VELOCITY_STRU                  *pstVelocityCoordinate,
@@ -6085,25 +5005,7 @@ VOS_UINT16 NAS_LPP_EncodeVelocityEstimate
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeLocatonFailureCause
- Description     : 编码LocationFailureCause
- Input           : enLocationFailureCause         需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         LocationFailureCause ::= ENUMERATED {
-             undefined,
-             requestedMethodNotSupported,
-             positionMethodFailure,
-             periodicLocationMeasurementsNotAvailable,
-             ...
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-2  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeLocatonFailureCause
 (
     LPP_LOCATION_FAILURE_CAUSE_ENUM_UINT32                  enLocationFailureCause,
@@ -6127,23 +5029,7 @@ VOS_UINT16 NAS_LPP_EncodeLocatonFailureCause
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeLocationError
- Description     : 编码LocationError
- Input           : pstLocationError         需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         LocationError ::= SEQUENCE {
-             locationfailurecause            LocationFailureCause,
-             ...
-         }
 
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-2  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeLocationError
 (
     LPP_LOCATION_ERROR_STRU            *pstLocationError,
@@ -6166,24 +5052,7 @@ VOS_UINT16 NAS_LPP_EncodeLocationError
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeCommonIesProvideLocation
- Description     : 编码CommonIEsProvideLocationInformation
- Input           : pstcommonIesProvideLocInfo 需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         CommonIEsProvideLocationInformation ::= SEQUENCE {
-             locationEstimate            LocationCoordinates     OPTIONAL,
-             velocityEstimate            Velocity                OPTIONAL,
-             locationError               LocationError           OPTIONAL,
-             ...
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-2  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeCommonIesProvideLocation
 (
     LPP_COMMON_IES_PROVIDE_LOCATION_INFO_STRU              *pstcommonIesProvideLocInfo,
@@ -6240,31 +5109,7 @@ VOS_UINT16 NAS_LPP_EncodeCommonIesProvideLocation
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodePlmnIdentity
- Description     : 编码plmn-Identity
- Input           : pstPlmnIndentity          需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
 
-                 CellGlobalIdEUTRA-AndUTRA ::= SEQUENCE {
-                     plmn-Identity       SEQUENCE {
-                                             mcc     SEQUENCE (SIZE (3))     OF INTEGER (0..9),
-                                             mnc     SEQUENCE (SIZE (2..3))  OF INTEGER (0..9)
-                                         },
-                     cellIdentity        CHOICE {
-                         eutra   BIT STRING (SIZE (28)),
-                         utra    BIT STRING (SIZE (32))
-                     },
-                     ...
-                 }
-
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-6  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodePlmnIdentity
 (
     LPP_PLMN_IDENTITY_STRU             *pstPlmnIndentity,
@@ -6307,31 +5152,7 @@ VOS_UINT16 NAS_LPP_EncodePlmnIdentity
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeCellIdentityEtranAndUtran
- Description     : 编码CellGlobalIdEUTRA-AndUTRA
- Input           : pstCellGolablId          需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
 
-                 CellGlobalIdEUTRA-AndUTRA ::= SEQUENCE {
-                     plmn-Identity       SEQUENCE {
-                                             mcc     SEQUENCE (SIZE (3))     OF INTEGER (0..9),
-                                             mnc     SEQUENCE (SIZE (2..3))  OF INTEGER (0..9)
-                                         },
-                     cellIdentity        CHOICE {
-                         eutra   BIT STRING (SIZE (28)),
-                         utra    BIT STRING (SIZE (32))
-                     },
-                     ...
-                 }
-
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-6  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeCellIdentityEtranAndUtran
 (
     LPP_CELL_IDENTITY_STRU             *pstCellIdentity,
@@ -6363,31 +5184,7 @@ VOS_UINT16 NAS_LPP_EncodeCellIdentityEtranAndUtran
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeCellGlobalIdEuranAndUtran
- Description     : 编码CellGlobalIdEUTRA-AndUTRA
- Input           : pstCellGolablId          需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
 
-                 CellGlobalIdEUTRA-AndUTRA ::= SEQUENCE {
-                     plmn-Identity       SEQUENCE {
-                                             mcc     SEQUENCE (SIZE (3))     OF INTEGER (0..9),
-                                             mnc     SEQUENCE (SIZE (2..3))  OF INTEGER (0..9)
-                                         },
-                     cellIdentity        CHOICE {
-                         eutra   BIT STRING (SIZE (28)),
-                         utra    BIT STRING (SIZE (32))
-                     },
-                     ...
-                 }
-
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-6  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeCellGlobalIdEuranAndUtran
 (
     LPP_CELL_GLO_EUTRA_UTRA_STRU       *pstCellGolablId,
@@ -6419,27 +5216,7 @@ VOS_UINT16 NAS_LPP_EncodeCellGlobalIdEuranAndUtran
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeEutra
- Description     : 编码eUTRA
- Input           : pstNetWorkTimeEutan      需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
 
-                 eUTRA   SEQUENCE {
-                         physCellId          INTEGER (0..503),
-                         cellGlobalId        CellGlobalIdEUTRA-AndUTRA       OPTIONAL,
-                         systemFrameNumber   BIT STRING (SIZE (10)),
-                         ...
-                         },
-
-
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-6  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeEutra
 (
     LPP_MEAS_REF_TIME_EUTRA            *pstNetWorkTimeEutan,
@@ -6480,35 +5257,7 @@ VOS_UINT16 NAS_LPP_EncodeEutra
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeUtranMode
- Description     : 编码mode
- Input           : pstMode                  需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-                 uTRA    SEQUENCE {
-                         mode                    CHOICE {
-                                                 fdd         SEQUENCE {
-                                                             primary-CPICH-Info  INTEGER (0..511),
-                                                             ...
-                                                             },
-                                                 tdd         SEQUENCE {
-                                                             cellParameters      INTEGER (0..127),
-                                                             ...
-                                                             }
-                                                 },
-                         cellGlobalId            CellGlobalIdEUTRA-AndUTRA       OPTIONAL,
-                         referenceSystemFrameNumber
-                                                 INTEGER (0..4095),
-                         ...
-                         },
 
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-6  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeUtranMode
 (
     LPP_MODE_SELECT_STRU               *pstMode,
@@ -6558,35 +5307,7 @@ VOS_UINT16 NAS_LPP_EncodeUtranMode
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeUtra
- Description     : 编码uTRA
- Input           : pstNetWorkTimeUtan      需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-                 uTRA    SEQUENCE {
-                         mode                    CHOICE {
-                                                 fdd         SEQUENCE {
-                                                             primary-CPICH-Info  INTEGER (0..511),
-                                                             ...
-                                                             },
-                                                 tdd         SEQUENCE {
-                                                             cellParameters      INTEGER (0..127),
-                                                             ...
-                                                             }
-                                                 },
-                         cellGlobalId            CellGlobalIdEUTRA-AndUTRA       OPTIONAL,
-                         referenceSystemFrameNumber
-                                                 INTEGER (0..4095),
-                         ...
-                         },
 
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-6  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeUtra
 (
     LPP_MEAS_REF_TIME_UTRA             *pstNetWorkTimeUtan,
@@ -6626,28 +5347,7 @@ VOS_UINT16 NAS_LPP_EncodeUtra
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeCellGlobalGeran
- Description     : 编码CellGlobalIdGERAN
- Input           : pstCellGlobalGeran        需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-                 CellGlobalIdGERAN ::= SEQUENCE {
-                     plmn-Identity       SEQUENCE {
-                                             mcc     SEQUENCE (SIZE (3))     OF INTEGER (0..9),
-                                             mnc     SEQUENCE (SIZE (2..3))  OF INTEGER (0..9)
-                                             },
-                     locationAreaCode        BIT STRING (SIZE (16)),
-                     cellIdentity            BIT STRING (SIZE (16)),
-                     ...
-                 }
 
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-6  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeCellGlobalGeran
 (
     LPP_CELL_GLO_ID_GERAN_STRU         *pstCellGlobalGeran,
@@ -6677,23 +5377,7 @@ VOS_UINT16 NAS_LPP_EncodeCellGlobalGeran
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeRefFrame
- Description     : 编码referenceFrame
- Input           : pstRefFrame              需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-                 referenceFrame      SEQUENCE {
-                                     referenceFN         INTEGER (0..65535),
-                                     referenceFNMSB      INTEGER (0..63)     OPTIONAL,
-                                     ...
-                        }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-6  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeRefFrame
 (
     LPP_REF_FRAME_STRU                 *pstRefFrame,
@@ -6725,30 +5409,7 @@ VOS_UINT16 NAS_LPP_EncodeRefFrame
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeGSM
- Description     : 编码gSM
- Input           : pstNetWorkTimeGsm        需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-                 gSM     SEQUENCE {
-                         bcchCarrier         INTEGER (0..1023),
-                         bsic                INTEGER (0..63),
-                         cellGlobalId        CellGlobalIdGERAN                   OPTIONAL,
-                         referenceFrame      SEQUENCE {
-                                             referenceFN         INTEGER (0..65535),
-                                             referenceFNMSB      INTEGER (0..63)     OPTIONAL,
-                                             ...
-                                             },
-                         deltaGNSS-TOD       INTEGER (0 .. 127)      OPTIONAL,
-                         ...
-                         },
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-6  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeGSM
 (
     LPP_MEAS_REF_TIME_GSM              *pstNetWorkTimeGsm,
@@ -6804,63 +5465,7 @@ VOS_UINT16 NAS_LPP_EncodeGSM
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeNetWorkTime
- Description     : 编码networkTime
- Input           : pstNetWorkTime           需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         MeasurementReferenceTime  ::= SEQUENCE {
-             gnss-TOD-msec       INTEGER (0..3599999),
-             gnss-TOD-frac       INTEGER (0..3999)           OPTIONAL,
-             gnss-TOD-unc        INTEGER (0..127)            OPTIONAL,
-             gnss-TimeID         GNSS-ID,
-             networkTime         CHOICE {
-                 eUTRA   SEQUENCE {
-                         physCellId          INTEGER (0..503),
-                         cellGlobalId        CellGlobalIdEUTRA-AndUTRA       OPTIONAL,
-                         systemFrameNumber   BIT STRING (SIZE (10)),
-                         ...
-                         },
-                 uTRA    SEQUENCE {
-                         mode                    CHOICE {
-                                                 fdd         SEQUENCE {
-                                                             primary-CPICH-Info  INTEGER (0..511),
-                                                             ...
-                                                             },
-                                                 tdd         SEQUENCE {
-                                                             cellParameters      INTEGER (0..127),
-                                                             ...
-                                                             }
-                                                 },
-                         cellGlobalId            CellGlobalIdEUTRA-AndUTRA       OPTIONAL,
-                         referenceSystemFrameNumber
-                                                 INTEGER (0..4095),
-                         ...
-                         },
-                 gSM     SEQUENCE {
-                         bcchCarrier         INTEGER (0..1023),
-                         bsic                INTEGER (0..63),
-                         cellGlobalId        CellGlobalIdGERAN                   OPTIONAL,
-                         referenceFrame      SEQUENCE {
-                                             referenceFN         INTEGER (0..65535),
-                                             referenceFNMSB      INTEGER (0..63)     OPTIONAL,
-                                             ...
-                                             },
-                         deltaGNSS-TOD       INTEGER (0 .. 127)      OPTIONAL,
-                         ...
-                         },
-                 ...
-                 }       OPTIONAL,
-             ...
-         }
 
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-6  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeNetWorkTime
 (
     LPP_NET_WORK_TIME_MEAS_REF_STRU    *pstNetWorkTime,
@@ -6913,63 +5518,7 @@ VOS_UINT16 NAS_LPP_EncodeNetWorkTime
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeMeasRefTime
- Description     : 编码pstMeasRefTime
- Input           : pstAgnssSignalMeasInfo  需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         MeasurementReferenceTime  ::= SEQUENCE {
-             gnss-TOD-msec       INTEGER (0..3599999),
-             gnss-TOD-frac       INTEGER (0..3999)           OPTIONAL,
-             gnss-TOD-unc        INTEGER (0..127)            OPTIONAL,
-             gnss-TimeID         GNSS-ID,
-             networkTime         CHOICE {
-                 eUTRA   SEQUENCE {
-                         physCellId          INTEGER (0..503),
-                         cellGlobalId        CellGlobalIdEUTRA-AndUTRA       OPTIONAL,
-                         systemFrameNumber   BIT STRING (SIZE (10)),
-                         ...
-                         },
-                 uTRA    SEQUENCE {
-                         mode                    CHOICE {
-                                                 fdd         SEQUENCE {
-                                                             primary-CPICH-Info  INTEGER (0..511),
-                                                             ...
-                                                             },
-                                                 tdd         SEQUENCE {
-                                                             cellParameters      INTEGER (0..127),
-                                                             ...
-                                                             }
-                                                 },
-                         cellGlobalId            CellGlobalIdEUTRA-AndUTRA       OPTIONAL,
-                         referenceSystemFrameNumber
-                                                 INTEGER (0..4095),
-                         ...
-                         },
-                 gSM     SEQUENCE {
-                         bcchCarrier         INTEGER (0..1023),
-                         bsic                INTEGER (0..63),
-                         cellGlobalId        CellGlobalIdGERAN                   OPTIONAL,
-                         referenceFrame      SEQUENCE {
-                                             referenceFN         INTEGER (0..65535),
-                                             referenceFNMSB      INTEGER (0..63)     OPTIONAL,
-                                             ...
-                                             },
-                         deltaGNSS-TOD       INTEGER (0 .. 127)      OPTIONAL,
-                         ...
-                         },
-                 ...
-                 }       OPTIONAL,
-             ...
-         }
 
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-6  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeMeasRefTime
 (
     LPP_MEAS_REF_TIME_STRU             *pstMeasRefTime,
@@ -7040,31 +5589,7 @@ VOS_UINT16 NAS_LPP_EncodeMeasRefTime
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeGnssSatMeasElment
- Description     : 编码pstGnssSatMeasElment
- Input           : pstGnssSatMeasElment     需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         GNSS-SatMeasElement ::= SEQUENCE {
-             svID                SV-ID,
-             cNo                 INTEGER (0..63),
-             mpathDet            ENUMERATED {notMeasured (0), low (1), medium (2), high (3), ...},
-             carrierQualityInd   INTEGER (0..3)              OPTIONAL,
-             codePhase           INTEGER (0..2097151),
-             integerCodePhase    INTEGER (0..127)            OPTIONAL,
-             codePhaseRMSError   INTEGER (0..63),
-             doppler             INTEGER (-32768..32767)     OPTIONAL,
-             adr                 INTEGER (0..33554431)       OPTIONAL,
-             ...
-         }
 
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-6  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeGnssSatMeasElment
 (
     LPP_GNSS_SAT_MEAS_ELEMENT_STRU     *pstGnssSatMeasElment,
@@ -7171,20 +5696,7 @@ VOS_UINT16 NAS_LPP_EncodeGnssSatMeasElment
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeGnssSatMeasList
- Description     : 编码pstGnssSatMeasList
- Input           : pstGnssSatMeasList       需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-    GNSS-SatMeasList ::= SEQUENCE (SIZE(1..64)) OF GNSS-SatMeasElement
 
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-6  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeGnssSatMeasList
 (
     LPP_GNSS_SAT_MEAS_LIST_STRU        *pstGnssSatMeasList,
@@ -7219,19 +5731,7 @@ VOS_UINT16 NAS_LPP_EncodeGnssSatMeasList
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeGnssSgnMeasElement
- Description     : 编码pstGnssSgnMeasElement
- Input           : pstGnssSgnMeasElement    需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-    GNSS-SatMeasList ::= SEQUENCE (SIZE(1..64)) OF GNSS-SatMeasElement
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-6  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeGnssSgnMeasElement
 (
     LPP_GNSS_SGN_MEAS_ELEMENT_STRU     *pstGnssSgnMeasElement,
@@ -7279,19 +5779,7 @@ VOS_UINT16 NAS_LPP_EncodeGnssSgnMeasElement
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeGnssSgnMeasList
- Description     : 编码pstGnssSgnMeasList
- Input           : pstGnssSgnMeasList       需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-    GNSS-SgnMeasList ::= SEQUENCE (SIZE(1..8)) OF GNSS-SgnMeasElement
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-6  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeGnssSgnMeasList
 (
     LPP_GNSS_SGN_LIST_STRU             *pstGnssSgnMeasList,
@@ -7326,23 +5814,7 @@ VOS_UINT16 NAS_LPP_EncodeGnssSgnMeasList
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeGnssMeasList
- Description     : 编码MeasurementForOneGNSS
- Input           : pstGnssMeasForOneGnss  需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         GNSS-MeasurementForOneGNSS ::= SEQUENCE {
-             gnss-ID                 GNSS-ID,
-             gnss-SgnMeasList        GNSS-SgnMeasList,
-             ...
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-6  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeGnssMeasList
 (
     LPP_GNSS_MEAS_FOR_ONE_GNSS_STRU    *pstGnssMeasForOneGnss,
@@ -7372,50 +5844,7 @@ VOS_UINT16 NAS_LPP_EncodeGnssMeasList
 
     return NAS_LPP_ENCODE_SUCC;
 }
-/*****************************************************************************
- Function Name   : NAS_LPP_Encdoe_AgnssSignalMeasInfo
- Description     : 编码SignalMeasurementInformation
- Input           : pstAgnssSignalMeasInfo  需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         GNSS-MeasurementList  ::= SEQUENCE (SIZE(1..16)) OF GNSS-MeasurementForOneGNSS
 
-         GNSS-MeasurementForOneGNSS ::= SEQUENCE {
-             gnss-ID                 GNSS-ID,
-             gnss-SgnMeasList        GNSS-SgnMeasList,
-             ...
-         }
-
-         GNSS-SgnMeasList ::= SEQUENCE (SIZE(1..8)) OF GNSS-SgnMeasElement
-
-         GNSS-SgnMeasElement ::= SEQUENCE {
-             gnss-SignalID           GNSS-SignalID,
-             gnss-CodePhaseAmbiguity INTEGER (0..127)        OPTIONAL,
-             gnss-SatMeasList        GNSS-SatMeasList,
-             ...
-         }
-
-         GNSS-SatMeasList ::= SEQUENCE (SIZE(1..64)) OF GNSS-SatMeasElement
-
-         GNSS-SatMeasElement ::= SEQUENCE {
-             svID                SV-ID,
-             cNo                 INTEGER (0..63),
-             mpathDet            ENUMERATED {notMeasured (0), low (1), medium (2), high (3), ...},
-             carrierQualityInd   INTEGER (0..3)              OPTIONAL,
-             codePhase           INTEGER (0..2097151),
-             integerCodePhase    INTEGER (0..127)            OPTIONAL,
-             codePhaseRMSError   INTEGER (0..63),
-             doppler             INTEGER (-32768..32767)     OPTIONAL,
-             adr                 INTEGER (0..33554431)       OPTIONAL,
-             ...
-         }
-
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-6  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeMeasList
 (
     LPP_GNSS_MEAS_LIST_STRU            *pstGnssMeasList,
@@ -7450,23 +5879,7 @@ VOS_UINT16 NAS_LPP_EncodeMeasList
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_Encdoe_AgnssSignalMeasInfo
- Description     : 编码SignalMeasurementInformation
- Input           : pstAgnssSignalMeasInfo  需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         GNSS-SignalMeasurementInformation ::= SEQUENCE {
-             measurementReferenceTime        MeasurementReferenceTime,
-             gnss-MeasurementList            GNSS-MeasurementList,
-             ...
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-6  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_Encdoe_AgnssSignalMeasInfo
 (
     LPP_GNSS_SIGNAL_MEAS_INFO_STRU     *pstAgnssSignalMeasInfo,
@@ -7498,27 +5911,7 @@ VOS_UINT16 NAS_LPP_Encdoe_AgnssSignalMeasInfo
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeAgnssList
- Description     : 编码GNSS-ID-Bitmap
- Input           : pstAgnssIdnBitmap        需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         GNSS-ID-Bitmap ::= SEQUENCE {
-             gnss-ids            BIT STRING {    gps         (0),
-                                                 sbas        (1),
-                                                 qzss        (2),
-                                                 galileo     (3),
-                                                 glonass     (4)  } (SIZE (1..16)),
-             ...
-         }
 
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-6  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeAgnssList
 (
     LPP_GNSS_ID_BITMAP_STRU            *pstAgnssIdnBitmap,
@@ -7545,23 +5938,7 @@ VOS_UINT16 NAS_LPP_EncodeAgnssList
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_Encdoe_AgnssLocationInfo
- Description     : 编码LocationInformation
- Input           : pstAgnssLocationInfo  需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         GNSS-LocationInformation ::= SEQUENCE {
-             measurementReferenceTime        MeasurementReferenceTime,
-             agnss-List                      GNSS-ID-Bitmap,
-             ...
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-6  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_Encdoe_AgnssLocationInfo
 (
     LPP_GNSS_LOCATION_INFO_STRU        *pstAgnssLocationInfo,
@@ -7593,27 +5970,7 @@ VOS_UINT16 NAS_LPP_Encdoe_AgnssLocationInfo
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeGnssLocationServerErrorCause
- Description     : 编码pstAgnssLocationServerErrorCause
- Input           : pstAgnssLocationServerErrorCause  需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         GNSS-LocationServerErrorCauses ::= SEQUENCE {
-             cause       ENUMERATED  {
-                             undefined,
-                             undeliveredAssistanceDataIsNotSupportedByServer,
-                             undeliveredAssistanceDataIsSupportedButCurrentlyNotAvailableByServer,                               undeliveredAssistanceDataIsPartlyNotSupportedAndPartlyNotAvailableByServer,
-                             ...
-                             },
-             ...
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-6  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeGnssLocationServerErrorCause
 (
     LPP_GNSS_LOCATION_SERVER_ERROR_CAUSE_STRU              *pstAgnssLocationServerErrorCause,
@@ -7639,31 +5996,7 @@ VOS_UINT16 NAS_LPP_EncodeGnssLocationServerErrorCause
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeGnssTargetDeviceErrorCause
- Description     : 编码pstAgnsTargetDeviceErrorCause
- Input           : pstAgnsTargetDeviceErrorCause  需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         GNSS-TargetDeviceErrorCauses ::= SEQUENCE {
-             cause       ENUMERATED {    undefined,
-                                         thereWereNotEnoughSatellitesReceived,
-                                         assistanceDataMissing,
-                                         notAllRequestedMeasurementsPossible,
-                                         ...
-                                     },
-             fineTimeAssistanceMeasurementsNotPossible       NULL        OPTIONAL,
-             adrMeasurementsNotPossible                      NULL        OPTIONAL,
-             multiFrequencyMeasurementsNotPossible           NULL        OPTIONAL,
-             ...
-         }
 
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-6  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeGnssTargetDeviceErrorCause
 (
     LPP_GNSS_TARGET_DEVICE_ERROR_CAUSE_STRU                *pstAgnsTargetDeviceErrorCause,
@@ -7698,23 +6031,7 @@ VOS_UINT16 NAS_LPP_EncodeGnssTargetDeviceErrorCause
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_Encdoe_AgnssError
- Description     : 编码A-GNSS-Error
- Input           : pstAgnssError  需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         A-GNSS-Error ::= CHOICE {
-             locationServerErrorCauses       GNSS-LocationServerErrorCauses,
-             targetDeviceErrorCauses         GNSS-TargetDeviceErrorCauses,
-             ...
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-6  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_Encdoe_AgnssError
 (
     LPP_GNSS_ERROR_STRU                *pstAgnssError,
@@ -7761,25 +6078,7 @@ VOS_UINT16 NAS_LPP_Encdoe_AgnssError
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeAgnssProvideLocation
- Description     : 编码 A-GNSS-ProvideLocationInformation
- Input           : pstAgnssProvideLocation  需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         A-GNSS-ProvideLocationInformation ::= SEQUENCE {
-             gnss-SignalMeasurementInformation   GNSS-SignalMeasurementInformation       OPTIONAL,
-             gnss-LocationInformation            GNSS-LocationInformation                OPTIONAL,
-             gnss-Error                          A-GNSS-Error                            OPTIONAL,
-             ...
-         }
 
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-2  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeAgnssProvideLocation
 (
     LPP_AGNSS_PROVIDE_LOCATION_INFO_STRU                   *pstAgnssProvideLocation,
@@ -7836,26 +6135,7 @@ VOS_UINT16 NAS_LPP_EncodeAgnssProvideLocation
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeEarfcnRefV9a0
- Description     : 编码ARFCN-ValueEUTRA-v9a0
- Input           : pstArfcnValueEutranV9a0  需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         ARFCN-ValueEUTRA-v9a0 ::=   INTEGER (maxEARFCN-Plus1..maxEARFCN2)
 
-         maxEARFCN                   INTEGER ::= 65535   -- Maximum value of EUTRA carrier frequency
-
-         maxEARFCN-Plus1             INTEGER ::= 65536   -- Lowest value extended EARFCN range
-
-         maxEARFCN2                  INTEGER ::= 262143  -- Highest value extended EARFCN range
-
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-2  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeEarfcnRefV9a0
 (
     LPP_ARFCN_VALUE_EUTRA_V9A0_STRU    *pstArfcnValueEutranV9a0,
@@ -7876,22 +6156,7 @@ VOS_UINT16 NAS_LPP_EncodeEarfcnRefV9a0
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeEarfcnRefV9a0
- Description     : 编码ARFCN-ValueEUTRA
- Input           : pstArfcnValueEutran      需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         ARFCN-ValueEUTRA ::= INTEGER (0..maxEARFCN)
-         maxEARFCN   INTEGER ::= 65535   -- Maximum value of EUTRA carrier frequency
 
-
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-2  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeArfcnValueEutran
 (
     LPP_ARFCN_VALUE_EUTRA_STRU         *pstArfcnValueEutran,
@@ -7912,25 +6177,7 @@ VOS_UINT16 NAS_LPP_EncodeArfcnValueEutran
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeReferenceQuality
- Description     : 编码OTDOA-MeasQuality
- Input           : pstOtdoaRefQuality       需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         OTDOA-MeasQuality ::= SEQUENCE {
-             error-Resolution        BIT STRING (SIZE (2)),
-             error-Value             BIT STRING (SIZE (5)),
-             error-NumSamples        BIT STRING (SIZE (3))               OPTIONAL,
-             ...
-         }
 
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-2  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeReferenceQuality
 (
     LPP_OTDOA_MEAS_QUALITY_STRU        *pstOtdoaRefQuality,
@@ -7963,31 +6210,7 @@ VOS_UINT16 NAS_LPP_EncodeReferenceQuality
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeNeighbourMeasElement
- Description     : 编码NeighbourMeasElement
- Input           : pstNeighbourMeasElement  需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         NeighbourMeasurementList ::= SEQUENCE (SIZE(1..24)) OF NeighbourMeasurementElement
 
-         NeighbourMeasurementElement ::= SEQUENCE {
-             physCellIdNeighbour     INTEGER (0..503),
-             cellGlobalIdNeighbour   ECGI                    OPTIONAL,
-             earfcnNeighbour         ARFCN-ValueEUTRA        OPTIONAL,       -- Cond NotSameAsRef2
-             rstd                    INTEGER (0..12711),
-             rstd-Quality            OTDOA-MeasQuality,
-             ...,
-             [[ earfcnNeighbour-v9a0 ARFCN-ValueEUTRA-v9a0   OPTIONAL        -- Cond NotSameAsRef3
-             ]]
-         }
-
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-2  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeNeighbourMeasElement
 (
     LPP_NEIGHBOUR_MEAS_ELEMENT_STRU    *pstNeighbourMeasElement,
@@ -8092,31 +6315,7 @@ VOS_UINT16 NAS_LPP_EncodeNeighbourMeasElement
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeNeighbourMeasList
- Description     : 编码NeighbourMeasurementList
- Input           : pstNeighbourMeasList     需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         NeighbourMeasurementList ::= SEQUENCE (SIZE(1..24)) OF NeighbourMeasurementElement
 
-         NeighbourMeasurementElement ::= SEQUENCE {
-             physCellIdNeighbour     INTEGER (0..503),
-             cellGlobalIdNeighbour   ECGI                    OPTIONAL,
-             earfcnNeighbour         ARFCN-ValueEUTRA        OPTIONAL,       -- Cond NotSameAsRef2
-             rstd                    INTEGER (0..12711),
-             rstd-Quality            OTDOA-MeasQuality,
-             ...,
-             [[ earfcnNeighbour-v9a0 ARFCN-ValueEUTRA-v9a0   OPTIONAL        -- Cond NotSameAsRef3
-             ]]
-         }
-
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-2  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeNeighbourMeasList
 (
     LPP_NEIGHBOUR_MEAS_LIST_STRU       *pstNeighbourMeasList,
@@ -8152,29 +6351,7 @@ VOS_UINT16 NAS_LPP_EncodeNeighbourMeasList
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeOtdoaSignalMeasInfo
- Description     : 编码OTDOA-SignalMeasurementInformation
- Input           : pstOtdoaSignalMeasInfo   需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         OTDOA-SignalMeasurementInformation ::= SEQUENCE {
-             systemFrameNumber       BIT STRING (SIZE (10)),
-             physCellIdRef           INTEGER (0..503),
-             cellGlobalIdRef         ECGI                    OPTIONAL,
-             earfcnRef               ARFCN-ValueEUTRA        OPTIONAL,       -- Cond NotSameAsRef0
-             referenceQuality        OTDOA-MeasQuality       OPTIONAL,
-             neighbourMeasurementList    NeighbourMeasurementList,
-             ...,
-             [[ earfcnRef-v9a0       ARFCN-ValueEUTRA-v9a0   OPTIONAL        -- Cond NotSameAsRef1
-             ]]
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-2  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeOtdoaSignalMeasInfo
 (
     LPP_OTDOA_SIGNAL_MEAS_INFO_STRU    *pstOtdoaSignalMeasInfo,
@@ -8286,27 +6463,7 @@ VOS_UINT16 NAS_LPP_EncodeOtdoaSignalMeasInfo
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeOtdoaLocationServerErrorCause
- Description     : 编码pstAgnssLocationServerErrorCause
- Input           : pstAgnssLocationServerErrorCause  需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         OTDOA-LocationServerErrorCauses ::= SEQUENCE {
-             cause       ENUMERATED  {   undefined,
-                                         assistanceDataNotSupportedByServer,
-                                         assistanceDataSupportedButCurrentlyNotAvailableByServer,
-                                         ...
-                                     },
-             ...
-         }
 
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-6  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeOtdoaLocationServerErrorCause
 (
     LPP_OTDOA_LOCATION_SERVER_ERROR_CAUSE_STRU             *pstOtdoaLocationServerErrorCause,
@@ -8334,29 +6491,7 @@ VOS_UINT16 NAS_LPP_EncodeOtdoaLocationServerErrorCause
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeGnssTargetDeviceErrorCause
- Description     : 编码pstAgnsTargetDeviceErrorCause
- Input           : pstAgnsTargetDeviceErrorCause  需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         OTDOA-TargetDeviceErrorCauses ::= SEQUENCE {
-             cause       ENUMERATED {    undefined,
-                                         assistance-data-missing,
-                                         unableToMeasureReferenceCell,
-                                         unableToMeasureAnyNeighbourCell,
-                                         attemptedButUnableToMeasureSomeNeighbourCells,
-                                         ...
-                                     },
-             ...
-         }
 
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-6  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeOtdoaTargetDeviceErrorCause
 (
     LPP_OTDOA_TARGET_DEVICE_ERROR_CAUSE_STRU               *pstOtdoaTargetDeviceErrorCause,
@@ -8384,23 +6519,7 @@ VOS_UINT16 NAS_LPP_EncodeOtdoaTargetDeviceErrorCause
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeOtdoaError
- Description     : 编码OTDOA-Error
- Input           : pstOtdoaError            需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         OTDOA-Error ::= CHOICE {
-             locationServerErrorCauses       OTDOA-LocationServerErrorCauses,
-             targetDeviceErrorCauses         OTDOA-TargetDeviceErrorCauses,
-             ...
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-2  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeOtdoaError
 (
     LPP_OTDOA_ERROR_STRU               *pstOtdoaError,
@@ -8446,23 +6565,7 @@ VOS_UINT16 NAS_LPP_EncodeOtdoaError
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeOtdoaProvideLocation
- Description     : 编码OTDOA-ProvideLocationInformation
- Input           : pstAgnssProvideLocation  需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         OTDOA-ProvideLocationInformation ::= SEQUENCE {
-             otdoaSignalMeasurementInformation   OTDOA-SignalMeasurementInformation  OPTIONAL,
-             otdoa-Error                         OTDOA-Error                         OPTIONAL,
-             ...
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-2  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeOtdoaProvideLocation
 (
     LPP_OTDOA_PROVIDE_LOCATION_INFO_STRU                   *pstOtdoaProvideLocation,
@@ -8504,32 +6607,7 @@ VOS_UINT16 NAS_LPP_EncodeOtdoaProvideLocation
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodePrimaryCellMeasuredRslt
- Description     : 编码MeasuredResultsElement
- Input           : pstMeasRsltElment        需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         MeasuredResultsElement ::= SEQUENCE {
-             physCellId      INTEGER (0..503),
-             cellGlobalId    CellGlobalIdEUTRA-AndUTRA           OPTIONAL,
-             arfcnEUTRA      ARFCN-ValueEUTRA,
-             systemFrameNumber
-                             BIT STRING (SIZE (10))              OPTIONAL,
-             rsrp-Result     INTEGER (0..97)                     OPTIONAL,
-             rsrq-Result     INTEGER (0..34)                     OPTIONAL,
-             ue-RxTxTimeDiff INTEGER (0..4095)                   OPTIONAL,
-             ...,
-             [[ arfcnEUTRA-v9a0      ARFCN-ValueEUTRA-v9a0       OPTIONAL        -- Cond EARFCN-max
-             ]]
-         }
 
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-2  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodePrimaryCellMeasuredRslt
 (
     LPP_MEAS_RESULT_ELEMENT_STRU       *pstMeasRsltElment,
@@ -8661,34 +6739,7 @@ VOS_UINT16 NAS_LPP_EncodePrimaryCellMeasuredRslt
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeMeasRsltList
- Description     : 编码MeasuredResultsList
- Input           : pstMeasRsltList          需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         MeasuredResultsList ::= SEQUENCE (SIZE(1..32)) OF MeasuredResultsElement
 
-         MeasuredResultsElement ::= SEQUENCE {
-             physCellId      INTEGER (0..503),
-             cellGlobalId    CellGlobalIdEUTRA-AndUTRA           OPTIONAL,
-             arfcnEUTRA      ARFCN-ValueEUTRA,
-             systemFrameNumber
-                             BIT STRING (SIZE (10))              OPTIONAL,
-             rsrp-Result     INTEGER (0..97)                     OPTIONAL,
-             rsrq-Result     INTEGER (0..34)                     OPTIONAL,
-             ue-RxTxTimeDiff INTEGER (0..4095)                   OPTIONAL,
-             ...,
-             [[ arfcnEUTRA-v9a0      ARFCN-ValueEUTRA-v9a0       OPTIONAL        -- Cond EARFCN-max
-             ]]
-         }
-
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-2  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeMeasRsltList
 (
     LPP_MEAS_RESULT_LIST_STRU          *pstMeasRsltList,
@@ -8723,23 +6774,7 @@ VOS_UINT16 NAS_LPP_EncodeMeasRsltList
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeEcellIdSignalMeasInfo
- Description     : 编码ECID-SignalMeasurementInformation
- Input           : pstEcellIdSignalMeasInfo 需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         ECID-SignalMeasurementInformation ::= SEQUENCE {
-             primaryCellMeasuredResults  MeasuredResultsElement  OPTIONAL,
-             measuredResultsList         MeasuredResultsList,
-             ...
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-2  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeEcellIdSignalMeasInfo
 (
     LPP_ECID_SIGNAL_MEAS_INFO_STRU     *pstEcellIdSignalMeasInfo,
@@ -8778,25 +6813,7 @@ VOS_UINT16 NAS_LPP_EncodeEcellIdSignalMeasInfo
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeEcellIdLocationServerErrorCause
- Description     : 编码ECID-LocationServerErrorCauses
- Input           : pstEcidLocationServerErrorCause  需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         ECID-LocationServerErrorCauses ::= SEQUENCE {
-             cause       ENUMERATED  {   undefined,
-                                         ...
-                                     },
-             ...
-         }
 
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-6  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeEcellIdLocationServerErrorCause
 (
     LPP_ECID_LOCATION_SERVER_ERROR_CAUSE_STRU              *pstEcidLocationServerErrorCause,
@@ -8824,31 +6841,7 @@ VOS_UINT16 NAS_LPP_EncodeEcellIdLocationServerErrorCause
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeGnssTargetDeviceErrorCause
- Description     : 编码pstAgnsTargetDeviceErrorCause
- Input           : pstAgnsTargetDeviceErrorCause  需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         ECID-TargetDeviceErrorCauses ::= SEQUENCE {
-             cause       ENUMERATED {    undefined,
-                                         requestedMeasurementNotAvailable,
-                                         notAllrequestedMeasurementsPossible,
-                                         ...
-                                     },
-             rsrpMeasurementNotPossible              NULL        OPTIONAL,
-             rsrqMeasurementNotPossible              NULL        OPTIONAL,
-             ueRxTxMeasurementNotPossible            NULL        OPTIONAL,
-             ...
-         }
 
-
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-6  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeEcellIdTargetDeviceErrorCause
 (
     LPP_ECID_TARGET_DEVICE_ERROR_CAUSE_STRU                *pstEcidTargetDeviceErrorCause,
@@ -8883,24 +6876,7 @@ VOS_UINT16 NAS_LPP_EncodeEcellIdTargetDeviceErrorCause
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeEcellIdSignalMeasInfo
- Description     : 编码ECID-SignalMeasurementInformation
- Input           : pstEcellIdSignalMeasInfo 需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         ECID-Error ::= CHOICE {
-             locationServerErrorCauses       ECID-LocationServerErrorCauses,
-             targetDeviceErrorCauses         ECID-TargetDeviceErrorCauses,
-             ...
-         }
 
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-2  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeEcellIdError
 (
     LPP_ECID_ERROR_STRU                *pstEcellIdError,
@@ -8948,23 +6924,7 @@ VOS_UINT16 NAS_LPP_EncodeEcellIdError
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeEcellIdProvideLocation
- Description     : 编码ECID-ProvideLocationInformation
- Input           : pstAgnssProvideLocation  需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         ECID-ProvideLocationInformation ::= SEQUENCE {
-             ecid-SignalMeasurementInformation   ECID-SignalMeasurementInformation       OPTIONAL,
-             ecid-Error                          ECID-Error                              OPTIONAL,
-             ...
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-2  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeEcellIdProvideLocation
 (
     LPP_ECID_PROVIDE_LOCATION_INFO_STRU                    *pstEcellIdProvideLocation,
@@ -9008,39 +6968,7 @@ VOS_UINT16 NAS_LPP_EncodeEcellIdProvideLocation
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeEcellIdProvideLocation
- Description     : 编码ECID-ProvideLocationInformation
- Input           : pstAgnssProvideLocation  需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         EPDU-Sequence ::= SEQUENCE (SIZE (1..maxEPDU)) OF EPDU
 
-         maxEPDU INTEGER ::= 16
-
-         EPDU ::= SEQUENCE {
-             ePDU-Identifier         EPDU-Identifier,
-             ePDU-Body               EPDU-Body
-         }
-
-         EPDU-Identifier ::= SEQUENCE {
-             ePDU-ID                 EPDU-ID,
-             ePDU-Name               EPDU-Name       OPTIONAL,
-             ...
-         }
-
-         EPDU-ID ::= INTEGER (1..256)
-
-         EPDU-Name ::= VisibleString (SIZE (1..32))
-
-         EPDU-Body ::= OCTET STRING
-
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-2  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeEpduProvideLocation
 (
     LPP_EPDU_PROVIDE_LOCATION_INFO_STRU                    *pstProvideLocation,
@@ -9060,27 +6988,7 @@ VOS_UINT16 NAS_LPP_EncodeEpduProvideLocation
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeExtProvideLocationInfoR9
- Description     : 编码ProvideLocationInformation-r9-IEs
- Input           : pstExtProLocInfoR9       需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         ProvideLocationInformation-r9-IEs ::= SEQUENCE {
-             commonIEsProvideLocationInformation
-                                             CommonIEsProvideLocationInformation     OPTIONAL,
-             a-gnss-ProvideLocationInformation   A-GNSS-ProvideLocationInformation   OPTIONAL,
-             otdoa-ProvideLocationInformation    OTDOA-ProvideLocationInformation    OPTIONAL,
-             ecid-ProvideLocationInformation     ECID-ProvideLocationInformation     OPTIONAL,
-             epdu-ProvideLocationInformation     EPDU-Sequence                       OPTIONAL,
-             ...
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-2  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeExtProvideLocationInfoR9
 (
     LPP_PROVIDE_LOCATION_INFO_R9_IES_STRU                  *pstExtProLocInfoR9,
@@ -9163,28 +7071,7 @@ VOS_UINT16 NAS_LPP_EncodeExtProvideLocationInfoR9
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeExtProvideLocationInfo
- Description     : 编码LPP_CRITI_EXT_PROVIDE_LOCATION_INFO_STRU
- Input           : pstExtProLocInfo         需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         ProvideLocationInformation ::= SEQUENCE {
-                 criticalExtensions      CHOICE {
-                     c1                      CHOICE {
-                         provideLocationInformation-r9   ProvideLocationInformation-r9-IEs,
-                         spare3 NULL, spare2 NULL, spare1 NULL
-                     },
-                     criticalExtensionsFuture    SEQUENCE {}
-                 }
-             }
 
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-2  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeExtProvideLocationInfo
 (
     LPP_CRITI_EXT_PROVIDE_LOCATION_INFO_STRU               *pstExtProLocInfo,
@@ -9215,28 +7102,7 @@ VOS_UINT16 NAS_LPP_EncodeExtProvideLocationInfo
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeProvideLocInfo
- Description     : 编码LPP_MESSAGE_PROVIDE_LOCATION_INFO_STRU
- Input           : pstProvideCapabilty      需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         ProvideLocationInformation ::= SEQUENCE {
-                 criticalExtensions      CHOICE {
-                     c1                      CHOICE {
-                         provideLocationInformation-r9   ProvideLocationInformation-r9-IEs,
-                         spare3 NULL, spare2 NULL, spare1 NULL
-                     },
-                     criticalExtensionsFuture    SEQUENCE {}
-                 }
-             }
 
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-2  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeProvideLocInfo
 (
     LPP_MESSAGE_PROVIDE_LOCATION_INFO_STRU                 *pstProLocInfo,
@@ -9818,30 +7684,7 @@ VOS_UINT16 NAS_LPP_EncodeErrorMessage
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeLppMsgC1
- Description     : 编码具体的LPP消息
- Input           : pstSupportLppMsgBody     需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         c1                      CHOICE {
-             requestCapabilities         RequestCapabilities,
-             provideCapabilities         ProvideCapabilities,
-             requestAssistanceData       RequestAssistanceData,
-             provideAssistanceData       ProvideAssistanceData,
-             requestLocationInformation  RequestLocationInformation,
-             provideLocationInformation  ProvideLocationInformation,
-             abort                       Abort,
-             error                       Error,
-             spare7 NULL, spare6 NULL, spare5 NULL, spare4 NULL,
-             spare3 NULL, spare2 NULL, spare1 NULL, spare0 NULL
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982      2015-05-8  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeLppMsgC1
 (
     LPP_SUPPORT_MESSAGE_BODY_STRU      *pstSupportLppMsgBody,
@@ -9909,33 +7752,7 @@ VOS_UINT16 NAS_LPP_EncodeLppMsgC1
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeLppMsgBody
- Description     : 需要编码的lpp消息总体结构
- Input           : pstLppMsgBody            需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         LPP-MessageBody ::= CHOICE {
-             c1                      CHOICE {
-                 requestCapabilities         RequestCapabilities,
-                 provideCapabilities         ProvideCapabilities,
-                 requestAssistanceData       RequestAssistanceData,
-                 provideAssistanceData       ProvideAssistanceData,
-                 requestLocationInformation  RequestLocationInformation,
-                 provideLocationInformation  ProvideLocationInformation,
-                 abort                       Abort,
-                 error                       Error,
-                 spare7 NULL, spare6 NULL, spare5 NULL, spare4 NULL,
-                 spare3 NULL, spare2 NULL, spare1 NULL, spare0 NULL
-             },
-             messageClassExtension   SEQUENCE {}
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982      2015-05-8  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeLppMsgBody
 (
     LPP_MESSAGE_BODY_STRU              *pstLppMsgBody,
@@ -9972,27 +7789,7 @@ VOS_UINT16 NAS_LPP_EncodeLppMsgBody
     return NAS_LPP_ENCODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeMessage
- Description     : LPP上行消息编码入口函数
- Input           : pstLppMsg     需要编码的LPP消息
-                   pusBitPos       编码之后码流的总的BIT数
-                   pucEncodeOutMsg 编码之后存放的buf
- Asn             :
 
- LPP-Message ::= SEQUENCE {
-     transactionID           LPP-TransactionID   OPTIONAL,   -- Need ON
-     endTransaction          BOOLEAN,
-     sequenceNumber          SequenceNumber      OPTIONAL,   -- Need ON
-     acknowledgement         Acknowledgement     OPTIONAL,   -- Need ON
-     lpp-MessageBody         LPP-MessageBody     OPTIONAL    -- Need ON
- }
-
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982      2015-04-28  Draft Enact
-*****************************************************************************/
 VOS_UINT16  NAS_LPP_EncodeMessage
 (
     LPP_MESSAGE_STRU                   *pstLppMsg,
@@ -10073,33 +7870,7 @@ VOS_UINT16  NAS_LPP_EncodeMessage
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeLocInfoEllipsoidPoint
- Description     : 编码stEllipsoidPoint
- Input           : pstEllipsoidPoint        需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-    locationCoordinates-r10         CHOICE{
-    ellipsoid-Point-r10     OCTET   STRING,
-    ellipsoidPointWithAltitude-r10  OCTET STRING,
-    ...,
-    ellipsoidPointWithUncertaintyCircle-r11     OCTET STRING,
-    ellipsoidPointWithUncertaintyEllipse-r11    OCTET STRING,
-    ellipsoidPoinWithAltitudeAndUncertaintyEllipsoid-r11    OCTET STRING,
-    ellipsoidArc-r11                            OCTET STRING,
-    polygon-r11                                 OCTET STRING,
-    }
-         Ellipsoid-Point ::= SEQUENCE {
-             latitudeSign                ENUMERATED {north, south},
-             degreesLatitude             INTEGER (0..8388607),           -- 23 bit field
-             degreesLongitude            INTEGER (-8388608..8388607)     -- 24 bit field
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.wangensheng 00324863    2015-10-21  Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_LPP_EncodeLocInfoEllipsoidPoint
 (
     LPP_ELLIPSOID_POINT_STRU           *pstEllipsoidPoint,
@@ -10122,33 +7893,7 @@ VOS_VOID NAS_LPP_EncodeLocInfoEllipsoidPoint
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeLocInfoEllipsoidPointWithUncertaintyCircle
- Description     : 编码stEllipsoidPoint
- Input           : pstEllipsoidPoint        需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-    locationCoordinates-r10         CHOICE{
-    ellipsoid-Point-r10     OCTET   STRING,
-    ellipsoidPointWithAltitude-r10  OCTET STRING,
-    ...,
-    ellipsoidPointWithUncertaintyCircle-r11     OCTET STRING,
-    ellipsoidPointWithUncertaintyEllipse-r11    OCTET STRING,
-    ellipsoidPoinWithAltitudeAndUncertaintyEllipsoid-r11    OCTET STRING,
-    ellipsoidArc-r11                            OCTET STRING,
-    polygon-r11                                 OCTET STRING,
-    }
-         Ellipsoid-Point ::= SEQUENCE {
-             latitudeSign                ENUMERATED {north, south},
-             degreesLatitude             INTEGER (0..8388607),           -- 23 bit field
-             degreesLongitude            INTEGER (-8388608..8388607)     -- 24 bit field
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.wangensheng 00324863    2015-10-21  Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_LPP_EncodeLocInfoEllipsoidPointWithUncertaintyCircle
 (
     LPP_ELLIPSOID_POINT_WITH_UNCERTAINTY_CIRCLE_STRU           *pstEllipsoidPointWithCircle,
@@ -10175,28 +7920,7 @@ VOS_VOID NAS_LPP_EncodeLocInfoEllipsoidPointWithUncertaintyCircle
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeLocInfoEllipsoidPointWithUncertaintyEllipse
- Description     : 编码EllipsoidPointWithUncertaintyEllipse
- Input           : pstEllipsoidPointWithUncertaintyEllipse        需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         EllipsoidPointWithUncertaintyEllipse ::= SEQUENCE {
-             latitudeSign                ENUMERATED {north, south},
-             degreesLatitude             INTEGER (0..8388607),           -- 23 bit field
-             degreesLongitude            INTEGER (-8388608..8388607),    -- 24 bit field
-             uncertaintySemiMajor        INTEGER (0..127),
-             uncertaintySemiMinor        INTEGER (0..127),
-             orientationMajorAxis        INTEGER (0..179),
-             confidence                  INTEGER (0..100)
-         }
 
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.wangensheng 00324863    2015-10-21  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeLocInfoEllipsoidPointWithUncertaintyEllipse
 (
     LPP_ELLIPSOID_POINT_WITH_UNCERTAINTY_ELLIPSE_STRU      *pstEllipsoidPointWithUncertaintyEllipse,
@@ -10265,25 +7989,7 @@ VOS_UINT16 NAS_LPP_EncodeLocInfoEllipsoidPointWithUncertaintyEllipse
 
     return NAS_LPP_ENCODE_SUCC;
 }
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeLocInfoPolygon
- Description     : 编码Polygon
- Input           : pstPolygon               需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         Polygon ::= SEQUENCE (SIZE (3..15)) OF PolygonPoints
 
-         PolygonPoints ::= SEQUENCE {
-             latitudeSign                ENUMERATED {north, south},
-             degreesLatitude             INTEGER (0..8388607),           -- 23 bit field
-             degreesLongitude            INTEGER (-8388608..8388607)     -- 24 bit field
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.lifuxin 00253982    2015-6-2  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeLocInfoPolygon
 (
     LPP_POLYGON_STRU                   *pstPolygon,
@@ -10328,26 +8034,7 @@ VOS_UINT16 NAS_LPP_EncodeLocInfoPolygon
     return NAS_LPP_ENCODE_SUCC;
 
 }
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeLocInfoEllipsoidPointWithaltitude
- Description     : 编码EllipsoidPointWithAltitude
- Input           : pstEllipsoidPointWithAltitude  需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         EllipsoidPointWithAltitude ::= SEQUENCE {
-             latitudeSign                ENUMERATED {north, south},
-             degreesLatitude             INTEGER (0..8388607),           -- 23 bit field
-             degreesLongitude            INTEGER (-8388608..8388607),    -- 24 bit field
-             altitudeDirection           ENUMERATED {height, depth},
-             altitude                    INTEGER (0..32767)              -- 15 bit field
-         }
 
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.wangensheng 00324863    2015-10-21  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeLocInfoEllipsoidPointWithaltitude
 (
     LPP_ELLIPSOID_POINT_WITH_ALTITUDE_STRU                 *pstEllipsoidPointWithAltitude,
@@ -10392,30 +8079,7 @@ VOS_UINT16 NAS_LPP_EncodeLocInfoEllipsoidPointWithaltitude
 
     return NAS_LPP_DECODE_SUCC;
 }
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeLocInfoEllipsoidPointWithAltitudeAndEllipoid
- Description     : 编码EllipsoidPointWithAltitudeAndUncertaintyEllipsoid
- Input           : pstEllipPointAndUncertEllip  需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         EllipsoidPointWithAltitudeAndUncertaintyEllipsoid ::= SEQUENCE {
-             latitudeSign                ENUMERATED {north, south},
-             degreesLatitude             INTEGER (0..8388607),           -- 23 bit field
-             degreesLongitude            INTEGER (-8388608..8388607),    -- 24 bit field
-             altitudeDirection           ENUMERATED {height, depth},
-             altitude                    INTEGER (0..32767),             -- 15 bit field
-             uncertaintySemiMajor        INTEGER (0..127),
-             uncertaintySemiMinor        INTEGER (0..127),
-             orientationMajorAxis        INTEGER (0..179),
-             uncertaintyAltitude         INTEGER (0..127),
-             confidence                  INTEGER (0..100)
-         }
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.wangensheng 00324863    2015-10-26  Draft Enact
-*****************************************************************************/
+
 VOS_UINT16 NAS_LPP_EncodeLocInfoEllipsoidPointWithAltitudeAndEllipoid
 (
     LPP_ELLIPSOID_POINT_WITH_ALTITUDE_AND_UNCERTAINTY_ELLIPSOID_STRU    *pstEllipPointAndUncertEllip,
@@ -10491,29 +8155,7 @@ VOS_UINT16 NAS_LPP_EncodeLocInfoEllipsoidPointWithAltitudeAndEllipoid
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeLocInfoEllipsoidArc
- Description     : 编码EllipsoidArc
- Input           : pstEllipsoidArc          需要编码的LPP消息
-                   pusBitPos                  编码之后码流的总的BIT数
-                   pucEncodeOutMsg            编码之后存放的buf
- Asn             :
-         EllipsoidArc ::= SEQUENCE {
-             latitudeSign                ENUMERATED {north, south},
-             degreesLatitude             INTEGER (0..8388607),           -- 23 bit field
-             degreesLongitude            INTEGER (-8388608..8388607),    -- 24 bit field
-             innerRadius                 INTEGER (0..65535),             -- 16 bit field,
-             uncertaintyRadius           INTEGER (0..127),
-             offsetAngle                 INTEGER (0..179),
-             includedAngle               INTEGER (0..179),
-             confidence                  INTEGER (0..100)
-         }
 
- Output          :
- Return          : VOS_UINT16:  NAS_LPP_CAUSE_ENCODE_CAUSE_ENUM_UINT16
- History         :
-    1.wangensheng 00324863    2015-10-26  Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeLocInfoEllipsoidArc
 (
     LPP_ELLIPSOIDARC_STRU              *pstEllipsoidArc,

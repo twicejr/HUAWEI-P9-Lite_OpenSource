@@ -1,21 +1,5 @@
 
-/******************************************************************************
 
-                  版权所有 (C), 2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : bastet_fastgrab.c
-  版 本 号   : 初稿
-  作    者   : d00173029
-  生成日期   : 2015年09月30日
-  最近修改   :
-  功能描述   : 处理快抢技术Kernel层逻辑
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年09月30日
-    作    者   : d00173029
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -58,19 +42,7 @@ BST_FG_APP_INFO_STRU    g_FastGrabAppInfo[ BST_FG_MAX_APP_NUMBER ];
    6 函数实现
 ******************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : BST_FG_Init
- 功能描述  : 初始化快抢技术相关结构体
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年09月30日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 void BST_FG_Init( void )
 {
     uint16_t        usLooper1;
@@ -89,20 +61,7 @@ void BST_FG_Init( void )
     }
 }
 
-/*****************************************************************************
- 函 数 名  : BST_FG_ProcWXSock
- 功能描述  : 处理微信相关Socket状态变化
- 输入参数  : struct sock *pstSock,  sock结构对象
-             int state              新的socket状态
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年09月30日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 static void BST_FG_ProcWXSock( struct sock *pstSock, int state )
 {
     /**
@@ -129,22 +88,7 @@ static void BST_FG_ProcWXSock( struct sock *pstSock, int state )
         return;
     }
 }
-/*****************************************************************************
- 函 数 名  : BST_FG_ProcWXPacket_DL
- 功能描述  : 处理微信socket下行勾包，仅对push信道起作用
- 输入参数  :
-    struct sock    *pstSock,    sock对象
-    uint8_t*        pData,      收到的下行数据(来自skbuff)
-    uint32_t        ulLength,   承载的最大有效数据长度
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年09月30日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 static uint8_t BST_FG_ProcWXPacket_DL(
     struct sock    *pstSock,
     uint8_t*        pData,
@@ -194,24 +138,7 @@ static uint8_t BST_FG_ProcWXPacket_DL(
     return 0;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_FG_ProcWXPacket_UL
- 功能描述  : 处理微信上行数据勾包
- 输入参数  :
-    struct sock    *pstSock,    sock对象
-    uint8_t*        pData,      收到的下行数据(强制转换msg，iov用户空间数据)
-    uint32_t        ulLength,   承载的最大有效数据长度
- 输出参数  : 无
- 返 回 值  :
-    0               没有关键数据信息
-    1               有关键数据信息
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年09月30日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 static uint8_t BST_FG_ProcWXPacket_UL(
     struct sock    *pstSock,
     uint8_t*        pData,
@@ -292,25 +219,7 @@ static uint8_t BST_FG_ProcWXPacket_UL(
     return 0;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_FG_ProcWXPacket
- 功能描述  : 处理微信的勾包
- 输入参数  :
-    struct sock    *pstSock,    sock对象
-    uint8_t*        pData,      收到的数据
-    uint32_t        ulLength,   承载的最大有效数据长度
-    uint32_t        ulRole      收发方向
- 输出参数  : 无
- 返 回 值  :
-    0               没有关键数据信息
-    1               有关键数据信息
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年09月30日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 static uint8_t BST_FG_ProcWXPacket(
     struct sock    *pstSock,
     uint8_t*        pData,
@@ -332,24 +241,7 @@ static uint8_t BST_FG_ProcWXPacket(
     return ucRtn;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_FG_HookPacket
- 输入参数  : 对外接口，处理外部socket收发数据勾包
-    struct sock    *pstSock,    sock对象
-    uint8_t*        pData,      收到的数据
-    uint32_t        ulLength,   承载的最大有效数据长度
-    uint32_t        ulRole      收发方向
- 输出参数  : 无
- 返 回 值  :
-    0               没有关键数据信息
-    1               有关键数据信息
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年09月30日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 uint8_t BST_FG_HookPacket(
     struct sock    *pstSock,
     uint8_t*        pData,
@@ -396,21 +288,7 @@ uint8_t BST_FG_HookPacket(
     return ucRtn;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_FG_SetHongbaoPushSock
- 功能描述  : 找到并设置微信的PUSH-Sock
- 输入参数  :
-    int32_t     tid_num,    共多少个pid需要匹配
-    int32_t    *tids        pid内容信息列表
- 输出参数  : 无
- 返 回 值  : 匹配出错情况信息
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年09月30日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 static int BST_FG_SetHongbaoPushSock( int32_t tid_num, int32_t *tids )
 {
 	struct task_struct     *pstTask     = NULL;
@@ -527,19 +405,7 @@ static int BST_FG_SetHongbaoPushSock( int32_t tid_num, int32_t *tids )
     return 0;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_FG_SaveKeyword
- 功能描述  : 保存应用匹配关键字信息
- 输入参数  : unsigned long arg  用户空间iov指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年09月30日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 static void BST_FG_SaveKeyword( unsigned long arg )
 {
     void __user                *argp = (void __user *)arg;
@@ -625,19 +491,7 @@ static void BST_FG_SaveKeyword( unsigned long arg )
     spin_unlock_bh( &pstAppIns->stLocker );
 }
 
-/*****************************************************************************
- 函 数 名  : BST_FG_SaveUidInfo
- 功能描述  : 保存对应应用的UID更新信息
- 输入参数  : unsigned long arg  用户空间iov指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年09月30日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 static void BST_FG_SaveUidInfo( unsigned long arg )
 {
     void __user                *argp = (void __user *)arg;
@@ -663,19 +517,7 @@ static void BST_FG_SaveUidInfo( unsigned long arg )
     spin_unlock_bh( &pstAppIns->stLocker );
 }
 
-/*****************************************************************************
- 函 数 名  : BST_FG_SaveTidInfo
- 功能描述  : 获取承载UID中关键PID信息列表
- 输入参数  : unsigned long arg  用户空间iov指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年09月30日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 static void BST_FG_SaveTidInfo( unsigned long arg )
 {
     void __user                *argp = (void __user *)arg;
@@ -736,19 +578,7 @@ static void BST_FG_SaveTidInfo( unsigned long arg )
     spin_unlock_bh( &pstAppIns->stLocker );
 }
 
-/*****************************************************************************
- 函 数 名  : BST_FG_IoCtrl
- 功能描述  : Fast-grab技术对外IoCtrl接口
- 输入参数  : unsigned long arg  用户空间iov指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年09月30日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 void BST_FG_IoCtrl( unsigned long arg )
 {
     void __user        *argp = (void __user *)arg;
@@ -787,20 +617,7 @@ void BST_FG_IoCtrl( unsigned long arg )
     }
 }
 
-/*****************************************************************************
- 函 数 名  : BST_FG_CheckSockUid
- 功能描述  : 处理uid相关的socket状态变化信息
- 输入参数  : struct sock *pstSock,  sock结构对象
-             int state              新的socket状态
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年09月30日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 void BST_FG_CheckSockUid( struct sock *pstSock, int state )
 {
 	uid_t           lUid    = BST_FG_INVALID_UID;

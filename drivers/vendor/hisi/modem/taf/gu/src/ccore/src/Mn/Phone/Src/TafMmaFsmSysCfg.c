@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafMmaFsmSysCfg.c
-  版 本 号   : 初稿
-  作    者   : l00301449
-  生成日期   : 2015年04月07日
-  功能描述   : Sys Cfg状态机
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年04月07日
-    作    者   : l00301449
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -118,25 +103,7 @@ TAF_MMA_RAT_CHANGE_OPER_TYPE_STRU g_astOperTypeFromCLtoCLTab[TAF_MMA_CL_RAT_SUBM
 *****************************************************************************/
 /*lint -save -e958*/
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvSysCfgSetReq_SysCfg_Init
- 功能描述  : 在TAF_MMA_SYS_CFG_STA_INIT状态收到ID_TAF_MMA_SYS_CFG_SET_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月8日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-  2.日    期   : 2015年12月3日
-    作    者   : w00176964
-    修改内容   : DTS2015061601845:增加原始SYSCFG触发的操作类型
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvSysCfgSetReq_SysCfg_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -194,25 +161,7 @@ VOS_UINT32 TAF_MMA_RcvSysCfgSetReq_SysCfg_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvInterSysCfgSetReq_SysCfg_Init
- 功能描述  : 在TAF_MMA_SYS_CFG_STA_INIT状态收到MMA_MMA_INTER_SYS_CFG_SET_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月9日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-  2.日    期   : 2015年12月3日
-    作    者   : w00176964
-    修改内容   : DTS2015061601845:增加原始SYSCFG触发的操作类型
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvInterSysCfgSetReq_SysCfg_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -261,25 +210,7 @@ VOS_UINT32 TAF_MMA_RcvInterSysCfgSetReq_SysCfg_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvAttachReq_SysCfg_Init
- 功能描述  : 在TAF_MMA_SYS_CFG_STA_INIT状态收到TAF_MSG_MMA_ATTACH消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月9日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-  2.日    期   : 2015年12月3日
-    作    者   : w00176964
-    修改内容   : DTS2015061601845:增加原始SYSCFG触发的操作类型
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvAttachReq_SysCfg_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -331,27 +262,7 @@ VOS_UINT32 TAF_MMA_RcvAttachReq_SysCfg_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvDetachReq_SysCfg_Init
- 功能描述  : 在TAF_MMA_SYS_CFG_STA_INIT状态收到ID_TAF_MMA_DETACH_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月9日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-  2.日    期   : 2015年4月13日
-    作    者   : h00313353
-    修改内容   : SysCfg重构
-  3.日    期   : 2015年12月3日
-    作    者   : w00176964
-    修改内容   : DTS2015061601845:增加原始SYSCFG触发的操作类型
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvDetachReq_SysCfg_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -397,22 +308,7 @@ VOS_UINT32 TAF_MMA_RcvDetachReq_SysCfg_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcDetachCnfTriggeredByDetachReq_SysCfg
- 功能描述  : 在TAF_MMA_SYS_CFG_STA_WAIT_DETACH_CNF状态收到ID_MSCC_MMA_DETACH_CNF且入口消息为DETACH REQ的处理
- 输入参数  : MSCC_MMA_DETACH_CNF_STRU           *pstDetachCnf
-             TAF_MMA_CTRL_STRU                  *pstCtrl
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月14日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_ProcDetachCnfTriggeredByDetachReq_SysCfg(
     MSCC_MMA_DETACH_CNF_STRU           *pstDetachCnf,
     TAF_MMA_CTRL_STRU                  *pstCtrl
@@ -493,7 +389,6 @@ VOS_VOID TAF_MMA_ProcDetachCnfTriggeredByDetachReq_SysCfg(
         TAF_SDC_SetCsAttachAllowFlg(VOS_FALSE);
         TAF_SDC_SetPsAttachAllowFlg(VOS_FALSE);
     }
-    /* Modified by w00167002 for L-C互操作项目, 2014-2-19, begin */
 
     /* 已经完成DETACH请求的任务 */
     if (TAF_MMA_SYS_CFG_NONE_SET == (pstSysCfgCtx->usOperType & TAF_MMA_SYS_CFG_DETACH_REQ_REQUIRED))
@@ -519,23 +414,7 @@ VOS_VOID TAF_MMA_ProcDetachCnfTriggeredByDetachReq_SysCfg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcDetachCnfTriggeredBySysCfgReq_SysCfg
- 功能描述  : 在TAF_MMA_SYS_CFG_STA_WAIT_DETACH_CNF状态收到ID_MSCC_MMA_DETACH_CNF且入口消息为SYSCFG REQ的处理
- 输入参数  : MSCC_MMA_DETACH_CNF_STRU           *pstDetachCnf
-             VOS_UINT32                          ulSndAppRsltFlg,
-             TAF_MMA_CTRL_STRU                  *pstCtrl
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月10日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_ProcDetachCnfTriggeredBySysCfgReq_SysCfg(
     MSCC_MMA_DETACH_CNF_STRU           *pstDetachCnf,
     VOS_UINT32                          ulSndAppRsltFlg,
@@ -617,9 +496,7 @@ VOS_VOID TAF_MMA_ProcDetachCnfTriggeredBySysCfgReq_SysCfg(
 
             ucOpID = TAF_MMA_GetAttachOpId();
 
-            /* Modified by b00269685 for L-C互操作项目, 2014-2-17, begin */
             (VOS_VOID)TAF_MMA_SndMsccAttachReq(ucOpID, enMsccAttachType, TAF_MMA_ATTACH_REASON_INITIAL);
-            /* Modified by b00269685 for L-C互操作项目, 2014-2-17, end */
         }
 
         if (VOS_TRUE == ulSndAppRsltFlg)
@@ -657,22 +534,7 @@ VOS_VOID TAF_MMA_ProcDetachCnfTriggeredBySysCfgReq_SysCfg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvDetachCnf_SysCfg_WaitDetachCnf
- 功能描述  : 在TAF_MMA_SYS_CFG_STA_WAIT_DETACH_CNF状态收到ID_MSCC_MMA_DETACH_CNF的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月9日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvDetachCnf_SysCfg_WaitDetachCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -719,21 +581,7 @@ VOS_UINT32 TAF_MMA_RcvDetachCnf_SysCfg_WaitDetachCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTiWaitDetachCnfExpired_SysCfg_WaitDetachCnf
- 功能描述  : 等待MsccDetachCnf中定时器超时消息的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月13日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTiWaitDetachCnfExpired_SysCfg_WaitDetachCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -827,22 +675,7 @@ VOS_UINT32 TAF_MMA_RcvTiWaitDetachCnfExpired_SysCfg_WaitDetachCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvAbortInd_SysCfg_WaitDetachCnf
- 功能描述  : 等待MsccDetachCnf中收到内部Abort消息
- 输入参数  : ulEventType
-            *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月13日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvAbortInd_SysCfg_WaitDetachCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -888,24 +721,7 @@ VOS_UINT32 TAF_MMA_RcvAbortInd_SysCfg_WaitDetachCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvAttachCnf_SysCfg_WaitAttachCnf
- 功能描述  : 在TAF_MMA_SYS_CFG_STA_WAIT_ATTACH_CNF状态收到ID_MSCC_MMA_ATTACH_CNF的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月9日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-  2.日    期   : 2015年4月14日
-    作    者   : h00313353
-    修改内容   : SysCfg重构
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvAttachCnf_SysCfg_WaitAttachCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1018,22 +834,7 @@ VOS_UINT32 TAF_MMA_RcvAttachCnf_SysCfg_WaitAttachCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTiWaitAttachCnfExpired_SysCfg_WaitAttachCnf
- 功能描述  : 等待AttachCnf超时消息的处理
- 输入参数  : VOS_UINT32 ulEventType
-             struct MsgCB *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月14日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTiWaitAttachCnfExpired_SysCfg_WaitAttachCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1053,22 +854,7 @@ VOS_UINT32 TAF_MMA_RcvTiWaitAttachCnfExpired_SysCfg_WaitAttachCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvAbortInd_SysCfg_WaitAttachCnf
- 功能描述  : 等待AttachCnf时收到Abort消息的处理
- 输入参数  : VOS_UINT32 ulEventType
-             struct MsgCB *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月14日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvAbortInd_SysCfg_WaitAttachCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1091,21 +877,7 @@ VOS_UINT32 TAF_MMA_RcvAbortInd_SysCfg_WaitAttachCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_GetRatListBasedOnSysmode_SysCfg
- 功能描述  : 根据sysmode来获取rat的列表
- 输入参数  : TAF_SDC_SYS_MODE_ENUM_UINT8         enstSysCfgPara
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月12日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_GetRatListBasedOnSysmode_SysCfg(
     TAF_SDC_SYS_MODE_ENUM_UINT8         enSysMode,
     TAF_MMA_RAT_ORDER_STRU             *pstRatOrder
@@ -1158,21 +930,7 @@ VOS_VOID TAF_MMA_GetRatListBasedOnSysmode_SysCfg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_IsConfigCMode_SysCfg
- 功能描述  : 收到SYS CNF成功的处理
- 输入参数  : TAF_MMA_SYS_CFG_PARA_STRU          *pstSysCfgPara
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月28日
-    作    者   : h00313353
-    修改内容   : 1X 锁网锁卡
-
-*****************************************************************************/
 VOS_UINT8 TAF_MMA_IsConfigCMode_SysCfg(
     TAF_MMA_RAT_ORDER_STRU             *pstRatOrder
 )
@@ -1196,21 +954,7 @@ VOS_UINT8 TAF_MMA_IsConfigCMode_SysCfg(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcSysCfgCnfSucc_SysCfg
- 功能描述  : 收到SYS CNF成功的处理
- 输入参数  : TAF_MMA_SYS_CFG_PARA_STRU          *pstSysCfgPara
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月20日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_ProcSysCfgCnfSucc_SysCfg(
     TAF_MMA_SYS_CFG_PARA_STRU          *pstSysCfgPara
 )
@@ -1252,7 +996,6 @@ VOS_VOID TAF_MMA_ProcSysCfgCnfSucc_SysCfg(
     }
 
     /* 当前的接入技术，是否在新的接入技术列表中, 不在RAT列表中时，上报 Mode:0,0*/
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-3, begin */
     if ((VOS_FALSE == ulSysModeSupportFlg)
      && (TAF_SDC_SYS_MODE_BUTT != enSysMode))
     {
@@ -1264,39 +1007,17 @@ VOS_VOID TAF_MMA_ProcSysCfgCnfSucc_SysCfg(
         Sta_ModeChangeEventReport(TAF_PH_INFO_NONE_RAT, TAF_SYS_SUBMODE_NONE);
 #endif
 
-        /* Added by l00198894 for V9R1 干扰控制, 2013/08/19, begin */
 #if (FEATURE_MULTI_MODEM == FEATURE_ON)
         /* 给MTC模块上报当前接入模式 */
-        /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, begin */
         TAF_MMA_SndMtcRatModeInd(TAF_SDC_SYS_MODE_BUTT, NAS_UTRANCTRL_GetCurrUtranMode());
-        /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, end */
         TAF_MMA_SndMtcRatCfgInd(&(pstSysCfgPara->stRatOrder));
 #endif
-        /* Added by l00198894 for V9R1 干扰控制, 2013/08/19, end */
 
     }
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvSysCfgCnf_SysCfg_WaitSysCfgCnf
- 功能描述  : 在TAF_MMA_SYS_CFG_STA_WAIT_SYS_CFG_CNF状态收到ID_MSCC_MMA_SYS_CFG_CNF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月9日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-  2.日    期   : 2015年12月3日
-    作    者   : w00176964
-    修改内容   : DTS2015061601845:SYSCFG设置失败时,回退相应的操作
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvSysCfgCnf_SysCfg_WaitSysCfgCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1344,9 +1065,7 @@ VOS_UINT32 TAF_MMA_RcvSysCfgCnf_SysCfg_WaitSysCfgCnf(
         {
             TAF_MMA_NotifyCsServiceChange_SysCfg(usOperType);
 
-            /* Modified by b00269685 for L-C互操作项目, 2014-2-17, begin */
             (VOS_VOID)TAF_MMA_SndMsccAttachReq(TAF_MMA_GetAttachOpId(), enMsccAttachType, TAF_MMA_ATTACH_REASON_INITIAL);
-            /* Modified by b00269685 for L-C互操作项目, 2014-2-17, end */
         }
     }
 
@@ -1390,9 +1109,7 @@ VOS_UINT32 TAF_MMA_RcvSysCfgCnf_SysCfg_WaitSysCfgCnf(
     {
         stCtrl = ((TAF_MMA_SYS_CFG_REQ_STRU *)(pstEntryMsg->aucEntryMsgBuffer))->stCtrl;
 
-        /* Modified by w00167002 for L-C互操作项目, 2014-2-14, begin */
         TAF_MMA_SndSysCfgSetCnf(&stCtrl, enErrorCode);
-        /* Modified by w00167002 for L-C互操作项目, 2014-2-14, end */
     }
 
     /* 发送状态机退出结果消息 */
@@ -1411,22 +1128,7 @@ VOS_UINT32 TAF_MMA_RcvSysCfgCnf_SysCfg_WaitSysCfgCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTiWaitSysCfgCnfExpired_SysCfg_WaitSysCfgCnf
- 功能描述  : 等待SysCfgCnf超时消息的处理
- 输入参数  : VOS_UINT32 ulEventType
-             struct MsgCB *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月14日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTiWaitSysCfgCnfExpired_SysCfg_WaitSysCfgCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1456,22 +1158,7 @@ VOS_UINT32 TAF_MMA_RcvTiWaitSysCfgCnfExpired_SysCfg_WaitSysCfgCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvAbortInd_SysCfg_WaitSysCfgCnf
- 功能描述  : 等待SysCfg时收到Abort消息的处理
- 输入参数  : VOS_UINT32 ulEventType
-             struct MsgCB *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月14日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvAbortInd_SysCfg_WaitSysCfgCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1503,21 +1190,7 @@ VOS_UINT32 TAF_MMA_RcvAbortInd_SysCfg_WaitSysCfgCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcInterSysCfgCnfFail_SysCfg_WaitSysCfgCnf
- 功能描述  : 内部触发的SYSCFG设置失败的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月9日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_ProcInterSysCfgCnfFail_SysCfg(VOS_VOID)
 {
     /* TI_TAF_MMA_PERIOD_TRYING_RAT_BALANCING定时器正在运行，返回 */
@@ -1534,24 +1207,7 @@ VOS_VOID TAF_MMA_ProcInterSysCfgCnfFail_SysCfg(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_GetOperTypeFromGULToCL
- 功能描述  : 获取RAT设置从GUL到CL操作类型
- 输入参数  : enLastGULRatType -- 上次GUL RAT类型
-             enCurrCLRatType  -- 当前CL RAT类型
 
- 输出参数  : 无
- 返 回 值  : TAF_MMA_MODE_CHANGE_OPER_TYPE_STRU -- 操作类型
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年4月9日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_MMA_RAT_CHANGE_OPER_TYPE_STRU *TAF_MMA_GetOperTypeFromGULToCL(
     TAF_MMA_GUL_RAT_SUBMODE_TYPE_ENUM_UINT8     enLastGULSubmodeType,
     TAF_MMA_CL_RAT_SUBMODE_TYPE_ENUM_UINT8      enCurrCLSubmodeType
@@ -1560,24 +1216,7 @@ TAF_MMA_RAT_CHANGE_OPER_TYPE_STRU *TAF_MMA_GetOperTypeFromGULToCL(
     return &(g_astOperTypeFromGULToCLTab[enLastGULSubmodeType][enCurrCLSubmodeType]);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_GetOperTypeFromCLToGUL
- 功能描述  : 获取RAT设置从CL到GUL操作类型
- 输入参数  : enLastCLRatType  -- CL RAT类型
-             enCurrGULRatType -- GUL RAT类型
 
- 输出参数  : 无
- 返 回 值  : TAF_MMA_RAT_CHANGE_OPER_TYPE_STRU -- 操作类型
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年4月9日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_MMA_RAT_CHANGE_OPER_TYPE_STRU *TAF_MMA_GetOperTypeFromCLToGUL(
     TAF_MMA_CL_RAT_SUBMODE_TYPE_ENUM_UINT8      enLastCLSubModeType,
     TAF_MMA_GUL_RAT_SUBMODE_TYPE_ENUM_UINT8     enCurrGULSubModeType
@@ -1586,24 +1225,7 @@ TAF_MMA_RAT_CHANGE_OPER_TYPE_STRU *TAF_MMA_GetOperTypeFromCLToGUL(
     return &(g_astOperTypeFromCLToGULTab[enLastCLSubModeType][enCurrGULSubModeType]);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_GetOperTypeFromCLToCL
- 功能描述  : 获取RAT设置从CL到GUL操作类型
- 输入参数  : enLastCLRatType -- 上次CL RAT类型
-             enCurrCLRatType -- 当前CL RAT类型
 
- 输出参数  : 无
- 返 回 值  : TAF_MMA_MODE_CHANGE_OPER_TYPE_STRU -- 操作类型
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年4月9日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_MMA_RAT_CHANGE_OPER_TYPE_STRU *TAF_MMA_GetOperTypeFromCLToCL(
     TAF_MMA_CL_RAT_SUBMODE_TYPE_ENUM_UINT8     enLastCLSubModeType,
     TAF_MMA_CL_RAT_SUBMODE_TYPE_ENUM_UINT8     enCurrCLSubModeType
@@ -1614,23 +1236,7 @@ TAF_MMA_RAT_CHANGE_OPER_TYPE_STRU *TAF_MMA_GetOperTypeFromCLToCL(
 
 /* 移当前函数到TafMmaComFunc.c文件 */
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_CovertGULRatOrderToGULSubMode
- 功能描述  : 转换GUL RAT order到GUL子模式
- 输入参数  : pstRatOrder -- RAT顺序
 
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  -- RAT发生变化
-             VOS_FALSE -- RAT未发生变化
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年4月9日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_MMA_GUL_RAT_SUBMODE_TYPE_ENUM_UINT8 TAF_MMA_CovertGULRatOrderToGULSubMode(
     TAF_MMA_RAT_ORDER_STRU             *pstRatOrder
 )
@@ -1685,23 +1291,7 @@ TAF_MMA_GUL_RAT_SUBMODE_TYPE_ENUM_UINT8 TAF_MMA_CovertGULRatOrderToGULSubMode(
 }
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- 函 数 名  : TAF_MMA_CovertCLRatOrderToCLSubMode
- 功能描述  : 转换CL RAT order到CL子模式
- 输入参数  : pstRatOrder -- RAT顺序
 
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  -- RAT发生变化
-             VOS_FALSE -- RAT未发生变化
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年4月9日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_MMA_CL_RAT_SUBMODE_TYPE_ENUM_UINT8 TAF_MMA_CovertCLRatOrderToCLSubMode(
     TAF_MMA_RAT_ORDER_STRU             *pstRatOrder
 )
@@ -1758,22 +1348,7 @@ TAF_MMA_CL_RAT_SUBMODE_TYPE_ENUM_UINT8 TAF_MMA_CovertCLRatOrderToCLSubMode(
 
 /* 移当前函数到TafMmaComFunc.c文件 */
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_CovertSrvDomainToSysCfgOperType
- 功能描述  : 转服务域到操作类型
- 输入参数  : enRatModeChange -- RAT模式
 
- 输出参数  : pstRatOperType -- 返回RAT操作类型
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年4月9日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_MMA_SYS_CFG_OPER_TYPE TAF_MMA_CovertSrvDomainToSysCfgOperType(VOS_VOID)
 {
     TAF_MMA_SERVICE_DOMAIN_ENUM_UINT8   enSrvDomain;
@@ -1817,22 +1392,7 @@ TAF_MMA_SYS_CFG_OPER_TYPE TAF_MMA_CovertSrvDomainToSysCfgOperType(VOS_VOID)
     return usSysCfgOperType;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_CovertRatOperTypeToSysCfgOperType
- 功能描述  : 根据RAT触发的操作类型转换为系统配置操作类型
- 输入参数  : enRatModeChange -- RAT模式
 
- 输出参数  : pstRatOperType -- 返回RAT操作类型
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年4月9日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_MMA_SYS_CFG_OPER_TYPE TAF_MMA_CovertRatOperTypeToSysCfgOperType(
     TAF_MMA_RAT_MODE_TYPE_ENUM_UINT8    enRatModeChange,
     TAF_MMA_RAT_CHANGE_OPER_TYPE_STRU  *pstRatOperType
@@ -1900,23 +1460,7 @@ TAF_MMA_SYS_CFG_OPER_TYPE TAF_MMA_CovertRatOperTypeToSysCfgOperType(
     return usSysCfgOperType;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_GetOperTypeTriggerredByRatChanges
- 功能描述  : 返回SYSCFG的操作类型
- 输入参数  : pstSysCfg  -- 当前系统配置参数
-             pstLastRat -- 上次设置的RAT
 
- 输出参数  : penRatType -- 返回RAT类型
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年4月9日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_MMA_SYS_CFG_OPER_TYPE TAF_MMA_GetOperTypeTriggerredByRatChanges(
     TAF_MMA_RAT_ORDER_STRU             *pstCurrRat,
     TAF_MMA_RAT_ORDER_STRU             *pstLastRat,
@@ -1988,23 +1532,7 @@ TAF_MMA_SYS_CFG_OPER_TYPE TAF_MMA_GetOperTypeTriggerredByRatChanges(
     return usOperType;
 }
 
-/*****************************************************************************
- 函 数 名  :TAF_MMA_IsUserSettedGuBandChanged_SysCfg
- 功能描述  :判断用户设置syscfg的GU频段参数与原设置是否发生了改变
- 输入参数  :pstGuBand     - 用户设置的syscfg GU频段
-            pstOrigGuBand - 原syscfg 设置的GU频段
- 输出参数  :无
- 返 回 值  :VOS_TRUE  - 用户设置syscfg的GU频段与原设置发生改变
-            VOS_FALSE - 用户设置syscfg的GU频段与原设置未发生改变
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月15日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_IsUserSettedGuBandChanged_SysCfg(
     TAF_USER_SET_PREF_BAND64            *pstGuBand,
     TAF_MMA_USER_BAND_SET_UN            *pstOrigGuBand
@@ -2028,23 +1556,7 @@ VOS_UINT32 TAF_MMA_IsUserSettedGuBandChanged_SysCfg(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  :TAF_MMA_IsUserRoamSettingChange_SysCfg
- 功能描述  :判断用户设置syscfg中漫游设置改变
- 输入参数  :ucCurrRoam - sys cfg设置的漫游值
-            ucLastRoam - 上次用户设置的漫游值
- 输出参数  :无
- 返 回 值  :VOS_TRUE  - 漫游值改变
-            VOS_FALSE - 漫游值未改变
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月11日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_IsUserRoamSettingChange_SysCfg(
     TAF_MMA_ROAM_MODE_ENUM_UINT8        enCurrRoam,
     TAF_MMA_ROAM_MODE_ENUM_UINT8        enLastRoam
@@ -2088,27 +1600,7 @@ VOS_UINT32 TAF_MMA_IsUserRoamSettingChange_SysCfg(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_GetOperTypeTriggerredBySrvDomain
- 功能描述  : 系统配置命令设置处理服务域参数预处理
- 输入参数  : enSrvDomain -- 服务域
 
- 输出参数  : penDetachReason -- 如果需要detach操作，返回detach原因
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2008年3月21日
-    作    者   : luojian id:107747
-    修改内容   : 新生成函数
-  2.日    期   : 2015年4月9日
-    作    者   : h00313353
-    修改内容   : SrvDomain宏定义改为枚举
-  3.日    期   : 2015年4月11日
-    作    者   : y00245242
-    修改内容   : iteration 13开发
-*****************************************************************************/
 TAF_MMA_SYS_CFG_OPER_TYPE TAF_MMA_GetOperTypeTriggerredBySrvDomain(
     TAF_MMA_SERVICE_DOMAIN_ENUM_UINT8    enSrvDomain,
     TAF_MMA_DETACH_CAUSE_ENUM_UINT8     *penDetachReason
@@ -2202,22 +1694,7 @@ TAF_MMA_SYS_CFG_OPER_TYPE TAF_MMA_GetOperTypeTriggerredBySrvDomain(
     return usSrvDomainSetFlg;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_IsUserSrvDomainSettingChange_SysCfg
- 功能描述  : check service domain setting change
- 输入参数  : ucCurrSrvDomain -- 当前用户设置的服务域
-             ucLastSrvDomain -- 上次用户设置的服务域
- 输出参数  : VOS_VOID
- 返 回 值  : VOS_TRUE  -- 服务域发生变化
-             VOS_FALSE -- 服务域未发生变化
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月11日
-    作    者   : y00245242
-    修改内容   : iteration 13开发
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_IsUserSrvDomainSettingChange_SysCfg(
     TAF_MMA_SERVICE_DOMAIN_ENUM_UINT8     ucCurrSrvDomain,
     TAF_MMA_SERVICE_DOMAIN_ENUM_UINT8     ucLastSrvDomain
@@ -2236,42 +1713,10 @@ VOS_UINT32 TAF_MMA_IsUserSrvDomainSettingChange_SysCfg(
 
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : TAF_MMA_NeedDetachAttach_CampOnGUMode
- 功能描述  : 是否从当前驻留GU模设置为Lonly或只有L的频段,
-              或从当前有L模式，设置为没有L模式
- 输入参数  : pstSysCfgPara 当前SYSCFG设置
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:GU to L Only;VOS_FALSE:非GU to L only
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月15日
-    作    者   : l00130025
-    修改内容   : DTS2012041002516: SYSCFG触发L和GU模之间模式切换时，
-                 需要发起Detach和Attach操作
-  2.日    期   : 2012年6月15日
-    作    者   : l00130025
-    修改内容   : DTS2012061502460:L only 到其他模式，或其他模式到L only需要发起Detach/Attach
-  3.日    期   : 2013年4月3日
-    作    者   : z00161729
-    修改内容   : 主动上报AT命令控制下移至C核及mma和mscc接口调整
-  4.日    期   : 2014年2月13日
-    作    者   : w00167002
-    修改内容   : L-C互操作项目:调整SYSCFG的设置查询接口
-  5.日    期   : 2015年4月10日
-    作    者   : h00313353
-    修改内容   : SysCfg重构
-  6.日    期   : 2015年4月11日
-    作    者   : y00245242
-    修改内容   : iteration 13开发
-*****************************************************************************/
-/* Modified by w00167002 for L-C互操作项目, 2014-2-13, begin */
 VOS_UINT32  TAF_MMA_NeedDetachAttach_CampOnGUMode(
     TAF_MMA_SYS_CFG_PARA_STRU          *pstSysCfgPara
 )
-/* Modified by w00167002 for L-C互操作项目, 2014-2-13, end */
 {
     VOS_UINT32                          ulPrefBand;
     VOS_UINT32                          ulNeedAttachDetachFlag;
@@ -2279,11 +1724,9 @@ VOS_UINT32  TAF_MMA_NeedDetachAttach_CampOnGUMode(
     VOS_UINT32                          ulOldRatLteExistFlag;
     TAF_USER_SET_PREF_BAND64           *pstOldLteBand = VOS_NULL_PTR;
 
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-3, begin */
     TAF_SDC_SYS_MODE_ENUM_UINT8         enCurRatType;
 
     enCurRatType = TAF_SDC_GetSysMode();
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-3, end */
 
     ulPrefBand             = 0;
     ulNeedAttachDetachFlag = VOS_FALSE;
@@ -2295,10 +1738,8 @@ VOS_UINT32  TAF_MMA_NeedDetachAttach_CampOnGUMode(
     /* 获取用户设置的LBand */
     TAF_MMA_ConvertLteFrequencyBand(&pstSysCfgPara->stLBand);
 
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-3, begin */
     if ((TAF_SDC_SYS_MODE_WCDMA == enCurRatType)
      || (TAF_SDC_SYS_MODE_GSM == enCurRatType))
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-3, end */
     {
         /* 当前驻留GU模，新设置的模式为L only */
         if ((VOS_TRUE == MN_MMA_IsLOnlyMode(&(pstSysCfgPara->stRatOrder)))
@@ -2347,41 +1788,10 @@ VOS_UINT32  TAF_MMA_NeedDetachAttach_CampOnGUMode(
     return ulNeedAttachDetachFlag;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_NeedDetachAttach_CampOnLMode
- 功能描述  : 是否从当前驻留L模设置为GU only或只有GU的频段
- 输入参数  : pstSysCfgPara 当前SYSCFG设置
- 输出参数  : 无
- 返 回 值  : VOS_TRUE: L to GU Only;VOS_FALSE:非L to GU Only
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月15日
-    作    者   : l00130025
-    修改内容   : DTS2012041002516: SYSCFG触发L和GU模之间模式切换时，
-                 需要发起Detach和Attach操作
-  2.日    期   : 2012年6月15日
-    作    者   : l00130025
-    修改内容   : DTS2012061502460:L only 到其他模式，或其他模式到L only需要发起Detach/Attach
-  3.日    期   : 2013年4月3日
-    作    者   : z00161729
-    修改内容   : 主动上报AT命令控制下移至C核及mma和mscc接口调整
-  4.日    期   : 2014年2月13日
-    作    者   : w00167002
-    修改内容   : L-C互操作项目:调整SYSCFG的设置查询接口
-  5.日    期   : 2015年4月10日
-    作    者   : h00313353
-    修改内容   : SysCfg重构
-  6.日    期   : 2015年4月11日
-    作    者   : y00245242
-    修改内容   : iteration 13开发
-*****************************************************************************/
-/* Modified by w00167002 for L-C互操作项目, 2014-2-13, begin */
 VOS_UINT32  TAF_MMA_NeedDetachAttach_CampOnLMode(
     TAF_MMA_SYS_CFG_PARA_STRU          *pstSysCfgPara
 )
-/* Modified by w00167002 for L-C互操作项目, 2014-2-13, end */
 {
     VOS_UINT32                          ulDetachAttachFlag;
     VOS_UINT32                          ulOldRatOnlyLteFlag;
@@ -2389,11 +1799,9 @@ VOS_UINT32  TAF_MMA_NeedDetachAttach_CampOnLMode(
     VOS_UINT32                          ulPrefBand;
     TAF_MMA_SYSCFG_USER_SET_BAND_STRU  *pstOldUserSetBand = VOS_NULL_PTR;
 
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-3, begin */
     TAF_SDC_SYS_MODE_ENUM_UINT8          enCurRatType;
 
     enCurRatType  = TAF_SDC_GetSysMode();
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-3, end */
 
     ulDetachAttachFlag  = VOS_FALSE;
 
@@ -2406,9 +1814,7 @@ VOS_UINT32  TAF_MMA_NeedDetachAttach_CampOnLMode(
 
     pstOldUserSetBand = TAF_MMA_GetSyscfgUserSetBandAddr();
 
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-3, begin */
     if (TAF_SDC_SYS_MODE_LTE == enCurRatType)
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-3, end */
     {
         /* 目标模式设置为GU时，需要发起Detach/Attach */
         if ((VOS_FALSE == MN_MMA_IsSpecRatInRatList(TAF_MMA_RAT_LTE, &(pstSysCfgPara->stRatOrder)))
@@ -2456,28 +1862,7 @@ VOS_UINT32  TAF_MMA_NeedDetachAttach_CampOnLMode(
     return ulDetachAttachFlag;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_UpdateRatTrigedAttachPara
- 功能描述  : 根据RAT变化,更新服务域的Attach类型和SetFlag
- 输入参数  : ucNewMsClassType,新设置的Ms类型
- 输出参数  : pusSetFlg     当前SYSCFG设置触发的设置标志
-             pucAttachType 当前SYSCFG设置触发的Attach类型
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月15日
-    作    者   : l00130025
-    修改内容   : DTS2012041002516: SYSCFG触发L和GU模之间模式切换时，
-                 需要发起Detach和Attach操作
-  2.日    期   : 2014年3月25日
-    作    者   : s00217060
-    修改内容   : DTS2014032101534:at^cgcatt=0,1,再设SYSCFG由LUG变为UG时，不需要attach ps
-  3.日    期   : 2015年4月11日
-    作    者   : y00245242
-    修改内容   : iteration 13开发
-*****************************************************************************/
 TAF_MMA_SYS_CFG_OPER_TYPE TAF_MMA_UpdateRatTrigedAttachPara(
     TAF_PH_MS_CLASS_TYPE                ucNewMsClassType
 )
@@ -2569,35 +1954,10 @@ TAF_MMA_SYS_CFG_OPER_TYPE TAF_MMA_UpdateRatTrigedAttachPara(
     return usOperType;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_UpdateRatTrigedSrvDomianPara
- 功能描述  : 根据RAT变化,更新服务域的Detach,Attach类型和SetFlag
- 输入参数  : pstSysCfgPara 当前SYSCFG设置
- 输出参数  : 无
- 返 回 值  : TAF_MMA_SYS_CFG_OPER_TYPE --返回操作类型
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月15日
-    作    者   : l00130025
-    修改内容   : DTS2012041002516: SYSCFG触发L和GU模之间模式切换时，
-                 需要发起Detach和Attach操作
-  2.日    期   : 2012年6月15日
-    作    者   : l00130025
-    修改内容   : DTS2012061502460:L only 到其他模式，或其他模式到L only需要发起Detach/Attach
-  3.日    期   : 2014年2月13日
-    作    者   : w00167002
-    修改内容   : L-C互操作项目:调整SYSCFG的设置查询接口
-  4.日    期   : 2015年4月11日
-    作    者   : y00245242
-    修改内容   : iteration 13开发
-*****************************************************************************/
-/* Modified by w00167002 for L-C互操作项目, 2014-2-13, begin */
 TAF_MMA_SYS_CFG_OPER_TYPE TAF_MMA_UpdateRatTrigedSrvDomianPara(
     TAF_MMA_SYS_CFG_PARA_STRU          *pstSysCfgPara
 )
-/* Modified by w00167002 for L-C互操作项目, 2014-2-13, end */
 {
     TAF_MMA_SYS_CFG_OPER_TYPE          usOperType;
 
@@ -2642,22 +2002,7 @@ TAF_MMA_SYS_CFG_OPER_TYPE TAF_MMA_UpdateRatTrigedSrvDomianPara(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_GetSysCfgOperType
- 功能描述  : 返回SYSCFG的操作类型
- 输入参数  : TAF_MMA_SYS_CFG_PARA_STRU          *pstSysCfg
- 输出参数  : TAF_MMA_SYS_CFG_OPER_TYPE          *pusOperType,
-             TAF_MMA_DETACH_CAUSE_ENUM_UINT8    *penDetachReason
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月8日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_GetSysCfgOperType_SysCfg(
     TAF_MMA_SYS_CFG_PARA_STRU          *pstSysCfg,
     TAF_MMA_SYS_CFG_OPER_TYPE          *pusOperType,
@@ -2757,21 +2102,7 @@ VOS_VOID TAF_MMA_GetSysCfgOperType_SysCfg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_UpdatePrioAccessMode
- 功能描述  : 更新接入优先级
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月11日
-    作    者   : y00245242
-    修改内容   : iteration 13开发
-*****************************************************************************/
 VOS_VOID TAF_MMA_UpdatePrioAccessMode(
     TAF_MMA_SYS_CFG_PARA_STRU                              *pstCurrSysCfg,
     TAF_MMA_LAST_SETTED_SYSCFG_SET_STRU                    *pstLastSysCfg
@@ -2801,24 +2132,7 @@ VOS_VOID TAF_MMA_UpdatePrioAccessMode(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_GetDetachOperType_SysCfg
- 功能描述  : 获取Detach操作类型
- 输入参数  : enDetachDomain -- detach域
 
- 输出参数  : VOS_UINT16                                             *pusOperType,
-             NAS_MSCC_PIF_DETACH_TYPE_ENUM_UINT32                   *penDetachType
-
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年4月13日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_MMA_SYS_CFG_OPER_TYPE TAF_MMA_GetDetachOperType_SysCfg(
     TAF_MMA_SERVICE_DOMAIN_ENUM_UINT8                       enDetachDomain
 )
@@ -2838,21 +2152,7 @@ TAF_MMA_SYS_CFG_OPER_TYPE TAF_MMA_GetDetachOperType_SysCfg(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_GetAttachOperType_SysCfg
- 功能描述  : 根据服务域返回attach类型和操作类型
- 输入参数  : TAF_MMA_ATTACH_TYPE_ENUM_UINT8                          enAttachType,
- 输出参数  : TAF_MMA_SYS_CFG_OPER_TYPE                              *pusOperType
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月18日
-    作    者   : l301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_GetAttachOperType_SysCfg(
     TAF_MMA_ATTACH_TYPE_ENUM_UINT8                          enAttachType,
     TAF_MMA_SYS_CFG_OPER_TYPE                              *pusOperType
@@ -2877,24 +2177,7 @@ VOS_VOID TAF_MMA_GetAttachOperType_SysCfg(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_WriteAccessModeToNvim
- 功能描述  : 将AccessMode写入NVIM
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月20日
-    作    者   : z40661
-    修改内容   : 新生成函数
-  2.日    期   : 2013年05月20日
-    作    者   : m00217266
-    修改内容   : nv项拆分
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_WritePrioAccessModeToNvim(VOS_VOID)
 {
     NAS_MMA_NVIM_ACCESS_MODE_STRU                            stAccessMode;
@@ -2928,23 +2211,7 @@ VOS_VOID TAF_MMA_WritePrioAccessModeToNvim(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_GetAttachRsltFromServiceStatus_SysCfg
- 功能描述  : 根据AttachType和服务域状态判断attach结果
- 输入参数  : enCsSrvStatus:Cs域状态
-             enPsSrvStatus:Ps域状态
- 输出参数  : *penAttachRslt:Attach结果
-             *pusPhoneError:错误类型
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月15日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_GetAttachRsltFromServiceStatus_SysCfg(
     TAF_SDC_SERVICE_STATUS_ENUM_UINT8                       enCsSrvStatus,
     TAF_SDC_SERVICE_STATUS_ENUM_UINT8                       enPsSrvStatus,
@@ -2994,23 +2261,7 @@ VOS_VOID TAF_MMA_GetAttachRsltFromServiceStatus_SysCfg(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcSysCfgOper_SysCfg
- 功能描述  : 根据操作类型执行操作并返回结果
- 输入参数  : TAF_MMA_SYS_CFG_PARA_STRU          *pstSysCfg
-             TAF_MMA_SYS_CFG_OPER_TYPE           usOperType
-             TAF_MMA_DETACH_CAUSE_ENUM_UINT8     enDetachReason
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月10日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_ProcSysCfgOper_SysCfg(
     TAF_MMA_SYS_CFG_PARA_STRU          *pstSysCfg,
     TAF_MMA_SYS_CFG_OPER_TYPE           usOperType,
@@ -3051,9 +2302,7 @@ VOS_VOID TAF_MMA_ProcSysCfgOper_SysCfg(
     {
         if (VOS_OK == TAF_MMA_ConvertDetachTypeToMscc(enDetachType, &enMsccDetachType))
         {
-            /* Modified by s00246516 for L-C互操作项目, 2014-02-14, Begin */
             (VOS_VOID)TAF_MMA_SndMsccDetachReq(STA_OPID_INSIDE, enMsccDetachType, enDetachReason);
-            /* Modified by s00246516 for L-C互操作项目, 2014-02-14, End */
 
             /* 启动保护定时器 */
             TAF_MMA_StartTimer(TI_TAF_MMA_WAIT_MSCC_DETACH_CNF, TI_TAF_MMA_WAIT_MSCC_SYSCFG_DETACH_CNF_LEN);
@@ -3075,9 +2324,7 @@ VOS_VOID TAF_MMA_ProcSysCfgOper_SysCfg(
             MMA_ChangeSrv2Class(pstSysCfg->enSrvDomain, &ucClassType);
             TAF_MMA_SndMsccModeChangeReq((NAS_MSCC_PIF_MS_MODE_ENUM_UINT32)ucClassType);
 
-            /* Modified by b00269685 for L-C互操作项目, 2014-2-17, begin */
             (VOS_VOID)TAF_MMA_SndMsccAttachReq(TAF_MMA_GetAttachOpId(), enMsccAttachType, TAF_MMA_ATTACH_REASON_INITIAL);
-            /* Modified by b00269685 for L-C互操作项目, 2014-2-17, end */
         }
     }
     else
@@ -3130,21 +2377,7 @@ VOS_VOID TAF_MMA_ProcSysCfgOper_SysCfg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_GetCurrFsmEntryMsgId_SysCfg
- 功能描述  : 获取SYSCFG状态机的入口消息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月10日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_GetCurrFsmEntryMsgId_SysCfg(VOS_VOID)
 {
     TAF_MMA_ENTRY_MSG_STRU             *pstEntryMsg    = VOS_NULL_PTR;
@@ -3158,21 +2391,7 @@ VOS_UINT32 TAF_MMA_GetCurrFsmEntryMsgId_SysCfg(VOS_VOID)
     return ulMsgId;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_GetCsStateFromSyscfgOperType_SysCfg
- 功能描述  : 根据SYSCFG操作类型返回CS域状态
- 输入参数  : TAF_MMA_SYS_CFG_OPER_TYPE           usOperType
- 输出参数  : 无
- 返 回 值  : TAF_CS_SERVICE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月11日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_CS_SERVICE_ENUM_UINT32  TAF_MMA_GetCsStateFromSyscfgOperType_SysCfg(
     TAF_MMA_SYS_CFG_OPER_TYPE           usOperType
 )
@@ -3202,21 +2421,7 @@ TAF_CS_SERVICE_ENUM_UINT32  TAF_MMA_GetCsStateFromSyscfgOperType_SysCfg(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_GetDetachTypeFromSysCfgOperType_SysCfg
- 功能描述  : 根据操作类型返回detach的类型
- 输入参数  : TAF_MMA_SYS_CFG_OPER_TYPE           usOperType
- 输出参数  : 无
- 返 回 值  : TAF_MMA_DETACH_TYPE_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月10日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_MMA_DETACH_TYPE_ENUM_UINT8 TAF_MMA_GetDetachTypeFromSysCfgOperType_SysCfg(
     TAF_MMA_SYS_CFG_OPER_TYPE           usOperType
 )
@@ -3240,21 +2445,7 @@ TAF_MMA_DETACH_TYPE_ENUM_UINT8 TAF_MMA_GetDetachTypeFromSysCfgOperType_SysCfg(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_GetAttachTypeFromSysCfgOperType_SysCfg
- 功能描述  : 根据操作类型返回attach的类型
- 输入参数  : TAF_MMA_SYS_CFG_OPER_TYPE           usOperType
- 输出参数  : 无
- 返 回 值  : TAF_MMA_ATTACH_TYPE_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月10日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_MMA_ATTACH_TYPE_ENUM_UINT8 TAF_MMA_GetAttachTypeFromSysCfgOperType_SysCfg(
     TAF_MMA_SYS_CFG_OPER_TYPE           usOperType
 )
@@ -3278,21 +2469,7 @@ TAF_MMA_ATTACH_TYPE_ENUM_UINT8 TAF_MMA_GetAttachTypeFromSysCfgOperType_SysCfg(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_IsOnlyRoamParaChangeFlgFromSysCfgOperType_SysCfg
- 功能描述  : 根据操作类型获取是否只有漫游参数改变标志
- 输入参数  : TAF_MMA_SYS_CFG_OPER_TYPE           usOperType
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月16日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 TAF_MMA_IsOnlyRoamParaChangeFlgFromSysCfgOperType_SysCfg(
     TAF_MMA_SYS_CFG_OPER_TYPE           usOperType
 )
@@ -3307,21 +2484,7 @@ VOS_UINT8 TAF_MMA_IsOnlyRoamParaChangeFlgFromSysCfgOperType_SysCfg(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_IsNeedAttachPsFlgFromSysCfgOperType_SysCfg
- 功能描述  : 根据操作类型获取是否只有漫游参数改变标志
- 输入参数  : TAF_MMA_SYS_CFG_OPER_TYPE           usOperType
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月16日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 TAF_MMA_IsNeedAttachPsFlgFromSysCfgOperType_SysCfg(
     TAF_MMA_SYS_CFG_OPER_TYPE           usOperType
 )
@@ -3334,21 +2497,7 @@ VOS_UINT8 TAF_MMA_IsNeedAttachPsFlgFromSysCfgOperType_SysCfg(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_NotifyCsServiceChange_SysCfg
- 功能描述  : SYSCFG状态机中通知CS服务改变
- 输入参数  : TAF_MMA_SYS_CFG_OPER_TYPE           usOperType
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月16日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_NotifyCsServiceChange_SysCfg(
     TAF_MMA_SYS_CFG_OPER_TYPE           usOperType
 )
@@ -3366,23 +2515,7 @@ VOS_VOID TAF_MMA_NotifyCsServiceChange_SysCfg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_IsLteExistInBothCurSysCfgAndOldSysCfg
- 功能描述  : 当前的与上次的系统配置中LTE都存在
- 输入参数  : pstCurSysCfg -- 当前的系统RAT配置
-             pstOldSyscfg -- 上次的系统RAT配置
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  -- LTE在当前的与上次的都设置了
-             VOS_FALSE -- LTE在当前的与上次的设置没有同时存在
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月4日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_IsLteExistInBothCurSysCfgAndOldSysCfg(
     TAF_MMA_SYS_CFG_PARA_STRU           *pstCurSysCfg,
     TAF_MMA_LAST_SETTED_SYSCFG_SET_STRU *pstOldSyscfg
@@ -3401,23 +2534,7 @@ VOS_UINT32 TAF_MMA_IsLteExistInBothCurSysCfgAndOldSysCfg(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  :TAF_MMA_IsNeedAttachAfterSyscfgSet_SysCfg
- 功能描述  :判断SYSCFG设置完成后是否需要触发attach操作
- 输入参数  :enRst---syscfg设置结果
- 输出参数  :penAttachType----需要进行attach时的attach类型
-            pucClassType-----需要进行attach时的服务域
- 返 回 值  :VOS_TRUE  - 需要触发attach
-            VOS_FALSE - 不需要触发attach
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月3日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_IsNeedAttachAfterSyscfgSet_SysCfg(
     NAS_MSCC_PIF_SYS_CFG_SET_RESULT_ENUM_UINT32             enRst,
     TAF_MMA_ATTACH_TYPE_ENUM_UINT8                         *penAttachType,

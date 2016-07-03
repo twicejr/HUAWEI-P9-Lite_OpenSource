@@ -144,12 +144,12 @@ extern VOS_UINT32 g_ulHsgwA10TestDbgFlg;
 #define RD_FRAMED_IPV6_PREFIX_LEN   16
 #define RD_FRAMED_IPV6_PREFIX_BIT_LEN   64
 #define HSGW_MAX_CLASS_LEN               128
-#define NAI_NAME_LEN 63/* Modified by zhudaoming 62333 at 2007-12-05 GGSN9811V9R7C01B02 for L2TP/PPP V9ò??2 */
+#define NAI_NAME_LEN 63
 #define A11_SUBNET_LENGTH 37 /* SUBNET */
 #define AAA_L2TP_LNS_NUM 2
 #define RD_TUNNEL_STR_MAX_LENG 32
 #define RD_FRAMED_POOL_MAX_LENG 31
-#define MDN_MAX_LEN 20/* Added by l61463 at 2008-06-18 PDSN V9 for μ?D?MDNDè?ó */
+#define MDN_MAX_LEN 20
 #define RD_HW_MIPAGENT_MNHA_SECRET_MAXLEN 18
 #define RD_HW_VPN_NAME_LEN_MAX          31     /* VPN Name最长为31个字节 */
 #define RD_MIPV6AGENT_MNHA_SECRET_LEN 32
@@ -344,7 +344,6 @@ typedef enum
     CKP_BACKUP_TYPE_UPDATE_PDN_FORWARDFLG,  /* PDN ×a·￠±ê???? */
     CKP_BACKUP_TYPE_UPDATE_A10CM,
     CKP_BACKUP_TYPE_UPDATE_PDNCM,
-    /* BEGIN: Added by liutao 00202388, 2013/9/13   ?êìaμ￥o?:PDSN?ú????·? backup */
     CKP_BACKUP_TYPE_UPDATE_PDN_OCSC,  /* 20 */
     CKP_BACKUP_TYPE_CREATE_SM,
     CKP_BACKUP_TYPE_COMMON_UPDATE_SM,
@@ -361,7 +360,6 @@ typedef enum
     CKP_BACKUP_TYPE_DELETE_TFT,
     CKP_BACKUP_TYPE_DELETE_SM,
     CKP_BACKUP_TYPE_DELETE_PDN_PCC,
-    /* BEGIN: Added by liutao 00202388, 2013/9/13   ?êìaμ￥o?:PDSN?ú????·? backup */
     CKP_BACKUP_TYPE_DELETE_PDN_OCSC,
     CKP_BACKUP_TYPE_CREATE_LI,
 
@@ -1011,13 +1009,11 @@ typedef enum tagFWD_TO_CTRL_MSG_EN
     MSG_FWD_TO_CTRL_TRACE,                              /* 26 */
     MSG_FWD_TO_CTRL_MBMS_TRACE,                         /* 27 */
     MSG_FWD_TO_CTRL_DROP_TRACE,                         /* 28 */
-    /*Added start by duchen 00221574 at 2012-09-12 for Networker ì?D?*/
     /*to IF3 Signal Que*/
     MSG_FWD_TO_CTRL_IF3_NWHS = 30,                      /* 30 */
     MSG_FWD_TO_CTRL_IF3_NWSDU,                          /* 31 */
     MSG_FWD_TO_CTRL_IF3_SD_REQUEST,                     /* 32 */
     MSG_FWD_TO_CTRL_IF3_SD_RESPONSE,                    /* 33 */
-    /*Added start by duchen 00221574 at 2012-09-12 for Networker ì?D?*/
 
     MSG_FWD_TO_CTRL_PPP_EXCP,                           /* 34 */
     MSG_FWD_TO_CTRL_L2TP_IPCP_ACK,                      /* 35 */
@@ -1144,34 +1140,27 @@ typedef enum tagFWD_TO_CTRL_MSG_EN
 
     MSG_FWD_TO_DPE_PPP_LINKCUT,                         /* 156 ppp ??×é*/
 
-    /* BEGIN: Added by y00108048 @ 2013-02-20 for PMIPD?á?′|àí */
     MSG_FWD_TO_CTRL1_MIP_REVOCATION,                    /* 157 mip revocation sc0*/
     MSG_FWD_TO_CTRL2_MIP_REVOCATION,                    /* 158 mip revocation sc1*/
     MSG_FWD_TO_CTRL3_MIP_REVOCATION,                    /* 159 mip revocation sc2*/
     MSG_FWD_TO_CTRL4_MIP_REVOCATION,                    /* 160 mip revocation sc3*/
-    /* END:   Added by y00108048 @ 2013-02-20 for PMIPD?á?′|àí */
 
-    /* Added start by wangyadong 00141574 at 2011-02-12 PS9.0_VDF for VDF???±?a·￠ */
     MSG_FWD_TO_CTRL_RPT_HEARTBEAT,
-    /* Added end by wangyadong 00141574 at 2011-02-12 PS9.0_VDF for VDF???±?a·￠ */
 
     GTP_MBMS_SESSION_START_SIGNAL_MESSAGE_TYPE_1 = 200, /* 200,±íê?MBMSμ?Session Start???￠*/
     GTP_MBMS_SESSION_STOP_SIGNAL_MESSAGE_TYPE_1,        /* 201,±íê?MBMSμ?Session Stop???￠*/
 
-    /*BEGIN:z00107739 mod at 20130708 for sctp , ???￠??ó?9.2ò???*/
     MSG_FWD_TO_CTRL_SCTP_PKT = 220,
     MSG_FWD_TO_CTRL_SCTP_PKT_LAP,
     MSG_FWD_TO_CTRL_SCTP_X2X3,
     MSG_FWD_TO_CTRL_SCTP_PKT_ICAP,
 
-    /*Added start by wangyixing 00167384 at 2013-5-1 for HSGW?a·￠*/
     MSG_FWD_TO_CTRL_IPv4_UDP_PMIPv6_MH6_SIG = 300,
     MSG_FWD_TO_CTRL_IPv4_UDP_PMIPv6_MH13_SIG,
     MSG_FWD_TO_CTRL_IPv4_UDP_PMIPv6_MH16_SIG,
     MSG_FWD_TO_CTRL_IPv6_PMIPv6_MH6_SIG,
     MSG_FWD_TO_CTRL_IPv6_PMIPv6_MH13_SIG,
     MSG_FWD_TO_CTRL_IPv6_PMIPv6_MH16_SIG,
-    /*Added end by wangyixing 00167384 at 2013-5-1 for HSGW?a·￠*/
 
     MSG_FWD_TO_CTRL_BUTTON,/*?TD§*/
 }FWD_TO_CTRL_MSG_EN;
@@ -2386,7 +2375,6 @@ typedef enum
 }L2TP_MSGCODE_E;
 
 
-/* END:   Added for PN:?a??pppD-éì?¨ê±?÷×ê?′1ò?à?êìa by wangyong 00138171, 2013/12/21 */
 
 typedef enum
 {
@@ -2583,9 +2571,7 @@ typedef enum
     A11_ACCT_TERM_NAS_REQUEST = 10,
     A11_ACCT_TERM_SERV_UNAVAILABLE = 15,
     A11_ACCT_TERM_USER_ERROR = 17,
-    /* Added start by w00103330 at 2010-08-11 PDSNC05B030 for ?¤??·?ó??§??D-éì??è¨è￥AAA */
     A11_ACCT_TERM_PPP_RENEGO = 18,
-    /* Added end by w00103330 at 2010-08-11 PDSNC05B030 for ?¤??·?ó??§??D-éì??è¨è￥AAA */
     A11_ACCT_TERM_FA_REQUEST = 19,
     A11_ACCT_TERM_PPC_DUR = 254, /* ?¤??·?ê±3¤????2?×? */
     A11_ACCT_TERM_PPC = 255 /* ?¤??·?á÷á?????2?×? */
@@ -2617,17 +2603,11 @@ typedef enum tagCRM_SPU_BOARD_TYPE_ENUM
     CRM_BOARD_TYPE_UNKNOWN = 0,  /**< ?′??è?μ￥°?à??1ààDí￡??a?′?aààDí */
     CRM_BOARD_TYPE_SPUD,         /**< SPUD°?￡¨°üo?′?TCAM???¨￡? */
     CRM_BOARD_TYPE_SPUE,         /**< SPUE°? */
-    /* Added start by s00171233 at 2012-01-06 PGPV200R005 for IPPM&IPSQMì?D? */
     CRM_BOARD_TYPE_PEU,          /**< PEU°? */
-    /* Added end by s00171233 at 2012-01-06 PGPV200R005 for IPPM&IPSQMì?D? */
-    /* Added start by jiaguochen 00178577 at 2012-03-22 PGPV2R6 for SPU-Group?§3?SPUFμ￥°? */
     CRM_BOARD_TYPE_SPUF,
-    /* Added end by jiaguochen 00178577 at 2012-03-22 PGPV2R6 for SPU-Group?§3?SPUFμ￥°? */
-    /* Added start by fenglin 00221566 at 2012-09-03 PGPV2R6C00 for CRM MSU  ì?D? */
     CRM_BOARD_TYPE_MSU,          /**< MSU°? */
-    /* Added end by fenglin 00221566 at 2012-09-03 PGPV2R6C00 for CRM MSU  ì?D? */
-    CRM_BOARD_TYPE_SPUF1,/* Added by gaohongfeng 00221579 at 2013-03-28 PGPV2R6C01 for éè±?1üàí???? */
-    CRM_BOARD_TYPE_MSUF1,/* Added by gaohongfeng 00221579 at 2013-03-28 PGPV2R6C01 for éè±?1üàí???? */
+    CRM_BOARD_TYPE_SPUF1,
+    CRM_BOARD_TYPE_MSUF1,
     CRM_BOARD_TYPE_MAX,           /**< ?TD§ó2?tààDí */
 }  CRM_SPU_BOARD_TYPE_ENUM ;
 
@@ -2749,10 +2729,8 @@ typedef struct
     VOS_UINT32 ulBoardType;      /**< ×′ì?·￠éú±??ˉμ?CPUμ?μ￥°?ààDí */
     VOS_UINT32 ulProductType;    /**< 2ú?·ààDí GGSN?￠PDSN?￠DPI μè */
     VOS_UINT32 ulBoardExtType;   /**< μ￥°?à??1ààDí */
-    /* Added start by majun 52643 at 2013-02-25 PGP V2R6C01 for éè±?1üàí???? */
     VOS_UINT32 ulBoardRawType;   /**< μ￥°?à??1ààDí */
     VOS_UINT32 ulBoardVirtualType;   /**< μ￥°?à??1ààDí */
-    /* Added end by majun 52643 at 2013-02-25 PGP V2R6C01 for éè±?1üàí???? */
 
     VOS_UINT32 ulSGIndex;    /**< μ￥SG?′??ê±μ?á÷??o? */
     VOS_UINT32 ulSGType;     /**< μ￥SG?′??ê±μ?ààDí */
@@ -3169,13 +3147,11 @@ typedef struct  tagSYS_MSG
 
     VOS_UINT16   usResponseType;             /* ê?·?òa?ó?óê?·?ó??§ó|′e￡oACK/ NOACK/NEGACK*/
     VOS_UINT16   usFrameLen;                     /* frame content μ?3¤?è ￡?ó??§êy?Y??3¤?è   */
-/* Modified start by jiangyongliang 50758 at 2012-03-09 PGPV2R6 for 1¤3ìêê??linux */
 #ifndef __X86_PLATFORM__
     VOID   * ptrMsgBody;                   /*???￠ì?????*/
 #else
     VOS_UINT32    ulMsgBodyOffset;                   /*???￠ì?????*/
 #endif
-/* Modified end by jiangyongliang 50758 at 2012-03-09 PGPV2R6 for 1¤3ìêê??linux */
     VOS_UINT16   usAppSeqNum;                /*ó|ó?2??μáDo?￡?ó?óú·￠?í·?oí?óê?·????óó|′e?????¨á￠1?áa*/
     VOS_UINT16   usReserved;                     /*±￡á? ￡?ò?oóà?3?ê1ó?*/
 }  MSG_HDR_S, SYS_MSG_S;
@@ -3431,8 +3407,8 @@ typedef struct tagUSM_LAP2_MSG
     UCHAR ucAddressType:4;   /*μ??·ààDí*/
     UCHAR ucAddrInheritFlag     :1;         /* ±íê?ê?·?ê1ó?á?μ??·?ì3D */
     UCHAR ucIsTimeOutFlag       :1;         /* zhangjinquan ???ó±ê??ê?·?ê?μ?lap3é1|???￠oó??óDé?????μ?3?ê±?é?? */
-    UCHAR ucIsDualStack         :1;         /* zhangjinquan DTS2012011803320 ???ó±ê??ê?·?????éê?? 2011-01-18 */
-    UCHAR ucFindLAPCenterErr    :1;         /* z00175135 ·￠?í±?·Yé?3y???￠ê±￡?è?1??ò2?μ??ˉ?Dμ?￡??ò?±?ó·￠?í￡?μ?ê????ó±ê?? 2012-02-16 */
+    UCHAR ucIsDualStack         :1;
+    UCHAR ucFindLAPCenterErr    :1;
     UCHAR ucRedudancyFlag       :1;         /* ?2ì?ó??§±?·Yì?D?￡??2ì?±?·Yê1?ü±ê???? */
     UCHAR ucRedundancyRouteFlag  :1;
     UCHAR ucReleaseTimeRedirectFlag    :2;         /* VOS_TRUE:±íê?è?1?????á?release time,μ??·1òμè′yêí·?á′ê±ê1ó?μ?ê±???aMin[byte318?μ,release-time]  */
@@ -3461,12 +3437,9 @@ typedef struct tagAaaAuthRspMsg
     VOS_UINT32 ulPIMARY_DNS_SERVER;      /* ?÷DNS SERVER */
     VOS_UINT32 ulSECOND_DNS_SERVER;      /* ′óDNS SERVER */
     VOS_UINT32 ulAlwaysOn;               /*r002*/
-    /* Added start by liaomin 00130175, 2008/12/19 PDSN V900R007 ?êìaμ￥o?: CR20081215006 */
     VOS_UINT32 ulMNAAAFlag;
-    /* Added end by liaomin 00130175, 2008/12/19 PDSN V900R007 ?êìaμ￥o?: CR20081215006 */
     VOS_UINT32 ulAcctInterimInterval;
      /* L2TP */
-    /* Modified start by liaomin 00130175, 2008/11/26 PDSN V900R007 ?êìaμ￥o?: AP8D05808 */
     VOS_UINT16 usTunnelType[AAA_L2TP_LNS_NUM];                 /* ?íμàààDí￡????°???§3?L2TP */
     VOS_UINT16 usTunnelMediaType[AAA_L2TP_LNS_NUM];            /* 1?12í?ààDí￡????°???§3?IP */
     VOS_UINT32  ulTunnelServer[AAA_L2TP_LNS_NUM];                   /* LNSμ??· */
@@ -3476,7 +3449,6 @@ typedef struct tagAaaAuthRspMsg
     UCHAR  ucTunnelPrivateGroupId[AAA_L2TP_LNS_NUM][RD_TUNNEL_STR_MAX_LENG];          /* ?íμàGroupID */
     UCHAR  ucTunnelAssignId[AAA_L2TP_LNS_NUM][RD_TUNNEL_STR_MAX_LENG];         /* ?íμàID */
     UCHAR  ucPassword[AAA_L2TP_LNS_NUM][RD_TUNNEL_STR_MAX_LENG+1];   /* ?íμà?ü?? */
-    /* Modified end by liaomin 00130175, 2008/11/26 PDSN V900R007?êìaμ￥o?: AP8D05808 */
     UCHAR ucAAANotReturnIP;
     UCHAR ucRes;
 
@@ -3494,7 +3466,7 @@ typedef struct tagAaaAuthRspMsg
 
     MIPAGENT_SHARESECRET_S stMipAgentSecret;                   /* PMIPv4°2è?áa?? */
     UCHAR aucPmipV6Secret[RD_MIPV6AGENT_MNHA_SECRET_LEN];      /* PMIPv6°2è?áa?? */
-    UCHAR ucMdn[MDN_MAX_LEN+1];/* Added by l61463 at 2008-06-18 PDSN V9 for μ?D?MDNDè?ó */
+    UCHAR ucMdn[MDN_MAX_LEN+1];
     UCHAR ucResv3;
     VOS_UINT16  bulIpQosFlag : 1,                  /* IP Qos */
             bulInputPeakRateFlag : 1,  /*é?DD·??μ?ù?ê￡? μ￥???abps*/
@@ -3512,18 +3484,16 @@ typedef struct tagAaaAuthRspMsg
             bstAllowedDSCPMarkingFlag : 1; /* Allowed Differentiated Services Marking */
 
     A11_QOS_INFO_S stA11QoS;
-    UCHAR szUserProfileName[A11_USER_PROFILE_NAME_LENGTH + 1]; /*User Profile??3?μ?×?·?′?*/
+    UCHAR szUserProfileName[A11_USER_PROFILE_NAME_LENGTH + 1];
     UCHAR ucResv4[3];
 
     UCHAR aucVpnName[RD_HW_VPN_NAME_LEN_MAX + 1]; /* vpn name */
-    /* BEGIN: Added for PN:???¨?ò by wangyong 00138171, 2009/9/27 */
     UCHAR ucFilterID;
     UCHAR ucIPType;
     UCHAR ucIPTypeFlag; /* ó?óú??·?ê?·?Dˉ′?á?RD_3GPP2_IP_SERVICES_AUTHORIZEDê?D?￡?1￡oDˉ′??￡0￡o?′Dˉ′? */
     UCHAR ucActiveStopIndication:1;
     UCHAR ucUserClassAAAFlag:1;
     UCHAR ucResrved:6;
-    /* END:   Added for PN:???¨?ò by wangyong 00138171, 2009/9/27 */
     UCHAR ucFramedInterfaceID[RD_FRAMED_INTERFACE_ID_LEN];
     UCHAR ucFramedIPV6Pool[RD_FRAMED_POOL_MAX_LENG + 1];
     UCHAR ucFramedIPV6Prefix[RD_FRAMED_IPV6_PREFIX_LEN];
@@ -3614,7 +3584,7 @@ typedef struct
     UCHAR       ucMaxSLotId;
     UCHAR       aucReserv3[3];
     //UCHAR       ucPdnId4TFT[SDB_MAX_TFT_PER_RP_SESSION];
-    A11_IMSI_S  stLuimImsi; /* y00170683 2013.10.9 HSHW?§3???IMSI?óè? */
+    A11_IMSI_S  stLuimImsi;
 
     VOS_UINT32       ulMagicNum;             /* Magic-Number */
     VOS_UINT32       ulAccm;                 /* ACCM */
@@ -3786,7 +3756,7 @@ typedef struct tagPPP_CFG_INFO_REC_S
     UCHAR          aucHostname[PPP_MAX_DNS_HOSTNAME_LENGTH+1];          /* ?÷?ú?? */
     VOS_UINT16         usMru;                                                /* Maximum-receive-unit */
     UCHAR          ucTimeout;                                            /* D-éì???ó3?ê±ê±?? */
-    UCHAR          ucAuthoption;                                            /* ??è¨·?ê?éè?¨*/
+    UCHAR          ucAuthoption;
     UCHAR     ucIpv6Flag;                                  /* ipv61|?üê1?ü±ê??:0,?§3?ipv61|?ü￡?1 2??§3?ipv61|?ü */
     UCHAR     ucVSNCPFlag;
 } VOS_PACKED PPP_CFG_INFO_REC_S;

@@ -25,14 +25,7 @@ using namespace testing;
 //13、结构体类型比较ASSERT_SAME_DATA ASSERT_SAME_MEMORY
 
 
-/*****************************************************************************
-类名     : Test_TAF_AGENT_PidInit
-功能描述 : Test_TAF_AGENT_PidInit UT工程类
-修改历史     :
-1.日   期  : 2011-12-21
-  作   者  : c00173809
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_TAF_AGENT_PidInit: public ::testing::Test
 {
 public:
@@ -47,16 +40,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_Test_TAF_AGENT_PidInit_001
-测试用例标题      : APS AGENT PID初始化，创建信号量成功
-预期结果          : 1.调用 VOS_SmBCreate 创建信号量。2.返回初始化成功
 
-修改历史     :
-1.日   期  : 2011-12-21
-  作   者  : c00173809
-  修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_TAF_AGENT_PidInit,Test_TAF_AGENT_PidInit_001)
 {
     VOS_UINT32              ulRet;
@@ -78,16 +62,7 @@ TEST_F(Test_TAF_AGENT_PidInit,Test_TAF_AGENT_PidInit_001)
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号      : Test_Test_TAF_AGENT_PidInit_002
-测试用例标题      : APS AGENT PID初始化，VOS_SmBCreate创建信号量失败
-预期结果          : 1.调用 VOS_SmBCreate 创建信号量。2.返回初始化失败
 
-修改历史     :
-1.日   期  : 2011-12-21
-  作   者  : c00173809
-  修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_TAF_AGENT_PidInit,Test_TAF_AGENT_PidInit_002)
 {
     VOS_UINT32              ulRet;
@@ -109,16 +84,7 @@ TEST_F(Test_TAF_AGENT_PidInit,Test_TAF_AGENT_PidInit_002)
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号      : Test_Test_TAF_AGENT_PidInit_003
-测试用例标题      : APS AGENT PID初始化，VOS_SmMCreate创建信号量失败
-预期结果          : 1.调用 VOS_SmMCreate 创建信号量。2.返回初始化失败
 
-修改历史     :
-1.日   期  : 2011-12-21
-  作   者  : c00173809
-  修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_TAF_AGENT_PidInit,Test_TAF_AGENT_PidInit_003)
 {
     VOS_UINT32              ulRet;
@@ -137,15 +103,7 @@ TEST_F(Test_TAF_AGENT_PidInit,Test_TAF_AGENT_PidInit_003)
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号      : Test_Test_TAFAGENT_PidInit_004
-测试用例标题      : APS AGENT PID 启动
-预期结果          : APS AGENT PID 启动成功
-修改历史     :
-1.日   期  : 2011-12-21
-  作   者  : c00173809
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_TAF_AGENT_PidInit,Test_TAF_AGENT_PidInit_004)
 {
     VOS_UINT32              ulRet;
@@ -160,14 +118,7 @@ TEST_F(Test_TAF_AGENT_PidInit,Test_TAF_AGENT_PidInit_004)
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*****************************************************************************
-类名     : Test_TAFAGENT_PidInit
-功能描述 : Test_TAFAGENT_PidInit UT工程类
-修改历史     :
-1.日   期  : 2011-12-21
-  作   者  : c00173809
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_TAF_AGENT_ProcMsg: public ::testing::Test
 {
 public:
@@ -183,15 +134,7 @@ public:
 };
 
 #if 0
-/*******************************************************************
-测试用例编号      : Test_Test_TAFAGENT_ProcMsg_001
-测试用例标题      : APS AGENT消息处理函数，接收到来自TAF的同步消息
-预期结果          : 1.解锁信号量。2.置指针g_pstPsAcpuCnfMsg为接收到的消息的首地址
-修改历史     :
-1.日   期  : 2011-12-21
-  作   者  : c00173809
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_TAF_AGENT_ProcMsg,Test_TAF_AGENT_ProcMsg_001)
 {
     MSG_HEADER_STRU  stMsg;
@@ -212,15 +155,7 @@ TEST_F(Test_TAF_AGENT_ProcMsg,Test_TAF_AGENT_ProcMsg_001)
 }
 #endif
 
-/*******************************************************************
-测试用例编号      : Test_Test_TAF_AGENT_ProcMsg_002
-测试用例标题      : APS AGENT消息处理函数，接收到来自AT的非同步消息
-预期结果          : 1.不解锁信号量。2.不置指针g_pstPsAcpuCnfMsg为接收到的消息的首地址
-修改历史     :
-1.日   期  : 2011-12-21
-  作   者  : c00173809
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_TAF_AGENT_ProcMsg,Test_TAF_AGENT_ProcMsg_002)
 {
     MSG_HEADER_STRU  stMsg;
@@ -240,15 +175,7 @@ TEST_F(Test_TAF_AGENT_ProcMsg,Test_TAF_AGENT_ProcMsg_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_Test_TAF_AGENT_ProcMsg_003
-测试用例标题      : APS AGENT消息处理函数，接收到的消息指针为空
-预期结果          : 1.不解锁信号量。2.不置指针g_pstPsAcpuCnfMsg为接收到的消息的首地址
-修改历史     :
-1.日   期  : 2011-12-21
-作   者  : c00173809
-修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_TAF_AGENT_ProcMsg,Test_TAF_AGENT_ProcMsg_003)
 {
     MOCKER(VOS_SmV)
@@ -267,14 +194,7 @@ TEST_F(Test_TAF_AGENT_ProcMsg,Test_TAF_AGENT_ProcMsg_003)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_TAF_AGENT_FindCidForDial
-功能描述 : Test_TAF_AGENT_FindCidForDial UT工程类
-修改历史     :
-1.日   期  : 2011-12-21
-  作   者  : c00173809
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_TAF_AGENT_FindCidForDial: public ::testing::Test
 {
 public:
@@ -290,16 +210,7 @@ public:
         m_ucCid = 0;
     }
 };
-/*******************************************************************
-测试用例编号      : Test_TAF_AGENT_FindCidForDial_001
-测试用例标题      : 锁信号量失败，
-预期结果          : 返回错误,不会获取CID。
 
-修改历史     :
-1.日   期  : 2011-12-21
-  作   者  : c00173809
-  修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_TAF_AGENT_FindCidForDial,Test_TAF_AGENT_FindCidForDial_001)
 {
     VOS_UINT32      ulRet;
@@ -316,16 +227,7 @@ TEST_F(Test_TAF_AGENT_FindCidForDial,Test_TAF_AGENT_FindCidForDial_001)
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号      : Test_TAF_AGENT_FindCidForDial_002
-测试用例标题      : 发送消息到modem0的PID失败
-预期结果          : 1.解锁信号量，2.返回错误
 
-修改历史     :
-1.日   期  : 2011-12-21
-  作   者  : c00173809
-  修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_TAF_AGENT_FindCidForDial,Test_TAF_AGENT_FindCidForDial_002)
 {
     VOS_UINT32      ulRet;
@@ -351,16 +253,7 @@ TEST_F(Test_TAF_AGENT_FindCidForDial,Test_TAF_AGENT_FindCidForDial_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_TAF_AGENT_FindCidForDial_004
-测试用例标题      : 发送接收同步消息成功，接收到获取CID失败
-预期结果          : 1.解锁信号量，2.返回失败
 
-修改历史     :
-1.日   期  : 2011-12-21
-  作   者  : c00173809
-  修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_TAF_AGENT_FindCidForDial,Test_TAF_AGENT_FindCidForDial_004)
 {
     VOS_UINT32                                  ulRet;
@@ -391,16 +284,7 @@ TEST_F(Test_TAF_AGENT_FindCidForDial,Test_TAF_AGENT_FindCidForDial_004)
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号      : Test_TAF_AGENT_FindCidForDial_005
-测试用例标题      : 分配消息内存失败
-预期结果          : 1.解锁信号量，2.返回错误
 
-修改历史     :
-1.日   期  : 2011-12-21
-  作   者  : c00173809
-  修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_TAF_AGENT_FindCidForDial,Test_TAF_AGENT_FindCidForDial_005)
 {
     VOS_UINT32      ulRet;
@@ -425,16 +309,7 @@ TEST_F(Test_TAF_AGENT_FindCidForDial,Test_TAF_AGENT_FindCidForDial_005)
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号      : Test_TAF_AGENT_FindCidForDial_006
-测试用例标题      : 发送接收消息成功，但等待C核回复消息失败
-预期结果          : 1.解锁信号量，2.返回失败
 
-修改历史     :
-1.日   期  : 2011-12-21
-  作   者  : c00173809
-  修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_TAF_AGENT_FindCidForDial,Test_TAF_AGENT_FindCidForDial_006)
 {
     VOS_UINT32                                  ulRet;
@@ -460,14 +335,7 @@ TEST_F(Test_TAF_AGENT_FindCidForDial,Test_TAF_AGENT_FindCidForDial_006)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_TAF_AGENT_SetPdpCidPara
-功能描述 : Test_TAF_AGENT_SetPdpCidPara UT工程类
-修改历史     :
-1.日   期  : 2011-12-21
-  作   者  : c00173809
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_TAF_AGENT_SetPdpCidPara: public ::testing::Test
 {
 public:
@@ -490,16 +358,7 @@ public:
         m_stPdpPrimContextExt.bitOpPdpAddr  = VOS_FALSE;
     }
 };
-/*******************************************************************
-测试用例编号      : Test_TAF_AGENT_SetPdpCidPara_001
-测试用例标题      : 锁信号量失败，
-预期结果          : 返回错误
 
-修改历史     :
-1.日   期  : 2011-12-21
-  作   者  : c00173809
-  修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_TAF_AGENT_SetPdpCidPara,Test_TAF_AGENT_SetPdpCidPara_001)
 {
     VOS_UINT32                      ulRet;
@@ -515,16 +374,7 @@ TEST_F(Test_TAF_AGENT_SetPdpCidPara,Test_TAF_AGENT_SetPdpCidPara_001)
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号      : Test_TAF_AGENT_SetPdpCidPara_002
-测试用例标题      : 发送消息到modem0的PID失败
-预期结果          : 1.解锁信号量，2.返回错误
 
-修改历史     :
-1.日   期  : 2011-12-21
-  作   者  : c00173809
-  修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_TAF_AGENT_SetPdpCidPara,Test_TAF_AGENT_SetPdpCidPara_002)
 {
     VOS_UINT32      ulRet;
@@ -549,16 +399,7 @@ TEST_F(Test_TAF_AGENT_SetPdpCidPara,Test_TAF_AGENT_SetPdpCidPara_002)
 }
 
 #if 0
-/*******************************************************************
-测试用例编号      : Test_TAF_AGENT_SetPdpCidPara_003
-测试用例标题      : 发送接收同步消息成功，接收到回复消息指示设置CID参数成功
-预期结果          : 1.解锁信号量，2.返回成功
 
-修改历史     :
-1.日   期  : 2011-12-21
-  作   者  : c00173809
-  修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_TAF_AGENT_SetPdpCidPara,Test_TAF_AGENT_SetPdpCidPara_003)
 {
     VOS_UINT32                                  ulRet;
@@ -592,16 +433,7 @@ TEST_F(Test_TAF_AGENT_SetPdpCidPara,Test_TAF_AGENT_SetPdpCidPara_003)
 }
 #endif
 
-/*******************************************************************
-测试用例编号      : Test_TAF_AGENT_SetPdpCidPara_004
-测试用例标题      : 发送接收同步消息成功，接收到回复消息指示设置CID参数失败
-预期结果          : 1.解锁信号量，2.返回失败
 
-修改历史     :
-1.日   期  : 2011-12-21
-  作   者  : c00173809
-  修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_TAF_AGENT_SetPdpCidPara,Test_TAF_AGENT_SetPdpCidPara_004)
 {
     VOS_UINT32                                  ulRet;
@@ -634,16 +466,7 @@ TEST_F(Test_TAF_AGENT_SetPdpCidPara,Test_TAF_AGENT_SetPdpCidPara_004)
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号      : Test_TAF_AGENT_SetPdpCidPara_005
-测试用例标题      : 分配消息内存失败
-预期结果          : 1.解锁信号量，2.返回错误
 
-修改历史     :
-1.日   期  : 2011-12-21
-  作   者  : c00173809
-  修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_TAF_AGENT_SetPdpCidPara,Test_TAF_AGENT_SetPdpCidPara_005)
 {
     VOS_UINT32      ulRet;
@@ -667,16 +490,7 @@ TEST_F(Test_TAF_AGENT_SetPdpCidPara,Test_TAF_AGENT_SetPdpCidPara_005)
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号      : Test_TAF_AGENT_SetPdpCidPara_006
-测试用例标题      : 发送接收消息成功，但等待C核回复消息失败
-预期结果          : 1.解锁信号量，2.返回失败
 
-修改历史     :
-1.日   期  : 2011-12-21
-  作   者  : c00173809
-  修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_TAF_AGENT_SetPdpCidPara,Test_TAF_AGENT_SetPdpCidPara_006)
 {
     VOS_UINT32                                  ulRet;
@@ -700,14 +514,7 @@ TEST_F(Test_TAF_AGENT_SetPdpCidPara,Test_TAF_AGENT_SetPdpCidPara_006)
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*****************************************************************************
-类名     : Test_TAF_AGENT_GetPdpCidPara
-功能描述 : Test_TAF_AGENT_GetPdpCidPara UT工程类
-修改历史     :
-1.日   期  : 2011-12-21
-  作   者  : c00173809
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_TAF_AGENT_GetPdpCidPara: public ::testing::Test
 {
 public:
@@ -725,16 +532,7 @@ public:
         memset((void*)&m_stPdpPri,0,sizeof(m_stPdpPri));
     }
 };
-/*******************************************************************
-测试用例编号      : Test_TAF_AGENT_GetPdpCidPara_001
-测试用例标题      : 锁信号量失败，
-预期结果          : 返回错误,
 
-修改历史     :
-1.日   期  : 2011-12-21
-  作   者  : c00173809
-  修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_TAF_AGENT_GetPdpCidPara,Test_TAF_AGENT_GetPdpCidPara_001)
 {
     VOS_UINT32                      ulRet;
@@ -752,16 +550,7 @@ TEST_F(Test_TAF_AGENT_GetPdpCidPara,Test_TAF_AGENT_GetPdpCidPara_001)
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号      : Test_TAF_AGENT_GetPdpCidPara_002
-测试用例标题      : 发送同步消息到modem0的PID失败
-预期结果          : 1.解锁信号量，2.返回错误
 
-修改历史     :
-1.日   期  : 2011-12-21
-  作   者  : c00173809
-  修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_TAF_AGENT_GetPdpCidPara,Test_TAF_AGENT_GetPdpCidPara_002)
 {
     VOS_UINT32      ulRet;
@@ -788,16 +577,7 @@ TEST_F(Test_TAF_AGENT_GetPdpCidPara,Test_TAF_AGENT_GetPdpCidPara_002)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_TAF_AGENT_GetPdpCidPara_004
-测试用例标题      : 发送接收同步消息成功，返回回复消息指示获取CID参数失败
-预期结果          : 1.解锁信号量，2.返回失败
 
-修改历史     :
-1.日   期  : 2011-12-21
-  作   者  : c00173809
-  修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_TAF_AGENT_GetPdpCidPara,Test_TAF_AGENT_GetPdpCidPara_004)
 {
     VOS_UINT32                                  ulRet;
@@ -827,16 +607,7 @@ TEST_F(Test_TAF_AGENT_GetPdpCidPara,Test_TAF_AGENT_GetPdpCidPara_004)
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号      : Test_TAF_AGENT_GetPdpCidPara_005
-测试用例标题      : 分配消息内存失败
-预期结果          : 1.解锁信号量，2.返回错误
 
-修改历史     :
-1.日   期  : 2011-12-21
-  作   者  : c00173809
-  修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_TAF_AGENT_GetPdpCidPara,Test_TAF_AGENT_GetPdpCidPara_005)
 {
     VOS_UINT32      ulRet;
@@ -862,16 +633,7 @@ TEST_F(Test_TAF_AGENT_GetPdpCidPara,Test_TAF_AGENT_GetPdpCidPara_005)
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号      : Test_TAF_AGENT_GetPdpCidPara_006
-测试用例标题      : 发送接收消息成功，但等待C核回复消息失败
-预期结果          : 1.解锁信号量，2.返回失败
 
-修改历史     :
-1.日   期  : 2011-12-21
-  作   者  : c00173809
-  修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_TAF_AGENT_GetPdpCidPara,Test_TAF_AGENT_GetPdpCidPara_006)
 {
     VOS_UINT32                                  ulRet;
@@ -897,14 +659,7 @@ TEST_F(Test_TAF_AGENT_GetPdpCidPara,Test_TAF_AGENT_GetPdpCidPara_006)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_TAF_AGENT_GetCallInfoReq
-功能描述 : TAF_AGENT_GetCallInfoReq UT工程类
-修改历史     :
-1.日   期  : 2013-3-19
-  作   者  : L60609
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_TAF_AGENT_GetCallInfoReq: public ::testing::Test
 {
 public:
@@ -916,16 +671,7 @@ public:
     {
     }
 };
-/*******************************************************************
-测试用例编号      : Test_TAF_AGENT_GetCallInfoReq_001
-测试用例标题      : 获取呼叫个数成功
-预期结果          : 返回成功
 
-修改历史     :
-1.日   期  : 2013-3-19
-  作   者  : l60609
-  修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_TAF_AGENT_GetCallInfoReq,Test_TAF_AGENT_GetCallInfoReq_001)
 {
     VOS_UINT8                           ucNumOfCalls;
@@ -968,14 +714,7 @@ TEST_F(Test_TAF_AGENT_GetCallInfoReq,Test_TAF_AGENT_GetCallInfoReq_001)
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*****************************************************************************
-类名       : Test_TAF_AGENT_FidInit
-功能描述   : TAF_AGENT_FidInit UT工程类
-修改历史   :
-1.日   期  : 2013-02-17
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_TAF_AGENT_FidInit: public ::testing::Test
 {
 public:
@@ -988,16 +727,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_TAF_AGENT_FidInit_001
-测试用例标题      : TAFAGENT模块注册PID成功，且任务优先级设置成功
-预期结果          : 返回VOS_OK
-修改历史   :
-1.日   期  : 2012-12-05
-  作   者  : f00179208
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_TAF_AGENT_FidInit, Test_TAF_AGENT_FidInit_001)
 {
     VOS_UINT32                          ulRst;
@@ -1032,16 +762,7 @@ TEST_F(Test_TAF_AGENT_FidInit, Test_TAF_AGENT_FidInit_001)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_TAF_AGENT_FidInit_002
-测试用例标题      : TAFAGENT模块注册PID失败
-预期结果          : 返回VOS_ERROR
-修改历史   :
-1.日   期  : 2013-02-17
-  作   者  : f00179208
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_TAF_AGENT_FidInit, Test_TAF_AGENT_FidInit_002)
 {
     VOS_UINT32                          ulRst;
@@ -1071,16 +792,7 @@ TEST_F(Test_TAF_AGENT_FidInit, Test_TAF_AGENT_FidInit_002)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_TAF_AGENT_FidInit_003
-测试用例标题      : TAFAGENT模块注册PID成功，但任务优先级设置失败
-预期结果          : 返回VOS_ERROR
-修改历史   :
-1.日   期  : 2013-02-17
-  作   者  : f00179208
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_TAF_AGENT_FidInit, Test_TAF_AGENT_FidInit_003)
 {
     VOS_UINT32                          ulRst;
@@ -1115,16 +827,7 @@ TEST_F(Test_TAF_AGENT_FidInit, Test_TAF_AGENT_FidInit_003)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_TAF_AGENT_FidInit_004
-测试用例标题      : default分支处理
-预期结果          : 返回VOS_OK
-修改历史   :
-1.日   期  : 2013-02-17
-  作   者  : f00179208
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_TAF_AGENT_FidInit, Test_TAF_AGENT_FidInit_004)
 {
     VOS_UINT32                          ulRst;
@@ -1156,14 +859,7 @@ TEST_F(Test_TAF_AGENT_FidInit, Test_TAF_AGENT_FidInit_004)
 
 }
 
-/*****************************************************************************
-类名     : Test_TAF_AGENT_GetAntState
-功能描述 : TAF_AGENT_GetAntState UT工程类
-修改历史     :
-1.日   期  : 2013-8-3
-  作   者  : z60575
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_TAF_AGENT_GetAntState: public ::testing::Test
 {
 public:
@@ -1175,16 +871,7 @@ public:
     {
     }
 };
-/*******************************************************************
-测试用例编号      : Test_TAF_AGENT_GetAntState_001
-测试用例标题      : 返回天线状态为传导模式
-预期结果          : 返回成功
 
-修改历史     :
-1.日   期  : 2013-8-3
-  作   者  : z60575
-  修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_TAF_AGENT_GetAntState,Test_TAF_AGENT_GetAntState_001)
 {
     VOS_UINT32                          ulRlst;

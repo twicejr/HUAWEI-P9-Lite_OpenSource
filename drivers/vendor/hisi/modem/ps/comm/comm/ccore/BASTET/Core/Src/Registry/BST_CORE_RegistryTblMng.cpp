@@ -1,22 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : BST_CORE_RegistryTblMng.cpp
-  版 本 号   : 初稿
-  作    者   : d00173029
-  生成日期   : 2014年4月16日
-  最近修改   :
-  功能描述   : 注册表输入数据检查表的处理函数定义文件
-  函数列表   :
-
-  修改历史   :
-  1.日    期   : 2014年04月16日
-    作    者   : d00173029
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -57,17 +39,7 @@ BST_CORE_PID_ENUM_UINT16    g_enEncrypterParamTable[]   =
    4 函数实现
 ******************************************************************************/
 
-/***************************************************************
- 函 数 名  : BST_CORE_GetPidHandle
- 功能描述  : 得到PID对应的检查表处理项句柄
- 输入参数  : enPid
- 输出参数  : BST_CORE_PID_LUT_STRU
- 返 回 值  : BST_VOID
- 修改历史  :
-    1.日    期   : 2014/01/01
-      作    者   : Davy
-      修改内容   : 创建函数
-***************************************************************/
+
 BST_CORE_PID_LUT_STRU *BST_CORE_GetPidHandle ( BST_CORE_PID_ENUM_UINT16 enPid )
 {
     if ( BST_CORE_IsPidValid ( enPid ) )
@@ -88,20 +60,7 @@ BST_CORE_PID_LUT_STRU *BST_CORE_GetPidHandle ( BST_CORE_PID_ENUM_UINT16 enPid )
 }
 
 #ifdef   BST_SSL_SUPPORT
-/***************************************************************
- 函 数 名  : EncryptInternal
- 功能描述  : 对一个整数做加密
- 输入参数  : pucIn
-           : ulInLen
-           : pucKey
- 输出参数  : pucOut
-           : pulOutLen
- 返 回 值  : BST_ERR_ENUM_UINT8
- 修改历史  :
-    1.日    期   : 2014/01/01
-      作    者   : LiQiLin
-      修改内容   : 创建函数
-***************************************************************/
+
 BST_STATIC BST_ERR_ENUM_UINT8  EncryptInternal ( BST_UINT8     *pucIn,
                                              BST_UINT32     ulInLen,
                                              BST_UINT8     *pucOut,
@@ -166,20 +125,7 @@ BST_STATIC BST_ERR_ENUM_UINT8  EncryptInternal ( BST_UINT8     *pucIn,
     return BST_NO_ERROR_MSG;
 }
 
-/***************************************************************
- 函 数 名  : DecryptInternal
- 功能描述  : 对一个整数做解密
- 输入参数  : pucIn
-           : ulInLen
-           : pucKey
- 输出参数  : pucOut
-           : pulOutLen
- 返 回 值  : BST_ERR_ENUM_UINT8
- 修改历史  :
-    1.日    期   : 2014/01/01
-      作    者   : LiQiLin
-      修改内容   : 创建函数
-***************************************************************/
+
 BST_STATIC BST_ERR_ENUM_UINT8  DecryptInternal ( BST_UINT8     *pucIn,
                                              BST_UINT32     ulInLen,
                                              BST_UINT8     *pucOut,
@@ -246,17 +192,7 @@ BST_STATIC BST_ERR_ENUM_UINT8  DecryptInternal ( BST_UINT8     *pucIn,
     return BST_NO_ERROR_MSG;
 }
 
-/***************************************************************
- 函 数 名  : CheckIfEcryOrDecry
- 功能描述  : 检查数据是要加密还是解密
- 输入参数  : enPid
- 输出参数  : BST_VOID
- 返 回 值  : BST_BOOL
- 修改历史  :
-    1.日    期   : 2014/01/01
-      作    者   : Davy
-      修改内容   : 创建函数
-***************************************************************/
+
 inline BST_BOOL CheckIfEcryOrDecry ( BST_CORE_PID_ENUM_UINT16 enPid )
 {
     BST_UINT32              i;
@@ -271,20 +207,7 @@ inline BST_BOOL CheckIfEcryOrDecry ( BST_CORE_PID_ENUM_UINT16 enPid )
     return BST_FALSE;
 }
 
-/***************************************************************
- 函 数 名  : BST_CORE_EncryptChk
- 功能描述  : 加密检查
- 输入参数  : enPid
-           : pvData
-           : usLen
- 输出参数  : ppOutData
-           : pusOutLen
- 返 回 值  : BST_ERR_ENUM_UINT8
- 修改历史  :
-    1.日    期   : 2014/01/01
-      作    者   : LiQiLin
-      修改内容   : 创建函数
-***************************************************************/
+
 BST_ERR_ENUM_UINT8  BST_CORE_EncryptChk ( BST_CORE_PID_ENUM_UINT16  enPid,
                                           const BST_VOID           *pvData,
                                           BST_UINT16                usLen,
@@ -375,20 +298,7 @@ BST_ERR_ENUM_UINT8  BST_CORE_EncryptChk ( BST_CORE_PID_ENUM_UINT16  enPid,
     return BST_NO_ERROR_MSG;
 }
 
-/***************************************************************
- 函 数 名  : BST_CORE_DencryptChk
- 功能描述  : 解密检查
- 输入参数  : enPid
-           : pvData
-           : usLen
- 输出参数  : ppOutData
-           : pusOutLen
- 返 回 值  : BST_ERR_ENUM_UINT8
- 修改历史  :
-    1.日    期   : 2014/01/01
-      作    者   : LiQiLin
-      修改内容   : 创建函数
-***************************************************************/
+
 BST_ERR_ENUM_UINT8  BST_CORE_DencryptChk ( BST_CORE_PID_ENUM_UINT16     enPid,
                                            const BST_VOID              *pvData,
                                            BST_UINT16                   usLen,

@@ -18,13 +18,12 @@ CFG_PRODUCT_CFG_CHIP_SOLUTION_NAME    ="Balong"
 # VERSION
 CFG_BUILD_TYPE                        =RELEASE
 CFG_PRODUCT_VERSION                   =K300V300C00B000
-# 修改以下版本号前8个字符需知会工具组同事(lixin 00105438)
 CFG_PRODUCT_VERSION_STR               ="K300V300C00B000"
-CFG_PRODUCT_FULL_VERSION_STR          ="Austin V100R001C20B180"
+CFG_PRODUCT_FULL_VERSION_STR          ="Austin V100R001C20B195"
 CFG_PRODUCT_FILE_VERSION_STR          ="2.1.6.8"
 
 
-CFG_PRODUCT_DLOAD_SOFTWARE_VER		= "21.180.00.00.031"
+CFG_PRODUCT_DLOAD_SOFTWARE_VER		= "21.195.00.00.031"
 
 # [chipset_info]:
 # PLATFORM
@@ -815,7 +814,6 @@ CFG_FEATURE_SMALL_MAILBOX                       = FEATURE_OFF
 
 CFG_FEATURE_RECONFIG                            = FEATURE_ON
 
-# 硬加密版本改制特性宏，E5 上打开，stick 等版本关闭。参见 matao00151948 的邮件
 CFG_FEATURE_HWENCRY_REWORK                      = FEATURE_OFF
 
 # 内存池管理单元
@@ -829,7 +827,6 @@ CFG_FEATURE_TTFMEM_CACHE                        = FEATURE_OFF
 
 CFG_FEATURE_SDUPDATE                            = FEATURE_OFF
 
-# x00195127 add for SHELL LOCK特性
 CFG_FEATURE_SECURITY_SHELL          			= FEATURE_ON
 
 CFG_FEATURE_EPAD                                = FEATURE_OFF

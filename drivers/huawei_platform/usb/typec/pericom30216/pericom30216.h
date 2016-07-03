@@ -31,8 +31,8 @@
 
 #define DISABLE_SET 0
 #define DISABLE_CLEAR 1
-#define PERICOM_RESET_DURATION_MS    50
-#define PERICOM_DURATION_MS    30
+#define PERICOM_RESET_DURATION_MS    25
+#define PERICOM_DURATION_MS    25
 
 /* Register address */
 #define PERICOM30216_REG_DEVICE_ID            0x01

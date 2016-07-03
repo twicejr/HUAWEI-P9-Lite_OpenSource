@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : dmac_tx_complete.c
-  版 本 号   : 初稿
-  作    者   : t00231215
-  生成日期   : 2012年12月13日
-  最近修改   :
-  功能描述   : 发送完成处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年12月13日
-    作    者   : t00231215
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -125,21 +108,7 @@ extern oal_uint32  dmac_send_sys_event(
                 oal_uint16                        us_len,
                 oal_uint8                        *puc_param);
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_complete_dump_dscr
- 功能描述  : 发送完成中打印发送描述符
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月4日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_tx_complete_dump_dscr(
                                           hal_to_dmac_device_stru *pst_dmac_device,
                                           hal_tx_dscr_stru        *pst_base_dscr)
@@ -264,22 +233,7 @@ OAL_STATIC oal_uint32  dmac_tx_complete_dump_dscr(
 
 
 #ifdef _PRE_DEBUG_MODE_USER_TRACK
-/*****************************************************************************
- 函 数 名  : dmac_tx_complete_check_protocol
- 功能描述  : 发送完成中检查本次发送的帧使用的协议模式，如果与之前不同，则上
-             报
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月23日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32  dmac_tx_complete_check_protocol(
                                         hal_to_dmac_device_stru *pst_hal_device,
                                         dmac_user_stru   *pst_dmac_user,
@@ -295,21 +249,7 @@ OAL_STATIC OAL_INLINE oal_uint32  dmac_tx_complete_check_protocol(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_get_vap_id
- 功能描述  : 从描述符获取 mac vap id
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月25日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  dmac_tx_get_vap_id(hal_to_dmac_device_stru *pst_hal_device, hal_tx_dscr_stru *pst_tx_dscr, oal_uint8 *puc_vap_id)
 {
     oal_uint8                        uc_hal_vap_id;
@@ -337,21 +277,7 @@ OAL_STATIC OAL_INLINE oal_void  dmac_tx_get_vap_id(hal_to_dmac_device_stru *pst_
     return;
 }
 #if 0
-/*****************************************************************************
- 函 数 名  : dmac_tx_delete_dscr
- 功能描述  : 删除描述符
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月29日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  dmac_tx_delete_dscr(hal_to_dmac_device_stru *pst_hal_device, hal_tx_dscr_stru *pst_delete_dscr)
 {
     oal_uint32          ul_ret;
@@ -368,20 +294,7 @@ oal_void  dmac_tx_delete_dscr(hal_to_dmac_device_stru *pst_hal_device, hal_tx_ds
     }
 }
 #endif
-/*****************************************************************************
- 函 数 名  : dmac_keepalive_check_tx_status
- 功能描述  : 检查发送的null帧是否发送成功，更新用户keepalive时间戳
- 输入参数  : pst_mac_user : mac user结构体
-             puc_frame_hdr: 发送帧的帧头指针
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2014年7月2日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 OAL_STATIC OAL_INLINE oal_void dmac_keepalive_timestamp_update(dmac_user_stru *pst_dmac_user,
                                                            oal_uint8     *puc_frame_hdr,
                                                            oal_uint8      uc_dscr_status)
@@ -399,22 +312,7 @@ OAL_STATIC OAL_INLINE oal_void dmac_keepalive_timestamp_update(dmac_user_stru *p
 
 #ifdef _PRE_WLAN_FEATURE_AMPDU
 #ifdef _PRE_DEBUG_MODE
-/*****************************************************************************
- 函 数 名  : dmac_tx_complete_get_ampdu_len
- 功能描述  : 获取ampdu长度，维测用，获取的长度应该与MAC统计的发送AMPDU长度相
-             同
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月14日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void  dmac_tx_complete_get_ampdu_len(
                                         hal_to_dmac_device_stru * pst_hal_device,
                                         hal_tx_dscr_stru *pst_dscr,
@@ -424,21 +322,7 @@ OAL_STATIC oal_void  dmac_tx_complete_get_ampdu_len(
 }
 #endif
 #endif
-/*****************************************************************************
- 函 数 名  : dmac_tx_delete_ba_fail_process
- 功能描述  : 删除ba失败的异常处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月18日
-    作    者   : j00196483
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_tx_delete_ba_fail_process(dmac_user_stru *pst_dmac_user)
 {
     mac_device_stru             *pst_mac_device;
@@ -460,21 +344,7 @@ oal_void dmac_tx_delete_ba_fail_process(dmac_user_stru *pst_dmac_user)
     }
 
 }
-/*****************************************************************************
- 函 数 名  : dmac_tx_delete_ba
- 功能描述  : 删除某个用户下的所有ba会话
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月17日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_tx_delete_ba(dmac_user_stru *pst_dmac_user)
 {
     oal_uint8                    uc_tid;
@@ -590,21 +460,7 @@ OAL_STATIC OAL_INLINE oal_void dmac_tx_complete_debug_dscr(hal_to_dmac_device_st
 #if (_PRE_OS_VERSION_RAW == _PRE_OS_VERSION)
 #pragma arm section rwdata = "BTCM", code ="ATCM", zidata = "BTCM", rodata = "ATCM"
 #endif
-/*****************************************************************************
- 函 数 名  : dmac_tx_complete_event_handler
- 功能描述  : 发送完成事件处理函数
- 输入参数  : pst_event: 时间结构体指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月13日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_tx_complete_event_handler(frw_event_mem_stru *pst_event_mem)
 {
     hal_tx_dscr_stru                *pst_base_dscr;          /* 保存上报上来的第一个描述符地址 */
@@ -811,26 +667,7 @@ oal_uint32  dmac_tx_complete_event_handler(frw_event_mem_stru *pst_event_mem)
     return ul_ret;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_complete_buffer
- 功能描述  : 发送完成释放buffer
- 输入参数  : uc_q_num   : 队列号
-             uc_dscr_num: 描述符个数
-             pst_dscr   : 描述符基地址
-             pst_hal_device: hal device
-             pst_buf    : 描述符对应的net buf
-             uc_vap_id  : 中断抛事件传入的业务vap id
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月24日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_tx_complete_buff(hal_to_dmac_device_stru *pst_hal_device, hal_tx_dscr_stru *pst_dscr)
 {
     oal_uint32          ul_ret = OAL_SUCC;
@@ -854,21 +691,7 @@ oal_uint32  dmac_tx_complete_buff(hal_to_dmac_device_stru *pst_hal_device, hal_t
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_complete_free_dscr
- 功能描述  : 释放链表中的一个发送描述符
- 输入参数  : 发送描述符地址
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月28日
-    作    者   : c00260463
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  dmac_tx_complete_free_dscr(hal_tx_dscr_stru *pst_dscr)
 {
     if (OAL_UNLIKELY(OAL_PTR_NULL == pst_dscr))
@@ -899,21 +722,7 @@ oal_void  dmac_tx_complete_free_dscr(hal_tx_dscr_stru *pst_dscr)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_complete_free_dscr_list
- 功能描述  : 释放整个ampdu
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月25日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  dmac_tx_complete_free_dscr_list(hal_tx_dscr_stru *pst_dscr, oal_uint8 uc_dscr_num)
 {
     oal_uint8            uc_idx;
@@ -933,21 +742,7 @@ oal_void  dmac_tx_complete_free_dscr_list(hal_tx_dscr_stru *pst_dscr, oal_uint8 
     }
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_set_retry_dscr
- 功能描述  : 重传描述符回tid队列前配置
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月25日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  dmac_tx_set_retry_dscr(hal_to_dmac_device_stru *pst_hal_device, hal_tx_dscr_stru *pst_dscr, oal_uint8 uc_tx_status, oal_uint8 uc_tx_chiper_type, oal_uint8 uc_chiper_key_id)
 {
     oal_uint32 ul_iv_ls_word = 0xFF;
@@ -1011,21 +806,7 @@ OAL_STATIC OAL_INLINE oal_void  dmac_tx_set_retry_dscr(hal_to_dmac_device_stru *
 
     hal_tx_set_dscr_status(pst_hal_device, pst_dscr, DMAC_TX_INVALID);
 }
-/*****************************************************************************
- 函 数 名  : dmac_tx_complete_dscr_back
- 功能描述  : 重传队列不空将重传报文塞回tid首部
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月13日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32 dmac_tx_complete_dscr_back(hal_to_dmac_device_stru *pst_hal_device,
                                                                        dmac_vap_stru           *pst_dmac_vap,
                                                                        dmac_tid_stru           *pst_tid_queue,
@@ -1080,23 +861,7 @@ OAL_STATIC OAL_INLINE oal_uint32 dmac_tx_complete_dscr_back(hal_to_dmac_device_s
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_comp_sw_retry_check
- 功能描述  : 判断管理报文是否需要重传
- 输入参数  : oal_netbuf_stru *pst_buf,      -- buf指针
-             oal_uint8 uc_sw_retry_limit,   -- 软件最大重传次数
- 输出参数  : 无
- 返 回 值  : oal_true --- 重传
-             other    --- 继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月19日
-    作    者   : t00190962
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint8 dmac_tx_comp_sw_retry_check(oal_netbuf_stru *pst_buf, oal_uint8 uc_sw_retry_limit)
 {
     mac_tx_ctl_stru                    *pst_cb;
@@ -1146,23 +911,7 @@ oal_uint8 dmac_tx_comp_sw_retry_check(oal_netbuf_stru *pst_buf, oal_uint8 uc_sw_
     return OAL_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_sw_retry
- 功能描述  : 调用软件重传接口并释放描述符
- 输入参数  : dmac_vap_stru *pst_dmac_vap    --用于指定VAP指针
-             oal_netbuf_stru *pst_buf,      -- buf指针
-             hal_tx_dscr_stru *pst_dscr,    -- 描述符指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月19日
-    作    者   : t00190962
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_tx_sw_retry(dmac_vap_stru *pst_dmac_vap, oal_netbuf_stru *pst_buf, hal_tx_dscr_stru *pst_dscr)
 {
     oal_uint16        us_original_mpdu_len = 0;
@@ -1187,26 +936,7 @@ oal_void dmac_tx_sw_retry(dmac_vap_stru *pst_dmac_vap, oal_netbuf_stru *pst_buf,
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_check_softretry
- 功能描述  : 判断是否重传，如果重传就直接放入TID队列，并返回
- 输入参数  : hal_to_dmac_device_stru     *pst_hal_device, -- hal device指针
-             dmac_user_stru              *pst_dmac_user,  -- dmac用户
-             hal_tx_dscr_stru            *pst_dscr,       -- 描述符
-             oal_netbuf_stru             *pst_buf,        -- buf指针
-             hal_tx_dscr_ctrl_one_param  *pst_tx_dscr_one -- 描述符参数
- 输出参数  : 无
- 返 回 值  : oal_true --- 重传
-             other    --- 继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月26日
-    作    者   : z00241943
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint8  dmac_tx_check_softretry(
                 hal_to_dmac_device_stru     *pst_hal_device,
                 dmac_user_stru              *pst_dmac_user,
@@ -1342,26 +1072,7 @@ OAL_STATIC oal_uint8  dmac_tx_check_softretry(
 #pragma arm section rodata, code, rwdata, zidata  // return to default placement
 #endif
 
-/*****************************************************************************
- 函 数 名  : dmac_al_tx_free_long_frame
- 功能描述  : 释放常发的超长帧
- 输入参数  : uc_q_num   : 队列号
-             uc_dscr_num: 描述符个数
-             pst_dscr   : 描述符基地址
-             pst_hal_device: hal device
-             pst_buf    : 描述符对应的net buf
-             uc_vap_id  : 中断抛事件传入的业务vap id
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月24日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32  dmac_al_tx_free_long_frame(hal_tx_dscr_stru   *pst_dscr, oal_netbuf_stru *pst_buf)
 {
 #if (_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC == _PRE_MULTI_CORE_MODE)
@@ -1385,20 +1096,7 @@ OAL_STATIC OAL_INLINE oal_uint32  dmac_al_tx_free_long_frame(hal_tx_dscr_stru   
 
 #if (_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC == _PRE_MULTI_CORE_MODE)
 #if 0
-/*****************************************************************************
- 函 数 名  : dmac_psm_enqueue_psm_back_netbuf_tx_complete
- 输入参数  : 发送完成中断中，将PSM_BACK NETBUF插入到休眠队列中
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月16日
-    作    者   : g00306640
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_psm_enqueue_psm_back_netbuf_tx_complete(
     hal_to_dmac_device_stru *pst_hal_device,
     hal_tx_dscr_stru  *pst_tx_dscr,
@@ -1447,23 +1145,7 @@ OAL_STATIC oal_uint32  dmac_psm_enqueue_psm_back_netbuf_tx_complete(
 #endif
 #endif
 
-/*****************************************************************************
- 函 数 名  : dmac_performance_show_ampdu_info
- 功能描述  :
- 输入参数  : oal_uint8 uc_vap_id
-             oal_uint8 uc_dscr_status
-             hal_tx_dscr_ctrl_one_param *pst_tx_dscr_one
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月29日
-    作    者   : z00185449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 #ifdef _PRE_WLAN_DFT_STAT
 static oal_void dmac_performance_show_mpdu_info(oal_uint8 uc_vap_id,oal_uint8 uc_dscr_status,hal_tx_dscr_ctrl_one_param *pst_tx_dscr_one)
 {
@@ -1489,7 +1171,7 @@ static oal_void dmac_performance_show_mpdu_info(oal_uint8 uc_vap_id,oal_uint8 uc
 #endif
 
 #ifdef _PRE_WLAN_DFT_STAT
-static oal_void dmac_successive_fail_dump_rf_reg(dmac_vap_stru *pst_dmac_vap)
+static oal_void dmac_successive_fail_dump_info(dmac_vap_stru *pst_dmac_vap, dmac_user_stru *pst_dmac_user, hal_tx_dscr_stru *pst_dscr)
 {
 #if (_PRE_PRODUCT_ID == _PRE_PRODUCT_ID_HI1102_DEV)
 #ifdef _PRE_WLAN_FEATURE_BTCOEX
@@ -1504,19 +1186,19 @@ static oal_void dmac_successive_fail_dump_rf_reg(dmac_vap_stru *pst_dmac_vap)
     pst_mac_device = mac_res_get_dev(pst_dmac_vap->st_vap_base_info.uc_device_id);
     if (OAL_PTR_NULL == pst_mac_device)
     {
-        OAM_ERROR_LOG0(0, OAM_SF_CCA_OPT, "{dmac_successive_fail_dump_rf_reg:pst_mac_device == NULL}");
+        OAM_ERROR_LOG0(0, OAM_SF_CCA_OPT, "{dmac_successive_fail_dump_info:pst_mac_device == NULL}");
         return;
     }
     pst_hal_device = pst_mac_device->pst_device_stru;
     if (OAL_PTR_NULL == pst_hal_device)
     {
-        OAM_ERROR_LOG0(0, OAM_SF_CCA_OPT, "{dmac_successive_fail_dump_rf_reg:pst_hal_device == NULL}");
+        OAM_ERROR_LOG0(0, OAM_SF_CCA_OPT, "{dmac_successive_fail_dump_info:pst_hal_device == NULL}");
         return;
     }
     pst_mac_vap = &pst_dmac_vap->st_vap_base_info;
     if (OAL_PTR_NULL == pst_mac_vap)
     {
-        OAM_ERROR_LOG0(0, OAM_SF_CCA_OPT, "{dmac_successive_fail_dump_rf_reg:pst_mac_vap == NULL}");
+        OAM_ERROR_LOG0(0, OAM_SF_CCA_OPT, "{dmac_successive_fail_dump_info:pst_mac_vap == NULL}");
         return;
     }
     if((1 == pst_hal_device->st_btcoex_btble_status.un_bt_status.st_bt_status.bit_bt_on) &&
@@ -1524,37 +1206,21 @@ static oal_void dmac_successive_fail_dump_rf_reg(dmac_vap_stru *pst_dmac_vap)
     {
         return;
     }
+    oam_report_dscr(pst_dmac_user->st_user_base_info.auc_user_mac_addr,
+                     (oal_uint8 *)pst_dscr, WLAN_MEM_SHARED_TX_DSCR_SIZE1, OAM_OTA_TYPE_TX_DSCR);
     dmac_dft_report_all_ota_state(pst_mac_vap);
     DMAC_VAP_DFT_STATS_PKT_SET_ZERO(pst_dmac_vap->st_query_stats.uc_tx_successive_mpdu_fail_num);
 #endif
 #endif
 }
 #else
-#define dmac_successive_fail_dump_rf_reg(pst_dmac_vap)
+#define dmac_successive_fail_dump_info(pst_dmac_vap)
 #endif
 
 #if (_PRE_OS_VERSION_RAW == _PRE_OS_VERSION)
 #pragma arm section rwdata = "BTCM", code ="ATCM", zidata = "BTCM", rodata = "ATCM"
 #endif
-/*****************************************************************************
- 函 数 名  : dmac_tx_complete_buffer
- 功能描述  : 发送完成报文处理
- 输入参数  : uc_q_num: 描述符队列号
-             pst_dscr: 首个描述符地址
-             pst_hal_device: hal device
-             pst_buf: 描述符对应的netbuffer
-             uc_vap_id: 发送完成中断抛事件带入的vap id
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月13日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_tx_complete_normal_buffer(hal_to_dmac_device_stru *pst_hal_device, hal_tx_dscr_stru *pst_dscr)
 {
     mac_tx_ctl_stru                    *pst_cb;
@@ -1574,17 +1240,19 @@ OAL_STATIC oal_uint32  dmac_tx_complete_normal_buffer(hal_to_dmac_device_stru *p
     oal_uint8                           uc_vap_id;
 #if(_PRE_PRODUCT_ID == _PRE_PRODUCT_ID_HI1151)
     oal_uint8                           uc_tid;
-#endif
+#else
+    oal_uint8                           uc_data_tx_rate0 = 0;
+#endif /* (_PRE_PRODUCT_ID == _PRE_PRODUCT_ID_HI1151) */
 #ifdef _PRE_WLAN_PERFORM_STAT
     oal_uint8                           uc_hw_retry_num    = 0;
     oal_uint8                           uc_rate_index      = 0;
-#endif
+#endif /* _PRE_WLAN_PERFORM_STAT */
 
 #if defined(_PRE_WLAN_FEATURE_DBAC) && (_PRE_PRODUCT_ID == _PRE_PRODUCT_ID_HI1102_DEV)
     mac_ieee80211_frame_stru           *pst_mac_header;
     oal_uint8                           uc_mgmt_subtype;
     oal_uint8                           uc_mgmt_type;
-#endif
+#endif /* defined(_PRE_WLAN_FEATURE_DBAC) && (_PRE_PRODUCT_ID == _PRE_PRODUCT_ID_HI1102_DEV) */
 
     uc_q_num = pst_dscr->uc_q_num;
 
@@ -1630,7 +1298,6 @@ OAL_STATIC oal_uint32  dmac_tx_complete_normal_buffer(hal_to_dmac_device_stru *p
     }
 #endif
 
-    /* vap id合法性检查，如果为0表示业务VAP已删除, 此时直接释放包, DTS2013121306678 */
     if (OAL_UNLIKELY(0 == uc_vap_id))
     {
         OAM_WARNING_LOG0(0, OAM_SF_TX, "{dmac_tx_complete_normal_buffer::vap id is 0, mac vap had been deleted.}");
@@ -1703,7 +1370,7 @@ OAL_STATIC oal_uint32  dmac_tx_complete_normal_buffer(hal_to_dmac_device_stru *p
     {
         /* 统计连续发送失败的的次数 */
         DMAC_VAP_DFT_STATS_PKT_INCR(pst_dmac_vap->st_query_stats.uc_tx_successive_mpdu_fail_num, 1);
-        dmac_successive_fail_dump_rf_reg(pst_dmac_vap);
+        dmac_successive_fail_dump_info(pst_dmac_vap, pst_dmac_user, pst_dscr);
         /* 获取用户指定TID的单播帧的发送完成的次数 */
         uc_is_qos = mac_get_cb_is_qosdata(pst_cb);
         if( OAL_TRUE == uc_is_qos)
@@ -1715,13 +1382,19 @@ OAL_STATIC oal_uint32  dmac_tx_complete_normal_buffer(hal_to_dmac_device_stru *p
             hal_get_tx_sequence_num(pst_hal_device, 0, 0, 0, &ul_seq);
         }
 #ifdef _PRE_WLAN_FEATURE_P2P
-        /* p2p noa节能模式，数据包正常节能回退，日志不用打印 DTS2015123000707  */
         if (!(OAL_TRUE == pst_mac_device->st_p2p_info.en_p2p_ps_pause && DMAC_TX_SOFT_PSM_BACK == uc_dscr_status))
 #endif
         {
             hal_tx_get_dscr_tx_cnt(pst_hal_device, pst_dscr, &uc_data_tx_cnt);
+#if (_PRE_PRODUCT_ID ==_PRE_PRODUCT_ID_HI1151)
             OAM_WARNING_LOG4(uc_vap_id, OAM_SF_TX, "{dmac_tx_complete_normal_buffer::tx dscr status=%d,tx_cnt=%d,ul_seq=%d, isqos=%d.}",
-                             uc_dscr_status,uc_data_tx_cnt, ul_seq, uc_is_qos);
+                                     uc_dscr_status,uc_data_tx_cnt, ul_seq, uc_is_qos);
+#else
+            hal_tx_dscr_get_rate3(pst_hal_device, pst_dscr, &uc_data_tx_rate0);
+            OAM_WARNING_LOG_ALTER(uc_vap_id, OAM_SF_TX, "{dmac_tx_complete_normal_buffer::tx dscr status=%d,tx_cnt=%d,ul_seq=%d, isqos=%d, rate3=%d Mbps/mcs.}", 5,
+                                  uc_dscr_status, uc_data_tx_cnt, ul_seq, uc_is_qos, uc_data_tx_rate0);
+#endif /* #if (_PRE_PRODUCT_ID ==_PRE_PRODUCT_ID_HI1151) */
+
             OAM_WARNING_LOG4(uc_vap_id, OAM_SF_TX, "{dmac_tx_complete_normal_buffer::cb user idx=%d,user idx=%d, vap multi useridx=%d, vap id=%d.}",
                              MAC_GET_CB_TX_USER_IDX(pst_cb),
                              us_user_idx,
@@ -1742,19 +1415,19 @@ OAL_STATIC oal_uint32  dmac_tx_complete_normal_buffer(hal_to_dmac_device_stru *p
         /* 不是以太网来的不统计 */
         if (FRW_EVENT_TYPE_HOST_DRX == MAC_GET_CB_EVENT_TYPE(pst_cb))
         {
-            DMAC_USER_STATS_PKT_INCR(pst_dmac_user->st_query_stats.ul_tx_failed,1);
-            DMAC_VAP_STATS_PKT_INCR(pst_dmac_vap->st_query_stats.ul_tx_failed, 1);
+            DMAC_USER_STATS_PKT_INCR(pst_dmac_user->st_query_stats.ul_tx_failed,((OAL_TRUE == ul_ret)? 0:1 ));
+            DMAC_VAP_STATS_PKT_INCR(pst_dmac_vap->st_query_stats.ul_tx_failed, ((OAL_TRUE == ul_ret)? 0:1 ));
             DMAC_USER_STATS_PKT_INCR(pst_dmac_user->st_query_stats.ul_tx_retries,st_tx_dscr_one.uc_long_retry);
             DMAC_USER_STATS_PKT_INCR(pst_dmac_user->st_query_stats.ul_tx_retries,st_tx_dscr_one.uc_short_retry);
             DMAC_VAP_STATS_PKT_INCR(pst_dmac_vap->st_query_stats.ul_tx_retries,st_tx_dscr_one.uc_long_retry);
             DMAC_VAP_STATS_PKT_INCR(pst_dmac_vap->st_query_stats.ul_tx_retries,st_tx_dscr_one.uc_short_retry);
+            DMAC_USER_STATS_PKT_INCR(pst_dmac_user->st_query_stats.ul_hw_tx_failed,1);
         }
 #ifdef _PRE_WLAN_DFT_STAT
         DMAC_VAP_STATS_PKT_INCR(pst_dmac_vap->st_query_stats.ul_tx_cts_fail,st_tx_dscr_one.uc_cts_failure);
 #endif
         if (OAL_TRUE == ul_ret)
         {
-            /* DTS2015052603368 将ps_poll标志清除，表明此次ps-poll处理失败, 帧入tid队列进行重传 */
             pst_dmac_user->st_ps_structure.en_is_pspoll_rsp_processing = OAL_FALSE;
             return OAL_SUCC;
         }
@@ -1896,22 +1569,7 @@ OAL_STATIC oal_uint32  dmac_tx_complete_normal_buffer(hal_to_dmac_device_stru *p
 }
 
 #ifdef _PRE_WLAN_INIT_PTK_TX_PN
-/*****************************************************************************
- 函 数 名  : dmac_check_iv_word
- 功能描述  : 检查iv字段，往大的跳或往小的跳都上报,
-             不跟最大的iv word做比较，最大的iv word仅做记录，输出最大的iv word做参考
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月28日
-    作    者   : l00225940
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_bool_enum dmac_check_iv_word(oal_uint32 ul_iv_ms_word, oal_uint32 ul_iv_ls_word, oal_uint8 uc_chip_id,  oal_uint8 uc_ra_lut_index)
 {
     /* 如果iv word 全零则不做比较 */
@@ -1961,21 +1619,7 @@ OAL_STATIC oal_bool_enum dmac_check_iv_word(oal_uint32 ul_iv_ms_word, oal_uint32
     return OAL_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_update_iv_word
- 功能描述  : 更新iv word
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : l00225940
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_bool_enum dmac_update_iv_word(oal_uint32 ul_iv_ms_word, oal_uint32 ul_iv_ls_word, oal_uint8 uc_chip_id, oal_uint8 uc_ra_lut_index)
 {
 
@@ -2004,21 +1648,7 @@ OAL_STATIC oal_bool_enum dmac_update_iv_word(oal_uint32 ul_iv_ms_word, oal_uint3
     return OAL_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_init_iv_word_lut
- 功能描述  : 更新iv word
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月24日
-    作    者   : l00225940
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_bool_enum dmac_init_iv_word_lut(hal_to_dmac_device_stru *pst_hal_device, hal_security_key_stru *pst_security_key)
 {
     if (OAL_UNLIKELY(OAL_PTR_NULL == pst_hal_device))
@@ -2059,21 +1689,7 @@ oal_bool_enum dmac_init_iv_word_lut(hal_to_dmac_device_stru *pst_hal_device, hal
 #endif
 
 #ifdef _PRE_WLAN_FEATURE_AMPDU
-/*****************************************************************************
- 函 数 名  : dmac_tx_complete_ampdu_buffer
- 功能描述  : ampdu发送完成报文处理
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月13日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_tx_complete_ampdu_buffer(hal_to_dmac_device_stru *pst_hal_device, hal_tx_dscr_stru *pst_dscr)
 {
     oal_uint8                    uc_dscr_index;
@@ -2170,7 +1786,6 @@ OAL_STATIC oal_uint32  dmac_tx_complete_ampdu_buffer(hal_to_dmac_device_stru *ps
 
     pst_hal_device->ast_tx_dscr_queue[uc_q_num].uc_ppdu_cnt = OAL_SUB(pst_hal_device->ast_tx_dscr_queue[uc_q_num].uc_ppdu_cnt, 1);
 
-    /* vap id合法性检查，如果为0表示业务VAP已删除, 此时直接释放包, DTS2013121306678 */
     if (OAL_UNLIKELY(0 == uc_vap_id))
     {
         OAM_WARNING_LOG0(uc_vap_id, OAM_SF_TX, "{dmac_tx_complete_ampdu_buffer::vap id is 0, mac vap had been deleted.}");
@@ -2338,7 +1953,7 @@ OAL_STATIC oal_uint32  dmac_tx_complete_ampdu_buffer(hal_to_dmac_device_stru *ps
     else  /*没有收到ba*/
     {
         DMAC_VAP_DFT_STATS_PKT_INCR(pst_dmac_vap->st_query_stats.uc_tx_successive_mpdu_fail_num, 1);
-        dmac_successive_fail_dump_rf_reg(pst_dmac_vap);
+        dmac_successive_fail_dump_info(pst_dmac_vap, pst_dmac_user, pst_dscr);
         hal_tx_get_dscr_seq_num(pst_hal_device, pst_dscr, &us_seq_num);
         hal_tx_get_dscr_tx_cnt(pst_hal_device, pst_dscr, &uc_data_tx_cnt);
 
@@ -2528,14 +2143,14 @@ OAL_STATIC oal_uint32  dmac_tx_complete_ampdu_buffer(hal_to_dmac_device_stru *ps
             dmac_move_ba_window_ahead(pst_ba_hdl, us_seq_num);
 
             st_tx_dscr_one.uc_error_mpdu_num++;
+            en_dropped  = OAL_TRUE;
 
             DMAC_VAP_DFT_STATS_PKT_INCR(pst_dmac_vap->st_query_stats.ul_tx_mpdu_fail_in_ampdu,1);
 
             OAM_STAT_VAP_INCR(uc_vap_id, tx_mpdu_fail_in_ampdu, 1);
             if (FRW_EVENT_TYPE_HOST_DRX == MAC_GET_CB_EVENT_TYPE(pst_cb))
             {
-                DMAC_USER_STATS_PKT_INCR(pst_dmac_user->st_query_stats.ul_tx_failed,1);
-                DMAC_VAP_STATS_PKT_INCR(pst_dmac_vap->st_query_stats.ul_tx_failed,  1);
+                DMAC_USER_STATS_PKT_INCR(pst_dmac_user->st_query_stats.ul_hw_tx_failed,1);
             }
             OAM_STAT_TID_INCR(pst_dmac_user->st_user_base_info.us_assoc_id, uc_tid, tx_mpdu_fail_in_ampdu, 1);
         }
@@ -2544,6 +2159,10 @@ OAL_STATIC oal_uint32  dmac_tx_complete_ampdu_buffer(hal_to_dmac_device_stru *ps
         {
             st_tx_dscr_one.uc_error_mpdu_num++;
 
+            if (FRW_EVENT_TYPE_HOST_DRX == MAC_GET_CB_EVENT_TYPE(pst_cb))
+            {
+                DMAC_USER_STATS_PKT_INCR(pst_dmac_user->st_query_stats.ul_hw_tx_failed,1);
+            }
             if ((MAC_GET_CB_RETRIED_NUM(pst_cb) < pst_dmac_vap->uc_sw_retry_limit) && (OAL_FALSE == OAL_GET_THRUPUT_BYPASS_ENABLE(OAL_TX_HAL_HARDWARE_BYPASS)))
             {
                 /* 该包没超重传上限 继续重传 */
@@ -2578,17 +2197,14 @@ OAL_STATIC oal_uint32  dmac_tx_complete_ampdu_buffer(hal_to_dmac_device_stru *ps
                 DMAC_VAP_DFT_STATS_PKT_INCR(pst_dmac_vap->st_query_stats.ul_tx_mpdu_fail_in_ampdu,1);
 
                 OAM_STAT_VAP_INCR(uc_vap_id, tx_mpdu_fail_in_ampdu, 1);
-                if (FRW_EVENT_TYPE_HOST_DRX == MAC_GET_CB_EVENT_TYPE(pst_cb))
-                {
-                    DMAC_USER_STATS_PKT_INCR(pst_dmac_user->st_query_stats.ul_tx_failed,1);
-                    DMAC_VAP_STATS_PKT_INCR(pst_dmac_vap->st_query_stats.ul_tx_failed,  1);
-                }
                 OAM_STAT_TID_INCR(pst_dmac_user->st_user_base_info.us_assoc_id,  uc_tid, tx_mpdu_fail_in_ampdu, 1);
 #ifdef _PRE_WLAN_PERFORM_STAT
                 dmac_stat_tid_per(&(pst_dmac_user->st_user_base_info), st_tx_dscr_one.uc_tid, 0, 1, DMAC_STAT_PER_SW_RETRY_SUB_AMPDU);
 #endif
             }
+
         }
+
         if (OAL_FALSE == en_dropped)
         {
             /* 不是以太网来的不统计 */
@@ -2598,6 +2214,15 @@ OAL_STATIC oal_uint32  dmac_tx_complete_ampdu_buffer(hal_to_dmac_device_stru *ps
                 DMAC_USER_STATS_PKT_INCR(pst_dmac_user->st_query_stats.ul_hw_tx_bytes,MAC_GET_CB_MPDU_BYTES(pst_cb));
                 DMAC_VAP_STATS_PKT_INCR(pst_dmac_vap->st_query_stats.ul_hw_tx_pkts, MAC_GET_CB_NETBUF_NUM(pst_cb));
                 DMAC_VAP_STATS_PKT_INCR(pst_dmac_vap->st_query_stats.ul_hw_tx_bytes, MAC_GET_CB_MPDU_BYTES(pst_cb));
+            }
+
+        }
+        else /* 丢包统计 */
+        {
+            if (FRW_EVENT_TYPE_HOST_DRX == MAC_GET_CB_EVENT_TYPE(pst_cb))
+            {
+                DMAC_USER_STATS_PKT_INCR(pst_dmac_user->st_query_stats.ul_tx_failed,1);
+                DMAC_VAP_STATS_PKT_INCR(pst_dmac_vap->st_query_stats.ul_tx_failed,  1);
             }
 
         }
@@ -2643,9 +2268,10 @@ OAL_STATIC oal_uint32  dmac_tx_complete_ampdu_buffer(hal_to_dmac_device_stru *ps
 /* 不是以太网来的不统计 */
     if (FRW_EVENT_TYPE_HOST_DRX == MAC_GET_CB_EVENT_TYPE(pst_cb))
     {
-        DMAC_USER_STATS_PKT_INCR(pst_dmac_user->st_query_stats.ul_tx_retries,st_tx_dscr_one.uc_long_retry);
+        /* 重传帧统计 : ampdu硬件整体重传次数*mpdu个数 + 现在准备重传的mpdu个数 */
+        DMAC_USER_STATS_PKT_INCR(pst_dmac_user->st_query_stats.ul_tx_retries,(st_tx_dscr_one.uc_long_retry * uc_dscr_num + uc_retry_num));
         DMAC_USER_STATS_PKT_INCR(pst_dmac_user->st_query_stats.ul_tx_retries,st_tx_dscr_one.uc_short_retry);
-        DMAC_VAP_STATS_PKT_INCR(pst_dmac_vap->st_query_stats.ul_tx_retries,st_tx_dscr_one.uc_long_retry);
+        DMAC_VAP_STATS_PKT_INCR(pst_dmac_vap->st_query_stats.ul_tx_retries,(st_tx_dscr_one.uc_long_retry * uc_dscr_num + uc_retry_num));
         DMAC_VAP_STATS_PKT_INCR(pst_dmac_vap->st_query_stats.ul_tx_retries,st_tx_dscr_one.uc_short_retry);
     }
 #ifdef _PRE_WLAN_DFT_STAT
@@ -2680,23 +2306,7 @@ OAL_STATIC oal_uint32  dmac_tx_complete_ampdu_buffer(hal_to_dmac_device_stru *ps
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_update_alg_param
- 功能描述  : 发送完成mib更新
- 输入参数  : pst_dscr: 首个发送描述符地址
-             pst_user: 发给的sta结构体指针
-             uc_dscr_num: 这次处理的描述符个数
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月13日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32  dmac_tx_update_alg_param(
                 hal_tx_dscr_stru               *pst_dscr,
                 oal_netbuf_stru                *pst_buf,
@@ -2715,21 +2325,7 @@ OAL_STATIC OAL_INLINE oal_uint32  dmac_tx_update_alg_param(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_complete_schedule
- 功能描述  : 发送完成调度处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年3月6日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_tx_complete_schedule(hal_to_dmac_device_stru *pst_hal_device, oal_uint8 uc_ac_num)
 {
     dmac_user_stru                  *pst_dmac_user = OAL_PTR_NULL;
@@ -2893,21 +2489,7 @@ oal_uint32  dmac_tx_complete_schedule(hal_to_dmac_device_stru *pst_hal_device, o
 #pragma arm section rodata, code, rwdata, zidata  // return to default placement
 #endif
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_reset_flush
- 功能描述  : flush硬件5个发送队列
- 输入参数  : uc_type:
- 输出参数  : 无
- 返 回 值  : OAL_SUCC | OAL_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月6日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_tx_reset_flush(hal_to_dmac_device_stru *pst_device)
 {
     oal_uint8                       uc_queue_num;
@@ -2950,21 +2532,7 @@ oal_void dmac_tx_reset_flush(hal_to_dmac_device_stru *pst_device)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_mgmt_tx_complete
- 功能描述  : 上报hmac mgmt tx传送状态
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月31日
-    作    者   : xiaoyuren
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_mgmt_tx_complete(mac_vap_stru *pst_mac_vap,
                                   oal_uint8     mgmt_frame_id,
                                   oal_uint32    uc_dscr_status,

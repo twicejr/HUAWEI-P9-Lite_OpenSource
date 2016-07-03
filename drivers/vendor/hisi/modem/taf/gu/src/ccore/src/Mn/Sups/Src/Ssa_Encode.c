@@ -1,36 +1,4 @@
-/************************************************************************
-  Copyright    : 2005-2007, Huawei Tech. Co., Ltd.
-  File name    : SSA_Encode.c
-  Author       : ---
-  Version      : V200R001
-  Date         : 2008-08-16
-  Description  : 该C文件给出了SSA模块编码函数的实现
-  Function List:
-        ---
-        ---
-        ---
-  History      :
-  1. Date:2005-08-16
-     Author: ---
-     Modification:Create
-  2. Date:2005-08-16
-     Author: ---
-     Modification:Add function ... 问题单号:
 
-  3.日    期   : 2006年4月4日
-    作    者   : liuyang id:48197
-    修改内容   : 问题单号:A32D01738
-  4.Date:2007-01-19
-    Author: h44270
-    Modification: 问题单号:A32D08448
-  5.Date:2007-04-29
-    Author: Li Jilin 60827
-    Modification: 问题单号:A32D10708
-  6. 日    期   : 2010年05月07日
-     作    者   : s62952
-     修改内容   : 问题单号:A2D18963
-
-************************************************************************/
 
 /*****************************************************************************
    1 头文件包含
@@ -42,10 +10,8 @@
 #include "Taf_Ssa_EncodeDef.h"
 #include "TafStdlib.h"
 #include "TafMmiEncode.h"
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
 #include "mnmsgcbencdec.h"
 #include "MnErrorCode.h"
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 
 #ifdef  __cplusplus
   #if  __cplusplus
@@ -474,32 +440,7 @@ VOS_UINT32  SSA_EncodeGetPwdRsp(VOS_UINT8 *pucContent, VOS_UINT8 *pucCodeLen, TA
 
 }
 
-/*****************************************************************************
- Prototype      : SSA_EncodeProcessUntructuredSSReq
- Description    : 对MS发起的ProcessUntructuredSS操作的facility内容进行编码
- Input          : *pSrc--编码前的数据结构
- Output         : *pucContent--编码后的字串   *pucCodeLen--字串的长度
- Return Value   : 操作结果
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-08-15
-    Author      : ---
-    Modification: Created function
-  2.日    期   : 2012年02月24日
-    作    者   : 傅映君/f62575
-    修改内容   : C50_IPC Project  适配FDN业务，所有数据从SS实体获取
-  3.日    期   : 2012年11月24日
-    作    者   : 傅映君/f62575
-    修改内容   : DTS2012120407185: STK触发USSD业务失败
-  4.日    期   : 2013年5月23日
-    作    者   : W00176964
-    修改内容   : SS FDN&Call Control项目:SSA_EncodeUssdMessage函数名替换
-  5.日    期   : 2013年6月26日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级
-*****************************************************************************/
 VOS_UINT32  SSA_EncodeProcessUntructuredSSReq(
     VOS_UINT8                          *pucContent,
     VOS_UINT8                          *pucCodeLen,
@@ -510,9 +451,7 @@ VOS_UINT32  SSA_EncodeProcessUntructuredSSReq(
     VOS_UINT8                           ucTmpLen;
     VOS_UINT8                           ucOffset;
     VOS_UINT32                          ulRslt;
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     MN_MSG_CBDCS_CODE_STRU              stDcsInfo;
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
     ucTmpLen                = 0;
     ucOffset                = 0;
@@ -536,7 +475,6 @@ VOS_UINT32  SSA_EncodeProcessUntructuredSSReq(
     CS必须设定为 "Language Unspecified"和"Default alphabet"。根据GSM03.38，其编
     码为OXOF（二进制为0000 1111）
     */
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     PS_MEM_SET(&stDcsInfo, 0, sizeof(stDcsInfo));
     ulRslt = MN_MSG_DecodeCbsDcs(gastSsaStatetable[ucTi].DatacodingScheme,
                                  gastSsaStatetable[ucTi].pstUssdBuf->aucUssdStr,
@@ -548,7 +486,6 @@ VOS_UINT32  SSA_EncodeProcessUntructuredSSReq(
     }
 
     if (MN_MSG_MSG_CODING_7_BIT == stDcsInfo.enMsgCoding)
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
     {
         if(AT_USSD_NON_TRAN_MODE == SSA_GetUssdTransMode())
         {
@@ -685,34 +622,13 @@ VOS_UINT32  SSA_EncodeUssData(VOS_UINT8 *pucContent, VOS_UINT8 *pucCodeLen, TAF_
     return SSA_SUCCESS;
 }
 
-/*****************************************************************************
- Prototype      : SSA_EncodeUntructuredSSRsp
- Description    : 对MS发起的UntructuredSS操作的facility内容进行编码
- Input          : *pSrc--编码前的数据结构
- Output         : *pucContent--编码后的字串   *pucCodeLen--字串的长度
- Return Value   : 操作结果
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-08-15
-    Author      : ---
-    Modification: Created function
-   2.日    期   : 2013年5月23日
-     作    者   : W00176964
-     修改内容   : SS FDN&Call Control项目:SSA_EncodeUssdMessage函数名替换
-   3.日    期   : 2013年6月26日
-     作    者   : f62575
-     修改内容   : V9R1 STK升级
-*****************************************************************************/
 VOS_UINT32  SSA_EncodeUntructuredSSRsp(VOS_UINT8 *pucContent, VOS_UINT8 *pucCodeLen, TAF_SS_USS_RSP_STRU *pSrc)
 {
     VOS_UINT8                           ucTmpLen = 0;              /*记录每个参数项的编码长度,初始值为0*/
     VOS_UINT8                           ucOffset = 0;
     VOS_UINT32                          ulRslt;
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     MN_MSG_CBDCS_CODE_STRU              stDcsInfo;
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
     gpucSsEncodeEndLocation = pucContent + MAX_FACILITY_LEN;
 
@@ -732,7 +648,6 @@ VOS_UINT32  SSA_EncodeUntructuredSSRsp(VOS_UINT8 *pucContent, VOS_UINT8 *pucCode
     CS必须设定为 "Language Unspecified"和"Default alphabet"。根据GSM03.38，其编
     码为OXOF（二进制为0000 1111）
     */
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     PS_MEM_SET(&stDcsInfo, 0, sizeof(stDcsInfo));
     ulRslt = MN_MSG_DecodeCbsDcs(pSrc->DataCodeScheme,
                                  pSrc->UssdStr.aucUssdStr,
@@ -744,7 +659,6 @@ VOS_UINT32  SSA_EncodeUntructuredSSRsp(VOS_UINT8 *pucContent, VOS_UINT8 *pucCode
     }
 
     if (MN_MSG_MSG_CODING_7_BIT == stDcsInfo.enMsgCoding)
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
     {
         if (AT_USSD_NON_TRAN_MODE == SSA_GetUssdTransMode())
         {
@@ -1716,35 +1630,17 @@ VOS_VOID  SSA_EncodeLength(VOS_UINT8 ucSrcLen, VOS_UINT8 *pucContent, VOS_UINT8 
 
 }
 
-/*****************************************************************************
- Prototype      : Encode_OtherString
- Description    : 将普通的字符串编码成其他类型的BER编码的字串(如IA5String)
- Input          : *pSrc--编码前的字符串  ucSrcLen--字符串长度   ucTagNum--要编码成哪种字串,标签部分的编码值
- Output         : *pcodeContent--编码后的字串   *pucCodeLen--编码后的字串长度
- Return Value   : 操作结果
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-08-15
-    Author      : ---
-    Modification: Created function
-  2.日    期   : 2012年8月10日
-    作    者   : y00213812
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_UINT32  SSA_EncodeOtherString(VOS_UINT8 ucTagNum, VOS_UINT8 *pucCodeContent, VOS_UINT8 *pucCodeLen, VOS_UINT8 *pSrc, VOS_UINT8 ucSrcLen, TAG_MODE ucTagMode)
 {
     VOS_UINT32  ulRslt;
 
     /*进行字符串编码*/
-    /*modified by Y00213812 for DTS2012082204471 TQE清理, 2012-08-10, begin*/
     ulRslt = SSA_EncodeString(pucCodeContent, pucCodeLen, pSrc, ucSrcLen, IMPLICIT_MODE);
     if (SSA_SUCCESS != ulRslt)
     {
         SSA_LOG(WARNING_PRINT, "SSA_EncodeOtherString():WARNING:SSA_EncodeString Error!");
     }
-    /*modified by Y00213812 for DTS2012082204471 TQE清理, 2012-08-10, end*/
 
     /*如果是explicit mode标签编码，对T、L进行封装*/
     if(EXPLICIT_MODE == ucTagMode)

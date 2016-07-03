@@ -1,16 +1,4 @@
-/************************************************************************
-  Copyright   : 2013-2015, Huawei Tech. Co., Ltd.
-  File name   : usimmt1dl.h
-  Author      : j00168360
-  Version     : V900R001
-  Date        : 2013-10-14
-  Description : T=1项目头文件相关定义---
-  History     :
-   1.Date:2013-10-14
-     Author: j00168360
-     Modification:create
 
-************************************************************************/
 
 #ifndef __USIMM_T1_DL_H__
 #define __USIMM_T1_DL_H__

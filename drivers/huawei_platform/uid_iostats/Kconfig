@@ -4,6 +4,7 @@
 
 config HUAWEI_UID_IO_STATS
 	tristate "Per-UID io account statistics"
+	default n
 	depends on PROFILING && TASK_IO_ACCOUNTING
 	help
 	  Per UID based io account statistics exported to /proc/uid_iostats

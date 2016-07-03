@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : dmac_reset.c
-  版 本 号   : 初稿
-  作    者   : zourong
-  生成日期   : 2013年11月7日
-  最近修改   :
-  功能描述   : 软件复位硬件功能实现
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年11月7日
-    作    者   : zourong 52447
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -94,21 +77,7 @@ dmac_reset_mng_stru g_st_dmac_reset_mng;
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : dmac_reset_lut_init
- 功能描述  : 复位mac reg时，申请保存LUT表现场的内存
- 输入参数  : uc_type:
- 输出参数  : 无
- 返 回 值  : OAL_SUCC | OAL_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月6日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_reset_init(oal_void)
 {
    OAL_MEMZERO(&g_st_dmac_reset_mng, OAL_SIZEOF(dmac_reset_mng_stru));
@@ -126,21 +95,7 @@ oal_void dmac_reset_init(oal_void)
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_reset_lut_init
- 功能描述  : 复位mac reg时，申请保存LUT表现场的内存
- 输入参数  : uc_type:
- 输出参数  : 无
- 返 回 值  : OAL_SUCC | OAL_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月6日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 #ifndef _PRE_WLAN_PROFLING_MIPS
 OAL_STATIC  oal_uint32 dmac_reset_lut_init(oal_void)
 {
@@ -215,21 +170,7 @@ OAL_STATIC  oal_uint32 dmac_reset_lut_init(oal_void)
 
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_reset_lut_destroy
- 功能描述  : 复位mac reg时，释放保存LUT表现场的内存
- 输入参数  : uc_type:
- 输出参数  : 无
- 返 回 值  : OAL_SUCC | OAL_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月6日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC  oal_void dmac_reset_lut_destroy(oal_void)
 {
 
@@ -284,21 +225,7 @@ OAL_STATIC  oal_void dmac_reset_lut_destroy(oal_void)
 #endif
 
 #if (_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC == _PRE_MULTI_CORE_MODE)
-/*****************************************************************************
- 函 数 名  : dmac_reset_save_tx_queue
- 功能描述  : reset时回收发送队列中的数据到reset专用虚假队列
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月2日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 #ifndef _PRE_WLAN_PROFLING_MIPS
 OAL_STATIC oal_uint32 dmac_reset_save_tx_queue(hal_to_dmac_device_stru *pst_hal_device)
 {
@@ -333,21 +260,7 @@ OAL_STATIC oal_uint32 dmac_reset_save_tx_queue(hal_to_dmac_device_stru *pst_hal_
     return OAL_SUCC;
 
 }
-/*****************************************************************************
- 函 数 名  : dmac_reset_restore_tx_queue
- 功能描述  : 恢复硬件发送队列中的内容
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月2日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-****************************************************************************/
 OAL_STATIC oal_uint32 dmac_reset_restore_tx_queue(hal_to_dmac_device_stru *pst_hal_device)
 {
     hal_tx_dscr_queue_header_stru   *pst_fake_queue;
@@ -366,39 +279,7 @@ OAL_STATIC oal_uint32 dmac_reset_restore_tx_queue(hal_to_dmac_device_stru *pst_h
 
 }
 #endif
-/*****************************************************************************
- 函 数 名  : dmac_reset_hw
- 功能描述  : reset hw的入口
- 输入参数  : uc_type:
-                 0x01：复位mac
-                 0x10：复位phy
-                 0x11:  复位mac&phy
-             sub_module:
-                 当uc_type = 0x01,即复位MAC时：
-                 0: 全部模块复位
-                 1：复位PA模块
-                 2：复位TSF模块
-                 3：复位master模块
-                 4：复位CCMP/TKIP模块
-             uc_reset_reg:
-                 是否复位寄存器：
-                 0：不复位寄存器
-                 1：复位寄存器
-             uc_reason:
-                 复位原因：
-                 0：error复位
-                 1：配置命令复位
- 输出参数  : 无
- 返 回 值  : OAL_SUCC | OAL_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年04月03日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_reset_hw(mac_device_stru* pst_device,oal_uint8* pst_param)
 {
     oal_uint32                   ul_ret = OAL_SUCC;
@@ -569,54 +450,7 @@ oal_uint32  dmac_reset_hw(mac_device_stru* pst_device,oal_uint8* pst_param)
     return ul_ret;
 }
 #else
-/*****************************************************************************
- 函 数 名  : dmac_reset_hw
- 功能描述  : reset hw的入口
- 输入参数  : uc_type:
-                 0x01：复位mac
-                 0x10：复位phy
-                 0x11:  复位mac&phy
-             sub_module:
-                 当uc_type = 0x01,即复位MAC时：
-                 0: 全部模块复位
-                 1：复位PA模块
-                 2：复位TSF模块
-                 3：复位master模块
-                 4：复位CCMP/TKIP模块
-             uc_reset_reg:
-                 是否复位寄存器：
-                 0：不复位寄存器
-                 1：复位寄存器
-             uc_reason:
-                 复位原因：
-                 0：error复位
-                 1：配置命令复位
- 输出参数  : 无
- 返 回 值  : OAL_SUCC | OAL_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月6日
-    作    者   : zourong
-    修改内容   : 新生成函数
-  2.日    期   : 2014年3月1日
-    作    者   : zourong
-    修改内容   : 复位MAC的寄存器，部分LUT受影响，部分LUT不受影响。
-                 hi1151受复位影响的lut：
-                    key lut，
-                    peer addr lut，
-                    matrix info lut，
-                    smart antenna lut
-                 不受复位影响的lut：
-                    tx pn lut，
-                    rx pn lut，
-                    seq num lut，
-                    dup det lut，
-                    ba bitmap lut
-   因此原来实现的PN LUT,SEQ LUT,BA LUT的保存与恢复动作在1151多余，通过全局管理变量中的
-   bit位来区分。
-*****************************************************************************/
 oal_uint32  dmac_reset_hw(mac_device_stru* pst_device,oal_uint8* pst_param)
 {
     oal_uint32                   ul_ret = OAL_SUCC;
@@ -772,21 +606,7 @@ oal_uint32  dmac_reset_hw(mac_device_stru* pst_device,oal_uint8* pst_param)
     return ul_ret;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_reset_save_seq_lut
- 功能描述  : 保存sequnce lut的值
- 输入参数  : uc_type:
- 输出参数  : 无
- 返 回 值  : OAL_SUCC | OAL_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月6日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32 dmac_reset_save_seq_lut(mac_device_stru* pst_mac_device,oal_uint32 *pst_qos_seq,oal_uint32 *pst_nonqos_seq)
 {
 
@@ -851,21 +671,7 @@ OAL_STATIC oal_uint32 dmac_reset_save_seq_lut(mac_device_stru* pst_mac_device,oa
 	return  OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_reset_restore_seq_lut
- 功能描述  : 保存sequnce lut的值
- 输入参数  : uc_type:
- 输出参数  : 无
- 返 回 值  : OAL_SUCC | OAL_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月6日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32 dmac_reset_restore_seq_lut(mac_device_stru* pst_mac_device,oal_uint32 *pst_qos_seq,oal_uint32 *pst_nonqos_seq)
 {
 
@@ -934,21 +740,7 @@ OAL_STATIC oal_uint32 dmac_reset_restore_seq_lut(mac_device_stru* pst_mac_device
 
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_reset_save_ba_lut
- 功能描述  : 保存ba lut的值
- 输入参数  : uc_type:
- 输出参数  : 无
- 返 回 值  : OAL_SUCC | OAL_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月6日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32 dmac_reset_save_ba_lut(mac_device_stru* pst_mac_device,oal_uint32* pst_ba_lut)
 {
 
@@ -973,21 +765,7 @@ OAL_STATIC oal_uint32 dmac_reset_save_ba_lut(mac_device_stru* pst_mac_device,oal
     return  OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_reset_restore_ba_lut
- 功能描述  : restore ba lut的值
- 输入参数  : uc_type:
- 输出参数  : 无
- 返 回 值  : OAL_SUCC | OAL_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月6日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32 dmac_reset_restore_ba_lut(mac_device_stru* pst_mac_device,oal_uint32* pst_ba_lut)
 {
     oal_uint8                uc_index_loop;
@@ -1014,21 +792,7 @@ OAL_STATIC oal_uint32 dmac_reset_restore_ba_lut(mac_device_stru* pst_mac_device,
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_reset_save_pn_lut
- 功能描述  : 保存ba lut的值
- 输入参数  : uc_type:
- 输出参数  : 无
- 返 回 值  : OAL_SUCC | OAL_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月6日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32 dmac_reset_save_pn_lut(mac_device_stru* pst_mac_device,oal_uint32* pst_rx_pn_ucast,oal_uint32* pst_rx_pn_mcast,
                                                       oal_uint32* pst_tx_pn_ucast,oal_uint32* pst_tx_pn_mcast)
 {
@@ -1134,21 +898,7 @@ OAL_STATIC oal_uint32 dmac_reset_save_pn_lut(mac_device_stru* pst_mac_device,oal
     return  OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_reset_restore_pn_lut
- 功能描述  : restore ba lut的值
- 输入参数  : uc_type:
- 输出参数  : 无
- 返 回 值  : OAL_SUCC | OAL_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月6日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32 dmac_reset_restore_pn_lut(mac_device_stru* pst_mac_device,oal_uint32* pst_rx_pn_ucast,oal_uint32* pst_rx_pn_mcast,
                                                       oal_uint32* pst_tx_pn_ucast,oal_uint32* pst_tx_pn_mcast)
 {
@@ -1253,21 +1003,7 @@ OAL_STATIC oal_uint32 dmac_reset_restore_pn_lut(mac_device_stru* pst_mac_device,
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_reset_restore_cipher_lut
- 功能描述  : restore 加密 lut的值
- 输入参数  : uc_type:
- 输出参数  : 无
- 返 回 值  : OAL_SUCC | OAL_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月6日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32 dmac_reset_restore_cipher_lut(mac_device_stru* pst_mac_device)
 {
     oal_uint8                            uc_vap_idx;
@@ -1342,21 +1078,7 @@ OAL_STATIC oal_uint32 dmac_reset_restore_cipher_lut(mac_device_stru* pst_mac_dev
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_reset_save_txbf_lut
- 功能描述  : 保存ba lut的值
- 输入参数  : uc_type:
- 输出参数  : 无
- 返 回 值  : OAL_SUCC | OAL_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月6日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32 dmac_reset_save_txbf_lut(mac_device_stru* pst_mac_device,oal_uint32* pst_txbf_lut)
 {
 #ifdef _PRE_WLAN_FEATURE_TXBF
@@ -1376,21 +1098,7 @@ OAL_STATIC oal_uint32 dmac_reset_save_txbf_lut(mac_device_stru* pst_mac_device,o
  #endif
     return  OAL_SUCC;
 }
-/*****************************************************************************
- 函 数 名  : dmac_reset_restore_txbf_lut
- 功能描述  : 保存ba lut的值
- 输入参数  : uc_type:
- 输出参数  : 无
- 返 回 值  : OAL_SUCC | OAL_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月6日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32 dmac_reset_restore_txbf_lut(mac_device_stru* pst_mac_device,oal_uint32* pst_txbf_lut)
 {
 #ifdef _PRE_WLAN_FEATURE_TXBF
@@ -1410,21 +1118,7 @@ OAL_STATIC oal_uint32 dmac_reset_restore_txbf_lut(mac_device_stru* pst_mac_devic
 #endif
     return  OAL_SUCC;
 }
-/*****************************************************************************
- 函 数 名  : dmac_reset_restore_peer_addr_lut
- 功能描述  : restore ba lut的值
- 输入参数  : uc_type:
- 输出参数  : 无
- 返 回 值  : OAL_SUCC | OAL_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月6日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32 dmac_reset_restore_peer_addr_lut(mac_device_stru* pst_mac_device)
 {
     oal_uint8                            uc_vap_idx;
@@ -1476,42 +1170,14 @@ OAL_STATIC oal_uint32 dmac_reset_restore_peer_addr_lut(mac_device_stru* pst_mac_
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : dmac_reset_rx_dscr_queue_flush
- 功能描述  : 复位后销毁接收描述符队列并重新初始化接收描述符队列
- 输入参数  : uc_type:
- 输出参数  : 无
- 返 回 值  : OAL_SUCC | OAL_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月6日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_reset_rx_dscr_queue_flush(hal_to_dmac_device_stru* pst_hal)
 {
     hal_rx_destroy_dscr_queue(pst_hal,OAL_TRUE);
     hal_rx_init_dscr_queue(pst_hal,OAL_TRUE);
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_reset_save_tsf
- 功能描述  : 读取并保存每个业务VAP的time stamp的值
- 输入参数  : 记录timestamp的指针
- 输出参数  :
- 返 回 值  : OAL_SUCC | OAL_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月6日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 #ifndef _PRE_WLAN_PROFLING_MIPS
 OAL_STATIC oal_void dmac_reset_save_tsf(mac_device_stru* pst_mac_device,oal_uint32* pst_tsf_array)
 {
@@ -1535,22 +1201,7 @@ OAL_STATIC oal_void dmac_reset_save_tsf(mac_device_stru* pst_mac_device,oal_uint
     }
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_reset_restore_tsf
- 功能描述  : 重新写每个业务VAP的time stamp的寄存器
- 输入参数  : 记录timestamp的指针
-             保存timstamp时的时间戳
- 输出参数  :
- 返 回 值  : OAL_SUCC | OAL_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月6日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void dmac_reset_restore_tsf(mac_device_stru* pst_mac_device,oal_uint32* pst_tsf_array,oal_time_us_stru *pst_time_record)
 {
     oal_uint8                uc_vap_idx;
@@ -1595,20 +1246,7 @@ OAL_STATIC oal_void dmac_reset_restore_tsf(mac_device_stru* pst_mac_device,oal_u
 #endif
 
 #if (_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC == _PRE_MULTI_CORE_MODE)
-/*****************************************************************************
- 函 数 名  : dmac_reset_sys_event
- 功能描述  : host进行复位时，同步device事件处理
- 输入参数  : pst_event_mem事件
- 输出参数  : 无
- 返 回 值  : OAL_SUCC | OAL_ERR_CODE_PTR_NULL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月26日
-    作    者   : zhangyu 00241943
-    修改内容   : 新生成函数
-*****************************************************************************/
 oal_uint32 dmac_reset_sys_event(mac_vap_stru *pst_mac_vap, oal_uint8 uc_len, oal_uint8 *puc_param)
 {
     mac_device_stru     *pst_mac_dev;
@@ -1641,22 +1279,7 @@ oal_uint32 dmac_reset_sys_event(mac_vap_stru *pst_mac_vap, oal_uint8 uc_len, oal
 #endif
 
 #if (_PRE_OS_VERSION_LINUX == _PRE_OS_VERSION)
-/*****************************************************************************
- 函 数 名  : dmac_reset_debug_sequence_lut
- 功能描述  : 读取硬件的LUT表，显示
- 输入参数  :
 
- 输出参数  :
- 返 回 值  : OAL_SUCC | OAL_FAIL
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年11月6日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_reset_debug_sequence_lut(mac_device_stru* pst_device)
 {
 
@@ -1686,22 +1309,7 @@ oal_void dmac_reset_debug_sequence_lut(mac_device_stru* pst_device)
 
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_reset_debug_ba_lut
- 功能描述  : 读取硬件的LUT表，显示
- 输入参数  :
 
- 输出参数  :
- 返 回 值  : OAL_SUCC | OAL_FAIL
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年11月6日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_reset_debug_ba_lut(mac_device_stru* pst_mac_device)
 {
     oal_uint8                uc_index_loop;
@@ -1739,22 +1347,7 @@ oal_void dmac_reset_debug_ba_lut(mac_device_stru* pst_mac_device)
     dmac_reset_debug_close();
  }
 
-/*****************************************************************************
- 函 数 名  : dmac_reset_debug_ba_lut
- 功能描述  : 读取硬件的LUT表，显示
- 输入参数  :
 
- 输出参数  :
- 返 回 值  : OAL_SUCC | OAL_FAIL
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年11月6日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_reset_debug_pn_lut(mac_device_stru* pst_mac_device)
 {
     oal_uint8                uc_user_loop;
@@ -1827,21 +1420,7 @@ oal_void dmac_reset_debug_pn_lut(mac_device_stru* pst_mac_device)
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_reset_debug_init
- 功能描述  : reset维测使用，维测时一开始调用本函数，打开一个文件，扩展内核空间到用户空间
- 输入参数  : 无:
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月6日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 oal_void dmac_reset_debug_init(oal_void)
 {
@@ -1860,21 +1439,7 @@ oal_void dmac_reset_debug_init(oal_void)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_reset_debug_close
- 功能描述  : reset维测使用，维测结束时调用本函数，关闭打开的文件，恢复到内核空间
- 输入参数  : 无:
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月6日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 oal_void dmac_reset_debug_close(oal_void)
 {
@@ -1882,43 +1447,13 @@ oal_void dmac_reset_debug_close(oal_void)
     oal_set_fs(g_st_dmac_reset_mng.old_fs);  //恢复内核空间
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_reset_debug_close
- 功能描述  : reset维测使用，将字符串写到打开的文件
- 输入参数  : pst_str: 字符串
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月6日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_reset_debug_to_file(oal_uint8 *pst_str)
 {
     oal_kernel_file_write(g_st_dmac_reset_mng.pst_debug_file,pst_str,OAL_STRLEN(pst_str));
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_reset_debug_all
- 功能描述  : 读取硬件的LUT表，显示
-             读取所有的寄存器，显示
- 输入参数  :
 
- 输出参数  :
- 返 回 值  : OAL_SUCC | OAL_FAIL
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年11月6日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_reset_debug_all(mac_device_stru* pst_device,dmac_reset_para_stru* pst_debug_para)
 {
 

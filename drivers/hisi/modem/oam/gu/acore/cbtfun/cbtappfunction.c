@@ -1,23 +1,6 @@
 
 
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名      : Om.c
-  版 本 号      : 初稿
-  作    者      : 甘兰47350
-  生成日期      : 2008年5月3日
-  最近修改      :
-  功能描述      : 该C文件给出了OM模块的实现
-  函数列表      :
-  修改历史      :
-  1.日    期    : 2008年5月3日
-    作    者    : 甘兰47350
-    修改内容    : 创建文件
-
-******************************************************************************/
 /*****************************************************************************
   1 头文件包含
 *****************************************************************************/
@@ -47,36 +30,7 @@ extern CBT_RCV_CHAN_CTRL_INFO_STRU      g_stAcpuCbtCtrlInfo;
 
 extern VOS_UINT32 OM_IsAcpuAuthNv(VOS_UINT16 usNvId);
 
-/*****************************************************************************
- Prototype       : OM_ReadNv
- Description     : Read the NV by NV ID and return the content.
-                   APP->OM:
-                    struct
-                    {
-                         ulCount               32         要读取的NV项个数
-                         ausNvItemId[n]     n*16          要读取的NV项ID数组，其中n= usCount
-                    }
-                   OM->APP:
-                    struct
-                    {
-                         ulErrorCode           32
-                         ulCount               32       返回的NV项个数
-                         NvItem1Id         16       第一项NV的Id编号
-                         NvItem1Len        16       第一项NV的长度，以Byte为单位
-                         NvItem1Data[n1]       n1*16    第一项NV的数据
-                    }
- Input           : pstAppToOmMsg  - The input msg received from APP side.
-                   usReturnPrimId - The value of the returned PrimId.
- Output          : None.
- Return Value    : VOS_OK  - Success.
-                   VOS_ERR - Failure.
 
-
- History         : ---
-    Date         : 2015-02-27
-    Author       : x00263027
-    Modification : Created function
- *****************************************************************************/
 VOS_UINT32 CBT_AcpuReadNv(CBT_UNIFORM_MSG_STRU *pstAppToCbtMsg, VOS_UINT16 usReturnPrimId)
 {
     CBT_UNIFORM_MSG_STRU               *pstCbtToAppMsg;
@@ -180,31 +134,7 @@ VOS_UINT32 CBT_AcpuReadNv(CBT_UNIFORM_MSG_STRU *pstAppToCbtMsg, VOS_UINT16 usRet
     return VOS_OK;
 }
 
-/*****************************************************************************
- Prototype       : OM_WriteNv
- Description     :
-                  APP->OM:
-                  struct
-                  {
-                        ulCount 32             要读取的NV项个数
-                        NvItem1Id   16         第一项NV的Id编号
-                        NvItem1Len  16         第一项NV的长度，以Byte为单位
-                        NvItem1Data[n1] n1*16  第一项NV的数据
-                  }
-                  OM->APP:
-                  ulErrorCode   32      请参见"表65 UlErrorCode定义表"
 
- Input           : pstAppToOmMsg  - The input msg received from APP side.
-                   usReturnPrimId - The value of the returned PrimId.
- Output          : None.
- Return Value    : VOS_OK  - Success.
-                   VOS_ERR - Failure.
-
- History         : ---
-    Date         : 2015-02-27
-    Author       : x00263027
-    Modification : Created function
- *****************************************************************************/
 VOS_UINT32 CBT_AcpuWriteNv(CBT_UNIFORM_MSG_STRU *pstAppToCbtMsg, VOS_UINT16 usReturnPrimId)
 {
     CBT_WRITE_NV_REQ_STRU   *pstAppCbtWriteNv;

@@ -1,69 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasCcAirMsgProc.c
-  版 本 号   : 初稿
-  作    者   : 丁庆 49431
-  生成日期   : 2007年9月5日
-  最近修改   : 2007年9月5日
-  功能描述   : 接收和处理来自空口的信令消息
-  函数列表   : NAS_CC_SendNextStartDtmf
-               NAS_CC_ProcProtocolError
-               NAS_CC_ProcAlertingMsg
-               NAS_CC_ProcCallProceedingMsg
-               NAS_CC_ProcCcEstablishment
-               NAS_CC_ProcConnectAckMsg
-               NAS_CC_ProcConnectMsg
-               NAS_CC_ProcDisconnectMsg
-               NAS_CC_ProcFacilityMsg
-               NAS_CC_ProcHoldAckMsg
-               NAS_CC_ProcHoldRejMsg
-               NAS_CC_ProcModifyCompleteMsg
-               NAS_CC_ProcModifyMsg
-               NAS_CC_ProcModifyRejMsg
-               NAS_CC_ProcNotify
-               NAS_CC_ProcProgressMsg
-               NAS_CC_ProcRecall
-               NAS_CC_ProcReleaseCompleteMsg
-               NAS_CC_ProcReleaseMsg
-               NAS_CC_ProcRetrieveAckMsg
-               NAS_CC_ProcRetrieveRejMsg
-               NAS_CC_ProcSetupMsg
-               NAS_CC_ProcStartDtmfAck
-               NAS_CC_ProcStartDtmfRej
-               NAS_CC_ProcStatus
-               NAS_CC_ProcStatusEnquiry
-               NAS_CC_ProcStopDtmfAck
-               NAS_CC_ProcAirMsg
-  修改历史   :
-  1.日    期   : 2007年9月5日
-    作    者   : 丁庆 49431
-    修改内容   : 创建文件
-  2.日    期   : 2008年7月12日
-    作    者   : 黎客来 00130025
-    修改内容   : 问题单号:AT2D04057
-  3.日    期   : 2008年10月20日
-    作    者   : h44270
-    修改内容   : 问题单号:A32D14153,来电时，用户尚未接听电话就打开了声码器,，AMR速率变换没有上报
-  4.日    期   : 2008年10月25日
-    作    者   : s62952
-    修改内容   : 问题单号:A32D14142,在通话117时，拨打1，2等DTMF字符时，会中断117通话
-  5.日    期   : 2010年01月28日
-    作    者   : f62575
-    修改内容   : 问题单号AT2D16557, GCF测试26.5.5.3.1.2；
-                 CC接收到网络过来的STATUS消息缺失必选IE，应回复STATUS消息，
-                 错误原因值96
-
-  6.日    期   : 2010年3月2日
-    作    者   : zhoujun /z40661
-    修改内容   : NAS R7协议升级
-
-  7.日    期   : 2010年8月4日
-    作    者   : zhoujun /40661
-    修改内容   : 支持UUS
-******************************************************************************/
 /*****************************************************************************
   1 头文件包含
 *****************************************************************************/
@@ -138,29 +73,11 @@ LOCAL  VOS_VOID NAS_CC_ProcProgressIndicator(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_CheckMtSetupCondIe
- 功能描述  : 检查Mt Setup中的条件ie项
- 输入参数  : pstMsg   - 解码后的SETUP消息
- 输出参数  : 无
- 返 回 值  : 处理中是否发生协议错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月5日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2014年6月17日
-    作    者   : z00234330
-    修改内容   : PCINT清理
-
-*****************************************************************************/
 LOCAL VOS_UINT32 NAS_CC_CheckMtSetupCondIe(
      const NAS_CC_MSG_SETUP_MT_STRU     *pstMsg
 )
 {
-    /* Modified by z00234330 for PCLINT清理, 2014-06-24, begin */
     if ( (VOS_TRUE == pstMsg->stBC1.IsExist)
       && (VOS_TRUE == pstMsg->stBC2.IsExist)
       && ( VOS_FALSE == pstMsg->stBCRepeatInd.IsExist))
@@ -181,25 +98,10 @@ LOCAL VOS_UINT32 NAS_CC_CheckMtSetupCondIe(
     {
         return VOS_ERR;
     }
-    /* Modified by z00234330 for PCLINT清理, 2014-06-24, end */
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_CheckCallProceedingCondIe
- 功能描述  : 检查Mt call proceeding中的条件ie项
- 输入参数  : pstMsg   - 解码后的SETUP消息
- 输出参数  : 无
- 返 回 值  : 处理中是否发生协议错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月5日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL VOS_UINT32 NAS_CC_CheckCallProceedingCondIe(
      const NAS_CC_MSG_CALL_PROC_STRU    *pstMsg
 )
@@ -214,22 +116,7 @@ LOCAL VOS_UINT32 NAS_CC_CheckCallProceedingCondIe(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcFacIE
- 功能描述  : 处理facility IE
- 输入参数  : entityId - CC实体ID
-              pstMsg   - 解码后的DISCONNECT消息
- 输出参数  : 无
- 返 回 值  : 处理中是否发生协议错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月5日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL VOS_VOID NAS_CC_ProcFacIE(
     NAS_CC_ENTITY_ID_T                  entityId,
     NAS_CC_IE_FACILITY_STRU             *pstFacIE
@@ -286,30 +173,7 @@ LOCAL VOS_VOID NAS_CC_ProcFacIE(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcSetupMsg
- 功能描述  : 处理来自网络的SETUP消息
- 输入参数  : entityId - CC实体ID
-              pstMsg   - 解码后的SETUP消息
- 输出参数  : 无
- 返 回 值  : 处理中是否发生协议错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月5日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2008年8月21日
-    作    者   : h44270
-    修改内容   : 问题单号DTS2010081802507
-  3.日    期   : 2010年11月18日
-    作    者   : h44270
-    修改内容   : 问题单号DTS2010111601486/DTS2010111804800
-  4.日    期   : 2013年7月18日
-    作    者   : z60575
-    修改内容   : 问题单号DTS2013071804506,VP,PS并发，删除限制
-*****************************************************************************/
 LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcSetupMsg(
     NAS_CC_ENTITY_ID_T                  entityId,
     const NAS_CC_MSG_SETUP_MT_STRU      *pstMsg
@@ -377,27 +241,7 @@ LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcSetupMsg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcReleaseMsg
- 功能描述  : 处理来自网络的RELEASE消息
- 输入参数  : entityId - CC实体ID
-             pstMsg   - 解码后的RELEASE消息
- 输出参数  : 无
- 返 回 值  : 处理中是否发生协议错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月5日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2008年7月12日
-    作    者   : 黎客来 00130025
-    修改内容   : 问题单号:AT2D04057
-  3.日    期   : 2013年6月26日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级
-*****************************************************************************/
 LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcReleaseMsg(
     NAS_CC_ENTITY_ID_T                  entityId,
     const NAS_CC_MSG_RELEASE_MT_STRU    *pstMsg
@@ -441,9 +285,7 @@ LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcReleaseMsg(
                            pstMsg,
                            sizeof(NAS_CC_MSG_RELEASE_MT_STRU));
 
-        /* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
         NAS_CC_ProcSsSwitchCallRelease(entityId);
-        /* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 
         NAS_CC_INFO_LOG("NAS_CC_ProcReleaseMsg: call state to U0");
         NAS_CC_ChangeCallState(entityId, NAS_CC_CALL_STATE_U0);
@@ -457,27 +299,7 @@ LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcReleaseMsg(
     return NAS_PROT_ERR_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcReleaseCompleteMsg
- 功能描述  : 处理来自网络的RELEASE COMPLETE消息
- 输入参数  : entityId - CC实体ID
-              pstMsg   - 解码后的RELEASE COMPLETE消息
- 输出参数  : 无
- 返 回 值  : 处理中是否发生协议错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月5日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2008年7月12日
-    作    者   : 黎客来 00130025
-    修改内容   : 问题单号:AT2D04057
-  3.日    期   : 2013年6月26日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级
-*****************************************************************************/
 LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcReleaseCompleteMsg(
     NAS_CC_ENTITY_ID_T                        entityId,
     const NAS_CC_MSG_RELEASE_COMPLETE_MT_STRU *pstMsg
@@ -506,9 +328,7 @@ LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcReleaseCompleteMsg(
                        pstMsg,
                        sizeof(NAS_CC_MSG_RELEASE_COMPLETE_MT_STRU));
 
-    /* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
     NAS_CC_ProcSsSwitchCallRelease(entityId);
-    /* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 
     NAS_CC_INFO_LOG("NAS_CC_ProcReleaseCompleteMsg: call state to U0");
 
@@ -523,24 +343,7 @@ LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcReleaseCompleteMsg(
     return NAS_PROT_ERR_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcProgressIe
- 功能描述  : 处理Progress IE
- 输入参数  : entityId - CC实体ID
-              ucPi     - Progress indicator
- 输出参数  : 无
- 返 回 值  : 处理中是否发生协议错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月5日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2015年7月6日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-*****************************************************************************/
 LOCAL VOS_VOID  NAS_CC_ProcProgressIe(
     NAS_CC_ENTITY_ID_T                  entityId,
     NAS_CC_PROGRESS_DESCRIPTION_ENUM_U8 ucPi
@@ -581,22 +384,7 @@ LOCAL VOS_VOID  NAS_CC_ProcProgressIe(
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcCallProceedingMsg
- 功能描述  : 处理来自网络的CALL PROCEEDING消息
- 输入参数  : entityId - CC实体ID
-              pstMsg   - 解码后的CALL PROCEEDING消息
- 输出参数  : 无
- 返 回 值  : 处理中是否发生协议错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月5日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcCallProceedingMsg(
     NAS_CC_ENTITY_ID_T                  entityId,
     const NAS_CC_MSG_CALL_PROC_STRU     *pstMsg
@@ -679,29 +467,7 @@ LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcCallProceedingMsg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcAlertingMsg
- 功能描述  : 处理来自网络的ALERTING消息
- 输入参数  : entityId - CC实体ID
-              pstMsg   - 解码后的ALERTING消息
- 输出参数  : 无
- 返 回 值  : 处理中是否发生协议错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月5日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-
-  2.日    期   : 2010年3月1日
-    作    者   : zhoujun /z40661
-    修改内容   : 增加ALS功能支持
-
-  3.日    期   : 2010年3月17日
-    作    者   : zhoujun /z40661
-    修改内容   : AMR速率调整时,本地振铃暂不由MODEM侧实现
-*****************************************************************************/
 LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcAlertingMsg(
     NAS_CC_ENTITY_ID_T                  entityId,
     const NAS_CC_MSG_ALERTING_MT_STRU   *pstMsg
@@ -768,32 +534,7 @@ LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcAlertingMsg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcConnectMsg
- 功能描述  : 处理来自网络的CONNECT消息
- 输入参数  : entityId - CC实体ID
-              pstMsg   - 解码后的CONNECT消息
- 输出参数  : 无
- 返 回 值  : 处理中是否发生协议错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月5日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-
-  2.日    期   : 2010年3月1日
-    作    者   : zhoujun /z40661
-    修改内容   : 增加ALS多线路的支持
-
-  3.日    期   : 2012年8月22日
-    作    者   : z40661
-    修改内容   : DTS20120713601654，多上报了sync_ind消息
-  4.日    期   : 2012年10月20日
-    作    者   : l65478
-    修改内容   : DTS2012101706755，在早指派时没有设置用户连接存在标志
-*****************************************************************************/
 LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcConnectMsg(
     NAS_CC_ENTITY_ID_T                  entityId,
     const NAS_CC_MSG_CONNECT_MT_STRU    *pstMsg
@@ -859,32 +600,7 @@ LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcConnectMsg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcConnectAckMsg
- 功能描述  : 处理来自网络的CONNECT ACK消息
- 输入参数  : entityId - CC实体ID
-              pstMsg   - 解码后的CONNECT ACK消息
- 输出参数  : 无
- 返 回 值  : 处理中是否发生协议错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月5日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-
-  2.日    期   : 2010年3月1日
-    作    者   : zhoujun /z40661
-    修改内容   : 增加ALS多线路的支持
-
-  3.日    期   : 2012年8月22日
-    作    者   : z40661
-    修改内容   : DTS20120713601654，多上报了sync_ind消息
-  4.日    期   : 2012年10月20日
-    作    者   : l65478
-    修改内容   : DTS2012101706755，在早指派时没有设置用户连接存在标志
-*****************************************************************************/
 LOCAL NAS_PROTOCOL_ERR_ENUM_U8 NAS_CC_ProcConnectAckMsg(
     NAS_CC_ENTITY_ID_T                  entityId,
     const NAS_CC_MSG_CONNECT_ACK_STRU   *pstMsg
@@ -945,34 +661,7 @@ LOCAL NAS_PROTOCOL_ERR_ENUM_U8 NAS_CC_ProcConnectAckMsg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcDisconnectMsg
- 功能描述  : 处理来自网络的DISCONNECT消息
- 输入参数  : entityId - CC实体ID
-              pstMsg   - 解码后的DISCONNECT消息
- 输出参数  : 无
- 返 回 值  : 处理中是否发生协议错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月5日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
- 2.日    期   : 2009年7月18日
-    作    者   : s62952
-    修改内容: 根据问题单AT2D12925修改
-
-  3.日    期   : 2010年3月1日
-    作    者   : zhoujun /z40661
-    修改内容   : 测试ECT时，未能上报Disconnect消息
-  4.日    期   : 2010年11月27日
-    作    者   : w00166186
-    修改内容   : DTS2010111800201 电话挂断后有一段电流声
-  5.日    期   : 2014年6月17日
-    作    者   : z00234330
-    修改内容   : PCINT清理
-*****************************************************************************/
 LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcDisconnectMsg(
     NAS_CC_ENTITY_ID_T                  entityId,
     NAS_CC_MSG_DISCONNECT_MT_STRU       *pstMsg
@@ -997,18 +686,21 @@ LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcDisconnectMsg(
 */
     NAS_CC_CALL_STATE_ENUM_U8           enCallState;
 
-    enCallState = NAS_CC_GetCallState(entityId);
+    VOS_UINT32                          ulProcDisProInd;
+
+    ulProcDisProInd = NAS_CC_IsNeedProcDisProInd(entityId);
+
+    enCallState     = NAS_CC_GetCallState(entityId);
+
 
     if ((enCallState != NAS_CC_CALL_STATE_U0)
         && (enCallState != NAS_CC_CALL_STATE_U12)
         && (enCallState != NAS_CC_CALL_STATE_U19))
     {
-        /* Modified by z00234330 for PCLINT清理, 2014-06-24, begin */
-        if (( VOS_TRUE == NAS_CC_IsTchAvailable(NAS_CC_ITC_SPEECH))
-        && ( VOS_TRUE == pstMsg->stProgInd.IsExist)
-        && (NAS_CC_PROGRESS_IN_BAND == pstMsg->stProgInd.Octet4.ProgDesc)
-        )
-        /* Modified by z00234330 for PCLINT清理, 2014-06-24, end */
+        if ( ( VOS_TRUE == NAS_CC_IsTchAvailable(NAS_CC_ITC_SPEECH))
+          && ( VOS_TRUE == pstMsg->stProgInd.IsExist)
+          && (NAS_CC_PROGRESS_IN_BAND == pstMsg->stProgInd.Octet4.ProgDesc)
+          && (VOS_TRUE == ulProcDisProInd) )
         {
             /* 建立用户面连接 */
             NAS_CC_AttachUserConn(entityId, NAS_CC_ITC_SPEECH);
@@ -1054,22 +746,7 @@ LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcDisconnectMsg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcCcEstablishmentMsg
- 功能描述  : 处理来自网络的cc establishment消息
- 输入参数  : entityId - CC实体ID
-             pstMsg   - 解码后的cc establishment消息
- 输出参数  : 无
- 返 回 值  : 处理中是否发生协议错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年12月25日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcCcEstablishmentMsg(
     NAS_CC_ENTITY_ID_T                  entityId,
@@ -1144,22 +821,7 @@ LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcCcEstablishmentMsg(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcRecallMsg
- 功能描述  : 处理来自网络的recall消息
- 输入参数  : entityId - CC实体ID
-              pstMsg   - 解码后的recall消息
- 输出参数  : 无
- 返 回 值  : 处理中是否发生协议错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年12月25日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcRecallMsg(
     NAS_CC_ENTITY_ID_T                  entityId,
     const NAS_CC_MSG_RECALL_STRU        *pstMsg
@@ -1207,27 +869,7 @@ LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcNotifyMsg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcHoldAckMsg
- 功能描述  : 处理来自网络的HOLD ACK消息
- 输入参数  : entityId - CC实体ID
-              pstMsg   - 解码后的HOLD ACK消息
- 输出参数  : 无
- 返 回 值  : 处理中是否发生协议错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月5日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-  3.日    期   : 2013年07月29日
-    作    者   : z00161729
-    修改内容   : V9R1 STK升级项目如果在start dtmf req状态发起了hold，收到hold ack后需要清除dtmf状态
-*****************************************************************************/
 LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcHoldAckMsg(
     NAS_CC_ENTITY_ID_T                  entityId,
     const NAS_CC_MSG_HOLD_ACK_STRU      *pstMsg
@@ -1245,21 +887,17 @@ LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcHoldAckMsg(
 
     if (NAS_CC_HOLD_AUX_S_HOLD_REQ == enHoldState)
     {
-        /* Modified by l00198894 for V9R1 STK升级, 2013/07/11, begin */
         NAS_CC_StopTimer(entityId, TI_NAS_CC_HOLD);
 
         /* 记录补充业务切换状态，调用统一补充业务切换状态处理函数 */
         NAS_CC_SetSsSwitchHoldInfo(entityId, NAS_CC_SS_SWITCH_SUCCESS, NAS_CC_CAUSE_NULL);
 
         NAS_CC_ProcSsSwitchMain();
-        /* Modified by l00198894 for V9R1 STK升级, 2013/07/11, end */
 
-        /* Modified by z00161729 for V9R1 STK升级, 2013-07-29, begin */
         NAS_CC_StopTimer(entityId, TI_NAS_CC_T336);
         NAS_CC_StopTimer(entityId, TI_NAS_CC_T337);
         NAS_CC_ChangeDtmfState(entityId, NAS_CC_DTMF_S_IDLE);
         NAS_CC_FlushDTMFBuff(entityId);
-        /* Modified by z00161729 for V9R1 STK升级, 2013-07-29, end */
 
         return NAS_PROT_ERR_NO_ERROR;
     }
@@ -1271,24 +909,7 @@ LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcHoldAckMsg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcHoldRejMsg
- 功能描述  : 处理来自网络的HOLD REJECT消息
- 输入参数  : entityId - CC实体ID
-              pstMsg   - 解码后的HOLD REJECT消息
- 输出参数  : 无
- 返 回 值  : 处理中是否发生协议错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月5日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-*****************************************************************************/
 LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcHoldRejMsg(
     NAS_CC_ENTITY_ID_T                  entityId,
     const NAS_CC_MSG_HOLD_REJ_STRU      *pstMsg
@@ -1306,14 +927,12 @@ LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcHoldRejMsg(
 
     if (NAS_CC_HOLD_AUX_S_HOLD_REQ == enHoldState)
     {
-        /* Modified by l00198894 for V9R1 STK升级, 2013/07/11, begin */
         NAS_CC_StopTimer(entityId, TI_NAS_CC_HOLD);
 
         /* 记录补充业务切换状态，调用统一补充业务切换状态处理函数 */
         NAS_CC_SetSsSwitchHoldInfo(entityId, NAS_CC_SS_SWITCH_FAILED, pstMsg->stCause.Octet4.CauseValue);
 
         NAS_CC_ProcSsSwitchMain();
-        /* Modified by l00198894 for V9R1 STK升级, 2013/07/11, end */
 
         return NAS_PROT_ERR_NO_ERROR;
     }
@@ -1325,28 +944,7 @@ LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcHoldRejMsg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcRetrieveAckMsg
- 功能描述  : 处理来自网络的RETRIEVE ACK消息
- 输入参数  : entityId - CC实体ID
-              pstMsg   - 解码后的RETRIEVE ACK消息
- 输出参数  : 无
- 返 回 值  : 处理中是否发生协议错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月5日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2013年02月03日
-    作    者   : Y00213812
-    修改内容   : DTS2013020203946,如果还存在一个ACTIVE状态的呼叫，不处理本次
-                 retrieve消息
-  3.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-*****************************************************************************/
 LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcRetrieveAckMsg(
     NAS_CC_ENTITY_ID_T                  entityId,
     const NAS_CC_MSG_RETRIEVE_ACK_STRU  *pstMsg
@@ -1364,14 +962,12 @@ LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcRetrieveAckMsg(
 
     if (NAS_CC_HOLD_AUX_S_RETRIEVE_REQ == enHoldState)
     {
-        /* Modified by l00198894 for V9R1 STK升级, 2013/07/11, begin */
         NAS_CC_StopTimer(entityId, TI_NAS_CC_HOLD);
 
         /* 记录补充业务切换状态，调用统一补充业务切换状态处理函数 */
         NAS_CC_SetSsSwitchRetrieveInfo(entityId, NAS_CC_SS_SWITCH_SUCCESS, NAS_CC_CAUSE_NULL);
 
         NAS_CC_ProcSsSwitchMain();
-        /* Modified by l00198894 for V9R1 STK升级, 2013/07/11, end */
 
         return NAS_PROT_ERR_NO_ERROR;
     }
@@ -1383,27 +979,7 @@ LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcRetrieveAckMsg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcRetrieveRejMsg
- 功能描述  : 处理来自网络的RETRIEVE REJECT消息
- 输入参数  : entityId - CC实体ID
-              pstMsg   - 解码后的RETRIEVE REJECT消息
- 输出参数  : 无
- 返 回 值  : 处理中是否发生协议错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月5日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2013年02月03日
-    作    者   : Y00213812
-    修改内容   : DTS2013020203946,如果还存在一个HELD状态的呼叫，则恢复另外一个呼叫为ACTIVE
-  3.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-*****************************************************************************/
 LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcRetrieveRejMsg(
     NAS_CC_ENTITY_ID_T                  entityId,
     const NAS_CC_MSG_RETRIEVE_REJ_STRU  *pstMsg
@@ -1421,14 +997,12 @@ LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcRetrieveRejMsg(
 
     if (NAS_CC_HOLD_AUX_S_RETRIEVE_REQ == enHoldState)
     {
-        /* Modified by l00198894 for V9R1 STK升级, 2013/07/11, begin */
         NAS_CC_StopTimer(entityId, TI_NAS_CC_HOLD);
 
         /* 记录补充业务切换状态，调用统一补充业务切换状态处理函数 */
         NAS_CC_SetSsSwitchRetrieveInfo(entityId, NAS_CC_SS_SWITCH_FAILED, pstMsg->stCause.Octet4.CauseValue);
 
         NAS_CC_ProcSsSwitchMain();
-        /* Modified by l00198894 for V9R1 STK升级, 2013/07/11, end */
 
         return NAS_PROT_ERR_NO_ERROR;
     }
@@ -1471,22 +1045,7 @@ LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcModifyRejMsg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcProgressMsg
- 功能描述  : 处理来自网络的PROGRESS消息
- 输入参数  : entityId - CC实体ID
-              pstMsg   - 解码后的PROGRESS消息
- 输出参数  : 无
- 返 回 值  : 处理中是否发生协议错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月5日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcProgressMsg(
     NAS_CC_ENTITY_ID_T                  entityId,
     const NAS_CC_MSG_PROGRESS_STRU      *pstMsg
@@ -1521,30 +1080,12 @@ LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcProgressMsg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcFacilityMsg
- 功能描述  : 处理来自网络的FACILITY消息
- 输入参数  : entityId - CC实体ID
-              pstMsg   - 解码后的FACILITY消息
- 输出参数  : 无
- 返 回 值  : 处理中是否发生协议错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月5日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-*****************************************************************************/
 LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcFacilityMsg(
     NAS_CC_ENTITY_ID_T                  entityId,
     NAS_CC_MSG_FACILITY_MT_STRU        *pstMsg
 )
 {
-    /* Modified by l00198894 for V9R1 STK升级, 2013/07/11, begin */
     NAS_CC_ENTITY_ID_T                  ulHoldEntityID;
     NAS_CC_ENTITY_ID_T                  ulRetrieveEntityID;
 
@@ -1570,28 +1111,12 @@ LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcFacilityMsg(
                            pstMsg,
                            sizeof(NAS_CC_MSG_FACILITY_MT_STRU));
     }
-    /* Modified by l00198894 for V9R1 STK升级, 2013/07/11, end */
 
     return NAS_PROT_ERR_NO_ERROR;
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcStartDtmfAckMsg
- 功能描述  : 处理来自网络的START DTMF ACK消息
- 输入参数  : entityId - CC实体ID
-              pstMsg   - 解码后的START DTMF ACK消息
- 输出参数  : 无
- 返 回 值  : 处理中是否发生协议错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月5日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcStartDtmfAckMsg(
     NAS_CC_ENTITY_ID_T                   entityId,
     const NAS_CC_MSG_START_DTMF_ACK_STRU *pstMsg
@@ -1621,25 +1146,7 @@ LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcStartDtmfAckMsg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcStartDtmfRejMsg
- 功能描述  : 处理来自网络的START DTMF REJ消息
- 输入参数  : entityId - CC实体ID
-              pstMsg   - 解码后的START DTMF REJ消息
- 输出参数  : 无
- 返 回 值  : 处理中是否发生协议错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月5日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2013年2月18日
-    作    者   : z00161729
-    修改内容   : DTS2013021803962:start dtmf rej后如果收到stop dtmf请求无需跟网络交互直接回复stop dtmf cnf
-
-*****************************************************************************/
 LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcStartDtmfRejMsg(
     NAS_CC_ENTITY_ID_T                   entityId,
     const NAS_CC_MSG_START_DTMF_REJ_STRU *pstMsg
@@ -1677,22 +1184,7 @@ LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcStartDtmfRejMsg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcStopDtmfAckMsg
- 功能描述  : 处理来自网络的STOP DTMF ACK消息
- 输入参数  : entityId - CC实体ID
-              pstMsg   - 解码后的STOP DTMF ACK消息
- 输出参数  : 无
- 返 回 值  : 处理中是否发生协议错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月5日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcStopDtmfAckMsg(
     NAS_CC_ENTITY_ID_T                  entityId,
     const NAS_CC_MSG_STOP_DTMF_ACK_STRU *pstMsg
@@ -1721,22 +1213,7 @@ LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcStopDtmfAckMsg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcStatusEnquiryMsg
- 功能描述  : 处理来自网络的STATUS ENQUIRY消息
- 输入参数  : entityId - CC实体ID
-              pstMsg   - 解码后的STATUS ENQUIRY消息
- 输出参数  : 无
- 返 回 值  : 处理中是否发生协议错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月5日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcStatusEnquiryMsg(
     NAS_CC_ENTITY_ID_T                   entityId,
     const NAS_CC_MSG_STATUS_ENQUIRY_STRU *pstMsg
@@ -1754,22 +1231,7 @@ LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcStatusEnquiryMsg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcStatusMsg
- 功能描述  : 处理来自网络的STATUS消息
- 输入参数  : entityId - CC实体ID
-              pstMsg   - 解码后的STATUS消息
- 输出参数  : 无
- 返 回 值  : 处理中是否发生协议错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月5日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcStatusMsg(
     NAS_CC_ENTITY_ID_T                  entityId,
     const NAS_CC_MSG_STATUS_STRU        *pstMsg
@@ -1800,22 +1262,7 @@ LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcStatusMsg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcUserInfoMsg
- 功能描述  : 处理来自网络的User Information信息
- 输入参数  : entityId - CC实体ID
-              pstMsg   - 解码后的STATUS消息
- 输出参数  : 无
- 返 回 值  : 处理中是否发生协议错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年8月4日
-    作    者   : zhoujun /40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcUserInfoMsg(
     NAS_CC_ENTITY_ID_T                  entityId,
     const NAS_CC_MSG_USER_INFO_STRU     *pstMsg
@@ -1841,34 +1288,7 @@ LOCAL NAS_PROTOCOL_ERR_ENUM_U8  NAS_CC_ProcUserInfoMsg(
     return NAS_PROT_ERR_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcProtocolError
- 功能描述  : 处理协议相关的错误，参见3GPP 24.008第8章
- 输入参数  : ucTi      - Transcation ID
-              enMsgType - 消息类型
-              enErrno   - 错误码
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月13日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2010年01月15日
-    作    者   : l65478
-    修改内容   : 问题单号:AT2D14565，收到不期望的"comprehension required"的IE，
-                 需要向网络发送status消息
-  3.日    期   : 2010年01月28日
-    作    者   : f62575
-    修改内容   : 问题单号AT2D16557, GCF测试26.5.5.3.1.2；
-                 CC接收到网络过来的STATUS消息缺失必选IE，应回复STATUS消息，
-                 错误原因值96
-  4.日    期   : 2008年8月21日
-    作    者   : h44270
-    修改内容   : 问题单号DTS2010081802507
-*****************************************************************************/
 LOCAL VOS_VOID  NAS_CC_ProcProtocolError(
     VOS_UINT8                           ucTi,
     NAS_CC_MSG_TYPE_ENUM_U8             enMsgType,
@@ -1967,30 +1387,7 @@ LOCAL VOS_VOID  NAS_CC_ProcProtocolError(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_CheckAirMsgValidity
- 功能描述  : 对CC空口消息进行协议检查
- 输入参数  : pucData     - CC消息的数据流
-             ulDataLen   - 数据流的长度
- 输出参数  : pulEntityId - 实体ID
-             pucMsgType  - 解析出来的消息类型
-             pucMsTi     - 解析出来的TI值
- 返 回 值  : VOS_OK      - 消息合法
-             VOS_ERR     - 消息非法
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年6月28日
-    作    者   : z00161729
-    修改内容   : 降NAS_CC_ProcAirMsg新生成函数
-  1.日    期   : 2010年12月03日
-    作    者   : w00166186
-    修改内容   : DTS2010111900302 上海外场接听第三方通话失败，CALL ID填写错误
-  3.日    期   : 2014年6月13日
-    作    者   : w00242748
-    修改内容   : DSDS 新特性
-*****************************************************************************/
 VOS_UINT32 NAS_CC_CheckAirMsgValidity(
     const VOS_UINT8                    *pucData,
     VOS_UINT32                          ulDataLen,
@@ -2108,32 +1505,7 @@ VOS_UINT32 NAS_CC_CheckAirMsgValidity(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcAirMsg
- 功能描述  : 对CC空口消息进行协议检查，解码，然后根据消息类型分发到各种消息的
-             处理函数去处理。
- 输入参数  : pucData   - CC消息的数据流
-             ulDataLen - 数据流的长度
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月13日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2010年6月28日
-    作    者   : z00161729
-    修改内容   : 降NAS_CC_ProcAirMsg新生成函数
-  3.日    期   : 2012年03月03日
-    作    者   : s62952
-    修改内容   : BalongV300R002 Build优化项目
-  4.日    期   : 2014年12月22日
-    作    者   : b00269685
-    修改内容   : ultra flash新增缓存机制
-
-*****************************************************************************/
 VOS_VOID  NAS_CC_ProcAirMsg(
     const VOS_UINT8                    *pucData,
     VOS_UINT32                          ulDataLen
@@ -2143,12 +1515,10 @@ VOS_VOID  NAS_CC_ProcAirMsg(
     NAS_PROTOCOL_ERR_ENUM_U8            enProtErr;
     NAS_CC_ENTITY_ID_T                  ulEntityId;
     VOS_UINT8                           ucMsTi;      /* Ti in MS to network message */
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     NAS_CC_CUSTOM_CFG_INFO_STRU        *pstCustomCfgAddr;
 
     /* 获取特性控制NV地址 */
     pstCustomCfgAddr                    = NAS_CC_GetCustomCfgInfo();
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
 
     enProtErr = NAS_PROT_ERR_NO_ERROR;
@@ -2227,7 +1597,6 @@ VOS_VOID  NAS_CC_ProcAirMsg(
            enProtErr = NAS_CC_ProcDisconnectMsg(ulEntityId, &f_unCcDecodeBuf.stDisconnectMT);
            break;
 
-        /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
         case NAS_CC_MSG_CC_EST:
             if (VOS_TRUE == pstCustomCfgAddr->ucCcbsSupportFlg)
             {
@@ -2242,7 +1611,6 @@ VOS_VOID  NAS_CC_ProcAirMsg(
             }
 
             break;
-       /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
         case NAS_CC_MSG_NOTIFY:
            enProtErr = NAS_CC_ProcNotifyMsg(ulEntityId, &f_unCcDecodeBuf.stNotify);

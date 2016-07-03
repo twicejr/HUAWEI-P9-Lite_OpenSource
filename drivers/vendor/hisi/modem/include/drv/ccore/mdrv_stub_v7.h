@@ -44,152 +44,32 @@ static inline int DRV_GET_ARM_PLL_STATUS(void)
 #if 1
 /* Begin: DRV为OAM实现NV备份恢复流程而提供的接口 */
 
-/********************************************************************************************************
- 函 数 名  : DRV_UPGRADE_NV_SET_RESULT
- 功能描述  : OAM通过该接口告诉底软NV升级成功了还是失败了
- 输入参数  : status：0      表示NV升级成功
-                     其他值 表示NV升级失败
- 输出参数  :
- 返 回 值  : 0:  操作成功；
-             -1：操作失败。
- 其他注意  : V3R3 SFT 和 V9 BBIT 打桩
-             V9 SFT  实现
-                如果NV升级成功，底软往fastboot共享区置成功标识
-                如果NV升级失败，底软往fastboot共享区置失败标识
 
- 修改历史  :
- 1.日    期   : 2012年12月6日
-   作    者   : 蔡喜 00220237
-   修改内容   : 新生成函数
-********************************************************************************************************/
 extern int DRV_UPGRADE_NV_SET_RESULT(int status);
 
-/********************************************************************************************************
- 函 数 名  : DRV_NV_FILE_SEC_CHECK
- 功能描述  : 对文件进行校验
- 输入参数  : pnvFilePath：待校验文件的路径
- 输出参数  :
- 返 回 值  : 0 :    文件校验正确
-             -1：   文件校验失败
- 其他注意  : 目前条件不具备，直接打桩，以后实现
 
- 修改历史  :
- 1.日    期   : 2012年12月6日
-   作    者   : 蔡喜 00220237
-   修改内容   : 新生成函数
-********************************************************************************************************/
 extern int DRV_NV_FILE_SEC_CHECK(char * pnvFilePath);
 
-/********************************************************************************************************
- 函 数 名  : BSP_DLOAD_NVBackupRead
- 功能描述  : 从Flash中的NV项备份区读取数据，实现NV项的恢复功能。
- 输入参数  : len：从NV项备份区起始处开始，需要读取的NV项长度（字节数）。
- 输出参数  : pRamAddr：目的RAM地址，用于存放读出的NV项数据。
- 返 回 值  : 0:  操作成功；
-             -1：操作失败。
- 其他注意  : V3R3 SFT 和 V9 BBIT 保持原样
-             V9 SFT  将调用nand接口修改为调用emmc接口读写NV备份区
 
- 修改历史  :
- 1.日    期   : 2012年12月6日
-   作    者   : 蔡喜 00220237
-   修改内容   : 修改函数
-********************************************************************************************************/
 extern int BSP_DLOAD_NVBackupRead(unsigned char *pRamAddr, unsigned int len);
 #define DRV_NVBACKUP_READ(pRamAddr,len)    BSP_DLOAD_NVBackupRead(pRamAddr, len)
 
-/********************************************************************************************************
- 函 数 名  : BSP_DLOAD_NVBackupWrite
- 功能描述  : 将特定数据写入Flash中的NV项备份区，实现NV项的备份功能。
- 输入参数  : pRamAddr：源RAM地址，用于存放需要写入的NV项数据。
-             len：从NV项备份区起始处开始，需要写入的NV项长度（字节数）。
- 输出参数  : 无。
- 返 回 值  : 0:  操作成功；
-             -1：操作失败。
- 其他注意  : V3R3 SFT 和 V9 BBIT 保持原样
-             V9 SFT  将调用nand接口修改为调用emmc接口读写NV备份区
 
- 修改历史  :
- 1.日    期   : 2012年12月6日
-   作    者   : 蔡喜 00220237
-   修改内容   : 修改函数
-********************************************************************************************************/
 extern int BSP_DLOAD_NVBackupWrite(unsigned char *pRamAddr, unsigned int len);
 #define DRV_NVBACKUP_WRITE(pRamAddr, len)   BSP_DLOAD_NVBackupWrite(pRamAddr, len)
 
-/********************************************************************************************************
- 函 数 名  : DRV_NVBACKUP_EXT_READ
- 功能描述  : 从Flash中的LastBackup区读取数据，为NV备份数据丢失的容错恢复机制提供支持
- 输入参数  : len：从LastBackup起始处开始，需要读取的NV项长度（字节数）。
- 输出参数  : pRamAddr：目的RAM地址，用于存放读出的NV项数据。
- 返 回 值  : 0:  操作成功；
-             -1：操作失败。
- 其他注意  : V3R3 SFT  打桩
-             V9R1 SFT  实现
 
- 修改历史  :
- 1.日    期   : 2013年10月22日
-   作    者   : 蔡喜 00220237
-   修改内容   : 新增函数
-********************************************************************************************************/
 extern int DRV_NVBACKUP_EXT_READ(unsigned char *pRamAddr, unsigned int len);
 
-/********************************************************************************************************
- 函 数 名  : DRV_NVBACKUP_EXT_WRITE
- 功能描述  : 将特定数据写入Flash中的LastBackup区，为NV备份数据丢失的容错恢复机制提供支持
- 输入参数  : pRamAddr：源RAM地址，用于存放需要写入的NV项数据。
-             len：从LastBackup区起始处开始，需要写入的NV项长度（字节数）。
- 输出参数  : 无。
- 返 回 值  : 0:  操作成功；
-             -1：操作失败。
- 其他注意  : V3R3 SFT  打桩
-             V9R1 SFT  实现
 
- 修改历史  :
- 1.日    期   : 2013年10月22日
-   作    者   : 蔡喜 00220237
-   修改内容   : 新增函数
-********************************************************************************************************/
 extern int DRV_NVBACKUP_EXT_WRITE(unsigned char *pRamAddr, unsigned int len);
 /* End: DRV为OAM实现NV备份恢复流程而提供的接口 */
 
-/********************************************************************************************************
- 函 数 名  : NVBackupFlashDataWrite
- 功能描述  : 实现FLASH 中NV备份恢复区从指定位置写功能。
- 输入参数  : pRamAddr：源RAM地址，用于存放需要写入的NV项数据。
-             offset :从NV备份区地址开始的偏移
-             len：从偏移处开始，需要写入NV数据的长度（字节数）。
- 输出参数  : 无。
- 返 回 值  : 0:  操作成功；
-             -1：操作失败。
- 其他注意  : V3R3 SFT 和 V9 BBIT 保持原样
-             V9 SFT  将调用nand接口修改为调用emmc接口读写NV备份区；设计时将备份分区名字定义为"/mnvbp"
 
- 修改历史  :
- 1.日    期   : 2012年12月6日
-   作    者   : 蔡喜 00220237
-   修改内容   : 修改函数
-********************************************************************************************************/
 extern int NVBackupFlashDataExtWrite(unsigned char* pRamAddr, unsigned int offset,unsigned int len);
 #define DRV_NV_FLASH_EXT_WRITE(pRamAddr, offset,len) NVBackupFlashDataExtWrite(pRamAddr, offset,len)
 
-/********************************************************************************************************
- 函 数 名  : NVBackupFlashDataWrite
- 功能描述  : 实现FLASH 中NV备份恢复区从指定位置写功能。
- 输入参数  : pRamAddr：源RAM地址，用于存放需要写入的NV项数据。
-             offset :从NV备份区地址开始的偏移
-             len：从偏移处开始，需要写入NV数据的长度（字节数）。
- 输出参数  : 无。
- 返 回 值  : 0:  操作成功；
-             -1：操作失败。
- 其他注意  : V3R3 SFT 和 V9 BBIT 保持原样
-             V9 SFT  将调用nand接口修改为调用emmc接口读写NV备份区；设计时将备份分区名字定义为"/mnvbp"
 
- 修改历史  :
- 1.日    期   : 2012年12月6日
-   作    者   : 蔡喜 00220237
-   修改内容   : 修改函数
-********************************************************************************************************/
 extern int NVBackupFlashDataWrite(unsigned char* pRamAddr, unsigned int offset,unsigned int len);
 #define DRV_NV_FLASH_WRITE(pRamAddr, offset,len) NVBackupFlashDataWrite(pRamAddr, offset,len)
 
@@ -205,21 +85,7 @@ extern int NVBackupFlashDataWrite(unsigned char* pRamAddr, unsigned int offset,u
 extern int BSP_DLOAD_EXT_SCBackupWrite(unsigned char *pRamAddr, unsigned int len);
 #define DRV_SCBACKUP_EXT_WRITE(pRamAddr, len)   BSP_DLOAD_EXT_SCBackupWrite(pRamAddr, len)
 
-/********************************************************************************************************
- 函 数 名  : BSP_DLOAD_EXT_SCBackupRead
- 功能描述  : 从Flash中的LastBackup区读取数据，为SC备份数据丢失的容错恢复机制提供支持
- 输入参数  : len：从LastBackup起始处开始，需要读取的NV项长度（字节数）。
- 输出参数  : pRamAddr：目的RAM地址，用于存放读出的NV项数据。
- 返 回 值  : 0:  操作成功；
-             -1：操作失败。
- 其他注意  : V3R3 SFT  打桩
-             V9R1 SFT  实现
 
- 修改历史  :
- 1.日    期   : 2013年10月22日
-   作    者   : 蔡喜 00220237
-   修改内容   : 新增函数
-********************************************************************************************************/
 extern int BSP_DLOAD_EXT_SCBackupRead(unsigned char *pRamAddr, unsigned int len);
 #define DRV_SCBACKUP_EXT_READ(pRamAddr,len)    BSP_DLOAD_EXT_SCBackupRead(pRamAddr, len)
 
@@ -381,15 +247,7 @@ typedef struct tagMODEM_MSC_STRU
 typedef unsigned int (*MNTN_ERRLOGREGFUN)(char * cFileName,unsigned int ulFileId, unsigned int ulLine,
                 unsigned int ulErrNo, void * pBuf, unsigned int ulLen);
 
-/*****************************************************************************
- 函 数 名  : ErrlogRegFunc
- 功能描述  : USB MNTN注册异常日志接口，Porting项目中打桩
-                Added by c00204787 for errorlog,20120211
- 输入参数  : 无。
- 输出参数  : 无。
- 返回值：   无
 
-*****************************************************************************/
 /*extern void ErrlogRegFunc(MNTN_ERRLOGREGFUN pRegFunc);
  */
 extern void MNTN_ERRLOG_REG_FUNC(MNTN_ERRLOGREGFUN pRegFunc);
@@ -705,27 +563,21 @@ typedef enum tagNCM_IOCTL_CMD_TYPE_E
     NCM_IOCTL_AT_RESPONSE,                   /* 0x10,AT命令回应*/
     NCM_IOCTL_REG_CONNECT_STUS_CHG_FUNC,     /* 0x11,注册网卡状态改变通知回调函数*/
     NCM_IOCTL_SET_PKT_STATICS,               /* 0x12,配置统计信息*/
-    /* BEGIN: Modified by liumengcun, 2011-4-21 DTS2011042101113
-       【BSP 新需求 USB NCM】PS需要底软提供NCM流控状态查询接口*/
+    
     NCM_IOCTL_GET_FLOWCTRL_STATUS,           /* 0x13 查询NCM流控状态*/
 
-    /* BEGIN: Modified by liumengcun, 2011-6-23 DTS2011062301762
-       PS和MSP新需求，提供查询当前发包门限个数接口和NCM 挂起时回调函数增加NCM 设备ID参数*/
+    
     NCM_IOCTL_GET_CUR_TX_MIN_NUM,              /* 0x14 获取当前发包个数阈值*/
     NCM_IOCTL_GET_CUR_TX_TIMEOUT,               /* 0x15 获取当前发包超时时间*/
     NCM_IOCTL_IPV6_DNS_NOTIF,              /*0x16 IPV6 DNS主动上报*/
-    /* BEGIN: Modified by liumengcun, 2011-7-20 支持IPV6 DNS配置*/
     NCM_IOCTL_SET_IPV6_DNS,                     /* 0x16 配置IPV6 DNS*/
-    /* BEGIN: Modified by liumengcun, 2011-8-10 MSP新需求*/
     NCM_IOCTL_CLEAR_IPV6_DNS,                     /* 0x17 清除IPV6 DNS在板端的缓存,param在此命令字没有意义，不填空指针即可*/
     NCM_IOCTL_GET_NCM_STATUS,                     /* 0x18 获取NCM网卡状态 enable:TRUE(1);disable:FALSE(0) */
 
     NCM_IOCTL_SET_ACCUMULATION_TIME,
 
-    /* BEGIN: Modified by baoxianchun, 2012-5-17 GU PS 新需求*/
     NCM_IOCTL_SET_RX_MIN_NUM,        /*配置收包个数阈值*/
     NCM_IOCTL_SET_RX_TIMEOUT,        /*配置收包超时时间*/
-    /* END: Modified by baoxianchun, 2012-5-17 GU PS 新需求*/
 
     NCM_IOCTL_REG_NDIS_RESP_STATUS_FUNC   /* NDIS通道AT命令状态处理回调函数 */
 }NCM_IOCTL_CMD_TYPE_E;
@@ -795,7 +647,6 @@ typedef struct tagNCM_IOCTL_PKT_STATISTICS_S
     unsigned int     u32CurrentRx;         /*接收速率*/
 } NCM_IOCTL_PKT_STATISTICS_S;
 
-/* BEGIN: Modified by liumengcun, 2011-7-20 IPV6 DNS配置结构,NCM_IOCTL_SET_IPV6_DNS对应参数结构*/
 #define BSP_NCM_IPV6_DNS_LEN     32
  typedef struct tagNCM_IPV6DNS_S  /* 0x16 配置IPV6 DNS*/
  {

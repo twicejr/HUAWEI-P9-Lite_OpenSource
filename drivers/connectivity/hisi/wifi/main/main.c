@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
-******************************************************************************
-文 件 名   : main
-版 本 号   : 初稿
-作    者   : z00273164
-生成日期   : 2014年10月10日
-最近修改   :
-功能描述   : main.c 文件
-函数列表   :
-修改历史   :
-1.日    期   : 2014年10月10日
- 作    者   : z00273164
- 修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -98,31 +81,7 @@ OAL_STATIC oal_void builder_module_exit(oal_uint16 us_bitmap);
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : host_mode_exit
- 功能描述  : 选择性卸载不同模块
- 输入参数  : oal_uint8 uc_bitmap:
-            BIT0:oal
-            BIT1:oam
-            BIT2:sdt
-            BIT3:frw
-            BIT4:hal
-            BIT5:dmac
-            BIT6:alg
-            BIT7:hmac
-            BIT8:wal
 
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年10月22日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void builder_module_exit(oal_uint16 us_bitmap)
 {
 #if ((_PRE_PRODUCT_ID_HI1102_DEV != _PRE_PRODUCT_ID) || (_PRE_OS_VERSION_WIN32_RAW == _PRE_OS_VERSION))
@@ -163,21 +122,7 @@ OAL_STATIC oal_void builder_module_exit(oal_uint16 us_bitmap)
 }
 
 #if ((_PRE_OS_VERSION_WIN32 == _PRE_OS_VERSION)&&(_PRE_PRODUCT_ID_HI1102_HOST ==_PRE_PRODUCT_ID))
-/*****************************************************************************
- 函 数 名  : host_test_get_chip_msg
- 功能描述  : 用于1102 host侧ut测试，hmac获得板级信息
- 输入参数  : oal_void
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月31日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32 host_test_get_chip_msg(oal_void)
 {
     oal_uint32             ul_return;
@@ -248,21 +193,7 @@ OAL_STATIC oal_uint32 host_test_get_chip_msg(oal_void)
 #endif
 //#elif (((_PRE_OS_VERSION_WIN32_RAW == _PRE_OS_VERSION)&&(_PRE_PRODUCT_ID_HI1102_DEV ==_PRE_PRODUCT_ID)))
 #if  (defined(HI1102_EDA))
-/*****************************************************************************
- 函 数 名  : device_test_create_cfg_vap
- 功能描述  : device侧eda用例打桩使用
- 输入参数  : oal_void
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月1日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32 device_test_create_cfg_vap(oal_void)
 {
     oal_uint32          ul_return;
@@ -302,31 +233,7 @@ OAL_STATIC oal_uint32 device_test_create_cfg_vap(oal_void)
 
 #if ((_PRE_PRODUCT_ID_HI1102_DEV ==_PRE_PRODUCT_ID)||(_PRE_PRODUCT_ID_HI1151==_PRE_PRODUCT_ID))
 
-/*****************************************************************************
- 函 数 名  : platform_module_exit
- 功能描述  : 平台模块卸载总入口(仅供51和02 Device侧用)
- 输入参数  : oal_uint8 uc_bitmap:
-            默认:
-            BIT0:oal
-            BIT1:oam
-            BIT2:sdt
-            BIT3:frw
-            BIT4:hal
-            BIT5:dmac
-            BIT6:alg
-            BIT7:hmac
-            BIT8:wal
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月24日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void platform_module_exit(oal_uint16 us_bitmap)
 {
     if (BIT3 & us_bitmap)
@@ -356,22 +263,7 @@ oal_void platform_module_exit(oal_uint16 us_bitmap)
 
 
 
-/*****************************************************************************
- 函 数 名  : platform_module_init
- 功能描述  :(仅供51和02 Device侧用)
- 输入参数  : oal_void
- 输出参数  : 无
- 返 回 值  : oal_int32
- 调用函数  :
- 被调函数  :
- 备注:    依赖builder_module_exit()
 
- 修改历史      :
-  1.日    期   : 2014年10月10日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_int32 platform_module_init(oal_void)
 {
     oal_int32  l_return   = OAL_FAIL;
@@ -424,21 +316,7 @@ oal_int32 platform_module_init(oal_void)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : device_main_init
- 功能描述  : 固件侧裸系统下模块初始化总入口
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月11日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_int32  device_module_init(oal_void)
 {
     oal_int32  l_return  = OAL_FAIL;
@@ -493,21 +371,7 @@ OAL_STATIC oal_int32  device_module_init(oal_void)
 #endif
 #if ((_PRE_PRODUCT_ID_HI1102_HOST ==_PRE_PRODUCT_ID)||(_PRE_PRODUCT_ID_HI1151==_PRE_PRODUCT_ID))
 #ifdef _PRE_PLAT_FEATURE_CUSTOMIZE
-/*****************************************************************************
- 函 数 名  : hwifi_config_host_global_dts_param
- 功能描述  :
- 输入参数  : oal_void
- 输出参数  : 无
- 返 回 值  : oal_int32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : h00349274
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 extern oal_uint32 band_5g_enabled;
 oal_uint32 hwifi_config_host_global_dts_param(oal_void)
 {
@@ -520,21 +384,7 @@ oal_uint32 hwifi_config_host_global_dts_param(oal_void)
 
 extern      oal_int32 wlan_pm_open(oal_void);
 extern oal_uint32 wlan_pm_close(oal_void);
-/*****************************************************************************
- 函 数 名  : host_main_init
- 功能描述  :
- 输入参数  : oal_void
- 输出参数  : 无
- 返 回 值  : oal_int32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月10日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_int32  host_module_init(oal_void)
 {
     oal_int32  l_return = OAL_FAIL;
@@ -590,21 +440,7 @@ oal_int32  host_module_init(oal_void)
 #endif
 
 #if (_PRE_PRODUCT_ID_HI1102_DEV ==_PRE_PRODUCT_ID)
-/*****************************************************************************
- 函 数 名  : 1102_device_main_init
- 功能描述  : Hi1102项目device侧初始化总入口
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月24日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_int32  hi1102_device_main_init(oal_void)
 {
     oal_int32  l_return  = OAL_FAIL;
@@ -659,21 +495,7 @@ oal_int32  hi1102_device_main_init(oal_void)
 
 }
 
-/*****************************************************************************
- 函 数 名  : device_main_init
- 功能描述  : 固件侧 系统总入口
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月11日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void device_main_init(oal_void)
 {
     /* init */
@@ -705,21 +527,7 @@ oal_void device_main_init(oal_void)
 
 
 
-/*****************************************************************************
- 函 数 名  : device_psm_main_function
- 功能描述  : 睡眠唤醒接口,(遗留给平台的接口)
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月16日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint8 device_psm_main_function(oal_void)
 {
 #ifdef _PRE_WLAN_FEATURE_BTCOEX
@@ -747,21 +555,7 @@ oal_uint8 device_psm_main_function(oal_void)
 #include "hmac_vap.h"
 #include "oal_hcc_host_if.h"
 
-/*****************************************************************************
- 函 数 名  : 1102_host_main_init
- 功能描述  : Hi1102项目host侧初始化总入口
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月24日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_int32  hi1102_host_main_init(oal_void)
 {
     //oal_uint32 ul_return = OAL_FAIL;
@@ -792,21 +586,7 @@ oal_int32  hi1102_host_main_init(oal_void)
     return OAL_SUCC;
 
 }
-/*****************************************************************************
- 函 数 名  : Hi1102_host_main_exit
- 功能描述  : Hi1102项目host侧卸载总入口
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月10日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  hi1102_host_main_exit(oal_void)
 {
     oal_uint16 us_bitmap = 0;
@@ -823,21 +603,7 @@ oal_void  hi1102_host_main_exit(oal_void)
 }
 #elif (_PRE_PRODUCT_ID_HI1151==_PRE_PRODUCT_ID)
 
-/*****************************************************************************
- 函 数 名  : Hi1105_main_init
- 功能描述  : Hi1151项目初始化总入口
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : oal_int32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月24日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_int32 hi1151_main_init(oal_void)
 {
     oal_int32  l_return   = OAL_FAIL;
@@ -872,21 +638,7 @@ oal_int32 hi1151_main_init(oal_void)
 
     return OAL_SUCC;
 }
-/*****************************************************************************
- 函 数 名  : Hi1151_main_exit
- 功能描述  : Hi1151项目卸载总入口
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月10日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  hi1151_main_exit(oal_void)
 {
     oal_uint16 us_bitmap = 0;

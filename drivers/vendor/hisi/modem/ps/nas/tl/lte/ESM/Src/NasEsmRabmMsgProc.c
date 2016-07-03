@@ -1,15 +1,4 @@
-/******************************************************************************
 
-        @(#)Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : NasEsmRabmMsgProc.c
-    Description : 处理RABM发给SM的消息
-    History     :
-     1.丁丽 00128736      2008-09-01  Draft Enact
-     2.杨茜惠 00135146    2008-12-18  Modify BA8D00749
-     3.杨茜惠 00135146    2009-03-06  Modify BA8D01127
-******************************************************************************/
 
 
 /*****************************************************************************
@@ -95,18 +84,7 @@ VOS_VOID NAS_ESM_RabmMsgDistr( VOS_VOID *pRcvMsg )
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_GetPdnAddr
- Description     : 获取某承载的PDN信息
- Input           : NAS_ESM_CONTEXT_IP_ADDR_STRU *pstPdnAddr,
-                   VOS_UINT32 ulEpsbId
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong 00150010      2009-7-8  Draft Enact
-
-*****************************************************************************/
 /*lint -e960*/
 /*lint -e961*/
 VOS_VOID  NAS_ESM_GetPdnAddr
@@ -173,59 +151,7 @@ VOS_VOID  NAS_ESM_GetPdnAddr
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_ESM_SndEsmRabmActIndMsg
- Description    : SM模块发送ID_ESM_ERABM_ACT_IND消息函数
- Input          : VOS_UINT32                          LTE的承载ID
-                  ESM_ERABM_BEARER_RAT_ENUM_UINT8     承载接入技术类型
-                  VOS_UINT8                           EHRPD承载恢复标识
-                  VOS_UINT32                          EHRPD承载ID
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
 
- History        :
-      1.丁丽 00128736      2008-09-01  Draft Enact
-      2.wangchen 00209181  2014-09-20  Modify:视频通话，视频承载建立后，本地去激活问题修改
-        RABM            ESM             EMM             RRC
-        |               |               |               |
-        |               |               |               |
-        |               |LRRC_LRABM_RAB_IND(BEARID=7)   |
-        |<----------------------------------------------|
-        |               |               |               |
-        |               |               |               |
-        |               |               |               |
-        |               |LMM_ESM_DATA_IND(bearid=7)     |
-        |               |<--------------|               |
-        |               |(ACT_DEDICT_EPS_BEAR_REQ)      |
-        |               |               |               |
-        |               |ACT_BEAR_ACP   |               |
-        |               |-------------->|               |
-        | ESM_LRABM_ACT_IND(bearid=7)   |               |
-        |<--------------|               |               |
-        |               |               |               |
-        |BEAR_STATUS_REQ(bearid=5,6,7)  |               |
-        |---->          |               |               |
-        |               |               |               |
-        |               |LRRC_LRABM_RAB_IND(BEARID=8)   |
-        |<----------------------------------------------|
-        |               |               |               |
-        |               |               |               |
-        |               |               |               |
-        |               |LMM_ESM_DATA_IND(bearid=8)     |
-        |               |<--------------|               |
-        |               |(ACT_DEDICT_EPS_BEAR_REQ)      |
-        |               |               |               |
-        |               |ACT_BEAR_ACP   |               |
-        |               |-------------->|               |
-        | ESM_LRABM_ACT_IND(bearid=8)   |               |
-        |<--------------|               |               |
-        |               |               |               |
-        | BEAR_STATUS_REQ(bearid=5,6,7) |               |
-        |       ------->|               |               |
-        |               ESM收到后，将承载8本地去激活
-        |
-     3.sunjitan 00193151  2016-01-14  Modify:CL多模互操作二阶段增加入参2和3和4
-*****************************************************************************/
 /*lint -specific(-e433)*/
 VOS_VOID NAS_ESM_SndEsmRabmActIndMsg(
     VOS_UINT32                          ulEpsbId,
@@ -307,18 +233,7 @@ VOS_VOID NAS_ESM_SndEsmRabmActIndMsg(
 }
 /*lint -specific(+e433)*/
 
-/*****************************************************************************
- Function Name  : NAS_ESM_SndEsmRabmMdfIndMsg()
- Description    : SM模块发送ID_ESM_ERABM_MDF_IND消息函数
- Input          : VOS_UINT32                          承载ID
-                  ESM_ERABM_BEARER_RAT_ENUM_UINT8     承载类型
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.丁丽 00128736      2008-09-01  Draft Enact
-      2.sunjitan 00193151  2016-01-14  Mofify for CL多模互操作
-*****************************************************************************/
 /*lint -specific(-e433)*/
 VOS_VOID NAS_ESM_SndEsmRabmMdfIndMsg(
     VOS_UINT32                          ulEpsbId,
@@ -441,19 +356,7 @@ VOS_VOID NAS_ESM_SndEsmRabmMdfIndMsg(
 }
 /*lint -specific(+e433)*/
 
-/*****************************************************************************
- Function Name  : NAS_ESM_SndEsmRabmDeactIndMsg()
- Description    : SM模块发送ID_ESM_ERABM_DEACT_IND消息函数
- Input          : VOS_UINT32                         承载数目
-                  VOS_UINT32                         承载ID列表
-                  ESM_ERABM_BEARER_RAT_ENUM_UINT8    承载接入技术类型
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.丁丽 00128736      2008-09-01  Draft Enact
-      2.sunjitan 00193151  2016-01-14  Mofify for CL多模互操作
-*****************************************************************************/
 VOS_VOID NAS_ESM_SndEsmRabmDeactIndMsg(
     VOS_UINT32                          ulEpsbIdNum,
     const VOS_UINT32                   *pulEpsbId,
@@ -630,18 +533,7 @@ VOS_VOID NAS_ESM_CopyRabmTftInfo( ESM_ERABM_TFT_PF_STRU* pstRabmTftInfo,
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ESM_RcvEsmRabmBearerStatusReq
- Description     : RB未建立，RABM发送当前承载上下文信息，
-                    ESM去激活对应RB未建立承载上下文
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.zhuyiqiang 00138739      2009-3-10  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_RcvEsmRabmBearerStatusReq(const ESM_ERABM_BEARER_STATUS_REQ_STRU *pRcvMsg )
 {
     VOS_UINT32                  ulCnt                           = NAS_ESM_NULL;
@@ -725,16 +617,7 @@ VOS_VOID  NAS_ESM_RcvEsmRabmBearerStatusReq(const ESM_ERABM_BEARER_STATUS_REQ_ST
 }
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- Function Name  : NAS_ESM_SndEsmRabmClearClBearerNotifyMsg
- Description    : SM模块发送ID_ESM_ERABM_CLEAR_CL_BEARER_NOTIFY消息函数
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.sunjitan 00193151         2016-01-14  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ESM_SndEsmRabmClearClBearerNotifyMsg(VOS_VOID)
 {
     ESM_ERABM_CLEAR_CL_BEARER_NOTIFY_STRU        *pEsmRabmClearBearerMsg = VOS_NULL_PTR;

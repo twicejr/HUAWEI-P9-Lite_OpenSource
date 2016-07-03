@@ -1,0 +1,3 @@
+config MADAPT
+    bool "madapt support"
+    default n

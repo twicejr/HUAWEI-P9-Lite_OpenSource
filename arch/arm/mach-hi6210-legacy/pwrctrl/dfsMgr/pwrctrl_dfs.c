@@ -22,22 +22,7 @@ local_t s32_t bus100M_maxfreq_qos_req_id = DFS_INVALID_ID;
 local_t s32_t bus100M_minfreq_qos_req_id = DFS_INVALID_ID;
 
 
-/*****************************************************************************
- 函 数 名  : pwrctrl_dfs_cmd_rqqos
- 功能描述  : 请求DFS QoS
- 输入参数  : qos_id - QoS ID
-             req_value - 请求值
- 输出参数  : req_id - 请求ID
- 返 回 值  : DFS_RET_OK - Success
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月15日
-    作    者   : 黄星宇 212111
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 local_t dfs_ret pwrctrl_dfs_cmd_rqqos(s32_t qos_id, u32_t req_value, s32_t* req_id)
 {
     union mca_udata_req req = {0};
@@ -63,22 +48,7 @@ local_t dfs_ret pwrctrl_dfs_cmd_rqqos(s32_t qos_id, u32_t req_value, s32_t* req_
     return rsp.dfs_rqqos_rsp.ret;
 }
 
-/*****************************************************************************
- 函 数 名  : pwrctrl_dfs_cmd_set_policy
- 功能描述  : 设置DFS QoS policy
- 输入参数  : policy_id - policy ID
-             policy_buf - policy buffer
- 输出参数  : 无
- 返 回 值  : DFS_RET_OK - Success
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月26日
-    作    者   : 王振伟 176398
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 local_t dfs_ret pwrctrl_dfs_cmd_set_policy(s32_t policy_id, void *policy_buf, unsigned int len)
 {
     union mca_udata_req req = {0};
@@ -119,22 +89,7 @@ int ddr_set_policy_handle(void *policy, unsigned int len)
     return pwrctrl_dfs_cmd_set_policy(DFS_POLICY_ID_DDR, policy, len);
 }
 
-/*****************************************************************************
- 函 数 名  : pwrctrl_dfs_cmd_set_profile
- 功能描述  : 设置DFS QoS profile
- 输入参数  : policy_id - policy ID
-             policy_buf - policy buffer
- 输出参数  : 无
- 返 回 值  : DFS_RET_OK - Success
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月26日
-    作    者   : 王振伟 176398
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 local_t dfs_ret pwrctrl_dfs_cmd_set_profile(s32_t dev_id, void *profile_buf, unsigned int len)
 {
     union mca_udata_req req = {0};
@@ -173,22 +128,7 @@ int ddr_set_profile_handle(void *profile, unsigned int len)
     return pwrctrl_dfs_cmd_set_profile(DFS_DEVICE_ID_DDR, profile, len);
 }
 
-/*****************************************************************************
- 函 数 名  : pwrctrl_dfs_cmd_lock
- 功能描述  : 锁频DFS QoS
- 输入参数  : dev_id - Dev ID
-             prof_id - profile ID
- 输出参数  : 无
- 返 回 值  : DFS_RET_OK - Success
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月26日
-    作    者   : 王振伟 176398
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 local_t dfs_ret pwrctrl_dfs_cmd_lock(s32_t dev_id, u32_t prof_id)
 {
     union mca_udata_req req = {0};
@@ -205,21 +145,7 @@ local_t dfs_ret pwrctrl_dfs_cmd_lock(s32_t dev_id, u32_t prof_id)
 }
 
 
-/*****************************************************************************
- 函 数 名  : pwrctrl_dfs_cmd_unlock
- 功能描述  : 解锁频DFS QoS
- 输入参数  : dev_id - Dev ID
- 输出参数  : 无
- 返 回 值  : DFS_RET_OK - Success
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月26日
-    作    者   : 王振伟 176398
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 local_t dfs_ret pwrctrl_dfs_cmd_unlock(s32_t dev_id)
 {
     union mca_udata_req req = {0};
@@ -266,22 +192,7 @@ int ddr_lockfreq_handle( u32_t prof_id)
 }
 
 
-/*****************************************************************************
- 函 数 名  : pwrctrl_dfs_cmd_current
- 功能描述  : 锁频DFS QoS
- 输入参数  : dev_id - Dev ID
-             prof_id - profile ID
- 输出参数  : 无
- 返 回 值  : DFS_RET_OK - Success
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月26日
-    作    者   : 王振伟 176398
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 local_t dfs_ret pwrctrl_dfs_cmd_current(s32_t dev_id, u32_t *prof_id)
 {
     union mca_udata_req req = {0};
@@ -549,23 +460,7 @@ int bus_set_func_handle(unsigned int func)
     return set_pwc_switch_value(MCA_OBJ_BUS, func);
 }
 
-/*****************************************************************************
 
- 函 数 名  : pwrctrl_dfs_cmd_rlqos
- 功能描述  : 释放DFS QoS
- 输入参数  : qos_id - QoS ID
-             req_id - 请求ID
- 输出参数  : 无
- 返 回 值  : DFS_RET_OK - Success
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年8月15日
-    作    者   : 黄星宇 212111
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 local_t dfs_ret pwrctrl_dfs_cmd_rlqos(s32_t qos_id, s32_t* req_id)
 {
     union mca_udata_req req = {0};
@@ -591,22 +486,7 @@ local_t dfs_ret pwrctrl_dfs_cmd_rlqos(s32_t qos_id, s32_t* req_id)
     return rsp.dfs_rlqos_rsp.ret;
 }
 
-/*****************************************************************************
- 函 数 名  : pwrctrl_dfs_cmd_udqos
- 功能描述  : 更新DFS QoS
- 输入参数  : qos_id - QoS ID
-             req_id - 请求ID
- 输出参数  : 无
- 返 回 值  : DFS_RET_OK - Success
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月15日
-    作    者   : 黄星宇 212111
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 local_t dfs_ret pwrctrl_dfs_cmd_udqos(s32_t qos_id, s32_t req_id, u32_t req_value)
 {
     union mca_udata_req req = {0};

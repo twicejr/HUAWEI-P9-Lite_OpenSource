@@ -1,15 +1,4 @@
-/*************************************************************************
-*   版权所有(C) 1987-2009, 深圳华为技术有限公司.
-*
-*   文 件 名 :  sci_pl131.c
-*
-*   作    者 :  Y00171698
-*
-*   描    述 :  本文件命名为"sci_pl131.c", 为ARM公司提供的sample code
-*            做了部分改动。
-*
-*   修改记录 :  
-*************************************************************************/
+
 /*lint --e{944,506,525,64,119,101,132,537,958,438,830,752,762,713,732,534,550,650,715,734,774,826,831,830,539,568} */
 
 /* ecs */
@@ -541,11 +530,9 @@ STATUS pl131_registers_init(SCI_STATE_STRU * parapState)
     apBIT_SET(pBase->RegCtrl0, PL131_REGCTRL0_RX, pState->sSetupParams.eRxHandshake);
     apBIT_SET(pBase->RegCtrl0, PL131_REGCTRL0_TX, pState->sSetupParams.eTxHandshake);
 
-    /* BEGIN: Modified by z67193, 2010-8-24 , 复位应答期间设置为0*/
     apBIT_SET(pBase->RegRetry, PL131_REGRETRY_RX, 0);
     apBIT_SET(pBase->RegRetry, PL131_REGRETRY_TX, 0);
 
-    /* BEGIN: Modified by z67193, 2010-9-2 GCF测试7.2.1，返回ATR时，CHDTIME=9600etu，导致ATRDTIME超时*/
     if (g_ulSciGcfStubFlag)
     {
         //initialize od/cmos
@@ -1066,7 +1053,6 @@ STATUS appl131_data_transfer (SCI_STATE_STRU *       parapState,
                 return ErrorReturn;
             }
 
-            /* BEGIN: Modified by z67193, 2010-8-21 使用信号量等待时钟启动完毕*/
              /*   逻辑启动时钟需要等待700cycle, 1M时钟下，为700us，使用100ms作为超时阈值 */
               /*  从实践经验看，如果等待10ms，有可能会因为操作系统的tick误差而产生提前超时*/
           /*     使用20ms则不会出现误差，为确保正常，使用100ms*/
@@ -1101,7 +1087,6 @@ STATUS appl131_data_transfer (SCI_STATE_STRU *       parapState,
         pBase->RegTxCount = apBITS_ALL;                   /*flush the counter*/
 
 
-        /* DTS2011051001744 z67193, 发送数据的下水标修改为4，减少中断*/
         apBIT_SET(pBase->RegTide, PL131_REGTIDE_TX, 4);
         if (!apBIT_GET(pBase->RegDMACtrl, PL131_REGDMA_TX))
         {
@@ -1249,7 +1234,6 @@ void   pl131_atr_process (SCI_STATE_STRU * parapState, u32 CharATR)
 
     /* Changed for SIM Card compatibility(3B/3F). Begin*/
     /* Enable this inverse process for inverse convention*/
-    /* DTS2011051001744 z67193, PPS阶段的自己反序由芯片完成*/
     if ((pState->eConvention == PL131_CONVENTION_INVERSE) && (0 == g_Pl131_pps_state.PL131_PPS_Response))
     {
         sci_print_info("PL131_CONVENTION_INVERSE\n");
@@ -1311,7 +1295,6 @@ void   pl131_atr_process (SCI_STATE_STRU * parapState, u32 CharATR)
         }
         else if (CharATR == PL131_ATR_CONV_NORM_INV)
         {
-            /* BEGIN: Modified by z67193, 2010-8-24, 如果返回'3F'，说明控制器已经反正过了，不需要软件处理 */
 
             //            pState->eConvention = PL131_CONVENTION_INVERSE;
             pState->eConvention = PL131_CONVENTION_DIRECT;
@@ -1352,7 +1335,6 @@ void   pl131_atr_process (SCI_STATE_STRU * parapState, u32 CharATR)
         /*----------Open SCI Clock Stop Mode -------*/
         /*Close time stop mode for default setting, Begin*/
 
-        /* DTS2011051001744 z67193, 将默认时钟停止模式设置为NO_PREF，如果ATR处理中没有时钟配置，上层可以停止时钟*/
         pState->sATRParams.eClkStopInd = apPL131_CLK_STATE_NO_PREF;
 
         /*Close time stop mode for default setting, End*/
@@ -1827,9 +1809,7 @@ static void pl131_atr_param_set (SCI_STATE_STRU * parapState,
         }
         case 0xA3:
         {
-            /*2014年5月22日20:29:16 l00258701 7816-3 11.4.2 0和FF为保留值
-                        这里是否应该重启?还是按照电压切换的流程走?
-                    */
+            
             /* coverity[unchecked_value] */
             if(ATRCharacter == 0 ||ATRCharacter == 0XFF)
                 appl131_card_active_set(pState, TRUE, pState->sATRParams.pATRBuffer);

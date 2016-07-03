@@ -1,42 +1,4 @@
-/************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : ExtAppMmcInterface.h
-  Author      : ---
-  Version     : V200R001
-  Date        : 2005-08-17
-  Description : 协议栈软件MMC与APP接口头文件
-  History     :
-  1. Date:2005-08-17
-     Author: ---
-     Modification:Create
-  2. 日    期  : 2006年12月4日
-     作    者  : luojian id:60022475
-     修改内容  : 增加 #pragma pack(4)，问题单号:A32D07779
-  3. 日    期  : 2007年5月22
-     作    者  : Li Jilin 60827
-     修改内容  : A32D11131
-  4. 日    期   : 2007年9月29日
-     作    者   : luojian id:107747
-     修改内容   : 根据问题单号：A32D12980
-  5. 日    期   : 2008年3月17日
-     作    者   : s46746
-     修改内容   : 问题单号:AT2D02570,NAS B005版本新增需求合入
-  6. 日    期   : 2009年01月06日
-     作    者   : o00132663
-     修改内容   : 问题单号:AT2D08132,接口消息TAFMMC_START_REQ中ucRoamCapability项未被初始化。
-  7. 日    期   : 2009年03月26日
-     作    者   : l00130025
-     修改内容   : 问题单号：AT2D10349/AT2D10492,MMC/MMA之间交互的SYSCFG回复消息多了个VOS_HEADER
-  8. 日    期   : 2009年07月07日
-     作    者   : h44270
-     修改内容   : 问题单号：AT2D12792，不能显示EGPRS小区信息
-  9. 日    期   : 2009年11月28日
-     作    者   : s46746
-     修改内容   : 问题单号：AT2D15677,澳大利亚漫游定制合入
- 10. 日    期   : 2012年4月18日
-     作    者   : l00130025
-     修改内容   : DTS2012040200480,删除MMC_REG_STATE_TYPE的重复定义
-************************************************************************/
+
 
 #ifndef _EXT_APP_MMC_INTERFACE_H_
 #define _EXT_APP_MMC_INTERFACE_H_
@@ -107,16 +69,7 @@ extern "C" {
 #define  D_MMC_CAUSE_NAS_MM_CAUSE_SPECIFIC_PROCEDURE_ONGOING   300
 
 /* structure: ST_MMC_START_REQ */
-/*****************************************************************************
- 结构名    : TAFMMC_START_REQ_STRU
- 结构说明  :开机请求
- 1.日    期   : 2011年8月04日
-   作    者   : w00167002
-   修改内容   : 周君检视，删除不用的开机项
- 2.日    期   : 2012年6月14日
-   作    者   : l60609
-   修改内容   : 增加TAFMMC_PLMN_RAT_PRIO_STRU
-*****************************************************************************/
+
 typedef struct
 {
     TAFMMC_CARD_STATUS_ENUM_U8          ucCardStatus;
@@ -132,16 +85,7 @@ typedef struct
 } ST_MMC_START_CNF;
 
 
-/* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-10, begin */
-/*****************************************************************************
- 结构名    : ST_MMC_AC_INFO_CHANGE_IND_STRU
- 结构说明  : MMC向MMA上报小区接入禁止信息的结构体
 
- 修改记录  :
- 1.日    期   : 2012年12月08日
-   作    者   : w00176964
-   修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                                   ucCnDomainId;                                   /* 服务域信息 */
@@ -149,7 +93,6 @@ typedef struct
     VOS_UINT8                                   ucRestrictRegister;                             /* 是否限制注册 */
     VOS_UINT8                                   ucRestrictPagingRsp;                            /* 是否限制响应寻呼 */
 }ST_MMC_AC_INFO_CHANGE_IND_STRU;
-/* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-10, end */
 
 /* structure: ST_MMC_MODE_CHANGE_REQ */
 typedef struct
@@ -346,13 +289,7 @@ typedef struct
     VOS_UINT32 PlaceHold;
 } ST_MMC_POWER_OFF_CNF;
 
-/*****************************************************************************
- 结构名    : ST_MMC_PLMN_LIST_ABORT_CNF
- 结构说明  : MMC向MMA回复TAFMMC_PLMN_LIST_ABORT_CNF消息的结构体
- 修改人    : W00176964
- 修改日期  : 2011-09-06
- 修改原因  : 新增
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU         MsgHeader;                                          /* 消息头                                   */
@@ -436,9 +373,7 @@ typedef struct
 
 #define    D_MMC_PLMN_USER_SEL_REJ     (40)
 
-/* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-10, begin */
 #define    D_MMC_AC_INFO_CHANGE_IND                (41)
-/* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-10, end */
 
 /* MMC MSG CORE */
 typedef struct {
@@ -484,9 +419,7 @@ typedef struct {
 
         TAFMMC_SPEC_PLMN_SEARCH_REJ_STRU    stSpecPlmnSearchRej;
 
-        /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, begin */
         TAFMMC_AC_INFO_CHANGE_IND_STRU      stAcInfoChangeInd;
-        /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, end */
 
     } u;
 } ST_MMC_MSG;

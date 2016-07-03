@@ -1,13 +1,4 @@
-/************************************************************************
-  Copyright    : 2013-2015, Huawei Tech. Co., Ltd.
-  File name    : usimmt1dl.c
-  Author       : jinni 00168360
-  Version      : V900R001
-  Date         : 2013-10-14
-  Description  : 该C文件给出了T=1 DL层实现
-  Function List:
-  History      :
- ************************************************************************/
+
 #include "usimmdl.h"
 #include "usimmt1dl.h"
 #include "usimmbase.h"
@@ -78,20 +69,7 @@ static const VOS_UINT16 g_stT1Crc16CcittTbl[] =
     0x7bc7, 0x6a4e, 0x58d5, 0x495c, 0x3de3, 0x2c6a, 0x1ef1, 0x0f78
 };
 
-/*****************************************************************************
-函 数 名  : USIMM_T1CalCCITTCrc16
-功能描述  : 计算CRC-16-CCITT标准CRC值
-输入参数  : pucData:CRC校验数据
-            ulLen  :CRC校验数据长度
-输出参数  : 无
-返 回 值  : usCrc16
-调用函数  : 无
-被调函数  :
-修订记录  :
-1. 日    期   : 2013年10月22日
-   作    者   : L00256032
-   修改内容   : V9R1 T=1项目新增
-*****************************************************************************/
+
 VOS_UINT16 USIMM_T1CalCCITTCrc16(VOS_UINT8 *pucData, VOS_UINT32 ulLen)
 {
     VOS_UINT16      usCrc16;
@@ -111,20 +89,7 @@ VOS_UINT16 USIMM_T1CalCCITTCrc16(VOS_UINT8 *pucData, VOS_UINT32 ulLen)
     return usCrc16;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_T1CalLrc
-功能描述  : 计算LRC
-输入参数  : pucData:LRC校验数据
-            ulLen  :LRC校验数据长度
-输出参数  : 无
-返 回 值  : ucLrc
-调用函数  : 无
-被调函数  :
-修订记录  :
-1. 日    期   : 2013年10月22日
-   作    者   : L00256032
-   修改内容   : V9R1 T=1项目新增
-*****************************************************************************/
+
 VOS_UINT8 USIMM_T1CalLrc(VOS_UINT8 *pucData, VOS_UINT32 ulLen)
 {
     VOS_UINT8       ucLrc;
@@ -141,17 +106,7 @@ VOS_UINT8 USIMM_T1CalLrc(VOS_UINT8 *pucData, VOS_UINT32 ulLen)
     return ucLrc;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_T1StatisticSendSBlockSucc
-功能描述  :发送成功的S block信息统计
-输入参数  :enSBlkType ---发送的S block类型
-输出参数  :无
-返 回 值  :VOS_VOID
-修订记录  :
-  1.日    期   : 2013年10月18日
-    作    者   : L00256032
-    修改内容   : V9R1 T=1项目修改
-*****************************************************************************/
+
 VOS_VOID USIMM_T1StatisticSendSBlockSucc(
     USIMM_T1_S_BLOCK_TYPE_ENUM_UINT32   enSBlkType
 )
@@ -183,17 +138,7 @@ VOS_VOID USIMM_T1StatisticSendSBlockSucc(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_T1StatisticSendSBlockFail
-功能描述  :发送失败的S block信息统计
-输入参数  :enSBlkType ---发送的S block类型
-输出参数  :无
-返 回 值  :VOS_VOID
-修订记录  :
-  1.日    期   : 2013年10月18日
-    作    者   : L00256032
-    修改内容   : V9R1 T=1项目修改
-*****************************************************************************/
+
 VOS_VOID USIMM_T1StatisticSendSBlockFail(
     USIMM_T1_S_BLOCK_TYPE_ENUM_UINT32   enSBlkType
 )
@@ -225,17 +170,7 @@ VOS_VOID USIMM_T1StatisticSendSBlockFail(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_T1ShowCtrlAndStatisticInfo
-功能描述  :打印T1控制上下文及可维可测信息
-输入参数  :VOS_VOID
-输出参数  :无
-返 回 值  :VOS_VOID
-修订记录  :
-  1.日    期   : 2013年10月18日
-    作    者   : L00256032
-    修改内容   : V9R1 T=1项目修改
-*****************************************************************************/
+
 VOS_VOID USIMM_T1ShowCtrlAndStatisticInfo(VOS_VOID)
 {
     /*lint -e534*/
@@ -294,17 +229,7 @@ VOS_VOID USIMM_T1ShowCtrlAndStatisticInfo(VOS_VOID)
 
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_T1ResetStatisticInfo
-功能描述  :清除T1可维可测信息
-输入参数  :VOS_VOID
-输出参数  :无
-返 回 值  :VOS_VOID
-修订记录  :
-  1.日    期   : 2013年10月18日
-    作    者   : L00256032
-    修改内容   : V9R1 T=1项目修改
-*****************************************************************************/
+
 VOS_VOID USIMM_T1ResetStatisticInfo(VOS_VOID)
 {
     /*lint -e534*/
@@ -313,21 +238,7 @@ VOS_VOID USIMM_T1ResetStatisticInfo(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_T1DLSendRBlock
-功能描述  : T=1链路层发送R-Block
-输入参数  : pstAPDUData:输入命令内容
-            ulSeqNum   :发送序号
-输出参数  : 无
-返 回 值  : VOS_OK  --- 函数执行成功
-            VOS_ERR --- 函数执行失败
-调用函数  : 无
-被调函数  :
-修订记录  :
-1. 日    期   : 2013年10月18日
-   作    者   : L00256032
-   修改内容   : V9R1 T=1项目新增
-*****************************************************************************/
+
 VOS_UINT32  USIMM_T1DLSendRBlock(
     USIMM_T1_R_BLOCK_ERRCODE_ENUM_UINT32    enErrcode,
     VOS_UINT32                              ulSeqNum
@@ -411,22 +322,7 @@ VOS_UINT32  USIMM_T1DLSendRBlock(
     }
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_T1DLSendIBlock
-功能描述  : T=1链路层发送I-Block
-输入参数  : pucData :待发送数据指针
-            ulLen   :待发送数据长度
-            ulSeqNum:发送序号
-输出参数  : 无
-返 回 值  : VOS_OK  --- 函数执行成功
-            VOS_ERR --- 函数执行失败
-调用函数  : 无
-被调函数  :
-修订记录  :
-1. 日    期   : 2013年10月18日
-   作    者   : L00256032
-   修改内容   : V9R1 T=1项目新增
-*****************************************************************************/
+
 VOS_UINT32  USIMM_T1DLSendIBlock(VOS_UINT8 *pucData, VOS_UINT32 ulLen, VOS_UINT32 ulSeqNum)
 {
     VOS_UINT32                                              ulIBlkLen;
@@ -543,20 +439,7 @@ VOS_UINT32  USIMM_T1DLSendIBlock(VOS_UINT8 *pucData, VOS_UINT32 ulLen, VOS_UINT3
     }
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_T1DLSendSBlock
-功能描述  : T=1链路层发送S-Block
-输入参数  : pstSBlk   --- 待发送的S-Block信息，包括S-Block类型，长度、指针
-输出参数  : 无
-返 回 值  : VOS_OK  --- 函数执行成功
-            VOS_ERR --- 函数执行失败
-调用函数  : 无
-被调函数  :
-修订记录  :
-1. 日    期   : 2013年10月18日
-   作    者   : L00256032
-   修改内容   : V9R1 T=1项目新增
-*****************************************************************************/
+
 VOS_UINT32  USIMM_T1DLSendSBlock(USIMM_T1_S_BLOCK_STRU *pstSBlk)
 {
     VOS_UINT32      ulSBlkLen;
@@ -653,17 +536,7 @@ VOS_UINT32  USIMM_T1DLSendSBlock(USIMM_T1_S_BLOCK_STRU *pstSBlk)
     }
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_T1DLGetBlkType
-功能描述  :T=1协议,获取块类型及相应参数
-输入参数  :ucPCB:块起始域中PCB字节
-输出参数  :pstBlkPara:块类型及参数
-返 回 值  :VOS_VOID
-修订记录  :
-1. 日    期   : 2013年10月17日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID USIMM_T1DLGetBlkType(VOS_UINT8 ucPCB, USIMM_T1_BLOCK_PARA_STRU *pstBlkPara)
 {
     if (USIMM_T1_BLOCK_TYPE_R == (ucPCB & USIMM_T1_BLOCK_PCB_TYPE_BIT_MASK))
@@ -700,17 +573,7 @@ VOS_VOID USIMM_T1DLGetBlkType(VOS_UINT8 ucPCB, USIMM_T1_BLOCK_PARA_STRU *pstBlkP
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_T1DLCheckBlockByPCB
-功能描述  :T=1协议中通过PCB字节判定块是否合法
-输入参数  :pstPrologueField--块起始域
-输出参数  :无
-返 回 值  :VOS_OK/VOS_ERR
-修订记录  :
-1. 日    期   : 2013年10月17日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32  USIMM_T1DLCheckBlockByPCB(USIMM_T1_PROLOGUE_FIELD_STRU  *pstPrologueField)
 {
     USIMM_T1_BLOCK_PARA_STRU            stBlkPara;
@@ -776,18 +639,7 @@ VOS_UINT32  USIMM_T1DLCheckBlockByPCB(USIMM_T1_PROLOGUE_FIELD_STRU  *pstPrologue
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_T1DLIsBlockValid
-功能描述  :T=1协议中判定块是否合法　
-输入参数  :ulLength:块长度
-           pucData:块数据
-输出参数  :无
-返 回 值  :VOS_TRUE/VOS_FALSE
-修订记录  :
-1. 日    期   : 2013年10月17日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_BOOL USIMM_T1DLIsBlockValid(VOS_UINT32 ulLength, VOS_UINT8 *pucData)
 {
     VOS_UINT8                           ucLrc;
@@ -908,17 +760,7 @@ VOS_BOOL USIMM_T1DLIsBlockValid(VOS_UINT32 ulLength, VOS_UINT8 *pucData)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_T1DLProcInvalidBlock
-功能描述  :T=1协议,处理收到的非法块
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_ERR/VOS_OK
-修订记录  :
-1. 日    期   : 2013年10月17日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_T1DLProcInvalidBlock(VOS_VOID)
 {
     VOS_UINT32      ulResult;
@@ -947,17 +789,7 @@ VOS_UINT32 USIMM_T1DLProcInvalidBlock(VOS_VOID)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_T1DLProcCardCmdRes
-功能描述  :T=1协议,收到完整I BLOCK后处理卡的命令响应数据
-输入参数  :
-输出参数  :
-返 回 值  :VOS_ERR/VOS_OK
-修订记录  :
-1. 日    期   : 2013年10月17日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_T1DLProcCardCmdRes(USIMM_APDU_ST *pstAPDUData)
 {
     /* 卡的响应至少为两字节 */
@@ -995,17 +827,7 @@ VOS_UINT32 USIMM_T1DLProcCardCmdRes(USIMM_APDU_ST *pstAPDUData)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_T1DLReSendSBlock
-功能描述  :T=1协议,重新发送S BLOCK　
-输入参数  :
-输出参数  :无
-返 回 值  :VOS_ERR/VOS_OK
-修订记录  :
-1. 日    期   : 2013年10月17日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32  USIMM_T1DLReSendSBlock(VOS_VOID)
 {
     VOS_UINT32      ulResult;
@@ -1069,18 +891,7 @@ VOS_UINT32  USIMM_T1DLReSendSBlock(VOS_VOID)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_T1DLProcRcvSBlockReq
-功能描述  :T=1协议,收到S BLOCK REQUEST后的处理
-输入参数  :enSBlkType:S BLOCK子类型
-           ucData:S BLOCK信息域，根据子类型区别，可能无信息域
-输出参数  :
-返 回 值  :VOS_ERR/VOS_OK
-修订记录  :
-1. 日    期   : 2013年10月17日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_T1DLProcRcvSBlockReq(
     USIMM_T1_S_BLOCK_TYPE_ENUM_UINT32   enSBlkType,
     VOS_UINT8                           ucData
@@ -1224,18 +1035,7 @@ VOS_UINT32 USIMM_T1DLProcRcvSBlockReq(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_T1DLProcRcvSBlockRes
-功能描述  :T=1协议,收到S BLOCK RESPONSE后处理
-输入参数  :enSBlkType:S BLOCK子类型
-           ucData:S BLOCK信息域，根据子类型区别，可能无信息域
-输出参数  :
-返 回 值  :VOS_ERR/VOS_OK
-修订记录  :
-1. 日    期   : 2013年10月17日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_T1DLProcRcvSBlockRes(
     USIMM_T1_S_BLOCK_TYPE_ENUM_UINT32   enSBlkType,
     VOS_UINT8                           ucData
@@ -1346,18 +1146,7 @@ VOS_UINT32 USIMM_T1DLProcRcvSBlockRes(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_T1DLProcSBlock
-功能描述  :T=1协议,收到S BLOCK后处理
-输入参数  :enSBlkType:S BLOCK子类型
-           pucInfData:S BLOCK信息域指针
-输出参数  :
-返 回 值  :VOS_ERR/VOS_OK
-修订记录  :
-1. 日    期   : 2013年10月17日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_T1DLProcSBlock(
     USIMM_T1_S_BLOCK_TYPE_ENUM_UINT32   enSBlkType,
     VOS_UINT8                          *pucInfData
@@ -1378,19 +1167,7 @@ VOS_UINT32 USIMM_T1DLProcSBlock(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_T1DLProcIBlockRes
-功能描述  :T=1协议,当前发送了单个APDU后处理收到I BLOCK的响应数据处理
-输入参数  :enMoreBit:链块指示
-           pstPrologueField:指向块起始域信息
-           pucInformationData:指向块信息域
-输出参数  :无
-返 回 值  :VOS_ERR/VOS_OK
-修订记录  :
-1. 日    期   : 2013年10月17日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_T1DLProcIBlockRes(
     USIMM_T1_I_BLOCK_MORE_DATA_BIT_ENUM_UINT32  enMoreBit,
     USIMM_T1_PROLOGUE_FIELD_STRU               *pstPrologueField,
@@ -1498,21 +1275,7 @@ VOS_UINT32 USIMM_T1DLProcIBlockRes(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_T1DLProcIdleState
-功能描述  :T=1协议,当前为IDLE态的处理流程，由于状态机运转设计不会进入该状态，所以
-           进入该状态后都作为异常处理
-输入参数  :bValidFlag :标记收到的块是否合法
-           ulLength   :块长度
-           pucData    :块数据
-           pstAPDUData:APDU结构
-输出参数  :无
-返 回 值  :VOS_ERR/VOS_OK
-修订记录  :
-1. 日    期   : 2013年10月22日
-   作    者   : L00256032
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_T1DLProcIdleState(VOS_BOOL bValidFlag, VOS_UINT32 ulLength, VOS_UINT8 *pucData)
 {
     USIMM_ERROR_LOG("USIMM_T1DLProcIdleState: Usimm T1 DL receive block Run into Error State");
@@ -1520,19 +1283,7 @@ VOS_UINT32 USIMM_T1DLProcIdleState(VOS_BOOL bValidFlag, VOS_UINT32 ulLength, VOS
     return VOS_ERR;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_T1DLProcSendApduState
-功能描述  :T=1协议,当前发送了单个APDU后处理收到响应块　
-输入参数  :bValidFlag:标记收到的块是否合法
-           ulLength:块长度
-           pucData:块数据
-输出参数  :无
-返 回 值  :VOS_ERR/VOS_OK
-修订记录  :
-1. 日    期   : 2013年10月17日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_T1DLProcSendApduState(
     VOS_BOOL        bValidFlag,
     VOS_UINT32      ulLength,
@@ -1607,19 +1358,7 @@ VOS_UINT32 USIMM_T1DLProcSendApduState(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_T1DLProcSendChainApduState
-功能描述  :T=1协议,当前发送了链块APDU后处理收到响应块　
-输入参数  :bValidFlag:标记收到的块是否合法
-           ulLength:块长度
-           pucData:块数据
-输出参数  :无
-返 回 值  :VOS_ERR/VOS_OK
-修订记录  :
-1. 日    期   : 2013年10月17日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_T1DLProcSendChainApduState(
     VOS_BOOL        bValidFlag,
     VOS_UINT32      ulLength,
@@ -1704,19 +1443,7 @@ VOS_UINT32 USIMM_T1DLProcSendChainApduState(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_T1DLProcSendSBlkReqState
-功能描述  :T=1协议,当前发送了S BLOCK req后处理收到响应块　
-输入参数  :bValidFlag:标记收到的块是否合法
-           ulLength:块长度
-           pucData:块数据
-输出参数  :无
-返 回 值  :VOS_ERR/VOS_OK
-修订记录  :
-1. 日    期   : 2013年10月17日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_T1DLProcSendSBlkReqState(
     VOS_BOOL        bValidFlag,
     VOS_UINT32      ulLength,
@@ -1771,19 +1498,7 @@ VOS_UINT32 USIMM_T1DLProcSendSBlkReqState(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_T1DLProcessBlock
-功能描述  :T=1协议,处理卡返回的块数据　
-输入参数  :bValidFlag:标记收到的块是否合法
-           ulLength:块长度
-           pucData:块数据
-输出参数  :无
-返 回 值  :VOS_ERR/VOS_OK
-修订记录  :
-1. 日    期   : 2013年10月17日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 static USIMMT1DL_RECV_FUNC_STATUS gastUSIMMT1DLRecvBlkProc[] =
 {
     {USIMM_T1_PROC_STATE_IDLE,              USIMM_T1DLProcIdleState},
@@ -1810,17 +1525,7 @@ VOS_UINT32 USIMM_T1DLProcessBlock(VOS_BOOL bValidFlag, VOS_UINT32 ulLength, VOS_
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_T1DLReceiveData
-功能描述  :实现T=1协议时卡返回数据的接收　
-输入参数  :无
-输出参数  :pstAPDUData:APDU命令接收内容
-返 回 值  :调用底软API结果
-修订记录  :
-1. 日    期   : 2013年10月17日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_T1DLReceiveData(VOS_VOID)
 {
     VOS_INT32       lSCIResult;
@@ -1853,17 +1558,7 @@ VOS_UINT32 USIMM_T1DLReceiveData(VOS_VOID)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_T1DLCombineSendData
-功能描述  :实现T=1协议时将APDU层传下来的发送数据组合成待发送数据块的信息域
-输入参数  :无
-输出参数  :pstAPDUData:APDU命令接收内容
-返 回 值  :VOS_OK/VOS_ERR;
-修订记录  :
-1. 日    期   : 2013年10月17日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_T1DLCombineSendData(USIMM_APDU_ST* pstAPDUData)
 {
     VOS_UINT32      ulResult = VOS_OK;
@@ -1929,17 +1624,7 @@ VOS_UINT32 USIMM_T1DLCombineSendData(USIMM_APDU_ST* pstAPDUData)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_T1DLHandleIdleState
-功能描述  :实现T=1协议时一层状态机IDLE状态处理
-输入参数  :pstAPDUData:APDU命令发送内容
-输出参数  :无
-返 回 值  :VOS_OK/VOS_ERR
-修订记录  :
-1. 日    期   : 2013年10月17日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_T1DLHandleIdleState(USIMM_APDU_ST* pstAPDUData)
 {
     USIMM_ERROR_LOG("USIMM_T1DLHandleIdleState: Usimm T1 DL handle Run into Error State");
@@ -1947,17 +1632,7 @@ VOS_UINT32 USIMM_T1DLHandleIdleState(USIMM_APDU_ST* pstAPDUData)
     return VOS_ERR;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_T1DLHandleSendIFSState
-功能描述  :实现T=1协议时一层状态机发送IFSD REQ状态处理
-输入参数  :pstAPDUData:APDU命令发送内容
-输出参数  :无
-返 回 值  :VOS_OK/VOS_ERR
-修订记录  :
-1. 日    期   : 2013年10月17日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_T1DLHandleSendIFSState(USIMM_APDU_ST* pstAPDUData)
 {
     VOS_UINT32      ulResult;
@@ -1977,17 +1652,7 @@ VOS_UINT32 USIMM_T1DLHandleSendIFSState(USIMM_APDU_ST* pstAPDUData)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_T1DLHandleSendInfoState
-功能描述  :实现T=1协议时一层状态机发送APDU层数据状态处理
-输入参数  :pstAPDUData:APDU命令发送内容
-输出参数  :无
-返 回 值  :VOS_OK/VOS_ERR
-修订记录  :
-1. 日    期   : 2013年10月17日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_T1DLHandleSendInfoState(USIMM_APDU_ST* pstAPDUData)
 {
     VOS_UINT32      ulResult;
@@ -2019,17 +1684,7 @@ VOS_UINT32 USIMM_T1DLHandleSendInfoState(USIMM_APDU_ST* pstAPDUData)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_T1DLHandleRcvBlockState
-功能描述  :实现T=1协议时一层状态机接收块数据状态处理
-输入参数  :pstAPDUData:APDU命令发送内容
-输出参数  :无
-返 回 值  :VOS_OK/VOS_ERR
-修订记录  :
-1. 日    期   : 2013年10月17日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_T1DLHandleRcvBlockState(USIMM_APDU_ST* pstAPDUData)
 {
     VOS_UINT32      ulResult = VOS_ERR;
@@ -2048,17 +1703,7 @@ VOS_UINT32 USIMM_T1DLHandleRcvBlockState(USIMM_APDU_ST* pstAPDUData)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_T1DLHandleStateStar
-功能描述  :实现T=1协议时一层状态机开始前预处理
-输入参数  :无
-输出参数  :pstAPDUData:APDU命令接收内容
-返 回 值  :无
-修订记录  :
-1. 日    期   : 2013年10月17日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID USIMM_T1DLHandleStateStar(USIMM_APDU_ST* pstAPDUData)
 {
     /* IFS REQ */
@@ -2091,17 +1736,7 @@ VOS_VOID USIMM_T1DLHandleStateStar(USIMM_APDU_ST* pstAPDUData)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_T1DLHandle
-功能描述  :实现T=1协议时与卡交互数据入口
-输入参数  :无
-输出参数  :pstAPDUData:APDU命令接收内容
-返 回 值  :调用底软API结果
-修订记录  :
-1. 日    期   : 2013年10月17日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 static USIMMT1DL_HANDLE_FUNC_STATUS gastUSIMMT1DLHandleProc[] =
 {
     {USIMM_T1DL_HANDLE_STATE_IDLE,              USIMM_T1DLHandleIdleState},
@@ -2152,19 +1787,7 @@ VOS_UINT32 USIMM_T1DLHandle(USIMM_APDU_ST* pstAPDUData)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_T1DLUpdateParaByATR
-功能描述  :更新由ATR得到的T=1参数
-输入参数  :enEDCType:块结束域校验类型
-           ulIFSC:卡的接收能力
-           ulIFSD:UE接收能力
-输出参数  :无
-返 回 值  :VOS_OK/VOS_ERR;
-修订记录  :
-1. 日    期   : 2013年10月17日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_T1DLUpdateParaByATR(
     USIMM_T1_BLOCK_EPILOGUE_FIELD_ENUM_UINT32   enEDCType,
     VOS_UINT32                                  ulIFSC,

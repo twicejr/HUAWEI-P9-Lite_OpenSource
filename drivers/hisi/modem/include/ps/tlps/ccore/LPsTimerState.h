@@ -1,15 +1,4 @@
-/******************************************************************************
 
-  Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : LPsTimerState.h
-  Description     : LPsTimerState.h header file
-  History         :
-      1.liutao 38432       2011-5-14   Draft Enact
-      2.lidui 143774       2012-4-25   DTS2012040905094:重配置和切换成功的时机理解与标杆不一致
-
-******************************************************************************/
 
 #ifndef __LPSTIMERSTATE_H__
 #define __LPSTIMERSTATE_H__
@@ -186,9 +175,7 @@ enum RRC_PTL_TI_ENUM
 
     TI_RRC_CSG_CELL_BAR_TIMER,
 
-    /* begin: add by f00295098,DTS2015112703260 DSDS时系统消息更新失败定时器 */
     TI_RRC_PTL_SIB_DSDS_UPDATE,
-    /* end: add by f00295098,DTS2015112703260 DSDS时系统消息更新失败定时器 */
 
     TI_RRC_PTL_BUTT
 };
@@ -402,9 +389,7 @@ enum RRC_STATE_TI_ENUM
     TI_LRRC_LCMM_WAIT_LPP_LPHY_OTDOA_CNF,
     TI_LRRC_LRRC_WAIT_LPP_LCMM_OTDOA_CNF,
 
-    /* begin: add for Austin搜网优化 PhaseII , l00277963*/
     TI_RRC_CSEL_WAIT_CSS_CURR_GEO_RSP,/*CSEL模块等待CSS获取国家频点频段保护定时器*/
-    /* end: add for Austin搜网优化 PhaseII , l00277963*/
 
     TI_RRC_STATE_BUTT
 };

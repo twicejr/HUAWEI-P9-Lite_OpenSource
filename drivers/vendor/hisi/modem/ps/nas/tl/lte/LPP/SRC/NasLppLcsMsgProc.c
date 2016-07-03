@@ -1,13 +1,4 @@
-/******************************************************************************
 
-        @(#)Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : NasLppMtaMsgProc.c
-    Description : 处理EMM发给SM的消息
-    History     :
-    1. lifuxin 00253982 2015-7-7 新开发
-******************************************************************************/
 
 /*****************************************************************************
   1 Include HeadFile
@@ -43,16 +34,7 @@ extern "C" {
   3 Function
 *****************************************************************************/
 
-/*****************************************************************************
- Function Name  : NAS_LPP_RcvGnssLocationInfo
- Description    : LPP模块LCS消息gnsslocationinformation处理函数
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-    1. wangensheng 00324863 2015-10-21 新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_RcvGnssLocationInfo( LCS_LPP_LOCATION_INFO_NTF_STRU *pstLcsLppLocInfo )
 {
 
@@ -85,16 +67,7 @@ VOS_VOID NAS_LPP_RcvGnssLocationInfo( LCS_LPP_LOCATION_INFO_NTF_STRU *pstLcsLppL
                        TI_NAS_LPP_LOCATION_INVALID);
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_RcvGnssAssistDataCnf
- Description    : LPP模块LCS消息AsssitDataCnf处理函数
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-    1. lifuxin 00253982 2015-10-21 新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_RcvGnssAssistDataCnf( LCS_LPP_GNSS_ASSISTDATA_CNF_STRU *pstGnssAssistDataCnf )
 {
     /*TODO: 根据最新的逻辑，MTA请求辅助数据，如果LPP存在Session实体，则直接发送上行的LPP辅助请求消息
@@ -103,16 +76,7 @@ VOS_VOID NAS_LPP_RcvGnssAssistDataCnf( LCS_LPP_GNSS_ASSISTDATA_CNF_STRU *pstGnss
     */
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_MtaMsgDistr
- Description    : LPP模块Mta消息处理函数
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-    1. lifuxin 00253982 2015-10-21 新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_LcsMsgDistr( VOS_VOID *pRcvMsg )
 {
     PS_MSG_HEADER_STRU         *pEmmMsg  = VOS_NULL_PTR;

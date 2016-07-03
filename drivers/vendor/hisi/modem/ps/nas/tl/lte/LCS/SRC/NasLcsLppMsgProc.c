@@ -1,13 +1,4 @@
-/******************************************************************************
 
-        @(#)Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : NasLcsLppMsgProc.c
-    Description : 处理LPP发给LCS的消息
-    History     :
-        1.lihong  00150010       2015-09-28  Draft Enact
-******************************************************************************/
 
 
 /*****************************************************************************
@@ -45,16 +36,7 @@ extern "C" {
 /*****************************************************************************
   3 Function
 *****************************************************************************/
-/*****************************************************************************
-Function Name  : NAS_LCS_RcvLppGnssAssistDataReq
-Description    : 处理LPP_LCS_GNSS_ASSISTDATA_REQ消息
-Input          : VOS_VOID *pRcvMsg
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  lihong 00150010 2015-10-09  新开发
-*****************************************************************************/
 VOS_VOID NAS_LCS_RcvLppGnssAssistDataReq
 (
     const LPP_LCS_GNSS_ASSISTDATA_REQ_STRU     *pstGnssAssistDataReq
@@ -126,16 +108,7 @@ VOS_VOID NAS_LCS_RcvLppGnssAssistDataReq
     NAS_LCS_SetEntityConnState(ulIndex, NAS_LCS_CONN_STATE_ESTING);
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_LppMsgDistr
-Description    : LCS模块LPP消息处理函数
-Input          : VOS_VOID *pRcvMsg
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  lihong 00150010 2015-9-28  新开发
-*****************************************************************************/
 VOS_VOID NAS_LCS_LppMsgDistr( VOS_VOID *pRcvMsg )
 {
     PS_MSG_HEADER_STRU         *pLppMsg  = VOS_NULL_PTR;
@@ -161,16 +134,7 @@ VOS_VOID NAS_LCS_LppMsgDistr( VOS_VOID *pRcvMsg )
     return;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_SndLppGnssAssistDataCnf
-Description    : 给LPP发送LCS_LPP_GNSS_ASSISTDATA_CNF
-Input          : enRslt--------------结果
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  lihong 00150010 2015-10-09  新开发
-*****************************************************************************/
 VOS_VOID  NAS_LCS_SndLppGnssAssistDataCnf
 (
     LCS_LPP_RSLT_ENUM_UINT32            enRslt
@@ -197,17 +161,7 @@ VOS_VOID  NAS_LCS_SndLppGnssAssistDataCnf
     NAS_LCS_SND_MSG(pstLppGnssAssistDataCnf);
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_SndLppLocationInfoNtf
-Description    : 给LPP发送LCS_LPP_LOCATION_INFO_NTF
-Input          : pstLocationEstimate---------地理位置信息指针
-                 pstVelocityEstimate---------速度信息指针
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  lihong 00150010 2015-10-17  新开发
-*****************************************************************************/
 VOS_VOID  NAS_LCS_SndLppLocationInfoNtf
 (
     LOC_COM_COORDINATE_STRU            *pstLocationEstimate,

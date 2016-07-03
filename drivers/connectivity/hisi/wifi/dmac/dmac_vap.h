@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : dmac_vap.h
-  版 本 号   : 初稿
-  作    者   : huxiaotong
-  生成日期   : 2012年10月19日
-  最近修改   :
-  功能描述   : dmac_vap.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年10月19日
-    作    者   : huxiaotong
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __DMAC_VAP_H__
 #define __DMAC_VAP_H__
@@ -331,7 +314,14 @@ typedef struct dmac_vap_tag
 
     oal_uint32                       ul_obss_scan_timer_remain;                  /* 02最大定时器超时65s, OBSS扫描定时器可能为几分钟，通过计数器来实现大定时器*/
     oal_uint8                        uc_obss_scan_timer_started;
-    oal_uint8                        uac_resv5[3];
+    oal_uint8                        uc_bcn_tout_max_cnt;                      /* beacon连续收不到最大睡眠次数 */
+
+#ifdef _PRE_WLAN_FEATURE_STA_PM
+    oal_uint8                       uc_null_frm_ofdm_succ_cnt;
+    oal_uint8                       uc_null_frm_cnt;
+#else
+    oal_uint8                       uac_resv5[2];
+#endif  /* _PRE_WLAN_FEATURE_STA_PM */
 
     oal_bool_enum_uint8              en_bfee_actived;
     oal_bool_enum_uint8              en_bfer_actived;
@@ -395,41 +385,13 @@ typedef struct dmac_vap_tag
 /*****************************************************************************
   9 OTHERS定义
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : dmac_vap_get_bss_type
- 功能描述  : 获取VAP类型，指针是否为空，调用者判断
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VAP类型
- 调用函数  : 无
- 被调函数  : 无
 
- 修改历史      :
-  1.日    期   : 2012年10月22日
-    作    者   : 康国昌
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE wlan_vap_mode_enum_uint8  dmac_vap_get_bss_type(mac_vap_stru *pst_vap)
 {
     return pst_vap->en_vap_mode;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_vap_linkloss_zero
- 功能描述  :  对linkloss计数器清0
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月14日
-    作    者   : zhongwen
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void dmac_vap_linkloss_clean(dmac_vap_stru *pst_dmac_vap)
 {
 #ifdef _PRE_WLAN_FEATURE_BTCOEX

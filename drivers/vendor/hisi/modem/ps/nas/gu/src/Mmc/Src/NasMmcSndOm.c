@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmcSndOm.c
-  版 本 号   : 初稿
-  作    者   : w00176964
-  生成日期   : 2010年5月9日
-  最近修改   :
-  功能描述   : MMC发给OM的消息的处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年05月9日
-    作    者   : w00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 /*****************************************************************************
   1 头文件包含
 *****************************************************************************/
@@ -29,9 +12,7 @@
 #include "NasMmcCtx.h"
 #include "NasMmcProcUsim.h"
 
-/* added  by l00167671 for v9r1 dcm logger可维可测项目, 2013-06-27, begin */
 #include  "NasMmlCtx.h"
-/* added  by l00167671 for v9r1 dcm logger可维可测项目, 2013-06-27, end */
 
 #include "NasMmcFsmMainTbl.h"
 
@@ -53,21 +34,7 @@ extern "C" {
 
 /*lint -save -e958 */
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_LogMmcState
- 功能描述  : 打印出MMC的内部状态
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年1月13日
-   作    者   : zhoujun /40661
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  NAS_MMC_LogMmcFsmInfo( VOS_VOID )
 {
     NAS_MMC_LOG_FSM_INFO_STRU           *pstMsg = VOS_NULL_PTR;
@@ -97,21 +64,7 @@ VOS_VOID  NAS_MMC_LogMmcFsmInfo( VOS_VOID )
 }
 
 #if (FEATURE_LTE == FEATURE_ON)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_LogGutiInfo
- 功能描述  : 通过Trace显示从同步接口获取的GUTI相关信息
- 输入参数  : NAS_LMM_GUTI_STRU                    stGutiMsg
- 输出参数  : 无
- 返 回 值  : VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月11日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_LogGutiInfo(
     NAS_LMM_GUTI_STRU                  *pstGuti
 )
@@ -144,21 +97,7 @@ VOS_VOID NAS_MMC_LogGutiInfo(
 #endif
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_LogBufferQueueMsg
- 功能描述  : 导出缓存的消息
- 输入参数  : ulFullFlg:缓存是否已经满的标志位
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月7日
-    作    者   : zhoujun /40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  NAS_MMC_LogBufferQueueMsg(
     VOS_UINT32                          ulFullFlg
 )
@@ -192,36 +131,7 @@ VOS_VOID  NAS_MMC_LogBufferQueueMsg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndOutsideFixedContextData
- 功能描述  : 把MMC外部固定变量上下文作为SDT消息发送出去，以便在回放时通过桩函数还原
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年05月11日
-    作    者   : 欧阳飞 00132663
-    修改内容   : 新生成函数
-  2.日    期   : 2009年08月11日
-    作    者   : 欧阳飞 00132663
-    修改内容   : AT2D13441, 增加g_MmcGlobalCtrl.ucLastRplmnRatEnableFlag变量导出
-  3.日    期   : 2011年07月14日
-    作    者   : z00161729
-    修改内容   : V7R1 phase II全局变量调整修改
-  4.日    期   : 2011年07月20日
-    作    者   : zhoujun \40661
-    修改内容   : V7R1 phase II全局变量调整修改
-  5.日    期   : 2011年12月1日
-    作    者   : z00161729
-    修改内容   : 增加pc 回放压缩
-  6.日    期   : 2012年3月1日
-    作    者   : z00161729
-    修改内容   : DTS2012012902207:msg hook后内存未释放
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndOutsideFixedContextData( VOS_VOID )
 {
     NAS_MMC_FIXED_CONTEXT_MSG_STRU                         *pstFixedCtx;
@@ -343,24 +253,7 @@ VOS_VOID NAS_MMC_SndOutsideFixedContextData( VOS_VOID )
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndOutsideContextData
- 功能描述  : 把MMC外部上下文作为SDT消息发送出去，以便在回放时通过桩函数还原
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年01月03日
-    作    者   : 欧阳飞 00132663
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年4月22日
-    作    者   : zhoujun /40661
-    修改内容   : V7R1 Phase I删除相关结构
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndOutsideContextData( VOS_VOID )
 {
     VOS_UINT8                                              *pucCompressBuf;
@@ -465,39 +358,12 @@ VOS_VOID NAS_MMC_SndOutsideContextData( VOS_VOID )
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndOmOtaCnf
- 功能描述  : 发送OM的请求消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月21日
-   作    者   : zhoujun /40661
-   修改内容   : 新生成函数
-
- 2.日    期   : 2012年11月1日
-   作    者   : z40661
-   修改内容   : DTS2012102501504
-
- 3.日    期   : 2013年04月02日
-   作    者   : m00217266
-   修改内容   : DTS2013041202045&DTS2013040104447
-
- 3.日    期   : 2015年07月01日
-   作    者   : wx270776
-   修改内容   : OM融合
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndOmOtaCnf(
     VOS_UINT32                          ulErrCode,
     OM_NAS_OTA_REQ_STRUCT              *pstOtaReq
 )
 {
-    /* Modified by wx270776 for OM融合, 2015-7-1, begin */
     VOS_UINT16                          usNasOtaCnfLen;
     NAS_OM_OTA_CNF_STRUCT              *pstNasOtaCnf = VOS_NULL_PTR;
     VOS_UINT32                          ulRet;
@@ -537,31 +403,10 @@ VOS_VOID NAS_MMC_SndOmOtaCnf(
     }
 
     return;
-    /* Modified by wx270776 for OM融合, 2015-7-1, end */
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_FillNasMmImsiInfo
- 功能描述  : 填充OM查询消息的IMSI项
- 输入参数  : 无
- 输出参数  : pstMsIdMsg:当前IMSI内容
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月23日
-   作    者   : zhoujun \40661
-   修改内容   : 新生成函数
- 2.日    期   : 2012年8月10日
-   作    者   : L00171473
-   修改内容   : DTS2012082204471, TQE清理
-
- 3.日    期   : 2014年6月17日
-   作    者   : z00234330
-   修改内容   : PCINT清理
-*****************************************************************************/
 VOS_VOID NAS_MMC_FillNasMmImsiInfo(
     MS_ID_STRUCT                       *pstMsIdMsg
 )
@@ -594,37 +439,15 @@ VOS_VOID NAS_MMC_FillNasMmImsiInfo(
 
         pstMsIdMsg->ucMobileIDValue[(2 * i) - 1]
                     = pstMsIdentity->aucImsi[j] & 0x0F;
-        /* Modified by z00234330 for PCLINT清理, 2014-06-16, begin */
         pstMsIdMsg->ucMobileIDValue[2 * i]
                     = pstMsIdentity->aucImsi[j] >> 4;
         j++;
-        /* Modified by z00234330 for PCLINT清理, 2014-06-16, end */
     }
 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_FillNasSimUpdateStatusInfo
- 功能描述  : 填充OM查询消息的卡的更新状态,包括CS域和PS域的
- 输入参数  : 无
- 输出参数  : pstMsg:更新后的卡状态
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月23日
-   作    者   : zhoujun \40661
-   修改内容   : 新生成函数
- 2.日    期   : 2014年6月16日
-   作    者   : w00176964
-   修改内容   : DTS2014061006131:MM增加新的U值
- 3.日    期   : 2015年9月17日
-   作    者   : zwx247453
-   修改内容   : Dallas寄存器按原语上报及BBP采数项目
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_FillNasSimUpdateStatusInfo(
     NAS_OM_MM_IND_STRU                 *pstMsg
 )
@@ -634,7 +457,6 @@ VOS_VOID NAS_MMC_FillNasSimUpdateStatusInfo(
     pstSimStatus                = NAS_MML_GetSimStatus();
 
     /* 填写PS域的卡状态 */
-    /* Modified by zwx247453 for 寄存器上报, 2015-09-17, begin */
     switch (pstSimStatus->enPsUpdateStatus)
     {
         case NAS_MML_ROUTING_UPDATE_STATUS_UPDATED:
@@ -679,24 +501,9 @@ VOS_VOID NAS_MMC_FillNasSimUpdateStatusInfo(
             pstMsg->enMmUpdateStatus    = MM_UPDATE_STATUS_BUTT;
             break;
     }
-    /* Modified by zwx247453 for 寄存器上报, 2015-09-17, end */
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_FillNasMmSimInfo
- 功能描述  : 填充OM查询消息的SIM卡信息项
- 输入参数  : 无
- 输出参数  : pstMsg:当前查询内容
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月23日
-   作    者   : zhoujun \40661
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 
 VOS_VOID NAS_MMC_FillNasMmSimInfo(
     NAS_OM_MM_IND_STRU                 *pstMsg
@@ -729,21 +536,7 @@ VOS_VOID NAS_MMC_FillNasMmSimInfo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConvertNetworkModeToOm
- 功能描述  : 将内部的网络模式信息转换为显示给OM的网络信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年11月12日
-    作    者   : zhoujun 40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  NAS_MMC_ConvertNetworkModeToDispalyFormat(
     NAS_MML_NET_MODE_ENUM_UINT8         enNetworkMode,
     NET_OPERATE_MODE_ENUM_UINT8        *penNetOperateMode
@@ -769,32 +562,8 @@ VOS_VOID  NAS_MMC_ConvertNetworkModeToDispalyFormat(
 }
 
 
-/* added  by l00167671 for v9r1 dcm logger可维可测项目, 2013-06-27, begin */
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetPlmnHUOType
- 功能描述  : 返回PLMN的时HUO中的哪种
- 输入参数  : pstPlmn,指向PLMN的指针
- 输出参数  : 无
- 返 回 值  : PLMN的类型
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年06月27日
-   作    者   : luokaihui 00167671
-   修改内容   : 新生成函数
- 2.日    期   : 2013年09月03日
-   作    者   : w00242748
-   修改内容   : DTS2013082909799 查询NAS MM QUERY时，RPLMN显示成EHPLMN，关机时
-                无效PLMN显示为OPLMN修正。
- 3.日    期    : 2013年11月26日
-   作    者    : s00190137
-   修改内容    : 将最大支持设置的OPLMN扩展到256个
- 4.日    期   : 2014年1月28日
-   作    者   : s00246516
-   修改内容   : L-C互操作项目:增加获取和注册请求的处理
-*****************************************************************************/
 NAS_OM_PLMN_HUO_TYPE_ENUM_UINT32 NAS_MMC_GetPlmnHUOType(NAS_MML_PLMN_ID_STRU *pstPlmn)
 {
     NAS_MML_CAMP_PLMN_INFO_STRU                             *pstCampPlmnInfo;
@@ -822,7 +591,6 @@ NAS_OM_PLMN_HUO_TYPE_ENUM_UINT32 NAS_MMC_GetPlmnHUOType(NAS_MML_PLMN_ID_STRU *ps
         return NAS_MMC_HUO_HPLMN;
     }
 
-    /* Modified by s00246516 for L-C互操作项目, 2014-02-12, Begin */
     /* 检查是否是 UPLMN */
     if (VOS_TRUE == NAS_MML_ComparePlmnIdWithUplmn(pstPlmn))
     {
@@ -834,33 +602,12 @@ NAS_OM_PLMN_HUO_TYPE_ENUM_UINT32 NAS_MMC_GetPlmnHUOType(NAS_MML_PLMN_ID_STRU *ps
     {
         return NAS_MMC_HUO_OPLMN;
     }
-    /* Modified by s00246516 for L-C互操作项目, 2014-02-12, End */
 
     /* 其他PLMN */
     return NAS_MMC_HUO_OTHER_PLMN;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_FillNasTinInfo
- 功能描述  : 填充OM查询消息的Tin Type和相应的GUTI或者PTMSI
- 输入参数  : 无
- 输出参数  : pstMsg:当前查询内容
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年06月27日
-   作    者   : luokaihui 00167671
-   修改内容   : 新生成函数
-
-  2.日    期   : 2013年9月30日
-    作    者   : z00234330
-    修改内容   : dts2013090407261,关机时,调用此接口导致踩内存
-  3.日    期   : 2013年11月30日
-    作    者   : l65478
-    修改内容   : DTS2013112400009,不查主卡,打开SDT中的MM STATE页面C核复位
-*****************************************************************************/
 
 VOS_VOID NAS_MMC_FillNasTinInfo(
     NAS_OM_MM_IND_STRU                 *pstMsg
@@ -946,32 +693,8 @@ VOS_VOID NAS_MMC_FillNasTinInfo(
     */
 #endif
 }
-/* added  by l00167671 for v9r1 dcm logger可维可测项目, 2013-06-27, end */
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_FillNasMsNetworkInfo
- 功能描述  : 填充OM查询消息的网络信息项
- 输入参数  : 无
- 输出参数  : pstMsg:当前查询内容
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月23日
-   作    者   : zhoujun \40661
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年11月12日
-   作    者   : zhoujun 40661
-   修改内容   : 网络模式OM显示不正确,修改
- 3.日    期   : 2013年06月27日
-   作    者   : luokaihui 00167671
-   修改内容   : 添加网络优先级
- 4.日    期   : 2015年9月17日
-   作    者   : zwx247453
-   修改内容   : Dallas寄存器按原语上报及BBP采数项目
-*****************************************************************************/
 
 VOS_VOID NAS_MMC_FillNasMsNetworkInfo(
     NAS_OM_MM_IND_STRU                 *pstMsg
@@ -990,37 +713,19 @@ VOS_VOID NAS_MMC_FillNasMsNetworkInfo(
     /* 搜网模式信息 */
     pstMsg->enPlmnSelMode   = NAS_MMC_GetPlmnSelectionMode();
 
-    /* added  by l00167671 for v9r1 dcm logger可维可测项目, 2013-06-27, begin */
     pstMsg->enPlmnType      = NAS_MMC_GetPlmnHUOType(&(pstCampPlmnInfo->stLai.stPlmnId));
-    /* added  by l00167671 for v9r1 dcm logger可维可测项目, 2013-06-27, end */
 
     NAS_MMC_ConvertPlmnIdToOmDispalyFormat(&(pstCampPlmnInfo->stLai.stPlmnId),
                                            &(pstMsg->SelectedPlmn));
 
 
-    /* Modified by zwx247453 for 寄存器上报, 2015-09-17, begin */
     NAS_MMC_ConvertNetworkModeToDispalyFormat(pstCampPlmnInfo->enNetworkMode,
                                              &(pstMsg->enNetMode));
-    /* Modified by zwx247453 for 寄存器上报, 2015-09-17, end */
 
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_FillNasMsMode
- 功能描述  : 填充OM查询消息的手机模式信息项
- 输入参数  : 无
- 输出参数  : pstMsg:当前查询内容
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月23日
-   作    者   : zhoujun \40661
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 
 VOS_VOID NAS_MMC_FillNasMsMode(
     NAS_OM_MM_IND_STRU                 *pstMsg
@@ -1060,21 +765,7 @@ VOS_VOID NAS_MMC_FillNasMsMode(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_FillNasImeiInfo
- 功能描述  : 填充OM查询消息的IMEI信息项
- 输入参数  : 无
- 输出参数  : pstMsg:当前查询内容
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月23日
-   作    者   : zhoujun \40661
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 
 VOS_VOID NAS_MMC_FillNasImeiInfo(
     NAS_OM_MM_IND_STRU                 *pstMsg
@@ -1113,21 +804,7 @@ VOS_VOID NAS_MMC_FillNasImeiInfo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_FillNasMsCfgInfo
- 功能描述  : 填充OM查询消息的手机配置信息项
- 输入参数  : 无
- 输出参数  : pstMsg:当前查询内容
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月23日
-   作    者   : zhoujun \40661
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 
 VOS_VOID NAS_MMC_FillNasMsCfgInfo(
     NAS_OM_MM_IND_STRU                 *pstMsg
@@ -1141,21 +818,7 @@ VOS_VOID NAS_MMC_FillNasMsCfgInfo(
     NAS_MMC_FillNasMsMode(pstMsg);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConvertPlmnIdToOmDispalyFormat
- 功能描述  : 将内部格式的PlmnID转换为OM显示用的格式
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月23日
-   作    者   : zhoujun \40661
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  NAS_MMC_ConvertPlmnIdToOmDispalyFormat(
     NAS_MML_PLMN_ID_STRU               *pstPlmnId,
     PLMN_ID_STRUCT                     *pstOmPlmnIdFormat
@@ -1178,24 +841,7 @@ VOS_VOID  NAS_MMC_ConvertPlmnIdToOmDispalyFormat(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_FillNasServiceStatus
- 功能描述  : 填写NAS内部服务状态
- 输入参数  : 无
- 输出参数  : pstMsg:待填写的消息内容
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月23日
-   作    者   : zhoujun \40661
-   修改内容   : 新生成函数
- 2.日    期   : 2015年9月17日
-   作    者   : zwx247453
-   修改内容   : Dallas寄存器按原语上报及BBP采数项目
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_FillNasServiceStatus(
     NAS_OM_MM_IND_STRU                 *pstMsg
 )
@@ -1204,7 +850,6 @@ VOS_VOID NAS_MMC_FillNasServiceStatus(
 
     pstServiceStatus = NAS_MMC_GetServiceInfo();
 
-    /* Modified by zwx247453 for 寄存器上报, 2015-09-17, begin */
     if ( ( NAS_MMC_NORMAL_SERVICE == pstServiceStatus->enCsCurrService)
       || ( NAS_MMC_NORMAL_SERVICE == pstServiceStatus->enPsCurrService))
     {
@@ -1224,26 +869,9 @@ VOS_VOID NAS_MMC_FillNasServiceStatus(
     {
         pstMsg->enServiceStatus     = NAS_OM_SERVICE_STATE_LIMITED_SERVICE;
     }
-    /* Modified by zwx247453 for 寄存器上报, 2015-09-17, end */
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_FillOmAvailPlmnList
- 功能描述  : 填写NAS可用的网络列表
- 输入参数  : 无
- 输出参数  : pstMsg:待填写的消息内容
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月23日
-   作    者   : zhoujun \40661
-   修改内容   : 新生成函数
- 2.日    期   : 2011年9月7日
-   作    者   : s46746
-   修改内容   : 同步V3R1版本问题单DTS2011072203231
-*****************************************************************************/
 
 VOS_VOID NAS_MMC_FillOmAvailPlmnList(
     NAS_OM_MM_IND_STRU                 *pstMsg
@@ -1315,32 +943,7 @@ VOS_VOID NAS_MMC_FillOmAvailPlmnList(
     pstMsg->ucAvailPlmnNum = (VOS_UINT8)ulPlmnCnt;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_BuildNasOmInfo
- 功能描述  : 构造填写给OM查询NAS的消息内容
- 输入参数  : 无
- 输出参数  : pstMsg:待填写的消息内容
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月23日
-   作    者   : zhoujun \40661
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年11月29日
-   作    者   : zhoujun /40661
-   修改内容   : MMC状态更新显示
-
- 3.日    期   : 2013年06月28日
-   作    者   : luokaihui 00167671
-   修改内容   : 上报TIN信息和PLMN是属于HUO的哪种类型
-
- 4.日    期   : 2015年9月17日
-   作    者   : zwx247453
-   修改内容   : Dallas寄存器按原语上报及BBP采数项目
-*****************************************************************************/
 
 VOS_VOID NAS_MMC_BuildNasOmInfo(
     NAS_OM_MM_IND_STRU                 *pstMsg
@@ -1361,16 +964,12 @@ VOS_VOID NAS_MMC_BuildNasOmInfo(
     /* 填写GMM的状态和子状态 */
     NAS_GMM_FillNasGmmState(pstMsg);
 
-    /* added  by l00167671 for v9r1 dcm logger可维可测项目, 2013-06-27, begin */
     /* 填写TIN TYPE和MSID*/
     NAS_MMC_FillNasTinInfo(pstMsg);
-    /* added  by l00167671 for v9r1 dcm logger可维可测项目, 2013-06-27, end */
 
     /* 填写MMC的状态和子状态 */
     /* 此处需要与OM讨论修改MMC内部接口 */
-    /* Modified by zwx247453 for 寄存器上报, 2015-09-17, begin */
     pstMsg->enMmcFsmId = (VOS_UINT8)NAS_MMC_GetCurrFsmId();
-    /* Modified by zwx247453 for 寄存器上报, 2015-09-17, end */
     pstMsg->ucMmcState = (VOS_UINT8)NAS_MMC_GetFsmTopState();
 
     /* 填写可用的网络 */
@@ -1382,24 +981,7 @@ VOS_VOID NAS_MMC_BuildNasOmInfo(
 }
 
 
-/* Added by wx270776 for OM融合, 2015-7-21, begin */
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndOmIndMsg
- 功能描述  : 发送OM的查询消息透传消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年7月21日
-   作    者   : wx270776
-   修改内容   : OM融合
- 2.日    期   : 2015年9月17日
-   作    者   : zwx247453
-   修改内容   : Dallas寄存器按原语上报及BBP采数项目
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_SndOmIndMsg(VOS_VOID)
 {
     NAS_OM_MM_IND_STRU                  stNasOmMmInd;
@@ -1411,16 +993,12 @@ VOS_UINT32 NAS_MMC_SndOmIndMsg(VOS_VOID)
 
     /* 填充消息内容 */
     NAS_MMC_BuildNasOmInfo(&stNasOmMmInd);
-    /* Modified by zwx247453 for 寄存器上报, 2015-09-17, begin */
     stNasOmMmInd.enPrimId           = ID_NAS_OM_MM_CONFIRM;
-    /* Modified by zwx247453 for 寄存器上报, 2015-09-17, end */
     stNasOmMmInd.usToolsId          = 0;
 
     stDiagTransInd.ulModule         = DIAG_GEN_MODULE(VOS_GetModemIDFromPid(WUEPS_PID_MMC), DIAG_MODE_UMTS);;
     stDiagTransInd.ulPid            = WUEPS_PID_MMC;
-    /* Modified by zwx247453 for 寄存器上报, 2015-11-09, begin */
     stDiagTransInd.ulMsgId          = ((VOS_UINT32)(VOS_GetModemIDFromPid(WUEPS_PID_MMC)) << 16) + ID_NAS_OM_MM_CONFIRM;
-    /* Modified by zwx247453 for 寄存器上报, 2015-11-09, end */
     stDiagTransInd.ulLength         = sizeof(NAS_OM_MM_IND_STRU);
     stDiagTransInd.pData            = &stNasOmMmInd;
 
@@ -1433,39 +1011,11 @@ VOS_UINT32 NAS_MMC_SndOmIndMsg(VOS_VOID)
 
     return ulRet;
 }
-/* Added by wx270776 for OM融合, 2015-7-21, end */
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndOmInquireCnfMsg
- 功能描述  : 发送OM的查询消息回复
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月21日
-   作    者   : zhoujun /40661
-   修改内容   : 新生成函数
-
- 2.日    期   : 2012年11月1日
-   作    者   : z40661
-   修改内容   : DTS2012102501504
-
- 3.日    期   : 2013年9月10日
-   作    者   : w00242748
-   修改内容   : DTS2013082909799 查询NAS MM QUERY时，RPLMN显示成EHPLMN，关机时
-                无效PLMN显示为OPLMN修正。
-
- 4.日    期   : 2015年7月21日
-   作    者   : wx270776
-   修改内容   : OM融合
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndOmInquireCnfMsg(
     ID_NAS_OM_INQUIRE_STRU             *pstOmInquireMsg
 )
 {
-    /* Modified by wx270776 for OM融合, 2015-7-1, begin */
     NAS_OM_MM_CONFIRM_STRU             *pstNasOmMmCnf = VOS_NULL_PTR;
     VOS_UINT32                          ulMsgLen;
     VOS_UINT32                          ulSndOmRet;
@@ -1506,31 +1056,12 @@ VOS_VOID NAS_MMC_SndOmInquireCnfMsg(
     }
 
     return;
-    /* Modified by wx270776 for OM融合, 2015-7-1, end */
 
 
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndOmPlmnSelectionList
- 功能描述  : 将选网列表导出到SDT LOG中
- 输入参数  : pstPlmnSelectionList
-             pstPrioRatList
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月29日
-    作    者   : s46746
-    修改内容   : 新生成函数
-  2.日    期   : 2012年10月17日
-    作    者   : z00161729
-    修改内容   : DTS2012081603683:搜网列表中有重复plmn信息
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndOmPlmnSelectionList(
     NAS_MMC_PLMN_SELECTION_LIST_INFO_STRU                  *pstPlmnSelectionList,
     NAS_MML_PLMN_RAT_PRIO_STRU                             *pstPrioRatList
@@ -1615,20 +1146,7 @@ VOS_VOID NAS_MMC_SndOmPlmnSelectionList(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_LogPlmnRegRejInfo
- 功能描述  : 将PLMN 注册信息发送到OM
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月20日
-    作    者   : c00318887
-    修改内容   : 新建函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_LogPlmnRegRejInfo(VOS_VOID)
 {
     NAS_MMC_LOG_PLMN_REG_REJ_INFO_STRU *pstMsg              = VOS_NULL_PTR;
@@ -1675,20 +1193,7 @@ VOS_VOID NAS_MMC_LogPlmnRegRejInfo(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_LogCurrPlmnRelatedInfo
- 功能描述  : 将当前PLMN 相关信息发送到OM
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月20日
-    作    者   : c00318887
-    修改内容   : 新建函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_LogCurrPlmnRelatedInfo(VOS_VOID)
 {
     NAS_MMC_LOG_CURR_PLMN_RELATED_INFO_STRU *pstMsg              = VOS_NULL_PTR;
@@ -1730,20 +1235,7 @@ VOS_VOID NAS_MMC_LogCurrPlmnRelatedInfo(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_LogRplmnRelatedInfo
- 功能描述  : 将RPLMN信息发送到OM
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月05日
-    作    者   : w00167002
-    修改内容   : DTS2014102109190_LOG_RPLMN
-*****************************************************************************/
 VOS_VOID NAS_MMC_LogRplmnRelatedInfo(VOS_VOID)
 {
     NAS_MMC_LOG_RPLMN_RELATED_INFO_STRU                      *pstMsg  = VOS_NULL_PTR;
@@ -1797,20 +1289,7 @@ VOS_VOID NAS_MMC_LogRplmnRelatedInfo(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_LogForbiddenPlmnRelatedInfo
- 功能描述  : 将FORBIDDEN PLMN相关的信息发送到OM
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月05日
-    作    者   : w00167002
-    修改内容   : DTS2014102109190_LOG_RPLMN
-*****************************************************************************/
 VOS_VOID NAS_MMC_LogForbiddenPlmnRelatedInfo(VOS_VOID)
 {
     NAS_MMC_LOG_FORBIDDEN_PLMN_RELATED_INFO_STRU           *pstMsg       = VOS_NULL_PTR;
@@ -1865,20 +1344,7 @@ VOS_VOID NAS_MMC_LogForbiddenPlmnRelatedInfo(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_LogRplmnRelatedInfo
- 功能描述  : 将RPLMN信息发送到OM
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月05日
-    作    者   : w00167002
-    修改内容   : DTS2014102109190_LOG_RPLMN
-*****************************************************************************/
 VOS_VOID NAS_MMC_LogRplmnCfgInfo(VOS_VOID)
 {
     NAS_MMC_LOG_RPLMN_CFG_INFO_STRU                      *pstMsg  = VOS_NULL_PTR;
@@ -1912,20 +1378,7 @@ VOS_VOID NAS_MMC_LogRplmnCfgInfo(VOS_VOID)
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_LogFsmPlmnSelectionCtxRelatedInfo
- 功能描述  : 将FORBIDDEN PLMN相关的信息发送到OM
- 输入参数  : pstFsmPlmnSelectionCtx
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月05日
-    作    者   : w00167002
-    修改内容   : 增加选网状态机上下文信息的勾包，便于问题定位
-*****************************************************************************/
 VOS_VOID NAS_MMC_LogFsmPlmnSelectionCtxRelatedInfo(
     NAS_MMC_FSM_PLMN_SELECTION_CTX_STRU                    *pstFsmPlmnSelectionCtx
 )
@@ -1980,23 +1433,7 @@ VOS_VOID NAS_MMC_LogFsmPlmnSelectionCtxRelatedInfo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_LogForbiddenPlmnRelatedInfo
- 功能描述  : 将FORBIDDEN PLMN相关的信息发送到OM
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月05日
-    作    者   : w00167002
-    修改内容   : 增加对L1 MAIN状态机上下文信息的勾包，便于问题定位
-  2.日    期   : 2015年10月28日
-    作    者   : s00217060
-    修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_3.0修改
-*****************************************************************************/
 VOS_VOID NAS_MMC_LogFsmL1MainCtxRelatedInfo(
     NAS_MMC_FSM_L1_MAIN_CTX_STRU       *pstFsmL1MainCtx
 )
@@ -2049,20 +1486,7 @@ VOS_VOID NAS_MMC_LogFsmL1MainCtxRelatedInfo(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_LogOosPlmnSearchStrategyRelatedInfo
- 功能描述  : 增加对History/PrefBand/FullBand搜网信息的勾包
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月10日
-    作    者   : h00281185
-    修改内容   : 增加对History/PrefBand/FullBand搜网信息的勾包，便于问题定位
-*****************************************************************************/
 VOS_VOID NAS_MMC_LogOosPlmnSearchStrategyRelatedInfo(VOS_VOID)
 {
     NAS_MMC_LOG_OOS_PLMN_SEARCH_STRATEGY_RELATED_INFO_STRU                      *pstMsg                = VOS_NULL_PTR;
@@ -2107,24 +1531,7 @@ VOS_VOID NAS_MMC_LogOosPlmnSearchStrategyRelatedInfo(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndOmMmcTimerStart
- 功能描述  : 发送消息给OM模块，MMC定时器运行完成
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年8月6日
-   作    者   : zhoujun 40661
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年8月22日
-   作    者   : w00167002
-   修改内容   : 回放修改，保留字段清空，消息体长度赋值
-*****************************************************************************/
 VOS_VOID  NAS_MMC_SndOmMmcTimerStatus(
     NAS_MMC_TIMER_STATUS_ENUM_U8        enTimerStatus,
     NAS_MMC_TIMER_ID_ENUM_UINT16        enTimerId,
@@ -2160,31 +1567,7 @@ VOS_VOID  NAS_MMC_SndOmMmcTimerStatus(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndOmEquPlmn
- 功能描述  : 上报Eplmn列表
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月24日
-   作    者   : l00130025
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年8月14日
-   作    者   : w00167002
-   修改内容   : ut工程时，eplmn个数为0时，内存分配为空，工程崩溃
- 3.日    期   : 2011年11月24日
-   作    者   : w00167002
-   修改内容   : DTS2011112405567:原有的函数名NAS_MML_IsPlmnIdInDestPlmnList
-                更改为NAS_MML_IsBcchPlmnIdInDestSimPlmnList
- 4.日    期   : 2011年12月8日
-   作    者   : l00130025
-   修改内容   : DTS2011101105035:RPlmn在EPlmn列表中时，上报的EPlmn列表的个数错误
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndOmEquPlmn(VOS_VOID)
 {
     VOS_UINT8                          *pucEplmnContent = VOS_NULL_PTR;
@@ -2257,21 +1640,7 @@ VOS_VOID NAS_MMC_SndOmEquPlmn(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndOmInternalMsgQueueDetailInfo
- 功能描述  : 发送内部消息队列的详细信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月21日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndOmInternalMsgQueueDetailInfo(
     NAS_MML_INTERNAL_MSG_QUEUE_STRU    *pInternalMsgQueue
 )
@@ -2294,21 +1663,7 @@ VOS_VOID NAS_MMC_SndOmInternalMsgQueueDetailInfo(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndOmInternalMsgQueueInfo
- 功能描述  : 发送内部消息队列的相关信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月12日
-    作    者   : z40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  NAS_MMC_SndOmInternalMsgQueueInfo(
     VOS_UINT8                          ucFullFlg,
     VOS_UINT8                          ucMsgLenValidFlg
@@ -2340,23 +1695,7 @@ VOS_VOID  NAS_MMC_SndOmInternalMsgQueueInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndOmGetCacheFile
- 功能描述  : MMC调用USIMM_GetCachedFile接口，勾消息
- 输入参数  : VOS_UINT32                          ulFileId
-             VOS_UINT32                          ulFileLen
-             VOS_UINT8                          *pucFileContent
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月30日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  NAS_MMC_SndOmGetCacheFile(
     VOS_UINT32                          ulFileId,
     VOS_UINT32                          ulFileLen,
@@ -2391,21 +1730,7 @@ VOS_VOID  NAS_MMC_SndOmGetCacheFile(
     PS_MEM_FREE(WUEPS_PID_MMC, pstMsg);
 
 }
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndDrxTimerInfo
- 功能描述  : 发送DRX周期定时器的可维可测信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月9日
-    作    者   : z40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  NAS_MMC_SndDrxTimerInfo( VOS_UINT8 ucDrxTimerStatus )
 {
     NAS_MMC_DRX_TIMER_STAUTS_STRU        *pstMsg = VOS_NULL_PTR;
@@ -2435,21 +1760,7 @@ VOS_VOID  NAS_MMC_SndDrxTimerInfo( VOS_UINT8 ucDrxTimerStatus )
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndOmPlatformRatCap
- 功能描述  : 发送平台接入技术能力的可维可测信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月29日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  NAS_MMC_SndOmPlatformRatCap( VOS_VOID )
 {
     NAS_MMC_PLATFORM_RAT_CAP_STRU          *pstMsg = VOS_NULL_PTR;
@@ -2483,22 +1794,7 @@ VOS_VOID  NAS_MMC_SndOmPlatformRatCap( VOS_VOID )
 
 
 #if (FEATURE_ON == FEATURE_PTM)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndAcpuOmErrLogRptCnf
- 功能描述  : 发送商用Errlog故障告警信息
- 输入参数  : pbuffer:数据内容
-             ulBufUseLen:数据长度
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年08月23日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndAcpuOmErrLogRptCnf(
     VOS_CHAR                           *pbuffer,
     VOS_UINT32                          ulBufUseLen
@@ -2543,21 +1839,7 @@ VOS_VOID NAS_MMC_SndAcpuOmErrLogRptCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndAcpuOmFtmRptInd
- 功能描述  : 发送工程模式上报的信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年08月23日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndAcpuOmFtmRptInd(
     VOS_UINT8                          *pucData,
     VOS_UINT32                          ulLen
@@ -2599,21 +1881,7 @@ VOS_VOID NAS_MMC_SndAcpuOmFtmRptInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndAcpuOmCurTmsi
- 功能描述  : 上报当前的TMSI给上层应用
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年08月23日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndAcpuOmCurTmsi(VOS_VOID)
 {
     VOS_UINT8                          *pucTmsi = VOS_NULL_PTR;
@@ -2636,21 +1904,7 @@ VOS_VOID NAS_MMC_SndAcpuOmCurTmsi(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndAcpuOmCurPtmsi
- 功能描述  : 上报当前的PTMSI给上层应用
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年08月23日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndAcpuOmCurPtmsi(VOS_VOID)
 {
     VOS_UINT8                          *pucPtmsi = VOS_NULL_PTR;
@@ -2673,20 +1927,7 @@ VOS_VOID NAS_MMC_SndAcpuOmCurPtmsi(VOS_VOID)
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_LogForbLaWithValidPeriodListInfo
- 功能描述  : 将禁止LA有效时长列表信息发送到OM
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月23日
-    作    者   : z00359541
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_LogForbLaWithValidPeriodListInfo(VOS_VOID)
 {
     NAS_MMC_LOG_FORB_LA_WITH_VALID_PERIOD_LIST_INFO_STRU   *pstMsg  = VOS_NULL_PTR;

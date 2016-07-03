@@ -26,6 +26,8 @@
 #include <linux/mutex.h>
 #include <linux/delay.h>
 #include <linux/completion.h>
+#include <linux/workqueue.h>
+#include <linux/wakelock.h>
 
 #include "slimbus_drv.h"
 #include <hisi/hilog.h>
@@ -103,6 +105,9 @@ static int64_t last_time = 0;
 static uint32_t dsm_notify_limit = 1;
 static uintptr_t asp_base_reg;
 static platform_type_t plat_type = PLATFORM_PHONE;
+static struct workqueue_struct *slimbus_lost_sync_wq = NULL;
+static struct delayed_work slimbus_lost_sync_delay_work;
+static struct wake_lock slimbus_wake_lock;
 
 static void slimbus_dump_state(slimbus_dump_state_t type);
 
@@ -489,6 +494,49 @@ static void CLBK_MsgReplyInformationHandler(void* pD, uint8_t sourceLa, uint8_t 
 	}
 }
 
+static void slimbus_lost_sync_cb(struct work_struct *work)
+{
+	bool fSync = false;
+	bool sfSync = false;
+	bool mSync = false;
+	bool sfbSync = false;
+	bool phSync = false;
+	uint32_t ret = 0;
+	uint32_t wait_timeout = 0;
+
+	while ((!fSync | !sfSync | !mSync) && (wait_timeout++ < 100)) {
+		ret = csmiDrv->getStatusSynchronization(devm_slimbus_priv, &fSync, &sfSync, &mSync, &sfbSync, &phSync);
+		if (ret) {
+			SLIMBUS_DEV_LIMIT_ERR("get sync status error\n");
+		}
+		usleep_range(300, 350);
+	}
+
+	if (fSync & sfSync & mSync) {
+		ret = slimbus_track_recover();
+		if (ret) {
+			SLIMBUS_DEV_LIMIT_ERR(" track recover failed\n");
+		}
+		SLIMBUS_DEV_LOSTMS_RECOVER("wait_timeout:%d, fSync:%x, sfSync:%x, mSync:%x, sfbSync:%x, phSync:%x\n", wait_timeout, fSync, sfSync, mSync, sfbSync, phSync);
+	} else {
+		SLIMBUS_DEV_LIMIT_ERR("recover failed! wait_timeout:%d \n", wait_timeout);
+	}
+
+}
+
+static void CLBK_ManagerInterruptsHandler(void* pD, CSMI_Interrupt interrupt)
+{
+	struct task_struct *slimbus_thread;
+	uint32_t ret;
+
+	if (interrupt & CSMI_INT_SYNC_LOST) {
+
+		SLIMBUS_DEV_LIMIT_ERR("LOST SYNC, interrupt:%#x \n", interrupt);
+		wake_lock_timeout(&slimbus_wake_lock, msecs_to_jiffies(1000));
+		queue_delayed_work(slimbus_lost_sync_wq, &slimbus_lost_sync_delay_work, msecs_to_jiffies(50));
+	}
+}
+
 /**
  * Create Element Code
  * @param[in] address element address
@@ -539,7 +587,7 @@ static struct CSMI_Callbacks event_callbacks = {
 	.onMessageSending				= CLBK_SendingMessageHandler,
 	.onInformationElementReported	= CLBK_InformationElementsHandler,
 	.onDataPortInterrupt			= NULL,
-	.onManagerInterrupt 			= NULL,
+	.onManagerInterrupt 			= CLBK_ManagerInterruptsHandler,
 	.onRawMessageReceived			= NULL,
 	.onRawMessageSending			= NULL,
 };
@@ -713,6 +761,8 @@ int slimbus_drv_init(platform_type_t platform_type, void *slimbus_reg, void *asp
 	spin_lock_init(&slimbus_spinlock);
 	init_completion(&(internalReply.read_finish));
 	init_completion(&(internalReply.request_finish));
+	wake_lock_init(&slimbus_wake_lock, WAKE_LOCK_SUSPEND, "slimbus_wake_lock");
+
 	general_cfg.regBase = (uintptr_t)slimbus_reg;
 	asp_base_reg = (uintptr_t)asp_reg;
 	plat_type = platform_type;
@@ -745,7 +795,7 @@ int slimbus_drv_init(platform_type_t platform_type, void *slimbus_reg, void *asp
 	ret = request_irq(
 					irq,
 					(void *)RFC_IrqHandler,
-					IRQF_TRIGGER_HIGH | IRQF_SHARED,
+					IRQF_TRIGGER_HIGH | IRQF_SHARED | IRQF_NO_SUSPEND,
 					"asp_irq_slimbus",
 					devm_slimbus_priv);
 
@@ -762,6 +812,13 @@ int slimbus_drv_init(platform_type_t platform_type, void *slimbus_reg, void *asp
 		goto dev_init_failed;
 	}
 
+	slimbus_lost_sync_wq = create_singlethread_workqueue("slimbus_lost_sync_wq");
+	if (!slimbus_lost_sync_wq) {
+		pr_err("work queue create failed\n");
+		goto request_irq_failed;
+	}
+	INIT_DELAYED_WORK(&slimbus_lost_sync_delay_work, slimbus_lost_sync_cb);
+
 	return 0;
 
 dev_init_failed:
@@ -771,6 +828,7 @@ request_irq_failed:
 	devm_slimbus_priv = NULL;
 exit:
 	mutex_destroy(&slimbus_mutex);
+	wake_lock_destroy(&slimbus_wake_lock);
 
 	return ret;
 }
@@ -794,6 +852,12 @@ int slimbus_drv_release(int irq)
 {
 	free_irq(irq, devm_slimbus_priv);
 	mutex_destroy(&slimbus_mutex);
+	wake_lock_destroy(&slimbus_wake_lock);
+	if(slimbus_lost_sync_wq) {
+		cancel_delayed_work(&slimbus_lost_sync_delay_work);
+		flush_workqueue(slimbus_lost_sync_wq);
+		destroy_workqueue(slimbus_lost_sync_wq);
+	}
 	if (devm_slimbus_priv != NULL) {
 		kfree(devm_slimbus_priv);
 		devm_slimbus_priv = NULL;
@@ -1299,6 +1363,8 @@ int slimbus_drv_pause_clock(slimbus_restart_time_t newrestarttime)
 
 	mutex_lock(&slimbus_mutex);
 
+	/* make sure boundary of pause_clock is clean */
+	udelay(300);
 	RFC_ClearEvents();
 	ret += csmiDrv->msgBeginReconfiguration(devm_slimbus_priv);
 	ret += csmiDrv->msgNextPauseClock(devm_slimbus_priv, newrestarttime);
@@ -1306,6 +1372,8 @@ int slimbus_drv_pause_clock(slimbus_restart_time_t newrestarttime)
 	if (ret) {
 		pr_err("Bus switch framer failed with error: %d\n", ret);
 	}
+
+	udelay(300);
 
 	mutex_unlock(&slimbus_mutex);
 

@@ -37,14 +37,7 @@ extern "C" {
 //12、比较异常 EXPECT_THROW
 //13、结构体类型比较ASSERT_SAME_DATA ASSERT_SAME_MEMORY
 
-/*****************************************************************************
-类名     : Test_AT_InitPlatformRatList
-功能描述 : AT_InitPlatformRatList UT工程类
-修改历史 :
-1.日   期  : 2013-01-04
-  作   者  : z00220246
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_InitPlatformRatList: public ::testing::Test
 {
 public:
@@ -59,18 +52,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_InitPlatformRatList_001
-测试用例标题      : 初始化全局变量
-预期结果          : 初始化成功
-修改历史          :
-1.日   期  : 2013-01-04
-  作   者  : z00220246
-  修改内容 : 新建CASE
-2.日    期   : 2014年03月04日
-  作    者   : f62575
-  修改内容   : DTS2014030801193, +CSMP初始值不生效
-*******************************************************************/
+
 TEST_F(Test_AT_InitPlatformRatList,Test_AT_InitPlatformRatList_001)
 {
     //参数定义
@@ -106,14 +88,7 @@ TEST_F(Test_AT_InitPlatformRatList,Test_AT_InitPlatformRatList_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_InitUsimStatus
-功能描述 : AT_InitUsimStatus UT工程类
-修改历史 :
-1.日   期  : 2013-01-04
-  作   者  : z00220246
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_InitUsimStatus: public ::testing::Test
 {
 public:
@@ -128,15 +103,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_InitUsimStatus_001
-测试用例标题      : 初始化全局变量
-预期结果          : 初始化成功
-修改历史          :
-1.日   期  : 2013-01-04
-  作   者  : z00220246
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_InitUsimStatus,Test_AT_InitUsimStatus_001)
 {
     MODEM_ID_ENUM_UINT16                enModemId;
@@ -164,14 +131,7 @@ TEST_F(Test_AT_InitUsimStatus,Test_AT_InitUsimStatus_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_InitModemSmsCtx
-功能描述 : AT_InitModemSmsCtx UT工程类
-修改历史 :
-1.日   期  : 2013-03-11
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_InitModemSmsCtx: public ::testing::Test
 {
 public:
@@ -186,18 +146,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_InitModemSmsCtx_001
-测试用例标题      : 初始化短信相关的上下文
-预期结果          : 上下文初始化成功
-修改历史          :
-1.日   期  : 2013-03-07
-  作   者  : l00227485
-  修改内容 : 新建CASE
-2.日    期   : 2014年03月04日
-  作    者   : f62575
-  修改内容   : DTS2014030801193, +CSMP初始值不生效
-*******************************************************************/
+
 TEST_F(Test_AT_InitModemSmsCtx, Test_AT_InitModemSmsCtx_001)
 {
     // 参数定义
@@ -238,14 +187,7 @@ TEST_F(Test_AT_InitModemSmsCtx, Test_AT_InitModemSmsCtx_001)
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*****************************************************************************
-类名     : Test_AT_InitModemCcCtx
-功能描述 : AT_InitModemCcCtx UT工程类
-修改历史 :
-1.日   期  : 2013-03-11
-  作   者  : l60609
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_InitModemCcCtx: public ::testing::Test
 {
 public:
@@ -260,15 +202,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_InitModemCcCtx_001
-测试用例标题      : 初始化CC相关的上下文
-预期结果          : 上下文初始化成功
-修改历史          :
-1.日   期  : 2013-03-07
-  作   者  : l60609
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_InitModemCcCtx, Test_AT_InitModemCcCtx_001)
 {
     // 参数定义
@@ -295,14 +229,7 @@ TEST_F(Test_AT_InitModemCcCtx, Test_AT_InitModemCcCtx_001)
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*****************************************************************************
-类名     : Test_AT_InitModemSsCtx
-功能描述 : AT_InitModemSsCtx UT工程类
-修改历史 :
-1.日   期  : 2013-03-11
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_InitModemSsCtx: public ::testing::Test
 {
 public:
@@ -317,15 +244,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_InitModemSsCtx_001
-测试用例标题      : 初始化SS相关的上下文
-预期结果          : 上下文初始化成功
-修改历史          :
-1.日   期  : 2013-03-07
-  作   者  : l00227485
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_InitModemSsCtx, Test_AT_InitModemSsCtx_001)
 {
     // 参数定义
@@ -363,14 +282,7 @@ TEST_F(Test_AT_InitModemSsCtx, Test_AT_InitModemSsCtx_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_InitModemNetCtx
-功能描述 : AT_InitModemNetCtx UT工程类
-修改历史 :
-1.日   期  : 2013-03-07
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_InitModemNetCtx: public ::testing::Test
 {
 public:
@@ -385,15 +297,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_InitModemNetCtx_001
-测试用例标题      : 初始化网卡相关的上下文
-预期结果          : 上下文初始化成功
-修改历史          :
-1.日   期  : 2013-03-07
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_InitModemNetCtx, Test_AT_InitModemNetCtx_001)
 {
     // 参数定义
@@ -434,14 +338,7 @@ TEST_F(Test_AT_InitModemNetCtx, Test_AT_InitModemNetCtx_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_InitModemAgpsCtx
-功能描述 : AT_InitModemAgpsCtx UT工程类
-修改历史 :
-1.日   期  : 2013-03-07
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_InitModemAgpsCtx: public ::testing::Test
 {
 public:
@@ -456,15 +353,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_InitModemAgpsCtx_001
-测试用例标题      : 初始化AGPS相关的上下文
-预期结果          : 上下文初始化成功
-修改历史          :
-1.日   期  : 2013-03-07
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_InitModemAgpsCtx, Test_AT_InitModemAgpsCtx_001)
 {
     MODEM_ID_ENUM_UINT16                enModemId;
@@ -492,14 +381,7 @@ TEST_F(Test_AT_InitModemAgpsCtx, Test_AT_InitModemAgpsCtx_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_InitClientConfiguration
-功能描述 : Test_AT_InitClientConfiguration UT工程类
-修改历史 :
-1.日   期  : 2012-12-26
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_InitClientConfiguration: public ::testing::Test
 {
 public:
@@ -514,15 +396,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_InitClientConfiguration_001
-测试用例标题      : 初始化client的配置信息
-预期结果          : 返回
-修改历史          :
-1.日   期  : 2012-12-26
-  作   者  : l00227485
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_InitClientConfiguration, Test_AT_InitClientConfiguration_001)
 {
     //参数定义
@@ -550,14 +424,7 @@ TEST_F(Test_AT_InitClientConfiguration, Test_AT_InitClientConfiguration_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_IsModemSupportRat
-功能描述 : AT_IsModemSupportRat UT工程类
-修改历史 :
-1.日   期  : 2012-12-26
-  作   者  : z00220246
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_IsModemSupportRat: public ::testing::Test
 {
 public:
@@ -585,15 +452,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_IsModemSupportRat_001
-测试用例标题      : Modem是否支持LTE
-预期结果          : 返回VOS_FALSE
-修改历史          :
-1.日   期  : 2012-12-26
-  作   者  : z00220246
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST(Test_AT_IsModemSupportRat,Test_AT_IsModemSupportRat_001)
 {
     //参数定义
@@ -617,15 +476,7 @@ TEST(Test_AT_IsModemSupportRat,Test_AT_IsModemSupportRat_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_IsModemSupportRat_002
-测试用例标题      : Modem是否支持WCDMA
-预期结果          : 返回VOS_FALSE
-修改历史          :
-1.日   期  : 2012-12-26
-  作   者  : z00220246
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST(Test_AT_IsModemSupportRat,Test_AT_IsModemSupportRat_002)
 {
     //参数定义
@@ -649,15 +500,7 @@ TEST(Test_AT_IsModemSupportRat,Test_AT_IsModemSupportRat_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_IsModemSupportRat_003
-测试用例标题      : Modem是否支持GSM
-预期结果          : 返回VOS_FALSE
-修改历史          :
-1.日   期  : 2012-12-26
-  作   者  : z00220246
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST(Test_AT_IsModemSupportRat,Test_AT_IsModemSupportRat_003)
 {
     //参数定义
@@ -681,15 +524,7 @@ TEST(Test_AT_IsModemSupportRat,Test_AT_IsModemSupportRat_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_IsModemSupportRat_004
-测试用例标题      : 接入技术不正确
-预期结果          : 返回VOS_FALSE
-修改历史          :
-1.日   期  : 2012-12-26
-  作   者  : z00220246
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST(Test_AT_IsModemSupportRat,Test_AT_IsModemSupportRat_004)
 {
     //参数定义
@@ -713,14 +548,7 @@ TEST(Test_AT_IsModemSupportRat,Test_AT_IsModemSupportRat_004)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_GetModemIdFromClient
-功能描述 : Test_AT_GetModemIdFromClient UT工程类
-修改历史 :
-1.日   期  : 2012-12-26
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_GetModemIdFromClient: public ::testing::Test
 {
 public:
@@ -735,15 +563,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_GetModemIdFromClient_001
-测试用例标题      : Client Index无效
-预期结果          : 返回VOS_ERR
-修改历史          :
-1.日   期  : 2012-12-26
-  作   者  : l00227485
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_GetModemIdFromClient, Test_AT_GetModemIdFromClient_001)
 {
     //参数定义
@@ -767,15 +587,7 @@ TEST_F(Test_AT_GetModemIdFromClient, Test_AT_GetModemIdFromClient_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_GetModemIdFromClient_002
-测试用例标题      : Client Index有效，获取归属的ModemId(Modem0)
-预期结果          : 返回VOS_OK
-修改历史          :
-1.日   期  : 2012-12-26
-  作   者  : l00227485
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_GetModemIdFromClient, Test_AT_GetModemIdFromClient_002)
 {
     //参数定义
@@ -805,15 +617,7 @@ TEST_F(Test_AT_GetModemIdFromClient, Test_AT_GetModemIdFromClient_002)
 }
 
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_AT_GetModemIdFromClient_003
-测试用例标题      : Client Index有效，获取归属的ModemIdModem1)
-预期结果          : 返回VOS_OK
-修改历史          :
-1.日   期  : 2012-12-26
-  作   者  : l00227485
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_GetModemIdFromClient, Test_AT_GetModemIdFromClient_003)
 {
     //参数定义
@@ -843,14 +647,7 @@ TEST_F(Test_AT_GetModemIdFromClient, Test_AT_GetModemIdFromClient_003)
 }
 #endif
 
-/*****************************************************************************
-类名     : Test_AT_GetDestPid
-功能描述 : Test_AT_GetDestPid UT工程类
-修改历史 :
-1.日   期  : 2012-12-26
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_GetDestPid: public ::testing::Test
 {
 public:
@@ -865,15 +662,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_GetDestPid_001
-测试用例标题      : MULTI_MODEM宏关闭
-预期结果          : 返回传入的PID
-修改历史          :
-1.日   期  : 2012-12-26
-  作   者  : l00227485
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_GetDestPid, Test_AT_GetDestPid_001)
 {
     //参数定义
@@ -904,15 +693,7 @@ TEST_F(Test_AT_GetDestPid, Test_AT_GetDestPid_001)
 }
 
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_AT_GetDestPid_002
-测试用例标题      : MULTI_MODEM宏打开，获取modem1的PID
-预期结果          : 返回实际获取的PID
-修改历史          :
-1.日   期  : 2012-12-26
-  作   者  : l00227485
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_GetDestPid, Test_AT_GetDestPid_002)
 {
     //参数定义
@@ -942,15 +723,7 @@ TEST_F(Test_AT_GetDestPid, Test_AT_GetDestPid_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_GetDestPid_003
-测试用例标题      : MULTI_MODEM宏打开，获取modem1的PID
-预期结果          : 返回实际获取的PID
-修改历史          :
-1.日   期  : 2012-12-26
-  作   者  : l00227485
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_GetDestPid, Test_AT_GetDestPid_003)
 {
     //参数定义
@@ -980,15 +753,7 @@ TEST_F(Test_AT_GetDestPid, Test_AT_GetDestPid_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_GetDestPid_004
-测试用例标题      : MULTI_MODEM宏打开，获取modem1的PID
-预期结果          : 返回MODEM1的PID
-修改历史          :
-1.日   期  : 2012-12-26
-  作   者  : l00227485
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_GetDestPid, Test_AT_GetDestPid_004)
 {
     //参数定义
@@ -1022,14 +787,7 @@ TEST_F(Test_AT_GetDestPid, Test_AT_GetDestPid_004)
 
 #endif
 
-/*****************************************************************************
-类名     : Test_AT_GetSsCustomizePara
-功能描述 : AT_GetSsCustomizePara UT工程类
-修改历史 :
-1.日   期  : 2013-04-17
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_GetSsCustomizePara: public ::testing::Test
 {
 public:
@@ -1044,15 +802,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_GetSsCustomizePara_001
-测试用例标题      : SS参数未定定制
-预期结果          : 返回VOS_FALSE
-修改历史          :
-1.日   期  : 2013-04-17
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_GetSsCustomizePara, Test_AT_GetSsCustomizePara_001)
 {
     // 变量声明
@@ -1074,15 +824,7 @@ TEST_F(Test_AT_GetSsCustomizePara, Test_AT_GetSsCustomizePara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_GetSsCustomizePara_002
-测试用例标题      : SS参数定制使能，并定制了参数
-预期结果          : 返回VOS_TRUE
-修改历史          :
-1.日   期  : 2013-04-17
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_GetSsCustomizePara, Test_AT_GetSsCustomizePara_002)
 {
     // 变量声明
@@ -1105,15 +847,7 @@ TEST_F(Test_AT_GetSsCustomizePara, Test_AT_GetSsCustomizePara_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_GetSsCustomizePara_003
-测试用例标题      : SS参数定制使能，没有定制参数
-预期结果          : 返回VOS_FALSE
-修改历史          :
-1.日   期  : 2013-04-17
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_GetSsCustomizePara, Test_AT_GetSsCustomizePara_003)
 {
     // 变量声明
@@ -1136,14 +870,7 @@ TEST_F(Test_AT_GetSsCustomizePara, Test_AT_GetSsCustomizePara_003)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_InitResetCtx
-功能描述 : AT_InitResetCtx UT工程类
-修改历史 :
-1.日   期  : 2013-04-25
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_InitResetCtx: public ::testing::Test
 {
 public:
@@ -1158,15 +885,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_InitResetCtx_001
-测试用例标题      : 初始化信号量失败
-预期结果          : 信号量初始化标志为VOS_FALSE
-修改历史          :
-1.日   期  : 2013-04-25
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_InitResetCtx, Test_AT_InitResetCtx_001)
 {
     //参数定义
@@ -1189,14 +908,7 @@ TEST_F(Test_AT_InitResetCtx, Test_AT_InitResetCtx_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_PORT_BUFF_CFG
-功能描述 : 端口缓存 UT工程类
-修改历史 :
-1.日   期  : 2014-01-07
-  作   者  : j00174725
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_PORT_BUFF_CFG: public ::testing::Test
 {
 public:
@@ -1211,15 +923,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_PORT_BUFF_CFG_001
-测试用例标题      : 读取缓存NV
-预期结果          : NV中的使能位不正确
-修改历史          :
-1.日   期  : 2014-01-07
-  作   者  : j00174725
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PORT_BUFF_CFG, Test_AT_PORT_BUFF_CFG_001)
 {
     AT_COMM_CTX_STRU                   *pstCommCtx = VOS_NULL_PTR;
@@ -1240,15 +944,7 @@ TEST_F(Test_AT_PORT_BUFF_CFG, Test_AT_PORT_BUFF_CFG_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_PORT_BUFF_CFG_002
-测试用例标题      : 读取缓存NV
-预期结果          : NV中的使能位正确
-修改历史          :
-1.日   期  : 2014-01-07
-作   者  : j00174725
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PORT_BUFF_CFG, Test_AT_PORT_BUFF_CFG_002)
 {
     AT_COMM_CTX_STRU                   *pstCommCtx = VOS_NULL_PTR;
@@ -1271,15 +967,7 @@ TEST_F(Test_AT_PORT_BUFF_CFG, Test_AT_PORT_BUFF_CFG_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_PORT_BUFF_CFG_003
-测试用例标题      : 读取缓存NV
-预期结果          : 读取NV失败
-修改历史          :
-1.日   期  : 2014-01-07
-作   者  : j00174725
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PORT_BUFF_CFG, Test_AT_PORT_BUFF_CFG_003)
 {
     AT_COMM_CTX_STRU                   *pstCommCtx = VOS_NULL_PTR;
@@ -1297,15 +985,7 @@ TEST_F(Test_AT_PORT_BUFF_CFG, Test_AT_PORT_BUFF_CFG_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_PORT_BUFF_CFG_004
-测试用例标题      : 获取缓存标识
-预期结果          : 获取NV成功
-修改历史          :
-1.日   期  : 2014-01-07
-作   者  : j00174725
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PORT_BUFF_CFG, Test_AT_PORT_BUFF_CFG_004)
 {
     AT_COMM_CTX_STRU                   *pstCommCtx = VOS_NULL_PTR;
@@ -1327,15 +1007,7 @@ TEST_F(Test_AT_PORT_BUFF_CFG, Test_AT_PORT_BUFF_CFG_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_PORT_BUFF_CFG_005
-测试用例标题      : 添加端口号
-预期结果          : 不正确的端口ID
-修改历史          :
-1.日   期  : 2014-01-07
-作   者  : j00174725
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PORT_BUFF_CFG, Test_AT_PORT_BUFF_CFG_005)
 {
     VOS_UINT16                      usClientId;
@@ -1347,15 +1019,7 @@ TEST_F(Test_AT_PORT_BUFF_CFG, Test_AT_PORT_BUFF_CFG_005)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_PORT_BUFF_CFG_006
-测试用例标题      : 添加端口号_
-预期结果          : 当前添加的是内端口，最小的APP端口号
-修改历史          :
-1.日   期  : 2014-01-07
-作   者  : j00174725
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PORT_BUFF_CFG, Test_AT_PORT_BUFF_CFG_006)
 {
     VOS_UINT16                      usClientId;
@@ -1367,15 +1031,7 @@ TEST_F(Test_AT_PORT_BUFF_CFG, Test_AT_PORT_BUFF_CFG_006)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_PORT_BUFF_CFG_007
-测试用例标题      : 添加端口号_
-预期结果          : 当前添加的是内端口,最大的APP端口号
-修改历史          :
-1.日   期  : 2014-01-07
-作   者  : j00174725
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PORT_BUFF_CFG, Test_AT_PORT_BUFF_CFG_007)
 {
     VOS_UINT16                      usClientId;
@@ -1387,15 +1043,7 @@ TEST_F(Test_AT_PORT_BUFF_CFG, Test_AT_PORT_BUFF_CFG_007)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_PORT_BUFF_CFG_008
-测试用例标题      : 添加端口号_
-预期结果          : 当前端口记录个数超过最大值
-修改历史          :
-1.日   期  : 2014-01-07
-作   者  : j00174725
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PORT_BUFF_CFG, Test_AT_PORT_BUFF_CFG_008)
 {
     VOS_UINT16                          usClientId;
@@ -1411,15 +1059,7 @@ TEST_F(Test_AT_PORT_BUFF_CFG, Test_AT_PORT_BUFF_CFG_008)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_PORT_BUFF_CFG_009
-测试用例标题      : 添加端口号_
-预期结果          : 添加PCUI口成功
-修改历史          :
-1.日   期  : 2014-01-07
-作   者  : j00174725
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PORT_BUFF_CFG, Test_AT_PORT_BUFF_CFG_009)
 {
     VOS_UINT16                          usClientId;
@@ -1438,15 +1078,7 @@ TEST_F(Test_AT_PORT_BUFF_CFG, Test_AT_PORT_BUFF_CFG_009)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_PORT_BUFF_CFG_010
-测试用例标题      : 添加端口号_
-预期结果          : 再次添加端口成功
-修改历史          :
-1.日   期  : 2014-01-07
-作   者  : j00174725
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PORT_BUFF_CFG, Test_AT_PORT_BUFF_CFG_010)
 {
     VOS_UINT16                          usClientId;
@@ -1466,15 +1098,7 @@ TEST_F(Test_AT_PORT_BUFF_CFG, Test_AT_PORT_BUFF_CFG_010)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_PORT_BUFF_CFG_011
-测试用例标题      :  删除端口号_
-预期结果          : 当前需要删除的端口号没有记录过
-修改历史          :
-1.日   期  : 2014-01-07
-作   者  : j00174725
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PORT_BUFF_CFG, Test_AT_PORT_BUFF_CFG_011)
 {
     VOS_UINT16                          usClientId;
@@ -1491,15 +1115,7 @@ TEST_F(Test_AT_PORT_BUFF_CFG, Test_AT_PORT_BUFF_CFG_011)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_PORT_BUFF_CFG_012
-测试用例标题      :  删除端口号_
-预期结果          : 删除端口号成功
-修改历史          :
-1.日   期  : 2014-01-07
-作   者  : j00174725
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PORT_BUFF_CFG, Test_AT_PORT_BUFF_CFG_012)
 {
     VOS_UINT16                          usClientId;
@@ -1519,15 +1135,7 @@ TEST_F(Test_AT_PORT_BUFF_CFG, Test_AT_PORT_BUFF_CFG_012)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_PORT_BUFF_CFG_013
-测试用例标题      :  删除端口号_
-预期结果          : 需要删除的端口号不存在
-修改历史          :
-1.日   期  : 2014-01-07
-作   者  : j00174725
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PORT_BUFF_CFG, Test_AT_PORT_BUFF_CFG_013)
 {
     VOS_UINT16                          usClientId;
@@ -1547,15 +1155,7 @@ TEST_F(Test_AT_PORT_BUFF_CFG, Test_AT_PORT_BUFF_CFG_013)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_PORT_BUFF_CFG_014
-测试用例标题      :  删除端口号_
-预期结果          : 批量添加删除端口号成功
-修改历史          :
-1.日   期  : 2014-01-07
-作   者  : j00174725
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PORT_BUFF_CFG, Test_AT_PORT_BUFF_CFG_014)
 {
     VOS_UINT16                          usClientId;

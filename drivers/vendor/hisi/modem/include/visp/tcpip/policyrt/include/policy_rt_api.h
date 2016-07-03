@@ -140,25 +140,7 @@ ULONG TCPIP_PolicyRtCloseTable(ULONG ulHandle);
 
 ULONG TCPIP_PolicyRtShowTable(ULONG ulPolicy,ULONG ulVrfIndex);
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetOutIfindexBySourceIP
-* Date Created: 2014-05-27
-*       Author: c00902193
-*  Description: This API will search the policy entry database based on source address and VRF
-*                    Index. When matches the any entry, return the corresponding the out-if index 
-*                    to the user.
-*        Input: UONG ulVrfIndex£ºVRF Index of the given source address
-*                  ULONG ulSrcIP: Source address
-*       Output: ULONG *pulOutIfIndex: out-if index matched with source IP.
-*       Return: VOS_OK / VOS_ERR
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-05-27   c00902193               Create
-*
-*******************************************************************************/
+
 ULONG TCPIP_GetOutIfindexBySourceIP(ULONG ulVrfIndex, ULONG ulSrcIP, ULONG *pulOutIfIndex);
 #ifdef __cplusplus
 }

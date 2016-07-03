@@ -1,34 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMncc.h
-  版 本 号   : 初稿
-  作    者   : 丁庆 49431
-  生成日期   : 2007年8月25日
-  最近修改   : 2007年8月25日
-  功能描述   : 定义MNCC原语
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2007年8月25日
-    作    者   : 丁庆 49431
-    修改内容   : 创建文件
-  2.日    期   : 2008年10月20日
-    作    者   : h44270
-    修改内容   : 问题单号:A32D14153,来电时，用户尚未接听电话就打开了声码器,，AMR速率变换没有上报
-  3.日    期   : 2009年12月04日
-    作    者   : h44270
-    修改内容   : 问题单号:AT2D15770,CC向TAF多上报了一条SYNC原语
-
-  4.日    期   : 2010年3月2日
-    作    者   : zhoujun /z40661
-    修改内容   : NAS R7协议升级
-
-  5.日    期   : 2010年7月27日
-    作    者   : zhoujun /40661
-    修改内容   : 支持UUS1
-******************************************************************************/
 #ifndef  NAS_MNCC_H
 #define  NAS_MNCC_H
 
@@ -40,9 +10,7 @@ extern "C" {
 
 #include "vos.h"
 #include "NasCcAirMsg.h"
-/* Added by wx270776 for OM融合, 2015-7-24, begin */
 #include "msp_diag_comm.h"
-/* Added by wx270776 for OM融合, 2015-7-24, end */
 
 #define MNCC_EMERGENCY_MAX_LIST                       (16)
 #define MNCC_EMERGENCY_NUMBER_MAX_LENGTH              (46)                      /* Emergency Number information的最大字节数 */
@@ -69,15 +37,11 @@ typedef enum
     MNCC_MODIFY_RES,                                                            /* parameter: MODIFY COMPLETE message */
     MNCC_MODIFY_REJ_REQ,                                                        /* parameter: MODIFY REJECT message */
     MNCC_EST_CNF_REQ,                                                           /* parameter: Establishment Cnf message */
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-23, begin */
     MNCC_SRVCC_CALL_INFO_NOTIFY,                                                /* parameter:srvcc call info notify message */
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-23, end */
     MNCC_CALL_STATUS_NTY,                                                       /* parameter:call status notify message */
 
     /* CC --> MN */
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-23, begin */
     MNCC_SETUP_IND = 0x0100,                                                    /* parameter: SETUP message */
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-23, end */
     MNCC_SETUP_CNF,                                                             /* parameter: CONNECT message */
     MNCC_SETUP_COMPL_IND,                                                       /* parameter: None */
     MNCC_CALL_PROC_IND,                                                         /* parameter: CALL PROCEEDING message */
@@ -105,9 +69,7 @@ typedef enum
     MNCC_UUSINFO_IND,                                                           /* parameter:Uus message*/
 
     MNCC_EMERGENCY_LIST_IND,
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-23, begin */
     MNCC_SRVCC_STATUS_IND,                                                      /* parameter:srvcc status notify message */
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-23, end */
 
     MNCC_PRIM_NAME_MAX
 
@@ -127,14 +89,7 @@ typedef struct
     MNCC_IE_SETUP_CONTAINER_STRU        stSetupContainer;
 }MNCC_MSG_EST_STRU;
 
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-12, begin */
-/*****************************************************************************
- 枚举名    : NAS_MNCC_SRVCC_STATUS_ENUM_UINT32
- 枚举说明  : cc模块通知Call模块SRVCC的状态枚举值
- 1.日    期   : 2013年9月23日
-   作    者   : w00176964
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MNCC_SRVCC_STATUS_ENUM
 {
     NAS_MNCC_SRVCC_STATUS_START        = 0,     /* SRVCC开始 */
@@ -145,13 +100,7 @@ enum NAS_MNCC_SRVCC_STATUS_ENUM
 typedef VOS_UINT32  NAS_MNCC_SRVCC_STATUS_ENUM_UINT32;
 
 
-/*****************************************************************************
- 枚举名    : MNCC_CALL_STATUS_ENUM_UINT8
- 枚举说明  : call模块通知cc模块的呼叫建立状态枚举值
-  1.日    期   : 2015年8月14日
-    作    者   : s00217060
-    修改内容   : 新建
-*****************************************************************************/
+
 enum MNCC_CALL_STATUS_ENUM
 {
     MNCC_CALL_STATUS_SETUP_SUCC         = 0,                                    /* 呼叫建立成功 */
@@ -161,28 +110,14 @@ enum MNCC_CALL_STATUS_ENUM
 typedef VOS_UINT8  MNCC_CALL_STATUS_ENUM_UINT8;
 
 
-/*****************************************************************************
- 结构名    : MNCC_SRVCC_STATUS_IND_STRU
- 结构说明  : CC模块通知CALL模块SRVCC过程中的呼叫信息通知消息结构体
 
-  1.日    期   : 2013年9月23日
-    作    者   : w00176964
-    修改内容   : 新建
-*****************************************************************************/
 typedef struct
 {
     NAS_MNCC_SRVCC_STATUS_ENUM_UINT32   enSrvccStatus;
     VOS_UINT8                           aucReserve1[4];    /*预留*/
 }MNCC_SRVCC_STATUS_IND_STRU;
 
-/*****************************************************************************
- 结构名    : MNCC_ENTITY_STATUS_STRU
- 结构说明  : CALL模块通知CC模块的呼叫实体信息结构体
 
-  1.日    期   : 2013年9月23日
-    作    者   : w00176964
-    修改内容   : 新建
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucCallId;
@@ -198,14 +133,7 @@ typedef struct
 
 #define   MNCC_MAX_ENTITY_NUM      7
 
-/*****************************************************************************
- 结构名    : MNCC_SRVCC_CALL_INFO_NOTIFY_STRU
- 结构说明  : CALL模块通知CC模块srvcc过程中从IMS域同步过来的呼叫实体信息结构体
 
-  1.日    期   : 2013年9月23日
-    作    者   : w00176964
-    修改内容   : 新建
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucCallNum;
@@ -213,16 +141,8 @@ typedef struct
     VOS_UINT8                           aucReserve[2];
     MNCC_ENTITY_STATUS_STRU             astEntityStatus[MNCC_MAX_ENTITY_NUM];
 }MNCC_SRVCC_CALL_INFO_NOTIFY_STRU;
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-12, end */
 
-/*****************************************************************************
- 结构名    : MNCC_CALL_STATUS_NTY_STRU
- 结构说明  : CALL模块通知CC模块呼叫状态的结构体
 
-  1.日    期   : 2015年8月14日
-    作    者   : s00217060
-    修改内容   : 新建
-*****************************************************************************/
 typedef struct
 {
     MNCC_CALL_STATUS_ENUM_UINT8         enCallStatus;
@@ -247,9 +167,7 @@ typedef union
     NAS_CC_MSG_RELEASE_COMPLETE_MO_STRU stRelComp;
     NAS_CC_MSG_CC_EST_CNF_STRU          stCcEstCnf;
 
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-19, begin */
     MNCC_SRVCC_CALL_INFO_NOTIFY_STRU    stSrvccCallInfoNtf;
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-19, end */
     MNCC_CALL_STATUS_NTY_STRU           stCallStatusNtf;
 } MNCC_REQ_PARAM_UNION;
 
@@ -262,13 +180,7 @@ enum NAS_CC_RADIO_ACCESS_MODE_ENUM
 typedef VOS_UINT32  NAS_CC_RADIO_MODE_ENUM_U32;
 
 /* 和nasrrcinterface.h中的定义保持一致 */
-/*****************************************************************************
- 枚举名    : NAS_CC_TCH_TYPE_ENUM_U32
- 枚举说明  : CC接口的定义，需要与RRMM接口定义一致
- 1.日    期   : 2012年2月9日
-   作    者   : zhoujun 40661
-   修改内容   : modify
-*****************************************************************************/
+
 enum NAS_CC_CHANNEL_TYPE_ENUM
 {
     NAS_CC_TCH_SINGAL_MOD,                                                      /* 仅信令模式*/
@@ -337,13 +249,7 @@ typedef struct
     NAS_CC_MSG_USER_INFO_STRU           stUserInfo;
 }NAS_CC_UUS_INFO_IND_STRU;
 
-/*****************************************************************************
- 结构名    : MNCALL_EMERGENCY_CONTENT_STRU
- 结构说明  : CC上报的紧急呼
- 1.日    期   : 2012年6月11日
-   作    者   : w00166186
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucCategoryValue;                        /* Emergency Service Category Value         */
@@ -351,13 +257,7 @@ typedef struct
     VOS_UINT8                           aucEmergencyNum[MNCC_EMERGENCY_NUMBER_MAX_LENGTH];
 }MNCC_EMERGENCY_CONTENT_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_CC_EMERGENCY_LIST_STRU
- 结构说明  : CC上报的紧急呼列表
- 1.日    期   : 2012年6月11日
-   作    者   : w00166186
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulMcc;
@@ -388,9 +288,7 @@ typedef union
 
     MNCC_EMERGENCY_LIST_IND_STRU        stEmcListInd;
 
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-19, begin */
     MNCC_SRVCC_STATUS_IND_STRU          stSrvccStaInd;
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-19, end */
 } MNCC_IND_PARAM_UNION;
 
 
@@ -418,70 +316,24 @@ typedef struct
     MNCC_IND_PARAM_UNION                unParam;
 } MNCC_IND_PRIM_MSG_STRU;
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ActUus1Info
- 功能描述  : 激活UUS1相关信息保存的UUS1信息
- 输入参数  : enMsgType   :需激活的消息类型
-             pstUuieInfo :激活UUIE的信息
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月27日
-    作    者   : zhoujun /40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_CC_ActUus1Info(
     NAS_CC_MSG_TYPE_ENUM_U8             enMsgType,
     NAS_CC_IE_USER_USER_STRU            *pstUuieInfo
 );
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_GetAllUus1Info
- 功能描述  : 获取所有激活UUS1信息
- 输入参数  : 无
- 输出参数  : pulActNum      :已激活UUS1个数
-             pstUus1Info    :已激活UUS1相关信息
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月28日
-    作    者   : zhoujun /40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_CC_GetAllUus1Info(
     VOS_UINT32                          *pulActNum,
     NAS_CC_UUS1_INFO_STRU               *pstUus1Info
 );
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_DeactUus1Info
- 功能描述  : 去激活UUS1信息
- 输入参数  : enMsgType   :需激活的消息类型
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月27日
-    作    者   : zhoujun /40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_CC_DeactUus1Info(
     NAS_CC_MSG_TYPE_ENUM_U8             enMsgType
 );
 
-/* Modified by z40661 for DMT工程修改, 2013-2-01, begin */
 VOS_VOID NAS_CC_InitUus1Info( VOS_VOID );
-/* Modified by z40661 for DMT工程修改, 2013-2-01, end */
 
 #ifdef __cplusplus
 #if __cplusplus

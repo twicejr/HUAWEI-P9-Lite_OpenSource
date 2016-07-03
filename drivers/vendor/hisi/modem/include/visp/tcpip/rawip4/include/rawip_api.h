@@ -142,49 +142,10 @@ ULONG TCPIP_RegFuncLocateTargetSocketHook(LocateTargetSocket_HOOK_FUNC pfHookFun
 *******************************************************************************/
 VOID  TCPIP_ShowRipStatistic (VOID);
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetPerRawip4ConnStats
-* Date Created: 2009-12-28
-*       Author: Gexianjun/h00121208
-*  Description: 指定socket id, task id或指定四元组，VRF获取指定的RAWIP统计信息
-*        Input: RAWIP4CONN_S *pstConnInfo:    获取指定RAWIP Socket输入参数
-*       Output: RAWIP4PERSTAT_S *pstRetStats: 获取指定的RAWIP统计信息
-*       Return: 成功:VOS_OK;失败:错误码
-*      Caution: 如果socket的模式是全局socket,根据socket id获取RAWIP统计信息,则不需要指定task id;
-*               否则需要同时指定socket id和task id。本接口获取RAWIP统计信息输入参数必须配对才能正确
-*               获取:输入参数可以为socket id + task id去获取;或输入参数为四元组+vrf去获取；
-*               也可以同时指定这两种组合。获取方法是先根据socket id +task id去获取,
-*               如果获取失败,再根据四元组+vrf去获取。
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-12-28   Gexianjun/h00121208     Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_GetPerRawip4ConnStats(RAWIP4CONN_S *pstConnInfo, RAWIP4PERSTAT_S  *pstRetStats);
 
-/*******************************************************************************
-*    Func Name: TCPIP_ResetPerRawip4ConnStats
-* Date Created: 2009-12-28
-*       Author: Gexianjun/h00121208
-*  Description: 指定socket id, task id或指定四元组，VRF清除指定的RAWIP统计信息
-*        Input: RAWIP4CONN_S *pstConnInfo: 清除指定RAWIP Socket输入参数
-*       Output: 
-*       Return: 成功:VOS_OK;失败:错误码
-*      Caution: 如果socket的模式是全局socket,根据socket id清除RAWIP统计信息,则不需要指定task id;
-*               否则需要同时指定socket id和task id。本接口清除RAWIP统计信息输入参数必须配对才能正确
-*               清除:输入参数可以为socket id + task id去清除;或输入参数为四元组+vrf去清除；
-*               也可以同时指定这两种组合。清除方法是先根据socket id +task id去查找RAWIP socket, 如果
-*               查找成功,则清除指定的该RAWIP socket的统计信息,如果查找失败,再根据四元组+vrf去查找RAWIP socket,
-*               如果查找成功,则清除指定的该RAWIP socket的统计信息。
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-12-28   Gexianjun/h00121208     Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_ResetPerRawip4ConnStats(RAWIP4CONN_S *pstConnInfo);
 
 

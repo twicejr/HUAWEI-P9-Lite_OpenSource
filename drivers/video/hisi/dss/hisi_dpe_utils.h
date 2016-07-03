@@ -32,6 +32,8 @@ void init_acm_ce(struct hisi_fb_data_type *hisifd);
 void init_igm_gmp_xcc_gm(struct hisi_fb_data_type *hisifd);
 void init_dither(struct hisi_fb_data_type *hisifd);
 void init_ifbc(struct hisi_fb_data_type *hisifd);
+void acm_set_lut(char __iomem *address, uint32_t table[], uint32_t size);
+void acm_set_lut_hue(char __iomem *address, uint32_t table[], uint32_t size);
 
 void init_ldi(struct hisi_fb_data_type *hisifd, bool fastboot_enable);
 void deinit_ldi(struct hisi_fb_data_type *hisifd);

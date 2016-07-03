@@ -124,13 +124,7 @@ enum XCC_APS_PIF_MSG_TYPE_ENUM
 };
 typedef VOS_UINT16 XCC_APS_PIF_MSG_TYPE_ENUM_UINT16;
 
-/*****************************************************************************
- 枚举名    : XCC_APS_SERVICE_TYPE_ENUM_UINT8
- 枚举说明  : 服务类型枚举定义
- 1.日    期   : 2014年9月16日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 enum XCC_APS_SERVICE_TYPE_ENUM
 {
     /* 语音呼叫 */
@@ -170,13 +164,7 @@ enum XCC_APS_DIGIT_MODE_ENUM
 };
 typedef VOS_UINT8 XCC_APS_DIGIT_MODE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : XCC_APS_SOCM_DORMANT_TIMER_CTRL_ENUM_UINT8
- 枚举说明  : Dormant Timer Ctrl类型枚举
- 1.日    期   : 2014年11月25日
-   作    者   : g00261581
-   修改内容   : 新建
-*****************************************************************************/
+
 enum XCC_APS_SOCM_DORMANT_TIMER_CTRL_ENUM
 {
     XCC_APS_SOCM_DORMANT_TIMER_CTRL_DISABLE                 = 0x00,
@@ -187,13 +175,7 @@ enum XCC_APS_SOCM_DORMANT_TIMER_CTRL_ENUM
 };
 typedef VOS_UINT8 XCC_APS_SOCM_DORMANT_TIMER_CTRL_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : XCC_APS_SOCM_PACKET_ZONE_RECONNECT_CTRL_ENUM
- 枚举说明  : Packet Zone Based Reconnect Ctrl enum value
- 1.日    期   : 2014年11月25日
-   作    者   : g00261581
-   修改内容   : 新建
-*****************************************************************************/
+
 enum XCC_APS_SOCM_PACKET_ZONE_RECONNECT_CTRL_ENUM
 {
     XCC_APS_SOCM_PACKET_ZONE_RECONNECT_CTRL_DISABLE         = 0x00,
@@ -206,13 +188,7 @@ enum XCC_APS_SOCM_PACKET_ZONE_RECONNECT_CTRL_ENUM
 typedef VOS_UINT8 XCC_APS_SOCM_PACKET_ZONE_RECONNECT_CTRL_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名    : XCC_APS_SO_CTRL_FIELD_ENUM_UINT8
- 枚举说明  : Service Option Control消息中中的FIELD TYPE 取值
- 1.日    期   : 2014年11月27日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 enum XCC_APS_SO_CTRL_FIELD_ENUM
 {
     XCC_APS_SO_CTRL_FIELD_DORMANT_TIMER_CTRL           = 0x03,                 /* Dormant Timer Control , FIELD TYPE取值为 '011' */

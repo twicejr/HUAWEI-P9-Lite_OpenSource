@@ -1,20 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : media_mntn_kernel.c
-  版 本 号   : 初稿
-  作    者   : 张薇
-  生成日期   : 2012年09月12日
-  最近修改   :
-  功能描述   :
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年09月12日
-    作    者   : 张薇62576
-    修改内容   : 创建文件
-******************************************************************************/
 
 
 /*****************************************************************************
@@ -112,38 +96,13 @@ extern int DRV_EXCH_CUST_FUNC_REG(mntn_exch_cb cb);
   5 函数定义
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : mntn_set_snap_flags
- 功能描述  : 配置图像数据抓取点标志，内部接口
- 输入参数  : NONE
- 输出参数  : NONE
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012年09月19日
-    作    者   : 余俊霖yKF77511
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 void mntn_set_snap_flags(void)
 {
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : mntn_set_print_level
- 功能描述  : MNTN提供给OM的接口，OM用于下发可维可测配置，内部接口
- 输入参数  : module_id  - 模块ID
-             level      - 0~4级，参见MNTN_LOG_LEVEL_OFF等宏定义
- 输出参数  : NONE
- 返 回 值  : int, 返回最终配置的level
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012年09月19日
-    作    者   : 余俊霖yKF77511
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 int mntn_set_print_level(mntn_module_id_enum_u8 module_id, unsigned int level)
 {
     int ret = MNTN_OK;
@@ -164,19 +123,7 @@ int mntn_set_print_level(mntn_module_id_enum_u8 module_id, unsigned int level)
     return ret;
 }
 
-/*****************************************************************************
- 函 数 名  : mntn_print_trace_cfg
- 功能描述  : 打印可维可测配置到串口，内部接口
- 输入参数  : module_id  - 模块ID
- 输出参数  :
- 返 回 值  : NONE
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012年09月18日
-    作    者   : 张薇62576
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 void mntn_print_trace_cfg(mntn_module_id_enum_u8 module_id)
 {
     mntn_trace_config_t *trace_config = NULL;
@@ -197,20 +144,7 @@ void mntn_print_trace_cfg(mntn_module_id_enum_u8 module_id)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : mntn_save_trace_cfg
- 功能描述  : 保存可维可测配置到本地，内部接口, 不做参数检查
- 输入参数  : module_id  - 模块ID
-             trace_req  - OM给MNTN的可维可测配置数据
- 输出参数  : NONE
- 返 回 值  : MNTN_OK - 保存成功，MNTN_ERR - 保存失败
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012年09月15日
-    作    者   : 张薇62576
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 int mntn_save_trace_cfg(mntn_module_id_enum_u8 module_id, mntn_trace_req_t *trace_req)
 {
     mntn_config_data_t     *config_data     = NULL;
@@ -248,21 +182,7 @@ int mntn_save_trace_cfg(mntn_module_id_enum_u8 module_id, mntn_trace_req_t *trac
     return MNTN_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : mntn_om_send_cfg_cnf
- 功能描述  : MNTN内部接口，用于发送可维可测配置的确认消息
- 输入参数  : func_type   - FUNC TYPE
-             prim_id     - MNTN给OM的CNF消息ID
-             result      - 配置结果
- 输出参数  : NONE
- 返 回 值  : NONE
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012年10月09日
-    作    者   : 张薇62576
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 int mntn_om_send_cfg_cnf(unsigned char func_type, unsigned short prim_id, mntn_module_id_enum_u8 module_id, unsigned int result)
 {
     mntn_trace_cnf_t      *trace_rsp     = NULL;
@@ -307,19 +227,7 @@ int mntn_om_send_cfg_cnf(unsigned char func_type, unsigned short prim_id, mntn_m
     return MNTN_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : mntn_proc_disp_cfg_req
- 功能描述  : MNTN内部接口，用于处理显示模块的可维可测配置
- 输入参数  : trace_req  - 可维可测配置
- 输出参数  : NONE
- 返 回 值  : NONE
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012年10月10日
-    作    者   : 张薇62576
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 void mntn_proc_disp_cfg_req(mntn_trace_req_t *trace_req)
 {
     unsigned int           result        = MNTN_OK;
@@ -362,19 +270,7 @@ void mntn_proc_disp_cfg_req(mntn_trace_req_t *trace_req)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : mntn_proc_video_cfg_req
- 功能描述  : MNTN内部接口，用于处理CAMERA&视频编解码模块的可维可测配置
- 输入参数  : trace_req  - 可维可测配置
- 输出参数  : NONE
- 返 回 值  : NONE
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012年10月10日
-    作    者   : 张薇62576
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 void mntn_proc_video_cfg_req(mntn_trace_req_t *trace_req)
 {
     unsigned int           result        = MNTN_OK;
@@ -434,21 +330,7 @@ void mntn_proc_video_cfg_req(mntn_trace_req_t *trace_req)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : mntn_om_rcv_cfg_req
- 功能描述  : MNTN提供给OM的接口，OM用于下发可维可测配置
- 输入参数  : req_packet  - 可维可测配置
-             rsq_func    - OM给MNTN的接口，用于MNTN上报可维可测消息，
-                           注: 对于ACPU，这个值都是统一一个函数接口
- 输出参数  : NONE
- 返 回 值  : NONE
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012年09月12日
-    作    者   : 张薇62576
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 void mntn_om_rcv_cfg_req(om_req_packet *req_packet, om_rsp_func rsq_func)
 {
     mntn_trace_req_t      *trace_req     = NULL;
@@ -483,19 +365,7 @@ void mntn_om_rcv_cfg_req(om_req_packet *req_packet, om_rsp_func rsq_func)
     return;
 }/* mntn_om_rcv_cfg_req */
 
-/*****************************************************************************
- 函 数 名  : mntn_om_close_trace
- 功能描述  : MNTN提供给OM的API函数，用于OM主动清除消息上报的配置
- 输入参数  : NONE
- 输出参数  : NONE
- 返 回 值  : NONE
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012年09月12日
-    作    者   : 张薇62576
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 void mntn_om_close_trace(void)
 {
     mntn_logd(MNTN_MODULE_ID_MNTN, "enter.");
@@ -504,20 +374,7 @@ void mntn_om_close_trace(void)
     g_om_rsp_func = NULL;
 }
 
-/*****************************************************************************
- 函 数 名  : mntn_proc_reg
- 功能描述  : MNTN提供给OM的API函数，OM通过此接口下发注册消息函数和SN获取函数
- 输入参数  : func_id    - 函数ID，对应om_api_func_id_e枚举类型
-             func_name  - 函数名，由OM提供
- 输出参数  : NONE
- 返 回 值  : NONE
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012年09月12日
-    作    者   : 张薇62576
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 void mntn_proc_reg(om_api_func_id_e func_id, om_api_func func_name)
 {
     unsigned int ret_reg = MNTN_OK;
@@ -561,21 +418,7 @@ void mntn_proc_reg(om_api_func_id_e func_id, om_api_func func_name)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : mntn_check_msg_param
- 功能描述  : MNTN上报消息的入参检查
- 输入参数  : ulModuleId    - 模块ID，目前包含DEC/ENC/VPP/CAMERA，对应枚举mntn_module_id_t
-             buffer        - 待发现数据存放的buffer
-             length        - buffer的长度，小于4K
- 输出参数  : NONE
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012年10月08日
-    作    者   : 张薇62576
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 int mntn_check_msg_param(mntn_module_id_enum_u8 module_id, unsigned char *buffer, unsigned short length)
 {
     /* 2012-10-25  FIXBUG: buffer == NULL && length == 0 */
@@ -592,21 +435,7 @@ int mntn_check_msg_param(mntn_module_id_enum_u8 module_id, unsigned char *buffer
     return MNTN_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : mntn_send_msg
- 功能描述  : MNTN发送消息给OM，内部接口, 不做参数检查
- 输入参数  : prim_id       - 消息ID，对应mntn_prim_id_e枚举类型
-             buffer        - 待发现数据存放的buffer
-             length        - buffer的长度，最大4K
- 输出参数  : NONE
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012年09月20日
-    作    者   : 张薇62576
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 int mntn_send_msg(unsigned char func_type, unsigned short prim_id, mntn_module_id_enum_u8 module_id, unsigned char *buffer, unsigned short length)
 {
     mntn_trace_ind_t   *trace_rsp  = NULL;
@@ -660,22 +489,7 @@ int mntn_send_msg(unsigned char func_type, unsigned short prim_id, mntn_module_i
     return MNTN_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : mntn_send_event_msg
- 功能描述  : MNTN上报事件消息的接口封装
- 输入参数  : prim_id       - 消息ID，对应mntn_xxx_prim_id_e枚举类型
-             ulModuleId    - 模块ID，目前包含DEC/ENC/VPP/CAMERA，对应枚举mntn_module_id_t
-             buffer        - 待发现数据存放的buffer
-             length        - buffer的长度，小于4K
- 输出参数  : NONE
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012年09月12日
-    作    者   : 张薇62576
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 void mntn_send_event_msg(unsigned short prim_id, mntn_module_id_enum_u8 module_id,
     unsigned char *buffer, unsigned short length)
 {
@@ -705,22 +519,7 @@ void mntn_send_event_msg(unsigned short prim_id, mntn_module_id_enum_u8 module_i
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : mntn_send_reg_msg
- 功能描述  : MNTN上报寄存器消息的接口封装
- 输入参数  : prim_id       - 消息ID，对应mntn_xxx_prim_id_e枚举类型
-             ulModuleId    - 模块ID，目前包含DEC/ENC/VPP/CAMERA，对应枚举mntn_module_id_t
-             buffer        - 待发现数据存放的buffer
-             length        - buffer的长度，小于4K
- 输出参数  : NONE
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012年09月12日
-    作    者   : 张薇62576
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 void mntn_send_reg_msg(unsigned short prim_id, mntn_module_id_enum_u8 module_id,
     unsigned char *buffer, unsigned short length)
 {
@@ -750,22 +549,7 @@ void mntn_send_reg_msg(unsigned short prim_id, mntn_module_id_enum_u8 module_id,
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : mntn_send_frame_info_msg
- 功能描述  : MNTN上报帧信息消息的接口封装
- 输入参数  : prim_id       - 消息ID，对应mntn_xxx_prim_id_e枚举类型
-             ulModuleId    - 模块ID，目前包含DEC/ENC/VPP/CAMERA，对应枚举mntn_module_id_t
-             buffer        - 待发现数据存放的buffer
-             length        - buffer的长度，小于4K
- 输出参数  : NONE
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012年09月12日
-    作    者   : 张薇62576
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 void mntn_send_frame_info_msg(unsigned short prim_id, mntn_module_id_enum_u8 module_id,
     unsigned char *buffer, unsigned short length)
 {
@@ -795,22 +579,7 @@ void mntn_send_frame_info_msg(unsigned short prim_id, mntn_module_id_enum_u8 mod
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : mntn_send_context_msg
- 功能描述  : MNTN上报上下文信息消息的接口封装
- 输入参数  : prim_id       - 消息ID，对应mntn_xxx_prim_id_e枚举类型
-             ulModuleId    - 模块ID，目前包含DEC/ENC/VPP/CAMERA，对应枚举mntn_module_id_t
-             buffer        - 待发现数据存放的buffer
-             length        - buffer的长度，小于4K
- 输出参数  : NONE
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012年09月12日
-    作    者   : 张薇62576
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 void mntn_send_context_msg(unsigned short prim_id, mntn_module_id_enum_u8 module_id,
     unsigned char *buffer, unsigned short length)
 {
@@ -842,21 +611,7 @@ void mntn_send_context_msg(unsigned short prim_id, mntn_module_id_enum_u8 module
 
 
 
-/*****************************************************************************
- 函 数 名  : mntn_exch_cb_register
- 功能描述  : MNTN提供给IT2的接口，用于IT2将各个模块的临终遗言回调函数注册到MNTN中
-             回调函数使用的buffer长度小于8K, 存在与内核态
- 输入参数  : module_id    - 模块ID
-             func         - 各个模块的回调函数
- 输出参数  : NONE
- 返 回 值  : int，MNTN_OK注册成功, MNTN_ERR注册失败
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012年09月12日
-    作    者   : 张薇62576
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 int mntn_exch_cb_register(mntn_module_id_enum_u8 module_id, mntn_exch_cb func)
 {
     int     result = 0;
@@ -889,21 +644,7 @@ int mntn_exch_cb_register(mntn_module_id_enum_u8 module_id, mntn_exch_cb func)
     return MNTN_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : mntn_save_data_to_file
- 功能描述  : 保存数据到FILE，内部接口，不做参数检查，调用者需要保证入参有效
- 输入参数  : module_id     - 模块ID，目前包含DEC/ENC/VPP/CAMERA，对应枚举mntn_module_id_t
-             buffer        - 数据存放的buffer
-             length        - buffer的长度
- 输出参数  : NONE
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012年09月12日
-    作    者   : 张薇62576
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 int mntn_save_data_to_file(char *name, const void *buffer, const int length)
 {
     ssize_t         ret = 0;
@@ -933,21 +674,7 @@ int mntn_save_data_to_file(char *name, const void *buffer, const int length)
     return result;
 }
 
-/*****************************************************************************
- 函 数 名  : mntn_save_frame_data
- 功能描述  : 保存图像数据到FILE
- 输入参数  : module_id     - 模块ID，目前包含DEC/ENC/VPP/CAMERA，对应枚举mntn_module_id_t
-             buffer        - 图像数据存放的buffer
-             length        - buffer的长度
- 输出参数  : NONE
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012年09月12日
-    作    者   : 张薇62576
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 void mntn_save_frame_data(mntn_module_id_enum_u8 module_id, const void *buffer, const int length)
 {
     char            name[FILE_NAME_MAX] = {0};
@@ -977,21 +704,7 @@ void mntn_save_frame_data(mntn_module_id_enum_u8 module_id, const void *buffer, 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : mntn_save_reg_data
- 功能描述  : 保存寄存器数据到FILE
- 输入参数  : module_id - 模块ID
-             buffer    - 寄存器存放的buffer，对应结构体是mntn_reg_info_t
-             length    - buffer的长度
- 输出参数  : NONE
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012年09月19日
-    作    者   : 张薇62576
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 void mntn_save_reg_data(mntn_module_id_enum_u8 module_id, const void *buffer, const int length)
 {
     char            name[FILE_NAME_MAX] = {0};

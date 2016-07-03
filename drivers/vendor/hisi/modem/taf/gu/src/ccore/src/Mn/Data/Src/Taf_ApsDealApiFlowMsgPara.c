@@ -1,22 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : Aps_DealApiFlowMsgPara.c
-  版 本 号   : 初稿
-  作    者   : anhuiqing / 00165503
-  生成日期   : 2011年09月30日
-  最近修改   :
-  功能描述   :
-  函数列表   :
-
-  修改历史   :
-  1.日    期   : 2011年03月30日
-    作    者   : anhuiqing / 00165503
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
    1 头文件包含
@@ -62,32 +44,7 @@ extern "C" {
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndPsEvt
- 功能描述  : 发送PS域事件
- 输入参数  : ulTaskId                   - 目标任务ID(PID)
-             ulEvtId                    - 事件ID
-             pData                      - 事件数据内容(不包含消息头)
-             ulLength                   - 事件数据长度
- 输出参数  : 无
- 返 回 值  : VOS_OK                     - 发送消息成功
-             VOS_ERR                    - 发送消息失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月8日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年12月24日
-    作    者   : z00220246
-    修改内容   : DSDA Phase II
-
-  3.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，EVENT结构替换，改为pData携带TaskId
-*****************************************************************************/
 VOS_UINT32 TAF_APS_SndPsEvt(
     VOS_UINT32                          ulEvtId,
     VOS_VOID                           *pData,
@@ -137,56 +94,7 @@ VOS_UINT32 TAF_APS_SndPsEvt(
     return VOS_OK;
 }
 
-/*****************************************************************************
- Prototype      : TAF_APS_SndPdpActivateCnf
- Description    :
- Input          :
- Output         :
- Return Value   :
- Date Accessed  :
- Date Update    :
- Calls          :
- Called By      :
- History        : ---
-  1.Date        : 2005-
-    Author      : ---
-    Modification: Created function
 
-  2.Date        : 2006-07-06
-    Author      : L47619
-    Modification: 根据问题单修改:A32D04774
-
-  3.Date        : 2007-11-09
-    Author      : L47619
-    Modification: 根据问题单修改:A32D13403
-
-  4.日    期   : 2011年04月23日
-    作    者   : L00171473
-    修改内容   : for V7R1 porting, 设置NBNS和GateWay
-
-  5.日    期   : 2012年1月2日
-    作    者   : A00165503
-    修改内容   : PS Project: 增加P-CSCF事件的上报
-
-  6.日    期   : 2012年1月27日
-    作    者   : h44270
-    修改内容   : PS融合项目，删除冗余代码和全局变量
-
-  7.日    期   : 2012年11月13日
-    作    者   : A00165503
-    修改内容   : DTS2012111205973: LTE默认缺省承载IP类型IPv4v6, 用户拨号IP类
-                 型IPv4 only或IPv6 only, 缺省承载IP类型被错误的修改为用户拨
-                 号IP类型
-  8.日    期   : 2012年12月26日
-    作    者   : m00217266
-    修改内容   : DSDA C核项目(删除冗余代码)
-  9.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，结构名称修改
- 10.日    期   : 2014年06月16日
-    作    者   : f00179208
-    修改内容   : VTLTE项目,消息使用动态申请并添加TFT信息
-*****************************************************************************/
 VOS_VOID TAF_APS_SndPdpActivateCnf(
     VOS_UINT8                           ucPdpId,
     VOS_UINT8                           ucCid
@@ -206,7 +114,6 @@ VOS_VOID TAF_APS_SndPdpActivateCnf(
         return;
     }
 
-    /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     PS_MEM_SET(pstPdpActCnfEvt, 0, sizeof(TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU));
 
     pstPdpActCnfEvt->ucCid = ucCid;
@@ -277,10 +184,8 @@ VOS_VOID TAF_APS_SndPdpActivateCnf(
 
 #endif
 
-    /* Added by m00217266 for L-C互操作项目, 2014-1-23, begin */
     /* 通知ADS PDP状态，当module为imsa不需要通知ADS PDP状态 */
     TAF_APS_NotifyAdsWhenPdpAvtivated(pstPdpActCnfEvt);
-    /* Added by m00217266 for L-C互操作项目, 2014-1-23, end */
 
 
 #if (FEATURE_ON == FEATURE_IPV6)
@@ -293,7 +198,6 @@ VOS_VOID TAF_APS_SndPdpActivateCnf(
                      pstPdpActCnfEvt,
                      sizeof(TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU));
 
-    /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     /* 释放内存 */
     PS_MEM_FREE(WUEPS_PID_TAF, pstPdpActCnfEvt);
@@ -304,25 +208,7 @@ VOS_VOID TAF_APS_SndPdpActivateCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndPdpActivateRej
- 功能描述  : 上报PS域呼叫拒绝事件
- 输入参数  : ucPdpId --- 实体索引
-             enCause --- 错误码
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月8日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-  2.日    期   : 2014年5月15日
-    作    者   : A00165503
-    修改内容   : DTS2014051501929: 填写PS域呼叫拒绝事件的IP类型
-*****************************************************************************/
 VOS_VOID TAF_APS_SndPdpActivateRej(
     VOS_UINT8                           ucPdpId,
     TAF_PS_CAUSE_ENUM_UINT32            enCause
@@ -362,23 +248,7 @@ VOS_VOID TAF_APS_SndPdpActivateRej(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndPdpActivateInd
- 功能描述  : 上报ID_EVT_TAF_PS_CALL_PDP_ACTIVATE_IND
- 输入参数  : ucPdpId        -实体ID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目新增
-  2.日    期   : 2014年06月16日
-    作    者   : f00179208
-    修改内容   : VTLTE项目,消息使用动态申请并添加TFT信息
-*****************************************************************************/
 VOS_VOID TAF_APS_SndPdpActivateInd(
     VOS_UINT8                           ucPdpId,
     VOS_UINT8                           ucCid
@@ -487,27 +357,7 @@ VOS_VOID TAF_APS_SndPdpActivateInd(
 }
 
 
-/*****************************************************************************
- Prototype      : TAF_APS_SndPdpManageInd
- Description    :
- Input          :
- Output         :
- Return Value   :
- Date Accessed  :
- Date Update    :
- Calls          : Aps_PdpActIndManualAns
- Called By      :
- History        : ---
-  1.Date        : 2005-
-    Author      : ---
-    Modification: Created function
-  2.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : PS融合项目修改 :增加返回值，将拒绝网络请求移到状态机中处理
-  3.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，EVENT结构替换，增加PID，使用ID_EVT_TAF_PS_CALL_PDP_MANAGE_IND
-*****************************************************************************/
+
 VOS_UINT32 TAF_APS_SndPdpManageInd(
     VOS_UINT8                           ucPdpId,
     SMREG_PDP_ACTIVATE_IND_STRU        *pStActInd
@@ -578,42 +428,7 @@ VOS_UINT32 TAF_APS_SndPdpManageInd(
 }
 
 
-/*****************************************************************************
- Prototype      : TAF_APS_SndPdpModifyCnf
- Description    :
- Input          :
- Output         :
- Return Value   :
- Date Accessed  :
- Date Update    :
- Calls          :
- Called By      :
- History        : ---
-  1.Date        : 2005-
-    Author      : ---
-    Modification: Created function
 
-  2.日    期   : 2012年11月13日
-    作    者   : A00165503
-    修改内容   : DTS2012111205973: LTE默认缺省承载IP类型IPv4v6, 用户拨号IP类
-                 型IPv4 only或IPv6 only, 缺省承载IP类型被错误的修改为用户拨
-                 号IP类型
-
-  3.日    期   : 2012年12月26日
-    作    者   : m00217266
-    修改内容   : DSDA C核项目(删除冗余代码)
-
-  4.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，结构变更
-
-  5.日    期   : 2014年5月15日
-    作    者   : A00165503
-    修改内容   : DTS2014051501929: 填写PS域修改拒绝事件的RABID
-  6.日    期   : 2014年06月16日
-    作    者   : f00179208
-    修改内容   : VTLTE项目,消息使用动态申请并添加TFT信息
-*****************************************************************************/
 VOS_VOID TAF_APS_SndPdpModifyCnf(VOS_UINT8 ucPdpId)
 {
     TAF_PS_CALL_PDP_MODIFY_CNF_STRU        *pstPdpMdfCnfEvt;
@@ -663,10 +478,8 @@ VOS_VOID TAF_APS_SndPdpModifyCnf(VOS_UINT8 ucPdpId)
     MN_APS_SetEvtNbns(ucPdpId, &pstPdpMdfCnfEvt->stNbns);
     TAF_APS_SetEvtPcscf(ucPdpId, &pstPdpMdfCnfEvt->stPcscf, &pstPdpMdfCnfEvt->stIpv6Pcscf);
 
-    /* Added by m00217266 for L-C互操作项目, 2014-1-23, begin */
     /* 通知ADS PDP状态 */
     TAF_APS_NotifyAdsWhenPdpModify(pstPdpMdfCnfEvt);
-    /* Added by m00217266 for L-C互操作项目, 2014-1-23, end */
 
     (VOS_VOID)TAF_APS_SndPsEvt(ID_EVT_TAF_PS_CALL_PDP_MODIFY_CNF,
                      pstPdpMdfCnfEvt,
@@ -678,36 +491,7 @@ VOS_VOID TAF_APS_SndPdpModifyCnf(VOS_UINT8 ucPdpId)
     return;
 }
 
-/*****************************************************************************
- Prototype      : TAF_APS_SndPdpModifyInd
- Description    : UE接受网络的修改指示,需要向APP上报修改后的信息
- Input          :
- Output         :
- Return Value   :
- Date Accessed  :
- Date Update    :
- Calls          :
- Called By      : Aps_PdpMdfIndQosSatisfy
- History        : ---
-  1.Date        : 2005-
-    Author      : ---
-    Modification: Created function
 
-  2.日    期   : 2012年11月13日
-    作    者   : A00165503
-    修改内容   : DTS2012111205973: LTE默认缺省承载IP类型IPv4v6, 用户拨号IP类
-                 型IPv4 only或IPv6 only, 缺省承载IP类型被错误的修改为用户拨
-                 号IP类型
-  3.日    期   : 2012年12月26日
-    作    者   : m00217266
-    修改内容   : DSDA C核项目(删除冗余代码)
-  4.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，EVENT结构替换
-  5.日    期   : 2014年06月16日
-    作    者   : f00179208
-    修改内容   : VTLTE项目,消息使用动态申请并添加TFT信息
-*****************************************************************************/
 VOS_VOID TAF_APS_SndPdpModifyInd(
     VOS_UINT8                           ucPdpId
 )
@@ -770,10 +554,8 @@ VOS_VOID TAF_APS_SndPdpModifyInd(
 
         TAF_APS_SetPsCallEvtCtrl(ucPdpId, pstPdpMdfIndEvt->ucCid, &pstPdpMdfIndEvt->stCtrl);
 
-        /* Added by m00217266 for L-C互操作项目, 2014-1-23, begin */
         /* 通知ADS PDP状态 */
         TAF_APS_NotifyAdsWhenPdpModify(pstPdpMdfIndEvt);
-        /* Added by m00217266 for L-C互操作项目, 2014-1-23, end */
 
         APS_NORM_LOG("APS->APP  ID_EVT_TAF_PS_CALL_PDP_MODIFY_IND");
         (VOS_VOID)TAF_APS_SndPsEvt(ID_EVT_TAF_PS_CALL_PDP_MODIFY_IND,
@@ -788,32 +570,7 @@ VOS_VOID TAF_APS_SndPdpModifyInd(
 }
 
 
-/*****************************************************************************
- Prototype      : TAF_APS_SndPdpModifyRej()
- Description    : 上报APP拒绝修改事件,
- Input          : ucPdpId,
-                  RejCause
- Output         : NO
- Return Value   : NO
- Data Accessed  : NO
- Data Update    : NO
- Calls          : Aps_ClearAppEvent()
- Called By      :
- History        : ---
-  1.Date        : 2005-
-    Author      : 韩鲁峰
-    Modification: Created function
-  2.日    期   : 2010年12月24日
-    作    者   : lijun 00171473
-    修改内容   : DTS2010121603672 CGCMOD打桩修改QOS失败时ERROR错误回到应用
-  3.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-  4.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，EVENT结构替换
 
-*****************************************************************************/
 VOS_VOID    TAF_APS_SndPdpModifyRej   (
     VOS_UINT8                               ucPdpId,
     TAF_PS_CAUSE_ENUM_UINT32                enCause
@@ -823,7 +580,6 @@ VOS_VOID    TAF_APS_SndPdpModifyRej   (
 
     PS_MEM_SET(&stPdpMdfRejEvt, 0, sizeof(TAF_PS_CALL_PDP_MODIFY_REJ_STRU));
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     stPdpMdfRejEvt.ucCid = g_PdpEntity[ucPdpId].stClientInfo.ucCid;
 
     TAF_APS_GetPdpEntModDialInfo(ucPdpId, &stPdpMdfRejEvt.stCtrl);
@@ -841,46 +597,11 @@ VOS_VOID    TAF_APS_SndPdpModifyRej   (
     (VOS_VOID)TAF_APS_SndPsEvt(ID_EVT_TAF_PS_CALL_PDP_MODIFY_REJ,
                      &stPdpMdfRejEvt,
                      sizeof(TAF_PS_CALL_PDP_MODIFY_REJ_STRU));
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
     return;
 }
 
 
-/*****************************************************************************
- Prototype      : TAF_APS_SndPdpDeActivateCnf
- Description    : 3G中收到SM的DEACT_CNF,2G中收到SNDCP的DEACT_RSP后,此函数上报
-                  APP去激活结束
- Input          :
- Output         :
- Return Value   :
- Date Accessed  :
- Date Update    :
- Calls          :
- Called By      :
- History        : ---
-  1.Date        : 2005-
-    Author      : ---
-    Modification: Created function
 
-  2.日    期   : 2012年1月27日
-    作    者   : h44270
-    修改内容   : PS融合项目，删除冗余代码和全局变量
-
-  3.日    期   : 2012年11月13日
-    作    者   : A00165503
-    修改内容   : DTS2012111205973: LTE默认缺省承载IP类型IPv4v6, 用户拨号IP类
-                 型IPv4 only或IPv6 only, 缺省承载IP类型被错误的修改为用户拨
-                 号IP类型
-  4.日    期   : 2012年11月20日
-    作    者   : Y00213812
-    修改内容   : DTS2012111907501: PDP Deactive时上报原因值TAF_PS_CAUSE_SUCCESS
-  5.日    期   : 2012年12月26日
-    作    者   : m00217266
-    修改内容   : DSDA C核项目(删除冗余代码)
-  6.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，EVENT结构替换
-*****************************************************************************/
 VOS_VOID    TAF_APS_SndPdpDeActivateCnf(
     VOS_UINT8                           ucPdpId,
     VOS_UINT8                           ucCid
@@ -909,10 +630,8 @@ VOS_VOID    TAF_APS_SndPdpDeActivateCnf(
 
 #endif
 
-    /* Added by m00217266 for L-C互操作项目, 2014-1-23, begin */
     /* 通知ADS PDP状态 */
     TAF_APS_NotifyAdsWhenPdpDeactivated(&stPdpDeActCnfEvt);
-    /* Added by m00217266 for L-C互操作项目, 2014-1-23, end */
 
 
 
@@ -928,48 +647,7 @@ VOS_VOID    TAF_APS_SndPdpDeActivateCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndPdpDeActivateInd
- 功能描述  : 因为出现异常事件，导致PDP被异常去激活,此函数上报，故其中的
-             TEARDOWN不填。
- 输入参数  : VOS_UINT8                          ucPdpId
-            TAF_PS_CAUSE_ENUM_UINT32            enCause
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2005年xx月xx日
-    作    者   : xxx
-    修改内容   : 新生成函数
-
-  2.日    期   : 2010年12月30日
-    作    者   : A00165503
-    修改内容   : 问题单号: DTS2010122903388，网侧下发DEACTIVATE PDP CONTEXT
-                 REQUEST，原因值为#39，AT上报错误
-
-  3.日    期   : 2012年1月27日
-    作    者   : h44270
-    修改内容   : PS融合项目，删除冗余代码和全局变量
-
-  4.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容    : 修改PS域错误码上报
-
-  5.日    期   : 2012年11月13日
-    作    者   : A00165503
-    修改内容   : DTS2012111205973: LTE默认缺省承载IP类型IPv4v6, 用户拨号IP类
-                 型IPv4 only或IPv6 only, 缺省承载IP类型被错误的修改为用户拨
-                 号IP类型
-  6.日    期   : 2012年12月26日
-    作    者   : m00217266
-    修改内容   : DSDA C核项目(删除冗余代码)
-
-  7.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，EVENT结构替换
-*****************************************************************************/
 VOS_VOID    TAF_APS_SndPdpDeActivateInd(
     VOS_UINT8                           ucPdpId,
     TAF_PS_CAUSE_ENUM_UINT32            enCause
@@ -1003,10 +681,8 @@ VOS_VOID    TAF_APS_SndPdpDeActivateInd(
 
 #endif
 
-        /* Added by m00217266 for L-C互操作项目, 2014-1-23, begin */
         /* 通知ADS PDP状态 */
         TAF_APS_NotifyAdsWhenPdpDeactivated(&stPdpDeActIndEvt);
-        /* Added by m00217266 for L-C互操作项目, 2014-1-23, end */
 
 
 
@@ -1023,31 +699,12 @@ VOS_VOID    TAF_APS_SndPdpDeActivateInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndPdpDisconnectInd
- 功能描述  : 发送ID_EVT_TAF_PS_CALL_PDP_DISCONNECT_IND消息
- 输入参数  : VOS_UINT8 ucPdpId
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月29日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-  2.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，增加PID记录到实体
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SndPdpDisconnectInd(VOS_UINT8 ucPdpId)
 {
     TAF_CTRL_STRU                       stCtrl;
     VOS_UINT8                           ucCid;
 
-    /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     ucCid = TAF_APS_GetPdpEntCurrCid(ucPdpId);
     stCtrl.usClientId = TAF_APS_GetPdpEntClientId(ucPdpId, ucCid);
     if (TAF_APS_INVALID_CLIENTID == stCtrl.usClientId)
@@ -1057,7 +714,6 @@ VOS_VOID TAF_APS_SndPdpDisconnectInd(VOS_UINT8 ucPdpId)
 
     stCtrl.ulModuleId = TAF_APS_GetPdpEntModuleId(ucPdpId, ucCid);
     stCtrl.ucOpId     = TAF_APS_GetPdpEntOpId(ucPdpId, ucCid);
-    /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     (VOS_VOID)TAF_APS_SndPsEvt(ID_EVT_TAF_PS_CALL_PDP_DISCONNECT_IND,
                                 &stCtrl,
@@ -1067,27 +723,7 @@ VOS_VOID TAF_APS_SndPdpDisconnectInd(VOS_UINT8 ucPdpId)
 }
 
 #if (FEATURE_ON == FEATURE_IPV6)
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndIpv6RaInfoNotifyInd
- 功能描述  : 上报ID_EVT_TAF_PS_IPV6_INFO_IND事件
- 输入参数  : pstCtrl                 - APP控制头
-             ucCid                      - CID
-             ucRabId                    - RAB ID
-             pstIpv6RaInfo              - IPv6 RA参数信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月2日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年6月30日
-    作    者   : A00165503
-    修改内容   : DTS2012062900707: IPv6拨号成功, 应用获取IPv6地址前缀异常
-*****************************************************************************/
 VOS_VOID TAF_APS_SndIpv6RaInfoNotifyInd(
     TAF_CTRL_STRU                      *pstCtrl,
     VOS_UINT8                           ucCid,
@@ -1102,42 +738,15 @@ VOS_VOID TAF_APS_SndIpv6RaInfoNotifyInd(
     stIpv6RaInfoNotifyInd.ucRabId       = ucRabId;
     stIpv6RaInfoNotifyInd.stIpv6RaInfo  = *pstIpv6RaInfo;
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     (VOS_VOID)TAF_APS_SndPsEvt(ID_EVT_TAF_PS_CALL_PDP_IPV6_INFO_IND,
                                &stIpv6RaInfoNotifyInd,
                                sizeof(TAF_PS_IPV6_INFO_IND_STRU));
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     return;
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndCallOrigCnf
- 功能描述  :
- 输入参数  : TAF_CTRL_STRU                    *pstCtrl
-             VOS_UINT8                           ucCid,
-             TAF_PS_CAUSE_ENUM_UINT32            enCause
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-  2.日    期   : 2012年6月28日
-    作    者   : l60609
-    修改内容   : AT&T&DCM:PDP激活受限处理
-  3.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-  4.日    期   : 2012年12月17日
-    作    者   : A00165503
-    修改内容   : C50 IPv6 项目
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SndCallOrigCnf(
     TAF_CTRL_STRU                      *pstCtrl,
     VOS_UINT8                           ucCid,
@@ -1153,12 +762,10 @@ VOS_VOID TAF_APS_SndCallOrigCnf(
     stCallOrigCnf.ucCid     = ucCid;
     stCallOrigCnf.enCause   = enCause;
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     /* 发送事件 */
     (VOS_VOID)TAF_APS_SndPsEvt(ID_EVT_TAF_PS_CALL_ORIG_CNF,
                                 &stCallOrigCnf,
                                 sizeof(TAF_PS_CALL_ORIG_CNF_STRU));
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 #if (FEATURE_ON == FEATURE_PTM)
     /* 记录PS拨号异常log */
     TAF_APS_PsCallFailErrRecord(enCause);
@@ -1167,26 +774,7 @@ VOS_VOID TAF_APS_SndCallOrigCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndCallEndCnf
- 功能描述  :
- 输入参数  : pstCtrl
-             ucErrCode
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年12月17日
-    作    者   : A00165503
-    修改内容   : C50 IPv6 项目
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SndCallEndCnf(
     TAF_CTRL_STRU                      *pstCtrl,
     VOS_UINT8                           ucCid,
@@ -1203,32 +791,15 @@ VOS_VOID TAF_APS_SndCallEndCnf(
 
     stCallEndCnf.enCause        = enCause;
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     /* 发送事件 */
     (VOS_VOID)TAF_APS_SndPsEvt(ID_EVT_TAF_PS_CALL_END_CNF,
                                 &stCallEndCnf,
                                 sizeof(TAF_PS_CALL_END_CNF_STRU));
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndCallModifyCnf
- 功能描述  :
- 输入参数  : pstCtrl
-             ucErrCode
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SndCallModifyCnf(
     TAF_CTRL_STRU                      *pstCtrl,
     TAF_PS_CAUSE_ENUM_UINT32            enCause
@@ -1236,7 +807,6 @@ VOS_VOID TAF_APS_SndCallModifyCnf(
 {
     TAF_PS_CALL_MODIFY_CNF_STRU         stCallModifyCnf;
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     PS_MEM_SET(&stCallModifyCnf, 0, sizeof(TAF_PS_CALL_MODIFY_CNF_STRU));
 
     /* 填写事件内容 */
@@ -1247,27 +817,11 @@ VOS_VOID TAF_APS_SndCallModifyCnf(
     (VOS_VOID)TAF_APS_SndPsEvt(ID_EVT_TAF_PS_CALL_MODIFY_CNF,
                                 &stCallModifyCnf,
                                 sizeof(TAF_PS_CALL_MODIFY_CNF_STRU));
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndCallAnswerCnf
- 功能描述  :
- 输入参数  : pstCtrl
-             ucErrCode
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SndCallAnswerCnf(
     TAF_CTRL_STRU                      *pstCtrl,
     VOS_UINT8                           ucCid,
@@ -1298,32 +852,15 @@ VOS_VOID TAF_APS_SndCallAnswerCnf(
         stCallAnswerCnf.enCause = ucErrCode;
     }
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     /* 发送事件 */
     (VOS_VOID)TAF_APS_SndPsEvt(ID_EVT_TAF_PS_CALL_ANSWER_CNF,
                                 &stCallAnswerCnf,
                                 sizeof(TAF_PS_CALL_ANSWER_CNF_STRU));
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndCallHangupCnf
- 功能描述  :
- 输入参数  : pstCtrl
-             ucErrCode
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SndCallHangupCnf(
     TAF_CTRL_STRU                      *pstCtrl,
     VOS_UINT8                           ucErrCode
@@ -1345,43 +882,15 @@ VOS_VOID TAF_APS_SndCallHangupCnf(
         stCallHangupCnf.enCause = ucErrCode;
     }
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     /* 发送事件 */
     (VOS_VOID)TAF_APS_SndPsEvt(ID_EVT_TAF_PS_CALL_HANGUP_CNF,
                                 &stCallHangupCnf,
                                 sizeof(TAF_PS_CALL_HANGUP_CNF_STRU));
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndSetPdpCtxStateCnf
- 功能描述  :
- 输入参数  : pstCtrl
-            enCause                 原因值
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年12月29日
-    作    者   : A00165503
-    修改内容   : PS Project: 修改函数名称, 匹配当前操作
-
-  3.日    期   : 2012年6月28日
-    作    者   : l60609
-    修改内容   : AT&T&DCM:PDP激活受限处理
-
-  4.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-*****************************************************************************/
 VOS_VOID TAF_APS_SndSetPdpCtxStateCnf(
     TAF_CTRL_STRU                      *pstCtrl,
     TAF_PS_CAUSE_ENUM_UINT32            enCause
@@ -1395,32 +904,15 @@ VOS_VOID TAF_APS_SndSetPdpCtxStateCnf(
     stSetPdpStateCnf.stCtrl             = *pstCtrl;
     stSetPdpStateCnf.enCause            = enCause;
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     /* 发送事件 */
    (VOS_VOID)TAF_APS_SndPsEvt(ID_EVT_TAF_PS_SET_PDP_CONTEXT_STATE_CNF,
                                 &stSetPdpStateCnf,
                                 sizeof(TAF_PS_SET_PDP_STATE_CNF_STRU));
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndGetPdpStateCnf
- 功能描述  :
- 输入参数  : VOS_VOID                           *pData
-             VOS_UINT32                          ulLength
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月16日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_SndGetPdpStateCnf(
     VOS_VOID                           *pData,
     VOS_UINT32                          ulLength
@@ -1428,31 +920,14 @@ VOS_UINT32  TAF_APS_SndGetPdpStateCnf(
 {
     VOS_UINT32                          ulResult;
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     ulResult = TAF_APS_SndPsEvt(ID_EVT_TAF_PS_GET_PDP_CONTEXT_STATE_CNF,
                                 pData,
                                 ulLength);
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndSetPrimPdpCtxInfoCnf
- 功能描述  :
- 输入参数  : TAF_CTRL_STRU                    *pstCtrl
-             VOS_UINT32                          ulErrCode
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月16日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  TAF_APS_SndSetPrimPdpCtxInfoCnf(
     TAF_CTRL_STRU                      *pstCtrl,
     VOS_UINT32                          ulErrCode
@@ -1463,31 +938,14 @@ VOS_VOID  TAF_APS_SndSetPrimPdpCtxInfoCnf(
     stSetPdpCtxInfoCnf.stCtrl       = *pstCtrl;
     stSetPdpCtxInfoCnf.enCause      = ulErrCode;
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     (VOS_VOID)TAF_APS_SndPsEvt(ID_EVT_TAF_PS_SET_PRIM_PDP_CONTEXT_INFO_CNF,
                                 &stSetPdpCtxInfoCnf,
                                 sizeof(TAF_PS_SET_PRIM_PDP_CONTEXT_INFO_CNF_STRU));
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndGetPrimPdpCtxInfoCnf
- 功能描述  :
- 输入参数  : VOS_VOID                           *pData
-             VOS_UINT32                          ulLength
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月16日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_SndGetPrimPdpCtxInfoCnf(
     VOS_VOID                           *pData,
     VOS_UINT32                          ulLength
@@ -1495,31 +953,14 @@ VOS_UINT32  TAF_APS_SndGetPrimPdpCtxInfoCnf(
 {
     VOS_UINT32                          ulResult;
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     ulResult = TAF_APS_SndPsEvt(ID_EVT_TAF_PS_GET_PRIM_PDP_CONTEXT_INFO_CNF,
                                 pData,
                                 ulLength);
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndSetSecPdpCtxInfoCnf
- 功能描述  :
- 输入参数  : TAF_CTRL_STRU                    *pstCtrl
-             VOS_UINT32                          ulErrCode
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月16日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  TAF_APS_SndSetSecPdpCtxInfoCnf(
     TAF_CTRL_STRU                      *pstCtrl,
     VOS_UINT32                          ulErrCode
@@ -1530,31 +971,14 @@ VOS_VOID  TAF_APS_SndSetSecPdpCtxInfoCnf(
     stSetPdpCtxInfoCnf.stCtrl    = *pstCtrl;
     stSetPdpCtxInfoCnf.enCause  = ulErrCode;
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     (VOS_VOID)TAF_APS_SndPsEvt(ID_EVT_TAF_PS_SET_SEC_PDP_CONTEXT_INFO_CNF,
                                 &stSetPdpCtxInfoCnf,
                                 sizeof(TAF_PS_SET_SEC_PDP_CONTEXT_INFO_CNF_STRU));
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndGetSecPdpCtxInfoCnf
- 功能描述  :
- 输入参数  : VOS_VOID                           *pData
-             VOS_UINT32                          ulLength
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月16日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_SndGetSecPdpCtxInfoCnf(
     VOS_VOID                           *pData,
     VOS_UINT32                          ulLength
@@ -1562,31 +986,14 @@ VOS_UINT32  TAF_APS_SndGetSecPdpCtxInfoCnf(
 {
     VOS_UINT32                          ulResult;
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     ulResult = TAF_APS_SndPsEvt(ID_EVT_TAF_PS_GET_SEC_PDP_CONTEXT_INFO_CNF,
                                 pData,
                                 ulLength);
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndSetTftInfoCnf
- 功能描述  :
- 输入参数  : TAF_CTRL_STRU                    *pstCtrl
-             VOS_UINT32                          ulErrCode
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月16日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  TAF_APS_SndSetTftInfoCnf(
     TAF_CTRL_STRU                      *pstCtrl,
     VOS_UINT32                          ulErrCode
@@ -1597,31 +1004,14 @@ VOS_VOID  TAF_APS_SndSetTftInfoCnf(
     stSetTftInfoCnf.stCtrl      = *pstCtrl;
     stSetTftInfoCnf.enCause = ulErrCode;
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     (VOS_VOID)TAF_APS_SndPsEvt(ID_EVT_TAF_PS_SET_TFT_INFO_CNF,
                                 &stSetTftInfoCnf,
                                 sizeof(TAF_PS_SET_TFT_INFO_CNF_STRU));
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndGetTftInfoCnf
- 功能描述  :
- 输入参数  : VOS_VOID                           *pData
-             VOS_UINT32                          ulLength
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月16日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_SndGetTftInfoCnf(
     VOS_VOID                           *pData,
     VOS_UINT32                          ulLength
@@ -1629,31 +1019,14 @@ VOS_UINT32  TAF_APS_SndGetTftInfoCnf(
 {
     VOS_UINT32                          ulResult;
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     ulResult = TAF_APS_SndPsEvt(ID_EVT_TAF_PS_GET_TFT_INFO_CNF,
                                 pData,
                                 ulLength);
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndSetUmtsQosInfoCnf
- 功能描述  :
- 输入参数  : TAF_CTRL_STRU                    *pstCtrl
-             VOS_UINT32                          ulErrCode
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月16日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_SndSetUmtsQosInfoCnf(
     TAF_CTRL_STRU                      *pstCtrl,
     VOS_UINT32                          ulErrCode
@@ -1665,31 +1038,14 @@ VOS_UINT32  TAF_APS_SndSetUmtsQosInfoCnf(
     stSetUmtsQosInfoCnf.stCtrl  = *pstCtrl;
     stSetUmtsQosInfoCnf.enCause = ulErrCode;
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     ulResult = TAF_APS_SndPsEvt(ID_EVT_TAF_PS_SET_UMTS_QOS_INFO_CNF,
                                 &stSetUmtsQosInfoCnf,
                                 sizeof(TAF_PS_SET_UMTS_QOS_INFO_CNF_STRU));
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndGetUmtsQosInfoCnf
- 功能描述  :
- 输入参数  : VOS_VOID                           *pData
-             VOS_UINT32                          ulLength
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月16日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_SndGetUmtsQosInfoCnf(
     VOS_VOID                           *pData,
     VOS_UINT32                          ulLength
@@ -1697,31 +1053,14 @@ VOS_UINT32  TAF_APS_SndGetUmtsQosInfoCnf(
 {
     VOS_UINT32                          ulResult;
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     ulResult = TAF_APS_SndPsEvt(ID_EVT_TAF_PS_GET_UMTS_QOS_INFO_CNF,
                                 pData,
                                 ulLength);
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndSetUmtsQosMinInfoCnf
- 功能描述  :
- 输入参数  : TAF_CTRL_STRU                    *pstCtrl
-             VOS_UINT32                          ulErrCode
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月16日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_SndSetUmtsQosMinInfoCnf(
     TAF_CTRL_STRU                      *pstCtrl,
     VOS_UINT32                          ulErrCode
@@ -1733,31 +1072,14 @@ VOS_UINT32  TAF_APS_SndSetUmtsQosMinInfoCnf(
     stSetUmtsQosMinInfoCnf.stCtrl       = *pstCtrl;
     stSetUmtsQosMinInfoCnf.enCause  = ulErrCode;
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     ulResult = TAF_APS_SndPsEvt(ID_EVT_TAF_PS_SET_UMTS_QOS_MIN_INFO_CNF,
                                 &stSetUmtsQosMinInfoCnf,
                                 sizeof(TAF_PS_SET_UMTS_QOS_MIN_INFO_CNF_STRU));
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndGetUmtsQosMinInfoCnf
- 功能描述  :
- 输入参数  : VOS_VOID                           *pData
-             VOS_UINT32                          ulLength
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月16日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_SndGetUmtsQosMinInfoCnf(
     VOS_VOID                           *pData,
     VOS_UINT32                          ulLength
@@ -1765,31 +1087,14 @@ VOS_UINT32  TAF_APS_SndGetUmtsQosMinInfoCnf(
 {
     VOS_UINT32                          ulResult;
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     ulResult = TAF_APS_SndPsEvt(ID_EVT_TAF_PS_GET_UMTS_QOS_MIN_INFO_CNF,
                                 pData,
                                 ulLength);
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndGetDynamicUmtsQosInfoCnf
- 功能描述  :
- 输入参数  : VOS_VOID                           *pData
-             VOS_UINT32                          ulLength
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月16日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_SndGetDynamicUmtsQosInfoCnf(
     VOS_VOID                           *pData,
     VOS_UINT32                          ulLength
@@ -1797,31 +1102,14 @@ VOS_UINT32  TAF_APS_SndGetDynamicUmtsQosInfoCnf(
 {
     VOS_UINT32                          ulResult;
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     ulResult = TAF_APS_SndPsEvt(ID_EVT_TAF_PS_GET_DYNAMIC_UMTS_QOS_INFO_CNF,
                                 pData,
                                 ulLength);
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndGetPdpIpAddrInfoCnf
- 功能描述  :
- 输入参数  : VOS_VOID                           *pData
-             VOS_UINT32                          ulLength
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月16日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_SndGetPdpIpAddrInfoCnf(
     VOS_VOID                           *pData,
     VOS_UINT32                          ulLength
@@ -1829,31 +1117,14 @@ VOS_UINT32  TAF_APS_SndGetPdpIpAddrInfoCnf(
 {
     VOS_UINT32                          ulResult;
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     ulResult = TAF_APS_SndPsEvt(ID_EVT_TAF_PS_GET_PDP_IP_ADDR_INFO_CNF,
                                 pData,
                                 ulLength);
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndSetAnsModeInfoCnf
- 功能描述  :
- 输入参数  : TAF_CTRL_STRU                      *pstCtrl
-             VOS_UINT32                          ulErrCode
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月16日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  TAF_APS_SndSetAnsModeInfoCnf(
     TAF_CTRL_STRU                      *pstCtrl,
     VOS_UINT32                          ulErrCode
@@ -1864,32 +1135,14 @@ VOS_VOID  TAF_APS_SndSetAnsModeInfoCnf(
     stSetAnsModeInfoCnf.stCtrl      = *pstCtrl;
     stSetAnsModeInfoCnf.enCause = ulErrCode;
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     (VOS_VOID)TAF_APS_SndPsEvt(ID_EVT_TAF_PS_SET_ANSWER_MODE_INFO_CNF,
                                 &stSetAnsModeInfoCnf,
                                 sizeof(TAF_PS_SET_ANSWER_MODE_INFO_CNF_STRU));
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndGetAnsModeInfoCnf
- 功能描述  :
- 输入参数  : TAF_CTRL_STRU                      *pstCtrl
-             VOS_UINT32                          ulErrCode
-             VOS_UINT32                          ulAnsMode
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月16日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_SndGetAnsModeInfoCnf(
     TAF_CTRL_STRU                      *pstCtrl,
     VOS_UINT32                          ulErrCode,
@@ -1903,32 +1156,14 @@ VOS_UINT32  TAF_APS_SndGetAnsModeInfoCnf(
     stGetAnsModeInfoCnf.enCause = ulErrCode;
     stGetAnsModeInfoCnf.ulAnsMode   = ulAnsMode;
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     ulResult = TAF_APS_SndPsEvt(ID_EVT_TAF_PS_GET_ANSWER_MODE_INFO_CNF,
                                 &stGetAnsModeInfoCnf,
                                 sizeof(TAF_PS_GET_ANSWER_MODE_INFO_CNF_STRU));
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end  */
 
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndGetDynamicPrimPdpCtxInfoCnf
- 功能描述  :
- 输入参数  : TAF_CTRL_STRU                      *pstCtrl
-             VOS_UINT32                          ulErrCode
-             VOS_UINT32                          ulCidNum
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月16日
-    作    者   : C00184452
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_SndGetDynamicPrimPdpCtxInfoCnf(
     TAF_CTRL_STRU                      *pstCtrl,
     VOS_UINT32                          ulErrCode,
@@ -1942,36 +1177,14 @@ VOS_UINT32  TAF_APS_SndGetDynamicPrimPdpCtxInfoCnf(
     stGetDynamicPdpCtxInfoCnf.enCause       = ulErrCode;
     stGetDynamicPdpCtxInfoCnf.ulCidNum      = ulCidNum;
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     ulResult = TAF_APS_SndPsEvt(ID_EVT_TAF_PS_GET_DYNAMIC_PRIM_PDP_CONTEXT_INFO_CNF,
                                 &stGetDynamicPdpCtxInfoCnf,
                                 sizeof(TAF_PS_GET_DYNAMIC_PRIM_PDP_CONTEXT_INFO_CNF_STRU));
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndGetDynamicSecPdpCtxInfoCnf
- 功能描述  :
- 输入参数  : TAF_CTRL_STRU                      *pstCtrl
-             VOS_UINT32                          ulErrCode
-             VOS_UINT32                          ulCidNum
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月16日
-    作    者   : C00184452
-    修改内容   : 新生成函数
-
- 2.日    期   : 2011年12月25日
-   作    者   : l00198894
-   修改内容   : 修改发送给AT消息ID
-
-*****************************************************************************/
 VOS_VOID  TAF_APS_SndGetDynamicSecPdpCtxInfoCnf(
     TAF_CTRL_STRU                      *pstCtrl,
     VOS_UINT32                          ulErrCode,
@@ -1985,32 +1198,14 @@ VOS_VOID  TAF_APS_SndGetDynamicSecPdpCtxInfoCnf(
     stGetDynamicPdpCtxInfoCnf.ulCidNum      = ulCidNum;
 
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     (VOS_VOID)TAF_APS_SndPsEvt(ID_EVT_TAF_PS_GET_DYNAMIC_SEC_PDP_CONTEXT_INFO_CNF,
                                 &stGetDynamicPdpCtxInfoCnf,
                                 sizeof(TAF_PS_GET_DYNAMIC_SEC_PDP_CONTEXT_INFO_CNF_STRU));
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndGetDynamicTftInfoCnf
- 功能描述  :
- 输入参数  : TAF_CTRL_STRU                      *pstCtrl
-             VOS_UINT32                          ulErrCode
-             VOS_UINT32                          ulCidNum
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月16日
-    作    者   : C00184452
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_SndGetDynamicTftInfoCnf(
     TAF_CTRL_STRU                      *pstCtrl,
     VOS_UINT32                          ulErrCode,
@@ -2024,38 +1219,14 @@ VOS_UINT32  TAF_APS_SndGetDynamicTftInfoCnf(
     stGetDynamicTftInfoCnf.enCause      = ulErrCode;
     stGetDynamicTftInfoCnf.ulCidNum     = ulCidNum;
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     ulResult = TAF_APS_SndPsEvt(ID_EVT_TAF_PS_GET_DYNAMIC_TFT_INFO_CNF,
                                 &stGetDynamicTftInfoCnf,
                                 sizeof(TAF_PS_GET_DYNAMIC_TFT_INFO_CNF_STRU));
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndDsFlowRptInd
- 功能描述  :
- 输入参数  : TAF_CTRL_STRU                      *pstCtrl
-             VOS_UINT32                          ulErrCode
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月16日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年10月16日
-    作    者   : 欧阳飞 00132663
-    修改内容   : PS Project: 修改流量上报结构体
-  3.日    期   : 2013年4月3日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核
-
-*****************************************************************************/
 VOS_VOID  TAF_APS_SndDsFlowRptInd(
     TAF_CTRL_STRU                      *pstCtrl,
     VOS_UINT32                          ulErrCode,
@@ -2063,7 +1234,6 @@ VOS_VOID  TAF_APS_SndDsFlowRptInd(
 )
 {
     TAF_PS_REPORT_DSFLOW_IND_STRU       stReportDsFlowInd;
-    /* Modified by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, begin */
     VOS_UINT32                              ulChkCurcRptFlg;
     VOS_UINT32                              ulChkUnsolicitedRptFlg;
     TAF_SDC_CURC_RPT_CTRL_STRU             *pstCurcRptCtrl          = VOS_NULL_PTR;
@@ -2085,37 +1255,19 @@ VOS_VOID  TAF_APS_SndDsFlowRptInd(
     {
         return;
     }
-    /* Modified by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, end */
 
     stReportDsFlowInd.stCtrl            = *pstCtrl;
     stReportDsFlowInd.enCause           = ulErrCode;
     stReportDsFlowInd.stDsFlowRptInfo   = *pstDsFlowRptInfo;
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     (VOS_VOID)TAF_APS_SndPsEvt(ID_EVT_TAF_PS_REPORT_DSFLOW_IND,
                                 &stReportDsFlowInd,
                                 sizeof(TAF_PS_REPORT_DSFLOW_IND_STRU));
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndClearDsFlowCnf
- 功能描述  :
- 输入参数  : TAF_CTRL_STRU                      *pstCtrl
-             VOS_UINT32                          ulErrCode
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月16日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  TAF_APS_SndClearDsFlowCnf(
     TAF_CTRL_STRU                      *pstCtrl,
     VOS_UINT32                          ulErrCode
@@ -2126,31 +1278,14 @@ VOS_VOID  TAF_APS_SndClearDsFlowCnf(
     stClearDsFlowCnf.stCtrl         = *pstCtrl;
     stClearDsFlowCnf.enCause        = ulErrCode;
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     (VOS_VOID)TAF_APS_SndPsEvt(ID_EVT_TAF_PS_CLEAR_DSFLOW_CNF,
                                &stClearDsFlowCnf,
                                sizeof(TAF_PS_CLEAR_DSFLOW_CNF_STRU));
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndConfigDsFlowRptCnf
- 功能描述  :
- 输入参数  : TAF_CTRL_STRU                      *pstCtrl
-             VOS_UINT32                          ulErrCode
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月16日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  TAF_APS_SndConfigDsFlowRptCnf(
     TAF_CTRL_STRU                      *pstCtrl,
     VOS_UINT32                          ulErrCode
@@ -2161,31 +1296,14 @@ VOS_VOID  TAF_APS_SndConfigDsFlowRptCnf(
     stClearDsFlowCnf.stCtrl         = *pstCtrl;
     stClearDsFlowCnf.enCause        = ulErrCode;
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     (VOS_VOID)TAF_APS_SndPsEvt(ID_EVT_TAF_PS_CONFIG_DSFLOW_RPT_CNF,
                                &stClearDsFlowCnf,
                                sizeof(TAF_PS_CONFIG_DSFLOW_RPT_CNF_STRU));
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndSetAuthDataInfoCnf
- 功能描述  :
- 输入参数  : TAF_CTRL_STRU                      *pstCtrl
-             VOS_UINT32                          ulErrCode
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月19日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_SndSetAuthDataInfoCnf(
     TAF_CTRL_STRU                      *pstCtrl,
     VOS_UINT32                          ulErrCode
@@ -2197,31 +1315,14 @@ VOS_UINT32  TAF_APS_SndSetAuthDataInfoCnf(
     stSetAuthDataInfoCnf.stCtrl         = *pstCtrl;
     stSetAuthDataInfoCnf.enCause        = ulErrCode;
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     ulResult = TAF_APS_SndPsEvt(ID_EVT_TAF_PS_SET_AUTHDATA_INFO_CNF,
                                 &stSetAuthDataInfoCnf,
                                 sizeof(TAF_PS_SET_AUTHDATA_INFO_CNF_STRU));
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndGetAuthDataInfoCnf
- 功能描述  :
- 输入参数  : VOS_VOID                           *pData
-             VOS_UINT32                          ulLength
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月16日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_SndGetAuthDataInfoCnf(
     VOS_VOID                           *pData,
     VOS_UINT32                          ulLength
@@ -2229,31 +1330,14 @@ VOS_UINT32  TAF_APS_SndGetAuthDataInfoCnf(
 {
     VOS_UINT32                          ulResult;
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     ulResult = TAF_APS_SndPsEvt(ID_EVT_TAF_PS_GET_AUTHDATA_INFO_CNF,
                                 pData,
                                 ulLength);
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndSetPdpDnsInfoCnf
- 功能描述  :
- 输入参数  : TAF_CTRL_STRU                      *pstCtrl
-             VOS_UINT32                          ulErrCode
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月19日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_SndSetPdpDnsInfoCnf(
     TAF_CTRL_STRU                      *pstCtrl,
     VOS_UINT32                          ulErrCode
@@ -2265,31 +1349,14 @@ VOS_UINT32  TAF_APS_SndSetPdpDnsInfoCnf(
     stSetPdpDnsInfoCnf.stCtrl           = *pstCtrl;
     stSetPdpDnsInfoCnf.enCause          = ulErrCode;
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     ulResult = TAF_APS_SndPsEvt(ID_EVT_TAF_PS_SET_PDP_DNS_INFO_CNF,
                                 &stSetPdpDnsInfoCnf,
                                 sizeof(TAF_PS_SET_PDP_DNS_INFO_CNF_STRU));
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndGetPdpDnsInfoCnf
- 功能描述  :
- 输入参数  : VOS_VOID                           *pData
-             VOS_UINT32                          ulLength
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月16日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_SndGetPdpDnsInfoCnf(
     VOS_VOID                           *pData,
     VOS_UINT32                          ulLength
@@ -2297,31 +1364,14 @@ VOS_UINT32  TAF_APS_SndGetPdpDnsInfoCnf(
 {
     VOS_UINT32                          ulResult;
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     ulResult = TAF_APS_SndPsEvt(ID_EVT_TAF_PS_GET_PDP_DNS_INFO_CNF,
                                 pData,
                                 ulLength);
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndGetGprsActiveTypeCnf
- 功能描述  :
- 输入参数  : VOS_VOID                           *pData
-             VOS_UINT32                          ulLength
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月16日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_SndGetGprsActiveTypeCnf(
     TAF_CTRL_STRU                       *pstCtrl,
     VOS_UINT32                          ulErrCode,
@@ -2335,38 +1385,14 @@ VOS_UINT32  TAF_APS_SndGetGprsActiveTypeCnf(
     stGetGprsActiveTypeCnf.enCause              = ulErrCode;
     stGetGprsActiveTypeCnf.stCidGprsActiveType  = *pstCidGprsActiveType;
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     ulResult = TAF_APS_SndPsEvt(ID_EVT_TAF_PS_GET_D_GPRS_ACTIVE_TYPE_CNF,
                                &stGetGprsActiveTypeCnf,
                                sizeof(TAF_PS_GET_D_GPRS_ACTIVE_TYPE_CNF_STRU));
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndPppDialOrigCnf
- 功能描述  :
- 输入参数  : TAF_CTRL_STRU                      *pstCtrl
-            TAF_PS_CAUSE_ENUM_UINT32            enCause
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年12月22日
-    作    者   : A00165503
-    修改内容   : PS Project: 修改错误码类型
-
-  3.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-*****************************************************************************/
 VOS_VOID TAF_APS_SndPppDialOrigCnf(
     TAF_CTRL_STRU                      *pstCtrl,
     TAF_PS_CAUSE_ENUM_UINT32            enCause
@@ -2380,12 +1406,10 @@ VOS_VOID TAF_APS_SndPppDialOrigCnf(
     stPppDialOrigCnf.stCtrl             = *pstCtrl;
     stPppDialOrigCnf.enCause            = enCause;
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     /* 发送事件 */
     (VOS_VOID)TAF_APS_SndPsEvt(ID_EVT_TAF_PS_PPP_DIAL_ORIG_CNF,
                                &stPppDialOrigCnf,
                                sizeof(TAF_PS_PPP_DIAL_ORIG_CNF_STRU));
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
 #if (FEATURE_ON == FEATURE_PTM)
     /* 记录PS拨号异常log */
@@ -2395,34 +1419,12 @@ VOS_VOID TAF_APS_SndPppDialOrigCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndGetDsFlowInfoCnf
- 功能描述  :
- 输入参数  : TAF_CTRL_STRU                      *pstCtrl
-             VOS_UINT32                          ulErrCode
-             TAF_DSFLOW_QUERY_INFO_STRU         *pstDsFlowQueryInfo
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月20日
-    作    者   : C00184452
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年10月16日
-    作    者   : 欧阳飞 00132663
-    修改内容   : PS Project: 修改流量上报结构体
-
-*****************************************************************************/
-/* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
 VOS_VOID  TAF_APS_SndGetDsFlowInfoCnf(
     TAF_CTRL_STRU                      *pstCtrl,
     VOS_UINT32                          ulErrCode,
     TAF_DSFLOW_QUERY_INFO_STRU         *pstDsFlowQryInfo
 )
-/* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
 {
     TAF_PS_GET_DSFLOW_INFO_CNF_STRU    stGetDsFlowInfoCnf;
 
@@ -2430,31 +1432,14 @@ VOS_VOID  TAF_APS_SndGetDsFlowInfoCnf(
     stGetDsFlowInfoCnf.enCause      =  ulErrCode;
     stGetDsFlowInfoCnf.stQueryInfo  = *pstDsFlowQryInfo;
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     (VOS_VOID)TAF_APS_SndPsEvt(ID_EVT_TAF_PS_GET_DSFLOW_INFO_CNF,
                                 &stGetDsFlowInfoCnf,
                                 sizeof(TAF_PS_GET_DSFLOW_INFO_CNF_STRU));
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndSetCgeqosCnf
- 功能描述  :
- 输入参数  : TAF_CTRL_STRU                      *pstCtrl
-             VOS_UINT32                          ulErrCode
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月16日
-    作    者   : C00184452
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  TAF_APS_SndSetCgeqosCnf(
     TAF_CTRL_STRU                      *pstCtrl,
     VOS_UINT32                          ulErrCode
@@ -2465,31 +1450,14 @@ VOS_VOID  TAF_APS_SndSetCgeqosCnf(
     stSetCgeqosCnf.stCtrl   = *pstCtrl;
     stSetCgeqosCnf.enCause  = ulErrCode;
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     (VOS_VOID)TAF_APS_SndPsEvt(ID_EVT_TAF_PS_SET_EPS_QOS_INFO_CNF,
                                 &stSetCgeqosCnf,
                                 sizeof(TAF_PS_SET_EPS_QOS_INFO_CNF_STRU));
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndGetCgeqosCnf
- 功能描述  :
- 输入参数  : VOS_VOID                           *pData
-             VOS_UINT32                          ulLength
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月16日
-    作    者   : C00184452
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_SndGetCgeqosCnf(
     VOS_VOID                           *pData,
     VOS_UINT32                          ulLength
@@ -2497,31 +1465,14 @@ VOS_UINT32  TAF_APS_SndGetCgeqosCnf(
 {
     VOS_UINT32                          ulResult;
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     ulResult = TAF_APS_SndPsEvt(ID_EVT_TAF_PS_GET_EPS_QOS_INFO_CNF,
                                pData,
                                ulLength);
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndGetCgeqosrdpCnf
- 功能描述  :
- 输入参数  : VOS_VOID                           *pData
-             VOS_UINT32                          ulLength
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月16日
-    作    者   : C00184452
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  TAF_APS_SndGetCgeqosrdpCnf(
     TAF_CTRL_STRU                      *pstCtrl,
     VOS_UINT32                          ulErrCode
@@ -2534,31 +1485,14 @@ VOS_VOID  TAF_APS_SndGetCgeqosrdpCnf(
     stGetCgeqosCnf.stCtrl               = *pstCtrl;
     stGetCgeqosCnf.enCause              = ulErrCode;
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     (VOS_VOID)TAF_APS_SndPsEvt(ID_EVT_TAF_PS_GET_DYNAMIC_EPS_QOS_INFO_CNF,
                                 &stGetCgeqosCnf,
                                 sizeof(TAF_PS_GET_DYNAMIC_EPS_QOS_INFO_CNF_STRU));
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndSetDialModeCnf
- 功能描述  :
- 输入参数  : TAF_CTRL_STRU                      *pstCtrl,
-             VOS_UINT32                          ulErrCode
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年04月02日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_SndSetDialModeCnf(
     TAF_CTRL_STRU                      *pstCtrl,
     VOS_UINT32                          enCause
@@ -2579,22 +1513,7 @@ VOS_UINT32  TAF_APS_SndSetDialModeCnf(
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndGetCgmtuValueCnf
- 功能描述  : TAF Aps Snd CGMTU Qry Cnf Back
- 输入参数  : TAF_CTRL_STRU                      *pstCtrl
-             VOS_UINT32                          ulMtuValue
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月29日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_SndGetCgmtuValueCnf(
     TAF_CTRL_STRU                      *pstCtrl,
     VOS_UINT32                          ulMtuValue
@@ -2615,21 +1534,7 @@ VOS_UINT32  TAF_APS_SndGetCgmtuValueCnf(
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndCgmtuValueChangeInd
- 功能描述  : TAF APS Snd Cgmtu Value Change Ind Msg to AT
- 输入参数  : VOS_UINT32                          ulMtuValue
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月29日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_SndCgmtuValueChangeInd(
     VOS_UINT32                          ulMtuValue
 )
@@ -2651,21 +1556,7 @@ VOS_UINT32  TAF_APS_SndCgmtuValueChangeInd(
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndSetApDsFlowRptCfgCnf
- 功能描述  : 发送ID_EVT_TAF_PS_SET_APDSFLOW_RPT_CFG_CNF事件
- 输入参数  : pstCtrl --- 控制头
-             enCause --- 错误码
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月2日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  TAF_APS_SndSetApDsFlowRptCfgCnf(
     TAF_CTRL_STRU                      *pstCtrl,
     TAF_PS_CAUSE_ENUM_UINT32            enCause
@@ -2683,22 +1574,7 @@ VOS_VOID  TAF_APS_SndSetApDsFlowRptCfgCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndGetApDsFlowRptCfgCnf
- 功能描述  : 发送ID_EVT_TAF_PS_GET_APDSFLOW_RPT_CFG_CNF事件
- 输入参数  : pstCtrl   --- 控制头
-             enCause   --- 错误码
-             pstRptCfg --- 配置信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月2日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  TAF_APS_SndGetApDsFlowRptCfgCnf(
     TAF_CTRL_STRU                      *pstCtrl,
     TAF_PS_CAUSE_ENUM_UINT32            enCause,
@@ -2718,22 +1594,7 @@ VOS_VOID  TAF_APS_SndGetApDsFlowRptCfgCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndApDsFlowRptInd
- 功能描述  : 发送ID_EVT_TAF_PS_APDSFLOW_REPORT_IND事件
- 输入参数  : pstCtrl    --- 控制头
-             enCause    --- 错误码
-             pstRptInfo --- 流量信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月2日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  TAF_APS_SndApDsFlowRptInd(
     TAF_CTRL_STRU                      *pstCtrl,
     TAF_APDSFLOW_REPORT_STRU           *pstRptInfo
@@ -2751,21 +1612,7 @@ VOS_VOID  TAF_APS_SndApDsFlowRptInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndSetDsFlowNvWriteCfgCnf
- 功能描述  : 发送ID_EVT_TAF_PS_SET_DSFLOW_NV_WRITE_CFG_CNF事件
- 输入参数  : pstCtrl --- 控制头
-             enCause --- 错误码
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月12日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  TAF_APS_SndSetDsFlowNvWriteCfgCnf(
     TAF_CTRL_STRU                      *pstCtrl,
     TAF_PS_CAUSE_ENUM_UINT32            enCause
@@ -2783,22 +1630,7 @@ VOS_VOID  TAF_APS_SndSetDsFlowNvWriteCfgCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndGetDsFlowNvWriteCfgCnf
- 功能描述  : 发送ID_EVT_TAF_PS_GET_DSFLOW_NV_WRITE_CFG_CNF事件
- 输入参数  : pstCtrl       --- 控制头
-             enCause       --- 错误码
-             pstNvWriteCfg --- 配置信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月12日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  TAF_APS_SndGetDsFlowNvWriteCfgCnf(
     TAF_CTRL_STRU                      *pstCtrl,
     TAF_PS_CAUSE_ENUM_UINT32            enCause,
@@ -2818,21 +1650,7 @@ VOS_VOID  TAF_APS_SndGetDsFlowNvWriteCfgCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndStkPsCallEvent
- 功能描述  : 发送当前PS呼叫状态给STK
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月20日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SndStkPsCallEvent(VOS_VOID)
 {
     NAS_STK_PS_CALLINFO_EVENT_STRU     *pstMsg          = VOS_NULL_PTR;
@@ -2871,26 +1689,7 @@ VOS_VOID TAF_APS_SndStkPsCallEvent(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_BuildDefinedCtxList
- 功能描述  :
- 输入参数  : aucCidList[]
-             *pulCidNum
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月20日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年1月9日
-    作    者   : l00198894
-    修改内容   : PS Project, 融合CID最大值
-
-*****************************************************************************/
 VOS_UINT32 MN_APS_ValidateCidList(
     VOS_UINT8                       aucCidList[],
     VOS_UINT32                     *pulCidNum
@@ -2919,26 +1718,7 @@ VOS_UINT32 MN_APS_ValidateCidList(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_BuildCidProcList
- 功能描述  : 生成需要处理的CID列表, 用于QOS, AUTH等信息, 不用于PDP上下文
- 输入参数  : aucCidList[]               - CID列表, 包含L模的CID
- 输出参数  : aucCidProcList[]           - 需要GU模处理的CID列表
-             pulCidNum                  - CID数量
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月23日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年1月9日
-    作    者   : l00198894
-    修改内容   : PS Project, 融合CID最大值
-
-*****************************************************************************/
 VOS_UINT32 MN_APS_BuildCidProcList(
     VOS_UINT8                           aucCidList[],
     VOS_UINT8                           aucCidProcList[]
@@ -2963,22 +1743,7 @@ VOS_UINT32 MN_APS_BuildCidProcList(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_RandomBytes
- 功能描述  : 生成随机数
- 输入参数  : VOS_UINT8                           *pucBuf
-             VOS_UINT16                           usLen
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月19日
-    作    者   : A00165503
-    修改内容   : AT Project: 移植AT_RandomBytes函数, 修改函数名称
-
-*****************************************************************************/
 VOS_VOID MN_APS_RandomBytes(
     VOS_UINT8                           *pucBuf,
     VOS_UINT16                           usLen
@@ -2994,21 +1759,7 @@ VOS_VOID MN_APS_RandomBytes(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_CtrlGetAuthType
- 功能描述  : 根据用户
- 输入参数  : PPP_AUTH_TYPE_ENUM_UINT8            enAuthType
- 输出参数  : 无
- 返 回 值  : PPP_AUTH_TYPE_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : A00165503
-    修改内容   : AT Project: 移植AT_CtrlGetAuthType函数, 修改函数名称
-
-*****************************************************************************/
 PPP_AUTH_TYPE_ENUM_UINT8 MN_APS_CtrlGetAuthType(
     PPP_AUTH_TYPE_ENUM_UINT8            enAuthType
 )
@@ -3025,25 +1776,7 @@ PPP_AUTH_TYPE_ENUM_UINT8 MN_APS_CtrlGetAuthType(
 }
 
 /*lint -e438 -e830*/
-/*****************************************************************************
- 函 数 名  : MN_APS_CtrlMakePCOPapAuthInfo
- 功能描述  :
- 输入参数  : PPP_REQ_CONFIG_INFO_STRU           *pstPppReqCfgInfo
-             VOS_UINT8                          *pucUserName
-             VOS_UINT16                          usUserNameLen
-             VOS_UINT8                          *pucPassWord
-             VOS_UINT16                          usPassWordLen
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : A00165503
-    修改内容   : AT Project: 移植AT_CtrlMakePCOPapAuthInfo函数, 修改函数名称
-
-*****************************************************************************/
 VOS_UINT32 MN_APS_CtrlMakePCOPapAuthInfo(
     PPP_REQ_CONFIG_INFO_STRU           *pstPppReqCfgInfo,
     VOS_UINT8                          *pucUserName,
@@ -3105,25 +1838,7 @@ VOS_UINT32 MN_APS_CtrlMakePCOPapAuthInfo(
 /*lint +e438 +e830*/
 
 
-/*****************************************************************************
- 函 数 名  : MN_APS_CtrlMakePCOChapAuthInfo
- 功能描述  :
- 输入参数  : PPP_REQ_CONFIG_INFO_STRU            *pstPppReqCfgInfo
-             VOS_UINT8                           *pucUserName
-             VOS_UINT16                           usUserNameLen
-             VOS_UINT8                           *pucPassWord
-             VOS_UINT16                           usPassWordLen
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : A00165503
-    修改内容   : AT Project: 移植AT_CtrlMakePCOChapAuthInfo函数, 修改函数名称
-
-*****************************************************************************/
 VOS_UINT32 MN_APS_CtrlMakePCOChapAuthInfo(
     PPP_REQ_CONFIG_INFO_STRU           *pstPppReqCfgInfo,
     VOS_UINT8                          *pucUserName,
@@ -3231,21 +1946,7 @@ VOS_UINT32 MN_APS_CtrlMakePCOChapAuthInfo(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_CtrlFreePCOContext
- 功能描述  : 释放鉴权信息
- 输入参数  : PPP_REQ_CONFIG_INFO_STRU           *pstPppReqCfgInfo
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : A00165503
-    修改内容   : AT Project: 移植AT_CtrlFreePCOContext函数, 修改函数名称
-
-*****************************************************************************/
 VOS_VOID MN_APS_CtrlFreePCOContext(
     PPP_REQ_CONFIG_INFO_STRU           *pstPppReqCfgInfo
 )
@@ -3279,33 +1980,7 @@ VOS_VOID MN_APS_CtrlFreePCOContext(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_RcvCallOrigReq
- 功能描述  : 处理ID_MN_PS_CALL_ORIG_REQ消息
- 输入参数  : ucPdpId      --- APS实体索引
-             pstDialParam --- 拨号参数
- 输出参数  : 无
- 返 回 值  : TAF_PS_CAUSE_ENUM
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月8日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年5月30日
-    作    者   : A00165503
-    修改内容   : DTS2012052901004: 拨号请求中无用户名, 不需要填写鉴权信息
-
-  3.日    期   : 2014年5月16日
-    作    者   : A00165503
-    修改内容   : DTS2014050703206: 调整呼叫发起流程实现, 与CID上下文参数解耦
-
-  4.日    期   : 2015年12月21日
-    作    者   : w00316404
-    修改内容   : DTS2015113004973: GU下携带P-CSCF标志位，直接返回拒绝
-*****************************************************************************/
 TAF_PS_CAUSE_ENUM_UINT32 MN_APS_RcvCallOrigReq(
     VOS_UINT8                           ucPdpId,
     TAF_PS_DIAL_PARA_STRU              *pstDialParam
@@ -3344,9 +2019,7 @@ TAF_PS_CAUSE_ENUM_UINT32 MN_APS_RcvCallOrigReq(
         stApn.ucLength = (VOS_UINT8)VOS_StrLen((VOS_CHAR *)pstDialParam->aucApn);
         PS_MEM_CPY(stApn.aucValue, pstDialParam->aucApn, TAF_MAX_APN_LEN);
 
-/* Added by zhuli for K3V3VSIM项目, 2014-10-16, begin */
         PIH_GetVsimAPN(TAF_MAX_APN_LEN, stApn.aucValue, &stApn.ucLength);
-/* Added by zhuli for K3V3VSIM项目, 2014-10-16, end */
     }
 
     /* 获取鉴权类型 */
@@ -3400,26 +2073,7 @@ TAF_PS_CAUSE_ENUM_UINT32 MN_APS_RcvCallOrigReq(
     return enRet;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_RcvCallModifyReq
- 功能描述  : 处理ID_MN_PS_CALL_MODIFY_REQ消息
- 输入参数  : ucPdpId                    - APS实体索引
-             pstCallOrigReq             - 修改PDP参数
- 输出参数  : 无
- 返 回 值  : VOS_UINT32                 - 错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月8日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年12月23日
-    作    者   : A00165503
-    修改内容   : PS Project: 修改PDP修改处理逻辑
-
-*****************************************************************************/
 VOS_UINT32 MN_APS_RcvCallModifyReq(
     VOS_UINT8                           ucPdpId,
     TAF_PS_CALL_MODIFY_REQ_STRU        *pstCallModifyReq,
@@ -3442,22 +2096,7 @@ VOS_UINT32 MN_APS_RcvCallModifyReq(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_RcvGetPdpStateReq
- 功能描述  : 处理ID_TAF_PS_GET_PDP_CONTEXT_STATE_REQ消息
- 输入参数  : pMsgData                   - 消息内容(不包含消息头)
- 输出参数  : 无
- 返 回 值  : VOS_OK                     - 成功
-             VOS_ERR                    - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月8日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MN_APS_RcvGetPdpCtxStateReq(
     VOS_VOID                           *pMsgData
 )
@@ -3533,25 +2172,7 @@ VOS_UINT32 MN_APS_RcvGetPdpCtxStateReq(
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_RcvSetPrimPdpCtxInfoReq
- 功能描述  : 处理ID_TAF_PS_SET_PRIM_PDP_CONTEXT_INFO_REQ消息
- 输入参数  : pMsgData                   - 消息内容(不包含消息头)
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月8日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年6月15日
-    作    者   : m00217266
-    修改内容   : 停止暂停PDP激活定时器(AT&T定制，PDP激活限制)
-
-*****************************************************************************/
 VOS_VOID MN_APS_RcvSetPrimPdpCtxInfoReq(
     VOS_VOID                           *pMsgData
 )
@@ -3585,25 +2206,7 @@ VOS_VOID MN_APS_RcvSetPrimPdpCtxInfoReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_RcvGetPrimPdpCtxInfoReq
- 功能描述  : 处理ID_TAF_PS_GET_PRIM_PDP_CONTEXT_INFO_REQ消息
- 输入参数  : pMsgData                   - 消息内容(不包含消息头)
- 输出参数  : 无
- 返 回 值  : VOS_OK                     - 成功
-             VOS_ERR                    - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月8日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年5月26日
-    作    者   : A00165503
-    修改内容   : DTS2012052404203: +CGDCONT命令增加对<CID 0>的支持
-*****************************************************************************/
 VOS_UINT32 MN_APS_RcvGetPrimPdpCtxInfoReq(
     VOS_VOID                           *pMsgData
 )
@@ -3674,21 +2277,7 @@ VOS_UINT32 MN_APS_RcvGetPrimPdpCtxInfoReq(
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_RcvSetSecPdpCtxInfoReq
- 功能描述  : 处理ID_TAF_PS_SET_SEC_PDP_CONTEXT_INFO_REQ消息
- 输入参数  : pMsgData                   - 消息内容(不包含消息头)
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月8日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MN_APS_RcvSetSecPdpCtxInfoReq(
     VOS_VOID                           *pMsgData
 )
@@ -3713,21 +2302,7 @@ VOS_VOID MN_APS_RcvSetSecPdpCtxInfoReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_RcvGetSecPdpCtxInfoReq
- 功能描述  : 处理ID_TAF_PS_GET_SEC_PDP_CONTEXT_INFO_REQ消息
- 输入参数  : pMsgData                   - 消息内容(不包含消息头)
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月8日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MN_APS_RcvGetSecPdpCtxInfoReq(
     VOS_VOID                           *pMsgData
 )
@@ -3792,21 +2367,7 @@ VOS_VOID MN_APS_RcvGetSecPdpCtxInfoReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_RcvSetTftInfoReq
- 功能描述  : 处理ID_TAF_PS_SET_PDP_TFT_INFO_REQ消息
- 输入参数  : pMsgData                   - 消息内容(不包含消息头)
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月8日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MN_APS_RcvSetTftInfoReq(
     VOS_VOID                           *pMsgData
 )
@@ -3828,21 +2389,7 @@ VOS_VOID MN_APS_RcvSetTftInfoReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetRptTftInfoCidNum
- 功能描述  : 返回PDP TABLE中设置了TFT参数并上报的CID个数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT8                  CID个数
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年01月28日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 TAF_APS_GetRptTftInfoCidNum(VOS_VOID)
 {
     VOS_UINT8                           ucIndex;
@@ -3864,26 +2411,7 @@ VOS_UINT8 TAF_APS_GetRptTftInfoCidNum(VOS_VOID)
     return ucCidNum;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_RcvGetTftInfoReq
- 功能描述  : 处理ID_TAF_PS_GET_PDP_TFT_INFO_REQ消息
- 输入参数  : pMsgData                   - 消息内容(不包含消息头)
- 输出参数  : 无
- 返 回 值  : VOS_OK                     - 成功
-             VOS_ERR                    - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月8日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年01月28日
-    作    者   : l00198894
-    修改内容   : 根据设置了TFT参数的CID个数申请内存
-
-*****************************************************************************/
 VOS_UINT32 MN_APS_RcvGetTftInfoReq(
     VOS_VOID                           *pMsgData
 )
@@ -3955,21 +2483,7 @@ VOS_UINT32 MN_APS_RcvGetTftInfoReq(
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_RcvSetUmtsQosInfoReq
- 功能描述  : 处理ID_TAF_PS_SET_PDP_UMTS_QOS_INFO_REQ消息
- 输入参数  : pMsgData                   - 消息内容(不包含消息头)
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月8日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MN_APS_RcvSetUmtsQosInfoReq(
     VOS_VOID                           *pMsgData
 )
@@ -3994,21 +2508,7 @@ VOS_VOID MN_APS_RcvSetUmtsQosInfoReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_RcvGetUmtsQosInfoReq
- 功能描述  : 处理ID_TAF_PS_GET_PDP_UMTS_QOS_INFO_REQ消息
- 输入参数  : pMsgData                   - 消息内容(不包含消息头)
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月8日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MN_APS_RcvGetUmtsQosInfoReq(
     VOS_VOID                           *pMsgData
 )
@@ -4076,21 +2576,7 @@ VOS_VOID MN_APS_RcvGetUmtsQosInfoReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_APS_RcvSetUmtsQosMinInfoReq
- 功能描述  : 处理ID_TAF_PS_SET_PDP_UMTS_QOS_MIN_INFO_REQ消息
- 输入参数  : pMsgData                   - 消息内容(不包含消息头)
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月8日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MN_APS_RcvSetUmtsQosMinInfoReq(
     VOS_VOID                           *pMsgData
 )
@@ -4115,21 +2601,7 @@ VOS_VOID MN_APS_RcvSetUmtsQosMinInfoReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_RcvGetUmtsQosMinInfoReq
- 功能描述  : 处理ID_TAF_PS_GET_PDP_UMTS_QOS_MIN_INFO_REQ消息
- 输入参数  : pMsgData                   - 消息内容(不包含消息头)
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月8日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MN_APS_RcvGetUmtsQosMinInfoReq(
     VOS_VOID                           *pMsgData
 )
@@ -4195,21 +2667,7 @@ VOS_VOID MN_APS_RcvGetUmtsQosMinInfoReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_RcvGetDynamicUmtsQosInfoReq
- 功能描述  : 处理ID_TAF_PS_GET_DYNAMIC_PDP_UMTS_QOS_INFO_REQ消息
- 输入参数  : pMsgData                   - 消息内容(不包含消息头)
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月8日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MN_APS_RcvGetDynamicUmtsQosInfoReq(
     VOS_VOID                           *pMsgData
 )
@@ -4291,22 +2749,7 @@ VOS_VOID MN_APS_RcvGetDynamicUmtsQosInfoReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_RcvGetPdpIpAddrInfoReq
- 功能描述  : 处理ID_TAF_PS_GET_PDP_ADDR_INFO_REQ消息
- 输入参数  : pMsgData                   - 消息内容(不包含消息头)
- 输出参数  : 无
- 返 回 值  : VOS_OK                     - 成功
-             VOS_ERR                    - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月8日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MN_APS_RcvGetPdpIpAddrInfoReq(
     VOS_VOID                           *pMsgData
 )
@@ -4387,21 +2830,7 @@ VOS_UINT32 MN_APS_RcvGetPdpIpAddrInfoReq(
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_RcvSetAnsModeInfoReq
- 功能描述  : 处理ID_TAF_PS_SET_ANSWER_MODE_INFO_REQ消息
- 输入参数  : pMsgData                   - 消息内容(不包含消息头)
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月8日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MN_APS_RcvSetAnsModeInfoReq(
     VOS_VOID                           *pMsgData
 )
@@ -4435,21 +2864,7 @@ VOS_VOID MN_APS_RcvSetAnsModeInfoReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_RcvGetAnsModeInfoReq
- 功能描述  : 处理ID_TAF_PS_GET_ANSWER_MODE_INFO_REQ消息
- 输入参数  : pMsgData                   - 消息内容(不包含消息头)
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月8日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MN_APS_RcvGetAnsModeInfoReq(
     VOS_VOID                           *pMsgData
 )
@@ -4477,22 +2892,7 @@ VOS_VOID MN_APS_RcvGetAnsModeInfoReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_RcvGetDynamicPrimPdpCtxInfoReq
- 功能描述  : 处理ID_TAF_PS_GET_DYNAMIC_PRI_PDP_CONTEXT_INFO_REQ消息
- 输入参数  : pMsgData                   - 消息内容(不包含消息头)
- 输出参数  : 无
- 返 回 值  : VOS_OK                     - 成功
-             VOS_ERR                    - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月8日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MN_APS_RcvGetDynamicPrimPdpCtxInfoReq(
     VOS_VOID                           *pMsgData
 )
@@ -4518,22 +2918,7 @@ VOS_UINT32 MN_APS_RcvGetDynamicPrimPdpCtxInfoReq(
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_RcvGetDynamicSecPdpCtxInfoReq
- 功能描述  : 处理ID_TAF_PS_GET_DYNAMIC_SEC_PDP_CONTEXT_INFO_REQ消息
- 输入参数  : pMsgData                   - 消息内容(不包含消息头)
- 输出参数  : 无
- 返 回 值  : VOS_OK                     - 成功
-             VOS_ERR                    - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月8日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MN_APS_RcvGetDynamicSecPdpCtxInfoReq(
     VOS_VOID                           *pMsgData
 )
@@ -4559,22 +2944,7 @@ VOS_UINT32 MN_APS_RcvGetDynamicSecPdpCtxInfoReq(
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_RcvGetDynamicTftInfoReq
- 功能描述  : 处理ID_TAF_PS_GET_DYNAMIC_PDP_TFT_INFO_REQ消息
- 输入参数  : pMsgData                   - 消息内容(不包含消息头)
- 输出参数  : 无
- 返 回 值  : VOS_OK                     - 成功
-             VOS_ERR                    - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月8日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MN_APS_RcvGetDynamicTftInfoReq(
     VOS_VOID                           *pMsgData
 )
@@ -4600,22 +2970,7 @@ VOS_UINT32 MN_APS_RcvGetDynamicTftInfoReq(
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_RcvSetPdpDnsInfoReq
- 功能描述  : 处理ID_TAF_PS_SET_PDP_DNS_INFO_REQ消息
- 输入参数  : pMsgData                   - 消息内容(不包含消息头)
- 输出参数  : 无
- 返 回 值  : VOS_OK                     - 成功
-             VOS_ERR                    - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月8日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MN_APS_RcvSetPdpDnsInfoReq(
     VOS_VOID                           *pMsgData
 )
@@ -4641,22 +2996,7 @@ VOS_UINT32 MN_APS_RcvSetPdpDnsInfoReq(
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_RcvGetPdpDnsInfoReq
- 功能描述  : 处理ID_TAF_PS_GET_PDP_DNS_INFO_REQ消息
- 输入参数  : pMsgData                   - 消息内容(不包含消息头)
- 输出参数  : 无
- 返 回 值  : VOS_OK                     - 成功
-             VOS_ERR                    - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月8日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MN_APS_RcvGetPdpDnsInfoReq(
     VOS_VOID                           *pMsgData
 )
@@ -4725,21 +3065,7 @@ VOS_UINT32 MN_APS_RcvGetPdpDnsInfoReq(
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_RcvConfigNbnsFunctionReq
- 功能描述  : 处理ID_MN_PS_CONFIG_NBNS_FUNCTION_REQ消息
- 输入参数  : pMsgData                   - 消息内容(不包含消息头)
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月8日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MN_APS_RcvConfigNbnsFunctionReq(
     VOS_VOID                           *pMsgData
 )
@@ -4755,25 +3081,9 @@ VOS_VOID MN_APS_RcvConfigNbnsFunctionReq(
     return;
 }
 
-/* Deleted by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
-/* Deleted by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
 
-/*****************************************************************************
- 函 数 名  : MN_APS_RcvSetAuthDataInfoReq
- 功能描述  : 处理ID_TAF_PS_SET_AUTHDATA_INFO_REQ消息
- 输入参数  : pMsgData                   - 消息内容(不包含消息头)
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月8日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MN_APS_RcvSetAuthDataInfoReq(
     VOS_VOID                           *pMsgData
 )
@@ -4801,24 +3111,7 @@ VOS_VOID MN_APS_RcvSetAuthDataInfoReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_RcvGetAuthDataInfoReq
- 功能描述  : 处理ID_TAF_PS_GET_AUTHDATA_INFO_REQ消息
- 输入参数  : pMsgData                   - 消息内容(不包含消息头)
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月8日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2013年12月25日
-    作    者   : A00165503
-    修改内容   : DTS2013122403650: ^AUTHDATA命令支持CID0
-*****************************************************************************/
 VOS_VOID MN_APS_RcvGetAuthDataInfoReq(
     VOS_VOID                           *pMsgData
 )
@@ -4888,22 +3181,7 @@ VOS_VOID MN_APS_RcvGetAuthDataInfoReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_RcvGetGprsActiveTypeReq
- 功能描述  : 处理ID_MSG_TAF_PS_GET_D_GPRS_ACTIVE_TYPE_REQ消息
- 输入参数  : pMsgData                   - 消息内容(不包含消息头)
- 输出参数  : 无
- 返 回 值  : VOS_OK                     - 成功
-             VOS_ERR                    - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月8日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MN_APS_RcvGetGprsActiveTypeReq(
     VOS_VOID                           *pMsgData
 )
@@ -5023,28 +3301,7 @@ VOS_UINT32 MN_APS_RcvGetGprsActiveTypeReq(
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_PppCovertConfigInfo
- 功能描述  : 将PPP模块激活请求的参数转换为NAS的拨号参数.
-             PPP模块发送给AT的AUTH参数和IPCP参数为数组结构; NAS PDP激活时的AUTH
-             参数和IPCP参数为指针结构。
 
- 输入参数  : PPP_REQ_CONFIG_INFO_STRU           *pstPppReqConfigInfo
-             AT_PPP_REQ_CONFIG_INFO_STRU        *pstPppAtReqConfigInfo
-             pstPppAtReqConfigInfo: 为来自PPP模块的AUTH和IPCP成员为数组的参数
-             pstPppReqConfigInfo: 为NAS PDP激活时AUTH和IPCP为指针的参数
-
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2011年3月29日
-    作    者   : L00171473
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MN_APS_PppCovertConfigInfo(
     PPP_REQ_CONFIG_INFO_STRU           *pstPppReqConfigInfo,
     TAF_PPP_REQ_CONFIG_INFO_STRU       *pstPppAtReqConfigInfo
@@ -5182,29 +3439,7 @@ VOS_UINT32 MN_APS_PppCovertConfigInfo(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_RcvPppDialOrigReq
- 功能描述  : 处理ID_MSG_TAF_PS_PPP_DIAL_ORIG_REQ消息
- 输入参数  : ucPdpId            - APS实体索引
-             pstPppDialParaInfo - PPP拨号参数
- 输出参数  : 无
- 返 回 值  : TAF_PS_CAUSE_ENUM
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月8日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年10月30日
-    作    者   : f00179208
-    修改内容   : DTS2012102901833:PPP拨号后导致内存泄露
-
-  3.日    期   : 2014年5月16日
-    作    者   : A00165503
-    修改内容   : DTS2014050703206: 调整PPP拨号流程实现
-*****************************************************************************/
 TAF_PS_CAUSE_ENUM_UINT32 MN_APS_RcvPppDialOrigReq(
     VOS_UINT8                           ucPdpId,
     TAF_PPP_DIAL_PARA_STRU             *pstPppDialParaInfo
@@ -5271,30 +3506,7 @@ TAF_PS_CAUSE_ENUM_UINT32 MN_APS_RcvPppDialOrigReq(
     return enRet;
 }
 
-/*****************************************************************************
- Prototype      : TAF_APS_PsCallOrig()
- Description    : PDP激活.该函数接收API输入的参数，根据这些参数和PDP全局变量
-                  数据表中的参数判断应该发起激活还是二次激活，然后将该参数和
-                  PDP全局变量数据表中的参数适配成Aps_PdpMdfReq()函数要求的接
-                  口参数,然后调用函数Aps_PdpMdfReq(),发起激活或二次激活;
- Input          : ucPdpId
- Output         : pucError,若函数执行失败，此参数输出出错的错误类型
- Return Value   :
- Data Access    : g_PdpEntity
- Data update    :
- Calls          : Aps_ActJudgePriOrSecAct()
-                  Aps_PdpActReq()
-                  Aps_PdpSecActReq()
- Called By      : TAFM
- History        : ---
-  1.Date        : 2005-
-    Author      : 韩鲁峰
-    Modification: Created function
 
-  2.日    期   : 2014年5月16日
-    作    者   : A00165503
-    修改内容   : DTS2014050703206: 调整呼叫发起流程实现, 与CID上下文参数解耦
-*****************************************************************************/
 TAF_PS_CAUSE_ENUM_UINT32 TAF_APS_PsCallOrig(VOS_UINT8 ucPdpId)
 {
     VOS_UINT8                           ucCid;
@@ -5366,24 +3578,7 @@ VOS_VOID  Aps_ActJudgePriOrSecAct (
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_FillPapParam
- 功能描述  : 填充PS域呼叫的PAP鉴权参数, 用户名和密码长度合法性由调用者保证
- 输入参数  : pucUserName   - 用户名信息
-             usUserNameLen - 用户名长度
-             pucPassWord   - 密码信息
-             usPassWordLen - 密码长度
- 输出参数  : pstAuthParam  - 鉴权信息
- 返 回 值  : VOS_OK        - 成功
-             VOS_ERR       - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月18日
-    作    者   : l00198894
-    修改内容   : DTS2012121709304: 修改+CGACT拨号命令鉴权类型配置命令为^AUTHDATA
-*****************************************************************************/
 VOS_UINT32 TAF_APS_FillPapParam(
     TAF_PDP_PCO_AUTH_STRU              *pstAuthParam,
     VOS_UINT8                          *pucUserName,
@@ -5410,25 +3605,7 @@ VOS_UINT32 TAF_APS_FillPapParam(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_FillChapParam
- 功能描述  : 生成并填充PS域呼叫的CHAP鉴权参数, 用户名和密码长度合法性由调用
-             者保证
- 输入参数  : pucUserName   - 用户名信息
-             usUserNameLen - 用户名长度
-             pucPassWord   - 密码信息
-             usPassWordLen - 密码长度
- 输出参数  : pstAuthParam  - 鉴权信息
- 返 回 值  : VOS_OK        - 成功
-             VOS_ERR       - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月18日
-    作    者   : l00198894
-    修改内容   : DTS2012121709304: 修改+CGACT拨号命令鉴权类型配置命令为^AUTHDATA
-*****************************************************************************/
 VOS_UINT32 TAF_APS_FillChapParam(
     TAF_PDP_PCO_AUTH_STRU              *pstAuthParam,
     VOS_UINT8                          *pucUserName,
@@ -5473,21 +3650,7 @@ VOS_UINT32 TAF_APS_FillChapParam(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_FillAuthParamFromProfile
- 功能描述  : 根据Profile信息填充PS域呼叫鉴权参数
- 输入参数  : pstAuthParam       - 鉴权参数
-             pstAuthProfileInfo - 鉴权Profile信息
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月18日
-    作    者   : l00198894
-    修改内容   : DTS2012121709304: 修改+CGACT拨号命令鉴权类型配置命令为^AUTHDATA
-*****************************************************************************/
 VOS_UINT32 TAF_APS_FillAuthParamFromProfile(
     TAF_PDP_PCO_AUTH_STRU              *pstAuthParam,
     TAF_NDIS_AUTHDATA_TABLE_STRU       *pstAuthProfileInfo
@@ -5543,26 +3706,7 @@ VOS_UINT32 TAF_APS_FillAuthParamFromProfile(
     return ulRslt;
 }
 
-/*****************************************************************************
- Prototype      : Aps_PackApsActReqPara
- Description    : 构造并输出函数Aps_PdpActReq()需要的输入参数;对应V100R001中的
-                  Taf_FillApsPdp(),有所修改.
- Input          : ucCid
-                  ucPdpId
- Output         : pApsActReq
- Return Value   :
- Data Accessed  : PDP全局数据表g_TafCidTab[TAF_MAX_CID + 1];
- Data Updated   :
- Calls          :
- Called By      :
- History        : ---
-  1.Date        : 2005-
-    Author      : ---
-    Modification: Created function
-  2.日    期   : 2012年12月18日
-    作    者   : l00198894
-    修改内容   : DTS2012121709304: 修改+CGACT拨号命令鉴权类型配置命令为^AUTHDATA
-*****************************************************************************/
+
 VOS_UINT32  Aps_PackApsActReqPara (
     VOS_UINT8                           ucCid,
     VOS_UINT8                           ucPdpId,
@@ -5701,24 +3845,7 @@ VOS_VOID  Aps_CopyAuthToActReqPara(
     return;
 }
 
-/*****************************************************************************
- Prototype      : Aps_CopyAddrToActReqPara
- Description    :
- Input          : pucIpAddr
- Output         : pApsActReq
- Return Value   :
- Data Accessed  :
- Data Updated   :
- Calls          :
- Called By      :
- History        : ---
-  1.Date        : 2005-
-    Author      : ---
-    Modification: Created function
-  2.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，结构替换
-*****************************************************************************/
+
 VOS_VOID  Aps_CopyAddrToActReqPara(
     CONST VOS_UINT8                    *pucIpAddr,
     APS_PDP_ACT_REQ_ST                 *pApsActReq
@@ -5744,25 +3871,7 @@ VOS_VOID  Aps_CopyAddrToActReqPara(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : Aps_PsCallOrigNormCid
- 功能描述  : 当PDP数据表已经定义，并且CID=[1,11]时调用此函数进行激活
- 输入参数  : ucCid
-             ucPdpId
- 输出参数  : 无
- 返 回 值  : TAF_PS_CAUSE_ENUM
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2005
-    作    者   : ---
-    修改内容   : 新生成函数
-
-  2.日    期   : 2014年5月16日
-    作    者   : A00165503
-    修改内容   : DTS2014050703206: 调整函数返回值为PS域错误码
-*****************************************************************************/
 TAF_PS_CAUSE_ENUM_UINT32 Aps_PsCallOrigNormCid(
     VOS_UINT8                           ucCid,
     VOS_UINT8                           ucPdpId
@@ -5825,22 +3934,7 @@ TAF_PS_CAUSE_ENUM_UINT32 Aps_PsCallOrigNormCid(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_PsCallForDial
- 功能描述  : 发起PS域呼叫
- 输入参数  : ucPdpId          --- APS实体索引
-             pstApn           --- APN信息
-             pstPppConfigInfo --- PPP配置信息
- 输出参数  : 无
- 返 回 值  : TAF_PS_CAUSE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月16日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 TAF_PS_CAUSE_ENUM_UINT32 TAF_APS_PsCallForDial(
     VOS_UINT8                           ucPdpId,
     TAF_PDP_ADDR_STRU                  *pstPdpAddr,
@@ -5888,29 +3982,7 @@ TAF_PS_CAUSE_ENUM_UINT32 TAF_APS_PsCallForDial(
     return TAF_PS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Prototype      : Aps_GetIpcpInfo()
- Description    :
- Input          : pPsCallDialPara
- Output         : pPsCallDial
- Return Value   :
- Data Accessed  :
- Data Updated   :
- Calls          :
- Called By      :
- History        : ---
-  1.Date        : 2005-
-    Author      : ---
-    Modification: Created function
 
-  2.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，结构替换
-
-  3.日    期   : 2014年5月16日
-    作    者   : A00165503
-    修改内容   : DTS2014050703206: 去除IPCP报文中IP地址的提取
-*****************************************************************************/
 VOS_VOID Aps_GetIpcpInfo(
     PPP_REQ_CONFIG_INFO_STRU           *pPsDialPara,
     TAF_PSCALL_FOR_DIAL_EXT_STRU       *pApsDialReqPara
@@ -6220,32 +4292,7 @@ VOS_UINT32  Aps_GetAuthInfo(            PPP_REQ_CONFIG_INFO_STRU   *pPsDialPara,
 
 }
 
-/*****************************************************************************
- Prototype      : Aps_PackDialActReqPara()
- Description    : 拨号激活指定CID时,调用此函数构造激活函数Aps_PdpActReq()
-                  所需要的激活输入参数.此函数适用于指定了CID的情况
- Input          : ucCid,
-                  ucPdpId,
-                  pPsCallDialPara,
- Output         : pAPS_PDP_ACT_REQ_ST
- Return Value   :
- Data Accessed  :
- Data Updated   :
- Calls          :
- Called By      :
- History        : ---
-  1.Date        : 2005
-    Author      : hanlufeng
-    Modification: Created function
 
-  2.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，结构替换
-
-  3.日    期   : 2014年5月16日
-    作    者   : A00165503
-    修改内容   : DTS2014050703206: 调整呼叫发起流程实现, 与CID上下文参数解耦
-*****************************************************************************/
 VOS_UINT32  Aps_PackDialActReqPara(
     VOS_UINT8                           ucPdpId,
     TAF_PSCALL_FOR_DIAL_EXT_STRU       *pPsCallDial,
@@ -6364,21 +4411,7 @@ VOS_UINT32  Aps_PackDialActReqPara(
     return  TAF_APS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : Taf_FillQos_Set_MaximSduSize
- 功能描述  : 解析Maximum SDU size (Taf_FillQos降圈复杂度)
- 输入参数  : pTafPdp
- 输出参数  : pApsQos
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  Taf_FillQos_Set_MaximSduSize(
     TAF_PDP_TABLE_STRU                  *pTafPdp,
     APS_PDP_QOS_STRU                    *pApsQos
@@ -6418,21 +4451,7 @@ VOS_VOID  Taf_FillQos_Set_MaximSduSize(
 
 }
 
-/*****************************************************************************
- 函 数 名  : Taf_FillQos_Set_MaxBitRateForUp
- 功能描述  : 解析Maximum bit rate for uplink (Taf_FillQos降圈复杂度)
- 输入参数  : pTafPdp
- 输出参数  : pApsQos
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  Taf_FillQos_Set_MaxBitRateForUp(
     TAF_PDP_TABLE_STRU                  *pTafPdp,
     APS_PDP_QOS_STRU                    *pApsQos
@@ -6547,21 +4566,7 @@ VOS_VOID  Taf_FillQos_Set_MaxBitRateForUp(
 
 }
 
-/*****************************************************************************
- 函 数 名  : Taf_FillQos_Set_MaxBitRateForDown
- 功能描述  : 解析Maximum bit rate for downlink (Taf_FillQos降圈复杂度)
- 输入参数  : pTafPdp
- 输出参数  : pApsQos
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  Taf_FillQos_Set_MaxBitRateForDown(
     TAF_PDP_TABLE_STRU                  *pTafPdp,
     APS_PDP_QOS_STRU                    *pApsQos
@@ -6644,21 +4649,7 @@ VOS_VOID  Taf_FillQos_Set_MaxBitRateForDown(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : Taf_FillQos_Set_TransDelay
- 功能描述  : 解析Transfer delay (Taf_FillQos降圈复杂度)
- 输入参数  : pTafPdp
- 输出参数  : pApsQos
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  Taf_FillQos_Set_TransDelay(
     TAF_PDP_TABLE_STRU                  *pTafPdp,
     APS_PDP_QOS_STRU                    *pApsQos
@@ -6723,21 +4714,7 @@ VOS_VOID  Taf_FillQos_Set_TransDelay(
 
 }
 
-/*****************************************************************************
- 函 数 名  : Taf_FillQos_Set_GuarantBitRateForUp
- 功能描述  : 解析Guaranteed bit rate for uplink(Taf_FillQos降圈复杂度)
- 输入参数  : pTafPdp
- 输出参数  : pApsQos
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  Taf_FillQos_Set_GuarantBitRateForUp(
     TAF_PDP_TABLE_STRU                  *pTafPdp,
     APS_PDP_QOS_STRU                    *pApsQos
@@ -6853,21 +4830,7 @@ VOS_VOID  Taf_FillQos_Set_GuarantBitRateForUp(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : Taf_FillQos_Set_GuarantBitRateForDown
- 功能描述  : 解析Guaranteed bit rate for downlink(Taf_FillQos降圈复杂度)
- 输入参数  : pTafPdp
- 输出参数  : pApsQos
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  Taf_FillQos_Set_GuarantBitRateForDown(
     TAF_PDP_TABLE_STRU                  *pTafPdp,
     APS_PDP_QOS_STRU                    *pApsQos
@@ -6949,21 +4912,7 @@ VOS_VOID  Taf_FillQos_Set_GuarantBitRateForDown(
 
 }
 
-/*****************************************************************************
- 函 数 名  : Taf_FillQos_Set_DelayClass
- 功能描述  : 解析Delay class(Taf_FillQos降圈复杂度)
- 输入参数  : pTafPdp
- 输出参数  : pApsQos
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  Taf_FillQos_Set_DelayClass(
     APS_PDP_QOS_STRU                    *pApsQos
 )
@@ -7008,21 +4957,7 @@ VOS_VOID  Taf_FillQos_Set_DelayClass(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : Taf_FillQos_Set_ReliabClass
- 功能描述  : 解析Reliable class(Taf_FillQos降圈复杂度)
- 输入参数  : pTafPdp
- 输出参数  : pApsQos
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  Taf_FillQos_Set_ReliabClass(
     APS_PDP_QOS_STRU                    *pApsQos
 )
@@ -7060,21 +4995,7 @@ VOS_VOID  Taf_FillQos_Set_ReliabClass(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : Taf_FillQos_Set_PeakThrough
- 功能描述  : 解析Peak Throughput(Taf_FillQos降圈复杂度)
- 输入参数  : pTafPdp
- 输出参数  : pApsQos
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  Taf_FillQos_Set_PeakThrough(
     APS_PDP_QOS_STRU                    *pApsQos
 )
@@ -7127,21 +5048,7 @@ VOS_VOID  Taf_FillQos_Set_PeakThrough(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : Taf_FillQos_Set_SrcStatisticsDescriptor
- 功能描述  : 解析Source Statistics Descriptor(Taf_FillQos降圈复杂度)
- 输入参数  : pstTafPdp  --指向的值不会改变，指向const的指针
- 输出参数  : pstApsQos
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月7日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  Taf_FillQos_Set_SrcStatisticsDescriptor(
     const TAF_PDP_TABLE_STRU            *pstTafPdp,
     APS_PDP_QOS_STRU                    *pstApsQos
@@ -7160,21 +5067,7 @@ VOS_VOID  Taf_FillQos_Set_SrcStatisticsDescriptor(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : Taf_FillQos_Set_SignallingIndication
- 功能描述  : 解析Signalling Indication(Taf_FillQos降圈复杂度)
- 输入参数  : pTafPdp    --指向的值不会改变，指向const的指针
- 输出参数  : pApsQos
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月7日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  Taf_FillQos_Set_SignallingIndication(
     const TAF_PDP_TABLE_STRU            *pstTafPdp,
     APS_PDP_QOS_STRU                    *pstApsQos
@@ -7200,24 +5093,7 @@ VOS_VOID  Taf_FillQos_Set_SignallingIndication(
 }
 
 
-/*****************************************************************************
- 函 数 名  : Taf_FillQos_QosTab_Used
- 功能描述  : Taf_FillQos降复杂度 :  QOS 表有效的处理
- 输入参数  : pTafPdp
- 输出参数  : pApsQos
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-  2.日    期   : 2015年4月7日
-    作    者   : w00316404
-    修改内容   : M project A characeristic AT part
-
-*****************************************************************************/
 VOS_VOID  Taf_FillQos_QosTab_Used(
     TAF_PDP_TABLE_STRU                  *pTafPdp,
     APS_PDP_QOS_STRU                    *pApsQos
@@ -7440,21 +5316,7 @@ VOS_VOID  Taf_FillQos(  TAF_PDP_TABLE_STRU         *pTafPdp,
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : Taf_FillMinQos_Set_MaximSduSize
- 功能描述  : 解析maximum SDU size(Taf_FillMinQos降圈复杂度)
- 输入参数  : pTafPdp
- 输出参数  : pApsQos
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  Taf_FillMinQos_Set_MaximSduSize(
     TAF_PDP_TABLE_STRU                  *pTafPdp,
     APS_PDP_QOS_STRU                    *pApsQos
@@ -7494,21 +5356,7 @@ VOS_VOID  Taf_FillMinQos_Set_MaximSduSize(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : Taf_FillMinQos_Set_MaxBitRateForUp
- 功能描述  : 解析maximum bit rate for uplink(Taf_FillMinQos降圈复杂度)
- 输入参数  : pTafPdp
- 输出参数  : pApsQos
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  Taf_FillMinQos_Set_MaxBitRateForUp(
     TAF_PDP_TABLE_STRU                  *pTafPdp,
     APS_PDP_QOS_STRU                    *pApsQos
@@ -7624,21 +5472,7 @@ VOS_VOID  Taf_FillMinQos_Set_MaxBitRateForUp(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : Taf_FillMinQos_Set_MaxBitRateForDown
- 功能描述  : 解析maximum bit rate for downlink(Taf_FillMinQos降圈复杂度)
- 输入参数  : pTafPdp
- 输出参数  : pApsQos
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  Taf_FillMinQos_Set_MaxBitRateForDown(
     TAF_PDP_TABLE_STRU                  *pTafPdp,
     APS_PDP_QOS_STRU                    *pApsQos
@@ -7718,21 +5552,7 @@ VOS_VOID  Taf_FillMinQos_Set_MaxBitRateForDown(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : Taf_FillMinQos_Set_TransDelay
- 功能描述  : 解析transfer delay(Taf_FillMinQos降圈复杂度)
- 输入参数  : pTafPdp
- 输出参数  : pApsQos
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  Taf_FillMinQos_Set_TransDelay(
     TAF_PDP_TABLE_STRU                  *pTafPdp,
     APS_PDP_QOS_STRU                    *pApsQos
@@ -7797,21 +5617,7 @@ VOS_VOID  Taf_FillMinQos_Set_TransDelay(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : Taf_FillMinQos_Set_GuarantBitRateForUp
- 功能描述  : 解析Guaranteed bit rate for uplink(Taf_FillMinQos降圈复杂度)
- 输入参数  : pTafPdp
- 输出参数  : pApsQos
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  Taf_FillMinQos_Set_GuarantBitRateForUp(
     TAF_PDP_TABLE_STRU                  *pTafPdp,
     APS_PDP_QOS_STRU                    *pApsQos
@@ -7926,21 +5732,7 @@ VOS_VOID  Taf_FillMinQos_Set_GuarantBitRateForUp(
 
 }
 
-/*****************************************************************************
- 函 数 名  : Taf_FillMinQos_Set_GuarantBitRateForDown
- 功能描述  : 解析Guaranteed bit rate for downlink(Taf_FillMinQos降圈复杂度)
- 输入参数  : pTafPdp
- 输出参数  : pApsQos
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  Taf_FillMinQos_Set_GuarantBitRateForDown(
     TAF_PDP_TABLE_STRU                  *pTafPdp,
     APS_PDP_QOS_STRU                    *pApsQos
@@ -8020,21 +5812,7 @@ VOS_VOID  Taf_FillMinQos_Set_GuarantBitRateForDown(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : Taf_FillMinQos_Set_DelayClass
- 功能描述  : 解析Delay class(Taf_FillMinQos降圈复杂度)
- 输入参数  : pTafPdp
- 输出参数  : pApsQos
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  Taf_FillMinQos_Set_DelayClass(
     APS_PDP_QOS_STRU                    *pApsQos
 )
@@ -8080,21 +5858,7 @@ VOS_VOID  Taf_FillMinQos_Set_DelayClass(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : Taf_FillMinQos_Set_ReliabClass
- 功能描述  : 解析Reliable Class(Taf_FillMinQos降圈复杂度)
- 输入参数  : pTafPdp
- 输出参数  : pApsQos
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  Taf_FillMinQos_Set_ReliabClass(
     APS_PDP_QOS_STRU                    *pApsQos
 )
@@ -8132,21 +5896,7 @@ VOS_VOID  Taf_FillMinQos_Set_ReliabClass(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : Taf_FillMinQos_Set_PeakThrough
- 功能描述  : 解析Peak throughput(Taf_FillMinQos降圈复杂度)
- 输入参数  : pTafPdp
- 输出参数  : pApsQos
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  Taf_FillMinQos_Set_PeakThrough(
     APS_PDP_QOS_STRU                    *pApsQos
 )
@@ -8199,21 +5949,7 @@ VOS_VOID  Taf_FillMinQos_Set_PeakThrough(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : Taf_FillMinQos_Set_SrcStatisticsDescriptor
- 功能描述  : 解析Source Statistics Descriptor(Taf_FillMinQos降圈复杂度)
- 输入参数  : pTafPdp    --指向的值不会改变，指向const的指针
- 输出参数  : pApsQos
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月7日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  Taf_FillMinQos_Set_SrcStatisticsDescriptor(
     const TAF_PDP_TABLE_STRU            *pstTafPdp,
     APS_PDP_QOS_STRU                    *pstApsQos
@@ -8232,21 +5968,7 @@ VOS_VOID  Taf_FillMinQos_Set_SrcStatisticsDescriptor(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : Taf_FillMinQos_Set_SignallingIndication
- 功能描述  : 解析Signalling Indication(Taf_FillMinQos降圈复杂度)
- 输入参数  : pTafPdp    --指向的值不会改变，指向const的指针
- 输出参数  : pApsQos
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月7日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  Taf_FillMinQos_Set_SignallingIndication(
     const TAF_PDP_TABLE_STRU            *pstTafPdp,
     APS_PDP_QOS_STRU                    *pstApsQos
@@ -8272,24 +5994,7 @@ VOS_VOID  Taf_FillMinQos_Set_SignallingIndication(
 }
 
 
-/*****************************************************************************
- 函 数 名  : Taf_FillMinQos
- 功能描述  : 根据Qos表中APP设定的值，转化为24008中定义的值.完全继承V100R001
- 输入参数  : pTafPdp
- 输出参数  : pApsQos
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-  2.日    期   : 2015年4月7日
-    作    者   : w00316404
-    修改内容   : M project A characeristic AT part
-
-*****************************************************************************/
 VOS_VOID  Taf_FillMinQos(
     TAF_PDP_TABLE_STRU                  *pTafPdp,
     APS_PDP_QOS_STRU                    *pApsQos
@@ -8440,20 +6145,7 @@ VOS_VOID  Taf_FillMinQos(
     return;
 }
 
-/******************************************************************************
- Function:       Taf_LenStr2Apn
- Description:    将字符串格式的APN转化为协议定义的APN格式.完全继承V100R001
- Calls:          Taf_LenStr2Apn
- Data Accessed:
- Data Updated:
- Input:          pucStr - 字符串格式的Apn
- Output:         pucApn - 协议定义的APN
- Return:
- Others:
-  1.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，使用APN结构作为入参
-******************************************************************************/
+
 VOS_VOID Taf_LenStr2Apn(
     CONST TAF_PDP_APN_STRU              *pstApn,
     VOS_UINT8                           *pucApn
@@ -9043,32 +6735,7 @@ VOS_VOID    Aps_FillDns(                TAF_PDP_TABLE_STRU *pTafPdp,
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : Aps_PackApsMdfReqPara
- 功能描述  : 构造并输出函数Aps_PsCallModify()需要的输入参数
- 输入参数  : VOS_UINT8                           ucCid
-             VOS_UINT8                           ucPdpId
-             APS_PDP_MDF_REQ_ST                 *pApsMdfReq
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2005年xx月xx日
-    作    者   : xxx
-    修改内容   : 新生成函数
-
-  2.日    期   : 2006年03月03日
-    作    者   : H41410
-    修改内容   : 问题单号: A32D02345
-
-  3.日    期   : 2010年12月15日
-    作    者   : A00165503
-    修改内容   : 问题单号: DTS2010120605160，W单模下PDP激活后，修改为双模，
-                 重选到G下数传无法恢复
-
-*****************************************************************************/
 VOS_UINT32 Aps_PackApsMdfReqPara (
     VOS_UINT8                           ucCid,
     VOS_UINT8                           ucPdpId,
@@ -9125,27 +6792,7 @@ VOS_UINT32 Aps_PackApsMdfReqPara (
 
 
 
-/*****************************************************************************
- Prototype      : Aps_PsCallModify()
- Description    : PDP修改.该函数接收API输入的参数，将该参数适配成Aps_PdpMdfReq()
-                  函数要求的接口参数,然后调用函数Aps_PdpMdfReq();基本继承V100R001
-                  中Taf_PsCallProc()中case TAF_MSG_CGCMOD的代码.
- Input          : ucCid取值[1,11]和OxFF,当取值0xFF时，标识修改所有的CID
- Output         : NO
- Return Value   :
- Calls          : Aps_PackApsMdfReqPara()
-                  Aps_PdpMdfReq()
- Called By      : TAFM
- History        : ---
-  1.Date        : 2005-
-    Author      : 韩鲁峰
-    Modification: Created function
 
-  2.日    期   : 2011年12月22日
-    作    者   : A00165503
-    修改内容   : PS Project: 修改PDP修改处理逻辑
-
-*****************************************************************************/
 VOS_VOID Aps_PsCallModify(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucOpId,
@@ -9223,24 +6870,7 @@ VOS_VOID Aps_PsCallEnd(
     return;
 }
 
-/*****************************************************************************
- Prototype      : TAF_APS_SndCidInactiveEvt()
- Description    : 当某CID没有激活时，使用此函数上报CID去激活成功
- Input          :
- Output         : NO
- Return Value   : NO
- Data Accessed  : NO
- Data Update    : NO
- Calls          : Aps_ClearAppEvent()
- Called By      :
- History        : ---
-  1.Date        : 2005-
-    Author      : 韩鲁峰
-    Modification: Created function
-  2.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，结构替换
-*****************************************************************************/
+
 VOS_VOID    TAF_APS_SndCidInactiveEvt(
     TAF_CTRL_STRU                      *pstCtrl,
     VOS_UINT8                           ucCid )
@@ -9253,43 +6883,15 @@ VOS_VOID    TAF_APS_SndCidInactiveEvt(
     stCidDeActCnfEvt.ucCid  = ucCid;
 
     /*调用TAFM提供的事件上报函数 */
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     (VOS_VOID)TAF_APS_SndPsEvt(ID_EVT_TAF_PS_CALL_PDP_DEACTIVATE_CNF,
                      &stCidDeActCnfEvt,
                      sizeof(TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU));
 
     APS_NORM_LOG("APS->APP ID_EVT_TAF_PS_CALL_PDP_DEACTIVATE_CNF");
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_FindCidForDial
- 功能描述  : 查找空闲的CID, 用于拨号
- 输入参数  : entityState --- PDP实体状态
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月11日
-    作    者   : s62952
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年01月01日
-    作    者   : h44270
-    修改内容   : PS Project: 修改判断当前APS实体状态的方式，删除middle pdp id的概念
-
-  3.日    期   : 2012年12月17日
-    作    者   : A00165503
-    修改内容   : C50 IPv6 项目
-
-  4.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，C核同步获取未使用的CID
-
-*****************************************************************************/
 #if (FEATURE_ON == FEATURE_LTE)
 VOS_UINT8 TAF_APS_FindCidForDial(VOS_UINT32  ulAppPid)
 {
@@ -9383,27 +6985,7 @@ VOS_UINT8 TAF_APS_FindCidForDial(VOS_UINT32  ulAppPid)
 #endif /* (FEATURE_ON == FEATURE_LTE) */
 
 
-/*****************************************************************************
- 函 数 名  : MN_APS_SetPdpContext
- 功能描述  : 定义, 修改, 删除PDP CONTEXT, 包括对两个数据结构的操作, FLASH中
-             PDP数据表和全局变量数据表.
- 输入参数  : usClientId --- 识别某个应用程序
-             ucOpId     --- 识别某个应用程序中的某次呼叫
-             pstPdpPara --- 指向PDP CONTEXT主结构的指针;
-                            没有PDP CONTEXT主结构参数IE，表示删除PDP CONTEXT;
-                            有PDP CONTEXT主结构参数IE，表示定义或修改PDP CONTEXT,
-                            已经定义了PDP CONTEXT则为修改，否则，为定义。
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月15日
-    作    者   : s62952
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MN_APS_SetPdpContext(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucOpId,
@@ -9488,28 +7070,7 @@ VOS_UINT32 MN_APS_SetPdpContext(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_SetPdpCidPara
- 功能描述  : 设置PDP上下文
- 输入参数  : VOS_UINT16                          usClientId
-             TAF_PDP_PRIM_CONTEXT_EXT_STRU      *pstPdpPrimContextExt
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月9日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2012年1月19日
-    作    者   : H44270
-    修改内容   : 删除多余的APN、IPV4转换，不需要将字符串转换为没有字符串结束符的参数形式
-  3.日    期   : 2012年6月15日
-    作    者   : m00217266
-    修改内容   : 停止暂停PDP激活定时器(AT&T定制，PDP激活限制)
-
-*****************************************************************************/
 VOS_UINT32 MN_APS_SetPdpCidPara(
     VOS_UINT16                          usClientId,
     TAF_PDP_PRIM_CONTEXT_EXT_STRU      *pstPdpPrimContextExt
@@ -9542,22 +7103,7 @@ VOS_UINT32 MN_APS_SetPdpCidPara(
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_GetPdpCidPara
- 功能描述  : 获取PDP CID表信息
- 输入参数  : pstPdpCidInfo --- PDP CID表信息
-             ucCid         --- CID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月9日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MN_APS_GetPdpCidPara(
     TAF_PDP_PRIM_CONTEXT_STRU                   *pstPdpCidInfo,
     VOS_UINT8                           ucCid
@@ -9586,31 +7132,7 @@ VOS_UINT32 MN_APS_GetPdpCidPara(
     return VOS_OK;
 }
 
-/*****************************************************************************
- Prototype      : Taf_GetCidType
- Description    : AT命令解释器调用此函数查看某CID定义的PDP类型.
- Input          : ucCid
- Output         : NO
- Return Value   : TAF_CIDTYPE_FAIL  0       输入的CID没有定义PDP,或CID不合法
-                  TAF_PDP_IPV4      1       IPV4
-                  TAF_PDP_PPP       4       PPP
- Data Accessed  :
- Data Updated   :
- Calls          :
- Called By      : ATC
- History        : ---
-  1.Date        : 2005-
-    Author      : hanlufeng
-    Modification: Created function
-  2.Date        : 2006-06-05
-    Author      : L47619
-    Modification: Modify for PN:A32D04462
 
-  3.日    期   : 2011年10月23日
-    作    者   : A00165503
-    修改内容   : AT Project: 修改非法的PDP类型值为TAF_PDP_TYPE_BUTT(0xFF)
-
-*****************************************************************************/
 TAF_PDP_TYPE_ENUM_UINT8 Taf_GetCidType(VOS_UINT8 ucCid)
 {
     if ( ucCid > TAF_MAX_CID )
@@ -9731,26 +7253,10 @@ VOS_UINT8   Taf_PsCallForDialParaCheck( PPP_REQ_CONFIG_INFO_STRU *pPsDialPara)
 
     return  TAF_PS_PARA_VALID;
 }
-/* Add by w00199382 for V7代码同步, 2012-04-07, Begin   */
 
 #if(FEATURE_ON == FEATURE_LTE)
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndGetLtecsInfoCnf
- 功能描述  :
- 输入参数  : TAF_CTRL_STRU                    *pstCtrl
-             VOS_UINT32                          ulErrCode
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月19日
-    作    者   : w00182550
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  TAF_APS_SndGetLtecsInfoCnf(
     TAF_CTRL_STRU                      *pstCtrl,
     VOS_UINT32                          ulErrCode
@@ -9761,31 +7267,14 @@ VOS_VOID  TAF_APS_SndGetLtecsInfoCnf(
     stGetLtecsInfoCnf.stCtrl        = *pstCtrl;
     stGetLtecsInfoCnf.enCause       = ulErrCode;
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     (VOS_VOID)TAF_APS_SndPsEvt(ID_EVT_TAF_PS_LTECS_INFO_CNF,
                                &stGetLtecsInfoCnf,
                                sizeof(TAF_PS_LTECS_CNF_STRU));
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndGetCemodeInfoCnf
- 功能描述  :
- 输入参数  : TAF_CTRL_STRU                      *pstCtrl
-             VOS_UINT32                          ulErrCode
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月19日
-    作    者   : w00182550
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  TAF_APS_SndGetCemodeInfoCnf(
     TAF_CTRL_STRU                      *pstCtrl,
     VOS_UINT32                          ulErrCode
@@ -9796,11 +7285,9 @@ VOS_VOID  TAF_APS_SndGetCemodeInfoCnf(
     stGetCemodeInfoCnf.stCtrl           = *pstCtrl;
     stGetCemodeInfoCnf.enCause          = ulErrCode;
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     (VOS_VOID)TAF_APS_SndPsEvt(ID_EVT_TAF_PS_CEMODE_INFO_CNF,
                                 &stGetCemodeInfoCnf,
                                 sizeof(TAF_PS_CEMODE_CNF_STRU));
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     return;
 }
@@ -9815,39 +7302,17 @@ VOS_VOID  TAF_APS_SndSetPdprofInfoCnf(
     stSetPdprofInfoCnf.stCtrl   = *pstCtrl;
     stSetPdprofInfoCnf.enCause  = ulErrCode;
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     (VOS_VOID)TAF_APS_SndPsEvt(ID_EVT_TAF_PS_SET_PDP_PROF_INFO_CNF,
                                 &stSetPdprofInfoCnf,
                                 sizeof(TAF_PS_SET_PDP_PROF_INFO_CNF_STRU));
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     return;
 }
 #endif
 
-/* Add by w00199382 for V7代码同步, 2012-04-07, End   */
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_IsApnChanged
- 功能描述  : 比较指定CID的APN是否改变
- 输入参数  : VOS_UINT8                           ucCid
-             VOS_UINT32                          ulOpApn
-             VOS_UINT8                          *pucApn
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月14日
-    作    者   : l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目,修改APN结构
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_IsApnChanged(
     VOS_UINT8                           ucCid,
     VOS_UINT32                          ulOpApn,
@@ -9901,21 +7366,7 @@ VOS_UINT32 TAF_APS_IsApnChanged(
 
     return ucApnChangeFlg;
 }
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvSetCidPara_PdpActLimit
- 功能描述  : PDP激活受限特性打开，暂停激活定时器正在运行，修改APN的处理
- 输入参数  : TAF_PDP_PRIM_CONTEXT_EXT_STRU      *pstPdpPrimContextExt
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月21日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_RcvSetCidPara_PdpActLimit(
     TAF_PDP_PRIM_CONTEXT_EXT_STRU      *pstPdpPrimContextExt
 )
@@ -9935,21 +7386,7 @@ VOS_VOID TAF_APS_RcvSetCidPara_PdpActLimit(
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvSetPrimPdpCtxInfoReq_PdpActLimit
- 功能描述  : PDP激活受限特性打开，暂停激活定时器正在运行，修改APN的处理
- 输入参数  : TAF_PS_SET_PRIM_PDP_CONTEXT_INFO_REQ_STRU    *pstSetPdpCtxInfoReq
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月21日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_RcvSetPrimPdpCtxInfoReq_PdpActLimit(
     TAF_PS_SET_PRIM_PDP_CONTEXT_INFO_REQ_STRU    *pstSetPdpCtxInfoReq
 )
@@ -9970,33 +7407,13 @@ VOS_VOID TAF_APS_RcvSetPrimPdpCtxInfoReq_PdpActLimit(
 }
 
 
-/* Deleted by wx270776 for OM融合, 2015-7-24, begin */
 
-/* Deleted by wx270776 for OM融合, 2015-7-24, end */
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndDsFlowOMRptInd
- 功能描述  : 将流量信息通过消息ID_NAS_OM_DSFLOW_RPT_IND主动上报到OM
- 输入参数  : pstDsFlowRptInfo   --流量信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月09日
-    作    者   : l00198894
-    修改内容   : Probe路测工具对接项目新增
-
-  2.日    期   : 2015年7月09日
-    作    者   : wx270776
-    修改内容   : OM融合
-*****************************************************************************/
 VOS_VOID TAF_APS_SndDsFlowOMRptInd(
     TAF_DSFLOW_REPORT_STRU             *pstDsFlowRptInfo
 )
 {
-    /* Modified by wx270776 for OM融合, 2015-7-10, begin */
     NAS_OM_DSFLOW_RPT_IND_STRU          stDsflowRptInd;
     DIAG_TRANS_IND_STRU                 stSendOMDsFlowRptInd;
     VOS_UINT32                          ulRet;
@@ -10034,20 +7451,7 @@ VOS_VOID TAF_APS_SndDsFlowOMRptInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_FindCidForAns
- 功能描述  : 查找空闲的CID, 用于应答
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年06月05日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 TAF_APS_FindCidForAns(VOS_VOID)
 {
     VOS_UINT8                           ucPdpId;
@@ -10092,22 +7496,7 @@ VOS_UINT8 TAF_APS_FindCidForAns(VOS_VOID)
     return ucCid;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetIpTypeAnsExtIpcpPara
- 功能描述  : 生成应答IP类型网侧PDP激活的激活请求IPCP参数
- 输入参数  : APS_PDP_ACT_REQ_ST                 *pstApsActReq
-             TAF_PSCALL_FOR_DIAL_EXT_STRU         *pstApsDialReqPara
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月9日
-    作    者   : #
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetIpTypeAnsExtIpcpPara(
     APS_PDP_ACT_REQ_ST                 *pstApsActReq,
     TAF_PSCALL_FOR_DIAL_EXT_STRU         *pstApsDialReqPara
@@ -10138,22 +7527,7 @@ VOS_VOID TAF_APS_GetIpTypeAnsExtIpcpPara(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetIpTypeAnsExtAuthPara
- 功能描述  : 生成应答IP类型网侧PDP激活的激活请求AUTH参数
- 输入参数  : APS_PDP_ACT_REQ_ST                 *pstApsActReq
-             TAF_PSCALL_FOR_DIAL_EXT_STRU         *pstApsDialReqPara
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月9日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_GetIpTypeAnsExtAuthPara(
     APS_PDP_ACT_REQ_ST                 *pstApsActReq,
     TAF_PSCALL_FOR_DIAL_EXT_STRU         *pstApsDialReqPara
@@ -10172,23 +7546,7 @@ VOS_VOID TAF_APS_GetIpTypeAnsExtAuthPara(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_MakeIpTypeAnsExtActReq
- 功能描述  : 生成应答IP类型网侧PDP激活的激活请求参数
- 输入参数  : VOS_UINT8                           ucPdpId
-             TAF_PS_PPP_DIAL_ORIG_REQ_STRU      *pstPppDialOrigReq
-             APS_PDP_ACT_REQ_ST                 *pApsActReq
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月9日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_MakeIpTypeAnsExtActReq(
     VOS_UINT8                           ucPdpId,
     TAF_PS_PPP_DIAL_ORIG_REQ_STRU      *pstPppDialOrigReq,
@@ -10274,22 +7632,7 @@ VOS_VOID TAF_APS_MakeIpTypeAnsExtActReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpCidQosPara
- 功能描述  : 获取指定CID的QOS参数
- 输入参数  : TAF_PS_PDP_QOS_PARA_STRU           *pstQosPara
-             VOS_UINT8                           ucCid
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月29日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_GetPdpCidQosPara(
     TAF_PS_PDP_QOS_QUERY_PARA_STRU     *pstQosPara,
     VOS_UINT8                           ucCid
@@ -10329,21 +7672,7 @@ VOS_UINT32 TAF_APS_GetPdpCidQosPara(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SetPdpCidQosPara
- 功能描述  : 设置指定CID的QOS参数
- 输入参数  : TAF_PS_PDP_QOS_SET_PARA_STRU       *pstQosPara
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月29日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_SetPdpCidQosPara(
     TAF_PS_PDP_QOS_SET_PARA_STRU       *pstQosPara
 )
@@ -10371,21 +7700,7 @@ VOS_UINT32 TAF_APS_SetPdpCidQosPara(
 
 
 #if (FEATURE_IMS == FEATURE_ON)
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndImsaSrvccCancelNotify
- 功能描述  : APS发送消息给IMSA通知SRVCC CANCEL
- 输入参数  : enNotificationIndicator
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年09月18日
-    作    者   : Y00213812
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SndImsaSrvccCancelNotify(
     TAF_SRVCC_CANCEL_NOTIFY_ENUM_UINT32   enNotificationIndicator
 )
@@ -10412,22 +7727,7 @@ VOS_VOID TAF_APS_SndImsaSrvccCancelNotify(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndSetCqosPriCnf
- 功能描述  : 返回AT^CQOSPRI的AT命令执行结果，上报AT
- 输入参数  : TAF_CTRL_STRU                    *pstCtrl,
-             VOS_UINT32                        ulErrCode
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月22日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_SndSetCqosPriCnf(
     TAF_CTRL_STRU                    *pstCtrl,
     VOS_UINT32                        ulErrCode
@@ -10446,21 +7746,7 @@ VOS_UINT32  TAF_APS_SndSetCqosPriCnf(
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndSetPktCdataInactivityTimerLenCnf
- 功能描述  : 返回AT+CTA的AT命令执行结果，上报AT
- 输入参数  : TAF_CTRL_STRU                    *pstCtrl,
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月21日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_SndSetPktCdataInactivityTimerLenCnf(
     TAF_CTRL_STRU                      *pstCtrl,
     VOS_UINT32                          ulErrCode
@@ -10479,21 +7765,7 @@ VOS_UINT32  TAF_APS_SndSetPktCdataInactivityTimerLenCnf(
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndGetPktCdataInactivityTimerLenCnf
- 功能描述  : 返回AT+CTA的AT命令执行结果，上报AT
- 输入参数  : TAF_CTRL_STRU                    *pstCtrl,
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月21日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_SndGetPktCdataInactivityTimerLenCnf(
     TAF_CTRL_STRU                      *pstCtrl,
     VOS_UINT8                           ucTimeLen,

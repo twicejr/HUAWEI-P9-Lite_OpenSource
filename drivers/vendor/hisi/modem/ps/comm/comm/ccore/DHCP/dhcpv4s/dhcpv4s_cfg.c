@@ -1,22 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2006, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : Dhcpv4s_cfg.c
-  版 本 号   : 初稿
-  作    者   : 贾会东00142544
-  生成日期   : 2010年03月29日
-  最近修改   :
-  功能描述   : dhcpv4s配置文件
-  函数列表   :
-
-  修改历史   :
-  1.日    期   : 2010年03月29日
-    作    者   : 贾会东00142544
-    修改内容   : 创建文件
-
-******************************************************************************/
 #include "dhcp_inc.h"
 #include "dhcpc_def.h"
 #include "dhcpv4s_def.h"
@@ -33,18 +15,7 @@
 #define    THIS_FILE_ID          PS_FILE_ID_DHCPV4S_CFG_C
 /*lint +e767*/
 
-/*==========================================================
- *  函数名称:              DHCPV4S_CDB_CfgAddNotify
- *  初稿完成:              2009/03/17
- *  作    者       :          dongmingzhou 42828
- *  函数功能:       cdb配置回调添加
- *  输入参数:
- *  输出参数:
- *  返回类型:              无
- *  其他说明:              无
- *  调用函数:
- *  主调函数:
- *=========================================================*/
+
 VOID DHCPV4S_CDB_CfgAddNotify( CDB_TBLID  nTbl, CDB_RECID  nRecId,UCHAR*     pValue)
 {
     /*如果参数非法*/
@@ -59,18 +30,7 @@ VOID DHCPV4S_CDB_CfgAddNotify( CDB_TBLID  nTbl, CDB_RECID  nRecId,UCHAR*     pVa
     return;
 }
 
-/*==========================================================
- *  函数名称:              DHCPV4S_CDB_CfgModNotify
- *  初稿完成:              2009/03/17
- *  作    者       :          dongmingzhou 42828
- *  函数功能:      cdb配置回调修改
- *  输入参数:
- *  输出参数:
- *  返回类型:              无
- *  其他说明:              无
- *  调用函数:
- *  主调函数:
- *=========================================================*/
+
 VOID DHCPV4S_CDB_CfgModNotify( CDB_TBLID  nTbl, CDB_RECID  nRecId,UCHAR*  pNewValue, UCHAR*     pOldValue)
 {
     /*如果参数非法*/
@@ -85,18 +45,7 @@ VOID DHCPV4S_CDB_CfgModNotify( CDB_TBLID  nTbl, CDB_RECID  nRecId,UCHAR*  pNewVa
     return;
 }
 
-/*==========================================================
- *  函数名称:              DHCPV4S_CDB_ExpiredAddNotify
- *  初稿完成:              2009/03/17
- *  作    者       :          dongmingzhou 42828
- *  函数功能:      判断是否在sc线程上
- *  输入参数:
- *  输出参数:
- *  返回类型:              无
- *  其他说明:              无
- *  调用函数:
- *  主调函数:
- *=========================================================*/
+
 VOID DHCPV4S_CDB_ExpiredAddNotify(    CDB_TBLID    nTbl,  CDB_RECID     nRecId,UCHAR*     pValue)
 {
     USHORT usApnIndex = 0;

@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafXCallMntn.c
-  版 本 号   : 初稿
-  作    者   : l60609
-  生成日期   : 2014年09月20日
-  功能描述   : XCALL的可维可测
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年09月20日
-    作    者   : l60609
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -38,24 +23,7 @@ extern "C"{
   3 函数定义
 *****************************************************************************/
 /*lint -save -e958*/
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_MNTN_LogCallInfo
- 功能描述  : 勾ID_TAF_XCALL_MNTN_LOG_CALL_INFO_IND消息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月20日
-    作    者   : l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2014年11月13日
-    作    者   : f279542
-    修改内容   : 1X SS Project修改
-                 为了解决PCLINT告警，把stLogCallInfoMsg修改为指针类型
-*****************************************************************************/
 VOS_VOID TAF_XCALL_MNTN_LogCallInfo(VOS_VOID)
 {
     TAF_XCALL_MNTN_LOG_CALL_INFO_STRU  *pstLogCallInfoMsg;
@@ -92,21 +60,7 @@ VOS_VOID TAF_XCALL_MNTN_LogCallInfo(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_MNTN_LogSupsCmdMgmt
- 功能描述  : 勾ID_TAF_XCALL_MNTN_LOG_SUPS_CMD_MGMT消息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月24日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_MNTN_LogSupsCmdMgmt(VOS_VOID)
 {
     TAF_XCALL_MNTN_LOG_SUPS_CMD_MGMT_STRU                   stLogSupsCmdMgmt;
@@ -133,21 +87,7 @@ VOS_VOID TAF_XCALL_MNTN_LogSupsCmdMgmt(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_MNTN_LogEmcCallRedialPeriod
- 功能描述  : 勾ID_TAF_XCALL_MNTN_LOG_EMC_CALL_REDIAL_PERIOD消息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月10日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_MNTN_LogEmcCallRedialPeriod(VOS_VOID)
 {
     TAF_XCALL_MNTN_LOG_CALL_REDIAL_PERIOD_STRU              stLogEmcCallRedialPeriod;
@@ -170,21 +110,7 @@ VOS_VOID TAF_XCALL_MNTN_LogEmcCallRedialPeriod(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_MNTN_LogStartAndStopContDtmfInterval
- 功能描述  : 勾TAF_XCALL_MNTN_LOG_START_AND_STOP_CONT_DTMF_INTERVAL_STRU消息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月18日
-    作    者   : l00324781
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_MNTN_LogStartAndStopContDtmfInterval(VOS_VOID)
 {
     TAF_XCALL_MNTN_LOG_START_AND_STOP_CONT_DTMF_INTERVAL_STRU                   stLogMntn;
@@ -207,21 +133,7 @@ VOS_VOID TAF_XCALL_MNTN_LogStartAndStopContDtmfInterval(VOS_VOID)
 }
 
 #if (FEATURE_ON == FEATURE_CHINA_TELECOM_VOICE_ENCRYPT)
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_MNTN_LogTimeStampValidation
- 功能描述  : 勾ID_TAF_XCALL_MNTN_LOG_TIME_STAMP_VALIDATION消息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月24日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_MNTN_LogTimeStampValidation(
     TAF_STD_TIME_ZONE_TYPE_STRU        *pstMsgTimeZone,
     TAF_STD_TIME_ZONE_TYPE_STRU        *pstLastTimeZone,
@@ -255,22 +167,7 @@ VOS_VOID TAF_XCALL_MNTN_LogTimeStampValidation(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_MNTN_LogVoiceEncPubKeyAndVerInfo
- 功能描述  : 勾ID_TAF_XCALL_MNTN_LOG_VOICEENC_PUB_KEY_AND_VER_INFO消息
- 输入参数  : VOS_UINT8                           ucVerNum,
-             VOS_UINT8                          *pucPubKey
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月26日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_MNTN_LogVoiceEncPubKeyAndVerInfo(
     VOS_UINT8                           ucVerNum,
     VOS_UINT8                          *pucPubKey
@@ -297,22 +194,7 @@ VOS_VOID TAF_XCALL_MNTN_LogVoiceEncPubKeyAndVerInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_MNTN_LogVoiceEncryptCapCfgPara
- 功能描述  : 勾ID_TAF_XCALL_MNTN_LOG_VOICEENC_CAP_CFG_PARA_INFO消息
- 输入参数  : VOS_UINT8                           ucEccSrvCap,
-             VOS_UINT8                           ucEccSrvStatus
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月26日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_MNTN_LogVoiceEncryptCapCfgPara(
     VOS_UINT8                           ucEccSrvCap,
     VOS_UINT8                           ucEccSrvStatus
@@ -338,21 +220,7 @@ VOS_VOID TAF_XCALL_MNTN_LogVoiceEncryptCapCfgPara(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_MNTN_LogVoiceEncryptLastInfoEraseTime
- 功能描述  : 勾ID_TAF_XCALL_MNTN_LOG_VOICEENC_LAST_INFO_ERASE_TIME消息
- 输入参数  : TAF_STD_TIME_ZONE_TYPE_STRU                            *pstTimeZoneInfo
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月26日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_MNTN_LogVoiceEncryptLastInfoEraseTime(
     TAF_STD_TIME_ZONE_TYPE_STRU                            *pstTimeZoneInfo
 )
@@ -382,21 +250,7 @@ VOS_VOID TAF_XCALL_MNTN_LogVoiceEncryptLastInfoEraseTime(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_MNTN_LogVoiceEncryptLastPassworResetTime
- 功能描述  : 勾ID_TAF_XCALL_MNTN_LOG_VOICEENC_LAST_PASSWD_RESET_TIME消息
- 输入参数  : TAF_STD_TIME_ZONE_TYPE_STRU                            *pstTimeZoneInfo
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月26日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_MNTN_LogVoiceEncryptLastPassworResetTime(
     TAF_STD_TIME_ZONE_TYPE_STRU                            *pstTimeZoneInfo
 )
@@ -426,21 +280,7 @@ VOS_VOID TAF_XCALL_MNTN_LogVoiceEncryptLastPassworResetTime(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_MNTN_LogVoiceEncryptTimerCfgInfo
- 功能描述  : 勾ID_TAF_XCALL_MNTN_LOG_VOICEENC_DELAY_ENCVOICE_REQ_TIMER_LEN消息
- 输入参数  : TAF_STD_TIME_ZONE_TYPE_STRU                            *pstTimeZoneInfo
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月26日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_MNTN_LogVoiceEncryptTimerCfgInfo(
     VOS_UINT16                                              usDelayEncVoiceReqTimerLen,
     VOS_UINT16                                              usRemoteCtrlAnswerTimerLen
@@ -467,21 +307,7 @@ VOS_VOID TAF_XCALL_MNTN_LogVoiceEncryptTimerCfgInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_MNTN_LogMoKmcMsgKeyReq
- 功能描述  : 勾ID_TAF_XCALL_MNTN_LOG_MO_KMC_MSG_KEY_REQ消息
- 输入参数  : TAF_XCALL_KMC_MSG_KEY_REQ_STRU                         *pstMoKeyReq
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月26日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_MNTN_LogMoKmcMsgKeyReq(
     TAF_XCALL_KMC_MSG_KEY_REQ_STRU                         *pstMoKeyReq
 )
@@ -506,21 +332,7 @@ VOS_VOID TAF_XCALL_MNTN_LogMoKmcMsgKeyReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_MNTN_LogMoKmcMsgKeyRsp
- 功能描述  : 勾ID_TAF_XCALL_MNTN_LOG_MO_KMC_MSG_KEY_RSP消息
- 输入参数  : TAF_XCALL_KMC_MSG_KEY_RSP_STRU                         *pstMoKeyRsp
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月26日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_MNTN_LogMoKmcMsgKeyRsp(
     TAF_XCALL_KMC_MSG_PROCESS_RSLT_ENUM_UINT32              enRslt,
     TAF_XCALL_KMC_MSG_KEY_RSP_STRU                         *pstMoKeyRsp
@@ -547,21 +359,7 @@ VOS_VOID TAF_XCALL_MNTN_LogMoKmcMsgKeyRsp(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_MNTN_LogKmcMsgMtEncryptInd
- 功能描述  : 勾ID_TAF_XCALL_MNTN_LOG_KMC_MSG_MT_ENCRYPT_IND消息
- 输入参数  : TAF_XCALL_KMC_MSG_MT_ENCRYPT_IND_STRU                   *pstMtEncryptInd
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月26日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_MNTN_LogKmcMsgMtEncryptInd(
     TAF_XCALL_KMC_MSG_PROCESS_RSLT_ENUM_UINT32              enRslt,
     TAF_XCALL_KMC_MSG_MT_ENCRYPT_IND_STRU                  *pstMtEncryptInd
@@ -588,21 +386,7 @@ VOS_VOID TAF_XCALL_MNTN_LogKmcMsgMtEncryptInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_MNTN_LogMtKmcMsgKeyReq
- 功能描述  : 勾ID_TAF_XCALL_MNTN_LOG_MO_KMC_MSG_KEY_REQ消息
- 输入参数  : TAF_XCALL_KMC_MSG_KEY_REQ_STRU                         *pstMoKeyReq
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月26日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_MNTN_LogMtKmcMsgKeyReq(
     TAF_XCALL_KMC_MSG_KEY_REQ_STRU                         *pstMtKeyReq
 )
@@ -627,21 +411,7 @@ VOS_VOID TAF_XCALL_MNTN_LogMtKmcMsgKeyReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_MNTN_LogMtKmcMsgKeyRsp
- 功能描述  : 勾ID_TAF_XCALL_MNTN_LOG_MT_KMC_MSG_KEY_RSP消息
- 输入参数  : TAF_XCALL_KMC_MSG_KEY_RSP_STRU                         *pstMoKeyRsp
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月26日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_MNTN_LogMtKmcMsgKeyRsp(
     TAF_XCALL_KMC_MSG_PROCESS_RSLT_ENUM_UINT32              enRslt,
     TAF_XCALL_KMC_MSG_KEY_RSP_STRU                         *pstMtKeyRsp
@@ -668,21 +438,7 @@ VOS_VOID TAF_XCALL_MNTN_LogMtKmcMsgKeyRsp(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_MNTN_LogKmcMsgErrInd
- 功能描述  : 勾ID_TAF_XCALL_MNTN_LOG_KMC_MSG_ERR_IND消息
- 输入参数  : TAF_XCALL_KMC_MSG_ERR_IND_STRU                         *pstErrInd
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月26日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_MNTN_LogKmcMsgErrInd(
     TAF_XCALL_KMC_MSG_PROCESS_RSLT_ENUM_UINT32              enRslt,
     TAF_XCALL_KMC_MSG_ERR_IND_STRU                         *pstErrInd
@@ -709,21 +465,7 @@ VOS_VOID TAF_XCALL_MNTN_LogKmcMsgErrInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_MNTN_LogKmcMsgPubKeyUpdateInd
- 功能描述  : 勾ID_TAF_XCALL_MNTN_LOG_KMC_MSG_PUB_KEY_UPDATE_IND消息
- 输入参数  : TAF_XCALL_KMC_MSG_PUB_KEY_UPDATE_IND_STRU               *pstPubKeyUpdateInd
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月26日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_MNTN_LogKmcMsgPubKeyUpdateInd(
     TAF_XCALL_KMC_MSG_PROCESS_RSLT_ENUM_UINT32              enRslt,
     TAF_XCALL_KMC_MSG_PUB_KEY_UPDATE_IND_STRU              *pstPubKeyUpdateInd
@@ -750,21 +492,7 @@ VOS_VOID TAF_XCALL_MNTN_LogKmcMsgPubKeyUpdateInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_MNTN_LogKmcMsgPubKeyUpdateRsp
- 功能描述  : 勾ID_TAF_XCALL_MNTN_LOG_KMC_MSG_PUB_KEY_UPDATE_RSP消息
- 输入参数  : TAF_XCALL_KMC_MSG_PUB_KEY_UPDATE_RSP_STRU               *pstPubKeyUpdateRsp
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月26日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_MNTN_LogKmcMsgPubKeyUpdateRsp(
     TAF_XCALL_KMC_MSG_PUB_KEY_UPDATE_RSP_STRU              *pstPubKeyUpdateRsp
 )
@@ -789,21 +517,7 @@ VOS_VOID TAF_XCALL_MNTN_LogKmcMsgPubKeyUpdateRsp(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_MNTN_LogKmcMsgPubKeyUpdateAck
- 功能描述  : 勾ID_TAF_XCALL_MNTN_LOG_KMC_MSG_PUB_KEY_UPDATE_ACK消息
- 输入参数  : TAF_XCALL_MNTN_LOG_KMC_MSG_PUB_KEY_UPDATE_ACK_STRU               *pstPubKeyUpdateAck
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月26日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_MNTN_LogKmcMsgPubKeyUpdateAck(
     TAF_XCALL_KMC_MSG_PROCESS_RSLT_ENUM_UINT32              enRslt,
     TAF_XCALL_KMC_MSG_PUB_KEY_UPDATE_ACK_STRU              *pstPubKeyUpdateAck
@@ -830,21 +544,7 @@ VOS_VOID TAF_XCALL_MNTN_LogKmcMsgPubKeyUpdateAck(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_MNTN_LogKmcMsgRemoteCtrlCmdInd
- 功能描述  : 勾ID_TAF_XCALL_MNTN_LOG_KMC_MSG_ROMOTE_CTRL_CMD_IND消息
- 输入参数  : TAF_XCALL_KMC_MSG_ROMOTE_CTRL_CMD_IND_STRU               *pstRemoteCtrlInd
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月26日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_MNTN_LogKmcMsgRemoteCtrlCmdInd(
     TAF_XCALL_KMC_MSG_PROCESS_RSLT_ENUM_UINT32              enRslt,
     TAF_XCALL_KMC_MSG_ROMOTE_CTRL_CMD_IND_STRU             *pstRemoteCtrlInd
@@ -871,21 +571,7 @@ VOS_VOID TAF_XCALL_MNTN_LogKmcMsgRemoteCtrlCmdInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_MNTN_LogKmcMsgRemoteCtrlCmdRsp
- 功能描述  : 勾ID_TAF_XCALL_MNTN_LOG_KMC_MSG_ROMOTE_CTRL_CMD_RSP消息
- 输入参数  : TAF_XCALL_KMC_MSG_ROMOTE_CTRL_CMD_REQ_STRU               *pstRemoteCtrlRsp
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月26日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_MNTN_LogKmcMsgRemoteCtrlCmdRsp(
     TAF_XCALL_KMC_MSG_ROMOTE_CTRL_CMD_RSP_STRU             *pstRemoteCtrlRsp
 )
@@ -910,22 +596,7 @@ VOS_VOID TAF_XCALL_MNTN_LogKmcMsgRemoteCtrlCmdRsp(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_MNTN_LogEncVoiceRemoteCtrlState
- 功能描述  : 勾ID_TAF_XCALL_MNTN_LOG_VOICEENC_REMOTE_CTRL_STATE_INFO消息
- 输入参数  : TAF_XCALL_VOICE_ENC_MSG_EVENT_TYPE_ENUM_UINT32          enEventType
-             TAF_XCALL_REMOTE_CTRL_STA_ENUM_UINT32                   enState
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月26日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_MNTN_LogEncVoiceRemoteCtrlState(
     TAF_XCALL_REMOTE_CTRL_MSG_EVENT_TYPE_ENUM_UINT32        enEventType,
     TAF_XCALL_REMOTE_CTRL_STA_ENUM_UINT32                   enState
@@ -952,22 +623,7 @@ VOS_VOID TAF_XCALL_MNTN_LogEncVoiceRemoteCtrlState(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_MNTN_LogEncVoiceKeyUpdateState
- 功能描述  : 勾ID_TAF_XCALL_MNTN_LOG_VOICEENC_KEY_UPDATE_STATE_INFO消息
- 输入参数  : TAF_XCALL_PUB_KEY_UPDATE_MSG_EVENT_TYPE_ENUM_UINT32     enEventType
-             TAF_XCALL_K0_UPATE_STA_ENUM_UINT32                      enState
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月26日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_MNTN_LogEncVoiceKeyUpdateState(
     TAF_XCALL_PUB_KEY_UPDATE_MSG_EVENT_TYPE_ENUM_UINT32     enEventType,
     TAF_XCALL_K0_UPATE_STA_ENUM_UINT32                      enState
@@ -994,22 +650,7 @@ VOS_VOID TAF_XCALL_MNTN_LogEncVoiceKeyUpdateState(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_MNTN_LogVoiceEncryptState
- 功能描述  : 勾ID_TAF_XCALL_MNTN_LOG_VOICEENC_VOICE_ENCRYPT_STATE_INFO消息
- 输入参数  : TAF_XCALL_VOICE_ENC_MSG_EVENT_TYPE_ENUM_UINT32          enEventType
-             TAF_XCALL_VOICE_ENCRYPT_STA_ENUM_UINT32                 enState
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月26日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_MNTN_LogVoiceEncryptState(
     TAF_XCALL_VOICE_ENC_MSG_EVENT_TYPE_ENUM_UINT32          enEventType,
     TAF_XCALL_VOICE_ENCRYPT_STA_ENUM_UINT32                 enState
@@ -1037,21 +678,7 @@ VOS_VOID TAF_XCALL_MNTN_LogVoiceEncryptState(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_MNTN_LogCipherText
- 功能描述  : 勾ID_TAF_XCALL_MNTN_LOG_CIPHERTEXT_INFO消息
- 输入参数  : VOS_UINT8                          *pucMeid
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月26日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_MNTN_LogCipherText(
     TAF_XCALL_PLAIN_TEXT_INFO_STRU                         *pstCipherInfo,
     TAF_ECC_CALL_BCD_NUM_STRU                              *pstCalledNum
@@ -1080,21 +707,7 @@ VOS_VOID TAF_XCALL_MNTN_LogCipherText(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_MNTN_LogKmcDecMsg
- 功能描述  : log解码后的KMC消息
- 输入参数  : pstKmcMsg -- 解码后的KMC消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月29日
-    作    者   : y00245242
-    修改内容   : Iteration 19
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_MNTN_LogKmcDecMsg(
     TAF_XCALL_KMC_MSG_STRU             *pstKmcMsg
 )
@@ -1146,21 +759,7 @@ VOS_VOID TAF_XCALL_MNTN_LogKmcDecMsg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_MNTN_LogKmcEncMsg
- 功能描述  : log编码前的KMC消息
- 输入参数  : pstKmcMsg -- 编码前的KMC消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月30日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_MNTN_LogKmcEncMsg(
     TAF_XCALL_KMC_MSG_STRU             *pstKmcMsg
 )

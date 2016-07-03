@@ -84,20 +84,14 @@ AT_E5_RIGHT_FLAG_ENUM_U32               g_enATE5RightFlag;
    重新定义NV项用来保存密码  */
 VOS_INT8                                g_acATOpwordPwd[AT_OPWORD_PWD_LEN+1];
 
-/* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
 /* 用于当前是否有权限操作AT端口 */
 AT_RIGHT_OPEN_FLAG_STRU                 g_stAtRightOpenFlg;
-/* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
 
-/* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
 /* 使能禁止SD卡时需要的密码 */
 VOS_INT8                                g_acATE5DissdPwd[AT_DISSD_PWD_LEN+1];
-/* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
-/* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
 /*命令不支持提示字串*/
 VOS_UINT8                               gaucAtCmdNotSupportStr[AT_NOTSUPPORT_STR_LEN+4];
-/* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
 AT_ABORT_CMD_CTX_STRU                   gstAtAbortCmdCtx;   /* 用于保存打断的信息 */
 
@@ -116,9 +110,7 @@ VOS_UINT8                               ucAtS6          = 2;                    
 VOS_UINT8                               ucAtS7          = 50;                   /* Number of seconds in which connection must be established or call will be disconnected,
                                                                                    default value = 50(refer to Q)*/
 
-/* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
 AT_CMEE_TYPE                            gucAtCmeeType;                          /* E5错误码默认错误编号 */
-/* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
 TAF_UINT32                              g_ulSTKFunctionFlag = TAF_FALSE;
 
@@ -127,8 +119,6 @@ VOS_BOOL                                g_abAtNdisDialUp[AT_MAX_CLIENT_NUM];
 VOS_BOOL                                g_abAtNdisDialDown[AT_MAX_CLIENT_NUM];
 
 /*********************************CC Begin*************************************/
-/* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-10, begin */
-/* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-10, end */
 /*********************************CC End*************************************/
 
 /*********************************SMS Begin*************************************/
@@ -416,24 +406,7 @@ VOS_UINT32 g_aenAtUsimFileNumToIdTabLen = AT_ARRAY_SIZE(g_aenAtUsimFileNumToIdTa
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : AT_InitUsimStatus
- 功能描述  : 初始化USIM状态
- 输入参数  : MODEM_ID_ENUM_UINT16 enModemId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月26日
-    作    者   : l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2013年4月3日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核
-
-*****************************************************************************/
 VOS_VOID AT_InitUsimStatus(MODEM_ID_ENUM_UINT16 enModemId)
 {
     AT_USIM_INFO_CTX_STRU              *pstUsimInfoCtx = VOS_NULL_PTR;
@@ -446,27 +419,11 @@ VOS_VOID AT_InitUsimStatus(MODEM_ID_ENUM_UINT16 enModemId)
     pstUsimInfoCtx->ucIMSILen    = 0;
     PS_MEM_SET(pstUsimInfoCtx->aucIMSI, 0, sizeof(pstUsimInfoCtx->aucIMSI));
 
-    /* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, begin */
-    /* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, end */
 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_InitPlatformRatList
- 功能描述  : 初始化平台能力
- 输入参数  : MODEM_ID_ENUM_UINT16 enModemId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月26日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_InitPlatformRatList(MODEM_ID_ENUM_UINT16 enModemId)
 {
     AT_MODEM_SPT_RAT_STRU              *pstSptRat   = VOS_NULL_PTR;
@@ -487,28 +444,7 @@ VOS_VOID AT_InitPlatformRatList(MODEM_ID_ENUM_UINT16 enModemId)
 
 }
 
-/*****************************************************************************
- 函 数 名  : AT_InitCommPsCtx
- 功能描述  : 初始化PS域公共上下文
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月26日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-  2.日    期   : 2013年6月7日
-    作    者   : z00214637
-    修改内容   : V3R3 Share-PDP项目修改
-
-  3.日    期   : 2015年3月30日
-    作    者   : A00165503
-    修改内容   : SPE Project: SPE适配
-*****************************************************************************/
 VOS_VOID AT_InitCommPsCtx(VOS_VOID)
 {
     AT_COMM_PS_CTX_STRU                *pstPsCtx = VOS_NULL_PTR;
@@ -537,20 +473,7 @@ VOS_VOID AT_InitCommPsCtx(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_InitCommPbCtx
- 功能描述  : 初始化电话本公共上下文
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月12日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_InitCommPbCtx(VOS_VOID)
 {
     AT_COMM_PB_CTX_STRU                *pstCommPbCntxt = VOS_NULL_PTR;
@@ -563,26 +486,7 @@ VOS_VOID AT_InitCommPbCtx(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_InitModemCcCtx
- 功能描述  : 初始化呼叫相关的上下文
- 输入参数  : MODEM_ID_ENUM_UINT16 enModemId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月20日
-    作    者   : l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2013年04月11日
-    作    者   : l00198894
-    修改内容   : C50问题单同步
-  3.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-*****************************************************************************/
 VOS_VOID AT_InitModemCcCtx(MODEM_ID_ENUM_UINT16 enModemId)
 {
     AT_MODEM_CC_CTX_STRU               *pstCcCtx = VOS_NULL_PTR;
@@ -604,40 +508,18 @@ VOS_VOID AT_InitModemCcCtx(MODEM_ID_ENUM_UINT16 enModemId)
         pstCcCtx->stEconfInfo.astCallInfo[i].enCause     = TAF_CS_CAUSE_SUCCESS;
     }
 
-    /* Deleted by l00198894 for V9R1 STK升级, 2013/07/11 */
 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_InitModemSsCtx
- 功能描述  : 初始化SS相关的上下文
- 输入参数  : MODEM_ID_ENUM_UINT16 enModemId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月20日
-    作    者   : l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2013年4月3日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核
-
-*****************************************************************************/
 VOS_VOID AT_InitModemSsCtx(MODEM_ID_ENUM_UINT16 enModemId)
 {
     AT_MODEM_SS_CTX_STRU               *pstSsCtx = VOS_NULL_PTR;
 
     pstSsCtx = AT_GetModemSsCtxAddrFromModemId(enModemId);
 
-    /* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, end */
-    /* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, end */
     pstSsCtx->usUssdTransMode      = AT_USSD_TRAN_MODE;
-    /* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, end */
-    /* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, end */
     pstSsCtx->enCModType           = MN_CALL_MODE_SINGLE;
     pstSsCtx->ucSalsType           = AT_SALS_DISABLE_TYPE;
     pstSsCtx->ucClipType           = AT_CLIP_DISABLE_TYPE;
@@ -646,8 +528,6 @@ VOS_VOID AT_InitModemSsCtx(MODEM_ID_ENUM_UINT16 enModemId)
     pstSsCtx->ucCrcType            = AT_CRC_DISABLE_TYPE;
     pstSsCtx->ucCcwaType           = AT_CCWA_DISABLE_TYPE;
 
-    /* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, end */
-    /* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, end */
 
     pstSsCtx->stCbstDataCfg.enSpeed    = MN_CALL_CSD_SPD_64K_MULTI;
     pstSsCtx->stCbstDataCfg.enName     = MN_CALL_CSD_NAME_SYNC_UDI;
@@ -658,24 +538,7 @@ VOS_VOID AT_InitModemSsCtx(MODEM_ID_ENUM_UINT16 enModemId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_InitModemSmsCtx
- 功能描述  : 初始化短消息相关的上下文
- 输入参数  : MODEM_ID_ENUM_UINT16 enModemId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月20日
-    作    者   : l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2014年03月04日
-    作    者   : f62575
-    修改内容   : DTS2014030801193, +CSMP初始值不生效
-
-*****************************************************************************/
 VOS_VOID AT_InitModemSmsCtx(MODEM_ID_ENUM_UINT16 enModemId)
 {
     AT_MODEM_SMS_CTX_STRU              *pstSmsCtx = VOS_NULL_PTR;
@@ -753,29 +616,13 @@ VOS_VOID AT_InitModemSmsCtx(MODEM_ID_ENUM_UINT16 enModemId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_InitModemNetCtx
- 功能描述  : 初始化网卡相关的上下文
- 输入参数  : MODEM_ID_ENUM_UINT16 enModemId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月21日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_InitModemNetCtx(MODEM_ID_ENUM_UINT16 enModemId)
 {
     AT_MODEM_NET_CTX_STRU              *pstNetCtx = VOS_NULL_PTR;
 
     pstNetCtx = AT_GetModemNetCtxAddrFromModemId(enModemId);
 
-    /* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-1, begin */
-    /* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-1, end */
     pstNetCtx->ucCerssiReportType      = AT_CERSSI_REPORT_TYPE_5DB_CHANGE_REPORT;
     pstNetCtx->ucCregType              = AT_CREG_RESULT_CODE_NOT_REPORT_TYPE;
     pstNetCtx->ucCgregType             = AT_CGREG_RESULT_CODE_NOT_REPORT_TYPE;
@@ -797,21 +644,7 @@ VOS_VOID AT_InitModemNetCtx(MODEM_ID_ENUM_UINT16 enModemId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_InitModemAgpsCtx
- 功能描述  : 初始化AGPS相关的上下文
- 输入参数  : MODEM_ID_ENUM_UINT16 enModemId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月21日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_InitModemAgpsCtx(MODEM_ID_ENUM_UINT16 enModemId)
 {
     AT_MODEM_AGPS_CTX_STRU             *pstAgpsCtx = VOS_NULL_PTR;
@@ -826,24 +659,7 @@ VOS_VOID AT_InitModemAgpsCtx(MODEM_ID_ENUM_UINT16 enModemId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_InitModemPsCtx
- 功能描述  : 初始化PS域和modem相关的上下文
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月26日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-  2.日    期   : 2013年11月11日
-    作    者   : A00165503
-    修改内容   : DTS2013110900839: 增加承载IP与RABID映射的初始化
-*****************************************************************************/
 VOS_VOID AT_InitModemPsCtx(
     MODEM_ID_ENUM_UINT16                enModemId
 )
@@ -901,21 +717,7 @@ VOS_VOID AT_InitModemPsCtx(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_InitClientConfiguration
- 功能描述  : 初始化AT的Client配置信息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月13日
-    作    者   : l60609
-    修改内容   : DSDA Phase II: 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_InitClientConfiguration(VOS_VOID)
 {
     VOS_UINT8                           i;
@@ -932,23 +734,7 @@ VOS_VOID AT_InitClientConfiguration(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_InitResetCtx
- 功能描述  : 初始化RNIC复位信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2013年04月15日
-   作    者   : f00179208
-   修改内容   : 新生成函数
- 2.日    期   : 2013年07月222日
-   作    者   : j00177245
-   修改内容   : 清理编译warning
-*****************************************************************************/
 VOS_VOID AT_InitResetCtx(VOS_VOID)
 {
     AT_RESET_CTX_STRU                   *pstResetCtx = VOS_NULL_PTR;
@@ -980,24 +766,7 @@ VOS_VOID AT_InitResetCtx(VOS_VOID)
 }
 
 #if (FEATURE_ON == FEATURE_AT_HSUART)
-/*****************************************************************************
- 函 数 名  : AT_InitUartCtx
- 功能描述  : 初始化Uart的上下文
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月20日
-    作    者   : z00189113
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年3月12日
-    作    者   : A00165503
-    修改内容   : DTS2015032409785: 增加水线检测功能
-*****************************************************************************/
 VOS_VOID AT_InitUartCtx(VOS_VOID)
 {
     AT_UART_CTX_STRU                   *pstUartCtx = VOS_NULL_PTR;
@@ -1054,32 +823,7 @@ VOS_VOID AT_InitUartCtx(VOS_VOID)
     return;
 }
 #endif
-/*****************************************************************************
- 函 数 名  : AT_InitCommCtx
- 功能描述  : 初始化公共的上下文
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月20日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-  2.日    期   : 2013年5月2日
-    作    者   : l60609
-    修改内容   : IPv6&TAF/SM Project
-
-  3.日    期   : 2013年09月22日
-    作    者   : j00174725
-    修改内容   : UART-MODEM: 增加UART上下文初始化
-
-  4.日    期   : 2015年3月12日
-    作    者   : A00165503
-    修改内容   : DTS2015032409785: 增加水线检测功能
-*****************************************************************************/
 VOS_VOID AT_InitCommCtx(VOS_VOID)
 {
     AT_COMM_CTX_STRU                   *pstCommCtx = VOS_NULL_PTR;
@@ -1100,49 +844,13 @@ VOS_VOID AT_InitCommCtx(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_InitClientCtx
- 功能描述  : 初始化通道相关的上下文
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月24日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_InitClientCtx(VOS_VOID)
 {
     AT_InitClientConfiguration();
 }
 
-/*****************************************************************************
- 函 数 名  : AT_InitModemCtx
- 功能描述  : 初始化Modem相关的上下文
- 输入参数  : MODEM_ID_ENUM_UINT16 enModemId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月24日
-    作    者   : l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月27日
-    作    者   : z00220246
-    修改内容   : 初始化平台默认接入技术
-  3.日    期   : 2013年3月5日
-    作    者   : l60609
-    修改内容   : DSDA PHASE III
-  4.日    期   : 2013年5月2日
-    作    者   : l60609
-    修改内容   : IPv6&TAF/SM Project
-*****************************************************************************/
 VOS_VOID AT_InitModemCtx(MODEM_ID_ENUM_UINT16 enModemId)
 {
     AT_InitUsimStatus(enModemId);
@@ -1164,23 +872,7 @@ VOS_VOID AT_InitModemCtx(MODEM_ID_ENUM_UINT16 enModemId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_InitCtx
- 功能描述  : 初始化AT的上下文
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月13日
-    作    者   : l60609
-    修改内容   : DSDA Phase II: 新生成函数
-  2.日    期   : 2013年3月4日
-    作    者   : l60609
-    修改内容   : DSDA PHASE III
-*****************************************************************************/
 VOS_VOID AT_InitCtx(VOS_VOID)
 {
     MODEM_ID_ENUM_UINT16                enModemId;
@@ -1197,20 +889,7 @@ VOS_VOID AT_InitCtx(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetModemIDFromPid
- 功能描述  : 根据PID得到ModemID
- 输入参数  : VOS_UINT32
- 输出参数  : 无
- 返 回 值  : MODEM_ID_ENUM_UINT16
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月08日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-*****************************************************************************/
 MODEM_ID_ENUM_UINT16 AT_GetModemIDFromPid(VOS_UINT32 ulPid)
 {
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
@@ -1248,23 +927,7 @@ MODEM_ID_ENUM_UINT16 AT_GetModemIDFromPid(VOS_UINT32 ulPid)
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_GetSystemAppConfigAddr
- 功能描述  : 获取APP控制特性的NV的地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 控制特性的信息
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年12月07日
-   作    者   : s62952
-   修改内容   : 新生成函数
- 2.日    期   : 2013年3月5日
-   作    者   : l60609
-   修改内容   : DSDA PHASE III
-*****************************************************************************/
 VOS_UINT8* AT_GetSystemAppConfigAddr(VOS_VOID)
 {
     AT_COMM_CTX_STRU                   *pstCommCtx = VOS_NULL_PTR;
@@ -1274,100 +937,31 @@ VOS_UINT8* AT_GetSystemAppConfigAddr(VOS_VOID)
     return &(pstCommCtx->ucSystemAppConfigAddr);
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetResetCtxAddr
- 功能描述  : 获取复位上下文
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : AT_RESET_CTX_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年04月20日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 AT_RESET_CTX_STRU* AT_GetResetCtxAddr(VOS_VOID)
 {
     return &(g_stAtResetCtx);
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetCommCtxAddr
- 功能描述  : 获取公共上下文
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : AT_COMM_CTX_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月20日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 AT_COMM_CTX_STRU* AT_GetCommCtxAddr(VOS_VOID)
 {
     return &(g_stAtCommCtx);
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetCommPsCtxAddr
- 功能描述  : 获取PS域的公共上下文
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : AT_PS_COMM_CTX_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月25日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 AT_COMM_PS_CTX_STRU* AT_GetCommPsCtxAddr(VOS_VOID)
 {
     return &(g_stAtCommCtx.stPsCtx);
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetCommPbCtxAddr
- 功能描述  : 获取电话本公共上下文
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : AT_COMM_PB_CTX_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月12日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 AT_COMM_PB_CTX_STRU* AT_GetCommPbCtxAddr(VOS_VOID)
 {
     return &(g_stAtCommCtx.stCommPbCtx);
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetModemCtxAddr
- 功能描述  : 获取Modem相关的上下文
- 输入参数  : MODEM_ID_ENUM_UINT16                enModemId
- 输出参数  : 无
- 返 回 值  : AT_MODEM_CTX_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月20日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 AT_MODEM_CTX_STRU* AT_GetModemCtxAddr(
     MODEM_ID_ENUM_UINT16                enModemId
 )
@@ -1375,21 +969,7 @@ AT_MODEM_CTX_STRU* AT_GetModemCtxAddr(
     return &(g_astAtModemCtx[enModemId]);
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetUsimInfoCtxFromModemId
- 功能描述  : 根据MODEM ID获取卡状态
- 输入参数  : MODEM_ID_ENUM_UINT16                enModemId
- 输出参数  : 无
- 返 回 值  : AT_USIM_INFO_CTX_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年3月5日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 AT_USIM_INFO_CTX_STRU* AT_GetUsimInfoCtxFromModemId(
     MODEM_ID_ENUM_UINT16                enModemId
 )
@@ -1397,21 +977,7 @@ AT_USIM_INFO_CTX_STRU* AT_GetUsimInfoCtxFromModemId(
     return &(g_astAtModemCtx[enModemId].stAtUsimInfoCtx);
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetSptRatFromModemId
- 功能描述  : 根据MODEM ID获取平台能力
- 输入参数  : MODEM_ID_ENUM_UINT16                enModemId
- 输出参数  : 无
- 返 回 值  : AT_MODEM_SPT_RAT_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年3月5日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 AT_MODEM_SPT_RAT_STRU* AT_GetSptRatFromModemId(
     MODEM_ID_ENUM_UINT16                enModemId
 )
@@ -1419,25 +985,9 @@ AT_MODEM_SPT_RAT_STRU* AT_GetSptRatFromModemId(
     return &(g_astAtModemCtx[enModemId].stPlatformCapList.stPlatformRatList);
 }
 
-/* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-1, begin */
 
-/* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-1, end */
 
-/*****************************************************************************
- 函 数 名  : AT_GetModemCcCtxAddrFromModemId
- 功能描述  : 根据MODEM ID获取呼叫相关的上下文
- 输入参数  : MODEM_ID_ENUM_UINT16                enModemId
- 输出参数  : 无
- 返 回 值  : AT_MODEM_CC_CTX_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月20日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 AT_MODEM_CC_CTX_STRU* AT_GetModemCcCtxAddrFromModemId(
     MODEM_ID_ENUM_UINT16                enModemId
 )
@@ -1445,21 +995,7 @@ AT_MODEM_CC_CTX_STRU* AT_GetModemCcCtxAddrFromModemId(
     return &(g_astAtModemCtx[enModemId].stCcCtx);
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetModemCcCtxAddrFromClientId
- 功能描述  : 根据ClientId返回呼叫相关的上下文
- 输入参数  : VOS_UINT16                          usClientId
- 输出参数  : 无
- 返 回 值  : AT_MODEM_CC_CTX_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月20日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 AT_MODEM_CC_CTX_STRU* AT_GetModemCcCtxAddrFromClientId(
     VOS_UINT16                          usClientId
 )
@@ -1479,21 +1015,7 @@ AT_MODEM_CC_CTX_STRU* AT_GetModemCcCtxAddrFromClientId(
     return &(g_astAtModemCtx[enModemId].stCcCtx);
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetModemSsCtxAddrFromModemId
- 功能描述  : 根据MODEM ID获取SS相关的上下文
- 输入参数  : MODEM_ID_ENUM_UINT16                enModemId
- 输出参数  : 无
- 返 回 值  : AT_MODEM_SS_CTX_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月20日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 AT_MODEM_SS_CTX_STRU* AT_GetModemSsCtxAddrFromModemId(
     MODEM_ID_ENUM_UINT16                enModemId
 )
@@ -1501,21 +1023,7 @@ AT_MODEM_SS_CTX_STRU* AT_GetModemSsCtxAddrFromModemId(
     return &(g_astAtModemCtx[enModemId].stSsCtx);
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetModemSsCtxAddrFromClientId
- 功能描述  : 根据ClientId返回补充业务相关的上下文
- 输入参数  : VOS_UINT16                          usClientId
- 输出参数  : 无
- 返 回 值  : AT_MODEM_SS_CTX_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月20日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 AT_MODEM_SS_CTX_STRU* AT_GetModemSsCtxAddrFromClientId(
     VOS_UINT16                          usClientId
 )
@@ -1534,21 +1042,7 @@ AT_MODEM_SS_CTX_STRU* AT_GetModemSsCtxAddrFromClientId(
 
     return &(g_astAtModemCtx[enModemId].stSsCtx);
 }
-/*****************************************************************************
- 函 数 名  : AT_GetModemSmsCtxAddrFromModemId
- 功能描述  : 根据MODEM ID获取短信相关的上下文
- 输入参数  : MODEM_ID_ENUM_UINT16                enModemId
- 输出参数  : 无
- 返 回 值  : AT_MODEM_SMS_CTX_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月20日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 AT_MODEM_SMS_CTX_STRU* AT_GetModemSmsCtxAddrFromModemId(
     MODEM_ID_ENUM_UINT16                enModemId
 )
@@ -1556,21 +1050,7 @@ AT_MODEM_SMS_CTX_STRU* AT_GetModemSmsCtxAddrFromModemId(
     return &(g_astAtModemCtx[enModemId].stSmsCtx);
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetModemSmsCtxAddrFromClientId
- 功能描述  : 根据ClientId获取短消息相关的上下文
- 输入参数  : VOS_UINT16                          usClientId
- 输出参数  : 无
- 返 回 值  : AT_MODEM_SMS_CTX_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月22日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 AT_MODEM_SMS_CTX_STRU* AT_GetModemSmsCtxAddrFromClientId(
     VOS_UINT16                          usClientId
 )
@@ -1591,21 +1071,7 @@ AT_MODEM_SMS_CTX_STRU* AT_GetModemSmsCtxAddrFromClientId(
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_GetModemNetCtxAddrFromModemId
- 功能描述  : 根据MODEM ID获取网络相关的上下文
- 输入参数  : MODEM_ID_ENUM_UINT16                enModemId
- 输出参数  : 无
- 返 回 值  : AT_MODEM_NET_CTX_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月20日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 AT_MODEM_NET_CTX_STRU* AT_GetModemNetCtxAddrFromModemId(
     MODEM_ID_ENUM_UINT16                enModemId
 )
@@ -1613,21 +1079,7 @@ AT_MODEM_NET_CTX_STRU* AT_GetModemNetCtxAddrFromModemId(
     return &(g_astAtModemCtx[enModemId].stNetCtx);
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetModemNetCtxAddrFromClientId
- 功能描述  : 根据ClientId获取网络相关的上下文
- 输入参数  : VOS_UINT16                          usClientId
- 输出参数  : 无
- 返 回 值  : AT_MODEM_NET_CTX_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月22日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 AT_MODEM_NET_CTX_STRU* AT_GetModemNetCtxAddrFromClientId(
     VOS_UINT16                          usClientId
 )
@@ -1646,42 +1098,14 @@ AT_MODEM_NET_CTX_STRU* AT_GetModemNetCtxAddrFromClientId(
 
     return &(g_astAtModemCtx[enModemId].stNetCtx);
 }
-/*****************************************************************************
- 函 数 名  : AT_GetModemAgpsCtxAddrFromModemId
- 功能描述  : 根据MODEM ID获取AGPS相关的上下文
- 输入参数  : MODEM_ID_ENUM_UINT16                enModemId
- 输出参数  : 无
- 返 回 值  : AT_MODEM_AGPS_CTX_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月21日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 AT_MODEM_AGPS_CTX_STRU* AT_GetModemAgpsCtxAddrFromModemId(
     MODEM_ID_ENUM_UINT16                enModemId
 )
 {
     return &(g_astAtModemCtx[enModemId].stAgpsCtx);
 }
-/*****************************************************************************
- 函 数 名  : AT_GetModemAgpsCtxAddrFromClientId
- 功能描述  : 根据ClientId值获取AGPS相关的上下文
- 输入参数  : VOS_UINT16                          usClientId
- 输出参数  : 无
- 返 回 值  : AT_MODEM_AGPS_CTX_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月21日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 AT_MODEM_AGPS_CTX_STRU* AT_GetModemAgpsCtxAddrFromClientId(
     VOS_UINT16                          usClientId
 )
@@ -1701,21 +1125,7 @@ AT_MODEM_AGPS_CTX_STRU* AT_GetModemAgpsCtxAddrFromClientId(
     return &(g_astAtModemCtx[enModemId].stAgpsCtx);
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetModemPsCtxAddrFromModemId
- 功能描述  : 根据MODEM ID获取PS域MODEM相关的上下文
- 输入参数  : MODEM_ID_ENUM_UINT16                enModemId
- 输出参数  : 无
- 返 回 值  : AT_MODEM_PS_CTX_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月25日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 AT_MODEM_PS_CTX_STRU* AT_GetModemPsCtxAddrFromModemId(
     MODEM_ID_ENUM_UINT16                enModemId
 )
@@ -1723,21 +1133,7 @@ AT_MODEM_PS_CTX_STRU* AT_GetModemPsCtxAddrFromModemId(
     return &(g_astAtModemCtx[enModemId].stPsCtx);
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetModemPsCtxAddrFromClientId
- 功能描述  : 根据CLIENT ID获取PS域MODEM相关的上下文
- 输入参数  : MODEM_ID_ENUM_UINT16                enModemId
- 输出参数  : 无
- 返 回 值  : AT_MODEM_PS_CTX_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月25日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 AT_MODEM_PS_CTX_STRU* AT_GetModemPsCtxAddrFromClientId(
     VOS_UINT16                          usClientId
 )
@@ -1757,21 +1153,7 @@ AT_MODEM_PS_CTX_STRU* AT_GetModemPsCtxAddrFromClientId(
     return &(g_astAtModemCtx[enModemId].stPsCtx);
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetClientCtxAddr
- 功能描述  : 获取端口相关的上下文
- 输入参数  : AT_CLIENT_ID_ENUM_UINT16            enClientId
- 输出参数  : 无
- 返 回 值  : AT_CLIENT_CTX_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月20日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 AT_CLIENT_CTX_STRU* AT_GetClientCtxAddr(
     AT_CLIENT_ID_ENUM_UINT16            enClientId
 )
@@ -1779,29 +1161,7 @@ AT_CLIENT_CTX_STRU* AT_GetClientCtxAddr(
     return &(g_astAtClientCtx[enClientId]);
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetModemIdFromClient
- 功能描述  : 根据AT CLIENT INDEX获取归属的MODEM ID
- 输入参数  : VOS_UINT16                          usClientId
-             MODEM_ID_ENUM_UINT16               *pModemId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月13日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-  2.日    期   : 2013年03月13日
-    作    者   : f00179208
-    修改内容   : DSDA PHASE III:增加异常保护
-
-  3.日    期   : 2015年5月27日
-    作    者   : l00198894
-    修改内容   : TSTS
-*****************************************************************************/
 VOS_UINT32 AT_GetModemIdFromClient(
     VOS_UINT16                          usClientId,
     MODEM_ID_ENUM_UINT16               *pModemId
@@ -1853,25 +1213,7 @@ VOS_UINT32 AT_GetModemIdFromClient(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetDestPid
- 功能描述  : 获取实际发送的PID
- 输入参数  : MN_CLIENT_ID_T                      usClientId
-             VOS_UINT32                          ulRcvPid
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年5月27日
-    作    者   : l00198894
-    修改内容   : TSTS
-*****************************************************************************/
 VOS_UINT32 AT_GetDestPid(
     MN_CLIENT_ID_T                      usClientId,
     VOS_UINT32                          ulRcvPid
@@ -1920,25 +1262,7 @@ VOS_UINT32 AT_GetDestPid(
     return ulRcvPid;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetRealClientId
- 功能描述  : 获取对应Modem的CilentId
- 输入参数  : MN_CLIENT_ID_T                      usClientId
-             VOS_UINT32                          ulPid
- 输出参数  : 无
- 返 回 值  : MN_CLIENT_ID_T
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年3月1日
-    作    者   : L60609
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年5月28日
-    作    者   : l00198894
-    修改内容   : TSTS
-*****************************************************************************/
 MN_CLIENT_ID_T AT_GetRealClientId(
     MN_CLIENT_ID_T                      usClientId,
     VOS_UINT32                          ulPid
@@ -1969,24 +1293,7 @@ MN_CLIENT_ID_T AT_GetRealClientId(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : AT_IsModemSupportLte
- 功能描述  : 判断当前Modem是否支持某种接入技术
- 输入参数  : MODEM_ID_ENUM_UINT16                enModemId
-             TAF_MMA_RAT_TYPE_ENUM_UINT8         enRat
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月27日
-    作    者   : z00220246
-    修改内容   : 新生成函数
-  2.日    期   : 2015年4月10日
-    作    者   : h00313353
-    修改内容   : SysCfg重构
-*****************************************************************************/
 VOS_UINT8 AT_IsModemSupportRat(
     MODEM_ID_ENUM_UINT16                enModemId,
     TAF_MMA_RAT_TYPE_ENUM_UINT8         enRat
@@ -2019,21 +1326,7 @@ VOS_UINT8 AT_IsModemSupportRat(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_IsModemSupportUtralTDDRat
- 功能描述  : 判断当前Modem是否支持UTRALTDD
- 输入参数  : MODEM_ID_ENUM_UINT16                enModemId
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月22日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 AT_IsModemSupportUtralTDDRat(
     MODEM_ID_ENUM_UINT16                enModemId
 )
@@ -2046,22 +1339,7 @@ VOS_UINT8 AT_IsModemSupportUtralTDDRat(
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_SetCsCallErrCause
- 功能描述  : 设置CS域呼叫错误码
- 输入参数  : VOS_UINT16                          usClientId
-             TAF_CS_CAUSE_ENUM_UINT32            enCsErrCause
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月21日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_SetCsCallErrCause(
     VOS_UINT16                          usClientId,
     TAF_CS_CAUSE_ENUM_UINT32            enCsErrCause
@@ -2076,21 +1354,7 @@ VOS_VOID AT_SetCsCallErrCause(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetCsCallErrCause
- 功能描述  : 获取CS域呼叫错误码
- 输入参数  : VOS_UINT16                          usClientId
- 输出参数  : 无
- 返 回 值  : TAF_CS_CAUSE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月21日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_CS_CAUSE_ENUM_UINT32 AT_GetCsCallErrCause(
     VOS_UINT16                          usClientId
 )
@@ -2103,68 +1367,20 @@ TAF_CS_CAUSE_ENUM_UINT32 AT_GetCsCallErrCause(
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_GetAbortCmdPara
- 功能描述  : 获取AT打断命令的参数
- 输出参数  : 无
- 返 回 值  : AT打断命令的参数
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月22日
-    作    者   : lijun 00171473
-    修改内容   : 新生成函数 for V7R1C50_At_Abort
-
-  2.日    期   : 2013年10月18日
-    作    者   : w00242748
-    修改内容   : 封装打断结构体
-*****************************************************************************/
 AT_ABORT_CMD_PARA_STRU* AT_GetAbortCmdPara(VOS_VOID)
 {
     return &(gstAtAbortCmdCtx.stAtAbortCmdPara);
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetAbortRspStr
- 功能描述  : 获取AT打断的返回结果字符串
- 输出参数  : 无
- 返 回 值  : AT打断的返回结果字符串, 带有\0结束符的字符串
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月22日
-    作    者   : lijun 00171473
-    修改内容   : 新生成函数 for V7R1C50_At_Abort
-
-  2.日    期   : 2013年10月18日
-    作    者   : w00242748
-    修改内容   : 封装打断结构体
-*****************************************************************************/
 VOS_UINT8* AT_GetAbortRspStr(VOS_VOID)
 {
     return (gstAtAbortCmdCtx.stAtAbortCmdPara.aucAbortAtRspStr);
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_GetSsCustomizePara
- 功能描述  : 获取指令SS 业务的定制状态
- 输入参数  : AT_SS_CUSTOMIZE_TYPE_UINT8 enSsCustomizeType   业务类型
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
-                VOS_FALSE       业务未定制
-                VOS_TRUE        业务已定制
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年01月24日
-    作    者   : f62575
-    修改内容   : DTS2013012408620, 支持SS查询操作输出网络SS-STATUS参数
-
-*****************************************************************************/
 VOS_UINT32 AT_GetSsCustomizePara(AT_SS_CUSTOMIZE_TYPE_UINT8 enSsCustomizeType)
 {
     VOS_UINT8                           ucMask;
@@ -2184,58 +1400,19 @@ VOS_UINT32 AT_GetSsCustomizePara(AT_SS_CUSTOMIZE_TYPE_UINT8 enSsCustomizeType)
 
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetResetSem
- 功能描述  : 获取AT复位信号量
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : AT复位信号量
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2013年04月17日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_SEM AT_GetResetSem(VOS_VOID)
 {
     return g_stAtResetCtx.hResetSem;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetResetFlag
- 功能描述  : 获取AT复位标志
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : AT复位标志
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2013年04月17日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_GetResetFlag(VOS_VOID)
 {
     return g_stAtResetCtx.ulResetingFlag;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SetResetFlag
- 功能描述  : 设置AT复位标志
- 输入参数  : 复位状态
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2013年04月17日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_SetResetFlag(VOS_UINT32 ulFlag)
 {
     g_stAtResetCtx.ulResetingFlag = ulFlag;
@@ -2243,21 +1420,7 @@ VOS_VOID AT_SetResetFlag(VOS_UINT32 ulFlag)
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_GetModemMtInfoCtxAddrFromModemId
- 功能描述  : 根据MODEM ID获取AGPS相关的上下文
- 输入参数  : MODEM_ID_ENUM_UINT16                enModemId
- 输出参数  : 无
- 返 回 值  : AT_MODEM_MT_INFO_CTX_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月30日
-    作    者   : z60575
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 AT_MODEM_MT_INFO_CTX_STRU* AT_GetModemMtInfoCtxAddrFromModemId(
     MODEM_ID_ENUM_UINT16                enModemId
 )
@@ -2265,43 +1428,13 @@ AT_MODEM_MT_INFO_CTX_STRU* AT_GetModemMtInfoCtxAddrFromModemId(
     return &(g_astAtModemCtx[enModemId].stMtInfoCtx);
 }
 
-/*****************************************************************************
- 函 数 名  : AT_InitTraceMsgTab
- 功能描述  : 初始化勾包使用的端口号
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月07日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_InitTraceMsgTab(VOS_VOID)
 {
     PS_MEM_SET(g_stAtTraceMsgIdTab, 0xFF, sizeof(g_stAtTraceMsgIdTab));
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetResultMsgID
- 功能描述  : 获取 Result MSG ID
- 输入参数  : ucIndex   -- 端口client ID 正确性由调用者保证
- 输出参数  : 无
- 返 回 值  : AT_INTER_MSG_ID_ENUM_UINT32 -- result msg id
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月07日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年5月27日
-    作    者   : l00198894
-    修改内容   : TSTS
-*****************************************************************************/
 AT_INTER_MSG_ID_ENUM_UINT32 AT_GetResultMsgID(VOS_UINT8 ucIndex)
 {
     AT_INTER_MSG_ID_ENUM_UINT32         enResultMsgID;
@@ -2326,41 +1459,13 @@ AT_INTER_MSG_ID_ENUM_UINT32 AT_GetResultMsgID(VOS_UINT8 ucIndex)
     return enResultMsgID;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetCmdMsgID
- 功能描述  : 获取 CMD MSG ID
- 输入参数  : ucIndex   -- 端口client ID 正确性由调用者保证
- 输出参数  : 无
- 返 回 值  : AT_INTER_MSG_ID_ENUM_UINT32 --cmd msg ID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月07日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-*****************************************************************************/
 AT_INTER_MSG_ID_ENUM_UINT32 AT_GetCmdMsgID(VOS_UINT8 ucIndex)
 {
     return g_stAtTraceMsgIdTab[ucIndex].enCmdMsgID;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_ConfigTraceMsg
- 功能描述  : 配置端口与命令消息映射
- 输入参数  : ucIndex       - 端口索引
-             enCmdMsgId    - 端口命令消息
-             enResultMsgId - 端口命令结果
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月07日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_ConfigTraceMsg(
     VOS_UINT8                           ucIndex,
     AT_INTER_MSG_ID_ENUM_UINT32         enCmdMsgId,
@@ -2373,22 +1478,7 @@ VOS_VOID AT_ConfigTraceMsg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : At_SetAtCmdAbortTickInfo
- 功能描述  : 保存设置AT命令时的tick值和使能值
- 输入参数  : ucIndex   : 通道索引
-             ulTick    : tick值
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月18日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID At_SetAtCmdAbortTickInfo(
     VOS_UINT8                           ucIndex,
     VOS_UINT32                          ulTick
@@ -2399,61 +1489,19 @@ VOS_VOID At_SetAtCmdAbortTickInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : At_GetAtCmdAbortTickInfo
- 功能描述  : 获取保存的设置AT命令时的Tick值信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : AT_CMD_ABORT_TICK_INFO 信息
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月18日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 AT_CMD_ABORT_TICK_INFO* At_GetAtCmdAbortTickInfo(VOS_VOID)
 {
     return &(gstAtAbortCmdCtx.stCmdAbortTick);
 }
 
-/*****************************************************************************
- 函 数 名  : At_GetAtCmdAnyAbortFlg
- 功能描述  : 获取任意字符打断标记
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回任意打断标记标示符
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月18日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 At_GetAtCmdAnyAbortFlg(VOS_VOID)
 {
     return (gstAtAbortCmdCtx.stAtAbortCmdPara.ucAnyAbortFlg);
 }
 
-/*****************************************************************************
- 函 数 名  : At_SetAtCmdAnyAbortFlg
- 功能描述  : 设置任意字符打断标记
- 输入参数  : ucFlg    : 打断标志
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月18日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID At_SetAtCmdAnyAbortFlg(
     VOS_UINT8                           ucFlg
 )
@@ -2463,153 +1511,49 @@ VOS_VOID At_SetAtCmdAnyAbortFlg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetUartCtxAddr
- 功能描述  : 获取UART口公共上下文
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : AT_COMM_CTX_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年09月21日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-*****************************************************************************/
 AT_UART_CTX_STRU* AT_GetUartCtxAddr(VOS_VOID)
 {
     return &(g_stAtCommCtx.stUartCtx);
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetUartRiCfgInfo
- 功能描述  : 获取UART物理参数配置信息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : AT_UART_PHY_CFG_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年09月21日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 AT_UART_PHY_CFG_STRU* AT_GetUartPhyCfgInfo(VOS_VOID)
 {
     return &(AT_GetUartCtxAddr()->stPhyConfig);
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetUartLineCtrlInfo
- 功能描述  : 获取UART端口管脚信号控制信息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : AT_UART_LINE_CTRL_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年09月21日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 AT_UART_LINE_CTRL_STRU* AT_GetUartLineCtrlInfo(VOS_VOID)
 {
     return &(AT_GetUartCtxAddr()->stLineCtrl);
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetUartFlowCtrlInfo
- 功能描述  : 获取UART端口流控配置信息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : AT_UART_FLOW_CTRL_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年09月21日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 AT_UART_FLOW_CTRL_STRU* AT_GetUartFlowCtrlInfo(VOS_VOID)
 {
     return &(AT_GetUartCtxAddr()->stFlowCtrl);
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetUartRiCfgInfo
- 功能描述  : 获取UART端口RING脚信号配置信息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : AT_UART_RI_CFG_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年09月21日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 AT_UART_RI_CFG_STRU* AT_GetUartRiCfgInfo(VOS_VOID)
 {
     return &(AT_GetUartCtxAddr()->stRiConfig);
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetUartRiStateInfo
- 功能描述  : 获取UART端口RING脚信号状态信息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : AT_UART_RI_STATE_INFO_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年09月21日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 AT_UART_RI_STATE_INFO_STRU* AT_GetUartRiStateInfo(VOS_VOID)
 {
     return &(AT_GetUartCtxAddr()->stRiStateInfo);
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetPortBuffCfgInfo
- 功能描述  : 获取已经使用端口记录地址
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : AT_COMM_CTX_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年09月21日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-*****************************************************************************/
 AT_PORT_BUFF_CFG_STRU* AT_GetPortBuffCfgInfo(VOS_VOID)
 {
     return &(AT_GetCommCtxAddr()->stPortBuffCfg);
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetPortBuffCfg
- 功能描述  : 获取短信缓存NV配置
- 输入参数  : VOS_VOID
- 输出参数  : VOS_VOID
- 返 回 值  : AT_SMS_BUFF_CFG_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月28日
-    作    者   : j00174725
-    修改内容   : HSUART PHASE III
-*****************************************************************************/
 AT_PORT_BUFF_CFG_ENUM_UINT8  AT_GetPortBuffCfg(VOS_VOID)
 {
     AT_COMM_CTX_STRU                   *pstCommCtx = VOS_NULL_PTR;
@@ -2619,20 +1563,7 @@ AT_PORT_BUFF_CFG_ENUM_UINT8  AT_GetPortBuffCfg(VOS_VOID)
     return pstCommCtx->stPortBuffCfg.enSmsBuffCfg;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_InitPortBuffCfg
- 功能描述  : 初始化记录使用clientID的表
- 输入参数  : VOS_VOID
- 输出参数  : VOS_VOID
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月28日
-    作    者   : j00174725
-    修改内容   : HSUART PHASE III
-*****************************************************************************/
 VOS_VOID AT_InitPortBuffCfg(VOS_VOID)
 {
     AT_PORT_BUFF_CFG_STRU              *pstUsedClientIdTab = VOS_NULL_PTR;
@@ -2644,24 +1575,7 @@ VOS_VOID AT_InitPortBuffCfg(VOS_VOID)
     pstUsedClientIdTab->ucNum = 0;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_AddUsedClientId2Tab
- 功能描述  : 将使用的clientID记录到全局变量中
- 输入参数  : usClientId
- 输出参数  : VOS_VOID
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月28日
-    作    者   : j00174725
-    修改内容   : HSUART PHASE III
-
-  2.日    期   : 2014年2月14日
-    作    者   : j00174725
-    修改内容   : TQE
-*****************************************************************************/
 VOS_VOID AT_AddUsedClientId2Tab(VOS_UINT16 usClientId)
 {
     AT_PORT_BUFF_CFG_STRU              *pstPortBuffCfg = VOS_NULL_PTR;
@@ -2710,20 +1624,7 @@ VOS_VOID AT_AddUsedClientId2Tab(VOS_UINT16 usClientId)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RmUsedClientIdFromTab
- 功能描述  : 将ClientID从全局变量中删除
- 输入参数  : usClientId
- 输出参数  : VOS_VOID
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月28日
-    作    者   : j00174725
-    修改内容   : HSUART PHASE III
-*****************************************************************************/
 VOS_VOID AT_RmUsedClientIdFromTab(VOS_UINT16 usClientId)
 {
     AT_PORT_BUFF_CFG_STRU              *pstPortBuffCfg = VOS_NULL_PTR;
@@ -2768,21 +1669,7 @@ VOS_VOID AT_RmUsedClientIdFromTab(VOS_UINT16 usClientId)
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_GetClientConfig
- 功能描述  : 获取ClientConfig上下文
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : AT_CLIENT_CONFIGURATION_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月25日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 AT_CLIENT_CONFIGURATION_STRU* AT_GetClientConfig(
     AT_CLIENT_ID_ENUM_UINT16            enClientId
 )
@@ -2790,40 +1677,12 @@ AT_CLIENT_CONFIGURATION_STRU* AT_GetClientConfig(
     return &(AT_GetClientCtxAddr(enClientId)->stClientConfiguration);
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetClientCfgMapTbl
- 功能描述  : 获取CLIENT CFG TAB上下文
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : AT_CLIENT_CFG_MAP_TAB_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月25日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 AT_CLIENT_CFG_MAP_TAB_STRU* AT_GetClientCfgMapTbl(VOS_UINT8 ucIndex)
 {
     return &(g_astAtClientCfgMapTbl[ucIndex]);
 }
-/*****************************************************************************
- 函 数 名  : AT_GetSmsFilterEnableFlg
- 功能描述  : 获取短信NV过滤配置信息中是否需LOG的标识
- 输入参数  : ucIndex    : ClientId
- 输出参数  : VOS_UINT32 : 标识信息
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月25日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 AT_GetSmsFilterEnableFlg(
     VOS_UINT8                           ucIndex
 )
@@ -2831,20 +1690,7 @@ VOS_UINT8 AT_GetSmsFilterEnableFlg(
     return AT_GetModemSmsCtxAddrFromClientId(ucIndex)->stSmsFilterCfg.ucSmsFilterEnableFlg;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_IsSupportReleaseRst
- 功能描述  : 判断是否支持协议Rx版本
- 输入参数  : ulReleaseType
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年10月20日
-   作    者   : w00316404
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 AT_IsSupportReleaseRst(VOS_UINT32 ulReleaseType)
 {
 #if (FEATURE_ON == FEATURE_LTE)
@@ -2859,21 +1705,7 @@ VOS_UINT8 AT_IsSupportReleaseRst(VOS_UINT32 ulReleaseType)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetModemCLModeCtxAddrFromModemId
- 功能描述  : 根据MODEM ID获取CL mode相关的上下文
- 输入参数  : MODEM_ID_ENUM_UINT16                enModemId
- 输出参数  : 无
- 返 回 值  : AT_MODEM_SMS_CTX_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月27日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8* AT_GetModemCLModeCtxAddrFromModemId(
     MODEM_ID_ENUM_UINT16                enModemId
 )

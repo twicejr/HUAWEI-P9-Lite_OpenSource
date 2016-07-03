@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : dhcpc_dbg.c
-  版 本 号   : 初稿
-  作    者   : yuqingping(25027)
-  生成日期   : 2002年11月21日
-  最近修改   :
-  功能描述   : dhcpc模块的调试函数
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2002年11月21日
-    作    者   : yuqingping(25027)
-    修改内容   : 创建文件
-
-******************************************************************************/
 #include "dhcp_inc.h"
 #include "dhcpc_def.h"
 #include "dhcpc.h"
@@ -38,7 +21,6 @@
 #define    THIS_FILE_ID          PS_FILE_ID_DHCPC_DBG_C
 /*lint +e767*/
 
-/*delete by m00221573 for 全文件pclint 2012-10-15*/
 
 ULONG g_ulDhcpcPrintLevel = 0;  /*串口输出的级别*/
 
@@ -205,7 +187,6 @@ UCHAR g_ucDHCPV6CDbgCntName[E_DHCPV6C_END][60] =
     "E_DHCPV6C_BLK_DELWAITNOD_NODEQU    ",
     "E_DHCPV6C_BLK_MEMCANBEFREE_NUM     ",
 
-    /* zhangjinquan 00175135 DHCPv6特性 2012-07-23 start */
     "E_DHCPV6C_NO_NODE_IN_HASH_LIST     ",
     "E_DHCPV6C_NODE_NOT_IN_HASH_LIST    ",
     "E_DHCPV6C_MALLOC_ERR_FOR_TIMER_NODE",
@@ -217,7 +198,6 @@ UCHAR g_ucDHCPV6CDbgCntName[E_DHCPV6C_END][60] =
     "E_DHCPV6C_FIND_NODE_CANNOT_BE_HEAD ",
     "E_DHCPV6C_FIND_SAME_CONFLICT_NODE  ",
     "E_DHCPV6C_TIMER_UP_FIND_HASH_ERROR ",
-    /* zhangjinquan 00175135 DHCPv6特性 2012-07-23 end   */
 
     "E_DHCPV6C_CHECK_BLKDEL             ",
     "E_DHCPV6C_BAK_IPTYPEERR            ",
@@ -272,22 +252,7 @@ UCHAR g_ucDHCPV6CDbgCntName[E_DHCPV6C_END][60] =
     "E_DHCPV6C_ALARM_CNT_ERRRRRRRRRRRR  "
 };
 
-/*****************************************************************************
- 函 数 名  : DHCPC_Debug_ShowDhcpServerGroup
- 功能描述  : 显示dhcp-server group信息
- 输入参数  : ULONG argc
-             CHAR*argv[]
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月6日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPC_Debug_ShowDhcpServerGroup(ULONG argc, CHAR*argv[])
 {
     ULONG ulReturn = 0;
@@ -449,23 +414,7 @@ VOID DHCPC_DebugPrintLevelSet( ULONG ulArgc, CHAR *szArgv[] )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_Dbg_PacketPrint
- 功能描述  : DHCPC的报文输出函数
- 输入参数  : UCHAR ucType
-             void *pPacket
-             ULONG ulPktLen
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2002年11月24日
-    作    者   : yuqingping(25027)
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 VOID DHCPC_Dbg_PacketPrint( DHCP_S  *pstDHCPPkt, ULONG ulOptionLen,USHORT s1 )
 {
@@ -490,7 +439,6 @@ VOID DHCPC_Dbg_PacketPrint( DHCP_S  *pstDHCPPkt, ULONG ulOptionLen,USHORT s1 )
         DHCPC_Dbg_Printf( 0,"\r\n DHCPC: DHCP_Malloc ERR in DHCPC_Dbg_PacketPrint()" );
         return;
     }
-    /* zhangjinquan DTS2011122601821 review问题-增加初始化处理 2012-01-02 */
     PGP_MemZero(szTotalStr, DHCPC_DEBUGBUF_LEN);
 // *szTotalStr=0;
 
@@ -1197,46 +1145,14 @@ VOID DHCPC_Dbg_PacketPrint( DHCP_S  *pstDHCPPkt, ULONG ulOptionLen,USHORT s1 )
     DHCP_Free( DHCPC_HANDLE, szTotalStr );
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_Dbg_PacketPrintReceive
- 功能描述  : DHCPC的报文输出函数
- 输入参数  : UCHAR ucType
-             void *pPacket
-             ULONG ulPktLen
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2002年11月24日
-    作    者   : yuqingping(25027)
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPC_Dbg_PacketPrintReceive( DHCP_S  *pstDHCPPkt, ULONG ulOptionLen )
 {
     if ( g_ulDHCPCDbgPkt!=1 ) return;
     DHCPC_Dbg_PacketPrint( pstDHCPPkt,  ulOptionLen,0 );  /*LFBDBG*/
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_Dbg_PacketPrintSend
- 功能描述  : DHCPC的报文输出函数
- 输入参数  : UCHAR ucType
-             void *pPacket
-             ULONG ulPktLen
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2002年11月24日
-    作    者   : yuqingping(25027)
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPC_Dbg_PacketPrintSend( PMBUF_S  *pMBuf )
 {
     if ( g_ulDHCPCDbgPkt != 1 ) return;
@@ -1244,21 +1160,7 @@ VOID DHCPC_Dbg_PacketPrintSend( PMBUF_S  *pMBuf )
         ( ULONG )(pMBuf->ulTotalDataLength  - DHCPC_PKT_FIXEDFIELD_LEN),1 );
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_DBG_strcat
- 功能描述  : 将两个字符串的内容连接起来
- 输入参数  : CHAR *dest, CHAR *src
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2002年11月24日
-    作    者   : yuqingping(25027)
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPC_DBG_strcat( CHAR *dest, CHAR *src )
 {
 
@@ -1271,37 +1173,13 @@ VOID DHCPC_DBG_strcat( CHAR *dest, CHAR *src )
 }
 
 
-/*****************************************************************************
- 函 数 名  : DHCPC_Dbg_Printf
- 功能描述  :信息打印函数
- 输入参数  : USHORT usIC_flag 为1，则同时向信息中心打印。const CHAR *pucStr
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
- 修改历史       :
-  1.日      期   : 2003年03月07日
-    作      者   : lifubing(28197)
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 VOID DHCPC_Dbg_Printf( USHORT usIC_flag,CHAR *pucStr )
 {
     DebugPrintf( ( ULONG )FSU_TID_DHCP, DHCPC_DBG_L2, 0,0,pucStr );
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_Debug_ShowDbgCnt
- 功能描述  :信息打印函数
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
- 修改历史       :
-  1.日      期   : 2009年06月04日
-    作      者   : jiahuidong00142544
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 
 VOID DHCPC_Debug_ShowDbgCnt(ULONG argc, CHAR*argv[])
 {
@@ -1349,19 +1227,7 @@ VOID DHCPC_Debug_ShowDbgCnt(ULONG argc, CHAR*argv[])
 }
 
 
-/*****************************************************************************
- 函 数 名  : DHCPC_Debug_ClearDbgCnt
- 功能描述  :信息打印函数
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
- 修改历史       :
-  1.日      期   : 2009年06月04日
-    作      者   : jiahuidong00142544
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 VOID DHCPC_Debug_ClearDbgCnt(ULONG argc, CHAR*argv[])
 {
     ULONG i = 0;
@@ -1380,22 +1246,7 @@ VOID DHCPC_Debug_ClearDbgCnt(ULONG argc, CHAR*argv[])
 
 
 
-/*****************************************************************************
- 函 数 名  : DHCPC_Debug_ShowBlockInfo
- 功能描述  :信息打印函数
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
- 修改历史       :
-  1.日      期   : 2009年07月04日
-    作      者   : jiahuidong00142544
-    修改内容   : 新生成函数
-  2.日      期   : 2010年08月07日
-    作      者   : w00140934
-    修改内容   : 通过控制块索引查询;
-*****************************************************************************/
+
 
 VOID DHCPC_Debug_ShowBlockInfo(ULONG argc, CHAR*argv[])
 {
@@ -1474,22 +1325,7 @@ VOID DHCPC_Debug_ShowBlockInfo(ULONG argc, CHAR*argv[])
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_Debug_ShowBlockNum
- 功能描述  :信息打印函数
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
- 修改历史       :
-  1.日      期   : 2009年07月04日
-    作      者   : jiahuidong00142544
-    修改内容   : 新生成函数
-  2.日      期   : 2010年08月07日
-    作      者   : w00140934
-    修改内容   : 通过控制块索引查询;
-*****************************************************************************/
+
 VOID DHCPC_Debug_ShowBlockNum(ULONG argc, CHAR*argv[])
 {
     DHCPC_CTRLBLK *pstDhcpCtrlBlk = NULL;
@@ -1519,18 +1355,7 @@ VOID DHCPC_Debug_ShowBlockNum(ULONG argc, CHAR*argv[])
 }
 
 
-/*****************************************************************************
- *  函数名称:       DHCPC_Debug_ShowSeqNum
- *  初稿完成:       2012-07-18
- *  作    者:       y00170683
- *  函数功能:       SeqNum使用情况查询
- *  输入参数:       无
- *  输出参数:       无
- *  返回类型:       VOID
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOID DHCPC_Debug_ShowSeqNum(ULONG argc, CHAR*argv[])
 {
     ULONG i = 0;
@@ -1576,18 +1401,7 @@ VOID DHCPC_Debug_ShowSeqNum(ULONG argc, CHAR*argv[])
     return ;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPC_Debug_ResetSeqNum
- *  初稿完成:       2012-07-26
- *  作    者:       y00170683
- *  函数功能:       重置SeqNum使用
- *  输入参数:       无
- *  输出参数:       无
- *  返回类型:       VOID
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOID DHCPC_Debug_ResetSeqNum(ULONG argc, CHAR*argv[])
 {
     ULONG ulen = 0;
@@ -1673,24 +1487,7 @@ VOID DHCPC_Debug_ResetSeqNum(ULONG argc, CHAR*argv[])
     return ;
 }
 
-/*****************************************************************************
- 函 数 名   : DHCPC_PrintMemInfo
- 功能描述   : 获取显示dhcp在sc上的内存信息
- 输入参数   : ULONG argc, CHAR* argv[], UCHAR ucParIdx
- 输出参数   : ULONG *pulParValue
- 返 回 值   :
 
- 调用函数   :
- 被调函数   :
-
- 修改历史   :
- 1.日    期 : 2012年1月18日
-   作    者 : guolixian
-   修改内容 : 新增函数
- 2.日    期 : 2012年2月18日
-   作    者 : z00175135
-   修改内容 : 修改函数 DTS2011120504839 全pclint修改 2012-02-18
-*****************************************************************************/
 VOID DHCPC_PrintMemInfo(UCHAR *pucStructName,ULONG ulUnitSize, ULONG ulUnitNum, ULONG ulMemSize, UCHAR *pucMemType, UCHAR ucStatic)
 {
     ULONG ulCpuId = 0;
@@ -1714,21 +1511,7 @@ VOID DHCPC_PrintMemInfo(UCHAR *pucStructName,ULONG ulUnitSize, ULONG ulUnitNum, 
 }
 
 
-/*****************************************************************************
- 函 数 名   : DHCPC_DebugShowMemInfo
- 功能描述   : 获取显示dhcpc的内存信息
- 输入参数   : ULONG argc, CHAR* argv[], UCHAR ucParIdx
- 输出参数   : ULONG *pulParValue
- 返 回 值   :
 
- 调用函数   :
- 被调函数   :
-
- 修改历史   :
- 1.日    期 : 2012年1月18日
-   作    者 : guolixian
-   修改内容 : 新增函数
-*****************************************************************************/
 VOID DHCPC_DebugShowMemInfo(ULONG argc, CHAR* argv[])
 {
     if( 0 == DHCPC_SELF_CSI )
@@ -1741,7 +1524,6 @@ VOID DHCPC_DebugShowMemInfo(ULONG argc, CHAR* argv[])
     DHCPC_OutString("\r\n *************************************The DHCPC memory info Begin********************************************************");
 
     DHCPC_OutString("\r\n    StructName,            UnitSize,   UnitNum,    ulMemSize,  MemType,    Static, Mid,      Sub-System, CPU, vCPU\r\n");
-    /* z00175135 DTS2012012003193 全文件pclint 2012-02-09 start */
 
     DHCPC_PrintMemInfo((UCHAR *)"g_astTimerLink",sizeof( DLL_S ),DHCPC_TMR_CIRCLE_TIME,
         DHCPC_TMR_CIRCLE_TIME * sizeof( DLL_S ), (UCHAR *)"SC",'N');
@@ -1757,7 +1539,6 @@ VOID DHCPC_DebugShowMemInfo(ULONG argc, CHAR* argv[])
 
     DHCPC_PrintMemInfo((UCHAR *)"g_aulDHCPDbgCnt",sizeof(ULONG),DHCP_MAX_FAILURE_COUNTER,
         sizeof(ULONG)*DHCP_MAX_FAILURE_COUNTER, (UCHAR *)"SC",'Y');
-    /* z00175135 DTS2012012003193 全文件pclint 2012-02-09 end   */
     DHCPC_OutString("\r\n *************************************The DHCPC memory info END**********************************************************\r\n ");
 
     DHCPC_OutString("\r\n ---------------------------------------------------------------------------------\r\n");
@@ -1819,19 +1600,7 @@ VOID DHCPC_NewDebugOut(ULONG ulLevel, CHAR* pszFile, ULONG ulLineNo, CHAR *pszFu
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_Debug_ShowTimerNodeInfo
- 功能描述  : 显示特定指定时间节点数据
- 输入参数  : ULONG ulHashKey, DHCPC_TIMER_NODE_S *pstTimerNode
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012-07-30
-    作    者   : zhangjinquan 00175135
-    修改内容   : 新生成函数 zhangjinquan 00175135 DHCPv6特性 2012-07-30
-*****************************************************************************/
+
 VOID DHCPC_Debug_ShowTimerNodeInfo(ULONG ulHashKey, DHCPC_TIMER_NODE_S *pstTimerNode)
 {
     CHAR szIpAddr[60] = {0};
@@ -1863,19 +1632,7 @@ VOID DHCPC_Debug_ShowTimerNodeInfo(ULONG ulHashKey, DHCPC_TIMER_NODE_S *pstTimer
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_Debug_ShowTimerInfoByTeidc
- 功能描述  : 显示特定teidc对应的时间节点数据
- 输入参数  : ULONG ulTeidc
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012-07-30
-    作    者   : zhangjinquan 00175135
-    修改内容   : 新生成函数 zhangjinquan 00175135 DHCPv6特性 2012-07-30
-*****************************************************************************/
+
 VOID DHCPC_Debug_ShowTimerInfoByTeidc(ULONG ulTeidc)
 {
     ULONG i = 0;
@@ -1895,19 +1652,7 @@ VOID DHCPC_Debug_ShowTimerInfoByTeidc(ULONG ulTeidc)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_Debug_ShowGlobalTimerInfo
- 功能描述  : 显示timer哈希链的总体信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012-07-30
-    作    者   : zhangjinquan 00175135
-    修改内容   : 新生成函数 zhangjinquan 00175135 DHCPv6特性 2012-07-30
-*****************************************************************************/
+
 VOID DHCPC_Debug_ShowGlobalTimerInfo()
 {
     (VOID)vos_printf("\r\n The second timer list node num is %u and the current index is %u.",
@@ -1921,19 +1666,7 @@ VOID DHCPC_Debug_ShowGlobalTimerInfo()
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_Debug_ShowTimerInfo
- 功能描述  : 显示时间节点哈希链表数据
- 输入参数  : ULONG argc 参数个数, CHAR* argv[]参数字符串
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012-07-27
-    作    者   : zhangjinquan 00175135
-    修改内容   : 新生成函数 zhangjinquan 00175135 DHCPv6特性 2012-07-27
-*****************************************************************************/
+
 VOID DHCPC_Debug_ShowTimerInfo(ULONG argc, CHAR *argv[])
 {
     ULONG i = 0;
@@ -2036,20 +1769,7 @@ VOID DHCPC_Debug_ShowTimerInfo(ULONG argc, CHAR *argv[])
 
 extern ULONG g_aulGtpcSndLapDbgCnt[GTPC_SND2_LAP_CNT_COUNT];
 
-/*****************************************************************************
- 函 数 名  : DHCPC_RegLogCnt
- 功能描述  : 注册计数打印日志
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年1月17日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_RegLogCnt(VOID)
 {
     ULONG ulResult = VOS_OK;

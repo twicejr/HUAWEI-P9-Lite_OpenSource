@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasXccFsmMoCalling.c
-  版 本 号   : 初稿
-  作    者   : w00242748
-  生成日期   : 2014年9月4日
-  功能描述   : MO CALLING L2状态机
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年07月03日
-    作    者   : w00242748
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -58,25 +43,7 @@ extern "C"{
   3 函数定义
 *****************************************************************************/
 /*lint -save -e958*/
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvAsPagingInd_MtCalling_Init
- 功能描述  : 收到ID_CAS_CNAS_1X_PAGING_IND消息的处理
- 输入参数  : ulEventType -- 事件类型
-             pstMsg      -- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年9月4日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-
- 2.日    期   : 2015年12月24日
-   作    者   : y00245242
-   修改内容   : privacy mode特性开发
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvAsPagingInd_MtCalling_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -137,24 +104,7 @@ VOS_UINT32 CNAS_XCC_RcvAsPagingInd_MtCalling_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvAsDschDataInd_MtCalling_Init
- 功能描述  : 收到ID_CAS_CNAS_1X_DSCH_DATA_IND消息的处理
- 输入参数  : ulEventType -- 事件类型
-             pstMsg      -- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年9月4日
-   作    者   : w00242748
-   修改内容   : 新生成函数
- 2.日    期   : 2014年11月12日
-   作    者   : L00256032
-   修改内容   : 1X SS Project修改
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvAsDschDataInd_MtCalling_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -294,21 +244,7 @@ VOS_UINT32 CNAS_XCC_RcvAsDschDataInd_MtCalling_Init(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvApsDataCallSuspendRsp_MtCalling_WaitApsSuspendRsp
- 功能描述  : 收到ID_APS_XCC_DATA_CALL_SUSPEND_RSP消息的处理
- 输入参数  : ulEventType -- 事件类型
-             pstMsg      -- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年9月4日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvApsDataCallSuspendRsp_MtCalling_WaitApsSuspendRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -333,22 +269,7 @@ VOS_UINT32 CNAS_XCC_RcvApsDataCallSuspendRsp_MtCalling_WaitApsSuspendRsp(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvXccAbortReq_MtCalling_WaitApsSuspendRsp
- 功能描述  : 处理ID_CNAS_XCC_XCC_ABORT_REQ
- 输入参数  : VOS_UINT32                          ulEventType,
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月10日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvXccAbortReq_MtCalling_WaitApsSuspendRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -376,22 +297,7 @@ VOS_UINT32 CNAS_XCC_RcvXccAbortReq_MtCalling_WaitApsSuspendRsp(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvTiWaitApsSuspendRspExpired_MtCalling_WaitApsSuspendRsp
- 功能描述  : XCC处于等待APS挂起回复状态时，保护定时器超时
- 输入参数  : VOS_UINT32                          ulEventType,
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月10日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvTiWaitApsSuspendRspExpired_MtCalling_WaitApsSuspendRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -413,22 +319,7 @@ VOS_UINT32 CNAS_XCC_RcvTiWaitApsSuspendRspExpired_MtCalling_WaitApsSuspendRsp(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvXccPowerDownInd_MtCalling_WaitApsSuspendRsp
- 功能描述  : XCC处于等待APS挂起回复状态时，收到关机请求
- 输入参数  : VOS_UINT32                          ulEventType,
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月10日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvXccPowerDownInd_MtCalling_WaitApsSuspendRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -470,21 +361,7 @@ VOS_UINT32 CNAS_XCC_RcvXccPowerDownInd_MtCalling_WaitApsSuspendRsp(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvAsEstCnf_MtCalling_WaitAsEstCnf
- 功能描述  : 收到ID_CAS_CNAS_1X_EST_CNF消息的处理
- 输入参数  : ulEventType -- 事件类型
-             pstMsg      -- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年9月4日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvAsEstCnf_MtCalling_WaitAsEstCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -532,22 +409,7 @@ VOS_UINT32 CNAS_XCC_RcvAsEstCnf_MtCalling_WaitAsEstCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvXccAbortReq_MtCalling_WaitAsEstCnf
- 功能描述  : 收到ID_CNAS_XCC_XCC_ABORT_REQ的处理
- 输入参数  : VOS_UINT32                          ulEventType,
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月10日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvXccAbortReq_MtCalling_WaitAsEstCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -574,22 +436,7 @@ VOS_UINT32 CNAS_XCC_RcvXccAbortReq_MtCalling_WaitAsEstCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvTiWaitAsEstCnfExpired_MtCalling_WaitAsEstCnf
- 功能描述  : XCC处于等待接入层建链回复状态，保护定时器超时
- 输入参数  : VOS_UINT32                          ulEventType,
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月10日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvTiWaitAsEstCnfExpired_MtCalling_WaitAsEstCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -616,22 +463,7 @@ VOS_UINT32 CNAS_XCC_RcvTiWaitAsEstCnfExpired_MtCalling_WaitAsEstCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvAsCallTerminateInd_MtCalling_WaitAsEstCnf
- 功能描述  : XCC处于等待接入层建链回复状态，收到接入层terminate ind
- 输入参数  : VOS_UINT32                          ulEventType,
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月10日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvAsCallTerminateInd_MtCalling_WaitAsEstCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -668,22 +500,7 @@ VOS_UINT32 CNAS_XCC_RcvAsCallTerminateInd_MtCalling_WaitAsEstCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvXccPowerDownInd_MtCalling_WaitAsEstCnf
- 功能描述  : XCC处于等待接入层建链回复状态，收到关机请求
- 输入参数  : VOS_UINT32                          ulEventType,
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月10日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvXccPowerDownInd_MtCalling_WaitAsEstCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -712,21 +529,7 @@ VOS_UINT32 CNAS_XCC_RcvXccPowerDownInd_MtCalling_WaitAsEstCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvAsCallInitInd_MtCalling_WaitAsCallInitInd
- 功能描述  : 收到ID_CAS_CNAS_1X_CALL_INIT_IND消息的处理
- 输入参数  : ulEventType -- 事件类型
-             pstMsg      -- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年9月4日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvAsCallInitInd_MtCalling_WaitAsCallInitInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -816,22 +619,7 @@ VOS_UINT32 CNAS_XCC_RcvAsCallInitInd_MtCalling_WaitAsCallInitInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvXccAbortReq_MtCalling_WaitAsCallInit
- 功能描述  : 收到ID_CNAS_XCC_XCC_ABORT_REQ的处理
- 输入参数  : VOS_UINT32                          ulEventType,
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月10日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvXccAbortReq_MtCalling_WaitAsCallInit(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -861,21 +649,7 @@ VOS_UINT32 CNAS_XCC_RcvXccAbortReq_MtCalling_WaitAsCallInit(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvAsCallTerminateInd_MtCalling_WaitAsCallInitInd
- 功能描述  : 收到ID_CAS_CNAS_1X_CALL_INIT_IND消息的处理
- 输入参数  : ulEventType -- 事件类型
-             pstMsg      -- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年9月4日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvAsCallTerminateInd_MtCalling_WaitAsCallInitInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -912,22 +686,7 @@ VOS_UINT32 CNAS_XCC_RcvAsCallTerminateInd_MtCalling_WaitAsCallInitInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvTiWaitAsCallInitIndExpired_MtCalling_WaitAsCallInit
- 功能描述  : XCC处于等待接入层call init ind状态，保护定时器超时
- 输入参数  : VOS_UINT32                          ulEventType,
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月10日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvTiWaitAsCallInitIndExpired_MtCalling_WaitAsCallInit(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -954,22 +713,7 @@ VOS_UINT32 CNAS_XCC_RcvTiWaitAsCallInitIndExpired_MtCalling_WaitAsCallInit(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvXccPowerDownInd_MtCalling_WaitAsCallInit
- 功能描述  : XCC处于等待接入层call init ind状态，收到关机请求
- 输入参数  : VOS_UINT32                          ulEventType,
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月10日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvXccPowerDownInd_MtCalling_WaitAsCallInit(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -998,24 +742,7 @@ VOS_UINT32 CNAS_XCC_RcvXccPowerDownInd_MtCalling_WaitAsCallInit(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvAsUpdateCallInfoInd_MtCalling_WaitForOrder
- 功能描述  : 收到ID_CAS_CNAS_1X_UPDATE_CALL_INFO_IND消息的处理
- 输入参数  : ulEventType -- 事件类型
-             pstMsg      -- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年9月4日
-   作    者   : w00242748
-   修改内容   : 新生成函数
- 2.日    期   : 2015年9月1日
-   作    者   : c00299063
-   修改内容   : 函数封装
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvAsUpdateCallInfoInd_MtCalling_WaitForOrder(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1027,21 +754,7 @@ VOS_UINT32 CNAS_XCC_RcvAsUpdateCallInfoInd_MtCalling_WaitForOrder(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_UpdateMtCallInfoInd
- 功能描述  : 更新被叫call info ind
- 输入参数  : ulEventType -- 事件类型
-             pstMsg      -- 消息指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年9月1日
-   作    者   : c00299063
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XCC_UpdateMtCallInfoInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1078,21 +791,7 @@ VOS_VOID CNAS_XCC_UpdateMtCallInfoInd(
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvAsUpdateCallInfoInd_MtCalling_WaitForAnswer
- 功能描述  : 收到ID_CAS_CNAS_1X_UPDATE_CALL_INFO_IND消息的处理
- 输入参数  : ulEventType -- 事件类型
-             pstMsg      -- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年9月1日
-   作    者   : c00299063
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvAsUpdateCallInfoInd_MtCalling_WaitForAnswer(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1103,21 +802,7 @@ VOS_UINT32 CNAS_XCC_RcvAsUpdateCallInfoInd_MtCalling_WaitForAnswer(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvAsUpdateCallInfoInd_MtCalling_WaitForIncomingRsp
- 功能描述  : 收到ID_CAS_CNAS_1X_UPDATE_CALL_INFO_IND消息的处理
- 输入参数  : ulEventType -- 事件类型
-             pstMsg      -- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年9月1日
-   作    者   : c00299063
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvAsUpdateCallInfoInd_MtCalling_WaitForIncomingRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1128,21 +813,7 @@ VOS_UINT32 CNAS_XCC_RcvAsUpdateCallInfoInd_MtCalling_WaitForIncomingRsp(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvAsUpdateCallInfoInd_MtCalling_WaitConnL2Ack
- 功能描述  : 收到ID_CAS_CNAS_1X_UPDATE_CALL_INFO_IND消息的处理
- 输入参数  : ulEventType -- 事件类型
-             pstMsg      -- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年9月1日
-   作    者   : c00299063
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvAsUpdateCallInfoInd_MtCalling_WaitConnL2Ack(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1155,21 +826,7 @@ VOS_UINT32 CNAS_XCC_RcvAsUpdateCallInfoInd_MtCalling_WaitConnL2Ack(
 
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvAsResetWfoSubstateTimerInd_MtCalling_WaitForOrder
- 功能描述  : 收到ID_CAS_CNAS_1X_RESET_WFO_SUBSTATE_TIMER_IND消息的处理
- 输入参数  : ulEventType -- 事件类型
-             pstMsg      -- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年9月4日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvAsResetWfoSubstateTimerInd_MtCalling_WaitForOrder(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1185,21 +842,7 @@ VOS_UINT32 CNAS_XCC_RcvAsResetWfoSubstateTimerInd_MtCalling_WaitForOrder(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvAsDschDataInd_MtCalling_WaitForOrder
- 功能描述  : 收到ID_CAS_CNAS_1X_DSCH_DATA_IND消息的处理
- 输入参数  : ulEventType -- 事件类型
-             pstMsg      -- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年9月4日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvAsDschDataInd_MtCalling_WaitForOrder(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1325,22 +968,7 @@ VOS_UINT32 CNAS_XCC_RcvAsDschDataInd_MtCalling_WaitForOrder(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvXccAbortReq_MtCalling_WaitForOrder
- 功能描述  : 收到ID_CNAS_XCC_XCC_ABORT_REQ的处理
- 输入参数  : VOS_UINT32                          ulEventType,
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月10日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvXccAbortReq_MtCalling_WaitForOrder(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1370,21 +998,7 @@ VOS_UINT32 CNAS_XCC_RcvXccAbortReq_MtCalling_WaitForOrder(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvAsCallTerminateInd_MtCalling_WaitForOrder
- 功能描述  : 收到ID_CAS_CNAS_1X_CALL_TERMINATE_IND消息的处理
- 输入参数  : ulEventType -- 事件类型
-             pstMsg      -- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年9月4日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvAsCallTerminateInd_MtCalling_WaitForOrder(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1421,21 +1035,7 @@ VOS_UINT32 CNAS_XCC_RcvAsCallTerminateInd_MtCalling_WaitForOrder(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvAsCallRelInd_MtCalling_WaitForOrder
- 功能描述  : 收到ID_CAS_CNAS_1X_CALL_REL_IND消息的处理
- 输入参数  : ulEventType -- 事件类型
-             pstMsg      -- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年9月9日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvAsCallRelInd_MtCalling_WaitForOrder(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1459,22 +1059,7 @@ VOS_UINT32 CNAS_XCC_RcvAsCallRelInd_MtCalling_WaitForOrder(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvTiT52MExpired_MtCalling_WaitForOrder
- 功能描述  : TI_CNAS_XCC_T52M保护定时器超时
- 输入参数  : VOS_UINT32                          ulEventType,
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月10日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvTiT52MExpired_MtCalling_WaitForOrder(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1501,22 +1086,7 @@ VOS_UINT32 CNAS_XCC_RcvTiT52MExpired_MtCalling_WaitForOrder(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvXccPowerDownInd_MtCalling_WaitForOrder
- 功能描述  : WAIT FOR ORDER状态，收到关机请求
- 输入参数  : VOS_UINT32                          ulEventType,
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月10日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvXccPowerDownInd_MtCalling_WaitForOrder(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1545,21 +1115,7 @@ VOS_UINT32 CNAS_XCC_RcvXccPowerDownInd_MtCalling_WaitForOrder(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvXcallIncomingCallRsp_MtCalling_WaitForIncomingRsp
- 功能描述  : 收到ID_XCALL_XCC_INCOMING_CALL_RSP消息的处理
- 输入参数  : ulEventType -- 事件类型
-             pstMsg      -- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年9月4日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvXcallIncomingCallRsp_MtCalling_WaitForIncomingRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1645,21 +1201,7 @@ VOS_UINT32 CNAS_XCC_RcvXcallIncomingCallRsp_MtCalling_WaitForIncomingRsp(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvApsIncomingCallRsp_MtCalling_WaitForIncomingRsp
- 功能描述  : 收到ID_APS_XCC_INCOMING_CALL_RSP消息的处理
- 输入参数  : ulEventType -- 事件类型
-             pstMsg      -- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年10月13日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvApsIncomingCallRsp_MtCalling_WaitForIncomingRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1727,21 +1269,7 @@ VOS_UINT32 CNAS_XCC_RcvApsIncomingCallRsp_MtCalling_WaitForIncomingRsp(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvSmsIncomingCallRsp_MtCalling_WaitForIncomingRsp
- 功能描述  : 收到ID_CSMS_XCC_INCOMING_CALL_RSP消息的处理
- 输入参数  : ulEventType -- 事件类型
-             pstMsg      -- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年10月13日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvSmsIncomingCallRsp_MtCalling_WaitForIncomingRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1810,22 +1338,7 @@ VOS_UINT32 CNAS_XCC_RcvSmsIncomingCallRsp_MtCalling_WaitForIncomingRsp(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvXpdsIncomingCallRsp_MtCalling_WaitForIncomingRsp
- 功能描述  : 收到ID_XPDS_XCC_INCOMING_CALL_RSP消息的处理
- 输入参数  : ulEventType -- 事件类型
-             pstMsg      -- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月01日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvXpdsIncomingCallRsp_MtCalling_WaitForIncomingRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1892,25 +1405,7 @@ VOS_UINT32 CNAS_XCC_RcvXpdsIncomingCallRsp_MtCalling_WaitForIncomingRsp(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvXccAbortReq_MtCalling_WaitForIncomingRsp
- 功能描述  : ID_CNAS_XCC_XCC_ABORT_REQ保护定时器超时
- 输入参数  : VOS_UINT32                          ulEventType,
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月10日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-  2.日    期   : 2014年12月15日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvXccAbortReq_MtCalling_WaitForIncomingRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1947,21 +1442,7 @@ VOS_UINT32 CNAS_XCC_RcvXccAbortReq_MtCalling_WaitForIncomingRsp(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvAsCallTerminateInd_MtCalling_WaitForIncomingRsp
- 功能描述  : 收到ID_CAS_CNAS_1X_CALL_TERMINATE_IND消息的处理
- 输入参数  : ulEventType -- 事件类型
-             pstMsg      -- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年9月4日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvAsCallTerminateInd_MtCalling_WaitForIncomingRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1993,21 +1474,7 @@ VOS_UINT32 CNAS_XCC_RcvAsCallTerminateInd_MtCalling_WaitForIncomingRsp(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvAsCallRelInd_MtCalling_WaitForIncomingRsp
- 功能描述  : 收到ID_CAS_CNAS_1X_CALL_REL_IND消息的处理
- 输入参数  : ulEventType -- 事件类型
-             pstMsg      -- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年9月9日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvAsCallRelInd_MtCalling_WaitForIncomingRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2035,22 +1502,7 @@ VOS_UINT32 CNAS_XCC_RcvAsCallRelInd_MtCalling_WaitForIncomingRsp(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvTiWaitForXcallIncomingRsp_MtCalling_WaitForIncomingRsp
- 功能描述  : TI_CNAS_XCC_WAIT_FOR_XCALL_INCOMING_RSP保护定时器超时
- 输入参数  : VOS_UINT32                          ulEventType,
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月10日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvTiWaitForXcallIncomingRsp_MtCalling_WaitForIncomingRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2083,22 +1535,7 @@ VOS_UINT32 CNAS_XCC_RcvTiWaitForXcallIncomingRsp_MtCalling_WaitForIncomingRsp(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvXccPowerDownInd_MtCalling_WaitForIncomingRsp
- 功能描述  : TI_CNAS_XCC_WAIT_FOR_XCALL_INCOMING_RSP保护定时器超时
- 输入参数  : VOS_UINT32                          ulEventType,
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月10日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvXccPowerDownInd_MtCalling_WaitForIncomingRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2130,21 +1567,7 @@ VOS_UINT32 CNAS_XCC_RcvXccPowerDownInd_MtCalling_WaitForIncomingRsp(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvXcallAnsCallReq_MtCalling_WaitForAnswer
- 功能描述  : 收到ID_XCALL_XCC_ANSWER_CALL_REQ消息的处理
- 输入参数  : ulEventType -- 事件类型
-             pstMsg      -- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年9月4日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvXcallAnsCallReq_MtCalling_WaitForAnswer(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2155,21 +1578,7 @@ VOS_UINT32 CNAS_XCC_RcvXcallAnsCallReq_MtCalling_WaitForAnswer(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvApsAnswerDataCallReq_MtCalling_WaitForAnswer
- 功能描述  : 收到ID_APS_XCC_ANSWER_DATA_CALL_REQ消息的处理
- 输入参数  : ulEventType -- 事件类型
-             pstMsg      -- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年10月13日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvApsAnswerDataCallReq_MtCalling_WaitForAnswer(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2180,21 +1589,7 @@ VOS_UINT32 CNAS_XCC_RcvApsAnswerDataCallReq_MtCalling_WaitForAnswer(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvCsmsAnswerCallReq_MtCalling_WaitForAnswer
- 功能描述  : 收到ID_CSMS_XCC_ANSWER_CALL_REQ消息的处理
- 输入参数  : ulEventType -- 事件类型
-             pstMsg      -- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年10月13日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvCsmsAnswerCallReq_MtCalling_WaitForAnswer(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2205,22 +1600,7 @@ VOS_UINT32 CNAS_XCC_RcvCsmsAnswerCallReq_MtCalling_WaitForAnswer(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvXpdsAnswerCallReq_MtCalling_WaitForAnswer
- 功能描述  : 收到ID_XPDS_XCC_ANSWER_CALL_REQ消息的处理
- 输入参数  : ulEventType -- 事件类型
-             pstMsg      -- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月01日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvXpdsAnswerCallReq_MtCalling_WaitForAnswer(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2230,21 +1610,7 @@ VOS_UINT32 CNAS_XCC_RcvXpdsAnswerCallReq_MtCalling_WaitForAnswer(
 
     return VOS_TRUE;
 }
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvAsCallTerminateInd_MtCalling_WaitForAnswer
- 功能描述  : 收到ID_CAS_CNAS_1X_CALL_TERMINATE_IND消息的处理
- 输入参数  : ulEventType -- 事件类型
-             pstMsg      -- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年9月4日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvAsCallTerminateInd_MtCalling_WaitForAnswer(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2275,21 +1641,7 @@ VOS_UINT32 CNAS_XCC_RcvAsCallTerminateInd_MtCalling_WaitForAnswer(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvAsCallRelInd_MtCalling_WaitForAnswer
- 功能描述  : 收到ID_CAS_CNAS_1X_CALL_REL_IND消息的处理
- 输入参数  : ulEventType -- 事件类型
-             pstMsg      -- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年9月9日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvAsCallRelInd_MtCalling_WaitForAnswer(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2317,21 +1669,7 @@ VOS_UINT32 CNAS_XCC_RcvAsCallRelInd_MtCalling_WaitForAnswer(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvXcallHangupCallReq_MtCalling_WaitForAnswer
- 功能描述  : 收到ID_XCALL_XCC_HANGUP_CALL_REQ消息的处理
- 输入参数  : ulEventType -- 事件类型
-             pstMsg      -- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年9月9日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvXcallHangupCallReq_MtCalling_WaitForAnswer(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2377,21 +1715,7 @@ VOS_UINT32 CNAS_XCC_RcvXcallHangupCallReq_MtCalling_WaitForAnswer(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvSmsEndSmsCallReq_MtCalling_WaitForAnswer
- 功能描述  : 收到ID_CSMS_XCC_END_SMS_CALL_REQ消息的处理
- 输入参数  : ulEventType -- 事件类型
-             pstMsg      -- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年10月13日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvSmsEndSmsCallReq_MtCalling_WaitForAnswer(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2429,21 +1753,7 @@ VOS_UINT32 CNAS_XCC_RcvSmsEndSmsCallReq_MtCalling_WaitForAnswer(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvXpdsEndAgpsCallReq_MtCalling_WaitForAnswer
- 功能描述  : 收到ID_XPDS_XCC_END_AGPS_CALL_REQ消息的处理
- 输入参数  : ulEventType -- 事件类型
-             pstMsg      -- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年09月06日
-   作    者   : y00314741
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvXpdsEndAgpsCallReq_MtCalling_WaitForAnswer(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2482,21 +1792,7 @@ VOS_UINT32 CNAS_XCC_RcvXpdsEndAgpsCallReq_MtCalling_WaitForAnswer(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvAsDschDataInd_MtCalling_WaitForAnswer
- 功能描述  : 收到ID_CAS_CNAS_1X_DSCH_DATA_IND消息的处理
- 输入参数  : ulEventType -- 事件类型
-             pstMsg      -- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年9月4日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvAsDschDataInd_MtCalling_WaitForAnswer(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2631,22 +1927,7 @@ VOS_UINT32 CNAS_XCC_RcvAsDschDataInd_MtCalling_WaitForAnswer(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvTiT53MExpired_MtCalling_WaitForAnswer
- 功能描述  : TI_CNAS_XCC_T53M保护定时器超时
- 输入参数  : VOS_UINT32                          ulEventType,
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月10日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvTiT53MExpired_MtCalling_WaitForAnswer(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2676,22 +1957,7 @@ VOS_UINT32 CNAS_XCC_RcvTiT53MExpired_MtCalling_WaitForAnswer(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvXccPowerDownInd_MtCalling_WaitForAnswer
- 功能描述  : 等待接听时，收到关机请求
- 输入参数  : VOS_UINT32                          ulEventType,
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月10日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvXccPowerDownInd_MtCalling_WaitForAnswer(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2723,25 +1989,7 @@ VOS_UINT32 CNAS_XCC_RcvXccPowerDownInd_MtCalling_WaitForAnswer(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvXccAbortReq_MtCalling_WaitForAnswer
- 功能描述  : ID_CNAS_XCC_XCC_ABORT_REQ保护定时器超时
- 输入参数  : VOS_UINT32                          ulEventType,
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月10日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-  2.日    期   : 2014年12月15日
-    作    者   : y00245242
-    修改内容   : 修改原因值上报
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvXccAbortReq_MtCalling_WaitForAnswer(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2777,21 +2025,7 @@ VOS_UINT32 CNAS_XCC_RcvXccAbortReq_MtCalling_WaitForAnswer(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvAsCallTerminateInd_MtCalling_WaitConnL2Ack
- 功能描述  : 收到ID_CAS_CNAS_1X_CALL_TERMINATE_IND消息的处理
- 输入参数  : ulEventType -- 事件类型
-             pstMsg      -- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年9月4日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvAsCallTerminateInd_MtCalling_WaitConnL2Ack(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2835,21 +2069,7 @@ VOS_UINT32 CNAS_XCC_RcvAsCallTerminateInd_MtCalling_WaitConnL2Ack(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvAsDschDataCnf_MtCalling_WaitConnL2Ack
- 功能描述  : 收到ID_CAS_CNAS_1X_DSCH_DATA_CNF消息的处理
- 输入参数  : ulEventType -- 事件类型
-             pstMsg      -- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年9月4日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvAsDschDataCnf_MtCalling_WaitConnL2Ack(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2941,21 +2161,7 @@ VOS_UINT32 CNAS_XCC_RcvAsDschDataCnf_MtCalling_WaitConnL2Ack(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvAsCallRelInd_MtCalling_WaitConnL2Ack
- 功能描述  : 收到ID_CAS_CNAS_1X_CALL_REL_IND消息的处理
- 输入参数  : ulEventType -- 事件类型
-             pstMsg      -- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年9月9日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvAsCallRelInd_MtCalling_WaitConnL2Ack(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2984,21 +2190,7 @@ VOS_UINT32 CNAS_XCC_RcvAsCallRelInd_MtCalling_WaitConnL2Ack(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvXcallHangupCallReq_MtCalling_WaitConnL2Ack
- 功能描述  : 收到ID_XCALL_XCC_HANGUP_CALL_REQ消息的处理
- 输入参数  : ulEventType -- 事件类型
-             pstMsg      -- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年9月9日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvXcallHangupCallReq_MtCalling_WaitConnL2Ack(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3044,21 +2236,7 @@ VOS_UINT32 CNAS_XCC_RcvXcallHangupCallReq_MtCalling_WaitConnL2Ack(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvApsHangupDataCallReq_MtCalling_WaitConnL2Ack
- 功能描述  : 收到ID_APS_XCC_HANGUP_DATA_CALL_REQ消息的处理
- 输入参数  : ulEventType -- 事件类型
-             pstMsg      -- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年10月13日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvApsHangupDataCallReq_MtCalling_WaitConnL2Ack(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3095,21 +2273,7 @@ VOS_UINT32 CNAS_XCC_RcvApsHangupDataCallReq_MtCalling_WaitConnL2Ack(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvSmsHangupCallReq_MtCalling_WaitConnL2Ack
- 功能描述  : 收到ID_CSMS_XCC_END_SMS_CALL_REQ消息的处理
- 输入参数  : ulEventType -- 事件类型
-             pstMsg      -- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年10月13日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvSmsHangupCallReq_MtCalling_WaitConnL2Ack(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3146,21 +2310,7 @@ VOS_UINT32 CNAS_XCC_RcvSmsHangupCallReq_MtCalling_WaitConnL2Ack(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvXpdsHangupCallReq_MtCalling_WaitConnL2Ack
- 功能描述  : 收到ID_XPDS_XCC_END_AGPS_CALL_REQ消息的处理
- 输入参数  : ulEventType -- 事件类型
-             pstMsg      -- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年09月06日
-   作    者   : y00314741
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvXpdsHangupCallReq_MtCalling_WaitConnL2Ack(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3197,22 +2347,7 @@ VOS_UINT32 CNAS_XCC_RcvXpdsHangupCallReq_MtCalling_WaitConnL2Ack(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_RcvTiWaitL2AckExpired_MtCalling_WaitConnL2Ack
- 功能描述  : TI_CNAS_XCC_WAIT_CONN_L2_ACK保护定时器超时
- 输入参数  : VOS_UINT32                          ulEventType,
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月10日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvTiWaitL2AckExpired_MtCalling_WaitConnL2Ack(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3243,25 +2378,7 @@ VOS_UINT32 CNAS_XCC_RcvTiWaitL2AckExpired_MtCalling_WaitConnL2Ack(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvXccAbortReq_MtCalling_WaitConnL2Ack
- 功能描述  : ID_CNAS_XCC_XCC_ABORT_REQ保护定时器超时
- 输入参数  : VOS_UINT32                          ulEventType,
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月13日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-  2.日    期   : 2014年12月15日
-    作    者   : y00245242
-    修改内容   : 修改原因值上报
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvXccAbortReq_MtCalling_WaitConnL2Ack(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3296,22 +2413,7 @@ VOS_UINT32 CNAS_XCC_RcvXccAbortReq_MtCalling_WaitConnL2Ack(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvXccPowerDownInd_MtCalling_WaitConnL2Ack
- 功能描述  : 等待L2 ACK时，收到关机请求
- 输入参数  : VOS_UINT32                          ulEventType,
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月10日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvXccPowerDownInd_MtCalling_WaitConnL2Ack(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3347,21 +2449,7 @@ VOS_UINT32 CNAS_XCC_RcvXccPowerDownInd_MtCalling_WaitConnL2Ack(
 
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_NotifyTafCallDisc_MtCalling
- 功能描述  : 通知TAF的模块，呼叫结束
- 输入参数  : pstCallInfo -- 状态机的呼叫信息
-             enCause     -- 结束原因致
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年9月15日
-   作    者   : h00246512
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XCC_NotifyTafCallDisc_MtCalling(
     CNAS_XCC_CALL_INFO_CTX_STRU        *pstCallInfo,
     TAF_XCC_CAUSE_ENUM_UINT32           enCause,
@@ -3423,22 +2511,7 @@ VOS_VOID CNAS_XCC_NotifyTafCallDisc_MtCalling(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_NotifyTafAnswerCallCnf_MtCalling
- 功能描述  : 通知TAF的模块，呼叫的应答结果
- 输入参数  : pstCallInfo -- 状态机的呼叫信息
-             enCause     -- 结束原因值
-             enFailLayer -- 异常的层级
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年9月15日
-   作    者   : h00246512
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XCC_NotifyTafAnswerCallCnf_MtCalling(
     CNAS_XCC_CALL_INFO_CTX_STRU        *pstCallInfo,
     TAF_XCC_CAUSE_ENUM_UINT32           enCause,
@@ -3488,22 +2561,7 @@ VOS_VOID CNAS_XCC_NotifyTafAnswerCallCnf_MtCalling(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcOrderMsg_L1Main_WaitForOrder
- 功能描述  : 处理空口的Order消息
- 输入参数  : ulEventType -- 事件类型
-             pstMsg      -- 消息指针
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2014年9月25日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XCC_ProcOrderMsg_MtCalling_WaitForOrder(
     CAS_CNAS_1X_DSCH_DATA_IND_STRU     *pstDschDataInd
 )
@@ -3593,22 +2651,7 @@ VOS_VOID CNAS_XCC_ProcOrderMsg_MtCalling_WaitForOrder(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcOrderMsg_L1Main_WaitForAnswer
- 功能描述  : 处理空口的Order消息
- 输入参数  : ulEventType -- 事件类型
-             pstMsg      -- 消息指针
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2014年9月25日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XCC_ProcOrderMsg_MtCalling_WaitForAnswer(
     CAS_CNAS_1X_DSCH_DATA_IND_STRU     *pstDschDataInd
 )
@@ -3657,20 +2700,7 @@ VOS_VOID CNAS_XCC_ProcOrderMsg_MtCalling_WaitForAnswer(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcAnswerReq_MtCalling_WaitForAnswer
- 功能描述  : 处理XCALL/APS/CSMS接听的接听请求
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年9月25日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XCC_ProcAnswerReq_MtCalling_WaitForAnswer(VOS_VOID)
 {
     CNAS_XCC_CALL_INFO_CTX_STRU        *pstCallInfo = VOS_NULL_PTR;
@@ -3703,20 +2733,7 @@ VOS_VOID CNAS_XCC_ProcAnswerReq_MtCalling_WaitForAnswer(VOS_VOID)
     CNAS_XCC_StartTimer(pstCallInfo->ucConnectId, TI_CNAS_XCC_WAIT_CONN_L2_ACK, TI_CNAS_XCC_WAIT_CONN_L2_ACK_LEN);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_AutoAnswerLoopBackService_MtCalling
- 功能描述  : 环回业务的自动应答处理
- 输入参数  : pstCallInfoCtx - 呼叫上下文
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年11月20日
-   作    者   : h00246512
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XCC_AutoAnswerLoopBackService_MtCalling(
     CNAS_XCC_CALL_INFO_CTX_STRU        *pstCallInfoCtx
 )
@@ -3746,22 +2763,7 @@ VOS_VOID CNAS_XCC_AutoAnswerLoopBackService_MtCalling(
 }
 
 #if (FEATURE_ON == FEATURE_CHINA_TELECOM_VOICE_ENCRYPT)
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_CovertVoiceCallPagingIndSo
- 功能描述  : 加密能力开启时，强制将语音呼叫类型的SO 转换为CAS_CNAS_1X_SO_3_EVRC
- 输入参数  : struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : l00359089
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_CovertVoiceCallPagingIndSo(
     CAS_CNAS_1X_SERVICE_OPTION_ENUM_UINT16                 *enSo
 )

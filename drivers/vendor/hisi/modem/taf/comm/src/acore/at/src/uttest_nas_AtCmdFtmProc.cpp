@@ -45,14 +45,7 @@ AT_PAR_CMD_ELEMENT_STRU             gstLogPortCmdInfo = {AT_CMD_LOGPORT,
                                                         AT_CME_INCORRECT_PARAMETERS,    CMD_TBL_PIN_IS_LOCKED,
                                                         (VOS_UINT8*)"^LOGPORT",  VOS_NULL_PTR};
 
-/*****************************************************************************
-类名     : Test_At_SetLogPortPara
-功能描述 : At_SetLogPortPara UT工程类
-修改历史     :
-1.日   期  : 2013-06-20
-  作   者  : l60609
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_SetLogPortPara: public ::testing::Test
 {
 public:
@@ -68,15 +61,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_SetLogPortPara_001
-测试用例标题      : 命令类型不为设置命令
-预期结果          : 返回AT_ERROR
-修改历史     :
-1.日   期  : 2013-06-20
-  作   者  : L60609
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SetLogPortPara,Test_At_SetLogPortPara_001)
 {
     /*变量定义*/
@@ -100,15 +85,7 @@ TEST_F(Test_At_SetLogPortPara,Test_At_SetLogPortPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SetLogPortPara_002
-测试用例标题      : 参数个数不为1
-预期结果          : 返回AT_ERROR
-修改历史     :
-1.日   期  : 2013-06-20
-  作   者  : L60609
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SetLogPortPara,Test_At_SetLogPortPara_002)
 {
     /*变量定义*/
@@ -133,15 +110,7 @@ TEST_F(Test_At_SetLogPortPara,Test_At_SetLogPortPara_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SetLogPortPara_003
-测试用例标题      : 切换USB口成功
-预期结果          : 返回AT_OK
-修改历史     :
-1.日   期  : 2013-06-20
-  作   者  : L60609
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SetLogPortPara,Test_At_SetLogPortPara_003)
 {
     /*变量定义*/
@@ -170,15 +139,7 @@ TEST_F(Test_At_SetLogPortPara,Test_At_SetLogPortPara_003)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_At_SetLogPortPara_004
-测试用例标题      : 切换USB口成功
-预期结果          : 返回AT_OK
-修改历史     :
-1.日   期  : 2013-06-20
-  作   者  : L60609
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SetLogPortPara,Test_At_SetLogPortPara_004)
 {
     /*变量定义*/
@@ -207,15 +168,7 @@ TEST_F(Test_At_SetLogPortPara,Test_At_SetLogPortPara_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SetLogPortPara_005
-测试用例标题      : 切换USB口失败
-预期结果          : 返回AT_ERROR
-修改历史     :
-1.日   期  : 2013-06-20
-  作   者  : L60609
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SetLogPortPara,Test_At_SetLogPortPara_005)
 {
     /*变量定义*/
@@ -244,14 +197,7 @@ TEST_F(Test_At_SetLogPortPara,Test_At_SetLogPortPara_005)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_At_QryLogPortPara
-功能描述 : At_QryLogPortPara UT工程类
-修改历史     :
-1.日   期  : 2013-06-20
-  作   者  : l60609
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryLogPortPara: public ::testing::Test
 {
 public:
@@ -267,15 +213,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QryLogPortPara_001
-测试用例标题      : 查询端口成功VCOM
-预期结果          : 返回AT_ERROR
-修改历史     :
-1.日   期  : 2013-06-20
-  作   者  : L60609
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryLogPortPara,Test_At_QryLogPortPara_001)
 {
     /*变量定义*/
@@ -309,15 +247,7 @@ TEST_F(Test_At_QryLogPortPara,Test_At_QryLogPortPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryLogPortPara_002
-测试用例标题      : 查询端口成功USB
-预期结果          : 返回AT_ERROR
-修改历史     :
-1.日   期  : 2013-06-20
-  作   者  : L60609
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryLogPortPara,Test_At_QryLogPortPara_002)
 {
     /*变量定义*/
@@ -351,15 +281,7 @@ TEST_F(Test_At_QryLogPortPara,Test_At_QryLogPortPara_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryLogPortPara_003
-测试用例标题      : 查询端口失败
-预期结果          : 返回AT_ERROR
-修改历史     :
-1.日   期  : 2013-06-20
-  作   者  : L60609
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryLogPortPara,Test_At_QryLogPortPara_003)
 {
     /*变量定义*/
@@ -390,14 +312,7 @@ TEST_F(Test_At_QryLogPortPara,Test_At_QryLogPortPara_003)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_At_SetDpdtTestFlagPara
-功能描述 : Test_At_SetDpdtTestFlagPara UT工程类
-修改历史     :
-1.日   期  : 2014-04-11
-  作   者  : g00261581
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_SetDpdtTestFlagPara: public ::testing::Test
 {
 public:
@@ -423,15 +338,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_SetDpdtTestFlagPara_001
-测试用例标题      : 参数非法
-预期结果          : 函数给用户回复AT_CME_INCORRECT_PARAMETERS
-修改历史     :
-1.日   期  : 2014-04-11
-  作   者  : g00261581
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SetDpdtTestFlagPara, Test_At_SetDpdtTestFlagPara_001)
 {
     /* 变量定义 */
@@ -452,15 +359,7 @@ TEST_F(Test_At_SetDpdtTestFlagPara, Test_At_SetDpdtTestFlagPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SetDpdtTestFlagPara_002
-测试用例标题      : 发送消息失败
-预期结果          : 函数给用户回复ERROR
-修改历史     :
-1.日   期  : 2014-04-11
-  作   者  : g00261581
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SetDpdtTestFlagPara, Test_At_SetDpdtTestFlagPara_002)
 {
     /* 变量定义 */
@@ -492,15 +391,7 @@ TEST_F(Test_At_SetDpdtTestFlagPara, Test_At_SetDpdtTestFlagPara_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SetDpdtTestFlagPara_003
-测试用例标题      : 发送消息成功
-预期结果          : 函数给用户回复AT_WAIT_ASYNC_RETURN
-修改历史     :
-1.日   期  : 2014-04-11
-  作   者  : g00261581
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SetDpdtTestFlagPara, Test_At_SetDpdtTestFlagPara_003)
 {
     /* 变量定义 */
@@ -532,14 +423,7 @@ TEST_F(Test_At_SetDpdtTestFlagPara, Test_At_SetDpdtTestFlagPara_003)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_At_SetDpdtPara
-功能描述 : Test_At_SetDpdtPara UT工程类
-修改历史     :
-1.日   期  : 2014-04-11
-  作   者  : g00261581
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_SetDpdtPara: public ::testing::Test
 {
 public:
@@ -565,15 +449,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_SetDpdtPara_001
-测试用例标题      : 参数非法
-预期结果          : 函数给用户回复AT_CME_INCORRECT_PARAMETERS
-修改历史     :
-1.日   期  : 2014-04-11
-  作   者  : g00261581
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SetDpdtPara, Test_At_SetDpdtPara_001)
 {
     /* 变量定义 */
@@ -594,15 +470,7 @@ TEST_F(Test_At_SetDpdtPara, Test_At_SetDpdtPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SetDpdtPara_002
-测试用例标题      : 发送消息失败
-预期结果          : 函数给用户回复ERROR
-修改历史     :
-1.日   期  : 2014-04-11
-  作   者  : g00261581
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SetDpdtPara, Test_At_SetDpdtPara_002)
 {
     /* 变量定义 */
@@ -635,15 +503,7 @@ TEST_F(Test_At_SetDpdtPara, Test_At_SetDpdtPara_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SetDpdtPara_003
-测试用例标题      : 发送消息成功
-预期结果          : 函数给用户回复AT_WAIT_ASYNC_RETURN
-修改历史     :
-1.日   期  : 2014-04-11
-  作   者  : g00261581
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SetDpdtPara, Test_At_SetDpdtPara_003)
 {
     /* 变量定义 */
@@ -676,14 +536,7 @@ TEST_F(Test_At_SetDpdtPara, Test_At_SetDpdtPara_003)
 }
 
 
-/*****************************************************************************
-类名     : Test_At_SetQryDpdtPara
-功能描述 : Test_At_SetQryDpdtPara UT工程类
-修改历史     :
-1.日   期  : 2014-04-11
-  作   者  : g00261581
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_SetQryDpdtPara: public ::testing::Test
 {
 public:
@@ -709,15 +562,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_SetQryDpdtPara_001
-测试用例标题      : 参数非法
-预期结果          : 函数给用户回复AT_CME_INCORRECT_PARAMETERS
-修改历史     :
-1.日   期  : 2014-04-11
-  作   者  : g00261581
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SetQryDpdtPara, Test_At_SetQryDpdtPara_001)
 {
     /* 变量定义 */
@@ -738,15 +583,7 @@ TEST_F(Test_At_SetQryDpdtPara, Test_At_SetQryDpdtPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SetQryDpdtPara_002
-测试用例标题      : 发送消息失败
-预期结果          : 函数给用户回复ERROR
-修改历史     :
-1.日   期  : 2014-04-11
-  作   者  : g00261581
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SetQryDpdtPara, Test_At_SetQryDpdtPara_002)
 {
     /* 变量定义 */
@@ -776,15 +613,7 @@ TEST_F(Test_At_SetQryDpdtPara, Test_At_SetQryDpdtPara_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SetQryDpdtPara_003
-测试用例标题      : 发送消息成功
-预期结果          : 函数给用户回复AT_WAIT_ASYNC_RETURN
-修改历史     :
-1.日   期  : 2014-04-11
-  作   者  : g00261581
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SetQryDpdtPara, Test_At_SetQryDpdtPara_003)
 {
     /* 变量定义 */
@@ -814,14 +643,7 @@ TEST_F(Test_At_SetQryDpdtPara, Test_At_SetQryDpdtPara_003)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_RcvMtaSetDpdtTestFlagCnf
-功能描述 : Test_AT_RcvMtaSetDpdtTestFlagCnf UT工程类
-修改历史 :
-1.日   期  : 2014-04-11
-  作   者  : g00261581
-  修改内容 : 新建CASE
-*****************************************************************************/
+
 class Test_AT_RcvMtaSetDpdtTestFlagCnf: public ::testing::Test
 {
 public:
@@ -872,15 +694,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号  : Test_AT_RcvMtaSetDpdtTestFlagCnf_001
-测试用例标题  : 通过clientid获取index失败
-预期结果      : 返回VOS_ERR
-修改历史      :
-1.日   期  : 2014-04-11
-  作   者  : g00261581
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvMtaSetDpdtTestFlagCnf, Test_AT_RcvMtaSetDpdtTestFlagCnf_001)
 {
     // 变量声明
@@ -905,15 +719,7 @@ TEST_F(Test_AT_RcvMtaSetDpdtTestFlagCnf, Test_AT_RcvMtaSetDpdtTestFlagCnf_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号  : Test_AT_RcvMtaSetDpdtTestFlagCnf_002
-测试用例标题  : ucIndex为AT_BROADCAST_CLIENT_INDEX_MODEM_0
-预期结果      : 返回VOS_ERR
-修改历史      :
-1.日   期  : 2014-04-11
-  作   者  : g00261581
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvMtaSetDpdtTestFlagCnf, Test_AT_RcvMtaSetDpdtTestFlagCnf_002)
 {
     // 变量声明
@@ -940,15 +746,7 @@ TEST_F(Test_AT_RcvMtaSetDpdtTestFlagCnf, Test_AT_RcvMtaSetDpdtTestFlagCnf_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号  : Test_AT_RcvMtaSetDpdtTestFlagCnf_003
-测试用例标题  : AT不处于等待命令返回
-预期结果      : 返回VOS_ERR
-修改历史      :
-1.日   期  : 2014-04-11
-  作   者  : g00261581
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvMtaSetDpdtTestFlagCnf, Test_AT_RcvMtaSetDpdtTestFlagCnf_003)
 {
     // 变量声明
@@ -974,15 +772,7 @@ TEST_F(Test_AT_RcvMtaSetDpdtTestFlagCnf, Test_AT_RcvMtaSetDpdtTestFlagCnf_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号  : Test_AT_RcvMtaSetDpdtTestFlagCnf_004
-测试用例标题  : AT命令执行失败
-预期结果      : 返回VOS_OK
-修改历史      :
-1.日   期  : 2014-04-11
-  作   者  : g00261581
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvMtaSetDpdtTestFlagCnf, Test_AT_RcvMtaSetDpdtTestFlagCnf_004)
 {
     // 变量声明
@@ -1016,15 +806,7 @@ TEST_F(Test_AT_RcvMtaSetDpdtTestFlagCnf, Test_AT_RcvMtaSetDpdtTestFlagCnf_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号  : Test_AT_RcvMtaSetDpdtTestFlagCnf_005
-测试用例标题  : AT命令执行成功
-预期结果      : 返回VOS_OK
-修改历史      :
-1.日   期  : 2014-04-11
-  作   者  : g00261581
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvMtaSetDpdtTestFlagCnf, Test_AT_RcvMtaSetDpdtTestFlagCnf_005)
 {
     // 变量声明
@@ -1057,14 +839,7 @@ TEST_F(Test_AT_RcvMtaSetDpdtTestFlagCnf, Test_AT_RcvMtaSetDpdtTestFlagCnf_005)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_RcvMtaSetDpdtValueCnf
-功能描述 : Test_AT_RcvMtaSetDpdtValueCnf UT工程类
-修改历史 :
-1.日   期  : 2014-04-11
-  作   者  : g00261581
-  修改内容 : 新建CASE
-*****************************************************************************/
+
 class Test_AT_RcvMtaSetDpdtValueCnf: public ::testing::Test
 {
 public:
@@ -1115,15 +890,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号  : Test_AT_RcvMtaSetDpdtValueCnf_001
-测试用例标题  : 通过clientid获取index失败
-预期结果      : 返回VOS_ERR
-修改历史      :
-1.日   期  : 2014-04-11
-  作   者  : g00261581
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvMtaSetDpdtValueCnf, Test_AT_RcvMtaSetDpdtValueCnf_001)
 {
     // 变量声明
@@ -1148,15 +915,7 @@ TEST_F(Test_AT_RcvMtaSetDpdtValueCnf, Test_AT_RcvMtaSetDpdtValueCnf_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号  : Test_AT_RcvMtaSetDpdtValueCnf_002
-测试用例标题  : ucIndex为AT_BROADCAST_CLIENT_INDEX_MODEM_0
-预期结果      : 返回VOS_ERR
-修改历史      :
-1.日   期  : 2014-04-11
-  作   者  : g00261581
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvMtaSetDpdtValueCnf, Test_AT_RcvMtaSetDpdtValueCnf_002)
 {
     // 变量声明
@@ -1183,15 +942,7 @@ TEST_F(Test_AT_RcvMtaSetDpdtValueCnf, Test_AT_RcvMtaSetDpdtValueCnf_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号  : Test_AT_RcvMtaSetDpdtValueCnf_003
-测试用例标题  : AT不处于等待命令返回
-预期结果      : 返回VOS_ERR
-修改历史      :
-1.日   期  : 2014-04-11
-  作   者  : g00261581
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvMtaSetDpdtValueCnf, Test_AT_RcvMtaSetDpdtValueCnf_003)
 {
     // 变量声明
@@ -1217,15 +968,7 @@ TEST_F(Test_AT_RcvMtaSetDpdtValueCnf, Test_AT_RcvMtaSetDpdtValueCnf_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号  : Test_AT_RcvMtaSetDpdtValueCnf_004
-测试用例标题  : AT命令执行失败
-预期结果      : 返回VOS_OK
-修改历史      :
-1.日   期  : 2014-04-11
-  作   者  : g00261581
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvMtaSetDpdtValueCnf, Test_AT_RcvMtaSetDpdtValueCnf_004)
 {
     // 变量声明
@@ -1259,15 +1002,7 @@ TEST_F(Test_AT_RcvMtaSetDpdtValueCnf, Test_AT_RcvMtaSetDpdtValueCnf_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号  : Test_AT_RcvMtaSetDpdtValueCnf_005
-测试用例标题  : AT命令执行成功
-预期结果      : 返回VOS_OK
-修改历史      :
-1.日   期  : 2014-04-11
-  作   者  : g00261581
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvMtaSetDpdtValueCnf, Test_AT_RcvMtaSetDpdtValueCnf_005)
 {
     // 变量声明
@@ -1300,14 +1035,7 @@ TEST_F(Test_AT_RcvMtaSetDpdtValueCnf, Test_AT_RcvMtaSetDpdtValueCnf_005)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_RcvMtaQryDpdtValueCnf
-功能描述 : Test_AT_RcvMtaQryDpdtValueCnf UT工程类
-修改历史 :
-1.日   期  : 2014-04-11
-  作   者  : g00261581
-  修改内容 : 新建CASE
-*****************************************************************************/
+
 class Test_AT_RcvMtaQryDpdtValueCnf: public ::testing::Test
 {
 public:
@@ -1358,15 +1086,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号  : Test_AT_RcvMtaQryDpdtValueCnf_001
-测试用例标题  : 通过clientid获取index失败
-预期结果      : 返回VOS_ERR
-修改历史      :
-1.日   期  : 2014-04-11
-  作   者  : g00261581
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvMtaQryDpdtValueCnf, Test_AT_RcvMtaQryDpdtValueCnf_001)
 {
     // 变量声明
@@ -1391,15 +1111,7 @@ TEST_F(Test_AT_RcvMtaQryDpdtValueCnf, Test_AT_RcvMtaQryDpdtValueCnf_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号  : Test_AT_RcvMtaQryDpdtValueCnf_002
-测试用例标题  : ucIndex为AT_BROADCAST_CLIENT_INDEX_MODEM_0
-预期结果      : 返回VOS_ERR
-修改历史      :
-1.日   期  : 2014-04-11
-  作   者  : g00261581
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvMtaQryDpdtValueCnf, Test_AT_RcvMtaQryDpdtValueCnf_002)
 {
     // 变量声明
@@ -1426,15 +1138,7 @@ TEST_F(Test_AT_RcvMtaQryDpdtValueCnf, Test_AT_RcvMtaQryDpdtValueCnf_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号  : Test_AT_RcvMtaQryDpdtValueCnf_003
-测试用例标题  : AT不处于等待命令返回
-预期结果      : 返回VOS_ERR
-修改历史      :
-1.日   期  : 2014-04-11
-  作   者  : g00261581
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvMtaQryDpdtValueCnf, Test_AT_RcvMtaQryDpdtValueCnf_003)
 {
     // 变量声明
@@ -1460,15 +1164,7 @@ TEST_F(Test_AT_RcvMtaQryDpdtValueCnf, Test_AT_RcvMtaQryDpdtValueCnf_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号  : Test_AT_RcvMtaQryDpdtValueCnf_004
-测试用例标题  : AT命令执行失败
-预期结果      : 返回VOS_OK
-修改历史      :
-1.日   期  : 2014-04-11
-  作   者  : g00261581
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvMtaQryDpdtValueCnf, Test_AT_RcvMtaQryDpdtValueCnf_004)
 {
     // 变量声明
@@ -1503,15 +1199,7 @@ TEST_F(Test_AT_RcvMtaQryDpdtValueCnf, Test_AT_RcvMtaQryDpdtValueCnf_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号  : Test_AT_RcvMtaQryDpdtValueCnf_005
-测试用例标题  : AT命令执行成功
-预期结果      : 返回VOS_OK
-修改历史      :
-1.日   期  : 2014-04-11
-  作   者  : g00261581
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvMtaQryDpdtValueCnf, Test_AT_RcvMtaQryDpdtValueCnf_005)
 {
     // 变量声明
@@ -1548,14 +1236,7 @@ TEST_F(Test_AT_RcvMtaQryDpdtValueCnf, Test_AT_RcvMtaQryDpdtValueCnf_005)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
- 类名       : Test_At_SetJamDetectPara
- 功能描述   : At_SetJamDetectPara UT工程类
- 修改历史   :
- 1.日   期  : 2014-5-14
-   作   者  : g00261581
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_SetJamDetectPara: public ::testing::Test
 {
 public:
@@ -1582,15 +1263,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_SetJamDetectPara_001
-测试用例标题      : 参数非法
-预期结果          : 函数给用户回复AT_CME_INCORRECT_PARAMETERS
-修改历史     :
-1.日   期  : 2014-04-11
-  作   者  : g00261581
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SetJamDetectPara, Test_At_SetJamDetectPara_001)
 {
     /* 变量定义 */
@@ -1611,15 +1284,7 @@ TEST_F(Test_At_SetJamDetectPara, Test_At_SetJamDetectPara_001)
 	GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SetJamDetectPara_002
-测试用例标题      : 发送消息失败
-预期结果          : 函数给用户回复ERROR
-修改历史     :
-1.日   期  : 2014-04-11
-  作   者  : g00261581
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SetJamDetectPara, Test_At_SetJamDetectPara_002)
 {
     /* 变量定义 */
@@ -1665,15 +1330,7 @@ TEST_F(Test_At_SetJamDetectPara, Test_At_SetJamDetectPara_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SetJamDetectPara_003
-测试用例标题      : 发送消息成功
-预期结果          : 函数给用户回复AT_WAIT_ASYNC_RETURN
-修改历史     :
-1.日   期  : 2014-04-11
-  作   者  : g00261581
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SetJamDetectPara, Test_At_SetJamDetectPara_003)
 {
     /* 变量定义 */
@@ -1719,15 +1376,7 @@ TEST_F(Test_At_SetJamDetectPara, Test_At_SetJamDetectPara_003)
 	GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SetJamDetectPara_004
-测试用例标题      : AT命令下发的参数不全，不全的参数按照默认值补齐
-预期结果          : 函数给用户回复AT_WAIT_ASYNC_RETURN
-修改历史     :
-1.日   期  : 2014-04-11
-  作   者  : g00261581
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SetJamDetectPara, Test_At_SetJamDetectPara_004)
 {
     /* 变量定义 */
@@ -1773,15 +1422,7 @@ TEST_F(Test_At_SetJamDetectPara, Test_At_SetJamDetectPara_004)
 	GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SetJamDetectPara_005
-测试用例标题      : 本地写NV失败
-预期结果          : 函数给用户回复ERROR
-修改历史     :
-1.日   期  : 2014-04-11
-  作   者  : g00261581
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SetJamDetectPara, Test_At_SetJamDetectPara_005)
 {
     /* 变量定义 */
@@ -1825,15 +1466,7 @@ TEST_F(Test_At_SetJamDetectPara, Test_At_SetJamDetectPara_005)
 	GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SetJamDetectPara_006
-测试用例标题      : 本地读NV失败
-预期结果          : 函数给用户回复ERROR
-修改历史     :
-1.日   期  : 2014-04-11
-  作   者  : g00261581
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SetJamDetectPara, Test_At_SetJamDetectPara_006)
 {
     /* 变量定义 */
@@ -1873,14 +1506,7 @@ TEST_F(Test_At_SetJamDetectPara, Test_At_SetJamDetectPara_006)
 	GlobalMockObject::verify();
 }
 
-/*****************************************************************************
- 类名       : Test_At_QryJamDetectPara
- 功能描述   : At_QryJamDetectPara UT工程类
- 修改历史   :
- 1.日   期  : 2014-5-14
-   作   者  : g00261581
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryJamDetectPara: public ::testing::Test
 {
 public:
@@ -1907,15 +1533,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QryJamDetectPara_001
-测试用例标题      : 读取NV失败
-预期结果          : 函数给用户回复AT_ERROR
-修改历史     :
-1.日   期  : 2014-05-14
-  作   者  : g00261581
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryJamDetectPara, Test_At_QryJamDetectPara_001)
 {
     /* 变量定义 */
@@ -1939,15 +1557,7 @@ TEST_F(Test_At_QryJamDetectPara, Test_At_QryJamDetectPara_001)
 	GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryJamDetectPara_002
-测试用例标题      : 查询Jam Detect设置参数成功,锁频模式设为G模
-预期结果          : 上报查询结果
-修改历史     :
-1.日   期  : 2014-05-14
-  作   者  : g00261581
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryJamDetectPara, Test_At_QryJamDetectPara_002)
 {
     /* 变量定义 */
@@ -1990,14 +1600,7 @@ TEST_F(Test_At_QryJamDetectPara, Test_At_QryJamDetectPara_002)
 	GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_RcvMtaSetJamDetectCnf
-功能描述 : AT_RcvMtaSetJamDetectCnf UT工程类
-修改历史 :
-1.日   期  : 2014-05-15
-  作   者  : g00261581
-  修改内容 : 新建CASE
-*****************************************************************************/
+
 class Test_AT_RcvMtaSetJamDetectCnf: public ::testing::Test
 {
 public:
@@ -2048,15 +1651,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号  : Test_AT_RcvMtaSetJamDetectCnf_001
-测试用例标题  : 通过clientid获取index失败
-预期结果      : 返回VOS_ERR
-修改历史      :
-1.日   期  : 2014-05-15
-  作   者  : g00261581
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvMtaSetJamDetectCnf, Test_AT_RcvMtaSetJamDetectCnf_001)
 {
     // 变量声明
@@ -2081,15 +1676,7 @@ TEST_F(Test_AT_RcvMtaSetJamDetectCnf, Test_AT_RcvMtaSetJamDetectCnf_001)
 	GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号  : Test_AT_RcvMtaSetJamDetectCnf_002
-测试用例标题  : ucIndex为AT_BROADCAST_CLIENT_INDEX_MODEM_0
-预期结果      : 返回VOS_ERR
-修改历史      :
-1.日   期  : 2014-05-15
-  作   者  : g00261581
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvMtaSetJamDetectCnf, Test_AT_RcvMtaSetJamDetectCnf_002)
 {
     // 变量声明
@@ -2116,15 +1703,7 @@ TEST_F(Test_AT_RcvMtaSetJamDetectCnf, Test_AT_RcvMtaSetJamDetectCnf_002)
 	GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号  : Test_AT_RcvMtaSetJamDetectCnf_003
-测试用例标题  : AT不处于等待命令返回
-预期结果      : 返回VOS_ERR
-修改历史      :
-1.日   期  : 2014-05-15
-  作   者  : g00261581
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvMtaSetJamDetectCnf, Test_AT_RcvMtaSetJamDetectCnf_003)
 {
     // 变量声明
@@ -2150,15 +1729,7 @@ TEST_F(Test_AT_RcvMtaSetJamDetectCnf, Test_AT_RcvMtaSetJamDetectCnf_003)
 	GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号  : Test_AT_RcvMtaSetJamDetectCnf_004
-测试用例标题  : AT命令执行失败
-预期结果      : 返回VOS_OK
-修改历史      :
-1.日   期  : 2014-05-15
-  作   者  : g00261581
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvMtaSetJamDetectCnf, Test_AT_RcvMtaSetJamDetectCnf_004)
 {
     // 变量声明
@@ -2192,15 +1763,7 @@ TEST_F(Test_AT_RcvMtaSetJamDetectCnf, Test_AT_RcvMtaSetJamDetectCnf_004)
 	GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号  : Test_AT_RcvMtaSetJamDetectCnf_005
-测试用例标题  : AT命令执行成功
-预期结果      : 返回VOS_OK
-修改历史      :
-1.日   期  : 2014-05-15
-  作   者  : g00261581
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvMtaSetJamDetectCnf, Test_AT_RcvMtaSetJamDetectCnf_005)
 {
     // 变量声明
@@ -2233,14 +1796,7 @@ TEST_F(Test_AT_RcvMtaSetJamDetectCnf, Test_AT_RcvMtaSetJamDetectCnf_005)
 	GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_RcvMtaJamDetectInd
-功能描述 : AT_RcvMtaJamDetectInd UT工程类
-修改历史 :
-1.日   期  : 2014-05-15
-  作   者  : g00261581
-  修改内容 : 新建CASE
-*****************************************************************************/
+
 class Test_AT_RcvMtaJamDetectInd: public ::testing::Test
 {
 public:
@@ -2291,15 +1847,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号  : Test_AT_RcvMtaJamDetectInd_001
-测试用例标题  : 通过clientid获取index失败
-预期结果      : 返回VOS_ERR
-修改历史      :
-1.日   期  : 2014-05-15
-  作   者  : g00261581
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvMtaJamDetectInd, Test_AT_RcvMtaJamDetectInd_001)
 {
     // 变量声明
@@ -2325,15 +1873,7 @@ TEST_F(Test_AT_RcvMtaJamDetectInd, Test_AT_RcvMtaJamDetectInd_001)
 }
 
 
-/*******************************************************************
-测试用例编号  : Test_AT_RcvMtaJamDetectInd_002
-测试用例标题  : 上报干扰检测存在
-预期结果      : 返回VOS_OK
-修改历史      :
-1.日   期  : 2014-05-15
-  作   者  : g00261581
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvMtaJamDetectInd, Test_AT_RcvMtaJamDetectInd_002)
 {
     // 变量声明
@@ -2368,15 +1908,7 @@ TEST_F(Test_AT_RcvMtaJamDetectInd, Test_AT_RcvMtaJamDetectInd_002)
 	GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号  : Test_AT_RcvMtaJamDetectInd_003
-测试用例标题  : 上报干扰检测不存在
-预期结果      : 返回VOS_OK
-修改历史      :
-1.日   期  : 2014-05-15
-  作   者  : g00261581
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvMtaJamDetectInd, Test_AT_RcvMtaJamDetectInd_003)
 {
     // 变量声明

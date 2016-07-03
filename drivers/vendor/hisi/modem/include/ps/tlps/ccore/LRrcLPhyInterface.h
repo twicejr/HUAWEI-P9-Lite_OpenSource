@@ -1,14 +1,4 @@
-/******************************************************************************
 
-    Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : LRrcPhyInterface.h
-  Description     : LRRC和LRTT接口文件
-  History         :
-     1.lidui 143774       2011-2-14     Draft Enact
-     2.lishangfeng  55206 2011-09-11 DTS2011091100356:候补信息维护策略改进，并且能够支持多Band时的维护
-******************************************************************************/
 #ifndef __LRRCLPHYINTERFACE_H__
 #define __LRRCLPHYINTERFACE_H__
 
@@ -254,6 +244,7 @@ enum LRRC_LPHY_MSG_ID_ENUM
     ID_LRRC_LPHY_CONNECTED_TO_IDLE_REQ            = (ERRC_LPHY_MSG_HDR + 0x2f), /* _H2ASN_MsgChoice LRRC_LPHY_CONNECTED_TO_IDLE_REQ_STRU */
 
     ID_LRRC_LPHY_RLF_PARA_NOTIFY                  = (ERRC_LPHY_MSG_HDR + 0x30), /* _H2ASN_MsgChoice LRRC_LPHY_RLF_PARA_NOTIFY_STRU */
+    ID_LRRC_LPHY_FREQ_RSSI_SCAN_STOP_REQ          = (ERMM_LPHY_MSG_HDR + 0x31),    /* _H2ASN_MsgChoice LRRC_LPHY_FREQ_RSSI_SCAN_STOP_REQ_STRU */
 
     /* 物理层发给RRC的原语 */
     ID_LRRC_LPHY_CELL_SEARCHING_IND               = (LPHY_ERMM_MSG_HDR + 0x00), /* _H2ASN_MsgChoice LRRC_LPHY_CELL_SEARCHING_IND_STRU */
@@ -2530,9 +2521,7 @@ enum PS_BAND_ENUM
 	PS_BAND_26, /* ADDED BY DK */
     /* 非标频段begin */
     //PS_BAND_101,
-/*BEGIN DTS2014041603793 c00203521 modify for B28全频段特性*/
     PS_BAND_128,
-/*END DTS2014041603793 c00203521 modify for B28全频段特性*/
     PS_BAND_29,
     PS_BAND_32,
     PS_BAND_103,
@@ -6697,6 +6686,18 @@ typedef struct
 }LRRC_LPHY_CHR_SRVING_CELL_INFO_STRU;
 
 /*****************************************************************************
+ 结构名    : LRRC_LPHY_FREQ_RSSI_SCAN_STOP_REQ_STRU
+ 协议表格  :
+ ASN.1描述 :
+ 结构说明  : 协议栈指示物理层停止扫描RSSI
+*****************************************************************************/
+typedef struct
+{
+    VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/
+    LRRC_LPHY_MSG_ID_ENUM_UINT32                  enMsgId;                      /*_H2ASN_Skip*/     /* 原语消息ID */
+}LRRC_LPHY_FREQ_RSSI_SCAN_STOP_REQ_STRU;
+
+/*****************************************************************************
   6 UNION
 *****************************************************************************/
 
@@ -6805,15 +6806,7 @@ extern VOS_UINT16 LHPA_GetBandCount( VOS_UINT8 ucBand );
 *****************************************************************************/
 extern VOS_UINT32 LPHY_GetBtFtmBandCandFreqInfo(VOS_UINT32 *pstNVId,VOS_UINT8 ucBand);
 
-/*****************************************************************************
- Function Name   :LRRC_LPHY_GetSrvingCellSibInfo
- Description     :获取当前服务小区的Cgi\Plmn\Tac信息
- Input           :
- Output          : pstScellInfo:当前服务小区sib1中的相关信息
- Return          : 1 获取信息成功;0 获取信息失败
- History         :
-    1.w00272217     2015-07-27  Draft Enact
-*****************************************************************************/
+
 extern VOS_UINT8 LRRC_LPHY_GetSrvingCellSibInfo(LRRC_LPHY_CHR_SRVING_CELL_INFO_STRU *pstScellInfo);
 
 /*****************************************************************************

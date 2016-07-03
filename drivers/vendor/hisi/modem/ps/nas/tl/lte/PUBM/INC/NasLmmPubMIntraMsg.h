@@ -1,13 +1,4 @@
-/******************************************************************************
 
-        @(#)Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File Name       : NasLmmPubMIntraMsg.h
-    Description     : NasLmmPubMIntraMsg.c header file
-    History     :
-    1.zhengjunyan 00148421 2011-05-28 文件名由 NasMmPubMIntraMsg.h修改为NasLmmPubMIntraMsg.h
-******************************************************************************/
 
 #ifndef __NASLMMPUBMINTRAMSG_H__
 #define __NASLMMPUBMINTRAMSG_H__

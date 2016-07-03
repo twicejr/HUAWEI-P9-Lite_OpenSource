@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : pppc_eap.c
-  版 本 号   : 初稿
-  作    者   : q00359829
-  生成日期   : 2015年11月12日
-  最近修改   :
-  功能描述   : EAP 消息解析
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年11月12日
-    作    者   : q00359829
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -48,24 +31,7 @@ extern "C" {
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_ReceiveRequest
- 功能描述  : EAP收到Request消息, 分析报文头并作相应处理
- 输入参数  : pstPppInfo     PPP控制块指针
-                            pPacket         报文指针
-                            ucId               eap报文Id
-                            ulLen           eap报文长度
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :PPPC_EAP_ReceivePacket
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : q00359829
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_ReceiveRequest
 (
     PPPINFO_S *pstPppInfo, VOS_UINT8 *pPacket, VOS_UINT8 ucId, VOS_UINT32 ulLen
@@ -129,24 +95,7 @@ VOS_VOID PPPC_EAP_ReceiveRequest
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_ReceiveSuccess
- 功能描述  : EAP收到Success消息的处理
- 输入参数  : pstPppInfo     PPP控制块指针
-                            pPacket         报文指针
-                            ucId               eap报文Id
-                            ulLen           eap报文长度
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :PPPC_EAP_ReceivePacket
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : q00359829
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_ReceiveSuccess
 (
     PPPINFO_S *pstPppInfo, VOS_UINT8 *pPacket, VOS_UINT8 ucId, VOS_UINT32 ulLen
@@ -162,24 +111,7 @@ VOS_VOID PPPC_EAP_ReceiveSuccess
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_ReceiveFailure
- 功能描述  : EAP收到Failure消息的处理
- 输入参数  : pstPppInfo     PPP控制块指针
-                            pPacket         报文指针
-                            ucId               eap报文Id
-                            ulLen           eap报文长度
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :PPPC_EAP_ReceivePacket
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : q00359829
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_ReceiveFailure
 (
     PPPINFO_S *pstPppInfo, VOS_UINT8 *pPacket, VOS_UINT8 ucId, VOS_UINT32 ulLen
@@ -198,24 +130,7 @@ VOS_VOID PPPC_EAP_ReceiveFailure
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_ReceivePacket
- 功能描述  : EAP收到消息的处理
- 输入参数  : pstPppInfo     PPP控制块指针
-                            pPacket         报文指针
-                            ucId               eap报文Id
-                            ulLen           eap报文长度
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :PPPC_EAP_ReceivePacket
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : q00359829
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_ReceivePacket
 (
     PPPINFO_S                          *pstPppInfo,
@@ -301,20 +216,7 @@ VOS_VOID PPPC_EAP_ReceivePacket
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_RcvReqTimeout
- 功能描述  : 超时处理
- 输入参数  : ulPppId     PPP序号
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-11-9
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_EAP_RcvReqTimeout(VOS_UINT32 ulPppId)
 {
     PPPC_EAP_PeerProcessEvent(ulPppId, PPPC_EAP_PEER_TIMEOUT_EVENT, VOS_NULL_PTR);
@@ -322,20 +224,7 @@ VOS_VOID PPPC_EAP_RcvReqTimeout(VOS_UINT32 ulPppId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_MD5_CheckParam
- 功能描述  : 入参检查
- 输入参数  : pstEAPInput         输入
- 输出参数  : pstMethodOutput
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-11-9
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 PPPC_EAP_MD5_CheckParam
 (
     PPPC_EAP_METHOD_OUTPUT_STRU        *pstMethodOutput,
@@ -359,21 +248,7 @@ VOS_UINT32 PPPC_EAP_MD5_CheckParam
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_MD5_ProcessPkt
- 功能描述  : EAP Md5方法计算鉴权结果
- 输入参数  : pstEAPInfo     EAP实体信息
-             ucPpstEAPInput 输入
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-11-9
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_EAP_MD5_ProcessPkt
 (
     PPPC_EAP_METHOD_OUTPUT_STRU        *pstMethodOutput,

@@ -1,14 +1,4 @@
-/******************************************************************************
 
-    Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : NasEsmNwMsgProc.h
-  Description     : NasEsmNwMsgProc.c header file
-  History         :
-     1.sunbing49683       2009-2-24     Draft Enact
-     2.—Ó‹Áª› 00135146    2009-03-06    Modify  BA8D01127
-******************************************************************************/
 
 #ifndef __NASESMNWMSGPROC_H__
 #define __NASESMNWMSGPROC_H__

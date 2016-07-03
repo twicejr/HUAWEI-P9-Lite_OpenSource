@@ -192,6 +192,7 @@ static void synaptics_rmi4_report_touch(struct synaptics_rmi4_data *rmi4_data, s
 #define SYNAPTICS_NEED_SET_VDDIO_VALUE "need_set_vddio_value"
 
 #define SYNAPTICS_FW_UPDATE_LOGIC "fw_update_logic"
+#define TEST_ENHANCE_RAW_DATA_CAPACITANCE "test_enhance_raw_data_capacitance"
 
 #define SYNAPTICS_MAX_REGDATA_NUM 32
 static char synaptics_reg_status[SYNAPTICS_MAX_REGDATA_NUM] = {0};
@@ -1077,6 +1078,14 @@ static void synaptics_parse_chip_specific_dts(struct ts_device_data *chip_data)
 		chip_data->fw_update_logic = FW_UPDATE_DIFF;
 		retval = 0;
 	}
+
+	retval = of_property_read_u32(device, TEST_ENHANCE_RAW_DATA_CAPACITANCE, &chip_data->test_enhance_raw_data_capacitance);
+	if (retval) {
+		TS_LOG_INFO("get device test_enhance_raw_data_capacitance null, use default\n");
+		chip_data->test_enhance_raw_data_capacitance = 0;
+		retval = 0;
+	}
+	TS_LOG_INFO("chip_data->test_enhance_raw_data_capacitance=%d\n", chip_data->test_enhance_raw_data_capacitance);
 }
 
 /*  query the configure from dts and store in prv_data */

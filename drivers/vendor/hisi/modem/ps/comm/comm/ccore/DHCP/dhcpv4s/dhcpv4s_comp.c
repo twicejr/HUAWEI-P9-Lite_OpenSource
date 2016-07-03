@@ -27,25 +27,7 @@ ULONG ulDhcpv4sPerfInitFinish = VOS_FALSE;
 
 #define __INNER_MSG__
 
-/*****************************************************************************
- 函 数 名  : DHCPS_SendRtMsg
- 功能描述  : dhcpv4 server发送RT消息
- 输入参数  : VOS_UINT64 ullDstCsi
-             ULONG ulMsgType
-             ULONG ulMsgCode
-             UCHAR *pucMsg
-             ULONG ulMsgLen
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月17日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPS_SendRtMsg(VOS_UINT64 ullDstCsi, ULONG ulMsgType, ULONG ulMsgCode, UCHAR *pucMsg, ULONG ulMsgLen )
 {
     ULONG ulReturn = VOS_OK;
@@ -83,21 +65,7 @@ ULONG DHCPS_SendRtMsg(VOS_UINT64 ullDstCsi, ULONG ulMsgType, ULONG ulMsgCode, UC
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPS_SendLeaseTimeOutInnerMsg
- 功能描述  : dhcpv4s发送lease timeout消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月17日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPS_SendLeaseTimeOutInnerMsg()
 {
     ULONG ulReturn = 0;
@@ -117,21 +85,7 @@ VOID DHCPS_SendLeaseTimeOutInnerMsg()
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPS_SendStateTimeOutInnerMsg
- 功能描述  : dhcpv4s发送state timeout消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月17日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPS_SendStateTimeOutInnerMsg()
 {
     ULONG ulReturn = 0;
@@ -152,19 +106,7 @@ VOID DHCPS_SendStateTimeOutInnerMsg()
 }
 
 
-/*==========================================================
- *  函数名称:              DHCPS_HA_BackupProc
- *  初稿完成:              2009/03/17
- *  作    者       :          dongmingzhou 42828
- *  函数功能:   从DHCP租约数组中取出待备份的DHCPS控制块，
-                               并将其放入备份结构中
- *  输入参数:              主备倒换消息
- *  输出参数:
- *  返回类型:              无
- *  其他说明:              无
- *  调用函数:
- *  主调函数:              AM_USM_HA_EncapBackupMsgByContextRec
- *=========================================================*/
+
 ULONG DHCPS_HA_BackupProc( char **ppbuff,  ULONG ulIndex )
 {
     DHCPS_DebugPrint(PTM_LOG_DEBUG, " entry" );
@@ -191,20 +133,7 @@ ULONG DHCPS_HA_BackupProc( char **ppbuff,  ULONG ulIndex )
 
     return VOS_OK;
 }
-/*==========================================================
- *  函数名称:              DHCPS_HA_SLAVE_RestoreProc
- *  初稿完成:              2009/03/17
- *  作    者       :          dongmingzhou 42828
- *  函数功能:   DHCPS模块控制块在备板的备份恢复重建函数
-                               从备份结构中取出待备份的DHCP控制块内容，
-                               并将其放入DHCP控制块数组中
- *  输入参数:              主备倒换消息
- *  输出参数:
- *  返回类型:              无
- *  其他说明:              无
- *  调用函数:
- *  主调函数:
- *=========================================================*/
+
 ULONG DHCPS_HA_SLAVE_CreateProc( char **ppbuff,  ULONG ulIndex )
 {
     DHCPS_LEASE_S *pstLease = NULL;
@@ -282,20 +211,7 @@ ULONG DHCPS_HA_SLAVE_CreateProc( char **ppbuff,  ULONG ulIndex )
 
     return VOS_OK;
 }
-/*==========================================================
- *  函数名称:              DHCPS_HA_SLAVE_UpdateProc
- *  初稿完成:              2009/03/17
- *  作    者       :          dongmingzhou 42828
- *  函数功能:   DHCPS模块控制块在备板的备份更新函数
-                               从备份结构中取出待备份的DHCPS控制块内容，
-                               并将其放入DHCP控制块数组中
- *  输入参数:              主备倒换消息
- *  输出参数:
- *  返回类型:              无
- *  其他说明:              无
- *  调用函数:
- *  主调函数:
- *=========================================================*/
+
 ULONG DHCPS_HA_SLAVE_UpdateProc( char **ppbuff,  ULONG ulIndex )
 {
     DHCPS_LEASE_S *pstLease = NULL;
@@ -371,18 +287,7 @@ ULONG DHCPS_HA_SLAVE_UpdateProc( char **ppbuff,  ULONG ulIndex )
     return VOS_OK;
 }
 
-/*==========================================================
- *  函数名称:              DHCPS_HA_SLAVE_DeleteProc
- *  初稿完成:              2009/03/17
- *  作    者       :          dongmingzhou 42828
- *  函数功能:   DHCPS模块控制块在备板的备份删除函数
- *  输入参数:              主备倒换消息
- *  输出参数:
- *  返回类型:              无
- *  其他说明:              无
- *  调用函数:
- *  主调函数:
- *=========================================================*/
+
 ULONG DHCPS_HA_SLAVE_DeleteProc( ULONG ulIndex )
 {
     DHCPS_TIMER_TYPE_E enTimerType = E_DHCPS_INVALID_TIMER;
@@ -422,21 +327,7 @@ ULONG DHCPS_HA_SLAVE_DeleteProc( ULONG ulIndex )
 
 #define __DHCPS_COMP_INIT__
 
-/*****************************************************************************
- 函 数 名  : DHCPS_OmInitial
- 功能描述  : DHCPC性能统计初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月15日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPS_OmInitial()
 {
     /* 注册性能统计 for pgw */
@@ -622,19 +513,7 @@ ULONG DHCPS_OmInitial()
     return VOS_OK;
 }
 
-/*==========================================================
- *  函数名称: DHCPS_OM_QueryIpinuseProc
- *  初稿完成:
- *  作    者:
- *  函数功能: dhcpserver查询使用的IP处理流程
 
- *  输入参数:
- *  输出参数:
- *  返回类型: 无
- *  其他说明: 无
- *  调用函数:
- *  主调函数:
- *=========================================================*/
 VOID DHCPS_OM_QueryIpinuseProc( UCHAR * pucMsg,
                                                                    ULONG ulMsgLen ,
                                                                    VOS_VOID ** ppSendData,
@@ -676,19 +555,7 @@ VOID DHCPS_OM_QueryIpinuseProc( UCHAR * pucMsg,
     return;
 }
 
-/*==========================================================
- *  函数名称: DHCPS_IpcCallback
- *  初稿完成:
- *  作    者:
- *  函数功能: dhcpserverIPC回调处理函数
 
- *  输入参数:
- *  输出参数:
- *  返回类型: 无
- *  其他说明: 无
- *  调用函数:
- *  主调函数:
- *=========================================================*/
 VOID DHCPS_IpcCallback( ULONG ulSrcNode, ULONG ulSrcModuleID,
                         VOID *pReceiveData, ULONG ulReceiveDataLen,
                         VOID **ppSendData, ULONG *pulSendDataLen )
@@ -731,20 +598,7 @@ VOID DHCPS_IpcCallback( ULONG ulSrcNode, ULONG ulSrcModuleID,
    return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPS_MallocNode
- 功能描述  : 申请指定大小的内存
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月25日
-    作    者   : guolixian 00171003
-    修改内容   : 新生成函数
-*****************************************************************************/
 ULONG DHCPS_MallocNode(UCHAR **ppucNode,ULONG ulLength)
 {
 
@@ -760,20 +614,7 @@ ULONG DHCPS_MallocNode(UCHAR **ppucNode,ULONG ulLength)
 }
 
 
-/*****************************************************************************
- 函 数 名  : DHCPS_FreeNode
- 功能描述  :释放 指定内存
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月25日
-    作    者   : guolixian 00171003
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOID DHCPS_FreeNode(UCHAR **ppucNode)
 {
 
@@ -786,20 +627,7 @@ VOID DHCPS_FreeNode(UCHAR **ppucNode)
 }
 
 
-/*****************************************************************************
- 函 数 名  : DHCPS_InitRecvBuff
- 功能描述  : dhcps初始化接收消息缓存，避免频繁申请释放内存
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月28日
-    作    者   : guolixian 00171003
-    修改内容   : 新生成函数
-*****************************************************************************/
 ULONG DHCPS_InitRecvBuff()
 {
     UCHAR *pucBuf = NULL;
@@ -818,20 +646,7 @@ ULONG DHCPS_InitRecvBuff()
 
 
 
-/*****************************************************************************
- 函 数 名  : DHCPS_InitDHCPMsgDelayBuff
- 功能描述  : 消息缓存起来，delay用
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月28日
-    作    者   : guolixian 00171003
-    修改内容   : 新生成函数
-*****************************************************************************/
 ULONG DHCPS_InitDHCPMsgDelayBuff()
 {
     g_pstDHCPMsgBuffList = (DHCPS_MSG_BUFFLIST_HEAD *) DHCP_Malloc(DHCPS_HANDLE, sizeof(DHCPS_MSG_BUFFLIST_HEAD));
@@ -857,20 +672,7 @@ ULONG DHCPS_InitDHCPMsgDelayBuff()
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPS_GetMbufData
- 功能描述  : dhcps从mbuf中获取数据
- 输入参数  : VOID
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月28日
-    作    者   : g00171003
-    修改内容   : 新生成函数
-*****************************************************************************/
 ULONG DHCPS_GetMbufData(PMBUF_S* pstMsgBuf, UCHAR **ppMsg, ULONG *pulMsgLen)
 {
     ULONG ulMsgLen = 0;
@@ -911,21 +713,7 @@ ULONG DHCPS_GetMbufData(PMBUF_S* pstMsgBuf, UCHAR **ppMsg, ULONG *pulMsgLen)
 
 
 
-/*****************************************************************************
- 函 数 名  : DHCPS_ProcPfMsg
- 功能描述  : 处理PF上送的dhcp信令
- 输入参数  : VOID* pMsg
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月23日
-    作    者   : guolixian 00171003
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPS_ProcPfMsg(PMBUF_S *pstMsgBuf)
 {
     ULONG ulMsgLen = 0;
@@ -957,21 +745,7 @@ VOID DHCPS_ProcPfMsg(PMBUF_S *pstMsgBuf)
 
 
 
-/*****************************************************************************
- 函 数 名  : DHCPS_LocalMemInit
- 功能描述  : dhcpc本地内存初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月14日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPS_LocalMemInit()
 {
     USHORT i = 0;
@@ -1063,21 +837,7 @@ ULONG DHCPS_LocalMemInit()
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPS_GetOtherCompInfo
- 功能描述  : DHCPV4S获取其它组件的CSI
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月3日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPS_GetOtherCompInfo()
 {
     g_ullDhcpv4sUsmCsi = PSM_Inf_GetCSIBySGIDCmpTypeAndCmpInstId(DHCPS_SELF_SGID,
@@ -1086,21 +846,7 @@ VOID DHCPS_GetOtherCompInfo()
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPS_CommInit1
- 功能描述  : 第二阶段公共初始化
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月14日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPS_CommInit1(  )
 {
     ULONG ulReturn = VOS_OK;
@@ -1143,41 +889,13 @@ ULONG DHCPS_CommInit1(  )
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPS_CommInit2
- 功能描述  : 第二阶段公共初始化
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月14日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPS_CommInit2(  )
 {
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPS_CommInit3
- 功能描述  : 第三阶段公共初始化
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月14日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPS_CommInit3( )
 {
     ULONG ulReturn = 0;
@@ -1263,21 +981,7 @@ VOID DHCPS_ProcSelfMsg(VOID* pMsg)
 
 #ifdef __LINUX_PLATFORM__
 
-/*****************************************************************************
- 函 数 名  : DHCPS_GetSelfCompInfo
- 功能描述  : 获取本组件相关信息
- 输入参数  : DMS_COMMID_T myCSI
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月14日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPS_GetSelfCompInfo(DMS_COMMID_T myCSI )
 {
     g_stDhcpv4sComInfo.ullSelfCsi = PSM_Inf_GetSelfCSI(E_COMP_TYPE_DSV4);
@@ -1330,21 +1034,7 @@ VOID DHCPS_ScheduleInit( DMS_COMMID_T ullCpi )
 }
 
 
-/*****************************************************************************
- 函 数 名  : DHCPS_CompInitPhase1
- 功能描述  : 组件第一阶段初始化
- 输入参数  : DMS_COMMID_T myCSI
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月14日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPS_CompInitPhase1(DMS_COMMID_T myCSI)
 {
     ULONG ulRet = VOS_OK;
@@ -1365,41 +1055,13 @@ ULONG DHCPS_CompInitPhase1(DMS_COMMID_T myCSI)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPS_CompInitPhase2
- 功能描述  : 组件第二阶段初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月14日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPS_CompInitPhase2()
 {
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPS_CompInitPhase3
- 功能描述  : 组件第三阶段初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月14日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPS_CompInitPhase3(DMS_COMMID_T myCPI)
 {
     ULONG ulRet = VOS_OK;
@@ -1416,21 +1078,7 @@ ULONG DHCPS_CompInitPhase3(DMS_COMMID_T myCPI)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPS_CompMsgDistribute
- 功能描述  : 组件消息分发函数
- 输入参数  : VOID* pMsg
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月14日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPS_CompMsgDistribute(ULONG ulMsgType, VOID* pMsg )
 {
     switch(ulMsgType)
@@ -1465,24 +1113,7 @@ ULONG DHCPS_CompMsgDistribute(ULONG ulMsgType, VOID* pMsg )
 }
 
 #define __DHCPS_COMP_FRAME____________
-/*****************************************************************************
- 函 数 名  : DHCPS_CompConstruct
- 功能描述  : DHCPC组件构造函数
- 输入参数  : RTF_COMP_CONSTRUCT_STAGE_E eConstructStage
-             DMS_COMMID_T myCSI
-             DMS_COMMID_T myCPI
-             VOID* pThis
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月14日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPS_CompConstruct( RTF_COMP_CONSTRUCT_STAGE_E eConstructStage,
                             DMS_COMMID_T myCSI, DMS_COMMID_T myCPI, VOID* pThis )
 {
@@ -1533,44 +1164,14 @@ ULONG DHCPS_CompConstruct( RTF_COMP_CONSTRUCT_STAGE_E eConstructStage,
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPS_CompDestruct
- 功能描述  : DHCPC组件析构函数
- 输入参数  : DMS_COMMID_T myPid
-             VOID* pThis
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月14日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPS_CompDestruct( DMS_COMMID_T myPid, VOID* pThis )
 {
     vos_printf("Destruct Component DHCPS\r\n");
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPS_CompMsgProc
- 功能描述  : DHCPC组件消息处理函数
- 输入参数  : VOID* pMsg
-             VOID* pThis
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月14日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPS_CompMsgProc(VOID* pMsg, VOID* pThis)
 {
     DMS_IID_T recvIId;

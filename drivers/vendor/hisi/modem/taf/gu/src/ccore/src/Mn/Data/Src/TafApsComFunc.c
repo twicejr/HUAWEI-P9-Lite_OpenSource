@@ -1,23 +1,5 @@
 
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafApsComFunc.c
-  版 本 号   : 初稿
-  作    者   : S62952
-  生成日期   : 2011年12月14日
-  最近修改   :
-  功能描述   : 公共处理函数
-  函数列表   :
-
-  修改历史   :
-  1.日    期   : 2011年12月14日
-    作    者   : S62952
-    修改内容   : 创建文件
-
-******************************************************************************/
 #ifdef __cplusplus
 #if __cplusplus
     extern "C" {
@@ -415,24 +397,7 @@ TAF_APS_3GPD_FILEID_FLAG_MAP_STRU          g_astTafApsFileIdFlagTbl[] =
 /******************************************************************************
    5 函数实现
 ******************************************************************************/
-/*****************************************************************************
- 函 数 名  : TAF_APS_AllocPdpId
- 功能描述  : 分配PDP ID
- 输入参数  : 无
- 输出参数  : pucPdpId - 分配的PDP ID
- 返 回 值  : PDP ID的分配结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月26日
-    作    者   : h44270
-    修改内容   : 新生成函数
-  2.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，增加PID记录到实体
-
-*****************************************************************************/
 VOS_UINT32   TAF_APS_AllocPdpId(
     TAF_CTRL_STRU                      *pstCtrl,
     VOS_UINT8                           ucCid,
@@ -480,21 +445,7 @@ VOS_UINT32   TAF_APS_AllocPdpId(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_IsPdpIdValid
- 功能描述  : 确认Pdp Id是否有效
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:有效
-             VOS_FALSE:无效
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月26日
-    作    者   : h44270
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32   TAF_APS_IsPdpIdValid(
     VOS_UINT8                           ucPdpId
 )
@@ -502,26 +453,7 @@ VOS_UINT32   TAF_APS_IsPdpIdValid(
     return g_PdpEntity[ ucPdpId].ulUsedFlg;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetCidValue
- 功能描述  : 获取当前存在的第一个CID值
- 输入参数  : pMsgData                   - 消息内容(不包含消息头)
- 输出参数  : 无
- 返 回 值  : 0 - 无效Cid
-             其他值:实际Cid
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月22日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年4月16日
-    作    者   : A00165503
-    修改内容   : DTS2012040100697: 自动应答模式下, 网侧建立的ESP承载, 用户不
-                 能修改和去激活
-*****************************************************************************/
 VOS_UINT8 TAF_APS_GetCidValue(
     VOS_UINT32                          ulBearerActivateFlg,
     VOS_UINT8                          *pucCidList
@@ -554,22 +486,7 @@ VOS_UINT8 TAF_APS_GetCidValue(
     return 0;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_CheckCidDefinedCtx
- 功能描述  : 检查当前的CID是否定义了上下文
- 输入参数  : pMsgData                   - 消息内容(不包含消息头)
- 输出参数  : 无
- 返 回 值  : VOS_OK                     - 成功
-             VOS_ERR                    - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月22日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_CheckCidDefinedCtx(
     VOS_UINT8                           ucCid
 )
@@ -583,21 +500,7 @@ VOS_UINT32 TAF_APS_CheckCidDefinedCtx(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_CheckBearerPdpTypeSuitable
- 功能描述  : 查看默认承载的PDP类型是否匹配
- 输入参数  : ucDefaultPdpType-默认承载的PDP类型
- 输出参数  : ucUserPdpType   -用户指定的PDP类型
- 返 回 值  : ucPdpId    - PDP实体索引
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月15日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_CheckBearerPdpTypeSuitable(
     VOS_UINT8                           ucDefaultPdpType,
     TAF_PDP_TYPE_ENUM_UINT8             enUserPdpType
@@ -629,21 +532,7 @@ VOS_UINT32 TAF_APS_CheckBearerPdpTypeSuitable(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdByNsapi
- 功能描述  : 从NSAPI中获取PDP ID
- 输入参数  : ucNsapi - NSAPI的值
- 输出参数  : 无
- 返 回 值  : PDP ID的值
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月26日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8   TAF_APS_GetPdpIdByNsapi(
     VOS_UINT8                           ucNsapi
 )
@@ -662,21 +551,7 @@ VOS_UINT8   TAF_APS_GetPdpIdByNsapi(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdByLlcSapi
- 功能描述  : 根据LLC SAPI获取APS索引
- 输入参数  : ucLlcSapi                  - LLC SAPI
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月4日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 TAF_APS_GetPdpIdByLlcSapi(
     VOS_UINT8                           ucLlcSapi
 )
@@ -697,22 +572,7 @@ VOS_UINT8 TAF_APS_GetPdpIdByLlcSapi(
     return TAF_APS_INVALID_PDPID;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_String2Hex
- 功能描述  : 字符串转16进制数
- 输入参数  : VOS_UINT8             *pucStr      - 待转换源字符串
-             VOS_UINT16             usStrLen    - 源字符串长度
- 输出参数  : VOS_UINT32            *pulResult   - 转换后的结果
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月27日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_String2Hex(
     VOS_UINT8                          *pucStr,
     VOS_UINT16                          usStrLen,
@@ -762,24 +622,7 @@ VOS_VOID TAF_APS_String2Hex(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdByCid
- 功能描述  : 根据CID获取PDP ID
- 输入参数  : ucCid: CID的值
- 输出参数  : 无
- 返 回 值  : PDP ID的值
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月27日
-    作    者   : h44270
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月27日
-    作    者   : Y00213812
-    修改内容   : 从所有的PDP实体的cid掩码中获取cid
-
-*****************************************************************************/
 VOS_UINT8   TAF_APS_GetPdpIdByCid(
     VOS_UINT8                           ucCid
 )
@@ -803,21 +646,7 @@ VOS_UINT8   TAF_APS_GetPdpIdByCid(
     return TAF_APS_INVALID_PDPID;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdByEpsbId
- 功能描述  : 根据EpsbId获取PDP ID
- 输入参数  : ulEpsbId: ulEpsbId的值
- 输出参数  : 无
- 返 回 值  : PDP ID的值
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月29日
-    作    者   : a00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 TAF_APS_GetPdpIdByEpsbId(VOS_UINT32 ulEpsbId)
 {
     VOS_UINT8                           i;
@@ -839,22 +668,7 @@ VOS_UINT8 TAF_APS_GetPdpIdByEpsbId(VOS_UINT32 ulEpsbId)
     return TAF_APS_INVALID_PDPID;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetCurrModuleIdFromPdpId
- 功能描述  : 根据Pdp Id获取CLIENT ID
- 输入参数  : ucPdpId: PDPID的值
-             ucCid  : cid
- 输出参数  : 无
- 返 回 值  : Module id的值
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月12日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32   TAF_APS_GetPdpEntModuleId(
     VOS_UINT8                           ucPdpId,
     VOS_UINT8                           ucCid
@@ -863,22 +677,7 @@ VOS_UINT32   TAF_APS_GetPdpEntModuleId(
     return g_PdpEntity[ucPdpId].stClientInfo.aulModuleId[ucCid];
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpEntClientId
- 功能描述  : 根据Pdp Id和cid获取CLIENT ID
- 输入参数  : ucPdpId: PDPID的值
-             ucCid  : cid
- 输出参数  : 无
- 返 回 值  : Client id的值
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月12日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT16   TAF_APS_GetPdpEntClientId(
     VOS_UINT8                           ucPdpId,
     VOS_UINT8                           ucCid
@@ -887,22 +686,7 @@ VOS_UINT16   TAF_APS_GetPdpEntClientId(
     return g_PdpEntity[ucPdpId].stClientInfo.ausClientId[ucCid];
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpEntOpId
- 功能描述  : 根据Pdp Id获取OP ID
- 输入参数  : ucPdpId: PDPID的值
-             ucCid  : cid
- 输出参数  : 无
- 返 回 值  : OP ID的值
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月12日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8   TAF_APS_GetPdpEntOpId(
     VOS_UINT8                           ucPdpId,
     VOS_UINT8                           ucCid
@@ -911,22 +695,7 @@ VOS_UINT8   TAF_APS_GetPdpEntOpId(
     return g_PdpEntity[ucPdpId].stClientInfo.aucId[ucCid];
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SetPdpEntClientInfo
- 功能描述  : 记录PDP的CLIENT信息
- 输入参数  : ucPdpId: PDPID的值
-             ucCid  : cid
- 输出参数  : pstPdpIdTab
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月12日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID   TAF_APS_SetPdpEntClientInfo(
     VOS_UINT8                           ucPdpId,
     VOS_UINT8                           ucCid,
@@ -945,26 +714,7 @@ VOS_VOID   TAF_APS_SetPdpEntClientInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_AddPdpEntClientInfo
- 功能描述  : 增加PDP的CLIENT信息
- 输入参数  : ucPdpId --- 实体索引
-             ucCid   --- CID
-             pstCtrl --- 控制头信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月12日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-  2.日    期   : 2014年5月16日
-    作    者   : A00165503
-    修改内容   : DTS2014050703206: 修改函数入参
-*****************************************************************************/
 VOS_VOID   TAF_APS_AddPdpEntClientInfo(
     VOS_UINT8                           ucPdpId,
     VOS_UINT8                           ucCid,
@@ -980,22 +730,7 @@ VOS_VOID   TAF_APS_AddPdpEntClientInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RmvPdpEntClientInfo
- 功能描述  : 清除PDP ID实体CID所对应的用户信息，并通知ESM模块
- 输入参数  : ucPdpId    :PDP ID的值
-             ucCid      :CID的值
-             pstBitCid  :bitCidMask信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月12日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_APS_RmvPdpEntClientInfo (
     VOS_UINT8                           ucPdpId,
     VOS_UINT8                           ucCid,
@@ -1030,24 +765,7 @@ VOS_VOID TAF_APS_RmvPdpEntClientInfo (
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdByDefaultCid
- 功能描述  : 根据默认承载的CID来获取PDP ID的值
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : PdpId
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月26日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年5月11日
-    作    者   : A00165503
-    修改内容   : DTS2015042906872: CL互操作场景, 缺省PDN激活状态判断错误
-*****************************************************************************/
 VOS_UINT8  TAF_APS_GetPdpIdByDefaultCid (VOS_VOID)
 {
     VOS_UINT8                           i;
@@ -1072,21 +790,7 @@ VOS_UINT8  TAF_APS_GetPdpIdByDefaultCid (VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SetPdpEntCidValue
- 功能描述  : 设置PDP ID实体所对应的CID值
- 输入参数  : ucPdpId:PDP ID的值
-             ucCid:CID的值
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月26日
-    作    者   : h44270
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_APS_SetPdpEntCidValue (
     VOS_UINT8                           ucPdpId,
     VOS_UINT8                           ucCid
@@ -1096,21 +800,7 @@ VOS_VOID TAF_APS_SetPdpEntCidValue (
     TAF_APS_SetPdpEntBitCidMask(ucPdpId, ucCid);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SetPdpEntModuleId
- 功能描述  : 设置PDP ID实体所对应的ulModuleId值
- 输入参数  : ucPdpId        :PDP ID的值
-             ulModuleId     :ulModuleId的值
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月25日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_APS_SetPdpEntModuleId (
     VOS_UINT8                           ucPdpId,
     VOS_UINT8                           ucCid,
@@ -1122,25 +812,7 @@ VOS_VOID TAF_APS_SetPdpEntModuleId (
         g_PdpEntity[ucPdpId].stClientInfo.aulModuleId[ucCid] = ulModuleId;
     }
 }
-/*****************************************************************************
- 函 数 名  : TAF_APS_SetPdpEntClientId
- 功能描述  : 设置PDP ID实体所对应的ClientId值
- 输入参数  : ucPdpId:PDP ID的值
-             usClientId:ClientId的值
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年01月05日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-  2.日    期   : 2013年12月15日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_APS_SetPdpEntClientId (
     VOS_UINT8                           ucPdpId,
     VOS_UINT8                           ucCid,
@@ -1150,24 +822,7 @@ VOS_VOID TAF_APS_SetPdpEntClientId (
     g_PdpEntity[ucPdpId].stClientInfo.ausClientId[ucCid] = usClientId;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SetPdpEntOpId
- 功能描述  : 设置PDP ID实体所对应的OpId值
- 输入参数  : ucPdpId:PDP ID的值
-             ucOpId:OpId的值
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年01月05日
-    作    者   : h44270
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月15日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_APS_SetPdpEntOpId (
     VOS_UINT8                           ucPdpId,
     VOS_UINT8                           ucCid,
@@ -1180,21 +835,7 @@ VOS_VOID TAF_APS_SetPdpEntOpId (
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SetPdpEntBitCidMask
- 功能描述  : PDP ID实体以掩码的方式记录Cid
- 输入参数  : ucPdpId        :PDP ID的值
-             ucCid          :实际cid
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月15日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_APS_SetPdpEntBitCidMask (
     VOS_UINT8                           ucPdpId,
     VOS_UINT8                           ucCid
@@ -1207,21 +848,7 @@ VOS_VOID TAF_APS_SetPdpEntBitCidMask (
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SetPdpEntModDialInfo
- 功能描述  : 记录发起modify的用户信息
- 输入参数  : ucPdpId        :PDP ID的值
-             pstModDial     :用户信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月15日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_APS_SetPdpEntModDialInfo (
     VOS_UINT8                           ucPdpId,
     TAF_APS_PDP_MOD_DIAL_STRU          *pstModDial
@@ -1230,21 +857,7 @@ VOS_VOID TAF_APS_SetPdpEntModDialInfo (
     g_PdpEntity[ucPdpId].stModDial = *pstModDial;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpEntModDialInfo
- 功能描述  : 记录发起modify的用户信息
- 输入参数  : ucPdpId        :PDP ID的值
-             pstModDial     :用户信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月15日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpEntModDialInfo (
     VOS_UINT8                           ucPdpId,
     TAF_APS_PDP_MOD_DIAL_STRU          *pstModDial
@@ -1253,21 +866,7 @@ VOS_VOID TAF_APS_GetPdpEntModDialInfo (
      *pstModDial = g_PdpEntity[ucPdpId].stModDial;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RmvPdpEntBitCidMask
- 功能描述  : PDP ID实体以掩码的方式记录Cid
- 输入参数  : ucPdpId        :PDP ID的值
-             ucCid          :实际cid
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月15日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_APS_RmvPdpEntBitCidMask (
     VOS_UINT8                           ucPdpId,
     VOS_UINT8                           ucCid
@@ -1279,20 +878,7 @@ VOS_VOID TAF_APS_RmvPdpEntBitCidMask (
     g_PdpEntity[ucPdpId].stClientInfo.ulBitCidMask &= (~ulCid);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpEntClientId
- 功能描述  : 根据Pdp Id获取CLIENT ID
- 输入参数  : ucPdpId: PDPID的值
- 输出参数  : 无
- 返 回 值  : Client id的值
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月12日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_APS_SetPdpEntDialPdpType(
     VOS_UINT8                           ucPdpId,
     VOS_UINT8                           ucCid,
@@ -1302,21 +888,7 @@ VOS_VOID TAF_APS_SetPdpEntDialPdpType(
     g_PdpEntity[ucPdpId].stClientInfo.aenPdpType[ucCid] = enPdpType;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpEntClientId
- 功能描述  : 根据Pdp Id获取CLIENT ID
- 输入参数  : ucPdpId: PDPID的值
- 输出参数  : 无
- 返 回 值  : Client id的值
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月12日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 TAF_APS_GetPdpEntDialPdpType(
     VOS_UINT8                           ucPdpId,
     VOS_UINT8                           ucCid
@@ -1326,20 +898,7 @@ VOS_UINT8 TAF_APS_GetPdpEntDialPdpType(
 }
 
 #if (FEATURE_ON == FEATURE_IMS)
-/*****************************************************************************
- 函 数 名  : TAF_APS_CheckImsBearerByCid
- 功能描述  : 通过IMSA使用的cid判断是否是IMS承载
- 输入参数  : ucCid          :LinkedCid
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月15日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_CheckImsBearerByCid (
     VOS_UINT8                           ucCid
 )
@@ -1363,20 +922,7 @@ VOS_UINT32 TAF_APS_CheckImsBearerByCid (
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_CheckImsBearerByRabId
- 功能描述  : 根据LinkedRabid判断是否IMS承载
- 输入参数  : ulRabId        :linkedRabId
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月15日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_CheckImsBearerByRabId (
     VOS_UINT32                          ulRabId
 )
@@ -1410,21 +956,7 @@ VOS_UINT32 TAF_APS_CheckImsBearerByRabId (
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetImsBearerCid
- 功能描述  : PDP ID实体以掩码的方式记录Cid
- 输入参数  : ucPdpId        :PDP ID的值
-             ucCid          :实际cid
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月15日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_APS_GetImsBearerCid (
     VOS_UINT8                           ucPdpId,
     VOS_UINT8                          *pucCid
@@ -1447,21 +979,7 @@ VOS_VOID TAF_APS_GetImsBearerCid (
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_IsPdpEntBitCidMaskExit
- 功能描述  : 查询PDP ID实体是否存在该ulCid值
- 输入参数  : ucPdpId        :PDP ID的值
-             ucCid          :实际cid
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月15日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_IsPdpEntBitCidMaskExit (
     VOS_UINT8                           ucPdpId,
     VOS_UINT8                           ucCid
@@ -1477,21 +995,7 @@ VOS_UINT32 TAF_APS_IsPdpEntBitCidMaskExit (
 
     return VOS_FALSE;
 }
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpEntBitCidInfo
- 功能描述  : 设置PDP ID实体所对应的ulCid值
- 输入参数  : ucPdpId        :PDP ID的值
-             pstCid         :实际cid列表
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月25日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_APS_GetPdpEntBitCidInfo(
     VOS_UINT8                           ucPdpId,
     TAF_APS_BITCID_INFO_STRU           *pstCid
@@ -1518,21 +1022,7 @@ VOS_VOID TAF_APS_GetPdpEntBitCidInfo(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SetPdpEntAttachBearerFlag
- 功能描述  : 设置PDP ID实体所对应的ucDefaultFlg值
- 输入参数  : ucPdpId        :PDP ID的值
-             ucFlag         :VOS_TRUE/VOS_FALSE
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月25日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_APS_SetPdpEntAttachBearerFlag (
     VOS_UINT8                           ucPdpId,
     VOS_UINT8                           ucFlag
@@ -1541,20 +1031,7 @@ VOS_VOID TAF_APS_SetPdpEntAttachBearerFlag (
     g_PdpEntity[ucPdpId].ucDefaultBearerFlag = ucFlag;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpEntAttachBearerFlag
- 功能描述  : 获取PDP ID实体所对应的ucDefaultFlg值
- 输入参数  : ucPdpId        :PDP ID的值
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月25日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 TAF_APS_GetPdpEntAttachBearerFlag (
     VOS_UINT8                           ucPdpId
 )
@@ -1562,22 +1039,7 @@ VOS_UINT8 TAF_APS_GetPdpEntAttachBearerFlag (
     return g_PdpEntity[ucPdpId].ucDefaultBearerFlag;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetTiFromPdpId
- 功能描述  : 根据Pdp Id获取TI
- 输入参数  : ucPdpId: PDPID的值
- 输出参数  : pstTi:TI的值
- 返 回 值  : VOS_OK，获取成功
-             VOS_ERR，获取失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年01月05日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_GetTiFromPdpId(
     VOS_UINT8                           ucPdpId,
     SM_TAF_TRANS_ID_STRU               *pstTi
@@ -1599,22 +1061,7 @@ VOS_UINT32  TAF_APS_GetTiFromPdpId(
     return VOS_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdFromTi
- 功能描述  : 根据Ti值来获取PDP ID
- 输入参数  : pstTi: TI的值
- 输出参数  : pucPdpId:PDP ID
- 返 回 值  : VOS_OK，获取成功
-             VOS_ERR，获取失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年01月05日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_GetPdpIdFromTi(
     SM_TAF_TRANS_ID_STRU               *pstTi,
     VOS_UINT8                          *pucPdpId
@@ -1639,26 +1086,7 @@ VOS_UINT32  TAF_APS_GetPdpIdFromTi(
     return VOS_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SetPdpEntityTi
- 功能描述  : 设置PDP实体的ti值
- 输入参数  : ucPdpId: PDPID的值
-             pstTi:Ti的值
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年01月05日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年6月8日
-    作    者   : A00165503
-    修改内容   : DTS2012060705112: GU模下PDP激活成功, U2L后L模DEATACH导致EPS
-                 承载去激活, GU模没有同步PDP状态
-*****************************************************************************/
 VOS_VOID  TAF_APS_SetPdpEntityTi(
     VOS_UINT8                           ucPdpId,
     SM_TAF_TRANS_ID_STRU               *pstTi
@@ -1669,21 +1097,7 @@ VOS_VOID  TAF_APS_SetPdpEntityTi(
     g_PdpEntity[ucPdpId].stTransId    = *pstTi;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetCidFromLteBitCid
- 功能描述  : 根据Esm提供的BitCid来转换成APS内部用的CID
- 输入参数  : ulBitCid: bit cid
- 输出参数  : 无
- 返 回 值  : APS内部定义的CID值
- 调用函数  :
- 被调函数  :
 
- 修改历史    :
- 1.日    期  : 2012年01月05日
-   作    者  : h44270
-   修改内容  : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 TAF_APS_GetCidFromLteBitCid(
     VOS_UINT32                          ulBitCid
 )
@@ -1710,21 +1124,7 @@ VOS_UINT8 TAF_APS_GetCidFromLteBitCid(
     return ucCid;
  }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetActivedCid
- 功能描述  : 获取已经激活的CID列表
- 输入参数  : VOS_VOID   pMsgData        - 消息内容(不包含消息头)
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月9日
-    作    者   : c00184452
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_GetActivedCid(VOS_UINT8 * pucActivedCid)
 {
     VOS_UINT8                           i;
@@ -1767,24 +1167,7 @@ VOS_UINT32  TAF_APS_GetActivedCid(VOS_UINT8 * pucActivedCid)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetUserConnStatus
- 功能描述  : 获取是否有用户发起的PDP连接
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : TAF_APS_USER_CONN_STATUS_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年03月13日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月13日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_APS_USER_CONN_STATUS_ENUM_UINT8 TAF_APS_GetUserConnStatus(VOS_VOID)
 {
     VOS_UINT8                           i;
@@ -1818,21 +1201,7 @@ TAF_APS_USER_CONN_STATUS_ENUM_UINT8 TAF_APS_GetUserConnStatus(VOS_VOID)
     return TAF_APS_USER_CONN_NOT_EXIST;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_Ipv4AddrAtoi
- 功能描述  : 把IPV4地址由字符串格式转换成数字格式
- 输入参数  : pcString  字符串格式的IP地址,char * pcString="192.168.0.1"
- 输出参数  : pucNumber 数字格式的IP地址,char pucNumber[4]={192,168,0,1}
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月9日
-    作    者   : c00184452
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_Ipv4AddrAtoi(
     VOS_CHAR                           *pcString,
     VOS_UINT8                          *pucNumber
@@ -1914,21 +1283,7 @@ VOS_UINT32 TAF_APS_Ipv4AddrAtoi(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ValidatePdpType
- 功能描述  : 把IPV4地址由字符串格式转换成数字格式
- 输入参数  : TAF_PDP_TYPE_ENUM_UINT8             enPdpTypeReq,
-             TAF_PDP_TYPE_ENUM_UINT8             enPdpTypeCnf
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月13日
-    作    者   : c00173809
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_ValidatePdpType(
     TAF_PDP_TYPE_ENUM_UINT8             enPdpTypeReq,
     TAF_PDP_TYPE_ENUM_UINT8             enPdpTypeCnf
@@ -1955,21 +1310,7 @@ VOS_UINT32 TAF_APS_ValidatePdpType(
     return VOS_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_Ipv4AddrAtoi
- 功能描述  : 把IPV4地址由数字格式转换成字符串格式
- 输入参数  : pucNumber 数字格式的IP地址,char pucNumber[4]={192,168,0,1}
- 输出参数  : pcString  字符串格式的IP地址,char * pcString="192.168.0.1"
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月13日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_Ipv4AddrItoa(
     VOS_CHAR                           *pcString,
     VOS_UINT8                          *pucNumber
@@ -2005,21 +1346,7 @@ VOS_UINT32 TAF_APS_Ipv4AddrItoa(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ConverUserDefPdpTypeToApsEntityPdpType
- 功能描述  : 设置PDP ID实体所对应的PDP类型
- 输入参数  : ucPdpId:PDP ID的值
-             ucPdpTypeNum:PDP 类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年1月16日
-    作    者   : h44270
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 TAF_APS_ConverUserDefPdpTypeToApsEntityPdpType (
     TAF_PDP_TYPE_ENUM_UINT8             enUserPdpType,
     VOS_UINT8                           ucDefaultPdpType
@@ -2043,20 +1370,7 @@ VOS_UINT8 TAF_APS_ConverUserDefPdpTypeToApsEntityPdpType (
     return  APS_ADDR_STATIC_IPV4;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ConvertMmcRatType
- 功能描述  : 将MMC接入技术转变为TAF_APS的接入技术
- 输入参数  : MMC_APS_RAT_TYPE_ENUM_UINT32       enRatType
- 输出参数  : 无
- 返 回 值  : TAF_APS_RAT_TYPE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年04月08日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-*****************************************************************************/
 TAF_APS_RAT_TYPE_ENUM_UINT32 TAF_APS_ConvertMmcRatType (
     MMC_APS_RAT_TYPE_ENUM_UINT32       enRatType
 )
@@ -2077,20 +1391,7 @@ TAF_APS_RAT_TYPE_ENUM_UINT32 TAF_APS_ConvertMmcRatType (
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ConvertMmaRatType
- 功能描述  : 将MMA接入技术转变为TAF_APS的接入技术
- 输入参数  : MMA_TAF_RAT_TYPE_ENUM_UINT32       enRatType
- 输出参数  : 无
- 返 回 值  : TAF_APS_RAT_TYPE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月18日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-*****************************************************************************/
 TAF_APS_RAT_TYPE_ENUM_UINT32 TAF_APS_ConvertMmaRatType (
     MMA_TAF_RAT_TYPE_ENUM_UINT32       enRatType
 )
@@ -2120,20 +1421,7 @@ TAF_APS_RAT_TYPE_ENUM_UINT32 TAF_APS_ConvertMmaRatType (
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ConvertMmaRatTypeToApsRatType
- 功能描述  : 将MMA接入技术转变为TAF_APS的接入技术
- 输入参数  : MMA_TAF_RAT_TYPE_ENUM_UINT32       enRatType
- 输出参数  : 无
- 返 回 值  : TAF_APS_RAT_TYPE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月28日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-*****************************************************************************/
 TAF_APS_RAT_TYPE_ENUM_UINT32 TAF_APS_ConvertMmaRatTypeToApsRatType (
     TAF_MMA_RAT_TYPE_ENUM_UINT8         enRatType
 )
@@ -2160,21 +1448,7 @@ TAF_APS_RAT_TYPE_ENUM_UINT32 TAF_APS_ConvertMmaRatTypeToApsRatType (
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ConvertMmaClServiceToApsRatType
- 功能描述  : 把MMA发给APS的模式转换为APS内部的值
- 输入参数  : MMA_TAF_RAT_TYPE_ENUM_UINT32       enRatType
- 输出参数  : 无
- 返 回 值  : TAF_APS_RAT_TYPE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月2日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_APS_RAT_TYPE_ENUM_UINT32 TAF_APS_ConvertMmaClServiceToApsRatType (
     MMA_TAF_RAT_TYPE_ENUM_UINT32       enRatType
 )
@@ -2196,20 +1470,7 @@ TAF_APS_RAT_TYPE_ENUM_UINT32 TAF_APS_ConvertMmaClServiceToApsRatType (
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetSpecPdpLinkedPdpInfo
- 功能描述  : 查询当前Nsapi下Link的PDP info
- 输入参数  : ucNsapi:Nsapi的值
- 输出参数  : pstPdpIdList - PDP操作列表
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年06月07日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_APS_GetSpecPdpLinkedPdpInfo (
     TAF_APS_PDPID_LIST_STRU            *pstPdpIdList,
     VOS_UINT8                           ucNsapi
@@ -2230,21 +1491,7 @@ VOS_VOID TAF_APS_GetSpecPdpLinkedPdpInfo (
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_MapSmCause
- 功能描述  : 将SM错误码映射成PS域呼叫错误码
- 输入参数  : enSmCause - SM错误码
- 输出参数  : 无
- 返 回 值  : TAF_PS_CAUSE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_PS_CAUSE_ENUM_UINT32 TAF_APS_MapSmCause(
     SM_TAF_CAUSE_ENUM_UINT16            enSmCause
 )
@@ -2268,25 +1515,7 @@ TAF_PS_CAUSE_ENUM_UINT32 TAF_APS_MapSmCause(
 }
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : TAF_APS_MapEsmCause
- 功能描述  : 将Esm错误码映射成PS域呼叫错误码
- 输入参数  : ulEsmCause - Esm错误码
- 输出参数  : 无
- 返 回 值  : TAF_PS_CAUSE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : Split L4A Project
-
-*****************************************************************************/
 TAF_PS_CAUSE_ENUM_UINT32 TAF_APS_MapEsmCause(
     VOS_UINT32                          ulEsmCause
 )
@@ -2312,21 +1541,7 @@ TAF_PS_CAUSE_ENUM_UINT32 TAF_APS_MapEsmCause(
 #endif
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- 函 数 名  : TAF_APS_MapXccCause
- 功能描述  : 将XCC错误码映射成PS域呼叫错误码
- 输入参数  : TAF_XCC_CAUSE_ENUM_UINT32           enXccCause
- 输出参数  : 无
- 返 回 值  : TAF_PS_CAUSE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月22日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_PS_CAUSE_ENUM_UINT32 TAF_APS_MapXccCause(
     TAF_XCC_CAUSE_ENUM_UINT32           enXccCause
 )
@@ -2349,21 +1564,7 @@ TAF_PS_CAUSE_ENUM_UINT32 TAF_APS_MapXccCause(
     return TAF_PS_CAUSE_UNKNOWN;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_MapHsmCause
- 功能描述  : 将HSM错误码映射成PS域呼叫错误码
- 输入参数  : HSM_APS_CAUSE_ENUM_UINT32           enhHsmCause
- 输出参数  : 无
- 返 回 值  : TAF_PS_CAUSE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月7日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_PS_CAUSE_ENUM_UINT32 TAF_APS_MapHsmCause(
     HSM_APS_CAUSE_ENUM_UINT32           enHsmCause
 )
@@ -2386,21 +1587,7 @@ TAF_PS_CAUSE_ENUM_UINT32 TAF_APS_MapHsmCause(
     return TAF_PS_CAUSE_UNKNOWN;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_MapEhsmCause
- 功能描述  : 将EHSM错误码映射成PS域呼叫错误码
- 输入参数  : EHSM_APS_CAUSE_ENUM_UINT32          enEhsmCause
- 输出参数  : 无
- 返 回 值  : TAF_PS_CAUSE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月15日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_PS_CAUSE_ENUM_UINT32 TAF_APS_MapEhsmCause(
     EHSM_APS_CAUSE_ENUM_UINT32          enEhsmCause
 )
@@ -2423,21 +1610,7 @@ TAF_PS_CAUSE_ENUM_UINT32 TAF_APS_MapEhsmCause(
     return TAF_PS_CAUSE_UNKNOWN;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdByCallId
- 功能描述  : 将CallId转换为PdpId
- 输入参数  : VOS_UINT8                           ucCallId
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月24日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8   TAF_APS_GetPdpIdByCallId(
     VOS_UINT8                           ucCallId
 )
@@ -2458,23 +1631,7 @@ VOS_UINT8   TAF_APS_GetPdpIdByCallId(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_Is1xRedialCause
- 功能描述  : 判断是否是重拨原因值
- 输入参数  : TAF_XCC_CAUSE_ENUM_UINT32           enCause
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月12日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-  2.日    期   : 2015年11月26日
-    作    者   : w00242748
-    修改内容   : DTS2015012804417:根据RSSI的值进行重播
-*****************************************************************************/
 VOS_UINT32 TAF_APS_Is1xRedialCause(
     TAF_PS_CAUSE_ENUM_UINT32                enCause,
     TAF_APS_CDATA_REDIAL_TYPE_ENUM_UINT8    enType
@@ -2528,21 +1685,7 @@ VOS_UINT32 TAF_APS_Is1xRedialCause(
     return ucIsNeedReidal;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_IsHrpdRedialCause
- 功能描述  : 判断原因值是否需要重拨
- 输入参数  : HSM_APS_CAUSE_ENUM_UINT32       enConnRslt;
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月4日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 TAF_APS_IsHrpdRedialCause(
     TAF_PS_CAUSE_ENUM_UINT32            enCause
 )
@@ -2573,20 +1716,7 @@ VOS_UINT8 TAF_APS_IsHrpdRedialCause(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_IsNeedSilentRedial
- 功能描述  : 激活失败原因值满足重拨条件&&重拨周期定时器剩余时长大于等于4s,才发起重拨
- 输入参数  : TAF_XCC_CAUSE_ENUM_UINT32           enCause
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月12日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_IsNeedSilentRedial(
     TAF_PS_CAUSE_ENUM_UINT32            enCause,
     TAF_APS_RAT_TYPE_ENUM_UINT32        enRatMode
@@ -2644,24 +1774,7 @@ VOS_UINT32 TAF_APS_IsNeedSilentRedial(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_IsNeedRedial1xSystemAcquire
- 功能描述  : 重拨时，根据重拨原因值，判断是否需要通知xsd重新进行搜网
- 输入参数  : TAF_XCC_CAUSE_ENUM_UINT32           enCause
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月15日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-  2.日    期   : 2015年11月24日
-    作    者   : w00242748
-    修改内容   : DTS2015012804417:根据RSSI值进行重播
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_IsNeedRedial1xSystemAcquire(
     TAF_PS_CAUSE_ENUM_UINT32            enCause,
     VOS_INT32                           lRssi
@@ -2688,21 +1801,7 @@ VOS_UINT32 TAF_APS_IsNeedRedial1xSystemAcquire(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_CdataOrigRedialCount
- 功能描述  : 数据业务重拨计数
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月30日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_APS_CdataOrigRedialCount(
     VOS_UINT8                           ucPdpId,
     TAF_XCC_FAIL_LAYER_ENUM_UINT8       enFailLayer
@@ -2759,21 +1858,7 @@ VOS_VOID TAF_APS_CdataOrigRedialCount(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_IsNeedRedialHrpdSystemAcquire
- 功能描述  : 重拨时，根据重拨原因值，判断是否需要通知hsd重新进行搜网
- 输入参数  : TAF_PS_CAUSE_ENUM_UINT32            enCause;
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月9日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_IsNeedRedialHrpdSystemAcquire(
     TAF_PS_CAUSE_ENUM_UINT32            enCause
 )
@@ -2797,24 +1882,7 @@ VOS_UINT32 TAF_APS_IsNeedRedialHrpdSystemAcquire(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_IsNeedRedialImmediately
- 功能描述  : 判断是否需要及时重拨
- 输入参数  : TAF_CS_CAUSE_ENUM_UINT32            enCause
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月19日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-  2.日    期   : 2015年11月24日
-    作    者   : w00242748
-    修改内容   : DTS2015012804417:根据RSSI值上报服务状态
-
-*****************************************************************************/
 VOS_UINT8 TAF_APS_IsNeedRedialImmediately(
     TAF_CS_CAUSE_ENUM_UINT32            enCause,
     VOS_INT32                           lRssi
@@ -2845,24 +1913,7 @@ VOS_UINT8 TAF_APS_IsNeedRedialImmediately(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_IsNeedRedialEventType
- 功能描述  : 按照入口消息判断是否需要重播
- 输入参数  : VOS_UINT32            ulEventType
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月22日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年11月20日
-    作    者   : g00261581
-    修改内容   : 用户去激活允许重拨，去激活会有时间保护，重拨的次数不再保护
-*****************************************************************************/
 TAF_APS_CDATA_REDIAL_TYPE_ENUM_UINT8 TAF_APS_IsNeedRedialEventType(
     VOS_UINT32            ulEventType
 )
@@ -2893,21 +1944,7 @@ TAF_APS_CDATA_REDIAL_TYPE_ENUM_UINT8 TAF_APS_IsNeedRedialEventType(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_MapCdataBearStatus
- 功能描述  : 从当前APS住状态映射到数据承载状态
- 输入参数  : enTafApsSta
- 输出参数  : 无
- 返 回 值  : TAF_PS_CDATA_BEAR_STATUS_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月6日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_PS_CDATA_BEAR_STATUS_ENUM_UINT8 TAF_APS_MapCdataBearStatus(
     VOS_UINT8                           ucPdnId
 )
@@ -2943,21 +1980,7 @@ TAF_PS_CDATA_BEAR_STATUS_ENUM_UINT8 TAF_APS_MapCdataBearStatus(
 
     return enTafPsCdataBearStatus;
 }
-/*****************************************************************************
- 函 数 名  : AT_APS_ConvertPsCdataStatusToCsdCdataStatus
- 功能描述  : 把本地ppp状态转换为APS与cds接口中定义的状态值
- 输入参数  : TAF_PS_CDATA_BEAR_STATUS_ENUM_UINT8            enPsCdataStatus
- 输出参数  : 无
- 返 回 值  : TAF_APS_CDATA_PS_STATE_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月9日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_APS_CDATA_PS_STATE_ENUM_UINT8 AT_APS_ConvertPsCdataStatusToCsdCdataStatus(
     TAF_PS_CDATA_BEAR_STATUS_ENUM_UINT8                     enPsCdataStatus
 )
@@ -2989,21 +2012,7 @@ TAF_APS_CDATA_PS_STATE_ENUM_UINT8 AT_APS_ConvertPsCdataStatusToCsdCdataStatus(
     return enCdsCdataBearStatus;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_MapEhsmPdnTypeToAps
- 功能描述  : pdn type映射成aps pdp实体中的pdn type
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月14日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 TAF_APS_MapEhsmPdnTypeToAps(
     EHSM_APS_PDN_TYPE_ENUM_UINT8        enPdnType
 )
@@ -3023,21 +2032,7 @@ VOS_UINT8 TAF_APS_MapEhsmPdnTypeToAps(
             return APS_ADDR_INVALID;
     }
 }
-/*****************************************************************************
- 函 数 名  : TAF_APS_MapPppPdnTypeToAps
- 功能描述  : pdn type映射成aps pdp实体中的pdn type
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月14日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 TAF_APS_MapPppPdnTypeToAps(
     TAF_APS_PPP_ADDR_TYPE_ENUM_UINT8                        enPdnType
 )
@@ -3060,20 +2055,7 @@ VOS_UINT8 TAF_APS_MapPppPdnTypeToAps(
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ConvertPdpType
- 功能描述  : 转换PDP类型(APS--->TAF)
- 输入参数  : ucPdpTypeNum - 内部PDP类型
- 输出参数  : 无
- 返 回 值  : TAF_PDP_TYPE_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月7日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 TAF_PDP_TYPE_ENUM_UINT8 TAF_APS_ConvertPdpType(VOS_UINT8 ucPdpTypeNum)
 {
     TAF_PDP_TYPE_ENUM_UINT8             enPdpType;
@@ -3107,21 +2089,7 @@ TAF_PDP_TYPE_ENUM_UINT8 TAF_APS_ConvertPdpType(VOS_UINT8 ucPdpTypeNum)
     return enPdpType;
 }
 
-/* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetCtrlHdrFromCmdBufferQueue
- 功能描述  : 从缓存消息队列中获取消息头
- 输入参数  : AF_APS_TIMER_ID_ENUM_UINT32        enTimer
- 输出参数  : TAF_CTRL_STRU                      *pstCtrl
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月16日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_GetCtrlHdrFromCmdBufferQueue(
     TAF_CTRL_STRU                      *pstCtrl,
     TAF_APS_TIMER_ID_ENUM_UINT32        enTimer,
@@ -3153,24 +2121,9 @@ VOS_UINT32 TAF_APS_GetCtrlHdrFromCmdBufferQueue(
 
 }
 
-/* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
 #if (FEATURE_ON == FEATURE_PTM)
-/*****************************************************************************
- 函 数 名  : TAF_APS_PsCallFailErrRecord
- 功能描述  : 记录APS异常事件
- 输入参数  : TAF_PS_CAUSE_ENUM_UINT32 enCause
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月23日
-    作    者   : s00190137
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_PsCallFailErrRecord(TAF_PS_CAUSE_ENUM_UINT32 enCause)
 {
     NAS_ERR_LOG_PS_CALL_FAIL_EVENT_STRU                     stPsCallFailEvent;
@@ -3239,21 +2192,7 @@ VOS_VOID TAF_APS_PsCallFailErrRecord(TAF_PS_CAUSE_ENUM_UINT32 enCause)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpEntClientId
- 功能描述  : 根据Pdp Id获取CLIENT ID
- 输入参数  : ucPdpId: PDPID的值
- 输出参数  : 无
- 返 回 值  : Client id的值
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月12日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID   TAF_APS_SetPsCallEvtCtrl(
     VOS_UINT8                           ucPdpId,
     VOS_UINT8                           ucCid,
@@ -3266,25 +2205,7 @@ VOS_VOID   TAF_APS_SetPsCallEvtCtrl(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_CompareApn
- 功能描述  : 比较承载APN与用户APN
- 输入参数  : aucBearerApn[]             - 承载APN内容
-             ucBearerApnLen             - 承载APN长度
-             aucUserApn[]               - 用户APN内容
-             ucUserApnLen               - 用户APN长度
- 输出参数  : 无
- 返 回 值  : VOS_OK                     - 匹配
-             VOS_ERROR                  - 不匹配
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月8日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_INT32 TAF_APS_CompareApn(
     const VOS_UINT8                 aucBearerApn[],
     VOS_UINT8                       ucBearerApnLen,
@@ -3317,37 +2238,7 @@ VOS_INT32 TAF_APS_CompareApn(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_MatchCallWithAllBearer
- 功能描述  : 检查当前是否有承载匹配用户拨号参数的承载
- 输入参数  : pstCtrl      --- 控制信息
-             pstDialParam --- 拨号参数
- 输出参数  : pucPdpId     --- 实体索引
- 返 回 值  : VOS_TRUE/VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月18日
-    作    者   : Y00213812
-    修改内容   : 新增函数
-
-  2.日    期   : 2014年02月25日
-    作    者   : Y00213812
-    修改内容   : DTS2014022504539: 只支持IMSA与其它端口共用APN
-
-  3.日    期   : 2014年5月15日
-    作    者   : A00165503
-    修改内容   : DTS2014051501929: 增加承载类型(emergency)检查
-
-  4.日    期   : 2014年5月16日
-    作    者   : A00165503
-    修改内容   : DTS2014050703206: 调整函数名称及实现
-
-  5.日    期   : 2015年5月11日
-    作    者   : A00165503
-    修改内容   : DTS2015042906872: CL互操作场景, 缺省PDN激活状态判断错误
-*****************************************************************************/
 VOS_UINT32 TAF_APS_MatchCallWithAllBearer(
     CONST TAF_CTRL_STRU                *pstCtrl,
     CONST TAF_APS_MATCH_PARAM_STRU     *pstMatchParam,
@@ -3443,21 +2334,7 @@ VOS_UINT32 TAF_APS_MatchCallWithAllBearer(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SetPdpEntAddrType
- 功能描述  : 设置实体上下文的地址类型
- 输入参数  : ucPdpId   --- 实体索引(有效性由调用者保证)
-             enPdpType --- PDP类型
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月20日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_APS_SetPdpEntAddrType(
     VOS_UINT8                           ucPdpId,
     TAF_PDP_TYPE_ENUM_UINT8             enPdpType
@@ -3491,24 +2368,7 @@ VOS_VOID TAF_APS_SetPdpEntAddrType(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_IsAnyBearerExist
- 功能描述  : 检查是否有承载存在
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_TRUE/VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月20日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年5月11日
-    作    者   : A00165503
-    修改内容   : DTS2015042906872: CL互操作场景, 缺省PDN激活状态判断错误
-*****************************************************************************/
 VOS_UINT32 TAF_APS_IsAnyBearerExist(VOS_VOID)
 {
     APS_PDP_CONTEXT_ENTITY_ST          *pstPdpEntity;
@@ -3530,20 +2390,7 @@ VOS_UINT32 TAF_APS_IsAnyBearerExist(VOS_VOID)
 }
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : TAF_APS_IsAttachBearerExist
- 功能描述  : 检查注册承载是否存在
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_TRUE/VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月20日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_IsAttachBearerExist(VOS_VOID)
 {
     APS_PDP_CONTEXT_ENTITY_ST          *pstPdpEntity;
@@ -3562,20 +2409,7 @@ VOS_UINT32 TAF_APS_IsAttachBearerExist(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_IsPdnCntxtValid
- 功能描述  : 检查PDN上下文是否有效
- 输入参数  : pstPdnCntxt --- PDN context
- 输出参数  : 无
- 返 回 值  : VOS_TRUE/VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月1日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_IsPdnCntxtValid(TAF_APS_PDN_CONTEXT_STRU *pstPdnCntxt)
 {
     VOS_UINT32                          ulRslt;
@@ -3595,20 +2429,7 @@ VOS_UINT32 TAF_APS_IsPdnCntxtValid(TAF_APS_PDN_CONTEXT_STRU *pstPdnCntxt)
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_IsPdnCntxtDefault
- 功能描述  : 检查指定的PDN上下文是否为缺省PDN连接
- 输入参数  : pstPdnCntxt --- PDN context
- 输出参数  : 无
- 返 回 值  : TRUE/FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月1日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_IsPdnCntxtDefault(TAF_APS_PDN_CONTEXT_STRU *pstPdnCntxt)
 {
     if (VOS_FALSE == TAF_APS_IsPdnCntxtValid(pstPdnCntxt))
@@ -3619,20 +2440,7 @@ VOS_UINT32 TAF_APS_IsPdnCntxtDefault(TAF_APS_PDN_CONTEXT_STRU *pstPdnCntxt)
     return pstPdnCntxt->ucDefaultBearerFlag;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_IsAnyOtherImsPdnActive
- 功能描述  : 检查是否有PDN连接处于激活状态
- 输入参数  : pstPdnCntxt --- PDN context
- 输出参数  : 无
- 返 回 值  : TRUE/FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月1日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_IsAnyOtherNormalPdnActive(TAF_APS_PDN_CONTEXT_STRU *pstPdnCntxt)
 {
     TAF_APS_PDN_CONTEXT_STRU           *pstLocalPdnCntx = VOS_NULL_PTR;
@@ -3669,20 +2477,7 @@ VOS_UINT32 TAF_APS_IsAnyOtherNormalPdnActive(TAF_APS_PDN_CONTEXT_STRU *pstPdnCnt
 
     return VOS_FALSE;
 }
-/*****************************************************************************
- 函 数 名  : TAF_APS_IsPdnCntxtTeardownAllowed
- 功能描述  : 检查PDN连接是否需要断开
- 输入参数  : pstPdnCntxt --- PDN context
- 输出参数  : 无
- 返 回 值  : TRUE/FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月1日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_IsPdnCntxtTeardownAllowed(TAF_APS_PDN_CONTEXT_STRU *pstPdnCntxt)
 {
     TAF_APS_PDN_TEARDOWN_POLICY_STRU   *pstPdnTeardownPolicy = VOS_NULL_PTR;
@@ -3721,39 +2516,13 @@ VOS_UINT32 TAF_APS_IsPdnCntxtTeardownAllowed(TAF_APS_PDN_CONTEXT_STRU *pstPdnCnt
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetAttachAllowFlg
- 功能描述  : 获取注册允许标识
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_TRUE/VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月20日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 TAF_APS_GetAttachAllowFlg(VOS_VOID)
 {
     return NAS_MML_GetPsAttachAllowFlg();
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_IsT3402Running
- 功能描述  : T3402定时器是否在运行
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_TRUE/VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月23日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 TAF_APS_IsT3402Running(VOS_VOID)
 {
     if (NAS_MML_TIMER_START == NAS_MML_GetT3402Status())
@@ -3765,23 +2534,7 @@ VOS_UINT8 TAF_APS_IsT3402Running(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GenMatchParamByCidInfo
- 功能描述  : 生成承载匹配参数
- 输入参数  : pstPdpTblInfo --- CID表信息
- 输出参数  : pstMatchParam --- 匹配参数
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月16日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-  2.日    期   : 2015年9月14日
-    作    者   : w00316404
-    修改内容   : DTS2015091009198:如果VSIM卡使能，需要替换为VSIM卡的APN
-*****************************************************************************/
 VOS_VOID TAF_APS_GenMatchParamByCidInfo(
     CONST TAF_PDP_TABLE_STRU           *pstPdpTblInfo,
     TAF_APS_MATCH_PARAM_STRU           *pstMatchParam
@@ -3805,23 +2558,7 @@ VOS_VOID TAF_APS_GenMatchParamByCidInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GenMatchParamByDailInfo
- 功能描述  : 生成承载匹配参数
- 输入参数  : pstDialParaInfo --- 拨号参数
- 输出参数  : pstMatchParam   --- 匹配参数
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月16日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-  2.日    期   : 2015年9月14日
-    作    者   : w00316404
-    修改内容   : DTS2015091009198:如果VSIM卡使能，需要替换为VSIM卡的APN
-*****************************************************************************/
 VOS_VOID TAF_APS_GenMatchParamByDailInfo(
     CONST TAF_PS_DIAL_PARA_STRU        *pstDialParaInfo,
     TAF_APS_MATCH_PARAM_STRU           *pstMatchParam
@@ -3858,22 +2595,7 @@ VOS_VOID TAF_APS_GenMatchParamByDailInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SetPdpEntCdataPdnId
- 功能描述  : 更新CDMA数据服务上下文中的PS状态信息
- 输入参数  : VOS_UINT8                           ucPdpId
-             VOS_UINT8                           ucPdnId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月18日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SetPdpEntCdataPdnId (
     VOS_UINT8                           ucPdpId,
     VOS_UINT8                           ucPdnId
@@ -3882,21 +2604,7 @@ VOS_VOID TAF_APS_SetPdpEntCdataPdnId (
     g_PdpEntity[ucPdpId].stCdataInfo.ucPdnId = ucPdnId;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpEntCdataPdnId
- 功能描述  : 获取CDMA数据服务上下文中的PS状态信息
- 输入参数  : VOS_UINT8                           ucPdpId
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月18日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 TAF_APS_GetPdpEntCdataPdnId(
     VOS_UINT8                           ucPdpId
 )
@@ -3906,22 +2614,7 @@ VOS_UINT8 TAF_APS_GetPdpEntCdataPdnId(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SetPdpEntCdataPsState
- 功能描述  : 更新CDMA数据服务上下文中的Pdp状态，目前只在1X/HRPD模式下使用
- 输入参数  : VOS_UINT8                           ucPdpId
-             VOS_UINT8                           enPsState
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月22日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SetPdpEntCdataPsState (
     VOS_UINT8                           ucPdpId,
     TAF_APS_CDATA_PS_STATE_ENUM_UINT8   enPsState
@@ -3930,21 +2623,7 @@ VOS_VOID TAF_APS_SetPdpEntCdataPsState (
     g_PdpEntity[ucPdpId].stCdataInfo.enPsState = enPsState;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpEntCdataPsState
- 功能描述  : 获取CDMA数据服务上下文中的Pdp状态，目前只在1X/HRPD模式下使用
- 输入参数  : VOS_UINT8                           ucPdpId
- 输出参数  : 无
- 返 回 值  : TAF_APS_CDATA_PS_STATE_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月22日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_APS_CDATA_PS_STATE_ENUM_UINT8 TAF_APS_GetPdpEntCdataPsState (
     VOS_UINT8                           ucPdpId
 )
@@ -3954,22 +2633,7 @@ TAF_APS_CDATA_PS_STATE_ENUM_UINT8 TAF_APS_GetPdpEntCdataPsState (
 
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- 函 数 名  : TAF_APS_SetPdpEntSo
- 功能描述  : 更新CDMA数据服务链接上下文中的SO
- 输入参数  : VOS_UINT8                           ucPdpId
-             TAF_APS_CDATA_SO_TYPE_ENUM_UINT16   enSo
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月21日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SetPdpEntSo (
     VOS_UINT8                           ucPdpId,
     TAF_APS_CDATA_SO_TYPE_ENUM_UINT16   enSo
@@ -3978,21 +2642,7 @@ VOS_VOID TAF_APS_SetPdpEntSo (
     g_PdpEntity[ucPdpId].stCdataInfo.enSo = enSo;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SetPdpEntSo
- 功能描述  : 获取CDMA数据服务链接上下文中的SO
- 输入参数  : VOS_UINT8                           ucPdpId
- 输出参数  : 无
- 返 回 值  : TAF_APS_CDATA_SO_TYPE_ENUM_UINT16
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月21日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_APS_CDATA_SO_TYPE_ENUM_UINT16 TAF_APS_GetPdpEntSo (
     VOS_UINT8                           ucPdpId
 )
@@ -4000,22 +2650,7 @@ TAF_APS_CDATA_SO_TYPE_ENUM_UINT16 TAF_APS_GetPdpEntSo (
     return g_PdpEntity[ucPdpId].stCdataInfo.enSo;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SetPdpEntConRef
- 功能描述  : 更新CDMA数据服务链接上下文中的conref
- 输入参数  : VOS_UINT8                           ucPdpId
-             VOS_UINT8                           ucConRef
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月21日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SetPdpEntConRef (
     VOS_UINT8                           ucPdpId,
     VOS_UINT8                           ucConRef
@@ -4024,22 +2659,7 @@ VOS_VOID TAF_APS_SetPdpEntConRef (
     g_PdpEntity[ucPdpId].stCdataInfo.ucConRef = ucConRef;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SetPdpEntConnectId
- 功能描述  : 更新CDMA数据服务链接上下文中的ConnectId
- 输入参数  : VOS_UINT8                           ucPdpId
-             VOS_UINT8                           ucConnectId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月21日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SetPdpEntConnectId (
     VOS_UINT8                           ucPdpId,
     VOS_UINT8                           ucConnectId
@@ -4049,22 +2669,7 @@ VOS_VOID TAF_APS_SetPdpEntConnectId (
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SetPdpEntPppState
- 功能描述  : 更新CDMA数据服务链接上下文中的PPP状态信息
- 输入参数  : VOS_UINT8                           ucPdpId
-             VOS_UINT8                           enPppState
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月22日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SetPdpEntPppState (
     VOS_UINT8                           ucPdpId,
     TAF_APS_CDATA_PPP_STATE_ENUM_UINT8  enPppState
@@ -4073,21 +2678,7 @@ VOS_VOID TAF_APS_SetPdpEntPppState (
     g_PdpEntity[ucPdpId].stCdataInfo.enPppState = enPppState;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpEntPppState
- 功能描述  : 获取CDMA数据服务链接上下文中的PPP状态信息
- 输入参数  : VOS_UINT8                           ucPdpId
- 输出参数  : 无
- 返 回 值  : TAF_APS_CDATA_PPP_STATE_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月22日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_APS_CDATA_PPP_STATE_ENUM_UINT8 TAF_APS_GetPdpEntPppState (
     VOS_UINT8                           ucPdpId
 )
@@ -4095,22 +2686,7 @@ TAF_APS_CDATA_PPP_STATE_ENUM_UINT8 TAF_APS_GetPdpEntPppState (
     return g_PdpEntity[ucPdpId].stCdataInfo.enPppState;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SetCdmaAirLinkStatus
- 功能描述  : 更新CDMA链路状态
- 输入参数  : VOS_UINT8                                   ucPdpId,
-             TAF_APS_CDATA_AIR_LINK_STATUS_ENUM_UINT8    enAirLinkStatus
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月16日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SetCdmaAirLinkStatus(
     VOS_UINT8                                   ucPdpId,
     TAF_APS_CDATA_AIR_LINK_STATUS_ENUM_UINT8    enAirLinkStatus
@@ -4120,21 +2696,7 @@ VOS_VOID TAF_APS_SetCdmaAirLinkStatus(
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetCdmaAirLinkStatus
- 功能描述  : 获取CDMA空口链路状态
- 输入参数  : VOS_UINT8                           ucPdpId
- 输出参数  : 无
- 返 回 值  : TAF_APS_CDATA_AIR_LINK_STATUS_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月16日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_APS_CDATA_AIR_LINK_STATUS_ENUM_UINT8 TAF_APS_GetCdmaAirLinkStatus(
     VOS_UINT8                           ucPdpId
 )
@@ -4143,22 +2705,7 @@ TAF_APS_CDATA_AIR_LINK_STATUS_ENUM_UINT8 TAF_APS_GetCdmaAirLinkStatus(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SetHrpdCallSysAcqFlag
- 功能描述  : 设置数据呼触发搜网的标记
- 输入参数  : VOS_UINT8                           ucPdpId
-             VOS_UINT8                           ucHrpdCallSysAcqFlag
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月16日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SetDoQuickAcqProtectFlag(
     VOS_UINT8                           ucPdpId,
     VOS_UINT8                           ucDoQuickAcqProtect
@@ -4169,21 +2716,7 @@ VOS_VOID TAF_APS_SetDoQuickAcqProtectFlag(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetHrpdCallSysAcqFlag
- 功能描述  : 获取数据呼触发搜网的标记
- 输入参数  : VOS_UINT8                           ucPdpId
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月16日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 TAF_APS_GetDoQuickAcqProtectFlag(
     VOS_UINT8                           ucPdpId
 )
@@ -4193,21 +2726,7 @@ VOS_UINT8 TAF_APS_GetDoQuickAcqProtectFlag(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdByConRef
- 功能描述  : 根据ConRef获取PDP ID
- 输入参数  : ucConRef: ConRef的值
- 输出参数  : 无
- 返 回 值  : PDP ID的值
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月23日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8   TAF_APS_GetPdpIdByConRef(
     VOS_UINT8                           ucConRef
 )
@@ -4227,22 +2746,7 @@ VOS_UINT8   TAF_APS_GetPdpIdByConRef(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SetPdpEntL2ErrReOrigFlag
- 功能描述  : 标记当前PS域服务的重拨是否由L2失败原因导致
- 输入参数  : VOS_UINT8                           ucPdpId
-             VOS_UINT8                           ucIsL2ErrReOrig
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月24日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SetPdpEntL2ErrReOrigFlag (
     VOS_UINT8                           ucPdpId,
     VOS_UINT8                           ucIsL2ErrReOrig
@@ -4251,22 +2755,7 @@ VOS_VOID TAF_APS_SetPdpEntL2ErrReOrigFlag (
     g_PdpEntity[ucPdpId].stCdataInfo.ucIsL2ErrReOrig = ucIsL2ErrReOrig;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SetPdpEntReOrigCount
- 功能描述  : 标记重拨次数
- 输入参数  : VOS_UINT8                           ucPdpId
-             VOS_UINT8                           ucL2ErrReOrigCount
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月24日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SetPdpEntReOrigCount (
     VOS_UINT8                           ucPdpId,
     VOS_UINT8                           ucReOrigCount
@@ -4275,21 +2764,7 @@ VOS_VOID TAF_APS_SetPdpEntReOrigCount (
     g_PdpEntity[ucPdpId].stCdataInfo.ucReOrigCount = ucReOrigCount;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpEntReOrigCount
- 功能描述  : 获取重拨次数
- 输入参数  : VOS_UINT8                           ucPdpId
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月24日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 TAF_APS_GetPdpEntReOrigCount (
     VOS_UINT8                           ucPdpId
 )
@@ -4298,22 +2773,7 @@ VOS_UINT8 TAF_APS_GetPdpEntReOrigCount (
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_PdpEntityEnterDormant
- 功能描述  : 进入dormant,停止Dormant定时器，启动HAT
- 输入参数  : VOS_UINT8                           ucPdpId
-             VOS_UINT32                          ulIsNeedStartDormant
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月4日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 VOS_VOID TAF_APS_PdpEntityEnterDormant(
     VOS_UINT8                           ucPdpId,
@@ -4378,22 +2838,7 @@ VOS_VOID TAF_APS_PdpEntityEnterDormant(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SetPdpEntSrId
- 功能描述  : Update SR_ID which is stored in Context of APS
- 输入参数  : VOS_UINT8        ucPdpId
-             VOS_UINT8        ucSrId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月5日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SetPdpEntSrId (
     VOS_UINT8                           ucPdpId,
     VOS_UINT8                           ucSrId
@@ -4402,21 +2847,7 @@ VOS_VOID TAF_APS_SetPdpEntSrId (
     g_PdpEntity[ucPdpId].stCdataInfo.ucSrId= ucSrId;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpEntSrId
- 功能描述  : Get the correspoing SR_ID
- 输入参数  : VOS_UINT8        ucPdpId
- 输出参数  : 无
- 返 回 值  : ucSrId:the value of SR_ID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月5日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 TAF_APS_GetPdpEntSrId (
     VOS_UINT8                           ucPdpId
 )
@@ -4427,22 +2858,7 @@ VOS_UINT8 TAF_APS_GetPdpEntSrId (
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_UpdataCdataIpv4Addr
- 功能描述  : 记录PPP协商中携带的IPv4地址
- 输入参数  : APS_PDP_CONTEXT_ENTITY_ST          *pstPdpEntity
-             PPP_APS_ACT_CNF_STRU               *pstPppActCnf
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月6日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_UpdataCdataIpv4Addr(
     APS_PDP_CONTEXT_ENTITY_ST          *pstPdpEntity,
     PPP_APS_ACT_CNF_STRU               *pstPppActCnf
@@ -4472,22 +2888,7 @@ VOS_VOID TAF_APS_UpdataCdataIpv4Addr(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_UpdataCdataIpv6Addr
- 功能描述  : 记录PPP协商中携带的IPv6地址
- 输入参数  : APS_PDP_CONTEXT_ENTITY_ST          *pstPdpEntity
-             PPP_APS_ACT_CNF_STRU               *pstPppActCnf
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月6日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_UpdataCdataIpv6Addr(
     APS_PDP_CONTEXT_ENTITY_ST          *pstPdpEntity,
     PPP_APS_ACT_CNF_STRU               *pstPppActCnf
@@ -4513,64 +2914,20 @@ TAF_APS_RAT_TYPE_ENUM_UINT32 TAF_APS_GetPreRatModeFromSysServiceInd(
     return ;
 }*/
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_Get1XServiceStatus
- 功能描述  : 获取1X的服务状态
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : TAF_SDC_SERVICE_STATUS_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月10日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_SDC_SERVICE_STATUS_ENUM_UINT8 TAF_APS_Get1XServiceStatus(VOS_VOID)
 {
     return TAF_SDC_GetCsServiceStatus();
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetHrpdServiceStatus
- 功能描述  : 获取HRPD的服务状态
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : TAF_SDC_SERVICE_STATUS_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月10日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_SDC_SERVICE_STATUS_ENUM_UINT8 TAF_APS_GetHrpdServiceStatus(VOS_VOID)
 {
     return TAF_SDC_GetPsServiceStatus();
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_UpdateCdataEhsmPdnInfo
- 功能描述  : 更新CDMA数据服务EHRPD上下文中信息
- 输入参数  : pstPdpEntity       - PDP entity
-             pstPdnAddr         - IP type,IP address
-             pstApn             - Acess Point Name
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月19日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_UpdateCdataEhsmPdnInfo (
     APS_PDP_CONTEXT_ENTITY_ST          *pstPdpEntity,
     EHSM_APS_PDN_ADDR_STRU             *pstPdnAddr,
@@ -4644,22 +3001,7 @@ VOS_VOID TAF_APS_UpdateCdataEhsmPdnInfo (
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_UpdataCdataIpv4Ipv6Dns
- 功能描述  : 记录PPP协商中携带的IPv4 DNS地址
- 输入参数  : APS_PDP_CONTEXT_ENTITY_ST          *pstPdpEntity
-             DHCP_APS_DNS_IPV4_CNF_STRU         *pstDhcpDnsIpv4Cnf
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月24日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_UpdateCdataIpv4Dns(
     APS_PDP_CONTEXT_ENTITY_ST          *pstPdpEntity,
     DHCP_APS_DNS_IPV4_CNF_STRU         *pstDhcpDnsIpv4Cnf
@@ -4685,22 +3027,7 @@ VOS_VOID TAF_APS_UpdateCdataIpv4Dns(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_UpdateCdataIpv6Dns
- 功能描述  : 记录PPP协商中携带的IPv6 DNS地址
- 输入参数  : APS_PDP_CONTEXT_ENTITY_ST          *pstPdpEntity
-             DHCP_APS_DNS_IPV6_CNF_STRU         *pstDhcpDnsIpv6Cnf
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月24日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_UpdateCdataIpv6Dns(
     APS_PDP_CONTEXT_ENTITY_ST          *pstPdpEntity,
     MN_APS_PDP_IPV6_DNS_STRU           *pstPdpIpv6Dns
@@ -4723,21 +3050,7 @@ VOS_VOID TAF_APS_UpdateCdataIpv6Dns(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndExternalModulePsRatTypeNtf
- 功能描述  : 只在3GPP2调用此函数，通知外部模块当前PS域接入技术
- 输入参数  : TAF_APS_RAT_TYPE_ENUM_UINT32        enCurrCdataServiceMode
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月26日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SndExternalModulePsRatTypeNtf(
     TAF_APS_RAT_TYPE_ENUM_UINT32        enCurrCdataServiceMode
 )
@@ -4762,21 +3075,7 @@ VOS_VOID TAF_APS_SndExternalModulePsRatTypeNtf(
     TAF_APS_SndEhsmPsRatTypeNtf(enCurrCdataServiceMode);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPdpIdByPndId
- 功能描述  : 通过PDNID获pdpid
- 输入参数  : VOS_UINT8                           ucPdnId
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月26日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8   TAF_APS_GetPdpIdByPndId(
     VOS_UINT8                           ucPdnId
 )
@@ -4794,24 +3093,7 @@ VOS_UINT8   TAF_APS_GetPdpIdByPndId(
     return TAF_APS_INVALID_PDPID;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetCdataEhrpdSvcSta
- 功能描述  : 通过PDNID获pdpid
- 输入参数  : VOS_UINT8                           ucPdpId
- 输出参数  : 无
- 返 回 值  : APS_CDS_CDATA_BEAR_STATUS_ENUM
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月29日
-    作    者   : Y00314741
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年10月21日
-    作    者   : y00322978
-    修改内容   : 修改函数返回值枚举类型
-*****************************************************************************/
 TAF_PS_CDATA_BEAR_STATUS_ENUM_UINT8 TAF_APS_GetCdataEhrpdSvcSta(
     VOS_UINT8                           ucPdpId
 )
@@ -4844,25 +3126,7 @@ TAF_PS_CDATA_BEAR_STATUS_ENUM_UINT8 TAF_APS_GetCdataEhrpdSvcSta(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetCdataEhrpdSvcSta
- 功能描述  : 通过PDNID获pdpid
- 输入参数  : VOS_UINT8                           ucPdpId
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月29日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月24日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID TAF_APS_RcvSequenceProcessDhcpNdclient(
     VOS_UINT8                           ucPdpId,
     VOS_UINT8                           ucCid
@@ -4997,22 +3261,7 @@ VOS_VOID TAF_APS_RcvSequenceProcessDhcpNdclient(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetCdataEhrpdSvcSta
- 功能描述  : 通过PDNID获pdpid
- 输入参数  : VOS_UINT8                                     ucCid
-             TAF_APS_INTER_END_CALL_REASON_ENUM_UINT8      enEndReason
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月05日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_ProcCdataDhcpNegotiateFail(
     VOS_UINT8                                     ucPdpId,
     TAF_APS_INTER_END_CALL_REASON_ENUM_UINT8      enEndReason
@@ -5046,25 +3295,7 @@ VOS_VOID TAF_APS_ProcCdataDhcpNegotiateFail(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ProcModifyReq_LteHandoverToEhrpdScene
- 功能描述  : Taf Proc Modify Pdn Req, When Lte Handover to Ehrpd
- 输入参数  : VOS_UINT8                                               ucPdpId
-             EHSM_APS_LTE_HANDOVER_TO_EHRPD_IND_STRU                *pstLteHandoverInd
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月5日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-  2.日    期   : 2016年1月14日
-    作    者   : y00322978
-    修改内容   : 如果ip地址和pdn type发生变更 去激活
-*****************************************************************************/
 VOS_VOID TAF_APS_ProcModifyReq_LteHandoverToEhrpdScene(
     VOS_UINT8                                               ucPdpId,
     EHSM_APS_LTE_HANDOVER_TO_EHRPD_IND_STRU                *pstLteHandoverInd
@@ -5125,22 +3356,7 @@ VOS_VOID TAF_APS_ProcModifyReq_LteHandoverToEhrpdScene(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ProcPdnInfoChg_LteHandoverToEhrpdScene
- 功能描述  : L切换到ehrpd时ip地址发生变更处理
- 输入参数  : VOS_UINT8                                               ucPdpId,
-             EHSM_APS_LTE_HANDOVER_TO_EHRPD_IND_STRU                *pstLteHandoverInd
- 输出参数  : ulIsNeedDeactPdn
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月14日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_ProcPdnInfoChg_LteHandoverToEhrpdScene(
     VOS_UINT8                                               ucPdpId,
     EHSM_APS_LTE_HANDOVER_TO_EHRPD_IND_STRU                *pstLteHandoverInd,
@@ -5219,21 +3435,7 @@ VOS_VOID TAF_APS_ProcPdnInfoChg_LteHandoverToEhrpdScene(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_LocalReleaseProc
- 功能描述  : APS，1X, HRPD， EHRPD本地去激活
- 输入参数  : VOS_UINT8                                     ucPdpId
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月03日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_LocalReleaseProc(
     VOS_UINT8                           ucPdpId
 )
@@ -5260,24 +3462,7 @@ VOS_VOID TAF_APS_LocalReleaseProc(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_AddCauseForCdataDoalStackDailNotSuport
- 功能描述  : CDMA模式下如果用户下发IPV4V6拨号，当前只支持IPV4/IPV6通知用户不
-             支持双栈
- 输入参数  : TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstPdpActCnfEvt
-             VOS_UINT8                           ucPdpId
-             VOS_UINT8                           ucCid
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月17日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_AddCauseForCdataDoalStackDailNotSuport(
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstPdpActCnfEvt,
     VOS_UINT8                           ucPdpId,
@@ -5312,21 +3497,7 @@ VOS_VOID TAF_APS_AddCauseForCdataDoalStackDailNotSuport(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_IsExistXcallOrXsmsOpreation
- 功能描述  : 获取当前cdata状态
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月07日
-    作    者   : Y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 TAF_APS_IsExistXcallOrXsmsOpreation(VOS_VOID)
 {
 
@@ -5348,21 +3519,7 @@ VOS_UINT8 TAF_APS_IsExistXcallOrXsmsOpreation(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_IsCdataLocalReleaseCause
- 功能描述  : 获取当前cdata原因值
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月25日
-    作    者   : Y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 TAF_APS_IsCdataLocalReleaseCause(
     TAF_PS_CAUSE_ENUM_UINT32                enCause
 )
@@ -5377,21 +3534,7 @@ VOS_UINT8 TAF_APS_IsCdataLocalReleaseCause(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_MapRatType2VosRatMode
- 功能描述  : 把TAF内部的rat mode转换为VOS的类型
- 输入参数  : TAF_APS_RAT_TYPE_ENUM_UINT32        enRatType
- 输出参数  : 无
- 返 回 值  : VOS_RATMODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月11日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_RATMODE_ENUM_UINT32 TAF_APS_MapRatType2VosRatMode(
     TAF_APS_RAT_TYPE_ENUM_UINT32        enRatType
 )
@@ -5411,21 +3554,7 @@ VOS_RATMODE_ENUM_UINT32 TAF_APS_MapRatType2VosRatMode(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_IsAllowCdataEsting
- 功能描述  : 判断当前是否可以发起数据建链请求
- 输入参数  : TAF_APS_RAT_TYPE_ENUM_UINT32        enRatType
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月30日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_IsAllowCdataEsting(
     TAF_APS_RAT_TYPE_ENUM_UINT32        enRatType
 )
@@ -5481,22 +3610,7 @@ VOS_UINT32 TAF_APS_IsAllowCdataEsting(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SetPdpEntCdataEstFailCause
- 功能描述  : 当激活不能发起时，更新Cdata Pdp Ent失败原因值
- 输入参数  : VOS_UINT8                           ucPdnId
-             TAF_APS_RAT_TYPE_ENUM_UINT32        enRatType
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月8日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SetPdpEntCdataEstFailCause(
     VOS_UINT8                           ucPdnId,
     TAF_APS_RAT_TYPE_ENUM_UINT32        enRatType
@@ -5541,21 +3655,7 @@ VOS_VOID TAF_APS_SetPdpEntCdataEstFailCause(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetDrsValueByScene
- 功能描述  : 根据当前场景填写DRS FLAG
- 输入参数  : VOS_UINT32                          ulEventType
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月30日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 TAF_APS_GetDrsValueByScene(
     VOS_UINT32                          ulEventType
 )
@@ -5575,21 +3675,7 @@ VOS_UINT8 TAF_APS_GetDrsValueByScene(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_IsRedialCallFromDormantState
- 功能描述  : 检查是否是从Dormant状态下发起的重拨
- 输入参数  : VOS_UINT8                           ucPdnId
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月9日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 TAF_APS_IsRedialCallFromDormantState(
     VOS_UINT8                           ucPdnId
 )
@@ -5604,22 +3690,7 @@ VOS_UINT8 TAF_APS_IsRedialCallFromDormantState(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_IsNeedNotifyCdsModeChange
- 功能描述  : 根据当前的数据业务所在的模式，通知CDS接入技术的变更
- 输入参数  : TAF_APS_RAT_TYPE_ENUM_UINT32 enRatType
-             TAF_APS_RAT_TYPE_ENUM_UINT32 enDataSerMode
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月27日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_IsNeedNotifyCdsModeChange(
     TAF_APS_RAT_TYPE_ENUM_UINT32        enRatType,
     TAF_APS_RAT_TYPE_ENUM_UINT32        enDataSerMode
@@ -5661,21 +3732,7 @@ VOS_UINT32  TAF_APS_IsNeedNotifyCdsModeChange(
     return ulIsNeed;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_IsHybridMode
- 功能描述  : 判断当前是否是支持hybrid模式或者CL模式下无LTE服务
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月1日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_IsHybridMode(VOS_VOID)
 {
     VOS_UINT32                          ulIsSupportDvdo;
@@ -5698,21 +3755,7 @@ VOS_UINT32 TAF_APS_IsHybridMode(VOS_VOID)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetCdataPppStatus
- 功能描述  : 获取当前数据承载的状态
- 输入参数  : VOS_UINT8                           ucPdpId
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_PS_CDATA_BEAR_STATUS_ENUM_UINT8 TAF_APS_GetCdataBearStatusCommFun(
     VOS_UINT8                           ucPdpId
 )
@@ -5762,21 +3805,7 @@ TAF_PS_CDATA_BEAR_STATUS_ENUM_UINT8 TAF_APS_GetCdataBearStatusCommFun(
 
     return TAF_PS_CDATA_BEAR_STATUS_INACTIVE;
 }
-/*****************************************************************************
- 函 数 名  : TAF_APS_MapApsAuthTypeToPPP
- 功能描述  : 鉴权类型映射函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : TAF_APS_PPP_AUTH_TYPE_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月10日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_APS_PPP_AUTH_TYPE_ENUM_UINT8 TAF_APS_MapApsAuthTypeToPpp(
     TAF_PDP_AUTH_TYPE_ENUM_UINT8        enTafPdpAuthType
 )
@@ -5800,21 +3829,7 @@ TAF_APS_PPP_AUTH_TYPE_ENUM_UINT8 TAF_APS_MapApsAuthTypeToPpp(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_MapApsAuthTypeToPPP
- 功能描述  : 鉴权类型映射函数
- 输入参数  : TAF_APS_3GPD_SIP_PPP_AUTH_ALGORITHM_ENUM_UINT8
- 输出参数  : 无
- 返 回 值  : TAF_PDP_AUTH_TYPE_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月10日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_PDP_AUTH_TYPE_ENUM_UINT8 TAF_APS_Map3GpdAuthTypeToPpp(
     TAF_APS_3GPD_SIP_PPP_AUTH_ALGORITHM_ENUM_UINT8        en3GpdAuthType
 )
@@ -5838,21 +3853,7 @@ TAF_PDP_AUTH_TYPE_ENUM_UINT8 TAF_APS_Map3GpdAuthTypeToPpp(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_MapApsAuthTypeToEhsm
- 功能描述  : 鉴权类型映射函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : EHSM_APS_AUTH_TYPE_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年01月07日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 EHSM_APS_AUTH_TYPE_ENUM_UINT8 TAF_APS_MapApsAuthTypeToEhsm(
     TAF_PDP_AUTH_TYPE_ENUM_UINT8        enTafPdpAuthType
 )
@@ -5875,21 +3876,7 @@ EHSM_APS_AUTH_TYPE_ENUM_UINT8 TAF_APS_MapApsAuthTypeToEhsm(
             return EHSM_APS_AUTH_TYPE_BUTT;
     }
 }
-/*****************************************************************************
- 函 数 名  : TAF_APS_Read3GpdSipCapaFileCnf
- 功能描述  : Simple IPCapability Parameters 文件解析
- 输入参数  :     USIMM_READFILE_CNF_STRU            *pUsimTafMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月27日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_Read3GpdSipCapaFileCnf(
     USIMM_READFILE_CNF_STRU            *pUsimTafMsg
 )
@@ -5940,21 +3927,7 @@ VOS_VOID TAF_APS_Read3GpdSipCapaFileCnf(
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : TAF_APS_Read3GpdSipUppFileCnf
- 功能描述  : 读取sip  user profile 内容
- 输入参数  :    USIMM_READFILE_CNF_STRU            *pUsimTafMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月28日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_Read3GpdSipUppFileCnf(
     USIMM_READFILE_CNF_STRU            *pUsimTafMsg
 )
@@ -6044,21 +4017,7 @@ VOS_VOID TAF_APS_Read3GpdSipUppFileCnf(
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : TAF_APS_Read3GpdSipStatusFileCnf
- 功能描述  : 读取Active SimpleIPSimple IP NAI entry index
- 输入参数  :    USIMM_READFILE_CNF_STRU            *pUsimTafMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月28日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_Read3GpdSipStatusFileCnf(
     USIMM_READFILE_CNF_STRU            *pUsimTafMsg
 )
@@ -6092,21 +4051,7 @@ VOS_VOID TAF_APS_Read3GpdSipStatusFileCnf(
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : TAF_APS_Read3GpdSipPapSsFileCnf
- 功能描述  : 读取Simple IP PAP SS Parameters
- 输入参数  :     USIMM_READFILE_CNF_STRU            *pUsimTafMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月28日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_Read3GpdSipPapSsFileCnf(
     USIMM_READFILE_CNF_STRU            *pUsimTafMsg
 )
@@ -6202,23 +4147,7 @@ VOS_VOID TAF_APS_Read3GpdSipPapSsFileCnf(
     PS_MEM_FREE(WUEPS_PID_TAF, pucSrcAddr);
     return;
 }
-/*****************************************************************************
- 函 数 名  : TAF_APS_Parse3GpdSingleSipSsContent
- 功能描述  : 解析单条ss内容
- 输入参数  : pucSrcAddr  -- 对应的bit字节流的地址
-             usOffsetPos -- 一个字节中的偏移位置
-             ucPapSsIndex-- 保存的pap ss 索引
- 输出参数  : pucSingleSsContentBitLen -- 单条ss 内容的bit长度
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月28日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 TAF_APS_Parse3GpdSingleSipSsContent(
     VOS_UINT8                          *pucSrcAddr,
     VOS_UINT8                           ucOffsetPos,
@@ -6363,23 +4292,7 @@ VOS_UINT8 TAF_APS_Parse3GpdSingleSipSsContent(
 
     return VOS_TRUE;
 }
-/*****************************************************************************
- 函 数 名  : TAF_APS_ParseSipPapSsLen
- 功能描述  : 解析sip ppp 的pap ss len
- 输入参数  : VOS_UINT8                          *pucSrcAddr,  解析起始地址
-             VOS_UINT8                           ucOffsetPos, 解析起始偏移量
-             VOS_UINT8                           ucPapSsIndex 存入全局变量Ss的索引
- 输出参数  : VOS_UINT8                          *pucSslen     解析的密码长度
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月28日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 TAF_APS_ParseSipPapSsLen(
     VOS_UINT8                          *pucSrcAddr,
     VOS_UINT8                           ucOffsetPos,
@@ -6442,24 +4355,7 @@ VOS_UINT8 TAF_APS_ParseSipPapSsLen(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ParseSipPapSsStr
- 功能描述  : 解析sip ppp 的pap鉴权密码
- 输入参数  : VOS_UINT8                          *pucSrcAddr,  解析起始地址
-             VOS_UINT8                           ucOffsetPos, 解析起始偏移量
-             VOS_UINT8                           ucSsLen,     待解析的Ss长度
-             VOS_UINT8                           ucPapSsIndex 存入全局变量Ss的索引
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月28日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_ParseSipPapSsStr(
     VOS_UINT8                          *pucSrcAddr,
     VOS_UINT8                           ucOffsetPos,
@@ -6486,21 +4382,7 @@ VOS_VOID TAF_APS_ParseSipPapSsStr(
     }
     return;
 }
-/*****************************************************************************
- 函 数 名  : TAF_APS_Get3GpdPppSipNaiInfoFromCard
- 功能描述  : 获取卡中的ppp鉴权需要的用户名
- 输入参数  : 无
- 输出参数  : pst3GpdSipInfo
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月30日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_Get3GpdPppSipNaiInfoFromCard(
     TAF_APS_3GPD_SIP_INFO_STRU         *pst3GpdSipInfo
 )
@@ -6543,21 +4425,7 @@ VOS_UINT32 TAF_APS_Get3GpdPppSipNaiInfoFromCard(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_Get3GpdPppSipPapSsInfoFromCard
- 功能描述  : 获取卡中的ppp鉴权需要的密码
- 输入参数  : 无
- 输出参数  : pst3GpdSipInfo
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月30日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_Get3GpdPppSipPapSsInfoFromCard(
     TAF_APS_3GPD_SIP_INFO_STRU         *pst3GpdSipInfo
 )
@@ -6598,21 +4466,7 @@ VOS_UINT32 TAF_APS_Get3GpdPppSipPapSsInfoFromCard(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_Map3GpdFileIdAndFlag
- 功能描述  : 将3Gpd文件id和读取标志一一映射
- 输入参数  : USIMM_DEF_FILEID_ENUM_UINT32
- 输出参数  : 无
- 返 回 值  : TAF_APS_READ_SIM_FILES_CNF_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月15日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_APS_READ_SIM_FILES_CNF_ENUM_UINT32 TAF_APS_Map3GpdFileIdAndFlag(
     USIMM_DEF_FILEID_ENUM_UINT32          usEfId
 )
@@ -6636,22 +4490,7 @@ TAF_APS_READ_SIM_FILES_CNF_ENUM_UINT32 TAF_APS_Map3GpdFileIdAndFlag(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_IsSyscfgCdmaModeChange
- 功能描述  : 判断是否有GUL<->CL模式的切换
- 输入参数  : TAF_MMA_RAT_ORDER_STRU             *pstOldRatOrder
-             TAF_MMA_RAT_ORDER_STRU             *pstNewRatOrder
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月20日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_IsSyscfgCdmaModeChange(
     TAF_MMA_RAT_ORDER_STRU             *pstOldRatOrder,
     TAF_MMA_RAT_ORDER_STRU             *pstNewRatOrder
@@ -6682,22 +4521,7 @@ VOS_UINT32 TAF_APS_IsSyscfgCdmaModeChange(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_LocalReleaseAll
- 功能描述  : 用户切换模式后需要APS本地去激活，并清除所有状态机，通知相应的模
-             块
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月20日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_LocalReleaseAll(VOS_VOID)
 {
     VOS_UINT8                   ucPdpId;

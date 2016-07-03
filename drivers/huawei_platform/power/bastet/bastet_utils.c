@@ -697,6 +697,41 @@ int set_current_net_device_name(char *iface)
 	return 0;
 }
 
+/**
+ * Function: get_uid_by_pid
+ * Description: get Uid by Pid
+ * Input:pid_to_uid pid and uid
+ * Output:
+ * Return:
+ * Date: 2015.12.24
+ * Author: Zhang Kaige ID: 00220931
+ */
+
+int get_uid_by_pid(struct set_process_info *info)
+{
+	struct task_struct *task;
+
+	if (info == NULL) {
+		BASTET_LOGE("invalid parameter");
+		return -EFAULT;
+	}
+
+	task = find_task_by_vpid(info->pid);
+	if (!task) {
+		BASTET_LOGE("find task by pid failed");
+		return -EFAULT;
+	}
+
+	if (!(task->real_cred)) {
+		BASTET_LOGE("task->real_cred is NULL");
+		return -EFAULT;
+	}
+
+	info->uid = task->real_cred->uid;
+	BASTET_LOGI("uid=%d", info->uid);
+
+	return 0;
+}
 void bastet_utils_init(void)
 {
 	BASTET_LOGI("bastet feature enabled");

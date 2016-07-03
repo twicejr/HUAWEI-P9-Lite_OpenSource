@@ -115,7 +115,6 @@
 #define  ERR_MSP_AT_FW_TABLEID_EXIST     (574) /* client id 已存在*/
 #define  ERR_MSP_START_TIMER_FAIL           (575)
 
-/* add simm error number (周罗俊/67193/2009-08-14)*/
 /* 600 ~ 699 should be used by simm*/
 #define  ERR_MSP_SIMM_NOT_INIT             (601)          /*SIMM未初始化*/
 #define  ERR_MSP_SIMM_WRONG_PARA           (602)          /*因为参数错误，函数执行失败*/

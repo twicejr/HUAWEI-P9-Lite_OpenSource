@@ -2692,21 +2692,7 @@ static int pl011_probe_dt_alias(int index, struct device *dev)
 
 
 
-/*****************************************************************************
- 函 数 名  : get_uart_console
- 功能描述  : 获得当前console的结构体
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回当前struct console结构体
- 调用函数  : 无
- 被调函数  : ashell_console_register
 
- 修改历史      :
-  1.日    期   : 2012年9月13日
-    作    者   : 张彪 zkf67996
-    修改内容   : 移植v3r2
-
-*****************************************************************************/
 
 struct console* get_uart_console(void) /* add by hisi-balong */
 {

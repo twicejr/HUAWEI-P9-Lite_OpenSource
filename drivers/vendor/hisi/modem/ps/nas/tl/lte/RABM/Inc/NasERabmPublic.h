@@ -459,15 +459,7 @@ typedef struct
 }NAS_ERABM_ENTITY_STRU;/*RABM实体数据结构*/
 
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_EHRPD_ENTITY_STRU
- Description     : EHRPD承载管理实体，用于1XCL互操作管理EHRPD同步过来的承载信息
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.sunjitan 00193151      2016-01-14  Draft Enact
-*****************************************************************************/
 typedef struct
 {
     /* EHRPD实体信息 */
@@ -507,14 +499,7 @@ typedef struct
 }NAS_ERABM_IPV4_SEGMENT_BUFF_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_ERABM_TIMER_INFO_STRU
- 结构说明  : log出ERABM定时器运行情况
- 1.日    期   : 2012年12月03日
-   作    者   : n00181501
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                          stMsgHeader;     /*_H2ASN_Skip*/

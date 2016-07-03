@@ -105,8 +105,8 @@ struct pm_drv_data
     /*mutex for sync*/
     struct mutex                    host_mutex;
 
-    /*Tasklet to respond to change in hostwake line */
-    struct tasklet_struct           hostwake_task;
+    /*wakelock protect spinlock while wkup isr VS allow sleep ack and devack_timer*/
+    spinlock_t                      wakelock_protect_spinlock;
 
     /*bfgx VS. bfg timer spinlock */
     spinlock_t                      node_timer_spinlock;

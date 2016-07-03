@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafSpmPreProcAct.c
-  版 本 号   : 初稿
-  作    者   : s00217060
-  生成日期   : 2013年12月14日
-  最近修改   :
-  功能描述   :预处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年12月14日
-    作    者   : s00217060
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -27,9 +10,7 @@
 #include "MnCallApi.h"
 #include "MnCallReqProc.h"
 #include "TafLog.h"
-/* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-18, begin */
 #include "MnCallSendApp.h"
-/* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-18, end */
 #include "MnCallMnccProc.h"
 #include "TafSpmServiceDomainSelProc.h"
 #include "TafMmaCtx.h"
@@ -72,23 +53,7 @@ extern "C" {
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/* Added by y00245242 for V3R3C60_eCall项目, 2014-4-22, begin */
-/*****************************************************************************
- 函 数 名  : TAF_SPM_IsCallAllowedInCurrentPhoneMode
- 功能描述  : 根据呼叫类型以及当前的状态，确定是否允许发起该呼叫
- 输入参数  : pstMsg -- 呼叫请求消息地址
 
- 输出参数  : 无
- 返 回 值  : VOS_FALSE － 呼叫不允许发起
-             VOS_TRUE  － 呼叫允许发起
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2014年04月22日
-   作    者   : y00245242
-   修改内容   : 为eCall特性增加
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_IsCallAllowedInCurrentPhoneMode(MN_CALL_APP_REQ_MSG_STRU *pstMsg)
 {
 #if (FEATURE_ON == FEATURE_ECALL)
@@ -121,25 +86,7 @@ VOS_UINT32 TAF_SPM_IsCallAllowedInCurrentPhoneMode(MN_CALL_APP_REQ_MSG_STRU *pst
 }
 
 #if (FEATURE_ON == FEATURE_ECALL)
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcMiecAndAiecReqInLowPower
- 功能描述  : 在低功耗状态下，处理MIEC与AIEC Ecall呼叫请求。在低功耗时，缓存消息，
-             触发开机。
 
- 输入参数  : ulEventType   - 事件类型
-             pstMsg        - 消息地址
-
- 输出参数  :
- 返 回 值  : 无
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年4月22日
-    作    者   : y00245242
-    修改内容   : 为eCall feature增加
-*****************************************************************************/
 VOS_VOID TAF_SPM_ProcMiecAndAiecReqInLowPower(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -177,23 +124,7 @@ VOS_VOID TAF_SPM_ProcMiecAndAiecReqInLowPower(
                        pstAppReq->clientId);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcMiecAndAiecReqInOtherCallRunning
- 功能描述  : 在有呼叫存在场景下，处理MIEC与AIEC Ecall呼叫请求
- 输入参数  : ulEventType   - 事件类型
-             pstMsg        - 消息地址
 
- 输出参数  :
- 返 回 值  : 无
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年4月22日
-    作    者   : y00245242
-    修改内容   : 为eCall feature增加
-*****************************************************************************/
 VOS_VOID TAF_SPM_ProcMiecAndAiecReqInOtherCallRunning(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -232,23 +163,7 @@ VOS_VOID TAF_SPM_ProcMiecAndAiecReqInOtherCallRunning(
 }
 
 #if (FEATURE_IMS == FEATURE_ON)
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcMiecAndAiecReqInImsCallRunning
- 功能描述  : 在有IMS呼叫存在场景下，处理MIEC与AIEC Ecall呼叫请求
- 输入参数  : ulEventType   - 事件类型
-             pstMsg        - 消息地址
 
- 输出参数  :
- 返 回 值  : VOS_VOID
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年03月04日
-    作    者   : j00174725
-    修改内容   : DTS2015021000591
-*****************************************************************************/
 VOS_VOID  TAF_SPM_ProcMiecAndAiecReqInImsCallRunning(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -298,23 +213,7 @@ VOS_VOID  TAF_SPM_ProcMiecAndAiecReqInImsCallRunning(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcMiecAndAiecReq_PreProc
- 功能描述  : 处理MIEC与AIEC Ecall呼叫请求
- 输入参数  : ulEventType   - 事件类型
-             pstMsg        - 消息地址
 
- 输出参数  :
- 返 回 值  : VOS_TRUE --  消息处理完毕
-             VOS_FALSE -- 消息需要继续处理
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年4月22日
-    作    者   : y00245242
-    修改内容   : 为eCall feature增加
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_ProcMiecAndAiecReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -364,24 +263,7 @@ VOS_UINT32 TAF_SPM_ProcMiecAndAiecReq_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcTestAndRecfgReq_PreProc
- 功能描述  : 处理test与reconfiguration eCall呼叫
- 输入参数  : ulEventType -- 事件类型
-             pstMsg -- 呼叫请求消息地址
 
- 输出参数  : 无
- 返 回 值  : VOS_TRUE --  消息处理完毕
-             VOS_FALSE -- 消息需要继续处理
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2014年04月22日
-   作    者   : y00245242
-   修改内容   : 为eCall特性增加
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_ProcTestAndRecfgReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -433,23 +315,7 @@ VOS_UINT32 TAF_SPM_ProcTestAndRecfgReq_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcEcallReq_PreProc
- 功能描述  : 处理eCall呼叫
- 输入参数  : ulEventType -- 事件类型
-             pstMsg      -- 呼叫请求消息地址
 
- 输出参数  : 无
- 返 回 值  : VOS_FALSE － 消息处理未完成
-             VOS_TRUE  － 消息处理已完成
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2014年04月22日
-   作    者   : y00245242
-   修改内容   : 为eCall特性增加
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_ProcEcallReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -480,22 +346,7 @@ VOS_UINT32 TAF_SPM_ProcEcallReq_PreProc(
     return ulRst;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_IsEcallAllowedInCurrentSysMode
- 功能描述  : 根据当前系统模式，决定eCall呼叫是否被允许
- 输入参数  : enCallType -- 呼叫类型
 
- 输出参数  : 无
- 返 回 值  : VOS_FALSE － 呼叫不允许发起
-             VOS_TRUE  － 呼叫允许发起
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2014年04月22日
-   作    者   : y00245242
-   修改内容   : 为eCall特性增加
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_IsEcallAllowedInCurrentSysMode(
     MN_CALL_TYPE_ENUM_U8                enCallType
 )
@@ -516,22 +367,7 @@ VOS_UINT32 TAF_SPM_IsEcallAllowedInCurrentSysMode(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_IsEcallAllowedInCurrentCallMode
- 功能描述  : 根据呼叫模式，是否允许发起eall
- 输入参数  : enCallType -- 呼叫类型
 
- 输出参数  : 无
- 返 回 值  : VOS_FALSE － 呼叫不允许发起
-             VOS_TRUE  － 呼叫允许发起
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2015年03月02日
-   作    者   : j00174725
-   修改内容   :
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_IsEcallAllowedInCurrentCallMode(
     MN_CALL_TYPE_ENUM_U8                enCallType
 )
@@ -553,27 +389,8 @@ VOS_UINT32 TAF_SPM_IsEcallAllowedInCurrentCallMode(
 }
 
 #endif
-/* Added by y00245242 for V3R3C60_eCall项目, 2014-4-22, end */
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvAppOrigReq_PreProc
- 功能描述  : 预处理状态机初始化状态收到AT的呼叫请求的消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年12月14日
-   作    者   : s00217060
-   修改内容   : 新生成函数
- 2.日    期   : 2014年04月22日
-   作    者   : y00245242
-   修改内容   : 为eCall特性修改
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvAppOrigReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -586,17 +403,14 @@ VOS_UINT32 TAF_SPM_RcvAppOrigReq_PreProc(
 
     PS_MEM_SET(&stEmergencyCat, 0, sizeof(MN_CALL_EMERGENCY_CAT_STRU));
 
-    /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-22, begin */
     /* call is allowed if phone mode is power on */
     if (VOS_TRUE != TAF_SPM_IsCallAllowedInCurrentPhoneMode(pstAppMsg))
-    /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-22, end */
     {
         TAF_SPM_SendCcServiceRequetFail(ulEventType, pstMsg, TAF_CS_CAUSE_POWER_OFF);
 
         return VOS_TRUE;
     }
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-4-22, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
     if (VOS_FALSE == TAF_SPM_IsEcallAllowedInCurrentSysMode(pstAppMsg->unParm.stOrig.enCallType))
     {
@@ -625,7 +439,6 @@ VOS_UINT32 TAF_SPM_RcvAppOrigReq_PreProc(
         return VOS_FALSE;
     }
 #endif
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-4-22, end */
 
     /* VIDEO call当做普通呼叫处理不做紧急呼叫号码检查 */
     if ((MN_CALL_TYPE_VIDEO    != pstAppMsg->unParm.stOrig.enCallType)
@@ -679,22 +492,7 @@ VOS_UINT32 TAF_SPM_RcvAppOrigReq_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvAppSupsCmdReq_PreProc
- 功能描述  : 预处理状态机初始化状态收到AT的MN_CALL_APP_SUPS_CMD_REQ消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年12月14日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvAppSupsCmdReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -741,22 +539,7 @@ VOS_UINT32 TAF_SPM_RcvAppSupsCmdReq_PreProc(
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvAppGetInfoReq_PreProc
- 功能描述  : 预处理状态机初始化状态收到AT的MN_CALL_APP_GET_INFO_REQ消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年12月14日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvAppGetInfoReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -776,22 +559,7 @@ VOS_UINT32 TAF_SPM_RcvAppGetInfoReq_PreProc(
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvAppStartDtmfReq_PreProc
- 功能描述  : 预处理状态机初始化状态收到AT的MN_CALL_APP_START_DTMF_REQ消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年12月14日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvAppStartDtmfReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -811,22 +579,7 @@ VOS_UINT32 TAF_SPM_RcvAppStartDtmfReq_PreProc(
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvAppStopDtmfReq_PreProc
- 功能描述  : 预处理状态机初始化状态收到AT的MN_CALL_APP_STOP_DTMF_REQ消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年12月14日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvAppStopDtmfReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -846,22 +599,7 @@ VOS_UINT32 TAF_SPM_RcvAppStopDtmfReq_PreProc(
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvAppGetCdurReq_PreProc
- 功能描述  : 预处理状态机初始化状态收到AT的MN_CALL_APP_GET_CDUR_REQ消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年12月14日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvAppGetCdurReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -881,22 +619,7 @@ VOS_UINT32 TAF_SPM_RcvAppGetCdurReq_PreProc(
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvAppGetCallInfoReq_PreProc
- 功能描述  : 预处理状态机初始化状态收到TAFAGENT的ID_TAFAGENT_MN_GET_CALL_INFO_REQ消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年12月14日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvAppGetCallInfoReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -916,22 +639,7 @@ VOS_UINT32 TAF_SPM_RcvAppGetCallInfoReq_PreProc(
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvAppGetClprReq_PreProc
- 功能描述  : 预处理状态机初始化状态收到AT的MN_CALL_APP_CLPR_GET_REQ消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年12月14日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvAppGetClprReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -952,23 +660,7 @@ VOS_UINT32 TAF_SPM_RcvAppGetClprReq_PreProc(
 }
 
 #if (FEATURE_ON == FEATURE_ECALL)
-/* Added by s00261364 for V3R360_eCall项目, 2014-4-1, begin */
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvMmaPhoneModeSetCnf_PreProc
- 功能描述  : 预处理状态机初始化状态收到MMA的ID_TAF_MMA_PHONE_MODE_SET_CNF消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年4月1日
-   作    者   : s00261364
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvMmaPhoneModeSetCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1030,27 +722,8 @@ VOS_UINT32 TAF_SPM_RcvMmaPhoneModeSetCnf_PreProc(
 
     return VOS_FALSE;
 }
-/* Added by s00261364 for V3R360_eCall项目, 2014-4-1, end */
 
-/* Added by y00245242 for V3R3C60_eCall项目, 2014-4-26, begin */
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvTafRelCallCnf_PreProc
- 功能描述  : 处理内部normal呼叫释放确认消息
 
- 输入参数  : pstMsg      -- 呼叫请求消息地址
-             ulEventType － 事件类型
-
- 输出参数  : 无
- 返 回 值  : VOS_FALSE － 呼叫未处理完成
-             VOS_TRUE  － 呼叫处理完成
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2014年04月22日
-   作    者   : y00245242
-   修改内容   : 为eCall特性增加
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvTafRelCallCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1096,25 +769,8 @@ VOS_UINT32 TAF_SPM_RcvTafRelCallCnf_PreProc(
 
     return ulRst;
 }
-/* Added by y00245242 for V3R3C60_eCall项目, 2014-4-26, end */
 
-/* Added by w00176964 for V3R3C60_eCall项目, 2014-5-4, begin */
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvPbECallInitInd_PreProc
- 功能描述  : 收到PB初始化完成指示
- 输入参数  : ulEventType
-             pstMsg
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年4月23日
-    作    者   : w00176964
-    修改内容   : eCall项目新增
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvPbECallInitInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1139,21 +795,7 @@ VOS_UINT32 TAF_SPM_RcvPbECallInitInd_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcPbQryFdnECallNumCnf_PreProc
- 功能描述  : 收到PB模块读取FDN中ecall相关号码的处理
- 输入参数  : pstPbMsg-----PB的查询消息
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年4月26日
-    作    者   : w00176964
-    修改内容   : eCall项目新增
-*****************************************************************************/
 VOS_VOID TAF_SPM_ProcPbQryFdnECallNumCnf_PreProc(
     SI_PB_ECALLQRY_CNF_STRU            *pstPbMsg
 )
@@ -1216,21 +858,7 @@ VOS_VOID TAF_SPM_ProcPbQryFdnECallNumCnf_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcPbQrySdnECallNumCnf_PreProc
- 功能描述  : 收到PB模块读取SDN中ecall相关号码的处理
- 输入参数  : pstPbMsg-----PB的查询消息
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年4月26日
-    作    者   : w00176964
-    修改内容   : eCall项目新增
-*****************************************************************************/
 VOS_VOID TAF_SPM_ProcPbQrySdnECallNumCnf_PreProc(
     SI_PB_ECALLQRY_CNF_STRU            *pstPbMsg
 )
@@ -1298,22 +926,7 @@ VOS_VOID TAF_SPM_ProcPbQrySdnECallNumCnf_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvPbQryECallNumCnf_PreProc
- 功能描述  : 收到PB模块读取ecall相关号码的处理
- 输入参数  : ulEventType
-             pstMsg
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年4月23日
-    作    者   : w00176964
-    修改内容   : eCall项目新增
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvPbQryECallNumCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1341,7 +954,6 @@ VOS_UINT32 TAF_SPM_RcvPbQryECallNumCnf_PreProc(
     return VOS_TRUE;
 }
 
-/* Added by w00176964 for V3R3C60_eCall项目, 2014-5-4, end */
 
 
 #endif
@@ -1350,22 +962,7 @@ VOS_UINT32 TAF_SPM_RcvPbQryECallNumCnf_PreProc(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvAppSendRpdataDirect_PreProc
- 功能描述  : 预处理状态机初始化状态收到AT的MN_MSG_MSGTYPE_SEND_RPDATA_DIRECT消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年12月14日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvAppSendRpdataDirect_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1389,22 +986,7 @@ VOS_UINT32 TAF_SPM_RcvAppSendRpdataDirect_PreProc(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvProcUssSsReq_PreProc
- 功能描述  : 预处理状态机初始化状态收到AT的TAF_MSG_PROCESS_USS_MSG消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年12月14日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvProcUssSsReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1447,22 +1029,7 @@ VOS_UINT32 TAF_SPM_RcvProcUssSsReq_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvRegisterSsReq_PreProc
- 功能描述  : 预处理状态机初始化状态收到AT的TAF_MSG_REGISTERSS_MSG消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年12月14日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvRegisterSsReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1484,22 +1051,7 @@ VOS_UINT32 TAF_SPM_RcvRegisterSsReq_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvEraseSsReq_PreProc
- 功能描述  : 预处理状态机初始化状态收到AT的TAF_MSG_ERASESS_MSG消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年12月14日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvEraseSsReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1524,22 +1076,7 @@ VOS_UINT32 TAF_SPM_RcvEraseSsReq_PreProc(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvActivateSsReq_PreProc
- 功能描述  : 预处理状态机初始化状态收到AT的TAF_MSG_ACTIVATESS_MSG消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年12月14日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvActivateSsReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1563,22 +1100,7 @@ VOS_UINT32 TAF_SPM_RcvActivateSsReq_PreProc(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvDeactivateSsReq_PreProc
- 功能描述  : 预处理状态机初始化状态收到AT的TAF_MSG_DEACTIVATESS_MSG消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年12月14日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvDeactivateSsReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1602,22 +1124,7 @@ VOS_UINT32 TAF_SPM_RcvDeactivateSsReq_PreProc(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvInterrogateSsReq_PreProc
- 功能描述  : 预处理状态机初始化状态收到AT的TAF_MSG_INTERROGATESS_MSG消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年12月14日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvInterrogateSsReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1640,22 +1147,7 @@ VOS_UINT32 TAF_SPM_RcvInterrogateSsReq_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvRegPwdSsReq_PreProc
- 功能描述  : 预处理状态机初始化状态收到AT的TAF_MSG_REGPWD_MSG消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年01月07日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvRegPwdSsReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1678,22 +1170,7 @@ VOS_UINT32 TAF_SPM_RcvRegPwdSsReq_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvEraseCCentrySsReq_PreProc
- 功能描述  : 预处理状态机初始化状态收到AT的TAF_MSG_ERASECCENTRY_MSG消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年01月07日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvEraseCCentrySsReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1715,22 +1192,7 @@ VOS_UINT32 TAF_SPM_RcvEraseCCentrySsReq_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvRleaseSsReq_PreProc
- 功能描述  : 预处理状态机初始化状态收到AT的TAF_MSG_RLEASE_MSG消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年12月14日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvRleaseSsReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1751,22 +1213,7 @@ VOS_UINT32 TAF_SPM_RcvRleaseSsReq_PreProc(
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvStkOrigReq_PreProc
- 功能描述  : 预处理状态机初始化状态收到STK的呼叫请求的消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年12月14日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvStkOrigReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1865,25 +1312,7 @@ VOS_UINT32 TAF_SPM_RcvStkOrigReq_PreProc(
 
 
 #if (FEATURE_ON == FEATURE_IMS)
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvMsgSmmaInd_PreProc
- 功能描述  : MAIN状态机初始化状态收到ID_TAF_SPM_SMMA_IND的消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年9月24日
-   作    者   : s00217060
-   修改内容   : 新生成函数
- 2.日    期   : 2013年12月31日
-   作    者   : y00245242
-   修改内容   : 增加IMS-->CS换域重拨功能
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvMsgSmmaInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1899,32 +1328,7 @@ VOS_UINT32 TAF_SPM_RcvMsgSmmaInd_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvMsgReportInd_PreProc
- 功能描述  : MAIN状态机初始化状态收到ID_TAF_SPM_MSG_REPORT_IND的消息处理.
-             该消息通知SPM短信发送结果
-             收到该消息，check消息中携带的cause值:
-             1) cause值属于重拨cause值，SPM将复制重拨缓存消息，转发给MSG模块；
-             2) cause值不属于重拨cause值，通知上层短信发送失败
-             完成上述操作后，清除重拨缓存
 
-
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE :消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2013年12月10日
-   作    者   : y00245242
-   修改内容   : 新生成函数
- 2.日    期   : 2015年4月13日
-   作    者   : s00217060
-   修改内容   : DTS2015041007878:ID_TAF_SPM_MSG_REPORT_IND中的client id不对，重拨缓存未清除
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvMsgReportInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2033,23 +1437,7 @@ VOS_UINT32 TAF_SPM_RcvMsgReportInd_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvMsgCheckRsltInd_PreProc
- 功能描述  : MAIN状态机初始化状态收到ID_TAF_SPM_MSG_CHECK_RESULT_IND的消息处理.
-             该消息通知SPM短信FDN or CONTROL检查结果,收到该消息清除缓存
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE :消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年11月14日
-   作    者   : j00174725
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvMsgCheckRsltInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2121,30 +1509,7 @@ VOS_UINT32 TAF_SPM_RcvMsgCheckRsltInd_PreProc(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvImsaCallOrigCnf_PreProc
- 功能描述  : SPM收到IMSA的MN_CALL_EVT_CALL_ORIG_CNF事件的处理
- 输入参数  : pstMsg     :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  消息处理完成
-             VOS_FALSE: 消息未处理完成，还需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月30日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2013年09月23日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseII项目,更新IMS域业务标识
-  3.日    期   : 2013年12月12日
-    作    者   : y00245242
-    修改内容   : 增加IMS域到CS域的换域重拨功能
-  4.日    期   : 2014年11月06日
-    作    者   : s00217060
-    修改内容   : DTS2014110608091:IMS电话时不处理cs域的paging ind
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvImsaCallOrigCnf_PreProc(
     struct MsgCB                       *pstMsg
 )
@@ -2164,7 +1529,6 @@ VOS_UINT32 TAF_SPM_RcvImsaCallOrigCnf_PreProc(
 
     PS_MEM_CPY(&stCallInfo, &(pstImsaCallMsg->stCallInfo), sizeof(MN_CALL_INFO_STRU));
 
-    /* Added by s00217060 for VoLTE_PhaseII  项目, 2013-09-23, begin */
     /* 只要MO成功时，才设置IMS域呼叫存在标识 */
     if (TAF_CS_CAUSE_SUCCESS == stCallInfo.enCause)
     {
@@ -2174,7 +1538,6 @@ VOS_UINT32 TAF_SPM_RcvImsaCallOrigCnf_PreProc(
         /* 更新重拨缓存消息的call ID，方便消息在释放时查找 */
         TAF_SPM_UpdateCallRedialBufferMsgWithCallId(stCallInfo.clientId, stCallInfo.callId);
     }
-    /* Added by y00245242 for VoLTE_PhaseIII 项目, 2013-12-12, begin */
     else
     {
         /* IMSA不填写呼叫方向，本地修改一下该项，为后续重拨判断使用 */
@@ -2194,14 +1557,17 @@ VOS_UINT32 TAF_SPM_RcvImsaCallOrigCnf_PreProc(
             /* 清除重拨缓存 */
             TAF_SPM_FreeSpecificedIndexCallRedialBuffer(0);
 
+#if (FEATURE_ON == FEATURE_PTM)
+            TAF_SDC_SetErrLogImsCallFailFlag(VOS_TRUE);
+            TAF_SDC_SetErrLogImsCallFailCause(stCallInfo.enCause);
+#endif
+
             return VOS_FALSE;
         }
 
         /* 清除重拨缓存 */
         TAF_SPM_FreeSpecificedIndexCallRedialBuffer(0);
     }
-    /* Added by y00245242 for VoLTE_PhaseIII 项目, 2013-12-12, end */
-    /* Added by s00217060 for VoLTE_PhaseII  项目, 2013-09-23, end */
 
     /* 增加主动上报相关全局变量的值 */
     PS_MEM_CPY(stCallInfo.aucCurcRptCfg,
@@ -2226,24 +1592,7 @@ VOS_UINT32 TAF_SPM_RcvImsaCallOrigCnf_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvImsaCallOrig_PreProc
- 功能描述  : SPM收到IMSA的MN_CALL_EVT_ORIG事件的处理
- 输入参数  : pstMsg     :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  消息处理完成
-             VOS_FALSE: 消息未处理完成，还需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月30日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月13日
-    作    者   : y00245242
-    修改内容   : 增加IMS域到CS域的换域重拨功能
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvImsaCallOrig_PreProc(
     struct MsgCB                       *pstMsg
 )
@@ -2283,24 +1632,7 @@ VOS_UINT32 TAF_SPM_RcvImsaCallOrig_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvImsaCallProc_PreProc
- 功能描述  : SPM收到IMSA的MN_CALL_EVT_CALL_PROC事件的处理
-             注: call proceeding事件是IMS内部产生，非网络发送过来的事件，因此
-                 收到该事件时，并不清除call 模块的重拨缓存
 
- 输入参数  : pstMsg     :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  消息处理完成
-             VOS_FALSE: 消息未处理完成，还需要继续处理
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年7月30日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvImsaCallProc_PreProc(
     struct MsgCB                       *pstMsg
 )
@@ -2337,24 +1669,7 @@ VOS_UINT32 TAF_SPM_RcvImsaCallProc_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvImsaCallAlerting_PreProc
- 功能描述  : SPM收到IMSA的MN_CALL_EVT_ALERTING事件的处理
- 输入参数  : pstMsg     :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  消息处理完成
-             VOS_FALSE: 消息未处理完成，还需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月30日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月13日
-    作    者   : y00245242
-    修改内容   : 增加换域重拨功能
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvImsaCallAlerting_PreProc(
     struct MsgCB                       *pstMsg
 )
@@ -2394,21 +1709,7 @@ VOS_UINT32 TAF_SPM_RcvImsaCallAlerting_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvImsaCallConnect_PreProc
- 功能描述  : SPM收到IMSA的MN_CALL_EVT_CONNECT事件的处理
- 输入参数  : pstMsg     :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  消息处理完成
-             VOS_FALSE: 消息未处理完成，还需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月30日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvImsaCallConnect_PreProc(
     struct MsgCB                       *pstMsg
 )
@@ -2448,21 +1749,7 @@ VOS_UINT32 TAF_SPM_RcvImsaCallConnect_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvImsaCallSupsCmdCnf_PreProc
- 功能描述  : SPM收到IMSA的MN_CALL_EVT_SUPS_CMD_CNF事件的处理
- 输入参数  : pstMsg     :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  消息处理完成
-             VOS_FALSE: 消息未处理完成，还需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月30日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvImsaCallSupsCmdCnf_PreProc(
     struct MsgCB                       *pstMsg
 )
@@ -2500,27 +1787,7 @@ VOS_UINT32 TAF_SPM_RcvImsaCallSupsCmdCnf_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvImsaCallRelease_PreProc
- 功能描述  : SPM收到IMSA的MN_CALL_EVT_RELEASED事件的处理
- 输入参数  : pstMsg     :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  消息处理完成
-             VOS_FALSE: 消息未处理完成，还需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月30日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月12日
-    作    者   : y00245242
-    修改内容   : 增加IMS域到CS域的换域重拨功能
-  3.日    期   :2014年9月28日
-    作    者   :s00217060
-    修改内容   :for cs_err_log
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvImsaCallRelease_PreProc(
     struct MsgCB                       *pstMsg
 )
@@ -2540,7 +1807,6 @@ VOS_UINT32 TAF_SPM_RcvImsaCallRelease_PreProc(
 
     PS_MEM_CPY(&stCallInfo, &(pstImsaCallMsg->stCallInfo), sizeof(MN_CALL_INFO_STRU));
 
-    /* Added by y00245242 for VoLTE_PhaseIII 项目, 2013-12-12, begin */
     if (VOS_TRUE == TAF_SPM_IsCsCallRedialAllowed(&stCallInfo))
     {
         /* 获取呼叫重拨缓存消息 */
@@ -2556,13 +1822,17 @@ VOS_UINT32 TAF_SPM_RcvImsaCallRelease_PreProc(
             /* 清除重拨缓存 */
             TAF_SPM_FreeCallRedialBufferWithCallId(stCallInfo.callId);
 
+#if (FEATURE_ON == FEATURE_PTM)
+            TAF_SDC_SetErrLogImsCallFailFlag(VOS_TRUE);
+            TAF_SDC_SetErrLogImsCallFailCause(stCallInfo.enCause);
+#endif
+
             return VOS_FALSE;
         }
     }
 
     /* 清除重拨缓存 */
     TAF_SPM_FreeCallRedialBufferWithCallId(stCallInfo.callId);
-    /* Added by y00245242 for VoLTE_PhaseIII 项目, 2013-12-12, end */
 
     /* 增加主动上报相关全局变量的值 */
     PS_MEM_CPY(stCallInfo.aucCurcRptCfg,
@@ -2603,27 +1873,7 @@ VOS_UINT32 TAF_SPM_RcvImsaCallRelease_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvImsaCallIncoming_PreProc
- 功能描述  : SPM收到IMSA的MN_CALL_EVT_INCOMING事件的处理
- 输入参数  : pstMsg     :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  消息处理完成
-             VOS_FALSE: 消息未处理完成，还需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月30日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2013年09月23日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseII项目,更新IMS域业务标识
-  3.日    期   : 2014年11月06日
-    作    者   : s00217060
-    修改内容   : DTS2014110608091:IMS电话时不处理cs域的paging ind
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvImsaCallIncoming_PreProc(
     struct MsgCB                       *pstMsg
 )
@@ -2642,11 +1892,9 @@ VOS_UINT32 TAF_SPM_RcvImsaCallIncoming_PreProc(
 
     PS_MEM_CPY(&stCallInfo, &(pstImsaCallMsg->stCallInfo), sizeof(MN_CALL_INFO_STRU));
 
-    /* Added by s00217060 for VoLTE_PhaseII  项目, 2013-09-23, begin */
     /* 设置IMS域呼叫存在标识 */
     TAF_SDC_SetImsCallExistFlg(VOS_TRUE);
     TAF_SndMmaImsSrvInfoNotify(VOS_TRUE);
-    /* Added by s00217060 for VoLTE_PhaseII  项目, 2013-09-23, end */
 
     /* 增加主动上报相关全局变量的值 */
     PS_MEM_CPY(stCallInfo.aucCurcRptCfg,
@@ -2666,24 +1914,7 @@ VOS_UINT32 TAF_SPM_RcvImsaCallIncoming_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvImsaCallStartDtmfCnf_PreProc
- 功能描述  : SPM收到IMSA的MN_CALL_EVT_START_DTMF_CNF事件的处理
- 输入参数  : pstMsg     :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  消息处理完成
-             VOS_FALSE: 消息未处理完成，还需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月30日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  1.日    期   : 2013年10月25日
-    作    者   : y00245242
-    修改内容   : 适配新的DTMF接口
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvImsaCallStartDtmfCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2712,22 +1943,7 @@ VOS_UINT32 TAF_SPM_RcvImsaCallStartDtmfCnf_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvImsaCallStartDtmfRsltInd_PreProc
- 功能描述  : SPM收到IMSA的MN_CALL_EVT_START_DTMF_RSLT_IND事件的处理
- 输入参数  : ulEventType:事件类型
-             pstMsg     :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  消息处理完成
-             VOS_FALSE: 消息未处理完成，还需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月25日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvImsaCallStartDtmfRsltInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2757,25 +1973,7 @@ VOS_UINT32 TAF_SPM_RcvImsaCallStartDtmfRsltInd_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvImsaCallStopDtmfCnf_PreProc
- 功能描述  : SPM收到IMSA的MN_CALL_EVT_STOP_DTMF_CNF事件的处理
- 输入参数  : ulEventType:事件类型
-             pstMsg     :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  消息处理完成
-             VOS_FALSE: 消息未处理完成，还需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月30日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  1.日    期   : 2013年10月25日
-    作    者   : y00245242
-    修改内容   : 适配新的DTMF接口
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvImsaCallStopDtmfCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2804,22 +2002,7 @@ VOS_UINT32 TAF_SPM_RcvImsaCallStopDtmfCnf_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvImsaCallStopDtmfRsltInd_PreProc
- 功能描述  : SPM收到IMSA的MN_CALL_EVT_STOP_DTMF_RSLT_IND消息处理
- 输入参数  : ulEventType:事件类型
-             pstMsg     :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  消息处理完成
-             VOS_FALSE: 消息未处理完成，还需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月25日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvImsaCallStopDtmfRsltInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2849,21 +2032,7 @@ VOS_UINT32 TAF_SPM_RcvImsaCallStopDtmfRsltInd_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvImsaCallSsCmdRslt_PreProc
- 功能描述  : SPM收到IMSA的MN_CALL_EVT_SS_CMD_RSLT事件的处理
- 输入参数  : pstMsg     :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  消息处理完成
-             VOS_FALSE: 消息未处理完成，还需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月30日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvImsaCallSsCmdRslt_PreProc(
     struct MsgCB                       *pstMsg
 )
@@ -2907,21 +2076,7 @@ VOS_UINT32 TAF_SPM_RcvImsaCallSsCmdRslt_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvImsaCallSsNotify_PreProc
- 功能描述  : SPM收到IMSA的MN_CALL_EVT_SS_NOTIFY事件的处理
- 输入参数  : pstMsg     :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  消息处理完成
-             VOS_FALSE: 消息未处理完成，还需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月30日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvImsaCallSsNotify_PreProc(
     struct MsgCB                       *pstMsg
 )
@@ -2958,30 +2113,7 @@ VOS_UINT32 TAF_SPM_RcvImsaCallSsNotify_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvImsaCallAllRelease_PreProc
- 功能描述  : SPM收到IMSA的MN_CALL_EVT_ALL_RELEASED事件的处理
- 输入参数  : pstMsg     :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  消息处理完成
-             VOS_FALSE: 消息未处理完成，还需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月30日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2013年09月23日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseII项目,更新IMS域业务标识
-  3.日    期   : 2014年01月24日
-    作    者   : y00245242
-    修改内容   : 为呼叫换域重拨功能修改
-  4.日    期   : 2014年11月06日
-    作    者   : s00217060
-    修改内容   : DTS2014110608091:IMS电话时不处理cs域的paging ind
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvImsaCallAllRelease_PreProc(
     struct MsgCB                       *pstMsg
 )
@@ -2997,11 +2129,9 @@ VOS_UINT32 TAF_SPM_RcvImsaCallAllRelease_PreProc(
 #endif
     MN_CALL_INFO_STRU                   stCallInfo;
 
-    /* Added by s00217060 for VoLTE_PhaseII  项目, 2013-09-23, begin */
     /* 设置IMS域呼叫存在标识 */
     TAF_SDC_SetImsCallExistFlg(VOS_FALSE);
     TAF_SndMmaImsSrvInfoNotify(VOS_FALSE);
-    /* Added by s00217060 for VoLTE_PhaseII  项目, 2013-09-23, end */
 
     /* 如果无重拨在GU下发起，需要上报call all release事件给应用 */
     if (VOS_FALSE == TAF_SDC_GetCsCallExistFlg())
@@ -3064,22 +2194,7 @@ VOS_UINT32 TAF_SPM_RcvImsaCallAllRelease_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvImsaCallMsg_PreProc
- 功能描述  : SPM收到ID_IMSA_SPM_CALL_MSG的处理
- 输入参数  : ulEventType:事件类型
-             pstMsg     :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  消息处理完成
-             VOS_FALSE: 消息未处理完成，还需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月11日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvImsaCallMsg_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3116,25 +2231,7 @@ VOS_UINT32 TAF_SPM_RcvImsaCallMsg_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvImsaGetCallInfoCnf_PreProc
- 功能描述  : SPM收到ID_IMSA_SPM_CALL_GET_CALL_INFO_CNF的处理
- 输入参数  : ulEventType:事件类型
-             pstMsg     :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  消息处理完成
-             VOS_FALSE: 消息未处理完成，还需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月11日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2013年09月18日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseII项目，服务状态改变时通知SPM
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvImsaGetCallInfoCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3151,7 +2248,6 @@ VOS_UINT32 TAF_SPM_RcvImsaGetCallInfoCnf_PreProc(
         return VOS_TRUE;
     }
 
-    /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-09-18, begin */
     if (CALL_IMSA_GET_CALL_INFO_REQ_TYPE_ATA == pstImsaMsg->enReqType)
     {
         /* 请求类型是ATA时调用TAFAGENT API查询呼叫信息,给TAFAGENT回复 */
@@ -3162,31 +2258,11 @@ VOS_UINT32 TAF_SPM_RcvImsaGetCallInfoCnf_PreProc(
         /* 请求类型是CLCC查询呼叫信息,给AT回复 */
         TAF_SPM_SendAtGetCallInfoCnf(pstImsaMsg);
     }
-    /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-09-18, end */
 
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvImsaChannelInfoInd_PreProc
- 功能描述  : SPM收到ID_IMSA_SPM_CHANNEL_INFO_IND的处理
- 输入参数  : ulEventType:事件类型
-             pstMsg     :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  消息处理完成
-             VOS_FALSE: 消息未处理完成，还需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月11日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-  2.日    期   : 2014年3月29日
-    作    者   : W00176964
-    修改内容   : DTS2014032901140:接口优化调整
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvImsaChannelInfoInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3210,22 +2286,7 @@ VOS_UINT32 TAF_SPM_RcvImsaChannelInfoInd_PreProc(
 
     return VOS_TRUE;
 }
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvImsaGetClprCnf_PreProc
- 功能描述  : ID_IMSA_SPM_CALL_GET_CLPR_CNF处理函数
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年09月18日
-    作    者   : Y00213812
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvImsaGetClprCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3249,24 +2310,7 @@ VOS_UINT32 TAF_SPM_RcvImsaGetClprCnf_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvImsaCallHold_PreProc
- 功能描述  : SPM收到ID_IMSA_SPM_CALL_HOLD的处理
- 输入参数  : pstMsg     :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  消息处理完成
-             VOS_FALSE: 消息未处理完成，还需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月11日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2013年10月31日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseII
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvImsaCallHold_PreProc(
     struct MsgCB                       *pstMsg
 )
@@ -3290,9 +2334,7 @@ VOS_UINT32 TAF_SPM_RcvImsaCallHold_PreProc(
     stEvent.usClientId      = MN_GetRealClientId(pstImsaMsg->usClientId, WUEPS_PID_TAF);
     stEvent.ucCallNum       = 1;
     stEvent.aucCallId[0]    = pstImsaMsg->stCallInfo.callId;
-    /* Added by s00217060 for VoLTE_PhaseII  项目, 2013-10-31, begin */
     stEvent.enVoiceDomain   = pstImsaMsg->stCallInfo.enVoiceDomain;
-    /* Added by s00217060 for VoLTE_PhaseII  项目, 2013-10-31, end */
 
     PS_MEM_CPY(stEvent.aucCurcRptCfg,
                 pstCurcRptCtrl->aucRptCfg,
@@ -3320,24 +2362,7 @@ VOS_UINT32 TAF_SPM_RcvImsaCallHold_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvImsaCallRetrieve_PreProc
- 功能描述  : SPM收到ID_IMSA_SPM_CALL_RETRIEVE的处理
- 输入参数  : pstMsg     :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  消息处理完成
-             VOS_FALSE: 消息未处理完成，还需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月11日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2013年10月31日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseII
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvImsaCallRetrieve_PreProc(
     struct MsgCB                       *pstMsg
 )
@@ -3360,9 +2385,7 @@ VOS_UINT32 TAF_SPM_RcvImsaCallRetrieve_PreProc(
     stEvent.usClientId      = MN_GetRealClientId(pstImsaMsg->usClientId, WUEPS_PID_TAF);
     stEvent.ucCallNum       = 1;
     stEvent.aucCallId[0]    = pstImsaMsg->stCallInfo.callId;
-    /* Added by s00217060 for VoLTE_PhaseII  项目, 2013-10-31, begin */
     stEvent.enVoiceDomain   = pstImsaMsg->stCallInfo.enVoiceDomain;
-    /* Added by s00217060 for VoLTE_PhaseII  项目, 2013-10-31, end */
 
     PS_MEM_CPY(stEvent.aucCurcRptCfg,
                 pstCurcRptCtrl->aucRptCfg,
@@ -3390,24 +2413,7 @@ VOS_UINT32 TAF_SPM_RcvImsaCallRetrieve_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvImsaSsMsg_PreProc
- 功能描述  : 处理IMSA过来的message: ID_IMSA_SPM_SS_MSG
- 输入参数  : ulEventType  消息事件类型
-             pstRcvMsg    消息指针
 
- 输出参数  : 无
- 返 回 值  : VOS_FALSE  消息未处理
-             VOS_FALSE  消息已处理
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2013年7月11日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvImsaSsMsg_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstRcvMsg
@@ -3457,26 +2463,7 @@ VOS_UINT32 TAF_SPM_RcvImsaSsMsg_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvImsaNormalRegStatusNotify_PreProc
- 功能描述  : 收到ID_IMSA_NORMAL_REG_STATUS_NOTIFY消息的处理, 该消息通知SPM当前
-             IMS注册状态，在收到该消息时，SPM本地保存IMS注册状态，并check本地
-             缓存队列，如果队列中有缓存消息，将运行域选择，处理缓存消息，并
-             相应的停止相关定时器
 
- 输入参数  : ulEventType  消息事件类型
-             pstRcvMsg    消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年9月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvImsaNormalRegStatusNotify_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3490,23 +2477,7 @@ VOS_UINT32 TAF_SPM_RcvImsaNormalRegStatusNotify_PreProc(
     return ulRst;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvInternalDomainSelInd_PreProc
- 功能描述  : 收到ID_SPM_SPM_INTERNAL_DOMAIN_SEL_IND的处理，收到该消息时，处理缓存的消息
 
- 输入参数  : ulEventType  消息事件类型
-             pstRcvMsg    消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年9月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvInternalDomainSelInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3520,24 +2491,7 @@ VOS_UINT32 TAF_SPM_RcvInternalDomainSelInd_PreProc(
     return ulRst;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvMmaServiceStatusChangeNotify_PreProc
- 功能描述  : 收到MMA ID_MMA_TAF_SERVICE_STATUS_CHANGE_NOTIFY消息的处理
- 输入参数  : ulEventType  消息事件类型
-             pstRcvMsg    消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月18日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2014年1月2日
-    作    者   : y00245242
-    修改内容   : 增加对IMS注册特殊处理功能
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvMmaServiceStatusChangeNotify_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3571,22 +2525,7 @@ VOS_UINT32 TAF_SPM_RcvMmaServiceStatusChangeNotify_PreProc(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvMmaNetworkCapabilityChangeNotify_PreProc
- 功能描述  : 收到MMA ID_MMA_TAF_NETWORK_CAPABILITY_CHANGE_NOTIFY消息的处理
- 输入参数  : ulEventType  消息事件类型
-             pstRcvMsg    消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月18日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvMmaNetworkCapabilityChangeNotify_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3601,22 +2540,7 @@ VOS_UINT32 TAF_SPM_RcvMmaNetworkCapabilityChangeNotify_PreProc(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvMmaRatChangeNotify_PreProc
- 功能描述  : 收到MMA ID_MMA_TAF_RAT_CHANGE_NOTIFY消息的处理
- 输入参数  : ulEventType  消息事件类型
-             pstRcvMsg    消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月18日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvMmaRatChangeNotify_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3630,24 +2554,8 @@ VOS_UINT32 TAF_SPM_RcvMmaRatChangeNotify_PreProc(
     return ulRlst;
 }
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-31, begin */
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvMmaImsVoiceCapInd_PreProc
- 功能描述  : 收到MMA ID_MMA_TAF_IMS_VOICE_CAP_IND消息的处理
- 输入参数  : ulEventType  消息事件类型
-             pstRcvMsg    消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月31日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvMmaImsVoiceCapInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3660,28 +2568,9 @@ VOS_UINT32 TAF_SPM_RcvMmaImsVoiceCapInd_PreProc(
 
     return ulRlst;
 }
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-31, end */
 
 
-/*****************************************************************************
-  函 数 名  : TAF_SPM_RcvImsaCallMsgSyncInd_PreProc
-  功能描述  : 收到IMSA的呼叫信息同步指示消息，收到该消息后，清除重拨缓存
 
-  输入参数  : ulEventType -- 消息事件类型
-              pstMsg      -- 消息指针
-
-  输出参数  : 无
-  返 回 值  : VOS_TRUE  -- 消息处理完成
-              VOS_FALSE -- 消息未处理完成
-
-  调用函数  :
-  被调函数  :
-
-  修改历史      :
-   1.日    期   : 2013年12月18日
-     作    者   : y00245242
-     修改内容   : 新生成函数
- *****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvImsaCallMsgSyncInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3708,25 +2597,7 @@ VOS_UINT32 TAF_SPM_RcvImsaCallMsgSyncInd_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
-  函 数 名  : TAF_SPM_RcvImsaCallInviteNewPtptCnf_PreProc
-  功能描述  : 处理邀请第三方通话请求的确认消息
 
-  输入参数  : ulEventType -- 消息事件类型
-              pstMsg      -- 消息指针
-
-  输出参数  : 无
-  返 回 值  : VOS_TRUE  -- 消息处理完成
-              VOS_FALSE -- 消息未处理完成
-
-  调用函数  :
-  被调函数  :
-
-  修改历史      :
-   1.日    期   : 2014年2月13日
-     作    者   : y00245242
-     修改内容   : 新生成函数
- *****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvImsaCallInviteNewPtptCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3771,21 +2642,7 @@ VOS_UINT32 TAF_SPM_RcvImsaCallInviteNewPtptCnf_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvImsaCallTypeChangeInfoInd_PreProc
- 功能描述  : SPM收到IMSA的ID_IMSA_SPM_CALL_TYPE_CHANGE_INFO_IND事件的处理
- 输入参数  : pstMsg     :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  消息处理完成
-             VOS_FALSE: 消息未处理完成，还需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月17日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvImsaCallTypeChangeInfoInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3798,32 +2655,15 @@ VOS_UINT32 TAF_SPM_RcvImsaCallTypeChangeInfoInd_PreProc(
     /* 网络下发的紧急呼列表中没有带110，拨打110时，按普通呼叫发出去，IMS指示需要建立紧急承载，以紧急呼重新发起，并携带原因值#380
        IMSA建立紧急承载，以紧急呼发起域内重拨，此时上报ID_IMSA_SPM_CALL_TYPE_CHANGE_INFO_IND，指示呼叫类型变更 */
 
-    /* Modified by s00217060 for 中移动VoLTE需求, 2014-10-17, begin */
     /* 更新重拨缓存消息的call type，在换域重拨时，以紧急呼发CS域重拨 */
     TAF_SPM_UpdateCallRedialBufferMsgWithCallType(pstImsaCallMsg->usClientId,
                                                   pstImsaCallMsg->enDestCallType,
                                                   &(pstImsaCallMsg->stEmergencyCat));
-    /* Modified by s00217060 for 中移动VoLTE需求, 2014-10-17, End */
 
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvAppCallModifyReq_PreProc
- 功能描述  : 预处理状态机初始化状态收到AT的MN_CALL_APP_CALL_MODIFY_REQ消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年06月16日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvAppCallModifyReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3860,22 +2700,7 @@ VOS_UINT32 TAF_SPM_RcvAppCallModifyReq_PreProc(
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvAppCallAnswerRemoteModifyReq_PreProc
- 功能描述  : 预处理状态机初始化状态收到AT的MN_CALL_APP_CALL_ANSWER_REMOTE_MODIFY_REQ消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年06月16日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvAppCallAnswerRemoteModifyReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3912,22 +2737,7 @@ VOS_UINT32 TAF_SPM_RcvAppCallAnswerRemoteModifyReq_PreProc(
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvImsaCallModifyCnf_PreProc
- 功能描述  : SPM收到ID_IMSA_SPM_CALL_MODIFY_CNF的处理
- 输入参数  : ulEventType:事件类型
-             pstMsg     :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  消息处理完成
-             VOS_FALSE: 消息未处理完成，还需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月16日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvImsaCallModifyCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3952,22 +2762,7 @@ VOS_UINT32 TAF_SPM_RcvImsaCallModifyCnf_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvImsaCallAnswerRemoteModifyCnf_PreProc
- 功能描述  : SPM收到ID_IMSA_SPM_CALL_ANSWER_REMOTE_MODIFY_CNF的处理
- 输入参数  : ulEventType:事件类型
-             pstMsg     :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  消息处理完成
-             VOS_FALSE: 消息未处理完成，还需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月16日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvImsaCallAnswerRemoteModifyCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3992,22 +2787,7 @@ VOS_UINT32 TAF_SPM_RcvImsaCallAnswerRemoteModifyCnf_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvImsaCallModifyStatusInd_PreProc
- 功能描述  : SPM收到ID_IMSA_SPM_CALL_MODIFY_STATUS_IND的处理
- 输入参数  : ulEventType:事件类型
-             pstMsg     :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  消息处理完成
-             VOS_FALSE: 消息未处理完成，还需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月16日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvImsaCallModifyStatusInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4037,22 +2817,7 @@ VOS_UINT32 TAF_SPM_RcvImsaCallModifyStatusInd_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvAppEconfDialReq_PreProc
- 功能描述  : 预处理状态机初始化状态收到AT的TAF_CALL_APP_ECONF_DIAL_REQ消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年11月28日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvAppEconfDialReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4136,22 +2901,7 @@ VOS_UINT32 TAF_SPM_RcvAppEconfDialReq_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvImsaEconfDialCnf_PreProc
- 功能描述  : 预处理状态机初始化状态收到AT的ID_IMSA_SPM_CALL_ECONF_DIAL_CNF消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年11月28日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvImsaEconfDialCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4182,22 +2932,7 @@ VOS_UINT32 TAF_SPM_RcvImsaEconfDialCnf_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvImsaEconfAddUsersCnf_PreProc
- 功能描述  : 预处理状态机初始化状态收到AT的ID_IMSA_SPM_CALL_ECONF_ADD_USERS_CNF消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年11月28日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvImsaEconfAddUsersCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4221,21 +2956,7 @@ VOS_UINT32 TAF_SPM_RcvImsaEconfAddUsersCnf_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvImsaEconfNotifyInd_PreProc
- 功能描述  : SPM收到IMSA的ID_IMSA_SPM_CALL_ECONF_NOTIFY_IND事件的处理
- 输入参数  : pstMsg     :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  消息处理完成
-             VOS_FALSE: 消息未处理完成，还需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年11月28日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvImsaEconfNotifyInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4279,22 +3000,7 @@ VOS_UINT32 TAF_SPM_RcvImsaEconfNotifyInd_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvAppGetEconfInfoReq_PreProc
- 功能描述  : 预处理状态机初始化状态收到AT的MN_CALL_APP_GET_ECONF_CALLED_INFO_REQ消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年11月28日
-   作    者   : j00174725
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvAppGetEconfInfoReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4306,22 +3012,7 @@ VOS_UINT32 TAF_SPM_RcvAppGetEconfInfoReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvImsaGetEconfInfoCnf_PreProc
- 功能描述  : SPM收到ID_IMSA_SPM_CALL_GET_ECONF_CALLED_INFO_CNF的处理
- 输入参数  : ulEventType:事件类型
-             pstMsg     :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  消息处理完成
-             VOS_FALSE: 消息未处理完成，还需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月28日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvImsaGetEconfInfoCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4348,25 +3039,7 @@ VOS_UINT32 TAF_SPM_RcvImsaGetEconfInfoCnf_PreProc(
 
 #endif
 
-/* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-23, begin */
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvCcSrvReqProtectTimerExpired_PreProc
- 功能描述  : 收到CC业务保护定时器超时事件的处理, 收到该消息时，根据CC缓存队列中
-             的消息，发送业务请求失败给对应的应用,并清除CC缓存队列中的消息
 
- 输入参数  : ulEventType  消息事件类型
-             pstRcvMsg    消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年9月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvCcSrvReqProtectTimerExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4380,24 +3053,7 @@ VOS_UINT32 TAF_SPM_RcvCcSrvReqProtectTimerExpired_PreProc(
     return ulRst;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvSmsSrvReqProtectTimerExpired_PreProc
- 功能描述  : 收到SMS业务保护定时器超时事件的处理, 收到该消息时，根据CC缓存队列中
-             的消息，发送业务请求失败给对应的应用,并清除SMS缓存队列中的消息
 
- 输入参数  : ulEventType  消息事件类型
-             pstRcvMsg    消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年9月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvSmsSrvReqProtectTimerExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4411,24 +3067,7 @@ VOS_UINT32 TAF_SPM_RcvSmsSrvReqProtectTimerExpired_PreProc(
     return ulRst;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvSsSrvReqProtectTimerExpired_PreProc
- 功能描述  : 收到SS业务保护定时器超时事件的处理, 收到该消息时，根据CC缓存队列中
-             的消息，发送业务请求失败给对应的应用,并清除SS缓存队列中的消息
 
- 输入参数  : ulEventType  消息事件类型
-             pstRcvMsg    消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年9月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvSsSrvReqProtectTimerExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4441,28 +3080,8 @@ VOS_UINT32 TAF_SPM_RcvSsSrvReqProtectTimerExpired_PreProc(
 
     return ulRst;
 }
-/* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-23, end */
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvMmaPowerOffInd_PreProc
- 功能描述  : 收到power off指示的消息处理
 
- 输入参数  : ulEventType -- 消息事件类型
-             pstMsg -- 消息指针
-
- 输出参数  : 无
- 返 回 值  : VOS_TRUE -- 消息处理完成
-             VOS_FALSE -- 消息未处理完成
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年10月10日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvMmaPowerOffInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4477,22 +3096,7 @@ VOS_UINT32 TAF_SPM_RcvMmaPowerOffInd_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvMmaSrvAcqCnf_PreProc
- 功能描述  : 收到mma srv cnf消息时，处理缓存的消息
- 输入参数  : ulEventType  消息事件类型
-             pstRcvMsg    消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月19日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvMmaSrvAcqCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4586,26 +3190,7 @@ VOS_UINT32 TAF_SPM_RcvMmaSrvAcqCnf_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_IsSsServiceReqAllowed_PreProc
- 功能描述  : 判断SS业务是否允许发起
 
- 输入参数  : ulEventType -- 消息事件类型
-             pstMsg -- 消息指针
-
- 输出参数  : penCause -- 业务发起失败原因值
- 返 回 值  : VOS_TRUE -- 允许发起SS业务
-             VOS_FALSE-- 不允许发起SS业务
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年12月30日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_IsSsServiceReqAllowed_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -4637,26 +3222,7 @@ VOS_UINT32 TAF_SPM_IsSsServiceReqAllowed_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_IsSmsServiceReqAllowed_PreProc
- 功能描述  : 判断SMS业务是否允许发起
 
- 输入参数  : ulEventType -- 消息事件类型
-             pstMsg -- 消息指针
-
- 输出参数  : penCause -- 业务发起失败原因值
- 返 回 值  : VOS_TRUE -- 允许发起SMS业务
-             VOS_FALSE-- 不允许发起SMS业务
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年12月30日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_IsSmsServiceReqAllowed_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,

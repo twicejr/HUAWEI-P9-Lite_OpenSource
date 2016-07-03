@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : hmac_chan_mgmt.c
-  版 本 号   : 初稿
-  作    者   : mayuan
-  生成日期   : 2014年2月22日
-  最近修改   :
-  功能描述   :
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年2月22日
-    作    者   : mayuan
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -154,21 +137,7 @@ oal_uint32 hmac_dump_chan(mac_vap_stru *pst_mac_vap, oal_uint8* puc_param)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_send_ht_notify_chan_width
- 功能描述  : 发送 ht  notify chan width帧
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月28日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_send_ht_notify_chan_width(mac_vap_stru *pst_mac_vap, oal_uint8 *puc_data)
 {
     oal_uint16                    us_frame_len;
@@ -212,27 +181,12 @@ oal_uint32 hmac_send_ht_notify_chan_width(mac_vap_stru *pst_mac_vap, oal_uint8 *
 }
 
 
-/*****************************************************************************
- 函 数 名  : hmac_chan_multi_switch_to_20MHz_ap
- 功能描述  : 设置device下所有VAP信道参数，准备切换至20MHz运行
- 输入参数  : pst_hmac_vap: HMAC VAP结构体指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月3日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  hmac_chan_multi_switch_to_20MHz_ap(hmac_vap_stru *pst_hmac_vap)
 {
     oal_uint8          uc_vap_idx;
     mac_device_stru   *pst_device;
     mac_vap_stru      *pst_mac_vap;
-    oal_uint8          auc_da[] = {0xff, 0xff, 0xff, 0xff, 0xff, 0xff};
 #ifdef _PRE_WLAN_FEATURE_20_40_80_COEXIST
     hmac_vap_stru     *pst_hmac_vap_iter;
 #endif
@@ -273,7 +227,7 @@ oal_void  hmac_chan_multi_switch_to_20MHz_ap(hmac_vap_stru *pst_hmac_vap)
         hmac_chan_sync(pst_mac_vap, pst_mac_vap->st_channel.uc_chan_number,
                        pst_mac_vap->st_channel.en_bandwidth, OAL_FALSE);
 #endif
-        hmac_send_ht_notify_chan_width(pst_mac_vap, auc_da);
+        hmac_send_ht_notify_chan_width(pst_mac_vap, BROADCAST_MACADDR);
         return;
     }
 
@@ -310,27 +264,11 @@ oal_void  hmac_chan_multi_switch_to_20MHz_ap(hmac_vap_stru *pst_hmac_vap)
                        pst_mac_vap->st_channel.en_bandwidth, OAL_FALSE);
 #endif
 
-        hmac_send_ht_notify_chan_width(pst_mac_vap, auc_da);
+        hmac_send_ht_notify_chan_width(pst_mac_vap, BROADCAST_MACADDR);
     }
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_chan_initiate_switch_to_new_channel
- 功能描述  : 设置VAP信道参数，准备切换至新信道运行
- 输入参数  : pst_mac_vap : MAC VAP结构体指针
-             uc_channel  : 新信道号(准备切换到的20MHz主信道号)
-             en_bandwidth: 新带宽模式
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月22日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void  hmac_chan_initiate_switch_to_new_channel(mac_vap_stru *pst_mac_vap, oal_uint8 uc_channel, wlan_channel_bandwidth_enum_uint8 en_bandwidth)
 {
     frw_event_mem_stru            *pst_event_mem;
@@ -403,23 +341,7 @@ OAL_STATIC oal_void  hmac_chan_initiate_switch_to_new_channel(mac_vap_stru *pst_
     FRW_EVENT_FREE(pst_event_mem);
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_chan_multi_switch_to_new_channel
- 功能描述  : 遍历device下所有ap，设置VAP信道参数，准备切换至新信道运行
- 输入参数  : pst_mac_vap : MAC VAP结构体指针
-             uc_channel  : 新信道号(准备切换到的20MHz主信道号)
-             en_bandwidth: 新带宽模式
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月3日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 #ifdef _PRE_WLAN_FEATURE_DFS
 oal_void hmac_dfs_set_channel(mac_vap_stru *pst_mac_vap, oal_uint8 uc_channel)
 {
@@ -597,23 +519,7 @@ oal_void  hmac_chan_sync_init(mac_vap_stru *pst_mac_vap, dmac_set_chan_stru *pst
                     OAL_SIZEOF(mac_ch_switch_info_stru));
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_chan_do_sync
- 功能描述  : HMAC模块抛事件到DMAC模块，设置SW/MAC/PHY/RF中的信道和带宽，
-             使VAP工作在新信道上
- 输入参数  : pst_mac_vap : mac_vap_stru
-             pst_set_chan  : dmac_set_chan_stru
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月26日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  hmac_chan_do_sync(mac_vap_stru *pst_mac_vap, dmac_set_chan_stru *pst_set_chan)
 {
     frw_event_mem_stru       *pst_event_mem;
@@ -672,24 +578,7 @@ oal_void  hmac_chan_do_sync(mac_vap_stru *pst_mac_vap, dmac_set_chan_stru *pst_s
     FRW_EVENT_FREE(pst_event_mem);
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_chan_sync
- 功能描述  : HMAC将信道/带宽信息同步到DMAC
- 输入参数  : pst_mac_vap : MAC VAP结构体指针
-             uc_channel  : 将要被设置的信道号
-             en_bandwidth: 将要被设置的带宽模式
-             en_switch_immediately: DMAC侧收到同步事件之后是否立即切换
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月26日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 oal_void hmac_chan_sync(mac_vap_stru *pst_mac_vap,
             oal_uint8 uc_channel, wlan_channel_bandwidth_enum_uint8 en_bandwidth,
@@ -705,23 +594,7 @@ oal_void hmac_chan_sync(mac_vap_stru *pst_mac_vap,
 }
 
 
-/*****************************************************************************
- 函 数 名  : hmac_chan_multi_select_channel_mac
- 功能描述  : 遍历device下所有VAP，设置SW/MAC/PHY/RF中的信道和带宽，使VAP工作在新信道上
- 输入参数  : pst_mac_vap : MAC VAP结构体指针
-             uc_channel  : 将要被设置的信道号
-             en_bandwidth: 将要被设置的带宽模式
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月3日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  hmac_chan_multi_select_channel_mac(mac_vap_stru *pst_mac_vap, oal_uint8 uc_channel, wlan_channel_bandwidth_enum_uint8 en_bandwidth)
 {
     oal_uint8          uc_vap_idx;
@@ -768,24 +641,7 @@ oal_void  hmac_chan_multi_select_channel_mac(mac_vap_stru *pst_mac_vap, oal_uint
 }
 
 #ifdef _PRE_WLAN_FEATURE_20_40_80_COEXIST
-/*****************************************************************************
- 函 数 名  : hmac_chan_is_this_40MHz_set_possible
- 功能描述  : 判断能否在给定的"主信道 + 次信道偏移量"上，建立起40MHz BSS
- 输入参数  : pst_mac_device      : MAC DEVICE结构体指针
-             pst_mac_vap         : MAC VAP结构体指针
-             uc_pri_chan_idx     : 主信道索引
-             en_sec_chan_offset  : 次信道偏移量
- 输出参数  : pst_chan_scan_report: 信道评估结构体指针
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月29日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_bool_enum_uint8  hmac_chan_is_this_40MHz_set_possible(
                 mac_device_stru              *pst_mac_device,
                 mac_vap_stru                 *pst_mac_vap,
@@ -933,22 +789,7 @@ OAL_STATIC oal_bool_enum_uint8  hmac_chan_is_this_40MHz_set_possible(
     return OAL_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_chan_get_2040_op_chan_list
- 功能描述  : 解析信道扫描结果，评估每条信道是否能够建立BSS
- 输入参数  : pst_mac_vap         : MAC VAP结构体指针
- 输出参数  : pst_chan_scan_report: 信道评估结构体指针
- 返 回 值  : OAL_TRUE : 在某些信道上能够建立40MHz BSS
-             OAL_FALSE: 在任何信道上都不能够建立40MHz BSS
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月29日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_bool_enum_uint8  hmac_chan_get_2040_op_chan_list(
                 mac_vap_stru                 *pst_mac_vap,
                 hmac_eval_scan_report_stru   *pst_chan_scan_report)
@@ -1001,21 +842,7 @@ OAL_STATIC oal_bool_enum_uint8  hmac_chan_get_2040_op_chan_list(
 
 
 
-/*****************************************************************************
- 函 数 名  : hmac_chan_del_user
- 功能描述  : 更新40M intolerant user bitmap信息
- 输入参数  : hmac_vap_stru *pst_hmac_vap
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月23日
-    作    者   : l00311403
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_chan_update_40M_intol_user(mac_vap_stru *pst_mac_vap,
                                     mac_user_stru *pst_mac_user, oal_bool_enum_uint8 en_40M_intol_bit)
 {
@@ -1056,21 +883,7 @@ oal_uint32 hmac_chan_update_40M_intol_user(mac_vap_stru *pst_mac_vap,
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_chan_prepare_for_40M_recovery
- 功能描述  : 在恢复40M之前，要清除obss扫描结果，40M禁止位，20M request位等信息
- 输入参数  : hmac_vap_stru *pst_hmac_vap
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月10日
-    作    者   : l00311403
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32 hmac_chan_prepare_for_40M_recovery(hmac_vap_stru *pst_hmac_vap,
                                             wlan_channel_bandwidth_enum_uint8 en_bandwidth)
 {
@@ -1086,7 +899,6 @@ OAL_STATIC oal_uint32 hmac_chan_prepare_for_40M_recovery(hmac_vap_stru *pst_hmac
     }
     pst_mac_device->en_40MHz_intol_bit_recd = OAL_FALSE;
 
-    //l00311403 TODO 此处要确认一下是否需要清除存放在pst_mac_device中的
     //st_ap_channel_list信道?????????????
 
     /* 设置VAP带宽模式为20MHz */
@@ -1098,21 +910,7 @@ OAL_STATIC oal_uint32 hmac_chan_prepare_for_40M_recovery(hmac_vap_stru *pst_hmac
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_chan_40M_recovery_timeout_fn
- 功能描述  : 40M恢复定时器超时，恢复40M带宽
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月9日
-    作    者   : l00311403
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  hmac_chan_40M_recovery_timeout_fn(void *p_arg)
 {
     hmac_vap_stru          *pst_hmac_vap;
@@ -1162,21 +960,7 @@ OAL_STATIC oal_uint32  hmac_chan_40M_recovery_timeout_fn(void *p_arg)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_chan_start_40M_recovery_timer
- 功能描述  : 启动obss扫描定时器
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月9日
-    作    者   : l00311403
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void hmac_chan_start_40M_recovery_timer(mac_vap_stru *pst_mac_vap)
 {
     hmac_vap_stru                 *pst_hmac_vap;
@@ -1190,7 +974,6 @@ oal_void hmac_chan_start_40M_recovery_timer(mac_vap_stru *pst_mac_vap)
         return;
     }
 
-    //l00311403 TODO 去掉
 #if 1
     ul_timeout = mac_mib_get_BSSWidthTriggerScanInterval(pst_mac_vap) * 2 * 1000;
 #else
@@ -1216,21 +999,7 @@ oal_void hmac_chan_start_40M_recovery_timer(mac_vap_stru *pst_mac_vap)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_chan_stop_40M_recovery_timer
- 功能描述  : 启动obss扫描定时器
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月9日
-    作    者   : l00311403
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void hmac_chan_stop_40M_recovery_timer(mac_vap_stru *pst_mac_vap)
 {
     hmac_vap_stru                 *pst_hmac_vap;
@@ -1249,22 +1018,7 @@ OAL_STATIC oal_void hmac_chan_stop_40M_recovery_timer(mac_vap_stru *pst_mac_vap)
 }
 
 #endif
-/*****************************************************************************
- 函 数 名  : hmac_chan_get_40MHz_possibility
- 功能描述  : 判断在当前环境(扫描结果)下，能否建立40MHz BSS
- 输入参数  : pst_mac_vap         : MAC VAP结构体指针
- 输出参数  : pst_chan_scan_report: 信道评估结构体指针
- 返 回 值  : OAL_TRUE : 能够建立
-             OAL_FALSE: 不能建立
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月29日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_bool_enum_uint8  hmac_chan_get_40MHz_possibility(
                 mac_vap_stru                 *pst_mac_vap,
                 hmac_eval_scan_report_stru   *pst_chan_scan_report)
@@ -1282,21 +1036,7 @@ OAL_STATIC OAL_INLINE oal_bool_enum_uint8  hmac_chan_get_40MHz_possibility(
     return en_fortyMHz_poss;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_chan_init_chan_scan_report
- 功能描述  : 这函数看看到底要不要
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月29日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  hmac_chan_init_chan_scan_report(
                 mac_device_stru              *pst_mac_device,
                 hmac_eval_scan_report_stru   *pst_chan_scan_report,
@@ -1325,25 +1065,7 @@ OAL_STATIC OAL_INLINE oal_void  hmac_chan_init_chan_scan_report(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_chan_is_40MHz_sca_allowed
- 功能描述  : 对于给定的主信道，判断能否建立SCA类型的40MHz BSS
- 输入参数  : pst_mac_vap         : MAC VAP结构体指针
-             pst_chan_scan_report: 信道评估结构体指针
-             uc_pri_chan_idx     : 主信道号索引
-             en_user_chan_offset : 用户优先选择的次信道偏移量
- 输出参数  : 无
- 返 回 值  : OAL_TRUE : 能够建立40MHz BSS
-             OAL_FALSE: 不能建立40MHz BSS
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月30日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_bool_enum_uint8  hmac_chan_is_40MHz_sca_allowed(
                 mac_vap_stru                 *pst_mac_vap,
                 hmac_eval_scan_report_stru   *pst_chan_scan_report,
@@ -1392,25 +1114,7 @@ OAL_STATIC oal_bool_enum_uint8  hmac_chan_is_40MHz_sca_allowed(
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_chan_is_40MHz_scb_allowed
- 功能描述  : 对于给定的主信道，判断能否建立SCB类型的40MHz BSS
- 输入参数  : pst_mac_vap         : MAC VAP结构体指针
-             pst_chan_scan_report: 信道评估结构体指针
-             uc_pri_chan_idx     : 主信道号索引
-             en_user_chan_offset : 用户优先选择的次信道偏移量
- 输出参数  : 无
- 返 回 值  : OAL_TRUE : 能够建立40MHz BSS
-             OAL_FALSE: 不能建立40MHz BSS
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月30日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_bool_enum_uint8  hmac_chan_is_40MHz_scb_allowed(
                 mac_vap_stru                 *pst_mac_vap,
                 hmac_eval_scan_report_stru   *pst_chan_scan_report,
@@ -1462,23 +1166,7 @@ OAL_STATIC oal_bool_enum_uint8  hmac_chan_is_40MHz_scb_allowed(
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_chan_get_cumulative_networks
- 功能描述  : 获取当前信道邻近(+/- 3个信道)的BSS个数
- 输入参数  : pst_mac_device : MAC DEVICE结构体指针
-             en_band        : 频段
-             uc_pri_chan_idx: 主信道号索引
- 输出参数  : 无
- 返 回 值  : 当前信道邻近的BSS个数
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月30日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint16  hmac_chan_get_cumulative_networks(
                 mac_device_stru                     *pst_mac_device,
                 wlan_channel_bandwidth_enum_uint8    en_band,
@@ -1509,62 +1197,19 @@ OAL_STATIC oal_uint16  hmac_chan_get_cumulative_networks(
     return us_cumulative_networks;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_chan_get_user_pref_primary_ch
- 功能描述  : 获取用户优先设置的信道
- 输入参数  : pst_mac_device: MAC DEVICE结构体指针
- 输出参数  : 无
- 返 回 值  : 用户优先设置的信道
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月31日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint8  hmac_chan_get_user_pref_primary_ch(mac_device_stru *pst_mac_device)
 {
     return pst_mac_device->uc_max_channel;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_get_user_pref_bandwidth
- 功能描述  : 获取用户优先设置的带宽模式
- 输入参数  : pst_mac_vap: MAC VAP结构体指针
- 输出参数  : 无
- 返 回 值  : 用户优先设置的带宽模式
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月31日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE wlan_channel_bandwidth_enum_uint8  hmac_chan_get_user_pref_bandwidth(mac_vap_stru *pst_mac_vap)
 {
     return pst_mac_vap->st_ch_switch_info.en_user_pref_bandwidth;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_chan_select_channel_for_operation
- 功能描述  : 挑选一条信道(对)
- 输入参数  : pst_mac_vap      : MAC VAP结构体指针
- 输出参数  : puc_new_channel  : 挑选出来的主信道号
-             pen_new_bandwidth: 挑选出来的带宽模式
- 返 回 值  : OAL_SUCC或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月29日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_chan_select_channel_for_operation(
                 mac_vap_stru                        *pst_mac_vap,
                 oal_uint8                           *puc_new_channel,
@@ -1737,28 +1382,11 @@ oal_uint32  hmac_chan_select_channel_for_operation(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_chan_reval_status
- 功能描述  : 根据OBSS扫描结果，重新选择一条最合适的工作信道
- 输入参数  : pst_mac_vap: MAC VAP结构体指针
-             puc_data   : 指向20/40 BSS Intolerant Channel Report element中
-                          "Channel List"的指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月22日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  hmac_chan_reval_status(mac_device_stru *pst_mac_device, mac_vap_stru *pst_mac_vap)
 {
     oal_uint8                            uc_new_channel   = 0;
     wlan_channel_bandwidth_enum_uint8    en_new_bandwidth = WLAN_BAND_WIDTH_BUTT;
-    oal_uint8                            auc_da[] = {0xff, 0xff, 0xff, 0xff, 0xff, 0xff};
     oal_uint32                           ul_ret;
 
     OAM_INFO_LOG0(pst_mac_vap->uc_vap_id, OAM_SF_2040, "{hmac_chan_reval_status}");
@@ -1800,7 +1428,7 @@ oal_void  hmac_chan_reval_status(mac_device_stru *pst_mac_device, mac_vap_stru *
     else if (en_new_bandwidth != pst_mac_vap->st_channel.en_bandwidth)
     {
         hmac_chan_multi_select_channel_mac(pst_mac_vap, pst_mac_vap->st_channel.uc_chan_number, en_new_bandwidth);
-        hmac_send_ht_notify_chan_width(pst_mac_vap, auc_da);
+        hmac_send_ht_notify_chan_width(pst_mac_vap, BROADCAST_MACADDR);
     }
     else
     {
@@ -1808,21 +1436,7 @@ oal_void  hmac_chan_reval_status(mac_device_stru *pst_mac_device, mac_vap_stru *
     }
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_chan_reval_bandwidth_sta
- 功能描述  : 评估是否需要进行带宽切换，如需要，则通知硬件进行带宽切换
- 输入参数  : pst_mac_vap: MAC VAP结构体指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月27日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  hmac_chan_reval_bandwidth_sta(mac_vap_stru *pst_mac_vap, oal_uint32 ul_change)
 {
     if (OAL_UNLIKELY(OAL_PTR_NULL == pst_mac_vap))
@@ -1838,24 +1452,7 @@ oal_void  hmac_chan_reval_bandwidth_sta(mac_vap_stru *pst_mac_vap, oal_uint32 ul
     }
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_chan_update_csw_info
- 功能描述  : STA侧处理Beacon帧中的(Extended) Channel Switch Announcement IE
- 输入参数  : pst_mac_vap : MAC VAP结构体指针，指向STA
-             puc_payload : Beacon帧体(不包含帧头)
-             us_frame_len: Beacon帧长(不包含帧头)
-             us_offset   : Beacon帧中第一个IE相对于帧体起始处的偏移
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月13日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  hmac_chan_update_csw_info(mac_vap_stru *pst_mac_vap, oal_uint8 *puc_payload, oal_uint16 us_frame_len, oal_uint16 us_offset)
 {
     oal_bool_enum_uint8   en_csa_ie_present;
@@ -1879,22 +1476,7 @@ oal_void  hmac_chan_update_csw_info(mac_vap_stru *pst_mac_vap, oal_uint8 *puc_pa
 }
 
 
-/*****************************************************************************
- 函 数 名  : hmac_chan_ctrl_machw_tx
- 功能描述  : 控制硬件是否发送(数据帧、ACK、RTS)
- 输入参数  : pst_mac_vap: MAC VAP结构体指针
-             uc_sub_type: 事件子类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月17日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void  hmac_chan_ctrl_machw_tx(mac_vap_stru *pst_mac_vap, oal_uint8 uc_sub_type)
 {
     frw_event_mem_stru       *pst_event_mem;
@@ -1934,63 +1516,19 @@ OAL_STATIC oal_void  hmac_chan_ctrl_machw_tx(mac_vap_stru *pst_mac_vap, oal_uint
     FRW_EVENT_FREE(pst_event_mem);
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_chan_disable_machw_tx
- 功能描述  : 禁止硬件发送(数据帧、ACK、RTS)
- 输入参数  : pst_mac_vap: MAC VAP结构体指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月13日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  hmac_chan_disable_machw_tx(mac_vap_stru *pst_mac_vap)
 {
     hmac_chan_ctrl_machw_tx(pst_mac_vap, DMAC_WALN_CTX_EVENT_SUB_TYPR_DISABLE_TX);
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_chan_enable_machw_tx
- 功能描述  : 恢复硬件发送(数据帧、ACK、RTS)
- 输入参数  : pst_mac_vap: MAC VAP结构体指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月13日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  hmac_chan_enable_machw_tx(mac_vap_stru *pst_mac_vap)
 {
     hmac_chan_ctrl_machw_tx(pst_mac_vap, DMAC_WALN_CTX_EVENT_SUB_TYPR_ENABLE_TX);
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_chan_check_chan_avail
- 功能描述  : 自动信道选择有效性检查
- 输入参数  : en_band         : 频段(0: 2.4GHz; 1: 5GHz)
- 输出参数  : puc_start_ch_idx: 需要扫描的第一条信道索引
-             puc_end_ch_idx  : 需要扫描的最后一条信道索引
- 返 回 值  : OAL_TRUE : 成功
-             OAL_FALSE: 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月31日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_bool_enum_uint8  hmac_chan_check_channnel_avaible(
                 wlan_channel_band_enum_uint8    en_band,
                 oal_uint8                      *puc_start_ch_idx,
@@ -2035,25 +1573,7 @@ OAL_STATIC OAL_INLINE oal_bool_enum_uint8  hmac_chan_check_channnel_avaible(
     return OAL_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_chan_get_affected_channels
- 功能描述  : 计算需要扫描的信道范围，扫描的范围是想要建立40MHz BSS的中心频点 +/- 5个信道，
-             比如想要建立主信道为5，次信道为9的40MHz BSS，则将扫描信道2~12
- 输入参数  : en_band               : 频段(0: 2.4GHz; 1: 5GHz)
-             uc_user_pri_ch_idx    : 用户选择的信道索引
-             en_user_pref_bandwidth: 用户选择的带宽模式
- 输出参数  : puc_start_ch_idx: 需要扫描的第一条信道索引
-             puc_end_ch_idx  : 需要扫描的最后一条信道索引
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月31日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32  hmac_chan_get_affected_channels(
                 wlan_channel_band_enum_uint8         en_band,
                 oal_uint8                            uc_user_pri_ch_idx,
@@ -2090,23 +1610,7 @@ OAL_STATIC OAL_INLINE oal_uint32  hmac_chan_get_affected_channels(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_chan_is_scan_needed_for_multi_vap
- 功能描述  : 多VAP情况下，在BSS启动前，判断是否需要进行信道扫描
- 输入参数  : pst_mac_device  : MAC DEVICE结构体指针
-             pst_mac_vap     : MAC VAP结构体指针(AP)
- 输出参数  : 无
- 返 回 值  : OAL_TRUE : 需要进行扫描
-             OAL_FALSE: 不需要进行扫描
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月8日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_bool_enum_uint8  hmac_chan_is_scan_needed_for_multi_vap(
                 mac_device_stru   *pst_mac_device,
                 mac_vap_stru      *pst_mac_vap)
@@ -2146,24 +1650,7 @@ OAL_STATIC oal_bool_enum_uint8  hmac_chan_is_scan_needed_for_multi_vap(
     return OAL_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_chan_is_chan_scan_needed
- 功能描述  : 判断在BSS启动前，是否需要进行信道扫描
- 输入参数  : pst_mac_device  : MAC DEVICE结构体指针
-             pst_mac_vap     : MAC VAP结构体指针(AP)
- 输出参数  : puc_start_ch_idx: 需要扫描的第一条信道索引
-             puc_end_ch_idx  : 需要扫描的最后一条信道索引
- 返 回 值  : OAL_TRUE : 需要进行扫描
-             OAL_FALSE: 不需要进行扫描
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月31日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_bool_enum_uint8  hmac_chan_is_chan_scan_needed(
                 mac_device_stru   *pst_mac_device,
                 mac_vap_stru      *pst_mac_vap,
@@ -2234,7 +1721,6 @@ OAL_STATIC oal_bool_enum_uint8  hmac_chan_is_chan_scan_needed(
             return OAL_FALSE;
         }
 
-        //l00311403 TODO 对于80M/160M, 要重新调整影响范围
         /* 获取需要扫描的信道范围 */
         ul_ret = hmac_chan_get_affected_channels(en_band, uc_user_ch_idx, hmac_chan_get_user_pref_bandwidth(pst_mac_vap), puc_start_ch_idx, puc_end_ch_idx);
         if (OAL_SUCC != ul_ret)
@@ -2256,21 +1742,7 @@ OAL_STATIC oal_bool_enum_uint8  hmac_chan_is_chan_scan_needed(
     return OAL_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_start_bss_in_available_channel
- 功能描述  : 在指定(可用)信道上启动BSS
- 输入参数  : pst_hmac_vap: HMAC VAP指针
- 输出参数  : 无
- 返 回 值  : OAL_SUCC或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月20日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_start_bss_in_available_channel(hmac_vap_stru *pst_hmac_vap)
 {
     hmac_ap_start_rsp_stru          st_ap_start_rsp;
@@ -2311,21 +1783,7 @@ oal_uint32  hmac_start_bss_in_available_channel(hmac_vap_stru *pst_hmac_vap)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_chan_start_bss
- 功能描述  : 挑选一条信道(对)，并启动BSS
- 输入参数  : pst_mac_vap: MAC VAP结构体指针
- 输出参数  : 无
- 返 回 值  : OAL_SUCC或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月3日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_chan_start_bss(hmac_vap_stru *pst_hmac_vap)
 {
     mac_device_stru                     *pst_mac_device;
@@ -2442,21 +1900,7 @@ oal_uint32  hmac_chan_start_bss(hmac_vap_stru *pst_hmac_vap)
     /* 否则，直接启动BSS */
     return hmac_start_bss_in_available_channel(pst_hmac_vap);
 }
-/*****************************************************************************
- 函 数 名  : hmac_chan_ch_av_chk_timeout_fn
- 功能描述  : BSS上电扫描超时函数
- 输入参数  : p_arg: MAC VAP结构体指针
- 输出参数  : 无
- 返 回 值  : OAL_SUCC或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月3日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_chan_ch_av_chk_timeout_fn(void *p_arg)
 {
     mac_device_stru              *pst_mac_device;
@@ -2496,26 +1940,7 @@ oal_uint32  hmac_chan_ch_av_chk_timeout_fn(void *p_arg)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_chan_do_channel_availability_check
- 功能描述  : BSS启动时，对所选择的信道列表进行被动扫描(或者选择不进行扫描)
- 输入参数  : pst_mac_device: MAC DEVICE结构体指针
-             pst_mac_vap   : MAC VAP结构体指针(AP)
-             en_first_time : 是否是第一次进入这个函数(后续定时器超时还会调用这个函数，
-                             那时就置为OAL_FALSE)
- 输出参数  : 无
- 返 回 值  : MAC_CHNL_AV_CHK_NOT_REQ : 不需要进行信道扫描
-             MAC_CHNL_AV_CHK_IN_PROG : 正在进行信道扫描
-             MAC_CHNL_AV_CHK_COMPLETE: 信道扫描已完成
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月31日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-******************************************************************************/
 mac_chnl_av_chk_enum_uint8  hmac_chan_do_channel_availability_check(
                 mac_device_stru       *pst_mac_device,
                 mac_vap_stru          *pst_mac_vap,
@@ -2623,21 +2048,7 @@ mac_chnl_av_chk_enum_uint8  hmac_chan_do_channel_availability_check(
 
     return MAC_CHNL_AV_CHK_COMPLETE;
 }
-/*****************************************************************************
- 函 数 名  : hmac_chan_get_ext_chan_info
- 功能描述  : 获取指定VAP主、次(扩展)信道信息
- 输入参数  : pst_mac_vap  : MAC VAP指针
- 输出参数  : pst_chan_info: 主、次(扩展)信道信息
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月31日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  hmac_chan_get_ext_chan_info(
                 oal_uint8                            uc_pri20_channel_idx,
                 wlan_channel_bandwidth_enum_uint8    en_bandwidth,
@@ -2701,21 +2112,7 @@ oal_void  hmac_chan_get_ext_chan_info(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_chan_restart_network_after_switch
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月7日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_chan_restart_network_after_switch(mac_vap_stru *pst_mac_vap)
 {
     frw_event_mem_stru   *pst_event_mem;
@@ -2762,21 +2159,7 @@ oal_uint32  hmac_chan_restart_network_after_switch(mac_vap_stru *pst_mac_vap)
 oal_module_symbol(g_ast_freq_map_5g);
 oal_module_symbol(g_ast_freq_map_2g);
 
-/*****************************************************************************
- 函 数 名  : hmac_chan_switch_to_new_chan_complete
- 功能描述  : 处理信道/带宽切换完成事件
- 输入参数  : frw_event_mem_stru *pst_event_mem
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月8日
-    作    者   : l00311403
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_chan_switch_to_new_chan_complete(frw_event_mem_stru *pst_event_mem)
 {
     frw_event_stru     *pst_event;
@@ -2872,21 +2255,7 @@ oal_uint32  hmac_chan_switch_to_new_chan_complete(frw_event_mem_stru *pst_event_
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_dbac_status_notify
- 功能描述  : 处理dbac status event
- 输入参数  : frw_event_mem_stru *pst_event_mem
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月8日
-    作    者   : l00311403
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_dbac_status_notify(frw_event_mem_stru *pst_event_mem)
 {
     frw_event_stru     *pst_event;
@@ -2917,26 +2286,7 @@ oal_uint32  hmac_dbac_status_notify(frw_event_mem_stru *pst_event_mem)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_ie_proc_ch_switch_ie
- 功能描述  : 处理(Extended) Channel Switch Announcement IE
- 输入参数  : pst_mac_vap: MAC VAP结构体指针
-             puc_payload: 指向(Extended) Channel Switch Announcement IE的指针
-             en_eid_type: Element ID
- 输出参数  : 无
- 返 回 值  : OAL_SUCC或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月12日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-  2.日    期   : 2015年1月20日
-    作    者   : s00304087
-    修改内容   : 上移HMAC
-
-*****************************************************************************/
 oal_uint32  hmac_ie_proc_ch_switch_ie(mac_vap_stru *pst_mac_vap, oal_uint8 *puc_payload, mac_eid_enum_uint8 en_eid_type)
 {
     oal_uint8    uc_ch_sw_mode = 0;
@@ -2991,13 +2341,18 @@ oal_uint32  hmac_ie_proc_ch_switch_ie(mac_vap_stru *pst_mac_vap, oal_uint8 *puc_
     /* 如果STA已经准备进行信道切换，则不做任何事情，直接返回 */
     if ((OAL_TRUE == pst_mac_vap->st_ch_switch_info.en_waiting_to_shift_channel))
     {
-        return OAL_SUCC;
+        if (uc_sw_cnt < pst_mac_vap->st_ch_switch_info.uc_ch_swt_cnt)
+        {
+            return OAL_SUCC;
+        }
     }
-
-    /* STA在信道切换完成前应该停止传输 */
-    if (1 == uc_ch_sw_mode)
+    else
     {
-        hmac_chan_disable_machw_tx(pst_mac_vap);
+        /* STA在信道切换完成前应该停止传输 */
+        if (1 == uc_ch_sw_mode)
+        {
+            hmac_chan_disable_machw_tx(pst_mac_vap);
+        }
     }
 
     pst_mac_vap->st_ch_switch_info.uc_new_channel = uc_new_chan;
@@ -3012,6 +2367,7 @@ oal_uint32  hmac_ie_proc_ch_switch_ie(mac_vap_stru *pst_mac_vap, oal_uint8 *puc_
     }
 
     pst_mac_vap->st_ch_switch_info.uc_new_ch_swt_cnt = uc_sw_cnt;
+    pst_mac_vap->st_ch_switch_info.uc_ch_swt_cnt     = uc_sw_cnt;
     pst_mac_vap->st_ch_switch_info.en_waiting_to_shift_channel = OAL_TRUE;
 
     /* 如果"信道切换计数"等于0，则立即切换信道 */
@@ -3028,24 +2384,7 @@ oal_uint32  hmac_ie_proc_ch_switch_ie(mac_vap_stru *pst_mac_vap, oal_uint8 *puc_
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_ie_proc_wide_bandwidth_ie
- 功能描述  : 处理Wide Bandwidth Channel Switch IE
- 输入参数  : pst_mac_vap: MAC VAP结构体指针
-             puc_payload: 指向Wide Bandwidth Channel Switch IE的指针
- 输出参数  : 无
- 返 回 值  : OAL_SUCC或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月24日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-  2.日    期   : 2015年1月20日
-    作    者   : s00304087
-    修改内容   : 上移HMAC
-*****************************************************************************/
 oal_uint32  hmac_ie_proc_wide_bandwidth_ie(mac_vap_stru *pst_mac_vap, oal_uint8 *puc_payload)
 {
     oal_uint8     uc_new_channel;
@@ -3086,27 +2425,7 @@ oal_uint32  hmac_ie_proc_wide_bandwidth_ie(mac_vap_stru *pst_mac_vap, oal_uint8 
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_ie_check_csa_ie
- 功能描述  : 解析Beacon帧中是否存在(Extended) Channel Switch Announcement IE
- 输入参数  : pst_mac_vap : MAC VAP结构体指针
-             puc_payload : Beacon帧体
-             us_frame_len: Beacon帧体长度(不包括帧头)
-             us_offset   : 第一个IE在Beacon帧体中的偏移
- 输出参数  : 无
- 返 回 值  : OAL_TRUE : Beacon帧中存在(Extended) Channel Switch Announcement IE
-             OAL_FALSE: 其它
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月13日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-  2.日    期   : 2015年1月20日
-    作    者   : s00304087
-    修改内容   : 上移HMAC
-*****************************************************************************/
 oal_bool_enum_uint8  hmac_ie_check_csa_ie(mac_vap_stru *pst_mac_vap, oal_uint8 *puc_payload, oal_uint16 us_frame_len, oal_uint16 us_offset)
 {
     oal_uint16   us_index = us_offset;

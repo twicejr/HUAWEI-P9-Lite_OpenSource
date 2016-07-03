@@ -1,13 +1,4 @@
-/************************************************************************
-  Copyright    : 2005-2007, Huawei Tech. Co., Ltd.
-  File name    : UsimmBase.c
-  Author       : zhuli 00100318
-  Version      : V100R002
-  Date         : 2008-5-15
-  Description  : 该C文件给出了---APDU模块实现
-  Function List:
-  History      :
- ************************************************************************/
+
 #include "product_config.h"
 
 #if (FEATURE_ON == FEATURE_UE_UICC_MULTI_APP_SUPPORT)
@@ -30,19 +21,7 @@ extern "C" {
 /*lint -e767*/
 #define    THIS_FILE_ID        PS_FILE_ID_USIMM_APDUMODULE_C
 /*lint +e767*/
-/*****************************************************************************
-函 数 名  :USIMM_UiccPinOperationResultProc
-功能描述  :对DL层返回的结果和状态字还要针对PIN码操作再做判断
-输入参数  :ulResult:DL层返回的结果
-           pstRspData:返回的内容和状态字
-输出参数  :无
-返 回 值  :USIMM_SWCHECK_ENUM_UINT32
-调用函数  :无
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_UiccPinOperationResultProc(
     VOS_UINT8                           ucINS,
     VOS_UINT32                          ulResult)
@@ -65,20 +44,7 @@ VOS_UINT32 USIMM_UiccPinOperationResultProc(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CheckSW
-功能描述  :检查命令发送的结构
-输入参数  :pstUSIMMAPDU
 
-输出参数  :无
-返 回 值  :USIMM_SWCHECK_ENUM_UINT16
-调用函数  :无
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 USIMM_CheckSW(
     VOS_UINT8                           ucINS,
     VOS_UINT8                           ucSW1,
@@ -147,20 +113,7 @@ VOS_UINT32 USIMM_CheckSW(
     return (VOS_UINT32)enResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_MakeApduCLA
-功能描述  :检查命令发送的结构
-输入参数  :pstUSIMMAPDU
 
-输出参数  :无
-返 回 值  :USIMM_SWCHECK_ENUM_UINT16
-调用函数  :无
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT8 USIMM_MakeApduCLA(
     VOS_UINT8                           ucChannel,
     VOS_UINT8                           ucINS,
@@ -207,20 +160,7 @@ VOS_UINT8 USIMM_MakeApduCLA(
     return ucCLA;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_MakeTpduCLA
-功能描述  :检查命令发送的结构
-输入参数  :pstUSIMMAPDU
 
-输出参数  :无
-返 回 值  :USIMM_SWCHECK_ENUM_UINT16
-调用函数  :无
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT8 USIMM_MakeTpduCLA(
     VOS_UINT8                           ucChannel,
     VOS_UINT8                           ucCLA,
@@ -229,12 +169,16 @@ VOS_UINT8 USIMM_MakeTpduCLA(
     VOS_UINT8           ucResultCLA;
     VOS_UINT8           ucTempChannel;
 
-    if ((CMD_INS_TERMINAL_PROFILE   == ucINS)
-        ||(CMD_INS_ENVELOPE         == ucINS)
-        ||(CMD_INS_FETCH            == ucINS)
-        ||(CMD_INS_TERMINAL_RESPONSE== ucINS))
+    if (VOS_FALSE == g_stUsimmFeatureCfg.unCfg.stFeatureCfg.ulSelectParaNoCheck)
     {
-        return ucCLA;
+        USIMM_ERROR_LOG("USIMM_MakeTpduCLA:NOT ulP2ActiveAID OPERATE");
+        if ((CMD_INS_TERMINAL_PROFILE   == ucINS)
+            ||(CMD_INS_ENVELOPE         == ucINS)
+            ||(CMD_INS_FETCH            == ucINS)
+            ||(CMD_INS_TERMINAL_RESPONSE== ucINS))
+        {
+            return ucCLA;
+        }
     }
 
     if ( ucChannel <= USIMM_APDU_CHANNEL_4 )
@@ -253,21 +197,7 @@ VOS_UINT8 USIMM_MakeTpduCLA(
     return ucResultCLA;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SelectFile_APDU
-功能描述  :发送选择文件的命令
-输入参数  :pstApduInfo:      命令参数
-           ulRetryCnt:       命令执行次数
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_SENDAPDU_RESULT_ENUM_UINT32 USIMM_SelectFile_APDU(
     USIMM_APDU_ST                      *pstApduInfo,
     VOS_UINT32                          ulSendCnt
@@ -311,6 +241,16 @@ USIMM_SENDAPDU_RESULT_ENUM_UINT32 USIMM_SelectFile_APDU(
             {
                 pstApduInfo->aucAPDU[P2] = USIMM_SELECT_RETURN_FCP_TEMPLATE;
             }
+            else if((VOS_TRUE == g_stUsimmFeatureCfg.unCfg.stFeatureCfg.ulSlectAidSupport)
+               &&   (USIMM_SELECT_ACTIVATE_AID == pstApduInfo->aucAPDU[P2]))
+            {
+                USIMM_ERROR_LOG("USIMM_SelectFile_APDU:USIMM_SELECT_ACTIVATE_AID");
+                if((USIMM_SW_WARNING == ulResult))
+                {
+                    USIMM_ERROR_LOG("USIMM_SelectFile_APDU:USIMM_SENDAPDU_OK");
+                    return USIMM_SENDAPDU_OK;
+                }
+            }
             else
             {
                 return USIMM_SENDAPDU_FAIL;
@@ -327,19 +267,7 @@ USIMM_SENDAPDU_RESULT_ENUM_UINT32 USIMM_SelectFile_APDU(
     return USIMM_SENDAPDU_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_Status_APDU
-功能描述  :通过指定的通道号Status命令发送
-输入参数  :pstApduInfo:      命令参数
-           ulRetryCnt:       命令执行次数
-输出参数  :无
-返 回 值  :USIMM_SENDAPDU_RESULT_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-*****************************************************************************/
 USIMM_SENDAPDU_RESULT_ENUM_UINT32 USIMM_Status_APDU(
     USIMM_APDU_ST                      *pstApduInfo,
     VOS_UINT32                          ulSendCnt)
@@ -368,20 +296,7 @@ USIMM_SENDAPDU_RESULT_ENUM_UINT32 USIMM_Status_APDU(
     return USIMM_SENDAPDU_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_Manage_Channel_APDU
-功能描述  :通道管理命令发送
-输入参数  :pstApduInfo:      命令参数
-           ulRetryCnt:       命令执行次数
-输出参数  :无
-返 回 值  :USIMM_SENDAPDU_RESULT_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_SENDAPDU_RESULT_ENUM_UINT32 USIMM_ManageChannel_APDU(
     USIMM_APDU_ST                      *pstApduInfo,
     VOS_UINT32                          ulSendCnt)
@@ -415,20 +330,7 @@ USIMM_SENDAPDU_RESULT_ENUM_UINT32 USIMM_ManageChannel_APDU(
     return USIMM_SENDAPDU_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_Terminal_Capability_APDU
-功能描述  :terminal capability命令发送
-输入参数  :pstApduInfo:      命令参数
-           ulRetryCnt:       命令执行次数
-输出参数  :无
-返 回 值  :USIMM_SENDAPDU_RESULT_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_SENDAPDU_RESULT_ENUM_UINT32 USIMM_TerminalCapability_APDU(
     USIMM_APDU_ST                      *pstApduInfo,
     VOS_UINT32                          ulSendCnt)
@@ -447,20 +349,7 @@ USIMM_SENDAPDU_RESULT_ENUM_UINT32 USIMM_TerminalCapability_APDU(
     return USIMM_SENDAPDU_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_StoreESNMEID_APDU
-功能描述  :发送Store ESN MEID命令
-输入参数  :pstApduInfo:      命令参数
-           ulRetryCnt:       命令执行次数
-输出参数  :无
-返 回 值  :USIMM_SENDAPDU_RESULT_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_SENDAPDU_RESULT_ENUM_UINT32 USIMM_StoreESNMEID_APDU(
     USIMM_APDU_ST                      *pstApduInfo,
     VOS_UINT32                          ulSendCnt
@@ -484,20 +373,7 @@ USIMM_SENDAPDU_RESULT_ENUM_UINT32 USIMM_StoreESNMEID_APDU(
     return USIMM_SENDAPDU_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ManageSsdAPDU
-功能描述  :发送MANAGE SSD命令
-输入参数  :pstApduInfo:      命令参数
-           ulRetryCnt:       命令执行次数
-输出参数  :无
-返 回 值  :USIMM_SENDAPDU_RESULT_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_SENDAPDU_RESULT_ENUM_UINT32 USIMM_ManageSsd_APDU(
     USIMM_APDU_ST                      *pstApduInfo,
     VOS_UINT32                          ulSendCnt)
@@ -516,20 +392,7 @@ USIMM_SENDAPDU_RESULT_ENUM_UINT32 USIMM_ManageSsd_APDU(
     return USIMM_SENDAPDU_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_GenerateKeyVpmAPDU
-功能描述  :发送Generate Key/VPM命令
-输入参数  :pstApduInfo:      命令参数
-           ulRetryCnt:       命令执行次数
-输出参数  :无
-返 回 值  :USIMM_SENDAPDU_RESULT_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_SENDAPDU_RESULT_ENUM_UINT32 USIMM_GenerateKeyVpm_APDU(
     USIMM_APDU_ST                      *pstApduInfo,
     VOS_UINT32                          ulSendCnt)
@@ -548,20 +411,7 @@ USIMM_SENDAPDU_RESULT_ENUM_UINT32 USIMM_GenerateKeyVpm_APDU(
     return USIMM_SENDAPDU_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_BSChallengeAPDU
-功能描述  :发送Store ESN MEID命令
-输入参数  :pstApduInfo:      命令参数
-           ulRetryCnt:       命令执行次数
-输出参数  :无
-返 回 值  :USIMM_SENDAPDU_RESULT_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_SENDAPDU_RESULT_ENUM_UINT32 USIMM_BSChallenge_APDU(
     USIMM_APDU_ST                      *pstApduInfo,
     VOS_UINT32                          ulSendCnt)
@@ -582,20 +432,7 @@ USIMM_SENDAPDU_RESULT_ENUM_UINT32 USIMM_BSChallenge_APDU(
     return USIMM_SENDAPDU_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SendCase4_APDU
-功能描述  :Search Increace Authentication 命令发送
-输入参数  :pstApduInfo:      命令参数
-           ulRetryCnt:       命令执行次数
-输出参数  :无
-返 回 值  :USIMM_SENDAPDU_RESULT_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_SENDAPDU_RESULT_ENUM_UINT32 USIMM_SendCase4_APDU(
     USIMM_APDU_ST                      *pstApduInfo,
     VOS_UINT32                          ulRetryCnt)
@@ -617,20 +454,7 @@ USIMM_SENDAPDU_RESULT_ENUM_UINT32 USIMM_SendCase4_APDU(
     return USIMM_SENDAPDU_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SendAndRetry_APDU
-功能描述  :ReadBinary UPDATEBINARY READRECORD UPDATERECORD 命令发送
-输入参数  :pstApduInfo:      命令参数
-           ulRetryCnt:       命令执行次数
-输出参数  :无
-返 回 值  :USIMM_SENDAPDU_RESULT_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_SENDAPDU_RESULT_ENUM_UINT32 USIMM_SendAndRetry_APDU(
     USIMM_APDU_ST                      *pstApduInfo,
     VOS_UINT32                          ulSendCnt)
@@ -665,20 +489,7 @@ USIMM_SENDAPDU_RESULT_ENUM_UINT32 USIMM_SendAndRetry_APDU(
     return USIMM_SENDAPDU_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SendOneTime_APDU
-功能描述  :VerifyPIN ChangePIN UnblockPIN DeactivateFile ActivateFile 命令发送
-输入参数  :pstApduInfo:      命令参数
-           ulRetryCnt:       命令执行次数
-输出参数  :无
-返 回 值  :USIMM_SENDAPDU_RESULT_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_SENDAPDU_RESULT_ENUM_UINT32 USIMM_SendOneTime_APDU(
     USIMM_APDU_ST                      *pstApduInfo,
     VOS_UINT32                          ulSendCnt)
@@ -766,20 +577,7 @@ USIMM_APDU_FUNC_LIST    g_aUSIMMApduFuncTbl[]=
     {CMD_INS_OTASP_3GPD_CFG        ,    0,                      USIMM_APDUCMD_UIM,      0,  VOS_NULL_PTR}
 };
 
-/*****************************************************************************
-函 数 名  : USIMM_MakeAPDUCmdData
-功能描述  : 填充APDU的命令函数
-输入参数  : pstApduHead: APDU命令的头
-            pstApduData: APDU命令数据内容，可以为空
-输出参数  : pstRspData : APDU命令的返回内容
-返 回 值  : 无
 
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-
-*****************************************************************************/
 VOS_VOID USIMM_MakeAPDUCmdData(
     USIMM_APDU_HEAD_STRU                *pstApduHead,
     USIMM_U8_LVDATA_STRU                *pstApduData,
@@ -826,18 +624,7 @@ VOS_VOID USIMM_MakeAPDUCmdData(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_AttApduSWCheck
-功能描述  : ATT定制功能，需要检查返回的命令状态字
-输入参数  : 无
-返 回 值  : 无
 
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-
-*****************************************************************************/
 VOS_VOID USIMM_AttApduSWCheck(VOS_VOID)
 {
     if (VOS_TRUE == g_stUsimmFeatureCfg.unCfg.stFeatureCfg.ulAtt_flg)
@@ -860,21 +647,7 @@ VOS_VOID USIMM_AttApduSWCheck(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_SendAPDUHandle
-功能描述  : 发送APDU的命令主控函数
-输入参数  : enAttribute: 命令属性用于区分相同INS的不同处理
-            pstApduHead: APDU命令的头
-            pstApduData: APDU命令数据内容，可以为空
-输出参数  : pstRspData : APDU命令的返回内容
-返 回 值  : USIMM_SWCHECK_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_SWCHECK_ENUM_UINT32 USIMM_SendAPDUHandle(
     USIMM_APDUCMD_ATTRIBUTE_ENUM_UINT8  enAttribute,
     USIMM_APDU_HEAD_STRU                *pstApduHead,
@@ -968,19 +741,7 @@ USIMM_SWCHECK_ENUM_UINT32 USIMM_SendAPDUHandle(
                         gstUSIMMAPDU.ucSW2);   /*返回的是最后的结果，不是第一次发送结果*/
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_T1SendIFSD_APDU
-功能描述  :T=1协议发送IFSD命令
-输入参数  :ucData:UE可接收块的信息域大小
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2013年10月18日
-   作    者   : j00168360
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_T1SendIFSD_APDU(
     VOS_UINT8                           ucData)
 {
@@ -1016,20 +777,7 @@ VOS_UINT32 USIMM_T1SendIFSD_APDU(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_SendTPDUHandle
-功能描述  : 发送APDU的命令主控函数
-输入参数  : pstApduHead: APDU命令的头
-            pstApduData: APDU命令数据内容，可以为空
-输出参数  : pstRspData : APDU命令的返回内容
-返 回 值  : USIMM_SWCHECK_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_SWCHECK_ENUM_UINT32 USIMM_SendTPDUHandle(
     USIMM_TPDU_HEAD_STRU                *pstTpduHead,
     USIMM_U8_LVDATA_STRU                *pstTpduData,
@@ -1132,20 +880,7 @@ USIMM_SWCHECK_ENUM_UINT32 USIMM_SendTPDUHandle(
     return USIMM_SW_OK;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_DLResetCard
-功能描述  : 返回卡复位状态
-输入参数  : ulResetType:复位卡类型
-            plVoltageSwitchRst:电压切换结果
-输出参数  : 无
-返 回 值  : VOS_INT32，0表示复位成功，其余不成功
-调用函数  : 无
-被调函数  :
-修订记录  :
-1. 日    期   : 2008年8月4日
-   作    者   : m00128685
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_DLResetCard(VOS_UINT32 ulResetType, VOS_INT32 *plVoltageSwitchRst)
 {
     VOS_INT32                           lSCIResult = VOS_ERR;
@@ -1289,18 +1024,7 @@ VOS_UINT32 USIMM_DLResetCard(VOS_UINT32 ulResetType, VOS_INT32 *plVoltageSwitchR
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_TerminateADF
-功能描述  : 选中其中的3GPP应用
-输入参数  : 无
-输出参数  : 无
-返 回 值  : NA
-修订记录  :
-1. 日    期   : 2015年3月18日
-    作    者   : zhuli
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_SendStatusApdu(
     VOS_UINT8                           ucChannelID,
     VOS_UINT8                           ucP1,
@@ -1330,18 +1054,7 @@ VOS_UINT32 USIMM_SendStatusApdu(
                                 VOS_NULL_PTR);
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_StatusPollingNeedFcp
-功能描述  :发送STATUS命令要求返回FCP
-输入参数  :无
-输出参数  :pstRspData:STATUS命令返回的FCP内容
-返 回 值  :VOS_OK/VOS_ERR
 
-修订记录  :
-1. 日    期   : 2015年3月7日
-    作    者   : h00300778
-    修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_SendStatusPollingApdu(
     USIMM_APDU_RSP_STRU                 *pstRspData)
 {
@@ -1366,18 +1079,7 @@ VOS_UINT32 USIMM_SendStatusPollingApdu(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SendOpenSpecificChannelCmd
-功能描述  :发送打开指定CHANNEL ID的MANAGE CHANNEL命令的APDU
-输入参数  :ucP2:P2参数
-输出参数  :无
-返 回 值  :VOS_OK/VOS_ERR
 
-修订记录  :
-1. 日    期   : 2015年4月9日
-    作    者   : h00300778
-    修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_SendCloseChannelApdu(
     VOS_UINT8                           ucP2)
 {
@@ -1406,18 +1108,7 @@ VOS_UINT32 USIMM_SendCloseChannelApdu(
 }
 
 
-/*****************************************************************************
-函 数 名  :USIMM_OpenChannelApdu
-功能描述  :打开逻辑通道
-输入参数  :无
-输出参数  :pucChannelID: 返回逻辑通道号
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_SendOpenChannelApdu(
     VOS_UINT8                          *pucChannelID
 )
@@ -1464,22 +1155,7 @@ VOS_UINT32 USIMM_SendOpenChannelApdu(
     return USIMM_SW_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UpdateLFFile
-功能描述  :更新记录文件的一条记录内容　
-输入参数  :ucRecordNum: 记录号
-           pucData:数据内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_UpdateRecord_APDU
-           USIMM_CheckSW
-修订记录  :
-1. 日    期   : 2007年3月18日
-    作    者   : z00100318
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_SendUpdateRecordApdu(
     VOS_UINT8                           ucChannelID,
     VOS_UINT8                           ucMode,
@@ -1509,22 +1185,7 @@ VOS_UINT32 USIMM_SendUpdateRecordApdu(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UpdateTFFile
-功能描述  :更新二进制文件内容　
-输入参数  :usLen:   更新数据长度
-           pucData:更新数据内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_UpdateBinary_APDU
-           USIMM_CheckSW
-修订记录  :
-1. 日    期   : 2007年3月18日
-    作    者   : z00100318
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_SendUpdateBinaryApdu(
     VOS_UINT8                           ucChannelID,
     VOS_UINT16                          usLen,
@@ -1575,20 +1236,7 @@ VOS_UINT32 USIMM_SendUpdateBinaryApdu(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ReadLFFile
-功能描述  :读取当前记录文件的指定记录内容
-输入参数  :ucRecordNum:记录号
-输出参数  :pucContent:读取的记录内容
-返 回 值  : VOS_ERR
-            VOS_OK
-调用函数  :USIMM_ReadRecord_APDU
-           USIMM_CheckSW
-修订记录  :
-1. 日    期   : 2007年3月18日
-    作    者   : z00100318
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_SendReadRecordApdu(
     VOS_UINT8                           ucChannel,
     VOS_UINT8                           ucTotalNum,
@@ -1648,21 +1296,7 @@ VOS_UINT32 USIMM_SendReadRecordApdu(
     return USIMM_SW_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SendReadBinaryApdu
-功能描述  :读取二进制文件的指定长度的内容　
-输入参数  :usLen:读取数据的长度
-输出参数  :pucContent:读取数据内容
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_ReadBinary_APDU
-           USIMM_CheckSW
-修订记录  :
-1. 日    期   : 2007年7月11日
-    作    者   : z00100318
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_SendReadBinaryApdu(
     VOS_UINT8                           ucChannelID,
     VOS_UINT16                          usOffset,
@@ -1713,21 +1347,7 @@ VOS_UINT32 USIMM_SendReadBinaryApdu(
     return USIMM_SW_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SendUnblockPinApdu
-功能描述  :发送UNBLOCK PIN命令的APDU
-输入参数  :enAppType:应用类型
-           ucPinType:PIN码类型
-           pucPukData:PUK码内容
-           pucPinData:新PIN码内容
-输出参数  :pstRspData:UNBLOCK PIN命令返回的内容
-返 回 值  :VOS_OK/VOS_ERR
 
-修订记录  :
-1. 日    期   : 2015年4月7日
-   作    者   : h00300778
-   修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_SendUnblockPinApdu(
     VOS_UINT8                           ucChannelID,
     VOS_UINT8                           ucPinType,
@@ -1782,21 +1402,7 @@ VOS_UINT32 USIMM_SendUnblockPinApdu(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SendChangePinApdu
-功能描述  :发送CHANGE PIN命令的APDU
-输入参数  :enAppType:应用类型
-           ucPinType:PIN码类型
-           pucData:旧PIN码内容
-           pucNewPinData:新PIN码内容
-输出参数  :pstRspData:CHANGE PIN命令返回的内容
-返 回 值  :VOS_OK/VOS_ERR
 
-修订记录  :
-1. 日    期   : 2015年4月7日
-   作    者   : h00300778
-   修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_SendChangePinApdu(
     VOS_UINT8                           ucChannelID,
     VOS_UINT8                           ucPinType,
@@ -1839,21 +1445,7 @@ VOS_UINT32 USIMM_SendChangePinApdu(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SendVerifyPinApdu
-功能描述  :发送VERIFY PIN命令的APDU
-输入参数  :enAppType:应用类型
-           ucCmdType:命令类型参数
-           ucPinType:PIN码类型
-           pucData:PIN码内容，可以为空
-输出参数  :pstRspData:VERIFY PIN命令返回的内容
-返 回 值  :VOS_OK/VOS_ERR
 
-修订记录  :
-1. 日    期   : 2015年4月7日
-   作    者   : h00300778
-   修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_SendVerifyPinApdu(
     VOS_UINT8                           ucChannelID,
     VOS_UINT8                           ucCmdType,
@@ -1908,20 +1500,7 @@ VOS_UINT32 USIMM_SendVerifyPinApdu(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SendBSChallengeApdu
-功能描述  :发送BASE STATION CHALLENGE命令的APDU
-输入参数  :enAppType:应用类型
-           ucP3:P3参数
-           pucData:返回的数据
-输出参数  :pstRspData:BASE STATION CHALLENGE命令返回的内容
-返 回 值  :VOS_OK/VOS_ERR
 
-修订记录  :
-1. 日    期   : 2015年4月7日
-   作    者   : h00300778
-   修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_SendBSChallengeApdu(
     VOS_UINT8                           ucChannelID,
     VOS_UINT8                           ucP3,
@@ -1955,18 +1534,7 @@ VOS_UINT32 USIMM_SendBSChallengeApdu(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_SendTerminalCapabilityApdu
-功能描述  : 发送Terminal_Capability apdu
-输入参数  : API层下发消息内容
-输出参数  : 无
-返 回 值  : VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2015年04月10日
-   作    者   : c00299064
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_SendTerminalCapabilityApdu(
     VOS_UINT8                           ucP1,
     VOS_UINT8                           ucP2,
@@ -2002,20 +1570,7 @@ VOS_UINT32 USIMM_SendTerminalCapabilityApdu(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SendGenerateKeyVpmApdu
-功能描述  :发送GENERATE KEY VPM 命令的APDU
-输入参数  :enAppType:应用类型
-           ucP3:P3参数
-           pucData:返回的数据
-输出参数  :pstRspData:GENERATE KEY VPM命令返回的内容
-返 回 值  :VOS_OK/VOS_ERR
 
-修订记录  :
-1. 日    期   : 2015年4月9日
-   作    者   : h00300778
-   修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_SendGenerateKeyVpmApdu(
     VOS_UINT8                           ucChannelID,
     VOS_UINT8                           ucP3,
@@ -2049,20 +1604,7 @@ VOS_UINT32 USIMM_SendGenerateKeyVpmApdu(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SendUpdateSsdApdu
-功能描述  :发送UPDATE SSD命令的APDU
-输入参数  :enAppType:应用类型
-           ucP3:P3参数
-           pucData:返回的数据
-输出参数  :pstRspData:UPDATE SSD命令返回的内容
-返 回 值  :VOS_OK/VOS_ERR
 
-修订记录  :
-1. 日    期   : 2015年4月9日
-   作    者   : h00300778
-   修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_SendUpdateSsdApdu(
     VOS_UINT8                           ucP3,
     VOS_UINT8                          *pucData)
@@ -2094,20 +1636,7 @@ VOS_UINT32 USIMM_SendUpdateSsdApdu(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SendConfirmSsdApdu
-功能描述  :发送CONFIRM SSD命令的APDU
-输入参数  :enAppType:应用类型
-           ucP3:P3参数
-           pucData:返回的数据
-输出参数  :pstRspData:UPDATE SSD命令返回的内容
-返 回 值  :VOS_OK/VOS_ERR
 
-修订记录  :
-1. 日    期   : 2015年4月9日
-   作    者   : h00300778
-   修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_SendConfirmSsdApdu(
     VOS_UINT8                           ucP3,
     VOS_UINT8                          *pucData)
@@ -2139,21 +1668,7 @@ VOS_UINT32 USIMM_SendConfirmSsdApdu(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SendManageSsdApdu
-功能描述  :发送MANAGE SSD命令的APDU
-输入参数  :enAppType:应用类型
-           ucP2:P2参数
-           ucP3:P3参数
-           pucData:返回的数据
-输出参数  :pstRspData:UPDATE SSD命令返回的内容
-返 回 值  :VOS_OK/VOS_ERR
 
-修订记录  :
-1. 日    期   : 2015年4月9日
-   作    者   : h00300778
-   修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_SendManageSsdApdu(
     VOS_UINT8                           ucChannelID,
     VOS_UINT8                           ucP2,
@@ -2187,22 +1702,7 @@ VOS_UINT32 USIMM_SendManageSsdApdu(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SendAuthenticationApdu
-功能描述  :发送AUTHENTICAION命令的APDU
-输入参数  :enAppType:应用类型
-           ucP1:P1参数
-           ucP2:P2参数
-           ucP3:P3参数
-           pucData:返回的数据
-输出参数  :pstRspData:STATUS命令返回的FCP内容
-返 回 值  :VOS_OK/VOS_ERR
 
-修订记录  :
-1. 日    期   : 2015年3月7日
-    作    者   : h00300778
-    修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_SendAuthenticationApdu(
     USIMM_CARDAPP_ENUM_UINT32           enAppType,
     VOS_UINT8                           ucP1,
@@ -2247,20 +1747,7 @@ VOS_UINT32 USIMM_SendAuthenticationApdu(
 }
 
 
-/*****************************************************************************
-函 数 名  :USIMM_DeactivateFile
-功能描述  :DeactivateFile命令发送
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_DLHandle
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_SendDeactivateApdu(
     VOS_UINT8                           ucChannelID)
 {
@@ -2278,20 +1765,7 @@ VOS_UINT32 USIMM_SendDeactivateApdu(
                                 VOS_NULL_PTR);   /*调用链路层处理函数*/
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ActivateFile
-功能描述  :ActivateFile命令发送
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_DLHandle
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_SendActivateApdu(
     VOS_UINT8                           ucChannelID)
 {
@@ -2310,19 +1784,7 @@ VOS_UINT32 USIMM_SendActivateApdu(
                                 VOS_NULL_PTR);   /*调用链路层处理函数*/
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_INIT_GetTermimalProfile
-功能描述  : 初始化中获得终端参数
-输入参数  : ucLen
-            pucData
-输出参数  : 无
-返 回 值  : VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2015年04月10日
-   作    者   : c00299064
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_SendTermimalProfileDownloadApdu(
     VOS_UINT8                           ucLen,
     VOS_UINT8                          *pucData
@@ -2353,19 +1815,7 @@ VOS_UINT32 USIMM_SendTermimalProfileDownloadApdu(
                                 VOS_NULL_PTR);
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_INIT_SendStoreESNMEIDApdu
-功能描述  : 初始化中保存ESNMEID
-输入参数  : ucLen
-            pucData
-输出参数  : 无
-返 回 值  : VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2015年04月10日
-   作    者   : c00299064
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_SendStoreESNMEIDApdu(
     UICC_STORE_ESN_MEID_P1_UINT8        enDataType,
     VOS_UINT8                           ucChannelID,
@@ -2402,19 +1852,7 @@ VOS_UINT32 USIMM_SendStoreESNMEIDApdu(
 
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_SendComputIPApdu
-功能描述  : 下发ComputeIP命令
-输入参数  : ucLen
-            pucData
-输出参数  : 无
-返 回 值  : VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2015年06月10日
-   作    者   : zhuli
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_SendComputeIPApdu(
     VOS_UINT8                           ucChannelID,
     USIMM_COMPUTEIP_AUTH_ENUM_UINT32	enP1,
@@ -2450,19 +1888,7 @@ VOS_UINT32 USIMM_SendComputeIPApdu(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_SendBCMCSApdu
-功能描述  : 下发BCMCS命令
-输入参数  : ucLen
-            pucData
-输出参数  : 无
-返 回 值  : VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2015年06月10日
-   作    者   : zhuli
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_SendBCMCSApdu(
     VOS_UINT8                           ucChannelID,
     USIMM_BCMCS_AUTH_ENUM_UINT32	    enP1,
@@ -2513,19 +1939,7 @@ VOS_UINT32 USIMM_SendBCMCSApdu(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_SendAppAuthApdu
-功能描述  : 下发CDMA APP Auth命令
-输入参数  : ucLen
-            pucData
-输出参数  : 无
-返 回 值  : VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2015年06月10日
-   作    者   : zhuli
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_SendAppAuthApdu(
     VOS_UINT8                           ucChannelID,
     USIMM_U8_DATA_STRU                 *pstCmdData,
@@ -2579,20 +1993,7 @@ extern "C" {
 #define    THIS_FILE_ID        PS_FILE_ID_USIMM_APDUMODULE_C
 /*lint +e767*/
 
-/*****************************************************************************
-函 数 名  :USIMM_CheckSW
-功能描述  :检查命令发送的结构
-输入参数  :pstUSIMMAPDU
 
-输出参数  :无
-返 回 值  :USIMM_SWCHECK_ENUM_UINT16
-调用函数  :无
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 USIMM_CheckSW(USIMM_APDU_ST *pstUSIMMAPDU)
 {
     USIMM_SWCHECK_ST                   *pstSWCheck;
@@ -2692,24 +2093,7 @@ VOS_UINT32 USIMM_CheckSW(USIMM_APDU_ST *pstUSIMMAPDU)
     return (VOS_UINT32)enResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SelectFileByChannelID_APDU
-功能描述  :通过指定的通道号发送选择文件的命令
-输入参数  :ucChannelID:通道ID号
-           ucP1:     命令参数1
-           ucP2:     命令参数2
-           ucP3:     命令参数3
-           pucData:  命令数据
-输出参数  :无
-返 回 值  : VOS_ERR
-            VOS_OK
-调用函数  :USIMM_DLHandle
 
-修订记录  :
-1. 日    期   : 2013年5月15日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_SelectFileByChannelID_APDU(VOS_UINT8 ucChannelID, USIMM_APDU_ST *pstApduInfo)
 {
     VOS_UINT32                          ulResult;
@@ -2743,39 +2127,13 @@ VOS_UINT32 USIMM_SelectFileByChannelID_APDU(VOS_UINT8 ucChannelID, USIMM_APDU_ST
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SelectFile_APDU
-功能描述  :发送选择文件的命令
-输入参数  :ucP1:     命令参数1
-           ucP2:     命令参数2
-           ucP3:     命令参数3
-           pucData:  命令数据
-输出参数  :无
-返 回 值  : VOS_ERR
-            VOS_OK
-调用函数  :USIMM_DLHandle
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_SelectFile_APDU(USIMM_APDU_ST   *pstApduInfo)
 {
     return USIMM_SelectFileByChannelID_APDU(0, pstApduInfo);
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ReselectFileAPDU
-功能描述  :尝试多次进行选文件操作
-输入参数  :pstApduInfo:Select File的APDU
-输出参数  :无
-返 回 值  :VOS_ERR/VOS_OK
-修订记录  :
-1. 日    期   : 2013年6月17日
-   作    者   : g47350
-   修改内容   : 新增加函数
-*****************************************************************************/
+
 VOS_UINT32 USIMM_ReselectFileAPDU(USIMM_APDU_ST   *pstApduInfo)
 {
     VOS_UINT32                          ulIndex;
@@ -2813,22 +2171,7 @@ VOS_UINT32 USIMM_ReselectFileAPDU(USIMM_APDU_ST   *pstApduInfo)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_StatusByID_APDU
-功能描述  :通过指定的通道号Status命令发送
-输入参数  :ucP1:       命令参数1
-           ucP2:       命令参数2
-           ucP3:       命令参数3
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_DLHandle
 
-修订记录  :
-1. 日    期   : 2013年5月15日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_StatusByChannelID_APDU(VOS_UINT8 ucChannelID, VOS_UINT8 ucP1,VOS_UINT8 ucP2,VOS_UINT8 ucP3)
 {
     VOS_UINT32 ulResult;
@@ -2867,42 +2210,13 @@ VOS_UINT32 USIMM_StatusByChannelID_APDU(VOS_UINT8 ucChannelID, VOS_UINT8 ucP1,VO
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_Status_APDU
-功能描述  :Status命令发送
-输入参数  :ucP1:       命令参数1
-           ucP2:       命令参数2
-           ucP3:       命令参数3
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_DLHandle
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_Status_APDU(VOS_UINT8 ucP1,VOS_UINT8 ucP2,VOS_UINT8 ucP3)
 {
     return USIMM_StatusByChannelID_APDU(0, ucP1, ucP2, ucP3);
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ReadBinary_APDU
-功能描述  :ReadBinary命令发送
-输入参数  :usOffset:读取内容偏移
-           ucP3:     读取内容长度
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_DLHandle
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_ReadBinary_APDU(VOS_UINT16 usOffset, VOS_UINT8 ucP3)
 {
     VOS_UINT32                          ulResult;
@@ -2951,22 +2265,7 @@ VOS_UINT32 USIMM_ReadBinary_APDU(VOS_UINT16 usOffset, VOS_UINT8 ucP3)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UpdateBinary_APDU
-功能描述  :UpdateBinary命令发送
-输入参数  :usOffset:更新内容偏移
-           ucP3:   更新内容长度
-           pucData:更新数据内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_DLHandle
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_UpdateBinary_APDU(VOS_UINT16 usOffset, VOS_UINT8 ucP3, VOS_UINT8* pucData)
 {
     VOS_UINT32                          ulResult;
@@ -3017,22 +2316,7 @@ VOS_UINT32 USIMM_UpdateBinary_APDU(VOS_UINT16 usOffset, VOS_UINT8 ucP3, VOS_UINT
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ReadRecord_APDU
-功能描述  :ReadRecord命令发送
-输入参数  :ucRecordNum:读取记录号
-           ucMode:        读取方式
-           ucLen:          读取数据长度
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_DLHandle
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_ReadRecord_APDU(VOS_UINT8 ucRecordNum, VOS_UINT8 ucMode, VOS_UINT8 ucLen)
 {
     VOS_UINT32                          ulResult;
@@ -3080,23 +2364,7 @@ VOS_UINT32 USIMM_ReadRecord_APDU(VOS_UINT8 ucRecordNum, VOS_UINT8 ucMode, VOS_UI
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UpdateRecord_APDU
-功能描述  :UpdateRecord命令发送
-输入参数  :ucRecordNum:更新记录号
-           ucMode:        更新方式
-           ucLen:          更新数据长度
-           pucData:      更新数据内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_DLHandle
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_UpdateRecord_APDU(VOS_UINT8 ucRecordNum, VOS_UINT8 ucMode, VOS_UINT8 ucLen, VOS_UINT8* pucData)
 {
     VOS_UINT32                          ulResult;
@@ -3147,23 +2415,7 @@ VOS_UINT32 USIMM_UpdateRecord_APDU(VOS_UINT8 ucRecordNum, VOS_UINT8 ucMode, VOS_
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_Search_APDU
-功能描述  :Search命令发送
-输入参数  :ucP1:     命令参数1
-           ucP2:     命令参数2
-           ucP3:     命令参数3
-           pucData:  命令数据
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_DLHandle
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_Search_APDU(VOS_UINT8 ucP1, VOS_UINT8 ucP2, VOS_UINT8 ucP3, VOS_UINT8* pucData)
 {
     VOS_UINT32 ulResult;
@@ -3201,21 +2453,7 @@ VOS_UINT32 USIMM_Search_APDU(VOS_UINT8 ucP1, VOS_UINT8 ucP2, VOS_UINT8 ucP3, VOS
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_Increace_APDU
-功能描述  :Increace命令发送
-输入参数  :ucLen:       数据长度
-           pucData:   数据内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_DLHandle
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_Increase_APDU(VOS_UINT8 ucLen, VOS_UINT8* pucData)
 {
     VOS_UINT32 ulResult;
@@ -3251,21 +2489,7 @@ VOS_UINT32 USIMM_Increase_APDU(VOS_UINT8 ucLen, VOS_UINT8* pucData)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_VerifyPIN_APDU
-功能描述  :VerifyPIN命令发送
-输入参数  :ucPINType:  PIN类型
-           pucPINData: PIN 数据
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_DLHandle
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_PINVerify_APDU(VOS_UINT8 ucCmdType,VOS_UINT8 ucPINType, VOS_UINT8* pucPINData)
 {
     VOS_UINT32 ulResult;
@@ -3292,9 +2516,7 @@ VOS_UINT32 USIMM_PINVerify_APDU(VOS_UINT8 ucCmdType,VOS_UINT8 ucPINType, VOS_UIN
 
     if(8 == ucLen)
     {
-        /*lint -e668 -e534 修改人: j00174725; 检视人: xucheng */
         VOS_MemCpy(gstUSIMMAPDU.aucSendBuf, pucPINData, 0x08);/*填充APDU命令内容*/
-        /*lint +e668 +e534 修改人: j00174725; 检视人: xucheng */
     }
 
     gstUSIMMAPDU.ulLcValue = ucLen;                              /*填充命令其它内容*/
@@ -3313,22 +2535,7 @@ VOS_UINT32 USIMM_PINVerify_APDU(VOS_UINT8 ucCmdType,VOS_UINT8 ucPINType, VOS_UIN
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ChangePIN_APDU
-功能描述  :ChangePIN命令发送
-输入参数  :ucPINType: PIN类型
-           pucOldPIN: 旧PIN
-           pucNewPIN:新PIN
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_DLHandle
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_ChangePIN_APDU(VOS_UINT8 ucPINType, VOS_UINT8* pucOldPIN, VOS_UINT8* pucNewPIN)
 {
     VOS_UINT32 ulResult;
@@ -3365,22 +2572,7 @@ VOS_UINT32 USIMM_ChangePIN_APDU(VOS_UINT8 ucPINType, VOS_UINT8* pucOldPIN, VOS_U
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UnblockPIN_APDU
-功能描述  :UnblockPIN命令发送
-输入参数  :ucPINType:  PIN类型
-           pucPUKData: PUK 数据
-           pucPINData: PIN 数据
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_DLHandle
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_UnblockPIN_APDU(VOS_UINT8 ucPINType, VOS_UINT8* pucPUKData, VOS_UINT8* pucPINData)
 {
     VOS_UINT32 ulResult;
@@ -3407,9 +2599,7 @@ VOS_UINT32 USIMM_UnblockPIN_APDU(VOS_UINT8 ucPINType, VOS_UINT8* pucPUKData, VOS
 
     if(0x00  != ucP3)
     {
-        /*lint -e668 -e534 修改人: j00174725; 检视人: xucheng */
         VOS_MemCpy(&gstUSIMMAPDU.aucSendBuf[0], pucPUKData, 0x08);/*填充APDU命令内容*/
-        /*lint +e668 修改人: j00174725; 检视人: xucheng */
 
         VOS_MemCpy(&gstUSIMMAPDU.aucSendBuf[8], pucPINData, 0x08);
         /*lint +e534*/
@@ -3431,20 +2621,7 @@ VOS_UINT32 USIMM_UnblockPIN_APDU(VOS_UINT8 ucPINType, VOS_UINT8* pucPUKData, VOS
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_DeactivateFile_APDU
-功能描述  :DeactivateFile命令发送
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_DLHandle
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_DeactivateFile_APDU(VOS_VOID)
 {
     VOS_UINT32 ulResult;
@@ -3475,20 +2652,7 @@ VOS_UINT32 USIMM_DeactivateFile_APDU(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ActivateFile_APDU
-功能描述  :ActivateFile命令发送
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_DLHandle
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_ActivateFile_APDU(VOS_VOID)
 {
     VOS_UINT32 ulResult;
@@ -3519,22 +2683,7 @@ VOS_UINT32 USIMM_ActivateFile_APDU(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_Authentication_APDU
-功能描述  :Authentication命令发送
-输入参数  :ucMode: 鉴权类型
-           pucRand:随机数
-           pucAuth:鉴权数据
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_DLHandle
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_Authentication_APDU(VOS_UINT8 ucP1, VOS_UINT8 ucMode, VOS_UINT8 *pucData, VOS_UINT32 ulDataLen)
 {
     VOS_UINT32                          ulResult;
@@ -3578,21 +2727,7 @@ VOS_UINT32 USIMM_Authentication_APDU(VOS_UINT8 ucP1, VOS_UINT8 ucMode, VOS_UINT8
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_TermimalProfile_APDU
-功能描述  :TermimalProfile命令发送
-输入参数  :ucLen:       数据长度
-           pucData:   数据内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_DLHandle
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_TermimalProfile_APDU(VOS_UINT8 ucLen, VOS_UINT8* pucData)
 {
     VOS_UINT32 ulResult;
@@ -3627,22 +2762,7 @@ VOS_UINT32 USIMM_TermimalProfile_APDU(VOS_UINT8 ucLen, VOS_UINT8* pucData)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_Envelope_APDU
-功能描述  :Envelope命令发送
-输入参数  :ucLen:       数据长度
-           pucData:   数据内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
 
-调用函数  :USIMM_DLHandle
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 USIMM_Envelope_APDU(VOS_UINT8 ucLen, VOS_UINT8* pucData)
 {
     VOS_UINT32 ulResult;
@@ -3678,20 +2798,7 @@ VOS_UINT32 USIMM_Envelope_APDU(VOS_UINT8 ucLen, VOS_UINT8* pucData)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_Fetch_APDU
-功能描述  :Fetch命令发送
-输入参数  :ucLen:       数据长度
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_DLHandle
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_Fetch_APDU(VOS_UINT8 ucLen)
 {
     VOS_UINT32 ulResult;
@@ -3730,21 +2837,7 @@ VOS_UINT32 USIMM_Fetch_APDU(VOS_UINT8 ucLen)
 }
 
 
-/*****************************************************************************
-函 数 名  :USIMM_TerminalResponse_APDU
-功能描述  :TerminalResponse命令发送
-输入参数  :ucLen:       数据长度
-           pucData:   数据内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_DLHandle
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_TerminalResponse_APDU(VOS_UINT8 ucLen, VOS_UINT8* pucData)
 {
     VOS_UINT32 ulResult;
@@ -3779,22 +2872,7 @@ VOS_UINT32 USIMM_TerminalResponse_APDU(VOS_UINT8 ucLen, VOS_UINT8* pucData)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_FormatCsimApdu
-功能描述  :构造CSIM命令的APDU数据
-输入参数  :pstMsg:      输入数据结构
-           pstUsimmApdu:输出APDU结构
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :VOS_MemCpy
 
- 修订记录  :
-1. 日    期   : 2010年03月19日
-   作    者   : m00128685
-   修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 USIMM_FormatCsimApdu(USIMM_GACCESS_REQ_STRU *pstMsg,
                                             USIMM_APDU_ST          *pstUsimmApdu)
 {
@@ -3866,18 +2944,7 @@ VOS_UINT32 USIMM_FormatCsimApdu(USIMM_GACCESS_REQ_STRU *pstMsg,
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_FormatIsdbApdu
-功能描述  :构造ISDB命令的APDU数据
-输入参数  :pstMsg:      输入数据结构
-           pstUsimmApdu:输出APDU结构
-输出参数  :USIMM_APDU_ST          *pstUsimmApdu
-返 回 值  :VOS_ERR/VOS_OK
-修订记录  :
-1. 日    期   : 2012年08月29日
-   作    者   : H59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_FormatIsdbApdu(
     USIMM_ISDB_ACCESS_REQ_STRU         *pstMsg,
     USIMM_APDU_ST                      *pstUsimmApdu)
@@ -3950,19 +3017,7 @@ VOS_UINT32 USIMM_FormatIsdbApdu(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_FormatStandardApdu
-功能描述  :将传进来的数据构造成标准的APDU数据
-输入参数  :pucData:     数据内容
-           usLen:       数据长度
-           pstUsimmApdu:输出APDU结构
-输出参数  :USIMM_APDU_ST          *pstUsimmApdu
-返 回 值  :VOS_ERR/VOS_OK
-修订记录  :
-1. 日    期   : 2013年05月15日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_FormatStandardApdu(VOS_UINT8 *pucData, VOS_UINT16 usLen, USIMM_APDU_ST *pstUsimmApdu)
 {
     /* 无Lc字段 */
@@ -4036,22 +3091,7 @@ VOS_UINT32 USIMM_FormatStandardApdu(VOS_UINT8 *pucData, VOS_UINT16 usLen, USIMM_
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_Manage_Channel_APDU
-功能描述  :通道管理命令发送
-输入参数  :ucP1:       命令参数1
-           ucP2:       命令参数2
-           ucP3:       命令参数3
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_DLHandle
-修订记录  :
-1. 日    期   : 2013年5月14日
-   作    者   : j00168360
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_Manage_Channel_APDU(VOS_UINT8 ucP1, VOS_UINT8 ucP2, VOS_UINT8 ucP3)
 {
     VOS_UINT32 ulResult;
@@ -4084,22 +3124,7 @@ VOS_UINT32 USIMM_Manage_Channel_APDU(VOS_UINT8 ucP1, VOS_UINT8 ucP2, VOS_UINT8 u
 }
 
 
-/*****************************************************************************
-函 数 名  :USIMM_Terminal_Capability_APDU
-功能描述  :terminal capability命令发送
-输入参数  :ucP1:       命令参数1
-           ucP2:       命令参数2
-           USIMM_TERMINAL_CAPABILITY_STRU:     命令内容数据单元
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_DLHandle
-修订记录  :
-1. 日    期   : 2013年5月14日
-   作    者   : j00168360
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_Terminal_Capability_APDU(VOS_UINT8 ucP1, VOS_UINT8 ucP2, USIMM_TERMINAL_CAPABILITY_STRU *pstTerminalCapability)
 {
     VOS_UINT32 ulResult;
@@ -4138,19 +3163,7 @@ VOS_UINT32 USIMM_Terminal_Capability_APDU(VOS_UINT8 ucP1, VOS_UINT8 ucP2, USIMM_
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_T1SendIFSD_APDU
-功能描述  :T=1协议发送IFSD命令
-输入参数  :ucData:UE可接收块的信息域大小
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2013年10月18日
-   作    者   : j00168360
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_T1SendIFSD_APDU(VOS_UINT8 ucData)
 {
     VOS_UINT32      ulResult;
@@ -4187,18 +3200,7 @@ VOS_UINT32 USIMM_T1SendIFSD_APDU(VOS_UINT8 ucData)
 
 
 #if (FEATURE_UE_MODE_CDMA == FEATURE_ON)
-/*****************************************************************************
-函 数 名  :USIMM_StoreESNMEID_APDU
-功能描述  :发送Store ESN MEID命令
-输入参数  :ucData:UE可接收块的信息域大小
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2013年10月18日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_StoreESNMEID_APDU(UICC_STORE_ESN_MEID_P1_UINT8     enDataType,
                                                     VOS_UINT8                   *pucData,
                                                     USIMM_APDU_ST               *pstUSIMMAPDU)
@@ -4235,20 +3237,7 @@ VOS_UINT32 USIMM_StoreESNMEID_APDU(UICC_STORE_ESN_MEID_P1_UINT8     enDataType,
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UpdateSsdAPDU
-功能描述  :发送UPDATE SSD命令
-输入参数  :ucLen:SSD长度
-           pucData:SSD内容
-           pstUSIMMAPDU:APDU发判断数据结构
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2014年07月10日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_UpdateSsdAPDU(VOS_UINT8                    ucLen,
                                             VOS_UINT8                   *pucData,
                                             USIMM_APDU_ST               *pstUSIMMAPDU)
@@ -4285,20 +3274,7 @@ VOS_UINT32 USIMM_UpdateSsdAPDU(VOS_UINT8                    ucLen,
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ConfirmSsdAPDU
-功能描述  :发送Store ESN MEID命令
-输入参数  :ucLen:AUTHBS长度
-           pucData:AUTHBS内容
-           pstUSIMMAPDU:APDU下发数据结构
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2014年07月10日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_ConfirmSsdAPDU(VOS_UINT8                   ucLen,
                                             VOS_UINT8                   *pucData,
                                             USIMM_APDU_ST               *pstUSIMMAPDU)
@@ -4335,21 +3311,7 @@ VOS_UINT32 USIMM_ConfirmSsdAPDU(VOS_UINT8                   ucLen,
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ManageSsdAPDU
-功能描述  :发送MANAGE SSD命令
-输入参数  :ucCmd:命令类型，区分是update ssd还是confirm ssd
-           ucLen:AUTHBS长度
-           pucData:AUTHBS内容
-           pstUSIMMAPDU:APDU下发数据结构
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2014年07月10日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_ManageSsdAPDU(VOS_UINT8                   ucCmd,
                                             VOS_UINT8                   ucLen,
                                             VOS_UINT8                   *pucData,
@@ -4387,19 +3349,7 @@ VOS_UINT32 USIMM_ManageSsdAPDU(VOS_UINT8                   ucCmd,
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_GenerateKeyVpmAPDU
-功能描述  :发送Generate Key/VPM命令
-输入参数  :ucLen:下发数据的长度
-           pucData:下发数据的内容
-           pstUSIMMAPDU:APDU下发数据结构
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-1. 日    期   : 2014年07月10日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_GenerateKeyVpmAPDU(VOS_UINT8                   ucLen,
                                                     VOS_UINT8                   *pucData,
                                                     USIMM_APDU_ST               *pstUSIMMAPDU)
@@ -4436,19 +3386,7 @@ VOS_UINT32 USIMM_GenerateKeyVpmAPDU(VOS_UINT8                   ucLen,
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_BSChallengeAPDU
-功能描述  :发送Store ESN MEID命令
-输入参数  :pucRandSeed:Rand SSD的内容
-           pstUSIMMAPDU:APDU下发数据结构
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2014年07月10日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_BSChallengeAPDU(VOS_UINT8                  *pucRandSeed,
                                              USIMM_APDU_ST               *pstUSIMMAPDU)
 {

@@ -1125,6 +1125,51 @@ static ssize_t dpe_lcd_color_temperature_store(struct platform_device *pdev,
 	return count;
 }
 
+static ssize_t dpe_lcd_ic_color_enhancement_mode_show(struct platform_device *pdev, char *buf)
+{
+	ssize_t ret = 0;
+	struct hisi_fb_data_type *hisifd = NULL;
+
+	if (NULL == pdev) {
+		HISI_FB_ERR("NULL Pointer!\n");
+		return 0;
+	}
+	hisifd = platform_get_drvdata(pdev);
+	if (NULL == hisifd) {
+		HISI_FB_ERR("NULL Pointer!\n");
+		return 0;
+	}
+
+	HISI_FB_DEBUG("fb%d, +.\n", hisifd->index);
+	ret = panel_next_lcd_ic_color_enhancement_mode_show(pdev, buf);
+	HISI_FB_DEBUG("fb%d, -.\n", hisifd->index);
+
+	return ret;
+}
+
+static ssize_t dpe_lcd_ic_color_enhancement_mode_store(struct platform_device *pdev,
+	const char *buf, size_t count)
+{
+	ssize_t ret = 0;
+	struct hisi_fb_data_type *hisifd = NULL;
+
+	if (NULL == pdev) {
+		HISI_FB_ERR("NULL Pointer!\n");
+		return 0;
+	}
+	hisifd = platform_get_drvdata(pdev);
+	if (NULL == hisifd) {
+		HISI_FB_ERR("NULL Pointer!\n");
+		return 0;
+	}
+
+	HISI_FB_DEBUG("fb%d, +.\n", hisifd->index);
+	ret = panel_next_lcd_ic_color_enhancement_mode_store(pdev, buf, count);
+	HISI_FB_DEBUG("fb%d, -.\n", hisifd->index);
+
+	return ret;
+}
+
 static ssize_t dpe_led_rg_lcd_color_temperature_show(struct platform_device *pdev, char *buf)
 {
 	ssize_t ret = 0;
@@ -1952,6 +1997,8 @@ static int dpe_probe(struct platform_device *pdev)
 	pdata->lcd_dynamic_sram_checksum_store = dpe_lcd_dynamic_sram_checksum_store;
 	pdata->lcd_color_temperature_show = dpe_lcd_color_temperature_show;
 	pdata->lcd_color_temperature_store = dpe_lcd_color_temperature_store;
+	pdata->lcd_ic_color_enhancement_mode_show = dpe_lcd_ic_color_enhancement_mode_show;
+	pdata->lcd_ic_color_enhancement_mode_store = dpe_lcd_ic_color_enhancement_mode_store;
 	pdata->led_rg_lcd_color_temperature_show = dpe_led_rg_lcd_color_temperature_show;
 	pdata->led_rg_lcd_color_temperature_store = dpe_led_rg_lcd_color_temperature_store;
 	pdata->lcd_comform_mode_show = dpe_lcd_comform_mode_show;

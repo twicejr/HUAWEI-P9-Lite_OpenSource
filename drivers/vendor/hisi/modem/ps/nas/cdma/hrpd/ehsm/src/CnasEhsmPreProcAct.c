@@ -143,22 +143,7 @@ VOS_UINT32 CNAS_EHSM_RcvHsmConnectInd_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_RcvHsmDiscInd_PreProc
- 功能描述  : 收到HSM Disc Ind消息时，需要刷新空口链路状态
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月4日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_RcvHsmDiscInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -169,22 +154,7 @@ VOS_UINT32 CNAS_EHSM_RcvHsmDiscInd_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_RcvPppModifyInd_PreProc
- 功能描述  : 收到PPP发送的ip地址变更消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月6日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_RcvPppModifyInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -203,22 +173,7 @@ VOS_UINT32 CNAS_EHSM_RcvPppModifyInd_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_RcvEsmClearAllBearer_PreProc
- 功能描述  : 预处理里处理ID_ESM_EHSM_CLEAR_ALL_BEARER_NOTIFY消息
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月14日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_RcvEsmClearAllBearer_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg

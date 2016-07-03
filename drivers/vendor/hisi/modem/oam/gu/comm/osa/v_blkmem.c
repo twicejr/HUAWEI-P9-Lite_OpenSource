@@ -2487,22 +2487,7 @@ VOS_VOID VOS_UnCacheMemFree(VOS_VOID *pVirtAddr, VOS_VOID *pPhyAddr, VOS_UINT32 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : VOS_UncacheMemPhyToVirt
- 功能描述  : 根据输入的实地址，计算对应的虚地址
- 输入参数  : pucCurPhyAddr:  当前实地址
-             pucPhyStart: 通道配置内存起始的实地址
-             pucVirtStart:通道配置内存起始的虚地址
-             ulBufLen:    通道内存空间大小
- 输出参数  : 无
- 返 回 值  : VOS_NULL: 转换失败/other: 虚地址的值
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2012年8月8日
-     作    者  : zhuli
-     修改内容  : Creat Function
-**************************************************************************** */
+
 VOS_UINT_PTR VOS_UncacheMemPhyToVirt(VOS_UINT8 *pucCurPhyAddr, VOS_UINT8 *pucPhyStart, VOS_UINT8 *pucVirtStart, VOS_UINT32 ulBufLen)
 {
 #if (VOS_LINUX == VOS_OS_VER)
@@ -2525,22 +2510,7 @@ VOS_UINT_PTR VOS_UncacheMemPhyToVirt(VOS_UINT8 *pucCurPhyAddr, VOS_UINT8 *pucPhy
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : VOS_UncacheMemVirtToPhy
- 功能描述  : 根据输入的虚地址，计算对应的实地址
- 输入参数  : pucCurVirtAddr:  当前虚地址
-             pucPhyStart: 通道配置内存起始的实地址
-             pucVirtStart:通道配置内存起始的虚地址
-             ulBufLen:    通道内存空间大小
- 输出参数  : 无
- 返 回 值  : VOS_NULL: 转换失败/other: 虚地址的值
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2012年8月8日
-     作    者  : zhuli
-     修改内容  : Creat Function
-**************************************************************************** */
+
 VOS_UINT_PTR VOS_UncacheMemVirtToPhy(VOS_UINT8 *pucCurVirtAddr, VOS_UINT8 *pucPhyStart, VOS_UINT8 *pucVirtStart, VOS_UINT32 ulBufLen)
 {
 #if (VOS_LINUX == VOS_OS_VER)
@@ -2563,19 +2533,7 @@ VOS_UINT_PTR VOS_UncacheMemVirtToPhy(VOS_UINT8 *pucCurVirtAddr, VOS_UINT8 *pucPh
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : VOS_FlushCpuWriteBuf
- 功能描述  : 刷CPU Write buffer
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2013年6月8日
-     作    者  : j00174725
-     修改内容  : Creat Function
-**************************************************************************** */
+
 /*lint -e522*/
 VOS_VOID VOS_FlushCpuWriteBuf(VOS_VOID)
 {
@@ -2597,20 +2555,7 @@ VOS_VOID VOS_FlushCpuWriteBuf(VOS_VOID)
 }
 /*lint +e522*/
 
-/*****************************************************************************
- 函 数 名  : VOS_FlushCpuCache
- 功能描述  : 刷CPU Cache
- 输入参数  : VOS_VOID *pAddress
-             VOS_INT lSize
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2014年9月16日
-     作    者  : s00207770
-     修改内容  : Creat Function
-**************************************************************************** */
+
 VOS_VOID VOS_FlushCpuCache( VOS_VOID *pAddress, VOS_UINT ulSize )
 {
 #if(VOS_RTOSCK == VOS_OS_VER)
@@ -2625,20 +2570,7 @@ VOS_VOID VOS_FlushCpuCache( VOS_VOID *pAddress, VOS_UINT ulSize )
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : VOS_InvalidCpuCache
- 功能描述  : 刷CPU Cache
- 输入参数  : VOS_VOID *pAddress
-             VOS_INT lSize
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2014年9月16日
-     作    者  : s00207770
-     修改内容  : Creat Function
-**************************************************************************** */
+
 VOS_VOID VOS_InvalidCpuCache( VOS_VOID *pAddress, VOS_INT lSize )
 {
 #if(VOS_RTOSCK == VOS_OS_VER)

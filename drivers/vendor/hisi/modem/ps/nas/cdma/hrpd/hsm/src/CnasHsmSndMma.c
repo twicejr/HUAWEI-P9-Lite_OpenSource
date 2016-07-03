@@ -28,21 +28,7 @@ extern "C"{
   3 Function Define
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSM_SndMmaHrpdInfo
- 功能描述  : HSM上报mma关于HRPD 的信息
- 输入参数  : pstCasOhmMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月3日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSM_SndMmaHrpdInfo(
     VOS_UINT32                          ulSessionSeed,         /*RATI*/
     VOS_UINT8                          *pucCurUATI, /*UATI*/
@@ -79,21 +65,7 @@ VOS_VOID CNAS_HSM_SndMmaHrpdInfo(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSM_SndMmaHardWareInfo
- 功能描述  : hsm吧硬件消息ESN和MEID发给MMA用于可维可测
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月6日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSM_SndMmaHardWareInfo(  VOS_VOID )
 {
     HSM_MMA_HARDWARE_SYS_INFO_IND_STRU  *pstSndMsg = VOS_NULL_PTR;

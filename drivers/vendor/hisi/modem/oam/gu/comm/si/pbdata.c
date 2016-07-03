@@ -29,28 +29,7 @@ extern "C" {
 /*lint +e767*/
 
 
-/*****************************************************************************
-函 数 名  :SI_PB_FindPBOffset
 
-功能描述  :用于在缓冲中定位电话本在列表中的偏移
-
-输入参数  :enPBType:输入查询的电话本类型
-
-输出参数  :pucOffset:输出查询的电话本偏移
-
-返 回 值  :VOS_OK:查询成功
-           VOS_ERR:查询失败
-
-调用函数  :无
-
-被调函数  :
-
-修订记录  :
-1. 日    期   : 2007年10月15日
-    作    者   : z00100318
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 SI_PB_FindPBOffset(SI_PB_TYPE_ENUM_UINT32  enPBType, VOS_UINT8 *pucOffset)
 {
     VOS_UINT8 i;
@@ -73,31 +52,7 @@ VOS_UINT32 SI_PB_FindPBOffset(SI_PB_TYPE_ENUM_UINT32  enPBType, VOS_UINT8 *pucOf
 }
 
 
-/*****************************************************************************
-函 数 名  :SI_PB_LocateRecord
 
-功能描述  :定位当前访问的电话本在缓冲中的位置
-
-输入参数  :enPBType:输入查询的电话本类型
-           usIndex1:访问的电话本的范围起始地址
-           usIndex2:访问的电话本的范围结束地址
-
-输出参数  :pucNumber:电话本缓冲在列表中的偏移
-           pucContent:电话本访问内容的起实地址
-
-返 回 值  :VOS_OK:查询成功
-           VOS_ERR:查询失败
-
-调用函数  :SI_PB_FindPBOffset
-
-被调函数  :
-
-修订记录  :
-1. 日    期   : 2007年10月15日
-    作    者   : z00100318
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 SI_PB_LocateRecord(SI_PB_TYPE_ENUM_UINT32  enPBType, VOS_UINT16 usIndex1, VOS_UINT16 usIndex2, VOS_UINT8 *pucNumber)
 {
     VOS_UINT8   ucPBOffset;
@@ -140,29 +95,7 @@ VOS_UINT32 SI_PB_LocateRecord(SI_PB_TYPE_ENUM_UINT32  enPBType, VOS_UINT16 usInd
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_CountADNRecordNum
 
-功能描述  :计算缓冲索引号对应的电话本文件的ID和记录号
-
-输入参数  :usIndex:索引号
-
-输出参数  :pusFileId:对应的电话本文件
-           pucRecordNum:对应的电话本记录号
-
-返 回 值  :VOS_OK:查询成功
-           VOS_ERR:查询失败
-
-调用函数  :无
-
-被调函数  :
-
-修订记录  :
-1. 日    期   : 2007年10月15日
-    作    者   : z00100318
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 SI_PB_CountADNRecordNum(VOS_UINT16 usIndex, VOS_UINT16 *pusFileId, VOS_UINT8 *pucRecordNum)
 {
     VOS_UINT8 i;
@@ -186,21 +119,7 @@ VOS_UINT32 SI_PB_CountADNRecordNum(VOS_UINT16 usIndex, VOS_UINT16 *pusFileId, VO
     return VOS_ERR;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_GetXDNFileID
-功能描述  : 根据XDN电话本类型返回对应电话本的FID
-输入参数  : ulStorage:XDN点话本类型
-输出参数  : pusFileId:电话本对应的FID
-返 回 值  : VOS_OK
-            VOS_ERR
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2008年10月15日
-    作    者   : z00100318
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 SI_PB_GetXDNFileID(VOS_UINT32 ulStorage, VOS_UINT16 *pusFileId)
 {
     VOS_UINT32 ulResult = VOS_OK;
@@ -223,31 +142,7 @@ VOS_UINT32 SI_PB_GetXDNFileID(VOS_UINT32 ulStorage, VOS_UINT16 *pusFileId)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_BcdToAscii
 
-功能描述  :BCD码转换成Ascii码
-
-输入参数  :ucBcdNumLen:转换的号码长度
-           pucBcdNum:转换的号码内容
-
-输出参数  :pucAsciiNum:转换的结果
-
-返 回 值  :无
-
-调用函数  :无
-
-被调函数  :
-
-修订记录  :
-1. 日    期   : 2007年10月15日
-    作    者   : z00100318
-    修改内容   : Creat
-2. 日    期   : 2011年08月04日
-    作    者   : w00184875
-    修改内容   : DTS2011080203533
-
-*****************************************************************************/
 VOS_VOID SI_PB_BcdToAscii(VOS_UINT8 ucBcdNumLen,VOS_UINT8 *pucBcdNum, VOS_UINT8 *pucAsciiNum, VOS_UINT8 *pucLen)
 {
 
@@ -376,30 +271,7 @@ VOS_VOID SI_PB_BcdToAscii(VOS_UINT8 ucBcdNumLen,VOS_UINT8 *pucBcdNum, VOS_UINT8 
     return;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_TransPBName
 
-功能描述  :解析电话本姓名
-
-输入参数  :ucNameMax 姓名长度的最大值
-           pucName 姓名内容
-
-输出参数  :pAlphaType 转换的姓名编码类型
-           pNameLen 转换的姓名长度
-
-返 回 值  :VOS_OK 解析成功
-           VOS_ERR 解析失败
-
-调用函数  :无
-
-被调函数  :
-
-修订记录  :
-1. 日    期   : 2007年10月15日
-    作    者   : z00100318
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_VOID SI_PB_DecodePBName(VOS_UINT8 ucNameMax, VOS_UINT8 *pucName,
                                         VOS_UINT32 *pAlphaType, VOS_UINT8 *pNameLen)
 {
@@ -479,28 +351,7 @@ VOS_VOID SI_PB_DecodePBName(VOS_UINT8 ucNameMax, VOS_UINT8 *pucName,
     return;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_TransPBFromate
 
-功能描述  :转换当前的一条电话本内容为指定的数据结构
-
-输入参数  :pstPBContent 转换的电话本内容信息
-           ucIndex 转换的电话本的索引号/记录号
-           pContent 转换的电话本内容
-
-输出参数  :pstRecord 转换的电话本数据结构
-
-返 回 值  :VOS_OK 解析成功
-           VOS_ERR 解析失败
-
-调用函数  :
-被调函数  :
-修订记录  :
-1. 日    期   : 2007年10月15日
-    作    者   : z00100318
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_VOID SI_PB_TransPBFromate(SI_PB_CONTENT_STRU *pstPBContent, VOS_UINT16 usIndex, VOS_UINT8 *pContent, SI_PB_RECORD_STRU *pstRecord)
 {
     VOS_UINT32 ulResult;
@@ -596,28 +447,7 @@ VOS_VOID SI_PB_TransPBFromate(SI_PB_CONTENT_STRU *pstPBContent, VOS_UINT16 usInd
     return ;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_MemSet
 
-功能描述  :刷新内存为FF
-
-输入参数  :ucLen: 刷新的内存长度
-           pucMem:刷新的内存地址
-
-输出参数  :无
-
-返 回 值  :无
-
-调用函数  :无
-
-被调函数  :无
-
-修订记录  :
-1. 日    期   : 2007年10月15日
-    作    者   : z00100318
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_VOID SI_PB_MemSet(VOS_UINT8 ucLen, VOS_UINT8 ucValue,VOS_UINT8 *pucMem)
 {
     VOS_UINT8 i;
@@ -630,19 +460,7 @@ VOS_VOID SI_PB_MemSet(VOS_UINT8 ucLen, VOS_UINT8 ucValue,VOS_UINT8 *pucMem)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_GetBitFromBuf
-功能描述  :从数据中获取指定Bit位的值　
-输入参数  :ucDataBuf:   数据内容
-           ulBitNo:     Bit号，从1开始
-输出参数  :无
-返 回 值  : 1:有效、0:无效
-调用函数  :无
-修订记录  :
-1. 日    期   : 2009年5月19日
-    作    者   : m00128685
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PB_GetBitFromBuf(VOS_UINT8 *pucDataBuf, VOS_UINT32 ulBitNo)
 {
     VOS_UINT32  ulOffset;
@@ -662,21 +480,7 @@ VOS_UINT32 SI_PB_GetBitFromBuf(VOS_UINT8 *pucDataBuf, VOS_UINT32 ulBitNo)
     return (pucDataBuf[ulOffset]>>ucBit)&0x1;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_CheckEccValidity
-功能描述  :检查ECC内容是否为空
-输入参数  :pstPBContent:当前电话本的基本信息
-           pContent:电话的内容
-输出参数  :无
-返 回 值  :VOS_OK:查询成功
-           VOS_ERR:查询失败
-调用函数  :无
-被调函数  :
-修订记录  :
-1. 日    期   : 2009年12月5日
-   作    者   : z00100318
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PB_CheckEccValidity(VOS_UINT8 *pContent)
 {
     if (VOS_NULL_PTR == pContent)
@@ -700,29 +504,7 @@ VOS_UINT32 SI_PB_CheckEccValidity(VOS_UINT8 *pContent)
     }
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_CheckContentValidity
 
-功能描述  :简单检查当前的电话本内容是否为空
-
-输入参数  :pstPBContent:当前电话本的基本信息
-           pContent:电话的内容
-
-输出参数  :无
-
-返 回 值  :VOS_OK:查询成功
-           VOS_ERR:查询失败
-
-调用函数  :无
-
-被调函数  :
-
-修订记录  :
-1. 日    期   : 2007年10月15日
-    作    者   : z00100318
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 SI_PB_CheckContentValidity(SI_PB_CONTENT_STRU *pstPBContent, VOS_UINT8 *pContent)
 {
     if ((VOS_NULL_PTR == pContent)||(VOS_NULL_PTR == pstPBContent))
@@ -747,29 +529,7 @@ VOS_UINT32 SI_PB_CheckContentValidity(SI_PB_CONTENT_STRU *pstPBContent, VOS_UINT
     }
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_CheckANRValidity
 
-功能描述  :简单检查当前的电话本内容是否为空
-
-输入参数  :pstPBContent:当前电话本的基本信息
-           pContent:电话的内容
-
-输出参数  :无
-
-返 回 值  :VOS_OK:查询成功
-           VOS_ERR:查询失败
-
-调用函数  :无
-
-被调函数  :
-
-修订记录  :
-1. 日    期   : 2007年10月15日
-    作    者   : m00128685
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 SI_PB_CheckANRValidity(VOS_UINT8 *pContent)
 {
     if (VOS_NULL_PTR == pContent)
@@ -795,29 +555,7 @@ VOS_UINT32 SI_PB_CheckANRValidity(VOS_UINT8 *pContent)
 
 
 #if ((OSA_CPU_CCPU == VOS_OSA_CPU)||(defined(DMT)))
-/*****************************************************************************
-函 数 名  :SI_PB_CountADNIndex
 
-功能描述  :计算当前的文件记录号对应的缓冲索引号
-
-输入参数  :usFileId:电话本文件ID
-           ucRecordNum:实际的记录号
-
-输出参数  :pusIndex:索引号
-
-返 回 值  :VOS_OK:查询成功
-           VOS_ERR:查询失败
-
-调用函数  :无
-
-被调函数  :
-
-修订记录  :
-1. 日    期   : 2007年10月15日
-    作    者   : z00100318
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 SI_PB_CountADNIndex(VOS_UINT16 usFileId, VOS_UINT8 ucRecordNum, VOS_UINT16 *pusIndex)
 {
     VOS_UINT8 i;
@@ -840,29 +578,7 @@ VOS_UINT32 SI_PB_CountADNIndex(VOS_UINT16 usFileId, VOS_UINT8 ucRecordNum, VOS_U
     return VOS_ERR;             /*当前文件不存在文件列表中*/
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_GetADNSfi
 
-功能描述  :根据ADN的fid获取其SFI
-
-输入参数  :usIndex:索引号
-
-输出参数  :pusFileId:对应的电话本文件
-           pucRecordNum:对应的电话本记录号
-
-返 回 值  :VOS_OK:查询成功
-           VOS_ERR:查询失败
-
-调用函数  :无
-
-被调函数  :
-
-修订记录  :
-1. 日    期   : 2009年06月08日
-    作    者   : m00128685
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 SI_PB_GetADNSfi(VOS_UINT8 *pucSFI, VOS_UINT16 usFileId)
 {
     VOS_UINT8 i;
@@ -880,21 +596,7 @@ VOS_UINT32 SI_PB_GetADNSfi(VOS_UINT8 *pucSFI, VOS_UINT16 usFileId)
     return VOS_ERR;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_CheckADNFileID
-功能描述  : 检查文件是否是ADN文件
-输入参数  : usFileID:文件ID
-输出参数  : 无
-返 回 值  : VOS_OK
-            VOS_ERR
-调用函数  : 无
-被调函数  :
-修订记录  :
-1.  日    期   : 2008年10月15日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 SI_PB_CheckADNFileID(VOS_UINT16 usFileID)
 {
     VOS_UINT8 j;
@@ -910,21 +612,7 @@ VOS_UINT32 SI_PB_CheckADNFileID(VOS_UINT16 usFileID)
     return VOS_ERR;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_GetXDNPBType
-功能描述  : 输出FID对应的电话本类型
-输入参数  : usFileId:FID
-输出参数  : pulPBType:电话本类型
-返 回 值  : VOS_OK
-            VOS_ERR
-调用函数  : SI_PB_CheckADNFileID
-被调函数  :
-修订记录  :
-1.  日    期   : 2008年10月15日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 SI_PB_GetXDNPBType(VOS_UINT32 *pulPBType, VOS_UINT16 usFileId)
 {
     VOS_UINT32 ulResult = VOS_OK;
@@ -960,21 +648,7 @@ VOS_UINT32 SI_PB_GetXDNPBType(VOS_UINT32 *pulPBType, VOS_UINT16 usFileId)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_GetANRFid
-功能描述  : 获取输入的ANR文件计数的ANR文件ID
-输入参数  : usANRFileId:FID
-输出参数  : pulPBType:电话本类型
-返 回 值  : VOS_OK 成功
-            VOS_ERR 失败
-调用函数  : SI_PB_CheckADNFileID
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年06月03日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 SI_PB_GetANRFid(VOS_UINT32 ulANRFileNum,VOS_UINT16 *pusANRFileId)
 {
     VOS_UINT32 i;
@@ -1002,21 +676,7 @@ VOS_UINT32 SI_PB_GetANRFid(VOS_UINT32 ulANRFileNum,VOS_UINT16 *pusANRFileId)
     return VOS_ERR;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_GetANRSuffix
-功能描述  : 获取输入的ANR文件ID对应的控制文件下标
-输入参数  : usANRFileId:FID
-输出参数  : pulPBType:电话本类型
-返 回 值  : VOS_OK 成功
-            VOS_ERR 失败
-调用函数  : SI_PB_CheckADNFileID
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年06月03日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 SI_PB_GetANRSuffix(VOS_UINT8 *pucXSuffix,VOS_UINT8 *pucYSuffix
                                       ,VOS_UINT16 usANRFileId)
 {
@@ -1040,21 +700,7 @@ VOS_UINT32 SI_PB_GetANRSuffix(VOS_UINT8 *pucXSuffix,VOS_UINT8 *pucYSuffix
     return VOS_ERR;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_GetIAPFidFromANR
-功能描述  : 获取输入的ANR文件ID对应的IAP
-输入参数  : usANRFileId:FID
-输出参数  : pusIAPFileId:IAP文件FID
-返 回 值  : VOS_OK 成功
-            VOS_ERR 失败
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年06月03日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 SI_PB_GetIAPFidFromANR(VOS_UINT16 usANRFileId, VOS_UINT16 *pusIAPFileId)
 {
     VOS_UINT32 i;
@@ -1076,21 +722,7 @@ VOS_UINT32 SI_PB_GetIAPFidFromANR(VOS_UINT16 usANRFileId, VOS_UINT16 *pusIAPFile
     return VOS_ERR;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_GetIAPFidFromEML
-功能描述  : 获取输入的EML文件ID对应的IAP
-输入参数  : usANRFileId:FID
-输出参数  : pulPBType:电话本类型
-返 回 值  : VOS_OK 成功
-            VOS_ERR 失败
-调用函数  : SI_PB_CheckADNFileID
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年06月03日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 SI_PB_GetIAPFidFromEML(VOS_UINT16 usEMLFileId, VOS_UINT16 *pusIAPFileId)
 {
     VOS_UINT8 i;
@@ -1108,21 +740,7 @@ VOS_UINT32 SI_PB_GetIAPFidFromEML(VOS_UINT16 usEMLFileId, VOS_UINT16 *pusIAPFile
     return VOS_ERR;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_GheckANRLast
-功能描述  : 根据控制信息下标和ANR文件ID，判断是否为最后一个
-输入参数  : usANRFileId:FID
-输出参数  : pulPBType:电话本类型
-返 回 值  : VOS_OK 最后一个
-            VOS_ERR 不是最后一个
-调用函数  : SI_PB_CheckADNFileID
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年06月03日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 SI_PB_GheckANRLast(VOS_UINT8 ucXSuffix,VOS_UINT8 ucYSuffix)
 {
     if ((ucXSuffix+1) == (VOS_UINT8)gstPBCtrlInfo.ulADNFileNum)
@@ -1138,29 +756,7 @@ VOS_UINT32 SI_PB_GheckANRLast(VOS_UINT8 ucXSuffix,VOS_UINT8 ucYSuffix)
     return VOS_ERR;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_GetEMLIdFromADN
 
-功能描述  :通过ADN获取到Email文件的ID
-
-输入参数  :usIndex:索引号
-
-输出参数  :pusFileId:对应的电话本文件
-           pucRecordNum:对应的电话本记录号
-
-返 回 值  :VOS_OK:查询成功
-           VOS_ERR:查询失败
-
-调用函数  :无
-
-被调函数  :
-
-修订记录  :
-1.  日    期   : 2009年06月10日
-    作    者   : m00128685
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 SI_PB_GetEMLFIdFromADN(VOS_UINT16 *pusEMLFileId, VOS_UINT16 usADNId)
 {
     VOS_UINT32 i;
@@ -1180,29 +776,7 @@ VOS_UINT32 SI_PB_GetEMLFIdFromADN(VOS_UINT16 *pusEMLFileId, VOS_UINT16 usADNId)
     return VOS_ERR;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_GetANRFidFromADNFid
 
-功能描述  :通过ADN Fid 计算ANR Fid
-
-输入参数  :usIndex:索引号
-
-输出参数  :pusFileId:对应的电话本文件
-           pucRecordNum:对应的电话本记录号
-
-返 回 值  :VOS_OK:查询成功
-           VOS_ERR:查询失败
-
-调用函数  :无
-
-被调函数  :
-
-修订记录  :
-1.  日    期   : 2009年06月08日
-    作    者   : m00128685
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 SI_PB_GetANRFidFromADN(VOS_UINT8 ucANROffset, VOS_UINT16 usADNFileId,VOS_UINT16 *pusANRFileId)
 {
     VOS_UINT32 i;
@@ -1220,29 +794,7 @@ VOS_UINT32 SI_PB_GetANRFidFromADN(VOS_UINT8 ucANROffset, VOS_UINT16 usADNFileId,
 
     return VOS_ERR;
 }
-/*****************************************************************************
-函 数 名  :SI_PB_GetFreeANRRecordNum
 
-功能描述  :根据输入的ANR文件ID,获取空闲记录号
-
-输入参数  :usIndex:索引号
-
-输出参数  :pusFileId:对应的电话本文件
-           pucRecordNum:对应的电话本记录号
-
-返 回 值  :VOS_OK:查询成功
-           VOS_ERR:查询失败
-
-调用函数  :无
-
-被调函数  :
-
-修订记录  :
-1.  日    期   : 2009年06月08日
-    作    者   : m00128685
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 SI_PB_GetFreeANRRecordNum(VOS_UINT16 usANRFid,VOS_UINT8 *pucRecordNum, VOS_UINT16 *pusIAPFid)
 {
     VOS_UINT32 i = 0;
@@ -1295,29 +847,7 @@ VOS_UINT32 SI_PB_GetFreeANRRecordNum(VOS_UINT16 usANRFid,VOS_UINT8 *pucRecordNum
 
     return VOS_ERR;
 }
-/*****************************************************************************
-函 数 名  :SI_PB_GetFreeEMLRecordNum
 
-功能描述  :根据输入的Email文件ID,获取空闲记录号
-
-输入参数  :usIndex:索引号
-
-输出参数  :pusFileId:对应的电话本文件
-           pucRecordNum:对应的电话本记录号
-
-返 回 值  :VOS_OK:查询成功
-           VOS_ERR:查询失败
-
-调用函数  :无
-
-被调函数  :
-
-修订记录  :
-1.  日    期   : 2009年06月08日
-    作    者   : m00128685
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 SI_PB_GetFreeEMLRecordNum(VOS_UINT16 ucEMLFid,VOS_UINT8 *pucRecordNum, VOS_UINT16 *pusIAPFid)
 {
     VOS_UINT32 i = 0;
@@ -1352,29 +882,7 @@ VOS_UINT32 SI_PB_GetFreeEMLRecordNum(VOS_UINT16 ucEMLFid,VOS_UINT8 *pucRecordNum
     return VOS_ERR;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_GetEMLRecord
 
-功能描述  :根据输入的Email文件ID和Record，获取Email缓存内容
-
-输入参数  :usIndex:索引号
-
-输出参数  :pusFileId:对应的电话本文件
-           pucRecordNum:对应的电话本记录号
-
-返 回 值  :VOS_OK:查询成功
-           VOS_ERR:查询失败
-
-调用函数  :无
-
-被调函数  :
-
-修订记录  :
-1.  日    期   : 2009年06月08日
-    作    者   : m00128685
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 SI_PB_GetEMLRecord(VOS_UINT8 **ppEMLContent, VOS_UINT16 usEMLFileId,VOS_UINT8 ucRecordNum)
 {
     VOS_UINT32 i = 0;
@@ -1402,20 +910,7 @@ VOS_UINT32 SI_PB_GetEMLRecord(VOS_UINT8 **ppEMLContent, VOS_UINT16 usEMLFileId,V
 
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_FindUnusedExtRecord
-功能描述  : 从EXT文件的缓存中找到第一个可以使用的空闲记录
-输入参数  : 无
-输出参数  :
-返 回 值  : VOS_OK
-            VOS_ERR
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年5月9日
-    作    者   : h59254
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32  SI_PB_FindUnusedExtRecord(SI_EXT_CONTENT_STRU *pstEXTContent,
                                                     VOS_UINT8 *pucRecord,
                                                     VOS_UINT8 ucRecordCount)
@@ -1473,29 +968,7 @@ VOS_UINT32  SI_PB_FindUnusedExtRecord(SI_EXT_CONTENT_STRU *pstEXTContent,
     }
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_AsciiToBcd
 
-功能描述  :转换ASCII码为BCD码
-
-输入参数  :pucAsciiNum:转换的Ascii内容
-           ucAsciiNumLen:转换的长度
-
-输出参数  :pucBcdNum:转换的结果内容
-           pucBcdNumLen:转换的结果长度
-
-返 回 值      :无
-
-调用函数  :无
-
-被调函数  :
-
-修订记录  :
-1. 日    期   : 2007年10月15日
-    作    者   : z00100318
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_VOID SI_PB_AsciiToBcd(VOS_UINT8 *pucAsciiNum, VOS_UINT8 ucAsciiNumLen, VOS_UINT8 *pucBcdNum, VOS_UINT8 *pucBcdNumLen)
 {
 
@@ -1583,28 +1056,7 @@ VOS_VOID SI_PB_AsciiToBcd(VOS_UINT8 *pucAsciiNum, VOS_UINT8 ucAsciiNumLen, VOS_U
     return;
 }
 
-/*****************************************************************************
-函 数 名  :SI_FindMultiTagInBERTLV
 
-功能描述  :在SimpleTLV数据结构中查询当前的Tag，返回实际数据长度的偏移
-
-输入参数  :ucDataBuf:   数据内容
-           ucTag:        查询的Tag
-           ulDataLen:   数据总长度
-
-输出参数  :无
-
-返 回 值  :USIMM_TAGNOTFOUND
-           找到Tag的个数
-
-调用函数  :无
-
-修订记录  :
-1. 日    期   : 2009年05月23日
-    作    者   : m00128685
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 SI_FindMultiTagInBERTLV(VOS_UINT8 *pType1TagAddr, VOS_UINT8 ucTag,
                                             VOS_UINT8 *pucOffset,VOS_UINT8 ucTagCount)
 {
@@ -1631,28 +1083,7 @@ VOS_UINT32 SI_FindMultiTagInBERTLV(VOS_UINT8 *pType1TagAddr, VOS_UINT8 ucTag,
     return (0 == ucFindCount)?SI_TAGNOTFOUND:ucFindCount;
 }
 
-/*****************************************************************************
-函 数 名  :SI_FindTagInBERTLV
 
-功能描述  :在SimpleTLV数据结构中查询当前的Tag，返回实际数据长度的偏移
-
-输入参数  :ucDataBuf:   数据内容
-           ucTag:        查询的Tag
-           ulDataLen:   数据总长度
-
-输出参数  :无
-
-返 回 值  :USIMM_TAGNOTFOUND
-           长度字节的偏移
-
-调用函数  :无
-
-修订记录  :
-1. 日    期   : 2007年10月20日
-    作    者   : z00100318
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 SI_FindTagInBERTLV(VOS_UINT8 *pucDataBuf, VOS_UINT8 ucTag, VOS_UINT32 ulDataLen)
 {
     VOS_UINT32 i;
@@ -1672,27 +1103,7 @@ VOS_UINT32 SI_FindTagInBERTLV(VOS_UINT8 *pucDataBuf, VOS_UINT8 ucTag, VOS_UINT32
     return SI_TAGNOTFOUND;
 }
 
-/*****************************************************************************
-函 数 名  :SI_FindType2FileTagNum
 
-功能描述  :在Type2 TLV结构中找到对应Tag的是TLV文件中第几个文件
-
-输入参数  :ucDataBuf:   数据内容
-           ucTag:        查询的Tag
-           ulDataLen:   数据总长度
-
-输出参数  :无
-
-返 回 值  :对应Tag在TLV结构中属于第几个文件
-
-调用函数  :无
-
-修订记录  :
-1. 日    期   : 2009年06月05日
-    作    者   : m00128685
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 SI_FindType2FileTagNum(VOS_UINT8 *pucDataBuf, VOS_UINT8 ucTag, VOS_UINT32 ulDataLen)
 {
     VOS_UINT32 i;
@@ -1715,19 +1126,7 @@ VOS_UINT32 SI_FindType2FileTagNum(VOS_UINT8 *pucDataBuf, VOS_UINT8 ucTag, VOS_UI
 }
 
 
-/*****************************************************************************
-函 数 名  : SI_PB_DecodeEFPBR_AdnContent
-功能描述  : 从A8的TAG中解析ADN文件信息
-输入参数  : PBR文件内容
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年6月15日
-    作    者   : h59254
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PB_DecodeEFPBR_AdnContent(VOS_UINT8  *pType1TagAddr, VOS_UINT32 i)
 {
     VOS_UINT32 ulOffset;
@@ -1755,19 +1154,7 @@ VOS_UINT32 SI_PB_DecodeEFPBR_AdnContent(VOS_UINT8  *pType1TagAddr, VOS_UINT32 i)
 }
 
 
-/*****************************************************************************
-函 数 名  : SI_PB_DecodeEFPBR_UidContent
-功能描述  : 从A8的TAG中解析UID文件信息
-输入参数  : PBR文件内容
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年6月15日
-    作    者   : h59254
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID SI_PB_DecodeEFPBR_UidContent(VOS_UINT8 * pType1TagAddr, VOS_UINT32 i)
 {
     VOS_UINT32 ulOffset;
@@ -1786,19 +1173,7 @@ VOS_VOID SI_PB_DecodeEFPBR_UidContent(VOS_UINT8 * pType1TagAddr, VOS_UINT32 i)
     }
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_DecodeEFPBR_PbcContent
-功能描述  : 从A8的TAG中解析PBC文件信息
-输入参数  : PBR文件内容
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年6月15日
-    作    者   : h59254
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID SI_PB_DecodeEFPBR_PbcContent(VOS_UINT8 * pType1TagAddr, VOS_UINT32 i)
 {
     VOS_UINT32 ulOffset;
@@ -1825,19 +1200,7 @@ VOS_VOID SI_PB_DecodeEFPBR_PbcContent(VOS_UINT8 * pType1TagAddr, VOS_UINT32 i)
     }
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_DecodeEFPBR_PbcContent
-功能描述  : 从A8的TAG中解析AIP文件信息
-输入参数  : PBR文件内容
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年6月15日
-    作    者   : h59254
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID SI_PB_DecodeEFPBR_IapContent(VOS_UINT8 * pType1TagAddr, VOS_UINT32 i)
 {
     VOS_UINT32 ulOffset;
@@ -1856,19 +1219,7 @@ VOS_VOID SI_PB_DecodeEFPBR_IapContent(VOS_UINT8 * pType1TagAddr, VOS_UINT32 i)
     }
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_DecodeEFPBR_PbcContent
-功能描述  : 从A8的TAG中解析ANR文件信息
-输入参数  : PBR文件内容
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年6月15日
-    作    者   : h59254
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PB_DecodeType1EFPBR_AnrContent(VOS_UINT8 * pType1TagAddr, VOS_UINT32 i, VOS_UINT8 *pucOffset)
 {
     VOS_UINT32 ulANRCount; /*记录每条记录中的ANR个数*/
@@ -1899,19 +1250,7 @@ VOS_UINT32 SI_PB_DecodeType1EFPBR_AnrContent(VOS_UINT8 * pType1TagAddr, VOS_UINT
     return ulANRCount;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_DecodeType2EFPBR_AnrContent
-功能描述  : 从A9的TAG中解析ANR文件信息
-输入参数  : PBR文件内容
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年9月5日
-    作    者   : m00128685
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PB_DecodeType2EFPBR_AnrContent(VOS_UINT8 * pType2TagAddr, VOS_UINT32 i, VOS_UINT8 *pucOffset)
 {
     VOS_UINT32 ulANRCount; /*记录每条记录中的ANR个数*/
@@ -1945,19 +1284,7 @@ VOS_UINT32 SI_PB_DecodeType2EFPBR_AnrContent(VOS_UINT8 * pType2TagAddr, VOS_UINT
     return ulANRCount;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_DecodeEFPBR_PbcContent
-功能描述  : 从AA的TAG中解析EXT1文件信息
-输入参数  : PBR文件内容
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年6月15日
-    作    者   : h59254
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID SI_PB_DecodeEFPBR_ExtContent(VOS_UINT8  *pType3TagAddr)
 {
     VOS_UINT32 ulOffset;
@@ -1985,19 +1312,7 @@ VOS_VOID SI_PB_DecodeEFPBR_ExtContent(VOS_UINT8  *pType3TagAddr)
     }
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_DecodeType2EFPBR_EmailContent
-功能描述  : 从A9的TAG中解析EMAIL文件信息
-输入参数  : PBR文件内容
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年6月15日
-    作    者   : h59254
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID SI_PB_DecodeType2EFPBR_EmailContent(VOS_UINT8 * pType2TagAddr, VOS_UINT32 i)
 {
     VOS_UINT32 ulOffset;
@@ -2021,19 +1336,7 @@ VOS_VOID SI_PB_DecodeType2EFPBR_EmailContent(VOS_UINT8 * pType2TagAddr, VOS_UINT
     }
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_DecodeType1EFPBR_EmailContent
-功能描述  : 从A8的TAG中解析EMAIL文件信息
-输入参数  : PBR文件内容
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年6月26日
-    作    者   : m00128685
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PB_DecodeType1EFPBR_EmailContent(VOS_UINT8 * pType2TagAddr, VOS_UINT32 i)
 {
     VOS_UINT32 ulOffset;
@@ -2056,30 +1359,7 @@ VOS_UINT32 SI_PB_DecodeType1EFPBR_EmailContent(VOS_UINT8 * pType2TagAddr, VOS_UI
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_DecodeEFPBR
 
-功能描述  :解析EFPBR的内容，获取ADN /UID的文件ID
-
-输入参数  :ucRecordNum:解析内容的记录条数
-           ucRecordLen:解析的内容的记录长度
-           pContent:解析的文件内容
-
-输出参数  :无
-
-返 回 值  :VOS_OK 解析成功
-           VOS_ERR 解析失败
-
-调用函数  :无
-
-被调函数  :
-
-修订记录  :
-1. 日    期   : 2007年10月15日
-    作    者   : z00100318
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 SI_PB_DecodeEFPBR(VOS_UINT8 ucRecordNum, VOS_UINT8 ucRecordLen, VOS_UINT8 *pContent)
 {
     VOS_UINT32 i;
@@ -2213,20 +1493,7 @@ VOS_UINT32 SI_PB_DecodeEFPBR(VOS_UINT8 ucRecordNum, VOS_UINT8 ucRecordLen, VOS_U
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_DecodeEFPBCRecord
-功能描述  : 根据USIMM模块主动上报的卡类型，确定下一个初始化步骤
-输入参数  : 无
-输出参数  : gstPBInitState
-返 回 值  : VOS_Ok
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2008年10月31日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID SI_PB_DecodeEFPBCRecord(VOS_UINT8 *pucContent, VOS_UINT8 ucRecordNum)
 {
 
@@ -2240,20 +1507,7 @@ VOS_VOID SI_PB_DecodeEFPBCRecord(VOS_UINT8 *pucContent, VOS_UINT8 ucRecordNum)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_DecodeEFUIDRecord
-功能描述  : 根据USIMM模块主动上报的卡类型，确定下一个初始化步骤
-输入参数  : 无
-输出参数  : gstPBInitState
-返 回 值  : VOS_Ok
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2008年10月31日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID SI_PB_DecodeEFUIDRecord(VOS_UINT8 *pucContent)
 {
     VOS_UINT16 usEFUIDValue = 0;
@@ -2277,28 +1531,7 @@ VOS_VOID SI_PB_DecodeEFUIDRecord(VOS_UINT8 *pucContent)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_JudgeANDFid
 
-功能描述  :判断是否为ADN
-
-输入参数  :pstPBContent 转换的电话本内容信息
-           ucIndex 转换的电话本的索引号/记录号
-           pContent 转换的电话本内容
-
-输出参数  :pstRecord 转换的电话本数据结构
-
-返 回 值  :VOS_OK 解析成功
-           VOS_ERR 解析失败
-
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年06月08日
-    作    者   : m00128685
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 SI_PB_JudgeADNFid(VOS_UINT16 usFileId)
 {
     VOS_UINT32 i;
@@ -2314,28 +1547,7 @@ VOS_UINT32 SI_PB_JudgeADNFid(VOS_UINT16 usFileId)
     return VOS_ERR;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_JudgeEXTFid
 
-功能描述  :判断是否为指定电话本的EXT文件
-
-输入参数  :pstPBContent 转换的电话本内容信息
-           ucIndex 转换的电话本的索引号/记录号
-           pContent 转换的电话本内容
-
-输出参数  :pstRecord 转换的电话本数据结构
-
-返 回 值  :VOS_OK 解析成功
-           VOS_ERR 解析失败
-
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年06月08日
-    作    者   : m00128685
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 SI_PB_JudgeEXTFid(VOS_UINT16 usFileId, VOS_UINT16 usOffset)
 {
 
@@ -2347,28 +1559,7 @@ VOS_UINT32 SI_PB_JudgeEXTFid(VOS_UINT16 usFileId, VOS_UINT16 usOffset)
     return VOS_ERR;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_JudgeIAPFid
 
-功能描述  :判断是否为ADN
-
-输入参数  :pstPBContent 转换的电话本内容信息
-           ucIndex 转换的电话本的索引号/记录号
-           pContent 转换的电话本内容
-
-输出参数  :pstRecord 转换的电话本数据结构
-
-返 回 值  :VOS_OK 解析成功
-           VOS_ERR 解析失败
-
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年06月08日
-    作    者   : m00128685
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 SI_PB_JudgeIAPFid(VOS_UINT16 usFileId)
 {
     VOS_UINT32 i;
@@ -2384,28 +1575,7 @@ VOS_UINT32 SI_PB_JudgeIAPFid(VOS_UINT16 usFileId)
     return VOS_ERR;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_GetEXTContentFromReq
 
-功能描述  :根据记录号从请求结构gstPBReqUnit中获取EXT文件的更新请求缓存内容
-
-输入参数  :pstPBContent 转换的电话本内容信息
-           ucIndex 转换的电话本的索引号/记录号
-           pContent 转换的电话本内容
-
-输出参数  :pstRecord 转换的电话本数据结构
-
-返 回 值  :VOS_OK 解析成功
-           VOS_ERR 解析失败
-
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年06月08日
-    作    者   : m00128685
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 SI_PB_GetEXTContentFromReq(VOS_UINT8 ucRecordNum, VOS_UINT8 **ppucContent)
 {
     VOS_UINT32 i;
@@ -2433,21 +1603,7 @@ VOS_UINT32 SI_PB_GetEXTContentFromReq(VOS_UINT8 ucRecordNum, VOS_UINT8 **ppucCon
     return VOS_ERR;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_SetBitToBuf
-功能描述  :在数据中设定Bit位的值　
-输入参数  :ucDataBuf:   数据内容
-           ulBitNo:     Bit号,从1开始
-           ulValue:     需要设置的值,0或1
-输出参数  :无
-返 回 值  :无
-调用函数  :无
-修订记录  :
-1. 日    期   : 2009年5月19日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID SI_PB_SetBitToBuf(VOS_UINT8 *pucDataBuf, VOS_UINT32 ulBitNo,VOS_UINT32 ulValue)
 {
     VOS_UINT32  ulOffset;
@@ -2480,18 +1636,7 @@ VOS_VOID SI_PB_SetBitToBuf(VOS_UINT8 *pucDataBuf, VOS_UINT32 ulBitNo,VOS_UINT32 
     return;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_CheckFdnNumLen
-功能描述  :比对FDN号码长度
-输入参数  :ulCmpNumLen:发起业务号码串
-           ulFdnNumLen:FDN号码长度
-输出参数  :无
-返 回 值  : VOS_ERR、VOS_OK
-修订记录  :
-1. 日    期   : 2012年2月22日
-    作    者   : w00184875
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PB_CheckFdnNumLen(
     VOS_UINT32                          ulFdnNumLen,
     VOS_UINT32                          ulCmpNumLen)
@@ -2524,17 +1669,7 @@ VOS_UINT32 SI_PB_CheckFdnNumLen(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_BcdCompare
-功能描述  :比对BCD码
-输入参数  :
-输出参数  :
-返 回 值  : 0:有效、1:无效
-修订记录  :
-1. 日    期   : 2012年3月8日
-    作    者   : w00184875
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PB_BcdCompare(VOS_UINT8 *pucBcdNumSrc, VOS_UINT8 ucBcdSrcLen, VOS_UINT8 *pucFdnBcdNum, VOS_UINT8 ucFdnBcdLen)
 {
     VOS_UINT8                           ucDstIndex;
@@ -2590,17 +1725,7 @@ VOS_UINT32 SI_PB_BcdCompare(VOS_UINT8 *pucBcdNumSrc, VOS_UINT8 ucBcdSrcLen, VOS_
     return VOS_ERR;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_CheckFdn
-功能描述  :比对FDN号码
-输入参数  :pstFdnInfo:号码结构
-输出参数  :无
-返 回 值  : 0:有效、1:无效
-修订记录  :
-1. 日    期   : 2012年2月22日
-    作    者   : w00184875
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PB_CheckEXT2(VOS_UINT8 ucExtRecord, VOS_UINT32 ulExtInfoNum, VOS_UINT8 *pucDstNum, VOS_UINT8 *pucExNumLen)
 {
     VOS_UINT8                          *pExTemp;
@@ -2642,18 +1767,7 @@ VOS_UINT32 SI_PB_CheckEXT2(VOS_UINT8 ucExtRecord, VOS_UINT32 ulExtInfoNum, VOS_U
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_CheckFdn
-功能描述  :比对FDN号码
-输入参数  :pucNum:发起业务号码串
-            ulNumLength:号码长度
-输出参数  :无
-返 回 值  : 0:有效、1:无效
-修订记录  :
-1. 日    期   : 2012年2月22日
-    作    者   : w00184875
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PB_CheckFdn(VOS_UINT8 *pucNum, VOS_UINT32 ulNumLength)
 {
     VOS_UINT32                          ulResult;
@@ -2741,19 +1855,7 @@ VOS_UINT32 SI_PB_CheckFdn(VOS_UINT8 *pucNum, VOS_UINT32 ulNumLength)
     return VOS_ERR;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_EcallNumberErrProc
-功能描述  :ECALL号码错误处理
-输入参数  :ulStorage:存储器类型
-           ucListLen:索引列表长度
-           pucList:索引列表
-输出参数  :pucPBOffset:电话本控制结构偏移量
-返 回 值  : 0:有效、1:无效
-修订记录  :
-1.  日    期   : 2014年04月25日
-    作    者   : h59254
-    修改内容   : Creat
-*****************************************************************************/
+
 /*lint -save -e958 */
 VOS_UINT32 SI_PB_EcallNumberErrProc(SI_PB_STORATE_TYPE ulStorage, VOS_UINT8 ucListLen, VOS_UINT8 *pucList, VOS_UINT8 *pucPBOffset)
 {
@@ -2800,20 +1902,7 @@ VOS_UINT32 SI_PB_EcallNumberErrProc(SI_PB_STORATE_TYPE ulStorage, VOS_UINT8 ucLi
     return TAF_ERR_NO_ERROR;
 }
 /*lint -restore */
-/*****************************************************************************
-函 数 名  :SI_PB_EcallNumberErrProc
-功能描述  :ECALL号码错误处理
-输入参数  :pstXdnContent:电话本控制结构
-           pstEcallNum:ECALL号码返回结构
-           ucListLen:索引列表长度
-           pucList:索引列表
-输出参数  :无
-返 回 值  :无
-修订记录  :
-1.  日    期   : 2014年04月25日
-    作    者   : h59254
-    修改内容   : Creat
-*****************************************************************************/
+
 /*lint -save -e958 */
 VOS_VOID SI_PB_GetEcallNumber(SI_PB_CONTENT_STRU *pstXdnContent, SI_PB_ECALL_NUM_STRU *pstEcallNum, VOS_UINT8 ucListLen, VOS_UINT8 *pucList)
 {
@@ -2883,28 +1972,7 @@ VOS_VOID SI_PB_GetEcallNumber(SI_PB_CONTENT_STRU *pstXdnContent, SI_PB_ECALL_NUM
 #endif
 
 #if ((OSA_CPU_ACPU == VOS_OSA_CPU)||(defined(DMT)))
-/*****************************************************************************
-函 数 名  :SI_PB_TransANRFromate
 
-功能描述  :转换当前的一条ANR电话本为指定的数据结构
-
-输入参数  :pstPBContent 转换的电话本内容信息
-           ucIndex 转换的电话本的索引号/记录号
-           pContent 转换的电话本内容
-
-输出参数  :pstRecord 转换的电话本数据结构
-
-返 回 值  :VOS_OK 解析成功
-           VOS_ERR 解析失败
-
-调用函数  :
-被调函数  :
-修订记录  :
-1. 日    期   : 2009年06月08日
-    作    者   : m00128685
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_VOID SI_PB_TransANRFromate(VOS_UINT8 ucANROffset,VOS_UINT8 *pANRContent, SI_PB_RECORD_STRU *pstRecord)
 {
     VOS_UINT32 ulResult;
@@ -2960,28 +2028,7 @@ VOS_VOID SI_PB_TransANRFromate(VOS_UINT8 ucANROffset,VOS_UINT8 *pANRContent, SI_
     return;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_TransEMLFromate
 
-功能描述  :转换Email文件内容为指定的数据结构
-
-输入参数  :pstPBContent 转换的电话本内容信息
-           ucIndex 转换的电话本的索引号/记录号
-           pContent 转换的电话本内容
-
-输出参数  :pstRecord 转换的电话本数据结构
-
-返 回 值  :VOS_OK 解析成功
-           VOS_ERR 解析失败
-
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年06月08日
-    作    者   : m00128685
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_VOID SI_PB_TransEMLFromate(VOS_UINT8 ucEmailMaxLen, VOS_UINT8 *pEMLContent, SI_PB_RECORD_STRU *pstRecord)
 {
     VOS_UINT32 i;
@@ -3015,19 +2062,7 @@ VOS_VOID SI_PB_TransEMLFromate(VOS_UINT8 ucEmailMaxLen, VOS_UINT8 *pEMLContent, 
     return;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_GetFileCntFromIndex
-功能描述  :根据输入的INDEX的值得到对应的EMAIL或ANR文件的偏移，从1开始　
-输入参数  :ucIndex:   INDEX的值
-           pucEMLFileCnt:     返回EMAIL文件的偏移
-输出参数  :无
-返 回 值  : 1:有效、0:无效
-调用函数  :无
-修订记录  :
-1. 日    期   : 2009年5月19日
-    作    者   : m00128685
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PB_GetFileCntFromIndex(VOS_UINT16 ucIndex, VOS_UINT8 *pucFileCnt)
 {
     VOS_UINT8   i;

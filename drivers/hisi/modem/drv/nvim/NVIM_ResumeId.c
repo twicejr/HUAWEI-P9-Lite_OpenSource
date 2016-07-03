@@ -58,9 +58,7 @@ unsigned short  g_ausNvResumeManufactureIdList[] =
     en_NV_Item_TCXO_AFC_SLOPE,
     en_NV_Item_XO_SELF_CAL_DONE,
     en_NV_Item_XO_TEMP_COMP_CAL_RESULT,
-/* Deleted by c00318887 for DPlmn扩容和优先接入HPLMN, 2015-5-18, begin */
 
-/* Deleted by c00318887 for DPlmn扩容和优先接入HPLMN, 2015-5-18, end */
 
     /* Gsm 850 */
     en_NV_Item_GSM850_RX_DCOFFSET,

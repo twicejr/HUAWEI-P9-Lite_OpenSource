@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafMmaPreProcAct
-  版 本 号   : 初稿
-  作    者   : w00176964
-  生成日期   : 2013年7月9日
-  最近修改   :
-  功能描述   : TafMmaPreProcAct.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年7月9日
-    作    者   : w00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 #ifndef _TAF_MMA_PREPROCACT_H_
 #define _TAF_MMA_PREPROCACT_H_
 
@@ -24,11 +7,9 @@
 *****************************************************************************/
 #include  "vos.h"
 #include "UsimPsInterface.h"
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-14, begin */
 #include "TafAppMma.h"
 #include "TafSdcCtx.h"
 #include "MmaMsccInterface.h"
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-14, end */
 
 #include "TafMmaInterface.h"
 #ifdef __cplusplus
@@ -101,12 +82,10 @@ VOS_UINT32 TAF_MMA_RcvOmPhoneModeSetReq_PreProc(
     struct MsgCB                       *pstMsg
 );
 
-/* Added by w00167002 for L-C互操作项目, 2014-2-19, begin */
 VOS_UINT32 TAF_MMA_RcvQryPhoneModeReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 );
-/* Added by w00167002 for L-C互操作项目, 2014-2-19, end */
 
 VOS_UINT32 TAF_MMA_RcvPihUsimStatusInd_PreProc(
     VOS_UINT32                          ulEventType,
@@ -132,7 +111,6 @@ VOS_UINT32 TAF_MMA_ProcOmPhoneModeSetReq_PreProc(
     struct MsgCB                       *pstMsg
 );
 
-/* Added by w00167002 for L-C互操作项目, 2014-2-15, begin */
 VOS_UINT32 TAF_MMA_ProcPhoneModeSet_PreProc(
     TAF_PH_MODE                         ucCurrPhMode,
     VOS_UINT16                          usClientId,
@@ -142,7 +120,6 @@ VOS_UINT32 TAF_MMA_ProcTafPhoneModeSetReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 );
-/* Added by w00167002 for L-C互操作项目, 2014-2-15, end */
 
 VOS_UINT32 TAF_MMA_SetMiniMode_PreProc(
     VOS_UINT16                          usClientId,
@@ -236,14 +213,11 @@ VOS_UINT32 TAF_MMA_RcvMsccRfAvailableInd_PreProc(
     struct MsgCB                       *pstMsg
 );
 
-/* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, begin */
-/* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, begin */
 VOS_UINT32 TAF_MMA_RcvMsccRegResultInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 );
 
-/* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, end */
 
 TAF_MMA_RAT_TYPE_ENUM_UINT8 TAF_MMA_ConvertSdcRatToAppRatType(
                         TAF_SDC_SYS_MODE_ENUM_UINT8 enSdcRatType
@@ -262,7 +236,6 @@ VOS_UINT32 TAF_MMA_RcvMsccImsVoiceCapInd_PreProc(
 /* 删除定时器处理 */
 #endif
 
-/* Added by b00269685 for L-C互操作项目, 2014-3-4, begin */
 VOS_UINT32 TAF_MMA_RcvTiWaitMsccAcqCnfExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -277,10 +250,8 @@ VOS_UINT32 TAF_MMA_RcvTiWaitMsccPowerSaveExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 );
-/* Added by b00269685 for L-C互操作项目, 2014-3-4, end */
 
 
-/* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, end */
 
 
 VOS_UINT32 TAF_MMA_RcvCSServiceDisconnExpired_PreProc(
@@ -383,7 +354,6 @@ VOS_UINT32 TAF_MMA_RcvMsccEplmnInfoInd_PreProc(
 
 
 
-/* Added by s00261364 for L-C互操作项目, 2014-1-27, begin */
 VOS_UINT32 TAF_MMA_RcvMmaAcqReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -461,13 +431,10 @@ VOS_UINT32 TAF_MMA_RcvMsccPowerSaveCnf_PreProc(
     struct MsgCB                       *pstMsg
 );
 
-/* Added by s00261364 for L-C互操作项目, 2014-1-27, end */
 
-/* Added by w00176964 for V3R3C60_eCall项目, 2014-4-22, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
 VOS_UINT32 TAF_MMA_ProcPihUsimRefreshIndEfUstFileChanged_PreProc(VOS_VOID);
 #endif
-/* Added by w00176964 for V3R3C60_eCall项目, 2014-4-22, end */
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
 
@@ -673,14 +640,12 @@ VOS_UINT32 TAF_MMA_RcvMsccDataCallRedialSysAcqInd_PreProc(
 
 #endif
 
-/* Add by s00217060 for K3V3 多模多天线特性, 2014-06-27, Begin */
 #if (FEATURE_MULTI_MODEM == FEATURE_ON)
 VOS_UINT32 TAF_MMA_RcvMsccPsServiceConnStatusInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 );
 #endif
-/* Add by s00217060 for K3V3 多模多天线特性, 2014-06-27, End */
 
 VOS_UINT32 TAF_MMA_IsNetworkCapInfoChanged(
     TAF_SDC_NETWORK_CAP_INFO_STRU       *pstNewNwCapInfo

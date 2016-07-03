@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafApsPreproc.h
-  版 本 号   : 初稿
-  作    者   : o00132663
-  生成日期   : 2011年12月28日
-  最近修改   :
-  功能描述   : TafApsPreproc.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年12月28日
-    作    者   : o00132663
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __TAFAPSPREPROC_H__
 #define __TAFAPSPREPROC_H__
@@ -189,7 +172,6 @@ VOS_UINT32 TAF_APS_RcvAtGetDynamicEpsQosInfoReq_PreProc(
     struct MsgCB                       *pstMsg
 );
 
-/* Add by w00199382 for V7代码同步, 2012-04-07, Begin   */
 VOS_UINT32 TAF_APS_RcvAtGetLteCsInfoReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -228,7 +210,6 @@ VOS_UINT32 TAF_APS_RcvTiSetPdprofInfoExpired_PreProc(
     struct MsgCB                       *pstMsg
 );
 
-/* Add by w00199382 for V7代码同步, 2012-04-07, End   */
 
 #endif
 
@@ -405,7 +386,6 @@ VOS_UINT32 TAF_APS_RcvTiSetAuthdataCnfExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 );
-/* Add by w00199382 for V7代码同步, 2012-04-07, Begin   */
 VOS_UINT32 TAF_APS_RcvTiGetCemodeCnfExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -414,7 +394,6 @@ VOS_UINT32 TAF_APS_RcvTiGetLtecsCnfExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 );
-/* Add by w00199382 for V7代码同步, 2012-04-07, End   */
 
 VOS_UINT32 TAF_APS_RcvTiSetCgcontrdpCnfExpired_PreProc(
     VOS_UINT32                          ulEventType,
@@ -712,13 +691,11 @@ VOS_UINT32 TAF_APS_RcvSetImsPdpCfgReq_PreProc(
     struct MsgCB                       *pstMsg
 );
 
-/* Added by m00217266 for L-C互操作项目, 2014-2-12, begin */
 #if (FEATURE_ON == FEATURE_CL_INTERWORK)
 VOS_UINT8 TAF_APS_LCCheckReqValid(
     TAF_CTRL_STRU                       *pstCtrlInfo
 );
 #endif
-/* Added by m00217266 for L-C互操作项目, 2014-2-12, end */
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
 

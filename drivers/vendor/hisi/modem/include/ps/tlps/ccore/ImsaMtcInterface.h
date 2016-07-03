@@ -1,16 +1,4 @@
-/******************************************************************************
 
-
-        @(#)Copyright(C)2013,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : ImsaMtcInterface.h
-    Description : IMSA和MTC模块间接口头文件
-    History     :
-      1.xiongxianghui 00253310    2013-06-30  Draft Enact
-
-
-******************************************************************************/
 
 #ifndef __IMSAMTCINTERFACE_H__
 #define __IMSAMTCINTERFACE_H__
@@ -81,14 +69,7 @@ enum    IMSA_SRV_CONN_STATUS_EXIST_ENUM
 };
 typedef VOS_UINT8 IMSA_SRV_CONN_STATUS_EXIST_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : MTC_IMSA_MODEM_POWER_STATE_ENUM
- 结构说明  : MTC通知IMSA modem开关机状态枚举
 
- 1.日    期   : 2015年05月05日
-   作    者   : l00198894
-   修改内容   : VOLTE Rank1方案项目
-*****************************************************************************/
 enum MTC_IMSA_MODEM_POWER_STATE_ENUM
 {
     MTC_IMSA_MODEM_POWER_OFF            = 0x00,
@@ -116,14 +97,7 @@ typedef struct
     VOS_UINT8                               aucReserved[3];
 } IMSA_MTC_SRV_CONN_STATUS_NOTIFY_STRU;
 
-/*****************************************************************************
- 结构名    : MTC_IMSA_MODEM1_INFO_IND_STRU
- 结构说明  : MTC通知IMSA当前modem1的信息
 
-  1.日    期   : 2015年05月05日
-    作    者   : l00198894
-    修改内容   : VOLTE Rank1方案项目
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/

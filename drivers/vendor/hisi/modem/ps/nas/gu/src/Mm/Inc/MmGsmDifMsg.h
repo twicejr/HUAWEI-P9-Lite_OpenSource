@@ -1,22 +1,4 @@
-/************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : MmGsmDifMsg.h
-  Author      : ---
-  Version     : V200R001
-  Date        : 2005-09-08
-  Description : 该头文件定义了子模块 GsmDifMsgProc 的接口定义
-  History     :
-  1. Date:2005-04-19
-     Author: ---
-     Modification:Create
-  2. s46746 2006-03-39  根据问题单A32D02486修改
-  3.日    期   : 2006年08月09日
-    作    者   : 蒋丽萍j60010247
-    修改内容   : 问题单A32D03479，在PC机上实现时将#pragma pack(0)和#pragma pack()加编译开关
-  4.日    期   : 2006年11月22日
-    作    者   : s46746
-    修改内容   : 问题单号:A32D07372
-************************************************************************/
+
 
 #ifndef _MM_GSMDIFMSG_H_
 #define _MM_GSMDIFMSG_H_
@@ -73,9 +55,7 @@ extern "C" {
 /*****************************************************************************
   8 OTHERS定义
 *****************************************************************************/
-/* Deleted by w00176964 for V3R3C60_eCall项目, 2014-4-15, begin */
 
-/* Deleted by w00176964 for V3R3C60_eCall项目, 2014-4-15, end */
 VOS_UINT8 MM_RcvGsmRrcPagingInd(VOS_VOID *pRcvMsg);
 
 VOS_UINT8 MM_RcvGsmRrcSyncInd(VOS_VOID *pRcvMsg);

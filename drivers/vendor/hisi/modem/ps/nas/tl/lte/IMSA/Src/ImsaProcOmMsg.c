@@ -1,14 +1,4 @@
-/******************************************************************************
 
-   Copyright(C)2013,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : ImsaProcAtMsg.c
-  Description     : 该C文件给出了IMSA模块处理AT命令的实现
-  History           :
-     1.leili 00132387      2013-10-12  Draft Enact
-
-******************************************************************************/
 
 /*****************************************************************************
   1 Include HeadFile
@@ -51,20 +41,7 @@ extern "C" {
 /*lint -e961*/
 
 
-/*****************************************************************************
- 函 数 名  : IMSA_RcvAcpuOmErrLogCtrlInd
- 功能描述  : IMSA处理Acpu om发来的ERROR LOG控制指示
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年01月04日
-    作    者   : w00209181
-    修改内容   : 商用ErrLog上报及工程模式扩展目新增函数
-*****************************************************************************/
 VOS_VOID IMSA_RcvAcpuOmErrLogCtrlInd
 (
     VOS_VOID                           *pMsg
@@ -91,20 +68,7 @@ VOS_VOID IMSA_RcvAcpuOmErrLogCtrlInd
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : IMSA_ReadErrlogCtrlInfoNvim
- 功能描述  : 根据NV:en_NV_Item_ErrLogCtrlInfo初始化ErrlogInfo
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年01月13日
-    作    者   : w00209181
-    修改内容   : 商用ErrLog上报及工程模式扩展目新增函数
-*****************************************************************************/
 VOS_VOID IMSA_ReadErrlogCtrlInfoNvim(VOS_VOID)
 {
     VOS_UINT32                          ulResult;
@@ -135,21 +99,7 @@ VOS_VOID IMSA_ReadErrlogCtrlInfoNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IMSA_SndAcpuOmErrLogRptCnf
- 功能描述  : 发送ID_OM_ERR_LOG_REPORT_CNF消息给ACPU OM
- 输入参数  : pbuffer:数据内容
-             ulBufUseLen:数据长度
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年01月05日
-    作    者   : W00209181
-    修改内容   : 商用ErrLog上报及工程模式扩展目新增函数
-*****************************************************************************/
 VOS_VOID IMSA_SndAcpuOmErrLogRptCnf
 (
     VOS_CHAR                           *pbuffer,
@@ -192,20 +142,7 @@ VOS_VOID IMSA_SndAcpuOmErrLogRptCnf
 
 }
 
-/*****************************************************************************
- 函 数 名  : IMSA_RcvAcpuOmErrLogRptReq
- 功能描述  : IMSA处理Acpu om发来的ERROR LOG故障上报请求
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年01月04日
-    作    者   : W00209181
-    修改内容   : 商用ErrLog上报及工程模式扩展目新增函数
-*****************************************************************************/
 VOS_VOID IMSA_RcvAcpuOmErrLogRptReq
 (
     VOS_VOID                           *pMsg

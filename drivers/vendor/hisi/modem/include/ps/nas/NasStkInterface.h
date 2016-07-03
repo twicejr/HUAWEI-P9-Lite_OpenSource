@@ -1,24 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasStkInterface.h
-  版 本 号   : 初稿
-  作    者   : f62575
-  生成日期   : 2013年07月11日
-  最近修改   :
-  功能描述   :
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年07月11日
-    作    者   : f62575
-    修改内容   : 创建文件
-  2.日    期   : 2013年07月11日
-    作    者   : l00208543
-    修改内容   : 添加Networj Rejection Event Download事件相关结构体
-
-******************************************************************************/
 #ifndef __NAS_STK_INTERFACE_H__
 #define __NAS_STK_INTERFACE_H__
 
@@ -47,17 +27,14 @@ extern "C" {
 /*****************************************************************************
   2 宏定义
 *****************************************************************************/
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
 #define NAS_STK_CALL_DISC_CAUSE_LEN     (3)
 #define NAS_STK_CURC_RPT_CFG_MAX_SIZE   (8)
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 
 
 /*****************************************************************************
   3 枚举定义
 *****************************************************************************/
 
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
 /*****************************************************************************
  结构名称: NAS_STK_MSG_ID_ENUM
  结构说明: NAS和STK之间的原语
@@ -97,10 +74,8 @@ enum NAS_STK_MSG_ID_ENUM
     /* TAF(CALL)-> STK */
     TAF_STK_CS_CALLINFO_EVENT_IND       = 0x15,                                 /* _H2ASN_MsgChoice MN_APP_CS_CALLINFO_MSG_STRU */
 
-    /* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-3-25, begin */
     /* TAF-> STK */
     TAF_STK_CURC_RPT_CFG_INFO_IND       = 0x16,                                 /* _H2ASN_MsgChoice TAF_STK_CURC_RPT_CFG_INFO_MSG_STRU */
-    /* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-3-25, end */
 
     /* TAF-> STK */
     TAF_STK_CS_STATE_IND                = 0x17,                                 /* _H2ASN_MsgChoice TAF_STK_CS_SERVICE_IND */
@@ -127,13 +102,7 @@ enum NAS_STK_MSG_ID_ENUM
 };
 typedef VOS_UINT32 NAS_STK_MSG_ID_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : NAS_STK_UTRAN_MODE_ENUM_UINT8
- 结构说明  : MS当前具体的UTRAN模式:WCDMA/TD-SCAMA
- 1.日    期   : 2013年9月04日
-   作    者   : f62575
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_STK_UTRAN_MODE_ENUM
 {
     NAS_STK_UTRAN_MODE_FDD,                                               /* UTRAN模式为WCDMA */
@@ -142,19 +111,7 @@ enum NAS_STK_UTRAN_MODE_ENUM
 };
 typedef VOS_UINT8 NAS_STK_UTRAN_MODE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_STK_SERVICE_STATUS_ENUM_UINT8
- 结构说明  : cs域服务状态
-             0           正常服务
-             1           限制服务
-             2           有限制区域服务 对应STK的限制服务
-             3           无imsi   对应STK限制服务
-             4           无服务
-             6           SLEEP    对应STK的无服务
- 1.日    期: 2013年7月12日
-   作    者: f62575
-   修改内容: 新增，与TAF_SDC_SERVICE_STATUS_ENUM_UINT8完全相同，如有更新需要同步枚举
-*****************************************************************************/
+
 enum NAS_STK_SERVICE_STATUS_ENUM
 {
     NAS_STK_SERVICE_STATUS_NORMAL_SERVICE           = 0,                        /* 正常服务 */
@@ -167,9 +124,7 @@ enum NAS_STK_SERVICE_STATUS_ENUM
 };
 typedef VOS_UINT8 NAS_STK_SERVICE_STATUS_ENUM_UINT8;
 
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 
-/* Added by l00208543 for V9R1 STK升级, 2013-07-11, begin */
 /*****************************************************************************
  结构名称: NAS_STK_NETWORK_REJECT_TYPE_ENUM
  结构说明: 通知STK发出的Reject类型
@@ -230,13 +185,7 @@ enum NAS_STK_UPDATE_TYPE_ENUM
 typedef VOS_UINT8 NAS_STK_UPDATE_TYPE_ENUM_UINT8;
 
 
-/*****************************************************************************
- 结构名    : TAF_CS_SERVICE_ENUM
- 结构说明  : CS服务域能力枚举
- 1.日    期   : 2013年05月31日
-   作    者   : s00217060
-   修改内容   : 新增
-*****************************************************************************/
+
 enum TAF_CS_SERVICE_ENUM
 {
     TAF_CS_OFF              = 0,
@@ -245,7 +194,6 @@ enum TAF_CS_SERVICE_ENUM
 };
 typedef VOS_UINT32 TAF_CS_SERVICE_ENUM_UINT32;
 
-/* Added by l00208543 for V9R1 STK升级, 2013-07-11, end */
 
 
 
@@ -269,28 +217,15 @@ typedef VOS_UINT32 TAF_CS_SERVICE_ENUM_UINT32;
   7 STRUCT定义
 *****************************************************************************/
 
-/*****************************************************************************
- 结构名    : NAS_STK_EVENT_MSG_HEADER_STRU
- 结构说明  : PS给STK模块EVENT消息头
- 1.日    期  : 2013年07月17日
-   作    者  : H59254
-   修改内容  : 新建结构体
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
     VOS_UINT32                          ulMsgName;
 }NAS_STK_EVENT_MSG_HEADER_STRU;
 
-/* Added by l00208543 for V9R1 STK升级, 2013-07-11, begin */
 
-/*****************************************************************************
- 结构名    : NAS_STK_PLMN_ID_STRU
- 结构说明  : LAU被拒信息
- 1.日    期  : 2013年07月11日
-   作    者  : l00208543
-   修改内容  : 新建结构体
-*****************************************************************************/
+
 typedef struct
 {
     TAF_PLMN_ID_STRU                    stCurPlmnID;
@@ -298,13 +233,7 @@ typedef struct
     VOS_UINT8                           aucRsv[2];
 }NAS_STK_LAC_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_STK_PLMN_ID_STRU
- 结构说明  : RAU被拒信息
- 1.日    期  : 2013年07月11日
-   作    者  : l00208543
-   修改内容  : 新建结构体
-*****************************************************************************/
+
 typedef struct
 {
     TAF_PLMN_ID_STRU                    stCurPlmnID;
@@ -313,13 +242,7 @@ typedef struct
     VOS_UINT8                           ucRsv;
 }NAS_STK_RAU_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_STK_PLMN_ID_STRU
- 结构说明  : TAU被拒信息
- 1.日    期  : 2013年07月11日
-   作    者  : l00208543
-   修改内容  : 新建结构体
-*****************************************************************************/
+
 typedef struct
 {
     TAF_PLMN_ID_STRU                    stCurPlmnID;
@@ -327,13 +250,7 @@ typedef struct
     VOS_UINT8                           aucRsv[2];
 }NAS_STK_TAU_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_STK_NETWORK_REJECTION_EVENT_DOWNLOAD_STRU
- 结构说明  : 通知STK Network Rejection Event的消息结构体
- 1.日    期  : 2013年07月11日
-   作    者  : l00208543
-   修改内容  : 新建结构体
-*****************************************************************************/
+
 typedef struct
 {
     TAF_MMA_RAT_TYPE_ENUM_UINT8              enRat;
@@ -349,13 +266,7 @@ typedef struct
     }uRejectInfo;
 }NAS_STK_NETWORK_REJECTION_EVENT_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_STK_NETWORK_REJECTION_EVENT_STRU
- 结构说明  : 通知STK服务状态结构体
- 1.日    期  : 2013年07月11日
-   作    者  : l00208543
-   修改内容  : 新建结构体
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -363,10 +274,8 @@ typedef struct
     NAS_STK_NETWORK_REJECTION_EVENT_INFO_STRU               stNetworkRejectionEvent;
 }NAS_STK_NETWORK_REJECTION_EVENT_STRU;
 
-/* Added by l00208543 for V9R1 STK升级, 2013-07-11, end */
 
 
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
 /*****************************************************************************
  结构名    : NAS_STK_MT_CALL_EVENT_INFO_STRU
  协议表格  :
@@ -615,30 +524,14 @@ typedef struct
     NAS_STK_SRCHMODE_CHG_EVENT_INFO_STRU stSrchModeChgEvent;
 } NAS_STK_SRCHMODE_CHG_EVENT_STRU;
 
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
-/*****************************************************************************
- 结构名    : NAS_STK_SERVICE_STATUS_INFO_IND_STRU
- 结构说明  : 通知STK服务状态结构体信息字段结构
- 1.日    期  : 2013年06月28日
-   作    者  : f62575
-   修改内容  : 新建结构体
-*****************************************************************************/
+
 typedef struct
 {
     NAS_STK_SERVICE_STATUS_ENUM_UINT8    enCsServiceStatus;
     VOS_UINT8                            aucReserved1[3];
 }NAS_STK_SERVICE_STATUS_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_STK_SYS_INFO_STRU
- 结构说明  : 通知STK系统消息信息结构体信息字段结构
- 1.日    期  : 2013年06月28日
-   作    者  : f62575
-   修改内容  : 新建结构体
- 2.日    期  : 2013年09月04日
-   作    者  : f62575
-   修改内容  : LT STK FEATURE，新增enUtranMode
-*****************************************************************************/
+
 typedef struct
 {
     TAF_PLMN_ID_STRU                    stPlmn;
@@ -649,13 +542,7 @@ typedef struct
 }NAS_STK_SYS_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : ID_NAS_STK_LOCATION_INFO_IND_STRU
- 结构说明  : 通知STK系统消息信息和服务状态消息结构
- 1.日    期  : 2013年07月24日
-   作    者  : z00161729
-   修改内容  : 新建结构体
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* 消息头 */        /*_H2ASN_Skip*/
@@ -895,17 +782,7 @@ typedef struct
 } MN_APP_CALL_STOP_DTMF_REQ_STRU;
 
 
-/*****************************************************************************
- 结构名    : MN_APP_CALL_CALLORIG_REQ_STRU
- 协议表格  : 参考协议102.223 6.6.12 SET UP CALL
- ASN.1描述 : stCalledAddr   8.1
-             stSubAddr      8.3
-             stBc           8.4
- 结构说明  : STK发给CALL 发起CS域呼叫的请求结构
- 2.日    期   : 2013年12月16日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseIII项目
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -916,11 +793,9 @@ typedef struct
     STK_CALL_ADDR_STRU                  stCalledAddr;
     STK_CALL_SUBADDR_STRU               stSubAddr;
     STK_CALL_BC_STRU                    stBc;
-    /* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-16, begin */
     MN_CALL_TYPE_ENUM_U8                enCallType;
     VOS_UINT8                           aucReserve[3];
     MN_CALL_EMERGENCY_CAT_STRU          stEmergencyCat;                         /* Emergency Catory */
-    /* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-16, end */
 } MN_APP_CALL_CALLORIG_REQ_STRU;
 
 /*****************************************************************************
@@ -1003,14 +878,7 @@ typedef struct
     MN_CALL_INFO_STRU                   stCsCallInfo;
 } MN_APP_CS_CALLINFO_MSG_STRU;
 
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-3-25, begin */
-/*****************************************************************************
- 结构名    : TAF_STK_CURC_RPT_CFG_INFO_MSG_STRU
- 结构说明  : 把后台通过^curc设置主动上报开启关闭的消息通知STK的消息结构体
- 1.日    期  : 2013年3月26日
-   作    者  : s00217060
-   修改内容  : Create
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -1018,13 +886,7 @@ typedef struct
     VOS_UINT8                           aucCurcRptCfg[NAS_STK_CURC_RPT_CFG_MAX_SIZE];
  }TAF_STK_CURC_RPT_CFG_INFO_MSG_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_STK_CS_SERVICE_IND
- 结构说明  : 通知STK CS域能力结构体
- 1.日    期  : 2013年05月31日
-   作    者  : s00217060
-   修改内容  : 新建结构体
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -1033,14 +895,7 @@ typedef struct
 }TAF_STK_CS_SERVICE_IND;
 
 
-/* Added by l00198894 for V9R1 STK升级, 2013/07/11, begin */
-/*****************************************************************************
-结构名    : NAS_CALL_STK_EVT_STRU
-结构说明  : CALL模块发给STK模块的事件结构
-1.日    期  : 2013年07月11日
-  作    者  : l00198894
-  修改内容  : V9R1 STK升级项目
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -1048,18 +903,10 @@ typedef struct
     MN_CALL_EVENT_ENUM_U32          enEventType;
     VOS_UINT8                       aucEvent[4];
 } NAS_CALL_STK_EVT_STRU;
-/* Added by l00198894 for V9R1 STK升级, 2013/07/11, end */
-
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 
 
-/*****************************************************************************
-结构名    : MMA_STK_1X_SYS_INFO_STRU
-结构说明  : 发给STK模块的1X系统消息结构
-1.日    期  : 2015年07月03日
-  作    者  : l00301449
-  修改内容  : CDMA STK
-*****************************************************************************/
+
+
 typedef struct
 {
     VOS_UINT32                      ulMcc;
@@ -1071,13 +918,7 @@ typedef struct
     VOS_INT32                       lBaseLongtitude;
 }MMA_STK_1X_SYS_INFO_STRU;
 
-/*****************************************************************************
-结构名    : MMA_STK_SERVICE_INFO_IND_STRU
-结构说明  : 发给STK模块的服务信息消息结构
-1.日    期  : 2015年07月03日
-  作    者  : l00301449
-  修改内容  : CDMA STK
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER

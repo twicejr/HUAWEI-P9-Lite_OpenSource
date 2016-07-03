@@ -30,7 +30,6 @@ extern "C" {
 #endif
 
 
-/*Mod By t00110672/z00146309  10-1-11,支持路由器关于实现最新草案的需求 */
 /*PTP基定时器的时长，65ms,暂时修改，后续需要根据在产品测试性能结果来定*/
 #define PTP_BASE_TIMER_LEN          70
 
@@ -56,7 +55,6 @@ typedef struct tagPTP_LOGIC_TIMER_S
 
 
 /*PTP逻辑定时器头节点的数据结构，头节点直接采用，存储有效数据*/
-/*Begin mod by heyijun KF37287 for DTS2011031604476 修改定时器头结点为结构体形式*/
 typedef struct tagPTP_LOGIC_TIMER_H_S
 {
     ULONG ulTimerNumber;
@@ -93,7 +91,6 @@ ULONG PTP_SlaveDelayDurationTimerOut(VOID *pArg);
 
 ULONG PTP_AcceptMasterDetect(VOID *pArg);
 
-/*Add By t00110672  10-1-8支持路由器关于实现最新草案的需求 */
 ULONG PTP_ProcMulticastAnnSndTimerOut(VOID *pArg);
 ULONG PTP_ProcUnicastAnnSndTimerOut(VOID *pArg);
 
@@ -107,28 +104,10 @@ extern ULONG PTP_DelUniMasterCancelTimer(PTP_UNI_MASTER_NODE_S *pstUniMaster);
 extern ULONG PTP_MasterSyncDurationTimerOut(VOID *pArg);
 extern ULONG PTP_MasterDleayDurationTimerOut(VOID *pArg);
 
-/* Add by chixiang 198096 for DTS2011122301481 at 2011-12-22 定时器日志增加时间戳打印*/
 VOID PTP_PrintDebug(ULONG ulDebugType, CHAR *pcDebugMsg);
 
-/*Added by guo00178934, 删除单播Master端Annc相关定时器, 2012/1/12   问题单号:DTS2012011005305  */
-/*******************************************************************************
-*    Func Name: PTP_DelUniMasterAnnTimer
-* Date Created: 2012-01-12
-*       Author: guo00178934
-*  Description: 删除单播Master端Annc相关定时器
-*        Input: PTP_UNI_MASTER_NODE_S *pstUniMaster:
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2012-01-12   guo00178934             Create
-*
-*******************************************************************************/
+
 ULONG PTP_DelUniMasterAnncTimer(PTP_UNI_MASTER_NODE_S *pstUniMaster);
-/* End of Added by guo00178934, 2012/1/12   问题单号:DTS2012011005305  */
 
 #ifdef __cplusplus
 }

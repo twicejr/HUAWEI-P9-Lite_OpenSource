@@ -1,60 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasRrcInterface.h
-  版 本 号   : 继承Hi4121的基础，根据编程规范进行调整，
-               枚举的定义由于历史原因，不用en开头，继承原先的代码。
-  作    者   : Jinying
-  生成日期   : 2006年10月28日
-  最近修改   :
-  功能描述   : NasRrcInterface.h 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2006年10月28日
-    作    者   : Jinying
-    修改内容   : 创建文件
-  2.日    期   : 2007年9月27日
-    作    者   : s46746
-    修改内容   : 将卡无效信息从RRMM_NAS_INFO_CHANGE消息中拿掉
-  3.日    期   : 2007年11月16日
-    作    者   : l00107747
-    修改内容   : 根据问题单号A32D13483
-  4.日    期   : 2007年12月04日
-    作    者   : s46746
-    修改内容   : 1.GMM模块进行ATTACH和RAU时，如果此时接入层进行临区任务，
-                   会导致LLC将ATTACH和RAU延迟发送，使得ATTACH和RAU时间过长；
-                 2.GMM在进行RAU请求时，如果DRX参数不改变，将不会在消息中
-                   带DRX参数，这样跨SGSN的RAU时，可能导致网侧不识别UE的DR
-                   X参数，使得RAU不能成功。
-  5.日    期   : 2007年12月28日
-    作    者   : l00107747
-    修改内容   : 根据问题单号A32D13986,修改AT_MsgInd接口，Cell ID为U32类型,
-                 来源于SIB3/4
-  6.日    期   : 2008年4月9日
-    作    者   : s46746
-    修改内容   : 根据问题单号AT2D02970,NAS B010版本新增需求实现，对RRMM_SYS_INFO_IND
-                 和RRMM_SYNC_IND,GRR_SYNC_IND接口修改
-  7.日    期   : 2008年11月26日
-    作    者   : o00132663
-    修改内容   : AT2D07078, 增加^RSSI主动上报
-  8.日    期   : 2009年02月05日
-    作    者   : l00130025
-    修改内容   : 问题单号:AT2D07529,AT2D07611,AT2D08749,W搜网优化NAS修改
-  9.日    期   : 2009年03月19日
-    作    者   : l00130025
-    修改内容   : 问题单号：AT2D09743/AT2D10328,WAS的 D/F/P态下丢网处理
-  10.日    期   : 2009年04月27日
-    作    者   : l65478
-    修改内容   : 问题单号：AT2D11554,出服务区优化
-  11.日    期  : 2010年05月11日
-    作    者   : s46746
-    修改内容   : 问题单号：DTS2011042004956,提供接入层获取EHPLMN列表接口，删除获取HPLMN接口
- 12.日    期   : 2011年04月23日
-    作    者   : L00171473
-    修改内容   : for V7R1 porting, 去掉枚举成员最后的逗号，避免编译WARNING
- ******************************************************************************/
 
 #ifndef __NASRRCINTERFACE_H__
 #define __NASRRCINTERFACE_H__
@@ -120,10 +64,8 @@ extern "C" {
 
 #define RRC_NAS_NET_SCAN_MAX_FREQ_NUM   (20)
 
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-13, begin */
 #define MS_CLASSMARK2_MAX_LEN                              (4)                  /* R6协议中Classmark2最大长度 */
 #define MS_CLASSMARK3_MAX_LEN                              (32)                 /* R8协议中Classmark3最大长度 */
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-13, end */
 
 #define RRC_NAS_NET_SCAN_MAX_FREQ_NUM   (20)
 
@@ -279,22 +221,16 @@ enum NAS_RRC_MSG_TYPE_ENUM
 
     RRMM_W_AC_INFO_CHANGE_IND           = 0x007F,   /* _H2ASN_MsgChoice RRMM_W_AC_INFO_CHANGE_IND_STRU   */
     RRMM_TRANSACTION_INFO_ANS           = 0x0081,   /* _H2ASN_MsgChoice RRMM_TRANSACTION_INFO_ANS_STRU */
-    /* Added by z40661 for 低功耗, 2012/03/30, begin   */
     RRMM_UE_OOC_STATUS_NOTIFY_IND       = 0x0083,   /* _H2ASN_MsgChoice RRMM_UE_OOC_STATUS_NOTIFY_IND_STRU */
-    /* Added by z40661 for 低功耗, 2012/03/30, end */
 
     GRRMM_MS_RADIO_ACCESS_CAPABILITIES_TDS_IND = 0x0085,/* _H2ASN_MsgChoice GRRMM_MS_RADIO_ACCESS_CAPABILITIES_IND_STRU */
 
     RRMM_UTRAN_MODE_CNF                 = 0x0087,   /* _H2ASN_MsgChoice RRMM_UTRAN_MODE_CNF_STRU */
 
-    /* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
     RRMM_NACK_DATA_IND                  = 0x0089,   /* _H2ASN_MsgChoice RRMM_NACK_DATA_IND_STRU */
-    /* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-13, begin */
     RRMM_HANDOVER_INFO_IND              = 0x008B,   /* _H2ASN_MsgChoice RRMM_HANDOVER_INFO_IND_STRU */
     RRMM_CLASSMARK_CHANGE_IND           = 0x008D,   /* _H2ASN_MsgChoice RRMM_CLASSMARK_CHANGE_IND_STRU */
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-13, end */
 
     RRMM_NET_SCAN_CNF                   = 0x0091,   /* _H2ASN_MsgChoice RRMM_NET_SCAN_CNF_STRU */
     RRMM_NET_SCAN_STOP_CNF              = 0x0093,   /* _H2ASN_MsgChoice RRMM_NET_SCAN_STOP_CNF_STRU */
@@ -302,10 +238,8 @@ enum NAS_RRC_MSG_TYPE_ENUM
     RRMM_NCELL_MONITOR_IND              = 0x0095,   /* _H2ASN_MsgChoice RRC_NAS_NCELL_MONITOR_IND_STRU */
     RRMM_GMM_PROC_ENQ                   = 0x0097,   /* _H2ASN_MsgChoice RRMM_GMM_PROC_ENQ_STRU */
 
-    /* Added by z00234330 for 搜网优化, 2014/09/30, begin */
     RRMM_SEARCHED_PLMN_INFO_IND         = 0x0099  , /* _H2ASN_MsgChoice RRMM_SEARCHED_PLMN_INFO_IND_STRU */
                                                     /*搜网过程中搜索到PLMN的信息上报*/
-    /* Added by z00234330 for 搜网优化, 2014/09/30, end */
 
     RRMM_USING_FREQ_IND                 = 0x009B,   /* _H2ASN_MsgChoice RRMM_USING_FREQ_IND_STRU */
 
@@ -499,17 +433,7 @@ enum MMC_START_RESULT_ENUM
 };
 typedef VOS_UINT32 MMC_START_RESULT_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : MMC_START_RESULT_ENUM
- 结构说明  : RRMM_CELL_SELECTION_CTRL_REQ_STRU消息中的enReselectInd
-  1 .日    期   : 2007年07月24日
-     作    者   : l57356
-     修改内容   : 问题单号 A32D012582 LAU失败小区选择
-  2 .日    期   : 2012年10月27日
-     作    者   : j00178524
-     修改内容   : DTS2012102601822, 经NAS组孙习波, 删除不再使用的枚举
-                  RRC_NAS_RESEL_ACCEPTABLE
-*****************************************************************************/
+
 enum RRC_NAS_RESEL_TYPE_ENUM
 {
     RRC_NAS_CELL_SELECTION              = 0,
@@ -748,13 +672,7 @@ enum RRC_NAS_AC_TYPE_ENUM
 };
 typedef VOS_UINT32 RRC_NAS_AC_TYPE_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : RRC_NAS_AC_TYPE_ENUM
- 结构说明  : RRMM_SUSPEND_IND_ST enSuspendCause 取值
- 1.日    期   : 2011年07月13日
-   作    者   : w00176964
-   修改内容   : GUNAS V7R1 PhaseII 阶段调整:增加CCO回退类型
-*****************************************************************************/
+
 enum MMC_SUSPEND_CAUSE_ENUM
 {
     MMC_SUSPEND_CAUSE_HANDOVER              = 0x00,
@@ -791,9 +709,7 @@ enum MMC_SUSPEND_DESTINATION
     MMC_SUSPEND_DESTINATION_GSM              = 0x00,
     MMC_SUSPEND_DESTINATION_WCDMA            = 0x01,
     MMC_SUSPEND_DESTINATION_LTE              = 0x02,
-    /* Added by s00246516 for L-C互操作项目, 2014-01-26, Begin */
     MMC_SUSPEND_DESTINATION_HRPD             = 0x03,
-    /* Added by s00246516 for L-C互操作项目, 2014-01-26, End */
     MMC_SUSPEND_DESTINATION_BUTT
 };
 typedef VOS_UINT8 MMC_SUSPEND_DESTINATION_UINT8;
@@ -845,9 +761,7 @@ enum MMC_RESUME_ORIGEN_ENUM
     MMC_RESUME_ORIGEN_WCDMA             = 0x01,
     MMC_RESUME_ORIGEN_LTE               = 0x02,
 
-    /* Added by s00246516 for L-C互操作项目, 2014-01-26, Begin */
     MMC_RESUME_ORIGEN_HRPD              = 0x03,
-    /* Added by s00246516 for L-C互操作项目, 2014-01-26, End */
 
     MMC_RESUME_ORIGEN_BUTT
 };
@@ -1036,17 +950,7 @@ enum RRC_NAS_AT_ACTION_ENUM
 typedef VOS_UINT8 RRC_NAS_AT_ACTION_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名    : RRC_NAS_AT_MSG_TYPE_ENUM
- 结构说明  : RRMM_AT_MSG_REQ_ST enMsgType的取值
- 4.日    期   : 2011年12月25日
-   作    者   : s46746
-   修改内容   : 枚举值定义不是按位新增的
 
-  2.日    期   : 2012年6月2日
-    作    者   : z40661
-    修改内容   : DTS2012053006110 与WAS修改接口,将当前模式接口单独独立处理
-*****************************************************************************/
 enum RRC_NAS_AT_MSG_TYPE_ENUM
 {
     RRC_NAS_AT_CELL_SIGN                = 1,                /* 表示获取小区信息强度 */
@@ -1057,12 +961,7 @@ enum RRC_NAS_AT_MSG_TYPE_ENUM
 };
 typedef VOS_UINT8 RRC_NAS_AT_MSG_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : RRC_NAS_AT_MSG_SUBMODE_ENUM
-  1.日    期   : 2012年6月2日
-    作    者   : z40661
-    修改内容   : DTS2012053006110 与WAS修改接口,将当前模式接口单独独立处理
-*****************************************************************************/
+
 enum RRC_NAS_AT_MSG_SUBMODE_ENUM
 {
    RRC_NAS_AT_R99_ONLY                 ,             /* 表示只有R99相关配置  */
@@ -1132,14 +1031,7 @@ enum GRRMM_MSG_REL_VER_ENUM
 };
 typedef VOS_UINT8   GRRMM_MSG_REL_VER_ENUM_UINT8;
 
-/* Modified by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, begin */
-/*****************************************************************************
- 枚举名    : RRC_NAS_RESTRICTION_ENUM
- 结构说明  : GRRMM_SYS_INFO_IND_ST ulAcInfo
-1.日    期 : 2012年12月12日
-  作    者 : w00176964
-  修改内容 : 新建
-*****************************************************************************/
+
 enum RRC_NAS_RESTRICTION_ENUM
 {
     RRC_NAS_ACCESS_NO_RESTRICTION                                   = 0,     /* 不阻塞业务 */
@@ -1150,16 +1042,7 @@ enum RRC_NAS_RESTRICTION_ENUM
 };
 typedef VOS_UINT8 RRC_NAS_RESTRICTION_ENUM_UINT8;
 
-/*******************************************************************************
- 结构名    :RRC_NAS_RESTRICTION_STRU
- 协议表格  :
- ASN.1描述 :
- 结构说明  : union RRC_NAS_RESTRICTION_UN成员stBitRestrictType定义
-             bit位置1表示该类型有效
-1.日    期 : 2012年12月12日
-  作    者 : w00176964
-  修改内容 : 新建
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                          ucRestrictNormalService          :1;         /* 阻塞正常业务 */
@@ -1167,20 +1050,13 @@ typedef struct
     VOS_UINT8                          ucRestrictSpare6                 :6;
 }RRC_NAS_RESTRICTION_STRU;
 
-/*****************************************************************************
- 枚举名    : RRC_NAS_RESTRICTION_UN
- 结构说明  : RRC_NAS_RESTRICTION_UN ulAcInfo
-1. 日    期: 2012年12月08日
-   作    者: w00176964
-   修改内容: 新建
-*****************************************************************************/
+
 typedef union
 {
     VOS_UINT8                           ucRestrictType;
 
     RRC_NAS_RESTRICTION_STRU            stBitRestrictType;
 }RRC_NAS_RESTRICTION_UN;
-/* Modified by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, end */
 
 
 
@@ -1567,13 +1443,7 @@ enum RRMM_GMM_PROC_FLAG_ENUM
 };
 typedef VOS_UINT16 RRMM_GMM_PROC_FLAG_ENUM_UINT16;
 
-/*****************************************************************************
- 结构名    : RRMM_GMM_PROC_CONN_TYPE_ENUM
- 结构说明  : GPRS连接类型
- 1.日    期   : 2014年5月22日
-   作    者   : w00242748
-   修改内容   : 新建
-*****************************************************************************/
+
 enum RRMM_GMM_PROC_CONN_TYPE_ENUM
 {
     RRMM_GMM_PROC_CONN_TYPE_NO_CONN               = 0, /* no conn */
@@ -1692,13 +1562,7 @@ enum RRC_NAS_SYS_INFO_TYPE_ENUM
 };
 typedef VOS_UINT8  RRC_NAS_SYS_INFO_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : RRC_NAS_LTE_CAPABILITY_STATUS_ENUM
- 结构说明  : NAS_COMM_INFO_STRU enLCapabilityStatus取值
- 1.日    期: 2011年10月25日
-   作    者: w00176964
-   修改内容: 增加信元标识LTE特性是否可用
-*****************************************************************************/
+
 enum RRC_NAS_LTE_CAPABILITY_STATUS_ENUM
 {
     RRC_NAS_LTE_CAPABILITY_STATUS_DISABLE                   = 0,                        /* LTE特性不可用,例如L下联合注册被拒#7 */
@@ -1707,13 +1571,7 @@ enum RRC_NAS_LTE_CAPABILITY_STATUS_ENUM
 };
 typedef VOS_UINT32 RRC_NAS_LTE_CAPABILITY_STATUS_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : RRC_NAS_RAT_CAPABILITY_STATUS_ENUM
- 结构说明  : NAS_COMM_INFO_STRU 的网络制式能力
- 1.日    期: 2013年11月01日
-   作    者: l00208543
-   修改内容: 新增
-*****************************************************************************/
+
 enum RRC_NAS_RAT_CAPABILITY_STATUS_ENUM
 {
     RRC_NAS_RAT_CAPABILITY_STATUS_DISABLE                   = 0,                        /* RAT特性不可用 */
@@ -1722,16 +1580,7 @@ enum RRC_NAS_RAT_CAPABILITY_STATUS_ENUM
 };
 typedef VOS_UINT8 RRC_NAS_RAT_CAPABILITY_STATUS_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : RRC_NAS_CS_TRANSACTION_ENUM
- 结构说明  : RRC_NAS_CS_TRANSACTION_ENUM_UINT8 enCsTransactionType取值
- 1.日    期: 2012年02月06日
-   作    者: g00166634
-   修改内容: 增加CSFB特性，WAS在重定向过程中，向NAS查询是否当前为CSFB流程
- 2.日    期: 2012年11月12日
-   作    者: s46746
-   修改内容: 修改为查询cs业务类型
-*****************************************************************************/
+
 enum RRC_NAS_CS_TRANSACTION_ENUM
 {
     RRC_NAS_CS_TRANSACTION_NO_EXIST                   = 0,                         /* 不存在CSFB 流程 */
@@ -1742,13 +1591,7 @@ enum RRC_NAS_CS_TRANSACTION_ENUM
 };
 typedef VOS_UINT8 RRC_NAS_CS_TRANSACTION_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : RRC_NAS_UTRAN_MODE_ENUM_UINT8
- 结构说明  : MS当前具体的UTRAN模式:WCDMA/TD-SCAMA
- 1.日    期   : 2012年7月27日
-   作    者   : w00176964
-   修改内容   : 新建
-*****************************************************************************/
+
 enum RRC_NAS_UTRAN_MODE_ENUM
 {
     RRC_NAS_UTRAN_MODE_FDD          = 0,     /* 当前工作模式为WCDMA */
@@ -1783,13 +1626,7 @@ enum RRC_NAS_NET_SCAN_RESULT_ENUM
 };
 typedef VOS_UINT8  RRC_NAS_NET_SCAN_RESULT_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : RRC_NAS_NET_SCAN_CAUSE_ENUM
- 结构说明  : 接入层回复NAS扫描失败原因，如果当前没有任何模式驻留，NAS直接回复AT失败
- 1.日    期   : 2013年8月24日
-   作    者   : sunxibo
-   修改内容   : 新建结构体
-*****************************************************************************/
+
 enum RRC_NAS_NET_SCAN_CAUSE_ENUM
 {
     RRC_NAS_NET_SCAN_CAUSE_SIGNAL_EXIST = 0,                /* 存在信令连接，NAS回复AT稍后再尝试 */
@@ -1801,13 +1638,7 @@ enum RRC_NAS_NET_SCAN_CAUSE_ENUM
 };
 typedef VOS_UINT8 RRC_NAS_NET_SCAN_CAUSE_ENUM_UINT8;
 
-/*******************************************************************************
- 枚举名    : RRC_NAS_NCELL_STATE_ENUM
- 结构说明  : 邻区状态枚举
- 1.日    期   : 2014年01月02日
-   作    者   : y00142674
-   修改内容   : 创建，for V9R1_SVLTE
-*******************************************************************************/
+
 enum RRC_NAS_NCELL_STATE_ENUM
 {
     RRC_NAS_NCELL_STATE_NULL    = 0x00,                                         /* 既没有TD的邻区，也没有4G邻区 */
@@ -1819,13 +1650,7 @@ enum RRC_NAS_NCELL_STATE_ENUM
 };
 typedef VOS_UINT8 RRC_NAS_NCELL_STATE_ENUM_UINT8;
 
-/*******************************************************************************
- 枚举名    : NAS_GAS_MS_CAP_TYPE_ENUM_UINT8
- 结构说明  : MS能力类型枚举
- 1.日    期   : 2014年01月02日
-   作    者   : w00146666
-   修改内容   : 创建，for Disable lte fdd in china
-*******************************************************************************/
+
 enum NAS_GAS_MS_CAP_TYPE_ENUM
 {
     NAS_GAS_MS_CAP_TYPE_UTRAN_FDD_RAC = 0x00,           /* UTRAN FDD下获取MS G模RAC */
@@ -1850,13 +1675,7 @@ enum RRMM_FFT_SCAN_TYPE_ENUM
 };
 typedef VOS_UINT8  RRMM_FFT_SCAN_TYPE_ENUM_UINT8;
 
-/*******************************************************************************
- 枚举名    : NAS_LAU_TYPE_ENUM
- 结构说明  : LAU类型
- 1.日    期   : 2015年05月12日
-   作    者   : j00174725
-   修改内容   : DTS2015040705043
-*******************************************************************************/
+
 enum NAS_LAU_TYPE_ENUM
 {
     NAS_LAU_TYPE_NORMAL_LAU             = 0,
@@ -1868,13 +1687,7 @@ enum NAS_LAU_TYPE_ENUM
 };
 typedef VOS_UINT8 NAS_LAU_TYPE_ENUM_UINT8;
 
-/*******************************************************************************
- 枚举名    : NAS_ADDITION_UPDATE_PARA_ENUM
- 结构说明  : LAU参数类型
- 1.日    期   : 2015年05月12日
-   作    者   : j00174725
-   修改内容   : DTS2015040705043
-*******************************************************************************/
+
 enum NAS_ADDITION_UPDATE_PARA_ENUM
 {
     NAS_ADDITION_UPDATE_PARA_NONE       = 0,
@@ -1887,13 +1700,7 @@ enum NAS_ADDITION_UPDATE_PARA_ENUM
 };
 typedef VOS_UINT8 NAS_ADDITION_UPDATE_PARA_ENUM_UINT8;
 
-/*******************************************************************************
- 枚举名    : RRMM_TRANSACTION_STATUS_ENUM
- 结构说明  : LAU参数类型
- 1.日    期   : 2015年06月01日
-   作    者   : j00174725
-   修改内容   : DTS2015053000044
-*******************************************************************************/
+
 enum RRMM_TRANSACTION_STATUS_ENUM
 {
     RRMM_TRANSACTION_CONNECTION_EST_SUCC       = 0,
@@ -1935,15 +1742,7 @@ typedef struct
     VOS_UINT32                          ulForbLac;          /* 禁止注册区信息 */
 }RRC_FORB_LA_STRU;
 
-/*******************************************************************************
- 结构名    : RRMM_NCELL_INFO_STRU
- 结构说明  : GSM下TDS邻区的频点列表和G驻留网络等效plmn信息
 
- 1.日    期   : 2013年12月16日
-   作    者   : z00161729
-   修改内容   : 新生成结构
-
-*******************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucTdsArfcnNum;                          /* 0表示TDD频点不存在 */
@@ -1965,13 +1764,11 @@ typedef struct
     RRC_FORB_LA_STRU                    aForbLaList[RRC_MAX_FORBLA_NUM];        /* 禁止注册区列表                           */
 
     RRMM_NCELL_INFO_STRU                stNcellInfo;
-    /* Added by b00269685 for 自主FR优化, 2014-10-15, begin */
     PS_BOOL_ENUM_UINT8                  enCsfbFlg;          /* 本次搜网流程是否CSFB发起的 */
     RRMM_FFT_SCAN_TYPE_ENUM_UINT8       enFftScanType;      /* FFT搜网类型,目前仅在spec搜网和获取地理信息中有用 */
     PS_BOOL_ENUM_UINT8                  enPlmnInfoCampFlg;  /* 只是上报plmn是否需要满足驻留准则,目前仅在获取地理信息中可能会填写PS_FALSE,默认是PS_TRUE */
 
     VOS_UINT8                           aucReserve[1];
-    /* Added by b00269685 for 自主FR优化, 2014-10-15, end */
 
 }RRMM_PLMN_SEARCH_REQ_STRU;
 
@@ -2041,13 +1838,7 @@ typedef struct
 }RRMM_CSG_LIST_SEARCHED_PLMN_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : RRMM_CSG_LIST_SEARCHED_RESULT_STRU
- 结构说明  : csg列表搜网结果信息
- 1.日    期   : 2015年9月2日
-   作    者   : z00161729
-   修改内容   : 支持LTE CSG功能新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                 ulTotalPlmnNum; /* 高低质量PLMN总个数 */
@@ -2133,24 +1924,7 @@ typedef struct
 
 /***********************修改接口MMC－>AS**************************/
 /* 7.1.8 消息 RRMM_START_REQ 的结构体 */
-/******************************************************************************
-    说明：
-    如果是双模，NAS向WRRC和RR同时发送这条消息，WRRC和RR判断其中的ulRat为双模，
-    可以执行异系统测量、切换、异系统小区重选等操作。
-    如果是单模，NAS只向其中一方发送这条消息，接收方判断ulRat为单模，
-    则不再执行异系统相关的操作，作为一个单模AS层运行。
-    AS层收到这条消息后，完成自身的初始化，之后处于待命状态，
-    等待NAS的第一条消息为：RRMM_PLMN_SEARCH_REQ，
-    只有接收这条消息后才能处理其他的NAS的消息。
-    RRMM_PLMN_SEARCH_REQ这条消息NAS将视为将AS由待命状态调度到工作状态的一条消息。
 
- 1.日    期   : 2011年7月17日
-   作    者   : w00167002
-   修改内容   : 修改结构体: 开机消息结构体的更改,通知接入层的接入技术更改为数组形式通知
- 2.日    期   : 2012年8月30日
-   作    者   : w00176964
-   修改内容   : 修改结构体: GUTL PhaseII修改:增加UTRAN MODE通知
-******************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;          /* 消息头     */    /*_H2ASN_Skip*/
@@ -2158,9 +1932,7 @@ typedef struct
     RRMM_RAT_PRIO_ENUM_UINT8            aucRatPrioList[RRMM_RAT_TYPE_BUTT];     /* 各模的优先级 */
     RRC_NAS_UTRAN_MODE_ENUM_UINT8       enUtranMode;                            /* 当前UTRAN的工作模式:0---FDD 1---TDD */
 
-    /* Added by s00246516 for L-C互操作项目, 2014-01-27, Begin */
     VOS_UINT8                           aucReserve1[2];     /* 保留 */
-    /* Added by s00246516 for L-C互操作项目, 2014-01-27, End */
 }RRMM_START_REQ_STRU;
 
 /* 7.1.9 消息 RRMM_START_CNF 的结构体 */
@@ -2233,13 +2005,7 @@ typedef struct
     RRC_CELL_BAR_ENUM_UINT32            enBarValidFlg;      /* 当前小区或激活集小区是否被阻塞，取值见枚举定义 */
 }RRMM_REL_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : RRMM_REL_CS_PS_ALL_CONN_REQ_STRU
- 结构说明  : svlte特性开启，ps detach时如果存在连接通过该原语通知tds释放所有cs ps连接
- 1.日    期   : 2014年3月22日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;          /* 消息头    */   /*_H2ASN_Skip*/
@@ -2248,13 +2014,7 @@ typedef struct
 
 
 
-/*****************************************************************************
- 结构名    : RRMM_SERVICE_ABORT_NOTIFY_STRU
- 结构说明  : cs业务终止指示
- 1.日    期   : 2014年5月22日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;          /* 消息头    */   /*_H2ASN_Skip*/
@@ -2298,19 +2058,13 @@ typedef struct
 
 /***********************新增接口AS－>MMC***************************/
 /* 7.1.21 消息 RRMM_SUSPEND_IND 结构体 */
-/******************************************************************************
-1. 日    期: 2012年12月08日
-   作    者: w00176964
-   修改内容: 增加紧急业务限制信元以及修改变量名
-******************************************************************************/
+
 typedef struct
 {
     PS_BOOL_ENUM_UINT8                 enRestrictPagingRsp;          /* 是否限制响应寻呼 */
     PS_BOOL_ENUM_UINT8                 enRestrictRegister;           /* 是否限制注册 */
-    /* Modified by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-10, begin */
     PS_BOOL_ENUM_UINT8                 enRestrictNormalService;      /* 是否限制正常业务 */
     PS_BOOL_ENUM_UINT8                 enRestrictEmergencyService;   /* 是否限制紧急业务 */
-    /* Modified by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-10, end */
 }RRC_NAS_RESTRICTION_TYPE_STRU;
 
 /* 7.1.20_1 消息 RRMM_W_AC_INFO_CHANGE_IND_STRU 结构体 */
@@ -2962,9 +2716,7 @@ typedef struct
                                                                1 MSC is Release '99 onwards */
     GRRMM_SGSN_REL_VER_ENUM_UINT8       ucSgsnRelease;       /* [0-1] 0 SGSN is Release '98 or older
                                                                1 SGSN is Release '99 onwards */
-    /* Modified by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, begin */
     RRC_NAS_RESTRICTION_UN              unAcInfo;	     /*_H2ASN_Replace RRC_NAS_RESTRICTION_ENUM_UINT8            unAcInfo; */
-    /* Modified by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, end */
     GRRMM_BAND_INDICATOR_ENUM_UINT8     ucBandIndicator;     /* 当前的组网指示:1800或1900  0表示1800，1表示1900*/
     VOS_UINT8                           aucReserve[2];
 }GRRMM_SYS_INFO_IND_ST;
@@ -3083,16 +2835,7 @@ typedef struct
 #define GRRMM_SCELL_MEAS_TYPE_CELLID                            0x04               /* CELL ID变化触发的上报 */
 
 
-/*******************************************************************************
- 结构名    :GRRMM_SCELL_MEAS_TYPE_STRU
- 协议表格  :
- ASN.1描述 :
- 结构说明  : union GRRMM_SCELL_MEAS_REPORT_TYPE_UN成员stMeasReportType定义
-             bit位置1表示该类型有效
-1.日    期 : 2012年12月27日
-  作    者 : w00176595
-  修改内容 : 新建
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                          ucMeasRxlevType          :1;             /* Rxlev改变触发的测量上报 */
@@ -3101,13 +2844,7 @@ typedef struct
     VOS_UINT8                          ucMeasTypeSpare5         :5;
 }GRRMM_SCELL_MEAS_TYPE_STRU;
 
-/*****************************************************************************
- 枚举名    : GRRMM_SCELL_MEAS_REPORT_TYPE_UN
- 结构说明  : GRRMM_SCELL_MEAS_REPORT_TYPE_UN unMeasType GAS上报测量的类型
-1. 日    期: 2012年12月27日
-   作    者: w00176595
-   修改内容: 新建
-*****************************************************************************/
+
 typedef union
 {
     VOS_UINT8                             ucMeasReportType;
@@ -3259,26 +2996,14 @@ typedef struct
     RRMM_GMM_PROC_FLAG_ENUM_UINT16      usGmmProcFlag;        /* GMM过程标志 */
 }RRMM_GMM_PROC_NOTIFY_STRU;
 
-/*****************************************************************************
- 结构名    : RRMM_GMM_PROC_ENQ_STRU
- 结构说明  : AS查询当前GMM当前连接状态
- 1.日    期   : 2014年5月22日
-   作    者   : w00242748
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;          /* 消息头 */        /*_H2ASN_Skip*/
     VOS_UINT8                           aucReserve[4];
 }RRMM_GMM_PROC_ENQ_STRU;
 
-/*****************************************************************************
- 结构名    : RRMM_GMM_PROC_ANS_STRU
- 结构说明  : AS查询当前GMM当前连接状态
- 1.日    期   : 2014年5月22日
-   作    者   : w00242748
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                         stMsgHeader;          /* 消息头 */        /*_H2ASN_Skip*/
@@ -3287,15 +3012,7 @@ typedef struct
 }RRMM_GMM_PROC_ANS_STRU;
 
 
-/***********************新增接口GMM－>GAS********************************
- 结构名    : RRMM_AUTH_FAIL_NOTIFY_REQ_STRU
- 结构说明  : GMM指示鉴权被拒,Bar掉当前小区
- 修改历史     :
- 1.日    期   : 2012年4月20日
-   作    者   : l00130025
-   修改内容   : DTS2012032004389，Netork连续3次被Ms Auth Rej或T3318/T3320超时时，没有通知GAS Bar掉当前小区,
-                相关协议TS 24.008 4.3.2.6.1 & 4.7.7.6,Ts43.022 3.5.5
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;          /* 消息头 */        /*_H2ASN_Skip*/
@@ -3303,14 +3020,7 @@ typedef struct
 }RRMM_AUTH_FAIL_NOTIFY_REQ_STRU;
 
 
-/*******************************************************************************
- 结构名    : NAS_GPRS_ACCESS_RESULT_ENUM
- 结构说明  : NAS当前GPRS的接入结果
- 修改历史     :
- 1.日    期   : 2011年7月13日
-   作    者   : w00176964
-   修改内容   : 新增
-*******************************************************************************/
+
 enum NAS_GPRS_ACCESS_RESULT_ENUM
 {
     NAS_GPRS_ACCESS_SUCCESS             = 0,                                    /* GPRS接入成功 */
@@ -3318,15 +3028,7 @@ enum NAS_GPRS_ACCESS_RESULT_ENUM
 };
 typedef VOS_UINT32 NAS_GPRS_ACCESS_RESULT_ENUM_UINT32;
 
-/*******************************************************************************
- 结构名    : GRRGMM_GPRS_ACCESS_RESULT_IND_STRU
- 结构说明  : 消息 GRRGMM_GPRS_ACCESS_RESULT_IND的结构
-             该消息为GAS通知GMM当前GPRS的接入结果
- 修改历史     :
- 1.日    期   : 2011年7月13日
-   作    者   : w00176964
-   修改内容   : 新增
-*******************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;                              /* 消息头 */ /*_H2ASN_Skip*/
@@ -3387,13 +3089,7 @@ typedef struct
 }AS_NAS_SCELL_BAND_INFO_ST;
 
 /* 9.4 AS 获取 通过调用此接口来获取NAS的相关信息。比如说PLMN的信息等。（新增接口） */
-/*****************************************************************************
- 结构名    : RRC_EPLMN_INFO_STRU
- 结构说明  : 等效plmn信息，手动搜网模式只带用户指定网络及指定网络等效plmn
- 1.日    期   : 2013年10月17日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          bitOpCurPlmn: 1;                        /* 指示stCurCampedPlmnId字段是否有效，手动搜网模式下
@@ -3515,27 +3211,7 @@ typedef struct
 }TC_RRCF_TEST_CONTROL_MSG;
 
 
-/*******************************************************************************
- 结构名    : NAS_COMM_INFO_STRU
- 协议表格  :
- ASN.1描述 :
- 结构说明  : 和域无关的公共参数:
-                1.USIM卡状态，对热插拔USIM卡的支持
- 1.日    期: 2011年10月25日
-   作    者: w00176964
-   修改内容: 增加信元,作用如下:
-             1)用于L下联合注册被拒导致需要DISABLE LTE(具体场景可参考TS24301)时
-               通知GAS/WAS当前L不可用(WAS/GAS在DEACTIVE时也要处理)，在L回到可用之前
-               GAS/WAS不能通过异系统改变回到L下；
-             2)在NAS主动Disable LTE后，如果需要Re-enable LTE(具体场景可参考TS24301)
-               时通知GAS/WAS当前L可用(WAS/GAS在DEACTIVE时也要处理)
- 2.日    期   : 2012年6月11日
-   作    者   : w00166186
-   修改内容   : AT&T&DCM项目
- 3.日    期   : 2013年11月01日
-   作    者   : l00208543
-   修改内容   : 根据卡类型禁止网络制式
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          bitOpUsimValid      :1;
@@ -3587,18 +3263,7 @@ typedef struct
 }USER_SET_FREQ_BAND_STRU;
 
 
-/*******************************************************************************
- 结构名    : RRMM_SYS_CFG_REQ_STRU
- 协议表格  :
- ASN.1描述 :
- 结构说明  : 消息 RRMM_SYS_CFG_REQ的结构
-             该消息为WAS和GAS同NAS共用消息，由MMC发出，
-             当用户改变接入模式或频带参数时下发
-修改历史      :
- 1.日    期   : 2011年7月2日
-   作    者   : w00167002
-   修改内容   : V3到V7需要更改SYSCFG请求原语接口中的接入模式
-*******************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;          /* 消息头 */        /*_H2ASN_Skip*/
@@ -3610,9 +3275,7 @@ typedef struct
 
     RRMM_RAT_PRIO_ENUM_UINT8            aucRatPrioList[RRMM_RAT_TYPE_BUTT];     /* 各模的优先级 */
     RRC_NAS_UTRAN_MODE_ENUM_UINT8       enUtranMode;
-    /* Added by s00246516 for L-C互操作项目, 2014-01-27, Begin */
     VOS_UINT8                           aucReserved[2];
-    /* Added by s00246516 for L-C互操作项目, 2014-01-27, End */
 }RRMM_SYS_CFG_REQ_STRU;
 
 
@@ -3838,9 +3501,7 @@ typedef struct
 typedef struct
 {
     RRC_NAS_CS_TRANSACTION_ENUM_UINT8     enCsTransactionType;
-    /* Added by n00355355 for 呼叫重建, 2015-9-17, begin */
     VOS_UINT8                             ucIsCallActive;
-    /* Added by n00355355 for 呼叫重建, 2015-9-17, end */
     VOS_UINT8                             aucReserve1[2]; /* 保留 */
 }RRC_NAS_CS_TRANSACTION_INFO_STRU;
 
@@ -3937,16 +3598,7 @@ typedef struct
     MSG_HEADER_STRU                     MsgHeader;          /* 消息头         */ /*_H2ASN_Skip*/
 } RRMM_UE_OOC_STATUS_NOTIFY_IND_STRU;
 
-/*****************************************************************************
- 结构名    : RRMM_UTRAN_MODE_REQ_STRU
- 结构说明  : UTRAN的工作模式信息
- 1.日    期   : 2012年7月14日
-   作    者   : w00176964
-   修改内容   : 新建
- 2.日    期   : 2012年8月8日
-   作    者   : w00167002
-   修改内容   : V7R1C50_GUTL_PhaseII:接口消息调整为RRMM_UTRAN_MODE_REQ，调整结构名
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;          /* 消息头            */ /*_H2ASN_Skip*/
@@ -3954,29 +3606,14 @@ typedef struct
     VOS_UINT8                           aucReserved[3];     /* 预留位 */
 }RRMM_UTRAN_MODE_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : RRMM_UTRAN_MODE_CNF_STRU
- 结构说明  : UTRAN的工作模式信息
- 1.日    期   : 2012年8月8日
-   作    者   : w00167002
-   修改内容   : V7R1C50_GUTL_PhaseII:新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;        /* 消息头          */ /*_H2ASN_Skip*/
 }RRMM_UTRAN_MODE_CNF_STRU;
 
 
-/*****************************************************************************
- 结构名    : RRMM_NET_SCAN_INFO_STRU
- 结构说明  : 扫描某个频点的网络信息
- 1.日    期   : 2013年8月24日
-   作    者   : sunxibo
-   修改内容   : 新建
- 2.日    期   : 2014年11月04日
-   作    者   : j00204253
-   修改内容   : 新增PSC数据
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usArfcn;
@@ -3996,13 +3633,7 @@ typedef struct
 }RRMM_NET_SCAN_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : RRC_NAS_NETSCAN_TDD_SEARCH_REQ_ENUM
- 结构说明  : NetScan扫描完成后，接入层是否自发搜网驻留的标志位
- 1.日    期   : 2015年1月248日
-   作    者   : m00278711
-   修改内容   : 新建
-*****************************************************************************/
+
 enum RRC_NAS_NETSCAN_TDD_SEARCH_REQ_ENUM
 {
     RRC_NAS_NETSCAN_TDD_SEARCH_NONE     = 0,                /* TDSCDMA结束NETSCAN流程后，不进行自主搜网 */
@@ -4011,13 +3642,7 @@ enum RRC_NAS_NETSCAN_TDD_SEARCH_REQ_ENUM
 };
 typedef VOS_UINT8 RRC_NAS_NETSCAN_TDD_SEARCH_REQ_ENUM_UINT8;
 
-/*****************************************************************************
- 结构名    : RRMM_NET_SCAN_REQ_STRU
- 结构说明  : MMC请求接入层进行网络扫描消息结构体
- 1.日    期   : 2013年8月24日
-   作    者   : sunxibo
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;    /* 消息头    */         /*_H2ASN_Skip*/
@@ -4029,13 +3654,7 @@ typedef struct
     VOS_UINT8                           aucReserve[3];
 }RRMM_NET_SCAN_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : RRMM_NET_SCAN_CNF_STRU
- 结构说明  : 接入层扫描结果回复消息结构体
- 1.日    期   : 2013年8月24日
-   作    者   : sunxibo
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;          /* 消息头    */   /*_H2ASN_Skip*/
@@ -4046,26 +3665,14 @@ typedef struct
     RRMM_NET_SCAN_INFO_STRU             astNetScanInfo[RRC_NAS_NET_SCAN_MAX_FREQ_NUM];
 }RRMM_NET_SCAN_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : RRMM_NET_SCAN_STOP_REQ_STRU
- 结构说明  : MMC请求接入层停止进行网络扫描消息结构体
- 1.日    期   : 2013年8月24日
-   作    者   : sunxibo
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;          /* 消息头    */   /*_H2ASN_Skip*/
     VOS_UINT8                           aucReserve[4];
 }RRMM_NET_SCAN_STOP_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : RRMM_NET_SCAN_STOP_CNF_STRU
- 结构说明  : 接入层停止扫描结果回复消息结构体
- 1.日    期   : 2013年8月24日
-   作    者   : sunxibo
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;          /* 消息头    */   /*_H2ASN_Skip*/
@@ -4074,14 +3681,7 @@ typedef struct
     RRMM_NET_SCAN_INFO_STRU             astNetScanInfo[RRC_NAS_NET_SCAN_MAX_FREQ_NUM];
 }RRMM_NET_SCAN_STOP_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : RRC_NAS_NCELL_MONITOR_IND_STRU
- 结构说明  : 在邻区监控功能打开时，GAS发给MMC上报异系统小区信息
 
- 1.日    期   : 2014年01月02日
-   作    者   : y00142674
-   修改内容   : 创建，for V9R1_SVLTE
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;          /* 消息头    */   /*_H2ASN_Skip*/
@@ -4098,14 +3698,7 @@ typedef struct
 }RRMM_PLMN_RAT_WITH_LAC_STRU;
 
 
-/*****************************************************************************
- 结构名    : RRMM_SERACHED_PLMN_INFO_IND_STRU
- 结构说明  : 搜网过程中搜网到的pLMN上报，该plmn必须满足驻留准则才能上报
 
- 1.日    期   : 2014年09月30日
-   作    者   : z00234330
-   修改内容   : 创建，for 漫游搜网优化
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;          /* 消息头    */   /*_H2ASN_Skip*/
@@ -4143,27 +3736,13 @@ typedef struct
     VOS_UINT8                           aucReserve1[4]; /* 保留 */
 }RRRABM_VOICEPREFER_STOP_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : RRMM_CSG_LIST_SEARCH_REQ_STRU
- 结构说明  : RRMM_CSG_LIST_SEARCH_REQ_STRU的消息结构体
 
- 1.日    期   : 2015年09月02日
-   作    者   : z00161729
-   修改内容   : 支持LTE CSG功能新增
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;                            /* 消息头  */    /*_H2ASN_Skip*/
     VOS_UINT8                           aucReserve1[4]; /* 保留 */
 }RRMM_CSG_LIST_SEARCH_REQ_STRU;
-/*****************************************************************************
- 结构名    : RRMM_CSG_LIST_SEARCH_CNF_STRU
- 结构说明  : RRMM_CSG_LIST_SEARCH_CNF_STRU的消息结构体
 
- 1.日    期   : 2015年09月02日
-   作    者   : z00161729
-   修改内容   : 支持LTE CSG功能新增
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;          /* 消息头   */      /*_H2ASN_Skip*/
@@ -4173,14 +3752,7 @@ typedef struct
     /* CSG LIST PLMN搜索结果 */
     RRMM_CSG_LIST_SEARCHED_RESULT_STRU  stCsgListSearchedResult;
 }RRMM_CSG_LIST_SEARCH_CNF_STRU;
-/*****************************************************************************
- 结构名    : RRMM_TRANSACTION_STATUS_NOTIFY_STRU
- 结构说明  : RRMM_TRANSACTION_STATUS_NOTIFY的消息结构体
 
- 1.日    期   : 2015年06月01日
-   作    者   : j00174725
-   修改内容   : DTS2015053000044
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /* 消息头  */    /*_H2ASN_Skip*/
@@ -4189,13 +3761,7 @@ typedef struct
 }RRMM_TRANSACTION_STATUS_NOTIFY_STRU;
 
 
-/*****************************************************************************
- 结构名    : RRMM_LCS_STATE_ENUM
- 结构说明  : RRLP procedure、LCS procedure over RRC流程的状态
- 1.日    期   : 2015年11月9日
-   作    者   : l00198894
-   修改内容   : 新建
-*****************************************************************************/
+
 enum RRMM_LCS_STATE_ENUM
 {
     RRMM_LCS_STATE_FINISH               = 0,                                    /* RRLP procedure、LCS procedure over RRC流程结束 */
@@ -4204,15 +3770,7 @@ enum RRMM_LCS_STATE_ENUM
 };
 typedef VOS_UINT8 RRMM_LCS_STATE_ENUM_UINT8;
 
-/*******************************************************************************
- 结构名    : RRMM_LCS_STATE_IND_STRU
- 结构说明  : RRMM_LCS_STATE_IND的消息对应的结构，
-             RRLP procedure、LCS procedure over RRC流程的状态
 
-  1.日    期   : 2015年11月9日
-    作    者   : l00198894
-    修改内容   : 新增结构
-*******************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /*_H2ASN_Skip*/
@@ -4320,42 +3878,10 @@ extern VOS_UINT32 MMC_ComJudgeLai(RRC_PLMN_ID_STRU stPlmn,
 *****************************************************************************/
 extern VOS_VOID MM_GetNasInfo(MM_INFO_ST *pstMmInfo);
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetEHPlmn
- 功能描述  : 提供给接入层获取EHPLMN的API接口函数
- 输入参数  : 无
- 输出参数  : RRC_PLMN_ID_STRU *pstEHPlmn:EHPLMN列表，需要能存储32个PLMNID
-             VOS_UINT32 *pulEHPlmnNum:EHPLMN个数
- 返 回 值  : VOS_OK :获取成功，返回EHPLMN或者home plmn(不支持EHPLMN或者EHPLMN列表为空)
-             VOS_ERR:获取失败，参数检查失败或者无卡或者卡被锁定
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月11日
-    作    者   : s46746
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 extern VOS_UINT32 NAS_MMC_GetEHPlmn(RRC_PLMN_ID_STRU *pstEHPlmn, VOS_UINT8 *pucEHPlmnNum);
 
-/*****************************************************************************
- 函 数 名  : NAS_GetTransactionInfo
- 功能描述  : 提供给接入层获取业务信息函数
- 输入参数  : 无
- 输出参数  : RRC_NAS_CS_TRANSACTION_INFO_STRU *pstCsTransactInfo:CS业务信息
-             RRC_NAS_PS_TRANSACTION_INFO_STRU *pstPsTransactInfo:PS业务信息
- 返 回 值  : VOS_OK :获取成功
-             VOS_ERR:获取失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月12日
-    作    者   : s46746
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 extern VOS_UINT32 NAS_GetTransactionInfo(RRC_NAS_CS_TRANSACTION_INFO_STRU *pstCsTransactInfo,
                                          RRC_NAS_PS_TRANSACTION_INFO_STRU *pstPsTransactInfo);
 
@@ -4419,29 +3945,14 @@ enum PPP_DIAL_RATE_DISPLAY_ENUM
 
 typedef VOS_UINT32 PPP_DIAL_RATE_DISPLAY_ENUM_UINT32;
 
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
-/*****************************************************************************
- 结构名    : RRMM_NACK_DATA_IND_STRU
- 结构说明  : 消息在底层发送失败指示消息的结构
 
-  1.日    期   : 2013年6月26日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级，DTS20121809369
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;
     NAS_MSG_STRU                        stNackMsg;
 }RRMM_NACK_DATA_IND_STRU;
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 
-/*****************************************************************************
- 枚举名    : RRC_NAS_SESSION_TYPE_ENUM_UINT8
- 枚举说明  : SESSION类型
- 1.日    期   : 2014年5月22日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 enum RRC_NAS_SESSION_TYPE_ENUM
 {
     RRC_NAS_SESSION_TYPE_NONE                           = 0,
@@ -4474,13 +3985,7 @@ enum RRC_NAS_SESSION_TYPE_ENUM
 };
 typedef VOS_UINT8 RRC_NAS_SESSION_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 结构名    : RRMM_BEGIN_SESSION_NOTIFY_STRU
- 结构说明  : SESSION开始指示
- 1.日    期   : 2014年5月22日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /*_H2ASN_Skip*/
@@ -4488,16 +3993,7 @@ typedef struct
     VOS_UINT8                           aucReserved[3];
 }RRMM_BEGIN_SESSION_NOTIFY_STRU;
 
-/*****************************************************************************
- 结构名    : RRMM_END_SESSION_NOTIFY_STRU
- 结构说明  : SESSION终止指示
- 1.日    期   : 2014年5月22日
-   作    者   : h00246512
-   修改内容   : 新建
- 2.日    期   : 2014年7月17日
-   作    者   : b00269685
-   修改内容   : 增加delay时长
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /*_H2ASN_Skip*/
@@ -4509,7 +4005,6 @@ typedef struct
 }RRMM_END_SESSION_NOTIFY_STRU;
 
 
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-13, begin */
 /*****************************************************************************
  枚举名     :RRC_NAS_SIGNAL_INFO_ENUM
  协议表格  :
@@ -4561,17 +4056,8 @@ typedef struct
 
     VOS_UINT8                           aucReserved[1];                         /* 4字节对齐，保留 */
 } RRMM_CLASSMARK_CHANGE_IND_STRU;
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-13, end */
 
-/*******************************************************************************
- 结构名    : RRMM_TDS_NCELL_INFO_STRU
- 结构说明  : GSM下的TDS频点列表
 
- 1.日    期   : 2015年01月06日
-   作    者   : h00166210
-   修改内容   : 新生成结构
-
-*******************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucTdsArfcnNum;                              /* TDS频点个数，0表示TDS频点不存在 */
@@ -4579,17 +4065,7 @@ typedef struct
     VOS_UINT16                          ausTdsArfcnList[RRMM_TDS_ARFCN_MAX_NUM]; /* 频点列表 */
 }RRMM_TDS_NCELL_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : RRMM_LTE_NCELL_INFO_STRU
- 结构说明  : GSM下的LTE频点列表
 
- 1.日    期   : 2015年01月06日
-   作    者   : h00166210
-   修改内容   : 新生成结构
- 2.日    期   : 2015年7月20日
-   作    者   : w000316404
-   修改内容   : R11协议升级(LTE频点配置值扩展)
-*******************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucLteArfcnNum;                              /* LTE频点个数，0表示LTE频点不存在 */
@@ -4612,30 +4088,14 @@ enum RRMM_GSM_BANDINDICATOR_ENUM
 };
 typedef VOS_UINT16  RRMM_GSM_BANDINDICATOR_ENUM_UINT16;
 
-/*******************************************************************************
- 结构名    : RRMM_GSM_FREQ_INFO_STRU
- 结构说明  : GSM频点信息
 
- 1.日    期   : 2015年01月06日
-   作    者   : h00166210
-   修改内容   : 新生成结构
-
-*******************************************************************************/
 typedef struct
 {
     VOS_UINT16                          usGsmArfcn;     /* 绝对频点号 */
     RRMM_GSM_BANDINDICATOR_ENUM_UINT16  enBandInd;      /* Band指示, 指示当前频点是 1800 系统 或 1900 系统 */
 }RRMM_GSM_FREQ_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : RRMM_GSM_FREQ_INFO_STRU
- 结构说明  : GSM频点列表
 
- 1.日    期   : 2015年01月06日
-   作    者   : h00166210
-   修改内容   : 新生成结构
-
-*******************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucGsmArfcnNum;                                      /* GSM频点个数，0表示GSM频点不存在 */
@@ -4645,15 +4105,7 @@ typedef struct
     RRMM_GSM_FREQ_INFO_STRU             astGsmMaArfcnList[RRMM_GSM_MA_ARFCN_MAX_NUM];    /* 业务频点信息，此信息只在G主模下有效 */
 }RRMM_GSM_FREQ_INFO_LIST_STRU;
 
-/*******************************************************************************
- 结构名    : RRMM_WCDMA_FREQ_INFO_STRU
- 结构说明  : WCDMA频点列表
 
- 1.日    期   : 2015年01月06日
-   作    者   : h00166210
-   修改内容   : 新生成结构
-
-*******************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucWcdmaArfcnNum;                                        /* W频点个数，0表示WCDMA频点不存在 */
@@ -4661,17 +4113,7 @@ typedef struct
     VOS_UINT16                          ausWcdmaArfcnList[RRMM_WCDMA_MAX_USING_ARFCN_NUM];   /* 频点列表 */
 }RRMM_WCDMA_FREQ_INFO_LIST_STRU;
 
-/*******************************************************************************
- 结构名    : RRMM_USING_FREQ_IND_STRU
- 结构说明  : RRMM_USING_FREQ_IND的消息对应的结构，
-             包括GUTL主模下驻留以及正在测量的本系统以及异系统频点信息，服务小区所在频点放在第一个位置，
-             其余频点按照能量排序
 
- 1.日    期   : 2015年01月06日
-   作    者   : h00166210
-   修改内容   : 新生成结构
-
-*******************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                       /*_H2ASN_Skip*/
@@ -4759,25 +4201,7 @@ extern VOS_UINT32 GASGCOM_GetMsCapability(RRC_PLMN_ID_STRU *pstPlmn,
 
 extern VOS_UINT32  TAF_IsNormalSrvStatus(VOS_VOID);
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_GetLauRequestInfo
- 功能描述  : 提供给接入层获取LAU相关信息
- 输入参数  : pstLauReqMsg: LAU消息内容，是 LAU 消息内容中，是NAS_EST_REQ中的NAS_MSG_STRU结构
- 输出参数  : penLauType:LAU类型
-             pucFollowOnFlg:是否有 follow on标志
-             penAdditionUpdatePara: Additionupdate参数类型
- 返 回 值  : VOS_OK:获取成功
-             VOS_ERR:获取失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月12日
-    作    者   : j00174725
-    修改内容   : 新生成函数DTS2015040705043
-
-  注:输出参数  : penLauType pucFollowOnFlg penAdditionUpdatePara有效性由调用都保证
-*****************************************************************************/
 extern VOS_UINT32 NAS_MM_GetLauRequestInfo(
     NAS_MSG_STRU                           *pstLauReqMsg,
     NAS_LAU_TYPE_ENUM_UINT8                *penLauType,
@@ -4785,79 +4209,22 @@ extern VOS_UINT32 NAS_MM_GetLauRequestInfo(
     NAS_ADDITION_UPDATE_PARA_ENUM_UINT8    *penAdditionUpdatePara
 );
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_GetL3ReqMsgPd
- 功能描述  : 提供给接入层获取Req消息中的PD信息
- 输入参数  : pstSendMsg: Data Req消息内容 RRMM_DATA_REQ_STRU结构
- 输出参数  : ucPd:VOS_UINT8类型
 
- 返 回 值  : VOS_OK:获取成功
-             VOS_ERR:获取失败
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年09月17日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-*****************************************************************************/
 extern VOS_UINT32 NAS_MM_GetL3ReqMsgPd(
     RRMM_DATA_REQ_STRU                     *pstSendMsg,
     VOS_UINT8                              *pucPd
 );
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_GetL3RcvMsgPd
- 功能描述  : 提供给接入层获取Ind消息中的PD信息
- 输入参数  : pstSendMsg: Data Ind消息内容 RRMM_DATA_IND_STRU结构
- 输出参数  : ucPd:VOS_UINT8类型
 
- 返 回 值  : VOS_OK:获取成功
-             VOS_ERR:获取失败
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年09月17日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-*****************************************************************************/
 extern VOS_UINT32 NAS_MM_GetL3RcvMsgPd(
     RRMM_DATA_IND_STRU                     *pstRcvMsg,
     VOS_UINT8                              *pucPd
 );
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_GetSmsFilterFlg
- 功能描述  : 提供给接入层获取过滤功能是否打开的Nv
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE: 需要进行过滤
-             VOS_FALSE:不需要进行过滤
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月17日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-*****************************************************************************/
 extern VOS_UINT32 NAS_MM_GetSmsFilterFlg( VOS_VOID );
 
-/*****************************************************************************
- 函 数 名  : NAS_GetT3212Len
- 功能描述  : 提供给TRC获取T3212长度
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月16日
-    作    者   : h00360002
-    修改内容   : 新生成函数
-*****************************************************************************/
 extern VOS_UINT32 NAS_GetT3212Len( VOS_VOID );
 
 #if ((VOS_OS_VER == VOS_WIN32) || (VOS_OS_VER == VOS_NUCLEUS))

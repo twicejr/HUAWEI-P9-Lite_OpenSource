@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmcSndGuAs.c
-  版 本 号   : 初稿
-  作    者   : w00176964
-  生成日期   : 2010年5月9日
-  最近修改   :
-  功能描述   : MMC发给GU模的消息的处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年05月9日
-    作    者   : w00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 /*****************************************************************************
   1 头文件包含
 *****************************************************************************/
@@ -27,16 +10,12 @@
 #include "NasMmcCtx.h"
 #include "NasMmlCtx.h"
 #include "Nasrrcinterface.h"
-/* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
 #include "MsccMmcInterface.h"
-/* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 #include "NasMmlLib.h"
 #include "NasUtranCtrlInterface.h"
 #include "NasUtranCtrlCommFunc.h"
 #include "NasMmcComFunc.h"
-/* Modified by b00269685 for 自主FR优化, 2014-10-16, begin */
 #include "NasMmcFsmPlmnSelection.h"
-/* Modified by b00269685 for 自主FR优化, 2014-10-16, end */
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -55,27 +34,7 @@ extern "C" {
 
 /*lint -save -e958 */
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndAsPowerOffReq
- 功能描述  : 通过接入层的PID参数,NAS向相应的接入层发送关机请求消息
- 输入参数  : VOS_UINT32                          ulReceiverPid
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月9日
-    作    者   : W00167002
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年7月14日
-    作    者   : W00176964
-    修改内容   : V7R1 C50 GUTL PhaseI调整:发送给WRR的消息统一用适配层函数替换
-  3.日    期   : 2013年7月4日
-    作    者   : z00234330
-    修改内容   : 增加开机LOG
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndAsPowerOffReq(
     VOS_UINT32                          ulReceiverPid
 )
@@ -110,9 +69,7 @@ VOS_VOID NAS_MMC_SndAsPowerOffReq(
         return ;
     }
 
-    /* Modified by z00234330 for 开机LOG, 2013-6-24, begin */
     (VOS_VOID)vos_printf("NAS_MMC_SndAsPowerOffReq, ulReceiverPid:%d, ulRet:%d. tick = 0x%x\r\n ", ulReceiverPid, ulRet,VOS_GetSlice());
-    /* Modified by z00234330 for 开机LOG, 2013-6-24, begin */
 
     NAS_TRACE_HIGH("Send poweroff req to %s!",
         (WUEPS_PID_WRR == ulReceiverPid) ? ((NAS_UTRANCTRL_UTRAN_MODE_FDD == NAS_UTRANCTRL_GetCurrUtranMode()) ? "WRRC" : "TRRC") : "GAS");
@@ -120,37 +77,7 @@ VOS_VOID NAS_MMC_SndAsPowerOffReq(
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndAsPlmnAnyCellSrchReq
- 功能描述  : 向AS发送任意搜网请求
- 输入参数  : ulEventType:消息类型
-             pstMsg:ID_MSCC_MMC_START_REQ消息的首地址
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月9日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2011年9月3日
-    作    者   : s46746
-    修改内容   : 同步V3R1版本问题单DTS2011062001601
-  3.日    期   : 2011年11月11日
-    作    者   : w00167002
-    修改内容   : DTS2011110907180:将禁止漫游位置区信息作为参数传递进来，向
-                接入层发送此FORB ROAM LAS即可
-  4.日    期   : 2012年7月14日
-    作    者   : W00176964
-    修改内容   : V7R1 C50 GUTL PhaseI调整:发送给WRR的消息统一用适配层函数替换
-  5.日    期   : 2015年5月29日
-    作    者   : z00301431
-    修改内容   : DTS2015051803192,支持IMS但是不支持IMS紧急呼时需要允许接入层FR
-  6.日    期   : 2015年5月26日
-    作    者   : w00167002
-    修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_2.0项目修改
-*****************************************************************************/
 
 VOS_VOID NAS_MMC_SndAsPlmnAnyCellSrchReq(VOS_UINT32 ulPid)
 {
@@ -221,23 +148,7 @@ VOS_VOID NAS_MMC_SndAsPlmnAnyCellSrchReq(VOS_UINT32 ulPid)
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndAsSuspendReq
- 功能描述  : 向AS发送挂起消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月9日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2012年7月14日
-    作    者   : W00176964
-    修改内容   : V7R1 C50 GUTL PhaseI调整:发送给WRR的消息统一用适配层函数替换
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndAsSuspendReq(VOS_UINT32 ulPid)
 {
     /* 定义调用VOS发送函数的返回值  */
@@ -282,32 +193,7 @@ VOS_VOID NAS_MMC_SndAsSuspendReq(VOS_UINT32 ulPid)
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndAsPlmnSrchStopReq
- 功能描述  : 向AS发送停止消息
- 输入参数  : ulPid
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年5月9日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年7月14日
-   作    者   : w00167002
-   修改内容   : V7R1 PHASEII 重构: 内存分配失败，增加错误打印
-
- 3.日    期   : 2011年10月17日
-   作    者   : w00167002
-   修改内容   : V7R1 PHASEII 重构: 添加pc回放
-
- 4.日    期   : 2012年7月14日
-   作    者   : W00176964
-   修改内容   : V7R1 C50 GUTL PhaseI调整:发送给WRR的消息统一用适配层函数替换
-*****************************************************************************/
 
 VOS_VOID NAS_MMC_SndAsPlmnSrchStopReq(VOS_UINT32 ulPid)
 {
@@ -350,40 +236,7 @@ VOS_VOID NAS_MMC_SndAsPlmnSrchStopReq(VOS_UINT32 ulPid)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndGuAsEquPlmnReq
- 功能描述  : 向接入层下发eplmn 请求
- 输入参数  : pstPlmnInfo: 搜索的PLMN ID信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月9日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2011年7月24日
-    作    者   : l00130025
-    修改内容   : PhaseII修改
-  3.日    期   : 2011年11月24日
-    作    者   : w00167002
-    修改内容   : DTS2011112405567:原有的函数名NAS_MML_IsPlmnIdInDestPlmnList
-                更改为NAS_MML_IsBcchPlmnIdInDestSimPlmnList,用于明确判断
-                网络的类型，否则网络比较可能会出错
-  4.日    期   : 2012年7月14日
-    作    者   : W00176964
-    修改内容   : V7R1 C50 GUTL PhaseI调整:发送给WRR的消息统一用适配层函数替
-  5.日    期   : 2012年8月15日
-    作    者   : w00176964
-    修改内容   : V7R1C50_GUTL_PhaseII:在disabled RAT中的PLMN从等效PLMN列表中删除后发送给RRC
-  6.日    期   : 2012年12月4日
-    作    者   : w00176964
-    修改内容   : DTS201212905979:通知RRC当前EPLMN时,清除禁止PLMN
-  7.日    期   : 2014年1月2日
-    作    者   : z00161729
-    修改内容   : SVLTE支持NCELL搜网
-**************************************************************************/
 VOS_VOID NAS_MMC_SndGuAsEquPlmnReq(
     NAS_MML_EQUPLMN_INFO_STRU          *pstEplmnInfo,
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enRatType
@@ -436,46 +289,7 @@ VOS_VOID NAS_MMC_SndGuAsEquPlmnReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndAsStartReq
- 功能描述  : 发送开机请求,本函数只能使用于W模的接入层开机请求。
- 输入参数  : ulReceiverPid:开机消息接收者PID
- 输出参数  : 无
- 返 回 值  : 表示发送消息是否成功。成功返回VOS_TRUE,失败返回VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年3月19日
-    作    者   : luokaihui /l00167671
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年07月13日
-    作    者   : w00176964
-    修改内容   : GUNAS V7R1 PhaseII 阶段调整
-
-  3.日    期   : 2011年8月19日
-    作    者   : w00167002
-    修改内容   : V7R1 PHASEII 重构: 保留字段清零，否则回放此消息会不匹配
-  4.日    期   : 2012年7月14日
-    作    者   : W00176964
-    修改内容   : V7R1 C50 GUTL PhaseI调整:发送给WRR的消息统一用适配层函数替
-  5.日    期   : 2012年8月20日
-    作    者   : W00176964
-    修改内容   : V7R1 C50 GUTL PhaseII调整
-  6.日    期   : 2012年8月25日
-    作    者   : W00167002
-    修改内容   : V7R1 C50 GUTL PhaseII调整
-  7.日    期   : 2012年8月25日
-    作    者   : W00167002
-    修改内容   : V7R1 C50 GUTL PhaseII调整桩函数，否则GTR工程开机流程异常。
-  8.日    期   : 2012年8月30日
-    作    者   : w00176964
-    修改内容   : GUTL PhaseII 开机通知RRC当前的UTRAN MODE
-  9.日    期   : 2015年8月20日
-    作    者   : w00242748
-    修改内容   : 动态加载项目
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndAsStartReq(VOS_UINT32 ulReceiverPid)
 {
     VOS_UINT32                      ulRet;
@@ -491,10 +305,8 @@ VOS_VOID NAS_MMC_SndAsStartReq(VOS_UINT32 ulReceiverPid)
         return ;
     }
 
-    /* Added by s00246516 for L-C互操作项目, 2014-01-28, Begin */
     PS_MEM_SET( (VOS_INT8*)pstMsg + VOS_MSG_HEAD_LENGTH, 0,
                 sizeof(RRMM_START_REQ_STRU) - VOS_MSG_HEAD_LENGTH );
-    /* Added by s00246516 for L-C互操作项目, 2014-01-28, End */
 
     pstMsg->MsgHeader.ulReceiverCpuId   = VOS_LOCAL_CPUID;
     pstMsg->MsgHeader.ulReceiverPid     = ulReceiverPid;
@@ -574,23 +386,7 @@ VOS_VOID NAS_MMC_SndAsStartReq(VOS_UINT32 ulReceiverPid)
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndAsSuspendRelReq
- 功能描述  : 通过接入层的PID参数,NAS向相应的接入层SUSPEND_REL_REQ
- 输入参数  : VOS_UINT32                          ulReceiverPid
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月9日
-    作    者   : W00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2012年7月14日
-    作    者   : W00176964
-    修改内容   : V7R1 C50 GUTL PhaseI调整:发送给WRR的消息统一用适配层函数替换
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndAsSuspendRelReq(
     VOS_UINT32                          ulReceiverPid
 )
@@ -637,29 +433,7 @@ VOS_VOID NAS_MMC_SndAsSuspendRelReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndAsSyscfgReq
- 功能描述  : 使用V7的接口向GUas发送SYSCFG设置消息
- 输入参数  :  MSCC_MMC_SYS_CFG_SET_REQ_STRU        *pstSysCfgMsg, SYSCFG消息
-               VOS_UINT32                          ulSimStatus, 卡状态
-               VOS_UINT32                          ulReceiverPid，接受PID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月5日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-
-  2.日    期   : 2012年7月14日
-    作    者   : W00176964
-    修改内容   : V7R1 C50 GUTL PhaseI调整:发送给WRR的消息统一用适配层函数替换
-  3.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-*****************************************************************************/
 VOS_VOID  NAS_MMC_SndAsSyscfgReq(
     MSCC_MMC_SYS_CFG_SET_REQ_STRU      *pstSysCfgSetParm,
     VOS_UINT32                          ulReceiverPid
@@ -751,24 +525,7 @@ VOS_VOID  NAS_MMC_SndAsSyscfgReq(
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndAsSuspendRsp
- 功能描述  : 向GU as发送挂起回复结果消息
- 输入参数  : RRC_NAS_SUSPEND_RESULT_ENUM_UINT8   enSuspendRslt,挂起回复结果
-              VOS_UINT32                          ulReceiverPid,接受接入层的PID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月10日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2012年7月14日
-    作    者   : W00176964
-    修改内容   : V7R1 C50 GUTL PhaseI调整:发送给WRR的消息统一用适配层函数替换
-*****************************************************************************/
 VOS_VOID  NAS_MMC_SndAsSuspendRsp(
     RRC_NAS_SUSPEND_RESULT_ENUM_UINT8   enSuspendRslt,
     VOS_UINT32                          ulReceiverPid
@@ -813,23 +570,7 @@ VOS_VOID  NAS_MMC_SndAsSuspendRsp(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndAsResumeRsp
- 功能描述  : 向GU as发送Resume结果消息
- 输入参数  : VOS_UINT32                          ulReceiverPid,接受接入层的PID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月12日
-    作    者   : h44270
-    修改内容   : 新生成函数
-  2.日    期   : 2012年7月14日
-    作    者   : W00176964
-    修改内容   : V7R1 C50 GUTL PhaseI调整:发送给WRR的消息统一用适配层函数替换
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndAsResumeRsp(
     VOS_UINT32                          ulReceiverPid
 )
@@ -871,32 +612,7 @@ VOS_VOID NAS_MMC_SndAsResumeRsp(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndWasInfoReportReq
- 功能描述  : 启动当前接入层主动上报req
- 输入参数  : VOS_UINT32                          ulReceiverPid,接受接入层的PID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月12日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2012年7月14日
-   作    者   : W00176964
-   修改内容   : V7R1 C50 GUTL PhaseI调整:发送给WRR的消息统一用适配层函数替换
- 3.日    期   : 2012年11月21日
-   作    者   : z00161729
-   修改内容   : 支持cerssi和nmr
- 4.日    期   : 2012年12月25日
-   作    者   : s00217060
-   修改内容   : for DSDA GUNAS C CORE:平台W/TD都不支持时，不需要给U模发送RRMM_AT_MSG_REQ
- 5.日    期   : 2013年1月9日
-   作    者   : t00212959
-   修改内容   : DTS2013010809978,增加时间间隔
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndWasInfoReportReq(VOS_VOID)
 {
     /* 定义调用VOS发送函数的返回值 */
@@ -964,29 +680,7 @@ VOS_VOID NAS_MMC_SndWasInfoReportReq(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndGasInfoReportReq
- 功能描述  : 启动当前接入层主动上报req
- 输入参数  : VOS_UINT32                          ulReceiverPid,接受接入层的PID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月12日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2012年11月21日
-   作    者   : z00161729
-   修改内容   : 支持cerssi和nmr
- 3.日    期   : 2012年12月25日
-   作    者   : s00217060
-   修改内容   : for DSDA GUNAS C CORE:平台不支持GSM时，不需要给G模发送GRRMM_AT_MSG_REQ
- 4.日    期   : 2013年1月9日
-   作    者   : t00212959
-   修改内容   : DTS2013010809978
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndGasInfoReportReq(VOS_VOID)
 {
     /* 定义调用VOS发送函数的返回值 */
@@ -1058,27 +752,7 @@ VOS_VOID NAS_MMC_SndGasInfoReportReq(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_FillForbLaToPlmnSrchReq
- 功能描述  : 将禁止漫游 LA添加到aForbRomLaList中；需要区分是否用户发起的指定搜网
- 输入参数  : pstSrchPlmnId   : 用户指定搜网的PLMN
-             ulUserSpecSearch: 是否是指定搜网. VOS_TRUE--是，VOS_FALSE--不是
- 输出参数  : pulForbidLaNum: 添加到aForbRomLaList列表中的禁止漫游 LA 的个数
-             aForbLaList   : 含有禁止漫游 LA信息的列表
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月28日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2011年11月11日
-   作    者   : w00167002
-   修改内容   : DTS2011110907180:将禁止漫游位置区信息作为参数传递进来，向
-                接入层发送此FORB ROAM LAS即可
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_BuildForbLaInAsSpecPlmnSearchReqMsg(
     VOS_UINT32                                             *pulForbidLaNum,
     RRC_FORB_LA_STRU                                        aForbLaList[],
@@ -1114,39 +788,7 @@ VOS_VOID NAS_MMC_BuildForbLaInAsSpecPlmnSearchReqMsg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_BuildAsSpecPlmnSearchReqMsg
- 功能描述  : 构造向接入层发送的指定搜网信息
- 输入参数  : pstDestPlmn
-             ulUserSpecSearch
- 输出参数  : pstMsg
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月21日
-   作    者   : sunxibo 46746
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年11月11日
-   作    者   : w00167002
-   修改内容   : DTS2011110907180:将禁止漫游位置区信息作为参数传递进来，向
-                接入层发送此FORB ROAM LAS即可
- 3.日    期   : 2014年3月19日
-   作    者   : w00242748
-   修改内容   : DTS2014031200137:当NV特性打开时，自动开机或者搜网时，如果首次搜索RPLMN的话，
-                需要将HPLMN/EHPLMN带给接入层。
- 4.日    期   : 2014年10月15日
-   作    者   : b00269685
-   修改内容   : 自主FR优化
- 5.日    期   : 2015年5月26日
-   作    者   : w00167002
-   修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_2.0项目修改
- 6.日    期   : 2015年10月16日
-   作    者   : j00174725
-   修改内容   : DTS2015101603066
-*****************************************************************************/
 VOS_VOID NAS_MMC_BuildAsSpecPlmnSearchReqMsg(
     RRMM_PLMN_SEARCH_REQ_STRU                              *pstMsg,
     NAS_MML_PLMN_LIST_WITH_RAT_STRU                        *pstDestPlmnList,
@@ -1196,7 +838,6 @@ VOS_VOID NAS_MMC_BuildAsSpecPlmnSearchReqMsg(
     enCsfbMtTimerStatus = NAS_MML_GetCsfbMtPagingTimerStatus();
     ucCsfbMoFlag        = NAS_MML_GetCsfbMoSetupFlg();
 
-    /* Added by b00269685 for 自主FR优化, 2014-10-15, begin */
     if ( (VOS_TRUE == ucCsfbMoFlag)
       || (NAS_MML_MT_CSFB_PAGING_TIMER_RUNNING == enCsfbMtTimerStatus) )
     {
@@ -1206,44 +847,12 @@ VOS_VOID NAS_MMC_BuildAsSpecPlmnSearchReqMsg(
     {
         pstMsg->enCsfbFlg = PS_FALSE;
     }
-    /* Added by b00269685 for 自主FR优化, 2014-10-15, end */
 
     return;
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndAsSpecPlmnSearchReq
- 功能描述  : 根据是否用户指定搜网时，向接入层发送指定搜网请求消息
- 输入参数  : stDestPlmn
-             ulUserSpecSearch
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年7月11日
-   作    者  : s46746
-   修改内容  : 新生成函数
-
- 2.日    期   : 2011年8月17日
-   作    者   : w00167002
-   修改内容   : V7R1 PHASEII 重构: 添加pc回放
-
- 3.日    期   : 2011年11月11日
-   作    者   : w00167002
-   修改内容   : DTS2011110907180:将禁止漫游位置区信息作为参数传递进来，向
-                接入层发送此FORB ROAM LAS即可
-
-  4.日    期   : 2012年7月14日
-    作    者   : W00176964
-    修改内容   : V7R1 C50 GUTL PhaseI调整:发送给WRR的消息统一用适配层函数替换
-  5.日    期   : 2014年3月19日
-    作    者   : w00242748
-    修改内容   : DTS2014031200137:当NV特性打开时，自动开机或者搜网时，如果首次搜索RPLMN的话，
-                 需要将HPLMN/EHPLMN带给接入层。
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndAsSpecPlmnSearchReq(
     NAS_MML_PLMN_LIST_WITH_RAT_STRU                        *pstDestPlmnList,
     NAS_MML_FORBIDPLMN_ROAMING_LAS_INFO_STRU               *pstForbRoamLaInfo
@@ -1280,25 +889,7 @@ VOS_VOID NAS_MMC_SndAsSpecPlmnSearchReq(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_BuildAsHistoryPlmnSearchReqMsg
- 功能描述  : 构造向接入层发送的指定历史频点搜网信息
- 输入参数  : pstDestPlmn
-             ulUserSpecSearch
- 输出参数  : pstMsg
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年5月25日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2015年12月2日
-   作    者   : j00174725
-   修改内容   : DTS2015102004448
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_BuildAsHistoryPlmnSearchReqMsg(
     RRMM_PLMN_SEARCH_REQ_STRU                              *pstMsg,
     NAS_MML_PLMN_LIST_WITH_RAT_STRU                        *pstDestPlmnList,
@@ -1365,21 +956,7 @@ VOS_VOID NAS_MMC_BuildAsHistoryPlmnSearchReqMsg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndAsHistoryPlmnSearchReq
- 功能描述  : 向接入层发送指定历史频点搜网请求消息
- 输入参数  : stDestPlmn
-             ulUserSpecSearch
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年5月25日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndAsHistoryPlmnSearchReq(
     NAS_MML_PLMN_LIST_WITH_RAT_STRU                        *pstDestPlmnList,
     NAS_MML_FORBIDPLMN_ROAMING_LAS_INFO_STRU               *pstForbRoamLaInfo
@@ -1405,26 +982,7 @@ VOS_VOID NAS_MMC_SndAsHistoryPlmnSearchReq(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_BuildAsPrefBandPlmnSearchReqMsg
- 功能描述  : 构造发送给AS的pref band搜索消息
- 输入参数  : RRMM_PLMN_SEARCH_REQ_STRU                              *pstMsg
-             NAS_MML_PLMN_LIST_WITH_RAT_STRU                        *pstDestPlmnList
-             NAS_MML_FORBIDPLMN_ROAMING_LAS_INFO_STRU               *pstForbRoamLaInfo
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月28日
-    作    者   : s00217060
-    修改内容   : 新生成函数
- 2.日    期   : 2015年12月2日
-   作    者   : j00174725
-   修改内容   : DTS2015102004448
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_BuildAsPrefBandPlmnSearchReqMsg(
     RRMM_PLMN_SEARCH_REQ_STRU                              *pstMsg,
     NAS_MML_PLMN_LIST_WITH_RAT_STRU                        *pstDestPlmnList,
@@ -1488,22 +1046,7 @@ VOS_VOID NAS_MMC_BuildAsPrefBandPlmnSearchReqMsg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndAsPrefBandPlmnSearchReq
- 功能描述  : 给AS发送pref band搜索的消息
- 输入参数  : NAS_MML_PLMN_LIST_WITH_RAT_STRU                        *pstDestPlmnList
-             NAS_MML_FORBIDPLMN_ROAMING_LAS_INFO_STRU               *pstForbRoamLaInfo
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月28日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndAsPrefBandPlmnSearchReq(
     NAS_MML_PLMN_LIST_WITH_RAT_STRU                        *pstDestPlmnList,
     NAS_MML_FORBIDPLMN_ROAMING_LAS_INFO_STRU               *pstForbRoamLaInfo
@@ -1529,24 +1072,7 @@ VOS_VOID NAS_MMC_SndAsPrefBandPlmnSearchReq(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndAsNcellSpecPlmnSearchReq
- 功能描述  : 通知接入层进行ncell搜网
- 输入参数  : pstTdsNcellInfo        - tds频点列表信息
-             pstOtherModemEplmnInfo - 等效plmn信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2013年12月25日
-   作    者   : z00161729
-   修改内容   : SVLTE支持NCELL搜网
- 2.日    期   : 2015年5月26日
-   作    者   : w00167002
-   修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_2.0项目修改
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndAsNcellSpecPlmnSearchReq(
     NAS_MMC_TDS_NCELL_INFO_STRU        *pstTdsNcellInfo,
     NAS_MML_EQUPLMN_INFO_STRU          *pstOtherModemEplmnInfo
@@ -1599,20 +1125,7 @@ VOS_VOID NAS_MMC_SndAsNcellSpecPlmnSearchReq(
 }
 
 #if (FEATURE_ON == FEATURE_CSG)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndAsCsgListSearchReq
- 功能描述  :向接入层发送CSG LIST搜网请求消息
- 输入参数  : ulReceiverPid - 接收pid
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
-  1.日    期   : 2015年10月15日
-    作    者   : z00161729
-    修改内容   : 支持LTE CSG功能新增
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndAsCsgListSearchReq(
     VOS_UINT32                          ulReceiverPid
 )
@@ -1648,26 +1161,7 @@ VOS_VOID NAS_MMC_SndAsCsgListSearchReq(
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndAsPlmnListReq
- 功能描述  :向接入层发送LIST搜网请求消息
- 输入参数  : ulReceiverPid
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月22日
-   作    者   :  W00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2012年7月14日
-   作    者   : W00176964
-   修改内容   : V7R1 C50 GUTL PhaseI调整:发送给WRR的消息统一用适配层函数替换
- 3.日    期   : 2015年5月26日
-   作    者   : w00167002
-   修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_2.0项目修改
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndAsPlmnListReq(
     VOS_UINT32                          ulReceiverPid
 )
@@ -1710,27 +1204,7 @@ VOS_VOID NAS_MMC_SndAsPlmnListReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndAvailPlmnMsg
- 功能描述  : 通知GU AS查询PLMN结果
- 输入参数  : pAvailPlmnPara:PLMN信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月20日
-   作    者   : zhoujun \40661
-   修改内容   : 新生成函数
-
- 2.日    期   : 2012年7月14日
-   作    者   : W00176964
-   修改内容   : V7R1 C50 GUTL PhaseI调整:发送给WRR的消息统一用适配层函数替换
- 3.日    期   : 2012年12月11日
-   作    者   : l00167671
-   修改内容   : DTS2012121802573, TQE清理
-*****************************************************************************/
 
 VOS_VOID NAS_MMC_SndAsAvailPlmnMsg(
     NAS_MMC_AVAIL_PLMN_STRU             *pAvailPlmnInfo
@@ -1769,22 +1243,7 @@ VOS_VOID NAS_MMC_SndAsAvailPlmnMsg(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_JudgePlmnIfInAvailPlmnList
- 功能描述  : 判断输入的plmn是否已经在available plmn列表中
- 输入参数  : pstAvailPlmn - 优先搜索的网络信息列表
-              stPlmnId     - 优先搜索的网络信息
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 输入的plmn已在available plmn列表中
-              VOS_FALSE - 输入的plmn不在available plmn列表中
- 调用函数  :
- 被调函数  :
- 修改历史  :
- 1.日    期   : 2011年7月20日
-   作    者   : zhoujun \40661
-   修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsPlmnInAvailPlmnList(
     NAS_MML_PLMN_ID_STRU               *pstPlmnId,
     NAS_MMC_AVAIL_PLMN_STRU            *pstAvailPlmn
@@ -1805,21 +1264,7 @@ VOS_UINT32 NAS_MMC_IsPlmnInAvailPlmnList(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_BuildAsPlmnInfo
- 功能描述  : 构造PLMN列表信息
- 输入参数  : 无
- 输出参数  : pstAvailPlmn:构造的PLMN的信息
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年8月6日
-   作    者   : zhoujun 40661
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  NAS_MMC_BuildAsFirstPlmnInfo(
     NAS_MMC_AVAIL_PLMN_STRU            *pstAvailPlmn
 )
@@ -1850,28 +1295,7 @@ VOS_VOID  NAS_MMC_BuildAsFirstPlmnInfo(
     pstAvailPlmn->ulAvailPlmnNum++;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndRrcPlmnQueryCnf
- 功能描述  : 通知GU AS查询PLMN结果
- 输入参数  : RRMM_EQU_PLMN_NOTIFY_REQ_STRU
- 输出参数  : RRMM_EQU_PLMN_NOTIFY_REQ_STRU
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月20日
-   作    者   : zhoujun \40661
-   修改内容   : 新生成函数
- 2.日    期   : 2011年8月11日
-   作    者   : W00167002
-   修改内容   : eplmn中需要增加rplmn
- 3.日    期   : 2011年11月24日
-   作    者   : w00167002
-   修改内容   : DTS2011112405567:原有的函数名NAS_MML_IsPlmnIdInDestPlmnList
-                更改为NAS_MML_IsBcchPlmnIdInDestSimPlmnList
-
-*****************************************************************************/
 
 VOS_VOID NAS_MMC_SndRrcPlmnQueryCnf(
     PS_BOOL_ENUM_UINT8                  enQueryWPlmn
@@ -1939,33 +1363,7 @@ VOS_VOID NAS_MMC_SndRrcPlmnQueryCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAs_MMC_SndEPlmnQueryCnf
- 功能描述  : NAS回复接入层等效pLMN个数及内容
- 输入参数  : *pEquPlmnList - 等效PLMN个数及内容
-              ulOpCurPlmnId - 当前驻留网络是否有效
-              pstCurPlmnId  - 当前驻留网络plmn id
-             ulPid - 发送RRMM_EPLMN_QUERY_REQ请求的PID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2010年11月16日
-   作    者   : zhoujun \40661
-   修改内容   : 新生成函数
- 2.日    期   : 2012年7月14日
-   作    者   : W00176964
-   修改内容   : V7R1 C50 GUTL PhaseI调整:发送给WRR的消息统一用适配层函数替换
- 3.日    期   : 2012年12月11日
-   作    者   : l00167671
-   修改内容   : DTS2012121802573, TQE清理
- 4.日    期   : 2013年10月15日
-   作    者   : z00161729
-   修改内容   : DTS2013082907281:UE在w进行紧急呼叫过程rrc rej重定向到g的消息，
-                呼叫结束后无法成功重定向到w原小区，因为接入层查询plmn时nas只带了g小区plmn
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndAsEquPlmnQueryCnf(
     EQUIVALENT_PLMN_STRU               *pstEquPlmnList,
     VOS_UINT32                          ulOpCurPlmnId,
@@ -2011,31 +1409,7 @@ VOS_VOID NAS_MMC_SndAsEquPlmnQueryCnf(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndRrMmCellSelReq
- 功能描述  : 向RRC发送RRMM_CELL_SELECTION_CTRL_REQ的处理
- 输入参数  : ucSrhType - 发送原语类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2010年11月16日
-   作    者   : zhoujun \40661
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年7月14日
-   作    者   : w00167002
-   修改内容   : V7R1 PHASEII 重构: 内存分配失败，增加错误打印，网络号赋值错误
-
- 3.日    期   : 2012年7月14日
-   作    者   : W00176964
-   修改内容   : V7R1 C50 GUTL PhaseI调整:发送给WRR的消息统一用适配层函数替换
- 4.日    期   : 2012年12月11日
-   作    者   : l00167671
-   修改内容   : DTS2012121802573, TQE清理
-*****************************************************************************/
 
 VOS_VOID   NAS_MMC_SndRrMmCellSelReq(
     VOS_UINT8                           ucSrhType
@@ -2119,26 +1493,7 @@ VOS_VOID   NAS_MMC_SndRrMmCellSelReq(
 
 }
 
-/*****************************************************************************
- 函 数 名  : MMC_ComJudgeLai
- 功能描述  : 提供给接入层的API接口,供接入层判断LAI是否合法
- 输入参数  : stPlmn:PLMN ID
-             usLac:位置区
- 输出参数  : penLaiValidFlg:该位置区是否合法
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月20日
-   作    者   : zhoujun \40661
-   修改内容   : 新生成函数
- 2.日    期   : 2011年11月24日
-   作    者   : w00167002
-   修改内容   : DTS2011112405567:原有的函数名NAS_MML_IsPlmnIdInDestPlmnList
-                更改为NAS_MML_IsBcchPlmnIdInDestSimPlmnList
-
-*****************************************************************************/
 VOS_UINT32 MMC_ComJudgeLai(
     RRC_PLMN_ID_STRU                    stPlmn,
     VOS_UINT16                          usLac,
@@ -2209,23 +1564,7 @@ VOS_UINT32 MMC_ComJudgeLai(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndRrMmRelReq
- 功能描述  : 通知WRR释放连接
- 输入参数  : ulCnDomain  释放指定域的连接
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月24日
-   作    者   : L00171473
-   修改内容   : 新生成函数
- 2.日    期   : 2012年7月14日
-   作    者   : W00176964
-   修改内容   : V7R1 C50 GUTL PhaseI调整:发送给WRR的消息统一用适配层函数替换
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndRrMmRelReq(
     RRC_NAS_CN_DOMAIN_TYPE_ENUM_UINT32  ulCnDomain
 )
@@ -2258,36 +1597,7 @@ VOS_VOID NAS_MMC_SndRrMmRelReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndAsFastPlmnSearchReq
- 功能描述  : 向接入层发起快速指定搜索消息
- 输入参数  : ulReceiverPid -- 接入层的PID
-             pstPlmnId     -- 快速指定搜的PlmnId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月24日
-   作    者   : L00171473
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年10月17日
-   作    者   : w00167002
-   修改内容   : V7R1 PHASEII 重构: 添加pc回放
-
- 3.日    期   : 2011年11月11日
-   作    者   : w00167002
-   修改内容   : DTS2011110907180:将禁止漫游位置区信息作为参数传递进来，向
-                接入层发送此FORB ROAM LAS即可
- 4.日    期   : 2012年7月14日
-   作    者   : W00176964
-   修改内容   : V7R1 C50 GUTL PhaseI调整:发送给WRR的消息统一用适配层函数替换
- 5.日    期   : 2015年5月26日
-   作    者   : w00167002
-   修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_2.0项目修改
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndAsFastPlmnSearchReq(
     VOS_UINT32                          ulReceiverPid,
     NAS_MML_PLMN_ID_STRU               *pstPlmnId
@@ -2353,36 +1663,7 @@ VOS_VOID NAS_MMC_SndAsFastPlmnSearchReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndAsBgPlmnSearchReq
- 功能描述  : 向接入层发起背景搜消息
- 输入参数  : ulReceiverPid -- 接入层的PID
-             pstPlmnId     -- 快速指定搜的PlmnId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月24日
-   作    者   : L00171473
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年10月17日
-   作    者   : w00167002
-   修改内容   : V7R1 PHASEII 重构: 添加pc回放
-
- 3.日    期   : 2011年11月11日
-   作    者   : w00167002
-   修改内容   : DTS2011110907180:将禁止漫游位置区信息作为参数传递进来，向
-                接入层发送此FORB ROAM LAS即可
- 4.日    期   : 2012年5月7日
-   作    者   : w00176964
-   修改内容   : GUL_BG项目调整
- 5.日    期   : 2012年7月14日
-   作    者   : W00176964
-   修改内容   : V7R1 C50 GUTL PhaseI调整:发送给WRR的消息统一用适配层函数替换
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndAsBgPlmnSearchReq(
     VOS_UINT32                          ulReceiverPid,
     NAS_MML_PLMN_WITH_RAT_STRU         *pstPlmnId
@@ -2470,28 +1751,7 @@ VOS_VOID NAS_MMC_SndAsBgPlmnSearchReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndAsBgStopPlmnSearchReq
- 功能描述  : 向接入层发送停止BG搜索消息
- 输入参数  : VOS_UINT32                          ulReceiverPid
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月24日
-   作    者   : L00171473
-   修改内容   : 新生成函数
-
-2.日    期   : 2011年10月17日
-  作    者   : w00167002
-  修改内容   : V7R1 PHASEII 重构: 添加pc回放
-
-3.日    期   : 2012年7月14日
-  作    者   : W00176964
-  修改内容   : V7R1 C50 GUTL PhaseI调整:发送给WRR的消息统一用适配层函数替换
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndAsBgStopPlmnSearchReq(
     VOS_UINT32                          ulReceiverPid
 )
@@ -2532,20 +1792,7 @@ VOS_VOID NAS_MMC_SndAsBgStopPlmnSearchReq(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndAsGetGeoPlmnSearchReq
- 功能描述  : 向GU AS发送获取地理信息请求消息
- 输入参数  : VOS_UINT32    接收方PID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年05月08日
-   作    者   : sunjitan 00193151
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndAsGetGeoPlmnSearchReq(
     VOS_UINT32                          ulReceiverPid
 )
@@ -2584,20 +1831,7 @@ VOS_VOID NAS_MMC_SndAsGetGeoPlmnSearchReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndAsStopGetGeoPlmnSearchReq
- 功能描述  : 向GU AS发送停止获取地理信息请求消息
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年05月08日
-   作    者   : sunjitan 00193151
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndAsStopGetGeoPlmnSearchReq(
     VOS_UINT32                          ulReceiverPid
 )
@@ -2607,31 +1841,7 @@ VOS_VOID NAS_MMC_SndAsStopGetGeoPlmnSearchReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndAsNasCommInfoChangeReq
- 功能描述  : 向AS发送RRMM_NAS_COMM_INFO_CHANGE_REQ
- 输入参数  : ulReceiverPid          :接受消息的PID
-             pstNasComInfo          :NAS_COMM_INFO_STRU
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月26日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年7月14日
-    作    者   : W00176964
-    修改内容   : V7R1 C50 GUTL PhaseI调整:发送给WRR的消息统一用适配层函数替换
- 3.日    期   : 2013年3月1日
-   作    者   : t00212959
-   修改内容   : DTS2013030106126
- 3.日    期   : 2013年11月01日
-   作    者   : l00208543
-   修改内容   : 根据卡类型禁止网络制式
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndAsNasCommInfoChangeReq(
     VOS_UINT32                          ulReceiverPid,
     NAS_COMM_INFO_STRU                 *pstNasComInfo
@@ -2700,29 +1910,7 @@ VOS_VOID NAS_MMC_SndAsNasCommInfoChangeReq(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndAsNasUsimStatus
- 功能描述  : 向G/U接入层发送NAS的卡状态消息
- 输入参数  : enUsimStatus - 卡状态
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年11月28日
-   作    者  :  w00167002
-   修改内容  :  新生成函数
- 2.日    期   : 2012年11月9日
-   作    者  :  z00161729
-   修改内容  :  DTS2012110808375:W下注册被拒#3导致cs ps卡无效需通知Gas,否则w acceptable小区重选到g，
-                g不知卡无效会发起suitable小区重选到L
- 3.日    期   : 2012年12月27日
-   作    者   : s00217060
-   修改内容   : for DSDA GUNAS C CORE:平台接入技术能力对W/TD都不支持时，不需要给WRR发送消息
-                平台接入技术能力不支持G时，不需要给GAS发送消息
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndAsNasUsimStatus(
     RRC_NAS_USIM_STATUS_ENUM_UINT32     enUsimStatus
 )
@@ -2755,26 +1943,7 @@ VOS_VOID NAS_MMC_SndAsNasUsimStatus(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndAsRatCapabilityStatusChangeInfo
- 功能描述  : 当接入技术的禁止信息发生变化时发送给AS
- 输入参数  : stRatCapaStatusNasCommInfo
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 目前仅支持下面两种禁止接入技术的组合
-    1. NUM = 1; RAT = LTE;
-    2. NUM = 2; RAT = LTE + 3G;
- 因此目前制作发给接入层的消息时，仅考虑上述两种组合
-
- 修改历史     :
- 1.日    期   : 2013年11月01日
-   作    者   :  l00208543
-   修改内容   :  新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndAsRatCapabilityStatusChangeInfo(VOS_VOID)
 {
     NAS_COMM_INFO_STRU                  stNasComInfo;
@@ -2831,26 +2000,7 @@ VOS_VOID NAS_MMC_SndAsRatCapabilityStatusChangeInfo(VOS_VOID)
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndAsLteCapabilityStatus
- 功能描述  : 向G/U接入层发送LTE的卡状态消息
- 输入参数  : ulReceiverPid
-             enLteCapabilityStatus
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年12月5日
-   作    者  :  w00176964
-   修改内容  :  新生成函数
- 2.日    期   : 2012年12月27日
-   作    者   : s00217060
-   修改内容   : for DSDA GUNAS C CORE:平台接入技术能力对W/TD都不支持时，不需要给WRR发送消息
-               平台接入技术能力不支持G时，不需要给GAS发送消息
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndAsLteCapabilityStatus(
     VOS_UINT32                                              ulReceiverPid,
     RRC_NAS_LTE_CAPABILITY_STATUS_ENUM_UINT32               enLteCapabilityStatus
@@ -2885,23 +2035,7 @@ VOS_VOID NAS_MMC_SndAsLteCapabilityStatus(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndGuAsUeOocStatus
- 功能描述  : 通知当前WAS和GAS UE已经进入出服务区流程
- 输入参数  : ulReceiverPid:接收消息的PID
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月31日
-    作    者   : z40661
-    修改内容   : 新生成函数
-  2.日    期   : 2012年7月14日
-    作    者   : W00176964
-    修改内容   : V7R1 C50 GUTL PhaseI调整:发送给WRR的消息统一用适配层函数替换
-*****************************************************************************/
 VOS_VOID  NAS_MMC_SndGuAsUeOocStatus(
     VOS_UINT32                          ulReceiverPid
 )
@@ -2944,25 +2078,7 @@ VOS_VOID  NAS_MMC_SndGuAsUeOocStatus(
 /* NAS_MMC_SndAsTransactionStatus移到MM处理 */
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndAsHplmnReq
- 功能描述  : 向AS发送HPLMN和EHPLMN
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年06月11日
-    作    者   : W00166186
-    修改内容   : AT&T&DCM新增函数
-  2.日    期   : 2012年12月27日
-    作    者   : s00217060
-    修改内容   : for DSDA GUNAS C CORE:平台接入技术能力对W/TD都不支持时，不需要给WRR发送消息
-               平台接入技术能力不支持G时，不需要给GAS发送消息
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndAsHplmnReq(
     VOS_UINT32                          ulReceiverPid
 )
@@ -3040,22 +2156,7 @@ VOS_VOID NAS_MMC_SndAsHplmnReq(
 
 #if (FEATURE_ON == FEATURE_DSDS)
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndAsBeginSessionNotify
- 功能描述  : 向AS发送RRMM_BEGIN_SESSION_NOTIFY
- 输入参数  : ulReceivedPid - 接收pid
-             enSessionType - 通知接入层的session type
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月23日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndAsBeginSessionNotify(
     VOS_UINT32                          ulReceiverPid,
     RRC_NAS_SESSION_TYPE_ENUM_UINT8     enSessionType
@@ -3098,25 +2199,7 @@ VOS_VOID NAS_MMC_SndAsBeginSessionNotify(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndAsEndSessionNotify
- 功能描述  : 向AS发送RRMM_END_SESSION_NOTIFY
- 输入参数  : ulReceivedPid - 接收pid
-             enSessionType - 通知接入层的session type
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月23日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2014年7月18日
-    作    者   : b00269685
-    修改内容   : 增加延迟时间
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndAsEndSessionNotify(
     VOS_UINT32                          ulReceiverPid,
     RRC_NAS_SESSION_TYPE_ENUM_UINT8     enSessionType,
@@ -3167,22 +2250,7 @@ VOS_VOID NAS_MMC_SndAsEndSessionNotify(
 #endif
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndAsNetScanReq
- 功能描述  : 向AS发送RRMM_NET_SCAN_REQ
- 输入参数  : enRat                  :接受消息的接入技术
-             pstNetScanReq          :需要发送给AS的内容
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月16日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndAsNetScanReq(
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enRat,
     MSCC_MMC_NET_SCAN_REQ_STRU          *pstNetScanReq
@@ -3244,21 +2312,7 @@ VOS_VOID NAS_MMC_SndAsNetScanReq(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndAsStopNetScanReq
- 功能描述  : 向AS发送RRMM_NET_SCAN_STOP_REQ
- 输入参数  : enRat          :接受消息的接入技术
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月16日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndAsNetScanStopReq(
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enRat
 )
@@ -3318,26 +2372,7 @@ VOS_VOID NAS_MMC_SndAsNetScanStopReq(
 
 
 #if (FEATURE_ON == FEATURE_DSDS)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndRrmRegisterInd
- 功能描述  : 向RRM发送ID_PS_RRM_REGISTER_IND消息
- 输入参数  : enModemId          :当前的MODEM ID
-             enTaskType         :注册任务类型
-             enRatType          :接入模式类型
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月21日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2014年7月26日
-    作    者   : b00269685
-    修改内容   : DSDS IV接口修改
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndRrmRegisterInd(
     MODEM_ID_ENUM_UINT16               enModemId,
     RRM_PS_TASK_TYPE_ENUM_UINT16       enTaskType,
@@ -3392,26 +2427,7 @@ VOS_VOID NAS_MMC_SndRrmRegisterInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndRrmDeRegisterInd
- 功能描述  : 向RRM发送ID_PS_RRM_DEREGISTER_IND消息
- 输入参数  : enModemId          :当前的MODEM ID
-             enTaskType         :注册任务类型
-             enRatType          :接入模式类型
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月21日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2014年7月26日
-    作    者   : b00269685
-    修改内容   : DSDS IV接口修改
-
-*****************************************************************************/
 
 VOS_VOID NAS_MMC_SndRrmDeRegisterInd(
     MODEM_ID_ENUM_UINT16               enModemId,

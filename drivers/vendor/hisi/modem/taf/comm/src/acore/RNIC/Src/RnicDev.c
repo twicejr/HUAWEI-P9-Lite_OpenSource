@@ -110,20 +110,7 @@ const RNIC_NETCARD_ELEMENT_TAB_STRU           g_astRnicManageTbl[RNIC_NET_ID_MAX
 /******************************************************************************
    5 函数实现
 ******************************************************************************/
-/*****************************************************************************
- 函 数 名  : RNIC_StopNetCard
- 功能描述  : RNIC被关闭时的处理
- 输出参数  : pstNetDev:网卡设备指针
- 输出参数  : 无
- 返 回 值  : VOS_INT:RNIC_OK, RNIC_ERROR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年12月06日
-   作    者   : 范晶
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_INT RNIC_StopNetCard(
     struct net_device                  *pstNetDev
 )
@@ -142,20 +129,7 @@ VOS_INT RNIC_StopNetCard(
     return 0;
 }
 
-/*****************************************************************************
- 函 数 名  : RNIC_OpenNetCard
- 功能描述  : RNIC被打开时的处理
- 输入参数  : pstNetDev:网卡设备指针
- 输出参数  : 无
- 返 回 值  : VOS_INT:RNIC_OK, RNIC_ERR, RNIC_BUSY
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年12月06日
-   作    者   : 范晶
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_INT RNIC_OpenNetCard(
     struct net_device                  *pstNetDev
 )
@@ -174,34 +148,7 @@ VOS_INT RNIC_OpenNetCard(
     return 0;
 }
 
-/*****************************************************************************
- 函 数 名  : RNIC_StartXmit
- 功能描述  : RNIC发送数据时的处理过程
- 输入参数  : pstSkb   :SKBUF数据首地址
-             pstNetDev:网卡设备指针
- 输出参数  : 无
- 返 回 值  : netdev_tx_t:NETDEV_TX_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年12月06日
-   作    者   : 范晶
-   修改内容   : 新生成函数
- 2.日    期   : 2012年5月31日
-   作    者   : A00165503
-   修改内容   : DTS2012053004651: PS业务中丢网, 导致A核数传内存耗尽, 导致
-                192.168.1.1 ping不通
- 3.日    期   : 2012年6月20日
-   作    者   : A00165503
-   修改内容   : DTS2012061904440: 增加用户面时延统计
- 4.日    期   : 2012年8月30日
-   作    者   : l60609
-   修改内容   : AP适配项目：先判断输入参数是否为空，再判断网卡是否有效
- 5.日    期   : 2012年11月23日
-   作    者   : f00179208
-   修改内容   : DSDA Phase I: RNIC多实例
-*****************************************************************************/
 netdev_tx_t RNIC_StartXmit(
     struct sk_buff                     *pstSkb,
     struct net_device                  *pstNetDev
@@ -226,21 +173,7 @@ netdev_tx_t RNIC_StartXmit(
     return NETDEV_TX_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : RNIC_SetMacAddress
- 功能描述  : RNIC的重新设置MAC地址的处理
- 输入参数  : pstNetDev:网卡设备指针
-             pMacAddr :MAC地址
- 输出参数  : 无
- 返 回 值  : VOS_INT:RNIC_OK, RNIC_ADDR_INVALID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年12月06日
-   作    者   : 范晶
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_INT RNIC_SetMacAddress(
     struct net_device                  *pstNetDev,
     VOS_VOID                           *pMacAddr
@@ -266,21 +199,7 @@ VOS_INT RNIC_SetMacAddress(
     return 0;
 }
 
-/*****************************************************************************
- 函 数 名  : RNIC_ChangeMtu
- 功能描述  : RNIC重新设置MTU大小
- 输入参数  : pstNetDev:网卡设备指针
-             lNewMtu  :MTU值
- 输出参数  : 无
- 返 回 值  : VOS_INT:RNIC_OK, RNIC_ERROR, RNIC_OUT_RANGE
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年12月06日
-   作    者   : 范晶
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_INT RNIC_ChangeMtu(
     struct net_device                  *pstNetDev,
     VOS_INT                             lNewMtu
@@ -299,21 +218,7 @@ VOS_INT RNIC_ChangeMtu(
     return 0;
 }
 
-/*****************************************************************************
- 函 数 名  : RNIC_Tx_Timeout
- 功能描述  : RNIC发送超时处理函数,目前认为不会出现发送超时情况,暂不作任何处理
-             留到以后拓展使用
- 输入参数  : pstNetDev:网卡设备指针
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年12月06日
-   作    者   : 范晶
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID RNIC_ProcTxTimeout(
     struct net_device                  *pstNetDev
 )
@@ -321,22 +226,7 @@ VOS_VOID RNIC_ProcTxTimeout(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : RNIC_Ioctrl
- 功能描述  : RNIC的ioctrl处理,目前没有特殊的ioctrl,留作以后扩展
- 输入参数  : pstNetDev:网卡设备指针
-             pstIfr   :用户请求
-             lCmd     :操作命令
- 输出参数  : 无
- 返 回 值  : 操作不支持  RNIC_NOTSUPP
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年12月06日
-   作    者   : 范晶
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_INT RNIC_Ioctrl(
     struct net_device                  *pstNetDev,
     struct ifreq                       *pstIfr,
@@ -346,20 +236,7 @@ VOS_INT RNIC_Ioctrl(
     return -EOPNOTSUPP;
 }
 
-/*****************************************************************************
- 函 数 名  : RNIC_GetNetCardStats
- 功能描述  : 获取RNIC网卡统计信息
- 输入参数  : pstNetDev:网卡设备指针
- 输出参数  : 无
- 返 回 值  : net_device_stats
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年12月06日
-   作    者   : 范晶
-   修改内容   : 新生成函数
-*****************************************************************************/
 struct net_device_stats *RNIC_GetNetCardStats(
     struct net_device                  *pstNetDev
 )
@@ -374,23 +251,7 @@ struct net_device_stats *RNIC_GetNetCardStats(
     return &pstPriv->stStats;
 }
 
-/*****************************************************************************
- 函 数 名  : RNIC_DeInitNetCard
- 功能描述  : RNIC的去注册处理
- 输入参数  : pNetDev:网卡设备指针
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年12月06日
-   作    者   : 范晶
-   修改内容   : 新生成函数
- 2.日    期   : 2012年11月23日
-   作    者   : f00179208
-   修改内容   : DSDA Phase I: RNIC多实例
-*****************************************************************************/
 VOS_VOID RNIC_DeinitNetCard(
     struct net_device                  *pstNetDev
 )
@@ -420,23 +281,7 @@ VOS_VOID RNIC_DeinitNetCard(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : RNIC_InitNetCard
- 功能描述  : RNIC网卡被初始化时调用的函数，完成RNIC初始化相关处理
- 输入参数  : 无
- 输出参数  : VOS_VOID
- 返 回 值  : VOS_INT:RNIC_NOMEM, RNIC_STATE, RNIC_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年12月06日
-   作    者   : 范晶
-   修改内容   : 新生成函数
- 2.日    期   : 2012年11月23日
-   作    者   : f00179208
-   修改内容   : DSDA Phase I: RNIC多实例
-*****************************************************************************/
 VOS_INT __init RNIC_InitNetCard(VOS_VOID)
 {
     struct net_device                  *pstDev      = VOS_NULL_PTR;

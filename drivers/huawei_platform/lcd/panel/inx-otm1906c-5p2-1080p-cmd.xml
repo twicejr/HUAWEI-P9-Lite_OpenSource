@@ -63,7 +63,7 @@
 	<PanelLcdAjustSupport>1</PanelLcdAjustSupport>
 	<PanelPxlClk>144</PanelPxlClk>
 	<PanelPxlClkDiv>1</PanelPxlClkDiv>
-	<PanelDirtUpdtSupport>1</PanelDirtUpdtSupport>
+	<PanelDirtUpdtSupport>0</PanelDirtUpdtSupport>
 	<PanelDsiUptSupport>0</PanelDsiUptSupport>
 	<PanelVsynCtrType>7</PanelVsynCtrType>
 	<PanelBlPwmPreciType>0</PanelBlPwmPreciType>
@@ -135,6 +135,7 @@
 	<LcdCtrlTpPower>1</LcdCtrlTpPower>
 	<LockCmdSupport>1</LockCmdSupport>
 	<ReadPowerStatus>1</ReadPowerStatus>
+	<EsdSetBacklight>0</EsdSetBacklight>
 
 	<!-- Panel Command information -->
 	<OnCommand>"0x29, 0x00, 0x0a, 0x00, 0x02, 0x00, 0x00

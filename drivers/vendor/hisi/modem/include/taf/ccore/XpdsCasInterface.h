@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : XpdsCasInterface.h
-  版 本 号   : 初稿
-  作    者   : g00261581
-  生成日期   : 2015年08月21日
-  最近修改   :
-  功能描述   : XPDS与CDMA接入层之间的接口头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年08月21日
-    作    者   : g00261581
-    修改内容   : 创建文件
-
- ******************************************************************************/
 
 #ifndef __XPDSCASINTERFACE_H__
 #define __XPDSCASINTERFACE_H__
@@ -44,13 +27,7 @@ extern "C" {
 /*****************************************************************************
   3 枚举定义
 *****************************************************************************/
-/*****************************************************************************
- 枚举名    : XPDS_CAS_MSG_TYPE_ENUM
- 结构说明  : 原语的usMsgName
- 1.日    期   : 2015年08月22日
-   作    者   : g00261581
-   修改内容   : Cdma AGPS
-*****************************************************************************/
+
 enum XPDS_CAS_MSG_TYPE_ENUM
 {
 
@@ -64,14 +41,7 @@ enum XPDS_CAS_MSG_TYPE_ENUM
 };
 typedef VOS_UINT32 XPDS_CAS_MSG_TYPE_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : XPDS_CAS_RESULT_ENUM
- 结构说明  : XPDS模块与接入层间的结果码枚举
 
-  1.日    期   : 2015年08月22日
-    作    者   : g00261581
-    修改内容   : Cdma AGPS
-*****************************************************************************/
 enum XPDS_CAS_RESULT_ENUM
 {
     XPDS_CAS_RESULT_NO_ERROR                      = 0x000000,                     /* 消息处理正常 */
@@ -89,14 +59,7 @@ enum XPDS_CAS_REF_LOC_RPT_TYPE_ENUM
 };
 typedef VOS_UINT8 XPDS_CAS_REF_LOC_RPT_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 结构名    : XPDS_CAS_PILOT_MEAS_INFO_STRU
- 结构说明  : XPDS start or stop the ref loc info report
 
-  1.日    期   : 2015年6月23日
-    作    者   : L00128652
-    修改内容   : 新建
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16                          usPilotPN;                           /**< 0~ 511 ,Pilot PN */
@@ -104,14 +67,7 @@ typedef struct
     VOS_UINT32                          ulPnPhase;                           /**< PNOffset of the reference pilot,in unit of 1/16 chips */
 } XPDS_CAS_PILOT_MEAS_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : XPDS_CAS_REF_LOC_REQ_STRU
- 结构说明  : XPDS start or stop the ref loc info report
 
-  1.日    期   : 2015年6月23日
-    作    者   : L00128652
-    修改内容   : 新建
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                         stMsgHeader;                         /*_H2ASN_Skip*/
@@ -119,14 +75,7 @@ typedef struct
     VOS_UINT8                               aucReserved[3];
 } XPDS_CAS_REF_LOC_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : CAS_XPDS_REF_LOC_CNF_STRU
- 结构说明  : XPDS start or stop the ref loc info report
 
-  1.日    期   : 2015年6月23日
-    作    者   : L00128652
-    修改内容   : 新建
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                         stMsgHeader;                         /*_H2ASN_Skip*/
@@ -136,14 +85,7 @@ typedef struct
     XPDS_CAS_RESULT_ENUM_UINT32             enResult;
 } CAS_XPDS_REF_LOC_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : CAS_XPDS_REF_LOC_IND_STRU
- 结构说明  :
 
-  1.日    期   : 2015年6月23日
-    作    者   : L00128652
-    修改内容   : 新建
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                         /*_H2ASN_Skip*/
@@ -159,14 +101,7 @@ typedef struct
     XPDS_CAS_PILOT_MEAS_INFO_STRU       stPilotMeasInfo[XPDS_CAS_MAX_NEIGHBOR_NUM];
 } CAS_XPDS_REF_LOC_IND_STRU;
 
-/*****************************************************************************
- 结构名    : XPDS_CAS_TIME_SYNC_REQ_STRU
- 结构说明  :
 
-  1.日    期   : 2015年6月23日
-    作    者   : L00128652
-    修改内容   : 新建
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                         /*_H2ASN_Skip*/
@@ -174,14 +109,7 @@ typedef struct
     VOS_UINT8                           aucReserved[3];
 } XPDS_CAS_TIME_SYNC_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : CAS_XPDS_TIME_SYNC_IND_STRU
- 结构说明  :
 
-  1.日    期   : 2015年6月23日
-    作    者   : L00128652
-    修改内容   : 新建
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /*_H2ASN_Skip*/

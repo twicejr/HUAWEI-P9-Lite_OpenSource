@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasXsdSndCas.c
-  版 本 号   : 初稿
-  作    者   : h00246512
-  生成日期   : 2014年7月7日
-  最近修改   :
-  功能描述   : XSD发送给CAS的消息处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年7月7日
-    作    者   : h00246512
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -48,29 +31,7 @@ extern "C" {
   3 函数实现
 *****************************************************************************/
 /*lint -save -e958*/
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_SndCasStartReq
- 功能描述  : 向CAS发送开机请求
- 输入参数  : ulResult - 开机结果
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月7日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年4月15日
-    作    者   : y00245242
-    修改内容   : iteration 13开发
-
-  3.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_SndCasStartReq(
     MSCC_XSD_START_REQ_STRU            *pstRcvMsg
 )
@@ -106,25 +67,7 @@ VOS_VOID CNAS_XSD_SndCasStartReq(
     NAS_TRACE_HIGH("Send Msg!");
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_SndCasPowerOffReq
- 功能描述  : 向CAS发送关机请求
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月7日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_SndCasPowerOffReq(VOS_VOID)
 {
     CNAS_CAS_1X_POWER_OFF_REQ_STRU     *pstPowerOffReq  = VOS_NULL_PTR;
@@ -149,26 +92,7 @@ VOS_VOID CNAS_XSD_SndCasPowerOffReq(VOS_VOID)
     NAS_TRACE_HIGH("Send Msg!");
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_SndCasSysSyncReq
- 功能描述  : 向CAS发送ID_CNAS_CAS_1X_SYSTEM_SYNC_REQ消息
- 输入参数  : VOS_UINT32                          ulFreqNum
-             CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstFreqList
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_SndCasSysSyncReq(
     VOS_UINT32                          ulFreqNum,
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstFreqList
@@ -220,25 +144,7 @@ VOS_VOID CNAS_XSD_SndCasSysSyncReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_SndCasStopSysSyncReq
- 功能描述  : 向CAS发送ID_CNAS_CAS_1X_STOP_SYSTEM_SYNC_REQ请求
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_SndCasStopSysSyncReq(VOS_VOID)
 {
     CNAS_CAS_1X_STOP_SYSTEM_SYNC_REQ_STRU                  *pstStopSysSyncReq  = VOS_NULL_PTR;
@@ -265,25 +171,7 @@ VOS_VOID CNAS_XSD_SndCasStopSysSyncReq(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_SndCas1xCampSyncedChannelNtf
- 功能描述  : 向接入层发送ID_CNAS_CAS_1X_CAMP_SYNCED_CHANNEL_NTF消息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月18日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_SndCas1xCampSyncedChannelNtf(VOS_VOID)
 {
     CNAS_CAS_1X_CAMP_SYNCED_CHANNEL_NTF_STRU               *pst1xCampSyncedChNtf  = VOS_NULL_PTR;
@@ -310,29 +198,7 @@ VOS_VOID CNAS_XSD_SndCas1xCampSyncedChannelNtf(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_SndCasCdmaCsqSetReq
- 功能描述  : 向接入层发送ID_CNAS_CAS_1X_1X_SET_SIGNAL_QUALITY_REQ消息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月25日
-    作    者   : m00312079
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-  3.日    期   : 2015年10月16日
-    作    者   : m00312079
-    修改内容   : DTS2015101505057:添加ec/Io的上报门限
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_SndCasCdmaCsqSetReq(
     VOS_UINT8                                               ucRssiRptThreshold,
     VOS_UINT8                                               ucEcIoRptThreshold,
@@ -370,25 +236,7 @@ VOS_UINT32 CNAS_XSD_SndCasCdmaCsqSetReq(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_SndCasCFreqLockNtf
- 功能描述  : 向接入层发送CNAS_CAS_1X_FREQ_LOCK_NTF_STRU消息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月25日
-    作    者   : m00312079
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_SndCasCFreqLockNtf(MSCC_XSD_CFREQ_LOCK_NTF_STRU   *pstCFreqLockNtf)
 {
     CNAS_CAS_1X_FREQ_LOCK_NTF_STRU     *pstCnasCasCFreqLockNtf   = VOS_NULL_PTR;
@@ -426,22 +274,7 @@ VOS_UINT32 CNAS_XSD_SndCasCFreqLockNtf(MSCC_XSD_CFREQ_LOCK_NTF_STRU   *pstCFreqL
     return VOS_TRUE;
 }
 #if 0
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_SndCasNegativeSystemQueryRsp
- 功能描述  : 向接入层发送ID_CNAS_CAS_1X_NEGATIVE_SYSTEM_QUERY_RSP消息
- 输入参数  : pstCurrSystemId -- 当前系统ID
-             pstNegativeFreqList -- negative系统频点列表
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月9日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_SndCasNegativeSystemQueryRsp(
     CNAS_CAS_1X_SYSTEM_IDENTITY_STRU   *pstCurrSystemId,
     CNAS_PRL_ACQ_REC_FREQ_INFO_STRU    *pstNegativeFreqList
@@ -483,26 +316,7 @@ VOS_UINT32 CNAS_XSD_SndCasNegativeSystemQueryRsp(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_SndCasSysCfgReq
- 功能描述  : 向接入层发送ID_CNAS_CAS_1X_ SYS_CFG消息
- 输入参数  : pstRcvMsg -- 收到的消息指针
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年4月13日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_SndCasSysCfgReq(
     MSCC_XSD_SYS_CFG_REQ_STRU          *pstRcvMsg
 )
@@ -546,21 +360,7 @@ VOS_VOID CNAS_XSD_SndCasSysCfgReq(
 
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_XSD_SndCasOocReq
-Description     :   The function is used to send OOC Request to CAS.
-Input parameters:   None
-Outout parameters:  None
-Return Value    :   None
-Modify History:
-    1)  Date    :   2015-04-04
-        Author  :   a00295761
-        Modify content :    Create
 
-    2) 日    期 : 2015年08月20日
-       作    者 : t00323010
-       修改内容 : DTS2015081904804 clear coverity
-*****************************************************************************/
 
 VOS_VOID CNAS_XSD_SndCasSuspendReq(VOS_VOID)
 {
@@ -593,25 +393,7 @@ VOS_VOID CNAS_XSD_SndCasSuspendReq(VOS_VOID)
 }
 /*lint -restore*/
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_SndRrmRegisterInd
- 功能描述  : NO RF时，向RRM发送ID_PS_RRM_REGISTER_IND消息
- 输入参数  : enTaskType         :注册任务类型
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月19日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_SndRrmRegisterInd(
     RRM_PS_TASK_TYPE_ENUM_UINT16        enTaskType
 )
@@ -648,25 +430,7 @@ VOS_VOID CNAS_XSD_SndRrmRegisterInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_SndRrmDeRegisterInd
- 功能描述  : 收到RF可用消息时，向RRM发送ID_PS_RRM_DEREGISTER_IND消息
- 输入参数  : enTaskType         :注册任务类型
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月19日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_SndRrmDeRegisterInd(
     RRM_PS_TASK_TYPE_ENUM_UINT16        enTaskType
 )
@@ -703,25 +467,7 @@ VOS_VOID CNAS_XSD_SndRrmDeRegisterInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_SndCasBeginSessionNotify
- 功能描述  : XSD通知CAS开始Session通知
- 输入参数  : enSessionType:XSD当前session类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月20日
-    作    者   : h00133353
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_SndCasBeginSessionNotify(
     CNAS_CAS_1X_SESSION_TYPE_ENUM_UINT16                    enSessionType
 )
@@ -755,25 +501,7 @@ VOS_VOID CNAS_XSD_SndCasBeginSessionNotify(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_SndCasEndSessionNotify
- 功能描述  : XSD通知CAS结束Session通知
- 输入参数  : enSessionType:XSD当前session类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月20日
-    作    者   : h00133353
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_SndCasEndSessionNotify(
     CNAS_CAS_1X_SESSION_TYPE_ENUM_UINT16                    enSessionType
 )
@@ -808,22 +536,7 @@ VOS_VOID CNAS_XSD_SndCasEndSessionNotify(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_SndCasAvailableCampQueryCnf
- 功能描述  : 给CAS发送查询结果
- 输入参数  : usOpId ----- opid
-             ucIsAvailableCamp  ----- 能否驻留标记，0表示能够驻留，其他值表示不能驻留
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月30日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_SndCasAvailableCampQueryCnf(
     VOS_UINT16                          usOpId,
     PS_BOOL_ENUM_UINT8                  enIsCurSysCanCamp

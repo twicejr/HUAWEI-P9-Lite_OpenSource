@@ -1,13 +1,4 @@
-/*******************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : CcRabmIf.h
-  Description : CC与RABM接口头文件
-  History     :
-      1.  张志勇 2003.12.03   新版作成
-      2.日    期  : 2006年12月4日
-        作    者  : luojian id:60022475
-        修改内容  : 增加 #pragma pack(4)，问题单号:A32D07779
-*******************************************************************************/
+
 
 #ifndef _CC_RABM_INTERFACE_H_
 #define _CC_RABM_INTERFACE_H_

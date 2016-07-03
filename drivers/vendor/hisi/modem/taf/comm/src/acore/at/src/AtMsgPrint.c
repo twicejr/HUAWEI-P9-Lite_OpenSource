@@ -33,23 +33,7 @@
 /*****************************************************************************
   5 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : AT_StubSendAutoReplyMsg
- 功能描述  : 自动回复短信息
- 输入参数  : pstEvent - 用户上报事件；
-             pstTsDataInfo - DELIVER短信结构；
- 输出参数  : 无
- 返 回 值  : TAF_UINT32 自动回复短信息操作结果
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2010年1月27日
-    作    者   : f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2010年6月30日
-    作    者   : 傅映君
-    修改内容   : 问题单号DTS2010071500596，STK短信的定制缓存
-*****************************************************************************/
+
 TAF_UINT32 AT_StubSendAutoReplyMsg(
     VOS_UINT8                           ucIndex,
     MN_MSG_EVENT_INFO_STRU              *pstEvent,
@@ -112,23 +96,7 @@ TAF_UINT32 AT_StubSendAutoReplyMsg(
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_StubClearSpecificAutoRelyMsg
- 功能描述  : 清除缓存的自动回复消息
- 输入参数  : TAF_UINT32 ulIndex 缓存的自动回复消息索引
- 输出参数  : 无
- 返 回 值  : TAF_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年3月14日
-    作    者   : f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2013年2月25日
-    作    者   : L60609
-    修改内容   : DSDA PHASE III
-*****************************************************************************/
 TAF_VOID AT_StubClearSpecificAutoRelyMsg(
     VOS_UINT8                           ucClientIndex,
     TAF_UINT32                          ulBufferIndex
@@ -151,23 +119,7 @@ TAF_VOID AT_StubClearSpecificAutoRelyMsg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_StubTriggerAutoReply
- 功能描述  : 用户操作触发自动回复短信
- 输入参数  : VOS_UINT8                           ucIndex,
-             TAF_UINT8                           ucCfgValue
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2010年1月27日
-    作    者   : f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2013年2月25日
-    作    者   : l60609
-    修改内容   : DSDS PHASE III
-*****************************************************************************/
+
 TAF_VOID AT_StubTriggerAutoReply(
     VOS_UINT8                           ucIndex,
     TAF_UINT8                           ucCfgValue
@@ -222,24 +174,7 @@ TAF_VOID AT_StubTriggerAutoReply(
 
 }
 
-/*****************************************************************************
- 函 数 名  : AT_StubSaveAutoReplyData
- 功能描述  : 存储自动回复短信息到内存
- 输入参数  : ucIndex  - 端口index
-             pstEvent - 用户上报事件；
-             pstTsDataInfo - DELIVER短信结构；
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2010年1月27日
-    作    者   : f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2013年2月25日
-    作    者   : l60609
-    修改内容   : DSDA PHASE III
-*****************************************************************************/
+
 TAF_VOID AT_StubSaveAutoReplyData(
     VOS_UINT8                           ucIndex,
     MN_MSG_EVENT_INFO_STRU             *pstEvent,
@@ -305,21 +240,7 @@ TAF_VOID AT_StubSaveAutoReplyData(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : At_SendDomainProtoToNvim
- 功能描述  : 协议中的发送域的值转化为NVIM中发送域的值
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 转换后的发送域
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年7月3日
-    作    者   : z40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 At_SendDomainProtoToNvim(
     AT_CGSMS_SEND_DOMAIN_ENUM_U8        enProtoSendDomain
 )
@@ -346,22 +267,7 @@ VOS_UINT32 At_SendDomainProtoToNvim(
     return ulNvimSendDomain;
 }
 
-/*****************************************************************************
- 函 数 名  : At_ParseCsmpFo
- 功能描述  : AT命令CSMP中FO参数的解析
- 输入参数  : 无
- 输出参数  : pucFo  - FO参数指针
- 返 回 值  : AT_SUCCESS - 解析成功
-             其他       - 解析失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年4月1日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 At_ParseCsmpFo(
     VOS_UINT8                           *pucFo
 )
@@ -400,28 +306,7 @@ VOS_UINT32 At_ParseCsmpFo(
     return AT_SUCCESS;
 }
 
-/*****************************************************************************
- 函 数 名  : At_GetAbsoluteTime
- 功能描述  : AT命令CSMP中VP参数的解析
- 输入参数  : pucTimeStr   表示绝对时间的字符串首地址
-             usTimeStrLen 表示绝对时间的字符串长度
- 输出参数  : pstAbsoluteTime 绝对时间的结构首地址
- 返 回 值  : AT_SUCCESS - 解析成功
-             其他       - 解析失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年7月18日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  3.日    期   : 2012年12月11日
-    作    者   : l00167671
-    修改内容   : DTS2012121110930, TQE清理
-*****************************************************************************/
 TAF_UINT32 At_GetAbsoluteTime(
     TAF_UINT8                           *pucTimeStr,
     TAF_UINT16                          usTimeStrLen,
@@ -539,24 +424,7 @@ TAF_UINT32 At_GetAbsoluteTime(
 
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SetAbsoluteValidPeriod
- 功能描述  : 设置文本短信有效期为绝对有效期
- 输入参数  : pucPara            用效期字符串参数首地址
-             usParaLen          用效期字符串参数长度
- 输出参数  : pstValidPeriod     VP参数指针
- 返 回 值  : AT_XXX             ATC返回码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年4月10日
-    作    者   : f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2013年2月25日
-    作    者   : l60609
-    修改内容   : DSDA PHASE III
-*****************************************************************************/
 VOS_UINT32  AT_SetAbsoluteValidPeriod(
     VOS_UINT8                           ucIndex,
     TAF_UINT8                          *pucPara,
@@ -602,24 +470,7 @@ VOS_UINT32  AT_SetAbsoluteValidPeriod(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SetRelativeValidPeriod
- 功能描述  : 设置文本短信有效期为相对有效期
- 输入参数  : pucPara            用效期字符串参数首地址
-             usParaLen          用效期字符串参数长度
- 输出参数  : pstValidPeriod     VP参数指针
- 返 回 值  : AT_XXX     ATC返回码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年4月10日
-    作    者   : f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2013年2月25日
-    作    者   : L60609
-    修改内容   : DSDA PHASE III
-*****************************************************************************/
 VOS_UINT32  AT_SetRelativeValidPeriod(
     VOS_UINT8                           ucIndex,
     TAF_UINT8                          *pucPara,
@@ -676,29 +527,7 @@ VOS_UINT32  AT_SetRelativeValidPeriod(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : At_ParseCsmpVp
- 功能描述  : AT命令CSMP中VP参数的解析
- 输入参数  : 无
- 输出参数  : ucIndex    - 端口index
-             pstVp      - VP参数指针
- 返 回 值  : AT_SUCCESS - 解析成功
-             其他       - 解析失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年4月1日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-  2.日    期   : 2010年04月10日
-    作    者   : f62575
-    修改内容   : 问题单号AT2D18035
-                 写PDU短信到SIM卡,BALONG对TP-SCTS的检查与标杆不一致；
-  3.日    期   : 2013年2月25日
-    作    者   : l60609
-    修改内容   : DSDA PHASE III
-*****************************************************************************/
 VOS_UINT32 At_ParseCsmpVp(
     VOS_UINT8                           ucIndex,
     MN_MSG_VALID_PERIOD_STRU           *pstVp
@@ -758,22 +587,7 @@ VOS_UINT32 At_ParseCsmpVp(
 
 }
 
-/*****************************************************************************
- 函 数 名  : At_MsgResultCodeFormat
- 功能描述  : 输出字符串的格式化
- 输入参数  : ucIndex    - 用户索引
-             usLength   - 字符串长度
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年4月1日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_VOID At_MsgResultCodeFormat(
     TAF_UINT8                           ucIndex,
     TAF_UINT16                          usLength
@@ -793,21 +607,7 @@ TAF_VOID At_MsgResultCodeFormat(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : At_GetMsgFoValue
- 功能描述  : 根据消息数据的首字节属性获取首字节数值
- 输入参数  : pstTsDataInfo - 消息数据结构
- 输出参数  : pucFo         - 消息首字节数值
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年3月13日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_VOID At_GetMsgFoValue(
     MN_MSG_TS_DATA_INFO_STRU            *pstTsDataInfo,
     TAF_UINT8                           *pucFo
@@ -875,23 +675,7 @@ TAF_VOID At_GetMsgFoValue(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : At_SendMsgFoAttr
- 功能描述  : 根据消息首字节数值获得消息数据的首字节属性
- 输入参数  : pucFo         - 消息首字节数值
- 输出参数  : pstTsDataInfo - 消息数据结构
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年3月13日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-  2.日    期   : 2013年2月25日
-    作    者   : l60609
-    修改内容   : DSDA PHASE III
-*****************************************************************************/
 VOS_VOID At_SendMsgFoAttr(
     VOS_UINT8                           ucIndex,
     MN_MSG_TS_DATA_INFO_STRU            *pstTsDataInfo
@@ -997,23 +781,7 @@ VOS_VOID At_SendMsgFoAttr(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : At_PrintCsmsInfo
- 功能描述  : 打印当前选择消息业务类型时各业务类型支持情况列表
- 输入参数  : ucIndex        - 用户索引值
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年3月4日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-  2.日    期   : 2011年2月15日
-    作    者   : f62575
-    修改内容   : DTS2011021506010 修改CBS功能状态为支持
-*****************************************************************************/
 TAF_VOID  At_PrintCsmsInfo(
     TAF_UINT8                           ucIndex
 )
@@ -1032,21 +800,7 @@ TAF_VOID  At_PrintCsmsInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : At_PrintAsciiAddr
- 功能描述  : 根据ASCII码表示号码的数据结构打印地址字符串;
- 输入参数  : pstAddr    - ASCII码表示号码数据结构
- 输出参数  : pDst       - 输出字符串的地址
- 返 回 值  : 输出字符串长度
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年3月12日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_UINT16 At_PrintAsciiAddr(
     MN_MSG_ASCII_ADDR_STRU              *pstAddr,
     TAF_UINT8                           *pDst
@@ -1077,21 +831,7 @@ TAF_UINT16 At_PrintAsciiAddr(
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_BcdAddrToAscii
- 功能描述  : 同步函数,将MN_MSG_BCD_ADDR_STRU类型地址转换成MN_MSG_ASCII_ADDR_STRU类型地址
- 输入参数  : pstBcdAddr     - MN_MSG_BCD_ADDR_STRU类型地址
- 输出参数  : pstAsciiAddr   - MN_MSG_ASCII_ADDR_STRU类型地址
- 返 回 值  : MN_ERR_NO_ERROR转换操作成功，否则失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年3月12日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_BcdAddrToAscii(
     MN_MSG_BCD_ADDR_STRU                *pstBcdAddr,
     MN_MSG_ASCII_ADDR_STRU              *pstAsciiAddr
@@ -1134,21 +874,7 @@ VOS_UINT32 AT_BcdAddrToAscii(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : At_PrintBcdAddr
- 功能描述  : 根据BCD码表示号码的数据结构打印地址字符串;
- 输入参数  : pstAddr    - BCD码表示号码的数据结构
- 输出参数  : pDst       - 输出字符串的地址
- 返 回 值  : 输出字符串长度
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年3月12日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_UINT16 At_PrintBcdAddr(
     MN_MSG_BCD_ADDR_STRU                *pstBcdAddr,
     TAF_UINT8                           *pDst
@@ -1170,23 +896,7 @@ TAF_UINT16 At_PrintBcdAddr(
     return usLength;
 }
 
-/*****************************************************************************
- 函 数 名  : At_PrintAddrType
- 功能描述  : 根据ASCII码表示号码的数据结构,获得号码类型并打印, Refer to 23040 9.1.2.5
- 输入参数  : pstAsciiAddr - ASCII码表示号码的数据结构
- 输出参数  : pDst         - 输出字符串的地址
- 返 回 值  : 输出字符串长度
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年3月12日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-  2.日    期   : 2012年7月03日
-    作    者   : 傅映君 62575
-    修改内容   : DTS2012070200072，始终显示地址类型
-*****************************************************************************/
 TAF_UINT16  At_PrintAddrType(
     MN_MSG_ASCII_ADDR_STRU              *pstAddr,
     TAF_UINT8                           *pDst
@@ -1207,21 +917,7 @@ TAF_UINT16  At_PrintAddrType(
     return usLength;
 }
 
-/*****************************************************************************
- 函 数 名  : At_PrintMsgFo
- 功能描述  : 根据短消息的首字节属性获得首字节数值并打印
- 输入参数  : pstTsDataInfo - 短消息传输层数据对应的数据结构
- 输出参数  : pDst          - 输出字符串的地址
- 返 回 值  : 输出字符串长度
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年3月12日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_UINT16  At_PrintMsgFo(
     MN_MSG_TS_DATA_INFO_STRU            *pstTsDataInfo,
     TAF_UINT8                           *pDst
@@ -1240,21 +936,7 @@ TAF_UINT16  At_PrintMsgFo(
     return usLength;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_ChkSmsNumType
- 功能描述  : 同步函数,号码类型检查,参考协议23040 9.1.2.5
- 输入参数  : enNumType      - 号码类型
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 MN_ERR_NO_ERROR号码类型检查通过 其他,号码类型检查失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月22日
-    作    者   : f62575
-    修改内容   : 新生成函数
-                 MN_ChkSmsNumType->AT_ChkSmsNumType
-*****************************************************************************/
 VOS_UINT32 AT_ChkSmsNumType(
     MN_MSG_TON_ENUM_U8                  enNumType
 )
@@ -1262,21 +944,7 @@ VOS_UINT32 AT_ChkSmsNumType(
     return MN_ERR_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_ChkSmsNumPlan
- 功能描述  : 同步函数,拨号计划类型检查,参考协议23040 9.1.2.5
- 输入参数  : enNumPlan - 拨号计划类型
- 输出参数  : 无
- 返 回 值  : MN_ERR_NO_ERROR拨号计划类型检查通过 其他,拨号计划类型检查失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月22日
-    作    者   : f62575
-    修改内容   : 新生成函数
-                 MN_ChkSmsNumPlan->AT_ChkSmsNumPlan
-*****************************************************************************/
 VOS_UINT32 AT_ChkSmsNumPlan(
     MN_MSG_NPI_ENUM_U8                  enNumPlan
 )
@@ -1284,27 +952,7 @@ VOS_UINT32 AT_ChkSmsNumPlan(
     return MN_ERR_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_AsciiToBcdCode
- 功能描述  : 将Ascii码字符转换成BCD码字符
- 输入参数  : ucAsciiCode  - ASCII字符
- 输出参数  : pucBcdCode   - 转换得到的BCD码
- 返 回 值  : VOS_UINT32:函数返回的结果,成功以及失败的原因值
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月22日
-    作    者   : f62575
-    修改内容   : 新生成函数
-                 TAF_STD_ConvertAsciiCodeToBcd->AT_AsciiToBcdCode
-  2.日    期   : 2012年12月03日
-    作    者   : Y00213812
-    修改内容   : DTS2012120303885,支持BCD编码中的大写字母
-  3.日    期   : 2013年12月24日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseIII项目
- *****************************************************************************/
 VOS_UINT32  AT_AsciiToBcdCode(
     VOS_CHAR                            cAsciiCode,
     VOS_UINT8                          *pucBcdCode
@@ -1312,9 +960,7 @@ VOS_UINT32  AT_AsciiToBcdCode(
 {
     if (VOS_NULL_PTR == pucBcdCode)
     {
-        /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, begin */
         AT_NORM_LOG("AT_AsciiToBcdCode: Parameter of the function is null.");
-        /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, end */
         return MN_ERR_NULLPTR;
     }
 
@@ -1345,34 +991,14 @@ VOS_UINT32  AT_AsciiToBcdCode(
     }
     else
     {
-        /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, begin */
         AT_NORM_LOG("AT_AsciiToBcdCode: Parameter of the function is invalid.");
-        /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, end */
         return MN_ERR_INVALID_ASCII;
     }
 
     return MN_ERR_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_AsciiNumberToBcd
- 功能描述  : 将Ascii编码的号码转换成BCD编码的号码
- 输入参数  : pcAsciiNumber - 以'\0'结尾的ASCII字符号码
- 输出参数  : pucBcdNumber   - 转换得到的BCD号码
-             pucBcdLen      - 转换得到的BCD号码的长度
- 返 回 值  : VOS_UINT32 MN_ERR_NO_ERROR操作成功 其他，操作失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月22日
-    作    者   : f62575
-    修改内容   : 新生成函数
-                 TAF_STD_ConvertAsciiNumberToBcd->AT_AsciiNumberToBcd
-  2.日    期   : 2013年12月24日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseIII项目
-*****************************************************************************/
 VOS_UINT32  AT_AsciiNumberToBcd(
     const VOS_CHAR                      *pcAsciiNumber,
     VOS_UINT8                           *pucBcdNumber,
@@ -1387,9 +1013,7 @@ VOS_UINT32  AT_AsciiNumberToBcd(
      || (TAF_NULL_PTR == pucBcdNumber)
      || (TAF_NULL_PTR == pucBcdLen))
     {
-        /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, begin */
         AT_NORM_LOG("AT_AsciiNumberToBcd: Parameter of the function is null.");
-        /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, end */
         return MN_ERR_NULLPTR;
     }
 
@@ -1419,20 +1043,7 @@ VOS_UINT32  AT_AsciiNumberToBcd(
     return MN_ERR_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_BcdToAsciiCode
- 功能描述  : 将BCD编码的字符转换成Ascii码字符
- 输入参数  : ucBcdCode   - BCD编码的字符
- 输出参数  : pcAsciiCode - 转换得到的ASCII码字符
- 返 回 值  : VOS_UINT32:函数返回的结果,成功以及失败的原因值
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 傅映君 62575
-    修改内容   : 新生成函数 TAF_STD_ConvertBcdCodeToAscii->AT_BcdToAsciiCode
-*****************************************************************************/
 VOS_UINT32  AT_BcdToAsciiCode(
     VOS_UINT8                           ucBcdCode,
     VOS_CHAR                            *pcAsciiCode
@@ -1475,22 +1086,7 @@ VOS_UINT32  AT_BcdToAsciiCode(
     return MN_ERR_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_AsciiNumberToBcd
- 功能描述  : 将BCD编码的号码转换成Ascii编码的号码
- 输入参数  : pBcdNumber     - BCD号码
-             ucBcdLen       - BCD号码的长度
- 输出参数  : pcAsciiNumber  - 转换得到的ASCII号码(以'\0'结尾)
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-    1.日    期   : 2011年10月22日
-      作    者   : f62575
-      修改内容   : 新生成函数
-  TAF_STD_ConvertBcdNumberToAscii->AT_BcdNumberToAscii
-*****************************************************************************/
 VOS_UINT32  AT_BcdNumberToAscii(
     const VOS_UINT8                     *pucBcdNumber,
     VOS_UINT8                           ucBcdLen,
@@ -1562,31 +1158,7 @@ VOS_UINT32  AT_BcdNumberToAscii(
 }
 
 
-/*****************************************************************************
- 函 数 名  : At_GetAsciiOrBcdAddr
- 功能描述  : 根据ASCII码表示的号码字符串，长度，号码类型，号码类型长度获得ASCII码表示号码的数据结构
-             或BCD码表示号码的数据结构
- 输入参数  : pucAddr        - ASCII码表示的号码字符串
-             usAddrLen      - ASCII码表示的号码字符串长度
-             ucAddrType     - 号码类型
-             usNumTypeLen   - 号码类型长度
- 输出参数  : pstAsciiAddr   - ASCII码表示号码的数据结构
-             pstBcdAddr     - BCD码表示号码的数据结构
- 返 回 值  : 指示获取操作的结果，成功，AT_OK；否则，失败；
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年3月13日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-  2.日    期   : 2011年10月22日
-    作    者   : f62575
-    修改内容   : AT PROJECT
-                 MN_ChkNumPlan->AT_ChkNumPlan
-                 MN_ChkNumType->AT_ChkNumType
-                 TAF_STD_ConvertAsciiNumberToBcd->AT_AsciiNumberToBcd
-*****************************************************************************/
 TAF_UINT32  At_GetAsciiOrBcdAddr(
     TAF_UINT8                           *pucAddr,
     TAF_UINT16                          usAddrLen,
@@ -1703,26 +1275,7 @@ TAF_UINT32  At_GetAsciiOrBcdAddr(
     return AT_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : At_PrintListMsg
- 功能描述  : 根据上报事件指示的数据类型打印CMGL命令的响应数据；
- 输入参数  : ucIndex
-             pstEvent       - 事件内容
-             pstTsDataInfo  - 短消息传输层数据对应的数据结构
- 输出参数  : pucDst         - 输出字符串的地址
- 返 回 值  : 输出字符串长度
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年3月14日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-  2.日    期   : 2013年04月17日
-    作    者   : 傅映君/f62575
-    修改内容   : DTS2013041704040, 解决TP-UDHL畸形短信不能显示问题
-
-*****************************************************************************/
 TAF_UINT32  At_PrintListMsg(
     VOS_UINT8                            ucIndex,
     MN_MSG_EVENT_INFO_STRU              *pstEvent,
@@ -1905,22 +1458,7 @@ TAF_UINT32  At_PrintListMsg(
     return usLength;
 }
 
-/*****************************************************************************
- 函 数 名  : At_GetCpmsMemStatus
- 功能描述  : 获取指定存储介质的使用状态
- 输入参数  : enMemType      - 存储介质类型
- 输出参数  : pulTotalRec    - 存储介质的容量
-             pulUsedRec     - 存储介质的使用记录条数
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年8月14日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_VOID At_GetCpmsMemStatus(
     VOS_UINT8                           ucIndex,
     MN_MSG_MEM_STORE_ENUM_U8            enMemType,
@@ -1954,21 +1492,7 @@ TAF_VOID At_GetCpmsMemStatus(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : At_PrintSetCpmsRsp
- 功能描述  : 打印CPMS设置命令响应数据
- 输入参数  : ucIndex    - 用户索引
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年3月17日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_VOID At_PrintSetCpmsRsp(
     TAF_UINT8                           ucIndex
 )
@@ -2016,21 +1540,7 @@ TAF_VOID At_PrintSetCpmsRsp(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : At_GetCpmsMemTypeStr
- 功能描述  : 获取存储介质的描述字符串指针
- 输入参数  : enMemType      - 存储介质类型
- 输出参数  : 无
- 返 回 值  : 存储介质的描述字符串指针
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年8月14日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_UINT8 *At_GetCpmsMemTypeStr(
     MN_MSG_MEM_STORE_ENUM_U8            enMemType
 )
@@ -2052,26 +1562,7 @@ TAF_UINT8 *At_GetCpmsMemTypeStr(
     return gastAtStringTab[ulMemType].pucText;
 }
 
-/*****************************************************************************
- 函 数 名  : At_PrintGetCpmsRsp
- 功能描述  : 打印CPMS查询命令响应数据
- 输入参数  : ucIndex    - 用户索引
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年3月8日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-  2.日    期   : 2011年1月12日
-    作    者   : 傅映君/f62575
-    修改内容   : DTAS2011011200351 法国ORANGE后台打开PIN码短信接收失败
-  3.日    期   : 2013年2月25日
-    作    者   : L60609
-    修改内容   : DSDA PHASE III
-*****************************************************************************/
 VOS_VOID At_PrintGetCpmsRsp(
     VOS_UINT8                           ucIndex
 )
@@ -2129,21 +1620,7 @@ VOS_VOID At_PrintGetCpmsRsp(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PrintTimeZone
- 功能描述  : 打印时区
- 输入参数  : cTimezone 待打印输出的时区
-             pDst      输出字符串的地址，要保证长度大于22个字节
- 输出参数  : pusLength 时区的打印长度
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年4月10日
-    作    者   : f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 TAF_VOID AT_PrintTimeZone(
     TAF_INT8                            cTimezone,
     TAF_UINT8                           *pucDst,
@@ -2188,26 +1665,7 @@ TAF_VOID AT_PrintTimeZone(
     return;
 }
 
-/*****************************************************************************
- Prototype      : At_SmsPrintScts
- Description    : 接到短信时，输出时间戳 Scts:"yy/MM/dd,hh:mm:ss±zz"
- Input          : ucType --- 时间类型
-                  aucScTimeStamp --- BCD码的事件戳,高半字在右面
-                  pDst --- 输出字符串的地址，要保证长度大于22个字节
- Output         :
- Return Value   : usLength --- 输出字符串长度
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.日    期   : 2008年3月12日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-  2.日    期   : 2010年04月10日
-    作    者   : f62575
-    修改内容   : 问题单号AT2D18035
-                 写PDU短信到SIM卡,BALONG对TP-SCTS的检查与标杆不一致；
-*****************************************************************************/
 TAF_UINT32 At_SmsPrintScts(
     const MN_MSG_TIMESTAMP_STRU         *pstTimeStamp,
     TAF_UINT8                           *pDst
@@ -2341,21 +1799,7 @@ TAF_UINT32 At_SmsPrintScts(
     return usLength;
 }
 
-/*****************************************************************************
- 函 数 名  : At_MsgPrintVp
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年3月12日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_UINT16 At_MsgPrintVp(
     MN_MSG_VALID_PERIOD_STRU            *pstValidPeriod,
     TAF_UINT8 *pDst
@@ -2381,22 +1825,7 @@ TAF_UINT16 At_MsgPrintVp(
     return usLength;
 }
 
-/*****************************************************************************
- Prototype      : At_SmsPrintState
- Description    : 读短信时，根据+CMGF输出当前短信状态信息
- Input          : enSmsFormat --- 当前短信格式
-                  ucState --- 此条短信的状态
-                  pDst --- 输出字符串的地址
- Output         :
- Return Value   : usLength --- 输出字符串长度
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.日    期   : 2008年3月18日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-*****************************************************************************/
 TAF_UINT32 At_SmsPrintState(
     AT_CMGF_MSG_FORMAT_ENUM_U8          enSmsFormat,
     MN_MSG_STATUS_TYPE_ENUM_U8          enStatus,
@@ -2465,22 +1894,7 @@ TAF_UINT32 At_SmsPrintState(
     return usLength;
 }
 
-/*****************************************************************************
- 函 数 名  : At_GetScaFromInputStr
- 功能描述  : 根据输入的RPDU格式的号码字符串获得BCD码格式的数据结构
- 输入参数  : pucAddr    -  TPDU格式的号码字符串
- 输出参数  : pstBcdAddr -  BCD码格式的数据结构
-             pulLen     -  TPDU格式的号码字符串长度
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年3月18日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_UINT32  At_GetScaFromInputStr(
     const TAF_UINT8                     *pucAddr,
     MN_MSG_BCD_ADDR_STRU                *pstBcdAddr,
@@ -2505,25 +1919,7 @@ TAF_UINT32  At_GetScaFromInputStr(
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : At_MsgDeleteCmdProc
- 功能描述  : 从待删除的消息状态集中根据删除顺序删除指定状态的短消息
- 输入参数  : clientId           - 发起该请求的Client的ID
-             opId               - Operation ID, 标识本次操作
-             stDelete           - 删除参数
-             ulDeleteTypes      - 待删除的消息状态集
- 输出参数  : 无
- 返 回 值  : AT_OK              - 成功
-             其他               - 失败及其失败的原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年8月18日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_UINT32 At_MsgDeleteCmdProc(
     TAF_UINT8                           ucIndex,
     MN_OPERATION_ID_T                   opId,

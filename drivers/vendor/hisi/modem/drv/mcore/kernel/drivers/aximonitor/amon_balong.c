@@ -1,15 +1,4 @@
-/*************************************************************************
-*   版权所有(C) 2008-2012, 深圳华为技术有限公司.
-*
-*   文 件 名 :  amon_balong.c
-*
-*   作    者 :  z00212940
-*
-*   描    述 :  可维可测AXI Monitor
-*
-*   修改记录 :  2013年6月6日  v1.00  z00212940  创建
-*
-*************************************************************************/
+
 
 #ifdef __cplusplus
 extern "C"
@@ -31,21 +20,7 @@ u32 g_ul_running[2] = {false, false};
 u32 g_ul_bak_flag[2] = {false, false};
 u32 g_amon_base_addr[AXI_CTRL_ADDR_BUTT] = {};
 struct amon_sysctrl_struct g_amon_sysctrl;
-/*****************************************************************************
- 函 数 名  : axi_reg_read
- 功能描述  : AXI寄存器读操作, 一次只能读一类寄存器（CPUFAST/SOC）
- 输入参数  : axi_config_enum_uint32 config
-             u32 reg
- 输出参数  : u32 * value
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年6月6日
-    作    者   : f
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 static void axi_reg_read(axi_config_enum_uint32 config, u32 reg, u32 * value)
 {
     /* 根据配置目标读取相应寄存器 */
@@ -66,23 +41,7 @@ static void axi_reg_read(axi_config_enum_uint32 config, u32 reg, u32 * value)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : axi_reg_write
- 功能描述  : AXI寄存器写操作，一次只能写一类寄存器（CPUFAST/SOC）
- 输入参数  : axi_config_enum_uint32 config
-             u32 reg
-             u32 value
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月6日
-    作    者   : f
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 static void axi_reg_write(axi_config_enum_uint32 config, u32 reg, u32 value)
 {
     /* 根据配置目标写入相应寄存器 */
@@ -103,21 +62,7 @@ static void axi_reg_write(axi_config_enum_uint32 config, u32 reg, u32 value)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : axi_is_clk_enable
- 功能描述  : 获取AXI monitor时钟状态
- 输入参数  : axi_config_enum_uint32 config
- 输出参数  : 无
- 返 回 值  : u32 1 --- 时钟使能, 0 --- 时钟未使能
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月6日
-    作    者   : f
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 static u32 axi_is_clk_enable(axi_config_enum_uint32 config)
 {
     if(AXI_CPUFAST_CONFIG == config)
@@ -133,21 +78,7 @@ static u32 axi_is_clk_enable(axi_config_enum_uint32 config)
     return 1;
 }
 
-/*****************************************************************************
- 函 数 名  : axi_clk_enable
- 功能描述  : AXI monitor时钟使能
- 输入参数  : axi_config_enum_uint32 config
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月6日
-    作    者   : f
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 static void axi_clk_enable(axi_config_enum_uint32 config)
 {
     if(AXI_CPUFAST_CONFIG == config)
@@ -161,21 +92,7 @@ static void axi_clk_enable(axi_config_enum_uint32 config)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : axi_clk_disable
- 功能描述  : AXI monitor去时钟
- 输入参数  : axi_config_enum_uint32 config
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月6日
-    作    者   : f
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 static void axi_clk_disable(axi_config_enum_uint32 config)
 {
     if(AXI_CPUFAST_CONFIG == config)
@@ -189,21 +106,7 @@ static void axi_clk_disable(axi_config_enum_uint32 config)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : axi_get_state
- 功能描述  : 获取AXI monitor运行状态
- 输入参数  : axi_config_enum_uint32 config
- 输出参数  : 无
- 返 回 值  : axi_state_enum_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月6日
-    作    者   : f
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 static axi_state_enum_uint32 axi_get_state(axi_config_enum_uint32 config)
 {
     u32 reg_value = 0;
@@ -214,41 +117,14 @@ static axi_state_enum_uint32 axi_get_state(axi_config_enum_uint32 config)
     return reg_value & 0xC;
 }
 
-/*****************************************************************************
- 函 数 名  : axi_reset
- 功能描述  : AXI monitor内部软复位
- 输入参数  : axi_config_enum_uint32 config
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月6日
-    作    者   : f
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 static void axi_reset(axi_config_enum_uint32 config)
 {
     /* 软复位 */
     axi_reg_write(config, AXI_MON_CNT_RESET, 0x2);
 }
 
-/*****************************************************************************
- 函 数 名  : axi_sc_mon_start
- 功能描述  : AXI Monitor启动通过系统控制器控制
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月6日
-    作    者   : f
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 static void axi_sc_mon_start(axi_config_enum_uint32 config)
 {
     /* 启动CPUFAST */
@@ -267,20 +143,7 @@ static void axi_sc_mon_start(axi_config_enum_uint32 config)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : axi_sc_mon_stop
- 功能描述  : AXI Monitor停止通过系统控制器控制
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月6日
-    作    者   : f
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 static void axi_sc_mon_stop(axi_config_enum_uint32 config)
 {
     /* 停止CPUFAST */
@@ -299,21 +162,7 @@ static void axi_sc_mon_stop(axi_config_enum_uint32 config)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : bsp_amon_suspend
- 功能描述  : 掉电前数据备份
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月6日
-    作    者   : f
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void bsp_amon_suspend()
 {
     u32 i;
@@ -432,21 +281,7 @@ void bsp_amon_suspend()
     }
 }
 
-/*****************************************************************************
- 函 数 名  : bsp_amon_resume
- 功能描述  : 上电恢复
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月6日
-    作    者   : f
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void bsp_amon_resume()
 {
     u32 i;

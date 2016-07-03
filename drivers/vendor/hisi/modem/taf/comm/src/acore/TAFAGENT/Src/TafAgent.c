@@ -29,20 +29,7 @@ extern VOS_UINT32 AT_GetDestPid(
 3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : TAF_AGENT_PidInit
- 功能描述  : TAF AGENT PID的初始化函数，该PID挂在OM FID之下。
- 输入参数  : enum VOS_INIT_PHASE_DEFINE enPhase
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月22日
-    作    者   : c00173809
-    修改内容   : 新生成函数/PS融合项目
-*****************************************************************************/
 VOS_UINT32 TAF_AGENT_PidInit(enum VOS_INIT_PHASE_DEFINE enPhase)
 {
     switch ( enPhase )
@@ -57,30 +44,7 @@ VOS_UINT32 TAF_AGENT_PidInit(enum VOS_INIT_PHASE_DEFINE enPhase)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_AGENT_IsValidMsg
- 功能描述  : 判断是否是有效的消息
- 输入参数  : MsgBlock* pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月22日
-    作    者   : C00173809
-    修改内容   : 新生成函数/PS融合项目
-
-  2.日    期   : 2012年12月24日
-    作    者   : L60609
-    修改内容   : DSDA Phase II
-  3.日    期   : 2013年4月16日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核
-  4.日    期   : 2015年6月25日
-    作    者   : l00198894
-    修改内容   : TSTS
-*****************************************************************************/
 VOS_UINT32 TAF_AGENT_IsValidMsg(MsgBlock* pstMsg)
 {
     MSG_HEADER_STRU                    *pstMsgHeader;
@@ -93,14 +57,12 @@ VOS_UINT32 TAF_AGENT_IsValidMsg(MsgBlock* pstMsg)
 
     pstMsgHeader = (MSG_HEADER_STRU *)pstMsg;
 
-    /* Modified by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-16, begin */
     if ((I0_WUEPS_PID_TAF == pstMsgHeader->ulSenderPid)
      || (I1_WUEPS_PID_TAF == pstMsgHeader->ulSenderPid)
      || (I2_WUEPS_PID_TAF == pstMsgHeader->ulSenderPid)
      || (I0_UEPS_PID_MTA  == pstMsgHeader->ulSenderPid)
      || (I1_UEPS_PID_MTA  == pstMsgHeader->ulSenderPid)
      || (I2_UEPS_PID_MTA  == pstMsgHeader->ulSenderPid))
-    /* Modified by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-16, end */
     {
 
         if ((ID_TAFAGENT_APS_FIND_CID_FOR_DIAL_CNF <= pstMsgHeader->ulMsgName)
@@ -113,20 +75,7 @@ VOS_UINT32 TAF_AGENT_IsValidMsg(MsgBlock* pstMsg)
    return VOS_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_AGENT_ClearAllSem
- 功能描述  : 清空所有的信号量
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年04月17日
-    作    者   : f00179208
-    修改内容   : 新生成函数/C核单独复位项目
-*****************************************************************************/
 VOS_VOID TAF_AGENT_ClearAllSem(VOS_VOID)
 {
     /* 如果有锁的存在 */
@@ -138,25 +87,7 @@ VOS_VOID TAF_AGENT_ClearAllSem(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_AGENT_ProcMsg
- 功能描述  : TAF AGENT的消息处理函数
- 输入参数  : MsgBlock* pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月22日
-    作    者   : C00173809
-    修改内容   : 新生成函数/PS融合项目
-
-  2.日    期   : 2012年7月17日
-    作    者   : A00165503
-    修改内容   : DTS2012071607302: TAF跨核同步API实现优化, 防止异常出现后,
-                 所有API功能失效
-*****************************************************************************/
 VOS_VOID TAF_AGENT_ProcMsg(MsgBlock* pstMsg)
 {
     VOS_UINT8                          *pucMsg;
@@ -186,38 +117,7 @@ VOS_VOID TAF_AGENT_ProcMsg(MsgBlock* pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_AGENT_FindCidForDial
- 功能描述  : 通过同步机制获取用于拨号的CID
- 输入参数  :
- 输出参数  : VOS_VOID
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月18日
-    作    者   : c00173809
-    修改内容   : PS融合项目,发送同步消息
-
-  2.日    期   : 2012年7月4日
-    作    者   : A00165503
-    修改内容   : DTS2012042102488: TAF AGENT模块增加软调信息, 用于定位跨核API
-                 调用失败问题
-
-  3.日    期   : 2012年7月17日
-    作    者   : A00165503
-    修改内容   : DTS2012071607302: TAF跨核同步API实现优化, 防止异常出现后,
-                 所有API功能失效
-
-  4.日    期   : 2012年7月26日
-    作    者   : A00165503
-    修改内容   : DTS2012072505555: TAF跨核同步API实现优化, 增加消息为空保护
-
-  5.日    期   : 2012年12月21日
-    作    者   : l00227485
-    修改内容   : DSDA PhaseII
-*****************************************************************************/
 VOS_UINT32 TAF_AGENT_FindCidForDial(
     MN_CLIENT_ID_T                      usClientId,
     VOS_UINT8                          *pCid
@@ -319,39 +219,7 @@ VOS_UINT32 TAF_AGENT_FindCidForDial(
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_AGENT_SetPdpCidPara
- 功能描述  : 设置指定CID的参数
- 输入参数  : MN_CLIENT_ID_T                      usClientId,
-             TAF_PS_DIAL_PARA_STRU              *pstPdpPriPara
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月18日
-    作    者   : c00173809
-    修改内容   : PS融合项目,提供跨核同步API
-
-  2.日    期   : 2012年7月4日
-    作    者   : A00165503
-    修改内容   : DTS2012042102488: TAF AGENT模块增加软调信息, 用于定位跨核API
-                 调用失败问题
-
-  3.日    期   : 2012年7月17日
-    作    者   : A00165503
-    修改内容   : DTS2012071607302: TAF跨核同步API实现优化, 防止异常出现后,
-                 所有API功能失效
-
-  4.日    期   : 2012年7月26日
-    作    者   : A00165503
-    修改内容   : DTS2012072505555: TAF跨核同步API实现优化, 增加消息为空保护
-
-  5.日    期   : 2012年12月21日
-    作    者   : l00227485
-    修改内容   : DSDA PhaseII
-*****************************************************************************/
 VOS_UINT32 TAF_AGENT_SetPdpCidPara(
     MN_CLIENT_ID_T                      usClientId,
     TAF_PDP_PRIM_CONTEXT_EXT_STRU      *pstPdpPrimContextExt
@@ -457,38 +325,7 @@ VOS_UINT32 TAF_AGENT_SetPdpCidPara(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_AGENT_GetPdpCidPara
- 功能描述  : 查询指定CID的参数
- 输入参数  : TAF_PDP_PRIM_CONTEXT_STRU                   *pstPdpPriPara,
-             VOS_UINT8                           ucCid
- 输出参数  : TAF_PDP_PRIM_CONTEXT_STRU                   *pstPdpPriPara
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月18日
-    作    者   : c00173809
-    修改内容   : PS融合项目,提供跨核同步API
-
-  2.日    期   : 2012年7月4日
-    作    者   : A00165503
-    修改内容   : DTS2012042102488: TAF AGENT模块增加软调信息, 用于定位跨核API
-                 调用失败问题
-
-  3.日    期   : 2012年7月17日
-    作    者   : A00165503
-    修改内容   : DTS2012071607302: TAF跨核同步API实现优化, 防止异常出现后,
-                 所有API功能失效
-
-  4.日    期   : 2012年7月26日
-    作    者   : A00165503
-    修改内容   : DTS2012072505555: TAF跨核同步API实现优化, 增加消息为空保护
-
-  5.日    期   : 2012年12月21日
-    作    者   : l00227485
-    修改内容   : DSDA PhaseII
-*****************************************************************************/
 VOS_UINT32 TAF_AGENT_GetPdpCidPara(
     TAF_PDP_PRIM_CONTEXT_STRU                   *pstPdpPriPara,
     MN_CLIENT_ID_T                      usClientId,
@@ -595,22 +432,7 @@ VOS_UINT32 TAF_AGENT_GetPdpCidPara(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_AGENT_SetPdpCidQosPara
- 功能描述  : 设置指定CID的QOS参数
- 输入参数  : MN_CLIENT_ID_T                      usClientId,
-             TAF_PS_PDP_QOS_SET_PARA_STRU       *pstQosPara
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年06月29日
-    作    者   : l60609
-    修改内容   : DTS2013062201514:增加设置QOS参数同步接口
-
-*****************************************************************************/
 VOS_UINT32 TAF_AGENT_SetPdpCidQosPara(
     MN_CLIENT_ID_T                      usClientId,
     TAF_PS_PDP_QOS_SET_PARA_STRU       *pstQosPara
@@ -716,20 +538,7 @@ VOS_UINT32 TAF_AGENT_SetPdpCidQosPara(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_AGENT_GetPdpCidQosPara
- 功能描述  : 查询指定CID的参数
- 输入参数  : MN_CLIENT_ID_T                      usClientId,
-             VOS_UINT8                           ucCid
- 输出参数  : TAF_PS_PDP_QOS_QUERY_PARA_STRU     *pstQosPara
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-   1.日    期   : 2013年06月29日
-     作    者   : l60609
-     修改内容   : DTS2013062201514:增加设置QOS参数同步接口
-*****************************************************************************/
 VOS_UINT32 TAF_AGENT_GetPdpCidQosPara(
     MN_CLIENT_ID_T                      usClientId,
     VOS_UINT8                           ucCid,
@@ -834,40 +643,7 @@ VOS_UINT32 TAF_AGENT_GetPdpCidQosPara(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_AGENT_GetCallInfo
- 功能描述  : 获取通话信息同步api
- 输入参数  : MN_CLIENT_ID_T                      usClientId
-             VOS_UINT8                           *pucNumOfCalls
-             MN_CALL_INFO_STRU                   *pstCallInfos
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月27日
-    作    者   : w00199382
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年7月4日
-    作    者   : A00165503
-    修改内容   : DTS2012042102488: TAF AGENT模块增加软调信息, 用于定位跨核API
-                 调用失败问题
-
-  3.日    期   : 2012年7月17日
-    作    者   : A00165503
-    修改内容   : DTS2012071607302: TAF跨核同步API实现优化, 防止异常出现后,
-                 所有API功能失效
-
-  4.日    期   : 2012年7月26日
-    作    者   : A00165503
-    修改内容   : DTS2012072505555: TAF跨核同步API实现优化, 增加消息为空保护
-
-  5.日    期   : 2013年3月13日
-    作    者   : l60609
-    修改内容   : DSDA PHASE III
-*****************************************************************************/
 VOS_UINT32 TAF_AGENT_GetCallInfoReq(
     MN_CLIENT_ID_T                      usClientId,
     VOS_UINT8                          *pucCallNum,
@@ -964,21 +740,7 @@ VOS_UINT32 TAF_AGENT_GetCallInfoReq(
     return ulResult;
 }
 
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-2, begin */
-/*****************************************************************************
- 函 数 名  : TAF_AGENT_GetSysMode
- 功能描述  : 获取系统模式
- 输入参数  : AT_SYS_MODE_STRU                   *pstSysMode
- 输出参数  : AT_SYS_MODE_STRU                   *pstSysMode
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月2日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核新增函数
-*****************************************************************************/
 VOS_UINT32 TAF_AGENT_GetSysMode(
     VOS_UINT16                                 usClientId,
     TAF_AGENT_SYS_MODE_STRU                   *pstSysMode
@@ -1083,22 +845,8 @@ VOS_UINT32 TAF_AGENT_GetSysMode(
     return ulResult;
 #endif
 }
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-2, end */
 
-/*****************************************************************************
- 函 数 名  : TAF_AGENT_GetAntState
- 功能描述  : 获取天线状态
- 输入参数  : VOS_UINT16                   usClientId
- 输出参数  : VOS_UINT16                  *pusAntState
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月2日
-    作    者   : z60575
-    修改内容   : 获取天线状态
-*****************************************************************************/
 VOS_UINT32 TAF_AGENT_GetAntState(
     VOS_UINT16                                 usClientId,
     VOS_UINT16                                *pusAntState
@@ -1199,20 +947,7 @@ VOS_UINT32 TAF_AGENT_GetAntState(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_AGENT_FidInit
- 功能描述  : TAF AGENT FID的初始化函数
- 输入参数  : enum VOS_INIT_PHASE_DEFINE enPhase
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年02月17日
-    作    者   : f00179208
-    修改内容   : 问题单:DTS2013021700415,TAFAGENT单独起一个FID
-*****************************************************************************/
 VOS_UINT32 TAF_AGENT_FidInit (enum VOS_INIT_PHASE_DEFINE enPhase)
 {
     VOS_UINT32                          ulRslt;

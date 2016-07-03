@@ -52,17 +52,7 @@ extern "C" {
 /*****************************************************************************
   3 Function
 *****************************************************************************/
-/*****************************************************************************
- Function Name  : NAS_ESM_SmMsgDistr
- Description    : ESM模块SM消息分发函数
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong00150010      2011-04-28  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ESM_SmMsgDistr
 (
     VOS_VOID                           *pRcvMsg
@@ -126,17 +116,7 @@ VOS_VOID NAS_ESM_SmMsgDistr
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_RcvPdpContextInfoInd
- Description     : ESM模块收到ID_SM_ESM_PDP_CONTEXT_INFO_IND处理函数
- Input           : SM_ESM_PDP_CONTEXT_INFO_IND_STRU *pRcvMsg
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010            2011-04-28      Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_RcvPdpContextInfoInd
 (
     const SM_ESM_PDP_CONTEXT_INFO_IND_STRU                 *pstRcvMsg
@@ -170,17 +150,7 @@ VOS_VOID  NAS_ESM_RcvPdpContextInfoInd
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_MapPdpQos2EpsQos
- Description     : 将PDP QOS映射为EPS QOS
- Input           : SM_ESM_PDP_QOS_STRU                *pstPdpQos
- Output          : NAS_ESM_CONTEXT_LTE_QOS_STRU       *pstEpsQos
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010            2011-04-28      Draft Enact
-    2.wangchen 00209181         2014-09-02      Modify:R11
-*****************************************************************************/
 /*lint -e960*/
 /*lint -e961*/
 VOS_VOID  NAS_ESM_MapPdpQos2EpsQos
@@ -241,17 +211,7 @@ VOS_VOID  NAS_ESM_MapPdpQos2EpsQos
     NAS_ESM_EpsQosRateDecodeTo32(ulRate, &pstEpsQos->stQosInfo.ulULGMaxRate);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_MapPdpQos2ApnAmbr
- Description     : 将PDP QOS映射为APN-AMBR
- Input           : SM_ESM_PDP_QOS_STRU                *pstPdpQos
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010            2011-04-28      Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_MapPdpQos2ApnAmbr
 (
     NAS_ESM_CONTEXT_APN_AMBR_STRU      *pstApnAmbrInfo,
@@ -275,17 +235,7 @@ VOS_VOID  NAS_ESM_MapPdpQos2ApnAmbr
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SavePdpTftInfo
- Description     : 保存PDP激活的TFT信息
- Input           : SM_ESM_PDP_CONTEXT_INFO_IND_STRU *pstRcvMsg
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010            2011-04-29      Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ESM_SavePdpTftInfo
 (
     const SM_ESM_PDP_CONTEXT_INFO_IND_STRU   *pstRcvMsg
@@ -332,17 +282,7 @@ VOS_VOID NAS_ESM_SavePdpTftInfo
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SavePdpTftInfo
- Description     : 保存PDP激活的PCO IPV4项
- Input           : SM_ESM_PDP_CONTEXT_INFO_IND_STRU *pstRcvMsg
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010            2011-04-29      Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ESM_SavePcoIpv4Item
 (
     NAS_ESM_CONTEXT_PCO_STRU           *pstPcoInfo,
@@ -405,18 +345,7 @@ VOS_VOID NAS_ESM_SavePcoIpv4Item
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SavePcoIpv6Item
- Description     : 保存PDP激活的PCO IPV6项
- Input           : SM_ESM_PDP_CONTEXT_INFO_IND_STRU *pstRcvMsg
-                   const SM_ESM_PCO_IPV4_ITEM_STRU    *pstPcoIpv6Item
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.niuxiufan 00181501            2011-11-30      Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ESM_SavePcoIpv6Item
 (
     NAS_ESM_CONTEXT_PCO_STRU           *pstPcoInfo,
@@ -461,17 +390,7 @@ VOS_VOID NAS_ESM_SavePcoIpv6Item
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SaveSdfQos
- Description     : 保存PDP激活的SDF QOS信息
- Input           : SM_ESM_PDP_CONTEXT_INFO_IND_STRU *pRcvMsg
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010            2011-04-28      Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_SaveSdfQos
 (
     const SM_ESM_PDP_CONTEXT_INFO_IND_STRU  *pstRcvMsg,
@@ -499,17 +418,7 @@ VOS_VOID  NAS_ESM_SaveSdfQos
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SavePdpActivateInfo
- Description     : 保存PDP激活的上下文信息
- Input           : SM_ESM_PDP_CONTEXT_INFO_IND_STRU *pRcvMsg
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010            2011-04-28      Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_SavePdpActivateInfo
 (
     const SM_ESM_PDP_CONTEXT_INFO_IND_STRU                 *pstRcvMsg
@@ -658,17 +567,7 @@ VOS_VOID  NAS_ESM_SavePdpActivateInfo
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_ValidateSmSecPdpActivate
- Description     : 验证SM发来的次PDP激活消息的合法性
- Input           : SM_ESM_PDP_CONTEXT_INFO_IND_STRU *pstRcvMsg
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010            2011-05-19      Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_ESM_ValidateSmSecPdpActivate
 (
     const SM_ESM_PDP_CONTEXT_INFO_IND_STRU *pstRcvMsg
@@ -713,17 +612,7 @@ VOS_UINT32  NAS_ESM_ValidateSmSecPdpActivate
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ESM_ValidateSmPdpActivate
- Description     : 验证SM发来的PDP激活消息的合法性
- Input           : SM_ESM_PDP_CONTEXT_INFO_IND_STRU *pstRcvMsg
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010            2011-04-29      Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_ESM_ValidateSmPdpActivate
 (
     const SM_ESM_PDP_CONTEXT_INFO_IND_STRU *pstRcvMsg
@@ -747,17 +636,7 @@ VOS_UINT32  NAS_ESM_ValidateSmPdpActivate
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ESM_ProcSmPdpActivate
- Description     : ESM处理SM PDP激活
- Input           : SM_ESM_PDP_CONTEXT_INFO_IND_STRU *pRcvMsg
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010            2011-04-28      Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_ProcSmPdpActivate
 (
     const SM_ESM_PDP_CONTEXT_INFO_IND_STRU                 *pstRcvMsg
@@ -802,17 +681,7 @@ VOS_VOID  NAS_ESM_ProcSmPdpActivate
     NAS_ESM_PrintEpsbInfo(ulEpsbId);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_ValidateSmPdpModify
- Description     : 验证SM发来的PDP激活消息的合法性
- Input           : SM_ESM_PDP_CONTEXT_INFO_IND_STRU *pstRcvMsg
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.niuxiufan 00181501            2011-11-26      Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_ESM_ValidateSmPdpModify
 (
     const SM_ESM_PDP_CONTEXT_INFO_IND_STRU *pstRcvMsg
@@ -842,18 +711,7 @@ VOS_UINT32  NAS_ESM_ValidateSmPdpModify
     return NAS_ESM_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_ModifySdfQos
- Description     : 修改SDF Qos参数
- Input           : const SM_ESM_PDP_CONTEXT_INFO_IND_STRU  *pstRcvMsg,
-                 : const NAS_ESM_CONTEXT_LTE_QOS_STRU      *pstEpsQos
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.niuxiufan 00181501            2011-11-26      Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_ModifySdfQos
 (
     const SM_ESM_PDP_CONTEXT_INFO_IND_STRU  *pstRcvMsg,
@@ -910,18 +768,7 @@ VOS_VOID  NAS_ESM_ModifySdfQos
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_ProcSmPdpModify
- Description     : ESM处理SM PDP修改
- Input           : SM_ESM_PDP_CONTEXT_INFO_IND_STRU *pRcvMsg
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010            2011-04-28      Draft Enact
-    2.niuxiufan 00181501        2011-11-26      Modify
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_ProcSmPdpModify
 (
     const SM_ESM_PDP_CONTEXT_INFO_IND_STRU                 *pstRcvMsg
@@ -1076,17 +923,7 @@ VOS_VOID  NAS_ESM_ProcSmPdpModify
 }
 /*lint +e961*/
 /*lint +e960*/
-/*****************************************************************************
- Function Name   : NAS_ESM_ProcSmPdpDeactivate
- Description     : ESM处理SM PDP删除
- Input           : SM_ESM_PDP_CONTEXT_INFO_IND_STRU *pRcvMsg
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010            2011-04-28      Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_ProcSmPdpDeactivate
 (
     const SM_ESM_PDP_CONTEXT_INFO_IND_STRU                 *pstRcvMsg

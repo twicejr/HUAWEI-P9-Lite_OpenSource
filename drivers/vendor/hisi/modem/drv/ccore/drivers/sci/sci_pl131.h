@@ -1,15 +1,4 @@
-/*************************************************************************
-*   版权所有(C) 1987-2009, 深圳华为技术有限公司.
-*
-*   文 件 名 :  sci_pl131.h
-*
-*   作    者 :  Y00171698
-*
-*   描    述 :  本文件命名为"sci_pl131.h", 为ARM公司提供的sample code
-*            做了部分改动，编程规范不做修改。
-*
-*   修改记录 :  
-*************************************************************************/
+
     
 #ifndef SCI_PL131_H
 #define SCI_PL131_H
@@ -404,7 +393,6 @@
 #define PL131_DEF_ATRDTIME     ((u32) 19200)    /*ATR complete within 19200 ETUs*/
 #define PL131_DEF_CHARTIME     ((u32) 9600)     /*char interval 9600 ETUs*/
 #define PL131_DEF_BLOCKTIME    ((u32) 9600)     /*block timeout interval 9600 ETUs*/
-/*2014年5月22日12:27:39 l00258701 add T=1 */
 /*CWT = (11+ 2CWI ) etu cwt=13 7816-3 11.4.3*/
 #define PL131_DEF_CHARTIME_T1     ((u32) 13)
 /* 第一个TB（T=1）的位8~位5编码BWI从0~9。“A”~“F”是为今后使用预设。缺省值BWI=4。BWT是根据下面公式通过BWI计算出来的。
@@ -419,15 +407,12 @@
 #define PL131_MAX_BLKGUARDTIME_T1 ((u32) 15371)       /*minimum time between characters 22 ETUs*/
 
 
-/*2014年5月22日12:27:13  l00258701 end*/
 
-/* BEGIN: Modified by b00198513, 2012-05-29 ,DTS2012052503590 解决参考时钟超出48兆问题*/
 #define PL131_DEF_CARDFREQ     ((u32) 3750UL)   /*5760UL)*/   /*card frequency 1000kHz*/
 
 #define PL131_DEF_CARD4000     ((u32) 4000UL)   /*card frequency 3579kHz*/
 #define PL131_DEF_CARD5MHZ     ((u32) 5000UL)   /*card frequency 5000kHz*/
 #define PL131_DEF_RXTIME       ((u32) 16000)    /*receive timeout - ~13ms (4.5MHz)*/
-/* BEGIN: Modified by z67193, 2010-8-24, 复位应答之后，重传次数设置为3  */
 #define PL131_DEF_RX_RETRIES   ((u32) 3)        /*number of retries allowed*/
 #define PL131_DEF_TX_RETRIES   ((u32) 3)        /*number of retries allowed*/
 #define PL131_DEF_MIN_BAUDVALUE  5
@@ -437,7 +422,6 @@
      * Description:
      * Default minimum values for Start and Stop times if Clock Stop Mode supported
      */
-/* BEGIN: Modified by z67193, 2010-9-1 逻辑中提前计时2个etu, 最长etu=372/1，2604=1860+2*372/1*/
 #define PL131_DEF_STOPTIME     ((u32) 2604)      /*Stop time = 1860 clock cycles*/
 #define PL131_DEF_STARTTIME    ((u32) 700)       /*Start time = 700 clock cycles*/
     
@@ -633,10 +617,8 @@ Who :liumengcun, 2009-9-7
 
 
     
-    /*BEGIN PN: DTS2014012009585  l00258701 lixiaofan 2014年1月21日15:45:44*/
 #define  SCI_USIM_CLASS_C_DETECT_RETRY_CNT    3
 #define  SCI_MAX_USIM_CARD_DETECT_RETRY_CNT   6
-    /*END PN: DTS2014012009585  l00258701 lixiaofan 2014年1月21日15:45:44*/
 
     
     /*

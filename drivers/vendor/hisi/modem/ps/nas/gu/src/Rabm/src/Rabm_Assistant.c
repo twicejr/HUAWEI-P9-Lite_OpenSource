@@ -179,46 +179,7 @@ VOS_UINT8       g_aucRb2Rab[PS_WUE_MAX_RB_ID + 1];
 *****************************************************************************/
 extern VOS_VOID  R_ITF_SetFlowLev(VOS_RATMODE_ENUM_UINT32 enRateMode);
 
-/*****************************************************************************
- Prototype      : NAS_Rabm2GInit()
- Description    : RABM模块的初始化函数，主要用来初始化全局变量，
-                  包括RABM状态机的实体、各定时器标志等。
- Input          : 无
- Output         :
- Return Value   : RABM_SUCCESS        函数执行成功
-                  RABM_FAILURE        函数执行失败
- Calls          :
- Called By      :
- History        :
-  1.Date        : 2005-08-30
-    Author      : l47619
-    Modification: Created function
 
-  2.Date        : 2006-05-05
-    Author      : l47619
-    Modification: 根据问题单修改:A32D03487
-
-  3.日    期   : 2010年12月13日
-    作    者   : lijun 00171473
-    修改内容   : DTS2010112903583, 起个Timer, 流量数据每10分钟保存一次NV
-                 初始化时定时器时长设为10分钟
-
-  4.日    期   : 2011年10月21日
-    作    者   : h44270
-    修改内容   : V7R1 FAST DORMANCY特性，初始化定时器时长
-
-  5.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-
-  6.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : RABM保存的QOS由动态内存改为静态数组
-
-  7.日    期   : 2012年10月31日
-    作    者   : z60575
-    修改内容   : DTS2012101906800，特殊原因值时增加0.5s延时
-*****************************************************************************/
 VOS_VOID  NAS_Rabm2GInit( VOS_VOID )
 {
     VOS_UINT8                   ucLoop;
@@ -318,37 +279,7 @@ VOS_VOID  NAS_Rabm2GInit( VOS_VOID )
 
 
 
-/*****************************************************************************
- Prototype      : NAS_RabmStartTimer()
- Description    : RABM模块的定时器启动函数。
- Input          : Name                  设置定时器时使用的Name参数
-                                        若是专用定时器,则为(NSAPI - OFFSET)
-                                        若是公用定时器,则为RABM_TIMER_NAME_COMMON
-                  Para                  设置定时器时使用的Para参数
- Output         :
- Return Value   : VOS_VOID
- Calls          :
- Called By      :
- History        :
-  1.Date        : 2005-09-17
-    Author      : l47619
-    Modification: Created function
-  2.Date        : 2006-05-05
-    Author      : l47619
-    Modification: 根据问题单修改:A32D03487
-  3.日    期   : 2010年12月13日
-    作    者   : lijun 00171473
-    修改内容   : DTS2010112903583, 起个Timer, 流量数据每10分钟保存一次NV
-  4.日    期   : 2011年10月28日
-    作    者   : h44270
-    修改内容   : V3R1 phase III，增加定时器的启动处理
-  5.日    期   : 2013年06月18日
-    作    者   : Y00213812
-    修改内容   : DTS2013030104863，FASTDORM retry定时器精度改为32K
-  6.日    期   : 2013年09月09日
-    作    者   : Y00213812
-    修改内容   : DTS2013090403562,修改RABM_TIMER_FASTDORM_FLUX_DETECT的定时器
-*****************************************************************************/
+
 VOS_VOID NAS_RabmStartTimer( RABM_TIMER_NAME_ENUM Name, RABM_TIMER_PARA_ENUM Para )
 {
     RABM_START_TIMER_ST                 *pstRabmStartTimer;
@@ -439,21 +370,7 @@ VOS_VOID NAS_RabmStartTimer( RABM_TIMER_NAME_ENUM Name, RABM_TIMER_PARA_ENUM Par
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_CheckTimerStatus
- 功能描述  : 查询当前定时器的运行状态
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年10月28日
-   作    者   : h44270
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_RABM_TIMER_STATUS_ENUM_UINT8  NAS_RABM_CheckTimerStatus(
     RABM_TIMER_NAME_ENUM                enEntityTimerName,
     RABM_TIMER_PARA_ENUM                enTimerPara
@@ -493,35 +410,7 @@ NAS_RABM_TIMER_STATUS_ENUM_UINT8  NAS_RABM_CheckTimerStatus(
     }
 }
 
-/*****************************************************************************
- Prototype      : NAS_RabmStopTimer()
- Description    : RABM模块的定时器停止函数。
- Input          : Name                定时器的Name参数
-                  Para                定时器的Para参数
- Output         :
- Return Value   : VOS_VOID
- Calls          :
- Called By      :
- History        :
-  1.Date        : 2005-09-17
-    Author      : l47619
-    Modification: Created function
-  2.Date        : 2006-05-05
-    Author      : l47619
-    Modification: 根据问题单修改:A32D03487
-  3.日    期   : 2010年12月13日
-    作    者   : lijun 00171473
-    修改内容   : DTS2010112903583, 起个Timer, 流量数据每10分钟保存一次NV
-  4.日    期   : 2011年10月28日
-    作    者   : h44270
-    修改内容   : V3R1 phase III，增加定时器的保护处理
-  5.日    期   : 2013年06月19日
-    作    者   : Y00213812
-    修改内容   : DTS2013030104863,FASTDORM retry定时器精度改为32K
-  6.日    期   : 2013年09月09日
-    作    者   : Y00213812
-    修改内容   : DTS2013090403562,修改RABM_TIMER_FASTDORM_FLUX_DETECT的定时器
-*****************************************************************************/
+
 VOS_VOID NAS_RabmStopTimer( RABM_TIMER_NAME_ENUM Name, RABM_TIMER_PARA_ENUM Para )
 {
     RABM_TIMER_NAME_ENUM                 EntityTimerName   = ( RABM_TIMER_NAME_ENUM )0;
@@ -637,24 +526,7 @@ VOS_UINT32  NAS_RabmQueryTransmodeNoState( VOS_VOID )
     return RABM_NO;
 }
 
-/*****************************************************************************
- Prototype      : NAS_RabmDecodeNPdu()
- Description    : 将GMMRABM_ROUTING_AREA_UPDATE_IND_MSG消息中获取的N-PDU
-                  码流转换成RABM_SN_SEQUENCE_IND_MSG消息所使用的格式
 
- Input          : pRAUpdateIndMsg   接收到的GMMRABM_ROUTING_AREA_UPDATE_IND_MSG消息的指针
- Output         : pstNPdu           N-PDU解码后存入此指针所指向的结构体
- Return Value   : 无
- Calls          :
- Called By      :
- History        :
-  1.Date        : 2005-10-26
-    Author      : l47619
-    Modification: Created function
-  2.日    期   : 2013年8月29日
-    作    者   : j00174725
-    修改内容   : clean coverity
-*****************************************************************************/
 VOS_VOID  NAS_RabmDecodeNPdu( GMMRABM_ROUTING_AREA_UPDATE_IND_MSG *pRAUpdateIndMsg,
                                           RABM_SNDCP_RECV_N_PDU_NUM_LIST_ST   *pstNPdu )
 {
@@ -873,28 +745,7 @@ VOS_UINT32    NAS_RabmQueryNoOrReadyState( VOS_UINT8 ucNsapiIndex )
     return RABM_NO;
 }
 
-/*****************************************************************************
- Prototype      : NAS_RabmDeactive3GPdp()
- Description    : 本地去激活3G中某个PDP实体对应，清该实体所对应的状态机
- Input          : ucNsapiIndex          指定的NSAPI实体索引号
- Output         :
- Return Value   : VOS_VOID
- Calls          :
- Called By      :
- History        :
-  1.Date        : 2006-05-05
-    Author      : l47619
-    Modification: 根据问题单新增:A32D03487
 
-  2.日    期   : 2010年12月13日
-    作    者   : lijun 00171473
-    修改内容   : DTS2010112903583, 起个Timer, 流量数据每10分钟保存一次NV
-                 去激活时关TIMER 写NV
-
-  3.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : RABM保存的QOS由动态内存改为静态数组
-*****************************************************************************/
 VOS_VOID    NAS_RabmDeactive3GPdp(VOS_UINT8 ucNsapiIndex)
 {
     RABM_APS_LOCAL_PDP_DEACT_REQ    *pMsg;
@@ -956,23 +807,7 @@ VOS_VOID    NAS_RabmDeactive3GPdp(VOS_UINT8 ucNsapiIndex)
 
 
 
-/*****************************************************************************
- Prototype      : NAS_RabmSndHandoverRabRsp()
- Description    : 向RR发送RRRABM_HANDOVER_RAB_RSP消息
- Input          : ucRabNum          应答消息中包含的RAB个数
-                  pMsg              RRRABM_HANDOVER_RAB_IND_STRU消息指针
- Output         :
- Return Value   : VOID
- Calls          :
- Called By      :
- History        :
-  1.Date        : 2006-04-21
-    Author      : l47619
-    Modification: 根据问题单新增:A32D03487
-  2.日    期   : 2012年7月14日
-    作    者   : W00176964
-    修改内容   : V7R1 C50 GUTL PhaseI调整:发送给WRR的消息统一用适配层函数替换
-*****************************************************************************/
+
 VOS_VOID  NAS_RabmSndHandoverRabRsp(VOS_UINT8  ucRabNum, RRRABM_HANDOVER_RAB_IND_STRU *pMsg)
 {
     RRRABM_HANDOVER_RAB_RSP_STRU   *pSndMsg;
@@ -1109,41 +944,7 @@ VOS_VOID  NAS_RabmDealHandoverRabInd(RRRABM_HANDOVER_RAB_IND_STRU *pMsg)
 
 
 
-/*****************************************************************************
- Prototype      : NAS_RabmPowerOff()
- Description    : 软关机过程中，用以回收资源。包括动态分配的内存和定时器等。
- Input          : VOS_VOID
- Output         :
- Return Value   : VOID
- Calls          :
- Called By      :
- History        :
-  1.Date        : 2006-09-06
-    Author      : l47619
-    Modification: 根据问题单新增:A32D05600
 
-  2.日    期   : 2010年12月13日
-    作    者   : lijun 00171473
-    修改内容   : DTS2010112903583, 起个Timer, 流量数据每10分钟保存一次NV
-                 POWER OFF时 关定时器 写NV
-
-  3.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : RABM保存的QOS由动态内存改为静态数组
-
-  4.日    期   : 2013年04月12日
-    作    者   : l65478
-    修改内容   : DTS2013031901654:彩信并发发送失败
-
-  5.日    期   : 2013年06月19日
-    作    者   : Y00213812
-    修改内容   : DTS2013030104863,FASTDORM retry定时器精度改为32K
-
-  6.日    期   : 2013年09月09日
-    作    者   : Y00213812
-    修改内容   : DTS2013090403562,修改RABM_TIMER_FASTDORM_FLUX_DETECT的定时器
-
-*****************************************************************************/
 VOS_VOID  NAS_RabmPowerOff(VOS_VOID)
 {
     VOS_UINT8                           ucLoop;
@@ -1362,21 +1163,7 @@ VOS_UINT8  NAS_GetRbTxMode(VOS_UINT32 ulDomain, VOS_INT8    cRbId)
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_MNTN_TracePktLostEvt
- 功能描述  :
- 输入参数  : enPtkFlowDir
-             ucPoint
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年3月22日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_RABM_MNTN_TracePktLostEvt(
     NAS_RABM_PKT_FLOW_DIR_ENUM_UINT8    enPtkFlowDir,
     VOS_UINT8                           ucPoint
@@ -1608,20 +1395,7 @@ VOS_VOID RABM_SetWState(VOS_UINT8    ucEntId, VOS_UINT8   ucDestState)
 }
 
 
-/*****************************************************************************
- 函 数 名  : RABM_TraceRabMapInfo
- 功能描述  : RAB Map Info的可维可测
- 输入参数  : ucRabId -- RAB的值，G模式下为NSAPI
- 输出参数  :
- 返 回 值  : None
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008-02-27
-    作    者   : g45205
-    修改内容   : Created
-*****************************************************************************/
 VOS_VOID RABM_TraceRabMapInfo(VOS_UINT8 ucRabId)
 {
     RABM_TRACE_RAB_MAP_INFO_STRU    stTraceRabMapInfoMsg;
@@ -1687,27 +1461,7 @@ VOS_VOID RABM_TraceRabMapInfo(VOS_UINT8 ucRabId)
 } /* RABM_TraceRabMapInfo */
 
 
-/*****************************************************************************
- 函 数 名  : RABM_CreateRabMap
- 功能描述  : 创建一个RAB映射实体
- 输入参数  : ucRabId -- RAB的值，G模式下为NSAPI
-             ucRbId  -- RB的值，G模式下为NSAPI
-             pRabUlDataCallBack -- 上行数据的分发函数，由接入层提供，SNDCP和PDCP
-             pRabDlDataCallBack -- 下行数据的分发函数，由应用提供
- 输出参数  :
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008-02-27
-    作    者   : g45205
-    修改内容   : Created
-
-  2.日    期   : 2013年8月2日
-    作    者   : A00165503
-    修改内容   : DTS2013040906296: Secondary PDP下行数传无法找到关联的承载ID
-*****************************************************************************/
 VOS_VOID RABM_CreateRabMap(
     VOS_UINT8                           ucRabId,
     VOS_UINT8                           ucLinkdRabId,
@@ -1786,24 +1540,7 @@ VOS_VOID RABM_CreateRabMap(
 } /* RABM_CreateRabMap */
 
 
-/*****************************************************************************
- 函 数 名  : RABM_DelRabMap
- 功能描述  :
- 输入参数  : ucRabId -- RAB的值，G模式下为NSAPI
- 输出参数  :
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008-02-27
-    作    者   : g45205
-    修改内容   : Created
-
-  2.日    期   : 2013年8月2日
-    作    者   : A00165503
-    修改内容   : DTS2013040906296: Secondary PDP下行数传无法找到关联的承载ID
-*****************************************************************************/
 VOS_VOID RABM_DelRabMap(VOS_UINT8 ucRabId)
 {
     VOS_UINT8   ucAsId;
@@ -1860,29 +1597,7 @@ VOS_VOID RABM_DelRabMap(VOS_UINT8 ucRabId)
 } /* RABM_DelRabMap */
 
 
-/*****************************************************************************
- 函 数 名  : RABM_ChgRabMap
- 功能描述  :
- 输入参数  : ucRabId   -- RAB的值，G模式下为NSAPI
-             ucChgMask -- 需要修改项的掩码
-             ucRbId    -- RB的值，G模式下为NSAPI
-             pRabUlDataCallBack -- 上行数据的分发函数，由接入层提供，SNDCP和PDCP
-             pRabDlDataCallBack -- 下行数据的分发函数，由应用提供
- 输出参数  :
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008-02-27
-    作    者   : g45205
-    修改内容   : Created
-
-  2.日    期   : 2012年3月17日
-    作    者   : A00165503
-    修改内容   : DTS2012031600151: IPv4v6双栈拨号(双PDP), RAB重建流程后,
-                 只能恢复其中一条承载的数传
-*****************************************************************************/
 VOS_VOID RABM_ChgRabMap
 (
     VOS_UINT8       ucRabId,
@@ -1980,24 +1695,7 @@ VOS_VOID RABM_ChgRabMap
 } /* RABM_ChgRabMap */
 
 
-/*****************************************************************************
- 函 数 名  : RABM_SendUlData
- 功能描述  : 发送上行数据，提供给应用使用
- 输入参数  : ucRabId    -- RAB的值，G模式下为NSAPI
-             pData      -- 要发送的数据，TTF_MEM形式
- 输出参数  :
- 返 回 值  : VO_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008-02-27
-    作    者   : g45205
-    修改内容   : Created
-  2.日    期   : 2013年04月12日
-    作    者   : l65478
-    修改内容   : DTS2013031901654:彩信并发发送失败
-*****************************************************************************/
 VOS_VOID RABM_SendUlData(VOS_UINT8 ucRabId, TTF_MEM_ST *pstData)
 {
     VOS_UINT8   ucAsId;
@@ -2066,37 +1764,7 @@ VOS_VOID RABM_SendUlData(VOS_UINT8 ucRabId, TTF_MEM_ST *pstData)
 
 } /* RABM_SendUlData */
 
-/*****************************************************************************
- 函 数 名  : RABM_SendDlData
- 功能描述  : 分发RB下行数据，提供给接入层使用，如SNDCP和PDCP
- 输入参数  : ucRbId     -- RB的值，G模式下为NSAPI
-             pData      -- 要发送的数据，TTF_MEM形式
- 输出参数  :
- 返 回 值  : 成功，返回 PS_SUCC，否则返回 PS_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008-02-27
-    作    者   : g45205
-    修改内容   : Created
-
-  2.日    期   : 2011年12月20日
-    作    者   : o00132663
-    修改内容   : PS融合项目，W下对FD下行数据计数器累加
-
-  3.日    期   : 2013年04月12日
-    作    者   : l65478
-    修改内容   : DTS2013031901654:彩信并发发送失败
-
-  4.日    期   : 2014年6月18日
-    作    者   : m00217266
-    修改内容   : modify for FD Optimize
-
-  5.日    期   : 2015年1月9日
-    作    者   : A00165503
-    修改内容   : DTS2014123000271: RRC释放流程增加停止控制
-*****************************************************************************/
 VOS_UINT32 RABM_SendDlData(VOS_UINT8 ucAsId, TTF_MEM_ST *pstData)
 {
     VOS_UINT8   ucRabId;
@@ -2177,46 +1845,7 @@ VOS_UINT32 RABM_SendDlData(VOS_UINT8 ucAsId, TTF_MEM_ST *pstData)
 } /* RABM_SendDlData */
 
 
-/*****************************************************************************
- 函 数 名  : RABM_SndPdcpUlDataCallBack
- 功能描述  : APP向PDCP直接发送上行数据的回调函数
- 输入参数  : ucRabId    -- RABID
-             ucRbId     -- RB的值(G模式下为NSAPI,W模式即为Rb ID)
-             pData      -- 要发送的数据，TTF_MEM形式
- 输出参数  :
- 返 回 值  : 成功，返回 PS_SUCC，否则返回 PS_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008-03-06
-    作    者   : g45205
-    修改内容   : Created
-  2.日    期   : 2010-04-15
-    作    者   : S62952
-    修改内容   : AT2D18388
-
-  3.日    期   : 2011年12月20日
-    作    者   : o00132663
-    修改内容   : PS融合项目，W上行数据发送函数中对FD上行计数器累加
-
-  4.日    期   : 2012年2月18日
-    作    者   : z40661
-    修改内容   : GTL分支时，不能直接调用WAS的接口
-
-  5.日    期   : 2012年7月12日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseI:适配TDS进行修改，在不同的UTRAN模式时候
-                 调用不同的数据处理API接口
-
-  6.日    期   : 2014年6月18日
-    作    者   : m00217266
-    修改内容   : modify for FD Optimize
-
-  7.日    期   : 2015年1月9日
-    作    者   : A00165503
-    修改内容   : DTS2014123000271: RRC释放流程增加停止控制
-*****************************************************************************/
 VOS_UINT32 RABM_SndPdcpUlDataCallBack(VOS_UINT8 ucRabId, VOS_UINT8 ucRbId, TTF_MEM_ST *pstData)
 {
     VOS_UINT16                          usDataLen;
@@ -2235,22 +1864,7 @@ VOS_UINT32 RABM_SndPdcpUlDataCallBack(VOS_UINT8 ucRabId, VOS_UINT8 ucRbId, TTF_M
 }
 
 
-/*****************************************************************************
- 函 数 名  : RABM_SndSndcpUlDataCallBack
- 功能描述  : APP向SNDCP直接发送上行数据的回调函数
- 输入参数  : ucRabId    -- RABID
-             ucRbId     -- RB的值(G模式下为NSAPI,W模式即为Rb ID)
-             pData      -- 要发送的数据，TTF_MEM形式
- 输出参数  :
- 返 回 值  : 成功，返回 PS_SUCC，否则返回 PS_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008-03-06
-    作    者   : g45205
-    修改内容   : Created
-*****************************************************************************/
 VOS_UINT32 RABM_SndSndcpUlDataCallBack(VOS_UINT8 ucRabId, VOS_UINT8 ucNsapi, TTF_MEM_ST *pstData)
 {
     RABM_NSAPI_ENUM         NsapiIndex;
@@ -2329,28 +1943,7 @@ VOS_UINT32 RABM_SndSndcpUlDataCallBack(VOS_UINT8 ucRabId, VOS_UINT8 ucNsapi, TTF
 
 
 
-/*****************************************************************************
- 函 数 名  : RABM_SndRABMUlDataCallBack
- 功能描述  : APP向RABM发送上行数据的回调函数(在W/G模式下PDP实体处于非正常数传态时，
-             APP调用次上行回调，将数据发往RABM进行处理，而非直接发往SNDCP/PDCP处理)
- 输入参数  : ucRabId    -- RABID
-             ucRbId     -- RB的值(G模式下为NSAPI,W模式即为Rb ID)
-             pData      -- 要发送的数据，TTF_MEM形式
- 输出参数  :
- 返 回 值  : 成功，返回 PS_SUCC，否则返回 PS_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008-03-06
-    作    者   : L47619
-    修改内容   : Created
-
-  2.日    期   : 2012年3月5日
-    作    者   : A00165503
-    修改内容   : DTS2012022302899, 网络侧信号衰减直至丢网, PC继续向网络进行
-                 灌包, 单板必然出现复位
-*****************************************************************************/
 VOS_UINT32 RABM_SndRABMUlDataCallBack(VOS_UINT8 ucRabId, VOS_UINT8 ucRbId, TTF_MEM_ST *pstData)
 {
     /*释放零拷贝数据块*/
@@ -2361,22 +1954,7 @@ VOS_UINT32 RABM_SndRABMUlDataCallBack(VOS_UINT8 ucRabId, VOS_UINT8 ucRbId, TTF_M
 
 
 
-/*****************************************************************************
- 函 数 名  : RABM_SndAppDlDataCallBack
- 功能描述  : AS向APP发送下行数据的回调函数(该函数为通用下行发送回调函数，默认APP仅接收
-             线性内存形式的数据)
- 输入参数  : ucNsapi    -- NSAPI
-             pData      -- 要发送的数据，TTF_MEM形式
- 输出参数  :
- 返 回 值  : 成功，返回 PS_SUCC，否则返回 PS_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008-03-06
-    作    者   : g45205
-    修改内容   : Created
-*****************************************************************************/
 VOS_UINT32 RABM_SndAppDlDataCallBack(VOS_UINT8 ucRabId, TTF_MEM_ST *pstData)
 {
     VOS_UINT32                  ulDataLen;
@@ -2414,24 +1992,7 @@ VOS_UINT32 RABM_SndAppDlDataCallBack(VOS_UINT8 ucRabId, TTF_MEM_ST *pstData)
 
 
 
-/*****************************************************************************
- 函 数 名  : RABM_RabMapInit
- 功能描述  : g_astRabMap/g_aucRb2Rab 的初始化操作
- 输入参数  : VOS_VOID
- 输出参数  :
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008-03-06
-    作    者   : L47619
-    修改内容   : Created
-
-  2.日    期   : 2013年8月2日
-    作    者   : A00165503
-    修改内容   : DTS2013040906296: Secondary PDP下行数传无法找到关联的承载ID
-*****************************************************************************/
 VOS_VOID    RABM_RabMapInit(VOS_VOID)
 {
     VOS_UINT8   ucLoop;
@@ -2456,21 +2017,7 @@ VOS_VOID    RABM_RabMapInit(VOS_VOID)
 
 
 
-/*****************************************************************************
- 函 数 名  : RABM_IsExistBufferUplinkData
- 功能描述  : 判断W模式下RABM是否有缓存上行数据
- 输入参数  : VOS_VOID
- 输出参数  :
- 返 回 值  : VOS_TRUE            W模式下RABM 存在缓存上行数据
-              VOS_FALSE           W模式下RABM 不存在缓存上行数据
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008-12-23
-    作    者   : L47619
-    修改内容   : Created
-*****************************************************************************/
 VOS_UINT32  RABM_IsExistBufferUplinkData(VOS_VOID)
 {
     VOS_UINT8   ucEntId;
@@ -2487,34 +2034,7 @@ VOS_UINT32  RABM_IsExistBufferUplinkData(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : RABM_ResumeFirstActIndStatus
- 功能描述  : PDP激活流程中，SM会向RABM发送两条RABMSM_ACTIVATE_IND_STRU消息，
-             分别在发起激活和激活成功的时候发送。但有可能会遇到如下场景:
-             SM向RABM发送了第一条RABMSM_ACTIVATE_IND_STRU后，状态处于
-             SM_PDP_ACTIVE_PENDING态，此时发生异系统流程(正常异系统流程或丢网)，
-             则RABM在切入另一个系统后建立状态机时，需要恢复为接收到第一条
-             RABMSM_ACTIVATE_IND_STRU的状态
- 输入参数  : enCurNetType  当前网络类型
-             ucEntId        实体ID
- 输出参数  :
- 返 回 值  : VOS_OK            恢复成功
-             VOS_ERR           恢复失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009-03-17
-    作    者   : L47619
-    修改内容   : Created
-  2.日    期   : 2012年08月07日
-    作    者   : f00179208
-    修改内容   : 问题单:DTS2012080604402, PDP激活去激活后发生内存泄露
-
-  3.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : RABM保存的QOS由动态内存改为静态数组
-*****************************************************************************/
 VOS_UINT32  RABM_ResumeFirstActIndStatus(RABM_CUR_NET_ENUM enCurNetType, VOS_UINT8 ucEntId)
 {
     RABMSM_ACTIVATE_IND_STRU    ActivateInd;
@@ -2573,22 +2093,7 @@ VOS_UINT32  RABM_ResumeFirstActIndStatus(RABM_CUR_NET_ENUM enCurNetType, VOS_UIN
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_IsPsRbExist
- 功能描述  : 判定ps rab是否存在
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:存在ps rab
-             VOS_FALSE:不存在ps rab
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年7月14日
-   作    者   : A00165503
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_RABM_IsPsRbExist(VOS_VOID)
 {
     VOS_UINT32                          i;
@@ -2604,30 +2109,7 @@ VOS_UINT32 NAS_RABM_IsPsRbExist(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_CreateRabMapEntity
- 功能描述  : 创建RAB MAP
- 输入参数  : ucRabId      - RABID [5,15]
-             ucLinkdRabId - Linked RABID [5,15]
-             ucAsId       - ASID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月12日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年12月23日
-    作    者   : o00132663
-    修改内容   : PS融合项目，下行分发函数使用CDS提供的接口
-
-  3.日    期   : 2013年8月2日
-    作    者   : A00165503
-    修改内容   : DTS2013040906296: Secondary PDP下行数传无法找到关联的承载ID
-*****************************************************************************/
 VOS_VOID NAS_RABM_CreateRabMapEntity(
     VOS_UINT8                           ucRabId,
     VOS_UINT8                           ucLinkdRabId,
@@ -2690,20 +2172,7 @@ VOS_VOID NAS_RABM_CreateRabMapEntity(
 
 
 #if ( FEATURE_ON == FEATURE_BASTET )
-/*****************************************************************************
- 函 数 名  : RABM_GetRbId
- 功能描述  :
- 输入参数  : 根据RABID获取RBID
- 输出参数  :
- 返 回 值  : None
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015/06/19
-    作    者   : z00128442
-    修改内容   : Created
-*****************************************************************************/
 VOS_UINT8 RABM_GetRbId(VOS_UINT8 ucRabId)
 {
     if ( ucRabId > PS_WUE_MAX_RB_ID )

@@ -128,7 +128,6 @@ enum eOAM1AGERRCODE
 };
 
 
-/* Edit by L00105073 at 2009-12-14 for 1agOverTrunkPort: 创建MA时，不指定对应的VLAN ID */
 #define OAM_1AG_NOTBINDVLAN 0xFFFF
 
 /*physical地址长度*/
@@ -149,7 +148,6 @@ enum eOAM1AGERRCODE
 #define OAM_Y1731_MAX_MANAME_LEN 13
 #endif
 
-/* Add for V2R3C06, by z00171897/p00193127, at 2011-10-06. 修改原因: 扩展告警类型 */
 typedef enum enumTcpipOAM1AGWarning
 {
     OAM_1AG_NOTIFYCCPERIOD = 0,       /*np通告CC超时*/
@@ -200,7 +198,6 @@ typedef enum enumTcpipOAM1AGWarning
 /* RMEP的MD Level相对本端MEP的MD Level的比较情况 */
 #define OAM_1AG_EQLEVEL   0      /* RMEP的MD Level跟本端MEP的MD Level相等 */
 #define OAM_1AG_GTLEVEL   1      /* RMEP的MD Level大于本端MEP的MD Level */
-/* Add for V2R3C06, by z00171897/p00193127, at 2011-10-12. 修改原因: 支持Y1731使能/去使性能检测 */
 /* 去使能性能检测(Y1731) */
 #define Y1731_PMCHECK_DISABLE   0
 /* 使能性能检测(Y1731) */
@@ -282,7 +279,6 @@ typedef struct tagDISP_MA_INFO
     UCHAR ucAisInterval;  /*AIS传输周期*/
 } DISP_MA_INFO_S;
 
-/* Add for V2R3C06, by z00171897/p00193127, at 2011-10-17. 修改原因: 支持Y1731使能/去使性能检测 */
 typedef struct tagMEP_PMINFO
 {
     USHORT usRmepId;                         /* RMEP ID */
@@ -305,7 +301,6 @@ typedef struct tagDISP_MEP_INFO
                                                0:表示不需要带VLAN头,1表示需要带VLAN*/
     UCHAR  ucRes[3];
                                                
-    /* Add for V2R3C06, by z00171897/p00193127, at 2011-10-17. 修改原因: 支持Y1731使能/去使性能检测 */
     MEP_PM_INFO_S stPMCheckDLM;
     MEP_PM_INFO_S stPMCheckSLM;
     MEP_PM_INFO_S stPMCheckDDM;                   
@@ -326,7 +321,6 @@ typedef struct tagDISP_MEP_INFO_LIST
                                                0:表示不需要带VLAN头,1表示需要带VLAN*/
     UCHAR  ucRes[3];
 
-    /* Add for V2R3C06, by z00171897/p00193127, at 2011-10-17. 修改原因: 支持Y1731使能/去使性能检测 */
     MEP_PM_INFO_S stPMCheckDLM;
     MEP_PM_INFO_S stPMCheckSLM;
     MEP_PM_INFO_S stPMCheckDDM; 
@@ -436,7 +430,6 @@ enum eDEBUGTYPE
     OAM1AG_DEBUG_VERBOSE = 2        /*  VERBOSE开关*/
 };
 
-/* Add for V2R3C06, by z00171897/p00193127, at 2011-10-12. 修改原因: 支持Y1731性能检测类型的设置 */
 /* Y1731性能检测可设置的类型 */
 typedef enum enumTcpipY1731PMType
 {
@@ -470,188 +463,33 @@ typedef ULONG (*OAM_1AG_CAPTEST)(ULONG ulTestType);
 /*注册收到不带VLAN的LB和LT报文时,存在多个不带VLAN的MEP的通知钩子函数原型*/
 typedef ULONG (*OAM_1AG_MORENOVLANNOTIFY_HOOK_FUNC)(ULONG ulIfIndex, TCPIP_1AG_NOVLANINFO_S *pstNoVlanInfo,
                                                              ULONG ulNoVlanInfoNum);
-/* Modified by likaikun213099, 支持基于RMEP的CCM报文统计功能, 2014/10/15   问题单号:DTS2014101504612  */
 typedef struct tagOAM_1AG_RMEP_STAT
 {
     ULONG ulRcvCcmPkt;      /*接收CCM报文数*/
     ULONG ulReserv;         /*预留4字节*/
 } OAM_1AG_RMEP_STAT_S;
-/*End of Modified by likaikun213099, 2014/10/15   问题单号:DTS2014101504612  */
 
 /*API 接口手册 */
-/*******************************************************************************
-*    Func Name: TCPIP_1AG_ClearHaStat
-*  Description: 清空HA统计
-*        Input: VOID
-*       Output: 无
-*       Return: OAM1AG_OK:成功
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-20   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_1AG_ClearHaStat(VOID);
-/*******************************************************************************
-*    Func Name: TCPIP_1AG_ClearMepStat
-*  Description: 清除MEP统计信息
-*        Input: pszMdName:MD名称
-                pszMaName:ma名称
-                usMepId:mep id 
-*       Output: 无
-*       Return: OAM1AG_ERR_PARANULL:参数未空
-                OAM1AG_ERR_MDNAMELEN:md，ma名称长度错误
-                OAM1AG_ERR_PARAWRONG:usMepId不合法
-                OAM1AG_ERR_MDNOTEXIST:md不存在
-                OAM1AG_ERR_MANOTEXIST:ma不存在
-                OAM1AG_ERR_MEPNOTEXIST:mep不存在
-                OAM1AG_OK:成功
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-20   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_1AG_ClearMepStat(UCHAR * pszMdName, UCHAR * pszMaName, USHORT usMepId);
-/*******************************************************************************
-*    Func Name: TCPIP_1AG_CreateMa
-*  Description: 创建MA
-*        Input: UCHAR * pszMdName:MD名字
-*               UCHAR * pszMaName:MA名字
-*               ULONG ulVlanId:与MA关联的VLanID
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-20   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_1AG_CreateMa(UCHAR * pszMdName, UCHAR * pszMaName, ULONG ulVlanId);
-/*******************************************************************************
-*    Func Name: TCPIP_1AG_CreateMd
-*  Description: 创建MD
-*        Input: UCHAR * pszMdName:MD名字，非空，长度大于0小于44
-*               UCHAR ucMdLevel:MD级别，范围[0,7]
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-20   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_1AG_CreateMd(UCHAR * pszMdName, UCHAR ucMdLevel);
-/*******************************************************************************
-*    Func Name: TCPIP_1AG_CreateMep
-*  Description: 创建MEP
-*        Input: ULONG ulIfIndex:接口索引
-*               UCHAR * pszMdName:MD名字
-*               UCHAR * pszMaName:MA名字
-*               USHORT usMepId:MEP ID
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-20   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_1AG_CreateMep(ULONG ulIfIndex, UCHAR * pszMdName, UCHAR * pszMaName, USHORT usMepId);
-/*******************************************************************************
-*    Func Name: TCPIP_1AG_CreateRmep
-*  Description: 创建静态RMEP
-*        Input: ULONG ulIfIndex:接口索引
-*               UCHAR *pucMacAddr:RMEP对应的physical地址
-*               UCHAR * pszMdName:MD名字
-*               UCHAR * pszMaName:MA名字
-*               USHORT usRmepId:RMEP ID
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-20   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_1AG_CreateRmep(ULONG ulIfIndex, UCHAR *pucMacAddr, UCHAR * pszMdName, UCHAR * pszMaName,
                                     USHORT usRmepId);
-/*******************************************************************************
-*    Func Name: TCPIP_1AG_DeleteMa
-*  Description: 删除维护组
-*        Input: UCHAR * pszMdName:MD名字
-*               UCHAR * pszMaName:MA名字
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-20   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_1AG_DeleteMa(UCHAR * pszMdName, UCHAR * pszMaName);
-/*******************************************************************************
-*    Func Name: TCPIP_1AG_DeleteMd
-*  Description: 删除MD
-*        Input: UCHAR * pszMdName:MD名字
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-20   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_1AG_DeleteMd(UCHAR * pszMdName);
-/*******************************************************************************
-*    Func Name: TCPIP_1AG_DeleteMep
-*  Description: 删除MEP
-*        Input: UCHAR * pszMdName:MD名字
-*               UCHAR * pszMaName:MA名字
-*               USHORT usMepId:MEP ID
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-20   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_1AG_DeleteMep(UCHAR * pszMdName, UCHAR * pszMaName, USHORT usMepId);
-/*******************************************************************************
-*    Func Name: TCPIP_1AG_DeleteRmep
-*  Description: 删除RMEP
-*        Input: UCHAR * pszMdName:MD名字
-*               UCHAR * pszMaName:MA名字
-*               USHORT usRmepId:RMEP ID
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-20   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_1AG_DeleteRmep(UCHAR * pszMdName, UCHAR * pszMaName, USHORT usRmepId);
 /****************************************************************************
 *    Func Name: TCPIP_1AG_EnableCcmSend()
@@ -673,141 +511,20 @@ extern ULONG  TCPIP_1AG_DeleteRmep(UCHAR * pszMdName, UCHAR * pszMaName, USHORT 
 *
 *******************************************************************************/
 extern ULONG  TCPIP_1AG_EnableCcmSend(UCHAR * pszMdName, UCHAR * pszMaName, USHORT usMepId, UCHAR ucSendFlag);
-/*******************************************************************************
-*    Func Name: TCPIP_1AG_GetCompatible
-*  Description: 获取MA的兼容开关
-*        Input: pszMdName:MD名称
-                pszMaName:ma名称               
-*       Output: ULONG *pulValue:兼容标志
-*       Return: OAM1AG_ERR_PARANULL:参数未空
-                OAM1AG_ERR_MDNAMELEN:md，ma名称长度错误
-                OAM1AG_ERR_MDNOTEXIST:MD不存在
-                OAM1AG_ERR_MANOTEXIST:ma不存在
-                OAM1AG_OK:成功
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-20   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_1AG_GetCompatible(UCHAR * pszMdName, UCHAR *pszMaName, ULONG *pulValue);
-/*******************************************************************************
-*    Func Name: TCPIP_1AG_GetDebug
-*  Description: 获取1AG调试信息开关
-*        Input: 无
-*       Output: ULONG *pul1AgPktDebug:正常报文调试开关
-*               ULONG *pulError1AgPktDebug:异常报文开关
-*               ULONG *pul1AgVerbosePktDebug:verbose开关
-                ULONG *pulPacketNum:Verbose 打印次数
-                ULONG *pulPacketOctets:Verbose 打印字节数
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-20   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_1AG_GetDebug(ULONG *pul1AgPktDebug, ULONG *pulError1AgPktDebug, ULONG
                                  *pul1AgVerbosePktDebug, ULONG *pulPacketNum, ULONG *pulPacketOctets);
-/*******************************************************************************
-*    Func Name: TCPIP_1AG_GetHaDebug
-*  Description: 获取1AG模块ha调试开关
-*        Input: 无
-*       Output: ULONG *pulHADebugFlag:ha调试开关
-*       Return: OAM1AG_ERR_PARANULL:参数为空
-                OAM1AG_OK:成功
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-20   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_1AG_GetHaDebug(ULONG *pulHADebugFlag);
-/*******************************************************************************
-*    Func Name: TCPIP_1AG_GetHaStat
-*  Description: 获取HA统计
-*        Input: 无
-*       Output: pstHa1agStat:ha统计信息
-*       Return: OAM1AG_ERR_PARANULL:参数为空
-                OAM1AG_OK:成功
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-20   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_1AG_GetHaStat(HA1AGSTAT_S *pstHa1agStat);
-/*******************************************************************************
-*    Func Name: TCPIP_1AG_GetMaInfo
-*  Description: 获取MA信息
-*        Input: UCHAR *pszMdName:md名称
-*               UCHAR *pszMaName:ma名称  
-*              
-*       Output: DISP_MA_INFO_S *pstDispMaInfo:ma信息
-*       Return: OAM1AG_ERR_PARANULL:参数指针为空
-                OAM1AG_ERR_MDNAMELEN:md，ma名称长度错误
-                OAM1AG_ERR_MDNOTEXIST:md不存在
-                OAM1AG_ERR_MANOTEXIST:ma不存在
-                OAM1AG_OK:成功
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-20   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_1AG_GetMaInfo(UCHAR *pszMdName, UCHAR *pszMaName, DISP_MA_INFO_S *pstDispMaInfo);
-/*******************************************************************************
-*    Func Name: TCPIP_1AG_GetMdInfo
-*  Description: 查询md信息接口
-*        Input: UCHAR *pszMdName:MD名称
-*              
-*       Output:  DISP_MD_INFO_S *pstDispMdInfo:MD信息
-*       Return:  OAM1AG_ERR_PARANULL:指针参数为空值
-                 OAM1AG_ERR_MDMANAMELEN:md名称长度不合法
-                 OAM1AG_ERR_MDNOTEXIST:MD不存在
-                 OAM1AG_OK:获取成功
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-20   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_1AG_GetMdInfo(UCHAR *pszMdName, DISP_MD_INFO_S *pstDispMdInfo);
-/*******************************************************************************
-*    Func Name: TCPIP_1AG_GetMepInfo
-*  Description: 获取mep信息
-*        Input: pszMdName:MD名称
-                pszMaName:ma名称
-                usMepId:mep id
-*               
-*       Output: DISP_MEP_INFO_S * pstDispMepInfo:mep信息
-*       Return: OAM1AG_ERR_PARANULL:参数未空
-                OAM1AG_ERR_MDNAMELEN:md，ma名称长度错误
-                OAM1AG_ERR_PARAWRONG:usMepId不合法
-                OAM1AG_ERR_MDNOTEXIST:md不存在
-                OAM1AG_ERR_MANOTEXIST:ma不存在
-                OAM1AG_ERR_MEPNOTEXIST:mep不存在
-                OAM1AG_OK:成功 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-20   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_1AG_GetMepInfo(UCHAR * pszMdName, UCHAR * pszMaName, USHORT usMepId,
                                     DISP_MEP_INFO_S * pstDispMepInfo);
 /*******************************************************************************
@@ -860,47 +577,10 @@ extern ULONG  TCPIP_1AG_GetAllMepInfoById(UCHAR * pszMdName, UCHAR * pszMaName, 
 *
 *******************************************************************************/
 extern ULONG  TCPIP_1AG_FreeMepInfoList(DISP_MEP_INFO_LIST_S * pstDispMepInfoList);
-/*******************************************************************************
-*    Func Name: TCPIP_1AG_GetMepStat
-*  Description: 获取某个mep的统计信息
-*        Input: UCHAR *pszMdName:MD名称
-*               UCHAR * pszMaName:ma名称
-*               USHORT usMepId:mep id   
-*               
-*       Output: OAM_1AG_STAT_S *pstOam1agStat:mep统计
-*       Return: OAM1AG_ERR_PARANULL:参数未空
-                OAM1AG_ERR_MDNAMELEN:md，ma名称长度错误
-                OAM1AG_ERR_PARAWRONG:usMepId不合法
-                OAM1AG_ERR_MDNOTEXIST:md不存在
-                OAM1AG_ERR_MANOTEXIST:ma不存在
-                OAM1AG_ERR_MEPNOTEXIST:mep不存在
-                OAM1AG_OK:成功
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-20   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_1AG_GetMepStat(UCHAR *pszMdName, UCHAR * pszMaName, USHORT usMepId,
                                     OAM_1AG_STAT_S *pstOam1agStat);
-/*******************************************************************************
-*    Func Name: TCPIP_1AG_GetPktType
-*  Description: 获取1AG报文类型和优先级
-*        Input: 无
-*       Output: USHORT *pusEthType:获取报文类型
-*               UCHAR *pucPriority:获取VLAN优先级
-*       Return: OAM1AG_ERR_PARANULL:指针参数为空
-                OAM1AG_OK:成功
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-20   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_1AG_GetPktType(USHORT *pusEthType, UCHAR *pucPriority);
 /*******************************************************************************
 *    Func Name: TCPIP_1AG_SetMaVlanPri
@@ -919,77 +599,11 @@ extern ULONG  TCPIP_1AG_GetPktType(USHORT *pusEthType, UCHAR *pucPriority);
 *
 *******************************************************************************/
 extern ULONG  TCPIP_1AG_SetMaVlanPri(UCHAR *pucMdName,UCHAR *pucMaName,UCHAR ucPriority);
-/*******************************************************************************
-*    Func Name: TCPIP_1AG_GlobalDisable
-*  Description: 全局去使能1AG功能
-*        Input: 无
-*       Output: 无
-*       Return: OAM1AG_OK:成功
-*               其他:失败
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-20   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_1AG_GlobalDisable(VOID);
-/*******************************************************************************
-*    Func Name: TCPIP_1AG_NpNotify
-*  Description: 在NP模式下当NP检测到RMEP超时或者老化实时通知VISP进行处理
-*        Input: ulIfIndex:接口索引
-                pszMdName:MD名称
-                pszMaName:ma名称
-                usRmepId:RMEP ID
-                ulType:通知类型，0-超时，1-老化
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-20   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_1AG_NpNotify(ULONG ulIfIndex, UCHAR *pszMdName, UCHAR *pszMaName, USHORT usRmepId, ULONG ulType);
-/*******************************************************************************
-*    Func Name: TCPIP_1AG_Ping
-*  Description: LB测试
-*        Input: ulIfIndex:接口索引
-                pucMacAddr:physical地址
-                pszMdName:md名称
-                pszMaName:MA名称
-                usRmepId:MEP id
-                ulCount:报文次数
-                usPacketSize:报文大小
-                usTimeOut:超时时间
-                ulSendInterval:发送间隔
-                ulID:用户id
-*       Output: 无
-*       Return: OAM1AG_ERR_HAISSMOOTHING:平滑或倒换中
-                OAM1AG_ERR_OVERMAXPING:普通ping用户数超过上限
-                OAM1AG_ERR_PARANULL:参数未空
-                OAM1AG_ERR_MDNAMELEN:md，ma名称长度错误
-                OAM1AG_ERR_PARAWRONG:usMepId不合法
-                OAM1AG_ERR_MDNOTEXIST:md不存在
-                OAM1AG_ERR_MANOTEXIST:ma不存在
-                OAM1AG_ERR_MEPNOTEXIST:mep不存在
-                OAM1AG_ERR_PACKETSIZE:报文大小不合法
-                OAM1AG_ERR_LBTIMEOUT:超时值不合法
-                OAM1AG_ERR_LBINTERVAL:发送间隔不合法
-                OAM1AG_ERR_PARAWRONG:physical地址参数错误
-                OAM1AG_ERR_PORTHASNOMP:本地无维护点
-                OAM1AG_OK:成功
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-20   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_1AG_Ping(ULONG ulIfIndex, UCHAR *pucMacAddr, UCHAR * pszMdName,
                               UCHAR * pszMaName, USHORT usRmepId, ULONG ulCount,
                               USHORT usPacketSize, USHORT usTimeOut, ULONG ulSendInterval, ULONG ulID);
@@ -1012,20 +626,7 @@ extern ULONG  TCPIP_1AG_Ping(ULONG ulIfIndex, UCHAR *pucMacAddr, UCHAR * pszMdNa
 *******************************************************************************/
 extern ULONG  TCPIP_1AG_VlanPriPing(TCPIP_1AG_PING_S *pst1agPing);
 
-/*******************************************************************************
-*    Func Name: TCPIP_1AG_RegFuncUserPingPktDeal
-*  Description: 用户自定义LB报文处理函数注册注册接口
-*        Input: OAM_1AG_UserPingPktDeal pfEoamPingPktDealFunc:用户自定义LB报文处理函数
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-20   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_1AG_RegFuncUserPingPktDeal(OAM_1AG_USERPINGPKTDEAL pfEoamPingPktDealFunc);
 /****************************************************************************
 *    Func Name: TCPIP_1AG_SetCcmInterval()
@@ -1046,206 +647,28 @@ extern ULONG  TCPIP_1AG_RegFuncUserPingPktDeal(OAM_1AG_USERPINGPKTDEAL pfEoamPin
 *
 *******************************************************************************/
 extern ULONG  TCPIP_1AG_SetCcmInterval(UCHAR * pszMdName, UCHAR * pszMaName, ULONG ulInterval);
-/*******************************************************************************
-*    Func Name: TCPIP_1AG_SetCompatible
-*  Description: 设置1AG模块兼容标记,保持与我司数通产品的互通。兼容模式是基于MA设置的。
-*        Input: UCHAR * pszMdName:MD名字
-*               UCHAR * pszMaName:MA名字
-*               ULONG ulValue:1AG模块兼容标记，0 协议标准格式，1 数通格式
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-20   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_1AG_SetCompatible(UCHAR * pszMdName, UCHAR *pszMaName, ULONG ulValue);
-/*******************************************************************************
-*    Func Name: TCPIP_1AG_SetDebug
-*  Description: 设置OAM 1AG调试开关
-*        Input: ulFlag:调适开关
-                ulType:调试类型，参看枚举类型eDEBUGTYPE
-                ulPacketNum:报文数
-                ulPacketOctets:字节数
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-20   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_1AG_SetDebug(ULONG ulType, ULONG ulFlag, ULONG ulPacketNum, ULONG ulPacketOctets);
-/*******************************************************************************
-*    Func Name: TCPIP_1AG_SetHaDebug
-*  Description: 设置1AG模块ha调试开关
-*        Input: ULONG ulHADebugFlag:ha调试开关
-*       Output: 无
-*       Return: OAM1AG_ERR_PARAWRONG:参数错误
-                OAM1AG_OK:成功
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-20   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_1AG_SetHaDebug(ULONG ulHADebugFlag);
-/*******************************************************************************
-*    Func Name: TCPIP_1AG_SetPktType
-*  Description: 设置1AG报文类型和报文优先级
-*        Input: USHORT usPktType:1AG报文类型
-*               UCHAR ucPriority:1AG报文优先级
-*       Output: 无
-*       Return: VOS_OK:成功
-*          : OAM1AG_ERR_HAISSMOOTHING:处于平滑处理或手动倒换
-*          : OAM1AG_ERR_PARAWRONG:参数错误
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-20   x00100259              Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_1AG_SetPktType(USHORT usPktType, UCHAR ucPriority);
-/*******************************************************************************
-*    Func Name: TCPIP_1AG_ShowMaInfo
-*  Description: 显示MA信息
-*        Input: UCHAR *pszMdName:md名称
-*               UCHAR *pszMaName:ma名称 
-*       Output: 无
-*       Return: VOID
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-20   x00100259               Create
-*
-*******************************************************************************/
+
 extern VOID   TCPIP_1AG_ShowMaInfo(UCHAR *pszMdName, UCHAR *pszMaName);
-/*******************************************************************************
-*    Func Name: OAM_1AG_ShowAllMdInfo
-*  Description: 显示所有MD的名称
-*        Input: 无
-*       Output: 无
-*       Return: VOID
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-20   x00100259               Create
-*
-*******************************************************************************/
+
 extern VOID   OAM_1AG_ShowAllMdInfo(VOID);
-/*******************************************************************************
-*    Func Name: TCPIP_1AG_ShowMdInfo
-*  Description: 显示MD信息
-*        Input: UCHAR *pszMdName:md名称
-*       Output: 无
-*       Return: VOID
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-20   x00100259               Create
-*
-*******************************************************************************/
+
 extern VOID   TCPIP_1AG_ShowMdInfo(UCHAR *pszMdName);
-/*******************************************************************************
-*    Func Name: TCPIP_1AG_ShowMepInfo
-*  Description: 显示mep信息
-*        Input: UCHAR * pszMdName:MD名称
-*               UCHAR * pszMaName:ma名称
-*               USHORT usRmepId:mep id
-*       Output: 无
-*       Return: VOID
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-20   x00100259               Create
-*
-*******************************************************************************/
+
 extern VOID   TCPIP_1AG_ShowMepInfo(UCHAR * pszMdName, UCHAR * pszMaName, USHORT usMepOrRmepId);
-/*******************************************************************************
-*    Func Name: TCPIP_1AG_ShowMepStat
-*  Description: 显示MEP的统计信息
-*        Input: pszMdName:MD名称
-                pszMaName:ma名称
-                usMepId:mep id 
-*       Output: 无
-*       Return: VOID
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-20   x00100259               Create
-*
-*******************************************************************************/
+
 extern VOID   TCPIP_1AG_ShowMepStat(UCHAR *pszMdName, UCHAR * pszMaName, USHORT usMepId);
-/*******************************************************************************
-*    Func Name: TCPIP_1AG_Trace
-*  Description: 检查用户输入参数的有效性，并调用OAM_1AG_LT_MainProc()发起LT测试
-*        Input: ULONG ulIfIndex:出接口索引
-*               UCHAR *pcMacAddr:目的MP的physical地址
-*               UCHAR * pszMdName:MD名字
-*               UCHAR * pszMaName:MA名字
-*               USHORT usRmepId:RmepId
-*               UCHAR ucTtl:到达目的MP的最大跳数
-*               USHORT usTimeOut:该LTM的超时时间
-*               ULONG ulID:发起LT的用户ID
-*       Output: 
-*       Return: 成功或错误码
-*      Caution: 如果pcMacAddr非空，则ulIfIndex由用户输入且由用户保证正确性；如果pcMacAddr为空，则根据usRmepId
-*               查找匹配的pcMacAddr和ulIfIndex。 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-20   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_1AG_Trace(ULONG ulIfIndex, UCHAR *pcMacAddr, UCHAR * pszMdName, UCHAR * pszMaName,
                                USHORT usRmepId, UCHAR ucTtl, USHORT usTimeOut, ULONG ulID);
-/*******************************************************************************
-*    Func Name: TCPIP_1AG_UserPing
-*  Description: 自定义LB测试发起函数
-*        Input: ulIfIndex:接口索引
-                pucMacAddr:physical地址
-                pszMdName:md名称
-                pszMaName:MA名称
-                usRmepId:MEP id
-                pBuffer:用户data v指针，不包含end tlv
-                ulLen:用户自定义v长度
-*       Output: 无
-*       Return: OAM1AG_ERR_HAISSMOOTHING:平滑或倒换中             
-                OAM1AG_ERR_PARANULL:参数未空
-                OAM1AG_ERR_MDNAMELEN:md，ma名称长度错误
-                OAM1AG_ERR_PARAWRONG:usMepId不合法
-                OAM1AG_ERR_MDNOTEXIST:md不存在
-                OAM1AG_ERR_MANOTEXIST:ma不存在
-                OAM1AG_ERR_MEPNOTEXIST:mep不存在
-                OAM1AG_ERR_PARAWRONG:用户自定义tlv长度不合法
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-20   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_1AG_UserPing(ULONG ulIfIndex, UCHAR *pucMacAddr, UCHAR * pszMdName,
                                   UCHAR * pszMaName, USHORT usRmepId,
                                   UCHAR *pBuffer, ULONG ulLen);
@@ -1268,35 +691,9 @@ extern ULONG  TCPIP_1AG_UserPing(ULONG ulIfIndex, UCHAR *pucMacAddr, UCHAR * psz
 *******************************************************************************/
 extern ULONG  TCPIP_1AG_VlanPriUserPing(TCPIP_1AG_USERPING_S *pst1agUserPing);
 
-/*******************************************************************************
-*    Func Name: TCPIP_RegFunc1AGOutInfo
-*  Description: LB,LT测试信息输出适配函数注册接口
-*        Input: OAM_1AG_OUTINFO_HOOK_FUNC pfEOAM_1AG_OutInfo:LB,LT测试信息输出适配函数
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-20   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_RegFunc1AGOutInfo(OAM_1AG_OUTINFO_HOOK_FUNC pfEOAM_1AG_OutInfo);
-/*******************************************************************************
-*    Func Name: TCPIP_RegFunc1AGUserStop
-*  Description: LB或LT停止适配函数
-*        Input: EOAM_1AG_STOP_HOOK_FUNC pfEOAM_1AG_Stop:适配函数
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-20   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_RegFunc1AGUserStop(OAM_1AG_STOP_HOOK_FUNC pfEOAM_1AG_Stop);
 
 /*******************************************************************************
@@ -1400,45 +797,10 @@ extern ULONG TCPIP_1AG_GetRcvDefaultVlan(ULONG ulIfIndex, ULONG *pulDefaultVlan)
 *******************************************************************************/
 extern ULONG TCPIP_1AG_RegFuncMoreNoVlanNotify(OAM_1AG_MORENOVLANNOTIFY_HOOK_FUNC pfEoam1agMoreNoVlanNotifyFunc);
 
-/*******************************************************************************
-*    Func Name: TCPIP_1AG_SetRmepCheck
-* Date Created: 2009-09-03
-*       Author: l57500/z00142640
-*  Description: 使能/去使能静态RMEP检测维护。
-*        Input: UCHAR* pszMdName:MD名字
-*               UCHAR* pszMaName:MA名字
-*               USHORT usRmepId: RMEP ID
-*               ULONG ulSetYes:  1-使能，0-去使能
-*       Output: 
-*       Return: 成功返回OAM1AG_OK，失败则返回错误码
-*      Caution: 只能在全NP模式下调用本接口，RMEP必须是静态RMEP
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-09-03   l57500/z00142640        Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_1AG_SetRmepCheck(UCHAR* pszMdName, UCHAR* pszMaName, USHORT usRmepId, ULONG ulSetYes);
 
-/*******************************************************************************
-*    Func Name: TCPIP_1AG_GetRmepCheck
-* Date Created: 2009-09-03
-*       Author: l57500/z00142640
-*  Description: 获取使能/去使能静态RMEP检测维护标记的值
-*        Input: UCHAR* pszMdName:MD名字
-*               UCHAR* pszMaName:MA名字
-*               USHORT usRmepId: RMEP ID
-*       Output: ULONG *pulSetYes:1-使能，0-去使能
-*       Return: 
-*      Caution: RMEP必须是静态RMEP
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-09-03   l57500/z00142640        Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_1AG_GetRmepCheck(UCHAR* pszMdName, UCHAR* pszMaName, USHORT usRmepId, ULONG *pulSetYes);
 
 /*******************************************************************************
@@ -1544,149 +906,27 @@ ULONG TCPIP_1AG_GetLossDetectInterval(UCHAR *pszMdName, UCHAR *pszMaName,
                                     USHORT usMepId, USHORT *pusInterval);
 
 
-/*******************************************************************************
-*    Func Name: TCPIP_1AG_GetRmepWarnState
-* Date Created: 2010-10-13
-*       Author: c00168670
-*  Description: 获取指定RMEP的CCLOST告警、RDI告警和Interface Down告警状态
-*        Input: UCHAR *pszMdName: MD
-*               UCHAR *pszMaName: MA
-*               USHORT usRmepId:  RMep Id
-*               OAM1AG_WARN_STATE_S* pst1agWarnState: 1AG告警状态数据结构指针               
-*       Output: 
-*       Return: OAM1AG_OK:成功; 其它:错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-10-13   c00168670               Create
-*
-*******************************************************************************/
+
 ULONG TCPIP_1AG_GetRmepWarnState(UCHAR * pszMdName, UCHAR * pszMaName,
                     USHORT usRmepId, OAM1AG_WARN_STATE_S * pst1agWarnState);
  
-/*******************************************************************************
-*    Func Name: TCPIP_1AG_SetGlobalVersion
-* Date Created: 2011-10-04
-*       Author: y00176567/s00176784
-*  Description: 支持EOAM协议版本全局设置
-*        Input: ULONG ulVersion: 全局协议版本号
-*       Output: 
-*       Return: OAM1AG_OK:成功; 其它:错误码
-*        Since: V2R3C06
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-10-04   y00176567/s00176784               Create the first version.
-*
-*******************************************************************************/
+
 ULONG TCPIP_1AG_SetGlobalVersion(ULONG ulVersion);
 
-/*******************************************************************************
-*    Func Name: TCPIP_1AG_GetGlobalVersion
-* Date Created: 2011-10-04
-*       Author: y00176567/s00176784
-*  Description: 获取EOAM协议版本全局设置
-*        Input: 
-*       Output: ULONG *pulVersion: 全局协议版本号
-*       Return: VOS_OK:成功
-*               其它:错误码
-*        Since: V2R3C06
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-10-04   y00176567/s00176784             Create the first version.
-*
-*******************************************************************************/
+
 ULONG TCPIP_1AG_GetGlobalVersion(ULONG *pulVersion);
 
-/*******************************************************************************
-*    Func Name: TCPIP_1AG_ShowGlobalVersion
-* Date Created: 2011-10-05
-*       Author: y00176567/s00176784
-*  Description: 显示EOAM协议版本全局设置
-*        Input: 
-*       Output: 
-*       Return: VOID
-*        Since: V2R3C06
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-10-05   y00176567/s00176784             Create the first version.
-*
-*******************************************************************************/
+
 VOID TCPIP_1AG_ShowGlobalVersion(VOID);
 
-/*******************************************************************************
-*    Func Name: TCIPIP_Y1731_EnableAIS
-* Date Created: 2011-10-13
-*       Author: b00177000/z00187940
-*  Description: 设置基于MA的AIS使能开关
-*        Input: UCHAR *pucMdName:MD名字
-*               UCHAR *pucMaName:MA名字
-*               UCHAR  ulEnable:使能开关,0~1
-*       Output: 
-*       Return: 成功:OAM1AG_OK ,失败:其它
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-10-13   b00177000/z00187940  Create
-*
-*******************************************************************************/
+
 ULONG TCPIP_Y1731_EnableAIS(UCHAR *pucMdName,UCHAR *pucMaName,UCHAR ucEnable);
 
-/*******************************************************************************
-*    Func Name: TCPIP_Y1731_EnablePMCheck
-* Date Created: 2011-10-12
-*       Author: zhaoyue00171897/pengrui00193127
-*  Description: 支持Y1731 使能/去使能双端帧丢失检测DLM功能、单端帧丢失检测SLM功能、
-*                     双向延时检测DM功能
-*        Input: UCHAR  *pszMdName: MD名字
-*              UCHAR  *pszMaName: MA名字
-*              USHORT  usMepId: MEP ID
-*              USHORT  usRmepId:RMEP ID
-*              UCHAR   ucPMType:性能检测类型,参见TCPIP_Y1731_PM_TYPE_E
-*              UCHAR   ucCheckFlag: 0：去使能，1:使能
-*              ULONG   ulSendInterval:发送间隔，仅在ucPMType= Y1731_PM_SLM和Y1731_PM_DDM时生效
-*              ULONG   ulTimeOut: 超时时间，仅在ucPMType= Y1731_PM_SLM和Y1731_PM_DDM时生效
-*       Output: 
-*       Return: OAM1AG_OK:成功; 其它:错误码
-*      Caution: 该接口只能在Y1731且全NP模式下调用
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-10-12   z00171897/p00193127     Create
-*
-*******************************************************************************/
+
 ULONG TCPIP_Y1731_EnablePMCheck(UCHAR * pszMdName, UCHAR * pszMaName, USHORT usMepId, 
                         USHORT usRmepId,UCHAR ucPMType,UCHAR ucCheckFlag, ULONG ulSendInterval, ULONG ulTimeOut);
 
-/*******************************************************************************
-*    Func Name: TCPIP_1AG_EnableRmepCCDetectEx
-* Date Created: 2009-09-03
-*       Author: l57500/z00142640
-*  Description: 通知底层启动/停止静态RMEP探测
-*        Input: UCHAR* pszMdName:MD名字
-*               UCHAR* pszMaName:MA名字
-*               USHORT usRmepId: RMEP ID
-*               ULONG ulSetYes:  1-使能，0-去使能
-*       Output: 
-*       Return: 成功返回OAM1AG_OK，失败则返回错误码
-*      Caution: 只能在全NP模式下调用本接口，RMEP必须是静态RMEP
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2013-2-3    l61496                   Cretaed DTS2013020403949
-*
-*******************************************************************************/
+
 
 ULONG TCPIP_1AG_EnableRmepCCDetectEx(UCHAR* pszMdName, UCHAR* pszMaName, USHORT usRmepId, ULONG ulSetYes);
 

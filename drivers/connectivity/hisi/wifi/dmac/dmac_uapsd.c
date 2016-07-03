@@ -1,23 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : dmac_uapsd.c
-  版 本 号   : 初稿
-  作    者   : huxiaotong
-  生成日期   : 2012年12月17日
-  最近修改   :
-  功能描述   : uapsd特性操作的源文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年12月17日
-    作    者   : huxiaotong
-    修改内容   : 创建文件
-  2.日    期   : 2013年9月14日
-    作    者   : zourong
-    修改内容   : 重新设计实现
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -61,27 +42,18 @@ OAL_STATIC oal_void  dmac_uapsd_print_info(dmac_user_stru *pst_dmac_user);
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : dmac_uapsd_usr_init
- 功能描述  : USR初始化时u-apsd的初始化
- 输入参数  : pst_dmac_usr
- 输出参数  : 无
- 返 回 值  : 成功或者失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月14日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_uapsd_user_init(dmac_user_stru * pst_dmac_usr)
 {
     dmac_user_uapsd_stru       *pst_uapsd_stru;
     /*调用者保证入参指针非空*/
     pst_uapsd_stru = &(pst_dmac_usr->st_uapsd_stru);
 #ifdef _PRE_WLAN_DFT_STAT
+    if (OAL_PTR_NULL != pst_uapsd_stru->pst_uapsd_statis)
+    {
+        OAL_MEM_FREE(pst_uapsd_stru->pst_uapsd_statis, OAL_TRUE);
+        pst_uapsd_stru->pst_uapsd_statis = OAL_PTR_NULL;
+    }
     pst_uapsd_stru->pst_uapsd_statis = OAL_MEM_ALLOC(OAL_MEM_POOL_ID_LOCAL,OAL_SIZEOF(dmac_usr_uapsd_statis_stru),OAL_TRUE);
     if(OAL_PTR_NULL == pst_uapsd_stru->pst_uapsd_statis)
     {
@@ -107,21 +79,7 @@ oal_uint32  dmac_uapsd_user_init(dmac_user_stru * pst_dmac_usr)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_uapsd_usr_destroy
- 功能描述  : USR删除时u-apsd资源的销毁
- 输入参数  : pst_dmac_usr
- 输出参数  : 无
- 返 回 值  : 成功或者失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月14日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 oal_void  dmac_uapsd_user_destroy(dmac_user_stru *pst_dmac_usr)
 {
@@ -161,23 +119,7 @@ oal_void  dmac_uapsd_user_destroy(dmac_user_stru *pst_dmac_usr)
 
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_uapsd_tx_enqueue
- 功能描述  : 发送时报文入UAPSD队列
- 输入参数  : pst_dmac_vap:
-             pst_dmac_usr:
-             pst_net_buf: 待入队列的netbuf链,可能是多个MPDU
- 输出参数  : 无
- 返 回 值  : 成功或者失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月14日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 dmac_uapsd_tx_enqueue(dmac_vap_stru *pst_dmac_vap,dmac_user_stru *pst_dmac_user,oal_netbuf_stru *pst_net_buf)
 {
 	oal_netbuf_stru        *pst_first_net_buf;
@@ -329,23 +271,7 @@ OAL_STATIC oal_uint32 dmac_uapsd_state_trans(dmac_vap_stru *pst_dmac_vap,dmac_us
 
     return OAL_FALSE;
 }
-/*****************************************************************************
- 函 数 名  : dmac_uapsd_trigger_check
- 功能描述  : 接收报文流程中检查是否trigger帧
- 输入参数  : pst_dmac_vap:
-             pst_dmac_usr:
-             pst_net_buf: 待入队列的netbuf链,可能是多个MPDU
- 输出参数  : 无
- 返 回 值  : 成功或者失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月14日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_uapsd_rx_trigger_check (dmac_vap_stru *pst_dmac_vap,dmac_user_stru *pst_dmac_user,oal_netbuf_stru *pst_net_buf)
 {
     mac_ieee80211_qos_frame_stru    *pst_mac_header;
@@ -400,23 +326,7 @@ oal_void dmac_uapsd_rx_trigger_check (dmac_vap_stru *pst_dmac_vap,dmac_user_stru
     return ;
 
 }
-/*****************************************************************************
- 函 数 名  : dmac_uapsd_process_trigger
- 功能描述  : trigger帧的处理
- 输入参数  : pst_dmac_vap:
-             pst_dmac_usr:
-             pst_net_buf: 待入队列的netbuf链,可能是多个MPDU
- 输出参数  : 无
- 返 回 值  : 成功或者失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月14日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_uapsd_process_trigger (dmac_vap_stru *pst_dmac_vap,dmac_user_stru *pst_dmac_user,oal_uint8 uc_ac,oal_netbuf_stru *pst_net_buf)
 {
 
@@ -437,7 +347,6 @@ oal_void dmac_uapsd_process_trigger (dmac_vap_stru *pst_dmac_vap,dmac_user_stru 
     pst_mac_header = (mac_ieee80211_qos_frame_stru*)(mac_get_rx_cb_mac_hdr(pst_rx_ctrl));
 
 #if (_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC == _PRE_MULTI_CORE_MODE)
-    /*TBD ALG未合入，下面的临时测试使用 zengjun add start*/
     pst_mac_device = (mac_device_stru *)mac_res_get_dev(pst_dmac_vap->st_vap_base_info.uc_device_id);
     if (OAL_UNLIKELY(OAL_PTR_NULL == pst_mac_device))
     {
@@ -450,7 +359,6 @@ oal_void dmac_uapsd_process_trigger (dmac_vap_stru *pst_dmac_vap,dmac_user_stru 
         dmac_tid_resume(pst_mac_device->pst_device_stru, &pst_dmac_user->ast_tx_tid_queue[uc_ac], DMAC_TID_PAUSE_RESUME_TYPE_PS);
     }
     dmac_psm_disable_user_to_psm_back(pst_mac_device, pst_dmac_user);
-    /*TBD ALG未合入，下面的临时测试使用 zengjun add end*/
 #endif
     if((OAL_TRUE == pst_mac_header->st_frame_control.bit_retry)&&
         (pst_mac_header->bit_seq_num == pst_dmac_user->st_uapsd_stru.us_uapsd_trigseq[uc_ac]))
@@ -483,24 +391,7 @@ oal_void dmac_uapsd_process_trigger (dmac_vap_stru *pst_dmac_vap,dmac_user_stru 
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_uapsd_process_queue
- 功能描述  : U-APSD节能队列发包
- 输入参数  : pst_dmac_vap
-             pst_dmac_usr:
-             uc_ac: trigger帧的AC
-             uc_flush:是否是flush队列操作
- 输出参数  : 无
- 返 回 值  : -1:没有发送报文。其它:当前队列长度
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月14日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 OAL_STATIC oal_int32 dmac_uapsd_tx_pkt (oal_netbuf_stru *pst_net_buf, dmac_vap_stru* pst_dmac_vap, dmac_user_stru *pst_dmac_user,
                                                 oal_uint8 uc_ac,oal_uint8 uc_sp_last,oal_uint8* pst_extra_qosnull)
@@ -590,24 +481,7 @@ OAL_STATIC oal_int32 dmac_uapsd_tx_pkt (oal_netbuf_stru *pst_net_buf, dmac_vap_s
 
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_uapsd_process_queue
- 功能描述  : U-APSD节能队列发包
- 输入参数  : pst_dmac_vap
-             pst_dmac_usr:
-             uc_ac: trigger帧的AC
-             uc_flush:是否是flush队列操作
- 输出参数  : 无
- 返 回 值  : -1:没有发送报文。其它:当前队列长度
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月14日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 oal_int32 dmac_uapsd_process_queue (dmac_vap_stru* pst_dmac_vap, dmac_user_stru *pst_dmac_user,oal_uint8 uc_ac)
 {
@@ -696,23 +570,7 @@ oal_int32 dmac_uapsd_process_queue (dmac_vap_stru* pst_dmac_vap, dmac_user_stru 
 
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_uapsd_flush_queue
- 功能描述  : U-APSD节能队列flush
- 输入参数  : pst_dmac_vap
-             pst_dmac_usr:
 
- 输出参数  : 无
- 返 回 值  : -1:没有发送报文。其它:当前队列长度
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年9月14日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 oal_int32 dmac_uapsd_flush_queue (dmac_vap_stru* pst_dmac_vap, dmac_user_stru *pst_dmac_user)
 {
@@ -803,23 +661,7 @@ oal_int32 dmac_uapsd_flush_queue (dmac_vap_stru* pst_dmac_vap, dmac_user_stru *p
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_uapsd_send_qosnull
- 功能描述  : U-APSD qos null data发送
- 输入参数  : pst_dmac_vap
-             pst_dmac_usr:
-             uc_ac: trigger帧的AC
- 输出参数  : 无
- 返 回 值  : OAL_SUCESS或者其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月14日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 dmac_uapsd_send_qosnull(dmac_vap_stru *pst_dmac_vap,dmac_user_stru *pst_dmac_user,oal_uint8 uc_ac)
 {
     oal_netbuf_stru                 *pst_net_buf;
@@ -909,22 +751,7 @@ oal_uint32 dmac_uapsd_send_qosnull(dmac_vap_stru *pst_dmac_vap,dmac_user_stru *p
 
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_uapsd_tx_complete
- 功能描述  : U-APSD 发送完成检查
- 输入参数  : pst_dmac_vap
-             pst_dmac_usr:
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月14日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_uapsd_tx_complete(dmac_user_stru *pst_dmac_user,mac_tx_ctl_stru *pst_cb)
 {
     mac_ieee80211_qos_frame_stru    *pst_mac_header;
@@ -949,23 +776,7 @@ oal_void dmac_uapsd_tx_complete(dmac_user_stru *pst_dmac_user,mac_tx_ctl_stru *p
         }
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_config_set_uapsden
- 功能描述  : 设置VAP U-APSD使能
- 输入参数  : pst_mac_vap: 指向VAP的指针
-             uc_len     : 参数长度
-             puc_param  : 参数
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月18日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_config_set_uapsden(mac_vap_stru *pst_mac_vap, oal_uint8 uc_len, oal_uint8 *puc_param)
 {
     oal_uint8               uc_value;
@@ -1018,23 +829,7 @@ oal_uint32  dmac_config_set_uapsden(mac_vap_stru *pst_mac_vap, oal_uint8 uc_len,
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_config_set_uapsd_update
- 功能描述  : VAP U-APSD UPDATE
- 输入参数  : pst_mac_vap: 指向VAP的指针
-             uc_len     : 参数长度
-             puc_param  : 参数
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月26日
-    作    者   : g00306640
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 oal_uint32 dmac_config_set_uapsd_update(mac_vap_stru *pst_mac_vap, oal_uint8 uc_len, oal_uint8 *puc_param) {
     oal_uint16                      us_user_id;
@@ -1062,22 +857,7 @@ oal_uint32 dmac_config_set_uapsd_update(mac_vap_stru *pst_mac_vap, oal_uint8 uc_
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_config_uapsd_debug
- 功能描述  : 调测命令
- 输入参数  : pst_mac_vap: 指向VAP的指针
-             puc_param  : 参数
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月18日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_config_uapsd_debug(mac_vap_stru *pst_mac_vap, oal_uint8 uc_len, oal_uint8 *puc_param)
 {
     /* uapsd维测信息，sh hipriv "vap0 uapsd_debug 0|1|2(单用户|all user|清空统计计数器) xx:xx:xx:xx:xx:xx(mac地址)" */

@@ -1,14 +1,4 @@
-/******************************************************************************
 
-   Copyright(C)2013,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : ImsaProcUssdMsg.c
-  Description     : 该C文件实现USSD消息的处理和发送
-  History           :
-     1.leili 00132387      2013-12-27  Draft Enact
-
-******************************************************************************/
 
 /*****************************************************************************
   1 Include HeadFile
@@ -44,16 +34,7 @@ extern "C" {
 *****************************************************************************/
 
 /*lint -e961*/
-/*****************************************************************************
- Function Name  : IMSA_ProcSpmMsgProcUssdReq
- Description    : SPM下发的USSD请求处理
- Input          : pstAppMsg      SPM下发的命令及参数
- Output         : VOS_VOID
- Return Value   : 处理结果
 
- History        :
-      1.leili 00132387      2013-12-23  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_USSD_Init(VOS_VOID)
 {
     IMSA_USSD_MANAGER_STRU              *pstUssdManager;
@@ -79,16 +60,7 @@ VOS_VOID IMSA_USSD_Init(VOS_VOID)
 
 }
 
-/*****************************************************************************
- Function Name  : IMSA_ProcSpmMsgProcUssdReq
- Description    : SPM下发的USSD请求处理
- Input          : pstAppMsg      SPM下发的命令及参数
- Output         : VOS_VOID
- Return Value   : 处理结果
 
- History        :
-      1.leili 00132387      2013-12-23  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_USSD_ClearResource(VOS_VOID)
 {
     IMSA_USSD_MANAGER_STRU              *pstUssdManager;
@@ -127,16 +99,7 @@ VOS_VOID IMSA_USSD_ClearResource(VOS_VOID)
 
 
 
-/*****************************************************************************
- Function Name  : IMSA_ProcSpmMsgProcUssdReq
- Description    : SPM下发的USSD请求处理
- Input          : pstAppMsg      SPM下发的命令及参数
- Output         : VOS_VOID
- Return Value   : 处理结果
 
- History        :
-      1.leili 00132387      2013-12-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_SsProcSpmMsgProcessUssdReq(VOS_VOID     *pMsg)
 {
     IMSA_IMS_USSD_ENCTYPE_ENUM_UINT8   encType;
@@ -215,16 +178,7 @@ VOS_UINT32 IMSA_SsProcSpmMsgProcessUssdReq(VOS_VOID     *pMsg)
 
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SsProcSpmMsgReleaseReq
- Description    : SPM下发的USSD释放请求处理
- Input          : pstUssdRelReq      SPM下发的命令及参数
- Output         : VOS_VOID
- Return Value   : 处理结果
 
- History        :
-      1.leili 00132387      2013-12-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_SsProcSpmMsgReleaseReq(VOS_VOID* pMsg)
 {
 
@@ -260,16 +214,7 @@ VOS_UINT32 IMSA_SsProcSpmMsgReleaseReq(VOS_VOID* pMsg)
 
 
 
-/*****************************************************************************
- Function Name  : IMSA_USSD_SndImsUssdReqMsg
- Description    : 给IMS发送COMD REQ消息
- Input          :
- Output         : VOS_VOID
- Return Value   : 处理结果
 
- History        :
-      1.leili 00132387      2013-12-23  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_USSD_SndImsUssdReqMsg
 (
     IMSA_IMS_USSD_ENCTYPE_ENUM_UINT8   encType,
@@ -313,16 +258,7 @@ VOS_VOID IMSA_USSD_SndImsUssdReqMsg
 
 }
 
-/*****************************************************************************
- Function Name  : IMSA_USSD_SndImsUssdDisconnectMsg
- Description    : 给IMS发送DISCONNECT消息
- Input          :
- Output         : VOS_VOID
- Return Value   : 处理结果
 
- History        :
-      1.leili 00132387      2013-12-23  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_USSD_SndImsUssdDisconnectMsg
 (
     VOS_VOID
@@ -359,17 +295,7 @@ VOS_VOID IMSA_USSD_SndImsUssdDisconnectMsg
 
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SendImsaSpmSsMsg
- Description    : USSD模块给SPM发送的ID_IMSA_SPM_SS_MSG
- Input          : pEvtData        具体回复的事件及详细内容
-                  ulLen           具体事件及详细内容的长度
- Output         : VOS_VOID
- Return Value   : 发送结果
 
- History        :
-      1.l00132387      2013-12-24  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_SendImsaSpmSsMsg(
                                     const TAF_SS_CALL_INDEPENDENT_EVENT_STRU  *pEvtData,
                                     VOS_UINT16 usLen )
@@ -413,16 +339,7 @@ VOS_UINT32 IMSA_SendImsaSpmSsMsg(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SendSpmUssdDataSndEvt
- Description    : IMSA给SPM发送TAF_SS_EVT_USSD_DATA_SND事件
- Input          :
- Output         : VOS_VOID
- Return Value   : 发送结果
 
- History        :
-      1.l00132387     2013-12-24  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_SendSpmUssdDataSndEvt
 (
     VOS_UINT16                          usClientId,
@@ -468,16 +385,7 @@ VOS_UINT32 IMSA_SendSpmUssdDataSndEvt
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_SendSpmUssdReqIndEvt
- Description    : IMSA给SPM发送TAF_SS_EVT_USS_REQ_IND事件
- Input          :
- Output         : VOS_VOID
- Return Value   : 发送结果
 
- History        :
-      1.l00132387     2013-12-24  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_SendSpmUssdReqIndEvt
 (
     VOS_UINT16                          usClientId,
@@ -534,16 +442,7 @@ VOS_UINT32 IMSA_SendSpmUssdReqIndEvt
     return ulRslt;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SendSpmUssdNotifyIndEvt
- Description    : IMSA给SPM发送TAF_SS_EVT_USS_NOTIFY_IND事件
- Input          :
- Output         : VOS_VOID
- Return Value   : 发送结果
 
- History        :
-      1.l00132387     2013-12-24  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_SendSpmUssdNotifyIndEvt
 (
     VOS_UINT16                          usClientId,
@@ -600,16 +499,7 @@ VOS_UINT32 IMSA_SendSpmUssdNotifyIndEvt
     return ulRslt;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SendSpmUssdRelCompleteIndEvt
- Description    : IMSA给SPM发送TAF_SS_EVT_USS_RELEASE_COMPLETE_IND事件
- Input          :
- Output         : VOS_VOID
- Return Value   : 发送结果
 
- History        :
-      1.l00132387     2013-12-24  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_SendSpmUssdRelCompleteIndEvt
 (
     VOS_UINT16                          usClientId,
@@ -653,16 +543,7 @@ VOS_UINT32 IMSA_SendSpmUssdRelCompleteIndEvt
     return ulRslt;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SendSpmUssdReqCnfEvt
- Description    : IMSA给SPM发送TAF_SS_EVT_PROCESS_USS_REQ_CNF事件
- Input          :
- Output         : VOS_VOID
- Return Value   : 发送结果
 
- History        :
-      1.l00132387     2013-12-24  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_SendSpmUssdReqCnfEvt
 (
     VOS_UINT16                          usClientId,
@@ -709,16 +590,7 @@ VOS_UINT32 IMSA_SendSpmUssdReqCnfEvt
     return ulRslt;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SendSpmUssdErrorEvt
- Description    : IMSA给SPM发送TAF_SS_EVT_ERROR事件
- Input          :
- Output         : VOS_VOID
- Return Value   : 发送结果
 
- History        :
-      1.l00132387     2013-12-24  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_SendSpmUssdErrorEvt
 (
     VOS_UINT16                          usClientId,
@@ -765,16 +637,7 @@ VOS_UINT32 IMSA_SendSpmUssdErrorEvt
     return ulRslt;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SMS_ProcTimerMsgWaitNetRsp()
- Description    : 等待网侧定时器超时处理函数
- Input          : VOS_VOID *pTimerMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.l00132387   2013-12-25  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_USSD_ProcTimerMsgWaitNetRsp(const VOS_VOID *pRcvMsg)
 {
     IMSA_USSD_MANAGER_STRU              *pstUssdManager;
@@ -794,16 +657,7 @@ VOS_VOID IMSA_USSD_ProcTimerMsgWaitNetRsp(const VOS_VOID *pRcvMsg)
     return;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SMS_ProcTimerMsgWaitAppRsp()
- Description    : 等待APP定时器超时处理函数
- Input          : VOS_VOID *pTimerMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.l00132387   2013-12-25  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_USSD_ProcTimerMsgWaitAppRsp(const VOS_VOID *pRcvMsg)
 {
     /*IMSA_USSD_MANAGER_STRU              *pstUssdManager;*/
@@ -821,16 +675,7 @@ VOS_VOID IMSA_USSD_ProcTimerMsgWaitAppRsp(const VOS_VOID *pRcvMsg)
     return;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_IsSsConnExist()
- Description    : 判断是否存在补充业务
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
 
- History        :
-      1.x00253310   2014-07-01  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_IsSsConnExist(VOS_VOID)
 {
     IMSA_USSD_MANAGER_STRU              *pstUssdManager;

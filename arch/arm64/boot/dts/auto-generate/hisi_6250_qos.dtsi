@@ -1,0 +1,15 @@
+/{
+	hisi_QoS@0 {
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges;	
+	
+		compatible = "hisilicon,hi3650-Qos";		
+		
+        	DMSS@0xFFFC0000{
+			compatible = "hisilicon,DMSS_QOS";
+			bus-name = "DMSS";
+			ASI_QOS_WRPRI = <0x904 0x66666666>,<0x1104 0x33333333>,<0x1904 0x33333333>,<0x2104 0x66666543>,<0x2904 0x66666543>,<0x904 0x66666666>;
+			};
+		};
+};

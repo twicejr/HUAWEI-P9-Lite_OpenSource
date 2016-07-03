@@ -3399,7 +3399,6 @@ SINT32 StorePicInDPB(H264_CTX_S *pH264Ctx, LUMA_INFO_S *pLumaInfo)
             STORE_PIC_RET(ret);
         }
 
-         //容错处理: 在used_size不变前提下，如重复获取同一个pos，会导致死循环，须强制退出。 y00226912 2014.04.19
         if (pH264Ctx->DPB.used_size == pre_used_size && pos == pre_pos)
         {
             dprint(PRN_ERROR,"%s: pos(%d) = pre_pos, force return.\n",__func__, pos);
@@ -4872,7 +4871,6 @@ SINT32 InitDPB(H264_CTX_S *pH264Ctx)
     pH264Ctx->DPB.ref_frames_in_buffer = 0;
     pH264Ctx->DPB.ltref_frames_in_buffer = 0;
     pH264Ctx->DPB.max_long_term_pic_idx = 0;
-    /* lkf58351 20120110: 在将pDirectOutBuf清空前应判断他是否还残留有数据，有说明已分配了逻辑帧存，需要释放掉 */
     if((pH264Ctx->pDirectOutBuf != NULL) && (pH264Ctx->OldDecMode == I_MODE))
     {
         ret = OutputFrmToVO(pH264Ctx, pH264Ctx->pDirectOutBuf, 0);
@@ -6209,7 +6207,7 @@ SINT32 WritePicMsg(H264_CTX_S *pH264Ctx)
         pH264Ctx->DecPicPara.Apc2Poc[1][i] = pH264Ctx->APC.poc[1][i];
     }
 
-#ifndef Q_MATRIX_FIXED  // VDH V300R001(3798MV100)开始H264量化表做了微调，为了兼容旧版本，这里添加了宏控制，后续应该将其放在hal层赋值  y00226912 20140514
+#ifndef Q_MATRIX_FIXED
     if ((0 == pH264Ctx->CurrSPS.seq_scaling_matrix_present_flag) && (0 == pH264Ctx->CurrPPS.pic_scaling_matrix_present_flag))
     {
         for (i = 0; i < 24; i++)
@@ -9233,7 +9231,6 @@ SINT32 ProcessSPS(H264_CTX_S *pH264Ctx, H264_SPS_S *pSPS)
 
     return H264_OK;
 }
-/*add by w00283384 for subsps in svc, 解析这些码字用来判断该码流是否可以正常解码*/
 SINT32 Sps_SvcExt(H264_CTX_S *pH264Ctx)
 {
     H264_PPS_S *pPPS = &(pH264Ctx->PPS[pH264Ctx->CurrSlice.pic_parameter_set_id]);
@@ -9848,7 +9845,7 @@ SINT32 H264_DecSEI(H264_CTX_S *pH264Ctx)
             }
 
             used_byte = 0;
-            if (1 == registered_flag)    // SEI_USER_DATA_REGISTERED_ITU_T_T35 解析相关参数   y00226912
+            if (1 == registered_flag)
             {
                 pH264Ctx->pUsrDatArray[pH264Ctx->TotalUsrDatNum]->IsRegistered = 1;
                 pH264Ctx->pUsrDatArray[pH264Ctx->TotalUsrDatNum]->itu_t_t35_country_code = u_v(pH264Ctx, 8, "SEI: itu_t_t35_country_code");
@@ -10417,7 +10414,6 @@ SINT32 H264_DecOneNal(H264_CTX_S *pH264Ctx, UINT32 NalMode)
     pH264Ctx->SeErrFlg = 0;                    // clear g_SeErrFlg
 
     pH264Ctx->TotalNal++;
-    /*add by w00283384 start, 如果nal_unit_type == 20我们需要解一个24bit的头*/
     if(NALU_TYPE_SLC_EXT==pH264Ctx->pCurrNal->nal_unit_type)
     {
         nal_header = BsGet(&(pH264Ctx->BS), 24);
@@ -10447,7 +10443,7 @@ SINT32 H264_DecOneNal(H264_CTX_S *pH264Ctx, UINT32 NalMode)
 
         if(pH264Ctx->SVC_NALUSVCEXT_S.idr_flag == 1)
         {
-            pH264Ctx->pCurrNal->nal_unit_type = NALU_TYPE_IDR;//w00283384,此处用来判断是否为idr帧
+            pH264Ctx->pCurrNal->nal_unit_type = NALU_TYPE_IDR;
         }
         
         pH264Ctx->pCurrNal->nal_bitoffset += 24;  //used bits when decode nal svc info

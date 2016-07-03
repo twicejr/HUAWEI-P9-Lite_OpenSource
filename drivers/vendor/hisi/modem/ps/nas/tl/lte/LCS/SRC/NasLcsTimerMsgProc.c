@@ -1,13 +1,4 @@
-/******************************************************************************
 
-        @(#)Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : NasLcsTimerMsgProc.c
-    Description : 处理定时器超时消息
-    History     :
-            1.lihong  00150010       2015-09-28  Draft Enact
-******************************************************************************/
 
 
 /*****************************************************************************
@@ -44,15 +35,7 @@ extern "C" {
 /*****************************************************************************
   3 Function
 *****************************************************************************/
-/*****************************************************************************
- Function Name  : NAS_LCS_RcvWaitNwRspTimerExp
- Discription    : 处理等待网络定时器超时
- Input          : ulIndex---------------实体索引
- Output         : None
- Return         : VOS_VOID
- History:
-      1.lihong 00150010 2015-10-10 Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_LCS_RcvWaitNwRspTimerExp
 (
     VOS_UINT32                          ulIndex
@@ -99,15 +82,7 @@ VOS_VOID NAS_LCS_RcvWaitNwRspTimerExp
     NAS_LCS_ClearLcsEntityAndNotify(ulIndex, TAF_LCS_CAUSE_LCS_NW_TIMER_OUT);
 }
 
-/*****************************************************************************
- Function Name  : NAS_LCS_RcvWaitReestTimerExp
- Discription    : 处理重建链定时器超时
- Input          : ulIndex---------------索引
- Output         : None
- Return         : VOS_VOID
- History:
-      1.lihong 00150010 2015-10-10 Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_LCS_RcvWaitReestTimerExp
 (
     VOS_UINT32                          ulIndex
@@ -159,15 +134,7 @@ VOS_VOID NAS_LCS_RcvWaitReestTimerExp
     NAS_LCS_SetEntityConnState(ulIndex, NAS_LCS_CONN_STATE_ESTING);
 }
 
-/*****************************************************************************
- Function Name  : NAS_LCS_RcvWaitPeriodIntervelTimerExp
- Discription    : 处理周期间隔定时器超时
- Input          : ulIndex---------------索引
- Output         : None
- Return         : VOS_VOID
- History:
-      1.lihong 00150010 2015-10-10 Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_LCS_RcvWaitPeriodIntervelTimerExp
 (
     VOS_UINT32                          ulIndex
@@ -237,15 +204,7 @@ VOS_VOID NAS_LCS_RcvWaitPeriodIntervelTimerExp
     }
 }
 
-/*****************************************************************************
- Function Name  : NAS_LCS_RcvWaitUeRspTimerExp
- Discription    : 处理等待用户响应定时器超时
- Input          : ulIndex---------------索引
- Output         : None
- Return         : VOS_VOID
- History:
-      1.lihong 00150010 2015-10-10 Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_LCS_RcvWaitUeRspTimerExp
 (
     VOS_UINT32                          ulIndex
@@ -290,16 +249,7 @@ VOS_VOID NAS_LCS_RcvWaitUeRspTimerExp
 }
 
 
-/*****************************************************************************
-Function Name  : NAS_LCS_TimerMsgDistr
-Description    : LCS模块定时器超时消息处理函数
-Input          : VOS_VOID *pRcvMsg
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  lihong 00150010 2015-9-28  新开发
-*****************************************************************************/
 VOS_VOID NAS_LCS_TimerMsgDistr( VOS_VOID *pRcvMsg )
 {
 

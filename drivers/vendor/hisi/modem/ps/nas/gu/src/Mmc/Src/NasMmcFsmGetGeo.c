@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmcFsmGetGeo.c
-  版 本 号   : 初稿
-  作    者   : sunjitan 00193151
-  生成日期   : 2015年05月08日
-  最近修改   :
-  功能描述   : 包含获取地理信息状态机接收消息的处理函数
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -44,21 +27,7 @@ extern "C" {
 #define    THIS_FILE_ID        PS_FILE_ID_NAS_MMC_FSM_GET_GEO_C
 
 /* 状态机函数起始位置 */
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMsccGetGeoReq_GetGeo_Init
- 功能描述  : 收到MMC内部的启动GET GEO请求的处理
- 输入参数  : ulEventType:  消息类型
-             pstMst     :  消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMsccGetGeoReq_GetGeo_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -102,24 +71,7 @@ VOS_UINT32 NAS_MMC_RcvMsccGetGeoReq_GetGeo_Init(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_GetGeo_WaitCssBandScanCnf
- 功能描述  : 等待CSS扫频过程中收到MMCMMC_ABORT_FSM_REQ
- 输入参数  : ulEventType:  消息类型
-             pstMst     :  消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-  2.日    期   : 2015年05月22日
-    作    者   : zhaochen 00308719
-    修改内容   : 在当前状态下abort，需要转状态
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_GetGeo_WaitCssBandScanCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -146,21 +98,7 @@ VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_GetGeo_WaitCssBandScanCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMsccStopGetGeoReq_GetGeo_WaitCssBandScanCnf
- 功能描述  : 等待CSS扫频过程中收到ID_MSCC_MMC_STOP_GET_GEO_REQ消息后的处理
- 输入参数  : ulEventType:  消息类型
-             pstMst     :  消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月12日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMsccStopGetGeoReq_GetGeo_WaitCssBandScanCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -191,21 +129,7 @@ VOS_UINT32 NAS_MMC_RcvMsccStopGetGeoReq_GetGeo_WaitCssBandScanCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvCssBandScanCnf_GetGeo_WaitCssBandScanCnf
- 功能描述  : 处理CSS模块扫频结果CNF
- 输入参数  : ulEventType:  消息类型
-             pstMst     :  消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvCssBandScanCnf_GetGeo_WaitCssBandScanCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -295,21 +219,7 @@ VOS_UINT32 NAS_MMC_RcvCssBandScanCnf_GetGeo_WaitCssBandScanCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiWaitCssBandScanCnfExp_GetGeo_WaitCssBandScanCnf
- 功能描述  : 等待CSS模块BAND SCAN结果超时
- 输入参数  : ulEventType:  消息类型
-             pstMsg     :  timer发出的超时消息首址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvTiWaitCssBandScanCnfExp_GetGeo_WaitCssBandScanCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -330,21 +240,7 @@ VOS_UINT32  NAS_MMC_RcvTiWaitCssBandScanCnfExp_GetGeo_WaitCssBandScanCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_GetGeo_WaitCssStopBandScanCnf
- 功能描述  : 等待CSS停止扫频过程中收到MMCMMC_ABORT_FSM_REQ
- 输入参数  : ulEventType:  消息类型
-             pstMst     :  消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_GetGeo_WaitCssStopBandScanCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -356,21 +252,7 @@ VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_GetGeo_WaitCssStopBandScanCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMsccStopGetGeoReq_GetGeo_WaitCssStopBandScanCnf
- 功能描述  : 等待CSS停止扫频过程中收到ID_MSCC_MMC_STOP_GET_GEO_REQ消息后的处理
- 输入参数  : ulEventType:  消息类型
-             pstMst     :  消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月12日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMsccStopGetGeoReq_GetGeo_WaitCssStopBandScanCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -386,24 +268,7 @@ VOS_UINT32 NAS_MMC_RcvMsccStopGetGeoReq_GetGeo_WaitCssStopBandScanCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvCssStopBandScanCnf_GetGeo_WaitCssStopBandScanCnf
- 功能描述  : 处理CSS模块停止扫频结果CNF
- 输入参数  : ulEventType:  消息类型
-             pstMst     :  消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-  2.日    期   : 2015年05月14日
-    作    者   : zhaochen 00308719
-    修改内容   : 完成函数实现
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvCssStopBandScanCnf_GetGeo_WaitCssStopBandScanCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -435,21 +300,7 @@ VOS_UINT32 NAS_MMC_RcvCssStopBandScanCnf_GetGeo_WaitCssStopBandScanCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvCssBandScanCnf_GetGeo_WaitCssStopBandScanCnf
- 功能描述  : 等待CSS停止扫频时收到CSS的扫频结果CNF的处理
- 输入参数  : ulEventType:  消息类型
-             pstMst     :  消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvCssBandScanCnf_GetGeo_WaitCssStopBandScanCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -461,21 +312,7 @@ VOS_UINT32 NAS_MMC_RcvCssBandScanCnf_GetGeo_WaitCssStopBandScanCnf(
     return NAS_MMC_RcvCssBandScanCnf_GetGeo_WaitCssBandScanCnf(ulEventType, pstMsg);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiWaitCssStopBandScanCnfExp_GetGeo_WaitCssStopBandScanCnf
- 功能描述  : 等待CSS模块停止扫频CNF超时的处理
- 输入参数  : ulEventType:  消息类型
-             pstMst     :  消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvTiWaitCssStopBandScanCnfExp_GetGeo_WaitCssStopBandScanCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -501,21 +338,7 @@ VOS_UINT32 NAS_MMC_RcvTiWaitCssStopBandScanCnfExp_GetGeo_WaitCssStopBandScanCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_GetGeo_WaitGasPlmnSearchCnf
- 功能描述  : 等待GAS的PLMN搜索结果时收到MMCMMC_ABORT_FSM_REQ
- 输入参数  : ulEventType:  消息类型
-             pstMst     :  消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_GetGeo_WaitGasPlmnSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -546,21 +369,7 @@ VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_GetGeo_WaitGasPlmnSearchCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMsccStopGetGeoReq_GetGeo_WaitGasPlmnSearchCnf
- 功能描述  : 等待GAS的PLMN搜索结果时收到ID_MSCC_MMC_STOP_GET_GEO_REQ
- 输入参数  : ulEventType:  消息类型
-             pstMst     :  消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月12日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMsccStopGetGeoReq_GetGeo_WaitGasPlmnSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -595,21 +404,7 @@ VOS_UINT32 NAS_MMC_RcvMsccStopGetGeoReq_GetGeo_WaitGasPlmnSearchCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvRrMmPlmnSrchCnf_GetGeo_WaitGasPlmnSearchCnf
- 功能描述  : 处理GAS的获取地理信息回复
- 输入参数  : ulEventType:  消息类型
-             pstMsg     :  消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvRrMmPlmnSrchCnf_GetGeo_WaitGasPlmnSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -673,21 +468,7 @@ VOS_UINT32  NAS_MMC_RcvRrMmPlmnSrchCnf_GetGeo_WaitGasPlmnSearchCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiWaitGasGetGeoCnfExp_GetGeo_WaitGasPlmnSearchCnf
- 功能描述  : 等待GAS回复获取地理信息超时的处理
- 输入参数  : ulEventType:  消息类型
-             pstMsg     :  消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvTiWaitGasGetGeoCnfExp_GetGeo_WaitGasPlmnSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -711,21 +492,7 @@ VOS_UINT32 NAS_MMC_RcvTiWaitGasGetGeoCnfExp_GetGeo_WaitGasPlmnSearchCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_GetGeo_WaitWasPlmnSearchCnf
- 功能描述  : 等待WAS的PLMN搜索结果时收到MMCMMC_ABORT_FSM_REQ
- 输入参数  : ulEventType:  消息类型
-             pstMst     :  消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_GetGeo_WaitWasPlmnSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -756,21 +523,7 @@ VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_GetGeo_WaitWasPlmnSearchCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMsccStopGetGeoReq_GetGeo_WaitWasPlmnSearchCnf
- 功能描述  : 等待WAS的PLMN搜索结果时收到ID_MSCC_MMC_STOP_GET_GEO_REQ
- 输入参数  : ulEventType:  消息类型
-             pstMst     :  消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月12日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMsccStopGetGeoReq_GetGeo_WaitWasPlmnSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -805,21 +558,7 @@ VOS_UINT32 NAS_MMC_RcvMsccStopGetGeoReq_GetGeo_WaitWasPlmnSearchCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvRrMmPlmnSrchCnf_GetGeo_WaitWasPlmnSearchCnf
- 功能描述  : 处理WAS获取地理信息回复
- 输入参数  : ulEventType:  消息类型
-             pstMsg     :  消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvRrMmPlmnSrchCnf_GetGeo_WaitWasPlmnSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -882,21 +621,7 @@ VOS_UINT32  NAS_MMC_RcvRrMmPlmnSrchCnf_GetGeo_WaitWasPlmnSearchCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiWaitWasGetGeoExp_GetGeo_WaitWasPlmnSearchCnf
- 功能描述  : 等待WAS回复获取地理信息超时的处理
- 输入参数  : ulEventType:  消息类型
-             pstMsg     :  接入层回复开机消息的首址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvTiWaitWasGetGeoExp_GetGeo_WaitWasPlmnSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -920,21 +645,7 @@ VOS_UINT32  NAS_MMC_RcvTiWaitWasGetGeoExp_GetGeo_WaitWasPlmnSearchCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_GetGeo_WaitGasStopPlmnSearchCnf
- 功能描述  : 等待GAS停止PLMN搜索CNF时收到MMCMMC_ABORT_FSM_REQ
- 输入参数  : ulEventType:  消息类型
-             pstMst     :  消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_GetGeo_WaitGasStopPlmnSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -946,21 +657,7 @@ VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_GetGeo_WaitGasStopPlmnSearchCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMsccStopGetGeoReq_GetGeo_WaitGasStopPlmnSearchCnf
- 功能描述  : 等待GAS停止PLMN搜索CNF时收到ID_MSCC_MMC_STOP_GET_GEO_REQ
- 输入参数  : ulEventType:  消息类型
-             pstMst     :  消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月12日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMsccStopGetGeoReq_GetGeo_WaitGasStopPlmnSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -978,21 +675,7 @@ VOS_UINT32 NAS_MMC_RcvMsccStopGetGeoReq_GetGeo_WaitGasStopPlmnSearchCnf(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvRrMmPlmnSrchStopCnf_GetGeo_WaitGasStopPlmnSearchCnf
- 功能描述  : 收到GAS停止获取地理信息CNF的处理
- 输入参数  : ulEventType:  消息类型,
-             pstMsg     :  消息的结构体首址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvRrMmPlmnSrchStopCnf_GetGeo_WaitGasStopPlmnSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1033,21 +716,7 @@ VOS_UINT32  NAS_MMC_RcvRrMmPlmnSrchStopCnf_GetGeo_WaitGasStopPlmnSearchCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvRrMmPlmnSrchCnf_GetGeo_WaitGasStopPlmnSearchCnf
- 功能描述  : 等待GAS停止搜网时收到GAS上报搜网CNF结果的处理
- 输入参数  : ulEventType:  消息类型,
-             pstMsg     :  消息的结构体首址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvRrMmPlmnSrchCnf_GetGeo_WaitGasStopPlmnSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1114,21 +783,7 @@ VOS_UINT32  NAS_MMC_RcvRrMmPlmnSrchCnf_GetGeo_WaitGasStopPlmnSearchCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiWaitGasStopGetGeoExp_GetGeo_WaitGasStopPlmnSearchCnf
- 功能描述  : 等待GAS停止获取地理信息CNF超时处理
- 输入参数  : ulEventType:  消息类型,
-             pstMsg     :  消息的结构体首址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvTiWaitGasStopGetGeoExp_GetGeo_WaitGasStopPlmnSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1166,21 +821,7 @@ VOS_UINT32  NAS_MMC_RcvTiWaitGasStopGetGeoExp_GetGeo_WaitGasStopPlmnSearchCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_GetGeo_WaitWasStopPlmnSearchCnf
- 功能描述  : 等待WAS停止PLMN搜索CNF时收到MMCMMC_ABORT_FSM_REQ
- 输入参数  : ulEventType:  消息类型
-             pstMst     :  消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_GetGeo_WaitWasStopPlmnSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1193,21 +834,7 @@ VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_GetGeo_WaitWasStopPlmnSearchCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMsccStopGetGeoReq_GetGeo_WaitWasStopPlmnSearchCnf
- 功能描述  : 等待WAS停止PLMN搜索CNF时收到ID_MSCC_MMC_STOP_GET_GEO_REQ
- 输入参数  : ulEventType:  消息类型
-             pstMst     :  消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月12日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMsccStopGetGeoReq_GetGeo_WaitWasStopPlmnSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1223,21 +850,7 @@ VOS_UINT32 NAS_MMC_RcvMsccStopGetGeoReq_GetGeo_WaitWasStopPlmnSearchCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvRrMmPlmnSrchStopCnf_GetGeo_WaitWasStopPlmnSearchCnf
- 功能描述  : 收到WAS停止获取地理信息CNF处理
- 输入参数  : ulEventType:  消息类型,
-             pstMsg     :  消息的结构体首址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvRrMmPlmnSrchStopCnf_GetGeo_WaitWasStopPlmnSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1278,21 +891,7 @@ VOS_UINT32  NAS_MMC_RcvRrMmPlmnSrchStopCnf_GetGeo_WaitWasStopPlmnSearchCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvRrMmPlmnSrchCnf_GetGeo_WaitWasStopPlmnSearchCnf
- 功能描述  : 等待WAS停止搜网时收到WAS上报搜网CNF结果的处理
- 输入参数  : ulEventType:  消息类型,
-             pstMsg     :  消息的结构体首址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvRrMmPlmnSrchCnf_GetGeo_WaitWasStopPlmnSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1358,21 +957,7 @@ VOS_UINT32  NAS_MMC_RcvRrMmPlmnSrchCnf_GetGeo_WaitWasStopPlmnSearchCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiWaitWasStopGetGeoExp_GetGeo_WaitWasStopPlmnSearchCnf
- 功能描述  : 等待WAS停止获取地理信息CNF超时处理
- 输入参数  : ulEventType:  消息类型,
-             pstMsg     :  消息的结构体首址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvTiWaitWasStopGetGeoExp_GetGeo_WaitWasStopPlmnSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1410,21 +995,7 @@ VOS_UINT32  NAS_MMC_RcvTiWaitWasStopGetGeoExp_GetGeo_WaitWasStopPlmnSearchCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_GetGeo_WaitGasSuspendCnf
- 功能描述  : 等待GAS挂起CNF时收到MMCMMC_ABORT_FSM_REQ
- 输入参数  : ulEventType:  消息类型
-             pstMst     :  消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_GetGeo_WaitGasSuspendCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1437,21 +1008,7 @@ VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_GetGeo_WaitGasSuspendCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMsccStopGetGeoReq_GetGeo_WaitGasSuspendCnf
- 功能描述  : 等待GAS挂起CNF时收到ID_MSCC_MMC_STOP_GET_GEO_REQ
- 输入参数  : ulEventType:  消息类型
-             pstMst     :  消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月12日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMsccStopGetGeoReq_GetGeo_WaitGasSuspendCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1467,21 +1024,7 @@ VOS_UINT32 NAS_MMC_RcvMsccStopGetGeoReq_GetGeo_WaitGasSuspendCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvRrMmSuspendCnf_GetGeo_WaitGasSuspendCnf
- 功能描述  : 收到GAS挂起CNF处理
- 输入参数  : ulEventType:  消息类型,
-             pstMsg     :  消息的结构体首址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvRrMmSuspendCnf_GetGeo_WaitGasSuspendCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1547,21 +1090,7 @@ VOS_UINT32  NAS_MMC_RcvRrMmSuspendCnf_GetGeo_WaitGasSuspendCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiWaitGasSuspendCnfExp_GetGeo_WaitGasSuspendCnf
- 功能描述  : 等待GAS挂起CNF超时的处理
- 输入参数  : ulEventType:  消息类型,
-             pstMsg     :  消息的结构体首址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvTiWaitGasSuspendCnfExp_GetGeo_WaitGasSuspendCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1574,21 +1103,7 @@ VOS_UINT32  NAS_MMC_RcvTiWaitGasSuspendCnfExp_GetGeo_WaitGasSuspendCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_GetGeo_WaitWasSuspendCnf
- 功能描述  : 等待WAS挂起CNF时收到MMCMMC_ABORT_FSM_REQ
- 输入参数  : ulEventType:  消息类型
-             pstMst     :  消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_GetGeo_WaitWasSuspendCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1601,21 +1116,7 @@ VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_GetGeo_WaitWasSuspendCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMsccStopGetGeoReq_GetGeo_WaitWasSuspendCnf
- 功能描述  : 等待WAS挂起CNF时收到ID_MSCC_MMC_STOP_GET_GEO_REQ
- 输入参数  : ulEventType:  消息类型
-             pstMst     :  消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月12日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMsccStopGetGeoReq_GetGeo_WaitWasSuspendCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1631,21 +1132,7 @@ VOS_UINT32 NAS_MMC_RcvMsccStopGetGeoReq_GetGeo_WaitWasSuspendCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvRrMmSuspendCnf_GetGeo_WaitWasSuspendCnf
- 功能描述  : 收到WAS挂起CNF的处理
- 输入参数  : ulEventType:  消息类型,
-             pstMsg     :  消息的结构体首址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvRrMmSuspendCnf_GetGeo_WaitWasSuspendCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1714,21 +1201,7 @@ VOS_UINT32  NAS_MMC_RcvRrMmSuspendCnf_GetGeo_WaitWasSuspendCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiWaitWasSuspendCnfExp_GetGeo_WaitWasSuspendCnf
- 功能描述  : 等待WAS挂起CNF超时的处理
- 输入参数  : ulEventType:  消息类型,
-             pstMsg     :  消息的结构体首址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvTiWaitWasSuspendCnfExp_GetGeo_WaitWasSuspendCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1743,21 +1216,7 @@ VOS_UINT32  NAS_MMC_RcvTiWaitWasSuspendCnfExp_GetGeo_WaitWasSuspendCnf(
 
 #if (FEATURE_ON == FEATURE_LTE)
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_GetGeo_WaitLmmPlmnSearchCnf
- 功能描述  : 等待LMM的PLMN搜索CNF时收到MMCMMC_ABORT_FSM_REQ
- 输入参数  : ulEventType:  消息类型
-             pstMst     :  消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_GetGeo_WaitLmmPlmnSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1788,21 +1247,7 @@ VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_GetGeo_WaitLmmPlmnSearchCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMsccStopGetGeoReq_GetGeo_WaitLmmPlmnSearchCnf
- 功能描述  : 等待LMM的PLMN搜索CNF时收到ID_MSCC_MMC_STOP_GET_GEO_REQ
- 输入参数  : ulEventType:  消息类型
-             pstMst     :  消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月12日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMsccStopGetGeoReq_GetGeo_WaitLmmPlmnSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1837,21 +1282,7 @@ VOS_UINT32 NAS_MMC_RcvMsccStopGetGeoReq_GetGeo_WaitLmmPlmnSearchCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvLmmPlmnSrchCnf_GetGeo_WaitLmmPlmnSearchCnf
- 功能描述  : 收到LMM获取地理信息CNF的处理
- 输入参数  : ulEventType:  消息类型,
-             pstMsg     :  消息的结构体首址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvLmmPlmnSrchCnf_GetGeo_WaitLmmPlmnSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1914,21 +1345,7 @@ VOS_UINT32  NAS_MMC_RcvLmmPlmnSrchCnf_GetGeo_WaitLmmPlmnSearchCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiWaitLmmPlmnSrchCnfExp_GetGeo_WaitLmmPlmnSearchCnf
- 功能描述  : 等待LMM获取地理信息CNF超时的处理
- 输入参数  : ulEventType:  消息类型,
-             pstMsg     :  消息的结构体首址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvTiWaitLmmGetGeoCnfExp_GetGeo_WaitLmmPlmnSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1952,21 +1369,7 @@ VOS_UINT32  NAS_MMC_RcvTiWaitLmmGetGeoCnfExp_GetGeo_WaitLmmPlmnSearchCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_GetGeo_WaitLmmStopPlmnSearchCnf
- 功能描述  : 等待LMM停止PLMN搜索时收到MMCMMC_ABORT_FSM_REQ
- 输入参数  : ulEventType:  消息类型
-             pstMst     :  消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_GetGeo_WaitLmmStopPlmnSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1979,21 +1382,7 @@ VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_GetGeo_WaitLmmStopPlmnSearchCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMsccStopGetGeoReq_GetGeo_WaitLmmStopPlmnSearchCnf
- 功能描述  : 等待LMM停止PLMN搜索时收到ID_MSCC_MMC_STOP_GET_GEO_REQ
- 输入参数  : ulEventType:  消息类型
-             pstMst     :  消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月12日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMsccStopGetGeoReq_GetGeo_WaitLmmStopPlmnSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2009,21 +1398,7 @@ VOS_UINT32 NAS_MMC_RcvMsccStopGetGeoReq_GetGeo_WaitLmmStopPlmnSearchCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvLmmStopPlmnSrchCnf_GetGeo_WaitLmmStopPlmnSearchCnf
- 功能描述  : 收到LMM停止获取地理信息CNF的处理
- 输入参数  : ulEventType:  消息类型,
-             pstMsg     :  消息的结构体首址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvLmmStopPlmnSrchCnf_GetGeo_WaitLmmStopPlmnSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2065,21 +1440,7 @@ VOS_UINT32  NAS_MMC_RcvLmmStopPlmnSrchCnf_GetGeo_WaitLmmStopPlmnSearchCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvLmmPlmnSrchCnf_GetGeo_WaitLmmStopPlmnSearchCnf
- 功能描述  : 等待LMM停止搜网时收到LMM上报搜网结果CNF的处理
- 输入参数  : ulEventType:  消息类型,
-             pstMsg     :  消息的结构体首址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvLmmPlmnSrchCnf_GetGeo_WaitLmmStopPlmnSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2146,21 +1507,7 @@ VOS_UINT32  NAS_MMC_RcvLmmPlmnSrchCnf_GetGeo_WaitLmmStopPlmnSearchCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiWaitLmmStopGetGeoCnfExp_GetGeo_WaitLmmStopPlmnSearchCnf
- 功能描述  : 等待LMM停止获取地理信息CNF超时的处理
- 输入参数  : ulEventType:  消息类型,
-             pstMsg     :  消息的结构体首址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvTiWaitLmmStopGetGeoCnfExp_GetGeo_WaitLmmStopPlmnSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2198,21 +1545,7 @@ VOS_UINT32  NAS_MMC_RcvTiWaitLmmStopGetGeoCnfExp_GetGeo_WaitLmmStopPlmnSearchCnf
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_GetGeo_WaitLmmSuspendCnf
- 功能描述  : 等待LMM挂起CNF时收到MMCMMC_ABORT_FSM_REQ
- 输入参数  : ulEventType:  消息类型
-             pstMst     :  消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_GetGeo_WaitLmmSuspendCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2225,21 +1558,7 @@ VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_GetGeo_WaitLmmSuspendCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMsccStopGetGeoReq_GetGeo_WaitLmmSuspendCnf
- 功能描述  : 等待LMM挂起CNF时收到ID_MSCC_MMC_STOP_GET_GEO_REQ
- 输入参数  : ulEventType:  消息类型
-             pstMst     :  消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月12日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMsccStopGetGeoReq_GetGeo_WaitLmmSuspendCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2255,21 +1574,7 @@ VOS_UINT32 NAS_MMC_RcvMsccStopGetGeoReq_GetGeo_WaitLmmSuspendCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvLmmSuspendCnf_GetGeo_WaitLmmSuspendCnf
- 功能描述  : 收到LMM挂起CNF的处理
- 输入参数  : ulEventType:  消息类型,
-             pstMsg     :  消息的结构体首址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvLmmSuspendCnf_GetGeo_WaitLmmSuspendCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2334,21 +1639,7 @@ VOS_UINT32  NAS_MMC_RcvLmmSuspendCnf_GetGeo_WaitLmmSuspendCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiWaitLmmSuspendCnfExp_GetGeo_WaitLmmSuspendCnf
- 功能描述  : 等待LMM挂起CNF超时的处理
- 输入参数  : ulEventType:  消息类型,
-             pstMsg     :  消息的结构体首址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: VOS_TRUE，VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvTiWaitLmmSuspendCnfExp_GetGeo_WaitLmmSuspendCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2367,20 +1658,7 @@ VOS_UINT32  NAS_MMC_RcvTiWaitLmmSuspendCnfExp_GetGeo_WaitLmmSuspendCnf(
 
 /* 状态机函数调用的其他函数起始定义位置 */
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_LOG_FsmCtxGetGeoRatListState_GetGeo
- 功能描述  : 打印当前获取地理信息接入技术列表状态
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_LOG_FsmCtxGetGeoRatListState_GetGeo(VOS_VOID)
 {
     VOS_UINT32                          i;
@@ -2402,20 +1680,7 @@ VOS_VOID NAS_MMC_LOG_FsmCtxGetGeoRatListState_GetGeo(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_LOG_GetGeoSndCssScanInfo_GetGeo
- 功能描述  : 打印状态机执行执行扫频时填写的CSS SCAN信息
- 输入参数  : NAS_MMC_CSS_MULTI_BAND_SCAN_INFO_STRU   扫频信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_LogSndCssBandScanReq_GetGeo(
     NAS_MMC_CSS_MULTI_BAND_SCAN_INFO_STRU         *pstCssScanInfo
 )
@@ -2436,20 +1701,7 @@ VOS_VOID NAS_MMC_LogSndCssBandScanReq_GetGeo(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_LOG_PrioRatList_GetGeo
- 功能描述  : 打印SYSCFG和NV配置的支持的接入技术优先级
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月10日
-    作    者   : zhaochen 00308719
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_LOG_PrioRatList_GetGeo(VOS_VOID)
 {
     NAS_MML_PLMN_RAT_PRIO_STRU         *pstMsPrioRatList  = VOS_NULL_PTR;
@@ -2475,21 +1727,7 @@ VOS_VOID NAS_MMC_LOG_PrioRatList_GetGeo(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_BuildBandScanInfo_GetGeo
- 功能描述  : 构造扫频消息
- 输入参数  : NAS_MMC_CSS_MULTI_BAND_SCAN_INFO_STRU*    发给CSS的扫频请求
-             VOS_UINT32                                是否获取地理信息,
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月10日
-    作    者   : zhaochen 00308719
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_BuildCommBandScanInfo_GetGeo(
     NAS_MMC_CSS_MULTI_BAND_SCAN_INFO_STRU        *pstCssScanInfo
 )
@@ -2501,20 +1739,7 @@ VOS_VOID NAS_MMC_BuildCommBandScanInfo_GetGeo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_InitFsmGetGeoRatPrioListCtx_GetGeo
- 功能描述  : 初始化可以执行GET GEO的接入技术列表信息
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  : 调用者必须保证入参不能为NULL指针
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_InitFsmGetGeoRatPrioListCtx_GetGeo(VOS_VOID)
 {
     VOS_UINT32                          i;
@@ -2548,20 +1773,7 @@ VOS_VOID NAS_MMC_InitFsmGetGeoRatPrioListCtx_GetGeo(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SetCssBandScanRatPrioList_GetGeo
- 功能描述  : 根据状态机上下文中的需要扫频的接入技术列表，设置发送给CSS需要扫频的接入技术列表
- 输入参数  :
- 输出参数  : CSS_RAT_LIST*       发给CSS的扫频接入技术列表
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_ConvertNasRatTypeToCssRatType_GetGeo(
     CSS_RAT_LIST                       *pstCssBandScanRatList
 )
@@ -2607,20 +1819,7 @@ VOS_VOID NAS_MMC_ConvertNasRatTypeToCssRatType_GetGeo(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConvertCoverageType_GetGeo
- 功能描述  : 覆盖类型结果转换
- 输入参数  : CSS_COVERAGE_TYPE_ENUM_UINT8  CSS返回的覆盖类型
- 输出参数  :
- 返 回 值  : NAS_MMC_COVERAGE_TYPE_ENUM_UINT8    转换结果MMC内部的覆盖类型
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-*****************************************************************************/
 NAS_MMC_COVERAGE_TYPE_ENUM_UINT8 NAS_MMC_ConvertCoverageType_GetGeo(
     CSS_COVERAGE_TYPE_ENUM_UINT8        enSrcCoverageType
 )
@@ -2654,21 +1853,7 @@ NAS_MMC_COVERAGE_TYPE_ENUM_UINT8 NAS_MMC_ConvertCoverageType_GetGeo(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_UpdateGetGeoRatCoverageType_GetGeo
- 功能描述  : 更新目标接入技术信息的覆盖类型
- 输入参数  : CSS_MULTI_BAND_SCAN_CNF_STRU*    扫频的结果
-             NAS_MMC_GET_GEO_RAT_INFO_STRU    待更新的接入技术
- 输出参数  :
- 返 回 值  : VOS_UINT32      VOS_TRUE 有覆盖; VOS_FALSE 无覆盖
- 调用函数  : 调用者必须保证入参不能为NULL指针
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_UpdateGetGeoRatCoverageType_GetGeo(
     CSS_MULTI_BAND_SCAN_CNF_STRU       *pstBandScanCnf,
     NAS_MMC_GET_GEO_RAT_INFO_STRU      *pstDestRatInfo
@@ -2704,20 +1889,7 @@ VOS_VOID NAS_MMC_UpdateGetGeoRatCoverageType_GetGeo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_UpdateGetGeoRatPrioListCtx_GetGeo
- 功能描述  : 根据CSS的扫频结果更新获取地理信息接入技术列表
- 输入参数  : CSS_MULTI_BAND_SCAN_CNF_STRU*    CSS扫频的结果
- 输出参数  :
- 返 回 值  :
- 调用函数  : 调用者必须保证入参不能为NULL指针
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_UpdateGetGeoRatPrioListCtx_GetGeo(
     CSS_MULTI_BAND_SCAN_CNF_STRU       *pstBandScanCnf
 )
@@ -2738,20 +1910,7 @@ VOS_VOID NAS_MMC_UpdateGetGeoRatPrioListCtx_GetGeo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetNextGetGeoRat_GetGeo
- 功能描述  : 获取下一个需要获取地理信息的接入技术
- 输入参数  :
- 输出参数  : NAS_MML_NET_RAT_TYPE_ENUM_UINT8*   获取到的目标接入技术
- 返 回 值  : VOS_UINT32   VOS_TRUE成功; VOS_FALSE失败
- 调用函数  : 调用者必须保证入参不能为NULL指针
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_GetNextGetGeoRat_GetGeo(
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8    *penDestRat
 )
@@ -2782,21 +1941,7 @@ VOS_UINT32 NAS_MMC_GetNextGetGeoRat_GetGeo(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetGeoPlmnFromPlmnSrchRslt_GetGeo
- 功能描述  : 从接入层的搜网结果中获取地理信息的PLMN
- 输入参数  : NAS_MML_NET_RAT_TYPE_ENUM_UINT8   反馈PLMN搜索结果的接入技术
-             struct MsgCB*                     PLMN搜索结果
- 输出参数  : NAS_MML_PLMN_ID_STRU*             获取到的PLMN ID
- 返 回 值  : VOS_VOID
- 调用函数  : 调用者必须保证待出参NAS_MML_PLMN_ID_STRU*不能为NULL指针
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_GetGeoPlmnFromPlmnSrchRslt_GetGeo(
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enRatType,
     struct MsgCB                       *pstMsg,
@@ -2871,20 +2016,7 @@ VOS_VOID NAS_MMC_GetGeoPlmnFromPlmnSrchRslt_GetGeo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SetRatIsSearchedInGetGeoRatPrioList_GetGeo
- 功能描述  : 将获取地理信息接入技术优先级列表中的某接入技术设置为已搜索
- 输入参数  : 无
- 输出参数  : NAS_MML_NET_RAT_TYPE_ENUM_UINT8    要设置已搜索的目标接入技术
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_SetRatIsSearchedInGetGeoRatPrioList_GetGeo(
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enDestRat
 )
@@ -2915,20 +2047,7 @@ VOS_VOID NAS_MMC_SetRatIsSearchedInGetGeoRatPrioList_GetGeo(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SuspendCurrentRat_GetGeo
- 功能描述  : 向接入层发送挂起请求
- 输入参数  : NAS_MML_NET_RAT_TYPE_ENUM_UINT8  需要挂起的接入技术
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年05月08日
-   作    者   : sunjitan 00193151
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_SuspendCurrentRat_GetGeo(
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enRatType
 )
@@ -2972,20 +2091,7 @@ VOS_VOID NAS_MMC_SuspendCurrentRat_GetGeo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndAsGetGeoReq_GetGeo
- 功能描述  : 向接入层或者LMM发送获取地理信息请求消息
- 输入参数  : NAS_MML_NET_RAT_TYPE_ENUM_UINT8   目标接入技术
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年05月08日
-   作    者   : sunjitan 00193151
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndAsGetGeoReq_GetGeo(
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enDestRat
 )
@@ -3031,20 +2137,7 @@ VOS_VOID NAS_MMC_SndAsGetGeoReq_GetGeo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_PerformBandScan_GetGeo
- 功能描述  : 发起扫频
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_PerformBandScan_GetGeo(VOS_VOID)
 {
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8               enCurrRat;
@@ -3087,20 +2180,7 @@ VOS_VOID NAS_MMC_PerformBandScan_GetGeo(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_PerformGetGeoPlmnSearch_GetGeo
- 功能描述  : 到下一个接入技术获取地理信息
- 输入参数  : NAS_MML_NET_RAT_TYPE_ENUM_UINT8    目标接入技术
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : sunjitan 00193151
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_PerformGetGeoPlmnSearch_GetGeo(
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enDestRat
 )
@@ -3145,22 +2225,7 @@ VOS_VOID NAS_MMC_PerformGetGeoPlmnSearch_GetGeo(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsMsccGetGeo_GetGeo
- 功能描述  : 判断当前是否是用户获取国家码
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE
-             VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月12日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_IsMsccGetGeo_GetGeo(VOS_VOID)
 {
     NAS_MMC_ENTRY_MSG_STRU             *pstEntryMsg    = VOS_NULL_PTR;
@@ -3176,22 +2241,7 @@ VOS_UINT32  NAS_MMC_IsMsccGetGeo_GetGeo(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcGetGeoRslt_GetGeo
- 功能描述  : 获取国家码的结果处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE
-             VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月12日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcGetGeoRslt_GetGeo(
     NAS_MMC_GET_GEO_RSLT_ENUM_UINT32    enGetGeoRslt,
     NAS_MML_PLMN_ID_STRU               *pstGeoPlmn

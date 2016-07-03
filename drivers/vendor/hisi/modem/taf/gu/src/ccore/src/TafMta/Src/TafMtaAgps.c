@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2012, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafMtaProcAgps.c
-  版 本 号   : 初稿
-  作    者   : 闫志吉
-  生成日期   : 2012年6月27日
-  最近修改   :
-  功能描述   : MTA模块与其它模块信息交互处理函数实现
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年6月27日
-    作    者   : Y00213812
-    修改内容   : A-GPS项目新增
-
-******************************************************************************/
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -34,10 +17,8 @@ extern "C" {
 #include "TafAppMma.h"
 #include "MnComm.h"
 
-/* Added by l00198894 for 新增+ECID命令, 2013-12-10, begin */
 #include "NasUtranCtrlInterface.h"
 #include "TafSdcLib.h"
-/* Added by l00198894 for 新增+ECID命令, 2013-12-10, end */
 
 
 /*lint -e958*/
@@ -58,20 +39,7 @@ extern "C" {
 *****************************************************************************/
 #if (FEATURE_ON == FEATURE_AGPS)
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SndAtXcposrRptInd
- 功能描述  : 处理主动清除辅助数据消息的指示
- 输入参数  : VOS_UINT32 ulClearFlg
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史  :
-  1.日    期   : 2012年06月27日
-    作    者   : y00213812
-    修改内容   : V7R1C50 A-GPS项目新增函数
 
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_SndAtXcposrRptInd(VOS_UINT32 ulClearFlg)
 {
     AT_APPCTRL_STRU                     stAppCtrl;                    /* 接收消息指针 */
@@ -93,20 +61,7 @@ VOS_UINT32 TAF_MTA_SndAtXcposrRptInd(VOS_UINT32 ulClearFlg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SndAtCposrInd
- 功能描述  : 处理接入层发送的测量辅助数据和测量指示
- 输入参数  : XML_COMM_NODE_STRU    *pstNode,        XML树节点
-             XML_COMM_CTX_STRU     *pstXmlCommCtx   XML树存储结构
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史  :
-  1.日    期   : 2012年06月27日
-    作    者   : y00213812
-    修改内容   : V7R1C50 A-GPS项目新增函数
-*****************************************************************************/
+
 VOS_UINT32 TAF_MTA_SndAtCposrInd(
     XML_COMM_NODE_STRU                 *pstNode,
     XML_COMM_CTX_STRU                  *pstXmlCommCtx
@@ -197,23 +152,7 @@ VOS_UINT32 TAF_MTA_SndAtCposrInd(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_ProcAssistData
- 功能描述  : 处理接入层发送的测量辅助数据，通过ID_MTA_AT_CPOSR_IND消息发送给AT模块
- 输入参数  : AGPS_ASSIST_DATA_STRU *pstAssistData
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史  :
-  1.日    期   : 2012年06月27日
-    作    者   : y00213812
-    修改内容   : V7R1C50 A-GPS项目新增函数
-  2.日    期   : 2012年12月11日
-    作    者   : l00167671
-    修改内容   : DTS2012121802573, TQE清理
 
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_ProcAssistData(AGPS_ASSIST_DATA_STRU *pstAssistData)
 {
     XML_COMM_CTX_STRU                   stXmlCommCtx;                           /* XML树存储结构 */
@@ -267,21 +206,7 @@ VOS_UINT32 TAF_MTA_ProcAssistData(AGPS_ASSIST_DATA_STRU *pstAssistData)
     return ucResult;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_GetRemainDgpsCorrectionsNodeNum
- 功能描述  : <assist_data>中的<GPS_assist>节点中，<DGPS_corrections>除去第一个
-             以外，还剩余的个数
- 输入参数  : AGPS_ASSIST_DATA_STRU *pstAssistData
- 输出参数  : VOS_UINT32            *pulRemainDgpsCorrectionNum
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
- 修改历史  :
-  1.日    期   : 2012年07月04日
-    作    者   : L47619
-    修改内容   : V7R1C50 A-GPS项目新增函数
 
-*****************************************************************************/
 VOS_VOID TAF_MTA_GetRemainDgpsCorrectionsNodeNum(
     AGPS_GPS_ASSIST_STRU               *pstGpsAssist,
     VOS_UINT32                         *pulRemainDgpsCorrectionNum
@@ -307,21 +232,7 @@ VOS_VOID TAF_MTA_GetRemainDgpsCorrectionsNodeNum(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_GetRemainGpsRtIntegrityNodeNum
- 功能描述  : <assist_data>中的<GPS_assist>节点中，<GPS_rt_integrity>除去第一个
-             以外，还剩余的个数
- 输入参数  : AGPS_ASSIST_DATA_STRU *pstAssistData
- 输出参数  : VOS_UINT32            *pulRemainBadSatListBadSatListNum
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
- 修改历史  :
-  1.日    期   : 2012年07月04日
-    作    者   : L47619
-    修改内容   : V7R1C50 A-GPS项目新增函数
 
-*****************************************************************************/
 VOS_VOID TAF_MTA_GetRemainGpsRtIntegrityNodeNum(
     AGPS_GPS_ASSIST_STRU               *pstGpsAssist,
     VOS_UINT32                         *pulRemainBadSatListBadSatListNum
@@ -347,23 +258,7 @@ VOS_VOID TAF_MTA_GetRemainGpsRtIntegrityNodeNum(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_ProcExtraAssistData
- 功能描述  : <assist_data>中的<GPS_assist>节点中，<DGPS_corrections>和<GPS_rt_integrity>子节点在27007 XML DTD规范中
-             都是单个的，但接入层上报的结构体中则是多个的。基于此，MTA需要做特殊处理: 若<DGPS_corrections>或
-             <GPS_rt_integrity>多于1个，则首次上报的<assist_data> XML中，只上报第一个，剩余的则拆分上报，每次
-             <assist_data>上报中带一个，通过ID_MTA_AT_CPOSR_IND消息发送给AT模块
- 输入参数  : AGPS_ASSIST_DATA_STRU *pstAssistData
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史  :
-  1.日    期   : 2012年07月04日
-    作    者   : L47619
-    修改内容   : V7R1C50 A-GPS项目新增函数
 
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_ProcExtraAssistData(AGPS_ASSIST_DATA_STRU *pstAssistData)
 {
     AGPS_GPS_ASSIST_STRU               *pstGpsAssist;
@@ -492,23 +387,7 @@ VOS_UINT32 TAF_MTA_ProcExtraAssistData(AGPS_ASSIST_DATA_STRU *pstAssistData)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_ProcMeasureReq
- 功能描述  : 处理接入层发送的测量指示，通过ID_MTA_AT_CPOSR_IND消息发送给AT模块
- 输入参数  : AGPS_MEASURE_REQ_STRU *pstMeasureReq
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史  :
-  1.日    期   : 2012年06月27日
-    作    者   : y00213812
-    修改内容   : V7R1C50 A-GPS项目新增函数
-  2.日    期   : 2012年12月11日
-    作    者   : l00167671
-    修改内容   : DTS2012121802573, TQE清理
 
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_ProcMeasureReq(AGPS_MEASURE_REQ_STRU *pstMeasureReq)
 {
     XML_COMM_CTX_STRU                   stXmlCommCtx;                           /* XML树存储结构 */
@@ -561,26 +440,7 @@ VOS_UINT32 TAF_MTA_ProcMeasureReq(AGPS_MEASURE_REQ_STRU *pstMeasureReq)
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SndAsPosCnf
- 功能描述  : MTA向接入层发送消息函数
- 输入参数  : TAF_MMA_RAT_TYPE_ENUM_UINT8    enPhRatType 当前驻留的模式
-             MTA_RRC_POSITION_CNF_STRU     *pstMsg      消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
- 修改历史  :
-  1.日    期   : 2012年06月27日
-    作    者   : y00213812
-    修改内容   : V7R1C50 A-GPS项目新增函数
-  2.日    期   : 2012年12月11日
-    作    者   : l00167671
-    修改内容   : DTS2012121802573, TQE清理
-  3.日    期   : 2015年4月10日
-    作    者   : h00313353
-    修改内容   : SysCfg重构
-*****************************************************************************/
+
 VOS_VOID TAF_MTA_SndAsPosCnf(
     TAF_MMA_RAT_TYPE_ENUM_UINT8          enPhRatType,
     MTA_RRC_POSITION_CNF_STRU          *pstPosCnf
@@ -621,29 +481,7 @@ VOS_VOID TAF_MTA_SndAsPosCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SndPhyMsg
- 功能描述  : MTA向物理层发送消息函数
- 输入参数  : TAF_MMA_RAT_TYPE_ENUM_UINT8    enPhRatType 当前驻留的模式
-             MTA_AT_CGPSCLOCK_ENUM_UINT32   enCgpsClock
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史  :
-  1.日    期   : 2012年06月27日
-    作    者   : y00213812
-    修改内容   : V7R1C50 A-GPS项目新增函数
-  2.日    期   : 2012年12月11日
-    作    者   : l00167671
-    修改内容   : DTS2012121802573, TQE清理
-  3.日    期   : 2013年03月11日
-    作    者   : l00198894
-    修改内容   : BODYSAR项目新增函数
-  4.日    期   : 2015年4月10日
-    作    者   : h00313353
-    修改内容   : SysCfg重构
-*****************************************************************************/
+
 VOS_UINT32 TAF_MTA_SndPhySetGpsRfClockReq(
     TAF_MMA_RAT_TYPE_ENUM_UINT8         enPhRatType,
     MTA_AT_CGPSCLOCK_ENUM_UINT32        enCgpsClock
@@ -691,20 +529,7 @@ VOS_UINT32 TAF_MTA_SndPhySetGpsRfClockReq(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_FreeAgpsXmlCtx
- 功能描述  : 释放存储XML码流的上下文资源
- 输入参数  : AGPS_MEASURE_REQ_STRU *pstMeasureReq
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史  :
-  1.日    期   : 2012年06月27日
-    作    者   : y00213812
-    修改内容   : V7R1C50 A-GPS项目新增函数
 
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_FreeAgpsXmlCtx(
     TAF_MTA_AGPS_CTX_STRU              *pstAgpsCtx)
 {
@@ -717,20 +542,7 @@ VOS_UINT32 TAF_MTA_FreeAgpsXmlCtx(
     }
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : TAF_MTA_DealCposSetReqAbnormal
- 功能描述  : MTA模块中XML码流的异常处理
- 输入参数  : AGPS_MEASURE_REQ_STRU *pstMeasureReq
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史  :
-  1.日    期   : 2012年06月27日
-    作    者   : y00213812
-    修改内容   : V7R1C50 A-GPS项目新增函数
 
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_DealCposSetReqAbnormal(
     AT_MTA_MSG_STRU                    *pstAtMtaReqMsg,
     XML_COMM_CTX_STRU                  *pstXmlCtx,
@@ -752,20 +564,7 @@ VOS_UINT32 TAF_MTA_DealCposSetReqAbnormal(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_MgmtCposTimer
- 功能描述  : MTA处理下发定位信息过程中定时器管理
- 输入参数  : VOS_UINT32     ulTimerFlg  启动或停止定时器的标志
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史  :
-  1.日    期   : 2012年06月27日
-    作    者   : y00213812
-    修改内容   : V7R1C50 A-GPS项目新增函数
 
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_MgmtCposTimer(
     VOS_UINT32                          ulTimerFlg
 )
@@ -792,22 +591,7 @@ VOS_UINT32 TAF_MTA_MgmtCposTimer(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SaveXmlText
- 功能描述  : 存储AT下发的XML码流
- 输入参数  : TAF_MTA_AGPS_CTX_STRU *pstAgpsCtx  XML码流存储上下文资源
-             VOS_CHAR              *pcXml       XML码流
-             VOS_UINT32             ulXmlLen    XML码流长度
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史  :
-  1.日    期   : 2012年06月27日
-    作    者   : y00213812
-    修改内容   : V7R1C50 A-GPS项目新增函数
 
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_SaveXmlText(
     TAF_MTA_AGPS_CTX_STRU              *pstAgpsCtx,
     VOS_CHAR                           *pcXml,
@@ -851,20 +635,7 @@ VOS_UINT32 TAF_MTA_SaveXmlText(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_CheckXmlEnd
- 功能描述  : 查找XML的结尾标签
- 输入参数  : TAF_MTA_AGPS_CTX_STRU *pstAgpsCtx  存储XML码流的上下文
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史  :
-  1.日    期   : 2012年06月27日
-    作    者   : y00213812
-    修改内容   : V7R1C50 A-GPS项目新增函数
 
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_CheckXmlEnd(
     TAF_MTA_AGPS_CTX_STRU              *pstAgpsCtx
 )
@@ -915,21 +686,7 @@ VOS_UINT32 TAF_MTA_CheckXmlEnd(
     return VOS_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_FillXmlStru
- 功能描述  : 存储AT下发的XML码流
- 输入参数  : XML_COMM_NODE_STRU        *pstXmlNode      父节点
-             MTA_RRC_POSITION_CNF_STRU *pPositionCnf    消息结构
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012年06月27日
-    作    者   : y00213812
-    修改内容   : V7R1C50 A-GPS项目新增函数
 
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_FillXmlStru(
     XML_COMM_NODE_STRU                 *pstXmlNode,
     MTA_RRC_POSITION_CNF_STRU          *pstPositionCnf
@@ -988,21 +745,7 @@ VOS_UINT32 TAF_MTA_FillXmlStru(
 }
 #endif /* FEATURE_AGPS */
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SndAtCposSetCnf
- 功能描述  : MTA处理+CPOS消息后，给AT模块回消息
- 输入参数  : AT_MTA_MSG_STRU                *pstAtMtaReqMsg   AT给MTA发送的消息
-             AT_MTA_MSG_TYPE_ENUM_UINT32     enErr            处理结果
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史  :
-  1.日    期   : 2012年06月27日
-    作    者   : y00213812
-    修改内容   : V7R1C50 A-GPS项目新增函数
 
-*****************************************************************************/
 VOS_VOID TAF_MTA_SndAtCposSetCnf (
     AT_MTA_MSG_STRU                    *pstAtMtaReqMsg,
     MTA_AT_RESULT_ENUM_UINT32           enErr
@@ -1020,20 +763,7 @@ VOS_VOID TAF_MTA_SndAtCposSetCnf (
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SndAtCgpsClockSetCnf
- 功能描述  : MTA处理^CGPSCLOCK消息后给AT模块回消息
- 输入参数  : AT_MTA_MSG_STRU   *pstAtMtaReqMsg   AT给MTA发送的消息
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史  :
-  1.日    期   : 2012年06月27日
-    作    者   : y00213812
-    修改内容   : V7R1C50 A-GPS项目新增函数
 
-*****************************************************************************/
 VOS_VOID TAF_MTA_SndAtCgpsClockSetCnf(
     AT_MTA_MSG_STRU                    *pstAtMtaReqMsg,
     AT_MTA_MSG_TYPE_ENUM_UINT32         enErr)
@@ -1050,22 +780,7 @@ VOS_VOID TAF_MTA_SndAtCgpsClockSetCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvAtCposSetReq
- 功能描述  : 处理AT模块发送的ID_AT_MTA_CPOS_SET_REQ消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史  :
-  1.日    期   : 2012年06月27日
-    作    者   : y00213812
-    修改内容   : V7R1C50 A-GPS项目新增函数
-  2.日    期   : 2013年4月3日
-    作    者   : z00161729
-    修改内容   : 主动上报AT命令控制下移至C核及mma和mmc接口调整
-*****************************************************************************/
+
 VOS_VOID TAF_MTA_RcvAtCposSetReq(VOS_VOID *pMsg)
 {
     AT_MTA_MSG_STRU                    *pstAtMtaReqMsg;                     /* 收到AT发来的消息指针 */
@@ -1077,11 +792,9 @@ VOS_VOID TAF_MTA_RcvAtCposSetReq(VOS_VOID *pMsg)
     TAF_MTA_AGPS_CTX_STRU              *pstAgpsCtx;
     MTA_RRC_POSITION_CNF_STRU          *pstPositionCnf;
 
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-3, begin */
     TAF_SDC_SYS_MODE_ENUM_UINT8         enRatType;                              /* 当前驻留模式 */
 
     enRatType = TAF_SDC_GetSysMode();
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-3, end */
 
 #endif
 
@@ -1130,10 +843,8 @@ VOS_VOID TAF_MTA_RcvAtCposSetReq(VOS_VOID *pMsg)
 
     /* 获取当前驻留的模式,若当前模式不为G/W,返回ERROR */
 
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-3, begin */
     if ((TAF_SDC_SYS_MODE_GSM != enRatType)
      && (TAF_SDC_SYS_MODE_WCDMA != enRatType))
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-3, end */
     {
         TAF_MTA_DealCposSetReqAbnormal(pstAtMtaReqMsg, VOS_NULL_PTR, pstAgpsCtx);
         MTA_WARNING_LOG("TAF_MTA_RcvAtCposSetReq: WARNING: RatType is not G or W!");
@@ -1199,20 +910,7 @@ VOS_VOID TAF_MTA_RcvAtCposSetReq(VOS_VOID *pMsg)
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvTiCposSetReqExpired
- 功能描述  : CPOS下发定位信息超时处理
- 输入参数  : VOS_VOID *pMsg
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史  :
-  1.日    期   : 2012年06月27日
-    作    者   : y00213812
-    修改内容   : V7R1C50 A-GPS项目新增函数
 
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvTiCposSetReqExpired(VOS_VOID *pMsg)
 {
 #if (FEATURE_ON == FEATURE_AGPS)
@@ -1237,30 +935,13 @@ VOS_VOID TAF_MTA_RcvTiCposSetReqExpired(VOS_VOID *pMsg)
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvRrcMsgPositionReq
- 功能描述  : 处理接入层发送的ID_RRC_MTA_MSG_POSITION_REQ消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史  :
-  1.日    期   : 2012年06月27日
-    作    者   : y00213812
-    修改内容   : V7R1C50 A-GPS项目新增函数
 
-  2.日    期   : 2013年4月3日
-    作    者   : z00161729
-    修改内容   : 主动上报AT命令控制下移至C核及mma和mmc接口调整
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvRrcMsgPositionReq(VOS_VOID *pMsg)
 {
 #if (FEATURE_ON == FEATURE_AGPS)
     MTA_RRC_POSITION_REQ_STRU          *pstMtaRrcPositionReqMsg;           /* 接收消息指针 */
     VOS_UINT32                          ulResult;
 
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-3, begin */
     TAF_SDC_SYS_MODE_ENUM_UINT8         enRatType;                              /* 当前驻留模式 */
 
     enRatType = TAF_SDC_GetSysMode();
@@ -1272,7 +953,6 @@ VOS_VOID TAF_MTA_RcvRrcMsgPositionReq(VOS_VOID *pMsg)
     /* 获取当前驻留的模式,若当前模式不为G/W,返回ERROR */
     if ((TAF_SDC_SYS_MODE_GSM != enRatType)
      && (TAF_SDC_SYS_MODE_WCDMA != enRatType))
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-3, end */
     {
         MTA_WARNING_LOG("TAF_MTA_RcvRrcMsgPositionReq: WARNING: RatType is not G or W!");
         return;
@@ -1327,25 +1007,7 @@ VOS_VOID TAF_MTA_RcvRrcMsgPositionReq(VOS_VOID *pMsg)
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvAtCgpsClockSetReq
- 功能描述  : 处理AT模块发送的ID_AT_MTA_CGPSCLOCK_SET_REQ消息，然后根据当前驻留
-             状态给物理层发送消息，GSM消息为ID_MTA_GPHY_SET_GPS_RF_CLOCK_REQ，
-             UMTS消息为ID_MTA_WPHY_SET_GPS_RF_CLOCK_REQ
- 输入参数  : VOS_VOID *pMsg
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史  :
-  1.日    期   : 2012年06月27日
-    作    者   : y00213812
-    修改内容   : V7R1C50 A-GPS项目新增函数
 
-  2.日    期   : 2015年4月10日
-    作    者   : h00313353
-    修改内容   : SysCfg重构
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvAtCgpsClockSetReq(VOS_VOID *pMsg)
 {
 
@@ -1423,27 +1085,7 @@ VOS_VOID TAF_MTA_RcvAtCgpsClockSetReq(VOS_VOID *pMsg)
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvPhyCgpsClockSetCnf
- 功能描述  : 处理物理层发送的消息名为ID_GPHY_MTA_SET_GPS_RF_CLOCK_CNF或
-             ID_WPHY_MTA_SET_GPS_RF_CLOCK_CNF，然后给AT模块发送消息
-             ID_MTA_AT_CGPSCLOCK_SET_CNF
- 输入参数  : VOS_VOID *pMsg
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012年06月27日
-    作    者   : y00213812
-    修改内容   : V7R1C50 A-GPS项目新增函数
-  2.日    期   : 2013年03月11日
-    作    者   : l00198894
-    修改内容   : Body SAR项目新增函数
-  3.日    期   : 2013年4月3日
-    作    者   : z00161729
-    修改内容   : 主动上报AT命令控制下移至C核及mma和mmc接口调整
-*****************************************************************************/
+
 VOS_VOID TAF_MTA_RcvPhyCgpsClockSetCnf(VOS_VOID *pMsg)
 {
 #if (FEATURE_ON == FEATURE_AGPS)
@@ -1452,7 +1094,6 @@ VOS_VOID TAF_MTA_RcvPhyCgpsClockSetCnf(VOS_VOID *pMsg)
     MTA_PHY_SET_GPS_RF_CLOCK_CNF_STRU       *pstMtaPhyCgpsClockCnf;             /* 接收到DSP返回的消息结构 */
     TAF_MTA_TIMER_ID_ENUM_UINT32             enTimerId;
 
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-3, begin */
     TAF_SDC_SYS_MODE_ENUM_UINT8               enRatType;                         /* 当前驻留模式 */
 
     enRatType = TAF_SDC_GetSysMode();
@@ -1475,7 +1116,6 @@ VOS_VOID TAF_MTA_RcvPhyCgpsClockSetCnf(VOS_VOID *pMsg)
         return;
     }
 
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-3, end */
 
     /* 如果当前定时器不为运行状态 */
     if (TAF_MTA_TIMER_STATUS_RUNING != TAF_MTA_GetTimerStatus(enTimerId))
@@ -1521,22 +1161,7 @@ VOS_VOID TAF_MTA_RcvPhyCgpsClockSetCnf(VOS_VOID *pMsg)
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvTiCgpsClockSetReqExpired
- 功能描述  : 处理定时器超时发送的消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012年06月27日
-    作    者   : y00213812
-    修改内容   : V7R1C50 A-GPS项目新增函数
-  2.日    期   : 2013年4月3日
-    作    者   : z00161729
-    修改内容   : 主动上报AT命令控制下移至C核及mma和mmc接口调整
-*****************************************************************************/
+
 VOS_VOID TAF_MTA_RcvTiCgpsClockSetReqExpired(VOS_VOID *pMsg)
 {
 #if (FEATURE_ON == FEATURE_AGPS)
@@ -1545,7 +1170,6 @@ VOS_VOID TAF_MTA_RcvTiCgpsClockSetReqExpired(VOS_VOID *pMsg)
     TAF_MTA_TIMER_ID_ENUM_UINT32            enTimerId;
 
     /* 获取当前驻留的模式,若当前模式不为G/W,返回ERROR */
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-3, begin */
     TAF_SDC_SYS_MODE_ENUM_UINT8              enRatType;                        /* 当前驻留模式 */
     enRatType = TAF_SDC_GetSysMode();
 
@@ -1563,7 +1187,6 @@ VOS_VOID TAF_MTA_RcvTiCgpsClockSetReqExpired(VOS_VOID *pMsg)
         return;
     }
 
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-3, end */
 
     pstCmdBuf = TAF_MTA_GetItemFromCmdBufferQueue(enTimerId);
 
@@ -1594,20 +1217,7 @@ VOS_VOID TAF_MTA_RcvTiCgpsClockSetReqExpired(VOS_VOID *pMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvTcResetUePosStoredInfoInd
- 功能描述  : 处理TC发送的TCMTA_RESET_UE_POS_STORED_INFO_IND消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012年06月27日
-    作    者   : y00213812
-    修改内容   : V7R1C50 A-GPS项目新增函数
 
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvTcResetUePosStoredInfoInd(VOS_VOID *pMsg)
 {
 #if (FEATURE_ON == FEATURE_AGPS)
@@ -1622,20 +1232,7 @@ VOS_VOID TAF_MTA_RcvTcResetUePosStoredInfoInd(VOS_VOID *pMsg)
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvTiWaitAsQryNmrCnfExpired
- 功能描述  : 等待as回复nmr回复保护定时器超时
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-  1.日    期   : 2012年11月21日
-    作    者   : z00161729
-    修改内容   : 支持cerssi和nmr
 
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvTiWaitAsQryNmrCnfExpired(VOS_VOID *pMsg)
 {
     TAF_MTA_CMD_BUFFER_STRU            *pstCmdBuf = VOS_NULL_PTR;
@@ -1667,20 +1264,7 @@ VOS_VOID TAF_MTA_RcvTiWaitAsQryNmrCnfExpired(VOS_VOID *pMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SndAsQryNmrReqMsg
- 功能描述  : MTA向接入层发送ID_TAF_AGENT_RRC_QRY_NMR_REQ消息
- 输入参数  : ulReceiverPid - 接收方pid
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史  :
-  1.日    期   : 2012年11月21日
-    作    者   : z00161729
-    修改内容   : 支持cerssi和nmr
 
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_SndAsQryNmrReqMsg(
     VOS_UINT32                          ulReceiverPid
 )
@@ -1712,33 +1296,14 @@ VOS_UINT32 TAF_MTA_SndAsQryNmrReqMsg(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvQryNmrReq
- 功能描述  : mta收到ID_AT_MTA_QRY_NMR_REQ消息处理函数
- 输入参数  : VOS_VOID *pMsg  --消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月21日
-    作    者   : z00161729
-    修改内容   : 支持^CNMR新增函数
-
-  2.日    期   : 2013年12月10日
-    作    者   : l00198894
-    修改内容   : 新增+ECID命令
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvQryNmrReq(VOS_VOID *pMsg)
 {
     AT_MTA_MSG_STRU                    *pstQryNmrReq      = VOS_NULL_PTR;
     AT_MTA_QRY_NMR_REQ_STRU            *pstRrcAtQryNmrReq = VOS_NULL_PTR;
     MTA_AT_QRY_NMR_CNF_STRU             stQryNmrCnf;
-    /* Added by l00198894 for 新增+ECID命令, 2013-12-10, begin */
     TAF_MTA_TIMER_STATUS_ENUM_UINT8     enQryNmrTiStatus;
     TAF_MTA_TIMER_STATUS_ENUM_UINT8     enEcidSetTiStatus;
-    /* Added by l00198894 for 新增+ECID命令, 2013-12-10, end */
     VOS_UINT32                          ulResult;
 
     pstQryNmrReq      = (AT_MTA_MSG_STRU *)pMsg;
@@ -1760,12 +1325,10 @@ VOS_VOID TAF_MTA_RcvQryNmrReq(VOS_VOID *pMsg)
     }
 
     /* 如果当前定时器已启动，则返回失败 */
-    /* Modified by l00198894 for 新增+ECID命令, 2013-12-10, begin */
     enQryNmrTiStatus  = TAF_MTA_GetTimerStatus(TI_TAF_MTA_WAIT_AS_QRY_NMR_CNF);
     enEcidSetTiStatus = TAF_MTA_GetTimerStatus(TI_TAF_MTA_WAIT_AS_ECID_SET_CNF);
     if ( (TAF_MTA_TIMER_STATUS_RUNING == enQryNmrTiStatus)
       || (TAF_MTA_TIMER_STATUS_RUNING == enEcidSetTiStatus) )
-    /* Modified by l00198894 for 新增+ECID命令, 2013-12-10, end */
     {
         PS_MEM_SET(&stQryNmrCnf, 0x0, sizeof(stQryNmrCnf));
         stQryNmrCnf.enResult = MTA_AT_RESULT_ERROR;
@@ -1812,24 +1375,7 @@ VOS_VOID TAF_MTA_RcvQryNmrReq(VOS_VOID *pMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvWasQryNmrCnf
- 功能描述  : MTA收到ID_RRC_MTA_QRY_NMR_CNF消息处理函数
- 输入参数  : pstRcvQryAsNmrCnf  -- 消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月21日
-    作    者   : z00161729
-    修改内容   : 支持^CNMR新增函数
-  2.日    期   : 2013年07月222日
-    作    者   : j00177245
-    修改内容   : 清理Coverity
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_RcvWasQryNmrCnf(RRC_MTA_QRY_NMR_CNF_STRU *pstRcvQryAsNmrCnf)
 {
     MTA_AT_QRY_NMR_CNF_STRU             stSndAtQryNmrCnf;
@@ -1912,24 +1458,7 @@ VOS_VOID NAS_MMC_RcvWasQryNmrCnf(RRC_MTA_QRY_NMR_CNF_STRU *pstRcvQryAsNmrCnf)
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvGasQryNmrCnf
- 功能描述  : MTA收到ID_RRC_MTA_QRY_NMR_CNF消息处理函数
- 输入参数  : pstRcvQryAsNmrCnf  -- 消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月21日
-    作    者   : z00161729
-    修改内容   : 支持^CNMR新增函数
-  2.日    期   : 2013年07月222日
-    作    者   : j00177245
-    修改内容   : 清理Coverity
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_RcvGasQryNmrCnf(RRC_MTA_QRY_NMR_CNF_STRU *pstRcvQryAsNmrCnf)
 {
     MTA_AT_QRY_NMR_CNF_STRU             stSndAtQryNmrCnf;
@@ -2012,21 +1541,7 @@ VOS_VOID NAS_MMC_RcvGasQryNmrCnf(RRC_MTA_QRY_NMR_CNF_STRU *pstRcvQryAsNmrCnf)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvRrcQryNmrCnf
- 功能描述  : MTA收到ID_RRC_MTA_QRY_NMR_CNF消息处理函数
- 输入参数  : pMsg  -- 消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月21日
-    作    者   : z00161729
-    修改内容   : 支持^CNMR新增函数
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvRrcQryNmrCnf(VOS_VOID *pMsg)
 {
     RRC_MTA_QRY_NMR_CNF_STRU           *pstRcvQryAsNmrCnf = VOS_NULL_PTR;
@@ -2072,21 +1587,7 @@ VOS_VOID TAF_MTA_RcvRrcQryNmrCnf(VOS_VOID *pMsg)
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvReselOffsetCfgSetReq
- 功能描述  : mta收到ID_AT_MTA_RESEL_OFFSET_CFG_SET_REQ消息处理函数
- 输入参数  : VOS_VOID *pMsg  --消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月10日
-    作    者   : t00212959
-    修改内容   : 支持^WLTHRESHOLDCFG新增函数
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvReselOffsetCfgSetReq(VOS_VOID *pMsg)
 {
     AT_MTA_MSG_STRU                            *pstAtMtaMsg             = VOS_NULL_PTR;
@@ -2123,23 +1624,7 @@ VOS_VOID TAF_MTA_RcvReselOffsetCfgSetReq(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvAtRefclkfreqSetReq
- 功能描述  : MTA模块收到AT发来的REFCLKFREQ_SET_REQ请求消息的处理函数
- 输入参数  : pMsg   -- AT发送的消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月22日
-    作    者   : l00198894
-    修改内容   : V9R1 AGPS
-  2.日    期   : 2015年06月17日
-    作    者   : zwx247453
-    修改内容   : Refclkfreq项目
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvAtRefclkfreqSetReq(VOS_VOID *pMsg)
 {
     AT_MTA_MSG_STRU                    *pstAtMtaReqMsg      = VOS_NULL_PTR;     /* 收到AT发来的消息指针 */
@@ -2197,21 +1682,7 @@ VOS_VOID TAF_MTA_RcvAtRefclkfreqSetReq(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SndAtRefclkfreqSetCnf
- 功能描述  : MTA模块给AT发送REFCLKFREQ_SET_CNF消息函数
- 输入参数  : pstAtMtaReqMsg     -- AT发送的请求消息
-             enResult           -- 给AT回复的结果码
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月22日
-    作    者   : l00198894
-    修改内容   : V9R1 AGPS
-*****************************************************************************/
 VOS_VOID TAF_MTA_SndAtRefclkfreqSetCnf(
     AT_MTA_MSG_STRU                    *pstAtMtaReqMsg,
     MTA_AT_RESULT_ENUM_UINT32           enResult
@@ -2229,23 +1700,7 @@ VOS_VOID TAF_MTA_SndAtRefclkfreqSetCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvAtRefclkfreqQryReq
- 功能描述  : MTA模块收到AT发来的REFCLKFREQ_QRY_REQ请求消息的处理函数
- 输入参数  : pMsg   -- AT发送的消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月22日
-    作    者   : l00198894
-    修改内容   : V9R1 AGPS
-  2.日    期   : 2015年06月17日
-    作    者   : zwx247453
-    修改内容   : Refclkfreq项目: 添加TL模式下的AGPS功能
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvAtRefclkfreqQryReq(VOS_VOID *pMsg)
 {
     AT_MTA_MSG_STRU                    *pstAtMtaReqMsg      = VOS_NULL_PTR;     /* 收到AT发来的消息指针 */
@@ -2313,20 +1768,7 @@ VOS_VOID TAF_MTA_RcvAtRefclkfreqQryReq(VOS_VOID *pMsg)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SndAtRefclkfreqInd
- 功能描述  : 给AT模块上报GPS参考时钟信息处理函数
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月22日
-    作    者   : l00198894
-    修改内容   : V9R1 AGPS
-*****************************************************************************/
 VOS_VOID TAF_MTA_SndAtRefclkfreqInd(VOS_VOID)
 {
     TAF_MTA_REFCLOCK_INFO_STRU         *pstRefClockInfo     = VOS_NULL_PTR;
@@ -2357,26 +1799,7 @@ VOS_VOID TAF_MTA_SndAtRefclkfreqInd(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvPhyRefClockStatusInd
- 功能描述  : MTA模块收到物理层上报的GPS参考时钟锁定状态的处理
- 输入参数  : pMsg   -- 收到的消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月22日
-    作    者   : l00198894
-    修改内容   : V9R1 AGPS
-  2.日    期   : 2015年06月17日
-    作    者   : zwx247453
-    修改内容   : Refclkfreq项目: 修改函数判断，降低复杂度
-  3.日    期   : 2015年09月28日
-    作    者   : zwx247453
-    修改内容   : Refclkfreq项目: G模下只上报非锁定状态
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvPhyRefClockStatusInd(VOS_VOID *pMsg)
 {
     APM_MTA_REFCLOCK_STATUS_IND_STRU   *pstRefClockStatusInd    = VOS_NULL_PTR;
@@ -2407,21 +1830,7 @@ VOS_VOID TAF_MTA_RcvPhyRefClockStatusInd(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SndTlphyAfclockStatusInd
- 功能描述  : 给Tlphy发送AFC锁定状态消息
- 输入参数  : usReportCount
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月17日
-    作    者   : zwx247453
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_SndTlphyAfclockStatusNtf(
     VOS_UINT16                          enRptFlg,
     VOS_UINT16                          usReportCount
@@ -2465,20 +1874,7 @@ VOS_VOID TAF_MTA_SndTlphyAfclockStatusNtf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvTlPhyAfclockStatusInd
- 功能描述  : MTA模块收到物理层上报的AFC锁定状态的处理
- 输入参数  : pMsg   -- 收到的消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月17日
-    作    者   : zwx247453
-    修改内容   : 新增
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvTlPhyAfclockStatusInd(VOS_VOID *pMsg)
 {
     TAF_MTA_CMD_BUFFER_STRU               *pstCmdBuf            = VOS_NULL_PTR;
@@ -2544,20 +1940,7 @@ VOS_VOID TAF_MTA_RcvTlPhyAfclockStatusInd(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvTiWaitAgentQryAfclockExpired
- 功能描述  : MTA模块查询物理层AFC锁定状态超时的处理
- 输入参数  : pMsg   -- 收到的消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月17日
-    作    者   : zwx247453
-    修改内容   : 新增
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvTiWaitAgentQryAfclockExpired(VOS_VOID *pMsg)
 {
     TAF_MTA_CMD_BUFFER_STRU            *pstCmdBuf       = VOS_NULL_PTR;
@@ -2589,20 +1972,7 @@ VOS_VOID TAF_MTA_RcvTiWaitAgentQryAfclockExpired(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvTiWaitAgentRefclockIndExpired
- 功能描述  : MTA模块向物理层下发AFC锁定超时的处理
- 输入参数  : pMsg   -- 收到的消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月17日
-    作    者   : zwx247453
-    修改内容   : 新增
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvTiWaitAgentRefclockIndExpired(VOS_VOID *pMsg)
 {
     TAF_MTA_REFCLOCK_INFO_STRU         *pstRefClockInfo = VOS_NULL_PTR;
@@ -2625,19 +1995,7 @@ VOS_VOID TAF_MTA_RcvTiWaitAgentRefclockIndExpired(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_CheckTLMode
- 功能描述  : 检查是否是LTE或者TD的网络模式
- 输入参数  : 系统模式
- 输出参数  : 无
- 返 回 值  : VOS_TRUE ---- 成功
-             VOS_FALSE --- 失败
- 调用函数  :
- 修改历史      :
-  1.日    期   : 2015年06月17日
-    作    者   : zwx247453
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_UINT32 TAF_MTA_CheckTLMode(VOS_VOID)
 {
     TAF_SDC_SYS_MODE_ENUM_UINT8         enSysmode;
@@ -2662,25 +2020,7 @@ VOS_UINT32 TAF_MTA_CheckTLMode(VOS_VOID)
     }
 }
 
-/* Added by l00198894 for 新增+ECID命令, 2013-12-10, begin */
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvAtEcidSetReq
- 功能描述  : MTA模块收到AT发来的ECID_SET_REQ请求消息的处理函数
- 输入参数  : pMsg   -- AT发送的消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月10日
-    作    者   : l00198894
-    修改内容   : 新增+ECID命令
-
-  2.日    期   : 2014年11月17日
-    作    者   : l00198894
-    修改内容   : ECID命令产品线定制需求
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvAtEcidSetReq(VOS_VOID *pMsg)
 {
     AT_MTA_MSG_STRU                    *pstAtMtaReqMsg      = VOS_NULL_PTR;     /* 收到AT发来的消息指针 */
@@ -2728,7 +2068,6 @@ VOS_VOID TAF_MTA_RcvAtEcidSetReq(VOS_VOID *pMsg)
             {
                 ulResult = TAF_MTA_SndAsQryNmrReqMsg(WUEPS_PID_WRR);
             }
-            /* Added by l00198894 for DTS2014012100639 中移需求, 2014/1/21, begin */
 #if (FEATURE_ON == FEATURE_UE_MODE_TDS)
             else
             {
@@ -2740,7 +2079,6 @@ VOS_VOID TAF_MTA_RcvAtEcidSetReq(VOS_VOID *pMsg)
 
             }
 #endif
-            /* Added by l00198894 for DTS2014012100639 中移需求, 2014/1/21, end */
             break;
 #if (FEATURE_ON == FEATURE_LTE)
         case TAF_SDC_SYS_MODE_LTE:
@@ -2776,22 +2114,7 @@ VOS_VOID TAF_MTA_RcvAtEcidSetReq(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SndAtEcidSetCnf
- 功能描述  : MTA给AT模块发送ECID_SET_REQ消息的处理结果
- 输入参数  : pAppCtrl       -- AT控制信息
-             enResult       -- 操作结果码
-             pucCellInfoStr -- 转换后的增强型小区信息
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
 
-  1.日    期   : 2013年12月10日
-    作    者   : l00198894
-    修改内容   : 新增+ECID命令
-*****************************************************************************/
 VOS_VOID TAF_MTA_SndAtEcidSetCnf (
     AT_APPCTRL_STRU                    *pAppCtrl,
     MTA_AT_RESULT_ENUM_UINT32           enResult,
@@ -2840,20 +2163,7 @@ VOS_VOID TAF_MTA_SndAtEcidSetCnf (
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvGUAsEcellInfoQryCnf
- 功能描述  : MTA收到GU接入层增强小区信息查询回复消息处理函数
- 输入参数  : pMsg  -- 消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月10日
-    作    者   : l00198894
-    修改内容   : 新增+ECID命令
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvGUAsEcellInfoQryCnf(VOS_VOID *pMsg)
 {
     TAF_MTA_CMD_BUFFER_STRU            *pstCmdBuf         = VOS_NULL_PTR;
@@ -2925,20 +2235,7 @@ VOS_VOID TAF_MTA_RcvGUAsEcellInfoQryCnf(VOS_VOID *pMsg)
 }
 
 /*lint -e438 -e830*/
-/*****************************************************************************
- 函 数 名  : TAF_MTA_GetPlmnStr
- 功能描述  : 转换PLMN字符串
- 输入参数  : pstPlmnId      -- 待转换的PLMN ID
- 输出参数  : pucPlmnStr     -- 转换后的字符串
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月10日
-    作    者   : l00198894
-    修改内容   : 新增+ECID命令
-*****************************************************************************/
 VOS_VOID TAF_MTA_GetPlmnStr(
     VOS_UINT8                          *pucPlmnStr,
     TAF_SDC_PLMN_ID_STRU               *pstPlmnId
@@ -2994,20 +2291,7 @@ VOS_VOID TAF_MTA_GetPlmnStr(
 /*lint +e438 +e830*/
 
 /*lint -e429 -e438 -e830*/
-/*****************************************************************************
- 函 数 名  : TAF_MTA_CodeGasEcidStr
- 功能描述  : MTA编码GAS查询的增强小区信息
- 输入参数  : pstGsmNmr      -- GAS查询的增强小区信息
- 输出参数  : pucCellinfoStr -- 编码后字符串保存地址
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月10日
-    作    者   : l00198894
-    修改内容   : 新增+ECID命令
-*****************************************************************************/
 MTA_AT_RESULT_ENUM_UINT32 TAF_MTA_CodeGasEcidStr(
     RRC_MTA_GSM_NMR_STRU               *pstGsmNmr,
     VOS_UINT8                          *pucCellinfoStr
@@ -3080,23 +2364,7 @@ MTA_AT_RESULT_ENUM_UINT32 TAF_MTA_CodeGasEcidStr(
 }
 /*lint +e429 +e438 +e830*/
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_GetUtranMeasInfo
- 功能描述  : 从WAS查询的结构体NMR_UTRAN_MEASURED_RESULTS_STRU中获取测量信息
- 输入参数  : pstUtranMeasRslt   -- WAS查询的增强小区信息结构
- 输出参数  : plUarfcnUL         -- 上行频点
-             plUarfcnDL         -- 下行频点
-             plUCRssi           -- 接收信号强度
-             pulCMRNum          -- 测量的邻区个数
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月10日
-    作    者   : l00198894
-    修改内容   : 新增+ECID命令
-*****************************************************************************/
 VOS_VOID TAF_MTA_GetUtranMeasInfo(
     NMR_UTRAN_MEASURED_RESULTS_STRU    *pstUtranMeasRslt,
     VOS_INT32                          *plUarfcnUL,
@@ -3129,24 +2397,7 @@ VOS_VOID TAF_MTA_GetUtranMeasInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_GetUtranCellInfo
- 功能描述  : 从WAS查询的结构体NMR_UTRAN_CELL_MEAS_RESULTS_STRU中获取邻区信息
- 输入参数  : pstCellMeasRslt    -- WAS查询的增强小区信息结构
- 输出参数  : plCellId           -- 邻区的小区ID
-             plCellPSC          -- 邻区的主扰码
-             plEcNO             -- 邻区的EC NO
-             plRscp             -- 邻区的RSCP
-             plPathloss         -- 邻区的Pathloss
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月10日
-    作    者   : l00198894
-    修改内容   : 新增+ECID命令
-*****************************************************************************/
 VOS_VOID TAF_MTA_GetUtranCellInfo(
     NMR_UTRAN_CELL_MEAS_RESULTS_STRU   *pstCellMeasRslt,
     VOS_INT32                          *plCellId,
@@ -3184,22 +2435,7 @@ VOS_VOID TAF_MTA_GetUtranCellInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_GetUtranServingCellInfo
- 功能描述  : 获取UTRAN当前服务小区信息
- 输入参数  : pstUtranNmr    -- WAS查询的增强小区信息
- 输出参数  : plCellPSC      -- 主扰码
-             plUarfcnUL     -- 上行频点
-             plUarfcnDL     -- 下行频点
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月10日
-    作    者   : l00198894
-    修改内容   : 新增+ECID命令
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_GetUtranServingCellInfo(
     RRC_MTA_UTRAN_NMR_STRU             *pstUtranNmr,
     VOS_INT32                          *plCellPSC,
@@ -3237,20 +2473,7 @@ VOS_UINT32 TAF_MTA_GetUtranServingCellInfo(
 }
 
 /*lint -e429 -e830*/
-/*****************************************************************************
- 函 数 名  : TAF_MTA_CodeWasEcidStr
- 功能描述  : MTA编码WAS查询的增强小区信息
- 输入参数  : pstUtranNmr    -- WAS查询的增强小区信息
- 输出参数  : pucCellinfoStr -- 编码后字符串保存地址
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月10日
-    作    者   : l00198894
-    修改内容   : 新增+ECID命令
-*****************************************************************************/
 MTA_AT_RESULT_ENUM_UINT32 TAF_MTA_CodeWasEcidStr(
     RRC_MTA_UTRAN_NMR_STRU             *pstUtranNmr,
     VOS_UINT8                          *pucCellinfoStr
@@ -3375,27 +2598,8 @@ MTA_AT_RESULT_ENUM_UINT32 TAF_MTA_CodeWasEcidStr(
 }
 /*lint +e429 +e830*/
 
-/* Added by l00198894 for DTS2014012100639 中移需求, 2014/1/21, begin */
 #if (FEATURE_ON == FEATURE_UE_MODE_TDS)
-/*****************************************************************************
- 函 数 名  : TAF_MTA_ProcTdsEcidSetReq
- 功能描述  : MTA模块TDS接入技术时收到AT发来的ECID_SET_REQ请求消息的处理函数
- 输入参数  : AT_APPCTRL_STRU* pstAppCtrl
- 输出参数  : 无
- 返 回 值  : VOS_TRUE : 处理完成
-             VOS_FALSE: 未处理完，还需要后续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月10日
-    作    者   : l00198894
-    修改内容   : DTS2014012100639: 中移需求, TD下支持AGPS的SUPL定位
-
-  2.日    期   : 2014年11月17日
-    作    者   : l00198894
-    修改内容   : ECID命令产品线定制需求
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_ProcTdsEcidSetReq(
     AT_APPCTRL_STRU                    *pstAppCtrl,
     VOS_UINT32                         *pulResult
@@ -3455,23 +2659,9 @@ VOS_UINT32 TAF_MTA_ProcTdsEcidSetReq(
     return VOS_TRUE;
 }
 #endif
-/* Added by l00198894 for DTS2014012100639 中移需求, 2014/1/21, end */
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SndLrrcCellinfoQryReq
- 功能描述  : MTA发消息ID_MTA_LRRC_CELLINFO_QRY_REQ给LRRC查询增强小区信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月10日
-    作    者   : l00198894
-    修改内容   : 新增+ECID命令
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_SndLrrcCellinfoQryReq(VOS_VOID)
 {
     VOS_UINT32                          ulLength;
@@ -3504,20 +2694,7 @@ VOS_UINT32 TAF_MTA_SndLrrcCellinfoQryReq(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvLrrcCellinfoQryCnf
- 功能描述  : MTA收到LTE接入层增强小区信息查询回复消息处理函数
- 输入参数  : pMsg  -- 消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月10日
-    作    者   : l00198894
-    修改内容   : 新增+ECID命令
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvLrrcCellinfoQryCnf(VOS_VOID *pMsg)
 {
     TAF_MTA_CMD_BUFFER_STRU            *pstCmdBuf         = VOS_NULL_PTR;
@@ -3581,27 +2758,7 @@ VOS_VOID TAF_MTA_RcvLrrcCellinfoQryCnf(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_GetLrrcCellInfo
- 功能描述  : 从LTE查询的结构体LRRC_CELLINFO_STRU中获取小区信息
- 输入参数  : pstCellInfo        -- LTE查询的增强小区信息结构
- 输出参数  : plEarfcn           -- 小区频点
-             plRsrp             -- 参考信号接收功率
-             plRsrq             -- 参考信号接收质量
-             plTa               -- LTE的时间提前量
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月10日
-    作    者   : l00198894
-    修改内容   : 新增+ECID命令
-
-  2.日    期   : 2015年12月2日
-    作    者   : l00198894
-    修改内容   : DTS2015120206389: LRRC接口变更
-*****************************************************************************/
 VOS_VOID TAF_MTA_GetLrrcCellInfo(
     LRRC_CELLINFO_STRU                 *pstCellInfo,
     VOS_INT32                          *plEarfcn,
@@ -3635,20 +2792,7 @@ VOS_VOID TAF_MTA_GetLrrcCellInfo(
 }
 
 /*lint -e429 -e830*/
-/*****************************************************************************
- 函 数 名  : TAF_MTA_CodeLteEcidStr
- 功能描述  : MTA编码LTE查询的增强小区信息
- 输入参数  : pstCellinfoRslt    -- LTE查询的增强小区信息
- 输出参数  : pucCellinfoStr     -- 编码后字符串保存地址
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月10日
-    作    者   : l00198894
-    修改内容   : 新增+ECID命令
-*****************************************************************************/
 MTA_AT_RESULT_ENUM_UINT32 TAF_MTA_CodeLteEcidStr(
     LRRC_CELLINFO_RSLT_STRU            *pstCellinfoRslt,
     VOS_UINT8                          *pucCellinfoStr
@@ -3737,20 +2881,7 @@ MTA_AT_RESULT_ENUM_UINT32 TAF_MTA_CodeLteEcidStr(
 /*lint +e429 +e830*/
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvTiEcidSetExpired
- 功能描述  : MTA模块ECID设置命令超时处理函数
- 输入参数  : pMsg    -- 超时消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月10日
-    作    者   : l00198894
-    修改内容   : 新增+ECID命令
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvTiEcidSetExpired(VOS_VOID *pMsg)
 {
     TAF_MTA_CMD_BUFFER_STRU                *pstCmdBuf;
@@ -3774,24 +2905,8 @@ VOS_VOID TAF_MTA_RcvTiEcidSetExpired(VOS_VOID *pMsg)
     return;
 
 }
-/* Added by l00198894 for 新增+ECID命令, 2013-12-10, end */
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_ProcEcidCustProgress
- 功能描述  : MTA模块TD-SCDMA或LTE接入技术时收到AT发来的ECID_SET_REQ请求消息的
-             运营商定制处理函数
- 输入参数  : VOS_UINT32 *pulResult -- 为处理完时中间过程的处理结果
- 输出参数  : 无
- 返 回 值  : VOS_TRUE : 处理完成
-             VOS_FALSE: 未处理完，还需要后续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月17日
-    作    者   : l00198894
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_ProcEcidCustProgress(
     VOS_UINT32                         *pulResult
 )
@@ -3843,20 +2958,7 @@ VOS_UINT32 TAF_MTA_ProcEcidCustProgress(
 }
 
 /*lint -e429 -e438 -e830*/
-/*****************************************************************************
- 函 数 名  : TAF_MTA_CodeGasEcidStrEx
- 功能描述  : MTA编码GAS查询的增强小区信息
- 输入参数  : pstGsmCellInfoEx   -- GSM小区信息
- 输出参数  : pucCellinfoStr     -- 编码后字符串保存地址
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月10日
-    作    者   : l00198894
-    修改内容   : 新增+ECID命令
-*****************************************************************************/
 MTA_AT_RESULT_ENUM_UINT32 TAF_MTA_CodeGasEcidStrEx(
     MTC_GSM_CELLINFO_EX_STRU           *pstGsmCellInfoEx,
     VOS_UINT8                          *pucCellinfoStr
@@ -3906,20 +3008,7 @@ MTA_AT_RESULT_ENUM_UINT32 TAF_MTA_CodeGasEcidStrEx(
 }
 /*lint +e429 +e438 +e830*/
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvMtcGsmCellInfoQryCnf
- 功能描述  : MTA模块收到MTC模块回复的GSM小区扩展信息
- 输入参数  : VOS_VOID *pMsg  --消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月17日
-    作    者   : l00198894
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvMtcGsmCellInfoQryCnf(VOS_VOID *pMsg)
 {
     TAF_MTA_CMD_BUFFER_STRU            *pstCmdBuf               = VOS_NULL_PTR;

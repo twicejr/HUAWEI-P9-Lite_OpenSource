@@ -464,6 +464,7 @@ uint dhd_download_fw_on_driverload = TRUE;
  */
 char firmware_path[MOD_PARAM_PATHLEN];
 char nvram_path[MOD_PARAM_PATHLEN];
+char region[MOD_PARAM_PATHLEN];
 #if defined(SOFTAP) && defined(HW_SOFTAP_MANAGEMENT)
 char g_fw_path[MOD_PARAM_PATHLEN];
 #endif
@@ -515,7 +516,7 @@ module_param(disable_proptx, int, 0644);
 /* load firmware and/or nvram values from the filesystem */
 module_param_string(firmware_path, firmware_path, MOD_PARAM_PATHLEN, 0660);
 module_param_string(nvram_path, nvram_path, MOD_PARAM_PATHLEN, 0660);
-
+module_param_string(region, region, MOD_PARAM_PATHLEN, 0660);
 /* Watchdog interval */
 
 /* extend watchdog expiration to 2 seconds when DPC is running */
@@ -2305,8 +2306,15 @@ dhd_set_mac_address(struct net_device *dev, void *addr)
 	memcpy(dhdif->mac_addr, sa->sa_data, ETHER_ADDR_LEN);
 	dhdif->set_macaddress = TRUE;
 	dhd_net_if_unlock_local(dhd);
+#ifdef HW_DEFERRED_WORK_BUGFIX
+	ret = dhd_deferred_schedule_work(dhd->dhd_deferred_wq, (void *)dhdif, DHD_WQ_WORK_SET_MAC,
+			dhd_set_mac_addr_handler, DHD_WORK_PRIORITY_LOW);
+	if (ret)
+		DHD_ERROR(("dhd_set_mac_address failed\n"));
+#else
 	dhd_deferred_schedule_work(dhd->dhd_deferred_wq, (void *)dhdif, DHD_WQ_WORK_SET_MAC,
 		dhd_set_mac_addr_handler, DHD_WORK_PRIORITY_LOW);
+#endif
 	return ret;
 }
 
@@ -2315,14 +2323,24 @@ dhd_set_multicast_list(struct net_device *dev)
 {
 	dhd_info_t *dhd = DHD_DEV_INFO(dev);
 	int ifidx;
+#ifdef HW_DEFERRED_WORK_BUGFIX
+	int ret = 0;
+#endif
 
 	ifidx = dhd_net2idx(dhd, dev);
 	if (ifidx == DHD_BAD_IF)
 		return;
 
 	dhd->iflist[ifidx]->set_multicast = TRUE;
+#ifdef HW_DEFERRED_WORK_BUGFIX
+	ret = dhd_deferred_schedule_work(dhd->dhd_deferred_wq, (void *)dhd->iflist[ifidx],
+			DHD_WQ_WORK_SET_MCAST_LIST, dhd_set_mcast_list_handler, DHD_WORK_PRIORITY_LOW);
+	if (ret)
+		DHD_ERROR(("dhd_set_multicast_list failed\n"));
+#else
 	dhd_deferred_schedule_work(dhd->dhd_deferred_wq, (void *)dhd->iflist[ifidx],
 		DHD_WQ_WORK_SET_MCAST_LIST, dhd_set_mcast_list_handler, DHD_WORK_PRIORITY_LOW);
+#endif
 }
 
 #ifdef PROP_TXSTATUS
@@ -4565,6 +4583,9 @@ int dhd_do_driver_init(struct net_device *net)
 int
 dhd_event_ifadd(dhd_info_t *dhdinfo, wl_event_data_if_t *ifevent, char *name, uint8 *mac)
 {
+#ifdef HW_DEFERRED_WORK_BUGFIX
+	int ret = 0;
+#endif
 
 #ifdef WL_CFG80211
 	if (wl_cfg80211_notify_ifadd(ifevent->ifidx, name, mac, ifevent->bssidx) == BCME_OK)
@@ -4583,8 +4604,15 @@ dhd_event_ifadd(dhd_info_t *dhdinfo, wl_event_data_if_t *ifevent, char *name, ui
 		memcpy(if_event->mac, mac, ETHER_ADDR_LEN);
 		strncpy(if_event->name, name, IFNAMSIZ);
 		if_event->name[IFNAMSIZ - 1] = '\0';
+#ifdef HW_DEFERRED_WORK_BUGFIX
+		ret = dhd_deferred_schedule_work(dhdinfo->dhd_deferred_wq, (void *)if_event,
+				DHD_WQ_WORK_IF_ADD, dhd_ifadd_event_handler, DHD_WORK_PRIORITY_LOW);
+		if (ret)
+			DHD_ERROR(("dhd_event_ifadd failed\n"));
+#else
 		dhd_deferred_schedule_work(dhdinfo->dhd_deferred_wq, (void *)if_event,
 			DHD_WQ_WORK_IF_ADD, dhd_ifadd_event_handler, DHD_WORK_PRIORITY_LOW);
+#endif
 	}
 
 	return BCME_OK;
@@ -4594,6 +4622,9 @@ int
 dhd_event_ifdel(dhd_info_t *dhdinfo, wl_event_data_if_t *ifevent, char *name, uint8 *mac)
 {
 	dhd_if_event_t *if_event;
+#ifdef HW_DEFERRED_WORK_BUGFIX
+	int ret = 0;
+#endif
 
 #ifdef WL_CFG80211
 	if (wl_cfg80211_notify_ifdel(ifevent->ifidx, name, mac, ifevent->bssidx) == BCME_OK)
@@ -4608,8 +4639,17 @@ dhd_event_ifdel(dhd_info_t *dhdinfo, wl_event_data_if_t *ifevent, char *name, ui
 	memcpy(if_event->mac, mac, ETHER_ADDR_LEN);
 	strncpy(if_event->name, name, IFNAMSIZ);
 	if_event->name[IFNAMSIZ - 1] = '\0';
+#ifdef HW_DEFERRED_WORK_BUGFIX
+	ret = dhd_deferred_schedule_work(dhdinfo->dhd_deferred_wq, (void *)if_event, DHD_WQ_WORK_IF_DEL,
+			dhd_ifdel_event_handler, DHD_WORK_PRIORITY_LOW);
+	if (ret) {
+		DHD_ERROR(("dhd_event_ifdel failed\n"));
+		return BCME_ERROR;
+	}
+#else
 	dhd_deferred_schedule_work(dhdinfo->dhd_deferred_wq, (void *)if_event, DHD_WQ_WORK_IF_DEL,
 		dhd_ifdel_event_handler, DHD_WORK_PRIORITY_LOW);
+#endif
 
 	return BCME_OK;
 }
@@ -5268,7 +5308,10 @@ int dhd_get_fw_mode(dhd_info_t *dhdinfo)
 
 	return DHD_FLAG_STA_MODE;
 }
-
+#ifdef NVRAM_FROM_DTS
+#define REGION_CHINA  "CN"
+const char suffix_oversea[13]="_oversea.txt";
+#endif
 bool dhd_update_fw_nv_path(dhd_info_t *dhdinfo)
 {
 	int fw_len;
@@ -5279,6 +5322,8 @@ bool dhd_update_fw_nv_path(dhd_info_t *dhdinfo)
 
 #ifdef NVRAM_FROM_DTS
 	char  nv_path_string[NV_PATH_MAX_LEN];
+	char  nv_path_string_bak[NV_PATH_MAX_LEN];
+	void * image = NULL;
 #endif
 
 
@@ -5319,6 +5364,32 @@ bool dhd_update_fw_nv_path(dhd_info_t *dhdinfo)
 	if ( nv_path_string[0] != '\0' ) {
 		DHD_ERROR(("%s:get auto nvram_path=%s\n", __FUNCTION__, nv_path_string));
 		nv = nv_path_string;
+
+		/* Overseas version to modify nvpath ,region is not null and region is not CN(CHINA)*/
+		if ((region[0] != '\0')&&(strcmp(region, REGION_CHINA) != 0)) {
+			/* According to DTS nvpath to modify foreign nvpath.
+			* If oversea nvpath load failure,reload DTS nvpath */
+			strncpy(nv_path_string_bak, nv_path_string, sizeof(nv_path_string));
+			nv_len = strlen(nv_path_string_bak);
+
+			/*change suffix from .txt to _oversea.txt*/
+			if (nv_path_string_bak[nv_len-4] == '.') {
+				nv_path_string_bak[nv_len-4] = '\0';
+				strncat(nv_path_string_bak, suffix_oversea, sizeof(suffix_oversea));
+				DHD_ERROR(("%s: modify nvram_path oversea=%s\n", __FUNCTION__, nv_path_string_bak));
+
+				/* whether nvram file exists*/
+				image = dhd_os_open_image(nv_path_string_bak);
+				if (image == NULL) {/*file not exist*/
+				       DHD_ERROR(("%s:nvram file is not exist,reload Init nvram file:%s\n", __FUNCTION__,nv_path_string_bak));
+				} else {/*file exist*/
+				       nv = nv_path_string_bak;
+				       dhd_os_close_image(image);
+				}
+			} else {
+				DHD_ERROR(("%s:File encoding format is not correct,reload Init nvram file\n", __FUNCTION__));
+			}
+		}
 	}
 #endif
 
@@ -8984,8 +9055,17 @@ int dhd_os_send_hang_message(dhd_pub_t *dhdp)
 	if (dhdp) {
 		if (!dhdp->hang_was_sent) {
 			dhdp->hang_was_sent = 1;
+#ifdef HW_DEFERRED_WORK_BUGFIX
+			ret = dhd_deferred_schedule_work(dhdp->info->dhd_deferred_wq, (void *)dhdp,
+					DHD_WQ_WORK_HANG_MSG, dhd_hang_process, DHD_WORK_PRIORITY_HIGH);
+			if (ret) {
+				dhdp->hang_was_sent = 0;
+				DHD_ERROR(("dhd_os_send_hang_message failed\n"));
+			}
+#else
 			dhd_deferred_schedule_work(dhdp->info->dhd_deferred_wq, (void *)dhdp,
 				DHD_WQ_WORK_HANG_MSG, dhd_hang_process, DHD_WORK_PRIORITY_HIGH);
+#endif
 		}
 	}
 	return ret;
@@ -10308,6 +10388,9 @@ dhd_mem_dump_to_file(void *handle, void *event_info, u8 event)
 
 void dhd_schedule_memdump(dhd_pub_t *dhdp, uint8 *buf, uint32 size)
 {
+#ifdef HW_DEFERRED_WORK_BUGFIX
+	int ret = 0;
+#endif
 	dhd_dump_t *dump = NULL;
 	dump = (dhd_dump_t *)MALLOC(dhdp->osh, sizeof(dhd_dump_t));
 	if (dump == NULL) {
@@ -10317,8 +10400,15 @@ void dhd_schedule_memdump(dhd_pub_t *dhdp, uint8 *buf, uint32 size)
 	dump->buf = buf;
 	dump->bufsize = size;
 
+#ifdef HW_DEFERRED_WORK_BUGFIX
+	ret = dhd_deferred_schedule_work(dhdp->info->dhd_deferred_wq, (void *)dump,
+			DHD_WQ_WORK_SOC_RAM_DUMP, dhd_mem_dump_to_file, DHD_WORK_PRIORITY_HIGH);
+	if (ret)
+		DHD_ERROR(("dhd_schedule_memdump failed\n"));
+#else
 	dhd_deferred_schedule_work(dhdp->info->dhd_deferred_wq, (void *)dump,
 		DHD_WQ_WORK_SOC_RAM_DUMP, dhd_mem_dump_to_file, DHD_WORK_PRIORITY_HIGH);
+#endif
 }
 int dhd_os_socram_dump(struct net_device *dev, uint32 *dump_size)
 {

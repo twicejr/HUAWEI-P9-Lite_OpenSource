@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2015, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : dhcp_adapter.c
-  版 本 号   : 初稿
-  作    者   : w00316385
-  生成日期   : 2015年04月25日
-  最近修改   :
-  功能描述   :
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年04月25日
-    作    者   : w00316385
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 /*****************************************************************************
@@ -74,21 +57,7 @@ CTTF_DHCP_TRACE_DATA_STRU               g_stDhcpTraceData;
 *****************************************************************************/
 /*lint -save -e958 */
 
-/*****************************************************************************
- 函 数 名  : DHCP_StartFilter
- 功能描述  : 通知CDS开启过滤规则
- 输入参数  : VOS_UINT16 usModemId
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月18日
-    作    者   : w00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID DHCP_StartFilter(VOS_UINT16 usModemId)
 {
     DHCP_CDS_START_FILTER_REQ_STRU    *pstStartFilterReq;
@@ -126,21 +95,7 @@ VOS_VOID DHCP_StartFilter(VOS_UINT16 usModemId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCP_StopFilter
- 功能描述  : 通知CDS关闭过滤规则
- 输入参数  : VOS_UINT16 usModemId
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月18日
-    作    者   : w00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID DHCP_StopFilter(VOS_UINT16 usModemId)
 {
     DHCP_CDS_STOP_FILTER_REQ_STRU     *pstStopFilterReq;
@@ -178,22 +133,7 @@ VOS_VOID DHCP_StopFilter(VOS_UINT16 usModemId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCP_IPUnit16Sum
- 功能描述  : 计算16bit SUM
- 输入参数  : VOS_UINT8 *pucData
-             VOS_UINT32 ulLen
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月10日
-    作    者   : W00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DHCP_IPUnit16Sum(const VOS_UINT8 *pucData, VOS_UINT32 ulLen)
 {
     VOS_UINT32    ulCheckSum  = 0;
@@ -228,23 +168,7 @@ VOS_UINT32 DHCP_IPUnit16Sum(const VOS_UINT8 *pucData, VOS_UINT32 ulLen)
     return ulCheckSum;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCP_IPv6Checksum
- 功能描述  : 基于pseduo-header和upper-layer protocal计算checksum
- 输入参数  : VOS_VOID                *pucPseduoHeader
-             VOS_UINT8               *pucData
-             VOS_UINT32              ulLen
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月10日
-    作    者   : W00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT16 DHCP_IPv6Checksum
 (
     const VOS_VOID                     *pucPseduoHeader,
@@ -288,22 +212,7 @@ VOS_UINT16 DHCP_IPv6Checksum
 
 }
 
-/*****************************************************************************
- 函 数 名  : DHCP_BuildLinkLocalAddr
- 功能描述  : 构造link-local地址
- 输入参数  : VOS_UINT8 *pucLinkLocalAddr
-             VOS_UINT8 *pucIfId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月10日
-    作    者   : W00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID DHCP_BuildLinkLocalAddr
 (
     VOS_UINT8                          *pucLinkLocalAddr,
@@ -316,21 +225,7 @@ VOS_VOID DHCP_BuildLinkLocalAddr
     VOS_MemCpy(&pucLinkLocalAddr[DHCP_IPV6_IF_OFFSET], pucIfId, DHCP_IPV6_IF_LEN);
 }
 
-/*****************************************************************************
- 函 数 名  : DHCP_StopTimer
- 功能描述  : stop Timer
- 输入参数  : DHCP_TIMER_STRU    *pstTimerInfo
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月10日
-    作    者   : W00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID DHCP_StopTimer
 (
     DHCP_TIMER_STRU                    *pstTimerInfo
@@ -346,21 +241,7 @@ VOS_VOID DHCP_StopTimer
     }
 }
 
-/*****************************************************************************
- 函 数 名  : DHCP_ReleaseResendResourse
- 功能描述  : 释放重传相关信息
- 输入参数  : DHCP_ENTITY_STRU *pstDhcpEntity
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月10日
-    作    者   : W00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID DHCP_ReleaseResendResourse
 (
     DHCP_ENTITY_STRU                   *pstDhcpEntity
@@ -381,21 +262,7 @@ VOS_VOID DHCP_ReleaseResendResourse
     }
 }
 
-/*****************************************************************************
- 函 数 名  : DHCP_GetTimerLen
- 功能描述  : 获取定时器时长
- 输入参数  : DHCP_TIMER_ENUM_UINT32     enTimerType
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月10日
-    作    者   : W00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  DHCP_GetTimerLen
 (
     DHCP_TIMER_ENUM_UINT32              enTimerType
@@ -416,21 +283,7 @@ VOS_UINT32  DHCP_GetTimerLen
     return ulTimerLen;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCP_CheckEpsIdValid
- 功能描述  : 检查EpsId
- 输入参数  : VOS_UINT8 ucExEpsId 高2bit为ModemID，低6bit为EpsbId。
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月10日
-    作    者   : w00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DHCP_CheckEpsIdValid(VOS_UINT8 ucExEpsId)
 {
     VOS_UINT8                           ucEpsId;
@@ -451,21 +304,7 @@ VOS_UINT32 DHCP_CheckEpsIdValid(VOS_UINT8 ucExEpsId)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCP_BuildUdpHeader
- 功能描述  : 为DHCPv6报文设置初始UDP头，checksum 置0
- 输入参数  : VOS_UINT8    *pucUdp
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月10日
-    作    者   : w00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID DHCP_BuildDhcpv6UdpHeader
 (
     VOS_UINT8                          *pucUdp,
@@ -487,25 +326,7 @@ VOS_VOID DHCP_BuildDhcpv6UdpHeader
     IP_SetUint16Data(pucUdp + IP_UDP_CHECKSUM_OFFSET, usInitChecksum);
 }
 
-/*****************************************************************************
- 函 数 名  : DHCP_BuildIPv6Header
- 功能描述  : 为ICMPv6消息构造IP header，不支持扩展头
- 输入参数  :
-             VOS_UINT8                  *pucIpv6
-             IPV6_PSEDUOHEADER_STRU     *pstPseduoHeader
-             VOS_UINT8                  *pucInterfaceId
-             VOS_UINT32                 ulUpperLength
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月10日
-    作    者   : W00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID DHCP_BuildIPv6Header
 (
     VOS_UINT8                          *pucIpv6,
@@ -543,21 +364,7 @@ VOS_VOID DHCP_BuildIPv6Header
 
 }
 
-/*****************************************************************************
- 函 数 名  : DHCP_GetEntity
- 功能描述  : 根据EpsbId查找DHCP实体
- 输入参数  : VOS_UINT8 ucEpsbId
- 输出参数  : 无
- 返 回 值  : DHCP_ENTITY_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月10日
-    作    者   : W00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 DHCP_ENTITY_STRU* DHCP_GetEntity
 (
     VOS_UINT8                           ucEpsbId
@@ -579,21 +386,7 @@ DHCP_ENTITY_STRU* DHCP_GetEntity
     return VOS_NULL_PTR;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCP_AllocEntity
- 功能描述  : 分配实体，不做实体重复性判断
- 输入参数  : VOS_UINT8 ucEpsbId
- 输出参数  : 无
- 返 回 值  : DHCP_ENTITY_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月10日
-    作    者   : W00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 DHCP_ENTITY_STRU* DHCP_AllocEntity(VOS_UINT8  ucExRabId)
 {
     VOS_UINT32                          ulIndex = 0;
@@ -622,21 +415,7 @@ DHCP_ENTITY_STRU* DHCP_AllocEntity(VOS_UINT8  ucExRabId)
 
 }
 
-/*****************************************************************************
- 函 数 名  : DHCP_RelEntity
- 功能描述  : 释放DHCP实体
- 输入参数  : DHCP_ENTITY_STRU *pstDhcpEntity
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月10日
-    作    者   : W00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID DHCP_RelEntity
 (
     DHCP_ENTITY_STRU                   *pstDhcpEntity
@@ -667,42 +446,14 @@ VOS_VOID DHCP_RelEntity
 }
 
 
-/*****************************************************************************
- 函 数 名  : DHCP_InitEntityNum
- 功能描述  : 重新初始化DHCP实体计数
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月10日
-    作    者   : W00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID DHCP_InitEntityNum(VOS_VOID)
 {
     (VOS_VOID)VOS_MemSet(g_aulDhcpEntityCnt, 0, sizeof(g_aulDhcpEntityCnt));
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCP_AddEntityNum
- 功能描述  : 增加对应ModemId的DHCP实体计数
- 输入参数  : VOS_UINT16 usModemId
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月10日
-    作    者   : W00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID DHCP_AddEntityNum(VOS_UINT16 usModemId)
 {
     if (usModemId >= MODEM_ID_BUTT)
@@ -722,21 +473,7 @@ VOS_VOID DHCP_AddEntityNum(VOS_UINT16 usModemId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCP_SubEntityNum
- 功能描述  : 减小对应ModemId的DHCP实体计数
- 输入参数  : VOS_UINT16 usModemId
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月10日
-    作    者   : W00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID DHCP_SubEntityNum(VOS_UINT16 usModemId)
 {
     if (usModemId >= MODEM_ID_BUTT)
@@ -762,21 +499,7 @@ VOS_VOID DHCP_SubEntityNum(VOS_UINT16 usModemId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCP_TraceDataToCds
- 功能描述  : 勾包DHCP给CDS的IP数据
- 输入参数  : TTF_MEM_ST *pstTtfMem
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月12日
-    作    者   : W00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID DHCP_TraceDataToCds
 (
     TTF_MEM_ST                         *pstTtfMem
@@ -810,21 +533,7 @@ VOS_VOID DHCP_TraceDataToCds
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCP_SendIpToCds
- 功能描述  : 发送缓存数据包
- 输入参数  : DHCP_ENTITY_STRU *pstDhcpEntity
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月10日
-    作    者   : W00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DHCP_SendIpToCds
 (
     DHCP_ENTITY_STRU                   *pstDhcpEntity
@@ -933,20 +642,7 @@ VOS_UINT32 DHCP_SendIpToCds
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCP_RespApsGetDnsIpv6Fail
- 功能描述  : DHCP回复APS GetDnsIpv6失败
- 输入参数  : pstPppActReq   APS_PPP_ACT_REQ_STRU
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-07-20
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID DHCP_RespApsGetDnsIpv6Fail
 (
     APS_DHCP_DNS_IPV6_REQ_STRU         *pstDhcpDnsReq
@@ -983,21 +679,7 @@ VOS_VOID DHCP_RespApsGetDnsIpv6Fail
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCP_ProcDnsIpv6Req
- 功能描述  : 创建实体信息，申请IPv6地址
- 输入参数  : VOS_VOID        *pRcvMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月10日
-    作    者   : W00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID DHCP_ProcDnsIpv6Req
 (
     APS_DHCP_DNS_IPV6_REQ_STRU         *pstDhcpDnsReq
@@ -1058,21 +740,7 @@ VOS_VOID DHCP_ProcDnsIpv6Req
 }
 
 
-/*****************************************************************************
- 函 数 名  : DHCP_ProcDeActInd
- 功能描述  :
- 输入参数  : VOS_VOID         *pRcvMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月10日
-    作    者   : W00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID DHCP_ProcDeActInd(APS_DHCP_DEACT_IND_STRU *pstDeActInd)
 {
     DHCP_ENTITY_STRU                   *pstDhcpEntity = VOS_NULL_PTR;
@@ -1111,20 +779,7 @@ VOS_VOID DHCP_ProcDeActInd(APS_DHCP_DEACT_IND_STRU *pstDeActInd)
     return;
 }
 
-/*****************************************************************************
- 函数名称  : DHCP_FillElapTimeOption
- 功能描述  : 填充Elapsed_Time Option
- 输入参数  : DHCP_ENTITY_STRU                   *pstDhcpEntity
- 输出参数  : UCHAR *pucMsgBuff, VOS_UINT32 *pulOffset
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月10日
-    作    者   : W00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID DHCP_FillElapTimeOption
 (
     DHCP_ENTITY_STRU                   *pstDhcpEntity,
@@ -1157,20 +812,7 @@ VOS_VOID DHCP_FillElapTimeOption
     return;
 }
 
-/*****************************************************************************
- 函数名称  : DHCP_GetCiDuidData
- 功能描述  : 获取CI-DUID-DATA
- 输入参数  : DHCP_ENTITY_STRU                   *pstDhcpEntity
- 输出参数  : VOS_UINT8                          *pucData
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月10日
-    作    者   : W00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID DHCP_GetCiDuidData
 (
     DHCP_ENTITY_STRU                   *pstDhcpEntity,
@@ -1201,20 +843,7 @@ VOS_VOID DHCP_GetCiDuidData
     return;
 }
 
-/*****************************************************************************
- 函数名称  : DHCP_FillClientIdOption
- 功能描述  : 填充Client Identifier Option
- 输入参数  : DHCP_ENTITY_STRU                   *pstDhcpEntity
- 输出参数  : VOS_UINT8 *pucMsgBuff, VOS_UINT32 *pulOffset
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月10日
-    作    者   : W00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID DHCP_FillClientIdOption
 (
     DHCP_ENTITY_STRU                   *pstDhcpEntity,
@@ -1246,20 +875,7 @@ VOS_VOID DHCP_FillClientIdOption
     return;
 }
 
-/*****************************************************************************
- 函数名称  : DHCP_FillOROption
- 功能描述  : 填充Option Request Option
- 输入参数  : DHCP_ENTITY_STRU                   *pstDhcpEntity
- 输出参数  : UCHAR *pucMsgBuff, VOS_UINT32 *pulOffset
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月10日
-    作    者   : W00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOID DHCP_FillOROption(UCHAR *pucMsgBuff, VOS_UINT32 *pulOffset)
 {
     VOS_UINT16                         usOptionLen = 0;
@@ -1272,8 +888,6 @@ VOID DHCP_FillOROption(UCHAR *pucMsgBuff, VOS_UINT32 *pulOffset)
     pstOROption->usType = VOS_HTONS(usOptionOro);
 
     /* 请求快速流程和DNS */
-    /* Deleted start by y00170683 at 2012-07-27 UGW10.0-DHCPV6C特性 for CR20120726042 rapid-commit-option作为单独的option携带 */
-    /* Deleted end by y00170683 at 2012-07-27 UGW10.0-DHCPV6C特性 for CR20120726042 rapid-commit-option作为单独的option携带 */
     /* 用变量来代替宏是为了消除pclint错误 */
     *(VOS_UINT16*)(pstOROption->ucData) = VOS_HTONS(usOptionDns);
     usOptionLen += sizeof(VOS_UINT16);
@@ -1283,18 +897,7 @@ VOID DHCP_FillOROption(UCHAR *pucMsgBuff, VOS_UINT32 *pulOffset)
     return;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCP_GetMagicNumber
- *  初稿完成:       2015-09-22
- *  作    者:       w00316385
- *  函数功能:       生成Magic Number
- *  输入参数:       无
- *  输出参数:       无
- *  返回类型:       VOS_UINT32
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOS_UINT32 DHCP_GetMagicNumber(VOS_VOID)
 {
     VOS_UINT32                          ulRetVal = 0;
@@ -1323,18 +926,7 @@ VOS_UINT32 DHCP_GetMagicNumber(VOS_VOID)
     return ulRetVal;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCP_FillInfoReqMsg
- *  初稿完成:       2015-05-06
- *  作    者:       w00316385
- *  函数功能:       填充消息
- *  输入参数:       DHCP_ENTITY_STRU                   *pstDhcpEntity,
- *  输出参数:       VOS_UINT8 *pucMsgBuff,  VOS_UINT32 *pulMsgLen
- *  返回类型:       VOID
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOS_UINT32 DHCP_FillInfoReqMsg
 (
     DHCP_ENTITY_STRU                   *pstDhcpEntity,
@@ -1367,18 +959,7 @@ VOS_UINT32 DHCP_FillInfoReqMsg
 
 }
 
-/*****************************************************************************
- *  函数名称:       DHCP_SendInfoReqPacket
- *  初稿完成:       2015-05-07
- *  作    者:       w00316385
- *  函数功能:       封装消息发包
- *  输入参数:       DHCP_ENTITY_STRU                   *pstDhcpEntity
- *  输出参数:       无
- *  返回类型:       VOS_UINT32
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOS_UINT32 DHCP_SendInfoReqPacket
 (
     DHCP_ENTITY_STRU                   *pstDhcpEntity
@@ -1439,20 +1020,7 @@ VOS_UINT32 DHCP_SendInfoReqPacket
     return ulRet;
 }
 
-/*****************************************************************************
- 函数名称  : DHCPV6C_CheckServerMsgType
- 功能描述  : 检查收到的消息类型
- 输入参数  : VOS_UINT8 ucMsgType
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月10日
-    作    者   : W00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DHCP_CheckServerMsgType(VOS_UINT8 ucMsgType)
 {
     VOS_UINT32                          ulRet = VOS_OK;
@@ -1472,20 +1040,7 @@ VOS_UINT32 DHCP_CheckServerMsgType(VOS_UINT8 ucMsgType)
     return ulRet;
 }
 
-/*****************************************************************************
- 函数名称  : DHCP_IaAddrOptionDecode
- 功能描述  : 解析IaAddrOption
- 输入参数  : VOS_UINT8 *pucMsg,  VOS_UINT32 ulMsgLen
- 输出参数  : DHCPV6C_OPTION_INFO_S *pstDhcpv6cOption
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-06-11
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID DHCP_IaAddrOptionDecode
 (
     VOS_UINT8                          *pucMsg,
@@ -1530,20 +1085,7 @@ VOS_VOID DHCP_IaAddrOptionDecode
     return;
 }
 
-/*****************************************************************************
- 函数名称  : DHCP_IaNaOptionDecode
- 功能描述  : 解析IaNaOption
- 输入参数  : VOS_UINT8 *pucMsg,  VOS_UINT32 ulMsgLen
- 输出参数  : DHCPV6C_OPTION_INFO_S *pstDhcpv6cOption
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-06-11
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID DHCP_IaNaOptionDecode
 (
     VOS_UINT8                          *pucMsg,
@@ -1605,20 +1147,7 @@ VOS_VOID DHCP_IaNaOptionDecode
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCP_OptionDecode
- 功能描述  : 解析Option
- 输入参数  : VOS_UINT8 *pucMsg,  VOS_UINT32 ulMsgLen
- 输出参数  : DHCPV6C_OPTION_INFO_S *pstDhcpv6cOption
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-06-11
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID DHCP_OptionDecode
 (
     VOS_UINT8                          *pucMsg,
@@ -1701,20 +1230,7 @@ VOS_VOID DHCP_OptionDecode
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCP_ConvertDnsToHomeOrder
- 功能描述  : 将dns-option中字段转换为本地序
- 输入参数  : DHCPV6C_TLV_OPTION_S **ppstDnsOption
- 输出参数  : DHCPV6C_DNS_OPTION_S **ppstDnsOption, UCHAR *pucMainDnsFlg, UCHAR *pucSecdDnsFlg
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-06-11
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID DHCP_ConvertDnsToHomeOrder
 (
     DHCPV6C_TLV_OPTION_S              **ppstDnsOption,
@@ -1753,20 +1269,7 @@ VOS_VOID DHCP_ConvertDnsToHomeOrder
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCP_ConvertToHomeOrder
- 功能描述  : 将option中字段转换为本地序
- 输入参数  : DHCPV6C_OPTION_INFO_S *pstDhcpv6cOption
- 输出参数  : DHCPV6C_OPTION_INFO_S *pstDhcpv6cOption
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-06-11
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID DHCP_ConvertToHomeOrder(DHCPV6C_OPTION_INFO_S *pstDhcpv6cOption)
 {
     /* clientId */
@@ -1834,20 +1337,7 @@ VOS_VOID DHCP_ConvertToHomeOrder(DHCPV6C_OPTION_INFO_S *pstDhcpv6cOption)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCP_MsgDecode
- 功能描述  : 消息解码
- 输入参数  : DHCPV6C_MSG_INFO_S *pstMsgInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-06-11
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DHCP_MsgDecode(DHCPV6C_MSG_INFO_S *pstMsgInfo)
 {
     VOS_UINT32                          ulOffset = sizeof(DHCPV6C_MSG_S);
@@ -1871,18 +1361,7 @@ VOS_UINT32 DHCP_MsgDecode(DHCPV6C_MSG_INFO_S *pstMsgInfo)
     return VOS_OK;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCP_AdsDataIndProc
- *  初稿完成:       2015-05-07
- *  作    者:       w00316385
- *  函数功能:       处理ADS返回C核的消息
- *  输入参数:       VOS_VOID *pRcvMsg
- *  输出参数:       无
- *  返回类型:       VOS_VOID
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOS_VOID DHCP_AdsDataIndProc(VOS_VOID *pRcvMsg)
 {
     ADS_DHCP_DATA_IND_STRU             *pstDataInd;
@@ -1957,21 +1436,7 @@ VOS_VOID DHCP_AdsDataIndProc(VOS_VOID *pRcvMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCP_CdsStartFilterCnfProc
- 功能描述  : 处理DHCPv6过滤启动确认消息
- 输入参数  : VOS_VOID    *pRcvMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月7日
-    作    者   : w00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID DHCP_CdsStartFilterCnfProc
 (
     CDS_DHCP_START_FILTER_CNF_STRU     *pstStartFilterCnf
@@ -1991,21 +1456,7 @@ VOS_VOID DHCP_CdsStartFilterCnfProc
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCP_CdsStopFilterCnfProc
- 功能描述  : 处理DHCPv6过滤停止确认消息
- 输入参数  : VOS_VOID    *pRcvMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月7日
-    作    者   : w00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID DHCP_CdsStopFilterCnfProc
 (
     CDS_DHCP_STOP_FILTER_CNF_STRU      *pstStopFilterCnf
@@ -2025,20 +1476,7 @@ VOS_VOID DHCP_CdsStopFilterCnfProc
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCP_MsgTimerProc
- 功能描述  : DHCP模块中的定时器消息处理函数
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-05-05
-    作    者   : W00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID DHCP_MsgTimerProc(const REL_TIMER_MSG *pRcvMsg)
 {
     VOS_UINT32                          ulTmrId;
@@ -2099,20 +1537,7 @@ VOS_VOID DHCP_MsgTimerProc(const REL_TIMER_MSG *pRcvMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCP_MsgTafProc
- 功能描述  : DHCP模块处理TAF命令
- 输入参数  : pMsg    TAF命令
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-05-05
-    作    者   : W00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID DHCP_MsgTafProc(struct MsgCB * pMsg)
 {
     Taf_aps_dhcp_pif_MSG                   *pstApsPublicInfo;
@@ -2153,20 +1578,7 @@ VOS_VOID DHCP_MsgTafProc(struct MsgCB * pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCP_MsgAdsProc
- 功能描述  : DHCP模块接收处理ADS模块发送的消息
- 输入参数  : pMsg    CDS消息
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-05-06
-    作    者   : W00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID DHCP_MsgAdsProc(struct MsgCB * pMsg)
 {
     VOS_UINT32                              ulMsgId;
@@ -2193,21 +1605,7 @@ VOS_VOID DHCP_MsgAdsProc(struct MsgCB * pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCP_MsgCdsProc
- 功能描述  : DHCP接收处理CDS模块发送的消息
- 输入参数  : const MsgBlock *pMsgBlock
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月6日
-    作    者   : W00316385
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID DHCP_MsgCdsProc(struct MsgCB *pMsg )
 {
     CDS_DHCP_MSG_INFO_STRU             *pstCdsDhcpPublicInfo;
@@ -2245,20 +1643,7 @@ VOS_VOID DHCP_MsgCdsProc(struct MsgCB *pMsg )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCP_Init
- 功能描述  : DHCP模块初始化
- 输入参数  : VOS_INIT_PHASE_DEFINE
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-04-25
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DHCP_Init(enum VOS_INIT_PHASE_DEFINE InitPhase)
 {
     VOS_UINT32                          ulNumber;
@@ -2282,20 +1667,7 @@ VOS_UINT32 DHCP_Init(enum VOS_INIT_PHASE_DEFINE InitPhase)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCP_MsgProc
- 功能描述  : DHCP模块中的消息处理函数。
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-05-06
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID DHCP_MsgProc(struct MsgCB * pMsg)
 {
     if(VOS_NULL_PTR == pMsg)
@@ -2347,21 +1719,7 @@ VOS_VOID DHCP_MsgProc(struct MsgCB * pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCP_RespApsDnsIpv6ReqCmd
- 功能描述  : DHCP回复APS
- 输入参数  : pDhcpInfo      DHCP信息，激活失败时填VOS_NULL_PTR,否则非空
-             ulResult       VOS_OK/VOS_ERR
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-05-05
-    作    者   : W00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID DHCP_RespApsDnsIpv6ReqCmd
 (
     VOS_VOID                           *pDhcpDNSInfo,

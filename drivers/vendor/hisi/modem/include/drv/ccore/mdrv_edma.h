@@ -5,38 +5,7 @@ extern "C"
 {
 #endif
 
-/*物理通道    逻辑通道号	    软件通道宏定义名称	    用途	    使用场景	    使用组件/核	使用人
-                 0	        EDMA_CH_GUDSP_MEMORY_1	GUDSP M2M	用于turbo译码	GUDSP	lianpeng 00167020
-            	 1	        EDMA_CH_GUDSP_MEMORY_2	GUDSP M2M	用于viterb译码	GUDSP	lianpeng 00167020
-            	 2复用 	    EDMA_CH_GUDSP_MEMORY_3	GUDSP M2M	用于CQI表搬移	GUDSP	lianpeng 00167020
-                 2复用      EDMA_CH_LDSP_LCS_SDR    每次启用前检查通道是否空闲  BBE16   honghuiyong
-            	 3	        EDMA_CH_GUDSP_MEMORY_4	GUDSP M2M	用于上行编码	GUDSP	lianpeng 00167020
-            	 4	        EDMA_CH_GUDSP_MEMORY_6	GUDSP M2M	用于APT表搬移	GUDSP	lianpeng 00167020
-            	 5复用	    EDMA_CH_GUDSP_MEMORY_7	GUDSP M2M   GUDSP加载 要求北京底软做封装虚拟通道，GUDSP代码不可见"	GUDSP	lianpeng 00167020
-            	 5复用	    EDMA_CH_GUDSP_MEMORY_8	GUDSP M2M   AHB邮箱加载复用，要求北京底软做封装虚拟通道，GUDSP代码不可见"	GUDSP	lianpeng 00167020
-            	 6  	    EDMA_CH_GUDSP_MEMORY_9	GUDSP 搬运使用	BBP_GRIF_PHY，实现BBP搬数，用于校准复用GU BBP DEBUG采数功能"	GUDSP	lianpeng 00167020
 
-            	 7	        EDMA_CH_LDSP_NV_LOADING	分配给TLDSP动态加载NV使用	运行时候用于动态加载NV(包括装备场景)	BBE16	honghuiyong
-
-            	 8	        EDMA_CH_HIFI_SIO_TX	    SIO接口发送	CPE等产品语音场景使用	HIFI	沈秀勇
-            	 9  	    EDMA_CH_HIFI_SIO_RX	    SIO接口接收	CPE等产品语音场景使用	HIFI	沈秀勇
-
-            	 10	        EDMA_CH_DRV_SIM_0	    SIM卡0收发数据使用	"SIM卡0接收和发送(由SIM卡驱动来解决接收和发送复用)"	C核	杨志
-            	 11	        EDMA_CH_DRV_SIM_1	    SIM卡1收发数据使用	"SIM卡1接收和发送（用于双卡双待)(由SIM卡驱动来解决接收和发送复用)"	C核	杨志
-            	 12	        EDMA_CH_HSUART_TX	    高速串口发送使用	用于蓝牙语音场景	A核?	吴择淳
-            	 13	        EDMA_CH_HSUART_RX	    高速串口接收使用	用于蓝牙语音场景	A核?	吴择淳
-            	 14	        EDMA_CH_DRV_LCD	        SPI1发送，刷LCD屏	SPI1发送，刷LCD屏	A核	徐文芳
-            	 15	        EDMA_CH_DRV_AXIMON	    接收来自axi_monitor的采集数据	axi_monitor的采数	A核	朱洪飞
-
-                0/1通道复用  两种作用复用：      1. TLDSP上下电(包括开机和低功耗)使用，上电512K, 下电256k2.在运行的时候搬移LDSP专有镜像"	LDRV/TLDSP
-            	 0复用      EDMA_CH_LOAD_TLDSP_TCM  备份恢复TLDSP公共镜像或者动态加载LDSP专有镜像"	"	洪慧勇/付效伟
-            	 0复用      EDMA_CH_LDSP_API_USED_0
-            	 1复用      EDMA_CH_LOAD_TDSDSP_TCM	加载专有镜像	在运行的时候搬移TDSP专有镜像	LDRV or TLDSP	洪慧勇
-            	 1复用      EDMA_CH_LDSP_API_USED_1
-
-            	 2	        EDMA_CH_LDSP_CSU_SDR	LDSP小区搜索	运行时候用于小区搜索功能	TLDSP	洪慧勇
-            	 3	        EDMA_CH_LDSP_EMU_SDR	LDSP能量测量	运行时候用于能量测量功能	TLDSP	洪慧勇
-*/
 
 #define BALONG_DMA_INT_DONE           1          /*DMA传输完成中断*/
 #define BALONG_DMA_INT_LLT_DONE       2          /*链式DMA节点传输完成中断*/

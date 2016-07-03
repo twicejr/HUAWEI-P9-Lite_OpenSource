@@ -26,14 +26,7 @@ extern void UT_STUB_INIT(void);
 #endif
 
 #if (FEATURE_ON == FEATURE_IMS)
-/******************************************************************************
-类名     : Test_AT_ProcImsaMsg
-功能描述 : AT_AT_ProcImsaMsg UT工程类
-修改历史 :
- 1.日   期  : 2013-10-12
-   作   者  : Y00213812
-   修改内容 : 新增类
-******************************************************************************/
+
 class Test_AT_ProcImsaMsg: public ::testing::Test
 {
 public:
@@ -47,15 +40,7 @@ public:
         AT_InitCtx();
     }
 };
-/******************************************************************************
-测试用例编号: TAT_ProcImsaMsg_001
-测试用例标题: 未在IMSA消息对应表中找对对应的处理函数
-预期结果    : 打印log
-修改历史    :
- 1.日   期  : 2013-10-12
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_ProcImsaMsg, AT_ProcImsaMsg_001)
 {
     // 变量声明
@@ -77,14 +62,7 @@ TEST_F(Test_AT_ProcImsaMsg, AT_ProcImsaMsg_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_AT_RcvImsaCiregSetCnf
-功能描述 : AT_RcvImsaCiregSetCnf UT工程类
-修改历史 :
- 1.日   期  : 2013-10-12
-   作   者  : Y00213812
-   修改内容 : 新增类
-******************************************************************************/
+
 class Test_AT_RcvImsaCiregSetCnf: public ::testing::Test
 {
 public:
@@ -98,15 +76,7 @@ public:
         AT_InitCtx();
     }
 };
-/******************************************************************************
-测试用例编号: Test_AT_RcvImsaCiregSetCnf_001
-测试用例标题: ID_IMSA_AT_CIREG_SET_CNF消息中携带的clientId错误
-预期结果    : 返回VOS_ERR
-修改历史    :
- 1.日   期  : 2013-10-12
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_RcvImsaCiregSetCnf, Test_AT_RcvImsaCiregSetCnf_001)
 {
     // 变量声明
@@ -136,15 +106,7 @@ TEST_F(Test_AT_RcvImsaCiregSetCnf, Test_AT_RcvImsaCiregSetCnf_001)
     // 执行检查
     GlobalMockObject::verify();
 }
-/******************************************************************************
-测试用例编号: Test_AT_RcvImsaCiregSetCnf_002
-测试用例标题: 广播消息上报
-预期结果    : 返回VOS_ERR
-修改历史    :
- 1.日   期  : 2013-10-12
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_RcvImsaCiregSetCnf, Test_AT_RcvImsaCiregSetCnf_002)
 {
     // 变量声明
@@ -176,15 +138,7 @@ TEST_F(Test_AT_RcvImsaCiregSetCnf, Test_AT_RcvImsaCiregSetCnf_002)
     EXPECT_EQ(VOS_ERR, ulRslt);
     GlobalMockObject::verify();
 }
-/******************************************************************************
-测试用例编号: Test_AT_RcvImsaCiregSetCnf_003
-测试用例标题: 操作类型错误
-预期结果    : 返回VOS_ERR
-修改历史    :
- 1.日   期  : 2013-10-12
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_RcvImsaCiregSetCnf, Test_AT_RcvImsaCiregSetCnf_003)
 {
     // 变量声明
@@ -213,15 +167,7 @@ TEST_F(Test_AT_RcvImsaCiregSetCnf, Test_AT_RcvImsaCiregSetCnf_003)
     EXPECT_EQ(VOS_ERR, ulRslt);
     GlobalMockObject::verify();
 }
-/******************************************************************************
-测试用例编号: Test_AT_RcvImsaCiregSetCnf_004
-测试用例标题: +CIREG设置成功
-预期结果    : 返回VOS_OK
-修改历史    :
- 1.日   期  : 2013-10-12
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_RcvImsaCiregSetCnf, Test_AT_RcvImsaCiregSetCnf_004)
 {
     // 变量声明
@@ -253,15 +199,7 @@ TEST_F(Test_AT_RcvImsaCiregSetCnf, Test_AT_RcvImsaCiregSetCnf_004)
     EXPECT_EQ(AT_CMD_CURRENT_OPT_BUTT, gastAtClientTab[ucIndex].CmdCurrentOpt);
     GlobalMockObject::verify();
 }
-/******************************************************************************
-测试用例编号: Test_AT_RcvImsaCiregSetCnf_005
-测试用例标题: +CIREG设置失败
-预期结果    : 返回VOS_OK
-修改历史    :
- 1.日   期  : 2013-10-12
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_RcvImsaCiregSetCnf, Test_AT_RcvImsaCiregSetCnf_005)
 {
     // 变量声明
@@ -294,14 +232,7 @@ TEST_F(Test_AT_RcvImsaCiregSetCnf, Test_AT_RcvImsaCiregSetCnf_005)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_AT_RcvImsaCirepSetCnf
-功能描述 : AT_RcvImsaCirepSetCnf UT工程类
-修改历史 :
- 1.日   期  : 2013-10-12
-   作   者  : Y00213812
-   修改内容 : 新增类
-******************************************************************************/
+
 class Test_AT_RcvImsaCirepSetCnf: public ::testing::Test
 {
 public:
@@ -315,15 +246,7 @@ public:
         AT_InitCtx();
     }
 };
-/******************************************************************************
-测试用例编号: Test_AT_RcvImsaCirepSetCnf_001
-测试用例标题: ID_IMSA_AT_CIREP_SET_CNF消息中携带的clientId错误
-预期结果    : 返回VOS_ERR
-修改历史    :
- 1.日   期  : 2013-10-12
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_RcvImsaCirepSetCnf, Test_AT_RcvImsaCirepSetCnf_001)
 {
     // 变量声明
@@ -353,15 +276,7 @@ TEST_F(Test_AT_RcvImsaCirepSetCnf, Test_AT_RcvImsaCirepSetCnf_001)
     // 执行检查
     GlobalMockObject::verify();
 }
-/******************************************************************************
-测试用例编号: Test_AT_RcvImsaCirepSetCnf_002
-测试用例标题: 广播消息上报
-预期结果    : 返回VOS_ERR
-修改历史    :
- 1.日   期  : 2013-10-12
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_RcvImsaCirepSetCnf, Test_AT_RcvImsaCirepSetCnf_002)
 {
     // 变量声明
@@ -393,15 +308,7 @@ TEST_F(Test_AT_RcvImsaCirepSetCnf, Test_AT_RcvImsaCirepSetCnf_002)
     EXPECT_EQ(VOS_ERR, ulRslt);
     GlobalMockObject::verify();
 }
-/******************************************************************************
-测试用例编号: Test_AT_RcvImsaCirepSetCnf_003
-测试用例标题: 操作类型错误
-预期结果    : 返回VOS_ERR
-修改历史    :
- 1.日   期  : 2013-10-12
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_RcvImsaCirepSetCnf, Test_AT_RcvImsaCirepSetCnf_003)
 {
     // 变量声明
@@ -430,15 +337,7 @@ TEST_F(Test_AT_RcvImsaCirepSetCnf, Test_AT_RcvImsaCirepSetCnf_003)
     EXPECT_EQ(VOS_ERR, ulRslt);
     GlobalMockObject::verify();
 }
-/******************************************************************************
-测试用例编号: Test_AT_RcvImsaCirepSetCnf_004
-测试用例标题: +CIREG设置成功
-预期结果    : 返回VOS_OK
-修改历史    :
- 1.日   期  : 2013-10-12
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_RcvImsaCirepSetCnf, Test_AT_RcvImsaCirepSetCnf_004)
 {
     // 变量声明
@@ -470,15 +369,7 @@ TEST_F(Test_AT_RcvImsaCirepSetCnf, Test_AT_RcvImsaCirepSetCnf_004)
     EXPECT_EQ(AT_CMD_CURRENT_OPT_BUTT, gastAtClientTab[ucIndex].CmdCurrentOpt);
     GlobalMockObject::verify();
 }
-/******************************************************************************
-测试用例编号: Test_AT_RcvImsaCirepSetCnf_005
-测试用例标题: +CIREG设置失败
-预期结果    : 返回VOS_OK
-修改历史    :
- 1.日   期  : 2013-10-12
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_RcvImsaCirepSetCnf, Test_AT_RcvImsaCirepSetCnf_005)
 {
     // 变量声明
@@ -511,14 +402,7 @@ TEST_F(Test_AT_RcvImsaCirepSetCnf, Test_AT_RcvImsaCirepSetCnf_005)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_AT_RcvImsaCiregQryCnf
-功能描述 : AT_RcvImsaCiregQryCnf UT工程类
-修改历史 :
- 1.日   期  : 2013-10-12
-   作   者  : Y00213812
-   修改内容 : 新增类
-******************************************************************************/
+
 class Test_AT_RcvImsaCiregQryCnf: public ::testing::Test
 {
 public:
@@ -532,15 +416,7 @@ public:
         AT_InitCtx();
     }
 };
-/******************************************************************************
-测试用例编号: Test_AT_RcvImsaCiregQryCnf_001
-测试用例标题: ID_IMSA_AT_CIREG_QRY_CNF消息中携带的clientId错误
-预期结果    : 返回VOS_ERR
-修改历史    :
- 1.日   期  : 2013-10-12
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_RcvImsaCiregQryCnf, Test_AT_RcvImsaCiregQryCnf_001)
 {
     // 变量声明
@@ -574,15 +450,7 @@ TEST_F(Test_AT_RcvImsaCiregQryCnf, Test_AT_RcvImsaCiregQryCnf_001)
     // 执行检查
     GlobalMockObject::verify();
 }
-/******************************************************************************
-测试用例编号: Test_AT_RcvImsaCiregQryCnf_002
-测试用例标题: 广播消息上报
-预期结果    : 返回VOS_ERR
-修改历史    :
- 1.日   期  : 2013-10-12
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_RcvImsaCiregQryCnf, Test_AT_RcvImsaCiregQryCnf_002)
 {
     // 变量声明
@@ -618,15 +486,7 @@ TEST_F(Test_AT_RcvImsaCiregQryCnf, Test_AT_RcvImsaCiregQryCnf_002)
     // 执行检查
     GlobalMockObject::verify();
 }
-/******************************************************************************
-测试用例编号: Test_AT_RcvImsaCiregQryCnf_003
-测试用例标题: 操作类型错误
-预期结果    : 返回VOS_ERR
-修改历史    :
- 1.日   期  : 2013-10-12
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_RcvImsaCiregQryCnf, Test_AT_RcvImsaCiregQryCnf_003)
 {
     // 变量声明
@@ -658,15 +518,7 @@ TEST_F(Test_AT_RcvImsaCiregQryCnf, Test_AT_RcvImsaCiregQryCnf_003)
     // 执行检查
     GlobalMockObject::verify();
 }
-/******************************************************************************
-测试用例编号: Test_AT_RcvImsaCiregQryCnf_004
-测试用例标题: +CIREG查询成功
-预期结果    : 返回AT_OK
-修改历史    :
- 1.日   期  : 2013-10-12
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_RcvImsaCiregQryCnf, Test_AT_RcvImsaCiregQryCnf_004)
 {
     // 变量声明
@@ -710,15 +562,7 @@ TEST_F(Test_AT_RcvImsaCiregQryCnf, Test_AT_RcvImsaCiregQryCnf_004)
     EXPECT_EQ(AT_CMD_CURRENT_OPT_BUTT, gastAtClientTab[ucIndex].CmdCurrentOpt);
     GlobalMockObject::verify();
 }
-/******************************************************************************
-测试用例编号: Test_AT_RcvImsaCiregQryCnf_005
-测试用例标题: +CIREG查询失败
-预期结果    : 返回AT_ERROR
-修改历史    :
- 1.日   期  : 2013-10-12
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_RcvImsaCiregQryCnf, Test_AT_RcvImsaCiregQryCnf_005)
 {
     // 变量声明
@@ -754,14 +598,7 @@ TEST_F(Test_AT_RcvImsaCiregQryCnf, Test_AT_RcvImsaCiregQryCnf_005)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_AT_RcvImsaCirepQryCnf
-功能描述 : AT_RcvImsaCirepQryCnf UT工程类
-修改历史 :
- 1.日   期  : 2013-10-12
-   作   者  : Y00213812
-   修改内容 : 新增类
-******************************************************************************/
+
 class Test_AT_RcvImsaCirepQryCnf: public ::testing::Test
 {
 public:
@@ -775,15 +612,7 @@ public:
         AT_InitCtx();
     }
 };
-/******************************************************************************
-测试用例编号: Test_AT_RcvImsaCirepQryCnf_001
-测试用例标题: ID_IMSA_AT_CIREP_QRY_CNF消息中携带的clientId错误
-预期结果    : 返回VOS_ERR
-修改历史    :
- 1.日   期  : 2013-10-12
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_RcvImsaCirepQryCnf, Test_AT_RcvImsaCirepQryCnf_001)
 {
     // 变量声明
@@ -815,15 +644,7 @@ TEST_F(Test_AT_RcvImsaCirepQryCnf, Test_AT_RcvImsaCirepQryCnf_001)
     // 执行检查
     GlobalMockObject::verify();
 }
-/******************************************************************************
-测试用例编号: Test_AT_RcvImsaCirepQryCnf_002
-测试用例标题: 广播消息上报
-预期结果    : 返回VOS_ERR
-修改历史    :
- 1.日   期  : 2013-10-12
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_RcvImsaCirepQryCnf, Test_AT_RcvImsaCirepQryCnf_002)
 {
     // 变量声明
@@ -857,15 +678,7 @@ TEST_F(Test_AT_RcvImsaCirepQryCnf, Test_AT_RcvImsaCirepQryCnf_002)
     // 执行检查
     GlobalMockObject::verify();
 }
-/******************************************************************************
-测试用例编号: Test_AT_RcvImsaCirepQryCnf_003
-测试用例标题: 操作类型错误
-预期结果    : 返回VOS_ERR
-修改历史    :
- 1.日   期  : 2013-10-12
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_RcvImsaCirepQryCnf, Test_AT_RcvImsaCirepQryCnf_003)
 {
     // 变量声明
@@ -895,15 +708,7 @@ TEST_F(Test_AT_RcvImsaCirepQryCnf, Test_AT_RcvImsaCirepQryCnf_003)
     // 执行检查
     GlobalMockObject::verify();
 }
-/******************************************************************************
-测试用例编号: Test_AT_RcvImsaCirepQryCnf_004
-测试用例标题: +CIREG查询成功
-预期结果    : 返回AT_OK
-修改历史    :
- 1.日   期  : 2013-10-12
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_RcvImsaCirepQryCnf, Test_AT_RcvImsaCirepQryCnf_004)
 {
     // 变量声明
@@ -945,15 +750,7 @@ TEST_F(Test_AT_RcvImsaCirepQryCnf, Test_AT_RcvImsaCirepQryCnf_004)
     EXPECT_EQ(AT_CMD_CURRENT_OPT_BUTT, gastAtClientTab[ucIndex].CmdCurrentOpt);
     GlobalMockObject::verify();
 }
-/******************************************************************************
-测试用例编号: Test_AT_RcvImsaCirepQryCnf_005
-测试用例标题: +CIREG查询失败
-预期结果    : 返回AT_ERROR
-修改历史    :
- 1.日   期  : 2013-10-12
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_RcvImsaCirepQryCnf, Test_AT_RcvImsaCirepQryCnf_005)
 {
     // 变量声明
@@ -987,14 +784,7 @@ TEST_F(Test_AT_RcvImsaCirepQryCnf, Test_AT_RcvImsaCirepQryCnf_005)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_AT_RcvImsaCirephInd
-功能描述 : AT_RcvImsaCirephInd UT工程类
-修改历史 :
- 1.日   期  : 2013-10-17
-   作   者  : Y00213812
-   修改内容 : 新增类
-******************************************************************************/
+
 class Test_AT_RcvImsaCirephInd: public ::testing::Test
 {
 public:
@@ -1008,15 +798,7 @@ public:
         AT_InitCtx();
     }
 };
-/******************************************************************************
-测试用例编号: Test_AT_RcvImsaCirephInd_001
-测试用例标题: ID_IMSA_AT_CIREPH_IND消息中携带的clientId错误
-预期结果    : 返回VOS_ERR
-修改历史    :
- 1.日   期  : 2013-10-17
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_RcvImsaCirephInd, Test_AT_RcvImsaCirephInd_001)
 {
     // 变量声明
@@ -1045,15 +827,7 @@ TEST_F(Test_AT_RcvImsaCirephInd, Test_AT_RcvImsaCirephInd_001)
     // 执行检查
     GlobalMockObject::verify();
 }
-/******************************************************************************
-测试用例编号: Test_AT_RcvImsaCirephInd_002
-测试用例标题: ID_IMSA_AT_CIREPH_IND消息中携带的clientId错误
-预期结果    : 返回VOS_ERR
-修改历史    :
- 1.日   期  : 2013-10-17
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_RcvImsaCirephInd, Test_AT_RcvImsaCirephInd_002)
 {
     // 变量声明
@@ -1083,14 +857,7 @@ TEST_F(Test_AT_RcvImsaCirephInd, Test_AT_RcvImsaCirephInd_002)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_AT_RcvImsaCirepiInd
-功能描述 : AT_RcvImsaCirepiInd UT工程类
-修改历史 :
- 1.日   期  : 2013-10-17
-   作   者  : Y00213812
-   修改内容 : 新增类
-******************************************************************************/
+
 class Test_AT_RcvImsaCirepiInd: public ::testing::Test
 {
 public:
@@ -1104,15 +871,7 @@ public:
         AT_InitCtx();
     }
 };
-/******************************************************************************
-测试用例编号: Test_AT_RcvImsaCirepiInd_001
-测试用例标题: ID_IMSA_AT_CIREPI_IND消息中携带的clientId错误
-预期结果    : 返回VOS_ERR
-修改历史    :
- 1.日   期  : 2013-10-17
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_RcvImsaCirepiInd, Test_AT_RcvImsaCirepiInd_001)
 {
     // 变量声明
@@ -1141,15 +900,7 @@ TEST_F(Test_AT_RcvImsaCirepiInd, Test_AT_RcvImsaCirepiInd_001)
     // 执行检查
     GlobalMockObject::verify();
 }
-/******************************************************************************
-测试用例编号: Test_AT_RcvImsaCirepiInd_002
-测试用例标题: ID_IMSA_AT_CIREPI_IND消息中携带的clientId错误
-预期结果    : 返回VOS_ERR
-修改历史    :
- 1.日   期  : 2013-10-17
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_RcvImsaCirepiInd, Test_AT_RcvImsaCirepiInd_002)
 {
     // 变量声明
@@ -1179,14 +930,7 @@ TEST_F(Test_AT_RcvImsaCirepiInd, Test_AT_RcvImsaCirepiInd_002)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_AT_RcvImsaCireguInd
-功能描述 : AT_RcvImsaCireguInd UT工程类
-修改历史 :
- 1.日   期  : 2013-10-17
-   作   者  : Y00213812
-   修改内容 : 新增类
-******************************************************************************/
+
 class Test_AT_RcvImsaCireguInd: public ::testing::Test
 {
 public:
@@ -1200,15 +944,7 @@ public:
         AT_InitCtx();
     }
 };
-/******************************************************************************
-测试用例编号: Test_AT_RcvImsaCireguInd_001
-测试用例标题: ID_IMSA_AT_CIREGU_IND消息中携带的clientId错误
-预期结果    : 返回VOS_ERR
-修改历史    :
- 1.日   期  : 2013-10-17
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_RcvImsaCireguInd, Test_AT_RcvImsaCireguInd_001)
 {
     // 变量声明
@@ -1239,15 +975,7 @@ TEST_F(Test_AT_RcvImsaCireguInd, Test_AT_RcvImsaCireguInd_001)
     // 执行检查
     GlobalMockObject::verify();
 }
-/******************************************************************************
-测试用例编号: Test_AT_RcvImsaCireguInd_002
-测试用例标题: ID_IMSA_AT_CIREGU_IND消息中携带的clientId错误
-预期结果    : 返回VOS_ERR
-修改历史    :
- 1.日   期  : 2013-10-17
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_RcvImsaCireguInd, Test_AT_RcvImsaCireguInd_002)
 {
     // 变量声明

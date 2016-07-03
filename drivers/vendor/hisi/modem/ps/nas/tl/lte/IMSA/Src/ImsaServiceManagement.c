@@ -159,16 +159,7 @@ extern VOS_UINT32 IMSA_IsTempForbTimerRunning(VOS_VOID);
   3 Function
 *****************************************************************************/
 /*lint -e961*/
-/*****************************************************************************
- Function Name  : IMSA_CONTROL_InitConfigPara
- Description    : IMSA 总控模块初始化配置信息
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-07-09  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONTROL_InitConfigPara( VOS_VOID )
 {
     IMSA_CONFIG_PARA_STRU              *pstImsaConfigPara = VOS_NULL_PTR;
@@ -192,16 +183,7 @@ VOS_VOID IMSA_CONTROL_InitConfigPara( VOS_VOID )
     pstImsaConfigPara->stCMCCCustomReq.ucCMCCCustomTqosFlag         = VOS_FALSE;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONTROL_InitConfigPara
- Description    : IMSA 总控模块初始化配置信息
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-07-09  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONTROL_InitNetworkInfo( VOS_VOID )
 {
     IMSA_NETWORK_INFO_STRU             *pstImsaNetworkInfo = VOS_NULL_PTR;
@@ -216,16 +198,7 @@ VOS_VOID IMSA_CONTROL_InitNetworkInfo( VOS_VOID )
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_CONTROL_Init
- Description    : IMSA 总控模块的初始化
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-07-09  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONTROL_Init( VOS_VOID )
 {
     IMSA_CONTROL_MANAGER_STRU          *pstImsaControlManager   = VOS_NULL_PTR;
@@ -292,16 +265,7 @@ VOS_VOID IMSA_CONTROL_Init( VOS_VOID )
     return ;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONTROL_ClearResource
- Description    : IMSA 总控模块的清除资源
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-07-23  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONTROL_ClearResource( VOS_VOID )
 {
     IMSA_CONTROL_MANAGER_STRU          *pstImsaControlManager   = VOS_NULL_PTR;
@@ -391,17 +355,7 @@ VOS_VOID IMSA_CONTROL_ClearResource( VOS_VOID )
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_RatFormatTransform
- Description    : 接入技术格式转换
- Input          : penImsaRat------------IMSA接入技术指针
-                  enMmaRat--------------MMA接入技术
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-07-04  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SRV_RatFormatTransform
 (
     IMSA_CAMPED_RAT_TYPE_ENUM_UINT8    *penImsaRat,
@@ -428,16 +382,7 @@ VOS_VOID IMSA_SRV_RatFormatTransform
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_IsCurRatSupportIms
- Description    : 当前接入技术是否支持IMS特性
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
 
- History        :
-      1.lihong 00150010      2013-07-04  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_SRV_IsCurRatSupportIms( VOS_VOID )
 {
     IMSA_NETWORK_INFO_STRU             *pstImsaNwInfo       = VOS_NULL_PTR;
@@ -473,16 +418,7 @@ VOS_UINT32 IMSA_SRV_IsCurRatSupportIms( VOS_VOID )
     return IMSA_FALSE;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_IsCurRatSupportEms
- Description    : 当前接入技术是否支持EMS特性
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
 
- History        :
-      1.lihong 00150010      2013-07-05  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_SRV_IsCurRatSupportEms( VOS_VOID )
 {
     IMSA_NETWORK_INFO_STRU             *pstImsaNwInfo       = VOS_NULL_PTR;
@@ -518,16 +454,7 @@ VOS_UINT32 IMSA_SRV_IsCurRatSupportEms( VOS_VOID )
     return IMSA_FALSE;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_IsNrmSrvIsimParaSatisfied
- Description    : 获取IMS普通服务的ISIM参数是否具备
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
 
- History        :
-      1.lihong 00150010      2013-07-04  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_SRV_IsNrmSrvIsimParaSatisfied( VOS_VOID )
 {
     IMSA_COMMON_INFO_STRU              *pstImsaCommonInfo = VOS_NULL_PTR;
@@ -580,17 +507,7 @@ VOS_UINT32 IMSA_SRV_IsNrmSrvIsimParaSatisfied( VOS_VOID )
     return IMSA_TRUE;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_IsNrmSrvConditonSatisfied
- Description    : 获取IMS普通服务的条件是否具备
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
 
- History        :
-      1.lihong 00150010      2013-07-04  Draft Enact
-      2.wangchen 00209181    2015-06-23  Modify:volte
-*****************************************************************************/
 IMSA_NRM_SRV_CON_SAT_STATUE_ENMUM_UINT32 IMSA_SRV_IsNrmSrvConditonSatisfied( VOS_VOID )
 {
     /* 当前接入技术支持IMS特性 */
@@ -657,16 +574,7 @@ IMSA_NRM_SRV_CON_SAT_STATUE_ENMUM_UINT32 IMSA_SRV_IsNrmSrvConditonSatisfied( VOS
     return IMSA_NRM_SRV_CON_SAT_STATUE_SUCC;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_IsMakeEmcCallInNrmSrvSatisfied
- Description    : 在NORMAL SERVICE发起紧急呼的条件是否具备
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
 
- History        :
-      1.lihong 00150010      2013-07-05  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_SRV_IsMakeEmcCallInNrmSrvSatisfied( VOS_VOID )
 {
     IMSA_NETWORK_INFO_STRU             *pstImsaNwInfo       = VOS_NULL_PTR;
@@ -702,16 +610,7 @@ VOS_UINT32 IMSA_SRV_IsMakeEmcCallInNrmSrvSatisfied( VOS_VOID )
     return IMSA_TRUE;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_IsEmcSrvConditonSatisfied
- Description    : 获取IMS紧急服务的条件是否具备
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
 
- History        :
-      1.lihong 00150010      2013-07-05  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_SRV_IsEmcSrvConditonSatisfied( VOS_VOID )
 {
     IMSA_NETWORK_INFO_STRU             *pstImsaNwInfo       = VOS_NULL_PTR;
@@ -808,16 +707,7 @@ VOS_UINT32 IMSA_SRV_IsEmcSrvConditonSatisfied( VOS_VOID )
     return IMSA_TRUE;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_GetRegStatusFromSrvStatus
- Description    : 根据服务状态，获取正常注册状态
- Input          : enSrvStatus-----------服务状态
- Output         : VOS_VOID
- Return Value   : IMSA_NORMAL_REG_STATUS_ENUM_UINT32
 
- History        :
-      1.lihong 00150010      2013-06-28  Draft Enact
-*****************************************************************************/
 IMSA_NORMAL_REG_STATUS_ENUM_UINT32 IMSA_SRV_GetRegStatusFromSrvStatus
 (
     IMSA_SRV_STATUS_ENUM_UINT8          enSrvStatus
@@ -847,16 +737,7 @@ IMSA_NORMAL_REG_STATUS_ENUM_UINT32 IMSA_SRV_GetRegStatusFromSrvStatus
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_GetAtRegStatusFromSrvStatus
- Description    : 根据服务状态，获取正常AT注册状态
- Input          : enSrvStatus-----------服务状态
- Output         : VOS_VOID
- Return Value   : IMSA_NORMAL_REG_STATUS_ENUM_UINT32
 
- History        :
-      1.leili 00132387      2013-10-14  Draft Enact
-*****************************************************************************/
 IMSA_NORMAL_AT_REG_STATUS_ENUM_UINT32 IMSA_SRV_GetAtRegStatusFromSrvStatus
 (
     IMSA_SRV_STATUS_ENUM_UINT8          enSrvStatus
@@ -876,17 +757,7 @@ IMSA_NORMAL_AT_REG_STATUS_ENUM_UINT32 IMSA_SRV_GetAtRegStatusFromSrvStatus
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_IsSrvStatusEqual
- Description    : 判断服务状态是否与入参相同
- Input          : enConnType-------------连接类型
-                  enTimerId--------------定时器类型
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-07-08  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_SRV_IsSrvStatusEqual
 (
     IMSA_SRV_TYPE_ENUM_UINT8            enSrvType,
@@ -915,16 +786,7 @@ VOS_UINT32 IMSA_SRV_IsSrvStatusEqual
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_SndConnSetupReq
- Description    : 发送内部消息ID_IMSA_CONN_SETUP_REQ
- Input          : enConnType----------------连接类型
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-07-04  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SRV_SndConnSetupReq
 (
     VOS_UINT32                          ulReEstablishFlag,
@@ -978,16 +840,7 @@ VOS_VOID IMSA_SRV_SndConnSetupReq
     IMSA_SEND_INTRA_MSG(pstConnSetupReq);
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_SndConnRelReq
- Description    : 发送内部消息ID_IMSA_CONN_REL_REQ
- Input          : enConnType----------------连接类型
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-07-08  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SRV_SndConnRelReq
 (
     IMSA_CONN_TYPE_ENUM_UINT32              enConnType,
@@ -1031,17 +884,7 @@ VOS_VOID IMSA_SRV_SndConnRelReq
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_SndRegRegReq
- Description    : 发送内部消息ID_IMSA_REG_REG_REQ
- Input          : enRegType-----------------注册类型
-                  enAddrType----------------使用的地址对类型
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-07-04  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SRV_SndRegRegReq
 (
     IMSA_REG_TYPE_ENUM_UINT8            enRegType,
@@ -1095,17 +938,7 @@ VOS_VOID IMSA_SRV_SndRegRegReq
     IMSA_SEND_INTRA_MSG(pstRegRegReq);
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_SndNrmCallSrvStatusInd
- Description    : 发送内部消息ID_IMSA_NRM_CALL_SRV_STATUS_IND
- Input          : enServiceStatus-----------------通知CALL模块的普通服务状态
-                  enNoSrvCause--------------------无服务时指示原因值
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-07-09  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SRV_SndNrmCallSrvStatusInd
 (
     IMSA_CALL_SERVICE_STATUS_ENUM_UINT32       enCallSrvStatus,
@@ -1148,17 +981,7 @@ VOS_VOID IMSA_SRV_SndNrmCallSrvStatusInd
     IMSA_SEND_INTRA_MSG(pstNrmCallSrvStatusInd);
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_SndEmcCallSrvStatusInd
- Description    : 发送内部消息ID_IMSA_EMC_CALL_SRV_STATUS_IND
- Input          : enServiceStatus-----------------通知CALL模块的紧急服务状态
-                  enNoSrvCause--------------------无服务时指示原因值
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-07-09  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SRV_SndEmcCallSrvStatusInd
 (
     IMSA_CALL_SERVICE_STATUS_ENUM_UINT32       enCallSrvStatus,
@@ -1201,17 +1024,7 @@ VOS_VOID IMSA_SRV_SndEmcCallSrvStatusInd
     IMSA_SEND_INTRA_MSG(pstEmcCallSrvStatusInd);
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_SndRegDeregReq
- Description    : 发送内部消息ID_IMSA_REG_DEREG_REQ
- Input          : enDeRegType-----------------去注册类型
-                  ulLocalFlag-----------------本地去注册标识
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-07-05  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SRV_SndRegDeregReq
 (
     IMSA_REG_TYPE_ENUM_UINT8            enDeRegType,
@@ -1254,17 +1067,7 @@ VOS_VOID IMSA_SRV_SndRegDeregReq
     IMSA_SEND_INTRA_MSG(pstRegDeregReq);
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_SndNrmRegStatusNotify
- Description    : 发送内部消息ID_IMSA_NORMAL_REG_STATUS_NOTIFY
- Input          : pstSubsciptionInfo-----------------订阅信息指针
-                  enNormalRegStatus------------------普通注册状态
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-07-10  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SRV_SndNrmRegStatusNotify
 (
     const IMSA_SUBSCRIPTION_INFO_STRU  *pstSubsciptionInfo,
@@ -1310,16 +1113,7 @@ VOS_VOID IMSA_SRV_SndNrmRegStatusNotify
     IMSA_SND_MSG(pstNrmRegStatusNotify);
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_NrmRegStatusNotify
- Description    : 将最新的普通注册状态通知订阅模块
- Input          : enNrmRegStatus-------------普通注册状态
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-07-10  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SRV_NrmRegStatusNotify
 (
     IMSA_NORMAL_REG_STATUS_ENUM_UINT32  enNrmRegStatus
@@ -1344,16 +1138,7 @@ VOS_VOID IMSA_SRV_NrmRegStatusNotify
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_GetImsVoiceCapability
- Description    : 取得IMS VOICE能力可用或不可用
- Input          : penImsVoiceCap-------------IMS VOICE能力
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.xiongxianghui 00253310      2015-04-13  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_SRV_GetImsVoiceCapability(MSCC_IMSA_IMS_VOICE_CAP_ENUM_UINT8 *penImsVoiceCap)
 {
     VOS_UINT32                    ulResult           = IMSA_FALSE;
@@ -1394,17 +1179,7 @@ VOS_UINT32 IMSA_SRV_GetImsVoiceCapability(MSCC_IMSA_IMS_VOICE_CAP_ENUM_UINT8 *pe
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_SetServcieStatus
- Description    : 设置服务状态
- Input          : enSrvType-------------服务类型
-                  enSrvStatus-----------服务状态
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-06-28  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SRV_SetServcieStatus
 (
     IMSA_SRV_TYPE_ENUM_UINT8            enSrvType,
@@ -1478,17 +1253,7 @@ VOS_VOID IMSA_SRV_SetServcieStatus
     }
 
 }
-/*****************************************************************************
- Function Name  : IMSA_SRV_ProcConnSetupIndSucc
- Description    : IMSA内部消息ID_IMSA_CONN_SETUP_IND处理函数，连接建立成功
- Input          : pstConnSetupIndMsg--------------消息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-07-08  Draft Enact
-      2.lihong 00150010      2013-12-06  Modify:emc dedicated
-*****************************************************************************/
 VOS_VOID IMSA_SRV_ProcConnSetupIndSucc
 (
     const IMSA_CONN_SETUP_IND_STRU     *pstConnSetupIndMsg
@@ -1614,16 +1379,7 @@ VOS_VOID IMSA_SRV_ProcConnSetupIndSucc
     return ;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_ProcConnSetupIndFail
- Description    : IMSA内部消息ID_IMSA_CONN_SETUP_IND处理函数，连接建立失败
- Input          : pstConnSetupIndMsg--------------消息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-07-08  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SRV_ProcConnSetupIndFail
 (
     const IMSA_CONN_SETUP_IND_STRU     *pstConnSetupIndMsg
@@ -1750,17 +1506,7 @@ VOS_VOID IMSA_SRV_ProcConnSetupIndFail
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_ProcRegRegIndSucc
- Description    : IMSA内部消息ID_IMSA_REG_REG_IND处理函数，注册成功
- Input          : pstRegRegIndMsg--------------消息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-07-08  Draft Enact
-      2.wangchen 00209181    2015-11-20  Modify:dsds
-*****************************************************************************/
 VOS_VOID IMSA_SRV_ProcRegRegIndSucc
 (
     const IMSA_REG_REG_IND_STRU        *pstRegRegIndMsg
@@ -1803,17 +1549,7 @@ VOS_VOID IMSA_SRV_ProcRegRegIndSucc
     return ;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_SetImsRegForbidden
- Description    : 设置IMS注册禁止标识
- Input          : enRegType--------------注册类型
-                  enResult---------------注册结果
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.xiongxianghui 00253310      2015-11-26  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SRV_SetImsRegForbidden
 (
     IMSA_REG_TYPE_ENUM_UINT8       enRegType,
@@ -1829,16 +1565,7 @@ VOS_VOID IMSA_SRV_SetImsRegForbidden
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_ProcRegRegIndFail
- Description    : IMSA内部消息ID_IMSA_REG_REG_IND处理函数，注册失败
- Input          : pstRegRegIndMsg--------------消息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-07-08  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SRV_ProcRegRegIndFail
 (
     const IMSA_REG_REG_IND_STRU        *pstRegRegIndMsg
@@ -1973,16 +1700,7 @@ VOS_VOID IMSA_SRV_ProcRegRegIndFail
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_ProcRegRegIndMsg
- Description    : IMSA内部消息ID_IMSA_REG_REG_IND处理函数
- Input          : pstRegRegIndMsg------------消息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-06-24  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SRV_ProcRegRegIndMsg
 (
     const IMSA_REG_REG_IND_STRU        *pstRegRegIndMsg
@@ -2010,16 +1728,7 @@ VOS_VOID IMSA_SRV_ProcRegRegIndMsg
         IMSA_SRV_ProcRegRegIndFail(pstRegRegIndMsg);
     }
 }
-/*****************************************************************************
- Function Name  : IMSA_SRV_RegConningStateProcRegDeregIndMsg
- Description    : REG+CONNING状态下，IMSA内部消息ID_IMSA_REG_DEREG_IND处理函数
- Input          : enRegType--------------注册类型
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2014-3-18  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SRV_RegConningStateProcRegDeregIndMsg
 (
     IMSA_REG_TYPE_ENUM_UINT8            enRegType
@@ -2063,16 +1772,7 @@ VOS_VOID IMSA_SRV_RegConningStateProcRegDeregIndMsg
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_ProcRegDeregIndWithNextAddr
- Description    : IMSA内部消息ID_IMSA_REG_DEREG_IND处理函数
- Input          : pstRegDeregIndMsg--------------消息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-11-30  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SRV_ProcRegDeregIndWithAddr
 (
     IMSA_SRV_TYPE_ENUM_UINT8            enSrvType,
@@ -2152,16 +1852,7 @@ VOS_VOID IMSA_SRV_ProcRegDeregIndWithAddr
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_ProcRegDeregIndWithNextAddr
- Description    : IMSA内部消息ID_IMSA_REG_DEREG_IND处理函数
- Input          : pstRegDeregIndMsg--------------消息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-11-30  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SRV_ProcRegDeregIndActionNull
 (
     IMSA_SRV_TYPE_ENUM_UINT8            enSrvType
@@ -2179,15 +1870,17 @@ VOS_VOID IMSA_SRV_ProcRegDeregIndActionNull
                                   IMSA_CALL_SERVICE_STATUS_NO_SERVICE,
                                   IMSA_CALL_NO_SRV_CAUSE_REG_ERR);
 
-    /* 如果是紧急类型的失败，则直接通知TAF器激活承载，状态迁移至IDLE+dEREG */
     if (IMSA_SRV_TYPE_EMC == enSrvType)
     {
-        IMSA_SRV_SndConnRelReq(enSrvType,
+        /* GCF 19.5.10用例，紧急呼挂断，IMS紧急注册超时后，上报紧急用户注销，
+           IMSA收到后不再主动释放紧急PDN连接，状态迁移至CONN+DEREG */
+        /* IMSA_SRV_SndConnRelReq(enSrvType,
                                 IMSA_CONN_SIP_PDP_TYPE_SIGNAL);
 
         IMSA_SRV_SetServcieStatus(  enSrvType,
-                                    IMSA_SRV_STATUS_IDLE_DEREG);
-
+                                    IMSA_SRV_STATUS_IDLE_DEREG); */
+        IMSA_SRV_SetServcieStatus(  enSrvType,
+                                    IMSA_SRV_STATUS_CONN_DEREG);
         return;
     }
 
@@ -2249,16 +1942,7 @@ VOS_VOID IMSA_SRV_ProcRegDeregIndActionNull
             break;
     }
 }
-/*****************************************************************************
- Function Name  : IMSA_SRV_ProcRegDeregIndWithNextAddr
- Description    : IMSA内部消息ID_IMSA_REG_DEREG_IND处理函数
- Input          : pstRegDeregIndMsg--------------消息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-11-30  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SRV_ProcRegDeregIndConnDereging
 (
     IMSA_SRV_TYPE_ENUM_UINT8            enSrvType
@@ -2339,17 +2023,7 @@ VOS_VOID IMSA_SRV_ProcRegDeregIndConnDereging
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_ProcRegDeregIndMsg
- Description    : IMSA内部消息ID_IMSA_REG_DEREG_IND处理函数
- Input          : pstRegDeregIndMsg--------------消息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-06-24  Draft Enact
-      2.wangchen 00209181    2015-11-30  Modify:volte dsds
-*****************************************************************************/
 VOS_VOID IMSA_SRV_ProcRegDeregIndMsg
 (
     const IMSA_REG_DEREG_IND_STRU      *pstRegDeregIndMsg
@@ -2442,16 +2116,7 @@ VOS_VOID IMSA_SRV_ProcRegDeregIndMsg
     return ;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_ProcConnSetupIndMsg
- Description    : IMSA内部消息ID_IMSA_CONN_SETUP_IND处理函数
- Input          : pstConnSetupIndMsg--------------消息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-07-05  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SRV_ProcConnSetupIndMsg
 (
     const IMSA_CONN_SETUP_IND_STRU     *pstConnSetupIndMsg
@@ -2467,17 +2132,7 @@ VOS_VOID IMSA_SRV_ProcConnSetupIndMsg
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_ProcEmcConnRelIndMsg
- Description    : IMSA内部消息ID_IMSA_CONN_REL_IND处理函数,紧急连接
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-06-24  Draft Enact
-      2.lihong 00150010      2013-12-06  Modify:Emc dedicated
-*****************************************************************************/
 VOS_VOID IMSA_SRV_ProcEmcConnRelIndMsg
 (
     IMSA_CONN_SIP_PDP_TYPE_ENUM_UINT32      enSipPdpType
@@ -2546,16 +2201,7 @@ VOS_VOID IMSA_SRV_ProcEmcConnRelIndMsg
     IMSA_SRV_SetServcieStatus(IMSA_SRV_TYPE_EMC, IMSA_SRV_STATUS_IDLE_DEREG);
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_ProcConnRelIndMsg
- Description    : IMSA内部消息ID_IMSA_CONN_REL_IND处理函数
- Input          : pstConnRelIndMsg--------------消息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-06-24  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SRV_ProcNormalConnSigalBearerRelIndMsg( VOS_VOID )
 {
     IMSA_CONTROL_MANAGER_STRU          *pstControlMagnaer   = VOS_NULL_PTR;
@@ -2717,17 +2363,7 @@ VOS_VOID IMSA_SRV_ProcNormalConnSigalBearerRelIndMsg( VOS_VOID )
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_ProcConnRelIndMsg
- Description    : IMSA内部消息ID_IMSA_CONN_REL_IND处理函数
- Input          : pstConnRelIndMsg--------------消息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-06-24  Draft Enact
-      2.lihong 00150010      2013-12-06  Modify:Emc dedicated
-*****************************************************************************/
 VOS_VOID IMSA_SRV_ProcConnRelIndMsg
 (
     const IMSA_CONN_REL_IND_STRU       *pstConnRelIndMsg
@@ -2770,16 +2406,7 @@ VOS_VOID IMSA_SRV_ProcConnRelIndMsg
         IMSA_SRV_ProcNormalConnSigalBearerRelIndMsg();
     }
 }
-/*****************************************************************************
- Function Name  : IMSA_SRV_ProcNormalConnSignalBearerModifyIndConnReging
- Description    : IMSA内部消息ID_IMSA_CONN_MODIFY_IND处理函数
- Input          : pstConnModifyIndMsg--------------消息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-12-01  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SRV_ProcNormalConnSignalBearerModifyIndConnReging
 (
     VOS_VOID
@@ -2845,16 +2472,7 @@ VOS_VOID IMSA_SRV_ProcNormalConnSignalBearerModifyIndConnReging
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_ProcNormalConnSignalBearerModifyIndConnDereg
- Description    : IMSA内部消息ID_IMSA_CONN_MODIFY_IND处理函数
- Input          : pstConnModifyIndMsg--------------消息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-12-01  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SRV_ProcNormalConnSignalBearerModifyIndConnDereg
 (
     VOS_VOID
@@ -2928,16 +2546,7 @@ VOS_VOID IMSA_SRV_ProcNormalConnSignalBearerModifyIndConnDereg
             break;
     }
 }
-/*****************************************************************************
- Function Name  : IMSA_SRV_ProcNormalConnSignalBearerModifyIndConnDereging
- Description    : IMSA内部消息ID_IMSA_CONN_MODIFY_IND处理函数
- Input          : pstConnModifyIndMsg--------------消息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-12-01  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SRV_ProcNormalConnSignalBearerModifyIndConnDereging
 (
     VOS_VOID
@@ -2986,16 +2595,7 @@ VOS_VOID IMSA_SRV_ProcNormalConnSignalBearerModifyIndConnDereging
             break;
     }
 }
-/*****************************************************************************
- Function Name  : IMSA_SRV_ProcNormalConnSignalBearerModifyIndConnDereging
- Description    : IMSA内部消息ID_IMSA_CONN_MODIFY_IND处理函数
- Input          : pstConnModifyIndMsg--------------消息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-12-01  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SRV_ProcNormalConnSignalBearerModifyPcscfInvalid
 (
     VOS_VOID
@@ -3063,16 +2663,7 @@ VOS_VOID IMSA_SRV_ProcNormalConnSignalBearerModifyPcscfInvalid
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_ProcNormalConnSignalBearerModifyIndConnDereging
- Description    : IMSA内部消息ID_IMSA_CONN_MODIFY_IND处理函数
- Input          : pstConnModifyIndMsg--------------消息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-12-01  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SRV_ProcNormalConnSignalBearerModifyRegParaInvalid
 (
     VOS_VOID
@@ -3132,16 +2723,7 @@ VOS_VOID IMSA_SRV_ProcNormalConnSignalBearerModifyRegParaInvalid
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_ProcConnModifyIndMsg
- Description    : IMSA内部消息ID_IMSA_CONN_MODIFY_IND处理函数
- Input          : pstConnModifyIndMsg--------------消息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-06-24  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SRV_ProcNormalConnSignalBearerModifyIndMsg
 (
     const IMSA_CONN_MODIFY_IND_STRU    *pstConnModifyIndMsg
@@ -3189,17 +2771,7 @@ VOS_VOID IMSA_SRV_ProcNormalConnSignalBearerModifyIndMsg
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_ProcConnModifyIndMsg
- Description    : IMSA内部消息ID_IMSA_CONN_MODIFY_IND处理函数
- Input          : pstConnModifyIndMsg--------------消息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-06-24  Draft Enact
-      2.lihong 00150010      2013-12-06  Modify
-*****************************************************************************/
 VOS_VOID IMSA_SRV_ProcConnModifyIndMsg
 (
     const IMSA_CONN_MODIFY_IND_STRU    *pstConnModifyIndMsg
@@ -3219,16 +2791,7 @@ VOS_VOID IMSA_SRV_ProcConnModifyIndMsg
         IMSA_SRV_ProcNormalConnSignalBearerModifyIndMsg(pstConnModifyIndMsg);
     }
 }
-/*****************************************************************************
- Function Name  : IMSA_SRV_ProcCallRsltWithFirstAddr
- Description    : IMSA内部消息ID_IMSA_CALL_RESULT_ACTION_IND处理函数
- Input          : pstCallRsltActionIndMsg--------------消息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-11-28  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SRV_ProcCallRsltWithFirstAddr
 (
     const IMSA_CALL_RESULT_ACTION_IND_STRU *pstCallRsltActionIndMsg
@@ -3281,16 +2844,7 @@ VOS_VOID IMSA_SRV_ProcCallRsltWithFirstAddr
     return;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_ProcCallRsltWithNextAddr
- Description    : IMSA内部消息ID_IMSA_CALL_RESULT_ACTION_IND处理函数
- Input          : pstCallRsltActionIndMsg--------------消息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-11-28  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SRV_ProcCallRsltWithNextAddr
 (
     const IMSA_CALL_RESULT_ACTION_IND_STRU *pstCallRsltActionIndMsg
@@ -3325,16 +2879,7 @@ VOS_VOID IMSA_SRV_ProcCallRsltWithNextAddr
     return;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_ProcCallRsltWithNextAddr
- Description    : IMSA内部消息ID_IMSA_CALL_RESULT_ACTION_IND处理函数
- Input          : pstCallRsltActionIndMsg--------------消息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-11-28  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SRV_ProcCallRsltRestoration
 (
     const IMSA_CALL_RESULT_ACTION_IND_STRU *pstCallRsltActionIndMsg
@@ -3417,18 +2962,7 @@ VOS_VOID IMSA_SRV_ProcCallRsltRestoration
     return;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_ProcCallRsltActionIndMsg
- Description    : IMSA内部消息ID_IMSA_CALL_RESULT_ACTION_IND处理函数
- Input          : pstCallRsltActionIndMsg--------------消息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-06-24  Draft Enact
-      2.wangchen 00209181    2014-06-19  Modify vtlte
-      3.wangchen 00209181   2015-11-28   Modify:volte dsds
-*****************************************************************************/
 VOS_VOID IMSA_SRV_ProcCallRsltActionIndMsg
 (
     const IMSA_CALL_RESULT_ACTION_IND_STRU *pstCallRsltActionIndMsg
@@ -3462,16 +2996,7 @@ VOS_VOID IMSA_SRV_ProcCallRsltActionIndMsg
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_ProcCallRsltActionIndMsg
- Description    : IMSA内部消息ID_IMSA_CALL_SRVCC_SUCC_IND处理函数
- Input          : IMSA_SRV_ProcCallSrvccSuccIndMsg--------------消息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.zhaochen 00308719      2015-12-24  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SRV_ProcCallSrvccSuccIndMsg
 (
     const IMSA_CALL_SRVCC_SUCC_IND_STRU *pstCallSrvccSuccIndMsg
@@ -3491,16 +3016,7 @@ VOS_VOID IMSA_SRV_ProcCallSrvccSuccIndMsg
     IMSA_SetLastNrmRegStatus(IMSA_NORMAL_REG_STATUS_DEREG);
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_ProcTransToNotSupportEms
- Description    : EMS转为不支持时的处理
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-10-11  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SRV_ProcTransToNotSupportEms( VOS_VOID )
 {
     switch (IMSA_SRV_GetEmcSrvStatus())
@@ -3575,17 +3091,7 @@ VOS_VOID IMSA_SRV_ProcTransToNotSupportEms( VOS_VOID )
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_UpdateRat
- Description    : 更新接入技术
- Input          : enRat------------------接入技术
- Output         : pulIsNotfiyNrmNoSrv----是否通知正常服务无服务
-                  pulIsNotfiyEmcNoSrv----是否通知紧急服务无服务
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-10-11  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SRV_UpdateRat
 (
     MSCC_IMSA_RAT_TYPE_ENUM_UINT8        enRat,
@@ -3645,18 +3151,7 @@ VOS_VOID IMSA_SRV_UpdateRat
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_UpdateImsVoPsStatus
- Description    : 更新网侧是否支持IMS VOICE标识
- Input          : enImsVoPsInd------------------IMS VOICE标识
-                  ulIsNotfiyNrmNoSrv------------是否通知正常服务无服务
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-10-11  Draft Enact
-      2.wangchen 00209181    2013-10-12  Modify
-*****************************************************************************/
 VOS_VOID IMSA_SRV_UpdateImsVoPsStatus
 (
     MSCC_IMSA_IMS_VOPS_INDICATOR_ENUM_UINT8      enImsVoPsInd
@@ -3677,17 +3172,7 @@ VOS_VOID IMSA_SRV_UpdateImsVoPsStatus
 
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_UpdateEmsStatus
- Description    : 更新网侧是否支持EMS标识
- Input          : enEmsInd----------------------EMS标识
-                  ulIsNotfiyEmcNoSrv------------是否通知紧急服务无服务
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-10-11  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SRV_UpdateEmsStatus
 (
     MSCC_IMSA_EMS_INDICATOR_ENUM_UINT8           enEmsInd
@@ -3702,16 +3187,7 @@ VOS_VOID IMSA_SRV_UpdateEmsStatus
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_ProcWhenRoamNotSatisfiedConnReging
- Description    : 处理漫游网络去注册流程的函数
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-11-30  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SRV_ProcWhenRoamNotSatisfiedConnReging(VOS_VOID)
 {
     IMSA_SRV_SetServcieStatus(IMSA_SRV_TYPE_NORMAL, IMSA_SRV_STATUS_CONN_DEREGING);
@@ -3752,16 +3228,7 @@ VOS_VOID IMSA_SRV_ProcWhenRoamNotSatisfiedConnReging(VOS_VOID)
 
     }
 }
-/*****************************************************************************
- Function Name  : IMSA_SRV_ProcWhenRoamNotSatisfiedConnReging
- Description    : 处理漫游网络去注册流程的函数
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-11-30  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SRV_ProcWhenRoamNotSatisfiedConningDeReg(VOS_VOID)
 {
 
@@ -3804,16 +3271,7 @@ VOS_VOID IMSA_SRV_ProcWhenRoamNotSatisfiedConningDeReg(VOS_VOID)
     }
 
 }
-/*****************************************************************************
- Function Name  : IMSA_SRV_ProcWhenRoamNotSatisfiedConnReg
- Description    : 处理漫游网络去注册流程的函数
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-11-30  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SRV_ProcWhenRoamNotSatisfiedConnReg(VOS_VOID)
 {
 
@@ -3853,17 +3311,7 @@ VOS_VOID IMSA_SRV_ProcWhenRoamNotSatisfiedConnReg(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_ProcWhenRoamNotSatisfied
- Description    : 处理漫游网络去注册流程的函数
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-07-02  Draft Enact
-      2.zhaochen 00308719   2015-08-25  Modify for VoLTE
-*****************************************************************************/
 VOS_VOID IMSA_SRV_ProcWhenRoamNotSatisfied(VOS_VOID)
 {
     IMSA_SRV_STATUS_ENUM_UINT8          enNrmSrvStatus      = IMSA_SRV_STATUS_BUTT;
@@ -3928,16 +3376,7 @@ VOS_VOID IMSA_SRV_ProcWhenRoamNotSatisfied(VOS_VOID)
     }
 
 }
-/*****************************************************************************
- Function Name  : IMSA_SRV_ProcNrmSrvConditionSatisfiedResult
- Description    : MMA服务变更消息处理函数
- Input          : pstServiceChangeInd-----------SERVICE CHANGE IND消息
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-11-30  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_SRV_PreProcNrmSrvConSatStatus
 (
     IMSA_NRM_SRV_CON_SAT_STATUE_ENMUM_UINT32    enImsaSrvStatue
@@ -3987,16 +3426,7 @@ VOS_UINT32 IMSA_SRV_PreProcNrmSrvConSatStatus
 
     return IMSA_FALSE;
 }
-/*****************************************************************************
- Function Name  : IMSA_SRV_ProcServiceChangeIndIdleDereg
- Description    : MMA服务变更消息处理函数
- Input          : pstServiceChangeInd-----------SERVICE CHANGE IND消息
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181    2015-12-07  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SRV_ProcServiceChangeIndIdleDereg
 (
     VOS_VOID
@@ -4052,16 +3482,7 @@ VOS_VOID IMSA_SRV_ProcServiceChangeIndIdleDereg
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_ProcServiceChangeIndIdleDereg
- Description    : MMA服务变更消息处理函数
- Input          : pstServiceChangeInd-----------SERVICE CHANGE IND消息
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181    2015-12-07  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SRV_ProcServiceChangeIndConnDereging
 (
     VOS_VOID
@@ -4141,16 +3562,7 @@ VOS_VOID IMSA_SRV_ProcServiceChangeIndConnDereging
             break;
     }
 }
-/*****************************************************************************
- Function Name  : IMSA_SRV_ProcServiceChangeIndIdleDereg
- Description    : MMA服务变更消息处理函数
- Input          : pstServiceChangeInd-----------SERVICE CHANGE IND消息
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181    2015-12-07  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SRV_ProcServiceChangeIndConnDereg
 (
     VOS_VOID
@@ -4206,17 +3618,7 @@ VOS_VOID IMSA_SRV_ProcServiceChangeIndConnDereg
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_ProcServiceChangeInd
- Description    : MMA服务变更消息处理函数
- Input          : pstServiceChangeInd-----------SERVICE CHANGE IND消息
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-07-04  Draft Enact
-      2.wangchen 00209181    2015-11-18  Modify:volte dsds
-*****************************************************************************/
 VOS_VOID IMSA_SRV_ProcServiceChangeInd
 (
     const MSCC_IMSA_SERVICE_CHANGE_IND_STRU     *pstServiceChangeInd
@@ -4319,16 +3721,7 @@ VOS_VOID IMSA_SRV_ProcServiceChangeInd
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_ProcCampInfoChangeInd
- Description    : MMA漫游信息变更消息处理函数
- Input          : pstRoamingChangeInd-----------ROAMING CHANGE IND消息
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-07-27  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SRV_ProcCampInfoChangeInd
 (
     const MSCC_IMSA_CAMP_INFO_CHANGE_IND_STRU     *pstCampInfoChangeInd
@@ -4355,16 +3748,7 @@ VOS_VOID IMSA_SRV_ProcCampInfoChangeInd
     IMSA_ConfigCgi2Ims();
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_ProcVoiceDomainChangeInd
- Description    : MMA VOICE DOMAIN信息变更消息处理函数
- Input          : pstVoiceDomainChangeInd-----------VOICE DOMAIN CHANGE IND消息
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-02-26  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SRV_ProcVoiceDomainChangeInd
 (
     const MSCC_IMSA_VOICE_DOMAIN_CHANGE_IND_STRU     *pstVoiceDomainChangeInd
@@ -4381,16 +3765,7 @@ VOS_VOID IMSA_SRV_ProcVoiceDomainChangeInd
     pstControlManager->stImsaConfigPara.enVoiceDomain = (IMSA_VOICE_DOMAIN_ENUM_UINT32)pstVoiceDomainChangeInd->enVoiceDomain;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_ProcDeregReq()
- Description    : IMSA SERVICE模块处理DEREG请求
- Input          : enDeregCause----------去注册类型
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-07-05  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SRV_ProcDeregReq
 (
     IMSA_SRV_DEREG_CAUSE_ENUM_UINT32    enDeregCause
@@ -4478,16 +3853,7 @@ VOS_VOID IMSA_SRV_ProcDeregReq
     return ;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SRV_ProcReceivedUsimReadfileCnf()
- Description    : USIM文件读取完成,发起初始注册
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.zhaochen 00308719   2016-01-25  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SRV_ProcReceivedUsimReadfileCnf(VOS_VOID)
 {
     #if (FEATURE_ON == FEATURE_DSDS)
@@ -4546,19 +3912,7 @@ VOS_VOID IMSA_SRV_ProcReceivedUsimReadfileCnf(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_StartImsNormalService
- Description    : 控制管理模块提供给呼叫模块的API, Call模块在打普通电话时调用
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
-                  返回结果是0，表示Control可以提供正常服务，Call可以直接打电话
-                  返回结果是1，表示不能提供正常服务，打正常电话失败
 
- History        :
-      1.lihong 00150010      2013-07-05  Draft Enact
-      2.wangchen 00209181   2015-08-17 Modify:CHR
-*****************************************************************************/
 VOS_UINT32 IMSA_StartImsNormalService
 (
     IMSA_CALL_TYPE_ENUM_UINT8               enCallType
@@ -4639,19 +3993,7 @@ VOS_UINT32 IMSA_StartImsNormalService
     return IMSA_START_SRV_RESULT_CAN_MAKE_CALL;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_StartImsNormalService
- Description    : 控制管理模块提供给呼叫模块的API, Call模块在打紧急电话时调用
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
-                  返回结果是0，表示Control可以提供紧急服务，Call可以直接打电话
-                  返回结果是1，表示不能提供紧急服务，打紧急电话失败
-                  返回结果是2，表示暂时不能提供紧急服务，正在建立紧急服务，Call模块需要缓存电话
 
- History        :
-      1.wangchen 00209181    2015-11-28  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_StartImsEmergServiceAbilityCheck
 (
     IMSA_EMC_CALL_TYPE_ENUM_UINT32     *penEmcCallType
@@ -4729,20 +4071,7 @@ VOS_UINT32 IMSA_StartImsEmergServiceAbilityCheck
 
     return IMSA_START_SRV_RESULT_BUFFER_CALL_WAIT_INDICATION;
 }
-/*****************************************************************************
- Function Name  : IMSA_StartImsNormalService
- Description    : 控制管理模块提供给呼叫模块的API, Call模块在打紧急电话时调用
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
-                  返回结果是0，表示Control可以提供紧急服务，Call可以直接打电话
-                  返回结果是1，表示不能提供紧急服务，打紧急电话失败
-                  返回结果是2，表示暂时不能提供紧急服务，正在建立紧急服务，Call模块需要缓存电话
 
- History        :
-      1.lihong 00150010      2013-07-05  Draft Enact
-      2.wangchen 00209181    2015-11-23  Modify:volte dsds
-*****************************************************************************/
 VOS_VOID IMSA_StartImsEmcService
 (
     VOS_VOID
@@ -4782,20 +4111,7 @@ VOS_VOID IMSA_StartImsEmcService
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_StartImsNormalService
- Description    : 控制管理模块提供给呼叫模块的API, Call模块在打紧急电话时调用
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
-                  返回结果是0，表示Control可以提供紧急服务，Call可以直接打电话
-                  返回结果是1，表示不能提供紧急服务，打紧急电话失败
-                  返回结果是2，表示暂时不能提供紧急服务，正在建立紧急服务，Call模块需要缓存电话
 
- History        :
-      1.lihong 00150010      2013-07-05  Draft Enact
-      2.wangchen 00209181    2015-11-23  Modify:volte dsds
-*****************************************************************************/
 VOS_UINT32 IMSA_StartImsEmergService
 (
     IMSA_EMC_CALL_TYPE_ENUM_UINT32     *penEmcCallType
@@ -4900,16 +4216,7 @@ VOS_UINT32 IMSA_StartImsEmergService
 
     return IMSA_START_SRV_RESULT_BUFFER_CALL_WAIT_INDICATION;
 }
-/*****************************************************************************
- Function Name  : IMSA_ProcTimerMsgPeriodTryImsSrvExpIdleDereg()
- Description    : 周期性尝试IMS服务定时器超时,发起初始注册
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-11-28  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_ProcTimerMsgPeriodTryImsSrvExpIdleDereg(VOS_VOID)
 {
     #if (FEATURE_ON == FEATURE_DSDS)
@@ -4966,16 +4273,7 @@ VOS_VOID IMSA_ProcTimerMsgPeriodTryImsSrvExpIdleDereg(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_ProcTimerMsgPeriodTryImsSrvExpConnDereg()
- Description    : 周期性尝试IMS服务定时器超时,发起初始注册
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-11-28  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_ProcTimerMsgPeriodTryImsSrvExpConnDereg(VOS_VOID)
 {
     #if (FEATURE_ON == FEATURE_DSDS)
@@ -5035,16 +4333,7 @@ VOS_VOID IMSA_ProcTimerMsgPeriodTryImsSrvExpConnDereg(VOS_VOID)
     }
 
 }
-/*****************************************************************************
- Function Name  : IMSA_ProcTimerMsgPeriodTryImsSrvExpConnDereg()
- Description    : 周期性尝试IMS服务定时器超时,发起初始注册
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-11-28  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_ProcTimerMsgPeriodTryImsSrvExpConningReg(VOS_VOID)
 {
     #if (FEATURE_ON == FEATURE_DSDS)
@@ -5118,16 +4407,7 @@ VOS_VOID IMSA_ProcTimerMsgPeriodTryImsSrvExpConningReg(VOS_VOID)
 
 }
 
-/*****************************************************************************
- Function Name  : IMSA_ProcTimerMsgPeriodTryImsSrvExp()
- Description    : 周期性尝试IMS服务定时器超时处理
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-07-09  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_ProcTimerMsgPeriodTryImsSrvExp(const VOS_VOID *pRcvMsg )
 {
     IMSA_CONTROL_MANAGER_STRU          *pstControlMagnaer   = VOS_NULL_PTR;
@@ -5193,18 +4473,7 @@ VOS_VOID IMSA_ProcTimerMsgPeriodTryImsSrvExp(const VOS_VOID *pRcvMsg )
 
 /* delete PeriodImsEmcSrvTryTimer */
 
-/*****************************************************************************
- Function Name  : IMSA_AddSubscription()
- Description    : IMSA对外提供的注册订阅接口
- Input          : ulPid---------------订阅者的PID
-                  enType--------------订阅内容类型
-                  ulPara--------------会在内容更新消息中携带的参数
- Output         : pulSubscriptionId---订阅ID指针
- Return Value   : VOS_UINT32
 
- History        :
-      1.lihong 00150010      2013-07-10  Draft Enact
-*****************************************************************************/
 VOS_UINT32  IMSA_AddSubscription
 (
     VOS_UINT32                          ulPid,
@@ -5258,16 +4527,7 @@ VOS_UINT32  IMSA_AddSubscription
     return IMSA_SUCC;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_DeleteSubscription()
- Description    : IMSA对外提供的取消订阅接口
- Input          : ulSubscriberId---------------订阅ID
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
 
- History        :
-      1.lihong 00150010      2013-07-10  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_DeleteSubscription
 (
     VOS_UINT32                  ulSubscriptionId
@@ -5402,17 +4662,7 @@ VOS_VOID IMSA_SRV_PrintEmcSrvState( VOS_VOID )
     }
 }
 
-/*****************************************************************************
- Function Name   : IMSA_SRV_IsConningRegState
- Description     :
- Input           : ucIsEmc---------1:紧急， 0:普通
- Output          : None
- Return          : VOS_INT32
 
- History         :
-    1.xiongxianghui00253310    2014-04-16  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 IMSA_SRV_IsConningRegState(VOS_UINT8 ucIsEmc)
 {
     IMSA_SRV_STATUS_ENUM_UINT8          enImsaSrvStatus = IMSA_SRV_STATUS_BUTT;
@@ -5433,16 +4683,7 @@ VOS_UINT32 IMSA_SRV_IsConningRegState(VOS_UINT8 ucIsEmc)
 
     return IMSA_TRUE;
 }
-/*****************************************************************************
- Function Name   : IMSA_CMCCDeregProcConnRegOrReging
- Description     : 中国移动定制需求，条件满足时发起IMS去注册
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.wangchen 00209181    2015-12-01  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CMCCDeregProcConnRegOrReging(VOS_VOID)
 {
     #if (FEATURE_ON == FEATURE_DSDS)
@@ -5505,16 +4746,7 @@ VOS_VOID IMSA_CMCCDeregProcConnRegOrReging(VOS_VOID)
     IMSA_NormInitDeregErrRecord(IMSA_ERR_LOG_INIT_DEREG_REASON_RAT_OR_VOICE_NOT_SUPPORT);
     #endif
 }
-/*****************************************************************************
- Function Name   : IMSA_CMCCDeregProcConnRegOrReging
- Description     : 中国移动定制需求，条件满足时发起IMS去注册
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.wangchen 00209181    2015-12-01  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CMCCDeregProcConnOrConningDereg(VOS_VOID)
 {
     #if (FEATURE_ON == FEATURE_DSDS)
@@ -5578,17 +4810,7 @@ VOS_VOID IMSA_CMCCDeregProcConnOrConningDereg(VOS_VOID)
     #endif
 }
 
-/*****************************************************************************
- Function Name   : IMSA_CMCCDeregProc
- Description     : 中国移动定制需求，条件满足时发起IMS去注册
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.mengchao 00277840    2014-08-20  Draft Enact
-    2.wangchen 00209181    2015-06-23  Modify:CONNING_REG
-*****************************************************************************/
 VOS_VOID IMSA_CMCCDeregProc(VOS_VOID)
 {
     #if (FEATURE_ON == FEATURE_DSDS)
@@ -5673,17 +4895,7 @@ VOS_VOID IMSA_CMCCDeregProc(VOS_VOID)
             break;
     }
 }
-/*****************************************************************************
- Function Name   : IMSA_CommonDeregProc
- Description     : 漫游和中移动定制需求通用去注册流程
- Input           : VOS_VOID
- Output          : VOS_VOID
- Return          : VOS_VOID
 
- History         :
-    1.zhaochen 00308719    2015-08-26  Draft Enact
-
-*****************************************************************************/
 VOS_VOID IMSA_CommonDeregProc(VOS_VOID)
 {
 
@@ -5693,16 +4905,7 @@ VOS_VOID IMSA_CommonDeregProc(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_IsStopImsEmcService
- Description    : 根据紧急服务状态，判断是否停止紧急服务
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
 
- History        :
-      1.xiongxianghui 00253310      2015-09-01  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_IsImsEmcServiceEstablishSucc(VOS_VOID)
 {
     VOS_UINT32    ulResult = IMSA_FALSE;
@@ -5727,16 +4930,7 @@ VOS_UINT32 IMSA_IsImsEmcServiceEstablishSucc(VOS_VOID)
     return ulResult;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_StopImsEmcService
- Description    : CONNING+DEREG和CONN+REGING停止紧急服务
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.xiongxianghui 00253310      2015-09-01  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_StopImsEmcService(VOS_VOID)
 {
     IMSA_INFO_LOG("IMSA_StopImsEmcService is enter!");
@@ -5772,16 +4966,7 @@ VOS_VOID IMSA_StopImsEmcService(VOS_VOID)
 
 }
 #if (FEATURE_ON == FEATURE_DSDS)
-/*****************************************************************************
- Function Name  : IMSA_SRV_ProcVoiceDomainChangeInd
- Description    : MMA VOICE DOMAIN信息变更消息处理函数
- Input          : pstVoiceDomainChangeInd-----------VOICE DOMAIN CHANGE IND消息
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-02-26  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_SRV_IsNotNeedNwDereg
 (
     VOS_VOID
@@ -5814,16 +4999,7 @@ VOS_UINT32 IMSA_SRV_IsNotNeedNwDereg
 
     return IMSA_FALSE;
 }
-/*****************************************************************************
- Function Name  : IMSA_SRV_ProcVoiceDomainChangeInd
- Description    : MMA VOICE DOMAIN信息变更消息处理函数
- Input          : pstVoiceDomainChangeInd-----------VOICE DOMAIN CHANGE IND消息
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-02-26  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SRV_ProcStopMsgWhenNoRf
 (
     VOS_VOID
@@ -5850,20 +5026,7 @@ VOS_VOID IMSA_SRV_ProcStopMsgWhenNoRf
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IMSA_SRV_ProcRegResourceApplyCnf
- 功能描述  : DSDS申请注册资源成功后的处理
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月18日
-    作    者   : W00209181
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 IMSA_SRV_ProcGetNormSevResourceApplyCnf
 (
     IMSA_REG_ADDR_PARAM_ENUM_UINT32     enAddrType
@@ -5923,20 +5086,7 @@ VOS_UINT32 IMSA_SRV_ProcGetNormSevResourceApplyCnf
     }
     return IMSA_TRUE;
 }
-/*****************************************************************************
- 函 数 名  : IMSA_SRV_ProcRegResourceApplyCnf
- 功能描述  : DSDS申请注册资源成功后的处理
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月18日
-    作    者   : W00209181
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 IMSA_SRV_ProcPeriodRegResourceApplyCnf
 (
     IMSA_REG_ADDR_PARAM_ENUM_UINT32     enAddrType
@@ -5975,20 +5125,7 @@ VOS_UINT32 IMSA_SRV_ProcPeriodRegResourceApplyCnf
     return IMSA_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : IMSA_SRV_ProcRegResourceApplyCnf
- 功能描述  : DSDS申请注册资源成功后的处理
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月18日
-    作    者   : W00209181
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  IMSA_SRV_ProcGetNorServiceResourceApplyExp
 (
     VOS_VOID
@@ -6050,20 +5187,7 @@ VOS_UINT32 IMSA_SRV_ProcPeriodRegResourceApplyExp
     return IMSA_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : IMSA_SRV_ProcRegResourceApplyCnf
- 功能描述  : DSDS申请注册资源成功后的处理
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月18日
-    作    者   : W00209181
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 IMSA_SRV_ProcDeRegResourceApplyCnf
 (
     VOS_VOID
@@ -6091,20 +5215,7 @@ VOS_UINT32 IMSA_SRV_ProcDeRegResourceApplyCnf
     }
     return IMSA_TRUE;
 }
-/*****************************************************************************
- 函 数 名  : IMSA_SRV_ProcRegResourceApplyCnf
- 功能描述  : DSDS申请注册资源成功后的处理
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月18日
-    作    者   : W00209181
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 IMSA_SRV_ProcDeRegResourceApplyTimerExp
 (
     VOS_VOID
@@ -6138,20 +5249,7 @@ VOS_UINT32 IMSA_SRV_ProcDeRegResourceApplyTimerExp
 }
 
 
-/*****************************************************************************
- 函 数 名  : IMSA_SRV_ProcRegResourceApplyTimerExp
- 功能描述  : DSDS申请注册资源定时器超时
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月18日
-    作    者   : W00209181
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID IMSA_SRV_ProcGetSrvTimerExp
 (
     const VOS_VOID                     *pMsg
@@ -6199,20 +5297,7 @@ VOS_VOID IMSA_SRV_ProcGetSrvTimerExp
 
 }
 
-/*****************************************************************************
- 函 数 名  : IMSA_SRV_ProcRegResourceApplyTimerExp
- 功能描述  : DSDS申请注册资源定时器超时
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月18日
-    作    者   : W00209181
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID IMSA_SRV_ProcDeregSrvTimerExp
 (
     const VOS_VOID                     *pMsg
@@ -6261,16 +5346,7 @@ VOS_VOID IMSA_SRV_ProcDeregSrvTimerExp
 
 #endif
 
-/*****************************************************************************
- Function Name  : IMSA_StartTempForbTimer
- Description    : 启动TI_IMSA_TEMP_FORBIDDEN_TIMER定时器
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.leixiantiao 00258641      2015-12-10  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_StartTempForbTimer(VOS_VOID)
 {
     IMSA_CONTROL_MANAGER_STRU          *pstControlMagnaer   = VOS_NULL_PTR;
@@ -6284,17 +5360,7 @@ VOS_VOID IMSA_StartTempForbTimer(VOS_VOID)
     IMSA_StartTimer(&pstControlMagnaer->stTempForbiddenTimer);
 }
 
-/*****************************************************************************
- Function Name  : IMSA_IsTempForbTimerRunning
- Description    : 判断TI_IMSA_TEMP_FORBIDDEN_TIMER定时器是否启动
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_FALSE--------定时器未启动
-                  VOS_TRUE---------定时器正在运行
 
- History        :
-      1.leixiantiao 00258641      2015-12-10  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_IsTempForbTimerRunning(VOS_VOID)
 {
     IMSA_CONTROL_MANAGER_STRU          *pstControlMagnaer   = VOS_NULL_PTR;
@@ -6307,16 +5373,7 @@ VOS_UINT32 IMSA_IsTempForbTimerRunning(VOS_VOID)
     return ulRslt;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_ProcTimerMsgTempForbTimerExp
- Description    : TI_IMSA_TEMP_FORBIDDEN_TIMER定时器超时处理
- Input          : pRcvMsg----------定时器超时消息
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.leixiantiao 00258641      2015-12-10  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_ProcTimerMsgTempForbTimerExp(const VOS_VOID *pRcvMsg )
 {
     IMSA_SRV_STATUS_ENUM_UINT8          enNrmSrvStatus;

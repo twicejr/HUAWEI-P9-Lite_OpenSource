@@ -43,7 +43,6 @@ static CHR_DEV 	 g_log_devs[];
 static CHR_EVENT   g_chr_event;
 static int32     g_buffer_size[];
 static int32     g_log_enable = CHR_LOG_DISABLE;
-struct kobject 	*g_sysfs_chr_log = NULL;
 
 static char 	*g_chr_logprio_str[] = {
 	"D",
@@ -252,17 +251,16 @@ static void format_prefixstr( int8 * prefix_str, CHR_LOGPRIORITY prio)
  static ssize_t do_write_log_from_user(CHR_DEV_INDEX dev_index, const void __user *buf, size_t index, size_t count)
  {
     size_t len;
-    int8 * str_buf;
-
-    str_buf = (int8 *)buf;
-    CHR_DBG("get str:%s", (int8*)buf);
-
-    if('E' == str_buf[E_FLAG_OFFSET])
+    uint8 __user  *puser = (uint8 __user *)buf;
+    uint8 value = 0;
+    if((E_FLAG_OFFSET < count))
     {
-        CHR_DBG("Got e flag at log str,mod timmer:%c,", str_buf[E_FLAG_OFFSET]);
-        log_info_user_errlog_inc(dev_index);
+        get_user(value, (puser + E_FLAG_OFFSET));
+        if ('E' == value)
+        {
+            log_info_user_errlog_inc(dev_index);
+        }
     }
-
     len = min(count, g_log_devs[dev_index].user.size - index);
     if (len && copy_from_user(&g_log_devs[dev_index].user.buffer[index], buf, len))
     {
@@ -325,7 +323,12 @@ static ssize_t chr_buf_write(CHR_DEV_INDEX dev_index, const int8 __user * buf, s
     size_t tmp_rIndex = 0;
     size_t new_wIndex = 0;
     struct chr_logger_entry header;
-    memset(&header, 0, sizeof(header));
+
+    if (unlikely(NULL == buf))
+    {
+        return -EFAULT;
+    }
+    memset(&header,0,sizeof(header));
 
     if (count > CHR_MSG_MAX_LEN)
     {
@@ -346,7 +349,6 @@ static ssize_t chr_buf_write(CHR_DEV_INDEX dev_index, const int8 __user * buf, s
         return 0;
     }
     atomic_set(&g_log_devs[dev_index].user.w_off, new_wIndex);
-
     do_write_logger_entry(dev_index, &header, tmp_wIndex, sizeof(struct chr_logger_entry));
     tmp_wIndex = logger_offset(dev_index, tmp_wIndex + sizeof(struct chr_logger_entry));
     ret = do_write_log_from_user(dev_index, buf, tmp_wIndex, count);
@@ -471,10 +473,11 @@ int32 __chr_printLog(CHR_LOGPRIORITY prio, CHR_DEV_INDEX dev_index, const int8 *
 
     if (NULL == g_log_devs[dev_index].user.buffer)
     {
-        CHR_DBG("-----------------------buffer not init, abandon logs\n");
+        CHR_DBG("buffer not init, abandon logs\n");
         log_info_user_dropped_inc(dev_index);
         return 0;
     }
+    memset(&header,0,sizeof(header));
 
     format_prefixstr(tmpbuf_str, prio);
     prefix_len = strlen(tmpbuf_str);
@@ -526,28 +529,13 @@ int32 __chr_printLog(CHR_LOGPRIORITY prio, CHR_DEV_INDEX dev_index, const int8 *
 
     if(CHR_LOG_ERROR == prio)
     {
-        CHR_DBG("catch log prio is error, mod timer");
         log_info_user_errlog_inc(dev_index);
     }
     return fmt_strlen;
 }
 EXPORT_SYMBOL(__chr_printLog);
 
-/*****************************************************************************	701
- 函 数 名  : __chr_exception
- 功能描述  : 驱动层抛异常接口
- 输入参数  : 异常错误类型
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月19日
-    作    者   : k00355907
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int32  __chr_exception(uint32 errno)
 {
     struct sk_buff  *skb = NULL;
@@ -884,15 +872,22 @@ static int32 g_buffer_size[] = {
     __USER_BUFF_LEN_IR,
 };
 
-#ifdef CHR_LOG_STAT
-static ssize_t show_chr_log_stat_info(struct device *dev, \
-        struct device_attribute *attr, int8 *buf)
+ssize_t show_chr_log_stat_info(struct device *dev, struct kobj_attribute *attr, int8 *buf)
 {
     int32 i 		= 0;
     int32 devs 		= 0;
     int32 len 		= 0;
     int32 str_cnt 	= 0;
+
+#ifdef CHR_LOG_STAT
     devs = sizeof(g_log_devs) / sizeof(CHR_DEV);
+
+    if (NULL == buf)
+    {
+        CHR_ERR("buf is NULL\n");
+        return -CHR_EFAIL;
+    }
+
     for (i = 0; i < devs; i++)
     {
         len = sprintf(buf + str_cnt, "name:%s totol:%d user_drop:%d errlog:%d\n", \
@@ -900,31 +895,40 @@ static ssize_t show_chr_log_stat_info(struct device *dev, \
         g_log_devs[i].log_stat.user_dropped, g_log_devs[i].log_stat.errlog_cnt);
         str_cnt += len;
     }
+#endif
+
     return str_cnt;
 }
 
-static struct kobj_attribute chr_log_stat =
-    __ATTR(chr_log_stat, 0644, (void *)show_chr_log_stat_info, (void *)0);
-
-#endif
-
 /* show curr chr log switch enable or disable */
-static ssize_t show_chr_log_switch(struct device *dev, \
-        struct device_attribute *attr, int8 *buf)
+ssize_t show_chr_log_switch(struct device *dev, struct kobj_attribute *attr, int8 *buf)
 {
+    if (NULL == buf)
+    {
+        CHR_ERR("buf is NULL\n");
+        return -CHR_EFAIL;
+    }
+
     CHR_INFO("show g_log_enable=%d\n", g_log_enable);
+
     return sprintf(buf, "1:enable other:disable value=%d\n", g_log_enable);
 }
 
 /*  store curr chr log switch enable or disable */
-static ssize_t store_chr_log_switch(struct device *dev, \
-        struct kobj_attribute *attr, const char *buf, size_t count)
+ssize_t store_chr_log_switch(struct device *dev, struct kobj_attribute *attr, const char *buf, size_t count)
 {
     int32 log_switch = 0;
+
+    if (NULL == buf)
+    {
+        CHR_ERR("buf is NULL\n");
+        return -CHR_EFAIL;
+    }
+
     if ((sscanf(buf, "%d", &log_switch) != 1))   //vsscanf
     {
         CHR_INFO("set CHR_LOG's switch failed!\n");
-        return -1;
+        return -CHR_EFAIL;
     }
 
     if (CHR_LOG_ENABLE == log_switch)
@@ -935,24 +939,12 @@ static ssize_t store_chr_log_switch(struct device *dev, \
     {
         g_log_enable = log_switch;
     }
+
     CHR_INFO("store g_log_enable=%d\n", g_log_enable);
+
     return count;
 }
 
-static struct kobj_attribute chr_log_switch =
-    __ATTR(chr_log_switch, 0644, (void *)show_chr_log_switch, (void *)store_chr_log_switch);
-
-static struct attribute *chr_attrs[] = {
-        &chr_log_switch.attr,
-#ifdef CHR_LOG_STAT
-		&chr_log_stat.attr,
-#endif
-        NULL,
-};
-
-static struct attribute_group chr_attr_grp = {
-    .attrs = chr_attrs,
-};
 /*
  * Prototype    : miscdev_init
  * Description  : initialize struct data and register miscdev
@@ -1005,24 +997,6 @@ static int32 chr_miscdevs_register(void)
 {
     int32 i, ret = -CHR_EFAIL;
     int32 devs;
-    int32 status;
-
-    g_sysfs_chr_log = kobject_create_and_add("chr_log", NULL);
-    if (NULL == g_sysfs_chr_log)
-    {
-        CHR_ERR("Failed to creat g_sysfs_chr_log!!!\n ");
-        return -ENOMEM;
-    }
-
-    status = sysfs_create_group(g_sysfs_chr_log, &chr_attr_grp);
-    if (status)
-    {
-        CHR_ERR("failed to create sysfs entries\n");
-        kobject_put(g_sysfs_chr_log);
-        g_sysfs_chr_log = NULL;
-        g_log_enable = CHR_LOG_DISABLE;
-        return -EFAULT;
-    }
 
     init_waitqueue_head(&g_chr_event.errno_wait);
     skb_queue_head_init(&g_chr_event.errno_queue);
@@ -1042,8 +1016,6 @@ static int32 chr_miscdevs_register(void)
                 misc_deregister(g_log_devs[i].miscdev);
             }
             CHR_ERR("chr devs register error!!!\n");
-            kobject_put(g_sysfs_chr_log);
-            g_sysfs_chr_log = NULL;
             g_log_enable = CHR_LOG_DISABLE;
             return ret;
         }
@@ -1071,8 +1043,6 @@ static void chr_miscdevs_unregister(void)
         }
         misc_deregister(g_log_devs[i].miscdev);
     }
-    kobject_put(g_sysfs_chr_log);
-    g_sysfs_chr_log = NULL;
     g_log_enable = CHR_LOG_DISABLE;
 
     CHR_INFO("chr dev usregister \n");

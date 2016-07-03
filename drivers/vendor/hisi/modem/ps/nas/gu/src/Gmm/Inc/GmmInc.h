@@ -1,14 +1,5 @@
 
-/*******************************************************************************
-  Copyright    : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : GmmInc.h
-  Description : WUEPS系统NAS内部GMM功能模块头文件包含关系
-  History     :
-      1.张志勇  2002.12.05  文件作成
-      2.日    期   : 2007年10月27日
-        作    者   : luojian id:107747
-        修改内容   : 根据问题单号：A32D13038
-*******************************************************************************/
+
 #ifndef _GMMINCLUDE_H_
 #define _GMMINCLUDE_H_
 
@@ -59,9 +50,7 @@ extern "C" {
 
 #include "MsccMmcInterface.h"
 
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-7, begin */
 /* 删除ExtAppMmcInterface.h*/
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-7, end */
 
 #include "MmcMmInterface.h"
 

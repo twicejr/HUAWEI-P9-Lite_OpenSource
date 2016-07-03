@@ -71,7 +71,6 @@ DECLARE_INTERFACE( IIF_IPV4_IP_ICMP_ComIntCFG )
     METHOD_(ULONG,pfIP_ICMP_SetPingForbidFlag)(ULONG ulValue);
     METHOD_(ULONG,pfIP_ICMP_GetPingForbidFlag)(ULONG *pulValue);
 
-    /* add by z00104207, 禁ping增强设置/显示ping allow list接口*/
     METHOD_(ULONG,pfICMP_SetPingAllowList)(ULONG ulOperation, ULONG ulIpAddr, ULONG ulMask);
     METHOD_(VOID,pfICMP_ShowPingAllowList)();
 

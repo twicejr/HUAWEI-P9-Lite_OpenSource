@@ -1,26 +1,4 @@
-/******************************************************************************
-*
-*  Copyright (C), 2001)2005, Huawei Tech. Co., Ltd.
-*
-*******************************************************************************
-*  File Name     : ppp_dbug.h
-*  Version       : Initial Draft
-*  Author        : z00143086
-*  Created       : 2009/4/14
-*  Last Modified :
-*  Description   : ppp_dbug.h header file
-*  Function List :
-*
-*
-*  History:
-*
-*       1.  Date         : 2009/4/14
-*           Author       : z00143086
-*           Modification : Created file
-*
-*      目前该头文件仅为适应平台代码调整，而对产品代码做出相应修改而用 !!!!!!
-*
-******************************************************************************/
+
 #ifndef __PPP_DBUG_H__
 #define __PPP_DBUG_H__
 

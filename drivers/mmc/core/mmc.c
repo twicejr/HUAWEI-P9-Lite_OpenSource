@@ -1938,6 +1938,7 @@ static int _mmc_suspend(struct mmc_host *host, bool is_suspend)
 	unsigned int notify_type = is_suspend ? EXT_CSD_SLEEP_NOTIFICATION :
 					EXT_CSD_POWER_OFF_LONG;
 	unsigned long timeout = 8000;
+	u8 part_config;
 
 	BUG_ON(!host);
 	BUG_ON(!host->card);
@@ -1998,6 +1999,26 @@ static int _mmc_suspend(struct mmc_host *host, bool is_suspend)
 		}
 
 		mmc_card_clr_cmdq(host->card);
+	}
+
+	/*
+	 * Ensure eMMC user default partition is enabled,because cmd5 will be
+	 * a illegal cmd when device is in rpmb partition.
+	 */
+	if (host->card->ext_csd.part_config & EXT_CSD_PART_CONFIG_ACC_MASK) {
+		pr_err("%s need to swich to default partition, current part_config is %d\n",
+			__func__, host->card->ext_csd.part_config);
+		part_config = host->card->ext_csd.part_config;
+		part_config &= ~EXT_CSD_PART_CONFIG_ACC_MASK;
+		err = mmc_switch(host->card, EXT_CSD_CMD_SET_NORMAL, EXT_CSD_PART_CONFIG,
+				 part_config,
+				 host->card->ext_csd.part_time);
+		if (err) {
+			pr_err("%s swich to default partition failed, err is %d\n",
+				__func__, err);
+			goto out;
+		}
+		host->card->ext_csd.part_config = part_config;
 	}
 
 	err = mmc_cache_ctrl(host, 0);

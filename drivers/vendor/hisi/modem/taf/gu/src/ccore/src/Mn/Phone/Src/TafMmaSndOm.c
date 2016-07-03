@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2013-2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafMmaSndOm.c
-  版 本 号   : 初稿
-  作    者   : y00322978
-  生成日期   : 2015-07-16
-  最近修改   :
-  功能描述   : MMA模块发送到om的消息文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015-07-16
-    作    者   : y00322978
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 
@@ -49,21 +32,7 @@
 *****************************************************************************/
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndOmCdmaSysInfoCnf
- 功能描述  : 回复om可维可测消息，查询cdma信息
- 输入参数  : NAS_OM_MMA_CDMA_STATUS_REPORT_RESRLT_ENUM_UINT32        enRlst 查询结果
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月10日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndOmCdmaStatusReportCnf(
     NAS_OM_MMA_CDMA_STATUS_REPORT_RESRLT_ENUM_UINT32        enRlst,
     OM_NAS_MMA_CDMA_STATUS_INFO_REPORT_REQ_STRU            *pstMsg
@@ -95,21 +64,7 @@ VOS_VOID TAF_MMA_SndOmCdmaStatusReportCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndOmCdmaStatusInfoReportInd
- 功能描述  : cdma sys info 上报给om
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月10日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndOmCdmaStatusInfoReportInd( VOS_VOID )
 {
     NAS_OM_MMA_CDMA_STATUS_COMMON_INFO_STRU             stCdmaCommInfo;
@@ -158,21 +113,7 @@ VOS_VOID TAF_MMA_SndOmCdmaStatusInfoReportInd( VOS_VOID )
     PS_MEM_FREE(WUEPS_PID_MMA, pstStatusInfoInd);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_InitCdmaCommSysInfo
- 功能描述  : 初始化mma上报om的cdma common info
- 输入参数  : NAS_OM_MMA_CDMA_STATUS_COMMON_INFO_STRU             stCdmaCommInfo;
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月16日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_InitSndOmCdmaCommSysInfo(
     NAS_OM_MMA_CDMA_STATUS_COMMON_INFO_STRU            *pstCdmaCommInfo
 )
@@ -184,21 +125,7 @@ VOS_VOID TAF_MMA_InitSndOmCdmaCommSysInfo(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_InitCdma!xSysInfo
- 功能描述  : 初始化mma上报om的1x sysinfo
- 输入参数  : NAS_OM_MMA_1X_SYS_INFO_STRU                         st1xSysInfo;
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月16日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_InitSndOmCdma1xSysInfo(
     NAS_OM_MMA_1X_SYS_INFO_STRU        *pst1xSysInfo
 )
@@ -214,21 +141,7 @@ VOS_VOID TAF_MMA_InitSndOmCdma1xSysInfo(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_InitCdmaHrpdSysInfo
- 功能描述  : 初始化mma上报om HRPD SYS INFO
- 输入参数  : NAS_OM_MMA_HRPD_SYS_INFO_STRU      *pstHrpdSysInfo
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月16日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_InitSndOmCdmaHrpdSysInfo(
     NAS_OM_MMA_HRPD_SYS_INFO_STRU      *pstHrpdSysInfo
 )

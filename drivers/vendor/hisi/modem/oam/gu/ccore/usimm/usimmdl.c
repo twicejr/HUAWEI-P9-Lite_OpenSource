@@ -1,13 +1,4 @@
-/************************************************************************
-  Copyright    : 2005-2007, Huawei Tech. Co., Ltd.
-  File name    : UsimmDL.c
-  Author       : zhuli 00100318
-  Version      : V100R002
-  Date         : 2005-5-15
-  Description  : 该C文件给出了---DL模块实现
-  Function List:
-  History      :
- ************************************************************************/
+
 #include "product_config.h"
 
 #if (FEATURE_ON == FEATURE_UE_UICC_MULTI_APP_SUPPORT)
@@ -31,19 +22,7 @@ extern "C" {
 #define    THIS_FILE_ID        PS_FILE_ID_USIMM_DLMODULE_C
 /*lint +e767*/
 
-/*****************************************************************************
-函 数 名  : USIMM_DLJudgeCmdCase
-功能描述  : 链路层判断当前处理命令类型
-输入参数  : pstAPDUData:输入命令内容
-输出参数  : 无
-返 回 值  : 无
-调用函数  : 无
-被调函数  :
-修订记录  :
-1. 日    期   : 2008年8月4日
-   作    者   : m00128685
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID USIMM_DLJudgeCmdCase(
     USIMM_APDU_ST                       *pstAPDUData)
 {
@@ -74,20 +53,7 @@ VOS_VOID USIMM_DLJudgeCmdCase(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : Usimm_SciDataHook
-功能描述  : SCI接口数据钩子函数
-输入参数  :ulLength,
-           pucData
-输出参数  : 无
-返 回 值  : 无
-调用函数  : 无
-被调函数  :
-修订记录  :
-1. 日    期   : 2007年11月23日
-   作    者   : H59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID USIMM_SciDataHook(VOS_UINT32 ulLength, VOS_UINT8 *pucData)
 {
     MsgBlock                           *pMsg;
@@ -141,20 +107,7 @@ VOS_VOID USIMM_SciDataHook(VOS_UINT32 ulLength, VOS_UINT8 *pucData)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMMDL_DLStateStar
-功能描述  :
-输入参数  :
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_DLHandle
-修订记录  :
-1. 日    期   : 2009年3月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_DLStateStar(
     USIMM_APDU_ST                       *pstAPDUData)
 {
@@ -172,21 +125,7 @@ VOS_VOID USIMM_DLStateStar(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_DLSendDataOneByOne
-功能描述  :完成协议功能的逐字节发送　
-输入参数  :ulDataLen:发送数据长度
-           pucData:发送数据内容
-输出参数  :无
-返 回 值  :调用底软API的结果
-调用函数  :USIMMSCISendData
-           USIMMSCIReceived
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_INT32 USIMM_DLSendDataOneByOne(
     VOS_UINT8                           ucINS,
     VOS_UINT32                          ulDataLen,
@@ -277,19 +216,7 @@ VOS_INT32 USIMM_DLSendDataOneByOne(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_DLIdle
-功能描述  :链路层的状态机运行错误处理　
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_ERR
-调用函数  :无
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_DLIdle(
     USIMM_APDU_ST                       *pstAPDUData)
 {
@@ -300,19 +227,7 @@ VOS_UINT32 USIMM_DLIdle(
     return VOS_ERR;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_DLSendAPDU
-功能描述  :实现APDU命令头的发送　
-输入参数  :pstAPDUData:APDU命令内容
-输出参数  :无
-返 回 值  :调用底软API结果
-调用函数  :USIMMSCISendData
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_DLSendAPDU(
     USIMM_APDU_ST                       *pstAPDUData)
 {
@@ -355,20 +270,7 @@ VOS_UINT32 USIMM_DLSendAPDU(
     return ((USIMM_SCI_SUCCESS == lSCIResult)?VOS_OK:VOS_ERR);/* [false alarm]: 屏蔽Fortify 错误 */
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_DLSendData
-功能描述  :实现APDU命令数据发送　
-输入参数  :pstAPDUData:APDU命令内容
-输出参数  :无
-返 回 值  :调用底软API结果
-调用函数  :USIMMSCISendData
-           USIMM_DLSendDataOneByOne
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_DLSendData(
     USIMM_APDU_ST                       *pstAPDUData)
 {
@@ -433,19 +335,7 @@ VOS_UINT32 USIMM_DLSendData(
     return ((USIMM_SCI_SUCCESS == lSCIResult)?VOS_OK:VOS_ERR);/* [false alarm]: 屏蔽Fortify 错误 */
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_DLReceiveACK
-功能描述  :完成ACK字节的接收和后续步骤的判断　
-输入参数  :pstAPDUData:APDU命令内容
-输出参数  :无
-返 回 值  :调用底软API结果
-调用函数  :USIMMSCIReceived
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_DLReceiveACK(
     USIMM_APDU_ST                       *pstAPDUData)
 {
@@ -553,19 +443,7 @@ VOS_UINT32 USIMM_DLReceiveACK(
 
     return VOS_OK;
 }
-/*****************************************************************************
-函 数 名  :USIMM_DLReceiveData
-功能描述  :实现卡返回数据的接收　
-输入参数  :无
-输出参数  :pstAPDUData:APDU命令接收内容
-返 回 值  :调用底软API结果
-调用函数  :USIMMSCIReceived
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_DLReceiveData(
     USIMM_APDU_ST                       *pstAPDUData)
 {
@@ -617,19 +495,7 @@ VOS_UINT32 USIMM_DLReceiveData(
     return ((USIMM_SCI_SUCCESS == lSCIResult)?VOS_OK:VOS_ERR);/* [false alarm]: 屏蔽Fortify 错误 */
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_DLReceiveSW
-功能描述  :实现接收APDU命令的SW字节功能　
-输入参数  :无
-输出参数  :pstAPDUData:PDU命令接收SW内容
-返 回 值  :调用底软API结果
-调用函数  :USIMMSCIReceived
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_DLReceiveSW(
     USIMM_APDU_ST                       *pstAPDUData)
 {
@@ -759,20 +625,7 @@ VOS_UINT32 USIMM_DLReceiveSW(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMMDL_GetResponse
-功能描述  :
-输入参数  :
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_DLHandle
-修订记录  :
-1. 日    期   : 2009年3月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_DLGetResponse(
     USIMM_APDU_ST                       *pstAPDUData)
 {
@@ -826,19 +679,7 @@ VOS_UINT32 USIMM_DLGetResponse(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_T0DLHandle
-功能描述  :T=0协议链路层状态机控制函数　
-输入参数  :pstAPDUData:发送的APDU命令数据内容
-输出参数  :pstAPDUData:接收的数据内容和SW内容
-返 回 值  :USIMM_DL_SUCESS
-           USIMM_DL_RECEIVE_ERROR
-           USIMM_DL_SEND_ERROR
-修订记录  :
-1. 日    期   : 2013年10月17日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 static USIMMDL_FUNC_STATUS gastUSIMMDLProc[] =
 {
     {USIMMDL_STATE_IDLE,        USIMM_DLIdle},
@@ -925,20 +766,7 @@ VOS_UINT32 USIMM_T0DLHandle(USIMM_APDU_ST* pstAPDUData)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_DLHandle
-功能描述  :链路层状态机控制函数　
-输入参数  :pstAPDUData:发送的APDU命令数据内容
-输出参数  :pstAPDUData:接收的数据内容和SW内容
-返 回 值  :USIMM_DL_SUCESS
-           USIMM_DL_RECEIVE_ERROR
-           USIMM_DL_SEND_ERROR
-修订记录  :
-1. 日    期   : 2013年10月22日
-   作    者   : j00168360
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_DLHandle(
     USIMM_APDU_ST                       *pstAPDUData)
 {
@@ -964,18 +792,7 @@ VOS_UINT32 USIMM_DLHandle(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_DLCglaReceiveSW
-功能描述  :实现CGLA命令接收APDU命令的SW字节功能
-输入参数  :无
-输出参数  :pstAPDUData:PDU命令接收SW内容
-返 回 值  :调用底软API结果
 
-修订记录  :
-1.日    期  : 2013年05月16日
-  作    者  : g47350
-  修改内容  : Create
-*****************************************************************************/
 VOS_UINT32 USIMM_DLCglaReceiveSW(
     USIMM_APDU_ST                       *pstAPDUData)
 {
@@ -1116,18 +933,7 @@ VOS_UINT32 USIMM_DLCglaReceiveSW(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_DLCglaGetResponse
-功能描述  :实现CGLA命令处理GetResponse
-输入参数  :无
-输出参数  :pstAPDUData:PDU命令接收SW内容
-返 回 值  :调用底软API结果
 
-修订记录  :
-1.日    期  : 2013年05月16日
-  作    者  : g47350
-  修改内容  : Create
-*****************************************************************************/
 VOS_UINT32 USIMM_DLCglaGetResponse(
     USIMM_APDU_ST                       *pstAPDUData)
 {
@@ -1193,25 +999,7 @@ VOS_UINT32 USIMM_DLCglaGetResponse(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CglaDLHandle
-功能描述  :CGLA命令链路层状态机控制函数　
-输入参数  :pstAPDUData:发送的APDU命令数据内容
-输出参数  :pstAPDUData:接收的数据内容和SW内容
-返 回 值  :USIMM_DL_SUCESS
-           USIMM_DL_RECEIVE_ERROR
-           USIMM_DL_SEND_ERROR
-调用函数  :USIMM_DLIdle
-          USIMM_DLSendAPDU
-          USIMM_DLSendData
-          USIMM_DLReceiveACK
-          USIMM_DLReceiveData
-          USIMM_DLReceiveSW
-修订记录  :
-1.日    期  : 2013年05月16日
-  作    者  : g47350
-  修改内容  : Create
-*****************************************************************************/
+
 static USIMMDL_FUNC_STATUS gastUSIMMCglaDLProc[] =
 {
     {USIMMDL_STATE_IDLE,        USIMM_DLIdle},
@@ -1297,17 +1085,7 @@ VOS_UINT32 USIMM_T0CglaDLHandle(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CglaDLHandle
-功能描述  :CGLA命令与卡交互数据入口
-输入参数  :pstAPDUData:APDU命令发送内容
-输出参数  :pstAPDUData:APDU命令接收内容
-返 回 值  :调用底软API结果
-修订记录  :
-1. 日    期   : 2013年10月17日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_CglaDLHandle(
     USIMM_APDU_ST                       *pstAPDUData)
 {
@@ -1362,19 +1140,7 @@ extern "C" {
 #define    THIS_FILE_ID        PS_FILE_ID_USIMM_DLMODULE_C
 /*lint +e767*/
 
-/*****************************************************************************
-函 数 名  : USIMM_DLJudgeCmdCase
-功能描述  : 链路层判断当前处理命令类型
-输入参数  : pstAPDUData:输入命令内容
-输出参数  : 无
-返 回 值  : 无
-调用函数  : 无
-被调函数  :
-修订记录  :
-1. 日    期   : 2008年8月4日
-   作    者   : m00128685
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID USIMM_DLJudgeCmdCase(USIMM_APDU_ST* pstAPDUData)
 {
         /* 判断当前的卡命令类型 */
@@ -1404,20 +1170,7 @@ VOS_VOID USIMM_DLJudgeCmdCase(USIMM_APDU_ST* pstAPDUData)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_DLResetCard
-功能描述  : 返回卡复位状态
-输入参数  : ulResetType:复位卡类型
-            plVoltageSwitchRst:电压切换结果
-输出参数  : 无
-返 回 值  : VOS_INT32，0表示复位成功，其余不成功
-调用函数  : 无
-被调函数  :
-修订记录  :
-1. 日    期   : 2008年8月4日
-   作    者   : m00128685
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_DLResetCard(VOS_UINT32 ulResetType, VOS_INT32 *plVoltageSwitchRst)
 {
     VOS_INT32                           lSCIResult = VOS_ERR;
@@ -1540,20 +1293,7 @@ VOS_UINT32 USIMM_DLResetCard(VOS_UINT32 ulResetType, VOS_INT32 *plVoltageSwitchR
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : Usimm_SciDataHook
-功能描述  : SCI接口数据钩子函数
-输入参数  :ulLength,
-           pucData
-输出参数  : 无
-返 回 值  : 无
-调用函数  : 无
-被调函数  :
-修订记录  :
-1. 日    期   : 2007年11月23日
-   作    者   : H59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID USIMM_SciDataHook(VOS_UINT32 ulLength, VOS_UINT8 *pucData)
 {
     MsgBlock                           *pMsg;
@@ -1607,20 +1347,7 @@ VOS_VOID USIMM_SciDataHook(VOS_UINT32 ulLength, VOS_UINT8 *pucData)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMMDL_DLStateStar
-功能描述  :
-输入参数  :
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_DLHandle
-修订记录  :
-1. 日    期   : 2009年3月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_DLStateStar(USIMM_APDU_ST* pstAPDUData)
 {
     USIMM_DLJudgeCmdCase(pstAPDUData);
@@ -1637,21 +1364,7 @@ VOS_VOID USIMM_DLStateStar(USIMM_APDU_ST* pstAPDUData)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_DLSendDataOneByOne
-功能描述  :完成协议功能的逐字节发送　
-输入参数  :ulDataLen:发送数据长度
-           pucData:发送数据内容
-输出参数  :无
-返 回 值  :调用底软API的结果
-调用函数  :USIMMSCISendData
-           USIMMSCIReceived
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_INT32 USIMM_DLSendDataOneByOne(VOS_UINT8 ucINS,VOS_UINT32 ulDataLen, VOS_UINT8* pucData)
 {
     VOS_UINT32                  i;
@@ -1724,19 +1437,7 @@ VOS_INT32 USIMM_DLSendDataOneByOne(VOS_UINT8 ucINS,VOS_UINT32 ulDataLen, VOS_UIN
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_DLIdle
-功能描述  :链路层的状态机运行错误处理　
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_ERR
-调用函数  :无
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_DLIdle(USIMM_APDU_ST *pstAPDUData)
 {
     USIMM_ERROR_LOG("USIMM_DLIdle: Usimm DL Run into Error State");
@@ -1746,19 +1447,7 @@ VOS_UINT32 USIMM_DLIdle(USIMM_APDU_ST *pstAPDUData)
     return VOS_ERR;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_DLSendAPDU
-功能描述  :实现APDU命令头的发送　
-输入参数  :pstAPDUData:APDU命令内容
-输出参数  :无
-返 回 值  :调用底软API结果
-调用函数  :USIMMSCISendData
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_DLSendAPDU(USIMM_APDU_ST *pstAPDUData)
 {
     VOS_INT32                           lSCIResult;
@@ -1797,20 +1486,7 @@ VOS_UINT32 USIMM_DLSendAPDU(USIMM_APDU_ST *pstAPDUData)
     return ((USIMM_SCI_SUCCESS == lSCIResult)?VOS_OK:VOS_ERR);/* [false alarm]: 屏蔽Fortify 错误 */
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_DLSendData
-功能描述  :实现APDU命令数据发送　
-输入参数  :pstAPDUData:APDU命令内容
-输出参数  :无
-返 回 值  :调用底软API结果
-调用函数  :USIMMSCISendData
-           USIMM_DLSendDataOneByOne
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_DLSendData(USIMM_APDU_ST *pstAPDUData)
 {
     VOS_INT32                           lSCIResult;
@@ -1869,19 +1545,7 @@ VOS_UINT32 USIMM_DLSendData(USIMM_APDU_ST *pstAPDUData)
     return ((USIMM_SCI_SUCCESS == lSCIResult)?VOS_OK:VOS_ERR);/* [false alarm]: 屏蔽Fortify 错误 */
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_DLReceiveACK
-功能描述  :完成ACK字节的接收和后续步骤的判断　
-输入参数  :pstAPDUData:APDU命令内容
-输出参数  :无
-返 回 值  :调用底软API结果
-调用函数  :USIMMSCIReceived
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_DLReceiveACK(USIMM_APDU_ST *pstAPDUData)
 {
     VOS_UINT8                           aucRecData[2] = {0};
@@ -1983,19 +1647,7 @@ VOS_UINT32 USIMM_DLReceiveACK(USIMM_APDU_ST *pstAPDUData)
 
     return VOS_OK;
 }
-/*****************************************************************************
-函 数 名  :USIMM_DLReceiveData
-功能描述  :实现卡返回数据的接收　
-输入参数  :无
-输出参数  :pstAPDUData:APDU命令接收内容
-返 回 值  :调用底软API结果
-调用函数  :USIMMSCIReceived
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_DLReceiveData(USIMM_APDU_ST *pstAPDUData)
 {
     VOS_INT32                           lSCIResult;
@@ -2041,19 +1693,7 @@ VOS_UINT32 USIMM_DLReceiveData(USIMM_APDU_ST *pstAPDUData)
     return ((USIMM_SCI_SUCCESS == lSCIResult)?VOS_OK:VOS_ERR);/* [false alarm]: 屏蔽Fortify 错误 */
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_DLReceiveSW
-功能描述  :实现接收APDU命令的SW字节功能　
-输入参数  :无
-输出参数  :pstAPDUData:PDU命令接收SW内容
-返 回 值  :调用底软API结果
-调用函数  :USIMMSCIReceived
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_DLReceiveSW(USIMM_APDU_ST *pstAPDUData)
 {
     VOS_INT32                           lSCIResult;
@@ -2155,20 +1795,7 @@ VOS_UINT32 USIMM_DLReceiveSW(USIMM_APDU_ST *pstAPDUData)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMMDL_GetResponse
-功能描述  :
-输入参数  :
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_DLHandle
-修订记录  :
-1. 日    期   : 2009年3月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_DLGetResponse(USIMM_APDU_ST* pstAPDUData)
 {
     if (0x80 == pstAPDUData->aucAPDU[CLA])       /* Envelope Command 需要获取响应值 */
@@ -2221,19 +1848,7 @@ VOS_UINT32 USIMM_DLGetResponse(USIMM_APDU_ST* pstAPDUData)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_T0DLHandle
-功能描述  :T=0协议链路层状态机控制函数　
-输入参数  :pstAPDUData:发送的APDU命令数据内容
-输出参数  :pstAPDUData:接收的数据内容和SW内容
-返 回 值  :USIMM_DL_SUCESS
-           USIMM_DL_RECEIVE_ERROR
-           USIMM_DL_SEND_ERROR
-修订记录  :
-1. 日    期   : 2013年10月17日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 static USIMMDL_FUNC_STATUS gastUSIMMDLProc[] =
 {
     {USIMMDL_STATE_IDLE,        USIMM_DLIdle},
@@ -2320,20 +1935,7 @@ VOS_UINT32 USIMM_T0DLHandle(USIMM_APDU_ST* pstAPDUData)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_DLHandle
-功能描述  :链路层状态机控制函数　
-输入参数  :pstAPDUData:发送的APDU命令数据内容
-输出参数  :pstAPDUData:接收的数据内容和SW内容
-返 回 值  :USIMM_DL_SUCESS
-           USIMM_DL_RECEIVE_ERROR
-           USIMM_DL_SEND_ERROR
-修订记录  :
-1. 日    期   : 2013年10月22日
-   作    者   : j00168360
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_DLHandle(USIMM_APDU_ST* pstAPDUData)
 {
     VOS_UINT32      ulResult;           /* 操作结果 */
@@ -2369,18 +1971,7 @@ VOS_UINT32 USIMM_DLHandle(USIMM_APDU_ST* pstAPDUData)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_DLCglaReceiveSW
-功能描述  :实现CGLA命令接收APDU命令的SW字节功能
-输入参数  :无
-输出参数  :pstAPDUData:PDU命令接收SW内容
-返 回 值  :调用底软API结果
 
-修订记录  :
-1.日    期  : 2013年05月16日
-  作    者  : g47350
-  修改内容  : Create
-*****************************************************************************/
 VOS_UINT32 USIMM_DLCglaReceiveSW(USIMM_APDU_ST *pstAPDUData)
 {
     VOS_INT32                           lSCIResult;
@@ -2484,18 +2075,7 @@ VOS_UINT32 USIMM_DLCglaReceiveSW(USIMM_APDU_ST *pstAPDUData)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_DLCglaGetResponse
-功能描述  :实现CGLA命令处理GetResponse
-输入参数  :无
-输出参数  :pstAPDUData:PDU命令接收SW内容
-返 回 值  :调用底软API结果
 
-修订记录  :
-1.日    期  : 2013年05月16日
-  作    者  : g47350
-  修改内容  : Create
-*****************************************************************************/
 VOS_UINT32 USIMM_DLCglaGetResponse(USIMM_APDU_ST* pstAPDUData)
 {
     VOS_UINT32                      ulTempLen;
@@ -2560,25 +2140,7 @@ VOS_UINT32 USIMM_DLCglaGetResponse(USIMM_APDU_ST* pstAPDUData)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CglaDLHandle
-功能描述  :CGLA命令链路层状态机控制函数　
-输入参数  :pstAPDUData:发送的APDU命令数据内容
-输出参数  :pstAPDUData:接收的数据内容和SW内容
-返 回 值  :USIMM_DL_SUCESS
-           USIMM_DL_RECEIVE_ERROR
-           USIMM_DL_SEND_ERROR
-调用函数  :USIMM_DLIdle
-          USIMM_DLSendAPDU
-          USIMM_DLSendData
-          USIMM_DLReceiveACK
-          USIMM_DLReceiveData
-          USIMM_DLReceiveSW
-修订记录  :
-1.日    期  : 2013年05月16日
-  作    者  : g47350
-  修改内容  : Create
-*****************************************************************************/
+
 static USIMMDL_FUNC_STATUS gastUSIMMCglaDLProc[] =
 {
     {USIMMDL_STATE_IDLE,        USIMM_DLIdle},
@@ -2663,17 +2225,7 @@ VOS_UINT32 USIMM_T0CglaDLHandle(USIMM_APDU_ST* pstAPDUData)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CglaDLHandle
-功能描述  :CGLA命令与卡交互数据入口
-输入参数  :pstAPDUData:APDU命令发送内容
-输出参数  :pstAPDUData:APDU命令接收内容
-返 回 值  :调用底软API结果
-修订记录  :
-1. 日    期   : 2013年10月17日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_CglaDLHandle(USIMM_APDU_ST* pstAPDUData)
 {
 

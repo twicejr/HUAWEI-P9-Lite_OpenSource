@@ -76,7 +76,6 @@ VOS_UINT32 g_ulNasEmmReplayNum
 NAS_REPLAY_CTX_INFO_STRU g_astNasEsmReplay[] =
 {
     {(VOS_UINT8*)&g_stNasEsmEntity, sizeof(g_stNasEsmEntity), VOS_TRUE, NAS_REPLAY_ExportEsmEntity, NAS_Replay_ImportEsmEntity},
-    /* 删除PCO flag相关无效代码 y00307272 20151205 DTS2015101700432 */
     {(VOS_UINT8*)&g_ulDelSdfWithQosFlag, sizeof(VOS_UINT32), VOS_TRUE, VOS_NULL_PTR, VOS_NULL_PTR},
     {(VOS_UINT8*)&g_ulPcscfFlag, sizeof(VOS_UINT32), VOS_TRUE, VOS_NULL_PTR, VOS_NULL_PTR},
     {(VOS_UINT8*)&g_ulBcmFlag, sizeof(VOS_UINT32), VOS_TRUE, VOS_NULL_PTR, VOS_NULL_PTR},
@@ -295,17 +294,7 @@ VOS_UINT32               g_ulUsimTestModeIndex;
 
 #if(VOS_WIN32 == VOS_OS_VER)
 /*在单板环境暂不导出导入*/
-/*****************************************************************************
- Function Name   : NAS_REPLAY_SaveCntxInfo
- Description     : 模块全局变量导出公共函数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-4-7  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_Replay_SaveCntxInfo
 (
     VOS_UINT8                           *pucDestBufAddr, /* 压缩后的数据 */
@@ -358,17 +347,7 @@ VOS_UINT32 NAS_Replay_SaveCntxInfo
 
     return VOS_TRUE;
 }
-/*****************************************************************************
- Function Name   : NAS_REPLAY_ExportVarible
- Description     : 单个全局变量导出公共函数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-4-7  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_Replay_ExportVarible
 (
     VOS_UINT8                           *pucDest, /* 压缩后的数据 */
@@ -420,17 +399,7 @@ VOS_UINT32 NAS_Replay_ExportVarible
     return NAS_PCREPLAY_EXPORT_VAR_FINISH;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ExportContextData
- Description     : EMM模块全局变量导出函数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-4-3  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_ExportContextData(VOS_VOID)
 {
     NAS_PC_REPLAY_RUNNING_CONTEXT_STRU  *pstReplayCtx = NAS_EMM_NULL_PTR;
@@ -477,17 +446,7 @@ VOS_UINT32  NAS_EMM_ExportContextData(VOS_VOID)
     return ulRslt;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_ExportContextData
- Description     : ESM模块全局变量导出函数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-4-7  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_ESM_ExportContextData(VOS_VOID)
 {
     NAS_PC_REPLAY_RUNNING_CONTEXT_STRU  *pstReplayCtx = NAS_EMM_NULL_PTR;
@@ -534,17 +493,7 @@ VOS_UINT32  NAS_ESM_ExportContextData(VOS_VOID)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_ExportContextData
- Description     : ESM模块全局变量导出函数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-4-7  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_ERABM_ExportContextData(VOS_VOID)
 {
     NAS_PC_REPLAY_RUNNING_CONTEXT_STRU  *pstReplayCtx = NAS_EMM_NULL_PTR;
@@ -591,17 +540,7 @@ VOS_UINT32  NAS_ERABM_ExportContextData(VOS_VOID)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- Function Name   : NAS_REPLAY_ExportEmmInfo
- Description     : g_stEmmInfo.pucEsmMsg全局变量指针导出函数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-4-7  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_REPLAY_ExportEmmInfo
 (
     VOS_UINT8                           *pucDest,
@@ -679,17 +618,7 @@ VOS_UINT32  NAS_REPLAY_ExportEmmInfo
     return NAS_PCREPLAY_EXPORT_VAR_FINISH;
 }
 
-/*****************************************************************************
- Function Name   : NAS_REPLAY_ExportEmmEsmMsgBuf
- Description     : g_stEmmEsmMsgBuf.apucEsmMsgBuf全局变量指针导出函数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-4-7  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_REPLAY_ExportEmmEsmMsgBuf
 (
     VOS_UINT8                           *pucDest,
@@ -789,17 +718,7 @@ VOS_UINT32  NAS_REPLAY_ExportEmmEsmMsgBuf
     return NAS_PCREPLAY_EXPORT_VAR_FINISH;
 }
 
-/*****************************************************************************
- Function Name   : NAS_REPLAY_ExportEmmFsmBufHighQueue
- Description     : g_stMmMainContext.stNasMmFsm.astFsmMsgBuffer全局变量指针导出函数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-4-7  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_REPLAY_ExportEmmFsmBufHighQueue
 (
     VOS_UINT8 *pucDest,
@@ -884,17 +803,7 @@ VOS_UINT32  NAS_REPLAY_ExportEmmFsmBufHighQueue
     *pulDatalen = ulTempLen;
     return NAS_PCREPLAY_EXPORT_VAR_FINISH;
 }
-/*****************************************************************************
- Function Name   : NAS_REPLAY_ExportEmmFsmBufMidQueue
- Description     : g_stMmMainContext.stNasMmFsm.astFsmMsgBuffer全局变量指针导出函数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-4-7  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_REPLAY_ExportEmmFsmBufMidQueue
 (
     VOS_UINT8 *pucDest,
@@ -979,17 +888,7 @@ VOS_UINT32  NAS_REPLAY_ExportEmmFsmBufMidQueue
     return NAS_PCREPLAY_EXPORT_VAR_FINISH;
 }
 
-/*****************************************************************************
- Function Name   : NAS_REPLAY_ExportEmmFsmBufLowQueue
- Description     : g_stMmMainContext.stNasMmFsm.astFsmMsgBuffer全局变量指针导出函数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-4-7  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_REPLAY_ExportEmmFsmBufLowQueue
 (
     VOS_UINT8 *pucDest,
@@ -1073,17 +972,7 @@ VOS_UINT32  NAS_REPLAY_ExportEmmFsmBufLowQueue
     return NAS_PCREPLAY_EXPORT_VAR_FINISH;
 }
 
-/*****************************************************************************
- Function Name   : NAS_REPLAY_ExportEmmEsmMsgBuf
- Description     : g_stMmMainContext.stNasMmFsm.astFsmMsgBuffer全局变量指针导出函数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-4-7  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_REPLAY_ExportMmMainContext
 (
     VOS_UINT8                           *pucDest,
@@ -1148,17 +1037,7 @@ VOS_UINT32  NAS_REPLAY_ExportMmMainContext
     return NAS_PCREPLAY_EXPORT_VAR_FINISH;
 }
 
-/*****************************************************************************
- Function Name   : NAS_REPLAY_ExportEsmDecodedNwMsg
- Description     : g_stNasEsmEntity.astStateTable[i].pstDecodedNwMsg全局变量指针导出函数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-4-7  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_REPLAY_ExportEsmDecodedNwMsg
 (
     VOS_UINT8 *pucDest,
@@ -1218,17 +1097,7 @@ VOS_UINT32  NAS_REPLAY_ExportEsmDecodedNwMsg
     return NAS_PCREPLAY_EXPORT_VAR_FINISH;
 }
 
-/*****************************************************************************
- Function Name   : NAS_REPLAY_ExportEsmAttBuffItemNum
- Description     : g_stNasEsmEntity.stEsmBuffManageInfo[i].paAttBuffer全局变量指针导出函数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-4-7  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_REPLAY_ExportEsmAttBuffItemNum
 (
     VOS_UINT8 *pucDest,
@@ -1313,17 +1182,7 @@ VOS_UINT32  NAS_REPLAY_ExportEsmAttBuffItemNum
     return NAS_PCREPLAY_EXPORT_VAR_FINISH;
 }
 
-/*****************************************************************************
- Function Name   : NAS_REPLAY_ExportEsmPtiBuffItemNum
- Description     : g_stNasEsmEntity.stEsmBuffManageInfo[i].paPtiBuffer全局变量指针导出函数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-4-7  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_REPLAY_ExportEsmPtiBuffItemNum
 (
     VOS_UINT8 *pucDest,
@@ -1415,17 +1274,7 @@ VOS_UINT32  NAS_REPLAY_ExportEsmPtiBuffItemNum
     return NAS_PCREPLAY_EXPORT_VAR_FINISH;
 }
 
-/*****************************************************************************
- Function Name   : NAS_REPLAY_ExportEsmEntity
- Description     : g_stNasEsmEntity全局变量指针导出函数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-4-7  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_REPLAY_ExportEsmEntity
 (
     VOS_UINT8                           *pucDest,
@@ -1494,21 +1343,7 @@ VOS_UINT32  NAS_REPLAY_ExportEsmEntity
 #if(VOS_WIN32 == VOS_OS_VER)
 /*在单板环境暂不导入*/
 
-/*****************************************************************************
- 函 数 名  : NAS_REPLAY_InitContext
- 功能描述  : 导入PC回放上下文信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年09月03日
-    作    者   : 罗开辉 l00167671
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_REPLAY_InitContext(
     const NAS_REPLAY_CTX_INFO_STRU        *pstCtxTbl,
     VOS_UINT32                      ulCount
@@ -1524,17 +1359,7 @@ VOS_VOID NAS_REPLAY_InitContext(
     return ;
 }
 
-/*****************************************************************************
- Function Name   : NAS_REPLAY_SaveCntxInfo
- Description     : 模块全局变量导入公共函数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-4-7  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_REPLAY_RestoreContext
 (
     NAS_REPLAY_CTX_INFO_STRU        *pstCtxTbl,
@@ -1578,17 +1403,7 @@ VOS_UINT32 NAS_REPLAY_RestoreContext
     return VOS_OK;
 }
 
-/*****************************************************************************
- Function Name   : NAS_REPLAY_RestoreVar
- Description     : 单个全局变量导入公共函数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-4-7  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_REPLAY_RestoreVar
 (
     const NAS_REPLAY_CTX_INFO_STRU        *pstVar,
@@ -1644,17 +1459,7 @@ VOS_UINT32 NAS_REPLAY_RestoreVar
     return NAS_PCREPLAY_EXPORT_VAR_FINISH;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ExportContextData
- Description     : EMM模块全局变量导入函数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-4-3  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_RestoreContextData(MsgBlock * pstMsg)
 {
     NAS_PC_REPLAY_RUNNING_CONTEXT_STRU  *pstReplayCtx = NAS_EMM_NULL_PTR;
@@ -1685,17 +1490,7 @@ VOS_UINT32  NAS_EMM_RestoreContextData(MsgBlock * pstMsg)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_RestoreContextData
- Description     : ESM模块全局变量导入函数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-4-3  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_ESM_RestoreContextData(MsgBlock * pstMsg)
 {
     NAS_PC_REPLAY_RUNNING_CONTEXT_STRU  *pstReplayCtx = NAS_EMM_NULL_PTR;
@@ -1726,17 +1521,7 @@ VOS_UINT32  NAS_ESM_RestoreContextData(MsgBlock * pstMsg)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_RestoreContextData
- Description     : ERABM模块全局变量导入函数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-4-3  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_ERABM_RestoreContextData(MsgBlock * pstMsg)
 {
     NAS_PC_REPLAY_RUNNING_CONTEXT_STRU  *pstReplayCtx = NAS_EMM_NULL_PTR;
@@ -1767,17 +1552,7 @@ VOS_UINT32  NAS_ERABM_RestoreContextData(MsgBlock * pstMsg)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- Function Name   : NAS_REPLAY_ImportEmmInfo
- Description     : g_stEmmInfo.pucEsmMsg全局变量指针导入函数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-4-7  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_REPLAY_ImportEmmInfo
 (
     const VOS_UINT8                           *pucVar,
@@ -1861,17 +1636,7 @@ VOS_UINT32  NAS_REPLAY_ImportEmmInfo
     return NAS_PCREPLAY_EXPORT_VAR_FINISH;
 }
 
-/*****************************************************************************
- Function Name   : NAS_REPLAY_ImportEmmEsmMsgBuf
- Description     : g_stEmmEsmMsgBuf.apucEsmMsgBuf全局变量指针导入函数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-4-7  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_REPLAY_ImportEmmEsmMsgBuf
 (
     const VOS_UINT8                           *pucVar,
@@ -1965,17 +1730,7 @@ VOS_UINT32  NAS_REPLAY_ImportEmmEsmMsgBuf
     return NAS_PCREPLAY_EXPORT_VAR_FINISH;
 }
 
-/*****************************************************************************
- Function Name   : NAS_REPLAY_ImportEmmFsmBufHighQueue
- Description     : g_stMmMainContext.stNasMmFsm.astFsmMsgBuffer全局变量指针导入函数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-4-7  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_REPLAY_ImportEmmFsmBufHighQueue
 (
     const VOS_UINT8                       *pucSrc,
@@ -2051,17 +1806,7 @@ VOS_UINT32  NAS_REPLAY_ImportEmmFsmBufHighQueue
     return NAS_PCREPLAY_EXPORT_VAR_FINISH;
 }
 
-/*****************************************************************************
- Function Name   : NAS_REPLAY_ImportEmmFsmBufMidQueue
- Description     : g_stMmMainContext.stNasMmFsm.astFsmMsgBuffer全局变量指针导入函数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-4-7  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_REPLAY_ImportEmmFsmBufMidQueue
 (
     const VOS_UINT8                       *pucSrc,
@@ -2138,17 +1883,7 @@ VOS_UINT32  NAS_REPLAY_ImportEmmFsmBufMidQueue
     return NAS_PCREPLAY_EXPORT_VAR_FINISH;
 }
 
-/*****************************************************************************
- Function Name   : NAS_REPLAY_ImportEmmFsmBufLowQueue
- Description     : g_stMmMainContext.stNasMmFsm.astFsmMsgBuffer全局变量指针导入函数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-4-7  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_REPLAY_ImportEmmFsmBufLowQueue
 (
     const VOS_UINT8                       *pucSrc,
@@ -2227,17 +1962,7 @@ VOS_UINT32  NAS_REPLAY_ImportEmmFsmBufLowQueue
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_REPLAY_ImportMmMainContex
- Description     : g_stMmMainContext.stNasMmFsm.astFsmMsgBuffer全局变量指针导入函数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-4-7  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_REPLAY_ImportMmMainContex
 (
     const VOS_UINT8                           *pucVar,
@@ -2312,17 +2037,7 @@ VOS_UINT32  NAS_REPLAY_ImportMmMainContex
     return NAS_PCREPLAY_EXPORT_VAR_FINISH;
 }
 
-/*****************************************************************************
- Function Name   : NAS_REPLAY_ImportEsmDecodedNwMsg
- Description     : g_stNasEsmEntity全局变量指针导入函数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-4-7  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_REPLAY_ImportEsmDecodedNwMsg
 (
     const VOS_UINT8                       *pucSrc,
@@ -2388,17 +2103,7 @@ VOS_UINT32  NAS_REPLAY_ImportEsmDecodedNwMsg
     return NAS_PCREPLAY_EXPORT_VAR_FINISH;
 }
 
-/*****************************************************************************
- Function Name   : NAS_REPLAY_ImportEsmAttBuffItemNum
- Description     : g_stNasEsmEntity全局变量指针导入函数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-4-7  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_REPLAY_ImportEsmAttBuffItemNum
 (
     const VOS_UINT8                       *pucSrc,
@@ -2475,17 +2180,7 @@ VOS_UINT32  NAS_REPLAY_ImportEsmAttBuffItemNum
     return NAS_PCREPLAY_EXPORT_VAR_FINISH;
 }
 
-/*****************************************************************************
- Function Name   : NAS_REPLAY_ImportEsmPtiBuffItemNum
- Description     : g_stNasEsmEntity全局变量指针导入函数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-4-7  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_REPLAY_ImportEsmPtiBuffItemNum
 (
     const VOS_UINT8                       *pucSrc,
@@ -2561,17 +2256,7 @@ VOS_UINT32  NAS_REPLAY_ImportEsmPtiBuffItemNum
     return NAS_PCREPLAY_EXPORT_VAR_FINISH;
 }
 
-/*****************************************************************************
- Function Name   : NAS_Replay_ImportEsmEntity
- Description     : g_stNasEsmEntity全局变量指针导入函数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-4-7  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_Replay_ImportEsmEntity
 (
     const VOS_UINT8                           *pucVar,
@@ -2647,17 +2332,7 @@ VOS_UINT32  NAS_Replay_ImportEsmEntity
     return NAS_PCREPLAY_EXPORT_VAR_FINISH;
 }
 
-/*****************************************************************************
- Function Name   : LNAS_REPLAY_ImportAPIInfo
- Description     : LNAS回放时导入API信息函数
- Input           : MSG_HEADER_STRU  *pstMsg
- Output          : 无
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2013-5-17  Draft Enact
-
-*****************************************************************************/
 VOS_VOID LNAS_REPLAY_ImportAPIInfo(MsgBlock *pstMsg)
 {
     VOS_UINT32                          i;
@@ -2682,17 +2357,7 @@ VOS_VOID LNAS_REPLAY_ImportAPIInfo(MsgBlock *pstMsg)
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_REPLAY_SavePubInfo
- Description     : Nas_GetPubInfo的导入函数
- Input           : MsgBlock * pstMsg
- Output          : 无
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-4-10  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_REPLAY_SavePubInfo(MsgBlock * pstMsg)
 {
 
@@ -2731,17 +2396,7 @@ VOS_UINT32 NAS_REPLAY_SavePubInfo(MsgBlock * pstMsg)
 }
 
 
-/*****************************************************************************
- Function Name   : Stub_Nas_GetPubInfo
- Description     : Nas_GetPubInfo函数导入时的桩函数
- Input           : MMC_LMM_INFO_TYPE_ENUM_UINT32    ulInfoType
- Output          : MMC_LMM_PUB_INFO_STRU           *pPubInfo
- Return          : MMC_LMM_RESULT_ID_ENUM_UINT32
 
- History         :
-    1.leili 00132387      2013-4-7  Draft Enact
-
-*****************************************************************************/
 MMC_LMM_RESULT_ID_ENUM_UINT32  Stub_Nas_GetPubInfo
 (
     MMC_LMM_INFO_TYPE_ENUM_UINT32    ulInfoType,
@@ -2778,17 +2433,7 @@ MMC_LMM_RESULT_ID_ENUM_UINT32  Stub_Nas_GetPubInfo
     return  ulRslt;
 }
 
-/*****************************************************************************
- Function Name   : NAS_REPLAY_SaveGuInfo
- Description     : Nas_GetGuInfo的导入函数
- Input           : MsgBlock * pstMsg
- Output          : 无
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-4-10  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_REPLAY_SaveGuInfo(MsgBlock * pstMsg)
 {
 
@@ -2826,17 +2471,7 @@ VOS_UINT32 NAS_REPLAY_SaveGuInfo(MsgBlock * pstMsg)
 }
 
 
-/*****************************************************************************
- Function Name   : Stub_Nas_GetGuInfo
- Description     : Nas_GetGuInfo函数导入时的桩函数
- Input           : MMC_LMM_INFO_TYPE_ENUM_UINT32    ulInfoType
- Output          : MMC_LMM_PUB_INFO_STRU           *pPubInfo
- Return          : MMC_LMM_RESULT_ID_ENUM_UINT32
 
- History         :
-    1.leili 00132387      2013-4-7  Draft Enact
-
-*****************************************************************************/
 MMC_LMM_RESULT_ID_ENUM_UINT32  Stub_Nas_GetGuInfo
 (
     NAS_GUMM_INFO_TYPE_ENUM_UINT32  ulInfoType,
@@ -2876,17 +2511,7 @@ MMC_LMM_RESULT_ID_ENUM_UINT32  Stub_Nas_GetGuInfo
     return  ulRslt;
 }
 
-/*****************************************************************************
- Function Name   : NAS_REPLAY_SaveMsNetCap
- Description     : NAS_MML_GetMsNetworkCapability的导入函数
- Input           : MsgBlock * pstMsg
- Output          : 无
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-4-10  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_REPLAY_SaveMsNetCap(MsgBlock * pstMsg)
 {
 
@@ -2921,17 +2546,7 @@ VOS_UINT32 NAS_REPLAY_SaveMsNetCap(MsgBlock * pstMsg)
 }
 
 
-/*****************************************************************************
- Function Name   : Stub_Nas_GetGuInfo
- Description     : NAS_MML_GetMsNetworkCapability函数导入时的桩函数
- Input           :
- Output          : pstMsNetCap
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2013-4-7  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  Stub_NAS_MML_GetMsNetworkCapability
 (
     NAS_MML_MS_NETWORK_CAPACILITY_STRU   *pstMsNetCap
@@ -2967,17 +2582,7 @@ VOS_VOID  Stub_NAS_MML_GetMsNetworkCapability
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_REPLAY_SaveUeIdTmsi
- Description     : NAS_MML_GetUeIdTmsi的导入函数
- Input           : MsgBlock * pstMsg
- Output          : 无
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-4-10  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_REPLAY_SaveUeIdTmsi(MsgBlock * pstMsg)
 {
 
@@ -3013,17 +2618,7 @@ VOS_UINT32 NAS_REPLAY_SaveUeIdTmsi(MsgBlock * pstMsg)
 }
 
 
-/*****************************************************************************
- Function Name   : Stub_NAS_MML_GetUeIdTmsi
- Description     : NAS_MML_GetUeIdTmsi函数导入时的桩函数
- Input           : None
- Output          : None
- Return          : MMC_LMM_RESULT_ID_ENUM_UINT32
 
- History         :
-    1.leili 00132387      2013-4-7  Draft Enact
-
-*****************************************************************************/
 VOS_UINT8* Stub_NAS_MML_GetUeIdTmsi
 (
    VOS_VOID
@@ -3054,17 +2649,7 @@ VOS_UINT8* Stub_NAS_MML_GetUeIdTmsi
     return g_aucTmsi;
 }
 
-/*****************************************************************************
- Function Name   : NAS_REPLAY_SaveLteCsSrvCfg
- Description     : NAS_MML_GetLteCsServiceCfg的导入函数
- Input           : MsgBlock * pstMsg
- Output          : 无
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-4-10  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_REPLAY_SaveLteCsSrvCfg(MsgBlock * pstMsg)
 {
 
@@ -3096,17 +2681,7 @@ VOS_UINT32 NAS_REPLAY_SaveLteCsSrvCfg(MsgBlock * pstMsg)
 }
 
 
-/*****************************************************************************
- Function Name   : Stub_NAS_MML_GetLteCsServiceCfg
- Description     : NAS_MML_GetLteCsServiceCfg函数导入时的桩函数
- Input           : None
- Output          : None
- Return          : VOS_UINT8
 
- History         :
-    1.leili 00132387      2013-4-11  Draft Enact
-
-*****************************************************************************/
 VOS_UINT8  Stub_NAS_MML_GetLteCsServiceCfg
 (
    VOS_VOID
@@ -3135,17 +2710,7 @@ VOS_UINT8  Stub_NAS_MML_GetLteCsServiceCfg
     return ucRslt;
 }
 
-/*****************************************************************************
- Function Name   : NAS_REPLAY_SaveTinType
- Description     : NAS_MML_GetTinType的导入函数
- Input           : MsgBlock * pstMsg
- Output          : 无
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-4-11  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_REPLAY_SaveTinType(MsgBlock * pstMsg)
 {
 
@@ -3177,17 +2742,7 @@ VOS_UINT32 NAS_REPLAY_SaveTinType(MsgBlock * pstMsg)
 }
 
 
-/*****************************************************************************
- Function Name   : Stub_NAS_MML_GetTinType
- Description     : NAS_MML_GetTinType函数导入时的桩函数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-4-11  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  Stub_NAS_MML_GetTinType
 (
    VOS_VOID
@@ -3216,17 +2771,7 @@ VOS_UINT32  Stub_NAS_MML_GetTinType
     return ulRslt;
 }
 
-/*****************************************************************************
- Function Name   : NAS_REPLAY_SaveAddUpdateRslt
- Description     : NAS_MML_GetAdditionUpdateRslt的导入函数
- Input           : MsgBlock * pstMsg
- Output          : 无
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-4-11  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_REPLAY_SaveAddUpdateRslt(MsgBlock * pstMsg)
 {
 
@@ -3258,17 +2803,7 @@ VOS_UINT32 NAS_REPLAY_SaveAddUpdateRslt(MsgBlock * pstMsg)
 }
 
 
-/*****************************************************************************
- Function Name   : Stub_NAS_MML_GetAdditionUpdateRslt
- Description     : NAS_MML_GetAdditionUpdateRslt函数导入时的桩函数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-4-11  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  Stub_NAS_MML_GetAdditionUpdateRslt
 (
    VOS_VOID
@@ -3297,17 +2832,7 @@ VOS_UINT32  Stub_NAS_MML_GetAdditionUpdateRslt
     return ulRslt;
 }
 
-/*****************************************************************************
- Function Name   : NAS_REPLAY_SavePsBearCtx
- Description     : NAS_MML_GetPsBearerCtx的导入函数
- Input           : MsgBlock * pstMsg
- Output          : 无
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-4-11  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_REPLAY_SavePsBearCtx(MsgBlock * pstMsg)
 {
     NAS_LMM_LOG_PS_BEAR_CTX_INFO_STRU      *pstLogPsBearCtxInfo;
@@ -3341,17 +2866,7 @@ VOS_UINT32 NAS_REPLAY_SavePsBearCtx(MsgBlock * pstMsg)
 }
 
 
-/*****************************************************************************
- Function Name   : Stub_NAS_MML_GetPsBearerCtx
- Description     : NAS_MML_GetPsBearerCtx函数导入时的桩函数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-4-11  Draft Enact
-
-*****************************************************************************/
 NAS_MML_PS_BEARER_CONTEXT_STRU *  Stub_NAS_MML_GetPsBearerCtx
 (
    VOS_VOID
@@ -3386,17 +2901,7 @@ NAS_MML_PS_BEARER_CONTEXT_STRU *  Stub_NAS_MML_GetPsBearerCtx
     return g_stPsBearCtx;
 }
 
-/*****************************************************************************
- Function Name   : NAS_REPLAY_SavePsBearerExistBeforeIsrAct
- Description     : NAS_MML_IsPsBearerExistBeforeIsrAct的导入函数
- Input           : MsgBlock * pstMsg
- Output          : 无
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-4-11  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_REPLAY_SavePsBearerExistBeforeIsrAct(MsgBlock * pstMsg)
 {
 
@@ -3428,17 +2933,7 @@ VOS_UINT32 NAS_REPLAY_SavePsBearerExistBeforeIsrAct(MsgBlock * pstMsg)
 }
 
 
-/*****************************************************************************
- Function Name   : Stub_NAS_MML_IsPsBearerExistBeforeIsrAct
- Description     : NAS_MML_IsPsBearerExistBeforeIsrAct函数导入时的桩函数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-4-11  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  Stub_NAS_MML_IsPsBearerExistBeforeIsrAct
 (
    VOS_VOID
@@ -3467,17 +2962,7 @@ VOS_UINT32  Stub_NAS_MML_IsPsBearerExistBeforeIsrAct
     return ulRslt;
 }
 
-/*****************************************************************************
- Function Name   : NAS_REPLAY_SavePsBearerAfterIsrActExist
- Description     : NAS_MML_IsPsBearerAfterIsrActExist的导入函数
- Input           : MsgBlock * pstMsg
- Output          : 无
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-4-11  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_REPLAY_SavePsBearerAfterIsrActExist(MsgBlock * pstMsg)
 {
 
@@ -3509,17 +2994,7 @@ VOS_UINT32 NAS_REPLAY_SavePsBearerAfterIsrActExist(MsgBlock * pstMsg)
 }
 
 
-/*****************************************************************************
- Function Name   : Stub_NAS_MML_IsPsBearerAfterIsrActExist
- Description     : NAS_MML_IsPsBearerAfterIsrActExist函数导入时的桩函数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-4-11  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  Stub_NAS_MML_IsPsBearerAfterIsrActExist
 (
    VOS_VOID
@@ -3548,17 +3023,7 @@ VOS_UINT32  Stub_NAS_MML_IsPsBearerAfterIsrActExist
     return ulRslt;
 }
 
-/*****************************************************************************
- Function Name   : NAS_REPLAY_SaveEmcNumList
- Description     : NAS_MML_GetEmergencyNumList的导入函数
- Input           : MsgBlock * pstMsg
- Output          : 无
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-4-11  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_REPLAY_SaveEmcNumList(MsgBlock * pstMsg)
 {
 
@@ -3593,17 +3058,7 @@ VOS_UINT32 NAS_REPLAY_SaveEmcNumList(MsgBlock * pstMsg)
 }
 
 
-/*****************************************************************************
- Function Name   : Stub_NAS_MML_GetEmergencyNumList
- Description     : NAS_MML_GetEmergencyNumList函数导入时的桩函数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-4-11  Draft Enact
-
-*****************************************************************************/
 NAS_MML_EMERGENCY_NUM_LIST_STRU*  Stub_NAS_MML_GetEmergencyNumList
 (
    VOS_VOID
@@ -3637,17 +3092,7 @@ NAS_MML_EMERGENCY_NUM_LIST_STRU*  Stub_NAS_MML_GetEmergencyNumList
     return &g_stEmcNumList;
 }
 
-/*****************************************************************************
- Function Name   : NAS_REPLAY_SavePsRegContainDrxPara
- Description     : NAS_MML_GetPsRegContainDrx的导入函数
- Input           : MsgBlock * pstMsg
- Output          : 无
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-5-7  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_REPLAY_SavePsRegContainDrxPara(MsgBlock * pstMsg)
 {
 
@@ -3679,17 +3124,7 @@ VOS_UINT32 NAS_REPLAY_SavePsRegContainDrxPara(MsgBlock * pstMsg)
 }
 
 
-/*****************************************************************************
- Function Name   : Stub_NAS_MML_GetPsRegContainDrx
- Description     : NAS_MML_GetPsRegContainDrx函数导入时的桩函数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-5-7  Draft Enact
-
-*****************************************************************************/
 VOS_UINT8  Stub_NAS_MML_GetPsRegContainDrx
 (
    VOS_VOID
@@ -3718,17 +3153,7 @@ VOS_UINT8  Stub_NAS_MML_GetPsRegContainDrx
     return ucPsDrxPara;
 }
 
-/*****************************************************************************
- Function Name   : NAS_REPLAY_SaveUeEutranPsDrxLen
- Description     : NAS_MML_GetUeEutranPsDrxLen的导入函数
- Input           : MsgBlock * pstMsg
- Output          : 无
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-5-7  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_REPLAY_SaveUeEutranPsDrxLen(MsgBlock * pstMsg)
 {
 
@@ -3760,17 +3185,7 @@ VOS_UINT32 NAS_REPLAY_SaveUeEutranPsDrxLen(MsgBlock * pstMsg)
 }
 
 
-/*****************************************************************************
- Function Name   : Stub_NAS_MML_GetUeEutranPsDrxLen
- Description     : NAS_MML_GetUeEutranPsDrxLen函数导入时的桩函数
- Input           : None
- Output          : None
- Return          : VOS_UINT8
 
- History         :
-    1.leili 00132387      2013-5-7  Draft Enact
-
-*****************************************************************************/
 VOS_UINT8  Stub_NAS_MML_GetUeEutranPsDrxLen
 (
    VOS_VOID
@@ -3799,17 +3214,7 @@ VOS_UINT8  Stub_NAS_MML_GetUeEutranPsDrxLen
     return ucEutranPsDrxLen;
 }
 
-/*****************************************************************************
- Function Name   : NAS_REPLAY_SaveNonDrxTimer
- Description     : NAS_MML_GetNonDrxTimer的导入函数
- Input           : MsgBlock * pstMsg
- Output          : 无
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-5-7  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_REPLAY_SaveNonDrxTimer(MsgBlock * pstMsg)
 {
 
@@ -3841,17 +3246,7 @@ VOS_UINT32 NAS_REPLAY_SaveNonDrxTimer(MsgBlock * pstMsg)
 }
 
 
-/*****************************************************************************
- Function Name   : Stub_NAS_MML_GetNonDrxTimer
- Description     : NAS_MML_GetNonDrxTimer函数导入时的桩函数
- Input           : None
- Output          : None
- Return          : VOS_UINT8
 
- History         :
-    1.leili 00132387      2013-5-7  Draft Enact
-
-*****************************************************************************/
 VOS_UINT8  Stub_NAS_MML_GetNonDrxTimer
 (
    VOS_VOID
@@ -3880,17 +3275,7 @@ VOS_UINT8  Stub_NAS_MML_GetNonDrxTimer
     return ucEutranPsDrxTimer;
 }
 
-/*****************************************************************************
- Function Name   : NAS_REPLAY_SaveSplitPgCycleCode
- Description     : NAS_MML_GetNonDrxTimer的导入函数
- Input           : MsgBlock * pstMsg
- Output          : 无
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-5-7  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_REPLAY_SaveSplitPgCycleCode(MsgBlock * pstMsg)
 {
 
@@ -3922,17 +3307,7 @@ VOS_UINT32 NAS_REPLAY_SaveSplitPgCycleCode(MsgBlock * pstMsg)
 }
 
 
-/*****************************************************************************
- Function Name   : Stub_NAS_MML_GetSplitPgCycleCode
- Description     : NAS_MML_GetSplitPgCycleCode函数导入时的桩函数
- Input           : None
- Output          : None
- Return          : VOS_UINT8
 
- History         :
-    1.leili 00132387      2013-5-7  Draft Enact
-
-*****************************************************************************/
 VOS_UINT8  Stub_NAS_MML_GetSplitPgCycleCode
 (
    VOS_VOID
@@ -3961,17 +3336,7 @@ VOS_UINT8  Stub_NAS_MML_GetSplitPgCycleCode
     return ucPsDrxPgCode;
 }
 
-/*****************************************************************************
- Function Name   : :NAS_REPLAY_SaveSplitOnCcch
- Description     : NAS_MML_GetSplitOnCcch的导入函数
- Input           : MsgBlock * pstMsg
- Output          : 无
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-5-7  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_REPLAY_SaveSplitOnCcch(MsgBlock * pstMsg)
 {
 
@@ -4003,17 +3368,7 @@ VOS_UINT32 NAS_REPLAY_SaveSplitOnCcch(MsgBlock * pstMsg)
 }
 
 
-/*****************************************************************************
- Function Name   : Stub_NAS_MML_GetSplitOnCcch
- Description     : NAS_MML_GetSplitOnCcch函数导入时的桩函数
- Input           : None
- Output          : None
- Return          : VOS_UINT8
 
- History         :
-    1.leili 00132387      2013-5-7  Draft Enact
-
-*****************************************************************************/
 VOS_UINT8  Stub_NAS_MML_GetSplitOnCcch
 (
    VOS_VOID
@@ -4042,17 +3397,7 @@ VOS_UINT8  Stub_NAS_MML_GetSplitOnCcch
     return ucPsDrxOnCcch;
 }
 
-/*****************************************************************************
- Function Name   : ::NAS_REPLAY_SaveMsClassMark2
- Description     : NAS_MML_Fill_IE_ClassMark2的导入函数
- Input           : MsgBlock * pstMsg
- Output          : 无
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-5-7  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_REPLAY_SaveMsClassMark2(MsgBlock * pstMsg)
 {
 
@@ -4087,17 +3432,7 @@ VOS_UINT32 NAS_REPLAY_SaveMsClassMark2(MsgBlock * pstMsg)
 }
 
 
-/*****************************************************************************
- Function Name   : Stub_NAS_MML_Fill_IE_ClassMark2
- Description     : NAS_MML_Fill_IE_ClassMark2函数导入时的桩函数
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2013-5-7  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  Stub_NAS_MML_Fill_IE_ClassMark2
 (
    VOS_UINT8  *pClassMark2
@@ -4132,17 +3467,7 @@ VOS_VOID  Stub_NAS_MML_Fill_IE_ClassMark2
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_REPLAY_SaveCsAttachAllowFlg
- Description     : NAS_MML_GetCsAttachAllowFlg的导入函数
- Input           : MsgBlock * pstMsg
- Output          : 无
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-5-8  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_REPLAY_SaveCsAttachAllowFlg(MsgBlock * pstMsg)
 {
 
@@ -4174,17 +3499,7 @@ VOS_UINT32 NAS_REPLAY_SaveCsAttachAllowFlg(MsgBlock * pstMsg)
 }
 
 
-/*****************************************************************************
- Function Name   : Stub_NAS_MML_GetCsAttachAllowFlg
- Description     : NAS_MML_GetCsAttachAllowFlg函数导入时的桩函数
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2013-5-8  Draft Enact
-
-*****************************************************************************/
 VOS_UINT8  Stub_NAS_MML_GetCsAttachAllowFlg
 (
    VOS_VOID
@@ -4212,17 +3527,7 @@ VOS_UINT8  Stub_NAS_MML_GetCsAttachAllowFlg
     return ucCsAttAllowFlag;
 }
 
-/*****************************************************************************
- Function Name   : NAS_REPLAY_SavePsAttachAllowFlg
- Description     : NAS_MML_GetPsAttachAllowFlg的导入函数
- Input           : MsgBlock * pstMsg
- Output          : 无
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-5-8  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_REPLAY_SavePsAttachAllowFlg(MsgBlock * pstMsg)
 {
 
@@ -4254,17 +3559,7 @@ VOS_UINT32 NAS_REPLAY_SavePsAttachAllowFlg(MsgBlock * pstMsg)
 }
 
 
-/*****************************************************************************
- Function Name   : Stub_NAS_MML_GetPsAttachAllowFlg
- Description     : NAS_MML_GetPsAttachAllowFlg函数导入时的桩函数
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2013-5-8  Draft Enact
-
-*****************************************************************************/
 VOS_UINT8  Stub_NAS_MML_GetPsAttachAllowFlg
 (
    VOS_VOID
@@ -4292,17 +3587,7 @@ VOS_UINT8  Stub_NAS_MML_GetPsAttachAllowFlg
     return ucPsAttAllowFlag;
 }
 
-/*****************************************************************************
- Function Name   : NAS_REPLAY_SaveMsMode
- Description     : NAS_MML_GetMsMode的导入函数
- Input           : MsgBlock * pstMsg
- Output          : 无
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-5-8  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_REPLAY_SaveMsMode(MsgBlock * pstMsg)
 {
 
@@ -4334,17 +3619,7 @@ VOS_UINT32 NAS_REPLAY_SaveMsMode(MsgBlock * pstMsg)
 }
 
 
-/*****************************************************************************
- Function Name   : Stub_NAS_MML_GetMsMode
- Description     : NAS_MML_GetMsMode函数导入时的桩函数
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2013-5-8  Draft Enact
-
-*****************************************************************************/
 VOS_UINT8  Stub_NAS_MML_GetMsMode
 (
    VOS_VOID
@@ -4372,17 +3647,7 @@ VOS_UINT8  Stub_NAS_MML_GetMsMode
     return ucMsMode;
 }
 
-/*****************************************************************************
- Function Name   : ::NAS_REPLAY_SavePlmnIdIsForbid
- Description     : Nas_PlmnIdIsForbid的导入函数
- Input           : MsgBlock * pstMsg
- Output          : 无
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-5-8  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_REPLAY_SavePlmnIdIsForbid(MsgBlock * pstMsg)
 {
 
@@ -4418,17 +3683,7 @@ VOS_UINT32 NAS_REPLAY_SavePlmnIdIsForbid(MsgBlock * pstMsg)
 }
 
 
-/*****************************************************************************
- Function Name   : Stub_Nas_PlmnIdIsForbid
- Description     : Nas_PlmnIdIsForbid函数导入时的桩函数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-5-8  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  Stub_Nas_PlmnIdIsForbid
 (
    MMC_LMM_PLMN_ID_STRU  *pstPlmnId
@@ -4457,17 +3712,7 @@ VOS_UINT32  Stub_Nas_PlmnIdIsForbid
     return ulRslt;
 }
 
-/*****************************************************************************
- Function Name   : NAS_REPLAY_SavePlmnExactlyCmpFlg
- Description     : NAS_MML_GetPlmnExactlyComparaFlg的导入函数
- Input           : MsgBlock * pstMsg
- Output          : 无
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-5-8  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_REPLAY_SavePlmnExactlyCmpFlg(MsgBlock * pstMsg)
 {
     NAS_LMM_LOG_PLMN_EXACTLY_COMPARE_INFO_STRU       *pstPlmnCom;
@@ -4498,17 +3743,7 @@ VOS_UINT32 NAS_REPLAY_SavePlmnExactlyCmpFlg(MsgBlock * pstMsg)
 }
 
 
-/*****************************************************************************
- Function Name   : Stub_NAS_MML_GetPlmnExactlyComparaFlg
- Description     : NAS_MML_GetPlmnExactlyComparaFlg函数导入时的桩函数
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2013-5-8  Draft Enact
-
-*****************************************************************************/
 VOS_UINT8  Stub_NAS_MML_GetPlmnExactlyComparaFlg
 (
    VOS_VOID
@@ -4536,17 +3771,7 @@ VOS_UINT8  Stub_NAS_MML_GetPlmnExactlyComparaFlg
     return ucRslt;
 }
 
-/*****************************************************************************
- Function Name   : NAS_REPLAY_SavePsRegStatus
- Description     : NAS_MML_GetPsRegStatus的导入函数
- Input           : MsgBlock * pstMsg
- Output          : 无
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-5-8  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_REPLAY_SavePsRegStatus(MsgBlock * pstMsg)
 {
     NAS_LMM_LOG_PS_REG_STATUS_INFO_STRU       *pstPsRegStatus;
@@ -4577,17 +3802,7 @@ VOS_UINT32 NAS_REPLAY_SavePsRegStatus(MsgBlock * pstMsg)
 }
 
 
-/*****************************************************************************
- Function Name   : Stub_NAS_MML_GetPsRegStatus
- Description     : NAS_MML_GetPsRegStatus函数导入时的桩函数
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2013-5-8  Draft Enact
-
-*****************************************************************************/
 VOS_UINT8  Stub_NAS_MML_GetPsRegStatus
 (
    VOS_VOID
@@ -4615,17 +3830,7 @@ VOS_UINT8  Stub_NAS_MML_GetPsRegStatus
     return ucPsRegStatus;
 }
 
-/*****************************************************************************
- Function Name   : NAS_REPLAY_SaveSimType
- Description     : NAS_MML_GetSimType的导入函数
- Input           : MsgBlock * pstMsg
- Output          : 无
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-5-8  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_REPLAY_SaveSimType(MsgBlock * pstMsg)
 {
     NAS_LMM_LOG_SIM_TYPE_INFO_STRU       *pstSimType;
@@ -4656,17 +3861,7 @@ VOS_UINT32 NAS_REPLAY_SaveSimType(MsgBlock * pstMsg)
 }
 
 
-/*****************************************************************************
- Function Name   : Stub_NAS_MML_GetSimType
- Description     : NAS_MML_GetSimType函数导入时的桩函数
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2013-5-8  Draft Enact
-
-*****************************************************************************/
 VOS_UINT8  Stub_NAS_MML_GetSimType
 (
    VOS_VOID
@@ -4694,17 +3889,7 @@ VOS_UINT8  Stub_NAS_MML_GetSimType
     return ucSimType;
 }
 
-/*****************************************************************************
- Function Name   : NAS_REPLAY_SaveKdfKey
- Description     : BSP_KDF_KeyMake的导入函数
- Input           : MsgBlock * pstMsg
- Output          : 无
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-5-8  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_REPLAY_SaveKdfKey(MsgBlock * pstMsg)
 {
     NAS_LMM_LOG_KDF_KEY_INFO_STRU       *pstKdfKey;
@@ -4743,17 +3928,7 @@ VOS_UINT32 NAS_REPLAY_SaveKdfKey(MsgBlock * pstMsg)
 }
 
 
-/*****************************************************************************
- Function Name   : Stub_BSP_KDF_KeyMake
- Description     : BSP_KDF_KeyMake函数导入时的桩函数
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2013-5-8  Draft Enact
-
-*****************************************************************************/
 VOS_INT32  Stub_BSP_KDF_KeyMake
 (
     NAS_LMM_BSP_INPUT_PARA_STRU         *pstBspInputPara,
@@ -4793,17 +3968,7 @@ VOS_INT32  Stub_BSP_KDF_KeyMake
     return lRslt;
 }
 
-/*****************************************************************************
- Function Name   : NAS_REPLAY_SaveSdfPara
- Description     : APP_GetSdfPara的导入函数
- Input           : MsgBlock * pstMsg
- Output          : 无
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-5-8  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_REPLAY_SaveSdfPara(MsgBlock * pstMsg)
 {
     NAS_OM_LOG_SDF_PARA_INFO_STRU       *pstSdfPara;
@@ -4840,17 +4005,7 @@ VOS_UINT32 NAS_REPLAY_SaveSdfPara(MsgBlock * pstMsg)
 }
 
 
-/*****************************************************************************
- Function Name   : Stub_APP_GetSdfPara
- Description     : APP_GetSdfPara函数导入时的桩函数
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2013-5-8  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  Stub_APP_GetSdfPara
 (
     VOS_UINT32                         *pulSdfNum,
@@ -4891,17 +4046,7 @@ VOS_UINT32  Stub_APP_GetSdfPara
     return ulRslt;
 }
 
-/*****************************************************************************
- Function Name   : NAS_REPLAY_SavePdpManageInfo
- Description     : APP_GetPdpManageInfo的导入函数
- Input           : MsgBlock * pstMsg
- Output          : 无
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-5-8  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_REPLAY_SavePdpManageInfo(MsgBlock * pstMsg)
 {
     NAS_OM_LOG_PDP_MANAGER_INFO_STRU       *pstPdpManageInfo;
@@ -4936,17 +4081,7 @@ VOS_UINT32 NAS_REPLAY_SavePdpManageInfo(MsgBlock * pstMsg)
 }
 
 
-/*****************************************************************************
- Function Name   : Stub_APP_GetPdpManageInfo
- Description     : APP_GetPdpManageInfo函数导入时的桩函数
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2013-5-8  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  Stub_APP_GetPdpManageInfo
 (
     APP_ESM_PDP_MANAGE_INFO_STRU  *pstPdpManageInfo
@@ -4984,17 +4119,7 @@ VOS_UINT32  Stub_APP_GetPdpManageInfo
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_REPLAY_SaveCardImsi
- Description     : USIMM_GetCardIMSI的导入函数
- Input           : MsgBlock * pstMsg
- Output          : 无
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-5-9  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_REPLAY_SaveCardImsi(MsgBlock * pstMsg)
 {
     NAS_LMM_LOG_CARD_IMSI_INFO_STRU       *pstCardImsi;
@@ -5029,17 +4154,7 @@ VOS_UINT32 NAS_REPLAY_SaveCardImsi(MsgBlock * pstMsg)
 }
 
 
-/*****************************************************************************
- Function Name   : Stub_USIMM_GetCardIMSI
- Description     : USIMM_GetCardIMSI函数导入时的桩函数
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2013-5-9  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  Stub_USIMM_GetCardIMSI
 (
     VOS_UINT8      *pucImsi
@@ -5071,17 +4186,7 @@ VOS_UINT32  Stub_USIMM_GetCardIMSI
     return ulRslt;
 }
 
-/*****************************************************************************
- Function Name   : NAS_REPLAY_SaveUpSignalPending
- Description     : USIMM_IsServiceAvailable的导入函数
- Input           : MsgBlock * pstMsg
- Output          : 无
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-5-9  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_REPLAY_SaveServiceAvailable(MsgBlock * pstMsg)
 {
     NAS_LMM_LOG_USIMM_SERVICE_INFO_STRU       *pstUsimSer;
@@ -5112,17 +4217,7 @@ VOS_UINT32 NAS_REPLAY_SaveServiceAvailable(MsgBlock * pstMsg)
 }
 
 
-/*****************************************************************************
- Function Name   : Stub_NAS_ESM_IsUpSingnalPending
- Description     : USIMM_IsServiceAvailable函数导入时的桩函数
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2013-5-9  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  Stub_USIMM_IsServiceAvailable
 (
     UICC_SERVICES_TYPE_ENUM_UINT32  ulServiceType
@@ -5152,17 +4247,7 @@ VOS_UINT32  Stub_USIMM_IsServiceAvailable
     return ulRslt;
 }
 
-/*****************************************************************************
- Function Name   : NAS_REPLAY_SaveUsimTestMode
- Description     : USIMM_IsTestCard的导入函数
- Input           : MsgBlock * pstMsg
- Output          : 无
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-5-9  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_REPLAY_SaveUsimTestMode(MsgBlock * pstMsg)
 {
     NAS_LMM_LOG_USIM_TEST_MODE_INFO_STRU       *pstUsimTestMode;
@@ -5192,17 +4277,7 @@ VOS_UINT32 NAS_REPLAY_SaveUsimTestMode(MsgBlock * pstMsg)
 }
 
 
-/*****************************************************************************
- Function Name   : Stub_USIMM_IsTestCard
- Description     : USIMM_IsTestCard函数导入时的桩函数
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2013-5-9  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  Stub_USIMM_IsTestCard
 (
     VOS_VOID
@@ -5273,22 +4348,7 @@ VOS_VOID NAS_LMM_LogPubInfo
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_LMM_LogGuInfo
- 功能描述  : 通过Trace显示从同步接口获取的GU相关信息
- 输入参数  : NAS_GUMM_INFO_TYPE_ENUM_UINT32       ulInfoType
-             NAS_GUMM_INFO_STRU                  *pstGuInfo
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年3月4日
-    作    者   : l00132387
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_LMM_LogGuInfo
 (
     NAS_GUMM_INFO_TYPE_ENUM_UINT32       ulInfoType,
@@ -5326,26 +4386,7 @@ VOS_VOID NAS_LMM_LogGuInfo
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_LMM_LogTinInfo
- 功能描述  : 通过Trace显示从同步接口获取的GU相关信息
- 输入参数  : NAS_GUMM_INFO_TYPE_ENUM_UINT32      ulInfoType
-             VOS_UINT32                          ulSenderPid,
-             VOS_UINT32                          ulReceiverPid
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年3月5日
-    作    者   : l00132387
-    修改内容   : 新生成函数
-  2.日    期   : 2015年7月28日
-    作    者   : y00307272
-    修改内容   : 可维可测将发送和接受PID传入
-
-*****************************************************************************/
 VOS_VOID NAS_LMM_LogTinInfo
 (
     MMC_LMM_TIN_TYPE_ENUM_UINT32        ulTinType,
@@ -5556,17 +4597,7 @@ VOS_VOID NAS_LMM_LogIsBearIsrActBeforeInfo
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_LogIsBearIsrActAfterInfo
- Description     : NAS_MML_IsPsBearerAfterIsrActExist函数导入时的桩函数
- Input           :
-                   ulExistFlag --- NAS_MML_IsPsBearerAfterIsrActExist的返回值
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili     00132387    2013-05-10  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_LMM_LogIsBearIsrActAfterInfo
 (
      VOS_UINT32                          ulExistFlag
@@ -5595,20 +4626,7 @@ VOS_VOID NAS_LMM_LogIsBearIsrActAfterInfo
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_LogEmergencyNumListInfo
- Description     :
- Input           : const NAS_MML_EMERGENCY_NUM_LIST_STRU                    *pstMmlEmerNumList,
-                    VOS_UINT32                                               ulSenderPid,
-                    VOS_UINT32                                               ulReceiverPid
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.wangchen  00209181    2013-03-06  Draft Enact
-    2.yanglei   00307272    2015-07-28  可维可测中将发送和接受PID传入
-
-*****************************************************************************/
 VOS_VOID NAS_LMM_LogEmergencyNumListInfo
 (
    const NAS_MML_EMERGENCY_NUM_LIST_STRU                    *pstMmlEmerNumList,
@@ -5671,17 +4689,7 @@ VOS_VOID NAS_LMM_LogPsRegContainDrxInfo
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_LogUeEutranPsDrxLenInfo
- Description     : NAS_MML_GetUeEutranPsDrxLen函数导入时的桩函数
- Input           :
-                   ucEutranDrxLen --- NAS_MML_GetUeEutranPsDrxLen的返回值
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili     00132387    2013-05-10  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_LMM_LogUeEutranPsDrxLenInfo
 (
     VOS_UINT8                           ucEutranDrxLen
@@ -5710,17 +4718,7 @@ VOS_VOID NAS_LMM_LogUeEutranPsDrxLenInfo
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_LogNonDrxTimerInfo
- Description     : NAS_MML_GetNonDrxTimer函数导入时的桩函数
- Input           :
-                   ucNonDrxTimer --- NAS_MML_GetNonDrxTimer的返回值
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili     00132387    2013-05-10  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_LMM_LogNonDrxTimerInfo
 (
     VOS_UINT8                           ucNonDrxTimer
@@ -5749,17 +4747,7 @@ VOS_VOID NAS_LMM_LogNonDrxTimerInfo
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_LogDrxSplitPgCycleCodeInfo
- Description     : NAS_MML_GetSplitPgCycleCode函数导入时的桩函数
- Input           :
-                   ucSplitPgCycleCode --- NAS_MML_GetSplitPgCycleCode的返回值
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili     00132387    2013-05-10  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_LMM_LogDrxSplitPgCycleCodeInfo
 (
     VOS_UINT8                           ucSplitPgCycleCode
@@ -5788,17 +4776,7 @@ VOS_VOID NAS_LMM_LogDrxSplitPgCycleCodeInfo
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_LogDrxSplitOnCcch
- Description     : NAS_MML_GetSplitOnCcch函数导入时的桩函数
- Input           :
-                   ucSplitCcch --- NAS_MML_GetSplitOnCcch的返回值
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili     00132387    2013-05-10  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_LMM_LogDrxSplitOnCcch
 (
     VOS_UINT8                           ucSplitCcch
@@ -5918,17 +4896,7 @@ VOS_VOID NAS_LMM_LogPsAttachAllowFlgInfo
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_LMM_LogMsMode
- Description     : NAS_MML_GetMsMode函数导入时的桩函数
- Input           :
-                   ucMsMode --- NAS_MML_GetMsMode的返回值
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili     00132387    2013-05-10  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_LMM_LogMsMode
 (
     VOS_UINT8                          ucMsMode
@@ -5957,17 +4925,7 @@ VOS_VOID NAS_LMM_LogMsMode
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_LogPlmnIsForbid
- Description     : Nas_PlmnIdIsForbid函数导入时的桩函数
- Input           : pstPlmn --- Nas_PlmnIdIsForbid的入参
-                   ulRslt --- Nas_PlmnIdIsForbid的返回值
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili     00132387    2013-05-10  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_LMM_LogPlmnIsForbid
 (
     const MMC_LMM_PLMN_ID_STRU                *pstPlmn,
@@ -5998,17 +4956,7 @@ VOS_VOID NAS_LMM_LogPlmnIsForbid
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_LogPlmnexactlyCmpFlag
- Description     : NAS_MML_GetPlmnExactlyComparaFlg函数导入时的桩函数
- Input           :
-                   ucRslt --- NAS_MML_GetPlmnExactlyComparaFlg的返回值
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili     00132387    2013-05-10  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_LMM_LogPlmnexactlyCmpFlag
 (
     VOS_UINT8                          ucRslt
@@ -6037,17 +4985,7 @@ VOS_VOID NAS_LMM_LogPlmnexactlyCmpFlag
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_LogPsRegStautus
- Description     : NAS_MML_GetPsRegStatus函数导入时的桩函数
- Input           :
-                   ucPsRegStatus --- NAS_MML_GetPsRegStatus的返回值
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili     00132387    2013-05-10  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_LMM_LogPsRegStatus
 (
     VOS_UINT8                          ucPsRegStatus
@@ -6076,17 +5014,7 @@ VOS_VOID NAS_LMM_LogPsRegStatus
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_LogSimType
- Description     : NAS_MML_GetSimType函数导入时的桩函数
- Input           :
-                   enSimType --- NAS_MML_GetSimType的返回值
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili     00132387    2013-05-10  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_LMM_LogSimType
 (
     VOS_UINT8                          ucSimType
@@ -6115,18 +5043,7 @@ VOS_VOID NAS_LMM_LogSimType
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_LogBspKdfKeyMake
- Description     : BSP_KDF_KeyMake函数导入时的桩函数
- Input           : pstBspInputPara --- BSP_KDF_KeyMake的入参
-                   pstBspOutputPara --- BSP_KDF_KeyMake的出参
-                   ulRslt --- BSP_KDF_KeyMake的返回值
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili     00132387    2013-05-10  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_LMM_LogBspKdfKeyMake
 (
     const NAS_LMM_BSP_INPUT_PARA_STRU         *pstBspInputPara,
@@ -6167,18 +5084,7 @@ VOS_VOID NAS_LMM_LogBspKdfKeyMake
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_LogSdfPara
- Description     : APP_GetSdfPara函数导入时的桩函数
- Input           : ulSdfNum,pstSdfPara --- APP_GetSdfPara的出参
-                   ulRslt --- APP_GetSdfPara的返回值
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.wangchen  00209181    2013-03-06  Draft Enact
-    2.leili     00132387    2013-05-09  Modify
-*****************************************************************************/
 VOS_VOID NAS_LMM_LogSdfPara
 (
     const VOS_UINT32                         *pulSdfNum,
@@ -6221,18 +5127,7 @@ VOS_VOID NAS_LMM_LogSdfPara
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_LogPdpManageInfo
- Description     : APP_GetPdpManageInfo函数导入时的桩函数
- Input           : pstPdpManageInfo --- APP_GetPdpManageInfo的出参
-                   ulRslt --- APP_GetPdpManageInfo的返回值
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2013-5-9  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_LMM_LogPdpManageInfo
 (
     const APP_ESM_PDP_MANAGE_INFO_STRU   *pstPdpManageInfo,
@@ -6266,19 +5161,7 @@ VOS_VOID NAS_LMM_LogPdpManageInfo
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_LogUsimTestModeInfo
- Description     : USIMM_GetCardIMSI的信息导出函数
- Input           : pucImsi --- USIMM_IsTestCard的出参
-                   ulRslt --- USIMM_IsTestCard的返回值
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.wangchen  00209181    2013-03-06  Draft Enact
-    1.leili     00132387     2013-5-9   modify
-
-*****************************************************************************/
 VOS_VOID NAS_LMM_LogCardIMSIInfo
 (
     const VOS_UINT8 *pucImsi,
@@ -6342,17 +5225,7 @@ VOS_VOID NAS_LMM_LogUsimServiceInfo
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_LMM_LogUsimTestModeInfo
- Description     : USIMM_IsTestCard的信息导出函数
- Input           : ulRslt --- USIMM_IsTestCard的返回值
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2013-5-9  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_LMM_LogUsimTestModeInfo
 (
     VOS_UINT32                          ulRslt

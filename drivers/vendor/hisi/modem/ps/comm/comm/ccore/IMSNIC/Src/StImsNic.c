@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : StImcNic.c
-  版 本 号   : 初稿
-  作    者   : caikai
-  生成日期   : 2013年8月23日
-  最近修改   :
-  功能描述   : IMS虚拟网卡ST测试用例
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年8月23日
-    作    者   : caikai
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 
@@ -104,21 +87,7 @@ extern VOS_VOID IPS_MNTN_CCORE_DhcpcRecvPktInfoCB
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : ST_IMS_NIC_InitQ
- 功能描述  : 初始化队列
- 输入参数  :
- 输出参数  :
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  ST_IMS_NIC_InitQ(VOS_VOID)
 {
     TTF_LinkInit(UEPS_PID_IMSNIC, &g_stImsNicQ);
@@ -126,21 +95,7 @@ VOS_VOID  ST_IMS_NIC_InitQ(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ST_IMS_NIC_ClrQ
- 功能描述  : 清空队列
- 输入参数  :
- 输出参数  :
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  ST_IMS_NIC_ClrQ(VOS_VOID)
 {
     TTF_MEM_ST                         *pstMem;
@@ -177,21 +132,7 @@ VOS_VOID  ST_IMS_NIC_ClrQ(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : ST_IMS_NIC_PrintData
- 功能描述  : 数据打印函数
- 输入参数  :
- 输出参数  :
- 返 回 值  : 成功:IMS_NIC_SUCC，失败:IMS_NIC_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  ST_IMS_NIC_PrintData( VOS_UINT8 *pData, VOS_UINT16 usLen )
 {
     VOS_UINT16                          i;
@@ -214,21 +155,7 @@ VOS_UINT32  ST_IMS_NIC_PrintData( VOS_UINT8 *pData, VOS_UINT16 usLen )
     return IMS_NIC_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : ST_IMS_NIC_ShowEntity
- 功能描述  : 打印实体信息
- 输入参数  :
- 输出参数  :
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月18日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  ST_IMS_NIC_ShowEntity(VOS_UINT32 ulMomemId)
 {
     IMS_NIC_ENTITY_STRU                *pstImsNicEntity;
@@ -242,21 +169,7 @@ VOS_VOID  ST_IMS_NIC_ShowEntity(VOS_UINT32 ulMomemId)
 }
 
 
-/*****************************************************************************
- 函 数 名  : ST_IMS_NIC_UlCb
- 功能描述  : 上行数据发送函数
- 输入参数  :
- 输出参数  :
- 返 回 值  : 成功:IMS_NIC_SUCC，失败:IMS_NIC_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 ST_IMS_NIC_UlCb(VOS_UINT8 *pData, VOS_UINT16 usLen, MODEM_ID_ENUM_UINT16 enModemId)
 {
     TTF_MEM_ST                         *pstTtfMem;
@@ -289,21 +202,7 @@ VOS_UINT32 ST_IMS_NIC_UlCb(VOS_UINT8 *pData, VOS_UINT16 usLen, MODEM_ID_ENUM_UIN
     return IMS_NIC_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : ST_IMS_NIC_RegUlCb
- 功能描述  : 注册上行数据发送回调函数
- 输入参数  :
- 输出参数  :
- 返 回 值  : 成功:IMS_NIC_SUCC，失败:IMS_NIC_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ST_IMS_NIC_RegUlCb(VOS_VOID)
 {
     VOS_UINT32      ulResult;
@@ -319,21 +218,7 @@ VOS_VOID ST_IMS_NIC_RegUlCb(VOS_VOID)
 }
 
 #if (VOS_OS_VER == VOS_RTOSCK)
-/*****************************************************************************
- 函 数 名  : ST_IMS_NIC_ShowEntity
- 功能描述  : 打印MTU值
- 输入参数  :
- 输出参数  :
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月18日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  ST_IMS_NIC_ShowMtu(VOS_UINT32 ulMomemId)
 {
     VOS_UINT32                          ulIpv4Mtu;
@@ -352,21 +237,7 @@ VOS_VOID  ST_IMS_NIC_ShowMtu(VOS_UINT32 ulMomemId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ST_IMS_NIC_ND
- 功能描述  : 查找ND表项
- 输入参数  : 无
- 输出参数  :
- 返 回 值  : 成功:IMS_NIC_SUCC，失败:IMS_NIC_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月13日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 ST_IMS_NIC_ND()
 {
     VOS_UINT8                           aucSrcIpAddr[16]    = {0x21, 0x07, 0x00, 0x02, 0x00, 0x02, 0x00, 0x81, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01};         /* 128-bit IP address */
@@ -435,21 +306,7 @@ VOS_UINT32 ST_IMS_NIC_ND()
     return IMS_NIC_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : ST_IMS_NIC_GetND6
- 功能描述  : 查找ND表项
- 输入参数  : pucAddr      -- IPV6地址
- 输出参数  :
- 返 回 值  : 成功:IMS_NIC_SUCC，失败:IMS_NIC_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月13日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 ST_IMS_NIC_GetND6(VOS_UINT8* pucAddr)
 {
     VOS_UINT32                          ulRet;
@@ -475,21 +332,7 @@ VOS_UINT32 ST_IMS_NIC_GetND6(VOS_UINT8* pucAddr)
     return IMS_NIC_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : ST_IMS_NIC_LookUpFIB6
- 功能描述  : 查找IPV6路由表
- 输入参数  : pucAddr      -- IPV6地址
- 输出参数  :
- 返 回 值  : 成功:IMS_NIC_SUCC，失败:IMS_NIC_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月13日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 ST_IMS_NIC_LookUpFIB6(VOS_UINT8* pucAddr)
 {
     VOS_UINT32                          ulRet;
@@ -512,21 +355,7 @@ VOS_UINT32 ST_IMS_NIC_LookUpFIB6(VOS_UINT8* pucAddr)
     return IMS_NIC_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : ST_IMS_NIC_UlSockSend
- 功能描述  : 模拟IMSA通过socket发送上行数据
- 输入参数  : aucIpAddr      -- IPV4地址
- 输出参数  :
- 返 回 值  : 成功:IMS_NIC_SUCC，失败:IMS_NIC_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月22日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 ST_IMS_NIC_UlSockV4Send(VOS_UINT8 *aucDstIpAddr, VOS_UINT8 *aucSrcIpAddr, VOS_UINT16 usImsNicPort, VOS_INT8 *pcIpData, VOS_INT s_size)
 {
     VOS_INT32                           skfd;
@@ -560,21 +389,7 @@ VOS_UINT32 ST_IMS_NIC_UlSockV4Send(VOS_UINT8 *aucDstIpAddr, VOS_UINT8 *aucSrcIpA
     return IMS_NIC_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : ST_IMS_NIC_UlSockV6Send
- 功能描述  : 模拟IMSA通过socket发送上行数据
- 输入参数  :
- 输出参数  :
- 返 回 值  : 成功:IMS_NIC_SUCC，失败:IMS_NIC_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月22日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 ST_IMS_NIC_IPV6Send()
 {
     VOS_INT32                           skfd;
@@ -646,21 +461,7 @@ VOS_UINT32 ST_IMS_NIC_IPV6Send()
     return IMS_NIC_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : ST_IMS_NIC_UlSockV6Send
- 功能描述  : 模拟IMSA通过socket发送上行数据
- 输入参数  :
- 输出参数  :
- 返 回 值  : 成功:IMS_NIC_SUCC，失败:IMS_NIC_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月22日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 ST_IMS_NIC_UlSockV6Send(VOS_UINT8 *aucDstIpAddr, VOS_UINT8 *aucSrcIpAddr, VOS_UINT16 usImsNicPort, VOS_UINT8 *pucIpData, VOS_INT s_size)
 {
     VOS_INT32                           skfd;
@@ -813,21 +614,7 @@ VOS_UINT32 ST_IMS_NIC_001_base(IMS_NIC_PDN_INFO_CONFIG_STRU *pstConfigInfo, VOS_
     return IMS_NIC_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : ST_IMS_NIC_001
- 功能描述  : 通过socket bind IPV4地址，发送数据给同网段地址，CDS匹配数据
- 输入参数  :
- 输出参数  :
- 返 回 值  : 成功:IMS_NIC_SUCC，失败:IMS_NIC_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ST_IMS_NIC_001(VOS_VOID)
 {
     IMS_NIC_PDN_INFO_CONFIG_STRU    stConfigInfo;
@@ -852,21 +639,7 @@ VOS_VOID ST_IMS_NIC_001(VOS_VOID)
     ST_IMS_NIC_001_base(&stConfigInfo, aucDstIpAddr, aucSrcIpAddr);
 }
 
-/*****************************************************************************
- 函 数 名  : ST_IMS_NIC_001
- 功能描述  : 通过socket bind IPV4地址，发送数据给不同网段地址，CDS匹配数据
- 输入参数  :
- 输出参数  :
- 返 回 值  : 成功:IMS_NIC_SUCC，失败:IMS_NIC_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ST_IMS_NIC_001A(VOS_VOID)
 {
     IMS_NIC_PDN_INFO_CONFIG_STRU    stConfigInfo;
@@ -992,21 +765,7 @@ VOS_UINT32 ST_IMS_NIC_002_base(IMS_NIC_PDN_INFO_CONFIG_STRU *pstConfigInfo, VOS_
 }
 
 
-/*****************************************************************************
- 函 数 名  : ST_IMS_NIC_002
- 功能描述  : 通过socket bind IPV6地址，发送数据给同网段地址，CDS匹配数据
- 输入参数  :
- 输出参数  :
- 返 回 值  : 成功:IMS_NIC_SUCC，失败:IMS_NIC_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ST_IMS_NIC_002(VOS_VOID)
 {
     IMS_NIC_PDN_INFO_CONFIG_STRU    stConfigInfo;
@@ -1032,21 +791,7 @@ VOS_VOID ST_IMS_NIC_002(VOS_VOID)
     ST_IMS_NIC_002_base(&stConfigInfo, aucDstIpAddr, aucSrcIpAddr);
 }
 
-/*****************************************************************************
- 函 数 名  : ST_IMS_NIC_002A
- 功能描述  : 通过socket bind IPV6地址，发送数据给不同网段地址，CDS匹配数据
- 输入参数  :
- 输出参数  :
- 返 回 值  : 成功:IMS_NIC_SUCC，失败:IMS_NIC_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ST_IMS_NIC_002A(VOS_VOID)
 {
     IMS_NIC_PDN_INFO_CONFIG_STRU    stConfigInfo;
@@ -1281,22 +1026,7 @@ VOS_UINT32 ST_IMS_NIC_003_base(IMS_NIC_PDN_INFO_CONFIG_STRU *pstConfigInfo, VOS_
 }
 
 
-/*****************************************************************************
- 函 数 名  : ST_IMS_NIC_003
- 功能描述  : 通过socket bind IPV4地址，发送数据给同网段地址，CDS匹配数据,
-             随后CDS将数据发送给协议栈，上层通过socket 接收到数据
- 输入参数  :
- 输出参数  :
- 返 回 值  : 成功:IMS_NIC_SUCC，失败:IMS_NIC_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 ST_IMS_NIC_003(VOS_VOID)
 {
     IMS_NIC_PDN_INFO_CONFIG_STRU    stConfigInfo;
@@ -1553,22 +1283,7 @@ VOS_UINT32 ST_IMS_NIC_004_base(IMS_NIC_PDN_INFO_CONFIG_STRU *pstConfigInfo, VOS_
     return IMS_NIC_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : ST_IMS_NIC_002
- 功能描述  : 通过socket bind IPV6地址，发送数据给同网段地址，CDS匹配数据，
-             匹配后CDS将数据发送回协议栈，上层通过socket接收
- 输入参数  :
- 输出参数  :
- 返 回 值  : 成功:IMS_NIC_SUCC，失败:IMS_NIC_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ST_IMS_NIC_004(VOS_VOID)
 {
     IMS_NIC_PDN_INFO_CONFIG_STRU    stConfigInfo;
@@ -1594,22 +1309,7 @@ VOS_VOID ST_IMS_NIC_004(VOS_VOID)
     ST_IMS_NIC_004_base(&stConfigInfo, aucDstIpAddr, aucSrcIpAddr);
 }
 
-/*****************************************************************************
- 函 数 名  : ST_IMS_NIC_004A
- 功能描述  : 通过socket bind IPV6地址，发送数据给不同网段地址，CDS匹配数据，
-             匹配后CDS将数据发送回协议栈，上层通过socket接收
- 输入参数  :
- 输出参数  :
- 返 回 值  : 成功:IMS_NIC_SUCC，失败:IMS_NIC_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ST_IMS_NIC_004A(VOS_VOID)
 {
     IMS_NIC_PDN_INFO_CONFIG_STRU    stConfigInfo;
@@ -1635,22 +1335,7 @@ VOS_VOID ST_IMS_NIC_004A(VOS_VOID)
     ST_IMS_NIC_004_base(&stConfigInfo, aucDstIpAddr, aucSrcIpAddr);
 }
 
-/*****************************************************************************
- 函 数 名  : ST_IMS_NIC_005
- 功能描述  : 通过socket bind IPV4地址，发送5块数据给不同网段地址，CDS匹配数据，
-             匹配后CDS将数据发送回协议栈，上层通过socket接收
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ST_IMS_NIC_005_base(IMS_NIC_PDN_INFO_CONFIG_STRU *pstConfigInfo, VOS_UINT8 *aucDstIpAddr, VOS_UINT8 *aucSrcIpAddr)
 {
     VOS_UINT32                          ulResult;
@@ -1901,22 +1586,7 @@ VOS_VOID ST_IMS_NIC_005(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ST_IMS_NIC_006
- 功能描述  : 网卡配置两个IP,分别通过socket bind IPV4地址，发送5块数据给不同网段地址，CDS匹配数据，
-             匹配后CDS将数据发送回协议栈，上层通过socket接收
- 输入参数  :
- 输出参数  :
- 返 回 值  : 成功:IMS_NIC_SUCC，失败:IMS_NIC_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ST_IMS_NIC_006(VOS_VOID)
 {
     IMS_NIC_PDN_INFO_CONFIG_STRU        stConfigInfo;
@@ -2292,22 +1962,7 @@ out:
 }
 
 
-/*****************************************************************************
- 函 数 名  : ST_IMS_NIC_007
- 功能描述  : 网卡配置两个IP,分别通过socket bind IPV6地址，发送2块数据给不同网段地址，CDS匹配数据，
-             匹配后CDS将数据发送回协议栈，上层通过socket接收
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ST_IMS_NIC_007(VOS_VOID)
 {
     IMS_NIC_PDN_INFO_CONFIG_STRU        stConfigInfo;
@@ -2728,23 +2383,7 @@ out:
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ST_IMS_NIC_008
- 功能描述  : 网卡配置两个IP，一个IPV4，一个IPV6,分别通过socket bind 该两个地址，
-             发送2块数据给不同网段地址，CDS匹配数据，匹配后CDS将数据发送回协议栈，
-             上层通过socket接收
- 输入参数  :
- 输出参数  :
- 返 回 值  : 成功:IMS_NIC_SUCC，失败:IMS_NIC_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ST_IMS_NIC_008(VOS_VOID)
 {
     IMS_NIC_PDN_INFO_CONFIG_STRU        stConfigInfo;
@@ -3224,21 +2863,7 @@ VOS_VOID ST_IMS_NIC_009(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ST_IMS_NIC_ADD_DNS_001
- 功能描述  : 查询DNS
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月30日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ST_IMS_NIC_ADD_DNS_001
 (
     CHAR                               *pstServerIP,
@@ -3367,21 +2992,7 @@ VOS_VOID ST_DNS_002(VOS_UINT8 ucIpAddr)
 }
 
 #else
-/*****************************************************************************
- 函 数 名  : ST_IMS_NIC_UlSockSend
- 功能描述  : 模拟IMSA通过socket发送上行数据
- 输入参数  : aucIpAddr      -- IPV4地址
- 输出参数  :
- 返 回 值  : 成功:IMS_NIC_SUCC，失败:IMS_NIC_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 ST_IMS_NIC_UlSockV4Send(VOS_UINT8 *aucDstIpAddr, VOS_UINT8 *aucSrcIpAddr, VOS_UINT16 usImsNicPort, VOS_UINT8 *aucIpData, VOS_INT s_size)
 {
     Ip_s32                  sock, count;
@@ -3425,21 +3036,7 @@ VOS_UINT32 ST_IMS_NIC_UlSockV4Send(VOS_UINT8 *aucDstIpAddr, VOS_UINT8 *aucSrcIpA
     return IMS_NIC_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : ST_IMS_NIC_UlSockV6Send
- 功能描述  : 模拟IMSA通过socket发送上行数据
- 输入参数  :
- 输出参数  :
- 返 回 值  : 成功:IMS_NIC_SUCC，失败:IMS_NIC_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 ST_IMS_NIC_UlSockV6Send(VOS_UINT8 *aucDstIpAddr, VOS_UINT8 *aucSrcIpAddr, VOS_UINT16 usImsNicPort, VOS_UINT8 *aucIpData, VOS_INT s_size)
 {
     Ip_s32                      sock, count;
@@ -3587,21 +3184,7 @@ VOS_UINT32 ST_IMS_NIC_001_base(IMS_NIC_PDN_INFO_CONFIG_STRU *pstConfigInfo, VOS_
     return IMS_NIC_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : ST_IMS_NIC_001
- 功能描述  : 通过socket bind IPV4地址，发送数据给同网段地址，CDS匹配数据
- 输入参数  :
- 输出参数  :
- 返 回 值  : 成功:IMS_NIC_SUCC，失败:IMS_NIC_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ST_IMS_NIC_001(VOS_VOID)
 {
     IMS_NIC_PDN_INFO_CONFIG_STRU    stConfigInfo;
@@ -3626,21 +3209,7 @@ VOS_VOID ST_IMS_NIC_001(VOS_VOID)
     ST_IMS_NIC_001_base(&stConfigInfo, aucDstIpAddr, aucSrcIpAddr);
 }
 
-/*****************************************************************************
- 函 数 名  : ST_IMS_NIC_001
- 功能描述  : 通过socket bind IPV4地址，发送数据给不同网段地址，CDS匹配数据
- 输入参数  :
- 输出参数  :
- 返 回 值  : 成功:IMS_NIC_SUCC，失败:IMS_NIC_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ST_IMS_NIC_001A(VOS_VOID)
 {
     IMS_NIC_PDN_INFO_CONFIG_STRU    stConfigInfo;
@@ -3665,21 +3234,7 @@ VOS_VOID ST_IMS_NIC_001A(VOS_VOID)
     ST_IMS_NIC_001_base(&stConfigInfo, aucDstIpAddr, aucSrcIpAddr);
 }
 
-/*****************************************************************************
- 函 数 名  : ST_IMS_NIC_001M(同001，但需手动配置网卡)
- 功能描述  : 通过socket bind IPV4地址，发送数据给同网段地址，CDS匹配数据
- 输入参数  :
- 输出参数  :
- 返 回 值  : 成功:IMS_NIC_SUCC，失败:IMS_NIC_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ST_IMS_NIC_001M(VOS_VOID)
 {
     IMS_NIC_PDN_INFO_CONFIG_STRU   *pstConfigInfo   = VOS_NULL_PTR;
@@ -3689,21 +3244,7 @@ VOS_VOID ST_IMS_NIC_001M(VOS_VOID)
     ST_IMS_NIC_001_base(pstConfigInfo, aucDstIpAddr, aucSrcIpAddr);
 }
 
-/*****************************************************************************
- 函 数 名  : ST_IMS_NIC_001M(同001A，但需手动配置网卡)
- 功能描述  : 通过socket bind IPV4地址，发送数据给同网段地址，CDS匹配数据
- 输入参数  :
- 输出参数  :
- 返 回 值  : 成功:IMS_NIC_SUCC，失败:IMS_NIC_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ST_IMS_NIC_001AM(VOS_VOID)
 {
     IMS_NIC_PDN_INFO_CONFIG_STRU   *pstConfigInfo   = VOS_NULL_PTR;
@@ -3819,21 +3360,7 @@ VOS_UINT32 ST_IMS_NIC_002_base(IMS_NIC_PDN_INFO_CONFIG_STRU *pstConfigInfo, VOS_
 }
 
 
-/*****************************************************************************
- 函 数 名  : ST_IMS_NIC_002
- 功能描述  : 通过socket bind IPV6地址，发送数据给同网段地址，CDS匹配数据
- 输入参数  :
- 输出参数  :
- 返 回 值  : 成功:IMS_NIC_SUCC，失败:IMS_NIC_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ST_IMS_NIC_002(VOS_VOID)
 {
     IMS_NIC_PDN_INFO_CONFIG_STRU    stConfigInfo;
@@ -3859,21 +3386,7 @@ VOS_VOID ST_IMS_NIC_002(VOS_VOID)
     ST_IMS_NIC_002_base(&stConfigInfo, aucDstIpAddr, aucSrcIpAddr);
 }
 
-/*****************************************************************************
- 函 数 名  : ST_IMS_NIC_002A
- 功能描述  : 通过socket bind IPV6地址，发送数据给不同网段地址，CDS匹配数据
- 输入参数  :
- 输出参数  :
- 返 回 值  : 成功:IMS_NIC_SUCC，失败:IMS_NIC_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ST_IMS_NIC_002A(VOS_VOID)
 {
     IMS_NIC_PDN_INFO_CONFIG_STRU    stConfigInfo;
@@ -3899,21 +3412,7 @@ VOS_VOID ST_IMS_NIC_002A(VOS_VOID)
     ST_IMS_NIC_002_base(&stConfigInfo, aucDstIpAddr, aucSrcIpAddr);
 }
 
-/*****************************************************************************
- 函 数 名  : ST_IMS_NIC_002M(同002，但需手动配置网卡)
- 功能描述  : 通过socket bind IPV6地址，发送数据给同网段地址，CDS匹配数据
- 输入参数  :
- 输出参数  :
- 返 回 值  : 成功:IMS_NIC_SUCC，失败:IMS_NIC_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ST_IMS_NIC_002M(VOS_VOID)
 {
     IMS_NIC_PDN_INFO_CONFIG_STRU   *pstConfigInfo   = VOS_NULL_PTR;
@@ -3923,21 +3422,7 @@ VOS_VOID ST_IMS_NIC_002M(VOS_VOID)
     ST_IMS_NIC_002_base(pstConfigInfo, aucDstIpAddr, aucSrcIpAddr);
 }
 
-/*****************************************************************************
- 函 数 名  : ST_IMS_NIC_002MA(同002A，但需手动配置网卡)
- 功能描述  : 通过socket bind IPV6地址，发送数据给同网段地址，CDS匹配数据
- 输入参数  :
- 输出参数  :
- 返 回 值  : 成功:IMS_NIC_SUCC，失败:IMS_NIC_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ST_IMS_NIC_002AM(VOS_VOID)
 {
     IMS_NIC_PDN_INFO_CONFIG_STRU   *pstConfigInfo   = VOS_NULL_PTR;
@@ -4179,22 +3664,7 @@ VOS_UINT32 ST_IMS_NIC_003_base(IMS_NIC_PDN_INFO_CONFIG_STRU *pstConfigInfo, VOS_
 }
 
 
-/*****************************************************************************
- 函 数 名  : ST_IMS_NIC_003
- 功能描述  : 通过socket bind IPV4地址，发送数据给同网段地址，CDS匹配数据,
-             随后CDS将数据发送给协议栈，上层通过socket 接收到数据
- 输入参数  :
- 输出参数  :
- 返 回 值  : 成功:IMS_NIC_SUCC，失败:IMS_NIC_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 ST_IMS_NIC_003(VOS_VOID)
 {
     IMS_NIC_PDN_INFO_CONFIG_STRU    stConfigInfo;
@@ -4221,22 +3691,7 @@ VOS_UINT32 ST_IMS_NIC_003(VOS_VOID)
     return IMS_NIC_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : ST_IMS_NIC_003M(同003，但需手动配置网卡)
- 功能描述  : 通过socket bind IPV4地址，发送数据给同网段地址，CDS匹配数据,
-             随后CDS将数据发送给协议栈，上层通过socket 接收到数据
- 输入参数  :
- 输出参数  :
- 返 回 值  : 成功:IMS_NIC_SUCC，失败:IMS_NIC_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 ST_IMS_NIC_003M(VOS_VOID)
 {
     IMS_NIC_PDN_INFO_CONFIG_STRU   *pstConfigInfo   = VOS_NULL_PTR;
@@ -4519,22 +3974,7 @@ VOS_UINT32 ST_IMS_NIC_004_base(IMS_NIC_PDN_INFO_CONFIG_STRU *pstConfigInfo, VOS_
     return IMS_NIC_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : ST_IMS_NIC_002
- 功能描述  : 通过socket bind IPV6地址，发送数据给同网段地址，CDS匹配数据，
-             匹配后CDS将数据发送回协议栈，上层通过socket接收
- 输入参数  :
- 输出参数  :
- 返 回 值  : 成功:IMS_NIC_SUCC，失败:IMS_NIC_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ST_IMS_NIC_004(VOS_VOID)
 {
     IMS_NIC_PDN_INFO_CONFIG_STRU    stConfigInfo;
@@ -4560,22 +4000,7 @@ VOS_VOID ST_IMS_NIC_004(VOS_VOID)
     ST_IMS_NIC_004_base(&stConfigInfo, aucDstIpAddr, aucSrcIpAddr);
 }
 
-/*****************************************************************************
- 函 数 名  : ST_IMS_NIC_004A
- 功能描述  : 通过socket bind IPV6地址，发送数据给不同网段地址，CDS匹配数据，
-             匹配后CDS将数据发送回协议栈，上层通过socket接收
- 输入参数  :
- 输出参数  :
- 返 回 值  : 成功:IMS_NIC_SUCC，失败:IMS_NIC_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ST_IMS_NIC_004A(VOS_VOID)
 {
     IMS_NIC_PDN_INFO_CONFIG_STRU    stConfigInfo;
@@ -4619,22 +4044,7 @@ VOS_VOID ST_IMS_NIC_004AM(VOS_VOID)
     ST_IMS_NIC_004_base(pstConfigInfo, aucDstIpAddr, aucSrcIpAddr);
 }
 
-/*****************************************************************************
- 函 数 名  : ST_IMS_NIC_005
- 功能描述  : 通过socket bind IPV4地址，发送5块数据给不同网段地址，CDS匹配数据，
-             匹配后CDS将数据发送回协议栈，上层通过socket接收
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ST_IMS_NIC_005_base(IMS_NIC_PDN_INFO_CONFIG_STRU *pstConfigInfo, VOS_UINT8 *aucDstIpAddr, VOS_UINT8 *aucSrcIpAddr)
 {
     VOS_UINT32                      ulResult;
@@ -4915,22 +4325,7 @@ VOS_VOID ST_IMS_NIC_005(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ST_IMS_NIC_006
- 功能描述  : 网卡配置两个IP,分别通过socket bind IPV4地址，发送5块数据给不同网段地址，CDS匹配数据，
-             匹配后CDS将数据发送回协议栈，上层通过socket接收
- 输入参数  :
- 输出参数  :
- 返 回 值  : 成功:IMS_NIC_SUCC，失败:IMS_NIC_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ST_IMS_NIC_006(VOS_VOID)
 {
     IMS_NIC_PDN_INFO_CONFIG_STRU    stConfigInfo;
@@ -5355,22 +4750,7 @@ out:
 }
 
 
-/*****************************************************************************
- 函 数 名  : ST_IMS_NIC_007
- 功能描述  : 网卡配置两个IP,分别通过socket bind IPV6地址，发送2块数据给不同网段地址，CDS匹配数据，
-             匹配后CDS将数据发送回协议栈，上层通过socket接收
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ST_IMS_NIC_007(VOS_VOID)
 {
     IMS_NIC_PDN_INFO_CONFIG_STRU    stConfigInfo;
@@ -5848,23 +5228,7 @@ out:
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ST_IMS_NIC_008
- 功能描述  : 网卡配置两个IP，一个IPV4，一个IPV6,分别通过socket bind 该两个地址，
-             发送2块数据给不同网段地址，CDS匹配数据，匹配后CDS将数据发送回协议栈，
-             上层通过socket接收
- 输入参数  :
- 输出参数  :
- 返 回 值  : 成功:IMS_NIC_SUCC，失败:IMS_NIC_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ST_IMS_NIC_008(VOS_VOID)
 {
     IMS_NIC_PDN_INFO_CONFIG_STRU    stConfigInfo;
@@ -6665,21 +6029,7 @@ VOS_VOID ST_IMS_NIC_DEL(VOS_UINT8 ucRabId, VOS_UINT8 ucModemId)
     (VOS_VOID)vos_printf("ST_IMS_NIC_DEL Result %d \n", ulRslt);
 }
 
-/*****************************************************************************
- 函 数 名  : ST_IMS_NIC_CFG_001
- 功能描述  : 配置IPV4/IPV6 共4个DNS服务器，输出0表示成功
- 输入参数  :
- 输出参数  :
- 返 回 值  : 成功:IMS_NIC_SUCC，失败:IMS_NIC_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ST_IMS_NIC_CFG_001(VOS_VOID)
 {
     IMS_NIC_PDN_INFO_CONFIG_STRU        stConfigInfo;
@@ -6720,22 +6070,7 @@ VOS_VOID ST_IMS_NIC_CFG_001(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : ST_IMS_NIC_CFG_002
- 功能描述  : 重复配置IPV4/IPV6相同IP共4个DNS服务器，输出0表示成功；
-             删除IPV4两个DNS服务器，输出0表示成功
- 输入参数  :
- 输出参数  :
- 返 回 值  : 成功:IMS_NIC_SUCC，失败:IMS_NIC_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ST_IMS_NIC_CFG_002(VOS_VOID)
 {
     IMS_NIC_PDN_INFO_CONFIG_STRU        stConfigInfo;
@@ -6780,22 +6115,7 @@ VOS_VOID ST_IMS_NIC_CFG_002(VOS_VOID)
     (VOS_VOID)vos_printf("ST_IMS_NIC_CFG_002 Result1 %d \n", ulRslt);
 }
 
-/*****************************************************************************
- 函 数 名  : ST_IMS_NIC_CFG_003
- 功能描述  : 配置IPV4/IPV6 共4个DNS服务器，输出0表示成功；
-             删除IPV4两个DNS服务器，输出0表示成功
- 输入参数  :
- 输出参数  :
- 返 回 值  : 成功:IMS_NIC_SUCC，失败:IMS_NIC_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ST_IMS_NIC_CFG_003(VOS_VOID)
 {
     IMS_NIC_PDN_INFO_CONFIG_STRU        stConfigInfo;
@@ -6840,21 +6160,7 @@ VOS_VOID ST_IMS_NIC_CFG_003(VOS_VOID)
     (VOS_VOID)vos_printf("ST_IMS_NIC_CFG_003 Result1 %d \n", ulRslt);
 }
 
-/*****************************************************************************
- 函 数 名  : ST_IMS_NIC_CFG_004
- 功能描述  : 配置DNS服务器超出上限。Result5,Result6输出0,Result7输出5表示成功
- 输入参数  :
- 输出参数  :
- 返 回 值  : 成功:IMS_NIC_SUCC，失败:IMS_NIC_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ST_IMS_NIC_CFG_004(VOS_VOID)
 {
     IMS_NIC_PDN_INFO_CONFIG_STRU        stConfigInfo_rab5 = {0};

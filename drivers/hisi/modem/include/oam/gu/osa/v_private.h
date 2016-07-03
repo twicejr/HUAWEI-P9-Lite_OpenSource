@@ -124,14 +124,7 @@ enum
     OSA_REBOOT_MODULE_ID_BUTT = 0x1fffffff
 };
 
-/*****************************************************************************
- 枚举名    : VOS_GET_DRV_VER_INFO_ENUM
- 结构说明  : 获取单板类型信息枚举
 
-  1.日    期   : 2014年11月07日
-    作    者   : d00212987
-    修改内容   :
-*****************************************************************************/
 enum VOS_GET_DRV_VER_INFO_ENUM
 {
     VOS_GET_DRV_BOARD_PRODUCT_ID      = 0x00,
@@ -142,14 +135,7 @@ enum VOS_GET_DRV_VER_INFO_ENUM
 };
 typedef VOS_UINT32 VOS_GET_DRV_VER_INFO_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : PM_LOG_COSA_PAM_ENUM
- 枚举说明  : PM COSA PAM主要类型
 
-  1.日    期   : 2015年03月21日
-    作    者   : s00207770
-    修改内容   : PM LOG特性新增
-*****************************************************************************/
 enum PM_LOG_COSA_PAM_ENUM
 {
     PM_LOG_COSA_PAM_TIMER   = 0x00000001,

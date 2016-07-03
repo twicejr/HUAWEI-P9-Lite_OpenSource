@@ -50,7 +50,6 @@
 #include    "NasEmmAttachAppMsgProcess.h"
 #include    "NasEmmAttachCnMsgProcess.h"
 #include    "NasEmmAttachEsmMsgProcess.h"
-/*#include    "NasEmmAttDetMrrcMsgProcess.h"*/ /*l00258641 删除没有用到的头文件*/
 #include    "NasEmmDetach.h"
 #include    "NasEmmDetachAppMsgProcess.h"
 #include    "NasEmmDetachCnMsgProcess.h"
@@ -380,7 +379,6 @@ extern "C" {
             (pMsg)->ulReceiverPid       = WUEPS_PID_MMC;\
             (pMsg)->ulLength            = (MsgLenthNoHeader);\
         }
-/* Added by w00209181 for 搜网优化 2015-05-30 */
 #define NAS_EMM_COMP_AD_CSS_PS_MSG_HEADER(pMsg,MsgLenthNoHeader)\
         {\
             (pMsg)->ulSenderCpuId       = VOS_LOCAL_CPUID;\
@@ -390,7 +388,6 @@ extern "C" {
             (pMsg)->ulLength            = (MsgLenthNoHeader);\
         }
 
-/* Added by w00209181 for 搜网优化 2015-05-30 */
 
 /*#define NAS_EMM_PrintMsgOut((NAS_LMM_INTRA_MSG_STRU *)pMsg);
  */

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2006, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : BST_LIB_StrInt8u.cpp
-  版 本 号   : 初稿
-  作    者   : d00173029
-  生成日期   : 2014年4月9日
-  最近修改   :
-  功能描述   : 定义可变长度的字符串
-  函数列表   :
-
-  修改历史   :
-  1.日    期   : 2014年4月9日
-    作    者   : d00173029
-    修改内容   : 创建文件
-******************************************************************************/
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -30,19 +13,7 @@ extern "C" {
 /*lint -e767*/
 #define    THIS_FILE_ID        PS_FILE_ID_BST_LIB_STRINT8U_CPP
 /*lint +e767*/
-/*****************************************************************************
-函 数 名   : BST_LIB_StrLen
-功能描述   : 计算字符串的长度
-输入参数   : pcData : 指向字符串的指针
-输出参数   : 无
-返 回 值   : 字符串的长度，不包括'\0'
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年4月17日
-   作者    : z00220931
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_UINT16 BST_LIB_StrLen(
     const BST_CHAR          *pcData )
 {
@@ -59,20 +30,7 @@ BST_UINT16 BST_LIB_StrLen(
     }
     return usLen;
 }
-/*****************************************************************************
-函 数 名   : BST_LIB_StrAddByte
-功能描述   : 添加一个字符到BST_LIB_StrStru结构体数据段的尾部
-输入参数   : pStr : 指向BST_LIB_StrStru结构体的指针
-             cData: 要添加的字符
-输出参数   : 无
-返 回 值   : BST_VOID
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年4月17日
-   作者    : d00173029
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_VOID   BST_LIB_StrAddByte(
     BST_LIB_StrStru        *pStr,
     const BST_CHAR          cData )
@@ -94,19 +52,7 @@ BST_VOID   BST_LIB_StrAddByte(
     pStr->usUsed++;
     pStr->pData[ pStr->usUsed ] = 0;
 }
-/*****************************************************************************
-函 数 名   : BST_LIB_StrClear
-功能描述   : 将BST_LIB_StrStru结构体中使用标志清空
-输入参数   : pStr : 指向BST_LIB_StrStru结构体的指针
-输出参数   : 无
-返 回 值   : BST_VOID
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年4月17日
-   作者    : d00173029
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_VOID   BST_LIB_StrClear(
     BST_LIB_StrStru        *pStr )
 {
@@ -120,20 +66,7 @@ BST_VOID   BST_LIB_StrClear(
         pStr->pData[0]= 0;
     }
 }
-/*****************************************************************************
-函 数 名   : BST_LIB_StrAddStr
-功能描述   : 将BST_LIB_StrStru结构体中数据的尾部添加字符串
-输入参数   : pStr : 指向BST_LIB_StrStru结构体的指针
-             pcData:指向字符串的指针
-输出参数   : 无
-返 回 值   : BST_VOID
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年4月17日
-   作者    : d00173029
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_VOID   BST_LIB_StrAddStr(
     BST_LIB_StrStru        *pStr,
     const BST_CHAR         *pcData )
@@ -156,21 +89,7 @@ BST_VOID   BST_LIB_StrAddStr(
     pStr->usUsed += usLen;
     pStr->pData[ pStr->usUsed ] = 0;
 }
-/*****************************************************************************
-函 数 名   : BST_LIB_StrAddBytes
-功能描述   : 将BST_LIB_StrStru结构体中数据的尾部添加指定个数的字符
-输入参数   : pStr : 指向BST_LIB_StrStru结构体的指针
-             pcData:指向字符的指针
-             usBufLen:字符的个数
-输出参数   : 无
-返 回 值   : BST_VOID
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年4月17日
-   作者    : d00173029
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_VOID   BST_LIB_StrAddBytes(
     BST_LIB_StrStru        *pStr,
     BST_CHAR               *pcData,
@@ -193,22 +112,7 @@ BST_VOID   BST_LIB_StrAddBytes(
     pStr->usUsed += usBufLen;
     pStr->pData[ pStr->usUsed ] = 0;
 }
-/*****************************************************************************
-函 数 名   : BST_LIB_StrInsert
-功能描述   : 在BST_LIB_StrStru结构体中数据的指定位置插入字符串
-输入参数   : usOfset:指定位置
-             pStr : 指向BST_LIB_StrStru结构体的指针
-             pcData:指向字符串的指针
-输出参数   : 无
-返 回 值   : BST_TRUE :成功
-             BST_FALSE:失败
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年4月17日
-   作者    : d00173029
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_BOOL   BST_LIB_StrInsert(
     BST_UINT16              usOfset,
     BST_LIB_StrStru        *pStr,
@@ -246,23 +150,7 @@ BST_BOOL   BST_LIB_StrInsert(
     pStr->pData[ pStr->usUsed ] = 0;
     return BST_TRUE;
 }
-/*****************************************************************************
-函 数 名   : BST_LIB_StrCmp
-功能描述   : 从pStr指向的数据的指定位置开始和指定的字符串比较指定
-             的长度
-输入参数   : usOfset:指定位置
-             pStr : 指向的数据指针
-             pcData:指向字符串的指针
-             usBufLen:指定的长度
-输出参数   : 无
-返 回 值   : 和指定字符串相同返回0,不同返回非0
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年4月17日
-   作者    : d00173029
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_UINT16 BST_LIB_StrCmp(
     BST_UINT16              usOfset,
     const BST_CHAR         *pStr,
@@ -281,23 +169,7 @@ BST_UINT16 BST_LIB_StrCmp(
     return( (BST_UINT16)BST_OS_MEMCMP( pStr + usOfset, pcData, usBufLen ) );
     /*lint +e571*/
 }
-/*****************************************************************************
-函 数 名   : BST_LIB_StrCmp
-功能描述   : 从BST_LIB_StrStru结构体中数据的指定位置开始和指定的字符串比较指定
-             的长度
-输入参数   : usOfset:指定位置
-             pStr : 指向BST_LIB_StrStru结构体的指针
-             pcData:指向字符串的指针
-             usBufLen:指定的长度
-输出参数   : 无
-返 回 值   : 相同
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年4月17日
-   作者    : d00173029
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_UINT16 BST_LIB_StrFind(
     const BST_CHAR         *pStr,
     const BST_UINT16        usSrcLen,
@@ -334,22 +206,7 @@ BST_UINT16 BST_LIB_StrFind(
     }
     return BST_LIB_STR_NPO;
 }
-/*****************************************************************************
-函 数 名   : BST_LIB_StrFill
-功能描述   : 将指定长度的字符串填充到整结构体BST_LIB_StrStru中数据的空间
-输入参数   : pStr    :指向结构体BST_LIB_StrStru的指针
-             pucSrc  :指向要填充的数据的指针
-             usLength:结构体数据的空间大小
-输出参数   : 无
-返 回 值   : BST_NO_ERROR_MSG:成功
-             其他值:          失败
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年4月17日
-   作者    : d00173029
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_LIB_StrFill(
     BST_LIB_StrStru    *pStr,
     const BST_UINT8    *pucSrc,
@@ -386,21 +243,7 @@ BST_ERR_ENUM_UINT8 BST_LIB_StrFill(
     return enErrMsg;
 }
 
-/*****************************************************************************
-函 数 名   : BST_LIB_StrReSize
-功能描述   : 按指定的长度调整结构体BST_LIB_StrStru中数据的空间
-输入参数   : pStr    :指向结构体BST_LIB_StrStru的指针
-             usLength:结构体数据的空间大小
-输出参数   : 无
-返 回 值   : BST_NO_ERROR_MSG:重置成功
-             其他值:          重置失败
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年4月17日
-   作者    : d00173029
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8  BST_LIB_StrReSize(
     BST_LIB_StrStru        *pStr,
     BST_UINT16              usLen )
@@ -435,19 +278,7 @@ BST_ERR_ENUM_UINT8  BST_LIB_StrReSize(
     pStr->pData[0]          = 0;
     return BST_NO_ERROR_MSG;
 }
-/*****************************************************************************
-函 数 名   : BST_LIB_StrCreat
-功能描述   : 创建指定大小的结构体BST_LIB_StrStru
-输入参数   : usLength:结构体数据的空间大小
-输出参数   : 无
-返 回 值   : BST_LIB_StrStru:指向结构体BST_LIB_StrStru的指针
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年4月17日
-   作者    : d00173029
-   修改内容: 新函数
-*****************************************************************************/
+
 /*lint -e438*/
 BST_LIB_StrStru* BST_LIB_StrCreat(
     BST_UINT16              usLength )
@@ -477,19 +308,7 @@ BST_LIB_StrStru* BST_LIB_StrCreat(
     return pstNewStr;
 }
 /*lint +e438*/
-/*****************************************************************************
-函 数 名   : BST_LIB_StrDelete
-功能描述   : 释放结构体BST_LIB_StrStru中的数据
-输入参数   : pStr : 指向BST_LIB_StrStru结构体的指针
-输出参数   : 无
-返 回 值   : BST_VOID
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年4月17日
-   作者    : d00173029
-   修改内容: 新函数
-*****************************************************************************/
+
 /*lint -e438*/
 BST_VOID BST_LIB_StrDelete(
     BST_LIB_StrStru         *pStr )
@@ -502,19 +321,7 @@ BST_VOID BST_LIB_StrDelete(
     BST_OS_FREE( pStr );
 }
 /*lint +e438*/
-/*****************************************************************************
-函 数 名   : BST_ZLB_Uncompress
-功能描述   : 解压函数
-输入参数   : pStr : 指向BST_LIB_StrStru结构体的指针
-输出参数   : 无
-返 回 值   : BST_VOID
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年4月17日
-   作者    : d00173029
-   修改内容: 新函数
-*****************************************************************************/
+
 /*lint -e438*/
 BST_CHAR *BST_ZLB_Uncompress(const BST_CHAR *const source, BST_INT32 comprlen, BST_UINT32 *uncomprlen)
 {

@@ -233,13 +233,7 @@ typedef struct
     HSD_MSCC_START_RESULT_ENUM_UINT32           enRslt;
 } HSD_MSCC_START_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : MSCC_HSD_HRPD_SYS_REC_ITEM_STRU
- 结构说明  : 系统表中HRPD项信息
- 1.日    期   : 2015年5月16日
-   作    者   : W00176964
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                                              usAcqIndex;         /* 此系统记录指向的ACQ表的Index */
@@ -250,14 +244,7 @@ typedef struct
 }MSCC_HSD_HRPD_SYS_REC_ITEM_STRU;
 
 
-/*****************************************************************************
- 结构名    : MSCC_HSD_SYSTEM_ACQUIRE_FREQ_INFO_STRU
- 结构说明  : 高优先级搜网频点信息
- 1.日    期   : 2015年05月16日
-   作    者   : W00176964
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     NAS_MSCC_PIF_FREQENCY_CHANNEL_STRU  stFreq;             /* 存放HRPD的频点信息 */
@@ -720,40 +707,16 @@ typedef struct
     VOS_UINT8                                   aucReserve[2];
 } HSD_MSCC_CAS_STATUS_IND_STRU;
 
-/*****************************************************************************
- 结构名    : MSCC_HSD_SRV_ACQ_REQ_STRU
- 结构说明  : 业务触发搜网指示
- 1.日    期   : 2015年5月21日
-   作    者   : W00242748
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef NAS_MSCC_PIF_SRV_ACQ_REQ_STRU MSCC_HSD_SRV_ACQ_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : HSD_MSCC_PIF_SRV_ACQ_CNF_STRU
- 结构说明  : 业务触发搜网回复
- 1.日    期   : 2015年5月21日
-   作    者   : w00242748
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef NAS_MSCC_PIF_SRV_ACQ_CNF_STRU HSD_MSCC_SRV_ACQ_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : MSCC_HSD_BEGIN_SESSION_NOTIFY_STRU
- 结构说明  : 业务触发搜网开始指示
- 1.日    期   : 2015年5月21日
-   作    者   : W00242748
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef NAS_MSCC_PIF_BEGIN_SESSION_NOTIFY_STRU MSCC_HSD_BEGIN_SESSION_NOTIFY_STRU;
 
-/*****************************************************************************
- 结构名    : MSCC_HSD_END_SESSION_NOTIFY_STRU
- 结构说明  : 业务触发搜网结束指示
- 1.日    期   : 2015年5月21日
-   作    者   : W00242748
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef NAS_MSCC_PIF_END_SESSION_NOTIFY_STRU MSCC_HSD_END_SESSION_NOTIFY_STRU;
 
 
@@ -772,44 +735,19 @@ typedef struct
 }MSCC_HSD_CFREQ_LOCK_NTF_STRU;
 
 
-/*****************************************************************************
- 结构名    : HSD_MSCC_HRPD_NO_SERVICE_IND_STRU
- 结构说明  : HSD收到NETWORK_LOST或SESSION_NEG_RESULT_IND，发起搜网，进入无服务，
-             用于通知MMA启动服务上报延时定时器，仅Idle态下处理。
- 1.日    期   : 2015年9月30日
-   作    者   : l00324781
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                            stMsgHeader;                /*_H2ASN_Skip*//* 消息头                                   */
 }HSD_MSCC_HRPD_NO_SERVICE_IND_STRU;
 
-/*****************************************************************************
- 结构名    : MSCC_HSD_HDR_CSQ_SET_REQ_STRU
- 结构说明  : ID_HSD_MSCC_HDR_CSQ_SET_REQ_STRU消息结构
- 1.日    期   : 2015年10月21日
-   作    者   : C00299064
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef NAS_MSCC_PIF_HDR_CSQ_SET_REQ_STRU    MSCC_HSD_HDR_CSQ_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : HSD_MSCC_HDR_CSQ_SET_CNF_STRU
- 结构说明  : ID_HSD_MSCC_HDR_CSQ_SET_CNF_STRU消息结构
- 1.日    期   : 2015年10月21日
-   作    者   : C00299064
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef NAS_MSCC_PIF_HDR_CSQ_SET_CNF_STRU    HSD_MSCC_HDR_CSQ_SET_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_HDR_CSQ_IND_STRU
- 结构说明  : ID_NAS_MSCC_PIF_HDR_CSQ_IND消息结构
- 1.日    期   : 2015年10月21日
-   作    者   : C00299064
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef NAS_MSCC_PIF_HDR_CSQ_IND_STRU    HSD_MSCC_HDR_CSQ_IND_STRU;
 /*******************************************************************************
  7. OTHER declarations

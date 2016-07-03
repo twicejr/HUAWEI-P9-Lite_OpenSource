@@ -313,20 +313,7 @@ const UINT8 DefaultScanBands[VP6_BLOCK_SIZE] =
 #define VP6_CLEARREFNUM do{pVp6CodecInfo->RefNum = 0;}while(0)
 
 
-/*****************************************************************************
- 函 数 名  :  
- 功能描述  :  
- 输出参数  :  
- 返 回 值  :  
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
- 日    期  :  
- 作    者  :  
- 修改内容  :  
-
-*****************************************************************************/
 UINT32 Vp6_Vfmw_DecodeBool(BS *pBs, VP6_BOOLCODER_S *pBr, UINT8 probability) 
 {
     UINT32 bit=0;
@@ -378,20 +365,7 @@ UINT32 Vp6_Vfmw_DecodeBool(BS *pBs, VP6_BOOLCODER_S *pBr, UINT8 probability)
 }
 
 
-/*****************************************************************************
- 函 数 名  :  
- 功能描述  :  
- 输出参数  :  
- 返 回 值  :  
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
- 日    期  :  
- 作    者  :  
- 修改内容  :  
-
-*****************************************************************************/
 UINT32 Vp6_Vfmw_DecodeBool128(BS *pBs,VP6_BOOLCODER_S *pBr) 
 {
     UINT32 bit;
@@ -430,20 +404,7 @@ UINT32 Vp6_Vfmw_DecodeBool128(BS *pBs,VP6_BOOLCODER_S *pBr)
 }
 
 
-/*****************************************************************************
- 函 数 名  :  
- 功能描述  :  
- 输出参数  :  
- 返 回 值  :  
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
- 日    期  :  
- 作    者  :  
- 修改内容  :  
-
-*****************************************************************************/
 SINT32 Vp6_Vfmw_BoolRead(BS *pBs, VP6_BOOLCODER_S *pBr, SINT32 nBits)
 {
     SINT32 i;
@@ -457,20 +418,7 @@ SINT32 Vp6_Vfmw_BoolRead(BS *pBs, VP6_BOOLCODER_S *pBr, SINT32 nBits)
     return value;
 }
 
-/*****************************************************************************
- 函 数 名  :  
- 功能描述  :  
- 输出参数  :  
- 返 回 值  :  
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
- 日    期  :  
- 作    者  :  
- 修改内容  :  
-
-*****************************************************************************/
 VOID Vp6_Vfmw_StartDecode(BS *pBs, VP6_BOOLCODER_S *pBr)
 {
     pBr->lowvalue = 0;
@@ -1263,20 +1211,7 @@ VOID VP6_ConfigureMvEntropyDecoder(VP6_CODECINFO *pVp6CodecInfo,
 
 
 
-/*****************************************************************************
- 函 数 名  :  
- 功能描述  :  
- 输出参数  :  
- 返 回 值  :  
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
- 日    期  :  
- 作    者  :  
- 修改内容  :  
-
-*****************************************************************************/
 VOID VP6_BoolTreeToHuffCodes(UINT8 *pBoolTreeProbs, UINT32* pHuffProbs)
 {
     UINT32 Prob;
@@ -1312,20 +1247,7 @@ VOID VP6_BoolTreeToHuffCodes(UINT8 *pBoolTreeProbs, UINT32* pHuffProbs)
 }
 
 
-/*****************************************************************************
- 函 数 名  :  
- 功能描述  :  
- 输出参数  :  
- 返 回 值  :  
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
- 日    期  :  
- 作    者  :  
- 修改内容  :  
-
-*****************************************************************************/
 VOID VP6_ZerosBoolTreeToHuffCodes ( UINT8 *pBoolTreeProbs, UINT32 *pHuffProbs )
 {
     UINT32 Prob;
@@ -1353,20 +1275,7 @@ VOID VP6_ZerosBoolTreeToHuffCodes ( UINT8 *pBoolTreeProbs, UINT32 *pHuffProbs )
 }
 
 
-/*****************************************************************************
- 函 数 名  :  
- 功能描述  :  
- 输出参数  :  
- 返 回 值  :  
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
- 日    期  :  
- 作    者  :  
- 修改内容  :  
-
-*****************************************************************************/
 VOID VP6_InsertSorted(VP6_SORTNODE_S *pSn, UINT32 node, UINT32 *pStartnode)
 {
     UINT32 which = *pStartnode;
@@ -1393,20 +1302,7 @@ VOID VP6_InsertSorted(VP6_SORTNODE_S *pSn, UINT32 node, UINT32 *pStartnode)
 
 
 
-/*****************************************************************************
- 函 数 名  :  
- 功能描述  :  
- 输出参数  :  
- 返 回 值  :  
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
- 日    期  :  
- 作    者  :  
- 修改内容  :  
-
-*****************************************************************************/
 VOID VP6_BuildHuffTree(VP6_HUFFNODE_S *pHn, UINT32 *pCounts, UINT32 values)
 {
     UINT32 i;
@@ -1482,20 +1378,7 @@ VOID VP6_BuildHuffTree(VP6_HUFFNODE_S *pHn, UINT32 *pCounts, UINT32 values)
 
 
 
-/*****************************************************************************
- 函 数 名  :  
- 功能描述  :  
- 输出参数  :  
- 返 回 值  :  
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
- 日    期  :  
- 作    者  :  
- 修改内容  :  
-
-*****************************************************************************/
 VOID VP6_BuildHuffLookupTable(VP6_HUFFNODE_S *pHuffTreeRoot, VP6_HUFFTABNODE_S *pHuffTable)
 {
     UINT32 i, j;
@@ -1600,20 +1483,7 @@ VOID VP6_BuildTreeTab(VP6_CODECINFO *pVp6CodecInfo)
   	}
   
 }
-/*****************************************************************************
- 函 数 名  :  
- 功能描述  :  
- 输出参数  :  
- 返 回 值  :  
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
- 日    期  :  
- 作    者  :  
- 修改内容  :  
-
-*****************************************************************************/
 VOID VP6_ConvertBoolToHuff(VP6_CODECINFO *pVp6CodecInfo)
 {
     UINT32 i;
@@ -1652,20 +1522,7 @@ VOID VP6_ConvertBoolToHuff(VP6_CODECINFO *pVp6CodecInfo)
 }
 
 
-/*****************************************************************************
- 函 数 名  :  
- 功能描述  :  
- 输出参数  :  
- 返 回 值  :  
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
- 日    期  :  
- 作    者  :  
- 修改内容  :  
-
-*****************************************************************************/
 SINT32 VP6_IntraFrmHeader(VP6_CODECINFO *pVp6CodecInfo, BS *pBs)
 {
     UINT32 HFragments = 0;       
@@ -1773,20 +1630,7 @@ SINT32 VP6_IntraFrmHeader(VP6_CODECINFO *pVp6CodecInfo, BS *pBs)
 }
 
 
-/*****************************************************************************
- 函 数 名  :  
- 功能描述  :  
- 输出参数  :  
- 返 回 值  :  
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
- 日    期  :  
- 作    者  :  
- 修改内容  :  
-
-*****************************************************************************/
 SINT32 VP6_InterFrmHeader(VP6_CODECINFO *pVp6CodecInfo, BS *pBs)
 {
     // Non key frame sopecific stuff
@@ -1870,20 +1714,7 @@ SINT32 VP6_InterFrmHeader(VP6_CODECINFO *pVp6CodecInfo, BS *pBs)
     return VP6_VFMW_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  :  
- 功能描述  :  
- 输出参数  :  
- 返 回 值  :  
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
- 日    期  :  
- 作    者  :  
- 修改内容  :  
-
-*****************************************************************************/
 SINT32 VP6_GetPictureHeader(VP6_CODECINFO *pVp6CodecInfo, BS *pBs)
 {
     // FrameType:Is the frame and inter frame or a key frame
@@ -1937,20 +1768,7 @@ SINT32 VP6_GetPictureHeader(VP6_CODECINFO *pVp6CodecInfo, BS *pBs)
 	return VP6_VFMW_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  :  
- 功能描述  :  
- 输出参数  :  
- 返 回 值  :  
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
- 日    期  :  
- 作    者  :  
- 修改内容  :  
-
-*****************************************************************************/
 SINT32 VP6DEC_Init(VP6_CTX_S *pCtx, SYNTAX_EXTRA_DATA_S *pstExtraData)
 {
     VP6_CODECINFO *pVp6CodecInfo;
@@ -1982,20 +1800,7 @@ SINT32 VP6DEC_Init(VP6_CTX_S *pCtx, SYNTAX_EXTRA_DATA_S *pstExtraData)
 
 
 
-/*****************************************************************************
- 函 数 名  :  
- 功能描述  :  
- 输出参数  :  
- 返 回 值  :  
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
- 日    期  :  
- 作    者  :  
- 修改内容  :  
-
-*****************************************************************************/
 SINT32 VP6DEC_Destroy(VP6_CTX_S *pCtx)
 {
     return VP6_VFMW_TRUE;
@@ -2003,20 +1808,7 @@ SINT32 VP6DEC_Destroy(VP6_CTX_S *pCtx)
 
 
 
-/*****************************************************************************
- 函 数 名  :  
- 功能描述  :  
- 输出参数  :  
- 返 回 值  :  
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
- 日    期  :  
- 作    者  :  
- 修改内容  :  
-
-*****************************************************************************/
 SINT32 VP6_DecodeDecide(VP6_CTX_S *pCtx)
 {
     SINT32  DecMode;
@@ -2106,20 +1898,7 @@ SINT32 VP6_DecodeDecide(VP6_CTX_S *pCtx)
 }
 
 
-/*****************************************************************************
- 函 数 名  :  
- 功能描述  :  
- 输出参数  :  
- 返 回 值  :  
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
- 日    期  :  
- 作    者  :  
- 修改内容  :  
-
-*****************************************************************************/
 SINT32 VP6_Set_DecParam(VP6_CTX_S *pCtx)
 {
 	VP6_DEC_PARAM_S *pVp6DecParam = &pCtx->Vp6DecParam;
@@ -2379,20 +2158,7 @@ SINT32  VP6_CfgTable(VP6_CODECINFO *pVp6CodecInfo,VP6_PictureHeader_S *pPictureH
 
 
 
-/*****************************************************************************
- 函 数 名  :  
- 功能描述  :  
- 输出参数  :  
- 返 回 值  :  
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
- 日    期  :  
- 作    者  :  
- 修改内容  :  
-
-*****************************************************************************/
 SINT32 VP6_BuildTables(VP6_CODECINFO *pVp6CodecInfo,VP6_PictureHeader_S *pPictureHeader, BS *pBs)
 {
     if (pPictureHeader->FrameType != BASE_FRAME )
@@ -2427,20 +2193,7 @@ SINT32 VP6_BuildTables(VP6_CODECINFO *pVp6CodecInfo,VP6_PictureHeader_S *pPictur
 }
 
 
-/*****************************************************************************
- 函 数 名  :  
- 功能描述  :  
- 输出参数  :  
- 返 回 值  :  
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
- 日    期  :  
- 作    者  :  
- 修改内容  :  
-
-*****************************************************************************/
 SINT32 inline IsFrameSizeChanged(VP6_CODECINFO *pVp6CodecInfo)
 {
     if((pVp6CodecInfo->OldHeaderInfo.pic_height_in_mb != pVp6CodecInfo->NewHeaderInfo.pic_height_in_mb) ||
@@ -2477,20 +2230,7 @@ static SINT32 Vp6_UpdatePicHeader(VP6_CODECINFO *pVp6CodecInfo)
 	}
 	return VP6_VFMW_TRUE;
 }
-/*****************************************************************************
- 函 数 名  :  
- 功能描述  :  
- 输出参数  :  
- 返 回 值  :  
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
- 日    期  :  
- 作    者  :  
- 修改内容  :  
-
-*****************************************************************************/
 SINT32 VP6DEC_Decode(VP6_CTX_S *pCtx, DEC_STREAM_PACKET_S *pPacket)
 {	
 	SINT32 ret = VP6_VFMW_TRUE;
@@ -2627,20 +2367,7 @@ VP6_DECIDE_DECODE:
 
 
 
-/*****************************************************************************
- 函 数 名  :  
- 功能描述  :  
- 输出参数  :  
- 返 回 值  :  
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
- 日    期  :  
- 作    者  :  
- 修改内容  :  
-
-*****************************************************************************/
 VOID VP6_SetImgFormat(VP6_CTX_S *pCtx)
 {
     UINT32 codtype, csp, vfmt, sfmt, fldflg, dar;
@@ -2694,20 +2421,7 @@ VOID VP6_SetImgFormat(VP6_CTX_S *pCtx)
 
 
 
-/*****************************************************************************
- 函 数 名  :  
- 功能描述  :  
- 输出参数  :  
- 返 回 值  :  
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
- 日    期  :  
- 作    者  :  
- 修改内容  :  
-
-*****************************************************************************/
 SINT32 VP6DEC_VDMPostProc(VP6_CTX_S *pCtx, SINT32 ErrRatio)
 {
 	VP6_CODECINFO *pVp6CodecInfo;
@@ -2808,20 +2522,7 @@ SINT32 VP6DEC_VDMPostProc(VP6_CTX_S *pCtx, SINT32 ErrRatio)
 
 
 
-/*****************************************************************************
- 函 数 名  :  
- 功能描述  :  
- 输出参数  :  
- 返 回 值  :  
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
- 日    期  :  
- 作    者  :  
- 修改内容  :  
-
-*****************************************************************************/
 SINT32 VP6DEC_RecycleImage(VP6_CTX_S *pCtx,UINT32 ImgID)
 {
     IMAGE *pImg;
@@ -2840,20 +2541,7 @@ SINT32 VP6DEC_RecycleImage(VP6_CTX_S *pCtx,UINT32 ImgID)
 }
 
 
-/*****************************************************************************
- 函 数 名  :  
- 功能描述  :  
- 输出参数  :  
- 返 回 值  :  
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
- 日    期  :  
- 作    者  :  
- 修改内容  :  
-
-*****************************************************************************/
 SINT32 VP6DEC_GetRemainImg(VP6_CTX_S *pCtx)
 {   
     SINT32 ret;

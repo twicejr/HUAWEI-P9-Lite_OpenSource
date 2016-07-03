@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2012, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafXpdsMntn.c
-  版 本 号   : 初稿
-  作    者   : 谷传征
-  生成日期   : 2015年7月14日
-  最近修改   :
-  功能描述   : Cagps Mntn可维可测
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年7月14日
-    作    者   : g00261581
-    修改内容   : CDMA-AGPS项目新增
-
-******************************************************************************/
 #ifdef __cplusplus
 #if __cplusplus
 extern "C" {
@@ -31,23 +14,7 @@ extern "C" {
 
 #if ((FEATURE_ON == FEATURE_UE_MODE_CDMA) && (FEATURE_ON == FEATURE_AGPS))
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_MNTN_LogFsmInfo
- 功能描述  : 为XPDS各个PID提供的勾状态机信息的函数
- 输入参数  : VOS_UINT32                          ulPid
-             VOS_UINT32                          ulFsmId
-             VOS_UINT32                          ulFsmState
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月22日
-    作    者   : g00256031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_MNTN_LogFsmInfo(
     VOS_UINT32                          ulPid,
     VOS_UINT32                          ulFsmId,
@@ -80,22 +47,7 @@ VOS_VOID TAF_XPDS_MNTN_LogFsmInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_MNTN_TraceIntMsg
- 功能描述  : XPDS内部模块间消息勾包
- 输入参数  : ulSenderPid     申请消息的模块
-             *pstSndMsg      消息
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年07月07日
-    作    者   : Y00213812
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_VOID  TAF_XPDS_MNTN_TraceIntMsg(
     VOS_UINT32                          ulModuleId,
     VOS_UINT32                          ulLength,
@@ -123,21 +75,7 @@ VOS_VOID  TAF_XPDS_MNTN_TraceIntMsg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_MNTN_TraceSessionBeginIndMsg
- 功能描述  : Hook the msg when session started
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月31日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_MNTN_TraceSessionBeginIndMsg(VOS_VOID)
 {
     TAF_XPDS_MNTN_SESSION_BEGIN_IND_STRU    *pstMsg      = VOS_NULL_PTR;
@@ -172,21 +110,7 @@ VOS_VOID TAF_XPDS_MNTN_TraceSessionBeginIndMsg(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_MNTN_TraceSessionEndIndMsg
- 功能描述  : Hook Session End Msg
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月31日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_MNTN_TraceSessionEndIndMsg(VOS_VOID)
 {
     TAF_XPDS_MNTN_SESSION_END_IND_STRU                     *pstMsg = VOS_NULL_PTR;
@@ -217,21 +141,7 @@ VOS_VOID TAF_XPDS_MNTN_TraceSessionEndIndMsg(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_MNTN_TraceReverseMsgInfoIndMsg
- 功能描述  : Hook Reverse msg info(including multi reqs and multi resps)
- 输入参数  : TAF_XPDS_ENCODE_RL_INFO_STRU  *pstRlMsgInfo
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月31日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_MNTN_TraceReverseMsgInfoIndMsg(
     TAF_XPDS_ENCODE_RL_INFO_STRU  *pstRlMsgInfo
 )
@@ -266,24 +176,7 @@ VOS_VOID TAF_XPDS_MNTN_TraceReverseMsgInfoIndMsg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_MNTN_TraceForwardMsgInfoIndMsg
- 功能描述  : Hook curent forward Msg(Including mutil reqs or mutil resps)
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月31日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-  1.日    期   : 2015年9月10日
-    作    者   : y00174758
-    修改内容   : AGPS迭代2: 函数参数添加ulPdeDataMask
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_MNTN_TraceForwardMsgInfoIndMsg(
     VOS_UINT32                          ulPdeDataMask
 )
@@ -322,21 +215,7 @@ VOS_VOID TAF_XPDS_MNTN_TraceForwardMsgInfoIndMsg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_MNTN_TracePilotPhaseInfoCtxIndMsg
- 功能描述  : Hook the Pilot Phase Ctx Info
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月31日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_MNTN_TracePilotPhaseInfoCtxIndMsg(VOS_VOID)
 {
     TAF_XPDS_MNTN_PILOT_INFO_CTX_IND_STRU                  *pstMsg       = VOS_NULL_PTR;
@@ -371,21 +250,7 @@ VOS_VOID TAF_XPDS_MNTN_TracePilotPhaseInfoCtxIndMsg(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_MNTN_TracePseuRangeInfoCtxIndMsg
- 功能描述  : Hook the Pseu Range Ctx
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月31日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_MNTN_TracePseuRangeInfoCtxIndMsg(VOS_VOID)
 {
     TAF_XPDS_MNTN_PSEU_RANGE_INFO_CTX_IND_STRU             *pstMsg        = VOS_NULL_PTR;
@@ -420,21 +285,7 @@ VOS_VOID TAF_XPDS_MNTN_TracePseuRangeInfoCtxIndMsg(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_MNTN_TraceAssistDataCtxIndMsg
- 功能描述  : Hook Acq Assist Info From PDE
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月31日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_MNTN_TraceAssistDataCtxIndMsg(VOS_VOID)
 {
     TAF_XPDS_MNTN_ASSIST_DATA_CTX_IND_STRU                 *pstMsg           = VOS_NULL_PTR;
@@ -469,21 +320,7 @@ VOS_VOID TAF_XPDS_MNTN_TraceAssistDataCtxIndMsg(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_MNTN_TraceLocationInfoCtxIndMsg
- 功能描述  : Hook Location info(Got from PDE)
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月31日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_MNTN_TraceLocationInfoCtxIndMsg(VOS_VOID)
 {
     TAF_XPDS_MNTN_POS_INFO_CTX_IND_STRU               *pstMsg      = VOS_NULL_PTR;
@@ -519,21 +356,7 @@ VOS_VOID TAF_XPDS_MNTN_TraceLocationInfoCtxIndMsg(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_MNTN_TraceEphInfoCtxIndMsg
- 功能描述  : Hook EPH info(Got from PDE)
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月3日
-    作    者   : y00174758
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_MNTN_TraceEphInfoCtxIndMsg(VOS_VOID)
 {
     TAF_XPDS_MNTN_EPH_INFO_CTX_IND_STRU                    *pstMsg     = VOS_NULL_PTR;
@@ -569,21 +392,7 @@ VOS_VOID TAF_XPDS_MNTN_TraceEphInfoCtxIndMsg(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_MNTN_TraceAlmInfoCtxIndMsg
- 功能描述  : Hook ALM info(Got from PDE)
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月3日
-    作    者   : y00174758
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_MNTN_TraceAlmInfoCtxIndMsg(VOS_VOID)
 {
     TAF_XPDS_MNTN_ALM_INFO_CTX_IND_STRU               *pstMsg     = VOS_NULL_PTR;
@@ -619,21 +428,7 @@ VOS_VOID TAF_XPDS_MNTN_TraceAlmInfoCtxIndMsg(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_MNTN_TraceForwardPdeHeaderInfo
- 功能描述  : Hook forward PDE header Info
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月3日
-    作    者   : y00174758
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_MNTN_TraceForwardPdeHeaderInfo(VOS_VOID)
 {
     TAF_XPDS_MNTN_FORWARD_PDE_MSG_HEADER_IND_STRU_STRU     *pstMsg         = VOS_NULL_PTR;
@@ -671,21 +466,7 @@ VOS_VOID TAF_XPDS_MNTN_TraceForwardPdeHeaderInfo(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_MNTN_TraceReversePdeHeaderInfo
- 功能描述  : Hook reverse PDE header Info
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月3日
-    作    者   : y00174758
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_MNTN_TraceReversePdeHeaderInfo(
     TAF_XPDS_PD_MSG_HEADER_STRU        *pstPdMsgHeader
 )
@@ -722,21 +503,7 @@ VOS_VOID TAF_XPDS_MNTN_TraceReversePdeHeaderInfo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_MNTN_TraceReverseStartDeliverData
- 功能描述  : Hook PDE header Info
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月28日
-    作    者   : y00174758
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_MNTN_TraceReverseStartDeliverData(
     TAF_XPDS_START_DELV_DATA_STRU      *pstStartDelvData
 )
@@ -773,21 +540,7 @@ VOS_VOID TAF_XPDS_MNTN_TraceReverseStartDeliverData(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_MNTN_TraceReverseMpcStartPosReq
- 功能描述  : Hook PDE header Info
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月28日
-    作    者   : y00174758
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_MNTN_TraceReverseMpcStartPosReq(
     TAF_XPDS_MPC_START_POS_REQ_STRU    *pstStartPosReq
 )
@@ -824,21 +577,7 @@ VOS_VOID TAF_XPDS_MNTN_TraceReverseMpcStartPosReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_MNTN_TraceReverseMpcStartPosReq
- 功能描述  : Hook PDE header Info
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月28日
-    作    者   : y00174758
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_MNTN_TraceReverseMpcPosReportReq(
     TAF_XPDS_MPC_POS_REPORT_STRU       *pstPosReportReq
 )
@@ -875,21 +614,7 @@ VOS_VOID TAF_XPDS_MNTN_TraceReverseMpcPosReportReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_MNTN_TraceReversePdeRejRsp
- 功能描述  :
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月28日
-    作    者   : y00174758
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_MNTN_TraceReversePdeRejRsp(
     TAF_XPDS_REVLINK_RSP_REJECT_STRU   *pstRejInfo
 )

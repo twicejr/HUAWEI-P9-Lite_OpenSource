@@ -1,0 +1,53 @@
+
+
+/{
+	amba{
+		spi0: spi@ffd70000 {
+				compatible = "arm,pl022", "arm,primecell";
+				status = "disabled";
+				reg = <0x0 0xffd70000 0x0 0x1000>;
+				interrupts = <0 113 4>;
+				clocks = <&clk_gate_spi0 &clk_gate_spi0>;
+				clock-names = "clk_spi0", "apb_pclk";
+				bus-id = <0>;
+				enable-dma = <1>;
+				dmas =  <&iomcu_dma 0
+				         &iomcu_dma 1>;
+				dma-names = "rx", "tx";
+				num-cs = <4>;
+				//cs-gpios = <&gpio6 3 0>, <&gpio6 4 0>, <&gpio6 5 0>, <&gpio6 6 0>;
+		};
+
+		spi1: spi@fdf08000 {
+            compatible = "arm,pl022", "arm,primecell";
+			status = "disabled";
+			reg = <0x0 0xfdf08000 0x0 0x1000>;
+			interrupts = <0 80 4>;
+			clocks = <&clk_gate_spi1 &clk_gate_spi1>;
+			clock-names = "clk_spi1", "apb_pclk";
+			bus-id = <1>;
+			enable-dma = <1>;
+			
+			dmas =  <&dma0 10
+				&dma0 11>;
+			dma-names = "rx", "tx";
+			num-cs = <2>;
+			//cs-gpios = <&gpio1 6 0>,<&gpio1 7 0>;
+		};
+
+		spi2: spi@ffd68000 {
+            compatible = "arm,pl022", "arm,primecell";
+			status = "disabled";
+			reg = <0x0 0xffd68000 0x0 0x1000>;
+			interrupts = <0 116 4>;
+			clocks = <&clk_gate_spi2 &clk_gate_spi2>;
+			clock-names = "clk_spi2", "apb_pclk";
+			bus-id = <2>;
+			enable-dma = <1>;
+			dmas =  <&iomcu_dma 14
+				&iomcu_dma 15>;
+			dma-names = "rx", "tx";
+			num-cs = <1>;
+		};
+	};
+};

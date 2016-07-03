@@ -33,7 +33,6 @@ extern "C" {
 /* MID_COMP_BFD = 0x0E240000 , defined in file tcpip_id.h */
 #define  BFD_MID MID_COMP_BFD
 
-/* Add for DTS2011021702058, by chenyaoKF34558, at 2011-02-25. 修改原因: 删除VRF时，关联的BFD session没有删除 */
 #define  BFD_VRF_MID 0x00000001
 
 /* 构造MBUF时预留的链路层首部长度 */
@@ -44,7 +43,6 @@ extern "C" {
 #define BFD_SEARCH_IN_ALLVRF_NO_FILTER  1
 #define BFD_SEARCH_IN_ALLVRF_BY_FILTER  2
 
-/* Add for DTS2011021702058, by chenyaoKF34558, at 2011-02-25. 修改原因: 删除VRF时，关联的BFD session没有删除 */
 #define BFD_VRF_CALLBACK_DELETE 0x02
 
 VOID BFD_Begin_PT();
@@ -64,7 +62,6 @@ ULONG BFD_Shell_Send (UCHAR* pIpPacket, ULONG ulOutIfIndex, ULONG ulPacketLength
 
 ULONG BFD_Shell_Recv(MBUF_S* pMbuf);
 
-/* Add for DTS2011021702058, by chenyaoKF34558, at 2011-02-25. 修改原因: 删除VRF时，关联的BFD session没有删除 */
 ULONG BFD_VRF_DelCallback( ULONG ulEvents , VOID * pulVrfIndex);
 ULONG BFD_VRF6_DelCallback( ULONG ulEvents , VOID * pulVrfIndex);
 
@@ -79,10 +76,8 @@ extern ULONG g_ulHABfdExist;
 extern ULONG (*g_pfUDP4_BFD_HOOK)(MBUF_S*);
 extern ULONG (*g_pfIpChangeNotifyBfd)(ULONG, ULONG, ULONG);
 
-/* Add by Added by y00171195/p00193127, 判断BFD模块是否完成初始化 */
 extern ULONG (*g_pfIsBfdFinishInit)(VOID);
 
-/* Added by likaikun00213099 for port security at 20140806, 判断是否需要对外显示BFD会话目的端口 */
 extern ULONG (*g_pfGetBfdShowPortSwitch)(VOID);
 
 extern SOCK_MOD_INFO_S g_stSOCK4ModInfo;
@@ -96,7 +91,6 @@ extern VOID BFD_Shell_NotifyAppSessionState(ULONG ulNotifyType, ULONG ulSessionI
 extern ULONG BFD_CheckVrfVtblIsRegister();
 extern ULONG BFD_GetVrfIndexByIfIndex(ULONG ulIfIndex,ULONG *pulVrfIndex);
 
-/*Added by wangchengyang-xujun62830-57575 for 消除vc 三级告警, 2009/4/14 */
 ULONG BFD_GetVrfNameByIndex(CHAR * pszVrfName, ULONG ulVrfIndex);
 ULONG BFD_GetVrfIndexByName(CHAR * pszVrfName, ULONG * pulVrfIndex);
 
@@ -106,7 +100,6 @@ extern ULONG BFD_VrfDelSuccessNotify(ULONG ulModId, ULONG ulVrfIndex);
 extern ULONG BFD6_VrfDelSuccessNotify(ULONG ulModId, ULONG ulVrfIndex);
 extern ULONG BFD_Shell_GetBfdMaxSessionID(VOID);
 
-/* Added by y00171195/p00193127 判断BFD是否完成初始化 */
 extern ULONG BFD_Shell_IsFinishInit(VOID);
 extern ULONG BFD_CheckBasicCapability(ULONG ulIpVer);
 extern ULONG BFD_GetBfdShowPortSwitch(VOID);

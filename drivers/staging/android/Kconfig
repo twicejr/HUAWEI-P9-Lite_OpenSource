@@ -61,6 +61,13 @@ config ANDROID_LOW_MEMORY_KILLER_AUTODETECT_OOM_ADJ_VALUES
 	  /sys/module/lowmemorykiller/parameters/adj and convert them
 	  to oom_score_adj values.
 
+config HUAWEI_CACHED_APPS_KILL
+	bool "kill all cached apps"
+	depends on ANDROID_LOW_MEMORY_KILLER
+	default n
+	---help---
+	  kill all cached apps
+
 config HISI_FAST_RECLAIM_MEMORY
 	bool "Hisilicon fast reclaim memory"
 	---help---
@@ -108,6 +115,17 @@ config BOOTLOADER_LOGGER
 	  Bootloader logger function save bootlader print message
 	  into a ram buffer that can be dumped by user.
 	  If unsure, say N.
+
+config HISI_SMART_RECLAIM
+	bool "Enable smart reclaim"
+	default y
+	depends on PROCESS_RECLAIM
+	help
+	  When enabled, memory pages of background processes will be reclaimed.
+	  Depending on if the process is an application or service.
+	  In case of service, advise kernel to reclaim file backed pages
+	  of background processes(file tpyes .dex, .jar and/or .apk).
+	  This triggered by writting soft to /proc/<pid>/reclaim from user space.
 
 source "drivers/staging/android/ion/Kconfig"
 

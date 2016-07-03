@@ -27,14 +27,7 @@ using namespace testing;
 #if 0
 
 #if( FEATURE_ON == FEATURE_CSD )
-/*****************************************************************************
-类名 : Test_CSD_FidInit
-功能描述 : Test_ALink_Link UT工程类
-修改历史     :
-1.日   期  : 2011-11-04
-  作   者  : w00199382
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_CSD_FidInit: public ::testing::Test
 {
 public:
@@ -50,16 +43,7 @@ private:
 
 };
 
-/*******************************************************************
-测试用例编号      : TEST_CSD_FidInit_001
-测试用例标题      : 任务初始化成功
-预期结果          : VOS_OK
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_FidInit, TEST_CSD_FidInit_001 )
 {
     VOS_INIT_PHASE_DEFINE          enInitPhase ;
@@ -92,16 +76,7 @@ TEST_F( Test_CSD_FidInit, TEST_CSD_FidInit_001 )
     GlobalMockObject::verify();
 
 }
-/*******************************************************************
-测试用例编号      : TEST_CSD_FidInit_005
-测试用例标题      : 任务初始化成功
-预期结果          : VOS_OK
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_FidInit, TEST_CSD_FidInit_005 )
 {
     VOS_INIT_PHASE_DEFINE          enInitPhase ;
@@ -135,16 +110,7 @@ TEST_F( Test_CSD_FidInit, TEST_CSD_FidInit_005 )
 
 }
 
-/*******************************************************************
-测试用例编号      : TEST_CSD_FidInit_002
-测试用例标题      : CSD_DL_ProcDataTask下行任务注册失败
-预期结果          : VOS_ERR
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_FidInit, TEST_CSD_FidInit_002 )
 {
     VOS_INIT_PHASE_DEFINE          enInitPhase ;
@@ -176,16 +142,7 @@ TEST_F( Test_CSD_FidInit, TEST_CSD_FidInit_002 )
 
 }
 
-/*******************************************************************
-测试用例编号      : TEST_CSD_FidInit_003
-测试用例标题      : CSD_UL_ProcDataTask上行任务注册失败
-预期结果          : VOS_ERR
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_FidInit, TEST_CSD_FidInit_003)
 {
     VOS_INIT_PHASE_DEFINE          enInitPhase ;
@@ -213,16 +170,7 @@ TEST_F( Test_CSD_FidInit, TEST_CSD_FidInit_003)
 
 }
 
-/*******************************************************************
-测试用例编号      : TEST_CSD_FidInit_004
-测试用例标题      : CSD_UL_PidInit任务注册失败
-预期结果          : VOS_ERR
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_FidInit, TEST_CSD_FidInit_004 )
 {
      VOS_INIT_PHASE_DEFINE          enInitPhase ;
@@ -247,16 +195,7 @@ TEST_F( Test_CSD_FidInit, TEST_CSD_FidInit_004 )
 
 }
 
-/*******************************************************************
-测试用例编号      : TEST_CSD_InitDicc_001
-测试用例标题      : CSD_InitDicc返回失败，DICC通道初始化失败
-预期结果          : VOS_ERR
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_FidInit, TEST_CSD_InitDicc_001 )
 {
 
@@ -278,16 +217,7 @@ TEST_F( Test_CSD_FidInit, TEST_CSD_InitDicc_001 )
 
 }
 
-/*******************************************************************
-测试用例编号      : TEST_CSD_InitDicc_002
-测试用例标题      : CSD_InitDicc返回失败，DICC下行通道打开失败
-预期结果          : VOS_ERR
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_FidInit, TEST_CSD_InitDicc_002 )
 {
 
@@ -320,16 +250,7 @@ TEST_F( Test_CSD_FidInit, TEST_CSD_InitDicc_002 )
 
 
 }
-/*******************************************************************
-测试用例编号      : TEST_CSD_InitDicc_003
-测试用例标题      : CSD_InitDicc返回失败，DICC上行通道打开失败
-预期结果          : VOS_ERR
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_FidInit, TEST_CSD_InitDicc_003 )
 {
     VOS_INIT_PHASE_DEFINE          enInitPhase ;
@@ -357,16 +278,7 @@ TEST_F( Test_CSD_FidInit, TEST_CSD_InitDicc_003 )
 
 }
 
-/*******************************************************************
-测试用例编号      : TEST_CSD_InitSem_001
-测试用例标题      : CSD_InitSem返回失败，上行数据队列信号量失败
-预期结果          : VOS_ERR
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_FidInit, TEST_CSD_InitSem_001 )
 {
     VOS_INIT_PHASE_DEFINE          enInitPhase ;
@@ -389,16 +301,7 @@ TEST_F( Test_CSD_FidInit, TEST_CSD_InitSem_001 )
 
 }
 
-/*******************************************************************
-测试用例编号      : TEST_CSD_InitSem_002
-测试用例标题      :  CSD_InitSem返回失败，下行数据队列信号量失败
-预期结果          : VOS_ERR
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_FidInit, TEST_CSD_InitSem_002 )
 {
     VOS_INIT_PHASE_DEFINE          enInitPhase ;
@@ -423,16 +326,7 @@ TEST_F( Test_CSD_FidInit, TEST_CSD_InitSem_002 )
 
 }
 
-/*******************************************************************
-测试用例编号      : TEST_CSD_UL_PidInit_001
-测试用例标题      :  CSD_UL_PidInit成功
-预期结果          : VOS_ERR
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_FidInit, TEST_CSD_UL_PidInit_001 )
 {
     VOS_INIT_PHASE_DEFINE          enInitPhase ;

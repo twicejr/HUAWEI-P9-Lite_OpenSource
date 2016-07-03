@@ -1239,6 +1239,8 @@ struct anc_hs_ops anc_hs_ops = {
     .anc_hs_force_charge = anc_hs_force_charge,
     .check_anc_hs_support = check_anc_hs_support,
     .anc_hs_5v_control = anc_hs_5v_control,
+    .anc_hs_invert_hs_control = NULL,
+    .anc_hs_refresh_headset_type = NULL,
 };
 
 static int anc_hs_probe(struct platform_device* pdev)

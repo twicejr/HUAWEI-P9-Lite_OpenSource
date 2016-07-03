@@ -1,24 +1,4 @@
-/************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : GmmCasMain.h
-  Author      : Roger Leo
-  Version     : V200R001
-  Date        : 2005-10-21
-  Description : GmmCasMain模块的内部头文件
-  History     :
-  1. Date:2005-08-25
-     Author: Roger Leo
-     Modification:update
-  2.日    期   : 2006年08月09日
-    作    者   : 蒋丽萍j60010247
-    修改内容   : 问题单A32D03479，在PC机上实现时将#pragma pack(0)和#pragma pack()加编译开关
-  3.日    期   : 2006年10月9日
-    作    者   : s46746
-    修改内容   : 根据问题单号：A32D05744
-  4.日    期   : 2007年12月28日
-    作    者   : s46746
-    修改内容   : 根据问题单号：A32D13954,修改GMM在2G3过程中缓存消息机制
-************************************************************************/
+
 
 #ifndef _GMM_CAS_MAIN_H_
 #define _GMM_CAS_MAIN_H_

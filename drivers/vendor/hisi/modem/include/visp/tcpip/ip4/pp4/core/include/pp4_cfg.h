@@ -97,9 +97,7 @@ extern ULONG IP_ClearRouteCache(VOID);
 extern ULONG IP_SetIpDebugFilter(ULONG ulSetYes, ULONG ulIfIndex, CHAR *szSrcIp, CHAR *szDstIp,
     ULONG ulProtocol, ULONG ulSrcPort, ULONG ulDstPort);
 extern ULONG IP_GetIpDebugFilter(ULONG *pulDebugFlag, ULONG *pulDebugFilter);
-/* Add by heyijun 00218462 for DTS2012092803600 维测需求开发, 2012-9 */
 extern ULONG IP_PP4_GetInterfaceStaticsByIfNum(IPIFSTAT_LIST_S *pIpif_stData, ULONG ulIfNum);
-/* End of Add by heyijun 00218462 for DTS2012092803600 维测需求开发, 2012-9 */
 
 #endif  /* _PP4_CFG_H_  */
 

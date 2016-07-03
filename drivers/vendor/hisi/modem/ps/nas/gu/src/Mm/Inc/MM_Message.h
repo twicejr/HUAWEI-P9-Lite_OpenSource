@@ -1,14 +1,4 @@
-/*******************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : MM_Message.h
-  Description : MM消息数据结构头文件
-  History     :
-      1.  张志勇         2003.11.24      新规作成
-      2.  s46746         2006-03-39      根据问题单A32D02486修改
-      3.日    期  : 2006年12月4日
-        作    者  : luojian id:60022475
-        修改内容  : 增加 #pragma pack(4)，问题单号:A32D07779
-*******************************************************************************/
+
 
 #ifndef _MM_MESSAGE_H_
 #define _MM_MESSAGE_H_
@@ -351,9 +341,7 @@ typedef struct{
     #define         MM_RESERVED_FOR_DYLGHT_SAV_TM               0x03            /* Reserved                                 */
     VOS_UINT8                       ucValue;                                        /* Daylight Saving Time value               */
 
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-27, begin */
     VOS_UINT8                       aucReserved2[2];
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-27, end */
 }MM_IE_DAYLIGHT_SAV_TIME_STRU;
 
 
@@ -473,7 +461,6 @@ typedef struct{
 
 /* 9.2.15a MM information */
 typedef struct{
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-26, begin */
     /* 网络名字段目前未使用,只标识长短名IE是否存在，如果存在需要通知mmc，mmc再通知mma，mma更新全局变量供查询使用  */
     VOS_UINT8                       ucFulNamFrNWFlg;                            /* MmIeFulNamFrNW 存在标识                  */
     /*MM_IE_NW_NAME_STRU              MmIeFulNamFrNW;*/                         /* Full name for network 10.5.3.5a          */
@@ -489,7 +476,6 @@ typedef struct{
     MM_IE_TIME_ZONE_TIME_STRU       MmIeUnvrslTmAndLocalTmZone;                 /* Universal time and local time zone       */
     MM_IE_LSA_ID_STRU               MmIeLsaID;                                  /* LSA Identity 10.5.3.11,目前未使用                   */
     MM_IE_DAYLIGHT_SAV_TIME_STRU    MmIeNWDyLitSavTm;                           /* Network Daylight Saving Time             */
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-26, end */
 }MM_MSG_MM_INFO_STRU;
 
 /* 9.2.16 MM Status */

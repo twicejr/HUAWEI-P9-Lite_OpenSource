@@ -1,18 +1,4 @@
-/******************************************************************************
 
-        @(#)Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : NasLmmPubMOm.h
-    Description :
-    History     :
-      1.  qilili00145085  2008-10-30  Draft Enact
-      2.  hanlufeng 41410  2009-03-11  BA8D01164 NAS_LMM_LOG 视为对PRINTF的
-          适配，放在OSA文件中定义；
-      3.  hanlufeng 41410  2009-05-07  BA8D00629 以APP的接口代替OM的接口
-      4.  zhengjunyan 00148421  2011-05-28 文件名由 NasMmPubMOm.h修改为
-                                        NasLmmPubMOm.h
-******************************************************************************/
 
 #ifndef _NASLMMPUBMOM_H
 #define _NASLMMPUBMOM_H
@@ -1074,13 +1060,7 @@ typedef struct
 
 }EMM_FTM_INFO_MANAGE_STRU;
 
-/*****************************************************************************
- 结构名    : LNAS_ERRLOG_CTRL_INFO_STRU
- 结构说明  : LNAS_ERRLOG_CTRL_INFO_STRU信息
- 1.日    期   : 2014年12月24日
-   作    者   : lifuxin 00253982
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucErrLogCtrlFlag;                       /* ERRLOG打开标识 */
@@ -1088,65 +1068,35 @@ typedef struct
     VOS_UINT16                          usAlmLevel;                             /* 故障告警级别 */
 } LNAS_ERRLOG_CTRL_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : LNAS_ERRLOG_BUFF_INFO_STRU
- 结构说明  : LNAS_ERRLOG_BUFF_INFO_STRU信息
- 1.日    期   : 2014年12月24日
-   作    者   : lifuxin 00253982
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     OM_RING_ID                          pstRingBuffer;                          /* LNAS层的共享缓存 */
     VOS_UINT32                          ulOverflowCnt;                          /* Ringbuf溢出的次数 */
 }LNAS_ERRLOG_BUFF_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : LNAS_ERRLOG_GLO_INFO_STRU
- 结构说明  : LNAS_ERRLOG_GLO_INFO_STRU信息
- 1.日    期   : 2014年12月24日
-   作    者   : lifuxin 00253982
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     LNAS_ERRLOG_CTRL_INFO_STRU       stCtrlInfo;
     LNAS_ERRLOG_BUFF_INFO_STRU       stBuffInfo;
  }LNAS_ERRLOG_GLO_INFO_STRU;
 
-/*****************************************************************************
-结构名    : LNAS_ERRLOG_ALM_LEVEL_STRU
-结构说明  : LNAS_ERRLOG_ALM_LEVEL_STRU信息
-1.日    期   : 2014年12月29日
-作    者   : lifuxin 00253982
-修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     LNAS_OM_ERRLOG_ALM_ID_ENUM_UINT16       enAlmID;        /* 异常模块ID */
     VOS_UINT16                              usLogLevel;     /* 上报log等级 */
 }LNAS_ERRLOG_ALM_LEVEL_STRU;
 
-/*****************************************************************************
-结构名    : NAS_LMM_CN_CAUSE_TRANS_STRU
-结构说明  : NAS_LMM_CN_CAUSE_TRANS_STRU信息
-1.日    期   : 2014年12月29日
-作    者   : lifuxin 00253982
-修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     NAS_MM_CN_CAUSE_ENUM_UINT8            ulCauseId;    /*cause ID*/
     EMM_OM_ERRLOG_CN_CAUSE_ENUM_UINT16    ulErrorlogID; /*error id*/
 }NAS_LMM_CN_CAUSE_TRANS_STRU;
 
-/*******************************************************************************
- 结构名    : LNAS_ERR_LOG_ALM_REPORT_TYPE_STRU
- 结构说明  : Alm ID与主动上报类型对应的结构体
- 1.日    期   : 2015年08月05日
-   作    者   : w00209181
-   修改内容   : 新建
-*******************************************************************************/
+
 typedef struct
 {
     LNAS_OM_ERRLOG_ALM_ID_ENUM_UINT16           enAlmID;            /* 异常模块ID */
@@ -1448,13 +1398,7 @@ typedef struct
     /* TAU的当次信息，脚本可以通过从LMM_MMC_TAU_IND消息中获得 */
 }NAS_LMM_OM_SUCC_RATIO_SER_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_LMM_OM_ATTACH_DELAY_INFO_STRU
- 结构说明  : NAS_LMM_OM_ATTACH_DELAY_INFO_STRU信息
- 1.日    期   : 2015年05月28日
-   作    者   : leixiantiao 00258641
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          bitOpEstSucc  :1;
@@ -1467,13 +1411,7 @@ typedef struct
     VOS_UINT32                          ulAttachCompleteSnd;
     VOS_UINT32                          ulEnd;
 }NAS_LMM_OM_ATTACH_DELAY_INFO_STRU;
-/*****************************************************************************
- 结构名    : NAS_LMM_OM_MO_SERVICE_DELAY_INFO_STRU
- 结构说明  : NAS_LMM_OM_MO_SERVICE_DELAY_INFO_STRU信息
- 1.日    期   : 2015年05月28日
-   作    者   : leixiantiao 00258641
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulStart;
@@ -1502,49 +1440,25 @@ typedef struct
     NAS_LMM_OM_MT_SERVICE_DELAY_INFO_STRU   stMtServiceDelayInfo;
 }NAS_LMM_OM_ENTITY_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_LMM_OM_ATTACH_SUCC_RATIO_INFO_MSG_STRU
- 结构说明  : NAS_LMM_OM_ATTACH_SUCC_RATIO_INFO_MSG_STRU信息
- 1.日    期   : 2015年05月28日
-   作    者   : leixiantiao 00258641
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     TL_KPI_HDR_STRU                         stTlKpiHdr;
     NAS_LMM_OM_SUCC_RATIO_ATTTACH_STRU      stNasLmmOmAttSuccRatioInfo;
 }NAS_LMM_OM_ATTACH_SUCC_RATIO_INFO_MSG_STRU;
-/*****************************************************************************
- 结构名    : NAS_LMM_OM_TAU_SUCC_RATIO_INFO_MSG_STRU
- 结构说明  : NAS_LMM_OM_TAU_SUCC_RATIO_INFO_MSG_STRU信息
- 1.日    期   : 2015年05月28日
-   作    者   : leixiantiao 00258641
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     TL_KPI_HDR_STRU                         stTlKpiHdr;
     NAS_LMM_OM_SUCC_RATIO_TAU_STRU          stNasLmmOmTauSuccRatioInfo;
 }NAS_LMM_OM_TAU_SUCC_RATIO_INFO_MSG_STRU;
-/*****************************************************************************
- 结构名    : NAS_LMM_OM_SER_SUCC_RATIO_INFO_MSG_STRU
- 结构说明  : NAS_LMM_OM_SER_SUCC_RATIO_INFO_MSG_STRU信息
- 1.日    期   : 2015年05月28日
-   作    者   : leixiantiao 00258641
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     TL_KPI_HDR_STRU                         stTlKpiHdr;
     NAS_LMM_OM_SUCC_RATIO_SER_STRU          stNasLmmOmSerSuccRatioInfo;
 }NAS_LMM_OM_SER_SUCC_RATIO_INFO_MSG_STRU;
-/*****************************************************************************
- 结构名    : NAS_LMM_OM_ATTACH_DELAY_INFO_MSG_STRU
- 结构说明  : NAS_LMM_OM_ATTACH_DELAY_INFO_MSG_STRU信息
- 1.日    期   : 2015年05月28日
-   作    者   : leixiantiao 00258641
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     TL_KPI_DELAY_HDR_STRU               stTlKpiDelayHdr;
@@ -1555,13 +1469,7 @@ typedef struct
     VOS_UINT32                          ulAttachAccept;
     VOS_UINT32                          ulAttachCompleteSnd;
 }NAS_LMM_OM_ATTACH_DELAY_INFO_MSG_STRU;
-/*****************************************************************************
- 结构名    : NAS_LMM_OM_MO_SER_DELAY_INFO_MSG_STRU
- 结构说明  : NAS_LMM_OM_MO_SER_DELAY_INFO_MSG_STRU信息
- 1.日    期   : 2015年05月28日
-   作    者   : leixiantiao 00258641
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     TL_KPI_DELAY_HDR_STRU                   stTlKpiDelayHdr;
@@ -1652,25 +1560,13 @@ typedef struct
     VOS_UINT8                           aucRsv[3];
 }NAS_LMM_OM_LOG_ROAMING_REJECT_NO_RETRY_FLG_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_LMM_OM_LOG_TAU_START_TYPE_INFO_STRU
- 结构说明  : TAU发起原因
- 1.日    期   : 2015年07月25日
-   作    者   : leixiantiao 00258641
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                         stMsgHeader;     /*_H2ASN_Skip*/
     NAS_LMM_OM_TAU_START_TYPE_ENUM_UINT32   enTauStartType;
 }NAS_LMM_OM_LOG_TAU_START_TYPE_INFO_STRU;
-/*****************************************************************************
- 结构名    : NAS_LMM_OM_LOG_REG_DOMAIN_INFO_STRU
- 结构说明  : REG DOMAIN设置可维可测
- 1.日    期   : 2015年07月25日
-   作    者   : leixiantiao 00258641
-   修改内容   : 新建
-*****************************************************************************/
+
 /*****************************************************************************
  结构名    : NAS_EMM_OM_GRADUAL_FORB_PARA_LOG_STRU
  协议表格  :

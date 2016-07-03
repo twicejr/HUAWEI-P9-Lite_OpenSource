@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : hmac_dfs.h
-  版 本 号   : 初稿
-  作    者   : mayuan
-  生成日期   : 2014年10月16日
-  最近修改   :
-  功能描述   : hmac_dfs.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年10月16日
-    作    者   : mayuan
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __HMAC_DFS_H__
 #define __HMAC_DFS_H__
@@ -136,22 +119,7 @@ extern oal_uint32  hmac_dfs_ap_pause_radar_handler(hmac_vap_stru *pst_hmac_vap);
 /*****************************************************************************
   11 内联函数定义
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : hmac_dfs_need_for_cac
- 功能描述  : 判断是否进行CAC检测
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
-
- 修改历史      :
-  1.日    期   : 2014年11月5日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_bool_enum_uint8  hmac_dfs_need_for_cac(mac_device_stru *pst_mac_device, oal_uint8 uc_channel)
 {
     oal_uint8              uc_idx;
@@ -196,22 +164,7 @@ OAL_STATIC OAL_INLINE oal_bool_enum_uint8  hmac_dfs_need_for_cac(mac_device_stru
 
     return OAL_TRUE;
 }
-/*****************************************************************************
- 函 数 名  : hmac_dfs_set_cac_time
- 功能描述  : cac 检测时长
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
-
- 修改历史      :
-  1.日    期   : 2014年11月5日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  hmac_dfs_set_cac_time(mac_device_stru *pst_mac_device, oal_uint32 ul_time_ms, oal_bool_enum_uint8 en_waether)
 {
     if (en_waether)
@@ -224,43 +177,13 @@ OAL_STATIC OAL_INLINE oal_void  hmac_dfs_set_cac_time(mac_device_stru *pst_mac_d
     }
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_dfs_set_cac_time
- 功能描述  : off-chan cac 工作信道检测时长
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
-
- 修改历史      :
-  1.日    期   : 2014年11月5日
-    作    者   : sunxiaolin
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  hmac_dfs_set_opern_chan_time(mac_device_stru *pst_mac_device, oal_uint32 ul_time_ms)
 {
     pst_mac_device->st_dfs.st_dfs_info.us_dfs_off_chan_cac_opern_chan_dwell_time = (oal_uint16)ul_time_ms;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_dfs_set_off_chan_time
- 功能描述  : off-chan cac off信道检测时长
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
-
- 修改历史      :
-  1.日    期   : 2014年11月5日
-    作    者   : sunxiaolin
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  hmac_dfs_set_off_chan_time(mac_device_stru *pst_mac_device, oal_uint32 ul_time_ms)
 {
     pst_mac_device->st_dfs.st_dfs_info.us_dfs_off_chan_cac_off_chan_dwell_time = (oal_uint16)ul_time_ms;

@@ -1,15 +1,4 @@
-/******************************************************************************
 
-        @(#)Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : NasLmmPubMMsgBuf.c
-    Description :
-    History     :
-      1.hanlufeng 41410 2008-10-25 Draft Enact
-      2.zhengjunyan 00148421   2011-05-28 文件名由 NasMmPubMMsgBuf.c修改为
-                                           NasLmmPubMMsgBuf.c
-******************************************************************************/
 
 
 /*****************************************************************************
@@ -41,17 +30,7 @@ extern "C" {
   3 Function
 *****************************************************************************/
 
-/*****************************************************************************
- Function Name   : NAS_LMM_ExistMsgInFsmQue
- Description     : 判断QUE中是否有消息存在
- Input           : None
- Output          : None
- Return          : VOS_BOOL
 
- History         :
-    1.    leili  00132387      2010-4-8  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_LMM_ExistMsgInFsmQue(NAS_LMM_PARALLEL_FSM_ENUM_UINT16 enParalFsmId,
                                  VOS_UINT32                 ulPriLevel)
 {
@@ -105,17 +84,7 @@ VOS_UINT32  NAS_LMM_ExistMsgInFsmQue(NAS_LMM_PARALLEL_FSM_ENUM_UINT16 enParalFsm
 
 
 
-/*****************************************************************************
- Function Name   : NAS_LMM_RemoveMsgFromFsmQue
- Description     : 如果需要缓存的消息在Que中，需要先释放旧的
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.X00148705    2010-4-6  Draft Enact
-
-*****************************************************************************/
 /*lint -e960*/
 /*lint -e961*/
 VOS_VOID  NAS_LMM_RemoveMsgFromFsmQue(
@@ -279,17 +248,7 @@ VOS_VOID  NAS_LMM_BufMsgQueFree( VOS_VOID )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_LMM_BufMsgInQue
- Description     :
- Input           : FSM的缓存Buffer的地址，优先级号
- Output          : None
- Return          : OK,ERROR
 
- History         :
-    1.X00148705    2010-4-6  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_LMM_BufMsgInQue(
     NAS_LMM_FSM_MSG_BUF_STRU*            pstFsmAddr,
     VOS_UINT32                          ulPriLevel)
@@ -355,16 +314,7 @@ VOS_UINT32  NAS_LMM_BufMsgInQue(
 }
 
 
-/*****************************************************************************
- Function Name  : NAS_GetStoreBufMsgAddr
- Discription    : 获取将消息缓存到的地址
- Input          :
- Output         : None
- Return         :
- History:
-      1.  hanlufeng 41410 2008-10-25 Draft Enact
-      2.  X00148705       2009-04-06 修改消息缓存的方法
-*****************************************************************************/
+
 NAS_LMM_BUFF_MSG_STRU * NAS_LMM_GetStoreBufMsgAddr(
                 NAS_LMM_FSM_MSG_BUF_STRU*        pstFsmAddr,
                 VOS_UINT32                      ulPriLevel)
@@ -436,18 +386,7 @@ NAS_LMM_FSM_MSG_BUF_STRU* NAS_LMM_GetFsmBufAddr( NAS_LMM_PARALLEL_FSM_ENUM_UINT1
 }
 
 
-/*****************************************************************************
- Function Name  : NAS_LMM_StoreMsgToQue
- Discription    : 将消息缓存至指定的并行状态机的消息缓存队列中
-                  UE 1.0不区分优先级，一律放入高优先级队列
- Input          : 并行状态机ID 事件类型 处理标志 消息指针
- Output         : None
- Return         :
- History:
-      1.  hanlufeng 41410 2008-10-25 Draft Enact
-      2.  X00148705 2010-04-06 修改消息缓存的方法
 
-*****************************************************************************/
 VOS_UINT32  NAS_LMM_StoreMsgToQue(
                 NAS_LMM_PARALLEL_FSM_ENUM_UINT16   enParalFsmId,
                 VOS_UINT32                        ulBufPriLevel,
@@ -556,25 +495,7 @@ VOS_UINT32  NAS_LMM_StoreMsgToQue(
 }
 
 
-/*****************************************************************************
- Function Name  : NAS_EMM_OutMsgFromBuffer
- Discription    : 从状态机缓存队列中出队一个消息
-                  外部消息和内部消息队列理的消息处理完成后，检查是否有缓存的消息
-                  需要处理，
-                  即，有些状态下收到某些消息后，暂时不处理，而是缓存起来，等进入
-                  合适的状态后再处理;
-                  包括两步操作:
-                                获取出队消息地址;
-                                消息出队;
- Input          : 并行状态机ID
-                  ulBufPriLevel
- Output         :
- Return         : 消息指针
-                  VOS_NULL  :队列中没有缓存消息
- History:
-      1.  hanlufeng 41410 2008-10-25 Draft Enact
-      2.  leili 00132387    2010-04-06  modify
-*****************************************************************************/
+
 VOS_UINT32 NAS_LMM_OutMsgFromQue( NAS_LMM_PARALLEL_FSM_ENUM_UINT16 enParalFsmId,
                                         VOS_UINT32         ulBufPriLevel,
                                         NAS_LMM_BUFF_MSG_STRU   *pstGetMsg)
@@ -683,15 +604,7 @@ VOS_UINT32 NAS_LMM_OutMsgFromQue( NAS_LMM_PARALLEL_FSM_ENUM_UINT16 enParalFsmId,
     return ulRslt;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LMM_ClearBufMsgQue
- Discription    : 释放队列中存放的内存
- Input          :
- Output         : None
- Return         : None
- History:
-      1.  X00148705 2010-04-06 修改消息缓存的方法
-*****************************************************************************/
+
 VOS_VOID    NAS_LMM_ClearBufMsgQue(
                 NAS_LMM_PARALLEL_FSM_ENUM_UINT16     enParalFsmId,
                 VOS_UINT32                          ulBufPriLevel)
@@ -773,17 +686,7 @@ VOS_VOID    NAS_LMM_ClearBufMsgQue(
 /*lint +e961*/
 /*lint +e960*/
 
-/*****************************************************************************
- Function Name   : NAS_LMM_InitBufMsgQue
- Description     : 不释放内存，只是全局变量赋值
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.X00148705     2010-4-7  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_InitBufMsgQue( VOS_VOID )
 {
     VOS_UINT32                          ulCont;
@@ -810,17 +713,7 @@ VOS_VOID  NAS_EMM_InitBufMsgQue( VOS_VOID )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_InitBufMsgQue
- Description     : 不释放内存，只是全局变量赋值
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.X00148705     2010-4-7  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMMC_InitBufMsgQue( VOS_VOID )
 {
 

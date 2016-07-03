@@ -1,30 +1,4 @@
-/*******************************************************************************
-*
-*
-*                Copyright 2006, Huawei Technologies Co. Ltd.
-*                            ALL RIGHTS RESERVED
-*
-*-------------------------------------------------------------------------------
-*
-*                              am4_pub.h
-*
-* Project Code: VISPV100R005
-*  Module Name: AM4  
-* Date Created: 2006-01-04
-*       Author: Li LiXiang
-*  Description: AM4模块对外提供的宏定义、结构、函数声明
-*
-*-------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  -----------------------------------------------------------------------------
-*  2006-01-04   Li LiXiang              Create
-*  2006-04-21   Jiangtao                根据编程规范，对文件进行规范化整理
-*  2006-05-11   luyao(60000758)         为支持ARM CPU字节对齐特性，修改结构。
-*  2006-11-07   zhoutong(43740)         规范性整改
-*  2007-12-06   wangmingxia(60786)      Modify by A82D21748 删除无用的函数声明
-*
-*******************************************************************************/
+
  
 #ifdef  __cplusplus
 extern  "C"{
@@ -148,11 +122,8 @@ typedef struct tagIPIFADDR
     struct tagIPIFADDR  *ia_h_pNext;
 
     struct _IP_radix_node  *ia_r_pNode; /* 回指内部节点 */
-    /*f47854 add begin:地址描述信息*/
     CHAR ia_description[48];
-    /*f47854 add end:地址描述信息*/
 
-    /*Added by likaikun213099, 地址冲突标志, 2014/10/23 */
     ULONG   ia_ulConflictFlag;
 } IPIFADDR_S, *PIPIFADDR_S;
 
@@ -253,7 +224,6 @@ typedef struct tagIPIFNET
 } IPIFNET_S,*PIPIFNET_S;
 
 /* Begin:同步D21代码  x36530  2004-9-8  */
-/*Added by pengjimei for 8070 IP特性移植项目 2004/04/15*/
 /* IP statics for display information */
 typedef struct tagIPSHOWSTAT
 {
@@ -366,7 +336,6 @@ extern ULONG IP_IsLocalUpIfAddr(ULONG ulIpAddr, ULONG ulVrfIndex); /* add by z62
 /* 根据地址获取地址所在接口索引(跳过借用地址的接口) */
 extern ULONG IP_DHCP4R_FindIfByIp( ULONG ulGiaddr, ULONG ulVrfIndex);
 
-/* Added by l57500 for 同步VISPV1R5问题单A82D13365,2007-05-09 */
 /* 查询指定的地址是否和接口上的地址处于相同网段 */
 extern ULONG IP_IF_IsSameNet(struct tagIFNET *pstIfNet, ULONG ulIpAddr);
 /* End of addition */

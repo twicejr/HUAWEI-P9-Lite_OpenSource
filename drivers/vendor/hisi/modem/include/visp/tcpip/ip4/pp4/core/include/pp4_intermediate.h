@@ -72,7 +72,6 @@ extern ULONG IP_PP4_DeliverUp_Position_Hook_Register(IP_PP4_DELEVERUP_POSITION_H
 
 extern IP4_SEND_WHOLE_PKT_HOOK g_pfIpSendWholePktHook;
 
-/*Added by qinyun62011, (Distribute socket)·Ö²¼Ê½socket²Ã¼ô2014/3/12 */
 extern IP4_SEND_WHOLE_PKT_HOOK g_pfIpSendPktNoFibSearchHook;
 
 extern ULONG IP_PP4_Ethvlan_IcmpRedirect_Hook_Register(IP_PP4_ETHVLN_ICMPREDIRECT_HOOK_FUNC pfHookFunc);

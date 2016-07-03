@@ -1,21 +1,4 @@
-/*************************************************************************************
-*
-*                       dhcpv6_proc.c
-*
-*  项目代码：           UGW9811 V900R010C00
-*  创建日期：           2012-07-31
-*  作者：               y00170683
-*  修改历史列表：
-*  参考文档：
-*  功能：               DHCPV6S模块消息处理
-*  其他：
-*
-*-----------------------------------------------------------------------------------
-*
-*  Copyright  Beijing Institute HuaWei Tech, Inc.
-*                     ALL RIGHTS RESERVED
-*
-*************************************************************************************/
+
 
 /********************************************************************************/
 /******************                  头文件引用               *******************/
@@ -66,19 +49,7 @@ UCHAR* g_pucDhcpv6sRevBuff = VOS_NULL;        /*接收消息缓存*/
 /******************                  内部接口                 *******************/
 /********************************************************************************/
 #define __MSG_TRC__
-/*****************************************************************************
- *  函数名称:       DHCPV6_ProMsgInterfaceTrc
- *  初稿完成:       2012-07-31
- *  作    者:       y00170683
- *  函数功能:       上报接口跟踪
- *  输入参数:       UCHAR *pucMsg,USHORT usMsgLen,UCHAR ucMsgType,
-                    ULONG ulDirection,RM_SOCKET_PATH_S *pstPath
- *  输出参数:       无
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOID DHCPV6_MsgInterfaceTrc(UCHAR *pucMsg, USHORT usMsgLen, ULONG ulMsgType,
                                        ULONG ulDirection, RM_SOCKET_PATH_S *pstPath)
 {
@@ -124,22 +95,7 @@ VOID DHCPV6_MsgInterfaceTrc(UCHAR *pucMsg, USHORT usMsgLen, ULONG ulMsgType,
     return;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6_MsgTraceProc
- *  初稿完成:       2012-07-31
- *  作    者:       y00170683
- *  函数功能:       上报消息跟踪
- *  输入参数:       DHCPV6_MSG_S *pDhcpv6Msg,
-                    ULONG ulMsgLen,
-                    SDB_GSPU_CONTEXT_S *pstContext,
-                    UDPHDR_S * pstUdp,
-                    ULONG ulTrcDir
- *  输出参数:       无
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOID DHCPV6_MsgTraceProc(DHCPV6_MSG_S *pDhcpv6Msg,
                                      ULONG ulMsgLen,
                                      SDB_GSPU_CONTEXT_S *pstContext,
@@ -180,7 +136,6 @@ VOID DHCPV6_MsgTraceProc(DHCPV6_MSG_S *pDhcpv6Msg,
     /* 接口跟踪 */
     DHCPV6_MsgInterfaceTrc((UCHAR*)pDhcpv6Msg, (USHORT)ulMsgLen, (ULONG)ucMsgType, ulDirection, &stPath);
 
-    /* 用户跟踪 DTS2012091903437 y00170683 */
     UGW_OmUsrMsgTrace((UCHAR *)pDhcpv6Msg,
                         GUSER_MSGTYPE_DHCPV6,
                         (ULONG)ucMsgType + ulDirection,
@@ -213,21 +168,7 @@ VOID DHCPV6_MsgTraceProc(DHCPV6_MSG_S *pDhcpv6Msg,
     return;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6_MsgTraceProcForRelay
- *  初稿完成:       2012-07-31
- *  作    者:       y00170683
- *  函数功能:       需要透传的消息进行消息跟踪上报
- *  输入参数:       UCHAR *pucDateMsg,
-                    ULONG ulMsgLen,
-                    SDB_GSPU_CONTEXT_S *pstContext,
-                    ULONG ulEmsTrcDir
- *  输出参数:       无
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOID DHCPV6_MsgTraceProcForRelay(UCHAR *pucDateMsg,
                                                  ULONG ulMsgLen,
                                                  UCHAR ucMsgType,
@@ -259,7 +200,6 @@ VOID DHCPV6_MsgTraceProcForRelay(UCHAR *pucDateMsg,
     /* 接口跟踪 */
     DHCPV6_MsgInterfaceTrc((UCHAR*)pDhcpv6Msg, (USHORT)ulMsgLen, (ULONG)ucMsgType, ulDirection, &stPath);
 
-    /* 用户跟踪 DTS2012091903437 y00170683 */
     UGW_OmUsrMsgTrace((UCHAR *)pDhcpv6Msg,
                  GUSER_MSGTYPE_DHCPV6,
                  (ULONG)ucMsgType + ulDirection,
@@ -299,18 +239,7 @@ VOID DHCPV6_MsgTraceProcForRelay(UCHAR *pucDateMsg,
 
 #define __MSG_CHECK__
 
-/*****************************************************************************
- *  函数名称:       DHCPV6_CheckForRequestDns
- *  初稿完成:       2012-08-01
- *  作    者:       y00170683
- *  函数功能:       检查info-request消息，是否请求DNS
- *  输入参数:       DHCPV6S_OPTION_INFO_S *pstOptionInfo
- *  输出参数:       无
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 ULONG DHCPV6_CheckForReqDns(DHCPV6S_OPTION_INFO_S *pstOptionInfo)
 {
     ULONG ulOROFlag = pstOptionInfo->ulOROFlag;
@@ -327,18 +256,7 @@ ULONG DHCPV6_CheckForReqDns(DHCPV6S_OPTION_INFO_S *pstOptionInfo)
     return VOS_OK;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6_CheckForReqIaPd
- *  初稿完成:       2012-08-01
- *  作    者:       y00170683
- *  函数功能:       检查solicit, request消息，是否请求IA_PD,PD_EXCLUDE
- *  输入参数:       DHCPV6S_OPTION_INFO_S *pstOptionInfo
- *  输出参数:       无
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 ULONG DHCPV6_CheckForReqIaPd(DHCPV6S_OPTION_INFO_S *pstOptionInfo)
 {
     ULONG ulOptionFlag = pstOptionInfo->ulOptionFlag;
@@ -361,18 +279,7 @@ ULONG DHCPV6_CheckForReqIaPd(DHCPV6S_OPTION_INFO_S *pstOptionInfo)
     return VOS_OK;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6_CheckIpUdp
- *  初稿完成:       2012-08-02
- *  作    者:       y00170683
- *  函数功能:       检查IP头和UDP头
- *  输入参数:       UCHAR *pucSrcMsg, ULONG ulMsgLen
- *  输出参数:       无
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 ULONG DHCPV6_CheckIpUdp(UCHAR *pucSrcMsg, ULONG ulMsgLen)
 {
     ULONG ulFwdHdrLen = 0;
@@ -431,18 +338,7 @@ ULONG DHCPV6_CheckIpUdp(UCHAR *pucSrcMsg, ULONG ulMsgLen)
     return VOS_OK;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6_CheckMsgLen
- *  初稿完成:       2012-08-02
- *  作    者:       y00170683
- *  函数功能:       检查消息长度
- *  输入参数:       UCHAR *pucSrcMsg, ULONG ulMsgLen
- *  输出参数:       无
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 ULONG DHCPV6_CheckMsgLen(UCHAR *pucSrcMsg, ULONG ulMsgLen)
 {
     ULONG ulDhcpMsgLen = 0;
@@ -484,18 +380,7 @@ ULONG DHCPV6_CheckMsgLen(UCHAR *pucSrcMsg, ULONG ulMsgLen)
 }
 
 #define __MSG_DECODE__
-/*****************************************************************************
- *  函数名称:       DHCPV6_GetPdpIdxAndContext
- *  初稿完成:       2012-08-16
- *  作    者:       y00170683
- *  函数功能:       获取pdpindex和上下文
- *  输入参数:       UCHAR *pucSrcMsg
- *  输出参数:       ULONG *pulPdpIndex,
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 ULONG DHCPV6_GetPdpIdxAndContext(FWD_TO_CTRL_HDR* pstCtrlHdr, ULONG *pulPdpIndex,
                                                 SDB_GSPU_CONTEXT_S **ppstContext)
 {
@@ -533,18 +418,7 @@ ULONG DHCPV6_GetPdpIdxAndContext(FWD_TO_CTRL_HDR* pstCtrlHdr, ULONG *pulPdpIndex
     return VOS_OK;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6_OrOptionDecode
- *  初稿完成:       2012-07-31
- *  作    者:       y00170683
- *  函数功能:       消息解码
- *  输入参数:       DHCPV6_OPT_S *pDhcpv6Opt
- *  输出参数:       DHCPV6S_OPTION_INFO_S *pstOptionInfo
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOID DHCPV6_OrOptionDecode(DHCPV6S_OPTION_INFO_S *pstOptionInfo,
                                        DHCPV6_OPT_S *pDhcpv6Opt)
 {
@@ -571,18 +445,7 @@ VOID DHCPV6_OrOptionDecode(DHCPV6S_OPTION_INFO_S *pstOptionInfo,
     return;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6_MsgDecode
- *  初稿完成:       2012-07-31
- *  作    者:       y00170683
- *  函数功能:       消息解码
- *  输入参数:       DHCPV6S_MSG_INFO_S *pstMsgInfo
- *  输出参数:       无
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOID DHCPV6_MsgDecode(DHCPV6S_MSG_INFO_S *pstMsgInfo)
 {
     ULONG ulOptionFlag = 0;
@@ -687,7 +550,6 @@ VOID DHCPV6_MsgDecode(DHCPV6S_MSG_INFO_S *pstMsgInfo)
                 ulOptionFlag |= 1<<DHCPV6_MSG_OPTION_DOMAIN_LIST;
                 break;
 
-            /* ipv6-pd特性 2012.8.1 y00170683*/
             case DHCPV6_MSG_OPTION_IAPD:
                 ulOptionFlag |= 1<<DHCPV6_MSG_OPTION_IAPD;
                 break;
@@ -708,18 +570,7 @@ VOID DHCPV6_MsgDecode(DHCPV6S_MSG_INFO_S *pstMsgInfo)
     return;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6_MsgUnpacket
- *  初稿完成:       2012-08-02
- *  作    者:       y00170683
- *  函数功能:       消息解封装
- *  输入参数:       UCHAR *pucSrcMsg, ULONG ulMsgLen
- *  输出参数:       DHCPV6S_MSG_INFO_S *pstMsgInfo
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOID DHCPV6_MsgUnpacket(DHCPV6S_MSG_INFO_S *pstMsgInfo,
                                     UCHAR *pucSrcMsg, ULONG ulMsgLen)
 {
@@ -754,18 +605,7 @@ VOID DHCPV6_MsgUnpacket(DHCPV6S_MSG_INFO_S *pstMsgInfo,
 }
 
 #define __MSG_ENCODE__
-/*****************************************************************************
- *  函数名称:       DHCPV6_FillServerIdOption
- *  初稿完成:       2012-08-02
- *  作    者:       y00170683
- *  函数功能:       填充Client Identifier Option
- *  输入参数:       DHCPC_CTRLBLK *pstDhcpcContext
- *  输出参数:       UCHAR *pucMsgBuff, ULONG *pulOffset
- *  返回类型:       VOID
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOID DHCPV6_FillServerIdOption(UCHAR *pucMsgBuff,
                                          ULONG *pulOffset,
                                          SDB_GSPU_CONTEXT_S *pstContext)
@@ -802,18 +642,7 @@ VOID DHCPV6_FillServerIdOption(UCHAR *pucMsgBuff,
     return;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6_FillDnsOption
- *  初稿完成:       2012-08-02
- *  作    者:       y00170683
- *  函数功能:       填充Client Identifier Option
- *  输入参数:       DHCPC_CTRLBLK *pstDhcpcContext
- *  输出参数:       UCHAR *pucMsgBuff, ULONG *pulOffset
- *  返回类型:       VOID
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOID DHCPV6_FillDnsOption(UCHAR *pucMsgBuff,
                                      ULONG *pulOffset,
                                      SDB_GSPU_CONTEXT_S *pstContext)
@@ -852,18 +681,7 @@ VOID DHCPV6_FillDnsOption(UCHAR *pucMsgBuff,
     return;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6_FillStatusCodeOption
- *  初稿完成:       2012-08-02
- *  作    者:       y00170683
- *  函数功能:       填充Status-Code Option
- *  输入参数:       无
- *  输出参数:       无
- *  返回类型:       VOID
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOID DHCPV6_FillStatusCodeOption(UCHAR *pucMsgBuff,
                                               ULONG *pulOffset,
                                               USHORT usStatusCode)
@@ -879,18 +697,7 @@ VOID DHCPV6_FillStatusCodeOption(UCHAR *pucMsgBuff,
     return;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6_GetSubnetByPrefixAddr
- *  初稿完成:       2012-08-07
- *  作    者:       z00175135
- *  函数功能:       根据前缀地址获取pd-exclude的subnetId
- *  输入参数:       无
- *  输出参数:       无
- *  返回类型:       VOID
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOID DHCPV6_GetSubnetByPrefixAddr(ULONG aulPrefixAddr[],
                                                 UCHAR ucPrefixLength,
                                                 ULONG *pulSubnetId,
@@ -948,18 +755,7 @@ VOID DHCPV6_GetSubnetByPrefixAddr(ULONG aulPrefixAddr[],
     return;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6_FillPdExcludeOption
- *  初稿完成:       2012-08-02
- *  作    者:       y00170683
- *  函数功能:       填充Pd-exclude Option
- *  输入参数:       in6_addr *pstIPv6Prefix, UCHAR ucMaskLen
- *  输出参数:       UCHAR *pucMsgBuff, ULONG *pulOffset
- *  返回类型:       VOID
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOID DHCPV6_FillPdExcludeOption(UCHAR *pucMsgBuff,
                                             ULONG *pulOffset,
                                             in6_addr *pstIPv6Prefix,
@@ -987,18 +783,7 @@ VOID DHCPV6_FillPdExcludeOption(UCHAR *pucMsgBuff,
     return;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6_FillIaPrefixOption
- *  初稿完成:       2012-08-02
- *  作    者:       y00170683
- *  函数功能:       填充ia-prefix Option
- *  输入参数:       in6_addr *pstIPv6Prefix, UCHAR ucIpv6PrefixLength
- *  输出参数:       UCHAR *pucMsgBuff, ULONG *pulOffset
- *  返回类型:       VOID
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 ULONG DHCPV6_FillIaPrefixOption(UCHAR *pucMsgBuff,
                                         ULONG *pulOffset,
                                         in6_addr *pstIPv6Prefix,
@@ -1058,18 +843,7 @@ ULONG DHCPV6_FillIaPrefixOption(UCHAR *pucMsgBuff,
     return VOS_OK;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6_FillIaPdOption
- *  初稿完成:       2012-08-02
- *  作    者:       y00170683
- *  函数功能:       填充IA_PD option
- *  输入参数:       SDB_GSPU_CONTEXT_S *pstContext
- *  输出参数:       UCHAR *pucMsgBuff, ULONG *pulOffset
- *  返回类型:       VOID
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOID DHCPV6_FillIaPdOption(UCHAR *pucMsgBuff,
                                       ULONG *pulOffset,
                                       DHCPV6_OPT_S *pstDhcpv6Opt,
@@ -1128,18 +902,7 @@ VOID DHCPV6_FillIaPdOption(UCHAR *pucMsgBuff,
     return;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6_FillIaPdOptionForMsg
- *  初稿完成:       2012-08-02
- *  作    者:       y00170683
- *  函数功能:       填充IA_PD option
- *  输入参数:       SDB_GSPU_CONTEXT_S *pstContext
- *  输出参数:       UCHAR *pucMsgBuff, ULONG *pulOffset
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 ULONG DHCPV6_FillIaPdOptionForMsg(UCHAR *pucMsgBuff,
                                                ULONG *pulOffset,
                                                DHCPV6S_MSG_INFO_S *pstMsgInfo,
@@ -1192,18 +955,7 @@ ULONG DHCPV6_FillIaPdOptionForMsg(UCHAR *pucMsgBuff,
     return VOS_OK;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6_FillRapidComOption
- *  初稿完成:       2012-08-02
- *  作    者:       y00170683
- *  函数功能:       填充rapid-commit-option
- *  输入参数:       无
- *  输出参数:       UCHAR *pucMsgBuff, ULONG *pulOffset
- *  返回类型:       VOID
- *  其他说明:
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOID DHCPV6_FillRapidComOption(UCHAR *pucMsgBuff, ULONG *pulOffset)
 {
     DHCPV6_OPT_S *pstRapidComOption = (DHCPV6_OPT_S *)pucMsgBuff;
@@ -1216,22 +968,7 @@ VOID DHCPV6_FillRapidComOption(UCHAR *pucMsgBuff, ULONG *pulOffset)
     return;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6_FillMsg
- *  初稿完成:       2012-07-31
- *  作    者:       y00170683
- *  函数功能:       为申请DNS构造响应消息
- *  输入参数:       UCHAR *pSrcMbuf,
-                    PMBUF_S *pstDstMbuf,
-                    ULONG ulDhcpMsgLen,
-                    in6_addr *pstMainDnsIp,
-                    in6_addr *pstBackupDnsIp
- *  输出参数:       无
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 ULONG DHCPV6_FillMsg(UCHAR *pucMsgBuff,
                            ULONG *pulMsgLen,
                            DHCPV6S_MSG_INFO_S *pstMsgInfo,
@@ -1287,18 +1024,7 @@ ULONG DHCPV6_FillMsg(UCHAR *pucMsgBuff,
 }
 
 #define __MSG_SEND__
-/*****************************************************************************
- *  函数名称:       DHCPV6_CalcSuccSendPacketNum
- *  初稿完成:       2012-08-08
- *  作    者:       y00170683
- *  函数功能:       统计发消息成功计数
- *  输入参数:       ulDhpcv6MsgType
- *  输出参数:
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOID DHCPV6_CalcSuccSendPacketNum(UCHAR ucMsgType)
 {
     /* 消息计数 */
@@ -1320,18 +1046,7 @@ VOID DHCPV6_CalcSuccSendPacketNum(UCHAR ucMsgType)
     return;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6_CalcFailSendPacketNum
- *  初稿完成:       2012-08-08
- *  作    者:       y00170683
- *  函数功能:       统计发消息失败计数
- *  输入参数:       ulDhpcv6MsgType
- *  输出参数:
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOID DHCPV6_CalcFailSendPacketNum(UCHAR ucMsgType)
 {
     /* 消息计数 */
@@ -1353,18 +1068,7 @@ VOID DHCPV6_CalcFailSendPacketNum(UCHAR ucMsgType)
     return;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6_SendMsg
- *  初稿完成:       2012-08-01
- *  作    者:       y00170683
- *  函数功能:       给MS回复消息
- *  输入参数:       UCHAR *pMbuf, ULONG ulPdpIndex, UCHAR ucLeftEncapType
- *  输出参数:       无
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 ULONG DHCPV6_SendMsgOut(UCHAR *pMbuf, ULONG ulPdpIndex,
                                UCHAR ucLeftEncapType)
 {
@@ -1392,20 +1096,7 @@ ULONG DHCPV6_SendMsgOut(UCHAR *pMbuf, ULONG ulPdpIndex,
     return VOS_OK;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6_SendMsgToClient
- *  初稿完成:       2012-08-02
- *  作    者:       y00170683
- *  函数功能:       为info-request回复reply消息
- *  输入参数:       DHCPV6S_MSG_INFO_S *pstMsgInfo,
-                    SDB_GSPU_CONTEXT_S *pstContext,
-                    UCHAR ucMsgType
- *  输出参数:       无
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 ULONG DHCPV6_SendMsgToClient(DHCPV6S_MSG_INFO_S *pstMsgInfo,
                                           SDB_GSPU_CONTEXT_S *pstContext,
                                           UCHAR ucMsgType)
@@ -1433,7 +1124,6 @@ ULONG DHCPV6_SendMsgToClient(DHCPV6S_MSG_INFO_S *pstMsgInfo,
         return VOS_ERR;
     }
 
-    /* 填写UDP头内容 DTS2012092403013 y00170683 UDP头中长度应该是UDP头长度+消息长度 */
     usUdpMsgLen= (USHORT)(ulDhcpMsgLen + UDPV6_HEADER_LEN);
     pstUdpv6Hdr->uh_sULen = (SHORT)VOS_HTONS(usUdpMsgLen);
     pstUdpv6Hdr->uh_usDPort = pstMsgInfo->usSrcPort;
@@ -1510,18 +1200,7 @@ ULONG DHCPV6_SendMsgToClient(DHCPV6S_MSG_INFO_S *pstMsgInfo,
     return VOS_OK;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6_CalcSuccRelayPacketNum
- *  初稿完成:       2012-08-08
- *  作    者:       y00170683
- *  函数功能:       统计发消息成功计数
- *  输入参数:       ulDhpcv6MsgType
- *  输出参数:
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOID DHCPV6_CalcSuccRelayPacketNum(UCHAR ucMsgType)
 {
     /* 消息计数 */
@@ -1543,18 +1222,7 @@ VOID DHCPV6_CalcSuccRelayPacketNum(UCHAR ucMsgType)
     return;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6_CalcFailRelayPacketNum
- *  初稿完成:       2012-08-08
- *  作    者:       y00170683
- *  函数功能:       统计发消息失败计数
- *  输入参数:       ulDhpcv6MsgType
- *  输出参数:
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOID DHCPV6_CalcFailRelayPacketNum(UCHAR ucMsgType)
 {
     /* 消息计数 */
@@ -1576,19 +1244,7 @@ VOID DHCPV6_CalcFailRelayPacketNum(UCHAR ucMsgType)
     return;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPv6_RelaySendMsg
- *  初稿完成:       2012-07-31
- *  作    者:       y00170683
- *  函数功能:       发送透传消息
- *  输入参数:       PMBUF_S *pMbuf, UCHAR *pucDateMsg, ULONG ulPdpIndex,
-                    SDB_GSPU_CONTEXT_S *pstContext, ULONG ulDhcpMsgLen
- *  输出参数:       无
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 ULONG DHCPv6_RelaySendMsg(PMBUF_S *pMbuf, UCHAR ucMsgType, ULONG ulPdpIndex)
 {
     /*填充IP地址和UDP端口号，并且用GTP或者GRE的方式发送出去 */
@@ -1620,18 +1276,7 @@ ULONG DHCPv6_RelaySendMsg(PMBUF_S *pMbuf, UCHAR ucMsgType, ULONG ulPdpIndex)
     return VOS_OK;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPv6_RelayMsg
- *  初稿完成:       2012-07-31
- *  作    者:       y00170683
- *  函数功能:       透传消息
- *  输入参数:       UCHAR *pucDateMsg,ULONG ulPdpIndex,ULONG ulIpPacketLen
- *  输出参数:       无
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 ULONG DHCPv6_RelayMsg(UCHAR *pucDateMsg, ULONG ulIpPacketLen,
                                ULONG ulPdpIndex, SDB_GSPU_CONTEXT_S *pstContext)
 {
@@ -1698,18 +1343,7 @@ ULONG DHCPv6_RelayMsg(UCHAR *pucDateMsg, ULONG ulIpPacketLen,
 
 
 #define __MSG_PROCESS__
-/*****************************************************************************
- *  函数名称:       DHCPV6_MsgPreProcForNotRelay
- *  初稿完成:       2012-08-03
- *  作    者:       y00170683
- *  函数功能:       对于非透传消息的预处理(消息检查,解封装,解码)
- *  输入参数:       UCHAR *pMbuf, ULONG ulMsgLen
- *  输出参数:       无
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 ULONG DHCPV6_MsgPreProcForNotRelay(UCHAR *pucSrcMsg, ULONG ulMsgLen,
                                                    SDB_GSPU_CONTEXT_S *pstContext,
                                                    DHCPV6S_MSG_INFO_S *pstMsgInfo)
@@ -1735,18 +1369,7 @@ ULONG DHCPV6_MsgPreProcForNotRelay(UCHAR *pucSrcMsg, ULONG ulMsgLen,
     return VOS_OK;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6_InfoReqProc
- *  初稿完成:       2012-07-31
- *  作    者:       y00170683
- *  函数功能:       处理info-request消息
- *  输入参数:       UCHAR *pMbuf, ULONG ulMsgLen
- *  输出参数:       无
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 ULONG DHCPV6_InfoReqProc(UCHAR *pucSrcMsg, ULONG ulMsgLen,
                                     ULONG ulPdpIndex,
                                     SDB_GSPU_CONTEXT_S *pstContext)
@@ -1809,19 +1432,7 @@ ULONG DHCPV6_InfoReqProc(UCHAR *pucSrcMsg, ULONG ulMsgLen,
 
     return VOS_OK;
 }
-/*****************************************************************************
- *  函数名称:       DHCPV6_InfoMsgProc
- *  初稿完成:       2012-07-31
- *  作    者:       y00170683
- *  函数功能:       处理info-request消息
- *  输入参数:       UCHAR *pMbuf, ULONG ulMsgLen, ULONG ulPdpIndex,
-                    SDB_GSPU_CONTEXT_S *pstContext
- *  输出参数:       无
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 ULONG DHCPV6_InfoMsgProc(UCHAR *pucSrcMsg, ULONG ulMsgLen, ULONG ulPdpIndex,
                                     SDB_GSPU_CONTEXT_S *pstContext)
 {
@@ -1857,18 +1468,7 @@ ULONG DHCPV6_InfoMsgProc(UCHAR *pucSrcMsg, ULONG ulMsgLen, ULONG ulPdpIndex,
     return ulRet;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6_ReplyMsgProc
- *  初稿完成:       2012-07-31
- *  作    者:       y00170683
- *  函数功能:       处理reply消息
- *  输入参数:       UCHAR *pMbuf, ULONG ulMsgLen
- *  输出参数:       无
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 ULONG DHCPV6_ReplyMsgProc(UCHAR *pucSrcMsg, ULONG ulMsgLen, ULONG ulPdpIndex,
                                       SDB_GSPU_CONTEXT_S *pstContext)
 {
@@ -1894,18 +1494,7 @@ ULONG DHCPV6_ReplyMsgProc(UCHAR *pucSrcMsg, ULONG ulMsgLen, ULONG ulPdpIndex,
     return VOS_OK;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6_SolicitMsgProc
- *  初稿完成:       2012-08-01
- *  作    者:       y00170683
- *  函数功能:       处理solicit消息
- *  输入参数:       DHCPV6S_MSG_INFO_S *pstMsgInfo, SDB_GSPU_CONTEXT_S *pstContext
- *  输出参数:       无
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 ULONG DHCPV6_SolicitMsgProc(DHCPV6S_MSG_INFO_S *pstMsgInfo,
                                        SDB_GSPU_CONTEXT_S *pstContext)
 {
@@ -1934,18 +1523,7 @@ ULONG DHCPV6_SolicitMsgProc(DHCPV6S_MSG_INFO_S *pstMsgInfo,
     return ulRet;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6_RequstMsgProc
- *  初稿完成:       2012-08-01
- *  作    者:       y00170683
- *  函数功能:       处理request消息
- *  输入参数:       DHCPV6S_MSG_INFO_S *pstMsgInfo, SDB_GSPU_CONTEXT_S *pstContext
- *  输出参数:       无
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 ULONG DHCPV6_RequstMsgProc(DHCPV6S_MSG_INFO_S *pstMsgInfo,
                                        SDB_GSPU_CONTEXT_S *pstContext)
 {
@@ -1957,18 +1535,7 @@ ULONG DHCPV6_RequstMsgProc(DHCPV6S_MSG_INFO_S *pstMsgInfo,
     return ulRet;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6_SolicitReqMsgProc
- *  初稿完成:       2012-08-01
- *  作    者:       y00170683
- *  函数功能:       处理solicit消息
- *  输入参数:       UCHAR *pucSrcMsg, ULONG ulMsgLen, ULONG ulPdpIndex, SDB_GSPU_CONTEXT_S *pstContext
- *  输出参数:       无
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 ULONG DHCPV6_SolicitReqMsgProc(UCHAR *pucSrcMsg, ULONG ulMsgLen,
                                             UCHAR ucMsgType, ULONG ulPdpIndex,
                                             SDB_GSPU_CONTEXT_S *pstContext)
@@ -2029,18 +1596,7 @@ ULONG DHCPV6_SolicitReqMsgProc(UCHAR *pucSrcMsg, ULONG ulMsgLen,
     return ulRet;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6_GetMbufData
- *  初稿完成:       2012-08-04
- *  作    者:       y00170683
- *  函数功能:       从buf中取出消息
- *  输入参数:       VOID *pMsg
- *  输出参数:
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 ULONG DHCPV6_GetMbufData(PMBUF_S* pstMsgBuf, UCHAR **ppMsg, ULONG *pulMsgLen)
 {
     ULONG ulMsgLen = 0;
@@ -2081,18 +1637,7 @@ ULONG DHCPV6_GetMbufData(PMBUF_S* pstMsgBuf, UCHAR **ppMsg, ULONG *pulMsgLen)
     return VOS_OK;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6_MsgProc
- *  初稿完成:       2012-08-01
- *  作    者:       y00170683
- *  函数功能:       处理从DHCPV6的队列中读取出来的报文
- *  输入参数:       VOID *pMsg
- *  输出参数:
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 ULONG DHCPV6_MsgProc(PMBUF_S *pstMsgBuf)
 {
     ULONG ulMsgLen = 0;

@@ -148,7 +148,6 @@ extern OPTIM_CACHE_S *g_pstOptRcvEntry[CACHE_HASHLEN];
 
 extern OPTIM_INTERMEDIATE_HOOK_FUNC g_pfOptimIntermediateHook;
 
-/*Added by qinyun62011, (Distribute socket)分布式socket裁剪，性能优化解耦合，与其他模块有调用关系的函数采用全局钩子的方式提供, 2014/3/7 */
 typedef struct tagTCPIP_OPTIM_HOOK
 {
     ULONG (*pfOPTIM_AllocEntryForIWF)(MBUF_S *pstMbuf, LONG nIpHLen);
@@ -174,7 +173,6 @@ extern TCPIP_OPTIM_HOOK_S g_stOptimHook;
 }
 
 /* 更新ip头的ttl和校验和 */
-/* Modified by y00176567, at 2011-05-26. 修改原因: 消除VC三级告警 */
 /* ulCheck = (pstIp)->ip_usSum;更改为ulCheck = (ULONG)((pstIp)->ip_usSum);以保证类型一致 */
 /* (pstIp)->ip_usSum = ulCheck + ((ulCheck >= 0xFFFF)?1:0)右边添加(USHORT)以保证类型一致 */
 #define OPTIM_FAST_CKSUM(pstIp)\

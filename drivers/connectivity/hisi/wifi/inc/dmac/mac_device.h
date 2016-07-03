@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : mac_device.h
-  版 本 号   : 初稿
-  作    者   : huxiaotong
-  生成日期   : 2012年10月19日
-  最近修改   :
-  功能描述   : mac_device.c 的头文件，包括board、chip、device结构的定义
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年10月19日
-    作    者   : huxiaotong
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __MAC_DEVICE_H__
 #define __MAC_DEVICE_H__
@@ -842,7 +825,6 @@ typedef struct
     oal_net_device_stru                *pst_primary_net_device;                 /* P2P 共存场景下主net_device(wlan0) 指针 */
 }mac_p2p_info_stru;
 
-/* DTS2015100700205,特殊网卡兼容性问题规避方案: 发生DataFlow Break时候会影响性能 */
 #if (_PRE_PRODUCT_ID == _PRE_PRODUCT_ID_HI1151)
 typedef struct
 {
@@ -896,7 +878,9 @@ typedef struct
 
     oal_uint32                          ul_beacon_interval;                     /*device级别beacon interval,device下所有VAP约束为同一值*/
     oal_uint32                          ul_duty_ratio;                          /* 占空比统计 */
-    oal_uint32                          ul_duty_ratio_lp;
+    oal_uint32                          ul_duty_ratio_lp;                       /*进入低功耗前发送占空比*/
+    oal_uint32                          ul_rx_nondir_duty_lp;                   /*进入低功耗前接收non-direct包的占空比*/
+    oal_uint32                          ul_rx_dir_duty_lp;                      /*进入低功耗前接收direct包的占空比*/
 
     oal_int16                           s_upc_amend;                            /* UPC修正值 */
 
@@ -996,7 +980,6 @@ typedef struct
     oal_uint32                          ul_pcie_reg110_timeout_counter;
     oal_uint32                          ul_pcie_read_counter;
 
-    /* DTS2015100700205,特殊网卡兼容性问题规避方案 */
     mac_tx_dataflow_brk_bypass_struc    st_dataflow_brk_bypass;
 #endif
     oal_uint32                          ul_first_timestamp;                         /*记录性能统计第一次时间戳*/
@@ -1092,7 +1075,9 @@ typedef struct
     oal_bool_enum_uint8                 en_40MHz_intol_bit_recd;
     oal_uint8                           auc_resv4[3];
 #endif
-
+#ifdef _PRE_WLAN_FEATURE_STA_PM
+    hal_mac_key_statis_info_stru      st_mac_key_statis_info;                   /* mac关键统计信息 */
+#endif
 }mac_device_stru;
 
 #pragma pack(push,1)
@@ -1146,41 +1131,13 @@ typedef struct
 #define MAC_DBAC_ENABLE(_pst_device) (OAL_FALSE)
 #endif
 
-/*****************************************************************************
- 函 数 名  : mac_is_dbac_enabled
- 功能描述  : 判断对应device上dbac功能是否使能
- 输入参数  : mac_device_stru *pst_device
- 输出参数  : 无
- 返 回 值  : OAL_STATIC  OAL_INLINE  oal_bool_enum_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月8日
-    作    者   : gaolin
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC  OAL_INLINE  oal_bool_enum_uint8 mac_is_dbac_enabled(mac_device_stru *pst_device)
 {
     return  pst_device->en_dbac_enabled;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_is_dbac_running
- 功能描述  : 判断对应device上dbac功能是否在运行
- 输入参数  : mac_device_stru *pst_device
- 输出参数  : 无
- 返 回 值  : OAL_STATIC  OAL_INLINE  oal_bool_enum_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月8日
-    作    者   : gaolin
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC  OAL_INLINE  oal_bool_enum_uint8 mac_is_dbac_running(mac_device_stru *pst_device)
 {
     if (OAL_FALSE == pst_device->en_dbac_enabled)
@@ -1192,43 +1149,14 @@ OAL_STATIC  OAL_INLINE  oal_bool_enum_uint8 mac_is_dbac_running(mac_device_stru 
 }
 
 #ifdef _PRE_WLAN_FEATURE_DBAC
-/*****************************************************************************
- 函 数 名  : mac_need_enqueue_tid_for_dbac
- 功能描述  : 数据帧是否需要入tid队列
- 输入参数  : mac_device_stru *pst_device
-             mac_vap_stru *pst_vap
- 输出参数  : 无
- 返 回 值  : OAL_STATIC  OAL_INLINE  oal_bool_enum_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月8日
-    作    者   : gaolin
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC  OAL_INLINE  oal_bool_enum_uint8 mac_need_enqueue_tid_for_dbac(mac_device_stru *pst_device, mac_vap_stru *pst_vap)
 {
     return  (OAL_TRUE == pst_device->en_dbac_enabled) && (MAC_VAP_STATE_PAUSE == pst_vap->en_vap_state) ? OAL_TRUE : OAL_FALSE;
 }
 #endif
 #ifdef _PRE_SUPPORT_ACS
-/*****************************************************************************
- 函 数 名  : mac_get_acs_switch
- 功能描述  : 获取ACS开关状态
- 输入参数  : mac_device_stru *pst_mac_device
- 输出参数  : 无
- 返 回 值  : OAL_STATIC  OAL_INLINE  en_mac_acs_sw_enum_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月28日
-    作    者   : gaolin
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC  OAL_INLINE  en_mac_acs_sw_enum_uint8 mac_get_acs_switch(mac_device_stru *pst_mac_device)
 {
     if (pst_mac_device->pst_acs == OAL_PTR_NULL)
@@ -1238,22 +1166,7 @@ OAL_STATIC  OAL_INLINE  en_mac_acs_sw_enum_uint8 mac_get_acs_switch(mac_device_s
 
     return pst_mac_device->st_acs_switch.en_acs_switch;
 }
-/*****************************************************************************
- 函 数 名  : mac_set_acs_switch
- 功能描述  : 设置ACS开关状态
- 输入参数  : mac_device_stru *pst_mac_device
-             en_mac_acs_sw_enum_uint8 en_switch
- 输出参数  : 无
- 返 回 值  : OAL_STATIC  OAL_INLINE  oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月28日
-    作    者   : gaolin
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC  OAL_INLINE  oal_void mac_set_acs_switch(mac_device_stru *pst_mac_device, en_mac_acs_sw_enum_uint8 en_switch)
 {
     if (pst_mac_device->pst_acs == OAL_PTR_NULL)
@@ -1357,44 +1270,13 @@ extern oal_uint32  mac_device_is_p2p_connected(mac_device_stru *pst_mac_device);
 /*****************************************************************************
   11 inline函数定义
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : mac_is_hide_ssid
- 功能描述  : 是否为隐藏ssid
- 输入参数  : oal_uint8 *puc_ssid_ie,    ssid_ie的内容
-             oal_uint8 uc_ssid_len,     ssid的长度
- 输出参数  : 无
- 返 回 值  : OAL_TRUE : 是
-             OAL_FALSE: 否
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月11日
-    作    者   : l00279018
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_bool_enum_uint8  mac_is_hide_ssid(oal_uint8 *puc_ssid_ie, oal_uint8 uc_ssid_len)
 {
     return ((OAL_PTR_NULL == puc_ssid_ie) || (0 == uc_ssid_len) || ('\0' == puc_ssid_ie[0]));
 }
 
-/*****************************************************************************
- 函 数 名  : mac_device_is_auto_chan_sel_enabled
- 功能描述  : 是否开启自动信道选择
- 输入参数  : pst_mac_device: MAC DEVICE结构体指针
- 输出参数  : 无
- 返 回 值  : OAL_TRUE : 开启
-             OAL_FALSE: 没有开启
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月29日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_bool_enum_uint8  mac_device_is_auto_chan_sel_enabled(mac_device_stru *pst_mac_device)
 {
     /* BSS启动时，如果用户没有设置信道，则默认为开启自动信道选择 */
@@ -1408,61 +1290,19 @@ OAL_STATIC OAL_INLINE oal_bool_enum_uint8  mac_device_is_auto_chan_sel_enabled(m
 
 
 #ifdef _PRE_WLAN_FEATURE_DFS
-/*****************************************************************************
- 函 数 名  : mac_dfs_set_cac_enable
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月5日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  mac_dfs_set_cac_enable(mac_device_stru *pst_mac_device, oal_bool_enum_uint8 en_val)
 {
     pst_mac_device->st_dfs.st_dfs_info.en_cac_switch = en_val;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_dfs_set_offchan_cac_enable
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月27日
-    作    者   : sunxiaolin
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  mac_dfs_set_offchan_cac_enable(mac_device_stru *pst_mac_device, oal_bool_enum_uint8 en_val)
 {
     pst_mac_device->st_dfs.st_dfs_info.en_offchan_cac_switch = en_val;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_dfs_get_offchan_cac_enable
- 功能描述  : ETSI标准雷达需要off-channel cac检测
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月2日
-    作    者   : sunxiaolin
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_bool_enum_uint8  mac_dfs_get_offchan_cac_enable(mac_device_stru *pst_mac_device)
 {
     mac_regdomain_info_stru   *pst_rd_info;
@@ -1477,62 +1317,20 @@ OAL_STATIC OAL_INLINE oal_bool_enum_uint8  mac_dfs_get_offchan_cac_enable(mac_de
 }
 
 
-/*****************************************************************************
- 函 数 名  : mac_dfs_set_offchan_cac_enable
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月27日
-    作    者   : sunxiaolin
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  mac_dfs_set_offchan_number(mac_device_stru *pst_mac_device, oal_uint32 ul_val)
 {
     pst_mac_device->st_dfs.st_dfs_info.uc_offchan_num = ul_val;
 }
 
 
-/*****************************************************************************
- 函 数 名  : mac_dfs_get_cac_enable
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月5日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_bool_enum_uint8  mac_dfs_get_cac_enable(mac_device_stru *pst_mac_device)
 {
     return pst_mac_device->st_dfs.st_dfs_info.en_cac_switch;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_dfs_set_dfs_enable
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月5日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  mac_dfs_set_dfs_enable(mac_device_stru *pst_mac_device, oal_bool_enum_uint8 en_val)
 {
     pst_mac_device->st_dfs.st_dfs_info.en_dfs_switch = en_val;
@@ -1544,21 +1342,7 @@ OAL_STATIC OAL_INLINE oal_void  mac_dfs_set_dfs_enable(mac_device_stru *pst_mac_
     }
 }
 
-/*****************************************************************************
- 函 数 名  : mac_dfs_get_dfs_enable
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月16日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_bool_enum_uint8  mac_dfs_get_dfs_enable(mac_device_stru *pst_mac_device)
 {
     if (WLAN_BAND_5G == pst_mac_device->en_max_band)
@@ -1569,41 +1353,13 @@ OAL_STATIC OAL_INLINE oal_bool_enum_uint8  mac_dfs_get_dfs_enable(mac_device_str
     return OAL_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_dfs_set_debug_level
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月5日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  mac_dfs_set_debug_level(mac_device_stru *pst_mac_device, oal_uint8 uc_debug_lev)
 {
     pst_mac_device->st_dfs.st_dfs_info.uc_debug_level = uc_debug_lev;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_dfs_get_debug_level
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月5日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint8  mac_dfs_get_debug_level(mac_device_stru *pst_mac_device)
 {
     return pst_mac_device->st_dfs.st_dfs_info.uc_debug_level;
@@ -1655,43 +1411,14 @@ extern oal_void  mac_fcs_prepare_one_packet_cfg(
                 hal_one_packet_cfg_stru     *pst_one_packet_cfg,
                 oal_uint16                   us_protect_time);
 
-/*****************************************************************************
- 函 数 名  : mac_fcs_is_same_channel
- 功能描述  : 判断是否为相同信道
- 输入参数  : mac_channel_stru *pst_channel_dst
-             mac_channel_stru *pst_channel_src
- 输出参数  : 无
- 返 回 值  : OAL_STATIC  OAL_INLINE  oal_bool_enum_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月10日
-    作    者   : gaolin
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_bool_enum_uint8 mac_fcs_is_same_channel(mac_channel_stru *pst_channel_dst,
                                                                   mac_channel_stru *pst_channel_src)
 {
     return  pst_channel_dst->uc_chan_number == pst_channel_src->uc_chan_number ? OAL_TRUE : OAL_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_fcs_get_protect_type
- 功能描述  : 根据VAP模式获取保护帧类型
- 输入参数  : pst_mac_vap: vap
- 输出参数  : 无
- 返 回 值  : OAL_STATIC  OAL_INLINE  mac_fcs_protect_type_enum_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月10日
-    作    者   : gaolin
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC  OAL_INLINE  hal_fcs_protect_type_enum_uint8 mac_fcs_get_protect_type(
                         mac_vap_stru *pst_mac_vap)
 {
@@ -1720,21 +1447,7 @@ OAL_STATIC  OAL_INLINE  hal_fcs_protect_type_enum_uint8 mac_fcs_get_protect_type
     return en_protect_type;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_fcs_get_protect_cnt
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月21日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC  OAL_INLINE oal_uint8  mac_fcs_get_protect_cnt(mac_vap_stru *pst_mac_vap)
 {
     if (WLAN_VAP_MODE_BSS_AP == pst_mac_vap->en_vap_mode)

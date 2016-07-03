@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmcFsmSyscfg.c
-  版 本 号   : 初稿
-  作    者   : z00161729
-  生成日期   : 2011年07月2日
-  最近修改   :
-  功能描述   : SYSCFG状态机处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年07月2日
-    作    者   : z00161729
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -63,49 +46,13 @@ extern "C" {
 
 /*lint -save -e958 */
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMsccSysCnfSetReq_SYSCFG_Init
- 功能描述  : 在NAS_MMC_SYSCFG_STA_INIT状态收到MSCC的ID_MSCC_MMC_SYS_CFG_SET_REQ消息的处理
- 输入参数  : ulEventType - 消息类型
-             pstMsg      - 收到MSCC的ID_MSCC_MMC_SYS_CFG_SET_REQ消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 成功
-             VOS_FALSE - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月11日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2012年8月15日
-   作    者   : z00161729
-   修改内容   : DCM定制需求和遗留问题修改
- 3.日    期   : 2013年3月30日
-   作    者   : l00167671
-   修改内容   : 主动上报AT命令控制下移至C核
-
- 4.日    期   : 2013年7月15日
-   作    者   : z00234330
-   修改内容   : DTS2013070500039
-
- 5.日    期   : 2013年9月11日
-   作    者   : z00234330
-   修改内容   : dmt测试发现问题，gw模下
-                存在rrc链接时，多等待了1次链接释放,DTS2013052300940
- 6.日    期   : 2015年2月26日
-   作    者   : w00167002
-   修改内容   : DTS2015021604972:在SYSCFG设置完后，MMA进行ATTACH流程。MMC已经退出
-                 SYSCFG状态机，并触发搜网。在搜网时候，如果PS不准许ATTACH，则不搜索LTE。
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvMsccSysCfgSetReq_SysCfg_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 )
 {
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, begin*/
     MSCC_MMC_SYS_CFG_SET_REQ_STRU        *pstSysCfgMsg        = VOS_NULL_PTR;
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, end*/
 
     VOS_UINT32                          ulRrcConnExistFlag;
     VOS_UINT32                          ulNeedSyscfgPlmnSrch;
@@ -115,19 +62,15 @@ VOS_UINT32  NAS_MMC_RcvMsccSysCfgSetReq_SysCfg_Init(
     NAS_MMC_PLMN_SELECTION_MODE_ENUM_UINT8 enPlmnSelectionMode;
     VOS_UINT8                           ucPreRatNum;
     VOS_UINT8                           ucCurRatNum;
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, begin */
     NAS_MML_PLMN_RAT_PRIO_STRU         *pstPrePrioRatList;
     NAS_MML_PLMN_RAT_PRIO_STRU          stSyscfgPrioRatList;
 
     PS_MEM_SET(&stSyscfgPrioRatList, 0, sizeof(NAS_MML_PLMN_RAT_PRIO_STRU));
 
     pstPrePrioRatList = NAS_MML_GetMsPrioRatList();
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, end */
 
     /* 取得当前的SYSCFG消息 */
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, begin*/
     pstSysCfgMsg         = (MSCC_MMC_SYS_CFG_SET_REQ_STRU *)pstMsg;
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, end*/
 
 
     /* 保存入口消息 */
@@ -196,7 +139,6 @@ VOS_UINT32  NAS_MMC_RcvMsccSysCfgSetReq_SysCfg_Init(
 
     ucPreRatNum = pstPrePrioRatList->ucRatNum;
 
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, begin */
     /* 保持syscfg设置前的接入技术和优先级 */
     NAS_MMC_SetPrePrioRatList_SysCfg(pstPrePrioRatList);
 
@@ -206,14 +148,12 @@ VOS_UINT32  NAS_MMC_RcvMsccSysCfgSetReq_SysCfg_Init(
                sizeof(NAS_MML_PLMN_RAT_PRIO_STRU) );
 
     NAS_MML_SetMsSysCfgPrioRatList(&stSyscfgPrioRatList);
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, end */
 
     ucCurRatNum = NAS_MML_GetMsPrioRatList()->ucRatNum;
 
     /* 获取当前模的信令链接存在信息 */
     ulRrcConnExistFlag   = NAS_MML_IsRrcConnExist();
 
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-05-10, begin */
     if ( (VOS_TRUE == ulNeedSyscfgPlmnSrch)
       && (VOS_FALSE == ulRrcConnExistFlag)
       && (0 != ucPreRatNum)
@@ -225,7 +165,6 @@ VOS_UINT32  NAS_MMC_RcvMsccSysCfgSetReq_SysCfg_Init(
         /* 向MM发送搜网指示 */
         NAS_MMC_SndMmPlmnSchInit();
     }
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-05-10, end */
 
     /* 当前不需要搜网或不存在信令链接 */
     if ( (VOS_FALSE == ulNeedSyscfgPlmnSrch)
@@ -279,50 +218,21 @@ VOS_UINT32  NAS_MMC_RcvMsccSysCfgSetReq_SysCfg_Init(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvGasSysCfgCnf_SysCfg_WaitGasSysCfgCnf
- 功能描述  : 在NAS_MMC_SYSCFG_STA_WAIT_GAS_SYSCFG_CNF状态收到GAS的RRMM_SYS_CFG_CNF消息的处理
- 输入参数  : ulEventType - 消息类型
-             pstMsg      - 收到GAS的RRMM_SYS_CFG_CNF消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 成功
-             VOS_FALSE - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月11日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2012年8月13日
-   作    者   : z00161729
-   修改内容   : DCM定制需求和遗留问题修改
- 3.日    期   : 2013年3月30日
-   作    者   : l00167671
-   修改内容   : 主动上报AT命令控制下移至C核
- 4.日    期   : 2015年2月26日
-   作    者   : w00167002
-   修改内容   : DTS2015021604972:在SYSCFG设置完后，MMA进行ATTACH流程。MMC已经退出
-                 SYSCFG状态机，并触发搜网。在搜网时候，如果PS不准许ATTACH，则不搜索LTE。
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvGasSysCfgCnf_SysCfg_WaitGasSysCfgCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 )
 {
 
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, begin*/
     MSCC_MMC_SYS_CFG_SET_REQ_STRU      *pstSysCfgMsg          = VOS_NULL_PTR;
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, end*/
 
     NAS_MMC_ENTRY_MSG_STRU             *pstEntryMsg           = VOS_NULL_PTR;
     RRMM_SYS_CFG_CNF_STRU              *pstSysCfgCnf          = VOS_NULL_PTR;
     VOS_UINT32                          ulNeedSyscfgPlmnSrch;
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enNextRat;
 
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, begin */
     NAS_MML_PLMN_RAT_PRIO_STRU         *pstPrePrioRatList;
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, end */
 
     /* 停止等待GAS的SYSCFG回复定时器 */
     NAS_MMC_StopTimer(TI_NAS_MMC_WAIT_GAS_SYSCFG_CNF);
@@ -336,12 +246,10 @@ VOS_UINT32  NAS_MMC_RcvGasSysCfgCnf_SysCfg_WaitGasSysCfgCnf(
         /* 向MSCC回复SYSCFG设置失败消息 */
         NAS_MMC_SndMsccSysCfgCnf(NAS_MSCC_PIF_SYS_CFG_SET_FAILURE_OTHER);
 
-        /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, begin */
         /* syscfg设置失败需要恢复之前的接入技术和优先级 */
         pstPrePrioRatList = NAS_MMC_GetPrePrioRatList_SysCfg();
 
         NAS_MML_SetMsSysCfgPrioRatList(pstPrePrioRatList);
-        /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, end */
 
 
         /* 通知上层状态机SYSCFG状态机运行结果，syscfg设置失败，不需要搜网 */
@@ -357,9 +265,7 @@ VOS_UINT32  NAS_MMC_RcvGasSysCfgCnf_SysCfg_WaitGasSysCfgCnf(
     /* 获取syscfg状态机入口消息信息 */
     pstEntryMsg           = NAS_MMC_GetCurrEntryMsg();
 
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, begin*/
     pstSysCfgMsg          = (MSCC_MMC_SYS_CFG_SET_REQ_STRU *)(pstEntryMsg->aucEntryMsgBuffer);
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, end*/
 
     /* 未完成SYSCFG的所有模式设置，向接入模发送SYSCFG设置请求 */
     enNextRat             = NAS_MMC_GetNextSettingRat_SysCfg();
@@ -396,24 +302,7 @@ VOS_UINT32  NAS_MMC_RcvGasSysCfgCnf_SysCfg_WaitGasSysCfgCnf(
 
 
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_RcvGasSuspendInd_SysCfg_WaitGasSysCfgCnf
-功能描述  : 在NAS_MMC_SYSCFG_STA_WAIT_GAS_SYSCFG_CNF状态收到GAS的
-             RRMM_SUSPEND_IND消息的处理
-输入参数  : ulEventType - 消息类型
-            pstMsg      - 收到RRMM_SUSPEND_IND消息的首地址
-输出参数  : 无
-返 回 值  : VOS_TRUE  - 成功
-            VOS_FALSE - 失败
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2011年7月11日
-  作    者   : w00167002
-  修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvGasSuspendInd_SysCfg_WaitGasSysCfgCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -426,37 +315,13 @@ VOS_UINT32  NAS_MMC_RcvGasSuspendInd_SysCfg_WaitGasSysCfgCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvGasSysCfgCnfExpired_SysCfg_WaitGasSysCfgCnf
- 功能描述  : 在NAS_MMC_SYSCFG_STA_WAIT_GAS_SYSCFG_CNF状态收到保护定时器
-             TI_NAS_MMC_WAIT_GAS_SYSCFG_CNF超时的处理
- 输入参数  : ulEventType - 消息类型
-             pstMsg      - 收到TI_NAS_MMC_WAIT_GAS_SYSCFG_CNF超时消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 成功
-             VOS_FALSE - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月11日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2012年8月21日
-   作    者   : z00161729
-   修改内容   : DCM定制需求和遗留问题修改
- 3.日    期   : 2013年3月30日
-   作    者   : l00167671
-   修改内容   : 主动上报AT命令控制下移至C核
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvGasSysCfgCnfExpired_SysCfg_WaitGasSysCfgCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 )
 {
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, begin */
     NAS_MML_PLMN_RAT_PRIO_STRU         *pstPrePrioRatList;
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, end */
 
     /* 打印定时器超时异常LOG */
     NAS_ERROR_LOG(WUEPS_PID_MMC, "NAS_MMC_RcvGasSysCfgCnfExpired_SysCfg_WaitGasSysCfgCnf():TI_NAS_MMC_WAIT_GAS_SYSCFG_CNF timeout");
@@ -465,12 +330,10 @@ VOS_UINT32  NAS_MMC_RcvGasSysCfgCnfExpired_SysCfg_WaitGasSysCfgCnf(
     NAS_MMC_SndMsccSysCfgCnf(NAS_MSCC_PIF_SYS_CFG_SET_FAILURE_OTHER);
 
 
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, begin */
     /* syscfg设置失败需要恢复之前的接入技术和优先级 */
     pstPrePrioRatList = NAS_MMC_GetPrePrioRatList_SysCfg();
 
     NAS_MML_SetMsSysCfgPrioRatList(pstPrePrioRatList);
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, end */
 
 
     /* 通知上层状态机SYSCFG状态机运行结果,syscfg设置失败 */
@@ -482,50 +345,21 @@ VOS_UINT32  NAS_MMC_RcvGasSysCfgCnfExpired_SysCfg_WaitGasSysCfgCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvWasSysCfgCnf_SYSCFG_WaitWasSysCfgCnf
- 功能描述  : 在NAS_MMC_SYSCFG_STA_WAIT_WAS_SYSCFG_CNF状态收到WAS的RRMM_SYS_CFG_CNF消息的处理
- 输入参数  : ulEventType - 消息类型
-             pstMsg      - 收到WAS的RRMM_SYS_CFG_CNF消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 成功
-             VOS_FALSE - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月11日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2012年8月13日
-   作    者   : z00161729
-   修改内容   : DCM定制需求和遗留问题修改
- 3.日    期   : 2013年3月30日
-   作    者   : l00167671
-   修改内容   : 主动上报AT命令控制下移至C核
- 4.日    期   : 2015年2月26日
-   作    者   : w00167002
-   修改内容   : DTS2015021604972:在SYSCFG设置完后，MMA进行ATTACH流程。MMC已经退出
-                 SYSCFG状态机，并触发搜网。在搜网时候，如果PS不准许ATTACH，则不搜索LTE。
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvWasSysCfgCnf_SysCfg_WaitWasSysCfgCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 )
 {
 
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, begin*/
     MSCC_MMC_SYS_CFG_SET_REQ_STRU      *pstSysCfgMsg          = VOS_NULL_PTR;
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, end*/
 
     NAS_MMC_ENTRY_MSG_STRU             *pstEntryMsg           = VOS_NULL_PTR;
     RRMM_SYS_CFG_CNF_STRU              *pstSysCfgCnf          = VOS_NULL_PTR;
     VOS_UINT32                          ulNeedSyscfgPlmnSrch;
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enNextRat;
 
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, begin */
     NAS_MML_PLMN_RAT_PRIO_STRU         *pstPrePrioRatList;
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, end */
 
     /* 停止等待WAS的SYSCFG回复定时器 */
     NAS_MMC_StopTimer(TI_NAS_MMC_WAIT_WAS_SYSCFG_CNF);
@@ -539,12 +373,10 @@ VOS_UINT32 NAS_MMC_RcvWasSysCfgCnf_SysCfg_WaitWasSysCfgCnf(
         /* 向MSCC回复SYSCFG设置失败消息 */
         NAS_MMC_SndMsccSysCfgCnf(NAS_MSCC_PIF_SYS_CFG_SET_FAILURE_OTHER);
 
-        /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, begin */
         /* syscfg设置失败需要恢复之前的接入技术和优先级 */
         pstPrePrioRatList = NAS_MMC_GetPrePrioRatList_SysCfg();
 
         NAS_MML_SetMsSysCfgPrioRatList(pstPrePrioRatList);
-        /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, end */
 
 
 
@@ -560,9 +392,7 @@ VOS_UINT32 NAS_MMC_RcvWasSysCfgCnf_SysCfg_WaitWasSysCfgCnf(
     /* 获取syscfg状态机入口消息信息 */
     pstEntryMsg           = NAS_MMC_GetCurrEntryMsg();
 
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, begin*/
     pstSysCfgMsg          = (MSCC_MMC_SYS_CFG_SET_REQ_STRU *)(pstEntryMsg->aucEntryMsgBuffer);
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, end*/
 
     /* 获取需要设置SYSCFG的下一个接入模 */
     enNextRat             = NAS_MMC_GetNextSettingRat_SysCfg();
@@ -597,24 +427,7 @@ VOS_UINT32 NAS_MMC_RcvWasSysCfgCnf_SysCfg_WaitWasSysCfgCnf(
 }
 
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_RcvGasSuspendInd_SysCfg_WaitGasSysCfgCnf
-功能描述  : 在NAS_MMC_SYSCFG_STA_WAIT_WAS_SYSCFG_CNF状态收到WAS的
-             RRMM_SUSPEND_IND消息的处理
-输入参数  : ulEventType - 消息类型
-            pstMsg      - 收到RRMM_SUSPEND_IND消息的首地址
-输出参数  : 无
-返 回 值  : VOS_TRUE  - 成功
-            VOS_FALSE - 失败
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2011年7月11日
-  作    者   : w00167002
-  修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvWasSuspendInd_SysCfg_WaitWasSysCfgCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -627,37 +440,13 @@ VOS_UINT32  NAS_MMC_RcvWasSuspendInd_SysCfg_WaitWasSysCfgCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvWasSysCfgCnfExpired_SYSCFG_WaitWasSysCfgCnf
- 功能描述  : 在NAS_MMC_SYSCFG_STA_WAIT_WAS_SYSCFG_CNF状态收到保护定时器
-             TI_NAS_MMC_WAIT_WAS_SYSCFG_CNF超时的处理
- 输入参数  : ulEventType - 消息类型
-             pstMsg      - 收到TI_NAS_MMC_WAIT_WAS_SYSCFG_CNF超时消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 成功
-             VOS_FALSE - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月11日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2012年8月15日
-   作    者   : z00161729
-   修改内容   : DCM定制需求和遗留问题修改
- 3.日    期   : 2013年3月30日
-   作    者   : l00167671
-   修改内容   : 主动上报AT命令控制下移至C核
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvWasSysCfgCnfExpired_SysCfg_WaitWasSysCfgCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 )
 {
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, begin */
     NAS_MML_PLMN_RAT_PRIO_STRU         *pstPrePrioRatList;
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, end */
 
     /* 打印定时器超时异常LOG */
     NAS_ERROR_LOG(WUEPS_PID_MMC, "NAS_MMC_RcvWasSysCfgCnfExpired_SysCfg_WaitWasSysCfgCnf():TI_NAS_MMC_WAIT_GAS_SYSCFG_CNF timeout");
@@ -665,12 +454,10 @@ VOS_UINT32  NAS_MMC_RcvWasSysCfgCnfExpired_SysCfg_WaitWasSysCfgCnf(
     /* 向MSCC回复SYSCFG设置失败 */
     NAS_MMC_SndMsccSysCfgCnf(NAS_MSCC_PIF_SYS_CFG_SET_FAILURE_OTHER);
 
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, begin */
     /* syscfg设置失败需要恢复之前的接入技术和优先级 */
     pstPrePrioRatList = NAS_MMC_GetPrePrioRatList_SysCfg();
 
     NAS_MML_SetMsSysCfgPrioRatList(pstPrePrioRatList);
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, end */
 
 
     /* 通知上层状态机SYSCFG状态机运行结果,syscfg设置失败 */
@@ -682,38 +469,13 @@ VOS_UINT32  NAS_MMC_RcvWasSysCfgCnfExpired_SysCfg_WaitWasSysCfgCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvGmmSignalingStatusInd_SysCfg_WaitRrcConnRelInd
- 功能描述  : 在NAS_MMC_SYSCFG_STA_WAIT_RRC_CONN_REL_IND状态收到
-             MMCGMM_SIGNALING_STATUS_IND消息的处理
- 输入参数  : ulEventType - 消息类型
-             pstMsg      - 收到MMCGMM_SIGNALING_STATUS_IND消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 成功
-             VOS_FALSE - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月11日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年11月30日
-   作    者   : w00167002
-   修改内容   : DTS2011113001438:链接不存在，取得目标模的接入技术，并发送SYSCFG请求
- 3.日    期   : 2013年3月30日
-   作    者   : l00167671
-   修改内容   : 主动上报AT命令控制下移至C核
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvGmmSignalingStatusInd_SysCfg_WaitRrcConnRelInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 )
 {
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, begin*/
     MSCC_MMC_SYS_CFG_SET_REQ_STRU        *pstSysCfgMsg    = VOS_NULL_PTR;
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, end*/
 
     NAS_MMC_ENTRY_MSG_STRU             *pstEntryMsg     = VOS_NULL_PTR;
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enNextRat;
@@ -722,9 +484,7 @@ VOS_UINT32  NAS_MMC_RcvGmmSignalingStatusInd_SysCfg_WaitRrcConnRelInd(
     /* 获取SYSCFG状态机的入口消息信息 */
     pstEntryMsg         = NAS_MMC_GetCurrEntryMsg();
 
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, begin*/
     pstSysCfgMsg        = (MSCC_MMC_SYS_CFG_SET_REQ_STRU*)(pstEntryMsg->aucEntryMsgBuffer);
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, end*/
 
     /* 判断信令链接是否已经完成释放 */
     ulRrcConnExistFlag  = NAS_MML_IsRrcConnExist();
@@ -746,38 +506,13 @@ VOS_UINT32  NAS_MMC_RcvGmmSignalingStatusInd_SysCfg_WaitRrcConnRelInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_RcvMmConnInfoInd_SysCfg_WaitRrcConnRelInd
-功能描述  : 在NAS_MMC_SYSCFG_STA_WAIT_RRC_CONN_REL_IND状态收到
-            MMCMM_RR_CONN_INFO_IND消息的处理
-输入参数  : ulEventType - 消息类型
-            pstMsg      - 收到MMCMM_RR_CONN_INFO_IND消息的首地址
-输出参数  : 无
-返 回 值  : VOS_TRUE  - 成功
-            VOS_FALSE - 失败
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2011年7月11日
-  作    者   : w00167002
-  修改内容   : 新生成函数
-
-2.日    期   : 2011年11月30日
-  作    者   : w00167002
-  修改内容   : DTS2011113001438:链接不存在，取得目标模的接入技术，并发送SYSCFG请求
-3.日    期   : 2013年3月30日
-  作    者   : l00167671
-  修改内容   : 主动上报AT命令控制下移至C核
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvMmConnInfoInd_SysCfg_WaitRrcConnRelInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 )
 {
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, begin*/
     MSCC_MMC_SYS_CFG_SET_REQ_STRU        *pstSysCfgMsg = VOS_NULL_PTR;
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, end*/
 
     NAS_MMC_ENTRY_MSG_STRU             *pstEntryMsg  = VOS_NULL_PTR;
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enNextRat;
@@ -786,9 +521,7 @@ VOS_UINT32  NAS_MMC_RcvMmConnInfoInd_SysCfg_WaitRrcConnRelInd(
     /* 获取SYSCFG状态机的入口消息信息 */
     pstEntryMsg         = NAS_MMC_GetCurrEntryMsg();
 
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, begin*/
     pstSysCfgMsg        = (MSCC_MMC_SYS_CFG_SET_REQ_STRU*)(pstEntryMsg->aucEntryMsgBuffer);
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, end*/
 
     /* 判断信令链接是否已经完成释放 */
     ulRrcConnExistFlag  = NAS_MML_IsRrcConnExist();
@@ -810,38 +543,13 @@ VOS_UINT32  NAS_MMC_RcvMmConnInfoInd_SysCfg_WaitRrcConnRelInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_RcvMmcMmRelInd_SysCfg_WaitRrcConnRelInd
-功能描述  : 在NAS_MMC_SYSCFG_STA_WAIT_RRC_CONN_REL_IND状态收到
-            MMCMM_RR_REL_IND消息的处理
-输入参数  : ulEventType - 消息类型
-            pstMsg      - 收到MMCMM_RR_REL_IND消息的首地址
-输出参数  : 无
-返 回 值  : VOS_TRUE  - 成功
-            VOS_FALSE - 失败
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2011年7月11日
-  作    者   : w00167002
-  修改内容   : 新生成函数
-
-2.日    期   : 2011年11月30日
-  作    者   : w00167002
-  修改内容   : DTS2011113001438:链接不存在，取得目标模的接入技术，并发送SYSCFG请求
-3.日    期   : 2013年3月30日
-  作    者   : l00167671
-  修改内容   : 主动上报AT命令控制下移至C核
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvMmcMmRelInd_SysCfg_WaitRrcConnRelInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 )
 {
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, begin*/
     MSCC_MMC_SYS_CFG_SET_REQ_STRU        *pstSysCfgMsg = VOS_NULL_PTR;
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, end*/
 
     NAS_MMC_ENTRY_MSG_STRU             *pstEntryMsg  = VOS_NULL_PTR;
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enNextRat;
@@ -850,9 +558,7 @@ VOS_UINT32  NAS_MMC_RcvMmcMmRelInd_SysCfg_WaitRrcConnRelInd(
     /* 获取SYSCFG状态机的入口消息信息 */
     pstEntryMsg  = NAS_MMC_GetCurrEntryMsg();
 
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, begin*/
     pstSysCfgMsg = (MSCC_MMC_SYS_CFG_SET_REQ_STRU*)(pstEntryMsg->aucEntryMsgBuffer);
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, end*/
 
     /* 判断信令链接是否已经完成释放 */
     ulRrcConnExistFlag  = NAS_MML_IsRrcConnExist();
@@ -874,38 +580,13 @@ VOS_UINT32  NAS_MMC_RcvMmcMmRelInd_SysCfg_WaitRrcConnRelInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_RcvRrMmRelInd_SysCfg_WaitRrcConnRelInd
-功能描述  : 在NAS_MMC_SYSCFG_STA_WAIT_RRC_CONN_REL_IND状态收到
-            RRMM_REL_IND消息的处理
-输入参数  : ulEventType - 消息类型
-            pstMsg      - 收到RRMM_REL_IND消息的首地址
-输出参数  : 无
-返 回 值  : VOS_TRUE  - 成功
-            VOS_FALSE - 失败
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2011年7月11日
-  作    者   : w00167002
-  修改内容   : 新生成函数
-
-2.日    期   : 2011年11月30日
-  作    者   : w00167002
-  修改内容   : DTS2011113001438:链接不存在，取得目标模的接入技术，并发送SYSCFG请求
-3.日    期   : 2013年3月30日
-  作    者   : l00167671
-  修改内容   : 主动上报AT命令控制下移至C核
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvRrMmRelInd_SysCfg_WaitRrcConnRelInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 )
 {
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, begin*/
     MSCC_MMC_SYS_CFG_SET_REQ_STRU        *pstSysCfgMsg = VOS_NULL_PTR;
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, end*/
 
     NAS_MMC_ENTRY_MSG_STRU             *pstEntryMsg  = VOS_NULL_PTR;
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enNextRat;
@@ -914,9 +595,7 @@ VOS_UINT32  NAS_MMC_RcvRrMmRelInd_SysCfg_WaitRrcConnRelInd(
     /* 获取SYSCFG状态机的入口消息信息 */
     pstEntryMsg  = NAS_MMC_GetCurrEntryMsg();
 
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, begin*/
     pstSysCfgMsg = (MSCC_MMC_SYS_CFG_SET_REQ_STRU*)(pstEntryMsg->aucEntryMsgBuffer);
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, end*/
 
     /* 判断信令链接是否已经完成释放 */
     ulRrcConnExistFlag  = NAS_MML_IsRrcConnExist();
@@ -939,38 +618,13 @@ VOS_UINT32  NAS_MMC_RcvRrMmRelInd_SysCfg_WaitRrcConnRelInd(
 }
 
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_RcvGmmTbfRelInd_SysCfg_WaitRrcConnRelInd
-功能描述  : 在NAS_MMC_SYSCFG_STA_WAIT_RRC_CONN_REL_IND状态收到
-            MMCGMM_TBF_REL_IND消息的处理
-输入参数  : ulEventType - 消息类型
-            pstMsg      - 收到MMCGMM_TBF_REL_IND消息的首地址
-输出参数  : 无
-返 回 值  : VOS_TRUE  - 成功
-            VOS_FALSE - 失败
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2011年7月11日
-  作    者   : w00167002
-  修改内容   : 新生成函数
-
-2.日    期   : 2011年11月30日
-  作    者   : w00167002
-  修改内容   : DTS2011113001438:链接不存在，取得目标模的接入技术，并发送SYSCFG请求
-3.日    期   : 2013年3月30日
-  作    者   : l00167671
-  修改内容   : 主动上报AT命令控制下移至C核
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvGmmTbfRelInd_SysCfg_WaitRrcConnRelInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 )
 {
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, begin*/
     MSCC_MMC_SYS_CFG_SET_REQ_STRU        *pstSysCfgMsg = VOS_NULL_PTR;
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, end*/
 
     NAS_MMC_ENTRY_MSG_STRU             *pstEntryMsg  = VOS_NULL_PTR;
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enNextRat;
@@ -979,9 +633,7 @@ VOS_UINT32  NAS_MMC_RcvGmmTbfRelInd_SysCfg_WaitRrcConnRelInd(
     /* 获取SYSCFG状态机的入口消息信息 */
     pstEntryMsg        = NAS_MMC_GetCurrEntryMsg();
 
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, begin*/
     pstSysCfgMsg       = (MSCC_MMC_SYS_CFG_SET_REQ_STRU*)(pstEntryMsg->aucEntryMsgBuffer);
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, end*/
 
     /* 判断信令链接是否已经完成释放 */
     ulRrcConnExistFlag = NAS_MML_IsRrcConnExist();
@@ -1005,24 +657,7 @@ VOS_UINT32  NAS_MMC_RcvGmmTbfRelInd_SysCfg_WaitRrcConnRelInd(
 }
 
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_RcvWasSuspendInd_SysCfg_WaitRrcConnRelInd
-功能描述  : 在NAS_MMC_SYSCFG_STA_WAIT_RRC_CONN_REL_IND状态收到WAS的
-            RRMM_SUSPEND_IND消息的处理
-输入参数  : ulEventType - 消息类型
-            pstMsg      - 收到RRMM_SUSPEND_IND消息的首地址
-输出参数  : 无
-返 回 值  : VOS_TRUE  - 成功
-            VOS_FALSE - 失败
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2011年7月11日
-  作    者   : w00167002
-  修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvWasSuspendInd_SysCfg_WaitRrcConnRelInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1034,24 +669,7 @@ VOS_UINT32  NAS_MMC_RcvWasSuspendInd_SysCfg_WaitRrcConnRelInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_RcvGasSuspendInd_SysCfg_WaitRrcConnRelInd
-功能描述  : 在NAS_MMC_SYSCFG_STA_WAIT_RRC_CONN_REL_IND状态收到GAS的
-            RRMM_SUSPEND_IND消息的处理
-输入参数  : ulEventType - 消息类型
-            pstMsg      - 收到RRMM_SUSPEND_IND消息的首地址
-输出参数  : 无
-返 回 值  : VOS_TRUE  - 成功
-            VOS_FALSE - 失败
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2011年7月11日
-  作    者   : w00167002
-  修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvGasSuspendInd_SysCfg_WaitRrcConnRelInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1063,41 +681,13 @@ VOS_UINT32  NAS_MMC_RcvGasSuspendInd_SysCfg_WaitRrcConnRelInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_RcvTiWaitRrcConnRelExpired_SysCfg_WaitRrcConnRelInd
-功能描述  : 在NAS_MMC_SYSCFG_STA_WAIT_RRC_CONN_REL_IND状态收到保护定时器
-            TI_NAS_MMC_WAIT_RRC_CONN_REL超时消息的处理
-输入参数  : ulEventType - 消息类型
-            pstMsg      - 收到TI_NAS_MMC_WAIT_RRC_CONN_REL超时消息的首地址
-输出参数  : 无
-返 回 值  : VOS_TRUE  - 成功
-            VOS_FALSE - 失败
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2011年7月11日
-  作    者   : w00167002
-  修改内容   : 新生成函数
-
-2.日    期   : 2011年11月30日
-  作    者   : w00167002
-  修改内容   : DTS2011113001438:链接不存在，取得目标模的接入技术，并发送SYSCFG请求
-3.日    期   : 2011年12月1日
-  作    者   : w00176964
-  修改内容   : GUNAS V7R1 PhaseIV 阶段调整
-4.日    期   : 2013年3月30日
-  作    者   : l00167671
-  修改内容   : 主动上报AT命令控制下移至C核
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvTiWaitRrcConnRelExpired_SysCfg_WaitRrcConnRelInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 )
 {
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, begin*/
     MSCC_MMC_SYS_CFG_SET_REQ_STRU        *pstSysCfgMsg = VOS_NULL_PTR;
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, end*/
 
     NAS_MMC_ENTRY_MSG_STRU             *pstEntryMsg  = VOS_NULL_PTR;
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enNextRat;
@@ -1108,9 +698,7 @@ VOS_UINT32  NAS_MMC_RcvTiWaitRrcConnRelExpired_SysCfg_WaitRrcConnRelInd(
     /* 获取SYSCFG状态机的入口消息信息 */
     pstEntryMsg  = NAS_MMC_GetCurrEntryMsg();
 
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, begin*/
     pstSysCfgMsg = (MSCC_MMC_SYS_CFG_SET_REQ_STRU*)(pstEntryMsg->aucEntryMsgBuffer);
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, end*/
 
     enNextRat    = NAS_MML_NET_RAT_TYPE_BUTT;
 
@@ -1145,54 +733,20 @@ VOS_UINT32  NAS_MMC_RcvTiWaitRrcConnRelExpired_SysCfg_WaitRrcConnRelInd(
 
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvLmmSysCfgCnf_SYSCFG_WaitLmmSysCfgCnf
- 功能描述  : 在NAS_MMC_SYSCFG_STA_WAIT_LMM_SYSCFG_CNF状态收到LMM的MMC_LMM_SYS_CFG_CNF消息的处理
- 输入参数  : ulEventType - 消息类型
-             pstMsg      - 收到LMM的ID_LMM_MMC_SYS_CFG_CNF消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 成功
-             VOS_FALSE - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月11日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年11月30日
-   作    者   : w00167002
-   修改内容   : DTS2011113001438:L模有可能是最后一个模，若为最后一个模，则
-                 进行SYSCFG设置完后的处理流程
- 3.日    期   : 2012年8月13日
-   作    者   : z00161729
-   修改内容   : DCM定制需求和遗留问题修改
- 4.日    期   : 2013年3月30日
-   作    者   : l00167671
-   修改内容   : 主动上报AT命令控制下移至C核
- 5.日    期   : 2015年2月26日
-   作    者   : w00167002
-   修改内容   : DTS2015021604972:在SYSCFG设置完后，MMA进行ATTACH流程。MMC已经退出
-                 SYSCFG状态机，并触发搜网。在搜网时候，如果PS不准许ATTACH，则不搜索LTE。
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvLmmSysCfgCnf_SysCfg_WaitLmmSysCfgCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 )
 {
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, begin*/
     MSCC_MMC_SYS_CFG_SET_REQ_STRU      *pstSysCfgMsg          = VOS_NULL_PTR;
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, end*/
 
     NAS_MMC_ENTRY_MSG_STRU             *pstEntryMsg           = VOS_NULL_PTR;
     LMM_MMC_SYS_CFG_CNF_STRU           *pstSysCfgCnf          = VOS_NULL_PTR;
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enNextRat;
     VOS_UINT32                          ulNeedSyscfgPlmnSrch;
 
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, begin */
     NAS_MML_PLMN_RAT_PRIO_STRU         *pstPrePrioRatList;
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, end */
 
     /* 停止等待LMM的SYSCFG回复定时器 */
     NAS_MMC_StopTimer(TI_NAS_MMC_WAIT_LMM_SYSCFG_CNF);
@@ -1206,12 +760,10 @@ VOS_UINT32  NAS_MMC_RcvLmmSysCfgCnf_SysCfg_WaitLmmSysCfgCnf(
         /* 向MSCC回复SYSCFG设置失败消息 */
         NAS_MMC_SndMsccSysCfgCnf(NAS_MSCC_PIF_SYS_CFG_SET_FAILURE_OTHER);
 
-        /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, begin */
         /* syscfg设置失败需要恢复之前的接入技术和优先级 */
         pstPrePrioRatList = NAS_MMC_GetPrePrioRatList_SysCfg();
 
         NAS_MML_SetMsSysCfgPrioRatList(pstPrePrioRatList);
-        /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, end */
 
 
 
@@ -1227,9 +779,7 @@ VOS_UINT32  NAS_MMC_RcvLmmSysCfgCnf_SysCfg_WaitLmmSysCfgCnf(
     /* 获取syscfg状态机入口消息信息 */
     pstEntryMsg  = NAS_MMC_GetCurrEntryMsg();
 
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, begin*/
     pstSysCfgMsg = (MSCC_MMC_SYS_CFG_SET_REQ_STRU *)(pstEntryMsg->aucEntryMsgBuffer);
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, end*/
 
 
     /* 未完成SYSCFG的所有模式设置，向接入模发送SYSCFG设置请求 */
@@ -1265,24 +815,7 @@ VOS_UINT32  NAS_MMC_RcvLmmSysCfgCnf_SysCfg_WaitLmmSysCfgCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_RcvLmmSuspendInd_SysCfg_WaitLmmSysCfgCnf
-功能描述  : 在NAS_MMC_SYSCFG_STA_WAIT_LMM_SYSCFG_CNF状态收到LMM的
-             ID_LMM_MMC_SUSPEND_IND消息的处理
-输入参数  : ulEventType - 消息类型
-            pstMsg      - 收到ID_LMM_MMC_SUSPEND_IND消息的首地址
-输出参数  : 无
-返 回 值  : VOS_TRUE  - 成功
-            VOS_FALSE - 失败
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2011年7月11日
-  作    者   : w00167002
-  修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvLmmSuspendInd_SysCfg_WaitLmmSysCfgCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1295,34 +828,13 @@ VOS_UINT32  NAS_MMC_RcvLmmSuspendInd_SysCfg_WaitLmmSysCfgCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvLmmSysCfgCnfExpired_SYSCFG_WaitLmmSysCfgCnf
- 功能描述  : 在NAS_MMC_SYSCFG_STA_WAIT_LMM_SYSCFG_CNF状态收到保护定时器
-             TI_NAS_MMC_WAIT_LMM_SYSCFG_CNF超时的处理
- 输入参数  : ulEventType - 消息类型
-             pstMsg      - 收到TI_NAS_MMC_WAIT_LMM_SYSCFG_CNF超时消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 成功
-             VOS_FALSE - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月11日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2012年8月15日
-   作    者   : z00161729
-   修改内容   : DCM定制需求和遗留问题修改
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvLmmSysCfgCnfExpired_SysCfg_WaitLmmSysCfgCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 )
 {
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, begin */
     NAS_MML_PLMN_RAT_PRIO_STRU         *pstPrePrioRatList;
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, end */
 
     /* 打印定时器超时异常LOG */
     NAS_ERROR_LOG(WUEPS_PID_MMC, "NAS_MMC_RcvLmmSysCfgCnfExpired_SysCfg_WaitLmmSysCfgCnf():TI_NAS_MMC_WAIT_LMM_SYSCFG_CNF timeout");
@@ -1330,12 +842,10 @@ VOS_UINT32  NAS_MMC_RcvLmmSysCfgCnfExpired_SysCfg_WaitLmmSysCfgCnf(
     /* 向MSCC回复SYSCFG设置失败 */
     NAS_MMC_SndMsccSysCfgCnf(NAS_MSCC_PIF_SYS_CFG_SET_FAILURE_OTHER);
 
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, begin */
     /* syscfg设置失败需要恢复之前的接入技术和优先级 */
     pstPrePrioRatList = NAS_MMC_GetPrePrioRatList_SysCfg();
 
     NAS_MML_SetMsSysCfgPrioRatList(pstPrePrioRatList);
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, end */
 
 
     /* 通知上层状态机SYSCFG状态机运行结果,syscfg设置失败 */
@@ -1347,43 +857,14 @@ VOS_UINT32  NAS_MMC_RcvLmmSysCfgCnfExpired_SysCfg_WaitLmmSysCfgCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvLmmMmcStatusInd_SYSCFG_WaitEpsConnRelInd
- 功能描述  : 在NAS_MMC_SYSCFG_STA_WAIT_EPS_CONN_REL_IND状态收到
-             L 的ID_LMM_MMC_STATUS_IND的处理
- 输入参数  : ulEventType - 消息类型
-             pstMsg      - 收到ID_LMM_MMC_STATUS_IND消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 成功
-             VOS_FALSE - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月11日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年11月30日
-   作    者   : w00167002
-   修改内容   : DTS2011113001438: 链接不存在，取得目标模的接入技术，并发送SYSCFG请求
- 3.日    期   : 2012年5月16日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改,与其他状态机设置保持一致，
-                收到MMC_LMM_CONNECTED_DATA指示只更新业务存在不更新信令连接存在
- 4.日    期   : 2013年3月30日
-   作    者   : l00167671
-   修改内容   : 主动上报AT命令控制下移至C核
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvLmmMmcStatusInd_SysCfg_WaitEpsConnRelInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 )
 {
 
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, begin*/
     MSCC_MMC_SYS_CFG_SET_REQ_STRU        *pstSysCfgMsg       = VOS_NULL_PTR;
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, end*/
 
     NAS_MMC_ENTRY_MSG_STRU             *pstEntryMsg        = VOS_NULL_PTR;
     LMM_MMC_STATUS_IND_STRU            *pstLmmStatusIndMsg = VOS_NULL_PTR;
@@ -1395,9 +876,7 @@ VOS_UINT32  NAS_MMC_RcvLmmMmcStatusInd_SysCfg_WaitEpsConnRelInd(
     /* 获取SYSCFG状态机的入口消息信息 */
     pstEntryMsg  = NAS_MMC_GetCurrEntryMsg();
 
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, begin*/
     pstSysCfgMsg = (MSCC_MMC_SYS_CFG_SET_REQ_STRU*)(pstEntryMsg->aucEntryMsgBuffer);
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, end*/
 
     if ( VOS_FALSE == pstLmmStatusIndMsg->bitOpConnState)
     {
@@ -1444,41 +923,13 @@ VOS_UINT32  NAS_MMC_RcvLmmMmcStatusInd_SysCfg_WaitEpsConnRelInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiWaitEpsConnRelIndExpired_SYSCFG_WaitEpsConnRelInd
- 功能描述  : 在NAS_MMC_SYSCFG_STA_WAIT_EPS_CONN_REL_IND状态收到保护定时器
-             TI_NAS_MMC_WAIT_EPS_CONN_REL_IND超时的处理
- 输入参数  : ulEventType - 消息类型
-             pstMsg      - 收到TI_NAS_MMC_WAIT_EPS_CONN_REL_IND消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 成功
-             VOS_FALSE - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月11日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年11月30日
-   作    者   : w00167002
-   修改内容   : DTS2011113001438:链接不存在，取得目标模的接入技术，并发送SYSCFG请求
- 3.日    期   : 2011年12月1日
-   作    者   : w00176964
-   修改内容   : GUNAS V7R1 PhaseIV 阶段调整
- 4.日    期   : 2013年3月30日
-   作    者   : l00167671
-   修改内容   : 主动上报AT命令控制下移至C核
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvTiWaitEpsConnRelIndExpired_SysCfg_WaitEpsConnRelInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 )
 {
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, begin*/
     MSCC_MMC_SYS_CFG_SET_REQ_STRU        *pstSysCfgMsg = VOS_NULL_PTR;
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, end*/
 
     NAS_MMC_ENTRY_MSG_STRU             *pstEntryMsg  = VOS_NULL_PTR;
 
@@ -1490,9 +941,7 @@ VOS_UINT32  NAS_MMC_RcvTiWaitEpsConnRelIndExpired_SysCfg_WaitEpsConnRelInd(
     /* 获取SYSCFG状态机的入口消息信息 */
     pstEntryMsg  = NAS_MMC_GetCurrEntryMsg();
 
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, begin*/
     pstSysCfgMsg = (MSCC_MMC_SYS_CFG_SET_REQ_STRU*)(pstEntryMsg->aucEntryMsgBuffer);
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, end*/
     enNextRat    = NAS_MML_NET_RAT_TYPE_BUTT;
 
     /* 如果信令连接存在, 而且是主动释放连接,则进行搜网动作 */
@@ -1525,24 +974,7 @@ VOS_UINT32  NAS_MMC_RcvTiWaitEpsConnRelIndExpired_SysCfg_WaitEpsConnRelInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvLmmSuspendInd_SYSCFG_WaitEpsConnRelInd
- 功能描述  : 在NAS_MMC_SYSCFG_STA_WAIT_EPS_CONN_REL_IND状态收到ID_LMM_MMC_SUSPEND_IND
-             消息的处理
- 输入参数  : ulEventType - 消息类型
-             pstMsg      - 收到ID_LMM_MMC_SUSPEND_IND消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 成功
-             VOS_FALSE - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月11日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvLmmSuspendInd_SysCfg_WaitEpsConnRelInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1558,28 +990,9 @@ VOS_UINT32  NAS_MMC_RcvLmmSuspendInd_SysCfg_WaitEpsConnRelInd(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SysCfg_IsPlmnSelectionNeeded
- 功能描述  : 判断SYSCFG设置是否需要发起搜网
- 输入参数  : pstSysCfgSetParm:用户设置的SYSCFG参数
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:SYSCFG设置需要搜网
-              VOS_FALSE:SYSCFG设置不需要搜网
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月2日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2013年3月30日
-   作    者   : l00167671
-   修改内容   : 主动上报AT命令控制下移至C核
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_IsPlmnSelectionNeeded_SysCfg(
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, begin*/
     MSCC_MMC_SYS_CFG_SET_REQ_STRU        *pstSysCfgSetParm
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, end*/
 )
 {
     VOS_UINT32                          ulFlg;
@@ -1611,36 +1024,9 @@ VOS_UINT32  NAS_MMC_IsPlmnSelectionNeeded_SysCfg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_BandSetNeedPlmnSearch
- 功能描述  : 判断SYSCFG的频段设置是否导致发起搜网
- 输入参数  : pstUserSetBand:用户设置支持的频段
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:当前频段有效
-             VOS_FALSE:当前频段无效
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月2日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2012年3月7日
-   作    者   : w00176964
-   修改内容   : DTS201212345678:增加BAND6，BAND19的支持
-
- 3.日    期   : 2012年8月6日
-   作    者   : w00167002
-   修改内容   : V7R1C50_GUTL_PhaseII:当驻留在TD模式下，由于频段信息肯定是被支持的，直接返回VOS_-
-                 TRUE
- 4.日    期   : 2013年3月30日
-   作    者   : l00167671
-   修改内容   : 主动上报AT命令控制下移至C核
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_IsCurrentBandSetted_SysCfg(
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, begin*/
     MSCC_MMC_SYS_CFG_SET_REQ_STRU        *pstSysCfgSetParm
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, end*/
 )
 {
     NAS_MML_MS_BAND_INFO_STRU          *pstBandInfo         = VOS_NULL_PTR;
@@ -1725,28 +1111,9 @@ VOS_UINT32  NAS_MMC_IsCurrentBandSetted_SysCfg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CheckCurrentRatValidity
- 功能描述  : 判断SYSCFG接入技术优先级的改变是否需要进行搜网
- 输入参数  : pstPlmnRatPrio:用户设置的接入技术优先级
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:当前接入模式在用户SYSCFG设置里面
-             VOS_FALSE:当前接入模式不在用户SYSCFG设置里面
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月2日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2013年3月30日
-   作    者   : l00167671
-   修改内容   : 主动上报AT命令控制下移至C核
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_IsCurrentRatSetted_SysCfg(
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, begin*/
     MSCC_MMC_SYS_CFG_SET_REQ_STRU        *pstSysCfgSetParm
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, end*/
 )
 {
     NAS_MSCC_PIF_NET_RAT_TYPE_ENUM_UINT8     *pstRatPrio = VOS_NULL_PTR;              /* 接入优先级里列表 index表示优先级次序,0最高，2最低 */
@@ -1776,28 +1143,9 @@ VOS_UINT32  NAS_MMC_IsCurrentRatSetted_SysCfg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CheckRoamSettingPlmnSelection_SysCfg搜
- 功能描述  : 判断SYSCFG漫游设置的改变是否需要进行搜网
- 输入参数  : pstPlmnRatPrio:用户设置的接入技术优先级
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:SYSCFG的漫游设置需要搜网
-             VOS_FALSE:SYSCFG的漫游设置不需要搜网
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年8月2日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2013年3月30日
-   作    者   : l00167671
-   修改内容   : 主动上报AT命令控制下移至C核
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_CheckRoamSettingPlmnSelection_SysCfg(
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, begin*/
     MSCC_MMC_SYS_CFG_SET_REQ_STRU        *pstSysCfgSetParm
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, end*/
 )
 {
     NAS_MML_ROAM_CFG_INFO_STRU         *pstRoamCfg          = VOS_NULL_PTR;
@@ -1848,20 +1196,7 @@ VOS_UINT32  NAS_MMC_CheckRoamSettingPlmnSelection_SysCfg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_Save3Gpp2RatPrio_Syscfg
- 功能描述  : 保存用户SYSCFG设置的3GPP2列表
- 输入参数  : pstPrioRatList---用户SYSCFG设置的RAT PRIO LIST
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年5月29日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  NAS_MMC_Save3Gpp2RatPrio_Syscfg(
     NAS_MML_PLMN_RAT_PRIO_STRU         *pstPrioRatList
 )
@@ -1897,27 +1232,9 @@ VOS_VOID  NAS_MMC_Save3Gpp2RatPrio_Syscfg(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SaveUserSyscfgInfo
- 功能描述  : 保存用户设置的SYSCFG信息
- 输入参数  : MSCC_MMC_SYS_CFG_SET_REQ_STRU        *pstSysCfgMsg:用户设置的SYSCFG信息
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月10日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2013年3月30日
-   作    者   : l00167671
-   修改内容   : 主动上报AT命令控制下移至C核
-*****************************************************************************/
 VOS_VOID  NAS_MMC_SaveUserSyscfgInfo_SysCfg(
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, begin*/
     MSCC_MMC_SYS_CFG_SET_REQ_STRU        *pstSysCfgMsg
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, end*/
 )
 {
     NAS_MML_MS_BAND_INFO_STRU           stMsBand;
@@ -1950,21 +1267,7 @@ VOS_VOID  NAS_MMC_SaveUserSyscfgInfo_SysCfg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_UpdateCellInfo_SysCfg
- 功能描述  : SYSCFG设置完成后进行CELL INFO信息的更新
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月10日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  NAS_MMC_UpdateCellInfo_SysCfg(VOS_VOID)
 {
     NAS_MML_MS_CFG_INFO_STRU           *pstMsCfgInfo        = VOS_NULL_PTR;
@@ -1994,27 +1297,10 @@ VOS_VOID  NAS_MMC_UpdateCellInfo_SysCfg(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SetRatModeSysCfgReq_SysCfg
- 功能描述  : 根据接入模式判断应向哪个模发送syscfg设置请求及syscfg状态机的状态迁移
- 输入参数  : enCurrRat    - 接入模式
-             pstSysCfgMsg - syscfg设置内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月20日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SetRatModeSysCfgReq_SysCfg(
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enCurrRat,
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, begin*/
     MSCC_MMC_SYS_CFG_SET_REQ_STRU        *pstSysCfgMsg
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, end*/
 )
 {
     /* 根据接入模式，进行SYSCFG的设置 */
@@ -2072,27 +1358,9 @@ VOS_VOID NAS_MMC_SetRatModeSysCfgReq_SysCfg(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetDestModeRat_SysCfg
- 功能描述  : 判断SYSCFG设置是否需要发起搜网
- 输入参数  : pstSysCfgSetParm:用户设置的SYSCFG参数
- 输出参数  : 无
- 返 回 值  : NAS_MML_NET_RAT_TYPE_ENUM_UINT8:SYSCFG设置的目标模的接入技术
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年11月30日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2013年3月30日
-   作    者   : l00167671
-   修改内容   : 主动上报AT命令控制下移至C核
-*****************************************************************************/
 NAS_MML_NET_RAT_TYPE_ENUM_UINT8 NAS_MMC_GetDestModeRat_SysCfg(
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, begin*/
     MSCC_MMC_SYS_CFG_SET_REQ_STRU        *pstSysCfgSetParm
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, end*/
 )
 {
     VOS_UINT32                          ulFlg;
@@ -2117,21 +1385,7 @@ NAS_MML_NET_RAT_TYPE_ENUM_UINT8 NAS_MMC_GetDestModeRat_SysCfg(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedAttachPs_SysCfg
- 功能描述  : 判断SYSCFG设置MMA是否需要触发ATTACH
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE: 需要进行ATTACH
-             VOS_FALSE:不需要进行ATTACH
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年02月27日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedAttachPs_SysCfg(VOS_VOID)
 {
     MSCC_MMC_SYS_CFG_SET_REQ_STRU      *pstSysCfgMsg    = VOS_NULL_PTR;

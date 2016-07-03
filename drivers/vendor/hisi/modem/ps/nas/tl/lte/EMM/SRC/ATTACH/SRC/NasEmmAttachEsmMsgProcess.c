@@ -42,19 +42,12 @@ EMM_ESM_DATA_CNF_MAP_STRU  g_astEmmEsmDataCnfTbl[] =
 VOS_UINT32        g_ulEmmEsmDataCnfTblLen = sizeof(g_astEmmEsmDataCnfTbl)
                                                / sizeof(EMM_ESM_DATA_CNF_MAP_STRU);
 
+VOS_UINT32        g_ulImsiAttachWithInvalidTinFlag = NAS_EMM_YES;
+
 /*****************************************************************************
   3 Function
 *****************************************************************************/
-/*****************************************************************************
-Function Name   : NAS_EMM_EsmPdnRspMsgChk
-Description     : 检查ID_EMM_ESM_PDN_CON_RSP消息内容是否正确
-Input           :
-Output          :
-Return          :
 
-History         :
-1.leili 00132387         2008-09-09  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_EsmPdnRspMsgChk( const EMM_ESM_PDN_CON_RSP_STRU *pMsgpMsg)
 {
     /*消息内容检查*/
@@ -72,17 +65,7 @@ VOS_UINT32  NAS_EMM_EsmPdnRspMsgChk( const EMM_ESM_PDN_CON_RSP_STRU *pMsgpMsg)
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_AttRsltCommProc
- Description     : 发送ATTACH结果消息的公共处理
- Input           : None
- Output          : None
- Return          : VOS_VOID*
 
- History         :
-    1.leili 00132387      2011-4-25  Draft Enact
-
-*****************************************************************************/
 /*lint -e960*/
 /*lint -e961*/
 VOS_VOID *NAS_EMM_AttRsltCommProc(VOS_VOID )
@@ -133,16 +116,7 @@ VOS_VOID *NAS_EMM_AttRsltCommProc(VOS_VOID )
 }
 /* 删除无人调用函数NAS_EMM_AppSendAttInd */
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MmcSendAttCnf
- Description     : 向MMC发送LMM_MMC_ATTACH_CNF
- Input           :
- Return          : VOS_VOID
 
- History         :
-    1.z00179470         2012-01-13  Draft Enact
-
-*****************************************************************************/
 VOS_VOID    NAS_EMM_MmcSendAttCnf
 (
     MMC_LMM_ATTACH_RSLT_ENUM_UINT32                ulAttRslt
@@ -193,16 +167,7 @@ VOS_VOID    NAS_EMM_MmcSendAttCnf
     /*清空APP_ATTACH_REQ消息*/
     NAS_EMM_ClearAppMsgPara();
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_AppSendAttSucc
- Description     : 向MMC发送ATTACH结果成功消息
- Input           : pstRcvMsg-----网侧发送的ATTACH ACCEPT消息
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387         2011-04-07  Draft Enact
-
-*****************************************************************************/
 VOS_VOID    NAS_EMM_AppSendAttSucc( VOS_VOID )
 {
     LMM_MMC_ATTACH_IND_STRU             *pstMmcAttMsg = NAS_EMM_NULL_PTR;
@@ -323,21 +288,7 @@ VOS_VOID    NAS_EMM_AppSendAttSucc( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_AppSendAttRejEpsOnly
- Description     : 收到ATTACH ACCEPT消息，EPS ONLY，且携带原因不为协议24301 5.5.1.3.4.3章节规定时，
-                   向MMC发送ATTACH的结果值为ATTACH REJ，携带ATTACH ATTEMPT COUTER,
-                   如果ATTACH ACCEPT中携带原因值，则携带原因值，如果ATTACH ACCEPT
-                   携带EPLMN LIST,TMSI或者LAI，则携带EPLMN LIST,TMSI或者LAI给MMC
 
- Input           :
-
- Return          : None
-
- History         :
-    1.lihong         2011-08-09  Draft Enact
-    2.sunjitan 00193151  2012-05-31 Modify  只有#2#16#17#18#22时填原因值，其它不填
-*****************************************************************************/
 VOS_VOID NAS_EMM_AppSendAttRejEpsOnly( VOS_VOID )
 {
     LMM_MMC_ATTACH_IND_STRU             *pEmmAppAttMsg;
@@ -433,18 +384,7 @@ VOS_VOID NAS_EMM_AppSendAttRejEpsOnly( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_AppSendAttRej
- Description     : 向APP发送ATTACH结果消息
 
- Input           :
-
- Return          : None
-
- History         :
-    1.leili 00132387         2011-04-08  Draft Enact
-
-*****************************************************************************/
 VOS_VOID    NAS_EMM_AppSendAttRej( VOS_VOID )
 {
     LMM_MMC_ATTACH_IND_STRU             *pEmmAppAttMsg;
@@ -496,18 +436,7 @@ VOS_VOID    NAS_EMM_AppSendAttRej( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_AppSendAttTimerExp
- Description     : 向APP发送ATTACH结果消息
 
- Input           :
-
- Return          : None
-
- History         :
-    1.leili 00132387         2011-04-08  Draft Enact
-
-*****************************************************************************/
 VOS_VOID    NAS_EMM_AppSendAttTimerExp(VOS_VOID)
 {
     LMM_MMC_ATTACH_IND_STRU             *pEmmAppAttMsg;
@@ -553,17 +482,7 @@ VOS_VOID    NAS_EMM_AppSendAttTimerExp(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_AppSendAttFailWithPara
- Description     : 底层失败或连接释放时，发送给MMC的消息结果为失败，携带尝试次数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2011-4-25  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_EMM_AppSendAttFailWithPara( VOS_VOID )
 {
     LMM_MMC_ATTACH_IND_STRU             *pEmmAppAttMsg;
@@ -611,18 +530,7 @@ VOS_VOID NAS_EMM_AppSendAttFailWithPara( VOS_VOID )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_AppSendAttOtherType
- Description     : 向APP发送ATTACH结果消息
 
- Input           :
-
- Return          : None
-
- History         :
-    1.leili 00132387         2011-04-08  Draft Enact
-
-*****************************************************************************/
 VOS_VOID    NAS_EMM_AppSendAttOtherType
 (
     MMC_LMM_ATTACH_RSLT_ENUM_UINT32     ulAttRslt
@@ -688,18 +596,7 @@ VOS_VOID    NAS_EMM_AppSendAttOtherType
 
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_AppSendAttRstDefaultReqType
- Description     : 向APP发送ATTACH结果消息
 
- Input           :
-
- Return          : None
-
- History         :
-    1.leili 00132387         2011-04-08  Draft Enact
-
-*****************************************************************************/
 VOS_VOID    NAS_EMM_AppSendAttRstDefaultReqType
 (
     MMC_LMM_ATTACH_RSLT_ENUM_UINT32     ulAttRslt
@@ -766,20 +663,7 @@ VOS_VOID    NAS_EMM_AppSendAttRstDefaultReqType
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_AppSendAttRstInTau
- Description     : CS或者CS_PS的ATTACH引起TAU导致TAU后向APP发送ATTACH结果消息
-                    ATTACH引起联合TAU的，在ATTACH之前上报了TAU结果并进入了状态机，
-                    只需要上报一条
 
- Input           :
-
- Return          : None
-
- History         :
-    1.z00179470         2011-11-14  Draft Enact
-
-*****************************************************************************/
 VOS_VOID    NAS_EMM_AppSendAttRstInTau(MMC_LMM_ATTACH_RSLT_ENUM_UINT32 ulAttRst)
 {
     LMM_MMC_ATTACH_CNF_STRU             *pEmmAppAttMsg = NAS_EMM_NULL_PTR;
@@ -836,17 +720,7 @@ VOS_VOID    NAS_EMM_AppSendAttRstInTau(MMC_LMM_ATTACH_RSLT_ENUM_UINT32 ulAttRst)
     NAS_EMM_ClearAppMsgPara();
     return;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_AppSendAttFailWithPara
- Description     : 底层失败或连接释放时，发送给MMC的消息结果为失败，携带尝试次数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2011-4-25  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_EMM_AppSendAttFailWithAllPara( VOS_VOID )
 {
     LMM_MMC_ATTACH_IND_STRU             *pEmmAppAttMsg;
@@ -968,19 +842,7 @@ VOS_VOID NAS_EMM_AppSendAttFailWithAllPara( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_AppSendAttPsNotAllow
- Description     : 向APP发送ATTACH结果消息
-                   用户发起的PS的ATTACH不会走到此结果上报上来，故此需要上报一条
 
- Input           :
-
- Return          : None
-
- History         :
-    1. z00179470         2011-12-15  Draft Enact
-
-*****************************************************************************/
 VOS_VOID    NAS_EMM_AppSendAttPsNotAllow(  VOS_VOID )
 {
     LMM_MMC_ATTACH_IND_STRU             *pEmmAppAttMsg;
@@ -1093,18 +955,7 @@ VOS_VOID  NAS_EMM_AppSendAttRsltForb
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_CountMrrcDataReqLen
- Description     : 计算NAS_EMM_MRRC_DATA_REQ消息长度
 
- Input           :
- Output          :
- Return          : None
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_CountMrrcDataReqLen(VOS_UINT32 ulNasCnMsgLen)
 {
     VOS_UINT32                          ulMsgLen;
@@ -1115,18 +966,7 @@ VOS_UINT32  NAS_EMM_CountMrrcDataReqLen(VOS_UINT32 ulNasCnMsgLen)
     return ulMsgLen;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_CompCnAttachReqNasMsg
- Description     : 为规避PC-LINT检查数组越界的问题，独立出来一个打包CN消息的函数
- Input           : pulIndex     : 既作输入，也作输出
- Output          : pucAttReqCn
-                   pulIndex     : 既作输入，也作输出
- Return          : VOS_UINT32
 
- History         :
-    1.h41410      2009-2-1  Draft Enact
-
-*****************************************************************************/
 VOS_VOID    NAS_EMM_CompCnAttachReqNasMsg(  VOS_UINT8      *pucAttReqCn,
                                             VOS_UINT32     *pulIndex)
 {
@@ -1267,18 +1107,7 @@ VOS_VOID    NAS_EMM_CompCnAttachReqNasMsg(  VOS_UINT8      *pucAttReqCn,
 
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_CompCnAttachReq
- Description     : 填充空口消息ATTACH REQUEST的内容
 
- Input           :
- Output          :
- Return          : None
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-    2.zhuyiqiang 00138739    2009-08-11  MODIFY    BJ9D01672,上行编码优化
-*****************************************************************************/
 
 VOS_VOID    NAS_EMM_CompCnAttachReq(NAS_EMM_MRRC_DATA_REQ_STRU *pAttReqMsg)
 {
@@ -1414,18 +1243,7 @@ VOS_VOID    NAS_EMM_EncodeUeNetCapa(    VOS_UINT8                  *pMsg,
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_CompMappedGuti
- Description     : 组装映射的GUTI
- Input           : None
- Output          : pMsg------组装的GUTI内容
-                   pulIeLength ------GUTI长度
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2011-5-9  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_CompMappedGuti
 (
     VOS_UINT8   *pMsg,
@@ -1482,18 +1300,7 @@ VOS_VOID  NAS_EMM_CompMappedGuti
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_CompNativeGuti
- Description     : 组装NATIVE GUTI
- Input           : None
- Output          : pMsg------------编码IE内容
-                   pulIeLength------IE长度
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2011-5-9  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_CompNativeGuti
 (
     VOS_UINT8   *pMsg,
@@ -1614,18 +1421,7 @@ VOS_VOID  NAS_EMM_CompImei
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MultiModeTinPtmsiEncodeEpsMobileId
- Description     : 多模且TIN值为P-TMSI时，EPS mobile identity IE编码函数
- Input           : None
- Output          : pMsg------------编码IE内容
-                   pulIeLength------IE长度
- Return          : VOS_VOID
 
- History         :
-    1.lihong 00150010     2012-11-08  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_MultiModeTinPtmsiEncodeEpsMobileId
 (
     VOS_UINT8                          *pMsg,
@@ -1666,18 +1462,7 @@ VOS_VOID  NAS_EMM_MultiModeTinPtmsiEncodeEpsMobileId
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MultiModeTinInvalidEncodeEpsMobileId
- Description     : 多模且TIN值为INVALID时，EPS mobile identity IE编码函数
- Input           : None
- Output          : pMsg------------编码IE内容
-                   pulIeLength------IE长度
- Return          : VOS_VOID
 
- History         :
-    1.lihong 00150010     2012-11-08  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_MultiModeTinInvalidEncodeEpsMobileId
 (
     VOS_UINT8                          *pMsg,
@@ -1692,6 +1477,22 @@ VOS_VOID  NAS_EMM_MultiModeTinInvalidEncodeEpsMobileId
 
     NAS_EMM_ATTACH_LOG_NORM("NAS_EMM_MultiModeTinInvalidEncodeEpsMobileId is entered!");
     TLPS_PRINT2LAYER_INFO(NAS_EMM_MultiModeTinInvalidEncodeEpsMobileId_ENUM,LNAS_ENTRY);
+
+    /* 非测试卡,且NV打开的情况下, 当TIN值为Invalid时Attach Req携带IMSI: 为解决主副卡切换时
+       由于TIN值是之前主卡残留的TIN值, 导致切卡后发起ATTACH REQ携带的GUTI
+       为Native GUTI, 导致网侧异常, 后续被叫走CS域 */
+    if ((PS_SUCC != LPS_OM_IsTestMode()) && (NAS_EMM_YES == g_ulImsiAttachWithInvalidTinFlag))
+    {
+        if (NAS_EMM_AD_BIT_SLCT == NAS_EMM_GLO_AD_OP_IMSI())
+        {
+            NAS_EMM_ATTACH_LOG_NORM("NAS_EMM_MultiModeTinInvalidEncodeEpsMobileId:imsi");
+            TLPS_PRINT2LAYER_INFO(NAS_EMM_MultiModeTinInvalidEncodeEpsMobileId_ENUM,LNAS_FUNCTION_LABEL4);
+            NAS_EMM_CompImsi(&(pucReqMsg[0]),&ulLen);
+            *pulIeLength            = ulLen;
+            return;
+        }
+    }
+
     if (NAS_EMM_AD_BIT_SLCT == NAS_EMM_GLO_AD_OP_GUTI())
     {
         NAS_EMM_ATTACH_LOG_NORM("NAS_EMM_MultiModeTinInvalidEncodeEpsMobileId:GUTI VALID");
@@ -1726,19 +1527,7 @@ VOS_VOID  NAS_EMM_MultiModeTinInvalidEncodeEpsMobileId
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MultiModeTinGutiOrRatRelatedTmsiEncodeEpsMobileId
- Description     : 多模且TIN值为GUTI或者RAT RELATED TMSI时，EPS mobile identity
-                   IE编码函数
- Input           : None
- Output          : pMsg------------编码IE内容
-                   pulIeLength------IE长度
- Return          : VOS_VOID
 
- History         :
-    1.lihong 00150010     2012-11-08  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_MultiModeTinGutiOrRatRelatedTmsiEncodeEpsMobileId
 (
     VOS_UINT8                          *pMsg,
@@ -1776,18 +1565,7 @@ VOS_VOID  NAS_EMM_MultiModeTinGutiOrRatRelatedTmsiEncodeEpsMobileId
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_EncodeEpsMobileId
- Description     : EPS mobile identity IE编码函数
- Input           : None
- Output          : pMsg------------编码IE内容
-                   pulIeLength------IE长度
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387     2011-5-6  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_EncodeEpsMobileId
 (
     VOS_UINT8   *pMsg,
@@ -1856,31 +1634,7 @@ VOS_VOID  NAS_EMM_EncodeEpsMobileId
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_EncodeEsmContainer
- Description     : ESM message container IE编码函数
- Input           : None
- Output          : pMsg------------编码IE内容
-                   pulIeLength------IE长度
- Return          : VOS_VOID
 
- History         :
-        8       7       6       5       4       3       2       1
-    ┌───────────────────────────────┐
-    │            ESM message container IEI                         │Octet 1
-    ├───────────────────────────────┤
-    │         Length of ESM message container contents             │Octet 2
-    │                                                              │
-    │                                                              │Octet 3
-    ├───────────────────────────────┤
-    │                                                              │
-    │                                                              │Octet 4
-    │              ESM message container contents                  │
-    │                                                              │Octet n
-    ├───────────────────────────────┤
-    1.leili 00132387     2011-7-6  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_EncodeEsmContainer
 (
     VOS_UINT8   *pMsg,
@@ -1922,18 +1676,7 @@ VOS_VOID  NAS_EMM_EncodeEsmContainer
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_EncodePtmsiSignature
- Description     :  Old P-TMSI signature IE的编码函数
- Input           : None
- Output          : pMsg------------编码IE内容
-                   pulIeLength------IE长度
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387     2011-5-6  Draft Enact
-    2.zhengjunyan 00148421 2011-11-22 DTS2011101906633:补充判断条件P-TMSI&RAI有效
-*****************************************************************************/
 VOS_VOID  NAS_EMM_EncodePtmsiSignature
 (
     VOS_UINT8   *pMsg,
@@ -2006,18 +1749,7 @@ VOS_VOID  NAS_EMM_EncodePtmsiSignature
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_EncodeAdditionalGuti
- Description     : Additional GUTI IE编码函数
- Input           : None
- Output          : pMsg------------编码IE内容
-                   pulIeLength------IE长度
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387     2011-5-6  Draft Enact
-    2.zhengjunyan 00148421 2011-11-22 DTS2011101906633:补充判断条件P-TMSI&RAI有效
-*****************************************************************************/
 VOS_VOID  NAS_EMM_EncodeAdditionalGuti
 (
     VOS_UINT8   *pMsg,
@@ -2060,18 +1792,7 @@ VOS_VOID  NAS_EMM_EncodeAdditionalGuti
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_EncodeLRVTai
- Description     : Last visited registered TAI编码函数
- Input           : None
- Output          : pMsg------------编码IE内容
 
- Return          : VOS_VOID
-
- History         :
-    1.leili 00132387     2011-7-6  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_EncodeLRVTai
 (
     VOS_UINT8 *pMsg,
@@ -2116,18 +1837,7 @@ VOS_VOID  NAS_EMM_EncodeLRVTai
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_EncodeDrxPara
- Description     : DRX parameter编码函数
- Input           : None
- Output          : pMsg------------编码IE内容
 
- Return          : VOS_VOID
-
- History         :
-    1.leili 00132387     2011-7-6  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_EncodeDrxPara
 (
     VOS_UINT8 *pMsg,
@@ -2187,19 +1897,7 @@ VOS_VOID  NAS_EMM_EncodeDrxPara
 
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_EncodeLai
- Description     : MS network capability编码函数
- Input           : None
- Output          : pMsg------------编码IE内容
-                   pulIeLength------IE长度
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387     2011-5-6  Draft Enact
-    2.zhengjunyan 00148421 2011-11-15  添加入参enCnMsgType，区分ATTACH REQ和
-                                        TAU REQ消息的填充
-*****************************************************************************/
 VOS_VOID  NAS_EMM_EncodeMsNetworkCapability
 (
     VOS_UINT8 *pMsg,
@@ -2210,9 +1908,7 @@ VOS_VOID  NAS_EMM_EncodeMsNetworkCapability
     VOS_UINT8                           *pucReqMsg;
     VOS_UINT32                          ulIndex = NAS_EMM_NULL;
     NAS_EMM_MS_NET_CAP_STRU             *pstMsNetCap;
-    /* DTS2013071109627 ISR激活后，重选到U小区发起RAU问题 by wangchen 00209181 2013-07-15 */
     NAS_LMM_PUB_INFO_STRU               *pstEmmInfo;
-    /* DTS2013071109627 ISR激活后，重选到U小区发起RAU问题 by wangchen 00209181 2013-07-15 */
 
     NAS_MML_MS_NETWORK_CAPACILITY_STRU  stMsNetCapa = {0};
     VOS_UINT8                           ucMsNetCapLen = NAS_MM_MAX_MS_NET_CAP_LEN;
@@ -2227,9 +1923,7 @@ VOS_VOID  NAS_EMM_EncodeMsNetworkCapability
 
     pucReqMsg                           = pMsg;
     *pulIeLength                        = NAS_EMM_NULL;
-    /* DTS2013071109627 ISR激活后，重选到U小区发起RAU问题 by wangchen 00209181 2013-07-15 */
     pstEmmInfo                          = NAS_LMM_GetEmmInfoAddr();
-    /* DTS2013071109627 ISR激活后，重选到U小区发起RAU问题 by wangchen 00209181 2013-07-15 */
     pstMsNetCap                         = NAS_LMM_GetEmmInfoMsNetCapAddr();
 
     /* 检视如果是单模，则不填充MS network capability信元*/
@@ -2257,7 +1951,6 @@ VOS_VOID  NAS_EMM_EncodeMsNetworkCapability
     NAS_EMM_GetMsNetworkCapability(&stMsNetCapa);
 
     /* 将从GU获取的MS网络能力保存到本地 */
-    /* DTS2013071109627 ISR激活后，重选到U小区发起RAU问题 by wangchen 00209181 2013-07-15 */
     if (NAS_LMM_NULL != stMsNetCapa.ucNetworkCapabilityLen)
     {
         pstEmmInfo->bitOpMsNetCap = NAS_EMM_BIT_SLCT;
@@ -2273,7 +1966,6 @@ VOS_VOID  NAS_EMM_EncodeMsNetworkCapability
         pstEmmInfo->bitOpMsNetCap = NAS_EMM_BIT_NO_SLCT;
 
     }
-    /* DTS2013071109627 ISR激活后，重选到U小区发起RAU问题 by wangchen 00209181 2013-07-15 */
     if(NAS_MM_MAX_MS_NET_CAP_LEN >= stMsNetCapa.ucNetworkCapabilityLen)
     {
         pucReqMsg[ulIndex++]        = NAS_EMM_AD_MS_NET_CAPA_IEI;
@@ -2315,19 +2007,7 @@ VOS_VOID  NAS_EMM_EncodeMsNetworkCapability
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_EncodeLai
- Description     : Old location area identification编码函数
- Input           : None
- Output          : pMsg------------编码IE内容
-                   pulIeLength------IE长度
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387     2011-5-6  Draft Enact
-    2.lihong00150010     2011-08-27 Modify
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_EncodeLai
 (
     VOS_UINT8 *pMsg,
@@ -2410,18 +2090,7 @@ VOS_VOID  NAS_EMM_EncodeLai
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_EncodeTmsiStatus
- Description     : TMSI status编码函数
- Input           : None
- Output          : pMsg------------编码IE内容
 
- Return          : VOS_VOID
-
- History         :
-    1.leili 00132387     2011-5-6  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_EncodeTmsiStatus
 (
     VOS_UINT8                          *pMsg,
@@ -2493,36 +2162,7 @@ VOS_VOID  NAS_EMM_EncodeTmsiStatus
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_EncodeMsClassMark2
- Description     : Mobile station classmark 2编码函数
- Input           : enCnMsgType------消息类型
- Output          : pMsg------------编码IE内容
-                   pulIeLength------IE长度
 
- Return          : VOS_VOID
-
- History         :
-
-        8       7       6       5       4       3       2       1
-    ┌───────────────────────────────┐
-    │            Mobile station classmark 2 IEI                    │Octet 1
-    ├───────────────────────────────┤
-    │         Length of mobile station classmark 2 contents        │Octet 2
-    ├───────────────────────────────┤
-    │0     │   Revision   │ ES   │      │RF power              │
-    │spare │   level      │ IND  │A5/1  │capability            │Octet 3
-    ├───────────────────────────────┤
-    │ 0    │ PS   │SS Screen     │SM ca │VBS   │VGCS  │ FC   │
-    │spare │ capa │ Indicator    │pabi  │      │      │      │Octet 4
-    ├───────────────────────────────┤
-    │CM3   │ 0    │LCSVA │UCS2  │SoLSA │CMSP  │ A5/3 │A5/2  │
-    │      │spare │CAP   │      │      │      │      │      │Octet 5
-    ├───────────────────────────────┤
-
-    1.leili 00132387     2011-7-2  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_EncodeMsClassMark2
 (
     VOS_UINT8                          *pMsg,
@@ -2619,18 +2259,7 @@ VOS_VOID  NAS_EMM_EncodeMsClassMark2
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_EncodeMsClassMark3
- Description     : Mobile station classmark 3编码函数
- Input           : None
- Output          : pMsg------------编码IE内容
 
- Return          : VOS_VOID
-
- History         :
-    1.leili 00132387     2011-7-2  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_EncodeMsClassMark3
 (
     VOS_UINT8 *pMsg,
@@ -2708,49 +2337,7 @@ VOS_VOID  NAS_EMM_EncodeMsClassMark3
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_EncodeSupportedCodecs
- Description     : Supported Codecs编码函数
- Input           : None
- Output          : pMsg------------编码IE内容
 
- Return          : VOS_VOID
-
- History         :
-        8       7       6       5       4       3       2       1
-    ┌───────────────────────────────┐
-    │                  Supported Codec List IEI                    │Octet 1
-    ├───────────────────────────────┤
-    │                Length Of Supported Codec list                │Octet 2
-    ├───────────────────────────────┤
-    │               System Identification 1 (SysID 1)              │Octet 3
-    ├───────────────────────────────┤
-    │                 Length Of Bitmap for SysID 1                 │Octet 4
-    ├───────────────────────────────┤
-    │             Codec Bitmap for SysID 1, bits 1 to 8            │Octet 5
-    ├───────────────────────────────┤
-    │             Codec Bitmap for SysID 1, bits 9 to 16           │Octet 6
-    ├───────────────────────────────┤
-    │               System Identification 2 (SysID 2)              │Octet j
-    ├───────────────────────────────┤
-    │                 Length Of Bitmap for SysID 2                 │Octet j+1
-    ├───────────────────────────────┤
-    │             Codec Bitmap for SysID 2, bits 1 to 8            │Octet j+2
-    ├───────────────────────────────┤
-    │             Codec Bitmap for SysID 2, bits 9 to 16           │Octet j+3
-    ├───────────────────────────────┤
-    │               System Identification x (SysID x)              │Octet m
-    ├───────────────────────────────┤
-    │                 Length Of Bitmap for SysID x                 │Octet m+1
-    ├───────────────────────────────┤
-    │             Codec Bitmap for SysID x, bits 1 to 8            │Octet m+2
-    ├───────────────────────────────┤
-    │             Codec Bitmap for SysID x, bits 9 to 16           │Octet m+3
-    └───────────────────────────────┘
-
-    1.leili 00132387     2011-7-2  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_EncodeSupportedCodecs
 (
     VOS_UINT8 *pMsg,
@@ -2808,25 +2395,7 @@ VOS_VOID  NAS_EMM_EncodeSupportedCodecs
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_EncodeAdditionUpdateType
- Description     : Additional update type编码函数
- Input           : None
- Output          : pMsg------------编码IE内容
 
- Return          : VOS_VOID
-
- History         :
-        8       7       6       5       4       3       2       1
-    ┌───────────────────────────────┐
-    │Additional update result IEI  │ 0    │ 0    │Additional    │
-    │                              │      │      │  update      │
-    │                              │Spare │Spare │ result value │Octet 1
-    ├───────────────────────────────┤
-
-    1.leili 00132387     2011-7-2  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_EncodeAdditionUpdateType
 (
     VOS_UINT8 *pMsg,
@@ -2877,29 +2446,7 @@ VOS_VOID  NAS_EMM_EncodeAdditionUpdateType
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_EncodeAdditionUpdateType
- Description     : Voice domain preference and UE's usage setting编码函数
- Input           : None
- Output          : pMsg------------编码IE内容
 
- Return          : VOS_VOID
-
- History         :
-        8       7       6       5       4       3       2       1
-    ┌───────────────────────────────- - ┐
-    │   Voice domain preference and UE's usage setting IEI             │Octet 1
-    ├───────────────────────────────- - ┤
-    │Length of Voice domain preference and UE's usage setting contents │Octet 2
-    ├───────────────────────────────- - ┤
-    │ 0    │ 0    │0     │0     │0     │UE's    │ Voice domain   │
-    │      │      │      │      │      │usage   │preference for  │
-    │Spare │Spare │Spare │Spare │Spare │setting │  E-UTRAN       │Octet 3
-    ├───────────────────────────────- - ┤
-
-    1.leili 00132387     2011-7-2  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_EncodeVoiceDomainAndUsageSetting
 (
     VOS_UINT8 *pMsg,
@@ -2967,18 +2514,7 @@ VOS_VOID  NAS_EMM_EncodeVoiceDomainAndUsageSetting
 
     return;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_EncodeTmsiBasedNriContainer
- Description     : TMSI based NRI container编码函数
- Input           : None
- Output          : pMsg------------编码IE内容
 
- Return          : VOS_VOID
-
- History         :
-    1.wangchen 00209181 2014-08-29  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_EncodeTmsiBasedNriContainer
 (
     VOS_UINT8 *pMsg,
@@ -3037,17 +2573,7 @@ VOS_VOID  NAS_EMM_EncodeTmsiBasedNriContainer
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MutiModeTinPtmsiEncodeGutiType
- Description     : 多模，TIN为PTMSI,Old GUTI type编码函数
- Input           : None
- Output          : pMsg ------Old GUTI type内容
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2013-3-25  Draft Enact
-
-*****************************************************************************/
 NAS_EMM_GUTI_TYPE_ENUM_UINT8 NAS_EMM_MutiModeTinPtmsiEncodeGutiType
 (
     VOS_VOID
@@ -3067,17 +2593,7 @@ NAS_EMM_GUTI_TYPE_ENUM_UINT8 NAS_EMM_MutiModeTinPtmsiEncodeGutiType
     return ucGutiType;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MutiModeTinGutiOrRatRelatedTmsiEncodeGutiType
- Description     : 多模，TIN为GUTI OR RAT RELATED TMSI,Old GUTI type编码函数
- Input           : None
- Output          : pMsg ------Old GUTI type内容
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2013-3-25  Draft Enact
-
-*****************************************************************************/
 NAS_EMM_GUTI_TYPE_ENUM_UINT8 NAS_EMM_MutiModeTinGutiOrRatRelatedTmsiEncodeGutiType
 (
     VOS_VOID
@@ -3095,17 +2611,7 @@ NAS_EMM_GUTI_TYPE_ENUM_UINT8 NAS_EMM_MutiModeTinGutiOrRatRelatedTmsiEncodeGutiTy
     return ucGutiType;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MutiModeTinInvaidEncodeGutiType
- Description     : 多模，TIN为无效,Old GUTI type编码函数
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2013-3-25  Draft Enact
-
-*****************************************************************************/
 NAS_EMM_GUTI_TYPE_ENUM_UINT8 NAS_EMM_MutiModeTinInvaidEncodeGutiType
 (
     VOS_VOID
@@ -3115,7 +2621,17 @@ NAS_EMM_GUTI_TYPE_ENUM_UINT8 NAS_EMM_MutiModeTinInvaidEncodeGutiType
 
     NAS_EMM_ATTACH_LOG_NORM("NAS_EMM_MutiModeTinInvaidEncodeGutiType:TIN INVALID");
     TLPS_PRINT2LAYER_INFO(NAS_EMM_MutiModeTinInvaidEncodeGutiType_ENUM,LNAS_FUNCTION_LABEL1);
-    if (NAS_EMM_AD_BIT_SLCT == NAS_EMM_GLO_AD_OP_GUTI())
+
+    /* 非测试卡且NV打开, 当TIN值为Invalid时Attach Req携带IMSI: 为解决主副卡切换时
+       由于TIN值是之前主卡残留的TIN值, 导致切卡后发起ATTACH REQ携带的GUTI
+       为Native GUTI, 导致网侧异常, 后续被叫走CS域 */
+    if ((PS_SUCC != LPS_OM_IsTestMode()) && (NAS_EMM_YES == g_ulImsiAttachWithInvalidTinFlag))
+    {
+        NAS_EMM_ATTACH_LOG_NORM("NAS_EMM_MutiModeTinInvaidEncodeGutiType:g_ulImsiAttachWithInvaildTinFlag Open");
+        TLPS_PRINT2LAYER_INFO(NAS_EMM_MutiModeTinInvaidEncodeGutiType_ENUM,LNAS_FUNCTION_LABEL4);
+        ucGutiType = NAS_EMM_GUTI_TYPE_BUTT;
+    }
+    else if (NAS_EMM_AD_BIT_SLCT == NAS_EMM_GLO_AD_OP_GUTI())
     {
         NAS_EMM_ATTACH_LOG_NORM("NAS_EMM_MutiModeTinInvaidEncodeGutiType:GUTI VALID");
         TLPS_PRINT2LAYER_INFO(NAS_EMM_MutiModeTinInvaidEncodeGutiType_ENUM,LNAS_FUNCTION_LABEL2);
@@ -3138,17 +2654,7 @@ NAS_EMM_GUTI_TYPE_ENUM_UINT8 NAS_EMM_MutiModeTinInvaidEncodeGutiType
     return ucGutiType;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SingleModeEncodeGutiType
- Description     : 单模,Old GUTI type编码函数
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2013-3-25  Draft Enact
-
-*****************************************************************************/
 NAS_EMM_GUTI_TYPE_ENUM_UINT8 NAS_EMM_SingleModeEncodeGutiType
 (
     VOS_VOID
@@ -3170,17 +2676,7 @@ NAS_EMM_GUTI_TYPE_ENUM_UINT8 NAS_EMM_SingleModeEncodeGutiType
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_EncodeGutiType
- Description     : Old GUTI type编码函数
- Input           : None
- Output          : pMsg ------Old GUTI type内容
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2011-5-9  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_EncodeGutiType
 (
     VOS_UINT8       *pMsg,
@@ -3257,20 +2753,7 @@ VOS_VOID  NAS_EMM_EncodeGutiType
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_CompCnAttachCmp
- Description     : 填充空口消息ATTACH COMPLETE的内容
 
- Input           :
- Output          :
- Return          : None
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-    2.zhuyiqiang 00138739    2009-08-11  MODIFY    BJ9D01672,上行编码优化
-    3.lihong00150010         2012-10-31  Modify:emgergency
-
-*****************************************************************************/
 VOS_VOID    NAS_EMM_CompCnAttachCmp
 (
     LRRC_LNAS_MSG_STRU                 *pAttCmp,
@@ -3304,20 +2787,7 @@ VOS_VOID    NAS_EMM_CompCnAttachCmp
 }
 
 
-/*****************************************************************************
- Function Name   :  NAS_EMM_MrrcSendAttReq
- Description     : 向MRRC发送NAS_EMM_MRRC_DATA_REQ(ATTACH REQUEST)消息
 
- Input           :
- Output          :
- Return          : None
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-    2.zhuyiqiang 00138739    2009-08-11  MODIFY    BJ9D01672,上行编码优化
-    3.sunjitan 00193151      2012-07-12  Modify: Last TA维护，增加save Last TA
-    4.lihong 00150010        2012-10-31  Modify:emergency
-*****************************************************************************/
 VOS_VOID    NAS_EMM_MrrcSendAttReq( VOS_VOID )
 {
     NAS_EMM_MRRC_DATA_REQ_STRU          *pIntraMsg = NAS_EMM_NULL_PTR;
@@ -3381,20 +2851,7 @@ VOS_VOID    NAS_EMM_MrrcSendAttReq( VOS_VOID )
 
 }
 
-/*****************************************************************************
- Function Name   :  NAS_EMM_MrrcSendAttCmp
- Description     : 向MRRC发送NAS_EMM_MRRC_DATA_REQ(ATTACH COMPLETE)消息
 
- Input           :
- Output          :
- Return          : None
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-    2.zhuyiqiang 00138739    2009-08-11  MODIFY    BJ9D01672,上行编码优化
-    3.lihong00150010         2012-10-31  Modify:emgergency
-
-*****************************************************************************/
 VOS_VOID    NAS_EMM_MrrcSendAttCmp
 (
     const EMM_ESM_MSG_STRU             *pstEsmMsg
@@ -3471,19 +2928,7 @@ VOS_VOID    NAS_EMM_MrrcSendAttCmp
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegInitSsWtEsmPdnRspMsgEsmPdnRsp
- Description     : 主状态REG_INIT+子状态ATTACH_WAIT_ESM_PDN_RSP下收到ESM发送的
-                   ID_EMM_ESM_PDN_CON_RSP消息
- Input           :
- Output          :
- Return          :
 
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-    2.zhuyiqiang 00138739   2009-08-12  MODIFY BJ9D01687
-    3.zhengjunyan 001148421 2010-11-09 MOD:考虑RegInit.WtPdnRsp可能是CONN态的情况
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsRegInitSsWtEsmPdnRspMsgEsmPdnRsp(VOS_UINT32  ulMsgId,
                                                    VOS_VOID   *pMsgStru)
 {
@@ -3588,22 +3033,7 @@ VOS_UINT32  NAS_EMM_MsRegInitSsWtEsmPdnRspMsgEsmPdnRsp(VOS_UINT32  ulMsgId,
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegInitSsWtEsmBearerCnfMsgEsmBearerCnf
- Description     : 主状态REG_INIT+子状态ATTACH_WAIT_ESM_BEARER_CNF下收到ESM的
-                   消息ACTIVATE DEFAULT EPS BEARER ACCEPT
- Input           :
- Output          :
- Return          :
 
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-    2.lihong 00150010        2009-08-18  Modify
-    3.X00148705              2010-01-22  增加直传消息确认
-    4.lihong00150010         2012-05-22  将Last visit TAI更新从ATTACH COMPLETE发送成功
-                                         移至此处
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsRegInitSsWtEsmBearerCnfMsgEsmBearerCnf(VOS_UINT32  ulMsgId,
                                                          VOS_VOID   *pMsgStru)
 {
@@ -3656,19 +3086,7 @@ VOS_UINT32  NAS_EMM_MsRegInitSsWtEsmBearerCnfMsgEsmBearerCnf(VOS_UINT32  ulMsgId
     return  NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegInitSsWtEsmBearerCnfMsgEsmDataReq
- Description     : 主状态REG_INIT+子状态ATTACH_WAIT_ESM_BEARER_CNF下收到ESM的
-                   消息ACTIVATE DEFAULT EPS BEARER FAIL
- Input           :
- Output          :
- Return          :
 
- History         :
-    1.leili 00132387         2009-03-16  Draft Enact
-    2.lihong 00150010        2009-08-18  Modify
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsRegInitSsWtEsmBearerCnfMsgEsmDataReq(VOS_UINT32  ulMsgId,
                                                          VOS_VOID   *pMsgStru)
 {
@@ -3719,20 +3137,7 @@ VOS_UINT32  NAS_EMM_MsRegInitSsWtEsmBearerCnfMsgEsmDataReq(VOS_UINT32  ulMsgId,
     return  NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsDrgSsNmlSrvMsgEsmEstReq
- Description     : 主状态DEREG+子状态DEREG_NORMAL_SERVICE下收到ESM的消息
-                   PDN CONNECTIVITY REQUEST
- Input           :
- Output          :
- Return          :
 
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-    2.X00148705              2009-05-19  Modify stop timer t3402
-    3.lihong00150010         2012-10-31  Modify:emgergency
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsDrgSsNmlSrvMsgEsmEstReq(VOS_UINT32  ulMsgId,
                                            VOS_VOID   *pMsgStru)
 {
@@ -3811,19 +3216,7 @@ VOS_UINT32  NAS_EMM_MsDrgSsNmlSrvMsgEsmEstReq(VOS_UINT32  ulMsgId,
     return  NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsDrgSsAttemptToAttMsgEsmEstReq
- Description     : 主状态DEREG+子状态DEREG_ATTEMPT_TO_ATTACH下收到ESM的消息
-                   PDN CONNECTIVITY REQUEST
- Input           : ulMsgId
-                   pMsgStru
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010         2012-10-31  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsDrgSsAttemptToAttMsgEsmEstReq
 (
     VOS_UINT32                              ulMsgId,
@@ -3881,17 +3274,7 @@ VOS_UINT32  NAS_EMM_MsDrgSsAttemptToAttMsgEsmEstReq
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_StartEmergencyAttach
- Description     : 发起紧急注册
- Input           : pstEsmEstReq
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong 00150010         2012-10-30  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_StartEmergencyAttach( VOS_VOID )
 {
     /*打印进入该函数*/
@@ -3928,19 +3311,7 @@ VOS_VOID  NAS_EMM_StartEmergencyAttach( VOS_VOID )
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsDrgSsLimitedSrvMsgEsmEstReq
- Description     : 主状态DEREG+子状态DEREG_LIMIT_SERVICE下收到ESM的消息
-                   PDN CONNECTIVITY REQUEST
- Input           : ulMsgId
-                   pMsgStru
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong 00150010         2012-10-29  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsDrgSsLimitedSrvMsgEsmEstReq
 (
     VOS_UINT32                          ulMsgId,
@@ -3984,19 +3355,7 @@ VOS_UINT32  NAS_EMM_MsDrgSsLimitedSrvMsgEsmEstReq
     return  NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsDrgSsNoImsiMsgEsmEstReq
- Description     : 主状态DEREG+子状态DEREG_NO_IMSI下收到ESM的消息
-                   PDN CONNECTIVITY REQUEST
- Input           : ulMsgId
-                   pMsgStru
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong 00150010         2012-10-30  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsDrgSsNoImsiMsgEsmEstReq
 (
     VOS_UINT32                          ulMsgId,
@@ -4040,19 +3399,7 @@ VOS_UINT32  NAS_EMM_MsDrgSsNoImsiMsgEsmEstReq
     return  NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsDrgSsAttachNeededMsgEsmEstReq
- Description     : 主状态DEREG+子状态DEREG_ATTACH_NEEDED下收到ESM的消息
-                   PDN CONNECTIVITY REQUEST
- Input           : ulMsgId
-                   pMsgStru
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong 00150010         2012-10-30  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsDrgSsAttachNeededMsgEsmEstReq
 (
     VOS_UINT32                          ulMsgId,
@@ -4096,19 +3443,7 @@ VOS_UINT32  NAS_EMM_MsDrgSsAttachNeededMsgEsmEstReq
     return  NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegSsLimitedSrvMsgEsmDataReq
- Description     : 主状态REG+子状态REG_LIMIT_SERVICE下收到ESM的消息
-                   PDN CONNECTIVITY REQUEST
- Input           : ulMsgId
-                   pMsgStru
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong 00150010         2012-10-30  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsRegSsLimitedSrvMsgEsmDataReq
 (
     VOS_UINT32                          ulMsgId,
@@ -4176,22 +3511,7 @@ VOS_UINT32  NAS_EMM_MsRegSsLimitedSrvMsgEsmDataReq
     return  NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegInitMsgEsmEstReq
- Description     : REG_INIT+WAIT_ESM_PDN_RSP,
-                   REG_INIT+WAIT_ATTACH_CN_CNF,
-                   REG_INIT+WAIT_ESM_BEARER_CNF,
-                   REG_INIT+WAIT_RRC_DATA_CNF
-                   状态下收到EMM_ESM_EST_REQ消息的处理
- Input           : ulMsgId
-                   pMsgStru
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong 00150010         2012-11-02  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsRegInitMsgEsmEstReq
 (
     VOS_UINT32                          ulMsgId,
@@ -4280,19 +3600,7 @@ VOS_UINT32  NAS_EMM_MsRegInitMsgEsmEstReq
     return  NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsDrgSsPlmnSrcMsgMsgEsmEstReq
- Description     : 主状态DEREG+子状态DEREG_PLMN_SEARCH下收到ESM的消息
-                   PDN CONNECTIVITY REQUEST
- Input           : ulMsgId
-                   pMsgStru
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong 00150010         2012-11-02  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsDrgSsPlmnSrcMsgMsgEsmEstReq
 (
     VOS_UINT32                          ulMsgId,
@@ -4320,19 +3628,7 @@ VOS_UINT32  NAS_EMM_MsDrgSsPlmnSrcMsgMsgEsmEstReq
     return  NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsDrgSsNoCellAvailMsgMsgEsmEstReq
- Description     : 主状态DEREG+子状态DEREG_NO_CELL_AVAILABLE下收到ESM的消息
-                   PDN CONNECTIVITY REQUEST
- Input           : ulMsgId
-                   pMsgStru
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong 00150010         2012-11-02  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsDrgSsNoCellAvailMsgMsgEsmEstReq
 (
     VOS_UINT32                          ulMsgId,
@@ -4360,19 +3656,7 @@ VOS_UINT32  NAS_EMM_MsDrgSsNoCellAvailMsgMsgEsmEstReq
     return  NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegSsNormalMsgMsgEsmEstReq
- Description     : 主状态REG+子状态REG_NORMAL_SERVICE下收到ESM的消息
-                   PDN CONNECTIVITY REQUEST
- Input           : ulMsgId
-                   pMsgStru
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong 00150010         2012-11-02  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsRegSsNormalMsgMsgEsmEstReq
 (
     VOS_UINT32                          ulMsgId,
@@ -4412,19 +3696,7 @@ VOS_UINT32  NAS_EMM_MsRegSsNormalMsgMsgEsmEstReq
     return  NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegSsRegAttemptUpdateMmMsgEsmEstReq
- Description     : 主状态REG+子状态REG_ATTEMPT_TO_UPDATE_MM下收到ESM的消息
-                   PDN CONNECTIVITY REQUEST
- Input           : ulMsgId
-                   pMsgStru
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong 00150010         2012-11-02  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsRegSsRegAttemptUpdateMmMsgEsmEstReq
 (
     VOS_UINT32                          ulMsgId,
@@ -4464,19 +3736,7 @@ VOS_UINT32  NAS_EMM_MsRegSsRegAttemptUpdateMmMsgEsmEstReq
     return  NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsAnyStateSsAnySateProcMsgEsmStatusReq
- Description     : 本地Detach 并重新 Attach
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.X00148705    2009-4-22  Draft Enact
-    2.X00148705    2009-10-31 增加状态的判断,避免处理和协议不一致
-    3.l00150010    2012-12-17 Modify:Emergency
-    4.s00193151    2014-06-24 Modify:本地DETACH细化处理
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsAnyStateSsAnySateProcMsgEsmStatusReq( VOS_VOID )
 {
     VOS_UINT32                          ulCurEmmMsStat = NAS_LMM_GetEmmCurFsmMS();
@@ -4618,17 +3878,7 @@ VOS_UINT32  NAS_EMM_MsAnyStateSsAnySateProcMsgEsmStatusReq( VOS_VOID )
 
     return NAS_LMM_MSG_HANDLED;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcEsmBearState
- Description     : 该承载在消息中表示承载状态激活，否则没有激活
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2012-2-28  Draft Enact
-
-*****************************************************************************/
 NAS_EMM_BEARER_STATE_ENUM_UINT8  NAS_EMM_ProcEsmBearState
 (
     VOS_UINT32      ulEpsId,
@@ -4650,17 +3900,7 @@ NAS_EMM_BEARER_STATE_ENUM_UINT8  NAS_EMM_ProcEsmBearState
     return NAS_EMM_BEARER_STATE_INACTIVE;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcEsmBearState
- Description     : 承载是否激活
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.wangchen  00209181    2013-02-1  Draft Enact
-
-*****************************************************************************/
 NAS_EMM_BEARER_STATE_ENUM_UINT8  NAS_EMM_IsEpsBearStatusAct (VOS_VOID)
 {
     NAS_MML_PS_BEARER_CONTEXT_STRU      *pstEpsBearerCxt;
@@ -4682,17 +3922,7 @@ NAS_EMM_BEARER_STATE_ENUM_UINT8  NAS_EMM_IsEpsBearStatusAct (VOS_VOID)
     return NAS_EMM_BEARER_STATE_INACTIVE;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_UpdateEpsBearStatus
- Description     : 根据收到ESM的承载信息更新EMM的全局变量
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2012-2-28  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_UpdateEpsBearStatus(VOS_VOID *pstMsg)
 {
     NAS_MML_PS_BEARER_CONTEXT_STRU      astPsBearerCtx[EMM_ESM_MAX_EPS_BEARER_NUM];
@@ -4799,17 +4029,7 @@ VOS_VOID  NAS_EMM_UpdateEpsBearStatus(VOS_VOID *pstMsg)
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SendMmcEmcBearerStatusNotify
- Description     : 向MMC发送LMM_MMC_EMC_BEARER_STATUS_NOTIFY消息
- Input           : ucIsEmcPdpActive----------------EMC PDP是否激活标识
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010    2013-12-27  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_EMM_SendMmcEmcBearerStatusNotify
 (
     VOS_UINT8                           ucIsEmcPdpActive
@@ -4847,17 +4067,7 @@ VOS_VOID NAS_EMM_SendMmcEmcBearerStatusNotify
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_UpdateRegStatusWhenEsmBearStatusReq
- Description     : 收到ESM BEARER STATUS REQ消息时更新注册状态
- Input           : Pointer of EMM_ESM_BEARER_STATUS_REQ_STRU
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010    2012-10-30  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_UpdateRegStatusWhenEsmBearStatusReq
 (
     const EMM_ESM_BEARER_STATUS_REQ_STRU *pstEsmBearerStatusReq
@@ -4976,19 +4186,7 @@ VOS_VOID  NAS_EMM_UpdateRegStatusWhenEsmBearStatusReq
     return ;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsAnyStateSsAnySateEsmBearStatusReq
- Description     : 处理ESM的消息ID_EMM_ESM_BEARER_STATUS_REQ
- Input           : Pointer of EMM_ESM_BEARER_STATUS_REQ_STRU
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.X00148705    2009-4-22  Draft Enact
-    2.H41410       2010-10-18  POP全部栈
-    3.Z00148421    2011-1-11  DTS2010122201496
-    4.S00193151    2014-06-24 Mod: 承载数目为0时本地DETACH的处理
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsAnyStateSsAnySateEsmBearStatusReq( VOS_VOID *pstMsg )
 {
     VOS_UINT32                          ulRes = NAS_LMM_MSG_HANDLED;
@@ -5036,9 +4234,7 @@ VOS_UINT32  NAS_EMM_MsAnyStateSsAnySateEsmBearStatusReq( VOS_VOID *pstMsg )
     /* 承载数为0，统一在此处理 */
     if (0 == pstEsmBearerStatusReq->ulEpsIdNum)
     {
-        /*c00285307 add for DTS2015051204816 begin
-         链路释放优化后，已没有链路释放过程中这个状态，因此不会压栈，此时如果处于DEREG态则说明本地已DETACH完全，需要等待RRC链路释放，
-         因此不能将定时器停止，也不需要出栈处理*/
+        
         if (EMM_MS_DEREG != NAS_LMM_GetEmmCurFsmMS())
         {
             NAS_LMM_EstingOrReleasingProcessTimerHandle();
@@ -5064,16 +4260,7 @@ VOS_UINT32  NAS_EMM_MsAnyStateSsAnySateEsmBearStatusReq( VOS_VOID *pstMsg )
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SndAttachReqFailProc
- Description     : ATTACH REQ发送失败时的处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         : wangchen  00209181   2013-03-30  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_SndAttachReqFailProc(VOS_VOID* pMsg,VOS_UINT32 *pulIsDelBuff)
 {
     LRRC_LMM_DATA_CNF_STRU              *pstRrcMmDataCnf = VOS_NULL_PTR;
@@ -5106,9 +4293,7 @@ VOS_UINT32 NAS_EMM_SndAttachReqFailProc(VOS_VOID* pMsg,VOS_UINT32 *pulIsDelBuff)
         case LRRC_LMM_SEND_RSLT_FAILURE_HO:
         case LRRC_LMM_SEND_RSLT_FAILURE_TXN:
         case LRRC_LMM_SEND_RSLT_FAILURE_RLF:
-        #if (FEATURE_ON == FEATURE_DSDS)
-        case LRRC_LMM_SEND_RSLT_NO_RF:
-        #endif
+        /* NORF情况若重发可能造成短时间内不断重发的现象，因此该场景则直接丢弃，等待attach定时器超时 */
             /* 重启ATTACH流程 */
             /*停止定时器TI_NAS_EMM_WAIT_ESM_BEARER_CNF*/
             NAS_LMM_StopStateTimer(TI_NAS_EMM_T3410);
@@ -5139,7 +4324,6 @@ VOS_UINT32 NAS_EMM_SndAttachReqFailProc(VOS_VOID* pMsg,VOS_UINT32 *pulIsDelBuff)
             (VOS_VOID)NAS_EMM_SendIntraAttachReq();
 
             break;
-
         default:
             break;
         }
@@ -5147,14 +4331,7 @@ VOS_UINT32 NAS_EMM_SndAttachReqFailProc(VOS_VOID* pMsg,VOS_UINT32 *pulIsDelBuff)
     return NAS_EMM_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SendEsmDataCnf
- Description     : 对ESM data req的回复
- Input           : None
- Output          : None
- Return          : VOS_VOID
- History         : lifuxin  00253982   2014-07-08  Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_EMM_SendEsmDataCnf(EMM_ESM_SEND_RSLT_ENUM_UINT32 enDataCnfRst, VOS_UINT32 ulEsmEmmOpId)
 {
     EMM_ESM_DATA_CNF_STRU               *pstEmmEsmDataCnf = NAS_EMM_NULL_PTR;
@@ -5189,14 +4366,7 @@ VOS_VOID NAS_EMM_SendEsmDataCnf(EMM_ESM_SEND_RSLT_ENUM_UINT32 enDataCnfRst, VOS_
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_RcvLrrcEsmDataCnfHandle
- Description     : 对ESM data req的回复
- Input           : None
- Output          : None
- Return          : VOS_VOID
- History         : lifuxin  00253982   2014-07-02  Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_EMM_RcvLrrcEsmDataCnfHandle(const LRRC_LMM_DATA_CNF_STRU  *pstRrcMmDataCnf, VOS_UINT32 ulEsmEmmOpId)
 {
     EMM_ESM_SEND_RSLT_ENUM_UINT32       enEmmEsmDataCnfRst = EMM_ESM_SEND_RSLT_BUTT;
@@ -5228,14 +4398,7 @@ VOS_VOID NAS_EMM_RcvLrrcEsmDataCnfHandle(const LRRC_LMM_DATA_CNF_STRU  *pstRrcMm
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SndEsmMsgSuccProc
- Description     : 对ESM data req回复成功的处理
- Input           : None
- Output          : None
- Return          : VOS_VOID
- History         : lifuxin  00253982   2014-07-03  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32 NAS_EMM_SndEsmMsgSuccProc(VOS_VOID* pMsg)
 {
     LRRC_LMM_DATA_CNF_STRU              *pstRrcMmDataCnf = NAS_EMM_NULL_PTR;
@@ -5253,23 +4416,13 @@ VOS_UINT32 NAS_EMM_SndEsmMsgSuccProc(VOS_VOID* pMsg)
     return NAS_EMM_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SndEsmMsgFailProc
- Description     : ESM消息发送失败时的处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         : wangchen  00209181   2013-03-30  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_SndEsmMsgFailProc(VOS_VOID* pMsg,VOS_UINT32 *pulIsDelBuff)
 {
     LRRC_LMM_DATA_CNF_STRU              *pstRrcMmDataCnf = VOS_NULL_PTR;
     NAS_EMM_MRRC_DATA_REQ_STRU          *pMrrcDataMsg = VOS_NULL_PTR;
     NAS_LMM_MAIN_STATE_ENUM_UINT16       enMainState;
     NAS_LMM_SUB_STATE_ENUM_UINT16        enSubState;
-    VOS_UINT32                            ulRrcMmDataReqMsgLen;
     NAS_EMM_MRRC_MGMT_DATA_STRU         *pEmmMrrcMgmtData = NAS_EMM_NULL_PTR;
 
     *pulIsDelBuff = VOS_TRUE;
@@ -5288,11 +4441,10 @@ VOS_UINT32 NAS_EMM_SndEsmMsgFailProc(VOS_VOID* pMsg,VOS_UINT32 *pulIsDelBuff)
     }
     NAS_EMM_RcvLrrcEsmDataCnfHandle(pstRrcMmDataCnf, pEmmMrrcMgmtData->ulEsmMmOpId);
 
-    ulRrcMmDataReqMsgLen = (sizeof(NAS_EMM_MRRC_DATA_REQ_STRU)+
-                           pEmmMrrcMgmtData->ulNasMsgLength) -
-                           NAS_EMM_4BYTES_LEN;
     /* 申请消息内存*/
-    pMrrcDataMsg = (NAS_EMM_MRRC_DATA_REQ_STRU *)(VOS_VOID*)NAS_LMM_MEM_ALLOC(ulRrcMmDataReqMsgLen);
+    /* 空口消息编码内存直接申请1024字节而不是实际长度, 解决:当申请内存为实际长度,
+        在加密加保护后, 加上安全头出现, 内存越界6个字节问题 */
+    pMrrcDataMsg = (NAS_EMM_MRRC_DATA_REQ_STRU *)(VOS_VOID*)NAS_LMM_MEM_ALLOC(NAS_EMM_INTRA_MSG_MAX_SIZE);
 
     if(VOS_NULL_PTR == pMrrcDataMsg)
     {
@@ -5341,16 +4493,7 @@ VOS_UINT32 NAS_EMM_SndEsmMsgFailProc(VOS_VOID* pMsg,VOS_UINT32 *pulIsDelBuff)
 }
 /*lint +e961*/
 /*lint +e960*/
-/*****************************************************************************
- Function Name   : NAS_EMM_RestartAttProcedural
- Description     : 重启ATTACH流程
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         : wangchen  00209181   2013-03-30  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_EMM_RestartAttProcedural(VOS_VOID)
 {
     /* 重启ATTACH流程 */
@@ -5393,21 +4536,11 @@ VOS_VOID NAS_EMM_RestartAttProcedural(VOS_VOID)
 
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_EsmDataReqRetranSndUplink
- Description     : 重新发送ESM DATA空口消息的处理:直接发上行
- Input           : VOS_UINT32 - 消息的OPID
- Output          : None
- Return          : VOS_VOID
 
- History         : chengmin  00285307   2015-09-01  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_EMM_EsmDataReqRetranSndUplink(VOS_UINT32 ulOpid)
 {
     NAS_EMM_MRRC_MGMT_DATA_STRU        *pEmmMrrcMgmtData;
     NAS_EMM_MRRC_DATA_REQ_STRU         *pMrrcDataMsg = VOS_NULL_PTR;
-    VOS_UINT32                          ulRrcMmDataReqMsgLen;
 
     /* 根据OPID获取缓存中消息 */
     pEmmMrrcMgmtData                    = NAS_EMM_FindMsgInDataReqBuffer(ulOpid);
@@ -5416,13 +4549,10 @@ VOS_VOID NAS_EMM_EsmDataReqRetranSndUplink(VOS_UINT32 ulOpid)
         return;
     }
 
-    /* 消息长度 */
-    ulRrcMmDataReqMsgLen                = (sizeof(NAS_EMM_MRRC_DATA_REQ_STRU)+
-                                            pEmmMrrcMgmtData->ulNasMsgLength) -
-                                            NAS_EMM_4BYTES_LEN;
-
     /* 申请消息内存 */
-    pMrrcDataMsg = (NAS_EMM_MRRC_DATA_REQ_STRU *)(VOS_VOID*)NAS_LMM_MEM_ALLOC(ulRrcMmDataReqMsgLen);
+    /* 空口消息编码内存直接申请1024字节而不是实际长度, 解决:当申请内存为实际长度,
+        在加密加保护后, 加上安全头出现, 内存越界6个字节问题 */
+    pMrrcDataMsg = (NAS_EMM_MRRC_DATA_REQ_STRU *)(VOS_VOID*)NAS_LMM_MEM_ALLOC(NAS_EMM_INTRA_MSG_MAX_SIZE);
     if(VOS_NULL_PTR == pMrrcDataMsg)
     {
         return;
@@ -5448,16 +4578,7 @@ VOS_VOID NAS_EMM_EsmDataReqRetranSndUplink(VOS_UINT32 ulOpid)
     NAS_LMM_MEM_FREE(pMrrcDataMsg);
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_EsmDataReqRetranSndService
- Description     : 重新发送ESM DATA空口消息的处理:先将消息缓存至ESMbuffer，再发serivce
- Input           : VOS_UINT32 - 消息的OPID
- Output          : None
- Return          : VOS_VOID
 
- History         : chengmin  00285307   2015-09-01  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_EMM_EsmDataReqRetranSndService(VOS_UINT32 ulOpid)
 {
     NAS_EMM_MRRC_MGMT_DATA_STRU        *pEmmMrrcMgmtData;
@@ -5547,16 +4668,7 @@ VOS_VOID NAS_EMM_EsmDataReqRetranSndService(VOS_UINT32 ulOpid)
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_EsmDataReqRetranProc
- Description     : 重新发送ESM DATA空口消息
- Input           : VOS_UINT32 - 消息的OPID
- Output          : None
- Return          : VOS_VOID
 
- History         : chengmin  00285307   2015-09-01  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_EMM_EsmDataReqRetranProc(VOS_UINT32 ulOpid)
 {
     /* 如果是信令连接态或数据连接态，直接发 */

@@ -12,21 +12,7 @@ extern "C" {
 
     unsigned long *g_ulFcPointMgr;
 
-/*****************************************************************************
- 函 数 名  : stub_FC_POINT_Init
- 功能描述  : 函数FC_POINT_Init的A核UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int  stub_FC_POINT_Init( VOS_VOID )
 {
 	FC_POINT_MGR_STRU stFcPointMgr = {0};
@@ -55,21 +41,7 @@ void stub_FC_POLICY_Init_MemSet(void)
     memcpy(&g_astFcPolicy, &stFcPolicy, sizeof(FC_POLICY_STRU)*FC_PRIVATE_POLICY_ID_BUTT);
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_LOG
- 功能描述  : 函数FC_LOG的A核UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int stub_FC_LOG
 (
     unsigned int    ulLevel,
@@ -86,21 +58,7 @@ int stub_FC_LOG
     return 0;
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_LOG1
- 功能描述  : 函数FC_LOG1的A核UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int stub_FC_LOG1
 (
     unsigned int    ulLevel,
@@ -118,21 +76,7 @@ int stub_FC_LOG1
     return 0;
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_LOG2
- 功能描述  : 函数FC_LOG2的A核UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int stub_FC_LOG2
 (
     unsigned int    ulLevel,
@@ -151,21 +95,7 @@ int stub_FC_LOG2
     return 0;
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_LOG3
- 功能描述  : 函数FC_LOG3的A核UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int stub_FC_LOG3
 (
     unsigned int    ulLevel,
@@ -185,21 +115,7 @@ int stub_FC_LOG3
     return 0;
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_LOG4
- 功能描述  : 函数FC_LOG4的A核UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int stub_FC_LOG4
 (
     unsigned int    ulLevel,
@@ -220,21 +136,7 @@ int stub_FC_LOG4
     return 0;
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_MNTN_TracePointFcEvent
- 功能描述  : 函数FC_MNTN_TracePointFcEvent的A核UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int stub_FC_MNTN_TracePointFcEvent(void)
 {
     FC_MNTN_EVENT_TYPE_ENUM_UINT16      enMsgName;
@@ -339,21 +241,7 @@ int stub_FC_MNTN_TracePointFcEvent(void)
     return 0;
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_MNTN_TracePolicy
- 功能描述  : 函数FC_MNTN_TracePolicy的A核UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int stub_FC_MNTN_TracePolicy(void)
 {
     FC_MNTN_EVENT_TYPE_ENUM_UINT16 enMsgName;
@@ -452,21 +340,7 @@ int stub_FC_MNTN_TracePolicy(void)
 
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_MNTN_TraceCpuLoad
- 功能描述  : 函数FC_MNTN_TraceCpuLoad的A核UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int stub_FC_MNTN_TraceCpuLoad(void)
 {
     FC_MNTN_EVENT_TYPE_ENUM_UINT16 enMsgName;
@@ -488,21 +362,7 @@ int stub_FC_MNTN_TraceCpuLoad(void)
 
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_MNTN_TraceDrvAssemPara
- 功能描述  : 函数FC_MNTN_TraceDrvAssemPara的A核UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int stub_FC_MNTN_TraceDrvAssemPara(void)
 {
     FC_DRV_ASSEM_PARA_STRU stDrvAssenPara;
@@ -521,21 +381,7 @@ int stub_FC_MNTN_TraceDrvAssemPara(void)
 
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_MNTN_TraceDrvAssemPara
- 功能描述  : 函数FC_MNTN_TraceDrvAssemPara的A核UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int stub_FC_IsPolicyEnable(int ulPointPolicyMask, short enModemId)
 {
     int ret = 0;
@@ -548,21 +394,7 @@ int stub_FC_IsPolicyEnable(int ulPointPolicyMask, short enModemId)
 
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_IsPolicyEnable_end
- 功能描述  : 函数FC_MNTN_TraceDrvAssemPara的A核UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void stub_FC_IsPolicyEnable_end(void)
 {
     int ret = 0;
@@ -573,21 +405,7 @@ void stub_FC_IsPolicyEnable_end(void)
 
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_RegPoint
- 功能描述  : 函数FC_FC_RegPoint的A核UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 unsigned int stub_FC_RegPoint(void *pstFcRegPoint)
 {
     int ret = 0;
@@ -598,41 +416,13 @@ unsigned int stub_FC_RegPoint(void *pstFcRegPoint)
 
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_SetFcEnableMsk
- 功能描述  : 打桩设置g_stFcCfg.ulFcEnbaleMask的函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int stub_FC_SetFcEnableMsk(int mask)
 {
     g_stFcCfg.ulFcEnbaleMask = mask;
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_RegPoint
- 功能描述  : 函数FC_FC_RegPoint的A核UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int  stub_FC_DeRegPoint(char FcId,short ModemId)
 {
     int ret = 0;
@@ -659,21 +449,7 @@ int  stub_FC_DeRegPoint(char FcId,short ModemId)
 
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_RegPoint
- 功能描述  : 函数FC_FC_RegPoint的A核UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int  stub_FC_ChangePoint(char FcId,char PolicyId,char Pri,short ModemId)
 {
     int ret = 0;
@@ -688,21 +464,7 @@ int  stub_FC_ChangePoint(char FcId,char PolicyId,char Pri,short ModemId)
     return ret;
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_POINT_Get
- 功能描述  : 函数FC_POINT_Get的A核UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int  stub_FC_POINT_Get_MaxPointNum(char FcId)
 {
     int ret = 0;
@@ -721,21 +483,7 @@ int  stub_FC_POINT_Get_MaxPointNum(char FcId)
 
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_POINT_Get
- 功能描述  : 函数FC_POINT_Get的A核UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int  stub_FC_POINT_Get_Succ(char FcId)
 {
     int ret = 0;
@@ -756,21 +504,7 @@ int  stub_FC_POINT_Get_Succ(char FcId)
 
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_POINT_Get
- 功能描述  : 函数FC_POINT_Get的A核UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int  stub_FC_POINT_Get_Fail(char FcId)
 {
     int ret = 0;
@@ -791,21 +525,7 @@ int  stub_FC_POINT_Get_Fail(char FcId)
 
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_POINT_Add
- 功能描述  : 函数FC_POINT_Add的A核UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int  stub_FC_POINT_Add(void)
 {
     int ret = 0;
@@ -830,41 +550,13 @@ int  stub_FC_POINT_Add(void)
     return ret;
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_POINT_SetPointNum
- 功能描述  : 设置g_stFcPointMgr中pointNum个数的UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void  stub_FC_POINT_SetPointNum(int Num)
 {
     g_stFcPointMgr.ulPointNum = Num;
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_POINT_SetPointNum
- 功能描述  : 设置g_stFcPointMgr中pointNum个数的UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void  stub_FC_POINT_Add_SetPointInfo(char FcId)
 {
     g_stFcPointMgr.ulPointNum = 2;
@@ -872,21 +564,7 @@ void  stub_FC_POINT_Add_SetPointInfo(char FcId)
     g_stFcPointMgr.astFcPoint[1].enFcId = FcId;
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_POINT_Del
- 功能描述  : FC_POINT_Del的UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int  stub_FC_POINT_Del(char FcId)
 {
     int ret = 0;
@@ -901,21 +579,7 @@ int  stub_FC_POINT_Del(char FcId)
     return ret;
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_POINT_SetFc
- 功能描述  : FC_POINT_SetFc的UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int  stub_FC_POINT_SetFc(unsigned int PolicyMask, char FcId)
 {
     int ret = 0;
@@ -942,21 +606,7 @@ VOS_UINT32 FC_POLICY_ADJUST_FOR_UP_FUNC_TEMP(FC_PRI_ENUM_UINT8 enPointPri, FC_ID
     return 0;
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_POINT_SetFc_SetPoint
- 功能描述  : FC_POINT_SetFc的设置流控点UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void stub_FC_POINT_SetFc_SetPoint(unsigned int PolicyMask, char FcId, int FcMask, short ModemId,void *pSetFunc, void *pClrFunc)
 {
     g_stFcPointMgr.ulPointNum = 1;
@@ -991,21 +641,7 @@ void stub_FC_POINT_SetFc_SetPoint(unsigned int PolicyMask, char FcId, int FcMask
 
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_POINT_ClrFc
- 功能描述  : FC_POINT_ClrFc的UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int  stub_FC_POINT_ClrFc(unsigned int PolicyMask, char FcId)
 {
     int ret = 0;
@@ -1015,21 +651,7 @@ int  stub_FC_POINT_ClrFc(unsigned int PolicyMask, char FcId)
     return ret;
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_POINT_Reg
- 功能描述  : FC_POINT_Reg的UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int  stub_FC_POINT_Reg(void)
 {
     int ret = 0;
@@ -1052,21 +674,7 @@ int  stub_FC_POINT_Reg(void)
     return ret;
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_POINT_DeReg
- 功能描述  : FC_POINT_DeReg的UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int  stub_FC_POINT_DeReg(char FcId, short ModemId)
 {
     int ret = 0;
@@ -1081,21 +689,7 @@ int  stub_FC_POINT_DeReg(char FcId, short ModemId)
     return ret;
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_POINT_DeReg
- 功能描述  : FC_POINT_DeReg的UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int  stub_FC_POINT_Change(char FcId, char PolicyId, char NewPri, short ModemId)
 {
     int ret = 0;
@@ -1109,21 +703,7 @@ int  stub_FC_POINT_Change(char FcId, char PolicyId, char NewPri, short ModemId)
     return ret;
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_POINT_DeReg
- 功能描述  : FC_POINT_DeReg的UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int stub_FC_POLICY_TrimInvalidPri(char DonePri)
 {
     FC_POLICY_STRU  FcPolicy;
@@ -1148,21 +728,7 @@ int stub_FC_POLICY_TrimInvalidPri(char DonePri)
 
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_POLICY_UpWithOnePri
- 功能描述  : FC_POLICY_UpWithOnePri的UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int stub_FC_POLICY_UpWithOnePri(char FcIdCnt)
 {
     int ret = 0;
@@ -1178,21 +744,7 @@ int stub_FC_POLICY_UpWithOnePri(char FcIdCnt)
 
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_POLICY_DownWithOnePri
- 功能描述  : FC_POLICY_DownWithOnePri的UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int stub_FC_POLICY_DownWithOnePri(char FcIdCnt)
 {
     int ret = 0;
@@ -1208,21 +760,7 @@ int stub_FC_POLICY_DownWithOnePri(char FcIdCnt)
 
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_POLICY_Up
- 功能描述  : FC_POLICY_Up的UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int stub_FC_POLICY_Up(char DonePri, char HighestPri, char Valid )
 {
     int ret = 0;
@@ -1260,21 +798,7 @@ int stub_FC_POLICY_Up(char DonePri, char HighestPri, char Valid )
 
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_POLICY_UpToTargetPri
- 功能描述  : FC_POLICY_UpToTargetPri的UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int stub_FC_POLICY_UpToTargetPri(char DonePri, char TargetPri, char Valid )
 {
     int ret = 0;
@@ -1311,21 +835,7 @@ int stub_FC_POLICY_UpToTargetPri(char DonePri, char TargetPri, char Valid )
 
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_POLICY_Down
- 功能描述  : FC_POLICY_Down的UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int stub_FC_POLICY_Down(char DonePri, char Valid )
 {
     int ret = 0;
@@ -1354,21 +864,7 @@ int stub_FC_POLICY_Down(char DonePri, char Valid )
 
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_POLICY_DownToTargetPri
- 功能描述  : FC_POLICY_DownToTargetPri的UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int stub_FC_POLICY_DownToTargetPri(char DonePri, char TargetPri, char Valid )
 {
     int ret = 0;
@@ -1405,21 +901,7 @@ int stub_FC_POLICY_DownToTargetPri(char DonePri, char TargetPri, char Valid )
 
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_POLICY_UpdateHighestPri
- 功能描述  : FC_POLICY_UpdateHighestPri的UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int stub_FC_POLICY_UpdateHighestPri(char Valid )
 {
     int ret = 0;
@@ -1452,21 +934,7 @@ int stub_FC_POLICY_UpdateHighestPri(char Valid )
 
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_POLICY_AddPointForPri
- 功能描述  : FC_POLICY_AddPointForPri的UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int stub_FC_POLICY_AddPointForPri(char Valid, char Cnt, char PointPri, char FcId)
 {
     int ret = 1;
@@ -1490,21 +958,7 @@ int stub_FC_POLICY_AddPointForPri(char Valid, char Cnt, char PointPri, char FcId
     return ret;
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_POLICY_AddPointForPri
- 功能描述  : FC_POLICY_AddPointForPri的UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int stub_FC_POLICY_DelPointForPri(char Cnt, char PointPri, char FcId)
 {
     int ret = 1;
@@ -1527,21 +981,7 @@ int stub_FC_POLICY_DelPointForPri(char Cnt, char PointPri, char FcId)
     return ret;
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_POLICY_AddPoint
- 功能描述  : FC_POLICY_AddPoint的UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int stub_FC_POLICY_AddPoint(void *pAdjustForUpFunc, char PointPri, char DonePri)
 {
     char PolicyId = 3;
@@ -1565,21 +1005,7 @@ int stub_FC_POLICY_AddPoint(void *pAdjustForUpFunc, char PointPri, char DonePri)
     return ret;
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_POLICY_GetPriWithFcId
- 功能描述  : FC_POLICY_GetPriWithFcId的UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int stub_FC_POLICY_GetPriWithFcId(char FcId, char TestcaseNum)
 {
     char PolicyId = 3;
@@ -1647,21 +1073,7 @@ int stub_FC_POLICY_GetPriWithFcId(char FcId, char TestcaseNum)
     return ret;
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_POLICY_DelPoint
- 功能描述  : FC_POLICY_DelPoint的UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int stub_FC_POLICY_DelPoint(void *pAdjustForUpFunc)
 {
     char PolicyId = 3;
@@ -1684,21 +1096,7 @@ int stub_FC_POLICY_DelPoint(void *pAdjustForUpFunc)
     return ret;
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_POLICY_ChangePoint
- 功能描述  : FC_POLICY_ChangePoint的UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int stub_FC_POLICY_ChangePoint(void *pAdjustForUpFunc, char DonePri, char NewPri, char OldPri)
 {
     char PolicyId = 3;
@@ -1723,21 +1121,7 @@ int stub_FC_POLICY_ChangePoint(void *pAdjustForUpFunc, char DonePri, char NewPri
 
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_POLICY_GetPriCnt
- 功能描述  : FC_POLICY_GetPriCnt的UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int stub_FC_POLICY_GetPriCnt(int Cnt)
 {
     FC_POLICY_STRU stFcPolicy;
@@ -1755,21 +1139,7 @@ int stub_FC_POLICY_GetPriCnt(int Cnt)
     return 0;
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_POLICY_Init
- 功能描述  : FC_POLICY_Init的UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int stub_FC_POLICY_Init(void)
 {
     int ret = -1;
@@ -1792,21 +1162,7 @@ int stub_FC_POLICY_Init(void)
 
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_CFG_CheckCpuParam
- 功能描述  : FC_CFG_CheckCpuParam的UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int stub_FC_CFG_CheckCpuParam(int CpuOverLoadVal, int CpuUnderLoadVal)
 {
     int ret = 0;
@@ -1826,21 +1182,7 @@ int stub_FC_CFG_CheckCpuParam(int CpuOverLoadVal, int CpuUnderLoadVal)
     return ret;
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_CFG_CheckMemParam
- 功能描述  : FC_CFG_CheckMemParam的UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int stub_FC_CFG_CheckMemParam(int ThresholdCnt, int SetThreshold, int StopThreshold)
 {
     int ret = 1;
@@ -1873,21 +1215,7 @@ int stub_FC_CFG_CheckMemParam(int ThresholdCnt, int SetThreshold, int StopThresh
     return ret;
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_CFG_CheckUlRateParam
- 功能描述  : FC_CFG_CheckUlRateParam的UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int stub_FC_CFG_CheckUlRateParam(char Cnt)
 {
     FC_CFG_UM_UL_RATE_STRU stFcCfgUmUlRate;
@@ -1905,21 +1233,7 @@ int stub_FC_CFG_CheckUlRateParam(char Cnt)
     return ret;
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_CFG_CheckParam
- 功能描述  : FC_CFG_CheckParam的UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int stub_FC_CFG_CheckParam(int TimerLen)
 {
     FC_CFG_STRU stFcCfg;
@@ -1937,21 +1251,7 @@ int stub_FC_CFG_CheckParam(int TimerLen)
     return ret;
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_CFG_SetDefaultValue
- 功能描述  : FC_CFG_SetDefaultValue的UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int stub_FC_CFG_SetDefaultValue(void)
 {
     FC_CFG_STRU  stFcCfg;
@@ -1968,21 +1268,7 @@ int stub_FC_CFG_SetDefaultValue(void)
 
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_CFG_SetNvValue
- 功能描述  : FC_CFG_SetNvValue的UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int stub_FC_CFG_SetNvValue(void)
 {
     FC_CFG_NV_STRU  stFcCfgNvInit = {0};
@@ -2017,21 +1303,7 @@ int stub_FC_CFG_SetNvValue(void)
 
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_CFG_Init
- 功能描述  : FC_CFG_Init的UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int stub_FC_CFG_Init(void)
 {
     int ret = 1;
@@ -2052,21 +1324,7 @@ int stub_FC_CFG_Init(void)
     return ret;
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_SndCpuMsg
- 功能描述  : FC_SndCpuMsg的UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int stub_FC_SndCpuMsg(void)
 {
     int ret = 0;
@@ -2086,21 +1344,7 @@ int stub_FC_SndCpuMsg(void)
     return ret;
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_SndRegPointMsg
- 功能描述  : FC_SndRegPointMsg的UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int stub_FC_SndRegPointMsg(void)
 {
     int ret = 0;
@@ -2117,21 +1361,7 @@ int stub_FC_SndRegPointMsg(void)
     return ret;
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_SndDeRegPointMsg
- 功能描述  : FC_SndDeRegPointMsg的UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int stub_FC_SndDeRegPointMsg(void)
 {
     int ret = 0;
@@ -2149,21 +1379,7 @@ int stub_FC_SndDeRegPointMsg(void)
     return ret;
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_SndChangePointMsg
- 功能描述  : FC_SndChangePointMsg的UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int stub_FC_SndChangePointMsg(void)
 {
     int ret = 0;
@@ -2183,21 +1399,7 @@ int stub_FC_SndChangePointMsg(void)
     return ret;
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_CommInit
- 功能描述  : FC_CommInit的UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int stub_FC_CommInit(void)
 {
     int ret = 0;
@@ -2212,21 +1414,7 @@ int stub_FC_CommInit(void)
     return ret;
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_CommInit
- 功能描述  : FC_CommInit的UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int stub_FC_SetDebugLev(unsigned int ulLev)
 {
     int ret = 0;
@@ -2243,21 +1431,7 @@ int stub_FC_SetDebugLev(unsigned int ulLev)
     return ret;
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_SetFcEnableMask
- 功能描述  : FC_SetFcEnableMask的UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int stub_FC_SetFcEnableMask(unsigned int ulEnableMask)
 {
     int ret = 0;
@@ -2274,21 +1448,7 @@ int stub_FC_SetFcEnableMask(unsigned int ulEnableMask)
     return ret;
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_SetThreshold
- 功能描述  : FC_SetThreshold的UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int stub_FC_SetThreshold(int PolicyId,int Param1)
 {
     int ret = 0;
@@ -2359,21 +1519,7 @@ int stub_FC_SetThreshold(int PolicyId,int Param1)
 
 }
 
-/*****************************************************************************
- 函 数 名  : stub_FC_Help
- 功能描述  : FC_Help的UT桩函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : w68271
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int stub_FC_Help(int PointNum, int Valid, int FcIdCnt)
 {
     int FcIdLoop;

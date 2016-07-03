@@ -1,24 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmcFsmPlmnSelection.h
-  版 本 号   : 初稿
-  作    者   : w00176964
-  生成日期   : 2011年4月27日
-  最近修改   :
-  功能描述   : NasMmcPlmnSelection.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年4月27日
-    作    者   : w00176964
-    修改内容   : 创建文件
-  2.日    期   : 2011年7月04日
-    作    者   : s46746
-    修改内容   : V7R1 phase II,autoplmnsrch状态机调整为PlmnSelection状态机
-
-******************************************************************************/
 
 /*****************************************************************************
   1 其他头文件包含
@@ -96,12 +76,10 @@ VOS_UINT32  NAS_MMC_RcvMmcMmcInterPlmnSearchReq_PlmnSelection_Init(
     struct MsgCB                       *pstMsg
 );
 
-/* Added by s00246516 for L-C互操作项目, 2014-01-28, Begin */
 VOS_UINT32 NAS_MMC_RcvMsccAcqReq_PlmnSelection_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 );
-/* Added by s00246516 for L-C互操作项目, 2014-01-28, End */
 
 VOS_UINT32 NAS_MMC_RcvRrMmPlmnSrchCnf_PlmnSelection_WaitWasPlmnSearchCnf(
     VOS_UINT32                          ulEventType,
@@ -529,7 +507,6 @@ VOS_UINT32 NAS_MMC_RcvMmAbortInd_PlmnSelection_WaitRrcConnRelInd(
     struct MsgCB                       *pstMsg
 );
 
-/* Added by s00246516 for L-C互操作项目, 2014-01-28, Begin */
 VOS_UINT32 NAS_MMC_RcvMsccRegReq_PlmnSelection_WaitMsccRegReq(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -544,7 +521,6 @@ VOS_UINT32 NAS_MMC_RcvTiWaitMsccRegReqExpired_PlmnSelection_WaitMsccRegReq(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 );
-/* Added by s00246516 for L-C互操作项目, 2014-01-28, End */
 
 #if (FEATURE_ON == FEATURE_LTE)
 VOS_UINT32 NAS_MMC_RcvLmmPlmnCnf_PlmnSelection_WaitLmmPlmnSearchCnf(
@@ -718,7 +694,6 @@ VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_PlmnSelection_WaitEpsRegRsltInd(
     struct MsgCB                       *pstMsg
 );
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-2-7, begin */
 VOS_UINT32 NAS_MMC_RcvMsccImsVoiceCapInd_PlmnSelection_WaitEpsRegRsltInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -728,7 +703,6 @@ VOS_UINT32 NAS_MMC_RcvMsccImsVoiceCapInd_PlmnSelection_WaitEpsRegRsltIndCsPsMode
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 );
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-2-7, end */
 
 VOS_UINT32 NAS_MMC_RcvLmmMmcDetachInd_PlmnSelection_WaitEpsConnRelInd(
     VOS_UINT32                          ulEventType,
@@ -941,7 +915,6 @@ VOS_UINT32 NAS_MMC_RcvLmmMmcDetachCnf_PlmnSelection_WaitEpsRelIndCsPsMode1ReCamp
     struct MsgCB                       *pstMsg
 );
 
-/* Added by s00246516 for L-C互操作项目, 2014-01-28, Begin */
 VOS_UINT32 NAS_MMC_RcvLSysInfoInd_PlmnSelection_WaitMsccRegReq(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -956,7 +929,6 @@ VOS_UINT32 NAS_MMC_RcvLmmAreaLostInd_PlmnSelection_WaitMsccRegReq(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 );
-/* Added by s00246516 for L-C互操作项目, 2014-01-28, End */
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
 VOS_UINT32 NAS_MMC_RcvMsccCLAssociatedInfoNtf_PlmnSelection_WaitLmmPlmnSearchCnf(
@@ -1005,7 +977,6 @@ VOS_VOID NAS_MMC_GetNoSearchedEhplmn_PlmnSelection(
     NAS_MML_SIM_EHPLMN_INFO_STRU       *pstDestEHPlmnInfo
 );
 
-/* Modified by c00318887 for DPlmn扩容和优先接入HPLMN, 2015-5-18, begin */
 VOS_UINT32 NAS_MMC_IsNeedAddEhplmnWhenSeachDplmn_PlmnSelection(
     NAS_MML_PLMN_WITH_RAT_STRU         *pstDestPlmn
 );
@@ -1013,7 +984,6 @@ VOS_VOID NAS_MMC_BuildDestPlmnListWhenSearchPlmn_PlmnSelection(
     NAS_MML_PLMN_LIST_WITH_RAT_STRU     *pstDestPlmnList,
     NAS_MML_PLMN_WITH_RAT_STRU          *pstDestPlmn
 );
-/* Modified by c00318887 for DPlmn扩容和优先接入HPLMN, 2015-5-18, end */
 
 VOS_VOID NAS_MMC_SndSpecPlmnSearchReq_PlmnSelection(
     NAS_MML_PLMN_WITH_RAT_STRU         *pstDestPlmn
@@ -1173,12 +1143,10 @@ VOS_UINT32  NAS_MMC_RcvTafSpecPlmnSearchAbortReq_PlmnSelection(
      struct MsgCB                      *pstMsg
 );
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-2-8, begin */
 VOS_UINT32 NAS_MMC_RcvMsccImsVoiceCapInd_PlmnSelection_WaitCsPsRegRsltInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 );
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-2-8, end */
 
 
 VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_PlmnSelection(
@@ -1244,7 +1212,6 @@ VOS_UINT32  NAS_MMC_RcvRrmmLimitServiceCampInd_PlmnSelection_WaitRrcConnRelInd(
 
 
 
-/* Added by s00246516 for L-C互操作项目, 2014-01-28, Begin */
 #if   (FEATURE_ON == FEATURE_LTE)
 VOS_VOID NAS_MMC_DisableLteForSimReason_PlmnSelection(VOS_VOID);
 #endif
@@ -1259,7 +1226,6 @@ VOS_UINT32 NAS_MMC_IsMsccRegReq_PlmnSelection(VOS_VOID);
 
 VOS_UINT32 NAS_MMC_IsNeedSearchAvailPlmn_PlmnSelection(VOS_VOID);
 
-/* Added by s00246516 for L-C互操作项目, 2014-01-28, End */
 
 VOS_VOID NAS_MMC_UpdateRfAvailFlgPlmnSrchFail_PlmnSelection(VOS_VOID);
 VOS_VOID NAS_MMC_UpdateRfAvailFlgPlmnSrchAborted_PlmnSelection(VOS_VOID);

@@ -309,49 +309,11 @@ extern ULONG TCPIP_GetAddr6ByIfIndex(ULONG ulIfIndex, IP6_ADDR_GET_INFO_S *pstIf
 *******************************************************************************/
 extern VOID TCPIP_Addr6_Display(CHAR *pcIfName);
 
-/*******************************************************************************
-*    Func Name: ADDR_AddIP6AddressByIndex
-* Date Created: 2014-08-01
-*       Author: wuling 00201943
-*  Description:添加接口IPv6地址
-*  Input:    ULONG ulIfIndex:接口索引
-*              CHAR *szIP6Addr :IPv6地址
-*              ULONG ulIP6PrefixLen:地址前缀长度
-*              ULONG ulFlag:操作类型
-*  Output:  
-*  Return: VOS_OK:成功
-*             其他:失败
-*  Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE            NAME                         DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-08-01   wuling 00201943         Create for DTS2014101506272
-*
-*******************************************************************************/
+
 extern ULONG ADDR_AddIP6AddressByIndex(ULONG ulIfIndex, CHAR *szIP6Addr,
                                     ULONG ulIP6PrefixLen, ULONG ulFlag);
 
-/*******************************************************************************
-*    Func Name: ADDR_DelIP6AddressByIndex
-* Date Created: 2014-08-01
-*       Author: wuling 00201943
-*  Description:删除接口IPv6地址
-*  Input:    ULONG ulIfIndex:接口索引
-*              CHAR *szIP6Addr :IPv6地址
-*              ULONG ulIP6PrefixLen:地址前缀长度
-*              ULONG ulFlag:操作类型
-*  Output:  
-*  Return: VOS_OK:成功
-*             其他:失败
-*  Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE            NAME                         DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-08-01   wuling 00201943         Create for DTS2014101506272
-*
-*******************************************************************************/
+
 extern ULONG ADDR_DelIP6AddressByIndex(ULONG ulIfIndex, CHAR *szIP6Addr,
                                      ULONG ulIP6PrefixLen, ULONG ulFlag);
 

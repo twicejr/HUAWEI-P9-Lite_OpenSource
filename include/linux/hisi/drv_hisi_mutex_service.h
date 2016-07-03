@@ -49,28 +49,10 @@ enum hisi_mutex_service_priority {
     MUTEX_SERVICE_PRIORITY_9 = 9,
 };
 
-/*****************************************************************************
- Description : 内核态业务启动时，向注册中心注册的函数
-  History
-  1.Date: 2013/11/22
-    Author : l00249396
-    Modification : Created function
-*****************************************************************************/
+
 extern int hisi_mutex_mng_service_start(int  hisi_id, int (*pPREEMPTFUNC)(int param));
-/*****************************************************************************
- Description : 内核态业务停止时，向注册中心注册的函数
-  History
-  1.Date: 2013/11/22
-    Author : l00249396
-    Modification : Created function
-*****************************************************************************/
+
 extern int hisi_mutex_mng_service_stop(int  hisi_id);
-/*****************************************************************************
- Description : 外部接口，内核态业务启动后，调用此函数配置心跳
-  History
-  1.Date: 2013/12/10
-    Author : b00260479
-    Modification : Created function
-*****************************************************************************/
+
 extern int hisi_mutex_mng_notify_alive(int  hisi_id);
 #endif

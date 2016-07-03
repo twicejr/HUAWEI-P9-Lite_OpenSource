@@ -1064,7 +1064,32 @@ int hi6555v100_coul_get_hltherm_flag(void)
         return 0;
     }
 }
+/*when hi6555 register have not allocate,so we give some interface*/
+static void hi6555v100_coul_save_last_soc(short soc)
+{
+    short val = soc;
+    return ;
+}
 
+static void hi6555v100_coul_get_last_soc(short *soc)
+{
+    short val = 0;
+    *soc = 0;
+}
+
+static void hi6555v100_coul_clear_last_soc_flag(void)
+{
+    unsigned char val;
+    val = 0;
+    return;
+}
+
+static void hi6555v100_coul_get_last_soc_flag(bool *valid)
+{
+    bool val;
+    *valid = val;
+    return;
+}
 #ifdef CONFIG_SYSFS
 
 static long g_reg_addr = 0;
@@ -1161,6 +1186,10 @@ struct coul_device_ops hi6555v100_coul_ops =
     .enter_eco                    = hi6555v100_coul_enter_eco,
     .exit_eco                     = hi6555v100_coul_exit_eco,
     .calculate_eco_leak_uah       = hi6555v100_coul_calculate_eco_leak_uah,
+    .get_last_soc                 = hi6555v100_coul_get_last_soc,
+    .save_last_soc                = hi6555v100_coul_save_last_soc,
+    .get_last_soc_flag            = hi6555v100_coul_get_last_soc_flag,
+    .clear_last_soc_flag          = hi6555v100_coul_clear_last_soc_flag,
 };
 
 

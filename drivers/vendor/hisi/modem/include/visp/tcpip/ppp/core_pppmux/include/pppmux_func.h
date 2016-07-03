@@ -36,7 +36,6 @@ ULONG PPPMUX_InitData(VOID);
 
 ULONG PPPMUX_ProcessMux(ULONG ulIfIndex, ULONG ulSetYes);
 ULONG PPPMUX_ProcessDefaultPid(ULONG ulIfIndex, USHORT usDefaultPid, ULONG ulReset);
-/*Added by luogaowei, for pppmux最大子帧长度扩展, 2013/3/5 */
 ULONG PPPMUX_ProcessSubFrameLenEx(ULONG ulIfIndex, ULONG ulSubFrameLen);
 ULONG PPPMUX_ProcessSubFrameLen(ULONG ulIfIndex,ULONG ulSubFrameLen);
 ULONG PPPMUX_ProcessFrameLen(ULONG ulIfIndex,ULONG ulFrameLen);
@@ -51,7 +50,6 @@ ULONG PPPMUX_ProcessClearStat(ULONG ulIfIndex);
 ULONG PPPMUX_ProcessMux_PT(ULONG ulIfIndex, ULONG ulSetYes);
 ULONG PPPMUX_ProcessDefaultPid_PT(ULONG ulIfIndex, USHORT usDefaultPid, ULONG ulReset);
 ULONG PPPMUX_ProcessSubFrameLen_PT(ULONG ulIfIndex,ULONG ulSubFrameLen);
-/*Added by luogaowei, for pppmux最大子帧长度扩展, 2013/3/5 */
 ULONG PPPMUX_ProcessSubFrameLenEx_PT(ULONG ulIfIndex, ULONG ulSubFrameLen);
 ULONG PPPMUX_ProcessFrameLen_PT(ULONG ulIfIndex,ULONG ulFrameLen);
 ULONG PPPMUX_ProcessSubFrameCount_PT(ULONG ulIfIndex,ULONG ulSubFrameCount);

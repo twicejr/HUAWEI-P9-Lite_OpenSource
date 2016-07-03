@@ -16,9 +16,7 @@ extern "C" {
 #include "vos.h"
 
 #include "PsCommonDef.h"
-/* Added by wx270776 for OM融合, 2015-6-27, begin */
 #include "AtMntn.h"
-/* Added by wx270776 for OM融合, 2015-6-27, end */
 
 /*****************************************************************************
   2 宏定义

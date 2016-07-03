@@ -70,35 +70,13 @@ static int okfn_stub(struct sk_buff *skb)
     return 0;
 }
 
-/*****************************************************************************
- 函 数 名  : init_test_NFExt_STUB_envirment
- 功能描述  : .c中初始化test_NFExt_STUB测试环境, 适配WinGDB
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : liukai
-    修改内容   : 改造到WinGDB
-*****************************************************************************/
 void init_test_NFExt_STUB_envirment(void)
 {
     g_pucData        = (unsigned char *)malloc(114);
 }
 
-/*****************************************************************************
- 函 数 名  : recover_test_NFExt_STUB_envirment
- 功能描述  : .c中恢复test_NFExt_BrDataExport测试环境, 适配WinGDB
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : liukai
-    修改内容   : 改造到WinGDB
-*****************************************************************************/
 void recover_test_NFExt_STUB_envirment(void)
 {
     if (NULL != g_pucData)
@@ -108,22 +86,7 @@ void recover_test_NFExt_STUB_envirment(void)
     }
 }
 
-/*****************************************************************************
-测试项：Test_NFExt_IsOmData
-功能描述：判断是否OM得数据,对于协议栈中得om数据不能抓包，否则抓包风暴
-测试编号：test_NFExt_IsOmData_001
-测试标题：待勾取的报文是UDP报文
-测试步骤：1、
-预期结果：1、
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   : c00191211
-    修改内容   : Created
-  2.日    期   : 2014年5月17日
-    作    者   : liukai
-    修改内容   : 改造到WinGDB
-*****************************************************************************/
 int test_NFExt_IsOmData_001(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -163,22 +126,7 @@ int test_NFExt_IsOmData_001(void)
 #endif
 }
 
-/*****************************************************************************
-测试项：Test_NFExt_IsOmData
-功能描述：判断是否OM得数据,对于协议栈中得om数据不能抓包，否则抓包风暴
-测试编号：Test_NFExt_IsOmData02
-测试标题：待勾取的报文是TCP报文且目的端口和ip和OM匹配
-测试步骤：1、
-预期结果：1、
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   : c00191211
-    修改内容   : Created
-  2.日    期   : 2014年5月17日
-    作    者   : liukai
-    修改内容   : 改造到WinGDB
-*****************************************************************************/
 unsigned int test_NFExt_IsOmData_002(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -214,22 +162,7 @@ unsigned int test_NFExt_IsOmData_002(void)
 #endif
 }
 
-/*****************************************************************************
-测试项：Test_NFExt_IsOmData
-功能描述：判断是否OM得数据,对于协议栈中得om数据不能抓包，否则抓包风暴
-测试编号：Test_NFExt_IsOmData03
-测试标题：待勾取的报文是TCP报文且目的和源端口和ip和OM均不匹配
-测试步骤：1、
-预期结果：1、
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   : c00191211
-    修改内容   : Created
-  2.日    期   : 2014年5月17日
-    作    者   : liukai
-    修改内容   : 改造到WinGDB
-*****************************************************************************/
 unsigned int test_NFExt_IsOmData_003(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -264,22 +197,7 @@ unsigned int test_NFExt_IsOmData_003(void)
 #endif
 }
 
-/*****************************************************************************
-测试项：Test_NFExt_BrDataExport
-功能描述：将勾取网桥中转报文导出到SDT
-测试编号：Test_NFExt_BrDataExport01
-测试标题：正常导入
-测试步骤：1、
-预期结果：1、
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   : c00191211
-    修改内容   : Created
-  2.日    期   : 2014年5月17日
-    作    者   : liukai
-    修改内容   : 改造到WinGDB
-*****************************************************************************/
 void test_NFExt_BrDataExport_001(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -298,22 +216,7 @@ void test_NFExt_BrDataExport_001(void)
 #endif
 }
 
-/*****************************************************************************
-测试项：Test_NFExt_BrDataExport
-功能描述：将勾取网桥中转报文导出到SDT
-测试编号：Test_NFExt_BrDataExport02
-测试标题：数据大于1500
-测试步骤：1、
-预期结果：1、
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   : c00191211
-    修改内容   : Created
-  2.日    期   : 2014年5月19日
-    作    者   : liukai
-    修改内容   : 改造到WinGDB
-*****************************************************************************/
 void test_NFExt_BrDataExport_002(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -331,22 +234,7 @@ void test_NFExt_BrDataExport_002(void)
 #endif
 }
 
-/*****************************************************************************
-测试项：Test_NFExt_ArpDataExport
-功能描述：将勾取ARP报文导出到SDT
-测试编号：Test_NFExt_ArpDataExport01
-测试标题：正常导入
-测试步骤：1、
-预期结果：1、
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   : c00191211
-    修改内容   : Created
-  2.日    期   : 2014年5月19日
-    作    者   : liukai
-    修改内容   : 改造到WinGDB
-*****************************************************************************/
 void test_NFExt_ArpDataExport_001(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -363,22 +251,7 @@ void test_NFExt_ArpDataExport_001(void)
 #endif
 }
 
-/*****************************************************************************
-测试项：Test_NFExt_IpDataExport
-功能描述：将勾取IP报文导出到SDT
-测试编号：Test_NFExt_IpDataExport01
-测试标题：待勾取的报文是OM的数据
-测试步骤：1、
-预期结果：1、
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   : c00191211
-    修改内容   : Created
-  2.日    期   : 2014年5月19日
-    作    者   : liukai
-    修改内容   : 改造到WinGDB
-*****************************************************************************/
 void test_NFExt_IpDataExport_001(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -393,22 +266,7 @@ void test_NFExt_IpDataExport_001(void)
 #endif
 }
 
-/*****************************************************************************
-测试项：Test_NFExt_IpDataExport
-功能描述：将勾取IP报文导出到SDT
-测试编号：test_NFExt_IpDataExport_002
-测试标题：数据包大于1500
-测试步骤：1、
-预期结果：1、
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   : c00191211
-    修改内容   : Created
-  2.日    期   : 2014年5月19日
-    作    者   : liukai
-    修改内容   : 改造到WinGDB
-*****************************************************************************/
 void test_NFExt_IpDataExport_002(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -423,22 +281,7 @@ void test_NFExt_IpDataExport_002(void)
 #endif
 }
 
-/*****************************************************************************
-测试项：Test_NFExt_IpDataExport
-功能描述：将勾取IP报文导出到SDT
-测试编号：test_NFExt_IpDataExport_003
-测试标题：正常导入
-测试步骤：1、
-预期结果：1、
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   : c00191211
-    修改内容   : Created
-  2.日    期   : 2014年5月19日
-    作    者   : liukai
-    修改内容   : 改造到WinGDB
-*****************************************************************************/
 void test_NFExt_IpDataExport_003(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -455,22 +298,7 @@ void test_NFExt_IpDataExport_003(void)
 #endif
 }
 
-/*****************************************************************************
-测试项：test_NFExt_BrPreRoutingHook_001
-功能描述：BRIGE钩子函数
-测试编号：test_NFExt_BrPreRoutingHook_001
-测试标题：待勾取的报文是OM的消息
-测试步骤：1、
-预期结果：1、
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   : c00191211
-    修改内容   : Created
-  2.日    期   : 2014年5月19日
-    作    者   : liukai
-    修改内容   : 改造到WinGDB
-*****************************************************************************/
 unsigned int test_NFExt_BrPreRoutingHook_001(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -485,22 +313,7 @@ unsigned int test_NFExt_BrPreRoutingHook_001(void)
 #endif
 }
 
-/*****************************************************************************
-测试项：Test_NFExt_BrPreRoutingHook
-功能描述：BRIGE钩子函数
-测试编号：Test_NFExt_BrPreRoutingHook02
-测试标题：正常勾包
-测试步骤：1、
-预期结果：1、
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   : c00191211
-    修改内容   : Created
-  2.日    期   : 2014年5月19日
-    作    者   : liukai
-    修改内容   : 改造到WinGDB
-*****************************************************************************/
 unsigned int test_NFExt_BrPreRoutingHook_002(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -515,22 +328,7 @@ unsigned int test_NFExt_BrPreRoutingHook_002(void)
 #endif
 }
 
-/*****************************************************************************
-测试项：Test_NFExt_BrPostRoutingHook
-功能描述：BRIGE钩子函数
-测试编号：Test_NFExt_BrPostRoutingHook01
-测试标题：待勾取的报文是OM的消息
-测试步骤：1、
-预期结果：1、
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   : c00191211
-    修改内容   : Created
-  2.日    期   : 2014年5月19日
-    作    者   : liukai
-    修改内容   : 改造到WinGDB
-*****************************************************************************/
 void test_NFExt_BrPostRoutingHook_001(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -543,22 +341,7 @@ void test_NFExt_BrPostRoutingHook_001(void)
 #endif
 }
 
-/*****************************************************************************
-测试项：Test_NFExt_BrPostRoutingHook
-功能描述：BRIGE钩子函数
-测试编号：Test_NFExt_BrPostRoutingHook02
-测试标题：正常勾包
-测试步骤：1、
-预期结果：1、
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   : c00191211
-    修改内容   : Created
-  2.日    期   : 2014年5月19日
-    作    者   : liukai
-    修改内容   : 改造到WinGDB
-*****************************************************************************/
 void test_NFExt_BrPostRoutingHook_002(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -571,22 +354,7 @@ void test_NFExt_BrPostRoutingHook_002(void)
 #endif
 }
 
-/*****************************************************************************
-测试项：Test_NFExt_BrLocalInHook
-功能描述：BRIGE钩子函数
-测试编号：Test_NFExt_BrLocalInHook01
-测试标题：待勾取的报文是OM的消息
-测试步骤：1、
-预期结果：1、
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   : c00191211
-    修改内容   : Created
-  2.日    期   : 2014年5月19日
-    作    者   : liukai
-    修改内容   : 改造到WinGDB
-*****************************************************************************/
 unsigned int test_NFExt_BrLocalInHook_001(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -604,22 +372,7 @@ unsigned int test_NFExt_BrLocalInHook_001(void)
 #endif
 }
 
-/*****************************************************************************
-测试项：Test_NFExt_BrLocalInHook
-功能描述：BRIGE钩子函数
-测试编号：Test_NFExt_BrLocalInHook02
-测试标题：正常勾包
-测试步骤：1、
-预期结果：1、
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   : c00191211
-    修改内容   : Created
-  2.日    期   : 2014年5月19日
-    作    者   : liukai
-    修改内容   : 改造到WinGDB
-*****************************************************************************/
 unsigned int test_NFExt_BrLocalInHook_002(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -637,22 +390,7 @@ unsigned int test_NFExt_BrLocalInHook_002(void)
 #endif
 }
 
-/*****************************************************************************
-测试项：Test_NFExt_BrLocalOutHook
-功能描述：BRIGE钩子函数
-测试编号：Test_NFExt_BrLocalOutHook01
-测试标题：待勾取的报文是OM的消息
-测试步骤：1、
-预期结果：1、
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   : c00191211
-    修改内容   : Created
-  2.日    期   : 2014年5月19日
-    作    者   : liukai
-    修改内容   : 改造到WinGDB
-*****************************************************************************/
 unsigned int test_NFExt_BrLocalOutHook_001(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -670,22 +408,7 @@ unsigned int test_NFExt_BrLocalOutHook_001(void)
 #endif
 }
 
-/*****************************************************************************
-测试项：Test_NFExt_BrLocalOutHook
-功能描述：BRIGE钩子函数
-测试编号：Test_NFExt_BrLocalOutHook02
-测试标题：正常勾包
-测试步骤：1、
-预期结果：1、
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   : c00191211
-    修改内容   : Created
-  2.日    期   : 2014年5月19日
-    作    者   : liukai
-    修改内容   : 改造到WinGDB
-*****************************************************************************/
 unsigned int test_NFExt_BrLocalOutHook_002(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -703,22 +426,7 @@ unsigned int test_NFExt_BrLocalOutHook_002(void)
 #endif
 }
 
-/*****************************************************************************
-测试项：Test_NFExt_BrForwardHook
-功能描述：BRIGE钩子函数
-测试编号：Test_NFExt_BrForwardHook01
-测试标题：正常勾包
-测试步骤：1、
-预期结果：1、
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   : c00191211
-    修改内容   : Created
-  2.日    期   : 2014年5月19日
-    作    者   : liukai
-    修改内容   : 改造到WinGDB
-*****************************************************************************/
 unsigned int test_NFExt_BrForwardHook_001(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -736,22 +444,7 @@ unsigned int test_NFExt_BrForwardHook_001(void)
 #endif
 }
 
-/*****************************************************************************
-测试项：Test_NFExt_ArpInHook
-功能描述：ARP钩子函数
-测试编号：Test_NFExt_ArpInHook01
-测试标题：正常勾包
-测试步骤：1、
-预期结果：1、
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   : c00191211
-    修改内容   : Created
-  2.日    期   : 2014年5月19日
-    作    者   : liukai
-    修改内容   : 改造到WinGDB
-*****************************************************************************/
 unsigned int test_NFExt_ArpInHook_001(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -769,22 +462,7 @@ unsigned int test_NFExt_ArpInHook_001(void)
 #endif
 }
 
-/*****************************************************************************
-测试项：Test_NFExt_ArpOutHook
-功能描述：ARP钩子函数
-测试编号：Test_NFExt_ArpOutHook01
-测试标题：正常勾包
-测试步骤：1、
-预期结果：1、
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   : c00191211
-    修改内容   : Created
-  2.日    期   : 2014年5月19日
-    作    者   : liukai
-    修改内容   : 改造到WinGDB
-*****************************************************************************/
 unsigned int test_NFExt_ArpOutHook_001(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -802,22 +480,7 @@ unsigned int test_NFExt_ArpOutHook_001(void)
 #endif
 }
 
-/*****************************************************************************
-测试项：Test_NFExt_Ip4PreRoutingHook
-功能描述：IP钩子函数
-测试编号：Test_NFExt_Ip4PreRoutingHook01
-测试标题：正常勾包
-测试步骤：1、
-预期结果：1、
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   : c00191211
-    修改内容   : Created
-  2.日    期   : 2014年5月19日
-    作    者   : liukai
-    修改内容   : 改造到WinGDB
-*****************************************************************************/
 unsigned int test_NFExt_Ip4PreRoutingHook_001(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -835,22 +498,7 @@ unsigned int test_NFExt_Ip4PreRoutingHook_001(void)
 #endif
 }
 
-/*****************************************************************************
-测试项：Test_NFExt_Ip4PostRoutingHook
-功能描述：IP钩子函数
-测试编号：Test_NFExt_Ip4PostRoutingHook01
-测试标题：正常勾包
-测试步骤：1、
-预期结果：1、
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   : c00191211
-    修改内容   : Created
-  2.日    期   : 2014年5月20日
-    作    者   : liukai
-    修改内容   : 改造到WinGDB
-*****************************************************************************/
 unsigned int test_NFExt_Ip4PostRoutingHook_001(void)
 {
     unsigned int result     = 0;
@@ -864,22 +512,7 @@ unsigned int test_NFExt_Ip4PostRoutingHook_001(void)
     return result;
 }
 
-/*****************************************************************************
-测试项：Test_NFExt_Ip4LocalInHook
-功能描述：IP钩子函数
-测试编号：Test_NFExt_Ip4LocalInHook01
-测试标题：正常勾包
-测试步骤：1、
-预期结果：1、
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   : c00191211
-    修改内容   : Created
-  2.日    期   : 2014年5月20日
-    作    者   : liukai
-    修改内容   : 改造到WinGDB
-*****************************************************************************/
 unsigned int test_NFExt_Ip4LocalInHook_001(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -897,22 +530,7 @@ unsigned int test_NFExt_Ip4LocalInHook_001(void)
 #endif
 }
 
-/*****************************************************************************
-测试项：Test_NFExt_Ip4LocalOutHook
-功能描述：IP钩子函数
-测试编号：Test_NFExt_Ip4LocalOutHook01
-测试标题：正常勾包
-测试步骤：1、
-预期结果：1、
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   : c00191211
-    修改内容   : Created
-  2.日    期   : 2014年5月20日
-    作    者   : liukai
-    修改内容   : 改造到WinGDB
-*****************************************************************************/
 unsigned int test_NFExt_Ip4LocalOutHook_001(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -930,22 +548,7 @@ unsigned int test_NFExt_Ip4LocalOutHook_001(void)
 #endif
 }
 
-/*****************************************************************************
-测试项：Test_NFExt_Ip4ForwardHook
-功能描述：IP钩子函数
-测试编号：Test_NFExt_Ip4ForwardHook01
-测试标题：正常勾包
-测试步骤：1、
-预期结果：1、
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   : c00191211
-    修改内容   : Created
-  2.日    期   : 2014年5月20日
-    作    者   : liukai
-    修改内容   : 改造到WinGDB
-*****************************************************************************/
 unsigned int test_NFExt_Ip4ForwardHook_001(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -963,22 +566,7 @@ unsigned int test_NFExt_Ip4ForwardHook_001(void)
 #endif
 }
 
-/*****************************************************************************
-测试项：Test_NFExt_Ip6PreRoutingHook
-功能描述：IP钩子函数
-测试编号：Test_NFExt_Ip6PreRoutingHook01
-测试标题：正常勾包
-测试步骤：1、
-预期结果：1、
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   : c00191211
-    修改内容   : Created
-  2.日    期   : 2014年5月20日
-    作    者   : liukai
-    修改内容   : 改造到WinGDB
-*****************************************************************************/
 unsigned int test_NFExt_Ip6PreRoutingHook_001(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -996,22 +584,7 @@ unsigned int test_NFExt_Ip6PreRoutingHook_001(void)
 #endif
 }
 
-/*****************************************************************************
-测试项：Test_NFExt_Ip6PostRoutingHook
-功能描述：IP钩子函数
-测试编号：Test_NFExt_Ip6PostRoutingHook01
-测试标题：正常勾包
-测试步骤：1、
-预期结果：1、
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   : c00191211
-    修改内容   : Created
-  2.日    期   : 2014年5月20日
-    作    者   : liukai
-    修改内容   : 改造到WinGDB
-*****************************************************************************/
 unsigned int test_NFExt_Ip6PostRoutingHook_001(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -1029,22 +602,7 @@ unsigned int test_NFExt_Ip6PostRoutingHook_001(void)
 #endif
 }
 
-/*****************************************************************************
-测试项：Test_NFExt_Ip6LocalInHook
-功能描述：IP钩子函数
-测试编号：Test_NFExt_Ip6LocalInHook01
-测试标题：正常勾包
-测试步骤：1、
-预期结果：1、
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   : c00191211
-    修改内容   : Created
-  2.日    期   : 2014年5月20日
-    作    者   : liukai
-    修改内容   : 改造到WinGDB
-*****************************************************************************/
 unsigned int test_NFExt_Ip6LocalInHook_001(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -1062,22 +620,7 @@ unsigned int test_NFExt_Ip6LocalInHook_001(void)
 #endif
 }
 
-/*****************************************************************************
-测试项：Test_NFExt_Ip6LocalOutHook
-功能描述：IP钩子函数
-测试编号：Test_NFExt_Ip6LocalOutHook01
-测试标题：正常勾包
-测试步骤：1、
-预期结果：1、
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   : c00191211
-    修改内容   : Created
-  2.日    期   : 2014年5月20日
-    作    者   : liukai
-    修改内容   : 改造到WinGDB
-*****************************************************************************/
 unsigned int test_NFExt_Ip6LocalOutHook_001(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -1095,22 +638,7 @@ unsigned int test_NFExt_Ip6LocalOutHook_001(void)
 #endif
 }
 
-/*****************************************************************************
-测试项：Test_NFExt_Ip6ForwardHook
-功能描述：IP钩子函数
-测试编号：Test_NFExt_Ip6ForwardHook01
-测试标题：正常勾包
-测试步骤：1、
-预期结果：1、
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   : c00191211
-    修改内容   : Created
-  2.日    期   : 2014年5月20日
-    作    者   : liukai
-    修改内容   : 改造到WinGDB
-*****************************************************************************/
 unsigned int test_NFExt_Ip6ForwardHook_001(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -1128,22 +656,7 @@ unsigned int test_NFExt_Ip6ForwardHook_001(void)
 #endif
 }
 
-/*****************************************************************************
-测试项：Test_NFExt_BrForwardFlowCtrlHook
-功能描述：br forward流控函数测试
-测试编号：Test_NFExt_BrForwardFlowCtrlHook01
-测试标题：流控状态丢包(起流控状态应该返回丢包)
-测试步骤：1、
-预期结果：1、
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   : c00191211
-    修改内容   : Created
-  2.日    期   : 2014年5月20日
-    作    者   : liukai
-    修改内容   : 改造到WinGDB
-*****************************************************************************/
 int test_NFExt_BrForwardFlowCtrlHook_001(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)
@@ -1163,22 +676,7 @@ int test_NFExt_BrForwardFlowCtrlHook_001(void)
 #endif
 }
 
-/*****************************************************************************
-测试项：Test_NFExt_BrForwardFlowCtrlHook
-功能描述：br forward流控函数测试
-测试编号：Test_NFExt_BrForwardFlowCtrlHook02
-测试标题：解流控状态不丢包(非起流控状态应该返回正常接受数据包)
-测试步骤：1、
-预期结果：1、
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   : c00191211
-    修改内容   : Created
-  2.日    期   : 2014年5月20日
-    作    者   : liukai
-    修改内容   : 改造到WinGDB
-*****************************************************************************/
 int test_NFExt_BrForwardFlowCtrlHook_002(void)
 {
 #if (FEATURE_ON == FEATURE_NFEXT)

@@ -1,16 +1,4 @@
-/******************************************************************************
 
-
-        @(#)Copyright(C)2013,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : ImsaProcImsSmsMsg.h
-    Description : ImsaProcImsSmsMsg.cÍ·ÎÄ¼þ
-    History     :
-      1.sunbing 00049683    2013-06-19  Draft Enact
-
-
-******************************************************************************/
 
 #ifndef __IMSAPROCIMSSMSMSG_H__
 #define __IMSAPROCIMSSMSMSG_H__

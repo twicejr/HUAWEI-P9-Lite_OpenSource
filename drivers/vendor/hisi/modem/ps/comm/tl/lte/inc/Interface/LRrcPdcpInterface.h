@@ -1,17 +1,4 @@
-/******************************************************************************
 
-    Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : LRrcPdcpInterface.h
-  Description     : LRrcPdcpInterface.h header file
-  History         :
-     1.XiaoJun 58160       2008-09-08  Draft Enact
-     2.XieQiang 00124992   2009-01-19  Modify
-     3.Wang Yangcai 49178  2009-05-13  BJ9D00692:根据CP100平台修改消息ID
-     4.Wang Yangcai 49178  2009-05-23  BJ9D00827:修改COUNTER CHECK在RRC实现
-     5.Wang Yangcai 49178  2009-12-15  BJ9D02529:完善安全完整性功能
-******************************************************************************/
 
 #ifndef __LRRCPDCPINTERFACE_H__
 #define __LRRCPDCPINTERFACE_H__

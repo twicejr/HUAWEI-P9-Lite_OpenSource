@@ -40,9 +40,7 @@ extern "C"{
 #define VRP_EVENT_PMTUFLUSH         0X00100000  /* "00000000 00010000 00000000 00000000" */
 
 
-/*Modified by X36317, 大小从16调整到15，以保证结构体4字节对齐, 2006-05-12*/
 #define APP_NAME_MAX_LEN        15 
-/*Modified by X36317, 大小从4调整到7，以保证结构体4字节对齐, 2006-05-12*/
 #define APP_TASK_NAME_LEN       7  
 #define APP_TASK_PARA_NUM       4
 

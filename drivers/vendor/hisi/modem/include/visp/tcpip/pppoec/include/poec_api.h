@@ -168,22 +168,7 @@ extern ULONG TCPIP_ClrPoecIntfStat(ULONG ulPoecIfIndex);
 *
 *******************************************************************************/
 extern ULONG TCPIP_CreatePoecIntf(ULONG *pulPoecIfIndex);
-/*******************************************************************************
-*    Func Name: TCPIP_CreatePoecIntfByNum
-* Date Created: 2011-04-21
-*       Author: zhaoyue00171897
-*  Description: 根据接口号创建PPPoE Client接口
-*        Input: ULONG ulPortNo: 指定的Dialer端口号(输入零表示按默认方式创建)
-*       Output: pulPoecIfIndex: 保存创建的接口的索引
-*       Return: SUCCESS     VOS_OK, FAILURE     error code
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-04-21   zhaoyue00171897         Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_CreatePoecIntfByNum(ULONG *pulPoecIfIndex, ULONG ulPortNo);
 /*******************************************************************************
 *    Func Name: TCPIP_DebugPoecAll
@@ -434,79 +419,16 @@ extern ULONG TCPIP_GetPoecSessionInfo (ULONG ulPoecIfIndex, TCPIP_PPPOE_C_SESSIO
 *******************************************************************************/
 extern ULONG TCPIP_RegFuncPoecPhaseNotify(POEC_PHASE_NOTIFY pfHook);
 
-/*******************************************************************************
-*    Func Name: TCPIP_SetPoecDebugFlag
-* Date Created: 2010-02-05
-*       Author: z00104207
-*  Description: 设置POEC调试开关，支持分别基于ETH接口和基于Dialer接口
-*        Input: ULONG ulDialerIfIndex: Dialer接口的接口索引
-*               ULONG ulEthIfIndex:    Eth接口的接口索引
-*               ULONG ulFlag:          调试开关
-*       Output: 
-*       Return: 成功则返回VOS_OK，否则返回其他错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-02-05   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_SetPoecDebugFlag(ULONG ulDialerIfIndex, ULONG ulEthIfIndex, ULONG ulFlag);
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetPoecDebugFlag
-* Date Created: 2010-02-05
-*       Author: z00104207
-*  Description: 获取POEC调试开关
-*        Input: ULONG ulDialerIfIndex: Dialer接口的接口索引
-*               ULONG ulEthIfIndex:    Eth接口的接口索引
-*       Output: ULONG *pulFlag:        调试开关取值
-*       Return: 成功则返回VOS_OK，否则返回其他错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-02-05   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_GetPoecDebugFlag(ULONG ulDialerIfIndex, ULONG ulEthIfIndex, ULONG *pulFlag);
 
-/*******************************************************************************
-*    Func Name: TCPIP_GR_POECRestore
-* Date Created: 2010-02-05
-*       Author: z00104207
-*  Description: 向SOCK任务写事件，通知进行POEC保活处理
-*        Input: VOID
-*       Output: 
-*       Return: 成功则返回VOS_OK，否则返回其他错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-02-05   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_GR_POECRestore(VOID);
 
-/*******************************************************************************
-*    Func Name: TCPIP_GR_POECSmooth
-* Date Created: 2010-02-05
-*       Author: z00104207
-*  Description: 向SOCK任务写事件，通知进行POEC保活平滑处理
-*        Input: VOID
-*       Output: 
-*       Return: 成功则返回VOS_OK，否则返回其他错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-02-05   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_GR_POECSmooth(VOID);
 
 #ifdef __cplusplus

@@ -1,27 +1,4 @@
-/*******************************************************************************
-*
-*
-*                Copyright 2008, Huawei Technologies Co. Ltd.
-*                            ALL RIGHTS RESERVED
-*
-*-------------------------------------------------------------------------------
-*
-*                              etharp_api.h
-*
-*  Project Code: VISPV100R007
-*   Module Name: ETHARP
-*  Date Created: 2008年1月25日
-*        Author: x00100259
-*   Description: ETHARP模块提供的对外数据结构定义和用户API声明
-*
-*-------------------------------------------------------------------------------
-*  Modification History
-*  DATE        NAME             DESCRIPTION
-*  -----------------------------------------------------------------------------
-*  2008年1月25日  x00100259         Create the first version.
-*  2008-08-13     f54882            Modify for BC3D00237
-*
-*******************************************************************************/
+
 
 #ifndef _ETHARP_API_H_
 #define _ETHARP_API_H_
@@ -109,9 +86,7 @@ enum tagETHARPRetCode
 
     ETHARP_ERR_UNARP_DISABLE,       /*63 UNARP功能未使能,兼容V1R8C01*/
 
-    /*Begin BC3D01604 子接口不显示ARP统计信息 l00147446 09-05-31*/
     ETHARP_ERR_SUB_INTF,            /*64 接口不应该为子接口*/
-    /*End BC3D01604 子接口不显示ARP统计信息 l00147446 09-05-31*/
     ETHARP_ERR_HOOK_TYPE,            /* 65 注册钩子的类型参数不对 */
     ETHARP_ERR_HOOK_ALREADYREG,      /* 66 钩子已经注册 */
     ETHARP_ERR_HOOK_NOTREG,          /* 67 钩子未曾注册 */
@@ -215,7 +190,7 @@ enum tagETHARPRetCode
 #define MACADDRLEN       6       /*physical地址长度*/
 #define PROADDRLEN       4       /*协议地址长度*/
 #define MAXPKTSPERTIME   100     /*一次处理的ARP报文的最大包数*/
-#define ARP_EXPIRE_DETECT_TIMES 3/* ARP超时探测次数缺省值 add by xiaoshouhe 2003/10/16 */
+#define ARP_EXPIRE_DETECT_TIMES 3
 
 
 /*以太网帧格式*/
@@ -317,7 +292,6 @@ enum tagETHARPRetCode
 #define ARP_GUARD_ENABLE    1
 #define ARP_GUARD_DISNABLE  0
 
-/* Modify by z00171897/s00176784, at 2011-06-02. 修改原因: 支持获取保存ARP报文队列 */
 #define ETHARP_MAX_ARPQUE_LEN      128    /* 保存ARP报文队列长度最大值 */
 /**********************************************************************
 *                        对外提供的数据结构定义
@@ -471,7 +445,6 @@ typedef struct tagETHSTAT_S
     ULONG    ulRcvUnArpPkts;      /* 接收的UNARP报文数 */
     ULONG    ulArpMissUpCount;    /* ARP Miss上报次数统计 */
     ULONG    ulArpMissNpCount;    /* ARP Miss下发Np次数统计*/
-    /*Added by wangtong207740, ETH报文统计增强, 2012/9/3 */
     ULONG    ulRcvBcastPkts;       /*收到的广播报文个数*/
     ULONG    ulSndBcastPkts;       /*发送的广播报文个数*/
     ULONG    ulRcvMcastPkts;       /*收到的多播报文个数*/
@@ -479,13 +452,11 @@ typedef struct tagETHSTAT_S
     ULONG    ulSndPhyFailtPkts;   /*发送驱动失败的报文个数统计。*/
 }ETHSTAT_S;
 
-/* Add by heyijun 00218462 for DTS2012092803600 维测需求开发, 2012-9 */
 typedef struct tagETHSTAT_LIST_S
 {
     ULONG     ulIfIndex;
     ETHSTAT_S stEthStat;
 }ETHSTAT_LIST_S;
-/* End of Add by heyijun 00218462 for DTS2012092803600 维测需求开发, 2012-9 */
 
 /* 用户发送的ARP请求报文统计信息 */
 typedef struct tagUSERARPSTAT_S
@@ -524,14 +495,12 @@ typedef struct tagARPINFO_S
 
 } ARPINFO_S;
 
-/* DTS2013082109647【新需求-CIP-ARP】CGP产品联调测试场景需要获取临时ARP表项信息，需要新增API接口获取临时表项 */
 typedef struct tagARPINPUT_S
 {
     ULONG ulIpAddr;      /* 地址，主机字节序 */
     ULONG ulVrfIndex;    /* vrf index */
 } ARPINPUT_S;
 
-/*Added by z00208058, for PTN需求，支持指定VLAN恢复ARP, 2013/1/23 */
 typedef struct tagARPWITHVLANINFO_S
 {
     ULONG  ulIfIndex;     /* 接口索引 */
@@ -540,7 +509,6 @@ typedef struct tagARPWITHVLANINFO_S
     USHORT usVlanId;      /* VLAN ID */
 } ARPWITHVLANINFO_S;
 
-/*Added by z00208058, 解决主接口和子接口共vlan问题，DTS2014122609381, 2014/12/26 */
 typedef struct tagEtharpGetRcvIfInfo_S
 {
     ULONG ulMainIfIndex;         /*主接口索引*/
@@ -565,7 +533,6 @@ typedef ULONG(*gpfTCPIPSpecialArpProxyIP)(ULONG ulIfIndex, ULONG IPAddr);
 /* 是否是NAT 地址回调函数数据结构定义,地址为网络序 */
 typedef ULONG(*ETHARP_IS_NAT_IPADDR_HOOK_FUNC)(ULONG ulIfIndex, ULONG ulIPAddr);
 
-/*Added by z00208058, 解决主接口和子接口共vlan问题，DTS2014122609381, 2014/12/26 */
 typedef ULONG (*ETHARP_GETARPRCVIFINDEX_HOOK_FUNC)(ETHARP_GET_RCVIF_S *pstRcvIfInfo);
 
 
@@ -629,7 +596,6 @@ typedef struct tagARPInfo
     CHAR  szVrfName[TCPIP_MAX_VRFNAME_LENGTH + 1];
     /* End:VISP1.7C03 VRF wangchengyang , 2009-02-06 */
     ULONG     ulArpExpireTime;/*ARP结点的老化时间，如果为静态结点，此值为0xFFFFFFFF*/
-    /*modefy for BC3D03264 ARP显示需要符合SGSN要求 l00147446 10-06-13*/
     ULONG     ulLeftExpireTime;/*ARP结点老化剩余时间,对于静态ARP结点，此值为0 */
     UCHAR     ucDArpFlag;  /* 动态ARP有效, 1表示由用户添加, 0表示协议栈自动生成 */
     UCHAR     ucpad[3];
@@ -735,23 +701,7 @@ extern ULONG TCPIP_ShowARPExpireTime( CHAR* szIfName );
 
 extern ULONG  TCPIP_AddStaticArpWithVlan(ULONG ulIpAddr, UCHAR *pucMacAddr,USHORT usVID);
 /* Begin:VISP1.7C03 VRF wangchengyang , 2009-02-06 */
-/*******************************************************************************
-*    Func Name: TCPIP_AddStaticArpByVrf
-* Date Created: 2008-03-25
-*       Author: x00100259
-*  Description: Add static arp entry by Vrf
-*        Input: ARP_CFG_S *pstARPIn:静态arp配置控制块
-*
-*       Output:
-*       Return: 成功或错误码
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-25   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_AddStaticArpByVrf(ARP_CFG_S *pstARPIn);
 
 /*******************************************************************************
@@ -774,194 +724,29 @@ extern ULONG  TCPIP_DelArpEntryByVrf(ULONG ulIpAddr,ULONG ulScope,CHAR *pszVrfNa
 
 /* End:VISP1.7C03 VRF wangchengyang , 2009-02-06 */
 
-/*******************************************************************************
-*    Func Name: TCPIP_AddStaticArp
-*  Description: Add static arp entry
-*        Input: ULONG ulIpAddr:地址
-*               UCHAR pucMacAddr:physical地址
-*       Output:
-*       Return: 成功或错误码
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-25   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_AddStaticArp( ULONG ulIpAddr, UCHAR *pucMacAddr );
-/*******************************************************************************
-*    Func Name: TCPIP_ClearAllARPEntry
-*  Description: 清除所有的ARP表
-*        Input: 无
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-25   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_ClearAllARPEntry(VOID);
-/*******************************************************************************
-*    Func Name: TCPIP_ClearAllDynARPEntry
-*  Description: 清楚所有arp表象
-*        Input: 无
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-25   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_ClearAllDynARPEntry(VOID);
-/*******************************************************************************
-*    Func Name: TCPIP_ClearDynARPEntryByIntf
-*  Description: 删除某个接口下的动态ARP表项
-*        Input: ULONG ulIfIndex:接口索引
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-25   x00100259               Create
-*  2008-08-13   f54882                  Modified for BC3D00242
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_ClearDynARPEntryByIntf( ULONG ulIfIndex );
-/*******************************************************************************
-*    Func Name: TCPIP_ClearStaticARPEntry
-*  Description: 清楚所有静态arp表项
-*        Input: 无
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-25   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_ClearStaticARPEntry(VOID);
-/*******************************************************************************
-*    Func Name: TCPIP_CloseArpTable
-*  Description: 关闭apr表
-*        Input: ULONG ulWaitlist:ulWaitlist句柄
-*       Output:
-*       Return: 成功或错误码
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-25   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_CloseArpTable( UINTPTR ulWaitlist );
-/*******************************************************************************
-*    Func Name: TCPIP_ClrEthStat
-*  Description: 清除以太接口报文统计信息
-*        Input: ULONG ulIfIndex:接口索引
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-25   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_ClrEthStat( ULONG ulIfIndex );
-/*******************************************************************************
-*    Func Name: TCPIP_DelArpEntry
-*  Description: 删除某个ARP表项
-*        Input: ULONG ulIpAddr:地址
-*               ULONG ulScope:范围
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-25   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_DelArpEntry( ULONG ulIpAddr,ULONG ulScope );
-/*******************************************************************************
-*    Func Name: TCPIP_EthArpmiss_SGSN
-* Date Created: 2010-04-13
-*       Author: x00100259
-*  Description: 处理NP的ARP MISS消息,供SGSN使用
-*        Input: ULONG ulIfIndex:接口索引
-*               ULONG ulDstIpAddr:目的地址
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-04-13   l00147446               Create
-*
-*******************************************************************************/
+
 ULONG TCPIP_EthArpmiss_SGSN(ULONG ulIfIndex, ULONG ulDstIpAddr);
-/*******************************************************************************
-*    Func Name: TCPIP_EthArpmiss
-*  Description: 处理NP的ARP MISS消息
-*        Input: ULONG ulIfIndex:接口索引
-*               ULONG ulDstIpAddr:目的地址
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-24   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG   TCPIP_EthArpmiss( ULONG ulIfIndex, ULONG ulDstIpAddr );
-/*******************************************************************************
-*    Func Name: TCPIP_GetArpEntry
-*  Description: Get arp entry
-*        Input: ULONG ulWaitlist:WaitList句柄
-*               TCPIP_ETHARP_ARPRTENTRY_S *pstArpEntry:ARP表项结点指针
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-25   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_GetArpEntry( UINTPTR ulWaitlist, TCPIP_ETHARP_ARPRTENTRY_S *pstArpEntry );
-/*******************************************************************************
-*    Func Name: TCPIP_GetArpEntryByIPAddr
-*  Description: 根据地址查询ARP表项
-*        Input: ULONG ulIPAddr: 要查询的ARP表项的地址，主机序
-*               ARPINFO_S *pstARPInfo: 产品关心的ARP信息，指向的内存由用户负责申请和释放
-*       Output: ARPINFO_S *pstARPInfo: 产品关心的ARP信息，指向的内存由用户负责申请和释放
-*       Return: 成功或错误码
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-25   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_GetArpEntryByIPAddr( ULONG ulIPAddr, ARPINFO_S *pstARPInfo );
 
 /* Begin:VISP1.7C03 VRF wangchengyang , 2009-02-09 */
@@ -1003,261 +788,37 @@ extern ULONG  TCPIP_GetArpEntryByVrfIPAddr(ULONG ulIPAddr, ARPINFO_S *pstARPInfo
 *******************************************************************************/
 ULONG TCPIP_GetArpInfoByInput(ARPINPUT_S *pstInputInfo, ARPINFO_S *pstARPInfo);
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetArpNum
-*  Description: 查询ARP表项总个数
-*        Input: ULONG ulType:ULONG ulType: 0 静态  1 动态  其他 静态加动态表项总数
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-25   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_GetArpNum( ULONG ulType );
-/*******************************************************************************
-*    Func Name: TCPIP_GetArpProxy
-*  Description: get arp proxy switch
-*        Input: ULONG ulIfIndex:接口索引
-*
-*       Output:  ULONG * pulFlag:开关
-*       Return: 成功或错误码
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-25   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_GetArpProxy( ULONG ulIfIndex, ULONG * pulFlag );
-/*******************************************************************************
-*    Func Name: TCPIP_GetEthArpDebugSwitch
-*  Description: 获取DEBUG调试开关
-*        Input: ULONG* pulDebugArp:ARP调试开关
-*               ULONG* pulDebugEthernet:ETH调试开关
-*               ULONG* pulAclGroupNum:ACL规则组序号
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-25   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_GetEthArpDebugSwitch( ULONG* pulDebugArp, ULONG* pulDebugEthernet, ULONG* pulAclGroupNum );
-/*******************************************************************************
-*    Func Name: TCPIP_GetEthHADbg
-*  Description: ETHARP调试信息的获取接口
-*        Input: 无
-*       Output: ULONG *pulDbg:以太调试开关状态
-*       Return: 成功或错误码
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-25   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_GetEthHADbg( ULONG *pulDbg );
-/*******************************************************************************
-*    Func Name: TCPIP_GetEthStat
-*  Description: 查询以太接口报文统计信息
-*        Input: ULONG ulIfIndex:接口索引
-*
-*       Output: ETHSTAT_S * pstEthStat:以太接口的统计信息
-*       Return: 成功或错误码
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-25   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_GetEthStat( ULONG ulIfIndex, ETHSTAT_S * pstEthStat );
-/*******************************************************************************
-*    Func Name: TCPIP_GetPPIArpByIp
-*  Description: 根据PPI接口的需要，利用地址查询对应的ARP节点
-*        Input: ULONG ulIfIndex:接口索引
-*               ULONG ulIpAddr:目的地址
-*
-*       Output: PPI_ARP_S*pstPpiArp:查询成功后得到的ARP信息
-*       Return: 成功或错误码
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-24   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_GetPPIArpByIp(ULONG ulIfIndex, ULONG ulIpAddr, PPI_ARP_S*pstPpiArp );
-/*******************************************************************************
-*    Func Name: TCPIP_OpenArpTable
-*  Description: Open object for arp table
-*        Input: ULONG *pulWaitlist:WaitList句柄
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-25   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_OpenArpTable( UINTPTR *pulWaitlist );
-/*******************************************************************************
-*    Func Name: TCPIP_RegFuncDealIpConflictHook
-*  Description: 注册地址冲突适配函数
-*        Input: DealIpConflict_HOOK_FUNC pfHookFunc:地址冲突适配函数
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-25   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_RegFuncDealIpConflictHook( DealIpConflict_HOOK_FUNC pfHookFunc );
-/*******************************************************************************
-*    Func Name: TCPIP_RegFuncEthArpHook
-*  Description: 注册钩子函数
-*        Input: ULONG  ulType:注册类型
-*               ETHARP_INTERMEDIATE_HOOK_FUNC pfFun:ETHARP钩子函数
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-24   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_RegFuncEthArpHook( ULONG  ulType, ETHARP_INTERMEDIATE_HOOK_FUNC pfFun );
-/*******************************************************************************
-*    Func Name: TCPIP_RegFuncGetVlanHeadHook
-*  Description: 注册获取vlan头适配函数
-*        Input: gpfTCPIPGetVlanHead pfHookFuc:获取vlan头适配函数
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-25   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_RegFuncGetVlanHeadHook( gpfTCPIPGetVlanHead pfHookFuc );
-/*******************************************************************************
-*    Func Name: TCPIP_RegFuncSpecialArpProxyHook
-*  Description: 注册特殊arp函数
-*        Input: gpfTCPIPSpecialArpProxy pfHookFuc:特殊arp函数
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-25   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_RegFuncSpecialArpProxyHook( gpfTCPIPSpecialArpProxy pfHookFuc );
-/*******************************************************************************
-*    Func Name: TCPIP_SendGratuitousArp
-*  Description: 发送免费ARP报文
-*        Input: ULONG ulIfIndex:接口索引
-*               ULONG ulIpAddr:地址
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-24   x00100259               Create
-*  2008-08-13   f54882                  Modified for BC3D00242
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_SendGratuitousArp (ULONG ulIfIndex, ULONG ulIpAddr);
-/*******************************************************************************
-*    Func Name: TCPIP_SetArpProxy
-*  Description: set arp proxy switch
-*        Input: ULONG ulIfIndex:接口索引
-*               ULONG ulFlag:接口类型标志
-*               ULONG ulSetYes:是否设置
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-25   x00100259               Create
-*  2008-08-13   f54882                  Modified for BC3D00242
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_SetArpProxy( ULONG ulIfIndex, ULONG ulFlag, ULONG ulSetYes );
-/*******************************************************************************
-*    Func Name: TCPIP_SetEthArpDebugSwitch
-*  Description: 获取DEBUG调试开关
-*        Input: ULONG ulDebugArp:ARP调试开关
-*               ULONG ulDebugEthernet:ETH调试开关
-*               ULONG ulAclGroupNum:ACL规则组序号
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-25   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_SetEthArpDebugSwitch( ULONG ulDebugArp, ULONG ulDebugEthernet, ULONG ulAclGroupNum );
-/*******************************************************************************
-*    Func Name: TCPIP_SetEthHADbg
-*  Description: ETH调试信息设置接口
-*        Input: ULONG ulDbg:调试开关值
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-25   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_SetEthHADbg( ULONG ulDbg );
-/*******************************************************************************
-*    Func Name: TCPIP_SetVlan
-*  Description: 使能或去使能接口VLAN功能
-*        Input: ulIfIndex:接口的索引号
- *              ulSetYes:使用能标致 1：使能  0:不使能
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-25   x00100259               Create
-*  2008-08-13   f54882                  Modified for BC3D00242
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_SetVlan( ULONG ulIfIndex , ULONG ulSetYes );
 /*******************************************************************************
 *    Func Name: TCPIP_GetVlan
@@ -1275,20 +836,7 @@ extern ULONG  TCPIP_SetVlan( ULONG ulIfIndex , ULONG ulSetYes );
 *
 *******************************************************************************/
 extern ULONG  TCPIP_GetVlan(ULONG ulIfIndex, ULONG * pulVlanFlag);
-/*******************************************************************************
-*    Func Name: TCPIP_RegFuncGetOmIpHook
-*  Description: 注册特殊ARP代理的逻辑IP（OMIP）地址判断钩子函数
-*        Input: gpfTCPIPSpecialArpProxyIP pfHookFunc:逻辑IP（OMIP）地址判断钩子函数
-*       Output:
-*       Return: VOID
-*      Caution: pfHookFunc不为空，表示注册，为空表示注销
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-14   z00104207               Create
-*
-*******************************************************************************/
+
 extern VOID   TCPIP_RegFuncGetOmIpHook(gpfTCPIPSpecialArpProxyIP pfHookFunc);
 /*******************************************************************************
 *    Func Name: TCPIP_GetEtharpMac
@@ -1306,20 +854,7 @@ extern VOID   TCPIP_RegFuncGetOmIpHook(gpfTCPIPSpecialArpProxyIP pfHookFunc);
 *
 *******************************************************************************/
 extern ULONG  TCPIP_GetEtharpMac(ULONG ulIfIndex, UCHAR *pucMac);
-/*******************************************************************************
-*    Func Name: TCPIP_ShowEtharpStatistic
-*  Description: 获取接口以太统计
-*        Input: CHAR *pName:接口名称
-*       Output:
-*       Return: VOID
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-04-18   x00100259               Create
-*
-*******************************************************************************/
+
 extern VOID   TCPIP_ShowEtharpStatistic(CHAR *pName);
 /*******************************************************************************
 *    Func Name: TCPIP_ShowIPConflictTable
@@ -1679,22 +1214,7 @@ extern ULONG TCPIP_SetArpLogSwitch(ULONG ulIfIndex, ULONG ulLogSwitch);
 *******************************************************************************/
 extern ULONG TCPIP_GetArpLogSwitch(ULONG ulIfIndex, ULONG* pulLogSwitch);
 
-/*****************************************************************************
- 函 数 名  : TCPIP_GetEthHeadLen
- 功能描述  : 获取eth头
- 输入参数  : MBUF_S* pMBuf  mbuf指针
-             ULONG ulIfIndex    接口索引
- 输出参数  : ULONG *pulEthHeadLen  eth头长度
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年4月27日
-    作    者   : w62223
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 extern ULONG TCPIP_GetEthHeadLen(MBUF_S* pMBuf,ULONG ulIfIndex,ULONG *pulEthHeadLen);
 
 /*******************************************************************************
@@ -1870,22 +1390,7 @@ extern ULONG TCPIP_GetArpStrictLearnSwitch(ULONG *pulSwitch);
 *******************************************************************************/
 ULONG TCPIP_AddDynamicArp(ULONG ulIfIndex, UCHAR *pucMacAddr, ULONG ulDstIpAddr);
 
-/*******************************************************************************
-*    Func Name: TCPIP_AddDynamicArpWithVlan
-* Date Created: 2013-01-17
-*       Author: z00208058
-*  Description: 添加动态ARP，指定VLAN ID
-*        Input: pstArpInfo:入参结构
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2013-01-17   z00208058               Create
-*
-*******************************************************************************/
+
 ULONG TCPIP_AddDynamicArpWithVlan(ARPWITHVLANINFO_S *pstArpInfo);
 
 
@@ -1909,23 +1414,7 @@ ULONG TCPIP_AddDynamicArpWithVlan(ARPWITHVLANINFO_S *pstArpInfo);
 *******************************************************************************/
 ULONG TCPIP_SendArpRequestForVlan(ULONG ulIfIndex, ULONG ulDstIpAddr);
 
-/*******************************************************************************
-*    Func Name: TCPIP_CheckSrcMacErr
-* Date Created: 2009-7-14
-*       Author: l00143205
-*  Description: 校验ARP报文源MAC的合法性
-*        Input: ULONG* ucSrcMacAddr: 源MAC
-*       Output:
-*       Return: VOS_OK: MAC合法
-*               其他:   MAC非法
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME             DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-7-14    L(00143205)      Create the first version.
-*
-*******************************************************************************/
+
 ULONG TCPIP_CheckSrcMac(UCHAR *ucSrcMacAddr);
 
 /*******************************************************************************
@@ -2024,59 +1513,13 @@ ULONG TCPIP_GetVlanTag(ULONG ulIfIndex, ULONG* pulVlanTag);
 *
 *******************************************************************************/
 extern VOID TCPIP_ShowArpInfoByIf(CHAR *szIfName);
-/*******************************************************************************
-*    Func Name: TCPIP_RegFunc1xInputHook
-* Date Created: 2009-12-14
-*       Author: Gexianjun/h00121208
-*  Description: 注册Eth模块处理802.1X协议报文钩子函数
-*        Input: EAPOL_RECV_PKT_HOOK  pfEAPoL_RecvPkt_Hook: 处理802.1X报文钩子函数
-*       Output: 
-*       Return: 成功VOS_OK;失败错误码
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-12-14   Gexianjun/h00121208     Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_RegFunc1xInputHook(EAPOL_RECV_PKT_HOOK  pfEAPoL_RecvPkt_Hook);
 
-/*******************************************************************************
-*    Func Name: TCPIP_UnRegFunc1xInputHook
-* Date Created: 2009-12-14
-*       Author: Gexianjun/h00121208
-*  Description: 解注册Eth模块处理802.1X协议报文钩子函数
-*        Input: VOID
-*       Output: 
-*       Return: 成功VOS_OK;失败错误码
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-12-14   Gexianjun/h00121208     Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_UnRegFunc1xInputHook(VOID);
 
-/*******************************************************************************
-*    Func Name: TCPIP_SendMacFrameOverEth
-* Date Created: 2009-12-14
-*       Author: Gexianjun/h00121208
-*  Description: 调用底层发送函数发送802.1X报文接口
-*        Input: ULONG ulIfIndex:  接口索引
-*               MBUF_S * pstMbuf: 发送报文MBUF
-*       Output: 
-*       Return: 成功VOS_OK;失败错误码
-*      Caution: 发送失败由调用者释放MBUF
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-12-14   Gexianjun/h00121208     Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_SendMacFrameOverEth (ULONG ulIfIndex, MBUF_S * pstMbuf);
 
 /*******************************************************************************
@@ -2164,107 +1607,19 @@ ULONG TCPIP_RegFuncIsNatIPAddrHook(ETHARP_IS_NAT_IPADDR_HOOK_FUNC pfHookFunc);
 *******************************************************************************/
 ULONG TCPIP_RegFuncEthBeforeAddVlanTagHook(ETH_BEFORE_ADD_VLANTAG_HOOK  pfEthBeforeAddVlanTagHook);
 
-/*******************************************************************************
-*    Func Name: TCPIP_SetUnicastARPCount
-* Date Created: 2011-06-01
-*       Author: zhaoyue00171897/shuxieliu00176784
-*  Description: 设定结点老化时发送单播ARP次数
-*        Input: ULONG ulCount:结点老化时发送单播ARP次数
-*       Output: 
-*       Return: VOS_OK 成功
-*               其他   失败
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-06-01   z00171897/s00176784     Create
-*
-*******************************************************************************/
+
 ULONG TCPIP_SetUnicastARPCount(ULONG ulCount);
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetUnicastARPCount
-* Date Created: 2011-06-01
-*       Author: zhaoyue00171897/shuxieliu00176784
-*  Description: 查询结点老化时发送单播ARP次数
-*        Input: 
-*       Output: ULONG *pulCount:结点老化时发送单播ARP次数
-*       Return: VOS_OK 成功
-*               其他   失败
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-06-01   z00171897/s00176784     Create
-*
-*******************************************************************************/
+
 ULONG TCPIP_GetUnicastARPCount(ULONG *pulCount);
 
-/*******************************************************************************
-*    Func Name: TCPIP_SetARPCapture
-* Date Created: 2011-06-02
-*       Author: zhaoyue00171897
-*  Description: 设置ARP报文收发队列长度
-*        Input: ULONG ulIfIndex: 接口索引，必须是以太类型的主接口
-*               ULONG ulRcvCaptureQueLen: 接收队列长度，取值范围[0, 128]
-*               ULONG ulSndCaptureQueLen: 发送队列长度，取值范围[0, 128]
-*       Return: VOS_OK           成功
-*               其他             失败
-*      Caution: 
-*               不支持VLAN IF
-*    Reference: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-06-02   zhaoyue00171897         Create
-*
-*******************************************************************************/
+
 ULONG TCPIP_SetARPCapture(ULONG ulIfIndex, ULONG ulRcvCaptureQueLen, ULONG ulSndCaptureQueLen);
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetARPCapture
-* Date Created: 2011-06-02
-*       Author: zhaoyue00171897/shuxieliu00176784
-*  Description: 获取ARP报文收发队列长度
-*        Input: ULONG ulIfIndex: 接口索引
-*       Output: ULONG *pulRcvCaptureQueLen: 接收队列长度
-*               ULONG *pulSndCaptureQueLen: 发送队列长度
-*       Return: VOS_OK    成功
-*               其他      失败
-*      Caution: 不支持VLAN IF
-*    Reference: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-06-02   zhaoyue00171897         Create
-*
-*******************************************************************************/
+
 ULONG TCPIP_GetARPCapture(ULONG ulIfIndex, ULONG *pulRcvCaptureQueLen, ULONG *pulSndCaptureQueLen);
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetARPCaptureQue
-* Date Created: 2011-06-02
-*       Author: zhaoyue00171897/shuxieliu00176784
-*  Description: 获取以太/Trunk主接口上保存的ARP报文队列
-*        Input: ULONG ulIfIndex: 接口索引
-*       Output: ULONG *pulRcvQueMbufNum: 接收报文队列中的报文个数
-*               MBUF_S **ppstRcvMbuf: ARP报文接收队列
-*               ULONG *pulSndQueMbufNum: 发送报文队列中的报文个数
-*               MBUF_S **ppstSndMbuf: ARP报文发送队列
-*       Return: 
-*      Caution: 
-*    Reference: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-06-02   zhaoyue00171897         Create
-*
-*******************************************************************************/
+
 ULONG TCPIP_GetARPCaptureQue(ULONG ulIfIndex, ULONG *pulRcvQueMbufNum, MBUF_S **ppstRcvMbuf,
                              ULONG *pulSndQueMbufNum, MBUF_S **ppstSndMbuf);
 

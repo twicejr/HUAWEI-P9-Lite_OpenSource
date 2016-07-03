@@ -108,7 +108,7 @@ typedef enum
 	PRN_POST,            // 28. 打印后级及其驱动程序相关信息
 	PRN_PTS,             // 29. 打印与PTS处理相关的信息
     PRN_DEC_MODE,        // 30. 解码模式切换信息
-    PRN_FS,              // 31. 动态帧存打印l00273086
+    PRN_FS,
     PRN_ALWS=32          // 32. 不受控打印
 } PRINT_MSG_TYPE;
 

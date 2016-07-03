@@ -1,19 +1,4 @@
-/*******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasXregFsmSwitchOn.c
-  版 本 号   : 初稿
-  作    者   : g00256031
-  生成日期   : 2015年01月05日
-  功能描述   : 1X XREG开机状态机事件处理函数
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年01月05日
-    作    者   : g00256031
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -56,22 +41,7 @@ extern VOS_UINT32 I1_PIH_DeregCardRefreshIndMsg(VOS_UINT32 ulRegPID);
   3 函数定义
 *****************************************************************************/
 /*lint -save -e958*/
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_RcvXsdStartReq_SwitchOn_Init
- 功能描述  : SwitchOn状态机，初始化的状态，收到Xsd的开机消息
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年01月05日
-    作    者   : g00256031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  CNAS_XREG_RcvXsdStartReq_SwitchOn_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -158,24 +128,7 @@ VOS_UINT32  CNAS_XREG_RcvXsdStartReq_SwitchOn_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_RcvCardGetFileCnf_SwitchOn_WaitCardFileCnf
- 功能描述  : XREG在WAIT_CARD_FILE_CNF状态下，收到读取卡文件信息的回复消息
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年01月05日
-    作    者   : g00256031
-    修改内容   : 新生成函数
-  2.日    期   : 2015年3月7日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  CNAS_XREG_RcvCardGetFileCnf_SwitchOn_WaitCardFileCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -217,22 +170,7 @@ VOS_UINT32  CNAS_XREG_RcvCardGetFileCnf_SwitchOn_WaitCardFileCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_RcvTiCardGetFileCnfExpired_SwitchOn_WaitCardFileCnf
- 功能描述  : XREG在WAIT_CARD_FILE_CNF状态下，等待读取UIM卡文件超时
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年01月05日
-    作    者   : g00256031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  CNAS_XREG_RcvTiCardGetFileCnfExpired_SwitchOn_WaitCardFileCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -249,23 +187,7 @@ VOS_UINT32  CNAS_XREG_RcvTiCardGetFileCnfExpired_SwitchOn_WaitCardFileCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_SndCardReadFileReq
- 功能描述  : 开机时读取NV设置值
- 输入参数  : enFileId -- 文件ID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年01月05日
-    作    者   : g00256031
-    修改内容   : 新生成函数
-  2.日    期   : 2015年3月7日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  CNAS_XREG_SndCardReadFileReq(USIMM_CUIM_FILEID_ENUM_UINT16 enFileId)
 {
     NAS_USIMM_GETFILE_INFO_STRU         stGetFileInfo;
@@ -290,22 +212,7 @@ VOS_VOID  CNAS_XREG_SndCardReadFileReq(USIMM_CUIM_FILEID_ENUM_UINT16 enFileId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_ClearWaitCardFilesCnfFlg_SwitchOn_WaitCardFilesCnf
- 功能描述  : 将MMA下发的卡状态信息转换成CCB使用的形式
-             保存到全局变量中.
- 输入参数  : ucCardStatus卡状态
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年01月05日
-   作    者   : g00256031
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XREG_ClearWaitCardFilesCnfFlg_SwitchOn_WaitCardFilesCnf(
     VOS_UINT16                          usEfId
 )
@@ -330,21 +237,7 @@ VOS_VOID CNAS_XREG_ClearWaitCardFilesCnfFlg_SwitchOn_WaitCardFilesCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_ReadNvimInfo_SwitchOn
- 功能描述  : 开机状态下读取NV项内容.
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年01月05日
-   作    者   : g00256031
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XREG_ReadNvimInfo_SwitchOn(VOS_VOID)
 {
     CNAS_NVIM_1X_LAST_SCI_STRU          stLastSci;

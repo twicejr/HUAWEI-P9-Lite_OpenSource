@@ -140,17 +140,7 @@ VOS_VOID     NAS_EMM_Attach_SuspendInitClearResourse(VOS_VOID)
 }
 
 
-/*****************************************************************************
- Function Name   :  NAS_EMM_SendrrcLmmCleBuffNotifyInd
- Description     :  在REG_INIT+WAIT_DATA_CNF状态下TA发生变化，通知RRC清缓存
- Input           :
 
- Return          :
-
- History         :
-    1.wangchen 00209181         2012-05-17  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SendRrcClearBuffNotify(VOS_VOID )
 {
     LRRC_LMM_CLEAR_BUFF_NOTIFY_STRU           *pstCleBuffNotifyIndMsg;
@@ -324,16 +314,7 @@ VOS_VOID    NAS_EMM_AttSendEsmResult( EMM_ESM_ATTACH_STATUS_ENUM_UINT32 attStatu
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_UpdateCnAttTypeOfUserReq
- Description     : 根据用户请求类型设置触发的ATTACH类型
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2012-5-8      Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_EMM_UpdateCnAttTypeOfUserReq( VOS_VOID )
 {
     NAS_EMM_ATTACH_LOG_INFO("NAS_EMM_UpdateCnAttTypeOfUserReq is entered");
@@ -392,16 +373,7 @@ VOS_VOID  NAS_EMM_UpdateCnAttTypeOfUserReq( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_UpdateCnAttTypeOfNotUserReq
- Description     : 设置自动触发的ATTACH类型
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2012-5-8      Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_EMM_UpdateCnAttTypeOfNotUserReq( VOS_VOID )
 {
     NAS_LMM_UE_OPERATION_MODE_ENUM_UINT32                   ulLteUeMode;
@@ -441,18 +413,7 @@ VOS_VOID  NAS_EMM_UpdateCnAttTypeOfNotUserReq( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SetAttType
- Description     : 设置触发的ATTACH类型
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2011-7-5      Draft Enact
-    2.lihong 00150010     2011-09-28    Modify
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SetAttType( VOS_VOID )
 {
     NAS_EMM_ATTACH_LOG_INFO("NAS_EMM_SetAttType is entered");
@@ -475,17 +436,7 @@ VOS_VOID  NAS_EMM_SetAttType( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SetUeUsageSetting
- Description     : 设置UE的usage setting
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2011-7-5  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SetUeUsageSetting (VOS_VOID )
 {
     NAS_EMM_ATTACH_LOG1_INFO("NAS_EMM_SetUeUsageSetting: ",
@@ -510,18 +461,7 @@ VOS_VOID  NAS_EMM_SetUeUsageSetting (VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_GetCsService
- Description     : 获取UE的CS域服务类型
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2011-7-6      Draft Enact
-    2.lihong 00150010     2012-02-27    Modify : CSFB
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_GetCsService (VOS_VOID )
 {
     NAS_EMM_PUB_INFO_STRU                  *pstPubInfo      = VOS_NULL_PTR;
@@ -555,17 +495,7 @@ VOS_UINT32  NAS_EMM_GetCsService (VOS_VOID )
     return ulCsService;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_GetVoiceDomain
- Description     : 获取UE的VOICE DOMAIN
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2011-7-6  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_GetVoiceDomain(VOS_VOID )
 {
     NAS_EMM_PUB_INFO_STRU               *pstPubInfo;
@@ -583,17 +513,7 @@ VOS_UINT32  NAS_EMM_GetVoiceDomain(VOS_VOID )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_GetSuppSrvccToGU
- Description     : 获取支持SRVCC to GU
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2011-7-6  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_GetSuppSrvccToGU(VOS_VOID )
 {
     NAS_EMM_PUB_INFO_STRU               *pstPubInfo;
@@ -615,19 +535,7 @@ VOS_UINT32  NAS_EMM_GetSuppSrvccToGU(VOS_VOID )
     return ulRslt;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcCause161722TauAttemptCont
- Description     : ATTACH成功，EPS ONLY，原因值为16,17,22时，或者
-                   TAU成功，TA UPDATED ONLY，原因值为16,17,22时，
-                   根据TAU ATTEMPTIMG UPDATE COUNTER值进行处理
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2011-7-12  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ProcCause161722TauAttemptCont(VOS_VOID )
 {
     NAS_EMM_ESM_MSG_BUFF_STRU                               *pstEsmMsg = NAS_EMM_NULL_PTR;
@@ -691,17 +599,7 @@ VOS_VOID  NAS_EMM_ProcCause161722TauAttemptCont(VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SetAttachRegDomain
- Description     : ATTACH成功时设置注册域
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2011-08-26  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SetAttachRegDomain( VOS_VOID )
 {
     if (EMM_ATTACH_RST_PS == NAS_EMM_GLO_AD_GetAttRslt())
@@ -714,17 +612,7 @@ VOS_VOID  NAS_EMM_SetAttachRegDomain( VOS_VOID )
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcRrcDataCnfEpsSuccOnly
- Description     : 收到RRC_MM_DATA_CNF后且结果为EPS ONLY成功的处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2011-09-26  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ProcRrcDataCnfEpsSuccOnly( VOS_VOID )
 {
     NAS_EMM_ESM_MSG_BUFF_STRU          *pstEsmMsg = NAS_EMM_NULL_PTR;
@@ -796,17 +684,7 @@ VOS_VOID  NAS_EMM_ProcRrcDataCnfEpsSuccOnly( VOS_VOID )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_AttProcT3410Exp
- Description     : 连接释放T3410超时后的处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.z00179470      2011-12-13  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_AttProcT3410Exp( VOS_VOID )
 {
     if (NAS_EMM_GLO_AD_GetAttAtmpCnt()  < 5)
@@ -838,17 +716,7 @@ VOS_VOID  NAS_EMM_AttProcT3410Exp( VOS_VOID )
 
     return;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_AttProcEpsOnlyRejValueOther
- Description     : EPS_only其它原因值的处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.z00179470      2011-12-13  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_AttProcEpsOnlyRejValueOther( VOS_VOID )
 {
     if (NAS_EMM_GLO_AD_GetAttAtmpCnt()  < 5)
@@ -884,17 +752,7 @@ VOS_VOID  NAS_EMM_AttProcEpsOnlyRejValueOther( VOS_VOID )
     /*向MRRC发送NAS_EMM_MRRC_REL_REQ消息*/
     NAS_EMM_RelReq( NAS_LMM_NOT_BARRED);
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcRejCauOtherAbnormal
- Description     : EPS_only其它原因值非#95 #96...的处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.z00179470      2011-12-13  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ProcRejCauOtherAbnormal( VOS_VOID )
 {
     if (NAS_EMM_GLO_AD_GetAttAtmpCnt()  < 5)
@@ -928,18 +786,7 @@ VOS_VOID  NAS_EMM_ProcRejCauOtherAbnormal( VOS_VOID )
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_AD_Reattach
- Description     : 重新发起ATTACH流程
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2009-12-16  Draft Enact
-    2.X00148705                 2010-01-26  不需要相APP上报
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_AD_Reattach(VOS_VOID )
 {
     NAS_EMM_ATTACH_LOG_INFO(            "NAS_EMM_AD_Reattach entered!");
@@ -999,17 +846,7 @@ VOS_UINT32 NAS_EMM_Attach_IsTimerRunning(VOS_VOID )
 
     return NAS_EMM_NO;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcAttachConnFailOtherCause
- Description     : 底层失败为其它原因值
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.z00179470      2011-12-13  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ProcAttachConnFailOtherCause( VOS_VOID )
 {
     if (NAS_EMM_GLO_AD_GetAttAtmpCnt()  < 5)
@@ -1051,15 +888,7 @@ VOS_VOID  NAS_EMM_ProcAttachConnFailOtherCause( VOS_VOID )
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegInitSsWtCnAttCnfIntraConnFailBarredProc
- Description     : 主状态REG_INIT+子状态ATTACH_WAIT_CN_ATTACH_CNF下，
-                   收到 Intra_Connect_Fail_Ind,被BAR处理
- Input           : None
- Return          : VOS_VOID
- History         :
-    1.lihong 00150010 2012.11.01 New Draft
-*****************************************************************************/
+
 VOS_VOID  NAS_EMM_MsRegInitSsWtCnAttCnfIntraConnFailBarredProc( VOS_VOID )
 {
     NAS_EMM_ESM_MSG_BUFF_STRU          *pstEsmMsg = NAS_EMM_NULL_PTR;
@@ -1114,15 +943,7 @@ VOS_VOID  NAS_EMM_MsRegInitSsWtCnAttCnfIntraConnFailBarredProc( VOS_VOID )
     return ;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegInitSsWtCnAttCnfIntraConnFailCellSrchProc
- Description     : 主状态REG_INIT+子状态ATTACH_WAIT_CN_ATTACH_CNF下，
-                   收到 Intra_Connect_Fail_Ind,CELL SEARCH处理
- Input           : None
- Return          : VOS_VOID
- History         :
-    1.lihong 00150010 2012.11.01 New Draft
-*****************************************************************************/
+
 VOS_VOID  NAS_EMM_MsRegInitSsWtCnAttCnfIntraConnFailCellSrchProc( VOS_VOID )
 {
     NAS_EMM_ESM_MSG_BUFF_STRU          *pstEsmMsg = NAS_EMM_NULL_PTR;
@@ -1178,15 +999,7 @@ VOS_VOID  NAS_EMM_MsRegInitSsWtCnAttCnfIntraConnFailCellSrchProc( VOS_VOID )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegInitSsWtCnAttCnfIntraConnFailOthersProc
- Description     : 主状态REG_INIT+子状态ATTACH_WAIT_CN_ATTACH_CNF下，
-                   收到 Intra_Connect_Fail_Ind,其他原因值处理
- Input           : None
- Return          : VOS_VOID
- History         :
-    1.lihong 00150010 2012.11.01 New Draft
-*****************************************************************************/
+
 VOS_VOID  NAS_EMM_MsRegInitSsWtCnAttCnfIntraConnFailOthersProc( VOS_VOID )
 {
     NAS_EMM_ESM_MSG_BUFF_STRU          *pstEsmMsg = NAS_EMM_NULL_PTR;
@@ -1237,19 +1050,7 @@ VOS_VOID  NAS_EMM_MsRegInitSsWtCnAttCnfIntraConnFailOthersProc( VOS_VOID )
     return ;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegInitSsWtCnAttCnfMsgIntraConncetFailInd
- Description     : 主状态REG_INIT+子状态ATTACH_WAIT_CN_ATTACH_CNF下，
-                   收到 Intra_Connect_Fail_Ind
 
- Input           :
- Return          :
- History         :
-    1.zhengjunyan 00148421 2009.03.17 New Draft
-    2.zhengjunyan 00148421 2010-12-22 DTS2010111701490:添加建链失败原因值
-                                      CELL_SEATCHING的处理
-    3.zhengjunyan 00148421 2010-12-23 Mod:接入被Bar给App回复结果
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsRegInitSsWtCnAttCnfMsgIntraConncetFailInd(
                                                     VOS_UINT32  ulMsgId,
                                                     VOS_VOID   *pMsgStru )
@@ -1310,17 +1111,7 @@ VOS_UINT32  NAS_EMM_MsRegInitSsWtCnAttCnfMsgIntraConncetFailInd(
     return  NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegInitSsWtCnAttCnfProcMsgAuthRej
- Description     : 主状态REG_INIT+子状态ATTACH_WAIT_CN_ATTACH_CNF下，
-                   收到 AUTH REJ,作为卡无效处理
- Input           :
- Return          :
- History         :
-    1.zhengjunyan 00148421    2008-05-19  Draft Enact
-    2.X00148705               2009-09-30  重构
-    3.lihong00150010          2012-11-01  Modify:emgergency
-*****************************************************************************/
+
 VOS_VOID  NAS_EMM_MsRegInitSsWtCnAttCnfProcMsgAuthRej(
                                                     VOS_UINT32  ulCause)
 {
@@ -1459,17 +1250,7 @@ VOS_VOID  NAS_EMM_MsRegInitSsWtCnAttCnfProcMsgRrcRelInd(VOS_UINT32 ulCause)
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegInitSsWtCnAttCnfMsgAuthRej
- Description     : RegInit.WtAttCnf状态下收到AUTH REJ消息
- Input           :
 
- Return          :
-
- History         :
-    1.zhengjunyan 00148421         2009-10-31  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsRegInitSsWtCnAttCnfMsgAuthRej(
                                         VOS_UINT32  ulMsgId,
                                         VOS_VOID   *pMsgStru )
@@ -1492,20 +1273,7 @@ VOS_UINT32  NAS_EMM_MsRegInitSsWtCnAttCnfMsgAuthRej(
     return  NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegInitSsWtCnAttCnfMsgRrcRelInd
- Description     : 主状态REG_INIT+子状态ATTACH_WAIT_CN_ATTACH_CNF下，
-                   处理RRC_REL_IND
- Input           :
 
- Return          :
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-    2.X00148705              2009-09-25  对NAS_EMM_GLO_AD_GetAttAtmpCnt>5的情况做处理
-    3.X00148705              2009-10-09  添加对AUTH REJ的处理或对REL_IND的处理
-
-*****************************************************************************/
 
 VOS_UINT32  NAS_EMM_MsRegInitSsWtCnAttCnfMsgRrcRelInd(
                                                     VOS_UINT32  ulMsgId,
@@ -1533,17 +1301,7 @@ VOS_UINT32  NAS_EMM_MsRegInitSsWtCnAttCnfMsgRrcRelInd(
     return  NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegInitSsWtEsmPdnRspMsgRrcRelInd
- Description     : RegInit.WtPdnRsp状态下收到RRC_REL_IND消息
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421    2010-11-9  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsRegInitSsWtEsmPdnRspMsgRrcRelInd(
                                                     VOS_UINT32  ulMsgId,
                                                     VOS_VOID   *pMsgStru )
@@ -1564,18 +1322,7 @@ VOS_UINT32  NAS_EMM_MsRegInitSsWtEsmPdnRspMsgRrcRelInd(
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegInitSsWtCnAttCnfMsgT3410Exp
- Description     : 主状态REG_INIT+子状态ATTACH_WAIT_CN_ATTACH_CNF下，
-                   收到T3410定时器超时
 
- Input           :
- Return          :
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-    2.X00148705              2009-09-19  去掉内部REL REQ消息，直接发RRC REL REQ
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsRegInitSsWtCnAttCnfMsgT3410Exp(VOS_UINT32  ulMsgId,
                                                         VOS_VOID   *pMsgStru )
 {
@@ -1648,20 +1395,7 @@ VOS_UINT32  NAS_EMM_MsRegInitSsWtCnAttCnfMsgT3410Exp(VOS_UINT32  ulMsgId,
     return  NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsDrgSsAtmpToAttMsgT3411Exp
- Description     : 主状态DEREG+子状态DEREG_ATTEMPTING_TO_ATTACH下收到
-                   T3411定时器超时
 
- Input           :
-
- Return          :
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-    2.X00148705              2010-01-30  修改向ESM重新发PDN_REQ
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsDrgSsAttemptToAttMsgT3411Exp( VOS_UINT32  ulMsgId,
                                                     VOS_VOID   *pMsgStru  )
 {
@@ -1706,22 +1440,7 @@ VOS_UINT32  NAS_EMM_MsDrgSsAttemptToAttMsgT3411Exp( VOS_UINT32  ulMsgId,
     return  NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsDrgSsAttemptToAttMsgT3402Exp
- Description     : 主状态DEREG+子状态ATTEMPTING_TO_ATTACH下收到T3402定时器超时
-                   发起attach
- Input           :
 
- Return          :
-
- History         :
-    1.leili         00132387    2008-09-09  Draft Enact
-    2.hanlufeng     41410       2009-04-30  ATTEMPTING TO ATTACH状态下，发起
-                                ATTACH，直接使用ATTACH模块缓存的PDN消息，不再
-                                向SM模块请求;
-                                ATTACH 尝试计数器在启动3402时被清空，此处不再清
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsDrgSsAttemptToAttMsgT3402Exp( VOS_UINT32  ulMsgId,
                                                     VOS_VOID   *pMsgStru  )
 {
@@ -1757,17 +1476,7 @@ VOS_UINT32  NAS_EMM_MsDrgSsAttemptToAttMsgT3402Exp( VOS_UINT32  ulMsgId,
     return  NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsDeregSsAttachNeededMsgRrcAccessGrantInd
- Description     : Dereg.Attach-Needed状态下收到 RRC_EMM_ACCESS_GRANT_IND消息
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.zhengjunyan 00148421 2009.03.17 New Draft
-    2.yangfan     00159566 2010.02.08 Modefy
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsDeregSsAttachNeededMsgRrcAccessGrantInd(VOS_UINT32  ulMsgId,
                                                     VOS_VOID   *pMsgStru )
 {
@@ -1834,17 +1543,7 @@ VOS_UINT32    NAS_EMM_MsDeregSsAttachNeededMsgRrcAccessGrantInd(VOS_UINT32  ulMs
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsDeregSsAttachNeededMsgMmcSysInfoInd
- Description     : Dereg.Attach_Needed状态下收到SYS_INFO_IND，处理禁止信息
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-12-14  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsDeregSsAttachNeededMsgMmcSysInfoInd( VOS_UINT32  ulMsgId,
                                                     VOS_VOID   *pMsgStru )
 {
@@ -1890,19 +1589,7 @@ VOS_UINT32  NAS_EMM_MsDeregSsAttachNeededMsgMmcSysInfoInd( VOS_UINT32  ulMsgId,
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegInitSsWtEsmPdnRspMsgTimerWtEsmRspExp
- Description     : 主状态REG_INIT+子状态ATTACH_WAIT_ESM_PDN_RSP下收到定时器超时
 
- Input           :
-
- Return          :
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-    2. zhuyiqiang 00138739   2009-08-12  MODIFY BJ9D01687
-    3.zhengjunyan 001148421 2010-11-09 MOD:考虑RegInit.WtPdnRsp可能是CONN态的情况
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsRegInitSsWtEsmPdnRspMsgTimerWtEsmRspExp(VOS_UINT32 ulMsgId,
                                                             VOS_VOID * pMsgStru)
 
@@ -1949,18 +1636,7 @@ VOS_UINT32    NAS_EMM_MsRegInitSsWtEsmPdnRspMsgTimerWtEsmRspExp(VOS_UINT32 ulMsg
 
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegInitSsWtEsmBearerCnfMsgTimerWtEsmBearerCnfExp
- Description     : 主状态REG_INIT+子状态ATTACH_WAIT_ESM_PDN_RSP下收到定时器超时
 
- Input           :
-
- Return          :
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-    2.zhengjunyan 00148421   2010-12-24  添加通知APP缺省承载激活失败
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsRegInitSsWtEsmBearerCnfMsgTimerWtEsmBearerCnfExp(VOS_UINT32 ulMsgId,
                                                             VOS_VOID * pMsgStru)
 
@@ -2003,17 +1679,7 @@ VOS_UINT32    NAS_EMM_MsRegInitSsWtEsmBearerCnfMsgTimerWtEsmBearerCnfExp(VOS_UIN
     return  NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcAttCompleteSendFail
- Description     : ATTACH COMPLETE消息发送失败
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.z00179470      2011-12-13  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ProcAttCompleteSendFail( VOS_VOID )
 {
     if (NAS_EMM_GLO_AD_GetAttAtmpCnt()  < 5)
@@ -2053,19 +1719,7 @@ VOS_VOID  NAS_EMM_ProcAttCompleteSendFail( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegInitSsWtEsmBearerCnfMsgSysInfo
- Description     : 主状态REG_INIT+子状态ATTACH_WAIT_ESM_BEARER_CNF下收到系统消息
 
- Input           :
-
- Return          :
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-    2.lihong00150010         2012-10-31  Modify:emgergency
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsRegInitSsWtEsmBearerCnfMsgSysInfo( VOS_UINT32  ulMsgId,
                                                     VOS_VOID   *pMsgStru  )
 {
@@ -2195,21 +1849,7 @@ VOS_UINT32  NAS_EMM_MsRegInitSsWtEsmBearerCnfMsgSysInfo( VOS_UINT32  ulMsgId,
     return  NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegInitSsWtCnAttCnfMsgSysInfo
- Description     : 主状态REG_INIT+子状态ATTACH_WAIT_CN_ATTACH_CNF下收到系统消息
 
- Input           :
-
- Return          :
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-    2.yangfan 00159566       2009-08-25  Modify
-    3.zhengjunyan 00148421   2010-10-25  MOD:添加被禁的判断
-    4.lihong00150010         2012-11-01  Modify:emgergency
-    5.lifuxin 00253982       2014-11-06  重构建链流程
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsRegInitSsWtCnAttCnfMsgSysInfo( VOS_UINT32  ulMsgId,
                                                     VOS_VOID   *pMsgStru)
 {
@@ -2315,19 +1955,7 @@ VOS_UINT32  NAS_EMM_MsRegInitSsWtCnAttCnfMsgSysInfo( VOS_UINT32  ulMsgId,
     return  NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsDrgSsNmlSrvMsgIntraMsgAttReq
- Description     : 主状态DEREG+子状态DEREG_NORMAL_SERVICE下收到EMM内部模块发送的
-                   内部消息ATTACH REQUEST
 
- Input           :
-
- Return          :
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsDrgSsNmlSrvMsgIntraAttReq( VOS_UINT32  ulMsgId,
                                                   VOS_VOID   *pMsgStru )
 {
@@ -2390,16 +2018,7 @@ VOS_UINT32  NAS_EMM_MsDrgSsNmlSrvMsgIntraAttReq( VOS_UINT32  ulMsgId,
     return  NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name  : NAS_EMM_MsRegSsNmlSrvMsgAuthRej
- Discription    : Reg.Normal_Service状态下收到AUTH_REJ消息
- Input          : None
- Output         : None
- Return         :
- History:
-      1.  z00148421  2009-10-31  Draft Enact
 
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsRegSsNmlSrvMsgAuthRej(
                                         VOS_UINT32 ulMsgId,
                                         VOS_VOID *pMsgStru)
@@ -2421,16 +2040,7 @@ VOS_UINT32  NAS_EMM_MsRegSsNmlSrvMsgAuthRej(
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name  : NAS_EMM_MsRegSsLimitedSrvMsgAuthRej
- Discription    : Reg.Limit_Service状态下收到AUTH_REJ消息
- Input          : None
- Output         : None
- Return         :
- History:
-      1.lihong00150010      2012-12-29      Draft Enact
 
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsRegSsLimitedSrvMsgAuthRej
 (
     VOS_UINT32                          ulMsgId,
@@ -2454,17 +2064,7 @@ VOS_UINT32  NAS_EMM_MsRegSsLimitedSrvMsgAuthRej
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegSsRegAttemptUpdateMmMsgAuthRej
- Description     : Reg.RegAttemptingToUpdateMM状态下收到AUTH_REJ消息
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2011-7-12  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsRegSsRegAttemptUpdateMmMsgAuthRej
 (
     VOS_UINT32 ulMsgId,
@@ -2491,19 +2091,7 @@ VOS_UINT32  NAS_EMM_MsRegSsRegAttemptUpdateMmMsgAuthRej
 
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegSsNmlSrvProcMsgAuthRej
- Description     : CONN模式,Reg.AnyState状态下收到AUTH REJ消息，作为卡无效处
-                   理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2009-5-20  Draft Enact
-    2.X00148705                 2009-09-30 重构
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_MsRegSsNmlSrvProcMsgAuthRej( VOS_UINT32  ulCause)
 {
     MMC_LMM_TAU_RSLT_ENUM_UINT32        ulTauRslt = MMC_LMM_TAU_RSLT_BUTT;
@@ -2546,16 +2134,7 @@ VOS_VOID  NAS_EMM_MsRegSsNmlSrvProcMsgAuthRej( VOS_UINT32  ulCause)
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_AttResetAttAttempCounter
- Description     : 清除ATTACH相关计数，本次仅添加AT&T定制需求和函数头
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.sunjitan 00193151         2015-01-04      Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_EMM_AttResetAttAttempCounter(VOS_VOID)
 {
     NAS_EMM_ATTACH_LOG_INFO("NAS_EMM_AttResetAttAttempCounter is entered");
@@ -2730,13 +2309,7 @@ VOS_UINT32  NAS_EMM_EmmMsRegInitSsWaitRrcDataCnfMsgSysInfo(
     NAS_EMM_ATTACH_LOG_NORM( "NAS_EMM_EmmMsRegInitSsWaitRrcDataCnfMsgSysInfo is entered");
     TLPS_PRINT2LAYER_INFO(NAS_EMM_EmmMsRegInitSsWaitRrcDataCnfMsgSysInfo_ENUM,LNAS_ENTRY);
 
-    /* 为了规避RRC修改重配置流程不等网侧相应导致问题DTS2016012002189:
-       UE在注册过程中，SS调整服务小区至-115dB（打开同频邻区-85dB） 并且故意不响应ATTACH COMPLETE，
-       此时期望UE重建立到同频邻区并且重新发起注册流程，但是并没有达到预期，而是释放链路后重新搜网注册。与GCF协议9.2.1.1.24不一致。
-       规避方案为:如果测试卡收到ATTCH CMP失败，则什么也不做。这时EMM处于REG_INIT+WAIT_RRC_DATA_CNF状态。
-       这样后面可能会有两种情况:1. RRC重建立成功，EMM收到LRRC系统消息，此时EMM重新发ATTACH，符合GCF协议
-       2. RRC重建立失败，RRC释放链路，后续UE会重新搜网收到系统消息发ATTACH，行为也正常。
-       因此将此处改为:当测试场景下，REG_INIT+WAIT_RRC_DATA_CNF收到系统消息，不管TA有没有改变，都后续发ATTACH。 */
+    
     /*判断是否是TA变化了*/
     if (((EMMC_EMM_CHANGE_PLMN           != pstRcvEmmMsg->ulChangeInfo)
           && (EMMC_EMM_CHANGE_TA          != pstRcvEmmMsg->ulChangeInfo))
@@ -2947,16 +2520,7 @@ VOS_VOID NAS_EMM_AttGuAttachRst( MsgBlock * pMsg )
 }
 /*lint +e961*/
 /*lint +e960*/
-/*****************************************************************************
- Function Name   : NAS_EMM_SndAttachCmpSuccProc
- Description     : ATTACH COMPLETE发送成功时的处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         : wangchen 00209181    2013-03-30      Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_SndAttachCmpSuccProc(VOS_VOID* pMsg)
 {
     NAS_EMM_ESM_MSG_BUFF_STRU           *pstEsmMsg = NAS_EMM_NULL_PTR;
@@ -3045,16 +2609,7 @@ VOS_UINT32 NAS_EMM_SndAttachCmpSuccProc(VOS_VOID* pMsg)
 
     return NAS_EMM_SUCC;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_SndAttachCmpFailProc
- Description     : ATTACH COMPLETE发送失败时的处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         : wangchen 00209181    2013-03-30      Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_SndAttachCmpFailProc(VOS_VOID* pMsg,VOS_UINT32 *pulIsDelBuff)
 {
     (VOS_VOID)pMsg;
@@ -3063,12 +2618,7 @@ VOS_UINT32 NAS_EMM_SndAttachCmpFailProc(VOS_VOID* pMsg,VOS_UINT32 *pulIsDelBuff)
     NAS_EMM_ATTACH_LOG_INFO("NAS_EMM_SndAttachCmpFailProc is entered");
     TLPS_PRINT2LAYER_INFO(NAS_EMM_SndAttachCmpFailProc_ENUM,LNAS_ENTRY);
 
-    /* 为了规避RRC修改重配置流程不等网侧相应导致问题DTS2016012002189:
-       UE在注册过程中，SS调整服务小区至-115dB（打开同频邻区-85dB） 并且故意不响应ATTACH COMPLETE，
-       此时期望UE重建立到同频邻区并且重新发起注册流程，但是并没有达到预期，而是释放链路后重新搜网注册。与GCF协议9.2.1.1.24不一致。
-       规避方案为:如果测试卡收到ATTCH CMP失败，则什么也不做。这时EMM处于REG_INIT+WAIT_RRC_DATA_CNF状态。
-       这样后面可能会有两种情况:1. RRC重建立成功，EMM收到LRRC系统消息，此时EMM重新发ATTACH，符合GCF协议
-       2. RRC重建立失败，RRC释放链路，后续UE会重新搜网收到系统消息发ATTACH，行为也正常。*/
+    
     if (PS_SUCC == LPS_OM_IsTestMode())
     {
         TLPS_PRINT2LAYER_INFO(NAS_EMM_SndAttachCmpFailProc_ENUM,LNAS_TEST_CARD);
@@ -3118,17 +2668,7 @@ VOS_UINT32 NAS_EMM_SndAttachCmpFailProc(VOS_VOID* pMsg,VOS_UINT32 *pulIsDelBuff)
     return NAS_EMM_SUCC;
 }
 
-/*****************************************************************************
- Function Name   :NAS_EMM_ATTAttachRej19CountProc
- Description     :美国AT&T定制需求，对于ATTACH被#19拒绝，要单独维护计数，
-                  原则为，如果收到#19次数累计达3次，就设置ATTACH尝试次数为5，
-                  否则仍按照原计数进行处理。
- Input           :None
- Return          :None
 
- History         :
-    1.sunjitan 00193151      2015-01-04  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_EMM_DamAttachRej19CountProc(VOS_VOID)
 {
     NAS_EMM_GLO_AD_GetAttRej19AtmpCnt()++;
@@ -3148,15 +2688,7 @@ VOS_VOID  NAS_EMM_DamAttachRej19CountProc(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Function Name   :NSA_EMM_SndImsaAttachBeginInd
- Description     :给IMSA发送Attach Begin指示
- Input           :None
- Return          :None
 
- History         :
-    1.leixiantiao 00258641      2015-12-10  Draft Enact
-*****************************************************************************/
 VOS_VOID NSA_EMM_SndImsaAttachBeginInd(VOS_VOID)
 {
     LMM_IMSA_ATTACH_BEGIN_IND           *pstAttachBeginInd;

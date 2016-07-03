@@ -26,14 +26,7 @@ using namespace testing;
 //13、结构体类型比较ASSERT_SAME_DATA ASSERT_SAME_MEMORY
 
 
-/******************************************************************************
-类名     : Test_AT_MNTN_TraceCmdResult
-功能描述 : AT_MNTN_TraceCmdResult UT工程类
-修改历史 :
- 1.日   期  : 2014-05-28
-   作   者  : Y00213812
-   修改内容 : 64bit ut修改
-******************************************************************************/
+
 class Test_AT_MNTN_TraceCmdResult: public ::testing::Test
 {
 public:
@@ -48,15 +41,7 @@ public:
     }
 
 };
-/*******************************************************************
-*测试项:             申请内存失败函数直接返回
-*被测函数功能描述:   将AT命令回复显示在SDT LOG中
-*预期结果：          WARNING告警"At_HookResult:ERROR:Alloc Mem Fail."
-************************* 修改记录 *************************
-#  1.日    期: 2011年4月22日
-#    作    者: f62575
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_MNTN_TraceCmdResult, Test_AT_MNTN_TraceCmdResult_01)
 {
     const char          cWarning[] = "At_HookResult:ERROR:Alloc Mem Fail.";
@@ -85,15 +70,7 @@ TEST_F(Test_AT_MNTN_TraceCmdResult, Test_AT_MNTN_TraceCmdResult_01)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试项:             钩包成功
-*被测函数功能描述:   将AT命令回复显示在SDT LOG中
-*预期结果：
-************************* 修改记录 *************************
-#  1.日    期: 2011年4月22日
-#    作    者: f62575
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_MNTN_TraceCmdResult, Test_AT_MNTN_TraceCmdResult_02)
 {
     TAF_UINT8 ucIndex = 0;
@@ -114,14 +91,7 @@ TEST_F(Test_AT_MNTN_TraceCmdResult, Test_AT_MNTN_TraceCmdResult_02)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_AT_MNTN_TraceCmdBuffer
-功能描述 : AT_MNTN_TraceCmdBuffer UT工程类
-修改历史 :
- 1.日   期  : 2014-05-28
-   作   者  : Y00213812
-   修改内容 : 64bit ut修改
-******************************************************************************/
+
 class Test_AT_MNTN_TraceCmdBuffer: public ::testing::Test
 {
 public:
@@ -136,15 +106,7 @@ public:
     }
 
 };
-/*******************************************************************
-*测试项:             申请内存失败函数直接返回
-*被测函数功能描述:   将缓存命令处理以消息方式显示
-*预期结果：          WARNING告警"AT_MNTN_TraceCmdBuffer:ERROR:Alloc Mem Fail."
-************************* 修改记录 *************************
-#  1.日    期: 2011年4月22日
-#    作    者: f62575
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_MNTN_TraceCmdBuffer, Test_AT_MNTN_TraceCmdBuffer_01)
 {
     const char          cWarning[] = "AT_MNTN_TraceCmdBuffer:ERROR:Alloc Mem Fail.";
@@ -174,15 +136,7 @@ TEST_F(Test_AT_MNTN_TraceCmdBuffer, Test_AT_MNTN_TraceCmdBuffer_01)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试项:             钩包成功
-*被测函数功能描述:   将缓存命令处理以消息方式显示
-*预期结果：
-************************* 修改记录 *************************
-#  1.日    期: 2011年4月22日
-#    作    者: f62575
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_MNTN_TraceCmdBuffer, Test_AT_MNTN_TraceCmdBuffer_02)
 {
     TAF_UINT8 ucIndex = 0;
@@ -203,14 +157,7 @@ TEST_F(Test_AT_MNTN_TraceCmdBuffer, Test_AT_MNTN_TraceCmdBuffer_02)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
- 类名       : Test_AT_ShowResetStatsInfo
- 功能描述   : AT_ShowResetStatsInfo UT工程类
- 修改历史   :
- 1.日   期  : 2013-04-25
-   作   者  : f00179208
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_ShowResetStatsInfo: public ::testing::Test
 {
 public:
@@ -223,15 +170,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号   : Test_AT_ShowResetStatsInfo_001
- 测试用例标题   : 无
- 预期结果       : 无
- 修改历史       :
- 1.日   期  : 2013-04-25
-   作   者  : f00179208
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ShowResetStatsInfo, Test_AT_ShowResetStatsInfo_001)
 {
     //参数定义
@@ -251,14 +190,7 @@ TEST_F(Test_AT_ShowResetStatsInfo, Test_AT_ShowResetStatsInfo_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_Help
-功能描述 : Test_AT_Help UT工程类
-修改历史 :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_Help: public ::testing::Test
 {
 public:
@@ -273,15 +205,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号    : Test_AT_Help_001
-测试用例标题    : AT软调帮助
-预期结果        : 直接返回
-修改历史        :
-1.日   期  : 2013-11-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_Help, Test_AT_Help_001)
 {
     // 变量声明
@@ -300,14 +224,7 @@ TEST_F(Test_AT_Help, Test_AT_Help_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_ShowPsEntityInfo
-功能描述 : Test_AT_ShowPsEntityInfo UT工程类
-修改历史 :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_ShowPsEntityInfo: public ::testing::Test
 {
 public:
@@ -322,15 +239,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号    : Test_AT_ShowPsEntityInfo_001
-测试用例标题    : PS域实体信息
-预期结果        : 直接返回
-修改历史        :
-1.日   期  : 2013-11-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_ShowPsEntityInfo, Test_AT_ShowPsEntityInfo_001)
 {
     // 变量声明
@@ -349,14 +258,7 @@ TEST_F(Test_AT_ShowPsEntityInfo, Test_AT_ShowPsEntityInfo_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_InitHsUartStats
-功能描述 : AT_InitHsUartStats UT工程类
-修改历史 :
-1.日   期  : 2013-10-15
-  作   者  : j00174725
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_InitHsUartStats: public ::testing::Test
 {
 public:
@@ -371,15 +273,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_InitHsUartStats_001
-测试用例标题      :
-预期结果          :
-修改历史          :
-1.日   期  : 2013-10-15
-  作   者  : j00174725
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_InitHsUartStats, Test_AT_InitHsUartStats_001)
 {
     g_stAtStatsInfo.stHsUartStats.ucReadNvFailNum = 1;
@@ -391,14 +285,7 @@ TEST_F(Test_AT_InitHsUartStats, Test_AT_InitHsUartStats_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_ShowHsUartNvStats
-功能描述 : AT_ShowHsUartNvStats UT工程类
-修改历史 :
-1.日   期  : 2013-10-15
-  作   者  : j00174725
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_ShowHsUartNvStats: public ::testing::Test
 {
 public:
@@ -413,15 +300,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_ShowHsUartNvStats_001
-测试用例标题      : UART NV可维可测信息
-预期结果          : NA
-修改历史          :
-1.日   期  : 2013-10-15
-  作   者  : j00174725
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ShowHsUartNvStats, Test_AT_ShowHsUartNvStats_001)
 {
     AT_ShowHsUartNvStats();
@@ -429,14 +308,7 @@ TEST_F(Test_AT_ShowHsUartNvStats, Test_AT_ShowHsUartNvStats_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_ShowHsUartIoctlStats
-功能描述 : AT_ShowHsUartIoctlStats UT工程类
-修改历史 :
-1.日   期  : 2013-10-15
-  作   者  : j00174725
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_ShowHsUartIoctlStats: public ::testing::Test
 {
 public:
@@ -451,29 +323,14 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_ShowHsUartIoctlStats_001
-测试用例标题      : UART IOCTL操作结果
-预期结果          : NA
-修改历史          :
-1.日   期  : 2013-10-15
-  作   者  : j00174725
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ShowHsUartIoctlStats, Test_AT_ShowHsUartIoctlStats_001)
 {
     AT_ShowHsUartIoctlStats();
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_ShowHsUartDataStats
-功能描述 : AT_ShowHsUartDataStats UT工程类
-修改历史 :
-1.日   期  : 2013-10-15
-  作   者  : j00174725
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_ShowHsUartDataStats: public ::testing::Test
 {
 public:
@@ -488,15 +345,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_ShowHsUartDataStats_001
-测试用例标题      : UART Data 可维可测
-预期结果          : NA
-修改历史          :
-1.日   期  : 2013-10-15
-  作   者  : j00174725
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ShowHsUartDataStats, Test_AT_ShowHsUartDataStats_001)
 {
     AT_ShowHsUartDataStats();
@@ -504,14 +353,7 @@ TEST_F(Test_AT_ShowHsUartDataStats, Test_AT_ShowHsUartDataStats_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_ShowUartConfigInfo
-功能描述 : Test_AT_ShowUartConfigInfo UT工程类
-修改历史 :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_ShowHsUartConfigInfo: public ::testing::Test
 {
 public:
@@ -526,15 +368,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号    : Test_AT_ShowHsUartConfigInfo_001
-测试用例标题    : UART配置可维可测信息
-预期结果        : 直接返回
-修改历史        :
-1.日   期  : 2013-11-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_ShowHsUartConfigInfo, Test_AT_ShowHsUartConfigInfo_001)
 {
     // 变量声明
@@ -568,14 +402,7 @@ TEST_F(Test_AT_ShowHsUartConfigInfo, Test_AT_ShowHsUartConfigInfo_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_InitModemStats
-功能描述 : Test_AT_InitModemStats UT工程类
-修改历史 :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_InitModemStats: public ::testing::Test
 {
 public:
@@ -590,15 +417,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号    : Test_AT_InitModemStats_001
-测试用例标题    : MODEM统计信息初始化
-预期结果        : 直接返回
-修改历史        :
-1.日   期  : 2013-11-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_InitModemStats, Test_AT_InitModemStats_001)
 {
     // 变量声明
@@ -617,14 +436,7 @@ TEST_F(Test_AT_InitModemStats, Test_AT_InitModemStats_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_ShowModemDataStats
-功能描述 : Test_AT_ShowModemDataStats UT工程类
-修改历史 :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_ShowModemDataStats: public ::testing::Test
 {
 public:
@@ -639,15 +451,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号    : Test_AT_ShowModemDataStats_001
-测试用例标题    : MODEM软调帮助
-预期结果        : 直接返回
-修改历史        :
-1.日   期  : 2013-11-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_ShowModemDataStats, Test_AT_ShowModemDataStats_001)
 {
     // 变量声明
@@ -666,14 +470,7 @@ TEST_F(Test_AT_ShowModemDataStats, Test_AT_ShowModemDataStats_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_MNTN_TraceEvent
-功能描述 : Test_AT_MNTN_TraceEvent UT工程类
-修改历史 :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_MNTN_TraceEvent: public ::testing::Test
 {
 public:
@@ -688,15 +485,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号    : Test_AT_MNTN_TraceEvent_001
-测试用例标题    : 钩包失败
-预期结果        : 直接返回
-修改历史        :
-1.日   期  : 2013-11-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_MNTN_TraceEvent, Test_AT_MNTN_TraceEvent_001)
 {
     // 变量声明

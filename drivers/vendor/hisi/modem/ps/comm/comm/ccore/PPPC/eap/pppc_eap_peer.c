@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : pppc_eap_peer.c
-  版 本 号   : 初稿
-  作    者   : c00184031
-  生成日期   : 2015年11月7日
-  最近修改   :
-  功能描述   : EAP Peer状态机处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年11月7日
-    作    者   : c00184031
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 
@@ -148,41 +131,13 @@ PPPC_EAP_METHOD_CB_STRU g_stMethodProcCB[PPPC_EAP_INTERNAL_TYPE_BUTT] =
   3 函数实现
 *****************************************************************************/
 /*lint -save -e958 */
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_PreferIdenType
- 功能描述  : 获取Identity的策略，目前只会返回AKA'类型，接口后续可扩展使用
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : PPPC_EAP_METHODS_TYPE_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月09日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 PPPC_EAP_METHODS_TYPE_ENUM_UINT8 PPPC_EAP_PreferIdenType(VOS_VOID)
 {
     return PPPC_EAP_AKA_PRIME_TYPE;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_InitState
- 功能描述  : 初始化方法和PEER的状态
- 输入参数  : pstEapInfo     EAP实体信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月09日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_InitState
 (
     PPPC_EAP_INFO_STRU                 *pstEapInfo
@@ -200,23 +155,7 @@ VOS_VOID PPPC_EAP_InitState
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_SyncState
- 功能描述  : 由于网络的鉴权结果报文是非确认的，传输过程中可能被丢弃导致两端
-             鉴权状态不一致；如果本端鉴权结果是OK但是没有收到网络的鉴权成功
-             报文却收到了VSNCP报文，说明网络已经鉴权通过了，直接将状态迁移
-             到PPP_PHASE_NETWORK
- 输入参数  : pstPppInfo     PPP实体信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-11-9
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_EAP_SyncState(PPPINFO_S *pstPppInfo)
 {
     PPPC_EAP_INFO_STRU                  *pstEapInfo;
@@ -250,21 +189,7 @@ VOS_VOID PPPC_EAP_SyncState(PPPINFO_S *pstPppInfo)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_InitMethod
- 功能描述  : 初始化方法
- 输入参数  : pstEapInfo     EAP实体信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月09日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_InitMethod
 (
     PPPC_EAP_INFO_STRU                 *pstEapInfo
@@ -286,23 +211,7 @@ VOS_VOID PPPC_EAP_InitMethod
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_FillPayload
- 功能描述  : 填充TYPE-DATA域
- 输入参数  : pstEapInfo     EAP实体信息
-             aucTypeData    TYPE-DATA域
-             usTypeDataLen  TYPE-DATA域长度
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月09日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_FillPayload
 (
     PPPC_EAP_INFO_STRU                 *pstEapInfo,
@@ -333,21 +242,7 @@ VOS_VOID PPPC_EAP_FillPayload
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_GetSupportMethodList
- 功能描述  : 获取Identity的策略，目前只会返回AKA'类型，接口后续可扩展使用
- 输入参数  : aenMethod          指示具体的方法
- 输出参数  : pucMethodNum       方法的个数
- 返 回 值  : PPPC_EAP_METHODS_TYPE_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月09日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_EAP_GetSupportMethodList
 (
     PPPC_EAP_METHODS_TYPE_ENUM_UINT8    aenMethod[],
@@ -363,21 +258,7 @@ VOS_UINT32 PPPC_EAP_GetSupportMethodList
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_GetMethod
- 功能描述  : 获取选中的方法
- 输入参数  : pstEapInfo         EAP实体信息
- 输出参数  : 无
- 返 回 值  : VOS_OK:已选中合法的方法 VOS_ERR:未选方法
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月09日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_EAP_GetMethod
 (
     PPPC_EAP_INFO_STRU                 *pstEapInfo
@@ -394,21 +275,7 @@ VOS_UINT32 PPPC_EAP_GetMethod
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_MappingMethodType
- 功能描述  : 在Init状态下收到Identity Req的处理
- 输入参数  : enType             协议规定的方法类型
- 输出参数  : penInternalType    内部映射的方法类型
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月09日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_EAP_MappingMethodType
 (
     PPPC_EAP_METHODS_TYPE_ENUM_UINT8            enType,
@@ -449,22 +316,7 @@ VOS_UINT32 PPPC_EAP_MappingMethodType
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_SelectMethod
- 功能描述  : 选择方法
- 输入参数  : pstEapInfo     EAP实体信息
-             enMethod       需要选择的方法
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月09日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_EAP_SelectMethod
 (
     PPPC_EAP_INFO_STRU                 *pstEapInfo,
@@ -491,22 +343,7 @@ VOS_UINT32 PPPC_EAP_SelectMethod
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_MethodProc
- 功能描述  : 调用方法的回调函数处理报文
- 输入参数  : pstEapInfo     EAP实体
-             pData          报文指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月09日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 PS_BOOL_ENUM_UINT8 PPPC_EAP_MethodProc
 (
     PPPC_EAP_INFO_STRU                 *pstEapInfo,
@@ -577,21 +414,7 @@ PS_BOOL_ENUM_UINT8 PPPC_EAP_MethodProc
     return enPreProcResult;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_FillNakResponse
- 功能描述  : 填充NAK Response消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月09日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_EAP_FillNakResponse
 (
     PPPC_EAP_INFO_STRU                 *pstEapInfo
@@ -629,21 +452,7 @@ VOS_UINT32 PPPC_EAP_FillNakResponse
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_FillExpandNakResponse
- 功能描述  : 填充扩展NAK Response消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月09日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_EAP_FillExpandNakResponse
 (
     PPPC_EAP_INFO_STRU                 *pstEapInfo
@@ -721,23 +530,7 @@ VOS_UINT32 PPPC_EAP_FillExpandNakResponse
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_PeerTransferState
- 功能描述  : PEER状态状态更新
- 输入参数  : pstEapInfo     EAP实体
-             enEvent        事件通知
-             pData          报文或其他参数
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月09日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_PeerTransferState
 (
     PPPC_EAP_INFO_STRU                 *pstEapInfo,
@@ -754,23 +547,7 @@ VOS_VOID PPPC_EAP_PeerTransferState
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_PeerProcessEvent
- 功能描述  : PEER状态机事件通知
- 输入参数  : pstEapInfo     EAP实体
-             enEvent        事件通知
-             pData          报文或其他参数
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月09日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_PeerProcessEvent
 (
     VOS_UINT32                          ulPppId,
@@ -820,21 +597,7 @@ VOS_VOID PPPC_EAP_PeerProcessEvent
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_PeerIdleIdentityReq
- 功能描述  : 在Idle状态下收到Identity Req的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月09日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_PeerIdleIdentityReq
 (
     PPPINFO_S                          *pstPppInfo,
@@ -886,21 +649,7 @@ VOS_VOID PPPC_EAP_PeerIdleIdentityReq
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_PeerNotifyReq
- 功能描述  : 在Init状态下收到Notify Req的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月09日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_PeerNotifyReq
 (
     PPPINFO_S                          *pstPppInfo,
@@ -929,21 +678,7 @@ VOS_VOID PPPC_EAP_PeerNotifyReq
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_PeerIdleNak
- 功能描述  : 在Idle状态下收到NAK事件的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月09日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_PeerIdleNak
 (
     PPPINFO_S                          *pstPppInfo,
@@ -990,21 +725,7 @@ VOS_VOID PPPC_EAP_PeerIdleNak
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_PeerIdleAuthReq
- 功能描述  : 在Idle状态下收到鉴权报文的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月09日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_PeerIdleAuthReq
 (
     PPPINFO_S                          *pstPppInfo,
@@ -1072,22 +793,7 @@ VOS_VOID PPPC_EAP_PeerIdleAuthReq
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_PeerIdleSuccess
- 功能描述  : 在Idle状态下收到SUCCESS报文的处理
- 输入参数  : pstPppInfo     PPP实体信息
-             pData          报文指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月09日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_PeerIdleSuccess
 (
     PPPINFO_S                          *pstPppInfo,
@@ -1105,22 +811,7 @@ VOS_VOID PPPC_EAP_PeerIdleSuccess
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_PeerIdleFailure
- 功能描述  : 在Init状态下收到FAILURE报文的处理
- 输入参数  : pstPppInfo     PPP实体信息
-             pData          报文指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月09日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_PeerIdleFailure
 (
     PPPINFO_S                          *pstPppInfo,
@@ -1140,21 +831,7 @@ VOS_VOID PPPC_EAP_PeerIdleFailure
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_PeerTimeout
- 功能描述  : 鉴权协商超时处理
- 输入参数  : ulPppId
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月09日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_PeerTimeout(PPPINFO_S *pstPppInfo, VOS_VOID *pData)
 {
     PPPC_EAP_INFO_STRU                 *pstEapInfo;
@@ -1180,22 +857,7 @@ VOS_VOID PPPC_EAP_PeerTimeout(PPPINFO_S *pstPppInfo, VOS_VOID *pData)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_PeerAuthAuthReq
- 功能描述  : 在AUTH状态下收到鉴权方法的报文
- 输入参数  : pstPppInfo     PPP实体
-             pData          报文指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月09日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_PeerAuthAuthReq
 (
     PPPINFO_S                          *pstPppInfo,
@@ -1237,22 +899,7 @@ VOS_VOID PPPC_EAP_PeerAuthAuthReq
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_PeerAuthNotifyAuthInd
- 功能描述  : 在AUTH/NOTIFY状态下收到方法的成功或失败指示
- 输入参数  : pstPppInfo     PPP实体
-             pData          本端鉴权成功或失败指示
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月09日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_PeerAuthNotifyAuthInd
 (
     PPPINFO_S                          *pstPppInfo,
@@ -1291,22 +938,7 @@ VOS_VOID PPPC_EAP_PeerAuthNotifyAuthInd
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_PeerAuthNotifySuccess
- 功能描述  : 在AUTH/NONTIFY状态下收到网络的鉴权成功消息
- 输入参数  : pstPppInfo     PPP实体
-             pData          本端鉴权成功或失败指示
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月09日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_PeerAuthNotifySuccess
 (
     PPPINFO_S                          *pstPppInfo,
@@ -1346,22 +978,7 @@ VOS_VOID PPPC_EAP_PeerAuthNotifySuccess
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_PeerAuthNotifyFailure
- 功能描述  : 在AUTH/NOTIFY状态下收到网络的失败消息
- 输入参数  : pstPppInfo     PPP实体
-             pData          本端鉴权成功或失败指示
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月09日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_PeerAuthNotifyFailure
 (
     PPPINFO_S                          *pstPppInfo,
@@ -1411,22 +1028,7 @@ VOS_VOID PPPC_EAP_PeerAuthNotifyFailure
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_PeerNotifyAuthReq
- 功能描述  : 在NOTIFY状态下收到网络的鉴权消息
- 输入参数  : pstPppInfo     PPP实体
-             pData          报文指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月09日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_PeerNotifyAuthReq
 (
     PPPINFO_S                          *pstPppInfo,
@@ -1479,22 +1081,7 @@ VOS_VOID PPPC_EAP_PeerNotifyAuthReq
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_PeerClosingNotifyReq
- 功能描述  : 在CLOSING状态下收到NOTIFY消息
- 输入参数  : pstPppInfo     PPP实体
-             pData          报文指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月09日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_PeerClosingNotifyReq
 (
     PPPINFO_S                          *pstPppInfo,
@@ -1536,22 +1123,7 @@ VOS_VOID PPPC_EAP_PeerClosingNotifyReq
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_PeerClosingAuthReq
- 功能描述  : 在CLOSING状态下收到AUTH消息
- 输入参数  : pstPppInfo     PPP实体
-             pData          报文指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月09日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_PeerClosingAuthReq
 (
     PPPINFO_S                          *pstPppInfo,
@@ -1605,22 +1177,7 @@ VOS_VOID PPPC_EAP_PeerClosingAuthReq
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_PeerClosingAuthInd
- 功能描述  : 在CLOSING状态下收到本端鉴权结果
- 输入参数  : pstPppInfo     PPP实体
-             pData          本端鉴权结果
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月09日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_PeerClosingAuthInd
 (
     PPPINFO_S                          *pstPppInfo,
@@ -1688,22 +1245,7 @@ VOS_VOID PPPC_EAP_PeerClosingAuthInd
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_PeerClosingSuccess
- 功能描述  : 在CLOSING状态下收到网络的成功报文
- 输入参数  : pstPppInfo     PPP实体
-             pData          报文指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月09日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_PeerClosingSuccess
 (
     PPPINFO_S                          *pstPppInfo,
@@ -1770,22 +1312,7 @@ VOS_VOID PPPC_EAP_PeerClosingSuccess
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_PeerClosingFailure
- 功能描述  : 在CLOSING状态下收到网络的失败报文
- 输入参数  : pstPppInfo     PPP实体
-             pData          报文指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月09日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_PeerClosingFailure
 (
     PPPINFO_S                          *pstPppInfo,

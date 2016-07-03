@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : MtcRrcInterface.h
-  版 本 号   : 初稿
-  作    者   : 鲁琳/l60609
-  生成日期   : 2013年07月30日
-  最近修改   :
-  功能描述   : MTC和RRC之间的接口
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年07月30日
-    作    者   : 鲁琳/l60609
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __MTCRRCINTERFACE_H__
 #define __MTCRRCINTERFACE_H__
@@ -47,14 +30,7 @@ extern "C" {
 /*****************************************************************************
   3 枚举定义
 *****************************************************************************/
-/*****************************************************************************
-枚举名    : MTC_RRC_MSG_ID_ENUM
-结构说明  : MTC和RRC的之间的消息
 
-  1.日    期   : 2013年07月30日
-    作    者   : 鲁琳/l60609
-    修改内容  : 定义MTC和RRC之间的消息
-*****************************************************************************/
 enum MTC_RRC_MSG_ID_ENUM
 {
     /* 消息名称 */                             /* 消息ID */                     /* 备注 */
@@ -65,9 +41,7 @@ enum MTC_RRC_MSG_ID_ENUM
     ID_MTC_RRC_BAND_CFG_IND                 = 0x0007,                           /* _H2ASN_MsgChoice MTC_RRC_BAND_CFG_IND_STRU */
     ID_MTC_RRC_TDS_LTE_RF_CONTROL_IND       = 0x0009,                           /* _H2ASN_MsgChoice MTC_RRC_TDS_LTE_RF_CONTROL_IND_STRU */
 
-    /* Added by Y00213812 for 主动离网重选, 2014-04-10, begin */
     ID_MTC_RRC_GSM_CELL_INFO_IND            = 0x000B,                           /* _H2ASN_MsgChoice MTC_RRC_GSM_CELL_INFO_IND_STRU */
-    /* Added by Y00213812 for 主动离网重选, 2014-04-10, end */
 
     ID_MTC_RRC_RSE_CFG_IND                  = 0x000D,                           /* _H2ASN_MsgChoice MTC_RRC_RSE_CFG_IND_STRU */
 
@@ -81,9 +55,7 @@ enum MTC_RRC_MSG_ID_ENUM
 
     ID_RRC_MTC_USING_FREQ_IND               = 0x000E,                           /* _H2ASN_MsgChoice RRC_MTC_USING_FREQ_IND_STRU */
 
-    /* Added by Y00213812 for 主动离网重选, 2014-04-10, begin */
     ID_RRC_MTC_GSM_CELL_INFO_IND            = 0x0010,                           /* _H2ASN_MsgChoice RRC_MTC_GSM_CELL_INFO_IND_STRU */
-    /* Added by Y00213812 for 主动离网重选, 2014-04-10, end */
 
     ID_RRC_MTC_GSM_CELL_INFO_EX_IND         = 0x0012,                           /* _H2ASN_MsgChoice RRC_MTC_GSM_CELL_INFO_EX_IND_STRU */
 
@@ -91,14 +63,7 @@ enum MTC_RRC_MSG_ID_ENUM
 };
 typedef VOS_UINT32  MTC_RRC_MSG_ID_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : MTC_RRC_RESULT_ENUM
- 枚举说明  : MTC和RRC的之间的结果码
 
-  1.日    期   : 2013年08月12日
-    作    者   : l00198894
-    修改内容   : V9R1 干扰控制项目
-*****************************************************************************/
 enum MTC_RRC_RESULT_ENUM
 {
     MTC_RRC_RESULT_NO_ERROR             = 0x0000,                               /* 消息处理正常 */
@@ -123,14 +88,7 @@ enum RRC_MTC_GSM_BANDINDICATOR_ENUM
 };
 typedef VOS_UINT16    RRC_MTC_GSM_BANDINDICATOR_ENUM_UINT16;
 
-/*****************************************************************************
- 枚举名     :RRC_MTC_GSM_CELL_STATE_ENUM
- 枚举说明   : 2G小区状态指示
 
- 1.日    期   : 2014年04月04日
-   作    者   : y00142674
-   修改内容   : 新生成结构
-*****************************************************************************/
 enum RRC_MTC_GSM_CELL_STATE_ENUM
 {
     RRC_MTC_GSM_CELL_STATE_IDLE         = 0,                                    /* 空闲态 */
@@ -159,31 +117,13 @@ typedef VOS_UINT32 RRC_MTC_GSM_CELL_STATE_ENUM_UINT32;
 /*****************************************************************************
   7 STRUCT定义
 *****************************************************************************/
-/*******************************************************************************
- 结构名    : RRC_MTC_MS_BAND_INFO_STRU
- 结构说明  : 通过Bit位记录频段信息
-             aulBandInfo[0]代表低32, aulBandInfo[1]代表高32个Band,
-             Band与Bit位由低到高一一对应, 如: aulBandInfo[0]的Bit0代表Band1,
-             aulBandInfo[0]的Bit2代表Band3, aulBandInfo[0]的Bit31代表Band32
-             aulBandInfo[1]的Bit0代表Band33, aulBandInfo[1]的Bit6代表Band39
 
- 1.日    期   : 2013年07月30日
-   作    者   : l60609
-   修改内容   : 新生成
-*******************************************************************************/
 typedef struct
 {
     VOS_UINT32                          aulBandInfo[2];                         /* 频段信息，每个Bit表示一个Band */
 }RRC_MTC_MS_BAND_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : MTC_RRC_INTRUSION_ACTION_SET_REQ_STRU
- 结构说明  : ID_MTC_RRC_INTRUSION_ACTION_SET_REQ的消息结构
 
- 1.日    期   : 2013年07月30日
-   作    者   : l60609
-   修改内容   : 新生成
-*******************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /*_H2ASN_Skip*/
@@ -191,46 +131,21 @@ typedef struct
     VOS_UINT8                           aucRsv[3];
 }MTC_RRC_INTRUSION_ACTION_SET_REQ_STRU;
 
-/*******************************************************************************
- 结构名    : MTC_RRC_INTRUSION_BAND_SET_REQ_STRU
- 结构说明  : ID_MTC_RRC_INTRUSION_BAND_SET_REQ的消息结构
 
- 1.日    期   : 2013年07月30日
-   作    者   : l60609
-   修改内容   : 新生成
-*******************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /*_H2ASN_Skip*/
     RRC_MTC_MS_BAND_INFO_STRU           stForbiddenBandInfo;                    /* 需要禁止的频段信息, Band对应的Bit位为0代表不禁止, 1代表禁止 */
 }MTC_RRC_INTRUSION_BAND_SET_REQ_STRU;
 
-/*******************************************************************************
- 结构名    : RRC_MTC_RESULT_CNF_STRU
- 结构说明  : RRC回复MTC模块操作结果的消息结构
 
- 1.日    期   : 2013年08月12日
-   作    者   : l00198894
-   修改内容   : V9R1 干扰控制项目
-*******************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /*_H2ASN_Skip*/
     MTC_RRC_RESULT_ENUM_UINT32          enResult;
 }RRC_MTC_RESULT_CNF_STRU;
 
-/*******************************************************************************
- 结构名    : RRC_MTC_INTRUSION_BAND_INFO_IND_STRU
- 结构说明  : ID_RRC_MTC_INTRUSION_BAND_INFO_IND的消息结构
 
- 1.日    期   : 2013年07月30日
-   作    者   : l60609
-   修改内容   : 新生成
-
-  2.日    期   : 2014年3月24日
-    作    者   : A00165503
-    修改内容   : B39&B32 Intrusion
-*******************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /*_H2ASN_Skip*/
@@ -238,14 +153,7 @@ typedef struct
     RRC_MTC_MS_BAND_INFO_STRU           stSerCellBandInfo;                      /* 当前驻留到的频段信息(过滤掉不支持的频段), Band对应的Bit位为0代表不存在, 1代表存在 */
 }RRC_MTC_INTRUSION_BAND_INFO_IND_STRU;
 
-/*******************************************************************************
- 结构名    : RRC_MTC_AREA_LOST_IND_STRU
- 结构说明  : ID_RRC_MTC_AREA_LOST_IND的消息结构
 
- 1.日    期   : 2013年10月18日
-   作    者   : l00198894
-   修改内容   : 新生成
-*******************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /*_H2ASN_Skip*/
@@ -253,14 +161,7 @@ typedef struct
     VOS_UINT8                           aucRsv[3];                              /*保留位*/
 }RRC_MTC_AREA_LOST_IND_STRU;
 
-/*******************************************************************************
- 结构名    : MTC_RRC_NOTCH_CHANNEL_IND_STRU
- 结构说明  : ID_MTC_RRC_NOTCH_CHANNEL_IND的消息结构
 
- 1.日    期   : 2013年12月18日
-   作    者   : z60575
-   修改内容   : 新生成
-*******************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /*_H2ASN_Skip*/
@@ -268,14 +169,7 @@ typedef struct
     VOS_UINT8                           aucRsv[3];                              /*保留位*/
 }MTC_RRC_NOTCH_CHANNEL_IND_STRU;
 
-/*******************************************************************************
- 结构名    : MTC_RRC_BAND_CFG_IND_STRU
- 结构说明  : ID_MTC_RRC_BAND_CFG_IND的消息结构
 
- 1.日    期   : 2014年02月13日
-   作    者   : f00179208
-   修改内容   : 新生成
-*******************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /*_H2ASN_Skip*/
@@ -283,15 +177,7 @@ typedef struct
     VOS_UINT8                           aucRsv[3];                              /*保留位*/
 }MTC_RRC_BAND_CFG_IND_STRU;
 
-/*******************************************************************************
- 结构名    : RRC_MTC_TDD_NCELL_INFO_STRU
- 结构说明  : GSM下的TDS频点列表
 
- 1.日    期   : 2013年11月26日
-   作    者   : y00142674
-   修改内容   : 新生成结构
-
-*******************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucTdsArfcnNum;                              /* TDS频点个数，0表示TDS频点不存在 */
@@ -299,18 +185,7 @@ typedef struct
     VOS_UINT16                          ausTdsArfcnList[MTC_RRC_TDS_ARFCN_MAX_NUM]; /* 频点列表 */
 }RRC_MTC_TDS_NCELL_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : RRC_MTC_LTE_NCELL_INFO_STRU
- 结构说明  : GSM下的LTE频点列表
 
- 1.日    期   : 2013年11月26日
-   作    者   : y00142674
-   修改内容   : 新生成结构
- 2.日    期   : 2015年7月20日
-   作    者   : w000316404
-   修改内容   : R11协议升级(LTE频点配置值扩展)
-
-*******************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucLteArfcnNum;                              /* LTE频点个数，0表示LTE频点不存在 */
@@ -318,16 +193,7 @@ typedef struct
     VOS_UINT32                          aulLteArfcnList[MTC_RRC_LTE_ARFCN_MAX_NUM]; /* 频点列表 */
 }RRC_MTC_LTE_NCELL_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : RRC_MTC_TDS_LTE_NCELL_INFO_IND_STRU
- 结构说明  : ID_RRC_MTC_TDS_LTE_NCELL_INFO_IND的消息对应的结构，
-             包括GSM下的TDS/LTE邻区结构中的TDS/LTE的频点列表
 
- 1.日    期   : 2013年11月26日
-   作    者   : y00142674
-   修改内容   : 新生成结构
-
-*******************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                      /*_H2ASN_Skip*/
@@ -337,27 +203,13 @@ typedef struct
     RRC_MTC_LTE_NCELL_INFO_STRU         stLteNCellInfo;                   /* LTE频点列表信息 */
 }RRC_MTC_NCELL_INFO_IND_STRU;
 
-/*******************************************************************************
- 结构名    : RRC_MTC_AREA_AVALIABLE_IND_STRU
- 结构说明  : ID_RRC_MTC_AREA_AVALIABLE_IND消息对应的结构，接入层通知MTC网络恢复
 
- 1.日    期   : 2014年01月17日
-   作    者   : l00198894
-   修改内容   : V9R1C53 C+L 离网重选项目
-*******************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                      /*_H2ASN_Skip*/
 }RRC_MTC_AREA_AVALIABLE_IND_STRU;
 
-/*******************************************************************************
- 结构名    : MTC_RRC_TDS_LTE_RF_CONTROL_IND_STRU
- 结构说明  : ID_MTC_RRC_TDS_LTE_RF_CONTROL_IND的消息结构
 
- 1.日    期   : 2014年03月24日
-   作    者   : y00142674
-   修改内容   : 新生成
-*******************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /*_H2ASN_Skip*/
@@ -365,30 +217,14 @@ typedef struct
     VOS_UINT8                           aucRsv[3];                              /* 保留位 */
 }MTC_RRC_TDS_LTE_RF_CONTROL_IND_STRU;
 
-/*******************************************************************************
- 结构名    : RRC_MTC_GSM_FREQ_INFO_STRU
- 结构说明  : GSM频点信息
 
- 1.日    期   : 2014年2月21日
-   作    者   : L00128652
-   修改内容   : 新生成结构
-
-*******************************************************************************/
 typedef struct
 {
     VOS_UINT16                              usGsmArfcn;     /* 绝对频点号 */
     RRC_MTC_GSM_BANDINDICATOR_ENUM_UINT16   enBandInd;      /* Band指示, 指示当前频点是 1800 系统 或 1900 系统 */
 }RRC_MTC_GSM_FREQ_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : RRC_MTC_GSM_FREQ_INFO_STRU
- 结构说明  : GSM频点列表
 
- 1.日    期   : 2014年2月21日
-   作    者   : L00128652
-   修改内容   : 新生成结构
-
-*******************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucGsmArfcnNum;                                      /* GSM频点个数，0表示GSM频点不存在 */
@@ -398,15 +234,7 @@ typedef struct
     RRC_MTC_GSM_FREQ_INFO_STRU          astGsmMaArfcnList[MTC_RRC_GSM_MA_ARFCN_MAX_NUM];    /* 业务频点信息，此信息只在G主模下有效 */
 }RRC_MTC_GSM_FREQ_INFO_LIST_STRU;
 
-/*******************************************************************************
- 结构名    : RRC_MTC_WCDMA_FREQ_INFO_STRU
- 结构说明  : WCDMA频点列表
 
- 1.日    期   : 2014年2月21日
-   作    者   : L00128652
-   修改内容   : 新生成结构
-
-*******************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucWcdmaArfcnNum;                                        /* W频点个数，0表示WCDMA频点不存在 */
@@ -414,17 +242,7 @@ typedef struct
     VOS_UINT16                          ausWcdmaArfcnList[MTC_RRC_WCDMA_MAX_USING_ARFCN_NUM];   /* 频点列表 */
 }RRC_MTC_WCDMA_FREQ_INFO_LIST_STRU;
 
-/*******************************************************************************
- 结构名    : RRC_MTC_USING_FREQ_IND_STRU
- 结构说明  : ID_RRC_MTC_USING_FREQ_IND的消息对应的结构，
-             包括GUTL主模下驻留以及正在测量的本系统以及异系统频点信息，服务小区所在频点放在第一个位置，
-             其余频点按照能量排序
 
- 1.日    期   : 2014年2月21日
-   作    者   : L00128652
-   修改内容   : 新生成结构
-
-*******************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                       /*_H2ASN_Skip*/
@@ -443,15 +261,7 @@ typedef struct
 }RRC_MTC_USING_FREQ_IND_STRU;
 
 
-/*******************************************************************************
- 结构名    : RRC_MTC_GSM_CELL_INFO_STRU
- 结构说明  : GSM的小区信息的结构
 
- 1.日    期   : 2014年04月04日
-   作    者   : y00142674
-   修改内容   : 新生成结构
-
-*******************************************************************************/
 typedef struct
 {
     VOS_UINT16                              usArfcn;                            /* GSM绝对频点信息 */
@@ -463,15 +273,7 @@ typedef struct
 }RRC_MTC_GSM_CELL_INFO_STRU;
 
 
-/*******************************************************************************
- 结构名    : RRC_MTC_GSM_CELL_INFO_IND_STRU
- 结构说明  : ID_RRC_MTC_GSM_CELL_INFO_IND的消息对应的结构，GAS上报给MTC
 
- 1.日    期   : 2014年04月04日
-   作    者   : y00142674
-   修改内容   : 新生成结构
-
-*******************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /*_H2ASN_Skip*/
@@ -479,15 +281,7 @@ typedef struct
     RRC_MTC_GSM_CELL_INFO_STRU          stGsmCellInfo;                          /* GSM小区信息 */
 }RRC_MTC_GSM_CELL_INFO_IND_STRU;
 
-/*******************************************************************************
- 结构名    : MTC_RRC_GSM_CELL_INFO_IND_STRU
- 结构说明  : ID_MTC_RRC_GSM_CELL_INFO_IND的消息对应的结构，MTC下发给TRRC或者LRRC
 
- 1.日    期   : 2014年04月04日
-   作    者   : y00142674
-   修改内容   : 新生成结构
-
-*******************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /*_H2ASN_Skip*/
@@ -495,15 +289,7 @@ typedef struct
     RRC_MTC_GSM_CELL_INFO_STRU          stGsmCellInfo;                          /* GSM小区信息 */
 }MTC_RRC_GSM_CELL_INFO_IND_STRU;
 
-/*******************************************************************************
- 结构名    : MTC_RRC_RSE_CFG_IND_STRU
- 结构说明  : ID_MTC_RRC_RSE_CFG_IND的消息结构
 
- 1.日    期   : 2014年05月12日
-   作    者   : y00142674
-   修改内容   : 新生成结构
-
-*******************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /*_H2ASN_Skip*/
@@ -511,28 +297,14 @@ typedef struct
     VOS_UINT8                           aucRsv[3];                              /*保留位*/
 }MTC_RRC_RSE_CFG_IND_STRU;
 
-/*******************************************************************************
- 结构名    : MTC_RRC_PLMN_ID_STRU
- 结构说明  : PLMN ID结构体
- 1.日    期   : 2014年11月17日
-   作    者   : l00198894
-   修改内容   : 新增结构体
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulMcc;              /* MCC,3 bytes      */
     VOS_UINT32                          ulMnc;              /* MNC,2 or 3 bytes */
 } MTC_RRC_PLMN_ID_STRU;
 
-/*******************************************************************************
- 结构名    : RRC_MTC_GSM_CELL_INFO_EX_STRU
- 结构说明  : GSM的小区扩展信息结构
 
- 1.日    期   : 2014年11月17日
-   作    者   : l00198894
-   修改内容   : 新生成结构
-
-*******************************************************************************/
 typedef struct
 {
     MTC_RRC_PLMN_ID_STRU                stPlmnId;                               /* PLMN ID */
@@ -540,15 +312,7 @@ typedef struct
     VOS_UINT16                          usCellId;                               /* 小区ID */
 } RRC_MTC_GSM_CELL_INFO_EX_STRU;
 
-/*******************************************************************************
- 结构名    : RRC_MTC_GSM_CELL_INFO_EX_IND_STRU
- 结构说明  : ID_RRC_MTC_GSM_CELL_INFO_EX_IND的消息对应的结构，GAS上报给MTC
 
- 1.日    期   : 2014年11月17日
-   作    者   : l00198894
-   修改内容   : 新生成结构
-
-*******************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /*_H2ASN_Skip*/

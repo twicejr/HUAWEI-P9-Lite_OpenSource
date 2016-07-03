@@ -1,0 +1,84 @@
+/*
+ * Hisilicon Ltd. Hi3650 SoC
+ *
+ * Copyright (C) 2012-2014 Hisilicon Ltd.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * publishhed by the Free Software Foundation.
+ */
+
+/{
+		ddr_devfreq@fffc0000 {
+			#address-cells = <2>;
+			#size-cells = <2>;
+			compatible = "hisilicon,ddr_devfreq";
+			reg = <0x0 0xfffc0000 0x0 0x10000>;
+			pm_qos_data_reg = <8 60>;
+			clocks = <&clk_ddrc_min &clk_ddrc_freq>;
+			pm_qos_class = "memory_tput";
+			operating-points = <
+				/* kHz uV */
+				120000	0
+				240000  0
+				360000	0
+				533000	0
+				800000	0
+				933000	0
+			>;
+			status = "ok";
+		};
+
+		ddr_devfreq_up_threshold@fffc0000 {
+			#address-cells = <2>;
+			#size-cells = <2>;
+			compatible = "hisilicon,ddr_devfreq";
+			reg = <0x0 0xfffc0000 0x0 0x10000>;
+			pm_qos_data_reg = <8 60>;
+			clocks = <&clk_ddrc_max &clk_ddrc_freq>;
+			pm_qos_class = "memory_tput_up_threshold";
+			operating-points = <
+				/* kHz uV */
+				120000	0
+				240000  0
+				360000	0
+				533000	0
+				800000	0
+				933000	0
+			>;
+			status = "ok";
+		};
+		/* DDR Partial Area Self-Refresh */
+/*
+		pasr{
+			compatible = "hisilicon,hisi-pasr";
+			reg = <0x0 0xfffc0000 0x0 0x10000>,
+				  <0x0 0xfff0a000 0x0 0x1000>;
+			status = "ok";
+		};
+*/
+		ddr: ddr@fffc0000 {
+                       #address-cells = <2>;
+                       #size-cells = <2>;
+                       compatible = "hisilicon,ddr_secprotect";
+                       reg = <0x0 0xfffc0000 0x0 0x20000>;
+                       interrupts = <0 131 4>;
+                       status = "ok";
+               };
+		exmbist@fffc0000 {
+                       #address-cells = <2>;
+                       #size-cells = <2>;
+                       compatible = "hisilicon,hi3650-exmbist";
+                       reg = <0x0 0xfffc0000 0x0 0x20000>;
+                       #interrupts = <0 131 4>;
+                       start_addr = <0x40000000>;
+                       end_addr = <0x60000000>;
+                       status = "disabled"; 
+               };
+		ddr_seccfg {
+			compatible = "hisilicon,ddr_seccfg";
+			ap_sec_read = <0>;
+			status = "ok";
+		};
+
+};

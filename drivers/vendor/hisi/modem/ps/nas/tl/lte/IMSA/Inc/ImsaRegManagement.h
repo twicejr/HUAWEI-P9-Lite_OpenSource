@@ -1,16 +1,4 @@
-/******************************************************************************
 
-
-        @(#)Copyright(C)2013,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : ImsaRegManagement.h
-    Description : ImsaRegManagement.cÍ·ÎÄ¼þ
-    History     :
-      1.sunbing 00049683    2013-06-19  Draft Enact
-
-
-******************************************************************************/
 
 #ifndef __IMSAREGMANAGEMENT_H__
 #define __IMSAREGMANAGEMENT_H__

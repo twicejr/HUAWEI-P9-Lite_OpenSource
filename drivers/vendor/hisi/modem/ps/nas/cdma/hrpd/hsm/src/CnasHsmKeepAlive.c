@@ -316,22 +316,7 @@ VOS_VOID CNAS_HSM_ProcKeepAliveTimerTsmpCloseChanged(VOS_VOID)
 }
 
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_ProcKeepAliveTimerRcvPowerOff
-Description     :   The function is used to judge if the Keep alive timer must be stopped for the Power Off
-                    scene. The function also stops the keep alive timer, if the timer is running
-Input parameters:   None
-Output parameters:  None
-Return Value    :   None
-Modify History:
-    1)  Date    :   2015-05-29
-        Author  :   a00295761
-        Modify content :Create
 
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-*****************************************************************************/
 
 VOS_VOID CNAS_HSM_ProcKeepAliveTimerRcvPowerOff(VOS_VOID)
 {
@@ -385,22 +370,7 @@ VOS_VOID CNAS_HSM_ProcKeepAliveTimerRcvKeepAliveMsg(VOS_VOID)
 }
 
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_ProcKeepAliveTimerFwdTrafDataRcvd
-Description     :   THe function starts the Keep alive timer with timer length based on the System Tick at the
-                    time of last received forward traffic channel data
-Input parameters:   None
-Output parameters:  None
-Return Value    :   None
-Modify History:
-    1)  Date    :   2015-05-29
-        Author  :   a00295761
-        Modify content :Create
 
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-*****************************************************************************/
 
 VOS_VOID CNAS_HSM_ProcKeepAliveTimerFwdTrafDataRcvd(VOS_VOID)
 {
@@ -716,24 +686,7 @@ VOS_UINT32 CNAS_HSM_IsSessionExpired(
 }
 
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_IsNeedSessionRecovery
-Description     :   The function is used to judge if HSM must perform Session recovery after first sys acq
-Input parameters:   pulCurSysTime - current cdma sys time  (unit is ms)
-Outout parameters:  pstOldSysTime - old cdmas sys time (unit is ms)
-Return Value    :   VOS_TRUE: If session must be recovered
 
-Modify History  :
-1)  Date           : 2015-06-08
-    Author         : a00295761
-    Modify content : Create
-2)  Date           : 2015-09-22
-    Author         : t00323010
-    Modify content : HSM MNTN(DTS2015092201636): log recovery judge related info
-3)  Date           : 2015-12-21
-    Author         : m00312079
-    Modify content : DTS2015120208895: 如果UE的版本信息开关机后发生变化，则不进行recovery流程，直接发起初始协商
-*****************************************************************************/
 
 VOS_UINT8 CNAS_HSM_IsNeedSessionRecovery(
     VOS_UINT32                         *pulCurSysTime,
@@ -846,22 +799,7 @@ VOS_VOID CNAS_HSM_CalcTsmpCloseRemainTimeAfterFirstSysAcq(
 
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_ProcKeepAliveTimerFwdTrafDataNotRcvd
-Description     :   The function is used to handle the scence that no forward
-                    traffic channel data was received during the time ulKeepAliveTimerLen
-Input parameters:   None
-Output parameters:  None
-Return Value    :   VOS_VOID
 
-Modify History  :
-1)  Date           : 2015-10-08
-    Author         : w00351686
-    Modify content : Create
-2)  Date           : 2015-12-25
-    Author         : m00312079
-    Modify content : DTS2015121807624:当DO处于从模或者掉网时不发送keep alive req
-*****************************************************************************/
 VOS_VOID CNAS_HSM_ProcKeepAliveTimerFwdTrafDataNotRcvd(VOS_VOID)
 {
     VOS_UINT8                                               ucKeepAliveReqSndCount;

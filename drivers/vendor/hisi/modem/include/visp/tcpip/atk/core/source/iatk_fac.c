@@ -25,25 +25,7 @@ IComponentFactory m_AtkFactory =
     &m_AtkFactoryVtbl
 };
 
-/*******************************************************************************
-*    Func Name: ImplAtkFactoryQueryInterface
-* Date Created: 2014-08-07
-*       Author: a00900892
-*  Description: To query the component interface,   
-*               Implementation for method QueryInterface in     
-*        Input: IUnknown *This: this ÷∏’Î
-*               COMP_IID iid:   Com interface id
-*       Output: LPVOID *ppvObj: Vtable instance
-*       Return: VOS_OK  success
-*               VOS_ERR error
-*      Caution: Not used for single instance COM  
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE        NAME                        DESCRIPTION    
-*  ----------------------------------------------------------------------------
-*  2014-08-07  a00900892                    Create
-*
-******************************************************************************/
+
 ULONG ImplAtkFactoryQueryInterface(IUnknown * This, COMP_IID iid, LPVOID * ppvObj)
 {
     ULONG ulRetVal = VOS_OK;
@@ -70,26 +52,7 @@ ULONG ImplAtkFactoryQueryInterface(IUnknown * This, COMP_IID iid, LPVOID * ppvOb
     return (ulRetVal);
 }
 
-/*******************************************************************************
-*    Func Name: ImplAtkFactoryCreateInstance
-* Date Created: 2014-08-07
-*       Author: a00900892)
-*  Description: Implementation for method CreateInstance in 
-*                IComponentFactory for each instance of CompSocket.                
-*                And assign the vtbl to it initial all events to NULL pointer.  
-*        Input: IUnknown *This: this ÷∏’Î
-*               COMP_IID iid:   Com interface id
-*       Output: LPVOID *ppvObj: Vtable instance
-*       Return: VOS_OK  success
-*               VOS_ERR error
-*      Caution: Not used for single instance COM  
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE        NAME                        DESCRIPTION    
-*  ----------------------------------------------------------------------------
-*  2014-08-07  a00900892                    Create
-*
-******************************************************************************/
+
 ULONG ImplAtkFactoryCreateInstance (IComponentFactory *This,  COMP_IID iid, VOID **ppvObj )
 {  
     ULONG ulRet = VOS_OK;

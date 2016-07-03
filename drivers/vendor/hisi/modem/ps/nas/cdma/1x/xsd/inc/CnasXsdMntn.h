@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasXsdMntn.h
-  版 本 号   : 初稿
-  作    者   : w00176964
-  生成日期   : 2014年8月18日
-  最近修改   :
-  功能描述   : CnasXsdMntn.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年8月18日
-    作    者   : w00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __CNAS_XSD_MNTN_H__
 #define __CNAS_XSD_MNTN_H__
@@ -55,13 +38,7 @@ extern "C" {
 /*****************************************************************************
   3 枚举定义
 *****************************************************************************/
-/*****************************************************************************
- 枚举名    : CNAS_XSD_PRL_SOURCE_TYPE_ENUM_UINT8
- 结构说明  : PRL源类型，即PRL是来源与EPRL文件，PRL文件，NVRAM或HARD CODE
-  1.日    期   : 2014年10月28日
-    作    者   : y00245242
-    修改内容   : 新建
-*****************************************************************************/
+
 enum CNAS_XSD_PRL_SOURCE_TYPE_ENUM
 {
     CNAS_XSD_PRL_TYPE_EPRL_FILE,
@@ -73,13 +50,7 @@ enum CNAS_XSD_PRL_SOURCE_TYPE_ENUM
 };
 typedef VOS_UINT8 CNAS_XSD_PRL_SOURCE_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : CNAS_XSD_MNTN_MSG_ID_ENUM
- 结构说明  : CNAS XSD模块发送给OM的可维可测消息
-  1.日    期   : 2014年08月18日
-    作    者   : W00176964
-    修改内容   : CNAS XSD模块发送给OM的可维可测消息
-*****************************************************************************/
+
 enum CNAS_XSD_MNTN_MSG_ID_ENUM
 {
     ID_CNAS_XSD_MNTN_LOG_SCAN_CHAN_LIST_IND                 = ID_CNAS_MNTN_XSD_MSG_BASE,    /*_H2ASN_MsgChoice  CNAS_XSD_LOG_SCAN_CHNNEL_LIST_MSG_STRU */
@@ -153,13 +124,7 @@ typedef VOS_UINT32 CNAS_XSD_MNTN_MSG_ID_ENUM_UINT32;
 /*****************************************************************************
   7 STRUCT定义
 *****************************************************************************/
-/*****************************************************************************
- 结构名    : CNAS_XSD_LOG_SCAN_CHNNEL_LIST_MSG_STRU
- 结构说明  : 输出到SDT的扫描频点列表消息结构体
- 1.日    期   : 2014年8月18日
-   作    者   : w00176964
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* _H2ASN_Skip */
@@ -170,13 +135,7 @@ typedef struct
 }CNAS_XSD_LOG_SCAN_CHNNEL_LIST_MSG_STRU;
 
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_LOG_ACQ_SYSTEM_LIST_MSG_STRU
- 结构说明  : 输出到SDT的捕获系统列表消息结构体
- 1.日    期   : 2014年8月18日
-   作    者   : w00176964
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* _H2ASN_Skip */
@@ -187,17 +146,7 @@ typedef struct
 }CNAS_XSD_LOG_ACQ_SYSTEM_LIST_MSG_STRU;
 
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_LOG_AVAIL_SYSTEM_LIST_MSG_STRU
- 结构说明  : 输出到SDT的AVIALABLE系统列表消息结构体
- 1.日    期   : 2014年8月18日
-   作    者   : w00176964
-   修改内容   : 新增
 
- 2.日    期   : 2015年7月9日
-   作    者   : y00245242
-   修改内容   : iteration 17开发
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* _H2ASN_Skip */
@@ -208,13 +157,7 @@ typedef struct
     CNAS_XSD_AVAIL_SYSTEM_INFO_STRU     astAvailSystem[CNAS_XSD_MAX_AVAILABLE_SYS_NUM];
 }CNAS_XSD_LOG_AVAIL_SYSTEM_LIST_MSG_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_LOG_MRU_LIST_MSG_STRU
- 结构说明  : 输出到SDT的MRU列表消息结构体
- 1.日    期   : 2014年8月18日
-   作    者   : w00176964
-   修改内容   : 新增
-*****************************************************************************/
+
 
 typedef struct
 {
@@ -233,13 +176,7 @@ typedef struct
     VOS_UINT32                          ulBandClass;
 }CNAS_XSD_LOG_BANDCLASS_LIST_MSG_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_LOG_HOME_SID_NID_LIST_MSG_STRU
- 结构说明  : 输出到SDT的HOME_SID_NID列表消息结构体
- 1.日    期   : 2014年12月31日
-   作    者   : h00313353
-   修改内容   : 新增
-*****************************************************************************/
+
 
 typedef struct
 {
@@ -250,13 +187,7 @@ typedef struct
     CNAS_CCB_1X_HOME_SID_NID_STRU       astHomeSidNid[CNAS_CCB_MAX_HOME_SID_NID_LIST];
 }CNAS_XSD_LOG_HOME_SID_NID_LIST_MSG_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_LOG_OOC_TIMER_SCHEDULE_INFO_MSG_STRU
- 结构说明  : 输出到SDT的OOC timer调度消息结构体
- 1.日    期   : 2014年12月31日
-   作    者   : h00313353
-   修改内容   : 新增
-*****************************************************************************/
+
 
 typedef struct
 {
@@ -270,13 +201,7 @@ typedef struct
 }CNAS_XSD_LOG_OOC_TIMER_SCHEDULE_INFO_MSG_STRU;
 
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_LOG_AVOID_FREQ_LIST_MSG_STRU
- 结构说明  : 输出到SDT的avoid频点列表消息结构体
- 1.日    期   : 2014年10月22日
-   作    者   : y00245242
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* _H2ASN_Skip */
@@ -286,13 +211,7 @@ typedef struct
     CNAS_XSD_AVOID_FREQ_INFO_STRU       astAvoidFreqInfo[CNAS_XSD_MAX_AVOID_FREQ_NUM];
 }CNAS_XSD_LOG_AVOID_FREQ_LIST_MSG_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_LOG_PRL_SOURCE_TYPE_MSG_STRU
- 结构说明  : 输出到SDT的prl源类型
- 1.日    期   : 2014年10月22日
-   作    者   : y00245242
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* _H2ASN_Skip */
@@ -301,13 +220,7 @@ typedef struct
     VOS_UINT8                           aucReserve[3];
 }CNAS_XSD_LOG_PRL_SOURCE_TYPE_MSG_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_LOG_BUffER_MSG_INFO_STRU
- 结构说明  : 输出到SDT的缓存队列信息
- 1.日    期   : 2014年11月5日
-   作    者   : W00176964
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* _H2ASN_Skip */
@@ -316,13 +229,7 @@ typedef struct
     CNAS_XSD_CACHE_MSG_QUEUE_STRU       stMsgQueue;
 }CNAS_XSD_LOG_BUffER_MSG_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_LOG_OOC_CTX_INFO_MSG_STRU
- 结构说明  : 输出到SDT的OOC上下文消息结构体
- 1.日    期   : 2015年1月14日
-   作    者   : y00245242
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* _H2ASN_Skip */
@@ -336,13 +243,7 @@ typedef struct
     VOS_UINT8                           ucSceneSetFlag;
 }CNAS_XSD_LOG_OOC_CTX_INFO_MSG_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_LOG_HOME_SID_NID_MOST_PRI_CFG_STRU
- 结构说明  : 输出到SDT的ucHomeSidNidMostPriFlg
- 1.日    期   : 2015年7月3日
-   作    者   : w00242748
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* _H2ASN_Skip */
@@ -351,13 +252,7 @@ typedef struct
     VOS_UINT8                           aucReserved[3];
 }CNAS_XSD_LOG_HOME_SID_NID_MOST_PRI_FLG_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_LOG_OPER_LOCK_WHITE_SID_LIST_STRU
- 结构说明  : 输出到SDT的OPER LOCK WHITE SID LIST
- 1.日    期   : 2015年7月3日
-   作    者   : w00242748
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* _H2ASN_Skip */
@@ -368,13 +263,7 @@ typedef struct
     CNAS_CCB_SYS_INFO_STRU              astSysInfo[CNAS_CCB_MAX_WHITE_LOCK_SYS_NUM];
 }CNAS_XSD_LOG_OPER_LOCK_SYS_WHITE_LIST_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_LOG_CTCC_CUSTOMIZE_FREQ_LIST_STRU
- 结构说明  : 输出到SDT的CTCC自定义频点列表
- 1.日    期   : 2015年7月3日
-   作    者   : w00242748
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* _H2ASN_Skip */
@@ -385,13 +274,7 @@ typedef struct
     CNAS_CCB_FREQENCY_CHANNEL_STRU      astFreqList[CNAS_CCB_MAX_FREQ_NUM];
 }CNAS_XSD_LOG_CTCC_CUSTOMIZE_FREQ_LIST_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_LOG_GEO_LIST_SRCH_STATUS_STRU
- 结构说明  : 输出到SDT的GEO list搜索状态信息
- 1.日    期   : 2015年7月10日
-   作    者   : y00245242
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* _H2ASN_Skip */
@@ -402,13 +285,7 @@ typedef struct
 }CNAS_XSD_LOG_GEO_LIST_SRCH_STATUS_STRU;
 
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_LOG_CDMA_STANDARD_CHANNELS_STRU
- 结构说明  : 输出到SDT的CDMA标准频段信息
- 1.日    期   : 2015年7月10日
-   作    者   : y00245242
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* _H2ASN_Skip */
@@ -416,13 +293,7 @@ typedef struct
     CNAS_CCB_CDMA_STANDARD_CHANNELS_STRU                    stCdmaStandardChan; /* cdma标准频段信息 */
 }CNAS_XSD_LOG_CDMA_STANDARD_CHANNELS_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_LOG_CALLBACK_CFG_STRU
- 结构说明  : 输出到SDT紧急呼CallBack模式Nv配置信息
- 1.日    期   : 2015年7月10日
-   作    者   : h00313353
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* _H2ASN_Skip */
@@ -431,26 +302,14 @@ typedef struct
 } CNAS_XSD_LOG_CALLBACK_CFG_STRU;
 
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_LOG_CALLBACK_STATUS_STRU
- 结构说明  : 输出到SDT紧急呼CallBack模式进入和退出的消息
- 1.日    期   : 2015年7月10日
-   作    者   : h00313353
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* _H2ASN_Skip */
     CNAS_XSD_MNTN_MSG_ID_ENUM_UINT32    enMsgId;                                /* _H2ASN_Skip */
 } CNAS_XSD_LOG_CALLBACK_STATUS_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_LOG_CDMA_1X_PREF_CHANNELS_STRU
- 结构说明  : 输出到SDT CDMA优选频点信息
- 1.日    期   : 2015年7月10日
-   作    者   : h00313353
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* _H2ASN_Skip */

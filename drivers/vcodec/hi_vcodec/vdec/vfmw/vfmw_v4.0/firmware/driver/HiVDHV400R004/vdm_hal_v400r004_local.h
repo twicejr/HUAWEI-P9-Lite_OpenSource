@@ -32,7 +32,7 @@ extern "C" {
 #define    DN_V400R004_MSG_SIZE                 (DN_V400R004_MSG_SLOT_NUM * MSG_SLOT_SIZE)  //分配的消息大小, WORD
 #define    VDM_V400R004_REG_USED_SIZE           (512)                                       //实际使用的寄存器大小, WORD
 #define    RP_V400R004_MSG_USED_SIZE            (RP_V400R004_MSG_SIZE)                      //实际使用的消息大小, WORD
-#define    CA_V400R004_HEVC_MN_ADDR_LEN         (1024)     //H265协议CA_MN可减为1K z00290437  20141016   
+#define    CA_V400R004_HEVC_MN_ADDR_LEN         (1024)
 #define    CA_V400R004_MN_ADDR_LEN              (64*4*20)
 #define    SED_V400R004_TOP_ADDR_LEN            (352*96)   //(64*4*96)
 #define    PMV_V400R004_TOP_ADDR_LEN            (352*128)  //(64*4*96)

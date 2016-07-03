@@ -172,7 +172,6 @@ typedef struct tagOSPF6_SHOWINTF
     ULONG  ulPassive;                           /*被动标志,默认:0
                                                   1 - 接口不再接收发送Hello报文*/
 
-    /* Added by likaikun00213099, 基于接口统计各状态的邻居, 2014/4/15 */
     USHORT usNumNeighbors;                      /*本接口邻居个数*/
     USHORT usNeighborsInState[OSPF6_NBR_MAX_STATES + 1]; /*不同状态邻居个数*/
     ULONG  ulRouterId;                          /*本接口所属于的Router ID*/
@@ -183,7 +182,6 @@ typedef struct tagOSPF6_SHOWINTF
     ULONG ulGrHelperMode;
     ULONG ulAccNum;
     ULONG ulRemoteIfIndex;
-    /* End of Added by likaikun00213099, 基于接口统计各状态的邻居, 2014/4/15 */
 }OSPF6_SHOWINTF_S;
 
 /*STRUCT<区域查询信息结构体，此数据结构包括ospf6 area mib(amb_osp3_pm_area)中用户所关心的字段>*/
@@ -231,7 +229,6 @@ typedef struct tagOSPF6_SHOWNBR_S
     ULONG  ulHelloSuppressed;               /*Hello抑制*/
     ULONG  ulPermanence;                    /*邻居动态or静态*/
 
-    /* Added by likaikun00213099, 邻居查询新增维测信息, 2014/4/18 */
     UCHAR  ucNbrIfIpAddr[OSPF6_MAX_INET_ADDR_LEN]; /*邻居接口地址*/
     ULONG  ulNeighbourDR;                   /*邻居DR*/
     ULONG  ulNeighbourBDR;                  /*邻居BDR*/
@@ -239,10 +236,8 @@ typedef struct tagOSPF6_SHOWNBR_S
     ULONG  ulNbrLastUpdTime;                /*邻居达到FULL或离开FULL之后的累计时间，单位:秒*/
     ULONG  ulNbrUpDownTimes;                /*邻居UP/DOWN次数*/
     ULONG  ulOptions;                       /*邻居选项*/
-    /* End of Added by likaikun00213099, 邻居查询新增维测信息, 2014/4/18 */
 }OSPF6_SHOWNBR_S;
 
-/*Added by w00207740, 查询MJ信息, 2013/12/28 */
 typedef struct tagOSPF6_PMMJSHOW_S
 {
   ULONG ApplIndex;
@@ -590,10 +585,8 @@ typedef struct tagOSPF6_SHOWCUMLTVE_OUT
     ULONG  ulAreaBdr;    /* Area 边界路由器 */
     ULONG  ulAsBdr;      /* as 边界路由器 */
 
-    /* Added by likaikun00213099, 统计进程的各状态的邻居, 2014/4/21 */
     ULONG  ulNumNbr;     /* 进程的邻居总数 */
     ULONG  ulNbrState[OSPF6_NBR_MAX_STATES + 1]; /* 不同状态的邻居个数 */
-    /* End of Added by likaikun00213099, 统计进程的各状态的邻居, 2014/4/21 */
 }OSPF6_SHOWCUMLTVE_OUT_S;
 
 typedef struct tagOSPF6_SHOWERROR_OUT
@@ -2129,60 +2122,12 @@ ULONG OSPF6_CMM_Error_GetNext (ULONG ulHandle, OSPF6_SHOWERROR_OUT_S * pstErrorO
 *
 *******************************************************************************/
 VOID OSPF6_ShowError(USHORT usProcessId);
-/*******************************************************************************
-*    Func Name: OSPF6_CMM_PolicyDist_Open
-* Date Created: 2014-04-10
-*       Author: w00207740
-*  Description: 打开OSPFv3引入／导出过滤策略表
-*        Input: ULONG* pulHandle: 出参，返回句柄
-*               OSPF6_FILTER_S * pstPolicyDistIn:过滤条件
-*       Output: 
-*       Return: 错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-04-10   w00207740               Create for story S-IP-003-OSPFv3-102
-*
-*******************************************************************************/
+
 ULONG  OSPF6_CMM_PolicyDist_Open ( ULONG* pulHandle, OSPF6_FILTER_S * pstPolicyDistIn );
-/*******************************************************************************
-*    Func Name: OSPF6_CMM_PolicyDist_GetFirst
-* Date Created: 2014-04-10
-*       Author: w00207740
-*  Description: 用于获取一条OSPF引入／导出过滤策略
-*        Input: ULONG ulHandle:策略表句柄
-*               OSPF6_SHOWPLCYDIST_OUT_S * pstPolicyDistOut:返回策略信息
-*       Output: 
-*       Return: 错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-04-10   w00207740               Create for story S-IP-003-OSPFv3-102
-*
-*******************************************************************************/
+
 ULONG OSPF6_CMM_PolicyDist_GetFirst ( ULONG ulHandle, OSPF6_SHOWPLCYDIST_OUT_S * pstPolicyDistOut );
 
-/*******************************************************************************
-*    Func Name: OSPF6_CMM_PolicyDist_GetNext
-* Date Created: 2014-04-10
-*       Author: w00207740
-*  Description: 用于获取下一条OSPF引入／导出过滤策略
-*        Input: ULONG ulHandle:策略表句柄
-*               OSPF6_SHOWPLCYDIST_OUT_S * pstPolicyDistOut:返回策略信息
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-04-10   w00207740               Create for story S-IP-003-OSPFv3-102
-*
-*******************************************************************************/
+
 ULONG OSPF6_CMM_PolicyDist_GetNext ( ULONG ulHandle, OSPF6_SHOWPLCYDIST_OUT_S * pstPolicyDistOut );
 
 

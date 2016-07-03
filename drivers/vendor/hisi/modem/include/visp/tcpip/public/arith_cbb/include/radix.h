@@ -142,55 +142,9 @@ typedef struct tagVOS_RDX_KEY_EXTNODE
 
 
 /* Prototypes of the API'S provided by Radix tree for Address/Mask search */
-/****************************************************************************
-*    Func Name: VOS_RDX_AddNode()
-*  Description: Add a radix tree external node containing address and mask as well
-*               as user-specific information to a particular radix tree specified by the
-*               root node.
-*        Input: ULONG ulModuleID:模块号
-*               VOS_RDX_INTNODE_S **ppstRootNode:Root node of the tree. 
-*               VOS_RDX_EXTNODE_S **ppstExtNode:External node to be added containing
-*                   the address and mask as well as the user-specific information. 
-*       Output: VOS_RDX_INTNODE_S **ppstRootNode:The root node may be changed due to
-*                   the newly added external node. 
-*               VOS_RDX_EXTNODE_S **ppstExtNode:The internal node address is supposed
-*                   to be set after adding.
-*       Return: 无
-*      Caution: The root node may be changed due to the newly added external node
-*               if a split node is required between the existing root node and the new
-*               external node. That's why its double pointer.
-*        
-*               VOS_RDX_AddNode() is key function since it is called
-*               many many times during routes addition. It is making sense to code this
-*               function smarter and more neat 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE        NAME             DESCRIPTION    
-*  ----------------------------------------------------------------------------
-*  2001-5-6  Prashant B         Create the first version.
-*
-*******************************************************************************/
+
 ULONG VOS_RDX_AddNode (ULONG ulModuleID, VOS_RDX_INTNODE_S **ppstRootNode, VOS_RDX_EXTNODE_S **ppstExtNode);
-/****************************************************************************
-*    Func Name: VOS_RDX_DeleteNode()
-*  Description: Delete the specified external node from the radix tree. Owing to
-*               external node deletion, a part of the tree structure maybe adjusted. Owing
-*               to tree structure adjustment partly, the root node maybe adjusted 
-*               accordingly.
-*        Input: VOS_RDX_INTNODE_S **ppstRootNode:Root node of the tree
-*               VOS_RDX_EXTNODE_S **ppstDelExtNode:External node to be deleted
-*       Output: VOS_RDX_EXTNODE_S **ppstRootNode:Adjusted root node of the tree
-*       Return: VOS_OK:成功
-*               VOS_RDX_ERR_INVALIDPARAMETER:无效参数
-*               VOS_RDX_ERR_DELETENODE:删除节点错误
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE        NAME             DESCRIPTION    
-*  ----------------------------------------------------------------------------
-*  2001-5-6  Prashant B         Create the first version.
-*
-*******************************************************************************/
+
 ULONG VOS_RDX_DeleteNode (VOS_RDX_INTNODE_S **ppstRootNode, VOS_RDX_EXTNODE_S **ppstDelExtNode);
 /****************************************************************************
 *    Func Name: VOS_RDX_SearchExact()
@@ -430,22 +384,7 @@ ULONG VOS_RDX_GetChildNodes (ULONG ulModuleID, SLL_S **pstChldLst, VOS_RDX_INTNO
 *
 *******************************************************************************/
 ULONG VOS_RDX_ScanTree (ULONG ulModuleID, VOS_RDX_INTNODE_S *pstRootNode, SLL_S **ppstRetListHead);
-/****************************************************************************
-*    Func Name: VOS_RDX_DeleteAll()
-*  Description: Delete the whole Radix tree and makes the rootnode NULL.
-*        Input: VOS_RDX_INTNODE_S **ppstRootNode:Rootnode of the tree. 
-*       Output: 无
-*       Return: VOS_OK:成功
-*               VOS_RDX_ERR_INVALIDTREEROOT:无效TREEROOT 
-*               VOS_RDX_ERR_DELETETREE:树删除错误
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE        NAME             DESCRIPTION    
-*  ----------------------------------------------------------------------------
-*  2001-5-6  Prashant B         Create the first version.
-*
-*******************************************************************************/
+
 ULONG VOS_RDX_DeleteAll (VOS_RDX_INTNODE_S **ppstRootNode);
 /****************************************************************************
 *    Func Name: VOS_RDX_GetParentList()
@@ -588,26 +527,7 @@ ULONG VOS_RDX_SearchKeyNode (VOS_RDX_KEY_EXTNODE_S **ppstRetExtNode, VOS_RDX_KEY
 *
 *******************************************************************************/
 ULONG VOS_RDX_ScanKeyTree (ULONG ulModuleID, VOS_RDX_KEY_INTNODE_S *pstRootNode, SLL_S **ppstRetListHead);
-/****************************************************************************
-*    Func Name: VOS_RDX_DeleteTree()
-*  Description: Delete the whole Radix tree and makes the rootnode NULL.
-*        Input: VOS_RDX_KEY_INTNODE_S **ppstRootNode:
-*       Output: 无
-*       Return: VOS_OK:成功
-*               VOS_RDX_ERR_MEMORY:内存错误
-*               VOS_RDX_ERR_SEARCHFAILURE:查找失败
-*               VOS_RDX_ERR_INVALIDMASK:无效MASK
-*               VOS_RDX_ERR_INVALIDINTNODE:无效INTNODE
-*               VOS_RDX_ERR_INVALIDTREEROOT:无效TREEROOT 
-*               VOS_RDX_ERR_INVALIDDIRETION:无效方向
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE        NAME             DESCRIPTION    
-*  ----------------------------------------------------------------------------
-*  2001-5-6  Prashant B         Create the first version.
-*
-*******************************************************************************/
+
 ULONG VOS_RDX_DeleteTree (VOS_RDX_KEY_INTNODE_S **ppstRootNode);
 
 /****************************************************************************

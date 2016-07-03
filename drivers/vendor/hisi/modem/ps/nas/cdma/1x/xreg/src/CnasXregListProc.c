@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasXregListProc.c
-  版 本 号   : 初稿
-  作    者   : g00256031
-  生成日期   : 2014年09月05日
-  功能描述   : ZONE_LIST & SIDNID_LIST维护模块
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年09月05日
-    作    者   : g00256031
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -60,40 +45,13 @@ VOS_UINT16                              g_ausCnasXregZoneTimerMap[] = {60, 120, 
 *****************************************************************************/
 /*lint -save -e958*/
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_GetNodeCount
- 功能描述  : 获取当前列表节点数目
- 输入参数  : enListId -- 列表索引
- 输出参数  : 无
- 返 回 值  : VOS_UINT8 -- 节点数目
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年09月09日
-    作    者   : ganlan
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 CNAS_XREG_GetNodeCount(CNAS_XREG_LIST_ID_ENUM_UINT8 enListId)
 {
     return (VOS_UINT8)g_astCnasXregListHeader[enListId].ulNodeCount;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_SetNodeCount
- 功能描述  : 设置指定列表的节点数目
- 输入参数  : enListId   -- 列表索引
-             ulNodeCount-- 节点数目
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年09月09日
-    作    者   : ganlan
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XREG_SetNodeCount(CNAS_XREG_LIST_ID_ENUM_UINT8 enListId, VOS_UINT32 ulNodeCount)
 {
     g_astCnasXregListHeader[enListId].ulNodeCount = ulNodeCount;
@@ -101,20 +59,7 @@ VOS_VOID CNAS_XREG_SetNodeCount(CNAS_XREG_LIST_ID_ENUM_UINT8 enListId, VOS_UINT3
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_IncNodeCount
- 功能描述  : 指定列表的节点数目加一操作
- 输入参数  : enListId   -- 列表索引
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年09月09日
-    作    者   : ganlan
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XREG_IncNodeCount(CNAS_XREG_LIST_ID_ENUM_UINT8 enListId)
 {
     g_astCnasXregListHeader[enListId].ulNodeCount++;
@@ -122,20 +67,7 @@ VOS_VOID CNAS_XREG_IncNodeCount(CNAS_XREG_LIST_ID_ENUM_UINT8 enListId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_DecNodeCount
- 功能描述  : 指定列表的节点数目减一操作
- 输入参数  : enListId   -- 列表索引
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年09月09日
-    作    者   : ganlan
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XREG_DecNodeCount(CNAS_XREG_LIST_ID_ENUM_UINT8 enListId)
 {
     g_astCnasXregListHeader[enListId].ulNodeCount--;
@@ -143,39 +75,13 @@ VOS_VOID CNAS_XREG_DecNodeCount(CNAS_XREG_LIST_ID_ENUM_UINT8 enListId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_GetListHeader
- 功能描述  : 返回指定列表的头节点
- 输入参数  : enListId   -- 列表索引
- 输出参数  : 无
- 返 回 值  : HI_LIST_S*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年09月09日
-    作    者   : ganlan
-    修改内容   : 新生成函数
-*****************************************************************************/
 HI_LIST_S* CNAS_XREG_GetListHeader(CNAS_XREG_LIST_ID_ENUM_UINT8 enListId)
 {
     return &(g_astCnasXregListHeader[enListId].stListHeader);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_AllocListNode
- 功能描述  : 从指定列表中分配节点
- 输入参数  : enListId   -- 列表索引
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年09月09日
-    作    者   : ganlan
-    修改内容   : 新生成函数
-*****************************************************************************/
 HI_LIST_S* CNAS_XREG_AllocListNode(CNAS_XREG_LIST_ID_ENUM_UINT8 enListId)
 {
     HI_LIST_S                           *pstIndexNode;
@@ -194,20 +100,7 @@ HI_LIST_S* CNAS_XREG_AllocListNode(CNAS_XREG_LIST_ID_ENUM_UINT8 enListId)
     return pstIndexNode;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_RelCurrZoneNode
- 功能描述  : 释放当前ZONE列表节点
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年09月09日
-    作    者   : ganlan
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XREG_RelCurrZoneNode(VOS_VOID)
 {
     msp_list_add_tail(&(g_pstCnasXregCurrZoneNode->stListNode), CNAS_XREG_GetListHeader(CNAS_XREG_ZONE_FREE_LIST_ID));
@@ -219,20 +112,7 @@ VOS_VOID CNAS_XREG_RelCurrZoneNode(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_RelZoneListNode
- 功能描述  : 释放ZONE列表中的指定节点
- 输入参数  : pstZoneNode -- 需要删除的节点
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年09月09日
-    作    者   : ganlan
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XREG_RelZoneListNode(HI_LIST_S *pstZoneNode)
 {
     msp_list_del(pstZoneNode);
@@ -246,20 +126,7 @@ VOS_VOID CNAS_XREG_RelZoneListNode(HI_LIST_S *pstZoneNode)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_RelCurrSidNidNode
- 功能描述  : 释放当前SIDNID列表节点
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年09月09日
-    作    者   : ganlan
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XREG_RelCurrSidNidNode(VOS_VOID)
 {
     msp_list_add_tail(&(g_pstCnasXregCurrSidNidNode->stListNode), CNAS_XREG_GetListHeader(CNAS_XREG_SIDNID_FREE_LIST_ID));
@@ -271,20 +138,7 @@ VOS_VOID CNAS_XREG_RelCurrSidNidNode(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_RelSidNidListNode
- 功能描述  : 释放SIDNID列表中的指定节点
- 输入参数  : pstSidNidNode -- 需要删除的节点
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年09月09日
-    作    者   : ganlan
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XREG_RelSidNidListNode(HI_LIST_S *pstSidNidNode)
 {
     msp_list_del(pstSidNidNode);
@@ -296,20 +150,7 @@ VOS_VOID CNAS_XREG_RelSidNidListNode(HI_LIST_S *pstSidNidNode)
     CNAS_XREG_IncNodeCount(CNAS_XREG_SIDNID_FREE_LIST_ID);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_InitList
- 功能描述  : 初始化ZONE注册使用的链表
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年09月09日
-    作    者   : ganlan
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XREG_InitList(VOS_VOID)
 {
     VOS_UINT8                           ucIndex;
@@ -352,20 +193,7 @@ VOS_VOID CNAS_XREG_InitList(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_ClearList
- 功能描述  : 清空LIST所有的节点
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年09月09日
-    作    者   : ganlan
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XREG_ClearList(VOS_VOID)
 {
     HI_LIST_S                          *pstIndexNode;
@@ -401,20 +229,7 @@ VOS_VOID CNAS_XREG_ClearList(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_RestoreList
- 功能描述  : 恢复LIST当前节点
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年09月09日
-    作    者   : ganlan
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XREG_RestoreList(VOS_VOID)
 {
     PS_MEM_SET(&g_stCnasXregTimeInfo, 0, sizeof(g_stCnasXregTimeInfo));
@@ -430,20 +245,7 @@ VOS_VOID CNAS_XREG_RestoreList(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_SaveList
- 功能描述  : 保存LIST的当前节点
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年09月09日
-    作    者   : ganlan
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XREG_SaveList(VOS_VOID)
 {
     /* 假如NV项中存在ZONE单元则赋值到当前ZONE中 */
@@ -456,20 +258,7 @@ VOS_VOID CNAS_XREG_SaveList(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_AddZoneNode
- 功能描述  : 增加ZONE列表中节点
- 输入参数  : pstZoneNode -- 节点
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年09月09日
-    作    者   : ganlan
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XREG_AddZoneNode(CNAS_XREG_ZONE_NODE_STRU *pstZoneNode)
 {
     HI_LIST_S                          *pstListHeader;
@@ -497,23 +286,7 @@ VOS_VOID CNAS_XREG_AddZoneNode(CNAS_XREG_ZONE_NODE_STRU *pstZoneNode)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_AddCurrZoneNode
- 功能描述  : 将当前的ZONE节点添加到队列中
- 输入参数  : usSid       -- 系统ID
-             usNid       -- 网络ID
-             usRegZone   -- 区域标示
-             ucZoneTimer -- 区域定时器长度
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年09月09日
-    作    者   : ganlan
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XREG_AddCurrZoneNode(VOS_UINT16 usSid, VOS_UINT16 usNid,
                                         VOS_UINT16 usRegZone, VOS_UINT8 ucZoneTimer)
 {
@@ -545,20 +318,7 @@ VOS_VOID CNAS_XREG_AddCurrZoneNode(VOS_UINT16 usSid, VOS_UINT16 usNid,
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_AddSidNidNode
- 功能描述  : 增加SIDNID列表中节点
- 输入参数  : pstSidNidNode -- 节点
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年09月09日
-    作    者   : ganlan
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XREG_AddSidNidNode(CNAS_XREG_SIDNID_NODE_STRU *pstSidNidNode)
 {
     HI_LIST_S                          *pstListHeader;
@@ -586,22 +346,7 @@ VOS_VOID CNAS_XREG_AddSidNidNode(CNAS_XREG_SIDNID_NODE_STRU *pstSidNidNode)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_AddCurrSidNidNode
- 功能描述  : 将当前的SIDNID节点添加到队列中
- 输入参数  : usSid       -- 系统ID
-             usNid       -- 网络ID
-             ucZoneTimer -- 区域定时器长度
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年09月09日
-    作    者   : ganlan
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XREG_AddCurrSidNidNode(VOS_UINT16 usSid, VOS_UINT16 usNid,
                                                     VOS_UINT8 ucZoneTimer)
 {
@@ -632,20 +377,7 @@ VOS_VOID CNAS_XREG_AddCurrSidNidNode(VOS_UINT16 usSid, VOS_UINT16 usNid,
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_RefreshLists
- 功能描述  : 更新当前列表
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年09月09日
-    作    者   : ganlan
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XREG_RefreshLists(VOS_VOID)
 {
     VOS_UINT32                          ulCurrSlice;
@@ -699,20 +431,7 @@ VOS_VOID CNAS_XREG_RefreshLists(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_TotalZones
- 功能描述  : 设置ZONE列表中的最大节点个数
- 输入参数  : ucRegZoneNum -- 最大节点个数
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年09月09日
-    作    者   : ganlan
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XREG_TotalZones(VOS_UINT8 ucRegZoneNum)
 {
     /*
@@ -762,20 +481,7 @@ VOS_VOID CNAS_XREG_TotalZones(VOS_UINT8 ucRegZoneNum)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_DelNodesByBandBlkSys
- 功能描述  : 根据BandClass和BlockSystem删除节点
- 输入参数  : pstSysInfo -- 系统消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年09月09日
-    作    者   : ganlan
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XREG_DelNodesByBandBlkSys(XSD_XREG_SYS_INFO_STRU *pstSysInfo)
 {
     VOS_UINT16                          usBandClass;
@@ -834,20 +540,7 @@ VOS_VOID CNAS_XREG_DelNodesByBandBlkSys(XSD_XREG_SYS_INFO_STRU *pstSysInfo)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_FindZoneNode
- 功能描述  : 在ZONE列表中查找相应节点
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : CNAS_XREG_ZONE_NODE_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年09月09日
-    作    者   : ganlan
-    修改内容   : 新生成函数
-*****************************************************************************/
 CNAS_XREG_ZONE_NODE_STRU *CNAS_XREG_FindZoneNode(VOS_UINT16 usSid, VOS_UINT16 usNid, VOS_UINT16 usRegZone)
 {
     HI_LIST_S                          *pstListHeader;
@@ -884,20 +577,7 @@ CNAS_XREG_ZONE_NODE_STRU *CNAS_XREG_FindZoneNode(VOS_UINT16 usSid, VOS_UINT16 us
     return VOS_NULL_PTR;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_FindSidNidNode
- 功能描述  : 在SIDNID列表中查找相应节点
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年09月09日
-    作    者   : ganlan
-    修改内容   : 新生成函数
-*****************************************************************************/
 CNAS_XREG_SIDNID_NODE_STRU *CNAS_XREG_FindSidNidNode(VOS_UINT16 usSid, VOS_UINT16 usNid)
 {
     HI_LIST_S                          *pstListHeader;
@@ -932,24 +612,7 @@ CNAS_XREG_SIDNID_NODE_STRU *CNAS_XREG_FindSidNidNode(VOS_UINT16 usSid, VOS_UINT1
     return VOS_NULL_PTR;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_UpdateZoneList
- 功能描述  : 更新ZONE列表
- 输入参数  : pstSysInfo -- 系统消息
-             usSid      -- 系统ID
-             usNid      -- 网络ID
-             usRegZone  -- 区域标示
-             ucZoneTimer-- ZONE定时器时长
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年09月09日
-    作    者   : ganlan
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XREG_UpdateZoneList(XSD_XREG_SYS_INFO_STRU *pstSysInfo, VOS_UINT16 usSid, VOS_UINT16 usNid,
                                     VOS_UINT16 usRegZone, VOS_UINT8 ucZoneTimer)
 {
@@ -1025,23 +688,7 @@ VOS_VOID CNAS_XREG_UpdateZoneList(XSD_XREG_SYS_INFO_STRU *pstSysInfo, VOS_UINT16
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_UpdateSidNidList
- 功能描述  : 更新SIDNID列表
- 输入参数  : pstSysInfo -- 系统消息
-             usSid      -- 系统ID
-             usNid      -- 网络ID
-             ucZoneTimer-- ZONE定时器时长
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年09月09日
-    作    者   : ganlan
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XREG_UpdateSidNidList(XSD_XREG_SYS_INFO_STRU *pstSysInfo, VOS_UINT16 usSid,
                                                 VOS_UINT16 usNid, VOS_UINT8 ucZoneTimer)
 {
@@ -1115,20 +762,7 @@ VOS_VOID CNAS_XREG_UpdateSidNidList(XSD_XREG_SYS_INFO_STRU *pstSysInfo, VOS_UINT
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_DelMultSids
- 功能描述  : 删除SIDNID列表中不同SID的节点
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年09月09日
-    作    者   : ganlan
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XREG_DelMultSids(VOS_VOID)
 {
     /*
@@ -1179,20 +813,7 @@ VOS_VOID CNAS_XREG_DelMultSids(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_DelMultNids
- 功能描述  : 确保SIDNID列表中的相同SID项只保留最新节点
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年09月09日
-    作    者   : ganlan
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XREG_DelMultNids(VOS_VOID)
 {
 /*
@@ -1257,20 +878,7 @@ VOS_VOID CNAS_XREG_DelMultNids(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_SidNidListIsEmpty
- 功能描述  : 判断SID_NID_LIST是否为空
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年09月09日
-    作    者   : ganlan
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XREG_SidNidListIsEmpty(VOS_VOID)
 {
     if (VOS_NULL_PTR == g_pstCnasXregCurrSidNidNode)
@@ -1281,39 +889,13 @@ VOS_UINT32 CNAS_XREG_SidNidListIsEmpty(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_GetSlice
- 功能描述  : 为DMT测试封装Slice接口
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月05日
-    作    者   : ganlan
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XREG_GetSlice(VOS_VOID)
 {
     return VOS_GetSlice();
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_SidNidListMntn
- 功能描述  : SidNidList可维可测
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月05日
-    作    者   : ganlan
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XREG_SidNidListMntn(VOS_VOID)
 {
     HI_LIST_S                          *pstListHeader;
@@ -1369,20 +951,7 @@ VOS_VOID CNAS_XREG_SidNidListMntn(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_ZoneListMntn
- 功能描述  : ZoneList可维可测
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月05日
-    作    者   : ganlan
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XREG_ZoneListMntn(VOS_VOID)
 {
     HI_LIST_S                          *pstListHeader;

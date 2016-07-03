@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : hmac_device.h
-  版 本 号   : 初稿
-  作    者   : l00279018
-  生成日期   : 2015年1月31日
-  最近修改   :
-  功能描述   : hmac_device.c 的头文件，包括hmac device结构的定义
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年10月19日
-    作    者   : huxiaotong
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __HMAC_DEVICE_H__
 #define __HMAC_DEVICE_H__
@@ -127,7 +110,7 @@ typedef struct
     frw_timeout_stru                       st_init_scan_timeout;
 #endif
     hmac_scan_record_stru                  st_scan_record_mgmt;        /* 扫描运行记录管理信息，包括扫描结果和发起扫描者的相关信息 */
-    mac_channel_stru                       st_p2p_listen_channel;      /* 记录下发的listen channel，供上报给app用 DTS2015061505129  */
+    mac_channel_stru                       st_p2p_listen_channel;
 }hmac_scan_stru;
 
 typedef struct

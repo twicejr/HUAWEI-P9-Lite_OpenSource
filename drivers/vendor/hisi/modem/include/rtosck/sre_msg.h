@@ -370,37 +370,7 @@ typedef struct tagMsgModInfo
 */
 extern MSG_HANDLE_T SRE_MsgAlloc(UINT32 uwPtNo, UINT16 usSize, UINT32 uwAlignPow);
 
-/**
- *@ingroup SRE_msg
- *@brief 消息释放函数
- *
- *@par 描述:
- *消息体释放函数，用在消息体成功接收并使用完成之后或者发送失败之后。
- *@attention
- *@li 此函数需要与接收消息体的#SRE_MsgQRecv或者#SRE_MsgReceive成对使用，先接收然后释放。
- *@li 消息的接收和发送需准确配对，这样才能保证消息体的正常释放。
- *@li 无消息体的消息，不需要调用此函数释放消息体。
- *@li 该函数入参正确性由用户保证，OS只对是否为0地址进行判断。
- *
- *@param uwMsgHandle [IN] 类型为#MSG_HANDLE_T，消息体句柄。
- *
- *@retval #SRE_OK                                       0x00000000，操作成功。
- *@retval #OS_ERRNO_MSG_HANDLE_INVALID                  0x02000d00，消息体句柄为非法值或者消息体正在被使用。
- *@retval #OS_ERRNO_MSG_SMSG_CAN_NOT_DELETE             0x02000d0d，短消息不能被删除，可能未被接收处理或者未被使用。
- *@retval #OS_ERRNO_MSG_HANDLE_ADDR_UNALIGN             0x02000d0c，输入的消息体句柄地址值未32字节对齐。
- *@retval #OS_ERRNO_MSG_LMSG_CAN_NOT_DELETE             0x02000d10，长消息不能被删除，可能未被接收处理或者未被使用。
- *@retval #OS_ERRNO_MEM_FREE_PTNO_INVALID               0x02000104，释放内存所在的分区无效(分区未创建或分区号大于分区数)。
- *@retval #OS_ERRNO_MEM_FREE_SH_DAMAGED                 0x02000311，内存释放时要释放的内存块的头被破坏，或已释放。
- *@retval #OS_ERRNO_MEM_FREE_POOL_MEM_ALREADY_FREE      0x02000314，私有POOL内存释放时内存块已经被释放(或者内存没有被申请过)。
- *@retval #OS_ERRNO_MEM_FREE_SHARE_MEM_ALREADY_FREE     0x02000419，共享动态POOL内存释放时内存块已经被释放(或者内存没有被申请过)。
- *@retval #OS_ERRNO_MCSTA_FSCMEM_FREE_ISFORBIDEN        0x0200041e，共享静态FSC的内存不能释放。
- *@retval #OS_ERRNO_MSG_HANDLE_NOT_WORD_ALIGN           0x02000d14，传入的消息句柄未4字节对齐。
- *@retval #OS_ERRNO_MEM_FREE_ADDR_INVALID               0x02000103，释放地址为空。
- *@par 依赖:
- *@li SRE_msg.h：该接口声明所在的头文件。
- *@since RTOSck V100R001C01
- *@see SRE_MsgAlloc
-*/
+
 extern UINT32 SRE_MsgDelete(MSG_HANDLE_T uwMsgHandle);
 
 /**
@@ -467,36 +437,7 @@ extern UINT32 SRE_MsgDelete(MSG_HANDLE_T uwMsgHandle);
 */
 extern UINT32 SRE_MsgQSend(MSG_HANDLE_T uwMsgHandle, UINT32 uwMsgID, MSG_PID_T uwDstPID, UINT8 ucDstQID);
 
-/**
- *@ingroup SRE_msg
- *@brief 从任务或软中断的消息队列中获取消息。
- *
- *@par 描述:
- *从任务自身的指定的消息队列中获取第一条消息，消息的接收采取先到先收的顺序进行。
- *从软中断的0号消息队列中获取第一条消息，消息的接收采取先到先收的顺序进行。
- *仅支持SD6108/SD6181/SD6182平台。
- *@attention
- *@li 软中断不支持多消息队列，故在软中断中调用此接口时，ucRecvQID参数无效，默认从0号消息队列接收消息。
- *@li 软中断不支持超时等待，故在软中断中调用此接口时，uwTimeout参数无效，若接收失败则直接返回不做等待。
- *@li 有消息体消息，接收成功后可使用*puwMsgHandle句柄获取消息体首地址。
- *@li 无消息体的消息的发送与接收依赖于消息节点作为中介，发送过程会获取一个消息节点，接收过程释放这个消息节点。系统可以使用的消息节点最大数量受配置项中核内、核间消息节点数限制。
- *
- *@param puwMsgHandle   [OUT] 类型#MSG_HANDLE_T *，对于有消息体消息，puwMsgHandle为返回的消息体首地址，若不需要此项输出，填写NULL即可。
- *@param puwMsgID       [OUT] 类型#UINT32 *，接收到的消息ID。若不需要此项输出，填写NULL即可。
- *@param puwSenderPID   [OUT] 类型#MSG_PID_T *，消息发送者的PID，为#OS_MSG_HWI_SENDER时表示发送者为硬中断。若不需要此项输出，填写NULL即可。
- *@param ucRecvQID      [IN]  类型#UINT8，任务的指定接收消息队列号；软中断线程接收时，此参数无效，若接收核间消息，接收消息队列号只能为0。
- *@param uwTimeout      [IN]  类型#UINT32，任务接收消息的等待时间限制，单位为tick，取值范围为[0, 0xfffffffe]或者OS_WAIT_FOREVER；软中断接收消息时，此参数无效。
- *
- *@retval #SRE_OK                       0x00000000，表示接收消息成功。
- *@retval #OS_ERRNO_MSG_QID_INVALID     0x02000d06，任务的消息队列ID非法。
- *@retval #OS_ERRNO_MSG_THREAD_INVALID  0x02000d07，接收线程非法，不支持在硬中断中接收消息。
- *@retval #OS_ERRNO_MSG_RECEIVE_TIMEOUT 0x02000d08，消息接收超时，在用户设置的超时时间内没有接收到消息。
- *@retval #OS_ERRNO_MSG_QUEUE_EMPTY     0x02000d0a，该消息队列中无消息。
- *@par 依赖:
- *@li SRE_msg.h：该接口声明所在的头文件。
- *@since RTOSck V100R001C01
- *@see SRE_MsgQSend
-*/
+
 extern UINT32 SRE_MsgQRecv(MSG_HANDLE_T *puwMsgHandle, UINT32 *puwMsgID, MSG_PID_T *puwSenderPID, UINT8 ucRecvQID, UINT32 uwTimeout);
 
 /**

@@ -72,20 +72,7 @@ VOS_UINT32                              g_ulPppDebugLevel = PS_PRINT_WARNING;
 /******************************************************************************
    5 函数实现
 ******************************************************************************/
-/*****************************************************************************
- 函 数 名  : PPP_MemAlloc
- 功能描述  : 分配零拷贝内存
- 输入参数  : usLen      -- 数据块长度,单位为字节
- 输出参数  : 无
- 返 回 值  : 零拷贝内存指针
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011-03-09
-    作    者   : l00164359
-    修改内容   : Created
-*****************************************************************************/
 PPP_ZC_STRU * PPP_MemAlloc(VOS_UINT16 usLen, VOS_UINT16 usReserveLen)
 {
     /* 该接口用在上行时需要保留MAC头长度，
@@ -137,20 +124,7 @@ PPP_ZC_STRU * PPP_MemAlloc(VOS_UINT16 usLen, VOS_UINT16 usReserveLen)
     return pstMem;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_MemWriteData
- 功能描述  : 往零拷贝数据结构写入一定长度的数据
- 输入参数  : pMemSrc  -- 要获取数据的TTF内存块头指针
- 输出参数  : 无
- 返 回 值  : 数据长度
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011-12-14
-    作    者   : l00164359
-    修改内容   : Created
-*****************************************************************************/
 VOS_VOID PPP_MemWriteData(PPP_ZC_STRU *pstMem, VOS_UINT8 *pucSrc, VOS_UINT16 usLen)
 {
     /* 设置好将要写入零拷贝内存数据内容长度 */
@@ -162,21 +136,7 @@ VOS_VOID PPP_MemWriteData(PPP_ZC_STRU *pstMem, VOS_UINT8 *pucSrc, VOS_UINT16 usL
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_MemCopyAllocForUlSdu
- 功能描述  : 分配零拷贝内存块，并且填入已经填写完成的数据内容
- 输入参数  : pSrc  -- 已经完成填写的数据头指针
-             usLen -- 要复制的数据块长度,单位为字节
- 输出参数  : 无
- 返 回 值  : TTF内存块
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011-03-09
-    作    者   : l00164359
-    修改内容   : Created
-*****************************************************************************/
 PPP_ZC_STRU * PPP_MemCopyAlloc(VOS_UINT8 *pSrc, VOS_UINT16 usLen, VOS_UINT16 usReserveLen)
 {
     PPP_ZC_STRU                        *pstMem = VOS_NULL_PTR;
@@ -193,22 +153,7 @@ PPP_ZC_STRU * PPP_MemCopyAlloc(VOS_UINT8 *pSrc, VOS_UINT16 usLen, VOS_UINT16 usR
     return pstMem;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_MemCutTailData
- 功能描述  : 从零拷贝块尾部移去指定字节数目的数据
- 输入参数  : ppMemSrc   -- TTF MEM内存结构
-             pucDest    -- 数据拷贝目的地地址
-             ulDataLen  -- 需拷贝长度
- 输出参数  : 无
- 返 回 值  : 获取数据成功返回PS_SUCC；失败返回PS_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011-03-09
-    作    者   : l00164359
-    修改内容   : Created
-*****************************************************************************/
 VOS_UINT32 PPP_MemCutTailData
 (
     PPP_ZC_STRU **ppMemSrc,
@@ -268,23 +213,7 @@ VOS_UINT32 PPP_MemCutTailData
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_MemCutHeadData
- 功能描述  : 从零拷贝内存块头部拷贝指定字节数目的数据
-             并将下个字节位置返回
- 输入参数  : ppMemSrc   -- TTF MEM内存结构
-             pucDest    -- 数据拷贝目的地地址
-             ulDataLen  -- 需拷贝长度
- 输出参数  : 无
- 返 回 值  : 获取数据成功返回PS_SUCC；失败返回PS_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011-03-09
-    作    者   : l00164359
-    修改内容   : Created
-*****************************************************************************/
 VOS_UINT32 PPP_MemCutHeadData
 (
     PPP_ZC_STRU **ppMemSrc,
@@ -339,23 +268,7 @@ VOS_UINT32 PPP_MemCutHeadData
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_MemGet
- 功能描述  : 从一TTF内存块获取一定长度的数据到指定目标地址
- 输入参数  : pMemSrc  -- 要获取数据的TTF内存块头指针
-             usOffset -- 内存块数据偏移
-             pDest    -- 存放获取数据的目标地址
-             usLen    -- 获取的数据长度，单位为字节
- 输出参数  : 无
- 返 回 值  : 获取数据成功返回PS_SUCC；失败返回PS_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011-03-09
-    作    者   : l00164359
-    修改内容   : Created
-*****************************************************************************/
 VOS_UINT32 PPP_MemGet(PPP_ZC_STRU *pMemSrc, VOS_UINT16 usOffset, VOS_UINT8 *pDest, VOS_UINT16 usLen)
 {
     VOS_UINT16                          usMemSrcLen;
@@ -395,20 +308,7 @@ VOS_UINT32 PPP_MemGet(PPP_ZC_STRU *pMemSrc, VOS_UINT16 usOffset, VOS_UINT8 *pDes
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_MemFreeWithData
- 功能描述  : 释放零拷贝内存
- 输入参数  : pstMem  --- TTF_MEM形式的数据
- 输出参数  :
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011-03-09
-    作    者   : l00164359
-    修改内容   : Created
-*****************************************************************************/
 VOS_VOID PPP_MemFree(PPP_ZC_STRU *pstMem)
 {
     /* 释放零拷贝内存 */
@@ -419,20 +319,7 @@ VOS_VOID PPP_MemFree(PPP_ZC_STRU *pstMem)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_MemSingleCopy
- 功能描述  : 获取给定内存单元实际使用的总字节数，包括整个数据链
- 输入参数  : pMemSrc  -- 要获取数据的TTF内存块头指针
- 输出参数  : 无
- 返 回 值  : 数据长度
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011-03-09
-    作    者   : l00164359
-    修改内容   : Created
-*****************************************************************************/
 VOS_VOID PPP_MemSingleCopy(VOS_UINT8 *pucDest, VOS_UINT8 *pucSrc, VOS_UINT32 ulLen)
 {
     /* 待修改为EDMA拷贝 */

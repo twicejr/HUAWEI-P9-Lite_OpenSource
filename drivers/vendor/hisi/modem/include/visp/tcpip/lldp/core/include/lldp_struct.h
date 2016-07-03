@@ -1,26 +1,4 @@
-/*******************************************************************************
-*
-*
-*                Copyright 2011, Huawei Technologies Co. Ltd.
-*                            ALL RIGHTS RESERVED
-*
-*-------------------------------------------------------------------------------
-*
-*                              lldp_struct.h
-*
-*  Project Code: V2R3C06
-*   Module Name:   
-*  Date Created: 2011-09-27
-*        Author: liangjicheng 00103192
-*   Description: 内部结构体定义
-*
-*-------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  -----------------------------------------------------------------------------
-*  2011-09-27   liangjicheng 00103192   Create
-*
-*******************************************************************************/
+
 #ifndef _LLDP_STRUCT_H_
 #define _LLDP_STRUCT_H_
 
@@ -97,9 +75,7 @@ typedef struct tagLLDP_LOCAL_SYS_INFO_S
     LLDP_GLOBAL_CFG_S stConfigutation;          /*LLDP全局配置信息*/
     LLDP_SYS_STAT_S         stStatsInfo;               /*LLDP全局统计信息*/   
     ULONG ulTickTimerID;                    /**/    
-    /* Modified by zhangliangzhi00187023, 【检视发现问题】支持managevid tlv配置可删除, 2012/8/28   问题单号:DTS2012082808698  */
     ULONG ulManagementVidFlag;  /*Management VID TLV 是否有效*/
-    /*End of Modified by zhangliangzhi00187023, 2012/8/28   问题单号:DTS2012082808698  */
     ULONG ulManagementAddressFlag;  /*Management TLV 是否有效*/
 }LLDP_LOCAL_SYS_INFO_S;
 
@@ -154,7 +130,6 @@ typedef struct tagLLDP_LOCAL_REM_INFO_S
 
 }LLDP_LOCAL_REM_INFO_S; 
 
-/*Added by guo00178934, 结构体名字变更, 2011/11/8   问题单号:DTS2011110800968 */
 /*本端接口统计信息*/
 typedef struct tagLLDP_LOCAL_PORT_STAT_S
 {
@@ -165,7 +140,6 @@ typedef struct tagLLDP_LOCAL_PORT_STAT_S
     ULONG  ulRxTLVsUnrecognizedTotal;   /* 不可识别的LLDP TLV 帧总数 */
     ULONG  ulTxFramesTotal;             /* 发送的LLDP 帧总数 */
     ULONG  ulRxAgeoutsTotal;            /* 老化的LLDP 邻居信息总数 */
-    /*Added by guo00178934, TLV详细查询, 2011/11/8   问题单号:DTS2011110800426 */
     ULONG  ulRxErrTLVSysName;
     ULONG  ulRxErrTLVSysDesc;
     ULONG  ulRxErrTLVSysCapability;
@@ -181,9 +155,7 @@ typedef struct tagLLDP_LOCAL_PORT_STAT_S
     ULONG  ulRxErrTLVPortId;   
     ULONG  ulRxErrTLVTTL;
     ULONG  ulRxErrTLVEndTLV;
-    /* End of Added by guo00178934, 2011/11/8   问题单号:DTS2011110800426 */
 }LLDP_LOCAL_PORT_STAT_S; 
-/* End of Added by guo00178934, 2011/11/10   问题单号:DTS2011110800968 */
 
 typedef struct tagLLDP_LOCAL_AGENT
 {
@@ -226,7 +198,6 @@ typedef struct tagLLDP_LOCAL_PORT
     CHAR  szIfName[LLDP_IF_NAME_LEN];              
     UCHAR szEthMAC[LLDP_MAC_ADDR_LEN];
 
-    /*Added by luogaowei 2013-2-17  DTS2013021802156 是否是默认maximum frame size  VRP_YES 或者VRP_NO*/
     UCHAR ucDefaultMaxSizeTlv;       
     UCHAR ucResv; 
     USHORT usPktVLanId; /*报文头中Vlan Tag的ID, 不是Port Vlan ID TLV信息.*/
@@ -250,7 +221,6 @@ typedef struct tagLLDP_LOCAL_PORT
 
 #endif
 
-/*Added by guo00178934, 添加系统统计Local存储结构体, 2011/11/8   问题单号:DTS2011110800968 */
 /*系统统计信息*/
 typedef struct tagLLDP_LOCAL_SYS_STAT_S
 {
@@ -261,7 +231,6 @@ typedef struct tagLLDP_LOCAL_SYS_STAT_S
     ULONG  ulRemTablesAgeouts;        /* Remote表超时个数 */
     ULONG  ulRemTablesUpdates;        /* Remote表更新个数 */
 }LLDP_LOCAL_SYS_STAT_S; 
-/* End of Added by guo00178934, 2011/11/8   问题单号:DTS2011110800968 */
 
 
 #ifdef  __cplusplus

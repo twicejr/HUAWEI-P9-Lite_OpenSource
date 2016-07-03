@@ -90,7 +90,6 @@ typedef struct tgDHCP6R_HEADER
     IN6ADDR_S           stPeerAddr;
 }DHCP6R_HEADER_S;
 
-/* Begin: Add by pengbinquan for 2011080012, 华为检视意见调试信息打印详细报文 */
 /* Relay-Forward和Relay-Reply类型之外的其他报文头公共部分 */
 typedef struct tagPublicHeader
 {

@@ -71,7 +71,6 @@ typedef struct
 }DDM_TASK_CREATE_INFO;
 
 
-/*申请SHARE-MEMORY内存,用来存放fastboot各阶段启动时间,DTS2012100800426 by l00225826*/
 #define PHASE_BOOT_POOL_ADDR	((unsigned int)SHM_BASE_ADDR + SHM_OFFSET_DDM_LOAD + sizeof(DDM_POOL_CTRL))
 #define PHASE_BOOT_POOL_SIZE	(SHM_SIZE_DDM_LOAD - sizeof(DDM_POOL_CTRL))
 
@@ -83,21 +82,7 @@ static DDM_POOL_CTRL  score_boot_ctrl_ccore;
 static unsigned char *  p_score_boot_pool_ccore = (unsigned char *)&score_boot_pool_ccore[0];
 static DDM_POOL_CTRL*  p_score_boot_ctrl_ccore = (DDM_POOL_CTRL *)&score_boot_ctrl_ccore;
 
-/*************************************************
- 函 数 名   : ddm_phase_buf_get
- 功能描述   : get buf from loacal pool or system malloc.
- 输入参数   :
- 输出参数   :
- 返 回 值   : char *
- 调用函数   :
- 被调函数   :
 
- 修改历史   :
- 日    期   : 2011年01月21日
- 作    者   : m00176101
- 修改内容   : 新生成函数
- 功能描述   :
-*************************************************/
 static char* ddm_phase_buf_get(unsigned int reqSize, DDM_POOL_CTRL* pPoolCtrl)
 {
     char *RetBuf = NULL ;
@@ -129,25 +114,7 @@ static char* ddm_phase_buf_get(unsigned int reqSize, DDM_POOL_CTRL* pPoolCtrl)
     return RetBuf;
 }
 
-/*******************************************************************
- name       : ddm_phase_score
 
- input      : DDM_POOL_CTRL* pScoreCtrl: phase handle
-              const char* phaseName    : phase name string to store
-              int param                : phase param to store
-
- output      : N/A
-
- return      :  DDM_OK :     phase store successfully
-                DDM_EROR:    phase store failed
-
- history     :
- date        : 2011年02月21日
- creator     : m00176101
- modified    : new create
- description.   :
-
-**********************************************************************/
 static int ddm_phase_score(DDM_POOL_CTRL* pPhaseCtrl ,const char* phaseName,unsigned int param)
 {
     unsigned int strSize;
@@ -212,27 +179,7 @@ static int ddm_phase_score(DDM_POOL_CTRL* pPhaseCtrl ,const char* phaseName,unsi
 }
 
 
-/*******************************************************************
- name       : ddm_phase_init
 
- input      : DDM_POOL_CTRL* pScoreCtrl
-              void* pScorePool
-              unsigned int pSize
-              DDM_POOL_TYPE type
-              DDM_POOL_PARENT parent
-
- output      : N/A
-
- return      :  DDM_OK :     phase store successfully
-                DDM_EROR:    phase store failed
-
- history     :
- date        : 2011年02月21日
- creator     : m00176101
- modified    : new create
- description.   :
-
-**********************************************************************/
 static int ddm_phase_init(DDM_POOL_CTRL*   pPhaseCtrl, void* pScorePool,unsigned int pSize ,DDM_POOL_TYPE type ,DDM_POOL_PARENT parent)
 {
     pPhaseCtrl->sPool = (unsigned int)pScorePool;

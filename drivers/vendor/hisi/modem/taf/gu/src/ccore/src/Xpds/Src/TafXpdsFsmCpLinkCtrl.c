@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2012, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafXpdsFsmUpLinkCtrl.c
-  版 本 号   : 初稿
-  作    者   : 谷传征
-  生成日期   : 2015年8月21日
-  最近修改   :
-  功能描述   : Xpds Link Ctrl Fsm
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年8月21日
-    作    者   : g00261581
-    修改内容   : CDMA-AGPS项目新增
-
-******************************************************************************/
 #ifdef __cplusplus
 #if __cplusplus
 extern "C" {
@@ -35,25 +18,7 @@ extern "C" {
 
 #if ((FEATURE_ON == FEATURE_UE_MODE_CDMA) && (FEATURE_ON == FEATURE_AGPS))
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvXpdsCtrlPlaneReq_CpLinkCtrl_Init
- 功能描述  : XPDS Link Contrl Init State, Rcv Bind Server Req
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月22日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-  1.Date        :  28-08-2015
-    Author      :  Arjun A00903922
-    Modification:  Added Procedure
-*****************************************************************************/
 VOS_UINT32  TAF_XPDS_RcvXpdsCtrlPlaneReq_CpLinkCtrl_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg

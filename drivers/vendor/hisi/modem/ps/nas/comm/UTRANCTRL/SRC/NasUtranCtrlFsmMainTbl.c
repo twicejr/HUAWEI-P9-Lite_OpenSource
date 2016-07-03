@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasUtranCtrlFsmMainTbl.c
-  版 本 号   : 初稿
-  作    者   : w00176964
-  生成日期   : 2012年7月12日
-  最近修改   :
-  功能描述   : NasUtranCtrlFsmMainTbl.C文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年7月13日
-    作    者   : w00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -33,9 +16,7 @@
 #include "NasUtranCtrlCtx.h"
 #include "NasUtranCtrlFsmMain.h"
 #include "MsccMmcInterface.h"
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-7, begin */
 /* 删除ExtAppMmcInterface.h*/
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-7, end */
 #include "NasUtranCtrlMntn.h"
 
 #include "MmcGmmInterface.h"
@@ -91,11 +72,9 @@ NAS_ACT_STRU        g_astNasUtranCtrlMainProcessActTbl[]   =
                       TI_NAS_MMC_WAIT_MM_START_CNF,
                       NAS_UTRANCTRL_RcvMmcGmmStartCnf_Main),
 
-/* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
     NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
                       ID_MSCC_MMC_PLMN_SPECIAL_REQ,
                       NAS_UTRANCTRL_RcvPlmnSpecialReq_Main),
-/* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
 
     NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
@@ -256,41 +235,13 @@ NAS_STA_STRU        g_astNasUtranCtrlMainProcessFsmTbl[]   =
                       g_astNasUtranCtrlMainProcessActTbl )
 };
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_GetMainProcessStaTblSize
- 功能描述  : 获取适配层主处理状态机的大小
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:适配层主处理状态机的大小
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月14日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_GetMainProcessStaTblSize( VOS_VOID  )
 {
     return (sizeof(g_astNasUtranCtrlMainProcessFsmTbl)/sizeof(NAS_STA_STRU));
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_GetMainFsmDescAddr
- 功能描述  : 获取适配层主处理状态机的描述表
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : NAS_FSM_DESC_STRU:指向适配层主处理状态机的描述表
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月14日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_FSM_DESC_STRU * NAS_UTRANCTRL_GetMainFsmDescAddr(VOS_VOID)
 {
     return (&g_stNasUtranCtrlMainFsmDesc);

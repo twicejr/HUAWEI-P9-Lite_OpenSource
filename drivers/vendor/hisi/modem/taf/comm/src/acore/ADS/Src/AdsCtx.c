@@ -44,25 +44,7 @@ VOS_UINT64                              g_ullAdsDmaMask = 0xffffffffULL;
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : ADS_UL_CheckAllQueueEmpty
- 功能描述  : 所有的PDP都去激活，队列为空
- 输入参数  : VOS_UINT8 ucInstanceIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月31日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年11月24日
-    作    者   : l60609
-    修改内容   : DSDA Phase II:双实例
-
-*****************************************************************************/
 VOS_UINT32 ADS_UL_CheckAllQueueEmpty(VOS_UINT8 ucInstanceIndex)
 {
     VOS_UINT32                          i;
@@ -87,49 +69,14 @@ VOS_UINT32 ADS_UL_CheckAllQueueEmpty(VOS_UINT8 ucInstanceIndex)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_UL_SetProtectTmrLen
- 功能描述  : 设置ADS上行发送数据保护定时器时长
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年04月12日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年11月24日
-    作    者   : l60609
-    修改内容   : DSDA Phase II:双实例
-*****************************************************************************/
 VOS_VOID ADS_UL_SetProtectTmrLen(VOS_UINT32 ulTimerLen)
 {
     g_stAdsCtx.stAdsIpfCtx.ulProtectTmrLen = ulTimerLen;
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_UL_IsQueueExistent
- 功能描述  : 判断队列是否存在
- 输入参数  : VOS_UINT8                           ucInstanceIndex,
-             VOS_UINT8                           ucRabId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月12日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年11月24日
-    作    者   : l60609
-    修改内容   : DSDA Phase II:双实例
-*****************************************************************************/
 VOS_UINT32 ADS_UL_IsQueueExistent(
     VOS_UINT8                           ucInstanceIndex,
     VOS_UINT8                           ucRabId
@@ -147,21 +94,7 @@ VOS_UINT32 ADS_UL_IsQueueExistent(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_UL_IsAnyQueueExist
- 功能描述  : 检测是否有队列存在
- 输出参数  : VOS_VOID
- 返 回 值  : VOS_TRUE
-             VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月22日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 ADS_UL_IsAnyQueueExist(VOS_VOID)
 {
     VOS_UINT8                           ucInstance;
@@ -181,43 +114,7 @@ VOS_UINT32 ADS_UL_IsAnyQueueExist(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_UL_InsertQueue
- 功能描述  : 将数据插入对应的队列
- 输入参数  : VOS_UINT8                           ucInstance
-           　IMM_ZC_STRU                        *pstImmZc
-             VOS_UINT8                           ucRabId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月12日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2012年02月24日
-    作    者   : f00179208
-    修改内容   : V7R1C50项目，上行队列管理使用RABID来索引
-  3.日    期   : 2012年4月12日
-    作    者   : A00165503
-    修改内容   : DTS2012020708222: ADS性能优化
-  4.日    期   : 2012年4月27日
-    作    者   : l60609
-    修改内容   : DTS2012041802250: ADS上行10ms延时
-  5.日    期   : 2012年8月31日
-    作    者   : l60609
-    修改内容   : AP适配项目：上行队列限长
-  6.日    期   : 2012年11月24日
-    作    者   : l60609
-    修改内容   : DSDA Phase II:双实例
-  7.日    期   : 2013年05月09日
-    作    者   : f00179208
-    修改内容   : DTS2013050806891:ADS上行组包优化
-  8.日    期   : 2014年06月03日
-    作    者   : f00179208
-    修改内容   : CCPU LOAD优化
-*****************************************************************************/
 VOS_UINT32 ADS_UL_InsertQueue(
     VOS_UINT8                           ucInstance,
     IMM_ZC_STRU                        *pstImmZc,
@@ -340,21 +237,7 @@ VOS_UINT32 ADS_UL_InsertQueue(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_UL_GetInstanceAllQueueDataNum
- 功能描述  : 获取一个实例中所有上行缓存队列中的数据包个数
- 输入参数  : VOS_UINT8 ucInstanceIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月7日
-    作    者   : 鲁琳/l60609
-    修改内容   :DSDA Phase II: 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 ADS_UL_GetInstanceAllQueueDataNum(VOS_UINT8 ucInstanceIndex)
 {
     VOS_UINT32                          i;
@@ -376,25 +259,7 @@ VOS_UINT32 ADS_UL_GetInstanceAllQueueDataNum(VOS_UINT8 ucInstanceIndex)
     return ulTotalNum;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_UL_GetAllQueueDataNum
- 功能描述  : 获取所有上行缓存队列中的数据包个数
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月7日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年11月24日
-    作    者   : l60609
-    修改内容   : DSDA Phase II:双实例
-
-*****************************************************************************/
 VOS_UINT32 ADS_UL_GetAllQueueDataNum(VOS_VOID)
 {
     VOS_UINT32                          ulTotalNum;
@@ -410,32 +275,7 @@ VOS_UINT32 ADS_UL_GetAllQueueDataNum(VOS_VOID)
     return ulTotalNum;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_UL_CreateQueue
- 功能描述  : 创建上行缓存队列
- 输入参数  : VOS_UINT8                           ucInstanceIndex,
-             VOS_UINT8                           ucRabId,
-             ADS_QCI_TYPE_ENUM_UINT8             enPrio
-             ADS_CDS_IPF_PKT_TYPE_ENUM_UINT8     enPktType
-输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月6日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2012年02月21日
-    作    者   : f00179208
-    修改内容   : V7R1C50项目，创建队列时根据优先级设置队列的信息
-  3.日    期   : 2012年11月24日
-    作    者   : l60609
-    修改内容   : DSDA Phase II:双实例
-  4.日    期   : 2013年05月22日
-    作    者   : f00179208
-    修改内容   : V3R3 PPP PROJECT
-*****************************************************************************/
 VOS_UINT32 ADS_UL_CreateQueue(
     VOS_UINT8                           ucInstanceIndex,
     VOS_UINT8                           ucRabId,
@@ -495,31 +335,7 @@ VOS_UINT32 ADS_UL_CreateQueue(
     /*lint +e429*/
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_UL_ClearQueue
- 功能描述  : 清空队列中的数据
- 输入参数  : VOS_UINT8                           ucRabId,
-             IMM_ZC_HEAD_STRU                   *pstQueue,
-             VOS_SPINLOCK                       *pstSpinLock
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月13日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月31日
-    作    者   : l60609
-    修改内容   : AP适配项目：使用自旋锁
-  3.日    期   : 2012年11月24日
-    作    者   : l60609
-    修改内容   : DSDA Phase II:双实例
-  4.日    期   : 2014年04月03日
-    作    者   : m00217266
-    修改内容   : DTS2014032902757
-*****************************************************************************/
 VOS_VOID ADS_UL_ClearQueue(
     VOS_UINT8                           ucRabId,
     IMM_ZC_HEAD_STRU                   *pstQueue
@@ -540,33 +356,7 @@ VOS_VOID ADS_UL_ClearQueue(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_UL_DestroyQueue
- 功能描述  : 销毁上行缓存队列
- 输入参数  : VOS_UINT8                           ucInstanceIndex
-             VOS_UINT8                           ucRabId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月6日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2012年02月20日
-    作    者   : f00179208
-    修改内容   : V7R1C50项目，增加队列调度的优先级以及上行队列管理使用RABID来索引
-  3.日    期   : 2012年9月12日
-    作    者   : l60609
-    修改内容   : AP适配项目：增加锁处理
-  4.日    期   : 2012年11月24日
-    作    者   : l60609
-    修改内容   : DSDA Phase II:双实例
-  5.日    期   : 2013年05月22日
-    作    者   : f00179208
-    修改内容   : V3R3 PPP PROJECT
-*****************************************************************************/
 VOS_VOID ADS_UL_DestroyQueue(
     VOS_UINT8                           ucInstanceIndex,
     VOS_UINT8                           ucRabId
@@ -597,11 +387,9 @@ VOS_VOID ADS_UL_DestroyQueue(
     VOS_SpinLockIntLock(ADS_UL_GET_QUEUE_LINK_SPINLOCK(ucInstanceIndex, ucRabId), ulLockLevel);
     /*lint +e571*/
 
-    /* Modified by l60609 for AP适配项目 ，2012-09-10 Begin */
     /* 销毁队列中的数据 */
     ADS_UL_ClearQueue(ucRabId,
                       ADS_UL_GET_QUEUE_LINK_PTR(ucInstanceIndex, ucRabId));
-    /* Modified by l60609 for AP适配项目 ，2012-09-10 End */
 
     /* 销毁队列头结点*/
     PS_MEM_FREE(ACPU_PID_ADS_DL, ADS_UL_GET_QUEUE_LINK_PTR(ucInstanceIndex, ucRabId));
@@ -623,26 +411,7 @@ VOS_VOID ADS_UL_DestroyQueue(
 
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_UL_GetInsertIndex
- 功能描述  : 获取需要插入的索引
- 输入参数  : VOS_UINT8                           ucInstanceIndex
-             VOS_UINT8                           ucRabId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年02月22日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年11月24日
-    作    者   : l60609
-    修改内容   : DSDA Phase II:双实例
-
-*****************************************************************************/
 VOS_UINT32 ADS_UL_GetInsertIndex(
     VOS_UINT8                           ucInstanceIndex,
     VOS_UINT8                           ucRabId
@@ -666,26 +435,7 @@ VOS_UINT32 ADS_UL_GetInsertIndex(
 
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_UL_UpdateQueueInPdpActive
- 功能描述  : 根据新PDP激活后所带的优先级对上行队列管理排序
- 输入参数  : VOS_UINT8                           ucInstanceIndex
-             VOS_UINT32                          ulIndex
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年02月21日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年11月24日
-    作    者   : l60609
-    修改内容   : DSDA Phase II:双实例
-
-*****************************************************************************/
 VOS_VOID ADS_UL_OrderQueueIndex(
     VOS_UINT8                           ucInstanceIndex,
     VOS_UINT8                           ucIndex
@@ -713,27 +463,7 @@ VOS_VOID ADS_UL_OrderQueueIndex(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_UL_UpdateQueueInPdpModified
- 功能描述  : 根据PDP信息的修改所带的优先级对上行队列管理排序
- 输入参数  : VOS_UINT8                           ucInstanceIndex,
-             ADS_QCI_TYPE_ENUM_UINT8             enPrio
-             VOS_UINT8                           ucRabId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年02月21日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年11月24日
-    作    者   : l60609
-    修改内容   : DSDA Phase II:双实例
-
-*****************************************************************************/
 VOS_VOID ADS_UL_UpdateQueueInPdpModified(
     VOS_UINT8                           ucInstanceIndex,
     ADS_QCI_TYPE_ENUM_UINT8             enPrio,
@@ -770,26 +500,7 @@ VOS_VOID ADS_UL_UpdateQueueInPdpModified(
 
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_UL_UpdateQueueInPdpDeactive
- 功能描述  : PDP去激活删除对于的队列信息后，对队列管理进行排序
- 输入参数  : VOS_UINT8                           ucInstanceIndex,
-             VOS_UINT8                           ucRabId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年02月21日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年11月24日
-    作    者   : l60609
-    修改内容   : DSDA Phase II:双实例
-
-*****************************************************************************/
 VOS_VOID ADS_UL_UpdateQueueInPdpDeactived(
     VOS_UINT8                           ucInstanceIndex,
     VOS_UINT8                           ucRabId
@@ -817,34 +528,7 @@ VOS_VOID ADS_UL_UpdateQueueInPdpDeactived(
 
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_UL_SetQueue
- 功能描述  : 在创建和销毁队列的时候，设置上行队列上下文信息
- 输入参数  : VOS_UINT8                           ucInstanceIndex,
-             VOS_UINT8                           ucRabId,
-             VOS_UINT8                           ucIsQueueValid,
-             IMM_ZC_HEAD_STRU                   *pstUlQueue,
-             ADS_QCI_TYPE_ENUM_UINT8             enPrio
-             ADS_CDS_IPF_PKT_TYPE_ENUM_UINT8     enPktType
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月12日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2012年02月20日
-    作    者   : f00179208
-    修改内容   : V7R1C50项目，增加队列调度的优先级
-  3.日    期   : 2012年11月24日
-    作    者   : l60609
-    修改内容   : DSDA Phase II:双实例
-  4.日    期   : 2013年05月22日
-    作    者   : f00179208
-    修改内容   : V3R3 PPP PROJECT
-*****************************************************************************/
 VOS_VOID ADS_UL_SetQueue(
     VOS_UINT8                           ucInstanceIndex,
     VOS_UINT8                           ucRabId,
@@ -863,21 +547,7 @@ VOS_VOID ADS_UL_SetQueue(
     g_stAdsCtx.astAdsSpecCtx[ucInstanceIndex].stAdsUlCtx.astAdsUlQueue[ucRabId].uc1XorHrpdUlIpfFlag = uc1XorHrpdUlIpfFlag;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_UL_SndEvent
- 功能描述  : 触发上行事件
- 输入参数  : ulEvent                    - 事件ID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月12日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ADS_UL_SndEvent(VOS_UINT32 ulEvent)
 {
     if (1 == g_ulAdsULTaskReadyFlag)
@@ -888,25 +558,7 @@ VOS_VOID ADS_UL_SndEvent(VOS_UINT32 ulEvent)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_UL_ProcEvent
- 功能描述  : ADS上行事件处理
- 输入参数  : ulEvent                    - 事件ID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月12日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年9月22日
-    作    者   : A00165503
-    修改内容   : DTS2015081008249: ADS数传过程中持锁, 防止系统进入休眠
-
-*****************************************************************************/
 VOS_VOID ADS_UL_ProcEvent(VOS_UINT32 ulEvent)
 {
     if (ulEvent & ADS_UL_EVENT_DATA_PROC)
@@ -920,21 +572,7 @@ VOS_VOID ADS_UL_ProcEvent(VOS_UINT32 ulEvent)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_DL_SndEvent
- 功能描述  : 触发下行事件
- 输入参数  : ulEvent                    - 事件ID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月12日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ADS_DL_SndEvent(VOS_UINT32 ulEvent)
 {
     if (1 == g_ulAdsDLTaskReadyFlag)
@@ -945,29 +583,7 @@ VOS_VOID ADS_DL_SndEvent(VOS_UINT32 ulEvent)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_DL_ProcEvent
- 功能描述  : ADS下行事件处理
- 输入参数  : ulEvent                    - 事件ID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月12日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年4月24日
-    作    者   : A00165503
-    修改内容   : DTS2015042201072: 优化ADQ空中断处理, 防止内存无法及时补充
-
-  3.日    期   : 2015年9月22日
-    作    者   : A00165503
-    修改内容   : DTS2015081008249: ADS数传过程中持锁, 防止系统进入休眠
-
-*****************************************************************************/
 VOS_VOID ADS_DL_ProcEvent(VOS_UINT32 ulEvent)
 {
     if (ulEvent & ADS_DL_EVENT_IPF_RD_INT)
@@ -987,20 +603,7 @@ VOS_VOID ADS_DL_ProcEvent(VOS_UINT32 ulEvent)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_DL_InitFcAssemParamInfo
- 功能描述  : 初始化底软动态组包参数
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月19日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID ADS_DL_InitFcAssemParamInfo(VOS_VOID)
 {
     ADS_DL_FC_ASSEM_STRU               *pstFcAssemInfo;
@@ -1019,20 +622,7 @@ VOS_VOID ADS_DL_InitFcAssemParamInfo(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_DL_ResetFcAssemParamInfo
- 功能描述  : 重置底软动态组包参数
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月19日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID ADS_DL_ResetFcAssemParamInfo(VOS_VOID)
 {
     ADS_DL_FC_ASSEM_STRU               *pstFcAssemInfo;
@@ -1045,21 +635,7 @@ VOS_VOID ADS_DL_ResetFcAssemParamInfo(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_UL_EnableRxWakeLockTimeout
- 功能描述  : 使能上行接收WAKE LOCK定时器
- 输入参数  : ulValue --- 定时器(单位: ms)
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月22日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 ADS_UL_EnableRxWakeLockTimeout(VOS_UINT32 ulValue)
 {
     ADS_IPF_CTX_STRU                   *pstIpfCntxt = VOS_NULL_PTR;
@@ -1073,21 +649,7 @@ VOS_UINT32 ADS_UL_EnableRxWakeLockTimeout(VOS_UINT32 ulValue)
     return 0;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_UL_WakeLockTimeout
- 功能描述  : 上行发送WAKE LOCK TIMEOUT
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月22日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 ADS_UL_WakeLockTimeout(VOS_VOID)
 {
     ADS_IPF_CTX_STRU                   *pstIpfCntxt = VOS_NULL_PTR;
@@ -1109,21 +671,7 @@ VOS_UINT32 ADS_UL_WakeLockTimeout(VOS_VOID)
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_UL_WakeLock
- 功能描述  : 上行发送WAKE LOCK BD
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月22日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 ADS_UL_WakeLock(VOS_VOID)
 {
     ADS_IPF_CTX_STRU                   *pstIpfCntxt = VOS_NULL_PTR;
@@ -1142,21 +690,7 @@ VOS_UINT32 ADS_UL_WakeLock(VOS_VOID)
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_WakeUnLock
- 功能描述  : 上行发送WAKE UNLOCK BD
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月22日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 ADS_UL_WakeUnLock(VOS_VOID)
 {
     ADS_IPF_CTX_STRU                   *pstIpfCntxt = VOS_NULL_PTR;
@@ -1177,21 +711,7 @@ VOS_UINT32 ADS_UL_WakeUnLock(VOS_VOID)
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_DL_EnableTxWakeLockTimeout
- 功能描述  : 使能下行发送WAKE LOCK定时器
- 输入参数  : ulValue --- 定时器(单位: ms)
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月22日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 ADS_DL_EnableTxWakeLockTimeout(VOS_UINT32 ulValue)
 {
     ADS_IPF_CTX_STRU                   *pstIpfCntxt = VOS_NULL_PTR;
@@ -1205,21 +725,7 @@ VOS_UINT32 ADS_DL_EnableTxWakeLockTimeout(VOS_UINT32 ulValue)
     return 0;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_DL_WakeLockTimeout
- 功能描述  : 启动下行接收WAKE LOCK TIMEOUT
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月22日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 ADS_DL_WakeLockTimeout(VOS_VOID)
 {
     ADS_IPF_CTX_STRU                   *pstIpfCntxt = VOS_NULL_PTR;
@@ -1241,21 +747,7 @@ VOS_UINT32 ADS_DL_WakeLockTimeout(VOS_VOID)
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_DL_WakeLock
- 功能描述  : 下行接收WAKE LOCK RD
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月22日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 ADS_DL_WakeLock(VOS_VOID)
 {
     ADS_IPF_CTX_STRU                   *pstIpfCntxt = VOS_NULL_PTR;
@@ -1274,21 +766,7 @@ VOS_UINT32 ADS_DL_WakeLock(VOS_VOID)
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_DL_WakeUnLock
- 功能描述  : 下行接收WAKE UNLOCK RD
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月22日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 ADS_DL_WakeUnLock(VOS_VOID)
 {
     ADS_IPF_CTX_STRU                   *pstIpfCntxt = VOS_NULL_PTR;
@@ -1309,24 +787,7 @@ VOS_UINT32 ADS_DL_WakeUnLock(VOS_VOID)
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_IPF_MapRequset
- 功能描述  : CACHE操作
- 输入参数  : pstImmZc --- imm memory
-             ulLen    --- cache size
-             ucIsIn   --- 1 -> DMA_TO_DEVICE
-                          0 -> DMA_TO_DEVICE
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月06日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ADS_IPF_MemMapRequset(
     IMM_ZC_STRU                        *pstImmZc,
     VOS_UINT32                          ulLen,
@@ -1343,24 +804,7 @@ VOS_VOID ADS_IPF_MemMapRequset(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_IPF_MemMapByDmaRequset
- 功能描述  : CACHE操作
- 输入参数  : pstImmZc --- imm memory
-             ulLen    --- cache size
-             ucIsIn   --- 1 -> DMA_TO_DEVICE
-                          0 -> DMA_TO_DEVICE
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月06日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ADS_IPF_MemMapByDmaRequset(
     IMM_ZC_STRU                        *pstImmZc,
     VOS_UINT32                          ulLen,
@@ -1377,24 +821,7 @@ VOS_VOID ADS_IPF_MemMapByDmaRequset(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_IPF_UnmapRequset
- 功能描述  : CACHE操作
- 输入参数  : pstImmZc --- imm memory
-             ulLen    --- cache size
-             ucIsIn   --- 1 -> DMA_TO_DEVICE
-                          0 -> DMA_TO_DEVICE
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月06日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ADS_IPF_MemUnmapRequset(
     IMM_ZC_STRU                        *pstImmZc,
     VOS_UINT32                          ulLen,
@@ -1410,83 +837,26 @@ VOS_VOID ADS_IPF_MemUnmapRequset(
 }
 
 #if (defined(CONFIG_BALONG_SPE))
-/*****************************************************************************
- 函 数 名  : ADS_IPF_IsSpeMem
- 功能描述  : 检查SPE内存
- 输入参数  : pstImmZc --- imm memory
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月06日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 ADS_IPF_IsSpeMem(IMM_ZC_STRU *pstImmZc)
 {
     return (0 != pstImmZc->spe_own);
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_IPF_SetMemDma
- 功能描述  : 设置内存的物理地址
- 输入参数  : pstImmZc  --- imm memory
-             ulDmaAddr --- phy addr
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月06日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ADS_IPF_SetMemDma(IMM_ZC_STRU *pstImmZc, dma_addr_t ulDmaAddr)
 {
     ADS_SPE_MEM_CB(pstImmZc)->ulDmaAddr = ulDmaAddr;
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_IPF_GetMemDma
- 功能描述  : 获取内存的物理地址
- 输入参数  : pstImmZc --- imm memory
- 输出参数  : 无
- 返 回 值  : dma_addr_t
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月06日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 dma_addr_t ADS_IPF_GetMemDma(IMM_ZC_STRU *pstImmZc)
 {
     return ADS_SPE_MEM_CB(pstImmZc)->ulDmaAddr;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_IPF_RefreshMem
- 功能描述  : 刷新内存
- 输入参数  : pstImmZc --- imm memory
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月06日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ADS_IPF_RefreshMem(IMM_ZC_STRU *pstImmZc)
 {
     IMM_ZcResetTailPointer(pstImmZc);
@@ -1496,21 +866,7 @@ VOS_VOID ADS_IPF_RefreshMem(IMM_ZC_STRU *pstImmZc)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_IPF_RecycleMem
- 功能描述  : 回收内存
- 输入参数  : pstImmZc --- imm memory
- 输出参数  : 无
- 返 回 值  : VOS_OK/VOS_ERROR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月06日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_INT ADS_IPF_RecycleMem(IMM_ZC_STRU *pstImmZc)
 {
     ADS_IPF_MEM_POOL_CFG_STRU          *pstMemPoolCfg = VOS_NULL_PTR;
@@ -1539,23 +895,7 @@ VOS_INT ADS_IPF_RecycleMem(IMM_ZC_STRU *pstImmZc)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_IPF_AllocMem
- 功能描述  : 申请需的内存
- 输入参数  : ulPoolId      --- 内存池
-             ulLen         --- 内存大小
-             ulReservedLen --- 保留字节
- 输出参数  : 无
- 返 回 值  : IMM_ZC_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月06日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 IMM_ZC_STRU* ADS_IPF_AllocMem(VOS_UINT32 ulPoolId, VOS_UINT32 ulLen, VOS_UINT32 ulReserveLen)
 {
     ADS_IPF_MEM_POOL_CFG_STRU          *pstMemPoolCfg = VOS_NULL_PTR;
@@ -1596,21 +936,7 @@ IMM_ZC_STRU* ADS_IPF_AllocMem(VOS_UINT32 ulPoolId, VOS_UINT32 ulLen, VOS_UINT32 
     return pstImmZc;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_IPF_CreateMemPool
- 功能描述  : 创建内存池
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月06日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ADS_IPF_CreateMemPool(VOS_VOID)
 {
     ADS_IPF_MEM_POOL_CFG_STRU          *pstMemPoolCfg = VOS_NULL_PTR;
@@ -1656,21 +982,7 @@ VOS_VOID ADS_IPF_CreateMemPool(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_IPF_InitMemPoolCfg
- 功能描述  : 初始化内存池配置
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月06日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ADS_IPF_InitMemPoolCfg(VOS_VOID)
 {
     ADS_IPF_MEM_POOL_CFG_STRU          *pstMemPoolCfg  = VOS_NULL_PTR;
@@ -1712,21 +1024,7 @@ VOS_VOID ADS_IPF_InitMemPoolCfg(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_IPF_SpeIntWakeupADS
- 功能描述  : SPE中断触发事件, 唤醒ADS任务处理上行数据
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月1日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ADS_IPF_SpeIntWakeupADS(VOS_VOID)
 {
     ADS_UL_SndEvent(ADS_UL_EVENT_DATA_PROC);
@@ -1734,21 +1032,7 @@ VOS_VOID ADS_IPF_SpeIntWakeupADS(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_IPF_RegSpeWPort
- 功能描述  : 注册SPE端口
- 输入参数  : lPort --- 端口
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月8日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ADS_IPF_RegSpeWPort(VOS_INT32 lPort)
 {
     ADS_IPF_CTX_STRU                   *pstIpfCntxt = VOS_NULL_PTR;
@@ -1758,86 +1042,27 @@ VOS_VOID ADS_IPF_RegSpeWPort(VOS_INT32 lPort)
     return;
 }
 #else
-/*****************************************************************************
- 函 数 名  : ADS_IPF_CheckSpeMem
- 功能描述  : 检查SPE内存
- 输入参数  : pstImmZc --- imm memory
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月06日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 ADS_IPF_IsSpeMem(IMM_ZC_STRU *pstImmZc)
 {
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_IPF_SetMemDma
- 功能描述  : 设置内存的物理地址
- 输入参数  : pstImmZc  --- imm memory
-             ulDmaAddr --- phy addr
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月06日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ADS_IPF_SetMemDma(IMM_ZC_STRU *pstImmZc, dma_addr_t ulDmaAddr)
 {
     ADS_IMM_MEM_CB(pstImmZc)->ulDmaAddr = ulDmaAddr;
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_IPF_GetMemDma
- 功能描述  : 获取内存的物理地址
- 输入参数  : pstImmZc --- imm memory
- 输出参数  : 无
- 返 回 值  : dma_addr_t
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月06日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 dma_addr_t ADS_IPF_GetMemDma(IMM_ZC_STRU *pstImmZc)
 {
     return ADS_IMM_MEM_CB(pstImmZc)->ulDmaAddr;
 }
 
 
-/*****************************************************************************
- 函 数 名  : ADS_IPF_AllocMem
- 功能描述  : 申请ADQ所需的内存
- 输入参数  : ulPoolId      --- 内存池
-             ulLen         --- 内存大小
-             ulReservedLen --- 保留字节
- 输出参数  : 无
- 返 回 值  : IMM_ZC_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月06日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 IMM_ZC_STRU* ADS_IPF_AllocMem(VOS_UINT32 ulPoolId, VOS_UINT32 ulLen, VOS_UINT32 ulReserveLen)
 {
     IMM_ZC_STRU                        *pstImmZc = VOS_NULL_PTR;
@@ -1858,63 +1083,19 @@ IMM_ZC_STRU* ADS_IPF_AllocMem(VOS_UINT32 ulPoolId, VOS_UINT32 ulLen, VOS_UINT32 
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : ADS_GetULResetSem
- 功能描述  : 获取ADS UL复位信号量
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : ADS复位信号量
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2013年04月15日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_SEM ADS_GetULResetSem(VOS_VOID)
 {
     return g_stAdsCtx.hULResetSem;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_GetDLResetSem
- 功能描述  : 获取ADS DL复位信号量
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : ADS复位信号量
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2013年04月15日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_SEM ADS_GetDLResetSem(VOS_VOID)
 {
     return g_stAdsCtx.hDLResetSem;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_GetCurrentRate
- 功能描述  : 设置当前上行速率
- 输入参数  : 无
- 输出参数  : VOS_UINT32                         *pulUlBpsRate,
-             VOS_UINT32                         *pulDlBpsRate
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2012年1月10日
-   作    者   : l60609
-   修改内容   : 新生成函数
-
- 2.日    期   : 2012年11月24日
-   作    者   : l60609
-   修改内容   : DSDA Phase II：双实例
-*****************************************************************************/
 VOS_UINT32 ADS_GetCurrentRate(
     VOS_UINT32                         *pulUlBpsRate,
     VOS_UINT32                         *pulDlBpsRate
@@ -1927,41 +1108,13 @@ VOS_UINT32 ADS_GetCurrentRate(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_GetUlResetFlag
- 功能描述  : 获取ADS上行复位标志
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月27日
-    作    者   : z00301431
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 ADS_GetUlResetFlag(VOS_VOID)
 {
     return g_stAdsCtx.ucUlResetFlag;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_SetUlResetFlag
- 功能描述  : 设置ADS上行复位标志
- 输入参数  : VOS_UINT8
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月27日
-    作    者   : z00301431
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ADS_SetUlResetFlag(VOS_UINT8 ucFlag)
 {
     g_stAdsCtx.ucUlResetFlag = ucFlag;
@@ -1971,25 +1124,7 @@ VOS_VOID ADS_SetUlResetFlag(VOS_UINT8 ucFlag)
 
 
 
-/*****************************************************************************
- 函 数 名  : ADS_GetTiCtx
- 功能描述  : 获取ADS上行的上下文
- 输入参数  : VOS_UINT8 ucInstanceIndex
- 输出参数  : 无
- 返 回 值  : ADS_TIMER_CTX_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月13日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年11月24日
-    作    者   : l60609
-    修改内容   : DSDA Phase II:双实例
-
-*****************************************************************************/
 ADS_UL_CTX_STRU* ADS_GetUlCtx(VOS_UINT8 ucInstanceIndex)
 {
     ADS_SPEC_CTX_STRU                  *pstAdsSpecCtx = VOS_NULL_PTR;
@@ -1999,25 +1134,7 @@ ADS_UL_CTX_STRU* ADS_GetUlCtx(VOS_UINT8 ucInstanceIndex)
     return &(pstAdsSpecCtx->stAdsUlCtx);
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_GetTiCtx
- 功能描述  : 获取ADS下行的上下文
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : ADS_TIMER_CTX_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月13日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年11月24日
-    作    者   : l60609
-    修改内容   : DSDA Phase II:双实例
-
-*****************************************************************************/
 ADS_DL_CTX_STRU* ADS_GetDlCtx(VOS_UINT8 ucInstanceIndex)
 {
     ADS_SPEC_CTX_STRU                  *pstAdsSpecCtx = VOS_NULL_PTR;
@@ -2027,79 +1144,19 @@ ADS_DL_CTX_STRU* ADS_GetDlCtx(VOS_UINT8 ucInstanceIndex)
     return &(pstAdsSpecCtx->stAdsDlCtx);
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_GetTiCtx
- 功能描述  : 获取ADS定时器的上下文
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : ADS_TIMER_CTX_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月13日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ADS_TIMER_CTX_STRU* ADS_GetTiCtx(VOS_VOID)
 {
     return g_stAdsCtx.astAdsTiCtx;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_GetAllCtx
- 功能描述  : 获取ADS所有的上下文
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : ADS_CTX_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月24日
-    作    者   : l60609
-    修改内容   : DSDA Phase II:新生成函数
-
-*****************************************************************************/
 ADS_CTX_STRU* ADS_GetAllCtx(VOS_VOID)
 {
     return &g_stAdsCtx;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_InitUlCtx
- 功能描述  : 初始化上行的上下文
- 输入参数  : VOS_UINT8 ucInstanceIndex
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月6日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年2月20日
-    作    者   : f00179208
-    修改内容   : 新增ADS优先级的NV项，上行上下文初始化时从NV中读出
-
-  3.日    期   : 2012年4月12日
-    作    者   : A00165503
-    修改内容   : DTS2012020708222: ADS性能优化
-
-  4.日    期   : 2012年8月31日
-    作    者   : l60609
-    修改内容   : AP适配项目：增加上行释放队列
-
-  5.日    期   : 2012年11月24日
-    作    者   : l60609
-    修改内容   : DSDA Phase II :双实例
-  6.日    期   : 2013年05月22日
-    作    者   : f00179208
-    修改内容   : V3R3 PPP PROJECT
-*****************************************************************************/
 VOS_VOID ADS_InitUlCtx(VOS_UINT8 ucInstanceIndex)
 {
     VOS_UINT32                          i;
@@ -2119,10 +1176,8 @@ VOS_VOID ADS_InitUlCtx(VOS_UINT8 ucInstanceIndex)
         pstAdsSpecCtx->stAdsUlCtx.astAdsUlQueue[i].usRecordNum     = 0;
         pstAdsSpecCtx->stAdsUlCtx.astAdsUlQueue[i].enPktType       = ADS_CDS_IPF_PKT_TYPE_IP;
 
-        /* Added by l60609 for AP适配项目 ，2012-09-10 Begin */
         /* 锁初始化 */
         VOS_SpinLockInit(&(pstAdsSpecCtx->stAdsUlCtx.astAdsUlQueue[i].stSpinLock));
-        /* Added by l60609 for AP适配项目 ，2012-09-10 End */
     }
 
     PS_MEM_SET(pstAdsSpecCtx->stAdsUlCtx.aucPrioIndex, 0, ADS_RAB_NUM_MAX);
@@ -2152,28 +1207,12 @@ VOS_VOID ADS_InitUlCtx(VOS_UINT8 ucInstanceIndex)
         }
     }
 
-    /* Added by l60609 for AP适配项目 ，2012-08-31 Begin */
     pstAdsSpecCtx->stAdsUlCtx.ulUlMaxQueueLength     = ADS_UL_MAX_QUEUE_LENGTH;
-    /* Added by l60609 for AP适配项目 ，2012-08-31 End */
 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_InitDlCtx
- 功能描述  : 初始化下行的上下文
- 输入参数  : ucInstance --- 实例号(ModemId)
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月6日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ADS_InitDlCtx(VOS_UINT8 ucInstance)
 {
     ADS_SPEC_CTX_STRU                  *pstAdsSpecCtx = VOS_NULL_PTR;
@@ -2195,21 +1234,7 @@ VOS_VOID ADS_InitDlCtx(VOS_UINT8 ucInstance)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_InitStatsInfoCtx
- 功能描述  : 初始化数据统计的上下文
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月10日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ADS_InitStatsInfoCtx(VOS_VOID)
 {
     ADS_STATS_INFO_CTX_STRU            *pstDsFlowStatsCtx = VOS_NULL_PTR;
@@ -2222,24 +1247,7 @@ VOS_VOID ADS_InitStatsInfoCtx(VOS_VOID)
     pstDsFlowStatsCtx->stDLDataStats.ulDLCurDataRate    = 0;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_InitSpecCtx
- 功能描述  : 初始化每个实例专有的上下文
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月24日
-    作    者   : l60609
-    修改内容   : DSDA Phase II:新生成函数
-
-  2.日    期   : 2013年9月22日
-    作    者   : A00165503
-    修改内容   : DTS2013092200927: 定时器使用优化
-*****************************************************************************/
 VOS_VOID ADS_InitSpecCtx(VOS_VOID)
 {
     VOS_UINT8                           i;
@@ -2257,21 +1265,7 @@ VOS_VOID ADS_InitSpecCtx(VOS_VOID)
     ADS_DL_InitFcAssemParamInfo();
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_ResetSpecUlCtx
- 功能描述  : 重置下行的上下文
- 输入参数  : VOS_UINT8 ucInstance
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月14日
-    作    者   : m00217266
-    修改内容   : DTS2014032902757(与函数ADS_InitUlCtx基本一致，只删除了spinloc初始化)
-
-*****************************************************************************/
 VOS_VOID ADS_ResetSpecUlCtx(VOS_UINT8 ucInstance)
 {
     VOS_UINT32                          i;
@@ -2324,21 +1318,7 @@ VOS_VOID ADS_ResetSpecUlCtx(VOS_UINT8 ucInstance)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_ResetSpecDlCtx
- 功能描述  : 重置下行的上下文
- 输入参数  : VOS_UINT8 ucInstance
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年04月15日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ADS_ResetSpecDlCtx(VOS_UINT8 ucInstance)
 {
     ADS_SPEC_CTX_STRU                  *pstAdsSpecCtx  = VOS_NULL_PTR;
@@ -2360,28 +1340,7 @@ VOS_VOID ADS_ResetSpecDlCtx(VOS_UINT8 ucInstance)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_ResetSpecCtx
- 功能描述  : 重置每个实例专有的上下文
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年04月15日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-  2.日    期   : 2013年9月22日
-    作    者   : A00165503
-    修改内容   : DTS2013092200927: 定时器使用优化
-
-  3.日    期   : 2014年4月14日
-    作    者   : m00217266
-    修改内容   : DTS2014032902757: c核单独复位时上行ads空指针
-*****************************************************************************/
 VOS_VOID ADS_ResetUlCtx(VOS_VOID)
 {
     VOS_UINT8                           i;
@@ -2398,20 +1357,7 @@ VOS_VOID ADS_ResetUlCtx(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_ResetDlCtx
- 功能描述  : 重置下行上下文
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月1日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID ADS_ResetDlCtx(VOS_VOID)
 {
     VOS_UINT8                           i;
@@ -2428,28 +1374,7 @@ VOS_VOID ADS_ResetDlCtx(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_ResetIpfCtx
- 功能描述  : 重置和IPF相关的上下文
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年04月15日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-  2.日    期   : 2014年06月03日
-    作    者   : f00179208
-    修改内容   : CCPU LOAD优化
-
-  3.日    期   : 2015年9月1日
-    作    者   : A00165503
-    修改内容   : DTS2015082300106: 下行灌小包, A核触发C核单独复位后整机重启
-*****************************************************************************/
 VOS_VOID ADS_ResetIpfCtx(VOS_VOID)
 {
     /* 默认上行数据发送保护定时器时长为10ms */
@@ -2473,29 +1398,7 @@ VOS_VOID ADS_ResetIpfCtx(VOS_VOID)
     g_stAdsCtx.stAdsIpfCtx.ucSendingFlg = VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_InitIpfCtx
- 功能描述  : 初始化和IPF相关的上下文
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月24日
-    作    者   : l60609
-    修改内容   : DSDA Phase II: 新生成函数
-
-  2.日    期   : 2014年06月03日
-    作    者   : f00179208
-    修改内容   : CCPU LOAD优化
-
-  3.日    期   : 2015年9月22日
-    作    者   : A00165503
-    修改内容   : DTS2015081008249: ADS数传过程中持锁, 防止系统进入休眠
-
-*****************************************************************************/
 VOS_VOID ADS_InitIpfCtx(VOS_VOID)
 {
     ADS_UL_DYNAMIC_ASSEM_INFO_STRU     *pstUlAssemParmInfo = VOS_NULL_PTR;
@@ -2614,21 +1517,7 @@ VOS_VOID ADS_InitIpfCtx(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_InitTiCtx
- 功能描述  : 初始化定时器的上下文
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月13日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ADS_InitTiCtx(VOS_VOID)
 {
     VOS_UINT32                          i;
@@ -2636,26 +1525,12 @@ VOS_VOID ADS_InitTiCtx(VOS_VOID)
     for (i = 0; i < ADS_MAX_TIMER_NUM; i++)
     {
         g_stAdsCtx.astAdsTiCtx[i].hTimer        = VOS_NULL_PTR;
-        g_stAdsCtx.astAdsTiCtx[i].enTimerStatus = ADS_TIMER_STATUS_STOP;
     }
 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_InitResetSem
- 功能描述  : 初始化ADS复位的信号量
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2013年04月15日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID ADS_InitResetSem(VOS_VOID)
 {
     g_stAdsCtx.hULResetSem  = VOS_NULL_PTR;
@@ -2679,29 +1554,7 @@ VOS_VOID ADS_InitResetSem(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_InitCtx
- 功能描述  : 初始化ADS上下文
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月24日
-    作    者   : l60609
-    修改内容   : DSDA Phase II:初始化上下文
-  2.日    期   : 2013年04月15日
-    作    者   : 范晶
-    修改内容   : C核单独复位
-  3.日    期   : 2013年06月04日
-    作    者   : l00198894
-    修改内容   : Share-PDP项目增加过滤表初始化
-  4.日    期   : 2013年07月222日
-    作    者   : j00177245
-    修改内容   : 清理编译warning
-*****************************************************************************/
 VOS_VOID ADS_InitCtx(VOS_VOID)
 {
     PS_MEM_SET(&g_stAdsStats, 0, sizeof(g_stAdsStats));

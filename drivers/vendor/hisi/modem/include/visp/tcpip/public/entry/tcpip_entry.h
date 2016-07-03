@@ -32,9 +32,7 @@ extern "C"{
 
 #define APP_MAX_REG_NUM         256 /* Also include old version apps!! */
 
-/*Modified by X36317, 大小从16调整到15，以保证结构体4字节对齐, 2006-05-12*/
 #define APP_NAME_MAX_LEN        15 
-/*Modified by X36317, 大小从4调整到7，以保证结构体4字节对齐, 2006-05-12*/
 #define APP_TASK_NAME_LEN       7  
 #define APP_TASK_PARA_NUM       4
 
@@ -183,7 +181,6 @@ typedef enum enLINKMSG
     LINK_MSG_GRPOEC_RESTORE   =  0x00080001,
     LINK_MSG_GRPOEC_SMOOTH    =  0x00080002,
 
-    /* Add for V2R3C07, by z00208058/w00207740, at 2012-4-16. 修改原因: TRUNK LACP下移需求开发 */
     /* Trunk Lacp  */
     LINK_MSG_LACP                     =  0x00090000,
     TRUNK_LACP_NOTIFY_RCV_TIMEOUT     =  0x00090001,
@@ -261,7 +258,6 @@ extern ULONG ulVRPTID_SOCK;
 extern ULONG ulSOCKTmrQueID; 
 
 extern ULONG g_ulSemForTightMods;
-/*Add by q62011 for DTS2013011509185 大规格配置性能优化*/
 extern ULONG g_ulSemForI3Ifnet;
 extern ULONG g_ulLinkQueTimerID;
 extern ULONG g_ulLinkMaxPkt; 

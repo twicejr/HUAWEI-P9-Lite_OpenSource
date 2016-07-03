@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafXCallSndApp.c
-  版 本 号   : 初稿
-  作    者   : l60609
-  生成日期   : 2014年09月03日
-  功能描述   : TAF X CALL发送给APP的消息处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年09月03日
-    作    者   : l60609
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -50,23 +35,7 @@ extern "C"{
   3 函数定义
 *****************************************************************************/
 /*lint -save -e958*/
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SndCsEvtToAt
- 功能描述  : 上报MN_CALL_EVT_CALL_ORIG_CNF消息给
- 输入参数  : VOS_UINT32                          ulEvtId
-             VOS_UINT16                          usClientId
-             MN_CALL_INFO_STRU                  *pstCsCallInfo
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月9日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_SndCsEvtToAt(
     VOS_UINT32                          ulEvtId,
     VOS_UINT16                          usClientId,
@@ -111,23 +80,7 @@ VOS_VOID TAF_XCALL_SndCsEvtToAt(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SndCsEvtToStk
- 功能描述  : 上报MN_CALL_EVT_CALL_ORIG_CNF消息给STK
- 输入参数  : VOS_UINT32                          ulEvtId
-             VOS_UINT32                          ulModuleId
-             MN_CALL_INFO_STRU                  *pstCallInfo
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月9日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_SndCsEvtToStk(
     VOS_UINT32                          ulEvtId,
     VOS_UINT32                          ulModuleId,
@@ -158,22 +111,7 @@ VOS_VOID TAF_XCALL_SndCsEvtToStk(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SndCallOrigCnf
- 功能描述  : 上报MN_CALL_EVT_CALL_ORIG_CNF消息
- 输入参数  : ulResult       - 呼叫处理结果
-             ucCallId       - call Id
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月5日
-    作    者   : y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_SndCallOrigCnf(
     TAF_CS_CAUSE_ENUM_UINT32            enCause,
     VOS_UINT32                          ulModuleId,
@@ -213,25 +151,7 @@ VOS_VOID TAF_XCALL_SndCallOrigCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SndSupsCmdCnf
- 功能描述  : 上报MN_CALL_EVT_SUPS_CMD_CNF(SUPS的临时响应)
- 输入参数  : VOS_UINT32                          ulModuleId
-             VOS_UINT16                          usClientId
-             VOS_UINT8                           ucOpId
-             VOS_UINT8                           ucCallId
-             TAF_CS_CAUSE_ENUM_UINT32            enCause
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月15日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_SndSupsCmdCnf(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -279,25 +199,7 @@ VOS_VOID TAF_XCALL_SndSupsCmdCnf(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SndSupsResult
- 功能描述  : 上报MN_CALL_EVT_SS_CMD_RSLT(SUPS的最终结果)
- 输入参数  : VOS_UINT32                          ulModuleId
-             VOS_UINT16                          usClientId
-             VOS_UINT8                           ucOpId
-             VOS_UINT8                           ucCallId
-             MN_CALL_SS_RESULT_ENUM_U8           enSsResult
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月16日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_SndSupsResult(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -347,21 +249,7 @@ VOS_VOID TAF_XCALL_SndSupsResult(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SndCallIncomingInd
- 功能描述  : 发送MN_CALL_EVT_INCOMING事件
- 输入参数  : VOS_UINT8                           ucCallId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月17日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_SndCallIncomingInd(
     VOS_UINT8                           ucCallId
 )
@@ -407,21 +295,7 @@ VOS_VOID TAF_XCALL_SndCallIncomingInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SndCallOrigInd
- 功能描述  : 发送MN_CALL_EVT_ORIG事件
- 输入参数  : VOS_UINT8                           ucCallId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月17日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_SndCallOrigInd(
     VOS_UINT8                           ucCallId
 )
@@ -466,21 +340,7 @@ VOS_VOID TAF_XCALL_SndCallOrigInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SndCallConnectInd
- 功能描述  : 发送MN_CALL_EVT_CONNECT事件
- 输入参数  : VOS_UINT8                           ucCallId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月17日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_SndCallConnectInd(
     VOS_UINT8                           ucCallId
 )
@@ -527,21 +387,7 @@ VOS_VOID TAF_XCALL_SndCallConnectInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SndCallReleaseInd
- 功能描述  : 发送MN_CALL_EVT_RELEASED事件
- 输入参数  : VOS_UINT8                           ucCallId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月17日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_SndCallReleaseInd(
     VOS_UINT8                           ucCallId
 )
@@ -588,21 +434,7 @@ VOS_VOID TAF_XCALL_SndCallReleaseInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SndCallAllReleaseInd
- 功能描述  : 发送MN_CALL_EVT_ALL_RELEASED事件
- 输入参数  : VOS_UINT32                          ulModuleId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月17日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_SndCallAllReleaseInd(
     VOS_UINT32                          ulModuleId
 )
@@ -620,23 +452,7 @@ VOS_VOID TAF_XCALL_SndCallAllReleaseInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SndBurstDTMFCnf
- 功能描述  : 上报TAF_CALL_EVT_SEND_BURST_DTMF_CNF
- 输入参数  : VOS_UINT16                                  usClientId,
-             VOS_UINT8                                   ucOpId,
-             TAF_CALL_SEND_BURST_DTMF_CNF_RESULT_ENUM_U8 enResult,
-             VOS_UINT8                                   ucCallId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月10日
-    作    者   : f279542
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_SndBurstDTMFCnf(
     VOS_UINT16                                  usClientId,
     VOS_UINT8                                   ucOpId,
@@ -662,23 +478,7 @@ VOS_VOID TAF_XCALL_SndBurstDTMFCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SndBurstDTMFRslt
- 功能描述  : 上报TAF_CALL_EVT_SEND_BURST_DTMF_RSLT
- 输入参数  : VOS_UINT16                          usClientId
-             VOS_UINT8                           ucOpId
-             VOS_UINT8                           ucCallId
-             TAF_CS_CAUSE_ENUM_UINT32            enCause
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月10日
-    作    者   : f279542
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_SndBurstDTMFRslt(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucOpId,
@@ -701,25 +501,7 @@ VOS_VOID TAF_XCALL_SndBurstDTMFRslt(
                            &stSendBurstDTMFRslt);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SndFlashRslt
- 功能描述  : 上报TAF_CALL_EVT_SEND_FLASH_RSLT
- 输入参数  : VOS_UINT16                          usClientId
-             VOS_UINT8                           ucOpId
-             VOS_UINT8                           ucResult
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月9日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-  2.日    期   : 2014年11月10日
-    作    者   : L00256032
-    修改内容   : 1X SS Project修改
-*****************************************************************************/
 VOS_VOID TAF_XCALL_SndFlashRslt(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucOpId,
@@ -744,27 +526,7 @@ VOS_VOID TAF_XCALL_SndFlashRslt(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SndCalledNumInfoInd
- 功能描述  : 上报TAF_CALL_EVT_CALLED_NUM_INFO_IND
- 输入参数  : VOS_UINT8                           ucCallId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月9日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-  2.日    期   : 2014年11月11日
-    作    者   : y00307564
-    修改内容   : 1X SS Project 修改
-  3.日    期   : 2015年02月15日
-    作    者   : y00307564
-    修改内容   : 修改为广播通道主动上报
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_SndCalledNumInfoInd(
     XCC_XCALL_INFO_REC_IND_STRU        *pstInfoRecInd
 )
@@ -799,27 +561,7 @@ VOS_VOID TAF_XCALL_SndCalledNumInfoInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SndCallingPratNumInfoInd
- 功能描述  : 发送TAF_CALL_EVT_CALLING_NUM_INFO_IND消息
- 输入参数  : VOS_UINT8                               ucCallId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月10日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-  2.日    期   : 2014年11月11日
-    作    者   : y00307564
-    修改内容   : 1X SS Project 修改
-  3.日    期   : 2015年02月15日
-    作    者   : y00307564
-    修改内容   : 修改为广播通道主动上报
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_SndCallingPratNumInfoInd(
     XCC_XCALL_INFO_REC_IND_STRU        *pstInfoRecInd
 )
@@ -857,27 +599,7 @@ VOS_VOID TAF_XCALL_SndCallingPratNumInfoInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SndConnNumInfoInd
- 功能描述  : 发送TAF_CALL_EVT_CONN_NUM_INFO_IND消息
- 输入参数  : VOS_UINT8                           ucCallId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月10日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-  2.日    期   : 2014年11月11日
-    作    者   : y00307564
-    修改内容   : 1X SS Project 修改
-  3.日    期   : 2015年02月15日
-    作    者   : y00307564
-    修改内容   : 修改为广播通道主动上报
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_SndConnNumInfoInd(
     XCC_XCALL_INFO_REC_IND_STRU        *pstInfoRecInd
 )
@@ -911,27 +633,7 @@ VOS_VOID TAF_XCALL_SndConnNumInfoInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SndRedirNumInfoInd
- 功能描述  : 发送TAF_CALL_EVT_REDIR_NUM_INFO_IND消息
- 输入参数  : VOS_UINT8                           ucCallId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月10日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-  2.日    期   : 2014年11月11日
-    作    者   : y00307564
-    修改内容   : 1X SS Project 修改
-  3.日    期   : 2015年02月15日
-    作    者   : y00307564
-    修改内容   : 修改为广播通道主动上报
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_SndRedirNumInfoInd(
     XCC_XCALL_INFO_REC_IND_STRU        *pstInfoRecInd
 )
@@ -969,27 +671,7 @@ VOS_VOID TAF_XCALL_SndRedirNumInfoInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SndDisplayInfoInd
- 功能描述  : 发送TAF_CALL_EVT_DISPLAY_INFO_IND消息
- 输入参数  : XCC_XCALL_INFO_REC_IND_STRU        *pstInfoRecInd
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月10日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-  2.日    期   : 2014年11月11日
-    作    者   : y00307564
-    修改内容   : 1X SS Project 修改
-  3.日    期   : 2015年02月15日
-    作    者   : y00307564
-    修改内容   : 修改为广播通道主动上报
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_SndDisplayInfoInd(
     XCC_XCALL_INFO_REC_IND_STRU        *pstInfoRecInd
 )
@@ -1019,27 +701,7 @@ VOS_VOID TAF_XCALL_SndDisplayInfoInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SndExtDisplayInfoInd
- 功能描述  : 发送TAF_CALL_EVT_EXT_DISPLAY_INFO_IND消息
- 输入参数  : XCC_XCALL_INFO_REC_IND_STRU        *pstInfoRecInd
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月10日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-  2.日    期   : 2014年11月11日
-    作    者   : y00307564
-    修改内容   : 1X SS Project 修改
-  3.日    期   : 2015年02月15日
-    作    者   : y00307564
-    修改内容   : 修改为广播通道主动上报
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_SndExtDisplayInfoInd(
     XCC_XCALL_INFO_REC_IND_STRU        *pstInfoRecInd
 )
@@ -1095,27 +757,7 @@ VOS_VOID TAF_XCALL_SndExtDisplayInfoInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SndLineCtrlInfoInd
- 功能描述  : 发送TAF_CALL_EVT_LINE_CTRL_INFO_IND消息
- 输入参数  : XCC_XCALL_INFO_REC_IND_STRU        *pstInfoRecInd
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月10日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-  2.日    期   : 2014年11月11日
-    作    者   : y00307564
-    修改内容   : 1X SS Project 修改
-  3.日    期   : 2015年02月15日
-    作    者   : y00307564
-    修改内容   : 修改为广播通道主动上报
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_SndLineCtrlInfoInd(
     XCC_XCALL_INFO_REC_IND_STRU        *pstInfoRecInd
 )
@@ -1147,27 +789,7 @@ VOS_VOID TAF_XCALL_SndLineCtrlInfoInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SndSignalInfoInd
- 功能描述  : 发送TAF_CALL_EVT_SIGNAL_INFO_IND消息
- 输入参数  : XCC_XCALL_INFO_REC_IND_STRU        *pstInfoRecInd
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月10日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-  2.日    期   : 2014年11月11日
-    作    者   : y00307564
-    修改内容   : 1X SS Project 修改
-  3.日    期   : 2015年02月15日
-    作    者   : y00307564
-    修改内容   : 修改为广播通道主动上报
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_SndSignalInfoInd(
     XCC_XCALL_INFO_REC_IND_STRU        *pstInfoRecInd
 )
@@ -1197,27 +819,7 @@ VOS_VOID TAF_XCALL_SndSignalInfoInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SndCCWACInfoInd
- 功能描述  : 发送TAF_CALL_EVT_CCWAC_INFO_IND消息
- 输入参数  : XCC_XCALL_INFO_REC_IND_STRU        *pstInfoRecInd
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月10日
-    作    者   : y00307564
-    修改内容   : 1X SS Project 新生成函数
-  2.日    期   : 2015年1月17日
-    作    者   : y00307564
-    修改内容   : 新增PI, SI字段
-  3.日    期   : 2015年02月15日
-    作    者   : y00307564
-    修改内容   : 修改为广播通道主动上报
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_SndCCWACInfoInd(
     XCC_XCALL_INFO_REC_IND_STRU        *pstInfoRecInd
 )
@@ -1265,33 +867,7 @@ VOS_VOID TAF_XCALL_SndCCWACInfoInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SndCallingNumSignalInfoInd
- 功能描述  : 发送calling num signal or both
- 输入参数  : XCC_XCALL_INFO_REC_IND_STRU        *pstInfoRecInd
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月13日
-    作    者   : y00307564
-    修改内容   : 1X SS Project 新生成函数
-  2.日    期   : 2016年1月16日
-    作    者   : t00323010
-    修改内容   : DTS2016011504052呼叫转移上报内容中携带无效call id, 增加逻辑保护
-_____________________________________________________________________________
-|call state      |    active                    |         inactive           |
-|________________|______________________________|____________________________|
-|bitOpcallingnum |     0        |       1       |       0     |     1        |
-|________________|______________|_______________|_____________|______________|
-|           |0   |   signal     |    ccwac      |      NA     |calling num   |
-|BitOpSignal|____|______________|_______________|_____________|______________|
-|           |1   |   signal     |    ccwac      |   signal    |    both      |
-|___________|____|______________|_______________|_____________|______________|
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_SndCallingNumSignalInfoInd(
     XCC_XCALL_INFO_REC_IND_STRU        *pstInfoRecInd
 )
@@ -1340,24 +916,7 @@ VOS_VOID TAF_XCALL_SndCallingNumSignalInfoInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SndXlemaCnf
- 功能描述  : 发送MN_CALL_EVT_XLEMA_CNF消息
- 输入参数  : XCC_XCALL_INFO_REC_IND_STRU        *pstInfoRecInd
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月10日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-  2.日    期   : 2014年11月11日
-    作    者   : y00307564
-    修改内容   : 1X SS Project 修改
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_SndXlemaCnf(
     MN_CALL_ECC_NUM_INFO_STRU          *pstEccNumInfo
 )
@@ -1376,24 +935,7 @@ VOS_VOID TAF_XCALL_SndXlemaCnf(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SndContDTMFCnf
- 功能描述  : 上报TAF_CALL_EVT_SEND_CONT_DTMF_CNF
- 输入参数  : VOS_UINT16                                  usClientId,
-             VOS_UINT8                                   ucOpId,
-             TAF_CALL_SEND_CONT_DTMF_CNF_RESULT_ENUM_U8  enResult,
-             VOS_UINT8                                   ucCallId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
-
- 修改历史      :
-  1.日    期   : 2015年7月24日
-    作    者   : l00324781
-    修改内容   : Iter16 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_SndContDTMFCnf(
     VOS_UINT16                                  usClientId,
     VOS_UINT8                                   ucOpId,
@@ -1420,23 +962,7 @@ VOS_VOID TAF_XCALL_SndContDTMFCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SndContDTMFRslt
- 功能描述  : 上报TAF_CALL_EVT_SEND_CONT_DTMF_RSLT
- 输入参数  : VOS_UINT16                          usClientId
-             VOS_UINT8                           ucOpId
-             VOS_UINT8                           ucCallId
-             TAF_CS_CAUSE_ENUM_UINT32            enCause
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月24日
-    作    者   : l00324781
-    修改内容   : Iter16 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_SndContDTMFRslt(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucOpId,
@@ -1518,21 +1044,7 @@ VOS_VOID TAF_XCALL_SndContDTMFInd(
 
 
 #if (FEATURE_ON == FEATURE_CHINA_TELECOM_VOICE_ENCRYPT)
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SndAppEncryptVoiceCnf
- 功能描述  : 发送密话请求确认结果
- 输入参数  : pstCtrl          -- 消息接收发相关信息
-             enEncVoiceStatus -- 密话状态
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_SndAppEncryptVoiceCnf(
     TAF_CCA_CTRL_STRU                                      *pstCtrl,
     TAF_CALL_APP_ENCRYPT_VOICE_STATUS_ENUM_UINT32           enEncVoiceStatus
@@ -1569,22 +1081,7 @@ VOS_VOID TAF_XCALL_SndAppEncryptVoiceCnf(
     (VOS_VOID)PS_SEND_MSG(WUEPS_PID_TAF, pstAppEncVoiceCnf);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SndAppEncryptVoiceInd
- 功能描述  : 发送密话指示，包括收到KMC的密话指示或当前的密话状态
- 输入参数  : pstCtrl          -- 消息接收发相关信息
-             enEncVoiceStatus -- 密话状态
-             pstCallingNumber -- 主叫方号码，这里是对端的号码；
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_SndAppEncryptVoiceInd(
     TAF_CCA_CTRL_STRU                                      *pstCtrl,
     TAF_CALL_APP_ENCRYPT_VOICE_STATUS_ENUM_UINT32           enEncVoiceStatus,
@@ -1629,21 +1126,7 @@ VOS_VOID TAF_XCALL_SndAppEncryptVoiceInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SndAppRemoteCtrlInd
- 功能描述  : 收到KMC的远程控制指示，上报给APP
- 输入参数  : pstCtrl          -- 消息接收发相关信息
-             enRemoteCtrlType -- KMC远程控制类型
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : l00359089
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_SndAppRemoteCtrlInd(
     TAF_CCA_CTRL_STRU                                      *pstCtrl,
     TAF_CALL_REMOTE_CTRL_APP_TYPE_ENUM_UINT32               enRemoteCtrlType
@@ -1681,21 +1164,7 @@ VOS_VOID TAF_XCALL_SndAppRemoteCtrlInd(
     (VOS_VOID)PS_SEND_MSG(WUEPS_PID_TAF, pstAppRemoteCtrlInd);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SndAppRemoteCtrlAnswerCnf
- 功能描述  : 发送远程控制应答请求结果，其中ulResult标识远程控制应答结果
- 输入参数  : pstCtrl          -- 消息接收发相关信息
-             ulResult         -- 远程控制应答请求执行结果
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : l00359089
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_SndAppRemoteCtrlAnswerCnf(
     TAF_CCA_CTRL_STRU                                      *pstCtrl,
     TAF_CALL_REMOTE_CTRL_OPER_RESULT_ENUM_UINT32            enResult
@@ -1732,21 +1201,7 @@ VOS_VOID TAF_XCALL_SndAppRemoteCtrlAnswerCnf(
     (VOS_VOID)PS_SEND_MSG(WUEPS_PID_TAF, pstAppRemoteCtrlAnswerCnf);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SndAppEccSrvCapCfgCnf
- 功能描述  : 通知APP ECC服务能力配置确认结果
- 输入参数  : pstCtrl          -- 消息接收发相关信息
-             enResult         -- ECC服务能力配置确认结果
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : l00359089
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_SndAppEccSrvCapCfgCnf(
     TAF_CCA_CTRL_STRU                                      *pstCtrl,
     TAF_CALL_APP_ECC_SRV_CAP_CFG_RESULT_ENUM_UINT32         enResult
@@ -1784,22 +1239,7 @@ VOS_VOID TAF_XCALL_SndAppEccSrvCapCfgCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SndAppEccSrvCapQryCnf
- 功能描述  : 返回APP查询ECC服务能力以及状态结果
- 输入参数  : pstCtrl          -- 消息接收发相关信息
-             enEccSrvCap      -- ECC服务能力参数
-             enEccSrvStatus   -- ECC服务状态
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : l00359089
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_SndAppEccSrvCapQryCnf(
     TAF_CCA_CTRL_STRU                                      *pstCtrl,
     TAF_CALL_APP_ECC_SRV_CAP_ENUM_UINT32                    enEccSrvCap,
@@ -1839,21 +1279,7 @@ VOS_VOID TAF_XCALL_SndAppEccSrvCapQryCnf(
 
 }
 #if (FEATURE_ON == FEATURE_CHINA_TELECOM_VOICE_ENCRYPT_TEST_MODE)
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SndTestModeCfgCnf
- 功能描述  : 发送测试模式设置结果
- 输入参数  : pstCtrl          -- 消息接收发相关信息
-             ucResult         -- 测试模式设置确认结果
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : c00177591
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_SndTestModeCfgCnf(
     TAF_CCA_CTRL_STRU                                      *pstCtrl,
     VOS_UINT32                                              ulResult
@@ -1883,21 +1309,7 @@ VOS_VOID TAF_XCALL_SndTestModeCfgCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SndTestModeQryCnf
- 功能描述  : 返回当前测试模式设置
- 输入参数  : pstCtrl          -- 消息接收发相关信息
-             enTestMode       -- 当前测试模式
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_SndTestModeQryCnf(
     TAF_CCA_CTRL_STRU                                      *pstCtrl,
     TAF_CALL_APP_SET_EC_TEST_MODE_ENUM_UINT32               enTestMode,
@@ -1928,21 +1340,7 @@ VOS_VOID TAF_XCALL_SndTestModeQryCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SndKmcKeyCfgCnf
- 功能描述  : 发送KMC密钥设置结果
- 输入参数  : pstCtrl          -- 消息接收发相关信息
-             ucResult         -- KMC密钥设置结果
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : c00177591
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_SndKmcKeyCfgCnf(
     TAF_CCA_CTRL_STRU                                      *pstCtrl,
     VOS_UINT32                                              ulResult
@@ -1972,22 +1370,7 @@ VOS_VOID TAF_XCALL_SndKmcKeyCfgCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SndKmcKeyCfgCnf
- 功能描述  : 返回当前KMC密钥设置
- 输入参数  : pstCtrl          -- 消息接收发相关信息
-             ucCipherKeyLen   -- KMC密钥长度
-             pucCipherKey     -- KMC密钥
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : c00177591
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_SndKmcKeyQryCnf(
     TAF_CCA_CTRL_STRU                                      *pstCtrl,
     TAF_XCALL_ECC_PUB_KEY_INFO_STRU                        *pstEccPubKeyInfo,
@@ -2024,22 +1407,7 @@ VOS_VOID TAF_XCALL_SndKmcKeyQryCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SndRandomQryCnf
- 功能描述  : 生成32组随机数返回给APP
- 输入参数  : pstCtrl          -- 消息接收发相关信息
-             ucEccRandomSize  -- 随机数个数
-             pstEccRandom     -- 随机数结构体数组
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : c00177591
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_SndRandomQryCnf(
     TAF_CCA_CTRL_STRU                                      *pstCtrl,
     VOS_UINT8                                               ucEccRandomSize,
@@ -2077,21 +1445,7 @@ VOS_VOID TAF_XCALL_SndRandomQryCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SndEncryptedVoiceDataInd
- 功能描述  : 测试模式下 测试数据发送给APP
- 输入参数  : usDataLen      -- 测试数据长度
-             pData          -- 测试数据
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : c00177591
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_SndEncryptedVoiceDataInd(
     VOS_INT8                                               *pscData,
     VOS_UINT32                                              ulDataLen
@@ -2130,21 +1484,7 @@ VOS_VOID TAF_XCALL_SndEncryptedVoiceDataInd(
 #endif /*FEATURE_CHINA_TELECOM_VOICE_ENCRYPT_TEST_MODE*/
 #endif /*FEATURE_CHINA_TELECOM_VOICE_ENCRYPT*/
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SndAppPrivacyModeSetCnf
- 功能描述  : 发送privacy mode设置确认消息
- 输入参数  : pstCtrl  -- 消息接收发相关信息
-             enResult -- 执行结果
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_SndAppPrivacyModeSetCnf(
     TAF_CCA_CTRL_STRU                                      *pstCtrl,
     TAF_CALL_APP_RESULT_TYPE_ENUM_UINT32                    enResult
@@ -2182,23 +1522,7 @@ VOS_VOID TAF_XCALL_SndAppPrivacyModeSetCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SndAppPrivacyModeQryCnf
- 功能描述  : 发送privacy mode查询确认消息
- 输入参数  : pstCtrl        -- 消息接收发相关信息
-             enPrivacyMode  -- privacy mode
-             ucCallNums     -- 当前呼叫数目
-             pstCallPrivacyModeInfo -- privacy mode信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_SndAppPrivacyModeQryCnf(
     TAF_CCA_CTRL_STRU                                      *pstCtrl,
     TAF_CALL_PRIVACY_MODE_ENUM_UINT8                        enPrivacyMode,
@@ -2246,23 +1570,7 @@ VOS_VOID TAF_XCALL_SndAppPrivacyModeQryCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SndAppPrivacyModeInd
- 功能描述  : 发送privacy mode查询确认消息
- 输入参数  : pstCtrl              -- 消息接收发相关信息
-             ucCallId             -- 当前呼叫的call id
-             enCallPrivacyMode    -- 当前呼叫的privacy mode
-             enPrivacyModeSetting -- 用户设置的privacy mode
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_SndAppPrivacyModeInd(
     TAF_CCA_CTRL_STRU                                      *pstCtrl,
     VOS_UINT8                                               ucCallId,

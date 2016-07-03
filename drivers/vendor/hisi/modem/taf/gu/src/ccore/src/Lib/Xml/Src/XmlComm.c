@@ -1,21 +1,4 @@
-/******************************************************************************
 
-版权所有 (C), 2001-2012, 华为技术有限公司
-
-******************************************************************************
-文 件 名      : XmlComm.c
-版 本 号      : 初稿
-作    者      : 李紫剑 00198894
-生成日期      : 2012年6月16日
-最近修改      :
-功能描述      : 该头文件为XML相关操作c文件, 目前仅提供给MEA模块使用
-函数列表      :
-修改历史      :
-1.日    期    : 2012年6月16日
-  作    者    : 李紫剑 00198894
-  修改内容    : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
 1 头文件包含
@@ -48,20 +31,7 @@ typedef VOS_UINT32 (*XML_COMM_ANALYSE_FUNC)(XML_COMM_CTX_INNER_STRU *pstXmlCtxIn
 3 函数定义
 *****************************************************************************/
 
-/*****************************************************************************
-函 数 名  : XML_COMM_GetChildCount
-功能描述  : 取得某节点子节点数量
-输入参数  : pstNode 节点
-输出参数  : 无
-返 回 值  : VOS_ERROR 表示节点不存在, 其它值表示子节点数目
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : 李紫剑 00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_INT32 XML_COMM_GetChildCount(XML_COMM_NODE_STRU *pstNode)
 {
     XML_COMM_NODE_STRU                 *pstTmpNode;
@@ -87,21 +57,7 @@ VOS_INT32 XML_COMM_GetChildCount(XML_COMM_NODE_STRU *pstNode)
     return lCounter;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_GetChildNodeByIndex
-功能描述  : 按照索引取得某节点子节点,索引从0开始
-输入参数  : pstNode     节点
-            iChildIndex 索引值,范围从0开始
-输出参数  : 无
-返 回 值  : 子节点指针
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : 李紫剑 00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* XML_COMM_GetChildNodeByIndex(
     XML_COMM_NODE_STRU                 *pstNode,
     VOS_INT32                           lChildIndex)
@@ -133,21 +89,7 @@ XML_COMM_NODE_STRU* XML_COMM_GetChildNodeByIndex(
     return VOS_NULL_PTR;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_GetChildNodeByLabel
-功能描述  : 按照标签名字取得某节点子节点
-输入参数  : pstNode 节点
-            pcLabel 标签名字
-输出参数  : 无
-返 回 值  : 子节点指针
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : 李紫剑 00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* XML_COMM_GetChildNodeByLabel(
     XML_COMM_NODE_STRU                 *pstNode,
     VOS_CHAR                           *pcLabel)
@@ -180,22 +122,7 @@ XML_COMM_NODE_STRU* XML_COMM_GetChildNodeByLabel(
     return VOS_NULL_PTR;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_CheckLabelName
-功能描述  : 检查节点标签名是否与目标值相同
-输入参数  : pstNode     节点指针
-            pcLabelName 节点标签名目标值, 带字符串结尾
-输出参数  : 无
-返 回 值  : VOS_TRUE    与目标值匹配
-            VOS_FALSE   与目标值不匹配, 或其他异常
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : 李紫剑 00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 XML_COMM_CheckLabelName(
     XML_COMM_NODE_STRU                 *pstNode,
     VOS_CHAR                           *pcLabelName)
@@ -222,20 +149,7 @@ VOS_UINT32 XML_COMM_CheckLabelName(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_GetAttributeCount
-功能描述  : 取得某节点属性数量
-输入参数  : pstNode 节点指针
-输出参数  : 无
-返 回 值  : 该节点属性数量, VOS_ERROR表示非法节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : 李紫剑 00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_INT32 XML_COMM_GetAttributeCount(XML_COMM_NODE_STRU *pstNode)
 {
     XML_COMM_NODE_ATTRIBUTE_STRU       *pstTmpAttribute;
@@ -261,20 +175,7 @@ VOS_INT32 XML_COMM_GetAttributeCount(XML_COMM_NODE_STRU *pstNode)
     return lCounter;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_GetAttributeByIndex
-功能描述  : 按照索引取得某节点属性值,索引从0开始
-输入参数  : pstNode 节点指针
-输出参数  : 无
-返 回 值  : 属性指针
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : 李紫剑 00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_ATTRIBUTE_STRU* XML_COMM_GetAttributeByIndex(
     XML_COMM_NODE_STRU                 *pstNode,
     VOS_INT32                           lAttribIndex)
@@ -306,20 +207,7 @@ XML_COMM_NODE_ATTRIBUTE_STRU* XML_COMM_GetAttributeByIndex(
     return VOS_NULL_PTR;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_GetAttributeByAttributeName
-功能描述  : 按照属性名取得某节点属性
-输入参数  : pstNode 节点指针
-输出参数  : 无
-返 回 值  : 属性指针
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : 李紫剑 00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_ATTRIBUTE_STRU* XML_COMM_GetAttributeByAttributeName(
     XML_COMM_NODE_STRU                 *pstNode,
     VOS_CHAR                           *pcAttribName)
@@ -353,20 +241,7 @@ XML_COMM_NODE_ATTRIBUTE_STRU* XML_COMM_GetAttributeByAttributeName(
     return VOS_NULL_PTR;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_GetLastAttribute
-功能描述  : 内部函数, 获取节点最后一个属性
-输入参数  : pstNode 节点指针
-输出参数  : 无
-返 回 值  : 属性指针
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : 李紫剑 00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 LOCAL XML_COMM_NODE_ATTRIBUTE_STRU* XML_COMM_GetLastAttribute(
     XML_COMM_NODE_STRU                 *pstNode)
 {
@@ -389,22 +264,7 @@ LOCAL XML_COMM_NODE_ATTRIBUTE_STRU* XML_COMM_GetLastAttribute(
     return pstTmpAttribute;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_BreakAnAttribute
-功能描述  : 检查属性值是否与目标值相同
-输入参数  : pstAttribute        属性指针
-            pcAttributeValue    属性值目标值, 带字符串结尾
-输出参数  : 无
-返 回 值  : VOS_TRUE    与目标值匹配
-            VOS_FALSE   与目标值不匹配, 或其他异常
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : 李紫剑 00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 XML_COMM_CheckAttributeValue(
     XML_COMM_NODE_ATTRIBUTE_STRU       *pstAttribute,
     VOS_CHAR                           *pcAttributeValue)
@@ -431,21 +291,7 @@ VOS_UINT32 XML_COMM_CheckAttributeValue(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_BreakAnAttribute
-功能描述  : 从节点上拆下一个属性
-输入参数  : pstNode     指定要释放的属性在哪个节点上
-            pstProperty 指定要释放的属性指针
-输出参数  : 无
-返 回 值  : XML_COMM_RESULT_SUCCEED成功, 其它失败码参见枚举定义
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : 李紫剑 00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_RESULT_ENUM_UINT32 XML_COMM_BreakAnAttribute(
     XML_COMM_NODE_STRU                 *pstNode,
     XML_COMM_NODE_ATTRIBUTE_STRU       *pstAttribute)
@@ -495,20 +341,7 @@ XML_COMM_RESULT_ENUM_UINT32 XML_COMM_BreakAnAttribute(
     return XML_COMM_RESULT_SUCCEED;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_BreakANode
-功能描述  : 拆下一个树枝
-输入参数  : pstNode 指定要处理的节点
-输出参数  : 无
-返 回 值  : XML_COMM_RESULT_SUCCEED成功, 其它失败码参见枚举定义
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : 李紫剑 00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_RESULT_ENUM_UINT32 XML_COMM_BreakANode(XML_COMM_NODE_STRU *pstNode)
 {
     XML_COMM_NODE_STRU                 *pstFatherNode;
@@ -567,20 +400,7 @@ XML_COMM_RESULT_ENUM_UINT32 XML_COMM_BreakANode(XML_COMM_NODE_STRU *pstNode)
     return XML_COMM_RESULT_SUCCEED;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_InitMemory
-功能描述  : 内部函数, 初始化上下文中的内存
-输入参数  : pstXmlCtx     XML API上下文
-输出参数  : 无
-返 回 值  : XML_COMM_RESULT_SUCCEED成功, 其它失败码参见枚举定义
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : 李紫剑 00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 LOCAL XML_COMM_RESULT_ENUM_UINT32 XML_COMM_InitMemory(XML_COMM_CTX_STRU *pstXmlCtx)
 {
     /* 上下文中内存地址为空, 则分配内存并初始化 */
@@ -609,21 +429,7 @@ LOCAL XML_COMM_RESULT_ENUM_UINT32 XML_COMM_InitMemory(XML_COMM_CTX_STRU *pstXmlC
     return XML_COMM_RESULT_SUCCEED;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_Malloc
-功能描述  : 内部函数, 从内存中分配一片内存
-输入参数  : pstXmlCommCtx   XML上下文
-            ulSize          申请内存大小
-输出参数  : 无
-返 回 值  : VOS_VOID类型指针
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : 李紫剑 00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 LOCAL VOS_VOID* XML_COMM_Malloc(
     XML_COMM_CTX_STRU                  *pstXmlCtx,
     VOS_UINT32                          ulSize)
@@ -661,20 +467,7 @@ LOCAL VOS_VOID* XML_COMM_Malloc(
     return pReturn;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_CreateAnAttribute
-功能描述  : 在内存中创建一个属性并初始化
-输入参数  : pstXmlCtx   XML API上下文
-输出参数  : 无
-返 回 值  : 新XML_COMM_NODE_ATTRIBUTE_STRU结构的指针
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : 李紫剑 00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_ATTRIBUTE_STRU* XML_COMM_CreateAnAttribute(XML_COMM_CTX_STRU *pstXmlCtx)
 {
     XML_COMM_NODE_ATTRIBUTE_STRU       *pstAttribute;
@@ -696,21 +489,7 @@ XML_COMM_NODE_ATTRIBUTE_STRU* XML_COMM_CreateAnAttribute(XML_COMM_CTX_STRU *pstX
     return pstAttribute;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_SetAttributeName
-功能描述  : 设置属性的属性名
-输入参数  : pstAttribute        属性指针
-            pcAttributeName     属性名, 带字符串结尾
-输出参数  : 无
-返 回 值  : XML_COMM_RESULT_SUCCEED成功, 其它失败码参见枚举定义
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : 李紫剑 00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_RESULT_ENUM_UINT32 XML_COMM_SetAttributeName(
     XML_COMM_NODE_ATTRIBUTE_STRU       *pstAttribute,
     VOS_CHAR                           *pcAttribName)
@@ -729,21 +508,7 @@ XML_COMM_RESULT_ENUM_UINT32 XML_COMM_SetAttributeName(
     return XML_COMM_RESULT_SUCCEED;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_SetAttributeValue
-功能描述  : 设置属性的属性值
-输入参数  : pstAttribute        属性指针
-            pcAttributeValue    属性值, 带字符串结尾
-输出参数  : 无
-返 回 值  : XML_COMM_RESULT_SUCCEED成功, 其它失败码参见枚举定义
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : 李紫剑 00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_RESULT_ENUM_UINT32 XML_COMM_SetAttributeValue(
     XML_COMM_NODE_ATTRIBUTE_STRU       *pstAttribute,
     VOS_CHAR                           *pcAttribValue)
@@ -762,20 +527,7 @@ XML_COMM_RESULT_ENUM_UINT32 XML_COMM_SetAttributeValue(
     return XML_COMM_RESULT_SUCCEED;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_CreateANode
-功能描述  : 在内存中创建一个节点并初始化
-输入参数  : pstXmlCtx   XML API上下文
-输出参数  : 无
-返 回 值  : 新XML_COMM_NODE结构的指针
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : 李紫剑 00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* XML_COMM_CreateANode(XML_COMM_CTX_STRU *pstXmlCtx)
 {
     XML_COMM_NODE_STRU                 *pstNode;
@@ -797,21 +549,7 @@ XML_COMM_NODE_STRU* XML_COMM_CreateANode(XML_COMM_CTX_STRU *pstXmlCtx)
     return pstNode;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_SetNodeLabel
-功能描述  : 设置节点的标签名
-输入参数  : pstNode     节点指针
-            pcNodeLabel 标签名, 带字符串结尾
-输出参数  : 无
-返 回 值  : XML_COMM_RESULT_SUCCEED成功, 其它失败码参见枚举定义
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : 李紫剑 00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_RESULT_ENUM_UINT32 XML_COMM_SetNodeLabel(
     XML_COMM_NODE_STRU                 *pstNode,
     VOS_CHAR                           *pcNodeLabel)
@@ -831,21 +569,7 @@ XML_COMM_RESULT_ENUM_UINT32 XML_COMM_SetNodeLabel(
     return XML_COMM_RESULT_SUCCEED;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_SetNodeValueStr
-功能描述  : 设置节点的值, 字符串类型
-输入参数  : pstNode     节点指针
-            pcNodeValue 节点值, 带字符串结尾, 要求全局或静态变量
-输出参数  : 无
-返 回 值  : XML_COMM_RESULT_SUCCEED成功, 其它失败码参见枚举定义
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : 李紫剑 00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_RESULT_ENUM_UINT32 XML_COMM_SetNodeValueStr(
     XML_COMM_NODE_STRU                 *pstNode,
     VOS_CHAR                           *pcNodeValue)
@@ -864,22 +588,7 @@ XML_COMM_RESULT_ENUM_UINT32 XML_COMM_SetNodeValueStr(
     return XML_COMM_RESULT_SUCCEED;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_SetNodeValueInt
-功能描述  : 设置节点的值, 整数类型
-输入参数  : pstNode     节点指针
-            lNodeValue  节点值, 整数类型
-            pstXmlCtx   XML API上下文
-输出参数  : 无
-返 回 值  : XML_COMM_RESULT_SUCCEED成功, 其它失败码参见枚举定义
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : 李紫剑 00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_RESULT_ENUM_UINT32 XML_COMM_SetNodeValueInt(
     XML_COMM_NODE_STRU                 *pstNode,
     VOS_INT32                           lNodeValue,
@@ -913,22 +622,7 @@ XML_COMM_RESULT_ENUM_UINT32 XML_COMM_SetNodeValueInt(
     return XML_COMM_RESULT_SUCCEED;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_SetNodeValueUInt
-功能描述  : 设置节点的值, 整数类型
-输入参数  : pstNode     节点指针
-            ulNodeValue 节点值, 整数类型
-            pstXmlCtx   XML API上下文
-输出参数  : 无
-返 回 值  : XML_COMM_RESULT_SUCCEED成功, 其它失败码参见枚举定义
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : 李紫剑 00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_RESULT_ENUM_UINT32 XML_COMM_SetNodeValueUInt(
     XML_COMM_NODE_STRU                 *pstNode,
     VOS_UINT32                          ulNodeValue,
@@ -962,23 +656,7 @@ XML_COMM_RESULT_ENUM_UINT32 XML_COMM_SetNodeValueUInt(
     return XML_COMM_RESULT_SUCCEED;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_AddAChildNode
-功能描述  : 为一个节点增加子节点，把一个节点或一棵树，
-            挂到另一个树的某个节点下，放到第三个参数指定的节点之前
-输入参数  : pstFather       指定为该节点增加子节点
-            pstChild        子节点指针
-            pstYoungBrother 增加的子节点添加到该子节点之前
-输出参数  : 无
-返 回 值  : XML_COMM_RESULT_SUCCEED成功, 其它失败码参见枚举定义
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : 李紫剑 00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_RESULT_ENUM_UINT32 XML_COMM_AddAChildNode(
     XML_COMM_NODE_STRU                 *pstFather,
     XML_COMM_NODE_STRU                 *pstChild,
@@ -1059,22 +737,7 @@ XML_COMM_RESULT_ENUM_UINT32 XML_COMM_AddAChildNode(
     return XML_COMM_RESULT_SUCCEED;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_AddAProperty
-功能描述  : 为一个节点增加属性
-输入参数  : pstNode         指定为该节点增加属性
-            pstProperty     属性指针
-            pstYoungBrother 增加的属性添加到该属性之前
-输出参数  : 无
-返 回 值  : XML_COMM_RESULT_SUCCEED成功, 其它失败码参见枚举定义
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : 李紫剑 00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_RESULT_ENUM_UINT32 XML_COMM_AddAnAttribute(
     XML_COMM_NODE_STRU                 *pstNode,
     XML_COMM_NODE_ATTRIBUTE_STRU       *pstAttribute,
@@ -1132,21 +795,7 @@ XML_COMM_RESULT_ENUM_UINT32 XML_COMM_AddAnAttribute(
     return XML_COMM_RESULT_SUCCEED;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_IsSeparator
-功能描述  : 用于检查字符是否为XML文档中的分隔符
-输入参数  : cCharacter  传入待检查的字符
-输出参数  : 无
-返 回 值  : VOS_TRUE    该字符为分隔符
-            VOS_FALSE   该字符不为分隔符
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : 李紫剑 00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 XML_COMM_IsSeparator(VOS_CHAR cCharacter)
 {
     if ( ('\r' == cCharacter)       /* 分隔符包括回车   */
@@ -1159,21 +808,7 @@ VOS_UINT32 XML_COMM_IsSeparator(VOS_CHAR cCharacter)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_IsLetter
-功能描述  : 内部函数，用于检查字符是否为英文字母
-输入参数  : cCharacter  传入待检查的字符
-输出参数  : 无
-返 回 值  : VOS_TRUE    该字符为字母
-            VOS_FALSE   该字符不为字母
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : 李紫剑 00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 LOCAL VOS_UINT32 XML_COMM_IsLetter(VOS_CHAR cCharacter)
 {
     /* 判断字符是否在a~z之间 */
@@ -1199,21 +834,7 @@ LOCAL VOS_UINT32 XML_COMM_IsLetter(VOS_CHAR cCharacter)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_IsKeySymbol
-功能描述  : 内部函数, 检查字符是否为关键符号
-输入参数  : cCharacter  传入待检查的字符
-输出参数  : 无
-返 回 值  : VOS_TRUE    该字符为标点符号
-            VOS_FALSE   该字符不为标点符号
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : 李紫剑 00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 LOCAL VOS_UINT32 XML_COMM_IsKeySymbol(VOS_CHAR cCharacter)
 {
     /* XML标准约束的关键符号包括": . - _" */
@@ -1228,21 +849,7 @@ LOCAL VOS_UINT32 XML_COMM_IsKeySymbol(VOS_CHAR cCharacter)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_IsPunctuation
-功能描述  : 内部函数，用于检查字符是否为标点符号
-输入参数  : cCharacter  传入待检查的字符
-输出参数  : 无
-返 回 值  : VOS_TRUE    该字符为标点符号
-            VOS_FALSE   该字符不为标点符号
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : 李紫剑 00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 LOCAL VOS_UINT32 XML_COMM_IsPunctuation(VOS_CHAR cCharacter)
 {
     /* 根据ASCII码表, 首先判断是否为以下标点符号
@@ -1277,20 +884,7 @@ LOCAL VOS_UINT32 XML_COMM_IsPunctuation(VOS_CHAR cCharacter)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_ProcXmlOriginal
-功能描述  : 内部函数，状态机处理函数，初始状态的处理函数
-输入参数  : pstXmlCtxInner    内部上下文
-输出参数  : 无
-返 回 值  : XML_COMM_RESULT_ENUM_UINT32
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : 李紫剑 00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 LOCAL XML_COMM_RESULT_ENUM_UINT32 XML_COMM_ProcXmlOriginal(
     XML_COMM_CTX_INNER_STRU            *pstXmlCtxInner)
 {
@@ -1324,20 +918,7 @@ LOCAL XML_COMM_RESULT_ENUM_UINT32 XML_COMM_ProcXmlOriginal(
     return XML_COMM_RESULT_SUCCEED;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_ProcXmlEnterLabel
-功能描述  : 内部函数，状态机处理函数，进入Label后的处理
-输入参数  : pstXmlCtxInner    内部上下文
-输出参数  : 无
-返 回 值  : XML_COMM_RESULT_ENUM_UINT32
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : 李紫剑 00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 LOCAL XML_COMM_RESULT_ENUM_UINT32 XML_COMM_ProcXmlEnterLabel(
     XML_COMM_CTX_INNER_STRU            *pstXmlCtxInner)
 {
@@ -1365,20 +946,7 @@ LOCAL XML_COMM_RESULT_ENUM_UINT32 XML_COMM_ProcXmlEnterLabel(
     return XML_COMM_RESULT_SUCCEED;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_ProcXmlDeclaration
-功能描述  : 内部函数，状态机处理函数，XML声明处理函数
-输入参数  : pstXmlCtxInner    内部上下文
-输出参数  : 无
-返 回 值  : XML_COMM_RESULT_ENUM_UINT32
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : 李紫剑 00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 LOCAL XML_COMM_RESULT_ENUM_UINT32 XML_COMM_ProcXmlDeclaration(
     XML_COMM_CTX_INNER_STRU            *pstXmlCtxInner)
 {
@@ -1403,20 +971,7 @@ LOCAL XML_COMM_RESULT_ENUM_UINT32 XML_COMM_ProcXmlDeclaration(
     return XML_COMM_RESULT_FALIED_DECLARATION_NO_END;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_ProcXmlComment
-功能描述  : 内部函数，状态机处理函数，注释的处理函数
-输入参数  : pstXmlCtxInner    内部上下文
-输出参数  : 无
-返 回 值  : XML_COMM_RESULT_ENUM_UINT32
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : 李紫剑 00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 LOCAL XML_COMM_RESULT_ENUM_UINT32 XML_COMM_ProcXmlComment(
     XML_COMM_CTX_INNER_STRU            *pstXmlCtxInner)
 {
@@ -1457,20 +1012,7 @@ LOCAL XML_COMM_RESULT_ENUM_UINT32 XML_COMM_ProcXmlComment(
     return XML_COMM_RESULT_FALIED_COMMENT_SYNTAX_ERROR;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_ProcXmlSingleEndLabel
-功能描述  : 内部函数，状态机处理函数，进入独立的结尾标签的处理
-输入参数  : pstXmlCtxXML    上下文
-输出参数  : 无
-返 回 值  : XML_COMM_RESULT_ENUM_UINT32
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : 李紫剑 00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 LOCAL XML_COMM_RESULT_ENUM_UINT32 XML_COMM_ProcXmlSingleEndLabel(
     XML_COMM_CTX_INNER_STRU            *pstXmlCtxInner)
 {
@@ -1557,23 +1099,7 @@ LOCAL XML_COMM_RESULT_ENUM_UINT32 XML_COMM_ProcXmlSingleEndLabel(
     return XML_COMM_RESULT_SUCCEED;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_ProcXmlLabelStart
-功能描述  : 内部函数，状态机处理函数，节点标签名的处理
-输入参数  : pstXmlCtxInner    内部上下文
-输出参数  : 无
-返 回 值  : XML_COMM_RESULT_ENUM_UINT32
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : 李紫剑 00198894
-  修改内容  : 新生成函数
-2.日    期   : 2012年12月11日
-  作    者   : l00167671
-  修改内容   : DTS2012121802573, TQE清理
-*****************************************************************************/
 LOCAL XML_COMM_RESULT_ENUM_UINT32 XML_COMM_ProcXmlLabelStart(
     XML_COMM_CTX_INNER_STRU            *pstXmlCtxInner)
 {
@@ -1663,20 +1189,7 @@ LOCAL XML_COMM_RESULT_ENUM_UINT32 XML_COMM_ProcXmlLabelStart(
     return XML_COMM_RESULT_SUCCEED;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_ProcXmlEndMustBeRight
-功能描述  : 内部函数，状态机处理函数，进入Label/等待>
-输入参数  : pstXmlCtxInner    内部上下文
-输出参数  : 无
-返 回 值  : XML_COMM_RESULT_ENUM_UINT32
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : 李紫剑 00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 LOCAL XML_COMM_RESULT_ENUM_UINT32 XML_COMM_ProcXmlEndMustBeRight(
     XML_COMM_CTX_INNER_STRU            *pstXmlCtxInner)
 {
@@ -1703,20 +1216,7 @@ LOCAL XML_COMM_RESULT_ENUM_UINT32 XML_COMM_ProcXmlEndMustBeRight(
     return XML_COMM_RESULT_SUCCEED;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_ProcXmlAttribStart
-功能描述  : 内部函数，状态机处理函数，进入属性的解析
-输入参数  : pstXmlCtxInner    内部上下文
-输出参数  : 无
-返 回 值  : XML_COMM_RESULT_ENUM_UINT32
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : 李紫剑 00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 LOCAL XML_COMM_RESULT_ENUM_UINT32 XML_COMM_ProcXmlAttribStart(
     XML_COMM_CTX_INNER_STRU            *pstXmlCtxInner)
 {
@@ -1751,20 +1251,7 @@ LOCAL XML_COMM_RESULT_ENUM_UINT32 XML_COMM_ProcXmlAttribStart(
     return XML_COMM_RESULT_SUCCEED;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_ProcXmlAttribNameStart
-功能描述  : 内部函数，状态机处理函数，开始属性名字的解析
-输入参数  : pstXmlCtxInner    内部上下文
-输出参数  : 无
-返 回 值  : XML_COMM_RESULT_ENUM_UINT32
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : 李紫剑 00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 LOCAL XML_COMM_RESULT_ENUM_UINT32 XML_COMM_ProcXmlAttribNameStart(
     XML_COMM_CTX_INNER_STRU            *pstXmlCtxInner)
 {
@@ -1821,20 +1308,7 @@ LOCAL XML_COMM_RESULT_ENUM_UINT32 XML_COMM_ProcXmlAttribNameStart(
     return XML_COMM_RESULT_SUCCEED;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_ProcXmlAttribNameEnd
-功能描述  : 内部函数，状态机处理函数，属性名字的解析完成处理
-输入参数  : pstXmlCtxInner    内部上下文
-输出参数  : 无
-返 回 值  : XML_COMM_RESULT_ENUM_UINT32
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : 李紫剑 00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 LOCAL XML_COMM_RESULT_ENUM_UINT32 XML_COMM_ProcXmlAttribNameEnd(
     XML_COMM_CTX_INNER_STRU            *pstXmlCtxInner)
 {
@@ -1884,23 +1358,7 @@ LOCAL XML_COMM_RESULT_ENUM_UINT32 XML_COMM_ProcXmlAttribNameEnd(
     return XML_COMM_RESULT_SUCCEED;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_ProcXmlAttribValueSingle
-功能描述  : 内部函数，状态机处理函数，以单引号结束的属性值
-输入参数  : pstXmlCtxInner    内部上下文
-输出参数  : 无
-返 回 值  : XML_COMM_RESULT_ENUM_UINT32
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : 李紫剑 00198894
-  修改内容  : 新生成函数
-4.日    期   : 2012年12月11日
-  作    者   : l00167671
-  修改内容   : DTS2012121802573, TQE清理
-*****************************************************************************/
 LOCAL XML_COMM_RESULT_ENUM_UINT32 XML_COMM_ProcXmlAttribValueSingle(
     XML_COMM_CTX_INNER_STRU            *pstXmlCtxInner)
 {
@@ -1941,20 +1399,7 @@ LOCAL XML_COMM_RESULT_ENUM_UINT32 XML_COMM_ProcXmlAttribValueSingle(
     return XML_COMM_RESULT_FALIED_NO_QUOTATION_MARK;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_ProcXmlAttribValueDouble
-功能描述  : 内部函数，状态机处理函数，以双引号结束的属性值
-输入参数  : pstXmlCtxInner    内部上下文
-输出参数  : 无
-返 回 值  : XML_COMM_RESULT_ENUM_UINT32
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : 李紫剑 00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 LOCAL XML_COMM_RESULT_ENUM_UINT32 XML_COMM_ProcXmlAttribValueDouble(
     XML_COMM_CTX_INNER_STRU            *pstXmlCtxInner)
 {
@@ -1995,20 +1440,7 @@ LOCAL XML_COMM_RESULT_ENUM_UINT32 XML_COMM_ProcXmlAttribValueDouble(
     return XML_COMM_RESULT_FALIED_NO_QUOTATION_MARK;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_ProcXmlAfterRootNode
-功能描述  : 内部函数，状态机处理函数，根节点结束后的处理
-输入参数  : pstXmlCtxInner    内部上下文
-输出参数  : 无
-返 回 值  : XML_COMM_RESULT_ENUM_UINT32
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : 李紫剑 00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 LOCAL XML_COMM_RESULT_ENUM_UINT32 XML_COMM_ProcXmlAfterRootNode(
     XML_COMM_CTX_INNER_STRU            *pstXmlCtxInner)
 {
@@ -2026,20 +1458,7 @@ LOCAL XML_COMM_RESULT_ENUM_UINT32 XML_COMM_ProcXmlAfterRootNode(
     return XML_COMM_RESULT_SUCCEED_ALL_ENDS;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_Analyse
-功能描述  : 内部函数，主状态机
-输入参数  : pstXmlCtxInner    内部上下文
-输出参数  : 无
-返 回 值  : XML_COMM_RESULT_ENUM_UINT32
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : 李紫剑 00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 LOCAL XML_COMM_RESULT_ENUM_UINT32 XML_COMM_Analyse(
     XML_COMM_CTX_INNER_STRU            *pstXmlCtxInner)
 {
@@ -2074,20 +1493,7 @@ LOCAL XML_COMM_RESULT_ENUM_UINT32 XML_COMM_Analyse(
     return ulReturnVal;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_InitXMLCtx
-功能描述  : 初始化XML API上下文
-输入参数  : pcXmlStr    XML格式码流
-输出参数  : 无
-返 回 值  : XML_COMM_RESULT_SUCCEED成功, 其它失败码参见枚举定义
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : 李紫剑 00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_RESULT_ENUM_UINT32 XML_COMM_InitXMLCtx(XML_COMM_CTX_STRU *pstXmlCtx)
 {
     XML_COMM_RESULT_ENUM_UINT32         ulReturnVal;
@@ -2106,21 +1512,7 @@ XML_COMM_RESULT_ENUM_UINT32 XML_COMM_InitXMLCtx(XML_COMM_CTX_STRU *pstXmlCtx)
     return ulReturnVal;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_BuildXMLTree
-功能描述  : XML码流解析总入口函数, 根据XML格式码流建立一棵XML树
-输入参数  : pcXmlStr    XML格式码流
-            pstXmlCtx   XML API上下文
-输出参数  : 无
-返 回 值  : XML树的根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : 李紫剑 00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* XML_COMM_BuildXMLTree(
     VOS_CHAR                           *pcXmlStr,
     XML_COMM_CTX_STRU                  *pstXmlCtx)
@@ -2183,20 +1575,7 @@ XML_COMM_NODE_STRU* XML_COMM_BuildXMLTree(
     return VOS_NULL_PTR;
 }
 
-/*****************************************************************************
- 函 数 名  : XML_COMM_StackPushNode
- 功能描述  : 将XML的一个节点压栈
- 输入参数  : pstTraverseStack   用于存放节点的栈的指针
- 输出参数  : pstStackNode       待压入栈的节点
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月7日
-    作    者   : h44270
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID XML_COMM_StackPushNode(
     XML_COMM_TRAVERSE_STACK_STRU       *pstTraverseStack,
     XML_COMM_TRAVERSE_STACK_NODE_STRU  *pstStackNode)
@@ -2210,20 +1589,7 @@ VOS_VOID XML_COMM_StackPushNode(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : XML_COMM_StackPopNode
- 功能描述  : 将栈中的节点弹出
- 输入参数  : pstTraverseStack   用于存放节点的栈的指针
- 输出参数  : pstStackNode       栈顶的节点
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月7日
-    作    者   : h44270
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID XML_COMM_StackPopNode(
     XML_COMM_TRAVERSE_STACK_STRU       *pstTraverseStack,
     XML_COMM_TRAVERSE_STACK_NODE_STRU  *pstStackNode)
@@ -2237,23 +1603,7 @@ VOS_VOID XML_COMM_StackPopNode(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_PrintIndentation
-功能描述  : 内部函数, 打印缩进
-输入参数  : pcXmlStr        用于存放码流的指针
-            plLenRemain     当前可以存放的码流的最大长度
-            ulLevel         树结构层级
-            enFormatting    输出格式，紧凑或换行缩进
-输出参数  : plLenRemain     当前可以存放的码流的最大长度
-返 回 值  : XML_COMM_RESULT_ENUM_UINT32
-调用函数  :
-被调函数  :
 
-修改历史     :
-1.日    期   : 2012年7月9日
-  作    者   : l00198894
-  修改内容   : 新生成函数
-*****************************************************************************/
 LOCAL XML_COMM_RESULT_ENUM_UINT32 XML_COMM_PrintIndentation(
     VOS_CHAR                          **ppcXmlStr,
     VOS_UINT32                         *pulLenRemain,
@@ -2286,22 +1636,7 @@ LOCAL XML_COMM_RESULT_ENUM_UINT32 XML_COMM_PrintIndentation(
     return XML_COMM_RESULT_SUCCEED;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_PrintAttribs
-功能描述  : 内部函数, 打印属性
-输入参数  : pstAttribute    属性链表首节点
-            pcXmlStr        用于存放码流的指针
-            plLenRemain     当前可以存放的码流的最大长度
-输出参数  : plLenRemain     当前可以存放的码流的最大长度
-返 回 值  : XML_COMM_RESULT_ENUM_UINT32
-调用函数  :
-被调函数  :
 
-修改历史     :
-1.日    期   : 2012年7月9日
-  作    者   : l00198894
-  修改内容   : 新生成函数
-*****************************************************************************/
 LOCAL XML_COMM_RESULT_ENUM_UINT32 XML_COMM_PrintAttribs(
     XML_COMM_NODE_ATTRIBUTE_STRU       *pstAttribute,
     VOS_CHAR                          **ppcXmlStr,
@@ -2347,22 +1682,7 @@ LOCAL XML_COMM_RESULT_ENUM_UINT32 XML_COMM_PrintAttribs(
     return XML_COMM_RESULT_SUCCEED;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_PrintCRLF
-功能描述  : 内部函数, 打印回车换行
-输入参数  : pcXmlStr        用于存放码流的指针
-            plLenRemain     当前可以存放的码流的最大长度
-            enFormatting    输出格式，紧凑或换行缩进
-输出参数  : plLenRemain     当前可以存放的码流的最大长度
-返 回 值  : XML_COMM_RESULT_ENUM_UINT32
-调用函数  :
-被调函数  :
 
-修改历史     :
-1.日    期   : 2012年7月9日
-  作    者   : l00198894
-  修改内容   : 新生成函数
-*****************************************************************************/
 LOCAL XML_COMM_RESULT_ENUM_UINT32 XML_COMM_PrintCRLF(
     VOS_CHAR                          **ppcXmlStr,
     VOS_UINT32                         *pulLenRemain,
@@ -2386,23 +1706,7 @@ LOCAL XML_COMM_RESULT_ENUM_UINT32 XML_COMM_PrintCRLF(
     return XML_COMM_RESULT_SUCCEED;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_PrintStartLabelEnd
-功能描述  : 内部函数, 打印左标签结束符
-输入参数  : pstNode         节点指针
-            pcXmlStr        用于存放码流的指针
-            plLenRemain     当前可以存放的码流的最大长度
-            enFormatting    输出格式，紧凑或换行缩进
-输出参数  : plLenRemain     当前可以存放的码流的最大长度
-返 回 值  : XML_COMM_RESULT_ENUM_UINT32
-调用函数  :
-被调函数  :
 
-修改历史     :
-1.日    期   : 2012年7月9日
-  作    者   : l00198894
-  修改内容   : 新生成函数
-*****************************************************************************/
 LOCAL XML_COMM_RESULT_ENUM_UINT32 XML_COMM_PrintStartLabelEnd(
     XML_COMM_NODE_STRU                 *pstNode,
     VOS_CHAR                          **ppcXmlStr,
@@ -2461,24 +1765,7 @@ LOCAL XML_COMM_RESULT_ENUM_UINT32 XML_COMM_PrintStartLabelEnd(
     return XML_COMM_RESULT_SUCCEED;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_PrintStartLabelAndAttribs
-功能描述  : 内部函数, 打印左标签结束符
-输入参数  : pstNode         节点指针
-            pcXmlStr        用于存放码流的指针
-            plLenRemain     当前可以存放的码流的最大长度
-            ulLevel         树结构层级
-            enFormatting    输出格式，紧凑或换行缩进
-输出参数  : plLenRemain     当前可以存放的码流的最大长度
-返 回 值  : XML_COMM_RESULT_ENUM_UINT32
-调用函数  :
-被调函数  :
 
-修改历史     :
-1.日    期   : 2012年7月9日
-  作    者   : l00198894
-  修改内容   : 新生成函数
-*****************************************************************************/
 LOCAL XML_COMM_RESULT_ENUM_UINT32 XML_COMM_PrintStartLabelAndAttribs(
     XML_COMM_NODE_STRU                 *pstNode,
     VOS_CHAR                          **ppcXmlStr,
@@ -2534,22 +1821,7 @@ LOCAL XML_COMM_RESULT_ENUM_UINT32 XML_COMM_PrintStartLabelAndAttribs(
     return XML_COMM_RESULT_SUCCEED;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_PrintEndLabel
-功能描述  : 内部函数, 打印右标签
-输入参数  : pstNode         节点指针
-            pcXmlStr        用于存放码流的指针
-            plLenRemain     当前可以存放的码流的最大长度
-输出参数  : plLenRemain     当前可以存放的码流的最大长度
-返 回 值  : XML_COMM_RESULT_ENUM_UINT32
-调用函数  :
-被调函数  :
 
-修改历史     :
-1.日    期   : 2012年7月9日
-  作    者   : l00198894
-  修改内容   : 新生成函数
-*****************************************************************************/
 LOCAL XML_COMM_RESULT_ENUM_UINT32 XML_COMM_PrintEndLabel(
     XML_COMM_NODE_STRU                 *pstNode,
     VOS_CHAR                          **ppcXmlStr,
@@ -2580,24 +1852,7 @@ LOCAL XML_COMM_RESULT_ENUM_UINT32 XML_COMM_PrintEndLabel(
     return XML_COMM_RESULT_SUCCEED;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_PrintValueAndELabel
-功能描述  : 内部函数, 打印节点值及右标签
-输入参数  : pstNode         节点指针
-            pcXmlStr        用于存放码流的指针
-            plLenRemain     当前可以存放的码流的最大长度
-            ulLevel         树结构层级
-            enFormatting    输出格式，紧凑或换行缩进
-输出参数  : plLenRemain     当前可以存放的码流的最大长度
-返 回 值  : XML_COMM_RESULT_ENUM_UINT32
-调用函数  :
-被调函数  :
 
-修改历史     :
-1.日    期   : 2012年7月9日
-  作    者   : l00198894
-  修改内容   : 新生成函数
-*****************************************************************************/
 LOCAL XML_COMM_RESULT_ENUM_UINT32 XML_COMM_PrintValueAndELabel(
     XML_COMM_NODE_STRU                 *pstNode,
     VOS_CHAR                          **ppcXmlStr,
@@ -2664,23 +1919,7 @@ LOCAL XML_COMM_RESULT_ENUM_UINT32 XML_COMM_PrintValueAndELabel(
     return XML_COMM_RESULT_SUCCEED;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_GenerateXMLStr
-功能描述  : 内部函数, 根据XML当前的树结构，生成XML码流
-输入参数  : pstXMLRootNode: XML树的根节点
-            pcXmlStr:       用于存放码流的指针
-            plLenRemain:    当前可以存放的码流的最大长度
-            enFormatting    输出格式，紧凑或换行缩进
-输出参数  : plLenRemain:    当前可以存放的码流的最大长度
-返 回 值  : XML_COMM_RESULT_ENUM_UINT32
-调用函数  :
-被调函数  :
 
-修改历史     :
-1.日    期   : 2012年7月6日
-  作    者   : h44270
-  修改内容   : 新生成函数
-*****************************************************************************/
 LOCAL XML_COMM_RESULT_ENUM_UINT32 XML_COMM_GenerateXMLStr(
     XML_COMM_NODE_STRU                 *pstXMLRootNode,
     VOS_CHAR                          **ppcXmlStr,
@@ -2822,22 +2061,7 @@ LOCAL XML_COMM_RESULT_ENUM_UINT32 XML_COMM_GenerateXMLStr(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_BuildXMLStr
-功能描述  : 从一颗XML树结构生成XML格式码流
-输入参数  : pstNode     XML树根节点
-            pulLength   用于存放XML格式码流的内存长度
-输出参数  : pcXmlStr    用于存放XML格式码流的内存
-            pulLength   实际生成的XML格式码流的长度
-返 回 值  : XML_COMM_RESULT_ENUM_UINT32
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : 李紫剑 00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_RESULT_ENUM_UINT32 XML_COMM_BuildXMLStr(
     XML_COMM_NODE_STRU                 *pstNode,
     VOS_CHAR                           *pcXmlStr,
@@ -2886,20 +2110,7 @@ XML_COMM_RESULT_ENUM_UINT32 XML_COMM_BuildXMLStr(
     return ulReturnVal;
 }
 
-/*****************************************************************************
-函 数 名  : XML_COMM_ClearXMLCtx
-功能描述  : 清理XML上下文, 每次使用完XML API都要求调用此函数
-输入参数  : pstXmlCtx     XML API上下文
-输出参数  : 无
-返 回 值  : XML_COMM_RESULT_ENUM_UINT32
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : 李紫剑 00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_RESULT_ENUM_UINT32 XML_COMM_ClearXMLCtx(XML_COMM_CTX_STRU *pstXmlCtx)
 {
     /* 参数合法性检查 */

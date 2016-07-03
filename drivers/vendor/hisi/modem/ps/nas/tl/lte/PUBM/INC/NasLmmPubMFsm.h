@@ -1,13 +1,4 @@
-/******************************************************************************
 
-        @(#)Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File Name       : NasLmmPubMFsm.h
-    Description     : NasLmmPubMFsm.c header file
-    History     : hanlufeng 41410 2008-10-11 CREATE FILE
-    1.zhengjunyan 00148421  2011-05-28 文件名由 NasMmPubMFsm.h修改为 NasLmmPubMFsm.h
-******************************************************************************/
 
 #ifndef __NASLMMPUBMFSM_H__
 #define __NASLMMPUBMFSM_H__
@@ -319,7 +310,6 @@ extern "C" {
             (pMsg)->usTerminalId        = UE_APP_SUBSYS_ID;\
         }
 
-/*V7R2-DT ,l00195322,2014/4/30, ST时发给OM，单板运行发给MSP,begin*/
 /* 打包APP消息头 */
 #if(VOS_WIN32 == VOS_OS_VER)
 #define NAS_LMM_COMP_APP_DT_MSG_HEADER(pMsg, ulMsgLengthNoHeader) \
@@ -345,7 +335,6 @@ extern "C" {
             (pMsg)->usTerminalId        = UE_APP_SUBSYS_ID;\
         }
 #endif
-/*V7R2-DT ,l00195322,2014/4/30, ST时发给OM，单板运行发给MSP ,end*/
 /* 计算MMC要发给XXX的消息长度, 不包含VOS头(外部消息) */
 #define NAS_LMM_MSG_LENGTH_NO_HEADER(MM_XXX_MSG_STRU) \
                     (sizeof(MM_XXX_MSG_STRU) - NAS_LMM_VOS_HEADER_LEN)
@@ -448,7 +437,6 @@ enum    NAS_LMM_SUB_STATE_ENUM
 
     /*========== NULL下的子状态 ===============*/
     EMM_SS_NULL_WAIT_APP_START_REQ      = 0x0000,           /*此状态下只处理APP_START_REQ消息*/
-    /*EMM_SS_WAIT_NULL_READING_SRV_TABLE          ,*/       /* y00159566 10.5.28 流程清理后删除此状态*/
     EMM_SS_NULL_WAIT_READING_USIM               ,
     /*EMM_SS_NULL_WAITING_USIM_READY              ,*/
     EMM_SS_NULL_WAIT_MMC_START_CNF              ,

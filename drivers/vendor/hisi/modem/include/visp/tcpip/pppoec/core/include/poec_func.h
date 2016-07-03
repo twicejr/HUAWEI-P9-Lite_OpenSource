@@ -1,27 +1,4 @@
-/*************************************************************************
- *
- *              Copyright 2005, Huawei Technologies Co. Ltd.
- *                          ALL RIGHTS RESERVED
- * 
- *-----------------------------------------------------------------------*
- *
- *                              poec_func.h 
- *
- *  Project Code: VISP1.5
- *   Module Name: PPPoE Client
- *  Date Created: 2003-01-11
- *        Author: liuhui
- *   Description: PPPoE Client模块的私有函数说明
- *               
- *----------------------------------------------------------------------*
- *  Modification History 
- *  DATE             NAME               DESCRIPTION
- *  2003-01-11       liuhui             Create file
- *  2005-09-15       t45114             Modify
- *  2006-03-30       liai               Adjust for D00660
- *  2006/04/21       liai               Adjust for D00865
- *  2007-01-04       f54882             Adjust for A82D10682
- ************************************************************************/
+
 
 #ifndef  _POEC_FUNC_H_
 #define  _POEC_FUNC_H_
@@ -85,7 +62,6 @@ ULONG PPPOE_Client_Input ( MBUF_S *pstMbuf );
 ULONG PPPOE_Client_SessionOutput ( PPPOE_C_SESSION_S *pstSession, MBUF_S *pstMbuf );
 ULONG  PPPOE_Client_PppIoctl ( UINTPTR ulLinkHandle, ULONG ulCmd, char *pcPara);
 ULONG PPPOE_Client_SendPadi ( PPPOE_C_SESSION_S *pstSession );
-/*modify by wht06310 for PPP接口整改,2006-05-29*/
 ULONG PPPOE_Client_Reset_Session ( ULONG ulPoecIfIndex ); 
 ULONG PPPOE_Client_Reset_All_Session ( VOID );
 VOID PPPOE_Client_Clear_Intf_Session ( IFNET_S *pstEthIfNet );
@@ -114,7 +90,6 @@ ULONG PPPOE_Client_GetPoecEthIf ( ULONG ulBundleNumber, IFNET_S **ppstEthIf );
 VOID PPPOE_Client_CfgDebug ( ETHARP_MTSOFTC_S *pstMT, ULONG ulDebugFlag, UCHAR bSetFlag );
 ULONG PPPOE_Client_GetPoecDebugFlag ( VOID );
 
-/*此定义从poec_sh_func.h中移入，modified for D00016 by t45114, 2005/12/01*/
 INT32 PrintLineBinAndAscii ( UCHAR *pucData, CHAR *pcPrintBuffer, ULONG ulLen,
                                         INT32 i32BufLen, INT32 i32InputOffset);
 INT32 PrintBinAsciiByLine ( UCHAR *pucData, CHAR *pcPrintBuffer, ULONG ulLen, 

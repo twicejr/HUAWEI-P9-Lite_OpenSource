@@ -404,12 +404,7 @@ typedef struct
    5 STRUCT
 *****************************************************************************/
 
-/*******************************************************************************
- 结构名    : NAS_LPP_OM_FSM_STATE_STRU
- 结构说明  : 状态机的om信息
- 1.日    期   : 2015年8月14日
-   作    者   :Xiaojun
-*******************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                              /*_H2ASN_Skip*/
@@ -428,12 +423,7 @@ typedef struct
 }NAS_LPP_OM_FSM_STATE_STRU;
 
 
-/*******************************************************************************
- 结构名    : NAS_LPP_OM_TIMER_START_STRU
- 结构说明  : 状态机的om信息
- 1.日    期   : 2015年8月14日
-   作    者   :Xiaojun
-*******************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                          /*_H2ASN_Skip*/
@@ -445,12 +435,7 @@ typedef struct
     VOS_UINT8                           aucRsv[1];
     VOS_UINT32                          ulLen;
 }NAS_LPP_OM_TIMER_START_STRU;
-/*******************************************************************************
- 结构名    : NAS_LPP_OM_TIMER_STOP_STRU
- 结构说明  : 状态机的om信息
- 1.日    期   : 2015年8月14日
-   作    者   :Xiaojun
-*******************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                          /*_H2ASN_Skip*/
@@ -462,12 +447,7 @@ typedef struct
     VOS_UINT8                           aucRsv[1];
     VOS_UINT32                          ulRemainTime;
 }NAS_LPP_OM_TIMER_STOP_STRU;
-/*******************************************************************************
- 结构名    : NAS_LPP_OM_TIMER_EXPIRE_STRU
- 结构说明  : 状态机的om信息
- 1.日    期   : 2015年8月14日
-   作    者   :Xiaojun
-*******************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                          /*_H2ASN_Skip*/
@@ -478,12 +458,7 @@ typedef struct
     NAS_LPP_TIMER_PARA_ENUM_UINT8       enTimeName;
     VOS_UINT8                           aucRsv[1];
 }NAS_LPP_OM_TIMER_EXPIRE_STRU;
-/*******************************************************************************
- 结构名    : NAS_LPP_OM_NV_STRU
- 结构说明  :
- 1.日    期   : 2015年8月14日
-   作    者   :Xiaojun
-*******************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                          /*_H2ASN_Skip*/
@@ -491,12 +466,7 @@ typedef struct
 
     NAS_LPP_NV_CONFIG_STRU              stNVRead;
 }NAS_LPP_OM_NV_STRU;
-/*******************************************************************************
- 结构名    : NAS_LPP_OM_SESSION_MALLOC_SUCC_STRU
- 结构说明  :
- 1.日    期   : 2015年8月14日
-   作    者   :Xiaojun
-*******************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                          /*_H2ASN_Skip*/
@@ -521,12 +491,7 @@ typedef struct
 
     LPP_MTA_MSG_TYPE_ENUM_UINT32        enLocInfoReq;  /*LOC INFO REQ*/
 }NAS_LPP_OM_MTA_LOC_INFO_REQ_STRU;
-/*******************************************************************************
- 结构名    : NAS_LPP_OM_INTRA_DATA_CNF_STRU
- 结构说明  :
- 1.日    期   : 2015年8月14日
-   作    者   :WANGENSHENG
-*******************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                          /*_H2ASN_Skip*/
@@ -538,12 +503,7 @@ typedef struct
 
 }NAS_LPP_OM_INTRA_DATA_CNF_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_LPP_OM_SESSION_MALLOC_FAIL_STRU
- 结构说明  :
- 1.日    期   : 2015年8月14日
-   作    者   :Xiaojun
-*******************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                          /*_H2ASN_Skip*/
@@ -552,12 +512,7 @@ typedef struct
     VOS_UINT32                          ulSessionId;
     VOS_UINT32                          ulSessionPoolBitmap;
 }NAS_LPP_OM_SESSION_MALLOC_FAIL_STRU;
-/*******************************************************************************
- 结构名    : NAS_LPP_OM_SESSION_RELEASE_STRU
- 结构说明  :
- 1.日    期   : 2015年8月14日
-   作    者   :Xiaojun
-*******************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                          /*_H2ASN_Skip*/
@@ -568,12 +523,7 @@ typedef struct
     VOS_UINT32                          ulSessionId;
     VOS_UINT32                          ulSessionPoolBitmap; /*释放成功后的*/
 }NAS_LPP_OM_SESSION_RELEASE_STRU;
-/*******************************************************************************
- 结构名    : NAS_LPP_OM_TRANS_MALLOC_SUCC_STRU
- 结构说明  :
- 1.日    期   : 2015年8月14日
-   作    者   :Xiaojun
-*******************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                          /*_H2ASN_Skip*/
@@ -587,12 +537,7 @@ typedef struct
 //    NAS_LPP_TRANSACTION_STRU            stLppTran;          /*申请成功后，session包含的trans idnex的情况*/
 }NAS_LPP_OM_TRANS_MALLOC_SUCC_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_LPP_OM_TRANS_MALLOC_FAIL_STRU
- 结构说明  :
- 1.日    期   : 2015年8月14日
-   作    者   :Xiaojun
-*******************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                          /*_H2ASN_Skip*/
@@ -604,12 +549,7 @@ typedef struct
     VOS_UINT32                          ulTransPoolBitmap;  /*当前的*/
 //    NAS_LPP_TRANSACTION_STRU            stLppTran;          /*当前的，session包含的trans idnex的情况*/
 }NAS_LPP_OM_TRANS_MALLOC_FAIL_STRU;
-/*******************************************************************************
- 结构名    : NAS_LPP_OM_TRANS_RELEASE_STRU
- 结构说明  :
- 1.日    期   : 2015年8月14日
-   作    者   :Xiaojun
-*******************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                          /*_H2ASN_Skip*/
@@ -622,12 +562,7 @@ typedef struct
     NAS_LPP_TRANSACTION_STRU            stLppTran;          /*释放后的，session包含的trans idnex的情况*/
 }NAS_LPP_OM_TRANS_RELEASE_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_LPP_OM_ADD_TRANS_TO_SESSION_STRU
- 结构说明  :
- 1.日    期   : 2015年8月14日
-   作    者   :Xiaojun
-*******************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                          /*_H2ASN_Skip*/
@@ -639,12 +574,7 @@ typedef struct
     NAS_LPP_TRANSACTION_STRU            stLppTran;          /*增加后的，session包含的trans idnex的情况*/
 }NAS_LPP_OM_ADD_TRANS_TO_SESSION_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_LPP_OM_COMM_CFG_MALLOC_SUCC_STRU
- 结构说明  :
- 1.日    期   : 2015年8月14日
-   作    者   :Xiaojun
-*******************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                          /*_H2ASN_Skip*/
@@ -656,12 +586,7 @@ typedef struct
     VOS_UINT32                          ulCfgPoolBitmap;    /*申请成功后的*/
 }NAS_LPP_OM_COMM_CFG_MALLOC_SUCC_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_LPP_OM_COMM_CFG_MALLOC_FAIL_STRU
- 结构说明  :
- 1.日    期   : 2015年8月14日
-   作    者   :Xiaojun
-*******************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                          /*_H2ASN_Skip*/
@@ -672,12 +597,7 @@ typedef struct
     VOS_UINT8                           aucRsv[2];
     VOS_UINT32                          ulCfgPoolBitmap;    /* 当前的*/
 }NAS_LPP_OM_COMM_CFG_MALLOC_FAIL_STRU;
-/*******************************************************************************
- 结构名    : NAS_LPP_OM_COMM_CFG_RELEASE_STRU
- 结构说明  :
- 1.日    期   : 2015年8月14日
-   作    者   :Xiaojun
-*******************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                          /*_H2ASN_Skip*/
@@ -690,12 +610,7 @@ typedef struct
 }NAS_LPP_OM_COMM_CFG_RELEASE_STRU;
 
 
-/*******************************************************************************
- 结构名    : NAS_LPP_OM_UP_MSG_BUFF_MALLOC_SUCC_STRU
- 结构说明  :
- 1.日    期   : 2015年8月14日
-   作    者   :Xiaojun
-*******************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                          /*_H2ASN_Skip*/
@@ -708,12 +623,7 @@ typedef struct
 }NAS_LPP_OM_UP_MSG_BUFF_MALLOC_SUCC_STRU;
 
 
-/*******************************************************************************
- 结构名    : NAS_LPP_OM_UP_MSG_BUFF_MALLOC_FAIL_STRU
- 结构说明  :
- 1.日    期   : 2015年8月14日
-   作    者   :Xiaojun
-*******************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                          /*_H2ASN_Skip*/
@@ -723,12 +633,7 @@ typedef struct
     VOS_UINT32                          ulBitMap;       /*申请时的*/
 }NAS_LPP_OM_UP_MSG_BUFF_MALLOC_FAIL_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_LPP_OM_UP_MSG_BUFF_REL_STRU
- 结构说明  :
- 1.日    期   : 2015年8月14日
-   作    者   :Xiaojun
-*******************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                          /*_H2ASN_Skip*/
@@ -740,12 +645,7 @@ typedef struct
     VOS_UINT32                          ulBitMap;       /*释放后的*/
 }NAS_LPP_OM_UP_MSG_BUFF_REL_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_LPP_OM_ADD_LOC_TECH_STRU
- 结构说明  :
- 1.日    期   : 2015年8月14日
-   作    者   :Xiaojun
-*******************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                          /*_H2ASN_Skip*/
@@ -756,12 +656,7 @@ typedef struct
     NAS_LPP_LOC_TECH_RUNING_STRU        stLocTechRunning; /*增加后的*/
 }NAS_LPP_OM_ADD_LOC_TECH_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_LPP_OM_DEL_LOC_TECH_STRU
- 结构说明  :
- 1.日    期   : 2015年8月14日
-   作    者   :Xiaojun
-*******************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                          /*_H2ASN_Skip*/
@@ -771,12 +666,7 @@ typedef struct
     VOS_UINT8                           aucRsv[3];
     NAS_LPP_LOC_TECH_RUNING_STRU        stLocTechRunning; /*删除后的*/
 }NAS_LPP_OM_DEL_LOC_TECH_STRU;
-/*******************************************************************************
- 结构名    : NAS_LPP_OM_CONN_MANAGE_STRU
- 结构说明  :
- 1.日    期   : 2015年8月14日
-   作    者   :Xiaojun
-*******************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                          /*_H2ASN_Skip*/
@@ -785,12 +675,7 @@ typedef struct
     NAS_LPP_CONN_STATUS_ENUM_UINT32     enConnStatus;  /* CONNECT STATUS */
 }NAS_LPP_OM_CONN_MANAGE_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_LPP_OM_LOG_ERROR_STRU
- 结构说明  :
- 1.日    期   : 2015年8月14日
-   作    者   :Xiaojun
-*******************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                          /*_H2ASN_Skip*/

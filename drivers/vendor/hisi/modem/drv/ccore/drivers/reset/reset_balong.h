@@ -1,14 +1,4 @@
-/*************************************************************************
-*   版权所有(C) 2008-2014, 深圳华为技术有限公司.
-*
-*   文 件 名 :  reset_balong.h
-*
-*   作    者 :  y00184236
-*
-*   描    述 :  modem单独复位内部C核头文件
-*
-*   修改记录 :  2014年02月15日  v1.00  y00184236  创建
-*************************************************************************/
+
 
 #ifndef __RESET_BALONG_H__
 #define __RESET_BALONG_H__
@@ -32,6 +22,15 @@ struct ccore_reset_ctrl
 	IPC_INT_LEV_E ipc_recv_irq_wakeup;
 	IPC_INT_LEV_E ipc_send_irq_in_idle;
 	IPC_INT_LEV_E ipc_send_irq_reboot_ok;
+};
+
+struct crg_clkstat_ctrl
+{
+    unsigned int addr_offset;
+    unsigned int hdlc;
+    unsigned int upacc;
+    unsigned int cicom1;
+    unsigned int cicom0;
 };
 
 #define  reset_print_err(fmt, ...)    \

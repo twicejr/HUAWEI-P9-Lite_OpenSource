@@ -1,26 +1,4 @@
-/*************************************************************************
- *
- *              Copyright 2005, Huawei Technologies Co. Ltd.
- *                          ALL RIGHTS RESERVED
- * 
- *-----------------------------------------------------------------------*
- *
- *                         iphc_pub.h
- *
- *  Project Code: VISP
- *   Module Name: IPHC
- *  Date Created: 2002/06/25
- *        Author: wangyue
- *   Description: 本头文件包含iphc模块的宏定义；   
- *
- *
- *-----------------------------------------------------------------------*
- *  Modification History
- *  DATE            NAME            DESCRIPTION
- *  2006-03-30      xiehuaguo       Adjust for D00647
- *  2006-05-13      l48923          Delete useless code
- *  2008-04-11      wuhailan        RFC3544及IPHC单通处理增强整改
- ************************************************************************/
+
  
  
 #ifndef _IPHC_PUB_H_

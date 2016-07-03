@@ -51,11 +51,8 @@ DECLARE_INTERFACE( IIF_IP4_TCP4_ComIntCfg)
     METHOD_(ULONG,pfTCP_GetTcpHash)(VOID **pstTcpHash);
     METHOD_(ULONG,pfTCP_GetPerTcp4ConnStats)(TCP4CONN_S *pstConnInfo, TCP4PERSTAT_S *pstRetStats);
     METHOD_(ULONG,pfTCP_ResetPerTcp4ConnStats)(TCP4CONN_S *pstConnInfo);
-    /*Added by wangtong207740, 基于socket id 获取对应的tcp报文统计, 2012/9/5 */
     METHOD_(ULONG,pfTCP_GetInfoBySocket)(ULONG ulSocketId ,TCP_SOCK_INFO_S *pstTcpInfo);
-    /* Add by heyijun 00218462 for DTS2012092803600 维测需求开发, 2012-9 */
     METHOD_(ULONG,pfTCP_GetTcpInfoBySocketNum)(TCP_SOCK_INFO_S *pstTcpConStat, ULONG ulRetSize);
-    /* End of Add by heyijun 00218462 for DTS2012092803600 维测需求开发, 2012-9 */    
 };
 
 /* TCP4组件功能接口的结构 */

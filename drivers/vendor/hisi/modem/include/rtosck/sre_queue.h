@@ -243,33 +243,7 @@ typedef enum
  */
 #define OS_QUEUE_PID_ALL          0xFFFFFFFF
 
-/**
- * @ingroup SRE_queue
- * @brief 创建队列。
- *
- * @par 描述:
- * 创建一个队列，创建时可以设定队列长度和队列结点大小。
- * @attention
- * <ul>
- * <li>每个队列节点的大小的单位是BYTE。</li>
- * <li>每个队列节点的长度自动做2字节对齐。</li>
- * <li>每个队列节点的长度不能大于0xFFFA。</li>
- * </ul>
- * @param usNodeNum      [IN] 类型为#UINT16    ，队列节点个数，不能为0。
- * @param usMaxNodeSize  [IN] 类型为#UINT16    ，每个队列结点的大小。
- * @param puwQueueID     [OUT] 类型为#UINT32 * ，存储队列ID，ID从1开始。
- *
- * @retval #SRE_OK                           0x00000000，操作成功。
- * @retval #OS_ERRNO_QUEUE_CREAT_PTR_NULL    0x0200270b，队列创建时输入的指针为空。
- * @retval #OS_ERRNO_QUEUE_PARA_ZERO         0x0200270c，入参队列长度或者队列消息结点大小为0。
- * @retval #OS_ERRNO_QUEUE_CB_UNAVAILABLE    0x02002704，没有空闲的队列资源数，已经达到配置的最大队列数。
- * @retval #OS_ERRNO_QUEUE_CREATE_NO_MEMORY  0x02002703，队列创建时内存不足。
- * @retval #OS_ERRNO_QUEUE_NSIZE_INVALID     0x02002713,节点长度超过最大值。
- * @par 依赖:
- * @li SRE_queue.h：该接口声明所在的头文件。
- * @since RTOSck V100R001C00
- * @see SRE_QueueDelete
-*/
+
 extern UINT32 SRE_QueueCreate(   UINT16 usNodeNum,
                                  UINT16 usMaxNodeSize,
                                  UINT32 *puwQueueID);

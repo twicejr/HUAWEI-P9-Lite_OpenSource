@@ -27,3 +27,6 @@ obj-$(CONFIG_KRETPROBES) += rphone/
 obj-$(CONFIG_HUAWEI_UID_IO_STATS) += uid_iostats/
 obj-$(CONFIG_HW_ANTENNA_BOARD_MATCH)  += antenna_board_match/
 obj-$(CONFIG_HUAWEI_HW_DEV_DCT)  += devdetect/
+obj-$(CONFIG_ANTENNA_BOARDID_GPIO_DETECT) += antenna_board_gpio_match/
+obj-$(CONFIG_HUAWEI_OCP) += ocp/
+obj-$(CONFIG_MADAPT) += madapt/

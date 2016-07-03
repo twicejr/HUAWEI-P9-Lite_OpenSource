@@ -1,15 +1,4 @@
-/*************************************************************************
-*   版权所有(C) 2008-2014, 深圳华为技术有限公司.
-*
-*   文 件 名 :  bsp_psam.h
-*
-*   作    者 :  longyi
-*
-*   描    述 :  psam模块底软内部接口文件
-*
-*   修改记录 :  2014年08月19日  v1.00  longyi 创建
-*                            
-*************************************************************************/
+
 #ifndef    _PSAM_BALONG_H_
 #define    _PSAM_BALONG_H_
 
@@ -52,6 +41,7 @@
 
 #define PSAM_FAMA_MODEM_ATTR			(MDDR_FAMA_CHAN(1))
 #define PSAM_FAMA_AP_ATTR				(0x0)
+#define CBDQ_WPTR_OFFSET				(0x3ff)
 
 #ifndef NULL
 #define NULL            (void*)0

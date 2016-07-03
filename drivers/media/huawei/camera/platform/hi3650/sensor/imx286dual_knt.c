@@ -21,8 +21,8 @@ static bool s_imx286dual_power_on = false;
 
 static struct sensor_power_setting imx286dual_power_setting[] = {
 
-    //Misp DCDC-EN  0.9V  [GPIO]
-    {
+	//Misp DCDC-EN  0.9V  [GPIO]
+	{
 		.seq_type = SENSOR_MISPDCDC_EN,
 		.data = (void*)"misp-dcdc-en",
 		.config_val = SENSOR_GPIO_LOW,
@@ -49,12 +49,12 @@ static struct sensor_power_setting imx286dual_power_setting[] = {
 	},
 
 	//M0 VCM  3V  [LDO25]
-    {
+	{
 		.seq_type = SENSOR_VCM_AVDD,
 		.config_val = 3000000,
 		.sensor_index = SENSOR_INDEX_INVALID,
 		.delay = 0,
-    },
+	},
 
 	//M1 VCM  3V  [LDO13]
 	{
@@ -65,13 +65,13 @@ static struct sensor_power_setting imx286dual_power_setting[] = {
 	},
 
 	//M0 AVDD0  2.85V  [CAM_PMIC_LDO1]
-    {
+	{
 		.seq_type = SENSOR_PMIC,
 		.seq_val = VOUT_LDO_1,
 		.config_val = 2800000,
 		.sensor_index = SENSOR_INDEX_INVALID,
 		.delay = 0,
-    },
+	},
 
 	//M1 AVDD1  2.85V  [CAM_PMIC_LDO2]
 	{
@@ -83,13 +83,13 @@ static struct sensor_power_setting imx286dual_power_setting[] = {
 	},
 
 	//M0 DVDD0  1.1V  [LDO20]
-    {
-        .seq_type = SENSOR_DVDD,
+	{
+		.seq_type = SENSOR_DVDD,
 		.data = (void*)"main-sensor-dvdd0",
-        .config_val = LDO_VOLTAGE_V1P1V,
-        .sensor_index = SENSOR_INDEX_INVALID,
-        .delay = 0,
-    },
+		.config_val = LDO_VOLTAGE_V1P1V,
+		.sensor_index = SENSOR_INDEX_INVALID,
+		.delay = 0,
+	},
 
 	//M1 DVDD1  1.1V  [LDO32]
 	{
@@ -112,21 +112,21 @@ static struct sensor_power_setting imx286dual_power_setting[] = {
 		.delay = 1,
 	},
 
-    //M0 RESET  [GPIO_018]
-    {
-        .seq_type = SENSOR_RST,
-        .config_val = SENSOR_GPIO_LOW,
-        .sensor_index = SENSOR_INDEX_INVALID,
-        .delay = 1,
-    },
+	//M0 RESET  [GPIO_018]
+	{
+		.seq_type = SENSOR_RST,
+		.config_val = SENSOR_GPIO_LOW,
+		.sensor_index = SENSOR_INDEX_INVALID,
+		.delay = 1,
+	},
 
 	//M1 RESET  [GPIO_134]
 	{
-        .seq_type = SENSOR_RST2,
-        .config_val = SENSOR_GPIO_LOW,
-        .sensor_index = SENSOR_INDEX_INVALID,
-        .delay = 1,
-    },
+		.seq_type = SENSOR_RST2,
+		.config_val = SENSOR_GPIO_LOW,
+		.sensor_index = SENSOR_INDEX_INVALID,
+		.delay = 1,
+	},
 
 };
 
@@ -141,8 +141,8 @@ static struct sensor_power_setting imx286legacydual_power_setting[] = {
 		.delay = 0,
 	},
 
-    //Misp DCDC-EN  0.9V  [GPIO]
-    {
+	//Misp DCDC-EN  0.9V  [GPIO]
+	{
 		.seq_type = SENSOR_MISPDCDC_EN,
 		.data = (void*)"misp-dcdc-en",
 		.config_val = SENSOR_GPIO_LOW,
@@ -160,12 +160,12 @@ static struct sensor_power_setting imx286legacydual_power_setting[] = {
 	},
 
 	//M0 VCM  3V  [LDO25]
-    {
+	{
 		.seq_type = SENSOR_VCM_AVDD,
 		.config_val = 3000000,
 		.sensor_index = SENSOR_INDEX_INVALID,
 		.delay = 0,
-    },
+	},
 
 	//M1 VCM  3V  [LDO13]
 	{
@@ -176,13 +176,13 @@ static struct sensor_power_setting imx286legacydual_power_setting[] = {
 	},
 
 	//M0 AVDD0  2.85V  [CAM_PMIC_LDO1]
-    {
+	{
 		.seq_type = SENSOR_PMIC,
 		.seq_val = VOUT_LDO_1,
 		.config_val = 2800000,
 		.sensor_index = SENSOR_INDEX_INVALID,
 		.delay = 0,
-    },
+	},
 
 	//M1 AVDD1  2.85V  [CAM_PMIC_LDO2]
 	{
@@ -194,13 +194,13 @@ static struct sensor_power_setting imx286legacydual_power_setting[] = {
 	},
 
 	//M0 DVDD0  1.1V  [LDO20]
-    {
-        .seq_type = SENSOR_DVDD,
+	{
+		.seq_type = SENSOR_DVDD,
 		.data = (void*)"main-sensor-dvdd0",
-        .config_val = LDO_VOLTAGE_V1P1V,
-        .sensor_index = SENSOR_INDEX_INVALID,
-        .delay = 0,
-    },
+		.config_val = LDO_VOLTAGE_V1P1V,
+		.sensor_index = SENSOR_INDEX_INVALID,
+		.delay = 0,
+	},
 
 	//M1 DVDD1  1.1V  [LDO32]
 	{
@@ -223,29 +223,29 @@ static struct sensor_power_setting imx286legacydual_power_setting[] = {
 		.delay = 1,
 	},
 
-    //M0 RESET  [GPIO_018]
-    {
-        .seq_type = SENSOR_RST,
-        .config_val = SENSOR_GPIO_LOW,
-        .sensor_index = SENSOR_INDEX_INVALID,
-        .delay = 1,
-    },
+	//M0 RESET  [GPIO_018]
+	{
+		.seq_type = SENSOR_RST,
+		.config_val = SENSOR_GPIO_LOW,
+		.sensor_index = SENSOR_INDEX_INVALID,
+		.delay = 1,
+	},
 
 	//M1 RESET  [GPIO_134]
 	{
-        .seq_type = SENSOR_RST2,
-        .config_val = SENSOR_GPIO_LOW,
-        .sensor_index = SENSOR_INDEX_INVALID,
-        .delay = 1,
-    },
+		.seq_type = SENSOR_RST2,
+		.config_val = SENSOR_GPIO_LOW,
+		.sensor_index = SENSOR_INDEX_INVALID,
+		.delay = 1,
+	},
 
 };
 
 /* For FRD oversea boards */
 static struct sensor_power_setting imx286dOversea_power_setting[] = {
 
-    //Misp DCDC-EN  0.9V  [GPIO]
-    {
+	//Misp DCDC-EN  0.9V  [GPIO]
+	{
 		.seq_type = SENSOR_MISPDCDC_EN,
 		.data = (void*)"misp-dcdc-en",
 		.config_val = SENSOR_GPIO_LOW,
@@ -272,12 +272,12 @@ static struct sensor_power_setting imx286dOversea_power_setting[] = {
 	},
 
 	//M0 VCM  3V  [LDO25]
-    {
+	{
 		.seq_type = SENSOR_VCM_AVDD,
 		.config_val = 3000000,
 		.sensor_index = SENSOR_INDEX_INVALID,
 		.delay = 0,
-    },
+	},
 
 	//M1 VCM  3V  [LDO13]
 	{
@@ -288,13 +288,13 @@ static struct sensor_power_setting imx286dOversea_power_setting[] = {
 	},
 
 	//M0 AVDD0  2.85V  [CAM_PMIC_LDO1]
-    {
+	{
 		.seq_type = SENSOR_PMIC,
 		.seq_val = VOUT_LDO_1,
 		.config_val = 2800000,
 		.sensor_index = SENSOR_INDEX_INVALID,
 		.delay = 0,
-    },
+	},
 
 	//M1 AVDD1  2.85V  [CAM_PMIC_LDO2]
 	{
@@ -306,13 +306,13 @@ static struct sensor_power_setting imx286dOversea_power_setting[] = {
 	},
 
 	//M0 DVDD + M1 DVDD  1.1V  [CAM_PMIC_BUCK2]
-    {
+	{
 		.seq_type = SENSOR_PMIC,
 		.seq_val = VOUT_BUCK_2,
 		.config_val = PMIC_1P1V,
 		.sensor_index = SENSOR_INDEX_INVALID,
 		.delay = 0,
-    },
+	},
 
 	{
 		.seq_type = SENSOR_MCLK,
@@ -326,21 +326,124 @@ static struct sensor_power_setting imx286dOversea_power_setting[] = {
 		.delay = 1,
 	},
 
-    //M0 RESET  [GPIO_018]
-    {
-        .seq_type = SENSOR_RST,
-        .config_val = SENSOR_GPIO_LOW,
-        .sensor_index = SENSOR_INDEX_INVALID,
-        .delay = 1,
-    },
+	//M0 RESET  [GPIO_018]
+	{
+		.seq_type = SENSOR_RST,
+		.config_val = SENSOR_GPIO_LOW,
+		.sensor_index = SENSOR_INDEX_INVALID,
+		.delay = 1,
+	},
 
 	//M1 RESET  [GPIO_134]
 	{
-        .seq_type = SENSOR_RST2,
-        .config_val = SENSOR_GPIO_LOW,
-        .sensor_index = SENSOR_INDEX_INVALID,
-        .delay = 1,
-    },
+		.seq_type = SENSOR_RST2,
+		.config_val = SENSOR_GPIO_LOW,
+		.sensor_index = SENSOR_INDEX_INVALID,
+		.delay = 1,
+	},
+
+};
+
+/* For FRD oversea V3 boards */
+static struct sensor_power_setting imx286OverseaV3_power_setting[] = {
+
+	//Misp DCDC-EN  0.9V [LDO20]
+	{
+		.seq_type = SENSOR_DVDD,
+		.data = (void*)"main-sensor-dvdd0",
+		.config_val = LDO_VOLTAGE_V0P9V,
+		.sensor_index = SENSOR_INDEX_INVALID,
+		.delay = 0,
+	},
+
+	//Misp VDD Core  0.92V  [CAM_PMIC_BUCK1]
+	{
+		.seq_type = SENSOR_PMIC,
+		.seq_val = VOUT_BUCK_1,
+		.config_val = 930000,
+		.sensor_index = SENSOR_INDEX_INVALID,
+		.delay = 0,
+	},
+
+	//Misp + M0 + M1  IOVDD  1.8V  [CAM_PMIC_LDO4]
+	{
+		.seq_type = SENSOR_PMIC,
+		.seq_val = VOUT_LDO_4,
+		.config_val = LDO_VOLTAGE_1P8V,
+		.sensor_index = SENSOR_INDEX_INVALID,
+		.delay = 0,
+	},
+
+	//M0 VCM  3V  [LDO25]
+	{
+		.seq_type = SENSOR_VCM_AVDD,
+		.config_val = 3000000,
+		.sensor_index = SENSOR_INDEX_INVALID,
+		.delay = 0,
+	},
+
+	//M1 VCM  3V  [LDO13]
+	{
+		.seq_type = SENSOR_VCM_AVDD2,
+		.config_val = 3000000,
+		.sensor_index = SENSOR_INDEX_INVALID,
+		.delay = 0,
+	},
+
+	//M0 AVDD0  2.85V  [CAM_PMIC_LDO1]
+	{
+		.seq_type = SENSOR_PMIC,
+		.seq_val = VOUT_LDO_1,
+		.config_val = 2800000,
+		.sensor_index = SENSOR_INDEX_INVALID,
+		.delay = 0,
+	},
+
+	//M1 AVDD1  2.85V  [CAM_PMIC_LDO2]
+	{
+		.seq_type = SENSOR_PMIC,
+		.seq_val = VOUT_LDO_2,
+		.config_val = 2800000,
+		.sensor_index = SENSOR_INDEX_INVALID,
+		.delay = 0,
+	},
+
+	//M0 DVDD + M1 DVDD  1.1V  [CAM_PMIC_BUCK2]
+	{
+		.seq_type = SENSOR_PMIC,
+		.seq_val = VOUT_BUCK_2,
+		.config_val = PMIC_1P1V,
+		.sensor_index = SENSOR_INDEX_INVALID,
+		.delay = 21,
+	},
+
+	{
+		.seq_type = SENSOR_MCLK,
+		.sensor_index = 0,
+		.delay = 1,
+	},
+
+	{
+		.seq_type = SENSOR_MCLK,
+		.sensor_index = 1,
+		.delay = 11,
+	},
+
+	//M0 RESET  [GPIO_018]
+	{
+		.seq_type = SENSOR_RST,
+		.config_val = SENSOR_GPIO_LOW,
+		.sensor_index = SENSOR_INDEX_INVALID,
+		.delay = 1,
+	},
+
+	//M1 RESET  [GPIO_134]
+	{
+		.seq_type = SENSOR_RST2,
+		.config_val = SENSOR_GPIO_LOW,
+		.sensor_index = SENSOR_INDEX_INVALID,
+		.delay = 1,
+	},
 
 };
 
@@ -555,6 +658,15 @@ static sensor_t s_imx286dOversea =
     },
 };
 
+static sensor_t s_imx286OverseaV3 =
+{
+    .intf = { .vtbl = &s_imx286dual_vtbl, },
+    .power_setting_array = {
+        .size = ARRAY_SIZE(imx286OverseaV3_power_setting),
+        .power_setting = imx286OverseaV3_power_setting,
+    },
+};
+
 /* support both imx286dual & imx286legacydual */
 static const struct of_device_id
 s_imx286dual_dt_match[] =
@@ -567,10 +679,14 @@ s_imx286dual_dt_match[] =
         .compatible = "huawei,imx286legacydual_knt",
         .data = &s_imx286legacydual.intf,
     },
-	{
-		.compatible = "huawei,imx286dOversea_knt",
-		.data = &s_imx286dOversea.intf,
-	},
+    {
+        .compatible = "huawei,imx286dOversea_knt",
+        .data = &s_imx286dOversea.intf,
+    },
+    {
+        .compatible = "huawei,imx286OverseaV3_knt",
+        .data = &s_imx286OverseaV3.intf,
+    },
     { } /* terminate list */
 };
 MODULE_DEVICE_TABLE(of, s_imx286dual_dt_match);
@@ -613,6 +729,7 @@ imx286dual_platform_probe(
         cam_err("%s none id matched", __func__);
         return -ENODEV;
     }
+    cam_info("The compatible of matched device is %s", id->compatible);
 
     intf = (hwsensor_intf_t*)id->data;
     sensor = I2S(intf);

@@ -95,26 +95,7 @@ VOS_UINT32 NAS_MSCC_RcvMmaPowerOffReq_PowerOff_Init(
 
 
 #if (FEATURE_IMS == FEATURE_ON)
-/*****************************************************************************
- Function Name   :   NAS_MSCC_RcvImsaPowerOffCnf_PowerOff_WaitImsaPowerOffCnf
- Description     :
-                     Stop IMSA power off cnf wait timer
-                     If there is any module in pending send power off request to the next module.
-                     If there is module list is empty to power off then complete power off request.
 
- Input parameters:   Event Type and Msg
- Outout parameters:  None
- Return Value    :   None
-
- Modify History:
-     1)  Date    :   2015-01-31
-         Author  :   k902809
-         Modify content :    Create
-     2.日    期   : 2015年4月15日
-       作    者   : f00179208
-       修改内容   : IMS SWITCH项:通知MMA当前IMS开关机状态
-
-*****************************************************************************/
 VOS_UINT32 NAS_MSCC_RcvImsaPowerOffCnf_PowerOff_WaitImsaPowerOffCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -146,25 +127,7 @@ VOS_UINT32 NAS_MSCC_RcvImsaPowerOffCnf_PowerOff_WaitImsaPowerOffCnf(
 }
 
 
-/*****************************************************************************
- Function Name   :   NAS_MSCC_RcvTiWaitImsaPowerOffCnfExpired_PowerOff_WaitImsaPowerOffCnf
- Description     :
-                     If there is any module in pending send power off request to the next module.
-                     If there is module list is empty to power off then complete power off request.
 
- Input parameters:   Event Type and Msg
- Outout parameters:  None
- Return Value    :   None
-
- Modify History:
-     1)  Date    :   2015-02-02
-         Author  :   k902809
-         Modify content :    Create
-     2.日    期   : 2015年4月15日
-       作    者   : f00179208
-       修改内容   : IMS SWITCH项:通知MMA当前IMS开关机状态
-
-*****************************************************************************/
 VOS_UINT32 NAS_MSCC_RcvTiWaitImsaPowerOffCnfExpired_PowerOff_WaitImsaPowerOffCnf(
 
     VOS_UINT32                          ulEventType,
@@ -520,21 +483,7 @@ VOS_UINT32 NAS_MSCC_RcvTiScanTimerExpired_PowerOff_Init(
 
     return VOS_TRUE;
 }
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_RcvHsdPowerSaveCnf_PowerOff_WaitHrpdLtePowerSaveCnf
- 功能描述  : 在等待HRPD和LTE挂起回复时，收到HSD的power save cnf
- 输入参数  : RRMM_SYS_INFO_IND_STRU             *pstRrMmSysInfoInd;
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月6日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MSCC_RcvHsdPowerSaveCnf_PowerOff_WaitHrpdLtePowerSaveCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -555,21 +504,7 @@ VOS_UINT32 NAS_MSCC_RcvHsdPowerSaveCnf_PowerOff_WaitHrpdLtePowerSaveCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_RcvMmcPowerSaveCnf_PowerOff_WaitHrpdLtePowerSaveCnf
- 功能描述  : 在等待HRPD和LTE挂起回复时，收到MMC的power save cnf
- 输入参数  : RRMM_SYS_INFO_IND_STRU             *pstRrMmSysInfoInd;
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月6日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MSCC_RcvMmcPowerSaveCnf_PowerOff_WaitHrpdLtePowerSaveCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -590,21 +525,7 @@ VOS_UINT32 NAS_MSCC_RcvMmcPowerSaveCnf_PowerOff_WaitHrpdLtePowerSaveCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_RcvMmaCdmaMoCallSusccessNtf_PowerOff_Init
- 功能描述  : 收到mo call success
- 输入参数  : RRMM_SYS_INFO_IND_STRU             *pstRrMmSysInfoInd;
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月6日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MSCC_RcvMmaCdmaMoCallSuccessNtf_PowerOff_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -645,24 +566,7 @@ VOS_UINT32 NAS_MSCC_RcvMmaCdmaMoCallSuccessNtf_PowerOff_Init(
 #endif
 
 
-/*****************************************************************************
- Function Name   :  NAS_MSCC_SndPowerOffReq
- Description     :
-                    Depending on Receive PID send power off request to respective module
-                    Change the state to wait mode and start timer
 
- Input parameters:  ulReceivePid
- Outout parameters: None
- Return Value    :  None
-
- Modify History:
-     1)  Date    :  2015-01-31
-         Author  :  k902809
-         Modify content :    Create
-     2.日    期   : 2015年07月26日
-       作    者   : f00179208
-       修改内容   : DTS2015052504823：增加打开IMS协议栈的操作类型
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndPowerOffReq(
     VOS_UINT32                                      ulReceivePid
 )

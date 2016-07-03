@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafXCallProcApp.c
-  版 本 号   : 初稿
-  作    者   : l60609
-  生成日期   : 2014年09月03日
-  功能描述   : TAF X CALL处理来自APP的消息
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年09月03日
-    作    者   : l60609
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -61,27 +46,7 @@ extern "C"{
 *****************************************************************************/
 /*lint -save -e958*/
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvAppCallOrigReq
- 功能描述  : 处理MN_CALL_APP_ORIG_REQ消息,(AT&STK统一使用该函数)
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月3日
-    作    者   : y00213812
-    修改内容   : 新生成函数
-  2.日    期   : 2014年11月17日
-    作    者   : w00176964
-    修改内容   : CDMA 1x项目迭代5修改
-  3.日    期   : 2015年4月11日
-    作    者   : y00245242
-    修改内容   : iteration 13开发
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvAppCallOrigReq(VOS_VOID *pMsg)
 {
     VOS_UINT32                          ulRet;
@@ -206,21 +171,7 @@ VOS_VOID TAF_XCALL_RcvAppCallOrigReq(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvAppSupsCmdReq
- 功能描述  : 处理MN_CALL_APP_SUPS_CMD_REQ消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月3日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvAppSupsCmdReq(VOS_VOID *pMsg)
 {
     MN_CALL_APP_REQ_MSG_STRU           *pstAppCallSupsReq = VOS_NULL_PTR;
@@ -279,30 +230,7 @@ VOS_VOID TAF_XCALL_RcvAppSupsCmdReq(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvAppSendFlashReq
- 功能描述  : 处理TAF_CALL_APP_SEND_FLASH_REQ消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月5日
-    作    者   : l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2014年11月7日
-    作    者   : L00256032
-    修改内容   : 1X SS Project修改
-  3.日    期   : 2015年07月23日
-    作    者   : y00307564
-    修改内容   : 增加"+"号转换逻辑修改
-  4.日    期   : 2015年08月10日
-    作    者   : y00307564
-    修改内容   : DTS2015080608576修改
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvAppSendFlashReq(VOS_VOID *pMsg)
 {
     VOS_UINT32                          ulNumOfCalls;
@@ -403,21 +331,7 @@ VOS_VOID TAF_XCALL_RcvAppSendFlashReq(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ProcCallSupsCmdRelHoldOrUdubReq
- 功能描述  : 处理MN_CALL_SUPS_CMD_REL_HELD_OR_UDUB请求
- 输入参数  : MN_CALL_APP_REQ_MSG_STRU           *pstAppCallSupsReq
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月5日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ProcCallSupsCmdRelHoldOrUdubReq(
     MN_CALL_APP_REQ_MSG_STRU           *pstAppCallSupsReq
 )
@@ -480,21 +394,7 @@ VOS_VOID TAF_XCALL_ProcCallSupsCmdRelHoldOrUdubReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ProcCallSupsCmdRelActAcptOthReq
- 功能描述  : 处理MN_CALL_SUPS_CMD_REL_ACT_ACPT_OTH请求
- 输入参数  : MN_CALL_APP_REQ_MSG_STRU           *pstAppCallSupsReq
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月5日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ProcCallSupsCmdRelActAcptOthReq(
     MN_CALL_APP_REQ_MSG_STRU           *pstAppCallSupsReq
 )
@@ -593,24 +493,7 @@ VOS_VOID TAF_XCALL_ProcCallSupsCmdRelActAcptOthReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ProcCallSupsCmdRelCallXReq
- 功能描述  : 处理MN_CALL_SUPS_CMD_REL_ALL_CALL请求，挂断指定呼叫
- 输入参数  : MN_CALL_APP_REQ_MSG_STRU           *pstAppCallSupsReq
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月5日
-    作    者   : l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2014年11月17日
-    作    者   : w00176964
-    修改内容   : CDMA 1x项目迭代5修改
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ProcCallSupsCmdRelCallXReq(
     MN_CALL_APP_REQ_MSG_STRU           *pstAppCallSupsReq
 )
@@ -722,26 +605,7 @@ VOS_VOID TAF_XCALL_ProcCallSupsCmdRelCallXReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ProcCallSupsCmdRelAllCallReq
- 功能描述  : 处理MN_CALL_SUPS_CMD_REL_ALL_CALL请求，挂断所有呼叫
- 输入参数  : MN_CALL_APP_REQ_MSG_STRU           *pstAppCallSupsReq
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月5日
-    作    者   : l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2014年11月17日
-    作    者   : w00176964
-    修改内容   : CDMA 1x项目迭代5修改
-  3.日    期   : 2015年7月23日
-    作    者   : c00299063
-    修改内容   : DTS2015072309638
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ProcCallSupsCmdRelAllCallReq(
     MN_CALL_APP_REQ_MSG_STRU           *pstAppCallSupsReq
 )
@@ -864,21 +728,7 @@ VOS_VOID TAF_XCALL_ProcCallSupsCmdRelAllCallReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ProcCallSupsCmdHoldActAcptOthReq
- 功能描述  : 处理MN_CALL_SUPS_CMD_HOLD_ACT_ACPT_OTH请求
- 输入参数  : MN_CALL_APP_REQ_MSG_STRU           *pstAppCallSupsReq
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月5日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ProcCallSupsCmdHoldActAcptOthReq(
     MN_CALL_APP_REQ_MSG_STRU           *pstAppCallSupsReq
 )
@@ -959,27 +809,7 @@ VOS_VOID TAF_XCALL_ProcCallSupsCmdHoldActAcptOthReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvAppSendBurstDTMFReq
- 功能描述  : 处理TAF_CALL_SEND_BURST_DTMF_REQ消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月10日
-    作    者   : f279542
-    修改内容   : 新生成函数
-  2.日    期   : 2015年7月29日
-    作    者   : l00324781
-    修改内容   : Iter16修改，Cont DTMF和Burst DTMF的等待XCC响应公用一个标志
-  3.日    期   : 2015年8月18日
-    作    者   : l00324781
-    修改内容   : DTS2015081708770修改，向xcc发送消息前，
-                判断定时器StopAndStartContDtmfInterval是否处于运行态
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvAppSendBurstDTMFReq(VOS_VOID *pMsg)
 {
     TAF_CALL_BURST_DTMF_REQ_MSG_STRU                       *pstBurstDTMFReqMsg;
@@ -1037,20 +867,7 @@ VOS_VOID TAF_XCALL_RcvAppSendBurstDTMFReq(VOS_VOID *pMsg)
 /* Buffer操作函数从XCallProcApp挪到XCallCtx.c中 */
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_GetRedialPeriodTimerLen
- 功能描述  : 获取重拨定时器时长
- 输入参数  : VOS_UINT8    ucCallIds
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月14日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XCALL_GetRedialPeriodTimerLen(
     VOS_UINT8                           ucCallId
 )
@@ -1067,20 +884,7 @@ VOS_UINT32 TAF_XCALL_GetRedialPeriodTimerLen(
 
 /* 删除无效的函数 */
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvAppGetCallInfoReq
- 功能描述  : 处理ID_TAFAGENT_MN_GET_CALL_INFO_REQ消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月26日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvAgentGetCallInfoReq(VOS_VOID *pMsg)
 {
     TAFAGERNT_MN_GET_CALL_INFO_CNF_STRU                    *pstCnf;
@@ -1127,20 +931,7 @@ VOS_VOID TAF_XCALL_RcvAgentGetCallInfoReq(VOS_VOID *pMsg)
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvAppGetCallInfoReq
- 功能描述  : 处理MN_CALL_APP_GET_INFO_REQ消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月26日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvAppGetCallInfoReq(VOS_VOID *pMsg)
 {
     MN_CALL_INFO_QRY_CNF_STRU          *pstAppCnfMsg   = VOS_NULL_PTR;
@@ -1211,21 +1002,7 @@ VOS_VOID TAF_XCALL_RcvAppGetCallInfoReq(VOS_VOID *pMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvAppXlemaReq
- 功能描述  : 紧急呼号码查询处理
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年01月6日
-    作    者   : h0246512
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvAppXlemaReq(VOS_VOID *pMsg)
 {
     MN_CALL_APP_REQ_MSG_STRU           *pstCallMsg      = VOS_NULL_PTR;
@@ -1258,21 +1035,7 @@ VOS_VOID TAF_XCALL_RcvAppXlemaReq(VOS_VOID *pMsg)
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvAppCallOrigReq
- 功能描述  : 处理MN_CALL_APP_ORIG_REQ消息,(AT&STK统一使用该函数)
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月8日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvAppCustomDialReq(VOS_VOID *pMsg)
 {
     VOS_UINT32                                    ulRet;
@@ -1379,24 +1142,7 @@ VOS_VOID TAF_XCALL_RcvAppCustomDialReq(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvAppSendContDTMFReq
- 功能描述  : 处理AT模块发来的TAF_CALL_SEND_CONT_DTMF_REQ消息，或向XCC转发，或缓存
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月24日
-    作    者   : l00324781
-    修改内容   : Iter16 新生成函数
-  2.日    期   : 2015年8月18日
-    作    者   : l00324781
-    修改内容   : DTS2015081708770修改，向xcc发送消息前，
-                判断定时器StopAndStartContDtmfInterval是否处于运行态
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvAppSendContDTMFReq(VOS_VOID *pMsg)
 {
     TAF_CALL_CONT_DTMF_REQ_MSG_STRU                        *pstContDTMFReqMsg;
@@ -1464,26 +1210,7 @@ VOS_VOID TAF_XCALL_RcvAppSendContDTMFReq(VOS_VOID *pMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ReplaceFlashPlusWithDigit
- 功能描述  : 将^CFSH命令中号码携带的加号转换为数字
- 输入参数  : VOS_UINT8      ucSrcDigitNum ---下发的^CFSH命令中携带的号码个数
-             VOS_UINT8     *pucSrcDigit   ---下发的^CFSH命令中携带的号码
- 输出参数  : VOS_UINT8      ucDstDigitNum ---转换后的号码个数
-             VOS_UINT8     *pucDstDigit   ---转换后的号码
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月23日
-    作    者   : y00307564
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年12月31日
-    作    者   : h00313353
-    修改内容   : DTS2015122804554
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ReplaceFlashPlusWithDigit(
     VOS_UINT8                           ucSrcDigitNum,
     VOS_UINT8                          *pucSrcDigit,
@@ -1533,20 +1260,7 @@ VOS_VOID TAF_XCALL_ReplaceFlashPlusWithDigit(
         pucDstDigit[0]  = '\0';
     }
 }
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvAtCclprGetReq
- 功能描述  : 处理TAF_CALL_APP_SND_CCLPR_REQ消息,呼叫源号码命令处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月10日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvAtCclprGetReq(VOS_VOID *pstMsg)
 {
     TAF_CALL_EVT_CCLPR_GET_CNF_STRU                         stAppCnfMsg;
@@ -1582,20 +1296,7 @@ VOS_VOID TAF_XCALL_RcvAtCclprGetReq(VOS_VOID *pstMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ReportEccNumList
- 功能描述  : 向AT上报紧急呼列表
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月28日
-    作    者   : h00313353
-    修改内容   : Ecc List Report
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ReportEccNumList(VOS_VOID)
 {
     MN_CALL_ECC_NUM_INFO_STRU          *pstEccNumInfo = VOS_NULL_PTR;
@@ -1639,21 +1340,7 @@ VOS_VOID TAF_XCALL_ReportEccNumList(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SaveCustomEccNum
- 功能描述  : 将APP定制的紧急呼号码保存到全局变量
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月28日
-    作    者   : h00313353
-    修改内容   : Save Custom Ecc Num
-
-*****************************************************************************/
 VOS_VOID TAF_XCALL_SaveCustomEccNum(
     MN_CALL_APP_CUSTOM_ECC_NUM_REQ_STRU*    pstCustomEccNumReq
 )
@@ -1694,20 +1381,7 @@ VOS_VOID TAF_XCALL_SaveCustomEccNum(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvAppEccNumSetReq
- 功能描述  : 处理AT模块发来的MN_CALL_APP_CUSTOM_ECC_NUM_REQ消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月26日
-    作    者   : h00313353
-    修改内容   : 紧急呼定制号码请求
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvAppEccNumSetReq(
     VOS_VOID                           *pMsg
 )
@@ -1795,20 +1469,7 @@ VOS_VOID TAF_XCALL_RcvAppEccNumSetReq(
 }
 
 #if (FEATURE_ON == FEATURE_CHINA_TELECOM_VOICE_ENCRYPT)
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvAppEncryptVoiceReq
- 功能描述  : 收到用户的密话请求消息
- 输入参数  : pstMsg -- 密话请求消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvAppEncryptVoiceReq(VOS_VOID *pstMsg)
 {
     TAF_XCALL_ProcEccEvent(TAF_XCALL_APP_MSG_EVENT_ENC_VOICE_REQ,
@@ -1817,20 +1478,7 @@ VOS_VOID TAF_XCALL_RcvAppEncryptVoiceReq(VOS_VOID *pstMsg)
                            VOS_NULL_PTR);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvAppRemoteCtrlAnswerReq
- 功能描述  : 收到用户下发的自动密话请求应答请求
- 输入参数  : pstMsg -- 密话请求应答请求消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvAppRemoteCtrlAnswerReq(VOS_VOID *pstMsg)
 {
     TAF_XCALL_ProcEccEvent(TAF_XCALL_APP_MSG_EVENT_REMOTE_CTRL_ANSWER_REQ,
@@ -1839,20 +1487,7 @@ VOS_VOID TAF_XCALL_RcvAppRemoteCtrlAnswerReq(VOS_VOID *pstMsg)
                            VOS_NULL_PTR);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvAppEccSrvCapCfgReq
- 功能描述  : 收到用户下发ECC服务能力配置请求
- 输入参数  : pstMsg -- ECC服务能力配置请求消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : l00359089
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvAppEccSrvCapCfgReq(VOS_VOID *pstMsg)
 {
     TAF_CALL_APP_ECC_SRV_CAP_CFG_REQ_STRU                  *pstAppSetEccSrvCap = VOS_NULL_PTR;
@@ -1898,20 +1533,7 @@ VOS_VOID TAF_XCALL_RcvAppEccSrvCapCfgReq(VOS_VOID *pstMsg)
     TAF_XCALL_SndAppEccSrvCapCfgCnf(&pstAppSetEccSrvCap->stCtrl, TAF_CALL_APP_ECC_SRV_CAP_CFG_RESULT_SUCC);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvAppEccSrvCapQryReq
- 功能描述  : 收到用户下发ECC服务能力查询请求
- 输入参数  : pstMsg -- ECC服务能力查询请求消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : l00359089
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvAppEccSrvCapQryReq(VOS_VOID *pstMsg)
 {
     TAF_CALL_APP_ECC_SRV_CAP_QRY_REQ_STRU                  *pstAppGetEccSrvCap = VOS_NULL_PTR;
@@ -1941,20 +1563,7 @@ VOS_VOID TAF_XCALL_RcvAppEccSrvCapQryReq(VOS_VOID *pstMsg)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvAppPrivacyModeSetReq
- 功能描述  : 处理用户下发的privacy mode请求设置
- 输入参数  : pstMsg -- privacy mode请求设置
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月22日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvAppPrivacyModeSetReq(VOS_VOID *pstMsg)
 {
     TAF_CALL_APP_PRIVACY_MODE_SET_REQ_STRU                 *pstPrivacyModeReq = VOS_NULL_PTR;
@@ -1970,20 +1579,7 @@ VOS_VOID TAF_XCALL_RcvAppPrivacyModeSetReq(VOS_VOID *pstMsg)
                                     pstPrivacyModeReq->stCtrl.ucOpId);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvAppPrivacyModeQryReq
- 功能描述  : 处理用户下发的privacy mode查询设置
- 输入参数  : pstMsg -- privacy mode查询设置
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月22日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvAppPrivacyModeQryReq(VOS_VOID *pstMsg)
 {
     TAF_CALL_APP_PRIVACY_MODE_QRY_REQ_STRU                 *pstPrivacyModeQryReq = VOS_NULL_PTR;

@@ -8,15 +8,7 @@ extern VOS_UINT32 SI_PBUpdateACurPB(PBMsgBlock *pMsg);
 extern VOS_UINT32 SI_PB_SReadEMLProc(VOS_UINT16 usIndex, VOS_UINT16 usOffset, SI_PB_RECORD_STRU *pstRecord);
 extern VOS_UINT32 SI_PB_SReadANRProc(VOS_UINT16 usIndex, VOS_UINT16 usOffset, SI_PB_RECORD_STRU *pstRecord);
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者:
-#    修改内容: 新建CASE
-*******************************************************************/
+
 void uttest_SI_PB_PidMsgProc_case1(void)
 {
     PBMsgBlock *pstPBMsg;
@@ -30,15 +22,7 @@ void uttest_SI_PB_PidMsgProc_case1(void)
     free(pstPBMsg);
 }
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者:
-#    修改内容: 新建CASE
-*******************************************************************/
+
 void uttest_SI_PB_PidMsgProc_case2(void)
 {
     PBMsgBlock *pstPBMsg;
@@ -52,15 +36,7 @@ void uttest_SI_PB_PidMsgProc_case2(void)
     free(pstPBMsg);
 }
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者:
-#    修改内容: 新建CASE
-*******************************************************************/
+
 unsigned int uttest_SI_PBUpdateAGlobal_case1(void)
 {
     SI_PB_UPDATEGLOBAL_IND_STRU stMsg;
@@ -79,15 +55,7 @@ unsigned int uttest_SI_PBUpdateAGlobal_case1(void)
     return VOS_ERR;
 }
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者:
-#    修改内容: 新建CASE
-*******************************************************************/
+
 unsigned int uttest_SI_PBUpdateACurPB_case1(void)
 {
     SI_PB_SETPB_IND_STRU stMsg;
@@ -106,15 +74,7 @@ unsigned int uttest_SI_PBUpdateACurPB_case1(void)
     return VOS_ERR;
 }
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者:
-#    修改内容: 新建CASE
-*******************************************************************/
+
 unsigned int uttest_SI_PB_SReadEMLProc_case1(void)
 {
 	SI_PB_RECORD_STRU stRecord;
@@ -126,15 +86,7 @@ unsigned int uttest_SI_PB_SReadEMLProc_case1(void)
     return SI_PB_SReadEMLProc(10,20,&stRecord);
 }
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者:
-#    修改内容: 新建CASE
-*******************************************************************/
+
 unsigned int uttest_SI_PB_SReadEMLProc_case2(void)
 {
 	SI_PB_RECORD_STRU	stRecord;
@@ -149,15 +101,7 @@ unsigned int uttest_SI_PB_SReadEMLProc_case2(void)
     return SI_PB_SReadEMLProc(10,0,&stRecord);
 }
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者:
-#    修改内容: 新建CASE
-*******************************************************************/
+
 unsigned int uttest_SI_PB_SReadEMLProc_case3(void)
 {
 	SI_PB_RECORD_STRU	stRecord;
@@ -181,15 +125,7 @@ unsigned int uttest_SI_PB_SReadEMLProc_case3(void)
     return VOS_ERR;
 }
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者:
-#    修改内容: 新建CASE
-*******************************************************************/
+
 unsigned int uttest_SI_PB_SReadEMLProc_case4(void)
 {
 	SI_PB_RECORD_STRU	stRecord;
@@ -211,15 +147,7 @@ unsigned int uttest_SI_PB_SReadEMLProc_case4(void)
 }
 
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者:
-#    修改内容: 新建CASE
-*******************************************************************/
+
 unsigned int uttest_SI_PB_SReadEMLProc_case5(void)
 {
 	SI_PB_RECORD_STRU	stRecord;
@@ -240,15 +168,7 @@ unsigned int uttest_SI_PB_SReadEMLProc_case5(void)
 	return SI_PB_SReadEMLProc(1,0,&stRecord);
 }
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者:
-#    修改内容: 新建CASE
-*******************************************************************/
+
 unsigned int uttest_SI_PB_SReadEMLProc_case6(void)
 {
 	SI_PB_RECORD_STRU	stRecord;
@@ -271,15 +191,7 @@ unsigned int uttest_SI_PB_SReadEMLProc_case6(void)
     return SI_PB_SReadEMLProc(1,0,&stRecord);
 }
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者:
-#    修改内容: 新建CASE
-*******************************************************************/
+
 unsigned int uttest_SI_PB_SReadANRProc_case1(void)
 {
 	SI_PB_RECORD_STRU	stRecord;
@@ -300,15 +212,7 @@ unsigned int uttest_SI_PB_SReadANRProc_case1(void)
     return VOS_ERR;
 }
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者:
-#    修改内容: 新建CASE
-*******************************************************************/
+
 unsigned int uttest_SI_PB_SReadANRProc_case2(void)
 {
 	SI_PB_RECORD_STRU	stRecord;
@@ -333,15 +237,7 @@ unsigned int uttest_SI_PB_SReadANRProc_case2(void)
     return VOS_ERR;
 }
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者:
-#    修改内容: 新建CASE
-*******************************************************************/
+
 unsigned int uttest_SI_PB_SReadANRProc_case3(void)
 {
 	SI_PB_RECORD_STRU	stRecord;
@@ -364,15 +260,7 @@ unsigned int uttest_SI_PB_SReadANRProc_case3(void)
     return SI_PB_SReadANRProc(1,0,&stRecord);
 }
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者:
-#    修改内容: 新建CASE
-*******************************************************************/
+
 unsigned int uttest_SI_PB_SReadANRProc_case4(void)
 {
 	SI_PB_RECORD_STRU	stRecord;
@@ -394,15 +282,7 @@ unsigned int uttest_SI_PB_SReadANRProc_case4(void)
 	return SI_PB_SReadANRProc(1,0,&stRecord);
 }
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者:
-#    修改内容: 新建CASE
-*******************************************************************/
+
 unsigned int uttest_SI_PB_SReadANRProc_case5(void)
 {
 	SI_PB_RECORD_STRU	stRecord;
@@ -425,15 +305,7 @@ unsigned int uttest_SI_PB_SReadANRProc_case5(void)
     return SI_PB_SReadANRProc(1,0,&stRecord);
 }
 
-/*******************************************************************
-测试用例编号      : Test_WuepsPBPidInit_001
-测试用例标题      : VOS_IP_LOAD_CONFIG阶段初始化全局变量
-预期结果          : 返回VOS_OK
-修改历史          :
-1.日   期  : 2013-06-13
-  作   者  : h59254
-  修改内容 : SVLTE开发
-*******************************************************************/
+
 unsigned int uttest_Test_WuepsPBPidInit_case1(void)
 {
     // 变量声明
@@ -452,15 +324,7 @@ unsigned int uttest_Test_WuepsPBPidInit_case1(void)
     return WuepsPBPidInit(InitPhrase);
 }
 
-/*******************************************************************
-测试用例编号      : Test_WuepsPBPidInit_002
-测试用例标题      : VOS_IP_BUTT阶段给PB注册USIM事件
-预期结果          : 返回VOS_OK
-修改历史          :
-1.日   期  : 2013-06-13
-  作   者  : h59254
-  修改内容 : SVLTE开发
-*******************************************************************/
+
 unsigned int uttest_Test_WuepsPBPidInit_case2(void)
 {
     // 变量声明
@@ -476,15 +340,7 @@ unsigned int uttest_Test_WuepsPBPidInit_case2(void)
     return WuepsPBPidInit(InitPhrase);
 }
 
-/*******************************************************************
-测试用例编号      : Test_WuepsPBPidInit_003
-测试用例标题      : Default分支
-预期结果          : 返回VOS_OK
-修改历史          :
-1.日   期  : 2013-06-13
-  作   者  : h59254
-  修改内容 : SVLTE开发
-*******************************************************************/
+
 unsigned int uttest_Test_WuepsPBPidInit_case3(void)
 {
     // 变量声明

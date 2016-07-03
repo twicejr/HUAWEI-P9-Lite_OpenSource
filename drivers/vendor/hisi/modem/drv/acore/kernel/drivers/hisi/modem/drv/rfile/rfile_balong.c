@@ -322,21 +322,7 @@ static u32 rfile_init_done(void)
     }
     return 0;
 }
-/*************************************************************************
- 函 数 名   : bsp_open
- 功能描述   : bsp_open
- 输入参数   : const s8 *path
-              s32 flags
-              s32 mode
 
- 返 回 值   : 失败返回-1，成功返回文件句柄
-
- 修改历史   :
- 日    期   : 2013年2月4日
- 作    者   : c64416
- 修改内容   :
-
-*************************************************************************/
 s32 bsp_open(const s8 *path, s32 flags, s32 mode)
 {
     s32 ret = -1;
@@ -388,19 +374,7 @@ s32 bsp_open(const s8 *path, s32 flags, s32 mode)
     return ret;
 }
 
-/*************************************************************************
- 函 数 名   : bsp_close
- 功能描述   : bsp_close
- 输入参数   : fd
- 输出参数   :
- 返 回 值   : 成功返回0，失败返回-1
 
- 修改历史   :
- 日    期   : 2013年2月4日
- 作    者   : c64416
- 修改内容   :
-
-*************************************************************************/
 s32 bsp_close(u32 fp)
 {
     s32 ret;
@@ -434,21 +408,7 @@ s32 bsp_close(u32 fp)
 }
 
 
-/*************************************************************************
- 函 数 名   : bsp_write
- 功能描述   : bsp_write
- 输入参数   : u32 fd
-              const s8 *ptr
-              u32 size
- 输出参数   :
- 返 回 值   : 返回写入的数据长度
 
- 修改历史   :
- 日    期   : 2013年2月4日
- 作    者   : c64416
- 修改内容   :
-
-*************************************************************************/
 s32 bsp_write(u32 fd, const s8 *ptr, u32 size)
 {
     s32 ret = BSP_ERROR;
@@ -467,21 +427,7 @@ s32 bsp_write(u32 fd, const s8 *ptr, u32 size)
 
 }
 
-/*************************************************************************
- 函 数 名   : bsp_write_sync
- 功能描述   : bsp_write_sync
- 输入参数   : u32 fd
-              const s8 *ptr
-              u32 size
- 输出参数   :
- 返 回 值   : 返回写入的数据长度
 
- 修改历史   :
- 日    期   : 2013年2月4日
- 作    者   : c64416
- 修改内容   :
-
-*************************************************************************/
 s32 bsp_write_sync(u32 fd, const s8 *ptr, u32 size)
 {
     s32 ret = BSP_ERROR;
@@ -502,20 +448,7 @@ s32 bsp_write_sync(u32 fd, const s8 *ptr, u32 size)
 
 }
 
-/*************************************************************************
- 函 数 名   : bsp_read
- 功能描述   : bsp_read
- 输入参数   : u32 fd
-              s8 *ptr
-              u32 size
- 返 回 值   : 返回读取的数据长度
 
- 修改历史   :
- 日    期   : 2013年2月4日
- 作    者   : c64416
- 修改内容   :
-
-*************************************************************************/
 s32 bsp_read(u32 fd, s8 *ptr, u32 size)
 {
     s32 ret = BSP_ERROR;
@@ -535,19 +468,7 @@ s32 bsp_read(u32 fd, s8 *ptr, u32 size)
 }
 
 
-/*************************************************************************
- 函 数 名   : bsp_lseek
- 功能描述   : bsp_lseek
- 输入参数   : u32 fd, long offset, s32 whence
- 输出参数   :
- 返 回 值   : 成功返回0，失败返回-1
 
- 修改历史   :
- 日    期   : 2013年2月4日
- 作    者   : c64416
- 修改内容   :
-
-*************************************************************************/
 s32 bsp_lseek(u32 fd, long offset, s32 whence)
 {
     s32 ret = BSP_ERROR;
@@ -566,19 +487,7 @@ s32 bsp_lseek(u32 fd, long offset, s32 whence)
 }
 
 
-/*************************************************************************
- 函 数 名   : bsp_tell
- 功能描述   : bsp_tell
- 输入参数   : u32 fd
- 输出参数   :
- 返 回 值   : 成功返回当前读写位置，失败返回-1
 
- 修改历史   :
- 日    期   : 2013年2月4日
- 作    者   : c64416
- 修改内容   :
-
-*************************************************************************/
 long bsp_tell(u32 fd)
 {
     s32 ret = BSP_ERROR;
@@ -601,19 +510,7 @@ long bsp_tell(u32 fd)
 }
 
 
-/*************************************************************************
- 函 数 名   : bsp_remove
- 功能描述   : bsp_remove
- 输入参数   : const s8 *pathname
- 输出参数   :
- 返 回 值   : 成功返回0，失败返回-1
 
- 修改历史   :
- 日    期   : 2013年2月4日
- 作    者   : c64416
- 修改内容   :
-
-*************************************************************************/
 s32 bsp_remove(const s8 *pathname)
 {
     s32 ret = BSP_ERROR;
@@ -636,19 +533,7 @@ s32 bsp_remove(const s8 *pathname)
 }
 
 
-/*************************************************************************
- 函 数 名   : bsp_mkdir
- 功能描述   : bsp_mkdir
- 输入参数   : s8 *dirName
-              s32 mode
- 返 回 值   :
 
- 修改历史   :
- 日    期   : 2013年2月4日
- 作    者   : c64416
- 修改内容   :
-
-*************************************************************************/
 s32 bsp_mkdir(s8 *dirName, s32 mode)
 {
     s32 ret = BSP_ERROR;
@@ -695,18 +580,7 @@ s32 bsp_mkdir(s8 *dirName, s32 mode)
 }
 
 
-/*************************************************************************
- 函 数 名   : bsp_rmdir
- 功能描述   : bsp_rmdir
- 输入参数   : s8 *path
- 返 回 值   : 返回0
 
- 修改历史   :
- 日    期   : 2013年2月4日
- 作    者   : c64416
- 修改内容   :
-
-*************************************************************************/
 s32 bsp_rmdir(s8 *path)
 {
     s32 ret = BSP_ERROR;
@@ -729,19 +603,7 @@ s32 bsp_rmdir(s8 *path)
 
 }
 
-/*************************************************************************
- 函 数 名   : bsp_opendir
- 功能描述   : bsp_opendir
- 输入参数   :
- 输出参数   :
- 返 回 值   : 目录句柄
 
- 修改历史   :
- 日    期   : 2013年2月4日
- 作    者   : c64416
- 修改内容   :
-
-*************************************************************************/
 s32 bsp_opendir(s8 *dirName)
 {
     s32 handle = 0;
@@ -765,19 +627,7 @@ s32 bsp_opendir(s8 *dirName)
 }
 
 
-/*************************************************************************
- 函 数 名   : bsp_readdir
- 功能描述   : bsp_readdir
- 输入参数   :
- 输出参数   :
- 返 回 值   : s32
 
- 修改历史   :
- 日    期   : 2013年2月4日
- 作    者   : c64416
- 修改内容   :
-
-*************************************************************************/
 s32 bsp_readdir(u32 fd, void  *dirent, u32 count)
 {
     s32 ret = BSP_ERROR;
@@ -796,19 +646,7 @@ s32 bsp_readdir(u32 fd, void  *dirent, u32 count)
 }
 
 
-/*************************************************************************
- 函 数 名   : bsp_closedir
- 功能描述   : bsp_closedir
- 输入参数   :
- 输出参数   :
- 返 回 值   :
 
- 修改历史   :
- 日    期   : 2013年2月4日
- 作    者   : c64416
- 修改内容   :
-
-*************************************************************************/
 s32 bsp_closedir(s32 pDir)
 {
     s32 ret = BSP_ERROR;
@@ -870,19 +708,7 @@ void rfile_TransStat(struct rfile_stat_stru *pstRfileStat, struct kstat *pRfileK
     pstRfileStat->blocks            = (u64)pRfileKstat->blocks       ;
 }
 
-/*************************************************************************
- 函 数 名   : bsp_stat
- 功能描述   : bsp_stat
- 输入参数   : s8 *name: 要读取的文件名称
- 输出参数   : void *pStat: 文件的状态信息，结构为struct rfile_stat_stru
- 返 回 值   : 成功返回0,失败返回-1
 
- 修改历史   :
- 日    期   : 2013年2月4日
- 作    者   : c64416
- 修改内容   :
-
-*************************************************************************/
 s32 bsp_stat(s8 *name, void *pStat)
 {
     s32 ret = BSP_ERROR;
@@ -906,20 +732,7 @@ s32 bsp_stat(s8 *name, void *pStat)
 }
 
 
-/*************************************************************************
- 函 数 名   : bsp_rename
- 功能描述   : bsp_rename
- 输入参数   : const char * oldname
-              const char * newname
- 输出参数   : no
- 返 回 值   : 成功返回0,失败返回-1
 
- 修改历史   :
- 日    期   : 2013年11月21日
- 作    者   : c64416
- 修改内容   :
-
-*************************************************************************/
 s32 bsp_rename( const char * oldname, const char * newname )
 {
     s32 ret = BSP_ERROR;
@@ -943,19 +756,7 @@ s32 bsp_rename( const char * oldname, const char * newname )
 }
 
 
-/*****************************************************************************
- 函 数 名  : rfile_IccSend
- 功能描述  : 向ICC通道发送数据，如果通道满，则重复尝试多次
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : void
 
- 修改历史      :
-  1.日    期   : 2013年10月29日
-    作    者   : c64416
-    修改内容   : 新生成函数(适配ICC通道回调中不能malloc、信号量阻塞修改)
-
-*****************************************************************************/
 void rfile_IccSend(void *pdata, u32 len, u32 ulId)
 {
     s32 ret, i;
@@ -996,19 +797,7 @@ void rfile_IccSend(void *pdata, u32 len, u32 ulId)
 
 /*lint -save -e64*/
 
-/*****************************************************************************
- 函 数 名  : rfile_AcoreOpenReq
- 功能描述  : fopen的请求处理
- 输入参数  : struct bsp_rfile_que_stru *pstRfileQue
- 输出参数  : 无
- 返 回 值  : s32
 
- 修改历史      :
-  1.日    期   : 2013年2月19日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32 rfile_AcoreOpenReq(struct bsp_rfile_open_req *pstRfileReq, u32 ulId)
 {
     u32 ulNameLen;
@@ -1081,19 +870,7 @@ rfile_AcoreFopenCnf:
 }
 
 
-/*****************************************************************************
- 函 数 名  : rfile_AcoreCloseReq
- 功能描述  : fclose的请求处理
- 输入参数  : struct bsp_rfile_que_stru *pstRfileQue
- 输出参数  : 无
- 返 回 值  : s32
 
- 修改历史      :
-  1.日    期   : 2013年2月19日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32 rfile_AcoreCloseReq(struct bsp_rfile_close_req *pstRfileReq, u32 ulId)
 {
     struct bsp_rfile_common_cnf stRfileCnf = {0};
@@ -1116,19 +893,7 @@ s32 rfile_AcoreCloseReq(struct bsp_rfile_close_req *pstRfileReq, u32 ulId)
 }
 
 
-/*****************************************************************************
- 函 数 名  : rfile_AcoreWriteReq
- 功能描述  : fwrite的请求处理
- 输入参数  : struct bsp_rfile_que_stru *pstRfileQue
- 输出参数  : 无
- 返 回 值  : s32
 
- 修改历史      :
-  1.日    期   : 2013年2月19日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32 rfile_AcoreWriteReq(struct bsp_rfile_write_req *pstRfileReq, u32 ulId)
 {
     struct bsp_rfile_common_cnf stRfileCnf = {0};
@@ -1148,19 +913,7 @@ s32 rfile_AcoreWriteReq(struct bsp_rfile_write_req *pstRfileReq, u32 ulId)
     return BSP_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : rfile_AcoreWriteSyncReq
- 功能描述  : fwrite的请求处理
- 输入参数  : struct bsp_rfile_que_stru *pstRfileQue
- 输出参数  : 无
- 返 回 值  : s32
 
- 修改历史      :
-  1.日    期   : 2013年2月19日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32 rfile_AcoreWriteSyncReq(struct bsp_rfile_write_req *pstRfileReq, u32 ulId)
 {
     struct bsp_rfile_common_cnf stRfileCnf = {0};
@@ -1181,19 +934,7 @@ s32 rfile_AcoreWriteSyncReq(struct bsp_rfile_write_req *pstRfileReq, u32 ulId)
 }
 
 
-/*****************************************************************************
- 函 数 名  : rfile_AcoreReadReq
- 功能描述  : fopen的请求处理
- 输入参数  : struct bsp_rfile_que_stru *pstRfileQue
- 输出参数  : 无
- 返 回 值  : s32
 
- 修改历史      :
-  1.日    期   : 2013年2月19日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32 rfile_AcoreReadReq(struct bsp_rfile_read_req *pstRfileReq, u32 ulId)
 {
     u32 ulLen;
@@ -1232,19 +973,7 @@ s32 rfile_AcoreReadReq(struct bsp_rfile_read_req *pstRfileReq, u32 ulId)
     return BSP_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : rfile_AcoreSeekReq
- 功能描述  : fseek的请求处理
- 输入参数  : struct bsp_rfile_que_stru *pstRfileQue
- 输出参数  : 无
- 返 回 值  : s32
 
- 修改历史      :
-  1.日    期   : 2013年2月19日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32 rfile_AcoreSeekReq(struct bsp_rfile_seek_req *pstRfileReq, u32 ulId)
 {
     struct bsp_rfile_common_cnf stRfileCnf = {0};
@@ -1264,19 +993,7 @@ s32 rfile_AcoreSeekReq(struct bsp_rfile_seek_req *pstRfileReq, u32 ulId)
 }
 
 
-/*****************************************************************************
- 函 数 名  : rfile_AcoreTellReq
- 功能描述  : ftell的请求处理
- 输入参数  : struct bsp_rfile_que_stru *pstRfileQue
- 输出参数  : 无
- 返 回 值  : s32
 
- 修改历史      :
-  1.日    期   : 2013年2月19日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32 rfile_AcoreTellReq(struct bsp_rfile_tell_req *pstRfileReq, u32 ulId)
 {
     s32 ret = BSP_ERROR;
@@ -1302,19 +1019,7 @@ s32 rfile_AcoreTellReq(struct bsp_rfile_tell_req *pstRfileReq, u32 ulId)
     return BSP_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : rfile_AcoreRemoveReq
- 功能描述  : remove的请求处理
- 输入参数  : struct bsp_rfile_que_stru *pstRfileQue
- 输出参数  : 无
- 返 回 值  : s32
 
- 修改历史      :
-  1.日    期   : 2013年2月19日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32 rfile_AcoreRemoveReq(struct bsp_rfile_remove_req *pstRfileReq, u32 ulId)
 {
     struct bsp_rfile_common_cnf stRfileCnf = {0};
@@ -1352,19 +1057,7 @@ rfile_AcoreRemoveCnf:
 }
 
 
-/*****************************************************************************
- 函 数 名  : rfile_AcoreMkdirReq
- 功能描述  : mkdir的请求处理
- 输入参数  : struct bsp_rfile_que_stru *pstRfileQue
- 输出参数  : 无
- 返 回 值  : s32
 
- 修改历史      :
-  1.日    期   : 2013年2月19日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32 rfile_AcoreMkdirReq(struct bsp_rfile_mkdir_req *pstRfileReq, u32 ulId)
 {
     struct bsp_rfile_common_cnf stRfileCnf = {0};
@@ -1423,19 +1116,7 @@ rfile_AcoreMkdirCnf:
     return BSP_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : rfile_AcoreRmdirReq
- 功能描述  : rmdir的请求处理
- 输入参数  : struct bsp_rfile_que_stru *pstRfileQue
- 输出参数  : 无
- 返 回 值  : s32
 
- 修改历史      :
-  1.日    期   : 2013年2月19日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32 rfile_AcoreRmdirReq(struct bsp_rfile_rmdir_req *pstRfileReq, u32 ulId)
 {
     struct bsp_rfile_common_cnf stRfileCnf = {0};
@@ -1474,19 +1155,7 @@ rfile_AcoreRmdirCnf:
 }
 
 
-/*****************************************************************************
- 函 数 名  : rfile_AcoreOpendirReq
- 功能描述  : opendir的请求处理
- 输入参数  : struct bsp_rfile_que_stru *pstRfileQue
- 输出参数  : 无
- 返 回 值  : s32
 
- 修改历史      :
-  1.日    期   : 2013年2月19日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32 rfile_AcoreOpendirReq(struct bsp_rfile_opendir_req *pstRfileReq, u32 ulId)
 {
     struct bsp_rfile_opendir_cnf stRfileCnf = {0};
@@ -1530,19 +1199,7 @@ rfile_AcoreOpendirCnf:
 }
 
 
-/*****************************************************************************
- 函 数 名  : rfile_AcoreReaddirReq
- 功能描述  : readdir的请求处理
- 输入参数  : struct bsp_rfile_que_stru *pstRfileQue
- 输出参数  : 无
- 返 回 值  : s32
 
- 修改历史      :
-  1.日    期   : 2013年2月19日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32 rfile_AcoreReaddirReq(struct bsp_rfile_readdir_req *pstRfileReq, u32 ulId)
 {
     s32 ret = BSP_ERROR;
@@ -1575,19 +1232,7 @@ s32 rfile_AcoreReaddirReq(struct bsp_rfile_readdir_req *pstRfileReq, u32 ulId)
 }
 
 
-/*****************************************************************************
- 函 数 名  : rfile_AcoreClosedirReq
- 功能描述  : closedir的请求处理
- 输入参数  : struct bsp_rfile_que_stru *pstRfileQue
- 输出参数  : 无
- 返 回 值  : s32
 
- 修改历史      :
-  1.日    期   : 2013年2月19日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32 rfile_AcoreClosedirReq(struct bsp_rfile_closedir_req *pstRfileReq, u32 ulId)
 {
     struct bsp_rfile_common_cnf stRfileCnf = {0};
@@ -1609,19 +1254,7 @@ s32 rfile_AcoreClosedirReq(struct bsp_rfile_closedir_req *pstRfileReq, u32 ulId)
 }
 
 
-/*****************************************************************************
- 函 数 名  : rfile_AcoreStatReq
- 功能描述  : stat的请求处理
- 输入参数  : struct bsp_rfile_que_stru *pstRfileQue
- 输出参数  : 无
- 返 回 值  : s32
 
- 修改历史      :
-  1.日    期   : 2013年2月19日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32 rfile_AcoreStatReq(struct bsp_rfile_stat_req *pstRfileReq, u32 ulId)
 {
     struct bsp_rfile_stat_cnf stRfileCnf = {0};
@@ -1660,19 +1293,7 @@ rfile_AcoreStatCnf:
 }
 
 
-/*****************************************************************************
- 函 数 名  : rfile_AcoreRenameReq
- 功能描述  : rename的请求处理
- 输入参数  : struct bsp_rfile_que_stru *pstRfileQue
- 输出参数  : 无
- 返 回 值  : s32
 
- 修改历史      :
-  1.日    期   : 2013年11月21日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32 rfile_AcoreRenameReq(struct bsp_rfile_rename_req *pstRfileReq, u32 ulId)
 {
     struct bsp_rfile_rename_cnf stRfileCnf = {0};
@@ -1735,19 +1356,7 @@ rfile_AcoreRenameCnf:
 }
 
 
-/*****************************************************************************
- 函 数 名  : rfile_AcoreAccessReq
- 功能描述  : stat的请求处理
- 输入参数  : struct bsp_rfile_que_stru *pstRfileQue
- 输出参数  : 无
- 返 回 值  : s32
 
- 修改历史      :
-  1.日    期   : 2013年2月19日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32 rfile_AcoreAccessReq(struct bsp_rfile_access_req *pstRfileReq, u32 ulId)
 {
     struct bsp_rfile_common_cnf stRfileCnf = {0};
@@ -1786,19 +1395,7 @@ rfile_AcoreAccessCnf:
 }
 
 
-/*****************************************************************************
- 函 数 名  : rfile_AcoreMassrdReq
- 功能描述  : massread的请求处理
- 输入参数  : struct bsp_rfile_que_stru *pstRfileQue
- 输出参数  : 无
- 返 回 值  : s32
 
- 修改历史      :
-  1.日    期   : 2013年2月19日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32 rfile_AcoreMassrdReq(struct bsp_rfile_massread_req *pstRfileReq, u32 ulId)
 {
     s32 ret = BSP_ERROR;
@@ -1849,19 +1446,7 @@ s32 rfile_AcoreMassrdReq(struct bsp_rfile_massread_req *pstRfileReq, u32 ulId)
 }
 
 
-/*****************************************************************************
- 函 数 名  : rfile_AcoreMasswrReq
- 功能描述  : massread的请求处理
- 输入参数  : struct bsp_rfile_que_stru *pstRfileQue
- 输出参数  : 无
- 返 回 值  : s32
 
- 修改历史      :
-  1.日    期   : 2013年2月19日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32 rfile_AcoreMasswrReq(struct bsp_rfile_masswrite_req *pstRfileReq, u32 ulId)
 {
     s32 ret = BSP_ERROR;
@@ -1904,23 +1489,7 @@ s32 rfile_AcoreMasswrReq(struct bsp_rfile_masswrite_req *pstRfileReq, u32 ulId)
 /*lint -restore*/
 
 
-/*****************************************************************************
- 函 数 名  : bsp_RfileCallback
- 功能描述  : icc回调处理函数
- 输入参数  : u32 channel_id
-             u32 len
-             void *context
- 输出参数  : 无
- 返 回 值  : s32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月4日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32 bsp_RfileCallback(u32 channel_id, u32 len, void *context)
 {
     rfile_MntnDotRecord(__LINE__);
@@ -1991,19 +1560,7 @@ void rfile_ResetProc(void)
 }
 
 /*lint -save -e716*/
-/*****************************************************************************
- 函 数 名  : rfile_TaskProc
- 功能描述  : 自处理任务
- 输入参数  : void* obj
- 输出参数  : 无
- 返 回 值  : s32
 
- 修改历史      :
-  1.日    期   : 2013年2月5日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32 rfile_TaskProc(void* obj)
 {
     s32 ret;
@@ -2100,20 +1657,7 @@ s32 bsp_rfile_reset_cb(DRV_RESET_CB_MOMENT_E eparam, s32 userdata)    /*lint !e8
     return 0;
 }
 
-/*****************************************************************************
- 函 数 名  : bsp_rfile_init
- 功能描述  : rfile模块初始化
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月4日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32 bsp_rfile_init(void)
 {
     s32 ret;
@@ -2166,20 +1710,7 @@ s32 bsp_rfile_init(void)
     return BSP_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : bsp_rfile_release
- 功能描述  : rfile模块去初始化
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月4日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32 bsp_rfile_release(void)    /*lint !e830*/
 {
     s32 ret;

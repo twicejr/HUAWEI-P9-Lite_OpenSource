@@ -140,7 +140,7 @@ static void hisp110_set_ddrfreq(int ddr_bandwidth);
 
 void hisp110_init_timestamp(void);
 
-void hisp110_set_timestamp(msg_ack_request_t *ack);
+void hisp110_set_timestamp(unsigned int *timestampH, unsigned int *timestampL);
 void hisp110_handle_msg(hisp_msg_t *msg);
 
 void hisp110_init_timestamp(void)
@@ -181,47 +181,48 @@ void hisp110_destroy_timestamp(void)
  *we can calculate fw_timeval with fw syscounter
  *and deliver it to hal. Hal then gets second and microsecond
  *********************************************/
-void hisp110_set_timestamp(msg_ack_request_t *ack)
+void hisp110_set_timestamp(unsigned int *timestampH, unsigned int *timestampL)
 {
-#define NANOSECOND_PER_SECOND 	(1000000000)
 #define MICROSECOND_PER_SECOND 	(1000000)
 	u64 fw_micro_second = 0;
 	u64 fw_sys_counter = 0;
-	u64 nano_second = 0;
+	u64 micro_second = 0;
 
-	if (NULL == ack){
-		cam_err("%s err ack is NULL.", __func__);
-		return;
-	}
 
-	if (TIMESTAMP_UNINTIAL ==  s_timestamp_state){
+	if (TIMESTAMP_UNINTIAL ==  s_timestamp_state) {
 		cam_err("%s wouldn't enter this branch.\n", __func__);
 		hisp110_init_timestamp();
 	}
 
-	cam_debug("%s ack_high:0x%x ack_low:0x%x", __func__,
-		ack->timestampH, ack->timestampL);
-
-	if (ack->timestampH == 0 && ack->timestampL == 0) {
+	if (timestampH == NULL || timestampL == NULL) {
+		cam_err("%s timestampH or timestampL is null.\n", __func__);
 		return;
 	}
 
-	fw_sys_counter = ((u64)ack->timestampH<< 32) | (u64)ack->timestampL;
-	nano_second = (fw_sys_counter - s_system_counter) * NANOSECOND_PER_SECOND / s_system_couter_rate;
+	cam_debug("%s ack_high:0x%x ack_low:0x%x", __func__,
+		*timestampH, *timestampL);
 
-	//chang nano second to micro second
+	if (*timestampH == 0 && *timestampL == 0) {
+		return;
+	}
+
+	fw_sys_counter = ((u64)(*timestampH)<< 32) | (u64)(*timestampL);
+
+	micro_second = (fw_sys_counter - s_system_counter) * MICROSECOND_PER_SECOND / s_system_couter_rate;
+
+	//chang relative time to absolute time
 	fw_micro_second =
-	    (nano_second / NANOSECOND_PER_SECOND + s_timeval.tv_sec) * MICROSECOND_PER_SECOND
-		+ ((nano_second % NANOSECOND_PER_SECOND) / 1000 + s_timeval.tv_usec);
+	    (micro_second / MICROSECOND_PER_SECOND + s_timeval.tv_sec) * MICROSECOND_PER_SECOND
+		+ ((micro_second % MICROSECOND_PER_SECOND) + s_timeval.tv_usec);
 #if 0
 	do_gettimeofday(&s_timeval);
 	fw_micro_second= s_timeval.tv_sec * MICROSECOND_PER_SECOND + s_timeval.tv_usec;
 #endif
 
-	ack->timestampH = (u32)(fw_micro_second >>32 & 0xFFFFFFFF);
-	ack->timestampL = (u32)(fw_micro_second & 0xFFFFFFFF);
+	*timestampH = (u32)(fw_micro_second >>32 & 0xFFFFFFFF);
+	*timestampL = (u32)(fw_micro_second & 0xFFFFFFFF);
 
-	cam_debug("%s h:0x%x l:0x%x", __func__, ack->timestampH, ack->timestampL);
+	cam_debug("%s h:0x%x l:0x%x", __func__, *timestampH, *timestampL);
 }
 
 void hisp110_handle_msg(hisp_msg_t *msg)
@@ -231,7 +232,10 @@ void hisp110_handle_msg(hisp_msg_t *msg)
 	switch (msg->api_name)
 	{
 		case REQUEST_RESPONSE:
-			hisp110_set_timestamp(&(msg->u.ack_request));
+			hisp110_set_timestamp(&(msg->u.ack_request.timestampH), &(msg->u.ack_request.timestampL));
+			break;
+		case MSG_EVENT_SENT:
+			hisp110_set_timestamp(&(msg->u.event_sent.timestampH), &(msg->u.event_sent.timestampL));
 			break;
 
 		default:

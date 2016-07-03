@@ -27,14 +27,7 @@ using namespace testing;
 //12、比较异常 EXPECT_THROW
 //13、结构体类型比较ASSERT_SAME_DATA ASSERT_SAME_MEMORY
 
-/*****************************************************************************
-类名 : Test_AT_RegisterCmdTable
-功能描述 : AT_RegisterCmdTable UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_RegisterCmdTable: public ::testing::Test
 {
 public:
@@ -49,15 +42,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_RegisterCmdTable_001
-测试用例标题      : 注册命令表成功
-预期结果          : 返回ERR_MSP_SUCCESS
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RegisterCmdTable, Test_AT_RegisterCmdTable_001)
 {
     VOS_UINT32                   ulRet = 0;
@@ -74,15 +59,7 @@ TEST_F(Test_AT_RegisterCmdTable, Test_AT_RegisterCmdTable_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RegisterCmdTable_002
-测试用例标题      : 分配命令表内存失败
-预期结果          : 返回ERR_MSP_MALLOC_FAILUE
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RegisterCmdTable, Test_AT_RegisterCmdTable_002)
 {
     VOS_UINT32                   ulRet = 0;
@@ -91,11 +68,9 @@ TEST_F(Test_AT_RegisterCmdTable, Test_AT_RegisterCmdTable_002)
     g_stCmdTblList.next = &g_stCmdTblList;
     g_stCmdTblList.prev = &g_stCmdTblList;
 
-/* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     MOCKER(At_HeapAllocD)
         .expects(exactly(1))
         .will(returnValue((void *)NULL));
-/* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
     ulRet = 0;
     ulRet = AT_RegisterCmdTable(&stCmdTblEntry,usCmdNum);
@@ -105,14 +80,7 @@ TEST_F(Test_AT_RegisterCmdTable, Test_AT_RegisterCmdTable_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名 : Test_AT_ClacCmdProc
-功能描述 : AT_ClacCmdProc UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_ClacCmdProc: public ::testing::Test
 {
 public:
@@ -127,15 +95,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_ClacCmdProc_001
-测试用例标题      : 输出所有命令
-预期结果          : 输出所有命令成功
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ClacCmdProc, Test_AT_ClacCmdProc_001)
 {
     //打印函数 无法测试
@@ -145,14 +105,7 @@ TEST_F(Test_AT_ClacCmdProc, Test_AT_ClacCmdProc_001)
     AT_ClacCmdProc();
 }
 
-/*****************************************************************************
-类名 : Test_BlockCmdCheck
-功能描述 : BlockCmdCheck UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_BlockCmdCheck: public ::testing::Test
 {
 public:
@@ -167,15 +120,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_BlockCmdCheck_001
-测试用例标题      : 检查有命令处于阻塞状态
-预期结果          : 返回阻塞命令所在g_stParseContext[]索引
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_BlockCmdCheck, Test_BlockCmdCheck_001)
 {
     VOS_UINT8 ucBlockid;
@@ -193,15 +138,7 @@ TEST_F(Test_BlockCmdCheck, Test_BlockCmdCheck_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_BlockCmdCheck_002
-测试用例标题      : 没有命令处于阻塞状态
-预期结果          : 返回AT_MAX_CLIENT_NUM
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_BlockCmdCheck, Test_BlockCmdCheck_002)
 {
     VOS_UINT8 ucBlockid;
@@ -221,14 +158,7 @@ TEST_F(Test_BlockCmdCheck, Test_BlockCmdCheck_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名 : Test_ClearBlockCmdInfo
-功能描述 : ClearBlockCmdInfo UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ClearBlockCmdInfo: public ::testing::Test
 {
 public:
@@ -243,15 +173,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_ClearBlockCmdInfo_001
-测试用例标题      : 清空被阻塞命令信息
-预期结果          : 清空g_stParseContext[i]成功
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ClearBlockCmdInfo, Test_ClearBlockCmdInfo_001)
 {
     VOS_UINT8 ucIndex = 0;
@@ -266,14 +188,7 @@ TEST_F(Test_ClearBlockCmdInfo, Test_ClearBlockCmdInfo_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名 : Test_CheckProcBlockCmd
-功能描述 : CheckProcBlockCmd UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_CheckProcBlockCmd: public ::testing::Test
 {
 public:
@@ -288,15 +203,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_CheckProcBlockCmd_001
-测试用例标题      : 检查阻塞命令并处理,第一个解析上下文存在阻塞命令
-预期结果          : 第一个解析上下文中的阻塞命令被处理
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_CheckProcBlockCmd, Test_CheckProcBlockCmd_001)
 {
     g_stParseContext[0].ucClientStatus = AT_FW_CLIENT_STATUS_READY;
@@ -313,14 +220,7 @@ TEST_F(Test_CheckProcBlockCmd, Test_CheckProcBlockCmd_001)
 
 }
 
-/*****************************************************************************
-类名 : Test_AT_ParseCmdOver
-功能描述 : AT_ParseCmdOver UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_ParseCmdOver: public ::testing::Test
 {
 public:
@@ -335,29 +235,14 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_ParseCmdOver_001
-测试用例标题      : 检查阻塞命令并处理
-预期结果          : 返回处理结果
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ParseCmdOver, Test_AT_ParseCmdOver_001)
 {
     AT_ParseCmdOver(0);
 
 }
 
-/*****************************************************************************
-类名 : Test_AT_BlockCmdTimeOutProc
-功能描述 : AT_BlockCmdTimeOutProc UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_BlockCmdTimeOutProc: public ::testing::Test
 {
 public:
@@ -372,15 +257,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_BlockCmdTimeOutProc_001
-测试用例标题      : 缓存命令超时处理函数，0号客户端缓存命令超时，
-预期结果          : 清除0号解析上下文中的阻塞命令
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_BlockCmdTimeOutProc, Test_AT_BlockCmdTimeOutProc_001)
 {
     VOS_UINT8 ucIndex = 0;
@@ -397,14 +274,7 @@ TEST_F(Test_AT_BlockCmdTimeOutProc, Test_AT_BlockCmdTimeOutProc_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名 : Test_PendClientProc
-功能描述 : PendClientProc UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_PendClientProc: public ::testing::Test
 {
 public:
@@ -422,15 +292,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_PendClientProc_001
-测试用例标题      : PEND客户端处理，0号客户端处于PEND状态，执行STOP或ATH命令
-预期结果          : 客户端被置为READY状态
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_PendClientProc, Test_PendClientProc_001)
 {
     VOS_UINT8 ucIndex  = 0;
@@ -458,14 +320,7 @@ TEST_F(Test_PendClientProc, Test_PendClientProc_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名 : Test_HoldBlockCmd
-功能描述 : HoldBlockCmd UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_HoldBlockCmd: public ::testing::Test
 {
 public:
@@ -488,15 +343,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_HoldBlockCmd_001
-测试用例标题      : 保存阻塞命令字符串，0号客户端保存阻塞命令
-预期结果          : 返回处理结果
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_HoldBlockCmd, Test_HoldBlockCmd_001)
 {
     VOS_UINT8 ucIndex  = 0;
@@ -518,14 +365,7 @@ TEST_F(Test_HoldBlockCmd, Test_HoldBlockCmd_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名 : Test_ParseCmdIsComb
-功能描述 : ParseCmdIsComb UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ParseCmdIsComb: public ::testing::Test
 {
 public:
@@ -540,15 +380,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_ParseCmdIsComb_001
-测试用例标题      : 0号客户端发送AT命令，当前没有其他客户端处理组合命令
-预期结果          : 返回ERR_MSP_SUCCESS
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ParseCmdIsComb, Test_ParseCmdIsComb_001)
 {
     VOS_UINT8 i;
@@ -570,15 +402,7 @@ TEST_F(Test_ParseCmdIsComb, Test_ParseCmdIsComb_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ParseCmdIsComb_002
-测试用例标题      : 1号客户端发送AT命令，0客户端正在处理组合命令
-预期结果          : 返回ERR_MSP_FAILURE,并且1号客户端缓存命令
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ParseCmdIsComb, Test_ParseCmdIsComb_002)
 {
     //VOS_UINT8 i;
@@ -600,14 +424,7 @@ TEST_F(Test_ParseCmdIsComb, Test_ParseCmdIsComb_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名 : Test_atParseCmdIsPend
-功能描述 : atParseCmdIsPend UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_atParseCmdIsPend: public ::testing::Test
 {
 public:
@@ -630,15 +447,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_atParseCmdIsPend_001
-测试用例标题      : 判断是否有正在处理的通道，有的话丢弃或缓存
-预期结果          : 返回处理结果
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_atParseCmdIsPend, Test_atParseCmdIsPend_001)
 {
     VOS_UINT32 ulRet = 0;
@@ -674,15 +483,7 @@ TEST_F(Test_atParseCmdIsPend, Test_atParseCmdIsPend_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_atParseCmdIsPend_002
-测试用例标题      : 本通道和遍历到的通道均为APP通道
-预期结果          : 返回ERR_MSP_SUCCESS
-修改历史      :
- 1.日    期   : 2012年12月6日
-   作    者   : l00227485
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_atParseCmdIsPend, Test_atParseCmdIsPend_002)
 {
     VOS_UINT32 ulRet = 0;
@@ -700,14 +501,7 @@ TEST_F(Test_atParseCmdIsPend, Test_atParseCmdIsPend_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名 : Test_AT_DiscardInvalidCharForSms
-功能描述 : AT_DiscardInvalidCharForSms UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_atDiscardInvalidCharForSms:public ::testing::Test
 {
 public:
@@ -722,15 +516,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_DiscardInvalidCharForSms_001
-测试用例标题      : +CMGS,+CMGW,+CMGC命令的检查和特殊处理，输入参数字符串为"AT+CMGS=<CR><LF>"
-预期结果          : 字符串长度减1
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_atDiscardInvalidCharForSms, Test_atDiscardInvalidCharForSms_001)
 {
     VOS_UINT8*pData = (VOS_UINT8*)"AT+CMGS=\r\n";
@@ -744,15 +530,7 @@ TEST_F(Test_atDiscardInvalidCharForSms, Test_atDiscardInvalidCharForSms_001)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_DiscardInvalidCharForSms_002
-测试用例标题      : +CMGS,+CMGW,+CMGC命令的检查和特殊处理，输入参数字符串为"AT+CMGS=<CR><LF><CR>"
-预期结果          : 字符串长度减2
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_atDiscardInvalidCharForSms, Test_atDiscardInvalidCharForSms_002)
 {
     VOS_UINT8*pData = (VOS_UINT8*)"AT+CMGS=\r\n\r\n";
@@ -767,14 +545,7 @@ TEST_F(Test_atDiscardInvalidCharForSms, Test_atDiscardInvalidCharForSms_002)
 }
 
 
-/*****************************************************************************
-类名 : Test_atResetParseVariable
-功能描述 : atResetParseVariable UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_atResetParseVariable: public ::testing::Test
 {
 public:
@@ -789,15 +560,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_atResetParseVariable_001
-测试用例标题      : 重新初始化解析用全局变量
-预期结果          : 解析全局变量被重置
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_atResetParseVariable, Test_atResetParseVariable_001)
 {
     g_stATParseCmd.ucCmdOptType = AT_CMD_OPT_TEST_CMD;
@@ -812,14 +575,7 @@ TEST_F(Test_atResetParseVariable, Test_atResetParseVariable_001)
 
 }
 
-/*****************************************************************************
-类名 : Test_ParseCmdType
-功能描述 : ParseCmdType UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ParseCmdType: public ::testing::Test
 {
 public:
@@ -834,15 +590,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_ParseCmdType_001
-测试用例标题      : 根据命令类型解析命令字符串，输入命令AT
-预期结果          : 返回AT_OK
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ParseCmdType, Test_ParseCmdType_001)
 {
     VOS_UINT8* pData =(VOS_UINT8*) "AT";
@@ -868,15 +616,7 @@ TEST_F(Test_ParseCmdType, Test_ParseCmdType_001)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_ParseCmdType_002
-测试用例标题      : 根据命令类型解析命令字符串，输入错误命令BT
-预期结果          : 返回AT_ERROR
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ParseCmdType, Test_ParseCmdType_002)
 {
     VOS_UINT8* pData =(VOS_UINT8*) "BT";
@@ -892,15 +632,7 @@ TEST_F(Test_ParseCmdType, Test_ParseCmdType_002)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_ParseCmdType_003
-测试用例标题      : 根据命令类型解析命令字符串，输入扩展命令AT+CGDCONT?
-预期结果          : 返回AT_SUCCESS，解析全局变量中保存了AT+CGDCONT?命令
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ParseCmdType, Test_ParseCmdType_003)
 {
     VOS_UINT8* pData = (VOS_UINT8*)"AT+CGDCONT?";
@@ -919,14 +651,7 @@ TEST_F(Test_ParseCmdType, Test_ParseCmdType_003)
 
 }
 
-/*****************************************************************************
-类名 : Test_atMatchCmdName
-功能描述 : ParseCmdType UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_atMatchCmdName: public ::testing::Test
 {
 public:
@@ -941,15 +666,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_atMatchCmdName_001
-测试用例标题      : 匹配命令名称，为客户端0匹配命令at+ccc
-预期结果          : 返回失败，不支持该命令
-修改历史      :
-1.日    期   : 2011年10月13日
-作    者   : c64416
-修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_atMatchCmdName, Test_atMatchCmdName_001)
 {
     VOS_UINT32 ulRet;
@@ -969,14 +686,7 @@ TEST_F(Test_atMatchCmdName, Test_atMatchCmdName_001)
 
 }
 
-/*****************************************************************************
-类名 : Test_ParseParam
-功能描述 : ParseParam UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ParseParam: public ::testing::Test
 {
 public:
@@ -991,15 +701,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_ParseParam_001
-测试用例标题      : 解析参数，解析的AT命令为AT+CGDSCONT=5,0
-预期结果          : 返回解析成功，并在全局变量g_stATParseCmd中保存解析结果
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ParseParam, Test_ParseParam_001)
 {
     VOS_UINT32   ulRet  = ERR_MSP_FAILURE;
@@ -1016,15 +718,7 @@ TEST_F(Test_ParseParam, Test_ParseParam_001)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_ParseParam_002
-测试用例标题      : 解析参数，解析的AT命令为AT+CGDSCONT=33,0
-预期结果          : 返回参数错误
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ParseParam, Test_ParseParam_002)
 {
     VOS_UINT32   ulRet  = ERR_MSP_FAILURE;
@@ -1040,14 +734,7 @@ TEST_F(Test_ParseParam, Test_ParseParam_002)
 
 }
 
-/*****************************************************************************
-类名 : Test_fwCmdTestProc
-功能描述 : fwCmdTestProc UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_fwCmdTestProc: public ::testing::Test
 {
 public:
@@ -1062,15 +749,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_fwCmdTestProc_001
-测试用例标题      : AT命令测试函数执行，执行AT+CGDSCONT命令的测试函数
-预期结果          : 返回AT_OK，保存"+CGDSCONT: (1-11),(1-11),(0-2),(0-3)"在pgucAtSndCodeAddr中
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_fwCmdTestProc, Test_fwCmdTestProc_001)
 {
     VOS_UINT32   ulRet = ERR_MSP_FAILURE;
@@ -1090,14 +769,7 @@ TEST_F(Test_fwCmdTestProc, Test_fwCmdTestProc_001)
 
 }
 
-/*****************************************************************************
-类名 : Test_atCmdDispatch
-功能描述 : atCmdDispatch UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_atCmdDispatch: public ::testing::Test
 {
 public:
@@ -1112,15 +784,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_atCmdDispatch_001
-测试用例标题      : 分发AT命令，客户端0发送了AT+CGDSCONT=?
-预期结果          : 返回AT_OK
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_atCmdDispatch, Test_atCmdDispatch_001)
 {
     VOS_UINT32 ulRet   = ERR_MSP_SUCCESS;
@@ -1149,16 +813,7 @@ TEST_F(Test_atCmdDispatch, Test_atCmdDispatch_001)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_atCmdDispatch_002
-测试用例标题      : 分发AT命令，客户端0发送设置、查询或者测试命令
-                    记录该条记录成功后的时间。
-预期结果          : 记录AT命令的TICK值
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_atCmdDispatch, Test_atCmdDispatch_002)
 {
     VOS_UINT32 ulRet       = ERR_MSP_SUCCESS;
@@ -1195,16 +850,7 @@ TEST_F(Test_atCmdDispatch, Test_atCmdDispatch_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_atCmdDispatch_003
-测试用例标题      : 分发AT命令，客户端0发送设置、查询或者测试命令
-                    记录该条记录成功后的时间。
-预期结果          : 记录AT命令的TICK值
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_atCmdDispatch, Test_atCmdDispatch_003)
 {
     VOS_UINT32 ulRet       = ERR_MSP_SUCCESS;
@@ -1241,14 +887,7 @@ TEST_F(Test_atCmdDispatch, Test_atCmdDispatch_003)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名 : Test_LimitedCmdProc
-功能描述 : LimitedCmdProc UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_LimitedCmdProc: public ::testing::Test
 {
 public:
@@ -1263,15 +902,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_LimitedCmdProc_001
-测试用例标题      : 命令受限查询和处理
-预期结果          : 返回处理结果
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_LimitedCmdProc, Test_LimitedCmdProc_001)
 {
 
@@ -1312,15 +943,7 @@ TEST_F(Test_LimitedCmdProc, Test_LimitedCmdProc_001)
     GlobalMockObject::verify();
 
 }
-/*******************************************************************
-测试用例编号      : Test_LimitedCmdProc_002
-测试用例标题      : 命令受限查询和处理
-预期结果          : 返回处理结果
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_LimitedCmdProc, Test_LimitedCmdProc_002)
 {
 
@@ -1363,14 +986,7 @@ TEST_F(Test_LimitedCmdProc, Test_LimitedCmdProc_002)
 
 }
 
-/*****************************************************************************
-类名 : Test_DockCmdProc
-功能描述 : DockCmdProc UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_DockCmdProc: public ::testing::Test
 {
 public:
@@ -1385,28 +1001,13 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_DockCmdProc_001
-测试用例标题      : DOCK命令解析的特殊处理
-预期结果          : 返回处理结果
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_DockCmdProc, Test_DockCmdProc_001)
 {
 
 }
 
-/*****************************************************************************
-类名 : Test_CmdParseProc
-功能描述 : CmdParseProc UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_CmdParseProc: public ::testing::Test
 {
 public:
@@ -1421,15 +1022,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_CmdParseProc_001
-测试用例标题      : 命令解析处理
-预期结果          : 返回处理结果
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_CmdParseProc, Test_CmdParseProc_001)
 {
 #if(FEATURE_ON == FEATURE_E5)
@@ -1471,14 +1064,7 @@ TEST_F(Test_CmdParseProc, Test_CmdParseProc_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名 : Test_RepeatCmdProc
-功能描述 : RepeatCmdProc UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RepeatCmdProc: public ::testing::Test
 {
 public:
@@ -1493,15 +1079,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_RepeatCmdProc_001
-测试用例标题      : A/命令的处理,pucCmdLine中命令为"AT+CGDCONT"
-预期结果          : 在aucDataBuff中保存"AT+CGDCONT"
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_RepeatCmdProc, Test_RepeatCmdProc_001)
 {
     VOS_UINT8* pCmd =(VOS_UINT8*) "AT+CGDCONT";
@@ -1521,15 +1099,7 @@ TEST_F(Test_RepeatCmdProc, Test_RepeatCmdProc_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RepeatCmdProc_002
-测试用例标题      : A/命令的处理,pucCmdLine中没有命令
-预期结果          : 在aucDataBuff中保存"AT\n"
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_RepeatCmdProc, Test_RepeatCmdProc_002)
 {
     //g_stParseContext[0].aucDataBuff  = "A/";
@@ -1543,14 +1113,7 @@ TEST_F(Test_RepeatCmdProc, Test_RepeatCmdProc_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名 : Test_SaveRepeatCmd
-功能描述 : SaveRepeatCmd UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_SaveRepeatCmd: public ::testing::Test
 {
 public:
@@ -1565,15 +1128,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_SaveRepeatCmd_001
-测试用例标题      : 保存当前命令字符串
-预期结果          : 保存字符串到解析上下文中
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_SaveRepeatCmd, Test_SaveRepeatCmd_001)
 {
     VOS_UINT8* pData = (VOS_UINT8*)"AT+CGDCONT";
@@ -1590,14 +1145,7 @@ TEST_F(Test_SaveRepeatCmd, Test_SaveRepeatCmd_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名 : Test_ScanDelChar
-功能描述 : ScanDelChar UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ScanDelChar: public ::testing::Test
 {
 public:
@@ -1612,15 +1160,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_ScanDelChar_001
-测试用例标题      : 扫描退格符
-预期结果          : 返回AT_SUCCESS,去掉字符串里面的退格符连同前面的一个字符
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ScanDelChar, Test_ScanDelChar_001)
 {
     VOS_UINT8  pData[] = {'a','t','+','c','g','d','c','o','n','t','s',8,'\0'};
@@ -1637,14 +1177,7 @@ TEST_F(Test_ScanDelChar, Test_ScanDelChar_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名 : Test_ScanCtlChar
-功能描述 : ScanCtlChar UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ScanCtlChar: public ::testing::Test
 {
 public:
@@ -1659,15 +1192,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_ScanCtlChar_001
-测试用例标题      : 扫描控制符(去除字符串中小于0x20的字符)，扫描字符串"at+cgdcont12",12代表ASCII为12的字符
-预期结果          : 返回AT+SUCCESS，字符串变为"at+cgdcont"
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ScanCtlChar, Test_ScanCtlChar_001)
 {
     VOS_UINT8 * pData = (VOS_UINT8*)"at+cgdcont\r";
@@ -1688,14 +1213,7 @@ TEST_F(Test_ScanCtlChar, Test_ScanCtlChar_001)
 
 }
 
-/*****************************************************************************
-类名 : Test_ScanBlankChar
-功能描述 : ScanBlankChar UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ScanBlankChar: public ::testing::Test
 {
 public:
@@ -1710,15 +1228,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_ScanBlankChar_001
-测试用例标题      : 扫描引号外空格符，扫描字符串"at+cgdcon t"
-预期结果          : 返回AT_SUCCESS，字符串变为"at+cgdcont"
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ScanBlankChar, Test_ScanBlankChar_001)
 {
     VOS_UINT8  pData[]   = "at+cgdcon t";
@@ -1735,14 +1245,7 @@ TEST_F(Test_ScanBlankChar, Test_ScanBlankChar_001)
 
 }
 
-/*****************************************************************************
-类名 : Test_FormatCmdStr
-功能描述 : FormatCmdStr UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_FormatCmdStr: public ::testing::Test
 {
 public:
@@ -1757,15 +1260,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_FormatCmdStr_001
-测试用例标题      : 格式化命令字符串,"at+cgdcont13cgd"
-预期结果          : 返回AT_SUCCESS,保留"at+cgdcont"
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_FormatCmdStr, Test_FormatCmdStr_001)
 {
     VOS_UINT32 ulRet   = ERR_MSP_SUCCESS;
@@ -1780,14 +1275,7 @@ TEST_F(Test_FormatCmdStr, Test_FormatCmdStr_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名 : Test_CmdStringFormat
-功能描述 : CmdStringFormat UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_CmdStringFormat: public ::testing::Test
 {
 public:
@@ -1802,15 +1290,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_CmdStringFormat_001
-测试用例标题      : 格式化命令字符串"at+cg12dc oo8nt13cgd"
-预期结果          : 返回ERR_MSP_SUCCESS,"at+cgdcont"
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_CmdStringFormat, Test_CmdStringFormat_001)
 {
     VOS_UINT32 ulRet   = ERR_MSP_FAILURE;
@@ -1825,14 +1305,7 @@ TEST_F(Test_CmdStringFormat, Test_CmdStringFormat_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名 : Test_atCmdMsgProc
-功能描述 : atCmdMsgProc UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_atCmdMsgProc: public ::testing::Test
 {
 public:
@@ -1880,15 +1353,7 @@ public:
 
 };
 
-/*******************************************************************
-测试用例编号      : Test_atCmdMsgProc_001
-测试用例标题      : 命令处理
-预期结果          : 返回处理结果
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_atCmdMsgProc, Test_atCmdMsgProc_001)
 {
     VOS_UINT8 ucIndex = 0;
@@ -1907,15 +1372,7 @@ TEST_F(Test_atCmdMsgProc, Test_atCmdMsgProc_001)
 
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号      : Test_atCmdMsgProc_002
-测试用例标题      : 当前子模式为AT_XML_MODE,XML码流总长度超出AT_XML_MAX_LEN
-预期结果          : 返回处理结果 AT_WAIT_XML_INPUT
-修改历史     :
-1.日    期   : 2012年07月03日
-  作    者   : y00213812
-  修改内容   : V7R1C50 A-GPS项目新增函数
-*******************************************************************/
+
 TEST_F(Test_atCmdMsgProc, Test_atCmdMsgProc_002)
 {
     // 变量声明
@@ -1940,15 +1397,7 @@ TEST_F(Test_atCmdMsgProc, Test_atCmdMsgProc_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_atCmdMsgProc_003
-测试用例标题      : 当前子模式为AT_XML_MODE,以输入结束字符"ctrl-Z"
-预期结果          : 返回处理结果 当前AT通道状态置为AT_FW_CLIENT_STATUS_PEND
-修改历史     :
-1.日    期   : 2012年07月03日
-  作    者   : y00213812
-  修改内容   : V7R1C50 A-GPS项目新增函数
-*******************************************************************/
+
 TEST_F(Test_atCmdMsgProc, Test_atCmdMsgProc_003)
 {
     // 变量声明
@@ -1988,15 +1437,7 @@ TEST_F(Test_atCmdMsgProc, Test_atCmdMsgProc_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_atCmdMsgProc_004
-测试用例标题      : 当前子模式为AT_XML_MODE,收到"ESC"字符
-预期结果          : 返回错误码 AT_CMS_INVALID_TEXT_MODE_PARAMETER
-修改历史     :
-1.日    期   : 2012年07月03日
-  作    者   : y00213812
-  修改内容   : V7R1C50 A-GPS项目新增函数
-*******************************************************************/
+
 TEST_F(Test_atCmdMsgProc, Test_atCmdMsgProc_004)
 {
     // 变量声明
@@ -2020,14 +1461,7 @@ TEST_F(Test_atCmdMsgProc, Test_atCmdMsgProc_004)
 
     GlobalMockObject::verify();
 }
-/*****************************************************************************
-类名 : Test_At_CmdMsgDistr
-功能描述 : At_CmdMsgDistr UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_CmdMsgDistr: public ::testing::Test
 {
 public:
@@ -2044,15 +1478,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_CmdMsgDistr_001
-测试用例标题      : AT命令字符串的预处理
-预期结果          : 返回处理结果
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CmdMsgDistr, Test_At_CmdMsgDistr_001)
 {
     AT_MSG_STRU stMsg={0};
@@ -2065,16 +1491,7 @@ TEST_F(Test_At_CmdMsgDistr, Test_At_CmdMsgDistr_001)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CmdMsgDistr_002
-测试用例标题      : 收到ID_HIFI_AT_RESET_END_IND
-预期结果          : 上报^RESET:2
-修改历史   :
-1.日   期  : 2013-04-19
-  作   者  : f00179208
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_At_CmdMsgDistr, Test_At_CmdMsgDistr_002)
 {
     VOS_UINT32                          ulResetingFlag;
@@ -2106,16 +1523,7 @@ TEST_F(Test_At_CmdMsgDistr, Test_At_CmdMsgDistr_002)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CmdMsgDistr_003
-测试用例标题      : 处于C核复位过程中收到正常的AT命令消息
-预期结果          : 不处理AT命令消息
-修改历史   :
-1.日   期  : 2013-04-19
-  作   者  : f00179208
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_At_CmdMsgDistr, Test_At_CmdMsgDistr_003)
 {
     VOS_UINT32                          ulResetingFlag;
@@ -2147,16 +1555,7 @@ TEST_F(Test_At_CmdMsgDistr, Test_At_CmdMsgDistr_003)
 }
 
 #ifdef __PS_WIN32_RECUR__
-/*******************************************************************
-测试用例编号      : Test_At_CmdMsgDistr_004
-测试用例标题      : 接收到来自ＡＴ的回放数据
-预期结果          : 处理AT的回放命令消息
-修改历史   :
-1.日   期  : 2013-04-19
-  作   者  : f00179208
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_At_CmdMsgDistr, Test_At_CmdMsgDistr_004)
 {
     TEST_AT_MSG_STRU stMsg;
@@ -2173,15 +1572,7 @@ TEST_F(Test_At_CmdMsgDistr, Test_At_CmdMsgDistr_004)
 }
 #endif
 
-/*******************************************************************
-测试用例编号      : Test_At_CmdMsgDistr_005
-测试用例标题      : 收到HIFI复位结束消息
-预期结果          : 不处理AT命令消息
-修改历史   :
-1.日   期  : 2013-07-05
-  作   者  : L47619
-  修改内容 : add for HIFI Reset End Report
-*******************************************************************/
+
 TEST_F(Test_At_CmdMsgDistr, Test_At_CmdMsgDistr_005)
 {
     VOS_UINT32                          ulResetingFlag;
@@ -2212,15 +1603,7 @@ TEST_F(Test_At_CmdMsgDistr, Test_At_CmdMsgDistr_005)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CmdMsgDistr_006
-测试用例标题      : clientID错误
-预期结果          : 直接返回
-修改历史   :
-1.日   期  : 2013-10-16
-  作   者  : z00189113
-  修改内容 : 新增 case
-*******************************************************************/
+
 TEST_F(Test_At_CmdMsgDistr, Test_At_CmdMsgDistr_006)
 {
     AT_MSG_STRU                         stMsg;
@@ -2252,16 +1635,7 @@ TEST_F(Test_At_CmdMsgDistr, Test_At_CmdMsgDistr_006)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CmdMsgDistr_007
-测试用例标题      : 非UART口收到 AT_SWITCH_CMD_MODE_MSG
-预期结果          : 直接返回
-修改历史   :
-1.日   期  : 2013-10-16
-  作   者  : z00189113
-  修改内容 : 新增 case
 
-*******************************************************************/
 TEST_F(Test_At_CmdMsgDistr, Test_At_CmdMsgDistr_007)
 {
     AT_MSG_STRU                         stMsg;
@@ -2290,15 +1664,7 @@ TEST_F(Test_At_CmdMsgDistr, Test_At_CmdMsgDistr_007)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CmdMsgDistr_008
-测试用例标题      : HSUART口收到 AT_SWITCH_CMD_MODE_MSG
-预期结果          : 可维可测收到+++次数加1
-修改历史   :
-1.日   期  : 2013-10-16
-  作   者  : z00189113
-  修改内容 : 新增CASE
-*******************************************************************/
+
 TEST_F(Test_At_CmdMsgDistr, Test_At_CmdMsgDistr_008)
 {
     AT_MSG_STRU                         stMsg;
@@ -2329,16 +1695,7 @@ TEST_F(Test_At_CmdMsgDistr, Test_At_CmdMsgDistr_008)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CmdMsgDistr_009
-测试用例标题      : 命令模式HSUART口收到 AT_SWITCH_CMD_MODE_MSG
-预期结果          : 端口依然为命令模式
-修改历史   :
-1.日   期  : 2013-10-16
-  作   者  : z00189113
-  修改内容 : 新增 case
 
-*******************************************************************/
 TEST_F(Test_At_CmdMsgDistr, Test_At_CmdMsgDistr_009)
 {
     AT_MSG_STRU                         stMsg;
@@ -2371,16 +1728,7 @@ TEST_F(Test_At_CmdMsgDistr, Test_At_CmdMsgDistr_009)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CmdMsgDistr_010
-测试用例标题      : 数据模式为PPP模式
-预期结果          : 切换到online_command模式
-修改历史   :
-1.日   期  : 2013-10-16
-  作   者  : z00189113
-  修改内容 : 新增 case
 
-*******************************************************************/
 TEST_F(Test_At_CmdMsgDistr, Test_At_CmdMsgDistr_010)
 {
     AT_MSG_STRU                         stMsg;
@@ -2418,16 +1766,7 @@ TEST_F(Test_At_CmdMsgDistr, Test_At_CmdMsgDistr_010)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CmdMsgDistr_011
-测试用例标题      : 数据模式为IP模式
-预期结果          : 切换到online_command模式
-修改历史   :
-1.日   期  : 2013-10-16
-  作   者  : z00189113
-  修改内容 : 新增 case
 
-*******************************************************************/
 TEST_F(Test_At_CmdMsgDistr, Test_At_CmdMsgDistr_011)
 {
     AT_MSG_STRU                         stMsg;
@@ -2465,16 +1804,7 @@ TEST_F(Test_At_CmdMsgDistr, Test_At_CmdMsgDistr_011)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CmdMsgDistr_012
-测试用例标题      :
-预期结果          : 切换到online_command模式
-修改历史   :
-1.日   期  : 2013-10-16
-  作   者  : z00189113
-  修改内容 : 新增 case
 
-*******************************************************************/
 TEST_F(Test_At_CmdMsgDistr, Test_At_CmdMsgDistr_012)
 {
     AT_MSG_STRU                         stMsg;
@@ -2515,14 +1845,7 @@ TEST_F(Test_At_CmdMsgDistr, Test_At_CmdMsgDistr_012)
 
 
 
-/*****************************************************************************
-类名 : Test_atfwParseSaveParam
-功能描述 : atfwParseSaveParam UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_atfwParseSaveParam: public ::testing::Test
 {
 public:
@@ -2537,15 +1860,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_atfwParseSaveParam_001
-测试用例标题      : 解析字符串并保存参数到全局变量，参数字符串"15"，长度为2，全局变量gucAtParaIndex为0
-预期结果          : 返回ERR_MSP_SUCCESS，gastAtParaList中保存了参数以及长度
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_atfwParseSaveParam, Test_atfwParseSaveParam_001)
 {
     VOS_UINT32 ulRet = ERR_MSP_FAILURE;
@@ -2565,15 +1880,7 @@ TEST_F(Test_atfwParseSaveParam, Test_atfwParseSaveParam_001)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_atfwParseSaveParam_002
-测试用例标题      : 解析字符串并保存参数到全局变量，参数字符串为空，长度为0，全局变量gucAtParaIndex为0
-预期结果          : 返回ERR_MSP_SUCCESS，gastAtParaList中长度为0
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_atfwParseSaveParam, Test_atfwParseSaveParam_002)
 {
     VOS_UINT32 ulRet = ERR_MSP_FAILURE;
@@ -2590,15 +1897,7 @@ TEST_F(Test_atfwParseSaveParam, Test_atfwParseSaveParam_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_atfwParseSaveParam_003
-测试用例标题      : 解析字符串并保存参数到全局变量，参数字符串为空，长度为4，全局变量gucAtParaIndex为0
-预期结果          : 返回ERR_MSP_FAILURE
-修改历史      :
- 1.日    期   : 2011年10月13日
-   作    者   : c64416
-   修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_atfwParseSaveParam, Test_atfwParseSaveParam_003)
 {
     VOS_UINT32 ulRet = ERR_MSP_FAILURE;
@@ -2614,14 +1913,7 @@ TEST_F(Test_atfwParseSaveParam, Test_atfwParseSaveParam_003)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名 : Test_AT_FwSendClientMsg
-功能描述 : AT_FwSendClientMsg UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_FwSendClientMsg: public ::testing::Test
 {
 public:
@@ -2636,15 +1928,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_FwSendClientMsg_001
-测试用例标题      : 二进制消息回复处理接口
-预期结果          : 返回ERR_MSP_SUCCESS，gastAtParaList中保存了参数以及长度
-修改历史      :
-1.日    期   : 2011年10月13日
-作    者   : c64416
-修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_FwSendClientMsg, Test_AT_FwSendClientMsg_001)
 {
     VOS_UINT32 ulRcvPid = 0;
@@ -2661,14 +1945,7 @@ TEST_F(Test_AT_FwSendClientMsg, Test_AT_FwSendClientMsg_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名 : Test_At_CmdTestProcERROR
-功能描述 : At_CmdTestProcERROR UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_CmdTestProcERROR: public ::testing::Test
 {
 public:
@@ -2683,15 +1960,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_CmdTestProcERROR_001
-测试用例标题      : 命令的测试模式下返回ERROR的处理函数
-预期结果          : 返回AT_ERROR
-修改历史      :
-1.日    期   : 2011年10月13日
-作    者   : c64416
-修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CmdTestProcERROR, Test_At_CmdTestProcERROR_001)
 {
     VOS_UINT32 ulRet=1;
@@ -2701,14 +1970,7 @@ TEST_F(Test_At_CmdTestProcERROR, Test_At_CmdTestProcERROR_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名 : Test_At_At_CmdTestProcOK
-功能描述 : At_At_CmdTestProcOK UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_CmdTestProcOK: public ::testing::Test
 {
 public:
@@ -2723,15 +1985,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_CmdTestProcOK_001
-测试用例标题      : 命令的测试模式下返回AT_OK的处理函数
-预期结果          : 返回AT_OK
-修改历史      :
-1.日    期   : 2011年10月13日
-作    者   : c64416
-修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CmdTestProcOK, Test_At_CmdTestProcOK_001)
 {
     VOS_UINT32 ulRet=1;
@@ -2741,14 +1995,7 @@ TEST_F(Test_At_CmdTestProcOK, Test_At_CmdTestProcOK_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名 : Test_At_CmdStreamRcv
-功能描述 : At_CmdStreamRcv UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_CmdStreamRcv: public ::testing::Test
 {
 public:
@@ -2763,15 +2010,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_CmdStreamRcv_001
-测试用例标题      : 二进制消息回复处理接口
-预期结果          : 返回ERR_MSP_SUCCESS，gastAtParaList中保存了参数以及长度
-修改历史      :
-1.日    期   : 2011年10月13日
-作    者   : c64416
-修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CmdStreamRcv, Test_At_CmdStreamRcv_001)
 {
     VOS_UINT32 ulRet = 0;
@@ -2793,14 +2032,7 @@ TEST_F(Test_At_CmdStreamRcv, Test_At_CmdStreamRcv_001)
 
 }
 
-/*****************************************************************************
-类名 : Test_At_ReadyClientCmdProc
-功能描述 : At_ReadyClientCmdProc UT工程类
-修改历史     :
-1.日   期  : 2011年10月13日
-作   者  : c64416
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_ReadyClientCmdProc: public ::testing::Test
 {
 public:
@@ -2817,15 +2049,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_ReadyClientCmdProc_001
-测试用例标题      : 二进制消息回复处理接口
-预期结果          : 返回ERR_MSP_SUCCESS，gastAtParaList中保存了参数以及长度
-修改历史      :
-1.日    期   : 2011年10月13日
-作    者   : c64416
-修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_ReadyClientCmdProc, Test_At_ReadyClientCmdProc_001)
 {
     ucIndex = 0;
@@ -2841,15 +2065,7 @@ TEST_F(Test_At_ReadyClientCmdProc, Test_At_ReadyClientCmdProc_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_ReadyClientCmdProc_002
-测试用例标题      : AT^FACAUTHPUBKEY命令特殊处理
-预期结果          : 函数不调用通用AT命令处理流程
-修改历史          :
-1.日   期  : 2012-04-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_ReadyClientCmdProc, Test_At_ReadyClientCmdProc_002)
 {
     // 变量声明
@@ -2881,14 +2097,7 @@ TEST_F(Test_At_ReadyClientCmdProc, Test_At_ReadyClientCmdProc_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名 : Test_AT_IsAbortCmdStr
-功能描述 : AT_IsAbortCmdStr UT工程类
-修改历史     :
-1.日   期  : 2012年09月25日
-  作   者  : l00171473
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_IsAbortCmdStr: public ::testing::Test
 {
 public:
@@ -2902,15 +2111,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_IsAbortCmdStr_001
-测试用例标题      : 获取打断命令的参数为空
-预期结果          : 返回FALSE
-修改历史      :
-1.日    期   : 2012年09月25日
-  作    者   : l00171473
-  修改内容   : 新建CASE,
-*******************************************************************/
+
 TEST_F(Test_AT_IsAbortCmdStr, Test_AT_IsAbortCmdStr_001)
 {
     VOS_UINT8                           aucData[10];
@@ -2927,15 +2128,7 @@ TEST_F(Test_AT_IsAbortCmdStr, Test_AT_IsAbortCmdStr_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_IsAbortCmdStr_002
-测试用例标题      : 未使能打断命令功能
-预期结果          : 返回FALSE
-修改历史      :
-1.日    期   : 2012年09月25日
-  作    者   : l00171473
-  修改内容   : 新建CASE,
-*******************************************************************/
+
 TEST_F(Test_AT_IsAbortCmdStr, Test_AT_IsAbortCmdStr_002)
 {
     AT_ABORT_CMD_PARA_STRU             *pstAbortCmdPara;
@@ -2953,15 +2146,7 @@ TEST_F(Test_AT_IsAbortCmdStr, Test_AT_IsAbortCmdStr_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_IsAbortCmdStr_003
-测试用例标题      : 长度判断失败
-预期结果          : 返回FALSE
-修改历史      :
-1.日    期   : 2012年09月25日
-  作    者   : l00171473
-  修改内容   : 新建CASE,
-*******************************************************************/
+
 TEST_F(Test_AT_IsAbortCmdStr, Test_AT_IsAbortCmdStr_003)
 {
     AT_ABORT_CMD_PARA_STRU             *pstAbortCmdPara;
@@ -2979,15 +2164,7 @@ TEST_F(Test_AT_IsAbortCmdStr, Test_AT_IsAbortCmdStr_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_IsAbortCmdStr_004
-测试用例标题      : 长度判断失败
-预期结果          : 返回FALSE
-修改历史      :
-1.日    期   : 2012年09月25日
-  作    者   : l00171473
-  修改内容   : 新建CASE,
-*******************************************************************/
+
 TEST_F(Test_AT_IsAbortCmdStr, Test_AT_IsAbortCmdStr_004)
 {
     AT_ABORT_CMD_PARA_STRU             *pstAbortCmdPara;
@@ -3007,15 +2184,7 @@ TEST_F(Test_AT_IsAbortCmdStr, Test_AT_IsAbortCmdStr_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_IsAbortCmdStr_005
-测试用例标题      : 内容比较通过
-预期结果          : 返回TRUE
-修改历史      :
-1.日    期   : 2012年09月25日
-  作    者   : l00171473
-  修改内容   : 新建CASE,
-*******************************************************************/
+
 TEST_F(Test_AT_IsAbortCmdStr, Test_AT_IsAbortCmdStr_005)
 {
     AT_ABORT_CMD_PARA_STRU             *pstAbortCmdPara;
@@ -3032,15 +2201,7 @@ TEST_F(Test_AT_IsAbortCmdStr, Test_AT_IsAbortCmdStr_005)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_IsAbortCmdStr_006
-测试用例标题      : 内容比较失败
-预期结果          : 返回FALE
-修改历史      :
-1.日    期   : 2012年09月25日
-  作    者   : l00171473
-  修改内容   : 新建CASE,
-*******************************************************************/
+
 TEST_F(Test_AT_IsAbortCmdStr, Test_AT_IsAbortCmdStr_006)
 {
     AT_ABORT_CMD_PARA_STRU             *pstAbortCmdPara;
@@ -3057,15 +2218,7 @@ TEST_F(Test_AT_IsAbortCmdStr, Test_AT_IsAbortCmdStr_006)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_IsAbortCmdStr_007
-测试用例标题      : 设置时间与打断字符时间间隔差125ms以内
-预期结果          : 返回FALSE
-修改历史      :
-1.日    期   : 2013年10月29日
-  作    者   : w00242748
-  修改内容   : 新建CASE,
-*******************************************************************/
+
 TEST_F(Test_AT_IsAbortCmdStr, Test_AT_IsAbortCmdStr_007)
 {
     AT_ABORT_CMD_PARA_STRU             *pstAbortCmdPara;
@@ -3086,16 +2239,7 @@ TEST_F(Test_AT_IsAbortCmdStr, Test_AT_IsAbortCmdStr_007)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_IsAbortCmdStr_008
-测试用例标题      : 设置时间与打断字符时间间隔差超过125ms,但未设置
-                    任意字符打断
-预期结果          : 返回FALSE
-修改历史      :
-1.日    期   : 2013年10月29日
-  作    者   : w00242748
-  修改内容   : 新建CASE,
-*******************************************************************/
+
 TEST_F(Test_AT_IsAbortCmdStr, Test_AT_IsAbortCmdStr_008)
 {
     AT_ABORT_CMD_PARA_STRU             *pstAbortCmdPara;
@@ -3117,16 +2261,7 @@ TEST_F(Test_AT_IsAbortCmdStr, Test_AT_IsAbortCmdStr_008)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_IsAbortCmdStr_009
-测试用例标题      : 设置时间与打断字符时间间隔差超过125ms,且设置
-                    任意字符打断
-预期结果          : 返回FALSE
-修改历史      :
-1.日    期   : 2013年10月29日
-  作    者   : w00242748
-  修改内容   : 新建CASE,
-*******************************************************************/
+
 TEST_F(Test_AT_IsAbortCmdStr, Test_AT_IsAbortCmdStr_009)
 {
     AT_ABORT_CMD_PARA_STRU             *pstAbortCmdPara;
@@ -3148,15 +2283,7 @@ TEST_F(Test_AT_IsAbortCmdStr, Test_AT_IsAbortCmdStr_009)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_IsAbortCmdStr_010
-测试用例标题      : 设置时间与打断字符时间发生翻转
-预期结果          : 返回FALSE
-修改历史      :
-1.日    期   : 2013年10月29日
-  作    者   : w00242748
-  修改内容   : 新建CASE,
-*******************************************************************/
+
 TEST_F(Test_AT_IsAbortCmdStr, Test_AT_IsAbortCmdStr_010)
 {
     AT_ABORT_CMD_PARA_STRU             *pstAbortCmdPara;
@@ -3178,14 +2305,7 @@ TEST_F(Test_AT_IsAbortCmdStr, Test_AT_IsAbortCmdStr_010)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_AbortCmdProc
-功能描述 : AT_AbortCmdProc UT工程类
-修改历史 :
-1.日    期    : 2012年09月26日
-  作    者    : l00171473
-  修改内容    : V7R1C50_At_Abort, AT打断项目
-*****************************************************************************/
+
 class Test_AT_AbortCmdProc: public ::testing::Test
 {
 public:
@@ -3245,19 +2365,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号  : Test_AT_AbortCmdProc_001
-测试用例标题  : 进入列表搜的打断处理, 返回异步
-预期结果      : 当前操作类型更新为列表搜打断处理
-修改历史      :
-1.日    期    : 2012年09月26日
-  作    者    : l00171473
-  修改内容    : V7R1C50_At_Abort, AT打断项目
 
-2.日    期   : 2013年11月1日
-  作    者   : w00167002
-  修改内容   : NETSCAN:增加了125ms打断限制，调整原有用例；
-*******************************************************************/
 TEST_F(Test_AT_AbortCmdProc, Test_AT_AbortCmdProc_001)
 {
     VOS_UINT32                          ulTick;
@@ -3303,18 +2411,7 @@ TEST_F(Test_AT_AbortCmdProc, Test_AT_AbortCmdProc_001)
 
 }
 
-/*******************************************************************
-测试用例编号  : Test_AT_AbortCmdProc_002
-测试用例标题  : 进入列表搜的打断处理, 返回异步, 打断保护时长为0
-预期结果      : 当前操作类型更新为列表搜打断处理
-修改历史      :
-1.日    期    : 2012年09月26日
-  作    者    : l00171473
-  修改内容    : V7R1C50_At_Abort, AT打断项目
-2.日    期   : 2013年11月1日
-  作    者   : w00167002
-  修改内容   : NETSCAN:增加了125ms打断限制，调整原有用例；
-*******************************************************************/
+
 TEST_F(Test_AT_AbortCmdProc, Test_AT_AbortCmdProc_002)
 {
     VOS_UINT32                          ulTick;
@@ -3365,18 +2462,7 @@ TEST_F(Test_AT_AbortCmdProc, Test_AT_AbortCmdProc_002)
 
 }
 
-/*******************************************************************
-测试用例编号  : Test_AT_AbortCmdProc_003
-测试用例标题  : 进入列表搜的打断处理, 返回异步, 启动打断保护定时器失败
-预期结果      : 当前操作类型更新为列表搜打断处理
-修改历史      :
-1.日    期    : 2012年09月26日
-  作    者    : l00171473
-  修改内容    : V7R1C50_At_Abort, AT打断项目
-2.日    期   : 2013年11月1日
-  作    者   : w00167002
-  修改内容   : NETSCAN:增加了125ms打断限制，调整原有用例；
-*******************************************************************/
+
 TEST_F(Test_AT_AbortCmdProc, Test_AT_AbortCmdProc_003)
 {
     VOS_UINT32                          ulTick;
@@ -3424,18 +2510,7 @@ TEST_F(Test_AT_AbortCmdProc, Test_AT_AbortCmdProc_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号  : Test_AT_AbortCmdProc_004
-测试用例标题  : 进入列表搜的打断处理, 返回AT_ABORT
-预期结果      : 返回打断结果"ABORT"
-修改历史      :
-1.日    期    : 2012年09月26日
-  作    者    : l00171473
-  修改内容    : V7R1C50_At_Abort, AT打断项目
-2.日    期   : 2013年11月1日
-  作    者   : w00167002
-  修改内容   : NETSCAN:增加了125ms打断限制，调整原有用例；
-*******************************************************************/
+
 TEST_F(Test_AT_AbortCmdProc, Test_AT_AbortCmdProc_004)
 {
     VOS_UINT32                          ulTick;
@@ -3513,15 +2588,7 @@ TEST_F(Test_AT_AbortCmdProc, Test_AT_AbortCmdProc_004)
 
 }
 
-/*******************************************************************
-测试用例编号  : Test_AT_AbortCmdProc_005
-测试用例标题  : 进入列表搜的打断处理, 返回AT_FAILURE
-预期结果      : 当前操作类型不更新, 仍为列表搜
-修改历史      :
-1.日    期    : 2012年09月26日
-  作    者    : l00171473
-  修改内容    : V7R1C50_At_Abort, AT打断项目
-*******************************************************************/
+
 TEST_F(Test_AT_AbortCmdProc, Test_AT_AbortCmdProc_005)
 {
     VOS_UINT8                           aucMsgCops[] =
@@ -3583,15 +2650,7 @@ TEST_F(Test_AT_AbortCmdProc, Test_AT_AbortCmdProc_005)
 
 }
 
-/*******************************************************************
-测试用例编号  : Test_AT_AbortCmdProc_006
-测试用例标题  : pstCmdElement空指针
-预期结果      : 直接返回
-修改历史      :
-1.日    期    : 2012年09月26日
-  作    者    : l00171473
-  修改内容    : V7R1C50_At_Abort, AT打断项目
-*******************************************************************/
+
 TEST_F(Test_AT_AbortCmdProc, Test_AT_AbortCmdProc_006)
 {
     g_stParseContext[0].pstCmdElement = VOS_NULL_PTR;
@@ -3599,15 +2658,7 @@ TEST_F(Test_AT_AbortCmdProc, Test_AT_AbortCmdProc_006)
     AT_AbortCmdProc(0);
 }
 
-/*******************************************************************
-测试用例编号  : Test_AT_AbortCmdProc_007
-测试用例标题  : pstCmdElement->pfnAbortProc空指针
-预期结果      : 直接返回
-修改历史      :
-1.日    期    : 2012年09月26日
-  作    者    : l00171473
-  修改内容    : V7R1C50_At_Abort, AT打断项目
-*******************************************************************/
+
 TEST_F(Test_AT_AbortCmdProc, Test_AT_AbortCmdProc_007)
 {
     AT_PAR_CMD_ELEMENT_STRU             stCopsCmd =
@@ -3627,14 +2678,7 @@ TEST_F(Test_AT_AbortCmdProc, Test_AT_AbortCmdProc_007)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_SaveCmdElementInfo
-功能描述 : AT_SaveCmdElementInfo UT工程类
-修改历史 :
-1.日    期    : 2012年09月26日
-  作    者    : l00171473
-  修改内容    : V7R1C50_At_Abort, AT打断项目
-*****************************************************************************/
+
 class Test_AT_SaveCmdElementInfo: public ::testing::Test
 {
 public:
@@ -3696,15 +2740,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号  : Test_AT_SaveCmdElementInfo_001
-测试用例标题  : 输入参数为空
-预期结果      : 不更新全局变量
-修改历史      :
-1.日    期    : 2012年09月26日
-  作    者    : l00171473
-  修改内容    : V7R1C50_At_Abort, AT打断项目
-*******************************************************************/
+
 TEST_F(Test_AT_SaveCmdElementInfo, Test_AT_SaveCmdElementInfo_001)
 {
     AT_PAR_CMD_ELEMENT_STRU             stCopsCmd =
@@ -3727,15 +2763,7 @@ TEST_F(Test_AT_SaveCmdElementInfo, Test_AT_SaveCmdElementInfo_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号  : Test_AT_SaveCmdElementInfo_002
-测试用例标题  : 从命令表中查找指定命令失败
-预期结果      : 不更新全局变量
-修改历史      :
-1.日    期    : 2012年09月26日
-  作    者    : l00171473
-  修改内容    : V7R1C50_At_Abort, AT打断项目
-*******************************************************************/
+
 TEST_F(Test_AT_SaveCmdElementInfo, Test_AT_SaveCmdElementInfo_002)
 {
     AT_PAR_CMD_ELEMENT_STRU             stCopsCmd =
@@ -3754,15 +2782,7 @@ TEST_F(Test_AT_SaveCmdElementInfo, Test_AT_SaveCmdElementInfo_002)
 
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号  : Test_AT_SaveCmdElementInfo_003
-测试用例标题  : 输入命令表类型不支持
-预期结果      : 不更新全局变量
-修改历史      :
-1.日    期    : 2012年09月26日
-  作    者    : l00171473
-  修改内容    : V7R1C50_At_Abort, AT打断项目
-*******************************************************************/
+
 TEST_F(Test_AT_SaveCmdElementInfo, Test_AT_SaveCmdElementInfo_003)
 {
     AT_PAR_CMD_ELEMENT_STRU             stCopsCmd =
@@ -3782,15 +2802,7 @@ TEST_F(Test_AT_SaveCmdElementInfo, Test_AT_SaveCmdElementInfo_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号  : Test_AT_SaveCmdElementInfo_004
-测试用例标题  : 特殊命令^SIMLOCK的处理
-预期结果      : 更新全局变量
-修改历史      :
-1.日    期    : 2012年09月26日
-  作    者    : l00171473
-  修改内容    : V7R1C50_At_Abort, AT打断项目
-*******************************************************************/
+
 TEST_F(Test_AT_SaveCmdElementInfo, Test_AT_SaveCmdElementInfo_004)
 {
     VOS_UINT8                           aucMsgCops[] =
@@ -3824,15 +2836,7 @@ TEST_F(Test_AT_SaveCmdElementInfo, Test_AT_SaveCmdElementInfo_004)
 
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号  : Test_AT_SaveCmdElementInfo_005
-测试用例标题  : 特殊命令^SIMLOCK的处理, 命令表中存在元素异常的命令
-预期结果      : 更新全局变量, 比较时跳过异常命令
-修改历史      :
-1.日    期    : 2012年09月26日
-  作    者    : l00171473
-  修改内容    : V7R1C50_At_Abort, AT打断项目
-*******************************************************************/
+
 TEST_F(Test_AT_SaveCmdElementInfo, Test_AT_SaveCmdElementInfo_005)
 {
     VOS_UINT8                           aucMsgCops[] =
@@ -3876,15 +2880,7 @@ TEST_F(Test_AT_SaveCmdElementInfo, Test_AT_SaveCmdElementInfo_005)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号  : Test_AT_SaveCmdElementInfo_006
-测试用例标题  : 特殊命令^FACAUTHPUBKEY的处理,
-预期结果      : 更新全局变量,
-修改历史      :
-1.日    期    : 2012年09月26日
-  作    者    : l00171473
-  修改内容    : V7R1C50_At_Abort, AT打断项目
-*******************************************************************/
+
 TEST_F(Test_AT_SaveCmdElementInfo, Test_AT_SaveCmdElementInfo_006)
 {
     AT_MSG_STRU                        *pstAtMsg;
@@ -3913,15 +2909,7 @@ TEST_F(Test_AT_SaveCmdElementInfo, Test_AT_SaveCmdElementInfo_006)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号  : Test_AT_SaveCmdElementInfo_007
-测试用例标题  : 特殊命令^DOCK的处理,
-预期结果      : 更新全局变量,
-修改历史      :
-1.日    期    : 2012年09月26日
-  作    者    : l00171473
-  修改内容    : V7R1C50_At_Abort, AT打断项目
-*******************************************************************/
+
 TEST_F(Test_AT_SaveCmdElementInfo, Test_AT_SaveCmdElementInfo_007)
 {
     AT_MSG_STRU                        *pstAtMsg;
@@ -3954,15 +2942,7 @@ TEST_F(Test_AT_SaveCmdElementInfo, Test_AT_SaveCmdElementInfo_007)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号  : Test_AT_SaveCmdElementInfo_009
-测试用例标题  : 特殊命令^SIMLOCKDATAWRITE的处理,
-预期结果      : 更新全局变量,
-修改历史      :
-1.日    期    : 2012年09月26日
-  作    者    : l00171473
-  修改内容    : V7R1C50_At_Abort, AT打断项目
-*******************************************************************/
+
 TEST_F(Test_AT_SaveCmdElementInfo, Test_AT_SaveCmdElementInfo_009)
 {
     AT_MSG_STRU                        *pstAtMsg;
@@ -3996,14 +2976,7 @@ TEST_F(Test_AT_SaveCmdElementInfo, Test_AT_SaveCmdElementInfo_009)
 }
 
 
-/*****************************************************************************
-类名     : Test_At_MatchSmsCmdName
-功能描述 : At_MatchSmsCmdName UT工程类
-修改历史 :
-1.日    期    : 2012年09月26日
-  作    者    : l00171473
-  修改内容    : V7R1C50_At_Abort, AT打断项目
-*****************************************************************************/
+
 class Test_At_MatchSmsCmdName: public ::testing::Test
 {
 public:
@@ -4059,15 +3032,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号  : Test_At_MatchSmsCmdName_001
-测试用例标题  : 特殊命令^SIMLOCKDATAWRITE的处理,
-预期结果      : 更新全局变量,
-修改历史      :
-1.日    期    : 2012年09月26日
-  作    者    : l00171473
-  修改内容    : V7R1C50_At_Abort, AT打断项目
-*******************************************************************/
+
 TEST_F(Test_At_MatchSmsCmdName, Test_At_MatchSmsCmdName_001)
 {
     AT_MSG_STRU                        *pstAtMsg;
@@ -4096,15 +3061,7 @@ TEST_F(Test_At_MatchSmsCmdName, Test_At_MatchSmsCmdName_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号  : Test_At_MatchSmsCmdName_002
-测试用例标题  : g_enAtCmgfMsgFormat设置为文本方式
-预期结果      : 参数有效值范围从gastAtSmsCmdTab[i].ParaText中获取
-修改历史      :
-1.日    期    : 2012年11月20日
-  作    者    : f62575
-  修改内容    : DTS2012110604700, 解决短信命令支持多通道并发命令名被覆盖问题；
-*******************************************************************/
+
 TEST_F(Test_At_MatchSmsCmdName, Test_At_MatchSmsCmdName_002)
 {
     VOS_CHAR                         aucAtCmd[] = "+CMGS";
@@ -4122,15 +3079,7 @@ TEST_F(Test_At_MatchSmsCmdName, Test_At_MatchSmsCmdName_002)
 
 }
 
-/*******************************************************************
-测试用例编号  : Test_At_MatchSmsCmdName_003
-测试用例标题  : g_enAtCmgfMsgFormat设置为PDU
-预期结果      : 参数有效值范围从gastAtSmsCmdTab[i].ParaPDU中获取
-修改历史      :
-1.日    期    : 2012年11月20日
-  作    者    : f62575
-  修改内容    : DTS2012110604700, 解决短信命令支持多通道并发命令名被覆盖问题；
-*******************************************************************/
+
 TEST_F(Test_At_MatchSmsCmdName, Test_At_MatchSmsCmdName_003)
 {
     VOS_CHAR                           aucAtCmd[] = "+CMGS";
@@ -4148,14 +3097,7 @@ TEST_F(Test_At_MatchSmsCmdName, Test_At_MatchSmsCmdName_003)
 
 }
 
-/*****************************************************************************
-类名 : Test_AT_IsAnyParseClientPend
-功能描述 : AT_IsAnyParseClientPend UT工程类
-修改历史     :
-1.日   期  : 2014年01月07日
-作   者  : j00174725
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_IsAnyParseClientPend: public ::testing::Test
 {
 public:
@@ -4170,15 +3112,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号  : Test_AT_IsAnyParseClientPend_001
-测试用例标题  : 端口状态判断
-预期结果      :当前有商品处于pend状态，函数返回TRUE
-修改历史      :
-1.日   期  : 2014年01月07日
-作   者  : j00174725
-修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_IsAnyParseClientPend, Test_AT_IsAnyParseClientPend_001)
 {
     AT_PORT_BUFF_CFG_STRU              *pstPortBuffCfg = VOS_NULL_PTR;
@@ -4203,15 +3137,7 @@ TEST_F(Test_AT_IsAnyParseClientPend, Test_AT_IsAnyParseClientPend_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号  : Test_AT_IsAnyParseClientPend_002
-测试用例标题  : 端口状态判断
-预期结果      :当前没有商品处于pend状态，函数返回FALSE
-修改历史      :
-1.日   期  : 2014年01月07日
-作   者  : j00174725
-修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_IsAnyParseClientPend, Test_AT_IsAnyParseClientPend_002)
 {
     AT_PORT_BUFF_CFG_STRU              *pstPortBuffCfg = VOS_NULL_PTR;
@@ -4234,14 +3160,7 @@ TEST_F(Test_AT_IsAnyParseClientPend, Test_AT_IsAnyParseClientPend_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名 : Test_AT_IsAllClientDataMode
-功能描述 : AT_IsAllClientDataMode UT工程类
-修改历史     :
-1.日   期  : 2014年01月07日
-作   者  : j00174725
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_IsAllClientDataMode: public ::testing::Test
 {
 public:
@@ -4256,15 +3175,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号  : Test_AT_IsAllClientDataMode_001
-测试用例标题  : 所有端口处于CMD状态
-预期结果      : 函数返回 VOS_FALSE
-修改历史      :
-1.日   期  : 2014年01月07日
-作   者  : j00174725
-修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_IsAllClientDataMode, Test_AT_IsAllClientDataMode_001)
 {
     AT_PORT_BUFF_CFG_STRU              *pstPortBuffCfg = VOS_NULL_PTR;
@@ -4286,15 +3197,7 @@ TEST_F(Test_AT_IsAllClientDataMode, Test_AT_IsAllClientDataMode_001)
 
 }
 
-/*******************************************************************
-测试用例编号  : Test_AT_IsAllClientDataMode_002
-测试用例标题  : 所有端口处于data模式
-预期结果      : 函数返回 TRUE
-修改历史      :
-1.日   期  : 2014年01月07日
-作   者  : j00174725
-修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_IsAllClientDataMode, Test_AT_IsAllClientDataMode_002)
 {
     AT_PORT_BUFF_CFG_STRU              *pstPortBuffCfg = VOS_NULL_PTR;
@@ -4318,15 +3221,7 @@ TEST_F(Test_AT_IsAllClientDataMode, Test_AT_IsAllClientDataMode_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号  : Test_AT_IsAllClientDataMode_003
-测试用例标题  : 部分端口处于data状态
-预期结果      : 函数返回 False
-修改历史      :
-1.日   期  : 2014年01月07日
-作   者  : j00174725
-修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_IsAllClientDataMode, Test_AT_IsAllClientDataMode_003)
 {
     AT_PORT_BUFF_CFG_STRU              *pstPortBuffCfg = VOS_NULL_PTR;

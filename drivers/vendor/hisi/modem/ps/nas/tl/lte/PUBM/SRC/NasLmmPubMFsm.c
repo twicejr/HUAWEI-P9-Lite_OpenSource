@@ -1,15 +1,4 @@
-/******************************************************************************
 
-        @(#)Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : NasLmmPubMFsm.c
-    Description : MM模块的状态机操作
-    History     :
-      1.  Name+ID  yyyy-mm-dd  Draft Enact
-      2.zhengjunyan 00148421   2011-05-28 文件名由 NasMmPubMFsm.c修改为
-                                           NasLmmPubMFsm.c
-******************************************************************************/
 
 
 /*****************************************************************************
@@ -352,17 +341,7 @@ VOS_VOID    NAS_LMM_FsmGetEvtStatFun(    const NAS_LMM_FSM_DESC_STRU   *pFsmDesc
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_EnterDeregStateModify
- Description     : 进入DEREG态时的状态修正
- Input           : pstDestState
- Output          : pstDestState
- Return          : VOS_VOID
 
- History         :
-    1.lihong 00150010      2012-12-18  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_LMM_EnterDeregStateModify
 (
     NAS_LMM_FSM_STATE_STRU              *pstDestState
@@ -392,18 +371,7 @@ VOS_VOID  NAS_LMM_EnterDeregStateModify
     return ;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_StaTransProc
- Description     : 处理状态迁移，包括状态迁移引起的处理和状态机的切换
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-2-25  Draft Enact
-    2.lihong 00150010           2012-12-18 Modify:Emergency
-
-*****************************************************************************/
 VOS_VOID  NAS_LMM_StaTransProc( NAS_LMM_FSM_STATE_STRU  stDestState )
 {
 
@@ -448,17 +416,7 @@ VOS_VOID  NAS_LMM_StaTransProc( NAS_LMM_FSM_STATE_STRU  stDestState )
 
     return;
 }
-/*****************************************************************************
- Function Name   : NAS_LMM_SndOmLogStateChange
- Description     : 状态迁移，勾出状态迁移前后状态
- Input           : pstCurState 当前状态
-                   pstDestState  目标状态
- Output          : None
- Return          : None
 
- History         :
-    1.leixiantiao 00258641      2015-3-13  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_LMM_SndOmLogStateChange(NAS_LMM_FSM_STATE_STRU *pstCurState, NAS_LMM_FSM_STATE_STRU *pstDestState)
 {
     NAS_LMM_OM_LOG_STATE_CHANGE_INFO_STRU      *pstMsg = VOS_NULL_PTR;
@@ -581,17 +539,7 @@ VOS_VOID  NAS_EMM_ProcRrcOriResumeDestStateDeregWriteEpsSecuContext(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_ClearEmmPara
- Description     : 清需要写卡或者NV的EMM参数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong 00150010      2012-11-01  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_LMM_ClearEmmPara( VOS_VOID )
 {
     /*设置 EPS update status为EU3*/
@@ -610,18 +558,7 @@ VOS_VOID  NAS_LMM_ClearEmmPara( VOS_VOID )
     NAS_EMM_SetTinType(MMC_LMM_TIN_INVALID);
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_ActionBeforeTransToDestSta
- Description     : 在状态机切换到目标状态以前，执行相应的操作
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-2-25  Draft Enact
-    2.zhengjunyan 00148421      2011-9-20  DTS2011080201580
-
-*****************************************************************************/
 VOS_VOID  NAS_LMM_ActionBeforeTransToDestSta( NAS_LMM_FSM_STATE_STRU  stDestState )
 {
 
@@ -935,17 +872,7 @@ VOS_VOID  NAS_LMM_AppStateChange( NAS_EMM_FSM_STATE_STRU  stEmmDestState)
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_IsRegisteredInHplmn
- Description     : 判断是否注册在HPLMN上
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2012-07-10  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_LMM_IsRegisteredInHplmn()
 {
     NAS_MM_PLMN_LIST_STRU               stEHplmnList    = {0};
@@ -1054,17 +981,7 @@ VOS_UINT32  NAS_LMM_IsRegisteredInHplmn()
     return NAS_EMM_NO;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_StateMap
- Description     : 把当前EMM状态映射为EMM内部定义上报给APP的状态
- Input           : 当前EMM状态
- Output          : 内部定义上报给APP的状态
- Return          : VOS_VOID
 
- History         :
-    1.    leili  00132387      2009-9-27  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_LMM_StateMap(const NAS_EMM_FSM_STATE_STRU *pstEmmDestState,
                         NAS_APP_REG_STAT_ENUM_UINT32   *pulNasAppDstState)
 
@@ -1114,17 +1031,7 @@ VOS_VOID  NAS_LMM_StateMap(const NAS_EMM_FSM_STATE_STRU *pstEmmDestState,
 
 
 
-/*****************************************************************************
- Function Name   : NAS_LMM_RegStatOsa
- Description     : 把EMM内部定义上报给APP的状态转换为与APP接口定义的状态
- Input           : EMM内部定义上报给APP的状态
- Output          : 与APP接口定义的状态
- Return          : VOS_UINT32
 
- History         :
-    1.    leili  00132387      2009-9-27  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_LMM_RegStatOsa( const NAS_APP_REG_STAT_ENUM_UINT32   *pulNasAppDstState,
                                APP_REG_STAT_ENUM_UINT32       *pulAppRegStat)
 {

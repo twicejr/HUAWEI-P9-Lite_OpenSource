@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasTimerMgmt.c
-  版 本 号   : 初稿
-  作    者   : y00245242
-  生成日期   : 2014年06月28日
-  功能描述   : NAS CDMA定时器处理功能函数
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年06月28日
-    作    者   : y00245242
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -41,39 +26,13 @@ CNAS_TIMER_CTX_STRU                     g_astCnasTimerCtx[CNAS_MAX_TIMER_RUNNING
   3 函数定义
 *****************************************************************************/
 /*lint -save -e958*/
-/*****************************************************************************
- 函 数 名  : CNAS_GetTimerCtxAddr
- 功能描述  : 获取timer上下文首地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回timer上下文首地址
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年07月03日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 CNAS_TIMER_CTX_STRU* CNAS_GetTimerCtxAddr(VOS_VOID)
 {
     return (&g_astCnasTimerCtx[0]);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_InitTimerCtx
- 功能描述  : timer 上下文table初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年07月05日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_InitTimerCtx(VOS_VOID)
 {
     CNAS_TIMER_CTX_STRU                *pstTimerCtx = VOS_NULL_PTR;
@@ -93,20 +52,7 @@ VOS_VOID CNAS_InitTimerCtx(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_GetAFreeTimerCtx
- 功能描述  : 获取一个空闲的CTX
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回timer上下文地址
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年07月03日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 CNAS_TIMER_CTX_STRU* CNAS_GetAFreeTimerCtx(VOS_VOID)
 {
     CNAS_TIMER_CTX_STRU                *pstTimerCtx = VOS_NULL_PTR;
@@ -130,24 +76,7 @@ CNAS_TIMER_CTX_STRU* CNAS_GetAFreeTimerCtx(VOS_VOID)
     return (VOS_NULL_PTR);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_GetSpecifiedTimerCtx
- 功能描述  : 获取指定timer的CTX, 如果指定timer ID在CTX表中找到，返回当前CTX地址，
-             否则返回为NULL
- 输入参数  : ulPid     -- 启动timer的PID任务
-             ulTimerId -- timer标识
-             ulPara    -- 定时器参数标识
- 输出参数  : 无
- 返 回 值  : 返回指定timer上下文地址
 
- 调用函数  :
- 被调函数  :
-
- 修改历史     :
- 1.日    期   : 2014年07月03日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 CNAS_TIMER_CTX_STRU* CNAS_GetSpecifiedTimerCtx(
     VOS_UINT32                          ulPid,
     VOS_UINT32                          ulTimerId,
@@ -179,25 +108,7 @@ CNAS_TIMER_CTX_STRU* CNAS_GetSpecifiedTimerCtx(
     return (VOS_NULL_PTR);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_StartTimer
- 功能描述  : CNAS定时器启动
- 输入参数  : ulPid        -- 启动timer的PID模块
-             pstTimerInfo -- timer信息指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年07月03日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
- 1.日    期   : 2015年07月25日
-   作    者   : y00245242
-   修改内容   : 增加时长为0的保护
-*****************************************************************************/
 VOS_VOID CNAS_StartTimer(
     VOS_UINT32                          ulPid,
     CNAS_TIMER_INFO_STRU               *pstTimerInfo
@@ -269,22 +180,7 @@ VOS_VOID CNAS_StartTimer(
     CNAS_MNTN_TraceTimerMsg(ulPid, &stMntnTimerInfo);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_RestartTimer
- 功能描述  : 重启定时器，当定时器还在运行时，先停止该定时器，再重启定时器。如果
-             定时器未运行，直接启动该定时器
- 输入参数  : ulPid        -- 启动timer的PID模块
-             pstTimerInfo -- timer信息指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年07月03日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_RestartTimer(
     VOS_UINT32                          ulPid,
     CNAS_TIMER_INFO_STRU               *pstTimerInfo
@@ -376,22 +272,7 @@ VOS_VOID CNAS_RestartTimer(
     CNAS_MNTN_TraceTimerMsg(ulPid, &stMntnTimerInfo);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_StopTimer
- 功能描述  : CNAS停止定时器
- 输入参数  : ulPid        -- 启动timer的PID模块
-             pstTimerInfo -- timer信息指针
-             ulPara       -- 定时器参数标识
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年07月03日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_StopTimer(
     VOS_UINT32                          ulPid,
     VOS_UINT32                          ulTimerId,
@@ -436,20 +317,7 @@ VOS_VOID CNAS_StopTimer(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_StopAllTimerWithSpecifiedPid
- 功能描述  : 停止指定PID的所有定时器
- 输入参数  : ulPid        -- 启动timer的PID模块
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年07月04日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_StopAllTimerWithSpecifiedPid(
     VOS_UINT32                          ulPid
 )
@@ -499,22 +367,7 @@ VOS_VOID CNAS_StopAllTimerWithSpecifiedPid(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_GetSpecifiedTimerStatus
- 功能描述  : CNAS停止定时器
- 输入参数  : ulPid     -- 启动timer的PID模块
-             ucTimerId -- timer标识
- 输出参数  : 无
- 返 回 值  : CNAS_TIMER_STATUS_STOP    -- timer在停止状态
-             CNAS_TIMER_STATUS_RUNNING -- timer在启动状态
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年07月03日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 CNAS_TIMER_STATUS_ENUM_UINT8 CNAS_GetSpecifiedTimerStatus(
     VOS_UINT32                          ulPid,
     VOS_UINT32                          ulTimerId,
@@ -534,22 +387,7 @@ CNAS_TIMER_STATUS_ENUM_UINT8 CNAS_GetSpecifiedTimerStatus(
     return pstTimerCtx->enTimerStatus;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_GetSpecifiedTimerRemainLen
- 功能描述  : 获取指定定时器剩余长度
- 输入参数  : ulPid     -- 启动timer的PID模块
-             ucTimerId -- timer标识
- 输出参数  : 无
- 返 回 值  : 返回剩余定时器时长
 
- 调用函数  :
- 被调函数  :
-
- 修改历史     :
- 1.日    期   : 2014年07月04日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_GetSpecifiedTimerRemainLen(
     VOS_UINT32                          ulPid,
     VOS_UINT32                          ulTimerId,

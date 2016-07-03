@@ -70,7 +70,6 @@ typedef VOID (*NSR_MSG_PROCESS_HOOK_FUNC)(ULONG, UCHAR *, ULONG);
 /*各模块NSR使能/去使能处理钩子类型*/
 typedef ULONG (*NSR_SUB_MODULE_SET_NSR_CAPABILITY)(UCHAR);
 
-/* Modified by w00207740, DTS2014021106399,为数据对齐修改pad保留字段, 2014/2/14 */
 /*NSR COMMON的本地数据*/
 typedef struct nsr_common_local
 {
@@ -89,7 +88,6 @@ typedef struct nsr_common_local
     DLL_S lsSubModuleList;
 }NSR_COMMON_LOCAL;
 
-/* Modified by w00207740, DTS2014021106399,为字节对齐，调整字段位置与pad保留字段大小, 2014/2/14 */
 typedef struct nsr_sub_module_regist
 {
     ULONG ulModID;
@@ -101,7 +99,6 @@ typedef struct nsr_sub_module_regist
     NSR_SUB_MODULE_MSG_PROCESS_HOOK_FUNC pfMsgProcessHook;
 }NSR_SUB_MODULE_RESIST;
 
-/* Modified by w00207740, DTS2014021106399,为字节对齐，删除pad保留字段, 2014/2/14 */
 typedef struct nsr_sub_module_node
 {
     DLL_NODE_S stNode;

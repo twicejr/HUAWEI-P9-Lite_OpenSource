@@ -1,27 +1,4 @@
-/************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : RabmExtFunc.h
-  Author      : l47619
-  Version     : V200R001
-  Date        : 2005-09-07
-  Description : 该头文件包含了所有函数的声明
-  History     :
-  1. Date:2005-09-07
-     Author: l47619
-     Modification:Create
-  2.Date        : 2006-03-08
-    Author      : l47619
-    Modification: 问题单: A32D02344
-  3.Date        : 2006-05-05
-    Author      : l47619
-    Modification: 问题单: A32D03487
-  4.日    期   : 2006年08月09日
-    作    者   : 蒋丽萍j60010247
-    修改内容   : 问题单A32D03479，在PC机上实现时将#pragma pack(0)和#pragma pack()加编译开关
-  5.Date        : 2006-06-24
-    Author      : l47619
-    Modification: 问题单: A32D05709
-************************************************************************/
+
 
 #ifndef _RABM_EXT_FUNC_H_
 #define _RABM_EXT_FUNC_H_

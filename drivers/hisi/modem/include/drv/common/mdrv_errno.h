@@ -6,7 +6,7 @@
  * apply:
  *
  * * This program is free software; you can redistribute it and/or modify
- * * it under the terms of the GNU General Public License version 2 and 
+ * * it under the terms of the GNU General Public License version 2 and
  * * only version 2 as published by the Free Software Foundation.
  * *
  * * This program is distributed in the hope that it will be useful,
@@ -28,10 +28,10 @@
  * * 2) Redistributions in binary form must reproduce the above copyright
  * *    notice, this list of conditions and the following disclaimer in the
  * *    documentation and/or other materials provided with the distribution.
- * * 3) Neither the name of Huawei nor the names of its contributors may 
- * *    be used to endorse or promote products derived from this software 
+ * * 3) Neither the name of Huawei nor the names of its contributors may
+ * *    be used to endorse or promote products derived from this software
  * *    without specific prior written permission.
- * 
+ *
  * * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -83,7 +83,7 @@ typedef enum _mdrv_errno_e
     DRV_ERRNO_XMBX_DSP_IPC      = 0x1073,   /* CPHY 上行邮箱满，DSP IPC通知ARM */
     DRV_ERRNO_XMBX_PS_TIMEOUT   = 0x1074,   /* CPHY PS等DSP消息超时 */
     DRV_ERRNO_XMBX_UP_WR        = 0x1075,   /* CPHY 上行邮箱写指针异常 */
-    DRV_ERRNO_XMBX_DL_MOD       = 0x1076,   /* CPHY 下行邮箱读指针MOD异常 */    
+    DRV_ERRNO_XMBX_DL_MOD       = 0x1076,   /* CPHY 下行邮箱读指针MOD异常 */
     DRV_ERROR_LCD_VCC           = 0x1077,    /* PMU过流电源关闭，vcc丢失 */
     DRV_ERROR_USER_RESET        = 0x1078,    /* 用户发起的复位*/
     DRV_ERRNO_PAN_RPC           = 0x1080,   /* PAN_RPC 初始化失败复位 */
@@ -93,6 +93,8 @@ typedef enum _mdrv_errno_e
     DRV_ERRNO_NV_LIST_FULL      = 0x1084,   /* NV 本地写NV list满  */
     DRV_ERRNO_CLK_EXCEPT        = 0x1085,   /* PLL停止异常 & PLL变慢异常*/
 	DRV_ERRNO_MODEM_RST_FAIL    = 0x1086,   /*Modem 单独复位中,回调DRV失败*/
+    DRV_ERRNO_BBP_IPC_TIMEOUT   = 0x1087,   /* BBP获取核间锁超时 */
+    DRV_ERRNO_BBP_DMA_TIMEOUT   = 0x1088,   /* BBP获取核间锁超时 */
     DRV_ERRNO_BUTT              = 0x1FFF
 }mdrv_errno_enum;
 

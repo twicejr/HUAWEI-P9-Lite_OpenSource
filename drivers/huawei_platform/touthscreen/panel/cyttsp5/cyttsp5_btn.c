@@ -211,11 +211,11 @@ static int cyttsp5_setup_input_attention(struct device *dev)
 {
     struct cyttsp5_core_data *cd = dev_get_drvdata(dev);
     struct cyttsp5_btn_data *bd = &cd->bd;
-    int rc;
+    int rc = 0;
 
     bd->si = _cyttsp5_request_sysinfo(dev);
     if (!bd->si) {
-        TS_LOG_ERR("%s: Error, bd->si is NULL.\n", __func__, rc);
+        TS_LOG_ERR("%s: Error, bd->si is NULL.\n", __func__);
         return -1;
     }
 

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafSpmComFunc.c
-  版 本 号   : 初稿
-  作    者   : W00176964
-  生成日期   : 2013年12月16日
-  最近修改   :
-  功能描述   : TafSpmComFunc.C文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年12月16日
-    作    者   : w00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -74,22 +57,7 @@ extern "C" {
   6 函数定义
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_IsNetworkEmergencyNum
- 功能描述  : 检查当前号码是否属于网络下发中的紧急呼叫号码
- 输入参数  : pstDialNum         - 号码
- 输出参数  : pulEmerCatExist    - Emergency Category是否合法
-             pucEmerCategory    - Emergency Category合法才有效,pucEmerCategory的值
- 返 回 值  : VOS_TRUE 呼叫号码是紧急呼
-             VOS_FALSE 呼叫号码不是紧急呼
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月31日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  TAF_SPM_IsNetworkEmergencyNum(
     MN_CALL_CALLED_NUM_STRU             *pstDialNum,
     VOS_UINT32                          *pulEmerCatExist,
@@ -128,25 +96,7 @@ VOS_UINT32  TAF_SPM_IsNetworkEmergencyNum(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_IsAppCustomEmergencyNum
- 功能描述  : 检查当前号码是否属于APP定制的紧急呼叫号码
- 输入参数  : pstDialNum         - 号码
- 输出参数  : pulEmerCategory    - Emergency Category是否合法
-             pucEmerCategory    - Emergency Category合法才有效,pucEmerCategory的值
- 返 回 值  : VOS_TRUE   :是紧急呼叫号码
-             VOS_FALSE  :不是紧急呼叫号码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月31日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2014年12月20日
-    作    者   : l00198894
-    修改内容   : DTS2014110508255: 增加有卡且非正常服务时紧急呼定制功能
-*****************************************************************************/
 VOS_UINT32  TAF_SPM_IsAppCustomEmergencyNum(
     MN_CALL_CALLED_NUM_STRU             *pstDialNum,
     VOS_UINT32                          *pulEmerCatExist,
@@ -214,21 +164,7 @@ VOS_UINT32  TAF_SPM_IsAppCustomEmergencyNum(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_IsPhoneEmergencyNum
- 功能描述  : 判断呼叫号码是否协议定制的紧急呼叫号码
- 输入参数  : pstDialNum------被叫号码
- 输出参数  : 无
- 返 回 值  : VOS_TRUE   :是紧急呼叫号码
-             VOS_FALSE  :不是紧急呼叫号码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月31日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_IsPhoneEmergencyNum(
     MN_CALL_CALLED_NUM_STRU            *pstDialNum
 )
@@ -277,22 +213,7 @@ VOS_UINT32 TAF_SPM_IsPhoneEmergencyNum(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_IsUsimEmergencyNum
- 功能描述  : 检查当前号码是否属于USIM卡中的紧急呼叫号码
- 输入参数  : pucCalledNum       - 号码
- 输出参数  : pulEmcCatExist     - Emergency Category是否合法
-             pucEmerCategory    - Emergency Category合法才有效,pucEmerCategory的值
- 返 回 值  : VOS_TRUE: 是USIM卡中的紧急呼叫号码
-             VOS_FALSE:不是USIM卡中的紧急呼叫号码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月31日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  TAF_SPM_IsUsimEmergencyNum(
     MN_CALL_CALLED_NUM_STRU            *pstDialNum,
     VOS_UINT32                         *pulEmcCatExist,
@@ -376,21 +297,7 @@ VOS_UINT32  TAF_SPM_IsUsimEmergencyNum(
 }
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- 函 数 名  : TAF_SPM_IsPhoneEmergencyNum_CDMA
- 功能描述  : 判断呼叫号码是否中国电信预置的紧急呼号码
- 输入参数  : pstDialNum------被叫号码
- 输出参数  : 无
- 返 回 值  : VOS_TRUE   :是紧急呼叫号码
-             VOS_FALSE  :不是紧急呼叫号码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年02月03日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_IsPhoneEmergencyNum_CDMA(
     MN_CALL_CALLED_NUM_STRU            *pstDialNum
 )
@@ -427,21 +334,7 @@ VOS_UINT32 TAF_SPM_IsPhoneEmergencyNum_CDMA(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_IsUcimEmergencyNum_CDMA
- 功能描述  : 检查当前号码是否属于USIM卡中的紧急呼叫号码
- 输入参数  : pucCalledNum       - 号码
- 输出参数  : 无
- 返 回 值  : VOS_TRUE: 是UCIM卡中的紧急呼叫号码
-             VOS_FALSE:不是UCIM卡中的紧急呼叫号码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月29日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  TAF_SPM_IsUsimEmergencyNum_CDMA(
     MN_CALL_CALLED_NUM_STRU            *pstDialNum,
     VOS_UINT32                         *pulEmcCatExist,
@@ -524,22 +417,7 @@ VOS_UINT32  TAF_SPM_IsUsimEmergencyNum_CDMA(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_IsEmergencyNum_CDMA
- 功能描述  : CDMA下检查当前号码是否属于紧急呼叫号码
- 输入参数  : pucCalledNum       - 号码
- 输出参数  : 无
-的值
- 返 回 值  : VOS_TRUE   :是紧急呼叫号码
-             VOS_FALSE  :不是紧急呼叫号码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月29日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  TAF_SPM_IsEmergencyNum_CDMA(
     MN_CALL_CALLED_NUM_STRU            *pstDialNum,
     VOS_UINT32                         *pulEmcCatExist,
@@ -585,29 +463,7 @@ VOS_UINT32  TAF_SPM_IsEmergencyNum_CDMA(
 #endif
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_IsEmergencyNum
- 功能描述  : 检查当前号码是否属于紧急呼叫号码
- 输入参数  : pucCalledNum       - 号码
-             ulCheckEfecc       - 是否检查(U)SIM的EFECC文件
- 输出参数  : pucEmerCategory    - Emergency Category合法才有效,pucEmerCategory
-的值
- 返 回 值  : VOS_TRUE   :是紧急呼叫号码
-             VOS_FALSE  :不是紧急呼叫号码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月31日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2014年03月03日
-    作    者   : y00245242
-    修改内容   : dts2014030404097，处理emergency call category不存在时流程
-  3.日    期   : 2014年11月17日
-    作    者   : w00176964
-    修改内容   : CDMA 1x项目迭代5修改
-*****************************************************************************/
 VOS_UINT32  TAF_SPM_IsEmergencyNum(
     MN_CALL_CALLED_NUM_STRU            *pstDialNum,
     VOS_UINT32                          ulCheckEfecc,
@@ -697,24 +553,7 @@ VOS_UINT32  TAF_SPM_IsEmergencyNum(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_GetBcCallType
- 功能描述  : 获取BC指示的呼叫类型
- 输入参数  : VOS_UINT32                          ulExistBc      BC参数是否存在
-             VOS_UINT32                          ulBcLength     BC参数长度
-             VOS_UINT8                          *pucBc          BC参数
- 输出参数  : MN_CALL_TYPE_ENUM_U8               *penCallType    根据BC修改后的呼叫类型
- 返 回 值  : VOS_UINT32
-                TAF_CS_CAUSE_SUCCESS        检查通过
-                其他，UE不支持的呼叫类型
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月20日
-    作    者   : f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_GetBcCallType(
     VOS_UINT32                          ulExistBc,
     VOS_UINT32                          ulBcLength,
@@ -752,32 +591,7 @@ VOS_UINT32 TAF_SPM_GetBcCallType(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_IsUsimServiceAvailable
- 功能描述  : 检查卡的服务状态是否可用
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : TAF_SPM_USIM_NO_ERROR:           (U)SIM状态正常
-             TAF_SPM_USIM_NEED_PIN1:          需要PIN1码
-             TAF_SPM_USIM_NEED_PUK1:          需要PUK1码
-             TAF_SPM_USIM_PIN1_FAIL:          PIN1失败
-             TAF_SPM_USIM_OTHER_FAIL:         其他失败
-             TAF_SPM_USIM_NOT_EXIST:          卡不存在
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年11月18日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-  2.日    期   : 2014年2月27日
-   作    者   : z00234330
-   修改内容   : dts2014022402558,sim被puk锁定时,usim模块上报的invalid,usim没有上报
-                卡状态在位时,sdc默认为卡invalid,这两种情况需要区分一下,否则使用
-                at^cpin命令查询的会不正确。
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_IsUsimServiceAvailable(VOS_VOID)
 {
 
@@ -789,21 +603,7 @@ VOS_UINT32 TAF_SPM_IsUsimServiceAvailable(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_GetServiceRequestType
- 功能描述  : 根据应用消息请求判断是否为USSD业务
- 输入参数  : ulEventType -- 业务请求消息的event type
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:是USSD业务
-             VOS_FALSE:不是USSD业务
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月14日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_IsUssdServiceType(
     VOS_UINT32                          ulEventType
 )
@@ -829,24 +629,7 @@ VOS_UINT32 TAF_SPM_IsUssdServiceType(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_GetServiceRequestTypeWithAtClient
- 功能描述  : 根据AT消息请求，返回业务请求类型
 
- 输入参数  : pstMsg -- 业务请求消息类型
- 输出参数  : 无
- 返 回 值  : 返回请求消息的业务类型
-             TAF_SPM_SRV_REQ_TYPE_CALL －－ 呼叫控制业务请求类型
-             TAF_SPM_SRV_REQ_TYPE_SMS －－ 短信业务请求类型
-             TAF_SPM_SRV_REQ_TYPE_SS －－ 补充业务请求类型
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年10月09日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 TAF_SPM_SRV_REQ_TYPE_ENUM_UINT8 TAF_SPM_GetServiceRequestTypeWithAtClient(
     struct MsgCB                       *pstMsg
 )
@@ -883,24 +666,7 @@ TAF_SPM_SRV_REQ_TYPE_ENUM_UINT8 TAF_SPM_GetServiceRequestTypeWithAtClient(
     return enSrvReqType;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_GetServiceRequestTypeWithStkClient
- 功能描述  : 根据STK消息请求，返回业务请求类型
 
- 输入参数  : pstMsg -- 业务请求消息类型
- 输出参数  : 无
- 返 回 值  : 返回请求消息的业务类型
-             TAF_SPM_SRV_REQ_TYPE_CALL －－ 呼叫控制业务请求类型
-             TAF_SPM_SRV_REQ_TYPE_SMS －－ 短信业务请求类型
-             TAF_SPM_SRV_REQ_TYPE_SS －－ 补充业务请求类型
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年10月09日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 TAF_SPM_SRV_REQ_TYPE_ENUM_UINT8 TAF_SPM_GetServiceRequestTypeWithStkClient(
     struct MsgCB                       *pstMsg
 )
@@ -947,25 +713,7 @@ TAF_SPM_SRV_REQ_TYPE_ENUM_UINT8 TAF_SPM_GetServiceRequestTypeWithStkClient(
     return enSrvReqType;
 }
 
-/* Added by s00217060 for VoLTE_PhaseIII  项目, 2014-01-06, begin */
-/*****************************************************************************
- 函 数 名  : TAF_SPM_GetServiceRequestTypeWithTafClient
- 功能描述  : 根据TAF消息请求，返回业务请求类型
 
- 输入参数  : pstMsg -- 业务请求消息类型
- 输出参数  : 无
- 返 回 值  : 返回请求消息的业务类型
-             TAF_SPM_SRV_REQ_TYPE_CALL －－ 呼叫控制业务请求类型
-             TAF_SPM_SRV_REQ_TYPE_SMS －－ 短信业务请求类型
-             TAF_SPM_SRV_REQ_TYPE_SS －－ 补充业务请求类型
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年01月06日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 TAF_SPM_SRV_REQ_TYPE_ENUM_UINT8 TAF_SPM_GetServiceRequestTypeWithTafClient(
     struct MsgCB                       *pstMsg
 )
@@ -993,27 +741,9 @@ TAF_SPM_SRV_REQ_TYPE_ENUM_UINT8 TAF_SPM_GetServiceRequestTypeWithTafClient(
 
     return enSrvReqType;
 }
-/* Added by s00217060 for VoLTE_PhaseIII  项目, 2014-01-06, end */
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_GetServiceRequestType
- 功能描述  : 根据应用消息请求，返回业务请求类型。
 
- 输入参数  : pstMsg -- 业务请求消息类型
- 输出参数  : 无
- 返 回 值  : 返回请求消息的业务类型
-             TAF_SPM_SRV_REQ_TYPE_CALL －－ 呼叫控制业务请求类型
-             TAF_SPM_SRV_REQ_TYPE_SMS －－ 短信业务请求类型
-             TAF_SPM_SRV_REQ_TYPE_SS  －－ 补充业务请求类型
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年9月22日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 TAF_SPM_SRV_REQ_TYPE_ENUM_UINT8 TAF_SPM_GetServiceRequestType(
     struct MsgCB                       *pstMsg
 )
@@ -1050,21 +780,7 @@ TAF_SPM_SRV_REQ_TYPE_ENUM_UINT8 TAF_SPM_GetServiceRequestType(
 
 
 #if (FEATURE_ON == FEATURE_IMS)
-/*****************************************************************************
- 函 数 名  : TAF_SPM_SendTafAgentGetCallInfoCnf
- 功能描述  : 给TAFAGENT发送查询呼叫信息回复
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月18日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_SPM_SendTafAgentGetCallInfoCnf(
     IMSA_SPM_CALL_GET_CALL_INFO_CNF_STRU    *pstImsaMsg
 )
@@ -1111,21 +827,7 @@ VOS_VOID TAF_SPM_SendTafAgentGetCallInfoCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_SendAtGetCallInfoCnf
- 功能描述  : 给AT发送查询呼叫信息回复
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月18日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_SPM_SendAtGetCallInfoCnf(
     IMSA_SPM_CALL_GET_CALL_INFO_CNF_STRU    *pstImsaMsg
 )
@@ -1155,21 +857,7 @@ VOS_VOID TAF_SPM_SendAtGetCallInfoCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_SendAtGetEconfCallInfoCnf
- 功能描述  : 给AT发送增强型多方通话查询呼叫信息回复
- 输入参数  : pstImsaMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月28日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_SPM_SendAtGetEconfCallInfoCnf(
     IMSA_SPM_CALL_GET_ECONF_CALLED_INFO_CNF_STRU   *pstImsaMsg
 )
@@ -1208,23 +896,7 @@ VOS_VOID TAF_SPM_SendAtGetEconfCallInfoCnf(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_GetCallInfoFromFsmEntryMsg
- 功能描述  : 从状态机入口消息中获取呼叫相关信息
- 输入参数  : 无
- 输出参数  : pstDialNumber:呼叫号码
-             penCallType  :呼叫类型
-             penCallMode  :呼叫模式
-             pstDataCfg   :呼叫数据配置信息
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月16日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_SPM_GetCallInfoFromFsmEntryMsg(
     MN_CALL_CALLED_NUM_STRU            *pstDialNumber,
     MN_CALL_TYPE_ENUM_U8               *penCallType,
@@ -1272,27 +944,7 @@ VOS_VOID TAF_SPM_GetCallInfoFromFsmEntryMsg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_IsNeedCheckFdn
- 功能描述  : 判断是否需要做FDN检查
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_FALSE           不要求FDN检查
-             VOS_TRUE            要求FDN检查
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年02月23日
-    作    者   : 傅映君/f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2013年05月13日
-    作    者   : w00176964
-    修改内容   : FDN检查函数位置、命名统一调整
-  3.日    期   : 2013年6月5日
-    作    者   : z00161729
-    修改内容   : SVLTE 和usim接口调整修改
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_IsNeedCheckFdn()
 {
     TAF_SPM_SERVICE_CTRL_CFG_INFO_STRU *pstServiceCtrlCfgInfo = VOS_NULL_PTR;
@@ -1330,31 +982,7 @@ VOS_UINT32 TAF_SPM_IsNeedCheckFdn()
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_IsNeedCallControl
- 功能描述  : 判断是否需要发起CALL CONTROL流程
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_FALSE           不要求CALL CONTROL检查
-             VOS_TRUE            要求CALL CONTROL检查
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月20日
-    作    者   : f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2013年5月14日
-    作    者   : w00176964
-    修改内容   : CALL CONTROL检查函数位置、命名统一调整
-  3.日    期   : 2013年6月5日
-    作    者   : w00242748
-    修改内容   : svlte和usim接口调整
-  4.日    期   : 2013年7月29日
-    作    者   : y00245242
-    修改内容   : 适配新的USIM接口
-
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_IsNeedCallControl(VOS_VOID)
 {
     TAF_SPM_SERVICE_CTRL_CFG_INFO_STRU *pstServiceCtrlCfgInfo = VOS_NULL_PTR;
@@ -1373,9 +1001,7 @@ VOS_UINT32 TAF_SPM_IsNeedCallControl(VOS_VOID)
        1 使能:   做CALL CONTROL检查
     如果是去使能状态，则退出；
     */
-    /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-29, begin */
     if (VOS_TRUE != NAS_USIMMAPI_IsServiceAvailable(NAS_USIM_SVR_CALL_CONTROL))
-    /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-29, end */
     {
 
         return VOS_FALSE;
@@ -1385,21 +1011,7 @@ VOS_UINT32 TAF_SPM_IsNeedCallControl(VOS_VOID)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ConvertSrvTypeToMma
- 功能描述  : 将spm业务类型转换为mma cs session type类型
- 输入参数  : enSpmSrvReq   - spm的业务类型
- 输出参数  : pucMmaSrvType - SPM和MMA接口的业务类型
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月7日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_SPM_ConvertSrvTypeToMma(
     TAF_SPM_SRV_REQ_TYPE_ENUM_UINT8     enSpmSrvReq,
     TAF_MMA_SRV_TYPE_ENUM_UINT8        *pucMmaSrvType
@@ -1429,23 +1041,7 @@ VOS_VOID TAF_SPM_ConvertSrvTypeToMma(
 
 
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-1-15, begin */
-/*****************************************************************************
- 函 数 名  : TAF_SPM_IsUESupportMoCallType
- 功能描述  : 判断UE是否支持MO的呼叫类型
- 输入参数  : enCallType---MO呼叫类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE           UE不支持该呼叫类型
-             VOS_TRUE            UE支持该呼叫类型
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年1月15日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_IsUESupportMoCallType(
     MN_CALL_TYPE_ENUM_U8                enCallType
 )
@@ -1463,28 +1059,11 @@ VOS_UINT32 TAF_SPM_IsUESupportMoCallType(
 
     return VOS_FALSE;
 }
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-1-15, end */
 
 
 
 #if (FEATURE_ON == FEATURE_IMS)
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcSmmaRpt
- 功能描述  : 处理memory available report事件
 
- 输入参数  : pstMsgReportInd －－ 短信report消息地址
-
- 输出参数  : 无
- 返 回 值  : 无
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2013年12月31日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_SPM_ProcSmmaRpt(TAF_SPM_MSG_REPORT_IND_STRU  *pstMsgReportInd)
 {
     MN_MSG_EVENT_INFO_STRU             *pstMsgEventInfo = VOS_NULL_PTR;
@@ -1551,23 +1130,7 @@ VOS_VOID TAF_SPM_ProcSmmaRpt(TAF_SPM_MSG_REPORT_IND_STRU  *pstMsgReportInd)
     PS_MEM_FREE(WUEPS_PID_TAF, pstMsgEventInfo);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcMoSmsRpt
- 功能描述  : 处理短信report事件
 
- 输入参数  : pstMsgReportInd －－ 短信report消息地址
-
- 输出参数  : 无
- 返 回 值  : 无
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2013年12月31日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_SPM_ProcMoSmsRpt(TAF_SPM_MSG_REPORT_IND_STRU  *pstMsgReportInd)
 {
     MN_MSG_EVENT_INFO_STRU             *pstMsgEventInfo = VOS_NULL_PTR;
@@ -1606,23 +1169,7 @@ VOS_VOID TAF_SPM_ProcMoSmsRpt(TAF_SPM_MSG_REPORT_IND_STRU  *pstMsgReportInd)
     PS_MEM_FREE(WUEPS_PID_TAF, pstMsgEventInfo);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcSmsRptEvent
- 功能描述  : 处理短信report事件，根据事件信息内容，通知AT模块
 
- 输入参数  : pstMsgReportInd －－ 短信report消息地址
-
- 输出参数  : 无
- 返 回 值  : 无
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2013年12月24日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_SPM_ProcSmsRptEvent(TAF_SPM_MSG_REPORT_IND_STRU  *pstMsgReportInd)
 {
     if (TAF_SMS_MO_TYPE_SMMA == pstMsgReportInd->enSmsMoType)
@@ -1635,23 +1182,7 @@ VOS_VOID TAF_SPM_ProcSmsRptEvent(TAF_SPM_MSG_REPORT_IND_STRU  *pstMsgReportInd)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_SendAtEconfDialCnf
- 功能描述  : 给AT发送创建增强型会议回复
- 输入参数  : usClientId  --  cliend id
-             ucOpId      --  opt id
-             ucCallId    --  call id
-             enCause     --  cause
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年11月28日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_SPM_SendAtEconfDialCnf(
     MN_CLIENT_ID_T                      usClientId,
     MN_OPERATION_ID_T                   ucOpId,
@@ -1675,20 +1206,7 @@ VOS_VOID TAF_SPM_SendAtEconfDialCnf(
     MN_SendReportMsg(MN_CALLBACK_CS_CALL, (VOS_UINT8 *)&stEconfDialCnf, usLength);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ParseEconfDailInfoFromMsg
- 功能描述  : 从消息中获取呼叫相关信息
- 输入参数  : pstMsg
- 输出参数  :
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月28日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_SPM_ParseEconfDailInfoFromMsg(
     struct MsgCB                       *pstMsg
 )
@@ -1729,22 +1247,7 @@ VOS_VOID TAF_SPM_ParseEconfDailInfoFromMsg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_SendEconfNotifyInd
- 功能描述  : 给AT发送Notify Ind
- 输入参数  : ucOpId
-             ucNumOfCalls   --Call Num
-             pstCallInfo
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年11月28日
-   作    者   : j00174725
-   修改内容   : 新建函数
-*****************************************************************************/
 VOS_VOID TAF_SPM_SendEconfNotifyInd(
     MN_OPERATION_ID_T                   ucOpId,
     VOS_UINT8                           ucNumOfCalls,
@@ -1777,20 +1280,7 @@ VOS_VOID TAF_SPM_SendEconfNotifyInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ReportEconfCheckRslt
- 功能描述  : 将检查结果上报给AT
- 输入参数  : enType
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年11月28日
-   作    者   : j00174725
-   修改内容   : 新建函数
-*****************************************************************************/
 VOS_VOID TAF_SPM_ReportEconfCheckRslt(VOS_VOID)
 {
     TAF_SPM_CALL_ECONF_INFO_STRU       *pstEconfInfoAddr    = VOS_NULL_PTR;
@@ -1829,23 +1319,7 @@ VOS_VOID TAF_SPM_ReportEconfCheckRslt(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RecordEconfCheckRslt
- 功能描述  : 记录call control检查结果
- 输入参数  : ulResult  --结果
-             ulIndex   --序号
-             enType    --类型
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2014年11月28日
-   作    者   : j00174725
-   修改内容   : 新建函数
-*****************************************************************************/
 VOS_VOID TAF_SPM_RecordEconfCheckRslt(
     VOS_UINT32                          ulIndex,
     VOS_UINT32                          ulResult
@@ -1867,20 +1341,7 @@ VOS_VOID TAF_SPM_RecordEconfCheckRslt(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_SetCallEconfDailState
- 功能描述  : 设置呼叫状态
- 输入参数  : enCause
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月28日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_SPM_SetEconfPreRslt(
     TAF_CS_CAUSE_ENUM_UINT32            enCause
 )
@@ -1898,19 +1359,7 @@ VOS_VOID TAF_SPM_SetEconfPreRslt(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_GetEconfCheckResultSuccNum
- 输入参数  : VOS_VOID
- 输出参数  : pulSuccNum
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月28日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_SPM_GetEconfCheckResultSuccNum(
     VOS_UINT32                         *pulSuccNum
 )
@@ -1934,20 +1383,7 @@ VOS_VOID TAF_SPM_GetEconfCheckResultSuccNum(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcEconfCheckResult
- 功能描述  : 检查结果处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月28日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_ProcEconfCheckResult(VOS_VOID)
 {
     TAF_SPM_CALL_ECONF_INFO_STRU       *pstEconfInfoAddr    = VOS_NULL_PTR;
@@ -1976,23 +1412,8 @@ VOS_UINT32 TAF_SPM_ProcEconfCheckResult(VOS_VOID)
 
 #endif
 
-/* Added by w00176964 for V3R3C60_eCall项目, 2014-5-4, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ReadEcallNumber
- 功能描述  : 获取ecall sdn或fdn文件中的test或recfg号码
- 输入参数  : ucFdnRecordNum---FDN文件的记录条数
-             ucSdnRecordNum---SDN文件的记录条数
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年04月3日
-    作    者   : s00261364
-    修改内容   : 新生成函数:
-*****************************************************************************/
 VOS_VOID TAF_SPM_ReadEcallNumber(
     VOS_UINT8                           ucFdnRecordNum,
     VOS_UINT8                           ucSdnRecordNum
@@ -2055,22 +1476,7 @@ VOS_VOID TAF_SPM_ReadEcallNumber(
 }
 
 #if (FEATURE_IMS == FEATURE_ON)
-/*****************************************************************************
- 函 数 名  : TAF_SPM_IsImsCallTypeEmgencyCall
- 功能描述  : 判断当前ims call中是否存在紧急呼
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE -- 有紧急呼
-             VOS_FALSE-- 没有紧急呼
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年03月04日
-    作    者   : j00174725
-    修改内容   : 为eCall feature增加
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_IsImsCallTypeEmgencyCall(VOS_VOID)
 {
     IMSA_SPM_CALL_GET_CALL_INFO_IND_STRU    stCallInfoInd;
@@ -2094,21 +1500,7 @@ VOS_UINT32 TAF_SPM_IsImsCallTypeEmgencyCall(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_SndImsRelAllCall
- 功能描述  : 释放所有IMS Call
- 输入参数  : MN_CLIENT_ID_T
-             MN_OPERATION_ID_T
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年03月04日
-    作    者   : j00174725
-    修改内容   : 为eCall feature增加
-*****************************************************************************/
 VOS_VOID TAF_SPM_SndImsRelAllCall(
     MN_CLIENT_ID_T                      usClientId,
     MN_OPERATION_ID_T                   ucOpId
@@ -2135,25 +1527,10 @@ VOS_VOID TAF_SPM_SndImsRelAllCall(
 
 #endif
 
-/* Added by w00176964 for V3R3C60_eCall项目, 2014-5-4, end */
 
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- 函 数 名  : TAF_SPM_GetCdmaVoiceCallRfAvailInfo
- 功能描述  : 获取CDMA语音呼叫的RF标志，当RF不可用时，输出捕获列表
- 输入参数  : TAF_MMA_SRV_ACQ_RAT_LIST_STRU      *pstSrvAcqRatList
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月15日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_GetCdmaVoiceCallRfAvailInfo(
     TAF_MMA_SRV_ACQ_RAT_LIST_STRU      *pstSrvAcqRatList
 )
@@ -2207,24 +1584,7 @@ VOS_UINT32 TAF_SPM_GetCdmaVoiceCallRfAvailInfo(
     return uc1xRfAvailFlg;
 
 }
-/*****************************************************************************
- 函 数 名  : TAF_SPM_IsCsimServiceAvailable
- 功能描述  : 检查卡的服务状态是否可用
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:           CSIM可用
-             VOS_FALSE:          CSIM不可用
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年12月22日
-    作    者   : l00359089
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_IsCsimServiceAvailable(VOS_VOID)
 {
     TAF_SDC_USIM_STATUS_ENUM_UINT8      enCsimStatus;
@@ -2236,21 +1596,7 @@ VOS_UINT32 TAF_SPM_IsCsimServiceAvailable(VOS_VOID)
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_GetRfAvailInfo
- 功能描述  : 判断当前RF是否可用，当RF不可用时输出捕获列表
- 输入参数  : TAF_SPM_SRV_REQ_TYPE_ENUM_UINT8     enSrvReqType
- 输出参数  : TAF_MMA_SRV_ACQ_RAT_LIST_STRU      *pstSrvAcqRatList
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月15日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_GetRfAvailInfo(
     TAF_SPM_SRV_REQ_TYPE_ENUM_UINT8     enSrvReqType,
     TAF_MMA_SRV_ACQ_RAT_LIST_STRU      *pstSrvAcqRatList
@@ -2291,24 +1637,7 @@ VOS_UINT32 TAF_SPM_GetRfAvailInfo(
     /*lint +e527*/
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_IsSimServiceAvailable
- 功能描述  : 检查卡的服务状态是否可用
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:           SIM可用
-             VOS_FALSE:          SIM不可用
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年12月22日
-    作    者   : l00359089
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_IsSimServiceAvailable(
     TAF_SDC_USIM_STATUS_ENUM_UINT8      enSimStatus
 )

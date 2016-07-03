@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasUtranCtrlFsmPlmnSelectionTbl.c
-  版 本 号   : 初稿
-  作    者   : w00176964
-  生成日期   : 2012年7月12日
-  最近修改   :
-  功能描述   : UTRAN控制模块状态转移表
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年8月4日
-    作    者   : w00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -34,9 +17,7 @@
 #include "NasUtranCtrlCtx.h"
 #include "NasUtranCtrlFsmPlmnSelection.h"
 #include "MsccMmcInterface.h"
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-7, begin */
 /* 删除ExtAppMmcInterface.h*/
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-7, end */
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -115,7 +96,6 @@ NAS_ACT_STRU        g_astNasUtranCtrlPlmnSelectionWaitWasPlmnStopCnfSearchTDActT
                       RRMM_REL_IND,
                       NAS_UTRANCTRL_RcvRrmmRelInd_PlmnSelection_WaitWasPlmnStopCnfSearchTD),
 
- /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
     NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
                       ID_MSCC_MMC_POWER_OFF_REQ,
                       NAS_UTRANCTRL_RcvUserReqMsg_PlmnSelection_WaitWasPlmnStopCnfSearchTD),
@@ -145,7 +125,6 @@ NAS_ACT_STRU        g_astNasUtranCtrlPlmnSelectionWaitWasPlmnStopCnfSearchTDActT
     NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
                       ID_MSCC_MMC_PLMN_USER_RESEL_REQ,
                       NAS_UTRANCTRL_RcvUserReqMsg_PlmnSelection_WaitWasPlmnStopCnfSearchTD),
- /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
     NAS_ACT_TBL_ITEM( WUEPS_PID_MMC,
                       MMCMMC_ABORT_FSM_REQ,
@@ -168,7 +147,6 @@ NAS_ACT_STRU        g_astNasUtranCtrlPlmnSelectionWaitTdPlmnStopCnfSearchWActTbl
                       RRMM_PLMN_SEARCH_CNF,
                       NAS_UTRANCTRL_RcvRrmmPlmnSearchCnf_PlmnSelection_WaitTdPlmnStopCnfSearchW),
 
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
     NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
                       ID_MSCC_MMC_POWER_OFF_REQ,
                       NAS_UTRANCTRL_RcvUserReqMsg_PlmnSelection_WaitTdPlmnStopCnfSearchW),
@@ -198,7 +176,6 @@ NAS_ACT_STRU        g_astNasUtranCtrlPlmnSelectionWaitTdPlmnStopCnfSearchWActTbl
     NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
                       ID_MSCC_MMC_PLMN_USER_RESEL_REQ,
                       NAS_UTRANCTRL_RcvUserReqMsg_PlmnSelection_WaitTdPlmnStopCnfSearchW),
-   /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
     NAS_ACT_TBL_ITEM( WUEPS_PID_MMC,
                       MMCMMC_ABORT_FSM_REQ,
@@ -216,7 +193,6 @@ NAS_ACT_STRU        g_astNasUtranCtrlPlmnSelectionWaitWasSuspendCnfActTbl[]   =
                       RRMM_SUSPEND_CNF,
                       NAS_UTRANCTRL_RcvRrmmSuspendCnf_PlmnSelection_WaitWasSuspendCnf),
 
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
     NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
                       ID_MSCC_MMC_POWER_OFF_REQ,
                       NAS_UTRANCTRL_RcvUserReqMsg_PlmnSelection_WaitWasSuspendCnf),
@@ -245,7 +221,6 @@ NAS_ACT_STRU        g_astNasUtranCtrlPlmnSelectionWaitWasSuspendCnfActTbl[]   =
     NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
                       ID_MSCC_MMC_PLMN_USER_RESEL_REQ,
                       NAS_UTRANCTRL_RcvUserReqMsg_PlmnSelection_WaitWasSuspendCnf),
-   /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
     NAS_ACT_TBL_ITEM( WUEPS_PID_MMC,
                       MMCMMC_ABORT_FSM_REQ,
@@ -264,7 +239,6 @@ NAS_ACT_STRU        g_astNasUtranCtrlPlmnSelectionWaitTdSuspendCnfActTbl[]   =
                       RRMM_SUSPEND_CNF,
                       NAS_UTRANCTRL_RcvRrmmSuspendCnf_PlmnSelection_WaitTdSuspendCnf),
 
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
     NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
                       ID_MSCC_MMC_POWER_OFF_REQ,
                       NAS_UTRANCTRL_RcvUserReqMsg_PlmnSelection_WaitTdSuspendCnf),
@@ -294,7 +268,6 @@ NAS_ACT_STRU        g_astNasUtranCtrlPlmnSelectionWaitTdSuspendCnfActTbl[]   =
     NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
                       ID_MSCC_MMC_PLMN_USER_RESEL_REQ,
                       NAS_UTRANCTRL_RcvUserReqMsg_PlmnSelection_WaitTdSuspendCnf),
-   /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
     NAS_ACT_TBL_ITEM( WUEPS_PID_MMC,
                       MMCMMC_ABORT_FSM_REQ,
@@ -325,7 +298,6 @@ NAS_ACT_STRU        g_astNasUtranCtrlPlmnSelectionWaitWasPlmnSearchCnfActTbl[]  
                      NAS_UTRANCTRL_RcvInterAbortUtranCtrlPlmnSearchReq_PlmnSelection_WaitWasPlmnSearchCnf),
 
 
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
     NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
                      ID_MSCC_MMC_POWER_OFF_REQ,
                      NAS_UTRANCTRL_RcvUserReqMsg_PlmnSelection_WaitWasPlmnSearchCnf),
@@ -355,7 +327,6 @@ NAS_ACT_STRU        g_astNasUtranCtrlPlmnSelectionWaitWasPlmnSearchCnfActTbl[]  
     NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
                       ID_MSCC_MMC_PLMN_USER_RESEL_REQ,
                       NAS_UTRANCTRL_RcvUserReqMsg_PlmnSelection_WaitWasPlmnSearchCnf),
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
     NAS_ACT_TBL_ITEM( WUEPS_PID_MMC,
                       MMCMMC_ABORT_FSM_REQ,
@@ -386,7 +357,6 @@ NAS_ACT_STRU        g_astNasUtranCtrlPlmnSelectionWaitTdPlmnSearchCnfActTbl[]   
                       RRMM_PLMN_SEARCH_CNF,
                       NAS_UTRANCTRL_RcvWasPlmnSearchCnf_PlmnSelection_WaitTdPlmnSearchCnf),
 
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
     NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
                       ID_MSCC_MMC_POWER_OFF_REQ,
                       NAS_UTRANCTRL_RcvUserReqMsg_PlmnSelection_WaitTdPlmnSearchCnf),
@@ -416,7 +386,6 @@ NAS_ACT_STRU        g_astNasUtranCtrlPlmnSelectionWaitTdPlmnSearchCnfActTbl[]   
     NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
                        ID_MSCC_MMC_PLMN_USER_RESEL_REQ,
                        NAS_UTRANCTRL_RcvUserReqMsg_PlmnSelection_WaitTdPlmnSearchCnf),
-   /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
     NAS_ACT_TBL_ITEM( WUEPS_PID_MMC,
                       MMCMMC_ABORT_FSM_REQ,
@@ -448,7 +417,6 @@ NAS_ACT_STRU        g_astNasUtranCtrlPlmnSelectionWaitWasPlmnStopCnfActTbl[]   =
                       RRMM_PLMN_SEARCH_CNF,
                       NAS_UTRANCTRL_RcvTdPlmnSearchCnf_PlmnSelection_WaitWasPlmnStopCnf),
 
-     /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
      NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
                       ID_MSCC_MMC_POWER_OFF_REQ,
                       NAS_UTRANCTRL_RcvUserReqMsg_PlmnSelection_WaitWasPlmnStopCnf),
@@ -478,7 +446,6 @@ NAS_ACT_STRU        g_astNasUtranCtrlPlmnSelectionWaitWasPlmnStopCnfActTbl[]   =
      NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
                        ID_MSCC_MMC_PLMN_USER_RESEL_REQ,
                        NAS_UTRANCTRL_RcvUserReqMsg_PlmnSelection_WaitWasPlmnStopCnf),
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
     NAS_ACT_TBL_ITEM( WUEPS_PID_MMC,
                       MMCMMC_ABORT_FSM_REQ,
@@ -504,7 +471,6 @@ NAS_ACT_STRU        g_astNasUtranCtrlPlmnSelectionWaitTdPlmnStopCnfActTbl[]   =
                       RRMM_PLMN_SEARCH_CNF,
                       NAS_UTRANCTRL_RcvWasPlmnStopCnf_PlmnSelection_WaitTdPlmnStopCnf),
 
-     /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
      NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
                        ID_MSCC_MMC_POWER_OFF_REQ,
                        NAS_UTRANCTRL_RcvUserReqMsg_PlmnSelection_WaitTdPlmnStopCnf),
@@ -534,7 +500,6 @@ NAS_ACT_STRU        g_astNasUtranCtrlPlmnSelectionWaitTdPlmnStopCnfActTbl[]   =
      NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
                        ID_MSCC_MMC_PLMN_USER_RESEL_REQ,
                        NAS_UTRANCTRL_RcvUserReqMsg_PlmnSelection_WaitTdPlmnStopCnf),
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
     NAS_ACT_TBL_ITEM( WUEPS_PID_MMC,
                       MMCMMC_ABORT_FSM_REQ,
@@ -552,7 +517,6 @@ NAS_ACT_STRU        g_astNasUtranCtrlPlmnSelectionWaitWasSuspendCnfBackTDActTbl[
                       RRMM_SUSPEND_CNF,
                       NAS_UTRANCTRL_RcvRrmmSuspendCnf_PlmnSelection_WaitWasSuspendCnfBackTD),
 
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
     NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
                        ID_MSCC_MMC_POWER_OFF_REQ,
                        NAS_UTRANCTRL_RcvUserReqMsg_PlmnSelection_WaitWasSuspendCnf),
@@ -582,7 +546,6 @@ NAS_ACT_STRU        g_astNasUtranCtrlPlmnSelectionWaitWasSuspendCnfBackTDActTbl[
      NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
                        ID_MSCC_MMC_PLMN_USER_RESEL_REQ,
                        NAS_UTRANCTRL_RcvUserReqMsg_PlmnSelection_WaitWasSuspendCnf),
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
     NAS_ACT_TBL_ITEM( WUEPS_PID_MMC,
                       MMCMMC_ABORT_FSM_REQ,
@@ -600,7 +563,6 @@ NAS_ACT_STRU        g_astNasUtranCtrlPlmnSelectionWaitTdSuspendCnBackWfActTbl[] 
                       RRMM_SUSPEND_CNF,
                       NAS_UTRANCTRL_RcvRrmmSuspendCnf_PlmnSelection_WaitTdSuspendCnfBackW),
 
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
     NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
                        ID_MSCC_MMC_POWER_OFF_REQ,
                        NAS_UTRANCTRL_RcvUserReqMsg_PlmnSelection_WaitTdSuspendCnf),
@@ -630,7 +592,6 @@ NAS_ACT_STRU        g_astNasUtranCtrlPlmnSelectionWaitTdSuspendCnBackWfActTbl[] 
     NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
                        ID_MSCC_MMC_PLMN_USER_RESEL_REQ,
                        NAS_UTRANCTRL_RcvUserReqMsg_PlmnSelection_WaitTdSuspendCnf),
-   /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
     NAS_ACT_TBL_ITEM( WUEPS_PID_MMC,
                       MMCMMC_ABORT_FSM_REQ,
@@ -691,41 +652,13 @@ NAS_STA_STRU        g_astNasUtranCtrlPlmnSelectionStaTbl[]   =
                       g_astNasUtranCtrlPlmnSelectionWaitTdSuspendCnBackWfActTbl ),
 };
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_GetPlmnSelectionStaTblSize
- 功能描述  : 获取适配层搜网状态机的大小
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:适配层搜网状态机的大小
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月4日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_GetPlmnSelectionStaTblSize( VOS_VOID  )
 {
     return (sizeof(g_astNasUtranCtrlPlmnSelectionStaTbl)/sizeof(NAS_STA_STRU));
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_GetPlmnSelectionFsmDescAddr
- 功能描述  : 获取适配层搜网状态机的描述表
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : NAS_FSM_DESC_STRU:指向适配层搜网状态机的描述表
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月4日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_FSM_DESC_STRU * NAS_UTRANCTRL_GetPlmnSelectionFsmDescAddr(VOS_VOID)
 {
     return (&g_stNasUtranCtrlPlmnSelectionFsmDesc);

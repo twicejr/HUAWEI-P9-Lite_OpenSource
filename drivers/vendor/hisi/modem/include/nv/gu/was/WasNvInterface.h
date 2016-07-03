@@ -34,10 +34,8 @@ extern "C" {
   2 Macro
 *****************************************************************************/
 #define WAS_MAX_NETWORKPARA_SIZE                (144)                           /*  NET WorkPara文件长度宏定义 */
-/* Modified by x00220225 for 云端频点收集, 2015-07-14, begin */
 #define WAS_HISTORY_SEARCH_PLMN_MAX_NUM         (16)
 #define WAS_HISTORY_PLMN_MAX_NUM                (32)                            /* 存储到NV中的最多PLMN信息 */
-/* Modified by x00220225 for 云端频点收集, 2015-07-14, end */
 #define WAS_OPERATOR_FREQS_MAX_NUM              (16)
 #define WAS_OPERATOR_PLMN_MAX_NUM               (20)
 
@@ -45,10 +43,8 @@ extern "C" {
 #define NV_ITEM_MEAS_THRESHOLD_SIZE             (40)
 #define WAS_MAPWEIGHT_MAX_NUM                   (16)
 #define WAS_HISTORY_PLMN_ID_BYTES               (3)
-/* Modified by x00220225 for 云端频点收集, 2015-07-14, begin */
 #define WAS_HISTORY_SEARCH_FREQS_MAX_NUM        (6)
 #define WAS_HISTORY_FREQS_MAX_NUM               (16)                             /* 存储到NV中的PLMN对应的频点最大个数 */
-/* Modified by x00220225 for 云端频点收集, 2015-07-14, end */
 #define WAS_UE_ACCESS_CAPA_NUM                  (20)
 #define NVIM_MAX_MCC_SIZE                       (3)
 #define NVIM_MAX_MNC_SIZE                       (3)
@@ -58,9 +54,7 @@ extern "C" {
 #define NV_Item_WAS_RadioAccess_Capa_SIZE       (20)
 #define NV_Item_WAS_RadioAccess_Capa_New_SIZE   (48)                            /* WAS新增NV项NV_Item_WAS_RadioAccess_Capa_New */
 #define NV_Item_WCDMA_PLMN_FREQ_PAIR_List_SIZE  (260)
-/* Added by x00220225 for 云端频点收集, 2015-07-17, begin */
 #define NV_Item_WCDMA_HISTORY_PLMN_FREQ_LIST_SIZE  (1156)
-/* Added by x00220225 for 云端频点收集, 2015-07-17, end */
 #define NV_Item_WCDMA_OPERATOR_FREQ_List_SIZE   (56)
 #define NV_ITEM_BG_THRESHOLD_SIZE               (8)
 #define NV_ITEM_PDCP_LOSSLESS_SIZE              (2)
@@ -184,15 +178,7 @@ extern "C" {
 *                           参数设置消息结构                                 *
 *                                                                            *
 ******************************************************************************/
-/*****************************************************************************
- 枚 举 名  : WAS_NETWORK_SEARCH_PROGRESS_ENUM
- 枚举说明  : WAS搜网流程枚举
- 修改历史  :
-  1.日  期   : 2015年10月19日
-    作  者   : w00134354
-    修改内容 : 新生成结构
 
-*****************************************************************************/
 enum WAS_NETWORK_SEARCH_PROGRESS_ENUM
 {
     WAS_NETWORK_SEARCH_PROGRESS_NONE                      = 0x00000000,     
@@ -236,7 +222,6 @@ typedef struct
     VOS_INT16                               asReserve[WAS_NV_MEAS_THRESHOLD_RESERVE_SIZE];     /* 保留字段 */
 }WAS_NVIM_MEAS_THRESHOLD_STRU;
 
-/* Modified by x00220225 for 云端频点收集, 2015-07-17, begin */
 /*****************************************************************************
  结构名    : WAS_NVIM_PLMN_FREQ_PAIR_STRU
  结构说明  : 结构体WAS_NVIM_PLMN_FREQ_PAIR_LIST_STRU的数据成员结构体
@@ -282,7 +267,6 @@ typedef struct
     VOS_UINT32                              ulPlmnCnt;
     WAS_NVIM_HISTORY_FREQ_LIST_STRU         astNvPlmnFreqPair[WAS_HISTORY_PLMN_MAX_NUM];
 }WAS_NVIM_HISTORY_SEARCH_PLMN_FREQ_LIST_STRU;
-/* Modified by x00220225 for 云端频点收集, 2015-07-17, end */
 
 typedef struct
 {
@@ -889,28 +873,14 @@ typedef struct
     VOS_UINT8                   aucUeWcdmaBandPriodiry[NVIM_MAX_FDD_FREQ_BANDS_NUM];
 }NVIM_WAS_FREQ_BAND_PRIORITY_STRU;
 
-/*****************************************************************************
- 结构名    : WAS_ERR_LOG_CS_HO_LEN_STRU
- 结构说明  : Errorlog:CS 语音切换的时长
- 修改历史  :
- 1.日    期    : 2014年9月2日
-   作    者    : 00134354
-   修改内容    : 新建结构体
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                              usCSHandoverTime;                   /* cs切换需要的默认时间，超过该时间就主动上报 */
     VOS_UINT8                               aucReserve[2];                     /* 保留位 */
 }WAS_ERR_LOG_CS_HO_LEN_STRU;
 
-/*****************************************************************************
- 结构名    : NVIM_ERR_LOG_STAY_SELF_RAT_TIMER_THRESHOLD_STRU
- 结构说明  : 在本模停留的时间长度门限，默认为10分钟
- 修改历史  :
- 1.日    期    : 2015年2月6日
-   作    者    : 00134354
-   修改内容    : 新建结构体
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                              usTimerLength;                   /* 在本模停留的时间长度, 单位为分钟 */
@@ -918,28 +888,14 @@ typedef struct
 }NVIM_ERR_LOG_STAY_SELF_RAT_TIMER_THRESHOLD_STRU;
 
 
-/*****************************************************************************
- 结构名    : WAS_ERR_LOG_3G_NOT_TO_LTE_TIMER_STRU
- 结构说明  : 在W模驻留的时间长度，默认为10分钟
- 修改历史  :
- 1.日    期    : 2015年2月6日
-   作    者    : 00134354
-   修改内容    : 新建结构体
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                              usCampOnTime;                   /* 在W模下的时间，超过该时间就主动上报 */
     VOS_UINT8                               aucReserve[2];                  /* 保留位 */
 }WAS_ERR_LOG_3G_NOT_TO_LTE_TIMER_STRU;
 
-/*****************************************************************************
- 结构名    : WAS_NV_T320_CTRL_STRU
- 结构说明  : t320是否支持开关
- 修改历史  :
- 1.日    期    : 2015年2月6日
-   作    者    : 00134354
-   修改内容    : 新建结构体
-*****************************************************************************/
+
 typedef struct
 {
     PS_BOOL_ENUM_UINT8                              enT320SupportFlg;               /* t320是否支持开关 */
@@ -968,14 +924,7 @@ typedef struct
     VOS_UINT32                   ulMccNum;                                      /* 指示多少组MCC有效 */
     WAS_CSFB_MCC_BAND_STRU       astUeCapMccBand[WAS_MAX_CSFB_MCC_BAND_NUM];
 }WAS_CSFB_MCC_BAND_INFO_STRU;
-/*****************************************************************************
- 结构名    : WAS_NV_DMCR_CTRL_INFO_STRU
- 结构说明  : DMCR开关
- 修改历史  :
- 1.日    期    : 2015年2月6日
-   作    者    : 00134354
-   修改内容    : 新建结构体
-*****************************************************************************/
+
 typedef struct
 {
     PS_BOOL_ENUM_UINT8                     enCsDmcrFlg;            /* L2W重定向cs业务或CSFB的搜网场景，DMCR开关 */
@@ -1030,14 +979,7 @@ typedef struct
     VOS_UINT8                              aucReserve2;
 }WAS_NV_RPT_CONN_LOC_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : WAS_NV_RADOM_ACC_CTRL_STRU
- 结构说明  : 随机接入控制NV
- 修改历史  :
- 1.日    期    : 2015年6月15日
-   作    者    : j00169676
-   修改内容    : 新建结构体
-*****************************************************************************/
+
 typedef struct
 {
     PS_BOOL_ENUM_UINT8                              enModifyN300Flg;                /* 是否定制N300 */
@@ -1059,14 +1001,7 @@ typedef struct
     VOS_UINT8                          ucW2LReselPenalTimeLen;                  /* W2L重选惩罚定时器时长 */
     VOS_UINT8                          ucW2LReselOffset;                        /* 当惩罚定时器启动时，W2L重选偏置参数 */
 }WAS_EUTRA_CELL_RESEL_CTRL_INFO_STRU;
-/*****************************************************************************
- 结构名    : WAS_NV_SBM_CUSTOM_DCDPA_CTRL_STRU
- 结构说明  : 软银定制动态适配DCDPA,此NV依赖与3001
- 修改历史  :
- 1.日    期    : 2015年5月4日
-   作    者    : x81004927 
-   修改内容    : 新建结构体
-*****************************************************************************/
+
 typedef struct
 {
     PS_BOOL_ENUM_UINT8            enSbmUnSupDcdpa;
@@ -1092,14 +1027,7 @@ typedef struct
     VOS_UINT32                          aulOtherOperateSupBandInJapan[2];/* 其他运营商在日本国内支持的band，如果是全1则认为支持的band不做限制，支持UE支持的所有band */
     VOS_UINT32                          aulSupBandOutJapan[2];           /* 日本国外支持的band,如果全1则认为支持的band不做限制，支持UE支持的所有band */
 } WAS_NV_SBM_CUSTOM_LTE_BAND_INFO_STRU;
-/*****************************************************************************
- 结构名    : WAS_NV_CAPBILITY_FDDLIST_CTRL_STRU
- 结构说明  : FDD LIST能力上报控制NV
- 修改历史  :
- 1.日    期    : 2015年7月15日
-   作    者    : j00169676
-   修改内容    : 新建结构体
-*****************************************************************************/
+
 typedef struct
 {
     PS_BOOL_ENUM_UINT8                              enFddList3CtrFlg;                /* 是否定制FDD LIST能力上报 */
@@ -1125,20 +1053,13 @@ typedef struct
     VOS_UINT8                          ucReserve2;                              /* 保留位 */
     VOS_UINT8                          ucReserve3;                              /* 保留位 */
 }WAS_NV_CELL_INDI_OFFSET_CTRL_INFO_STRU;
-/*****************************************************************************
- 结构名    : WAS_NV_NOISE_OPTMIZE_CTRL_STRU
- 结构说明  : 流水声优化控制NV
- 修改历史  :
- 1.日    期    : 2015年7月15日
-   作    者    : j00169676
-   修改内容    : 新建结构体
-*****************************************************************************/
+
 typedef struct
 {
     PS_BOOL_ENUM_UINT8                              enNoiseOptmizeFlg;              /* 是否定制流水声检测 */
     PS_BOOL_ENUM_UINT8                              enSilenceFlg;                   /* 是否启动静默音标记 */
     VOS_UINT8                                       ucTimerLen;                     /* 单位s */
-    VOS_UINT8                                       ucReserve1;                     /* 保留位 */
+    PS_BOOL_ENUM_UINT8                              enNoiseOptmizeAllProcedureFlg;  /* 任意场景启动流水声优化开关 */
 }WAS_NV_NOISE_OPTIMIZE_CTRL_STRU;
 /*****************************************************************************
  结构名    : WAS_NV_CU_CELL_SEARCH_CTRL_INFO_STRU
@@ -1173,15 +1094,7 @@ typedef struct
     VOS_UINT8                          ucReserve1;                    /* 保留位 */    
 }WAS_NV_CLOUD_STRATEGY_INFO_STRU;
 
-/*****************************************************************************
- 结 构 名  : WAS_NV_NETWORK_SEARCH_CUSTOMIZE_CFG_STRU
- 结构说明  : 网络搜索定制NV
- 修改历史  :
-  1.日  期   : 2015年10月19日
-    作  者   : w00134354
-    修改内容 : 新生成结构
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32              ulHistoryFreqEnableBitmap;                          /* 历史频点搜索流程使能bit位 */
@@ -1201,14 +1114,7 @@ typedef struct
     VOS_UINT32              ulReserved10;                                       /* 保留位 */
 }WAS_NV_NETWORK_SEARCH_CUSTOMIZE_CFG_STRU;
 
-/*****************************************************************************
- 结 构 名  : WAS_NV_T314_CFG_STRU
- 结构说明  : 网络没有配置T314时使用NV定制默认参数
- 修改历史  :
-  1.日  期   : 2015年12月29日
-    作  者   : j00169676
-    修改内容 : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     PS_BOOL_ENUM_UINT8      enCfgOnOffFlg;                                      /* 定制是否生效开关 */

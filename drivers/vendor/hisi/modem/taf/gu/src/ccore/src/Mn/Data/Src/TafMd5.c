@@ -1,16 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TAfMd5.c
-  版 本 号   : 初稿
-  作    者       : s62952
-  生成日期   : 2009年8月3日
-  最近修改   :
-  功能描述   : Md5算法，
-
-******************************************************************************/
 /********************头文件****************************************************/
 #include "TafMd5.h"
 #include "TafTypeDef.h"
@@ -123,21 +111,7 @@ static VOS_UINT8 TAF_MSG_DIGEST_FIVE_PADDING[64] = {
 #define TAF_UL(x)                       (x)
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_InitMsgDigestFiveCtxt
- 功能描述  : 初始化上下文
- 输入参数  : TAF_MSG_DIGEST_FIVE_CTX *pstMdCtxt
- 输出参数  : 无
- 返 回 值  : TAF_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月22日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_VOID TAF_InitMsgDigestFiveCtxt(TAF_MSG_DIGEST_FIVE_CTX *pstMdCtxt)
 {
     pstMdCtxt->aulIndex[0] = (VOS_UINT32)0;
@@ -149,24 +123,7 @@ TAF_VOID TAF_InitMsgDigestFiveCtxt(TAF_MSG_DIGEST_FIVE_CTX *pstMdCtxt)
     pstMdCtxt->aulScrBuf[3] = (VOS_UINT32)0x10325476;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_UpdateMsgDigestFiveCtxt
- 功能描述  : 更新上下文
-             in the message whose digest is being computed.
- 输入参数  : TAF_MSG_DIGEST_FIVE_CTX            *pstMdContext
-             VOS_UINT8                          *pucInBuf
-             VOS_UINT32                          ulInLen
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月22日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_UpdateMsgDigestFiveCtxt(
     TAF_MSG_DIGEST_FIVE_CTX            *pstMdCtxt,
     VOS_UINT8                          *pucInBuf,
@@ -210,22 +167,7 @@ VOS_VOID TAF_UpdateMsgDigestFiveCtxt(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_EndMsgDigestFive
- 功能描述  : 终止
- 输入参数  : VOS_UINT8                           hash[]
-             TAF_MSG_DIGEST_FIVE_CTX            *pstMdCtxt
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月22日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_EndMsgDigestFive(
     VOS_UINT8                           hash[],
     TAF_MSG_DIGEST_FIVE_CTX            *pstMdCtxt
@@ -277,25 +219,7 @@ VOS_VOID TAF_EndMsgDigestFive(
     (VOS_VOID)VOS_MemCpy(hash, pstMdCtxt->aucDigest, 16);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_TransformMsgDigestFive
- 功能描述  :
- 输入参数  : VOS_UINT32                         *pulBuf
-             VOS_UINT32                         *pulIn
- 输出参数  : 无
- 返 回 值  : static VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月22日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年4月18日
-    作    者   : A00165503
-    修改内容   : DTS2012041705190: 鉴权类型为CHAP的PDP激活失败
-*****************************************************************************/
 static VOS_VOID TAF_TransformMsgDigestFive (
     VOS_UINT32                         *pulBuf,
     VOS_UINT32                         *pulIn

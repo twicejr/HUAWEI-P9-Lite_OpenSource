@@ -1,34 +1,4 @@
-/************************************************************************
- *                                                                      *
- *                          模块名PPP_info.h                            *
- *                                                                      *
- *  Project Code:                                                       *
- *  Create Date:                                                        *
- *  Author:                                                             *
- *  Modify Date:                                                        *
- *            VRPV3R001M07，刘凯，2002/11/29                            *
- *                -- 在enum_PPP中增加了PPP_VJCOMP_DEBUG                 *
- *                -- 对链路质量的定义增加了编译宏                       *
- *            VRPV3R001M07, liminglei 27056, 2002.10.29                 *
- *                -- 在enum_PPP中增加了                                 *
- *                                    PPP_REQUEST_CALLBACK              *
- *                                    PPP_NTSTRING_CALLBACK             *
- *                                    PPP_NTSTRINGCB_HELP               *
- *                                    PPP_QUALITY_CLOSEPER              *
- *                                    PPP_QUALITY_RESUMEPER             *
- *  Document:                                                           *
- *  Function:                                                           *
- *  Others:                                                             *
- *----------------------------------------------------------------------*
- *                                                                      *
- *  Copyright 2000-2002 VRP3.1 Team Beijing Institute HuaWei Tech, Inc. *
- *                      ALL RIGHTS RESERVED                             *
- *                                                                      *
- *----------------------------------------------------------------------*
- *                                                                      *
- *    信息字符串索引外部引用头文件。                                    *
- *                                                                      *
- ************************************************************************/
+
 
 #ifdef    __cplusplus
 extern "C"{
@@ -119,7 +89,6 @@ enum enum_ppp
 };
 
 
-/* Added by z43740:增加错误描述, 2006/05/22*/
 extern CHAR* g_apszPPPErrorInfo_En[];
 
 #ifdef    __cplusplus

@@ -93,13 +93,7 @@ enum    LMM_GMM_SECU_INFO_RSLT_ENUM
 };
 typedef VOS_UINT32 LMM_GMM_SECU_INFO_RSLT_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : GMM_LMM_GPRS_MM_STATE_ENUM
- 结构说明  : GSM下GMM状态
- 1.日    期   : 2011年10月27日
-   作    者   : s46746
-   修改内容   : 新增
-*****************************************************************************/
+
 enum    GMM_LMM_GPRS_MM_STATE_ENUM
 {
     GMM_LMM_GPRS_MM_STATE_IDLE           = 0,           /* G下GMM为idle态 */
@@ -110,13 +104,7 @@ enum    GMM_LMM_GPRS_MM_STATE_ENUM
 };
 typedef VOS_UINT32 GMM_LMM_GPRS_MM_STATE_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : GMM_LMM_PACKET_MM_STATE_ENUM
- 结构说明  : W下GMM状态
- 1.日    期   : 2011年10月27日
-   作    者   : s46746
-   修改内容   : 新增
-*****************************************************************************/
+
 enum    GMM_LMM_PACKET_MM_STATE_ENUM
 {
     GMM_LMM_PACKET_MM_STATE_PMM_DETACH     = 0,           /* W下GMM为detach态 */
@@ -127,13 +115,7 @@ enum    GMM_LMM_PACKET_MM_STATE_ENUM
 };
 typedef VOS_UINT32 GMM_LMM_PACKET_MM_STATE_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : GMM_LMM_GPRS_SUSPENSION_STATE_ENUM
- 结构说明  : GPRS是否挂起状态
- 1.日    期   : 2011年10月27日
-   作    者   : s46746
-   修改内容   : 新增
-*****************************************************************************/
+
 enum    GMM_LMM_GPRS_SUSPENSION_STATE_ENUM
 {
     GMM_LMM_GPRS_NOT_SUSPENSION             = 0,           /* G下GMM为非挂起态 */
@@ -371,13 +353,7 @@ typedef struct
     LMM_GMM_UMTS_SECU_CONTEXT_STRU      stHoUmtsSecuCntxt;
 }LMM_GMM_HO_SECU_INFO_CNF_STRU;
 
-/*****************************************************************************
- 枚举名    : GMM_LMM_SESSION_TYPE_ENUM_UINT8
- 枚举说明  : SESSION类型
- 1.日    期   : 2014年5月22日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 enum GMM_LMM_SESSION_TYPE_ENUM
 {
     GMM_LMM_SESSION_TYPE_MO_SMS,
@@ -394,13 +370,7 @@ enum GMM_LMM_SESSION_TYPE_ENUM
 };
 typedef VOS_UINT8 GMM_LMM_SESSION_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 结构名    : GMM_LMM_BEGIN_SESSION_NOTIFY_STRU
- 结构说明  : SESSION开始指示
- 1.日    期   : 2014年5月22日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /*_H2ASN_Skip*/
@@ -408,13 +378,7 @@ typedef struct
     VOS_UINT8                           aucReserved[3];
 }GMM_LMM_BEGIN_SESSION_NOTIFY_STRU;
 
-/*****************************************************************************
- 结构名    : GMM_LMM_END_SESSION_NOTIFY_STRU
- 结构说明  : SESSION开始指示
- 1.日    期   : 2014年5月22日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /*_H2ASN_Skip*/

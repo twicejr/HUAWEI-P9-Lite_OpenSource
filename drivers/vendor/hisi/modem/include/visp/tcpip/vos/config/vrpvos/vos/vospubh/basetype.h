@@ -392,7 +392,6 @@ typedef ULONG  (*VOS_ULONGVRPFUNCPTR)();/* ptr to function returning VOS_UING32 
             (((dulFirst).ulLo<(dulSecond).ulLo)?-1: \
                 (((dulFirst).ulLo>(dulSecond).ulLo)?1:0))))
 
-/* Modified by X36317, 将原来的结构体赋值改为逐个对结构成员赋值，以解决ARM CPU字节对齐问题, 2006/5/23 */
 #define DULONG_ADD(dulSum,dulFirst,dulSecond)    \
 { \
     DULONG dulSum_temp; \

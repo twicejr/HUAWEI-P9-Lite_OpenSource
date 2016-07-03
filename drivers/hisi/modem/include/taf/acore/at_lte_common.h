@@ -169,10 +169,8 @@ extern VOS_UINT32 AT_QryLwclashPara(VOS_UINT8 ucIndex);
 
 extern VOS_UINT32 AT_QryLcacellPara(VOS_UINT8 ucIndex);
 
-/*Added by y00228784 for ^inforbu , &f  LTE ATÃüÁî¿ØÖÆÒÆµ½AºË 2013-8-28 begin*/
 extern VOS_UINT32 atSetNVFactoryBack(VOS_UINT8 ucClientId);
 extern VOS_UINT32 atSetNVFactoryRestore(VOS_UINT8 ucClientId);
-/*Added by y00228784 for ^inforbu , &f  LTE ATÃüÁî¿ØÖÆÒÆµ½AºË 2013-8-28 end*/
 
 extern VOS_UINT32 atSetLTCommCmdPara(VOS_UINT8 ucClientId);
 extern VOS_UINT32 atSetLTCommCmdParaCnfProc(VOS_UINT8 ucClientId, VOS_VOID * pMsgBlock);

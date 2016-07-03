@@ -1,51 +1,4 @@
-/************************************************************************
-  Copyright    : 2005-2007, Huawei Tech. Co., Ltd.
-  File name    : SSA_Decode.c
-  Author       : ---
-  Version      : V200R001
-  Date         : 2008-08-16
-  Description  : 该C文件给出了SSA模块在处理来自APP的操作的函数实现
-  Function List:
-        ---
-        ---
-        ---
-  History      :
-  1. Date:2005-08-16
-     Author: ---
-     Modification:Create
-  2. Date:2006-04-11
-     Author: h44270
-     Modification: 问题单号:A32D02911, A32D03003
-  3. Date:2006-04-13
-     Author: h44270
-     Modification: 问题单号:A32D02881
 
-  4.日    期   : 2006年4月4日
-    作    者   : liuyang id:48197
-    修改内容   : 问题单号:A32D01738
-  5. Date:2006-06-08
-     Author: h44270
-     Modification: 问题单号:A32D04190
-  6.日    期   : 2006年10月8日
-    作    者   : luojian id:60022475
-    修改内容   : 问题单号:A32D06583，SSA超时处理移到SS
-  7.日    期   : 2006年10月28日
-    作    者   : h44270
-    修改内容   : 问题单号:A32D06864，处理*00*012345678#字串处理有误
-  8.日    期   : 2006年12月09日
-    作    者   : h44270
-    修改内容   : 问题单号:A32D07867，增加一个接口，用于判定字串的操作类型
-  9.Date:2007-01-19
-    Author: h44270
-    Modification: 问题单号:A32D08448
- 10.日    期   : 2007年6月28日
-    作    者   : h44270
-    修改内容   : modified for A32D11949
-
- 11.日    期   : 2010年3月2日
-    作    者   : zhoujun /z40661
-    修改内容   : NAS R7协议升级
-************************************************************************/
 
 #include "Ssa_Define.h"
 #include "Taf_Tafm_Remote.h"
@@ -53,9 +6,7 @@
 #include "Taf_Ssa_EncodeDef.h"
 #include "UsimPsInterface.h"
 #include "SsInclude.h"
-/* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, begin */
 #include "TafClientApi.h"
-/* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, end */
 #include "MnComm.h"
 #include "MnErrorCode.h"
 #include "Taf_Ssa_DecodeDef.h"
@@ -63,6 +14,8 @@
 #include "TafSdcCtx.h"
 
 #include "Ssa_Define.h"
+
+#include "TafInterface.h"
 
 #ifdef  __cplusplus
   #if  __cplusplus
@@ -83,7 +36,6 @@ extern TAF_UINT32 MMA_GetUsimStatusFromUsim(TAF_UINT8 *pucCardStatus,
 /*******************GLOBAL DEFINE BEGIN****************************************/
 
 
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
 TAF_SSA_SERV_REQ_PROC_FUNC_MAP_STRU     g_astTafSsaServProcFuncMap[] =
 {
     { TAF_MSG_REGISTERSS_MSG,     {0, 0}, SSA_RegisterSSReq},
@@ -96,7 +48,6 @@ TAF_SSA_SERV_REQ_PROC_FUNC_MAP_STRU     g_astTafSsaServProcFuncMap[] =
     { TAF_MSG_ERASECCENTRY_MSG ,  {0, 0}, SSA_EraseCCEntryReq },
     { TAF_MSG_RLEASE_MSG ,        {0, 0}, SSA_ReleaseComplete }
 };
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 
 VOS_UINT8  gucMmiBSInfo[SSA_MMI_BS_NUM][3] =
 {
@@ -149,29 +100,11 @@ VOS_UINT8  gucMmiBSInfo[SSA_MMI_BS_NUM][3] =
 
 /*******************GLOBAL DEFINE END****************************************/
 
-/* Deleted by f62575 for V9R1 STK升级, 2013-6-26, begin */
 /* Deleted TAF_SSA_ConvertStkMsgType */
-/* Deleted by f62575 for V9R1 STK升级, 2013-6-26, end */
 
 /*lint -save -e958 */
 
-/*****************************************************************************
- 函 数 名  : TAF_SSA_ProcUssdMode
- 功能描述  : 处理设置USSD传输模式
- 输入参数  : USSD_TRANS_MODE_STRU                *pstMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年05月08日
-    作    者   : f00179208
-    修改内容   : 新生成函数DTS2012050801468: 支持^USSDMODE配置数据同步到C核
-  2.日    期   : 2013年05月22日
-    作    者   : w00176964
-    修改内容   : SS FDN&Call Control项目:设置SDC中的USSD的模式
-*****************************************************************************/
 VOS_VOID TAF_SSA_ProcUssdMode(
     USSD_TRANS_MODE_STRU                *pstMsg
 )
@@ -183,58 +116,13 @@ VOS_VOID TAF_SSA_ProcUssdMode(
     return;
 }
 
-/*****************************************************************************
- Prototype      : Taf_SsaProc
- Description    : TAFM根据消息类型，处理Ss业务，进行TAFM处的解码，调用TAF_CallIndependentOp
- Input          : ucMsgType - SS消息类型
-                  ClientId  - APP/AT客户端标识
-                  CallId    -   呼叫标识
-                  usIeMask  - 消息中Ie存在的标记位
-                  pMsg      -     编码缓冲区指针
- Output         : 无
- Return Value   : 操作结果
- Calls          : TAF_CallIndependentOp
- Called By      : Taf_AppMsgProc
 
- History        : ---
-  1.Date        : 2005-08-15
-    Author      : ---
-    Modification: Created function
-  2.日    期   : 2007年6月28日
-    作    者   : h44270
-    修改内容   : modified for A32D11949
-  3.日    期   : 2012年4月25日
-    作    者   : f62575
-    修改内容   : DTS2012042500352: 解决STK发起的USSD业务不支持问题
-  4.日    期   : 2012年05月08日
-    作    者   : f00179208
-    修改内容   : DTS2012050801468: 支持^USSDMODE配置数据同步到C核
-  5.日    期   : 2012年12月11日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-  6.日    期   : 2013年4月8日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核
-  7.日    期   : 2013年05月06日
-    作    者   : f62575
-    修改内容   : SS FDN&Call Control项目，SS密码下移到SS模块
-  8.日    期   : 2013年6月26日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级
-  9.日    期   : 2013年12月30日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseIII项目
-*****************************************************************************/
 VOS_VOID Taf_SsaProc(VOS_UINT16 usMsgType, VOS_UINT16 ClientId,VOS_UINT8 OpId, VOS_UINT8 *pMsg)
 {
-    /* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-30, begin */
-    /* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-30, end */
     VOS_UINT32                          ulRslt;
-    /* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
     VOS_UINT32                          ulLoop;
     VOS_UINT32                          ulFuncNum;
     TAF_SSA_SERV_REQ_PROC_FUNC          pMsgProcFunc  = VOS_NULL_PTR;
-    /* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 
     /* 卡无关的配置流程 */
     if (TAF_MSG_SET_USSDMODE_MSG == usMsgType)
@@ -244,12 +132,9 @@ VOS_VOID Taf_SsaProc(VOS_UINT16 usMsgType, VOS_UINT16 ClientId,VOS_UINT8 OpId, V
         return;
     }
 
-    /* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-30, begin */
     /* 卡状态判断上移到SPM */
-    /* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-30, end */
 
     /* 这里只完成消息分发到处理函数，流程均修改为在处理函数中实现 */
-    /* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
     ulFuncNum = sizeof(g_astTafSsaServProcFuncMap) / sizeof(g_astTafSsaServProcFuncMap[0]);
 
     for (ulLoop = 0; ulLoop < ulFuncNum; ulLoop ++ )
@@ -276,26 +161,9 @@ VOS_VOID Taf_SsaProc(VOS_UINT16 usMsgType, VOS_UINT16 ClientId,VOS_UINT8 OpId, V
     }
 
     return;
-    /* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 }
 
-/**********************************************************
- Function:     Taf_SsMsgReq
- Description:  Ssa模块需要向ss发送消息时调用此函数
- Calls:        Ssa模块
- Data Accessed:
- Data Updated:
- Input:        p－发送至协议栈的消息
- Output:
- Return:
- Others:
- 2.日    期   :2013年9月10日
-   作    者   :z00161729
-   修改内容   :DTS2013082903019:支持ss重发功能
- 3.日    期   : 2014?6?17?
-   作    者   : z00234330
-   修改内容   : coverity清理
-**********************************************************/
+
 VOS_VOID  Taf_SsMsgReq(ST_SSP_MSG *pMsg)
 {
     VOS_UINT8                           ucTi;
@@ -449,23 +317,7 @@ VOS_UINT32   SSA_MmiGetPwd(SSA_MMI_PARA_STRU *pstPara,  VOS_UINT8  *pMMIStr, VOS
 /*lint +e438 +e830*/
 
 
-/*****************************************************************************
- Prototype      : SSA_GetMmiPara
- Description    : 对字串进行解析，获取相应的参数
- Input          : *pMMIStr--输入字串            ucStrLen--输入字串长度
- Output         : *pstPara--输出参数
- Return Value   : 操作结果
- Calls          : ---
- Called By      : SSA_DealMsgFromSS
 
- History        : ---
-  1.Date        : 2005-08-15
-    Author      : ---
-    Modification: Created function
-  2.Date        : 2006-10-28
-    Author      : ---
-    Modification: modified by h44279 for  A32D06864
-*****************************************************************************/
 VOS_UINT32   SSA_GetMmiPara(SSA_MMI_PARA_STRU *pstPara,  VOS_UINT8  *pMMIStr, VOS_UINT8  ucStrLen)
 {
 
@@ -567,36 +419,28 @@ VOS_UINT32   SSA_GetMmiPara(SSA_MMI_PARA_STRU *pstPara,  VOS_UINT8  *pMMIStr, VO
             if (VOS_FALSE == pstPara->ucSiaFlg)
             {
                 pstPara->ulSc = ((pstPara->ulSc * 10) + *(pucTmp)) - '0';
-                /* Modified by z00234330 for PCLINT清理, 2014-06-24, begin */
                 pucTmp++;
-                /* Modified by z00234330 for PCLINT清理, 2014-06-24, end */
                 continue;
             }
             /*获取Sia的值*/
             if (VOS_FALSE == pstPara->ucSibFlg)
             {
                 pstPara->aucSia[pstPara->ucSiaLen] = *pucTmp;
-                /* Modified by z00234330 for PCLINT清理, 2014-06-24, begin */
                 pucTmp++;
                 pstPara->ucSiaLen++;
-                /* Modified by z00234330 for PCLINT清理, 2014-06-24, end */
                 continue;
             }
             /*获取Sib的值*/
             if (VOS_FALSE == pstPara->ucSicFlg)
             {
                 pstPara->ucSib = (VOS_UINT8)(((pstPara->ucSib * 10) + *(pucTmp)) - '0');
-                /* Modified by z00234330 for PCLINT清理, 2014-06-24, begin */
                 pucTmp++;
-                /* Modified by z00234330 for PCLINT清理, 2014-06-24, end */
                 continue;
             }
 
             /*获取Sic的值*/
             pstPara->ucSic = (VOS_UINT8)(((pstPara->ucSic * 10) + *(pucTmp)) - '0');
-            /* Modified by z00234330 for PCLINT清理, 2014-06-24, begin */
             pucTmp++;
-            /* Modified by z00234330 for PCLINT清理, 2014-06-24, end */
 
             continue;
         }
@@ -851,36 +695,7 @@ VOS_VOID SSA_ReturnReject(VOS_UINT8 ucRejCode, VOS_UINT8 ucTi, VOS_UINT8 ucMsgTy
     return;
 }
 
-/*****************************************************************************
- Prototype      : SSA_RegisterSSReq
- Description    : 处理APP/AT发起的RegisterSS操作,进行编码，并将编码后的内容发往SS
- Input          : *para -- RegisterSS操作的参数,调用相关的编码函数
-                  ucTi -- 分配的Ti
- Output         : 无
- Return Value   : 操作结果
- Calls          : ---
- Called By      : --
 
- History        : ---
-  1.Date        : 2005-08-15
-    Author      : ---
-    Modification: Created function
-  2.日    期   : 2006年10月8日
-    作    者   : luojian id:60022475
-    修改内容   : 问题单号:A32D06583，SSA超时处理移到SS
- 3.日    期   : 2012年4月28日
-   作    者   : f62575
-   修改内容   : DTS2012042601441,+CUSD=2定时器未清除问题
-  4.日    期   : 2013年5月6日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核
-  5.日    期   : 2013年6月26日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级
-  6.日    期   :2013年9月12日
-    作    者   :z00161729
-    修改内容   :DTS2013082903019:支持ss重发功能
-*****************************************************************************/
 VOS_UINT32 SSA_RegisterSSReq(
     VOS_UINT16                          ClientId,
     VOS_UINT8                           OpId,
@@ -890,7 +705,6 @@ VOS_UINT32 SSA_RegisterSSReq(
 {
     ST_SSP_MSG                          stRegisterMsg;
     VOS_UINT32                          ulRslt;
-    /* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
     VOS_UINT8                           ucTi;
     TAF_SS_REGISTERSS_REQ_STRU         *pstRegisterSsReqInfo = VOS_NULL_PTR;
 
@@ -908,7 +722,6 @@ VOS_UINT32 SSA_RegisterSSReq(
     }
 
     pstRegisterSsReqInfo = (TAF_SS_REGISTERSS_REQ_STRU *)pMsg;
-    /* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 
     /*发送内容初始化*/
     PS_MEM_SET(&stRegisterMsg, 0, sizeof(ST_SSP_MSG));
@@ -918,19 +731,15 @@ VOS_UINT32 SSA_RegisterSSReq(
     stRegisterMsg.SspmsgCore.ucChoice = D_SMC_BEGIN_REQ;
 
     /*对MS侧发起的发起的RegisterSS操作的参数内容进行编码*/
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     ulRslt = SSA_EncodeRegisterSSReq(stRegisterMsg.SspmsgCore.u.BeginReq.Facility.Facility,
                                      (VOS_UINT8*)&(stRegisterMsg.SspmsgCore.u.BeginReq.Facility.ulCnt),
                                      (TAF_SS_REGISTERSS_REQ_STRU *)pstRegisterSsReqInfo);
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
     if (SSA_SUCCESS != ulRslt)
     {
         SSA_LOG( WARNING_PRINT, "SSA_RegisterSSReq:WARNING: Encode RegisterSSReq Error!");
         SSA_TiFree(ucTi);
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
         /* 统一错误码，编码失败按参数错误处理 */
         return TAF_ERR_PARA_ERROR;
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
     }
 
     /*封装pstRegisterSsReqInfometer之外的头部*/
@@ -939,10 +748,8 @@ VOS_UINT32 SSA_RegisterSSReq(
     {
         SSA_LOG( WARNING_PRINT, "SSA_RegisterSSReq:WARNING: Encode MsgHeader Error!");
         SSA_TiFree(ucTi);
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
         /* 统一错误码，替换SSA_FAILURE为TAF_ERR_ERROR */
         return TAF_ERR_ERROR;
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
     }
 
     /*是否填入SS version indicator,目前填1*/
@@ -966,48 +773,15 @@ VOS_UINT32 SSA_RegisterSSReq(
     /*向状态表中加入当前Ti的相关信息*/
     gastSsaStatetable[ucTi].ucOperationCode = TAF_SS_REGISTERSS;
     gastSsaStatetable[ucTi].ucSsCode = pstRegisterSsReqInfo->SsCode;
-    /* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-5-6, begin */
-    /* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-5-6, end */
     gastSsaStatetable[ucTi].ucState = SSA_USED;
     gastSsaStatetable[ucTi].ucMsgType = TAF_SS_MSG_TYPE_REGISTER;
 
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     /* 统一错误码，替换SSA_SUCCESS为TAF_ERR_NO_ERROR */
     return TAF_ERR_NO_ERROR;
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 }
 
 
-/*****************************************************************************
- Prototype      : SSA_EraseSSReq
- Description    : 处理APP/AT发起的EraseSS操作,并将编码后的内容发往SS
- Input          : *para--EraseSS操作的参数,调用相关的编码函数
-                  ucTi -- 分配的Ti
- Output         : 无
- Return Value   : 操作结果
- Calls          : ---
- Called By      : --
 
- History        : ---
-  1.Date        : 2005-08-15
-    Author      : ---
-    Modification: Created function
-  2.日    期   : 2006年10月8日
-    作    者   : luojian id:60022475
-    修改内容   : 问题单号:A32D06583，SSA超时处理移到SS
-  3.日    期   : 2012年4月28日
-    作    者   : f62575
-    修改内容   : DTS2012042601441,+CUSD=2定时器未清除问题
-  4.日    期   : 2013年5月6日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核
-  5.日    期   : 2013年6月26日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级
-  6.日    期   :2013年9月12日
-    作    者   :z00161729
-    修改内容  :DTS2013082903019:支持ss重发功能
-*****************************************************************************/
 VOS_UINT32 SSA_EraseSSReq(
     VOS_UINT16                          ClientId,
     VOS_UINT8                           OpId,
@@ -1017,7 +791,6 @@ VOS_UINT32 SSA_EraseSSReq(
 {
     ST_SSP_MSG                          stRegisterMsg;
     VOS_UINT32                          ulRslt;
-    /* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
     VOS_UINT8                           ucTi;
     TAF_SS_ERASESS_REQ_STRU            *pstEraseSSReqInfo = VOS_NULL_PTR;
 
@@ -1035,7 +808,6 @@ VOS_UINT32 SSA_EraseSSReq(
     }
 
     pstEraseSSReqInfo =  (TAF_SS_ERASESS_REQ_STRU *)pMsg;
-    /* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 
     /*发送内容初始化*/
     PS_MEM_SET(&stRegisterMsg, 0, sizeof(ST_SSP_MSG));
@@ -1045,19 +817,15 @@ VOS_UINT32 SSA_EraseSSReq(
     stRegisterMsg.SspmsgCore.ucChoice = D_SMC_BEGIN_REQ;
 
     /*对MS侧发起的发起的RegisterSS操作的参数内容进行编码*/
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     ulRslt = SSA_EncodeEraseSSReq(stRegisterMsg.SspmsgCore.u.BeginReq.Facility.Facility,
                                   (VOS_UINT8*)&(stRegisterMsg.SspmsgCore.u.BeginReq.Facility.ulCnt),
                                   (TAF_SS_ERASESS_REQ_STRU *)pMsg);
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
     if (SSA_SUCCESS != ulRslt)
     {
         SSA_LOG( WARNING_PRINT, "SSA_EraseSSReq:WARNING: Encode EraseSSReq Error!");
         SSA_TiFree(ucTi);
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
         /* 统一错误码，编码失败按参数错误处理 */
         return TAF_ERR_PARA_ERROR;
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
     }
 
     /*封装parameter之外的头部*/
@@ -1066,10 +834,8 @@ VOS_UINT32 SSA_EraseSSReq(
     {
         SSA_LOG( WARNING_PRINT, "SSA_EraseSSReq:WARNING: Encode MsgHeader Error!");
         SSA_TiFree(ucTi);
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
         /* 统一错误码，替换SSA_FAILURE为TAF_ERR_ERROR */
         return TAF_ERR_ERROR;
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
     }
 
     /*是否填入SS version indicator,目前暂时不填*/
@@ -1093,51 +859,15 @@ VOS_UINT32 SSA_EraseSSReq(
     /*向状态表中加入当前Ti的相关信息*/
     gastSsaStatetable[ucTi].ucOperationCode = TAF_SS_ERASESS;
     gastSsaStatetable[ucTi].ucSsCode = pstEraseSSReqInfo->SsCode;
-    /* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-5-6, begin */
-    /* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-5-6, end */
     gastSsaStatetable[ucTi].ucState = SSA_USED;
     gastSsaStatetable[ucTi].ucMsgType = TAF_SS_MSG_TYPE_REGISTER;
 
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     /* 统一错误码，替换SSA_SUCCESS为TAF_ERR_NO_ERROR */
     return TAF_ERR_NO_ERROR;
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
 }
 
-/*****************************************************************************
- Prototype      : SSA_ActivateSSReq
- Description    : 处理APP/AT发起的ActivateSS操作,并将编码后的内容发往SS
- Input          : *para--ActivateSS操作的参数,调用相关的编码函数
-                  ucTi -- 分配的Ti
- Output         : 无
- Return Value   : 操作结果
- Calls          : ---
- Called By      : --
 
- History        : ---
-  1.Date        : 2005-08-15
-    Author      : ---
-    Modification: Created function
-  2.日    期   : 2006年10月8日
-    作    者   : luojian id:60022475
-    修改内容   : 问题单号:A32D06583，SSA超时处理移到SS
-  3.日    期   : 2012年4月28日
-    作    者   : f62575
-    修改内容   : DTS2012042601441,+CUSD=2定时器未清除问题
-  4.日    期   : 2013年5月6日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核
-  5.日    期   : 2013年05月06日
-   作    者   : f62575
-   修改内容   : SS FDN&Call Control项目，SS密码下移到SS模块
-  6.日    期   : 2013年6月26日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级
-  7.日    期   :2013年9月12日
-    作    者   :z00161729
-    修改内容   :DTS2013082903019:支持ss重发功能
-*****************************************************************************/
 VOS_UINT32 SSA_ActivateSSReq(
     VOS_UINT16                          ClientId,
     VOS_UINT8                           OpId,
@@ -1147,9 +877,11 @@ VOS_UINT32 SSA_ActivateSSReq(
 {
     ST_SSP_MSG                          stRegisterMsg;
     VOS_UINT32                          ulRslt;
-    /* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
     VOS_UINT8                           ucTi;
     TAF_SS_ACTIVATESS_REQ_STRU         *pstActiveSsReq = VOS_NULL_PTR;
+    TAF_CALL_NVIM_CCWA_CTRL_MODE_STRU   stCcwaCtrlMode;
+    TAF_CALL_CCWAI_MODE_ENUM_UINT8      enCcwaiMode;
+    VOS_UINT32                          ulRst;
 
     /* 存在USSD业务情况，不允许发送起SS业务 */
     if (VOS_TRUE != TAF_SSA_IsUssdStateIdle())
@@ -1165,7 +897,31 @@ VOS_UINT32 SSA_ActivateSSReq(
     }
 
     pstActiveSsReq = (TAF_SS_ACTIVATESS_REQ_STRU *)pMsg;
-    /* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
+
+    if (TAF_CW_SS_CODE == pstActiveSsReq->SsCode)
+    {
+        enCcwaiMode = TAF_GetCcwaiMode();
+
+        /* 将CCWAI设置写入NV */
+        PS_MEM_SET(&stCcwaCtrlMode, 0, sizeof(stCcwaCtrlMode));
+        stCcwaCtrlMode.enCcwaCtrlMode = TAF_CALL_CCWA_CTRL_BY_NW;
+        stCcwaCtrlMode.enCcwaiMode = enCcwaiMode;
+
+        ulRst = NV_Write(en_NV_Item_Ccwa_Ctrl_Mode,
+                         (VOS_VOID *)&stCcwaCtrlMode,
+                         sizeof(TAF_CALL_NVIM_CCWA_CTRL_MODE_STRU));
+
+        /* 如果写NV失败，则CCWAI设置失败 */
+        if (NV_OK != ulRst)
+        {
+            MN_ERR_LOG("SSA_ActivateSSReq:Write NVIM Error");
+        }
+        else
+        {
+            TAF_SetCcwaCtrlMode(TAF_CALL_CCWA_CTRL_BY_NW);
+            TAF_WARNING_LOG2(WUEPS_PID_TAF, "SSA_ActivateSSReq ", TAF_CALL_CCWA_CTRL_BY_NW, enCcwaiMode);
+        }
+    }
 
     /*发送内容初始化*/
     PS_MEM_SET(&stRegisterMsg, 0, sizeof(ST_SSP_MSG));
@@ -1182,10 +938,8 @@ VOS_UINT32 SSA_ActivateSSReq(
     {
         SSA_LOG( WARNING_PRINT, "SSA_ActivateSSReq:WARNING: Encode ActivateSSReq Error!");
         SSA_TiFree(ucTi);
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
         /* 统一错误码，编码失败按参数错误处理 */
         return TAF_ERR_PARA_ERROR;
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
     }
 
     /*封装pstActiveSsReqmeter之外的头部*/
@@ -1194,10 +948,8 @@ VOS_UINT32 SSA_ActivateSSReq(
     {
         SSA_LOG( WARNING_PRINT, "SSA_ActivateSSReq:WARNING: Encode MsgHeader Error!");
         SSA_TiFree(ucTi);
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
         /* 统一错误码，替换SSA_FAILURE为TAF_ERR_ERROR */
         return TAF_ERR_ERROR;
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
     }
 
     if ((VOS_TRUE != pstActiveSsReq->OP_Password)
@@ -1236,50 +988,14 @@ VOS_UINT32 SSA_ActivateSSReq(
 
     gastSsaStatetable[ucTi].ucOperationCode = TAF_SS_ACTIVATESS;
     gastSsaStatetable[ucTi].ucSsCode = pstActiveSsReq->SsCode;
-    /* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-5-6, begin */
-    /* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-5-6, end */
     gastSsaStatetable[ucTi].ucState = SSA_USED;
     gastSsaStatetable[ucTi].ucMsgType = TAF_SS_MSG_TYPE_REGISTER;
 
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     /* 统一错误码，替换SSA_SUCCESS为TAF_ERR_NO_ERROR */
     return TAF_ERR_NO_ERROR;
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
 }
-/*****************************************************************************
- Prototype      : SSA_DeactivateSSReq
- Description    : 处理APP/AT发起的DeactivateSS操作,并将编码后的内容发往SS
- Input          : *para--DeactivateSS操作的参数 ,调用相关的编码函数
-                  ucTi -- 分配的Ti
- Output         : 无
- Return Value   : 操作结果
- Calls          : ---
- Called By      : --
 
- History        : ---
-  1.Date        : 2005-08-15
-    Author      : ---
-    Modification: Created function
-  2.日    期   : 2006年10月8日
-    作    者   : luojian id:60022475
-    修改内容   : 问题单号:A32D06583，SSA超时处理移到SS
-  3.日    期   : 2012年4月28日
-    作    者   : f62575
-    修改内容   : DTS2012042601441,+CUSD=2定时器未清除问题
-  4.日    期   : 2013年5月6日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核
-  5.日    期   : 2013年05月06日
-   作    者   : f62575
-   修改内容   : SS FDN&Call Control项目，SS密码下移到SS模块
-  6.日    期   : 2013年6月26日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级
-  7.日    期   :2013年9月12日
-    作    者   :z00161729
-    修改内容   :DTS2013082903019:支持ss重发功能
-*****************************************************************************/
 VOS_UINT32 SSA_DeactivateSSReq(
     VOS_UINT16                          ClientId,
     VOS_UINT8                           OpId,
@@ -1289,9 +1005,11 @@ VOS_UINT32 SSA_DeactivateSSReq(
 {
     ST_SSP_MSG                          stRegisterMsg;
     VOS_UINT32                          ulRslt;
-    /* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
     VOS_UINT8                           ucTi;
     TAF_SS_DEACTIVATESS_REQ_STRU       *pstDeactiveSsReq = VOS_NULL_PTR;
+    TAF_CALL_NVIM_CCWA_CTRL_MODE_STRU   stCcwaCtrlMode;
+    TAF_CALL_CCWAI_MODE_ENUM_UINT8      enCcwaiMode;
+    VOS_UINT32                          ulRst;
 
     /* 存在USSD业务情况，不允许发送起SS业务 */
     if (VOS_TRUE != TAF_SSA_IsUssdStateIdle())
@@ -1307,7 +1025,31 @@ VOS_UINT32 SSA_DeactivateSSReq(
     }
 
     pstDeactiveSsReq = (TAF_SS_DEACTIVATESS_REQ_STRU *)pMsg;
-    /* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
+
+    if (TAF_CW_SS_CODE == pstDeactiveSsReq->SsCode)
+    {
+        enCcwaiMode = TAF_GetCcwaiMode();
+
+        /* 将CCWAI设置写入NV */
+        PS_MEM_SET(&stCcwaCtrlMode, 0, sizeof(stCcwaCtrlMode));
+        stCcwaCtrlMode.enCcwaCtrlMode = TAF_CALL_CCWA_CTRL_BY_NW;
+        stCcwaCtrlMode.enCcwaiMode = enCcwaiMode;
+
+        ulRst = NV_Write(en_NV_Item_Ccwa_Ctrl_Mode,
+                         (VOS_VOID *)&stCcwaCtrlMode,
+                         sizeof(TAF_CALL_NVIM_CCWA_CTRL_MODE_STRU));
+
+        /* 如果写NV失败，则CCWAI设置失败 */
+        if (NV_OK != ulRst)
+        {
+            MN_ERR_LOG("SSA_ActivateSSReq:Write NVIM Error");
+        }
+        else
+        {
+            TAF_SetCcwaCtrlMode(TAF_CALL_CCWA_CTRL_BY_NW);
+            TAF_WARNING_LOG2(WUEPS_PID_TAF, "SSA_DeactivateSSReq ", TAF_CALL_CCWA_CTRL_BY_NW, enCcwaiMode);
+        }
+    }
 
     /*发送内容初始化*/
     PS_MEM_SET(&stRegisterMsg, 0, sizeof(ST_SSP_MSG));
@@ -1324,10 +1066,8 @@ VOS_UINT32 SSA_DeactivateSSReq(
     {
         SSA_LOG( WARNING_PRINT, "SSA_DeactivateSSReq:WARNING: Encode DeactivateSSReq Error!");
         SSA_TiFree(ucTi);
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
         /* 统一错误码，编码失败按参数错误处理 */
         return TAF_ERR_PARA_ERROR;
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
     }
 
     /*封装pstDeactiveSsReqmeter之外的头部*/
@@ -1336,18 +1076,14 @@ VOS_UINT32 SSA_DeactivateSSReq(
     {
         SSA_LOG( WARNING_PRINT, "SSA_DeactivateSSReq:WARNING: Encode MsgHeader Error!");
         SSA_TiFree(ucTi);
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
         /* 统一错误码，替换SSA_FAILURE为TAF_ERR_ERROR */
         return TAF_ERR_ERROR;
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
     }
 
     /* 保存呼叫闭锁业务激活或去激活请求中的密码到本地全局变量 */
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     if ((VOS_TRUE != pstDeactiveSsReq->OP_Password)
      && (TAF_ALL_BARRING_SS_CODE == (pstDeactiveSsReq->SsCode & TAF_SS_CODE_MASK)))
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
     {
         SSA_LOG( NORMAL_PRINT, "SSA_DeactivateSSReq: NO required password.");
         SSA_TiFree(ucTi);
@@ -1374,62 +1110,22 @@ VOS_UINT32 SSA_DeactivateSSReq(
 
     /*向状态表中加入当前Ti的相关信息*/
     /* 保存呼叫闭锁业务激活或去激活请求中的密码到本地全局变量 */
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     if (VOS_TRUE == pstDeactiveSsReq->OP_Password)
     {
         PS_MEM_CPY(gastSsaStatetable[ucTi].aucOldPwdStr, pstDeactiveSsReq->aucPassword, TAF_SS_MAX_PASSWORD_LEN);
         gastSsaStatetable[ucTi].ucPwdFlag = SSA_PASSWORD_VALID;
     }
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
     gastSsaStatetable[ucTi].ucOperationCode = TAF_SS_DEACTIVATESS;
     gastSsaStatetable[ucTi].ucSsCode = pstDeactiveSsReq->SsCode;
-    /* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-5-6, begin */
-    /* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-5-6, end */
     gastSsaStatetable[ucTi].ucState = SSA_USED;
     gastSsaStatetable[ucTi].ucMsgType = TAF_SS_MSG_TYPE_REGISTER;
 
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     /* 统一错误码，替换SSA_SUCCESS为TAF_ERR_NO_ERROR */
     return TAF_ERR_NO_ERROR;
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 }
 
-/*****************************************************************************
- Prototype      : SSA_InterrogateSSReq
- Description    : 处理APP/AT发起的InterrogateSS操作,调用相关的编码函数,并将
-                  编码后的内容发往SS
- Input          : *para--InterrogateSS操作的参数
-                  ucTi -- 分配的Ti
- Output         : 无
- Return Value   : 操作结果
- Calls          : ---
- Called By      : --
 
- History        : ---
-  1.Date        : 2005-08-15
-    Author      : ---
-    Modification: Created function
-  2.日    期   : 2006年10月8日
-    作    者   : luojian id:60022475
-    修改内容   : 问题单号:A32D06583，SSA超时处理移到SS
-
-  3.日    期   : 2010年3月1日
-    作    者   : zhoujun /z40661
-    修改内容   : NAS R7协议升级修改发送到网册Version
-  4.日    期   : 2012年4月28日
-    作    者   : f62575
-    修改内容   : DTS2012042601441,+CUSD=2定时器未清除问题
-  5.日    期   : 2013年5月6日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核
-  6.日    期   : 2013年6月26日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级
-  7.日    期   :2013年9月12日
-    作    者   :z00161729
-    修改内容   :DTS2013082903019:支持ss重发功能
-*****************************************************************************/
 VOS_UINT32 SSA_InterrogateSSReq(
     VOS_UINT16                          ClientId,
     VOS_UINT8                           OpId,
@@ -1439,7 +1135,6 @@ VOS_UINT32 SSA_InterrogateSSReq(
 {
     ST_SSP_MSG                          stRegisterMsg;
     VOS_UINT32                          ulRslt;
-    /* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
     VOS_UINT8                           ucTi;
     TAF_SS_INTERROGATESS_REQ_STRU      *pstInterrogateSsReq = VOS_NULL_PTR;
 
@@ -1457,7 +1152,6 @@ VOS_UINT32 SSA_InterrogateSSReq(
     }
 
     pstInterrogateSsReq = (TAF_SS_INTERROGATESS_REQ_STRU *)pMsg;
-    /* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 
     /*发送内容初始化*/
     PS_MEM_SET(&stRegisterMsg, 0, sizeof(ST_SSP_MSG));
@@ -1467,19 +1161,15 @@ VOS_UINT32 SSA_InterrogateSSReq(
     stRegisterMsg.SspmsgCore.ucChoice = D_SMC_BEGIN_REQ;
 
     /*对MS侧发起的发起的RegisterSS操作的参数内容进行编码*/
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     ulRslt = SSA_EncodeInterrogateSsReq(stRegisterMsg.SspmsgCore.u.BeginReq.Facility.Facility,
                                         (VOS_UINT8*)&(stRegisterMsg.SspmsgCore.u.BeginReq.Facility.ulCnt),
                                         pstInterrogateSsReq);
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
     if (SSA_SUCCESS != ulRslt)
     {
         SSA_LOG( WARNING_PRINT, "SSA_InterrogateSSReq:WARNING: Encode InterrogateSSReq Error!");
         SSA_TiFree(ucTi);
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
         /* 统一错误码，编码失败按参数错误处理 */
         return TAF_ERR_PARA_ERROR;
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
     }
 
     /* 封装parameter之外的头部  */
@@ -1488,18 +1178,14 @@ VOS_UINT32 SSA_InterrogateSSReq(
     {
         SSA_LOG( WARNING_PRINT, "SSA_InterrogateSSReq:WARNING: Encode MsgHeader Error!");
         SSA_TiFree(ucTi);
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
         /* 统一错误码，替换SSA_FAILURE为TAF_ERR_ERROR */
         return TAF_ERR_ERROR;
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
     }
 
     /*是否填入SS version indicator,如果是CCBS业务，则SS Version的值为2或2以上，其他情况
     SS Version暂时不存在*/
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     if (( pstInterrogateSsReq->SsCode == TAF_CCBS_A_SS_CODE )
      || ( pstInterrogateSsReq->SsCode == TAF_CCBS_B_SS_CODE ))
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
     {
         stRegisterMsg.SspmsgCore.u.BeginReq.OP_Sspversion = 1;
         stRegisterMsg.SspmsgCore.u.BeginReq.Sspversion.ulCnt = 1;
@@ -1527,54 +1213,15 @@ VOS_UINT32 SSA_InterrogateSSReq(
 
     /*向状态表中加入当前Ti的相关信息*/
     gastSsaStatetable[ucTi].ucOperationCode = TAF_SS_INTERROGATESS;
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     gastSsaStatetable[ucTi].ucSsCode        = pstInterrogateSsReq->SsCode;
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
-    /* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-5-6, begin */
-    /* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-5-6, end */
     gastSsaStatetable[ucTi].ucState = SSA_USED;
     gastSsaStatetable[ucTi].ucMsgType = TAF_SS_MSG_TYPE_REGISTER;
 
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     /* 统一错误码，替换SSA_SUCCESS为TAF_ERR_NO_ERROR */
     return TAF_ERR_NO_ERROR;
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 }
 
-/*****************************************************************************
- Prototype      : SSA_RegisterPasswordReq
- Description    : 处理APP/AT发起的RegisterPassWord操作,调用相关的编码函数,并将
-                  编码后的内容发往SS
- Input          : *para--RegisterPassWord操作的参数
-                  ucTi -- 分配的Ti
- Output         : 无
- Return Value   : 操作结果
- Calls          : ---
- Called By      : --
 
- History        : ---
-  1.Date        : 2005-08-15
-    Author      : ---
-    Modification: Created function
-  2.日    期   : 2006年10月8日
-    作    者   : luojian id:60022475
-    修改内容   : 问题单号:A32D06583，SSA超时处理移到SS
-  3.日    期   : 2010年6月21日
-    作    者   : z00161729
-    修改内容   : 问题单号:DTS2010061900253
-  4.日    期   : 2012年4月28日
-    作    者   : f62575
-    修改内容   : DTS2012042601441,+CUSD=2定时器未清除问题
-  5.日    期   : 2013年5月6日
-    作    者   : s00217060
-    修改内容  : 主动上报AT命令控制下移至C核
-  6.日    期   : 2013年6月26日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级
-  7.日    期   :2013年9月12日
-    作    者   :z00161729
-    修改内容   :DTS2013082903019:支持ss重发功能
-*****************************************************************************/
 VOS_UINT32 SSA_RegisterPasswordReq(
     VOS_UINT16                          ClientId,
     VOS_UINT8                           OpId,
@@ -1584,7 +1231,6 @@ VOS_UINT32 SSA_RegisterPasswordReq(
 {
     ST_SSP_MSG                          stRegisterMsg;
     VOS_UINT32                          ulRslt;
-    /* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
     VOS_UINT8                           ucTi;
     TAF_SS_REGPWD_REQ_STRU             *pstRegPassWord = VOS_NULL_PTR;
 
@@ -1602,7 +1248,6 @@ VOS_UINT32 SSA_RegisterPasswordReq(
     }
 
     pstRegPassWord = (TAF_SS_REGPWD_REQ_STRU *)pMsg;
-    /* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 
     if (TAF_ALL_BARRING_SS_CODE == (pstRegPassWord->SsCode & 0xf0))
     {
@@ -1617,11 +1262,9 @@ VOS_UINT32 SSA_RegisterPasswordReq(
     stRegisterMsg.SspmsgCore.ucChoice = D_SMC_BEGIN_REQ;
 
     /*对MS侧发起的发起的RegisterPassword操作的参数内容进行编码*/
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     ulRslt = SSA_EncodeRegPwdReq(stRegisterMsg.SspmsgCore.u.BeginReq.Facility.Facility,
                                  (VOS_UINT8*)&(stRegisterMsg.SspmsgCore.u.BeginReq.Facility.ulCnt),
                                  pstRegPassWord);
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
     if (SSA_SUCCESS != ulRslt)
     {
@@ -1629,10 +1272,8 @@ VOS_UINT32 SSA_RegisterPasswordReq(
         /*释放状态表当前Ti所在项*/
         SSA_LOG( WARNING_PRINT, "SSA_RegisterPasswordReq:WARNING: Encode RegisterPasswordReq Error!");
         SSA_TiFree(ucTi);
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
         /* 统一错误码，编码失败按参数错误处理 */
         return TAF_ERR_PARA_ERROR;
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
     }
 
     /*封装pstRegPassWordmeter之外的头部*/
@@ -1641,10 +1282,8 @@ VOS_UINT32 SSA_RegisterPasswordReq(
     {
         SSA_LOG( WARNING_PRINT, "SSA_RegisterPasswordReq:WARNING: Encode MsgHeader Error!");
         SSA_TiFree(ucTi);
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
         /* 统一错误码，替换SSA_FAILURE为TAF_ERR_ERROR */
         return TAF_ERR_ERROR;
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
     }
 
     /*是否填入SS version indicator,目前暂时不填*/
@@ -1667,46 +1306,20 @@ VOS_UINT32 SSA_RegisterPasswordReq(
 
     /*向状态表中加入当前Ti的相关信息,将password存入状态表中*/
     gastSsaStatetable[ucTi].ucOperationCode = TAF_SS_REGISTERPASSWORD;
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     gastSsaStatetable[ucTi].ucSsCode        = pstRegPassWord->SsCode;
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
-    /* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-5-6, begin */
-    /* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-5-6, end */
     gastSsaStatetable[ucTi].ucState = SSA_USED;
     gastSsaStatetable[ucTi].ucMsgType = TAF_SS_MSG_TYPE_REGISTER;
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     PS_MEM_CPY(gastSsaStatetable[ucTi].aucOldPwdStr, pstRegPassWord->aucOldPwdStr ,TAF_SS_MAX_PASSWORD_LEN);
     PS_MEM_CPY(gastSsaStatetable[ucTi].aucNewPwdStr, pstRegPassWord->aucNewPwdStr, TAF_SS_MAX_PASSWORD_LEN);
     PS_MEM_CPY(gastSsaStatetable[ucTi].aucNewPwdStrCnf, pstRegPassWord->aucNewPwdStrCnf, TAF_SS_MAX_PASSWORD_LEN);
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
     gastSsaStatetable[ucTi].ucPwdFlag = SSA_PASSWORD_VALID;
 
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     /* 统一错误码，替换SSA_SUCCESS为TAF_ERR_NO_ERROR */
     return TAF_ERR_NO_ERROR;
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
 }
 
-/*****************************************************************************
- Prototype      : SSA_GetPasswordInd
- Description    : 处理APP/AT发来的对GetPassWord操作的响应,调用相关的编码函数,并将
-                  编码后的内容发往SS
- Input          : *para--GetPassWord操作的参数
-                  ucTi -- 分配的Ti
- Output         : 无
- Return Value   : 无
- Calls          : ---
- Called By      : --
 
- History        : ---
-  1.Date        : 2005-08-15
-    Author      : ---
-    Modification: Created function
-  2.日    期   :2013年9月12日
-    作    者   :z00161729
-    修改内容   :DTS2013082903019:支持ss重发功能
-*****************************************************************************/
 VOS_VOID SSA_GetPasswordRsp (TAF_SS_GETPWD_RSP_STRU  *para, VOS_UINT8 ucTi)
 {
 
@@ -1749,21 +1362,7 @@ VOS_VOID SSA_GetPasswordRsp (TAF_SS_GETPWD_RSP_STRU  *para, VOS_UINT8 ucTi)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SSA_SendUnstructuredSSReq
- 功能描述  : 发送USSD请求到MM
- 输入参数  : VOS_UINT8 ucTi
- 返 回 值  : 发送USSD请求到MM结果
-                TAF_ERR_NO_ERROR            发送成功
-                其他，                      发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年02月23日
-    作    者   : 傅映君/f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 SSA_SendUnstructuredSSReq(VOS_UINT8 ucTi)
 {
     ST_SSP_MSG                          stRegisterMsg;
@@ -1806,22 +1405,7 @@ VOS_UINT32 SSA_SendUnstructuredSSReq(VOS_UINT8 ucTi)
     return TAF_ERR_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : SSA_RequireUnpackSscStr
- 功能描述  : 对7BIT编码的SSC字符串解码
- 输入参数  : VOS_UINT8 ucTi Ti值
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
-                VOS_TRUE            不需要解码
-                VOS_FALSE           需要解码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年02月23日
-    作    者   : 傅映君/f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 SSA_RequireUnpackSscStr(
     TAF_SS_DATA_CODING_SCHEME           ucDatacodingScheme
 )
@@ -1839,37 +1423,7 @@ VOS_UINT32 SSA_RequireUnpackSscStr(
 }
 
 
-/*****************************************************************************
- 函 数 名  : SSA_ProcessUnstructuredSSReq
- 功能描述  : 处理APP/AT发起的ProcessUnstructuredSS-Request操作,调用相关的编码函数,
- 输入参数  : MN_CLIENT_ID_T                      clientId   发起该请求的Client的ID
-              TAF_SS_PROCESS_USS_REQ_STRU        *para       USSD 编码缓冲区指针
-              VOS_UINT8                           ucTi       本地分配的TI，用于索引SS实体
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2005年8月15日
-    作    者   :
-    修改内容   : 新生成函数
-  2.日    期   : 2010年8月16日
-    作    者   : 王毛/00166186
-    修改内容   : DTS2010081702586 德国电信USSD PHASE1 兼容性问题
-  3.日    期   : 2012年02月24日
-    作    者   : 傅映君/f62575
-    修改内容   : C50_IPC Project  用户发起的USSD业务插入FDN检查
-  4.日    期   : 2012年4月28日
-    作    者   : f62575
-    修改内容   : DTS2012042601441,+CUSD=2定时器未清除问题
-  5.日    期   : 2013年5月14日
-    作    者   : w00176964
-    修改内容   : SS FDN&Call Control项目:FDN检查逻辑移到SPM模块处理
-  6.日    期   :2013年9月12日
-    作    者   :z00161729
-    修改内容   :DTS2013082903019:支持ss重发功能
-*****************************************************************************/
 VOS_UINT32 SSA_ProcessUnstructuredSSReq(
     VOS_UINT16                          ClientId,
     TAF_SS_PROCESS_USS_REQ_STRU        *para,
@@ -1928,38 +1482,7 @@ VOS_UINT32 SSA_ProcessUnstructuredSSReq(
     return TAF_ERR_NO_ERROR;
 }
 
-/*****************************************************************************
- Prototype      : SSA_ProcessUSSDataReq
- Description    : APP/AT发起的ProcessUnstructuredSS-Request操作,网络不支持，
-                  发起 ProcessUSSData操作，调用相关的编码函数,
-                  并将编码后的内容发往SS
- Input          : *para--TAF_SS_PROCESS_USSDATA_REQ_STRU操作的参数
-                  ucTi -- 分配的Ti
- Output         : 无
- Return Value   : 操作结果
- Calls          : ---
- Called By      : --
 
- History        : ---
-  1.Date        : 2007-01-22
-    Author      : ---
-    Modification: Created function for A32D08448
-  2.日    期   : 2012年4月28日
-    作    者   : f62575
-    修改内容   : DTS2012042601441,+CUSD=2定时器未清除问题
-  3.日    期   : 2013年5月6日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核
-  4.日    期   : 2013年6月17日
-    作    者   : s00217060
-    修改内容   : V9R1_SVLTE
-  5.日    期   : 2013年08月19日
-    作    者   : l00198894
-    修改内容   : V9R1 干扰控制项目，给MTC上报CS域业务状态
-  6.日    期   :2013年9月12日
-    作    者   :z00161729
-    修改内容   :DTS2013082903019:支持ss重发功能
-*****************************************************************************/
 VOS_UINT32 SSA_ProcessUSSDataReq(TAF_SS_PROCESS_USSDATA_REQ_STRU *para, VOS_UINT8 ucTi)
 {
     ST_SSP_MSG             stRegisterMsg;
@@ -2014,51 +1537,21 @@ VOS_UINT32 SSA_ProcessUSSDataReq(TAF_SS_PROCESS_USSDATA_REQ_STRU *para, VOS_UINT
     /*向状态表中加入当前Ti的相关信息*/
     /* gastSsaStatetable[ucTi].ucSsCode = para->SsCode; */
     gastSsaStatetable[ucTi].ucOperationCode = TAF_SS_PROCESS_USS_DATA;
-    /* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-5-6, begin */
-    /* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-5-6, end */
     gastSsaStatetable[ucTi].ucState = SSA_USED;
     gastSsaStatetable[ucTi].ucMsgType = TAF_SS_MSG_TYPE_REGISTER;
 
     /* 没有调用SSA_TiAlloc函数，需要单独置一下CS域的SS业务是否存在的标志 */
     TAF_SDC_SetCsSsSrvExistFlg(VOS_TRUE);
 
-    /* Added by l00198894 for V9R1 干扰控制, 2013/08/19, begin */
 #if (FEATURE_MULTI_MODEM == FEATURE_ON)
     /* 给MTC模块上报当前CS域业务状态 */
     TAF_SendMtcCsSrvInfoInd();
 #endif
-    /* Added by l00198894 for V9R1 干扰控制, 2013/08/19, end */
 
     return SSA_SUCCESS;
 }
 
-/*****************************************************************************
- Prototype      : SSA_UnstructuredSSRsp
- Description    : 处理APP/AT发来的对UnstructuredSS-Request操作的响应,调用相关的
-                  编码函数, 并将编码后的内容发往SS
- Input          : *para--UnstructuredSSReq操作的参数
-                  ucTi -- 分配的Ti
-                  ClientId - client id
-                  OpId     - operation id
- Output         : 无
- Return Value   : 操作结果
- Calls          : ---
- Called By      : --
 
- History        : ---
-  1.Date        : 2005-08-15
-    Author      : ---
-    Modification: Created function
-  2.日    期   : 2013年4月10日
-    作    者   : z00161729
-    修改内容   : 主动上报AT命令控制下移至C核及mma和mmc接口调整
-  3.日    期   : 2013年8月1日
-    作    者   : z00161729
-    修改内容   : V9R1 STK升级修改
-  4.日    期   :2013年9月12日
-    作    者   :z00161729
-    修改内容   :DTS2013082903019:支持ss重发功能
-*****************************************************************************/
 VOS_UINT32 SSA_UnstructuredSSRsp(
     TAF_SS_USS_RSP_STRU                *para,
     VOS_UINT8                           ucTi,
@@ -2125,14 +1618,10 @@ VOS_UINT32 SSA_UnstructuredSSRsp(
     PS_MEM_SET(pstSsEvent, 0 , 4);
     pstSsEvent->SsEvent =  TAF_SS_EVT_USSD_DATA_SND;
 
-    /* Modified by z00161729 for V9R1 STK升级, 2013-7-25, begin */
     pstSsEvent->OpId = OpId;
     pstSsEvent->ClientId = ClientId;
-    /* Modified by z00161729 for V9R1 STK升级, 2013-7-25, end */
 
-    /* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
     gastSsaStatetable[ucTi].ucUssdFlag      = TAF_SSA_USSD_MO_CONN_STATE;
-    /* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 
     ucTmpMsgType = gastSsaStatetable[ucTi].ucMsgType;
     gastSsaStatetable[ucTi].ucMsgType = TAF_SS_MSG_TYPE_FACILITY;
@@ -2186,41 +1675,7 @@ VOS_VOID  SSA_UssNotifyRsp(VOS_UINT8 ucTi)
     return;
 }
 
-/*****************************************************************************
- Prototype      : SSA_EraseCCEntryReq
- Description    : 处理APP/AT发起的ERASECC_ENTRY操作,调用相关的编码函数, 并将编
-                  码后的内容发往SS
- Input          : *para--ERASECC_ENTRY操作的参数
-                  ucTi -- 分配的Ti
- Output         : 无
- Return Value   : 操作结果
- Calls          : ---
- Called By      : --
 
- History        : ---
-  1.Date        : 2005-08-15
-    Author      : ---
-    Modification: Created function
-  2.日    期   : 2006年10月8日
-    作    者   : luojian id:60022475
-    修改内容   : 问题单号:A32D06583，SSA超时处理移到SS
-
-  3.日    期   : 2010年3月1日
-    作    者   : zhoujun /z40661
-    修改内容   : NAS R7协议升级修改发送到网侧的Version
-  4.日    期   : 2012年4月28日
-    作    者   : f62575
-    修改内容   : DTS2012042601441,+CUSD=2定时器未清除问题
-  5.日    期   : 2013年5月6日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核
-  6.日    期   : 2013年6月26日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级
-  7.日    期   :2013年9月12日
-    作    者   :z00161729
-    修改内容   :DTS2013082903019:支持ss重发功能
-*****************************************************************************/
 VOS_UINT32 SSA_EraseCCEntryReq(
     VOS_UINT16                          ClientId,
     VOS_UINT8                           OpId,
@@ -2235,7 +1690,6 @@ VOS_UINT32 SSA_EraseCCEntryReq(
      */
     ST_SSP_MSG                          stRegisterMsg;
     VOS_UINT32                          ulRslt;
-    /* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
     VOS_UINT8                           ucTi;
     TAF_SS_ERASECC_ENTRY_REQ_STRU      *pstEraseCc = VOS_NULL_PTR;
 
@@ -2253,7 +1707,6 @@ VOS_UINT32 SSA_EraseCCEntryReq(
     }
 
     pstEraseCc = (TAF_SS_ERASECC_ENTRY_REQ_STRU *)pMsg;
-    /* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 
     /*发送内容初始化*/
     PS_MEM_SET(&stRegisterMsg, 0, sizeof(ST_SSP_MSG));
@@ -2263,20 +1716,16 @@ VOS_UINT32 SSA_EraseCCEntryReq(
     stRegisterMsg.SspmsgCore.ucChoice = D_SMC_BEGIN_REQ;
 
     /*对MS侧发起EraseCCEntry操作的参数内容进行编码*/
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     ulRslt = SSA_EncodeEraseCCEntryReq(stRegisterMsg.SspmsgCore.u.BeginReq.Facility.Facility,
                                        (VOS_UINT8*)&(stRegisterMsg.SspmsgCore.u.BeginReq.Facility.ulCnt),
                                        pstEraseCc);
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
     if (SSA_SUCCESS != ulRslt)
     {
         /*应用所给参数有误，返回释放状态表当前Ti所在项*/
         SSA_LOG( WARNING_PRINT, "SSA_EraseCCEntryReq:WARNING: Encode EraseCCEntryReq Error!");
         SSA_TiFree(ucTi);
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
         /* 统一错误码，编码失败按参数错误处理 */
         return TAF_ERR_PARA_ERROR;
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
     }
 
     /*封装parameter之外的头部*/
@@ -2308,11 +1757,7 @@ VOS_UINT32 SSA_EraseCCEntryReq(
 
     /*向状态表中加入当前Ti的相关信息*/
     gastSsaStatetable[ucTi].ucOperationCode = TAF_SS_ERASECC_ENTRY;
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     gastSsaStatetable[ucTi].ucSsCode = pstEraseCc->SsCode;
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
-    /* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-5-6, begin */
-    /* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-5-6, end */
     gastSsaStatetable[ucTi].ucState = SSA_USED;
     gastSsaStatetable[ucTi].ucMsgType = TAF_SS_MSG_TYPE_REGISTER;
 
@@ -2321,37 +1766,7 @@ VOS_UINT32 SSA_EraseCCEntryReq(
 
 
 
-/*****************************************************************************
- Prototype      : SSA_ReleaseComplete
- Description    : 处理APP/AT发来的release操作，无任何参数
- Input          : *para--UnstructuredSSData操作的参数
-                  ucTi -- 分配的Ti
- Output         : 无
- Return Value   : 操作结果
- Calls          : ---
- Called By      : --
 
- History        : ---
-  1.Date        : 2005-08-15
-    Author      : ---
-    Modification: Created function
-  2.日    期   : 2012年4月28日
-    作    者   : f62575
-    修改内容   : DTS2012042601441,+CUSD=2定时器未清除问题
-  3.日    期   : 2013年6月26日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级
-  4.日    期   : 2013年7月13日
-    作    者   : l00208543
-    修改内容   : V9R1 STK升级，使用新函数TAF_SSA_GetUssdTi获取TI
-  5.日    期   :2013年9月12日
-    作    者   :z00161729
-    修改内容  :DTS2013082903019:支持ss重发功能
-
-  6.日    期   : 2014年5月26日
-    作    者   : z00234330
-    修改内容   : dts2014050800110,app发送cancel cusd时,如果mm连接没有建立,需要给上层发送abort通知
-*****************************************************************************/
 VOS_UINT32 SSA_ReleaseComplete(
     VOS_UINT16                          ClientId,
     VOS_UINT8                           OpId,
@@ -2364,9 +1779,7 @@ VOS_UINT32 SSA_ReleaseComplete(
     增加TI获取流程，
      */
 
-    /* Added by l00208543 for V9R1 STK升级, 2013-07-10, begin */
     VOS_UINT8                            ucTi;
-    /* Added by l00208543 for V9R1 STK升级, 2013-07-10, end */
 
 
     ST_SSP_MSG             stRelCmplMsg;
@@ -2374,7 +1787,6 @@ VOS_UINT32 SSA_ReleaseComplete(
     /*发送内容初始化*/
     PS_MEM_SET(&stRelCmplMsg, 0, sizeof(ST_SSP_MSG));
 
-    /* Added by l00208543 for V9R1 STK升级, 2013-07-10, begin */
     /* 获取TI */
     /* release操作下, 没有USSD的实体需要释放，则直接返回 */
     if (SSA_SUCCESS != TAF_SSA_GetUssdTi(&ucTi))
@@ -2382,7 +1794,6 @@ VOS_UINT32 SSA_ReleaseComplete(
         SSA_LOG( NORMAL_PRINT, "SSA_ReleaseComplete:WARNING: ReleaseComplete Get Ti fail");
         return TAF_ERR_TI_GET_FAIL;
     }
-    /* Added by l00208543 for V9R1 STK升级, 2013-07-10, end */
 
 
     /*确定Ti和消息类型*/
@@ -2394,21 +1805,15 @@ VOS_UINT32 SSA_ReleaseComplete(
     stRelCmplMsg.SspmsgCore.u.EndReq.OP_SspTaCause = VOS_TRUE;
     stRelCmplMsg.SspmsgCore.u.EndReq.enSspTaCause  = EN_STC_NORMAL;
 
-    /* Deleted by l00208543 for V9R1 STK升级, 2013-07-10, begin */
-    /* Deleted by l00208543 for V9R1 STK升级, 2013-07-10, end */
 
     /*向SS发送消息*/
     Taf_SsMsgReq(&stRelCmplMsg);
 
-    /* Added by l00208543 for V9R1 STK升级, 2013-07-15, begin */
-    /* Modified by z00161729 for V9R1 STK升级, 2013-8-01, begin */
     /* 获取TI成功后，通知上层SS被release消息 */
     if (MN_CLIENT_ALL != gastSsaStatetable[ucTi].ClientId)
     {
         SSA_ReportErrorEvent(gastSsaStatetable[ucTi].ClientId, gastSsaStatetable[ucTi].OpId, TAF_ERR_USSD_TERMINATED_BY_USER);
     }
-    /* Modified by z00161729 for V9R1 STK升级, 2013-8-02, end */
-    /* Added by l00208543 for V9R1 STK升级, 2013-07-15, end */
 
     /*关闭计时器*/
     TAF_SSA_StopAllTimer(ucTi);
@@ -2420,22 +1825,7 @@ VOS_UINT32 SSA_ReleaseComplete(
     return SSA_SUCCESS;
 }
 
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
-/*****************************************************************************
- 函 数 名  : TAF_SSA_IsSsStateIdle
- 功能描述  : 判断是否有SS业务在执行，用于USSD与SS业务的冲突检测
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:处于IDLE态，即没有SS业务在运行；
-             VOS_FALSE:不处于IDLE态，即有SS业务在运行；
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月26日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级
-*****************************************************************************/
 VOS_UINT32 TAF_SSA_IsSsStateIdle(VOS_VOID)
 {
     VOS_UINT32                          i;
@@ -2467,37 +1857,8 @@ VOS_UINT32 TAF_SSA_IsSsStateIdle(VOS_VOID)
 
     return   VOS_TRUE;
 }
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-5-6, begin */
-/*****************************************************************************
- 函 数 名  : TAF_SSA_ProcUssdUnstructuredMsg
- 功能描述  : 处理AT发过来的TAF_MSG_PROCESS_USS_MSG消息
- 输入参数  : ClientId    - APP/AT客户端标识
-             OpId        -   呼叫标识
-             pstSsReqMsg - TAF_MSG_PROCESS_USS_MSG消息
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 : 处理结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年05月07日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核新生成函数
-  2.日    期   : 2013年6月26日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级
-  3.日    期   : 2013年7月13日
-    作    者   : l00208543
-    修改内容   : V9R1 STK升级
-  4.日    期   : 2013年8月1日
-    作    者   : z00161729
-    修改内容   : V9R1 STK升级修改
-  5.日    期   : 2013年12月30日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseIII项目
-*****************************************************************************/
 VOS_UINT32 TAF_SSA_ProcUssdUnstructuredMsg(
     VOS_UINT16                          ClientId,
     VOS_UINT8                           OpId,
@@ -2508,15 +1869,11 @@ VOS_UINT32 TAF_SSA_ProcUssdUnstructuredMsg(
     VOS_UINT32                              ulRslt = TAF_ERR_NO_ERROR;
     TAF_SS_USS_RSP_STRU                     stSsRspMsg;
     VOS_UINT8                               ucTi;
-    /* Added by l00208543 for V9R1 STK升级, 2013-07-10, begin */
     TAF_SS_PROCESS_USS_REQ_STRU            *pstSsReqMsg = VOS_NULL_PTR;
 
     pstSsReqMsg = (TAF_SS_PROCESS_USS_REQ_STRU *)pMsg;
-    /* Added by l00208543 for V9R1 STK升级, 2013-07-10, end */
 
-    /* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-30, begin */
     /* USSD长度为0的请求在这里处理完成直接退出上移到SPM处理 */
-    /* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-30, end */
 
     /* UE发起的USSD业务 */
     if (VOS_TRUE == TAF_SSA_IsUssdStateIdle())
@@ -2529,14 +1886,11 @@ VOS_UINT32 TAF_SSA_ProcUssdUnstructuredMsg(
          2.if the command is rejected because the ME is busy on a SS transaction, the ME informs the UICC using TERMINAL RESPONSE
          (ME unable to process command - currently busy on SS transaction).
          */
-        /* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
         if (VOS_TRUE != TAF_SSA_IsSsStateIdle())
         {
             return TAF_ERR_BUSY_ON_SS;
         }
-        /* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
         /* 获取可以使用的Ti */
         if (SSA_SUCCESS != SSA_TiAlloc(ClientId, OpId,&ucTi))
         {   /*分配Ti失败*/
@@ -2546,14 +1900,12 @@ VOS_UINT32 TAF_SSA_ProcUssdUnstructuredMsg(
 
         /*进行ProcessUnstructuredSSReq操作处理*/
         ulRslt = SSA_ProcessUnstructuredSSReq(ClientId, pstSsReqMsg, ucTi);
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
     }
 
     /* 应答操作 */
     else
     {
-        /* Modified by l00208543 for V9R1 STK升级, 2013-07-10, begin */
 
         if (SSA_SUCCESS != TAF_SSA_GetUssdTi(&ucTi))
         {   /* GetTi失败 */
@@ -2575,41 +1927,21 @@ VOS_UINT32 TAF_SSA_ProcUssdUnstructuredMsg(
         stSsRspMsg.UssdStr        = pstSsReqMsg->UssdStr;
 
         /* 进行UnstructuredSS-Req操作处理 */
-        /* Modified by z00161729 for V9R1 STK升级, 2013-7-25, begin */
         ulRslt = SSA_UnstructuredSSRsp(&stSsRspMsg, ucTi, ClientId, OpId);
-        /* Modified by z00161729 for V9R1 STK升级, 2013-7-25, end */
 
-        /* Modified by l00208543 for V9R1 STK升级, 2013-07-10, end */
     }
 
     /* 更新记录CUSD是否主动上报的全局变量 */
-    /* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
     if (TAF_ERR_NO_ERROR == ulRslt)
     {
         TAF_SSA_UpdateUssdRptStatus(pstSsReqMsg);
     }
-    /* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 
     return ulRslt;
 
 }
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-5-6, end */
 
-/*****************************************************************************
- 函 数 名  : Taf_SSA_ProcBufferedBeginReqMsg
- 功能描述  : 5s重发定时器超时处理缓存的begin req消息
- 输入参数  : pMsg - 消息内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年9月28日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  Taf_SSA_ProcBufferedBeginReqMsg(ST_SSP_MSG *pMsg)
 {
     /*输入参数检查*/

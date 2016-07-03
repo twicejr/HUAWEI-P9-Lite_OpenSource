@@ -58,7 +58,6 @@ extern "C" {
         EN_NV_ID_RFIC_T10                               = 0xD408,
         EN_NV_ID_PA_OPEN_TIME                           = 0xD409,
 
-        /* modify by w00184272 for 所有band begin*/
 
         EN_NV_ID_FTM_CAND_CELL_LIST_B19                 = 0xD900,
         EN_NV_ID_LTE_RX_CALIBRATION_FREQ_B19            = 0xD901,
@@ -104,10 +103,8 @@ extern "C" {
         EN_NV_ID_TX_ET_BAND_PARA_B19                      = 0xD937,
         EN_NV_ID_LTE_CAL_PATH_ANT_NUM_PARA_B19           = 0xD938,
         EN_NV_ID_LTE_TAS2_DPDT_ANT_SAR_B19               = 0xD939,
-        /* BEGIN: Added by y00272211, 2015/5/14   问题单号:V7R5_AMPR*/
 	    EN_NV_ID_LTE_TX_AMPR_NS03_B19                   = 0xD93a,
 	    EN_NV_ID_LTE_TX_AMPR_NS22_B19                   = 0xD93b,
-        /* BEGIN: Added by m00128895, 2015/10/29   PN:HP 降SAR特性开发*/
         EN_NV_ID_LTE_HP_SAR_B19                         = 0xD93c,
 		/*hrl*/
 		EN_NV_ID_LTE_HRL_SPUR_INFO_STRU_B19              = 0xD93d,
@@ -155,10 +152,8 @@ extern "C" {
         EN_NV_ID_TX_ET_BAND_PARA_B21                    = 0xD977,
         EN_NV_ID_LTE_CAL_PATH_ANT_NUM_PARA_B21          = 0xD978,
         EN_NV_ID_LTE_TAS2_DPDT_ANT_SAR_B21              = 0xD979,
-        /* BEGIN: Added by y00272211, 2015/5/14   问题单号:V7R5_AMPR*/
 	    EN_NV_ID_LTE_TX_AMPR_NS03_B21                   = 0xD97a,
 	    EN_NV_ID_LTE_TX_AMPR_NS22_B21                   = 0xD97b,
-        /* BEGIN: Added by m00128895, 2015/10/29   PN:HP 降SAR特性开发*/
         EN_NV_ID_LTE_HP_SAR_B21                         = 0xD97c,
 		EN_NV_ID_LTE_HRL_SPUR_INFO_STRU_B21             = 0xD97d,
         EN_NV_ID_FTM_CAND_CELL_LIST_B2                  = 0xD980,
@@ -205,10 +200,8 @@ extern "C" {
         EN_NV_ID_TX_ET_BAND_PARA_B2                     = 0xD9b7,
         EN_NV_ID_LTE_CAL_PATH_ANT_NUM_PARA_B2           = 0xD9b8,
         EN_NV_ID_LTE_TAS2_DPDT_ANT_SAR_B2               = 0xD9b9,
-		/* BEGIN: Added by y00272211, 2015/5/14   问题单号:V7R5_AMPR*/
 	    EN_NV_ID_LTE_TX_AMPR_NS03_B2                    = 0xD9ba,
 	    EN_NV_ID_LTE_TX_AMPR_NS22_B2                    = 0xD9bb,
-        /* BEGIN: Added by m00128895, 2015/10/29   PN:HP 降SAR特性开发*/
         EN_NV_ID_LTE_HP_SAR_B2                          = 0xD9bc,
 		EN_NV_ID_LTE_HRL_SPUR_INFO_STRU_B2              = 0xD9bd,
 
@@ -256,10 +249,8 @@ extern "C" {
         EN_NV_ID_TX_ET_BAND_PARA_B4                     = 0xD9f7,
         EN_NV_ID_LTE_CAL_PATH_ANT_NUM_PARA_B4           = 0xD9f8,
         EN_NV_ID_LTE_TAS2_DPDT_ANT_SAR_B4               = 0xD9f9,
-		/* BEGIN: Added by y00272211, 2015/5/14   问题单号:V7R5_AMPR*/
 	    EN_NV_ID_LTE_TX_AMPR_NS03_B4                    = 0xD9fa,
 	    EN_NV_ID_LTE_TX_AMPR_NS22_B4                    = 0xD9fb,
-        /* BEGIN: Added by m00128895, 2015/10/29   PN:HP 降SAR特性开发*/
         EN_NV_ID_LTE_HP_SAR_B4                         = 0xD9fc,
 		EN_NV_ID_LTE_HRL_SPUR_INFO_STRU_B4              = 0xD9fd,
 
@@ -307,10 +298,8 @@ extern "C" {
         EN_NV_ID_TX_ET_BAND_PARA_B6                     = 0xDa37,
         EN_NV_ID_LTE_CAL_PATH_ANT_NUM_PARA_B6           = 0xDa38,
         EN_NV_ID_LTE_TAS2_DPDT_ANT_SAR_B6               = 0xDa39,
-		/* BEGIN: Added by y00272211, 2015/5/14   问题单号:V7R5_AMPR*/
 	    EN_NV_ID_LTE_TX_AMPR_NS03_B6                    = 0xDa3a,
 	    EN_NV_ID_LTE_TX_AMPR_NS22_B6                    = 0xDa3b,
-        /* BEGIN: Added by m00128895, 2015/10/29   PN:HP 降SAR特性开发*/
         EN_NV_ID_LTE_HP_SAR_B6                          = 0xDa3c,
 		EN_NV_ID_LTE_HRL_SPUR_INFO_STRU_B6              = 0xDa3d,
 
@@ -358,10 +347,8 @@ extern "C" {
         EN_NV_ID_TX_ET_BAND_PARA_B9                     = 0xDa77,
         EN_NV_ID_LTE_CAL_PATH_ANT_NUM_PARA_B9           = 0xDa78,
         EN_NV_ID_LTE_TAS2_DPDT_ANT_SAR_B9               = 0xDa79,
-		/* BEGIN: Added by y00272211, 2015/5/14   问题单号:V7R5_AMPR*/
 	    EN_NV_ID_LTE_TX_AMPR_NS03_B9                    = 0xDa7a,
 	    EN_NV_ID_LTE_TX_AMPR_NS22_B9                    = 0xDa7b,
-        /* BEGIN: Added by m00128895, 2015/10/29   PN:HP 降SAR特性开发*/
         EN_NV_ID_LTE_HP_SAR_B9                          = 0xDa7c,
         EN_NV_ID_LTE_HRL_SPUR_INFO_STRU_B9              = 0xDa7d,
 
@@ -409,10 +396,8 @@ extern "C" {
         EN_NV_ID_TX_ET_BAND_PARA_B10                    = 0xDab7,
         EN_NV_ID_LTE_CAL_PATH_ANT_NUM_PARA_B10          = 0xDab8,
         EN_NV_ID_LTE_TAS2_DPDT_ANT_SAR_B10              = 0xDab9,
-		/* BEGIN: Added by y00272211, 2015/5/14   问题单号:V7R5_AMPR*/
 	    EN_NV_ID_LTE_TX_AMPR_NS03_B10                   = 0xDaba,
 	    EN_NV_ID_LTE_TX_AMPR_NS22_B10                   = 0xDabb,
-        /* BEGIN: Added by m00128895, 2015/10/29   PN:HP 降SAR特性开发*/
         EN_NV_ID_LTE_HP_SAR_B10                         = 0xDabc,
      	EN_NV_ID_LTE_HRL_SPUR_INFO_STRU_B10              = 0xDabd,
 
@@ -460,10 +445,8 @@ extern "C" {
         EN_NV_ID_TX_ET_BAND_PARA_B11                    = 0xDaf7,
         EN_NV_ID_LTE_CAL_PATH_ANT_NUM_PARA_B11          = 0xDaf8,
         EN_NV_ID_LTE_TAS2_DPDT_ANT_SAR_B11              = 0xDaf9,
-	    /* BEGIN: Added by y00272211, 2015/5/14   问题单号:V7R5_AMPR*/
 	    EN_NV_ID_LTE_TX_AMPR_NS03_B11                   = 0xDafa,
 	    EN_NV_ID_LTE_TX_AMPR_NS22_B11                   = 0xDafb,
-        /* BEGIN: Added by m00128895, 2015/10/29   PN:HP 降SAR特性开发*/
         EN_NV_ID_LTE_HP_SAR_B11                         = 0xDafc,
 		EN_NV_ID_LTE_HRL_SPUR_INFO_STRU_B11              = 0xDafd,
 
@@ -511,10 +494,8 @@ extern "C" {
         EN_NV_ID_TX_ET_BAND_PARA_B12                    = 0xDb37,
         EN_NV_ID_LTE_CAL_PATH_ANT_NUM_PARA_B12          = 0xDb38,
         EN_NV_ID_LTE_TAS2_DPDT_ANT_SAR_B12              = 0xDb39,
-		/* BEGIN: Added by y00272211, 2015/5/14   问题单号:V7R5_AMPR*/
 	    EN_NV_ID_LTE_TX_AMPR_NS03_B12                   = 0xDb3a,
 	    EN_NV_ID_LTE_TX_AMPR_NS22_B12                   = 0xDb3b,
-        /* BEGIN: Added by m00128895, 2015/10/29   PN:HP 降SAR特性开发*/
         EN_NV_ID_LTE_HP_SAR_B12                         = 0xDb3c,
 		EN_NV_ID_LTE_HRL_SPUR_INFO_STRU_B12              = 0xDb3d,
 
@@ -562,10 +543,8 @@ extern "C" {
         EN_NV_ID_TX_ET_BAND_PARA_B13                    = 0xDb77,
         EN_NV_ID_LTE_CAL_PATH_ANT_NUM_PARA_B13          = 0xDb78,
         EN_NV_ID_LTE_TAS2_DPDT_ANT_SAR_B13              = 0xDb79,
-		/* BEGIN: Added by y00272211, 2015/5/14   问题单号:V7R5_AMPR*/
 	    EN_NV_ID_LTE_TX_AMPR_NS03_B13                   = 0xDb7a,
 	    EN_NV_ID_LTE_TX_AMPR_NS22_B13                   = 0xDb7b,
-        /* BEGIN: Added by m00128895, 2015/10/29   PN:HP 降SAR特性开发*/
         EN_NV_ID_LTE_HP_SAR_B13                         = 0xDb7c,
 		EN_NV_ID_LTE_HRL_SPUR_INFO_STRU_B13              = 0xDb7d,
 
@@ -613,10 +592,8 @@ extern "C" {
         EN_NV_ID_TX_ET_BAND_PARA_B14                    = 0xDbb7,
         EN_NV_ID_LTE_CAL_PATH_ANT_NUM_PARA_B14          = 0xDbb8,
         EN_NV_ID_LTE_TAS2_DPDT_ANT_SAR_B14              = 0xDbb9,
-		/* BEGIN: Added by y00272211, 2015/5/14   问题单号:V7R5_AMPR*/
 	    EN_NV_ID_LTE_TX_AMPR_NS03_B14                   = 0xDbba,
 	    EN_NV_ID_LTE_TX_AMPR_NS22_B14                   = 0xDbbb,
-        /* BEGIN: Added by m00128895, 2015/10/29   PN:HP 降SAR特性开发*/
         EN_NV_ID_LTE_HP_SAR_B14                         = 0xDbbc,
 		 EN_NV_ID_LTE_HRL_SPUR_INFO_STRU_B14              = 0xDbbd,
 
@@ -664,10 +641,8 @@ extern "C" {
         EN_NV_ID_TX_ET_BAND_PARA_B17                    = 0xDbf7,
         EN_NV_ID_LTE_CAL_PATH_ANT_NUM_PARA_B17          = 0xDbf8,
         EN_NV_ID_LTE_TAS2_DPDT_ANT_SAR_B17              = 0xDbf9,
-		 /* BEGIN: Added by y00272211, 2015/5/14   问题单号:V7R5_AMPR*/
 	    EN_NV_ID_LTE_TX_AMPR_NS03_B17                   = 0xDbfa,
 	    EN_NV_ID_LTE_TX_AMPR_NS22_B17                   = 0xDbfb,
-        /* BEGIN: Added by m00128895, 2015/10/29   PN:HP 降SAR特性开发*/
         EN_NV_ID_LTE_HP_SAR_B17                         = 0xDbfc,
 		EN_NV_ID_LTE_HRL_SPUR_INFO_STRU_B17              = 0xDbfd,
 
@@ -715,10 +690,8 @@ extern "C" {
         EN_NV_ID_TX_ET_BAND_PARA_B18                    = 0xDc37,
         EN_NV_ID_LTE_CAL_PATH_ANT_NUM_PARA_B18          = 0xDc38,
         EN_NV_ID_LTE_TAS2_DPDT_ANT_SAR_B18              = 0xDc39,
-		/* BEGIN: Added by y00272211, 2015/5/14   问题单号:V7R5_AMPR*/
     	EN_NV_ID_LTE_TX_AMPR_NS03_B18                   = 0xDc3a,
     	EN_NV_ID_LTE_TX_AMPR_NS22_B18                   = 0xDc3b,
-        /* BEGIN: Added by m00128895, 2015/10/29   PN:HP 降SAR特性开发*/
         EN_NV_ID_LTE_HP_SAR_B18                         = 0xDc3c,
 		EN_NV_ID_LTE_HRL_SPUR_INFO_STRU_B18              = 0xDc3d,
 
@@ -766,10 +739,8 @@ extern "C" {
         EN_NV_ID_TX_ET_BAND_PARA_B22                    = 0xDc77,
         EN_NV_ID_LTE_CAL_PATH_ANT_NUM_PARA_B22          = 0xDc78,
         EN_NV_ID_LTE_TAS2_DPDT_ANT_SAR_B22              = 0xDc79,
-		/* BEGIN: Added by y00272211, 2015/5/14   问题单号:V7R5_AMPR*/
     	EN_NV_ID_LTE_TX_AMPR_NS03_B22                   = 0xDc7a,
     	EN_NV_ID_LTE_TX_AMPR_NS22_B22                   = 0xDc7b,
-        /* BEGIN: Added by m00128895, 2015/10/29   PN:HP 降SAR特性开发*/
         EN_NV_ID_LTE_HP_SAR_B22                         = 0xDc7c,
 		 EN_NV_ID_LTE_HRL_SPUR_INFO_STRU_B22              = 0xDc7d,
 
@@ -817,10 +788,8 @@ extern "C" {
         EN_NV_ID_TX_ET_BAND_PARA_B23                    = 0xDcb7,
         EN_NV_ID_LTE_CAL_PATH_ANT_NUM_PARA_B23          = 0xDcb8,
         EN_NV_ID_LTE_TAS2_DPDT_ANT_SAR_B23              = 0xDcb9,
-		/* BEGIN: Added by y00272211, 2015/5/14   问题单号:V7R5_AMPR*/
 	    EN_NV_ID_LTE_TX_AMPR_NS03_B23                   = 0xDcba,
 	    EN_NV_ID_LTE_TX_AMPR_NS22_B23                   = 0xDcbb,
-        /* BEGIN: Added by m00128895, 2015/10/29   PN:HP 降SAR特性开发*/
         EN_NV_ID_LTE_HP_SAR_B23                         = 0xDcbc,
 		EN_NV_ID_LTE_HRL_SPUR_INFO_STRU_B23              = 0xDcbd,
 
@@ -868,10 +837,8 @@ extern "C" {
         EN_NV_ID_TX_ET_BAND_PARA_B24                    = 0xDcf7,
         EN_NV_ID_LTE_CAL_PATH_ANT_NUM_PARA_B24          = 0xDcf8,
         EN_NV_ID_LTE_TAS2_DPDT_ANT_SAR_B24              = 0xDcf9,
-		/* BEGIN: Added by y00272211, 2015/5/14   问题单号:V7R5_AMPR*/
 	    EN_NV_ID_LTE_TX_AMPR_NS03_B24                   = 0xDcfa,
 	    EN_NV_ID_LTE_TX_AMPR_NS22_B24                   = 0xDcfb,
-        /* BEGIN: Added by m00128895, 2015/10/29   PN:HP 降SAR特性开发*/
         EN_NV_ID_LTE_HP_SAR_B24                         = 0xDcfc,
 		EN_NV_ID_LTE_HRL_SPUR_INFO_STRU_B24              = 0xDcfd,
 
@@ -919,10 +886,8 @@ extern "C" {
         EN_NV_ID_TX_ET_BAND_PARA_B25                    = 0xDd37,
         EN_NV_ID_LTE_CAL_PATH_ANT_NUM_PARA_B25          = 0xDd38,
         EN_NV_ID_LTE_TAS2_DPDT_ANT_SAR_B25              = 0xDd39,
-		/* BEGIN: Added by y00272211, 2015/5/14   问题单号:V7R5_AMPR*/
 	    EN_NV_ID_LTE_TX_AMPR_NS03_B25                   = 0xDd3a,
 	    EN_NV_ID_LTE_TX_AMPR_NS22_B25                   = 0xDd3b,
-        /* BEGIN: Added by m00128895, 2015/10/29   PN:HP 降SAR特性开发*/
         EN_NV_ID_LTE_HP_SAR_B25                         = 0xDd3c,
 		EN_NV_ID_LTE_HRL_SPUR_INFO_STRU_B25              = 0xDd3d,
 
@@ -970,10 +935,8 @@ extern "C" {
         EN_NV_ID_TX_ET_BAND_PARA_B33                    = 0xDd77,
         EN_NV_ID_LTE_CAL_PATH_ANT_NUM_PARA_B33          = 0xDd78,
         EN_NV_ID_LTE_TAS2_DPDT_ANT_SAR_B33              = 0xDd79,
-		/* BEGIN: Added by y00272211, 2015/5/14   问题单号:V7R5_AMPR*/
 	    EN_NV_ID_LTE_TX_AMPR_NS03_B33                   = 0xDd7a,
 	    EN_NV_ID_LTE_TX_AMPR_NS22_B33                   = 0xDd7b,
-        /* BEGIN: Added by m00128895, 2015/10/29   PN:HP 降SAR特性开发*/
         EN_NV_ID_LTE_HP_SAR_B33                         = 0xDd7c,
 		EN_NV_ID_LTE_HRL_SPUR_INFO_STRU_B33              = 0xDd7d,
 
@@ -1021,10 +984,8 @@ extern "C" {
         EN_NV_ID_TX_ET_BAND_PARA_B34                    = 0xDdb7,
         EN_NV_ID_LTE_CAL_PATH_ANT_NUM_PARA_B34          = 0xDdb8,
         EN_NV_ID_LTE_TAS2_DPDT_ANT_SAR_B34              = 0xDdb9,
-		 /* BEGIN: Added by y00272211, 2015/5/14   问题单号:V7R5_AMPR*/
 	    EN_NV_ID_LTE_TX_AMPR_NS03_B34                   = 0xDdba,
 	    EN_NV_ID_LTE_TX_AMPR_NS22_B34                   = 0xDdbb,
-        /* BEGIN: Added by m00128895, 2015/10/29   PN:HP 降SAR特性开发*/
         EN_NV_ID_LTE_HP_SAR_B34                         = 0xDdbc,
 		EN_NV_ID_LTE_HRL_SPUR_INFO_STRU_B34              = 0xDdbd,
 
@@ -1072,10 +1033,8 @@ extern "C" {
         EN_NV_ID_TX_ET_BAND_PARA_B35                    = 0xDdf7,
         EN_NV_ID_LTE_CAL_PATH_ANT_NUM_PARA_B35          = 0xDdf8,
         EN_NV_ID_LTE_TAS2_DPDT_ANT_SAR_B35              = 0xDdf9,
-		/* BEGIN: Added by y00272211, 2015/5/14   问题单号:V7R5_AMPR*/
 	    EN_NV_ID_LTE_TX_AMPR_NS03_B35                   = 0xDdfa,
 	    EN_NV_ID_LTE_TX_AMPR_NS22_B35                   = 0xDdfb,
-        /* BEGIN: Added by m00128895, 2015/10/29   PN:HP 降SAR特性开发*/
         EN_NV_ID_LTE_HP_SAR_B35                         = 0xDdfc,
 		EN_NV_ID_LTE_HRL_SPUR_INFO_STRU_B35              = 0xDdfd,
 
@@ -1123,10 +1082,8 @@ extern "C" {
         EN_NV_ID_TX_ET_BAND_PARA_B36                    = 0xDe37,
         EN_NV_ID_LTE_CAL_PATH_ANT_NUM_PARA_B36          = 0xDe38,
         EN_NV_ID_LTE_TAS2_DPDT_ANT_SAR_B36              = 0xDe39,
-		/* BEGIN: Added by y00272211, 2015/5/14   问题单号:V7R5_AMPR*/
 	    EN_NV_ID_LTE_TX_AMPR_NS03_B36                   = 0xDe3a,
 	    EN_NV_ID_LTE_TX_AMPR_NS22_B36                   = 0xDe3b,
-        /* BEGIN: Added by m00128895, 2015/10/29   PN:HP 降SAR特性开发*/
         EN_NV_ID_LTE_HP_SAR_B36                         = 0xDe3c,
 		EN_NV_ID_LTE_HRL_SPUR_INFO_STRU_B36              = 0xDe3d,
 
@@ -1174,10 +1131,8 @@ extern "C" {
         EN_NV_ID_TX_ET_BAND_PARA_B37                    = 0xDe77,
         EN_NV_ID_LTE_CAL_PATH_ANT_NUM_PARA_B37          = 0xDe78,
         EN_NV_ID_LTE_TAS2_DPDT_ANT_SAR_B37              = 0xDe79,
-		/* BEGIN: Added by y00272211, 2015/5/14   问题单号:V7R5_AMPR*/
 	    EN_NV_ID_LTE_TX_AMPR_NS03_B37                   = 0xDe7a,
 	    EN_NV_ID_LTE_TX_AMPR_NS22_B37                   = 0xDe7b,
-        /* BEGIN: Added by m00128895, 2015/10/29   PN:HP 降SAR特性开发*/
         EN_NV_ID_LTE_HP_SAR_B37                         = 0xDe7c,
 		EN_NV_ID_LTE_HRL_SPUR_INFO_STRU_B37              = 0xDe7d,
 
@@ -1225,10 +1180,8 @@ extern "C" {
         EN_NV_ID_TX_ET_BAND_PARA_B42                    = 0xDeb7,
         EN_NV_ID_LTE_CAL_PATH_ANT_NUM_PARA_B42          = 0xDeb8,
         EN_NV_ID_LTE_TAS2_DPDT_ANT_SAR_B42              = 0xDeb9,
-		/* BEGIN: Added by y00272211, 2015/5/14   问题单号:V7R5_AMPR*/
 	    EN_NV_ID_LTE_TX_AMPR_NS03_B42                   = 0xDeba,
 	    EN_NV_ID_LTE_TX_AMPR_NS22_B42                   = 0xDebb,
-        /* BEGIN: Added by m00128895, 2015/10/29   PN:HP 降SAR特性开发*/
         EN_NV_ID_LTE_HP_SAR_B42                         = 0xDebc,
 		EN_NV_ID_LTE_HRL_SPUR_INFO_STRU_B42              = 0xDebd,
 
@@ -1276,10 +1229,8 @@ extern "C" {
         EN_NV_ID_TX_ET_BAND_PARA_B43                    = 0xDef7,
         EN_NV_ID_LTE_CAL_PATH_ANT_NUM_PARA_B43          = 0xDef8,
         EN_NV_ID_LTE_TAS2_DPDT_ANT_SAR_B43              = 0xDef9,
-		/* BEGIN: Added by y00272211, 2015/5/14   问题单号:V7R5_AMPR*/
 	    EN_NV_ID_LTE_TX_AMPR_NS03_B43                   = 0xDefa,
 	    EN_NV_ID_LTE_TX_AMPR_NS22_B43                   = 0xDefb,
-        /* BEGIN: Added by m00128895, 2015/10/29   PN:HP 降SAR特性开发*/
         EN_NV_ID_LTE_HP_SAR_B43                         = 0xDefc,
 		EN_NV_ID_LTE_HRL_SPUR_INFO_STRU_B43              = 0xDefd,
 
@@ -1312,7 +1263,6 @@ extern "C" {
 
         EN_NV_ID_LTE_TX_AMPR_B39                        = 0xDf2c,
 
-        /* modify by w00184272 for 所有band end*/
         EN_NV_ID_LTE_OTHER_COMP_B39         = 0xDf2d,
 
         EN_NV_ID_LTE_TX_AMPR_NS05_B39                   = 0xDf2e,
@@ -1328,12 +1278,9 @@ extern "C" {
         EN_NV_ID_TX_ET_BAND_PARA_B39                    = 0xDf37,
         EN_NV_ID_LTE_CAL_PATH_ANT_NUM_PARA_B39          = 0xDf38,
         EN_NV_ID_LTE_TAS2_DPDT_ANT_SAR_B39              = 0xDf39,
-		/* BEGIN: Added by y00272211, 2015/5/14   问题单号:V7R5_AMPR*/
 	    EN_NV_ID_LTE_TX_AMPR_NS03_B39                   = 0xDf3a,
 	    EN_NV_ID_LTE_TX_AMPR_NS22_B39                   = 0xDf3b,
-        /* BEGIN: Added by m00128895, 2015/10/29   PN:HP 降SAR特性开发*/
         EN_NV_ID_LTE_HP_SAR_B39                         = 0xDf3c,
-        /* modify by w00184272 for 所有band end*/
 		EN_NV_ID_LTE_HRL_SPUR_INFO_STRU_B39              = 0xDf3d,
 
         EN_NV_ID_FTM_CAND_CELL_LIST_B20                 = 0xD600,
@@ -1379,10 +1326,8 @@ extern "C" {
         EN_NV_ID_TX_ET_BAND_PARA_B20                    = 0xD637,
         EN_NV_ID_LTE_CAL_PATH_ANT_NUM_PARA_B20          = 0xD638,
         EN_NV_ID_LTE_TAS2_DPDT_ANT_SAR_B20              = 0xD639,
-		/* BEGIN: Added by y00272211, 2015/5/14   问题单号:V7R5_AMPR*/
 	    EN_NV_ID_LTE_TX_AMPR_NS03_B20                   = 0xD63a,
 	    EN_NV_ID_LTE_TX_AMPR_NS22_B20                   = 0xD63b,
-        /* BEGIN: Added by m00128895, 2015/10/29   PN:HP 降SAR特性开发*/
         EN_NV_ID_LTE_HP_SAR_B20                         = 0xD63c,
 		EN_NV_ID_LTE_HRL_SPUR_INFO_STRU_B20              = 0xD63d,
 
@@ -1429,10 +1374,8 @@ extern "C" {
         EN_NV_ID_TX_ET_BAND_PARA_B40                    = 0xD677,
         EN_NV_ID_LTE_CAL_PATH_ANT_NUM_PARA_B40          = 0xD678,
         EN_NV_ID_LTE_TAS2_DPDT_ANT_SAR_B40              = 0xD679,
-		/* BEGIN: Added by y00272211, 2015/5/14   问题单号:V7R5_AMPR*/
 	    EN_NV_ID_LTE_TX_AMPR_NS03_B40                   = 0xD67a,
 	    EN_NV_ID_LTE_TX_AMPR_NS22_B40                   = 0xD67b,
-        /* BEGIN: Added by m00128895, 2015/10/29   PN:HP 降SAR特性开发*/
         EN_NV_ID_LTE_HP_SAR_B40                         = 0xD67c,
 		EN_NV_ID_LTE_HRL_SPUR_INFO_STRU_B40              = 0xD67d,
 
@@ -1479,10 +1422,8 @@ extern "C" {
         EN_NV_ID_TX_ET_BAND_PARA_B38                    = 0xD6b7,
         EN_NV_ID_LTE_CAL_PATH_ANT_NUM_PARA_B38          = 0xD6b8,
         EN_NV_ID_LTE_TAS2_DPDT_ANT_SAR_B38              = 0xD6b9,
-		/* BEGIN: Added by y00272211, 2015/5/14   问题单号:V7R5_AMPR*/
 	    EN_NV_ID_LTE_TX_AMPR_NS03_B38                   = 0xD6ba,
 	    EN_NV_ID_LTE_TX_AMPR_NS22_B38                   = 0xD6bb,
-        /* BEGIN: Added by m00128895, 2015/10/29   PN:HP 降SAR特性开发*/
         EN_NV_ID_LTE_HP_SAR_B38                         = 0xD6bc,
 		EN_NV_ID_LTE_HRL_SPUR_INFO_STRU_B38             = 0xD6bd,
 
@@ -1529,10 +1470,8 @@ extern "C" {
         EN_NV_ID_TX_ET_BAND_PARA_B41                    = 0xD6f7,
         EN_NV_ID_LTE_CAL_PATH_ANT_NUM_PARA_B41          = 0xD6f8,
         EN_NV_ID_LTE_TAS2_DPDT_ANT_SAR_B41              = 0xD6f9,
-		/* BEGIN: Added by y00272211, 2015/5/14   问题单号:V7R5_AMPR*/
 	    EN_NV_ID_LTE_TX_AMPR_NS03_B41                   = 0xD6fa,
 	    EN_NV_ID_LTE_TX_AMPR_NS22_B41                   = 0xD6fb,
-        /* BEGIN: Added by m00128895, 2015/10/29   PN:HP 降SAR特性开发*/
         EN_NV_ID_LTE_HP_SAR_B41                         = 0xD6fc,
 		EN_NV_ID_LTE_HRL_SPUR_INFO_STRU_B41              = 0xD6fd,
 
@@ -1579,10 +1518,8 @@ extern "C" {
         EN_NV_ID_TX_ET_BAND_PARA_B7                     = 0xD737,
         EN_NV_ID_LTE_CAL_PATH_ANT_NUM_PARA_B7           = 0xD738,
         EN_NV_ID_LTE_TAS2_DPDT_ANT_SAR_B7               = 0xD739,
-		/* BEGIN: Added by y00272211, 2015/5/14   问题单号:V7R5_AMPR*/
 	    EN_NV_ID_LTE_TX_AMPR_NS03_B7                   = 0xD73a,
 	    EN_NV_ID_LTE_TX_AMPR_NS22_B7                   = 0xD73b,
-        /* BEGIN: Added by m00128895, 2015/10/29   PN:HP 降SAR特性开发*/
         EN_NV_ID_LTE_HP_SAR_B7                          = 0xD73c,
 		EN_NV_ID_LTE_HRL_SPUR_INFO_STRU_B7              = 0xD73d,
 
@@ -1629,10 +1566,8 @@ extern "C" {
         EN_NV_ID_TX_ET_BAND_PARA_B3                     = 0xD837,
         EN_NV_ID_LTE_CAL_PATH_ANT_NUM_PARA_B3           = 0xD838,
         EN_NV_ID_LTE_TAS2_DPDT_ANT_SAR_B3               = 0xD839,
-    	/* BEGIN: Added by y00272211, 2015/5/14   问题单号:V7R5_AMPR*/
         EN_NV_ID_LTE_TX_AMPR_NS03_B3                   = 0xD83a,
         EN_NV_ID_LTE_TX_AMPR_NS22_B3                   = 0xD83b,
-        /* BEGIN: Added by m00128895, 2015/10/29   PN:HP 降SAR特性开发*/
         EN_NV_ID_LTE_HP_SAR_B3                          = 0xD83c,
 		EN_NV_ID_LTE_HRL_SPUR_INFO_STRU_B3              = 0xD83d,
 
@@ -1679,10 +1614,8 @@ extern "C" {
         EN_NV_ID_TX_ET_BAND_PARA_B1                     = 0xD877,
         EN_NV_ID_LTE_CAL_PATH_ANT_NUM_PARA_B1           = 0xD878,
         EN_NV_ID_LTE_TAS2_DPDT_ANT_SAR_B1               = 0xD879,
-    	/* BEGIN: Added by y00272211, 2015/5/14   问题单号:V7R5_AMPR*/
         EN_NV_ID_LTE_TX_AMPR_NS03_B1                    = 0xD87a,
         EN_NV_ID_LTE_TX_AMPR_NS22_B1                    = 0xD87b,
-        /* BEGIN: Added by m00128895, 2015/10/29   PN:HP 降SAR特性开发*/
         EN_NV_ID_LTE_HP_SAR_B1                          = 0xD87c,
 		EN_NV_ID_LTE_HRL_SPUR_INFO_STRU_B1              = 0xD87d,
 
@@ -1729,10 +1662,8 @@ extern "C" {
         EN_NV_ID_TX_ET_BAND_PARA_B5                     = 0xD8b7,
         EN_NV_ID_LTE_CAL_PATH_ANT_NUM_PARA_B5           = 0xD8b8,
         EN_NV_ID_LTE_TAS2_DPDT_ANT_SAR_B5               = 0xD8b9,
-    	/* BEGIN: Added by y00272211, 2015/5/14   问题单号:V7R5_AMPR*/
         EN_NV_ID_LTE_TX_AMPR_NS03_B5                    = 0xD8ba,
         EN_NV_ID_LTE_TX_AMPR_NS22_B5                    = 0xD8bb,
-        /* BEGIN: Added by m00128895, 2015/10/29   PN:HP 降SAR特性开发*/
         EN_NV_ID_LTE_HP_SAR_B5                          = 0xD8bc,
 		EN_NV_ID_LTE_HRL_SPUR_INFO_STRU_B5              = 0xD8bd,
 
@@ -1779,10 +1710,8 @@ extern "C" {
         EN_NV_ID_TX_ET_BAND_PARA_B8                     = 0xD8f7,
         EN_NV_ID_LTE_CAL_PATH_ANT_NUM_PARA_B8           = 0xD8f8,
         EN_NV_ID_LTE_TAS2_DPDT_ANT_SAR_B8               = 0xD8f9,
-		/* BEGIN: Added by y00272211, 2015/5/14   问题单号:V7R5_AMPR*/
 	    EN_NV_ID_LTE_TX_AMPR_NS03_B8                    = 0xD8fa,
 	    EN_NV_ID_LTE_TX_AMPR_NS22_B8                    = 0xD8fb,
-        /* BEGIN: Added by m00128895, 2015/10/29   PN:HP 降SAR特性开发*/
         EN_NV_ID_LTE_HP_SAR_B8                          = 0xD8fc,
 		EN_NV_ID_LTE_HRL_SPUR_INFO_STRU_B8              = 0xD8fd,
 
@@ -1831,10 +1760,8 @@ extern "C" {
         EN_NV_ID_TX_ET_BAND_PARA_B28                    = 0xDf77,
         EN_NV_ID_LTE_CAL_PATH_ANT_NUM_PARA_B28          = 0xDf78,
         EN_NV_ID_LTE_TAS2_DPDT_ANT_SAR_B28              = 0xDf79,
-        /* BEGIN: Added by y00272211, 2015/5/14   问题单号:V7R5_AMPR*/
         EN_NV_ID_LTE_TX_AMPR_NS03_B28                    = 0xDf7a,
         EN_NV_ID_LTE_TX_AMPR_NS22_B28                    = 0xDf7b,
-        /* BEGIN: Added by m00128895, 2015/10/29   PN:HP 降SAR特性开发*/
         EN_NV_ID_LTE_HP_SAR_B28                          = 0xDf7c,
 		EN_NV_ID_LTE_HRL_SPUR_INFO_STRU_B28              = 0xDf7d,
 
@@ -1883,10 +1810,8 @@ extern "C" {
         EN_NV_ID_TX_ET_BAND_PARA_B26                    = 0xE3b7,
         EN_NV_ID_LTE_CAL_PATH_ANT_NUM_PARA_B26          = 0xE3b8,
         EN_NV_ID_LTE_TAS2_DPDT_ANT_SAR_B26              = 0xe3B9,
-        /* BEGIN: Added by y00272211, 2015/5/14   问题单号:V7R5_AMPR*/
 	    EN_NV_ID_LTE_TX_AMPR_NS03_B26                   = 0xDafa,
 	    EN_NV_ID_LTE_TX_AMPR_NS22_B26                   = 0xDafb,
-        /* BEGIN: Added by m00128895, 2015/10/29   PN:HP 降SAR特性开发*/
         EN_NV_ID_LTE_HP_SAR_B26                          = 0xDafc,
 		EN_NV_ID_LTE_HRL_SPUR_INFO_STRU_B26              = 0xe3bd,
     /* 非标频段begin */
@@ -1928,7 +1853,6 @@ extern "C" {
        // EN_NV_ID_TX_ATTEN_TABLE_BNon1                        = 0xDf73,
         //EN_NV_ID_POWERDET_VOLTAGE_BNon1                        = 0xDf74,
        // EN_NV_ID_LTE_TX_UL_ONE_RB_MPR_BNon1               = 0xDf75,
-    /*BEGIN DTS2014041603793 c00203521 modify for B28全频段特性*/
     /*Band128 相关NV项*/
         EN_NV_ID_FTM_CAND_CELL_LIST_B128                  = 0xDf80,
         EN_NV_ID_LTE_RX_CALIBRATION_FREQ_B128             = 0xDf81,
@@ -1973,15 +1897,11 @@ extern "C" {
         EN_NV_ID_TX_ET_BAND_PARA_B128                      = 0xDfb7,
         EN_NV_ID_LTE_CAL_PATH_ANT_NUM_PARA_B128            = 0xDfb8,
         EN_NV_ID_LTE_TAS2_DPDT_ANT_SAR_B128                = 0xDfb9,
-    	/* BEGIN: Added by y00272211, 2015/5/14   问题单号:V7R5_AMPR*/
         EN_NV_ID_LTE_TX_AMPR_NS03_B128                    = 0xDfba,
         EN_NV_ID_LTE_TX_AMPR_NS22_B128                    = 0xDfbb,
-        /* BEGIN: Added by m00128895, 2015/10/29   PN:HP 降SAR特性开发*/
         EN_NV_ID_LTE_HP_SAR_B128                          = 0xDfbc,
 		EN_NV_ID_LTE_HRL_SPUR_INFO_STRU_B128              = 0xDfbd,
 
-    /*END DTS2014041603793 c00203521 modify for B28全频段特性*/
-        /* modify by w00184272 for 所有band end*/
 
 
         EN_NV_ID_FTM_CAND_CELL_LIST_B29                  = 0xDfc0,
@@ -2028,10 +1948,8 @@ extern "C" {
         EN_NV_ID_TX_ET_BAND_PARA_B29                     = 0xDff7,
         EN_NV_ID_LTE_CAL_PATH_ANT_NUM_PARA_B29           = 0xDff8,
         EN_NV_ID_LTE_TAS2_DPDT_ANT_SAR_B29               = 0xDff9,
-        /* BEGIN: Added by y00272211, 2015/5/14   问题单号:V7R5_AMPR*/
         EN_NV_ID_LTE_TX_AMPR_NS03_B29                    = 0xDffa,
         EN_NV_ID_LTE_TX_AMPR_NS22_B29                    = 0xDffb,
-        /* BEGIN: Added by m00128895, 2015/10/29   PN:HP 降SAR特性开发*/
         EN_NV_ID_LTE_HP_SAR_B29                          = 0xDffc,
         EN_NV_ID_LTE_HRL_SPUR_INFO_STRU_B29              = 0xDffd,
 
@@ -2081,10 +1999,8 @@ extern "C" {
         EN_NV_ID_TX_ET_BAND_PARA_B32                     = 0xe037,
         EN_NV_ID_LTE_CAL_PATH_ANT_NUM_PARA_B32           = 0xe038,
         EN_NV_ID_LTE_TAS2_DPDT_ANT_SAR_B32               = 0xe039,
-        /* BEGIN: Added by y00272211, 2015/5/14   问题单号:V7R5_AMPR*/
         EN_NV_ID_LTE_TX_AMPR_NS03_B32                    = 0xe03a,
         EN_NV_ID_LTE_TX_AMPR_NS22_B32                    = 0xe03b,
-        /* BEGIN: Added by m00128895, 2015/10/29   PN:HP 降SAR特性开发*/
         EN_NV_ID_LTE_HP_SAR_B32                          = 0xe03c,
         EN_NV_ID_LTE_HRL_SPUR_INFO_STRU_B32              = 0xe03d,
 
@@ -2522,7 +2438,6 @@ extern "C" {
         //EN_NV_ID_TX_ATTEN_TABLE_BNon15                        = 0xe2f3,
         //EN_NV_ID_POWERDET_VOLTAGE_BNon15                        = 0xe2f4,
         EN_NV_ID_LTE_TX_UL_ONE_RB_MPR_BNon15               = 0xe2f5,
-	    /* BEGIN: Added by y00272211, 2015/5/14   问题单号:V7R5_AMPR*/
 	    EN_NV_ID_LTE_TX_AMPR_NS03_B15                      = 0xe2f6,
 	    EN_NV_ID_LTE_TX_AMPR_NS22_B15                      = 0xe2f7,
 
@@ -2565,7 +2480,6 @@ extern "C" {
         //EN_NV_ID_TX_ATTEN_TABLE_BNon16                        = 0xe333,
         //EN_NV_ID_POWERDET_VOLTAGE_BNon16                        = 0xe334,
         EN_NV_ID_LTE_TX_UL_ONE_RB_MPR_BNon16               = 0xe335,
-	    /* BEGIN: Added by y00272211, 2015/5/14   问题单号:V7R5_AMPR*/
 	    EN_NV_ID_LTE_TX_AMPR_NS03_B16                      = 0xe336,
 	    EN_NV_ID_LTE_TX_AMPR_NS22_B16                      = 0xe337,
 
@@ -2748,7 +2662,6 @@ extern "C" {
         EN_NV_ID_TDS_NV_TUNER_PARA                      = 0xe901,
         EN_NV_ID_TDS_DRX_PARA                           = 0xe902,
         EN_NV_ID_TDS_VRAMP_PARA                         = 0xe903,
-/* BEGIN: Added by m00128895, 2015/11/5   PN:HP 降SAR特性开发*/
         EN_NV_ID_TDS_HP_SAR                             = 0xe904,
 
         EN_NV_ID_ANT_MODEM_LOSS_B20                     = 0xeb00,
@@ -3093,7 +3006,6 @@ extern "C" {
         EN_NV_ID_ET_EVDELY_B8                           = 0xedf3,
         EN_NV_ID_RF_CA_RCCODE_B8                        = 0xedf4,
 
-        /* modify by w00184272 for 所有band begin*/
         EN_NV_ID_ANT_MODEM_LOSS_B19                     = 0xEE00,
         EN_NV_ID_LTE_RX_CHAN0_FREQ_COMP_B19         = 0xEE0d,
         EN_NV_ID_LTE_RX_CHAN1_FREQ_COMP_B19         = 0xEE0e,
@@ -4178,7 +4090,6 @@ extern "C" {
         EN_NV_ID_PA_POWER_DIFFERENCE_BNon1               = 0xf45e,
         EN_NV_ID_TX_RF_FREQ_COMP_STRU_BNon1              = 0xf45f,
         */
-    /*BEGIN DTS2014041603793 c00203521 modify for B28全频段特性*/
        /*BAND128 生产NV*/
         EN_NV_ID_ANT_MODEM_LOSS_B128                        = 0xf480,
         EN_NV_ID_LTE_RX_CHAN0_FREQ_COMP_B128        = 0xf48D,
@@ -4216,7 +4127,6 @@ extern "C" {
         EN_NV_ID_ET_VOFFSET_GAIN_B128                    = 0xf4b2,
         EN_NV_ID_ET_EVDELY_B128                           = 0xf4b3,
         EN_NV_ID_RF_CA_RCCODE_B128                        = 0xf4b4,
-    /*END DTS2014041603793 c00203521 modify for B28全频段特性*/
 
 
     /*BAND29 生产NV*/
@@ -4595,7 +4505,6 @@ extern "C" {
         EN_NV_ID_RF_CA_RCCODE_B26                        = 0xf854,
 
 
-        /* modify by w00184272 for 所有band end*/
 
         EN_NV_ID_TIMING_PARA                            = 0xD3C0,
         EN_NV_ID_EMU_FAKECELL_PARA                      = 0xD3C1,
@@ -4870,9 +4779,7 @@ extern "C" {
         EN_NV_ID_HI6360_AGC_PARA_B5                     = 0xD898,
         EN_NV_ID_HI6360_AGC_PARA_B8                     = 0xD8d8,
         EN_NV_ID_HI6360_AGC_PARA_B28                    = 0xDf58,/**/
-    /*BEGIN DTS2014041603793 c00203521 modify for B28全频段特性*/
         EN_NV_ID_HI6360_AGC_PARA_B128                   = 0xDf98,
-    /*END DTS2014041603793 c00203521 modify for B28全频段特性*/
 
         EN_NV_ID_LPHY_DSP_VERSION_INFO                  = 0xD818,
         EN_NV_ID_LPHY_DSP_CONFIG_INFO                   = 0xD819,
@@ -4884,7 +4791,6 @@ extern "C" {
         EN_NV_ID_TDS_TX_POWER_NV_PARA                  = 0xD581,
 
 
-        /* modify by w00184272 for 所有band begin*/
 
 
     EN_NV_ID_LTE_TX_AMPR_BNon26                      = 0xf878,
@@ -4899,7 +4805,6 @@ extern "C" {
     EN_NV_ID_LTE_TX_AMPR_NS20                        = 0xd757,
     EN_NV_ID_LTE_TX_AMPR_NS21                        = 0xd758,
 
-        /* modify by w00184272 for 所有band end*/
 
         EN_NV_ID_FACTORY_END                            = 0x2fff
     };
@@ -4972,7 +4877,6 @@ extern "C" {
         EN_NV_ID_RFIC_T10                               = 0xD408,
         EN_NV_ID_PA_OPEN_TIME                           = 0xD409,
 
-        /* modify by w00184272 for 所有band begin*/
 
         EN_NV_ID_FTM_CAND_CELL_LIST_B19                 = 0xD900,
         EN_NV_ID_LTE_RX_CALIBRATION_FREQ_B19            = 0xD901,
@@ -6263,7 +6167,6 @@ extern "C" {
 
         EN_NV_ID_LTE_TX_AMPR_B39                        = 0xDf2c,
 
-        /* modify by w00184272 for 所有band end*/
         EN_NV_ID_LTE_OTHER_COMP_B39         = 0xDf2d,
 
         EN_NV_ID_LTE_TX_AMPR_NS05_B39                   = 0xDf2e,
@@ -6278,7 +6181,6 @@ extern "C" {
         EN_NV_ID_LTE_TX_PD_PARA_B39                     = 0xDf36,
         EN_NV_ID_TX_ET_BAND_PARA_B39                    = 0xDf37,
 
-        /* modify by w00184272 for 所有band end*/
         EN_NV_ID_LTE_ETM_ET_APT_LAB_STRU_B39             = 0xDf38,
         EN_NV_ID_LTE_DPD_LAB_STRU_B39                    = 0xDf39,
         EN_NV_ID_LTE_ETM_SEMI_STATIC_MIPI_CMD_LAB_STRU_B39 = 0xDf3a,
@@ -6823,7 +6725,6 @@ extern "C" {
        // EN_NV_ID_TX_ATTEN_TABLE_BNon1                        = 0xDf73,
         //EN_NV_ID_POWERDET_VOLTAGE_BNon1                        = 0xDf74,
        // EN_NV_ID_LTE_TX_UL_ONE_RB_MPR_BNon1               = 0xDf75,
-    /*BEGIN DTS2014041603793 c00203521 modify for B28全频段特性*/
     /*Band128 相关NV项*/
         EN_NV_ID_FTM_CAND_CELL_LIST_B128                  = 0xDf80,
         EN_NV_ID_LTE_RX_CALIBRATION_FREQ_B128             = 0xDf81,
@@ -6874,8 +6775,6 @@ extern "C" {
     	EN_NV_ID_LTE_HRL_SPUR_INFO_STRU_B128              = 0xDfbd,
         EN_NV_ID_LTE_TAS2_DPDT_ANT_SAR_B128               = 0xDfbe,
 
-    /*END DTS2014041603793 c00203521 modify for B28全频段特性*/
-        /* modify by w00184272 for 所有band end*/
 
         EN_NV_ID_FTM_CAND_CELL_LIST_B27                    = 0xDfc0,
         EN_NV_ID_LTE_RX_CALIBRATION_FREQ_B27               = 0xDfc1,
@@ -8064,7 +7963,6 @@ extern "C" {
         EN_NV_ID_LTE_DPD_FAC_STRU_B8                    = 0xedf6,
         EN_NV_ID_LTE_ET_DPD_COMP_FAC_STRU_B8            = 0xedf7,
 
-        /* modify by w00184272 for 所有band begin*/
         EN_NV_ID_ANT_MODEM_LOSS_B19                     = 0xEE00,
         EN_NV_ID_LTE_AGC_BLK_FREQ_COMP_ANT1_B19         = 0xEE0d,
         EN_NV_ID_LTE_AGC_BLK_FREQ_COMP_ANT2_B19         = 0xEE0e,
@@ -9262,7 +9160,6 @@ extern "C" {
         EN_NV_ID_PA_POWER_DIFFERENCE_BNon1               = 0xf45e,
         EN_NV_ID_TX_RF_FREQ_COMP_STRU_BNon1              = 0xf45f,
         */
-    /*BEGIN DTS2014041603793 c00203521 modify for B28全频段特性*/
        /*BAND128 生产NV*/
         EN_NV_ID_ANT_MODEM_LOSS_B128                        = 0xf480,
         EN_NV_ID_LTE_AGC_BLK_FREQ_COMP_ANT1_B128        = 0xf48D,
@@ -9303,7 +9200,6 @@ extern "C" {
         EN_NV_ID_LTE_ETM_ET_APT_FAC_STRU_B128             = 0xf4b5,
         EN_NV_ID_LTE_DPD_FAC_STRU_B128                    = 0xf4b6,
         EN_NV_ID_LTE_ET_DPD_COMP_FAC_STRU_B128            = 0xf4b7,
-    /*END DTS2014041603793 c00203521 modify for B28全频段特性*/
 
         EN_NV_ID_ANT_MODEM_LOSS_B27                        = 0xf4c0,
         EN_NV_ID_LTE_AGC_BLK_FREQ_COMP_ANT1_B27            = 0xf4cd,
@@ -9697,7 +9593,6 @@ extern "C" {
         EN_NV_ID_TX_RF_FREQ_COMP_STRU_BNon16             = 0xf81f,
 #endif
 
-        /* modify by w00184272 for 所有band end*/
 
         EN_NV_ID_TIMING_PARA                            = 0xD3C0,
         EN_NV_ID_EMU_FAKECELL_PARA                      = 0xD3C1,
@@ -9765,6 +9660,7 @@ extern "C" {
 #endif
         EN_NV_ET_SELECT_WORK_MODE                    = 0xD51E,
         EN_NV_DPD_SELECT_WORK_MODE                   = 0xD51F,
+
         EN_NV_MIPI_CMD_MODE                          = 0xD520,
 
         EN_NV_ID_CONVERT_FACTOR                      = 0xD521,
@@ -9776,6 +9672,10 @@ extern "C" {
         EN_NV_RF_LTE_BAND_EXTERNAL_LNA_CFG_PARA        = 0xD524,
         EN_NV_LPHY_MIPI_APT_PARA                       = 0xD525,
         EN_NV_LTE_DCXO_PPM_VAR_THRESHOLD_STRU          = 0xD526,
+
+        EN_NV_ID_TL_PA_GPIO_CTRL                       = 0xd530,
+
+        EN_NV_APT_PDM_HOLD_NTX_STRU                    = 0xD531,
 
         EN_NV_ID_TDS_HIGH_SPEED_NV_PARA                = 0xD580,
         EN_NV_ID_TDS_TX_POWER_NV_PARA                  = 0xD581,
@@ -9808,9 +9708,7 @@ extern "C" {
         EN_NV_ID_HI6360_AGC_PARA_B25                     = 0xdd18,
         EN_NV_ID_HI6360_AGC_PARA_B18                     = 0xDc18,
         EN_NV_ID_HI6360_AGC_PARA_B28                    = 0xDf58,/**/
-    /*BEGIN DTS2014041603793 c00203521 modify for B28全频段特性*/
         EN_NV_ID_HI6360_AGC_PARA_B128                   = 0xDf98,
-    /*END DTS2014041603793 c00203521 modify for B28全频段特性*/
 
         EN_NV_ID_LPHY_DSP_VERSION_INFO                  = 0xD818,
         EN_NV_ID_LPHY_DSP_CONFIG_INFO                   = 0xD819,
@@ -9820,13 +9718,11 @@ extern "C" {
 
 
 
-        /* modify by w00184272 for 所有band begin*/
 
 
 
 
 
-        /* modify by w00184272 for 所有band end*/
 
         EN_NV_ID_FACTORY_END                            = 0x2fff
     };

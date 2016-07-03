@@ -53,10 +53,8 @@ extern "C"{
 
 #include "vos/vospubh/basetype.h"
 #include "vos/vospubh/compbase.h"
-/*Added by guojianjun178934, 添加Dopra相关内存操作头文件, 2014/1/8   问题单号:20140108_1 */
 #include "vos/vospubh/vos_mem.h"
 #include "vos/vospubh/vos_lib.h"
-/* End of Added by guojianjun178934, 2014/1/8   问题单号:20140108_1 */
 #include "dopra/target/include/v_sm.h"
 
 /* Begin:VISP1.7C03 VRF qinyun , 2009-01-20 */
@@ -99,8 +97,6 @@ extern "C"{
 extern VOID *TCPIP_Malloc(ULONG ulInfo, ULONG ulSize);
 extern ULONG TCPIP_Free(VOID* pBuf);
 
-/*Added by guojianjun178934, 添加Dopra相关内存操作头文件, 2014/1/8   问题单号:20140108_1 */
-/* End of Added by guojianjun178934, 2014/1/8   问题单号:20140108_1 */
 
 extern VOID TCPIP_InfoOutput(CHAR *pInfo);
 

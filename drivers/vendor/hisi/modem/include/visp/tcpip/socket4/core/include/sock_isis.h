@@ -157,7 +157,6 @@ VOID RAWL_SysCtl();
 ULONG SOCK_GetISISStaData(RAWLSTAT_S *pstRawStat);
 VOID SOCK_ClearISISStaData(VOID);
 
-/* Add for DTS2011041801697, by z00166124, at 2011-04-22. 修改原因: 增加统计 */
 /* 通过INPCB设置UDP 的RAWL 统计信息 */
 #define    INPCB_TO_PERRAWLSO_STAT(pInPCB, udpStatM, ulValue) \
 { \

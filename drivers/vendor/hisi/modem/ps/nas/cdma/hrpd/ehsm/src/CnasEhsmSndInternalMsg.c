@@ -106,19 +106,7 @@ VOS_VOID CNAS_EHSM_SndInternalAttachReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_SndDeactivatingRslt
- 功能描述  : send internal msg about deactivating result
- 输入参数  : ulResult
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-Modify History  :
-1)  Date           : 2015-05-18
-    Author         : y00322978
-    Modify content : Create
-*****************************************************************************/
+
 VOS_VOID CNAS_EHSM_SndDeactivatingRslt(VOS_VOID)
 {
     CNAS_EHSM_EHSM_DEACTIVATING_RSLT_CNF_STRU              *pstMsg = VOS_NULL_PTR;

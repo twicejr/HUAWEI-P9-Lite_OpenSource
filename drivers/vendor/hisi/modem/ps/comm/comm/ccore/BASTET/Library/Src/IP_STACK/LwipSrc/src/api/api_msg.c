@@ -393,7 +393,15 @@ err_tcp(void *arg, err_t err)
     /* use trypost to preven deadlock */
     sys_mbox_trypost(&conn->acceptmbox, NULL);
   }
-
+#if LWIP_USE_BST_NONRT
+     /*In Bastet-nonRT-Mode, "Connect" is not a blocking interface*/
+    if( old_state == NETCONN_CONNECT ){
+      bastet_lwip_event( conn->socket, BST_IP_EVENT_ERR, ERR_CONN );
+    }
+    else{
+      bastet_lwip_event( conn->socket, BST_IP_EVENT_ERR, err );
+    }
+#endif
   if ((old_state == NETCONN_WRITE) || (old_state == NETCONN_CLOSE) ||
       (old_state == NETCONN_CONNECT)) {
     /* calling do_writemore/do_close_internal is not necessary
@@ -409,15 +417,6 @@ err_tcp(void *arg, err_t err)
       /* wake up the waiting task */
       sys_sem_signal(&conn->op_completed);
     }
-#if LWIP_USE_BST_NONRT
-     /*In Bastet-nonRT-Mode, "Connect" is not a blocking interface*/
-    if( old_state == NETCONN_CONNECT ){
-      bastet_lwip_event( conn->socket, BST_IP_EVENT_ERR, ERR_CONN );
-    }
-    else{
-      bastet_lwip_event( conn->socket, BST_IP_EVENT_ERR, err );
-    }
-#endif
   } else {
     LWIP_ASSERT("conn->current_msg == NULL", conn->current_msg == NULL);
   }

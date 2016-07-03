@@ -911,11 +911,7 @@ typedef struct tagExcRegInfo
  */
 #define OS_DATA_STORE_MMU_ERR_SMU   22
 
-/**
- *@ingroup SRE_exc
- *HIDSP异常分类:OS_ILLEGAL, 非法指令异常
- *HIDSP异常具体类型:IOP, 非法操作码-未定义的操作码或者遇到非法指令。
- */
+
 #define OS_ILLEGAL_IOP              23
 
 /**

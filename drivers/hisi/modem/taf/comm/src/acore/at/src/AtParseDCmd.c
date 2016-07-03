@@ -177,26 +177,7 @@ AT_MAIN_STATE_STRU AT_D_CMD_MAIN_STATE_TAB[] =
     {    AT_BUTT_STATE    ,    NULL    },
 };
 
-/*******************************************************************************
- 函数名称: atParseDCmd
- 功能描述: 解析AT命令字符串,得出命令名,参数,命令类型,命令操作类型
-            D[<dial_string>][I][G][;]
-            D>mem<n>[I][G][;]
-            D><n>[I][G][;]
-            D><name>[I][G][;]
 
- 参数说明:
-   pData [in/out] 输入的字符串
-   usLen [in] 字符串的长度
-
- 返 回 值:
-    AT_SUCCESS: 成功
-    AT_FAILURE: 失败
-
- 调用要求: TODO: ...
- 调用举例: TODO: ...
- 作    者: 崔军强/00064416 [2009-08-11]
-******************************************************************************/
 
 static VOS_UINT32 atParseDCmd( VOS_UINT8 * pData, VOS_UINT16 usLen)
 {
@@ -299,22 +280,7 @@ static VOS_UINT32 atParseDCmd( VOS_UINT8 * pData, VOS_UINT16 usLen)
     return AT_SUCCESS;                          /* 返回正确*/
 }
 
-/******************************************************************************
- 函 数 名  : atCdataParseDCmd
- 功能描述  : 保存#777拨号信息
- 输入参数  : VOS_UINT8                          *pData
-             VOS_UINT16                          usLen
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月27日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-******************************************************************************/
 VOS_VOID atCdataParseDCmd(
     VOS_UINT8                          *pData,
     VOS_UINT16                          usLen
@@ -330,21 +296,7 @@ VOS_VOID atCdataParseDCmd(
 
 
 
-/******************************************************************************
- 函数名称: atScanDcmdModifier
- 功能描述: 扫描D命令的修饰符
 
- 参数说明:
-   pData [in/out] 需检查的字符串
-   pLen [in/out] 需检查的字符串长度地址
-
- 返 回 值:
-    TODO: ...
-
- 调用要求: TODO: ...
- 调用举例: TODO: ...
- 作    者: 崔军强/00064416 [2009-08-11]
-******************************************************************************/
 static VOS_VOID atScanDcmdModifier( VOS_UINT8 *pData, VOS_UINT16 *pLen)
 {
     VOS_UINT16 usChkLen  = 0;
@@ -369,25 +321,7 @@ static VOS_VOID atScanDcmdModifier( VOS_UINT8 *pData, VOS_UINT16 *pLen)
     return;
 }
 
-/******************************************************************************
- 函数名称: atScanDmcmdModifier
- 功能描述: 扫描Dm命令的修饰符
 
- 参数说明:
-   pData [in/out] 需检查的字符串
-   pLen [in/out] 需检查的字符串长度地址
-
- 返 回 值:
-    TODO: ...
-
- 调用要求: TODO: ...
- 调用举例: TODO: ...
- 作    者: 崔军强/00064416 [2009-08-11]
-
-  2.日    期   : 2013年10月12日
-    作    者   : l00198894
-    修改内容   : DTS2013100901373:ATD命令PPP拨号参数解析
-******************************************************************************/
 static VOS_VOID atScanDmcmdModifier( VOS_UINT8 *pData, VOS_UINT16 *pLen)
 {
     VOS_UINT16 usLen     = 0;
@@ -470,16 +404,7 @@ static VOS_VOID atScanDmcmdModifier( VOS_UINT8 *pData, VOS_UINT16 *pLen)
     return;
 }
 
-/******************************************************************************
- 函数名称: ScanQuateChar
- 功能描述: 去除字符串中的引号(D命令解析前的处理)
 
- 参数说明:
-   pData [in/out] 字符串内容
-   usLen [in] 字符串长度
-
- 作    者: 崔军强/00064416 [2011-04-01]
-******************************************************************************/
 static VOS_UINT32 ScanQuateChar( VOS_UINT8 * pData, VOS_UINT16 * pusLen)
 {
     VOS_UINT8 *pWrite = pData;
@@ -508,25 +433,7 @@ static VOS_UINT32 ScanQuateChar( VOS_UINT8 * pData, VOS_UINT16 * pusLen)
 }
 
 
-/******************************************************************************
- 函数名称: ParseDCmdPreProc
- 功能描述: D命令解析前的预处理
 
- 参数说明:
-   pData [in/out] 字符串内容
-   usLen [in] 字符串长度
-
- 作    者: 崔军强/00064416 [2011-04-01]
-
-  2.日    期   : 2012年11月16日
-    作    者   : f62575
-    修改内容  : 问题单DTS2012111409590: 解决拨ATD38944425#123i，返回50的错误码问题
-
-  3.日    期   : 2013年10月12日
-    作    者   : l00198894
-    修改内容   : DTS2013100901373:ATD命令PPP拨号参数解析
-
-******************************************************************************/
 VOS_UINT32 ParseDCmdPreProc( VOS_UINT8 * pData, VOS_UINT16 usLen)
 {
     VOS_UINT16 usTmpLen = usLen;

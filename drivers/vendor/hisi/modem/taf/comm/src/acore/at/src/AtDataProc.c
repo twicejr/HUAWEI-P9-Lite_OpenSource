@@ -29,7 +29,6 @@
 /* HiLink模式: 正常模式或网关模式 */
 AT_HILINK_MODE_ENUM_U8                  g_enHiLinkMode       = AT_HILINK_NORMAL_MODE;
 
-/* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
 /* 协议栈发起PDP激活的类型 */
 TAF_PDP_TYPE_ENUM_UINT8                g_enAtNdisActPdpType;
 
@@ -66,14 +65,7 @@ AT_IPV6_RA_INFO_STRU                    g_stAtAppRaInfo         = {0};
 VOS_UINT32                              g_ulIpAddr = 0;
 
 
-/*****************************************************************************
- 全局变量名   : g_stFcIdMaptoFcPri
- 全局变量功能 : 用于保存指定的FC ID对应的FC Pri
 
-1. 日    期   : 2012年2月24日
-   作    者   : L47619
-   修改内容   : 新增结构体
-*****************************************************************************/
 AT_FCID_MAP_STRU                        g_stFcIdMaptoFcPri[FC_ID_BUTT];
 
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
@@ -200,22 +192,7 @@ extern const VOS_CHAR                       *g_ucDialRateDisplayNv[];
 /*****************************************************************************
    4 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : AT_PS_SetPsCallErrCause
- 功能描述  : 设置PS域拨号错误码
- 输入参数  : VOS_UINT16                          usClientId
-             TAF_PS_CAUSE_ENUM_UINT32            enPsErrCause
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月21日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_PS_SetPsCallErrCause(
     VOS_UINT16                          usClientId,
     TAF_PS_CAUSE_ENUM_UINT32            enPsErrCause
@@ -230,21 +207,7 @@ VOS_VOID AT_PS_SetPsCallErrCause(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_GetPsCallErrCause
- 功能描述  : 查询PS域拨号错误码
- 输入参数  : VOS_UINT16                          usClientId
- 输出参数  : 无
- 返 回 值  : TAF_PS_CAUSE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月21日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_PS_CAUSE_ENUM_UINT32 AT_PS_GetPsCallErrCause(
     VOS_UINT16                          usClientId
 )
@@ -255,21 +218,7 @@ TAF_PS_CAUSE_ENUM_UINT32 AT_PS_GetPsCallErrCause(
 
     return pstPsModemCtx->enPsErrCause;
 }
-/*****************************************************************************
- 函 数 名  : AT_GetLanAddr32
- 功能描述  : 网络序数组--->主机序UINT32(LITTLE_ENDIAN)
- 输入参数  : VOS_UINT8                            *pucAddr
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年3月25日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_GetLanAddr32(
   VOS_UINT8                            *pucAddr
 )
@@ -364,25 +313,7 @@ VOS_UINT32 AT_DHCPGetGateWay(
     return ulGateWay;
 }
 
-/******************************************************************************
- 函数名称: AT_Ipv4AddrAtoi
- 功能描述: 把IPV4地址由字符串格式转换成数字格式
 
- 参数说明:
-   pcString [in] 字符串格式的IP地址,char * pcString="192.168.0.1"
-   pucNumber [out] 数字格式的IP地址,char pucNumber[4]={192,168,0,1};
-
- 返 回 值:
-    TODO: ...
-
- 调用要求: TODO: ...
- 调用举例: TODO: ...
- 作    者: 崔军强/00064416 [2010-02-02]
-
-  2.日    期   : 2013年9月23日
-    作    者   : A00165503
-    修改内容   : UART-MODEM: 增加最后一个地址域的取值范围检查
-******************************************************************************/
 VOS_UINT32 AT_Ipv4AddrAtoi(
     VOS_CHAR                           *pcString,
     VOS_UINT8                          *pucNumber
@@ -465,21 +396,7 @@ VOS_UINT32 AT_Ipv4AddrAtoi(
     return VOS_OK;
 }
 
-/******************************************************************************
- 函数名称: At_IPaddritoa
- 功能描述: 把IPV4地址由数字格式转换成字符串格式
 
- 参数说明:
-   pcString [out] 字符串格式的IP地址,char * pcString="192.168.0.1"
-   pucNumber [in] 数字格式的IP地址,char pucNumber[4]={192,168,0,1};
-
- 返 回 值:
-    TODO: ...
-
- 调用要求: TODO: ...
- 调用举例: TODO: ...
- 作    者: 崔军强/00064416 [2010-02-02]
-******************************************************************************/
 VOS_UINT32 AT_Ipv4AddrItoa(
     VOS_CHAR                           *pcString,
     VOS_UINT8                          *pucNumber
@@ -511,21 +428,7 @@ VOS_UINT32 AT_Ipv4AddrItoa(
     return ret;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_Ipv4Addr2Str
- 功能描述  : IPV4类型的地址转换为字符串类型
- 输入参数  : pucNumber      - IPV4地址
- 输出参数  : pcString       - 字符串
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年08月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目新增
-
-*****************************************************************************/
 VOS_UINT32 AT_Ipv4Addr2Str(
     VOS_CHAR                           *pcString,
     VOS_UINT8                          *pucNumber
@@ -564,25 +467,7 @@ VOS_UINT32 AT_Ipv4Addr2Str(
     return VOS_OK;
 }
 
-/******************************************************************************
- 函 数 名  : AT_Ipv6AddrAtoi
- 功能描述  : 把IPV6地址由字符串格式转换成数字格式
- 输入参数  : pcString - 字符串格式的IP地址,char * pcString="192.168.0.1.13.23.56.24.192.168.0.1.13.23.56.24"
- 输出参数  : pucNumber - 数字格式的IP地址,char pucNumber[16]={192,168,0,1,13,23,56,24,192,168,0,1,13,23,56,24};
- 返 回 值  : TAF_SUCCESS - 转化成功
-             TAF_FAILURE - 转化失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年01月12日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-  2.日    期   : 2013年9月23日
-    作    者   : A00165503
-    修改内容   : UART-MODEM: 增加最后一个地址域的取值范围检查
-******************************************************************************/
 VOS_UINT32 AT_Ipv6AddrAtoi(
     VOS_CHAR                           *pcString,
     VOS_UINT8                          *pucNumber
@@ -665,21 +550,7 @@ VOS_UINT32 AT_Ipv6AddrAtoi(
     return VOS_OK;
 }
 
-/******************************************************************************
- 函 数 名  : AT_LenStr2IpAddr
- 功能描述  : 将字符串格式的IP地址转化为SM协议IP地址格式.完全继承V100R001
- 输入参数  : pucStr - 字符串格式的IP地址
- 输出参数  : pucIpAddr - SM协议定义的IP地址
- 返 回 值  : TAF_SUCCESS - 转化成功
-             TAF_FAILURE - 转化失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月23日
-    作    者   : sunshaohua
-    修改内容   : 新生成函数
-******************************************************************************/
 VOS_UINT32  AT_LenStr2IpAddr(
     VOS_UINT8                           *pucStr,
     VOS_UINT8                           *pucIpAddr
@@ -762,23 +633,7 @@ VOS_UINT32  AT_LenStr2IpAddr(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : AT_Ipv6LenStrToAddrProc
- 功能描述  : 将字符串格式的IP地址转化为SM协议IP地址格式(IPV6).
- 输入参数  : pucStr - 字符串格式的IP地址
-             pucColonCount - 冒号个数
-             pucDotCount   - 点号个数
- 输出参数  : pucIpAddr - SM协议定义的IP地址
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月10日
-    作    者   : x00180552
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_Ipv6LenStrToAddrProc(
     VOS_UINT8                          *pucStr,
     VOS_UINT8                          *pucIpAddr,
@@ -850,24 +705,7 @@ VOS_VOID AT_Ipv6LenStrToAddrProc(
     return;
 }
 
-/******************************************************************************
- 函 数 名  : AT_Ipv6LenStrToAddrProcCompressed
- 功能描述  : 将IPV6压缩字符串格式转化为非压缩格式.
- 输入参数  : pucStr       - 字符串格式的IP地址
-             ucColonCount - 冒号个数
-             ucDotCount   - 点号个数
-             ucStrlen     - 字符串长度
-             ucIdxPos     - 补充冒号插入位置
- 输出参数  : pucIpAddr - 非压缩格式的IP地址
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月10日
-    作    者   : x00180552
-    修改内容   : 新生成函数
-******************************************************************************/
 VOS_VOID  AT_Ipv6LenStrToAddrProcCompressed(
     VOS_UINT8                          *pucStr,
     VOS_UINT8                           ucColonCount,
@@ -910,25 +748,7 @@ VOS_VOID  AT_Ipv6LenStrToAddrProcCompressed(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_Ipv6LenStrToAddrAccess
- 功能描述  : 遍历IPV6地址字符串，取得冒号、点号个数
- 输入参数  : pucStr        - 字符串格式的IP地址
- 输出参数  : pucColonCount - 冒号个数
-             pucDotCount   - 点号个数
-             pucStrlen     - IPV6字符串长度
-             pucIdxPos     - 数组补充冒号索引
- 返 回 值  : VOS_OK - 转化成功
-             VOS_ERR - 转化失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月9日
-    作    者   : x00180552
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_Ipv6LenStrToAddrAccess(
     VOS_UINT8                          *pucStr,
     VOS_UINT8                          *pucColonCount,
@@ -972,24 +792,7 @@ VOS_UINT32 AT_Ipv6LenStrToAddrAccess(
     return VOS_OK;
 }
 
-/******************************************************************************
- 函 数 名  : AT_Ipv6LenStrToAddr
- 功能描述  : 将字符串格式的IP地址转化为SM协议IP地址格式(IPV6).
- 输入参数  : pucStr - 字符串格式的IP地址
- 输出参数  : pucIpAddr - SM协议定义的IP地址
- 返 回 值  : VOS_OK  - 转化成功
-             VOS_ERR - 转化失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月09日
-    作    者   : x00180552
-    修改内容   : 新生成函数
-  2.日    期   : 2015年12月26日
-    作    者   : f00179208
-    修改内容   : Coverity告警清理
-******************************************************************************/
 VOS_UINT32  AT_Ipv6LenStrToAddr(
     VOS_UINT8                          *pucStr,
     VOS_UINT8                          *pucIpAddr
@@ -1055,23 +858,7 @@ VOS_UINT32  AT_Ipv6LenStrToAddr(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_Ipv6AddrToStr
- 功能描述  : 将IPV6地址格式转换为字符串格式
- 输入参数  : aucIpAddr[]    - IPV6地址(协议格式)
-             enIpStrType    - IPV6字符串格式表达类型
- 输出参数  : aucAddrStr[]   - IPV6地址(字符串格式)
- 返 回 值  : VOS_OK         - 转换成功
-             VOS_ERR        - 转换失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年01月09日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_Ipv6AddrToStr(
     VOS_UINT8                           aucAddrStr[],
     VOS_UINT8                           aucIpAddr[],
@@ -1141,21 +928,7 @@ VOS_UINT32 AT_Ipv6AddrToStr(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_CalcIpv6PrefixLength
- 功能描述  : 填写AT命令设置TFT的Local IPV6的前缀长度
- 输入参数  : VOS_UINT8                   *pucLocalIpv6Mask
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 AT_CalcIpv6PrefixLength(VOS_UINT8 *pucLocalIpv6Mask)
 {
     VOS_UINT32                          i                   = 0;
@@ -1193,21 +966,7 @@ VOS_UINT8 AT_CalcIpv6PrefixLength(VOS_UINT8 *pucLocalIpv6Mask)
     return ucMaskLength;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetIpv6MaskByPrefixLength
- 功能描述  : 根据Local IPV6的前缀长度获取Local IPV6 Mask
- 输入参数  : VOS_UINT8                   *ucLocalIpv6Prefix
- 输出参数  : VOS_UINT8                   *pucLocalIpv6Mask
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_GetIpv6MaskByPrefixLength(VOS_UINT8 ucLocalIpv6Prefix, VOS_UINT8 *pucLocalIpv6Mask)
 {
     VOS_UINT8                           ucNum                   = 0;
@@ -1236,23 +995,7 @@ VOS_VOID AT_GetIpv6MaskByPrefixLength(VOS_UINT8 ucLocalIpv6Prefix, VOS_UINT8 *pu
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_Itoa
- 功能描述  : 根据转换基数(10或16), 将整数转换为ASCII码, 将结果输出至字符串
- 输入参数  : usValue    - 待转换为ASCII码的整数
-             pcStr      - 输出结果的字符串
-             usRadix    - 转换基数
- 输出参数  : 无
- 返 回 值  : VOS_CHAR*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月7日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_CHAR* AT_Itoa(
     VOS_UINT16                          usValue,
     VOS_CHAR                           *pcStr,
@@ -1274,24 +1017,7 @@ VOS_CHAR* AT_Itoa(
     return pcStr;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_FindIpv6AddrZeroFieldsToBeCompressed
- 功能描述  : 找出需要使用"::"表示的IP地址段的起始位置
- 输入参数  : ausAddrValue[]     - IPV6地址段数组
-             ucTokensNum        - 地址段个数
- 输出参数  : pucZeroFieldStart  - 数值连续为0的IP地址段起始位置
-             pucZeroFieldCount  - 数值连续为0的IP地址段个数
- 返 回 值  : VOS_OK             - 成功
-             VOS_ERR            - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月9日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_FindIpv6AddrZeroFieldsToBeCompressed(
     VOS_UINT8                          *pucZeroFieldStart,
     VOS_UINT8                          *pucZeroFieldCount,
@@ -1351,23 +1077,7 @@ VOS_UINT32 AT_FindIpv6AddrZeroFieldsToBeCompressed(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_ConvertIpv6AddrToCompressedStr
- 功能描述  : 将IPV6地址格式转换为字符串压缩格式
- 输入参数  : aucIpAddr[]    - IPV6地址(协议格式)
-             ucTokensNum    - 地址段个数
- 输出参数  : aucAddrStr[]   - IPV6地址(字符串格式)
- 返 回 值  : VOS_OK         - 转换成功
-             VOS_ERR        - 转换失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月9日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_ConvertIpv6AddrToCompressedStr(
     VOS_UINT8                           aucAddrStr[],
     VOS_UINT8                           aucIpAddr[],
@@ -1446,22 +1156,7 @@ VOS_UINT32 AT_ConvertIpv6AddrToCompressedStr(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_CalcIpHdrCRC16
- 功能描述  : 计算IP头CRC校验和
- 输入参数  : pucData    - IP头信息
-             usSize     - IP头长度
- 输出参数  : 无
- 返 回 值  : ulCheckSum - CRC校验和
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月12日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT16 AT_CalcIpHdrCRC16(
     VOS_UINT8                          *pucData,
     VOS_UINT16                          usSize
@@ -1494,27 +1189,7 @@ VOS_UINT16 AT_CalcIpHdrCRC16(
     return (VOS_UINT16)(~ulCheckSum);
 }
 
-/*****************************************************************************
- 函 数 名  : AT_BuildUdpHdr
- 功能描述  : 构造IP和UDP头部信息(用于构造测试使用的UDP包)
- 输入参数  : pstUdpPkt  - UDP包信息
-             usLen      - UDP包长度
-             ulSrcAddr  - 源IP地址
-             ulDstAddr  - 目标IP地址
-             usSrcPort  - 源端口号
-             usDstPort  - 目标端口号
- 输出参数  : 无
- 返 回 值  : VOS_OK     - 构造成功
-             VOS_ERR    - 构造失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月12日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_BuildUdpHdr(
     AT_UDP_PACKET_FORMAT_STRU          *pstUdpPkt,
     VOS_UINT16                          usLen,
@@ -1584,24 +1259,7 @@ VOS_UINT32 AT_DHCPCheckCfg(
     return VOS_OK;
 }
 
-/******************************************************************************
- 函 数 名  : AT_DHCPServerSetUp
- 功能描述  : 根据ptrDHCPParam参数配置DHCP Server的状态，并通过ptrDHCPConfig
-                返回DHCP Server最终的配置(包括最后的网关、掩码等)
-                当关闭DHCP Server时，允许最后两项参数为空
- 输入参数  : pstEvent指向PDP去激活的指针
- 输出参数  : AT_DHCP_SETUP_PARAM_ST *ptrDHCPCfg       DHCP配置参数
-             AT_DHCP_CONFIG_STRU    *ptrDHCPConfig    返回DHCP所有配置
- 返 回 值  : VOS_OK      正确
-             VOS_ERR     错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月23日
-    作    者   : sunshaohua
-    修改内容   : 新生成函数
-******************************************************************************/
 VOS_UINT32  AT_DHCPServerSetUp(
     AT_DHCP_SETUP_PARAM_ST              *ptrDHCPParam,
     AT_DHCP_CONFIG_STRU                 *ptrDHCPConfig
@@ -1625,21 +1283,7 @@ VOS_UINT32  AT_DHCPServerSetUp(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetDhcpPara
- 功能描述  : 获取DHCP参数(DHCP参数为网络序)
- 输入参数  : pstConfig                  - DHCP参数(网络序)
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月20日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_GetDhcpPara(
     AT_DHCP_PARA_STRU                  *pstConfig,
     AT_IPV4_DHCP_PARAM_STRU            *pstIpv4Dhcp
@@ -1655,20 +1299,7 @@ VOS_VOID AT_GetDhcpPara(
     return;
 }
 
-/******************************************************************************
- 函 数 名  : AT_AtoI
- 功能描述  : 字符串转整形
- 输入参数  : pString 字符串
- 输出参数  : 无
- 返 回 值  : 整形 IP地址
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月23日
-    作    者   : sunshaohua
-    修改内容   : 新生成函数
-******************************************************************************/
 VOS_UINT32  AT_AtoI(
     VOS_UINT8                         *pString
 )
@@ -1693,23 +1324,7 @@ VOS_UINT32  AT_AtoI(
     return ulRet;
 }
 
-/******************************************************************************
- 函 数 名  : AT_GetDisplayRate
- 功能描述  : 获取空口理论带宽，从NAS获取，且将字符串型式转为整形
- 输入参数  : ulSpeed
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月23日
-    作    者   : sunshaohua
-    修改内容   : 新生成函数
-  2.日    期   : 2013年4月7日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核及mma和mmc接口调整
-******************************************************************************/
 VOS_UINT32 AT_GetDisplayRate(
     VOS_UINT16                          usClientId,
     VOS_UINT32                         *ulSpeed
@@ -1730,31 +1345,7 @@ VOS_UINT32 AT_GetDisplayRate(
       return VOS_OK;
 }
 
-/******************************************************************************
- 函 数 名  : AT_CtrlConnIndProc
- 功能描述  : 需要解析激活上下文，设置DHCP服务器
- 输入参数  : pstEvent指向TAF_PS_CALL_EVENT_INFO_STRU去激活的指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月23日
-    作    者   : sunshaohua
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年6月12日
-    作    者   : S62952
-    修改内容   : DTS2012032802023: ^CSND命令实现方案修改
-  3.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，EVENT结构替换
-
-  4.日    期   : 2013年11月11日
-    作    者   : A00165503
-    修改内容   : DTS2013110900839: ^CSND命令处理优化
-******************************************************************************/
 VOS_VOID AT_CtrlConnIndProc(
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent,
     AT_USER_TYPE                        ucUserType
@@ -1788,12 +1379,10 @@ VOS_VOID AT_CtrlConnIndProc(
     }
     else
     {
-        /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
         if (AT_NDIS_USER == ucUserType)
         {
             AT_NdisAddrProc(&stConfig, pstEvent);
         }
-        /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
         if (AT_APP_USER == ucUserType)
         {
@@ -1806,39 +1395,7 @@ VOS_VOID AT_CtrlConnIndProc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : Taf_GetDisplayRate
- 功能描述  :
- 输入参数  :
- 输出参数  :
- 返 回 值  : TAF_SUCCESS  - 成功
-             TAF_FAILURE  - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009-05-16
-    作    者   :s62952
-    修改内容   : Created
-  2.日    期   : 2011-06-06
-    作    者   :w00166186
-    修改内容   : 系统托盘显示速率NV定制特性合入
-  3.日    期   : 2011年7月20日
-    作    者   : 傅映君/f62575
-    修改内容   : DTS2011063000712 速率显示错误
-  4.日    期   : 2013年4月8日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核
-  5.日    期   : 2015年4月10日
-    作    者   : h00313353
-    修改内容   : Syscfg重构
-  6.日    期   : 2015年12月26日
-    作    者   : f00179208
-    修改内容   : Coverity告警清理
-  7.日    期   : 2015年11月17日
-    作    者   : zwx247453
-    修改内容   : dallas gps参考时钟虚焊检测
-*****************************************************************************/
 VOS_UINT32 Taf_GetDisplayRate(
     VOS_UINT16                          usClientId,
     VOS_UINT8                          *ucSpeed
@@ -1849,7 +1406,6 @@ VOS_UINT32 Taf_GetDisplayRate(
     VOS_UINT32                          ulNvDialRateIndex;
     VOS_UINT8                           ucSubSysMode;
     VOS_UINT8                           aucDialRateTmp[AT_AP_RATE_STRLEN];
-    /* Modified by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-2, end */
     TAF_AGENT_SYS_MODE_STRU             stSysMode;
     VOS_UINT32                          ulRet;
 
@@ -1921,7 +1477,6 @@ VOS_UINT32 Taf_GetDisplayRate(
             VOS_MemCpy(aucDialRateTmp, g_PppDialRateDisplay[enRateDisplay], ulTmp);
         }
     }
-    /* Modified by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-2, end */
     else
     {
         ulTmp = VOS_StrLen((TAF_CHAR *)g_ucDialRateDisplayNv[ulNvDialRateIndex - 1]);
@@ -1935,21 +1490,7 @@ VOS_UINT32 Taf_GetDisplayRate(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetPdpContextFromAtDialParam
- 功能描述  : 获取pdp上下文
- 输入参数  : TAF_PDP_PRIM_CONTEXT_EXT_STRU      *pstPdpPrimContextExt,
-             AT_DIAL_PARAM_STRU                 *pstDialParam
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月31日
-    作    者   : c00173809
-    修改内容   : PS融合项目，获取pdp上下文
-*****************************************************************************/
 VOS_VOID AT_GetPdpContextFromAtDialParam(
     TAF_PDP_PRIM_CONTEXT_EXT_STRU      *pstPdpPrimContextExt,
     AT_DIAL_PARAM_STRU                 *pstDialParam
@@ -1986,25 +1527,7 @@ VOS_VOID AT_GetPdpContextFromAtDialParam(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetPsDialParamFromAtDialParam
- 功能描述  : 获取拨号参数
- 输入参数  : TAF_PDP_PRIM_CONTEXT_EXT_STRU      *pstPdpPrimContextExt,
-             AT_DIAL_PARAM_STRU                 *pstDialParam
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月31日
-    作    者   : c00173809
-    修改内容   : PS融合项目，获取拨号参数
-
-  2.日    期   : 2012年12月18日
-    作    者   : A00165503
-    修改内容   : C50 IPv6 项目
-*****************************************************************************/
 VOS_VOID AT_GetPsDialParamFromAtDialParam(
     TAF_PS_DIAL_PARA_STRU              *pstPsDialParam,
     AT_DIAL_PARAM_STRU                 *pstDialParam
@@ -2055,21 +1578,7 @@ VOS_VOID AT_GetPsDialParamFromAtDialParam(
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_GetFcPriFromMap
- 功能描述  : 获取指定FC ID的FC PRI
- 输入参数  : FC_ID_ENUM_UINT8                   enFcId,
-             AT_FCID_MAP_STRU                  *pstFcIdMap
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月18日
-    作    者   : L47619
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_GetFcPriFromMap(
     FC_ID_ENUM_UINT8                   enFcId,
     AT_FCID_MAP_STRU                  *pstFcIdMap
@@ -2104,24 +1613,7 @@ VOS_UINT32 AT_GetFcPriFromMap(
 
 
 
-/*****************************************************************************
- 函 数 名  : AT_NotifyFcWhenPdpModify
- 功能描述  : 当发生PDP MODIFY(UE发起或网侧发起)时，向FC指示修改流控点
- 输入参数  : pstEvt       TAF_PS_CALL_EVENT_INFO_STRU事件
-             enFcId        流控实体ID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月18日
-    作    者   : L47619
-    修改内容   : 新生成函数
-  2.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，EVENT结构替换
-*****************************************************************************/
 VOS_VOID AT_NotifyFcWhenPdpModify(
     TAF_PS_CALL_PDP_MODIFY_CNF_STRU    *pstEvent,
     FC_ID_ENUM_UINT8                    enFcId
@@ -2157,28 +1649,8 @@ VOS_VOID AT_NotifyFcWhenPdpModify(
 /***************************************************************************
                以下代码实现NDIS相关功能
 *****************************************************************************/
-/* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
 
-/*****************************************************************************
- 函 数 名  : AT_PutNetworkAddr32
- 功能描述  : 主机序UINT32(LITTLE_ENDIAN)--->网络序数组
- 输入参数  : VOS_UINT8                            *pucAddr
-             VOS_UINT32                            ulAddr
- 输出参数  : 无
- 返 回 值  : VOS_UINT8*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年3月25日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年10月20日
-    作    者   : A00165503
-    修改内容   : AT Project: 移植Porting项目代码
-
-*****************************************************************************/
 VOS_UINT8* AT_PutNetworkAddr32(
   VOS_UINT8                            *pucAddr,
   VOS_UINT32                            ulAddr
@@ -2199,25 +1671,7 @@ VOS_UINT8* AT_PutNetworkAddr32(
     return pucAddr;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_CovertArrayToU32
- 功能描述  : 数组转为UINT32
- 输入参数  : VOS_UINT8                            *pucAddr
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月16日
-    作    者   : L00171473
-    修改内容   : for V7R1 porting,新生成函数
-
-  2.日    期   : 2011年10月20日
-    作    者   : A00165503
-    修改内容   : AT Project: 移植Porting项目代码
-
-*****************************************************************************/
 VOS_UINT32 AT_CovertArrayToU32(
   VOS_UINT8                            *pucAddr
 )
@@ -2244,28 +1698,7 @@ VOS_UINT32 AT_CovertArrayToU32(
     return ulAddr;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_NidsGet3gppSmCauseByPsCause
- 功能描述  : 将PS域呼叫错误码转换成3GPP协议定义的(E)SM Cause, 非3GPP协议定义
-             的错误码统一转换成0(Unknown error/Unspecified error)
- 输入参数  : enCause - PS域呼叫错误码
- 输出参数  : 无
- 返 回 值  : VOS_UINT16
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月25日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-  2.日    期   : 2012年11月20日
-    作    者   : Y00213812
-    修改内容   : DTS2012111907501: 把PDP Deactive时上报的原因值TAF_PS_CAUSE_SUCCESS
-                 转化为闪电卡的协议值36
-  3.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，入参和返回值类型改为VOS_UINT32
-*****************************************************************************/
 VOS_UINT32 AT_Get3gppSmCauseByPsCause(
     TAF_PS_CAUSE_ENUM_UINT32            enCause
 )
@@ -2290,28 +1723,7 @@ VOS_UINT32 AT_Get3gppSmCauseByPsCause(
     return ul3gppSmCause;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SaveNdisConnDailPara
- 功能描述  : 保存NDISCONN拨号时的参数，供NDISCONN查询命令使用
- 输入参数  : AT_PARSE_PARA_TYPE_STRU            *pstParaList
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月13日
-    作    者   : L00171473
-    修改内容   : for V7R1 porting,新生成函数
-
-  2.日    期   : 2011年10月20日
-    作    者   : A00165503
-    修改内容   : AT Project: 移植Porting项目代码
-
-  3.日    期   : 2012年5月15日
-    作    者   : l60609
-    修改内容   : DTS2012050800626:authType非chap和pap按chap保存
-*****************************************************************************/
 VOS_VOID AT_SaveNdisConnDailPara(
     AT_PARSE_PARA_TYPE_STRU            *pstParaList
 )
@@ -2354,29 +1766,7 @@ VOS_VOID AT_SaveNdisConnDailPara(
                                                         pstParaList[AT_NDIS_AUTH_IDX].usParaLen);
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SendNdisRelReq
- 功能描述  : 发送PDN配置释放消息
- 输入参数  : TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU        *pstEvent
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年3月26日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-  2.日    期   : 2011年10月20日
-    作    者   : A00165503
-    修改内容   : AT Project: 移植Porting项目代码
-  3.日    期   : 2011年12月22日
-    作    者   : 鲁琳/l60609
-    修改内容   : PS Project: AT和NDIS的消息改变
-  4.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，EVENT结构替换
-*****************************************************************************/
 VOS_UINT32 AT_SendNdisRelReq(
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU        *pstEvent
 )
@@ -2414,30 +1804,14 @@ VOS_UINT32 AT_SendNdisRelReq(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_ActiveUsbNet
- 功能描述  : 激活USB虚拟网卡
- 输入参数  : VOS_UINT32                          ulRxbps,
-             VOS_UINT32                          ulTxbps
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月29日
-    作    者   : C00173809
-    修改内容   : PS 融合项目，激活网卡
-*****************************************************************************/
 VOS_UINT32 AT_ActiveUsbNet(VOS_VOID)
 {
     VOS_UINT32                      ulLinkstus;
     VOS_INT32                       lRtn;
     NCM_IOCTL_CONNECTION_SPEED_S    stNcmConnectSpeed;
     VOS_UINT32                      ulSpeed;
-    /* Modified by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, begin */
     if (VOS_OK != AT_GetDisplayRate(AT_CLIENT_ID_NDIS, &ulSpeed))
-    /* Modified by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, end */
     {
         AT_ERR_LOG("AT_ActiveUsbNet : ERROR : AT_GetDisplayRate Error!");
         ulSpeed = AT_DEF_DISPLAY_SPEED;
@@ -2463,20 +1837,7 @@ VOS_UINT32 AT_ActiveUsbNet(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_DeActiveUsbNet
- 功能描述  : 去激活USB虚拟网卡
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月29日
-    作    者   : c00173809
-    修改内容   : PS 融合项目，去激活网卡
-*****************************************************************************/
 VOS_UINT32 AT_DeActiveUsbNet(VOS_VOID)
 {
     VOS_UINT32  ulLinkstus;
@@ -2495,29 +1856,7 @@ VOS_UINT32 AT_DeActiveUsbNet(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SendNdisIPv4PdnInfoCfgReq
- 功能描述  : 向NDIS发送构建的IPV4的PDN信息。
- 输入参数  : MN_CLIENT_ID_T                      usClientId
-             AT_IPV4_DHCP_PARAM_STRU            *pstIPv4DhcpParam
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月24日
-    作    者   : C00173809
-    修改内容   : PS融合项目，获取本地的IPV4 PDN信息
-
-  2.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，由CLIENTID获取MODEM ID
-
-  3.日    期   : 2015年4月18日
-    作    者   : A00165503
-    修改内容   : SPE Project: SPE适配
-*****************************************************************************/
 VOS_UINT32 AT_SendNdisIPv4PdnInfoCfgReq(
     MN_CLIENT_ID_T                      usClientId,
     AT_IPV4_DHCP_PARAM_STRU            *pstIPv4DhcpParam
@@ -2623,9 +1962,7 @@ VOS_UINT32 AT_SendNdisIPv4PdnInfoCfgReq(
     }
 
     /* 获取接入理论带宽*/
-    /* Modified by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, begin */
     if (VOS_OK != AT_GetDisplayRate(AT_CLIENT_ID_NDIS, &ulSpeed))
-    /* Modified by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, end */
     {
         AT_ERR_LOG("AT_SendNdisIPv4PdnInfoCfgReq : ERROR : AT_GetDisplayRate Error!");
         ulSpeed = AT_DEF_DISPLAY_SPEED;
@@ -2650,36 +1987,7 @@ VOS_UINT32 AT_SendNdisIPv4PdnInfoCfgReq(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvNdisPdnInfoCfgCnf
- 功能描述  : NDIS配置的结果处理
- 输入参数  : AT_NDIS_PDNINFO_CFG_CNF_STRU       *pstNdisPdnInfoCfgCnf
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年3月25日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年10月20日
-    作    者   : A00165503
-    修改内容   : AT Project: 移植Porting项目代码
-
-  3.日    期   : 2011年12月25日
-    作    者   : C00173809
-    修改内容   : PS融合项目，激活网卡。
-
-  4.日    期   : 2012年3月15日
-    作    者   : l60609
-    修改内容   : DTS2012030804093:先激活网卡，再上报^NDISDUP
-
-  5.日    期   : 2012年7月28日
-    作    者   : A00165503
-    修改内容   : DTS2012072806289: ^NDISSTAT连接状态上报处理修改
-*****************************************************************************/
 VOS_UINT32 AT_RcvNdisPdnInfoCfgCnf(
     AT_NDIS_PDNINFO_CFG_CNF_STRU       *pstNdisPdnInfoCfgCnf
 )
@@ -2692,32 +2000,7 @@ VOS_UINT32 AT_RcvNdisPdnInfoCfgCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvNdisPdnInfoRelCnf
- 功能描述  : NDIS释放应答处理
- 输入参数  : AT_NDIS_PDNINFO_REL_CNF_STRU       *pstNdisPdnInfoRelCnf
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年3月25日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年10月20日
-    作    者   : A00165503
-    修改内容   : AT Project: 移植Porting项目代码
-
-  3.日    期   : 2011年12月25日
-    作    者   : C00173809
-    修改内容   : PS融合项目，去激活网卡。
-
-  4.日    期   : 2012年7月28日
-    作    者   : A00165503
-    修改内容   : DTS2012072806289: ^NDISSTAT连接状态上报处理修改
-*****************************************************************************/
 VOS_UINT32 AT_RcvNdisPdnInfoRelCnf(
     AT_NDIS_PDNINFO_REL_CNF_STRU       *pstNdisPdnInfoRelCnf
 )
@@ -2733,24 +2016,7 @@ VOS_UINT32 AT_RcvNdisPdnInfoRelCnf(
 
 
 #if (FEATURE_ON == FEATURE_IPV6)
-/*****************************************************************************
- 函 数 名  : AT_NdisConfigIpv6Dns
- 功能描述  : 通过底软配置IPv6 DNS
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月28日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月11日
-    作    者   : l00167671
-    修改内容   : DTS2012121802573, TQE清理
-
-*****************************************************************************/
 VOS_VOID AT_NdisConfigIpv6Dns(VOS_VOID)
 {
     AT_PDP_ENTITY_STRU                 *pstNdisPdpEntity;
@@ -2801,41 +2067,7 @@ VOS_VOID AT_NdisConfigIpv6Dns(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : AT_NdisActCnfBackProc
- 功能描述  : PDP激活成功后的回退处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月12日
-    作    者   : S62952
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年12月25日
-    作    者   : c00173809
-    修改内容   : PS 融合项目，IPV6特性移植
-
-  3.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : 修改PS域呼叫错误码处理
-
-  4.日    期   : 2012年12月21日
-    作    者   : l00227485
-    修改内容   : DSDA PhaseII
-
-  5.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，原因值#50 , 通知APP模块IPv6激活失败，
-                 原因值#51 , 通知APP模块IPv4激活失败
-
-  6.日    期   : 2015年7月17日
-    作    者   : Y00213812
-    修改内容   : CDMA模式下电信不支持双承载双栈
-*****************************************************************************/
 VOS_VOID  AT_NdisActCnfBackProc(
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU        *pstEvent
 )
@@ -2879,7 +2111,6 @@ VOS_VOID  AT_NdisActCnfBackProc(
 
         return;
     }
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     /* 根据原因值, 通知APP拨号结果 */
     switch (pstEvent->enCause)
     {
@@ -2907,37 +2138,11 @@ VOS_VOID  AT_NdisActCnfBackProc(
             AT_NORM_LOG1("AT_NdisActCnfBackProc: Other <Cause>", pstEvent->enCause);
             break;
     }
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_NdisIpv6ActCnfProc
- 功能描述  : 处理IPV6的PDP激活成功的事件
- 输入参数  : pEvent  --- 事件内容
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月12日
-    作    者   : S62952
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年12月17日
-    作    者   : C00173809
-    修改内容   : PS融合项目，通过ID_AT_NDIS_PDNINFO_CFG_REQ原语向NDIS发送IPV6的PDN信息。
-
-  3.日    期   : 2012年7月28日
-    作    者   : A00165503
-    修改内容   : DTS2012072806289: ^NDISSTAT连接状态上报处理修改
-
-  4.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，EVENT结构替换
-*****************************************************************************/
 VOS_VOID AT_NdisIpv6ActCnfProc(
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU        *pstEvent
 )
@@ -2988,31 +2193,7 @@ VOS_VOID AT_NdisIpv6ActCnfProc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_NdisIpv4v6ActCnfProc
- 功能描述  : 处理IPV4v6的PDP激活成功的事件
- 输入参数  : pstEvent --- 事件内容
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月12日
-    作    者   : S62952
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年12月17日
-    作    者   : C00173809
-    修改内容   : PS融合项目，PDP激活成功后通知ADS,NDIS；注册流控点。
-
-  3.日    期   : 2012年7月28日
-    作    者   : A00165503
-    修改内容   : DTS2012072806289: ^NDISSTAT连接状态上报处理修改
-  4.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，EVENT结构替换
-*****************************************************************************/
 VOS_VOID AT_NdisIpv4v6ActCnfProc(
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU        *pstEvent
 )
@@ -3053,25 +2234,7 @@ VOS_VOID AT_NdisIpv4v6ActCnfProc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SendNdisIPv6PdnInfoCfgReq
- 功能描述  : 发送IPV6的PDN信息
- 输入参数  : MODEM_ID_ENUM_UINT16                 enModemId,
-             TAF_PS_IPV6_INFO_IND_STRU* pRaInfo
- 输出参数  : 无
- 返 回 值  : AT_APS_IPV6_RA_INFO_STRU* pIPv6RaInfo
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月24日
-    作    者   : C00173809
-    修改内容   : PS融合项目，获取本地的IPV6 PDN信息
-
-  2.日    期   : 2015年4月18日
-    作    者   : A00165503
-    修改内容   : SPE Project: SPE适配
-*****************************************************************************/
 VOS_UINT32 AT_SendNdisIPv6PdnInfoCfgReq(
     MODEM_ID_ENUM_UINT16                 enModemId,
     TAF_PS_IPV6_INFO_IND_STRU           *pIPv6RaNotify
@@ -3150,9 +2313,7 @@ VOS_UINT32 AT_SendNdisIPv6PdnInfoCfgReq(
     }
 
     /* 获取接入理论带宽*/
-    /* Modified by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, begin */
     if (VOS_OK != AT_GetDisplayRate(AT_CLIENT_ID_NDIS, &ulSpeed))
-    /* Modified by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, end */
     {
         AT_ERR_LOG("AT_SendNdisIPv6PdnInfoCfgReq : ERROR : AT_GetDisplayRate Error!");
         ulSpeed = AT_DEF_DISPLAY_SPEED;
@@ -3177,26 +2338,7 @@ VOS_UINT32 AT_SendNdisIPv6PdnInfoCfgReq(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_NdisCtrlConnIpv6IndProc
- 功能描述  : 处理IPV6地址
- 输入参数  : pstEvent ---上报事件
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月10日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2012年01月02日
-    作    者   : c00173809
-    修改内容   : PS融合项目，保存IPV6的PCSCF地址
-  3.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，EVENT结构替换
-*****************************************************************************/
 VOS_VOID  AT_NdisCtrlConnIpv6IndProc(
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU        *pstEvent
 )
@@ -3217,21 +2359,7 @@ VOS_VOID  AT_NdisCtrlConnIpv6IndProc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_NdisIpv6DhcpRest
- 功能描述  : 清空IPV6地址参数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年9月9日
-    作    者   : s62952
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_NdisIpv6DhcpRest(VOS_VOID)
 {
     PS_MEM_SET(&g_stAtNdisDhcpPara.stIpv6Dhcp,
@@ -3241,22 +2369,7 @@ VOS_VOID AT_NdisIpv6DhcpRest(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_NdisCheckIpv6PdpState
- 功能描述  : 检查是否有满足IPv6状态的PDP连接
- 输入参数  : enPdpState - PDP状态
- 输出参数  : 无
- 返 回 值  : VOS_TRUE   - PDP连接存在
-             VOS_FALSE  - PDP连接不存在
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月21日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_NdisCheckIpv6PdpState(
     AT_PDP_STATE_ENUM_U8                enPdpState
 )
@@ -3271,22 +2384,7 @@ VOS_UINT32 AT_NdisCheckIpv6PdpState(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : AT_NdisCheckIpv6PdpState
- 功能描述  : 检查是否有满足IPv4状态的PDP连接
- 输入参数  : enPdpState - PDP状态
- 输出参数  : 无
- 返 回 值  : VOS_TRUE   - PDP连接存在
-             VOS_FALSE  - PDP连接不存在
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月21日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_NdisCheckIpv4PdpState(
     AT_PDP_STATE_ENUM_U8                enPdpState
 )
@@ -3300,22 +2398,7 @@ VOS_UINT32 AT_NdisCheckIpv4PdpState(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_NdisCheckPdpState
- 功能描述  : 检查是否有满足状态的NDIS连接
- 输入参数  : enPdpState - PDP状态
- 输出参数  : 无
- 返 回 值  : VOS_TRUE   - NDIS状态满足条件
-             VOS_TRUE   - NDIS状态不满足条件
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月13日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_NdisCheckPdpState(
     AT_PDP_STATE_ENUM_U8                enPdpState
 )
@@ -3330,21 +2413,7 @@ VOS_UINT32 AT_NdisCheckPdpState(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_NdisCheckPdpIdleState
- 功能描述  : 查找是否有idel或deacting的PDP
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月18日
-    作    者   : S62952
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_NdisCheckPdpIdleState(VOS_VOID)
 {
     /*如果所有的PDP都处于IDLE;如果有一个处于DEACTING也返回OK*/
@@ -3361,30 +2430,7 @@ VOS_UINT32 AT_NdisCheckPdpIdleState(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_NdisAddrProc
- 功能描述  : 处理NDIS地址参数
- 输入参数  : pstConfig --- 指向DHCP参数的指针
-             pstEvent  --- 上报事件
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月10日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月1日
-    作    者   : 傅映君/f62575
-    修改内容   : DTS2011113002867, 支持PC UI口进行NDIS拨号并写地址到NV
-  3.日    期   : 2012年1月2日
-    作    者   : c00173809
-    修改内容   : ps融合项目，保存IPV4的PCSCF地址
-  4.日    期   : 2012年08月07日
-    作    者   : f00179208
-    修改内容   : 问题单:DTS2015031000157, 新增第三个p-cscf地址
-*****************************************************************************/
 VOS_VOID  AT_NdisAddrProc(
     AT_DHCP_CONFIG_STRU                 *pstConfig,
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU         *pstEvent
@@ -3519,57 +2565,7 @@ VOS_VOID  AT_NdisAddrProc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_NdisStateChangeProc
- 功能描述  : NDIS拨号时通知PC拨号状态改变
- 输入参数  : pEvent -- TAF_PS_CALL_EVENT_INFO_STRU消息指针
-             ulStat----NDIS连接状态:0-连接断开; 1-已连接
- 输出参数  : 无
- 返 回 值  : 成功
-             失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年9月8日
-    作    者   : S62952
-    修改内容   : 新生成函数
-
-  2.日    期   : 2010年07月04日
-    作    者   : S62952
-    修改内容   : 问题单号: DTS2011070103435, IPv4v6类型拨号失败, 上报^NDISSTAT
-                 格式错误, 两条连续的上报命令之间缺少一个回车换行符
-
-  3.日    期   : 2011年08月02日
-    作    者   : A00165503
-    修改内容   : 问题单号: DTS2011080103770, 网侧DETACH的场景下, AT多上报两条
-                 ^NDISSTAT命令指示MP拨号已断开
-
-  4.日    期   : 2011年12月12日
-    作    者   : L00171473
-    修改内容   : 问题单号: DTS2011110807367, 通过PCUI口进行NDIS拨号打桩(原不允许
-                 从PCUI口发起NDIS拨号)
-
-  5.日    期   : 2011年12月17日
-    作    者   : C00173809
-    修改内容   : PS融合项目，修改同步API
-
-  6.日    期   : 2012年7月28日
-    作    者   : A00165503
-    修改内容   : DTS2012072806289: ^NDISSTAT连接状态上报处理修改
-
-  7.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : 修改PS域呼叫错误码处理
-
-  8.日    期   : 2012年11月20日
-    作    者   : Y00213812
-    修改内容   : DTS2012111907501: PDP Deactive时上报原因值
-
-  9.日    期   : 2013年1月14日
-    作    者   : A00165503
-    修改内容   : DTS2012042104301: PCUI端口发起NDIS/APP拨号流程优化
-*****************************************************************************/
 VOS_VOID AT_NdisStateChangeProc(
     VOS_UINT8                           ucPdpType,
     AT_PDP_STATUS_ENUM_UINT32           enStat,
@@ -3697,21 +2693,7 @@ VOS_VOID AT_NdisStateChangeProc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_NdisGetState
- 功能描述  : 获取NDIS状态，激活态/非激活态
- 输入参数  : ucPdpType --- PDP类型
- 输出参数  : 无
- 返 回 值  : AT_PDP_STATE_ENUM_U8 当前状态 激活态/非激活态
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月3日
-    作    者   : S62952
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 AT_PDP_STATE_ENUM_U8 AT_NdisGetState(
     VOS_UINT8                           ucPdpType
 )
@@ -3730,24 +2712,7 @@ AT_PDP_STATE_ENUM_U8 AT_NdisGetState(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : AT_NdisSetState
- 功能描述  : 设置NDIS状态
- 输入参数  : ucPdpType --- PDP类型
-             enState   --- PDP状态
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月3日
-    作    者   : S62952
-    修改内容   : 新生成函数
-  2.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，增加PDP IPv4v6类型的判断
-*****************************************************************************/
 VOS_VOID AT_NdisSetState(
     VOS_UINT8                           ucPdpType,
     AT_PDP_STATE_ENUM_U8                enState
@@ -3757,13 +2722,11 @@ VOS_VOID AT_NdisSetState(
     {
         g_stAtNdisDhcpPara.enIpv4State   = enState;
     }
-/* Modified by s62952 for AT Project，2011-10-17,  Begin*/
 #if(FEATURE_ON == FEATURE_IPV6)
     else if (TAF_PDP_IPV6 == ucPdpType)
     {
         g_stAtNdisDhcpPara.enIpv6State   = enState;
     }
-    /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     else if (TAF_PDP_IPV4V6 == ucPdpType)
     {
         g_stAtNdisDhcpPara.enIpv4v6State = enState;
@@ -3771,29 +2734,13 @@ VOS_VOID AT_NdisSetState(
     else
     {}
 
-    /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
 #endif
-/* Modified by s62952 for AT Project，2011-10-17,  Begin*/
 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_NdisDhcpRest
- 功能描述  : 清空DHCP参数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年9月9日
-    作    者   : s62952
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_NdisDhcpRest(VOS_VOID)
 {
     PS_MEM_SET(&g_stAtNdisDhcpPara.stIpv4Dhcp,
@@ -3803,21 +2750,7 @@ VOS_VOID AT_NdisDhcpRest(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_E5GetDhcpPara
- 功能描述  : 获取DHCP参数(DHCP参数为网络序)
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年9月10日
-    作    者   : s62952
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_NdisGetDhcpPara(
     AT_DHCP_PARA_STRU                  *pstConfig
 )
@@ -3831,22 +2764,7 @@ VOS_VOID AT_NdisGetDhcpPara(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_ProcNdisDeRegFCPoint
- 功能描述  : NDIS用户类型PDP状态改变为去激活时的处理
- 输入参数  : TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU *pstEvent,
-             TAF_PDP_TYPE_ENUM_UINT8             enPdpType
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目新增
-
-*****************************************************************************/
 VOS_VOID  AT_ProcNdisDeRegFCPoint(
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU  *pstEvent,
     TAF_PDP_TYPE_ENUM_UINT8               enPdpType
@@ -3870,22 +2788,7 @@ VOS_VOID  AT_ProcNdisDeRegFCPoint(
 
 }
 
-/*****************************************************************************
- 函 数 名  : AT_ProcNdisRegFCPoint
- 功能描述  : NDIS用户类型的PDP状态改变后,处理流控点注册或变更
- 输入参数  : TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent,
-             TAF_PDP_TYPE_ENUM_UINT8             enPdpType
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目新增
-
-*****************************************************************************/
 VOS_VOID  AT_ProcNdisRegFCPoint(
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent,
     TAF_PDP_TYPE_ENUM_UINT8             enPdpType
@@ -3936,29 +2839,7 @@ VOS_VOID  AT_ProcNdisRegFCPoint(
 
 }
 
-/*****************************************************************************
- 函 数 名  : AT_NdisIpv4ActCnfProc
- 功能描述  : 处理IPV4的PDP激活成功的事件
- 输入参数  : pstEvent --- 事件内容
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月12日
-    作    者   : S62952
-    修改内容   : 新生成函数
-  2.日    期   : 2011年10月20日
-    作    者   : A00165503
-    修改内容   : AT Project: V3R2/V7R1不支持IPv6特性, 实现方案待定
-  3.日    期   : 2011年12月17日
-    作    者   : C00173809
-    修改内容   : PS融合项目，NDIS端口发起拨号,通过FEATURE_IPV6宏隔离IPV6特性
-  4.日    期   : 2012年12月21日
-    作    者   : l00227485
-    修改内容   : DSDA PhaseII
-*****************************************************************************/
 VOS_VOID  AT_NdisIpv4ActCnfProc(
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU        *pstEvent
 )
@@ -4022,41 +2903,7 @@ VOS_VOID  AT_NdisIpv4ActCnfProc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_NdisPsRspPdpActEvtCnfProc
- 功能描述  : pdp激活失败，Ndis处理
- 输入参数  : ucIndex --- 已知的客户标识号
-             pEvent  --- 事件内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月5日
-    作    者   : S62952
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年10月20日
-    作    者   : A00165503
-    修改内容   : AT Project: V3R2/V7R1不支持IPv6特性, 实现方案待定
-
-  3.日    期   : 2011年12月17日
-    作    者   : C00173809
-    修改内容   : PS融合项目，NDIS拨号成功处理
-
-  4.日    期   : 2012年3月15日
-    作    者   : l60609
-    修改内容   : DTS2012030804093:先激活网卡，再上报^NDISDUP
-
-  5.日    期   : 2012年7月28日
-    作    者   : A00165503
-    修改内容   : DTS2012072806289: ^NDISSTAT连接状态上报处理修改
-
-  6.日    期   : 2012年11月20日
-    作    者   : Y00213812
-    修改内容   : DTS2012111907501: 通知PDP激活成功时上报原因值TAF_PS_CAUSE_SUCCESS
-*****************************************************************************/
 VOS_VOID  AT_NdisPsRspPdpActEvtCnfProc(
     VOS_UINT8                           ucIndex,
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent
@@ -4096,29 +2943,7 @@ VOS_VOID  AT_NdisPsRspPdpActEvtCnfProc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_NdisPdpActOrig
- 功能描述  : 发起PDP激活
- 输入参数  :  VOS_UINT16                  usClientId
-              VOS_UINT8                   ucCid
-              TAF_PDP_TYPE_ENUM_UINT8     ucPdpType
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月11日
-    作    者   : S62952
-    修改内容   : 新生成函数
-  2.日    期   : 2011年07月08日
-    作    者   : A00165503
-    修改内容   : 问题单号: DTS2011070600664, NDIS拨号没有记录CID信息, 导致
-                 取消拨号时AT口挂死
-  3.日    期   : 2011年12月31日
-    作    者   : c00173809
-    修改内容   : PS融合项目，NDIS拨号参数修改
-*****************************************************************************/
 VOS_VOID AT_NdisPdpActOrig(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucCid,
@@ -4160,47 +2985,7 @@ VOS_VOID AT_NdisPdpActOrig(
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_NdisPsRspPdpActEvtRejProc
- 功能描述  : pdp激活失败，NDIS处理
- 输入参数  : ucIndex --- 已知的客户标识号
-             pEvent  --- 事件内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月5日
-    作    者   : S62952
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年07月05日
-    作    者   : A00165503
-    修改内容   : 问题单号: DTS2011070402532, NDIS拨号IPv4类型失败(被网侧拒绝
-                 等场景), 再次发起IPv6或IPv4v6类型拨号, 实际发起的都是IPv4类
-                 型的拨号
-
-  3.日    期   : 2011年10月20日
-    作    者   : A00165503
-    修改内容   : AT Project: V3R2/V7R1不支持IPv6特性, 实现方案待定
-
-  4.日    期   : 2012年7月28日
-    作    者   : A00165503
-    修改内容   : DTS2012072806289: ^NDISSTAT连接状态上报处理修改
-
-  5.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : 修改PS域呼叫错误码处理
-
-  6.日    期   : 2012年11月20日
-    作    者   : Y00213812
-    修改内容   : DTS2012111907501: 通知PDP激活失败时上报原因值
-
-  7.日    期   : 2013年5月08日
-    作    者   : Y00213812
-    修改内容   : V9R1 IPv6&TAF/SM Project
-*****************************************************************************/
 VOS_VOID  AT_NdisPsRspPdpActEvtRejProc(
     VOS_UINT8                           ucIndex,
     TAF_PS_CALL_PDP_ACTIVATE_REJ_STRU  *pstEvent
@@ -4291,29 +3076,7 @@ VOS_VOID  AT_NdisPsRspPdpActEvtRejProc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_NdisIPv4DeactiveCnfProc
- 功能描述  : IPV4类型的pdp去激活成功，Ndis处理
- 输入参数  : pEvent  --- 事件内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : c00173809
-    修改内容   : 新生成函数/PS融合项目
-
-  2.日    期   : 2012年6月2日
-    作    者   : A00165503
-    修改内容   : DTS2012060105018: IPv4v6双栈拨号, 网侧下发PDP去激活(原因值-
-                 #39), UE不需要重新发起拨号
-  3.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，EVENT结构替换
-
-*****************************************************************************/
 VOS_VOID AT_NdisIPv4DeactiveCnfProc(
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU *pstEvent
 )
@@ -4349,29 +3112,7 @@ VOS_VOID AT_NdisIPv4DeactiveCnfProc(
 }
 
 #if (FEATURE_ON == FEATURE_IPV6)
-/*****************************************************************************
- 函 数 名  : AT_NdisIPv6DeactiveCnfProc
- 功能描述  : IPV6类型pdp去激活成功，Ndis处理
- 输入参数  : pEvent  --- 事件内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : c00173809
-    修改内容   : 新生成函数/PS融合项目
-
-  2.日    期   : 2012年6月2日
-    作    者   : A00165503
-    修改内容   : DTS2012060105018: IPv4v6双栈拨号, 网侧下发PDP去激活(原因值-
-                 #39), UE不需要重新发起拨号
-  3.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，EVENT结构替换
-
-*****************************************************************************/
 VOS_VOID AT_NdisIPv6DeactiveCnfProc(
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU *pstEvent
 )
@@ -4403,28 +3144,7 @@ VOS_VOID AT_NdisIPv6DeactiveCnfProc(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : AT_NdisIPv4v6DeactiveCnfProc
- 功能描述  : IPV4V6类型的pdp去激活成功，Ndis处理
- 输入参数  : pEvent  --- 事件内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : c00173809
-    修改内容   : 新生成函数/PS融合项目
-
-  2.日    期   : 2012年6月2日
-    作    者   : A00165503
-    修改内容   : DTS2012060105018: IPv4v6双栈拨号, 网侧下发PDP去激活(原因值-
-                 #39), UE不需要重新发起拨号
-  3.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，EVENT结构替换
-*****************************************************************************/
 VOS_VOID AT_NdisIPv4v6DeactiveCnfProc(
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU *pstEvent
 )
@@ -4441,40 +3161,7 @@ VOS_VOID AT_NdisIPv4v6DeactiveCnfProc(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : AT_NdisPsRspPdpDeactEvtCnfProc
- 功能描述  : pdp去激活成功，Ndis处理
- 输入参数  : ucIndex --- 已知的客户标识号
-             pEvent  --- 事件内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月5日
-    作    者   : S62952
-    修改内容   : 新生成函数
-  2.日    期   : 2011年08月02日
-    作    者   : A00165503
-    修改内容   : 问题单号: DTS2011080103770, 网侧DETACH的场景下, AT多上报两条
-                 ^NDISSTAT命令指示MP拨号已断开
-  3.日    期   : 2011年10月20日
-    作    者   : A00165503
-    修改内容   : AT Project: V3R2/V7R1不支持IPv6特性, 实现方案待定
-  4.日    期   : 2011年12月17日
-    作    者   : C00173809
-    修改内容   : PS融合项目，NDIS发起拨号的PDP去激活时，需要通知上下行ADS和去注册流控点。
-  5.日    期   : 2012年7月28日
-    作    者   : A00165503
-    修改内容   : DTS2012072806289: ^NDISSTAT连接状态上报处理修改
-  6.日    期   : 2012年11月20日
-    作    者   : Y00213812
-    修改内容   : DTS2012111907501: PDP Deactive时上报原因值
-  7.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，EVENT结构替换
-*****************************************************************************/
 VOS_VOID  AT_NdisPsRspPdpDeactEvtCnfProc(
     VOS_UINT8                           ucIndex,
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU *pstEvent
@@ -4522,40 +3209,7 @@ VOS_VOID  AT_NdisPsRspPdpDeactEvtCnfProc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_NdisPsRspPdpDeactivatedEvtProc
- 功能描述  : pdp去激活成功，Ndis处理
- 输入参数  : ucIndex --- 已知的客户标识号
-             pEvent  --- 事件内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月5日
-    作    者   : S62952
-    修改内容   : 新生成函数
-  2.日    期   : 2011年08月02日
-    作    者   : A00165503
-    修改内容   : 问题单号: DTS2011080103770, 网侧DETACH的场景下, AT多上报两条
-                 ^NDISSTAT命令指示MP拨号已断开
-  3.日    期   : 2011年10月20日
-    作    者   : A00165503
-    修改内容   : AT Project: V3R2/V7R1不支持IPv6特性, 实现方案待定
-  4.日    期   : 2011年12月22日
-    作    者   : c00173809
-    修改内容   : PS融合项目，IPV6特性
-  5.日    期   : 2012年7月28日
-    作    者   : A00165503
-    修改内容   : DTS2012072806289: ^NDISSTAT连接状态上报处理修改
-  6.日    期   : 2012年11月20日
-    作    者   : Y00213812
-    修改内容   : DTS2012111907501: PDP Deactive时上报原因值
-  7.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，EVENT结构替换
-*****************************************************************************/
 VOS_VOID  AT_NdisPsRspPdpDeactivatedEvtProc(
     VOS_UINT8                           ucIndex,
     TAF_PS_CALL_PDP_DEACTIVATE_IND_STRU *pstEvent
@@ -4604,21 +3258,7 @@ VOS_VOID  AT_NdisPsRspPdpDeactivatedEvtProc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_EnableNdisFlowCtl
- 功能描述  : 使能NDIS流控
- 输入参数  : VOS_UINT32                          ulParam1,
-             VOS_UINT32                          ulParam2
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : c00173809
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_EnableNdisFlowCtl(
     VOS_UINT32                          ulParam1,
     VOS_UINT32                          ulParam2
@@ -4635,21 +3275,7 @@ VOS_UINT32 AT_EnableNdisFlowCtl(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_DisableNdisFlowCtl
- 功能描述  : 去使能NDIS流控
- 输入参数  : VOS_UINT32                          ulParam1,
-             VOS_UINT32                          ulParam2
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : c00173809
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_DisableNdisFlowCtl(
     VOS_UINT32                          ulParam1,
     VOS_UINT32                          ulParam2
@@ -4666,34 +3292,7 @@ VOS_UINT32 AT_DisableNdisFlowCtl(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RegNdisFCPoint
- 功能描述  : 注册NDIS端口流控点。
- 输入参数  : TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent
-             FC_ID_ENUM_UINT8                    enFcId
-             MODEM_ID_ENUM_UINT16                enModemId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : c00173809
-    修改内容   : 新生成函数
-  2.日    期   : 2012年2月24日
-    作    者   : L47619
-    修改内容   : V7R1C50 IPC项目:修改注册NDIS流控点的逻辑
-  3.日    期   : 2012年12月17日
-    作    者   : l60609
-    修改内容   : DSDA Phase II
-  4.日    期   : 2013年04月15日
-    作    者   : f00179208
-    修改内容   : C核单独复位项目
-  5.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，EVENT结构替换
-*****************************************************************************/
 VOS_UINT32 AT_RegNdisFCPoint(
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent,
     FC_ID_ENUM_UINT8                    enFcId,
@@ -4779,27 +3378,7 @@ VOS_UINT32 AT_RegNdisFCPoint(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_DeRegNdisFCPoint
- 功能描述  : 去注册NDIS端口流控点。
- 输入参数  : VOS_UINT8                           ucRabId
-             MODEM_ID_ENUM_UINT16                enModemId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : c00173809
-    修改内容   : 新生成函数
-  2.日    期   : 2012年2月24日
-    作    者   : L47619
-    修改内容   : V7R1C50 IPC项目:修改注销NDIS流控点的逻辑
-  3.日    期   : 2013年04月15日
-    作    者   : f00179208
-    修改内容   : C核单独复位项目
-*****************************************************************************/
 VOS_UINT32 AT_DeRegNdisFCPoint(
     VOS_UINT8                           ucRabId,
     MODEM_ID_ENUM_UINT16                enModemId
@@ -4834,23 +3413,7 @@ VOS_UINT32 AT_DeRegNdisFCPoint(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_UsbEthHostAccumTuneCB
- 功能描述  : 向FC(流控)模块注册的动态调整HOST端NCM/ECM组包参数的回调函数
- 输入参数  : pstFcDrvAssemPara - NCM/ECM组包参数, 包含如下参数:
-                                 1. HOST OUT组包时间
- 输出参数  : 无
- 返 回 值  : VOS_OK            - 调整成功
-             VOS_ERR           - 调整失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月14日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_UsbEthHostAccumTuneCB(
     FC_DRV_ASSEM_PARA_STRU             *pstFcDrvAssemPara
 )
@@ -4878,7 +3441,6 @@ VOS_UINT32 AT_UsbEthHostAccumTuneCB(
     }
     else if (SYSTEM_APP_WEBUI == *pucSystemAppConfig)
     {
-        /* Modified by zwx247453 for pc工程转3650, 2015-8-24, begin */
         /*lint -e747*/
         if (VOS_OK != USB_ETH_DrvSetHostAssembleParam((unsigned long)ulHostOutTimeout) )
         {
@@ -4887,7 +3449,6 @@ VOS_UINT32 AT_UsbEthHostAccumTuneCB(
             return VOS_ERR;
         }
         /*lint +e747*/
-        /* Modified by zwx247453 for pc工程转3650, 2015-8-24, end */
     }
     else if (SYSTEM_APP_ANDROID == *pucSystemAppConfig)
     {
@@ -4903,26 +3464,7 @@ VOS_UINT32 AT_UsbEthHostAccumTuneCB(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_UsbEthDeviceAccumTuneCB
- 功能描述  : 向FC(流控)模块注册的动态调整DEVICE端NCM/ECM组包参数的回调函数
- 输入参数  : pstFcDrvAssemPara - NCM/ECM组包参数, 包含如下参数:
-                                 1. TX组包个数
-                                 2. TX组包时间
-                                 3. RX组包个数
-                                 4. RX组包时间
- 输出参数  : 无
- 返 回 值  : VOS_OK            - 调整成功
-             VOS_ERR           - 调整失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月14日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_UsbEthDeviceAccumTuneCB(
     FC_DRV_ASSEM_PARA_STRU             *pstFcDrvAssemPara
 )
@@ -4980,7 +3522,6 @@ VOS_UINT32 AT_UsbEthDeviceAccumTuneCB(
     }
     else if (SYSTEM_APP_WEBUI == *pucSystemAppConfig)
     {
-        /* Modified by zwx247453 for pc工程转3650, 2015-8-24, begin */
         /*lint -e747*/
         if (VOS_OK != USB_ETH_DrvSetDeviceAssembleParam((unsigned long)ulEthTxMinNum,
                                                         (unsigned long)ulEthTxTimeout,
@@ -4992,7 +3533,6 @@ VOS_UINT32 AT_UsbEthDeviceAccumTuneCB(
             return VOS_ERR;
         }
         /*lint +e747*/
-        /* Modified by zwx247453 for pc工程转3650, 2015-8-24, end */
     }
     else if (SYSTEM_APP_ANDROID == *pucSystemAppConfig)
     {
@@ -5008,21 +3548,7 @@ VOS_UINT32 AT_UsbEthDeviceAccumTuneCB(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_NDIS_ParseUsrInfo
- 功能描述  : 获取NIDS用户信息
- 输入参数  : ucIndex     - 端口号(ClientId)索引
- 输出参数  : pstUserInfo - 用户信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年01月14日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_NDIS_ParseUsrInfo(
     VOS_UINT8                           ucIndex,
     AT_PS_USER_INFO_STRU               *pstUsrInfo
@@ -5047,20 +3573,7 @@ VOS_VOID AT_NDIS_ParseUsrInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_NDIS_ConnStatusChgProc
- 功能描述  : NDIS网卡连接状态变化
- 输入参数  : enStatus --- 连接状态
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月5日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_NDIS_ConnStatusChgProc(NCM_IOCTL_CONNECT_STUS_E enStatus)
 {
     if (NCM_IOCTL_STUS_BREAK == enStatus)
@@ -5118,27 +3631,7 @@ VOS_VOID AT_NDIS_ConnStatusChgProc(NCM_IOCTL_CONNECT_STUS_E enStatus)
 *****************************************************************************/
 
 #if (FEATURE_ON == FEATURE_IPV6)
-/*****************************************************************************
- 函 数 名  : AT_CalcIpv6LanAddrFromIpv6Prefix
- 功能描述  : 根据IPV6地址前缀产生IPV6全局地址
- 输入参数  : pucPrefix
-             ulPrefixByteLen
-             pucIpv6LanAddr
-             ulIpv6LanAddrLen
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : C00173809
-    修改内容   : 新生成函数/PS融合项目
-
-  2.日    期   : 2012年6月30日
-    作    者   : A00165503
-    修改内容   : DTS2012062900707: IPv6拨号成功, 应用获取IPv6地址前缀异常
-*****************************************************************************/
 VOS_UINT32 AT_CalcIpv6LanAddrFromIpv6Prefix(
     VOS_UINT8                          *pucPrefix,
     VOS_UINT32                          ulPrefixByteLen,
@@ -5173,31 +3666,7 @@ VOS_UINT32 AT_CalcIpv6LanAddrFromIpv6Prefix(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_AppRcvIpv6LanAddr
- 功能描述  : NAS向HOST注册的回调函数，当HOST获取IPv6全局地址后，向NAS上报-
-             IPv6全局地址，以及全局地址长度。
- 输入参数  : aucLanAddr       - Ipv6全局地址
-             ulLanAddrByteLen - 地址长度, 单位是BYTE
-             ulPrefixBitLen   - 前缀长度, 单位是BIT
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月25日
-    作    者   : f62575
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年6月30日
-    作    者   : A00165503
-    修改内容   : DTS2012062900707: IPv6拨号成功, 应用获取IPv6地址前缀异常
-
-  3.日    期   : 2013年1月14日
-    作    者   : A00165503
-    修改内容   : DTS2012042104301: PCUI端口发起NDIS/APP拨号流程优化
-*****************************************************************************/
 VOS_VOID AT_AppRcvIpv6LanAddr(
     VOS_UINT8                           aucLanAddr[],
     VOS_UINT32                          ulLanAddrByteLen,
@@ -5226,30 +3695,7 @@ VOS_VOID AT_AppRcvIpv6LanAddr(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_AppRcvIpV6Prefix
- 功能描述  : NAS向HOST注册的回调函数，当HOST收到GGSN下发的RA之后，
-             保存IPV6前缀到本地并向NAS上报IPv6地址前缀，以及地址前缀长度。
- 输入参数  : VOS_UINT8  aucPrefix   Ipv6前缀
-             VOS_UINT32 ulPrefixLen 前缀长度，单位是BIT
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月25日
-    作    者   : f62575
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年6月30日
-    作    者   : A00165503
-    修改内容   : DTS2012062900707: IPv6拨号成功, 应用获取IPv6地址前缀异常
-
-  3.日    期   : 2013年1月14日
-    作    者   : A00165503
-    修改内容   : DTS2012042104301: PCUI端口发起NDIS/APP拨号流程优化
-*****************************************************************************/
 VOS_VOID AT_AppRcvIpv6Prefix(
     VOS_UINT8                           aucPrefix[],
     VOS_UINT32                          ulPrefixBitLen
@@ -5276,31 +3722,7 @@ VOS_VOID AT_AppRcvIpv6Prefix(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_AppRcvPrefixIpV6PreferredLifetime
- 功能描述  : 主动上报前缀优先使用生存期，单位:秒
- 输入参数  : ulPrefixPreferredLifetime - 前缀优先使用生存期
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月26日
-    作    者   : f62575
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年5月11日
-    作    者   : l60609
-    修改内容   : DTS2012051002464：lifetime需要用%u输出
-
-  3.日    期   : 2012年6月30日
-    作    者   : A00165503
-    修改内容   : DTS2012062900707: IPv6拨号成功, 应用获取IPv6地址前缀异常
-  4.日    期   : 2013年1月14日
-    作    者   : A00165503
-    修改内容   : DTS2012042104301: PCUI端口发起NDIS/APP拨号流程优化
-*****************************************************************************/
 VOS_VOID AT_AppRcvPrefixIpv6PreferredLifetime(
     VOS_UINT32                          ulPrefixPreferredLifetime
 )
@@ -5320,32 +3742,7 @@ VOS_VOID AT_AppRcvPrefixIpv6PreferredLifetime(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvPrefixIpV6ValidLifetime
- 功能描述  : 主动上报前缀有效生存期，单位:秒
- 输入参数  : ulValidLifetime - 前缀有效生存期
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月26日
-    作    者   : f62575
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年5月11日
-    作    者   : l60609
-    修改内容   : DTS2012051002464：lifetime需要用%u输出
-
-  3.日    期   : 2012年6月30日
-    作    者   : A00165503
-    修改内容   : DTS2012062900707: IPv6拨号成功, 应用获取IPv6地址前缀异常
-
-  4.日    期   : 2013年1月14日
-    作    者   : A00165503
-    修改内容   : DTS2012042104301: PCUI端口发起NDIS/APP拨号流程优化
-*****************************************************************************/
 VOS_VOID AT_AppRcvPrefixIpv6ValidLifetime(
     VOS_UINT32                          ulValidLifetime
 )
@@ -5365,30 +3762,7 @@ VOS_VOID AT_AppRcvPrefixIpv6ValidLifetime(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvIpV6LinkMtu
- 功能描述  : 接收到HOST模块的MTU数据的处理函数: 保存MTU数据到本地，
-             同时主动上报给APP，接收到RA数据后，HOST模块调用本函数
-             通知NAS新的MTU数据
- 输入参数  : ulMTU - MTU Size
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月25日
-    作    者   : f62575
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年6月30日
-    作    者   : A00165503
-    修改内容   : DTS2012062900707: IPv6拨号成功, 应用获取IPv6地址前缀异常
-
-  3.日    期   : 2013年1月14日
-    作    者   : A00165503
-    修改内容   : DTS2012042104301: PCUI端口发起NDIS/APP拨号流程优化
-*****************************************************************************/
 VOS_VOID AT_AppRcvIpv6LinkMtu(
     VOS_UINT32                          ulMtu
 )
@@ -5407,25 +3781,7 @@ VOS_VOID AT_AppRcvIpv6LinkMtu(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvEnableIpV6Prefix
- 功能描述  : 通知应用启用新的IPV6前缀
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月26日
-    作    者   : f62575
-    修改内容   : 新生成函数
-
-  2.日    期   : 2013年1月14日
-    作    者   : A00165503
-    修改内容   : DTS2012042104301: PCUI端口发起NDIS/APP拨号流程优化
-
-*****************************************************************************/
 VOS_VOID AT_AppRcvEnableIpv6Prefix(VOS_VOID)
 {
     VOS_UINT16                          usLength;
@@ -5446,21 +3802,7 @@ VOS_VOID AT_AppRcvEnableIpv6Prefix(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_AppProcIpv6RaInfo
- 功能描述  : 收到Router Advertisement IP报文, 进行处理和分发
- 输入参数  : pstRaInfoNotifyInd         - RA报文信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月30日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_AppProcIpv6RaInfo(TAF_PS_IPV6_INFO_IND_STRU *pstRaInfoNotifyInd)
 {
     AT_PDP_ENTITY_STRU                 *pstAppPdpEntity;
@@ -5536,22 +3878,7 @@ VOS_VOID AT_AppProcIpv6RaInfo(TAF_PS_IPV6_INFO_IND_STRU *pstRaInfoNotifyInd)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_AppCtrlConnIpv6IndProc
- 功能描述  : 处理IPv6地址
- 输入参数  : pstAppPdpEntity - PDP实体
-             pstEvent        - 上报事件
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月20日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_AppCtrlConnIpv6IndProc(
     AT_PDP_ENTITY_STRU                 *pstAppPdpEntity,
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent
@@ -5576,21 +3903,7 @@ VOS_VOID AT_AppCtrlConnIpv6IndProc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_AppDhcpv6Reset
- 功能描述  : 清空IPv6地址参数
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月20日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_AppDhcpv6Reset(VOS_VOID)
 {
     AT_PDP_ENTITY_STRU                 *pstAppPdpEntity;
@@ -5611,21 +3924,7 @@ VOS_VOID AT_AppDhcpv6Reset(VOS_VOID)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : AT_AppDhcpReset
- 功能描述  : 清空APP的DHCP参数
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月20日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_AppDhcpReset(VOS_VOID)
 {
     AT_PDP_ENTITY_STRU                 *pstAppPdpEntity;
@@ -5639,31 +3938,7 @@ VOS_VOID AT_AppDhcpReset(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_AppPdpAddrProc
- 功能描述  : 处理IPv4地址参数
- 输入参数  : pstAppPdpEntity - PDP实体
-             pstDhcpConfig   - DCHP信息
-             pstEvent        - 上报事件
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月22日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-  2.日    期   : 2011年08月18日
-    作    者   : A00165503
-    修改内容   : 问题单号: DTS2011081400480, ^DNSP和^DNSS需要支持HiLink拨号
-  3.日    期   : 2012年01月02日
-    作    者   : C00173809
-    修改内容   : PS融合项目，保存IPV4主副PCSCF地址
-  4.日    期   : 2012年08月07日
-    作    者   : f00179208
-    修改内容   : 问题单:DTS2015031000157, 新增第三个p-cscf地址
-*****************************************************************************/
 VOS_VOID AT_AppPdpAddrProc(
     AT_PDP_ENTITY_STRU                 *pstAppPdpEntity,
     AT_DHCP_CONFIG_STRU                *pstDhcpConfig,
@@ -5763,26 +4038,7 @@ VOS_VOID AT_AppPdpAddrProc(
 
 /* 后续可能会使用 */
 #if 0
-/*****************************************************************************
- 函 数 名  : AT_AppPsRecoverState
- 功能描述  : 清除PDP相关信息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月23日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月26日
-    作    者   : C00173809
-    修改内容   : PS融合项目，通知RNIC和ADS去激活。
-  3.日    期   : 2012年2月24日
-    作    者   : L47619
-    修改内容   : V7R1C50 IPC项目:通知ADS去激活的函数调用中，新增一个pQos参数
-*****************************************************************************/
 VOS_VOID AT_AppPsRecoverState(VOS_VOID)
 {
     AT_PDP_ENTITY_STRU                 *pstAppPdpEntity;
@@ -5835,22 +4091,7 @@ VOS_VOID AT_AppPsRecoverState(VOS_VOID)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : AT_AppCheckPdpIdleState
- 功能描述  : 检查是否有处于IDLE或DEACTIVATING状态的PDP
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 存在满足条件的PDP
-             VOS_FALSE - 不存在满足条件的PDP
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月23日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_AppCheckPdpIdleState(VOS_VOID)
 {
     AT_PDP_ENTITY_STRU                 *pstAppPdpEntity;
@@ -5870,22 +4111,7 @@ VOS_UINT32 AT_AppCheckPdpIdleState(VOS_VOID)
 
     return VOS_FALSE;
 }
-/*****************************************************************************
- 函 数 名  : AT_AppCheckIpv4PdpState
- 功能描述  : 检查是否有满足IPv4状态的PDP连接
- 输入参数  : enPdpState - PDP状态
- 输出参数  : 无
- 返 回 值  : VOS_TRUE   - PDP连接存在
-             VOS_FALSE  - PDP连接不存在
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月21日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_AppCheckIpv4PdpState(
     AT_PDP_STATE_ENUM_U8                enPdpState
 )
@@ -5904,22 +4130,7 @@ VOS_UINT32 AT_AppCheckIpv4PdpState(
 }
 
 #if (FEATURE_ON == FEATURE_IPV6)
-/*****************************************************************************
- 函 数 名  : AT_AppCheckIpv6PdpState
- 功能描述  : 检查是否有满足IPv6状态的PDP连接
- 输入参数  : enPdpState - PDP状态
- 输出参数  : 无
- 返 回 值  : VOS_TRUE   - PDP连接存在
-             VOS_FALSE  - PDP连接不存在
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月21日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_AppCheckIpv6PdpState(
     AT_PDP_STATE_ENUM_U8                enPdpState
 )
@@ -5938,21 +4149,7 @@ VOS_UINT32 AT_AppCheckIpv6PdpState(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : AT_AppGetPdpStateByCid
- 功能描述  : 根据CID获取相应的PDP状态
- 输入参数  : ucCid
- 输出参数  : 无
- 返 回 值  : AT_PDP_STATE_ENUM_U8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月25日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 AT_PDP_STATE_ENUM_U8 AT_AppGetPdpStateByCid(
     VOS_UINT8                           ucCid
 )
@@ -5981,21 +4178,7 @@ AT_PDP_STATE_ENUM_U8 AT_AppGetPdpStateByCid(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : AT_AppGetPdpState
- 功能描述  : 获取APP的PDP状态，激活态/非激活态
- 输入参数  : ucPdpType - PDP类型
- 输出参数  : 无
- 返 回 值  : AT_PDP_STATE_ENUM_U8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月20日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 AT_PDP_STATE_ENUM_U8 AT_AppGetPdpState(
     VOS_UINT8                           ucPdpType
 )
@@ -6030,22 +4213,7 @@ AT_PDP_STATE_ENUM_U8 AT_AppGetPdpState(
     return enPdpState;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_AppSetPdpState
- 功能描述  : 设置APP的PDP状态
- 输入参数  : ucPdpType  - PDP类型
-             enPdpState - PDP状态
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月20日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_AppSetPdpState(
     VOS_UINT8                           ucPdpType,
     AT_PDP_STATE_ENUM_U8                enPdpState
@@ -6079,25 +4247,7 @@ VOS_VOID AT_AppSetPdpState(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_AppSndCallConnectedResult
- 功能描述  : 上报连接结果^DCONN, 通知APP拨号成功
- 输入参数  : ucCid                      - CID
-             enPdpType                  - 拨号类型(IPv4/IPv6)
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月30日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2013年1月14日
-    作    者   : A00165503
-    修改内容   : DTS2012042104301: PCUI端口发起NDIS/APP拨号流程优化
-*****************************************************************************/
 VOS_VOID AT_AppSndCallConnectedResult(
     VOS_UINT8                           ucCid,
     TAF_PDP_TYPE_ENUM_UINT8             enPdpType
@@ -6139,30 +4289,7 @@ VOS_VOID AT_AppSndCallConnectedResult(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_AppSndCallEndedResult
- 功能描述  : 上报连接结果^DCONN, 通知APP拨号成功
- 输入参数  : ucCid     - CID
-             enCause   - 错误码
-             enPdpType - 拨号类型(IPv4/IPv6)
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月30日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : 修改PS域呼叫错误码处理
-
-  3.日    期   : 2013年1月14日
-    作    者   : A00165503
-    修改内容   : DTS2012042104301: PCUI端口发起NDIS/APP拨号流程优化
-*****************************************************************************/
 VOS_VOID AT_AppSndCallEndedResult(
     VOS_UINT8                           ucCid,
     TAF_PS_CAUSE_ENUM_UINT32            enCause,
@@ -6211,27 +4338,7 @@ VOS_VOID AT_AppSndCallEndedResult(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SendRnicIpv4ActInd
- 功能描述  : APP拨号时通知虚拟网卡IPV4激活
- 输入参数  : VOS_UINT8 ucRmNetId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : S62952
-    修改内容   : 新生成函数
-  2.日    期   : 2011年10月18日
-    作    者   : f00179208
-    修改内容   : PS 融合项目
-  3.日    期   : 2012年12月18日
-    作    者   : l60609
-    修改内容   : DSDA Phase II
-
-*****************************************************************************/
 VOS_UINT32 AT_SendRnicIpv4ActInd(VOS_UINT8 ucRmNetId)
 {
     AT_RNIC_IPV4_PDP_ACT_IND_STRU      *pstMsg;
@@ -6281,27 +4388,7 @@ VOS_UINT32 AT_SendRnicIpv4ActInd(VOS_UINT8 ucRmNetId)
 }
 
 #if (FEATURE_ON == FEATURE_IPV6)
-/*****************************************************************************
-函 数 名  : AT_SendRnicIpv6ActInd
-功能描述  : APP拨号时通知虚拟网卡IPV6激活
-输入参数  : VOS_UINT8 ucRmNetId
-输出参数  : 无
-返 回 值  : 成功
-            失败
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2011年10月18日
-   作    者   : S62952
-   修改内容   : 新生成函数
- 2.日    期   : 2011年10月18日
-   作    者   : f00179208
-   修改内容   : PS 融合项目
- 3.日    期   : 2012年12月27日
-   作    者   : l00227485
-   修改内容   : DSDA PhaseII
-*****************************************************************************/
 VOS_UINT32 AT_SendRnicIpv6ActInd(VOS_UINT8 ucRmNetId)
 {
     AT_RNIC_IPV6_PDP_ACT_IND_STRU      *pstMsg;
@@ -6354,26 +4441,7 @@ VOS_UINT32 AT_SendRnicIpv6ActInd(VOS_UINT8 ucRmNetId)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : AT_SendRnicIpv4v6ActInd
-功能描述  : APP拨号时通知虚拟网卡IPV4V6激活
-输入参数  : VOS_UINT8 ucRmNetId
-输出参数  : 无
-返 回 值  : VOS_UINT32
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2011年10月18日
-   作    者   : S62952
-   修改内容   : 新生成函数
- 2.日    期   : 2011年12月25日
-   作    者   : c00173809
-   修改内容   : PS 融合项目，IPV6特性
- 3.日    期   : 2012年12月27日
-   作    者   : l00227485
-   修改内容   : DSDA PhaseII
-*****************************************************************************/
 VOS_UINT32 AT_SendRnicIpv4v6ActInd(VOS_UINT8 ucRmNetId)
 {
     AT_RNIC_IPV4V6_PDP_ACT_IND_STRU      *pstMsg;
@@ -6439,21 +4507,7 @@ VOS_UINT32 AT_SendRnicIpv4v6ActInd(VOS_UINT8 ucRmNetId)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : AT_AppSndRnicPdpActInd
- 功能描述  : APP拨号时根据PDP类型给RNIC发送激活消息
- 输入参数  : enPdpType      PDP类型
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月27日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_AppSndRnicPdpActInd(
     TAF_PDP_TYPE_ENUM_UINT8             enPdpType
 )
@@ -6483,23 +4537,7 @@ VOS_VOID AT_AppSndRnicPdpActInd(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : AT_SendRnicPdpDeactInd
-功能描述  : APP端口拨号时通知虚拟网卡
-输入参数  : VOS_UINT8                           ucRabId
-            VOS_UINT8                           ucRmNetId
-输出参数  : 无
-返 回 值  : 成功
-            失败
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2011年10月18日
-   作    者   : S62952
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_SendRnicPdpDeactInd(
     VOS_UINT8                           ucRabId,
     VOS_UINT8                           ucRmNetId
@@ -6540,29 +4578,7 @@ VOS_UINT32 AT_SendRnicPdpDeactInd(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_AppPdpActOrig
- 功能描述  : 发起PDP激活
- 输入参数  : usClientId - 客户端ID
-             ucCid      - CID
-             ucPdpType  - PDP类型
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月13日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-  2.日    期   : 2011年10月20日
-    作    者   : A00165503
-    修改内容   : AT Project: 修改PS域接口
-  3.日    期   : 2011年12月31日
-    作    者   : C00173809
-    修改内容   : ps融合项目，
-
-*****************************************************************************/
 VOS_VOID AT_AppPdpActOrig(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucCid,
@@ -6606,21 +4622,7 @@ VOS_VOID AT_AppPdpActOrig(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_ProcAppRegFCPoint
- 功能描述  : APP用户类型PDP状态改变为激活时的处理流控点上报
- 输入参数  : TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent,
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目修改
-
-*****************************************************************************/
 VOS_VOID  AT_ProcAppRegFCPoint(
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent
 )
@@ -6652,27 +4654,7 @@ VOS_VOID  AT_ProcAppRegFCPoint(
 }
 
 #if (FEATURE_ON == FEATURE_IPV6)
-/*****************************************************************************
- 函 数 名  : AT_SaveIPv6Pcscf
- 功能描述  : 保存IPV6的Pcscf到PDP实体中
- 输入参数  : TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent,
-             AT_PDP_ENTITY_STRU                 *pstPdpEntity
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月25日
-    作    者   : c00173809
-    修改内容   : 新生成函数/PS融合项目
-  2.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，EVENT结构替换
-  3.日    期   : 2012年08月07日
-    作    者   : f00179208
-    修改内容   : 问题单:DTS2015031000157, 新增第三个p-cscf地址
-*****************************************************************************/
 VOS_VOID  AT_SaveIPv6Pcscf(
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent,
     AT_PDP_ENTITY_STRU                 *pstPdpEntity
@@ -6710,24 +4692,7 @@ VOS_VOID  AT_SaveIPv6Pcscf(
     }
 
 }
-/*****************************************************************************
- 函 数 名  : AT_SaveIPv6Dns
- 功能描述  : 保存IPV6的DNS到PDP实体中
- 输入参数  : TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU        *pstEvent,
-             AT_PDP_ENTITY_STRU                 *pstPdpEntity
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月25日
-    作    者   : c00173809
-    修改内容   : 新生成函数/PS融合项目
-  2.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，EVENT结构替换
-*****************************************************************************/
 VOS_VOID  AT_SaveIPv6Dns(
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent,
     AT_PDP_ENTITY_STRU                 *pstPdpEntity
@@ -6736,7 +4701,6 @@ VOS_VOID  AT_SaveIPv6Dns(
     pstPdpEntity->stIpv6Dhcp.bitOpIpv6PriDns    = VOS_FALSE;
     pstPdpEntity->stIpv6Dhcp.bitOpIpv6SecDns    = VOS_FALSE;
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     /* 保存主副DNS，收到RA参数时需要，激活网卡时需要通知DRV */
     if (VOS_TRUE == pstEvent->stIpv6Dns.bitOpPrimDnsAddr)
     {
@@ -6753,48 +4717,10 @@ VOS_VOID  AT_SaveIPv6Dns(
                    TAF_IPV6_ADDR_LEN);
         pstPdpEntity->stIpv6Dhcp.bitOpIpv6SecDns = VOS_TRUE;
     }
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
 }
 
-/*****************************************************************************
- 函 数 名  : AT_AppActCnfBackProc
- 功能描述  : PDP激活成功后的回退处理
- 输入参数  : pstEvent   - 上报事件
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月21日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年4月21日
-    作    者   : A00165503
-    修改内容   : DTS2012041806921: IPv4v6双栈拨号, 网侧返回原因值为IPv4
-                 ONLY或IPv6 ONLY, 没有通知APP相应的拨号结果
-
-  3.日    期   : 2012年6月30日
-    作    者   : A00165503
-    修改内容   : DTS2012062900707: IPv6拨号成功, 应用获取IPv6地址前缀异常
-
-  4.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : 修改PS域呼叫错误码处理
-
-  5.日    期   : 2012年12月21日
-    作    者   : l00227485
-    修改内容   : DSDA PhaseII
-  6.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，EVENT结构替换
-
-  7.日    期   : 2015年7月17日
-    作    者   : Y00213812
-    修改内容   : CDMA模式下电信不支持双承载双栈
-*****************************************************************************/
 VOS_VOID AT_AppActCnfBackProc(
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent
 )
@@ -6874,33 +4800,7 @@ VOS_VOID AT_AppActCnfBackProc(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : AT_AppIpv4ActCnfProc
- 功能描述  : 处理IPV4的PDP激活成功的事件
- 输入参数  : pstAppPdpEntity - PDP实体
-             pstEvent        - 上报事件
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月21日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年12月17日
-    作    者   : C00173809
-    修改内容   : PS融合项目，APP端口发起拨号，拨号成功后通知上下行ADS和RNIC模块。
-
-  3.日    期   : 2012年6月30日
-    作    者   : A00165503
-    修改内容   : DTS2012062900707: IPv6拨号成功, 应用获取IPv6地址前缀异常
-
-  4.日    期   : 2012年12月21日
-    作    者   : l00227485
-    修改内容   : DSDA PhaseII
-*****************************************************************************/
 VOS_VOID AT_AppIpv4PdpActCnfProc(
     AT_PDP_ENTITY_STRU                 *pstAppPdpEntity,
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent
@@ -6972,29 +4872,7 @@ VOS_VOID AT_AppIpv4PdpActCnfProc(
 }
 
 #if (FEATURE_ON == FEATURE_IPV6)
-/*****************************************************************************
- 函 数 名  : AT_AppIpv6ActCnfProc
- 功能描述  : 处理IPV6的PDP激活成功的事件
- 输入参数  : pstAppPdpEntity - PDP实体
-             pstEvent        - 上报事件
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月21日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年12月17日
-    作    者   : C00173809
-    修改内容   : PS融合项目，APP端口发起拨号，拨号成功后通知上下行ADS和RNIC模块。
-
-  3.日    期   : 2012年6月30日
-    作    者   : A00165503
-    修改内容   : DTS2012062900707: IPv6拨号成功, 应用获取IPv6地址前缀异常
-*****************************************************************************/
 VOS_VOID AT_AppIpv6PdpActCnfProc(
     AT_PDP_ENTITY_STRU                 *pstAppPdpEntity,
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent
@@ -7047,29 +4925,7 @@ VOS_VOID AT_AppIpv6PdpActCnfProc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_AppIpv4v6ActCnfProc
- 功能描述  : 处理IPv4v6的PDP激活成功的事件
- 输入参数  : pstAppPdpEntity - PDP实体
-             pstEvent        - 上报事件
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月21日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年12月17日
-    作    者   : C00173809
-    修改内容   : PS融合项目，APP端口发起拨号，拨号成功后通知上下行ADS和RNIC模块。
-
-  3.日    期   : 2012年6月30日
-    作    者   : A00165503
-    修改内容   : DTS2012062900707: IPv6拨号成功, 应用获取IPv6地址前缀异常
-*****************************************************************************/
 VOS_VOID AT_AppIpv4v6PdpActCnfProc(
     AT_PDP_ENTITY_STRU                 *pstAppPdpEntity,
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent
@@ -7106,41 +4962,7 @@ VOS_VOID AT_AppIpv4v6PdpActCnfProc(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : AT_AppIpv4DeactCnfProc
- 功能描述  : 处理IPv4的PDP去激活事件
- 输入参数  : pstAppPdpEntity - PDP实体
-             pstEvent        - 上报事件
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月23日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年12月17日
-    作    者   : c00173809
-    修改内容   : PS融合项目，去激活时通知上下行ADS和RNIC
-
-  3.日    期   : 2012年6月2日
-    作    者   : A00165503
-    修改内容   : DTS2012060105018: IPv4v6双栈拨号, 网侧下发PDP去激活(原因值-
-                 #39), UE不需要重新发起拨号
-
-  4.日    期   : 2012年6月30日
-    作    者   : A00165503
-    修改内容   : DTS2012062900707: IPv6拨号成功, 应用获取IPv6地址前缀异常
-
-  5.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : 修改PS域呼叫错误码处理
-  6.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，EVENT结构替换
-*****************************************************************************/
 VOS_VOID AT_AppIpv4PdpDeactivatedProc(
     AT_PDP_ENTITY_STRU                  *pstAppPdpEntity,
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU *pstEvent
@@ -7161,13 +4983,11 @@ VOS_VOID AT_AppIpv4PdpDeactivatedProc(
                              pstEvent->enCause,
                              TAF_PDP_IPV4);
 
-    /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     /* 通知RNIC PDP去激活成功 */
     AT_SendRnicPdpDeactInd(pstEvent->ucRabId, RNIC_RMNET_ID_0);
 
     /* 去注册APP拨号使用的流控点(默认使用网卡1) */
     AT_AppDeRegFCPoint(FC_ID_NIC_1, pstEvent);
-    /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
 #if (FEATURE_ON == FEATURE_IPV6)
    /* 如果IPv4类型的PDP还处于激活状态, 需要将其去激活 */
@@ -7191,41 +5011,7 @@ VOS_VOID AT_AppIpv4PdpDeactivatedProc(
 }
 
 #if (FEATURE_ON == FEATURE_IPV6)
-/*****************************************************************************
- 函 数 名  : AT_AppIpv6DeactCnfProc
- 功能描述  : 处理IPv4的PDP去激活事件
- 输入参数  : pstAppPdpEntity - PDP实体
-             pstEvent        - 上报事件
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月23日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年12月17日
-    作    者   : C00173809
-    修改内容   : PS融合项目，PDP去激活后通知上下行ADS和RNIC
-
-  3.日    期   : 2012年6月2日
-    作    者   : A00165503
-    修改内容   : DTS2012060105018: IPv4v6双栈拨号, 网侧下发PDP去激活(原因值-
-                 #39), UE不需要重新发起拨号
-
-  4.日    期   : 2012年6月30日
-    作    者   : A00165503
-    修改内容   : DTS2012062900707: IPv6拨号成功, 应用获取IPv6地址前缀异常
-
-  5.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : 修改PS域呼叫错误码处理
-  6.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，EVENT结构替换
-*****************************************************************************/
 VOS_VOID AT_AppIpv6PdpDeactivatedProc(
     AT_PDP_ENTITY_STRU                  *pstAppPdpEntity,
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU *pstEvent
@@ -7244,13 +5030,11 @@ VOS_VOID AT_AppIpv6PdpDeactivatedProc(
                              pstEvent->enCause,
                              TAF_PDP_IPV6);
 
-    /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     /* 通知RNIC PDP去激活成功 */
     AT_SendRnicPdpDeactInd(pstEvent->ucRabId, RNIC_RMNET_ID_0);
 
     /* 去注册APP拨号使用的流控点(默认使用网卡1) */
     AT_AppDeRegFCPoint(FC_ID_NIC_1, pstEvent);
-    /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     /* 如果IPv4类型的PDP还处于激活状态, 需要将其去激活 */
     enPdpState = AT_AppGetPdpState(TAF_PDP_IPV4);
@@ -7271,41 +5055,7 @@ VOS_VOID AT_AppIpv6PdpDeactivatedProc(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : AT_AppIpv4v6DeactCnfProc
- 功能描述  : 处理IPv4v6的PDP去激活事件
- 输入参数  : pstAppPdpEntity - PDP实体
-             pstEvent        - 上报事件
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月23日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年12月17日
-    作    者   : C00173809
-    修改内容   : ps融合项目，PDP去激活后通知上下行ADS和RNIC
-
-  3.日    期   : 2012年6月2日
-    作    者   : A00165503
-    修改内容   : DTS2012060105018: IPv4v6双栈拨号, 网侧下发PDP去激活(原因值-
-                 #39), UE不需要重新发起拨号
-
-  4.日    期   : 2012年6月30日
-    作    者   : A00165503
-    修改内容   : DTS2012062900707: IPv6拨号成功, 应用获取IPv6地址前缀异常
-
-  5.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : 修改PS域呼叫错误码处理
-  6.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，EVENT结构替换
-*****************************************************************************/
 VOS_VOID AT_AppIpv4v6PdpDeactivatedProc(
     AT_PDP_ENTITY_STRU                  *pstAppPdpEntity,
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU *pstEvent
@@ -7330,53 +5080,17 @@ VOS_VOID AT_AppIpv4v6PdpDeactivatedProc(
                              pstEvent->enCause,
                              TAF_PDP_IPV6);
 
-    /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     /* 通知RNIC PDP去激活成功 */
     AT_SendRnicPdpDeactInd(pstEvent->ucRabId, RNIC_RMNET_ID_0);
 
     /* 去注册APP拨号使用的流控点(默认使用网卡1) */
     AT_AppDeRegFCPoint(FC_ID_NIC_1, pstEvent);
-    /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     return;
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : AT_AppIpv4v6PdpActRejProc
- 功能描述  : 处理IPv4的PDP激活被拒事件
- 输入参数  : pstAppPdpEntity - PDP实体
-             pstEvent        - 上报事件
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月23日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年12月17日
-    作    者   : C00173809
-    修改内容   : PS融合项目
-
-  3.日    期   : 2012年6月16日
-    作    者   : A00165503
-    修改内容   : DTS2012061408511: IPv4v6双栈拨号回退处理流程增加保护机制,
-                 防止重复发起IPv4类型的PDP激活请求
-
-  4.日    期   : 2012年6月30日
-    作    者   : A00165503
-    修改内容   : DTS2012062900707: IPv6拨号成功, 应用获取IPv6地址前缀异常
-
-  5.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : 修改PS域呼叫错误码处理
-  6.日    期   : 2013年5月08日
-    作    者   : Y00213812
-    修改内容   : V9R1 IPv6&TAF/SM Project
-*****************************************************************************/
 VOS_VOID AT_AppIpv4PdpActRejProc(
     AT_PDP_ENTITY_STRU                 *pstAppPdpEntity,
     TAF_PS_CALL_PDP_ACTIVATE_REJ_STRU  *pstEvent
@@ -7425,33 +5139,7 @@ VOS_VOID AT_AppIpv4PdpActRejProc(
 }
 
 #if (FEATURE_ON == FEATURE_IPV6)
-/*****************************************************************************
- 函 数 名  : AT_AppIpv6PdpActRejProc
- 功能描述  : 处理IPv6的PDP激活被拒事件
- 输入参数  : pstAppPdpEntity - PDP实体
-             pstEvent        - 上报事件
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月23日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年12月17日
-    作    者   : C00173809
-    修改内容   : PS融合项目
-
-  3.日    期   : 2012年6月30日
-    作    者   : A00165503
-    修改内容   : DTS2012062900707: IPv6拨号成功, 应用获取IPv6地址前缀异常
-
-  4.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : 修改PS域呼叫错误码处理
-*****************************************************************************/
 VOS_VOID AT_AppIpv6PdpActRejProc(
     AT_PDP_ENTITY_STRU                 *pstAppPdpEntity,
     TAF_PS_CALL_PDP_ACTIVATE_REJ_STRU  *pstEvent
@@ -7474,33 +5162,7 @@ VOS_VOID AT_AppIpv6PdpActRejProc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_AppIpv4v6PdpActRejProc
- 功能描述  : 处理IPv4的PDP激活被拒事件
- 输入参数  : pstAppPdpEntity - PDP实体
-             pstEvent        - 上报事件
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月23日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年12月17日
-    作    者   : C00173809
-    修改内容   : PS融合项目
-
-  3.日    期   : 2012年6月30日
-    作    者   : A00165503
-    修改内容   : DTS2012062900707: IPv6拨号成功, 应用获取IPv6地址前缀异常
-
-  4.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : 修改PS域呼叫错误码处理
-*****************************************************************************/
 VOS_VOID AT_AppIpv4v6PdpActRejProc(
     AT_PDP_ENTITY_STRU                 *pstAppPdpEntity,
     TAF_PS_CALL_PDP_ACTIVATE_REJ_STRU  *pstEvent
@@ -7535,22 +5197,7 @@ VOS_VOID AT_AppIpv4v6PdpActRejProc(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : AT_AppPsRspPdpActEvtCnfProc
- 功能描述  : PDP激活成功，APP处理
- 输入参数  : ucIndex  - 客户标识号
-             pstEvent - 上报事件内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月20日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_AppPsRspEvtPdpActCnfProc(
     VOS_UINT8                           ucIndex,
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent
@@ -7588,22 +5235,7 @@ VOS_VOID AT_AppPsRspEvtPdpActCnfProc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_AppPsRspPdpActEvtRejProc
- 功能描述  : PDP激活失败，APP处理
- 输入参数  : ucIndex  - 客户标识号
-             pstEvent - 上报事件内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月21日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_AppPsRspEvtPdpActRejProc(
     VOS_UINT8                           ucIndex,
     TAF_PS_CALL_PDP_ACTIVATE_REJ_STRU  *pstEvent
@@ -7637,22 +5269,7 @@ VOS_VOID AT_AppPsRspEvtPdpActRejProc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_AppPsRspPdpDeactEvtCnfProc
- 功能描述  : PDP去激活成功，APP处理
- 输入参数  : ucIndex  - 客户标识号
-             pstEvent - 上报事件内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月21日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_AppPsRspEvtPdpDeactCnfProc(
     VOS_UINT8                           ucIndex,
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU *pstEvent
@@ -7696,22 +5313,7 @@ VOS_VOID AT_AppPsRspEvtPdpDeactCnfProc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_AppPsRspPdpDeactivatedEvtProc
- 功能描述  : 网侧去激活PDP, APP处理
- 输入参数  : ucIndex  - 客户标识号
-             pstEvent - 上报事件内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月21日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_AppPsRspEvtPdpDeactivatedProc(
     VOS_UINT8                           ucIndex,
     TAF_PS_CALL_PDP_DEACTIVATE_IND_STRU *pstEvent
@@ -7755,23 +5357,7 @@ VOS_VOID AT_AppPsRspEvtPdpDeactivatedProc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_AppSetFlowCtrl
- 功能描述  : 启动路由设备流控
- 输入参数  : ulParam1   - 目前不使用
-             ulParam2   - 目前不使用
- 输出参数  : 无
- 返 回 值  : VOS_OK     - 启动流控成功
-             VOS_ERR    - 启动流控失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月31日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_AppSetFlowCtrl(
     VOS_UINT32                          ulParam1,
     VOS_UINT32                          ulParam2
@@ -7789,23 +5375,7 @@ VOS_UINT32 AT_AppSetFlowCtrl(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_AppClearFlowCtrl
- 功能描述  : 停止路由设备流控
- 输入参数  : ulParam1   - 目前不使用
-             ulParam2   - 目前不使用
- 输出参数  : 无
- 返 回 值  : VOS_OK     - 停止流控成功
-             VOS_ERR    - 停止流控失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月31日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_AppClearFlowCtrl(
     VOS_UINT32                          ulParam1,
     VOS_UINT32                          ulParam2
@@ -7823,28 +5393,7 @@ VOS_UINT32 AT_AppClearFlowCtrl(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_AppRegFCPoint
- 功能描述  : 注册路由端口流控点
- 输入参数  : FC_ID_ENUM_UINT8                    enFcId
-             TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU   *pstEvent
-             VOS_UINT8                           ucRmNetId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月31日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月22日
-    作    者   : l00227485
-    修改内容   : DSDA PhaseII
-  3.日    期   : 2013年04月17日
-    作    者   : f00179208
-    修改内容   : C核单独复位项目
-*****************************************************************************/
 VOS_UINT32 AT_AppRegFCPoint(
     FC_ID_ENUM_UINT8                    enFcId,
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent,
@@ -7919,28 +5468,7 @@ VOS_UINT32 AT_AppRegFCPoint(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_AppDeRegFCPoint
- 功能描述  : 去注册路由设备流控点
- 输入参数  : FC_ID_ENUM_UINT8                            enFcId,
-             TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU        *pstEvent
- 输出参数  : 无
- 返 回 值  : VOS_OK     - 去注册流控点成功
-             VOS_ERR    - 去注册流控点失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月31日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月22日
-    作    者   : l00227485
-    修改内容   : DSDA PhaseII
-  3.日    期   : 2013年04月17日
-    作    者   : f00179208
-    修改内容   : C核单独复位项目
-*****************************************************************************/
 VOS_UINT32 AT_AppDeRegFCPoint(
     FC_ID_ENUM_UINT8                     enFcId,
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU *pstEvent
@@ -7982,21 +5510,7 @@ VOS_UINT32 AT_AppDeRegFCPoint(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_APP_ParseUsrInfo
- 功能描述  : 获取APP用户信息
- 输入参数  : ucIndex     - 端口号(ClientId)索引
- 输出参数  : pstUserInfo - 用户信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年01月14日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_APP_ParseUsrInfo(
     VOS_UINT8                           ucIndex,
     AT_PS_USER_INFO_STRU               *pstUsrInfo
@@ -8021,23 +5535,7 @@ VOS_VOID AT_APP_ParseUsrInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetFCPriFromQos
- 功能描述  : Qos转化为FC优先级
- 输入参数  : TAF_UMTS_QOS_STRU                  *pstUmtsQos
- 输出参数  : 无
- 返 回 值  : FC_PRI_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : c00173809
-    修改内容   : 新生成函数
-  2.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，EVENT结构替换为QOS
-*****************************************************************************/
 FC_PRI_ENUM_UINT8 AT_GetFCPriFromQos(
     TAF_UMTS_QOS_STRU                  *pstUmtsQos
 )
@@ -8072,33 +5570,7 @@ FC_PRI_ENUM_UINT8 AT_GetFCPriFromQos(
     return enFCPri;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_ModemPsRspPdpDeactivatedEvtProc
- 功能描述  : pdp去激活成功，Modem处理
- 输入参数  : ucIndex --- 已知的客户标识号
-             pEvent  --- 事件内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月5日
-    作    者   : S62952
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月17日
-    作    者   : C00173809
-    修改内容   : PS融合项目，IP类型MODEM去激活，通知上下行ADS
-  3.日    期   : 2013年05月27日
-    作    者   : f00179208
-    修改内容   : V3R3 PPP PROJECT
-  4.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，EVENT结构替换
-  5.日    期   : 2013年9月23日
-    作    者   : A00165503
-    修改内容   : UART-MODEM: 增加UART端口PPP拨号支持
-*****************************************************************************/
 VOS_VOID  AT_ModemPsRspPdpDeactivatedEvtProc(
     VOS_UINT8                           ucIndex,
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU *pstEvent
@@ -8115,10 +5587,8 @@ VOS_VOID  AT_ModemPsRspPdpDeactivatedEvtProc(
     ulATHCmdFlg = (AT_CMD_H_PS_SET == AT_PS_GET_CURR_CMD_OPT(ucIndex)) ?
                   VOS_TRUE : VOS_FALSE;
 
-    /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     /* 去注册Modem端口的流控点 */
     AT_DeRegModemPsDataFCPoint(ucIndex, pstEvent->ucRabId);
-    /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     if (AT_PPP_DATA_MODE == gastAtClientTab[ucIndex].DataMode)
     {
@@ -8183,27 +5653,7 @@ VOS_VOID  AT_ModemPsRspPdpDeactivatedEvtProc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_ModemPsRspPdpActEvtRejProc
- 功能描述  : pdp激活失败，AP MODEM处理
- 输入参数  : ucIndex --- 已知的客户标识号
-             pEvent  --- 事件内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月5日
-    作    者   : S62952
-    修改内容   : 新生成函数
-  2.日    期   : 2011年10月22日
-    作    者   : f62575
-    修改内容   : AT PROJECT OM_GreenChannel -> OM_AppGreenChannel
-  3.日    期   : 2015年07月22日
-    作    者   : wx270776
-    修改内容   : OM融合
-*****************************************************************************/
 VOS_VOID  AT_ModemPsRspPdpActEvtRejProc(
     VOS_UINT8                           ucIndex,
     TAF_PS_CALL_PDP_ACTIVATE_REJ_STRU  *pstEvent
@@ -8227,8 +5677,6 @@ VOS_VOID  AT_ModemPsRspPdpActEvtRejProc(
         /* 返回命令模式 */
         At_SetMode(ucIndex,AT_CMD_MODE,AT_NORMAL_MODE);
 
-        /* Deleted by wx270776 for OM融合, 2015-6-29, begin */
-        /* Deleted by wx270776 for OM融合, 2015-6-29, end */
     }
     else if (AT_CMD_D_IP_CALL_SET == gastAtClientTab[ucIndex].CmdCurrentOpt)
     {
@@ -8239,8 +5687,6 @@ VOS_VOID  AT_ModemPsRspPdpActEvtRejProc(
         PPP_RcvAtCtrlOperEvent(gastAtClientTab[ucIndex].usPppId, PPP_AT_CTRL_HDLC_DISABLE);
 
 
-        /* Deleted by wx270776 for OM融合, 2015-6-29, begin */
-        /* Deleted by wx270776 for OM融合, 2015-6-29, end */
     }
     else
     {
@@ -8254,34 +5700,12 @@ VOS_VOID  AT_ModemPsRspPdpActEvtRejProc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_FillPppIndConfigInfoPara
- 功能描述  : 获取PPP配置参数
- 输入参数  : AT_PPP_IND_CONFIG_INFO_STRU        *pstPppIndConfigInfo
-             TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年3月29日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月11日
-    作    者   : l00167671
-    修改内容   : DTS2012121802573, TQE清理
-  3.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，EVENT结构替换
-
-*****************************************************************************/
 VOS_VOID AT_FillPppIndConfigInfoPara(
     AT_PPP_IND_CONFIG_INFO_STRU        *pstPppIndConfigInfo,
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent
 )
 {
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     /* 填写IP地址 */
     PS_MEM_CPY(pstPppIndConfigInfo->aucIpAddr,
                pstEvent->stPdpAddr.aucIpv4Addr,
@@ -8336,34 +5760,10 @@ VOS_VOID AT_FillPppIndConfigInfoPara(
                    TAF_IPV4_ADDR_LEN);
     }
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
 }
 
-/*****************************************************************************
- 函 数 名  : AT_ModemPsRspPdpActEvtCnfProc
- 功能描述  : Modem发起的pdp激活成功，
- 输入参数  : ucIndex --- 已知的客户标识号
-             pEvent  --- 事件内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月5日
-    作    者   : S62952
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月17日
-    作    者   : C00173809
-    修改内容   : PS融合项目，IP类型MODEM激活，通知上下行ADS
-  3.日    期   : 2013年6月4日
-    作    者   : z00214637
-    修改内容   : V3R3 Share-PDP项目修改
-  4.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，EVENT结构替换
-*****************************************************************************/
 VOS_VOID  AT_ModemPsRspPdpActEvtCnfProc(
     VOS_UINT8                           ucIndex,
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent
@@ -8371,10 +5771,8 @@ VOS_VOID  AT_ModemPsRspPdpActEvtCnfProc(
 {
     AT_PPP_IND_CONFIG_INFO_STRU         stPppIndConfigInfo;
 
-    /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     /* 注册Modem端口的流控点 */
     AT_RegModemPsDataFCPoint(ucIndex, pstEvent, FC_ID_MODEM);
-    /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
 
     /* 初始化 */
@@ -8411,34 +5809,7 @@ VOS_VOID  AT_ModemPsRspPdpActEvtCnfProc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_ModemPsRspPdpDeactEvtCnfProc
- 功能描述  : pdp去激活成功，Modem处理
- 输入参数  : ucIndex --- 已知的客户标识号
-             pEvent  --- 事件内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月5日
-    作    者   : S62952
-    修改内容   : 新生成函数
-  2.日    期   : 2011年10月22日
-    作    者   : f62575
-    修改内容   : AT PROJECT NAS_EventReport -> AT_EventReport
-  3.日    期   : 2011年12月17日
-    作    者   : C00173809
-    修改内容   : PS融合项目，PDP去激活后通知ADS和流控模块。
-  4.日    期   : 2013年6月4日
-    作    者   : z00214637
-    修改内容   : V3R3 Share-PDP项目修改
-
-  5.日    期   : 2013年9月23日
-    作    者   : A00165503
-    修改内容   : UART-MODEM: 增加UART端口PPP拨号支持
-*****************************************************************************/
 VOS_VOID  AT_ModemPsRspPdpDeactEvtCnfProc(
     VOS_UINT8                           ucIndex,
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU *pstEvent
@@ -8485,10 +5856,8 @@ VOS_VOID  AT_ModemPsRspPdpDeactEvtCnfProc(
         AT_WARN_LOG("TAF_PS_EVT_PDP_DEACTIVE_CNF OTHER MODE");
     }
 
-    /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     /* 去注册Modem端口的流控点 */
     AT_DeRegModemPsDataFCPoint(ucIndex, pstEvent->ucRabId);
-    /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     /* 返回命令模式 */
     At_SetMode(ucIndex, AT_CMD_MODE, AT_NORMAL_MODE);
@@ -8530,21 +5899,7 @@ VOS_VOID  AT_ModemPsRspPdpDeactEvtCnfProc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_MODEM_ProcCallEndedEvent
- 功能描述  : 处理PS_CALL_END_CNF事件
- 输入参数  : ucIndex  - 端口索引
-             pstEvent - ID_EVT_TAF_PS_CALL_END_CNF事件指针
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月23日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_MODEM_ProcCallEndCnfEvent(
     VOS_UINT8                           ucIndex,
     TAF_PS_CALL_END_CNF_STRU           *pstEvent
@@ -8635,27 +5990,7 @@ VOS_VOID AT_MODEM_ProcCallEndCnfEvent(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_AnswerPdpActInd
- 功能描述  : 应答网络发起的pdp激活成功
- 输入参数  : ucIndex --- 已知的客户标识号
-             pstEvent  --- 事件内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年06月05日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-  2.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，EVENT结构替换
-  3.日    期   : 2015年07月23日
-    作    者   : wx270776
-    修改内容   : OM融合
-*****************************************************************************/
 VOS_VOID  AT_AnswerPdpActInd(
     VOS_UINT8                           ucIndex,
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent
@@ -8670,8 +6005,6 @@ VOS_VOID  AT_AnswerPdpActInd(
     {
         if (VOS_OK != Ppp_CreateRawDataPppReq(&usPppId))
         {
-            /* Deleted by wx270776 for OM融合, 2015-7-23, begin */
-            /* Deleted by wx270776 for OM融合, 2015-6-29, end */
             ulRslt = AT_ERROR;
         }
         else
@@ -8683,10 +6016,8 @@ VOS_VOID  AT_AnswerPdpActInd(
             gastAtClientTab[ucIndex].usPppId    = usPppId;
 
 
-            /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
             /* 注册Modem端口的流控点 */
             AT_RegModemPsDataFCPoint(ucIndex, pstEvent, FC_ID_MODEM);
-            /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
             /* 切换数传通道 */
             At_SetMode(ucIndex, AT_DATA_MODE, AT_IP_DATA_MODE);
@@ -8710,26 +6041,7 @@ VOS_VOID  AT_AnswerPdpActInd(
     return;
 }
 
-/*****************************************************************************
- Prototype      : At_RcvTeConfigInfoReq
- Description    : AT接收TE请求的配置信息
- Input          : usPppId --- PPP ID
-                  pPppReqConfigInfo  --- TE请求的配置信息
- Output         :
- Return Value   : AT_XXX  --- ATC返回码
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-04-19
-    Author      : ---
-    Modification: Created function
-
-  2.日    期   : 2011年12月12日
-    作    者   : l00171473
-    修改内容   : DTS2011112306269,修改PDP激活时AT的TIMER的时长
-
-*****************************************************************************/
 TAF_UINT32 At_RcvTeConfigInfoReq(
     TAF_UINT16                          usPppId,
     AT_PPP_REQ_CONFIG_INFO_STRU        *pstPppReqConfigInfo
@@ -8760,7 +6072,6 @@ TAF_UINT32 At_RcvTeConfigInfoReq(
                                       (TAF_PPP_REQ_CONFIG_INFO_STRU *)pstPppReqConfigInfo) )
     {
         /* 开定时器 */
-        /* Modified by L00171473 for DTS2011112306269,修改PDP激活的AT保护时长, 2011-12-09, Begin */
         if (AT_SUCCESS != At_StartTimer(AT_ACT_PDP_TIME, gastAtPppIndexTab[usPppId]))
         {
             AT_ERR_LOG("At_RcvTeConfigInfoReq:ERROR:Start Timer");
@@ -8778,22 +6089,7 @@ TAF_UINT32 At_RcvTeConfigInfoReq(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : At_RcvPppReleaseInd
- 功能描述  : AT接收PPP释放链路指示
- 输入参数  : TAF_UINT16                          usPppId  PPP ID
- 输出参数  : 无
- 返 回 值  : TAF_UINT32
-             0 --- 成功
-             1 --- 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月22日
-    作    者   : f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 TAF_UINT32 At_RcvPppReleaseInd(
     TAF_UINT16                          usPppId
 )
@@ -8850,28 +6146,7 @@ TAF_UINT32 At_RcvPppReleaseInd(
     }
 }
 
-/*****************************************************************************
- Prototype      : At_PppReleaseIndProc
- Description    : AT接收PPP释放链路指示消息
- Input          : ucIndex
- Output         : ---
- Return Value   : VOS_VOID
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2009-04-19
-    Author      : L47619
-    Modification: Created function
-
-  2.日    期   : 2011年12月12日
-    作    者   : l00171473
-    修改内容   : DTS2011112306269,修改PDP去激活时的AT保护时长
-
-  3.日    期   : 2014年1月14日
-    作    者   : A00165503
-    修改内容   : DTS2013120310013: 增加PPP重复释放保护
-*****************************************************************************/
 TAF_VOID At_PppReleaseIndProc(
     TAF_UINT8                           ucIndex
 )
@@ -8908,7 +6183,6 @@ TAF_VOID At_PppReleaseIndProc(
                                   gastAtClientTab[ucIndex].ucCid) )
     {
         /* 开定时器 */
-        /* Modified by L00171473 for DTS2011112306269,修改PDP去激活时的AT保护时长, 2011-12-09, Begin */
         if (AT_SUCCESS != At_StartTimer(AT_DETACT_PDP_TIME, ucIndex))
         {
             AT_ERR_LOG("At_PppReleaseIndProc:ERROR:Start Timer");
@@ -9054,21 +6328,7 @@ TAF_UINT32 At_PppId2PsRab(
 } /* At_PppId2PsRab */
 
 #if( FEATURE_ON == FEATURE_CSD )
-/*****************************************************************************
- 函 数 名  : AT_ResetFlowCtl
- 功能描述  : 复位流控
- 输入参数  : ulParam1      不关注
-             ulParam2      FCID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年04月17日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_VpResetFlowCtl(
     VOS_UINT32                          ulParam1,
     VOS_UINT32                          ulParam2
@@ -9098,29 +6358,7 @@ VOS_UINT32 AT_VpResetFlowCtl(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RegModemCstFCPoint
- 功能描述  : 注册Modem端口VP的流控点
- 输入参数  : FC_ID_ENUM_UINT8   enFcId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年05月21日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月28日
-    作    者   : l60609
-    修改内容   : DSDA Phase II
-  3.日    期   : 2013年04月17日
-    作    者   : f00179208
-    修改内容   : C核单独复位项目
-  4.日    期   : 2013年05月22日
-    作    者   : f00179208
-    修改内容   : V3R3 PPP PROJECT
-*****************************************************************************/
 VOS_UINT32 AT_RegModemVideoPhoneFCPoint(
     VOS_UINT8                           ucIndex,
     FC_ID_ENUM_UINT8                    enFcId
@@ -9193,29 +6431,7 @@ VOS_UINT32 AT_RegModemVideoPhoneFCPoint(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_DeRegModemCstFCPoint
- 功能描述  : 去注册Modem端口VP的流控点。
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年05月21日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月28日
-    作    者   : l60609
-    修改内容   : DSDA Phase II
-  3.日    期   : 2013年04月17日
-    作    者   : f00179208
-    修改内容   : C核单独复位项目
-  4.日    期   : 2013年05月28日
-    作    者   : f00179208
-    修改内容   : V3R3 PPP PROJECT
-*****************************************************************************/
 VOS_UINT32 AT_DeRegModemVideoPhoneFCPoint(VOS_UINT8 ucIndex)
 {
     VOS_UINT32                          ulRet;
@@ -9250,39 +6466,7 @@ VOS_UINT32 AT_DeRegModemVideoPhoneFCPoint(VOS_UINT8 ucIndex)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : AT_RegModemPsDataFCPoint
- 功能描述  : 注册Modem端口PsData的流控点。
- 输入参数  : TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : c00173809
-    修改内容   : 新生成函数
-  2.日    期   : 2012年2月24日
-    作    者   : L47619
-    修改内容   : V7R1C50 IPC项目:修改注册MODEM流控点的逻辑
-  3.日    期   : 2012年5月22日
-    作    者   : f00179208
-    修改内容   : DTS2012052205142, 增加VIDEO PHONE的流控
-  4.日    期   : 2012年12月27日
-    作    者   : l60609
-    修改内容   : DSDA Phase II
-  5.日    期   : 2013年04月17日
-    作    者   : f00179208
-    修改内容   : C核单独复位项目
-  6.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，EVENT结构替换
-  7.日    期   : 2013年9月23日
-    作    者   : A00165503
-    修改内容   : UART-MODEM: 增加流控使能开关
-
-*****************************************************************************/
 VOS_UINT32 AT_RegModemPsDataFCPoint(
     VOS_UINT8                           ucIndex,
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent,
@@ -9404,39 +6588,7 @@ VOS_UINT32 AT_RegModemPsDataFCPoint(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_DeRegModemPsDataFCPoint
- 功能描述  : 去注册Modem端口PsData的流控点。
- 输入参数  : VOS_UINT8                           ucRabId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : c00173809
-    修改内容   : 新生成函数
-  2.日    期   : 2012年2月24日
-    作    者   : L47619
-    修改内容   : V7R1C50 IPC项目:修改注销NDIS流控点的逻辑
-  3.日    期   : 2012年5月22日
-    作    者   : f00179208
-    修改内容   : DTS2012052205142, 增加VIDEO PHONE的流控
-  4.日    期   : 2012年12月27日
-    作    者   : l60609
-    修改内容   : DSDA Phase II
-  5.日    期   : 2013年04月17日
-    作    者   : f00179208
-    修改内容   : C核单独复位项目
-  6.日    期   : 2013年05月22日
-    作    者   : f00179208
-    修改内容   : V3R3 PPP PROJECT
-  7.日    期   : 2013年9月23日
-    作    者   : A00165503
-    修改内容   : UART-MODEM: 增加流控使能开关
-
-*****************************************************************************/
 VOS_UINT32 AT_DeRegModemPsDataFCPoint(
     VOS_UINT8                           ucIndex,
     VOS_UINT8                           ucRabId
@@ -9485,27 +6637,8 @@ VOS_UINT32 AT_DeRegModemPsDataFCPoint(
 
     return VOS_OK;
 }
-/* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
-/*****************************************************************************
- 函 数 名  : AT_ChangeFCPoint
- 功能描述  : 更改流控点优先级。
- 输入参数  : TAF_CTRL_STRU                       *pstCtrl,
-             FC_PRI_ENUM_UINT8                    enFCPri,
-             FC_ID_ENUM_UINT8                     enFcId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : c00173809
-    修改内容   : 新生成函数，更改流控点优先级
-  2.日    期   : 2012年12月22日
-    作    者   : l00227485
-    修改内容   : DSDA PhaseII
-*****************************************************************************/
 VOS_UINT32 AT_ChangeFCPoint(
     TAF_CTRL_STRU                       *pstCtrl,
     FC_PRI_ENUM_UINT8                    enFCPri,
@@ -9555,21 +6688,7 @@ VOS_UINT32 AT_ChangeFCPoint(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_EnableHsicFlowCtl
- 功能描述  : 使能Hsic流控
- 输入参数  : VOS_UINT32                          ulUdiHdl,
-             VOS_UINT32                          ulParam2
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月17日
-    作    者   : L47619
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_EnableHsicFlowCtl(
     VOS_UINT32                          ulUdiHdl,
     VOS_UINT32                          ulParam2
@@ -9585,21 +6704,7 @@ VOS_UINT32 AT_EnableHsicFlowCtl(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_DisableHsicFlowCtl
- 功能描述  : 去使能HSIC流控
- 输入参数  : VOS_UINT32                          ulUdiHdl,
-             VOS_UINT32                          ulParam2
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月17日
-    作    者   : L47619
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_DisableHsicFlowCtl(
     VOS_UINT32                          ulUdiHdl,
     VOS_UINT32                          ulParam2
@@ -9615,30 +6720,7 @@ VOS_UINT32 AT_DisableHsicFlowCtl(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RegHsicFCPoint
- 功能描述  : 注册HSIC端口流控点。
- 输入参数  : TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU   *pstEvent,
-             FC_ID_ENUM_UINT8                     enFcId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月17日
-    作    者   : L47619
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月27日
-    作    者   : L60609
-    修改内容   : DSDA Phase II
-  3.日    期   : 2013年04月15日
-    作    者   : f00179208
-    修改内容   : C核单独复位项目
-  4.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，EVENT结构替换
-*****************************************************************************/
 VOS_UINT32 AT_RegHsicFCPoint(
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent
 )
@@ -9765,27 +6847,7 @@ VOS_UINT32 AT_RegHsicFCPoint(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_DeRegHsicFCPoint
- 功能描述  : 去注册HSIC端口流控点。
- 输入参数  : MN_CLIENT_ID_T                      usClientID,
-             VOS_UINT8                           ucRabId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月17日
-    作    者   : L47619
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月27日
-    作    者   : L60609
-    修改内容   : DSDA Phase II
-  3.日    期   : 2013年04月15日
-    作    者   : f00179208
-    修改内容   : C核单独复位项目
-*****************************************************************************/
 VOS_UINT32 AT_DeRegHsicFCPoint(
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU *pstEvent
 )
@@ -9863,28 +6925,11 @@ VOS_UINT32 AT_DeRegHsicFCPoint(
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_HsicPsRspEvtPdpActCnfProc
- 功能描述  : pdp激活成功，HSIC AT通道处理
- 输入参数  : pEvent  --- 事件内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月17日
-    作    者   : L47619
-    修改内容   : 新生成函数
-  2.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，EVENT结构替换,直接处理激活事件上报和流控点注册
-*****************************************************************************/
 VOS_VOID  AT_HsicPsRspEvtPdpActCnfProc(
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent
 )
 {
-    /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     /* 向DIPC上报PDP已经激活事件 */
     AT_SndDipcPdpActInd(pstEvent->stCtrl.usClientId, pstEvent->ucCid, pstEvent->ucRabId);
 
@@ -9893,33 +6938,15 @@ VOS_VOID  AT_HsicPsRspEvtPdpActCnfProc(
 
     /* 将指定CID的PDP的激活状态设置为激活态 */
     AT_SetAtChdataCidActStatus(pstEvent->stCtrl.usClientId, pstEvent->ucCid, VOS_TRUE);
-    /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
     return;
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_HsicPsRspEvtPdpDeactCnfProc
- 功能描述  : pdp去激活响应，HSIC AT通道处理
- 输入参数  : pEvent  --- 事件内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月17日
-    作    者   : L47619
-    修改内容   : 新生成函数
-  2.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，EVENT结构替换,直接处理激活事件上报和流控点注册
-*****************************************************************************/
 VOS_VOID  AT_HsicPsRspEvtPdpDeactCnfProc(
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU *pstEvent
 )
 {
-    /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     /* 向DIPC上报PDP已经去激活事件 */
     AT_SndDipcPdpDeactInd(pstEvent->ucRabId);
 
@@ -9928,41 +6955,12 @@ VOS_VOID  AT_HsicPsRspEvtPdpDeactCnfProc(
 
     /* 最后清除CID与数传通道的映射关系 */
     AT_CleanAtChdataCfg(pstEvent->stCtrl.usClientId, pstEvent->ucCid);
-    /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     return;
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_HsicPsRspEvtPdpDeactivatedProc
- 功能描述  : pdp去激活指示，HSIC AT通道处理
- 输入参数  : ucIndex --- 已知的客户标识号
-             pEvent  --- 事件内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月17日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : 修改PS域呼叫错误码处理
-
-  3.日    期   : 2012年8月22日
-    作    者   : y00213812
-    修改内容   : DTS2012113005521:网侧发起去激活，AT收到消息后错误的清除当前
-                 HSIC通道的状态，导致用户无法收到回应。删除AT_STOP_TIMER_CMD_READY
-
-  4.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，EVENT结构替换,直接处理激活事件上报和流控点注册
-
-*****************************************************************************/
 VOS_VOID  AT_HsicPsRspEvtPdpDeactivatedProc(
     VOS_UINT8                           ucIndex,
     TAF_PS_CALL_PDP_DEACTIVATE_IND_STRU *pstEvent
@@ -9972,7 +6970,6 @@ VOS_VOID  AT_HsicPsRspEvtPdpDeactivatedProc(
 
     usLength    = 0;
 
-    /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     /* 向DIPC上报PDP已经去激活事件 */
     AT_SndDipcPdpDeactInd(pstEvent->ucRabId);
 
@@ -9981,7 +6978,6 @@ VOS_VOID  AT_HsicPsRspEvtPdpDeactivatedProc(
 
     /* 最后清除CID与数传通道的映射关系 */
     AT_CleanAtChdataCfg(pstEvent->stCtrl.usClientId, pstEvent->ucCid);
-    /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     switch (pstEvent->enPdpType)
     {
@@ -10040,23 +7036,7 @@ VOS_VOID  AT_HsicPsRspEvtPdpDeactivatedProc(
     return;
 }
 
-/* Modified by l60609 for AP适配项目 ，2012-09-10 Begin */
-/*****************************************************************************
- 函 数 名  : AT_SendRnicCgactIpv4ActInd
- 功能描述  : AT+CGACT拨号成功给RNIC发PDP激活消息
- 输入参数  : VOS_UINT8                           ucRabId,
-             VOS_UINT8                           ucRmNetId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月19日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_SendRnicCgactIpv4ActInd(
     VOS_UINT8                           ucRabId,
     VOS_UINT8                           ucRmNetId
@@ -10097,24 +7077,7 @@ VOS_UINT32 AT_SendRnicCgactIpv4ActInd(
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : AT_ProcAppPsRspEvtPdpActCnf
- 功能描述  : 处理RIL通过AT+CGACT发起的PDP激活请求
- 输入参数  : VOS_UINT8                           ucIndex
-             TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU   *pEvent
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月2日
-    作    者   : l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月18日
-    作    者   : l60609
-    修改内容   : DSDA Phase II
-*****************************************************************************/
 VOS_VOID  AT_ProcAppPsRspEvtPdpActCnf(
     VOS_UINT8                           ucIndex,
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent
@@ -10163,23 +7126,7 @@ VOS_VOID  AT_ProcAppPsRspEvtPdpActCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_ProcAppPsRspEvtPdpDeActCnf
- 功能描述  : 处理RIL通过AT+CGACT发起的PDP去激活请求
- 输入参数  : TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU        *pstEvent
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月2日
-    作    者   : l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月18日
-    作    者   : l60609
-    修改内容   : DSDA Phase II
-*****************************************************************************/
 VOS_VOID  AT_ProcAppPsRspEvtPdpDeActCnf(
     VOS_UINT8                           ucIndex,
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU *pstEvent
@@ -10211,23 +7158,7 @@ VOS_VOID  AT_ProcAppPsRspEvtPdpDeActCnf(
 
     return;
 }
-/* Modified by l60609 for AP适配项目 ，2012-09-10 End */
-/*****************************************************************************
- 函 数 名  : AT_ProcAppPsRspEvtPdpDeactivated
- 功能描述  : APP通过AT+CGACT发起PDP激活，网侧发起PDP去激活
- 输入参数  : VOS_UINT8                           ucIndex
-             TAF_PS_CALL_PDP_DEACTIVATE_IND_STRU *pstEvent
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月18日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_ProcAppPsRspEvtPdpDeactivated(
     VOS_UINT8                           ucIndex,
     TAF_PS_CALL_PDP_DEACTIVATE_IND_STRU *pstEvent
@@ -10308,22 +7239,7 @@ VOS_VOID AT_ProcAppPsRspEvtPdpDeactivated(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_NotifyFcWhenAppPdpModify
- 功能描述  : 当发生PDP MODIFY(UE发起或网侧发起)时，向FC指示修改流控点
- 输入参数  : VOS_UINT8                           ucIndex,
-             TAF_PS_CALL_PDP_MODIFY_CNF_STRU    *pstEvent
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年1月17日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_NotifyFcWhenAppPdpModify(
     VOS_UINT8                           ucIndex,
     TAF_PS_CALL_PDP_MODIFY_CNF_STRU    *pstEvent
@@ -10352,25 +7268,7 @@ VOS_VOID AT_NotifyFcWhenAppPdpModify(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_AddIpAddrRabIdMap
- 功能描述  : 添加IP与RABID的映射
- 输入参数  : usClientId - 客户端ID
-             pstEvent   - PS域呼叫事件
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月11日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2014年5月9日
-    作    者   : A00165503
-    修改内容   : DTS2014050900349: IP地址转换错误
-*****************************************************************************/
 VOS_VOID AT_PS_AddIpAddrRabIdMap(
     VOS_UINT16                          usClientId,
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent
@@ -10396,21 +7294,7 @@ VOS_VOID AT_PS_AddIpAddrRabIdMap(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_DeleteIpAddrRabIdMap
- 功能描述  : 删除IP与RABID的映射
- 输入参数  : usClientId - 客户端ID
-             pstEvent   - PS域呼叫事件
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月11日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_PS_DeleteIpAddrRabIdMap(
     VOS_UINT16                          usClientId,
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU *pstEvent
@@ -10430,21 +7314,7 @@ VOS_VOID AT_PS_DeleteIpAddrRabIdMap(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_GetIpAddrByRabId
- 功能描述  : 根据RABID获取承载对应的IP地址
- 输入参数  : usClientId - 客户端ID
-             ucRabId    - RABID [5,15]
- 输出参数  : 无
- 返 回 值  : ulIpAddr   - IP地址(主机序)
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月11日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_PS_GetIpAddrByRabId(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucRabId
@@ -10464,23 +7334,7 @@ VOS_UINT32 AT_PS_GetIpAddrByRabId(
     return ulIpAddr;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_GetRmNetIdFromCid
- 功能描述  : 根据Client Id和Cid获取对应的网卡Id
- 输入参数  : VOS_UINT16                          usClientId,
-             VOS_UINT8                           ucCid,
-             VOS_UINT8                          *pucRmNetId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月18日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_PS_GetRmNetIdByCid(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucCid,
@@ -10526,21 +7380,7 @@ VOS_UINT32 AT_PS_GetRmNetIdByCid(
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_ResetFlowCtl
- 功能描述  : 复位流控
- 输入参数  : ulParam1      不关注
-             ulParam2      FCID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年04月15日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_ResetFlowCtl(
     VOS_UINT32                          ulParam1,
     VOS_UINT32                          ulParam2
@@ -10584,26 +7424,7 @@ VOS_UINT32 AT_ResetFlowCtl(
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_PS_GetRnicRmNetIdFromChDataValue
- 功能描述  : 根据CHDATA设置的通道号获取对应的RNIC网卡ID
- 输入参数  : VOS_UINT8                           ucIndex
-             AT_CH_DATA_CHANNEL_ENUM_UINT32      enDataChannelId
-             RNIC_RMNET_ID_ENUM_UINT8           *penRnicRmNetId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月26日
-    作    者   : L60609
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年5月28日
-    作    者   : l00198894
-    修改内容   : TSTS
-*****************************************************************************/
 VOS_UINT32 AT_PS_GetRnicRmNetIdFromChDataValue(
     VOS_UINT8                           ucIndex,
     AT_CH_DATA_CHANNEL_ENUM_UINT32      enDataChannelId,
@@ -10679,22 +7500,7 @@ VOS_UINT32 AT_PS_GetRnicRmNetIdFromChDataValue(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_GetChDataValueFromRnicRmNetId
- 功能描述  : 根据对应的RNIC网卡ID获取CHDATA设置的通道号
- 输入参数  : RNIC_RMNET_ID_ENUM_UINT8            enRnicRmNetId
-             AT_CH_DATA_CHANNEL_ENUM_UINT32     *penDataChannelId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月26日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_PS_GetChDataValueFromRnicRmNetId(
     RNIC_RMNET_ID_ENUM_UINT8            enRnicRmNetId,
     AT_CH_DATA_CHANNEL_ENUM_UINT32     *penDataChannelId
@@ -10723,21 +7529,7 @@ VOS_UINT32 AT_PS_GetChDataValueFromRnicRmNetId(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_GetFcIdByUdiDeviceId
- 功能描述  : 通过DIPC通道ID获得FCID
- 输入参数  : UDI_DEVICE_ID                       enDataChannelId
- 输出参数  : 无
- 返 回 值  : FC_ID_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月2日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 FC_ID_ENUM_UINT8 AT_PS_GetFcIdByUdiDeviceId(
     UDI_DEVICE_ID_E                     enDataChannelId
 )
@@ -10762,24 +7554,7 @@ FC_ID_ENUM_UINT8 AT_PS_GetFcIdByUdiDeviceId(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_GetFcIdFromRnicByRmNetId
- 功能描述  : 获取RNIC网卡的FCID
- 输入参数  : VOS_UINT32                          ulRmNetId
- 输出参数  : 无
- 返 回 值  : FC_ID_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月2日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年5月27日
-    作    者   : l00198894
-    修改内容   : TSTS
-*****************************************************************************/
 FC_ID_ENUM_UINT8 AT_PS_GetFcIdFromRnicByRmNetId(
     VOS_UINT32                          ulRmNetId
 )
@@ -10816,22 +7591,7 @@ FC_ID_ENUM_UINT8 AT_PS_GetFcIdFromRnicByRmNetId(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_GetCallEntity
- 功能描述  : 获取PS域呼叫实体指针
- 输入参数  : VOS_UINT16                          usClientId
-             VOS_UINT8                           ucCallId
- 输出参数  : 无
- 返 回 值  : AT_PS_CALL_ENTITY_STRU *
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月25日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 AT_PS_CALL_ENTITY_STRU* AT_PS_GetCallEntity(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucCallId
@@ -10844,22 +7604,7 @@ AT_PS_CALL_ENTITY_STRU* AT_PS_GetCallEntity(
     return &(pstPsModemCtx->astCallEntity[ucCallId]);
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_GetUserInfo
- 功能描述  : 获取PS域呼叫用户信息
- 输入参数  : VOS_UINT16                          usClientId
-             VOS_UINT8                           ucCallId
- 输出参数  : 无
- 返 回 值  : AT_PS_USER_INFO_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月25日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 AT_PS_USER_INFO_STRU* AT_PS_GetUserInfo(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucCallId
@@ -10872,22 +7617,7 @@ AT_PS_USER_INFO_STRU* AT_PS_GetUserInfo(
     return &(pstPsModemCtx->astCallEntity[ucCallId].stUserInfo);
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_GetDataChanlCfg
- 功能描述  : 获取数传通道配置信息
- 输入参数  : VOS_UINT16                          usClientId
-             VOS_UINT8                           ucCid
- 输出参数  : 无
- 返 回 值  : AT_PS_DATA_CHANL_CFG_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月7日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 AT_PS_DATA_CHANL_CFG_STRU* AT_PS_GetDataChanlCfg(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucCid
@@ -10899,22 +7629,7 @@ AT_PS_DATA_CHANL_CFG_STRU* AT_PS_GetDataChanlCfg(
 
     return &(pstPsModemCtx->astChannelCfg[ucCid]);
 }
-/*****************************************************************************
- 函 数 名  : AT_PS_TransCidToCallId
- 功能描述  : 获取与该CID关联的PS实体索引
- 输入参数  : VOS_UINT16                          usClientId
-             VOS_UINT8                           ucCid
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月25日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 AT_PS_TransCidToCallId(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucCid
@@ -10933,22 +7648,7 @@ VOS_UINT8 AT_PS_TransCidToCallId(
     return pstPsModemCtx->aucCidToIndexTbl[ucCid];
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_IsCallIdValid
- 功能描述  : PS域呼叫实体索引是否有效
- 输入参数  : VOS_UINT16                          usClientId
-             VOS_UINT8                           ucCallId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月25日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_PS_IsCallIdValid(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucCallId
@@ -10979,23 +7679,7 @@ VOS_UINT32 AT_PS_IsCallIdValid(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_AssignCallIdToCid
- 功能描述  : 配置cid和callid的映射表
- 输入参数  : VOS_UINT16                          usClientId
-             VOS_UINT8                           ucCid
-             VOS_UINT8                           ucCallId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月25日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_PS_AssignCallIdToCid(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucCid,
@@ -11011,22 +7695,7 @@ VOS_VOID AT_PS_AssignCallIdToCid(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_FreeCallIdToCid
- 功能描述  : 清除cid和callid的映射表
- 输入参数  : VOS_UINT16                          usClientId
-             VOS_UINT8                           ucCid
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月25日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_PS_FreeCallIdToCid(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucCid
@@ -11041,23 +7710,7 @@ VOS_VOID AT_PS_FreeCallIdToCid(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_SetCid2CurrCall
- 功能描述  : 设置当前呼叫CID
- 输入参数  : usClientId - 端口ID
-             ucCallId  - 呼叫实体索引
-             enPdpType - PDP类型
-             ucCid     - CID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月20日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_PS_SetCid2CurrCall(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucCallId,
@@ -11096,22 +7749,7 @@ VOS_VOID AT_PS_SetCid2CurrCall(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_GetCidByCallType
- 功能描述  : 获取呼叫类型对应的CID
- 输入参数  : usClientId - 端口ID
-             ucCallId  - 呼叫实体索引
-             enPdpType - PDP类型
- 输出参数  : 无
- 返 回 值  : VOS_UINT8 - CID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月20日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 AT_PS_GetCidByCallType(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucCallId,
@@ -11146,23 +7784,7 @@ VOS_UINT8 AT_PS_GetCidByCallType(
     return ucCid;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_SetCallStateByType
- 功能描述  : 根据PDP类型设置呼叫状态
- 输入参数  : usClientId - 端口ID
-             ucCallId   - 呼叫实体索引
-             enPdpType  - PDP类型(IPv4, IPv6 or IPv4v6)
-             enPdpState - PDP状态
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月10日
-    作    者   : Y00213812
-    修改内容   : C50 IPv6 项目新增函数
-*****************************************************************************/
 VOS_VOID AT_PS_SetCallStateByType(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucCallId,
@@ -11199,22 +7821,7 @@ VOS_VOID AT_PS_SetCallStateByType(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_GetCallStateByType
- 功能描述  : 根据PDP类型获取呼叫状态, PDP类型必须IPv4或IPv6
- 输入参数  : usClientId - 端口ID
-             ucCallId   - 呼叫实体索引
-             enPdpType  - PDP类型(IPv4 or IPv6)
- 输出参数  : 无
- 返 回 值  : AT_PDP_STATE_ENUM_U8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月18日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 AT_PDP_STATE_ENUM_U8 AT_PS_GetCallStateByType(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucCallId,
@@ -11247,22 +7854,7 @@ AT_PDP_STATE_ENUM_U8 AT_PS_GetCallStateByType(
     return enPdpState;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_GetCallStateByCid
- 功能描述  : 根据CID获取呼叫状态
- 输入参数  : usClientId - 端口ID
-             ucCallId   - 呼叫实体索引
-             ucCid      - CID
- 输出参数  : 无
- 返 回 值  : AT_PDP_STATE_ENUM_U8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月18日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 AT_PDP_STATE_ENUM_U8 AT_PS_GetCallStateByCid(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucCallId,
@@ -11288,22 +7880,7 @@ AT_PDP_STATE_ENUM_U8 AT_PS_GetCallStateByCid(
     return AT_PDP_STATE_IDLE;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_IsUsrDialTypeDualStack
- 功能描述  : 判断是否双栈拨号
- 输入参数  : VOS_UINT16                          usClientId
-             VOS_UINT8                           ucCallId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月25日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  AT_PS_IsUsrDialTypeDualStack(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucCallId
@@ -11321,22 +7898,7 @@ VOS_UINT32  AT_PS_IsUsrDialTypeDualStack(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_ReportDCONN
- 功能描述  : 上报连接状态^DCONN
- 输入参数  : ucCid          - CID
-             ucPortIndex    - 端口号
-             enPdpType      - PDP类型
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_PS_ReportDCONN(
     VOS_UINT8                           ucCid,
     VOS_UINT8                           ucPortIndex,
@@ -11398,23 +7960,7 @@ VOS_VOID AT_PS_ReportDCONN(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_ReportDend
- 功能描述  : 上报连接状态^DEND
- 输入参数  : ucCid       - 用户使用的CID
-             ucPortIndex - 用户使用的端口索引(Client ID)
-             enPdpType   - PDP类型
-             enCause     - 错误码
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_PS_ReportDEND(
     VOS_UINT8                           ucCid,
     VOS_UINT8                           ucPortIndex,
@@ -11481,20 +8027,7 @@ VOS_VOID AT_PS_ReportDEND(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_GetRptConnResultFunc
- 功能描述  : 获取连接建立结果上报函数指针
- 输入参数  : ucUsrType - 用户类型
- 输出参数  : 无
- 返 回 值  : AT_PS_RPT_CONN_RSLT_FUNC
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月18日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 AT_PS_RPT_CONN_RSLT_FUNC AT_PS_GetRptConnResultFunc(AT_USER_TYPE ucUsrType)
 {
     AT_PS_REPORT_CONN_RESULT_STRU      *pstRptConnRsltFuncTblPtr = VOS_NULL_PTR;
@@ -11516,20 +8049,7 @@ AT_PS_RPT_CONN_RSLT_FUNC AT_PS_GetRptConnResultFunc(AT_USER_TYPE ucUsrType)
     return pRptConnRsltFunc;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_GetRptEndResultFunc
- 功能描述  : 获取连接断开结果上报函数指针
- 输入参数  : ucUsrType - 用户类型
- 输出参数  : 无
- 返 回 值  : AT_PS_RPT_END_RSLT_FUNC
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月18日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 AT_PS_RPT_END_RSLT_FUNC AT_PS_GetRptEndResultFunc(AT_USER_TYPE ucUsrType)
 {
     AT_PS_REPORT_END_RESULT_STRU       *pstRptEndRsltFuncTblPtr = VOS_NULL_PTR;
@@ -11551,25 +8071,7 @@ AT_PS_RPT_END_RSLT_FUNC AT_PS_GetRptEndResultFunc(AT_USER_TYPE ucUsrType)
     return pRptEndRsltFunc;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_PdpAddrProc
- 功能描述  : 处理IPv4地址参数
- 输入参数  : ucCallId      - 呼叫实体索引
-             pstDhcpConfig - DCHP信息
-             pstEvent      - 上报事件
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月10日
-    作    者   : Y00213812
-    修改内容   : C50 IPv6 项目新增函数
-  2.日    期   : 2012年08月07日
-    作    者   : f00179208
-    修改内容   : 问题单:DTS2015031000157, 新增第三个p-cscf地址
-*****************************************************************************/
 VOS_VOID AT_PS_PdpAddrProc(
     VOS_UINT8                           ucCallId,
     AT_DHCP_CONFIG_STRU                *pstDhcpConfig,
@@ -11668,25 +8170,7 @@ VOS_VOID AT_PS_PdpAddrProc(
     return;
 }
 
-/******************************************************************************
- 函 数 名  : AT_PS_ProcConnInd
- 功能描述  : 需要解析激活上下文，设置DHCP服务器
- 输入参数  : ucCallId - 呼叫实体索引
-             pstEvent - 事件信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月10日
-    作    者   : Y00213812
-    修改内容   : C50 IPv6 项目新增函数
-  2.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，EVENT结构替换
-
-******************************************************************************/
 VOS_VOID AT_PS_ProcConnInd(
     VOS_UINT8                           ucCallId,
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent
@@ -11725,21 +8209,7 @@ VOS_VOID AT_PS_ProcConnInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_SndCallConnectedResult
- 功能描述  : 连接建立状态上报
- 输入参数  : ucCallId  - 呼叫实体索引
-             enPdpType - PDP类型
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_PS_SndCallConnectedResult(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucCallId,
@@ -11770,22 +8240,7 @@ VOS_VOID AT_PS_SndCallConnectedResult(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_SndCallEndedResult
- 功能描述  : 上报连接状态^DEND
- 输入参数  : ucCallId  - 呼叫实体索引
-             enPdpType - PDP类型
-             enCause   - 错误码
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_PS_SndCallEndedResult(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucCallId,
@@ -11818,22 +8273,7 @@ VOS_VOID AT_PS_SndCallEndedResult(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_GenCallDialParam
- 功能描述  : 生成发起PS域呼叫使用的拨号参数
- 输入参数  : pstUsrDialParam  - 用户参数
-             ucCid            - CID
-             enPdpType        - PDP类型
- 输出参数  : pstCallDialParam - 呼叫参数
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月20日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_PS_GenCallDialParam(
     AT_DIAL_PARAM_STRU                 *pstCallDialParam,
     AT_DIAL_PARAM_STRU                 *pstUsrDialParam,
@@ -11851,21 +8291,7 @@ VOS_VOID AT_PS_GenCallDialParam(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_RegFCPoint
- 功能描述  : 注册流控点
- 输入参数  : ucCallId   - 拨号实体ID
-             pstEvent   - 事件信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月10日
-    作    者   : Y00213812
-    修改内容   : C50 IPv6 项目新增函数
-*****************************************************************************/
 VOS_VOID AT_PS_RegFCPoint(
     VOS_UINT8                           ucCallId,
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent
@@ -11903,21 +8329,7 @@ VOS_VOID AT_PS_RegFCPoint(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_DeRegFCPoint
- 功能描述  : 去注册流控点
- 输入参数  : ucCallId   - 拨号实体ID
-             pstEvent   - 事件信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月26日
-    作    者   : l60609
-    修改内容   : C50 IPv6 项目新增函数
-*****************************************************************************/
 VOS_VOID AT_PS_DeRegFCPoint(
     VOS_UINT8                           ucCallId,
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU *pstEvent
@@ -11955,26 +8367,7 @@ VOS_VOID AT_PS_DeRegFCPoint(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_SndDipcPdpActBearerTypeInd
- 功能描述  : AT向DIPC通道发送PDP激活消息
- 输入参数  : ucCid          ----  CID
-             pstEvent       ----  PsCallEventInfo
-             enBearerType   ----  BearerType
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月17日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年12月18日
-    作    者   : A00165503
-    修改内容   : C50 IPv6 项目
-*****************************************************************************/
 VOS_VOID  AT_PS_SndDipcPdpActBearerTypeInd(
     VOS_UINT8                           ucCid,
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent,
@@ -12019,27 +8412,7 @@ VOS_VOID  AT_PS_SndDipcPdpActBearerTypeInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_SndDipcPdpActInd
- 功能描述  : AT向DIPC通道发送PDP激活消息
- 输入参数  : usClientId     ----  CLIENT ID
-             ucCid          ----  CID
-             ucRabId        ----  RABID
-             enBearerType   ----  BearerType
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月17日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年12月18日
-    作    者   : A00165503
-    修改内容   : C50 IPv6 项目
-*****************************************************************************/
 VOS_VOID  AT_PS_SndDipcPdpActInd(
     VOS_UINT8                           ucCid,
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent,
@@ -12065,25 +8438,7 @@ VOS_VOID  AT_PS_SndDipcPdpActInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_SndDipcPdpDeactBearerTypeInd
- 功能描述  : AT向DIPC通道发送PDP去激活消息
- 输入参数  : TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU *pstEvent,
-             DIPC_BEARER_TYPE_ENUM_UINT8         enBearerType
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月17日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年12月18日
-    作    者   : A00165503
-    修改内容   : C50 IPv6 项目
-*****************************************************************************/
 VOS_VOID  AT_PS_SndDipcPdpDeactBearerTypeInd(
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU *pstEvent,
     DIPC_BEARER_TYPE_ENUM_UINT8         enBearerType
@@ -12123,26 +8478,7 @@ VOS_VOID  AT_PS_SndDipcPdpDeactBearerTypeInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_SndDipcPdpDeactInd
- 功能描述  : AT向DIPC通道发送PDP去激活消息
- 输入参数  : VOS_UINT8                           ucCid,
-             TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU *pstEvent,
-             TAF_PDP_TYPE_ENUM_UINT8             enPdpType
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月17日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年12月18日
-    作    者   : A00165503
-    修改内容   : C50 IPv6 项目
-*****************************************************************************/
 VOS_VOID  AT_PS_SndDipcPdpDeactInd(
     VOS_UINT8                           ucCid,
     TAF_PS_CALL_PDP_DEACTIVATE_IND_STRU *pstEvent,
@@ -12166,22 +8502,7 @@ VOS_VOID  AT_PS_SndDipcPdpDeactInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_SndRnicIpv4PdpActInd
- 功能描述  : 给RNIC发送PDP激活事件, IPv4类型
- 输入参数  : VOS_UINT8                           ucCid
-             TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月26日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_PS_SndRnicIpv4PdpActInd(
     VOS_UINT8                           ucCid,
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU *pstEvent
@@ -12235,22 +8556,7 @@ VOS_VOID AT_PS_SndRnicIpv4PdpActInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_SndRnicIpv6PdpActInd
- 功能描述  : 给RNIC发送PDP激活事件, IPv6类型
- 输入参数  : VOS_UINT8                           ucCid
-             TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月26日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_PS_SndRnicIpv6PdpActInd(
     VOS_UINT8                           ucCid,
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent
@@ -12304,23 +8610,7 @@ VOS_VOID AT_PS_SndRnicIpv6PdpActInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_SndRnicPdpActInd
- 功能描述  : 根据PDP类型给RNIC发送激活消息
- 输入参数  : VOS_UINT8                           ucCid
-             TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent
-             TAF_PDP_TYPE_ENUM_UINT8             enPdpType
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月7日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_PS_SndRnicPdpActInd(
     VOS_UINT8                           ucCid,
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent,
@@ -12343,22 +8633,7 @@ VOS_VOID AT_PS_SndRnicPdpActInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_SndRnicPdpDeactInd
- 功能描述  : APP端口拨号时通知虚拟网卡
- 输入参数  : VOS_UINT8                           ucRabId
-             VOS_UINT8                           ucRmNetId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月26日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_PS_SndRnicPdpDeactInd(
     VOS_UINT8                           ucCid,
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU *pstEvent,
@@ -12411,23 +8686,7 @@ VOS_VOID AT_PS_SndRnicPdpDeactInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_ActivateRmNet
- 功能描述  : 给网卡发送PDP激活事件
- 输入参数  : VOS_UINT8                           ucCallId
-             TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent
-             TAF_PDP_TYPE_ENUM_UINT8             enPdpType
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月26日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_PS_ActivateRmNet(
     VOS_UINT8                           ucCallId,
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent,
@@ -12466,23 +8725,7 @@ VOS_VOID AT_PS_ActivateRmNet(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_DeactivateRmNet
- 功能描述  : 给网卡发送PDP去激活事件
- 输入参数  : VOS_UINT8                           ucCallId
-             TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU *pstEvent
-             TAF_PDP_TYPE_ENUM_UINT8             enPdpType
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月26日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_PS_DeactivateRmNet(
     VOS_UINT8                           ucCallId,
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU *pstEvent,
@@ -12522,21 +8765,7 @@ VOS_VOID AT_PS_DeactivateRmNet(
 }
 
 #if (FEATURE_ON == FEATURE_IPV6)
-/*****************************************************************************
- 函 数 名  : AT_PS_IsIpv6CapabilityValid
- 功能描述  : 判断ipv6能力有效
- 输入参数  : VOS_UINT8 ucCapability
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月7日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_PS_IsIpv6CapabilityValid(VOS_UINT8 ucCapability)
 {
     if ((AT_IPV6_CAPABILITY_IPV4_ONLY == ucCapability)
@@ -12549,21 +8778,7 @@ VOS_UINT32 AT_PS_IsIpv6CapabilityValid(VOS_UINT8 ucCapability)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_IsIpv6Support
- 功能描述  : 判断是否支持IPV6
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月2日
-    作    者   : L60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_PS_IsIpv6Support(VOS_VOID)
 {
     VOS_UINT8                           ucIpv6Capability;
@@ -12578,22 +8793,7 @@ VOS_UINT32 AT_PS_IsIpv6Support(VOS_VOID)
 
     return VOS_FALSE;
 }
-/*****************************************************************************
- 函 数 名  : AT_PS_GenIpv6LanAddrWithRadomIID
- 功能描述  : 获取IPv6动态全局地址
- 输入参数  : pucPrefix          - 地址前缀
-             ulPrefixByteLen    - 地址前缀字节长度
-             pucIpv6LanAddr     - IPv6地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月18日
-    作    者   : A00165503
-    修改内容   : C50 IPv6 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_PS_GenIpv6LanAddrWithRadomIID(
     VOS_UINT8                          *pucPrefix,
     VOS_UINT32                          ulPrefixByteLen,
@@ -12635,25 +8835,7 @@ VOS_UINT32 AT_PS_GenIpv6LanAddrWithRadomIID(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_SaveIPv6Dns
- 功能描述  : 保存IPV6的DNS到PDP实体中
- 输入参数  : ucCallId   - 拨号实体ID
-             pstEvent   - 事件信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月10日
-    作    者   : Y00213812
-    修改内容   : C50 IPv6 项目新增函数
-  2.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，EVENT结构替换
-
-*****************************************************************************/
 VOS_VOID  AT_PS_SaveIPv6Dns(
     VOS_UINT8                           ucCallId,
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent
@@ -12666,7 +8848,6 @@ VOS_VOID  AT_PS_SaveIPv6Dns(
     pstCallEntity->stIpv6DhcpInfo.bitOpIpv6PriDns    = VOS_FALSE;
     pstCallEntity->stIpv6DhcpInfo.bitOpIpv6SecDns    = VOS_FALSE;
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     /* 保存主副DNS，收到RA参数时需要，激活网卡时需要通知DRV */
     if (VOS_TRUE == pstEvent->stIpv6Dns.bitOpPrimDnsAddr)
     {
@@ -12683,28 +8864,10 @@ VOS_VOID  AT_PS_SaveIPv6Dns(
                    AT_MAX_IPV6_DNS_LEN);
         pstCallEntity->stIpv6DhcpInfo.bitOpIpv6SecDns = VOS_TRUE;
     }
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_SaveIPv6Pcscf
- 功能描述  : 保存IPV6的Pcscf到PDP实体中
- 输入参数  : ucCallId   - 拨号实体ID
-             pstEvent   - 事件信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月10日
-    作    者   : Y00213812
-    修改内容   : C50 IPv6 项目新增函数
-  2.日    期   : 2012年08月07日
-    作    者   : f00179208
-    修改内容   : 问题单:DTS2015031000157, 新增第三个p-cscf地址
-*****************************************************************************/
 VOS_VOID  AT_PS_SaveIPv6Pcscf(
     VOS_UINT8                           ucCallId,
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent
@@ -12747,22 +8910,7 @@ VOS_VOID  AT_PS_SaveIPv6Pcscf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_ProcConnectedIpv6Addr
- 功能描述  : 处理IPv6地址
- 输入参数  : ucCallId   - 拨号实体ID
-             pstEvent   - 事件信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月10日
-    作    者   : Y00213812
-    修改内容   : C50 IPv6 项目新增函数
-
-*****************************************************************************/
 VOS_VOID AT_PS_ProcConnectedIpv6Addr(
     VOS_UINT8                           ucCallId,
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent
@@ -12788,24 +8936,7 @@ VOS_VOID AT_PS_ProcConnectedIpv6Addr(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_ProcIpv6RaInfo
- 功能描述  : 收到Router Advertisement IP报文, 进行处理和分发
- 输入参数  : pstRaInfoNotifyInd - RA报文信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月10日
-    作    者   : Y00213812
-    修改内容   : C50 IPv6 项目新增函数
-
-  2.日    期   : 2013年01月21日
-    作    者   : A00165503
-    修改内容   : DTS2013011803709: IPv6前缀处理优化
-*****************************************************************************/
 VOS_VOID AT_PS_ProcIpv6RaInfo(TAF_PS_IPV6_INFO_IND_STRU *pstRaInfoNotifyInd)
 {
     AT_PS_CALL_ENTITY_STRU             *pstCallEntity = VOS_NULL_PTR;
@@ -12899,21 +9030,7 @@ VOS_VOID AT_PS_ProcIpv6RaInfo(TAF_PS_IPV6_INFO_IND_STRU *pstRaInfoNotifyInd)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_MatchIpv4v6ConnFailFallbackCause
- 功能描述  : 匹配IPv4v6连接建立失败出发回退处理流程的原因值
- 输入参数  : enCause   - 错误码
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 匹配成功
-             VOS_FALSE - 匹配失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月18日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_PS_MatchIpv4v6ConnFailFallbackCause(
     TAF_PS_CAUSE_ENUM_UINT32            enCause
 )
@@ -12945,22 +9062,7 @@ VOS_UINT32 AT_PS_MatchIpv4v6ConnFailFallbackCause(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_SetupSingleStackConn
- 功能描述  : 建立单栈连接
- 输入参数  : ucCallId  - 呼叫实体索引
-             enPdpType - PDP类型(IPv4 or IPv6)
- 输出参数  : 无
- 返 回 值  : VOS_OK    - 成功
-             VOS_ERR   - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月18日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_PS_SetupSingleStackConn(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucCallId,
@@ -13022,22 +9124,7 @@ VOS_UINT32 AT_PS_SetupSingleStackConn(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_HangupSingleStackConn
- 功能描述  : 断开单栈连接
- 输入参数  : ucCallId  - 呼叫实体索引
-             enPdpType - 断开的PDP类型(IPv4 or IPv6)
- 输出参数  : 无
- 返 回 值  : VOS_OK    - 成功
-             VOS_ERR   - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月18日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_PS_HangupSingleStackConn(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucCallId,
@@ -13083,28 +9170,7 @@ VOS_UINT32 AT_PS_HangupSingleStackConn(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_ProcDualStackCallConn
- 功能描述  : PDP激活成功后的回退处理
- 输入参数  : ucCallId   - 拨号实体ID
-             pstEvent   - 事件信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月10日
-    作    者   : Y00213812
-    修改内容   : C50 IPv6 项目新增函数
-  2.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，EVENT结构替换
-
-  3.日    期   : 2015年7月17日
-    作    者   : Y00213812
-    修改内容   : CDMA模式下电信不支持双承载双栈
-*****************************************************************************/
 VOS_VOID AT_PS_ProcDualStackCallConn(
     VOS_UINT8                           ucCallId,
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent
@@ -13192,25 +9258,7 @@ VOS_VOID AT_PS_ProcDualStackCallConn(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_ProcIpv4ConnSuccFallback
- 功能描述  : 处理IPv4连接建立回退流程
- 输入参数  : ucCallId - 呼叫实体索引
-             pstEvent - 呼叫事件
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月18日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-  2.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，EVENT结构替换
-
-*****************************************************************************/
 VOS_VOID AT_PS_ProcIpv4ConnSuccFallback(
     VOS_UINT8                           ucCallId,
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent
@@ -13256,25 +9304,7 @@ VOS_VOID AT_PS_ProcIpv4ConnSuccFallback(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_ProcIpv6ConnSuccFallback
- 功能描述  : 处理IPv6连接建立回退流程
- 输入参数  : ucCallId - 呼叫实体索引
-             pstEvent - 呼叫事件
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月18日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-  2.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，EVENT结构替换
-
-*****************************************************************************/
 VOS_VOID AT_PS_ProcIpv6ConnSuccFallback(
     VOS_UINT8                           ucCallId,
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent
@@ -13308,22 +9338,7 @@ VOS_VOID AT_PS_ProcIpv6ConnSuccFallback(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_ProcIpv4ConnFailFallback
- 功能描述  : 处理IPv4连接失败回退流程
- 输入参数  : ucCallId - 呼叫实体索引
-             pstEvent - 呼叫事件
- 输出参数  : 无
- 返 回 值  : VOS_OK   - 成功
-             VOS_ERR  - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月18日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_PS_ProcIpv4ConnFailFallback(
     VOS_UINT8                           ucCallId,
     TAF_PS_CALL_PDP_ACTIVATE_REJ_STRU  *pstEvent
@@ -13356,22 +9371,7 @@ VOS_UINT32 AT_PS_ProcIpv4ConnFailFallback(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_ProcIpv4v6ConnFailFallback
- 功能描述  : 处理IPv4v6连接失败回退流程
- 输入参数  : ucCallId - 呼叫实体索引
-             pstEvent - 呼叫事件
- 输出参数  : 无
- 返 回 值  : VOS_OK   - 成功
-             VOS_ERR  - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月18日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_PS_ProcIpv4v6ConnFailFallback(
     VOS_UINT8                           ucCallId,
     TAF_PS_CALL_PDP_ACTIVATE_REJ_STRU  *pstEvent
@@ -13402,25 +9402,7 @@ VOS_UINT32 AT_PS_ProcIpv4v6ConnFailFallback(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : AT_PS_ProcIpv4CallConnected
- 功能描述  : IPv4激活处理
- 输入参数  : ucCallId - 呼叫实体索引
-             pstEvent - 上报事件
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : Y00213812
-    修改内容   : C50 IPv6 项目新生成函数
-  2.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，EVENT结构替换
-
-*****************************************************************************/
 VOS_VOID AT_PS_ProcIpv4CallConnected(
     VOS_UINT8                           ucCallId,
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent
@@ -13459,21 +9441,7 @@ VOS_VOID AT_PS_ProcIpv4CallConnected(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_ProcIpv4CallReject
- 功能描述  : 处理IPv4的PDP激活被拒事件
- 输入参数  : ucCallId   - 拨号实体ID
-             pstEvent   - 事件信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月10日
-    作    者   : Y00213812
-    修改内容   : C50 IPv6 项目新增函数
-*****************************************************************************/
 VOS_VOID AT_PS_ProcIpv4CallReject(
     VOS_UINT8                           ucCallId,
     TAF_PS_CALL_PDP_ACTIVATE_REJ_STRU  *pstEvent
@@ -13534,21 +9502,7 @@ VOS_VOID AT_PS_ProcIpv4CallReject(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_ProcIpv4CallEnded
- 功能描述  : 处理IPv4的PDP去激活事件
- 输入参数  : ucCallId - PDP实体ID
-             pstEvent - 上报事件
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月10日
-    作    者   : Y00213812
-    修改内容   : C50 IPv6 项目新增函数
-*****************************************************************************/
 VOS_VOID AT_PS_ProcIpv4CallEnded(
     VOS_UINT8                           ucCallId,
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU *pstEvent
@@ -13609,21 +9563,7 @@ VOS_VOID AT_PS_ProcIpv4CallEnded(
 }
 
 #if (FEATURE_ON == FEATURE_IPV6)
-/*****************************************************************************
- 函 数 名  : AT_PS_ProcIpv6CallConnected
- 功能描述  : 处理IPV6的PDP激活成功的事件
- 输入参数  : ucCallId - PDP实体ID
-             pstEvent - 上报事件
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月10日
-    作    者   : Y00213812
-    修改内容   : C50 IPv6 项目新增函数
-*****************************************************************************/
 VOS_VOID AT_PS_ProcIpv6CallConnected(
     VOS_UINT8                           ucCallId,
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent
@@ -13657,21 +9597,7 @@ VOS_VOID AT_PS_ProcIpv6CallConnected(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_AppIpv4v6ActCnfProc
- 功能描述  : 处理IPv4v6的PDP激活成功的事件
- 输入参数  : ucCallId - PDP实体ID
-             pstEvent - 上报事件
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月10日
-    作    者   : Y00213812
-    修改内容   : C50 IPv6 项目新增函数
-*****************************************************************************/
 VOS_VOID AT_PS_ProcIpv4v6CallConnected(
     VOS_UINT8                           ucCallId,
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent
@@ -13705,21 +9631,7 @@ VOS_VOID AT_PS_ProcIpv4v6CallConnected(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_ProcIpv6CallReject
- 功能描述  : 处理IPv6的PDP激活被拒事件
- 输入参数  : ucCallId - PDP实体ID
-             pstEvent - 上报事件
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月10日
-    作    者   : Y00213812
-    修改内容   : C50 IPv6 项目新增函数
-*****************************************************************************/
 VOS_VOID AT_PS_ProcIpv6CallReject(
     VOS_UINT8                           ucCallId,
     TAF_PS_CALL_PDP_ACTIVATE_REJ_STRU  *pstEvent
@@ -13753,21 +9665,7 @@ VOS_VOID AT_PS_ProcIpv6CallReject(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_ProcIpv4v6CallReject
- 功能描述  : 处理IPv4v6的PDP激活被拒事件
- 输入参数  : pstAppPdpEntity - PDP实体
-             pstEvent        - 上报事件
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月10日
-    作    者   : Y00213812
-    修改内容   : C50 IPv6 项目新增函数
-*****************************************************************************/
 VOS_VOID AT_PS_ProcIpv4v6CallReject(
     VOS_UINT8                           ucCallId,
     TAF_PS_CALL_PDP_ACTIVATE_REJ_STRU  *pstEvent
@@ -13813,21 +9711,7 @@ VOS_VOID AT_PS_ProcIpv4v6CallReject(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_ProcIpv6CallEnded
- 功能描述  : 处理IPv6的PDP去激活事件
- 输入参数  : ucCallId - PDP实体ID
-             pstEvent - 上报事件
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月10日
-    作    者   : Y00213812
-    修改内容   : C50 IPv6 项目新增函数
-*****************************************************************************/
 VOS_VOID AT_PS_ProcIpv6CallEnded(
     VOS_UINT8                           ucCallId,
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU *pstEvent
@@ -13873,21 +9757,7 @@ VOS_VOID AT_PS_ProcIpv6CallEnded(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_ProcIpv4v6CallEnded
- 功能描述  : 处理IPv4v6的PDP去激活事件
- 输入参数  : ucCallId - PDP实体ID
-             pstEvent - 上报事件
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月10日
-    作    者   : Y00213812
-    修改内容   : C50 IPv6 项目新增函数
-*****************************************************************************/
 VOS_VOID AT_PS_ProcIpv4v6CallEnded(
     VOS_UINT8                           ucCallId,
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU *pstEvent
@@ -13928,20 +9798,7 @@ VOS_VOID AT_PS_ProcIpv4v6CallEnded(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : AT_PS_ProcCallConnectedEvent
- 功能描述  : 处理PS域呼叫建立事件
- 输入参数  : pstEvent - CALL_PDP_ACTIVATE_CNF事件指针
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_PS_ProcCallConnectedEvent(
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent
 )
@@ -13984,20 +9841,7 @@ VOS_VOID AT_PS_ProcCallConnectedEvent(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_ProcCallRejectEvent
- 功能描述  : 处理PS域呼叫失败事件
- 输入参数  : pstEvent - CALL_PDP_ACTIVATE_REJ事件指针
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_PS_ProcCallRejectEvent(
     TAF_PS_CALL_PDP_ACTIVATE_REJ_STRU   *pstEvent
 )
@@ -14040,20 +9884,7 @@ VOS_VOID AT_PS_ProcCallRejectEvent(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_ProcCallEndedEvent
- 功能描述  : 处理PS域呼叫断开事件
- 输入参数  : pstEvent - PDP_DEACTIVATE_IND/PDP_DEACTIVATE_CNF事件指针
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_PS_ProcCallEndedEvent(
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU *pstEvent
 )
@@ -14096,20 +9927,7 @@ VOS_VOID AT_PS_ProcCallEndedEvent(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_ProcCallOrigCnfEvent
- 功能描述  : 处理PS_CALL_ORIG_CNF事件
- 输入参数  : pstCallOrigCnf - PS_CALL_ORIG_CNF事件指针
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_PS_ProcCallOrigCnfEvent(TAF_PS_CALL_ORIG_CNF_STRU *pstCallOrigCnf)
 {
     /* (1) 将CID翻译成呼叫实体索引
@@ -14180,20 +9998,7 @@ VOS_VOID AT_PS_ProcCallOrigCnfEvent(TAF_PS_CALL_ORIG_CNF_STRU *pstCallOrigCnf)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_ProcCallEndCnfEvent
- 功能描述  : 处理PS_CALL_END_CNF事件
- 输入参数  : pstCallOrigCnf - PS_CALL_ORIG_CNF事件指针
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_PS_ProcCallEndCnfEvent(TAF_PS_CALL_END_CNF_STRU *pstCallEndCnf)
 {
     /* (1) 将CID翻译成呼叫实体索引
@@ -14229,22 +10034,7 @@ VOS_VOID AT_PS_ProcCallEndCnfEvent(TAF_PS_CALL_END_CNF_STRU *pstCallEndCnf)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_ProcCallModifyEvent
- 功能描述  : APP端口处理modify消息
- 输入参数  : VOS_UINT8                           ucIndex
-             TAF_PS_CALL_PDP_MODIFY_CNF_STRU    *pstEvent
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月7日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_PS_ProcCallModifyEvent(
     VOS_UINT8                           ucIndex,
     TAF_PS_CALL_PDP_MODIFY_CNF_STRU    *pstEvent
@@ -14290,28 +10080,7 @@ VOS_UINT32 AT_PS_ProcCallModifyEvent(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_RegHsicFCPoint
- 功能描述  : 注册HISC通道流控点
- 输入参数  : ucCid      - CID
-             pstEvent   - 事件信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月12日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-  2.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，EVENT结构替换,直接处理激活事件上报和流控点注册
-  3.日    期   : 2013年10月08日
-    作    者   : j00174725
-    修改内容   : TQE
-
-*****************************************************************************/
 VOS_VOID AT_PS_RegHsicFCPoint(
     VOS_UINT8                           ucCid,
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent
@@ -14447,22 +10216,7 @@ VOS_VOID AT_PS_RegHsicFCPoint(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_DeRegHsicFCPoint
- 功能描述  : 去注册hsic流控点
- 输入参数  : VOS_UINT8                           ucCid
-             TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU *pstEvent
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月26日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_PS_DeRegHsicFCPoint(
     VOS_UINT8                           ucCid,
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU *pstEvent
@@ -14524,22 +10278,7 @@ VOS_VOID AT_PS_DeRegHsicFCPoint(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_RegAppFCPoint
- 功能描述  : 注册APP通道流控点
- 输入参数  : VOS_UINT8                           ucCid
-             TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月24日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_PS_RegAppFCPoint(
     VOS_UINT8                           ucCid,
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent
@@ -14586,22 +10325,7 @@ VOS_VOID AT_PS_RegAppFCPoint(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_DeRegAppFCPoint
- 功能描述  : 去注册APP通道流控点
- 输入参数  : VOS_UINT8                           ucCid
-             TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU *pstEvent
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月24日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_PS_DeRegAppFCPoint(
     VOS_UINT8                           ucCid,
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU *pstEvent
@@ -14634,21 +10358,7 @@ VOS_VOID AT_PS_DeRegAppFCPoint(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_AllocCallEntity
- 功能描述  : 分配PS域呼叫实体
- 输入参数  : usClientId - 端口ID
- 输出参数  : pucCallId - 呼叫实体索引
- 返 回 值  : VOS_OK    - 成功
-             VOS_ERR   - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_PS_AllocCallEntity(
     VOS_UINT16                          usClientId,
     VOS_UINT8                          *pucCallId
@@ -14679,21 +10389,7 @@ VOS_UINT32 AT_PS_AllocCallEntity(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_FreeCallEntity
- 功能描述  : 释放PS域呼叫实体
- 输入参数  : usClientId - 端口号
-             ucCallId - 呼叫实体索引
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_PS_FreeCallEntity(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucCallId
@@ -14729,22 +10425,7 @@ VOS_VOID AT_PS_FreeCallEntity(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_IsLinkGoingUp
- 功能描述  : 判断拨号连接是否已建立/正在建立
- 输入参数  : usClientId - 端口ID
-             ucCallId  - 呼叫实体索引
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 连接已建立/正在建立
-             VOS_FALSE - 连接未建立
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_PS_IsLinkGoingUp(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucCallId
@@ -14779,22 +10460,7 @@ VOS_UINT32 AT_PS_IsLinkGoingUp(
     return ulLinkUpFlg;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_IsLinkGoingDown
- 功能描述  : 判断拨号连接是否正在断开
- 输入参数  : usClientId - 端口ID
-             ucCallId   - 呼叫实体索引
- 输出参数  : 无
- 返 回 值  : VOS_TRUE
-             VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_PS_IsLinkGoingDown(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucCallId
@@ -14827,22 +10493,7 @@ VOS_UINT32 AT_PS_IsLinkGoingDown(
     return ulLinkDownFlg;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_IsLinkDown
- 功能描述  : 判断拨号连接是否已经断开
- 输入参数  : usClientId - 端口ID
-             ucCallId   - 呼叫实体索引
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 连接不存在
-             VOS_FALSE - 连接存在
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_PS_IsLinkDown(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucCallId
@@ -14875,21 +10526,7 @@ VOS_UINT32 AT_PS_IsLinkDown(
     return ulLinkDownFlg;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_ReportCurrCallConnState
- 功能描述  : 上报当前已建立的拨号连接状态
- 输入参数  : usClientId - 端口ID
-             ucCallId   - 呼叫实体索引
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_PS_ReportCurrCallConnState(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucCallId
@@ -14935,21 +10572,7 @@ VOS_VOID AT_PS_ReportCurrCallConnState(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_ReportCurrCallEndState
- 功能描述  : 上报当前已断开的拨号连接状态
- 输入参数  : usClientId - 端口ID
-             ucCallId   - 呼叫实体索引
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_PS_ReportCurrCallEndState(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucCallId
@@ -14998,20 +10621,7 @@ VOS_VOID AT_PS_ReportCurrCallEndState(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_ReportAllCallEndState
- 功能描述  : 上报所有拨号连接断开状态
- 输入参数  : ucIndex - 端口号(ClientId)索引
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_PS_ReportAllCallEndState(VOS_UINT8 ucIndex)
 {
     /* (1) 根据用户类型查表, 获取连接断开状态上报函数指针
@@ -15052,21 +10662,7 @@ VOS_VOID AT_PS_ReportAllCallEndState(VOS_UINT8 ucIndex)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_ValidateDialParam
- 功能描述  : 拨号参数检查
- 输入参数  : ucIndex    - 端口号(ClientId)索引
- 输出参数  : 无
- 返 回 值  : AT_SUCCESS - 正确
-             OTHER CODE - 错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_PS_ValidateDialParam(VOS_UINT8 ucIndex)
 {
     AT_PS_DATA_CHANL_CFG_STRU          *pstChanCfg = VOS_NULL_PTR;
@@ -15142,24 +10738,7 @@ VOS_UINT32 AT_PS_ValidateDialParam(VOS_UINT8 ucIndex)
     return AT_SUCCESS;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_ParseUsrInfo
- 功能描述  : 获取用户信息
- 输入参数  : ucIndex     - 端口号(ClientId)索引
- 输出参数  : pstUserInfo - 用户信息
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年5月27日
-    作    者   : l00198894
-    修改内容   : TSTS
-*****************************************************************************/
 VOS_VOID AT_PS_ParseUsrInfo(
     VOS_UINT8                           ucIndex,
     AT_PS_USER_INFO_STRU               *pstUserInfo
@@ -15204,21 +10783,7 @@ VOS_VOID AT_PS_ParseUsrInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_ParseUsrDialParam
- 功能描述  : 获取用户拨号参数信息
- 输入参数  : ucIndex         - 端口号(ClientId)索引
- 输出参数  : pstUsrDialParam - 拨号参数信息
- 返 回 值  : VOS_OK          - 正确
-             VOS_ERR         - 错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_PS_ParseUsrDialParam(
     VOS_UINT8                           ucIndex,
     AT_DIAL_PARAM_STRU                 *pstUsrDialParam
@@ -15316,23 +10881,7 @@ VOS_UINT32 AT_PS_ParseUsrDialParam(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_SetCurrCallType
- 功能描述  : 设置当前呼叫类型
- 输入参数  : VOS_UINT16                          usClientId
-             VOS_UINT8                           ucCallId
-             TAF_PDP_TYPE_ENUM_UINT8             enPdpType
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月25日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_PS_SetCurrCallType(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucCallId,
@@ -15348,22 +10897,7 @@ VOS_VOID AT_PS_SetCurrCallType(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_GetCurrCallType
- 功能描述  : 获取当前呼叫类型
- 输入参数  : VOS_UINT16                          usClientId
-             VOS_UINT8                           ucCallId
- 输出参数  : 无
- 返 回 值  : TAF_PDP_TYPE_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月25日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_PDP_TYPE_ENUM_UINT8 AT_PS_GetCurrCallType(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucCallId
@@ -15376,22 +10910,7 @@ TAF_PDP_TYPE_ENUM_UINT8 AT_PS_GetCurrCallType(
     return pstCallEntity->enCurrPdpType;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_TransferQosPara
- 功能描述  : QOS参数转化TAF_PS_PDP_QOS_QUERY_PARA_STRU-->TAF_PS_PDP_QOS_SET_PARA_STRU
- 输入参数  : VOS_UINT8                           ucCid,
-             TAF_PS_PDP_QOS_QUERY_PARA_STRU     *pstQosQueryPara,
- 输出参数  : TAF_PS_PDP_QOS_SET_PARA_STRU       *pstQosSetPara
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月1日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_PS_TransferQosPara(
     VOS_UINT8                           ucCid,
     TAF_PS_PDP_QOS_QUERY_PARA_STRU     *pstQosQueryPara,
@@ -15496,23 +11015,7 @@ VOS_VOID AT_PS_TransferQosPara(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_SetQosPara
- 功能描述  : 设置拨号的QOS参数
- 输入参数  : VOS_UINT16                          usClientId,
-             VOS_UINT8                           ucUserCid,
-             VOS_UINT8                           ucActCid
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月29日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_PS_SetQosPara(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucUserCid,
@@ -15574,23 +11077,7 @@ VOS_UINT32 AT_PS_SetQosPara(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_SetupCall
- 功能描述  : 建立PS域呼叫
- 输入参数  : usClientId       - 端口ID
-             ucCallId         - 呼叫实体索引
-             pstCallDialParam - 呼叫拨号参数
- 输出参数  : 无
- 返 回 值  : VOS_OK           - 成功
-             VOS_ERR          - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_PS_SetupCall(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucCallId,
@@ -15649,22 +11136,7 @@ VOS_UINT32 AT_PS_SetupCall(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_HangupCall
- 功能描述  : 挂断PS域呼叫
- 输入参数  : usClientId       - 端口ID
-             ucCallId - 呼叫实体索引
- 输出参数  : 无
- 返 回 值  : VOS_OK   - 成功
-             VOS_ERR  - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_PS_HangupCall(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucCallId
@@ -15724,22 +11196,7 @@ VOS_UINT32 AT_PS_HangupCall(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_ProcConflictDialUpWithCurrCall
- 功能描述  : 处理拨号连接建立冲突
- 输入参数  : ucIndex  - 端口号(ClientId)索引
-             ucCallId - 呼叫实体索引
- 输出参数  : 无
- 返 回 值  : VOS_OK   - 成功
-             VOS_ERR  - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_PS_ProcConflictDialUpWithCurrCall(
     VOS_UINT8                           ucIndex,
     VOS_UINT8                           ucCallId
@@ -15774,22 +11231,7 @@ VOS_UINT32 AT_PS_ProcConflictDialUpWithCurrCall(
     return VOS_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_ProcDialUp
- 功能描述  : 建立拨号连接
- 输入参数  : ucIndex    - 端口号(ClientId)索引
- 输出参数  : 无
- 返 回 值  : AT_OK      - 上报OK
-             AT_ERROR   - 上报ERROR
-             AT_SUCCESS - 不上报
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_PS_ProcDialUp(VOS_UINT8 ucIndex)
 {
     /* (1) 将CID翻译成呼叫实体索引(CallId)
@@ -15882,22 +11324,7 @@ VOS_UINT32 AT_PS_ProcDialUp(VOS_UINT8 ucIndex)
     return AT_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_ProcDialUp
- 功能描述  : 断开拨号连接
- 输入参数  : ucIndex    - 端口号(ClientId)索引
- 输出参数  : 无
- 返 回 值  : AT_OK      - 上报OK
-             AT_ERROR   - 上报ERROR
-             AT_SUCCESS - 不上报
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_PS_ProcDialDown(VOS_UINT8 ucIndex)
 {
     /* (1) 将CID翻译成呼叫实体索引(CallId)
@@ -15958,20 +11385,7 @@ VOS_UINT32 AT_PS_ProcDialDown(VOS_UINT8 ucIndex)
     return AT_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_ProcDialCmd
- 功能描述  : 处理拨号命令
- 输入参数  : ucIndex  - 端口号(ClientId)索引
- 输出参数  : 无
- 返 回 值  : AT错误码 - 解析器根据错误码上报结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_PS_ProcDialCmd(VOS_UINT8 ucIndex)
 {
     VOS_UINT32                          ulRslt;
@@ -15999,25 +11413,7 @@ VOS_UINT32 AT_PS_ProcDialCmd(VOS_UINT8 ucIndex)
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_ProcSharePdpStateChange
- 功能描述  : PDP状态变化时，Share PDP特性相关的处理
- 输入参数  : TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU *pstEvent,
-             TAF_PDP_TYPE_ENUM_UINT8             enPdpType
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月7日
-    作    者   : z00214637
-    修改内容   : V3R3 Share-PDP项目新增
-
-  2.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，函数拆为激活和去激活处理
-*****************************************************************************/
 VOS_VOID  AT_PS_ProcDeactSharePdpState(
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU *pstEvent,
     TAF_PDP_TYPE_ENUM_UINT8             enPdpType
@@ -16061,25 +11457,7 @@ VOS_VOID  AT_PS_ProcDeactSharePdpState(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_ProcActSharePdpState
- 功能描述  : PDP状态变化为激活时，Share PDP特性相关的处理
- 输入参数  : TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent,
-             TAF_PDP_TYPE_ENUM_UINT8             enPdpType
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月7日
-    作    者   : z00214637
-    修改内容   : V3R3 Share-PDP项目新增
-
-  2.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，函数拆为激活和去激活处理
-*****************************************************************************/
 VOS_VOID  AT_PS_ProcActSharePdpState(
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent,
     TAF_PDP_TYPE_ENUM_UINT8             enPdpType
@@ -16149,21 +11527,7 @@ VOS_VOID  AT_PS_ProcActSharePdpState(
 }
 
 #if (FEATURE_ON == FEATURE_IPV6)
-/*****************************************************************************
- 函 数 名  : AT_PS_ProcSharePdpIpv6RaInfo
- 功能描述  : Share-PDP特性开启情况下，收到Router Advertisement IP报文, 存储相应PDN信息
- 输入参数  : pstRaInfoNotifyInd         - RA报文信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月6日
-    作    者   : L47619
-    修改内容   : V3R3 Share-PDP项目新增
-
-*****************************************************************************/
 VOS_VOID AT_PS_ProcSharePdpIpv6RaInfo(
     TAF_PS_IPV6_INFO_IND_STRU *pstRaInfoNotifyInd
 )
@@ -16250,21 +11614,7 @@ VOS_VOID AT_PS_ProcSharePdpIpv6RaInfo(
 }
 #endif
 
-/******************************************************************************
- 函 数 名  : AT_PS_SaveRnicPdpDhcpPara
- 功能描述  : 收到NDIS PDP激活成功消息后，保存DHCP信息到APP PDP实体中
- 输入参数  : TAF_PDP_TYPE_ENUM_UINT8             ucPdpType,
-             TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月5日
-    作    者   : z00214637
-    修改内容   : 新生成函数
-******************************************************************************/
 VOS_VOID AT_PS_SaveRnicPdpDhcpPara(
     TAF_PDP_TYPE_ENUM_UINT8             enPdpType,
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent
@@ -16333,20 +11683,7 @@ VOS_VOID AT_PS_SaveRnicPdpDhcpPara(
     }
 }
 
-/******************************************************************************
- 函 数 名  : AT_PS_ResetRnicPdpDhcpPara
- 功能描述  : 收到NDIS PDP去激活成功消息后，重置AppPdpEntity
- 输入参数  : ucPdpType - PDP类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月5日
-    作    者   : z00214637
-    修改内容   : 新生成函数
-******************************************************************************/
 VOS_VOID AT_PS_ResetRnicPdpDhcpPara(
     TAF_PDP_TYPE_ENUM_UINT8             ucPdpType
 )
@@ -16386,25 +11723,7 @@ VOS_VOID AT_PS_ResetRnicPdpDhcpPara(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_SendRnicPdnInfoCfgInd
- 功能描述  : 向RNIC发送PDN配置请求信息
- 输入参数  : TAF_PDP_TYPE_ENUM_UINT8             ucPdpType,
-             VOS_UINT8                           ucRabId,
-             AT_PDP_ENTITY_STRU                 *pstAppPdpEntity
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月4日
-    作    者   : z00214637
-    修改内容   : V3R3 Share-PDP项目修改
-  2.日    期   : 2012年08月07日
-    作    者   : f00179208
-    修改内容   : 问题单:DTS2015031000157, 新增第三个p-cscf地址
-*****************************************************************************/
 VOS_UINT32 AT_PS_SendRnicPdnInfoCfgInd(
     TAF_PDP_TYPE_ENUM_UINT8             ucPdpType,
     VOS_UINT8                           ucRabId,
@@ -16505,20 +11824,7 @@ VOS_UINT32 AT_PS_SendRnicPdnInfoCfgInd(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_SendRnicPdnInfoRelInd
- 功能描述  : 向RNIC发送PDN连接释放请求消息
- 输入参数  : AT_PDP_ENTITY_STRU                 *pstAppPdpEntity
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月4日
-    作    者   : z00214637
-    修改内容   : V3R3 Share-PDP项目修改
-*****************************************************************************/
 VOS_UINT32 AT_PS_SendRnicPdnInfoRelInd(
     VOS_UINT8                           ucRabId
 )
@@ -16560,23 +11866,8 @@ VOS_UINT32 AT_PS_SendRnicPdnInfoRelInd(
     return VOS_OK;
 }
 
-/* Deleted by m00217266 for L-C互操作项目, 2014-1-23, begin */
 #if 0
-/*****************************************************************************
- 函 数 名  : AT_QosParaTransferToQci
- 功能描述  : 根据QOS参数转换为QCI等级
- 输入参数  : TAF_UMTS_QOS_STRU                   *pQos
- 输出参数  : 无
- 返 回 值  : QCI类型
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月18日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ADS_QCI_TYPE_ENUM_UINT8 AT_QosParaTransferToQci(
     TAF_UMTS_QOS_STRU                  *pQos
 )
@@ -16660,37 +11951,7 @@ ADS_QCI_TYPE_ENUM_UINT8 AT_QosParaTransferToQci(
 }
 #endif
 #if 0
-/* Modified by l60609 for L-C互操作项目, 2014-1-14, begin */
-/*****************************************************************************
- 函 数 名  : AT_SendAdsPdpStatusInd
- 功能描述  : AT向ADS发送消息
- 输入参数  : VOS_UINT32                          ulPid,
-             ADS_PDP_STATUS_IND_STRU            *pstAdsInd
- 输出参数  : 无
- 返 回 值  : 成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : S62952
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月20日
-    作    者   : C00173809
-    修改内容   : ps融合项目，向上下行ADS发送消息
-  3.日    期   : 2012年2月24日
-    作    者   : L47619
-    修改内容   : V7R1C50 IPC项目:向ADS增加QCI优先级的发送
-  4.日    期   : 2013年1月5日
-    作    者   : l60609
-    修改内容   : DSDA Phase II
-  5.日    期   : 2013年05月22日
-    作    者   : f00179208
-    修改内容   : V3R3 PPP PROJECT
-  6.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，EVENT结构替换后重构该函数
-*****************************************************************************/
 VOS_UINT32 AT_SendAdsPdpStatusInd(
     VOS_UINT32                          ulPid,
     ADS_PDP_STATUS_IND_STRU            *pstAdsInd
@@ -16735,29 +11996,7 @@ VOS_UINT32 AT_SendAdsPdpStatusInd(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_NotifyAdsWhenPdpModify
- 功能描述  : 当发生PDP MODIFY(UE发起或网侧发起)时，向ADS指示发生了PDP修改
- 输入参数  : pstEvt       TAF_PS_CALL_EVENT_STRU事件
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月18日
-    作    者   : L47619
-    修改内容   : 新生成函数
-  2.日    期   : 2013年1月5日
-    作    者   : l60609
-    修改内容   : DSDA Phase II
-  3.日    期   : 2013年05月22日
-    作    者   : f00179208
-    修改内容   : V3R3 PPP RPOJECT
-  4.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，EVENT结构替换
-*****************************************************************************/
 VOS_VOID AT_NotifyAdsWhenPdpModify(
     TAF_PS_CALL_PDP_MODIFY_CNF_STRU     *pstEvent
 )
@@ -16794,29 +12033,7 @@ VOS_VOID AT_NotifyAdsWhenPdpModify(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_NotifyAdsWhenPdpAvtivated
- 功能描述  : 通知ADS承载激活
- 输入参数  : pstEvent - 承载激活事件
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月12日
-    作    者   : S62952
-    修改内容   : 新生成函数
-  2.日    期   : 2013年1月5日
-    作    者   : l60609
-    修改内容   : DSDA Phase II
-  3.日    期   : 2013年05月22日
-    作    者   : f00179208
-    修改内容   : V3R3 PPP RPOJECT
-  4.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，EVENT结构替换
-*****************************************************************************/
 VOS_VOID AT_NotifyAdsWhenPdpAvtivated(
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU   *pstEvent
 )
@@ -16853,26 +12070,7 @@ VOS_VOID AT_NotifyAdsWhenPdpAvtivated(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_NotifyAdsWhenPdpDeactivated
- 功能描述  : 通知ADS去承载激活
- 输入参数  : pstEvent - 承载去激活事件
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月12日
-    作    者   : S62952
-    修改内容   : 新生成函数
-  2.日    期   : 2013年05月22日
-    作    者   : f00179208
-    修改内容   : V3R3 PPP RPOJECT
-  3.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，EVENT结构替换
-*****************************************************************************/
 VOS_VOID AT_NotifyAdsWhenPdpDeactivated(
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU *pstEvent
 )
@@ -16908,9 +12106,7 @@ VOS_VOID AT_NotifyAdsWhenPdpDeactivated(
 
     return;
 }
-/* Modified by l60609 for L-C互操作项目, 2014-1-14, end */
 #endif
-/* Deleted by m00217266 for L-C互操作项目, 2014-1-23, end */
 
 #ifdef  __cplusplus
   #if  __cplusplus

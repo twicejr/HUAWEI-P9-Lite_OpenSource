@@ -15,10 +15,8 @@
 #include "MnComm.h"
 #include "NVIM_Interface.h"
 
-/* Added by l00167671 for NV拆分项目 , 2013-05-17, begin */
 #include "NasNvInterface.h"
 #include "TafNvInterface.h"
-/* Added by l00167671 for NV拆分项目 , 2013-05-17, end*/
 #include "TafSdcLib.h"
 
 #ifdef  __cplusplus
@@ -38,29 +36,13 @@
 
 /*lint -save -e958 */
 
-/*****************************************************************************
- 函 数 名  : SSA_ReportErrorEvent
- 功能描述  : 处理从USIM过来的FDN检查结果消息
- 输入参数  : pstMsg - 收到的消息
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年02月23日
-    作    者   : 傅映君/f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2013年6月26日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级，修改消息分发机制
-*****************************************************************************/
 VOS_VOID SSA_ReportErrorEvent(
     VOS_UINT16                          ClientId,
     VOS_UINT8                           OpId,
     TAF_SS_ERROR                        ErrorCode
 )
 {
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     TAF_SS_CALL_INDEPENDENT_EVENT_STRU *pstSsEvent = VOS_NULL_PTR;
 
     pstSsEvent = (TAF_SS_CALL_INDEPENDENT_EVENT_STRU *)PS_MEM_ALLOC(WUEPS_PID_SS,
@@ -79,7 +61,6 @@ VOS_VOID SSA_ReportErrorEvent(
 
     pstSsEvent->ClientId = ClientId;
     pstSsEvent->OpId     = OpId;
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
     pstSsEvent->ErrorCode = ErrorCode;
 
@@ -91,19 +72,7 @@ VOS_VOID SSA_ReportErrorEvent(
 }
 
 
-/*****************************************************************************
- 函 数 名  : SSA_ReportUssdDataSnd
- 功能描述  : 上报TAF_SS_EVT_USSD_DATA_SND事件给AT
- 输入参数  : ucTi   Ti值
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年02月23日
-    作    者   : 傅映君/f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID SSA_ReportUssdDataSndEvent(VOS_UINT8 ucTi)
 {
     TAF_SS_CALL_INDEPENDENT_EVENT_STRU *pstSsEvent;
@@ -135,26 +104,7 @@ VOS_VOID SSA_ReportUssdDataSndEvent(VOS_UINT8 ucTi)
 }
 
 
-/*****************************************************************************
- 函 数 名  : SSA_GetUssdMode
- 功能描述  : 获取SSA模块的USSD传输模式
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年05月08日
-    作    者   : f00179208
-    修改内容   : 新生成函数DTS2012050801468: 支持^USSDMODE配置数据同步到C核
-  2.日    期   : 2012年12月13日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-  3.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-*****************************************************************************/
 VOS_VOID SSA_GetUssdMode(VOS_VOID)
 {
     TAF_USSD_NVIM_TRANS_MODE_STRU       stUssdTranMode;
@@ -192,35 +142,7 @@ VOS_VOID SSA_GetUssdMode(VOS_VOID)
 /* 删除FDN检查函数的处理,移到SPM中 */
 
 
-/***********************************************************************
-*  MODULE   : Ss_TaskEntry_T
-*  FUNCTION : SS模块TASK入口处理
-*  INPUT    : VOS_VOID      *pRcvMsg        消息指针
-*  OUTPUT   : VOS_VOID
-*  RETURN   : VOS_VOID
-*  NOTE     : 无
-*  HISTORY  :
-* 1.  张志勇   05-01-28  新版作成
 
-* 2.  张志勇   05-03-08  使用PID进行分发处理
-
-  3.日    期   : 2011年11月13日
-    作    者   : A00165503
-    修改内容   : AT融合项目，TAF PID改为AT PID
-  4.日    期   : 2012年02月24日
-    作    者   : 傅映君/f62575
-    修改内容   : C50_IPC Project    为适配FDN业务USIM消息处理过程按客户分类处理
-  5.日    期   : 2012年4月25日
-    作    者   : f62575
-    修改内容   : DTS2012042500352: 解决STK发起的USSD业务不支持问题
-  6.日    期   : 2013年5月14日
-    作    者   : w00176964
-    修改内容   : SS FDN&Call Control项目: USIM的消息统一在SPM模块处理,增加TAF
-                 的消息处理
-  7.日    期   : 2013年6月4日
-    作    者   : z00161729
-    修改内容   : SVLTE 和usim接口调整修改
-************************************************************************/
 VOS_VOID Ss_TaskEntry_T( struct MsgCB* pMsg )
 {
     MSG_HEADER_STRU         *pMsgHeader;
@@ -276,18 +198,7 @@ VOS_VOID Ss_TaskEntry_T( struct MsgCB* pMsg )
 }
 
 
-/***********************************************************************
-*  MODULE   : Ss_Init
-*  FUNCTION : Ss 初始化处理
-*  INPUT    : VOS_VOID
-*  OUTPUT   : VOS_VOID
-*  RETURN   : VOS_VOID
-*  NOTE     : 无
-*  HISTORY  :
-  3.日    期   : 2015年9月18日
-    作    者   : c00318887
-    修改内容   : 新版生成
-************************************************************************/
+
 
 VOS_VOID Ss_Init( VOS_VOID )
 {
@@ -312,26 +223,7 @@ VOS_VOID Ss_Init( VOS_VOID )
 }
 
 
-/***********************************************************************
-*  MODULE   : Ss_TaskInit
-*  FUNCTION : TASK 初始化处理
-*  INPUT    : VOS_VOID
-*  OUTPUT   : VOS_VOID
-*  RETURN   : VOS_VOID
-*  NOTE     : 无
-*  HISTORY  :
-*     1.  张志勇   04-03-08  新版作成
-*     2.  张志勇   修改TAF ID和TAF个数的初始化
-  3.日    期   : 2012年3月2日
-    作    者   : 傅映君/f62575
-    修改内容   : C50_IPC Project, 补充业务初始化过程增加FDN本地配置获取
-  4.日    期   : 2012年05月08日
-    作    者   : f00179208
-    修改内容   : DTS2012050801468: 支持^USSDMODE配置数据同步到C核
-  5.日    期   : 2013年05月30日
-    作    者   : w00176964
-    修改内容   : SS FDN&Call Control项目:删除读取en_NV_Item_FDN_Info的处理
-************************************************************************/
+
 
 VOS_VOID Ss_TaskInit( VOS_VOID )
 {

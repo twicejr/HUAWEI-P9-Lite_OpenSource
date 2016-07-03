@@ -561,24 +561,7 @@ PPP_HDLC_RESULT_TYPE_ENUM_UINT32 PPP_HDLC_SOFT_ProcData
     } /* for (;;) */
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_SOFT_ProcProtocolPacket
- 功能描述  : 软件封装PPP协议栈输出的协议包
- 输入参数  : pstLink    -   PPP链路信息
-             pstMbuf    -   PPP协议栈输出的协议包
-             ulPri      -   优先级
-             usProto    -   数据包对应的协议
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_HDLC_SOFT_ProcProtocolPacket
 (
     struct link     *l,

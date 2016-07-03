@@ -399,16 +399,12 @@ ifeq ($(strip $(hitest_type)),slt)
 KBUILD_CFLAGS += -D__SLT_FEATURE__
 endif
 
-OBB_PRODUCT_NAME = hi3650
+OBB_PRODUCT_NAME = hi6250
 BALONG_TOPDIR = $(srctree)/drivers/vendor/hisi
-CFG_PLATFORM = hi3650
+CFG_PLATFORM = hi6250
 TARGET_ARM_TYPE = arm64
 export BALONG_TOPDIR OBB_PRODUCT_NAME CFG_PLATFORM TARGET_ARM_TYPE
-LINUXINCLUDE += -I$(BALONG_TOPDIR)/modem/include/taf \
-		-I$(BALONG_TOPDIR)/modem/include \
-		-I$(srctree)/drivers/huawei_platform \
-		-I$(BALONG_TOPDIR)/ap/platform/hi3650 \
-		-I$(BALONG_TOPDIR)/audiodsp/include/ap/med
+LINUXINCLUDE += -I$(BALONG_TOPDIR)/modem/include/taf -I$(BALONG_TOPDIR)/modem/include -I$(srctree)/drivers/huawei_platform -I$(BALONG_TOPDIR)/ap/platform/hi6250 -I$(BALONG_TOPDIR)/audiodsp/include/ap/med
 # add hisilicon balong configs
 ifneq ($(BALONG_TOPDIR),)
 -include $(BALONG_TOPDIR)/ap/config/product/$(OBB_PRODUCT_NAME)/config/balong_product_config.mk

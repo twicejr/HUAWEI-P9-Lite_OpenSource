@@ -163,26 +163,7 @@ AT_MAIN_STATE_STRU AT_E_CMD_MAIN_STATE_TAB[] =
     {    AT_BUTT_STATE    ,    NULL    },
 };
 
-/******************************************************************************
- 函数名称: atParseExtendCmd
- 功能描述: 解析AT扩展命令字符串,得出命令名,参数,命令类型,命令操作类型
 
- 参数说明:
-   pData [in] 输入的字符串
-   usLen [in] 字符串的长度
-
- 返 回 值:
-    AT_SUCCESS: 成功
-    AT_ERROR: 失败
-
- 调用要求: TODO: ...
- 调用举例: TODO: ...
- 作    者: 崔军强/00064416 [2009-08-11]
- 2.日    期   : 2013年03月11日
-   作    者   : l00198894
-   修改内容   : Body SAR项目
-
-******************************************************************************/
 
 VOS_UINT32 atParseExtendCmd( VOS_UINT8 * pData, VOS_UINT16 usLen)
 {
@@ -335,29 +316,7 @@ VOS_UINT32 atParseExtendCmd( VOS_UINT8 * pData, VOS_UINT16 usLen)
     return AT_SUCCESS;                              /*  返回正确*/
 }
 
-/* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
-/*****************************************************************************
- 函 数 名  : AT_ParseSetDockCmd
- 功能描述  : 检查当前是否DOCK设置命令，
-             若是DOCK设置命令，
-             提取命令名称和长度，参数字符串和长度到AT的全局变量
-             修改AT模块的g_stATParseCmd.ucCmdOptType，gucAtCmdFmtType，gucAtParaIndex
- 输入参数  : VOS_UINT8                          *pucData
-             VOS_UINT16                          usLen
- 输出参数  : 无
- 返 回 值  : VOS_UINT32     AT_FAILURE 不是DOCK设置命令
-                            AT_SUCCESS   是DOCK设置命令
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年9月26日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-  2.日    期   : 2013年2月25日
-    作    者   : l60609
-    修改内容   : DSDA PHASE III
-*****************************************************************************/
 VOS_UINT32 AT_ParseSetDockCmd(
     VOS_UINT8                          *pucData,
     VOS_UINT16                          usLen
@@ -437,7 +396,6 @@ VOS_UINT32 AT_ParseSetDockCmd(
     PS_MEM_FREE(WUEPS_PID_AT, pucDataPara);
     return AT_SUCCESS;
 }
-/* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
 
 #ifdef  __cplusplus

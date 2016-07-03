@@ -16,10 +16,8 @@
 #define CSN1_STACK_SIZE   384    /* Maximum stack size */
 #define CSN1_FIELDS       384    /* Maxinum fileds */
 
-/* Modified by y00142674 for 内存优化二阶段, 2012-01-13, begin */
 /*#define CSN1_USERTAGS     16 */   /* Maximum user tags */
 #define CSN1_USERTAGS     32     /* Maximum user tags */
-/* Modified by y00142674 for 内存优化二阶段, 2012-01-13, end */
 #define CSN1_NOTSET        0
 #define CSN1_RAISE_BACKTRACK     1
 #define CSN1_EXTERNAL_REPETITION 2

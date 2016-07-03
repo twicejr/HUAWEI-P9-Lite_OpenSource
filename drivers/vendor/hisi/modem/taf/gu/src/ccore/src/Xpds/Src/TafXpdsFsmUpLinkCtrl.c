@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2012, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafXpdsFsmUpLinkCtrl.c
-  版 本 号   : 初稿
-  作    者   : 谷传征
-  生成日期   : 2015年8月21日
-  最近修改   :
-  功能描述   : Xpds Link Ctrl Fsm
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年8月21日
-    作    者   : g00261581
-    修改内容   : CDMA-AGPS项目新增
-
-******************************************************************************/
 #ifdef __cplusplus
 #if __cplusplus
 extern "C" {
@@ -34,22 +17,7 @@ extern "C" {
 
 #if ((FEATURE_ON == FEATURE_UE_MODE_CDMA) && (FEATURE_ON == FEATURE_AGPS))
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_GetServerBindOperType
- 功能描述  : 获取服务器操作类型
- 输入参数  : TAF_XPDS_SERVER_BIND_OPER_ENUM_UINT8                    enMpcBindOper
-             TAF_XPDS_SERVER_BIND_OPER_ENUM_UINT8                    enPdeBindOper
- 输出参数  : 无
- 返 回 值  : TAF_XPDS_SERVER_BIND_TYPE_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_XPDS_SERVER_BIND_TYPE_ENUM_UINT8 TAF_XPDS_GetServerBindOperType(
     TAF_XPDS_SERVER_BIND_OPER_ENUM_UINT8                    enMpcBindOper,
     TAF_XPDS_SERVER_BIND_OPER_ENUM_UINT8                    enPdeBindOper
@@ -94,21 +62,7 @@ TAF_XPDS_SERVER_BIND_TYPE_ENUM_UINT8 TAF_XPDS_GetServerBindOperType(
     return TAF_XPDS_SERVER_BIND_TYPE_NO_ACT;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_GetServerBindFailCause
- 功能描述  : 获取Bind Fail 原因值
- 输入参数  : TAF_XPDS_SERVER_BIND_TYPE_ENUM_UINT8    enBindType
- 输出参数  : 无
- 返 回 值  : TAF_XPDS_POS_PROC_RSLT_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月1日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_XPDS_POS_PROC_RSLT_ENUM_UINT32 TAF_XPDS_GetServerBindFailCause(
     TAF_XPDS_SERVER_BIND_TYPE_ENUM_UINT8    enBindType
 )
@@ -124,21 +78,7 @@ TAF_XPDS_POS_PROC_RSLT_ENUM_UINT32 TAF_XPDS_GetServerBindFailCause(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_UpLinkCtrlServerBindProc
- 功能描述  : Bind/Release MPC/PDE Server操作
- 输入参数  : TAF_XPDS_SERVER_BIND_TYPE_ENUM_UINT8                    enBindType
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_UpLinkCtrlServerBindProc(
     TAF_XPDS_SERVER_BIND_TYPE_ENUM_UINT8    enBindType
 )
@@ -203,21 +143,7 @@ VOS_VOID TAF_XPDS_UpLinkCtrlServerBindProc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_UpLinkCtrlPreEntryMsgProc
- 功能描述  : 如果进入Init的入口消息还未处理完毕，继续处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_UpLinkCtrlPreEntryMsgProc(VOS_VOID)
 {
     TAF_XPDS_MSG_STRU                                      *pstEntryMsg;
@@ -246,22 +172,7 @@ VOS_VOID TAF_XPDS_UpLinkCtrlPreEntryMsgProc(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvXpdsServerBindReq_UpLinkCtrl_Init
- 功能描述  : User Plane, Rcv L1 Open/Close Server Socker Req
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_XPDS_RcvXpdsServerBindReq_UpLinkCtrl_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -313,22 +224,7 @@ VOS_UINT32  TAF_XPDS_RcvXpdsServerBindReq_UpLinkCtrl_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvAtApDataCallStatusInd_UpLinkCtrl_WaitDataCallConnCnf
- 功能描述  : In Xpds Link Control Init State, Rcv Data CAll Status Ind Msg
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月22日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvAtApDataCallStatusInd_UpLinkCtrl_WaitDataCallConnCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -383,22 +279,7 @@ VOS_UINT32 TAF_XPDS_RcvAtApDataCallStatusInd_UpLinkCtrl_WaitDataCallConnCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvAtApBindServerStatusInd_UpLinkCtrl_WaitOpenMpcSocket
- 功能描述  : In Xpds Link Ctrl Init State, Rcv server Bind Rslt Ind Msg
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月22日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvAtApBindServerStatusInd_UpLinkCtrl_WaitOpenMpcSocket(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -443,22 +324,7 @@ VOS_UINT32 TAF_XPDS_RcvAtApBindServerStatusInd_UpLinkCtrl_WaitOpenMpcSocket(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvAtApBindServerStatusInd_UpLinkCtrl_WaitCloseMpcSocket
- 功能描述  : Wait Close Mpc Socket State, rcv Bind Status Ind Msg
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvAtApBindServerStatusInd_UpLinkCtrl_WaitCloseMpcSocket(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -493,22 +359,7 @@ VOS_UINT32 TAF_XPDS_RcvAtApBindServerStatusInd_UpLinkCtrl_WaitCloseMpcSocket(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvAtApBindServerStatusInd_UpLinkCtrl_WaitOpenPdeSocket
- 功能描述  : Wait Open Pde Socket State, Rcv bind Status Ind Msg
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvAtApBindServerStatusInd_UpLinkCtrl_WaitOpenPdeSocket(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -553,22 +404,7 @@ VOS_UINT32 TAF_XPDS_RcvAtApBindServerStatusInd_UpLinkCtrl_WaitOpenPdeSocket(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvAtApBindServerStatusInd_UpLinkCtrl_WaitClosePdeSocket
- 功能描述  : Wait Close Pde Socket State, rcv Bind Status Ind Msg
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvAtApBindServerStatusInd_UpLinkCtrl_WaitClosePdeSocket(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -603,22 +439,7 @@ VOS_UINT32 TAF_XPDS_RcvAtApBindServerStatusInd_UpLinkCtrl_WaitClosePdeSocket(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvTiWaitDataCallIndExpired_UpLinkCtrl_WaitDataCallConnCnf
- 功能描述  : 等待切换APN 建立CAGPS Data Call超时
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvTiWaitDataCallIndExpired_UpLinkCtrl_WaitDataCallConnCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -650,22 +471,7 @@ VOS_UINT32 TAF_XPDS_RcvTiWaitDataCallIndExpired_UpLinkCtrl_WaitDataCallConnCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvTiWaitOpenMpcSocketExpired_UpLinkCtrl_WaitOpenMpcSocket
- 功能描述  : MPC Bind server超时
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvTiWaitOpenMpcSocketExpired_UpLinkCtrl_WaitOpenMpcSocket(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -685,22 +491,7 @@ VOS_UINT32 TAF_XPDS_RcvTiWaitOpenMpcSocketExpired_UpLinkCtrl_WaitOpenMpcSocket(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvTiWaitCloseMpcSocketExpired_UpLinkCtrl_WaitCloseMpcSocket
- 功能描述  : MPC关闭Socket，等待超时
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvTiWaitCloseMpcSocketExpired_UpLinkCtrl_WaitCloseMpcSocket(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -725,22 +516,7 @@ VOS_UINT32 TAF_XPDS_RcvTiWaitCloseMpcSocketExpired_UpLinkCtrl_WaitCloseMpcSocket
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvTiWaitOpenPdeSocketExpired_UpLinkCtrl_WaitOpenPdeSocket
- 功能描述  : 等待建立PDE Socket链路超时
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvTiWaitOpenPdeSocketExpired_UpLinkCtrl_WaitOpenPdeSocket(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -760,22 +536,7 @@ VOS_UINT32 TAF_XPDS_RcvTiWaitOpenPdeSocketExpired_UpLinkCtrl_WaitOpenPdeSocket(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvTiWaitCloseMpcSocketExpired_UpLinkCtrl_WaitCloseMpcSocket
- 功能描述  : PDE关闭Socket，等待超时
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 VOS_UINT32 TAF_XPDS_RcvTiWaitClosePdeSocketExpired_UpLinkCtrl_WaitClosePdeSocket(
     VOS_UINT32                          ulEventType,
@@ -801,22 +562,7 @@ VOS_UINT32 TAF_XPDS_RcvTiWaitClosePdeSocketExpired_UpLinkCtrl_WaitClosePdeSocket
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvXpdsAbortAgpsSessionInd_L2UpLink
- 功能描述  : L2 User Plane状态机，收到abort异常
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月29日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvXpdsAbortAgpsSessionInd_L2UpLink(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg

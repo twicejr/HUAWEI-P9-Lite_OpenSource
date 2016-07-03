@@ -1,41 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : viterbi_om_def.h
-  版 本 号   : 初稿
-  作    者   : chenguangwen
-  生成日期   : 2011年3月8日
-  最近修改   :
-  功能描述   : 定义Viterbi模块OM需要上报的结构体,该文件最终会交付给HiStudio使用
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年3月8日
-    作    者   : chenguangwen
-    修改内容   : 创建文件
-
-  2.日    期   : 2011年6月8日
-    作    者   : chenguangwen
-    修改内容   : [DTS2011060800603]新增OM代码合入
-
-  3.日    期   : 2011年11月24日
-    作    者   : c00174696
-    修改内容   : [DTS2011112307116]合入半静态新特性
-
-  4.日    期   : 2011年11月28日
-    作    者   : chenguangwen
-    修改内容   : [DTS2011111800531]Pilot版本合入
-
-  5.日    期   : 2012年02月21日
-    作    者   : chenguangwen
-    修改内容   : [DTS2011122806532]修改TDD配比0进程号计算
-
-  6.日    期   : 2012年4月18日
-     作    者   : sunyanjie，yushujing，xueqiuyan
-     修改内容   : [DTS2012041802974]OM优化修改
-
-******************************************************************************/
 
 /************************************************************
                      包含其它模块的头文件
@@ -266,7 +229,6 @@ typedef enum
     OM_DCI_2,
     OM_DCI_2A,
     OM_DCI_2B,
-    /* BEGIN: Added by yushujing, 2014/12/2   问题单号:3_3a_mod*/
     OM_DCI_2C,
     OM_DCI_3,
     OM_DCI_3A
@@ -370,7 +332,6 @@ typedef struct __LPHY_VITERBI_RPT_PDCCH_PWR_GRANT_OM_IND__
 #define     OM_VITERBI_PDCCH_GRANT_STAT_LEN       44       /*Viterbi授权统计需清零的数据长度, Bytes, 注意需要与接口同步*/
 typedef struct __LPHY_VITERBI_RPT_PDCCH_GRANT_STAT_OM_IND__
 {
-    /* BEGIN: Modified by h00130263, 2013/6/8   问题单号:v7r2_code_size_opt*/
     //UINT16 usCfi1Num;
     //UINT16 usCfi2Num;
     //UINT16 usCfi3Num;
@@ -378,7 +339,6 @@ typedef struct __LPHY_VITERBI_RPT_PDCCH_GRANT_STAT_OM_IND__
     UINT16 usRsd1;
     UINT16 usUlGrantNum;
     UINT16 usDlGrantNum;
-    /* BEGIN: Modified by h00130263, 2013/6/8   问题单号:v7r2_code_size_opt*/
     //UINT16 usCce1Num;
     //UINT16 usCce2Num;
     //UINT16 usCce4Num;
@@ -396,14 +356,12 @@ typedef struct __LPHY_VITERBI_RPT_PDCCH_GRANT_STAT_OM_IND__
     UINT16 usDci3Num;
     UINT16 usDci3ANum;
     UINT16 usRsd2;
-    /* BEGIN: Modified by h00130263, 2013/6/8   问题单号:v7r2_code_size_opt*/
     //UINT32 ulAccuCfi1Num;
     //UINT32 ulAccuCfi2Num;
     //UINT32 ulAccuCfi3Num;
     UINT32 aulAccuCfiNum[3];
     UINT32 ulAccuUlGrantNum;
     UINT32 ulAccuDlGrantNum;
-    /* BEGIN: Modified by h00130263, 2013/6/8   问题单号:v7r2_code_size_opt*/
     //UINT32 ulAccuCce1Num;
     //UINT32 ulAccuCce2Num;
     //UINT32 ulAccuCce4Num;

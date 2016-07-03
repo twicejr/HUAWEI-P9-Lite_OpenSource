@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasGmmProcLResult.c
-  版 本 号   : 初稿
-  作    者   : zhoujun /40661
-  生成日期   : 2011年03月14日
-  最近修改   :
-  功能描述   : GMM收到L模注册结果的处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2010年11月12日
-    作    者   : zhoujun /40661
-    修改内容   : 创建文件
-
-******************************************************************************/
 /*****************************************************************************
   1 头文件包含
 *****************************************************************************/
@@ -44,20 +27,7 @@ extern "C" {
 /*lint -save -e958 */
 
 #if   (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_GMM_RcvLmmAttachRegFailOtherCause
- 功能描述  : GMM处理来自LMM的ATTACH失败other cause拒绝原因值
- 输入参数  : ulAttemptCount - attempt counter值
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月19日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-*****************************************************************************/
 VOS_VOID NAS_GMM_RcvLmmAttachRegFailOtherCause(
     VOS_UINT32                          ulAttemptCount
 )
@@ -96,22 +66,7 @@ VOS_VOID NAS_GMM_RcvLmmAttachRegFailOtherCause(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_RcvLmmTauRegFailOtherCause
- 功能描述  : GMM处理来自LMM的tau失败other cause拒绝原因值
- 输入参数  : ulAttemptCount  - attempt counter值
-             enTaiInListFlag - Tai是否在TAI LIST列表中
-             enEmmUpStat     - EMM update status
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月19日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-*****************************************************************************/
 VOS_VOID NAS_GMM_RcvLmmTauRegFailOtherCause(
     VOS_UINT32                                              ulAttemptCount,
     MMC_LMM_TAI_IN_LIST_FLAG_ENUM_UINT8                     enTaiInListFlag,
@@ -162,30 +117,12 @@ VOS_VOID NAS_GMM_RcvLmmTauRegFailOtherCause(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_RcvLmmAttachRegFailCause42SevereNetworkFailure
- 功能描述  : GMM处理来自LMM的ATTACH失败42拒绝原因值
- 输入参数  : ulAttemptCount - attempt counter值
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月19日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-*****************************************************************************/
 VOS_VOID NAS_GMM_RcvLmmAttachRegFailCause42SevereNetworkFailure(
     VOS_UINT32                          ulAttemptCount
 )
 {
-    /* 如果协议版本小于R11按other cause处理，否则按24301_CR1473R2_(Rel-11)_C1-123386
-    CR处理24301 5.5.1.3.5和5.5.1.2.5章节描述:
-       If A/Gb mode or Iu mode is supported by the UE, the UE shall in addition
-    set the GMM state to GMM-DEREGISTERED, GPRS update status to GU2 NOT UPDATED,
-    and shall delete the P-TMSI, P-TMSI signature, RAI and GPRS ciphering key
-    sequence number. 该CR受协议版本控制 */
+    
     if (NAS_MML_3GPP_REL_R11 > NAS_MML_GetLte3gppRelVersion())
     {
         NAS_GMM_RcvLmmAttachRegFailOtherCause(ulAttemptCount);
@@ -203,34 +140,14 @@ VOS_VOID NAS_GMM_RcvLmmAttachRegFailCause42SevereNetworkFailure(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_RcvLmmTauRegFailCause42SevereNetworkFailure
- 功能描述  : GMM处理来自LMM的TAU失败42拒绝原因值
- 输入参数  : ulAttemptCount  - attempt counter值
-             enTaiInListFlag - TAI是否在TAI list中
-             enEmmUpStat     - EMM update status
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月19日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-*****************************************************************************/
 VOS_VOID NAS_GMM_RcvLmmTauRegFailCause42SevereNetworkFailure(
     VOS_UINT32                                              ulAttemptCount,
     MMC_LMM_TAI_IN_LIST_FLAG_ENUM_UINT8                     enTaiInListFlag,
     MMC_LMM_EPS_UPDATE_STATUS_ENUM_UINT8                    enEmmUpStat
 )
 {
-    /* 如果协议版本小于R11按other cause处理，否则按24301_CR1473R2_(Rel-11)_C1-123386
-    CR处理24301 5.5.3.2.5和5.5.3.3.5章节描述:
-       If A/Gb mode or Iu mode is supported by the UE, the UE shall in addition
-    set the GMM state to GMM-DEREGISTERED, GPRS update status to GU2 NOT UPDATED,
-    and shall delete the P-TMSI, P-TMSI signature, RAI and GPRS ciphering key
-    sequence number. 该CR受协议版本控制  */
+    
     if (NAS_MML_3GPP_REL_R11 > NAS_MML_GetLte3gppRelVersion())
     {
         NAS_GMM_RcvLmmTauRegFailOtherCause(ulAttemptCount, enTaiInListFlag, enEmmUpStat);
@@ -249,42 +166,7 @@ VOS_VOID NAS_GMM_RcvLmmTauRegFailCause42SevereNetworkFailure(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_RcvLmmAttachCause_Handling
- 功能描述  : GMM处理来自LMM的ATTACH拒绝原因值
- 输入参数  : enCnCause
-             ulAttemptCount
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月11日
-    作    者   : luokaihui / 00167671
-    修改内容   : 新生成函数
-
- 2.日    期   : 2011年8月8日
-   作    者   : luokaihui / 00167671
-   修改内容   : 问题单号DTS20110716005544,GPRS UPDATE STATUS需要先设置
- 3.日    期   : 2011年10月27日
-   作    者   : s46746
-   修改内容   : V7R1 PhaseIII,支持L模联合注册
-
- 4.日    期   : 2011年12月1日
-   作    者   : zhoujun /40661
-   修改内容   : DTS2011101103567
- 5.日    期   : 2013年03月06日
-   作    者   : s00217060
-   修改内容   : for V7R2_CR:增加原因值#35的处理
- 6.日    期   : 2013年12月24日
-   作    者   : w00242748
-   修改内容   : DTS2013101106863:L下被拒原因值#35，只有在R10及其协议以上处理才与#11
-                原因值处理相同，否则当做OTHER CAUSE来处理。
- 7.日    期   : 2015年4月19日
-   作    者   : z00161729
-   修改内容   : 24301 R11 CR升级项目修改
-*****************************************************************************/
 VOS_VOID NAS_GMM_RcvLmmAttachCause_Handling(
     NAS_LMM_CN_CAUSE_ENUM_UINT8         enCnCause,
     VOS_UINT32                          ulAttemptCount
@@ -374,44 +256,7 @@ VOS_VOID NAS_GMM_RcvLmmAttachCause_Handling(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_ProcLmmTauCause_Handling
- 功能描述  : GMM处理来自LMM的TAU拒绝原因值
- 输入参数  : enCnCause
-             ulAttemptCount
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月11日
-    作    者   : luokaihui / 00167671
-    修改内容   : 新生成函数
-  2.日    期   : 2011年10月27日
-    作    者   : s46746
-    修改内容   : V7R1 PhaseIII,支持L模联合注册
-
-  3.日    期   : 2011年12月1日
-    作    者   : zhoujun /40661
-    修改内容   : DTS2011101103567
-  4.日    期   : 2011年12月5日
-    作    者   : z00161729
-    修改内容   : V7R1 PhaseIV
-  5.日    期   : 2012年06月08日
-    作    者   : L65478
-    修改内容   : DTS2012060805375:在#13,#15时到GU下发起的RAU类型错误
-  6.日    期   : 2013年03月06日
-    作    者   : s00217060
-    修改内容   : for V7R2_CR:增加原因值#40,#35的处理
-  7.日    期   : 2013年12月24日
-    作    者   : w00242748
-    修改内容   : DTS2013101106863:L下被拒原因值#35，只有在R10及其协议以上处理才与#11
-                 原因值处理相同，否则当做OTHER CAUSE来处理。
-  8.日    期   : 2015年4月19日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-*****************************************************************************/
 VOS_VOID NAS_GMM_RcvLmmTauCause_Handling(
     NAS_LMM_CN_CAUSE_ENUM_UINT8                             enCnCause,
     VOS_UINT32                                              ulAttemptCount,
@@ -530,37 +375,7 @@ VOS_VOID NAS_GMM_RcvLmmTauCause_Handling(
         return ;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_RcvLmmNwInitDetachIndCause_Handling
- 功能描述  : GMM处理来自LMM的网络触发的DETACH 拒绝原因值
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月11日
-    作    者   : luokaihui / 00167671
-    修改内容   : 新生成函数
-  2.日    期   : 2011年8月8日
-    作    者   : luokaihui / 00167671
-    修改内容   : 问题单号DTS20110716005544,GPRS UPDATE STATUS需要先设置
-  3.日    期   : 2011年10月27日
-    作    者   : s46746
-    修改内容   : V7R1 PhaseIII,支持L模联合注册
-
-  4.日    期   : 2011年12月1日
-    作    者   : zhoujun /40661
-    修改内容   : DTS2011101103567
-
-  5.日    期   : 2012年04月11日
-    作    者   : l65478
-    修改内容   : DTS2012032005828网络detach原因值#2时,不应该改变GMM的状态
-  5.日    期   : 2013年8月26日
-    作    者   : w00242748
-    修改内容   : DTS2013071808373编译告警清理
-*****************************************************************************/
 VOS_VOID  NAS_GMM_RcvLmmNwInitDetachIndCause_Handling(
     NAS_LMM_CN_CAUSE_ENUM_UINT8         enCnCause
 )
@@ -673,40 +488,7 @@ VOS_VOID  NAS_GMM_RcvLmmNwInitDetachIndCause_Handling(
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_RcvLmmServiceCause_Handling
- 功能描述  : GMM处理来自LMM的网络触发的DETACH 拒绝原因值
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月11日
-    作    者   : luokaihui / 00167671
-    修改内容   : 新生成函数
-  2.日    期   : 2011年8月8日
-    作    者   : luokaihui / 00167671
-    修改内容   : 问题单号DTS20110716005544,GPRS UPDATE STATUS需要先设置
-  3.日    期   : 2011年10月27日
-    作    者   : s46746
-    修改内容   : V7R1 PhaseIII,支持L模联合注册
-
-  4.日    期   : 2011年12月1日
-    作    者   : zhoujun /40661
-    修改内容   : DTS2011101103567
-  5.日    期   : 2013年03月06日
-    作    者   : s00217060
-    修改内容   : for V7R2_CR:增加原因值#40,#35的处理
-  6.日    期   : 2013年12月24日
-    作    者   : w00242748
-    修改内容   : DTS2013101106863:L下被拒原因值#35，只有在R10及其协议以上处理才与#11
-                 原因值处理相同，否则当做OTHER CAUSE来处理。
-  7.日    期   : 2015年4月20日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-*****************************************************************************/
 VOS_VOID  NAS_GMM_RcvLmmServiceCause_Handling(
     NAS_LMM_CN_CAUSE_ENUM_UINT8         enCnCause
 )
@@ -811,18 +593,7 @@ VOS_VOID  NAS_GMM_RcvLmmServiceCause_Handling(
 
            break;
 
-        /* 如果协议版本小于R11不处理，否则按24301_CR1473R2_(Rel-11)_C1-123386
-          CR处理24301 5.6.1.5章节描述:
-              #42:The UE shall set the EPS update status to EU2 NOT UPDATED, and shall delete any GUTI,
-          last visited registered TAI, eKSI, and list of equivalent PLMNs. The UE shall start an implementation
-          specific timer, setting its value to 2 times the value of T as defined in 3GPP TS 23.122 [6].
-          While this timer is running, the UE shall not consider the PLMN + RAT combination that provided this reject cause,
-          a candidate for PLMN selection. The UE then enters state EMM-DEREGISTERED.PLMN-SEARCH in order to perform a
-          PLMN selection according to 3GPP TS 23.122 [6].
-             If A/Gb mode or Iu mode is supported by the UE, the UE shall in addition set
-          the GMM state to GMM-DEREGISTERED, GPRS update status to GU2 NOT UPDATED, and shall
-          delete the P-TMSI, P-TMSI signature, RAI and GPRS ciphering key sequence number.
-          该CR受协议版本控制 */
+        
         case NAS_EMM_CAUSE_SERVER_NETWORK_FAILURE:
             if (NAS_MML_GetLte3gppRelVersion() >= NAS_MML_3GPP_REL_R11)
             {
@@ -845,73 +616,7 @@ VOS_VOID  NAS_GMM_RcvLmmServiceCause_Handling(
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_RcvLmmAttachResult
- 功能描述  : GMM处理来自LMM的注册结果
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月11日
-    作    者   : luokaihui / 00167671
-    修改内容   : 新生成函数
-  2.日    期   : 2011年8月8日
-    作    者   : luokaihui / 00167671
-    修改内容   : 问题单号DTS20110716005544,GPRS UPDATE STATUS需要先设置
-  3.日    期   : 2011年08月06日
-    作    者   : luokaihui / 00167671
-    修改内容   : 问题单号DTS2011080400637,未处理LMM的NAS_MM_REG_RESULT_FAILURE消息
-  4.日    期   : 2011年10月19日
-    作    者   : w00167002
-    修改内容   : V7R1 PHASEII:L下注册成功，但是GMM上报服务状态错误
-  5.日    期   : 2011年11月26日
-    作    者   : l00167671
-    修改内容   : 问题单号DTS2011112606777, L切换到W，RAU过程不回复网侧的鉴权请求
-  6.日    期   : 2011年10月27日
-    作    者   : s46746
-    修改内容   : V7R1 PhaseIII,支持L模联合注册
-  7.日    期   : 2011年11月8日
-    作    者   : w00176964
-    修改内容   : V7R1 PhaseIII,支持L模联合注册:GMM迁移状态到register状态时需要更新ATTACH标记态
-  8.日    期   : 2011年11月28日
-    作    者   : w00167002
-    修改内容   : DTS2011112606777:L下数传切换到w模后，由于GMM当前的状态不对，
-                 导致鉴权失败,鉴权失败函数见Gmm_RcvAuthenAndCipherRequestMsg_Preprocess
-  9.日    期   : 2011年12月12日
-    作    者   : w00176964
-    修改内容   : V7R1 PhaseIV,联合注册BBIT:L下不需要GMM回复attach CNF
-10.日    期   : 2012年1月8日
-    作    者   : z00161729
-    修改内容   : V7R1 PhaseIV修改
-  11.日    期   : 2011年12月29日
-    作    者   : w00167002
-    修改内容   : DTS2011102200381:L下注册被拒#12,LMM给MMC带的TAU
-                 中的结果为MMC_LMM_TAU_RSLT_FORBID_PLMNS，MMC收到此结果后按照禁止网络
-                 来处理而发起了搜网。
-                 GMM在收到LMM上报的假流程消息时，若在DEREGISTER状态，则此时
-                 迁移到GMM_DEREGISTERED_LIMITED_SERVICE，否则迁移到GMM_REGISTERED_LIMITED_SERVICE.
-  12.日    期   : 2012年06月08日
-     作    者   : L65478
-     修改内容   : DTS2012060805375:在#13,#15时到GU下发起的RAU类型错误
-  13.日    期   : 2012年06月20日
-     作    者   : L65478
-     修改内容   : DTS2012062007677:GCF 6.2.2.1失败,从L重选到W需要发起combined RAU
-
-  14.日    期   : 2013年4月1日
-    作    者   : w00167002
-    修改内容   : DTS2013032708183:L下注册成功，用户设置CGATT=0，到W下搜网,在
-                  搜网过程中，用户设置CGATT=1。结果UE在L下搜网注册成功，MM/GMM
-                  没有回复ATTACH CNF,导致AT通道一致被阻塞，GCF9.2.2.1.8用例测试失败。
-  15.日    期   : 2014年12月17日
-     作    者   : b00269685
-     修改内容   : 在Attach成功后停止3314定时器
-  16.日    期   : 2015年4月19日
-     作    者   : z00161729
-     修改内容   : 24301 R11 CR升级项目修改
-*****************************************************************************/
 VOS_VOID  NAS_GMM_RcvLmmAttachResult(
     VOS_VOID                           *pstMsg
 )
@@ -1051,27 +756,7 @@ VOS_VOID  NAS_GMM_RcvLmmAttachResult(
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_IsNeedUpdatePsUpdateStatus
- 功能描述  : 判断是否需要更新GPRS UPDATE STATUS
- 输入参数  : ulAttemptCount  - 尝试次数
-             enTaiInListFlag - TAI是否在TAI列表标志
-             enEmmUpStat     - EPS update status
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:需要更新PS update status
-             VOS_FALSE:不需要更新PS update status
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年03月28日
-    作    者   : l65478
-    修改内容   : DTS2012032002585,从W->L->W，回到W后没有发起RAU
-
-*****************************************************************************/
 VOS_UINT32 NAS_GMM_IsNeedUpdatePsUpdateStatus(
     VOS_UINT32                                              ulAttemptCount,
     MMC_LMM_TAI_IN_LIST_FLAG_ENUM_UINT8                     enTaiInListFlag,
@@ -1108,44 +793,7 @@ VOS_UINT32 NAS_GMM_IsNeedUpdatePsUpdateStatus(
 
     return VOS_FALSE;
 }
-/*****************************************************************************
- 函 数 名  : NAS_GMM_ProcLmmTauResult
- 功能描述  : GMM处理来自LMM的TAU结果
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月11日
-    作    者   : luokaihui / 00167671
-    修改内容   : 新生成函数
-  2.日    期   : 2011年08月06日
-    作    者   : luokaihui / 00167671
-    修改内容   : 问题单号DTS2011080400637,未处理LMM的NAS_MM_REG_RESULT_FAILURE消息
-  3.日    期   : 2011年10月19日
-    作    者   : w00167002
-    修改内容   : V7R1 PHASEII:L下注册成功，但是GMM上报服务状态错误
-  4.日    期   : 2011年10月27日
-    作    者   : s46746
-    修改内容   : V7R1 PhaseIII,支持L模联合注册
-  5.日    期   : 2011年11月8日
-    作    者   : w00176964
-    修改内容   : V7R1 PhaseIII,支持L模联合注册:GMM迁移状态到register状态时需要更新ATTACH标记
-  6.日    期   : 2011年11月30日
-    作    者   : z00161729
-    修改内容   : V7R1 PhaseIV修改
-  7.日    期   : 2012年06月08日
-    作    者   : L65478
-    修改内容   : DTS2012060805375:在#13,#15时到GU下发起的RAU类型错误
-  8.日    期   : 2012年06月20日
-    作    者   : L65478
-    修改内容   : DTS2012062007677:GCF 6.2.2.1失败,从L重选到W需要发起combined RAU
-  9.日    期   : 2014年12月17日
-    作    者   : b00269685
-    修改内容   : 在Tau成功后停止3314定时器
-*****************************************************************************/
 VOS_VOID NAS_GMM_RcvLmmTauResult(
     VOS_VOID                           *pstMsg
 
@@ -1298,26 +946,7 @@ VOS_VOID NAS_GMM_RcvLmmTauResult(
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_RcvLmmMtDetachInd
- 功能描述  : GMM处理来自LMM的Detach结果
- 输入参数  : pstMsg:Detach消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月28日
-    作    者   : s46746
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月7日
-    作    者   : w00176964
-    修改内容   : V7R1 PhaseIV 调整:LMM的local detach指示单独增加消息进行处理
-  3.日    期   : 2012年9月07日
-    作    者   : l00171473
-    修改内容   : DTS2012081701006, 添加GMM状态的可维可测消息
-*****************************************************************************/
 VOS_VOID  NAS_GMM_RcvLmmMtDetachInd(
     struct MsgCB                       *pstMsg
 )
@@ -1379,25 +1008,7 @@ VOS_VOID  NAS_GMM_RcvLmmMtDetachInd(
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_RcvLmmMoDetachInd
- 功能描述  : 接收到Lmm UE发起的Detach处理
- 输入参数  : pstMsg:LMM的UE Detach结果
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年12月01日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
-  2.日    期   : 2014年3月10日
-    作    者   : A00165503
-    修改内容   : DTS2014030708580: GMM注册过程中搜LTE, 上层发下发PS域去附着
-                 请求, LTE本地去附着后, GMM需要清除业务标识
-*****************************************************************************/
 VOS_VOID NAS_GMM_RcvLmmMoDetachInd(
     struct MsgCB                       *pstMsg
 )
@@ -1441,21 +1052,7 @@ VOS_VOID NAS_GMM_RcvLmmMoDetachInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_RcvLmmLocalDetachInd
- 功能描述  : 接收到Lmm的local Detach ind处理
- 输入参数  : pstMsg:LMM的local Detach结果
- 输出参数  : 无
- 返 回 值  : 该消息对应的GMM事件
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年12月07日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_GMM_RcvLmmLocalDetachInd(
     struct MsgCB                       *pstMsg
 )
@@ -1512,24 +1109,7 @@ VOS_VOID NAS_GMM_RcvLmmLocalDetachInd(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_RcvLmmTimerInfoNotify_RegNmlServ
- 功能描述  : GMM 在REG正常服务状态收到MMC转发的timer info notify的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2012年3月05日
-   作    者   : z00161729
-   修改内容   : 新生成函数
- 2.日    期   : 2012年11月25日
-   作    者   : l65478
-   修改内容   : DTS2012112606482,GCF 9.2.3.3.2测试失败
-
-*****************************************************************************/
 VOS_VOID NAS_GMM_RcvLmmTimerInfoNotify_RegNmlServ(VOS_VOID)
 {
 
@@ -1570,25 +1150,7 @@ VOS_VOID NAS_GMM_RcvLmmTimerInfoNotify_RegNmlServ(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_RcvLmmTimerInfoNotify_RegLimitServ
- 功能描述  : GMM 在GMM_REGISTERED_NO_CELL_AVAILABLE和GMM_REGISTERED_6LIMITED_SERVICE
-             状态收到MMC转发的T3412超时的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2012年3月05日
-   作    者   : z00161729
-   修改内容   : 新生成函数
- 2.日    期   : 2013年2月4日
-   作    者   : w00176964
-   修改内容   : DTS2011022802215:CS ONLY,网络模式I下也进行联合注册
-
-*****************************************************************************/
 VOS_VOID NAS_GMM_RcvLmmTimerInfoNotify_RegLimitServ(VOS_VOID)
 {
     if ((GMM_TRUE == g_GmmGlobalCtrl.SysInfo.ucSysValidFlg)
@@ -1608,21 +1170,7 @@ VOS_VOID NAS_GMM_RcvLmmTimerInfoNotify_RegLimitServ(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_RcvLmmTimerStateNotify
- 功能描述  : 接收到Lmm的timer info notify处理
- 输入参数  : pstMsg - LMM的timer info notify结果
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2012年3月01日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_GMM_RcvLmmTimerStateNotify(
     struct MsgCB                       *pstMsg
 )
@@ -1665,24 +1213,7 @@ VOS_VOID NAS_GMM_RcvLmmTimerStateNotify(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_RcvMmcEmergencyNumList
- 功能描述  : 接收到Mmc的emergency num list ind处理
- 输入参数  : pstMsg - MMC从LMM传过来的的emergency num list结果
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年5月22日
-   作    者   : b00269685
-   修改内容   : DTS2014050604659新生成函数
- 2.日    期   : 2014年6月25日
-   作    者   : s00217060
-   修改内容   : DTS2014062011040:紧急呼中的MCC用的是上次成功的MCC
-
-*****************************************************************************/
 VOS_VOID NAS_GMM_RcvMmcEmergencyNumList(
     struct MsgCB                                           *pRcvMsg
 )
@@ -1720,23 +1251,7 @@ VOS_VOID NAS_GMM_RcvMmcEmergencyNumList(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_RcvLmmServiceResult
- 功能描述  : GMM处理来自LMM的注册结果
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月11日
-    作    者   : luokaihui / 00167671
-    修改内容   : 新生成函数
-  2.日    期   : 2011年10月27日
-    作    者   : s46746
-    修改内容   : V7R1 PhaseIII,支持L模联合注册
-*****************************************************************************/
 VOS_VOID  NAS_GMM_RcvLmmServiceResult(
     VOS_VOID                           *pstMsg
 
@@ -1775,23 +1290,7 @@ VOS_VOID  NAS_GMM_RcvLmmServiceResult(
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_RcvLmmAuthResult
- 功能描述  : GMM处理来自LMM的鉴权失败
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月11日
-    作    者   : luokaihui / 00167671
-    修改内容   : 新生成函数
-  2.日    期   : 2011年8月8日
-    作    者   : luokaihui / 00167671
-    修改内容   : 问题单号DTS20110716005544,GPRS UPDATE STATUS需要先设置
-*****************************************************************************/
 VOS_VOID  NAS_GMM_RcvLmmAuthResult(
     VOS_VOID                           *pstMsg
 )
@@ -1814,32 +1313,7 @@ VOS_VOID  NAS_GMM_RcvLmmAuthResult(
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_MapPtmsiFromGUTI
- 功能描述  : 从L模的GUTI获取到PTMST信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_ERR: 从L模获取GUTI失败
-             VOS_OK : 从L模获取GUTI成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月11日
-    作    者   : W00167002
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年7月27日
-    作    者   : l00167671
-    修改内容   : P-TMSI 映射错误,单号DTS2011072204749
-  3.日    期   : 2012年3月21日
-    作    者   : z40661
-    修改内容   : DTS2011110201060:L重选到W，被网络拒绝#9后携带的PTMSI不正确
-  4.日    期   : 2012年12月28日
-    作    者   : s46746
-    修改内容   : DSDA GUNAS C CORE项目，重新封装LMM提供的接口函数
-
-*****************************************************************************/
 VOS_UINT32  NAS_GMM_MapPtmsiFromGUTI( VOS_VOID )
 {
      /*GUTI STRUC
@@ -1907,29 +1381,7 @@ VOS_UINT32  NAS_GMM_MapPtmsiFromGUTI( VOS_VOID )
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_MapRaiFromGUTI
- 功能描述  : 从L模的GUTI获取到RAI等信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :VOS_ERR: 从L模获取GUTI失败
-            VOS_OK : 从L模获取GUTI成功
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2011年4月11日
-    作    者   : W00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2012年3月21日
-    作    者   : z40661
-    修改内容   : DTS2011110201060:L重选到W，被网络拒绝#9后携带的PTMSI不正确
-  3.日    期   : 2012年12月28日
-    作    者   : s46746
-    修改内容   : DSDA GUNAS C CORE项目，重新封装LMM提供的接口函数
-
-*****************************************************************************/
 VOS_UINT32  NAS_GMM_MapRaiFromGUTI( VOS_VOID )
 {
     /*23.003  2.8.2.1.2
@@ -1996,28 +1448,7 @@ VOS_UINT32  NAS_GMM_MapRaiFromGUTI( VOS_VOID )
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_MapLaiFromGUTI
- 功能描述  : 从L模的GUTI获取到LAI等信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_ERR: 从L模获取GUTI失败
-             VOS_OK : 从L模获取GUTI成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月11日
-    作    者   : W00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2012年3月21日
-    作    者   : z40661
-    修改内容   : DTS2011110201060:L重选到W，被网络拒绝#9后携带的PTMSI不正确
-  3.日    期   : 2012年12月28日
-    作    者   : s46746
-    修改内容   : DSDA GUNAS C CORE项目，重新封装LMM提供的接口函数
-
-*****************************************************************************/
 VOS_UINT32  NAS_GMM_MapLaiFromGUTI( VOS_VOID )
 {
     /*23.003  2.8.2.1.2
@@ -2081,32 +1512,7 @@ VOS_UINT32  NAS_GMM_MapLaiFromGUTI( VOS_VOID )
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : NAS_GMM_MapPtmsiSignFromGUTI
- 功能描述  : 从L模的GUTI,NAS TOKEN获取到PTMSI signature等信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_ERR: 从L模获取GUTI失败
-             VOS_OK : 从L模获取GUTI成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月11日
-    作    者   : W00167002
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年7月27日
-    作    者   : l00167671
-    修改内容   : P-TMSI SIGNATURE映射错误,单号DTS2011072204749
-  3.日    期   : 2012年3月21日
-    作    者   : z40661
-    修改内容   : DTS2011110201060:L重选到W，被网络拒绝#9后携带的PTMSI不正确
-  4.日    期   : 2012年12月28日
-    作    者   : s46746
-    修改内容   : DSDA GUNAS C CORE项目，重新封装LMM提供的接口函数
-
-*****************************************************************************/
 VOS_UINT32  NAS_GMM_MapPtmsiSignFromGUTIAndNasToken( VOS_VOID )
 {
     /* 23.003  2.8.2.1.2
@@ -2147,22 +1553,7 @@ VOS_UINT32  NAS_GMM_MapPtmsiSignFromGUTIAndNasToken( VOS_VOID )
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_IsGutiInfoValid
- 功能描述  : 检测Guti信息是否有效
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE: 从L模获取GUTI失败
-             VOS_FALSE : 从L模获取GUTI成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月01日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_GMM_IsGutiInfoValid( VOS_VOID )
 {
     NAS_LMM_INFO_STRU                   stLmmInfo;
@@ -2183,31 +1574,7 @@ VOS_UINT32 NAS_GMM_IsGutiInfoValid( VOS_VOID )
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_GetGUSecContextFromEpsSecContextInHandOver
- 功能描述  : L切换到GU下从EPS Security Context上下文转换为UMTS Security Context
- 输入参数  : LMM_GMM_HO_SECU_INFO_CNF_STRU消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_ERR: 从L模获取安全信息失败
-              VOS_OK : 从L模获取安全信息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年8月17日
-   作    者   : h4270
-   修改内容   : 新生成函数
-
- 2.日    期   : 2013年10月18日
-   作    者   : z00234330
-   修改内容   : dts2013101800405
- 3.日    期   : 2014年11月01日
-   作    者   : s00217060
-   修改内容   : DTS2014101700891:REGISTER_PLMN_SRCH状态收到LTE的安全上下文回复发起注册
- 4.日    期   : 2015年2月6日
-   作    者   : h00313353
-   修改内容   : USIMM卡接口调整
-*****************************************************************************/
 VOS_VOID NAS_GMM_GetGUSecContextFromEpsSecContextInHandOver(
     struct MsgCB                       *pstMsg
 )
@@ -2281,36 +1648,7 @@ VOS_VOID NAS_GMM_GetGUSecContextFromEpsSecContextInHandOver(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_GetUmtsSecurityContextFromEpsSecurityContext
- 功能描述  : L重选到GU下从EPS Security Context上下文转换为UMTS Security Context
- 输入参数  : LMM_GMM_RESEL_SECU_INFO_CNF_STRU消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年4月11日
-   作    者   : W00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2011年7月27日
-   作    者   : h44270
-   修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
- 3.日    期   : 2011年12月2日
-   作    者   : s46746
-   修改内容   : 从L异系统改变到GU后，没有指派加密密钥到GU接入层
- 4.日    期   : 2012年03月20日
-   作    者   : l00130025
-   修改内容   : DTS2012030105247,NAS只在网侧实际发起鉴权时,通知W SecurityKey，其它情况下由WAS调用对应接口获取
-
- 5.日    期   : 2013年10月18日
-   作    者   : z00234330
-   修改内容   : dts2013101800405
- 6.日    期   : 2014年11月01日
-   作    者   : s00217060
-   修改内容   : DTS2014101700891:REGISTER_PLMN_SRCH状态收到LTE的安全上下文回复发起注册
-*****************************************************************************/
 VOS_VOID NAS_GMM_GetGUSecContextFromEpsSecContextInReselect(
     struct MsgCB                       *pstMsg
 )
@@ -2388,22 +1726,7 @@ VOS_VOID NAS_GMM_GetGUSecContextFromEpsSecContextInReselect(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_GetPtmsiInfo
- 功能描述  : 获取GU的PTMSI的值
- 输入参数  : 无
- 输出参数  : pstPtmsi:GU PTMSI的值
- 返 回 值  : VOS_OK:当前PTMSI参数有效
-              VOS_ERR:当前PTMSI参数无效
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月23日
-    作    者   : zhoujun /40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  NAS_GMM_GetPtmsiInfo(
     NAS_GUMM_PTMSI_STRU                 *pstPtmsi
 )
@@ -2434,23 +1757,7 @@ VOS_UINT32  NAS_GMM_GetPtmsiInfo(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_GetPtmsiSignature
- 功能描述  : 获取GU的PTMSI Signature的值
- 输入参数  : 无
- 输出参数  : pstPtmsi:GU PTMSI的值
- 返 回 值  : VOS_OK:当前PTMSI Signature参数有效
-              VOS_ERR:当前PTMSI Signature参数无效
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月23日
-    作    者   : zhoujun /40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  NAS_GMM_GetPtmsiSignature(
     NAS_GUMM_PTMSI_SIGNATURE_STRU       *pstPtmsiSignature
 )
@@ -2480,22 +1787,7 @@ VOS_UINT32  NAS_GMM_GetPtmsiSignature(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GetGuInfo
- 功能描述  : 获取到GUNAS侧相关信息，提供给LMM使用
- 输入参数  : NAS_GUMM_INFO_TYPE_ENUM_UINT32       ulInfoType
- 输出参数  : NAS_GUMM_INFO_STRU                  *pstGuInfo
- 返 回 值  : VOS_OK:获取GU侧相关信息成功
-              VOS_ERR:获取GU侧相关信息失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月11日
-    作    者   : W00167002
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 MMC_LMM_RESULT_ID_ENUM_UINT32  Nas_GetGuInfo(
     NAS_GUMM_INFO_TYPE_ENUM_UINT32      ulInfoType,
     NAS_GUMM_INFO_STRU                 *pstGuInfo
@@ -2553,25 +1845,7 @@ MMC_LMM_RESULT_ID_ENUM_UINT32  Nas_GetGuInfo(
     return MMC_LMM_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : Nas_GetGuSecuInfo
- 功能描述  : 从GU NAS获取LAI有效性信息
- 输入参数  : 无
- 输出参数  : MMC_LMM_LAI_STRU                    *stLai
- 返 回 值  : VOS_OK:当前LAI参数有效
-              VOS_ERR:当前LAI参数无效
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月8日
-    作    者   : W00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月13日
-    作    者   : w00176964
-    修改内容   : 问题单DTS2011121303813修改:联合attach、TAU成功后，LMM向GU NAS获取的LAI信息为CS域保存的LAI信息
-
-*****************************************************************************/
 VOS_UINT32  NAS_GMM_GetLaiInfo(
     MMC_LMM_LAI_STRU                    *pstLai
 )
@@ -2602,25 +1876,7 @@ VOS_UINT32  NAS_GMM_GetLaiInfo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_GetRaiInfo
- 功能描述  : 从GU NAS获取RAI有效性信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_OK:当前RAI参数有效
-              VOS_ERR:当前RAI参数无效
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月19日
-    作    者   : zhoujun 40661
-    修改内容   : 新生成函数
-  2.日    期   : 2012年2月6日
-    作    者   : w00176964
-    修改内容   : DTS2012011804122:UE从U模切换到L模，TAU被拒.
-
-*****************************************************************************/
 VOS_UINT32  NAS_GMM_GetRaiInfo(
     MMC_LMM_RAI_STRU                   *pstRai
 )
@@ -2655,24 +1911,7 @@ VOS_UINT32  NAS_GMM_GetRaiInfo(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : Nas_GetGuSecuInfo
- 功能描述  : 从GU NAS获取TMSI有效性信息
- 输入参数  : 无
- 输出参数  : MMC_LMM_TMSI_STATUS_TYPE_ENUM_UINT32 *ulTmsiStatus
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月8日
-    作    者   : W00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2012年06月09日
-    作    者   : L65478
-    修改内容   : DTS2012060801488:在注册成功时,指定搜索一个禁止的PLMN,TMSI状态错误
-
-*****************************************************************************/
 VOS_VOID  NAS_GMM_GetTmsiStatusInfo(
     MMC_LMM_TMSI_STATUS_TYPE_ENUM_UINT32 *ulTmsiStatus
 )
@@ -2694,22 +1933,7 @@ VOS_VOID  NAS_GMM_GetTmsiStatusInfo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : Nas_GetGuSecuInfo
- 功能描述  : 从GU NAS拷贝安全参数给LMM
- 输入参数  : 无
- 输出参数  : NAS_GUMM_UMTS_CONTEXT_STRU          *stSecuContext
- 返 回 值  : VOS_OK:当前安全参数有效
-              VOS_ERR:当前安全参数无效
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月8日
-    作    者   : W00167002
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  NAS_GMM_GetGuSecuInfo(
     NAS_GUMM_UMTS_CONTEXT_STRU         *pstSecuContext
 )
@@ -2769,21 +1993,7 @@ VOS_UINT32  NAS_GMM_GetGuSecuInfo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_ConvertLmmPlmnToGmmPlmn
- 功能描述  : 将L模的PLMN转换为GMM的plmn形式
- 输入参数  : MMC_LMM_PLMN_ID_STRU                 stLmmPlmn
- 输出参数  : GMM_PLMN_ID_STRU                    *pstGmmPlmn
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月11日
-    作    者   : W00167002
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_GMM_ConvertLmmPlmnToGmmPlmnId(
     MMC_LMM_PLMN_ID_STRU                *pstLmmPlmn,
     GMM_PLMN_ID_STRU                    *pstGmmPlmn
@@ -2811,24 +2021,7 @@ VOS_VOID NAS_GMM_ConvertLmmPlmnToGmmPlmnId(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_ProcLmmRejCause3
- 功能描述  : GMM收到LMM的注册结果是卡无效的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月27日
-    作    者   : zhoujun /40661
-    修改内容   : 新生成函数
-  2.日    期   : 2011年8月8日
-    作    者   : luokaihui / 00167671
-    修改内容   : 问题单号DTS20110716005544,GPRS UPDATE STATUS需要先设置
-
-*****************************************************************************/
 VOS_VOID  NAS_GMM_ProcLmmRejCause3( VOS_VOID )
 {
     
@@ -2853,21 +2046,7 @@ VOS_VOID  NAS_GMM_ProcLmmRejCause3( VOS_VOID )
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_LogGutiInfo
- 功能描述  : 通过Trace显示从同步接口获取的GUTI相关信息
- 输入参数  : NAS_LMM_GUTI_STRU                    stGutiMsg
- 输出参数  : 无
- 返 回 值  : VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月11日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_GMM_LogGutiInfo(
     NAS_LMM_GUTI_STRU                  *pstGuti
 )

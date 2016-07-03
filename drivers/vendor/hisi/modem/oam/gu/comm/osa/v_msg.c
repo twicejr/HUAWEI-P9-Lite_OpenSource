@@ -861,22 +861,7 @@ VOS_UINT32 V_UnreserveMsg( VOS_PID Pid, MsgBlock * pMsg,
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : VOS_CheckMsgCPUId
- 功能描述  : 检查发送的消息是否为核间消息
- 输入参数  : VOS_UINT32 ulCPUId
- 输出参数  : 无
- 返 回 值  : VOS_BOOL   VOS_TRUE    发送的消息为核间消息
-                        VOS_FALSE   发送的消息为本地消息
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月13日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_BOOL VOS_CheckMsgCPUId( VOS_UINT32 ulCPUId )
 {
 #if (OSA_CPU_CCPU == VOS_OSA_CPU)
@@ -895,22 +880,7 @@ VOS_BOOL VOS_CheckMsgCPUId( VOS_UINT32 ulCPUId )
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : VOS_CheckInterrupt
- 功能描述  : 检测是否为中断上下文
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32   非0        运行在中断上下文中
-                          VOS_FALSE  运行在任务上下文中
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月13日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 VOS_CheckInterrupt( VOS_VOID )
 {
 #if ((VOS_OS_VER == VOS_VXWORKS) || (VOS_OS_VER == VOS_RTOSCK))

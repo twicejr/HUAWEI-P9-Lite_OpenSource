@@ -1,24 +1,4 @@
-/************************************************************************
-*                                                                      *
-*                             stac.c                                   *
-*                                                                      *
-*  Project Code:       VRP3.0                                          *
-*  Create Date:        2000/06/21                                      *
-*  Author:             SHIY YONG                                       *
-*  Modify Date:                                                        *
-*  Document:                                                           *
-*  Function:           STAC的实现和对外接口函数                        *
-*  Others:                                                             *
-*----------------------------------------------------------------------*
-*                                                                      *
-*  Copyright 2000-2002 VRP3.0 Team Beijing Institute HuaWei Tech, Inc. *
-*                      ALL RIGHTS RESERVED                             *
-*                                                                      *
-*----------------------------------------------------------------------*
-*                                                                      *
-*                       STAC的实现和对外接口函数                         *
-*                                                                      *
-************************************************************************/
+
 
 
 
@@ -77,7 +57,6 @@ LONG STAC_InitStacCompress( STAC_COMPRESSINFO_S *pstInfo )
 
 VOID  STAC_ExitStacCompress( STAC_COMPRESSINFO_S * pstInfo )
 {
-    /* Deleted start by liutao 38563 at 2004-11-09 V800R002 for PPPC移植 */
  #if 0
     if (pstInfo->pstHashTable != VOS_NULL_PTR)
     {
@@ -92,7 +71,6 @@ VOID  STAC_ExitStacCompress( STAC_COMPRESSINFO_S * pstInfo )
     }
  #endif
 
-    /* Deleted end by liutao 38563 at 2004-11-09 V800R002 for PPPC移植 */
 
     /*回到开始状态*/
     pstInfo->pucInputStream = VOS_NULL_PTR;
@@ -149,7 +127,6 @@ VOID     STAC_ExitStacDecompress( STAC_DECOMPRESSINFO_S *pstInfo )
         VOS_DBGASSERT(pstInfo);
         return;
     }
-    /* Deleted end by liutao 38563 at 2004-11-09 V800R002 for PPPC移植 */
     pstInfo->pucBuffer = VOS_NULL_PTR;
 
     /*回到开始状态*/

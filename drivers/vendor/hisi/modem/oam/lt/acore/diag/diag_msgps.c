@@ -20,17 +20,7 @@ extern "C" {
 DIAG_TRANS_HEADER_STRU g_stPSTransHead = {{VOS_NULL, VOS_NULL}, 0};
 
 
-/*****************************************************************************
- Function Name   : diag_PsTransProcEntry
- Description     : 该函数用于处理从PS透传命令
- Input           : VOS_UINT8* pstReq
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.c00326366      2015-06-14  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 diagPsTransProcEntry(DIAG_FRAME_INFO_STRU* pstReq)
 {
     return diag_TransReqProcEntry(pstReq, &g_stPSTransHead);
@@ -65,16 +55,7 @@ VOS_VOID diag_PsMsgInit(VOS_VOID)
 }
 
 
-/*****************************************************************************
- Function Name   : DIAG_ShowTransList
- Description     : 调试接口，用于查看链表中是否有残留的节点
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.c00326366      2015-06-14  Draft Enact
-
-*****************************************************************************/
 VOS_VOID DIAG_ShowTransList(VOS_VOID)
 {
     LIST_S* me = NULL;

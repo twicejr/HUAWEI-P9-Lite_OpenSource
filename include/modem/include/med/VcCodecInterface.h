@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : VcCodecInterface.h
-  版 本 号   : 初稿
-  作    者   : zhoujun /z40661
-  生成日期   : 2010年3月24日
-  最近修改   :
-  功能描述   : VC和CODEC模块间的接口文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2010年3月24日
-    作    者   : zhoujun /z40661
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __VCCODECINTERFACE_H__
 #define __VCCODECINTERFACE_H__
@@ -177,6 +160,7 @@ enum VCVOICE_DEV_MODE_ENUM
     VCVOICE_DEV_MODE_HEADPHONE,                                                 /* 不带耳机MIC的耳机通话 */
     VCVOICE_DEV_MODE_SUPER_HANDFREE,                                            /* 超级免提 */
     VCVOICE_DEV_MODE_SMART_TALK,                                                /* 智音通话 */
+    VCVOICE_DEV_MODE_USBVOICE,
     VCVOICE_DEV_MODE_BUTT
 };
 typedef VOS_UINT16  VCVOICE_DEV_MODE_ENUM_UINT16;
@@ -497,13 +481,7 @@ typedef struct {
     VOS_UINT32 ulDtmfDetectOn;  /*0 off, 1 on */
 }VC_VOICE_DTMF_DETECT_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : VCVOICE_ECALL_TRANS_STATUS_NTF_STRU
- 结构说明  : MED模块通知VC，当前的传输状态
- 1.日    期   : 2014年3月23日
-   作    者   : y00241934
-   修改内容   : 新增，为支持eCall功能
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/
@@ -515,13 +493,7 @@ typedef struct
     VOS_UINT32                                  ulTimeWindow;                   /* 可配置时间窗 */
 }VCVOICE_ECALL_TRANS_STATUS_NTF_STRU;
 
-/*****************************************************************************
- 结构名    : VCVOICE_SET_MSD_REQ_STRU
- 结构说明  : VC模块通过该消息，将MSD数据发送到MED
- 1.日    期   : 2014年3月23日
-   作    者   : y00241934
-   修改内容   : 新增，为支持eCall功能
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/
@@ -531,13 +503,7 @@ typedef struct
     VOS_UINT8                                   aucMsd[VC_VOICE_MAX_MSD_LEN];   /* MSD数据内容 */
 } VCVOICE_SET_MSD_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : VCVOICE_SET_ECALLCFG_REQ_STRU
- 结构说明  : VC模块通过该消息，将ECALL配置发送到MED
- 1.日    期   : 2014年3月24日
-   作    者   : y00241934
-   修改内容   : 新增，为支持eCall功能
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/
@@ -547,13 +513,7 @@ typedef struct
     VCVOICE_ECALL_MSD_VOICE_ABANDON_ENUM_UINT16 enNoVoice;                      /* MSD数据传输过程中是否有语音数据 0:有语音 1:无语音 */
 } VCVOICE_SET_ECALLCFG_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : VOICE_VOICE_ECALL_UPDATE_IND_STRU
- 结构说明  : ECALL状态更新
- 1.日    期   : 2014年3月23日
-   作    者   : y00241934
-   修改内容   : 新增，为支持eCall功能
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/
@@ -575,13 +535,7 @@ typedef struct
     VOS_UINT16                          uhwReserved;
 }VOICE_VOICE_ECALL_PULLSTART_IND_STRU;
 
-/*****************************************************************************
- 结构名    : VOICEVC_AL_ACK_REPORT_IND_STRU
- 结构说明  : ECALL AL ACK上报
- 1.日    期   : 2014年3月23日
-   作    者   : y00241934
-   修改内容   : 新增，为支持eCall功能
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/

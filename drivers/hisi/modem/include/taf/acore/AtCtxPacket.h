@@ -10,9 +10,7 @@
 #include "AtTypeDef.h"
 #include "MnClient.h"
 #include "TafApsApi.h"
-/* Added by wx270776 for OM融合, 2015-7-25, begin */
 #include "TafNvInterface.h"
-/* Added by wx270776 for OM融合, 2015-7-25, end */
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -194,14 +192,7 @@ typedef struct
 }AT_IPV4_DHCP_PARAM_STRU;
 
 
-/*****************************************************************************
- 结构名  : AT_PS_USER_INFO_STRU
- 结构说明: PS域用户信息结构
 
-  1.日    期   : 2012年12月10日
-    作    者   : Y00213812
-    修改内容   : C50 IPv6 项目新增
-*****************************************************************************/
 typedef struct
 {
     AT_CLIENT_TAB_INDEX_UINT8           enPortIndex;
@@ -241,14 +232,7 @@ typedef VOS_VOID (*AT_PS_RPT_CONN_RSLT_FUNC)(\
     VOS_UINT8                           ucPortIndex, \
     TAF_PDP_TYPE_ENUM_UINT8             enPdpType);
 
-/*****************************************************************************
- 结构名    : AT_PS_REPORT_CONN_RESULT_STRU
- 结构说明  : 消息与对应处理函数的结构
 
-  1.日    期   : 2012年12月10日
-    作    者   : Y00213812
-    修改内容   : C50 IPv6 项目新增
-*****************************************************************************/
 /*lint -e958 -e959 修改人:l60609;原因:64bit*/
 typedef struct
 {
@@ -264,14 +248,7 @@ typedef VOS_VOID (*AT_PS_RPT_END_RSLT_FUNC)(\
     TAF_PDP_TYPE_ENUM_UINT8             enPdpType, \
     TAF_PS_CAUSE_ENUM_UINT32            enCause);
 
-/*****************************************************************************
- 结构名    : AT_PS_REPORT_END_RESULT_STRU
- 结构说明  : 消息与对应处理函数的结构
 
-  1.日    期   : 2012年12月10日
-    作    者   : Y00213812
-    修改内容   : C50 IPv6 项目新增
-*****************************************************************************/
 /*lint -e958 -e959 修改人:l60609;原因:64bit*/
 typedef struct
 {
@@ -285,14 +262,7 @@ typedef VOS_VOID (*AT_PS_REG_FC_POINT_FUNC)(\
     VOS_UINT8                           ucCid, \
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent);
 
-/*****************************************************************************
- 结构名    : AT_PS_REG_FC_POINT_STRU
- 结构说明  : 消息与对应处理函数的结构
 
-  1.日    期   : 2012年12月10日
-    作    者   : Y00213812
-    修改内容   : C50 IPv6 项目新增
-*****************************************************************************/
 /*lint -e958 -e959 修改人:l60609;原因:64bit*/
 typedef struct
 {
@@ -306,14 +276,7 @@ typedef VOS_VOID (*AT_PS_DEREG_FC_POINT_FUNC)(\
     VOS_UINT8                           ucCid, \
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU *pstEvent);
 
-/*****************************************************************************
- 结构名    : AT_PS_DEREG_FC_POINT_STRU
- 结构说明  : 消息与对应处理函数的结构
 
-  1.日    期   : 2013年4月26日
-    作    者   : L60609
-    修改内容   : C50 IPv6 项目新增
-*****************************************************************************/
 /*lint -e958 -e959 修改人:l60609;原因:64bit*/
 typedef struct
 {
@@ -328,14 +291,7 @@ typedef VOS_VOID (*AT_PS_SND_PDP_ACT_IND_FUNC)(\
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent, \
     TAF_PDP_TYPE_ENUM_UINT8             enPdpType);
 
-/*****************************************************************************
- 结构名    : AT_PS_SND_PDP_ACT_IND_STRU
- 结构说明  : 消息与对应处理函数的结构
 
-  1.日    期   : 2013年4月26日
-    作    者   : L60609
-    修改内容   : C50 IPv6 项目新增
-*****************************************************************************/
 /*lint -e958 -e959 修改人:l60609;原因:64bit*/
 typedef struct
 {
@@ -350,14 +306,7 @@ typedef VOS_VOID (*AT_PS_SND_PDP_DEACT_IND_FUNC)(\
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU *pstEvent, \
     TAF_PDP_TYPE_ENUM_UINT8             enPdpType);
 
-/*****************************************************************************
- 结构名    : AT_PS_SND_PDP_DEACT_IND_STRU
- 结构说明  : 消息与对应处理函数的结构
 
-  1.日    期   : 2013年4月26日
-    作    者   : L60609
-    修改内容   : C50 IPv6 项目新增
-*****************************************************************************/
 /*lint -e958 -e959 修改人:l60609;原因:64bit*/
 typedef struct
 {
@@ -366,14 +315,7 @@ typedef struct
 }AT_PS_SND_PDP_DEACT_IND_STRU;
 /*lint +e958 +e959 修改人:l60609;原因:64bit*/
 
-/*****************************************************************************
- 结构名    : AT_PS_DATA_CHANL_CFG_STRU
- 结构说明  : AT^CHDATA配置的数传通道信息
 
-  1.日    期   : 2013年4月24日
-    作    者   : l60609
-    修改内容   : 创建
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          ulUsed;                                 /* 指定CID是否已经通过CHDATA配置了数传通道，VOS_TRUE:已经配置；VOS_FALSE:未配置 */
@@ -386,14 +328,7 @@ typedef struct
 
 #if (FEATURE_ON == FEATURE_IPV6)
 
-/*****************************************************************************
- 结构名  : AT_PS_IPV6_BACKPROC_EXT_CAUSE_STRU
- 结构说明: IPv4v6双栈拨号回退处理扩展原因值(PS Cause)结构体
 
-  1.日    期   : 2012年12月10日
-    作    者   : Y00213812
-    修改内容   : C50 IPv6 项目新增
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          ulCauseNum;
@@ -402,14 +337,7 @@ typedef struct
 } AT_PS_IPV6_BACKPROC_EXT_CAUSE_STRU;
 #endif
 
-/*****************************************************************************
- 结构名  : AT_PS_CALL_ENTITY_STRU
- 结构说明: PS域呼叫实体结构
 
-  1.日    期   : 2012年12月10日
-    作    者   : Y00213812
-    修改内容   : C50 IPv6 项目新增
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          ulUsedFlg;          /* 呼叫实体分配标志 */
@@ -437,17 +365,7 @@ typedef struct
 
 } AT_PS_CALL_ENTITY_STRU;
 
-/*****************************************************************************
- 结构名  : AT_COMM_PS_CTX_STRU
- 结构说明: PS域公共上下文结构
 
-  1.日    期   : 2013年4月24日
-    作    者   : l60609
-    修改内容   : V9R1 IPv6&TAF/SM接口优化项目新增
-  2.日    期   : 2013年6月4日
-    作    者   : z00214637
-    修改内容   : V3R3 Share-PDP项目修改
-*****************************************************************************/
 typedef struct
 {
 #if (FEATURE_ON == FEATURE_IPV6)
@@ -467,18 +385,7 @@ typedef struct
 
 }AT_COMM_PS_CTX_STRU;
 
-/*****************************************************************************
- 结构名  : AT_MODEM_PS_CTX_STRU
- 结构说明: PS域MODEM相关上下文结构
 
-  1.日    期   : 2013年4月24日
-    作    者   : l60609
-    修改内容   : V9R1 IPv6&TAF/SM接口优化项目新增
-
-  2.日    期   : 2013年11月11日
-    作    者   : A00165503
-    修改内容   : DTS2013110900839: 增加承载IP与RABID映射成员
-*****************************************************************************/
 typedef struct
 {
     /* 保存和CID关联的PS域呼叫实体的索引 */
@@ -490,10 +397,8 @@ typedef struct
     /* CID与数传通道的对应关系 */
     AT_PS_DATA_CHANL_CFG_STRU           astChannelCfg[TAF_MAX_CID + 1];
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     /* PS域呼叫错误码 */
     TAF_PS_CAUSE_ENUM_UINT32            enPsErrCause;
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
     /* IP地址与RABID的映射表, IP地址为主机序 */
     VOS_UINT32                          aulIpAddrRabIdMap[AT_PS_RABID_MAX_NUM];
 

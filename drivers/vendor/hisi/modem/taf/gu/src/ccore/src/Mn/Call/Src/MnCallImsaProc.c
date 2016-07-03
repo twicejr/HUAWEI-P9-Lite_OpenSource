@@ -1,23 +1,5 @@
 
-/******************************************************************************
 
-                  版权所有 (C), 2001-2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : MnCallImsaProc.c
-  版 本 号   : 初稿
-  作    者   : w00176964
-  生成日期   : 2013年09月24日
-  最近修改   :
-  功能描述   : call模块与Imsa模块的消息交互文件
-  函数列表   :
-
-  修改历史   :
-  1.日    期   : 2013年9月24日
-    作    者   : W00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -40,13 +22,9 @@
 #include "SpmImsaInterface.h"
 #include "NasStkInterface.h"
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-14, begin */
 #include "MnCallMnccProc.h"
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-14, end */
 
-/* Added by y00245242 for V3R3C60_eCall项目, 2014-5-20, begin */
 #include "MnCallSendApp.h"
-/* Added by y00245242 for V3R3C60_eCall项目, 2014-5-20, end */
 #ifdef __cplusplus
 #if __cplusplus
 extern "C" {
@@ -81,26 +59,7 @@ extern "C" {
   6 函数定义
 *****************************************************************************/
 #if (FEATURE_ON == FEATURE_IMS)
-/*****************************************************************************
- 函 数 名  : TAF_CALL_ProcImsaMsg
- 功能描述  : 处理来自IMSA的消息
- 输入参数  : pstMsg  消息指针
 
- 输出参数  : 无
-
- 返回值    : 无
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年9月24日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月14日
-    作    者   : y00245242
-    修改内容   : 增加SRVCC过程中缓存处理功能
-*****************************************************************************/
 VOS_VOID TAF_CALL_ProcImsaMsg(VOS_VOID *pMsg)
 {
     MSG_HEADER_STRU                    *pstImsaMsg = VOS_NULL_PTR;
@@ -117,9 +76,7 @@ VOS_VOID TAF_CALL_ProcImsaMsg(VOS_VOID *pMsg)
             TAF_CALL_ProcImsaMsgSyncInd((IMSA_CALL_MSG_SYNC_IND_STRU *)pstImsaMsg);
             break;
 
-        case ID_IMSA_CALL_CCWA_CAP_NOTIFY:
-            TAF_CALL_ProcImsaCcwaCapNtf((IMSA_CALL_CCWA_CAP_NOTIFY_STRU *)pstImsaMsg);
-            break;
+
 
         default:
             MN_WARN_LOG("TAF_CALL_ProcImsaMsg:Error MsgName");
@@ -129,30 +86,9 @@ VOS_VOID TAF_CALL_ProcImsaMsg(VOS_VOID *pMsg)
     return;
 }
 
-/* Deleted by w00176964 for VoLTE_PhaseIII 项目, 2013-12-16, begin */
 
-/* Deleted by w00176964 for VoLTE_PhaseIII 项目, 2013-12-16, end */
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_ProcImsaSrvccCallInfoNtf
- 功能描述  : 处理来自IMSA的呼叫信息同步消息
- 输入参数  : pstCallInfoNtf  IMSA通知的同步呼叫信息
 
- 输出参数  : 无
-
- 返回值    : 无
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年9月24日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月23日
-    作    者   : y00245242
-    修改内容   : 增加SRVCC缓存处理
-*****************************************************************************/
 VOS_VOID TAF_CALL_ProcImsaSrvccCallInfoNtf(
     CALL_IMSA_SRVCC_CALL_INFO_NOTIFY_STRU                  *pstCallInfoNtf
 )
@@ -181,20 +117,7 @@ VOS_VOID TAF_CALL_ProcImsaSrvccCallInfoNtf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_SendImsaSrvccStatusNtf
- 功能描述  : 发送ID_CALL_IMSA_SRVCC_STATUS_NOTIFY消息给IMSA
- 输入参数  : enSrvccSta--srvcc 状态
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_CALL_SendImsaSrvccStatusNtf(
     CALL_IMSA_SRVCC_STATUS_ENUM_UINT32  enSrvccSta
 )
@@ -236,24 +159,7 @@ VOS_VOID TAF_CALL_SendImsaSrvccStatusNtf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_ConvertSupsCmdReqMsg
- 功能描述  : 转换呼叫请求消息
 
- 输入参数  : pstSrcMsg －－ 源消息地址
-             pstDstMsg －－ 目的消息地址
-
- 输出参数  : 无
- 返 回 值  : 无
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2013年12月14日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_CALL_ConvertOrigReqMsg(
     SPM_IMSA_CALL_ORIG_REQ_STRU        *pstSrcMsg,
     MN_CALL_APP_REQ_MSG_STRU           *pstDstMsg
@@ -269,24 +175,7 @@ VOS_VOID TAF_CALL_ConvertOrigReqMsg(
     PS_MEM_CPY(&(pstDstMsg->unParm.stOrig), &(pstSrcMsg->stOrig), sizeof(MN_CALL_ORIG_PARAM_STRU));
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_ConvertSupsCmdReqMsg
- 功能描述  : 转换与呼叫相关的补充业务请求
 
- 输入参数  : pstSrcMsg －－ 源消息地址
-             pstDstMsg －－ 目的消息地址
-
- 输出参数  : 无
- 返 回 值  : 无
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2013年12月14日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_CALL_ConvertSupsCmdReqMsg(
     SPM_IMSA_CALL_SUPS_CMD_REQ_STRU    *pstSrcMsg,
     MN_APP_CALL_SUPS_REQ_STRU          *pstDstMsg
@@ -301,24 +190,7 @@ VOS_VOID TAF_CALL_ConvertSupsCmdReqMsg(
     PS_MEM_CPY(&(pstDstMsg->stSupsPara), &(pstSrcMsg->stCallMgmtCmd), sizeof(MN_CALL_SUPS_PARAM_STRU));
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_ConvertStartDtmfReqMsg
- 功能描述  : 转换启动DTMF请求
 
- 输入参数  : pstSrcMsg －－ 源消息地址
-             pstDstMsg －－ 目的消息地址
-
- 输出参数  : 无
- 返 回 值  : 无
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2013年12月14日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_CALL_ConvertStartDtmfReqMsg(
     SPM_IMSA_CALL_START_DTMF_REQ_STRU  *pstSrcMsg,
     MN_CALL_APP_REQ_MSG_STRU           *pstDstMsg
@@ -334,24 +206,7 @@ VOS_VOID TAF_CALL_ConvertStartDtmfReqMsg(
     PS_MEM_CPY(&(pstDstMsg->unParm.stDtmf), &(pstSrcMsg->stDtmf), sizeof(TAF_CALL_DTMF_PARAM_STRU));
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_ConvertStopDtmfReqMsg
- 功能描述  : 转换停止DTMF请求
 
- 输入参数  : pstSrcMsg －－ 源消息地址
-             pstDstMsg －－ 目的消息地址
-
- 输出参数  : 无
- 返 回 值  : 无
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2013年12月14日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_CALL_ConvertStopDtmfReqMsg(
     SPM_IMSA_CALL_STOP_DTMF_REQ_STRU   *pstSrcMsg,
     MN_CALL_APP_REQ_MSG_STRU           *pstDstMsg
@@ -365,23 +220,7 @@ VOS_VOID TAF_CALL_ConvertStopDtmfReqMsg(
     PS_MEM_CPY(&(pstDstMsg->unParm.stDtmf), &(pstSrcMsg->stDtmf), sizeof(TAF_CALL_DTMF_PARAM_STRU));
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_ProcOrigReq
- 功能描述  : 处理同步过来的呼叫请求消息
 
- 输入参数  : pstOrigReq －－ 消息地址
-
- 输出参数  : 无
- 返 回 值  : 无
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2013年12月14日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_CALL_ProcOrigReq(SPM_IMSA_CALL_ORIG_REQ_STRU *pstOrigReq)
 {
     MN_CALL_APP_REQ_MSG_STRU           *pstDstMsg = VOS_NULL_PTR;
@@ -411,23 +250,7 @@ VOS_VOID TAF_CALL_ProcOrigReq(SPM_IMSA_CALL_ORIG_REQ_STRU *pstOrigReq)
     PS_FREE_MSG(WUEPS_PID_TAF, pstDstMsg);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_ProcSupsCmdReq
- 功能描述  : 处理同步过来的与呼叫相关的补充业务请求
 
- 输入参数  : pstSupsCmdReq －－ 消息地址
-
- 输出参数  : 无
- 返 回 值  : 无
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2013年12月14日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_CALL_ProcSupsCmdReq(SPM_IMSA_CALL_SUPS_CMD_REQ_STRU *pstSupsCmdReq)
 {
     MN_APP_CALL_SUPS_REQ_STRU          *pstDstMsg = VOS_NULL_PTR;
@@ -454,23 +277,7 @@ VOS_VOID TAF_CALL_ProcSupsCmdReq(SPM_IMSA_CALL_SUPS_CMD_REQ_STRU *pstSupsCmdReq)
     PS_FREE_MSG(WUEPS_PID_TAF, pstDstMsg);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_ProcStartDtmfReq
- 功能描述  : 处理同步过来的启动DTMF请求
 
- 输入参数  : pstStartDtmfReq －－ 消息地址
-
- 输出参数  : 无
- 返 回 值  : 无
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2013年12月14日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_CALL_ProcStartDtmfReq(SPM_IMSA_CALL_START_DTMF_REQ_STRU *pstStartDtmfReq)
 {
     MN_CALL_APP_REQ_MSG_STRU           *pstDstMsg = VOS_NULL_PTR;
@@ -523,23 +330,7 @@ VOS_VOID TAF_CALL_ProcStartDtmfReq(SPM_IMSA_CALL_START_DTMF_REQ_STRU *pstStartDt
     PS_FREE_MSG(WUEPS_PID_TAF, pstDstMsg);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_ProcStopDtmfReq
- 功能描述  : 处理同步过来的启动DTMF请求
 
- 输入参数  : pstStopDtmfReq －－ 消息地址
-
- 输出参数  : 无
- 返 回 值  : 无
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2013年12月14日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_CALL_ProcStopDtmfReq(SPM_IMSA_CALL_STOP_DTMF_REQ_STRU *pstStopDtmfReq)
 {
     MN_CALL_APP_REQ_MSG_STRU           *pstDstMsg = VOS_NULL_PTR;
@@ -591,23 +382,7 @@ VOS_VOID TAF_CALL_ProcStopDtmfReq(SPM_IMSA_CALL_STOP_DTMF_REQ_STRU *pstStopDtmfR
     PS_FREE_MSG(WUEPS_PID_TAF, pstDstMsg);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_ProcSyncServiceMsgReq
- 功能描述  : 根据同步过来的消息类型，进行相应处理
 
- 输入参数  : pstMsg －－ 同步过来的消息地址
-
- 输出参数  : 无
- 返 回 值  : 无
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2013年12月14日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_CALL_ProcSyncServiceMsgReq(MSG_HEADER_STRU *pstMsg)
 {
     switch (pstMsg->ulMsgName)
@@ -636,23 +411,7 @@ VOS_VOID TAF_CALL_ProcSyncServiceMsgReq(MSG_HEADER_STRU *pstMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_ProcImsaMsgSyncInd
- 功能描述  : 处理在SRVCC成功后，由IMSA模块同步过来的未发送呼叫相关的请求消息
 
- 输入参数  : pstMsgSyncInd －－ 消息地址
-
- 输出参数  : 无
- 返 回 值  : 无
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2013年12月14日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_CALL_ProcImsaMsgSyncInd(IMSA_CALL_MSG_SYNC_IND_STRU *pstMsgSyncInd)
 {
     VOS_UINT8                           i;
@@ -673,40 +432,7 @@ VOS_VOID TAF_CALL_ProcImsaMsgSyncInd(IMSA_CALL_MSG_SYNC_IND_STRU *pstMsgSyncInd)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_ProcImsaCcwaCapNtf
- 功能描述  : 处理IMSA上报的CCWA能力通知信息
- 输入参数  : IMSA_CALL_CCWA_CAP_NOTIFY_STRU *pstCcwaCapNtf
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月24日
-    作    者   : n00269697
-    修改内容   : 新生成函数
-
-*****************************************************************************/
-VOS_VOID TAF_CALL_ProcImsaCcwaCapNtf(
-    IMSA_CALL_CCWA_CAP_NOTIFY_STRU     *pstCcwaCapNtf
-)
-{
-    TAF_CALL_CCWA_CTRL_MODE_ENUM_U8     enCcwaCtrlMode;
-
-    enCcwaCtrlMode = TAF_CALL_GetCcwaCtrlMode();
-
-    /* 如果NV2340配置CCWA控制模式不是UE控制，则不处理ID_IMSA_CALL_CCWA_CAP_NOTIFY */
-    if (TAF_CALL_CCWA_CTRL_BY_IMS != enCcwaCtrlMode)
-    {
-        return;
-    }
-
-    /* 将IMS域的CCWA能力保存到全局变量 */
-    TAF_CALL_SetCcwaiFlg(pstCcwaCapNtf->ucCcwaCap);
-
-    return;
-}
 
 
 #endif

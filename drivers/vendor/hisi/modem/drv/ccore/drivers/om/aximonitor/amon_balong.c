@@ -1,15 +1,4 @@
-/*************************************************************************
-*   版权所有(C) 2008-2012, 深圳华为技术有限公司.
-*
-*   文 件 名 :  amon_balong.c
-*
-*   作    者 :  z00212940
-*
-*   描    述 :  可维可测AXI Monitor
-*
-*   修改记录 :  2013年1月29日  v1.00  z00212940  创建
-*
-*************************************************************************/
+
 
 #ifdef __cplusplus
 extern "C"
@@ -55,21 +44,7 @@ do{\
 /* MODE检查，只支持SOC、CPUFAST */
 
 
-/*****************************************************************************
- 函 数 名  : axi_reg_read
- 功能描述  : AXI寄存器读操作, 一次只能读一类寄存器（CPUFAST/SOC）
- 输入参数  : axi_config_enum_uint32 config
-             u32 reg
- 输出参数  : u32 * value
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年1月29日
-    作    者   : f
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 void axi_reg_read(axi_config_enum_uint32 config, u32 reg, u32 * value)
 {
     /* 根据配置目标读取相应寄存器 */
@@ -90,23 +65,7 @@ void axi_reg_read(axi_config_enum_uint32 config, u32 reg, u32 * value)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : axi_reg_write
- 功能描述  : AXI寄存器写操作，一次只能写一类寄存器（CPUFAST/SOC）
- 输入参数  : axi_config_enum_uint32 config
-             u32 reg
-             u32 value
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年1月29日
-    作    者   : f
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void axi_reg_write(axi_config_enum_uint32 config, u32 reg, u32 value)
 {
     /* 根据配置目标写入相应寄存器 */
@@ -127,24 +86,7 @@ void axi_reg_write(axi_config_enum_uint32 config, u32 reg, u32 value)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : axi_reg_getbits
- 功能描述  : AXI寄存器读位操作，一次只能读一类寄存器（CPUFAST/SOC）
- 输入参数  : axi_config_enum_uint32 config
-             u32 reg
-             u32 pos
-             u32 bits
- 输出参数  : u32 * value
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年1月29日
-    作    者   : f
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void axi_reg_getbits(axi_config_enum_uint32 config, u32 reg, u32 pos, u32 bits, u32 * value)
 {
     u32 reg_value = 0;
@@ -155,25 +97,7 @@ void axi_reg_getbits(axi_config_enum_uint32 config, u32 reg, u32 pos, u32 bits, 
     *value = (reg_value >> pos) & (((u32)1 << (bits)) - 1);
 }
 
-/*****************************************************************************
- 函 数 名  : axi_reg_setbits
- 功能描述  : AXI寄存器写位操作，一次只能写一类寄存器（CPUFAST/SOC）
- 输入参数  : axi_config_enum_uint32 config
-             u32 reg
-             u32 pos
-             u32 bits
-             u32 value
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年1月29日
-    作    者   : f
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void axi_reg_setbits(axi_config_enum_uint32 config, u32 reg, u32 pos, u32 bits, u32 value)
 {
     u32 reg_value = 0;
@@ -185,20 +109,7 @@ void axi_reg_setbits(axi_config_enum_uint32 config, u32 reg, u32 pos, u32 bits, 
     /* 写入目的寄存器 */
     axi_reg_write(config, reg, reg_value);
 }
-/*****************************************************************************
- 函 数 名  : axi_sc_mon_start
- 功能描述  : AXI Monitor启动通过系统控制器控制
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年1月29日
-    作    者   : f
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void axi_sc_mon_start(axi_config_enum_uint32 config)
 {
     /* 启动CPUFAST */
@@ -217,20 +128,7 @@ void axi_sc_mon_start(axi_config_enum_uint32 config)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : axi_sc_mon_stop
- 功能描述  : AXI Monitor停止通过系统控制器控制
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年1月29日
-    作    者   : f
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void axi_sc_mon_stop(axi_config_enum_uint32 config)
 {
     /* 停止CPUFAST */
@@ -249,22 +147,7 @@ void axi_sc_mon_stop(axi_config_enum_uint32 config)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : axi_get_state
- 功能描述  : 获取AXI monitor运行/软复位状态，不能同时获取CPUFAST/SOC状态
- 输入参数  : axi_config_enum_uint32 config
-             axi_get_state_req_enum_uint32 state_req
- 输出参数  : 无
- 返 回 值  : axi_state_enum_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年1月29日
-    作    者   : f
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 axi_state_enum_uint32 axi_get_state(axi_config_enum_uint32 config, axi_get_state_req_enum_uint32 state_req)
 {
     u32 reg_value = 0;
@@ -290,20 +173,7 @@ axi_state_enum_uint32 axi_get_state(axi_config_enum_uint32 config, axi_get_state
     return reg_value;
 }
 
-/*****************************************************************************
- 函 数 名  : axi_state_check
- 功能描述  : 状态判定函数，是否正在运行
- 输出参数  : 无
- 返 回 值  : s32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年1月29日
-    作    者   : f
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32 axi_state_check(axi_config_enum_uint32 config)
 {
     axi_state_enum_uint32 axi_state;
@@ -317,20 +187,7 @@ s32 axi_state_check(axi_config_enum_uint32 config)
 
     return MDRV_OK;
 }
-/*****************************************************************************
- 函 数 名  : axi_reset
- 功能描述  : AXI monitor软复位
- 输出参数  : 无
- 返 回 值  : s32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年1月29日
-    作    者   : f
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32 axi_reset(axi_config_enum_uint32 config)
 {
     axi_state_enum_uint32 axi_state;

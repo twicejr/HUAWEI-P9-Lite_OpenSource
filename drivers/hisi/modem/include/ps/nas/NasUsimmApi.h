@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasUsimmApi.h
-  版 本 号   : 初稿
-  作    者   : z00161729
-  生成日期   : 2013年6月3日
-  最近修改   :
-  功能描述   : 供NAS各个子模块:MM子层、TAF层调用usim api的接口文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年6月3日
-    作    者   : z00161729
-    修改内容   : 创建文件
-
-******************************************************************************/
 #ifndef _NAS_USIMMAPI_H_
 #define _NAS_USIMMAPI_H_
 
@@ -45,31 +28,18 @@ extern "C" {
 #define NAS_USIMM_PIN_NEED_FLG_INVALID      (0xFF)
 #define NAS_USIMM_PIN_NUM_INVALID           (0xFF)
 
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-29, begin */
 #define NAS_MAX_AUTH_RAND_LEN               (16)
 #define NAS_MAX_AUTH_AUTN_LEN               (16)
 
 /* USIM interface has removed the following define, here add them */
 #define USIM_GAS_AUTH_FAIL         (2)  /* GSM authentication failure */
 #define USIM_AUTH_FAIL_UNKNOWN     (3)
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-29, end */
 /*****************************************************************************
   3 枚举定义
 *****************************************************************************/
 
 
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-30, begin */
-/*****************************************************************************
- 枚举名    : NAS_USIMM_SERVICES_TYPE_ENUM_UINT32
- 结构说明  : NAS内部定义的service number
-  1.日    期   : 2013年7月29日
-    作    者   : y00245242
-    修改内容   : 创建USIM SERVICE number枚举
-  2.日    期   : 2015年10月22日
-    作    者   : z00161729
-    修改内容   : 支持LTE CSG功能新增
-	
-*****************************************************************************/
+
 enum NAS_USIMM_SERVICES_TYPE_ENUM
 {
     NAS_USIM_SVR_NONE           = 0,
@@ -196,7 +166,6 @@ enum NAS_USIMM_SERVICES_TYPE_ENUM
     NAS_USIM_SVR_MAX_SERVICE
 };
 typedef VOS_UINT32  NAS_USIMM_SERVICES_TYPE_ENUM_UINT32;
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-30, end */
 
 /*****************************************************************************
   4 全局变量声明
@@ -215,19 +184,7 @@ typedef VOS_UINT32  NAS_USIMM_SERVICES_TYPE_ENUM_UINT32;
 /*****************************************************************************
   7 STRUCT定义
 *****************************************************************************/
-/*****************************************************************************
- 结构名    : TAF_USIMM_VSIM_INFO_STRU
- 结构说明  : NAS VSIM特性配置信息
-             ucVsimCtrlFlg   NAS虚拟卡流程控制标志:
-             1: 激活，处于VSIM状态的MODEM禁止下述功能：
-                 OTA以外短信的接收功能；
-                 网络发起的CS域业务功能；
-             0: 去激活
 
- 1.日    期   : 2013年8月29日
-   作    者   : f62575
-   修改内容   : VSIM FEATURE
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucVsimCtrlFlg;
@@ -235,17 +192,7 @@ typedef struct
 }TAF_USIMM_VSIM_INFO_STRU;
 
 
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-5, begin */
-/*****************************************************************************
- 结构名    : NAS_USIMM_SRVICES_TYPE_STRU
- 结构说明  : 定以NAS USIM业务类型以及对应的SIM与USIM的业务类型
 
- 修改记录  :
- 1.日    期   : 2013年06月05日
-   作    者   : s00217060
-   修改内容   : 新增
-
-*****************************************************************************/
 typedef struct
 {
     NAS_USIMM_SERVICES_TYPE_ENUM_UINT32  enSrvType;
@@ -253,16 +200,8 @@ typedef struct
     UICC_SERVICES_TYPE_ENUM_UINT32       enUsimSrvType;
 }NAS_USIMM_SRVICES_TYPE_STRU;
 
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-5, end */
 
-/*****************************************************************************
- 结构名    : NAS_USIMM_UPDATEFILE_INFO_STRU
- 结构说明  : 更新文件
 
- 1.日    期   : 2015年02月03日
-   作    者   : h00313353
-   修改内容   : Create
-*****************************************************************************/
 typedef struct
 {
     USIMM_CARDAPP_ENUM_UINT32   enAppType;      /* 应用类型 */
@@ -273,14 +212,7 @@ typedef struct
     VOS_UINT8                  *pucEfContent;   /* 更新数据内容 */
 }NAS_USIMM_UPDATEFILE_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_USIMM_GETFILE_INFO_STRU
- 结构说明  : 获取文件
 
- 1.日    期   : 2015年02月03日
-   作    者   : h00313353
-   修改内容   : Create
-*****************************************************************************/
 typedef struct
 {
     USIMM_CARDAPP_ENUM_UINT32   enAppType;      /* 应用类型 */
@@ -336,15 +268,11 @@ VOS_UINT32  NAS_USIMMAPI_MaxEFRecordNumReq(
     VOS_UINT16                          usEFid
 );
 
-/* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-27, begin */
 VOS_UINT32  NAS_USIMMAPI_IsServiceAvailable(
     NAS_USIMM_SERVICES_TYPE_ENUM_UINT32 enService
 );
-/* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-27, end */
 
-/* Added by l00208543 for V9R1 STK升级, 2013-07-24, begin */
 VOS_UINT32 NAS_GetOamReceivePid(VOS_UINT32 ulRcvPid);
-/* Added by l00208543 for V9R1 STK升级, 2013-07-24, end */
 
 
 VOS_BOOL  NAS_USIMMAPI_IsTestCard(VOS_VOID);
@@ -442,15 +370,11 @@ VOS_UINT32 NAS_STKAPI_EnvelopeDownload(
     SI_STK_ENVELOPE_STRU               *pstENStru
 );
 
-/* Deleted by f62575 for V9R1 STK升级, 2013-6-26, begin */
 /*
     NAS_STKAPI_MtCallEvent
 */
-/* Deleted by f62575 for V9R1 STK升级, 2013-6-26, end */
 
 
-/* Deleted by l00208543 for V9R1 STK升级, 2013-7-13, begin */
-/* Deleted by l00208543 for V9R1 STK升级, 2013-7-13, end */
 
 
 VOS_UINT32 NAS_USIMMAPI_DeactiveCardReq(
@@ -471,7 +395,6 @@ VOS_UINT32 NAS_VSIM_IsRequireVsimCtrl(VOS_VOID);
 VOS_VOID NAS_VSIM_InitVsimCfgInfo(VOS_VOID);
 
 
-/* Added by w00176964 for V3R3C60_eCall项目, 2014-4-23, begin */
 VOS_VOID NAS_PBAPI_QryECallNumber(
     VOS_UINT32                          ulPid,
     SI_PB_STORAGE_ENUM_UINT32           enPbType,
@@ -479,7 +402,6 @@ VOS_VOID NAS_PBAPI_QryECallNumber(
     VOS_UINT8                          *pucList
 );
 
-/* Added by w00176964 for V3R3C60_eCall项目, 2014-4-23, end */
 
 #if (FEATURE_UE_MODE_CDMA == FEATURE_ON)
 

@@ -23,15 +23,11 @@ extern "C" {
 /*****************************************************************************
   2 宏定义
 *****************************************************************************/
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
 #define TAF_STD_7BIT_MASK                                    (0x7f)
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 
-/* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, begin */
 #define TAF_STD_MAX_GSM7BITDEFALPHA_NUM                     (128)
 #define TAF_STD_NOSTANDARD_ASCII_CODE                       (0xff)
 #define TAF_STD_GSM_7BIT_EXTENSION_FLAG                     (0xfe)
-/* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, end */
 
 /* This is the number of days in a leap year set.
    A leap year set includes 1 leap year, and 3 normal years. */
@@ -81,16 +77,7 @@ extern "C" {
 /*****************************************************************************
   6 消息定义
 *****************************************************************************/
-/*****************************************************************************
- 结构名    : TAF_STD_TIME_ZONE_TYPE_STRU
- 结构说明  : TimeZone类型的时间结构
 
- 修改记录  :
- 1.日    期   : 2014年12月28日s
-   作    者   : x00314862
-   修改内容   : 新增
-
-*****************************************************************************/
 typedef struct
 {
   /* Year [1980..2100) */
@@ -149,7 +136,6 @@ VOS_UINT16 TAF_STD_HexAlpha2AsciiString(
     VOS_UINT8                          *pucDst
 );
 
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
 /*将7bit编码方式的字符转换为8bit字符*/
 VOS_UINT32  TAF_STD_UnPack7Bit(
     const VOS_UINT8                    *pucOrgChar,
@@ -167,9 +153,7 @@ VOS_UINT32  TAF_STD_Pack7Bit(
     VOS_UINT32                         *pulLen
 );
 
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 
-/* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-16, begin */
 VOS_UINT32  TAF_STD_ConvertBcdNumberToAscii(
     const VOS_UINT8                    *pucBcdNumber,
     VOS_UINT8                           ucBcdLen,
@@ -213,7 +197,6 @@ VOS_VOID  TAF_STD_ConvertDefAlphaToAscii(
     VOS_UINT32                         *pulAsciiCharLen
 );
 
-/* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-16, end */
 
 VOS_UINT32  TAF_STD_ConvertBcdCodeToDtmf(
     VOS_UINT8                           ucBcdCode,

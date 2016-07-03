@@ -167,10 +167,8 @@ ULONG g_ulDHCPSIpnum = 0; /*调试使用*/
 
 STUB_SDB_CONTEXT_S g_stStubSdbContext = {0};
 
-/* Modified start by dongmingzhou 42828 at 2009-02-18 UGWV9R1C1 for 地址分配 */
 ULONG g_ulUdpsStub = 0;
 ULONG g_ulUsmStub = 0;
-/* Modified end by dongmingzhou 42828 at 2009-02-18 UGWV9R1C1 for 地址分配 */
 
 ULONG g_ulDhcpsDebug = 0;
 
@@ -215,7 +213,6 @@ UCHAR g_DHCPStatiscDescrip[DHCPS_MAX_STATISC][50] =
     "DHCPS_STATISC_END :",
 };
 
-/* Added start by ZhangYang  z00142225 at 2009-03-26 UGWV900R001C001 for 性能统计 */
 VOS_SIZE_T  g_UEtoPGW_ulDHCPV4DiscoveryNumAddr =  VOS_NULL_PTR; /*用于统计PGW接收的UE始发的DHCPV4 Discovery消息包数*/
 VOS_SIZE_T  g_UEtoPGW_ulDHCPV4RequestNumAddr =  VOS_NULL_PTR;   /*用于统计PGW接收的UE始发的DHCPV4 Request消息包数*/
 VOS_SIZE_T  g_UEtoPGW_ulDHCPV4DeclineNumAddr =  VOS_NULL_PTR;   /*用于统计PGW接收的UE始发的DHCPV4 Decline消息包数*/
@@ -234,7 +231,6 @@ VOS_SIZE_T  g_UEtoSGW_ulDHCPV4InformNumAddr =  VOS_NULL_PTR;        /*用于统计SG
 VOS_SIZE_T  g_SGWtoUE_ulDHCPV4OfferNumAddr =  VOS_NULL_PTR;         /*用于统计SGW发送给UE的DHCPV4 Offer消息包数*/
 VOS_SIZE_T  g_SGWtoUE_ulDHCPV4AckNumAddr =  VOS_NULL_PTR;           /*用于统计SGW发送给UE的DHCPV4 Ack消息包数*/
 VOS_SIZE_T  g_SGWtoUE_ulDHCPV4NakNumAddr =  VOS_NULL_PTR;           /*用于统计SGW发送给UE的DHCPV4 Nak消息包数*/
-/* Added end by ZhangYang  z00142225 at 2009-03-26 UGWV900R001C001 for 性能统计 */
 
 ULONG g_ulGreProType = 0;
 

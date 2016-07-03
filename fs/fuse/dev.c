@@ -21,11 +21,13 @@
 #include <linux/splice.h>
 #include <linux/aio.h>
 #include <linux/freezer.h>
+#include <linux/suspend.h>
 
 MODULE_ALIAS_MISCDEV(FUSE_MINOR);
 MODULE_ALIAS("devname:fuse");
 
 static struct kmem_cache *fuse_req_cachep;
+static int in_suspend;
 
 static struct fuse_conn *fuse_get_conn(struct file *file)
 {
@@ -466,9 +468,13 @@ __acquires(fc->lock)
 	 */
 	spin_unlock(&fc->lock);
 
-	while (req->state != FUSE_REQ_FINISHED)
-		wait_event_freezable(req->waitq,
-				     req->state == FUSE_REQ_FINISHED);
+	if (in_suspend)
+		while (req->state != FUSE_REQ_FINISHED)
+			wait_event_freezable(req->waitq,
+					req->state == FUSE_REQ_FINISHED);
+	else
+		wait_event(req->waitq, req->state == FUSE_REQ_FINISHED);
+
 	spin_lock(&fc->lock);
 
 	if (!req->aborted)
@@ -2173,6 +2179,26 @@ static struct miscdevice fuse_miscdevice = {
 	.fops = &fuse_dev_operations,
 };
 
+static int fuse_stats_notifier(struct notifier_block *nb,
+			       unsigned long event, void *dummy)
+{
+	switch (event) {
+		case PM_SUSPEND_PREPARE:
+			in_suspend = 1;
+			break;
+
+		case PM_POST_SUSPEND:
+			in_suspend = 0;
+			break;
+	}
+
+	return 0;
+}
+
+static struct notifier_block fuse_stats_notifier_block = {
+	.notifier_call = fuse_stats_notifier,
+};
+
 int __init fuse_dev_init(void)
 {
 	int err = -ENOMEM;
@@ -2186,8 +2212,14 @@ int __init fuse_dev_init(void)
 	if (err)
 		goto out_cache_clean;
 
+	err = register_pm_notifier(&fuse_stats_notifier_block);
+	if (err)
+		goto out_misc;
+
 	return 0;
 
+ out_misc:
+	misc_deregister(&fuse_miscdevice);
  out_cache_clean:
 	kmem_cache_destroy(fuse_req_cachep);
  out:

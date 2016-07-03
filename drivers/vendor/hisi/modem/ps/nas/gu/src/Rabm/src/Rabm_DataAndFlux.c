@@ -73,28 +73,7 @@
 
 
 
-/*****************************************************************************
- Prototype      : NAS_RabmAppDataTransReq()
- Description    : APP调用此函数发送上行数据，RABM根据当前系统进行选择:
-                  若为3G，则调用3G中的Api_AppRabmDataReq()函数进行处理；
-                  若为2G, 则调用SNDCP 提供的函数进行处理。
- Input          : pRabmDataReq        上行用户面数据结构体指针
- Output         :
- Return Value   : 无
- Calls          :
- Called By      :
- History        :
-  1.Date        : 2005-08-30
-    Author      : l47619
-    Modification: Created function
-  2.Date        : 2006-05-05
-    Author      : l47619
-    Modification: 根据问题单修改:A32D03487
 
-  3.日    期   : 2010年4月22日
-    作    者   : o00132663
-    修改内容   : AT2D18350, GCF 14.2.4 环回测试失败
-*****************************************************************************/
 VOS_VOID  NAS_RabmAppDataTransReq( ST_APP_RABM_DATA  *pRabmDataReq )
 {
     TTF_MEM_ST * pstData;
@@ -163,29 +142,7 @@ VOS_VOID  NAS_RabmAppDataTransReq( ST_APP_RABM_DATA  *pRabmDataReq )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RabmRcvTafGprsPsDataReq
- 功能描述  : RABM处理APP发送的上行数据消息RABM_TAF_GPRS_PS_DATA_REQ_MSG_TYPE
- 输入参数  : TAFRABM_PS_DATA_REQ_STRU *pPsDataReqMsg - 上行用户面数据消息指针
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年03月06日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-  2.日    期   : 2010年11月26日
-    作    者   : A00165503
-    修改内容   : 问题单号: DTS2010112505628
-                 G下数传过程中进行语音业务，语音业务结束后，数传概率性恢复慢
-  3.日    期   : 2011年12月8日
-    作    者   : s46746
-    修改内容   : 问题单号：DTS2011111603445,接收到系统消息而且层2已经指派后才能恢复RABM
-
-*****************************************************************************/
 VOS_VOID  NAS_RabmRcvTafGprsPsDataReq(TAFRABM_PS_DATA_REQ_STRU *pPsDataReqMsg)
 {
     RABM_NSAPI_ENUM                     NsapiIndex;

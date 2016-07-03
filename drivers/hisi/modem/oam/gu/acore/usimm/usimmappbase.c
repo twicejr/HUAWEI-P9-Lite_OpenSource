@@ -1,15 +1,6 @@
 
 
-/************************************************************************
-  Copyright    : 2005-2007, Huawei Tech. Co., Ltd.
-  File name    : UsimmBase.c
-  Author       : zhuli 00100318
-  Version      : v00R002
-  Date         : 2008-5-15
-  Description  : 该C文件给出了---Base模块实现
-  Function List:
-  History      :
-************************************************************************/
+
 #include "vos.h"
 
 #ifdef __cplusplus

@@ -229,8 +229,9 @@ struct {
     int haptics_type;
     char haptics_value[HAPTICS_NUM];
 } haptics_table[] = {
-    { 1, {0x01,0,0,0,0,0,0,0}},
+    { 1, {0x04,0,0,0,0,0,0,0}},
     { 2, {0x18,0x06,0x18,0x06,0x18,0,0,0}},
+    { 3, {0x01,0,0,0,0,0,0,0}},
 };
 
 static void drv2605_write_reg_val(struct i2c_client *client, const unsigned char *data,

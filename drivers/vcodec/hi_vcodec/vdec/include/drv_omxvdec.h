@@ -1,20 +1,5 @@
 
-/*
- * Copyright (c) (2014 - ...) Device Chipset Source Algorithm and Chipset Platform Development Dept
- * Hisilicon. All rights reserved.
- *
- * File:    drv_omxvdec.h
- *
- * Purpose: omxvdec export header file
- *
- * Author:  yangyichang 00226912
- *
- * Date:    26, 11, 2014
- *
- * NOTICE !!
- * 该文件同时被component 和driver 引用
- * 如修改，两边均需重新编译!!!
- */
+
 
 #ifndef __DRV_OMXVDEC_H__
 #define __DRV_OMXVDEC_H__

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : PsNvId.h
-  版 本 号   :
-  作    者   : 胡骏 59254
-  生成日期   : 2009年5月14日
-  最近修改   :
-  功能描述   : 定义了协议栈NV项ID枚举定义
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2009年5月14日
-    作    者   : 胡骏 59254
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __PSNVID_H__
 #define __PSNVID_H__
@@ -325,9 +308,7 @@ enum PS_NV_ID_ENUM
 /* 9063 */       en_NV_Item_NVIM_SMS_NVIM_SMSREXIST_SUPPORT_FLG = 9063,         /*表明NVIM中是否能保存短信状态报告*/
 /* 9064 */       en_NV_Item_NVIM_SMS_STATUS_REPORT_IN_EFSMS_SUPPORT_FLG = 9064, /*支持短信状态报告存到EFSMS文件*/
 
-/* Modified by z40661 for 泰国AIS特性 2012-05-17, begin */
                 en_NV_Item_NVIM_AIS_ROAMING_CFG  = 9073                        ,       /*  */
-/* Modified by z40661 for 泰国AIS特性 2012-05-17, end */
 
                  /* Custom NV项 */
 /* 9074 */       en_NV_Item_User_Auto_Resel_Switch = 9074,                      /* User Reselction功能是否使能 */
@@ -340,13 +321,9 @@ enum PS_NV_ID_ENUM
 
 /* 9109 */       en_NV_Item_NVIM_SMS_BUFFER_CAPABILITY = 9109,                         /* SMS的缓冲大小 */
 
-/* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-15, begin */
 /* 9106 */       en_NV_Item_PLMN_EXACTLY_COMPARE_FLG = 9106,                    /*表明是否精确比较PLMN(MNC比较三位)*/
-/* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-15, end */
 
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-14, begin */
 /* 9105 */      en_NV_Item_Csfb_Emg_Call_LaiChg_Lau_First_CFG = 9105,     /* csfb紧急呼叫到GU,LAI改变先做lau再进行呼叫配置*/
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-14, end */
                  en_NV_Item_W_DRX_LTE_EVALUATE_PARA_STRU = 9107,
 /* 9108 */      en_NV_Item_USIM_Status_Need_Fcp = 9108,
 
@@ -358,9 +335,7 @@ enum PS_NV_ID_ENUM
 
 /* 9137  */      en_NV_Item_NasIsrSupport = 9137,
 
-/* Added by y00142674 for GSM自主重定向到LTE, 2013-08-05, begin */
 /* 9139 */       en_NV_Item_GSM_AUTO_FR_LTE_MEAS_CONFIG = 9139,                 /* GSM自主重定向到LTE的LTE频点测量配置 */
-/* Added by y00142674 for GSM自主重定向到LTE, 2013-08-05, end */
                  
 /* 9140 */       en_NV_Item_NAS_GMM_REL_CONN_AFTER_PDP_DEACT = 9140,
 
@@ -379,9 +354,7 @@ enum PS_NV_ID_ENUM
 
 /* 9253 */      en_NV_Item_CBS_DRX_OPTIMIZATION_CFG = 9253,
 
-/* Added by p00166345 for DTS2014050808614(离网重选), 2014-01-16, begin */
 /* 9255 */      en_NV_Item_Gsm_Cell_Info_Rpt_Cfg    = 9255,
-/* Added by p00166345 for DTS2014050808614(离网重选), 2014-01-16, end */
 
 /* 9260 */      en_NV_Item_YOIGO_CUSTOM_PARA_INFO   = 9260,
 

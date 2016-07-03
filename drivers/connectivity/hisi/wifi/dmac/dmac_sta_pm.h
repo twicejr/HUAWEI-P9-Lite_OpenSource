@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : dmac_sta_pm.h
-  版 本 号   : 初稿
-  作    者   : l00280485
-  生成日期   : 2014年11月25日
-  最近修改   :
-  功能描述   : dmac_sta_pm.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年11月25日
-    作    者   : l00280485
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __DMAC_STS_PM_H__
 #define __DMAC_STS_PM_H__
@@ -52,8 +35,7 @@ extern "C" {
 #define DMAC_TIMER_DOZE_TRANS_FAIL_NUM        10
 #define DMAC_STATE_DOZE_TRANS_FAIL_NUM        2          //连续N次切doze失败输出维测
 #define DMAC_BEACON_DOZE_TRANS_FAIL_NUM       2
-#define DMAC_BEACON_TIMEOUT_MAX_NUM           10
-#define DMAC_BEACON_TIMEOUT_MAX_NUM_COEX      5
+#define DMAC_BEACON_TIMEOUT_MAX_TIME          1000 //收不到beacon最大睡眠时间,单位ms
 
 #if defined(_PRE_DEBUG_MODE)
 #define DMAC_STA_UAPSD_STATS_INCR(_member)    ((_member)++)

@@ -43,14 +43,7 @@ extern void UT_STUB_INIT(void);
 #endif
 #endif
 
-/*****************************************************************************
-类名     : TEST_TAF_STD_AsciiNum2HexString 
-功能描述 : TAF_STD_Itoa UT工程类
-修改历史 :
-1.日    期   : 2013年05月29日
-  作    者   : f62575
-  修改内容   : 新生成类
-*****************************************************************************/
+
 class TEST_TAF_STD_AsciiNum2HexString: public ::testing::Test
 {
 public:
@@ -65,15 +58,7 @@ public:
     {
     }
 };
-/*******************************************************************
-测试用例编号      : TEST_TAF_STD_Itoa_001
-测试用例标题      : 数字字符串高位中包含0-9，a-f,A-F以外字符
-预期结果          : 函数返回VOS_FALSE
-修改历史          :
-1.日    期   : 2013年05月29日
-  作    者   : f62575
-  修改内容   : 新增函数
-*******************************************************************/
+
 TEST_F(TEST_TAF_STD_AsciiNum2HexString, TEST_TAF_STD_AsciiNum2HexString_001)
 {
     VOS_UINT8               aucDigit[] = "12gf";
@@ -90,15 +75,7 @@ TEST_F(TEST_TAF_STD_AsciiNum2HexString, TEST_TAF_STD_AsciiNum2HexString_001)
 
 }
 
-/*******************************************************************
-测试用例编号      : TEST_TAF_STD_Itoa_002
-测试用例标题      : 数字字符串低位中包含0-9，a-f,A-F以外字符
-预期结果          : 函数返回VOS_FALSE
-修改历史          :
-1.日    期   : 2013年05月29日
-  作    者   : f62575
-  修改内容   : 新增函数
-*******************************************************************/
+
 TEST_F(TEST_TAF_STD_AsciiNum2HexString, TEST_TAF_STD_AsciiNum2HexString_002)
 {
     VOS_UINT8               aucDigit[] = "12fg";
@@ -115,15 +92,7 @@ TEST_F(TEST_TAF_STD_AsciiNum2HexString, TEST_TAF_STD_AsciiNum2HexString_002)
 
 }
 
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
-/*****************************************************************************
-类名     : TEST_TAF_STD_UnPack7Bit
-功能描述 : TAF_STD_UnPack7Bit UT工程类
-修改历史 :
-1.日    期   : 2013年6月26日
-  作    者   : f62575
-  修改内容   : V9R1 STK升级
-*****************************************************************************/
+
 class TEST_TAF_STD_UnPack7Bit: public ::testing::Test
 {
 public:
@@ -139,15 +108,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : TEST_TAF_STD_UnPack7Bit_001
-测试用例标题      : 输入参数为空
-预期结果          : 函数返回VOS_ERR
-修改历史          :
-1.日    期   : 2013年6月26日
-  作    者   : f62575
-  修改内容   : V9R1 STK升级
-*******************************************************************/
+
 TEST_F(TEST_TAF_STD_UnPack7Bit, TEST_TAF_STD_UnPack7Bit_001)
 {
     VOS_UINT32                          ulRet;
@@ -167,14 +128,7 @@ TEST_F(TEST_TAF_STD_UnPack7Bit, TEST_TAF_STD_UnPack7Bit_001)
 
 }
 
-/*****************************************************************************
-类名     : TEST_TAF_STD_Pack7Bit
-功能描述 :  TAF_STD_Pack7Bit  UT工程类
-修改历史 :
-1.日    期   : 2013年6月26日
-  作    者   : f62575
-  修改内容   : V9R1 STK升级
-*****************************************************************************/
+
 class TEST_TAF_STD_Pack7Bit: public ::testing::Test
 {
 public:
@@ -190,15 +144,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : TEST_TAF_STD_Pack7Bit_001
-测试用例标题      : 输入的待压缩数组最高位非0
-预期结果          : 函数返回VOS_ERR
-修改历史          :
-1.日    期   : 2013年6月26日
-  作    者   : f62575
-  修改内容   : V9R1 STK升级
-*******************************************************************/
+
 TEST_F(TEST_TAF_STD_Pack7Bit, TEST_TAF_STD_Pack7Bit_001)
 {
     VOS_UINT32                          ulRet;
@@ -214,15 +160,7 @@ TEST_F(TEST_TAF_STD_Pack7Bit, TEST_TAF_STD_Pack7Bit_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : TEST_TAF_STD_Pack7Bit_002
-测试用例标题      : 入参非法
-预期结果          : 函数返回VOS_ERR
-修改历史          :
-1.日    期   : 2013年6月26日
-  作    者   : f62575
-  修改内容   : V9R1 STK升级
-*******************************************************************/
+
 TEST_F(TEST_TAF_STD_Pack7Bit, TEST_TAF_STD_Pack7Bit_002)
 {
     VOS_UINT32                          ulRet;
@@ -238,6 +176,5 @@ TEST_F(TEST_TAF_STD_Pack7Bit, TEST_TAF_STD_Pack7Bit_002)
     GlobalMockObject::verify();
 }
 
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 
 

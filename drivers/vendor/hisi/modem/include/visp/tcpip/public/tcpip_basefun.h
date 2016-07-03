@@ -15,7 +15,6 @@ extern VOS_UINT32 VOS_Mem_Set( CHAR * pBufPtr, CHAR uChar, SIZE_T uvSetLen );
 extern VOS_UINT32 VOS_Mem_Zero( CHAR * pBufPtr, SIZE_T ulSetLen );
 #endif
 #endif
-/*Modified by yanlei00216869, 支持控制器安全函数适配, 2015/1/6   问题单号:DTS2015010508058 */
 #if (TCPIP_VOS_FUNC_TYPE == VOS_FUNC_TYPE_SAFE)
 extern CHAR* VOS_strncpy_Safe(CHAR * pscDest, VOS_UINT32 uvDestSize, const CHAR * pscSrc, VOS_UINT32 uvCount);
 extern CHAR * VOS_StrNCat_Safe(CHAR * pscDest, SIZE_T uvDestSize, const CHAR * pscSrc, SIZE_T uvCount);
@@ -42,7 +41,6 @@ extern VOS_INT32 VOS_nsprintf(CHAR *pscOBuf,VOS_UINT32 ulMaxStrLen,const CHAR *p
 extern VOID *TCPIP_MemMove(VOID *pVoidDes, const VOID *pVoidSrc, ULONG ulLen);
 extern VOS_INT32 VOS_sscanf(const VOS_CHAR *pscIBuf, const VOS_CHAR *pfmt, ...);
 #endif
-/*End of Modified by yanlei00216869, 2015/1/6   问题单号:DTS2015010508058 */
 #endif
 
 extern ULONG TCPIP_Safe_Mem_Copy(VOID *pDestPtr, ULONG ulDestSize, const VOID *pSrcPtr, ULONG ulCopyLen);

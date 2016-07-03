@@ -1,20 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : hmac_traffic_classify.c
-  版 本 号   : 初稿
-  作    者   : wanghao 00357635
-  生成日期   : 2015.9.8
-  最近修改   :
-  功能描述   : 下行数据业务识别
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015.9.8
-    作    者   : wanghao 00357635
-    修改内容   : 创建文件
-******************************************************************************/
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -62,20 +46,7 @@ extern "C" {
 *****************************************************************************/
 
 
-/*****************************************************************************
- 函 数 名  : hmac_tx_add_cfm_traffic
- 功能描述  : 将用户已识别业务加入已识别记录表
- 输入参数  : hmac用户结构体指针，TID指针，hmac_tx_major_flow_stru结构体指针
- 输出参数  : 
- 返 回 值  : 成功返回OAL_SUCC,失败返回OAL_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日期: 2015.09.16
-    作者: wanghao(w00357635)
-    修改内容: 生成新函数
-*****************************************************************************/
 
 OAL_STATIC oal_uint32 hmac_tx_add_cfm_traffic(hmac_user_stru *pst_hmac_user, oal_uint8 uc_tid, hmac_tx_major_flow_stru *pst_max)
 {    
@@ -131,23 +102,7 @@ OAL_STATIC oal_uint32 hmac_tx_add_cfm_traffic(hmac_user_stru *pst_hmac_user, oal
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_tx_traffic_judge
- 功能描述  : 对主要业务进行业务识别处理
- 输入参数  : hmac用户结构体指针，主要业务结构体指针，TID指针
- 输出参数  : TID
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日期: 2015.11.26
-    作者: wanghao(w00357635)
-    修改内容: 生成新函数
-  2.日期: 2015.12.26
-    作者: wanghao(w00357635)
-    修改内容: TCP识别功能裁剪
-*****************************************************************************/
 OAL_STATIC oal_uint32 hmac_tx_traffic_judge(
                 hmac_user_stru *pst_hmac_user, 
                 hmac_tx_major_flow_stru *pst_major_flow, 
@@ -204,20 +159,7 @@ OAL_STATIC oal_uint32 hmac_tx_traffic_judge(
     return ul_ret;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_tx_find_major_traffic
- 功能描述  : 找到待识别队列中主要业务
- 输入参数  : hmac用户结构体指针，TID指针
- 输出参数  : 
- 返 回 值  : 成功返回OAL_SUCC，失败返回OAL_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日期: 2015.11.26
-    作者: wanghao(w00357635)
-    修改内容: 生成新函数
-*****************************************************************************/
 OAL_STATIC oal_uint32 hmac_tx_find_major_traffic(hmac_user_stru *pst_hmac_user, oal_uint8 *puc_tid)
 {
     oal_uint8                       uc_cache_idx_i; 
@@ -291,24 +233,7 @@ OAL_STATIC oal_uint32 hmac_tx_find_major_traffic(hmac_user_stru *pst_hmac_user, 
     return hmac_tx_traffic_judge(pst_hmac_user, &st_max, puc_tid);
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_tx_traffic_classify
- 功能描述  : 对下行数据包进行处理:
-                若业务已被识别，直接返回TID, 若否，提取包头信息并进入待检测队列
- 输入参数  : netbuff CB字段指针，ip头指针，TID指针
- 输出参数  : 
- 返 回 值  : 
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日期: 2015.11.26
-    作者: wanghao(w00357635)
-    修改内容: 生成新函数
-  2.日期: 2015.12.26
-    作者: wanghao(w00357635)
-    修改内容: TCP业务识别功能裁剪
-*****************************************************************************/
 oal_void hmac_tx_traffic_classify(
                 mac_tx_ctl_stru     *pst_tx_ctl,
                 mac_ip_header_stru  *pst_ip, 

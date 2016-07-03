@@ -1,22 +1,4 @@
-/******************************************************************************
 
-  版权所有 (C), 2001-2011, 华为技术有限公司
-
-******************************************************************************
-    文 件 名   : vdec_firmware.c
-    版 本 号   : 初稿
-    作    者   :
-    生成日期   :
-    最近修改   :
-    功能描述   : firmware的对外接口实现
-
-
- 修改历史   :
-    1.日    期 : 2009-01-08
-    作    者   : z56361
-    修改内容   :
-
-******************************************************************************/
 #include "vfmw.h"
 #include "vdm_hal.h"
 #include "mem_manage.h"
@@ -192,8 +174,7 @@ SINT32 VDEC_Init(VDEC_OPERATION_S *pArgs)
         return VDEC_ERR;
     }
 
-    /* 因为OMX和VDEC可能同时并存，所以一方初始化后，
-       另一方只需设置回调函数即可，否则重复初始化。 y00226912 */
+    
     if (1 == g_VfmwEnableFlag)
     {
         g_VfmwInitCount++;
@@ -272,7 +253,6 @@ SINT32 VDEC_Exit(UINT8 IsSecure)
     SINT32 ret;
     ret = VFMW_OSAL_SemaDown(G_VfmwSem);
 
-    /* 因为OMX 和VDEC 可能同时并存，所以任一方不能随便全局去初始化 y00226912 */
     g_VfmwInitCount = (g_VfmwInitCount-1 < 0)? 0: g_VfmwInitCount-1;        
     if (g_VfmwInitCount > 0)
     {

@@ -310,26 +310,14 @@ typedef LPP_MTA_NEIGHBOUR_MEAS_ELEMENT_STRU LPP_NEIGHBOUR_MEAS_ELEMENT_STRU;
 
 
 
-/*******************************************************************************
- 结构名    : LPP_GNSS_GENERIC_ASSISTANCE_DATA_SUPPORT_STRU
- 结构说明  : GPS模块提供能力之GenericAssistanceDataSupport
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                                  ulSupportElementNum;
     LPP_GNSS_GENERIC_ASSISTANCE_DATA_SUPPORT_ELEMENT_STRU       astSupportElementArray[LPP_MAX_GNSS_GENERIC_ASSIST_DATA_SUPPORT_ELMENT_LEN];
 }LPP_GNSS_GENERIC_ASSISTANCE_DATA_SUPPORT_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_GNSS_SUPPORT_LIST_STRU
- 结构说明  : GPS模块提供能力之SupportList
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -339,13 +327,7 @@ typedef struct
     MTA_LPP_GNSS_SUPPORT_ELEMENT_STRU           astGnssSupportElementArray[LPP_MAX_GNSS_SUPPORT_ELEMENT_NUM];
 }LPP_GNSS_SUPPORT_LIST_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_GNSS_DATA_BIT_REQ_SAT_LIST_STRU
- 结构说明  : GPS模块提供能力之DataBitsReqSatList
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
 /*
@@ -355,13 +337,7 @@ GNSS-DataBitsReqSatList ::= SEQUENCE (SIZE(1..64)) OF GNSS-DataBitsReqSatElement
     LPP_GNSS_DATA_BIT_REQ_SAT_ELEMENT_STRU      astGNSSDataBitReqSatList[LPP_MAX_GNSS_DATA_BITS_REQ_SAT_LIST_LEN];
 }LPP_GNSS_DATA_BIT_REQ_SAT_LIST_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_SATLIST_RELATED_DATALIST_STRU
- 结构说明  : GPS模块提供能力之SatListRelatedDataList
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*SatListRelatedDataList ::= SEQUENCE (SIZE (1..64)) OF SatListRelatedDataElement*/
@@ -369,13 +345,7 @@ typedef struct
     LPP_SATLIST_RELATED_DATALIST_ELEMENT_STRU       astSatListRelatedDataListElementArray[LPP_MAX_SAT_LIST_RELATED_DATA_ELEMENT_LEN];
 }LPP_SATLIST_RELATED_DATALIST_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_GNSS_GENERIC_ASSIST_DATA_REQ_STRU
- 结构说明  : GPS模块提供能力之GenericAssistDataReq
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -385,13 +355,7 @@ typedef struct
     LPP_GNSS_GENERIC_ASSIST_DATA_REQ_ELEMENT_STRU           astGNSSGenericAssistDataReqElement[LPP_MAX_GEN_ASSIT_DATA_ELEMENT_LEN];
 }LPP_GNSS_GENERIC_ASSIST_DATA_REQ_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_GNSS_SAT_MEAS_LIST_STRU
- 结构说明  : GPS提供位置信息SatMeasList
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -401,13 +365,7 @@ typedef struct
     LPP_GNSS_SAT_MEAS_ELEMENT_STRU          astGNSSSatMeasListArray[LPP_MAX_GNSS_SAT_MEAS_ELMENT_LEN];
 }LPP_GNSS_SAT_MEAS_LIST_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_GNSS_MEAS_LIST_STRU
- 结构说明  : GPS提供位置信息measurementList
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -417,13 +375,7 @@ typedef struct
     LPP_GNSS_MEAS_FOR_ONE_GNSS_STRU         astGNSSMeasListArray[LPP_MAX_GNSS_MEAS_FOR_ONE_GNSS_LEN];
 }LPP_GNSS_MEAS_LIST_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_DGNSS_SAT_LIST_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之DGNSS-SatList
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*DGNSS-SatList ::= SEQUENCE (SIZE (1..64)) OF DGNSS-CorrectionsElement*/
@@ -431,13 +383,7 @@ typedef struct
     LPP_DGNSS_CORRECT_ELEMENT_STRU          astDGNSSCorrectElementArray[LPP_MAX_DGNSS_CORRECT_ELEMENT_LEN];
 }LPP_DGNSS_SAT_LIST_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_GNSS_ID_GPS_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之GNSS-ID-GPS
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -447,13 +393,7 @@ typedef struct
     LPP_GNSS_ID_GPS_SAT_ELEMENT_STRU        astGNSSIdGpsArray[LPP_MAX_GNSS_ID_GPS_SAT_ELEMENT_LEN];
 }LPP_GNSS_ID_GPS_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_GNSS_ID_GLONASS_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之GNSS-ID-GLONASS
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -463,13 +403,7 @@ typedef struct
     LPP_GNSS_ID_GLONASS_SAT_ELEMENT_STRU        astGNSSIdGlonassArray[LPP_MAX_GNSS_ID_GLONASS_SAT_ELEMENT_LEN];
 }LPP_GNSS_ID_GLONASS_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_GNSS_ALMANAC_LIST_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之AlmanacList
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -479,13 +413,7 @@ typedef struct
     LPP_GNSS_ALMANAC_ELEMENT_STRU       astGNSSAlmanacListArray[LPP_MAX_GNSS_ALMANAC_ELMENT_LEN];
 }LPP_GNSS_ALMANAC_LIST_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_GNSS_ACQUISIT_ASSIST_LIST_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之AcquisitionAssistList
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -495,13 +423,7 @@ typedef struct
     LPP_GNSS_ACQUISIT_ASSIST_ELEMENT_STRU       astGNSSAcquisitAssistListArray[LPP_MAX_GNSS_ACQUSITON_ASSIST_ELMENT_LEN];
 }LPP_GNSS_ACQUISIT_ASSIST_LIST_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_GNSS_BAD_SIGNAL_LIST_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之BadSignalList
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -511,13 +433,7 @@ typedef struct
     LPP_GNSS_BAD_SIGNAL_ELEMENT_STRU            stGNSSBadSignalListArray[LPP_MAX_BAD_SIGNAL_ELEMENT_LEN];
 }LPP_GNSS_BAD_SIGNAL_LIST_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_GNSS_NAV_MODEL_SATELLITE_LIST_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之NavModelSatelliteList
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -527,13 +443,7 @@ typedef struct
     LPP_GNSS_NAV_MODEL_SATELLITE_LIST_ELEMENT_STRU          astGNSSNavModelSatelliteListArray[LPP_MAX_NAV_MODEL_SAT_ELEMENT_LEN];
 }LPP_GNSS_NAV_MODEL_SATELLITE_LIST_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_GNSS_DATA_BITS_SATLIST_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之DataBitsSatList
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -543,13 +453,7 @@ typedef struct
     LPP_GNSS_DATA_BITS_SAT_ELEMENT_STRU             astGNSSDataBitsSatListArray[LPP_MAX_GNSS_DATA_BITS_SAT_ELEMENT_LEN];
 }LPP_GNSS_DATA_BITS_SATLIST_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_GNSS_DATA_BIT_ASSIST_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之DataBitAssistance
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -569,13 +473,7 @@ typedef struct
     LPP_GNSS_DATA_BITS_SATLIST_STRU     stGNSSDataBitsSatlist;
 }LPP_GNSS_DATA_BIT_ASSIST_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_GNSS_GENERIC_ASSIST_DATA_ELEMENT_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之GenericAssistDataElement
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -620,13 +518,7 @@ typedef struct
     LPP_GNSS_AUX_INFO_STRU                  stGNSSAuxInfo;/*ATCPOS_GNSS_ID_GLONASS_STRU*/
 }LPP_GNSS_GENERIC_ASSIST_DATA_ELEMENT_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_GNSS_GENERIC_ASSIST_DATA_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之GenericAssistData
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -636,13 +528,7 @@ typedef struct
     LPP_GNSS_GENERIC_ASSIST_DATA_ELEMENT_STRU       astGNSSGenericAssistDataArray[LPP_MAX_GNSS_GENERIC_ASSIST_DATA_ELEMENT_LEN];
 }LPP_GNSS_GENERIC_ASSIST_DATA_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_AGNSS_PROVIDE_ASSIST_DATA_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之A-GNSS-ProvideAssistanceData
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -664,12 +550,7 @@ typedef struct
     LPP_GNSS_ERROR_STRU                         stGNSSError;
 }LPP_AGNSS_PROVIDE_ASSIST_DATA_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_EPDU_IDENTIFIER_STRU
- 结构说明  : epdu identifier
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -686,12 +567,7 @@ typedef struct
     VOS_UINT8                           acEpduName[LPP_MAX_EPDU_NAME_LEN];
 }LPP_EPDU_IDENTIFIER_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_EPDU_BODY_STRU
- 结构说明  : EPDU-Body
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*EPDU-Body ::= OCTET STRING*/
@@ -699,12 +575,7 @@ typedef struct
     VOS_UINT8                           aucBodyData[LPP_MAX_EPDU_BODY_LEN];
 }LPP_EPDU_BODY_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_EPDU_STRU
- 结构说明  : EPDU
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -717,24 +588,14 @@ typedef struct
     LPP_EPDU_BODY_STRU                  stEpduBody;
 }LPP_EPDU_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_EPDU_SEQUENCE_STRU
- 结构说明  : EPDU_SEQUENCE
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulEpduNum;
     LPP_EPDU_STRU                       astEpduArray[LPP_MAX_EPDU_NUM];
 }LPP_EPDU_SEQUENCE_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_TRANSACTION_ID_STRU
- 结构说明  : LPP-TransactionID
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -753,12 +614,7 @@ typedef struct
     VOS_UINT8                           aucRes[2];
 }LPP_TRANSACTION_ID_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_SEQUENCE_NUMBER_STRU
- 结构说明  : SequenceNumber
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -768,12 +624,7 @@ typedef struct
     VOS_UINT8                           aucRes[3];
 }LPP_SEQUENCE_NUMBER_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_ACKNOWLEDGEMENT_STRU
- 结构说明  : Acknowledgement
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -789,12 +640,7 @@ typedef struct
     LPP_SEQUENCE_NUMBER_STRU            stAckIndicator;
 }LPP_ACKNOWLEDGEMENT_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_COMMON_IES_ERROR_STRU
- 结构说明  : CommonIEsError
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -816,12 +662,7 @@ typedef struct
     VOS_UINT8                           aucRsv[3];
 }LPP_COMMON_IES_ERROR_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_ERROR_R9_STRU
- 结构说明  : Error-r9-IEs
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -840,12 +681,7 @@ typedef struct
     LPP_EPDU_SEQUENCE_STRU          stEpduError;
 }LPP_ERROR_R9_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MESSAGE_ERROR_STRU
- 结构说明  : Error
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -867,12 +703,7 @@ typedef struct
 }LPP_MESSAGE_ERROR_STRU;
 
 
-/*******************************************************************************
- 结构名    : LPP_COMMON_IES_ABORT_STRU
- 结构说明  : CommonIEsAbort
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -893,12 +724,7 @@ typedef struct
     VOS_UINT8                               aucRsv[3];
 }LPP_COMMON_IES_ABORT_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_ABORT_R9_IES_STRU
- 结构说明  : Abort-r9-IEs
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 
 typedef struct
 {
@@ -918,12 +744,7 @@ typedef struct
     LPP_EPDU_SEQUENCE_STRU      stEpduAbort;
 }LPP_ABORT_R9_IES_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_C1_EXT_ABORT_STRU
- 结构说明  :
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 
 typedef struct
 {
@@ -943,12 +764,7 @@ typedef struct
     }u;
 }LPP_C1_EXT_ABORT_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_CRIT_EXT_ABORT_STRU
- 结构说明  :
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 
 {
@@ -965,12 +781,7 @@ typedef struct
     }u;
 }LPP_CRIT_EXT_ABORT_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MESSAGE_ABORT_STRU
- 结构说明  : Abort
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -989,12 +800,7 @@ typedef struct
 
 }LPP_MESSAGE_ABORT_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_EPDU_PROVIDE_LOCATION_INFO_STRU
- 结构说明  : EPDU-Sequence
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1004,13 +810,7 @@ typedef struct
     LPP_EPDU_STRU                       astEpduSequenceArray[LPP_MAX_EPDU_NUM];
 }LPP_EPDU_PROVIDE_LOCATION_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_GNSS_SIGNAL_MEAS_INFO_STRU
- 结构说明  : GPS提供位置信息之SignalMeasurementInformation
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1027,13 +827,7 @@ typedef struct
     LPP_GNSS_MEAS_LIST_STRU             stGNSSMeasList;
 }LPP_GNSS_SIGNAL_MEAS_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_AGNSS_PROVIDE_LOCATION_INFO_STRU
- 结构说明  : GPS提供位置信息之A-GNSS-ProvideLocationInformation
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1055,12 +849,7 @@ typedef struct
     LPP_GNSS_ERROR_STRU                     stGNSSError;
 }LPP_AGNSS_PROVIDE_LOCATION_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_PROVIDE_LOCATION_INFO_R9_IES_STRU
- 结构说明  : ProvideLocationInformation-r9-IEs
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1089,12 +878,7 @@ typedef struct
     LPP_EPDU_PROVIDE_LOCATION_INFO_STRU                 stEpduPRovideLocationInfo;
 }LPP_PROVIDE_LOCATION_INFO_R9_IES_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_CRITI_EXT_PROVIDE_LOCATION_INFO_STRU
- 结构说明  :
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                          ulChoice;
@@ -1113,12 +897,7 @@ typedef struct
         }u;
 }LPP_CRITI_EXT_PROVIDE_LOCATION_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MESSAGE_PROVIDE_LOCATION_INFO_STRU
- 结构说明  :ProvideLocationInformation
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1144,12 +923,7 @@ typedef struct
      }u;
 }LPP_MESSAGE_PROVIDE_LOCATION_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_EPDU_REQ_LOCATION_INFO_STRU
- 结构说明  :EPDU-Sequence
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1159,12 +933,7 @@ typedef struct
     LPP_EPDU_STRU           astEpduSequence[LPP_MAX_EPDU_NUM];
 }LPP_EPDU_REQ_LOCATION_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_REQ_LOCATION_INFO_R9_IES_STRU
- 结构说明  :RequestLocationInformation-r9-IEs
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1193,12 +962,7 @@ typedef struct
     LPP_EPDU_REQ_LOCATION_INFO_STRU                 stEpduReqLocationInfo;
 }LPP_REQ_LOCATION_INFO_R9_IES_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_CRITI_EXT_REQ_LOCATION_INFO_STRU
- 结构说明  :
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                          ulChoice;
@@ -1217,12 +981,7 @@ typedef struct
         }u;
 }LPP_CRITI_EXT_REQ_LOCATION_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MESSAGE_REQUEST_LOCATION_INFO_STRU
- 结构说明  :RequestLocationInformation
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1248,12 +1007,7 @@ typedef struct
      }u;
 }LPP_MESSAGE_REQUEST_LOCATION_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_COMMON_IES_PROVIDE_ASSIST_DATA_STRU
- 结构说明  :    协议为空
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*协议为空*/
@@ -1261,12 +1015,7 @@ typedef struct
     VOS_UINT32              bitOpSpare:31;
 }LPP_COMMON_IES_PROVIDE_ASSIST_DATA_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_EPDU_PROVIDE_ASSIST_DATA_STRU
- 结构说明  :EPDU-Sequence
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1276,12 +1025,7 @@ typedef struct
     LPP_EPDU_STRU           astEpduSequenceArray[LPP_MAX_EPDU_NUM];
 }LPP_EPDU_PROVIDE_ASSIST_DATA_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_PROVIDE_ASSIST_DATA_R9_IES_STRU
- 结构说明  :ProvideAssistanceData-r9-IEs
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1306,12 +1050,7 @@ typedef struct
     LPP_EPDU_PROVIDE_ASSIST_DATA_STRU               stEPDUProvideAssistanceData;
 }LPP_PROVIDE_ASSIST_DATA_R9_IES_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_CRITI_EXT_PROVIDE_ASSIST_DATA_STRU
- 结构说明  :
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                          ulChoice;
@@ -1330,12 +1069,7 @@ typedef struct
     }u;
 }LPP_CRITI_EXT_PROVIDE_ASSIST_DATA_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MESSAGE_PROVIDE_ASSIST_DATA_STRU
- 结构说明  :ProvideAssisData
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1369,24 +1103,14 @@ typedef struct
     }u;
 }LPP_MESSAGE_PROVIDE_ASSIST_DATA_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_EPDU_REQ_ASSIST_DATA_STRU
- 结构说明  :EPDU-Sequence
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*EPDU-Sequence ::= SEQUENCE (SIZE (1..maxEPDU)) OF EPDU*/
     LPP_EPDU_SEQUENCE_STRU      astReqAssistDataEpduSeq;
 }LPP_EPDU_REQ_ASSIST_DATA_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_COMMON_IES_REQ_ASSIST_DATA_STRU
- 结构说明  :CommonIEsRequestAssistanceData
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1403,13 +1127,7 @@ typedef struct
 
 }LPP_COMMON_IES_REQ_ASSIST_DATA_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_AGNSS_REQ_ASSIST_DATA_STRU
- 结构说明  : GPS模块提供能力之RequestAssistanceData
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1428,12 +1146,7 @@ typedef struct
     LPP_GNSS_GENERIC_ASSIST_DATA_REQ_STRU       stGNSSGenericAssistDataReq;
 }LPP_AGNSS_REQ_ASSIST_DATA_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_REQUEST_ASSIST_DATA_R9_IES_STRU
- 结构说明  :RequestAssistanceData-r9-IEs
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1468,12 +1181,7 @@ typedef struct
     LPP_EPDU_REQ_ASSIST_DATA_STRU               stEPDURequestAssistanceData;
 }LPP_REQUEST_ASSIST_DATA_R9_IES_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_CRITI_EXT_REQUEST_ASSIST_DATA_STRU
- 结构说明  :RequestAssistanceData
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                          ulChoice;
@@ -1492,12 +1200,7 @@ typedef struct
     }u;
 }LPP_CRITI_EXT_REQUEST_ASSIST_DATA_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MESSAGE_REQUEST_ASSIST_DATA_STRU
- 结构说明  :RequestAssistanceData
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                          ulChoice;
@@ -1512,12 +1215,7 @@ typedef struct
      }u;
 }LPP_MESSAGE_REQUEST_ASSIST_DATA_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_COMMON_IES_PROVIDE_CAP_STRU
- 结构说明  :
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*协议为空*/
@@ -1525,12 +1223,7 @@ typedef struct
     VOS_UINT32          bitOpSpare:31;
 }LPP_COMMON_IES_PROVIDE_CAP_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_PROVIDE_CAPABILITIES_R9_IES_STRU
- 结构说明  :ProvideCapabilities-r9-IEs
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1558,12 +1251,7 @@ typedef struct
     LPP_EPDU_SEQUENCE_STRU                  stEPDURequestCapabilities;
 }LPP_PROVIDE_CAPABILITIES_R9_IES_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_CRITI_EXT_PROVIDE_CAPABILITIES_STRU
- 结构说明  :
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                      ulChoice;
@@ -1582,12 +1270,7 @@ typedef struct
     }u;
 }LPP_CRITI_EXT_PROVIDE_CAPABILITIES_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MESSAGE_PROVIDE_CAPABILITIES_STRU
- 结构说明  :ProvideCapabilities
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1613,12 +1296,7 @@ typedef struct
     }u;
 }LPP_MESSAGE_PROVIDE_CAPABILITIES_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_EPDU_REQ_CAP_STRU
- 结构说明  :EPDU-Sequence
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*EPDU-Sequence ::= SEQUENCE (SIZE (1..maxEPDU)) OF EPDU*/
@@ -1626,12 +1304,7 @@ typedef struct
     LPP_EPDU_STRU                   astEpduArray[LPP_MAX_EPDU_NUM];
 }LPP_EPDU_REQ_CAP_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_ECID_REQ_CAP_STRU
- 结构说明  :
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
 /*协议里此结构为空*/
@@ -1639,12 +1312,7 @@ typedef struct
         VOS_UINT32      bitOpSpare:31;
 }LPP_ECID_REQ_CAP_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_OTDOA_REQ_CAP_STRU
- 结构说明  :协议里此结构为空
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
 /*协议里此结构为空*/
@@ -1654,12 +1322,7 @@ typedef struct
         VOS_UINT32      ulRes;
 }LPP_OTDOA_REQ_CAP_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_COMMON_IES_REQ_CAP_STRU
- 结构说明  :协议里此结构为空
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
 /*协议里此结构为空*/
@@ -1667,12 +1330,7 @@ typedef struct
     VOS_UINT32          bitOpSpare:31;
 }LPP_COMMON_IES_REQ_CAP_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_REQUEST_CAPABILITIES_R9_IES_STRU
- 结构说明  :RequestCapabilities-r9-IEs
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1700,12 +1358,7 @@ typedef struct
     LPP_EPDU_REQ_CAP_STRU               stEPDURequestCapabilities;
 }LPP_REQUEST_CAPABILITIES_R9_IES_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_CRITI_EXT_REQUEST_CAPABILITIES_STRU
- 结构说明  :
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                          ulChoice;
@@ -1724,12 +1377,7 @@ typedef struct
     }u;
 }LPP_CRITI_EXT_REQUEST_CAPABILITIES_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MESSAGE_REQUEST_CAPABILITIES_STRU
- 结构说明  :RequestCapabilities
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1755,12 +1403,7 @@ typedef struct
     }u;
 }LPP_MESSAGE_REQUEST_CAPABILITIES_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_SUPPORT_MESSAGE_BODY_STRU
- 结构说明  :
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                      ulChoice;
@@ -1803,12 +1446,7 @@ typedef struct
     }u;
 }LPP_SUPPORT_MESSAGE_BODY_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MESSAGE_BODY_STRU
- 结构说明  :
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                              ulChoice;
@@ -1825,12 +1463,7 @@ typedef struct
 }LPP_MESSAGE_BODY_STRU;
 
 
-/*******************************************************************************
- 结构名    : LPP_MESSAGE_BODY_STRU
- 结构说明  :LPP_MESSAGE_STRU
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                              bitOpLppTransactionId:1;

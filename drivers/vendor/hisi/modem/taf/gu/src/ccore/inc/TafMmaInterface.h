@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafMmaInterface.h
-  版 本 号   : 初稿
-  作    者   : l60609
-  生成日期   : 2014年9月9日
-  最近修改   :
-  功能描述   : Taf pid和Mma pid之间的接口
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年9月9日
-    作    者   : l60609
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __TAF_MMA_INTERFACE_H__
 #define __TAF_MMA_INTERFACE_H__
@@ -54,15 +37,11 @@ enum TAF_MMA_PID_MSG_TYPE_ENUM
     MN_USIM_STATUS_IND                                      = 0x00000001,       /* _H2ASN_MsgChoice MNPH_USIM_STATUS_IND_STRU */
     MMA_TAF_POWER_OFF_IND                                   = 0x00000002,       /* _H2ASN_MsgChoice TAF_MMA_POWER_OFF_IND_STRU */
     ID_MMA_MSG_CS_SERVICE_CHANGE_NOTIFY                     = 0x00000003,       /* _H2ASN_MsgChoice MMA_MSG_CS_SERVICE_IND */
-    /* Added by s00217060 for VoLTE_PhaseII  项目, 2013-09-18, begin */
     ID_MMA_TAF_SERVICE_STATUS_CHANGE_NOTIFY                 = 0x00000004,       /* _H2ASN_MsgChoice MMA_TAF_SERVICE_STATUS_CHANGE_NOTIFY_STRU */
     ID_MMA_TAF_NETWORK_CAPABILITY_CHANGE_NOTIFY             = 0x00000005,       /* _H2ASN_MsgChoice MMA_TAF_NETWORK_CAPABILITY_CHANGE_NOTIFY_STRU */
     ID_MMA_TAF_RAT_CHANGE_NOTIFY                            = 0x00000006,       /* _H2ASN_MsgChoice MMA_TAF_RAT_CHANGE_NOTIFY_STRU */
-    /* Added by s00217060 for VoLTE_PhaseII  项目, 2013-09-18, end */
 
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-31, begin */
     ID_MMA_TAF_IMS_VOICE_CAP_IND                            = 0x00000007,       /* _H2ASN_MsgChoice MMA_TAF_IMS_VOICE_CAP_IND_STRU */
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-31, end */
 
     /* 移动到tafappmma.h 中 */
 
@@ -100,13 +79,7 @@ typedef VOS_UINT32 MNPH_USIM_STATUS_ENUM_U32;
 
 /* 转移到tafappmma.h 中 */
 
-/*****************************************************************************
- 枚举名    : MMA_APS_RAT_TYPE_ENUM_UINT32
- 结构说明  : 当前的接入技术
- 1.日    期   : 2014年10月19日
-   作    者   : Y00213812
-   修改内容   : 新建
-*****************************************************************************/
+
 enum MMA_TAF_RAT_TYPE_ENUM
 {
     MMA_TAF_RAT_TYPE_NULL,          /* 当前未在任何网络上驻留 */
@@ -133,13 +106,7 @@ enum MMA_APS_SYS_ACQUIRE_ENUM
 typedef VOS_UINT32 MMA_APS_SYS_ACQUIRE_ENUM_UINT32;
 
 
-/*****************************************************************************
- 枚举名    : MMA_TAF_CL_STATUS_ENUM_UINT32
- 结构说明  : 当前的接入技术
- 1.日    期   : 2015年06月09日
-   作    者   : Y00213812
-   修改内容   : 新建
-*****************************************************************************/
+
 enum MMA_TAF_CL_STATUS_ENUM
 {
     MMA_TAF_CL_STATUS_DO_NO_SERVICE,                  /* DO由有服务变为无服务 */
@@ -153,13 +120,7 @@ enum MMA_TAF_CL_STATUS_ENUM
 typedef VOS_UINT32 MMA_TAF_CL_STATUS_ENUM_UINT32;
 
 
-/*****************************************************************************
- 枚举名    : MMA_TAF_HRPD_DATA_CALL_SYS_ACQ_RST_ENUM_UINT32
- 结构说明  : 当前的接入技术
- 1.日    期   : 2015年12月16日
-   作    者   : y00314741
-   修改内容   : 新建
-*****************************************************************************/
+
 enum MMA_TAF_HRPD_DATA_CALL_SYS_ACQ_RST_ENUM
 {
     MMA_TAF_HRPD_ACQUIRED_RESULT_SUCC,                  /* DO有服务 */
@@ -212,13 +173,7 @@ typedef struct
     VOS_UINT8                           aucReserve[4];
 }TAF_MMA_POWER_OFF_IND_STRU;
 
-/*****************************************************************************
- 结构名    : MMA_MSG_CS_SERVICE_IND
- 结构说明  : MMA给MSG发送CS域变更结构体
-1.日    期   : 2013年06月03日
-  作    者   : s00217060
-  修改内容   : 创建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* _H2ASN_Skip */
@@ -226,53 +181,28 @@ typedef struct
     TAF_CS_SERVICE_ENUM_UINT32          enCSState;
 }MMA_MSG_CS_SERVICE_IND;
 
-/*****************************************************************************
- 结构名    : MMA_TAF_SERVICE_STATUS_CHANGE_NOTIFY_STRU
- 结构说明  : MMA给SPM发送服务状态变更结构体
-1.日    期   : 2013年09月18日
-  作    者   : s00217060
-  修改内容   : 创建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* _H2ASN_Skip */
     TAF_MMA_PID_MSG_TYPE_ENUM_UINT32    enMsgId;                                /* _H2ASN_Skip */
 }MMA_TAF_SERVICE_STATUS_CHANGE_NOTIFY_STRU;
 
-/*****************************************************************************
- 结构名    : MMA_TAF_NETWORK_CAPABILITY_CHANGE_NOTIFY_STRU
- 结构说明  : MMA给SPM发送网络能力变更结构体
-1.日    期   : 2013年09月18日
-  作    者   : s00217060
-  修改内容   : 创建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* _H2ASN_Skip */
     TAF_MMA_PID_MSG_TYPE_ENUM_UINT32    enMsgId;                                /* _H2ASN_Skip */
 }MMA_TAF_NETWORK_CAPABILITY_CHANGE_NOTIFY_STRU;
 
-/*****************************************************************************
- 结构名    : MMA_TAF_MODE_CHANGE_NOTIFY_STRU
- 结构说明  : MMA给SPM发送模式变更结构体
-1.日    期   : 2013年09月18日
-  作    者   : s00217060
-  修改内容   : 创建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* _H2ASN_Skip */
     TAF_MMA_PID_MSG_TYPE_ENUM_UINT32    enMsgId;                                /* _H2ASN_Skip */
 }MMA_TAF_RAT_CHANGE_NOTIFY_STRU;
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-31, begin */
-/*****************************************************************************
- 结构名    : MMA_TAF_IMS_VOICE_CAP_IND_STRU
- 结构说明  : MMA给SPM发送ims voice cap结构体
-1.日    期   : 2013年12月31日
-  作    者   : W00176964
-  修改内容   : 创建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* _H2ASN_Skip */
@@ -281,18 +211,11 @@ typedef struct
     VOS_UINT8                           aucReserve[3];                         /* 保留 */
 }MMA_TAF_IMS_VOICE_CAP_IND_STRU;
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-31, end */
 
 /* 移动到tafappmma.h中 */
 
 
-/*****************************************************************************
- 结构名    : MMA_TAF_1X_SERVICE_STATUS_IND_STRU
- 结构说明  : MMA通知TAF 服务状态相关参数
- 1.日    期   : 2014年10月19日
-   作    者   : Y00213812
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* _H2ASN_Skip */
@@ -301,13 +224,7 @@ typedef struct
 }MMA_TAF_1X_SERVICE_STATUS_IND_STRU;
 
 
-/*****************************************************************************
- 结构名    : MMA_APS_CL_SERVICE_STATUS_IND_STRU
- 结构说明  : MMA通知APS PS域服务状态相关参数
- 1.日    期   : 2015年05月24日
-   作    者   : Y00213812
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* _H2ASN_Skip */
@@ -318,13 +235,7 @@ typedef struct
 }MMA_APS_CL_SERVICE_STATUS_IND_STRU;
 
 
-/*****************************************************************************
- 结构名    : MMA_APS_CL_SERVICE_STATUS_IND_STRU
- 结构说明  : MMA通知APS PS域服务状态相关参数
- 1.日    期   : 2015年05月24日
-   作    者   : Y00213812
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* _H2ASN_Skip */
@@ -334,13 +245,7 @@ typedef struct
 
 }MMA_APS_HRPD_DATA_CALL_SYS_ACQ_IND_STRU;
 
-/*****************************************************************************
- 结构名    : MMA_TAF_SYS_CFG_INFO_IND_STRU
- 结构说明  : MMA通知APS SYSCFG结果
- 1.日    期   : 2015年12月29日
-   作    者   : y00314741
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                          /* _H2ASN_Skip */
@@ -358,13 +263,7 @@ typedef struct
 
 
 
-/*****************************************************************************
- 结构名    : MMA_APS_EPDSZID_INFO_IND_STRU
- 结构说明  : MMA通知TAF EPDSZID相关参数
- 1.日    期   : 2014年12月24日
-   作    者   : g00261581
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* _H2ASN_Skip */

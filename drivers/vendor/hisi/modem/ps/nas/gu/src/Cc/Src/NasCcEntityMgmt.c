@@ -1,37 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasCcEntityMgmt.c
-  版 本 号   : 初稿
-  作    者   : 丁庆 49431
-  生成日期   : 2007年10月15日
-  最近修改   : 2007年10月15日
-  功能描述   : 管理CC实体的分配、释放和各种状态转换
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2007年10月15日
-    作    者   : 丁庆 49431
-    修改内容   : 创建文件
-  2.日    期   : 2008年7月12日
-    作    者   : 黎客来 00130025
-    修改内容   : 问题单号:AT2D04057
- 3.日    期   : 2008年9月11日
-    作    者   :S62952
-    修改内容   : 问题单号:AT2D05593
-  4.日    期   : 2008年12月15日
-    作    者   :S62952
-    修改内容   : 问题单号:AT2D07162
-
-  5.日    期   : 2010年3月2日
-    作    者   : zhoujun /z40661
-    修改内容   : NAS R7协议升级
-
-  6.日    期   : 2010年3月17日
-    作    者   : zhoujun /z40661
-    修改内容   : 可维可测自动化AT命令
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -130,7 +97,6 @@ LOCAL NAS_CC_DTMF_Q_STATE_ENUM          f_astDtmfQState[NAS_CC_MAX_ENTITY_NUM];
 /* CC保存的当前正在进行的补充业务操作 */
 LOCAL NAS_CC_SS_OPERATION_ITEM_STRU         f_astCcSsOperations[NAS_CC_MAX_STORED_SS_OPERATION];
 
-/* Added by l00198894 for V9R1 STK升级, 2013/07/11, begin */
 /* CC模块补充业务状态切换时，状态与处理函数对照表 */
 LOCAL NAS_CC_SS_SWITCH_PROC_FUNC_MAP_STRU   f_astCcSsSwitchFuncMap[] =
 {
@@ -158,7 +124,6 @@ LOCAL NAS_CC_SS_SWITCH_PROC_FUNC_MAP_STRU   f_astCcSsSwitchFuncMap[] =
     {NAS_CC_SS_SWITCH_TIME_OUT, NAS_CC_SS_SWITCH_FAILED,    NAS_CC_ProcSsSwitchMultiCallFail},
     {NAS_CC_SS_SWITCH_TIME_OUT, NAS_CC_SS_SWITCH_TIME_OUT,  NAS_CC_ProcSsSwitchMultiCallFail},
 };
-/* Added by l00198894 for V9R1 STK升级, 2013/07/11, end */
 
 /*lint -save -e958 */
 
@@ -166,21 +131,7 @@ LOCAL NAS_CC_SS_SWITCH_PROC_FUNC_MAP_STRU   f_astCcSsSwitchFuncMap[] =
   5 函数定义
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_LogCcStateInfo
- 功能描述  : 勾CC的状态
- 输入参数  : ucCcState: CC的当前状态
- 输出参数  : VOS_VOID
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月30日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  NAS_CC_LogCcStateInfo(
     NAS_CC_CALL_STATE_ENUM_U8           ucCcState
 )
@@ -214,21 +165,7 @@ VOS_VOID  NAS_CC_LogCcStateInfo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_InitEntities
- 功能描述  : 初始化所有CC实体，在CC模块初始化时必须调用该函数。
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月15日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  NAS_CC_InitEntities()
 {
     VOS_UINT32  i;
@@ -240,33 +177,7 @@ VOS_VOID  NAS_CC_InitEntities()
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_CreateEntity
- 功能描述  : 创建并初始化一个CC实体
- 输入参数  : ucCallId  - 上层的呼叫ID，在主叫过程中该参数可以从来自上层的原语中
-                         得到；在被叫过程中该参数无意义，可填任意值
-             ucTi      - 呼叫的Transcation ID. 在主叫过程中填为CC_INVALID_TI_VALUE，
-                         本函数将为新建的实体分配一个新的Ti；在被叫过程中需从来自
-                         MM的原语中获得该参数值并传入函数。
- 输出参数  : pEntityId - 新创建的CC实体的ID
- 返 回 值  : VOS_TRUE - 创建成功  VOS_FALSE - 创建失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月22日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2008年7月12日
-    作    者   : 黎客来 00130025
-    修改内容   : 问题单号:AT2D04057
-  3.日    期   : 2008年12月15日
-    作    者   :S62952
-    修改内容   : 问题单号:AT2D07162
-  4.日    期   : 2014年6月24日
-    作    者   : w00167002
-    修改内容   : DSDS III项目
-*****************************************************************************/
 VOS_UINT32  NAS_CC_CreateEntity(
     NAS_CC_CALL_TYPE_ENUM_U8            enCallType,
     VOS_UINT8                           ucCallId,
@@ -348,21 +259,7 @@ VOS_UINT32  NAS_CC_CreateEntity(
     }
 }
 
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-15, begin */
-/*****************************************************************************
- 函 数 名  : NAS_CC_DeleteAllEntities
- 功能描述  : 删除所有CC实体
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月15日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  NAS_CC_DeleteAllEntities(VOS_VOID)
 {
     VOS_UINT8                           i;
@@ -378,37 +275,8 @@ VOS_VOID  NAS_CC_DeleteAllEntities(VOS_VOID)
     return;
 }
 
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-15, end */
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_DeleteEntity
- 功能描述  : 删除一个CC实体
- 输入参数  : entityId - 需要删除的实体ID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月22日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2008年7月12日
-    作    者   : 黎客来 00130025
-    修改内容   : 问题单号:AT2D04057
-  3.日    期   : 2008年12月15日
-    作    者   :S62952
-    修改内容   : 问题单号:AT2D07162
-  4.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  5.日    期   : 2014年6月13日
-    作    者   : w00242748
-    修改内容   : DSDS 新特性
-  6.日    期   : 2015年01月27日
-    作    者   : j00174725
-    修改内容   : DTS2015010503619
-*****************************************************************************/
 VOS_VOID  NAS_CC_DeleteEntity(
     NAS_CC_ENTITY_ID_T                  entityId
 )
@@ -439,20 +307,7 @@ VOS_VOID  NAS_CC_DeleteEntity(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_GetEntityByTi
- 功能描述  : 取得与指定Ti值对应的CC实体的ID
- 输入参数  : ucTi - Transcation ID
- 输出参数  : 无
- 返 回 值  : 取得的CC实体ID. 如果没有找到对应实体，则返回CC_INVALID_ENTITY_ID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月22日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 NAS_CC_ENTITY_ID_T  NAS_CC_GetEntityByTi(
     VOS_UINT8                           ucTi
 )
@@ -473,23 +328,7 @@ NAS_CC_ENTITY_ID_T  NAS_CC_GetEntityByTi(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_GetEntityTi
- 功能描述  : 取得指定CC实体的Ti值
- 输入参数  : entityId - CC实体的ID
- 输出参数  : 无
- 返 回 值  : 该实体的Ti值.
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月22日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  4.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_UINT8  NAS_CC_GetEntityTi(
     NAS_CC_ENTITY_ID_T                  entityId
 )
@@ -506,23 +345,7 @@ VOS_UINT8  NAS_CC_GetEntityTi(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_GetCallId
- 功能描述  : 取得指定CC实体的Call ID值
- 输入参数  : entityId - CC实体的ID
- 输出参数  : 无
- 返 回 值  : 该实体的Call ID.
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月22日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_UINT8  NAS_CC_GetCallId(
     NAS_CC_ENTITY_ID_T                  entityId
 )
@@ -538,24 +361,7 @@ VOS_UINT8  NAS_CC_GetCallId(
     return f_astCcEntities[entityId].ucCallId;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_UpdateCallId
- 功能描述  : 改变指定CC实体对应的CallId值。
- 输入参数  : entityId - CC实体的ID
-              enState  - 新的呼叫状态
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月22日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_VOID  NAS_CC_UpdateCallId(
     NAS_CC_ENTITY_ID_T                  entityId,
     VOS_UINT8                           ucCallId
@@ -575,25 +381,7 @@ VOS_VOID  NAS_CC_UpdateCallId(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_UpdateBcParams
- 功能描述  : 更新实体中保存的承载能力参数
- 输入参数  : entityId  - CC实体的ID
-              enIdx     - 需要更新的承载能力参数的索引(BC1 or BC2)
-              pstParams - 承载能力参数的内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月22日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_VOID  NAS_CC_UpdateBcParams(
     NAS_CC_ENTITY_ID_T                  entityId,
     NAS_CC_BC_PARAM_IDX_ENUM_U8         enIdx,
@@ -620,24 +408,7 @@ VOS_VOID  NAS_CC_UpdateBcParams(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_GetBcParams
- 功能描述  : 取得实体中保存的承载能力参数
- 输入参数  : entityId  - CC实体的ID
-              enIdx     - 需要获取的承载能力参数的索引(BC1, BC2 or Current)
- 输出参数  : pstParams - 取得的承载能力参数的内容
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月22日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_VOID  NAS_CC_GetBcParams(
     NAS_CC_ENTITY_ID_T                  entityId,
     NAS_CC_BC_PARAM_IDX_ENUM_U8         enIdx,
@@ -665,22 +436,7 @@ VOS_VOID  NAS_CC_GetBcParams(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_BcAlertnate
- 功能描述  : BC发生交替，该函数将是当前使用的BC参数集发生切换
- 输入参数  : entityId  - CC实体的ID
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年3月27日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_VOID  NAS_CC_BcAlertnate(
     NAS_CC_ENTITY_ID_T                  entityId
 )
@@ -704,23 +460,7 @@ VOS_VOID  NAS_CC_BcAlertnate(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_GetCallState
- 功能描述  : 取得指定CC实体的呼叫状态
- 输入参数  : entityId - CC实体的ID
- 输出参数  : 无
- 返 回 值  : 该实体的呼叫状态.
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月22日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 NAS_CC_CALL_STATE_ENUM_U8  NAS_CC_GetCallState(
     NAS_CC_ENTITY_ID_T                  entityId
 )
@@ -736,22 +476,7 @@ NAS_CC_CALL_STATE_ENUM_U8  NAS_CC_GetCallState(
     return f_astCcEntities[entityId].enCallState;
 }
 
-/* Added by n00355355 for 呼叫重建, 2015-9-18, begin */
-/*****************************************************************************
- 函 数 名  : NAS_CC_GetCallType
- 功能描述  : 取得指定CC实体的呼叫类型
- 输入参数  : entityId - CC实体的ID
- 输出参数  : 无
- 返 回 值  : 该实体的呼叫状态.
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-
-  1.日    期   : 2015年9月17日
-    作    者   : n00355355
-    修改内容   : 新生成函数
-*****************************************************************************/
 NAS_CC_CALL_TYPE_ENUM_U8  NAS_CC_GetCallType(
     NAS_CC_ENTITY_ID_T                  entityId
 )
@@ -767,21 +492,7 @@ NAS_CC_CALL_TYPE_ENUM_U8  NAS_CC_GetCallType(
     return f_astCcEntities[entityId].enCallType;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_IsSpecCallEntityInUse
- 功能描述  : 取得指定CC实体是否在用
- 输入参数  : entityId - CC实体的ID
- 输出参数  : 无
- 返 回 值  : 该实体的呼叫状态.
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-
-  1.日    期   : 2015年9月17日
-    作    者   : n00355355
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_BOOL  NAS_CC_IsSpecCallEntityInUse(
     NAS_CC_ENTITY_ID_T                  entityId
 )
@@ -797,38 +508,9 @@ VOS_BOOL  NAS_CC_IsSpecCallEntityInUse(
 
 
 
-/* Added by n00355355 for 呼叫重建, 2015-9-18, end */
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ChangeCallState
- 功能描述  : 改变指定CC实体的呼叫状态。该函数还会做一些在进入新状态时每个流程
-             都必须的执行的操作，如进入NULL状态时释放CC实体等。
- 输入参数  : entityId - CC实体的ID
-              enState  - 新的呼叫状态
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月22日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  3.日    期   : 2014年6月23日
-    作    者   : w00242748
-    修改内容   : DSDS III新增
-  4.日    期   : 2014年7月25日
-    作    者   : b00269685
-    修改内容   : Klocwork清理
-  5.日    期   : 2014年12月23日
-    作    者   : b00269685
-    修改内容   : ultra falsh新增缓存机制
-
-*****************************************************************************/
 VOS_VOID  NAS_CC_ChangeCallState(
     NAS_CC_ENTITY_ID_T                  entityId,
     NAS_CC_CALL_STATE_ENUM_U8           enState
@@ -839,8 +521,6 @@ VOS_VOID  NAS_CC_ChangeCallState(
     NAS_CC_CALL_STATE_ENUM_U8           enPreState;
 #endif
 
-    /* Deleted by b00269685 for Klocwork清理, 2014-7-26, begin */
-    /* Deleted by b00269685 for Klocwork清理, 2014-7-26, end */
 
     if (entityId >= NAS_CC_MAX_ENTITY_NUM)
     {
@@ -848,9 +528,7 @@ VOS_VOID  NAS_CC_ChangeCallState(
         return;
     }
 
-    /* Modified by b00269685 for Klocwork清理, 2014-7-25, begin */
     NAS_CC_LogCcStateInfo(f_astCcEntities[entityId].enCallState);
-    /* Modified by b00269685 for Klocwork清理, 2014-7-25, end */
 
     NAS_CC_ASSERT(VOS_TRUE == f_astCcEntities[entityId].bUsed);
 
@@ -904,26 +582,7 @@ VOS_VOID  NAS_CC_ChangeCallState(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_GetHoldAuxState
- 功能描述  : 取得指定CC实体的呼叫保持状态
- 输入参数  : entityId - CC实体的ID
- 输出参数  : 无
- 返 回 值  : 该实体的呼叫保持状态.
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月22日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  3.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-*****************************************************************************/
 NAS_CC_HOLD_AUX_STATE_ENUM_U8 NAS_CC_GetHoldAuxState(
     NAS_CC_ENTITY_ID_T                  entityId
 )
@@ -934,35 +593,16 @@ NAS_CC_HOLD_AUX_STATE_ENUM_U8 NAS_CC_GetHoldAuxState(
         return NAS_CC_HOLD_AUX_S_BUTT;
     }
 
-    /* Modified by l00198894 for V9R1 STK升级, 2013/07/11, begin */
     if (VOS_TRUE != f_astCcEntities[entityId].bUsed)
     {
         return NAS_CC_HOLD_AUX_S_BUTT;
     }
-    /* Modified by l00198894 for V9R1 STK升级, 2013/07/11, end */
 
     return f_astCcEntities[entityId].enHoldAuxState;
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ChangeHoldAuxState
- 功能描述  : 改变指定CC实体的呼叫保持状态
- 输入参数  : entityId - CC实体的ID
-              state    - 新的呼叫保持状态
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月22日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_VOID  NAS_CC_ChangeHoldAuxState(
     NAS_CC_ENTITY_ID_T                  entityId,
     NAS_CC_HOLD_AUX_STATE_ENUM_U8       state
@@ -982,26 +622,7 @@ VOS_VOID  NAS_CC_ChangeHoldAuxState(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_GetMptyAuxState
- 功能描述  : 取得指定CC实体的Mpty状态
- 输入参数  : entityId - CC实体的ID
- 输出参数  : 无
- 返 回 值  : 该实体的Mpty状态.
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月22日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  3.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-*****************************************************************************/
 NAS_CC_MPTY_AUX_STATE_ENUM_U8 NAS_CC_GetMptyAuxState(
     NAS_CC_ENTITY_ID_T                  entityId
 )
@@ -1012,35 +633,16 @@ NAS_CC_MPTY_AUX_STATE_ENUM_U8 NAS_CC_GetMptyAuxState(
         return NAS_CC_MPTY_AUX_S_BUTT;
     }
 
-    /* Modified by l00198894 for V9R1 STK升级, 2013/07/11, begin */
     if (VOS_TRUE != f_astCcEntities[entityId].bUsed)
     {
         return NAS_CC_MPTY_AUX_S_BUTT;
     }
-    /* Modified by l00198894 for V9R1 STK升级, 2013/07/11, end */
 
     return f_astCcEntities[entityId].enMptyAuxState;
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ChangeMptyAuxState
- 功能描述  : 改变指定CC实体的Mpty状态
- 输入参数  : entityId - CC实体的ID
-              state    - 新的Mpty状态
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月22日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_VOID  NAS_CC_ChangeMptyAuxState(
     NAS_CC_ENTITY_ID_T                  entityId,
     NAS_CC_MPTY_AUX_STATE_ENUM_U8       state
@@ -1059,22 +661,7 @@ VOS_VOID  NAS_CC_ChangeMptyAuxState(
     NAS_CC_NORM_LOG1("CC change MPTY state to :", state);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_CheckBuildMptyWithCallInMpty
- 功能描述  : 检查Build MPTY操作是否可以在有呼叫在MPTY情况下进行
- 输入参数  : entityId    - CC实体的ID
-             enMptyState - MPTY状态
- 输出参数  : 无
- 返 回 值  : VOS_OK      - 检查通过；
-             VOS_ERR     - 检查失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年6月29日
-    作    者   : z00161729
-    修改内容   : 降NAS_CC_CheckBuildMptyOperation圈复杂度新生成函数
-*****************************************************************************/
 LOCAL VOS_UINT32 NAS_CC_CheckBuildMptyWithCallInMpty(
     NAS_CC_ENTITY_ID_T                  entityId,
     NAS_CC_MPTY_AUX_STATE_ENUM_U8       enMptyState
@@ -1108,23 +695,7 @@ LOCAL VOS_UINT32 NAS_CC_CheckBuildMptyWithCallInMpty(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_CheckBuildMptyWithNoCallInMpty
- 功能描述  : 检查Build MPTY操作是否可以在无呼叫在MPTY情况下进行
- 输入参数  : entityId      - CC实体的ID
-             enHoldState   - 保持状态
-             enMptyState   - MPTY状态
- 输出参数  : 无
- 返 回 值  : VOS_OK - 检查通过
-             VOS_ERR - 检查失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年6月29日
-    作    者   : z00161729
-    修改内容   : 降NAS_CC_CheckBuildMptyOperation圈复杂度新生成函数
-*****************************************************************************/
 LOCAL VOS_UINT32 NAS_CC_CheckBuildMptyWithNoCallInMpty(
     NAS_CC_ENTITY_ID_T                  entityId,
     NAS_CC_HOLD_AUX_STATE_ENUM_U8       enHoldState,
@@ -1169,26 +740,7 @@ LOCAL VOS_UINT32 NAS_CC_CheckBuildMptyWithNoCallInMpty(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_CheckBuildMptyOperation
- 功能描述  : 检查Build MPTY操作是否可以在当前状态下进行
- 输入参数  : entityId      - CC实体的ID
-              enCallState   - 呼叫状态
-              enHoldState   - 保持状态
-              enMptyState   - MPTY状态
- 输出参数  : 无
- 返 回 值  : VOS_OK - 检查通过； VOS_ERR - 检查失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月15日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2010年6月29日
-    作    者   : z00161729
-    修改内容   : 降NAS_CC_CheckBuildMptyOperation圈复杂度新生成函数
-*****************************************************************************/
 LOCAL VOS_UINT32 NAS_CC_CheckBuildMptyOperation(
     NAS_CC_ENTITY_ID_T                  entityId,
     NAS_CC_CALL_STATE_ENUM_U8           enCallState,
@@ -1234,22 +786,7 @@ LOCAL VOS_UINT32 NAS_CC_CheckBuildMptyOperation(
     }
 }
 
-/* Added by l00198894 for V9R1 STK升级, 2013/07/11, begin */
-/*****************************************************************************
- 函 数 名  : NAS_CC_CheckSsSwitchHoldAllowed
- 功能描述  : CC模块补充业务状态检查当前是否允许发起HOLD操作
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_OK     -- 检查通过
-             VOS_ERR    -- 检查失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-*****************************************************************************/
 VOS_UINT32 NAS_CC_CheckSsSwitchHoldAllowed(VOS_VOID)
 {
     NAS_CC_SS_SWITCH_STATE_ENUM_UINT8   enHoldState;
@@ -1271,21 +808,7 @@ VOS_UINT32 NAS_CC_CheckSsSwitchHoldAllowed(VOS_VOID)
     return VOS_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_CheckSsSwitchRetrieveAllowed
- 功能描述  : CC模块补充业务状态检查当前是否允许发起RETRIEVE操作
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_OK     -- 检查通过
-             VOS_ERR    -- 检查失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-*****************************************************************************/
 VOS_UINT32 NAS_CC_CheckSsSwitchRetrieveAllowed(VOS_VOID)
 {
     NAS_CC_SS_SWITCH_STATE_ENUM_UINT8   enHoldState;
@@ -1307,32 +830,13 @@ VOS_UINT32 NAS_CC_CheckSsSwitchRetrieveAllowed(VOS_VOID)
     return VOS_ERR;
 }
 
-/* Added by l00198894 for V9R1 STK升级, 2013/07/11, end */
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_CheckHoldMptyOperation
- 功能描述  : 检查Hold MPTY操作是否可以在当前状态下进行
- 输入参数  : enHoldState   - 保持状态
-             enMptyState   - MPTY状态
- 输出参数  : 无
- 返 回 值  : VOS_OK - 检查通过； VOS_ERR - 检查失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月15日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-*****************************************************************************/
 LOCAL VOS_UINT32 NAS_CC_CheckHoldMptyOperation(
     NAS_CC_HOLD_AUX_STATE_ENUM_U8       enHoldState,
     NAS_CC_MPTY_AUX_STATE_ENUM_U8       enMptyState
 )
 {
-    /* Modified by l00198894 for V9R1 STK升级, 2013/07/11, begin */
     /* 条件: 呼叫在MPTY中，且未被保持 */
     if ((NAS_CC_MPTY_AUX_S_CALL_IN_MPTY == enMptyState)
      && (NAS_CC_HOLD_AUX_S_IDLE == enHoldState))
@@ -1342,34 +846,15 @@ LOCAL VOS_UINT32 NAS_CC_CheckHoldMptyOperation(
 
     NAS_CC_WARN_LOG1("NAS_CC_CheckHoldMptyOperation hold mpty error enMptyState :", enMptyState);
     return VOS_ERR;
-    /* Modified by l00198894 for V9R1 STK升级, 2013/07/11, end */
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_CheckRetrieveMptyOperation
- 功能描述  : 检查RETRIEVE MPTY操作是否可以在当前状态下进行
- 输入参数  : enHoldState   - 保持状态
-             enMptyState   - MPTY状态
- 输出参数  : 无
- 返 回 值  : VOS_OK - 检查通过； VOS_ERR - 检查失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月15日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-*****************************************************************************/
 LOCAL VOS_UINT32 NAS_CC_CheckRetrieveMptyOperation(
     NAS_CC_HOLD_AUX_STATE_ENUM_U8       enHoldState,
     NAS_CC_MPTY_AUX_STATE_ENUM_U8       enMptyState
 )
 {
-    /* Modified by l00198894 for V9R1 STK升级, 2013/07/11, begin */
     /* 条件: 呼叫在MPTY中，且被保持 */
     if ((NAS_CC_MPTY_AUX_S_CALL_IN_MPTY == enMptyState)
      && (NAS_CC_HOLD_AUX_S_CALL_HELD == enHoldState))
@@ -1379,24 +864,9 @@ LOCAL VOS_UINT32 NAS_CC_CheckRetrieveMptyOperation(
 
     NAS_CC_WARN_LOG1("NAS_CC_CheckRetrieveMptyOperation retrieve mpty error enMptyState :", enMptyState);
     return VOS_ERR;
-    /* Modified by l00198894 for V9R1 STK升级, 2013/07/11, end */
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_CheckSplitMptyOperation
- 功能描述  : 检查SPLIT MPTY操作是否可以在当前状态下进行
- 输入参数  : enHoldState   - 保持状态
-              enMptyState   - MPTY状态
- 输出参数  : 无
- 返 回 值  : VOS_OK - 检查通过； VOS_ERR - 检查失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月15日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 LOCAL VOS_UINT32 NAS_CC_CheckSplitMptyOperation(
     NAS_CC_HOLD_AUX_STATE_ENUM_U8       enHoldState,
     NAS_CC_MPTY_AUX_STATE_ENUM_U8       enMptyState
@@ -1415,22 +885,7 @@ LOCAL VOS_UINT32 NAS_CC_CheckSplitMptyOperation(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_CheckMptyOperation
- 功能描述  : 检查MPTY操作是否可以在当前状态下进行
- 输入参数  : entityId      - CC实体的ID
-              enSsOperation - 操作的补充业务码
- 输出参数  : 无
- 返 回 值  : VOS_OK - 检查通过； VOS_ERR - 检查失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月15日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_CC_CheckMptyOperation(
     NAS_CC_ENTITY_ID_T                  entityId,
     NAS_SS_OPERATION_ENUM_U8            enSsOperation
@@ -1466,31 +921,7 @@ VOS_UINT32 NAS_CC_CheckMptyOperation(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ConditionalChangeAuxState
- 功能描述  : 有条件的改变呼叫的从状态。该函数将改变所有符合条件的CC实体的从状态。
- 输入参数  : bCheckHoldState   - 是否检查当前的呼叫保持状态
-              bCheckMptyState   - 是否检查当前的MPTY状态
-              bChangeHoldState  - 是否改变呼叫保持状态
-              bChangeMptyState  - 是否改变MPTY状态
-              enExpectHoldState - 期望的呼叫保持状态(如果bCheckHoldState为FALSE, 该参数无意义)
-              enExpectMptyState - 期望的MPTY状态(如果bCheckMptyState为FALSE, 该参数无意义)
-              enNewHoldState    - 新的呼叫保持状态(如果bChangeHoldState为FALSE, 该参数无意义)
-              enNewMptyState    - 新的MPTY状态(如果bChangeMptyState为FALSE, 该参数无意义)
- 输出参数  : 无
- 返 回 值  : 发生了呼叫从状态改变的CC实体个数
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月22日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-
-  2.日    期   : 2014年6月17日
-    作    者   : z00234330
-    修改内容   : TQE清理
-*****************************************************************************/
 LOCAL VOS_UINT32  NAS_CC_ConditionalChangeAuxState(
     VOS_BOOL                            bCheckHoldState,
     VOS_BOOL                            bCheckMptyState,
@@ -1530,13 +961,11 @@ LOCAL VOS_UINT32  NAS_CC_ConditionalChangeAuxState(
                      VOS_TRUE : VOS_FALSE;
         }
 
-        /* Modified by z00234330 for coverity清理, 2014-06-16, begin */
         /* 如果检查不通过则不修改此实体的状态，接着检查下一个 */
         if ( VOS_FALSE == bCheckOk)
         {
             continue;
         }
-        /* Modified by z00234330 for coverity清理, 2014-06-16, end */
 
         /* 改变呼叫保持状态 */
         if (bChangeHoldState)
@@ -1562,24 +991,7 @@ LOCAL VOS_UINT32  NAS_CC_ConditionalChangeAuxState(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_HandleMptyEventInvoke
- 功能描述  : 处理发起了一个MPTY操作事件，改变各个CC实体的从状态
- 输入参数  : entityId      - 发生事件的CC实体的ID
-              enSsOperation - 引起该事件的补充业务操作码
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月22日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-*****************************************************************************/
 LOCAL VOS_VOID  NAS_CC_HandleMptyEventInvoke(
     NAS_CC_ENTITY_ID_T                  entityId,
     NAS_SS_OPERATION_ENUM_U8            enSsOperation
@@ -1611,9 +1023,7 @@ LOCAL VOS_VOID  NAS_CC_HandleMptyEventInvoke(
                                          0
                                          );
 
-        /* Added by l00198894 for V9R1 STK升级, 2013/07/11, begin */
         NAS_CC_SetSsSwitchHoldInfo(entityId, NAS_CC_SS_SWITCH_WAIT_CNF, NAS_CC_CAUSE_NULL);
-        /* Added by l00198894 for V9R1 STK升级, 2013/07/11, end */
     }
     else if (NAS_SS_OPERATION_RETRIEVE_MPTY == enSsOperation)
     {
@@ -1628,9 +1038,7 @@ LOCAL VOS_VOID  NAS_CC_HandleMptyEventInvoke(
                                          0
                                          );
 
-        /* Added by l00198894 for V9R1 STK升级, 2013/07/11, begin */
         NAS_CC_SetSsSwitchRetrieveInfo(entityId, NAS_CC_SS_SWITCH_WAIT_CNF, NAS_CC_CAUSE_NULL);
-        /* Added by l00198894 for V9R1 STK升级, 2013/07/11, end */
     }
     else if (NAS_SS_OPERATION_SPLIT_MPTY == enSsOperation)
     {
@@ -1650,24 +1058,7 @@ LOCAL VOS_VOID  NAS_CC_HandleMptyEventInvoke(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_HandleMptyEventSuccess
- 功能描述  : 处理MPTY操作成功事件，改变各个CC实体的从状态
- 输入参数  : entityId      - 发生事件的CC实体的ID
-              enSsOperation - 引起该事件的补充业务操作码
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月22日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-*****************************************************************************/
 LOCAL VOS_VOID  NAS_CC_HandleMptyEventSuccess(
     NAS_CC_ENTITY_ID_T                  entityId,
     NAS_SS_OPERATION_ENUM_U8            enSsOperation
@@ -1688,17 +1079,13 @@ LOCAL VOS_VOID  NAS_CC_HandleMptyEventSuccess(
     }
     else if (NAS_SS_OPERATION_HOLD_MPTY == enSsOperation)
     {
-        /* Modified by l00198894 for V9R1 STK升级, 2013/07/11, begin */
         /* 记录补充业务切换状态 */
         NAS_CC_SetSsSwitchHoldInfo(entityId, NAS_CC_SS_SWITCH_SUCCESS, NAS_CC_CAUSE_NULL);
-        /* Modified by l00198894 for V9R1 STK升级, 2013/07/11, end */
     }
     else if (NAS_SS_OPERATION_RETRIEVE_MPTY == enSsOperation)
     {
-        /* Modified by l00198894 for V9R1 STK升级, 2013/07/11, begin */
         /* 记录补充业务切换状态 */
         NAS_CC_SetSsSwitchRetrieveInfo(entityId, NAS_CC_SS_SWITCH_SUCCESS, NAS_CC_CAUSE_NULL);
-        /* Modified by l00198894 for V9R1 STK升级, 2013/07/11, end */
     }
     else if (NAS_SS_OPERATION_SPLIT_MPTY == enSsOperation)
     {
@@ -1731,24 +1118,7 @@ LOCAL VOS_VOID  NAS_CC_HandleMptyEventSuccess(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_HandleMptyEventFail
- 功能描述  : 处理MPTY操作失败事件，改变各个CC实体的从状态
- 输入参数  : entityId      - 发生事件的CC实体的ID
-              enSsOperation - 引起该事件的补充业务操作码
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月22日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-*****************************************************************************/
 LOCAL VOS_VOID  NAS_CC_HandleMptyEventFail(
     NAS_CC_ENTITY_ID_T                  entityId,
     NAS_SS_OPERATION_ENUM_U8            enSsOperation
@@ -1812,17 +1182,13 @@ LOCAL VOS_VOID  NAS_CC_HandleMptyEventFail(
     }
     else if (NAS_SS_OPERATION_HOLD_MPTY == enSsOperation)
     {
-        /* Modified by l00198894 for V9R1 STK升级, 2013/07/11, begin */
         /* 记录补充业务切换状态 */
         NAS_CC_SetSsSwitchHoldInfo(entityId, NAS_CC_SS_SWITCH_FAILED, NAS_CC_CAUSE_NULL);
-        /* Modified by l00198894 for V9R1 STK升级, 2013/07/11, end */
     }
     else if (NAS_SS_OPERATION_RETRIEVE_MPTY == enSsOperation)
     {
-        /* Modified by l00198894 for V9R1 STK升级, 2013/07/11, begin */
         /* 记录补充业务切换状态 */
         NAS_CC_SetSsSwitchRetrieveInfo(entityId, NAS_CC_SS_SWITCH_FAILED, NAS_CC_CAUSE_NULL);
-        /* Modified by l00198894 for V9R1 STK升级, 2013/07/11, end */
     }
     else if (NAS_SS_OPERATION_SPLIT_MPTY == enSsOperation)
     {
@@ -1843,25 +1209,7 @@ LOCAL VOS_VOID  NAS_CC_HandleMptyEventFail(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_HandleMptyEvent
- 功能描述  : 处理MPTY事件，根据发生的事件改变各个CC实体的从状态
- 输入参数  : entityId      - 发生事件的CC实体的ID
-              enMptyEvent   - 发生的事件
-              enSsOperation - 引起该事件的补充业务操作码
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月22日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_VOID  NAS_CC_HandleMptyEvent(
     NAS_CC_ENTITY_ID_T                  entityId,
     NAS_CC_MPTY_EVT_ENUM                enMptyEvent,
@@ -1896,23 +1244,7 @@ VOS_VOID  NAS_CC_HandleMptyEvent(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_GetDtmfState
- 功能描述  : 获取指定CC实体的DTMF状态
- 输入参数  : entityId - CC实体的ID
- 输出参数  : 无
- 返 回 值  : 该实体的DTMF状态
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月22日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 NAS_CC_DTMF_STATE_ENUM  NAS_CC_GetDtmfState(
     NAS_CC_ENTITY_ID_T                  entityId
 )
@@ -1929,24 +1261,7 @@ NAS_CC_DTMF_STATE_ENUM  NAS_CC_GetDtmfState(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ChangeDtmfState
- 功能描述  : 改变指定CC实体的DTMF状态
- 输入参数  : entityId - CC实体的ID
-              enState  - 新的DTMF状态
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月22日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_VOID  NAS_CC_ChangeDtmfState(
     NAS_CC_ENTITY_ID_T                  entityId,
     NAS_CC_DTMF_STATE_ENUM              enState
@@ -1964,23 +1279,7 @@ VOS_VOID  NAS_CC_ChangeDtmfState(
 
     NAS_CC_NORM_LOG1("CC change DTMF state to :", enState);
 }
-/*****************************************************************************
- 函 数 名  : NAS_CC_GetDtmfQState
- 功能描述  : 获取指定CC实体的DTMF缓冲状态
- 输入参数  : entityId - CC实体的ID
- 输出参数  : 无
- 返 回 值  : 该实体的DTMF缓冲状态
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年12月02日
-    作    者   : S62952
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 NAS_CC_DTMF_Q_STATE_ENUM  NAS_CC_GetDtmfQState(
     NAS_CC_ENTITY_ID_T                  entityId
 )
@@ -1996,24 +1295,7 @@ NAS_CC_DTMF_Q_STATE_ENUM  NAS_CC_GetDtmfQState(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ChangeDtmfQState
- 功能描述  : 改变指定CC实体的DTMF缓冲状态
- 输入参数  : entityId - CC实体的ID
-              enState  - 新的DTMF缓冲状态
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年12月02日
-    作    者   : S62952
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_VOID  NAS_CC_ChangeDtmfQState(
     NAS_CC_ENTITY_ID_T                  entityId,
     NAS_CC_DTMF_Q_STATE_ENUM            enState
@@ -2031,31 +1313,7 @@ VOS_VOID  NAS_CC_ChangeDtmfQState(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_QueueDtmfReq
- 功能描述  : 将一个DTMF请求存入缓存队列
- 输入参数  : entityId  - CC实体的ID
-              enDtmfReq - DTMF请求的类型(START/STOP)
-              ucKey     - Start DTMF请求中的DTMF字符，仅当请求类型为START时有效
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月22日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2008年9月11日
-    作    者   :S62952
-    修改内容   : 问题单号:AT2D05593
-  3.日    期   : 2008年12月15日
-    作    者   :S62952
-    修改内容   : 问题单号:AT2D07162
-  4.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_VOID  NAS_CC_QueueDtmfReq(
     NAS_CC_ENTITY_ID_T                  entityId,
     NAS_CC_DTMF_REQ_ENUM_U8             enDtmfReq,
@@ -2131,26 +1389,7 @@ VOS_VOID  NAS_CC_QueueDtmfReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_DequeueDtmfReq
- 功能描述  : 从缓存中取出一个DTMF请求
- 输入参数  : entityId  - CC实体ID
- 输出参数  : pstRecord - 取得的DTMF请求记录
- 返 回 值  : VOS_OK - 取得成功;  VOS_ERR - 缓存已为空，取得失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月19日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  4.日    期   : 2008年12月15日
-    作    者   :S62952
-    修改内容   : 问题单号:AT2D07162
-  5.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 LOCAL VOS_UINT32 NAS_CC_DequeueDtmfReq(
     NAS_CC_ENTITY_ID_T                  entityId,
     NAS_CC_DTMF_REQ_RECORD_STRU        *pstRecord
@@ -2193,23 +1432,7 @@ LOCAL VOS_UINT32 NAS_CC_DequeueDtmfReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_SendBufferedDtmfReq
- 功能描述  : 发送一个缓存的DTMF请求
- 输入参数  : entityId  - CC实体ID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月19日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_VOID  NAS_CC_SendBufferedDtmfReq(
     NAS_CC_ENTITY_ID_T                  entityId
 )
@@ -2248,29 +1471,7 @@ VOS_VOID  NAS_CC_SendBufferedDtmfReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_StoreSsOperation
- 功能描述  : 通过invoke类型的facility消息发起补充业务操作时，调用该函数存储该
-             补充业务操作，以便收到网络的facility回复时能由invoke ID得到相应的
-             补充业务操作码
- 输入参数  : entityId      - CC实体的ID
-              ucInvokeId    - 补充业务操作的invoke ID
-              enSsOperation - 补充业务操作码
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月15日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-
-  2.日    期   : 2014年6月17日
-    作    者   : z00234330
-    修改内容   : TQE清理
-
-*****************************************************************************/
 VOS_VOID NAS_CC_StoreSsOperation(
     NAS_CC_ENTITY_ID_T                  entityId,
     VOS_UINT8                           ucInvokeId,
@@ -2288,7 +1489,6 @@ VOS_VOID NAS_CC_StoreSsOperation(
         由于要检查是否有相同的invoke ID被保存了，所以在找到空的存储位置后只是记录
         下来，而不是立刻跳出循环
         */
-        /* Modified by z00234330 for coverity清理, 2014-06-16, begin */
         if ( (VOS_FALSE == f_astCcSsOperations[i].bUsed)
           && (NAS_CC_MAX_STORED_SS_OPERATION == ulStorePos))
         {
@@ -2304,7 +1504,6 @@ VOS_VOID NAS_CC_StoreSsOperation(
             return;
         }
 
-        /* Modified by z00234330 for coverity清理, 2014-06-16, end */
     }
 
     if (ulStorePos != NAS_CC_MAX_STORED_SS_OPERATION)
@@ -2322,24 +1521,7 @@ VOS_VOID NAS_CC_StoreSsOperation(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_RestoreSsOperation
- 功能描述  : 取得存储的补充业务操作，并清除该存储项
- 输入参数  : entityId      - CC实体的ID
-              ucInvokeId    - 补充业务操作的invoke ID
- 输出参数  : penSsOperation - 取得的补充业务操作码
- 返 回 值  : VOS_OK - 操作成功；VOS_ERR - 没有找到符合条件的存储项，操作失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月15日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2014年6月17日
-    作    者   : z00234330
-    修改内容   : TQE清理
-*****************************************************************************/
 VOS_UINT32 NAS_CC_RestoreSsOperation(
     NAS_CC_ENTITY_ID_T                  entityId,
     VOS_UINT8                           ucInvokeId,
@@ -2352,7 +1534,6 @@ VOS_UINT32 NAS_CC_RestoreSsOperation(
 
     for (i=0; i<NAS_CC_MAX_STORED_SS_OPERATION; i++)
     {
-        /* Modified by z00234330 for coverity清理, 2014-06-16, begin */
         if ((VOS_TRUE == f_astCcSsOperations[i].bUsed)
          && (f_astCcSsOperations[i].entityId == entityId)
          && (f_astCcSsOperations[i].ucInvokeId == ucInvokeId))
@@ -2361,32 +1542,13 @@ VOS_UINT32 NAS_CC_RestoreSsOperation(
             f_astCcSsOperations[i].bUsed = VOS_FALSE;
             return VOS_OK;
         }
-        /* Modified by z00234330 for coverity清理, 2014-06-16, end */
     }
 
     return VOS_ERR;
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_GetStoredSsOperation
- 功能描述  : 取得存储的补充业务操作
- 输入参数  : entityId      - CC实体的ID
-              ucInvokeId    - 补充业务操作的invoke ID
- 输出参数  : penSsOperation - 取得的补充业务操作码
- 返 回 值  : VOS_OK - 操作成功；VOS_ERR - 没有找到符合条件的存储项，操作失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月15日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2014年6月17日
-    作    者   : z00234330
-    修改内容   : TQE清理
-
-*****************************************************************************/
 VOS_UINT32 NAS_CC_GetStoredSsOperation(
     NAS_CC_ENTITY_ID_T                  entityId,
     VOS_UINT8                           ucInvokeId,
@@ -2399,7 +1561,6 @@ VOS_UINT32 NAS_CC_GetStoredSsOperation(
 
     for (i=0; i<NAS_CC_MAX_STORED_SS_OPERATION; i++)
     {
-        /* Modified by z00234330 for coverity清理, 2014-06-16, begin */
         if ((VOS_TRUE == f_astCcSsOperations[i].bUsed)
          && (f_astCcSsOperations[i].entityId == entityId)
          && (f_astCcSsOperations[i].ucInvokeId == ucInvokeId))
@@ -2407,27 +1568,12 @@ VOS_UINT32 NAS_CC_GetStoredSsOperation(
             *penSsOperation = f_astCcSsOperations[i].enOperation;
             return VOS_OK;
         }
-        /* Modified by z00234330 for coverity清理, 2014-06-16, end */
     }
 
     return VOS_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_SetStartT310Flag
- 功能描述  : 设置是否启T310定时器标志
- 输入参数  : entityId - CC实体的ID
-              bSet     - 设置标志
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月06日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  NAS_CC_SetStartT310Flag(
     NAS_CC_ENTITY_ID_T                  entityId,
     VOS_UINT32                          ulSet
@@ -2444,20 +1590,7 @@ VOS_VOID  NAS_CC_SetStartT310Flag(
     f_astCcEntities[entityId].ulStartT310Flag = ulSet;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_GetStartT310Flag
- 功能描述  : 获取是否启动T310的标志
- 输入参数  : entityId - CC实体的ID
- 输出参数  : 无
- 返 回 值  : 标志的状态
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月06日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_CC_GetStartT310Flag(
     NAS_CC_ENTITY_ID_T                  entityId
 )
@@ -2474,21 +1607,7 @@ VOS_UINT32 NAS_CC_GetStartT310Flag(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_IsAllowNewMtCall
- 功能描述  : 判定是否能接收新的MT呼叫
- 输入参数  : entityId - CC实体的ID
- 输出参数  : 无
- 返 回 值  : progress标志的状态
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月15日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_BOOL  NAS_CC_IsAllowNewMtCall(VOS_VOID)
 {
     VOS_UINT8                           i;
@@ -2509,26 +1628,7 @@ VOS_BOOL  NAS_CC_IsAllowNewMtCall(VOS_VOID)
 
     return VOS_TRUE;
 }
-/*****************************************************************************
- 函 数 名  : NAS_CC_FlushDTMFBuff
- 功能描述  : 清除缓存的DTMF消息
- 输入参数  : entityId - CC实体ID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年07月02日
-    作    者   : 梁金广 65478
-    修改内容   : 新生成函数，问题单号:AT2D04057
-  2.日    期   : 2008年12月15日
-    作    者   :S62952
-    修改内容   : 问题单号:AT2D07162
-  3.日    期   : 2013年5月20日
-    作    者   : s00217060
-    修改内容   : coverity和foritfy修改
-*****************************************************************************/
 VOS_VOID NAS_CC_FlushDTMFBuff(
     NAS_CC_ENTITY_ID_T                  entityId
 )
@@ -2537,10 +1637,8 @@ VOS_VOID NAS_CC_FlushDTMFBuff(
     NAS_CC_CAUSE_VALUE_ENUM_U32         enCause;
     VOS_UINT8                           i;
 
-    /* Added by s00217060 for coverity和foritfy修改 , 2013-05-20, begin */
     /* 初始化 */
     PS_MEM_SET(&stDtmfReq, 0, sizeof(stDtmfReq));
-    /* Added by s00217060 for coverity和foritfy修改 , 2013-05-20, end */
 
     for (i = 0; i < NAS_CC_MAX_DTMF_BUF_LEN; i++)
     {
@@ -2564,22 +1662,7 @@ VOS_VOID NAS_CC_FlushDTMFBuff(
     NAS_CC_ChangeDtmfQState(entityId, NAS_CC_DTMF_Q_NULL);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_AtTest
- 功能描述  : 可维可测自动化AT命令
- 输入参数  : enAtTesttyp -  测试类型
-             ucCallId    -  呼叫ID
- 输出参数  : pstCcEntity -  当前呼叫
- 返 回 值  : VOS_UINT32:获取成功或失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年3月17日
-    作    者   : zhoujun /z40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_CC_AtTest(
     VOS_UINT8                           ucCallId,
     NAS_CC_STATE_INFO_STRU              *pstStateInfo
@@ -2606,21 +1689,7 @@ VOS_UINT32 NAS_CC_AtTest(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_SndOutsideContextData
- 功能描述  : 把CC外部上下文作为SDT消息发送出去，以便在回放时通过桩函数还原
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年11月30日
-    作    者   : 王毛 00166186
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_CC_SndOutsideContextData()
 {
     NAS_CC_SDT_MSG_ST                      *pSndMsgCB     = VOS_NULL_PTR;
@@ -2655,21 +1724,7 @@ VOS_VOID NAS_CC_SndOutsideContextData()
 }
 
 #ifdef __PS_WIN32_RECUR__
-/*****************************************************************************
- 函 数 名  : NAS_CC_RestoreContextData
- 功能描述  : 恢复CC全局变量。
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年12月1日
-    作    者   : 王毛 00166186
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_CC_RestoreContextData(struct MsgCB * pMsg)
 {
     NAS_CC_SDT_MSG_ST                      *pRcvMsgCB;
@@ -2692,20 +1747,7 @@ VOS_UINT32 NAS_CC_RestoreContextData(struct MsgCB * pMsg)
 #endif
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcAtPrimitive
- 功能描述  : 接收和处理来自AT的原语
- 输入参数  : pMsg - AT发给CC的消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月17日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  NAS_CC_ProcAtPrimitive(
     const VOS_VOID                      *pMsg
 )
@@ -2727,20 +1769,7 @@ VOS_VOID  NAS_CC_ProcAtPrimitive(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcAtCcStateQry
- 功能描述  : 接收和处理来自AT的AT_CC_MSG_STATE_QRY_REQ原语
- 输入参数  : pMsg - AT发给CC的消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月17日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  NAS_CC_ProcAtCcStateQry(
     const VOS_VOID                      *pMsg
 )
@@ -2814,20 +1843,7 @@ VOS_VOID  NAS_CC_ProcAtCcStateQry(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_GetEntityByCallId
- 功能描述  : 取得与指定CallId值对应的CC实体的ID
- 输入参数  : ucCallId - 呼叫ID
- 输出参数  : 无
- 返 回 值  : 取得的CC实体ID. 如果没有找到对应实体，则返回CC_INVALID_ENTITY_ID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月02日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-*****************************************************************************/
 NAS_CC_ENTITY_ID_T  NAS_CC_GetEntityByCallId(
     VOS_UINT8                           ucCallId
 )
@@ -2847,20 +1863,7 @@ NAS_CC_ENTITY_ID_T  NAS_CC_GetEntityByCallId(
     return NAS_CC_INVALID_ENTITY_ID;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcSsSwitchSingleCallRetrieveSucc
- 功能描述  : 补充业务切换时单路通话(多方通话)回复成功处理函数
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-*****************************************************************************/
 VOS_VOID NAS_CC_ProcSsSwitchSingleCallRetrieveSucc(VOS_VOID)
 {
     NAS_CC_ENTITY_ID_T                  ulEntityID;
@@ -2915,20 +1918,7 @@ VOS_VOID NAS_CC_ProcSsSwitchSingleCallRetrieveSucc(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcSsSwitchSingleCallRetrieveFail
- 功能描述  : 补充业务切换时单路通话(多方通话)回复失败处理函数
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-*****************************************************************************/
 VOS_VOID NAS_CC_ProcSsSwitchSingleCallRetrieveFail(VOS_VOID)
 {
     NAS_CC_ENTITY_ID_T                  ulEntityID;
@@ -3002,20 +1992,7 @@ VOS_VOID NAS_CC_ProcSsSwitchSingleCallRetrieveFail(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcSsSwitchSingleCallHoldSucc
- 功能描述  : 补充业务切换时单路通话(多方通话)保持成功处理函数
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-*****************************************************************************/
 VOS_VOID NAS_CC_ProcSsSwitchSingleCallHoldSucc(VOS_VOID)
 {
     NAS_CC_ENTITY_ID_T                  ulEntityID;
@@ -3069,20 +2046,7 @@ VOS_VOID NAS_CC_ProcSsSwitchSingleCallHoldSucc(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcSsSwitchSingleCallHoldFail
- 功能描述  : 补充业务切换时单路通话(多方通话)保持失败处理函数
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-*****************************************************************************/
 VOS_VOID NAS_CC_ProcSsSwitchSingleCallHoldFail(VOS_VOID)
 {
     NAS_CC_ENTITY_ID_T                  ulEntityID;
@@ -3155,20 +2119,7 @@ VOS_VOID NAS_CC_ProcSsSwitchSingleCallHoldFail(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcSsSwitchMultiCallSucc
- 功能描述  : 补充业务切换时多路通话状态切换成功处理函数
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-*****************************************************************************/
 VOS_VOID NAS_CC_ProcSsSwitchMultiCallSucc(VOS_VOID)
 {
     NAS_CC_ENTITY_ID_T                  ulHoldEntityID;
@@ -3269,20 +2220,7 @@ VOS_VOID NAS_CC_ProcSsSwitchMultiCallSucc(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcSsSwitchMultiCallFail
- 功能描述  : 补充业务切换时多路通话状态切换失败处理函数
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-*****************************************************************************/
 VOS_VOID NAS_CC_ProcSsSwitchMultiCallFail(VOS_VOID)
 {
     NAS_CC_ENTITY_ID_T                  ulHoldEntityID;
@@ -3429,20 +2367,7 @@ VOS_VOID NAS_CC_ProcSsSwitchMultiCallFail(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcSsSwitchMain
- 功能描述  : CC模块补充业务状态切换处理主函数
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-*****************************************************************************/
 VOS_VOID NAS_CC_ProcSsSwitchMain(VOS_VOID)
 {
     VOS_UINT32                          ulLoop;
@@ -3472,21 +2397,7 @@ VOS_VOID NAS_CC_ProcSsSwitchMain(VOS_VOID)
     return;
 }
 
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
-/*****************************************************************************
- 函 数 名  : NAS_CC_GetFirstMptyCallEntityID
- 功能描述  : 获取第一个多方通话的ENTITY ID
- 输入参数  : 释放的ENTITY ID
- 输出参数  : 无
- 返 回 值  : 第一个多方通话的ENTITY ID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月26日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级
-*****************************************************************************/
 VOS_UINT32 NAS_CC_GetFirstMptyCallEntityID(NAS_CC_ENTITY_ID_T EntityID)
 {
     VOS_UINT8                           i;
@@ -3510,21 +2421,7 @@ VOS_UINT32 NAS_CC_GetFirstMptyCallEntityID(NAS_CC_ENTITY_ID_T EntityID)
     return NAS_CC_INVALID_ENTITY_ID;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_IsLastCallEntityID
- 功能描述  : 判断entity id是否是存在的最后一个呼叫
- 输入参数  : EntityID - 呼叫实体id
- 输出参数  : 无
- 返 回 值  : VOS_TRUE :是最后一个呼叫
-             VOS_FALSE:不是最后一个呼叫
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月31日
-    作    者   : z00161729
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_UINT32 NAS_CC_IsLastCallEntityID(NAS_CC_ENTITY_ID_T EntityID)
 {
     VOS_UINT8                           ucCallNumIndex;
@@ -3546,26 +2443,7 @@ VOS_UINT32 NAS_CC_IsLastCallEntityID(NAS_CC_ENTITY_ID_T EntityID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcSsSwitchCallRelease
- 功能描述  : 呼叫释放时更新补充业务切换信息，
-             多方通话，释放一路则更新切换信息的CALL实体到未释放的实体，退出；
-             所有会议都释放，则设置FACILITY相关的切换操作HOLD/RETRIEVE状态为空闲，调用处理函数通知CALL另一操作的处理结果；
-             非多方通话，则清空关联的切换状态为空闲，调用处理函数通知CALL另一操作的处理结果；
- 输入参数  : EntityID   释放呼叫的实体ID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月26日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级
-  2.日    期   : 2014年5月31日
-    作    者   : z00161729
-    修改内容   : DTS2014060402388:一路active呼叫，一路hold的mpty呼叫，at+chld=1过程中丢网所有呼叫都被释放后call状态异常挂死，hold mpty呼叫无法恢复
-*****************************************************************************/
 VOS_VOID NAS_CC_ProcSsSwitchCallRelease(NAS_CC_ENTITY_ID_T EntityID)
 {
     NAS_CC_ENTITY_ID_T                  OtherMptyEntityID;
@@ -3647,27 +2525,9 @@ VOS_VOID NAS_CC_ProcSsSwitchCallRelease(NAS_CC_ENTITY_ID_T EntityID)
 
     return;
 }
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-25, begin */
 #if (FEATURE_ON == FEATURE_IMS)
-/*****************************************************************************
- 函 数 名  : NAS_CC_CreateCcEntityWithCallEntityInfo
- 功能描述  : CC模块根据呼叫的实体信息创建CC实体
- 输入参数  : pstSrvccCallInfoNtf--SRVCC同步过来的呼叫实体信息
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月25日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2014年6月13日
-    作    者   : w00242748
-    修改内容   : DSDS 新特性
-*****************************************************************************/
 VOS_VOID  NAS_CC_CreateCcEntityWithCallEntityInfo(
     VOS_VOID                           *pMsg
 )
@@ -3712,26 +2572,7 @@ VOS_VOID  NAS_CC_CreateCcEntityWithCallEntityInfo(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_GetEntityTiInfo
- 功能描述  : CC模块根据呼叫的实体信息获取TI信息
- 输入参数  : 无
- 输出参数  :
-             VOS_UINT8                          *pucTiNum----有效的TI个数
-             VOS_UINT8                          *pucTi   ----有效的TI信息
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月19日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-  2.日    期   : 2014年6月17日
-    作    者   : z00234330
-    修改内容   : PCINT清理
-*****************************************************************************/
 VOS_VOID  NAS_CC_GetEntityTiInfo(
     VOS_UINT8                          *pucTiNum,
     VOS_UINT8                          *pucTi
@@ -3748,30 +2589,13 @@ VOS_VOID  NAS_CC_GetEntityTiInfo(
         {
             continue;
         }
-        /* Modified by z00234330 for PCLINT清理, 2014-06-24, begin */
         pucTi[(*pucTiNum)] = f_astCcEntities[i].ucTi;
         (*pucTiNum)++;
-        /* Modified by z00234330 for PCLINT清理, 2014-06-24, end */
     }
 }
 
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-25, end */
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_IsOnlySpecTypeCall
- 功能描述  : 根据CALL类型判断是否是该类型中第一个呼叫
- 输入参数  : enCallType:呼叫类型
- 输出参数  :
- 返 回 值  :VOS_TRUE:该类型中第一个呼叫
-            VOS_FALSE:不是该类型中第一个呼叫
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月18日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  NAS_CC_IsOnlySpecTypeCall(
     NAS_CC_CALL_TYPE_ENUM_U8            enCallType
 )
@@ -3799,21 +2623,7 @@ VOS_UINT32  NAS_CC_IsOnlySpecTypeCall(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ConvertCallTypeToSessionType
- 功能描述  : 将电话类型转换成相应的Session类型
- 输入参数  : enCallType:呼叫类型
- 输出参数  : 无
- 返 回 值  : MMCC_SESSION_TYPE_ENUM_UINT8
-             对应的Session类型
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月18日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-*****************************************************************************/
 MMCC_SESSION_TYPE_ENUM_UINT8  NAS_CC_ConvertCallTypeToSessionType(
     NAS_CC_CALL_TYPE_ENUM_U8            enCallType
 )
@@ -3845,21 +2655,7 @@ MMCC_SESSION_TYPE_ENUM_UINT8  NAS_CC_ConvertCallTypeToSessionType(
 
 
 #if (FEATURE_ON == FEATURE_PTM)
-/*****************************************************************************
- 函 数 名  : NAS_CC_SndAcpuOmErrLogRptCnf
- 功能描述  : 发送ID_OM_ERR_LOG_REPORT_CNF消息给ACPU OM
- 输入参数  : pbuffer:数据内容
-             ulBufUseLen:数据长度
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年09月22日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_CC_SndAcpuOmErrLogRptCnf(
     VOS_CHAR                           *pbuffer,
     VOS_UINT32                          ulBufUseLen
@@ -3903,20 +2699,7 @@ VOS_VOID NAS_CC_SndAcpuOmErrLogRptCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_RcvAcpuOmErrLogRptReq
- 功能描述  : CC处理Acpu om发来的ERROR LOG故障上报请求
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年09月22日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_CC_RcvAcpuOmErrLogRptReq(
     const VOS_VOID                           *pMsg
 )
@@ -3983,20 +2766,7 @@ VOS_VOID NAS_CC_RcvAcpuOmErrLogRptReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_RcvAcpuOmErrLogCtrlInd
- 功能描述  : CC处理Acpu om发来的ERROR LOG控制指示
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年09月22日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_CC_RcvAcpuOmErrLogCtrlInd(
     const VOS_VOID                           *pMsg
 )
@@ -4021,21 +2791,7 @@ VOS_VOID NAS_CC_RcvAcpuOmErrLogCtrlInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvAcpuOmMsg
- 功能描述  : 处理来自A核OM模块的消息
- 输入参数  : struct MsgCB *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年09月22日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_CC_RcvAcpuOmMsg(
     const VOS_VOID                     *pMsg
 )

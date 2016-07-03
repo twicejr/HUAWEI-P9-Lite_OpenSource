@@ -1,24 +1,4 @@
-/************************************************************************
-*                                                                      *
-*                             pppc_eap_aka.c                                    *
-*                                                                      *
-*  Project Code:       VRP3.0                                          *
-*  Create Date:        2015/11/9                                      *
-*  Author:             GENGXIAOLI                                        *
-*  Modify Date:                                                        *
-*  Document:                                                           *
-*  Function:           PPP的EAP-AKA鉴权方法模块                                *
-*  Others:                                                             *
-*----------------------------------------------------------------------*
-*                                                                      *
-* Copyright 2000-2010 VRP3.0 Team Beijing Institute HuaWei Tech, Inc.  *
-*                     ALL RIGHTS RESERVED                              *
-*                                                                      *
-*----------------------------------------------------------------------*
-*                                                                      *
-*   这个文件定义了EAP-AKA/AKA'协议模块的全部接口函数和内部处理函数              *
-*                                                                      *
-************************************************************************/
+
 
 
 
@@ -96,20 +76,7 @@ const PPPC_EAP_AKA_ATTRIBUTE_DATA_STRU g_stAttributeHandleTab[]=
   3 函数实现
 *****************************************************************************/
 /*lint -save -e958 */
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_MntnTraceInfo
- 功能描述  : EAP-AKA鉴权勾包
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-11-18
-    作    者   : h00309869
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_EAP_AKA_MntnTraceInfo
 (
     PPPC_EAP_AKA_AUTH_PARA_STRU        *pstEapAkaAuthPara,
@@ -153,24 +120,7 @@ VOS_VOID PPPC_EAP_AKA_MntnTraceInfo
 }
 
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_PRIME_DeriveKeys
- 功能描述  : 计算EAP-AKA‘全鉴权参数
- 输入参数  : pucIdentity        网侧携带的AT_IDENTITY
-             ucIdentityLen      网侧携带的AT_IDENTITY的长度
-             pstEapAkaAuthPara   网侧携带过来的相关参数结构体
-             pstEapAkaKey        运算所需KEY的结构体
- 输出参数  : 无
- 返 回 值  : VOS_OK 成功 VOS_ERR 错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月06日
-    作    者   : t00359887
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_EAP_AKA_PRIME_DeriveKeys
 (
     VOS_UINT8                          *pucIdentity,
@@ -307,24 +257,7 @@ VOS_UINT32 PPPC_EAP_AKA_PRIME_DeriveKeys
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_PRIME_DeriveKeys_Reauth
- 功能描述  : 计算EAP-AKA‘重鉴权参数
- 输入参数  : pucIdentity        网侧携带的AT_IDENTITY
-             ucIdentityLen      网侧携带的AT_IDENTITY的长度
-             pstEapAkaAuthPara   网侧携带过来的相关参数结构体
-             pstEapAkaKey        运算所需KEY的结构体
- 输出参数  : 无
- 返 回 值  : VOS_OK 成功 VOS_ERR 错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月06日
-    作    者   : t00359887
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_EAP_AKA_PRIME_DeriveKeys_ReAuth
 (
     VOS_UINT8                          *pucIdentity,
@@ -385,24 +318,7 @@ VOS_UINT32 PPPC_EAP_AKA_PRIME_DeriveKeys_ReAuth
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_DeriveKeys
- 功能描述  : 计算EAP-AKA全鉴权参数
- 输入参数  : pucIdentity        网侧携带的AT_IDENTITY
-             ucIdentityLen      网侧携带的AT_IDENTITY的长度
-             pstEapAkaAuthPara   网侧携带过来的相关参数结构体
-             pstEapAkaKey        运算所需KEY的结构体
- 输出参数  : 无
- 返 回 值  : VOS_OK 成功 VOS_ERR 错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月06日
-    作    者   : t00359887
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_EAP_AKA_DeriveKeys
 (
     VOS_UINT8                          *pucIdentity,
@@ -470,24 +386,7 @@ VOS_UINT32 PPPC_EAP_AKA_DeriveKeys
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_DeriveKeys
- 功能描述  : 计算EAP-AKA重鉴权参数
- 输入参数  : pucIdentity        网侧携带的AT_IDENTITY
-             ucIdentityLen      网侧携带的AT_IDENTITY的长度
-             pstEapAkaAuthPara   网侧携带过来的相关参数结构体
-             pstEapAkaKey        运算所需KEY的结构体
- 输出参数  : 无
- 返 回 值  : VOS_OK 成功 VOS_ERR 错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月06日
-    作    者   : t00359887
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_EAP_AKA_DeriveKeys_ReAuth
 (
     VOS_UINT8                          *pucIdentity,
@@ -556,21 +455,7 @@ VOS_UINT32 PPPC_EAP_AKA_DeriveKeys_ReAuth
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_ClearKeys
- 功能描述  : 清除Key信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_AKA_ClearKeys
 (
     PS_BOOL_ENUM_UINT8                  enReauth
@@ -598,21 +483,7 @@ VOS_VOID PPPC_EAP_AKA_ClearKeys
    return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_InitForReAuth
- 功能描述  : 快速重鉴权过程中初始化一些实体信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_AKA_InitForReAuth(VOS_VOID)
 {
     PPPC_EAP_AKA_DATA_INFO_STRU        *pstEapAkaDataInfo;
@@ -636,21 +507,7 @@ VOS_VOID PPPC_EAP_AKA_InitForReAuth(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_RespMsgInit
- 功能描述  : 填写消息头部
- 输入参数  : ucEapAkaSubType --EAP-AKA Subtype
- 输出参数  : pstEAPMethodOutput
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_AKA_RespMsgInit
 (
     PPPC_EAP_METHOD_OUTPUT_STRU        *pstEAPMethodOutput,
@@ -697,24 +554,7 @@ VOS_VOID PPPC_EAP_AKA_RespMsgInit
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_MsgAddAttr
- 功能描述  : 完成属性的填写
- 输入参数  : ucAttrId  --EAP-AKA Attribute type
-             usValue   --属性的第三四个字节数据值
-             pData     --属性Value域的数据
-             usDataLen --属性Value域数据长度
- 输出参数  : pMsg      --属性要填写的位置
- 返 回 值  : usAttrLen --填充的属性长度
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT16 PPPC_EAP_AKA_MsgAddAttr
 (
     VOS_UINT8                          *pucAddAttrStart,
@@ -776,22 +616,7 @@ VOS_UINT16 PPPC_EAP_AKA_MsgAddAttr
     return usAttrLen;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_UpdateState
- 功能描述  : 更新AKA状态
- 输入参数  : ulPppId    --PPPId
-             enNewState --新状态
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月13日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_AKA_UpdateState
 (
     VOS_UINT32                          ulPppId,
@@ -820,21 +645,7 @@ VOS_VOID PPPC_EAP_AKA_UpdateState
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_AddClientError
- 功能描述  : 构造PPPC_EAP_AKA_SUBTYPE_CLIENT_ERROR报文
- 输入参数  : 无
- 输出参数  : pstEAPMethodOutput --Response数据要填写的位置
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月13日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_AKA_AddClientError
 (
     PPPC_EAP_METHOD_OUTPUT_STRU        *pstEAPMethodOutput
@@ -881,21 +692,7 @@ VOS_VOID PPPC_EAP_AKA_AddClientError
 }
 
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_SndClientErrorPkt
- 功能描述  : EAP-AKA发送ClientError报文
- 输入参数  : 无
- 输出参数  : pstEAPMethodOutput    --Response数据要填写的位置
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月13日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_AKA_SndClientErrorPkt
 (
     PPPC_EAP_METHOD_OUTPUT_STRU         *pstEAPMethodOutput
@@ -918,21 +715,7 @@ VOS_VOID PPPC_EAP_AKA_SndClientErrorPkt
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_PRIME_KdfSelect
- 功能描述  : 选择KDF
- 输入参数  : pstEAPMethodInput --EAP递给方法的包
- 输出参数  : pstEAPMethodOutput    --Response数据要填写的位置
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_AKA_PRIME_KdfSelect
 (
     PPPC_EAP_METHOD_OUTPUT_STRU        *pstEAPMethodOutput
@@ -989,21 +772,7 @@ VOS_VOID PPPC_EAP_AKA_PRIME_KdfSelect
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_AuthenticationReject
- 功能描述  : 发送AuthenticationReject消息
- 输入参数  : 无
- 输出参数  : pstEAPMethodOutput    --Response数据要填写的位置
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_AKA_AuthenticationReject
 (
     PPPC_EAP_METHOD_OUTPUT_STRU        *pstEAPMethodOutput
@@ -1051,21 +820,7 @@ VOS_VOID PPPC_EAP_AKA_AuthenticationReject
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_PRIME_KdfNeg
- 功能描述  : 协商KDF
- 输入参数  : pstEAPMethodInput --EAP递给方法的包
- 输出参数  : pstEAPMethodOutput--Response数据要填写的位置
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_AKA_PRIME_KdfNeg
 (
     PPPC_EAP_METHOD_OUTPUT_STRU        *pstEAPMethodOutput,
@@ -1095,21 +850,7 @@ VOS_VOID PPPC_EAP_AKA_PRIME_KdfNeg
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_PRIME_KdfValid
- 功能描述  : 检查KDF是不是有效的
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_OK; VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_EAP_AKA_PRIME_KdfValid(VOS_VOID)
 {
     PPPC_EAP_AKA_DATA_INFO_STRU        *pstEapAkaDataInfo;
@@ -1179,21 +920,7 @@ VOS_UINT32 PPPC_EAP_AKA_PRIME_KdfValid(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_SaveIds
- 功能描述  : 保存ID信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_AKA_SaveIds(VOS_VOID)
 {
     PPPC_EAP_AKA_DATA_INFO_STRU        *pstEapAkaDataInfo;
@@ -1254,21 +981,7 @@ VOS_VOID PPPC_EAP_AKA_SaveIds(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_CheckAmf
- 功能描述  : 检查AMF
- 输入参数  : pucAutn        --AUTN
- 输出参数  :
- 返 回 值  : VOS_ERR; VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_EAP_AKA_CheckAmf
 (
     PPPC_EAP_METHOD_OUTPUT_STRU        *pstEAPMethodOutput,
@@ -1314,21 +1027,7 @@ VOS_UINT32 PPPC_EAP_AKA_CheckAmf
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_AddCheckCode
- 功能描述  : 添加CheckCode
- 输入参数  : 无
- 输出参数  : pucEapAkaRspPayloadInfo    --Response数据要填写的位置
- 返 回 值  : CheckCode 属性长度
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT16 PPPC_EAP_AKA_AddCheckCode
 (
     VOS_UINT8                          *pucEapAkaRspPayloadInfo,
@@ -1419,21 +1118,7 @@ VOS_UINT16 PPPC_EAP_AKA_AddCheckCode
     return usAttrLen;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_VerifyCheckCode
- 功能描述  : 检查CheckCode
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_OK; VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_EAP_AKA_VerifyCheckCode(VOS_VOID)
 {
     PPPC_EAP_AKA_DATA_INFO_STRU        *pstEapAkaDataInfo;
@@ -1516,24 +1201,7 @@ VOS_UINT32 PPPC_EAP_AKA_VerifyCheckCode(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_VerifyMac
- 功能描述  : 检查AT_MAC属性
- 输入参数  : pucMsg --EAP递过来的报文
-             usMsgLen --EAP递过来的报文长度
-             pucExtra --其他的参数
-             usExtraLen --其他参数的长度
- 输出参数  :
- 返 回 值  : VOS_OK; VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_EAP_AKA_VerifyMac
 (
     VOS_UINT8                          *pucMsg,
@@ -1616,22 +1284,7 @@ VOS_UINT32 PPPC_EAP_AKA_VerifyMac
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_MsgAddAtMacAttr
- 功能描述  : 添加AT_MAC属性
- 输入参数  : pucExtra --其他的参数
-             usExtraLen --其他参数的长度
- 输出参数  : pstEAPMethodOutput
- 返 回 值  : AT_MAC属性长度
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT16 PPPC_EAP_AKA_MsgAddAtMacAttr
 (
     PPPC_EAP_METHOD_OUTPUT_STRU        *pstEAPMethodOutput,
@@ -1732,21 +1385,7 @@ VOS_UINT16 PPPC_EAP_AKA_MsgAddAtMacAttr
     return usAttrLen;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_AddIdMsg
- 功能描述  : 保存IdMsg消息
- 输入参数  : pucMsg
- 输出参数  :
- 返 回 值  : VOS_OK; VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_EAP_AKA_AddIdMsg
 (
     VOS_UINT8                          *pucMsg,
@@ -1772,21 +1411,7 @@ VOS_UINT32 PPPC_EAP_AKA_AddIdMsg
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_AttRandParse
- 功能描述  : 解析AT_RAND属性
- 输入参数  : pstAttWalker        指向解属性需要中间变量的结构体变量
- 输出参数  : 无
- 返 回 值  : VOS_OK 成功 VOS_ERR 错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月06日
-    作    者   : j00353617
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_EAP_AKA_AttRandParse(PPPC_EAP_AKA_ATT_WALKER_STRU *pstAttWalker)
 {
     /*
@@ -1835,21 +1460,7 @@ VOS_UINT32 PPPC_EAP_AKA_AttRandParse(PPPC_EAP_AKA_ATT_WALKER_STRU *pstAttWalker)
     return VOS_OK;
 }
 
- /*****************************************************************************
-  函 数 名  : PPPPC_EAP_AKA_AttAutnParse
-  功能描述  : 解析AT_AUTN属性
-  输入参数  : pstAttWalker        指向解属性需要中间变量的结构体变量
-  输出参数  : 无
-  返 回 值  : VOS_OK 成功 VOS_ERR 错误
-  调用函数  :
-  被调函数  :
-
-  修改历史      :
-   1.日    期   : 2015年11月06日
-     作    者   : j00353617
-     修改内容   : 新生成函数
-
- *****************************************************************************/
+ 
 VOS_UINT32 PPPC_EAP_AKA_AttAutnParse(PPPC_EAP_AKA_ATT_WALKER_STRU *pstAttWalker)
 {
      /*
@@ -1898,21 +1509,7 @@ VOS_UINT32 PPPC_EAP_AKA_AttAutnParse(PPPC_EAP_AKA_ATT_WALKER_STRU *pstAttWalker)
     return VOS_OK;
 }
 
- /*****************************************************************************
-  函 数 名  : PPPC_EAP_AKA_AttPaddingParse
-  功能描述  : 解析AT_PADDING属性
-  输入参数  : pstAttWalker        指向解属性需要中间变量的结构体变量
-  输出参数  : 无
-  返 回 值  : VOS_OK 成功 VOS_ERR 错误
-  调用函数  :
-  被调函数  :
-
-  修改历史      :
-   1.日    期   : 2015年11月06日
-     作    者   : j00353617
-     修改内容   : 新生成函数
-
- *****************************************************************************/
+ 
 VOS_UINT32 PPPC_EAP_AKA_AttPaddingParse(PPPC_EAP_AKA_ATT_WALKER_STRU *pstAttWalker)
 {
     /*
@@ -1980,20 +1577,7 @@ VOS_UINT32 PPPC_EAP_AKA_AttPaddingParse(PPPC_EAP_AKA_ATT_WALKER_STRU *pstAttWalk
     return VOS_OK;
 }
 
-/*****************************************************************************
-  函 数 名  : PPPC_EAP_AKA_AttPermanentParse
-  功能描述  : 解析AT_PERMANENT_ID_REQ属性
-  输入参数  : pstAttWalker        指向解属性需要中间变量的结构体变量
-  输出参数  : 无
-  返 回 值  : VOS_OK 成功 VOS_ERR 错误
-  调用函数  :
-  被调函数  :
 
-  修改历史      :
-   1.日    期   : 2015年11月06日
-     作    者   : j00353617
-     修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 PPPC_EAP_AKA_AttPermanentParse(PPPC_EAP_AKA_ATT_WALKER_STRU *pstAttWalker)
 {
      /*
@@ -2025,20 +1609,7 @@ VOS_UINT32 PPPC_EAP_AKA_AttPermanentParse(PPPC_EAP_AKA_ATT_WALKER_STRU *pstAttWa
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : PPPC_EAP_AKA_AttMacParse
-功能描述  : 解析AT_MAC属性
-输入参数  : pstAttWalker        指向解属性需要中间变量的结构体变量
-输出参数  : 无
-返 回 值  : VOS_OK 成功 VOS_ERR 错误
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2015年11月06日
-   作    者   : j00353617
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 PPPC_EAP_AKA_AttMacParse(PPPC_EAP_AKA_ATT_WALKER_STRU *pstAttWalker)
 {
     /*
@@ -2085,20 +1656,7 @@ VOS_UINT32 PPPC_EAP_AKA_AttMacParse(PPPC_EAP_AKA_ATT_WALKER_STRU *pstAttWalker)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_AttNotificationParse
- 功能描述  : 解析AT_NOTIFICATION属性
- 输入参数  : pstAttWalker        指向解属性需要中间变量的结构体变量
- 输出参数  : 无
- 返 回 值  : VOS_OK 成功 VOS_ERR 错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年11月06日
-   作    者   : j00353617
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 PPPC_EAP_AKA_AttNotificationParse(
     PPPC_EAP_AKA_ATT_WALKER_STRU *pstAttWalker)
 {
@@ -2139,20 +1697,7 @@ VOS_UINT32 PPPC_EAP_AKA_AttNotificationParse(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_AttAnyParse
- 功能描述  : 解析AT_ANY_ID_REQ属性
- 输入参数  : pstAttWalker        指向解属性需要中间变量的结构体变量
- 输出参数  : 无
- 返 回 值  : VOS_OK 成功 VOS_ERR 错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月06日
-    作    者   : j00353617
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 PPPC_EAP_AKA_AttAnyParse(PPPC_EAP_AKA_ATT_WALKER_STRU *pstAttWalker)
 {
     /*
@@ -2184,20 +1729,7 @@ VOS_UINT32 PPPC_EAP_AKA_AttAnyParse(PPPC_EAP_AKA_ATT_WALKER_STRU *pstAttWalker)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_AttFullauthParse
- 功能描述  : 解析FULLAUTH_ID_REQ属性
- 输入参数  : pstAttWalker        指向解属性需要中间变量的结构体变量
- 输出参数  : 无
- 返 回 值  : VOS_OK 成功 VOS_ERR 错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月06日
-    作    者   : j00353617
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 PPPC_EAP_AKA_AttFullauthParse(PPPC_EAP_AKA_ATT_WALKER_STRU *pstAttWalker)
 {
     /*
@@ -2229,20 +1761,7 @@ VOS_UINT32 PPPC_EAP_AKA_AttFullauthParse(PPPC_EAP_AKA_ATT_WALKER_STRU *pstAttWal
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_AttCounterParse
- 功能描述  : 解析AT_COUNTER属性
- 输入参数  : pstAttWalker        指向解属性需要中间变量的结构体变量
- 输出参数  : 无
- 返 回 值  : VOS_OK 成功 VOS_ERR 错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月06日
-    作    者   : j00353617
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 PPPC_EAP_AKA_AttCounterParse(PPPC_EAP_AKA_ATT_WALKER_STRU *pstAttWalker)
 {
     /*
@@ -2287,20 +1806,7 @@ VOS_UINT32 PPPC_EAP_AKA_AttCounterParse(PPPC_EAP_AKA_ATT_WALKER_STRU *pstAttWalk
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_AttNonceSParse
- 功能描述  : 解析AT_NONCE_S属性
- 输入参数  : pstAttWalker        指向解属性需要中间变量的结构体变量
- 输出参数  : 无
- 返 回 值  : VOS_OK 成功 VOS_ERR 错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月06日
-    作    者   : j00353617
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 PPPC_EAP_AKA_AttNonceSParse(PPPC_EAP_AKA_ATT_WALKER_STRU *pstAttWalker)
 {
     /*
@@ -2355,20 +1861,7 @@ VOS_UINT32 PPPC_EAP_AKA_AttNonceSParse(PPPC_EAP_AKA_ATT_WALKER_STRU *pstAttWalke
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_AttKdfInputParse
- 功能描述  : 解析AT_KDF_INPUT属性
- 输入参数  : pstAttWalker        指向解属性需要中间变量的结构体变量
- 输出参数  : 无
- 返 回 值  : VOS_OK 成功 VOS_ERR 错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月06日
-    作    者   : j00353617
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 PPPC_EAP_AKA_AttKdfInputParse(PPPC_EAP_AKA_ATT_WALKER_STRU *pstAttWalker)
 {
     /*
@@ -2410,20 +1903,7 @@ VOS_UINT32 PPPC_EAP_AKA_AttKdfInputParse(PPPC_EAP_AKA_ATT_WALKER_STRU *pstAttWal
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_AttKdfParse
- 功能描述  : 解析AT_KDF属性
- 输入参数  : pstAttWalker        指向解属性需要中间变量的结构体变量
- 输出参数  : 无
- 返 回 值  : VOS_OK 成功 VOS_ERR 错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月06日
-    作    者   : j00353617
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 PPPC_EAP_AKA_AttKdfParse(PPPC_EAP_AKA_ATT_WALKER_STRU *pstAttWalker)
 {
     /*
@@ -2463,20 +1943,7 @@ VOS_UINT32 PPPC_EAP_AKA_AttKdfParse(PPPC_EAP_AKA_ATT_WALKER_STRU *pstAttWalker)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_AttIvParse
- 功能描述  : 解析AT_IV属性
- 输入参数  : pstAttWalker        指向解属性需要中间变量的结构体变量
- 输出参数  : 无
- 返 回 值  : VOS_OK 成功 VOS_ERR 错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月06日
-    作    者   : j00353617
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 PPPC_EAP_AKA_AttIvParse(PPPC_EAP_AKA_ATT_WALKER_STRU *pstAttWalker)
 {
     /*
@@ -2523,20 +1990,7 @@ VOS_UINT32 PPPC_EAP_AKA_AttIvParse(PPPC_EAP_AKA_ATT_WALKER_STRU *pstAttWalker)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_AttEncrParse
- 功能描述  : 解析AT_ENCR_DATA属性
- 输入参数  : pstAttWalker        指向解属性需要中间变量的结构体变量
- 输出参数  : 无
- 返 回 值  : VOS_OK 成功 VOS_ERR 错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月06日
-    作    者   : j00353617
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 PPPC_EAP_AKA_AttEncrParse(PPPC_EAP_AKA_ATT_WALKER_STRU *pstAttWalker)
 {
     /*
@@ -2600,20 +2054,7 @@ VOS_UINT32 PPPC_EAP_AKA_AttEncrParse(PPPC_EAP_AKA_ATT_WALKER_STRU *pstAttWalker)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_AttNextPseudonymParse
- 功能描述  : 解析AT_NEXT_PSEUDONYM属性
- 输入参数  : pstAttWalker        指向解属性需要中间变量的结构体变量
- 输出参数  : 无
- 返 回 值  : VOS_OK 成功 VOS_ERR 错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月06日
-    作    者   : j00353617
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 PPPC_EAP_AKA_AttNextPseudonymParse(PPPC_EAP_AKA_ATT_WALKER_STRU *pstAttWalker)
 {
     /*
@@ -2671,20 +2112,7 @@ VOS_UINT32 PPPC_EAP_AKA_AttNextPseudonymParse(PPPC_EAP_AKA_ATT_WALKER_STRU *pstA
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_AttNextReauthParse
- 功能描述  : 解析AT_NEXT_REAUTH_ID属性
- 输入参数  : pstAttWalker        指向解属性需要中间变量的结构体变量
- 输出参数  : 无
- 返 回 值  : VOS_OK 成功 VOS_ERR 错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月06日
-    作    者   : j00353617
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 PPPC_EAP_AKA_AttNextReauthParse(PPPC_EAP_AKA_ATT_WALKER_STRU *pstAttWalker)
 {
     /*
@@ -2742,21 +2170,7 @@ VOS_UINT32 PPPC_EAP_AKA_AttNextReauthParse(PPPC_EAP_AKA_ATT_WALKER_STRU *pstAttW
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_AttCheckcodeParse
- 功能描述  : 解析AT_CHECKCODE属性
- 输入参数  : pstAttWalker        指向解属性需要中间变量的结构体变量
- 输出参数  : 无
- 返 回 值  : VOS_OK 成功 VOS_ERR 错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月06日
-    作    者   : j00353617
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_EAP_AKA_AttCheckcodeParse(PPPC_EAP_AKA_ATT_WALKER_STRU *pstAttWalker)
 {
     /*
@@ -2810,21 +2224,7 @@ VOS_UINT32 PPPC_EAP_AKA_AttCheckcodeParse(PPPC_EAP_AKA_ATT_WALKER_STRU *pstAttWa
 }
 
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_AttResultParse
- 功能描述  : 解析AT_RESULT_IND属性
- 输入参数  : pstAttWalker        指向解属性需要中间变量的结构体变量
- 输出参数  : 无
- 返 回 值  : VOS_OK 成功 VOS_ERR 错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月06日
-    作    者   : j00353617
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_EAP_AKA_AttResultParse(PPPC_EAP_AKA_ATT_WALKER_STRU *pstAttWalker)
 {
     /*
@@ -2871,21 +2271,7 @@ VOS_UINT32 PPPC_EAP_AKA_AttResultParse(PPPC_EAP_AKA_ATT_WALKER_STRU *pstAttWalke
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_AttBiddingParse
- 功能描述  : 解析AT_BIDDING属性
- 输入参数  : pstAttWalker        指向解属性需要中间变量的结构体变量
- 输出参数  : 无
- 返 回 值  : VOS_OK 成功 VOS_ERR 错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月06日
-    作    者   : j00353617
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_EAP_AKA_AttBiddingParse(PPPC_EAP_AKA_ATT_WALKER_STRU *pstAttWalker)
 {
     /*
@@ -2926,21 +2312,7 @@ VOS_UINT32 PPPC_EAP_AKA_AttBiddingParse(PPPC_EAP_AKA_ATT_WALKER_STRU *pstAttWalk
 }
 
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_FindTypeFun
- 功能描述  : 根据TYPE查表返回相应处理函数的地址
- 输入参数  : aucAttributeTypex  需要解析的TYPE
- 输出参数  : 无
- 返 回 值  : ATTRIBUTE_HANDLE_TAB[ulAttLoop].pfuncMatchHead 处理函数地址 VOS_NULL_PTR 空指针
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月06日
-    作    者   : j00353617
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 PPPC_EAP_AKA_MATCH_FUNC PPPC_EAP_AKA_FindTypeFun(VOS_UINT8 aucAttributeType)
 {
     VOS_UINT32                          ulAttLoop;
@@ -2959,23 +2331,7 @@ PPPC_EAP_AKA_MATCH_FUNC PPPC_EAP_AKA_FindTypeFun(VOS_UINT8 aucAttributeType)
     return VOS_NULL_PTR;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_ParseAttr
- 功能描述  : 解析Attribute
- 输入参数  : pucAkaAttrStartPos  需要解析的Attribute首地址
-             pucAkaAttrEndPos    需要解析的Attribute尾地址
-             enEncr              属性需要加密
- 输出参数  : 无
- 返 回 值  : VOS_OK 成功 VOS_ERR 错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月06日
-    作    者   : j00353617
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_EAP_AKA_ParseAttr
 (
     VOS_UINT8                          *pucAkaAttrStartPos,
@@ -3077,21 +2433,7 @@ VOS_UINT32 PPPC_EAP_AKA_ParseAttr
 }
 
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_ClearIdentity
- 功能描述  : 清除Identity
- 输入参数  : ucId
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_AKA_ClearIdentity
 (
     VOS_UINT8                           ucId
@@ -3127,21 +2469,7 @@ VOS_VOID PPPC_EAP_AKA_ClearIdentity
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_ParseEncr
- 功能描述  : 解析加密的属性
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_OK; VOS_ERR;
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_EAP_AKA_ParseEncr(VOS_VOID)
 {
     PPPC_EAP_AKA_DATA_INFO_STRU        *pstEapAkaDataInfo;
@@ -3179,21 +2507,7 @@ VOS_UINT32 PPPC_EAP_AKA_ParseEncr(VOS_VOID)
     return ulRes;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_GetRand
- 功能描述  : 获取16BYTES随机数
- 输入参数  : 无
- 输出参数  : pucRand --存储随机数的地址
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_AKA_GetRand
 (
     VOS_UINT8                          *pucRand
@@ -3223,23 +2537,7 @@ VOS_VOID PPPC_EAP_AKA_GetRand
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_AddAtPadding
- 功能描述  : ResponseReauth
- 输入参数  : pucEapAkaRspPayloadInfo    --AT_PADDING填写的初始位置
-             pucIv                      --IV value
-             usEncrLen                  --PAD之前需要加密的数据长度
- 输出参数  : pstEAPMethodOutput         --Response数据要填写的位置
- 返 回 值  : usAttrLen                  --属性长度
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月13日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT16 PPPC_EAP_AKA_AddAtPadding
 (
     VOS_UINT8                          *pucData,
@@ -3294,21 +2592,7 @@ VOS_UINT16 PPPC_EAP_AKA_AddAtPadding
     return usAttrLen;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_GetEncrPayload
- 功能描述  : ResponseReauth
- 输入参数  :
- 输出参数  : pstEAPMethodOutput    --Response数据要填写的位置
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_AKA_GetEncrPayload
 (
     PPPC_EAP_METHOD_OUTPUT_STRU         *pstEAPMethodOutput,
@@ -3386,21 +2670,7 @@ VOS_VOID PPPC_EAP_AKA_GetEncrPayload
    return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_ResponseReauth
- 功能描述  : ResponseReauth
- 输入参数  :
- 输出参数  : pstEAPMethodOutput    --Response数据要填写的位置
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_AKA_ResponseReauth
 (
     PPPC_EAP_METHOD_OUTPUT_STRU         *pstEAPMethodOutput,
@@ -3513,21 +2783,7 @@ VOS_VOID PPPC_EAP_AKA_ResponseReauth
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_ResponseChallenge
- 功能描述  : EAP-AKA处理鉴权消息
- 输入参数  : pstEAPMethodInput --EAP递给方法的包
- 输出参数  : pstEAPMethodOutput    --Response数据要填写的位置
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_AKA_ResponseChallenge
 (
     PPPC_EAP_AUTH_RESULT_STRU           *pstResult
@@ -3636,24 +2892,7 @@ VOS_VOID PPPC_EAP_AKA_ResponseChallenge
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_BuildPermanentId
- 功能描述  : 使用IMSI构造永久性NAI
- 输入参数  : enType - AKA or AKA'
-             aucCImsi - IMSI
- 输出参数  : pucNai - 获取的NAI
-             pusNaiLen - 获取的NAI长度
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 说    明  : 调用者需要保证留有足够的空间来存储NAI
 
- 修改历史      :
-  1.日    期   : 2015年11月13日
-    作    者   : liukai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_AKA_BuildPermanentId(VOS_UINT8 aucNai[],
             VOS_UINT16 *pusNaiLen, PPPC_EAP_METHOD_TYPE_ENUM_UINT16 enType,
             VOS_UINT8 aucCImsi[])
@@ -3820,23 +3059,7 @@ VOS_VOID PPPC_EAP_AKA_BuildPermanentId(VOS_UINT8 aucNai[],
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_GetPermanentNAI
- 功能描述  : 获取永久性NAI
- 输入参数  : enType - AKA or AKA'
- 输出参数  : pucNai - 获取的NAI
-             pusNaiLen - 获取的NAI长度
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 说    明  : 调用者需要保证留有足够的空间来存储NAI
 
- 修改历史      :
-  1.日    期   : 2015年11月13日
-    作    者   : liukai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_EAP_AKA_GetPermanentNAI(VOS_UINT8 aucNai[],
             VOS_UINT16 *pusNaiLen, PPPC_EAP_METHOD_TYPE_ENUM_UINT16 enType)
 {
@@ -3889,21 +3112,7 @@ VOS_UINT32 PPPC_EAP_AKA_GetPermanentNAI(VOS_UINT8 aucNai[],
 }
 
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_GetResponseIdentity
- 功能描述  : 获取要发送的NAI
- 输入参数  : enEapAkaIdReqType --EAP-AKA Identity的Type
- 输出参数  : pstEAPMethodOutput    --Response数据要填写的位置
- 返 回 值  : VOS_OK; VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_EAP_AKA_GetResponseIdentity
 (
     PPPC_EAP_AKA_ID_REQ_TYPE_ENUM_UINT16    enEapAkaIdReqType,
@@ -3978,21 +3187,7 @@ VOS_UINT32 PPPC_EAP_AKA_GetResponseIdentity
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_ResponseIdentity
- 功能描述  : EAP-AKA处理PPPC_EAP_AKA_SUBTYPE_IDENTITY消息
- 输入参数  : enEapAkaIdReqType --EAP-AKA Identity的Type
- 输出参数  : pstEAPMethodOutput    --Response数据要填写的位置
- 返 回 值  : VOS_OK; VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_EAP_AKA_ResponseIdentity
 (
     PPPC_EAP_AKA_ID_REQ_TYPE_ENUM_UINT16    enEapAkaIdReqType,
@@ -4054,21 +3249,7 @@ VOS_UINT32 PPPC_EAP_AKA_ResponseIdentity
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_ResponseNotification
- 功能描述  : EAP-AKA处理鉴权消息
- 输入参数  : 无
- 输出参数  : pstEAPMethodOutput    --Response数据要填写的位置
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_AKA_ResponseNotification
 (
     PPPC_EAP_METHOD_OUTPUT_STRU        *pstEAPMethodOutput
@@ -4174,21 +3355,7 @@ VOS_VOID PPPC_EAP_AKA_ResponseNotification
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_CheckIdentity
- 功能描述  : EAP-AKA检查IDENTITY消息
- 输入参数  :
- 输出参数  : pstEAPMethodOutput    --Response数据要填写的位置
- 返 回 值  : VOS_OK; VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_EAP_AKA_CheckIdentity
 (
     PPPC_EAP_METHOD_OUTPUT_STRU                 *pstEAPMethodOutput
@@ -4275,21 +3442,7 @@ VOS_UINT32 PPPC_EAP_AKA_CheckIdentity
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_ProcessIdentity
- 功能描述  : EAP-AKA处理PPPC_EAP_AKA_SUBTYPE_IDENTITY消息
- 输入参数  : pstEAPMethodInput --EAP递给方法的包
- 输出参数  : pstEAPMethodOutput    --Response数据要填写的位置
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_AKA_ProcessIdentity
 (
     PPPC_EAP_METHOD_OUTPUT_STRU        *pstEAPMethodOutput,
@@ -4341,21 +3494,7 @@ VOS_VOID PPPC_EAP_AKA_ProcessIdentity
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_CheckCheckcodeAttr
- 功能描述  : 检查CheckCode属性
- 输入参数  :
- 输出参数  : pstEAPMethodOutput    --Response数据要填写的位置
- 返 回 值  : VOS_OK; VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_EAP_AKA_CheckCheckcodeAttr
 (
     PPPC_EAP_METHOD_OUTPUT_STRU        *pstEAPMethodOutput
@@ -4386,21 +3525,7 @@ VOS_UINT32 PPPC_EAP_AKA_CheckCheckcodeAttr
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_CheckKdfInputAttr
- 功能描述  : 检查AT_KDF_INPUT属性
- 输入参数  :
- 输出参数  : pstEAPMethodOutput    --Response数据要填写的位置
- 返 回 值  : VOS_OK; VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_EAP_AKA_CheckKdfInputAttr
 (
     PPPC_EAP_METHOD_OUTPUT_STRU        *pstEAPMethodOutput
@@ -4432,21 +3557,7 @@ VOS_UINT32 PPPC_EAP_AKA_CheckKdfInputAttr
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_CheckKdfandKdfInputAttr
- 功能描述  : 检查并处理AT_KDF和AT_KDF_INPUT属性
- 输入参数  : pstEAPMethodInput --EAP递给方法的包
- 输出参数  : pstEAPMethodOutput    --Response数据要填写的位置
- 返 回 值  : VOS_OK; VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_EAP_AKA_CheckKdfandKdfInputAttr
 (
     PPPC_EAP_METHOD_OUTPUT_STRU        *pstEAPMethodOutput,
@@ -4494,21 +3605,7 @@ VOS_UINT32 PPPC_EAP_AKA_CheckKdfandKdfInputAttr
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_CheckBiddingAttr
- 功能描述  : 检查AT_BIDDING属性
- 输入参数  : 无
- 输出参数  : pstEAPMethodOutput    --Response数据要填写的位置
- 返 回 值  : VOS_OK; VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_EAP_AKA_CheckBiddingAttr
 (
     PPPC_EAP_METHOD_OUTPUT_STRU        *pstEAPMethodOutput
@@ -4541,21 +3638,7 @@ VOS_UINT32 PPPC_EAP_AKA_CheckBiddingAttr
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_InitForFullAuth
- 功能描述  : 执行全鉴权流程时初始化实体信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_AKA_InitForFullAuth(VOS_VOID)
 {
     PPPC_EAP_AKA_DATA_INFO_STRU        *pstEapAkaDataInfo = VOS_NULL_PTR;
@@ -4584,21 +3667,7 @@ VOS_VOID PPPC_EAP_AKA_InitForFullAuth(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_ProcessChallenge
- 功能描述  : EAP-AKA处理鉴权消息
- 输入参数  : pstEAPMethodInput --EAP递给方法的包
- 输出参数  : pstEAPMethodOutput    --Response数据要填写的位置
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_AKA_ProcessChallenge
 (
     PPPC_EAP_METHOD_OUTPUT_STRU        *pstEAPMethodOutput,
@@ -4686,21 +3755,7 @@ VOS_VOID PPPC_EAP_AKA_ProcessChallenge
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_ProcessNotificationReauth
- 功能描述  : EAP-AKA处理鉴权消息
- 输入参数  : pstEAPMethodInput --EAP递给方法的包
- 输出参数  : pstEAPMethodOutput    --Response数据要填写的位置
- 返 回 值  : VOS_OK; VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_EAP_AKA_ProcessNotificationReauth
 (
     PPPC_EAP_METHOD_OUTPUT_STRU        *pstEAPMethodOutput
@@ -4744,21 +3799,7 @@ VOS_UINT32 PPPC_EAP_AKA_ProcessNotificationReauth
 
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_ProcessNotificationAuth
- 功能描述  : EAP-AKA处理鉴权消息
- 输入参数  : pstEAPMethodInput --EAP递给方法的包
- 输出参数  : pstEAPMethodOutput    --Response数据要填写的位置
- 返 回 值  : VOS_OK, VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_EAP_AKA_ProcessNotificationAuth
 (
     PPPC_EAP_METHOD_OUTPUT_STRU        *pstEAPMethodOutput,
@@ -4806,21 +3847,7 @@ VOS_UINT32 PPPC_EAP_AKA_ProcessNotificationAuth
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_ProcessNotification
- 功能描述  : 处理Notification消息
- 输入参数  : pstEAPMethodInput --EAP递给方法的包
- 输出参数  : pstEAPMethodOutput    --Response数据要填写的位置
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_AKA_ProcessNotification
 (
     PPPC_EAP_METHOD_OUTPUT_STRU        *pstEAPMethodOutput,
@@ -4910,21 +3937,7 @@ VOS_VOID PPPC_EAP_AKA_ProcessNotification
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_ProcessResultInd
- 功能描述  : 收到ResultInd属性的状态处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_AKA_ProcessResultInd
 (
     PPPC_EAP_METHOD_OUTPUT_STRU        *pstEAPMethodOutput
@@ -4960,21 +3973,7 @@ VOS_VOID PPPC_EAP_AKA_ProcessResultInd
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_ProcessCounterTooSmall
- 功能描述  : Counter太小的处理
- 输入参数  : 无
- 输出参数  : pstEAPMethodOutput    --Response数据要填写的位置
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 PS_BOOL_ENUM_UINT8 PPPC_EAP_AKA_ProcessCounterTooSmall
 (
     PPPC_EAP_METHOD_OUTPUT_STRU        *pstEAPMethodOutput
@@ -5017,21 +4016,7 @@ PS_BOOL_ENUM_UINT8 PPPC_EAP_AKA_ProcessCounterTooSmall
 
     return PS_FALSE;
 }
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_CalReAuthKeys
- 功能描述  : 计算K
- 输入参数  : pstResult --卡计算的结果
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月14日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_AKA_CalReAuthKeys(VOS_VOID)
 {
     PPPC_EAP_AKA_DATA_INFO_STRU        *pstEapAkaDataInfo;
@@ -5069,21 +4054,7 @@ VOS_VOID PPPC_EAP_AKA_CalReAuthKeys(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_ProcessChallenge
- 功能描述  : EAP-AKA处理鉴权消息
- 输入参数  : pstEAPMethodInput --EAP递给方法的包
- 输出参数  : pstEAPMethodOutput    --Response数据要填写的位置
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_AKA_ProcessReauthentication
 (
     PPPC_EAP_METHOD_OUTPUT_STRU        *pstEAPMethodOutput,
@@ -5204,21 +4175,7 @@ VOS_VOID PPPC_EAP_AKA_ProcessReauthentication
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_InitAttrInfo
- 功能描述  : 初始化之前解出来的属性信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月13日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_AKA_InitAttrInfo(VOS_VOID)
 {
     PPPC_EAP_AKA_ATTRS_STRU             *pstPppcEapAkaPktAttrInfo;
@@ -5232,22 +4189,7 @@ VOS_VOID PPPC_EAP_AKA_InitAttrInfo(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_PreProcessPkt
- 功能描述  : 预处理EAP报文
- 输入参数  : pstEAPMethodInput --EAP递给方法的包
- 输出参数  :
- 返 回 值  : PS_TRUE --收到的包是鉴权消息
-             PS_FALSE --收到的包不是鉴权消息
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 PS_BOOL_ENUM_UINT8 PPPC_EAP_AKA_PreProcessPkt
 (
     PPPC_EAP_METHOD_INPUT_STRU         *pstEAPMethodInput
@@ -5282,21 +4224,7 @@ PS_BOOL_ENUM_UINT8 PPPC_EAP_AKA_PreProcessPkt
      return enResult;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_ProcessPkt
- 功能描述  : 处理EAP报文
- 输入参数  : pstEAPMethodInput --EAP递给方法的包
- 输出参数  : pstEAPMethodOutput    --Response数据要填写的位置
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_AKA_ProcessPkt
 (
     PPPC_EAP_METHOD_OUTPUT_STRU        *pstEAPMethodOutput,
@@ -5361,23 +4289,7 @@ VOS_VOID PPPC_EAP_AKA_ProcessPkt
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_AddAutsAttr
- 功能描述  : 添加AUTN属性
- 输入参数  : ucAttrId   --属性Id
- 输出参数  : pMsg       --属性填写的地址
-             pData      --AT_AUTS的value域
-             usDataLen  --Value域长度
- 返 回 值  : AT_AUTS属性的长度
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月14日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT16 PPPC_EAP_AKA_AddAutsAttr
 (
     VOS_UINT8                          *pucAttrStartPos,
@@ -5424,21 +4336,7 @@ VOS_UINT16 PPPC_EAP_AKA_AddAutsAttr
     return usAttrLen;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_SynchronizationFailure
- 功能描述  : 同步失败
- 输入参数  : pstResult --卡计算的结果
- 输出参数  : pstEAPMethodOutput
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月14日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_AKA_SynchronizationFailure
 (
     PPPC_EAP_METHOD_OUTPUT_STRU        *pstEAPMethodOutput,
@@ -5494,21 +4392,7 @@ VOS_VOID PPPC_EAP_AKA_SynchronizationFailure
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_CheckAuthRes
- 功能描述  : 检查卡的鉴权结果
- 输入参数  : pstResult --卡计算的结果
- 输出参数  :
- 返 回 值  : VOS_OK; VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_EAP_AKA_CheckAuthRes
 (
     PPPC_EAP_AUTH_RESULT_STRU          *pstResult
@@ -5550,21 +4434,7 @@ VOS_UINT32 PPPC_EAP_AKA_CheckAuthRes
     }
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_CalFullAuthKeys
- 功能描述  : 计算K
- 输入参数  : pstResult --卡计算的结果
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月14日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_AKA_CalFullAuthKeys(VOS_VOID)
 {
     PPPC_EAP_AKA_DATA_INFO_STRU        *pstEapAkaDataInfo;
@@ -5633,21 +4503,7 @@ VOS_VOID PPPC_EAP_AKA_CalFullAuthKeys(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_ReciveAuthRes
- 功能描述  : 收到卡的鉴权结果
- 输入参数  : pstResult --卡计算的结果
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_AKA_ReciveAuthRes
 (
     PPPC_EAP_AUTH_RESULT_STRU          *pstResult
@@ -5737,21 +4593,7 @@ VOS_VOID PPPC_EAP_AKA_ReciveAuthRes
 
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_DeInitForReAuth
- 功能描述  : 快速重鉴权流程结束后初始化实体信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月16日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_AKA_DeInitForReAuth(VOS_VOID)
 {
     PPPC_EAP_AKA_DATA_INFO_STRU        *pstEapAkaDataInfo;
@@ -5794,21 +4636,7 @@ VOS_VOID PPPC_EAP_AKA_DeInitForReAuth(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_DeInitForFullAuth
- 功能描述  : 执行全鉴权流程结束后初始化实体信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_AKA_DeInitForFullAuth(VOS_VOID)
 {
     PPPC_EAP_AKA_DATA_INFO_STRU        *pstEapAkaDataInfo = VOS_NULL_PTR;
@@ -5848,21 +4676,7 @@ VOS_VOID PPPC_EAP_AKA_DeInitForFullAuth(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_FailInit
- 功能描述  : 初始化EAP-AKA实体信息
- 输入参数  : enMethodType --EAP-AKA or EAP-AKA'
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月13日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_AKA_FailInit(VOS_VOID)
 {
     PPPC_EAP_AKA_DATA_INFO_STRU        *pstEapAkaDataInfo = VOS_NULL_PTR;
@@ -5896,21 +4710,7 @@ VOS_VOID PPPC_EAP_AKA_FailInit(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_NotifyResult
- 功能描述  : EAP通知AKA网侧的鉴权结果
- 输入参数  : ulResult --网侧对Peer端的鉴权结果
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月13日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_AKA_NotifyResult(VOS_UINT32 ulResult)
 {
     PPPC_EAP_AKA_DATA_INFO_STRU        *pstEapAkaDataInfo = VOS_NULL_PTR;
@@ -5942,23 +4742,7 @@ VOS_VOID PPPC_EAP_AKA_NotifyResult(VOS_UINT32 ulResult)
 }
 
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_GetIdentity
- 功能描述  : EAP来获取Identity
- 输入参数  : enType - AKA or AKA'
- 输出参数  : pucIdentity - 获取的NAI
-             pusIdentityLen - 获取的NAI长度
- 返 回 值  : VOS_OK; VOS_ERR;
- 调用函数  :
- 被调函数  :
- 说    明  :
 
- 修改历史      :
-  1.日    期   : 2015年11月14日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_EAP_GetIdentity
 (
     PPPC_EAP_METHODS_TYPE_ENUM_UINT8    enMethodType,
@@ -6028,21 +4812,7 @@ VOS_UINT32 PPPC_EAP_GetIdentity
 
     return ulResult;
 }
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_Init
- 功能描述  : 初始化EAP-AKA实体信息
- 输入参数  : enMethodType --EAP-AKA or EAP-AKA'
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月13日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_AKA_Init
 (
     PPPC_EAP_METHODS_TYPE_ENUM_UINT8    enMethodType
@@ -6078,21 +4848,7 @@ VOS_VOID PPPC_EAP_AKA_Init
 }
 
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_AKA_InitState
- 功能描述  : 初始化EAP-AKA状态
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月13日
-    作    者   : g00260269
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_AKA_InitState(VOS_VOID)
 {
     VOS_UINT32                          ulPppId;

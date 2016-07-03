@@ -203,7 +203,8 @@ if(uc($ARGV[1]) eq "PANEL")
 		}
 
 		@attrs = ("IovccOffIsNeedDelay", "IovccOnIsNeedReset",
-		"LcdCtrlTpPower", "LockCmdSupport", "ReadPowerStatus");
+		"LcdCtrlTpPower", "LockCmdSupport", "ReadPowerStatus",
+		"EsdSetBacklight");
 		foreach(@attrs)
 		{
 			push(my @tmp, $_);

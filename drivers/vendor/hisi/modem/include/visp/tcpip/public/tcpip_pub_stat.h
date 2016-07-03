@@ -46,22 +46,7 @@ typedef struct tagTCPIPDataStat
 /* 获取PTP统计回调 */
 typedef ULONG (*PTP_PUBGET_STAT_FUNC)(PTP_SLAVE_STAT_LIST_S *pstStatList, ULONG ulListSize);
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetAllDataStats
-* Date Created: 2012-09-17
-*       Author: heyijun 00218462
-*  Description: 获取系统各个模块的统计信息
-*        Input: NONE
-*       Output: TCPIP_DATA_STAT_S *pstIPAllData
-*       Return: VOS_OK or 错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2012-09-17   heyijun 00218462        Create for DTS2012092803600
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_GetAllDataStats(TCPIP_DATA_STAT_S *pstIPAllData);
 
 /*********************************全局变量定义********************************/

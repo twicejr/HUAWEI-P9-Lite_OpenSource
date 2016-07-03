@@ -1,15 +1,4 @@
-/******************************************************************************
 
-   Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : NasLmmPubMTimer.c
-  Description     : 定时器相关操作
-  History         :
-     1.lining 00141619       2008-10-25   Draft Enact
-     2.zhengjunyan 00148421  2011-05-28   文件名由 NasMmPubMTimer.c修改为
-                                          NasLmmPubMTimer.c
-******************************************************************************/
 
 
 /*****************************************************************************
@@ -42,32 +31,7 @@ extern "C" {
   3.1 状态定时器 Function
 *****************************************************************************/
 
-/*****************************************************************************
- Function Name   : NAS_LMM_StartStateTimer
- Description     : 启动状态定时器
- Input           : NAS_LMM_STATE_TI_ENUM_UINT16 enStateTimerId
- Output          : None
- Return          : NAS_LMM_SUCC   -- 成功
-                   an error code -- 失败
-                   Error Codes:
-                   20060004
-                       VOS_ERRNO_RELTM_START_MSGNOTINSTALL：Message module has not been initialized.
-                   20060005
-                       VOS_ERRNO_RELTM_START_INPUTMODEINVALID：ucMode is invalid.
-                   2006000A
-                       VOS_ERRNO_RELTM_STOP_INPUTISNULL: phTm is null.
-                   2006000B
-                       VOS_ERRNO_RELTM_STOP_TIMERINVALID：phTm is invalid.
-                   2006000C
-                       VOS_ERRNO_RELTM_STOP_TIMERNOTSTART：The timer has not been started.
-                   2006000D
-                       VOS_ERRNO_RELTM_STOP_STATUSERROR：Timer's status error.
-                   NAS_LMM_ERR_CODE_GET_STATE_TIMER_CTRL_ADDR_FAIL:获取状态定时器控制块地址失败
 
- History         :
-    1.lining 00141619      2008-10-25  Draft Enact
-    2.zhengjunyan 00148421   2009-10-21  MOD:BJ9D02171
-*****************************************************************************/
 /*lint -e960*/
 /*lint -e961*/
 VOS_VOID    NAS_LMM_StartStateTimer(
@@ -156,28 +120,7 @@ VOS_VOID    NAS_LMM_StartStateTimer(
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_StopStateTimer
- Description     : 停止状态定时器
- Input           : NAS_LMM_STATE_TI_ENUM_UINT16 enStateTimerId
- Output          : None
- Return          : NAS_LMM_SUCC   -- 成功
-                   an error code -- 失败
-                   Error Codes:
-                   2006000A
-                       VOS_ERRNO_RELTM_STOP_INPUTISNULL: phTm is null.
-                   2006000B
-                       VOS_ERRNO_RELTM_STOP_TIMERINVALID：phTm is invalid.
-                   2006000C
-                       VOS_ERRNO_RELTM_STOP_TIMERNOTSTART：The timer has not been started.
-                   2006000D
-                       VOS_ERRNO_RELTM_STOP_STATUSERROR：Timer's status error.
-                   NAS_LMM_ERR_CODE_GET_STATE_TIMER_CTRL_ADDR_FAIL:获取状态定时器控制块地址失败
 
- History         :
-    1.lining 00141619      2008-10-25  Draft Enact
-
-*****************************************************************************/
 VOS_VOID    NAS_LMM_StopStateTimer(
                     NAS_LMM_STATE_TI_ENUM_UINT16             enStateTimerId )
 {
@@ -229,40 +172,7 @@ VOS_VOID    NAS_LMM_StopStateTimer(
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_SuspendStateTimer
- Description     : 暂停状态计时器
- Input           : NAS_LMM_STATE_TI_ENUM_UINT16 enStateTimerId
- Output          : None
- Return          : NAS_LMM_SUCC   -- 成功
-                   an error code -- 失败
-                   Error Codes:
-                   20060082
-                       VOS_ERRNO_RELTM_QUERY_PTICKNULL: input pulTick is null.
-                   20060083
-                       VOS_ERRNO_RELTM_QUERY_TIMERNULL：input phTm is null.
-                   20060084
-                       VOS_ERRNO_RELTM_QUERY_TIMERSTOP：the timer is stopped
-                   20060085
-                       VOS_ERRNO_RELTM_QUERY_TIMERDRVNULL：the timer's control block is null.
-                   20060086
-                       VOS_ERRNO_RELTM_QUERY_TIMERNOTEXIST_INZERO：the timer is not exist(Zero link);
-                   20060087
-                       VOS_ERRNO_RELTM_QUERY_TIMERNOTEXIST_INSORT：the timer is not exist(Sorted link);
-                   2006000A
-                       VOS_ERRNO_RELTM_STOP_INPUTISNULL: phTm is null.
-                   2006000B
-                       VOS_ERRNO_RELTM_STOP_TIMERINVALID：phTm is invalid.
-                   2006000C
-                       VOS_ERRNO_RELTM_STOP_TIMERNOTSTART：The timer has not been started.
-                   2006000D
-                       VOS_ERRNO_RELTM_STOP_STATUSERROR：Timer's status error.
-                   NAS_LMM_ERR_CODE_GET_STATE_TIMER_CTRL_ADDR_FAIL:获取状态定时器控制块地址失败
 
- History         :
-    1.lining 00141619      2008-10-25  Draft Enact
-
-*****************************************************************************/
 VOS_VOID    NAS_LMM_SuspendStateTimer(
                     NAS_LMM_STATE_TI_ENUM_UINT16             enStateTimerId )
 {
@@ -318,25 +228,7 @@ VOS_VOID    NAS_LMM_SuspendStateTimer(
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_ResumeStateTimer
- Description     : 启动状态定时器
- Input           : NAS_LMM_STATE_TI_ENUM_UINT16 enStateTimerId
- Output          : None
- Return          : NAS_LMM_SUCC   -- 成功
-                   an error code -- 失败
-                   Error Codes:
-                   20060004
-                       VOS_ERRNO_RELTM_START_MSGNOTINSTALL：Message module has not been initialized.
-                   20060005
-                       VOS_ERRNO_RELTM_START_INPUTMODEINVALID：ucMode is invalid.
-                   NAS_LMM_ERR_CODE_GET_STATE_TIMER_CTRL_ADDR_FAIL:获取状态定时器控制块地址失败
-                   NAS_LMM_ERR_CODE_RESUME_NOT_SUSPEND_STATE_TIMER:恢复没有被挂起的状态定时器
 
- History         :
-    1.lining 00141619      2008-10-25  Draft Enact
-
-*****************************************************************************/
 VOS_VOID    NAS_LMM_ResumeStateTimer(
                     NAS_LMM_STATE_TI_ENUM_UINT16             enStateTimerId )
 {
@@ -402,21 +294,7 @@ VOS_VOID    NAS_LMM_ResumeStateTimer(
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_ModifyStateTimer
- Description     : 修改状态定时器时长
- Input           : NAS_LMM_STATE_TI_ENUM_UINT16 enStateTimerId: 状态定时器ID
-                   VOS_UINT32                  ulTimerLen    : 定时器时长
- Output          : None
- Return          : NAS_LMM_SUCC   -- 成功
-                   an error code -- 失败
-                   Error Codes:
-                   NAS_LMM_ERR_CODE_GET_STATE_TIMER_CTRL_ADDR_FAIL:获取状态定时器控制块地址失败
 
- History         :
-    1.lining 00141619      2008-10-25  Draft Enact
-
-*****************************************************************************/
 VOS_VOID    NAS_LMM_ModifyStateTimer(
                     NAS_LMM_STATE_TI_ENUM_UINT16             enStateTimerId,
                     VOS_UINT32                              ulTimerLen )
@@ -448,18 +326,7 @@ VOS_VOID    NAS_LMM_ModifyStateTimer(
 
     return;
 }
-/*****************************************************************************
- Function Name   : NAS_LMM_StopAllStateTimer
- Description     : 停止所有的状态定时器
- Input           : VOS_VOID
- Output          : None
- Return          : NAS_LMM_SUCC   -- 成功
-                   NAS_LMM_FAIL   -- 失败
 
- History         :
-    1.lining 00141619      2008-10-25  Draft Enact
-
-*****************************************************************************/
 VOS_VOID    NAS_LMM_StopAllStateTimer( VOS_VOID )
 {
     NAS_LMM_TIMER_CTRL_STRU              *pstStateTimerList;
@@ -633,33 +500,7 @@ VOS_VOID    NAS_LMM_SuspendInitStopStateTimer (VOS_VOID )
 /*****************************************************************************
   3.2 协议定时器 Function
 *****************************************************************************/
-/*****************************************************************************
- Function Name   : NAS_LMM_StartPtlTimer
- Description     : 启动协议定时器
- Input           : NAS_LMM_PTL_TI_ENUM_UINT16 enPtlTimerId
- Output          : None
- Return          : NAS_LMM_SUCC   -- 成功
-                   an error code -- 失败
-                   Error Codes:
-                   20060004
-                       VOS_ERRNO_RELTM_START_MSGNOTINSTALL：Message module has not been initialized.
-                   20060005
-                       VOS_ERRNO_RELTM_START_INPUTMODEINVALID：ucMode is invalid.
-                   2006000A
-                       VOS_ERRNO_RELTM_STOP_INPUTISNULL: phTm is null.
-                   2006000B
-                       VOS_ERRNO_RELTM_STOP_TIMERINVALID：phTm is invalid.
-                   2006000C
-                       VOS_ERRNO_RELTM_STOP_TIMERNOTSTART：The timer has not been started.
-                   2006000D
-                       VOS_ERRNO_RELTM_STOP_STATUSERROR：Timer's status error.
-                   NAS_LMM_ERR_CODE_GET_PTL_TIMER_CTRL_ADDR_FAIL:获取协议定时器控制块地址失败
-                   NAS_LMM_ERR_CODE_PTL_TIMER_EXCEED_MAX_BOUND:协议定时器超过最大时长界限
 
- History         :
-    1.lining 00141619      2008-10-25  Draft Enact
-    2.zhengjunyan 00148421   2009-10-21  MOD:BJ9D02171
-*****************************************************************************/
 VOS_VOID    NAS_LMM_StartPtlTimer(
                     NAS_LMM_PTL_TI_ENUM_UINT16               enPtlTimerId )
 {
@@ -748,16 +589,7 @@ VOS_VOID    NAS_LMM_StartPtlTimer(
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_Start3402Timer
- Description     : 启动3402定时器
- Input           : 是否是由于EPS_ONLY时、尝试次数为5、原因值为16/17/22(r11之前)并且操作模式为CS/PS1时启动
- Output          : None
- Return          : None
 
- History         :
-    1.chengmin 00285307      2015-05-28  Draft Enact for DTS2015052506967
-*****************************************************************************/
 VOS_VOID NAS_LMM_Start3402Timer(VOS_UINT8 ucIs161722Atmpt5CsPs1)
 {
     NAS_LMM_TIMER_CTRL_STRU              *pstPtlTimer;
@@ -772,16 +604,7 @@ VOS_VOID NAS_LMM_Start3402Timer(VOS_UINT8 ucIs161722Atmpt5CsPs1)
 
     pstPtlTimer->ucRsv  = ucIs161722Atmpt5CsPs1;/* [false alarm]:代码保证了不会为空指针 */
 }
-/*****************************************************************************
- Function Name   : NAS_LMM_Stop3402Timer
- Description     : 停止3402定时器
- Input           :
- Output          : None
- Return          : None
 
- History         :
-    1.yanglei 00307272      2015-07-22 Draft Enact for VIA_CL_MT_DETACH_NDIS_COLLISION
-*****************************************************************************/
 VOS_VOID NAS_LMM_Stop3402Timer(VOS_VOID)
 {
     NAS_LMM_StopPtlTimer( TI_NAS_EMM_PTL_T3402);
@@ -813,28 +636,7 @@ VOS_UINT32 NAS_LMM_IsNeedStop3402Timer(VOS_VOID)
 
 
 
-/*****************************************************************************
- Function Name   : NAS_LMM_StopPtlTimer
- Description     : 停止状态定时器
- Input           : NAS_LMM_STATE_TI_ENUM_UINT16 enStateTimerId
- Output          : None
- Return          : NAS_LMM_SUCC   -- 成功
-                   an error code -- 失败
-                   Error Codes:
-                   2006000A
-                       VOS_ERRNO_RELTM_STOP_INPUTISNULL: phTm is null.
-                   2006000B
-                       VOS_ERRNO_RELTM_STOP_TIMERINVALID：phTm is invalid.
-                   2006000C
-                       VOS_ERRNO_RELTM_STOP_TIMERNOTSTART：The timer has not been started.
-                   2006000D
-                       VOS_ERRNO_RELTM_STOP_STATUSERROR：Timer's status error.
-                   NAS_LMM_ERR_CODE_GET_PTL_TIMER_CTRL_ADDR_FAIL:获取协议定时器控制块地址失败
 
- History         :
-    1.lining 00141619      2008-10-25  Draft Enact
-
-*****************************************************************************/
 VOS_VOID    NAS_LMM_StopPtlTimer(
                     NAS_LMM_PTL_TI_ENUM_UINT16               enPtlTimerId )
 {
@@ -890,18 +692,7 @@ VOS_VOID    NAS_LMM_StopPtlTimer(
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_StartInactivePtlTimer
- Description     : 如果该协议定时器正运行就不重新启动；如果该协议定时器不运行就
-                    重新启动
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.    leili  00132387      2010-5-26  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_LMM_StartInactivePtlTimer( NAS_LMM_PTL_TI_ENUM_UINT16           enPtlTimerId)
 {
     NAS_LMM_TIMER_CTRL_STRU              *pstPtlTimer;
@@ -958,21 +749,7 @@ VOS_VOID  NAS_LMM_StartInactiveStateTimer( NAS_LMM_STATE_TI_ENUM_UINT16 enStateT
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_ModifyPtlTimer
- Description     : 修改协议定时器时长,包括全局变量和 NVIM
- Input           : NAS_LMM_PTL_TI_ENUM_UINT16 enStateTimerId: 协议定时器ID
-                   VOS_UINT32                ulTimerLen    : 协议定时器时长
- Output          : None
- Return          : NAS_LMM_SUCC   -- 成功
-                   an error code -- 失败
-                   Error Codes:
-                   NAS_LMM_ERR_CODE_GET_PTL_TIMER_CTRL_ADDR_FAIL:获取协议定时器控制块地址失败
 
- History         :
-    1.lining 00141619      2008-10-25  Draft Enact
-    2.zhengjunyan 00148421 2009.04.29  Mod
-*****************************************************************************/
 VOS_VOID    NAS_LMM_ModifyPtlTimer(
                     NAS_LMM_PTL_TI_ENUM_UINT16               enPtlTimerId,
                     VOS_UINT32                              ulTimerLen )
@@ -1004,18 +781,7 @@ VOS_VOID    NAS_LMM_ModifyPtlTimer(
 
     return;
 }
-/*****************************************************************************
- Function Name   : NAS_LMM_StopAllPtlTimer
- Description     : 停止所有的协议定时器
- Input           : VOS_VOID
- Output          : None
- Return          : NAS_LMM_SUCC   -- 成功
-                   NAS_LMM_FAIL   -- 失败
 
- History         :
-    1.lining 00141619      2008-10-25  Draft Enact
-
-*****************************************************************************/
 VOS_VOID    NAS_LMM_StopAllPtlTimer( VOS_VOID )
 {
     NAS_LMM_TIMER_CTRL_STRU              *pstPtlTimerList;
@@ -1057,17 +823,7 @@ VOS_VOID    NAS_LMM_StopAllPtlTimer( VOS_VOID )
 /*****************************************************************************
   3.3 定时器 Function
 *****************************************************************************/
-/*****************************************************************************
- Function Name   : NAS_LMM_InitAllStateTimer
- Description     : 初始化 MM的所有状态定时器
- Input           : VOS_VOID
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lining 00141619      2008-10-25  Draft Enact
-    2.zhengjunyan 00148421 2009.04.29  Modify
-*****************************************************************************/
 VOS_VOID    NAS_LMM_InitAllStateTimer( VOS_VOID )
 {
 
@@ -1167,17 +923,7 @@ VOS_VOID    NAS_LMM_InitAllStateTimer( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_InitStateTimer
- Description     : 初始化状态定时器的属性
- Input           : VOS_VOID
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lining 00141619      2008-10-25  Draft Enact
-    2.zhengjunyan 00148421 2009.04.29  Modify
-*****************************************************************************/
 VOS_VOID    NAS_LMM_InitStateTimer(
                     NAS_LMM_STATE_TI_ENUM_UINT16             enStateTimerId,
                     VOS_UINT32                              ulTimerLen )
@@ -1214,17 +960,7 @@ VOS_VOID    NAS_LMM_InitStateTimer(
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_InitAllPtlTimer
- Description     : 协议定时器初始化函数
- Input           : VOS_VOID
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lining 00141619      2008-10-25  Draft Enact
-
-*****************************************************************************/
 VOS_VOID    NAS_LMM_InitAllPtlTimer( VOS_VOID )
 {
 
@@ -1258,16 +994,7 @@ VOS_VOID    NAS_LMM_InitAllPtlTimer( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_InitPtlimer
- Description     : 初始化协议定时器的属性
- Input           : VOS_VOID
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.zhengjunyan 00148421 2009.04.29 New Draft
-*****************************************************************************/
 VOS_VOID    NAS_LMM_InitPtlTimer(
                     NAS_LMM_PTL_TI_ENUM_UINT16             enPtlTimerId,
                     VOS_UINT32                            ulTimerLen )
@@ -1359,18 +1086,7 @@ VOS_VOID  NAS_LMM_StopAllStateTimerExceptDelForbTaProidTimer(VOS_VOID)
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_LMM_StopAllEmmPtlTimer
- Description     : 停止EMM所有的协议定时器
- Input           : VOS_VOID
- Output          : None
- Return          : NAS_LMM_SUCC   -- 成功
-                   NAS_LMM_FAIL   -- 失败
 
- History         :
-    1.lining 00141619      2008-10-25  Draft Enact
-
-*****************************************************************************/
 VOS_VOID    NAS_LMM_StopAllEmmPtlTimer( VOS_VOID )
 {
     NAS_LMM_TIMER_CTRL_STRU              *pstPtlTimerList;
@@ -1429,17 +1145,7 @@ VOS_VOID    NAS_LMM_SuspendInitStopLmmTimer( VOS_VOID )
     NAS_LMM_SuspendInitStopPtlTimer();
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_GetStateTimerLen
- Description     : 获取状态定时器的时长
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-5-26  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_LMM_GetStateTimerLen( NAS_LMM_STATE_TI_ENUM_UINT16   enStateTimerId,
                                    VOS_UINT32   *pulTimerLen)
 {
@@ -1462,17 +1168,7 @@ VOS_VOID  NAS_LMM_GetStateTimerLen( NAS_LMM_STATE_TI_ENUM_UINT16   enStateTimerI
     *pulTimerLen = pstStateTimer->ulTimerLen;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_GetPtlTimerLen
- Description     : 获取协议定时器的时长
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.niuxiufan 00181501      2013-4-08  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_LMM_GetPtlTimerLen( NAS_LMM_PTL_TI_ENUM_UINT16   enPtlTimerId,
                                    VOS_UINT32   *pulTimerLen)
 {
@@ -1495,17 +1191,7 @@ VOS_VOID  NAS_LMM_GetPtlTimerLen( NAS_LMM_PTL_TI_ENUM_UINT16   enPtlTimerId,
     *pulTimerLen = pstPtlTimer->ulTimerLen;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_IsStaTimerRunning
- Description     : 判断指定的状态定时器是否在运行
- Input           : enStateTimerId:指定状态定时器
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-7-30  Draft Enact
-
-*****************************************************************************/
 NAS_LMM_TIMER_RUN_STA_ENUM_UINT32  NAS_LMM_IsStaTimerRunning(
                                     NAS_LMM_STATE_TI_ENUM_UINT16 enStateTimerId )
 {
@@ -1532,17 +1218,7 @@ NAS_LMM_TIMER_RUN_STA_ENUM_UINT32  NAS_LMM_IsStaTimerRunning(
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_IsPtlTimerRunning
- Description     : 判断指定的协议定时器是否在运行
- Input           : enPtlTimerId:指定状态定时器
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-8-14  Draft Enact
-
-*****************************************************************************/
 NAS_LMM_TIMER_RUN_STA_ENUM_UINT32  NAS_LMM_IsPtlTimerRunning(
                                     NAS_LMM_PTL_TI_ENUM_UINT16 enPtlTimerId )
 {
@@ -1568,18 +1244,7 @@ NAS_LMM_TIMER_RUN_STA_ENUM_UINT32  NAS_LMM_IsPtlTimerRunning(
         return NAS_LMM_TIMER_STOPED;
     }
 }
-/*****************************************************************************
- Function Name   : NAS_LMM_SuspendAllPtlTimer
- Description     : 挂起所有的协议定时器
- Input           : VOS_VOID
- Output          : None
- Return          : NAS_LMM_SUCC   -- 成功
-                   NAS_LMM_FAIL   -- 失败
 
- History         :
-    1.lining 00141619      2008-10-25  Draft Enact
-
-*****************************************************************************/
 VOS_VOID    NAS_LMM_SuspendAllPtlTimer( VOS_VOID )
 {
     VOS_UINT32                          ulTcbIdxLoop;
@@ -1600,18 +1265,7 @@ VOS_VOID    NAS_LMM_SuspendAllPtlTimer( VOS_VOID )
 
    return;
 }
-/*****************************************************************************
- Function Name   : NAS_LMM_SuspendAllPtlTimerExpT3412
- Description     : 挂起除T3412所有的协议定时器
- Input           : VOS_VOID
- Output          : None
- Return          : NAS_LMM_SUCC   -- 成功
-                   NAS_LMM_FAIL   -- 失败
 
- History         :
-    1.lining 00141619      2008-10-25  Draft Enact
-
-*****************************************************************************/
 VOS_VOID    NAS_LMM_SuspendAllPtlTimerExpT3412( VOS_VOID )
 {
     VOS_UINT32                          ulTcbIdxLoop;
@@ -1637,18 +1291,7 @@ VOS_VOID    NAS_LMM_SuspendAllPtlTimerExpT3412( VOS_VOID )
    return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_ResumeAllPtlTimer
- Description     : 恢复所有的协议定时器
- Input           : VOS_VOID
- Output          : None
- Return          : NAS_LMM_SUCC   -- 成功
-                   NAS_LMM_FAIL   -- 失败
 
- History         :
-    1.lining 00141619      2008-10-25  Draft Enact
-
-*****************************************************************************/
 VOS_VOID    NAS_LMM_ResumeAllPtlTimer( VOS_VOID )
 {
     VOS_UINT32                          ulTcbIdxLoop;
@@ -1670,17 +1313,7 @@ VOS_VOID    NAS_LMM_ResumeAllPtlTimer( VOS_VOID )
    return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_StopAllAttachTimer
- Description     : 停止所有ATTACH定时器
- Input           : VOS_VOID
- Output          : None
- Return          : None
 
- History         :
-    1.lihong 00150010      2011-10-25  Draft Enact
-
-*****************************************************************************/
 VOS_VOID    NAS_LMM_StopAllAttachTimer( VOS_VOID )
 {
     NAS_LMM_StopStateTimer( TI_NAS_EMM_WAIT_ESM_PDN_RSP);
@@ -1692,20 +1325,7 @@ VOS_VOID    NAS_LMM_StopAllAttachTimer( VOS_VOID )
     NAS_LMM_StopStateTimer( TI_NAS_EMM_WAIT_RRC_DATA_CNF);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_LMM_SndOmEmmTimerStatus
- 功能描述  : 发送消息给OM模块，EMM定时器运行完成
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年12月6日
-   作    者   : niuxiufan 00181501
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  NAS_LMM_SndOmEmmTimerStatus(
     NAS_LMM_TIMER_RUN_STA_ENUM_UINT32          enTimerStatus,
     VOS_UINT16                          enTimerId,
@@ -1740,17 +1360,7 @@ VOS_VOID  NAS_LMM_SndOmEmmTimerStatus(
     NAS_LMM_MEM_FREE(pstMsg);
 
 }
-/*****************************************************************************
- Function Name   : NAS_LMM_GetGradualForbidenTimer
- Description     : 获取Gradual Forb定时器维护地址
- Input           : None
- Output          : None
- Return          : NAS_LMM_TIMER_CTRL_STRU
 
- History         :
-    1.leixiantiao 00258641      2015-7-31  Draft Enact
-
-*****************************************************************************/
 NAS_LMM_TIMER_CTRL_STRU *NAS_LMM_GetGradualForbidenTimer(VOS_UINT32 ulIndex, NAS_LMM_PTL_TI_ENUM_UINT16 enPtlTimerId)
 {
     NAS_LMM_TIMER_CTRL_STRU         *pstTimerInfo = VOS_NULL_PTR;
@@ -1772,17 +1382,7 @@ NAS_LMM_TIMER_CTRL_STRU *NAS_LMM_GetGradualForbidenTimer(VOS_UINT32 ulIndex, NAS
     return pstTimerInfo;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_IsGradualForbiddenTimerNameValid
- Description     : 判断Gradual Forb定时器是否合法
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leixiantiao 00258641      2015-7-31  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_LMM_IsGradualForbiddenTimerNameValid
 (
     VOS_UINT32                          ulIndex,
@@ -1811,18 +1411,7 @@ VOS_UINT32  NAS_LMM_IsGradualForbiddenTimerNameValid
     }
     return ulRslt;
 }
-/*****************************************************************************
- Function Name  : NAS_LMM_GetGradualForbiddenTimerLen
- Description    : Gradual Forb优化获取定时器时长
- Input          : ulIndex     : 临时列表索引
-                  enPtlTimerId: 定时器ID
- Output         : NONE
- Return         : 定时器时长
 
- History        :
- 1.leixiantiao 00258641      2015-7-31  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_LMM_GetGradualForbiddenTimerLen(VOS_UINT32 ulIndex, NAS_LMM_PTL_TI_ENUM_UINT16 enPtlTimerId)
 {
     VOS_UINT32                               ulTimerLen  = 0;
@@ -1857,19 +1446,7 @@ VOS_UINT32 NAS_LMM_GetGradualForbiddenTimerLen(VOS_UINT32 ulIndex, NAS_LMM_PTL_T
     return ulTimerLen;
 
 }
-/*****************************************************************************
- Function Name  : NAS_LMM_StartGradualForbiddenTimer
- Description    : 启动Gradual Forb定时器
- Input          : ulIndex     : 临时列表索引
-                  enPtlTimerId: 定时器ID
-                  ulTimerPara : 定时器参数, 用于超时时查找对应TA
- Output         : NONE
- Return         : 定时器时长
 
- History        :
- 1.leixiantiao 00258641      2015-7-31  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_LMM_StartGradualForbiddenTimer(VOS_UINT32 ulIndex, NAS_LMM_PTL_TI_ENUM_UINT16 enPtlTimerId, VOS_UINT32 ulTimerPara)
 {
     NAS_LMM_TIMER_CTRL_STRU             *pstPtlTimer;
@@ -1947,18 +1524,7 @@ VOS_VOID NAS_LMM_StartGradualForbiddenTimer(VOS_UINT32 ulIndex, NAS_LMM_PTL_TI_E
                                 , ulTimerLen);
     return;
 }
-/*****************************************************************************
- Function Name  : NAS_LMM_StopGradualForbiddenTimer
- Description    : Gradual Forb优化获取定时器时长
- Input          : ulIndex     : 临时列表索引
-                  enPtlTimerId: 定时器ID
- Output         : NONE
- Return         : 定时器时长
 
- History        :
- 1.leixiantiao 00258641      2015-7-31  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_LMM_StopGradualForbiddenTimer(VOS_UINT32 ulIndex, NAS_LMM_PTL_TI_ENUM_UINT16  enPtlTimerId)
 {
     NAS_LMM_TIMER_CTRL_STRU             *pstPtlTimer;
@@ -2011,18 +1577,7 @@ VOS_VOID  NAS_LMM_StopGradualForbiddenTimer(VOS_UINT32 ulIndex, NAS_LMM_PTL_TI_E
     }
     return;
 }
-/*****************************************************************************
- Function Name  : NAS_LMM_IsGradualForbiddenTimerRunning
- Description    : Gradual Forb优化定时器是否在运行
- Input          : ulIndex     : 临时列表索引
-                  enPtlTimerId: 定时器ID
- Output         : NONE
- Return         : 定时器是否在运行
 
- History        :
- 1.leixiantiao 00258641      2015-7-31  Draft Enact
-
-*****************************************************************************/
 NAS_LMM_TIMER_RUN_STA_ENUM_UINT32 NAS_LMM_IsGradualForbiddenTimerRunning(VOS_UINT32 ulIndex,
                                                                         NAS_LMM_PTL_TI_ENUM_UINT16  enPtlTimerId)
 {

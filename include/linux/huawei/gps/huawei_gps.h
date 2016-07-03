@@ -34,8 +34,6 @@ typedef int (*GPS_SET_REF_CLK_FUNC)(bool enable, gps_modem_id_enum modem_id, gps
 void register_gps_set_ref_clk_func(void* pFunc);
 int set_gps_ref_clk_enable(bool enable, gps_modem_id_enum modem_id, gps_rat_mode_enum rat_mode);
 
-EXPORT_SYMBOL(register_gps_set_ref_clk_func);
-
 #ifdef __cplusplus
     #if __cplusplus
         }

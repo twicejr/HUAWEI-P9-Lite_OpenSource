@@ -69,11 +69,9 @@ extern "C"{
 #define  IP6_DAD_DUPLICATED     4     /* DAD detected duplicate */
 #define  IP6_DAD_NODAD          8     /* Don't perform DAD on this address */
 
-/*Added by guojianjun178934, DAD扩展状态, 2014/2/20   问题单号:DTS2014021206259  */
 #define IP6_DAD_EXT_NULL          0
 #define IP6_DAD_EXT_OK            1
 #define IP6_DAD_EXT_DUPLICATED   2
-/* End of Added by guojianjun178934, 2014/2/20   问题单号:DTS2014021206259  */
 
 #define IP6_DAD_INVALID         0xFFFFFFFF 
 
@@ -472,11 +470,9 @@ typedef  struct   tagIP6IFADDR
     UCHAR   ucDuplicateLLAddr[MACADDRLEN]; /* 引起地址冲突的接口的mac地址 */
     UCHAR   bMACChange;                     /* MAC地址是否发生变化 */
     UCHAR   ucpad[1];
-    /* Modified by guojianjun178934, DAD扩展处理, 2014/2/21   问题单号:DTS2014021206259  */
     ULONG  ulDADExtDuplicateTimes;
     ULONG  ulPPINotifyTags;
     ULONG  ulNPNotifyTags;
-    /*End of Modified by guojianjun178934, 2014/2/21   问题单号:DTS2014021206259  */
 } IP6IFADDR_S;
 
 /* IPv6 Multicast Address information */
@@ -742,10 +738,8 @@ typedef enum tagIP6_ADDR_RESULT_NOTIFY
     NP_IP6ADDR_NOTIFY_PADDING = IP6_ADDR_MAX_ENUM_VALUE
 }IP6_ADDR_RESULT_NOTIFY_E;
 
-/*Added by guojianjun178934, 【检视问题单---DAD告警优化】产品定期发送地址冲突检测的NS报文，如果收到了NA我们需要启动DAD探测, 2014/2/21   问题单号:DTS2014021206259  */
 #define NP_IP6ADDR_PPI_DAD_DUPLICATE        1       /*是否下发DAD冲突告警*/
 #define NP_IP6ADDR_PPI_DADEXT_DUPLICATE    2        /*是否下发DADExt冲突告警*/
-/* End of Added by guojianjun178934, 2014/2/21   问题单号:DTS2014021206259  */
 
 /*addr callback functions*/
 typedef struct tagIP6_ADDR_DADRESULT_NOTIFY_FUNC
@@ -780,7 +774,6 @@ typedef struct tagIP6_ADDR_NOTIFICATION_MSG
     UCHAR     ucDuplicateLLAddr[MACADDRLEN]; /* 引起地址冲突的接口的mac地址 */
     BOOL_T    bMACChange;                     /* mac地址是否发生变化 */
 
-    /* Modified by likaikun213099, 地址冲突告警需要指定vrf, 2014/10/16 */
     ULONG     ulVrfIndex;                    /* 接口所在VRF索引 */
 }IP6_ADDR_NOTIFICATION_MSG_S;
 

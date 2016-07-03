@@ -5,8 +5,6 @@
 
 #include "TafTypeDef.h"
 
-/* Deleted by s00217060 for VoLTE_PhaseI  项目, 2013-07-20, begin */
-/* Deleted by s00217060 for VoLTE_PhaseI  项目, 2013-07-20, end */
 
 #ifdef  __cplusplus
 #if  __cplusplus
@@ -565,9 +563,7 @@ typedef struct
 {
     TAF_UINT16                              usCnt;
 
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-16, begin */
     VOS_UINT8                               aucReserved[2];
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-16, end */
 
     TAF_UINT8                               aucUssdStr[TAF_SS_MAX_USSDSTRING_LEN*2];
 }TAF_SS_USSD_STRING_STRU;
@@ -608,14 +604,7 @@ typedef    TAF_UINT8   TAF_SS_VERIFICATIONRES;
 #define         TAF_SS_REG_CALL_BAR_INFO     1
 #define         TAF_SS_REG_SS_DATA           2
 
-/* Added by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-8, begin */
-/*****************************************************************************
- 枚举名    : TAF_SS_CUSD_TYPE_ENUM_UINT8
- 结构说明  : cusd设置的类型
- 1.日    期   : 2014年4月8日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_SS_CUSD_TYPE_ENUM
 {
     TAF_SS_CUSD_TYPE_DISABLE                  = 0,
@@ -625,17 +614,10 @@ enum TAF_SS_CUSD_TYPE_ENUM
 };
 typedef VOS_UINT8 TAF_SS_CUSD_TYPE_ENUM_UINT8;
 
-/* Added by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-8, end */
 
 
 /*2. SS-TAF struture: EraseSS-invoke       MS->NETWORK*/
-/*****************************************************************************
- 结构名    : TAF_SS_ERASESS_REQ_STRU
- 结构说明  : 补充业务激活,去激活,删除和查询操作信息结构
- 1.日    期   : 2013年05月07日
-   作    者   : f62575
-   修改内容   : 补充密码字段
-*****************************************************************************/
+
 typedef  struct
 {
     TAF_UINT32                              OP_BsService:1;
@@ -711,9 +693,7 @@ typedef struct
 
     TAF_SS_USSD_STRING_STRU                 UssdStr;
 
-    /* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-8, begin */
     TAF_SS_CUSD_TYPE_ENUM_UINT8             enCusdType;
-    /* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-8, end */
     TAF_SS_DATA_CODING_SCHEME               DatacodingScheme;
     TAF_SS_ALERTINGPATTERN                  AlertingPattern;
     TAF_UINT8                               aucMsisdn[TAF_SS_MAX_MSISDN_LEN + 1];
@@ -724,10 +704,8 @@ typedef struct
 {
     TAF_SS_DATA_CODING_SCHEME               DataCodeScheme;
 
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-10, begin */
     TAF_SS_CUSD_TYPE_ENUM_UINT8             enCusdType;
     VOS_UINT8                               aucReserved[2];
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-10, end */
 
     TAF_SS_USSD_STRING_STRU                 UssdStr;
 }TAF_SS_PROCESS_USS_CNF_STRU;

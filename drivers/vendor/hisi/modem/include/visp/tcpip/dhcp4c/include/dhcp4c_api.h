@@ -261,7 +261,6 @@ enum tagDHCP_ErrCode
     DHCP4C_ERR_MAX
 };
 
-/*Modified by zhongyu206043, 修改参数为结构体DHCP4C_PROC_HOOK_S  for S.DHCP.1.1, 2012/8/18 */
 typedef ULONG (*TCPIP_PROCDHCP_HOOK_FUNC)(DHCP4C_PROC_HOOK_S *pInfo);
 
 /* 注册获取DHCP信息钩子函数 */
@@ -313,7 +312,6 @@ typedef struct tagDHCP4C_CONF_CHECK_HOOK
 
 
 /*Add by x57575 for Nodeb CR BC3D02026*/
-/* Modified by y00176567/z00171897, at 2011-07-06. 修改原因: 支持UTRP自启动 */
 /* 单播处理钩子函数增加源IP参数 */
 typedef struct tagTCPIP_PROCDHCP_UNICAST_HOOK_FUNC
 {
@@ -1062,58 +1060,13 @@ extern ULONG TCPIP_SetDHCPVlanScanning(ULONG ulIfIndex, ULONG ulEnable, ULONG ul
 *******************************************************************************/
 extern ULONG TCPIP_GetDHCPVlanScanning(ULONG ulIfIndex, ULONG *pulEnable, ULONG *pulDelayTime);
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetDhcp4cStatistic
-* Date Created: 2012-09-04
-*       Author: heyijun 00218462
-*  Description: 获取DHCP4C报文统计
-*        Input: None
-*       Output: DHCP4C_STATISTIC_S * pstStat:
-*       Return: DHCP4C_SUCCESS or 错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2012-09-04   heyijun 00218462        Create for DTS2012092900232
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_GetDhcp4cStatistic(DHCP4C_STATISTIC_S * pstStat);
 
-/*******************************************************************************
-*    Func Name: TCPIP_ClrDhcp4cStatistic
-* Date Created: 2012-09-05
-*       Author: heyijun 00218462
-*  Description: DHCP4C统计清零
-*        Input: NONE
-*       Output: NONE
-*       Return: DHCP4C_SUCCESS or 错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2012-09-05   heyijun 00218462        Create for DTS2012092900232
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_ClrDhcp4cStatistic(VOID);
 
-/*******************************************************************************
-*    Func Name: TCPIP_ShowDhcp4cStat
-* Date Created: 2012-09-06
-*       Author: heyijun 00218462
-*  Description: 显示DHCP4C报文统计
-*        Input: NONE
-*       Output: NONE
-*       Return: NONE
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2012-09-06   heyijun 00218462        Create for DTS2012092900232
-*
-*******************************************************************************/
+
 extern VOID TCPIP_ShowDhcp4cStat(VOID);
 
 /*******************************************************************************

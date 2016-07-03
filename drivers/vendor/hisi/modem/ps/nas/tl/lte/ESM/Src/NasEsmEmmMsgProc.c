@@ -1,18 +1,4 @@
-/******************************************************************************
 
-        @(#)Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : NasEsmEmmMsgProc.c
-    Description : 处理EMM发给SM的消息
-    History     :
-     1.丁丽 00128736        2008-09-01  Draft Enact
-     2.祝义强 00138739      2008-12-03  Modify BA8D00656
-     3.杨茜惠 00135146      2008-12-18  Modify BA8D00753
-     4.孙兵 49683           2009-01-06  Modify BA8D00870
-     5.杨茜惠 00135146      2009-03-06  Modify BA8D01127
-     6.李洪00150010         2009-08-05  Modify  BJ9D01627
-******************************************************************************/
 
 /*****************************************************************************
   1 Include HeadFile
@@ -93,18 +79,7 @@ static VOS_UINT32   g_astEsmErrlogErrNum
 /*****************************************************************************
   3 Function
 *****************************************************************************/
-/*****************************************************************************
- Function Name  : NAS_ESM_EmmMsgDistr()
- Description    : SM模块EMM消息处理函数
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.丁丽 00128736      2008-09-01  Draft Enact
-      2.lihong00150010     2009-10-30  Modify
-
-*****************************************************************************/
 VOS_VOID NAS_ESM_EmmMsgDistr( VOS_VOID *pRcvMsg )
 {
     PS_MSG_HEADER_STRU         *pEmmMsg  = VOS_NULL_PTR;
@@ -205,16 +180,7 @@ VOS_VOID NAS_ESM_EmmMsgDistr( VOS_VOID *pRcvMsg )
             break;
     }
 }
-/*****************************************************************************
- Function Name   : NAS_ESM_RcvEsmEmmRelInd
- Description     : SM模块收到ID_EMM_ESM_REL_IND处理函数
- Input           : NONE
- Output          : None
- Return          : NONE
 
- History         :
-    1.leixiantiao  00258641        2015-03-03      Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ESM_RcvEsmEmmRelInd(VOS_VOID)
 {
     /* 如果ESM处于非注册态，则直接返回 */
@@ -227,17 +193,7 @@ VOS_VOID NAS_ESM_RcvEsmEmmRelInd(VOS_VOID)
 
     NAS_ESM_RcvEmmDetachMsg();
 }
-/*****************************************************************************
- Function Name   : NAS_ESM_RcvEsmEmmSuspendInd
- Description     : SM模块收到ID_EMM_ESM_SUSPEND_IND处理函数
- Input           : EMM_ESM_SUSPEND_IND_STRU *pRcvMsg
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong    00150010        2011-05-02      Draft Enact
-    2.liuhua    00212067        2012-09-06      Add support for double APN
-*****************************************************************************/
 /*lint -e960*/
 /*lint -e961*/
 VOS_VOID  NAS_ESM_RcvEsmEmmSuspendInd(const EMM_ESM_SUSPEND_IND_STRU *pRcvMsg )
@@ -282,17 +238,7 @@ VOS_VOID  NAS_ESM_RcvEsmEmmSuspendInd(const EMM_ESM_SUSPEND_IND_STRU *pRcvMsg )
     NAS_ESM_SndEsmEmmSuspendRsp(EMM_ESM_RSLT_TYPE_SUCC);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_RcvEsmEmmResumeInd
- Description     : SM模块收到ID_EMM_ESM_RESUME_IND处理函数
- Input           : EMM_ESM_RESUME_IND_STRU *pRcvMsg
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong    00150010        2011-05-02      Draft Enact
-    2.liuhua    00212067        2012-09-06      Add support for double APN
-*****************************************************************************/
 VOS_VOID  NAS_ESM_RcvEsmEmmResumeInd(const EMM_ESM_RESUME_IND_STRU *pRcvMsg )
 {
     (VOS_VOID)pRcvMsg;
@@ -317,17 +263,7 @@ VOS_VOID  NAS_ESM_RcvEsmEmmResumeInd(const EMM_ESM_RESUME_IND_STRU *pRcvMsg )
         }
     }
 }
-/*****************************************************************************
- Function Name   : NAS_ESM_RcvEsmEmmPdnConIndFindSdfPara
- Description     : SM模块收到ID_EMM_ESM_PDN_CONN_IND消息后查找SDF参数
- Input           : NAS_ESM_SDF_PARA_STRU              *pstSdfPara,
-                    APP_ESM_SDF_PARA_STRU              *pstAppSdfPara
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.wangchen 00209181         2014-09-28      Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_ESM_RcvEsmEmmPdnConIndFindSdfPara
 (
     NAS_ESM_SDF_PARA_STRU              *pstSdfPara,
@@ -367,21 +303,7 @@ VOS_VOID  NAS_ESM_RcvEsmEmmPdnConIndFindSdfPara
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_RcvEsmEmmPdnConInd
- Description     : SM模块收到ID_EMM_ESM_PDN_CON_IND处理函数
- Input           : EMM_ESM_PDN_CON_IND_STRU *pRcvMsg
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.丁丽      00128736    2008-09-10      Draft Enact
-    2.sunbing   49683       2009-02-05      Modify
-    3.liuwenyu  00143951    2009-09-08      Modify
-    4.lihong    00150010    2010-08-12      Modify
-    5.niuxiufan 00181501    2011-12-08      Modify
-    6.sunjitan  00193151    2015-06-16      Modify for 1XCL_MULTI_MODE_PHASEI
-*****************************************************************************/
 VOS_VOID  NAS_ESM_RcvEsmEmmPdnConInd(const EMM_ESM_PDN_CON_IND_STRU *pRcvMsg )
 {
     VOS_UINT32                          ulPti               = NAS_ESM_NULL;
@@ -530,19 +452,7 @@ VOS_VOID  NAS_ESM_RcvEsmEmmPdnConInd(const EMM_ESM_PDN_CON_IND_STRU *pRcvMsg )
     NAS_ESM_SetEmmStatus(NAS_ESM_PS_REGISTER_STATUS_ATTACHING);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_BufferDecodedNwMsg
- Description     : 缓存ESM消息
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2009-8-19  Draft Enact
-    2.lihong00150010      2010-02-09 Modify
-    3.lihong00150010      2010-04-22 Modify
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_BufferDecodedNwMsg
 (
     const EMM_ESM_INTRA_DATA_IND_STRU  *pstEmmEsmIntraDataIndMsg,
@@ -611,20 +521,7 @@ VOS_VOID  NAS_ESM_BufferDecodedNwMsg
     TLPS_PRINT2LAYER_INFO1(NAS_ESM_BufferDecodedNwMsg_ENUM, 2, ulCnt);
 }
 
-/*****************************************************************************
- Function Name  : NAS_ESM_RcvEsmEmmDataInd()
- Description    : SM模块收到ID_EMM_ESM_DATA_IND处理函数
- Input          : EMM_ESM_DATA_IND_STRU *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.丁丽 00128736      2008-09-01  Draft Enact
-      2.sunbing 49683      2009-02-05  Modify
-      3.lihong 00150010    2009-07-25  Modify
-      4.lihong 00150010    2009-08-19  Modify
-      5.lihong00150010     2009-10-30  Modify
-*****************************************************************************/
 VOS_VOID NAS_ESM_RcvEsmEmmDataInd( EMM_ESM_DATA_IND_STRU *pRcvMsg )
 {
     NAS_ESM_CAUSE_ENUM_UINT8            enEsmCause          = NAS_ESM_CAUSE_SUCCESS;
@@ -749,18 +646,7 @@ VOS_VOID NAS_ESM_RcvEsmEmmDataInd( EMM_ESM_DATA_IND_STRU *pRcvMsg )
 }
 
 
-/*****************************************************************************
- Function Name  : NAS_ESM_RcvEsmEmmBearerStatusInd()
- Description    : SM模块收到ID_EMM_ESM_BEARER_STATUS_IND处理函数
- Input          : EMM_ESM_BEARER_STATUS_IND_STRU *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.丁丽     00128736        2008-09-01      Draft Enact
-      2.lihong    00150010        2009-10-30      Modify
-      2.liuhua    00212067        2012-09-06      Add support for double APN
-*****************************************************************************/
 VOS_VOID NAS_ESM_RcvEsmEmmBearerStatusInd(const EMM_ESM_BEARER_STATUS_IND_STRU *pRcvMsg )
 {
     VOS_UINT32                  ulCnt                       = NAS_ESM_NULL;
@@ -850,17 +736,7 @@ VOS_VOID NAS_ESM_RcvEsmEmmBearerStatusInd(const EMM_ESM_BEARER_STATUS_IND_STRU *
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_BufferedNwMsgProc
- Description     : 处理ESM缓存消息
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2009-8-19  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ESM_BufferedNwMsgProc()
 {
     NAS_ESM_ATTACHING_BUFF_ITEM_STRU   *pstDecodedNwMsg     = VOS_NULL_PTR;
@@ -1010,18 +886,7 @@ VOS_VOID NAS_ESM_RcvEsmEmmEstCnf(const EMM_ESM_EST_CNF_STRU *pRcvMsg )
     }
 }
 
-/*****************************************************************************
- Function Name  : NAS_ESM_RcvEsmEmmStatusInd()
- Description    : SM模块收到ID_EMM_ESM_STATUS_IND处理函数
- Input          : EMM_ESM_STATUS_IND_STRU *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.丁丽 00128736      2008-09-01  Draft Enact
-      2.lihong00150010     2009-10-30  Modify
-
-*****************************************************************************/
 VOS_VOID NAS_ESM_RcvEsmEmmStatusInd(const EMM_ESM_STATUS_IND_STRU *pRcvMsg )
 {
     EMM_ESM_ATTACH_STATUS_ENUM_UINT32   ulEstRst;
@@ -1112,17 +977,7 @@ VOS_VOID NAS_ESM_RcvEmmDetachMsg( VOS_VOID )
     /*清资源*/
     NAS_ESM_ClearEsmResource();
 }
-/*****************************************************************************
- Function Name   : NAS_ESM_SndEsmEmmSuspendRsp
- Description     : ESM模块回复ID_EMM_ESM_SUSPEND_RSP消息
- Input           : EMM_ESM_RSLT_TYPE_ENUM_UINT32       enRslt
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2011-05-02  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ESM_SndEsmEmmSuspendRsp
 (
     EMM_ESM_RSLT_TYPE_ENUM_UINT32       enRslt
@@ -1158,17 +1013,7 @@ VOS_VOID NAS_ESM_SndEsmEmmSuspendRsp
     NAS_ESM_SND_MSG(pstEsmEmmSuspendRsp);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SndEsmEmmResumeRsp
- Description     : ESM模块回复ID_EMM_ESM_RESUME_RSP消息
- Input           : EMM_ESM_RSLT_TYPE_ENUM_UINT32       enRslt
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2011-05-02  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ESM_SndEsmEmmResumeRsp
 (
     EMM_ESM_RSLT_TYPE_ENUM_UINT32       enRslt
@@ -1274,18 +1119,7 @@ VOS_VOID NAS_ESM_SndEsmEmmBearerStatusReqMsg(
 }
 
 
-/*****************************************************************************
- Function Name  : NAS_ESM_SndEsmEmmPdnConRspMsg()
- Description    : SM模块发送ID_EMM_ESM_PDN_CON_RSP函数
- Input          : EMM_ESM_PDN_CON_RSP_ENUM_UINT8        ulRst
-                  VOS_UINT32 ulLength, const VOS_UINT8 *pucSendMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.丁丽 00128736      2008-09-01  Draft Enact
-      2.sunbing 49683       2009-02-05  Modify
-*****************************************************************************/
 VOS_VOID NAS_ESM_SndEsmEmmPdnConRspMsg( EMM_ESM_PDN_CON_RSLT_ENUM_UINT32        ulRst,
                                                           VOS_UINT32 ulLength, const VOS_UINT8 *pucSendMsg)
 {
@@ -1426,18 +1260,7 @@ VOS_VOID NAS_ESM_SndEsmEmmEstReqMsg(VOS_UINT32 ulOpId,
 /*lint +e669*/
 
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SndEsmEmmPdnConSuccReqMsg
- Description     : ATTACH过程中，ESM建立缺省承载成功，
-                   向EMM返回EMM_ESM_PDN_CON_SUCC_REQ_STRU消息；
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2009-8-18  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_SndEsmEmmPdnConSuccReqMsg
 (
      VOS_UINT32                         ulLength,
@@ -1572,17 +1395,7 @@ VOS_VOID  NAS_ESM_SndEsmEmmDataReqMsg( VOS_UINT32 ulOpId,
 
 
 
-/*****************************************************************************
- Function Name  : NAS_ESM_SndEsmEmmModifyReq()
- Description    : ESM模块发送ID_EMM_ESM_MODIFY_REQ消息
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.leili 00132387      2012-03-01  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ESM_SndEsmEmmBearerModifyReq( VOS_UINT32 ulEpsId)
 {
     EMM_ESM_BEARER_MODIFY_REQ_STRU  *pSmEmmBearModReq   = VOS_NULL_PTR;
@@ -1655,17 +1468,7 @@ VOS_VOID NAS_ESM_SndEsmEmmRelReqMsg( VOS_VOID )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ESM_ClearStateTable
- Description     : 收到Detach消息后通知APP(回复CNF类或IND类消息)，并清除状态表信息
- Input           : None
- Output          : None
- Return          : None
 
- History         :
-    1.丁丽 00128736      2008-10-22  Draft Enact
-    2.sunbing 49683      2009-02-05  Modify
-*****************************************************************************/
 VOS_VOID  NAS_ESM_ClearStateTable( VOS_UINT32 ulAppErrType, VOS_UINT32 ulKeepEmc )
 {
     APP_ESM_MSG_TYPE_ENUM_UINT32        enAppMsgType        = NAS_ESM_NULL;
@@ -1749,18 +1552,7 @@ VOS_VOID  NAS_ESM_ClearStateTable( VOS_UINT32 ulAppErrType, VOS_UINT32 ulKeepEmc
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_IsUpSingnalPending
- Description     : 提供给MM调用，判断ESM是否有上行信令阻塞:检查如果存在流程正在等待
-                   网侧响应，且该流程对应的定时器正在运行，超时次数小于(最大次数-1)
- Input           : VOS_VOID
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421   2011-2-12  Draft Enact
-
-*****************************************************************************/
 EMM_ESM_UP_SINGNAL_PENDING_ENUM_UINT32 NAS_ESM_IsUpSingnalPending( VOS_VOID )
 {
     VOS_UINT32                          ulStateTblIndex = NAS_ESM_NULL;
@@ -1811,17 +1603,7 @@ EMM_ESM_UP_SINGNAL_PENDING_ENUM_UINT32 NAS_ESM_IsUpSingnalPending( VOS_VOID )
     TLPS_PRINT2LAYER_INFO(NAS_ESM_IsUpSingnalPending_ENUM, 3);
     return EMM_ESM_NO_UP_SINGNAL_PENDING;
 }
-/*****************************************************************************
- Function Name   : NAS_ESM_GetRegistCid
- Description     : 用于在UE发起注册时，获取适合的CID发起注册
- Input           : VOS_VOID
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.niuxiufan 00181501   2012-03-16   Draft Enact
-    2.sunjitan 00193151    2015-06-16   Modify for 1XCL_MULTI_MODE_PHASEI
-*****************************************************************************/
 VOS_UINT32 NAS_ESM_GetRegistCid(VOS_VOID)
 {
     VOS_UINT32                          ulCur;
@@ -1872,21 +1654,7 @@ VOS_UINT32 NAS_ESM_GetRegistCid(VOS_VOID)
     return NAS_ESM_ILL_CID;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_ValidCidAttachBearerReest
- Description     : 用于注册承载重建的CID需要满足如下条件之一:
-                     1. 该CID没有对应承载，且没有正在进行的其他动作
-                     2. 该CID有对应承载，但承载状状态是未激活，
 
- Input           : ulCid    待判断的CID
- Output          : None
- Return          : 如果可以作为注册承载重建CID，则返回NAS_ESM_OP_TRUE；否则，
-                   返回NAS_ESM_OP_FALSE
-
- History         :
-    1.liuhua   00212067   2012-09-10  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_ESM_ValidCidAttachBearerReest(VOS_UINT32 ulCid)
 {
     VOS_UINT32 ulEpsbId = 0;
@@ -1911,17 +1679,7 @@ VOS_UINT32 NAS_ESM_ValidCidAttachBearerReest(VOS_UINT32 ulCid)
     return ulResult;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_ReestablishAttachBearer
- Description     : 进行注册承载的重建
- Input           : VOS_VOID
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.liuhua   00212067   2012-09-06  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ESM_ReestablishAttachBearer( VOS_VOID )
 {
      VOS_UINT32                          ulPti               = NAS_ESM_NULL;
@@ -2095,16 +1853,7 @@ VOS_VOID NAS_ESM_ReestablishAttachBearer( VOS_VOID )
     NAS_ESM_SetProcTransState(ulStateTblId, NAS_ESM_BEARER_PROC_TRANS_STATE_PENDING);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_RcvEsmEmmDeactAllNonEmcBearerInd
- Description     : 接收到EMM的释放所有非紧急PDN连接的处理
- Input           : None
- Output          : None
- Return          : None
- History         :
-    1.liuhua    00212067       2012-10-25  Draft Enact
 
-*****************************************************************************/
 VOS_VOID NAS_ESM_RcvEsmEmmDeactAllNonEmcBearerInd(VOS_VOID)
 {
     NAS_ESM_INFO_LOG("NAS_ESM_RcvEsmEmmDeactAllNonEmcBearerInd: enter");
@@ -2135,15 +1884,7 @@ VOS_VOID NAS_ESM_RcvEsmEmmDeactAllNonEmcBearerInd(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_RcvEsmEmmStartNotifyInd
- Description     : 接收到EMM的开机消息的处理
- Input           : None
- Output          : None
- Return          : None
- History         :
-    1.sunjitan 00193151    2015-01-15  Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_ESM_RcvEsmEmmStartNotifyInd(VOS_VOID)
 {
     NAS_BACKOFF_INIT_INFO_STRU          stInitPara;
@@ -2173,15 +1914,7 @@ VOS_VOID NAS_ESM_RcvEsmEmmStartNotifyInd(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_RcvEsmEmmPlmnChangeInd
- Description     : 接收到EMM的PLMN变更消息的处理
- Input           : None
- Output          : None
- Return          : None
- History         :
-    1.sunjitan 00193151    2015-01-15  Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_ESM_RcvEsmEmmPlmnChangeInd(VOS_VOID)
 {
     NAS_BACKOFF_RESET_CAUSE_ENUM_UINT32 enResetCause;
@@ -2196,16 +1929,7 @@ VOS_VOID NAS_ESM_RcvEsmEmmPlmnChangeInd(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_RcvEsmEmmStopNotifyInd
- Description     : 接收到EMM的关机消息的处理
- Input           : None
- Output          : None
- Return          : None
- History         :
-    1.wangchen 00209181     2014-09-05  Draft Enact
 
-*****************************************************************************/
 VOS_VOID NAS_ESM_RcvEsmEmmStopNotifyInd(VOS_VOID)
 {
     NAS_BACKOFF_RESET_CAUSE_ENUM_UINT32 enResetCause;
@@ -2279,18 +2003,7 @@ VOS_VOID NAS_ESM_SndEsmEmmClrEsmProcResNtyMsg(VOS_UINT32 ulOpId, VOS_UINT8 ucIsE
 /*lint +e960*/
 
 #if (FEATURE_ON == FEATURE_PTM)
-/*****************************************************************************
-Function Name   :  NAS_ESM_CnCauseProc
-Description     :  将内部网络拒绝原因转换成Lnas error log对应的枚举值
-Input           :  ucCauseCode 表示网络拒绝原因
 
-Output          :  输出一个Lnas error log的枚举变量
-Return          :
-
-History         :
-1.lifuxin 00253982         2013-11-07  新增文件
-2.lifuxin 00253982         2014-12-29  errlog重构
-*****************************************************************************/
 ESM_OM_ERRLOG_ID_ENUM_UINT16  NAS_ESM_CnCauseProc(VOS_UINT8 ucCnCause)
 {
     ESM_OM_ERRLOG_ID_ENUM_UINT16   ulErrId = 0;
@@ -2315,16 +2028,7 @@ ESM_OM_ERRLOG_ID_ENUM_UINT16  NAS_ESM_CnCauseProc(VOS_UINT8 ucCnCause)
     return ulErrId;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SndEsmEmmSaveErrlogMsg
- Description     : ESM发送给EMM的ERRLOG信息
- Input           :
 
- Output          : None
- Return          : None
- History         :
-    1.lifuxin    00253982       2014-12-30  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ESM_SndEsmErrlogToEmm(
                  VOS_VOID     *pstEsmErrRslt,  VOS_UINT32   ulEsmErrLength)
 {
@@ -2366,16 +2070,7 @@ VOS_VOID NAS_ESM_SndEsmErrlogToEmm(
     NAS_ESM_SND_MSG(pstSaveEsmErrMsg);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_PdnConRejRecord
- Description     : 记录PdnConRej fail消息
- Input           :
 
- Output          : None
- Return          : None
- History         :
-    1.lifuxin    00253982       2014-12-30  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_ESM_PdnConFailRecord(
         const EMM_ESM_INTRA_DATA_IND_STRU   *pstEmmEsmDataInd,
         ESM_OM_ERRLOG_TIMEOUT_ENUM_UINT16   enErrEsmTimeOut)
@@ -2424,16 +2119,7 @@ VOS_VOID  NAS_ESM_PdnConFailRecord(
     NAS_ESM_SndEsmErrlogToEmm(&stEsmPdnConnFailRslt, ulLength);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_PdnDisconRejRecord
- Description     : 记录PdnDisConRej fail消息
- Input           :
 
- Output          : None
- Return          : None
- History         :
-    1.lifuxin    00253982       2014-12-30  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_ESM_PdnDisconFailRecord(
         const EMM_ESM_INTRA_DATA_IND_STRU   *pstEmmEsmDataInd,
         ESM_OM_ERRLOG_TIMEOUT_ENUM_UINT16   enErrEsmTimeOut)
@@ -2483,16 +2169,7 @@ VOS_VOID  NAS_ESM_PdnDisconFailRecord(
      NAS_ESM_SndEsmErrlogToEmm(&stEsmPdnDisconFailRslt, ulLength);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_ResModRejRecord
- Description     : 记录ResModRej fail消息
- Input           :
 
- Output          : None
- Return          : None
- History         :
-    1.lifuxin    00253982       2014-12-30  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_ESM_ResModFailRecord(
         const EMM_ESM_INTRA_DATA_IND_STRU   *pstEmmEsmDataInd,
         ESM_OM_ERRLOG_TIMEOUT_ENUM_UINT16   enErrEsmTimeOut)
@@ -2540,16 +2217,7 @@ VOS_VOID  NAS_ESM_ResModFailRecord(
     NAS_ESM_SndEsmErrlogToEmm(&stEsmResModFailRslt, ulLength);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_ResAllocFailRecord
- Description     : 记录ResAllocRej fail消息
- Input           :
 
- Output          : None
- Return          : None
- History         :
-    1.lifuxin    00253982       2014-12-30  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_ESM_ResAllocFailRecord(
         const EMM_ESM_INTRA_DATA_IND_STRU   *pstEmmEsmDataInd,
         ESM_OM_ERRLOG_TIMEOUT_ENUM_UINT16   enErrEsmTimeOut)
@@ -2598,14 +2266,7 @@ VOS_VOID  NAS_ESM_ResAllocFailRecord(
 }
 #endif
 
-/*****************************************************************************
- Function Name   : NAS_ESM_FindMsgInDataReqBuffer
- Description     : 根据EMM_ESM_DATA_CNF携带的EmmEsmOpId查找在缓存消息内存中对应的消息
- Input           : None
- Output          : None
- Return          : VOS_UINT32
- History         : lifuxin  00253982   2014-07-02  Draft Enac
-*****************************************************************************/
+
 /*lint -e960*/
 NAS_ESM_STATE_INFO_STRU* NAS_ESM_FindMsgInStateTable(VOS_UINT32 ulEmmEsmOpId)
 {
@@ -2638,19 +2299,7 @@ NAS_ESM_STATE_INFO_STRU* NAS_ESM_FindMsgInStateTable(VOS_UINT32 ulEmmEsmOpId)
 }
 /*lint +e960*/
 
-/*****************************************************************************
- Function Name   : NAS_ESM_IsExistAllFailStateTable
- Description     : 遍历动态表，判断除了当前承载之外的其他承载的状态
- Input           : ulEmmEsmOpId--当前承载的OpId
 
- Output          : None
- Return          :
-#define ESM_BEARER_STATUS_AT_LEAST_ONE_BEAER_RUNING     (1)
-#define ESM_BEARER_STATUS_BESIDE_RUNING                 (2)
-
- History         :
-    1.lifuxin    00253982       2014-07-03  Draft Enact
-*****************************************************************************/
 VOS_UINT32 NAS_ESM_IsExistAllFailStateTable(VOS_VOID)
 {
     NAS_ESM_STATE_INFO_STRU             *pstStateTblInfo = NAS_ESM_NULL;
@@ -2678,16 +2327,7 @@ VOS_UINT32 NAS_ESM_IsExistAllFailStateTable(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_RcvEsmEmmDataCnf
- Description     : 收到EMM_ESM_DATA_CNF的处理
- Input           : pRcvmsg--收到的DATA CNF消息
 
- Output          : None
- Return          : None
- History         :
-    1.lifuxin    00253982       2014-07-03  Draft Enact
-*****************************************************************************/
 /*lint -e961*/
 VOS_VOID NAS_ESM_RcvEsmEmmDataCnf(const EMM_ESM_DATA_CNF_STRU   *pEmmEsmDataCnfMsg)
 {
@@ -2775,18 +2415,7 @@ VOS_VOID NAS_ESM_RcvEsmEmmDataCnf(const EMM_ESM_DATA_CNF_STRU   *pEmmEsmDataCnfM
 }
 /*lint +e961*/
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SetAttachCidParaToStateTblAndSdfParaTbl
- Description     : 将注册用的CID参数信息设置到动态表和SDF表中
- Input           : VOS_UINT32*                              动态表ID
-                   VOS_UINT32                               注册用CID
-                   EMM_ESM_PDN_CON_REQ_TYPE_ENUM_UINT32     PDN请求类型
- Output          : None
- Return          : None
 
- History         :
-    1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_ESM_SetAttachCidParaToStateTblAndSdfParaTbl(
     VOS_UINT32                                   *pulStateTblId,
     VOS_UINT32                                    ulRegCid,
@@ -2885,16 +2514,7 @@ VOS_UINT32  NAS_ESM_SetAttachCidParaToStateTblAndSdfParaTbl(
 }
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- Function Name   : NAS_ESM_RcvEsmEmmClearClBearerNotify
- Description     : 收到EMM发来的ID_EMM_ESM_CLEAR_CL_BEARER_NOTIFY消息的处理
- Input           : VOS_VOID
- Output          : None
- Return          : None
 
- History         :
-    1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_ESM_RcvEsmEmmClearClBearerNotify(VOS_VOID)
 {
     /* 无论ESM处于主从模 */

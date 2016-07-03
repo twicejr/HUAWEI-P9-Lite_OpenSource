@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : hmac_encap_frame_sta.c
-  版 本 号   : 初稿
-  作    者   : y00184180
-  生成日期   : 2013年6月28日
-  最近修改   :
-  功能描述   : STA模式组帧，HMAC层 STA特有帧的组帧文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年6月28日
-    作    者   : y00184180
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -50,22 +33,7 @@ extern "C" {
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : mac_set_supported_rates_ie
- 功能描述  : 设置速率集
- 输入参数  : pst_hmac_sta: 指向vap
-             puc_buffer: 指向buffer
- 输出参数  : puc_ie_len: element的长度
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月12日
-    作    者   : zhangxiang
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  hmac_set_supported_rates_ie_asoc_req(hmac_vap_stru *pst_hmac_sta, oal_uint8 *puc_buffer, oal_uint8 *puc_ie_len)
 {
 
@@ -99,22 +67,7 @@ oal_void  hmac_set_supported_rates_ie_asoc_req(hmac_vap_stru *pst_hmac_sta, oal_
 
     *puc_ie_len = MAC_IE_HDR_LEN + uc_nrates;
 }
-/*****************************************************************************
- 函 数 名  : mac_set_exsup_rates_ie
- 功能描述  : 填充extended supported rates信息
- 输入参数  : pst_hmac_sta: 指向vap
-             puc_buffer: 指向buffer
- 输出参数  : puc_ie_len: element的长度
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月12日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void hmac_set_exsup_rates_ie_asoc_req(hmac_vap_stru *pst_hmac_sta, oal_uint8 *puc_buffer, oal_uint8 *puc_ie_len)
 {
     oal_uint8         uc_nrates;
@@ -147,21 +100,7 @@ oal_void hmac_set_exsup_rates_ie_asoc_req(hmac_vap_stru *pst_hmac_sta, oal_uint8
     *puc_ie_len = MAC_IE_HDR_LEN + uc_nrates;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_mgmt_encap_asoc_req_sta
- 功能描述  : 组帧(Re)assoc
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月28日
-    作    者   : y00184180
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_mgmt_encap_asoc_req_sta(hmac_vap_stru *pst_hmac_sta,oal_uint8 *puc_req_frame)
 {
 
@@ -279,7 +218,6 @@ oal_uint32 hmac_mgmt_encap_asoc_req_sta(hmac_vap_stru *pst_hmac_sta,oal_uint8 *p
     /* 设置 SSID IE */
     mac_set_ssid_ie((oal_void *)pst_mac_vap, puc_req_frame, &uc_ie_len, WLAN_FC0_SUBTYPE_ASSOC_REQ);
     puc_req_frame += uc_ie_len;
-    /*DTS2015052811128:在关联请求时使用扫描时保存的速率集 --z00285102*/
 #if  defined(_PRE_WIFI_DMT ) || (_PRE_OS_VERSION_WIN32 == _PRE_OS_VERSION)
     /* 设置 Supported Rates IE */
     mac_set_supported_rates_ie((oal_void *)pst_mac_vap, puc_req_frame, &uc_ie_len);
@@ -306,7 +244,6 @@ oal_uint32 hmac_mgmt_encap_asoc_req_sta(hmac_vap_stru *pst_hmac_sta,oal_uint8 *p
     mac_set_supported_channel_ie((oal_void *)pst_mac_vap, puc_req_frame, &uc_ie_len);
     puc_req_frame += uc_ie_len;
 
-/* DTS2015030605900 为增加兼容性，02不使用驱动组装的wpa/wpa2 ie，使用上层下发的 */
 #if (_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC != _PRE_MULTI_CORE_MODE)
 #if defined(_PRE_WLAN_FEATURE_WPA) || defined(_PRE_WLAN_FEATURE_WPA2)
     if (pst_hmac_sta->uc_80211i_mode == DMAC_RSNA_802_11I)
@@ -374,7 +311,6 @@ oal_uint32 hmac_mgmt_encap_asoc_req_sta(hmac_vap_stru *pst_hmac_sta,oal_uint8 *p
 
     /* 填充P2P/WPS IE 信息 */
     mac_add_app_ie(pst_mac_vap, puc_req_frame, &us_app_ie_len, OAL_APP_ASSOC_REQ_IE);
-    /* DTS2015021504247 P2P联调 解决发送的关联请求没有P2P WPS IE信息 */
     puc_req_frame += us_app_ie_len;
 
     us_asoc_rsq_len = (oal_uint32)(puc_req_frame - puc_req_frame_origin);
@@ -382,21 +318,7 @@ oal_uint32 hmac_mgmt_encap_asoc_req_sta(hmac_vap_stru *pst_hmac_sta,oal_uint8 *p
     return us_asoc_rsq_len;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_mgmt_prepare_auth_req
- 功能描述  : 组seq = 1 的auth req帧
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月26日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint16  hmac_mgmt_encap_auth_req(hmac_vap_stru *pst_hmac_sta, oal_uint8 *puc_mgmt_frame)
 {
     oal_uint16      us_auth_req_len;
@@ -493,21 +415,7 @@ oal_uint16  hmac_mgmt_encap_auth_req(hmac_vap_stru *pst_hmac_sta, oal_uint8 *puc
     return us_auth_req_len;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_prepare_auth_req_seq3
- 功能描述  : 为shared key准备seq = 3 的认证帧
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月27日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint16  hmac_mgmt_encap_auth_req_seq3(hmac_vap_stru *pst_sta, oal_uint8 *puc_mgmt_frame, oal_uint8 *puc_mac_hrd)
 {
     oal_uint8  *puc_data       = OAL_PTR_NULL;
@@ -634,24 +542,7 @@ oal_uint16  hmac_mgmt_encap_auth_req_seq3(hmac_vap_stru *pst_sta, oal_uint8 *puc
     return us_auth_req_len;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_encap_2040_coext_mgmt
- 功能描述  : 封装 20/40 共存管理帧
- 输入参数  : pst_mac_vap   : MAC VAP结构体指针
-             puc_buffer    : 帧头指针
-             uc_coext_info : 20/40 BSS Coexistence Information field(in 20/40 BSS Coexistence IE)
-             ul_chan_report: Channel List(in 20/40 BSS Intolerant Channel Report IE)
- 输出参数  : 无
- 返 回 值  : 20/40 共存管理帧长度(帧头 + 帧体，不包括FCS)
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月12日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint16  hmac_encap_2040_coext_mgmt(mac_vap_stru *pst_mac_vap, oal_uint8 *puc_buffer, oal_uint8 uc_coext_info, oal_uint32 ul_chan_report)
 {
     oal_uint8                      uc_chan_idx     = 0;
@@ -731,21 +622,7 @@ oal_uint16  hmac_encap_2040_coext_mgmt(mac_vap_stru *pst_mac_vap, oal_uint8 *puc
 }
 
 #ifdef _PRE_WLAN_FEATURE_SMPS
-/*****************************************************************************
- 函 数 名  : hmac_mgmt_encap_smps_sta
- 功能描述  : Hmac组帧
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 帧长
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月16日
-    作    者   : z00241943
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_mgmt_encap_smps_sta(mac_vap_stru *pst_mac_vap, oal_uint8 *puc_buffer)
 {
 

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasPrlParse.h
-  版 本 号   : 初稿
-  作    者   : y00245242
-  生成日期   : 2014年8月2日
-  最近修改   :
-  功能描述   : PRL参数定义
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年8月2日
-    作    者   : y00245242
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __CNAS_PRL_PARSE_H__
 #define __CNAS_PRL_PARSE_H__
@@ -94,14 +77,7 @@ extern "C" {
 /*****************************************************************************
   3 枚举定义
 *****************************************************************************/
-/*****************************************************************************
- 枚举名    : CNAS_PRL_SYS_MODE_ENUM
- 结构说明  : CDMA系统模式
- 1.日    期   : 2014年08月02日
-   作    者   : y00245242
-   修改内容   : 新增
 
-*****************************************************************************/
 enum CNAS_PRL_SYS_MODE_ENUM
 {
     CNAS_PRL_SYS_MODE_AMPS                                  = 0,
@@ -112,14 +88,7 @@ enum CNAS_PRL_SYS_MODE_ENUM
 };
 typedef VOS_UINT8 CNAS_PRL_SYS_MODE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : CNAS_PRL_SSPR_P_REV_ENUM
- 结构说明  : PRL版本编号(参考3GPP2 C.S0016-D Table 3.5.1.7-1 Feature Identifier)
- 1.日    期   : 2014年08月02日
-   作    者   : y00245242
-   修改内容   : 新增
 
-*****************************************************************************/
 enum CNAS_PRL_SSPR_P_REV_ENUM
 {
     CNAS_PRL_SSPR_P_REV_NONE                                = 0,
@@ -129,15 +98,7 @@ enum CNAS_PRL_SSPR_P_REV_ENUM
 };
 typedef VOS_UINT8 CNAS_PRL_SSPR_P_REV_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : CNAS_PRL_SYS_ROAMING_IND_ENUM
- 结构说明  : roaming display indication (参考3GPP2 C.R1001-A中8.2章节中Table 8.1-1)
 
- 1.日    期   : 2014年08月02日
-   作    者   : y00245242
-   修改内容   : 新增
-
-*****************************************************************************/
 enum CNAS_PRL_SYS_ROAMING_IND_ENUM
 {
     /* Roaming Indicator On */
@@ -189,15 +150,7 @@ enum CNAS_PRL_SYS_ROAMING_IND_ENUM
 };
 typedef VOS_UINT8 CNAS_PRL_SYS_ROAMING_IND_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : CNAS_PRL_ACQ_TYPE_ENUM
- 结构说明  : 捕获记录类型acquire record type (参考3GPP2 C.S0016-D中3.5.5.2章节中Table 3.5.5.2-2 )
 
- 1.日    期   : 2014年08月02日
-   作    者   : y00245242
-   修改内容   : 新增
-
-*****************************************************************************/
 enum CNAS_PRL_ACQ_TYPE_ENUM
 {
     /* Reserved */
@@ -250,15 +203,7 @@ enum CNAS_PRL_ACQ_TYPE_ENUM
 };
 typedef VOS_UINT8 CNAS_PRL_ACQ_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : CNAS_PRL_SYS_SEL_TYPE_ENUM
- 结构说明  : System A/B Selection Type (参考3GPP2 C.S0016-D中Table 3.5.5.2.1.1-1 )
 
- 1.日    期   : 2014年08月03日
-   作    者   : y00245242
-   修改内容   : 新增
-
-*****************************************************************************/
 enum CNAS_PRL_SYS_SEL_TYPE_ENUM
 {
     CNAS_PRL_SYS_SEL_TYPE_A,            /* system A */
@@ -271,15 +216,7 @@ enum CNAS_PRL_SYS_SEL_TYPE_ENUM
 typedef VOS_UINT8 CNAS_PRL_SYS_SEL_TYPE_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名    : CNAS_PRL_BAND10_SYS_SEL_TYPE_ENUM
- 结构说明  : System A/B Selection Type (参考3GPP2 C.S0016-D中Table 3.5.5.2.1.1-1 )
 
- 1.日    期   : 2014年08月03日
-   作    者   : y00245242
-   修改内容   : 新增
-
-*****************************************************************************/
 enum CNAS_PRL_BAND10_SYS_SEL_TYPE_ENUM
 {
     CNAS_PRL_BAND10_SYS_SEL_TYPE_A,            /* system A */
@@ -291,15 +228,7 @@ enum CNAS_PRL_BAND10_SYS_SEL_TYPE_ENUM
 };
 typedef VOS_UINT8 CNAS_PRL_BAND10_SYS_SEL_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : CNAS_PRL_STANDARD_CHAN_SEL_TYPE_ENUM
- 结构说明  : Standard Channel Selection Type (参考3GPP2 C.S0016-D中Table 3.5.5.2.1.2-1 )
 
- 1.日    期   : 2014年08月03日
-   作    者   : y00245242
-   修改内容   : 新增
-
-*****************************************************************************/
 enum CNAS_PRL_STANDARD_CHAN_SEL_TYPE_ENUM
 {
     CNAS_PRL_STANDARD_CHAN_SEL_TYPE_RESERVED,                   /* Reserved */
@@ -311,15 +240,7 @@ enum CNAS_PRL_STANDARD_CHAN_SEL_TYPE_ENUM
 };
 typedef VOS_UINT8 CNAS_PRL_STANDARD_CHAN_SEL_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : CNAS_PRL_PCS_CDMA_FREQUENCY_BLOCK_ENUM
- 结构说明  : PCS CDMA Frequency Block (参考3GPP2 C.S0016-D中Table Table 3.5.5.2.1.5-1 )
 
- 1.日    期   : 2014年08月05日
-   作    者   : y00245242
-   修改内容   : 新增
-
-*****************************************************************************/
 enum CNAS_PRL_PCS_CDMA_FREQUENCY_BLOCK_ENUM
 {
     CNAS_PRL_PCS_CDMA_FREQUENCY_BLOCK_A                     = 0,    /* Block A ‘000’*/
@@ -343,15 +264,7 @@ enum CNAS_PRL_PCS_CDMA_FREQUENCY_BLOCK_ENUM
 typedef VOS_UINT8 CNAS_PRL_PCS_CDMA_FREQUENCY_BLOCK_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名    : CNAS_PRL_NID_INCL_TYPE_ENUM
- 结构说明  : NID included (参考3GPP2 C.S0016-D中Table Table Table 3.5.5.3-1 )
 
- 1.日    期   : 2014年08月05日
-   作    者   : y00245242
-   修改内容   : 新增
-
-*****************************************************************************/
 enum CNAS_PRL_NID_INCL_TYPE_ENUM
 {
     CNAS_PRL_NID_NOT_INCL_WILD_CARD                         = 0, /* NID not included. Assume NID value ‘1111111111111111’*/
@@ -361,15 +274,7 @@ enum CNAS_PRL_NID_INCL_TYPE_ENUM
 };
 typedef VOS_UINT8 CNAS_PRL_NID_INCL_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : CNAS_PRL_MCC_MNC_SUBTYPE_ENUM
- 结构说明  : Mcc mnc subtype (参考3GPP2 C.S0016-D中Table  3.5.5.3.2.2-2 SYS_RECORD_SUBTYPE Values  )
 
- 1.日    期   : 2014年12月02日
-   作    者   : d00212987
-   修改内容   : 新增
-
-*****************************************************************************/
 enum CNAS_PRL_MCC_MNC_SUBTYPE_ENUM
 {
     CNAS_PRL_MCC_MNC_SUBTYPE_ONLY                           = 0, /* MCC MNC only */
@@ -380,15 +285,7 @@ enum CNAS_PRL_MCC_MNC_SUBTYPE_ENUM
 };
 typedef VOS_UINT32 CNAS_PRL_MCC_MNC_SUBTYPE_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : CNAS_PRL_PREF_NEG_SYS_ENUM
- 结构说明  : Preferred/negative system
 
- 1.日    期   : 2014年08月05日
-   作    者   : y00245242
-   修改内容   : 新增
-
-*****************************************************************************/
 enum CNAS_PRL_PREF_NEG_SYS_ENUM
 {
     CNAS_PRL_PREF_NEG_SYS_NEG                               = 0, /* This field is set to '0' if the mobile station is
@@ -401,15 +298,7 @@ enum CNAS_PRL_PREF_NEG_SYS_ENUM
 };
 typedef VOS_UINT8 CNAS_PRL_PREF_NEG_SYS_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : CNAS_PRL_GEO_REGION_IND_ENUM
- 结构说明  : Geographical region indicator
 
- 1.日    期   : 2014年08月05日
-   作    者   : y00245242
-   修改内容   : 新增
-
-*****************************************************************************/
 enum CNAS_PRL_GEO_REGION_IND_ENUM
 {
     CNAS_PRL_GEO_REGION_IND_NEW                             = 0,    /* If this is the first system record, this field is set to ‘0’. */
@@ -423,15 +312,7 @@ enum CNAS_PRL_GEO_REGION_IND_ENUM
 };
 typedef VOS_UINT8 CNAS_PRL_GEO_REGION_IND_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : CNAS_PRL_RELATIVE_PRI_IND_ENUM
- 结构说明  : Relative priority indicator
 
- 1.日    期   : 2014年08月05日
-   作    者   : y00245242
-   修改内容   : 新增
-
-*****************************************************************************/
 enum CNAS_PRL_RELATIVE_PRI_IND_ENUM
 {
     CNAS_PRL_RELATIVE_PRI_SAME                              = 0,    /* If this is the last system record in the specific geographical
@@ -449,16 +330,7 @@ enum CNAS_PRL_RELATIVE_PRI_IND_ENUM
 };
 typedef VOS_UINT8 CNAS_PRL_RELATIVE_PRI_IND_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : CNAS_PRL_SYS_RECORD_TYPE_ENUM
- 结构说明  : Extended System Record Type. This field is set to the type of this
-             Extended System Record. (参考3GPP2 C.S0016-D中Table Table 3.5.5.3.2-1 )
 
- 1.日    期   : 2014年08月05日
-   作    者   : y00245242
-   修改内容   : 新增
-
-*****************************************************************************/
 enum CNAS_PRL_SYS_RECORD_TYPE_ENUM
 {
     CNAS_PRL_SYS_RECORD_TYPE_1X_IS95                        = 0,    /* cdma2000 1x and IS-95 Systems */
@@ -473,15 +345,7 @@ enum CNAS_PRL_SYS_RECORD_TYPE_ENUM
 };
 typedef VOS_UINT8 CNAS_PRL_SYS_RECORD_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : CNAS_PRL_PARSE_CAUSE_ENUM
- 结构说明  : PRL解析cause值
 
- 1.日    期   : 2014年08月05日
-   作    者   : y00245242
-   修改内容   : 新增
-
-*****************************************************************************/
 enum CNAS_PRL_PARSE_CAUSE_ENUM
 {
     CNAS_PRL_PARSE_SUCCESS                                  = 0,    /* PRL parse success */
@@ -504,15 +368,7 @@ enum CNAS_PRL_PARSE_CAUSE_ENUM
 };
 typedef VOS_UINT32 CNAS_PRL_PARSE_CAUSE_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : CNAS_PRL_BAND_SUBCLASS_TYPE_ENUM
- 结构说明  : BAND SUBCLASS TYPE
 
- 1.日    期   : 2014年08月07日
-   作    者   : y00245242
-   修改内容   : 新增
-
-*****************************************************************************/
 enum CNAS_PRL_BAND_SUBCLASS_TYPE_ENUM
 {
     CNAS_PRL_BAND_SUBCLASS_TYPE_0                           = 0,
@@ -525,15 +381,7 @@ enum CNAS_PRL_BAND_SUBCLASS_TYPE_ENUM
 };
 typedef VOS_UINT8 CNAS_PRL_BAND_SUBCLASS_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : CNAS_PRL_BAND_CLASS_ENUM
- 结构说明  : List of Band Classes (参考3GPP2 C.S0057-E中Table 1.5-1: )
 
- 1.日    期   : 2014年08月06日
-   作    者   : y00245242
-   修改内容   : 新增
-
-*****************************************************************************/
 enum CNAS_PRL_BAND_CLASS_ENUM
 {
     CNAS_PRL_BAND_CLASS_TYPE_0                              = 0,    /* 800 MHz cellular band */
@@ -604,27 +452,14 @@ typedef VOS_UINT16 CNAS_PRL_BAND_CLASS_ENUM_UINT16;
 /*****************************************************************************
   7 STRUCT定义
 *****************************************************************************/
-/*****************************************************************************
- 结构名    : CNAS_PRL_FREQENCY_CHANNEL_STRU
- 结构说明  : 频段和频点信息
-   1.日    期   : 2013年8月6日
-    作    者   : h00246512
-    修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     CNAS_PRL_BAND_CLASS_ENUM_UINT16                         enBandClass;
     VOS_UINT16                                              usChannel;
 }CNAS_PRL_FREQENCY_CHANNEL_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_PRL_1X_SYSTEM_STRU
- 结构说明  : CDMA 1x系统数据结构
-  1.日    期   : 2014年08月02日
-    作    者   : y00245242
-    修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16                                              usSid;
@@ -632,28 +467,14 @@ typedef struct
     CNAS_PRL_FREQENCY_CHANNEL_STRU                          stFreq;
 }CNAS_PRL_1X_SYSTEM_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_PRL_1X_SYSTEM_ID_STRU
- 结构说明  : CDMA 1x系统ID数据结构
-  1.日    期   : 2014年08月16日
-    作    者   : l60609
-    修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16                                              usSid;
     VOS_UINT16                                              usNid;
 }CNAS_PRL_1X_SYSTEM_ID_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_PRL_HDR_SYS_TYPE_STRU
- 结构说明  : EVDO系统数据结构
-  1.日    期   : 2014年08月02日
-    作    者   : y00245242
-    修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16                                              usBand;
@@ -663,16 +484,7 @@ typedef struct
 }CNAS_PRL_HDR_SYS_TYPE_STRU;
 
 
-/*****************************************************************************
- 结构名    : CNAS_PRL_PRL_HEADER_INFO_STRU
- 结构说明  : PRL头信息数据结构(见3GPP2 C.S0016-D 3.5.5 Preferred Roaming List
-             and Extended Preferred Roaming List)
 
-  1.日    期   : 2014年08月02日
-    作    者   : y00245242
-    修改内容   : 新建
-
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16                                              usPrListSize;
@@ -689,16 +501,7 @@ typedef struct
     VOS_UINT32                                              ulComSubnetBitSize;
 }CNAS_PRL_HEADER_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_PRL_JTACS_CDMA_SYS_ACQ_STANDARD_RECORD_STRU
- 结构说明  : Cellular CDMA and JTACS CDMA System Acquisition (Standard Channels)
-             Record数据结构(见3GPP2 C.S0016-D 3.5.5.2.1.2)
 
-  1.日    期   : 2014年08月04日
-    作    者   : y00245242
-    修改内容   : 新建
-
-*****************************************************************************/
 typedef struct
 {
     CNAS_PRL_SYS_SEL_TYPE_ENUM_UINT8                        enSysSelType;
@@ -708,16 +511,7 @@ typedef struct
     VOS_UINT8                                               aucResvered[2];
 }CNAS_PRL_JTACS_CDMA_SYS_ACQ_STANDARD_RECORD_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_PRL_CELLULAR_CDMA_SYS_ACQ_STANDARD_RECORD_STRU
- 结构说明  : Cellular CDMA and JTACS CDMA System Acquisition (Standard Channels)
-             Record数据结构(见3GPP2 C.S0016-D 3.5.5.2.1.2)，解析存储共用该数据
-             结构
-  1.日    期   : 2014年08月04日
-    作    者   : y00245242
-    修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     CNAS_PRL_SYS_SEL_TYPE_ENUM_UINT8                        enSysSelType;
@@ -727,15 +521,7 @@ typedef struct
     VOS_UINT8                                               aucResvered[2];
 }CNAS_PRL_CELLULAR_CDMA_SYS_ACQ_STANDARD_RECORD_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_PRL_CELLULAR_CDMA_SYS_ACQ_CUSTOM_RECORD_STRU
- 结构说明  : 存放Cellular CDMA and JTACS CDMA System Acquisition (Custom Channels)
-             Record数据结构(见3GPP2 C.S0016-D 3.5.5.2.1.3)
-  1.日    期   : 2014年08月04日
-    作    者   : y00245242
-    修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                                               ucNumOfChans;   /* channel个数 */
@@ -744,15 +530,7 @@ typedef struct
     VOS_UINT16                                              ausChan[0];        /* 存放channel首地址 */
 }CNAS_PRL_CELLULAR_CDMA_SYS_ACQ_CUSTOM_RECORD_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_PRL_JTACS_CDMA_SYS_ACQ_CUSTOM_RECORD_STRU
- 结构说明  : Cellular CDMA and JTACS CDMA System Acquisition (Custom Channels)
-             Record数据结构(见3GPP2 C.S0016-D 3.5.5.2.1.3)
-  1.日    期   : 2014年08月04日
-    作    者   : y00245242
-    修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                                               ucNumOfChans;   /* channel数目 */
@@ -761,16 +539,7 @@ typedef struct
     VOS_UINT16                                              ausChan[0];  /* channel指针 */
 }CNAS_PRL_JTACS_CDMA_SYS_ACQ_CUSTOM_RECORD_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_PRL_CELLUAR_CDMA_PREFERRED_SYS_ACQ_RECORD_STRU
- 结构说明  : Cellular CDMA Preferred System Acquisition Record数据结构
-             (见3GPP2 C.S0016-D 3.5.5.2.1.4)
 
-  1.日    期   : 2014年08月05日
-    作    者   : y00245242
-    修改内容   : 新建
-
-*****************************************************************************/
 typedef struct
 {
     CNAS_PRL_SYS_SEL_TYPE_ENUM_UINT8                        enSysSelType;
@@ -779,16 +548,7 @@ typedef struct
 
 }CNAS_PRL_CELLUAR_CDMA_PREFERRED_SYS_ACQ_RECORD_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_PRL_PCS_CDMA_SYS_ACQ_BLOCKS_RECORD_STRU
- 结构说明  : PCS CDMA System Acquisition (Using Blocks) Record数据结构
-             (见3GPP2 C.S0016-D 3.5.5.2.1.5)，用于存储使用
 
-  1.日    期   : 2014年08月05日
-    作    者   : y00245242
-    修改内容   : 新建
-
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                                               ucNumOfBlocks;   /* block数目 */
@@ -798,15 +558,7 @@ typedef struct
 
 }CNAS_PRL_PCS_CDMA_SYS_ACQ_BLOCKS_RECORD_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_PRL_PCS_CDMA_SYS_ACQ_CHANNELS_STRU
- 结构说明  : PCS CDMA and 2 GHz Band CDMA System Acquisition (Using Channels)
-             Record数据结构(见3GPP2 C.S0016-D 3.5.5.2.1.6)
-  1.日    期   : 2014年08月04日
-    作    者   : y00245242
-    修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                                               ucNumOfChans;   /* channel数目 */
@@ -815,15 +567,7 @@ typedef struct
     VOS_UINT16                                              ausChan[0];        /* channel指针 */
 }CNAS_PRL_PCS_CDMA_SYS_ACQ_CHANNELS_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_PRL_2GHZ_BAND_CDMA_SYS_ACQ_CHANNELS_STRU
- 结构说明  : PCS CDMA and 2 GHz Band CDMA System Acquisition (Using Channels)
-             Record数据结构(见3GPP2 C.S0016-D 3.5.5.2.1.6)
-  1.日    期   : 2014年08月05日
-    作    者   : y00245242
-    修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                                               ucNumOfChans;   /* channel数目 */
@@ -832,15 +576,7 @@ typedef struct
     VOS_UINT16                                              ausChan[0];        /* channel指针 */
 }CNAS_PRL_2GHZ_BAND_CDMA_SYS_ACQ_CHANNELS_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_PRL_GENERIC_ACQ_FOR_1X_AND_IS95_STRU
- 结构说明  : Generic Acquisition Record for cdma2000 1x and IS-95
-             Record数据结构(见3GPP2 C.S0016-D 3.5.5.2.2.10)
-  1.日    期   : 2014年08月05日
-    作    者   : y00245242
-    修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                                               ucNumOfChans;
@@ -850,15 +586,7 @@ typedef struct
 
 }CNAS_PRL_GENERIC_ACQ_FOR_1X_AND_IS95_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_PRL_SYS_TYPE_1X_IS95_ID_STRU
- 结构说明  : 1X and IS95 system ID record数据结构(见3GPP2 C.S0016-D Table 3.5.5.3.2-2)
 
-  1.日    期   : 2014年08月05日
-    作    者   : y00245242
-    修改内容   : 新建
-
-*****************************************************************************/
 typedef struct
 {
     CNAS_PRL_NID_INCL_TYPE_ENUM_UINT8                       enNidIncl;          /* NID included */
@@ -867,14 +595,7 @@ typedef struct
     VOS_UINT16                                              usNid;              /* Network identification */
 }CNAS_PRL_SYS_TYPE_1X_IS95_ID_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_PRL_EVDO_SYSTEM_STRU
- 结构说明  : CDMA EVDO系统数据结构
-  1.日    期   : 2014年12月10日
-    作    者   : C00299064
-    修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                                               aucSubnet[CNAS_PRL_BYTES_IN_SUBNET];
@@ -883,15 +604,7 @@ typedef struct
     CNAS_PRL_FREQENCY_CHANNEL_STRU                          stFreq;
 }CNAS_PRL_HRPD_SYSTEM_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_PRL_COMM_SUBNET_INFO_STRU
- 结构说明  : Common Subnet Table for the HRPD Extended System Record(见3GPP2 C.S0016-D Table 3.5.5.3.2.1-1 Common Subnet Record)
 
-  1.日    期   : 2014年12月01日
-    作    者   : d00212987
-    修改内容   : 新建
-
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                                              aucResvered[2];
@@ -899,15 +612,7 @@ typedef struct
     VOS_UINT8                                              aucSubnetComm[1];
 }CNAS_PRL_COMM_SUBNET_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_PRL_GENERIC_ACQ_FOR_HRPD_STRU
- 结构说明  : Generic Acquisition Record for HRPD
-             Record数据结构(见3.5.5.2.2.11 )
-  1.日    期   : 2014年12月01日
-    作    者   : d00212987
-    修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                                               ucNumOfChans;
@@ -917,15 +622,7 @@ typedef struct
 
 }CNAS_PRL_GENERIC_ACQ_FOR_HRPD_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_PRL_SYS_TYPE_HRPD_ID_STRU
- 结构说明  : HRPD System 数据结构(见3GPP2 C.S0016-D Table 3.5.5.3.2-4)
 
-  1.日    期   : 2014年08月05日
-    作    者   : d00212987
-    修改内容   : 新建
-
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                                               ucSubnetBitLen;
@@ -935,15 +632,7 @@ typedef struct
     VOS_UINT8                                               aucSubnet[CNAS_PRL_BYTES_IN_SUBNET];
 }CNAS_PRL_SYS_TYPE_HRPD_ID_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_PRL_SYS_TYPE_MCC_MNC_ID_STRU
- 结构说明  : Type-specific System ID Record of type ‘0011’数据结构(见3GPP2 C.S0016-D 3.5.5.3.2.2 )
 
-  1.日    期   : 2014年08月05日
-    作    者   : d00212987
-    修改内容   : 新建
-
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                               ucSidNidNum;                        /* SID NID mum */
@@ -953,15 +642,7 @@ typedef struct
 
 }CNAS_PRL_SYS_TYPE_SID_NID_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_PRL_SYS_TYPE_MCC_MNC_ID_STRU
- 结构说明  : Type-specific System ID Record of type ‘0011’数据结构(见3GPP2 C.S0016-D 3.5.5.3.2.2 )
 
-  1.日    期   : 2014年08月05日
-    作    者   : d00212987
-    修改内容   : 新建
-
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                               ucSubnetNum;
@@ -971,15 +652,7 @@ typedef struct
 
 }CNAS_PRL_SYS_TYPE_SUBNET_ID_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_PRL_SYS_TYPE_MCC_MNC_ID_STRU
- 结构说明  : Type-specific System ID Record of type ‘0011’数据结构(见3GPP2 C.S0016-D 3.5.5.3.2.2 )
 
-  1.日    期   : 2014年08月05日
-    作    者   : d00212987
-    修改内容   : 新建
-
-*****************************************************************************/
 typedef struct
 {
     CNAS_PRL_MCC_MNC_SUBTYPE_ENUM_UINT32                    enMccMncSubType;    /* mcc mnc sub type included */
@@ -995,14 +668,7 @@ typedef struct
 
 }CNAS_PRL_SYS_TYPE_MCC_MNC_ID_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_PRL_ACQ_RECORD_STRU
- 结构说明  : PRL捕获记录(acquire record)数据结构(见3GPP2 C.S0016-D  3.5.5.2 Acquisition Records)
-  1.日    期   : 2014年08月04日
-    作    者   : y00245242
-    修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     CNAS_PRL_ACQ_TYPE_ENUM_UINT8                                enAcqType;
@@ -1027,14 +693,7 @@ typedef struct
 
 }CNAS_PRL_ACQ_RECORD_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_PRL_EXT_SYS_RECORD_STRU
- 结构说明  : PRL系统表记录(extended system record)数据结构(见3GPP2 C.S0016-D  3.5.5.3.2 Extended System Record Format)
-  1.日    期   : 2014年08月05日
-    作    者   : y00245242
-    修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     CNAS_PRL_SYS_RECORD_TYPE_ENUM_UINT8                     enRecordType;       /* SYS_RECORD_TYPE */
@@ -1085,14 +744,7 @@ typedef struct
     VOS_UINT16                                              usPriLvl;
 }CNAS_PRL_EXT_SYS_RECORD_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_PRL_ACQ_RECORD_INFO_STRU
- 结构说明  : PRL获取表信息数据结构
-  1.日    期   : 2014年08月05日
-    作    者   : y00245242
-    修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16                                              usAcqRecordNum;
@@ -1101,14 +753,7 @@ typedef struct
 
 }CNAS_PRL_ACQ_RECORD_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_PRL_SYS_RECORD_INFO_STRU
- 结构说明  : PRL系统表信息数据结构
-  1.日    期   : 2014年08月05日
-    作    者   : y00245242
-    修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16                                              usSysRecordNum;
@@ -1116,14 +761,7 @@ typedef struct
     CNAS_PRL_EXT_SYS_RECORD_STRU                           *pstSysRecord;
 }CNAS_PRL_SYS_RECORD_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_PRL_INFO_STRU
- 结构说明  : PRL数据结构
-  1.日    期   : 2014年08月05日
-    作    者   : y00245242
-    修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                                              ulIsPrlValid;
@@ -1132,14 +770,7 @@ typedef struct
     CNAS_PRL_SYS_RECORD_INFO_STRU                           stPrlSysInfo;
 }CNAS_PRL_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_BANDCLASS0_SUBCLASS_CHAN_STRU
- 结构说明  : bandclass0 subclass频点数据结构
-  1.日    期   : 2014年08月07日
-    作    者   : y00245242
-    修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     CNAS_PRL_BAND_SUBCLASS_TYPE_ENUM_UINT8                  enSubclass;
@@ -1150,14 +781,7 @@ typedef struct
     VOS_UINT16                                              usReseved1;
 }CNAS_PRL_BANDCLASS0_SUBCLASS_CHAN_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_PRL_BANDCLASS10_SUBCLASS_CHAN_STRU
- 结构说明  : bandclass10 subclass频点数据结构
-  1.日    期   : 2015年07月07日
-    作    者   : h00313353
-    修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     CNAS_PRL_BAND_SUBCLASS_TYPE_ENUM_UINT8                  enSubclass;
@@ -1165,13 +789,7 @@ typedef struct
     VOS_UINT16                                              usChan;
 } CNAS_PRL_BANDCLASS10_SUBCLASS_CHAN_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_PRL_PARSE_ACQ_TYPE_REC_PROC_FUNC_PTR
- 结构说明  : 处理不同获取表类型的解析函数指针
-  1.日    期   : 2013年8月6日
-   作    者   : h00246512
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef VOS_UINT32 (*CNAS_PRL_PARSE_ACQ_TYPE_REC_PROC_FUNC_PTR)(
     VOS_UINT8                                              *pucSrc,
     VOS_UINT32                                              ulOffsetPos,
@@ -1179,13 +797,7 @@ typedef VOS_UINT32 (*CNAS_PRL_PARSE_ACQ_TYPE_REC_PROC_FUNC_PTR)(
     VOS_UINT32                                             *pulCurOffsetPos
 );
 
-/*****************************************************************************
- 结构名    : CNAS_PARSE_ACQ_TYPE_REC_PROC_ENTITY
- 结构说明  : 捕获记录类型(acquire record type)，处理实体
-   1.日    期   : 2013年8月6日
-    作    者   : h00246512
-    修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                              enAcqType;

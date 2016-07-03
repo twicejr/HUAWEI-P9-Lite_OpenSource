@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmProcLResult.c
-  版 本 号   : 初稿
-  作    者   : zhoujun /40661
-  生成日期   : 2011年03月14日
-  最近修改   :
-  功能描述   : MM收到L模注册结果的处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2010年11月12日
-    作    者   : zhoujun /40661
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -41,26 +24,7 @@ extern "C" {
 /*lint -save -e958 */
 
 #if   (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_MM_ProcLmmRejCause3
- 功能描述  : 处理来自LMM的卡无效的原因值
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月28日
-    作    者   : zhoujun /40661
-    修改内容   : 新生成函数
-  2.日    期   : 2011年11月3日
-    作    者   : z00161729
-    修改内容   : L下开机被拒原因值3情况，应该先更新mm服务状态再迁状态，因为前状态里会发attach cnf消息带的服务状态不对
-  3.日    期   : 2014年8月12日
-    作    者   : z00161729
-    修改内容   : DTS2014081100327:L下卡无效需要设置imsi为无效，后续发起紧急呼叫cm service req中应该携带IMEI
-*****************************************************************************/
 VOS_VOID  NAS_MM_ProcLmmRejCause3( VOS_VOID )
 {
     /* MM parameters update status U3 ROAMING NOT ALLOWED*/
@@ -81,30 +45,7 @@ VOS_VOID  NAS_MM_ProcLmmRejCause3( VOS_VOID )
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_ProcLmmAttachCause_Handling
- 功能描述  : MM处理来自LMM的Attach 拒绝原因值
- 输入参数  : ulRejectCause:拒绝原因值
- 输出参数  : 无
- 返 回 值  : VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年3月14日
-    作    者   : luokaihui / 00167671
-    修改内容   : 新生成函数
-  2.日    期   : 2011年10月27日
-    作    者   : s46746
-    修改内容   : V7R1 PhaseIII,支持L模联合注册
-  3.日    期   : 2013年03月06日
-    作    者   : s00217060
-    修改内容   : for V7R2_CR:增加原因值#35的处理
-  4.日    期   : 2013年12月24日
-    作    者   : w00242748
-    修改内容   : DTS2013101106863:L下被拒原因值#35，只有在R10及其协议以上处理才与#11
-                 原因值处理相同，否则当做OTHER CAUSE来处理。
-*****************************************************************************/
 VOS_VOID  NAS_MM_ProcLmmAttachCause_Handling(
     NAS_LMM_CN_CAUSE_ENUM_UINT8         enRejectCause
 )
@@ -151,33 +92,7 @@ VOS_VOID  NAS_MM_ProcLmmAttachCause_Handling(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_ProcLmmTauCause_Handling
- 功能描述  : MM处理来自LMM的网络触发的TAU 拒绝原因值
- 输入参数  : ulRejectCause:拒绝原因值
- 输出参数  : 无
- 返 回 值  : VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年3月14日
-    作    者   : luokaihui / 00167671
-    修改内容   : 新生成函数
-  2.日    期   : 2011年10月27日
-    作    者   : s46746
-    修改内容   : V7R1 PhaseIII,支持L模联合注册
-  3.日    期   : 2013年03月06日
-    作    者   : s00217060
-    修改内容   : for V7R2_CR:增加原因值#35的处理
-  4.日    期   : 2013年12月24日
-    作    者   : w00242748
-    修改内容   : DTS2013101106863:L下被拒原因值#35，只有在R10及其协议以上处理才与#11
-                 原因值处理相同，否则当做OTHER CAUSE来处理。
-  5.日    期   : 2015年4月20日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-*****************************************************************************/
 VOS_VOID NAS_MM_ProcLmmTauCause_Handling(
     NAS_LMM_CN_CAUSE_ENUM_UINT8         enRejectCause
 )
@@ -228,27 +143,7 @@ VOS_VOID NAS_MM_ProcLmmTauCause_Handling(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_ProcLmmNwDetachIndCause_Handling
- 功能描述  : MM处理来自LMM的网络触发的DETACH 拒绝原因值
- 输入参数  : ulRejectCause:拒绝原因值
- 输出参数  : 无
- 返 回 值  : VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年3月14日
-    作    者   : luokaihui / 00167671
-    修改内容   : 新生成函数
-  2.日    期   : 2011年10月27日
-    作    者   : s46746
-    修改内容   : V7R1 PhaseIII,支持L模联合注册
-
-  3.日    期   : 2012年4月6日
-    作    者   : z40661
-    修改内容   : DTS2012032803448需要删除位置区信息
-*****************************************************************************/
 VOS_VOID  NAS_MM_ProcLmmNwDetachIndCause_Handling(
     NAS_LMM_CN_CAUSE_ENUM_UINT8         enRejectCause
 )
@@ -367,31 +262,7 @@ VOS_VOID  NAS_MM_ProcLmmNwDetachIndCause_Handling(
      return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_ProcLmmAttachRstInd
- 功能描述  : MM在MM IDLE LIMITED SERVICE状态下处理来自EMM的Attach结果
- 输入参数  : pstLmmAttachInd:消息首址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年3月14日
-    作    者   : luokaihui / 00167671
-    修改内容   : 新生成函数
-  2.日    期   : 2011年10月27日
-    作    者   : s46746
-    修改内容   : V7R1 PhaseIII,支持L模联合注册
-  3.日    期   : 2012年1月8日
-    作    者   : z00161729
-    修改内容   : V7R1 PhaseIIV修改
-  3.日    期   : 2012年1月2日
-    作    者   : w00167002
-    修改内容   : DTS2011102200381:L下注册被拒#12,LMM给MMC带的ATTACH及TAU
-                 中的结果为MMC_LMM_ATT_RSLT_FORBID，MMC收到此结果后按照禁止网络
-                 来处理而发起了搜网。
-*****************************************************************************/
 VOS_VOID  NAS_MM_ProcLmmAttachRstInd(
     MMCMM_LMM_ATTACH_IND_STRU          *pstLmmAttachInd
 )
@@ -446,29 +317,7 @@ VOS_VOID  NAS_MM_ProcLmmAttachRstInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_ProcLmmTauRstInd
- 功能描述  : MM处理来自EMM的TAU结果
- 输入参数  : pstMsg:消息首址
- 输出参数  : 无
- 返 回 值  : VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年3月14日
-    作    者   : luokaihui / 00167671
-    修改内容   : 新生成函数
-  2.日    期   : 2011年10月27日
-    作    者   : s46746
-    修改内容   : V7R1 PhaseIII,支持L模联合注册
-  3.日    期   : 2012年1月8日
-    作    者   : z00161729
-    修改内容   : V7R1 PhaseIV
-  4.日    期   : 2012年2月9日
-    作    者   : w00167002
-    修改内容   : 增加LMM上报注册失败场景原因的处理
-*****************************************************************************/
 VOS_VOID  NAS_MM_ProcLmmTauRstInd(
     MMCMM_LMM_TAU_RESULT_IND_STRU      *pstTauInd
 )
@@ -544,36 +393,7 @@ VOS_VOID  NAS_MM_ProcLmmTauRstInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_ProcLmmServiceRstIndInLimitedService
- 功能描述  : MM处理来自LMM的Service rej结果
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年3月14日
-    作    者   : luokaihui / 00167671
-    修改内容   : 新生成函数
-  2.日    期   : 2011年10月27日
-    作    者   : s46746
-    修改内容   : V7R1 PhaseIII,支持L模联合注册
-  3.日    期   : 2013年03月06日
-    作    者   : s00217060
-    修改内容   : for V7R2_CR:增加原因值#35的处理
-  4.日    期   : 2013年12月24日
-    作    者   : w00242748
-    修改内容   : DTS2013101106863:L下被拒原因值#35，只有在R10及其协议以上处理才与#11
-                 原因值处理相同，否则当做OTHER CAUSE来处理。
-  5.日    期   : 2014年8月4日
-    作    者   : w00167002
-    修改内容   : DTS2014080407625:在L下注册成功后，业务被ACCESS BAR时,MM不进行状态迁移。
-  6.日    期   : 2015年4月19日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-*****************************************************************************/
 VOS_VOID  NAS_MM_ProcLmmServiceRstInd(
     MMCMM_LMM_SERVICE_RESULT_IND_STRU  *pstLmmServiceInd
 )
@@ -671,23 +491,7 @@ VOS_VOID  NAS_MM_ProcLmmServiceRstInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_ProcLmmAuthRstIndInLimitedService
- 功能描述  : MM处理来自LMM的签权失败结果
- 输入参数  : pstMsg:消息首址
- 输出参数  : 无
- 返 回 值  : VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年3月14日
-    作    者   : luokaihui / 00167671
-    修改内容   : 新生成函数
-  2.日    期   : 2014年8月12日
-    作    者   : z00161729
-    修改内容   : DTS2014081100327:L下卡无效需要设置imsi为无效，后续发起紧急呼叫cm service req中应该携带IMEI
-*****************************************************************************/
 VOS_VOID  NAS_MM_ProcLmmAuthRstInd(VOS_VOID)
 {
     /*handle the MM parameters update status U3 ROAMING NOT ALLOWED*/
@@ -707,21 +511,7 @@ VOS_VOID  NAS_MM_ProcLmmAuthRstInd(VOS_VOID)
     NAS_MML_SetSimCsRegStatus(VOS_FALSE);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_ConvertLmmPlmnToNasPLMN
- 功能描述  : 将Lmm中的3字节格式PLMN转换为MCC和MNC分开的格式
- 输入参数  : pucLmmPlmn
- 输出参数  : NAS_MML_PLMN_ID_STRU pstNasPlmn
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 修改历史     :
- 1.日    期   : 2011年10月27日
-   作    者   : s46746
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  NAS_MM_ConvertLmmPlmnToNasPLMN(
     VOS_UINT8                          *pucLmmPlmn,
     NAS_MML_PLMN_ID_STRU               *pstNasPlmn
@@ -758,32 +548,7 @@ VOS_VOID  NAS_MM_ConvertLmmPlmnToNasPLMN(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_ProcLmmRejOtherCause
- 功能描述  : 对LMM联合注册被拒other cause处理
- 输入参数  : ulAttemptCounter:已经尝试次数
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年10月27日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年11月9日
-   作    者   : t00212959
-   修改内容   : DTS2012110705279
- 3.日    期   : 2014年8月11日
-   作    者   : w00167002
-   修改内容   : DTS2014080407625:在ATTEMPT TO UPDATE状态也尝试发起普通呼叫。
- 4.日    期   : 2015年4月19日
-   作    者   : z00161729
-   修改内容   : 24301 R11 CR升级项目修改
- 5.日    期   : 2015年7月7日
-    作    者   : s00217060
-    修改内容   : DTS2015062700880修改:LTE下TAU失败小于5次时，更新状态为U2,但不删除TMSI,LAI,CKSN,EPLMN
-*****************************************************************************/
 VOS_VOID NAS_MM_ProcLmmRejOtherCause(
     VOS_UINT32                          ulAttemptCounter,
     VOS_UINT32                          ulLmmBitOpAtmpCnt
@@ -818,13 +583,7 @@ VOS_VOID NAS_MM_ProcLmmRejOtherCause(
 
     if (ulAttemptCounter < MM_EMM_MAX_ATTEMPT_COUNTER)
     {
-        /* 24301_CR1374_(Rel-11)_C1-120820 联合TAU失败，被拒原因值为other cause，
-           尝试次数小于5时，MM  UPDATE STATUS需要更新为U2 NOT UPDATED,
-           24301 5.5.3.3.6章节描述:
-           If the tracking area updating attempt counter is less than 5,
-           the UE shall set the update status to U2 NOT UPDATED,
-           but shall not delete any LAI, TMSI, ciphering key sequence number and list of equivalent PLMNs;
-           该CR不受协议版本控制 */
+        
 
         /* Update Status置为NAS_MML_LOCATION_UPDATE_STATUS_NOT_UPDATED */
         NAS_MML_SetCsUpdateStatus(NAS_MML_LOCATION_UPDATE_STATUS_NOT_UPDATED);
@@ -852,33 +611,7 @@ VOS_VOID NAS_MM_ProcLmmRejOtherCause(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_ProcLmmCombinedAttachCause
- 功能描述  : 对LMM联合注册被拒原因值处理
- 输入参数  : ulRejectCause:LMM的Combinedined Attach拒绝原因值
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年10月27日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年11月10日
-   作    者   : t00212959
-   修改内容   : DTS2012110705279
- 3.日    期   : 2013年03月06日
-   作    者   : s00217060
-   修改内容   : for V7R2_CR:增加原因值#35的处理
- 4.日    期   : 2013年12月24日
-   作    者   : w00242748
-   修改内容   : DTS2013101106863:L下被拒原因值#35，只有在R10及其协议以上处理才与#11
-                 原因值处理相同，否则当做OTHER CAUSE来处理。
- 5.日    期   : 2015年4月19日
-   作    者   : z00161729
-   修改内容   : 24301 R11 CR升级项目修改
-*****************************************************************************/
 VOS_VOID  NAS_MM_ProcLmmCombinedAttachCause(
     NAS_LMM_CN_CAUSE_ENUM_UINT8         enRejectCause,
     VOS_UINT32                          ulAttemptCounter,
@@ -1006,35 +739,7 @@ VOS_VOID  NAS_MM_ProcLmmCombinedAttachCause(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_ProcLmmCombinedTauCause
- 功能描述  : 对LMM联合RAU被拒原因值处理
- 输入参数  : ulRejectCause:LMM的Combinedined RAU拒绝原因值
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年10月27日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
- 2.日    期   : 2012年4月6日
-   作    者   : z40661
-   修改内容   : DTS2012032803448，删除LAI信息
- 3.日    期   : 2012年11月10日
-   作    者   : t00212959
-   修改内容   : DTS2012110705279
- 4.日    期   : 2013年03月06日
-   作    者   : s00217060
-   修改内容   : for V7R2_CR:增加原因值#40,#35的处理
- 5.日    期   : 2013年12月24日
-   作    者   : w00242748
-   修改内容   : DTS2013101106863:L下被拒原因值#35，只有在R10及其协议以上处理才与#11
-                原因值处理相同，否则当做OTHER CAUSE来处理。
-
-*****************************************************************************/
 VOS_VOID  NAS_MM_ProcLmmCombinedTauCause(
     NAS_LMM_CN_CAUSE_ENUM_UINT8         enRejectCause,
     VOS_UINT32                          ulAttemptCounter,
@@ -1256,25 +961,7 @@ VOS_VOID  NAS_MM_ProcLmmCombinedTauCause(
     return;
 }
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-1-15, begin */
-/*****************************************************************************
- 函 数 名  : NAS_MM_ProcLmmEpsOnlySuccCsRejOtherCause
- 功能描述  : 对LMM联合注册EPS单域成功CS被拒other cause处理
- 输入参数  : ulAttemptCounter:已经尝试次数
-             ulLmmBitOpAtmpCnt:PS尝试次数OP项
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年1月15日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2014年8月11日
-   作    者   : w00167002
-   修改内容   : DTS2014080407625:在ATTEMPT TO UPDATE状态也尝试发起普通呼叫。
-*****************************************************************************/
 VOS_VOID NAS_MM_ProcLmmEpsOnlySuccCsRejOtherCause(
     VOS_UINT32                          ulAttemptCounter,
     VOS_UINT32                          ulLmmBitOpAtmpCnt
@@ -1344,44 +1031,9 @@ VOS_VOID NAS_MM_ProcLmmEpsOnlySuccCsRejOtherCause(
     return;
 }
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-1-15, end */
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_ProcLmmCombinedAttachOnlyEpsSucc
- 功能描述  : 对LMM联合注册仅EPS成功的处理
- 输入参数  : pstMsg:LMM的Combinedined Attach结果
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年10月27日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
- 2.日    期   : 2012年4月6日
-   作    者   : z40661
-   修改内容   : DTS2012032803448，删除LAI信息
- 3.日    期   : 2013年3月1日
-   作    者   : t00212959
-   修改内容   : DTS2013030106126
- 4.日    期   : 2013年3月1日
-   作    者   : w00167002
-   修改内容   : DTS2013092306637: GCF test LTE case 9.2.1.2.3,T3402超时后发起TAU REQ(combine ta la updating with IMSI attach,
-                  携带TMSI status(无有效TMSI)),仪器上报不匹配，期望UE不携带TMSI status
-                发现人:youqingyang 00187523，产品线单号:DTS2013080508333.
- 5.日    期   : 2014年01月10日
-   作    者   : w00176964
-   修改内容   : VoLTE_PhaseIII项目
- 6.日    期   : 2014年8月12日
-   作    者   : z00161729
-   修改内容   : L下卡无效需要设置imsi为无效，后续发起紧急呼叫cm service req中应该携带IMEI
- 7.日    期   : 2014年8月11日
-   作    者   : w00167002
-   修改内容   : DTS2014080407625:在ATTEMPT TO UPDATE状态也尝试发起普通呼叫。
-*****************************************************************************/
 VOS_VOID NAS_MM_ProcLmmCombinedAttachOnlyEpsSucc(
     MMCMM_LMM_ATTACH_IND_STRU          *pstLmmCombinedAttachInd
 )
@@ -1511,9 +1163,7 @@ VOS_VOID NAS_MM_ProcLmmCombinedAttachOnlyEpsSucc(
 
         default:
 
-            /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2014-1-15, begin */
             NAS_MM_ProcLmmEpsOnlySuccCsRejOtherCause(ulAttemptCount, pstLmmCombinedAttachInd->bitOpAtmpCnt);
-            /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2014-1-15, end */
 
             break;
     }
@@ -1521,41 +1171,7 @@ VOS_VOID NAS_MM_ProcLmmCombinedAttachOnlyEpsSucc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_ProcLmmCombinedAttachSucc
- 功能描述  : 对LMM联合注册成功的处理
- 输入参数  : pstMsg:LMM的Combinedined Attach结果
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年10月27日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年02月07日
-   作    者   : W00176964
-   修改内容   : DTS2012020703446:UE从L模重选到W，W下发起LAU未携带新的TMSI
- 3.日    期   : 2012年04月27日
-   作    者   : w00176964
-   修改内容   : GUL BG项目调整
- 4.日    期   : 2012年9月4日
-   作    者   : z00161729
-   修改内容   : DCM定制需求和遗留问题修改,如果csfb标志已置上无需再处理缓存，等L注册结果状态发起紧急呼叫，L
-                会先上报注册结果再上报lmm service result ind，此时无需再调用NAS_MM_RcvCcEstReq_CSFB
- 5.日    期   : 2013年12月11日
-   作    者   : w00242748
-   修改内容   : DTS2013120905612:L到G异系统失败回退到L时，收到resume ind时，
-                下发SS业务，此时缓存该SS业务，当收到L的TAU结果后，不应执行
-                该缓存的SS业务
- 6.日    期   : 2014年4月2日
-   作    者   : w00176964
-   修改内容   : V3R3C60_eCall项目修改:g_MmGlobalInfo.MsCsInfo.OldLai替换成MML中的
- 7.日    期   : 2014年8月11日
-   作    者   : w00167002
-   修改内容   : DTS2014080407625:函数封装。
-*****************************************************************************/
 VOS_VOID NAS_MM_ProcLmmCombinedAttachSucc(
     MMCMM_LMM_ATTACH_IND_STRU          *pstLmmCombinedAttachInd
 )
@@ -1587,9 +1203,7 @@ VOS_VOID NAS_MM_ProcLmmCombinedAttachSucc(
 
         pstCsSuccLai->ucRac = NAS_MML_RAC_INVALID;
 
-        /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-4-2, begin */
 
-        /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-4-2, end */
     }
 
     /* resets the location update attempt counter and sets the update status to U1 UPDATED */
@@ -1637,10 +1251,8 @@ VOS_VOID NAS_MM_ProcLmmCombinedAttachSucc(
             pucTmsi[2] = pstLmmCombinedAttachInd->stMsIdentity.aucMsIdentity[4];
             pucTmsi[3] = pstLmmCombinedAttachInd->stMsIdentity.aucMsIdentity[5];
 
-            /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-2, begin */
             g_MmGlobalInfo.MsCsInfo.stPlmnId.ulMcc = pstCsSuccLai->stPlmnId.ulMcc;
             g_MmGlobalInfo.MsCsInfo.stPlmnId.ulMnc = pstCsSuccLai->stPlmnId.ulMnc;
-            /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-2, end */
         }
         else
         {
@@ -1663,7 +1275,6 @@ VOS_VOID NAS_MM_ProcLmmCombinedAttachSucc(
     Mm_ComSetMmState(MM_IDLE_NORMAL_SERVICE);
 
     /* 处理MM的CC缓存 */
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-9-5, begin */
 
     NAS_MM_ProcBufferedCsfbService();
 
@@ -1671,37 +1282,7 @@ VOS_VOID NAS_MM_ProcLmmCombinedAttachSucc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_ProcLmmCombinedAttachFail
- 功能描述  : 对LMM联合注册失败的处理
- 输入参数  : pstLmmCombinedAttachInd:LMM的Combinedined Attach结果
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年10月27日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
-  2.日    期   : 2012年1月5日
-    作    者   : w00167002
-    修改内容   : DTS2011102200381:增加L模给MM模块发送的未跟网侧进行注册的消息
-                  的处理。
- 3.日    期   : 2012年04月27日
-   作    者   : w00176964
-   修改内容   : GUL BG项目调整
- 4.日    期   : 2012年9月4日
-   作    者   : z00161729
-   修改内容   : DCM定制需求和遗留问题修改
- 5.日    期   : 2012年9月24日
-   作    者   : z00161729
-   修改内容   : DTS2012081802253:收到L attach失败不应清除mm缓存，后续条件满足mm需尝试发起呼叫
- 6.日    期   : 2014年8月11日
-   作    者   : w00167002
-   修改内容   : DTS2014080407625:在ATTEMPT TO UPDATE状态也尝试发起普通呼叫。
-*****************************************************************************/
 VOS_VOID NAS_MM_ProcLmmCombinedAttachFail(
     MMCMM_LMM_ATTACH_IND_STRU          *pstLmmCombinedAttachInd
 )
@@ -1796,39 +1377,7 @@ VOS_VOID NAS_MM_ProcLmmCombinedAttachFail(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_ProcLmmCombinedTauOnlyEpsSucc
- 功能描述  : 对LMM联合TAU仅EPS成功的处理
- 输入参数  : pstCombinedTauInd:LMM的Combinedined TAU结果
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年10月27日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
- 2.日    期   : 2012年4月6日
-   作    者   : z40661
-   修改内容   : DTS2012032803448，删除LAI信息
- 3.日    期   : 2013年3月1日
-   作    者   : t00212959
-   修改内容   : DTS2013030106126
-4.日    期   : 2013年9月23日
-   作    者   : w00167002
-   修改内容   : DTS2013092306637: GCF test LTE case 9.2.1.2.3,T3402超时后发起TAU REQ(combine ta la updating with IMSI attach,
-                  携带TMSI status(无有效TMSI)),仪器上报不匹配，期望UE不携带TMSI status
-                发现人:youqingyang 00187523，产品线单号:DTS2013080508333.
- 5.日    期   : 2014年01月10日
-   作    者   : w00176964
-   修改内容   : VoLTE_PhaseIII项目
-
- 6.日    期   : 2014年8月11日
-   作    者   : w00167002
-   修改内容   : DTS2014080407625:在ATTEMPT TO UPDATE状态也尝试发起普通呼叫。
-*****************************************************************************/
 VOS_VOID NAS_MM_ProcLmmCombinedTauOnlyEpsSucc(
     MMCMM_LMM_TAU_RESULT_IND_STRU      *pstCombinedTauInd
 )
@@ -1961,9 +1510,7 @@ VOS_VOID NAS_MM_ProcLmmCombinedTauOnlyEpsSucc(
 
         default:
 
-            /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2014-1-15, begin */
             NAS_MM_ProcLmmEpsOnlySuccCsRejOtherCause(ulAttemptCount, pstCombinedTauInd->bitOpAtmpCnt);
-            /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2014-1-15, end */
 
             break;
     }
@@ -1971,41 +1518,7 @@ VOS_VOID NAS_MM_ProcLmmCombinedTauOnlyEpsSucc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_ProcLmmCombinedTauSucc
- 功能描述  : 对LMM联合TAU成功的处理
- 输入参数  : pstCombinedTauInd:LMM的Combinedined TAU结果
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年10月27日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年02月07日
-   作    者   : W00176964
-   修改内容   : DTS2012020703446:UE从L模重选到W，W下发起LAU未携带新的TMSI
- 3.日    期   : 2012年04月27日
-   作    者   : w00176964
-   修改内容   : GUL BG项目调整
- 4.日    期   : 2012年9月4日
-   作    者   : z00161729
-   修改内容   : DCM定制需求和遗留问题修改,如果csfb标志已置上无需再处理缓存，等L注册结果状态发起紧急呼叫，L
-                会先上报注册结果再上报lmm service result ind，此时无需再调用NAS_MM_RcvCcEstReq_CSFB
- 5.日    期   : 2013年12月11日
-   作    者   : w00242748
-   修改内容   : DTS2013120905612:L到G异系统失败回退到L时，收到resume ind时，
-                下发SS业务，此时缓存该SS业务，当收到L的TAU结果后，不应执行
-                该缓存的SS业务
- 6.日    期   : 2014年4月2日
-   作    者   : w00176964
-   修改内容   : V3R3C60_eCall项目修改:g_MmGlobalInfo.MsCsInfo.OldLai替换成MML中的
- 7.日    期   : 2014年8月11日
-   作    者   : w00167002
-   修改内容   : DTS2014080407625:函数封装。
-*****************************************************************************/
 VOS_VOID NAS_MM_ProcLmmCombinedTauSucc(
     MMCMM_LMM_TAU_RESULT_IND_STRU      *pstCombinedTauInd
 )
@@ -2042,9 +1555,7 @@ VOS_VOID NAS_MM_ProcLmmCombinedTauSucc(
 
         pstCsSuccLai->ucRac = NAS_MML_RAC_INVALID;
 
-        /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-4-2, begin */
 
-        /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-4-2, end */
     }
 
     /* resets the location update attempt counter and sets the update status to U1 UPDATED */
@@ -2093,10 +1604,8 @@ VOS_VOID NAS_MM_ProcLmmCombinedTauSucc(
             pucTmsi[2] = pstCombinedTauInd->stMsIdentity.aucMsIdentity[4];
             pucTmsi[3] = pstCombinedTauInd->stMsIdentity.aucMsIdentity[5];
 
-            /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-2, begin */
             g_MmGlobalInfo.MsCsInfo.stPlmnId.ulMcc = pstCsSuccLai->stPlmnId.ulMcc;
             g_MmGlobalInfo.MsCsInfo.stPlmnId.ulMnc = pstCsSuccLai->stPlmnId.ulMnc;
-            /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-2, end */
         }
         else
         {
@@ -2125,38 +1634,7 @@ VOS_VOID NAS_MM_ProcLmmCombinedTauSucc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_ProcLmmCombinedTauFail
- 功能描述  : 对LMM联合TAU失败的处理
- 输入参数  : pstCombinedTauInd:LMM的Combinedined TAU结果
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年10月27日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年1月8日
-   作    者   : z00161729
-   修改内容   : V7R1 phaseIV修改
- 3.日    期   : 2011年12月29日
-   作    者   : w00167002
-   修改内容   : DTS2011102200381:L下注册被拒#12,LMM给MMC带的TAU
-                 中的结果为MMC_LMM_TAU_RSLT_FORBID_PLMNS，MMC收到此结果后按照禁止网络
-                 来处理而发起了搜网。
-                  修改内容:将L模带过来的假流程值转换为NAS内部的假流程值
- 4.日    期   : 2012年3月14日
-   作    者   : z00161729
-   修改内容   : 支持ISR修改
- 5.日    期   : 2012年11月10日
-   作    者   : t00212959
-   修改内容   : DTS2012110705279
- 6.日    期   : 2014年8月11日
-   作    者   : w00167002
-   修改内容   : DTS2014080407625:在ATTEMPT TO UPDATE状态也尝试发起普通呼叫。
-*****************************************************************************/
 VOS_VOID NAS_MM_ProcLmmCombinedTauFail(
     MMCMM_LMM_TAU_RESULT_IND_STRU      *pstCombinedTauInd
 )
@@ -2250,48 +1728,7 @@ VOS_VOID NAS_MM_ProcLmmCombinedTauFail(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_ProcLmmCombinedTauInd
- 功能描述  : 接收到Lmm Combinedined Tau结果处理
- 输入参数  : pstCombinedTauInd:LMM的Combinedined Tau结果
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年10月27日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年5月26日
-   作    者   : w00176964
-   修改内容   : GUL BG项目调整
- 3.日    期   : 2012年9月4日
-   作    者   : z00161729
-   修改内容   : DCM定制需求和遗留问题修改,如果csfb标志已置上无需再处理缓存，等L注册结果状态发起紧急呼叫，L
-                会先上报注册结果再上报lmm service result ind，此时无需再调用NAS_MM_RcvCcEstReq_CSFB
- 4.日    期   : 2013年12月11日
-   作    者   : w00242748
-   修改内容   : DTS2013120905612:L到G异系统失败回退到L时，收到resume ind时，
-                下发SS业务，此时缓存该SS业务，当收到L的TAU结果后，不应执行
-                该缓存的SS业务
- 15.日    期   :2014年4月2日
-    作    者   :w00242748
-    修改内容   :DTS2014040310584:LTE下未与网络交互的ATTACH/TAU，不停止T3211/T3212/T3213;
-                只有与网络交互后，才将T3211/T3212/T3213停止。
- 16.日    期   : 2014年5月14日
-    作    者   : w00242748
-    修改内容   : DTS2014051206381:枚举值使用不对
- 17.日    期   :2014年7月7日
-    作    者   :s00217060
-    修改内容   :收到LTE的系统消息，如果cellstatus是normal，停T3211/T3212/T3213,不以bitOpCnRslt作为是否和网络交互的依据
- 18.日    期   : 2014年8月11日
-    作    者   : w00167002
-    修改内容   : DTS2014080407625:函数封装。
- 19.日    期   : 2015年7月24日
-    作    者   : z00161729
-    修改内容   : DTS2015060903490：周期性tau eps成功携带cs被拒原因值mm不处理
-*****************************************************************************/
 VOS_VOID NAS_MM_ProcLmmCombinedTauInd(
     MMCMM_LMM_TAU_RESULT_IND_STRU      *pstCombinedTauInd
 )
@@ -2310,7 +1747,6 @@ VOS_VOID NAS_MM_ProcLmmCombinedTauInd(
             Mm_ComSetMmState(MM_IDLE_NORMAL_SERVICE);
 
             /* L下收到系统消息不发起注册的情况,假流程成功时需要处理MM的CC缓存 */
-            /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-9-5, begin */
 
             NAS_MM_ProcBufferedCsfbService();
 
@@ -2369,35 +1805,7 @@ VOS_VOID NAS_MM_ProcLmmCombinedTauInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_RcvLmmAttachInd
- 功能描述  : 接收到Lmm Attach结果处理
- 输入参数  : pstMsg:LMM的注册结果
- 输出参数  : 无
- 返 回 值  : 该消息对应的MM事件
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年10月27日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年5月26日
-   作    者   : w00176964
-   修改内容   : GUL BG项目调整
- 3.日    期   : 2013年4月1日
-    作    者   : w00167002
-    修改内容   : DTS2013032708183:L下注册成功，用户设置CGATT=0，到W下搜网,在
-                  搜网过程中，用户设置CGATT=1。结果UE在L下搜网注册成功，MM/GMM
-                  没有回复ATTACH CNF,导致AT通道一致被阻塞，GCF9.2.2.1.8用例测试失败。
- 4.日    期   :2014年4月2日
-   作    者   :w00242748
-   修改内容   :DTS2014040310584:LTE下未与网络交互的ATTACH/TAU，不停止T3211/T3212/T3213;
-               只有与网络交互后，才将T3211/T3212/T3213停止。
- 5.日    期   :2014年7月7日
-   作    者   :s00217060
-   修改内容   :收到LTE的系统消息，如果cellstatus是normal，停T3211/T3212/T3213,不以bitOpCnRslt作为是否和网络交互的依据
-*****************************************************************************/
 VOS_UINT8 NAS_MM_RcvLmmAttachInd(
     struct MsgCB                       *pstMsg
 )
@@ -2487,24 +1895,7 @@ VOS_UINT8 NAS_MM_RcvLmmAttachInd(
     return MM_EVENT_ID_INVALID;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_RcvLmmTauInd
- 功能描述  : 接收到Lmm Tau结果处理
- 输入参数  : pstMsg:LMM的Tau结果
- 输出参数  : 无
- 返 回 值  : 该消息对应的MM事件
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年10月27日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2011年12月28日
-   作    者   : z00161729
-   修改内容   : V7R1 phaseIV修改周期性tau处理
-
-*****************************************************************************/
 VOS_UINT8 NAS_MM_RcvLmmTauInd(
     struct MsgCB                       *pstMsg
 )
@@ -2540,28 +1931,7 @@ VOS_UINT8 NAS_MM_RcvLmmTauInd(
     return MM_EVENT_ID_INVALID;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_RcvLmmMTDetachInd
- 功能描述  : 接收到Lmm 网络发起的Detach处理
- 输入参数  : pstMsg:LMM的Detach结果
- 输出参数  : 无
- 返 回 值  : 该消息对应的MM事件
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年10月27日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
-  2.日    期   : 2012年4月6日
-    作    者   : z40661
-    修改内容   : DTS2012032803448，删除LAI信息
-
-  3.日    期   : 2012年8月24日
-    作    者   : z40661
-    修改内容   : DTS2012081702937,MM模块回复关机时间比较长
-*****************************************************************************/
 VOS_UINT8 NAS_MM_RcvLmmMTDetachInd(
     struct MsgCB                       *pstMsg
 )
@@ -2684,21 +2054,7 @@ VOS_UINT8 NAS_MM_RcvLmmMTDetachInd(
     return MM_EVENT_ID_INVALID;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_RcvLmmMoDetachInd
- 功能描述  : 接收到Lmm UE发起的Detach处理
- 输入参数  : pstMsg:LMM的UE Detach结果
- 输出参数  : 无
- 返 回 值  : 该消息对应的MM事件
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年12月01日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 NAS_MM_RcvLmmMoDetachInd(
     struct MsgCB                       *pstMsg
 )
@@ -2739,21 +2095,7 @@ VOS_UINT8 NAS_MM_RcvLmmMoDetachInd(
     return MM_EVENT_ID_INVALID;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_RcvLmmServiceRsltInd
- 功能描述  : 接收到Lmm服务结果处理
- 输入参数  : pstMsg:LMM的服务结果
- 输出参数  : 无
- 返 回 值  : 该消息对应的MM事件
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年10月27日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 NAS_MM_RcvLmmServiceRsltInd(
     struct MsgCB                       *pstMsg
 )
@@ -2772,98 +2114,17 @@ VOS_UINT8 NAS_MM_RcvLmmServiceRsltInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_RcvLmmSysInfoInd
- 功能描述  : 接收到Lmm系统消息处理
- 输入参数  : pstMsg:LMM的系统消息
- 输出参数  : 无
- 返 回 值  : 该消息对应的MM事件
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年10月27日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月28日
-   作    者   : W00166186
-   修改内容   : DTS2012042602593,MM没有保存当前驻留的PLMN，导致后续判断出错
- 3.日    期   : 2012年03月01日
-   作    者   : w00167002
-   修改内容   : V7R1C50 CSFB&PPAC&ETWS&ISR:在L下发起CSFB时候，若还未到GU下时
-                 候，收到L的系统消息，则不能清楚CSFB缓存
-  3.日    期   : 2012年4月28日
-   作    者   : W00166186
-   修改内容   : DTS2012042602593,MM没有保存当前驻留的PLMN，导致后续判断出错
- 4.日    期   : 2012年05月21日
-   作    者   :  z40661
-   修改内容   :  DTS2012052308001:从L重选到G后反复进行LAU
- 5.日    期   : 2012年07月23日
-   作    者   : s00217060
-   修改内容   : for V7R1C50 sync lmm cs state
- 6.日    期   : 2012年8月30日
-   作    者   : z00161729
-   修改内容   : DCM定制需求和遗留问题修改DTS2012083007778
- 7.日    期   : 2012年10月30日
-   作    者   : z00161729
-   修改内容  : DTS2012083102536支持呼叫重发功能
- 8.日    期   : 2012年11月24日
-   作    者   : l00167671
-   修改内容   : DTS201212400547
- 9.日    期   : 2012年12月15日
-   作    者   : l65478
-   修改内容   : DTS2012120508936:在发起紧急呼叫时需要disable LTE
- 10.日    期   : 2012年12月27日
-   作    者   : t00212959
-   修改内容   : DTS2012122607665:紧急呼需要不用受是否支持CSFB的NV控制
-11.日    期   : 2013年3月30日
-   作    者   : l00167671
-   修改内容   : 主动上报AT命令控制下移至C核
- 12.日    期   : 2013年05月16日
-   作    者   :  l65478
-   修改内容   : DTS2013051408660: 通知SMS连接建立失败时TI使用错误
- 13.日    期   :2013年9月12日
-   作    者   :z00161729
-   修改内容   :DTS2013082903019:支持ss重发功能
-
- 14.日    期   :2013年10月20日
-    作    者   :z00234330
-    修改内容   :DTS2013111903821:MM回复的ti不正确,导致上层业务没有触发重发操作。
- 15.日    期   :2014年4月2日
-    作    者   :w00242748
-    修改内容   :DTS2014040310584:LTE下未与网络交互的ATTACH/TAU，不停止T3211/T3212/T3213;
-                只有与网络交互后，才将T3211/T3212/T3213停止。
- 16.日   期    : 2014-04-15
-    作   者    : w00176964
-    修改内容   : V3R3C60_eCall项目调整:驻留信息的更新下移到MM模块
- 17.日    期   :2014年7月7日
-    作    者   :s00217060
-    修改内容   :收到LTE的系统消息，如果cellstatus是normal，停T3211/T3212/T3213,不以bitOpCnRslt作为是否和网络交互的依据
- 18.日    期   :2014年9月24日
-    作    者   :s00217060
-    修改内容   :for cs_err_log
- 19.日    期   : 2014年11月29日
-    作    者   : w00167002
-    修改内容   : DTS2014092806342
- 20.日    期   : 2015年1月5日
-    作    者   : z00161729
-    修改内容   : AT&T 支持DAM特性修改
- 21.日    期   : 2015年5月27日
-    作    者   : b00269685
-    修改内容   : LAC变化则清除3213count
-*****************************************************************************/
 VOS_UINT8 NAS_MM_RcvLmmSysInfoInd(
     struct MsgCB                       *pstMsg
 )
 {
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-16, begin */
     VOS_UINT8                           aucTimerId[3];
 
     VOS_UINT32                          ulEmergencyCallFlg;
     MMC_MM_LTE_SYS_INFO_IND_STRU       *pstLmmSysInfo = VOS_NULL_PTR;
     ulEmergencyCallFlg = MM_CS_SERV_NONE_EXIST;
 
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-16, end */
 
 
     g_MmGlobalInfo.ucLikeB = MM_FALSE;
@@ -2956,11 +2217,8 @@ VOS_UINT8 NAS_MM_RcvLmmSysInfoInd(
 
             NAS_MML_SetCsfbServiceStatus(NAS_MML_CSFB_SERVICE_STATUS_NOT_EXIST);
 
-            /* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
             NAS_MML_SetRelCauseCsfbHighPrioFlg(VOS_FALSE);
-            /* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
-            /* Modified by z00161729 for DCM定制需求和遗留问题DTS2012083007778, 2012-8-30, begin */
             /* 缓存的是紧急呼叫，发起csfb流程，不等注册 */
             if ((MM_TRUE == g_MmGlobalInfo.ConnCtrlInfo[MM_CONN_CTRL_CC].ucEstingCallTypeFlg)
              && (MM_TRUE == g_MmGlobalInfo.ConnCtrlInfo[MM_CONN_CTRL_CC].RcvXXEstReq.ucFlg))
@@ -2972,7 +2230,6 @@ VOS_UINT8 NAS_MM_RcvLmmSysInfoInd(
                 /* IDLE PLMN SERACH状态收到LMM的系统消息，上次网络指示CSFB支持，本次还未发起注册，回复CS域暂时无服务 */
                 Mm_ComRelAllMmConn(NAS_MMCM_REL_CAUSE_MM_INTER_ERR_OUT_OF_COVERAGE);
             }
-            /* Modified by z00161729 for DCM定制需求和遗留问题DTS2012083007778, 2012-8-30, end */
         }
         else
         {
@@ -2997,21 +2254,7 @@ VOS_UINT8 NAS_MM_RcvLmmSysInfoInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_RcvLmmCombinedStartNotifyReq
- 功能描述  : 接收到Lmm LMM_MM_ COMBINED_START_NOTIFY_REQ消息的处理
- 输入参数  : pstMsg - LMM的LMM_MM_ COMBINED_START_NOTIFY_REQ消息内容
- 输出参数  : 无
- 返 回 值  : 该消息对应的MM事件
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年11月30日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 NAS_MM_RcvLmmCombinedStartNotifyReq(
     VOS_VOID                           *pstMsg
 )
@@ -3037,24 +2280,7 @@ VOS_UINT8 NAS_MM_RcvLmmCombinedStartNotifyReq(
     return MM_EVENT_ID_INVALID;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_RcvLmmCsfbServiceEndInd
- 功能描述  : 接收到Lmm ID_LMM_MM_CSFB_SERVICE_END_IND消息的处理
- 输入参数  : pstMsg - LMM的ID_LMM_MM_CSFB_SERVICE_END_IND消息内容
- 输出参数  : 无
- 返 回 值  : 该消息对应的MM事件:MM_EVENT_ID_INVALID,表示此消息处理结束
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2012年02月14日
-   作    者   : z00161729
-   修改内容   : 新生成函数
- 2.日    期   :2014年10月07日
-   作    者   :s00217060
-   修改内容   :cs_err_log原因值上报
-
-*****************************************************************************/
 VOS_UINT8 NAS_MM_RcvLmmCsfbServiceEndInd(
     VOS_VOID                           *pstMsg
 )
@@ -3081,32 +2307,7 @@ VOS_UINT8 NAS_MM_RcvLmmCsfbServiceEndInd(
     return MM_EVENT_ID_INVALID;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_RcvLmmCsPagingInd
- 功能描述  : 接收到Lmm ID_LMM_MM_CS_PAGING_IND消息的处理
- 输入参数  : pstMsg - LMM的ID_LMM_MM_CS_PAGING_IND消息内容
- 输出参数  : 无
- 返 回 值  : MM_EVENT_ID_INVALID,表示此消息处理结束
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2012年02月14日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2012年10月10日
-   作    者   : z00161729
-   修改内容  : DTS2012101101736:mt csfb,paging response中mobile identity type与PAGING REQUEST message消息中不一致
- 3.日    期   : 2014年6月13日
-   作    者   : w00242748
-   修改内容   : DSDS 新特性
- 4.日    期   : 2014年11月06日
-   作    者   : s00217060
-   修改内容   : DTS2014110608091,IMS电话时不处理cs域的paging ind
- 5.日    期   : 2015年10月16日
-   作    者   : j00174725
-   修改内容   : DTS2015101603066
-*****************************************************************************/
 VOS_UINT8 NAS_MM_RcvLmmCsPagingInd(
     VOS_VOID                           *pstMsg
 )
@@ -3163,28 +2364,9 @@ VOS_UINT8 NAS_MM_RcvLmmCsPagingInd(
 
 
 
-/* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-15, begin */
 
-/* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-15, end */
 
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-22, begin */
-/*****************************************************************************
- 函 数 名  : NAS_MM_RcvLmmHoSecuInfoCnf
- 功能描述  : 接收到Lmm ID_LMM_MM_HO_SECU_INFO_CNF消息的处理
- 输入参数  : pstMsg - LMM的ID_LMM_MM_HO_SECU_INFO_CNF消息内容
- 输出参数  : 无
- 返 回 值  : MM_EVENT_ID_INVALID,表示此消息处理结束
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2013年09月22日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-  2.日    期   : 2016年1月20日
-    作    者   : c00318887
-    修改内容   : DTS2015123110917: usim卡在GSM下做2G鉴权后，csfb到3G下鉴权错误
-*****************************************************************************/
 VOS_UINT8 NAS_MM_RcvLmmHoSecuInfoCnf(
     VOS_VOID                           *pstMsg
 )
@@ -3247,23 +2429,9 @@ VOS_UINT8 NAS_MM_RcvLmmHoSecuInfoCnf(
 }
 
 
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-22, end */
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_ProcBufferedCsfbService
- 功能描述  : 收到LMM的注册结果后，尝试处理缓存业务
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2013年09月22日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MM_ProcBufferedCsfbService(VOS_VOID)
 {
     /* 处理MM的CC缓存 */

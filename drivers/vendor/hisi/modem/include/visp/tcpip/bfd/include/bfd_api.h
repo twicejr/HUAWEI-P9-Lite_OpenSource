@@ -35,10 +35,8 @@ extern "C" {
 #define BFD_LICENSE_ON   0x01
 #define BFD_LICENSE_OFF  0x00
 
-/* Begin:Add for V2R3C05, by b0177000/y00176567, at 2011-06-03. 修改原因: V2R3C05 增加创建BFD的协议类型宏 */   
 #define BFD_PROTO_DRAFT4    0     /*草案4协议的BFD*/
 #define BFD_PROTO_STD       1     /*RFC协议的BFD*/
-/* End:Add for V2R3C05, by b0177000/y00176567, at 2011-06-03. 修改原因: V2R3C05 增加创建BFD的协议类型宏  */ 
 
 
 /* PPI统计信息 */
@@ -97,7 +95,6 @@ typedef struct tagBFD6_SESSION_ADD_DEL_S {
     /* Begin:VISP1.7C03 VRF wangchengyang,2009-02-01 */
     CHAR  szVrfName[BFD_MAX_VRF_NAME_LEN + 1];
     /* End:VISP1.7C03 VRF wangchengyang,2009-02-01 */    
-    /* Add for V2R3C05, by b0177000/y00176567, at 2011-06-03. 修改原因: V2R3C05 增加创建BFD会话的协议类型字段 */   
     ULONG ulBfdProtocol;
     ULONG ulRemoteDiscr;/*对端描述符*/                     
     
@@ -149,7 +146,6 @@ typedef struct tagBFD_SESSION_CREATE_WITH_PARA_S {
     UCHAR ucRes[3];
 }BFD_SESSION_CREATE_WITH_PARA_S;
 
-/*BFD时延注册钩子相关宏定义,add by wuhailan,2008-04-11.*/
 #define BFD_TIMETEST_INPUT     0x01   /*BFD报文探测通道时延打点注册接收类型*/
 #define BFD_TIMETEST_OUTPUT    0x02   /*BFD报文探测通道时延打点注册发送类型*/
 typedef ULONG (*pfFuncBFDTimeTestHook)(MBUF_S* pMbuf);
@@ -267,34 +263,7 @@ extern ULONG BFD_HA_SetDbg(ULONG ulDbg);
 *******************************************************************************/
 extern ULONG BFD_HA_GetDbg(ULONG *pulDbg);
 
-/*******************************************************************************
-*    Func Name: BFD_Shell_SessionCreate
-*  Description: 设定一个BFD会话的基本参数，并开始建立会话
-*               （主要检查参数有效性，调用CBB实现功能）
-*        Input: ULONG ulDstIP      指定会话的目的地址；主机序；
-*               ULONG ulSrcIP      指定会话的源地址；主机序；
-*               ULONG ulOutIfIndex   单跳会话时为出接口索引，多跳时值为0；
-*               ULONG *pulSessionID  取值范围为[0,512]，如果是0则由VISP自动分配会话ID，
-*                                    否则根据指定的ID创建会话
-*       Output: ULONG *pulSessionID  会话的标识ID
-*       Return: 成功返回      BFD_OK
-*               失败返回      BFD_ERR_EXIST_SESSION
-*                             BFD_ERR_NULL_POINTER
-*                             BFD_ERR_DISABLE
-*                             BFD_ERR_INVALID_ADDR;
-*                             BFD_ERR_INTF_NOT_EXIST
-*                             BFD_ERR_DISMATCH_IP_INDEX
-*                             BFD_ERR_SRC_DST_IP_CONFLICT
-*                             BFD_ERR_RECR_SESSION
-*
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE            NAME             DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2006-12-01      Wangchengyang    Create
-*  2007-5-17  wujie(61195)         Modified for A82D15480，入参地址变为主机序
-*******************************************************************************/
+
 extern ULONG BFD_Shell_SessionCreate (ULONG ulDstIP, ULONG ulSrcIP, ULONG ulOutIfIndex, ULONG* pulSessionID);
 
 /*******************************************************************************
@@ -1277,22 +1246,7 @@ extern ULONG TCPIP_BfdLicenseChgNotify(ULONG ulLicenseFlag);
 *
 *******************************************************************************/
 extern ULONG TCPIP_BfdGetLicenseStateRegister(BFD_GET_LICENSE_STATE_FUNC pfFunc);
-/****************************************************************************
-*    Func Name: BFD_SetAutoLocalDiscrGate
-* Date Created: 2010-03-03
-*       Author: l00147446
-*  Description: BFD静态配置会话索引修改
-*        Input: ulGate 设置的阀值
-*       Output: 
-*       Return: VOS_OK:成功 其他返回失败
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME             DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-03-03   l00147446        BC3D02737 BFD静态配置会话索引修改
-*
-*******************************************************************************/
+
 extern ULONG BFD_SetAutoLocalDiscrGate(ULONG ulGate);
 
 /*******************************************************************************
@@ -1438,79 +1392,17 @@ extern ULONG BFD_Shell_SessionCreateByVrfByRfc(ULONG ulDstIP, ULONG ulSrcIP, ULO
 extern ULONG BFD_Shell_SessionCreateByParam (ULONG *pulSessionID, BFD_SESSION_CREATE_WITH_PARA_S *pstSessInfo);
 
 
-/*******************************************************************************
-*    Func Name: BFD6_GetNameBySessionIdByVrf
-* Date Created: 2012-12-18
-*       Author: z00208058
-*  Description: 根据会话索引获取会话名
-*        Input: BFD_SESSION_GET_ID_OR_NAME_S *pInfo:
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2012-12-18   z00208058               Create
-*
-*******************************************************************************/
+
 extern ULONG BFD6_GetNameBySessionIdByVrf(BFD_SESSION_GET_ID_OR_NAME_S *pInfo);
 
 
-/*******************************************************************************
-*    Func Name: BFD_GetSessionIdByNameByVrf
-* Date Created: 2012-12-18
-*       Author: z00208058
-*  Description: 根据会话名获取会话索引
-*        Input: BFD_SESSION_GET_ID_OR_NAME_S *pInfo:
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2012-12-18   z00208058               Create
-*
-*******************************************************************************/
+
 extern ULONG BFD6_GetSessionIdByNameByVrf(BFD_SESSION_GET_ID_OR_NAME_S *pInfo);
 
-/*******************************************************************************
-*    Func Name: BFD_NSR_SendMsg
-* Date Created: 2013-03-29
-*       Author: w00207740
-*  Description: 向BFD写消息
-*        Input: ULONG ulMsg:
-*               VOID *pData:
-*               ULONG ulLength:
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2013-03-29   w00207740               Create
-*
-*******************************************************************************/
+
 ULONG BFD_NSR_SendMsg (ULONG ulMsg, UCHAR *pucData, ULONG ulLength);
 
-/*******************************************************************************
-*    Func Name: BFD_NSR_PpiDownloadHookRegister
-* Date Created: 2013-06-27
-*       Author: w00207740
-*  Description: 
-*        Input: BFD_PPI_HOOK_FUNC pfBfdPpiHook:
-*       Output: 
-*       Return: 
-*      Caution: NSR BFD下发钩子注册函数
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2013-06-27   w00207740               Create
-*
-*******************************************************************************/
+
 ULONG BFD_NSR_PpiDownloadHookRegister(BFD_PPI_HOOK_FUNC pfBfdPpiHook);
 
 
@@ -1519,22 +1411,7 @@ ULONG BFD_NSR_SetCheckNsrFinishTimer(ULONG ulTime);
 
 ULONG BFD_NSR_GetCheckNsrFinishTimer(ULONG *pulTime);
 
-/*******************************************************************************
-*    Func Name: BFD_NSR_GetGlobalInformation
-* Date Created: 2013-10-23
-*       Author: w00207740
-*  Description: 获取NSR全局信息
-*        Input: BFD_NSR_GLOBAL_INFO_S *pstBfdNsrGlobalInfo:
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2013-10-23   w00207740               Create
-*
-*******************************************************************************/
+
 ULONG BFD_NSR_GetGlobalInformation(BFD_NSR_GLOBAL_INFO_S *pstBfdNsrGlobalInfo);
 
 
@@ -1543,22 +1420,7 @@ ULONG BFD_NSR_OpenSessionStatTable(UINTPTR *pulWaitListHandle,BFD_SESSION_FILTER
 
 ULONG BFD_NSR_GetSessionStateEntry(UINTPTR ulEntryWaitList,BFD_NSR_SESS_INFO_S *pstSessionNsrInfo);
 
-/*******************************************************************************
-*    Func Name: BFD_NSR_CloseSessionStatTable
-* Date Created: 2013-09-11
-*       Author: w00207740
-*  Description: 
-*        Input: ULONG ulWaitListHandle:
-*       Output: 
-*       Return: 
-*      Caution: 关闭表项
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2013-09-11   w00207740               Create
-*
-*******************************************************************************/
+
 ULONG BFD_NSR_CloseSessionStatTable(UINTPTR ulWaitListHandle);
 
 /*******************************************************************************

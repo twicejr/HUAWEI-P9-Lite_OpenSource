@@ -1,14 +1,4 @@
-/*************************************************************************
-*   版权所有(C) 1987-2009, 深圳华为技术有限公司.
-*
-*   文 件 名 :  sci_balong.c
-*
-*   作    者 :  Y00171698
-*
-*   描    述 :  本文件命名为"sci_balong.c", 实现SIM/USIM卡驱动功能
-*
-*   修改记录 :
-*************************************************************************/
+
 /*lint --e{944,506,525,64,119,101,132,537,958,438,830,752,762,713,732,569,830,525,539,650,652,69,502}*/
 
 #include "osl_thread.h"
@@ -2010,9 +2000,7 @@ s32 bsp_sci_atr_get(u8 * pulLen, u8 *pucATRData,SCI_ATRINFO_S* stSCIATRInfo)
      /*2014年5月26日17:23:25 t=1*/
     (void)memcpy_s(stSCIATRInfo,sizeof(g_sci_atr_info),&g_sci_atr_info,sizeof(g_sci_atr_info));
 
-    /* BEGIN: Modified by z67193, 2010-8-24
-     * USIMM要求把TCK删除，因为USIMM解析ATR时从数组尾部计算偏移，如果有TCK，会导致计算偏移错误
-     */
+    
     if ((TRUE == g_strSciState.sATRParams.HasChecksum) && (0 != g_strATRData.ulATRLen))
     {
         *pulLen = g_strATRData.ulATRLen - 1;
@@ -2379,7 +2367,6 @@ void sci_int_handler(void)
 
                 SCI_RECORD_EVENT(SCI_EVENT_INTR_CARD_DOWN, pstrState->eCurrentState, __LINE__);
 
-                /* BEGIN: Modified by z67193, 2010-8-24 from balong sci review, 及时更新卡状态*/
                 pstrState->eCurrentState = PL131_STATE_INACTIVECARD;
 
                 /*Do SIM card deactivation operation */
@@ -2962,7 +2949,6 @@ s32 bsp_sci_vltg_class_switch(void)
         /*current voltage is not the highest one*/
         case (PL131_SCI_Class_C):
         {
-            /* BEGIN: Modified by z67193, 2010-8-24, 有些卡可能只支持CLASS_C */
             if (0x04 == (pstrState->sATRParams.ClassInd & 0x3F))
             {
                 sci_print_error("don't support CLASS_B\n");
@@ -3216,7 +3202,6 @@ s32 bsp_sci_clk_status_cfg(u32 ucClkStatusMode)
 
     // 完全按照ATR的指示来，不关注上层传递的参数
 
-    /* BEGIN: Modified by z67193, 2010-8-21 使用信号量等待时钟停止完毕后再返回*/
     if ((apPL131_CLOCK_START == g_ulSciClkTimeStpFlag))
     {
         lSciErroRet = sci_clock_stop_mode_cfg(apPL131_CLOCK_STOP, ucClkStatusMode);
@@ -3313,18 +3298,7 @@ s32 bsp_sci_record_log_read(unsigned char *pucDataBuff, unsigned int * pulLength
     return sci_record_log_read(pucDataBuff, pulLength, ulMaxLength);
 }
 
-/*****************************************************************************
-* 函 数 名  : sci_voltage_switch
-*
-* 功能描述  : 本接口根据电压切换方向设置电压
-* 输入参数  : direction 电压方向
-              
-*
-* 返 回 值  : 切换结果
-*
-* 修改记录  : 2014年3月19日9:21:47 l00258701 create
-*
-*****************************************************************************/
+
 s32 sci_set_voltage(SCI_VOLTAGE_SWITCH_DIRECTION direction)
 {
     int retVal = 0;
@@ -3433,19 +3407,7 @@ s32 sci_set_voltage(SCI_VOLTAGE_SWITCH_DIRECTION direction)
     return BSP_OK;
 }
 
-/*****************************************************************************
-* 函 数 名  : sci_class_switch_try
-*
-* 功能描述  : 本接口处理和上电次数相关的电压切换,
-                                主要是同一电压尝试三次的场景
-* 输入参数  : 
-              
-*
-* 返 回 值  : 
-*
-* 修改记录  : 2014年3月19日9:21:47 l00258701 create
-*
-*****************************************************************************/
+
 
 void sci_class_switch_sence_try(void)
 {

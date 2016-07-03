@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasXregMntn.c
-  版 本 号   : 初稿
-  作    者   : d00212987
-  生成日期   : 2015年10月23日
-  功能描述   : 1X REG(register)发给Mntn的消息处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年10月23日
-    作    者   : d00212987
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -46,21 +31,7 @@ extern CNAS_XREG_SIDNID_NODE_STRU       *g_pstCnasXregCurrSidNidNode;
 *****************************************************************************/
 /*lint -save -e958*/
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_TransferRegType
- 功能描述  : 将注册类型转换为可维可测的类型
- 输入参数  : enRegType: 原始注册类型
- 输出参数  : 无
- 返 回 值  : NAS_OM_CDMA_REG_TYPE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : d00212987
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_OM_CDMA_REG_TYPE_ENUM_UINT32 CNAS_XREG_TransferRegType(
     CAS_CNAS_1X_REGISTRATION_TYPE_ENUM_UINT8                enRegType
 )
@@ -112,21 +83,7 @@ NAS_OM_CDMA_REG_TYPE_ENUM_UINT32 CNAS_XREG_TransferRegType(
     return enRegTypeMntn;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_SndOmRegReportCnf
- 功能描述  : XREG模块发送给OM回复请求消息
- 输入参数  : enResult: 消息处理结果
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : d00212987
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XREG_SndOmRegReportCnf(
     NAS_OM_RESULT_ENUM_UINT32               enResult,
     OM_NAS_CDMA_REG_INFO_REPORT_REQ_STRU   *pstMsg
@@ -159,21 +116,7 @@ VOS_VOID CNAS_XREG_SndOmRegReportCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_SndOmRegPRDReportInd
- 功能描述  : XREG模块给OM上报周期性注册时长
- 输入参数  : enResult: 消息处理结果
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : d00212987
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XREG_SndOmRegPRDReportInd(
     VOS_UINT8                               ucRegPeriod
 )
@@ -214,21 +157,7 @@ VOS_VOID CNAS_XREG_SndOmRegPRDReportInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_SndOmRegTypeReportInd
- 功能描述  : XREG模块给OM上报注册类型
- 输入参数  : enResult: 消息处理结果
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : d00212987
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XREG_SndOmRegTypeReportInd(
     NAS_OM_CDMA_REG_TYPE_ENUM_UINT32               enRegType
 )
@@ -269,21 +198,7 @@ VOS_VOID CNAS_XREG_SndOmRegTypeReportInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_SndOmRegListReportInd
- 功能描述  : XREG模块给OM上报注册列表(包含 SID NID ZONE)
- 输入参数  : enResult: 消息处理结果
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : d00212987
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XREG_SndOmRegListReportInd(VOS_VOID)
 {
     NAS_OM_CDMA_REG_LIST_REPORT_IND_STRU           *pstSndInfoInd;

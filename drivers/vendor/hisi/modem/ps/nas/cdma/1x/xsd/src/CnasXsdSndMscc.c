@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasXsdSndMscc.c
-  版 本 号   : 初稿
-  作    者   : h00246512
-  生成日期   : 2014年7月7日
-  最近修改   :
-  功能描述   : XSD发送给MMA的消息处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年7月7日
-    作    者   : h00246512
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -47,25 +30,7 @@ extern "C" {
   3 函数实现
 *****************************************************************************/
 /*lint -save -e958*/
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_SndMsccStartCnf
- 功能描述  : 向MSCC发送开机回复
- 输入参数  : enRslt - 开机结果
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月7日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_SndMsccStartCnf(
     XSD_MSCC_START_RESULT_ENUM_UINT32    enRslt
 )
@@ -92,25 +57,7 @@ VOS_VOID CNAS_XSD_SndMsccStartCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_SndMsccPowerOffCnf
- 功能描述  : 向MMA发送关机回复
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月7日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_SndMsccPowerOffCnf(VOS_VOID)
 {
     XSD_MSCC_POWER_OFF_CNF_STRU        *pstPowerOffCnf  = VOS_NULL_PTR;
@@ -134,29 +81,7 @@ VOS_VOID CNAS_XSD_SndMsccPowerOffCnf(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_SndMmscSysAcqCnf
- 功能描述  : 向Mscc发送ID_XSD_MMA_SYSTEM_ACQUIRE_CNF消息
- 输入参数  : XSD_MSCC_ACQUIRED_RESULT_ENUM_UINT32 enRslt
-             NAS_MSCC_PIF_1X_SYS_SRV_INFO_STRU   *pstSysInfo
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月31日
-    作    者   : l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2014年11月27日
-    作    者   : w00176964
-    修改内容   : CDMA 1X Iteration 5 Modified
-
-  3.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_SndMsccSysAcqCnf(
     NAS_MSCC_PIF_ACQUIRED_RESULT_ENUM_UINT32    enRslt
 )
@@ -185,25 +110,7 @@ VOS_VOID CNAS_XSD_SndMsccSysAcqCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_SndMsccSysAcqInd
- 功能描述  : 向MSCC发送ID_XSD_MSCC_SYSTEM_ACQUIRE_IND消息
- 输入参数  : XSD_MSCC_ACQUIRED_RESULT_ENUM_UINT32 enRslt
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月12日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_SndMsccSysAcqInd(
     NAS_MSCC_PIF_ACQUIRED_RESULT_ENUM_UINT32    enRslt
 )
@@ -230,25 +137,7 @@ VOS_VOID CNAS_XSD_SndMsccSysAcqInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_SndMsccSysSrvInfoInd
- 功能描述  : 向MMA发送ID_XSD_MMA_SYSTEM_SERVICE_INFO_IND消息
- 输入参数  : NAS_MSCC_PIF_1X_SYS_SRV_INFO_STRU         *pstSysInfo
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月19日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_SndMsccSysSrvInfoInd(
     NAS_MSCC_PIF_1X_SYS_SRV_INFO_STRU         *pstSysInfo
 )
@@ -276,25 +165,7 @@ VOS_VOID CNAS_XSD_SndMsccSysSrvInfoInd(
     (VOS_VOID)PS_SEND_MSG(UEPS_PID_XSD, pstSysInfoInd);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_SndMsccSysAcqStartInd
- 功能描述  : 给MSCC发送ID_XSD_MSCC_SYSTEM_ACQUIRE_START_IND消息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月14日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_SndMsccSysAcqStartInd(VOS_VOID)
 {
     XSD_MSCC_SYSTEM_ACQUIRE_START_IND_STRU                     *pstSysAcqStartInd  = VOS_NULL_PTR;
@@ -319,21 +190,7 @@ VOS_VOID CNAS_XSD_SndMsccSysAcqStartInd(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_BuildMsccSysInfoInd
- 功能描述  : 构造XSD给MMA的系统消息
- 输入参数  : CAS_CNAS_1X_OHM_IND_STRU           *pstCasCnas1xOhmInd
- 输出参数  : NAS_MSCC_PIF_1X_SYS_SRV_INFO_STRU  *pstXsdMmaSysInfo
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月8日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_BuildMsccSysInfoInd(
     CAS_CNAS_1X_OHM_IND_STRU           *pstCasCnas1xOhmInd,
     NAS_MSCC_PIF_1X_SYS_SRV_INFO_STRU  *pstXsdMmaSysInfo
@@ -387,25 +244,7 @@ VOS_VOID CNAS_XSD_BuildMsccSysInfoInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_SndMscc1xSysTimeInd
- 功能描述  : 向MMA发送ID_XSD_MSCC_1X_SYSTEM_TIME_IND消息
- 输入参数  : NAS_MSCC_PIF_1X_SYS_TIME_STRU      *pst1xSysTimeInfo
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月4日
-    作    者   : L00256032
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_SndMscc1xSysTimeInd(
     NAS_MSCC_PIF_1X_SYS_TIME_STRU      *pst1xSysTimeInfo
 )
@@ -435,25 +274,7 @@ VOS_VOID CNAS_XSD_SndMscc1xSysTimeInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_SndCdmaCsqSetCnf
- 功能描述  : 向MMA发送CDMACSQ设置结果
- 输入参数  : enRslt - 设置结果
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月26日
-    作    者   : m00312079
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_SndCdmaCsqSetCnf(
     NAS_MSCC_PIF_CDMACSQ_SET_RESULT_ENUM_UINT8      enRslt
 )
@@ -480,29 +301,7 @@ VOS_VOID CNAS_XSD_SndCdmaCsqSetCnf(
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_SndCdmaCsqInd
- 功能描述  : 主动上报CdmaCsq
- 输入参数  : enRslt - 设置结果
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月26日
-    作    者   : m00312079
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-  3.日    期   : 2015年10月16日
-    作    者   : m00312079
-    修改内容   : DTS2015101505057:添加ec/Io的上报门限
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_SndCdmaCsqInd(
     VOS_INT16                           sCdmaRssi,
     VOS_INT16                           sCdmaEcIo
@@ -535,25 +334,7 @@ VOS_VOID CNAS_XSD_SndCdmaCsqInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_SndMsccSysCfgCnf
- 功能描述  : 向Mscc透传SysCnf消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月14日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_SndMsccSysCfgCnf(
     CAS_CNAS_1X_SYS_CFG_CNF_STRU       *pstRcvMsg
 )
@@ -583,22 +364,7 @@ VOS_VOID CNAS_XSD_SndMsccSysCfgCnf(
 }
 
 
-/*****************************************************************************
-Function Name   :   CNAS_XSD_SndMsccPowerSaveCnf
-Description     :   The function is used to send the Power save Cnf to MSCC
-Input parameters:   None
-Outout parameters:  None
-Return Value    :   None
-Modify History:
-    1)  Date    :   2015-04-04
-        Author  :   a00295761
-        Modify content :    Create
 
-    2)日    期  : 2015年08月20日
-      作    者  : t00323010
-      修改内容  : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 
 VOS_VOID CNAS_XSD_SndMsccPowerSaveCnf(
     NAS_MSCC_PIF_POWER_SAVE_RESULT_ENUM_UINT8               enResult
@@ -629,25 +395,7 @@ VOS_VOID CNAS_XSD_SndMsccPowerSaveCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_SndMsccHandSetInfoCnf
- 功能描述  : 向MSCC发送手机信息回复
- 输入参数  : pstHandSetInfo - 手机信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_SndMsccHandSetInfoCnf(
     XSD_MSCC_HANDSET_INFO_QRY_CNF_STRU *pstHandSetInfo
 )
@@ -683,27 +431,7 @@ VOS_VOID CNAS_XSD_SndMsccHandSetInfoCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_SndMsccRfAvailInd
- 功能描述  : 向MSCC发送RF资源是否可用指示
- 输入参数  : VOS_UINT8 : ucRfAvail - RF是否可用
-             VOS_TRUE  : 射频可用
-             VOS_FALSE : 射频不可用
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年5月20日
-   作    者   : h00313353
-   修改内容   : 新建
-
- 2.日    期   : 2015年08月20日
-   作    者   : t00323010
-   修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_SndMsccRfAvailInd(
     VOS_UINT8                           ucRfAvail
 )
@@ -738,25 +466,7 @@ VOS_VOID CNAS_XSD_SndMsccRfAvailInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_SndMsccSrvAcqCnf
- 功能描述  : 向MSCC回复业务触发搜网的结果
- 输入参数  : enResult : 业务触发搜网的结果
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年05月21日
-   作    者   : h00313353
-   修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_SndMsccSrvAcqCnf(
     NAS_MSCC_PIF_SRV_ACQ_RESULT_ENUM_UINT8                  enResult
 )
@@ -793,29 +503,7 @@ VOS_VOID CNAS_XSD_SndMsccSrvAcqCnf(
 
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_SndMsccSidNidInd
- 功能描述  : 向MSCC发送SID信息指示
- 输入参数  : usSid -- 当前系统SID
-             usNid -- 当前系统NID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月2日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-  3.日    期   : 2015年12月15日
-    作    者   : l00324781
-    修改内容   : CL_MUTIMODE_OPTIMIZE 修改，SID_IND修改为SID_NID_IND
-*****************************************************************************/
 VOS_VOID CNAS_XSD_SndMsccSidNidInd(
     VOS_UINT16                          usSid,
     VOS_UINT16                          usNid
@@ -851,25 +539,7 @@ VOS_VOID CNAS_XSD_SndMsccSidNidInd(
     (VOS_VOID)PS_SEND_MSG(UEPS_PID_XSD, pstSidNidInd);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_SndMsccEmcCallBackNtf
- 功能描述  : 向MSCC上报紧急呼CallBack模式状态
- 输入参数  : ulIsInCallBack : 当前是否处于CallBack模式
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年07月02日
-   作    者   : h00313353
-   修改内容   : 新生成函数
-
- 2.日    期   : 2015年08月20日
-   作    者   : t00323010
-   修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_SndMsccEmcCallBackInd(
     MSCC_XSD_EMC_CALLBACK_MODE_ENUM_UINT32                  enCallBackState
 )
@@ -904,25 +574,7 @@ VOS_VOID CNAS_XSD_SndMsccEmcCallBackInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_SndMsccSetCSidListCnf
- 功能描述  : 向MSCC上报退出紧急呼CallBack结果
- 输入参数  : ulResult : 退出CallBack模式结果
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年07月02日
-   作    者   : h00313353
-   修改内容   : 新生成函数
-
- 2.日    期   : 2015年08月20日
-   作    者   : t00323010
-   修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_SndMsccSetCSidListCnf(
     VOS_UINT32                                              ulResult
 )
@@ -956,25 +608,7 @@ VOS_VOID CNAS_XSD_SndMsccSetCSidListCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_SndMsccServiceAvailableInd
- 功能描述  : 向MSCC发送服务可用指示
- 输入参数  : ulResult : 退出CallBack模式结果
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年07月25日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-
- 2.日    期   : 2015年08月20日
-   作    者   : t00323010
-   修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_SndMsccSyncServiceAvailableInd(
     XSD_MSCC_SYNC_SERVICE_AVAILABLE_IND_STRU               *pstSrvAvailInd
 )
@@ -1014,21 +648,7 @@ VOS_VOID CNAS_XSD_SndMsccSyncServiceAvailableInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_SndMsccUeStatusInd
- 功能描述  : 报给MSCC UE STATUS IND
- 输入参数  : enCasState     主状态
-             enCasSubState  子状态
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月17日
-    作    者   : C00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_SndMsccUeStatusInd(
     VOS_UINT8                           ucUeMainState,
     VOS_UINT8                           ucUeSubState
@@ -1067,21 +687,7 @@ VOS_VOID CNAS_XSD_SndMsccUeStatusInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_SndMscc1xNoSrvInd
- 功能描述  : 向MSCC通知XSD无服务可用，MSCC收到该消息向MMA通知1X无服务，MMA启动无服务延时上报定时器
-             调用场景:IDLE态下收到CAS_CNAS_1X_SYSTEM_DETERMIN_IND消息，发起搜网
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月08日
-    作    者   : l00324781
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_SndMscc1xNoSrvInd(VOS_VOID)
 {
     XSD_MSCC_1X_NO_SERVICE_IND_STRU    *pst1xNoSrvInd  = VOS_NULL_PTR;

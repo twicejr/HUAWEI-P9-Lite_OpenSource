@@ -1,24 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmcProcRegRslt.c
-  版 本 号   : 初稿
-  作    者   : z40661
-  生成日期   : 2010年5月9日
-  最近修改   :
-  功能描述   : 注册公共处理函数
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年05月9日
-    作    者   : z40661
-    修改内容   : 创建文件
-  2.日    期   : 2011年7月22日
-    作    者   : l00130025
-    修改内容   : PhaseII修改
-
-******************************************************************************/
 /*****************************************************************************
   1 头文件包含
 *****************************************************************************/
@@ -42,9 +22,7 @@
 #include "NasMmcProcUsim.h"
 #include "NasMmcProcNvim.h"
 #include "NasMmcProcRegRslt.h"
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-7, begin */
 /* 删除ExtAppMmcInterface.h*/
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-7, end */
 #include "NasMmcComFunc.h"
 #include "NasMmcSndOm.h"
 #include "NVIM_Interface.h"
@@ -111,11 +89,9 @@ NAS_MMC_REG_FAIL_PROC_ENTITY             gastMmcProcCsRegFailCause[] =
 
     {NAS_MML_REG_FAIL_CAUSE_DELAY_CS_IN_TRANS_LAU,                    NAS_MMC_ProcCsRegFailCause416DealyCsInTransLau},
 
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-4-30, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
     {NAS_MML_REG_FAIL_CAUSE_ECALL_INACTIVE,                          NAS_MMC_ProcCsRegFailCause417ECallInactive},
 #endif
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-4-30, end */
 
     {NAS_MML_REG_FAIL_CAUSE_T3212_RUNNING,                            NAS_MMC_ProcCsRegFailCause418T3212Running},
 
@@ -400,49 +376,13 @@ NAS_MMC_LMM_ATTACH_CL_REG_STATUS_PRIORITY_PAIR gastLmmAttaClRegStatPrio[] =
 
 /*lint -save -e958 */
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetRegRsltCtxAddr
- 功能描述  : 更新当前的注册结果消息的地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : NAS_MMC_REG_RSLT_CTX_STRU:返回注册结果结构体信息的地址
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月20日
-    作    者   : w00167002
-    修改内容   : 新增函数
-*****************************************************************************/
 NAS_MMC_REG_RSLT_CTX_STRU* NAS_MMC_GetRegRsltCtxAddr(VOS_VOID)
 {
     return &(gstRegRsltCtx);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SaveRegRsltCtx
- 功能描述  : 更新当前的注册结果消息类型和消息指针
- 输入参数  : enRegRsltType:当前的注册结果消息类型
-              pRegRsltCtx  :当前的注册结果消息指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月20日
-    作    者   : w00167002
-    修改内容   : 新增函数
-  2.日    期   : 2012年3月5日
-    作    者   : w00167002
-    修改内容   : V7R1C50 CSFB调整:增加LMM 上报的service结果的保存
-  3.日    期   : 2012年07月05日
-    作    者   : s46746
-    修改内容   : For CS/PS mode 1，记录EPS的AttemptCounter
-  4.日    期   : 2014年5月6日
-    作    者   : z00161729
-    修改内容   : DTS2014050602850:l下联合注册eps成功，cs注册被#18拒绝，disable lte到gu下搜网注册成功，后指定搜l cs注册被#18拒绝的网络，l发起eps单域注册成功，mmc没有disable lte
-*****************************************************************************/
 VOS_VOID  NAS_MMC_SaveRegRsltCtx(
     NAS_MMC_REG_RSLT_TYPE_ENUM_UINT8    enRegRsltType,
     VOS_VOID                           *pRegRsltIndMsg
@@ -520,47 +460,16 @@ VOS_VOID  NAS_MMC_SaveRegRsltCtx(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetRegRsltType
- 功能描述  : 更新当前的注册结果消息类型
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : NAS_MMC_REG_RSLT_TYPE_ENUM_UINT8:返回注册结果消息的类型
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月20日
-    作    者   : w00167002
-    修改内容   : 新增函数
-*****************************************************************************/
 NAS_MMC_REG_RSLT_TYPE_ENUM_UINT8 NAS_MMC_GetRegRsltType(VOS_VOID)
 {
     return gstRegRsltCtx.enRegRsltType;
 }
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-1-4, begin */
-
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-1-4, end */
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetRegRsltAttemptCounter
- 功能描述  : 取得注册结果消息中的AttemptCounter的值
- 输入参数  : enRegRsltType:当前的注册结果消息类型
- 输出参数  : 无
- 返 回 值  : 返回AttemptCounter的值
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月20日
-    作    者   : w00167002
-    修改内容   : 新增函数
-  2.日    期   : 2012年07月05日
-    作    者   : s46746
-    修改内容   : For CS/PS mode 1，记录EPS的AttemptCounter
-*****************************************************************************/
+
 VOS_UINT32 NAS_MMC_GetRegRsltAttemptCounter(
     NAS_MMC_REG_RSLT_TYPE_ENUM_UINT8    enRegRsltType
 )
@@ -611,35 +520,7 @@ VOS_UINT32 NAS_MMC_GetRegRsltAttemptCounter(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCsRegFailImsiUnnownInHlr
- 功能描述  : Cs Cause2的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月29日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2012年10月15日
-    作    者   : s00217060
-    修改内容   : for DTS2012082308686:Cs注册失败原因值为2,3,6,256时，需要重新Enable Lte
-  3.日    期   : 2013年01月23日
-    作    者   : s00217060
-    修改内容   : 问题单: DTS2013012106172,Enable Lte时停止定时器TI_NAS_MMC_WAIT_ENABLE_LTE_TIMER
-  4.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  5.日    期   : 2014年4月29日
-    作    者   : s00261364
-    修改内容   : ecall项目修改服务状态上报
-  6.日    期   : 2015年1月5日
-    作    者   : z00161729
-    修改内容   : AT&T 支持DAM特性修改
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause2ImsiUnknownInHlr(VOS_VOID)
 {
 #if   (FEATURE_ON == FEATURE_LTE)
@@ -648,9 +529,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause2ImsiUnknownInHlr
     ulDisablteRoamFlg = NAS_MML_GetDisableLteRoamFlg();
 #endif
 
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-4, begin */
     NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_CS, NAS_MMC_LIMITED_SERVICE);
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-4, end */
 
     NAS_MMC_ChangeCsRegState(NAS_MML_REG_REGISTERED_DENIED);
 
@@ -678,76 +557,20 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause2ImsiUnknownInHlr
 
     return NAS_MMC_ADDITIONAL_ACTION_SINGLE_DOMAIN_ANYCELL;
 }
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCsRegFailCause3IllegalMs
- 功能描述  : Cs Cause3的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月29日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause3IllegalMs(VOS_VOID)
 {
     /* 按原因值2进行处理 */
     return NAS_MMC_ProcCsRegFailCause2ImsiUnknownInHlr();
 }
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCsRegFailCause6IllegalMe
- 功能描述  : Cs Cause6的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月29日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause6IllegalMe(VOS_VOID)
 {
     /* 按原因值2进行处理 */
     return NAS_MMC_ProcCsRegFailCause2ImsiUnknownInHlr();
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCsRegFailCause11PlmnNotAllow
- 功能描述  : Cs Cause11的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月29日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月5日
-    作    者   : z00161729
-    修改内容   : V7R1 phaseIV修改合并原NAS_MMC_HPLMN_REG_REJ_STRU和NAS_MMC_PLMN_REG_INFO_STRU
-  3.日    期   : 2012年03月03日
-    作    者   : s62952
-    修改内容   : BalongV300R002 Build优化项目
-  4.日    期   : 2012年11月29日
-    作    者   : W00176964
-    修改内容   : DTS2012112902395,BVT测试,hplmn被拒#11后后续需要继续注册
-  5.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  6.日    期   : 2014年4月18日
-    作    者   : s00261364
-    修改内容   : V3R360_eCall项目:增加服务状态上报的处理
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause11PlmnNotAllow(VOS_VOID)
 {
     VOS_UINT8                           ucRejDomain;
@@ -762,11 +585,8 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause11PlmnNotAllow(VO
         NAS_MMC_SndUsimUpdateForbPlmnReq();
     }
 
-    /* Added by s00261364 for V3R360_eCall项目, 2014-4-18, begin */
     NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_CS, NAS_MMC_LIMITED_SERVICE);
-    /* Added by s00261364 for V3R360_eCall项目, 2014-4-18, end */
 
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     if ( VOS_FALSE == NAS_MML_GetHplmnRegisterCtrlFlg())
     {
         /* 非E5版本才做如下处理，E5版本要求能在HPLMN上反复发起注册 */
@@ -792,36 +612,13 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause11PlmnNotAllow(VO
             }
         }
     }
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-5-4, begin */
     NAS_MMC_ChangeCsRegState(NAS_MML_REG_NOT_REGISTERED_SEARCHING);
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-5-4, end */
 
     return NAS_MMC_ADDITIONAL_ACTION_PLMN_SELECTION;
 
 }
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCsRegFailCause12LaNotAllow
- 功能描述  : Cs Cause12的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月29日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  3.日    期   : 2014年04月30日
-    作    者   : s00261364
-    修改内容   : V3R360_eCall项目:更新服务状态
-
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause12LaNotAllow(VOS_VOID)
 {
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8          enPsAdditionalAction;
@@ -831,9 +628,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause12LaNotAllow(VOS_
 
     (VOS_VOID)NAS_MMC_StartTimer(TI_NAS_MMC_FORBID_LA_TIMER, TI_NAS_MMC_FORBID_LA_TIMER_LEN);
 
-    /* Added by s00261364 for V3R360_eCall项目, 2014-4-30, begin */
     NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_CS, NAS_MMC_LIMITED_SERVICE_REGION);
-    /* Added by s00261364 for V3R360_eCall项目, 2014-4-30, end */
 
     /* 有业务时，需要触发一次搜网:由于状态已更新为registered，再搜网时会跳过该RAT下的这个网络 */
     if (VOS_TRUE == NAS_MMC_IsNeedLauRejTrigPlmnSearch(NAS_MML_REG_FAIL_CAUSE_LA_NOT_ALLOW))
@@ -857,27 +652,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause12LaNotAllow(VOS_
 
     return NAS_MMC_ADDITIONAL_ACTION_CELL_SELECTION;
 }
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCsRegFailCause13RoamNotAllow
- 功能描述  : Cs Cause13的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年6月29日
-   作    者   : l00130025
-   修改内容   : 新生成函数
- 2.日    期   : 2011年11月12日
-   作    者   : w00167002
-   修改内容   : DTS2011110907180:NAS_MML_AddForbRoamLa函数调整的修改
- 3.日    期   : 2014年04月30日
-   作    者   : s00261364
-   修改内容   : V3R360_eCall项目:增加服务状态上报处理
-
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause13RoamNotAllow(VOS_VOID)
 {
     NAS_MML_FORBIDPLMN_ROAMING_LAS_INFO_STRU                stForbRoamLaInfo;
@@ -900,39 +675,15 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause13RoamNotAllow(VO
 
     (VOS_VOID)NAS_MMC_StartTimer(TI_NAS_MMC_FORBID_LA_TIMER, TI_NAS_MMC_FORBID_LA_TIMER_LEN);
 
-    /* Deleted by s00261364 for V3R360_eCall项目, 2014-4-30, begin */
 
-    /* Deleted by s00261364 for V3R360_eCall项目, 2014-4-30, end */
-    /* Added by s00261364 for V3R360_eCall项目, 2014-4-30, begin */
     /* 上报对应的CS服务状态MSCC_MMC_SERVICE_STATUS_NO_SERVICE */
     NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_CS, NAS_MMC_LIMITED_SERVICE);
     NAS_MMC_ChangeCsRegState(NAS_MML_REG_NOT_REGISTERED_SEARCHING);
-    /* Added by s00261364 for V3R360_eCall项目, 2014-4-30, end */
 
     return NAS_MMC_ADDITIONAL_ACTION_PLMN_SELECTION;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCsRegFailCause15NoSuitableCell
- 功能描述  : Cs Cause15的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年6月29日
-   作    者   : l00130025
-   修改内容   : 新生成函数
- 2.日    期   : 2011年11月12日
-   作    者   : w00167002
-   修改内容   : DTS2011110907180:当前若为选网状态机，则添加禁止网络信息
-                 到选网状态机的禁止漫游LA变量里去
- 3.日    期   : 2014年4月8日
-   作    者   : s00261364
-   修改内容   : V3R360_eCall项目:更新CSPS服务状态
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause15NoSuitableCell(VOS_VOID)
 {
 
@@ -957,42 +708,15 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause15NoSuitableCell(
     (VOS_VOID)NAS_MMC_StartTimer(TI_NAS_MMC_FORBID_LA_TIMER, TI_NAS_MMC_FORBID_LA_TIMER_LEN);
 
     /* 更新服务状态 */
-    /* Deleted by s00261364 for V3R360_eCall项目, 2014-4-10, begin */
 
-    /* Deleted by s00261364 for V3R360_eCall项目, 2014-4-10, end */
 
-    /* Added by s00261364 for V3R360_eCall项目, 2014-4-30, begin */
     NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_CS, NAS_MMC_LIMITED_SERVICE);
     NAS_MMC_ChangeCsRegState(NAS_MML_REG_NOT_REGISTERED_SEARCHING);
-    /* Added by s00261364 for V3R360_eCall项目, 2014-4-30, end */
 
     return NAS_MMC_ADDITIONAL_ACTION_SEARCH_SUITABLE_CELL_IN_SAME_PLMN;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCsRegFailCause17NetWorkFailure
- 功能描述  : Cs 17#原因值的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年6月11日
-   作    者   : w00166186
-   修改内容   : AT&T&DCM项目
- 2.日    期   : 2014年4月29日
-   作    者   : s00261364
-   修改内容   : ecall项目修改服务状态上报
- 3.日    期   : 2014年5月21日
-    作    者   : w00167002
-    修改内容   : DTS2014051602857:在SOR打开时候，如果CS注册失败达到4次，则等周期
-                搜网定时器超时发起LIST搜网，如果当前仅有原有网络，则发起LAU,否则
-                触发MM发起LAU;如果LIST搜后，发现有其他网络，则发起其他网络的搜网注册。
-                手动选网时候，返回LIMIT CAMP ON,不再发起选网。
-
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause17NetWorkFailure(VOS_VOID)
 {
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8    enAction;
@@ -1028,10 +752,8 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause17NetWorkFailure(
          || (VOS_FALSE == ulLaiSameFlg)
          || (ulAttemptCnt >= ucRegFailMaxCnt))
         {
-            /* Added by s00261364 for V3R360_eCall项目, 2014-4-30, begin */
             NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_CS, NAS_MMC_LIMITED_SERVICE);
             NAS_MMC_ChangeCsRegState(NAS_MML_REG_NOT_REGISTERED_SEARCHING);
-            /* Added by s00261364 for V3R360_eCall项目, 2014-4-30, end */
 
             return NAS_MMC_ADDITIONAL_ACTION_PLMN_SELECTION;
         }
@@ -1050,21 +772,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause17NetWorkFailure(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCsRegFailCause95SemanticallyIncorrectMsg
- 功能描述  : Cs Cause95的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年11月12日
-   作    者   : w00167002
-   修改内容   : DTS2011122006209:拒绝原因值95的处理
-
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause95SemanticallyIncorrectMsg(VOS_VOID)
 {
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    enAction;
@@ -1088,21 +796,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause95SemanticallyInc
     return enAction;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCsRegFailCause96InvalidMandatoryInf
- 功能描述  : Cs Cause96的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年11月12日
-   作    者   : w00167002
-   修改内容   : DTS2011122006209:拒绝原因值96的处理
-
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause96InvalidMandatoryInf(VOS_VOID)
 {
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    enAction;
@@ -1127,21 +821,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause96InvalidMandator
     return enAction;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCsRegFailCause97MsgNonExistNotImplement
- 功能描述  : Cs Cause97的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年11月12日
-   作    者   : w00167002
-   修改内容   : DTS2011122006209:拒绝原因值97的处理
-
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause97MsgNonExistNotImplement(VOS_VOID)
 {
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    enAction;
@@ -1165,21 +845,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause97MsgNonExistNotI
     return enAction;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCsRegFailCause99IeNonExistNotImplement
- 功能描述  : Cs Cause99的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年11月12日
-   作    者   : w00167002
-   修改内容   : DTS2011122006209:拒绝原因值99的处理
-
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause99IeNonExistNotImplement(VOS_VOID)
 {
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    enAction;
@@ -1203,21 +869,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause99IeNonExistNotIm
     return enAction;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCsRegFailCause111ProtocolError
- 功能描述  : Cs Cause111的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年11月12日
-   作    者   : w00167002
-   修改内容   : DTS2011122006209:拒绝原因值111的处理
-
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause111ProtocolError(VOS_VOID)
 {
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    enAction;
@@ -1244,39 +896,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause111ProtocolError(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCsRegFailCause256AuthRej
- 功能描述  : Cs Reg Auth rej的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月29日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2012年2月3日
-    作    者   : w00167002
-    修改内容   : DTS2011122704039:在注册失败原因值的函数命名中增加原因值，
-                  保持函数命名的一致性。
-  3.日    期   : 2012年10月15日
-    作    者   : s00217060
-    修改内容   : for DTS2012082308686:Cs注册失败原因值为2,3,6,256时，需要重新Enable Lte
-  4.日    期   : 2013年01月23日
-    作    者   : s00217060
-    修改内容   : 问题单: DTS2013012106172,Enable Lte时停止定时器TI_NAS_MMC_WAIT_ENABLE_LTE_TIMER
-  5.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  6.日    期   : 2014年4月29日
-    作    者   : s00261364
-    修改内容   : ecall项目修改服务状态上报
-  7.日    期   : 2015年1月5日
-    作    者   : z00161729
-    修改内容   : AT&T 支持DAM特性修改
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause256AuthRej(VOS_VOID)
 {
 #if   (FEATURE_ON == FEATURE_LTE)
@@ -1285,9 +905,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause256AuthRej(VOS_VO
     ulDisablteRoamFlg = NAS_MML_GetDisableLteRoamFlg();
 #endif
 
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-4, begin */
     NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_CS_PS, NAS_MMC_LIMITED_SERVICE);
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-4, end */
 
     NAS_MMC_ChangeCsRegState(NAS_MML_REG_REGISTERED_DENIED);
     NAS_MMC_ChangePsRegState(NAS_MML_REG_REGISTERED_DENIED);
@@ -1317,40 +935,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause256AuthRej(VOS_VO
     return NAS_MMC_ADDITIONAL_ACTION_CSPS_ANYCELL;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCsRegFailCause257AccessBarrd
- 功能描述  : Cs AccessBarrd的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月29日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年2月3日
-    作    者   : w00167002
-    修改内容   : DTS2011122704039:在注册失败原因值的函数命名中增加原因值，
-                  保持函数命名的一致性。
- 3.日    期   : 2012年3月10日
-   作    者   : w00166186
-   修改内容   : CSFB&PPAC&ETWS&ISR 开发
- 4.日    期   : 2013年05月08日
-   作    者   : s46746
-   修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
- 5.日    期   : 2013年10月15日
-   作    者   : s00190137
-   修改内容   : 特性开关打开且非HPLMN/RPLMN接入禁止时需要触发PLMN搜网
- 6.日    期   : 2014年04月8日
-   作    者   : s00261364
-   修改内容   : V3R360_eCall项目:服务状态上报到mmc
-  7.日    期   : 2015年10月14日
-    作    者   : c00318887
-    修改内容   : DTS2015082002854: 漫游标记不准
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause257AccessBarrd(VOS_VOID)
 {
     NAS_MML_LOCATION_UPDATE_STATUS_ENUM_UINT8   enCsUpdateStatus;
@@ -1370,9 +955,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause257AccessBarrd(VO
     }
     else
     {
-        /* Added by s00261364 for V3R360_eCall项目, 2014-4-4, begin */
         NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_CS, NAS_MMC_LIMITED_SERVICE);
-        /* Added by s00261364 for V3R360_eCall项目, 2014-4-4, end */
         NAS_MMC_ChangeCsRegState(NAS_MML_REG_NOT_REGISTERED_NOT_SEARCH);
     }
 
@@ -1388,31 +971,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause257AccessBarrd(VO
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCsRegFailCause301TimerTimeOut
- 功能描述  : Cs Cause:NAS_MML_REG_FAIL_CAUSE_TIMER_TIMEOUT 的处理
- 输入参数  :
-             VOS_UINT16                          usCause,
-             VOS_UINT32                          ulAttemptCnt
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年11月18日
-   作    者   : w00167002
-   修改内容   : 新生成函数。
- 2.日    期   : 2012年6月11日
-   作    者   : w00166186
-   修改内容   : AT&T&DCM项目
- 3.日    期   : 2013年05月08日
-   作    者   : s46746
-   修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
- 4.日    期   : 2014年04月30日
-   作    者   : s00261364
-   修改内容   : V3R360_eCall项目:服务状态上报到mmc
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause301TimerTimeOut(VOS_VOID)
 {
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    enAction;
@@ -1440,7 +999,6 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause301TimerTimeOut(V
             enPrioAdditionalAction = NAS_MMC_GetPsAdditionalAction();
             enPrioAdditionalAction = NAS_MMC_GetPrioAddtionalAction(enAction, enPrioAdditionalAction);
 
-            /* Modified by s00261364 for V3R360_eCall项目, 2014-4-30, begin */
             NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_CS, NAS_MMC_LIMITED_SERVICE);
 
             if (VOS_FALSE == NAS_MMC_IsAdditionalActionTrigerPlmnSrch(enPrioAdditionalAction))
@@ -1451,7 +1009,6 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause301TimerTimeOut(V
             {
                 NAS_MMC_ChangeCsRegState(NAS_MML_REG_NOT_REGISTERED_SEARCHING);
             }
-            /* Modified by s00261364 for V3R360_eCall项目, 2014-4-30, end */
 
 
             return enAction;
@@ -1465,21 +1022,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause301TimerTimeOut(V
     return enAction;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCsRegFailCause302RrConnEstFail
- 功能描述  : Cs Cause:NAS_MML_REG_FAIL_CAUSE_RR_CONN_EST_FAIL 的处理
- 输入参数  :
-             VOS_UINT32                          ulAttemptCnt
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年11月18日
-   作    者   : w00167002
-   修改内容   : 新生成函数。
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause302RrConnEstFail(VOS_VOID)
 {
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    enAction;
@@ -1503,20 +1046,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause302RrConnEstFail(
     return enAction;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCsRegFailCause303RrConnFail
- 功能描述  : Cs Cause:NAS_MML_REG_FAIL_CAUSE_RR_CONN_FAIL的处理
- 输入参数  : VOS_UINT32                          ulAttemptCnt
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年11月18日
-   作    者   : w00167002
-   修改内容   : 新生成函数。
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause303RrConnFail(VOS_VOID)
 {
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    enAction;
@@ -1540,53 +1070,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause303RrConnFail(VOS
     return enAction;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCsRegFailCause401OtherCause
- 功能描述  : Cs Other Cause的处理
- 输入参数  :
-             VOS_UINT16                          usCause,
-             VOS_UINT32                          ulAttemptCnt
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年6月29日
-   作    者   : l00130025
-   修改内容   : 新生成函数
-                 1)  attemptCount < MaxCount时，返回NAS_MMC_ADDITIONAL_ACTION_WAIT_REG_ATTEMPT
-                 2)  attemptCount >= MaxCount时，无定制需求，要等待另外一个域的注册结果,返回NAS_MMC_ADDITIONAL_ACTION_OPTIONAL_PLMN_SELECTION
-                 3)  attemptCount >= MaxCount时，有对MaxCount的定制（Roaming Broker,cause<111）或单域的搜网请求（VDF的 Steer of  roaming或DT的定制需求），
-                     返回NAS_MMC_ADDITIONAL_ACTION_PLMN_SELECTION
-
- 2.日    期   : 2011年11月18日
-   作    者   : w00167002
-   修改内容   : DTS2011111603330:若当前的LAI发生改变，即使失败次数未达到
-                最大次数,也更新为限制服务状态。
-
- 3.日    期   : 2011年11月24日
-   作    者   : w00167002
-   修改内容   : DTS20111112105560:roamingbroker 特性开启，将最大失败次数设置为1，
-                建链接异常释放一次就发起了搜网，实际应该是注册失败原因值小于
-                111时，才发起搜网。
-
- 4.日    期   : 2012年1月3日
-   作    者   : w00167002
-   修改内容   : DTS2011122006209:g下PS ONLY注册成功_更改为CS后注册失败4次后未发起搜网.
-                 NAS_MML_REG_FAIL_CAUSE_OTHER_CAUSE时，返回NAS_MMC_ADDITIONAL_ACTION_BUTT
-                 ,表示MMC不需要写入当前CS的ADDITIONAL ACTION值。
- 5.日    期   : 2012年2月3日
-   作    者   : w00167002
-   修改内容   : DTS2011122704039:在注册失败原因值的函数命名中增加原因值，
-                 保持函数命名的一致性。
- 6.日    期   : 2013年05月08日
-   作    者   : s46746
-   修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
- 7.日    期   : 2014年04月8日
-   作    者   : s00261364
-   修改内容   : V3R360_eCall项目:服务状态上报到mmc
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause401OtherCause(VOS_VOID)
 {
     VOS_UINT32                                              ulAttemptCnt;
@@ -1609,7 +1093,6 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause401OtherCause(VOS
 
         enPrioAdditionalAction = NAS_MMC_GetPrioAddtionalAction(enCsAdditionalAction, enPsAdditionalAction);
 
-        /* Modified by s00261364 for V3R360_eCall项目, 2014-4-30, begin */
         NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_CS, NAS_MMC_LIMITED_SERVICE);
 
         if (VOS_FALSE == NAS_MMC_IsAdditionalActionTrigerPlmnSrch(enPrioAdditionalAction))
@@ -1620,57 +1103,12 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause401OtherCause(VOS
         {
             NAS_MMC_ChangeCsRegState(NAS_MML_REG_NOT_REGISTERED_SEARCHING);
         }
-        /* Modified by s00261364 for V3R360_eCall项目, 2014-4-30, end */
     }
 
     /* 返回NAS_MMC_ADDITIONAL_ACTION_BUTT，表示无效的AdditionalAction值 */
     return NAS_MMC_ADDITIONAL_ACTION_BUTT;
 }
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCsRegFailCause402MsCfgDomainNotSupport
- 功能描述  : 假流程:Cs/only,当前配置CS only
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月29日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年1月13日
-    作    者   : w00167002
-    修改内容   : DTS2011122006209:当前在ONPLMN时，若收到结果为CS域不支持，
-                  则需要判断1)PS域是否是LIMIT_CAMP_ON 2)AVAILABLE定时器未启动
-                             3)PS域准许发起注册,则MMC需要发起搜网
-                  对应场景举例:
-                  在选网状态机中当前驻留的网络一个域被拒12，一个域#14后，
-                  在ON PLMN状态受限驻留，此时用户将注册被拒#12的域DETACH后，
-                  由于CS域此时是LIMITED_CAMP_ON，故不发起搜网，而实际需要发起搜网.
-  2.日    期   : 2012年2月3日
-    作    者   : w00167002
-    修改内容   : DTS2011122704039:在注册失败原因值的函数命名中增加原因值，
-                  保持函数命名的一致性。
-
-  4.日    期   : 2012年4月18日
-    作    者   : z40661
-    修改内容   : DTS2012032204099,CC模式后，设置CG模式，MMC发起了搜网
-  5.日    期   : 2012年12月11日
-    作    者   : l00167671
-    修改内容   : DTS2012121802573, TQE清理
-  6.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  7.日    期   : 2013年11月30日
-    作    者   : z00161729
-    修改内容   : DTS2013112809149:9230 nv项设置禁止接入技术为w和g，手动搜网模式驻留g的23002成功，
-                syscfg设置w only，anycell驻留24005，会反复触发w下anycell搜网
-  8.日    期   : 2014年04月8日
-    作    者   : s00261364
-    修改内容   : V3R360_eCall项目:服务状态上报到mmc
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause402MsCfgDomainNotSupport(VOS_VOID)
 {
     NAS_MMC_FSM_ID_ENUM_UINT32                              enFsmId;
@@ -1680,9 +1118,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause402MsCfgDomainNot
     NAS_MML_SIM_FORBIDPLMN_INFO_STRU                       *pstForbidPlmnInfo = VOS_NULL_PTR;
 
 
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-4, begin */
     NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_CS, NAS_MMC_LIMITED_SERVICE);
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-4, end */
 
     NAS_MMC_ChangeCsRegState(NAS_MML_REG_NOT_REGISTERED_NOT_SEARCH);
 
@@ -1721,22 +1157,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause402MsCfgDomainNot
     return NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedPlmnSearch_RegLocalFailCause
- 功能描述  : 判断未和网络交互注册失败原因值403-409/access bar是否需要搜网
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 需要搜网
-             VOS_FALSE - 无需搜网
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月30日
-    作    者   : z00161729
-    修改内容   : DTS2013112809149:9230 nv项设置禁止接入技术为w和g，手动搜网模式驻留g的23002成功，
-                 syscfg设置w only，anycell驻留24005，会反复触发w下anycell搜网
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedPlmnSearch_RegLocalFailCause( VOS_VOID )
 {
     NAS_MML_PLMN_WITH_RAT_STRU                             *pstUserSpecPlmn     = VOS_NULL_PTR;
@@ -1779,37 +1200,7 @@ VOS_UINT32 NAS_MMC_IsNeedPlmnSearch_RegLocalFailCause( VOS_VOID )
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCsRegFailCauseForbiddenPlmn
- 功能描述  : 假流程:Cs 11号原因值被拒或当前非手动指定网络
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月12日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年1月4日
-    作    者   : w00167002
-    修改内容   : DTS2011122006209:g下PS ONLY注册成功_更改为CS后注册失败4次后未发起搜网.
-                  在主框架中L1MAIN/PLMN LIST中判断当前原因值为非UE主动发起注册
-                  原因值，则更新为NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON。现将
-                  此判断放到各个子函数中来判断。
-  3.日    期   : 2012年2月3日
-    作    者   : w00167002
-    修改内容   : DTS2011122704039:在注册失败原因值的函数命名中增加原因值，
-                  保持函数命名的一致性。
-  4.日    期   : 2013年11月30日
-    作    者   : z00161729
-    修改内容   : DTS2013112809149:9230 nv项设置禁止接入技术为w和g，手动搜网模式驻留g的23002成功，syscfg设置w only，anycell驻留24005，会反复触发w下anycell搜网
-  5.日    期   : 2014年04月8日
-    作    者   : s00261364
-    修改内容   : V3R360_eCall项目:服务状态上报到mmc
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause403ForbiddenPlmn(VOS_VOID)
 {
     NAS_MMC_FSM_ID_ENUM_UINT32                              enFsmId;
@@ -1819,9 +1210,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause403ForbiddenPlmn(
     VOS_UINT32                                              ulUserSpecPlmnFlag;
     NAS_MML_PLMN_ID_STRU                                   *pstCurPlmnId        = VOS_NULL_PTR;
 
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-4, begin */
     NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_CS, NAS_MMC_LIMITED_SERVICE);
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-4, end */
 
     enAvailableTimerStatus = NAS_MMC_GetTimerStatus(TI_NAS_MMC_AVAILABLE_TIMER);
 
@@ -1865,7 +1254,6 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause403ForbiddenPlmn(
             break;
     }
 
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-5-4, begin */
     /* 只有在下一步需要搜网时，才报状态2上去；不需要搜网时报状态0 */
     if (NAS_MMC_ADDITIONAL_ACTION_BUTT == enAdditionalAction)
     {
@@ -1875,66 +1263,19 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause403ForbiddenPlmn(
     {
         NAS_MMC_ChangeCsRegState(NAS_MML_REG_NOT_REGISTERED_SEARCHING);
     }
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-5-4, end */
 
     return enAdditionalAction;
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCsRegFailCause404ForbiddenLaForRegPrvsSvs
- 功能描述  : Cs Cause404:NAS_MML_REG_FAIL_CAUSE_FORBIDDEN_LA_FOR_REG_PRVS_SVS的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月3日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause404ForbiddenLaForRegPrvsSvs(VOS_VOID)
 {
     /* 跟注册被拒原因#12的处理一样 */
     return NAS_MMC_ProcCsRegFailCause12LaNotAllow();
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCsRegFailCause405ForbiddenLaForRoam
- 功能描述  : 假流程:Cs 13或15号原因值被拒
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月12日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年12月21日
-    作    者   : w00167002
-    修改内容   : DTS2011102100710:注册被拒原因值#13，#15时，都会加入FORB ROAM
-                  LA信息列表里，增加被拒原因值的存储，用以区分在LAI上拒绝的原因
-                 值。MMC在收到MM/GMM上报拒绝原因值#13,#15的假流程消息时，MMC触发
-                 不同的搜网策略。
-  3.日    期   : 2012年1月4日
-    作    者   : w00167002
-    修改内容   : DTS2011122006209:g下PS ONLY注册成功_更改为CS后注册失败4次后未发起搜网.
-                     在主框架中L1MAIN/PLMN LIST中判断当前原因值为非UE主动发起注册
-                     原因值，则更新为NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON。现将
-                     此判断放到各个子函数中来判断。
-  4.日    期   : 2012年2月3日
-    作    者   : w00167002
-    修改内容   : DTS2011122704039:在注册失败原因值的函数命名中增加原因值，
-                  保持函数命名的一致性。
-  5.日    期   : 2014年04月8日
-    作    者   : s00261364
-    修改内容   : V3R360_eCall项目:服务状态上报到mmc
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause405ForbiddenLaForRoam(VOS_VOID)
 {
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16  enCsCause;                              /* 存储注册区CS域被拒信息 */
@@ -1942,9 +1283,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause405ForbiddenLaFor
 
     NAS_MMC_FSM_ID_ENUM_UINT32          enFsmId;
 
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-4, begin */
     NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_CS, NAS_MMC_LIMITED_SERVICE);
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-4, end */
 
 
     /* 当前在ONPLMN或者PLMN LIST状态机，此时处于限制驻留态，在未跟网侧真实发生交互的情况下，
@@ -1959,9 +1298,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause405ForbiddenLaFor
     }
 
 
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-5-4, begin */
     NAS_MMC_ChangeCsRegState(NAS_MML_REG_NOT_REGISTERED_SEARCHING);
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-5-4, end */
 
     /* 当前不在在ONPLMN或者PLMN LIST状态机，需处理拒绝原因值，返回不同的搜网策略 */
 
@@ -1986,34 +1323,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause405ForbiddenLaFor
 
 
 }
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCsRegFailCause407SimInvalid
- 功能描述  : 假流程:当前CS域卡无效
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年8月5日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2012年2月3日
-    作    者   : w00167002
-    修改内容   : DTS2011122704039:在注册失败原因值的函数命名中增加原因值，
-                  保持函数命名的一致性。
-  3.日    期   : 2012年3月1日
-    作    者   : z40661
-    修改内容   : DTS2012022401628：多次切换无声音
-  4.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-                  保持函数命名的一致性。
-  5.日    期   : 2014年04月8日
-    作    者   : s00261364
-    修改内容   : V3R360_eCall项目:服务状态上报到mmc
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause407SimInvalid(VOS_VOID)
 {
     NAS_MMC_FSM_ID_ENUM_UINT32          enFsmId;
@@ -2021,9 +1331,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause407SimInvalid(VOS
     /* 更新服务状态 */
     NAS_MMC_SetCsServiceStatus(NAS_MMC_LIMITED_SERVICE);
 
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-4, begin */
     NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_CS, NAS_MMC_LIMITED_SERVICE);
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-4, end */
 
     /* 卡存在表示肯定是注册被拒过 */
     if (VOS_TRUE == NAS_MML_GetSimPresentStatus())
@@ -2048,35 +1356,14 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause407SimInvalid(VOS
     return NAS_MMC_ADDITIONAL_ACTION_SINGLE_DOMAIN_ANYCELL;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCsRegFailCause408NetDetachImsi
- 功能描述  : Cs注册失败原因:NAS_MML_REG_FAIL_CAUSE_NTDTH_IMSI的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年01月16日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2013年05月08日
-   作    者   : s46746
-   修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
- 3.日    期   : 2014年04月8日
-   作    者   : s00261364
-   修改内容   : V3R360_eCall项目:服务状态上报到mmc
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause408NetDetachImsi(VOS_VOID)
 {
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    enPsAdditionalAction;
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    enCsAdditionalAction;
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    enPrioAdditionalAction;
 
-    /* Added by s00261364 for V3R360_eCall项目, 2014-4-8, begin */
     NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_CS, NAS_MMC_LIMITED_SERVICE);
-    /* Added by s00261364 for V3R360_eCall项目, 2014-4-8, end */
 
     /* 获取CSPS addition,如果不需要发起搜网则更新CS注册状态为NAS_MML_REG_NOT_REGISTERED_NOT_SEARCH */
     enPsAdditionalAction   = NAS_MMC_GetPsAdditionalAction();
@@ -2087,12 +1374,10 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause408NetDetachImsi(
     {
         NAS_MMC_ChangeCsRegState(NAS_MML_REG_NOT_REGISTERED_NOT_SEARCH);
     }
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-5-4, begin */
     else
     {
         NAS_MMC_ChangeCsRegState(NAS_MML_REG_NOT_REGISTERED_SEARCHING);
     }
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-5-4, end */
 
     /* 返回NAS_MMC_ADDITIONAL_ACTION_BUTT，表示无效的AdditionalAction值,
        MMC不更新无效AdditionalAction值*/
@@ -2100,53 +1385,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause408NetDetachImsi(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCsRegFailCause409ServingCellDomainNotSupport
- 功能描述  : 假流程:当前小区不支持CS域
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月29日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年1月4日
-    作    者   : w00167002
-    修改内容   : DTS2011122006209:g下PS ONLY注册成功_更改为CS后注册失败4次后未发起搜网.
-                  在主框架中L1MAIN/PLMN LIST中判断当前原因值为非UE主动发起注册
-                  原因值，则更新为NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON。现将
-                  此判断放到各个子函数中来判断。
-  3.日    期   : 2012年2月3日
-    作    者   : w00167002
-    修改内容   : DTS2011122704039:在注册失败原因值的函数命名中增加原因值，
-                  保持函数命名的一致性。
-  4.日    期   : 2013年1月31日
-    作    者   : t00212959
-    修改内容   : DTS2013012909238:手动模式下，单模，一个域注册被#11拒绝，一个域不支持，会循环不停的进行anycell搜网，被拒。
-
-  5.日    期   : 2013年4月1日
-    作    者   : w00167002
-    修改内容   : DTS2013032701683:无卡开机，系统消息指示PS域不支持，MMC发起循环搜网
-  6.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  7.日    期   : 2013年11月30日
-    作    者   : z00161729
-    修改内容   : DTS2013112809149:9230 nv项设置禁止接入技术为w和g，手动搜网模式驻留g的23002成功，
-                 syscfg设置w only，anycell驻留24005，会反复触发w下anycell搜网
-  8.日    期   : 2014年04月8日
-    作    者   : s00261364
-    修改内容   : V3R360_eCall项目:服务状态上报到mmc
-  9.日    期   : 2015年11月24日
-    作    者   : w00167002
-    修改内容   : DTS2015112405788:在海外测试,如果当前开机CS/PS是无服务，则不上报到
-                 MMA，而MMA需要收起CS/PS的服务状态，才给stk下发LOCATION STATUS NTF
-                 消息；卡收不到此消息，则不进行IMSI切换。
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause409ServingCellDomainNotSupport(VOS_VOID)
 {
     NAS_MMC_FSM_ID_ENUM_UINT32                              enFsmId;
@@ -2154,10 +1393,8 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause409ServingCellDom
 
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    enPrioAdditionalAction;
 
-    /* Modified by s00261364 for V3R360_eCall项目, 2014-4-4, begin */
     /* 更新服务状态 */
     NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_CS, NAS_MMC_LIMITED_SERVICE);
-    /* Modified by s00261364 for V3R360_eCall项目, 2014-4-4, end */
 
     enFsmId                = NAS_MMC_GetCurrFsmId();
     enAvailableTimerStatus = NAS_MMC_GetTimerStatus(TI_NAS_MMC_AVAILABLE_TIMER);
@@ -2195,33 +1432,16 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause409ServingCellDom
     {
         NAS_MMC_ChangeCsRegState(NAS_MML_REG_NOT_REGISTERED_NOT_SEARCH);
     }
-    /* Added by s00261364 for V3R360_eCall项目, 2014-4-30, begin */
     else
     {
         NAS_MMC_ChangeCsRegState(NAS_MML_REG_NOT_REGISTERED_SEARCHING);
     }
-    /* Added by s00261364 for V3R360_eCall项目, 2014-4-30, end */
 
     return NAS_MMC_ADDITIONAL_ACTION_OPTIONAL_PLMN_SELECTION;
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCsRegFailCause416DealyCsInTransLau
- 功能描述  : Cs 异常原因值的处理
- 输入参数  :
-             VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年1月17日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause416DealyCsInTransLau(VOS_VOID)
 {
     return NAS_MMC_ADDITIONAL_ACTION_WAIT_REG_ATTEMPT;
@@ -2229,27 +1449,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause416DealyCsInTrans
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCsRegFailCause418T3212Running
- 功能描述  : Eps T3402定时器正在运行的后续处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月4日
-    作    者   : w00167002
-    修改内容   : DTS2014052603967:CS only，在A小区注册失败17后迁移到B小区，在B小区
-                是禁止PLMN小区，MM迁移到LIMIT service状态，后续搜网到A小区网络后，
-                发起了LAU.
-                在LAU失败迁移到U2状态时候记录当前的LAI信息；在开机，用户发起CS/CS_PS
-                DETACH时候或或者重新发起LAU时候则清除该LAI信息；
-                在后续搜索到该小区后，在U2状态，如果当前的LAI在记录的LAI里面，则
-                不发起LAU.
-
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause418T3212Running(VOS_VOID)
 {
     NAS_MMC_FSM_ID_ENUM_UINT32                              enFsmId;
@@ -2298,23 +1498,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause418T3212Running(V
     return enCsAdditionalAction;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCsRegFailCause419HoSucc
- 功能描述  : 注册假流程，切换之后无系统消息的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月13日
-    作    者   : s00217060
-    修改内容   : Service_State_Optimize_PhaseI:切换流程无系统消息的处理
-  2.日    期   : 2015年7月13日
-    作    者   : s00217060
-    修改内容   : DTS2015070907463:原因值扩展，函数名修改
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause419InterRatChangeSucc(VOS_VOID)
 {
     NAS_MML_CAMP_PLMN_INFO_STRU        *pstCampPlmnInfo     = VOS_NULL_PTR;
@@ -2359,23 +1543,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause419InterRatChange
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCsRegFailCause421HoWaitSysinfoTimeout
- 功能描述  : 注册假流程，切换之后无系统消息的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-
-  1.日    期   : 2016年1月28日
-    作    者   : w00167002
-    修改内容   : 在IMS电话后SRVCC到G,没有系统消息，但下发了TMSI充分配，更新当前的RAT
-                 为GSM;因判断RAT没有改变，没有给MSCC上报系统消息，导致界面一直显示为
-                 4G.
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause421HoWaitSysinfoTimeout(VOS_VOID)
 {
     NAS_MML_CAMP_PLMN_INFO_STRU        *pstCampPlmnInfo     = VOS_NULL_PTR;
@@ -2415,23 +1583,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause421HoWaitSysinfoT
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCsRegFailCauseAbnormalCause
- 功能描述  : Cs 异常原因值的处理
- 输入参数  :
-             VOS_UINT16                          usCause,
-             VOS_UINT32                          ulAttemptCnt
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年1月17日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCauseAbnormalCause(
     VOS_UINT16                          usCause,
     VOS_UINT32                          ulAttemptCnt
@@ -2463,29 +1615,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCauseAbnormalCause(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCsRegFailAttemptCounterMaxTimes
- 功能描述  : Cs注册失败最大次数的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年11月18日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2013年05月08日
-   作    者   : s46746
-   修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
- 3.日    期   : 2014年04月8日
-   作    者   : s00261364
-   修改内容   : V3R360_eCall项目:服务状态上报到mmc
- 4.日    期   : 2015年9月23日
-   作    者   : z00359541
-   修改内容   : CS注册失败加入禁止LA列表特性打开时，需触发指定搜网。
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailAttemptCounterMaxTimes(VOS_VOID)
 {
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    enAction;
@@ -2497,10 +1627,8 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailAttemptCounterMaxTimes
 
     pstRegRsltCtx   = NAS_MMC_GetRegRsltCtxAddr();
 
-    /* Modified by s00261364 for V3R360_eCall项目, 2014-4-4, begin */
     /* 更新服务状态 */
     NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_CS, NAS_MMC_LIMITED_SERVICE);
-    /* Modified by s00261364 for V3R360_eCall项目, 2014-4-4, end */
 
     /* 单域搜网定制标识 */
     ucSingleDomainSrchFlag = NAS_MML_GetDtSingleDomainPlmnSearchFlag();
@@ -2532,44 +1660,17 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailAttemptCounterMaxTimes
     {
         NAS_MMC_ChangeCsRegState(NAS_MML_REG_NOT_REGISTERED_NOT_SEARCH);
     }
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-5-4, begin */
     else
     {
         NAS_MMC_ChangeCsRegState(NAS_MML_REG_NOT_REGISTERED_SEARCHING);
     }
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-5-4, end */
 
 
     return enAction;
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCsRegFailCause17AttemptCounterMaxTimes
- 功能描述  : Cs注册失败最大次数的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年11月18日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2013年05月08日
-   作    者   : s46746
-   修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
- 3.日    期   : 2014年5月21日
-   作    者   : w00167002
-   修改内容   : DTS2014051602857新增:在SOR打开时候，如果CS注册失败达到4次，则等周期
-                搜网定时器超时发起LIST搜网，如果当前仅有原有网络，则发起LAU,否则
-                触发MM发起LAU;如果LIST搜后，发现有其他网络，则发起其他网络的搜网注册。
-                手动选网时候，返回LIMIT CAMP ON,不再发起选网。
- 4.日    期   : 2015年9月23日
-   作    者   : z00359541
-   修改内容   : CS注册失败加入禁止LA列表特性打开时，需触发指定搜网。
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause17AttemptCounterMaxTimes(VOS_VOID)
 {
     NAS_MML_SOR_ADDITIONAL_LAU_STRU                        *pstAdditionalLau            = VOS_NULL_PTR;
@@ -2600,9 +1701,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause17AttemptCounterM
     NAS_MMC_SetCsServiceStatus(NAS_MMC_LIMITED_SERVICE);
 
     /* 通知TAF当前的服务状态 */
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, begin*/
     NAS_MMC_SndMsccServiceStatusInd(NAS_MSCC_PIF_SRVDOMAIN_CS, NAS_MSCC_PIF_SERVICE_STATUS_LIMITED_SERVICE);
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, end*/
 
     /* 单域搜网定制标识 */
     ucSingleDomainSrchFlag = NAS_MML_GetDtSingleDomainPlmnSearchFlag();
@@ -2674,39 +1773,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause17AttemptCounterM
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCsRegFailAttemptCounterMaxTimes
- 功能描述  : Cs注册失败最大次数的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年11月18日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2014年3月29日
-   作    者   : z00161729
-   修改内容   : DTS2014032200128:g下cs only cs域上报的服务状态为限制服务，注册状态上报为驻留home网络，导致界面显示正常但发短信失败
- 3.日    期   : 2014年04月8日
-   作    者   : s00261364
-   修改内容   : V3R360_eCall项目:服务状态上报到mmc
-
- 4.日    期   : 2014年10月22日
-   作    者   : w00167002
-   修改内容   : DTS2014101305830:在PLMN改变时候，更新服务状态。
-                俄罗斯外场测试:在25002网络的4G上注册成功后，重定向到G下，联合RAU
-                失败(ps/cs cause:303),立即更新的服务状态，用户体验不好。第二次RAU
-                就成功了。
-                关于状态显示优化的功能，SE有进行系统的优化设计方案，当前只针对问题场景
-                进行简易优化修改。
- 5.日    期   : 2014年11月28日
-   作    者   : w00281933
-   修改内容   : 服务状态显示优化PhaseI
-
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailAttemptCounterLessThanMaxTimes(VOS_VOID)
 {
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    enAction;
@@ -2726,10 +1793,8 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailAttemptCounterLessThan
 
     if(NAS_MMC_NORMAL_SERVICE != NAS_MMC_GetCurrCsService())
     {
-        /* Modified by s00261364 for V3R360_eCall项目, 2014-4-4, begin */
         /* 更新服务状态 */
         NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_CS, NAS_MMC_LIMITED_SERVICE);
-        /* Modified by s00261364 for V3R360_eCall项目, 2014-4-4, end */
 
         /* 如果之前注册成功，需要将注册状态设置为0 */
         if ((NAS_MML_REG_REGISTERED_HOME_NETWORK == enCsRegStatus)
@@ -2771,38 +1836,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailAttemptCounterLessThan
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcPsRegFailCause3IllegalMs
- 功能描述  : Ps Cause3的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月29日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月20日
-    作    者   : h44270
-    修改内容   : 卡无效时，通知APS挂起
-  3.日    期   : 2012年10月15日
-    作    者   : s00217060
-    修改内容   : for DTS2012082308686:Ps注册失败原因值#3,#6,#8,#256，需要重新Enable Lte
-  4.日    期   : 2013年01月23日
-    作    者   : s00217060
-    修改内容   : 问题单: DTS2013012106172,Enable Lte时停止定时器TI_NAS_MMC_WAIT_ENABLE_LTE_TIMER
-  5.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  6.日    期   : 2014年4月29日
-    作    者   : s00261364
-    修改内容   : ecall项目修改服务状态上报
-  7.日    期   : 2015年1月5日
-    作    者   : z00161729
-    修改内容   : AT&T 支持DAM特性修改
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause3IllegalMs(VOS_VOID)
 {
 #if   (FEATURE_ON == FEATURE_LTE)
@@ -2811,10 +1845,8 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause3IllegalMs(VOS_VO
     ulDisablteRoamFlg = NAS_MML_GetDisableLteRoamFlg();
 #endif
 
-    /* Modified by s00261364 for V3R360_eCall项目, 2014-4-4, begin */
     /* 更新服务状态 */
     NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_CS_PS, NAS_MMC_LIMITED_SERVICE);
-    /* Modified by s00261364 for V3R360_eCall项目, 2014-4-4, end */
 
     NAS_MMC_NotifyModeChange(NAS_MML_NET_RAT_TYPE_BUTT,VOS_FALSE);
 
@@ -2846,76 +1878,17 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause3IllegalMs(VOS_VO
     return NAS_MMC_ADDITIONAL_ACTION_CSPS_ANYCELL;
 
 }
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcPsRegFailCause6IllegalMe
- 功能描述  : Ps Cause6的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月29日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause6IllegalMe(VOS_VOID)
 {
     /* 按PsCause6 处理 */
     return NAS_MMC_ProcPsRegFailCause3IllegalMs();
 }
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcPsRegFailCause7GprsServNotAllow
- 功能描述  : Ps Cause7的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月29日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-
- 2.日    期   : 2011年10月26日
-   作    者   : w00176964
-   修改内容   : V7R1 Phase III调整:联合注册修改
-
- 3.日    期   : 2011年12月01日
-   作    者   : w00176964
-   修改内容   : V7R1 Phase IV调整:disable/enable 调整
-
- 4.日    期   : 2011年12月20日
-   作    者   : h44270
-   修改内容   : 卡无效时，通知APS挂起
- 5.日    期   : 2012年3月17日
-   作    者   : w00176964
-   修改内容   : DTS2012031900095 V7R1 C30 SBM&EM定制需求:增加LTE国家漫游功能定制
- 6.日    期   : 2012年07月02日
-   作    者   : s46746
-   修改内容   : For CS/PS mode 1，调整Disable/Enable L,按场景区分函数
- 7.日    期   : 2012年7月27日
-   作    者   : s00217060
-   修改内容   : for CS/PS mode 1,带Disable LTE原因值
- 8.日    期   : 2013年05月08日
-   作    者   : s46746
-   修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
- 9.日    期   : 2014年4月29日
-   作    者   : s00261364
-   修改内容   : ecall项目修改服务状态上报
- 10.日    期   : 2015年1月5日
-    作    者   : z00161729
-    修改内容   : AT&T 支持DAM特性修改
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause7GprsServNotAllow(VOS_VOID)
 {
-    /* Modified by s00261364 for V3R360_eCall项目, 2014-4-4, begin */
     /* 更新服务状态 */
     NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_PS, NAS_MMC_LIMITED_SERVICE);
-    /* Modified by s00261364 for V3R360_eCall项目, 2014-4-4, end */
 
     NAS_MMC_NotifyModeChange(NAS_MML_NET_RAT_TYPE_BUTT,VOS_FALSE);
 
@@ -2943,38 +1916,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause7GprsServNotAllow
 #endif
     return NAS_MMC_ADDITIONAL_ACTION_SINGLE_DOMAIN_ANYCELL;
 }
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcPsRegFailCause8GprsAndNonGprsNotAllow
- 功能描述  : Ps Cause8的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月29日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月20日
-    作    者   : h44270
-    修改内容   : 卡无效时，通知APS挂起
-  3.日    期   : 2012年10月15日
-    作    者   : s00217060
-    修改内容   : for DTS2012082308686:Ps注册失败原因值#3,#6,#8,#256，需要重新Enable Lte
-  4.日    期   : 2013年01月23日
-    作    者   : s00217060
-    修改内容   : 问题单: DTS2013012106172,Enable Lte时停止定时器TI_NAS_MMC_WAIT_ENABLE_LTE_TIMER
-  5.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  6.日    期   : 2014年4月29日
-    作    者   : s00261364
-    修改内容   : ecall项目修改服务状态上报
-  7.日    期   : 2015年1月5日
-    作    者   : z00161729
-    修改内容   : AT&T 支持DAM特性修改
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause8GprsAndNonGprsNotAllow(VOS_VOID)
 {
 #if   (FEATURE_ON == FEATURE_LTE)
@@ -2983,10 +1925,8 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause8GprsAndNonGprsNo
     ulDisablteRoamFlg = NAS_MML_GetDisableLteRoamFlg();
 #endif
 
-    /* Modified by s00261364 for V3R360_eCall项目, 2014-4-4, begin */
     /* 更新服务状态 */
     NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_CS_PS, NAS_MMC_LIMITED_SERVICE);
-    /* Modified by s00261364 for V3R360_eCall项目, 2014-4-4, end */
 
     NAS_MMC_NotifyModeChange(NAS_MML_NET_RAT_TYPE_BUTT,VOS_FALSE);
 
@@ -3018,29 +1958,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause8GprsAndNonGprsNo
     return NAS_MMC_ADDITIONAL_ACTION_CSPS_ANYCELL;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcPsRegFailCause9MsIdNotDerived
- 功能描述  : ps Cause:9的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月4日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  3.日    期   : 2013年07月16日
-    作    者   : w00242748
-    修改内容   : 修改手动搜网导致死循环
-  4.日    期   : 2014年04月8日
-    作    者   : s00261364
-    修改内容   : V3R360_eCall项目:服务状态上报到mmc
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause9MsIdNotDerived(VOS_VOID)
 {
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    enAction;
@@ -3074,7 +1992,6 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause9MsIdNotDerived(V
         enPrioAdditionalAction = NAS_MMC_GetCsAdditionalAction();
         enPrioAdditionalAction = NAS_MMC_GetPrioAddtionalAction(NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON, enPrioAdditionalAction);
 
-        /* Modified by s00261364 for V3R360_eCall项目, 2014-4-8, begin */
         NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_PS, NAS_MMC_LIMITED_SERVICE);
 
         if (VOS_FALSE == NAS_MMC_IsAdditionalActionTrigerPlmnSrch(enPrioAdditionalAction))
@@ -3085,7 +2002,6 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause9MsIdNotDerived(V
         {
             NAS_MMC_ChangePsRegState(NAS_MML_REG_NOT_REGISTERED_SEARCHING);
         }
-        /* Modified by s00261364 for V3R360_eCall项目, 2014-4-8, end */
 
         return NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON;
     }
@@ -3105,29 +2021,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause9MsIdNotDerived(V
     return enAction;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcPsRegFailCause10ImplicitDetached
- 功能描述  : ps Cause:10的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月4日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  3.日    期   : 2013年07月16日
-    作    者   : w00242748
-    修改内容   : 修改手动搜网被拒死循环
-  4.日    期   : 2014年04月8日
-    作    者   : s00261364
-    修改内容   : V3R360_eCall项目:服务状态上报到mmc
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause10ImplicitDetached(VOS_VOID)
 {
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    enAction;
@@ -3161,7 +2055,6 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause10ImplicitDetache
         enPrioAdditionalAction = NAS_MMC_GetCsAdditionalAction();
         enPrioAdditionalAction = NAS_MMC_GetPrioAddtionalAction(NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON, enPrioAdditionalAction);
 
-        /* Modified by s00261364 for V3R360_eCall项目, 2014-4-8, begin */
         NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_PS, NAS_MMC_LIMITED_SERVICE);
 
         if (VOS_FALSE == NAS_MMC_IsAdditionalActionTrigerPlmnSrch(enPrioAdditionalAction))
@@ -3172,7 +2065,6 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause10ImplicitDetache
         {
             NAS_MMC_ChangePsRegState(NAS_MML_REG_NOT_REGISTERED_SEARCHING);
         }
-        /* Modified by s00261364 for V3R360_eCall项目, 2014-4-8, end */
 
 
         return NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON;
@@ -3192,38 +2084,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause10ImplicitDetache
 
     return enAction;
 }
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcPsRegFailCause11PlmnNotAllow
- 功能描述  : Ps Cause11的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月29日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月5日
-    作    者   : z00161729
-    修改内容   : V7R1 phaseIV修改合并原NAS_MMC_HPLMN_REG_REJ_STRU和NAS_MMC_PLMN_REG_INFO_STRU
-  3.日    期   : 2012年03月03日
-    作    者   : s62952
-    修改内容   : BalongV300R002 Build优化项目
-  4.日    期   : 2012年07月19日
-    作    者   : l65478
-    修改内容   : DTS2012071805908,在HOME PLMN注册失败#11后发起了搜网,不满足EM需求
-  5.日    期   : 2012年11月29日
-    作    者   : W00176964
-    修改内容   : DTS2012112902395,BVT测试,hplmn被拒#11后后续需要继续注册
-  6.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  7.日    期   : 2014年04月8日
-    作    者   : s00261364
-    修改内容   : V3R360_eCall项目:服务状态上报到mmc
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause11PlmnNotAllow(VOS_VOID)
 {
     VOS_UINT8                           ucRejDomain;
@@ -3240,10 +2101,8 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause11PlmnNotAllow(VO
         NAS_MMC_SndUsimUpdateForbPlmnReq();
     }
 
-    /* Modified by s00261364 for V3R360_eCall项目, 2014-4-4, begin */
     /* 更新服务状态 */
     NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_PS, NAS_MMC_LIMITED_SERVICE);
-    /* Modified by s00261364 for V3R360_eCall项目, 2014-4-4, end */
 
     /* 驻留在非HOME PLMN上时，注册拒绝#11时进行搜网 */
     if (VOS_FALSE == NAS_MML_ComparePlmnIdWithHplmn(pstCurPlmnId))
@@ -3252,14 +2111,11 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause11PlmnNotAllow(VO
         NAS_MMC_UpdatePlmnRegInfoList(NAS_MML_GetCurrCampPlmnId(),
                  NAS_MMC_REG_DOMAIN_PS, NAS_MML_REG_FAIL_CAUSE_PLMN_NOT_ALLOW);
 
-        /* Added by w00176964 for V3R3C60_eCall项目, 2014-5-4, begin */
         NAS_MMC_ChangePsRegState(NAS_MML_REG_NOT_REGISTERED_SEARCHING);
-        /* Added by w00176964 for V3R3C60_eCall项目, 2014-5-4, end */
 
         return NAS_MMC_ADDITIONAL_ACTION_PLMN_SELECTION;
     }
 
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     if ( VOS_FALSE == NAS_MML_GetHplmnRegisterCtrlFlg())
     {
         /* 非E5版本才做如下处理，E5版本要求能在HPLMN上反复发起注册 */
@@ -3281,7 +2137,6 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause11PlmnNotAllow(VO
         }
 
     }
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
     else
     {
         /* EM定制需求:1、PS ONLY；2、当前是W；3、被网络拒#11时,
@@ -3295,32 +2150,11 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause11PlmnNotAllow(VO
         }
     }
 
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-5-4, begin */
     NAS_MMC_ChangePsRegState(NAS_MML_REG_NOT_REGISTERED_SEARCHING);
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-5-4, end */
 
     return NAS_MMC_ADDITIONAL_ACTION_PLMN_SELECTION;
 }
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcPsRegFailCause12LaNotAllow
- 功能描述  : Ps Cause12的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月29日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  3.日    期   : 2014年04月8日
-    作    者   : s00261364
-    修改内容   : V3R360_eCall项目:服务状态上报到mmc
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause12LaNotAllow(VOS_VOID)
 {
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8          enCsAdditionalAction;
@@ -3330,10 +2164,8 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause12LaNotAllow(VOS_
 
     (VOS_VOID)NAS_MMC_StartTimer(TI_NAS_MMC_FORBID_LA_TIMER, TI_NAS_MMC_FORBID_LA_TIMER_LEN);
 
-    /* Modified by s00261364 for V3R360_eCall项目, 2014-4-4, begin */
     /* 更新服务状态 */
     NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_PS, NAS_MMC_LIMITED_SERVICE_REGION);
-    /* Modified by s00261364 for V3R360_eCall项目, 2014-4-4, end */
 
     enCsAdditionalAction = NAS_MMC_GetCsAdditionalAction();
     if ((NAS_MMC_ADDITIONAL_ACTION_CSPS_ANYCELL != enCsAdditionalAction)
@@ -3342,36 +2174,14 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause12LaNotAllow(VOS_
     {
         NAS_MMC_ChangePsRegState(NAS_MML_REG_NOT_REGISTERED_NOT_SEARCH);
     }
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-5-4, begin */
     else
     {
         NAS_MMC_ChangePsRegState(NAS_MML_REG_NOT_REGISTERED_SEARCHING);
     }
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-5-4, end */
 
     return NAS_MMC_ADDITIONAL_ACTION_CELL_SELECTION;
 }
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcPsRegFailCause13RoamNotAllow
- 功能描述  : Ps Cause13的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年6月29日
-   作    者   : l00130025
-   修改内容   : 新生成函数
- 2.日    期   : 2011年11月12日
-   作    者   : w00167002
-   修改内容   : DTS2011110907180:NAS_MML_AddForbRoamLa函数调整的修改
- 3.日    期   : 2014年04月8日
-   作    者   : s00261364
-   修改内容   : V3R360_eCall项目:服务状态上报到mmc
-
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause13RoamNotAllow(VOS_VOID)
 {
     NAS_MML_FORBIDPLMN_ROAMING_LAS_INFO_STRU                stForbRoamLaInfo;
@@ -3394,41 +2204,15 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause13RoamNotAllow(VO
 
     (VOS_VOID)NAS_MMC_StartTimer(TI_NAS_MMC_FORBID_LA_TIMER, TI_NAS_MMC_FORBID_LA_TIMER_LEN);
 
-    /* Modified by s00261364 for V3R360_eCall项目, 2014-4-4, begin */
     /* 更新服务状态 */
     NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_PS, NAS_MMC_LIMITED_SERVICE);
-    /* Modified by s00261364 for V3R360_eCall项目, 2014-4-4, end */
 
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-5-4, begin */
     NAS_MMC_ChangePsRegState(NAS_MML_REG_NOT_REGISTERED_SEARCHING);
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-5-4, end */
 
     return NAS_MMC_ADDITIONAL_ACTION_PLMN_SELECTION;
 
 }
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcPsRegFailCause14GprsNotAllowInThisPlmn
- 功能描述  : Ps Cause8的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月29日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  3.日    期   : 2012年6月20日
-    作    者   : w00166186
-    修改内容   : AT&T&DCM项目
-  4.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  5.日    期   : 2014年04月8日
-    作    者   : s00261364
-    修改内容   : V3R360_eCall项目:服务状态上报到mmc
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause14GprsNotAllowInThisPlmn(VOS_VOID)
 {
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    enAction;
@@ -3438,12 +2222,8 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause14GprsNotAllowInT
     /* 添加禁止GPRS PLMN 信息 */
     NAS_MML_AddForbGprsPlmn(NAS_MML_GetCurrCampPlmnId());
 
-    /* Deleted by s00261364 for V3R360_eCall项目, 2014-4-30, begin */
 
-    /* Deleted by s00261364 for V3R360_eCall项目, 2014-4-30, end */
-    /* Added by s00261364 for V3R360_eCall项目, 2014-4-30, begin */
     NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_PS, NAS_MMC_LIMITED_SERVICE);
-    /* Added by s00261364 for V3R360_eCall项目, 2014-4-30, end */
 
     /* 如果有定制的#14的动作，返回NV中定制的动作 */
     enAction = NAS_MMC_GetSingleDomainFailAction(NAS_MML_REG_DOMAIN_PS, NAS_MML_REG_FAIL_CAUSE_GPRS_SERV_NOT_ALLOW_IN_PLMN);
@@ -3460,41 +2240,16 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause14GprsNotAllowInT
     {
         NAS_MMC_ChangePsRegState(NAS_MML_REG_NOT_REGISTERED_NOT_SEARCH);
     }
-    /* Added by s00261364 for V3R360_eCall项目, 2014-4-30, begin */
     else
     {
         NAS_MMC_ChangePsRegState(NAS_MML_REG_NOT_REGISTERED_SEARCHING);
     }
-    /* Added by s00261364 for V3R360_eCall项目, 2014-4-30, end */
 
 
     return enAction;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcPsRegFailCause15NoSuitableCell
- 功能描述  : Ps Cause13的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年6月29日
-   作    者   : l00130025
-   修改内容   : 新生成函数
- 2.日    期   : 2011年11月12日
-   作    者   : w00167002
-   修改内容   : DTS2011110907180:当前若为选网状态机，则添加禁止网络信息
-                 到禁止漫游LA变量里去
- 3.日    期   : 2013年3月30日
-   作    者   : l00167671
-   修改内容   : 主动上报AT命令控制下移至C核
- 4.日    期   : 2014年04月8日
-   作    者   : s00261364
-   修改内容   : V3R360_eCall项目:服务状态上报到mmc
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause15NoSuitableCell(VOS_VOID)
 {
     NAS_MML_FORBIDPLMN_ROAMING_LAS_INFO_STRU                stForbRoamLaInfo;
@@ -3519,54 +2274,19 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause15NoSuitableCell(
     (VOS_VOID)NAS_MMC_StartTimer(TI_NAS_MMC_FORBID_LA_TIMER, TI_NAS_MMC_FORBID_LA_TIMER_LEN);
 
     /* 更新服务状态 */
-    /* Added by s00261364 for V3R360_eCall项目, 2014-4-8, begin */
     NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_PS, NAS_MMC_LIMITED_SERVICE);
     NAS_MMC_ChangePsRegState(NAS_MML_REG_NOT_REGISTERED_SEARCHING);
-    /* Added by s00261364 for V3R360_eCall项目, 2014-4-8, end */
 
     return NAS_MMC_ADDITIONAL_ACTION_SEARCH_SUITABLE_CELL_IN_SAME_PLMN;
 
 }
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcPsRegFailCause40NoPdpContextActived
- 功能描述  : Ps Cause40的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月29日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause40NoPdpContextActived(VOS_VOID)
 {
     return NAS_MMC_ADDITIONAL_ACTION_NORMAL_CAMP_ON;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcPsRegFailCause95SemanticallyIncorrectMsg
- 功能描述  : Ps Cause95的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年11月12日
-   作    者   : w00167002
-   修改内容   : DTS2011122006209:拒绝原因值95的处理
- 2.日    期   : 2013年05月08日
-   作    者   : s46746
-   修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
- 3.日    期   : 2014年04月8日
-   作    者   : s00261364
-   修改内容   : V3R360_eCall项目:服务状态上报到mmc
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause95SemanticallyIncorrectMsg(VOS_VOID)
 {
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    enAction;
@@ -3592,7 +2312,6 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause95SemanticallyInc
         enPrioAdditionalAction = NAS_MMC_GetCsAdditionalAction();
         enPrioAdditionalAction = NAS_MMC_GetPrioAddtionalAction(NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON, enPrioAdditionalAction);
 
-        /* Modified by s00261364 for V3R360_eCall项目, 2014-4-8, begin */
         NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_PS, NAS_MMC_LIMITED_SERVICE);
 
         if (VOS_FALSE == NAS_MMC_IsAdditionalActionTrigerPlmnSrch(enPrioAdditionalAction))
@@ -3603,7 +2322,6 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause95SemanticallyInc
         {
             NAS_MMC_ChangePsRegState(NAS_MML_REG_NOT_REGISTERED_SEARCHING);
         }
-        /* Modified by s00261364 for V3R360_eCall项目, 2014-4-8, end */
 
         return NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON;
     }
@@ -3622,26 +2340,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause95SemanticallyInc
     return enAction;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcPsRegFailCause96InvalidMandatoryInf
- 功能描述  : Ps Cause96的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年11月12日
-   作    者   : w00167002
-   修改内容   : DTS2011122006209:拒绝原因值96的处理
- 2.日    期   : 2013年05月08日
-   作    者   : s46746
-   修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
- 3.日    期   : 2014年04月8日
-   作    者   : s00261364
-   修改内容   : V3R360_eCall项目:服务状态上报到mmc
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause96InvalidMandatoryInf(VOS_VOID)
 {
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    enAction;
@@ -3667,7 +2366,6 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause96InvalidMandator
         enPrioAdditionalAction = NAS_MMC_GetCsAdditionalAction();
         enPrioAdditionalAction = NAS_MMC_GetPrioAddtionalAction(NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON, enPrioAdditionalAction);
 
-        /* Modified by s00261364 for V3R360_eCall项目, 2014-4-8, begin */
         NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_PS, NAS_MMC_LIMITED_SERVICE);
 
         if (VOS_FALSE == NAS_MMC_IsAdditionalActionTrigerPlmnSrch(enPrioAdditionalAction))
@@ -3678,7 +2376,6 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause96InvalidMandator
         {
             NAS_MMC_ChangePsRegState(NAS_MML_REG_NOT_REGISTERED_SEARCHING);
         }
-        /* Modified by s00261364 for V3R360_eCall项目, 2014-4-8, end */
 
 
         return NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON;
@@ -3698,26 +2395,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause96InvalidMandator
     return enAction;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcPsRegFailCause97MsgNonExistNotImplement
- 功能描述  : Ps Cause97的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年11月12日
-   作    者   : w00167002
-   修改内容   : DTS2011122006209:拒绝原因值97的处理
- 2.日    期   : 2013年05月08日
-   作    者   : s46746
-   修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
- 3.日    期   : 2014年04月8日
-   作    者   : s00261364
-   修改内容   : V3R360_eCall项目:服务状态上报到mmc
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause97MsgNonExistNotImplement(VOS_VOID)
 {
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    enAction;
@@ -3743,7 +2421,6 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause97MsgNonExistNotI
         enPrioAdditionalAction = NAS_MMC_GetCsAdditionalAction();
         enPrioAdditionalAction = NAS_MMC_GetPrioAddtionalAction(NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON, enPrioAdditionalAction);
 
-        /* Modified by s00261364 for V3R360_eCall项目, 2014-4-8, begin */
         NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_PS, NAS_MMC_LIMITED_SERVICE);
 
         if (VOS_FALSE == NAS_MMC_IsAdditionalActionTrigerPlmnSrch(enPrioAdditionalAction))
@@ -3754,7 +2431,6 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause97MsgNonExistNotI
         {
             NAS_MMC_ChangePsRegState(NAS_MML_REG_NOT_REGISTERED_SEARCHING);
         }
-        /* Modified by s00261364 for V3R360_eCall项目, 2014-4-8, end */
 
 
         return NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON;
@@ -3774,27 +2450,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause97MsgNonExistNotI
     return enAction;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcPsRegFailCause99IeNonExistNotImplement
- 功能描述  : Ps Cause99的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年11月12日
-   作    者   : w00167002
-   修改内容   : DTS2011122006209:拒绝原因值99的处理
- 2.日    期   : 2013年05月08日
-   作    者   : s46746
-   修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
- 3.日    期   : 2014年04月8日
-   作    者   : s00261364
-   修改内容   : V3R360_eCall项目:服务状态上报到mmc
-
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause99IeNonExistNotImplement(VOS_VOID)
 {
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    enAction;
@@ -3820,7 +2476,6 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause99IeNonExistNotIm
         enPrioAdditionalAction = NAS_MMC_GetCsAdditionalAction();
         enPrioAdditionalAction = NAS_MMC_GetPrioAddtionalAction(NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON, enPrioAdditionalAction);
 
-        /* Modified by s00261364 for V3R360_eCall项目, 2014-4-8, begin */
         NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_PS, NAS_MMC_LIMITED_SERVICE);
 
         if (VOS_FALSE == NAS_MMC_IsAdditionalActionTrigerPlmnSrch(enPrioAdditionalAction))
@@ -3831,7 +2486,6 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause99IeNonExistNotIm
         {
             NAS_MMC_ChangePsRegState(NAS_MML_REG_NOT_REGISTERED_SEARCHING);
         }
-        /* Modified by s00261364 for V3R360_eCall项目, 2014-4-8, end */
 
 
         return NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON;
@@ -3851,26 +2505,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause99IeNonExistNotIm
     return enAction;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcPsRegFailCause111ProtocolError
- 功能描述  : Ps Cause111的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年11月12日
-   作    者   : w00167002
-   修改内容   : DTS2011122006209:拒绝原因值111的处理
- 2.日    期   : 2013年05月08日
-   作    者   : s46746
-   修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
- 3.日    期   : 2014年04月8日
-   作    者   : s00261364
-   修改内容   : V3R360_eCall项目:服务状态上报到mmc
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause111ProtocolError(VOS_VOID)
 {
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    enAction;
@@ -3896,7 +2531,6 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause111ProtocolError(
         enPrioAdditionalAction = NAS_MMC_GetCsAdditionalAction();
         enPrioAdditionalAction = NAS_MMC_GetPrioAddtionalAction(NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON, enPrioAdditionalAction);
 
-        /* Modified by s00261364 for V3R360_eCall项目, 2014-4-8, begin */
         NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_PS, NAS_MMC_LIMITED_SERVICE);
 
         if (VOS_FALSE == NAS_MMC_IsAdditionalActionTrigerPlmnSrch(enPrioAdditionalAction))
@@ -3907,7 +2541,6 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause111ProtocolError(
         {
             NAS_MMC_ChangePsRegState(NAS_MML_REG_NOT_REGISTERED_SEARCHING);
         }
-        /* Modified by s00261364 for V3R360_eCall项目, 2014-4-8, end */
 
 
         return NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON;
@@ -3926,42 +2559,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause111ProtocolError(
 
     return enAction;
 }
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcPsRegFailCause256AuthRej
- 功能描述  : Ps Reg Auth rej的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月29日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2012年2月3日
-    作    者   : w00167002
-    修改内容   : DTS2011122704039:在注册失败原因值的函数命名中增加原因值，
-                  保持函数命名的一致性。
-  3.日    期   : 2012年10月15日
-    作    者   : s00217060
-    修改内容   : for DTS2012082308686:Ps注册失败原因值为3,6,8,256时，需要重新Enable Lte
-  4.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  5.日    期   : 2013年01月23日
-    作    者   : s00217060
-    修改内容   : 问题单: DTS2013012106172,Enable Lte时停止定时器TI_NAS_MMC_WAIT_ENABLE_LTE_TIMER
-  6.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  7.日    期   : 2014年4月29日
-    作    者   : s00261364
-    修改内容   : ecall项目修改服务状态上报
-  8.日    期   : 2015年1月5日
-    作    者   : z00161729
-    修改内容   : AT&T 支持DAM特性修改
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause256AuthRej(VOS_VOID)
 {
 #if   (FEATURE_ON == FEATURE_LTE)
@@ -3970,10 +2568,8 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause256AuthRej(VOS_VO
     ulDisablteRoamFlg = NAS_MML_GetDisableLteRoamFlg();
 #endif
 
-    /* Modified by s00261364 for V3R360_eCall项目, 2014-4-4, begin */
     /* 更新服务状态 */
     NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_CS_PS, NAS_MMC_LIMITED_SERVICE);
-    /* Modified by s00261364 for V3R360_eCall项目, 2014-4-4, end */
 
     NAS_MMC_ChangeCsRegState(NAS_MML_REG_REGISTERED_DENIED);
     NAS_MMC_ChangePsRegState(NAS_MML_REG_REGISTERED_DENIED);
@@ -4003,39 +2599,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause256AuthRej(VOS_VO
     return NAS_MMC_ADDITIONAL_ACTION_CSPS_ANYCELL;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcPsRegFailCause257AccessBarrd
- 功能描述  : Ps AccessBarrd的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月29日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2012年2月3日
-    作    者   : w00167002
-    修改内容   : DTS2011122704039:在注册失败原因值的函数命名中增加原因值，
-                  保持函数命名的一致性。
-  3.日    期   : 2012年3月10日
-    作    者   : w00166186
-    修改内容   : CSFB&PPAC&ETWS&ISR 开发
-  4.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  5.日    期   : 2013年10月15日
-    作    者   : s00190137
-    修改内容   : 特性开关打开且非HPLMN/RPLMN接入禁止时需要触发PLMN搜网
-  6.日    期   : 2014年04月8日
-    作    者   : s00261364
-    修改内容   : V3R360_eCall项目:服务状态上报到mmc
-  7.日    期   : 2015年10月14日
-    作    者   : c00318887
-    修改内容   : DTS2015082002854: 漫游标记不准
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause257AccessBarrd(VOS_VOID)
 {
     NAS_MML_ROUTING_UPDATE_STATUS_ENUM_UINT8    enPsUpdateStatus;
@@ -4053,9 +2617,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause257AccessBarrd(VO
     else
     {
 
-        /* Added by s00261364 for V3R360_eCall项目, 2014-4-8, begin */
         NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_PS, NAS_MMC_LIMITED_SERVICE);
-        /* Added by s00261364 for V3R360_eCall项目, 2014-4-8, end */
         NAS_MMC_ChangePsRegState(NAS_MML_REG_NOT_REGISTERED_NOT_SEARCH);
     }
 
@@ -4071,28 +2633,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause257AccessBarrd(VO
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcPsRegFailCause301TimerTimeOut
- 功能描述  : ps Cause:NAS_MML_REG_FAIL_CAUSE_TIMER_TIMEOUT 的处理
- 输入参数  :
-             VOS_UINT16                          usCause,
-             VOS_UINT32                          ulAttemptCnt
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年11月18日
-   作    者   : w00167002
-   修改内容   : 新生成函数。
- 2.日    期   : 2013年05月08日
-   作    者   : s46746
-   修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
- 3.日    期   : 2014年04月4日
-   作    者   : s00261364
-   修改内容   : V3R360_eCall项目:服务状态上报到mmc
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause301TimerTimeOut(VOS_VOID)
 {
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    enAction;
@@ -4118,7 +2659,6 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause301TimerTimeOut(V
         enPrioAdditionalAction = NAS_MMC_GetCsAdditionalAction();
         enPrioAdditionalAction = NAS_MMC_GetPrioAddtionalAction(NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON, enPrioAdditionalAction);
 
-        /* Modified by s00261364 for V3R360_eCall项目, 2014-4-4, begin */
         NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_PS, NAS_MMC_LIMITED_SERVICE);
 
         if (VOS_FALSE == NAS_MMC_IsAdditionalActionTrigerPlmnSrch(enPrioAdditionalAction))
@@ -4129,7 +2669,6 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause301TimerTimeOut(V
         {
             NAS_MMC_ChangePsRegState(NAS_MML_REG_NOT_REGISTERED_SEARCHING);
         }
-        /* Modified by s00261364 for V3R360_eCall项目, 2014-4-4, end */
 
 
         return NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON;
@@ -4149,27 +2688,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause301TimerTimeOut(V
     return enAction;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcPsRegFailCause302RrConnEstFail
- 功能描述  : Ps Cause:NAS_MML_REG_FAIL_CAUSE_RR_CONN_EST_FAIL 的处理
- 输入参数  :
-             VOS_UINT32                          ulAttemptCnt
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年11月18日
-   作    者   : w00167002
-   修改内容   : 新生成函数。
- 2.日    期   : 2013年05月08日
-   作    者   : s46746
-   修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
- 3.日    期   : 2014年04月4日
-   作    者   : s00261364
-   修改内容   : V3R360_eCall项目:服务状态上报到mmc
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause302RrConnEstFail(VOS_VOID)
 {
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    enAction;
@@ -4195,7 +2714,6 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause302RrConnEstFail(
         enPrioAdditionalAction = NAS_MMC_GetCsAdditionalAction();
         enPrioAdditionalAction = NAS_MMC_GetPrioAddtionalAction(NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON, enPrioAdditionalAction);
 
-        /* Modified by s00261364 for V3R360_eCall项目, 2014-4-4, begin */
         NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_PS, NAS_MMC_LIMITED_SERVICE);
 
         if (VOS_FALSE == NAS_MMC_IsAdditionalActionTrigerPlmnSrch(enPrioAdditionalAction))
@@ -4206,7 +2724,6 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause302RrConnEstFail(
         {
             NAS_MMC_ChangePsRegState(NAS_MML_REG_NOT_REGISTERED_SEARCHING);
         }
-        /* Modified by s00261364 for V3R360_eCall项目, 2014-4-4, end */
 
 
 
@@ -4227,26 +2744,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause302RrConnEstFail(
     return enAction;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcPsRegFailCause303RrConnFail
- 功能描述  : Ps Cause:NAS_MML_REG_FAIL_CAUSE_RR_CONN_FAIL的处理
- 输入参数  : VOS_UINT32                          ulAttemptCnt
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年11月18日
-   作    者   : w00167002
-   修改内容   : 新生成函数。
- 2.日    期   : 2013年05月08日
-   作    者   : s46746
-   修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
- 3.日    期   : 2014年04月4日
-   作    者   : s00261364
-   修改内容   : V3R360_eCall项目:服务状态上报到mmc
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause303RrConnFail(VOS_VOID)
 {
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    enAction;
@@ -4273,7 +2771,6 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause303RrConnFail(VOS
         enPrioAdditionalAction = NAS_MMC_GetCsAdditionalAction();
         enPrioAdditionalAction = NAS_MMC_GetPrioAddtionalAction(NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON, enPrioAdditionalAction);
 
-        /* Modified by s00261364 for V3R360_eCall项目, 2014-4-4, begin */
         NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_PS, NAS_MMC_LIMITED_SERVICE);
 
         if (VOS_FALSE == NAS_MMC_IsAdditionalActionTrigerPlmnSrch(enPrioAdditionalAction))
@@ -4284,7 +2781,6 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause303RrConnFail(VOS
         {
             NAS_MMC_ChangePsRegState(NAS_MML_REG_NOT_REGISTERED_SEARCHING);
         }
-        /* Modified by s00261364 for V3R360_eCall项目, 2014-4-4, end */
 
 
         return NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON;
@@ -4304,45 +2800,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause303RrConnFail(VOS
     return enAction;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcPsRegFailCause401OtherCause
- 功能描述  : OtherCause的处理
- 输入参数  : VOS_UINT16                          usCause,
-              VOS_UINT32                          ulAttemptCnt
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年6月29日
-   作    者   : l00130025
-   修改内容   : 新生成函数
-                1)  attemptCount < MaxCount时，返回NAS_MMC_ADDITIONAL_ACTION_WAIT_REG_ATTEMPT
-                2)  attemptCount >= MaxCount时，无定制需求，要等待另外一个域的注册结果,返回NAS_MMC_ADDITIONAL_ACTION_OPTIONAL_PLMN_SELECTION
-                3)  attemptCount >= MaxCount时，有单域的搜网定制（DT的定制需求），返回NAS_MMC_ADDITIONAL_ACTION_PLMN_SELECTION
-
- 2.日    期   : 2011年11月18日
-   作    者   : w00167002
-   修改内容   : DTS2011111603330:若当前的RAI发生改变，即使失败次数未达到
-                最大次数,也更新为限制服务状态。
- 3.日    期   : 2012年1月3日
-   作    者   : w00167002
-   修改内容   : DTS2011122006209:g下PS ONLY注册成功_更改为CS后注册失败4次后未发起搜网.
-                NAS_MML_REG_FAIL_CAUSE_OTHER_CAUSE时，返回NAS_MMC_ADDITIONAL_ACTION_BUTT,
-                表示MMC不需要写入当前CS的ADDITIONAL ACTION值。
- 4.日    期   : 2012年2月3日
-   作    者   : w00167002
-   修改内容   : DTS2011122704039:在注册失败原因值的函数命名中增加原因值，
-                 保持函数命名的一致性。
- 5.日    期   : 2013年05月08日
-   作    者   : s46746
-   修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-
- 6.日    期   : 2014年04月4日
-   作    者   : s00261364
-   修改内容   : V3R360_eCall项目:服务状态上报到mmc
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause401OtherCause(VOS_VOID)
 {
     VOS_UINT32                                              ulAttemptCnt;
@@ -4366,7 +2824,6 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause401OtherCause(VOS
 
         enPrioAdditionalAction = NAS_MMC_GetPrioAddtionalAction(enCsAdditionalAction, enPsAdditionalAction);
 
-        /* Modified by s00261364 for V3R360_eCall项目, 2014-4-4, begin */
         NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_PS, NAS_MMC_LIMITED_SERVICE);
 
         if (VOS_FALSE == NAS_MMC_IsAdditionalActionTrigerPlmnSrch(enPrioAdditionalAction))
@@ -4377,55 +2834,13 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause401OtherCause(VOS
         {
             NAS_MMC_ChangePsRegState(NAS_MML_REG_NOT_REGISTERED_SEARCHING);
         }
-        /* Modified by s00261364 for V3R360_eCall项目, 2014-4-4, end */
 
     }
 
     /* 返回NAS_MMC_ADDITIONAL_ACTION_BUTT，表示无效的AdditionalAction值 */
     return NAS_MMC_ADDITIONAL_ACTION_BUTT;
 }
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcPsRegFailCause402MsCfgDomainNotSupport
- 功能描述  : 假流程:Ps/only,当前配置PS only
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月29日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年1月13日
-    作    者   : w00167002
-    修改内容   : DTS2011122006209:当前在ONPLMN时，若收到结果为PS域不支持，
-                  则需要判断1)CS域是否是LIMIT_CAMP_ON 2)AVAILABLE定时器未启动
-                             3)CS域准许发起注册,则MMC需要发起搜网
-                  对应场景举例:
-                  在选网状态机中当前驻留的网络一个域被拒12，一个域#14后，
-                  在ON PLMN状态受限驻留，此时用户将注册被拒#12的域DETACH后，
-                  由于CS域此时是LIMITED_CAMP_ON，故不发起搜网，而实际需要进行搜网.
-  3.日    期   : 2012年2月3日
-    作    者   : w00167002
-    修改内容   : DTS2011122704039:在注册失败原因值的函数命名中增加原因值，
-                  保持函数命名的一致性。
-  4.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  5.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  6.日    期   : 2013年11月30日
-    作    者   : z00161729
-    修改内容   : DTS2013112809149:9230 nv项设置禁止接入技术为w和g，手动搜网模式驻留g的23002成功，
-                 syscfg设置w only，anycell驻留24005，会反复触发w下anycell搜网
-
-  7.日    期   : 2014年04月4日
-    作    者   : s00261364
-    修改内容   : V3R360_eCall项目:服务状态上报到mmc
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause402MsCfgDomainNotSupport(VOS_VOID)
 {
     NAS_MMC_FSM_ID_ENUM_UINT32                              enFsmId;
@@ -4433,9 +2848,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause402MsCfgDomainNot
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    enCsAdditionalAction;
     VOS_UINT8                                               ucCsAttachAllow;
 
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-4, begin */
     NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_PS, NAS_MMC_LIMITED_SERVICE);
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-4, end */
 
     NAS_MMC_ChangePsRegState(NAS_MML_REG_NOT_REGISTERED_NOT_SEARCH);
 
@@ -4467,41 +2880,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause402MsCfgDomainNot
     return NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcPsRegFailCause403ForbiddenPlmn
- 功能描述  : Ps 回复当前驻留在禁止网络的后续处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月12日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2012年1月4日
-    作    者   : w00167002
-    修改内容   : DTS2011122006209:g下PS ONLY注册成功_更改为CS后注册失败4次后未发起搜网.
-                在主框架中L1MAIN/PLMN LIST中判断当前原因值为非UE主动发起注册
-                原因值，则更新为NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON。现将
-                此判断放到各个子函数中来判断。
-  3.日    期   : 2012年2月3日
-    作    者   : w00167002
-    修改内容   : DTS2011122704039:在注册失败原因值的函数命名中增加原因值，
-                  保持函数命名的一致性。
-  4.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  5.日    期   : 2013年11月30日
-    作    者   : z00161729
-    修改内容   : DTS2013112809149:9230 nv项设置禁止接入技术为w和g，手动搜网模式驻留
-                 g的23002成功，syscfg设置w only，anycell驻留24005，会反复触发w下anycell搜网
-
-  6.日    期   : 2014年04月4日
-    作    者   : s00261364
-    修改内容   : V3R360_eCall项目:服务状态上报到mmc
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause403ForbiddenPlmn(VOS_VOID)
 {
     NAS_MMC_FSM_ID_ENUM_UINT32                              enFsmId;
@@ -4511,9 +2890,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause403ForbiddenPlmn(
     VOS_UINT32                                              ulUserSpecPlmnFlag;
     NAS_MML_PLMN_ID_STRU                                   *pstCurPlmnId        = VOS_NULL_PTR;
 
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-4, begin */
     NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_PS, NAS_MMC_LIMITED_SERVICE);
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-4, end */
 
     /* 手动模式判断当前网络是否是用户指定的网络 */
     pstCurPlmnId       = NAS_MML_GetCurrCampPlmnId();
@@ -4563,7 +2940,6 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause403ForbiddenPlmn(
             break;
     }
 
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-5-4, begin */
     /* 只有在下一步需要搜网时，才报状态2上去；不需要搜网时报状态0 */
     if (NAS_MMC_ADDITIONAL_ACTION_BUTT == enAdditionalAction)
     {
@@ -4573,69 +2949,19 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause403ForbiddenPlmn(
     {
         NAS_MMC_ChangePsRegState(NAS_MML_REG_NOT_REGISTERED_SEARCHING);
     }
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-5-4, end */
 
     return enAdditionalAction;
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcPsRegFailCause404ForbiddenLaForRegPrvsSvs
- 功能描述  : Ps Cause404:NAS_MML_REG_FAIL_CAUSE_FORBIDDEN_LA_FOR_REG_PRVS_SVS的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月3日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause404ForbiddenLaForRegPrvsSvs(VOS_VOID)
 {
     /* 跟注册被拒原因#12的处理一样 */
     return NAS_MMC_ProcPsRegFailCause12LaNotAllow();
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcPsRegFailCause405ForbiddenLaForRoam
- 功能描述  : 假流程:Ps 13或15号原因值被拒
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月12日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月21日
-    作    者   : w00167002
-    修改内容   : DTS2011102100710:注册被拒原因值#13，#15时，都会加入FORB ROAM
-                  LA信息列表里，增加被拒原因值的存储，用以区分在LAI上拒绝的原因
-                 值。MMC在收到MM/GMM上报拒绝原因值#13,#15的假流程消息时，MMC触发
-                 不同的搜网策略。
-  3.日    期   : 2012年1月4日
-    作    者   : w00167002
-    修改内容   : DTS2011122006209:g下PS ONLY注册成功_更改为CS后注册失败4次后未发起搜网.
-                在主框架中L1MAIN/PLMN LIST中判断当前原因值为非UE主动发起注册
-                原因值，则更新为NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON。现将
-                此判断放到各个子函数中来判断。
-  4.日    期   : 2012年2月3日
-    作    者   : w00167002
-    修改内容   : DTS2011122704039:在注册失败原因值的函数命名中增加原因值，
-                  保持函数命名的一致性。
-  5.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-
-  6.日    期   : 2014年04月4日
-    作    者   : s00261364
-    修改内容   : V3R360_eCall项目:服务状态上报到mmc
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause405ForbiddenLaForRoam(VOS_VOID)
 {
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16  enCsCause;                              /* 存储注册区CS域被拒信息 */
@@ -4643,9 +2969,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause405ForbiddenLaFor
 
     NAS_MMC_FSM_ID_ENUM_UINT32          enFsmId;
 
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-4, begin */
     NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_PS, NAS_MMC_LIMITED_SERVICE);
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-4, end */
 
 
     /* 当前在ONPLMN或者PLMN LIST状态机，此时处于限制驻留态，在未跟网侧真实发生交互的情况下，
@@ -4660,9 +2984,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause405ForbiddenLaFor
         return NAS_MMC_ADDITIONAL_ACTION_BUTT;
     }
 
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-5-4, begin */
     NAS_MMC_ChangePsRegState(NAS_MML_REG_NOT_REGISTERED_SEARCHING);
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-5-4, end */
 
     /* 当前不在在ONPLMN或者PLMN LIST状态机，需处理拒绝原因值，返回不同的搜网策略 */
 
@@ -4689,40 +3011,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause405ForbiddenLaFor
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcPsRegFailCause406ForbiddenPlmnForGprs
- 功能描述  : Ps Cause NAS_MML_REG_FAIL_CAUSE_FORBIDDEN_PLMN_FOR_GPRS的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月4日
-    作    者   : w00167002
-    修改内容   : DTS2011122006209:g下PS ONLY注册成功_更改为CS后注册失败4次后未发起搜网.
-                在主框架中L1MAIN/PLMN LIST中判断当前原因值为非UE主动发起注册
-                原因值，则更新为NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON。现将
-                此判断放到各个子函数中来判断。
-  2.日    期   : 2012年2月3日
-    作    者   : w00167002
-    修改内容   : DTS2011122704039:在注册失败原因值的函数命名中增加原因值，
-                  保持函数命名的一致性。
-  3.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  4.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-
-  5.日    期   : 2014年04月4日
-    作    者   : s00261364
-    修改内容   : V3R360_eCall项目:服务状态上报到mmc
-  6.日    期   : 2015年1月14日
-    作    者   : b00269685
-    修改内容   : 如果有定制的#14的动作，返回NV中定制的动作
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause406ForbiddenPlmnForGprs(VOS_VOID)
 {
     NAS_MMC_FSM_ID_ENUM_UINT32                              enFsmId;
@@ -4735,9 +3024,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause406ForbiddenPlmnF
     /* 添加禁止GPRS PLMN 信息 */
     NAS_MML_AddForbGprsPlmn(NAS_MML_GetCurrCampPlmnId());
 
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-4, begin */
     NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_PS, NAS_MMC_LIMITED_SERVICE);
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-4, end */
 
     /* 如果有定制的#14的动作，返回NV中定制的动作 */
     enFailAction = NAS_MMC_GetSingleDomainFailAction(NAS_MML_REG_DOMAIN_PS,
@@ -4776,57 +3063,21 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause406ForbiddenPlmnF
     {
         NAS_MMC_ChangePsRegState(NAS_MML_REG_NOT_REGISTERED_NOT_SEARCH);
     }
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-4, begin */
     else
     {
         NAS_MMC_ChangePsRegState(NAS_MML_REG_NOT_REGISTERED_SEARCHING);
     }
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-4, end */
 
     return enAdditionalAction;
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcPsRegFailCause407SimInvalid
- 功能描述  : 假流程:当前PS域卡无效
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月29日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2012年1月4日
-    作    者   : w00167002
-    修改内容   : DTS2011122006209:g下PS ONLY注册成功_更改为CS后注册失败4次后未发起搜网.
-                在主框架中L1MAIN/PLMN LIST中判断当前原因值为非UE主动发起注册
-                原因值，则更新为NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON。现将
-                此判断放到各个子函数中来判断。
-
-  3.日    期   : 2012年3月1日
-    作    者   : z40661
-    修改内容   : DTS2012022401628：多次切换无声音
-  4.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  5.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  6.日    期   : 2014年4月29日
-    作    者   : s00261364
-    修改内容   : ecall项目修改服务状态上报
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause407SimInvalid(VOS_VOID)
 {
     NAS_MMC_FSM_ID_ENUM_UINT32          enFsmId;
 
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-4, begin */
     NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_PS, NAS_MMC_LIMITED_SERVICE);
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-4, end */
 
     /* 卡存在表示肯定是注册被拒过 */
     if (VOS_TRUE == NAS_MML_GetSimPresentStatus())
@@ -4853,76 +3104,14 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause407SimInvalid(VOS
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcPsRegFailCause408NetDetachImsi
- 功能描述  : Cs注册失败原因:NAS_MML_REG_FAIL_CAUSE_NTDTH_IMSI的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年01月16日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause408NetDetachImsi(VOS_VOID)
 {
     /* 返回无效ACTION值:NAS_MMC_ADDITIONAL_ACTION_BUTT,不更改当前的ADDITIONAL ACTION的值*/
     return NAS_MMC_ADDITIONAL_ACTION_BUTT;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcPsRegFailCause409ServingCellDomainNotSupport
- 功能描述  : 假流程:当前小区不支持PS域
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月29日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2012年1月4日
-    作    者   : w00167002
-    修改内容   : DTS2011122006209:g下PS ONLY注册成功_更改为CS后注册失败4次后未发起搜网.
-                在主框架中L1MAIN/PLMN LIST中判断当前原因值为非UE主动发起注册
-                原因值，则更新为NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON。现将
-                此判断放到各个子函数中来判断。
-  3.日    期   : 2013年1月31日
-    作    者   : t00212959
-    修改内容   : DTS2013012909238:手动模式下，单模，一个域注册被#11拒绝，一个域不支持，会循环不停的进行anycell搜网，被拒。
-  4.日    期   : 2013年4月1日
-    作    者   : w00167002
-    修改内容   : DTS2013032701683:无卡开机，系统消息指示PS域不支持，MMC发起循环搜网
-  5.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  6.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  7.日    期   : 2013年11月30日
-    作    者   : z00161729
-    修改内容   : DTS2013112809149:9230 nv项设置禁止接入技术为w和g，手动搜网模式驻留g的23002成功，
-                 syscfg设置w only，anycell驻留24005，会反复触发w下anycell搜网
-  8.日    期   : 2014年04月4日
-    作    者   : s00261364
-    修改内容   : V3R360_eCall项目:服务状态上报到mmc
-  9.日    期   : 2014年5月21日
-    作    者   : w00167002
-    修改内容   : DTS2014051602857:在SOR打开时候，如果CS注册失败达到4次，则等周期
-                搜网定时器超时发起LIST搜网，如果当前仅有原有网络，则发起LAU,否则
-                触发MM发起LAU;如果LIST搜后，发现有其他网络，则发起其他网络的搜网注册。
-                手动选网时候，返回LIMIT CAMP ON,不再发起选网。
-  10.日    期   : 2015年11月24日
-     作    者   : w00167002
-     修改内容   : DTS2015112405788:在海外测试,如果当前开机CS/PS是无服务，则不上报到
-                  MMA，而MMA需要收起CS/PS的服务状态，才给stk下发LOCATION STATUS NTF
-                  消息；卡收不到此消息，则不进行IMSI切换。
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause409ServingCellDomainNotSupport(VOS_VOID)
 {
 
@@ -4933,9 +3122,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause409ServingCellDom
 
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    enAction;
     /* 更新服务状态 */
-    /* Modified by s00261364 for V3R360_eCall项目, 2014-4-10, begin */
     NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_PS, NAS_MMC_LIMITED_SERVICE);
-    /* Modified by s00261364 for V3R360_eCall项目, 2014-4-10, end */
 
     enFsmId                = NAS_MMC_GetCurrFsmId();
     enAvailableTimerStatus = NAS_MMC_GetTimerStatus(TI_NAS_MMC_AVAILABLE_TIMER);
@@ -4987,34 +3174,15 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause409ServingCellDom
     {
         NAS_MMC_ChangePsRegState(NAS_MML_REG_NOT_REGISTERED_NOT_SEARCH);
     }
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-4, begin */
     else
     {
         NAS_MMC_ChangePsRegState(NAS_MML_REG_NOT_REGISTERED_SEARCHING);
     }
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-4, end */
 
     return enAction;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcPsRegFailCause419HoSucc
- 功能描述  : 注册假流程，切换之后无系统消息的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月13日
-    作    者   : s00217060
-    修改内容   : Service_State_Optimize_PhaseI:切换流程无系统消息的处理
-  2.日    期   : 2015年7月13日
-    作    者   : s00217060
-    修改内容   : DTS2015070907463:原因值扩展，修改函数名
-
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause419InterRatChangeSucc(VOS_VOID)
 {
     NAS_MML_CAMP_PLMN_INFO_STRU        *pstCampPlmnInfo     = VOS_NULL_PTR;
@@ -5059,23 +3227,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCause419InterRatChange
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcPsRegFailCauseAbnormalCause
- 功能描述  : Ps 异常原因值的处理
- 输入参数  :
-             VOS_UINT16                          usCause,
-             VOS_UINT32                          ulAttemptCnt
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年1月17日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCauseAbnormalCause(
     VOS_UINT16                          usCause,
     VOS_UINT32                          ulAttemptCnt
@@ -5097,35 +3249,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailCauseAbnormalCause(
     return enAction;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcPsRegFailAttemptCounterMaxTimes
- 功能描述  : Ps注册失败最大次数的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年11月18日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2013年3月30日
-   作    者   : l00167671
-   修改内容   : 主动上报AT命令控制下移至C核
- 3.日    期   : 2013年05月08日
-   作    者   : s46746
-   修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
- 4.日    期   : 2014年04月4日
-   作    者   : s00261364
-   修改内容   : V3R360_eCall项目:服务状态上报到mmc
- 5.日    期   : 2014年5月21日
-   作    者   : w00167002
-   修改内容   : DTS2014051602857:在SOR打开时候，如果CS注册失败达到4次，则等周期
-                搜网定时器超时发起LIST搜网，如果当前仅有原有网络，则发起LAU,否则
-                触发MM发起LAU;如果LIST搜后，发现有其他网络，则发起其他网络的搜网注册。
-                手动选网时候，返回LIMIT CAMP ON,不再发起选网。
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailAttemptCounterMaxTimes(VOS_VOID)
 {
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    enAction;
@@ -5137,9 +3261,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailAttemptCounterMaxTimes
 
     enSelectionMode = NAS_MMC_GetPlmnSelectionMode();
     /* 更新服务状态 */
-    /* Modified by s00261364 for V3R360_eCall项目, 2014-4-10, begin */
     NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_PS, NAS_MMC_LIMITED_SERVICE);
-    /* Modified by s00261364 for V3R360_eCall项目, 2014-4-10, end */
 
     /* 单域搜网定制标识 */
     ucSingleDomainSrchFlag = NAS_MML_GetDtSingleDomainPlmnSearchFlag();
@@ -5171,49 +3293,17 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailAttemptCounterMaxTimes
     {
         NAS_MMC_ChangePsRegState(NAS_MML_REG_NOT_REGISTERED_NOT_SEARCH);
     }
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-4, begin */
     else
     {
         NAS_MMC_ChangePsRegState(NAS_MML_REG_NOT_REGISTERED_SEARCHING);
     }
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-4, end */
 
     return enAction;
 }
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcPsRegFailAttemptCounterLessThanMaxTimes
- 功能描述  : Ps注册失败Attempt未达到最大次数的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年11月18日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2014年3月29日
-   作    者   : z00161729
-   修改内容   : DTS2014032200128:g下cs only cs域上报的服务状态为限制服务，注册状态上报为驻留home网络，导致界面显示正常但发短信失败
- 3.日    期   : 2014年04月4日
-   作    者   : s00261364
-   修改内容   : V3R360_eCall项目:服务状态上报到mmc
- 4.日    期   : 2014年10月22日
-   作    者   : w00167002
-   修改内容   : DTS2014101305830:在PLMN改变时候，更新服务状态。
-                俄罗斯外场测试:在25002网络的4G上注册成功后，重定向到G下，联合RAU
-                失败(ps/cs cause:303),立即更新的服务状态，用户体验不好。第二次RAU
-                就成功了。
-                关于状态显示优化的功能，SE有进行系统的优化设计方案，当前只针对问题场景
-                进行简易优化修改。
- 5.日    期   : 2014年11月27日
-    作    者   : l00305157
-    修改内容   : Service_State_Optimize_PhaseI项目修改
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailAttemptCounterLessThanMaxTimes(VOS_VOID)
 {
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    enAction;
@@ -5238,9 +3328,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailAttemptCounterLessThan
     if (NAS_MMC_NORMAL_SERVICE != NAS_MMC_GetCurrPsService())
     {
         /* 更新服务状态 */
-        /* Modified by s00261364 for V3R360_eCall项目, 2014-4-10, begin */
         NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_PS, NAS_MMC_LIMITED_SERVICE);
-        /* Modified by s00261364 for V3R360_eCall项目, 2014-4-10, end */
 
         /* 如果ps之前注册成功，位置区改变，注册未达到最大次数，需要将注册状态设置为0 */
         if ((NAS_MML_REG_REGISTERED_HOME_NETWORK == enPsRegStatus)
@@ -5281,45 +3369,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFailAttemptCounterLessThan
 }
 
 #if   (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCombinedEpsRegFailCause3IllegalMs
- 功能描述  : 联合注册Combined attach not accepted by the network或者
-             Combined TAU not accepted by the network，Eps Cause3的处理
- 输入参数  : 无
- 输出参数  : penPsRegAdditionalAction - 收到注册结果后，协议要求的ps域的additional动作类型
-             penCsRegAdditionalAction - 收到注册结果后，协议要求的cs域的additional动作类型
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月25日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月17日
-    作    者   : w00176964
-    修改内容   : V7R1 PhaseIV 调整:注册原因值的处理
-  3.日    期   : 2012年03月15日
-    作    者   : l00130025
-    修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-  4.日    期   : 2012年09月15日
-    作    者   : z00161729
-    修改内容   : DTS2012090708320：MMC收到L的注册结果，ps cs卡是否有效状态需要更新，原来由gmm更新存在时序问题
-  5.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  6.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  7.日    期   : 2014年5月5日
-    作    者   : w00242748
-    修改内容   : DTS2014043000311:注册状态服务状态不一致，将MMC中报服务状态的场景，都加
-                 注册状态的上报。
-  8.日    期   : 2015年02月11日
-    作    者   : l00305157
-    修改内容   : Service_State_Optimize_PhaseII 项目修改
-                 mmc收到COMBINED TAU REJ(#3/6/8),上报注册状态和服务状态
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause3IllegalMs(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penPsRegAdditionalAction,
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penCsRegAdditionalAction
@@ -5355,23 +3405,7 @@ VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause3IllegalMs(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCombinedEpsRegFailCause6IllegalMe
- 功能描述  : 联合注册Combined attach not accepted by the network或者
-             Combined TAU not accepted by the network，Eps Cause6的处理
- 输入参数  : 无
- 输出参数  : penPsRegAdditionalAction - 收到注册结果后，协议要求的ps域的additional动作类型
-             penCsRegAdditionalAction - 收到注册结果后，协议要求的cs域的additional动作类型
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月25日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause6IllegalMe(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penPsRegAdditionalAction,
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penCsRegAdditionalAction
@@ -5383,45 +3417,7 @@ VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause6IllegalMe(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCombinedEpsRegFailCause7EpsServNotAllow
-  功能描述  : 联合注册Combined attach not accepted by the network或者
-             Combined TAU not accepted by the network，Eps Cause7的处理
- 输入参数  : 无
- 输出参数  : penPsRegAdditionalAction - 收到注册结果后，协议要求的ps域的additional动作类型
-             penCsRegAdditionalAction - 收到注册结果后，协议要求的cs域的additional动作类型
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月25日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2011年11月30日
-    作    者   : w00176964
-    修改内容   : V7R1 Phase IV调整:disable/enable 调整
-  3.日    期   : 2012年03月15日
-    作    者   : l00130025
-    修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-  4.日    期   : 2012年07月02日
-    作    者   : s46746
-    修改内容   : For CS/PS mode 1，调整Disable/Enable L,按场景区分函数
-  5.日    期   : 2012年7月27日
-    作    者   : s00217060
-    修改内容   : For CS/PS mode 1,带Disable LTE原因值
-  6.日    期   : 2012年09月15日
-    作    者   : z00161729
-    修改内容  : DTS2012090708320：MMC收到L的注册结果，ps cs卡是否有效状态需要更新，原来由gmm更新存在时序问题
-  7.日    期   : 2014年4月29日
-    作    者   : s00261364
-    修改内容   : ecall项目修改服务状态上报
-  8.日    期   : 2015年02月11日
-    作    者   : l00305157
-    修改内容   : Service_State_Optimize_PhaseII 项目修改
-                   mmc收到COMBINED TAU REJ(#7),上报注册状态和服务状态
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause7EpsServNotAllow(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penPsRegAdditionalAction,
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penCsRegAdditionalAction
@@ -5441,12 +3437,8 @@ VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause7EpsServNotAllow(
 
     /*紧接着就发起搜网，CS的注册状态就不上报了*/
 
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-20, begin */
     /* 更新服务状态 */
-    /* Modified by s00261364 for V3R360_eCall项目, 2014-4-29, begin */
     /* 此处不能删，如果删除之后，MMA模块就无法知道是PS域限制服务是因为PS域卡无效导致的。 */
-    /* Modified by s00261364 for V3R360_eCall项目, 2014-4-29, end */
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-20, end */
 
     /*mmc收到COMBINED TAU REJ(#7),上报注册状态和服务状态,*/
     NAS_MMC_ChangePsRegState(NAS_MML_REG_REGISTERED_DENIED);
@@ -5481,23 +3473,7 @@ VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause7EpsServNotAllow(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCombinedEpsRegFailCause8GprsAndNonGprsNotAllow
- 功能描述  : 联合注册Combined attach not accepted by the network或者
-             Combined TAU not accepted by the network，Eps Cause8的处理
- 输入参数  : 无
- 输出参数  : penPsRegAdditionalAction - 收到注册结果后，协议要求的ps域的additional动作类型
-             penCsRegAdditionalAction - 收到注册结果后，协议要求的cs域的additional动作类型
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月25日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause8GprsAndNonGprsNotAllow(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penPsRegAdditionalAction,
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penCsRegAdditionalAction
@@ -5507,26 +3483,7 @@ VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause8GprsAndNonGprsNotAllow(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCombinedEpsRegFailCause9MsidCannotDerivedByNw
- 功能描述  : 联合注册Eps Cause9的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月25日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年03月15日
-    作    者   : l00130025
-    修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-  3.日    期   : 2015年11月19日
-    作    者   : c00318887
-    修改内容   : DTS2015111701196,ims没注册
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause9MsidCannotDerivedByNw(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penPsRegAdditionalAction,
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penCsRegAdditionalAction
@@ -5548,26 +3505,7 @@ VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause9MsidCannotDerivedByNw(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCombinedEpsRegFailCause10ImplicitlyDetached
- 功能描述  : 联合注册Eps Cause10的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月25日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年03月15日
-    作    者   : l00130025
-    修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-  3.日    期   : 2015年11月19日
-    作    者   : c00318887
-    修改内容   : DTS2015111701196,ims没注册
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause10ImplicitlyDetached(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penPsRegAdditionalAction,
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penCsRegAdditionalAction
@@ -5589,42 +3527,7 @@ VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause10ImplicitlyDetached(
     }
 }
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_ProcCombinedEpsRegFailCause11PlmnNotAllow
-功能描述  : 联合注册Combined attach not accepted by the network或者
-            Combined TAU not accepted by the network，Eps Cause11的处理
-输入参数  : 无
-输出参数  : penPsRegAdditionalAction - 收到注册结果后，协议要求的ps域的additional动作类型
-            penCsRegAdditionalAction - 收到注册结果后，协议要求的cs域的additional动作类型
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2011年10月25日
-  作    者   : z00161729
-  修改内容   : 新生成函数
-2.日    期   : 2011年12月17日
-  作    者   : w00176964
-  修改内容   : V7R1 PhaseIV 调整:注册原因值的处理
-3.日    期   : 2012年03月15日
-  作    者   : l00130025
-  修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-4.日    期   : 2013年3月30日
-  作    者   : l00167671
-  修改内容   : 主动上报AT命令控制下移至C核
-5.日    期   : 2014年5月5日
-  作    者   : w00242748
-  修改内容   : DTS2014043000311:注册状态服务状态不一致，将MMC中报服务状态的场景，都加
-               注册状态的上报。
-6.日    期   : 2015年4月19日
-  作    者   : z00161729
-  修改内容   : 24301 R11 CR升级项目修改
-6.日    期   : 2015年7月1日
-  作    者   : c00318887
-  修改内容   : DTS2015061003127:L 下服务状态上报和GU不一致
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause11PlmnNotAllow(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penPsRegAdditionalAction,
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penCsRegAdditionalAction
@@ -5669,39 +3572,7 @@ VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause11PlmnNotAllow(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_ProcCombinedEpsRegFailCause12TaNotAllow
-功能描述  : 联合注册Combined attach not accepted by the network或者
-            Combined TAU not accepted by the network，Eps Cause12的处理
-输入参数  : 无
-输出参数  : penPsRegAdditionalAction - 收到注册结果后，协议要求的ps域的additional动作类型
-            penCsRegAdditionalAction - 收到注册结果后，协议要求的cs域的additional动作类型
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2011年10月25日
-  作    者   : z00161729
-  修改内容   : 新生成函数
-2.日    期   : 2011年12月17日
-  作    者   : w00176964
-  修改内容   : V7R1 PhaseIV 调整:注册原因值的处理
-3.日    期   : 2013年3月30日
-  作    者   : l00167671
-  修改内容   : 主动上报AT命令控制下移至C核
-4.日    期   : 2013年05月08日
-  作    者   : s46746
-  修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-5.日    期   : 2014年5月5日
-  作    者   : w00242748
-  修改内容   : DTS2014043000311:注册状态服务状态不一致，将MMC中报服务状态的场景，都加
-               注册状态的上报。
-6.日    期   : 2015年02月11日
-  作    者   : l00305157
-  修改内容   : Service_State_Optimize_PhaseII 项目修改
-                 mmc收到COMBINED TAU REJ(#12),上报注册状态和服务状态
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause12TaNotAllow(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penPsRegAdditionalAction,
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penCsRegAdditionalAction
@@ -5729,39 +3600,7 @@ VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause12TaNotAllow(
     }
 }
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_ProcCombinedEpsRegFailCause406ForbiddenPlmnForGprs
-功能描述  : 联合注册Combined attach not accepted by the network或者
-            Combined TAU not accepted by the network，Eps Cause14的处理
-输入参数  : 无
-输出参数  : penPsRegAdditionalAction - 收到注册结果后，协议要求的ps域的additional动作类型
-            penCsRegAdditionalAction - 收到注册结果后，协议要求的cs域的additional动作类型
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2012年1月4日
-  作    者   : w00167002
-  修改内容   : 新生成函数
-                DTS2011122006209:g下PS ONLY注册成功_更改为CS后注册失败4次后未发起搜网.
-                在主框架中L1MAIN/PLMN LIST中判断当前原因值为非UE主动发起注册
-                原因值，在未跟网侧真实发生交互的情况下，不需要进行可选的搜网，
-                则更新为NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON。
-2.日    期   : 2012年11月15日
-  作    者   : w00176964
-  修改内容   : DTS2012111404729:cause为14不应该更新服务状态为有区域的限制服务,应该更新为限制服务
-3.日    期   : 2013年3月30日
-  作    者   : l00167671
-  修改内容   : 主动上报AT命令控制下移至C核
-4.日    期   : 2014年5月5日
-  作    者   : w00242748
-  修改内容   : DTS2014043000311:注册状态服务状态不一致，将MMC中报服务状态的场景，都加
-               注册状态的上报。
-5.日    期   : 2015年7月1日
-  作    者   : c00318887
-  修改内容   : DTS2015061003127:L 下服务状态上报和GU不一致
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause406ForbiddenPlmnForGprs(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penPsRegAdditionalAction,
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penCsRegAdditionalAction
@@ -5809,38 +3648,7 @@ VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause406ForbiddenPlmnForGprs(
 }
 
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_ProcCombinedEpsRegFailCause13RoamNotAllow
-功能描述  : 联合注册Combined attach not accepted by the network或者
-            Combined TAU not accepted by the network，Eps Cause12的处理
-输入参数  : 无
-输出参数  : penPsRegAdditionalAction - 收到注册结果后，协议要求的ps域的additional动作类型
-            penCsRegAdditionalAction - 收到注册结果后，协议要求的cs域的additional动作类型
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2011年10月25日
-  作    者   : z00161729
-  修改内容   : 新生成函数
-2.日    期   : 2011年12月17日
-  作    者   : w00176964
-  修改内容   : V7R1 PhaseIV 调整:注册原因值的处理
-3.日    期   : 2012年03月15日
-  作    者   : l00130025
-  修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-4.日    期   : 2013年3月30日
-  作    者   : l00167671
-  修改内容   : 主动上报AT命令控制下移至C核
-5.日    期   : 2014年5月5日
-  作    者   : w00242748
-  修改内容   : DTS2014043000311:注册状态服务状态不一致，将MMC中报服务状态的场景，都加
-               注册状态的上报。
-6.日    期   : 2015年7月1日
-  作    者   : c00318887
-  修改内容   : DTS2015061003127:L 下服务状态上报和GU不一致
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause13RoamNotAllow(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penPsRegAdditionalAction,
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penCsRegAdditionalAction
@@ -5870,46 +3678,7 @@ VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause13RoamNotAllow(
     }
 }
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_ProcCombinedEpsRegFailCause14GprsNotAllowInThisPlmn
-功能描述  : 联合注册Combined attach not accepted by the network或者
-            Combined TAU not accepted by the network，Eps Cause14的处理
-输入参数  : 无
-输出参数  : penPsRegAdditionalAction - 收到注册结果后，协议要求的ps域的additional动作类型
-            penCsRegAdditionalAction - 收到注册结果后，协议要求的cs域的additional动作类型
-返 回 值  : 无
 
-调用函数  :
-被调函数  :
-
-修改历史      :
-1.日    期   : 2011年10月25日
-  作    者   : z00161729
-  修改内容   : 新生成函数
-2.日    期   : 2011年12月17日
-  作    者   : w00176964
-  修改内容   : V7R1 PhaseIV 调整:注册原因值的处理
-3.日    期   : 2013年3月30日
-  作    者   : l00167671
-  修改内容   : 主动上报AT命令控制下移至C核
-4.日    期   : 2014年5月5日
-  作    者   : w00242748
-  修改内容   : DTS2014043000311:注册状态服务状态不一致，将MMC中报服务状态的场景，都加
-               注册状态的上报
-5.日    期   : 2015年1月5日
-  作    者   : h00285180
-  修改内容   : LTE #14拒绝优化:DTS2015010401946
-6.日    期   : 2015年4月19日
-  作    者   : z00161729
-  修改内容   : 24301 R11 CR升级项目修改
-7.日    期   : 2015年7月1日
-  作    者   : c00318887
-  修改内容   : DTS2015061003127:L 下服务状态上报和GU不一致
-8.日    期   : 2015年8月13日
-  作    者   : l00289540
-  修改内容   : User_Exp_Improve
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause14GprsNotAllowInThisPlmn(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penPsRegAdditionalAction,
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penCsRegAdditionalAction
@@ -5945,13 +3714,7 @@ VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause14GprsNotAllowInThisPlmn(
 
     /* 通知TAF当前的服务状态 */
 
-    /* 24301_CR1422R1_(Rel-11)_C1-121612 对应24301 5.5.3.3.5和5.5.1.3.5章节:
-       A UE operating in CS/PS mode 1 of operation and supporting A/Gb or Iu mode
-    may perform a PLMN selection according to 3GPP TS 23.122 [6].
-       A UE operating in CS/PS mode 1 of operation and supporting S1 mode only,
-    or operating in CS/PS mode 2 of operation shall delete the list of
-    equivalent PLMNs and shall perform a PLMN selection according to 3GPP TS 23.122 [6].
-    该CR受协议版本控制 */
+    
     if (VOS_TRUE == NAS_MMC_IsNeedDeleteEplmn_CombinedRegRsltFailCause14GprsNotAllowInThisPlmn())
     {
         /* 删除EPLMN */
@@ -6018,37 +3781,7 @@ VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause14GprsNotAllowInThisPlmn(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_ProcCombinedEpsRegFailCause15NoSuitableCell
-功能描述  : 联合注册Combined attach not accepted by the network或者
-            Combined TAU not accepted by the network，Eps Cause15的处理
-输入参数  : 无
-输出参数  : penPsRegAdditionalAction - 收到注册结果后，协议要求的ps域的additional动作类型
-            penCsRegAdditionalAction - 收到注册结果后，协议要求的cs域的additional动作类型
-返 回 值  : 无
 
-调用函数  :
-被调函数  :
-
-修改历史      :
-1.日    期   : 2011年10月25日
-  作    者   : z00161729
-  修改内容   : 新生成函数
-
-2.日    期   : 2011年12月17日
-  作    者   : w00176964
-  修改内容   : V7R1 PhaseIV 调整:注册原因值的处理
-3.日    期   : 2013年3月30日
-  作    者   : l00167671
-  修改内容   : 主动上报AT命令控制下移至C核
-4.日    期   : 2014年5月5日
-  作    者   : w00242748
-  修改内容   : DTS2014043000311:注册状态服务状态不一致，将MMC中报服务状态的场景，都加
-               注册状态的上报。
-5.日    期   : 2015年7月1日
-  作    者   : c00318887
-  修改内容   : DTS2015061003127:L 下服务状态上报和GU不一致
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause15NoSuitableCell(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penPsRegAdditionalAction,
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penCsRegAdditionalAction
@@ -6076,53 +3809,7 @@ VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause15NoSuitableCell(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCombinedEpsRegFailCause19EsmFailure
- 功能描述  : 联合EPS注册被拒原因: NAS_EMM_CAUSE_ESM_FAILURE的处理
- 输入参数  : 无
- 输出参数  : penPsRegAdditionalAction - 收到注册结果后，协议要求的ps域的additional动作类型
-              penCsRegAdditionalAction - 收到注册结果后，协议要求的cs域的additional动作类型
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月6日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2012年03月15日
-    作    者   : l00130025
-    修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-  3.日    期   : 2012年06月07日
-    作    者   : s00217060
-    修改内容   : #401，尝试次数达到5次，需要Disable L
-  5.日    期   : 2012年7月27日
-    作    者   : s00217060
-    修改内容   : For CS/PS mode 1,带Disable LTE原因值
-  6.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  7.日    期   : 2013年6月3日
-    作    者   : z00161729
-    修改内容   : SVLTE 修改
-  8.日    期   : 2014年01月10日
-    作    者   : w00176964
-    修改内容   : VoLTE_PhaseIII项目
-  9.日    期   : 2014年5月5日
-    作    者   : w00242748
-    修改内容   : DTS2014043000311:注册状态服务状态不一致，将MMC中报服务状态的场景，都加
-                 注册状态的上报。
-  10.日    期   : 2015年1月15日
-     作    者   : z00161729
-     修改内容   : AT&T 支持DAM特性修改
-  11.日    期   : 2015年4月22日
-     作    者   : z00161729
-     修改内容   : 24301 R11 CR升级项目修改
-  11.日    期   : 2015年7月1日
-     作    者   : c00318887
-     修改内容   : DTS2015061003127:L 下服务状态上报和GU不一致
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause19EsmFailure(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penPsRegAdditionalAction,
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penCsRegAdditionalAction
@@ -6163,9 +3850,7 @@ VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause19EsmFailure(
             /* 需要Disable L全局变量 */
             NAS_MML_SetLteCapabilityStatus(NAS_MML_LTE_CAPABILITY_STATUS_DISABLE_UNNOTIFY_AS);
 
-            /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-18, begin */
             NAS_MML_SetDisableLteReason(MMC_LMM_DISABLE_LTE_REASON_LTE_VOICE_NOT_AVAILABLE);
-            /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-18, end */
 
             (VOS_VOID)NAS_MMC_StartTimer(TI_NAS_MMC_WAIT_ENABLE_LTE_TIMER, NAS_MML_GetCsPsMode1EnableLteTimerLen());
 
@@ -6197,24 +3882,7 @@ VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause19EsmFailure(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCombinedEpsRegFailCause35RequestedServiceOptionNotAuthorizedInThisPlmn
- 功能描述  : 联合注册Eps Cause35的处理
- 输入参数  : VOS_VOID
- 输出参数  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年3月6日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月24日
-    作    者   : w00242748
-    修改内容   : DTS2013101106863:L下被拒原因值#35，只有在R10及其协议以上处理才与#11
-                 原因值处理相同，否则当做OTHER CAUSE来处理。
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause35ReqServOptNotAuthorizedInThisPlmn(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penPsRegAdditionalAction,
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penCsRegAdditionalAction
@@ -6236,54 +3904,7 @@ VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause35ReqServOptNotAuthorizedInThisPlmn(
 }
 
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_ProcCombinedEpsRegOnlyEpsSuccCause16MscNotReachable
-功能描述  : 联合注册Combined attach successful for EPS services only或者
-            Combined TAU successful for EPS services only，Eps Cause16的处理
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 收到注册结果后，协议要求的cs域的additional动作类型
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2011年10月25日
-  作    者   : z00161729
-  修改内容   : 新生成函数
-2.日    期   : 2012年5月24日
-  作    者   : w00166186
-  修改内容   : DTS2012052203028,L下出服务区重入服务区，尝试注册5次后，等待注册结果定时器超时后复位
-3.日    期   : 2012年06月02日
-  作    者   : s00217060
-  修改内容   : CS/PS mode 1时，Disable L模, 返回值为NAS_MMC_ADDITIONAL_PLMN_SELECTION
-4.日    期   : 2012年7月27日
-  作    者   : s00217060
-  修改内容   : For CS/PS mode 1,带Disable LTE原因值
-5.日    期   : 2013年05月08日
-  作    者   : s46746
-  修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-6.日    期   : 2013年6月3日
-  作    者   : z00161729
-  修改内容   : SVLTE 修改
-7.日    期   : 2013年12月10日
-  作    者   : w00176964
-  修改内容   : VoLTE_PhaseIII 项目:修改Disable L模的逻辑
-8.日    期   : 2014年3月29日
-  作    者   : z00161729
-  修改内容   : DTS2014032200128:g下cs only cs域上报的服务状态为限制服务，注册状态上报为驻留home网络，导致界面显示正常但发短信失败
-
-9.日    期   : 2014年5月5日
-  作    者   : w00242748
-  修改内容   : DTS2014043000311:注册状态服务状态不一致，将MMC中报服务状态的场景，都加
-               注册状态的上报。
-10.日    期   : 2015年02月11日
-   作    者   : l00305157
-   修改内容   : Service_State_Optimize_PhaseII 项目修改
-                对于EMM的COMBINED TAU/ATTACH(eps only,  cause!=#2/#18)成功，上报CS/PS注册状态和服务状态
- 11.日    期   : 2015年10月14日
-    作    者   : c00318887
-    修改内容   : DTS2015082002854: 漫游标记不准
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCombinedEpsRegOnlyEpsSuccCause16MscNotReachable(VOS_VOID)
  {
     VOS_UINT32                                              ulAttemptCnt;
@@ -6299,7 +3920,6 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCombinedEpsRegOnlyEpsSuccCause1
     NAS_MMC_UpdateServiceState_RegSucc(NAS_MSCC_PIF_SRVDOMAIN_PS, NAS_MMC_NORMAL_SERVICE);
 
 
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-12, begin */
     /*
     1)  attemptCount < MaxCount时，返回NAS_MMC_ADDITIONAL_ACTION_WAIT_REG_ATTEMPT
     2)  attemptCount >= MaxCount时，返回NAS_MMC_ADDITIONAL_ACTION_PLMN_SELECTION
@@ -6330,91 +3950,24 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCombinedEpsRegOnlyEpsSuccCause1
 
         return NAS_MMC_ADDITIONAL_ACTION_OPTIONAL_PLMN_SELECTION;
     }
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-12, end */
 
 
 }
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_ProcCombinedEpsRegOnlyEpsSuccCause17NetworkFailure
-功能描述  : 联合注册Combined attach successful for EPS services only或者
-            Combined TAU successful for EPS services only，Eps Cause17的处理
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 收到注册结果后，协议要求的cs域的additional动作类型
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2011年10月25日
-作    者   : z00161729
-修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCombinedEpsRegOnlyEpsSuccCause17NetworkFailure(VOS_VOID)
 {
     return NAS_MMC_ProcCombinedEpsRegOnlyEpsSuccCause16MscNotReachable();
 }
 
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_ProcCombinedEpsRegOnlyEpsSuccCause22Congestion
-功能描述  : 联合注册Combined attach successful for EPS services only或者
-            Combined TAU successful for EPS services only，Eps Cause22的处理
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 收到注册结果后，协议要求的cs域的additional动作类型
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2011年10月25日
-  作    者   : z00161729
-  修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCombinedEpsRegOnlyEpsSuccCause22Congestion(VOS_VOID)
 {
     return NAS_MMC_ProcCombinedEpsRegOnlyEpsSuccCause16MscNotReachable();
 }
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_ProcCombinedEpsRegOnlyEpsSuccCause18CsDomainNotAvailable
-功能描述  : 联合注册Combined attach successful for EPS services only或者
-            Combined TAU successful for EPS services only，Eps Cause18的处理
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 收到注册结果后，协议要求的cs域的additional动作类型
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2011年10月25日
-  作    者   : z00161729
-  修改内容   : 新生成函数
-2.日    期   : 2012年06月07日
-  作    者   : s00217060
-  修改内容   : CS/PS mode 1时，Disable L模, 返回值为NAS_MMC_ADDITIONAL_PLMN_SELECTION
-3.日    期   : 2012年7月27日
-  作    者   : s00217060
-  修改内容   : For CS/PS mode 1,带Disable LTE原因值
-4.日    期   : 2013年3月30日
-  作    者   : l00167671
-  修改内容   : 主动上报AT命令控制下移至C核
-5.日    期   : 2013年05月08日
-  作    者   : s46746
-  修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-6.日    期   : 2013年12月10日
-  作    者   : w00176964
-  修改内容   : VoLTE_PhaseIII 项目:修改Disable L模的逻辑
-7.日    期   : 2015年02月11日
-  作    者   : l00305157
-  修改内容   : Service_State_Optimize_PhaseII 项目修改
-               对于EMM的COMBINED TAU/ATTACH(eps only,  cause=#18)成功，上报CS/PS注册状态和服务状态
-  8.日    期   : 2015年10月14日
-    作    者   : c00318887
-    修改内容   : DTS2015082002854: 漫游标记不准
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCombinedEpsRegOnlyEpsSuccCause18CsDomainNotAvailable(VOS_VOID)
 {
     /* 删除LTE上报服务状态和注册状态的接口*/
@@ -6422,9 +3975,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCombinedEpsRegOnlyEpsSuccCause1
     /* 通知TAF当前的服务状态 */
 
 
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-12, begin */
     /* 通知TAF当前的服务状态 */
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, begin*/
     /* 删除LTE上报服务状态和注册状态的接口*/
 
 
@@ -6435,46 +3986,11 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCombinedEpsRegOnlyEpsSuccCause1
     NAS_MMC_UpdateServiceState_RegSucc(NAS_MSCC_PIF_SRVDOMAIN_PS, NAS_MMC_NORMAL_SERVICE);
 
     return NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON;
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-12, end */
 
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCombinedEpsRegOnlyEpsSuccCause2ImsiUnknownInHss
- 功能描述  : 联合注册Combined attach successful for EPS services only或者
-             Combined TAU successful for EPS services only，Eps Cause2的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 收到注册结果后，协议要求的cs域的additional动作类型
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月25日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年09月15日
-    作    者   : z00161729
-    修改内容   : DTS2012090708320：MMC收到L的注册结果，ps cs卡是否有效状态需要更新，原来由gmm更新存在时序问题
-  3.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  4.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  5.日    期   : 2014年5月5日
-    作    者   : w00242748
-    修改内容   : DTS2014043000311:注册状态服务状态不一致，将MMC中报服务状态的场景，都加
-                 注册状态的上报。
-  6.日    期   : 2015年02月11日
-    作    者   : l00305157
-    修改内容   : Service_State_Optimize_PhaseII 项目修改
-                 对于EMM的COMBINED TAU/ATTACH(eps only,  cause=#2)成功，上报CS/PS注册状态和服务状态
-  7.日    期   : 2015年10月14日
-    作    者   : c00318887
-    修改内容   : DTS2015082002854: 漫游标记不准
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCombinedEpsRegOnlyEpsSuccCause2ImsiUnknownInHss(VOS_VOID)
 {
 
@@ -6496,61 +4012,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCombinedEpsRegOnlyEpsSuccCause2
 }
 
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_ProcCombinedEpsRegFailCause257AccessBarrd
-功能描述  : Eps Cause access bar的处理
-输入参数  : VOS_VOID
-输出参数  : penPsRegAdditionalAction - 收到注册结果后，协议要求的ps域的additional动作类型
-            penCsRegAdditionalAction - 收到注册结果后，协议要求的cs域的additional动作类型
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2011年10月25日
-  作    者   : z00161729
-  修改内容   : 新生成函数
-2.日    期   : 2011年12月17日
-  作    者   : w00176964
-  修改内容   : V7R1 PhaseIV 调整:注册原因值的处理
-3.日    期   : 2012年1月4日
-  作    者   : w00167002
-  修改内容   : DTS2011122006209:g下PS ONLY注册成功_更改为CS后注册失败4次后未发起搜网.
-                在主框架中L1MAIN/PLMN LIST中判断当前原因值为非UE主动发起注册
-                原因值，则更新为NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON。现将
-                此判断放到各个子函数中来判断。
-4.日    期   : 2013年3月30日
-  作    者   : l00167671
-  修改内容   : 主动上报AT命令控制下移至C核
-5.日    期   : 2013年05月08日
-  作    者   : s46746
-  修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-6.日    期   : 2013年10月15日
-  作    者   : s00190137
-  修改内容   : 特性开关打开且非HPLMN/RPLMN接入禁止时需要触发PLMN搜网
-7.日    期   : 2014年5月5日
-  作    者   : w00242748
-  修改内容   : DTS2014043000311:注册状态服务状态不一致，将MMC中报服务状态的场景，都加
-               注册状态的上报。
-
-8.日    期   : 2015年1月23日
-  作    者   : w00167002
-  修改内容   : DTS2015020309124:via控制L下搜网注册时候，L下ACCESS BAR，后续
-                选网结束后，L自己触发了注册。VIA无法配合，MODEM进行配合修改。
-                修改为在注册状态收到ACCESS BAR后，继续等待L的注册结果。
-9.日    期   : 2015年02月11日
-  作    者   : l00305157
-  修改内容   : Service_State_Optimize_PhaseII 项目修改
-               MMC收到LMM ATTACH结果中，携带ACCESS BAR场景，
-                       服务状态:CS域上报NAS_MMC_NO_SERVICE，PS域上报NAS_MMC_LIMITED_SERVICE, CS域和PS域注册状态上报0。
-               MMC收到LMM TAU结果中，携带ACCESS BAR场景，
-                       CS域和PS域服务状态,CS域和PS域注册状态不改变
- 10.日    期   : 2015年11月24日
-   作    者   : w00167002
-   修改内容   : DTS2015112405788:在海外测试,如果当前开机CS/PS是无服务，则不上报到
-                MMA，而MMA需要收起CS/PS的服务状态，才给stk下发LOCATION STATUS NTF
-                消息；卡收不到此消息，则不进行IMSI切换。
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause257AccessBarrd(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penPsRegAdditionalAction,
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penCsRegAdditionalAction
@@ -6632,44 +4094,7 @@ VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause257AccessBarrd(
 
 }
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_ProcCombinedEpsRegFailCauseAuthRej
-功能描述  : Eps Cause auth rej的处理
-输入参数  : VOS_VOID
-输出参数  : penPsRegAdditionalAction - 收到注册结果后，协议要求的ps域的additional动作类型
-            penCsRegAdditionalAction - 收到注册结果后，协议要求的cs域的additional动作类型
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2011年10月25日
-  作    者   : z00161729
-  修改内容   : 新生成函数
-2.日    期   : 2011年12月17日
-  作    者   : w00176964
-  修改内容   : V7R1 PhaseIV 调整:注册原因值的处理
-3.日    期   : 2012年03月15日
-  作    者   : l00130025
-  修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-4.日    期   : 2012年09月15日
-  作    者   : z00161729
-  修改内容   : DTS2012090708320：MMC收到L的注册结果，ps cs卡是否有效状态需要更新，原来由gmm更新存在时序问题
-5.日    期   : 2013年3月30日
-  作    者   : l00167671
-  修改内容   : 主动上报AT命令控制下移至C核
-6.日    期   : 2013年05月08日
-  作    者   : s46746
-  修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-7.日    期   : 2014年5月5日
-  作    者   : w00242748
-  修改内容   : DTS2014043000311:注册状态服务状态不一致，将MMC中报服务状态的场景，都加
-               注册状态的上报。
-8.日    期   : 2015年02月11日
-  作    者   : l00305157
-  修改内容   : Service_State_Optimize_PhaseII 项目修改
-               在COMBINEDTAU过程中，mmc收到鉴权拒绝,上报注册状态和服务状态
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause256AuthRej(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penPsRegAdditionalAction,
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penCsRegAdditionalAction
@@ -6702,51 +4127,7 @@ VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause256AuthRej(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcPsRegFailCause301TimerTimeOut
- 功能描述  : ps Cause:NAS_MML_REG_FAIL_CAUSE_TIMER_TIMEOUT 的处理
- 输入参数  :
-             VOS_UINT16                          usCause,
-             VOS_UINT32                          ulAttemptCnt
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年11月18日
-   作    者   : w00167002
-   修改内容   : 新生成函数。
- 2.日    期   : 2012年03月15日
-   作    者   : l00130025
-   修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
- 3.日    期   : 2012年06月07日
-   作    者   : s00217060
-   修改内容   : #301，尝试次数达到5次，需要Disable L
- 4.日    期   : 2012年7月27日
-   作    者   : s00217060
-   修改内容   : For CS/PS mode 1,带Disable LTE原因值
- 5.日    期   : 2013年3月30日
-   作    者   : l00167671
-   修改内容   : 主动上报AT命令控制下移至C核
- 6.日    期   : 2013年6月3日
-   作    者   : z00161729
-   修改内容   : SVLTE 修改
- 7.日    期   : 2014年5月5日
-   作    者   : w00242748
-   修改内容   : DTS2014043000311:注册状态服务状态不一致，将MMC中报服务状态的场景，都加
-                注册状态的上报。
- 8.日    期   : 2015年1月15日
-   作    者   : z00161729
-   修改内容   : AT&T 支持DAM特性修改
- 9.日    期   : 2015年4月22日
-   作    者   : z00161729
-   修改内容   : 24301 R11 CR升级项目修改
- 9.日    期   : 2015年7月1日
-   作    者   : c00318887
-   修改内容   : DTS2015061003127:L 下服务状态上报和GU不一致
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause301TimerTimeOut(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                   *penPsRegAdditionalAction,
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                   *penCsRegAdditionalAction
@@ -6788,9 +4169,7 @@ VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause301TimerTimeOut(
             /* 需要Disable L全局变量 */
             NAS_MML_SetLteCapabilityStatus(NAS_MML_LTE_CAPABILITY_STATUS_DISABLE_UNNOTIFY_AS);
 
-            /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-18, begin */
             NAS_MML_SetDisableLteReason(MMC_LMM_DISABLE_LTE_REASON_LTE_VOICE_NOT_AVAILABLE);
-            /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-18, end */
 
             (VOS_VOID)NAS_MMC_StartTimer(TI_NAS_MMC_WAIT_ENABLE_LTE_TIMER, NAS_MML_GetCsPsMode1EnableLteTimerLen());
 
@@ -6822,42 +4201,7 @@ VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause301TimerTimeOut(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_ProcCombinedEpsRegFailCause403ForbiddenPlmn
-功能描述  : Eps Cause forbidden plmn的处理
-输入参数  : VOS_VOID
-输出参数  : penPsRegAdditionalAction - 收到注册结果后，协议要求的ps域的additional动作类型
-            penCsRegAdditionalAction - 收到注册结果后，协议要求的cs域的additional动作类型
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2011年10月25日
-  作    者   : z00161729
-  修改内容   : 新生成函数
-
-2.日    期   : 2011年12月17日
-  作    者   : w00176964
-  修改内容   : V7R1 PhaseIV 调整:注册原因值的处理
-
-3.日    期   : 2012年1月4日
-  作    者   : w00167002
-  修改内容   : DTS2011122006209:g下PS ONLY注册成功_更改为CS后注册失败4次后未发起搜网.
-                在主框架中L1MAIN/PLMN LIST中判断当前原因值为非UE主动发起注册
-                原因值，则更新为NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON。现将
-                此判断放到各个子函数中来判断。
-4.日    期   : 2013年3月30日
-  作    者   : l00167671
-  修改内容   : 主动上报AT命令控制下移至C核
-5.日    期   : 2014年5月5日
-  作    者   : w00242748
-  修改内容   : DTS2014043000311:注册状态服务状态不一致，将MMC中报服务状态的场景，都加
-               注册状态的上报。
-6.日    期   : 2015年7月1日
-  作    者   : c00318887
-  修改内容   : DTS2015061003127:L 下服务状态上报和GU不一致
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause403ForbiddenPlmn(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penPsRegAdditionalAction,
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penCsRegAdditionalAction
@@ -6905,24 +4249,7 @@ VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause403ForbiddenPlmn(
     *penCsRegAdditionalAction = NAS_MMC_ADDITIONAL_ACTION_PLMN_SELECTION;
 }
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_ProcCombinedEpsRegFailCause404ForbiddenTaForRegPrvsSvs
-功能描述  : 联合注册Combined attach not accepted by the network或者
-            Combined TAU not accepted by the network，Eps MMC_LMM_ATT_RSLT_FORBID_TA_FOR_RPOS 的处理
-输入参数  : 无
-输出参数  : penPsRegAdditionalAction - 收到注册结果后，协议要求的ps域的additional动作类型
-            penCsRegAdditionalAction - 收到注册结果后，协议要求的cs域的additional动作类型
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
-
-1.日    期   : 2012年2月4日
-  作    者   : w00167002
-  修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause404ForbiddenTaForRegPrvsSvs(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penPsRegAdditionalAction,
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penCsRegAdditionalAction
@@ -6934,42 +4261,7 @@ VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause404ForbiddenTaForRegPrvsSvs(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCombinedEpsRegFailCause405ForbiddenLaForRoam
- 功能描述  : 假流程:Ps 13或15号原因值被拒
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_PLMN_SELECTION :拒绝原因值#13的搜网策略
-             NAS_MMC_ADDITIONAL_ACTION_SEARCH_SUITABLE_CELL_IN_SAME_PLMN:拒绝原因值#15的搜网策略
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2011年12月29日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-                 DTS2011102200381:L下注册被拒#12,LMM给MMC带的TAU
-                 中的结果为MMC_LMM_TAU_RSLT_FORBID_PLMNS，MMC收到此结果后按照禁止网络
-                 来处理而发起了搜网。
-                 MMC区分当前是#13还是#15，而进行不同的搜网动作。
- 2.日    期   : 2012年1月4日
-   作    者   : w00167002
-   修改内容   : DTS2011122006209:g下PS ONLY注册成功_更改为CS后注册失败4次后未发起搜网.
-                  在主框架中L1MAIN/PLMN LIST中判断当前原因值为非UE主动发起注册
-                  原因值，则更新为NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON。现将
-                  此判断放到各个子函数中来判断。
- 3.日    期   : 2013年3月30日
-   作    者   : l00167671
-   修改内容   : 主动上报AT命令控制下移至C核
- 4.日    期   : 2014年5月5日
-   作    者   : w00242748
-   修改内容   : DTS2014043000311:注册状态服务状态不一致，将MMC中报服务状态的场景，都加
-                注册状态的上报。
- 5.日    期   : 2015年7月1日
-   作    者   : c00318887
-   修改内容   : DTS2015061003127:L 下服务状态上报和GU不一致
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause405ForbiddenLaForRoam(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                   *penPsRegAdditionalAction,
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                   *penCsRegAdditionalAction
@@ -7037,31 +4329,7 @@ VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause405ForbiddenLaForRoam(
 
     return;
 }
-/*****************************************************************************
-函 数 名  : NAS_MMC_ProcCombinedEpsRegFailCausePsAttachNotAllow
-功能描述  : Eps Cause ps attach not allow的处理
-输入参数  : VOS_VOID
-输出参数  : penPsRegAdditionalAction - 收到注册结果后，协议要求的ps域的additional动作类型
-            penCsRegAdditionalAction - 收到注册结果后，协议要求的cs域的additional动作类型
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2011年12月25日
-  作    者   : z00161729
-  修改内容   : 新生成函数
-2.日    期   : 2013年3月30日
-  作    者   : l00167671
-  修改内容   : 主动上报AT命令控制下移至C核
-3.日    期   : 2014年5月5日
-  作    者   : w00242748
-  修改内容   : DTS2014043000311:注册状态服务状态不一致，将MMC中报服务状态的场景，都加
-               注册状态的上报。
-4.日    期   : 2015年7月1日
-  作    者   : c00318887
-  修改内容   : DTS2015061003127:L 下服务状态上报和GU不一致
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCausePsAttachNotAllow(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penPsRegAdditionalAction,
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penCsRegAdditionalAction
@@ -7088,27 +4356,7 @@ VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCausePsAttachNotAllow(
     }
 }
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_ProcCombinedEpsRegFailCause40NoEpsBearerActived
-功能描述  : Eps Cause 40的处理
-输入参数  : VOS_VOID
-输出参数  : penPsRegAdditionalAction - 收到注册结果后，协议要求的ps域的additional动作类型
-            penCsRegAdditionalAction - 收到注册结果后，协议要求的cs域的additional动作类型
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2011年1月8日
-  作    者   : z00161729
-  修改内容   : 新生成函数
-2.日    期   : 2012年03月15日
-  作    者   : l00130025
-  修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-  3.日    期   : 2015年11月19日
-    作    者   : c00318887
-    修改内容   : DTS2015111701196,ims没注册
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause40NoEpsBearerActived(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penPsRegAdditionalAction,
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penCsRegAdditionalAction
@@ -7132,31 +4380,7 @@ VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause40NoEpsBearerActived(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_ProcCombinedEpsRegFailCauseEpsBearerEstFail
-功能描述  : Eps Cause ESM承载建立失败的处理
-输入参数  : VOS_VOID
-输出参数  : penPsRegAdditionalAction - 收到注册结果后，协议要求的ps域的additional动作类型
-            penCsRegAdditionalAction - 收到注册结果后，协议要求的cs域的additional动作类型
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2011年1月8日
-  作    者   : z00161729
-  修改内容   : 新生成函数
-2.日    期   : 2013年3月30日
-  作    者   : l00167671
-  修改内容   : 主动上报AT命令控制下移至C核
-3.日    期   : 2014年5月5日
-  作    者   : w00242748
-  修改内容   : DTS2014043000311:注册状态服务状态不一致，将MMC中报服务状态的场景，都加
-               注册状态的上报。
-4.日    期   : 2015年7月1日
-  作    者   : c00318887
-  修改内容   : DTS2015061003127:L 下服务状态上报和GU不一致
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCauseEpsBearerEstFail(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penPsRegAdditionalAction,
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penCsRegAdditionalAction
@@ -7181,38 +4405,7 @@ VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCauseEpsBearerEstFail(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_ProcCombinedEpsRegFailCauseMoDetach
-功能描述  : Eps Cause Mo detach的处理
-输入参数  : VOS_VOID
-输出参数  : penPsRegAdditionalAction - 收到注册结果后，协议要求的ps域的additional动作类型
-            penCsRegAdditionalAction - 收到注册结果后，协议要求的cs域的additional动作类型
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2011年1月8日
-  作    者   : z00161729
-  修改内容   : 新生成函数
-2.日    期   : 2012年06月27日
-  作    者   : s46746
-  修改内容   : For CS/PS mode 1，整理注册过程中用户进行Detach操作
-3.日    期   : 2013年3月30日
-  作    者   : l00167671
-  修改内容   : 主动上报AT命令控制下移至C核
-4.日    期   : 2014年5月5日
-  作    者   : w00242748
-  修改内容   : DTS2014043000311:注册状态服务状态不一致，将MMC中报服务状态的场景，都加
-               注册状态的上报。
-5.日    期   : 2014年07月26日
-  作    者   : s00217060
-  修改内容   : DTS2014051501744:TAU过程中用户detach,LMM会给MMC回MO_DETACH_FAILURE,
-               MMC收到该TAU结果会触发搜网，搜网前要求主动释放链接，导致detach_req发不上去
-6.日    期   : 2015年7月1日
-  作    者   : c00318887
-  修改内容   : DTS2015061003127:L 下服务状态上报和GU不一致
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCauseMoDetach(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penPsRegAdditionalAction,
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penCsRegAdditionalAction
@@ -7244,31 +4437,7 @@ VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCauseMoDetach(
 }
 
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_ProcCombinedEpsRegFailCauseMtDetach
-功能描述  : Eps Cause Mt detach的处理
-输入参数  : VOS_VOID
-输出参数  : penPsRegAdditionalAction - 收到注册结果后，协议要求的ps域的additional动作类型
-            penCsRegAdditionalAction - 收到注册结果后，协议要求的cs域的additional动作类型
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2011年1月8日
-  作    者   : z00161729
-  修改内容   : 新生成函数
-2.日    期   : 2013年3月30日
-  作    者   : l00167671
-  修改内容   : 主动上报AT命令控制下移至C核
-3.日    期   : 2014年5月5日
-  作    者   : w00242748
-  修改内容   : DTS2014043000311:注册状态服务状态不一致，将MMC中报服务状态的场景，都加
-               注册状态的上报。
-4.日    期   : 2015年7月1日
-  作    者   : c00318887
-  修改内容   : DTS2015061003127:L 下服务状态上报和GU不一致
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCauseMtDetach(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penPsRegAdditionalAction,
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penCsRegAdditionalAction
@@ -7293,21 +4462,7 @@ VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCauseMtDetach(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCombinedEpsRegFailCause42SevereNetworkFailure
- 功能描述  : 联合注册Eps Cause #42的处理
- 输入参数  : VOS_VOID
- 输出参数  : penPsRegAdditionalAction - ps域additional action
-             penCsRegAdditionalAction - cs域additional action
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年4月19日
-   作    者   : z00161729
-   修改内容   : 24301 R11 CR升级项目修改
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause42SevereNetworkFailure(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penPsRegAdditionalAction,
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penCsRegAdditionalAction
@@ -7326,20 +4481,7 @@ VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause42SevereNetworkFailure(
         return;
     }
 
-    /* 24301_CR1473R2_(Rel-11)_C1-123386 MMC增加ATTACH、TAU和SERVICE REQUEST过程中被拒原因值42的处理
-    24301 5.5.1.3.5和5.5.3.3.5章节描述:
-       The UE shall set the EPS update status to EU2 NOT UPDATED, and shall delete
-    any GUTI, last visited registered TAI, eKSI, and list of equivalent PLMNs,
-    and set the attach attempt counter to 5. The UE shall start an implementation
-    specific timer, setting its value to 2 times the value of T as defined in 3GPP
-    TS 23.122 [6]. While this timer is running, the UE shall not consider the
-    PLMN + RAT combination that provided this reject cause, a candidate for PLMN
-    selection. The UE then enters state EMM-DEREGISTERED.PLMN-SEARCH in order to
-    perform a PLMN selection according to 3GPP TS 23.122 [6].
-        If A/Gb mode or Iu mode is supported by the UE, the UE shall in addition
-    set the GMM state to GMM-DEREGISTERED, GPRS update status to GU2 NOT UPDATED,
-    and shall delete the P-TMSI, P-TMSI signature, RAI and GPRS ciphering key
-    sequence number. 该CR受协议版本控制 */
+    
     PS_MEM_CPY(&stPlmnWithRat.stPlmnId, NAS_MML_GetCurrCampPlmnId(), sizeof(stPlmnWithRat.stPlmnId));
     stPlmnWithRat.enRat = NAS_MML_GetCurrNetRatType();
 
@@ -7363,34 +4505,7 @@ VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause42SevereNetworkFailure(
 }
 
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_ProcCombinedEpsRegFailCauseT3402Running
-功能描述  : Eps Cause T3402定时器在运行的处理
-输入参数  : VOS_VOID
-输出参数  : penPsRegAdditionalAction - 收到注册结果后，协议要求的ps域的additional动作类型
-            penCsRegAdditionalAction - 收到注册结果后，协议要求的cs域的additional动作类型
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2011年1月8日
-  作    者   : z00161729
-  修改内容   : 新生成函数
-2.日    期   : 2013年1月31日
-  作    者   : t00212959
-  修改内容   : DTS2013012909238:anycell搜网，3402在运行，不等available超时，就又发起了搜网。
-3.日    期   : 2013年3月30日
-  作    者   : l00167671
-  修改内容   : 主动上报AT命令控制下移至C核
-4.日    期   : 2014年5月5日
-  作    者   : w00242748
-  修改内容   : DTS2014043000311:注册状态服务状态不一致，将MMC中报服务状态的场景，都加
-               注册状态的上报。
-5.日    期   : 2015年7月1日
-  作    者   : c00318887
-  修改内容   : DTS2015061003127:L 下服务状态上报和GU不一致
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCauseT3402Running(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penPsRegAdditionalAction,
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penCsRegAdditionalAction
@@ -7436,22 +4551,7 @@ VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCauseT3402Running(
 }
 
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_ProcCombinedEpsRegFailCauseT3402RunningEpsOnlySucc
-功能描述  : Eps Cause T3402定时器在运行且PS normal service的处理
-输入参数  : enRegRsltType - 当前的注册结果消息类型
-            pstLmmTauIndMsg - LMM_MMC_TAU_RESULT_IND消息指针
-输出参数  : penPsRegAdditionalAction - 收到注册结果后，协议要求的ps域的additional动作类型
-            penCsRegAdditionalAction - 收到注册结果后，协议要求的cs域的additional动作类型
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
-  1.日    期   : 2015年11月30日
-    作    者   : c00318887
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCauseT3402RunningEpsOnlySucc(
     NAS_MMC_REG_RSLT_TYPE_ENUM_UINT8                        enRegRsltType,
     LMM_MMC_TAU_RESULT_IND_STRU                            *pstLmmTauIndMsg,
@@ -7478,55 +4578,7 @@ VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCauseT3402RunningEpsOnlySucc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsAttachRegFailCause3IllegalMs
- 功能描述  : Eps Cause3的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年8月7日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年12月15日
-    作    者   : w00167002
-    修改内容   : DTS2011121307570: MMC没有维护LMM的EPLMN信息，现在统一调整
-                  ATTACH/TAU/DETACH/SERVICE中被拒时EPLMN的维护。
-  3.日    期   : 2011年12月30日
-    作    者   : l65478
-    修改内容   : 在迁到L模时,不立刻把CS设置成可选搜网,而是等待PS注册结果时
-                 根据具体的原因值再设置
-
-  4.日    期   : 2012年2月15日
-    作    者   : z40661
-    修改内容   : DTS2011121405203_PC测试发现问题,支持gUL多模时,L下被#3拒绝,到GU下指定搜网
-  5.日    期   : 2012年03月15日
-    作    者   : l00130025
-    修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-  6.日    期   : 2012年09月15日
-    作    者   : z00161729
-    修改内容  : DTS2012090708320：MMC收到L的注册结果，ps cs卡是否有效状态需要更新，原来由gmm更新存在时序问题
-  7.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  8.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  9.日    期   : 2014年4月29日
-    作    者   : s00261364
-    修改内容   : ecall项目修改服务状态上报
- 10.日    期   : 2014年5月5日
-    作    者   : w00242748
-    修改内容   : DTS2014043000311:注册状态服务状态不一致，将MMC中报服务状态的场景，都加
-                 注册状态的上报。
- 11.日    期   : 2015年02月11日
-    作    者   : l00305157
-    修改内容   : Service_State_Optimize_PhaseII 项目修改
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCause3IllegalMs(VOS_VOID)
 {
 
@@ -7537,14 +4589,12 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCause3IllegalMs
 
     NAS_MMC_NotifyModeChange(NAS_MML_NET_RAT_TYPE_BUTT,VOS_FALSE);
 
-    /* Modified by w00176964 for VoLTE_PhaseII 项目, 2013-11-20, begin */
     /* 先更新全局变量,便于发送消息时全局变量时最新的 */
     /* 设置cs ps卡状态为无效 */
     NAS_MML_SetSimCsRegStatus(VOS_FALSE);
     NAS_MML_SetSimPsRegStatus(VOS_FALSE);
 
     /* 通知TAF当前的服务状态 */
-    /* Modified by w00176964 for VoLTE_PhaseII 项目, 2013-11-20, end */
 
     NAS_MMC_ChangeCsRegState(NAS_MML_REG_REGISTERED_DENIED);
 
@@ -7558,33 +4608,12 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCause3IllegalMs
     }
 
 
-    /* modified by z40661 for DTS2011121405203_PC测试发现问题, 2012-02-15, begin */
     return NAS_MMC_ADDITIONAL_ACTION_CSPS_ANYCELL;
 
-    /* modified by l65478 for DTS2011121405203_PC测试发现问题, 2012-02-15, end */
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsAttachRegFailCause6IllegalMe
- 功能描述  : Eps Cause6的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年8月7日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年12月15日
-    作    者   : w00167002
-    修改内容   : DTS2011121307570: MMC没有维护LMM的EPLMN信息，现在统一调整
-                  ATTACH/TAU/DETACH/SERVICE中被拒时EPLMN的维护。
-
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCause6IllegalMe(VOS_VOID)
 {
 
@@ -7592,60 +4621,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCause6IllegalMe
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsAttachRegFailCause7EpsServNotAllow
- 功能描述  : Eps Cause7的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月29日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年12月15日
-    作    者   : w00167002
-    修改内容   : DTS2011121307570: MMC没有维护LMM的EPLMN信息，现在统一调整
-                  ATTACH/TAU/DETACH/SERVICE中被拒时EPLMN的维护。
-
-  3.日    期   : 2011年12月30日
-    作    者   : l65478
-    修改内容   : 在迁到L模时,不立刻把CS设置成可选搜网,而是等待PS注册结果时
-                 根据具体的原因值再设置
-  4.日    期   : 2012年03月15日
-    作    者   : l00130025
-    修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-
-  5.日    期   : 2012年4月4日
-    作    者   : z40661
-    修改内容   : 问题单号DTS2012032803448，PS oNLY时，需要在L模下进行ANYCELL
-                 搜网。
-  6.日    期   : 2012年7月4日
-    作    者   : s46746
-    修改内容   : for V7R1 cS/PS mode 1, 原因值#7时，需要设置Disable LTE全局变量
-  7.日    期   : 2012年7月27日
-    作    者   : s00217060
-    修改内容   : For CS/PS mode 1,带Disable LTE原因值
-  8.日    期   : 2012年09月15日
-    作    者   : z00161729
-    修改内容   : DTS2012090708320：MMC收到L的注册结果，ps cs卡是否有效状态需要更新，原来由gmm更新存在时序问题
-  9.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
- 10.日    期   : 2014年4月29日
-    作    者   : s00261364
-    修改内容   : ecall项目修改服务状态上报
- 11.日    期   : 2014年5月5日
-    作    者   : w00242748
-    修改内容   : DTS2014043000311:注册状态服务状态不一致，将MMC中报服务状态的场景，都加
-                 注册状态的上报。
- 12.日    期   : 2015年02月11日
-    作    者   : l00305157
-    修改内容   : Service_State_Optimize_PhaseII 项目修改
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCause7EpsServNotAllow(VOS_VOID)
 {
     NAS_MML_PLMN_RAT_PRIO_STRU         *pstRatOrder;
@@ -7661,7 +4637,6 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCause7EpsServNo
 
     NAS_MMC_NotifyModeChange(NAS_MML_NET_RAT_TYPE_BUTT,VOS_FALSE);
 
-    /* Modified by w00176964 for VoLTE_PhaseII 项目, 2013-11-20, begin */
     /* 设置ps卡状态为无效 */
     NAS_MML_SetSimPsRegStatus(VOS_FALSE);
 
@@ -7672,7 +4647,6 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCause7EpsServNo
 
 
     /* 通知TAF当前的服务状态 */
-    /* Modified by w00176964 for VoLTE_PhaseII 项目, 2013-11-20, end */
 
     /* 判断是否需要disable L */
     if (VOS_TRUE == NAS_MMC_IsNeedDisableL_PsFailCause7PsServNotAllow())
@@ -7704,26 +4678,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCause7EpsServNo
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsAttachRegFailCause8GprsAndNonGprsNotAllow
- 功能描述  : Eps Cause8的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年8月7日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年12月15日
-    作    者   : w00167002
-    修改内容   : DTS2011121307570: MMC没有维护LMM的EPLMN信息，现在统一调整
-                  ATTACH/TAU/DETACH/SERVICE中被拒时EPLMN的维护。
-
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCause8GprsAndNonGprsNotAllow(VOS_VOID)
 {
 
@@ -7731,33 +4686,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCause8GprsAndNo
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsAttachRegFailCause11PlmnNotAllow
- 功能描述  : Eps Cause11的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年08月05日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2012年03月15日
-    作    者   : l00130025
-    修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-  3.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  4.日    期   : 2014年5月5日
-    作    者   : w00242748
-    修改内容   : DTS2014043000311:注册状态服务状态不一致，将MMC中报服务状态的场景，都加
-                 注册状态的上报。
-  5.日    期   : 2015年7月1日
-    作    者   : c00318887
-    修改内容   : DTS2015061003127:L 下服务状态上报和GU不一致
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCause11PlmnNotAllow(VOS_VOID)
 {
     NAS_MML_PLMN_ID_STRU               *pstCurPlmnId;
@@ -7789,29 +4718,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCause11PlmnNotA
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsAttachRegFailCause12TaNotAllow
- 功能描述  : Eps Cause12的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年8月7日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  3.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  4.日    期   : 2015年02月11日
-    作    者   : l00305157
-    修改内容   : Service_State_Optimize_PhaseII 项目修改
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCause12TaNotAllow(VOS_VOID)
 {
     VOS_UINT8                           ucSimCsRegStatus;
@@ -7842,33 +4749,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCause12TaNotAll
     return NAS_MMC_ADDITIONAL_ACTION_CELL_SELECTION;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsAttachRegFailCause13RoamNotAllow
- 功能描述  : Eps Cause13的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年8月7日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2012年03月15日
-    作    者   : l00130025
-    修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-  3.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  4.日    期   : 2014年5月5日
-    作    者   : w00242748
-    修改内容   : DTS2014043000311:注册状态服务状态不一致，将MMC中报服务状态的场景，都加
-                 注册状态的上报。
-  5.日    期   : 2015年7月1日
-    作    者   : c00318887
-    修改内容   : DTS2015061003127:L 下服务状态上报和GU不一致
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCause13RoamNotAllow(VOS_VOID)
 {
     /* 删除EPLMN */
@@ -7887,40 +4768,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCause13RoamNotA
 
     return NAS_MMC_ADDITIONAL_ACTION_PLMN_SELECTION;
 }
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsAttachRegFailCause14GprsNotAllowInThisPlmn
- 功能描述  : EPs Cause14的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年8月7日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  3.日    期   : 2014年5月5日
-    作    者   : w00242748
-    修改内容   : DTS2014043000311:注册状态服务状态不一致，将MMC中报服务状态的场景，都加
-                 注册状态的上报。
-  4.日    期   : 2015年1月5日
-    作    者   : h00285180
-    修改内容   : LTE #14拒绝优化:DTS2015010401946
-  5.日    期   : 2015年4月19日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-  6.日    期   : 2015年7月1日
-    作    者   : c00318887
-    修改内容   : DTS2015061003127:L 下服务状态上报和GU不一致
-  7.日    期   : 2015年8月13日
-    作    者   : l00289540
-    修改内容   : User_Exp_Improve
-
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCause14GprsNotAllowInThisPlmn(VOS_VOID)
 {
 
@@ -7950,13 +4798,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCause14GprsNotA
 
     /* 通知TAF当前的服务状态 */
 
-    /* 24301_CR1422R1_(Rel-11)_C1-121612 对应24301 5.5.1.2.5章节:
-    #14(EPS services not allowed in this PLMN);
-        The UE shall set the EPS update status to EU3 ROAMING NOT ALLOWED
-        (and shall store it according to subclause 5.1.3.3) and shall delete any
-        GUTI, last visited registered TAI and eKSI. Additionally, the UE shall
-        delete the list of equivalent PLMNs and reset the attach attempt counter
-        该CR受协议版本控制 */
+    
     if (NAS_MML_GetLte3gppRelVersion() >= NAS_MML_3GPP_REL_R11)
     {
         /* 删除EPLMN */
@@ -7986,30 +4828,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCause14GprsNotA
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsAttachRegFailCause15NoSuitableCell
- 功能描述  : Eps Cause15的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年8月7日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  3.日    期   : 2014年5月5日
-    作    者   : w00242748
-    修改内容   : DTS2014043000311:注册状态服务状态不一致，将MMC中报服务状态的场景，都加
-                 注册状态的上报。
-  4.日    期   : 2015年7月1日
-    作    者   : c00318887
-    修改内容   : DTS2015061003127:L 下服务状态上报和GU不一致
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCause15NoSuitableCell(VOS_VOID)
 {
     /* 更新服务状态 */
@@ -8026,24 +4845,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCause15NoSuitab
     return NAS_MMC_ADDITIONAL_ACTION_SEARCH_SUITABLE_CELL_IN_SAME_PLMN;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsAttachRegFailCause35RequestedServiceOptionNotAuthorizedInThisPlmn
- 功能描述  : Eps Cause35的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年03月06日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月24日
-    作    者   : w00242748
-    修改内容   : DTS2013101106863:L下被拒原因值#35，只有在R10及其协议以上处理才与#11
-                 原因值处理相同，否则当做OTHER CAUSE来处理。
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCause35ReqServOptNotAuthorizedInThisPlmn(VOS_VOID)
 {
     NAS_MML_MS_3GPP_REL_STRU           *pstMs3GppRel = VOS_NULL_PTR;
@@ -8067,46 +4869,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCause35ReqServO
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsAttachRegFailCause256AuthRej
- 功能描述  : Eps Reg Auth rej的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年8月7日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2012年2月3日
-    作    者   : w00167002
-    修改内容   : DTS2011122704039:在注册失败原因值的函数命名中增加原因值，
-                  保持函数命名的一致性。
-  3.日    期   : 2012年03月15日
-    作    者   : l00130025
-    修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-  4.日    期   : 2012年09月15日
-    作    者   : z00161729
-    修改内容   : DTS2012090708320：MMC收到L的注册结果，ps cs卡是否有效状态需要更新，原来由gmm更新存在时序问题
-  5.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  6.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  7.日    期   : 2014年4月29日
-    作    者   : s00261364
-    修改内容   : ecall项目修改服务状态上报
-  8.日    期   : 2014年5月5日
-    作    者   : w00242748
-    修改内容   : DTS2014043000311:注册状态服务状态不一致，将MMC中报服务状态的场景，都加
-                 注册状态的上报。
-  9.日    期   : 2015年02月11日
-    作    者   : l00305157
-    修改内容   : Service_State_Optimize_PhaseII 项目修改
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCause256AuthRej(VOS_VOID)
 {
     /* 删除EPLMN */
@@ -8135,53 +4898,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCause256AuthRej
     return NAS_MMC_ADDITIONAL_ACTION_CSPS_ANYCELL;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsAttachRegFailCause257AccessBarrd
- 功能描述  : Eps AccessBarrd的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年8月7日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2012年2月3日
-    作    者   : w00167002
-    修改内容   : DTS2011122704039:在注册失败原因值的函数命名中增加原因值，
-                  保持函数命名的一致性。
-  3.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  4.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  5.日    期   : 2013年10月15日
-    作    者   : s00190137
-    修改内容   : 特性开关打开且非HPLMN/RPLMN接入禁止时需要触发PLMN搜网
-
-  6.日    期   : 2015年1月23日
-    作    者   : w00167002
-    修改内容   : DTS2015020309124:via控制L下搜网注册时候，L下ACCESS BAR，后续
-                选网结束后，L自己触发了注册。VIA无法配合，MODEM进行配合修改。
-                修改为在注册状态收到ACCESS BAR后，继续等待L的注册结果。
-  7.日    期   : 2015年02月11日
-    作    者   : l00305157
-    修改内容   : Service_State_Optimize_PhaseII 项目修改
-               MMC收到LMM ATTACH结果中，携带ACCESS BAR场景，
-                       服务状态:CS域上报NAS_MMC_NO_SERVICE，PS域上报NAS_MMC_LIMITED_SERVICE, CS域和PS域注册状态上报0。
-               MMC收到LMM TAU结果中，携带ACCESS BAR场景，
-                       CS域和PS域服务状态,CS域和PS域注册状态不改变
-
-  8.日    期   : 2015年11月24日
-    作    者   : w00167002
-    修改内容   : DTS2015112405788:在海外测试,如果当前开机CS/PS是无服务，则不上报到
-                 MMA，而MMA需要收起CS/PS的服务状态，才给stk下发LOCATION STATUS NTF
-                 消息；卡收不到此消息，则不进行IMSI切换。
-
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCause257AccessBarrd(VOS_VOID)
 {
     VOS_UINT8                           ucSimCsRegStatus;
@@ -8236,33 +4953,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCause257AccessB
     return NAS_MMC_ADDITIONAL_ACTION_ACCESS_BARRED;
 
 }
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsAttachRegFailCause301TimerTimeOut
- 功能描述  : Eps Reg Auth rej的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月4日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2012年2月3日
-    作    者   : w00167002
-    修改内容   : DTS2011122704039:在注册失败原因值的函数命名中增加原因值，
-                  保持函数命名的一致性。
-  3.日    期   : 2012年03月15日
-    作    者   : l00130025
-    修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-  4.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  5.日    期   : 2015年7月1日
-    作    者   : c00318887
-    修改内容   : DTS2015061003127:L 下服务状态上报和GU不一致
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCause301TimerTimeOut(VOS_VOID)
 {
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    enAction;
@@ -8303,32 +4994,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCause301TimerTi
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsAttachRegFailCause401OtherCause
- 功能描述  : Eps Reg Auth rej的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月4日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-  3.日    期   : 2012年03月15日
-    作    者   : l00130025
-    修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-  4.日    期   : 2012年06月07日
-   作    者   : s00217060
-   修改内容   : For CS/PS mode 1，联合Attach,other cause,并且尝试5次，设置需要Disable L
-  5.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  6.日    期   : 2015年7月1日
-    作    者   : c00318887
-    修改内容   : DTS2015061003127:L 下服务状态上报和GU不一致
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCause401OtherCause(VOS_VOID)
 {
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    enAction;
@@ -8367,31 +5033,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCause401OtherCa
     return enAction;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsAttachRegFailCause403ForbiddenPlmn
- 功能描述  : Eps 回复当前驻留在禁止网络的后续处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月12日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2012年1月4日
-    作    者   : w00167002
-    修改内容   : DTS2011122006209:g下PS ONLY注册成功_更改为CS后注册失败4次后未发起搜网.
-                  在主框架中L1MAIN/PLMN LIST中判断当前原因值为非UE主动发起注册
-                  原因值，则更新为NAS_MMC_ADDITIONAL_ACTION_BUTT。
-  3.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  4.日    期   : 2015年7月1日
-    作    者   : c00318887
-    修改内容   : DTS2015061003127:L 下服务状态上报和GU不一致
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCause403ForbiddenPlmn(VOS_VOID)
 {
     NAS_MMC_FSM_ID_ENUM_UINT32                              enFsmId;
@@ -8438,78 +5080,21 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCause403Forbidd
     return enAdditionalAction;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsAttachRegFailCause404ForbiddenTaForRegPrvsSvs
- 功能描述  : Eps被拒原因值:MMC_LMM_ATT_RSLT_FORBID_TA_FOR_RPOS的后续处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月4日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCause404ForbiddenTaForRegPrvsSvs(VOS_VOID)
 {
     /* 跟拒绝原因值#12的处理保持一致 */
     return NAS_MMC_ProcEpsAttachRegFailCause12TaNotAllow();
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsAttachRegFailCause405ForbiddenLaForRoam
- 功能描述  : 假流程:Ps 13或15号原因值被拒
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_PLMN_SELECTION :拒绝原因值#13的搜网策略
-             NAS_MMC_ADDITIONAL_ACTION_SEARCH_SUITABLE_CELL_IN_SAME_PLMN:拒绝原因值#15的搜网策略
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月29日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-                 DTS2011102200381:L下注册被拒#12,LMM给MMC带的TAU
-                 中的结果为MMC_LMM_TAU_RSLT_FORBID_PLMNS，MMC收到此结果后按照禁止网络
-                 来处理而发起了搜网。
-                 MMC区分当前是#13还是#15，而进行不同的搜网动作。
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCause405ForbiddenLaForRoam(VOS_VOID)
 {
     /* 跟tau状态的处理一致 */
     return NAS_MMC_ProcEpsTauRegFailCause405ForbiddenLaForRoam();
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsAttachRegFailCause406ForbiddenPlmnForGprs
- 功能描述  : EPs Cause14的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年8月7日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2012年1月4日
-    作    者   : w00167002
-    修改内容   : DTS2011122006209:g下PS ONLY注册成功_更改为CS后注册失败4次后未发起搜网.
-                  在主框架中L1MAIN/PLMN LIST中判断当前原因值为非UE主动发起注册
-                  原因值，则更新为NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON。现将
-                  此判断放到各个子函数中来判断。
-   3.日    期   : 2013年3月30日
-     作    者   : l00167671
-     修改内容   : 主动上报AT命令控制下移至C核
-   4.日    期   : 2015年7月1日
-     作    者   : c00318887
-     修改内容   : DTS2015061003127:L 下服务状态上报和GU不一致
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCause406ForbiddenPlmnForGprs(VOS_VOID)
 {
     NAS_MMC_FSM_ID_ENUM_UINT32                              enFsmId;
@@ -8563,26 +5148,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCause406Forbidd
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsAttachRegFailCausePsAttachNotAllow
- 功能描述  : Eps 回复当前PS不允许注册的后续处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月27日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  3.日    期   : 2015年7月1日
-    作    者   : c00318887
-    修改内容   : DTS2015061003127:L 下服务状态上报和GU不一致
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCausePsAttachNotAllow(VOS_VOID)
 {
     /* 更新服务状态 */
@@ -8601,26 +5167,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCausePsAttachNo
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsAttachRegFailCauseEpsBearerEstFail
- 功能描述  : Eps 回复EPS承载建立失败的后续处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月08日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  3.日    期   : 2015年7月1日
-    作    者   : c00318887
-    修改内容   : DTS2015061003127:L 下服务状态上报和GU不一致
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCauseEpsBearerEstFail(VOS_VOID)
 {
     /* 更新服务状态 */
@@ -8639,30 +5186,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCauseEpsBearerE
     return NAS_MMC_ADDITIONAL_ACTION_OPTIONAL_PLMN_SELECTION;
 }
 
- /*****************************************************************************
-  函 数 名  : NAS_MMC_ProcEpsAttachRegFailCauseMoDetach
-  功能描述  : Eps Mo detach的后续处理
-  输入参数  : VOS_VOID
-  输出参数  : 无
-  返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
-  调用函数  :
-  被调函数  :
-
-  修改历史      :
-   1.日    期   : 2012年1月08日
-     作    者   : z00161729
-     修改内容   : 新生成函数
-   2.日    期   : 2013年3月30日
-     作    者   : l00167671
-     修改内容   : 主动上报AT命令控制下移至C核
-   3.日    期   : 2014年07月26日
-     作    者   : s00217060
-     修改内容   : DTS2014051501744:TAU过程中用户detach,LMM会给MMC回MO_DETACH_FAILURE,
-                  MMC收到该TAU结果会触发搜网，搜网前要求主动释放链接，导致detach_req发不上去
-   4.日    期   : 2015年7月1日
-     作    者   : c00318887
-     修改内容   : DTS2015061003127:L 下服务状态上报和GU不一致
- *****************************************************************************/
+ 
  NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCauseMoDetach(VOS_VOID)
  {
     /* 更新服务状态 */
@@ -8683,26 +5207,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCauseEpsBearerE
     return NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON;
  }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsAttachRegFailCauseMtDetach
- 功能描述  : Eps Mt detach的后续处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月08日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  3.日    期   : 2015年7月1日
-    作    者   : c00318887
-    修改内容   : DTS2015061003127:L 下服务状态上报和GU不一致
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCauseMtDetach(VOS_VOID)
 {
     /* 更新服务状态 */
@@ -8719,20 +5224,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCauseMtDetach(V
     return NAS_MMC_ADDITIONAL_ACTION_OPTIONAL_PLMN_SELECTION;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsAttachRegFailCause42SevereNetworkFailure
- 功能描述  : eps only attach被拒#42 severe network failure的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年4月19日
-   作    者   : z00161729
-   修改内容   : 24301 R11 CR升级项目修改
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCause42SevereNetworkFailure(VOS_VOID)
 {
     NAS_MMC_REG_RSLT_CTX_STRU          *pstRegRsltCtx = VOS_NULL_PTR;
@@ -8752,20 +5244,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCause42SevereNe
         return NAS_MMC_ProcEpsRegFailCauseAbnormalCause(NAS_MML_REG_FAIL_CAUSE_SEVERE_NETWORK_FAILURE, ulAttemptCnt);
     }
 
-    /* 24301_CR1473R2_(Rel-11)_C1-123386 MMC增加ATTACH、TAU和SERVICE REQUEST过程中被拒原因值42的处理
-      24301 5.5.1.2.5章节描述:
-      The UE shall set the EPS update status to EU2 NOT UPDATED, and shall delete
-    any GUTI, last visited registered TAI, eKSI, and list of equivalent PLMNs,
-    and set the attach attempt counter to 5. The UE shall start an implementation
-    specific timer setting its value to 2 times the value of T as defined in
-    3GPP TS 23.122 [6]. While this timer is running, the UE shall not consider
-    the PLMN + RAT combination that provided this reject cause a candidate
-    for PLMN selection. The UE then enters state EMM-DEREGISTERED.PLMN-SEARCH
-    in order to perform a PLMN selection according to 3GPP TS 23.122 [6].
-      If A/Gb mode or Iu mode is supported by the UE, the UE shall in addition
-    set the GMM state to GMM-DEREGISTERED, GPRS update status to GU2 NOT UPDATED,
-    and shall delete the P-TMSI, P-TMSI signature, RAI and GPRS ciphering key
-    sequence number. 该CR受协议版本控制 */
+    
     PS_MEM_CPY(&stPlmnWithRat.stPlmnId, NAS_MML_GetCurrCampPlmnId(), sizeof(stPlmnWithRat.stPlmnId));
     stPlmnWithRat.enRat = NAS_MML_GetCurrNetRatType();
 
@@ -8785,29 +5264,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCause42SevereNe
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsAttachRegFailCauseT3402Running
- 功能描述  : Eps T3402定时器正在运行的后续处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月08日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2013年1月31日
-    作    者   : t00212959
-    修改内容   : DTS2013012909238:anycell搜网，3402在运行，不等available超时，就又发起了搜网。
-  3.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  4.日    期   : 2015年7月1日
-    作    者   : c00318887
-    修改内容   : DTS2015061003127:L 下服务状态上报和GU不一致
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCauseT3402Running(VOS_VOID)
 {
 
@@ -8843,47 +5300,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFailCauseT3402Runni
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsTauRegFailCause3IllegalMs
- 功能描述  : Eps Cause3的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年8月7日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年12月30日
-    作    者   : l65478
-    修改内容   : 在迁到L模时,不立刻把CS设置成可选搜网,而是等待PS注册结果时
-                 根据具体的原因值再设置
-
-  3.日    期   : 2012年2月15日
-    作    者   : z40661
-    修改内容   : DTS2011121405203_PC测试发现问题,支持gUL多模时,L下被#3拒绝,到GU下指定搜网
-  4.日    期   : 2012年03月15日
-    作    者   : l00130025
-    修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-  5.日    期   : 2012年09月15日
-    作    者   : z00161729
-    修改内容   : DTS2012090708320：MMC收到L的注册结果，ps cs卡是否有效状态需要更新，原来由gmm更新存在时序问题
-  6.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  7.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  8.日    期   : 2014年4月29日
-    作    者   : s00261364
-    修改内容   : ecall项目修改服务状态上报
-  9.日    期   : 2015年02月11日
-    作    者   : l00305157
-    修改内容   : Service_State_Optimize_PhaseII 项目修改
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCause3IllegalMs(VOS_VOID)
 {
     /* 删除EPLMN */
@@ -8891,14 +5308,12 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCause3IllegalMs(VO
 
     /* 更新服务状态 */
 
-    /* Modified by w00176964 for VoLTE_PhaseII 项目, 2013-11-20, begin */
     /* 先更新全局变量,便于发送消息时获取到的全局变量是最新的 */
     /* 设置cs ps卡状态为无效 */
     NAS_MML_SetSimCsRegStatus(VOS_FALSE);
     NAS_MML_SetSimPsRegStatus(VOS_FALSE);
 
     /* 通知TAF当前的服务状态 */
-    /* Modified by w00176964 for VoLTE_PhaseII 项目, 2013-11-20, end */
 
     NAS_MMC_ChangeCsRegState(NAS_MML_REG_REGISTERED_DENIED);
     NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_CS, NAS_MMC_LIMITED_SERVICE);
@@ -8914,78 +5329,17 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCause3IllegalMs(VO
         NAS_MMC_SetCLRegAdditionalAction_L1Main(NAS_MMC_CL_ADDITIONAL_ACTION_ANYCELL_SELECTION);
     }
 
-    /* modified by z40661 for DTS2011121405203_PC测试发现问题, 2012-02-15, begin */
     return NAS_MMC_ADDITIONAL_ACTION_CSPS_ANYCELL;
-    /* modified by z40661 for DTS2011121405203_PC测试发现问题, 2012-02-15, begin */
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsTauRegFailCause6IllegalMe
- 功能描述  : Eps Cause6的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年8月7日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCause6IllegalMe(VOS_VOID)
 {
     return NAS_MMC_ProcEpsTauRegFailCause3IllegalMs();
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcPsRegFailCauseCause7EpsServNotAllow
- 功能描述  : Eps Cause7的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月29日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年12月30日
-    作    者   : l65478
-    修改内容   : 在迁到L模时,不立刻把CS设置成可选搜网,而是等待PS注册结果时
-                 根据具体的原因值再设置
-  3.日    期   : 2012年03月15日
-    作    者   : l00130025
-    修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-
-  4.日    期   : 2012年4月4日
-    作    者   : z40661
-    修改内容   : 问题单号DTS2012032803448，PS oNLY时，需要在L模下进行ANYCELL搜网。
-
-  5.日    期   : 2012年7月4日
-    作    者   : s46746
-    修改内容   : for V7R1 cS/PS mode 1, 原因值#7时，需要设置Disable LTE全局变量
-  6.日    期   : 2012年7月27日
-    作    者   : s00217060
-    修改内容   : For CS/PS mode 1,带Disable LTE原因值
-  7.日    期   : 2012年09月15日
-    作    者   : z00161729
-    修改内容   : DTS2012090708320：MMC收到L的注册结果，ps cs卡是否有效状态需要更新，原来由gmm更新存在时序问题
-  8.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  9.日    期   : 2014年4月29日
-    作    者   : s00261364
-    修改内容   : ecall项目修改服务状态上报
- 10.日    期   : 2015年02月11日
-    作    者   : l00305157
-    修改内容   : Service_State_Optimize_PhaseII 项目修改
-
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCause7EpsServNotAllow(VOS_VOID)
 {
     NAS_MML_PLMN_RAT_PRIO_STRU         *pstRatOrder;
@@ -9034,50 +5388,14 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCause7EpsServNotAl
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsAttachRegFailCause8GprsAndNonGprsNotAllow
- 功能描述  : Eps Cause8的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年02月11日
-   作    者   : l00305157
-   修改内容   : Service_State_Optimize_PhaseII 新生成函数
-                增加对CASUE 8的处理，
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCause8GprsAndNonGprsNotAllow(VOS_VOID)
 {
     return NAS_MMC_ProcEpsTauRegFailCause3IllegalMs();
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsTauRegFailCause9MsIdCannotBeDerivedByNW
- 功能描述  : Eps Cause9的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月15日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2012年03月15日
-    作    者   : l00130025
-    修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-  3.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  4.日    期   : 2015年11月19日
-    作    者   : c00318887
-    修改内容   : DTS2015111701196,ims没注册
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCause9MsIdCannotBeDerivedByNW(VOS_VOID)
 {
     /* 删除EPLMN */
@@ -9098,29 +5416,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCause9MsIdCannotBe
     return NAS_MMC_ADDITIONAL_ACTION_WAIT_REG_ATTEMPT;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsTauRegFailCause10EpsImplicitlyDetached
- 功能描述  : Eps Cause9的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月15日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2012年03月15日
-    作    者   : l00130025
-    修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-  3.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  4.日    期   : 2015年11月19日
-    作    者   : c00318887
-    修改内容   : DTS2015111701196,ims没注册
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCause10EpsImplicitlyDetached(VOS_VOID)
 {
     /* 删除EPLMN */
@@ -9142,33 +5438,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCause10EpsImplicit
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsTauRegFailCause11PlmnNotAllow
- 功能描述  : Eps Cause11的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年08月05日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2012年03月15日
-    作    者   : l00130025
-    修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-  3.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  4.日    期   : 2015年4月19日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-  4.日    期   : 2015年7月1日
-    作    者   : c00318887
-    修改内容   : DTS2015061003127:L 下服务状态上报和GU不一致
-
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCause11PlmnNotAllow(VOS_VOID)
 {
     NAS_MML_PLMN_ID_STRU               *pstCurPlmnId;
@@ -9203,29 +5473,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCause11PlmnNotAllo
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsTauRegFailCause12TaNotAllow
- 功能描述  : Eps Cause12的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年8月7日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  3.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  4.日    期   : 2015年02月11日
-    作    者   : l00305157
-    修改内容   : Service_State_Optimize_PhaseII 项目修改
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCause12TaNotAllow(VOS_VOID)
 {
     VOS_UINT8                           ucSimCsRegStatus;
@@ -9254,29 +5502,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCause12TaNotAllow(
     return NAS_MMC_ADDITIONAL_ACTION_CELL_SELECTION;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsTauRegFailCause13RoamNotAllow
- 功能描述  : Eps Cause13的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年8月7日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2012年03月15日
-    作    者   : l00130025
-    修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-  3.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  4.日    期   : 2015年7月1日
-    作    者   : c00318887
-    修改内容   : DTS2015061003127:L 下服务状态上报和GU不一致
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCause13RoamNotAllow(VOS_VOID)
 {
     /* 删除EPLMN */
@@ -9296,36 +5522,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCause13RoamNotAllo
 
     return NAS_MMC_ADDITIONAL_ACTION_PLMN_SELECTION;
 }
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsTauRegFailCause14GprsNotAllowInThisPlmn
- 功能描述  : EPs Cause14的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年8月7日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  3.日    期   : 2015年1月5日
-    作    者   : h00285180
-    修改内容   : LTE #14拒绝优化:DTS2015010401946
-  4.日    期   : 2015年4月19日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-  4.日    期   : 2015年7月1日
-    作    者   : c00318887
-    修改内容   : DTS2015061003127:L 下服务状态上报和GU不一致
-  5.日    期   : 2015年8月13日
-    作    者   : l00289540
-    修改内容   : User_Exp_Improve修改
-
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCause14GprsNotAllowInThisPlmn(VOS_VOID)
 {
     NAS_MML_3GPP_REL_ENUM_UINT8         enLteRelVersion;
@@ -9356,13 +5553,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCause14GprsNotAllo
         }
     }
 
-    /* 24301_CR1422R1_(Rel-11)_C1-121612 对应24301 5.5.3.2.5章节:
-     #14:
-      If the EPS update type is "TA updating", or the EPS update type is
-      "periodic updating" and the UE is in PS mode 1 or PS mode 2 of operation,
-      the UE shall perform a PLMN selection according to 3GPP TS 23.122 [6]. In
-      this case, the UE supporting S1 mode only shall delete the list of equivalent
-      PLMNs before performing the procedure. 该CR受协议版本控制  */
+    
     if ((VOS_TRUE == NAS_MML_IsLteOnlyMode(NAS_MML_GetMsPrioRatList()))
       && (enLteRelVersion >= NAS_MML_3GPP_REL_R11))
     {
@@ -9394,26 +5585,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCause14GprsNotAllo
     return NAS_MMC_ADDITIONAL_ACTION_OPTIONAL_PLMN_SELECTION;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsTauRegFailCause15NoSuitableCell
- 功能描述  : Eps Cause15的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年8月7日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  3.日    期   : 2015年7月1日
-    作    者   : c00318887
-    修改内容   : DTS2015061003127:L 下服务状态上报和GU不一致
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCause15NoSuitableCell(VOS_VOID)
 {
     /* 更新服务状态 */
@@ -9433,29 +5605,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCause15NoSuitableC
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsTauRegFailCause40NoEpsBearerActived
- 功能描述  : Eps Cause40的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月29日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2012年1月11日
-    作    者   : w00176964
-    修改内容   : V7R1 PhaseIV BBIT测试调整
-  3.日    期   : 2012年03月15日
-    作    者   : l00130025
-    修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-  4.日    期   : 2015年11月19日
-    作    者   : c00318887
-    修改内容   : DTS2015111701196,ims没注册
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCause40NoEpsBearerActived(VOS_VOID)
 {
     /* 删除EPLMN */
@@ -9472,20 +5622,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCause40NoEpsBearer
     return NAS_MMC_ADDITIONAL_ACTION_WAIT_REG_ATTEMPT;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsTauRegFailCause42SevereNetworkFailure
- 功能描述  : Eps tau Cause42的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月19日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCause42SevereNetworkFailure(VOS_VOID)
 {
     NAS_MMC_REG_RSLT_CTX_STRU          *pstRegRsltCtx = VOS_NULL_PTR;
@@ -9503,20 +5640,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCause42SevereNetwo
         return NAS_MMC_ProcEpsRegFailCauseAbnormalCause(NAS_EMM_CAUSE_SERVER_NETWORK_FAILURE, ulAttemptCnt);
     }
 
-    /* 24301_CR1473R2_(Rel-11)_C1-123386 MMC增加ATTACH、TAU和SERVICE REQUEST过程中被拒原因值42的处理
-      24301 5.5.3.2.5章节描述:
-       The UE shall set the EPS update status to EU2 NOT UPDATED, and shall delete
-    any GUTI, last visited registered TAI, eKSI, and list of equivalent PLMNs,
-    and set the attach attempt counter to 5. The UE shall start an implementation
-    specific timer setting its value to 2 times the value of T as defined in
-    3GPP TS 23.122 [6]. While this timer is running, the UE shall not consider
-    the PLMN + RAT combination that provided this reject cause a candidate
-    for PLMN selection. The UE then enters state EMM-DEREGISTERED.PLMN-SEARCH
-    in order to perform a PLMN selection according to 3GPP TS 23.122 [6].
-       If A/Gb mode or Iu mode is supported by the UE, the UE shall in addition
-    set the GMM state to GMM-DEREGISTERED, GPRS update status to GU2 NOT UPDATED,
-    and shall delete the P-TMSI, P-TMSI signature, RAI and GPRS ciphering key
-    sequence number. 该CR受协议版本控制 */
+    
     PS_MEM_CPY(&stPlmnWithRat.stPlmnId, NAS_MML_GetCurrCampPlmnId(), sizeof(stPlmnWithRat.stPlmnId));
     stPlmnWithRat.enRat = NAS_MML_GetCurrNetRatType();
 
@@ -9539,24 +5663,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCause42SevereNetwo
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsTauRegFailCause35RequestedServiceOptionNotAuthorizedInThisPlmn
- 功能描述  : Eps Cause35的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年3月6日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月24日
-    作    者   : w00242748
-    修改内容   : DTS2013101106863:L下被拒原因值#35，只有在R10及其协议以上处理才与#11
-                 原因值处理相同，否则当做OTHER CAUSE来处理。
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCause35ReqServOptNotAuthorizedInThisPlmn(VOS_VOID)
 {
     NAS_MML_MS_3GPP_REL_STRU           *pstMs3GppRel = VOS_NULL_PTR;
@@ -9579,38 +5686,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCause35ReqServOptN
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsTauRegFailCause256AuthRej
- 功能描述  : Eps Reg Auth rej的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年8月7日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2012年03月15日
-    作    者   : l00130025
-    修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-  3.日    期   : 2012年09月15日
-    作    者   : z00161729
-    修改内容   : DTS2012090708320：MMC收到L的注册结果，ps cs卡是否有效状态需要更新，原来由gmm更新存在时序问题
-  4.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  5.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  6.日    期   : 2014年4月29日
-    作    者   : s00261364
-    修改内容   : ecall项目修改服务状态上报
-  7.日    期   : 2015年02月11日
-    作    者   : l00305157
-    修改内容   : Service_State_Optimize_PhaseII 项目修改
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCause256AuthRej(VOS_VOID)
 {
     /* 删除EPLMN */
@@ -9618,13 +5694,11 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCause256AuthRej(VO
 
     /* 更新服务状态 */
 
-    /* Modified by w00176964 for VoLTE_PhaseII 项目, 2013-11-20, begin */
     /* 设置cs ps卡状态为无效 */
     NAS_MML_SetSimCsRegStatus(VOS_FALSE);
     NAS_MML_SetSimPsRegStatus(VOS_FALSE);
 
     /* 通知TAF当前的服务状态 */
-    /* Modified by w00176964 for VoLTE_PhaseII 项目, 2013-11-20, end */
 
     NAS_MMC_ChangeCsRegState(NAS_MML_REG_REGISTERED_DENIED);
     NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_CS, NAS_MMC_LIMITED_SERVICE);
@@ -9641,43 +5715,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCause256AuthRej(VO
     return NAS_MMC_ADDITIONAL_ACTION_CSPS_ANYCELL;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsTauRegFailCause257AccessBarrd
- 功能描述  : Eps AccessBarrd的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年8月7日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2012年1月4日
-    作    者   : w00167002
-    修改内容   : DTS2011122006209:g下PS ONLY注册成功_更改为CS后注册失败4次后未发起搜网.
-                  在主框架中L1MAIN/PLMN LIST中判断当前原因值为非UE主动发起注册
-                  原因值，则更新为NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON。现将
-                  此判断放到各个子函数中来判断。
-  3.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  4.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  5.日    期   : 2013年10月15日
-    作    者   : s00190137
-    修改内容   : 特性开关打开且非HPLMN/RPLMN接入禁止时需要触发PLMN搜网
-  6.日    期   : 2015年1月23日
-    作    者   : w00167002
-    修改内容   : DTS2015020309124:via控制L下搜网注册时候，L下ACCESS BAR，后续
-                选网结束后，L自己触发了注册。VIA无法配合，MODEM进行配合修改。
-                修改为在注册状态收到ACCESS BAR后，继续等待L的注册结果。
-  7.日    期   : 2015年7月1日
-    作    者   : c00318887
-    修改内容   : DTS2015061003127:L 下服务状态上报和GU不一致
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCause257AccessBarrd(VOS_VOID)
 {
     VOS_UINT8                           ucSimCsRegStatus;
@@ -9733,29 +5771,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCause257AccessBarr
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsTauRegFailCause301TimerTimeOut
- 功能描述  : Eps Reg Timer Out的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月4日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2012年03月15日
-    作    者   : l00130025
-    修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-  3.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  4.日    期   : 2015年7月1日
-    作    者   : c00318887
-    修改内容   : DTS2015061003127:L 下服务状态上报和GU不一致
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCause301TimerTimeOut(VOS_VOID)
 {
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    enAction;
@@ -9794,29 +5810,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCause301TimerTimeO
     return enAction;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsTauRegFailCause401OtherCause
- 功能描述  : Eps Reg Auth rej的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月4日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2012年03月15日
-    作    者   : l00130025
-    修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-  3.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  4.日    期   : 2015年7月1日
-    作    者   : c00318887
-    修改内容   : DTS2015061003127:L 下服务状态上报和GU不一致
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCause401OtherCause(VOS_VOID)
 {
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    enAction;
@@ -9856,79 +5850,21 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCause401OtherCause
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsTauRegFailCause403ForbiddenPlmn
- 功能描述  : Eps 回复当前驻留在禁止网络的后续处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月12日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCause403ForbiddenPlmn(VOS_VOID)
 {
     return NAS_MMC_ProcEpsAttachRegFailCause403ForbiddenPlmn();
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsTauRegFailCause404ForbiddenTaForRegPrvsSvs
- 功能描述  : Eps被拒原因值:MMC_LMM_ATT_RSLT_FORBID_TA_FOR_RPOS的后续处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月4日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCause404ForbiddenTaForRegPrvsSvs(VOS_VOID)
 {
     /* 跟拒绝原因值#12的处理保持一致 */
     return NAS_MMC_ProcEpsTauRegFailCause12TaNotAllow();
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsTauRegFailCause405ForbiddenLaForRoam
- 功能描述  : 假流程:Ps 13或15号原因值被拒
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_PLMN_SELECTION :拒绝原因值#13的搜网策略
-             NAS_MMC_ADDITIONAL_ACTION_SEARCH_SUITABLE_CELL_IN_SAME_PLMN:拒绝原因值#15的搜网策略
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2011年12月29日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-                 DTS2011102200381:L下注册被拒#12,LMM给MMC带的TAU
-                 中的结果为MMC_LMM_TAU_RSLT_FORBID_PLMNS，MMC收到此结果后按照禁止网络
-                 来处理而发起了搜网。
-                 MMC区分当前是#13还是#15，而进行不同的搜网动作。
-  2.日    期   : 2012年1月4日
-    作    者   : w00167002
-    修改内容   : DTS2011122006209:g下PS ONLY注册成功_更改为CS后注册失败4次后未发起搜网.
-                  在主框架中L1MAIN/PLMN LIST中判断当前原因值为非UE主动发起注册
-                  原因值，则更新为NAS_MMC_ADDITIONAL_ACTION_BUTT。
-  3.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  4.日    期   : 2015年7月1日
-    作    者   : c00318887
-    修改内容   : DTS2015061003127:L 下服务状态上报和GU不一致
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCause405ForbiddenLaForRoam(VOS_VOID)
 {
     NAS_MMC_FSM_ID_ENUM_UINT32          enFsmId;
@@ -9985,31 +5921,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCause405ForbiddenL
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsTauRegFailCause406ForbiddenPlmnForGprs
- 功能描述  : EPs Cause14的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年8月7日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2012年1月4日
-    作    者   : w00167002
-    修改内容   : DTS2011122006209:g下PS ONLY注册成功_更改为CS后注册失败4次后未发起搜网.
-                  在主框架中L1MAIN/PLMN LIST中判断当前原因值为非UE主动发起注册
-                  原因值，则更新为NAS_MMC_ADDITIONAL_ACTION_BUTT。
-  3.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  4.日    期   : 2015年7月1日
-    作    者   : c00318887
-    修改内容   : DTS2015061003127:L 下服务状态上报和GU不一致
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCause406ForbiddenPlmnForGprs(VOS_VOID)
 {
     NAS_MMC_FSM_ID_ENUM_UINT32                              enFsmId;
@@ -10064,30 +5976,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCause406ForbiddenP
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsTauRegFailCauseMoDetach
- 功能描述  : Eps Mo detach的后续处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年01月08日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  3.日    期   : 2014年07月26日
-    作    者   : s00217060
-    修改内容   : DTS2014051501744:TAU过程中用户detach,LMM会给MMC回MO_DETACH_FAILURE,
-                 MMC收到该TAU结果会触发搜网，搜网前要求主动释放链接，导致detach_req发不上去
-  4.日    期   : 2015年7月1日
-    作    者   : c00318887
-    修改内容   : DTS2015061003127:L 下服务状态上报和GU不一致
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCauseMoDetach(VOS_VOID)
 {
     /* 更新服务状态 */
@@ -10111,26 +6000,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCauseMoDetach(VOS_
     return NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsTauRegFailCauseMtDetach
- 功能描述  : Eps mt detach的后续处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年01月08日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  3.日    期   : 2015年7月1日
-    作    者   : c00318887
-    修改内容   : DTS2015061003127:L 下服务状态上报和GU不一致
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCauseMtDetach(VOS_VOID)
 {
     /* 更新服务状态 */
@@ -10148,29 +6018,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCauseMtDetach(VOS_
     return NAS_MMC_ADDITIONAL_ACTION_OPTIONAL_PLMN_SELECTION;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsTauRegFailCauseT3402Running
- 功能描述  : Eps T3402定时器正在运行的后续处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年01月08日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2013年1月31日
-    作    者   : t00212959
-    修改内容   : DTS2013012909238:anycell搜网，3402在运行，不等available超时，就又发起了搜网。
-  3.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  4.日    期   : 2015年7月1日
-    作    者   : c00318887
-    修改内容   : DTS2015061003127:L 下服务状态上报和GU不一致
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCauseT3402Running(VOS_VOID)
 {
     NAS_MMC_FSM_ID_ENUM_UINT32                              enFsmId;
@@ -10207,53 +6055,17 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFailCauseT3402Running(
 
 
 /* 网侧detach EPS的cause值处理 */
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsDetachCause2ImsiUnknowInHss
- 功能描述  : Eps detach Cause2的处理
- 输入参数  : VOS_VOID
- 输出参数  : penCsAddition
-             penPsAddition
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年11月1日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年11月19日
-    作    者   : w00176964
-    修改内容   : V7R1 Phase III调整:联合注册ST修改
-  3.日    期   : 2012年09月15日
-    作    者   : z00161729
-    修改内容   : DTS2012090708320：MMC收到L的注册结果，ps cs卡是否有效状态需要更新，原来由gmm更新存在时序问题
-  4.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  5.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  6.日    期   : 2014年4月29日
-    作    者   : s00261364
-    修改内容   : ecall项目修改服务状态上报
-  7.日    期   : 2015年02月11日
-    作    者   : l00305157
-    修改内容   : Service_State_Optimize_PhaseII 项目修改
-                 mmc收到EPS网络去注册(#2,NO_REATTACH),上报注册状态和服务状态
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcEpsDetachCause2ImsiUnknowInHss(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                   *penCsRegAdditionalAction,
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                   *penPsRegAdditionalAction
 )
 {
 
-    /* Modified by w00176964 for VoLTE_PhaseII 项目, 2013-11-20, begin */
     /* 设置cs卡状态为无效 */
     NAS_MML_SetSimCsRegStatus(VOS_FALSE);
 
     /* 通知TAF当前的服务状态 */
-    /* Modified by w00176964 for VoLTE_PhaseII 项目, 2013-11-20, end */
 
     NAS_MMC_ChangeCsRegState(NAS_MML_REG_REGISTERED_DENIED);
     /*mmc收到EPS网络去注册(#2,NO_REATTACH),上报注册状态和服务状态*/
@@ -10268,46 +6080,7 @@ VOS_VOID NAS_MMC_ProcEpsDetachCause2ImsiUnknowInHss(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsDetachCause3IllegalMs
- 功能描述  : Eps detach Cause3的处理
- 输入参数  : VOS_VOID
- 输出参数  : penCsAddition
-             penPsAddition
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年11月1日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年11月19日
-    作    者   : w00176964
-    修改内容   : V7R1 Phase III调整:联合注册ST修改
-
-  3.日    期   : 2012年03月15日
-    作    者   : l00130025
-    修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-  4.日    期   : 2012年09月15日
-    作    者   : z00161729
-    修改内容   : DTS2012090708320：MMC收到L的注册结果，ps cs卡是否有效状态需要更新，原来由gmm更新存在时序问题
-  5.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  6.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  7.日    期   : 2014年4月29日
-    作    者   : s00261364
-    修改内容   : ecall项目修改服务状态上报
-
-  8.日    期   : 2015年02月11日
-    作    者   : l00305157
-    修改内容   : Service_State_Optimize_PhaseII 项目修改
-                  mmc收到eps 网络去注册(#3/6/8),上报注册状态和服务状态
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcEpsDetachCause3IllegalMs(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                   *penCsAddition,
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                   *penPsAddition
@@ -10318,13 +6091,11 @@ VOS_VOID NAS_MMC_ProcEpsDetachCause3IllegalMs(
 
     /* 更新服务状态 */
 
-    /* Modified by w00176964 for VoLTE_PhaseII 项目, 2013-11-20, begin */
     /* 设置cs ps卡状态为无效 */
     NAS_MML_SetSimCsRegStatus(VOS_FALSE);
     NAS_MML_SetSimPsRegStatus(VOS_FALSE);
 
     /* 通知TAF当前的服务状态 */
-    /* Modified by w00176964 for VoLTE_PhaseII 项目, 2013-11-20, end */
 
     /*mmc收到eps 网络去注册(#3/6/8),上报注册状态和服务状态*/
     NAS_MMC_ChangePsRegState(NAS_MML_REG_REGISTERED_DENIED);
@@ -10345,26 +6116,7 @@ VOS_VOID NAS_MMC_ProcEpsDetachCause3IllegalMs(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsDetachCause6IllegalMe
- 功能描述  : Eps detach Cause6的处理
- 输入参数  : VOS_VOID
- 输出参数  : penCsAddition
-             penPsAddition
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年11月1日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年11月19日
-    作    者   : w00176964
-    修改内容   : V7R1 Phase III调整:联合注册ST修改
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcEpsDetachCause6IllegalMe(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                   *penCsAddition,
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                   *penPsAddition
@@ -10374,60 +6126,7 @@ VOS_VOID NAS_MMC_ProcEpsDetachCause6IllegalMe(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsDetachCause7EpsServNotAllow
- 功能描述  : Eps detach Cause7的处理
- 输入参数  : VOS_VOID
- 输出参数  : penCsAddition
-             penPsAddition
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年11月1日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年11月19日
-    作    者   : w00176964
-    修改内容   : V7R1 Phase III调整:联合注册ST修改
-  3.日    期   : 2011年11月30日
-    作    者   : w00176964
-    修改内容   : V7R1 Phase IV调整:disable/enable 调整
-  4.日    期   : 2012年03月15日
-    作    者   : l00130025
-    修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-
-  5.日    期   : 2012年4月4日
-    作    者   : z40661
-    修改内容   : 问题单号DTS2012032803448，PS oNLY时，需要在L模下进行ANYCELL
-               搜网。
-  6.日    期   : 2012年07月02日
-    作    者   : s46746
-    修改内容   : For CS/PS mode 1，调整Disable/Enable L,按场景区分函数
-  7.日    期   : 2012年7月27日
-    作    者   : s00217060
-    修改内容   : For CS/PS mode 1,带Disable LTE原因值
-  8.日    期   : 2012年09月15日
-    作    者   : z00161729
-    修改内容   : DTS2012090708320：MMC收到L的注册结果，ps cs卡是否有效状态需要更新，原来由gmm更新存在时序问题
-
-  9.日    期   : 2012年9月25日
-    作    者   : z40661
-    修改内容   : DTS2012082006273
- 10.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
- 11.日    期   : 2014年4月29日
-    作    者   : s00261364
-    修改内容   : ecall项目修改服务状态上报
- 12 日    期   : 2015年02月11日
-    作    者   : l00305157
-    修改内容   : Service_State_Optimize_PhaseII 项目修改
-                 mmc收到eps 网络去注册(#7),上报注册状态和服务状态,
-                 上报PS域注册状态为3，CS、PS域限制服务，如果不需要搜网，则上报CS域注册状态为0，需要搜网，参考搜网流程状态上报
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcEpsDetachCause7EpsServNotAllow(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                   *penCsAddition,
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                   *penPsAddition
@@ -10443,12 +6142,10 @@ VOS_VOID NAS_MMC_ProcEpsDetachCause7EpsServNotAllow(
 
     /* 更新服务状态 */
 
-    /* Modified by w00176964 for VoLTE_PhaseII 项目, 2013-11-20, begin */
     /* 设置ps卡状态为无效 */
     NAS_MML_SetSimPsRegStatus(VOS_FALSE);
 
     /* 通知TAF当前的服务状态 */
-    /* Modified by w00176964 for VoLTE_PhaseII 项目, 2013-11-20, end */
 
     /* 判断是否需要disable L */
     if (VOS_TRUE == NAS_MMC_IsNeedDisableL_PsFailCause7PsServNotAllow())
@@ -10488,48 +6185,7 @@ VOS_VOID NAS_MMC_ProcEpsDetachCause7EpsServNotAllow(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsDetachCause8GprsAndNonGprsNotAllow
- 功能描述  : Eps detach Cause8的处理
- 输入参数  : VOS_VOID
- 输出参数  : penCsAddition
-             penPsAddition
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年11月1日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年11月19日
-    作    者   : w00176964
-    修改内容   : V7R1 Phase III调整:联合注册ST修改
-  3.日    期   : 2011年12月15日
-    作    者   : w00167002
-    修改内容   : DTS2011121307570: MMC没有维护LMM的EPLMN信息，现在统一调整
-                  ATTACH/TAU/DETACH/SERVICE中被拒时EPLMN的维护。
-  4.日    期   : 2012年03月15日
-    作    者   : l00130025
-    修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-  5.日    期   : 2012年09月15日
-    作    者   : z00161729
-    修改内容   : DTS2012090708320：MMC收到L的注册结果，ps cs卡是否有效状态需要更新，原来由gmm更新存在时序问题
-  6.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  7.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  8.日    期   : 2014年4月29日
-    作    者   : s00261364
-    修改内容   : ecall项目修改服务状态上报
-  9.日    期   : 2015年02月11日
-    作    者   : l00305157
-    修改内容   : Service_State_Optimize_PhaseII 项目修改
-                  mmc收到eps 网络去注册(#3/6/8),上报注册状态和服务状态
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcEpsDetachCause8GprsAndNonGprsNotAllow(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                   *penCsAddition,
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                   *penPsAddition
@@ -10540,13 +6196,11 @@ VOS_VOID NAS_MMC_ProcEpsDetachCause8GprsAndNonGprsNotAllow(
 
     /* 更新服务状态 */
 
-    /* Modified by w00176964 for VoLTE_PhaseII 项目, 2013-11-20, begin */
     /* 设置cs ps卡状态为无效 */
     NAS_MML_SetSimCsRegStatus(VOS_FALSE);
     NAS_MML_SetSimPsRegStatus(VOS_FALSE);
 
     /* 通知TAF当前的服务状态 */
-    /* Modified by w00176964 for VoLTE_PhaseII 项目, 2013-11-20, end */
 
     /*mmc收到eps网络去注册(#3/6/8),上报注册状态和服务状态*/
     NAS_MMC_ChangePsRegState(NAS_MML_REG_REGISTERED_DENIED);
@@ -10566,26 +6220,7 @@ VOS_VOID NAS_MMC_ProcEpsDetachCause8GprsAndNonGprsNotAllow(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsDetachCause11PlmnNotAllow
- 功能描述  : Eps detach Cause11的处理
- 输入参数  : VOS_VOID
- 输出参数  : penCsAddition
-             penPsAddition
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年11月1日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年11月19日
-    作    者   : w00176964
-    修改内容   : V7R1 Phase III调整:联合注册ST修改
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcEpsDetachCause11PlmnNotAllow(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                   *penCsAddition,
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                   *penPsAddition
@@ -10595,34 +6230,7 @@ VOS_VOID NAS_MMC_ProcEpsDetachCause11PlmnNotAllow(
     *penPsAddition  = NAS_MMC_ProcEpsAttachRegFailCause11PlmnNotAllow();
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsDetachCause12TaNotAllow
- 功能描述  : Eps detach Cause12的处理
- 输入参数  : VOS_VOID
- 输出参数  : penCsAddition
-             penPsAddition
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年11月1日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年11月19日
-    作    者   : w00176964
-    修改内容   : V7R1 Phase III调整:联合注册ST修改
-  3.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  4.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  5.日    期   : 2015年02月11日
-    作    者   : l00305157
-    修改内容   : Service_State_Optimize_PhaseII 项目修改
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcEpsDetachCause12TaNotAllow(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                   *penCsAddition,
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                   *penPsAddition
@@ -10658,33 +6266,7 @@ VOS_VOID NAS_MMC_ProcEpsDetachCause12TaNotAllow(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsDetachCause13RoamNotAllow
- 功能描述  : Eps detach Cause14的处理
- 输入参数  : VOS_VOID
- 输出参数  : penCsAddition
-             penPsAddition
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年11月1日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年11月19日
-    作    者   : w00176964
-    修改内容   : V7R1 Phase III调整:联合注册ST修改
-  3.日    期   : 2012年03月15日
-    作    者   : l00130025
-    修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-  4.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-    作    者   : l00305157
-    修改内容   : DTS2015061003127
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcEpsDetachCause13RoamNotAllow(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                   *penCsAddition,
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                   *penPsAddition
@@ -10710,47 +6292,7 @@ VOS_VOID NAS_MMC_ProcEpsDetachCause13RoamNotAllow(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsDetachCause14GprsNotAllowInThisPlmn
- 功能描述  : Eps detach Cause14的处理
- 输入参数  : VOS_VOID
- 输出参数  : penCsAddition
-             penPsAddition
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年11月1日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年11月19日
-    作    者   : w00176964
-    修改内容   : V7R1 Phase III调整:联合注册ST修改
-
-  3.日    期   : 2011年12月15日
-    作    者   : w00167002
-    修改内容   : DTS2011121307570: MMC没有维护LMM的EPLMN信息，现在统一调整
-                  ATTACH/TAU/DETACH/SERVICE中被拒时EPLMN的维护。
-
-  4.日    期   : 2011年11月19日
-    作    者   : L65478
-    修改内容   : DTS2012111402255:网络detach cause #14没有发起搜网
-  5.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  6.日    期   : 2015年1月5日
-    作    者   : h00285180
-    修改内容   : LTE #14拒绝优化:DTS2015010401946
-  7.日    期   : 2015年4月19日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-  7.日    期   : 2015年07月03日
-    作    者   : l00305157
-    修改内容   : DTS2015061003127
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcEpsDetachCause14GprsNotAllowInThisPlmn(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                   *penCsAddition,
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                   *penPsAddition
@@ -10831,31 +6373,7 @@ VOS_VOID NAS_MMC_ProcEpsDetachCause14GprsNotAllowInThisPlmn(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsDetachCause15NoSuitableCell
- 功能描述  : Eps detach Cause15的处理
- 输入参数  : VOS_VOID
- 输出参数  : penCsAddition
-             penPsAddition
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年11月1日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年11月19日
-    作    者   : w00176964
-    修改内容   : V7R1 Phase III调整:联合注册ST修改
-  3.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  4.日    期   : 2015年07月03日
-    作    者   : l00305157
-    修改内容   : DTS2015061003127
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcEpsDetachCause15NoSuitableCell(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                   *penCsAddition,
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                   *penPsAddition
@@ -10878,38 +6396,7 @@ VOS_VOID NAS_MMC_ProcEpsDetachCause15NoSuitableCell(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsDetachCauseAbnormalCause
- 功能描述  : EPS detach OtherCause的处理
- 输入参数  : 无
- 输出参数  : penCsAddition
-             penPsAddition
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年11月1日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年11月19日
-    作    者   : w00176964
-    修改内容   : V7R1 Phase III调整:联合注册ST修改
-  3.日    期   : 2012年2月4日
-    作    者   : w00167002
-    修改内容   : DTS2011122704039:更改函数名。
-  4.日    期   : 2012年03月15日
-    作    者   : l00130025
-    修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-  5.日    期   : 2012年07月03日
-    作    者   : s46746
-    修改内容   : For CS/PS mode 1，选网状态机中联合注册仅EPS成功，之后接收到
-                  detach，其它原因值，没有退状态机
-  6.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcEpsDetachCauseAbnormalCause(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                   *penCsAddition,
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                   *penPsAddition
@@ -10936,56 +6423,16 @@ VOS_VOID NAS_MMC_ProcEpsDetachCauseAbnormalCause(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsServiceRequestFailCause3IllegalMs
- 功能描述  : EpsServiceRequestFail Cause3的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月15日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年12月30日
-    作    者   : l65478
-    修改内容   : 在迁到L模时,不立刻把CS设置成可选搜网,而是等待PS注册结果时
-                 根据具体的原因值再设置
-
-  3.日    期   : 2012年2月15日
-    作    者   : z40661
-    修改内容   : DTS2011121405203_PC测试发现问题,支持gUL多模时,L下被#3拒绝,到GU下指定搜网
-  4.日    期   : 2012年09月15日
-    作    者   : z00161729
-    修改内容  : DTS2012090708320：MMC收到L的注册结果，ps cs卡是否有效状态需要更新，原来由gmm更新存在时序问题
-  5.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  6.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  7.日    期   : 2014年4月29日
-    作    者   : s00261364
-    修改内容   : ecall项目修改服务状态上报
-  8.日    期   : 2015年02月11日
-    作    者   : l00305157
-    修改内容   : Service_State_Optimize_PhaseII 项目修改
-                 对于LMM Service Reject结果上报(cause=#3)，上报CS/PS注册状态和服务状态
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsServiceRequestFailCause3IllegalMs(VOS_VOID)
 {
     /* 更新服务状态 */
 
-    /* Modified by w00176964 for VoLTE_PhaseII 项目, 2013-11-20, begin */
     /* 设置cs ps卡状态为无效 */
     NAS_MML_SetSimCsRegStatus(VOS_FALSE);
     NAS_MML_SetSimPsRegStatus(VOS_FALSE);
 
     /* 通知TAF当前的服务状态 */
-    /* Modified by w00176964 for VoLTE_PhaseII 项目, 2013-11-20, end */
 
     NAS_MMC_ChangePsRegState(NAS_MML_REG_REGISTERED_DENIED);
 
@@ -11005,78 +6452,17 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsServiceRequestFailCause3Ille
     }
 
 
-    /* modified by z40661 for DTS2011121405203_PC测试发现问题, 2012-02-15, begin */
     return NAS_MMC_ADDITIONAL_ACTION_CSPS_ANYCELL;
-    /* modified by z40661 for DTS2011121405203_PC测试发现问题, 2012-02-15, end */
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsServiceRequestFailCause6IllegalMe
- 功能描述  : EpsServiceRequestFail Cause6的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月15日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsServiceRequestFailCause6IllegalMe(VOS_VOID)
 {
     return NAS_MMC_ProcEpsServiceRequestFailCause3IllegalMs();
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcPsRegFailCauseCause7EpsServiceRequestFailServNotAllow
- 功能描述  : EpsServiceRequestFail Cause7的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月29日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年12月30日
-    作    者   : l65478
-    修改内容   : 在迁到L模时,不立刻把CS设置成可选搜网,而是等待PS注册结果时
-                 根据具体的原因值再设置
-
-  3.日    期   : 2011年12月16日
-    作    者   : w00176964
-    修改内容   : V7R1 PhaseIV调整:增加disable LTE逻辑
-
-  4.日    期   : 2012年03月15日
-    作    者   : l00130025
-    修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-  5.日    期   : 2012年07月02日
-    作    者   : s46746
-    修改内容   : For CS/PS mode 1，调整Disable/Enable L,按场景区分函数
-  6.日    期   : 2012年7月27日
-    作    者   : s00217060
-    修改内容   : For CS/PS mode 1,带Disable LTE原因值
-  7.日    期   : 2012年09月15日
-    作    者   : z00161729
-    修改内容   : DTS2012090708320：MMC收到L的注册结果，ps cs卡是否有效状态需要更新，原来由gmm更新存在时序问
-  8.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  9.日    期   : 2014年4月29日
-    作    者   : s00261364
-    修改内容   : ecall项目修改服务状态上报
- 10.日    期   : 2015年02月11日
-    作    者   : l00305157
-    修改内容   : Service_State_Optimize_PhaseII 项目修改
-                 对于LMM Service Reject结果上报(cause=#7)，上报CS/PS注册状态和服务状态
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsServiceRequestFailCause7EpsServNotAllow(VOS_VOID)
 {
     NAS_MML_PLMN_RAT_PRIO_STRU                             *pstRatOrder;
@@ -11089,7 +6475,6 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsServiceRequestFailCause7EpsS
 
     /* 更新服务状态 */
 
-    /* Modified by w00176964 for VoLTE_PhaseII 项目, 2013-11-20, begin */
     /* 设置ps卡状态为无效 */
     NAS_MML_SetSimPsRegStatus(VOS_FALSE);
      /*对于LMM Service Reject结果上报(cause=#7)，上报注册状态和服务状态*/
@@ -11098,7 +6483,6 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsServiceRequestFailCause7EpsS
 
 
     /* 通知TAF当前的服务状态 */
-    /* Modified by w00176964 for VoLTE_PhaseII 项目, 2013-11-20, end */
 
     /* 判断是否需要disable L */
     if (VOS_TRUE == NAS_MMC_IsNeedDisableL_PsFailCause7PsServNotAllow())
@@ -11127,26 +6511,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsServiceRequestFailCause7EpsS
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsServiceRequestFailCause9MsIdCannotBeDerivedByNW
- 功能描述  : EpsServiceRequestFail Cause9的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月15日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  3.日    期   : 2015年11月19日
-    作    者   : c00318887
-    修改内容   : DTS2015111701196,ims没注册
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsServiceRequestFailCause9MsIdCannotBeDerivedByNW(VOS_VOID)
 {
     /* 更新服务状态 */
@@ -11164,26 +6529,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsServiceRequestFailCause9MsId
     return NAS_MMC_ADDITIONAL_ACTION_WAIT_REG_ATTEMPT;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsServiceRequestFailCause10EpsServiceRequestFailImplicitlyDetached
- 功能描述  : EpsServiceRequestFail Cause9的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月15日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  3.日    期   : 2015年11月19日
-    作    者   : c00318887
-    修改内容   : DTS2015111701196,ims没注册
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsServiceRequestFailCause10EpsImplicitlyDetached(VOS_VOID)
 {
     /* 更新服务状态 */
@@ -11203,26 +6549,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsServiceRequestFailCause10Eps
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsServiceRequestFailCause11PlmnNotAllow
- 功能描述  : EpsServiceRequestFail Cause11的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年08月05日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  3.日    期   : 2015年07月03日
-    作    者   : l00305157
-    修改内容   : DTS2015061003127 新生成函数
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsServiceRequestFailCause11PlmnNotAllow(VOS_VOID)
 {
     NAS_MML_PLMN_ID_STRU               *pstCurPlmnId;
@@ -11251,30 +6578,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsServiceRequestFailCause11Plm
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsServiceRequestFailCause12TaNotAllow
- 功能描述  : EpsServiceRequestFail Cause12的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月15日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  3.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  9.日    期   : 2015年02月11日
-    作    者   : l00305157
-    修改内容   : Service_State_Optimize_PhaseII 项目修改
-                 对于LMM Service Reject结果上报(cause=#12)，上报CS/PS注册状态和服务状态
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsServiceRequestFailCause12TaNotAllow(VOS_VOID)
 {
     VOS_UINT8                           ucSimCsRegStatus;
@@ -11305,26 +6609,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsServiceRequestFailCause12TaN
     return NAS_MMC_ADDITIONAL_ACTION_CELL_SELECTION;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsServiceRequestFailCause13RoamNotAllow
- 功能描述  : EpsServiceRequestFail Cause13的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月15日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  3.日    期   : 2015年07月03日
-    作    者   : l00305157
-    修改内容   : DTS2015061003127
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsServiceRequestFailCause13RoamNotAllow(VOS_VOID)
 {
     /* 更新服务状态 */
@@ -11340,26 +6625,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsServiceRequestFailCause13Roa
 
     return NAS_MMC_ADDITIONAL_ACTION_PLMN_SELECTION;
 }
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsServiceRequestFailCause14GprsNotAllowInThisPlmn
- 功能描述  : EpsServiceRequestFail Cause14的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月15日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2012年2月22日
-    作    者   : h00202780
-    修改内容   : V7R1C50 CSFB&PPAC&ETWS&ISR调整
-  3.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsServiceRequestFailCause14GprsNotAllowInThisPlmn(VOS_VOID)
 {
     /* 添加禁止GPRS PLMN 信息 */
@@ -11382,26 +6648,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsServiceRequestFailCause14Gpr
     return NAS_MMC_ADDITIONAL_ACTION_OPTIONAL_PLMN_SELECTION;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsServiceRequestFailCause15NoSuitableCell
- 功能描述  : EpsServiceRequestFail Cause15的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月15日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  3.日    期   : 2015年07月03日
-    作    者   : l00305157
-    修改内容   : DTS2015061003127
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsServiceRequestFailCause15NoSuitableCell(VOS_VOID)
 {
     /* 更新服务状态 */
@@ -11419,22 +6666,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsServiceRequestFailCause15NoS
     return NAS_MMC_ADDITIONAL_ACTION_SEARCH_SUITABLE_CELL_IN_SAME_PLMN;
 }
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_IsNeedDisableL_RegFailCause16AttmptCntMaxTimes
-功能描述  : 注册被拒#16达最大次数是否需要disable lte
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_TRUE  - 需要Disable L
-            VOS_FALSE - 不需要Disable L
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2015年4月20日
-  作    者   : z00161729
-  修改内容   : 24301 R11 CR升级项目修改
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedDisableL_RegFailCause16AttmptCntMaxTimes(VOS_VOID)
 {
     NAS_MML_LTE_UE_OPERATION_MODE_ENUM_UINT8                enLUeMode;
@@ -11468,42 +6700,13 @@ VOS_UINT32 NAS_MMC_IsNeedDisableL_RegFailCause16AttmptCntMaxTimes(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_IsNeedDisableL_RegFailCause17AttmptCntMaxTimes
-功能描述  : 注册被拒#17达最大次数是否需要disable lte
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_TRUE  - 需要Disable L
-            VOS_FALSE - 不需要Disable L
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2015年4月20日
-  作    者   : z00161729
-  修改内容   : 24301 R11 CR升级项目修改
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedDisableL_RegFailCause17AttmptCntMaxTimes(VOS_VOID)
 {
     return NAS_MMC_IsNeedDisableL_RegFailCause16AttmptCntMaxTimes();
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsServiceRequestFailCause8GprsAndNonGprsNotAllow
- 功能描述  : Eps ServiceRequestFail Cause8的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月19日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsServiceRequestFailCause8GprsAndNonGprsNotAllow(VOS_VOID)
 {
     /* 协议版本小于R11按other cause处理 */
@@ -11517,32 +6720,11 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsServiceRequestFailCause8Gprs
        return NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON;
     }
 
-    /* 24301_CR1595R2_(Rel-11)_C1-124966 MMC增加普通和周期性TAU被拒以及SERVICE REQUEST被拒，
-       原因值为8的处理,对应24301 5.6.1.5章节描述:
-       #8:The UE shall set the EPS update status to EU3 ROAMING NOT ALLOWED (and
-          shall store it according to subclause 5.1.3.3) and shall delete any GUTI,
-          last visited registered TAI, TAI list and eKSI. The UE shall consider
-          the USIM as invalid for EPS services until switching off or the UICC
-          containing the USIM is removed. The UE shall enter the state EMM-DEREGISTERED.
-       该CR受协议版本控制 */
+    
     return NAS_MMC_ProcEpsServiceRequestFailCause3IllegalMs();
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsServiceRequestFailCause42SevereNetworkFailure
- 功能描述  : EpsServiceRequestFail Cause42的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-1.日    期   : 2015年4月19日
-  作    者   : z00161729
-  修改内容   : 24301 R11 CR升级项目修改
-
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsServiceRequestFailCause42SevereNetworkFailure(VOS_VOID)
 {
     NAS_MML_PLMN_WITH_RAT_STRU          stPlmnWithRat;
@@ -11560,20 +6742,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsServiceRequestFailCause42Sev
        return NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON;
     }
 
-    /* 24301_CR1473R2_(Rel-11)_C1-123386 MMC增加ATTACH、TAU和SERVICE REQUEST过程中被拒原因值42的处理
-      24301 5.6.1.5章节描述:
-      The UE shall set the EPS update status to EU2 NOT UPDATED, and shall delete
-    any GUTI, last visited registered TAI, eKSI, and list of equivalent PLMNs.
-    The UE shall start an implementation specific timer, setting its value to 2
-    times the value of T as defined in 3GPP TS 23.122 [6]. While this timer is
-    running, the UE shall not consider the PLMN + RAT combination that provided
-    this reject cause, a candidate for PLMN selection. The UE then enters state
-    EMM-DEREGISTERED.PLMN-SEARCH in order to perform a PLMN selection according
-    to 3GPP TS 23.122 [6].
-       If A/Gb mode or Iu mode is supported by the UE, the UE shall in addition
-    set the GMM state to GMM-DEREGISTERED, GPRS update status to GU2 NOT UPDATED,
-    and shall delete the P-TMSI, P-TMSI signature, RAI and GPRS ciphering key sequence number.
-    该CR受协议版本控制 */
+    
     PS_MEM_CPY(&stPlmnWithRat.stPlmnId, NAS_MML_GetCurrCampPlmnId(), sizeof(stPlmnWithRat.stPlmnId));
     stPlmnWithRat.enRat = NAS_MML_GetCurrNetRatType();
 
@@ -11594,25 +6763,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsServiceRequestFailCause42Sev
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsServiceRequestFailCause35RequestedServiceOptionNotAuthorizedInThisPlmn
- 功能描述  : EpsServiceRequestFail Cause35的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年03月06日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月24日
-    作    者   : w00242748
-    修改内容   : DTS2013101106863:L下被拒原因值#35，只有在R10及其协议以上处理才与#11
-                 原因值处理相同，否则当做OTHER CAUSE来处理。
-
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsServiceRequestFailCause35ReqServOptNotAuthorizedInThisPlmn(VOS_VOID)
 {
     NAS_MML_MS_3GPP_REL_STRU           *pstMs3GppRel = VOS_NULL_PTR;
@@ -11634,47 +6785,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsServiceRequestFailCause35Req
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsServiceRequestFailCause257AccessBarrd
- 功能描述  : EpsServiceRequestFail AccessBarrd的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月15日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2012年2月3日
-    作    者   : w00167002
-    修改内容   : DTS2011122704039:在注册失败原因值的函数命名中增加原因值，
-                  保持函数命名的一致性。
-  3.日    期   : 2012年2月16日
-    作    者   : h00202780
-    修改内容   : V7R1C50 CSFB&PPAC&ETWS&ISR调整
-                   CSFB过程中，收到LMM上报的service被拒，有以下几种场景需要重选回GU下，进行语音的尝试：
-                接入被禁或者NAS的信令被网络拒绝
-                协议原文：3GPP 24.301,5.6.1.6章节, Abnormal cases in the UE :
-
-                1)Access barred because of access class barring or NAS signalling connection establishment rejected by the network
-                    If the service request was initiated for CS fallback, the UE shall select GERAN or UTRAN radio access technology. The UE then proceeds with appropriate MM and CC specific procedures. The EMM sublayer shall not indicate the abort of the service request procedure to the MM sublayer。
-
-                2)底层链路失败（Lower layer failure before the service request procedure is completed (see subclause 5.6.1.4) or before SERVICE REJECT message is received）。
-
-                3)收到Service Reject消息，被拒原因值非24.301的5.6.1.5中定义 other
-                    EMM cause values than those treated in subclause 5.6.1.5(原因值为#3，
-                    #6，#7，#9，#10，#11，#12，#13，#15，#18，#25，#39)
-  7.日    期   : 2012年06月13日
-    作    者   : s46746
-    修改内容   : For CS/PS mode 1，修改服务请求接入禁止的处理
-
-  8.日    期   : 2012年7月25日
-    作    者   : z00161729
-    修改内容   : DTS2012072506927:MMC收到LMM 的service result ind指示access bar时
-                 不应更新服务状态为限制服务，应该由L上报正常服务状态
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsServiceRequestFailCause257AccessBarrd(VOS_VOID)
 {
 
@@ -11693,44 +6804,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsServiceRequestFailCause257Ac
     return NAS_MMC_ADDITIONAL_ACTION_BUTT;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsServiceRequestFailCause256AuthRej
- 功能描述  : EpsServiceRequestFail Reg Auth rej的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月15日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年2月3日
-    作    者   : w00167002
-    修改内容   : DTS2011122704039:在注册失败原因值的函数命名中增加原因值，
-                  保持函数命名的一致性。
-  3.日    期   : 2012年03月15日
-    作    者   : l00130025
-    修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-  4.日    期   : 2012年09月15日
-    作    者   : z00161729
-    修改内容  : DTS2012090708320：MMC收到L的注册结果，ps cs卡是否有效状态需要更新，原来由gmm更新存在时序问题
-  5.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  6.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  7.日    期   : 2014年4月29日
-    作    者   : s00261364
-    修改内容   : ecall项目修改服务状态上报
-  8.日    期   : 2015年02月11日
-    作    者   : l00305157
-    修改内容   : Service_State_Optimize_PhaseII 项目修改
-                 对于LMM Service Reject过程中，鉴权被拒绝，上报注册状态和服务状态
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsServiceRequestFailCause256AuthRej(VOS_VOID)
 {
     /* 删除EPLMN */
@@ -11738,13 +6812,11 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsServiceRequestFailCause256Au
 
     /* 更新服务状态 */
 
-    /* Modified by w00176964 for VoLTE_PhaseII 项目, 2013-11-20, begin */
     /* 设置cs ps卡状态为无效 */
     NAS_MML_SetSimCsRegStatus(VOS_FALSE);
     NAS_MML_SetSimPsRegStatus(VOS_FALSE);
 
     /* 通知TAF当前的服务状态 */
-    /* Modified by w00176964 for VoLTE_PhaseII 项目, 2013-11-20, end */
 
 
 
@@ -11769,34 +6841,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsServiceRequestFailCause256Au
     return NAS_MMC_ADDITIONAL_ACTION_CSPS_ANYCELL;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsServiceRequestFailCauseCsDomainNotAvailable
- 功能描述  : CsDomainNotAvailable的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月16日
-    作    者   : h00202780
-    修改内容   : 新生成函数
-  2.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  3.日    期   : 2015年4月18日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-  3.日    期   : 2015年02月11日
-    作    者   : l00305157
-    修改内容   : Service_State_Optimize_PhaseII 项目修改
-                 LMM Service Reject结果上报(cause=#18),
-                 不上报CS域注册状态和服务状态，待后续TAU或ATTCH过程中在根据收到的网络结果进行上报
-  5.日    期   : 2015年9月6日
-    作    者   : z00359541
-    修改内容   : DTS2015081407087: 接口调整，删除bitOpReqType项
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsServiceRequestFailCause18CsDomainNotAvailable(VOS_VOID)
 {
     NAS_MML_PLMN_WITH_RAT_STRU          stPlmnWithRat;
@@ -11850,19 +6895,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsServiceRequestFailCause18CsD
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsServiceRequestFailCauseNotAuthorizedForThisCsg
- 功能描述  : NotAuthorizedForThisCsg的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012年2月16日
-    作    者   : h00202780
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsServiceRequestFailCause25NotAuthorizedForThisCsg(VOS_VOID)
 {
     /* 更新服务状态 */
@@ -11877,22 +6910,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsServiceRequestFailCause25Not
     return NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsServiceRequestFailCauseCsDomainTempNotAvailable
- 功能描述  : CsDomainTempNotAvailable的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012年2月16日
-    作    者   : h00202780
-    修改内容   : 新生成函数
-  2.日    期   : 2014年4月8日
-    作    者   : B00269685
-    修改内容   : CSFB失败原因值#39不更新CS服务和注册状态，否则导致AP不再下发呼叫请求
-*****************************************************************************/
+
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsServiceRequestFailCause39CsDomainTempNotAvailable(VOS_VOID)
 {
 
@@ -11904,45 +6922,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsServiceRequestFailCause39CsD
     return NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsServiceRequestFailCause40NoEpsBearerActived
- 功能描述  : EpsServiceRequestFail Cause40的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月29日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2012年1月11日
-    作    者   : w00176964
-    修改内容   : V7R1 PhaseIV BBIT调整
-  3.日    期   : 2012年2月22日
-    作    者   : h00202780
-    修改内容   : V7R1C50 CSFB&PPAC&ETWS&ISR调整
-                CSFB过程中，收到LMM上报的service被拒，有以下几种场景需要重选回GU下，进行语音的尝试：
-                接入被禁或者NAS的信令被网络拒绝
-                协议原文：3GPP 24.301,5.6.1.6章节, Abnormal cases in the UE :
-
-                1)Access barred because of access class barring or NAS signalling connection establishment rejected by the network
-                    If the service request was initiated for CS fallback, the UE shall select GERAN or UTRAN radio access technology. The UE then proceeds with appropriate MM and CC specific procedures. The EMM sublayer shall not indicate the abort of the service request procedure to the MM sublayer。
-
-                2)底层链路失败（Lower layer failure before the service request procedure is completed (see subclause 5.6.1.4) or before SERVICE REJECT message is received）。
-
-                3)收到Service Reject消息，被拒原因值非24.301的5.6.1.5中定义 other
-                    EMM cause values than those treated in subclause 5.6.1.5(原因值为#3，
-                    #6，#7，#9，#10，#11，#12，#13，#15，#18，#25，#39)
-  4.日    期   : 2013年12月25日
-    作    者   : f62575
-    修改内容   : DTS2013101106863:L下被拒原因值#40，只有在R10及其协议以上处理才与#10
-                 原因值处理相同，否则当做OTHER CAUSE来处理。
-  5.日    期   : 2015年11月19日
-    作    者   : c00318887
-    修改内容   : DTS2015111701196,ims没注册
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsServiceRequestFailCause40NoEpsBearerActived(VOS_VOID)
 {
     NAS_MML_MS_3GPP_REL_STRU           *pstMs3GppRel = VOS_NULL_PTR;
@@ -11986,21 +6966,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsServiceRequestFailCause40NoE
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCsRegFailForbLaWithValidPeriod
- 功能描述  : Cs注册被拒禁止LA有效时长的处理
- 输入参数  : NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16      enRegFailCause,
-              NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8    enAction
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年9月23日
-   作    者   : z00359541
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcCsRegFailForbLaWithValidPeriod(
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16      enRegFailCause,
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8    enAction
@@ -12043,32 +7009,7 @@ VOS_VOID NAS_MMC_ProcCsRegFailForbLaWithValidPeriod(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCsRegFail
- 功能描述  : Cs注册被拒的处理
- 输入参数  : VOS_UINT16                          usCause,
-              VOS_UINT32                          ulAttemptCnt
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年6月29日
-   作    者   : l00130025
-   修改内容   : 新生成函数
-
- 2.日    期   : 2012年2月4日
-   作    者   : w00167002
-   修改内容   : 修改函数参数，增加保存注册结果指针到当前文件的全局变量中，
-                 便于在处理注册结果中的函数中使用注册结果的所有信息。
- 3.日    期   : 2013年8月15日
-   作    者   : l00208543
-   修改内容   : 网络拒绝原因值主动上报
- 4.日    期   : 2014年01月10日
-   作    者   : w00176964
-   修改内容   : VoLTE_PhaseIII项目
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFail(
     NAS_MMC_REG_RSLT_TYPE_ENUM_UINT8    enRegRsltType,
     MMMMC_CS_REG_RESULT_IND_STRU       *pstCsRegRsltInd
@@ -12082,7 +7023,6 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFail(
     /* 保存注册结果消息 */
     NAS_MMC_SaveRegRsltCtx(enRegRsltType, pstCsRegRsltInd);
 
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, begin */
 
     /* AT^REJINFO主动上报，将REJINFO上报给MSCC 非联合注册的时候才上报 */
     if (VOS_FALSE == pstCsRegRsltInd->ucIsComBined)
@@ -12090,7 +7030,6 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFail(
         NAS_MMC_SndMsccRegResultInd(NAS_MSCC_PIF_SRVDOMAIN_CS, VOS_FALSE, pstCsRegRsltInd->enRegFailCause);
     }
 
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, end */
 
 #if (FEATURE_ON == FEATURE_PTM)
     /* 记录CS注册失败异常log */
@@ -12133,27 +7072,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFail(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcPsRegFail
- 功能描述  : Ps注册被拒的处理
- 输入参数  : VOS_UINT16                          usCause,
-              VOS_UINT32                          ulAttemptCnt
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月29日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2013年8月15日
-    作    者   : l00208543
-    修改内容   : 网络拒绝原因值主动上报
-  3.日    期   : 2014年01月10日
-    作    者   : w00176964
-    修改内容   : VoLTE_PhaseIII项目
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFail(
     NAS_MMC_REG_RSLT_TYPE_ENUM_UINT8    enRegRsltType,
     GMMMMC_PS_REG_RESULT_IND_STRU      *pstPsRegRsltInd
@@ -12167,7 +7086,6 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFail(
     /* 保存注册结果消息 */
     NAS_MMC_SaveRegRsltCtx(enRegRsltType, pstPsRegRsltInd);
 
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, begin */
 
     /* AT^REJINFO主动上报，将REJINFO上报给MSCC */
     if (GMM_MMC_REG_DOMAIN_PS_CS == pstPsRegRsltInd->enRsltDomain)
@@ -12179,7 +7097,6 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFail(
         NAS_MMC_SndMsccRegResultInd(NAS_MSCC_PIF_SRVDOMAIN_PS, VOS_FALSE, pstPsRegRsltInd->enRegFailCause);
     }
 
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, end */
 
 #if (FEATURE_ON == FEATURE_PTM)
     /* 记录PS注册失败异常log */
@@ -12218,24 +7135,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsRegFail(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcPsServiceRegFail
- 功能描述  : Ps业务被拒的处理
- 输入参数  : VOS_UINT16                          usCause,
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年8月5日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2012年2月4日
-    作    者   : w00167002
-    修改内容   : 修改函数参数，增加保存注册结果指针到当前文件的全局变量中，
-                 便于在处理注册结果中的函数中使用注册结果的所有信息。
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsServiceRegFail(
     GMMMMC_SERVICE_REQUEST_RESULT_IND_STRU                 *pstServiceRsltInd
 )
@@ -12284,47 +7184,13 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcPsServiceRegFail(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcGmmNetworkDetachInd
- 功能描述  : 处理GMM的网侧DETACH消息
- 输入参数  : pstDetachMsg GMM的网侧detach消息
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年8月05日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  3.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-
-  4.日    期   : 2013年7月1日
-    作    者   : w00167002
-    修改内容   : SVLTE STC:GMM联合注册成功后，网侧发起imsi DETACH，此时注册状态为
-                 NAS_MML_REG_NOT_REGISTERED_NOT_SEARCH，服务状态为NORMAL SERVICE ;
-                 修改为如果当前是IMSI detach,则不处理；
-  5.日    期   : 2014年04月4日
-    作    者   : s00261364
-    修改内容   : V3R360_eCall项目:服务状态上报到mmc
-  6.日    期   : 2014年11月29日
-    作    者   : l00305157
-    修改内容   : Service_State_Optimize_PhaseI项目修改
-
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcGmmNetworkDetachInd(
     MMCGMM_NETWORK_DETACH_IND_STRU     *pstDetachMsg
 )
 {
 
-    /* Deleted by s00261364 for V3R360_eCall项目, 2014-4-28, begin */
 
-    /* Deleted by s00261364 for V3R360_eCall项目, 2014-4-28, end */
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 enAction;
     VOS_UINT32                          i;
     VOS_UINT32                          ulTblSize;
@@ -12338,15 +7204,11 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcGmmNetworkDetachInd(
     enAction            = NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON;
     ulTblSize           = sizeof(gastMmcProcPsRegFailCause)/sizeof(gastMmcProcPsRegFailCause[0]);
 
-    /* Deleted by s00261364 for V3R360_eCall项目, 2014-4-29, begin */
 
     NAS_MMC_RecordOosEvent(NAS_ERR_LOG_OOS_EVENT_GUT_NW_DETACH);
 
-    /* Deleted by s00261364 for V3R360_eCall项目, 2014-4-29, end */
     /* 向TAF发送PS域的服务状态 */
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, begin*/
     NAS_MMC_SndMsccDetachInd(NAS_MSCC_PIF_SRVDOMAIN_PS, pstDetachMsg->ulDetachType,
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核 , 2013-04-01, end*/
                             pstDetachMsg->ulDetachCause);
 
     if (NAS_MMC_GMM_NT_DETACH_NOATTACH == pstDetachMsg->ulDetachType)
@@ -12377,9 +7239,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcGmmNetworkDetachInd(
             if (VOS_FALSE == NAS_MMC_IsAdditionalActionTrigerPlmnSrch(enPrioAdditionalAction))
             {
 
-                /* Added by s00261364 for V3R360_eCall项目, 2014-4-4, begin */
                 NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_PS, NAS_MMC_LIMITED_SERVICE);
-                /* Added by s00261364 for V3R360_eCall项目, 2014-4-4, end */
                 NAS_MMC_ChangePsRegState(NAS_MML_REG_NOT_REGISTERED_NOT_SEARCH);
             }
 
@@ -12403,58 +7263,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcGmmNetworkDetachInd(
 }
 
 #if   (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCombinedEpsRegFailCauseAbnormalCause
- 功能描述  : 联合EPS OtherCause的处理
- 输入参数  : VOS_UINT16                          usCause,
-             VOS_UINT32                          ulAttemptCnt
- 输出参数  : penPsRegAdditionalAction - 收到注册结果后，协议要求的ps域的additional动作类型
-             penCsRegAdditionalAction - 收到注册结果后，协议要求的cs域的additional动作类型
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月25日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-                 1)  attemptCount < MaxCount时，返回NAS_MMC_ADDITIONAL_ACTION_WAIT_REG_ATTEMPT
-                 2)  attemptCount >= MaxCount时，返回NAS_MMC_ADDITIONAL_ACTION_PLMN_SELECTION
-
-  2.日    期   : 2012年1月3日
-    作    者   : w00167002
-    修改内容   : DTS2011122006209/DTS2011122704039:g下PS ONLY注册成功_更改为CS后注册失败4次后未发起搜网.
-                1): 非UE主动发起注册的原因值(如注册被拒cause为260),此时若是在
-                    OnPlmn/PlmnList下,不需要进行可选的搜网则返回为
-                    NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON
-
-                2):增加如下场景的考虑:手动模式下，当前Plmn不是用户指定的PLMN,
-                且当前PLMN不在EPlmn列表里，则需要返回可选的搜网策略。
-  3.日    期   : 2012年03月15日
-    作    者   : l00130025
-    修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-  4.日    期   : 2012年06月02日
-    作    者   : s00217060
-    修改内容   : For CS/PS mode 1,联合注册失败，需要Disable L
-  5.日    期   : 2012年7月27日
-    作    者   : s00217060
-    修改内容   : For CS/PS mode 1,带Disable LTE原因值
-  6.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  7.日    期   : 2013年6月3日
-    作    者   : z00161729
-    修改内容   : SVLTE 修改
-  8.日    期   : 2014年01月10日
-    作    者   : w00176964
-    修改内容   : VoLTE_PhaseIII项目
-  9.日    期   : 2015年1月15日
-    作    者   : z00161729
-    修改内容   : AT&T 支持DAM特性修改
- 10.日    期   : 2015年02月11日
-    作    者   : l00305157
-    修改内容   : Service_State_Optimize_PhaseII 项目修改
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCauseAbnormalCause(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penPsRegAdditionalAction,
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penCsRegAdditionalAction
@@ -12493,9 +7302,7 @@ VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCauseAbnormalCause(
             /* 需要Disable L全局变量 */
             NAS_MML_SetLteCapabilityStatus(NAS_MML_LTE_CAPABILITY_STATUS_DISABLE_UNNOTIFY_AS);
 
-            /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-18, begin */
             NAS_MML_SetDisableLteReason(MMC_LMM_DISABLE_LTE_REASON_LTE_VOICE_NOT_AVAILABLE);
-            /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-18, end */
 
             (VOS_VOID)NAS_MMC_StartTimer(TI_NAS_MMC_WAIT_ENABLE_LTE_TIMER, NAS_MML_GetCsPsMode1EnableLteTimerLen());
 
@@ -12541,58 +7348,7 @@ VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCauseAbnormalCause(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCombinedEpsRegFailCause401OtherCause
- 功能描述  : 联合EPS OtherCause的处理
- 输入参数  : VOS_UINT16                          usCause,
-             VOS_UINT32                          ulAttemptCnt
- 输出参数  : penPsRegAdditionalAction - 收到注册结果后，协议要求的ps域的additional动作类型
-             penCsRegAdditionalAction - 收到注册结果后，协议要求的cs域的additional动作类型
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月25日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-                 1)  attemptCount < MaxCount时，返回NAS_MMC_ADDITIONAL_ACTION_WAIT_REG_ATTEMPT
-                 2)  attemptCount >= MaxCount时，返回NAS_MMC_ADDITIONAL_ACTION_PLMN_SELECTION
-
-  2.日    期   : 2012年1月3日
-    作    者   : w00167002
-    修改内容   : DTS2011122006209/DTS2011122704039:g下PS ONLY注册成功_更改为CS后注册失败4次后未发起搜网.
-                1): 非UE主动发起注册的原因值(如注册被拒cause为260),此时若是在
-                    OnPlmn/PlmnList下,不需要进行可选的搜网则返回为
-                    NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON
-
-                2):增加如下场景的考虑:手动模式下，当前Plmn不是用户指定的PLMN,
-                且当前PLMN不在EPlmn列表里，则需要返回可选的搜网策略。
-  3.日    期   : 2012年03月15日
-    作    者   : l00130025
-    修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-  4.日    期   : 2012年06月07日
-    作    者   : s00217060
-    修改内容   : #401，尝试次数达到5次，需要Disable L
-  5.日    期   : 2012年7月27日
-    作    者   : s00217060
-    修改内容   : For CS/PS mode 1,带Disable LTE原因值
-  6.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  7.日    期   : 2013年6月3日
-    作    者   : z00161729
-    修改内容   : SVLTE 修改
-  8.日    期   : 2014年01月10日
-    作    者   : w00176964
-    修改内容   : VoLTE_PhaseIII项目
-  9.日    期   : 2015年1月15日
-    作    者   : z00161729
-    修改内容   : AT&T 支持DAM特性修改
-  10.日    期   : 2015年4月22日
-     作    者   : z00161729
-     修改内容   : 24301 R11 CR升级项目修改
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause401OtherCause(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penPsRegAdditionalAction,
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    *penCsRegAdditionalAction
@@ -12628,9 +7384,7 @@ VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause401OtherCause(
             /* 需要Disable L全局变量 */
             NAS_MML_SetLteCapabilityStatus(NAS_MML_LTE_CAPABILITY_STATUS_DISABLE_UNNOTIFY_AS);
 
-            /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-18, begin */
             NAS_MML_SetDisableLteReason(MMC_LMM_DISABLE_LTE_REASON_LTE_VOICE_NOT_AVAILABLE);
-            /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-18, end */
 
             (VOS_VOID)NAS_MMC_StartTimer(TI_NAS_MMC_WAIT_ENABLE_LTE_TIMER, NAS_MML_GetCsPsMode1EnableLteTimerLen());
 
@@ -12673,26 +7427,7 @@ VOS_VOID NAS_MMC_ProcCombinedEpsRegFailCause401OtherCause(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCombinedEpsRegFailAttemptCouterLessThanMaxTimes
- 功能描述  : 联合EPS注册失败Attempt未达到最大次数的处理的处理
- 输入参数  : 无
- 输出参数  : penPsRegAdditionalAction - 收到注册结果后，协议要求的ps域的additional动作类型
-              penCsRegAdditionalAction - 收到注册结果后，协议要求的cs域的additional动作类型
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月4日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-  8.日    期   : 2015年02月11日
-    作    者   : l00305157
-    修改内容   : Service_State_Optimize_PhaseII 项目修改
-                 mmc收到COMBINED ATU錜EJ(#3/6/8),上报注册状态和服务状态
-                 MMC接收到LMM模块注册结果COMBINED TAU REJ(other casue),未达到最大次数的处理 更新PS域注册状态，并上报服务状态
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcCombinedEpsRegFailAttemptCouterLessThanMaxTimes(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                   *penPsRegAdditionalAction,
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                   *penCsRegAdditionalAction
@@ -12755,41 +7490,7 @@ VOS_VOID NAS_MMC_ProcCombinedEpsRegFailAttemptCouterLessThanMaxTimes(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCombinedEpsRegOnlyEpsSuccCauseAbnormalCause
- 功能描述  : 联合EPS OtherCause的处理
- 输入参数  : VOS_UINT16                          usCause,
-             VOS_UINT32                          ulAttemptCnt
- 输出参数  : penCsRegAdditionalAction - 收到注册结果后，协议要求的cs域的additional动作类型
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月25日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年03月15日
-    作    者   : l00130025
-    修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-  3.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  4.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  5.日    期   : 2014年01月11日
-    作    者   : w00176964
-    修改内容   : VoLTE_PhaseIII 项目修改
-
-  6.日    期   : 2015年02月11日
-    作    者   : l00305157
-    修改内容   : Service_State_Optimize_PhaseII 项目修改
-                对于EMM的COMBINED TAU(eps only, other cause)成功，上报CS/PS注册状态和服务状态
-  7.日    期   : 2015年10月14日
-    作    者   : c00318887
-    修改内容   : DTS2015082002854: 漫游标记不准
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcCombinedEpsRegOnlyEpsSuccCauseAbnormalCause(
     VOS_UINT16                                               usCause,
     VOS_UINT32                                               ulAttemptCnt,
@@ -12801,10 +7502,8 @@ VOS_VOID NAS_MMC_ProcCombinedEpsRegOnlyEpsSuccCauseAbnormalCause(
     2)  attemptCount >= MaxCount时，返回NAS_MMC_ADDITIONAL_ACTION_PLMN_SELECTION
     */
 
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-1-11, begin */
     /* 按照最新协议,other cause也认为EPS注册成功,因此更新服务状态 */
     NAS_MMC_UpdateServiceState_RegSucc(NAS_MSCC_PIF_SRVDOMAIN_PS, NAS_MMC_NORMAL_SERVICE);
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-1-11, end */
 
     /* ps域注册成功，cs域注册失败 */
     if (ulAttemptCnt < NAS_MML_MAX_PS_REG_FAIL_CNT)
@@ -12837,41 +7536,7 @@ VOS_VOID NAS_MMC_ProcCombinedEpsRegOnlyEpsSuccCauseAbnormalCause(
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCombinedAttachEpsRegFail
- 功能描述  : 联合Eps attach被拒的处理
- 输入参数  : VOS_UINT16                          usCause,
-             VOS_UINT32                          ulAttemptCnt
- 输出参数  : penPsRegAdditionalAction - 收到注册attach结果后，协议要求的ps域的additional动作类型
-             penCsRegAdditionalAction - 收到注册attach结果后，协议要求的cs域的additional动作类型
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月25日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月13日
-    作    者   : z00161729
-    修改内容   : DTS2011121302231:attach被拒#9/#10按协议应该按other cause处理
-  3.日    期   : 2011年1月5日
-    作    者   : z00161729
-    修改内容   : V7R1 phaseIV修改
-  4.日    期   : 2012年2月4日
-    作    者   : w00167002
-    修改内容   : DTS2011122704039:将注册结果类型以及注册消息传递给处理注册结果
-                  函数，扩展注册结果函数的处理能力。
-  5.日    期   : 2013年8月15日
-    作    者   : l00208543
-    修改内容   : 将网络拒绝原因值上报
-  6.日    期   : 2014年01月10日
-    作    者   : w00176964
-    修改内容   : VoLTE_PhaseIII项目
-  7.日    期   : 2015年10月23日
-    作    者   : l00289540
-    修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_3.0 修改
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcCombinedAttachEpsRegFail(
     NAS_MMC_REG_RSLT_TYPE_ENUM_UINT8                        enRegRsltType,
     LMM_MMC_ATTACH_IND_STRU                                *pstLmmAttachIndMsg,
@@ -12895,9 +7560,7 @@ VOS_VOID NAS_MMC_ProcCombinedAttachEpsRegFail(
     NAS_MMC_ConverLmmCombinedAttachRsltToMMLCause(pstLmmAttachIndMsg,
                                           &enPsRegRsltCause, &enCsRegRsltCause);
 
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, begin */
     NAS_MMC_SndMsccRegResultInd(NAS_MSCC_PIF_SRVDOMAIN_CS_PS, VOS_FALSE, enPsRegRsltCause);
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, end */
 
     NAS_MMC_RecordOosEvent(NAS_ERR_LOG_OOS_EVENT_COMBINE_EPS_REG_ATTACH_FAIL);
 
@@ -12946,38 +7609,7 @@ VOS_VOID NAS_MMC_ProcCombinedAttachEpsRegFail(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCombinedTauEpsRegFail
- 功能描述  : 联合Eps tau被拒的处理
- 输入参数  : VOS_UINT16                          usCause,
-             VOS_UINT32                          ulAttemptCnt
- 输出参数  : penPsRegAdditionalAction - 收到注册tau结果后，协议要求的ps域的additional动作类型
-             penCsRegAdditionalAction - 收到注册tau结果后，协议要求的cs域的additional动作类型
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月13日
-    作    者   : z00161729
-    修改内容   : DTS2011121302231:attach被拒#9/#10按协议应该按other cause处理
-  2.日    期   : 2011年1月7日
-    作    者   : z00161729
-    修改内容   : V7R1 phaseIV修改
-  3.日    期   : 2012年2月4日
-    作    者   : w00167002
-    修改内容   : DTS2011122704039:将注册结果类型以及注册消息传递给处理注册结果
-                  函数，扩展注册结果函数的处理能力。
-  4.日    期   : 2013年8月15日
-    作    者   : l00208543
-    修改内容   : 将网络拒绝原因值上报
-  5.日    期   : 2014年01月10日
-    作    者   : w00176964
-    修改内容   : VoLTE_PhaseIII项目
-  6.日    期   : 2014年11月3日
-    作    者   : z00161729
-    修改内容   : 开机漫游搜网项目修改
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcCombinedTauEpsRegFail(
     NAS_MMC_REG_RSLT_TYPE_ENUM_UINT8                        enRegRsltType,
     LMM_MMC_TAU_RESULT_IND_STRU                            *pstLmmTauIndMsg,
@@ -13002,9 +7634,7 @@ VOS_VOID NAS_MMC_ProcCombinedTauEpsRegFail(
     NAS_MMC_ConverLmmCombinedTauRsltToMMLCause(pstLmmTauIndMsg,
                                           &enPsRegRsltCause, &enCsRegRsltCause);
 
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, begin */
     NAS_MMC_SndMsccRegResultInd(NAS_MSCC_PIF_SRVDOMAIN_CS_PS, VOS_FALSE, enPsRegRsltCause);
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, end */
 
     NAS_MMC_RecordOosEvent(NAS_ERR_LOG_OOS_EVENT_COMBINE_EPS_REG_TAU_FAIL);
 
@@ -13055,27 +7685,7 @@ VOS_VOID NAS_MMC_ProcCombinedTauEpsRegFail(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCombinedEpsRegCsFail
- 功能描述  : 联合Eps注册only eps成功的处理
- 输入参数  : VOS_UINT16                             usCause,
-             VOS_UINT32                             ulAttemptCnt
- 输出参数  : penCsRegAdditionalAction - 收到注册结果后，协议要求的cs域的additional动作类型
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月25日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年1月8日
-    作    者   : z00161729
-    修改内容   : V7R1 phase IV修改
-  3.日    期   : 2014年11月3日
-    作    者   : z00161729
-    修改内容   : 开机漫游搜网项目修改
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcCombinedEpsRegOnlyEpsSucc(
     VOS_UINT16                                              usCause,
     VOS_UINT32                                              ulAttemptCnt,
@@ -13138,42 +7748,7 @@ VOS_VOID NAS_MMC_ProcCombinedEpsRegOnlyEpsSucc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsRegFailCauseAbnormalCause
- 功能描述  : EPS OtherCause的处理
- 输入参数  : VOS_UINT16                          usCause,
-              VOS_UINT32                          ulAttemptCnt
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年8月5日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-                  1)  attemptCount < MaxCount时，返回NAS_MMC_ADDITIONAL_ACTION_WAIT_REG_ATTEMPT
-                  2)  attemptCount >= MaxCount时，返回NAS_MMC_ADDITIONAL_ACTION_PLMN_SELECTION
-
-  2.日    期   : 2012年1月3日
-    作    者   : w00167002
-    修改内容   : DTS2011122006209:g下PS ONLY注册成功_更改为CS后注册失败4次后未发起搜网.
-               1): 非UE主动发起注册的原因值(如注册被拒cause为260),此时若是在
-                   OnPlmn/PlmnList下,不需要进行可选的搜网则返回为
-                   NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON
-
-               2):增加如下场景的考虑:手动模式下，当前Plmn不是用户指定的PLMN,
-               且当前PLMN不在EPlmn列表里，则需要返回可选的搜网策略。
-  3.日    期   : 2012年03月15日
-    作    者   : l00130025
-    修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-  4.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  5.日    期   : 2015年02月11日
-    作    者   : l00305157
-    修改内容   : Service_State_Optimize_PhaseII 项目修改
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsRegFailCauseAbnormalCause(
     VOS_UINT16                          usCause,
     VOS_UINT32                          ulAttemptCnt
@@ -13221,23 +7796,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsRegFailCauseAbnormalCause(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsRegFailAttemptCouterLessThanMaxTimes
- 功能描述  : EPS注册失败Attempt未达到最大次数的处理的处理
- 输入参数  : 无
- 输出参数  : penPsRegAdditionalAction - 收到注册结果后，协议要求的ps域的additional动作类型
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月4日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2015年02月11日
-    作    者   : l00305157
-    修改内容   : Service_State_Optimize_PhaseII 项目修改
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcEpsRegFailAttemptCouterLessThanMaxTimes(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                   *penPsRegAdditionalAction
 )
@@ -13286,41 +7845,7 @@ VOS_VOID NAS_MMC_ProcEpsRegFailAttemptCouterLessThanMaxTimes(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsAttachRegFail
- 功能描述  : Eps注册被拒的处理
- 输入参数  : VOS_UINT16                          usCause,
-             VOS_UINT32                          ulAttemptCnt
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月29日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年12月15日
-    作    者   : w00167002
-    修改内容   : DTS2011121307570: MMC没有维护LMM的EPLMN信息，现在统一调整
-                  ATTACH/TAU/DETACH/SERVICE中被拒时EPLMN的维护。
-                  将函数名由NAS_MMC_ProcEpsRegFail更改为NAS_MMC_ProcEpsAttachRegFail
-                  调用ATTACH的注册原因值表进行处理。
-  3.日    期   : 2011年12月5日
-    作    者   : z00161729
-    修改内容   : V7R1 phaseIV修改合并原NAS_MMC_HPLMN_REG_REJ_STRU和NAS_MMC_PLMN_REG_INFO_STRU
-  4.日    期   : 2012年2月4日
-    作    者   : w00167002
-    修改内容   : DTS2011122704039:将注册结果类型以及注册消息传递给处理注册结果
-                  函数，扩展注册结果函数的处理能力。
-  5.日    期   : 2013年8月15日
-    作    者   : l00208543
-    修改内容   : 将网络拒绝原因值进行上报
-  6.日    期   : 2014年01月10日
-    作    者   : w00176964
-    修改内容   : VoLTE_PhaseIII项目
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFail(
     NAS_MMC_REG_RSLT_TYPE_ENUM_UINT8    enRegRsltType,
     LMM_MMC_ATTACH_IND_STRU            *pstLmmAttachIndMsg
@@ -13339,9 +7864,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFail(
     /* 将LMM的注册失败原因值转换为MM格式的原因值 */
     NAS_MMC_ConverLmmAttachRsltToMMLCause(pstLmmAttachIndMsg, &enRegRsltCause);
 
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, begin */
     NAS_MMC_SndMsccRegResultInd(NAS_MSCC_PIF_SRVDOMAIN_PS, VOS_FALSE, enRegRsltCause);
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, end */
 
     NAS_MMC_RecordOosEvent(NAS_ERR_LOG_OOS_EVENT_EPS_REG_ATTACH_FAIL);
 
@@ -13383,38 +7906,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsAttachRegFail(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsTauRegFail
- 功能描述  : Eps注册被拒的处理
- 输入参数  : VOS_UINT16                          usCause,
-             VOS_UINT32                          ulAttemptCnt
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月15日
-    作    者   : w00167002
-    修改内容   : 新增函数
-                  DTS2011121307570: MMC没有维护LMM的EPLMN信息，现在统一调整
-                  ATTACH/TAU/DETACH/SERVICE中被拒时EPLMN的维护。
-                  将函数名由NAS_MMC_ProcEpsRegFail更改为NAS_MMC_ProcEpsTauRegFail
-                  调用ATTACH的注册原因值表进行处理。
-  2.日    期   : 2011年12月5日
-    作    者   : z00161729
-    修改内容   : V7R1 phaseIV修改合并原NAS_MMC_HPLMN_REG_REJ_STRU和NAS_MMC_PLMN_REG_INFO_STRU
-  3.日    期   : 2012年2月4日
-    作    者   : w00167002
-    修改内容   : DTS2011122704039:将注册结果类型以及注册消息传递给处理注册结果
-                  函数，扩展注册结果函数的处理能力。
-  4.日    期   : 2013年8月15日
-    作    者   : l00208543
-    修改内容   : 将网络拒绝原因值进行上报
-  5.日    期   : 2014年01月10日
-    作    者   : w00176964
-    修改内容   : VoLTE_PhaseIII项目
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFail(
     NAS_MMC_REG_RSLT_TYPE_ENUM_UINT8    enRegRsltType,
     LMM_MMC_TAU_RESULT_IND_STRU        *pstLmmTauIndMsg
@@ -13431,9 +7923,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFail(
     NAS_MMC_SaveRegRsltCtx(enRegRsltType, pstLmmTauIndMsg);
     NAS_MMC_ConverTauResultToMMLCause(pstLmmTauIndMsg, &enRegRsltCause);
 
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, begin */
     NAS_MMC_SndMsccRegResultInd(NAS_MSCC_PIF_SRVDOMAIN_PS, VOS_FALSE, enRegRsltCause);
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, end */
 
     NAS_MMC_RecordOosEvent(NAS_ERR_LOG_OOS_EVENT_EPS_REG_TAU_FAIL);
 
@@ -13474,31 +7964,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcEpsTauRegFail(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEpsDetachCause
- 功能描述  : Eps detach被拒的处理
- 输入参数  : enRegRsltType:注册结果类型
-              pstDetachMsg: detach消息
- 输出参数  : penCsAddition
-             penPsAddition
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年11月4日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年11月19日
-    作    者   : w00176964
-    修改内容   : 联合注册ST修改
-
-  3.日    期   : 2012年2月4日
-    作    者   : w00167002
-    修改内容   : DTS2011122704039:将注册结果类型以及注册消息传递给处理注册结果
-                  函数，扩展注册结果函数的处理能力。
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcEpsDetachCause(
     NAS_MMC_REG_RSLT_TYPE_ENUM_UINT8                        enRegRsltType,
     LMM_MMC_DETACH_IND_STRU                                *pstDetachMsg,
@@ -13552,55 +8018,7 @@ VOS_VOID NAS_MMC_ProcEpsDetachCause(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcLmmDetachInd
- 功能描述  : 处理LMM DETACH消息
- 输入参数  : pstDetachMsg
- 输出参数  : penCsAddition CS域的后续动作
-             penPsAddition PS域的后续动作
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月29日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年10月26日
-    作    者   : w00176964
-    修改内容   : V7R1 Phase III调整:联合注册修改
-
-  3.日    期   : 2011年11月19日
-    作    者   : w00176964
-    修改内容   : V7R1 Phase III调整:联合注册ST修改
-
-  4.日    期   : 2011年12月15日
-    作    者   : w00167002
-    修改内容   : DTS2011121307570:MMC未处理LMM的ATTACH/TAU/SERVICE/DETACH的EPLMN
-                  信息;通知MM/GMM的消息未更新V7R1_PHASEIV的调用函数
-  5.日    期   : 2012年2月4日
-    作    者   : w00167002
-    修改内容   : DTS2011122704039:将去注册结果类型以及注册消息传递给处理去注册结果
-                  函数，扩展去注册结果函数的处理能力。
-  6.日    期   : 2012年05月28日
-    作    者   : sunxibo /46746
-    修改内容   : Added for V7R1 C50 CS/PS mode 1
-  7.日    期   : 2012年8月21日
-    作    者   : z00161729
-    修改内容   : DCM定制需求和遗留问题修改DTS2012090401249
-  8.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  9.日    期   : 2013年12月14日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseIII项目
-
- 10.日    期   : 2015年02月11日
-    作    者   : l00305157
-    修改内容   : Service_State_Optimize_PhaseII 项目修改
-                     mmc收到网络去注册,服务状态和注册状态的处理
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcLmmDetachInd(
     LMM_MMC_DETACH_IND_STRU                                *pstDetachMsg,
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                   *penCsAddition,
@@ -13614,9 +8032,7 @@ VOS_VOID NAS_MMC_ProcLmmDetachInd(
    *penCsAddition       = NAS_MMC_ADDITIONAL_ACTION_BUTT;
    *penPsAddition       = NAS_MMC_ADDITIONAL_ACTION_BUTT;
 
-   /* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-17, begin */
    /* MMC_LMM_DETACH_LOCAL在预处理已完成，这里删除 */
-   /* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-17, end */
 
 
     /* 网侧响应的detach结果OP项关闭 */
@@ -13636,11 +8052,9 @@ VOS_VOID NAS_MMC_ProcLmmDetachInd(
             NAS_MMC_ProcEpsDetachCause(LMM_MMC_DETACH_IND, pstDetachMsg,
                                        penCsAddition, penPsAddition);
 
-            /* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-14, begin */
             /* 清除紧急PDN连接标志,暂不用通知EPLMN因为各状态收到detach结果的时候需要通知EPLMN */
             NAS_MML_SetEmcPdpStatusFlg(VOS_FALSE);
 
-            /* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-14, end */
 
 
             /* 向GMM和MM转发注册结果消息 */
@@ -13660,10 +8074,8 @@ VOS_VOID NAS_MMC_ProcLmmDetachInd(
             NAS_MMC_ChangePsRegState(NAS_MML_REG_NOT_REGISTERED_NOT_SEARCH);
             NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_PS, NAS_MMC_LIMITED_SERVICE);
 
-            /* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-14, begin */
             /* 清除紧急PDN连接标志,暂不用通知EPLMN因为各状态收到detach结果的时候需要通知EPLMN */
             NAS_MML_SetEmcPdpStatusFlg(VOS_FALSE);
-            /* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-14, end */
 
             /* 向GMM和MM转发注册结果消息 */
             NAS_MMC_SndMmLmmMtDetachInd(pstDetachMsg);
@@ -13697,38 +8109,7 @@ VOS_VOID NAS_MMC_ProcLmmDetachInd(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcLmmServiceRsltInd
- 功能描述  : 处理LMM的service result IND消息
- 输入参数  : pstSerRsltMsg LMM的service result 消息
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月29日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2011年10月26日
-    作    者   : w00176964
-    修改内容   : V7R1 Phase III调整:联合注册修改
-  3.日    期   : 2011年11月30日
-    作    者   : w00176964
-    修改内容   : V7R1 Phase IV调整:disable/enable 调整
-  4.日    期   : 2012年3月5日
-    作    者   : w00167002
-    修改内容   : V7R1C50 CSFB调整:增加LMM 上报的service结果的保存
-  5.日    期   : 2013年01月11日
-    作    者   : l00167671
-    修改内容   : DTS2013011107287,L下紧急呼，SR被拒18，紧急呼失败，一直不能发起
-  6.日    期   : 2015年1月6日
-    作    者   : z00161729
-    修改内容   : AT&T 支持DAM特性修改
-  7.日    期   : 2015年4月22日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcLmmServiceRsltInd(
     LMM_MMC_SERVICE_RESULT_IND_STRU    *pstSerRsltMsg
 )
@@ -13814,37 +8195,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcLmmServiceRsltInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcLmmCombinedTauResultInd_TauRsltEpsOnlySucc
- 功能描述  : Lmm combined tau EPS成功注册,CS注册失败的处理函数
- 输入参数  : pstLmmTauIndMsg  - LMM_MMC_TAU_RESULT_IND_STRU消息的首地址
-             enCsRegRsltCause - cs域被拒原因值
- 输出参数  : penCsAddition    - CS域的后续动作
-             penPsAddition    - PS域的后续动作
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月8日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年3月5日
-    作    者   : w00167002
-    修改内容   : V7R1C50 CSFB调整:增加注册结果的保存
-  3.日    期   : 2012年12月6日
-    作    者   : s00217060
-    修改内容   : DTS2012120410842:不仅是指定搜网注册成功，其他情况注册成功时，也需要删除ForbPlmn,ForbLa,ForbGprs等信息
-  4.日    期   : 2013年8月15日
-    作    者   : l00208543
-    修改内容   : 收到网络的拒绝原因值后进行主动上报
-  5.日    期   : 2014年01月10日
-    作    者   : w00176964
-    修改内容   : VoLTE_PhaseIII项目
-  6.日    期   : 2015年4月18日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-*****************************************************************************/
 VOS_VOID  NAS_MMC_ProcLmmCombinedTauResultInd_TauRsltEpsOnlySucc(
     LMM_MMC_TAU_RESULT_IND_STRU                            *pstLmmTauIndMsg,
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16                      enCsRegRsltCause,
@@ -13858,11 +8209,9 @@ VOS_VOID  NAS_MMC_ProcLmmCombinedTauResultInd_TauRsltEpsOnlySucc(
 
     NAS_MMC_SaveRegRsltCtx(LMM_MMC_TAU_RESULT_IND, pstLmmTauIndMsg);
 
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, begin */
     /* AT^REJINFO主动上报，将REJINFO上报给MSCC */
     NAS_MMC_SndMsccRegResultInd(NAS_MSCC_PIF_SRVDOMAIN_PS, VOS_TRUE, NAS_MML_REG_FAIL_CAUSE_NULL);
     NAS_MMC_SndMsccRegResultInd(NAS_MSCC_PIF_SRVDOMAIN_CS, VOS_FALSE, enCsRegRsltCause);
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, end */
 
     /* eps域注册成功，cs域注册失败 */
     *penPsAddition = NAS_MMC_ADDITIONAL_ACTION_NORMAL_CAMP_ON;
@@ -13899,61 +8248,7 @@ VOS_VOID  NAS_MMC_ProcLmmCombinedTauResultInd_TauRsltEpsOnlySucc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcLmmCombinedTauResultInd_TauRsltCsEpsSucc
- 功能描述  : Lmm combined tau EPS和cs和网侧交互成功注册结果的处理函数
- 输入参数  : pstLmmTauIndMsg - LMM_MMC_TAU_RESULT_IND_STRU消息的首地址
- 输出参数  : penCsAddition CS域的后续动作
-             penPsAddition PS域的后续动作
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月8日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年3月5日
-    作    者   : w00167002
-    修改内容   : V7R1C50 CSFB调整:增加注册结果的保存
-  3.日    期   : 2012年6月2日
-    作    者   : s00217060
-    修改内容   : For CS/PS mode 1,联合TAU成功时，需要Disable L
-  4.日    期   : 2012年6月4日
-    作    者   : l00171473
-    修改内容   : DTS2012053003921, 用户手动指定网络的注册状态标志清理
-  5.日    期   : 2012年7月27日
-    作    者   : s00217060
-    修改内容   : For CS/PS mode 1,带Disable LTE原因值
-  6.日    期   : 2012年12月6日
-    作    者   : s00217060
-    修改内容   : DTS2012120410842:不仅是指定搜网注册成功，其他情况注册成功时，也需要删除ForbPlmn,ForbLa,ForbGprs等信息
-  7.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  8.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  9.日    期   : 2013年12月10日
-    作    者   : w00176964
-    修改内容   : VoLTE_PhaseIII 项目:修改Disable L模的逻辑
- 10.日    期   : 2014年7月14日
-    作    者   : b00269685
-    修改内容   : 漫游搜网优化项目修改
- 11.日    期   : 2015年3月23日
-    作    者   : b00269685
-    修改内容   : 先更新EPLMN再更新注册状态
- 12.日    期   : 2015年4月18日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
- 13.日    期   : 2015年02月11日
-    作    者   : l00305157
-    修改内容   : Service_State_Optimize_PhaseII 项目修改，
-                 对于EMM的COMBINED TAU成功，增加PS域注册状态的上报
- 14.日    期   : 2015年10月14日
-    作    者   : c00318887
-    修改内容   : DTS2015082002854: 漫游标记不准
-*****************************************************************************/
 VOS_VOID  NAS_MMC_ProcLmmCombinedTauResultInd_TauRsltCsEpsSucc(
     LMM_MMC_TAU_RESULT_IND_STRU                            *pstLmmTauIndMsg,
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                   *penCsAddition,
@@ -14017,73 +8312,16 @@ VOS_VOID  NAS_MMC_ProcLmmCombinedTauResultInd_TauRsltCsEpsSucc(
 
     NAS_MMC_UpdateServiceState_RegSucc(NAS_MSCC_PIF_SRVDOMAIN_CS_PS, NAS_MMC_NORMAL_SERVICE);
 
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-12, begin */
     *penCsAddition = NAS_MMC_ADDITIONAL_ACTION_NORMAL_CAMP_ON;
 
     NAS_MMC_SndMsccRegResultInd(NAS_MSCC_PIF_SRVDOMAIN_CS_PS, VOS_TRUE, NAS_MML_REG_FAIL_CAUSE_NULL);
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-12, end */
 
 
     NAS_MMC_UpdateGURegRlstRPlmnIdInNV();
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcLmmCombinedAttachInd_AttRsltCsEpsSucc
- 功能描述  : Lmm combined attach EPS和cs和网侧交互成功注册结果的处理函数
- 输入参数  : pstLmmAttachIndMsg - ID_LMM_MMC_ATTACH_IND消息的首地址
- 输出参数  : penCsAddition CS域的后续动作
-             penPsAddition PS域的后续动作
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月8日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年3月5日
-    作    者   : w00167002
-    修改内容   : V7R1C50 CSFB调整:增加注册结果的保存
-  3.日    期   : 2012年6月1日
-    作    者   : s00217060
-    修改内容   : 调整:CS/PS mode 1联合Attach成功时，需要Disable L
-                  CsAddition为NAS_MMC_ADDITIONAL_ACTION_PLMN_SELECTION;
-  4.日    期   : 2012年6月4日
-    作    者   : l00171473
-    修改内容   : DTS2012053003921, 用户手动指定网络的注册状态标志清理
-  5.日    期   : 2012年7月27日
-    作    者   : s00217060
-    修改内容   : For CS/PS mode 1,带Disable LTE原因值
-  6.日    期   : 2012年12月6日
-    作    者   : s00217060
-    修改内容   : DTS2012120410842:不仅是指定搜网注册成功，其他情况注册成功时，也需要删除ForbPlmn,ForbLa,ForbGprs等信息
-  7.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  8.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  9.日    期   : 2013年12月10日
-    作    者   : w00176964
-    修改内容   : VoLTE_PhaseIII 项目:修改Disable L模的逻辑
-  10.日    期   : 2014年11月3日
-     作    者   : z00161729
-     修改内容   : 开机漫游搜网项目修改
-  11.日    期   : 2015年3月23日
-     作    者   : b00269685
-     修改内容   : 先写EPLMN再更新注册状态
-  12.日    期   : 2015年4月18日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
- 13.日    期   : 2015年02月11日
-    作    者   : l00305157
-    修改内容   : Service_State_Optimize_PhaseII 项目修改
-                 对于EMM的COMBINED ATTACH成功，增加PS域注册状态的上报
- 14.日    期   : 2015年10月14日
-    作    者   : c00318887
-    修改内容   : DTS2015082002854: 漫游标记不准
-*****************************************************************************/
 VOS_VOID  NAS_MMC_ProcLmmCombinedAttachInd_AttRsltCsEpsSucc(
     LMM_MMC_ATTACH_IND_STRU                                *pstLmmAttachIndMsg,
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                   *penCsAddition,
@@ -14102,9 +8340,7 @@ VOS_VOID  NAS_MMC_ProcLmmCombinedAttachInd_AttRsltCsEpsSucc(
     *penPsAddition = NAS_MMC_ADDITIONAL_ACTION_NORMAL_CAMP_ON;
 
 
-    /* Deleted by w00176964 for VoLTE_PhaseIII 项目, 2014-1-10, begin */
 
-    /* Deleted by w00176964 for VoLTE_PhaseIII 项目, 2014-1-10, end */
 
     if (VOS_TRUE == pstLmmAttachIndMsg->bitOpLai)
     {
@@ -14117,10 +8353,8 @@ VOS_VOID  NAS_MMC_ProcLmmCombinedAttachInd_AttRsltCsEpsSucc(
         NAS_MMC_DelForbInfo_LmmAttRsltSucc(VOS_NULL_PTR, NAS_MMC_IsEpsEmergencyAttachType(pstLmmAttachIndMsg->ulReqType));
     }
 
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-12, begin */
     *penCsAddition = NAS_MMC_ADDITIONAL_ACTION_NORMAL_CAMP_ON;
 
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-12, end */
 
 
     /* 更新EPLMN，联合注册成功或EPS only成功网侧均可能带EPLMN */
@@ -14156,46 +8390,14 @@ VOS_VOID  NAS_MMC_ProcLmmCombinedAttachInd_AttRsltCsEpsSucc(
     /* 注册成功时，清除GEO PLMN，下次再搜网时，可以直接搜RPLMN */
     NAS_MMC_InitGeoPlmn();
 
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, begin */
     NAS_MMC_SndMsccRegResultInd(NAS_MSCC_PIF_SRVDOMAIN_CS_PS, VOS_TRUE, NAS_MML_REG_FAIL_CAUSE_NULL);
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, end */
 
 
     NAS_MMC_UpdateGURegRlstRPlmnIdInNV();
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcLmmCombinedAttachInd_AttRsltEpsOnlySucc
- 功能描述  : Lmm combined attach EPS成功注册,CS注册失败的处理函数
- 输入参数  : pstLmmAttachIndMsg - ID_LMM_MMC_ATTACH_IND消息的首地址
-             enCsRegRsltCause -  cs域被拒原因值
- 输出参数  : penCsAddition    - CS域的后续动作
-             penPsAddition    - PS域的后续动作
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月8日
-    作    者   : z00161729
-    修改内容   : V7R1 phase IV新生成函数
-  2.日    期   : 2012年3月5日
-    作    者   : w00167002
-    修改内容   : V7R1C50 CSFB调整:增加注册结果的保存
-  3.日    期   : 2012年12月6日
-    作    者   : s00217060
-    修改内容   : DTS2012120410842:不仅是指定搜网注册成功，其他情况注册成功时，也需要删除ForbPlmn,ForbLa,ForbGprs等信息
-  4.日    期   : 2013年8月15日
-    作    者   : l00208543
-    修改内容   : 收到网络的拒绝原因值后进行主动上报
-  5.日    期   : 2014年01月10日
-    作    者   : w00176964
-    修改内容   : VoLTE_PhaseIII项目
-  6.日    期   : 2015年4月18日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-*****************************************************************************/
 VOS_VOID  NAS_MMC_ProcLmmCombinedAttachInd_AttRsltEpsOnlySucc(
     LMM_MMC_ATTACH_IND_STRU                                *pstLmmAttachIndMsg,
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16                      enCsRegRsltCause,
@@ -14209,11 +8411,9 @@ VOS_VOID  NAS_MMC_ProcLmmCombinedAttachInd_AttRsltEpsOnlySucc(
 
     NAS_MMC_SaveRegRsltCtx(LMM_MMC_ATTACH_IND, pstLmmAttachIndMsg);
 
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, begin */
     /* AT^REJINFO主动上报，将REJINFO上报给MSCC */
     NAS_MMC_SndMsccRegResultInd(NAS_MSCC_PIF_SRVDOMAIN_PS, VOS_TRUE, NAS_MML_REG_FAIL_CAUSE_NULL);
     NAS_MMC_SndMsccRegResultInd(NAS_MSCC_PIF_SRVDOMAIN_CS, VOS_FALSE, enCsRegRsltCause);
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, end */
 
     /* EPS域注册成功，cs域注册失败 */
     *penPsAddition = NAS_MMC_ADDITIONAL_ACTION_NORMAL_CAMP_ON;
@@ -14253,40 +8453,7 @@ VOS_VOID  NAS_MMC_ProcLmmCombinedAttachInd_AttRsltEpsOnlySucc(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcLmmCombinedAttachInd_AttRsltSucc
- 功能描述  : Lmm combined attach EPS和CS成功注册的处理函数
- 输入参数  : pstLmmAttachIndMsg - ID_LMM_MMC_ATTACH_IND消息的首地址
-             enCsRegRsltCause -  cs域被拒原因值
- 输出参数  : penCsAddition    - CS域的后续动作
-             penPsAddition    - PS域的后续动作
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月8日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年6月4日
-    作    者   : l00171473
-    修改内容   : DTS2012053003921, 用户手动指定网络的注册状态标志清理
-  3.日    期   : 2012年6月8日
-    作    者   : l00130025
-    修改内容   : DTS2012060702423:Anycell驻留后，注册成功时，没有通知通知APS/CDS消息，无法数传
-  4.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  5.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  6.日    期   : 2015年02月11日
-    作    者   : l00305157
-    修改内容   : Service_State_Optimize_PhaseII 项目修改
-  7.日    期   : 2015年10月14日
-    作    者   : c00318887
-    修改内容   : DTS2015082002854: 漫游标记不准
-*****************************************************************************/
 VOS_VOID  NAS_MMC_ProcLmmCombinedAttachInd_AttRsltSucc(
     LMM_MMC_ATTACH_IND_STRU                                *pstLmmAttachIndMsg,
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16                      enCsRegRsltCause,
@@ -14320,9 +8487,7 @@ VOS_VOID  NAS_MMC_ProcLmmCombinedAttachInd_AttRsltSucc(
 
         NAS_MMC_UpdateServiceState_RegSucc(NAS_MSCC_PIF_SRVDOMAIN_CS_PS, NAS_MMC_NORMAL_SERVICE);
 
-        /* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, begin */
         NAS_MMC_SndMsccRegResultInd(NAS_MSCC_PIF_SRVDOMAIN_CS_PS, VOS_TRUE, NAS_MML_REG_FAIL_CAUSE_NULL);
-        /* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, end */
     }
 
     if (NAS_MMC_FSM_L1_MAIN == NAS_MMC_GetCurrFsmId())
@@ -14337,44 +8502,7 @@ VOS_VOID  NAS_MMC_ProcLmmCombinedAttachInd_AttRsltSucc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcLmmCombinedTauResultInd_TauRsltSucc
- 功能描述  : Lmm TAU result结果为MMC_LMM_TAU_RSLT_SUCCESS的处理函数
- 输入参数  : ID_LMM_MMC_TAU_RESULT_IND消息的首地址
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月07日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年6月4日
-    作    者   : l00171473
-    修改内容   : DTS2012053003921, 用户手动指定网络的注册状态标志清理
-  3.日    期   : 2012年6月8日
-    作    者   : l00130025
-    修改内容   : DTS2012060702423:Anycell驻留后，注册成功时，没有通知通知APS/CDS消息，无法数传
-  4.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  5.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  6.日    期   : 2013年3月30日
-    作    者   : w00176964
-    修改内容   : DTS2013030802929,周期性RAU需要通知LMM
-  7.日    期   : 2014年01月10日
-    作    者   : w00176964
-    修改内容   : VoLTE_PhaseIII项目
-  8.日    期   : 2015年05月11日
-    作    者   : l00305157
-    修改内容   : Service_State_Optimize_PhaseII 项目修改
-  9.日    期   : 2015年10月14日
-    作    者   : c00318887
-    修改内容   : DTS2015082002854: 漫游标记不准
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcLmmCombinedTauResultInd_TauRsltSucc(
     LMM_MMC_TAU_RESULT_IND_STRU                            *pstLmmTauIndMsg,
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16                      enCsRegRsltCause,
@@ -14413,9 +8541,7 @@ VOS_VOID NAS_MMC_ProcLmmCombinedTauResultInd_TauRsltSucc(
 
         NAS_MMC_UpdateServiceState_RegSucc(NAS_MSCC_PIF_SRVDOMAIN_CS_PS, NAS_MMC_NORMAL_SERVICE);
 
-         /* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, begin */
          NAS_MMC_SndMsccRegResultInd(NAS_MSCC_PIF_SRVDOMAIN_CS_PS, VOS_TRUE, NAS_MML_REG_FAIL_CAUSE_NULL);
-         /* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, end */
     }
 
     if (NAS_MMC_FSM_L1_MAIN == NAS_MMC_GetCurrFsmId())
@@ -14432,32 +8558,7 @@ VOS_VOID NAS_MMC_ProcLmmCombinedTauResultInd_TauRsltSucc(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcLmmCombinedTauResult
- 功能描述  : Lmm TAU result的处理函数
- 输入参数  : pstLmmTauIndMsg          -  ID_LMM_MMC_TAU_RESULT_IND消息内容
-             enCsRegRsltCause - cs域被拒原因值
- 输出参数  : penPsRegAdditionalAction - 收到注册tau结果后，协议要求的ps域的additional动作类型
-             penCsRegAdditionalAction - 收到注册tau结果后，协议要求的cs域的additional动作类型
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月07日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年5月7日
-    作    者   : w00166186
-    修改内容   : DTS20120050302236:手动搜网指定的网络在禁止列表中，注册成功后，
-                 没有向LMM发送等效PLMN
-  3.日    期   : 2012年5月10日
-    作    者   : l65478
-    修改内容   : DTS2012050500988:CS注册成功时,不能删除forbid PLMN for GPRS信息
-  4.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcLmmCombinedTauResult(
     LMM_MMC_TAU_RESULT_IND_STRU                            *pstLmmTauIndMsg,
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16                      enCsRegRsltCause,
@@ -14486,9 +8587,7 @@ VOS_VOID NAS_MMC_ProcLmmCombinedTauResult(
             *penCsRegAdditionalAction = NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON;
 
 
-            /* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, begin */
             NAS_MMC_SndMsccRegResultInd(NAS_MSCC_PIF_SRVDOMAIN_CS_PS, VOS_FALSE, NAS_MML_REG_FAIL_CAUSE_OTHER_CAUSE);
-            /* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, end */
         }
         else
         {
@@ -14553,22 +8652,7 @@ VOS_VOID NAS_MMC_ProcLmmCombinedTauResult(
 }
 
 #endif
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetAdditionalActionPrioValue
- 功能描述  : 获取AdditonalAction对应的优先级
- 输入参数  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 enAction,
-             VOS_UINT8                          *pucPrioValue
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月22日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_GetAdditionalActionPrioValue(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 enAction,
     VOS_UINT8                           *pucPrioValue
@@ -14592,21 +8676,7 @@ VOS_VOID NAS_MMC_GetAdditionalActionPrioValue(
     *pucPrioValue = gastAdditionalActionPrioArr[NAS_MMC_ADDITIONAL_ACTION_BUTT].ucPriority;
 
 }
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetPrioAddtionalAction
- 功能描述  : 获取当前优先的AdditonalAction
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月22日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8  NAS_MMC_GetPrioAddtionalAction(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 enCsAdditionalAction,
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 enPsAdditionalAction
@@ -14630,22 +8700,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8  NAS_MMC_GetPrioAddtionalAction(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsAdditionalActionTrigerPlmnSrch
- 功能描述  : AdditionalAction是否会触发搜网
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE: 需要触发搜网
-             VOS_FALSE: 不需要触发搜网
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月27日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsAdditionalActionTrigerPlmnSrch(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 enAdditionalAction
 )
@@ -14666,20 +8721,7 @@ VOS_UINT32 NAS_MMC_IsAdditionalActionTrigerPlmnSrch(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetPsAdditionalAction
- 功能描述  : 获取PS的AdditionalAction
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8,PS的AdditionalAction
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_GetPsAdditionalAction(VOS_VOID)
 {
     NAS_MMC_FSM_ID_ENUM_UINT32                              enFsmId;
@@ -14717,20 +8759,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_GetPsAdditionalAction(VOS_VOID)
     return NAS_MMC_ADDITIONAL_ACTION_BUTT;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetCsAdditionalAction
- 功能描述  : 获取CS的AdditionalAction
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8,CS的AdditionalAction
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_GetCsAdditionalAction(VOS_VOID)
 {
     NAS_MMC_FSM_ID_ENUM_UINT32                              enFsmId;
@@ -14768,21 +8797,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_GetCsAdditionalAction(VOS_VOID)
     return NAS_MMC_ADDITIONAL_ACTION_BUTT;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetLmmAttaClRegStatPrioValue
- 功能描述  : 获取当前优先的lmm attach cl 注册状态
- 输入参数  : MMC_LMM_ATTACH_CL_REG_STATUS_ENUM8  enLmmAttachClReqStatus
-             VOS_UINT8                          *pucPrioValue
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月22日
-    作    者   : wx270776
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_GetLmmAttaClRegStatPrioValue(
     MMC_LMM_ATTACH_CL_REG_STATUS_ENUM8  enLmmAttachClReqStatus
 )
@@ -14810,22 +8825,7 @@ VOS_UINT32 NAS_MMC_GetLmmAttaClRegStatPrioValue(
 }
 
 #if   (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConvertLmmCauseToMmCause
- 功能描述  : 将MM的注册结果转换为EMM的注册结果,由于需要明确告诉EMM是否是网络
-              拒绝还是其他原因拒绝
- 输入参数  : enCnCause:MM注册结果
- 输出参数  : penProtolCause:协议中规定的结果
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月11日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  NAS_MMC_ConvertLmmCauseToMmCause(
     NAS_LMM_CN_CAUSE_ENUM_UINT8          enLmmCause,
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16  *penMmCnCause
@@ -14834,30 +8834,7 @@ VOS_VOID  NAS_MMC_ConvertLmmCauseToMmCause(
     *penMmCnCause = (NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16)enLmmCause;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConverLmmCombinedAttachRsltToMMLCause
- 功能描述  : 将LmmAttach的联合注册结果转换为对应的ps cause值和cs cause值
- 输入参数  : pstLmmAttachIndMsg - 联合attach消息内容
- 输出参数  : penPsRegRsltCause  - ps域注册原因值
-             penCsRegRsltCause  - cs域注册原因值
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月25日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年1月8日
-    作    者   : z00161729
-    修改内容   : V7R1 phase IV修改
-  3.日    期   : 2012年1月2日
-    作    者   : w00167002
-    修改内容   : DTS2011102200381:L下注册被拒#12,LMM给MMC带的ATTACH及TAU
-                 中的结果为MMC_LMM_ATT_RSLT_FORBID，MMC收到此结果后按照禁止网络
-                 来处理而发起了搜网。
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_ConverLmmCombinedAttachRsltToMMLCause(
     LMM_MMC_ATTACH_IND_STRU            *pstLmmAttachIndMsg,
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16 *penPsRegRsltCause,
@@ -14990,33 +8967,7 @@ VOS_VOID NAS_MMC_ConverLmmCombinedAttachRsltToMMLCause(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConverLmmCombinedTauRsltToMMLCause
- 功能描述  : 将Lmmtau的联合注册结果转换为对应的ps cause值和cs cause值
- 输入参数  : pstLmmTauResultInd - 联合tau消息内容
- 输出参数  : penPsRegRsltCause  - ps注册原因值
-             penCsRegRsltCause  - cs注册原因值
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月27日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2012年1月8日
-    作    者   : z00161729
-    修改内容   : V7R1 phase IV修改
- 3.日    期   : 2012年1月2日
-   作    者   : w00167002
-   修改内容   : DTS2011102200381:L下注册被拒#12,LMM给MMC带的ATTACH及TAU
-                中的结果为MMC_LMM_ATT_RSLT_FORBID，MMC收到此结果后按照禁止网络
-                来处理而发起了搜网。
- 4.日    期   : 2012年5月11日
-   作    者   : w00166186
-   修改内容   : DTS2012051006163:高优先级被指定搜VPLMN打断，搜网成功，但AT返回失败。
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_ConverLmmCombinedTauRsltToMMLCause(
     LMM_MMC_TAU_RESULT_IND_STRU        *pstLmmTauResultInd,
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16 *penPsRegRsltCause,
@@ -15150,37 +9101,7 @@ VOS_VOID NAS_MMC_ConverLmmCombinedTauRsltToMMLCause(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConverLmmAttachRsltToMMLCause
- 功能描述  : 将LmmAttach的对应结果转换为对应的Cause值
- 输入参数  : pstLmmAttachIndMsg
- 输出参数  : penRegRsltCause
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月24日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月14日
-    作    者   : w00176964
-    修改内容   : V7R1 phaseIV调整:EPS单域注册假流程调整
-  3.日    期   : 2011年12月28日
-    作    者   : z00161729
-    修改内容   : V7R1 phaseIV增加新的attach result
-  4.日    期   : 2011年12月29日
-    作    者   : w00167002
-    修改内容   : DTS2011102200381:L下注册被拒#12,LMM给MMC带的TAU
-                 中的结果为MMC_LMM_TAU_RSLT_FORBID_PLMNS，MMC收到此结果后按照禁止网络
-                 来处理而发起了搜网。
-                  修改内容:将L模带过来的假流程值转换为NAS内部的假流程值
-
-  5.日    期   : 2012年09月27日
-    作    者   : z00161729
-    修改内容   : DTS2012090303562:搜网状态机等L注册结果收到丢网消息获取下一个网络失败退状态机后又发起非法随机网络搜网
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_ConverLmmAttachRsltToMMLCause(
     LMM_MMC_ATTACH_IND_STRU            *pstLmmAttachIndMsg,
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16 *penRegRsltCause
@@ -15272,27 +9193,7 @@ VOS_VOID NAS_MMC_ConverLmmAttachRsltToMMLCause(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConverLmmServiceRsltToMMLCause
- 功能描述  : 将pstLmmSerRsltIndMsg的对应结果转换为对应的Cause值
- 输入参数  : pstLmmSerRsltIndMsg
- 输出参数  : penRegRsltCause
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月29日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月17日
-    作    者   : w00176964
-    修改内容   : V7R1 PhaseIV调整:获取cause值先检查OP项
-  3.日    期   : 2015年1月5日
-    作    者   : z00161729
-    修改内容   : AT&T 支持DAM特性修改
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_ConverLmmServiceRsltToMMLCause(
     LMM_MMC_SERVICE_RESULT_IND_STRU    *pstLmmSerRsltIndMsg,
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16 *penRegRsltCause
@@ -15338,32 +9239,7 @@ VOS_VOID NAS_MMC_ConverLmmServiceRsltToMMLCause(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConverTauResultToMMLCause
- 功能描述  : 将LmmAttach的对应结果转换为对应的Cause值
- 输入参数  : pstLmmTauIndMsg
- 输出参数  : penRegRsltCause
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月24日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月14日
-    作    者   : w00176964
-    修改内容   : V7R1 phaseIV调整:EPS单域注册假流程调整
-  3.日    期   : 2011年12月29日
-    作    者   : w00167002
-    修改内容   : DTS2011102200381:L下注册被拒#12,LMM给MMC带的TAU
-                 中的结果为MMC_LMM_TAU_RSLT_FORBID_PLMNS，MMC收到此结果后按照禁止网络
-                 来处理而发起了搜网。
-                  修改内容:将L模带过来的假流程值转换为NAS内部的假流程值
-  4.日    期   : 2012年7月9日
-    作    者   : z00161729
-    修改内容  : GUL 背景搜修改
-*****************************************************************************/
 VOS_VOID NAS_MMC_ConverTauResultToMMLCause(
     LMM_MMC_TAU_RESULT_IND_STRU        *pstLmmTauIndMsg,
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16 *penRegRsltCause
@@ -15453,23 +9329,7 @@ VOS_VOID NAS_MMC_ConverTauResultToMMLCause(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConvertLmmAttachReqType
- 功能描述  : 联合EPS OtherCause的处理
- 输入参数  : VOS_UINT16                          usCause,
-             VOS_UINT32                          ulAttemptCnt
- 输出参数  : penPsRegAdditionalAction - 收到注册结果后，协议要求的ps域的additional动作类型
-             penCsRegAdditionalAction - 收到注册结果后，协议要求的cs域的additional动作类型
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月25日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 MMC_LMM_ATTACH_TYPE_ENUM_UINT32 NAS_MMC_ConvertLmmAttachReqType(
     NAS_MML_LTE_UE_OPERATION_MODE_ENUM_UINT8                enUeOperationMode
 )
@@ -15493,21 +9353,7 @@ MMC_LMM_ATTACH_TYPE_ENUM_UINT32 NAS_MMC_ConvertLmmAttachReqType(
 
 
 
-/*******************************************************************************
- 函 数 名  : NAS_MMC_ConvertGmmRegDomainToMmcDomain
- 功能描述  : 将GMM的注册域转化为MMC的格式
- 输入参数  : enRegDomain GMM的注册域
- 输出参数  : penMmcRegDomain MMC的注册域
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年3月30日
-   作    者   : l00130025
-   修改内容   : DTS2012032307791,发给LMM注册结果,CombineReg时需要区分结果域
-
-*******************************************************************************/
 VOS_VOID NAS_MMC_ConvertGmmRegDomainToMmcDomain(
     GMM_MMC_REG_DOMAIN_ENUM_UINT32      enRegDomain,
     NAS_MMC_REG_DOMAIN_ENUM_UINT8      *penMmcRegDomain
@@ -15525,34 +9371,15 @@ VOS_VOID NAS_MMC_ConvertGmmRegDomainToMmcDomain(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedDisableL_CombinedAttRsltFailMaxTimes
- 功能描述  : 联合注册失败需要Disable L
- 输入参数  : 无
- 输出参数  : 无
- 返回值    : VOS_TRUE   需要Disable L
-              VOS_FALSE  不需要Disable L
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年06月02日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2014年01月10日
-    作    者   : w00176964
-    修改内容   : VoLTE_PhaseIII项目
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedDisableL_CombinedRegRsltFailMaxTimes()
 {
     NAS_MML_LTE_UE_OPERATION_MODE_ENUM_UINT8                enLUeMode;
 
     enLUeMode        = NAS_MML_GetLteUeOperationMode();
 
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, begin */
     /* 不是CS/PS mode 1 */
     if (NAS_MML_LTE_UE_OPERATION_MODE_CS_PS_1 != enLUeMode)
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, end */
     {
         return VOS_FALSE;
     }
@@ -15566,22 +9393,7 @@ VOS_UINT32 NAS_MMC_IsNeedDisableL_CombinedRegRsltFailMaxTimes()
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedDisableL_CombinedAttRsltFailCause14GprsNotAllowInThisPlmn
- 功能描述  : 判断联合注册失败#14需要Disable L
- 输入参数  : 无
- 输出参数  : 无
- 返回值    : VOS_TRUE   需要Disable L
-             VOS_FALSE  不需要Disable L
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月19日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedDisableL_CombinedAttRsltFailCause14GprsNotAllowInThisPlmn(VOS_VOID)
 {
     NAS_MML_LTE_UE_OPERATION_MODE_ENUM_UINT8                enLUeMode;
@@ -15609,22 +9421,7 @@ VOS_UINT32 NAS_MMC_IsNeedDisableL_CombinedAttRsltFailCause14GprsNotAllowInThisPl
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedAddForbGprsPlmn_TauRsltFailCause14GprsNotAllowInThisPlmn
- 功能描述  : L下注册失败被拒#14判断是否需要加入禁止gprs网络列表
- 输入参数  : 无
- 输出参数  : 无
- 返回值    : VOS_TRUE - 需要加入禁止gprs网络列表
-             VOS_FALSE- 不需要加入禁止gprs网络列表
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月19日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedAddForbGprsPlmn_TauRsltFailCause14GprsNotAllowInThisPlmn(VOS_VOID)
 {
     VOS_UINT8                           ucEpsSrvConnStatusFlag;
@@ -15658,22 +9455,7 @@ VOS_UINT32 NAS_MMC_IsNeedAddForbGprsPlmn_TauRsltFailCause14GprsNotAllowInThisPlm
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedDeleteEplmn_CombinedRegRsltFailCause14GprsNotAllowInThisPlmn
- 功能描述  : L下注册失败被拒#14判断是否需要删除等效plmn
- 输入参数  : 无
- 输出参数  : 无
- 返回值    : VOS_TRUE - 需要删除eplmn
-             VOS_FALSE- 不需要删除eplmn
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月19日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedDeleteEplmn_CombinedRegRsltFailCause14GprsNotAllowInThisPlmn(VOS_VOID)
 {
     NAS_MML_LTE_UE_OPERATION_MODE_ENUM_UINT8                enLUeMode;
@@ -15686,13 +9468,7 @@ VOS_UINT32 NAS_MMC_IsNeedDeleteEplmn_CombinedRegRsltFailCause14GprsNotAllowInThi
         return VOS_FALSE;
     }
 
-    /* 24301_CR1422R1_(Rel-11)_C1-121612 对应24301 5.5.3.3.5和5.5.1.3.5章节:
-         A UE operating in CS/PS mode 1 of operation and supporting A/Gb or Iu mode
-      may perform a PLMN selection according to 3GPP TS 23.122 [6].
-         A UE operating in CS/PS mode 1 of operation and supporting S1 mode only,
-      or operating in CS/PS mode 2 of operation shall delete the list of
-      equivalent PLMNs and shall perform a PLMN selection according to 3GPP TS 23.122 [6].
-      该CR受协议版本控制 */
+    
     if (((VOS_TRUE == NAS_MML_IsLteOnlyMode(NAS_MML_GetMsPrioRatList()))
        && (NAS_MML_LTE_UE_OPERATION_MODE_CS_PS_1 == enLUeMode))
       || (NAS_MML_LTE_UE_OPERATION_MODE_CS_PS_2 == enLUeMode))
@@ -15703,51 +9479,15 @@ VOS_UINT32 NAS_MMC_IsNeedDeleteEplmn_CombinedRegRsltFailCause14GprsNotAllowInThi
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedDeleteEplmn_EpsDetachCause14GprsNotAllowInThisPlmn
- 功能描述  : L下网络detach ind被拒#14判断是否需要删除等效plmn
- 输入参数  : 无
- 输出参数  : 无
- 返回值    : VOS_TRUE - 需要删除eplmn
-             VOS_FALSE- 不需要删除eplmn
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月19日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedDeleteEplmn_EpsDetachCause14GprsNotAllowInThisPlmn(VOS_VOID)
 {
-    /* 24301_CR1422R1_(Rel-11)_C1-121612 对应24301 5.5.2.3.2章节:
-         A UE operating in CS/PS mode 1 of operation and supporting A/Gb or Iu mode
-      may perform a PLMN selection according to 3GPP TS 23.122 [6].
-         A UE operating in CS/PS mode 1 of operation and supporting S1 mode only,
-      or operating in CS/PS mode 2 of operation shall delete the list of
-      equivalent PLMNs and shall perform a PLMN selection according to 3GPP TS 23.122 [6].
-      该CR受协议版本控制 */
+    
     return NAS_MMC_IsNeedDeleteEplmn_CombinedRegRsltFailCause14GprsNotAllowInThisPlmn();
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedAddForbPlmn_TauRsltFailCause11PlmnNotAllow
- 功能描述  : L下注册失败被拒#11判断是否需要加入禁止网络列表
- 输入参数  : 无
- 输出参数  : 无
- 返回值    : VOS_TRUE - 需要加入禁止网络列表
-             VOS_FALSE- 不需要加入禁止网络列表
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月19日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedAddForbPlmn_TauRsltFailCause11PlmnNotAllow(VOS_VOID)
 {
     VOS_UINT8                           ucEpsSrvConnStatusFlag;
@@ -15778,22 +9518,7 @@ VOS_UINT32 NAS_MMC_IsNeedAddForbPlmn_TauRsltFailCause11PlmnNotAllow(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedDisableL_EpsDetachCause14GprsNotAllowInThisPlmn
- 功能描述  : 判断网络detach ind被拒#14是否需要Disable L
- 输入参数  : 无
- 输出参数  : 无
- 返回值    : VOS_TRUE   需要Disable L
-             VOS_FALSE  不需要Disable L
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月19日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedDisableL_EpsDetachCause14GprsNotAllowInThisPlmn(VOS_VOID)
 {
     NAS_MML_LTE_UE_OPERATION_MODE_ENUM_UINT8                enLUeMode;
@@ -15822,24 +9547,7 @@ VOS_UINT32 NAS_MMC_IsNeedDisableL_EpsDetachCause14GprsNotAllowInThisPlmn(VOS_VOI
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedDisableL_CombinedRegRsltSucc
- 功能描述  : 判断联合Attch或联合TAU成功时是否需要Disable L
- 输入参数  :
- 输出参数  :
- 返 回 值  : VOS_TRUE  需要Disable L
-              VOS_FALSE 不需要Disable L
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月1日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2015年4月19日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedDisableL_CombinedRegRsltSucc()
 {
 
@@ -15851,23 +9559,7 @@ VOS_UINT32 NAS_MMC_IsNeedDisableL_CombinedRegRsltSucc()
     return VOS_FALSE;
 }
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_IsNeedDisableL_RegRsltAdditionUpdateRslt
-功能描述  : cs ps mode1,ims not available,注册结果additional update result IE指示
-            "SMS only" or "CS Fallback not preferred" 是否需要disable lte
-输入参数  : enAdditionUpdateRslt - addition update result信息
-输出参数  : 无
-返 回 值  : VOS_TRUE  - 需要Disable L
-            VOS_FALSE - 不需要Disable L
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2015年4月19日
-  作    者   : z00161729
-  修改内容   : 24301 R11 CR升级项目修改
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedDisableL_CombinedRegSuccAdditionUpdateRslt(
     NAS_MML_ADDITION_UPDATE_RSLT_INFO_ENUM_UINT8            enAdditionUpdateRslt
 )
@@ -15922,24 +9614,7 @@ VOS_UINT32 NAS_MMC_IsNeedDisableL_CombinedRegSuccAdditionUpdateRslt(
 }
 
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_IsNeedDisableL_RegFailCause22AttmptCntMaxTimes
-功能描述  : 注册被拒#22达最大次数是否需要disable lte
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_TRUE   - 需要Disable L
-            VOS_FALSE - 不需要Disable L
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2015年1月15日
-  作    者   : z00161729
-  修改内容   : AT&T 支持DAM特性修改
-2.日    期   : 2015年4月20日
-  作    者   : z00161729
-  修改内容   : 24301 R11 CR升级项目修改
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedDisableL_RegFailCause22AttmptCntMaxTimes(VOS_VOID)
 {
     VOS_UINT32                                              ulIsPlmnInSupportDamPlmnInfo;
@@ -15999,32 +9674,7 @@ VOS_UINT32 NAS_MMC_IsNeedDisableL_RegFailCause22AttmptCntMaxTimes(VOS_VOID)
 }
 
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_IsNeedDisableL_CombinedAttRsltOnlyEpsSucc
-功能描述  : 联合注册Combined attach successful for EPS services only或者
-            Combined TAU successful for EPS services only，需要Disable L
-输入参数  : enCsRegRsltCause
-输出参数  :
-返 回 值  : VOS_TRUE   需要Disable L
-             VOS_FALSE 不需要Disable L
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2012年06月02日
-  作    者   : s00217060
-  修改内容   : 新生成函数
-2.日    期   : 2015年1月5日
-  作    者   : z00161729
-  修改内容   : AT&T 支持DAM特性修改
-3.日    期   : 2015年4月20日
-  作    者   : z00161729
-  修改内容   : 24301 R11 CR升级项目修改
-4.日    期   : 2015年6月19日
-  作    者   : z00161729
-  修改内容   : 24008 23122 R11 CR升级项目修改
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedDisableL_CombinedRegRsltOnlyEpsSucc(
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16                      enCsRegRsltCause
 )
@@ -16033,10 +9683,8 @@ VOS_UINT32 NAS_MMC_IsNeedDisableL_CombinedRegRsltOnlyEpsSucc(
 
     enLUeMode        = NAS_MML_GetLteUeOperationMode();
 
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, begin */
     /* 不是CS/PS mode 1 */
     if (NAS_MML_LTE_UE_OPERATION_MODE_CS_PS_1 != enLUeMode)
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, end */
     {
         return VOS_FALSE;
     }
@@ -16049,10 +9697,8 @@ VOS_UINT32 NAS_MMC_IsNeedDisableL_CombinedRegRsltOnlyEpsSucc(
     }
 
     /* enCsRegRsltCause为#16,#17,#22,other cause && NAS_MMC_GetRegRsltAttemptCounter达到5次 */
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-25, begin */
     if ((NAS_MML_MAX_PS_REG_FAIL_CNT                == NAS_MMC_GetRegRsltAttemptCounter(NAS_MMC_GetRegRsltType()))
      && (NAS_MML_REG_FAIL_CAUSE_IMSI_UNKNOWN_IN_HLR != enCsRegRsltCause))
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-25, end */
     {
         /* 24301_CR1884R4_(Rel-11)_C1-140658-C1-140643-C1-140393-C1-140368-C1-140004-24301-b90-TA-IMSVoPS-EPS-only
           TAU ACCEPT，EPS ONLY成功，被拒原因值为16,17，CS/PS1，DIABLE LTE的条件增加
@@ -16095,24 +9741,7 @@ VOS_UINT32 NAS_MMC_IsNeedDisableL_CombinedRegRsltOnlyEpsSucc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_IsNeedDisableL_ServiceReqFailCause18CsDomainNotAvailable
-功能描述  : 收到lmm的service result ind被拒原因值18是否需要disable lte
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_TRUE  - 需要Disable L
-            VOS_FALSE - 不需要Disable L
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2015年4月19日
-  作    者   : z00161729
-  修改内容   : 24301 R11 CR升级项目修改
-2.日    期   : 2015年9月6日
-  作    者   : z00359541
-  修改内容   : DTS2015081407087: 接口调整，删除bitOpReqType项
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedDisableL_ServiceReqFailCause18CsDomainNotAvailable(VOS_VOID)
 {
     NAS_MML_LTE_UE_OPERATION_MODE_ENUM_UINT8                enLUeMode;
@@ -16151,9 +9780,7 @@ VOS_UINT32 NAS_MMC_IsNeedDisableL_ServiceReqFailCause18CsDomainNotAvailable(VOS_
     }
 
 
-    /* 测试卡按协议disable lte，非测试卡为了提高用户体验，先不disable lte，电话结束
-    后fast return回lte，lte会做联合注册，如果再次被#18拒绝再disable lte，多给LTE一次机会，
-    参见DTS2015051901235问题单方案*/
+    
     if (VOS_TRUE == NAS_USIMMAPI_IsTestCard())
     {
         return VOS_TRUE;
@@ -16163,23 +9790,7 @@ VOS_UINT32 NAS_MMC_IsNeedDisableL_ServiceReqFailCause18CsDomainNotAvailable(VOS_
 }
 
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_IsNeedDisableL_ServiceRsltFail
-功能描述  : 收到lmm的service result ind消息判断是否需要disable lte
-输入参数  : enRegRsltCause    - 注册被拒原因值
-            ucIsReachMaxTimes - 是否达到最大次数标识
-输出参数  :
-返 回 值  : VOS_TRUE   需要Disable L
-            VOS_FALSE 不需要Disable L
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2015年1月5日
-  作    者   : z00161729
-  修改内容   : AT&T 支持DAM特性修改
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedDisableL_ServiceRsltFail(
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16  enRegRsltCause,
     VOS_UINT8                           ucIsReachMaxTimes
@@ -16229,27 +9840,7 @@ VOS_UINT32 NAS_MMC_IsNeedDisableL_ServiceRsltFail(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedDisableL_EpsOnlyRegSucc
- 功能描述  : 单域EPS成功，且PLMN在#18列表中时，需要 Disable L
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:不需要 Disable L
-              VOS_TRUE: 需要 Disable L
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2012年06月02日
-   作    者   : s00217060
-   修改内容   : 新生成函数
- 2.日    期   : 2014年01月10日
-   作    者   : w00176964
-   修改内容   : VoLTE_PhaseIII项目
- 3.日    期   : 2015年6月19日
-   作    者   : z00161729
-   修改内容   : 24008 23122 R11 CR升级项目修改
-*****************************************************************************/
 
 VOS_UINT32 NAS_MMC_IsNeedDisableL_EpsOnlyRegSucc()
 {
@@ -16266,10 +9857,8 @@ VOS_UINT32 NAS_MMC_IsNeedDisableL_EpsOnlyRegSucc()
         return VOS_FALSE;
     }
 
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, begin */
     /* 不是CS/PS mode 1 */
     if (NAS_MML_LTE_UE_OPERATION_MODE_CS_PS_1 != enLUeMode)
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, end */
     {
         return VOS_FALSE;
     }
@@ -16297,33 +9886,7 @@ VOS_UINT32 NAS_MMC_IsNeedDisableL_EpsOnlyRegSucc()
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsCsPsMode1NeedPeriodSearchGU
- 功能描述  : 判断是否需要周期性搜索GU网络
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:需要周期性搜索GU网络
-             VOS_FALSE:不需要周期性搜索GU网络
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年06月20日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2014年01月10日
-   作    者   : w00176964
-   修改内容   : VoLTE_PhaseIII项目
- 3.日    期   : 2015年1月14日
-   作    者   : z00161729
-   修改内容   : AT&T 支持DAM特性修改
- 4.日    期   : 2015年4月20日
-   作    者   : z00161729
-   修改内容   : 24301 R11 CR升级项目修改
- 5.日    期   : 2015年6月19日
-   作    者   : z00161729
-   修改内容   : 24008 23122 R11 CR升级项目修改
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsCsPsMode1NeedPeriodSearchGU(VOS_VOID)
 {
     NAS_MML_PLMN_RAT_PRIO_STRU                             *pstRatOrder = VOS_NULL_PTR;
@@ -16352,11 +9915,9 @@ VOS_UINT32 NAS_MMC_IsCsPsMode1NeedPeriodSearchGU(VOS_VOID)
         return VOS_FALSE;
     }
 
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, begin */
     /* 不是CS/PS mode 1或IMS VOICE可用 */
     if ((VOS_TRUE                               == NAS_MML_GetImsVoiceAvailFlg())
      || (NAS_MML_LTE_UE_OPERATION_MODE_CS_PS_1  != enLUeMode))
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, end */
     {
         return VOS_FALSE;
     }
@@ -16416,28 +9977,7 @@ VOS_UINT32 NAS_MMC_IsCsPsMode1NeedPeriodSearchGU(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedDisableL_PsFailCause7PsServNotAllow
- 功能描述  : PS(包含EPS和GPRS/PS)被原因值#7拒绝(包含Detach/Reg/Service)后
-             判断是否需要disable LTE
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:不需要 Disable L
-              VOS_TRUE: 需要 Disable L
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2012年07月02日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年09月12日
-   作    者   : z00161729
-   修改内容   : DTS2012082702662：disable或enable lte不再判断当前syscfg是否支持L
- 3.日    期   : 2012年12月28日
-   作    者   : s46746
-   修改内容   : DSDA GUNAS C CORE项目，增加平台是否支持LTE判断
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedDisableL_PsFailCause7PsServNotAllow(VOS_VOID)
 {
     VOS_UINT8                                               ucSimCsRegStatus;
@@ -16475,22 +10015,7 @@ VOS_UINT32 NAS_MMC_IsNeedDisableL_PsFailCause7PsServNotAllow(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsEutranNotAllowedNeedDisableL
- 功能描述  : PS(包含EPS和GPRS/PS)被原因值#7拒绝(包含Detach/Reg/Service)后
-             判断是否需要disable LTE
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:不需要 Disable L
-             VOS_TRUE: 需要 Disable L
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年04月22日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsEutranNotAllowedNeedDisableL(VOS_VOID)
 {
 
@@ -16510,21 +10035,7 @@ VOS_UINT32 NAS_MMC_IsEutranNotAllowedNeedDisableL(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedDisableL_LteRejCause14
- 功能描述  : LTE #14拒绝后，判断是否需要disable LTE
- 输入参数  : 无
- 输出参数  : 无
- 返回值    : VOS_TRUE   需要Disable L
-             VOS_FALSE  不需要Disable L
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年01月05日
-    作    者   : h00285180
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedDisableL_LteRejCause14(VOS_VOID)
 {
     NAS_MML_PLMN_ID_STRU               *pstCurrPlmn;
@@ -16551,27 +10062,7 @@ VOS_UINT32 NAS_MMC_IsNeedDisableL_LteRejCause14(VOS_VOID)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedEnableLte_CsRegFailCause2ImsiUnknownInHlr
- 功能描述  : 判断Cs注册失败#2时，是否需要Enable Lte
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:不需要 Enable Lte
-              VOS_TRUE: 需要 Enable Lte
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2012年10月15日
-   作    者   : s00217060
-   修改内容   : 新生成函数
- 2.日    期   : 2012年11月10日
-   作    者   : s00217060
-   修改内容   : DTS2012102902559：USIM卡时，才需要Enable Lte;SIM卡时不需要
- 3.日    期   : 2013年11月01日
-   作    者   : l00208543
-   修改内容   : 根据卡类型禁止网络制式
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedEnableLte_CsRegFailCause2ImsiUnknownInHlr(VOS_VOID)
 {
     NAS_MML_LTE_CAPABILITY_STATUS_ENUM_UINT32               enLteCapabilityStatus;
@@ -16609,27 +10100,7 @@ VOS_UINT32 NAS_MMC_IsNeedEnableLte_CsRegFailCause2ImsiUnknownInHlr(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedEnableLte_CsRegFailCause256AuthRej
- 功能描述  : 判断Cs注册失败时，是否需要Enable Lte
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:不需要 Enable Lte
-              VOS_TRUE: 需要 Enable Lte
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2012年10月15日
-   作    者   : s00217060
-   修改内容   : 新生成函数
- 2.日    期   : 2012年11月10日
-   作    者   : s00217060
-   修改内容   : DTS2012102902559：USIM卡时，才需要Enable Lte;SIM卡时不需要
- 3.日    期   : 2013年11月01日
-   作    者   : l00208543
-   修改内容   : 根据卡类型禁止网络制式
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedEnableLte_CsRegFailCause256AuthRej(VOS_VOID)
 {
     NAS_MML_LTE_CAPABILITY_STATUS_ENUM_UINT32               enLteCapabilityStatus;
@@ -16668,27 +10139,7 @@ VOS_UINT32 NAS_MMC_IsNeedEnableLte_CsRegFailCause256AuthRej(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedEnableLte_PsRegFailCause256AuthRej
- 功能描述  : 判断Ps注册失败时，是否需要Enable Lte
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:不需要 Enable Lte
-              VOS_TRUE: 需要 Enable Lte
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2012年10月15日
-   作    者   : s00217060
-   修改内容   : 新生成函数
- 2.日    期   : 2013年11月01日
-   作    者   : l00208543
-   修改内容   : 根据卡类型禁止网络制式
- 3.日    期   : 2013年2月28日
-   作    者   : w00176964
-   修改内容   : DTS2014030100833:调整SIM卡disable和enable lTE逻辑
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedEnableLte_PsRegFailCause256AuthRej(VOS_VOID)
 {
     NAS_MML_LTE_CAPABILITY_STATUS_ENUM_UINT32               enLteCapabilityStatus;
@@ -16723,27 +10174,7 @@ VOS_UINT32 NAS_MMC_IsNeedEnableLte_PsRegFailCause256AuthRej(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedEnableLte_PsRegFailCause3IllegalMs
- 功能描述  : 判断Ps注册失败时，是否需要Enable Lte
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:不需要 Enable Lte
-              VOS_TRUE: 需要 Enable Lte
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2012年10月15日
-   作    者   : s00217060
-   修改内容   : 新生成函数
- 2.日    期   : 2013年11月01日
-   作    者   : l00208543
-   修改内容   : 根据卡类型禁止网络制式
- 3.日    期   : 2013年2月28日
-   作    者   : w00176964
-   修改内容   : DTS2014030100833:调整SIM卡disable和enable lTE逻辑
-s*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedEnableLte_PsRegFailCause3IllegalMs(VOS_VOID)
 {
     NAS_MML_LTE_CAPABILITY_STATUS_ENUM_UINT32               enLteCapabilityStatus;
@@ -16777,27 +10208,7 @@ VOS_UINT32 NAS_MMC_IsNeedEnableLte_PsRegFailCause3IllegalMs(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedEnableLte_PsRegFailCause8GprsAndNonGprsNotAllow
- 功能描述  : 判断Ps注册失败时，是否需要Enable Lte
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:不需要 Enable Lte
-              VOS_TRUE: 需要 Enable Lte
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2012年10月15日
-   作    者   : s00217060
-   修改内容   : 新生成函数
- 2.日    期   : 2013年11月01日
-   作    者   : l00208543
-   修改内容   : 根据卡类型禁止网络制式
- 3.日    期   : 2013年2月28日
-   作    者   : w00176964
-   修改内容   : DTS2014030100833:调整SIM卡disable和enable lTE逻辑
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedEnableLte_PsRegFailCause8GprsAndNonGprsNotAllow(VOS_VOID)
 {
     NAS_MML_LTE_CAPABILITY_STATUS_ENUM_UINT32               enLteCapabilityStatus;
@@ -16831,31 +10242,7 @@ VOS_UINT32 NAS_MMC_IsNeedEnableLte_PsRegFailCause8GprsAndNonGprsNotAllow(VOS_VOI
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedEnableLte_CmServiceRejectInd
- 功能描述  : 收到CM_SERVICE_REJECT_IND指示的预处理
- 输入参数  : ulEventType:消息类型
-              pstMsg:CM_SERVICE_REJECT_IND消息
- 输出参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:需要重新Enable Lte
-              VOS_FALSE:不需要重新Enable Lte
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012年10月15日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2012年11月10日
-    作    者   : s00217060
-    修改内容   : DTS2012102902559：USIM卡时，才需要Enable Lte;SIM卡时不需要
-  3.日    期   : 2013年11月01日
-    作    者   : l00208543
-    修改内容   : 根据卡类型禁止网络制式
-  4.日    期   : 2013年2月28日
-    作    者   : w00176964
-    修改内容   : DTS2014030100833:调整SIM卡disable和enable lTE逻辑
-*****************************************************************************/
+
 VOS_UINT32  NAS_MMC_IsNeedEnableLte_CmServiceRejectInd(
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16                      enCmServiceRejCause
 )
@@ -16904,31 +10291,7 @@ VOS_UINT32  NAS_MMC_IsNeedEnableLte_CmServiceRejectInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedEnableLte_MmAbortInd
- 功能描述  : 判断收到MM_ABORT_IND消息是否需要Enable Lte
- 输入参数  : ulEventType:消息类型
-              pstMsg:MM_ABORT_IND消息
- 输出参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:需要重新Enable Lte
-              VOS_FALSE:不需要重新Enable Lte
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012年10月15日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2012年11月10日
-    作    者   : s00217060
-    修改内容   : DTS2012102902559：USIM卡时，才需要Enable Lte;SIM卡时不需要
-  3.日    期   : 2013年11月01日
-    作    者   : l00208543
-    修改内容   : 根据卡类型禁止网络制式
-  4.日    期   : 2013年2月28日
-    作    者   : w00176964
-    修改内容   : DTS2014030100833:调整SIM卡disable和enable lTE逻辑
-*****************************************************************************/
+
 VOS_UINT32  NAS_MMC_IsNeedEnableLte_MmAbortInd(
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16                      enAbortCause
 )
@@ -16975,38 +10338,7 @@ VOS_UINT32  NAS_MMC_IsNeedEnableLte_MmAbortInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedEnableLte_EnableLteTimerExp
- 功能描述  : 判断收到TI_NAS_MMC_WAIT_ENABLE_LTE_TIMER消息是否需要Enable Lte
- 输入参数  : VOID
- 输出参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:需要重新Enable Lte
-             VOS_FALSE:不需要重新Enable Lte
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012年12月15日
-    作    者   : L65478
-    修改内容   : 新生成函数
-  2.日    期   : 2013年6月3日
-    作    者   : z00161729
-    修改内容   : SVLTE 修改
-  3.日    期   : 2013年11月01日
-    作    者   : l00208543
-    修改内容   : 根据卡类型禁止网络制式
-  4.日    期   : 2014年01月10日
-    作    者   : w00176964
-    修改内容   : VoLTE_PhaseIII项目
-  5.日    期   : 2015年01月5日
-    作    者   : h00285180
-    修改内容   : LTE #14拒绝优化:DTS2015010401946
 
-  6.日    期   : 2015年4月18日
-    作    者   : w00167002
-    修改内容   : DTS2015032709270:在拒绝15触发的DISABLE LTE时，也会启动ENABLE定时器。
-
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_IsNeedEnableLte_EnableLteTimerExp(VOS_VOID)
 {
     NAS_MML_LTE_CAPABILITY_STATUS_ENUM_UINT32               enLteCapabilityStatus;
@@ -17045,13 +10377,11 @@ VOS_UINT32  NAS_MMC_IsNeedEnableLte_EnableLteTimerExp(VOS_VOID)
         return VOS_FALSE;
     }
 
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-18, begin */
     /* disable LTE原因为EMC或IMS VOICE不可用或LTE #14拒绝优化，需要enable LTE */
     if ((MMC_LMM_DISABLE_LTE_REASON_EMERGENCY_CALL          == enDisableLteReason)
      || (MMC_LMM_DISABLE_LTE_REASON_LTE_VOICE_NOT_AVAILABLE == enDisableLteReason)
      || (MMC_LMM_DISABLE_LTE_REASON_LTE_REJ_CAUSE_14        == enDisableLteReason)
      || (MMC_LMM_DISABLE_LTE_REASON_LMM_NOTIFY_EUTRAN_NOT_ALLOW == enDisableLteReason))
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-18, end */
     {
         return VOS_TRUE;
     }
@@ -17061,21 +10391,7 @@ VOS_UINT32  NAS_MMC_IsNeedEnableLte_EnableLteTimerExp(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SaveEpsAttachAttemptCounter
- 功能描述  : 保持EPS Attach结果消息中的Attempt Counter
- 输入参数  : pstEpsAttachIndMsg:Attach结果消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2012年07月05日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SaveEpsAttachAttemptCounter(
     LMM_MMC_ATTACH_IND_STRU            *pstEpsAttachIndMsg
 )
@@ -17112,21 +10428,7 @@ VOS_VOID NAS_MMC_SaveEpsAttachAttemptCounter(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SaveEpsTauAttemptCounter
- 功能描述  : 保持EPS TAU结果消息中的Attempt Counter
- 输入参数  : pstEpsTauIndMsg:TAU结果消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2012年07月05日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SaveEpsTauAttemptCounter(
     LMM_MMC_TAU_RESULT_IND_STRU        *pstEpsTauIndMsg
 )
@@ -17163,21 +10465,7 @@ VOS_VOID NAS_MMC_SaveEpsTauAttemptCounter(
     return;
 }
 
-/* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-13, begin */
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcEmcPdpRelease_DetachPs
- 功能描述  : 根据紧急PDN连接状态处理PS的DETACH
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年12月17日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcEmcPdpRelease_DetachPs( VOS_VOID )
 {
     NAS_MML_EQUPLMN_INFO_STRU          *pstEquPlmnInfo = VOS_NULL_PTR;
@@ -17226,20 +10514,7 @@ VOS_VOID NAS_MMC_ProcEmcPdpRelease_DetachPs( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedSndEplmn_LmmDetachCnf
- 功能描述  : 判断收到LMM的DetachCnf时需要不需要给LMM发送EPLMN
- 输入参数  : pstLmmDetachCnf:LMM的DetachCnf消息
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:需要发送，VOS_FALSE:不需要发送
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年12月25日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedSndEplmn_LmmDetachCnf(
     LMM_MMC_DETACH_CNF_STRU            *pstLmmDetachCnf
 )
@@ -17277,24 +10552,8 @@ VOS_UINT32 NAS_MMC_IsNeedSndEplmn_LmmDetachCnf(
     return ulRst;
 }
 
-/* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-13, end */
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConvertLmmDetachIndTypeToMmcType
- 功能描述  : 将LMM detach ind转换成mmc内部定义的结构
- 输入参数  : enCnReqType - lmm格式的detach type
- 输出参数  : penDetachType  - mmc格式的detach type
 
- 返 回 值  :
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年4月14日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_ConvertLmmDetachIndTypeToMmcType(
     MMC_LMM_MT_DETACH_TYPE_ENUM_UINT32                      enCnReqType,
     NAS_MSCC_PIF_NETWORK_DETACH_TYPE_ENUM_UINT8                 *penDetachType
@@ -17322,20 +10581,7 @@ VOS_VOID NAS_MMC_ConvertLmmDetachIndTypeToMmcType(
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsFailCauseInCustomizedForbLaCfgList
- 功能描述  : CS注册失败时是否触发搜网
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月23日
-    作    者   : z00359541
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsFailCauseInCustomizedForbLaCfgList(
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16      enCause
 )
@@ -17364,21 +10610,7 @@ VOS_UINT32 NAS_MMC_IsFailCauseInCustomizedForbLaCfgList(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedLauRejTrigPlmnSearch
- 功能描述  : LAU被#12拒绝时是否触发搜网
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月23日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 NAS_MMC_IsNeedLauRejTrigPlmnSearch(
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16      enCause
 )
@@ -17420,23 +10652,7 @@ VOS_UINT8 NAS_MMC_IsNeedLauRejTrigPlmnSearch(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConverGmmActionTypeToMml
- 功能描述  : GMM的action 类型转换为MML的
- 输入参数  : enGmmActionType:GMM的action type
- 输出参数  : penProcType:MML中的注册类型
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年3月1日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2013年3月30日
-   作    者   : w00176964
-   修改内容   : DTS2013030802929,周期性RAU需要通知LMM
-*****************************************************************************/
 VOS_VOID    NAS_MMC_ConverGmmActionTypeToMml(
     GMM_MMC_ACTION_TYPE_ENUM_U32        enGmmActionType,
     NAS_MML_PROC_TYPE_ENUM_U32         *penProcType
@@ -17478,28 +10694,7 @@ VOS_VOID    NAS_MMC_ConverGmmActionTypeToMml(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetSingleDomainFailAction
- 功能描述  : 获取对应注册原因值运营商定制的动作
- 输入参数  :
-            enDomain,注册的域
-            enFailCause,失败原因值
 
- 输出参数  : penAction:定制的动作
- 返 回 值  : VOS_UINT32 VOS_TRUE:获取成功  VOS_FALSE:获取失败
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2012年6月11日
-   作    者   : w00166186
-   修改内容   : AT&T&DCM新生成函数
-2.日    期   : 2014年8月19日
-  作    者   : w00167002
-  修改内容   : DTS2014081905808:在配置PS注册拒绝14时候，若当前在HOME PLMN上，则可能
-               触发循环乒乓，修改为增加ACTION动作:在漫游网络上触发选网，在HOME网络上
-               不生效，按现有流程进行处理。
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8    NAS_MMC_GetSingleDomainFailAction(
     NAS_MML_REG_DOMAIN_ENUM_UINT8           enDomain,
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16      enFailCause
@@ -17556,23 +10751,7 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8    NAS_MMC_GetSingleDomainFailAction(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsCurrPlmnInEplmnList
- 功能描述  : 判断当前驻留的PLMN是否是EPLMN
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:   是EPLMN
-             VOS_FALSE:  不是EPLMN
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年10月15日
-    作    者   : l00208543
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsCurrPlmnInEplmnList(VOS_VOID)
 {
     VOS_UINT32                          i;
@@ -17603,29 +10782,7 @@ VOS_UINT32 NAS_MMC_IsCurrPlmnInEplmnList(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsAccBarPlmnSearch
- 功能描述  : 接入禁止后是否需要触发OPTIONAL_PLMN_SELECTION
-             只有特性开关打开，且驻留的网络非HPLMN/RPLMN时需要搜网
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:   需要plmn搜网
-             VOS_FALSE:  不需要plmn搜网
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年10月15日
-    作    者   : s00190137
-    修改内容   : 新生成函数
-  2.日    期   : 2013年11月01日
-    作    者   : l00208543
-    修改内容   : 根据卡类型禁止网络制式
-  3.日    期   : 2013年11月30日
-    作    者   : z00161729
-    修改内容   : DTS2013112809149:9230 nv项设置禁止接入技术为w和g，手动搜网模式驻留g的23002成功，syscfg设置w only，anycell驻留24005，会反复触发w下anycell搜网
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsAccBarPlmnSearch(VOS_VOID)
 {
     VOS_UINT32                          ulIsRoam;
@@ -17652,6 +10809,7 @@ VOS_UINT32 NAS_MMC_IsAccBarPlmnSearch(VOS_VOID)
 
     if (VOS_FALSE == NAS_MMC_IsNeedPlmnSearch_RegLocalFailCause())
     {
+        NAS_NORMAL_LOG(WUEPS_PID_MMC, "NAS_MMC_IsAccBarPlmnSearch: NAS_MMC_IsNeedPlmnSearch_RegLocalFailCause return false.");
         return VOS_FALSE;
     }
 
@@ -17663,12 +10821,22 @@ VOS_UINT32 NAS_MMC_IsAccBarPlmnSearch(VOS_VOID)
         return VOS_FALSE;
     }
 
+    NAS_NORMAL_LOG2(WUEPS_PID_MMC,
+                    "NAS_MMC_IsAccBarPlmnSearch: ulIsAccBarPlmnSearchFlg, ulIsRoam",
+                    ulIsAccBarPlmnSearchFlg,
+                    ulIsRoam);
+
     /* 特性开关未打开或非漫游状态，接入禁止不需要搜网 */
     if ((VOS_FALSE == ulIsAccBarPlmnSearchFlg)
      || (VOS_FALSE == ulIsRoam))
     {
         return VOS_FALSE;
     }
+
+    NAS_NORMAL_LOG2(WUEPS_PID_MMC,
+                    "NAS_MMC_IsAccBarPlmnSearch: enFsmId, enAvailableTimerStatus",
+                    enFsmId,
+                    enAvailableTimerStatus);
 
     /* 在L1状态机下且available定时器在运行时，不需要再触发搜网 */
     if ((NAS_MMC_FSM_L1_MAIN == enFsmId)
@@ -17683,9 +10851,13 @@ VOS_UINT32 NAS_MMC_IsAccBarPlmnSearch(VOS_VOID)
         return VOS_TRUE;
     }
 
+    NAS_NORMAL_LOG(WUEPS_PID_MMC, "NAS_MMC_IsAccBarPlmnSearch: NAS_MML_GetRPlmn return false.");
+
     /* 如果当前网络为EPLMN则不需要搜网 */
     if (VOS_TRUE == NAS_MMC_IsCurrPlmnInEplmnList())
     {
+        NAS_NORMAL_LOG(WUEPS_PID_MMC, "NAS_MMC_IsAccBarPlmnSearch: NAS_MMC_IsCurrPlmnInEplmnList return false.");
+
         return VOS_FALSE;
     }
 
@@ -17693,6 +10865,8 @@ VOS_UINT32 NAS_MMC_IsAccBarPlmnSearch(VOS_VOID)
     /* 这里还是需要判断RPLMN，防止RPLMN有效EPLMN的场景下漏判 */
     if ( VOS_TRUE == NAS_MML_CompareBcchPlmnwithSimPlmn(pstCurplmn, &stRPlmnId))
     {
+        NAS_NORMAL_LOG(WUEPS_PID_MMC, "NAS_MMC_IsAccBarPlmnSearch: NAS_MML_CompareBcchPlmnwithSimPlmn return false.");
+
         return VOS_FALSE;
     }
     else
@@ -17701,24 +10875,8 @@ VOS_UINT32 NAS_MMC_IsAccBarPlmnSearch(VOS_VOID)
     }
 }
 
-/* Added by w00176964 for V3R3C60_eCall项目, 2014-4-30, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCsRegFailCause417ECallInactive
- 功能描述  : CS的cause为ecall inactive状态的处理
- 输入参数  :
-             VOS_VOID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年4月30日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause417ECallInactive(VOS_VOID)
 {
     NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_CS, NAS_MMC_LIMITED_SERVICE);
@@ -17729,7 +10887,6 @@ NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause417ECallInactive(
 }
 
 #endif
-/* Added by w00176964 for V3R3C60_eCall项目, 2014-4-30, end */
 
 /*lint -restore */
 

@@ -1,16 +1,4 @@
-/********************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : SmcEnt.h
-  Description : SMC实体结构定义
-  History     :
-      1.  张志勇   2004.2.24   新版作成
-      2. Date         : 2007-08-20
-         Author       : z40661
-         Modification : 问题单号:A32D12705
-      3.日    期   : 2010年1月9日
-        作    者   : f62575
-        修改内容   : 问题单号：AT2D16263，无效代码删除 SMC_SndEstReq外部引用
-*******************************************************************************/
+
 #ifndef _SMC_SMR_API_H_
 #define _SMC_SMR_API_H_
 
@@ -33,9 +21,7 @@ extern "C" {
 #define MNSMS_ABORT_REQ             0x06
 #define MNSMS_REL_REQ               0x07
 
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
 #define NAS_SMS_RP_ERROR_OFFSET     (3)
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 
 typedef struct{
     MSG_HEADER_STRU  MsgHdr;
@@ -110,12 +96,10 @@ extern VOS_UINT32 SMR_SmcApiDataInd(VOS_UINT8 *pucData,VOS_UINT32 ulLen);
 /* 参数改变:增加接收域 */
 extern VOS_UINT32 SMR_SmcApiEstInd(VOS_UINT8 *pucData,VOS_UINT32 ulLen, VOS_UINT8 ucRcvDomain);
 
-/* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
 extern VOS_VOID SMR_SmcApiErrorInd(
     SMR_SMT_ERROR_ENUM_UINT32           enErrorCode,
     VOS_UINT8                           ucMtFlag
 );
-/* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
 extern VOS_VOID SMS_SmrApiDataReq(VOS_UINT8 *pucData,VOS_UINT16 usLen);
 extern VOS_VOID SMS_SmrApiEstReq(VOS_UINT8 *pucData,VOS_UINT8 ucLen);

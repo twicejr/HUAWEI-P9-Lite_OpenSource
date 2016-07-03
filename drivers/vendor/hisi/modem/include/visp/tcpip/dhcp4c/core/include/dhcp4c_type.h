@@ -147,7 +147,6 @@ typedef struct tagDHCP4C_CONFIGINFO
     ULONG  ulVSILen;            /* the length of configuration VSI */
     UCHAR  ucCID[DHCP4C_MAXCIDLEN];           /* CID option */
     UCHAR  ucVSI[DHCP4C_MAXVSILEN];           /* VSI option */
-    /*added by l61496 2007-7-26 Ìí¼ÓDHCPÄ¬ÈÏµØÖ·*/
     ULONG ulDHCPDefaultIP;     /* Default address*/
     ULONG ulDHCPDefaultSubMask; /* Default sub mask */
     ULONG ulEnable;

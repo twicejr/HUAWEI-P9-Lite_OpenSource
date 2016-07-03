@@ -1,20 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CallImsaInterface.h
-  版 本 号   : 初稿
-  作    者   : 文露涛 00176964
-  生成日期   : 2013年6月27日
-  功能描述   : CALL和IMSA接口头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年10月14日
-    作    者   : 文露涛 00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 #ifndef  CALL_IMSA_INTERFACE_H
 #define  CALL_IMSA_INTERFACE_H
 
@@ -42,13 +26,7 @@ extern "C" {
 /*****************************************************************************
   2 枚举定义
 *****************************************************************************/
-/*****************************************************************************
-枚举名    : CALL_IMSA_SRVCC_STATUS_ENUM
-结构说明  : SRVCC状态枚举信息
-  1.日    期   : 2013年9月11日
-    作    者   : w00176964
-    修改内容   : 新建
-*****************************************************************************/
+
 
 enum CALL_IMSA_SRVCC_STATUS_ENUM
 {
@@ -59,13 +37,7 @@ enum CALL_IMSA_SRVCC_STATUS_ENUM
 };
 typedef VOS_UINT32  CALL_IMSA_SRVCC_STATUS_ENUM_UINT32;
 
-/*****************************************************************************
-枚举名    : CALL_IMSA_SRVCC_CALL_STATE_ENUM
-结构说明  : SRVCC过程中的呼叫状态枚举信息
-  1.日    期   : 2013年10月14日
-    作    者   : w00176964
-    修改内容   : 新建
-*****************************************************************************/
+
 enum CALL_IMSA_SRVCC_CALL_STATE_ENUM
 {
     CALL_IMSA_SRVCC_CALL_DIALING,                                                          /* dialing (MO call) */
@@ -79,14 +51,7 @@ enum CALL_IMSA_SRVCC_CALL_STATE_ENUM
 };
 typedef VOS_UINT8  CALL_IMSA_SRVCC_CALL_STATE_ENUM_UINT8;
 
-/*****************************************************************************
-枚举名    : CALL_IMSA_MSG_TYPE_ENUM
-结构说明  : CALL 和IMSA的之间的消息
 
-  1.日    期   : 2013年10月14日
-    作    者   : W00176964
-    修改内容   : 定义CALL和IMSA之间的接口消息
-*****************************************************************************/
 
 enum CALL_IMSA_MSG_TYPE_ENUM
 {
@@ -96,7 +61,7 @@ enum CALL_IMSA_MSG_TYPE_ENUM
 
     ID_IMSA_CALL_MSG_SYNC_IND,                                                   /* _H2ASN_MsgChoice IMSA_CALL_MSG_SYNC_IND_STRU */
 
-    ID_IMSA_CALL_CCWA_CAP_NOTIFY,                                                /* _H2ASN_MsgChoice IMSA_CALL_CCWA_CAP_NOTIFY_STRU */
+
 
     ID_CALL_IMSA_MSG_TYPE_BUTT
 };
@@ -105,14 +70,7 @@ typedef  VOS_UINT32  CALL_IMSA_MSG_TYPE_ENUM_UINT32;
 /*****************************************************************************
   3 类型定义
 ****************************************************************************/
-/*****************************************************************************
- 结构名    : IMSA_CALL_DTMF_REQ_INFO_STRU
- 结构说明  : DTMF缓存的请求信息结构
 
-  1.日    期   : 2013年12月23日
-    作    者   : y00245242
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     MN_CALL_ID_T                        CallId;
@@ -124,14 +82,7 @@ typedef struct
     VOS_UINT8                           aucReserved1[3];
 }IMSA_CALL_DTMF_REQ_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_CALL_DTMF_BUFF_STRU
- 结构说明  : SRVCC发生前缓存的DTMF buffer结构
 
-  1.日    期   : 2013年12月23日
-    作    者   : y00245242
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucNum;
@@ -140,44 +91,7 @@ typedef struct
 }TAF_CALL_DTMF_BUFF_STRU;
 
 
-/*****************************************************************************
- 结构名    : CALL_IMSA_SRVCC_CALL_INFO_STRU
- 结构说明  : IMSA模块同步过来的srvcc时的呼叫实体信息
- TI flag (octet 1) (参考协议24007 TI描述章节)
-   Bit
-   8
-   0  The message is sent from the side that originates the TI
-   1  The message is sent to the side that originates the TI
 
-   TIO (octet 1)
-   Bits
-   7 6 5
-   0 0 0  TI value 0
-   0 0 1               1
-   0 1 0               2
-   0 1 1               3
-   1 0 0                   4
-   1 0 1               5
-   1 1 0                   6
-   1 1 1  The TI value is given by the TIE in octet 2
-
-  TIE  (octet 2)
-  Bits 7-1
-  0000000
-  0000001
-  0000010
-  0000011
-  0000100
-  0000101
-  0000110 Reserved.
-  All other values    The TI value is the binary representation of TIE
-  Where bit 7 is the most significant bit
-  And bit 1 is the least significant bit
-
-  1.日    期   : 2013年9月11日
-    作    者   : w00176964
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     MN_CLIENT_ID_T                                          clientId;
@@ -197,14 +111,7 @@ typedef struct
     MN_CALL_BCD_NUM_STRU                                    stConnectNumber;
 }CALL_IMSA_SRVCC_CALL_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CALL_IMSA_SRVCC_CALL_INFO_NOTIFY_STRU
- 结构说明  : IMSA模块通知的SRVCC的呼叫信息
 
-  1.日    期   : 2013年9月11日
-    作    者   : w00176964
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER
@@ -217,14 +124,7 @@ typedef struct
 }CALL_IMSA_SRVCC_CALL_INFO_NOTIFY_STRU;
 
 
-/*****************************************************************************
- 结构名    : CALL_IMSA_SRVCC_STATUS_NOTIFY_STRU
- 结构说明  : CALL模块通知IMSA模块SRVCC信息
 
-  1.日    期   : 2013年9月11日
-    作    者   : w00176964
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* _H2ASN_Skip */
@@ -249,14 +149,7 @@ typedef struct
     CALL_IMSA_INTERFACE_MSG_DATA        stMsgData;
 } CallImsaInterface_MSG;
 
-/*****************************************************************************
- 结构名    : IMSA_CALL_MSG_UNION
- 结构说明  : 消息请求类型
 
-  1.日    期   : 2013年12月14日
-    作    者   : y00245242
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef union
 {
     SPM_IMSA_CALL_ORIG_REQ_STRU         stOrigReq;
@@ -265,14 +158,7 @@ typedef union
     SPM_IMSA_CALL_STOP_DTMF_REQ_STRU    stStopDtmf;
 }IMSA_CALL_MSG_UNION;
 
-/*****************************************************************************
- 结构名    : IMSA_CALL_MSG_SYNC_IND_STRU
- 结构说明  : IMSA模块通知CALL模块同步未发送的消息
 
-  1.日    期   : 2013年12月14日
-    作    者   : y00245242
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* _H2ASN_Skip */
@@ -282,21 +168,7 @@ typedef struct
     IMSA_CALL_MSG_UNION                 astMsgArray[IMSA_CALL_MSG_SYNC_MAX_NUM];
 }IMSA_CALL_MSG_SYNC_IND_STRU;
 
-/*****************************************************************************
- 结构名    : IMSA_CALL_CCWA_CAP_NOTIFY_STRU
- 结构说明  : IMSA模块通知CALL模块呼叫等待(CCWAI)的配置
 
-  1.日    期   : 2015年8月24日
-    作    者   : n00269697
-    修改内容   : 新增结构
-*****************************************************************************/
-typedef struct
-{
-    VOS_MSG_HEADER                                                              /* _H2ASN_Skip */
-    VOS_UINT32                          ulMsgId;                                /* _H2ASN_Skip */
-    VOS_UINT8                           ucCcwaCap;                              /* 0:不支持ccwa; 1:支持ccwa */
-    VOS_UINT8                           aucReserve[3];
-}IMSA_CALL_CCWA_CAP_NOTIFY_STRU;
 /*****************************************************************************
   4 宏定义
 *****************************************************************************/

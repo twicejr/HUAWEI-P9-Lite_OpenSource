@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafXCallProcCttf.c
-  版 本 号   : 初稿
-  作    者   : c00177591
-  生成日期   : 2015年10月23日
-  功能描述   : TAF X CALL处理来自Cttf的消息
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年10月23日
-    作    者   : c00177591
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -42,20 +27,7 @@ extern "C"{
 /*****************************************************************************
   3 函数定义
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvCttfDecryptVoiceDataReportInd
- 功能描述  : 收到CTTF上报的测试模式语音数据信息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : c00177591
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvCttfDecryptVoiceDataReportInd(VOS_VOID *pMsg)
 {
     VOS_UINT8                                               i;
@@ -73,20 +45,7 @@ VOS_VOID TAF_XCALL_RcvCttfDecryptVoiceDataReportInd(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvCttfDecryptVoiceStatReportInd
- 功能描述  : 收到CTTF上报的测试模式语音数据信息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : c00177591
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvCttfDecryptVoiceStatReportInd(VOS_VOID *pMsg)
 {
     CTTF_CNAS_1X_DECRYPT_VOICE_STATISTICS_REPORT_IND_STRU  *pstStatReportInd = VOS_NULL_PTR;
@@ -98,20 +57,7 @@ VOS_VOID TAF_XCALL_RcvCttfDecryptVoiceStatReportInd(VOS_VOID *pMsg)
                                                                  VOS_StrLen(pstStatReportInd->acCalcTimeStr)));
     return;
 }
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvCttfEncryptVoiceDataReportInd
- 功能描述  : 收到CTTF上报的测试模式语音数据信息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : c00177591
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvCttfEncryptVoiceDataReportInd(VOS_VOID *pMsg)
 {
     VOS_UINT8                                               i;
@@ -129,20 +75,7 @@ VOS_VOID TAF_XCALL_RcvCttfEncryptVoiceDataReportInd(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_RcvCttfEncryptVoiceStatReportInd
- 功能描述  : 收到CTTF上报的测试模式语音数据信息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : c00177591
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_RcvCttfEncryptVoiceStatReportInd(VOS_VOID *pMsg)
 {
     CTTF_CNAS_1X_ENCRYPT_VOICE_STATISTICS_REPORT_IND_STRU  *pstStatReportInd = VOS_NULL_PTR;

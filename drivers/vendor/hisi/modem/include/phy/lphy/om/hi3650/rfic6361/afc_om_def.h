@@ -1,39 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
-******************************************************************************
- 文 件 名   : AFC.h
- 版 本 号   : 初稿
- 作    者   : Shen Guang
- 生成日期   : 2010年12月23日
- 最近修改   :
- 功能描述   : AFC的头文件
- 函数列表   :
- 修改历史   :
- 1.日    期   : 2010年12月23日
-   作    者   : Shen Guang
-   修改内容   : 创建文件
-
- 2.日    期   : 2011年06月27日
-   作    者   : Shen Guang
-   修改内容   : [DTS2011062706076]AFC OM定义使用枚举变量，便于hso显示
-
- 3.日    期   : 2011年07月04日
-   作    者   : Shen Guang
-   修改内容   : [DTS2011070403581]AFC OM优化
- -------------------------------------------------------------------------------
- 4.日    期  : 2011年8月09日
-   作    者   : Shen Guang
-   修改内容   : DTS2011090300756 规避BBP邻区AFC问题
- 5.日    期  : 2012年2月3日
-   作    者   : Shen Guang
-   修改内容   : DTS2012020200427 邻区AFC  Pdm计算错误
- 6.日    期   : 2012年02月25日
-   作    者   : shenguang
-   修改内容   : [DTS2012020505442]重选切换时AFC备份累计频偏
-   
-******************************************************************************/
 #ifndef __AFC_OM_DEF_H__
 #define __AFC_OM_DEF_H__
 
@@ -402,10 +367,8 @@ typedef struct
 	UINT16                        usReserved;
     #endif
 	
-    /* BEGIN: Added by s00175552, 2011/9/24   问题单号:DTS2011083102976*/
     UINT16                        usMultiModePdm;
     UINT16                        usPDMConfig;
-    /* END: Added by s00175552, 2011/9/24   问题单号:DTS2011083102976*/
     INT32                         lInitF0;      //初始频偏
     INT32                         lCsInitF0;      //初始频偏
     INT32                         lInitF0Compensation;      //初始频偏
@@ -615,9 +578,7 @@ typedef struct
 typedef struct
 {
     //UINT16                    usLastCellPDM;
-    /* BEGIN: Added by s00175552, 2011/5/31   问题单号:DTS2011053105183*/
     //UINT16                    usLastCellId;
-    /* END: Added by s00175552, 2011/5/31   问题单号:DTS2011053105183*/
 	AFC_CARRIER_PARA_STRU     astCaAfc[LPHY_FEATURE_MAX_CARRIER_NUM];
 
     UINT16                    usSweepCounter;
@@ -676,14 +637,12 @@ typedef enum
     LPHY_TRACE_AFC_PARA_UPDATE,
 }LPHY_TRACE_AFC_ENUM;
 
-/* BEGIN: Added by s00175552, 2011/7/4   问题单号:DTS2011070403581*/
 typedef struct
 {
     UINT32      ulLineNum;
     AFC_LOOP_STATE_ENUM_UINT16      enNewLoopState;
     UINT16      usReserved;
 }LPHY_TRACE_AFC_LOOP_STATE_STRU;
-/* END: Added by s00175552, 2011/7/4   问题单号:DTS2011070403581*/
 
 typedef struct
 {

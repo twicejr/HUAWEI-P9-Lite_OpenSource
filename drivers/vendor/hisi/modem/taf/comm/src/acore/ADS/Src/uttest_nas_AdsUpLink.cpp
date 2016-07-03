@@ -25,14 +25,7 @@ using namespace testing;
 //13、结构体类型比较ASSERT_SAME_DATA ASSERT_SAME_MEMORY
 
 
-/*****************************************************************************
-类名     : Test_ADS_UL_RcvCdsIpPacketMsg
-功能描述 : ADS_UL_RcvCdsIpPacketMsg UT工程类
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ADS_UL_RcvCdsIpPacketMsg: public ::testing::Test
 {
 public:
@@ -53,15 +46,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_RcvCdsIpPacketMsg_001
-测试用例标题      : 处理ID_CDS_ADS_IP_PACKET_IND消息
-预期结果          : 给NDIS发送ID_ADS_NIDS_DATA_IND消息
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_RcvCdsIpPacketMsg,Test_ADS_UL_RcvCdsIpPacketMsg_001)
 {
     CDS_ADS_DATA_IND_STRU               stCdsAdsDataInd;
@@ -91,15 +76,7 @@ TEST_F(Test_ADS_UL_RcvCdsIpPacketMsg,Test_ADS_UL_RcvCdsIpPacketMsg_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_RcvCdsIpPacketMsg_002
-测试用例标题      : 处理ID_CDS_ADS_IP_PACKET_IND消息
-预期结果          : 申请ID_ADS_NIDS_DATA_IND消息失败，不给NDIS发送消息
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_RcvCdsIpPacketMsg,Test_ADS_UL_RcvCdsIpPacketMsg_002)
 {
     CDS_ADS_DATA_IND_STRU               stCdsAdsDataInd;
@@ -130,15 +107,7 @@ TEST_F(Test_ADS_UL_RcvCdsIpPacketMsg,Test_ADS_UL_RcvCdsIpPacketMsg_002)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_RcvCdsIpPacketMsg_003
-测试用例标题      : 处理ID_CDS_ADS_IP_PACKET_IND消息
-预期结果          : 申请SK_BUFF失败，不给NDIS发送消息
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_RcvCdsIpPacketMsg,Test_ADS_UL_RcvCdsIpPacketMsg_003)
 {
     CDS_ADS_DATA_IND_STRU               stCdsAdsDataInd;
@@ -173,15 +142,7 @@ TEST_F(Test_ADS_UL_RcvCdsIpPacketMsg,Test_ADS_UL_RcvCdsIpPacketMsg_003)
 }
 
 #if 0
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_RcvCdsIpPacketMsg_004
-测试用例标题      : 处理ID_CDS_ADS_IP_PACKET_IND消息
-预期结果          : 发送消息失败
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_RcvCdsIpPacketMsg,Test_ADS_UL_RcvCdsIpPacketMsg_004)
 {
     CDS_ADS_DATA_IND_STRU               stCdsAdsDataInd;
@@ -219,14 +180,7 @@ TEST_F(Test_ADS_UL_RcvCdsIpPacketMsg,Test_ADS_UL_RcvCdsIpPacketMsg_004)
 }
 #endif
 
-/*****************************************************************************
-类名     : Test_ADS_UL_RcvTafPdpStatusInd
-功能描述 : ADS_UL_RcvTafPdpStatusInd UT工程类
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ADS_UL_RcvTafPdpStatusInd: public ::testing::Test
 {
 public:
@@ -248,15 +202,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_RcvTafPdpStatusInd_001
-测试用例标题      : 创建上行缓存队列失败，RabId为1（预置条件：上行上下文被初始化）
-预期结果          : ADS_UL_CreateQueue不被调用
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_RcvTafPdpStatusInd,Test_ADS_UL_RcvTafPdpStatusInd_001)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -297,15 +243,7 @@ TEST_F(Test_ADS_UL_RcvTafPdpStatusInd,Test_ADS_UL_RcvTafPdpStatusInd_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_RcvTafPdpStatusInd_002
-测试用例标题      : 创建上行缓存队列失败，RabId为16（预置条件：上行上下文被初始化）
-预期结果          : ADS_UL_CreateQueue不被调用
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_RcvTafPdpStatusInd,Test_ADS_UL_RcvTafPdpStatusInd_002)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -347,15 +285,7 @@ TEST_F(Test_ADS_UL_RcvTafPdpStatusInd,Test_ADS_UL_RcvTafPdpStatusInd_002)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_RcvTafPdpStatusInd_003
-测试用例标题      : 创建上行缓存队列失败，RabId为5，PDP状态为ADS_PDP_STATUS_BUTT（预置条件：上行上下文被初始化）
-预期结果          : ADS_UL_CreateQueue不被调用
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_RcvTafPdpStatusInd,Test_ADS_UL_RcvTafPdpStatusInd_003)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -398,15 +328,7 @@ TEST_F(Test_ADS_UL_RcvTafPdpStatusInd,Test_ADS_UL_RcvTafPdpStatusInd_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_RcvTafPdpStatusInd_004
-测试用例标题      : 修改上行缓存队列失败，RabId为5，PDP状态为ADS_PDP_STATUS_MODIFY（预置条件：上行上下文被初始化）
-预期结果          : 没有找到要处理的队列，不做任何处理
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_RcvTafPdpStatusInd,Test_ADS_UL_RcvTafPdpStatusInd_004)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -446,15 +368,7 @@ TEST_F(Test_ADS_UL_RcvTafPdpStatusInd,Test_ADS_UL_RcvTafPdpStatusInd_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_RcvTafPdpStatusInd_005
-测试用例标题      : 收到Modem2的消息
-预期结果          : 没有找到要处理的队列，不做任何处理
-修改历史     :
-  3.日    期   : 2015年05月30日
-    作    者   : w00281933
-    修改内容   : 新建CASEModified for The TSTS Project
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_RcvTafPdpStatusInd,Test_ADS_UL_RcvTafPdpStatusInd_005)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -489,14 +403,7 @@ TEST_F(Test_ADS_UL_RcvTafPdpStatusInd,Test_ADS_UL_RcvTafPdpStatusInd_005)
 
     GlobalMockObject::verify();
 }
-/*****************************************************************************
-类名     : Test_ADS_UL_ProcLinkData
-功能描述 : ADS_UL_ProcLinkData UT工程类
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ADS_UL_ProcLinkData: public ::testing::Test
 {
 public:
@@ -519,15 +426,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_ProcLinkData_001
-测试用例标题      : Modem0，IPF可以配置的BD数为45，第一个队列中有50个数据包
-预期结果          : 从第一个队列中取45个数据包，队列剩余5个包，启动定时器TI_ADS_UL_SEND
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_001)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -608,15 +507,7 @@ TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_ProcLinkData_002
-测试用例标题      : Modem0，IPF可以配置的BD数为45，第一个队列中有20个数据包，第二个队列中有30个数据包
-预期结果          : 从第一个队列中取20个数据包，从第二个队列中取25个数据包，第一个队列变空，第二个队列剩余5个包，启动定时器TI_ADS_UL_SEND
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_002)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -711,15 +602,7 @@ TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_002)
     GlobalMockObject::verify();
 }
 #if 0
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_ProcLinkData_003
-测试用例标题      : Modem0，IPF可以配置的BD数为45，第一个队列中有26个数据包，第二个队列中有30个数据包
-预期结果          : 从第一个队列中取24个数据包，从第二个队列中取21个数据包，第一个队列剩余2个包，第二个队列剩余9个包，启动定时器TI_ADS_UL_SEND
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_003)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -814,15 +697,7 @@ TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_ProcLinkData_004
-测试用例标题      : Modem0，IPF可以配置的BD数为45，第一个队列中有35个数据包，第二个队列不存在，第三个队列存在但无数据，第四个队列中有30个数据包,优先级已初始化
-预期结果          : 从第一个队列中取30个数据包，从第四个队列中取15个数据包，第一个队列剩余5个，第四个队列剩余15个包，启动定时器TI_ADS_UL_SEND
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_004)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -936,15 +811,7 @@ TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_ProcLinkData_005
-测试用例标题      : Modem0，IPF可以配置的BD数为45，第一个队列中有26个数据包，第二个队列不存在，第三个队列存在但无数据，第四个队列中有30个数据包，但是IPF配置失败
-预期结果          : 从第一个队列中取26个数据包，从第四个队列中取19个数据包，数据不恢复，第一个队列剩余0个，第四个队列剩余11个包，启动定时器TI_ADS_UL_SEND
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_005)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -1063,15 +930,7 @@ TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_005)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_ProcLinkData_006
-测试用例标题      : Modem0，IPF可以配置的BD数为45，队列中有90个数据包
-预期结果          : 所有数据全部写入IPF，队列清空，不启动定时器TI_ADS_UL_SEND
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_006)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -1151,15 +1010,7 @@ TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_006)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_ProcLinkData_007
-测试用例标题      : Modem0，TI_ADS_UL_SEND定时器超时，队列中有10个数据包
-预期结果          : 所有数据全部写入IPF，队列清空
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_007)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -1240,15 +1091,7 @@ TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_007)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_ProcLinkData_008
-测试用例标题      : Modem0，队列中有90个数据包，前三次获取BD数为0，第四次及以后每次获取BD数为45
-预期结果          : 所有数据全部写入IPF，队列清空
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_008)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -1328,15 +1171,7 @@ TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_008)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_ProcLinkData_009
-测试用例标题      : Modem0，IPF可以配置的BD数为45，队列中有90个数据包
-预期结果          : 当前不允许发送，队列中数据包还是90个
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_009)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -1408,15 +1243,7 @@ TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_009)
 }
 
 #if(FEATURE_OFF == FEATURE_SKB_EXP)
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_ProcLinkData_011
-测试用例标题      : Modem0，IPF可以配置的BD数为45，队列中有90个数据包，
-预期结果          : 队列中的数据全部发送完，PDP去激活后源内存全部释放
-修改历史     :
-1.日   期  : 2012-09-05
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_011)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -1495,15 +1322,7 @@ TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_011)
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_ProcLinkData_012
-测试用例标题      : Modem0，IPF可以配置的BD数为45，第一个队列中有35个数据包，第二个队列不存在，第三个队列存在但无数据，第四个队列中有30个数据包,优先级已初始化
-预期结果          : 从第一个队列中取30个数据包，从第四个队列中取15个数据包，第一个队列剩余5个，第四个队列剩余15个包，启动定时器TI_ADS_UL_SEND。第一个PDP去激活后，不会清空源内存队列
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_012)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -1624,15 +1443,7 @@ TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_012)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_ProcLinkData_013
-测试用例标题      : Modem0，IPF可以配置的BD数为45，第一个队列中有35个数据包，第二个队列中有10个数据包,优先级已初始化
-预期结果          : 从第一个队列中取30个数据包，从第二个队列中取15个数据包，PDP全部去激活后，数据未搬完，不会清空源内存队列
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_013)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -1753,15 +1564,7 @@ TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_013)
 }
 #endif
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_ProcLinkData_014
-测试用例标题      : 两个Modem并发，IPF可以配置的BD数为45，Modem0第一个队列中有20个数据包，Modem1第一个队列中有30个数据包
-预期结果          : 从Modem0中取20个数据包，从Modem中取25个数据包，Modem0变空，Modem1剩余5个包，启动定时器TI_ADS_UL_SEND
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_014)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -1887,15 +1690,7 @@ TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_014)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_ProcLinkData_021
-测试用例标题      : Modem1，IPF可以配置的BD数为45，第一个队列中有50个数据包
-预期结果          : 从第一个队列中取45个数据包，队列剩余5个包，启动定时器TI_ADS_UL_SEND
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_021)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -1977,15 +1772,7 @@ TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_021)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_ProcLinkData_022
-测试用例标题      : Modem1，IPF可以配置的BD数为45，第一个队列中有20个数据包，第二个队列中有30个数据包
-预期结果          : 从第一个队列中取20个数据包，从第二个队列中取25个数据包，第一个队列变空，第二个队列剩余5个包，启动定时器TI_ADS_UL_SEND
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_022)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -2080,15 +1867,7 @@ TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_022)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_ProcLinkData_023
-测试用例标题      : Modem1，IPF可以配置的BD数为45，第一个队列中有26个数据包，第二个队列中有30个数据包
-预期结果          : 从第一个队列中取24个数据包，从第二个队列中取21个数据包，第一个队列剩余2个包，第二个队列剩余9个包，启动定时器TI_ADS_UL_SEND
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_023)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -2183,15 +1962,7 @@ TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_023)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_ProcLinkData_024
-测试用例标题      : Modem1，IPF可以配置的BD数为45，第一个队列中有35个数据包，第二个队列不存在，第三个队列存在但无数据，第四个队列中有30个数据包,优先级已初始化
-预期结果          : 从第一个队列中取30个数据包，从第四个队列中取15个数据包，第一个队列剩余5个，第四个队列剩余15个包，启动定时器TI_ADS_UL_SEND
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_024)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -2305,15 +2076,7 @@ TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_024)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_ProcLinkData_025
-测试用例标题      : Modem1，IPF可以配置的BD数为45，第一个队列中有26个数据包，第二个队列不存在，第三个队列存在但无数据，第四个队列中有30个数据包，但是IPF配置失败
-预期结果          : 从第一个队列中取26个数据包，从第四个队列中取19个数据包，数据不恢复，第一个队列剩余0个，第四个队列剩余11个包，启动定时器TI_ADS_UL_SEND
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_025)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -2433,15 +2196,7 @@ TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_025)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_ProcLinkData_026
-测试用例标题      : Modem1，IPF可以配置的BD数为45，队列中有90个数据包
-预期结果          : 所有数据全部写入IPF，队列清空，不启动定时器TI_ADS_UL_SEND
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_026)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -2521,15 +2276,7 @@ TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_026)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_ProcLinkData_027
-测试用例标题      : Modem1，TI_ADS_UL_SEND定时器超时，队列中有10个数据包
-预期结果          : 所有数据全部写入IPF，队列清空
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_027)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -2610,15 +2357,7 @@ TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_027)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_ProcLinkData_028
-测试用例标题      : Modem1，队列中有90个数据包，前三次获取BD数为0，第四次及以后每次获取BD数为45
-预期结果          : 所有数据全部写入IPF，队列清空
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_028)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -2695,15 +2434,7 @@ TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_028)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_ProcLinkData_029
-测试用例标题      : Modem1，IPF可以配置的BD数为45，队列中有90个数据包
-预期结果          : 当前不允许发送，队列中数据包还是90个
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_029)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -2776,15 +2507,7 @@ TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_029)
 
 #if(FEATURE_OFF == FEATURE_SKB_EXP)
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_ProcLinkData_031
-测试用例标题      : Modem1，IPF可以配置的BD数为45，队列中有90个数据包，
-预期结果          : 队列中的数据全部发送完，PDP去激活后源内存全部释放
-修改历史     :
-1.日   期  : 2012-09-05
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_031)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -2871,15 +2594,7 @@ TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_031)
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_ProcLinkData_032
-测试用例标题      : Modem1，IPF可以配置的BD数为45，第一个队列中有35个数据包，第二个队列不存在，第三个队列存在但无数据，第四个队列中有30个数据包,优先级已初始化
-预期结果          : 从第一个队列中取30个数据包，从第四个队列中取15个数据包，第一个队列剩余5个，第四个队列剩余15个包，启动定时器TI_ADS_UL_SEND。第一个PDP去激活后，不会清空源内存队列
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_032)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -3000,15 +2715,7 @@ TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_032)
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_ProcLinkData_033
-测试用例标题      : 两个Modem并发，IPF可以配置的BD数为45，Modem0第一个队列中有50个数据包，第二个队列中有10个数据包但不允许发送
-预期结果          : 从Modem0的第一个队列中取45个数据包
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_033)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -3105,14 +2812,7 @@ TEST_F(Test_ADS_UL_ProcLinkData,Test_ADS_UL_ProcLinkData_033)
 
 #endif
 #endif
-/*****************************************************************************
-类名     : Test_ADS_UL_ConfigBD
-功能描述 : ADS_UL_ConfigBD UT工程类
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ADS_UL_ConfigBD: public ::testing::Test
 {
 public:
@@ -3129,15 +2829,7 @@ public:
 
     }
 };
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_ConfigBD_001
-测试用例标题      : IPF可以配置的BD数为45，队列中有45个数据包，从队列中取数据异常
-预期结果          : 数据未写入IPF，队列中剩余数据包为45
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_ConfigBD,Test_ADS_UL_ConfigBD_01)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -3197,14 +2889,7 @@ TEST_F(Test_ADS_UL_ConfigBD,Test_ADS_UL_ConfigBD_01)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_ADS_UL_SendPacket
-功能描述 : ADS_UL_SendPacket UT工程类
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ADS_UL_SendPacket: public ::testing::Test
 {
 public:
@@ -3222,15 +2907,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_SendPacket_001
-测试用例标题      : Modem0，上层模块发送上行数据，RabId为5（预置条件：RabId为5的队列不存在）
-预期结果          : 数据不处理，返回VOS_ERR
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_SendPacket,Test_ADS_UL_SendPacket_001)
 {
     VOS_UINT32                          ulRslt;
@@ -3265,15 +2942,7 @@ TEST_F(Test_ADS_UL_SendPacket,Test_ADS_UL_SendPacket_001)
 
 
 #if(FEATURE_OFF == FEATURE_SKB_EXP)
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_SendPacket_002
-测试用例标题      : Modem0，上层模块发送上行数据，RabId为5（预置条件：RabId为5的队列存在）
-预期结果          : 数据插入RabId为5的队列，发ID_ADS_UL_DATA_READY消息
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_SendPacket,Test_ADS_UL_SendPacket_002)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -3328,15 +2997,7 @@ TEST_F(Test_ADS_UL_SendPacket,Test_ADS_UL_SendPacket_002)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_SendPacket_003
-测试用例标题      : Modem0，上层模块发送上行数据，RabId为5（预置条件：RabId为5的队列有数据包20个，RabId为6的队列有数据包11个）
-预期结果          : 数据插入RabId为5的队列，达到攒包门限，发ID_ADS_UL_DATA_READY消息
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_SendPacket,Test_ADS_UL_SendPacket_003)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -3412,15 +3073,7 @@ TEST_F(Test_ADS_UL_SendPacket,Test_ADS_UL_SendPacket_003)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_SendPacket_004
-测试用例标题      : Modem0，上层模块发送上行数据，RabId为5（预置条件：RabId为5的队列有数据包20个，RabId为6的队列有数据包12个）
-预期结果          : 数据插入RabId为5的队列，已达到攒包门限，不重复发ID_ADS_UL_DATA_READY消息
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_SendPacket,Test_ADS_UL_SendPacket_004)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -3491,15 +3144,7 @@ TEST_F(Test_ADS_UL_SendPacket,Test_ADS_UL_SendPacket_004)
     GlobalMockObject::verify();
 }
 #else
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_SendPacket_005
-测试用例标题      : Modem0，上层模块发送上行数据(TCP/IP协议栈过来的数据)，RabId为5（预置条件：RabId为5的队列存在）
-预期结果          : 数据插入RabId为5的队列，发ID_ADS_UL_DATA_READY消息
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_SendPacket,Test_ADS_UL_SendPacket_005)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -3555,15 +3200,7 @@ TEST_F(Test_ADS_UL_SendPacket,Test_ADS_UL_SendPacket_005)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_SendPacket_006
-测试用例标题      : Modem0，上层模块发送上行数据，RabId为5（预置条件：RabId为5的队列有数据包20个，RabId为6的队列有数据包11个）
-预期结果          : 数据插入RabId为5的队列，达到攒包门限，发ID_ADS_UL_DATA_READY消息
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_SendPacket,Test_ADS_UL_SendPacket_006)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -3639,15 +3276,7 @@ TEST_F(Test_ADS_UL_SendPacket,Test_ADS_UL_SendPacket_006)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_SendPacket_007
-测试用例标题      : Modem0，上层模块发送上行数据(USB过来的数据且为最后一个IP包)，RabId为5（预置条件：RabId为5的队列存在）
-预期结果          : 数据插入RabId为5的队列，发ID_ADS_UL_DATA_READY消息
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_SendPacket,Test_ADS_UL_SendPacket_007)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -3703,16 +3332,7 @@ TEST_F(Test_ADS_UL_SendPacket,Test_ADS_UL_SendPacket_007)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_SendPacket_008
-测试用例标题      : Modem0，上层模块发送上行数据(USB过来的数据不是最后一个IP包)，
-                    RabId为5（预置条件：RabId为5的队列有数据包20个，RabId为6的队列有数据包11个）
-预期结果          : 数据插入RabId为5的队列，达到攒包门限，发ID_ADS_UL_DATA_READY消息
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_SendPacket,Test_ADS_UL_SendPacket_008)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -3789,15 +3409,7 @@ TEST_F(Test_ADS_UL_SendPacket,Test_ADS_UL_SendPacket_008)
 }
 #endif
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_SendPacket_009
-测试用例标题      : Modem0，上层模块发送上行数据，RabId为5，数据为空
-预期结果          : 数据不处理，返回VOS_ERR
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_SendPacket,Test_ADS_UL_SendPacket_009)
 {
     VOS_UINT32                          ulRslt;
@@ -3839,15 +3451,7 @@ TEST_F(Test_ADS_UL_SendPacket,Test_ADS_UL_SendPacket_009)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_SendPacket_010
-测试用例标题      : Modem0，上层模块发送上行数据，RabId为1
-预期结果          : 数据不处理，返回VOS_ERR
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_SendPacket,Test_ADS_UL_SendPacket_010)
 {
     VOS_UINT32                          ulRslt;
@@ -3867,15 +3471,7 @@ TEST_F(Test_ADS_UL_SendPacket,Test_ADS_UL_SendPacket_010)
 }
 
 #if(FEATURE_OFF == FEATURE_SKB_EXP)
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_SendPacket_011
-测试用例标题      : Modem0，上层模块发送上行数据，RabId为1，队列长度超过1000
-预期结果          : 数据不处理，返回VOS_ERR
-修改历史     :
-1.日   期  : 2012-09-03
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_SendPacket,Test_ADS_UL_SendPacket_011)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -3923,15 +3519,7 @@ TEST_F(Test_ADS_UL_SendPacket,Test_ADS_UL_SendPacket_011)
 
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_SendPacket_011
-测试用例标题      : Modem1，上层模块发送上行数据，RabId为5（预置条件：RabId为5的队列不存在）
-预期结果          : 数据不处理，返回VOS_ERR
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_SendPacket,Test_ADS_UL_SendPacket_101)
 {
     VOS_UINT32                          ulRslt;
@@ -3965,15 +3553,7 @@ TEST_F(Test_ADS_UL_SendPacket,Test_ADS_UL_SendPacket_101)
 }
 
 #if(FEATURE_OFF == FEATURE_SKB_EXP)
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_SendPacket_102
-测试用例标题      : Modem1，上层模块发送上行数据，RabId为5（预置条件：RabId为5的队列存在）
-预期结果          : 数据插入RabId为5的队列，发ID_ADS_UL_DATA_READY消息
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_SendPacket,Test_ADS_UL_SendPacket_102)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -4028,15 +3608,7 @@ TEST_F(Test_ADS_UL_SendPacket,Test_ADS_UL_SendPacket_102)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_SendPacket_103
-测试用例标题      : Modem1，上层模块发送上行数据，RabId为5（预置条件：RabId为5的队列有数据包20个，RabId为6的队列有数据包11个）
-预期结果          : 数据插入RabId为5的队列，达到攒包门限，发ID_ADS_UL_DATA_READY消息
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_SendPacket,Test_ADS_UL_SendPacket_103)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -4112,15 +3684,7 @@ TEST_F(Test_ADS_UL_SendPacket,Test_ADS_UL_SendPacket_103)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_SendPacket_104
-测试用例标题      : Modem1，上层模块发送上行数据，RabId为5（预置条件：RabId为5的队列有数据包20个，RabId为6的队列有数据包12个）
-预期结果          : 数据插入RabId为5的队列，已达到攒包门限，不重复发ID_ADS_UL_DATA_READY消息
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_SendPacket,Test_ADS_UL_SendPacket_104)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -4191,15 +3755,7 @@ TEST_F(Test_ADS_UL_SendPacket,Test_ADS_UL_SendPacket_104)
     GlobalMockObject::verify();
 }
 #else
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_SendPacket_105
-测试用例标题      : Modem0，上层模块发送上行数据(TCP/IP协议栈过来的数据)，RabId为5（预置条件：RabId为5的队列存在）
-预期结果          : 数据插入RabId为5的队列，发ID_ADS_UL_DATA_READY消息
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_SendPacket,Test_ADS_UL_SendPacket_105)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -4254,15 +3810,7 @@ TEST_F(Test_ADS_UL_SendPacket,Test_ADS_UL_SendPacket_105)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_SendPacket_106
-测试用例标题      : Modem0，上层模块发送上行数据，RabId为5（预置条件：RabId为5的队列有数据包20个，RabId为6的队列有数据包11个）
-预期结果          : 数据插入RabId为5的队列，达到攒包门限，发ID_ADS_UL_DATA_READY消息
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_SendPacket,Test_ADS_UL_SendPacket_106)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -4338,15 +3886,7 @@ TEST_F(Test_ADS_UL_SendPacket,Test_ADS_UL_SendPacket_106)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_SendPacket_107
-测试用例标题      : Modem0，上层模块发送上行数据(USB过来的数据且为最后一个IP包)，RabId为5（预置条件：RabId为5的队列存在）
-预期结果          : 数据插入RabId为5的队列，发ID_ADS_UL_DATA_READY消息
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_SendPacket,Test_ADS_UL_SendPacket_107)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -4402,16 +3942,7 @@ TEST_F(Test_ADS_UL_SendPacket,Test_ADS_UL_SendPacket_107)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_SendPacket_108
-测试用例标题      : Modem0，上层模块发送上行数据(USB过来的数据不是最后一个IP包)，
-                    RabId为5（预置条件：RabId为5的队列有数据包20个，RabId为6的队列有数据包11个）
-预期结果          : 数据插入RabId为5的队列，达到攒包门限，发ID_ADS_UL_DATA_READY消息
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_SendPacket,Test_ADS_UL_SendPacket_108)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -4489,15 +4020,7 @@ TEST_F(Test_ADS_UL_SendPacket,Test_ADS_UL_SendPacket_108)
 
 #endif
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_SendPacket_109
-测试用例标题      : Modem1，上层模块发送上行数据，RabId为5，数据为空
-预期结果          : 数据不处理，返回VOS_ERR
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_SendPacket,Test_ADS_UL_SendPacket_109)
 {
     VOS_UINT32                          ulRslt;
@@ -4539,15 +4062,7 @@ TEST_F(Test_ADS_UL_SendPacket,Test_ADS_UL_SendPacket_109)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_SendPacket_110
-测试用例标题      : Modem1，上层模块发送上行数据，RabId为1
-预期结果          : 数据不处理，返回VOS_ERR
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_SendPacket,Test_ADS_UL_SendPacket_110)
 {
     VOS_UINT32                          ulRslt;
@@ -4567,15 +4082,7 @@ TEST_F(Test_ADS_UL_SendPacket,Test_ADS_UL_SendPacket_110)
 }
 
 #if(FEATURE_OFF == FEATURE_SKB_EXP)
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_SendPacket_111
-测试用例标题      : Modem1，上层模块发送上行数据，RabId为1，队列长度超过1000
-预期结果          : 数据不处理，返回VOS_ERR
-修改历史     :
-1.日   期  : 2012-09-03
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_SendPacket,Test_ADS_UL_SendPacket_111)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -4621,14 +4128,7 @@ TEST_F(Test_ADS_UL_SendPacket,Test_ADS_UL_SendPacket_111)
 }
 #endif
 #endif
-/*****************************************************************************
-类名     : Test_ADS_UL_RcvTiDsFlowStatsExpired
-功能描述 : ADS_UL_RcvTiDsFlowStatsExpired UT工程类
-修改历史     :
-1.日   期  : 2012-1-10
-作   者  :   l60609
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ADS_UL_RcvTiDsFlowStatsExpired: public ::testing::Test
 {
 public:
@@ -4646,15 +4146,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_RcvTiDsFlowStatsExpired_001
-测试用例标题      : 流量统计定时器超时处理，计算ADS数传中当前的速率
-预期结果          : 定时器重新启动，流量统计数据清零
-修改历史     :
-1.日   期  : 2012-1-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_RcvTiDsFlowStatsExpired,Test_ADS_UL_RcvTiDsFlowStatsExpired_001)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -4714,15 +4206,7 @@ TEST_F(Test_ADS_UL_RcvTiDsFlowStatsExpired,Test_ADS_UL_RcvTiDsFlowStatsExpired_0
 
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_RcvTiDsFlowStatsExpired_002
-测试用例标题      : 两个Modem并发，流量统计定时器超时处理，计算ADS数传中当前的速率
-预期结果          : 定时器重新启动，流量统计数据清零
-修改历史     :
-1.日   期  : 2012-1-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_RcvTiDsFlowStatsExpired,Test_ADS_UL_RcvTiDsFlowStatsExpired_002)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -4787,14 +4271,7 @@ TEST_F(Test_ADS_UL_RcvTiDsFlowStatsExpired,Test_ADS_UL_RcvTiDsFlowStatsExpired_0
 #endif
 
 #if(FEATURE_OFF == FEATURE_SKB_EXP)
-/*****************************************************************************
-类名     : Test_ADS_UL_FreeIpfUlConfigSuccSrcMem
-功能描述 : ADS_UL_FreeIpfUlConfigSuccSrcMem UT工程类
-修改历史     :
-1.日   期  : 2012-09-05
-  作   者  : l60609
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ADS_UL_FreeIpfUlConfigSuccSrcMem: public ::testing::Test
 {
 public:
@@ -4812,15 +4289,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_FreeIpfUlConfigSuccSrcMem_001
-测试用例标题      : IPF的busy BD数大于源内存队列的个数
-预期结果          : 不释放源内存
-修改历史     :
-1.日   期  : 2012-05-31
-  作   者  : A00165503
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_FreeIpfUlConfigSuccSrcMem, Test_ADS_UL_FreeIpfUlConfigSuccSrcMem_001)
 {
     IMM_ZC_HEAD_STRU                 *pstUlFreeQue = VOS_NULL_PTR;
@@ -4844,14 +4313,7 @@ TEST_F(Test_ADS_UL_FreeIpfUlConfigSuccSrcMem, Test_ADS_UL_FreeIpfUlConfigSuccSrc
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_ADS_UL_FreeIpfUlConfigFailSrcMem
-功能描述 : ADS_UL_FreeIpfUlConfigFailSrcMem UT工程类
-修改历史     :
-1.日   期  : 2012-09-05
-  作   者  : l60609
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ADS_UL_FreeIpfUlConfigFailSrcMem: public ::testing::Test
 {
 public:
@@ -4869,15 +4331,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_FreeIpfUlConfigFailSrcMem_001
-测试用例标题      : 需要释放的内存大于源内存队列的个数
-预期结果          : 不释放源内存
-修改历史     :
-1.日   期  : 2012-05-31
-  作   者  : A00165503
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_FreeIpfUlConfigFailSrcMem, Test_ADS_UL_FreeIpfUlConfigFailSrcMem_001)
 {
     IMM_ZC_HEAD_STRU                 *pstUlFreeQue = VOS_NULL_PTR;
@@ -4897,15 +4351,7 @@ TEST_F(Test_ADS_UL_FreeIpfUlConfigFailSrcMem, Test_ADS_UL_FreeIpfUlConfigFailSrc
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_FreeIpfUlConfigFailSrcMem_002
-测试用例标题      : 源内存队列的个数为0
-预期结果          : 不释放源内存
-修改历史     :
-1.日   期  : 2012-05-31
-  作   者  : A00165503
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_FreeIpfUlConfigFailSrcMem, Test_ADS_UL_FreeIpfUlConfigFailSrcMem_002)
 {
     IMM_ZC_HEAD_STRU                 *pstUlFreeQue = VOS_NULL_PTR;
@@ -4924,14 +4370,7 @@ TEST_F(Test_ADS_UL_FreeIpfUlConfigFailSrcMem, Test_ADS_UL_FreeIpfUlConfigFailSrc
 
     GlobalMockObject::verify();
 }
-/*****************************************************************************
-类名     : Test_ADS_UL_SetMaxQueueLength
-功能描述 : ADS_UL_SetMaxQueueLength UT工程类
-修改历史     :
-1.日   期  : 2012-09-05
-  作   者  : l60609
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ADS_UL_SetMaxQueueLength: public ::testing::Test
 {
 public:
@@ -4949,15 +4388,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_SetMaxQueueLength_001
-测试用例标题      : 需要释放的内存大于源内存队列的个数
-预期结果          : 不释放源内存
-修改历史     :
-1.日   期  : 2012-05-31
-  作   者  : A00165503
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_SetMaxQueueLength, Test_ADS_UL_SetMaxQueueLength_001)
 {
     ADS_UL_CTX_STRU                    *pstAdsUlCtx;
@@ -4973,14 +4404,7 @@ TEST_F(Test_ADS_UL_SetMaxQueueLength, Test_ADS_UL_SetMaxQueueLength_001)
 #endif
 
 
-/*****************************************************************************
-类名       : Test_ADS_UL_RcvCcpuResetStartInd
-功能描述   : ADS_UL_RcvCcpuResetStartInd UT工程类
-修改历史   :
-1.日   期  : 2013-04-19
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ADS_UL_RcvCcpuResetStartInd: public ::testing::Test
 {
 public:
@@ -4995,16 +4419,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_RcvCcpuResetStartInd_001
-测试用例标题      : 收到ID_ADS_CCPU_RESET_START_IND
-预期结果          : 返回VOS_ERROR
-修改历史   :
-1.日   期  : 2013-04-19
-  作   者  : f00179208
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_ADS_UL_RcvCcpuResetStartInd, Test_ADS_UL_RcvCcpuResetStartInd_001)
 {
     ADS_CCPU_RESET_IND_STRU                  stResetInd;
@@ -5042,14 +4457,7 @@ TEST_F(Test_ADS_UL_RcvCcpuResetStartInd, Test_ADS_UL_RcvCcpuResetStartInd_001)
 
 }
 
-/*****************************************************************************
-类名       : Test_ADS_UL_RcvAdsUlMsg
-功能描述   : ADS_UL_RcvAdsUlMsg UT工程类
-修改历史   :
-1.日   期  : 2013-04-19
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ADS_UL_RcvAdsUlMsg: public ::testing::Test
 {
 public:
@@ -5064,16 +4472,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_RcvAdsUlMsg_001
-测试用例标题      : 收到ID_CCPU_ADS_UL_RESET_END_IND
-预期结果          : 返回VOS_ERROR
-修改历史   :
-1.日   期  : 2013-04-19
-  作   者  : f00179208
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_ADS_UL_RcvAdsUlMsg, Test_ADS_UL_RcvAdsUlMsg_001)
 {
     ADS_CCPU_RESET_IND_STRU                  stResetInd;
@@ -5104,16 +4503,7 @@ TEST_F(Test_ADS_UL_RcvAdsUlMsg, Test_ADS_UL_RcvAdsUlMsg_001)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_RcvAdsUlMsg_002
-测试用例标题      : 收到ID_ADS_RESET_MSG_ID_ENUM_BUTT
-预期结果          : 返回VOS_ERROR
-修改历史   :
-1.日   期  : 2013-04-19
-  作   者  : f00179208
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_ADS_UL_RcvAdsUlMsg, Test_ADS_UL_RcvAdsUlMsg_002)
 {
     ADS_CCPU_RESET_IND_STRU                  stResetInd;
@@ -5144,14 +4534,7 @@ TEST_F(Test_ADS_UL_RcvAdsUlMsg, Test_ADS_UL_RcvAdsUlMsg_002)
 
 }
 
-/******************************************************************************
-类名     : Test_ADS_UL_SendPacketEx
-功能描述 : ADS_UL_SendPacketEx UT工程类
-修改历史 :
-1.日    期 : 2013-6-19
-  作    者 : L47619
-  修改内容 : V3R3 Share-PDP项目新增类
-******************************************************************************/
+
 class Test_ADS_UL_SendPacketEx: public ::testing::Test
 {
 public:
@@ -5169,15 +4552,7 @@ public:
     }
 };
 
-/******************************************************************************
-测试用例编号: Test_ADS_UL_SendPacketEx_001
-测试用例标题: 数据包为空指针
-预期结果    : 函数返回VOS_ERR
-修改历史    :
- 1.日   期  : 2013-6-19
-   作   者  : L47619
-   修改内容 : V3R3 Share-PDP项目新增用例
-******************************************************************************/
+
 TEST_F(Test_ADS_UL_SendPacketEx, Test_ADS_UL_SendPacketEx_001)
 {
     // 变量声明
@@ -5209,15 +4584,7 @@ TEST_F(Test_ADS_UL_SendPacketEx, Test_ADS_UL_SendPacketEx_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_ADS_UL_SendPacketEx_002
-测试用例标题: 未注册下行过滤回调指针
-预期结果    : 函数返回VOS_OK
-修改历史    :
- 1.日   期  : 2013-6-19
-   作   者  : L47619
-   修改内容 : V3R3 Share-PDP项目新增用例
-******************************************************************************/
+
 TEST_F(Test_ADS_UL_SendPacketEx, Test_ADS_UL_SendPacketEx_002)
 {
     // 变量声明
@@ -5258,15 +4625,7 @@ TEST_F(Test_ADS_UL_SendPacketEx, Test_ADS_UL_SendPacketEx_002)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_ADS_UL_SendPacketEx_003
-测试用例标题: 已注册下行过滤回调指针
-预期结果    : 函数返回VOS_ERR
-修改历史    :
- 1.日   期  : 2013-6-19
-   作   者  : L47619
-   修改内容 : V3R3 Share-PDP项目新增用例
-******************************************************************************/
+
 TEST_F(Test_ADS_UL_SendPacketEx, Test_ADS_UL_SendPacketEx_003)
 {
     // 变量声明
@@ -5307,14 +4666,7 @@ TEST_F(Test_ADS_UL_SendPacketEx, Test_ADS_UL_SendPacketEx_003)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_ADS_UL_RcvTiDataStatExpired
-功能描述 : ADS_UL_RcvTiDataStatExpired UT工程类
-修改历史 :
-1.日    期 : 2014-6-03
-  作    者 : f00179208
-  修改内容 : 新增
-******************************************************************************/
+
 class Test_ADS_UL_RcvTiDataStatExpired: public ::testing::Test
 {
 public:
@@ -5333,15 +4685,7 @@ public:
     }
 };
 
-/******************************************************************************
-测试用例编号: Test_ADS_UL_RcvTiDataStatExpired_001
-测试用例标题: 数据个数在水线1下
-预期结果    : 设置赞包门限1,定时器重新启动
-修改历史    :
-1.日    期 : 2014-6-03
-  作    者 : f00179208
-  修改内容 : 新增
-******************************************************************************/
+
 TEST_F(Test_ADS_UL_RcvTiDataStatExpired, Test_ADS_UL_RcvTiDataStatExpired_001)
 {
     // 变量声明
@@ -5372,15 +4716,7 @@ TEST_F(Test_ADS_UL_RcvTiDataStatExpired, Test_ADS_UL_RcvTiDataStatExpired_001)
 }
 
 
-/******************************************************************************
-测试用例编号: Test_ADS_UL_RcvTiDataStatExpired_002
-测试用例标题: 数据个数在水线1与水线2间
-预期结果    : 设置赞包门限2,定时器重新启动
-修改历史    :
-1.日    期 : 2014-6-03
-  作    者 : f00179208
-  修改内容 : 新增
-******************************************************************************/
+
 TEST_F(Test_ADS_UL_RcvTiDataStatExpired, Test_ADS_UL_RcvTiDataStatExpired_002)
 {
     // 变量声明
@@ -5412,15 +4748,7 @@ TEST_F(Test_ADS_UL_RcvTiDataStatExpired, Test_ADS_UL_RcvTiDataStatExpired_002)
 }
 
 
-/******************************************************************************
-测试用例编号: Test_ADS_UL_RcvTiDataStatExpired_003
-测试用例标题: 数据个数在水线2与水线3
-预期结果    : 设置赞包门限3,定时器重新启动
-修改历史    :
-1.日    期 : 2014-6-03
-  作    者 : f00179208
-  修改内容 : 新增
-******************************************************************************/
+
 TEST_F(Test_ADS_UL_RcvTiDataStatExpired, Test_ADS_UL_RcvTiDataStatExpired_003)
 {
     // 变量声明
@@ -5452,15 +4780,7 @@ TEST_F(Test_ADS_UL_RcvTiDataStatExpired, Test_ADS_UL_RcvTiDataStatExpired_003)
 }
 
 
-/******************************************************************************
-测试用例编号: Test_ADS_UL_RcvTiDataStatExpired_004
-测试用例标题: 数据个数在水线3以上
-预期结果    : 设置赞包门限4,定时器重新启动
-修改历史    :
-1.日    期 : 2014-6-03
-  作    者 : f00179208
-  修改内容 : 新增
-******************************************************************************/
+
 TEST_F(Test_ADS_UL_RcvTiDataStatExpired, Test_ADS_UL_RcvTiDataStatExpired_004)
 {
     // 变量声明
@@ -5491,15 +4811,7 @@ TEST_F(Test_ADS_UL_RcvTiDataStatExpired, Test_ADS_UL_RcvTiDataStatExpired_004)
 }
 
 
-/******************************************************************************
-测试用例编号: Test_ADS_UL_RcvTiDataStatExpired_005
-测试用例标题: 无数据包
-预期结果    : 设置赞包门限1,定时器不再启动
-修改历史    :
-1.日    期 : 2014-6-03
-  作    者 : f00179208
-  修改内容 : 新增
-******************************************************************************/
+
 TEST_F(Test_ADS_UL_RcvTiDataStatExpired, Test_ADS_UL_RcvTiDataStatExpired_005)
 {
     // 变量声明

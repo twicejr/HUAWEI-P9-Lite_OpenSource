@@ -40,15 +40,7 @@ extern "C" {
 //12、比较异常 EXPECT_THROW
 //13、结构体类型比较ASSERT_SAME_DATA ASSERT_SAME_MEMORY
 
-/*****************************************************************************
-类名     : Test_AT_SetWifiPaRangePara
-功能描述 : Test_AT_SetWifiPaRangePara UT工程类
-修改历史     :
 
-1.日   期  : 2012-02-08
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
 class Test_At_TestCgpaddr: public ::testing::Test
 {
 public:
@@ -67,16 +59,7 @@ protected:
 };
 
 
-/*******************************************************************
-测试用例编号      : Test_At_TestCgpaddr_002
-测试用例标题      : 发送消息成功
-预期结果          : 返回AT_WAIT_ASYNC_RETURN
-修改历史   :
 
-1.日   期  : 2012-02-08
-  作   者  : l00198894
-  修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_At_TestCgpaddr, Test_At_TestCgpaddr_002)
 {
     /*变量定义*/
@@ -103,16 +86,7 @@ TEST_F(Test_At_TestCgpaddr, Test_At_TestCgpaddr_002)
     GlobalMockObject::verify();
 
 }
-/*******************************************************************
-测试用例编号      : Test_At_TestCgpaddr_003
-测试用例标题      : 发送消息成功
-预期结果          : 返回AT_ERROR
-修改历史   :
 
-1.日   期  : 2012-02-08
-  作   者  : l00198894
-  修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_At_TestCgpaddr, Test_At_TestCgpaddr_003)
 {
     /*变量定义*/
@@ -140,14 +114,7 @@ TEST_F(Test_At_TestCgpaddr, Test_At_TestCgpaddr_003)
 
 }
 
-/*****************************************************************************
-类名     : Test_AT_TestCposrPara
-功能描述 : AT_TestCposrPara UT工程类
-修改历史 :
-1.日    期   : 2012年07月03日
-  作    者   : y00213812
-  修改内容   : V7R1C50 A-GPS项目新增函数
-*****************************************************************************/
+
 class Test_AT_TestCposrPara: public ::testing::Test
 {
 public:
@@ -182,15 +149,7 @@ public:
     AT_PAR_CMD_ELEMENT_STRU     stCmdInfo;
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_TestCposrPara_001
-测试用例标题      : 命令从HSIC4通道下发，
-预期结果          : 返回AT_OK
-修改历史          :
-1.日    期   : 2012年07月03日
-  作    者   : y00213812
-  修改内容   : V7R1C50 A-GPS项目新增函数
-*******************************************************************/
+
 TEST_F(Test_AT_TestCposrPara, Test_AT_TestCposrPara_001)
 {
     // 变量声明
@@ -215,15 +174,7 @@ TEST_F(Test_AT_TestCposrPara, Test_AT_TestCposrPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_TestCposrPara_002
-测试用例标题      : 命令从非HSIC通道下发，
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日    期   : 2012年07月03日
-  作    者   : y00213812
-  修改内容   : V7R1C50 A-GPS项目新增函数
-*******************************************************************/
+
 TEST_F(Test_AT_TestCposrPara, Test_AT_TestCposrPara_002)
 {
     // 变量声明
@@ -247,14 +198,7 @@ TEST_F(Test_AT_TestCposrPara, Test_AT_TestCposrPara_002)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名       : Test_AT_TestCbgPara
-功能描述  : AT_TestCbgPara UT工程类
-修改历史  :
- 1.日   期   : 2012-01-05
-   作   者   : z00214637
-   修改内容 : DSDA GUNAS C CORE Project 项目新增类
-******************************************************************************/
+
 class Test_AT_TestCbgPara: public ::testing::Test
 {
 public:
@@ -287,15 +231,7 @@ public:
     AT_PAR_CMD_ELEMENT_STRU             stCmdInfo;
 };
 
-/******************************************************************************
-测试用例编号: Test_AT_TestCbgPara_001
-测试用例标题: 从VCOM0下发AT^CBG测试命令
-预期结果    : 返回AT_OK
-修改历史    :
- 1.日   期  : 2012-01-05
-   作   者  : z00214637
-   修改内容 : DSDA GUNAS C CORE Project 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_TestCbgPara, Test_AT_TestCbgPara_001)
 {
     // 变量声明
@@ -319,14 +255,7 @@ TEST_F(Test_AT_TestCbgPara, Test_AT_TestCbgPara_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_TestCnmaPara
-功能描述 : AT_TestCnmaPara UT工程类
-修改历史     :
-1.日   期  : 2013-03-11
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_TestCnmaPara: public ::testing::Test
 {
 public:
@@ -341,15 +270,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_TestCnmaPara_001
-测试用例标题      : Modem0 CNMA命令的测试命令，消息格式为PDU
-预期结果          : 返回AT_OK
-修改历史
-  1.日    期: 2013年3月11日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_TestCnmaPara,Test_AT_TestCnmaPara_001)
 {
     // 参数定义
@@ -386,15 +307,7 @@ TEST_F(Test_AT_TestCnmaPara,Test_AT_TestCnmaPara_001)
     GlobalMockObject::verify();
 }
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_AT_TestCnmaPara_002
-测试用例标题      : Modem1 CNMA命令的测试命令，消息格式为PDU
-预期结果          : 返回AT_OK
-修改历史
-  1.日    期: 2013年3月11日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_TestCnmaPara,Test_AT_TestCnmaPara_002)
 {
     // 参数定义
@@ -432,14 +345,7 @@ TEST_F(Test_AT_TestCnmaPara,Test_AT_TestCnmaPara_002)
 }
 #endif
 
-/*****************************************************************************
-类名     : Test_AT_TestCpmsPara
-功能描述 : AT_TestCpmsPara UT工程类
-修改历史     :
-1.日   期  : 2013-03-11
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_TestCpmsPara: public ::testing::Test
 {
 public:
@@ -454,15 +360,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_TestCpmsPara_001
-测试用例标题      : Modem0 CPMS命令的测试命令，ME存储状态标志为MN_MSG_ME_STORAGE_ENABLE
-预期结果          : 返回AT_OK
-修改历史
-  1.日    期: 2013年3月11日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_TestCpmsPara,Test_AT_TestCpmsPara_001)
 {
     // 参数定义
@@ -498,15 +396,7 @@ TEST_F(Test_AT_TestCpmsPara,Test_AT_TestCpmsPara_001)
     GlobalMockObject::verify();
 }
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_AT_TestCpmsPara_002
-测试用例标题      : Modem1 CPMS命令的测试命令，ME存储状态标志为MN_MSG_ME_STORAGE_ENABLE
-预期结果          : 返回AT_OK
-修改历史
-  1.日    期: 2013年3月11日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_TestCpmsPara,Test_AT_TestCpmsPara_002)
 {
     // 参数定义
@@ -543,14 +433,7 @@ TEST_F(Test_AT_TestCpmsPara,Test_AT_TestCpmsPara_002)
 }
 #endif
 #if 0
-/*****************************************************************************
-类名     : Test_AT_TestMemStatusPara
-功能描述 : AT_TestMemStatusPara UT工程类
-修改历史     :
-1.日   期  : 2013-03-11
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_TestMemStatusPara: public ::testing::Test
 {
 public:
@@ -565,15 +448,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_TestMemStatusPara_001
-测试用例标题      : ^CSASM测试参数
-预期结果          : 返回AT_OK
-修改历史
-  1.日    期: 2013年3月11日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_TestMemStatusPara,Test_AT_TestMemStatusPara_001)
 {
     // 参数定义
@@ -608,14 +483,7 @@ TEST_F(Test_AT_TestMemStatusPara,Test_AT_TestMemStatusPara_001)
     GlobalMockObject::verify();
 }
 #endif
-/*****************************************************************************
-类名     : Test_AT_TestApRptPortSelectPara
-功能描述 : AT_TestApRptPortSelectPara UT工程类
-修改历史     :
-1.日   期  : 2013-03-11
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_TestApRptPortSelectPara: public ::testing::Test
 {
 public:
@@ -635,15 +503,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_TestApRptPortSelectPara_001
-测试用例标题      : ^APRPTPORTSEL测试参数
-预期结果          : 返回AT_OK
-修改历史
-  1.日    期: 2013年3月11日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_TestApRptPortSelectPara,Test_AT_TestApRptPortSelectPara_001)
 {
     // 参数定义
@@ -678,14 +538,7 @@ TEST_F(Test_AT_TestApRptPortSelectPara,Test_AT_TestApRptPortSelectPara_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_TestUsbSwitchPara
-功能描述 : AT_TestUsbSwitchPara UT工程类
-修改历史     :
-1.日   期  : 2013-03-11
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_TestUsbSwitchPara: public ::testing::Test
 {
 public:
@@ -704,15 +557,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_TestUsbSwitchPara_001
-测试用例标题      : +USBSWITCH测试参数
-预期结果          : 返回AT_OK
-修改历史
-  1.日    期: 2013年3月11日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_TestUsbSwitchPara,Test_AT_TestUsbSwitchPara_001)
 {
     // 参数定义
@@ -746,14 +591,7 @@ TEST_F(Test_AT_TestUsbSwitchPara,Test_AT_TestUsbSwitchPara_001)
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*****************************************************************************
-类名     : Test_AT_TestApSimStPara
-功能描述 : AT_TestApSimStPara UT工程类
-修改历史     :
-1.日   期  : 2013-03-11
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_TestApSimStPara: public ::testing::Test
 {
 public:
@@ -773,15 +611,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_TestApSimStPara_001
-测试用例标题      : ^APSIMST测试参数
-预期结果          : 返回AT_OK
-修改历史
-  1.日    期: 2013年3月11日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_TestApSimStPara,Test_AT_TestApSimStPara_001)
 {
     // 参数定义
@@ -817,14 +647,7 @@ TEST_F(Test_AT_TestApSimStPara,Test_AT_TestApSimStPara_001)
 }
 
 
-/*****************************************************************************
-类名     : Test_At_TestCgdcont
-功能描述 : At_TestCgdcont UT工程类
-修改历史     :
-1.日   期  : 2013-03-11
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_TestCgdcont: public ::testing::Test
 {
 public:
@@ -844,15 +667,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_TestCgdcont_001
-测试用例标题      : ^APSIMST测试参数
-预期结果          : 返回AT_OK
-修改历史
-  1.日    期: 2013年05月30日
-    作    者: f00179208
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_TestCgdcont,Test_At_TestCgdcont_001)
 {
     // 参数定义
@@ -882,15 +697,7 @@ TEST_F(Test_At_TestCgdcont,Test_At_TestCgdcont_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_TestCgdcont_002
-测试用例标题      : +CGDCONT测试参数
-预期结果          : 返回AT_OK
-修改历史
-  1.日    期: 2013年07月30日
-    作    者: Y00213812
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_TestCgdcont,Test_At_TestCgdcont_002)
 {
     // 参数定义
@@ -921,14 +728,7 @@ TEST_F(Test_At_TestCgdcont,Test_At_TestCgdcont_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_At_TestCgansExtPara
-功能描述 : At_TestCgansExtPara UT工程类
-修改历史     :
-1.日   期  : 2013-06-08
-  作   者  : l60609
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_TestCgansExtPara: public ::testing::Test
 {
 public:
@@ -944,15 +744,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_TestCgansExtPara_001
-测试用例标题      : ^CGANS测试参数
-预期结果          : 返回AT_OK
-修改历史
-  1.日    期: 2013年06月08日
-    作    者: l60609
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_TestCgansExtPara,Test_At_TestCgansExtPara_001)
 {
     // 参数定义
@@ -985,14 +777,7 @@ TEST_F(Test_At_TestCgansExtPara,Test_At_TestCgansExtPara_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_TestRefclkfreqPara
-功能描述 : AT_TestRefclkfreqPara UT工程类
-修改历史 :
-1.日   期  : 2013-07-24
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_TestRefclkfreqPara: public ::testing::Test
 {
 public:
@@ -1029,15 +814,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_TestRefclkfreqPara_001
-测试用例标题      : 通道错误
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2013-07-24
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_TestRefclkfreqPara, Test_AT_TestRefclkfreqPara_001)
 {
     // 变量声明
@@ -1059,15 +836,7 @@ TEST_F(Test_AT_TestRefclkfreqPara, Test_AT_TestRefclkfreqPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_TestRefclkfreqPara_002
-测试用例标题      : 通道正确
-预期结果          : 返回AT_OK，打印测试命令结果
-修改历史          :
-1.日   期  : 2013-07-24
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_TestRefclkfreqPara, Test_AT_TestRefclkfreqPara_002)
 {
     // 变量声明
@@ -1092,14 +861,7 @@ TEST_F(Test_AT_TestRefclkfreqPara, Test_AT_TestRefclkfreqPara_002)
 }
 
 
-/******************************************************************************
-类名     : Test_At_TestCgeqos
-功能描述 : At_TestCgeqos UT工程类
-修改历史 :
- 1.日   期  : 2013-08-02
-   作   者  : Y00213812
-   修改内容 : 新增类
-******************************************************************************/
+
 class Test_At_TestCgeqos: public ::testing::Test
 {
 public:
@@ -1113,15 +875,7 @@ public:
         AT_InitCtx();
     }
 };
-/******************************************************************************
-测试用例编号: Test_At_TestCgeqos_001
-测试用例标题: +CGEQOS测试命令
-预期结果    :
-修改历史    :
- 1.日   期  : 2013-08-02
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_At_TestCgeqos, Test_At_TestCgeqos_001)
 {
     // 变量声明
@@ -1150,14 +904,7 @@ TEST_F(Test_At_TestCgeqos, Test_At_TestCgeqos_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_At_TestCgeqosrdp
-功能描述 : At_TestCgeqosrdp UT工程类
-修改历史 :
- 1.日   期  : 2013-08-02
-   作   者  : Y00213812
-   修改内容 : 新增类
-******************************************************************************/
+
 class Test_At_TestCgeqosrdp: public ::testing::Test
 {
 public:
@@ -1171,15 +918,7 @@ public:
         AT_InitCtx();
     }
 };
-/******************************************************************************
-测试用例编号: Test_At_TestCgeqosrdp_001
-测试用例标题: +CGEQOSRDP测试命令
-预期结果    :
-修改历史    :
- 1.日   期  : 2013-08-02
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_At_TestCgeqosrdp, Test_At_TestCgeqosrdp_001)
 {
     // 变量声明
@@ -1209,14 +948,7 @@ TEST_F(Test_At_TestCgeqosrdp, Test_At_TestCgeqosrdp_001)
 }
 
 
-/******************************************************************************
-类名     : Test_At_TestCgcontrdp
-功能描述 : At_TestCgcontrdp UT工程类
-修改历史 :
- 1.日   期  : 2013-08-02
-   作   者  : Y00213812
-   修改内容 : 新增类
-******************************************************************************/
+
 class Test_At_TestCgcontrdp: public ::testing::Test
 {
 public:
@@ -1230,15 +962,7 @@ public:
         AT_InitCtx();
     }
 };
-/******************************************************************************
-测试用例编号: Test_At_TestCgcontrdp_001
-测试用例标题: +CGCONTRDP测试命令
-预期结果    :
-修改历史    :
- 1.日   期  : 2013-08-02
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_At_TestCgcontrdp, Test_At_TestCgcontrdp_001)
 {
     // 变量声明
@@ -1268,14 +992,7 @@ TEST_F(Test_At_TestCgcontrdp, Test_At_TestCgcontrdp_001)
 }
 
 
-/******************************************************************************
-类名     : Test_At_TestCgscontrdp
-功能描述 : At_TestCgscontrdp UT工程类
-修改历史 :
- 1.日   期  : 2013-08-02
-   作   者  : Y00213812
-   修改内容 : 新增类
-******************************************************************************/
+
 class Test_At_TestCgscontrdp: public ::testing::Test
 {
 public:
@@ -1289,15 +1006,7 @@ public:
         AT_InitCtx();
     }
 };
-/******************************************************************************
-测试用例编号: Test_At_TestCgscontrdp_001
-测试用例标题: +CGSCONTRDP测试命令
-预期结果    :
-修改历史    :
- 1.日   期  : 2013-08-02
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_At_TestCgscontrdp, Test_At_TestCgscontrdp_001)
 {
     // 变量声明
@@ -1327,14 +1036,7 @@ TEST_F(Test_At_TestCgscontrdp, Test_At_TestCgscontrdp_001)
 }
 
 
-/******************************************************************************
-类名     : Test_At_TestCgtftrdp
-功能描述 : At_TestCgtftrdp UT工程类
-修改历史 :
- 1.日   期  : 2013-08-02
-   作   者  : Y00213812
-   修改内容 : 新增类
-******************************************************************************/
+
 class Test_At_TestCgtftrdp: public ::testing::Test
 {
 public:
@@ -1348,15 +1050,7 @@ public:
         AT_InitCtx();
     }
 };
-/******************************************************************************
-测试用例编号: Test_At_TestCgtftrdp_001
-测试用例标题: +CGTFTRDP测试命令
-预期结果    :
-修改历史    :
- 1.日   期  : 2013-08-02
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_At_TestCgtftrdp, Test_At_TestCgtftrdp_001)
 {
     // 变量声明
@@ -1386,14 +1080,7 @@ TEST_F(Test_At_TestCgtftrdp, Test_At_TestCgtftrdp_001)
 }
 
 #if (FEATURE_ON == FEATURE_IMS)
-/******************************************************************************
-类名     : Test_AT_TestCiregPara
-功能描述 : AT_TestCiregPara UT工程类
-修改历史 :
- 1.日   期  : 2013-10-02
-   作   者  : Y00213812
-   修改内容 : 新增类
-******************************************************************************/
+
 class Test_AT_TestCiregPara: public ::testing::Test
 {
 public:
@@ -1407,15 +1094,7 @@ public:
         AT_InitCtx();
     }
 };
-/******************************************************************************
-测试用例编号: Test_AT_TestCiregPara_001
-测试用例标题: +CIREG测试命令
-预期结果    : AT_OK
-修改历史    :
- 1.日   期  : 2013-10-02
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_TestCiregPara, Test_AT_TestCiregPara_001)
 {
     // 变量声明
@@ -1444,14 +1123,7 @@ TEST_F(Test_AT_TestCiregPara, Test_AT_TestCiregPara_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_AT_TestCirepPara
-功能描述 : AT_TestCirepPara UT工程类
-修改历史 :
- 1.日   期  : 2013-10-02
-   作   者  : Y00213812
-   修改内容 : 新增类
-******************************************************************************/
+
 class Test_AT_TestCirepPara: public ::testing::Test
 {
 public:
@@ -1465,15 +1137,7 @@ public:
         AT_InitCtx();
     }
 };
-/******************************************************************************
-测试用例编号: Test_AT_TestCirepPara_001
-测试用例标题: +CIREP测试命令
-预期结果    :返回AT_OK
-修改历史    :
- 1.日   期  : 2013-10-02
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_TestCirepPara, Test_AT_TestCirepPara_001)
 {
     // 变量声明

@@ -22,22 +22,35 @@
 #include "hisi_fb.h"
 
 /* add for CMA malloc framebuffer */
-#include <linux/hisi/hisi_ion.h>
-#include <linux/ion.h>
+#include <linux/of.h>
+#include <linux/of_fdt.h>
 
 #include <linux/module.h>
 #include <linux/init.h>
 #include <linux/workqueue.h>
-
+#include <linux/sysfs.h>
 
 #define HEAP_ID_MASK (1<<ION_TUI_HEAP_ID)
 
 static void tui_delay_work_func(struct work_struct *work);
 static void tui_timeout_work_func(struct work_struct *work);
 static void tui_poweroff_work_func(struct work_struct *work);
+static ssize_t tui_status_show(struct kobject * kobj, struct kobj_attribute * attr, char * buf);
 static DECLARE_DELAYED_WORK(tui_poweroff_work, tui_poweroff_work_func);
 static DECLARE_DELAYED_WORK(tui_delay_work, tui_delay_work_func);
 static DECLARE_DELAYED_WORK(tui_timeout_work, tui_timeout_work_func);
+
+static struct kobject *tui_kobj;
+static struct kobj_attribute tui_attribute = __ATTR(c_state, 0440, tui_status_show, NULL);
+static struct attribute * attrs [] =
+{
+     &tui_attribute.attr,
+      NULL,
+};
+
+static struct attribute_group tui_attr_group = {
+    .attrs = attrs,
+};
 
 /* command from secure os */
 #define TUI_CMD_ENABLE       1
@@ -151,11 +164,6 @@ static unsigned int tui_timeout;
 static wait_queue_head_t tui_state_wq;
 static int tui_state_flag;
 
-static const char *ion_name="TUI_ION";
-static struct ion_client *tui_client = NULL;
-static struct ion_handle *tui_handle = NULL;
-static ion_phys_addr_t ion_addr = 0;
-
 static wait_queue_head_t tui_msg_wq;
 static wait_queue_head_t wait_event_get_keyCode;
 static int get_keyCode_flag;
@@ -178,34 +186,73 @@ char *deinit_driver[DRIVER_NUM] = {TUI_DSS_NAME, TUI_GPIO_NAME, TUI_FP_NAME, TUI
 
 #define COLOR_TYPE  4  //ARGB
 #define BUFFER_NUM 2
-
-//size is calculated dynamically according to the screen resolution
-int get_frame_addr()
+static void *of_find_property_value_of_size_u64(const struct device_node *np,
+        const char *propname, u64 len)
 {
-	size_t len = 0;
-	if(!tui_handle) {
-	int screen_r = dss_fd->panel_info.xres * dss_fd->panel_info.yres*COLOR_TYPE*BUFFER_NUM;
-       tui_handle = ion_alloc(tui_client, 1<<fls(screen_r), 0, HEAP_ID_MASK, ION_FLAG_SECURE_BUFFER);
-	    if(IS_ERR(tui_handle)){
-		tui_err("get tui_handld error tui_handle=%p \n",tui_handle);
-		tui_handle = NULL;
-		return -1;
-	    }
-	    ion_phys(tui_client, tui_handle, &ion_addr, &len);
-	    //0x2f000000 or 0x30000000
-	tui_dbg("width=%d height=%d ion_addr=0x%x len =0x%llx  memory=%d M\n",
-	            dss_fd->panel_info.xres,dss_fd->panel_info.yres,(unsigned int)ion_addr,len,1<<fls(screen_r));
-	}
-	tui_dbg("get ion addr=0x%x \n",(unsigned int)ion_addr);
-       return (unsigned int)ion_addr;
+    struct property *prop = of_find_property(np, propname, NULL);
+
+    if (!prop)
+        return ERR_PTR(-EINVAL);
+    if (!prop->value)
+        return ERR_PTR(-ENODATA);
+    if (len > prop->length)
+        return ERR_PTR(-EOVERFLOW);
+
+    return prop->value;
 }
 
-void free_frame_addr(void)
+static int of_property_read_u64_index_tui(const struct device_node *np,
+        const char *propname,
+        u64 index, u64 *out_value)
 {
-       if(!IS_ERR(tui_handle) && tui_handle != NULL){
-              ion_free(tui_client, tui_handle);
-              tui_handle = NULL;
-       }
+    const u64 *val = of_find_property_value_of_size_u64(np, propname,
+            ((index + 1) * sizeof(*out_value)));
+
+    if (IS_ERR(val))
+        return PTR_ERR(val);
+
+    *out_value = be64_to_cpup(((__be64 *)val) + index);
+    return 0;
+}
+/*tui-need-memory is calculated dynamically according to the screen resolution*/
+int get_frame_addr(void)
+{
+    const __be64 *prop;
+    u64 base, size;
+    int len;
+    int size_cells,addr_cells, ret;
+    struct device_node *node = NULL;
+
+    node = of_find_node_by_name(NULL, "reserved-memory");
+    if(!node)
+        return -1;
+
+    node = of_find_node_by_name(node, "tui-mem");
+    if(!node)
+        return -1;
+
+    ret = of_property_read_u64_index_tui(node, "reg", 0, &base);
+    if(ret){
+        tui_err("get base error\n");
+        return -1;
+    }
+    ret = of_property_read_u64_index_tui(node, "reg", 1, &size);
+    if(ret){
+        tui_err("get size error\n");
+        return -1;
+    }
+
+    tui_dbg("base=0x%x size=0x%x \n",base,size);
+    int screen_r = dss_fd->panel_info.xres *
+        dss_fd->panel_info.yres*COLOR_TYPE*BUFFER_NUM;
+
+    if(size < (1<<fls(screen_r))){
+        tui_err("tui memory is not enough size=0x%x screen=(%d*%d)\n",
+               size,dss_fd->panel_info.xres,dss_fd->panel_info.yres);
+        return -1;
+    }
+    else
+        return (int)base;
 }
 
 
@@ -737,7 +784,7 @@ next:
                 tui_ctl->s2n.ret = -1;
     case TUI_POLL_CFG_OK:
         if (tui_ctl->s2n.value == DSS_CONFIG_INDEX)
-            val = get_frame_addr();
+			val = get_frame_addr();
         break;
 	default:
 		break;
@@ -752,7 +799,6 @@ next:
 	}
 }
 
-#define CMA_MALLOC
 static int init_tui_agent(void)
 {
 	TC_NS_Shared_MEM tui_tc_shm = {0};
@@ -771,12 +817,6 @@ static int init_tui_agent(void)
 	if (ret)
 		tui_err("register tui agent failed\n");
 
-#ifdef CMA_MALLOC
-       tui_client = hisi_ion_client_create(ion_name);
-	if(!tui_client)
-		tui_err("create ion client failed ret=%d \n",tui_client);
-#endif
-
 	return ret;
 }
 
@@ -785,10 +825,6 @@ static void exit_tui_agent(void)
 	if (TC_NS_unregister_agent(TEE_TUI_AGENT_ID))
 		tui_err("unregister tui agent failed\n");
 	kfree(tui_ctl);
-#ifdef CMA_MALLOC
-	if(tui_client)
-	       ion_client_destroy(tui_client);
-#endif
 }
 
 static void init_tui_timeout(unsigned int timeout)
@@ -938,10 +974,8 @@ static const struct file_operations tui_dbg_state_fops = {
 	.read  = tui_dbg_state_read,
 };
 
-static ssize_t tui_dbg_changable_state_read(struct file *filp, char __user *ubuf,
-					size_t cnt, loff_t *ppos)
+static ssize_t tui_status_show(struct kobject * kobj, struct kobj_attribute * attr, char * buf)
 {
-	char buf[32];
 	int r;
 
 	tui_state_flag = 0;
@@ -953,13 +987,8 @@ static ssize_t tui_dbg_changable_state_read(struct file *filp, char __user *ubuf
 
 	r = snprintf(buf, 32, "%s", state_name[atomic_read(&tui_state)]);
 
-	return simple_read_from_buffer(ubuf, cnt, ppos, buf, r);
+    return strlen(buf);
 }
-
-static const struct file_operations tui_dbg_changable_state_fops = {
-	.owner = THIS_MODULE,
-	.read  = tui_dbg_changable_state_read,
-};
 
 static ssize_t tui_dbg_msg_read(struct file *filp, char __user *ubuf,
 					size_t cnt, loff_t *ppos)
@@ -1078,14 +1107,25 @@ int __init init_tui(void)
 	init_waitqueue_head(&tui_msg_wq);
     init_waitqueue_head(&wait_event_get_keyCode);
 	dbg_dentry = debugfs_create_dir("tui", NULL);
+#ifdef DEBUG_TUI
 	debugfs_create_file("message", 0440, dbg_dentry,
 		NULL, &tui_dbg_msg_fops);
+#endif
 	debugfs_create_file("d_state", 0440, dbg_dentry,
-		NULL, &tui_dbg_state_fops);
-	debugfs_create_file("c_state", 0440, dbg_dentry,
-		NULL, &tui_dbg_changable_state_fops);
+        NULL, &tui_dbg_state_fops);
+    tui_kobj = kobject_create_and_add("tui", kernel_kobj);
+    if(!tui_kobj)
+    {
+        tui_err("tui kobj create error\n");
+        return -ENOMEM;
+    }
+    int retval = sysfs_create_group(tui_kobj, &tui_attr_group);
+    if(retval)
+    {
+        kobject_put(tui_kobj);
+    }
 
-	return 0;
+    return 0;
 }
 
 void tui_exit(void)
@@ -1093,4 +1133,6 @@ void tui_exit(void)
 	kthread_stop(tui_task);
 	put_task_struct(tui_task);
 	debugfs_remove(dbg_dentry);
+    sysfs_remove_group(tui_kobj, &tui_attr_group);
+    kobject_put(tui_kobj);
 }

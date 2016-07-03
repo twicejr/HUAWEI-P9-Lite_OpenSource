@@ -50,11 +50,9 @@ extern "C" {
 #define BFD_MAX_DETECT_MULTI           50           /* BFD最大检测倍数 */
 #define BFD_DEFAULT_DOWN_INTERVAL      2000         /* 建立会话的时候,本端默认接收时间间隔或者查询序列下定时查询时间 */
 #define BFD_DEFAULT_TX_RX_INTERVAL     30           /* BFD会话建立之后默认发送接收时间间隔 */
-/* Modify by Q62011 for BC3D00536 start(修改BFD最大会话数目), 08-10-23 */
 #define BFD_MAX_SESSION_NUM_DEF            1000     /* BFD默认最大会话数目 */
 #define BFD_MIN_DETECT_TIME            10           /* BFD本端最小探测时间 */
 
-/* Modify by Q62011 for BC3D00536 start(BFD最大session id), 08-10-23 */
 #define BFD_MAX_SESSION_ID             9215         /* BFD最大session id*/
 #define BFD_MIN_SESSION_ID             1            /* BFD最小session id*/
 #define BFD_INVALID_DISCR              0            /* 无效BFD discr */
@@ -136,7 +134,6 @@ extern "C" {
 #define BFD_OVER_IPV6      1
 #define BFD_OVER_ALL       2
 
-/*SGSN需求DTS2010090200956: BFD 多会话和应用共用问题*/
 #define BFD_CREATE_STATIC_MANUAL    1 /*静态指定描述符创建,暂不涉及*/
 #define BFD_CREATE_STATIC_AUTO  2 /*静态自协商*/
 #define BFD_CREATE_DYNAMIC  3 /*动态创建*/
@@ -205,7 +202,6 @@ extern "C" {
  *      1 -- pAddress is a global address
  *      0 -- pAddress isn't a global address
  */
-/* Modified by w00207740, DTS2013121700565 ,sitelocal地址属于global地址, 2013/12/17 */
 #define BFD6_IS_ADDRESS_GLOBAL( pAddress )    \
     ( !((BFD6_IS_ADDRESS_MULTICAST(pAddress))\
      ||(BFD6_IS_ADDRESS_LOOPBACK(pAddress))\
@@ -298,21 +294,13 @@ extern ULONG g_ulBfd6LicenseGlobalCapability;
 typedef enum tagBFD_TOEXT_MSG_TYPE_E
 {
     BFD_TOEXT_SESSION_DELETE        = 1               ,         /* 删除会话 */
-    /*Added by guojianjun178934, BFD问题单同步处理, 2013/11/18   问题单号:DTS2013111409068 */
-    /*Added by qinyun62011, 优化BFD会话ID扩展到9215的性能问题, 2013/9/27 */
     /*VRF删除时，会删除所有的会话每个会话删除时调用SESSION_DELETE通知，因此不需
       要遍历删除操作了*/
-    /* End of Added by guojianjun178934, 2013/11/18   问题单号:DTS2013111409068 */
     BFD_TOEXT_UNCAPABILITY                            ,         /* 全局去使能 */
-    /* Add for DTS2011021002203, by chenyaoKF34558, at 2011-02-28. 修改原因: 重新设计license功能 */
     BFD_TOEXT_UNLICENSE                               ,         /* 关闭license */
     
-    /*Added by guo00178934, BFD全局使能, 2011/7/8   问题单号:DTS2011070601537 */
     BFD_TOEXT_CAPABILITY                              ,
-    /* End of Added by guo00178934, 2011/7/8   问题单号:DTS2011070601537 */
-    /*Modified by qinyun62011, RFC5882认为在BFD为Admin down的情况下, 路由应该依照其他方式来检测, 2011/8/16   问题单号:DTS2011081005979 */
     BFD_TOEXT_ROUTE_UP                              ,
-    /*End of Modified by qinyun62011, 2011/8/16   问题单号:DTS2011081005979 */
     BFD_TOEXT_NSR_RESUME_MODIFY,                               /* NSR过程中底层恢复的动态路由联动会话ID需要变更*/
     BFD6_TOEXT_SESSION_DELETE,
     BFD6_TOEXT_UNCAPABILITY,
@@ -322,7 +310,6 @@ typedef enum tagBFD_TOEXT_MSG_TYPE_E
     BFD_TOEXT_MSG_MAX
 }BFD_TOEXT_MSG_TYPE_E;
 
-/*Added by luogaowei 2012-01-18 DTS2013011700000  PF重传处理*/
 typedef enum tagBFD_PF_STATE_E
 {
    PF_STATE_P_NULL = 0,    /*P标记初始状态*/
@@ -348,7 +335,6 @@ typedef enum tagBFD_PF_STATE_E
 #define  PF_PROC_SRAND_VALUE   4   /*种子值*/
 #define  PF_PROC_RAND_OFFSET   2   /*随机偏移值*/
 
-/*Added by w00207740, DTS2013042203832 ,BFD队列调度最大次数,由于disable操作步进为8而去使能license步进为265，故使用32, 2013/6/25 */
 #define BFD_SCHEDULE_MAX_NUM    32
 
 

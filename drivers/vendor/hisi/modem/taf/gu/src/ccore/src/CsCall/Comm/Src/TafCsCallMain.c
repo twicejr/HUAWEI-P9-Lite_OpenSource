@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafCsCallMain.c
-  版 本 号   : 初稿
-  作    者   : l60609
-  生成日期   : 2014年09月03日
-  功能描述   : TAF CS CALL模块初始化，入口函数处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年09月03日
-    作    者   : l60609
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -44,21 +29,7 @@ extern "C"{
 *****************************************************************************/
 /*lint -save -e958*/
 
-/*****************************************************************************
- 函 数 名  : TAF_CSCALL_Init
- 功能描述  : CS CALL模块初始化
- 输入参数  : TAF_CSCALL_INIT_TYPE_ENUM_UINT8     enInitCtxType
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月11日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_CSCALL_Init(
     TAF_CSCALL_INIT_TYPE_ENUM_UINT8     enInitCtxType
 )
@@ -67,21 +38,7 @@ VOS_VOID TAF_CSCALL_Init(
     TAF_CSCALL_InitCtx();
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CSCALL_IsNeedXcallProcAppReqMsg
- 功能描述  : 是否是XCALL需要处理的消息
- 输入参数  : struct MsgCB* pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月6日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_CSCALL_IsNeedXcallProcAppReqMsg(struct MsgCB* pstMsg)
 {
     MSG_HEADER_STRU                    *pstMsgHeader = VOS_NULL_PTR;
@@ -111,21 +68,7 @@ VOS_UINT32 TAF_CSCALL_IsNeedXcallProcAppReqMsg(struct MsgCB* pstMsg)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CSCALL_ProcAppReqMsg
- 功能描述  : CS CALL模块处理来自应用层的请求消息
- 输入参数  : struct MsgCB* pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月3日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_CSCALL_ProcAppReqMsg(struct MsgCB* pstMsg)
 {
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
@@ -148,21 +91,7 @@ VOS_VOID TAF_CSCALL_ProcAppReqMsg(struct MsgCB* pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CSCALL_ProcVcMsg
- 功能描述  : CS CALL模块处理来自VC的消息
- 输入参数  : struct MsgCB* pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月10日
-    作    者   : y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_CSCALL_ProcVcMsg(struct MsgCB* pstMsg)
 {
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
@@ -179,21 +108,7 @@ VOS_VOID TAF_CSCALL_ProcVcMsg(struct MsgCB* pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CSCALL_ProcMmaMsg
- 功能描述  : CS CALL模块处理来自MMA的消息
- 输入参数  : struct MsgCB* pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月11日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_CSCALL_ProcMmaMsg(struct MsgCB* pstMsg)
 {
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
@@ -205,21 +120,7 @@ VOS_VOID TAF_CSCALL_ProcMmaMsg(struct MsgCB* pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CSCALL_ProcTimerOutMsg
- 功能描述  : CS CALL模块处理来自timer的消息
- 输入参数  : struct MsgCB* pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月17日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_CSCALL_ProcTimerOutMsg(
     REL_TIMER_MSG                       *pTmrMsg
 )
@@ -235,21 +136,7 @@ VOS_VOID TAF_CSCALL_ProcTimerOutMsg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_CSCALL_ProcUsimMsg
- 功能描述  : CS CALL模块处理来自usim的消息
- 输入参数  : struct MsgCB* pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月17日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_CSCALL_ProcUsimMsg(
     struct MsgCB                       *pstMsg
 )
@@ -266,21 +153,7 @@ VOS_VOID TAF_CSCALL_ProcUsimMsg(
 
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- 函 数 名  : TAF_CSCALL_ProcXsmsMsg
- 功能描述  : CS CALL模块处理来自XSMS的消息
- 输入参数  : struct MsgCB* pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月4日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_CSCALL_ProcXsmsMsg(
     struct MsgCB                       *pstMsg
 )
@@ -292,21 +165,7 @@ VOS_VOID TAF_CSCALL_ProcXsmsMsg(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_CSCALL_ProcCttfMsg
- 功能描述  : CS CALL模块处理来自CTTF的消息
- 输入参数  : struct MsgCB* pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月4日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_CSCALL_ProcCttfMsg(
     struct MsgCB                       *pstMsg
 )

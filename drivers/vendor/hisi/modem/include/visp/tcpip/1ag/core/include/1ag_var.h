@@ -175,7 +175,7 @@ extern VOID *TCPIP_Malloc(ULONG ulInfo, ULONG ulSize);
 extern VOID OAM_1AG_DebugInfo(CHAR* pcString);
 
 
-extern ULONG g_ulRmepCCDetectMode; /*Added by luogaowei 2013-2-2 新增预配置值 在Hert3.3.中将下发和启动CC 分离 DTS2013020403949*/
+extern ULONG g_ulRmepCCDetectMode;
 #ifdef  __cplusplus
 }
 #endif

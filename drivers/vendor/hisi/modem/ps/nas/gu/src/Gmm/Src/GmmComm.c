@@ -1,118 +1,4 @@
-/*******************************************************************************
-  Copyright     : 2005-2007, Huawei Tech. Co., Ltd.
-  File name     : GmmComm.c
-  Description   : GMM COMMON PROCEDURE功能相关处理用源文件
-  Function List :
-    01.   Gmm_Attach_Prepare
-    02.   Gmm_Au_MacAutnWrong
-    03.   Gmm_AuCntFail
-    04.   Gmm_AuthenAndCipherFailureMsgMake
-    05.   Gmm_AuthenAndCipherResponseMsgMake
-    06.   Gmm_Com_RcvAgentUsimAuthenticationCnf
-    07.   Gmm_IdentityResponseMsgMake
-    08.   Gmm_PagingInd_common
-    09.   Gmm_PtmsiReallocationCompleteMsgMake
-    10.   Gmm_RcvAgentUsimAuthenticationCnf
-    11.   Gmm_RcvAuthenAndCipherRejectMsg
-    12.   Gmm_RcvAuthenAndCipherRequestMsg
-    13.   Gmm_RcvGmmInformationMsg
-    14.   Gmm_RcvIdentityRequestMsg
-    15.   Gmm_RcvPtmsiReallocationCommandMsg
-    16.   Gmm_RcvRrmmPagingInd
-    17.   Gmm_RcvRrmmPagingInd_DeregInit
-    18.   Gmm_RcvRrmmPagingInd_RauInit
-    19.   Gmm_RcvRrmmPagingInd_RegNmlServ
-    20.   Gmm_RcvRrmmPagingInd_ServReqInit
-    21.   Gmm_Start_StopedRetransmissionTimer
-    22.   Gmm_Stop_RetransmissionTimer
-  History       :
-    1.  张志勇  2003.12.05  新规作成
-    2.  s46746 2006-03-08 根据问题单A32D02368修改
-    3.  l40632 2006-04-11 根据问题单A32D03039修改
-    4.  x51137 2006/4/13 A32D03056
-    5.  x51137 2006/4/28 A32D02889
-    6.  s46746 2006-05-08 根据问题单A32D03487修改
-    7.  日    期   : 2006年9月13日
-        作    者   : liurui id:40632
-        修改内容   : 根据问题单号：A32D05596
-    8.  日    期   : 2006年10月8日
-        作    者   : luojian id:60022475
-        修改内容   : 根据问题单号：A32D06583
 
-    9. x51137 2006/11/2 A32D06628
-   10.日    期  : 2006年11月25日
-      作    者  : luojian id:60022475
-      修改内容  : 问题单号:A32D06583
-   11.日    期  : 2007年01月13日
-      作    者  : s46746
-      修改内容  : 根据问题单号：A32D08326
-   12.日    期   : 2007年01月16日
-      作    者   : s46746
-      修改内容   : 根据问题单号：A32D08381
-   13.日    期   : 2007年05月11日
-      作    者   : luojian id:60022475
-      修改内容   : 问题单号:A32D10713
-   14.日    期   : 2007年06月05日
-      作    者   : s46746
-      修改内容   : 问题单号:A32D11127,向卡发鉴权请求时，判断是否正在等待卡回复鉴权响应，如果有，
-                   则清除等待标志，也不向卡发鉴权请求，如果没有，则向卡发送鉴权请求
-   15.日    期   : 2007年06月16日
-      作    者   : luojian id:60022475
-      修改内容   : 根据问题单号：A32D11635,gas上报GPRS RESUME FAILURE时,仍然通知
-                   RABM 恢复成功,如果存在PDP激活时,发起RAU,如果在这个RAU过程中系
-                   统消息指示RAI发生改变就不再发起RAU.
-   16.日    期   : 2007年07月27日
-      作    者   : luojian id:60022475
-      修改内容   : 问题单号:A32D12606,support GMM identity type:TMSI
-   17.日    期   : 2007年09月30日
-      作    者   : s46746
-      修改内容   : 问题单号:A32D12878,在register状态支持PTMSI的重分配处理
-   18.日    期   : 2007年10月13日
-      作    者   : s46746
-      修改内容   : 根据问题单号：A32D13060
-   19.日    期   : 2007年10月29日
-      作    者   : s46746
-      修改内容   : 根据问题单号：A32D13271
-   20.日    期   : 2007年11月22日
-      作    者   : s46746
-      修改内容   : 根据问题单号：A32D13475,修改异系统改变后指派的old TLLI和开机加密密钥为全0问题
-   21.日    期   : 2007年12月14日
-      作    者   : s46746
-      修改内容   : 问题单A32D13638，保证进行RAU之前不向网侧发送其它数据，并且RAU不成功，不恢复层2
-   22.日    期   : 2007年12月18日
-      作    者   : s46746
-      修改内容   : 问题单A32D13913，GMM在进行鉴权过程中，如果rand相同，也需要指
-                   示层2加密算法和密钥
-   23.日    期   : 2007年12月28日
-      作    者   : s46746
-      修改内容   : 根据问题单号：A32D13954,修改GMM在2G3过程中缓存消息机制
-   24.日    期   : 2008年07月18日
-      作    者   : s46746
-      修改内容   : 根据问题单号：AT2D04481,连续两次相同鉴权请求，不应被中断
-   25.日    期   : 2008年9月23日
-      作    者   : o00132663
-      修改内容   : 根据问题单号：AT2D05839,清除无用全局变量 ucRlsMsgFlg和状态GMM_REGISTERED_WAIT_FOR_RAU
-   26.日    期   : 2008年10月15日
-      作    者   : s46746
-      修改内容   : 根据问题单号：AT2D06216,GMM连续接收到两条相同鉴权请求时，
-                   卡回复第一条鉴权请求，GMM没有将鉴权结果发回到网络侧
-   27.日    期   : 2009年02月07日
-      作    者   : x00115505
-      修改内容   : 根据问题单号：AT2D06771,2G PS域鉴权，没有得到卡的回复之前
-                   又收到网侧同样的鉴权消息，MS直接回复鉴权响应。
-   28.日    期   : 2009年5月8日
-      作    者   : x00115505
-      修改内容   : AT2D11792,执行GCF测试用例8.2.2.50时由于GMM环回时不响应paging消息导致用例失败。
-   29.日    期   : 2009年6月30日
-      作    者   : s46746
-      修改内容   : AT2D12561,3G2情形GPRS下未启动加密，NAS指派层2加密算法后，层2对上行数据进行了加密
-   30.日    期   : 2009年08月24日
-      作    者   : x00115505
-      修改内容   : AT2D14023,测试GCF用例44.2.2.1.9失败
-   31.日    期   : 2010年3月2日
-      作    者   : o00132663
-      修改内容   : NAS R7协议升级项目，合入链路释放增强处理等特性
-*******************************************************************************/
 
 #include "GmmInc.h"
 
@@ -125,10 +11,8 @@
 #include "NasMmlCtx.h"
 #include "NasGmmSndOm.h"
 
-/* Added by l00167671 for NV拆分项目 , 2013-05-17, begin */
 #include "NasNvInterface.h"
 #include "TafNvInterface.h"
-/* Added by l00167671 for NV拆分项目 , 2013-05-17, end*/
 #include "NasUsimmApi.h"
 #ifdef  __cplusplus
   #if  __cplusplus
@@ -145,19 +29,7 @@
 
 /*lint -save -e958 */
 
-/*******************************************************************************
-  Module   : Gmm_RcvRrmmPagingInd
-  Function : 接收到RRMM_PAGING_IND原语后的处理
-  Input    : VOS_VOID *pMsg    :RRMM_PAGING_IND原语首地址
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1. 张志勇  2003.12.08  新版作成
-    2.日    期   : 2012年2月15日
-      作    者   : w00166186
-      修改内容   : CSFB&PPAC&ETWS&ISR 开发
-*******************************************************************************/
+
 VOS_VOID Gmm_RcvRrmmPagingInd(
                           VOS_VOID *pMsg                                            /* RRMM_PAGING_IND原语首地址                */
                           )
@@ -191,19 +63,7 @@ VOS_VOID Gmm_RcvRrmmPagingInd(
     return;
 }
 
-/*******************************************************************************
-  Module   : Gmm_PagingInd_common
-  Function : 接收到RRMM_PAGING_IND原语后的一些公共处理
-  Input    : 无
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1. 张志勇  2003.12.08  新版作成
-    2.日    期   : 2012年2月15日
-      作    者   : w00166186
-      修改内容   : CSFB&PPAC&ETWS&ISR 开发
-*******************************************************************************/
+
 VOS_VOID Gmm_PagingInd_common(VOS_VOID)
 {
     if (GMM_AGENT_USIM_AUTHENTICATION_CNF_FLG
@@ -269,23 +129,7 @@ VOS_VOID Gmm_Attach_Prepare(VOS_VOID)
     g_GmmReqCnfMng.ucCnfMask = 0;                                               /* 等待cnf的标志清为0                       */
 }
 
-/*******************************************************************************
-  Module   : Gmm_RcvRrmmPagingInd_DeregInit
-  Function : 在GMM-DEREGISTERED-INITIATED状态下，收到RRMM_PAGING_IND原
-             语后的处理
-  Input    : RRMM_PAGING_IND_STRU  *ptr    :RRMM_PAGING_IND原语首地址
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1. 张志勇  2003.12.08  新版作成
-    2.日    期   : 2006年12月5日
-      作    者   : luojian 60022475
-      修改内容   : Maps3000接口修改
-    3.日    期   : 2012年2月15日
-      作    者   : w00166186
-      修改内容   : CSFB&PPAC&ETWS&ISR 开发
-*******************************************************************************/
+
 VOS_VOID Gmm_RcvRrmmPagingInd_DeregInit(
                                     RRMM_PAGING_IND_STRU  *ptr                  /* RRMM_PAGING_IND原语首地址                */
                                     )
@@ -351,20 +195,7 @@ VOS_VOID Gmm_RcvRrmmPagingInd_DeregInit(
     return;
 }
 
-/*******************************************************************************
-  Module   : Gmm_RcvRrmmPagingInd_RauInit
-  Function : 在GMM-ROUTING-AREA-UPDATING-INITIATED状态下，收到
-             RRMM_PAGING_IND原语后的处理
-  Input    : RRMM_PAGING_IND_STRU *ptr    :RRMM_PAGING_IND原语首地址
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1. 张志勇  2003.12.08  新版作成
-    2.  日    期   : 2006年12月5日
-        作    者   : luojian 60022475
-        修改内容   : Maps3000接口修改
-*******************************************************************************/
+
 VOS_VOID Gmm_RcvRrmmPagingInd_RauInit(
                                   RRMM_PAGING_IND_STRU *ptr                     /* RRMM_PAGING_IND原语首地址                */
                                   )
@@ -405,20 +236,7 @@ VOS_VOID Gmm_RcvRrmmPagingInd_RauInit(
     return;
 }
 
-/*******************************************************************************
-  Module   : Gmm_RcvRrmmPagingInd_ServReqInit
-  Function : 在GMM-SERVICE-REQUEST-INITIATED状态下，收到RRMM_PAGING_IND
-             原语后的处理
-  Input    : 无
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1. 张志勇  2003.12.08  新版作成
-    2.  日    期   : 2006年12月5日
-        作    者   : luojian 60022475
-        修改内容   : Maps3000接口修改
-*******************************************************************************/
+
 VOS_VOID Gmm_RcvRrmmPagingInd_ServReqInit(
                                      RRMM_PAGING_IND_STRU  *ptr
                                      )
@@ -458,27 +276,7 @@ VOS_VOID Gmm_RcvRrmmPagingInd_ServReqInit(
 
     return;
 }
-/*******************************************************************************
-  Module   : Gmm_RcvRrmmPagingInd_RegNmlServ
-  Function : 在GMM-REGISTERED.NORMAL-SERVICE状态下，收到RRMM_PAGING_IND
-             原语后的处理
-  Input    : RRMM_PAGING_IND_STRU  *ptr    :RRMM_PAGING_IND原语首地址
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1. 张志勇  2003.12.08  新版作成
-    2. 张志勇  2005.02.21  MM_MT_BUG_005对应
-    3.  日    期   : 2006年12月5日
-        作    者   : luojian 60022475
-        修改内容   : Maps3000接口修改
-    4.  日    期   : 2010年11月20日
-        作    者   : w00166186
-        修改内容   : DTS2010111600353
-    5.  日    期   : 2012年2月15日
-        作    者   : w00166186
-        修改内容   : CSFB&PPAC&ETWS&ISR 开发
-*******************************************************************************/
+
 VOS_VOID Gmm_RcvRrmmPagingInd_RegNmlServ(
                                      RRMM_PAGING_IND_STRU *ptr                  /* RRMM_PAGING_IND原语首地址                */
                                      )
@@ -592,41 +390,15 @@ VOS_VOID Gmm_RcvRrmmPagingInd_RegNmlServ(
     return;
 }
 
-/*******************************************************************************
-  Module   : Gmm_RcvAgentUsimAuthenticationCnf
-  Function : 收到AGENT_USIM_AUTHENTICATION_CNF后的处理
-  Input    : VOS_VOID *pMsg :AGENT_USIM_AUTHENTICATION_CNF_STRU原语首地址
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1.张志勇  2003.12.08  新版作成
-    2.日    期  : 2011年03月30日
-      作    者  : 欧阳飞
-      修改内容  : DTS2011032802556,网络异常，连续发送鉴权请求消息，导致鉴权失败，卡无效。
-    3.日    期  : 2013年11月30日
-      作    者  : l65478
-      修改内容  : DTS2013121919477,连续收到网络的两条鉴权消息,网络把第一条消息的响应作为第二条请求的响应,导致鉴权失败
-    4.日    期  : 2013年7月22日
-      作    者  : y00245242
-      修改内容  : 适配新的USIM接口
 
-	5.日    期  :2014年01月09日
-      作    者  :l65478
-      修改内容  :DTS2014010704608:第一次鉴权响应和网络发起的第二次鉴权请求冲突
-*******************************************************************************/
 VOS_VOID Gmm_RcvAgentUsimAuthenticationCnf(
                                        VOS_VOID *pMsg
                                        )
 {
-/* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-22, begin */
     USIMM_AUTHENTICATION_CNF_STRU *ptr;
-/* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-22, end */
 
 
-/* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-22, begin */
     ptr = (USIMM_AUTHENTICATION_CNF_STRU *)pMsg;
-/* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-22, end */
 
     NAS_GMM_LogAuthInfo((VOS_UINT8)ptr->stCmdResult.ulSendPara, g_GmmAuthenCtrl.ucOpId);
 
@@ -651,26 +423,7 @@ VOS_VOID Gmm_RcvAgentUsimAuthenticationCnf(
     return;
 }
 
-/*******************************************************************************
-  Module   : Gmm_Com_RcvAgentUsimAuthenticationCnf
-  Function : 收到AGENT_USIM_AUTHENTICATION_CNF的公共处理
-  Input    : AGENT_USIM_AUTHENTICATION_CNF_STRU *ptr
-            :AGENT_USIM_AUTHENTICATION_CNF_STRU原语首地址
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1.张志勇  2003.12.08  新版作成
-    2.张志勇  2004.10.23  AGENT接口变更对应
-    3.张志勇  2005.02.03  指针参数修改为数组格式
-    4.liurui  2006.01.13  增加GSM鉴权失败处理
-    5.日    期  : 2013年11月15日
-      作    者  : m00217266
-      修改内容  : sim卡鉴权失败原因上报
-    6.日    期   : 2013年07月22日
-      作    者   : y00245242
-      修改内容   : 为开发VOLTE，适配新的USIM接口
-*******************************************************************************/
+
 VOS_VOID Gmm_Com_RcvAgentUsimAuthenticationCnf(
             USIMM_AUTHENTICATION_CNF_STRU         *ptr                                /* 原语指针                                 */
                                            )
@@ -681,7 +434,6 @@ VOS_VOID Gmm_Com_RcvAgentUsimAuthenticationCnf(
     ucCause             = NAS_MML_REG_FAIL_CAUSE_NULL;
     enUsimAuthFailVaule = NAS_MML_SIM_AUTH_FAIL_NULL;
 
-    /* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-22, begin */
     if ((USIMM_3G_AUTH != ptr->enAuthType)
      && (USIMM_2G_AUTH != ptr->enAuthType))
     {
@@ -689,9 +441,7 @@ VOS_VOID Gmm_Com_RcvAgentUsimAuthenticationCnf(
                "Gmm_Com_RcvAgentUsimAuthenticationCnf:WARNING: authentication is not expected");
         return;
     }
-    /* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-22, end */
 
-    /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-23, begin */
     if (USIMM_AUTH_UMTS_SUCCESS == ptr->enResult)
     {/*UMTS鉴权成功*/
         GMM_CasRcvUsimCnfUmtsSucc(&(ptr->uCnfData.stTELECnf));
@@ -713,7 +463,6 @@ VOS_VOID Gmm_Com_RcvAgentUsimAuthenticationCnf(
     {
         Gmm_AuCntFail();
     }
-    /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-23, end */
 
     switch (ptr->enResult)
     {
@@ -757,33 +506,7 @@ VOS_VOID Gmm_Com_RcvAgentUsimAuthenticationCnf(
 
 /*lint -e438 -e830*/
 
-/*******************************************************************************
-  Module   : Gmm_RcvPtmsiReallocationCommandMsg
-  Function : 收到P_TMSI reallocation消息后的处理
-  Input    : NAS_MSG_STRU *pMsg :P_TMSI reallocation 消息首地址
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1. 张志勇  2003.12.09  新版作成
-  2. 张志勇  2005.04.07  NAS_IT_BUG_049对应
-  3. x51137 2006/4/28 A32D02889
-  2.日    期   : 2011年7月27日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-  3.日    期   : 2012年3月3日
-    作    者   : z00161729
-    修改内容   : V7R1 C50 支持ISR修改,T3312启动停止超时均需通知L
-  4.日    期   : 2013年08月23日
-    作    者   : f00179208
-    修改内容   : ErrLog&FTM项目,PTMSI发生改变时上报给OM
-  5.日    期   : 2014年6月17日
-    作    者   : z00234330
-    修改内容   : PCINT清理
-  6.日    期   : 2015年2月6日
-    作    者   : h00313353
-    修改内容   : USIMM卡接口调整
-*******************************************************************************/
+
 VOS_VOID Gmm_RcvPtmsiReallocationCommandMsg(
                                         NAS_MSG_FOR_PCLINT_STRU *pMsg
                                         )
@@ -832,7 +555,6 @@ VOS_VOID Gmm_RcvPtmsiReallocationCommandMsg(
     ucPtmsiSigFlg = GMM_FALSE;
     pucMsgTemp = pMsg->aucNasMsg;                                               /* 得到空中接口消息首地址                   */
     pucRaiTemp = pucMsgTemp+8;
-    /* Modified by z00234330 for PCLINT清理, 2014-06-24, begin */
     RaiTemp.Lai.PlmnId.aucMccDigit[0] = (VOS_UINT8)((*pucRaiTemp) & 0x0F);
     RaiTemp.Lai.PlmnId.aucMccDigit[1] = (VOS_UINT8)((*pucRaiTemp) >> 4);
     pucRaiTemp++;
@@ -862,7 +584,6 @@ VOS_VOID Gmm_RcvPtmsiReallocationCommandMsg(
 
     RaiTemp.ucRac = *pucRaiTemp;
 
-    /* Modified by z00234330 for PCLINT清理, 2014-06-24, end */
 
     if(GMM_MSG_LEN_P_TMSI_REALLOCATION_COMMAND != pMsg->ulNasMsgSize)
     {
@@ -962,20 +683,7 @@ VOS_VOID Gmm_RcvPtmsiReallocationCommandMsg(
 }
 /*lint +e438 +e830*/
 
-/*******************************************************************************
-  Module   : Gmm_Auth_Request_Option_Ie_Check
-  Function : 对Authentication and Ciphering Request消息中的可选项进行检查
-  Input    : NAS_MSG_STRU *pMsg
-             VOS_UINT8     ucIeOffset
-  Output   : 无
-  NOTE     : 无
-  Return   : GMM_SUCCESS   检查成功
-             GMM_FAILURE   检查失败
-  History  :
-    1.日    期 : 2009年06月10日
-      作    者 : x00115505
-      修改内容 : Created
-*******************************************************************************/
+
 VOS_UINT8 Gmm_Auth_Request_Option_Ie_Check(NAS_MSG_FOR_PCLINT_STRU *pMsg,
                                                            VOS_UINT8 **ppRand,
                                                            VOS_UINT8 *pucRandFlag,
@@ -1132,32 +840,7 @@ VOS_VOID Gmm_RcvAuthenAndCipherRequestMsg_No_Rand_Handling(VOS_VOID)
     return;
 }
 
-/*******************************************************************************
-  Module   : Gmm_RcvAuthenAndCipherRequestMsg_Umts_Auth_Handling
-  Function : Gmm_RcvAuthenAndCipherRequestMsg降复杂度: Umts_Auth的处理
-  Input    : VOS_UINT8  ucCksnFlag,
-             VOS_UINT8 *pCksn,
-             VOS_UINT8 *pAutn
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1.欧阳飞  2009.06.11  新版作成
-  2.日    期   : 2011年7月14日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
-  3.日    期  : 2011年03月30日
-    作    者  : 欧阳飞
-    修改内容  : DTS2011032802556,网络异常，连续发送鉴权请求消息，导致鉴权失败，卡无效。
-  4.日    期  : 2011年05月13日
-    作    者  : 欧阳飞
-    修改内容  : DTS2011051304471,RAU 鉴权过程中，网络下发鉴权请求后，在卡回复鉴权结果
-                  前，发生W到G重选再回退，重新驻留W小区后，网络重新下发鉴权消息，GMM未向
-                  卡发送鉴权请求，而将老的鉴权结果回复网络，导致鉴权失败，卡无效。
- 5.日    期   : 2012年12月25日
-   作    者   : L65478
-   修改内容   : DTS2012122900226,G下定时器超时根据失败次数决定是否禁止当前小区
-*******************************************************************************/
+
 VOS_VOID Gmm_RcvAuthenAndCipherRequestMsg_Umts_Auth_Handling(
                                                   VOS_UINT8  ucCksnFlag,
                                                   VOS_UINT8 *pCksn,
@@ -1217,45 +900,7 @@ VOS_VOID Gmm_RcvAuthenAndCipherRequestMsg_Umts_Auth_Handling(
     return;
 }
 
-/*******************************************************************************
-  Module   : Gmm_RcvAuthenAndCipherRequestMsg_Gsm_Auth_Handling
-  Function : Gmm_RcvAuthenAndCipherRequestMsg降复杂度: Gsm_Auth的处理
-  Input    : VOS_UINT8  ucCksnFlag,
-             VOS_UINT8 *pCksn
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1. 欧阳飞  2009.06.11  新版作成
-    2.日    期  : 2011年03月30日
-      作    者  : 欧阳飞
-      修改内容  : DTS2011032802556,网络异常，连续发送鉴权请求消息，导致鉴权失败，卡无效。
-    3.日    期  : 2011年05月13日
-      作    者  : 欧阳飞
-      修改内容  : DTS2011051304471,RAU 鉴权过程中，网络下发鉴权请求后，在卡回复鉴权结果
-                  前，发生W到G重选再回退，重新驻留W小区后，网络重新下发鉴权消息，GMM未向
-                  卡发送鉴权请求，而将老的鉴权结果回复网络，导致鉴权失败，卡无效。
-    4.日    期   : 2012年12月25日
-      作    者   : L65478
-      修改内容   : DTS2012122900226,G下定时器超时根据失败次数决定是否禁止当前小区
-    5.日    期  : 2012年12月26日
-      作    者  : 张鹏 id:00214637
-      修改内容  : USIM对外接口函数变更的处理 ，Client ID 到 PID的转换处理。
-    6.日    期  : 2013年6月4日
-      作    者  : w00242748
-      修改内容  : NAS_SndUsimmAuthReq修改为NAS_USIMMAPI_AuthReq，后者会根据当前模式自动
-                  适配
-    7.日    期  : 2013年11月30日
-      作    者  : l65478
-      修改内容  : DTS2013121919477,连续收到网络的两条鉴权消息,网络把第一条消息的响应作为第二条请求的响应,导致鉴权失败
 
-    8.日    期  : 2014年1月3日
-      作    者  : s00261364
-      修改内容  : mm模块Converity告警消除
-    9.日    期   : 2014年2月19日
-      作    者   : s00217060
-      修改内容   : coverity清理
-*******************************************************************************/
 VOS_VOID Gmm_RcvAuthenAndCipherRequestMsg_Gsm_Auth_Handling(
                                                   VOS_UINT8  ucCksnFlag,
                                                   VOS_UINT8 *pCksn)
@@ -1317,10 +962,8 @@ VOS_VOID Gmm_RcvAuthenAndCipherRequestMsg_Gsm_Auth_Handling(
         {
             g_GmmAuthenCtrl.ucResStoredFlg = GMM_FALSE;
 
-            /* Modified by s00217060 for coverity清理, 2014-02-17, begin */
             g_GmmAuthenCtrl.ucOpId = (VOS_UINT8)((ucTempOpId) % 255);
             g_GmmAuthenCtrl.ucOpId++;
-            /* Modified by s00217060 for coverity清理, 2014-02-17, end */
 
             NAS_USIMMAPI_AuthReq( WUEPS_PID_GMM,
                            AUTHENTICATION_REQ_GSM_CHALLENGE,
@@ -1336,26 +979,7 @@ VOS_VOID Gmm_RcvAuthenAndCipherRequestMsg_Gsm_Auth_Handling(
     return;
 }
 
-/*******************************************************************************
-  Module   : Gmm_RcvAuthenAndCipherRequestMsg_Auth_Fail_Handling
-  Function : Gmm_RcvAuthenAndCipherRequestMsg降复杂度: Auth Fail的处理
-  Input    : VOS_UINT8 ucGmmAuthType
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1. 欧阳飞  2009.06.11  新版作成
-  2.  日    期  : 2011年03月30日
-      作    者  : 欧阳飞
-      修改内容  : DTS2011032802556,网络异常，连续发送鉴权请求消息，导致鉴权失败，卡无效。
-  3.  日    期   : 2012年8月25日
-      作    者   : m00217266
-      修改内容   : 删除GMM_SaveErrCode，添加Gmm_Save_Detach_Cause，
-                  保存导致Attach失败的原因值
-  4.  日    期  :2014年01月09日
-      作    者  :l65478
-      修改内容  :DTS2014010704608:第一次鉴权响应和网络发起的第二次鉴权请求冲突
-*******************************************************************************/
+
 VOS_VOID Gmm_RcvAuthenAndCipherRequestMsg_Auth_Fail_Handling(
                                                   VOS_UINT8 ucGmmAuthType)
 {
@@ -1398,19 +1022,7 @@ VOS_VOID Gmm_RcvAuthenAndCipherRequestMsg_Auth_Fail_Handling(
 }
 
 
-/*******************************************************************************
-  Module   : Gmm_RcvAuthenAndCipherRequestMsg_T3314_Handling
-  Function : Gmm_RcvAuthenAndCipherRequestMsg降复杂度: T3314的处理
-  Input    : VOS_VOID
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1. 欧阳飞  2009.06.11  新版作成
-    2.日    期   : 2012年3月3日
-      作    者   : z00161729
-      修改内容   : V7R1 C50 支持ISR修改,T3312启动停止超时均需通知L
-*******************************************************************************/
+
 VOS_VOID Gmm_RcvAuthenAndCipherRequestMsg_T3314_Handling(VOS_VOID)
 {
     if (GMM_TRUE == GMM_IsCasGsmMode())
@@ -1440,6 +1052,41 @@ VOS_VOID Gmm_RcvAuthenAndCipherRequestMsg_T3314_Handling(VOS_VOID)
 
 }
 
+
+VOS_UINT32 NAS_GMM_IsPowerOffTriggeredDetach(VOS_VOID)
+{
+    if ((GMM_DETACH_NORMAL_POWER_OFF == g_GmmGlobalCtrl.ucSpecProc)
+     || (GMM_DETACH_COMBINED_POWER_OFF == g_GmmGlobalCtrl.ucSpecProc))
+    {
+        NAS_NORMAL_LOG(WUEPS_PID_GMM, "NAS_GMM_IsPowerOffTriggeredDetach: return True");
+        return VOS_TRUE;
+    }
+
+    return VOS_FALSE;
+}
+
+
+VOS_UINT32 NAS_GMM_IsNeedIgnoreAuthenAndCipherReq(VOS_VOID)
+{
+    /* 当前为非POWER OFF触发的DETACH状态下需要处理鉴权请求 */
+    if ((VOS_FALSE == NAS_GMM_IsPowerOffTriggeredDetach())
+     && (GMM_DEREGISTERED_INITIATED == g_GmmGlobalCtrl.ucState))
+    {
+        NAS_NORMAL_LOG(WUEPS_PID_GMM, "NAS_GMM_IsNeedIgnoreAuthenAndCipherReq: Not power off triggered detach and GMM_DEREGISTERED_INITIATED, return False");
+        return VOS_FALSE;
+    }
+
+    /* 当前状态为去附着且在发起注册状态 */
+    if ((GMM_STATUS_DETACHED == g_MmSubLyrShare.GmmShare.ucAttachSta)
+     && (GMM_REGISTERED_INITIATED != g_GmmGlobalCtrl.ucState))
+    {
+        NAS_NORMAL_LOG(WUEPS_PID_GMM, "NAS_GMM_IsNeedIgnoreAuthenAndCipherReq: GMM_STATUS_DETACHED and GMM_REGISTERED_INITIATED, return False");
+        return VOS_TRUE;
+    }
+
+    return VOS_FALSE;
+}
+
 /*******************************************************************************
   Module   : Gmm_RcvAuthenAndCipherRequestMsg_Preprocess
   Function : Gmm_RcvAuthenAndCipherRequestMsg降复杂度: 消息预处理
@@ -1465,8 +1112,7 @@ VOS_UINT8 Gmm_RcvAuthenAndCipherRequestMsg_Preprocess(
         return GMM_FAILURE;
     }
 
-    if ((GMM_STATUS_DETACHED == g_MmSubLyrShare.GmmShare.ucAttachSta)
-        && (GMM_REGISTERED_INITIATED != g_GmmGlobalCtrl.ucState))
+    if (VOS_TRUE == NAS_GMM_IsNeedIgnoreAuthenAndCipherReq())
     {
         PS_NAS_LOG(WUEPS_PID_GMM, VOS_NULL, PS_LOG_LEVEL_WARNING, "Gmm_RcvAuthenAndCipherRequestMsg:WARNING: The check result of P-TMSI REALLOCATION is invalid AUTHENTICATION AND CIPHER REQUEST is not expected");
         return GMM_FAILURE;
@@ -1476,34 +1122,7 @@ VOS_UINT8 Gmm_RcvAuthenAndCipherRequestMsg_Preprocess(
 
 }
 
-/*******************************************************************************
-  Module   : Gmm_RcvAuthenAndCipherRequestMsg
-  Function : Authentication and ciphering request接收处理
-  Input    : NAS_MSG_STRU *pMsg :NAS消息首地址
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1. 张志勇  2003.12.09  新版作成
-    2. 张志勇  2005.03.18  NAS_IT_BUG_007对应
-    3. x51137        2006/4/13 A32D03056
-    3. x51137  2006/4/28 A32D02889
-    4.日    期  : 2006年11月25日
-      作    者  : luojian id:60022475
-      修改内容  : 问题单号:A32D06583
-    5.日    期  : 2007年01月13日
-      作    者  : s46746
-      修改内容  : 根据问题单号：A32D08326
-    6.日    期  : 2009年03月18日
-      作    者  : l65478
-      修改内容  : 根据问题单号：AT2D08671,数传状态下，W出服务区后，切到G，数传恢复失败，因为GMM没有配置LL加密算法
-    7.日    期  : 2011年03月30日
-      作    者  : 欧阳飞
-      修改内容  : DTS2011032802556,网络异常，连续发送鉴权请求消息，导致鉴权失败，卡无效。
-    8.日    期  : 2013年11月30日
-      作    者  : l65478
-      修改内容  : DTS2013121919477,连续收到网络的两条鉴权消息,网络把第一条消息的响应作为第二条请求的响应,导致鉴权失败
-*******************************************************************************/
+
 VOS_VOID Gmm_RcvAuthenAndCipherRequestMsg(
     NAS_MSG_FOR_PCLINT_STRU            *pMsg
 )
@@ -1667,43 +1286,7 @@ VOS_VOID Gmm_RcvAuthenAndCipherRequestMsg(
     return;
 }
 
-/*******************************************************************************
-  Module   : Gmm_RcvAuthenAndCipherRejectMsg
-  Function : 接收Authentication and ciphering reject消息的处理
-  Input    : NAS_MSG_STRU *pMsg :NAS消息首地址
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1. 张志勇  2003.12.09  新版作成
-    2.日    期   : 2007年01月16日
-      作    者   : s46746
-      修改内容   : 根据问题单号：A32D08381
-    3.日    期   : 2007年05月11日
-      作    者   : luojian id:60022475
-      修改内容   : 问题单号:A32D10713
-    4.日    期   : 2007年06月16日
-      作    者   : luojian id:60022475
-      修改内容   : 根据问题单号：A32D11635
-    5.日    期   : 2009年03月31日
-      作    者   : L65478
-      修改内容   : 根据问题单号：AT2D10529两次鉴权失败后没有释放RRC连接
-    6.日    期   : 2011年07月13日
-      作    者   : w00166186
-      修改内容   : V7R1 PHASE II ATTACH/DETACH调整
-    7.日    期   : 2011年10月8日
-      作    者   : s46746
-      修改内容   : V7R1 phase II,将EPLMN、RPLMN移到MM/GMM维护
-    8.日    期  : 2012年08月24日
-      作    者  : m00217266
-      修改内容  : 修改Gmm_SndSmEstablishCnf接口，添加原因值
-    9.日    期   : 2013年10月05日
-      作    者   : l65478
-      修改内容   : DTS2013092509860:GPRS detach过程被BG搜索终止后,GMM又自动发起了注册
-	10.日    期   : 2014年2月18日
-      作    者   : l00215384
-      修改内容   : DTS2014021006453，注册成功后鉴权拒绝计数清零
-*******************************************************************************/
+
 VOS_VOID Gmm_RcvAuthenAndCipherRejectMsg(
                                      NAS_MSG_FOR_PCLINT_STRU *pMsg
                                      )
@@ -1884,29 +1467,7 @@ VOS_VOID Gmm_RcvAuthenAndCipherRejectMsg(
     return;
 }
 
-/*******************************************************************************
-  Module   : Gmm_RcvIdentityRequestMsg
-  Function : 接收Identity Request消息的处理
-  Input    : NAS_MSG_STRU *pMsg :NAS消息首地址
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1. 张志勇  2003.12.09  新版作成
-  2. x51137 2006/4/28 A32D02889
-  3.日    期   : 2007年07月27日
-    作    者   : luojian id:60022475
-    修改内容   : 问题单号:A32D12606
-  4.日    期   : 2011年7月27日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-  5.日    期   : 2012年03月03日
-    作    者   : l65478
-    修改内容   : DTS2012020106640判断ID类型时应该是PTMSI而不是TMSI
-  6.日    期   : 2012年3月3日
-    作    者   : z00161729
-    修改内容   : V7R1 C50 支持ISR修改,T3312启动停止超时均需通知L
-*******************************************************************************/
+
 VOS_VOID Gmm_RcvIdentityRequestMsg(
                                NAS_MSG_FOR_PCLINT_STRU *pMsg
                                )
@@ -2013,22 +1574,7 @@ VOS_VOID Gmm_RcvIdentityRequestMsg(
     return;
 }
 
-/*******************************************************************************
-  Module   : Gmm_RcvGmmInformationMsg
-  Function : 接收information消息后的处理
-  Input    : NAS_MSG_STRU *pMsg :NAS消息首地址
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1. 张志勇  2003.12.09  新版作成
-    2.日    期   : 2011年10月08日
-      作    者   : s46746
-      修改内容   : V7R1 phase II高优先级状态机实现
-    3.日    期   : 2013年5月17日
-      作    者   : l00167671
-      修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-*******************************************************************************/
+
 VOS_VOID Gmm_RcvGmmInformationMsg(
     NAS_MSG_FOR_PCLINT_STRU             *pMsg
 )
@@ -2040,9 +1586,7 @@ VOS_VOID Gmm_RcvGmmInformationMsg(
     NAS_MML_OPERATOR_NAME_INFO_STRU                         stOldOperatorName;
     NAS_MML_OPERATOR_NAME_INFO_STRU                        *pstCurrOperatorName = VOS_NULL_PTR;
 
-    /* Added by l00167671 for NV拆分项目 , 2013-05-17, begin */
     NAS_MMC_NVIM_OPERATOR_NAME_INFO_STRU                    stNvimOperatorName;
-    /* Added by l00167671 for NV拆分项目 , 2013-05-17, begin */
 
     PS_MEM_SET(&stMmInfo, 0, sizeof(NAS_MM_INFO_IND_STRU));
 
@@ -2102,7 +1646,6 @@ VOS_VOID Gmm_RcvGmmInformationMsg(
         /* 如果消息解析后的网络名与之前保存的内容不同,需要写NV */
         if (0 != VOS_MemCmp(pstCurrOperatorName, &stOldOperatorName, sizeof(NAS_MML_OPERATOR_NAME_INFO_STRU)))
         {
-            /* Modified by l00167671 for NV拆分项目 , 2013-05-17, begin */
             PS_MEM_CPY(&stNvimOperatorName, pstCurrOperatorName, sizeof(stNvimOperatorName));
 
             if (NV_OK != NV_Write(en_NV_Item_Network_Name_From_MM_Info,
@@ -2111,7 +1654,6 @@ VOS_VOID Gmm_RcvGmmInformationMsg(
             {
                 NAS_WARNING_LOG(WUEPS_PID_GMM, "Gmm_RcvGmmInformationMsg:Write NV fail.");
             }
-            /* Modified by l00167671 for NV拆分项目 , 2013-05-17, end */
 
         }
     }
@@ -2156,22 +1698,7 @@ NAS_MSG_STRU *Gmm_PtmsiReallocationCompleteMsgMake(VOS_VOID)
     return ptrNasMsg;
 }
 
-/*******************************************************************************
-Module   : Gmm_AuthenAndCipherResponseMsgMake
-Function : 对AUTHENTICATION AND CIPHERING RESPONSE进行封装
-Input    : VOS_UINT8 ucResFlg :0 时，表示不需回传res；非空时，表示需回传res
-Output   : 无
-NOTE     : 无
-Return   : 无
-History  :
-   1.张志勇  2003.12.09  新版作成
-  2.日    期   : 2012年05月25日
-    作    者   : w00166186
-    修改内容   : DTS2012052108400,IMEI填写错误
- 3.日    期   : 2014年6月17日
-   作    者   : z00234330
-   修改内容   : PCINT清理
-*******************************************************************************/
+
 NAS_MSG_STRU *Gmm_AuthenAndCipherResponseMsgMake(
                                                  VOS_UINT8 ucResFlg                 /* 0:表示不需回传res;1:表示需回传res        */
                                                  )
@@ -2237,7 +1764,6 @@ NAS_MSG_STRU *Gmm_AuthenAndCipherResponseMsgMake(
     ucTempLen = 3;                                                              /* 指向Authentication Response parameter域  */
     if (GMM_AUTH_AND_CIPH_RES_NEEDED == ucResFlg)
     {
-        /* Modified by z00234330 for PCLINT清理, 2014-06-24, begin */
         /*lint -e961*/
         ptrNasMsg->aucNasMsg[ucTempLen++] =
             GMM_IEI_AUTHENTICATION_PARAMETER_RESPONSE;                          /* 对IEI赋值                                */
@@ -2298,7 +1824,6 @@ NAS_MSG_STRU *Gmm_AuthenAndCipherResponseMsgMake(
             }
         }
     }
-    /* Modified by z00234330 for PCLINT清理, 2014-06-24, begin */
 
     return (NAS_MSG_STRU *)ptrNasMsg;
 }
@@ -2393,32 +1918,7 @@ NAS_MSG_STRU *Gmm_AuthenAndCipherFailureMsgMake(
     return (NAS_MSG_STRU *)ptrNasMsg;
 }
 
-/*******************************************************************************
-  Module   : Gmm_IdentityResponseMsgMake
-  Function : 对Identity response进行封装
-  Input    : UNCHAR IdType    :bit  3 2 1
-                                    001: IMSI ，不超过15 digits
-                                    010: IMEI ，IMEI由15 digits组成
-                                    011: IMEISV，IMEISV由16 digits组成
-                                    100: TMSI,8 digits
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1.张志勇  2003.12.09  新版作成
-  2.日    期   : 2007年07月27日
-    作    者   : luojian id:60022475
-    修改内容   : 问题单号:A32D12606
-  3.日    期   : 2011年7月27日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-  4.日    期   : 2012年03月03日
-    作    者   : l65478
-    修改内容   : DTS2012020106640判断ID类型时应该是PTMSI而不是TMSI
-  5.日    期   : 2012年05月17日
-    作    者   : l65478
-    修改内容   : DTS2012051700882,IMEI错误
-*******************************************************************************/
+
 NAS_MSG_STRU *Gmm_IdentityResponseMsgMake(
                                           VOS_UINT8 IdType                          /* 对Identity request 要求的ID              */
                                           )
@@ -2620,22 +2120,7 @@ VOS_VOID Gmm_Stop_RetransmissionTimer(VOS_VOID)
     }
 }
 
-/*******************************************************************************
-  Module   : Gmm_AuCntFail
-  Function : 当GMM Authentication attempt counter等于3时的处理
-  Input    : 无
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1.张志勇  2003.12.11  新版作成
-    2.日    期   : 2009年03月31日
-      作    者   : L65478
-      修改内容   : 根据问题单号：AT2D10529两次鉴权失败后没有释放RRC连接
-    3.日    期   : 2012年4月20日
-      作    者   : l00130025
-      修改内容   : DTS2012032004389，Netork连续3次被Ms Auth Rej或T3318/T3320超时时，没有通知GAS Bar掉当前小区
-*******************************************************************************/
+
 VOS_VOID Gmm_AuCntFail(VOS_VOID)
 {
     g_GmmAuthenCtrl.ucAuthenAttmptCnt = 0;                                      /* GMM Authentication attempt counter清0    */
@@ -2651,28 +2136,7 @@ VOS_VOID Gmm_AuCntFail(VOS_VOID)
     Gmm_Start_StopedRetransmissionTimer();                                      /* 存在被停止的retransmission timer将其启动 */
 }
 
-/*******************************************************************************
-  Module   : Gmm_Au_MacAutnWrong
-  Function : 当MAC错误或AUTN不存在时的处理
-  Input    : VOS_UINT8  ucWrongCause    ：错误原因
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1.张志勇  2003.12.11  新版作成
-    2.日    期   : 2006年12月5日
-      作    者   : luojian 60022475
-      修改内容   : Maps3000接口修改
-    3.日    期   : 2009年03月31日
-      作    者   : L65478
-      修改内容   : 根据问题单号：AT2D10529两次鉴权失败后没有释放RRC连接
-    4.日    期   : 2012年4月20日
-      作    者   : l00130025
-      修改内容   : DTS2012032004389，Netork连续3次被Ms Auth Rej或T3318/T3320超时时，没有通知GAS Bar掉当前小区
-    5.日    期  :2014年01月09日
-      作    者  :l65478
-      修改内容  :DTS2014010704608:第一次鉴权响应和网络发起的第二次鉴权请求冲突
-*******************************************************************************/
+
 VOS_VOID Gmm_Au_MacAutnWrong(
                          VOS_UINT8  ucWrongCause                                    /* 错误原因                                 */
                          )
@@ -2723,20 +2187,7 @@ VOS_VOID Gmm_Au_MacAutnWrong(
      }
 }
 
-/*******************************************************************************
-Module   : Gmm_RcvPtmsiRelocCmdIEChk
-Function : 收到P_TMSI reallocation消息中的TE有效性检查
-Input    : NAS_MSG_STRU *pMsg
-Output   : 无
-NOTE     : 无
-Return   : 无
-History  :
-    1. 张志勇     2005.01.27  新版作成
-    2. 张志勇  2005.03.26  NAS_IT_BUG_033对应
-    3.日    期   : 2007年07月27日
-      作    者   : luojian id:60022475
-      修改内容   : 问题单号:A32D12606
-*******************************************************************************/
+
 VOS_UINT8 Gmm_RcvPtmsiRelocCmdIEChk(
                                 NAS_MSG_FOR_PCLINT_STRU *pMsg
                                 )
@@ -2778,28 +2229,7 @@ VOS_UINT8 Gmm_RcvPtmsiRelocCmdIEChk(
     return GMM_TRUE;
 }
 
-/*****************************************************************************
- Prototype      :  GMM_GetSecurityInfo
- Description    :  查询GMM的安全上下文信息函数
- Input          :
- Output         : ---
- Return Value   : 1     返回成功
-                  0     返回失败
- Calls          : ---
- Called By      :
 
- History        : ---
-  1.Date        : ---
-    Author      : ---
-    Modification: ---
-
-  2.日    期   : 2011年7月12日
-    作    者   : zhoujun 40661
-    修改内容   : 修改SIM保存内容的判断
-  3.日    期   : 2011年7月27日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-*****************************************************************************/
 VOS_VOID GMM_GetSecurityInfo(MM_CSPS_INFO_ST *pPsInfo)
 {
 
@@ -2876,21 +2306,7 @@ VOS_UINT8 Gmm_GetCurrCipherInfo(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : GMM_GetTlliInfo
- 功能描述  : 获取当前的TLLI值
- 输入参数  : 无
- 输出参数  : pulNewTlli
-             pulOldTlli
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月30日
-    作    者   : j00174725
-    修改内容   : 问题单修改
-*******************************************************************************/
 VOS_VOID GMM_GetTlliInfo(VOS_UINT32 *pulNewTlli, VOS_UINT32 *pulOldTlli)
 {
     VOS_UINT8                          *pucPtmsiAddr        = VOS_NULL_PTR;
@@ -2988,21 +2404,7 @@ VOS_VOID GMM_GetTlliInfo(VOS_UINT32 *pulNewTlli, VOS_UINT32 *pulOldTlli)
 }
 
 
-/*******************************************************************************
-Module   : Gmm_ClearLlcData
-Function : GMM在DETACH或关机时，需要清除LLC数据
-Input    : 无
-Output   : 无
-NOTE     : 无
-Return   : 无
-History  :
-  1.日    期   : 2009年05月14日
-    作    者   : l65478
-    修改内容   : 问题单号:AT2D06770
-  2.日    期   : 2009年06月30日
-    作    者   : l65478
-    修改内容   : 问题单：AT2D12655,增加清除LLC数据类型的处理
-*******************************************************************************/
+
 VOS_VOID Gmm_ClearLlcData(LL_GMM_CLEAR_DATA_TYPE_ENUM_UINT8 ucClearDataType)
 {
     if (GMM_TRUE == gstGmmCasGlobalCtrl.ucTlliAssignFlg)
@@ -3014,18 +2416,7 @@ VOS_VOID Gmm_ClearLlcData(LL_GMM_CLEAR_DATA_TYPE_ENUM_UINT8 ucClearDataType)
     }
 }
 
-/*******************************************************************************
-Module   : NAS_GMM_SuspendLlcForInterSys
-Function : GMM在驻留W后，需要挂起层2，在重新驻留GSM后恢复
-Input    : 无
-Output   : 无
-NOTE     : 无
-Return   : 无
-History  :
-  1.日    期   : 2010年07月20日
-    作    者   : s46746
-    修改内容   : 问题单号:DTS2010073001405,G2W异系统重选后，不向层2发送去指派而是挂起层2
-*******************************************************************************/
+
 VOS_VOID NAS_GMM_SuspendLlcForInterSys()
 {
     if ((GMM_TRUE == gstGmmCasGlobalCtrl.ucTlliAssignFlg)
@@ -3039,18 +2430,7 @@ VOS_VOID NAS_GMM_SuspendLlcForInterSys()
     }
 }
 
-/*******************************************************************************
-Module   : Gmm_ComGprsCipherHandle
-Function : GMM对GPRS下加密的公共处理
-Input    : 无
-Output   : 无
-NOTE     : 无
-Return   : 无
-History  :
-  1.日    期   : 2009年06月26日
-    作    者   : s46746
-    修改内容   : 问题单号:AT2D12561
-*******************************************************************************/
+
 VOS_VOID Gmm_ComGprsCipherHandle()
 {
     if (0 != gstGmmCasGlobalCtrl.ucGprsCipherAlg)
@@ -3068,32 +2448,7 @@ VOS_VOID Gmm_ComGprsCipherHandle()
     GMM_AssignGsmKc();
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_UpdateAttemptCounterForSpecialCause
- 功能描述  : 检测原因值是否需要更新Attemp Counter值
- 输入参数  : VOS_UINT8  ucUpdateAttachCounter :
-                            VOS_TRUE: Attach流程, VOS_FALSE: RAU流程
-             VOS_UINT32 ulGmmCause : 原因值
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-
-  2.日    期   : 2010年11月18日
-    作    者   : zhoujun /40661
-    修改内容   : 问题单DTS2010111601893,收到拒绝原因值为102-110的
-                 处理应该和原因值111的处理一致
-
-  3.日    期   : 2011年2月11日
-    作    者   : w00176964
-    修改内容   : DTS2012021003156:GMM注册被拒原因值为4时，处理与协议不一致，发起
-                 无效attach或RAU请求
-*****************************************************************************/
 VOS_VOID NAS_GMM_UpdateAttemptCounterForSpecialCause(
     VOS_UINT8                           ucUpdateAttachCounter,
     VOS_UINT32                          ulGmmCause
@@ -3145,21 +2500,7 @@ VOS_VOID NAS_GMM_UpdateAttemptCounterForSpecialCause(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_CheckCauseToStartT3340
- 功能描述  : 检测拒绝原因值，判断是否需要启动T3340
- 输入参数  : VOS_UINT8 ucCause : 原因值
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月15日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_GMM_CheckCauseToStartT3340(
     VOS_UINT8                           ucCause
 )
@@ -3187,21 +2528,7 @@ VOS_VOID NAS_GMM_CheckCauseToStartT3340(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_HandleDelayedEvent
- 功能描述  : 处理follow on事件或者缓存的事件
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月16日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_GMM_HandleDelayedEvent( VOS_VOID )
 {
     if (GMM_TIMER_T3340_FLG == (g_GmmTimerMng.ulTimerRunMask & GMM_TIMER_T3340_FLG))
@@ -3229,27 +2556,7 @@ VOS_VOID NAS_GMM_HandleDelayedEvent( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_AsEstReq
- 功能描述  : 通知接入层发送Est_Req
- 输入参数  :  ulOpId       - 操作ID
-              ucCnDomain   - 域枚举
-              ulEstCause   - 建链原因值
-              pIdnnsInfo   - 标识
-              pstPlmnId    - 当前网络号
-              ulSize       - 消息大小
-              pFisrstMsg   - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年2月21日
-    作    者   : zhoujun /z40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_INT32 NAS_GMM_AsEstReq(
     VOS_UINT32                          ulOpId,
     VOS_UINT8                           ucCnDomain,
@@ -3265,39 +2572,13 @@ VOS_INT32 NAS_GMM_AsEstReq(
                        pIdnnsInfo,pstPlmnId,ulSize,pFisrstMsg);
 }
 
- /*****************************************************************************
- 函 数 名  : NAS_GMM_GetAttemptUpdateRaiInfo
- 功能描述  : 获取ATTEMPT UPDATE时的RAI信息
- 输入参数  : 无
- 输出参数  : VOS_VOID
- 返 回 值  : NAS_MML_RAI_STRU
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年1月14日
-    作    者   : z00161729
-    修改内容   : AT&T 支持DAM特性修改
-*****************************************************************************/
+ 
 NAS_MML_RAI_STRU *NAS_GMM_GetAttemptUpdateRaiInfo(VOS_VOID)
 {
     return &(g_GmmGlobalCtrl.stAttemptToUpdateRai);
 }
 
- /*****************************************************************************
-  函 数 名  : NAS_GMM_SetAttemptUpdateRaiInfo
-  功能描述  : 设置ATTEMPT UPDATE时的RAI信息
-  输入参数  : pstRai - rai信息
-  输出参数  : 无
-  返 回 值  : 无
-  调用函数  :
-  被调函数  :
-
-  修改历史      :
-   1.日    期   : 2015年1月14日
-     作    者   : z00161729
-     修改内容   : AT&T 支持DAM特性修改
- *****************************************************************************/
+ 
  VOS_VOID NAS_GMM_SetAttemptUpdateRaiInfo(
     NAS_MML_CAMP_PLMN_INFO_STRU        *pstCampPlmnInfo
  )
@@ -3307,30 +2588,14 @@ NAS_MML_RAI_STRU *NAS_GMM_GetAttemptUpdateRaiInfo(VOS_VOID)
      return;
  }
 
- /*****************************************************************************
- 函 数 名  : NAS_GMM_IsNeedUseAttemptUpdateRaiInfo
- 功能描述  : 判断是否需要使用ATTEMPT UPDATE时的RAI信息
- 输入参数  : pSysinfoRai - 当前系统消息的rai信息
- 输出参数  : VOS_VOID
- 返 回 值  : VOS_TRUE  - 需要使用
-             VOS_FALSE - 不需要使用
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年1月14日
-    作    者   : z00161729
-    修改内容   : AT&T 支持DAM特性修改
-*****************************************************************************/
+ 
 VOS_UINT32 NAS_GMM_IsNeedUseAttemptUpdateRaiInfo(
      GMM_RAI_STRU                       *pstSysinfoRai,
      GMM_RAI_STRU                       *pstAttemptUpdateRai
 )
 {
-    VOS_UINT32                           ulIsSameRai;
     VOS_UINT32                           ulT3302Status;
 
-    ulIsSameRai   = Gmm_Compare_Rai(pstSysinfoRai, pstAttemptUpdateRai);
     ulT3302Status = NAS_GMM_QryTimerStatus(GMM_TIMER_T3302);
 
     /* U2,GMM状态为搜网或GMM_SUSPENDED_WAIT_FOR_SYSINFO状态，且T3302定时器在运行，
@@ -3338,7 +2603,6 @@ VOS_UINT32 NAS_GMM_IsNeedUseAttemptUpdateRaiInfo(
       使用g_GmmGlobalCtrl.stAttemptToUpdateLai与当前系统消息的rai比较位置区是否改变,
       以防止多做rau */
     if ((NAS_MML_ROUTING_UPDATE_STATUS_NOT_UPDATED == NAS_MML_GetPsUpdateStatus())
-     && (GMM_TRUE == ulIsSameRai)
      && (VOS_TRUE == ulT3302Status)
      && ((GMM_REGISTERED_PLMN_SEARCH == g_GmmGlobalCtrl.ucState)
       || (GMM_REGISTERED_NO_CELL_AVAILABLE == g_GmmGlobalCtrl.ucState)
@@ -3352,20 +2616,7 @@ VOS_UINT32 NAS_GMM_IsNeedUseAttemptUpdateRaiInfo(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_InitRaiInfo
- 功能描述  : 初始化ATTEMPT UPDATE时的RAI信息
- 输入参数  : pstRai - RAI信息
- 输出参数  : VOS_VOID
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月14日
-    作    者   : z00161729
-    修改内容   : AT&T 支持DAM特性修改
-*****************************************************************************/
 VOS_VOID NAS_GMM_InitRaiInfo(
     NAS_MML_RAI_STRU                   *pstRai
 )
@@ -3380,21 +2631,7 @@ VOS_VOID NAS_GMM_InitRaiInfo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_RetryCurrentProcedureCommonCheck
- 功能描述  : 是否需要重新发起PS流程通用检查函数
- 输入参数  : NAS_MM_COM_PROCEDURE_ENUM_UINT8     ucCurrentProc
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年2月4日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 NAS_GMM_RetryCurrentProcedureCommonCheck(VOS_VOID)
 {
     /* 重发流程，检查是否满足以下条件:
@@ -3418,23 +2655,7 @@ VOS_UINT8 NAS_GMM_RetryCurrentProcedureCommonCheck(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_RetryAttachProcedureCheck
- 功能描述  : 检测是否需要重新发起Attach流程
- 输入参数  : RRC_REL_CAUSE_ENUM_UINT32           ulRelCause         - 释放原因值
-             RRC_RRC_CONN_STATUS_ENUM_UINT32     ulRrcConnStatus    - 链路状态
- 输出参数  : 无
- 返 回 值  : VOS_TRUE : 需要重新发起流程
-             VOS_FALSE: 不需要重新发起流程
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月30日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 NAS_GMM_RetryAttachProcedureCheck(
     RRC_REL_CAUSE_ENUM_UINT32           ulRelCause,
     RRC_RRC_CONN_STATUS_ENUM_UINT32     ulRrcConnStatus
@@ -3509,23 +2730,7 @@ VOS_UINT8 NAS_GMM_RetryAttachProcedureCheck(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_RetryDetachProcedureCheck
- 功能描述  : 检查是否需要重新发起Detach流程
- 输入参数  : RRC_REL_CAUSE_ENUM_UINT32           ulRelCause         - 释放原因值
-             RRC_RRC_CONN_STATUS_ENUM_UINT32     ulRrcConnStatus    - 链路状态
- 输出参数  : 无
- 返 回 值  : VOS_TRUE : 需要重新发起流程
-             VOS_FALSE: 不需要重新发起流程
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月30日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 NAS_GMM_RetryDetachProcedureCheck(
     RRC_REL_CAUSE_ENUM_UINT32           ulRelCause,
     RRC_RRC_CONN_STATUS_ENUM_UINT32     ulRrcConnStatus
@@ -3613,23 +2818,7 @@ VOS_UINT8 NAS_GMM_RetryDetachProcedureCheck(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_RetryRauProcedureCheck
- 功能描述  : 检查是否需要重新发起当前被中断的RAU流程
- 输入参数  : RRC_REL_CAUSE_ENUM_UINT32           ulRelCause         - 释放原因值
-             RRC_RRC_CONN_STATUS_ENUM_UINT32     ulRrcConnStatus    - 链路状态
- 输出参数  : 无
- 返 回 值  : VOS_TRUE : 需要重新发起流程
-             VOS_FALSE: 不需要重新发起流程
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年2月1日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 NAS_GMM_RetryRauProcedureCheck(
     RRC_REL_CAUSE_ENUM_UINT32           ulRelCause,
     RRC_RRC_CONN_STATUS_ENUM_UINT32     ulRrcConnStatus
@@ -3704,23 +2893,7 @@ VOS_UINT8 NAS_GMM_RetryRauProcedureCheck(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_RetrySrProcedureCheck
- 功能描述  : 检查是否需要重新发起当前被中断的Service Request流程
- 输入参数  : RRC_REL_CAUSE_ENUM_UINT32           ulRelCause         - 释放原因值
-             RRC_RRC_CONN_STATUS_ENUM_UINT32     ulRrcConnStatus    - 链路状态
- 输出参数  : 无
- 返 回 值  : VOS_TRUE : 需要重新发起流程
-             VOS_FALSE: 不需要重新发起流程
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年2月1日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 NAS_GMM_RetrySrProcedureCheck(
     RRC_REL_CAUSE_ENUM_UINT32           ulRelCause,
     RRC_RRC_CONN_STATUS_ENUM_UINT32     ulRrcConnStatus
@@ -3794,24 +2967,7 @@ VOS_UINT8 NAS_GMM_RetrySrProcedureCheck(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_UpdateGmmLinkCtrlStru
- 功能描述  : 更新GMM连接释放控制结构
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年2月3日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年7月14日
-    作    者   : zhoujun 40661
-    修改内容   : 使用MML_CTX中的链接状态
-*****************************************************************************/
 VOS_VOID NAS_GMM_UpdateGmmLinkCtrlStru(VOS_VOID)
 {
     NAS_MML_CONN_STATUS_INFO_STRU       *pstConnStatus;
@@ -3852,21 +3008,7 @@ VOS_VOID NAS_GMM_UpdateGmmLinkCtrlStru(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_ClearGmmLinkCtrlStru
- 功能描述  : 清除GMM链路控制变量
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年2月9日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_GMM_ClearGmmLinkCtrlStru( VOS_VOID )
 {
     g_GmmGlobalCtrl.stGmmLinkCtrl.ucCurrentProc = GMM_NULL_PROCEDURE;
@@ -3877,21 +3019,7 @@ VOS_VOID NAS_GMM_ClearGmmLinkCtrlStru( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_GetDetachTypeFromProcName
- 功能描述  : 根据当前流程名获得Detach类型
- 输入参数  : NAS_GMM_SPEC_PROC_TYPE_ENUM_UINT8            ucSpecProc  - 流程名
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年2月4日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 NAS_GMM_GetDetachTypeFromProcName(
     NAS_GMM_SPEC_PROC_TYPE_ENUM_UINT8   ucSpecProc
 )
@@ -3930,21 +3058,7 @@ VOS_UINT8 NAS_GMM_GetDetachTypeFromProcName(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_SndStatusMsg
- 功能描述  : 给网络回复STATUS消息
- 输入参数  : VOS_UINT8 ulCause - 原因值
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年3月23日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_GMM_SndStatusMsg(
     VOS_UINT8                           ucCause
 )
@@ -3962,21 +3076,7 @@ VOS_VOID NAS_GMM_SndStatusMsg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_ClearBufferedSmDataReq
- 功能描述  : 清除缓存的SM DATA REQ
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年4月13日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_GMM_ClearBufferedSmDataReq( VOS_VOID )
 {
     if (GMM_MSG_HOLD_FOR_SM ==
@@ -4008,21 +3108,7 @@ VOS_VOID NAS_GMM_ClearBufferedSmDataReq( VOS_VOID )
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_CheckGmmInfoMsg
- 功能描述  : 检查Gmm Information消息
- 输入参数  : pMsg - Gmm Information 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 - 消息检查结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年3月23日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  NAS_GMM_CheckGmmInfoMsg(
     NAS_MSG_FOR_PCLINT_STRU             *pMsg
 )
@@ -4047,26 +3133,7 @@ VOS_UINT32  NAS_GMM_CheckGmmInfoMsg(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_DecodeFullNameforNetworkIE
- 功能描述  : 解码消息中的Full Name for Network IE
- 输入参数  : NAS_MSG_FOR_PCLINT_STRU *pMsg - 消息指针
-             VOS_UINT32 *pulIeOffset       - 当前处理指针的位置
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年3月23日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-
-  2.日    期   : 2013年01月09日
-    作    者   : l65478
-    修改内容   : DTS2013010809507网络名称上报错误
-
-*****************************************************************************/
 VOS_UINT32 NAS_GMM_DecodeFullNameforNetworkIE(
     NAS_MSG_FOR_PCLINT_STRU             *pMsg,
     VOS_UINT32                          *pulIeOffset
@@ -4109,26 +3176,7 @@ VOS_UINT32 NAS_GMM_DecodeFullNameforNetworkIE(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_DecodeShortNameforNetworkIE
- 功能描述  : 解码消息中的Short Name for Network IE
- 输入参数  : NAS_MSG_FOR_PCLINT_STRU *pMsg - 消息指针
-             VOS_UINT32 *pulIeOffset       - 当前处理指针的位置
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年3月23日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-
-  2.日    期   : 2013年01月09日
-    作    者   : l65478
-    修改内容   : DTS2013010809507网络名称上报错误
-
-*****************************************************************************/
 VOS_UINT32  NAS_GMM_DecodeShortNameforNetworkIE(
     NAS_MSG_FOR_PCLINT_STRU             *pMsg,
     VOS_UINT32                          *pulIeOffset
@@ -4172,23 +3220,7 @@ VOS_UINT32  NAS_GMM_DecodeShortNameforNetworkIE(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_DecodeLocalTimeZoneIE
- 功能描述  : 解码消息中的Local Time Zone IE
- 输入参数  : NAS_MSG_FOR_PCLINT_STRU *pMsg - 消息指针
-             VOS_UINT32 *pulIeOffset       - 当前处理指针的位置
-             pstMmInfo                     - 保存解析好的IE值
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年3月23日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  NAS_GMM_DecodeLocalTimeZoneIE(
     NAS_MSG_FOR_PCLINT_STRU             *pMsg,
     VOS_UINT32                          *pulIeOffset,
@@ -4239,31 +3271,7 @@ VOS_UINT32  NAS_GMM_DecodeLocalTimeZoneIE(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_DecodeUniversalTimeAndLocalTimeZoneIE
- 功能描述  : 解码消息中的Universal Time and Local Time Zone IE
- 输入参数  : NAS_MSG_FOR_PCLINT_STRU *pMsg - 消息指针
-             VOS_UINT32 *pulIeOffset       - 当前处理指针的位置
-             pstMmInfo                     - 保存解析好的IE值
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年3月23日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-
-  2.日    期   : 2010年7月1日
-    作    者   : 欧阳飞
-    修改内容   : DTS2010062801177,增加对IE的有效性检查
-
-  3.日    期   : 2010年7月20日
-    作    者   : 欧阳飞
-    修改内容   : DTS2010072001259，当IE检查失败时，忽略该消息，但不再给网络
-                 回复GMM STATUS消息
-*****************************************************************************/
 VOS_UINT32  NAS_GMM_DecodeUniversalTimeAndLocalTimeZoneIE(
     NAS_MSG_FOR_PCLINT_STRU             *pMsg,
     VOS_UINT32                          *pulIeOffset,
@@ -4368,23 +3376,7 @@ VOS_UINT32  NAS_GMM_DecodeUniversalTimeAndLocalTimeZoneIE(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_DecodeLSAIdentityIE
- 功能描述  : 解码消息中的LSA IDENTITY IE
- 输入参数  : NAS_MSG_FOR_PCLINT_STRU *pMsg - 消息指针
-             VOS_UINT32 *pulIeOffset       - 当前处理指针的位置
-             pstMmInfo                     - 保存解析好的IE值
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年3月23日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  NAS_GMM_DecodeLSAIdentityIE(
     NAS_MSG_FOR_PCLINT_STRU             *pMsg,
     VOS_UINT32                          *pulIeOffset,
@@ -4424,23 +3416,7 @@ VOS_UINT32  NAS_GMM_DecodeLSAIdentityIE(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_DecodeDaylightSavingTimeIE
- 功能描述  : 解码消息中的Daylight Saving Time IE
- 输入参数  : NAS_MSG_FOR_PCLINT_STRU *pMsg - 消息指针
-             VOS_UINT32 *pulIeOffset       - 当前处理指针的位置
-             pstMmInfo                     - 保存解析好的IE值
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年3月23日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  NAS_GMM_DecodeDaylightSavingTimeIE(
     NAS_MSG_FOR_PCLINT_STRU             *pMsg,
     VOS_UINT32                          *pulIeOffset,
@@ -4477,23 +3453,7 @@ VOS_UINT32  NAS_GMM_DecodeDaylightSavingTimeIE(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_IsNeedStartT3340RegSuccNoFollowOnProceed
- 功能描述  : attach accept或rau accept不带follow on proceed判断是否需要启动t3340定时器
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 需要启动T3340
-             VOS_FALSE - 不需要启动T3340
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月17日
-    作    者   : z00161729
-    修改内容   : DTS2015071505434:rau或attach请求不带follow on，网络回复attach accept或rau accept中携带follow on proceed标识，gmm需要
-                 增加判断如果ps rab存在或存在rabm重建或sm业务请求或cds存在缓存数据则不启动T3340，否则启动t3340开启网络防呆功能
-
-*****************************************************************************/
 VOS_UINT32 NAS_GMM_IsNeedStartT3340RegSuccNoFollowOnProceed(VOS_VOID)
 {
     VOS_UINT32                          ulIsPsRabExistFlag;
@@ -4527,23 +3487,7 @@ VOS_UINT32 NAS_GMM_IsNeedStartT3340RegSuccNoFollowOnProceed(VOS_VOID)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_IsNeedStartT3340RegSuccWithFollowOnProceed
- 功能描述  : attach accept或rau accept带follow on proceed判断是否需要启动t3340定时器
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 需要启动T3340
-             VOS_FALSE - 不需要启动T3340
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月17日
-    作    者   : z00161729
-    修改内容   : DTS2015071505434:rau或attach请求不带follow on，网络回复attach accept或rau accept中携带follow on proceed标识，gmm需要
-                 增加判断如果ps rab存在或存在rabm重建或sm业务请求或cds存在缓存数据则不启动T3340，否则启动t3340开启网络防呆功能
-
-*****************************************************************************/
 VOS_UINT32 NAS_GMM_IsNeedStartT3340RegSuccWithFollowOnProceed(VOS_VOID)
 {
     VOS_UINT32                          ulDataAvailFlg;
@@ -4582,34 +3526,7 @@ VOS_UINT32 NAS_GMM_IsNeedStartT3340RegSuccWithFollowOnProceed(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_CheckIfNeedToStartTimerT3340
- 功能描述  : 在收到RAU ACCEPT后，检查是否需要启动T3340定时器，监控RRC链路的
-             释放
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年5月7日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-  2.日    期   : 2012年3月7日
-    作    者   : z00161729
-    修改内容   : V7R1 C50 支持ISR修改
-  3.日    期   : 2014年10月23日
-    作    者   : z00161729
-    修改内容   : DTS2014102403468:rau accept网络没有带follow on proceed，需要启动T3340，T3340运行期间后续收到网络pdp modify请求或去激活请求需要正常回复
-  4.日    期 : 2015-4-1
-    作    者 : wx270776
-	修改内容 : DTS2015032608956: 如果为测试卡，则启动3340定时器
-  5.日    期   : 2015年7月14日
-    作    者   : z00161729
-    修改内容   : DTS2015071505434:rau或attach请求不带follow on，网络回复attach accept或rau accept中携带follow on proceed标识，gmm需要
-                增加判断如果ps rab存在或存在rabm重建或sm业务请求或cds存在缓存数据则不启动T3340，否则启动t3340开启网络防呆功能
-*****************************************************************************/
 VOS_VOID  NAS_GMM_CheckIfNeedToStartTimerT3340(VOS_VOID)
 {
     VOS_INT8                            cVersion;
@@ -4657,21 +3574,7 @@ VOS_VOID  NAS_GMM_CheckIfNeedToStartTimerT3340(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_IsNeedProcDelayPsSmsConnRelTimer
- 功能描述  : 判断是否需要启动定时器 GMM_TIMER_DELAY_PS_SMS_CONN_REL
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 需要
-             VOS_FALSE - 不需要
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月23日
-    作    者   : c00318887
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_GMM_IsNeedProcDelayPsSmsConnRelTimer(VOS_VOID)
 {
     NAS_MML_CONN_STATUS_INFO_STRU      *pstConnStatus = VOS_NULL_PTR;
@@ -4735,21 +3638,7 @@ VOS_UINT32 NAS_GMM_IsNeedProcDelayPsSmsConnRelTimer(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_TransferSmEstCause2RrcEstCause
- 功能描述  : 将SM的建链请求原因值转换为RRC建链原因值
- 输入参数  : VOS_UINT32     ulSmEstCause    - SM的建链请求原因值
- 输出参数  : VOS_UINT32     *pulRrcEstCause - RRC建链原因值指针
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月19日
-    作    者   : 欧阳飞
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_GMM_TransferSmEstCause2RrcEstCause(
     VOS_UINT32                          ulSmEstCause,
     VOS_UINT32                          *pulRrcEstCause
@@ -4785,18 +3674,7 @@ VOS_VOID NAS_GMM_TransferSmEstCause2RrcEstCause(
     return;
 }
 
-/*******************************************************************************
-Module   : NAS_GMM_FreeTlliForPowerOff
-Function : 在关机状态时，释放TLLI，清除L2的数据，并恢复L2
-Input    : 无
-Output   : 无
-NOTE     : 无
-Return   : 无
-History  :
-  1.日    期   : 2010年09月13日
-    作    者   : l65478
-    修改内容   : 新生成函数
-*******************************************************************************/
+
 VOS_VOID NAS_GMM_FreeTlliForPowerOff(VOS_VOID)
 {
     if (GMM_TRUE == gstGmmCasGlobalCtrl.ucTlliAssignFlg)
@@ -4813,27 +3691,7 @@ VOS_VOID NAS_GMM_FreeTlliForPowerOff(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_IsFollowOnPend
- 功能描述  : 在RAU、Attach消息中是否需要带Follow on条件判断
- 输出参数  : 无
- 返 回 值  : VOS_BOOL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年12月16日
-    作    者   : s46746
-    修改内容   : 新生成函数
-  2.日    期   : 2013年7月25日
-    作    者   : w00242748
-    修改内容   : DTS2013072200933:vodafone r8网络csfb mt到w，cs ps链接释放后1.5s内重选回l，
-                 网络后续2s左右会重新下发paging消息，存在丢寻呼被叫打不通，参考标杆实现，
-                 rau req中带follow on标志,无明确协议依据
-  3.日    期   : 2013年7月25日
-    作    者   : w00242748
-    修改内容   : DTS2014053105098:CSFB mo是否需要带follow on增加NV控制
-*****************************************************************************/
 VOS_BOOL NAS_GMM_IsFollowOnPend(VOS_VOID)
 {
 #if (FEATURE_ON == FEATURE_LTE)
@@ -4898,42 +3756,7 @@ VOS_BOOL NAS_GMM_IsFollowOnPend(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_HandleModeANOIWhenRAInotChange
- 功能描述  : GMM接收到系统消息，当前为A+I模式时RAI没有改变的处理
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年12月20日
-    作    者   : s46746
-    修改内容   : 新生成函数
-  2.日    期   : 2011年04月08日
-    作    者   : o00132663
-    修改内容   : DTS2011040803612，手动搜网，RAU拒绝原因为#9,#10时，特定场景
-                 下在Attach结束前就给用户回复失败
-  3.日    期   : 2013年7月4日
-    作    者   : w00167002
-    修改内容   : DSVLTE_bbit:DTS2013070302959:w下，II,在46002上注册成功,用户指定搜24005上，I,PS/CS注册失败
-                 原因为建链失败(7)=>
-                 1.收到系统消息后，PS注册状态迁移到了5(因为GMM给MMC上报了注册成功)；
-                    -->GMM通知MMC注册状态失败，CAUSE401;
-                 2. MMC发起了搜网(因为在ON PLMN状态，GMM给MMC上报401原因，给MM上报
-                 原因410，MM给MMC通知410后，触发了搜网)；
-                    -->MM收到GMM当前被拒原因410时候，转换给401原因通知MMC;
-                 3.搜网成功后，在原小区收到系统消息后，MMC重复发起搜网(GMM通知MM当前
-                   PS当前注册成功，CS原因16，导致MM给MMC上报16原因值，触发循环搜网)。
-                   -->GMM在ATTEMPT TO UPDATE状态，通知MM被拒原因410；
-                 4. 通知MM PS only成功的原因值由16修改为401。sunxibo一起走读，收到
-                    系统消息时候，原因值不用填写为16，否则MM通知MMC16，ATTMPT尝试次数
-                    为4次，会触发搜网。
-  4.日    期   : 2014年04月08日
-    作    者   : s00217060
-    修改内容   : DTS2014040901544:PS域注册被拒#111,网络带的T3302定时器时长为0，链接释放再收到系统消息时，UE一直发起ATTACH
-
-*****************************************************************************/
 VOS_VOID NAS_GMM_HandleModeANOIWhenRAInotChange()
 {
     VOS_UINT8 ucState;
@@ -5024,29 +3847,7 @@ VOS_VOID NAS_GMM_HandleModeANOIWhenRAInotChange()
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_HandleModeANOIWhenDeregister
- 功能描述  : GMM接收到系统消息，当前为A+I模式未注册时 的处理
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年12月20日
-    作    者   : 12
-    修改内容   : 新生成函数
-  2.日    期   : 2011年11月8日
-    作    者   : s46746
-    修改内容   : V7R1 PhaseII阶段解决关机慢问题
-  3.日    期   : 2012年9月25日
-    作    者   : h00216089
-    修改内容   : DTS2012090304976:调整，网侧Detach(re-attach not required)后，MM定时器超时发起LU，
-                  LU结束后收到系统消息GMM不会再发起Attach
-  4.日    期   : 2014年04月08日
-    作    者   : s00217060
-    修改内容   : DTS2014040901544:PS域注册被拒#111,网络带的T3302定时器时长为0，链接释放再收到系统消息时，UE一直发起ATTACH
-*****************************************************************************/
 VOS_VOID NAS_GMM_HandleModeANOIWhenDeregister()
 {
     VOS_UINT8                           ucAttachCnt;
@@ -5107,41 +3908,7 @@ VOS_VOID NAS_GMM_HandleModeANOIWhenDeregister()
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_BackToOrgPlmnAfterCoverageLost
- 功能描述  : 从出服务区回到原来的PLMN的处理
- 输入参数  : VOS_VOID                           *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年8月9日
-    作    者   : l65478
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年11月19日
-    作    者   : zhoujun 40661
-    修改内容   : DTS2011111700165,网络模式I下,GMM回到原小区,未能通知MM进入正常服务
-  3.日    期   : 2012年1月18日
-    作    者   : s46746
-    修改内容   : 问题单号：DTS2012011601544,网络模式I 联合注册仅PS成功,紧急呼叫后CS指示正常服务
-  4.日    期   : 2012年02月23日
-    作    者   : l65478
-    修改内容   : DTS2012021306419,BVT测试，RAI没有改变时，发起了RAU
- 5. 日    期   : 2012年3月28日
-    作    者   : l65478
-    修改内容   : 问题单号：DTS2012032002585:从W->L->W时，回到W后没有发起RAU
- 6. 日    期   : 2012年7月17日
-    作    者   : z00161729
-    修改内容   : DTS2012071606177:W(LAI1)-L(TAI2/LAI2 ISR激活CS LAI改变)-W(LAI1网络模式I)需要
-                  发起联合rau
-  7.日    期   : 2013年9月29日
-    作    者   : w00242748
-    修改内容   : DTS2013092302598:手动搜网，L下成功驻留，CSFB到W下，位置区变化，LAU/RAU建联失败(5次)，
-                 搜网回原小区，继续进行联合RAU失败，MM单独LAU失败，死循环，MM ATTEMPT COUNTER无限增加
-*****************************************************************************/
 VOS_UINT32 NAS_GMM_BackToOrgPlmnAfterCoverageLost(
     VOS_VOID                           *pMsg
 )
@@ -5224,23 +3991,7 @@ VOS_UINT32 NAS_GMM_BackToOrgPlmnAfterCoverageLost(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_DeleteEPlmnList
- 功能描述  : 清除EPLMN列表
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月8日
-    作    者   : s46746
-    修改内容   : 新生成函数
-  2.日    期   : 2012年03月15日
-    作    者   : l00130025
-    修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-*****************************************************************************/
 VOS_VOID NAS_GMM_DeleteEPlmnList()
 {
     NAS_MML_EQUPLMN_INFO_STRU          *pstEPlmnList    = VOS_NULL_PTR;
@@ -5267,25 +4018,7 @@ VOS_VOID NAS_GMM_DeleteEPlmnList()
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_DecodeEquPlmnInfoIE
- 功能描述  : 解码消息中的EQUIVALENT PLMN IE
- 输入参数  : GMM_MMC_ACTION_TYPE_ENUM_U32        enActionType,
-              GMM_MSG_RESOLVE_STRU               *pstAcceptIe,
-              NAS_MSG_FOR_PCLINT_STRU            *pstNasMsg,
- 输出参数  : NAS_MML_EQUPLMN_INFO_STRU          *pstEquPlmnInfo
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2011年10月8日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2015年6月5日
-    作    者   : z00161729
-    修改内容   : 24008 23122 R11 CR升级项目修改
 
-*****************************************************************************/
 VOS_VOID NAS_GMM_DecodeEquPlmnInfoIE(
     GMM_MMC_ACTION_TYPE_ENUM_U32        enActionType,
     GMM_MSG_RESOLVE_STRU               *pstAcceptIe,
@@ -5361,22 +4094,7 @@ VOS_VOID NAS_GMM_DecodeEquPlmnInfoIE(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_WriteRplmnWithRatNvim
- 功能描述  : 写NV: en_NV_Item_RPlmnWithRat
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2011年10月8日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-*****************************************************************************/
+
 VOS_VOID NAS_GMM_WriteRplmnWithRatNvim(
     NAS_MML_RPLMN_CFG_INFO_STRU        *pstRplmnCfgInfo
 )
@@ -5398,22 +4116,7 @@ VOS_VOID NAS_GMM_WriteRplmnWithRatNvim(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_UpdateGURegRlstRPlmnIdInNV
- 功能描述  : 注册成功后,判断Rplmn信息是否发生了改变搜
- 输入参数  : pstRPlmnId
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:rplmn改变
-             VOS_FALSE:rplmn未改变
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年10月08日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_GMM_IsGURplmnChanged(
     NAS_MML_PLMN_ID_STRU               *pstRPlmnId,
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enCurrRat
@@ -5479,20 +4182,7 @@ VOS_UINT32 NAS_GMM_IsGURplmnChanged(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_ConvertMmlPlmnIdToNvimEquPlmn
- 功能描述  : 将MML格式的PlmnID转换为Nvim的Eplmn
-              23002f(MML的格式 Mcc:0x000302,Mnc:0x0f0200)-->2,3,0,0,2,f
- 输入参数  : pstPlmnId: MML的PLMN ID
- 输出参数  : pstNvimPlmnId: NvimEPlmn格式
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2012年03月15日
-   作    者   : l00130025
-   修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-*****************************************************************************/
+
 VOS_VOID NAS_GMM_ConvertMmlPlmnIdToNvimEquPlmn(
     NAS_MML_PLMN_ID_STRU               *pstMmlPlmnId,
     NVIM_PLMN_VALUE_STRU               *pstNvimPlmnId
@@ -5514,19 +4204,7 @@ VOS_VOID NAS_GMM_ConvertMmlPlmnIdToNvimEquPlmn(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_ConvertMmlEquListToNvimEquPlmnList
- 功能描述  : 将MML格式的Eplmn列表转换为Nvim的Eplmn列表
- 输入参数  : pstMmlEPlmnList: MML的EplmnList
- 输出参数  : pstNvimEPlmnList:Nvim格式的EPlmnList
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2012年03月15日
-   作    者   : l00130025
-   修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-*****************************************************************************/
+
 VOS_VOID NAS_GMM_ConvertMmlEquListToNvimEquPlmnList(
     NAS_MML_EQUPLMN_INFO_STRU          *pstMmlEPlmnList,
     NVIM_EQUIVALENT_PLMN_LIST_STRU     *pstNvimEPlmnList
@@ -5551,22 +4229,7 @@ VOS_VOID NAS_GMM_ConvertMmlEquListToNvimEquPlmnList(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_IsInNvEplmnList
- 功能描述  : 判断PLMN ID是否在NV中的EPLMN LIST列表中
- 输入参数  : pstPlmnId:需要判断的PLMN ID
-             ucPlmnNum:PLMN ID个数
-             pstPlmnIdList:PLMN ID列表
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  : PLMN ID在NV中的EPLMN LIST列表中
-             VOS_FALSE : PLMN ID不在NV中的EPLMN LIST列表中
- 调用函数  :
- 被调函数  :
- 修改历史      :
-    1.日    期   : 2012年03月15日
-      作    者   : l00130025
-      修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-*****************************************************************************/
+
 VOS_UINT32 NAS_GMM_IsInNvEplmnList(
     NVIM_PLMN_VALUE_STRU               *pstPlmnId,
     VOS_UINT8                           ucPlmnNum,
@@ -5590,21 +4253,7 @@ VOS_UINT32 NAS_GMM_IsInNvEplmnList(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_IsNvimEPlmnListEqual
- 功能描述  : 判断2个NVIM_EQUIVALENT_PLMN_LIST_STRU是否相同
- 输入参数  : pstNvimEPlmnList1,pstNvimEPlmnList2待比较的2个NvimPlmnList
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  : 2个EplmnList相同
-              VOS_FALSE : 2个EplmnList不同
- 调用函数  :
- 被调函数  :
- 修改历史      :
-    1.日    期   : 2012年03月15日
-      作    者   : l00130025
-      修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
 
-*****************************************************************************/
 VOS_UINT32 NAS_GMM_IsNvimEPlmnListEqual(
     NVIM_EQUIVALENT_PLMN_LIST_STRU     *pstNvimEPlmnList1,
     NVIM_EQUIVALENT_PLMN_LIST_STRU     *pstNvimEPlmnList2
@@ -5657,26 +4306,7 @@ VOS_UINT32 NAS_GMM_IsNvimEPlmnListEqual(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_WriteEplmnNvim
- 功能描述  : 将Eplmn更新到NV中
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年10月08日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2012年03月15日
-    作    者   : l00130025
-    修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-  3.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-*****************************************************************************/
 VOS_VOID NAS_GMM_WriteEplmnNvim(
     NAS_MML_EQUPLMN_INFO_STRU          *pstEplmnAddr
 )
@@ -5751,20 +4381,7 @@ VOS_VOID NAS_GMM_WriteEplmnNvim(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_NotifyMmUnrealCombinedRauResult
- 功能描述  : 当PS为正常服务时,通知MM模块联合注册结果
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年10月08日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_GMM_NotifyMmUnrealCombinedRauResult()
 {
     NAS_GMM_SndMmCombinedRauInitiation();
@@ -5789,24 +4406,7 @@ VOS_VOID NAS_GMM_NotifyMmUnrealCombinedRauResult()
 }
 
 #if   (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_GMM_IsT3412ExpiredNeedRegist
- 功能描述  : T3412超时网络模式I是否需要联合RAU
- 输入参数  : enLteCsServiceCfg - UE支持的cs 业务能力
-             enTinType         - TIN类型
-             enT3412Status     - T3412定时器状态
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 需要发起注册
-             VOS_FALSE - 不需要发起注册
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月5日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_GMM_IsT3412ExpiredNeedRegist(
     NAS_MML_LTE_CS_SERVICE_CFG_ENUM_UINT8                   enLteCsServiceCfg,
     NAS_MML_TIN_TYPE_ENUM_UINT8                             enTinType,
@@ -5829,24 +4429,7 @@ VOS_UINT32 NAS_GMM_IsT3412ExpiredNeedRegist(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_IsT3423StatusChangeNeedRegist
- 功能描述  : T3423在运行时或超时网络模式I是否需要联合RAU
- 输入参数  : enLteCsServiceCfg - UE支持的cs 业务能力
-             enTinType         - TIN类型
-             enT3423Status     - T3423定时器状态
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 需要发起注册
-             VOS_FALSE - 不需要发起注册
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月5日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_GMM_IsT3423StatusChangeNeedRegist(
     NAS_MML_LTE_CS_SERVICE_CFG_ENUM_UINT8                   enLteCsServiceCfg,
     NAS_MML_TIN_TYPE_ENUM_UINT8                             enTinType,
@@ -5880,24 +4463,7 @@ VOS_UINT32 NAS_GMM_IsT3423StatusChangeNeedRegist(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_WriteTinInfoNvim
- 功能描述  : 更新TIN INFO的内容到NVIM
- 输入参数  : enTinType - TIN类型
-             pucImsi   - IMSI
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年1月8日
-   作    者   : z00161729
-   修改内容   : 新生成函数
- 2.日    期   : 2013年5月17日
-   作    者   : l00167671
-   修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-*****************************************************************************/
 VOS_VOID  NAS_GMM_WriteTinInfoNvim(
     NAS_MML_TIN_TYPE_ENUM_UINT8         enTinType,
     VOS_UINT8                          *pucImsi
@@ -5905,9 +4471,7 @@ VOS_VOID  NAS_GMM_WriteTinInfoNvim(
 {
     NAS_MML_RPLMN_CFG_INFO_STRU        *pstRplmnCfgInfo = VOS_NULL_PTR;
 
-    /* Modified by l00167671 for NV拆分项目 , 2013-05-17, begin */
     NAS_NVIM_TIN_INFO_STRU              stTinInfo;
-    /* Modified by l00167671 for NV拆分项目 , 2013-05-17, end*/
 
     pstRplmnCfgInfo = NAS_MML_GetRplmnCfg();
 
@@ -5945,27 +4509,7 @@ VOS_VOID  NAS_GMM_WriteTinInfoNvim(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_IsNeedDeactiveIsr_InterSys
- 功能描述  : L到GU异系统变换时判断是否存在ISR激活后激活的ps承载，如果有需要去激活ISR
- 输入参数  : ucPreRat        - 挂起前接入技术
-             enCurrNetType   - 当前接入技术
-             enSuspendCause  - 挂起原因，如果是搜网到gu的，填MMC_SUSPEND_CAUSE_BUTT
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 需要去激活ISR
-             VOS_FALSE - 不需要去激活ISR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年3月15日
-   作    者   : z00161729
-   修改内容   : 新生成函数
- 2.日    期   : 2015年6月5日
-   作    者   : z00161729
-   修改内容   : 24008 23122 R11 CR升级项目修改
-
-*****************************************************************************/
 VOS_UINT32 NAS_GMM_IsNeedDeactiveIsr_InterSys(
     VOS_UINT8                           ucPreRat,
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enCurrNetType,
@@ -6015,21 +4559,7 @@ VOS_UINT32 NAS_GMM_IsNeedDeactiveIsr_InterSys(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_LogTinTypeInfo
- 功能描述  : GMM 更新TIN类型时需要把消息勾出到trace中
- 输入参数  : enTinType - TIN类型
- 输出参数  : 无
- 返 回 值  : VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月11日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_GMM_LogTinTypeInfo(
     NAS_MML_TIN_TYPE_ENUM_UINT8         enTinType
 )
@@ -6060,21 +4590,7 @@ VOS_VOID NAS_GMM_LogTinTypeInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_IsNeedDeactiveISR_RauAccept
- 功能描述  : 在RAU结束是否需要去激活， 以便于异变到L下可以发起TAU
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 是否需要修改Tin type,完成去激活
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月17日
-    作    者   : f00261443
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 NAS_GMM_IsNeedDeactiveISR_RauAccept(VOS_VOID)
 {
     VOS_UINT8                                               ucImsVoiceMMEnableFlg;
@@ -6119,23 +4635,7 @@ VOS_UINT8 NAS_GMM_IsNeedDeactiveISR_RauAccept(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_IsISRActived_RauAccept
- 功能描述  : 判断Rau完成之后是否已激活ISR
- 输入参数  : ucUpdateResultValue - Rau accept消息中Update result information element IE内容
- 输出参数  : 无
- 返 回 值  : 是否已经激活ISR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月28日
-    作    者   : f00261443
-    修改内容   : 新生成函数
-  2.日    期   : 2015年6月4日
-    作    者   : z00161729
-    修改内容   : 24008 23122 R11 CR升级项目修改
-*****************************************************************************/
 VOS_UINT8 NAS_GMM_IsISRActived_RauAccept(VOS_UINT8 ucUpdateResultValue)
 {
 
@@ -6174,32 +4674,7 @@ VOS_UINT8 NAS_GMM_IsISRActived_RauAccept(VOS_UINT8 ucUpdateResultValue)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_UpdateTinType_RauAccept
- 功能描述  : GMM收到rau accept消息时更新TIN类型
- 输入参数  : enTinType           - TIN类型
-             pucImsi             - imsi内容
-             ucUpdateResultValue - Rau accept消息中Update result information element IE内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月21日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月28日
-    作    者   : s46746
-    修改内容   : DSDA GUNAS C CORE项目，增加平台能力判断
-  3.日    期   : 2013年05月23日
-    作    者   : z00234330
-    修改内容   : DTS2013052301419，增加IsR是否支持的判断
-  4.日    期   : 2013年12月17日
-    作    者   : f00261443
-    修改内容   : 增加异系统到 L 下，去激活ISR和RAU完成设置Tin类型
-                 为P-TMSI的场景
-*****************************************************************************/
 VOS_VOID NAS_GMM_UpdateTinType_RauAccept(
     NAS_MML_TIN_TYPE_ENUM_UINT8         enTinType,
     VOS_UINT8                          *pucImsi,
@@ -6241,25 +4716,7 @@ VOS_VOID NAS_GMM_UpdateTinType_RauAccept(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_IsAbleCombinedRau_TimerStatusChg
- 功能描述  : GMM收到T3412定时器超时或T3423在运行或T3423超时是否能发起联合rau
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE -  满足发起RAU
-             VOS_FALSE - 不满足发起RAU
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月21日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-
-  2.日    期   : 2013年2月4日
-    作    者   : w00176964
-    修改内容   : DTS2011022802215:CS ONLY,网络模式I下也进行联合注册
-*****************************************************************************/
 VOS_UINT32 NAS_GMM_IsAbleCombinedRau_TimerStatusChg(VOS_VOID)
 {
     VOS_UINT8                           ucSimCsRegStatus;
@@ -6284,35 +4741,7 @@ VOS_UINT32 NAS_GMM_IsAbleCombinedRau_TimerStatusChg(VOS_VOID)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_IsrActiveRaiNoChgBeforeT3312Exp_InterSys
- 功能描述  : ISR激活路由区未改变，idle态从L异系统到GU,T3312未超时的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年3月21日
-   作    者   : z00161729
-   修改内容   : 新生成函数
- 2.日    期   : 2012年08月24日
-   作    者   : m00217266
-   修改内容   : 修改Gmm_SndSmEstablishCnf接口，添加原因值
- 3.日    期   : 2013年2月4日
-   作    者   : w00176964
-   修改内容   : DTS2011022802215:CS ONLY,网络模式I下也进行联合注册
- 4.日    期   : 2013年11月1日
-   作    者   : z00161729
-   修改内容   : DTS2013110103529:L重建到gu，ISR激活位置区未改变，gmm未发起rau
- 5.日    期   : 2014年01月10日
-   作    者   : f00261443
-   修改内容   : VoLTE_PhaseIII项目
- 6.日    期   : 2014年04月08日
-   作    者   : s00217060
-   修改内容   : DTS2014040901544:PS域注册被拒#111,网络带的T3302定时器时长为0，链接释放再收到系统消息时，UE一直发起ATTACH
-*****************************************************************************/
 VOS_VOID NAS_GMM_IsrActiveRaiNoChgBeforeT3312Exp_InterSys(VOS_VOID)
 {
     VOS_UINT8                                               ucCsRestrictionFlg;
@@ -6485,24 +4914,7 @@ VOS_VOID NAS_GMM_IsrActiveRaiNoChgBeforeT3312Exp_InterSys(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_IsrActiveRaiNoChgAfterT3312Exp_InterSys
- 功能描述  : ISR激活路由区未改变，idle态从L异系统到GU,T3312超时的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月2日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-
-  2.日    期   : 2013年2月4日
-    作    者   : w00176964
-    修改内容   : DTS2011022802215:CS ONLY,网络模式I下也进行联合注册
-*****************************************************************************/
 VOS_VOID NAS_GMM_IsrActiveRaiNoChgAfterT3312Exp_InterSys(VOS_VOID)
 {
     /* NMO1下,不通过手机模式判断是否需要发起联合注册 */
@@ -6519,21 +4931,7 @@ VOS_VOID NAS_GMM_IsrActiveRaiNoChgAfterT3312Exp_InterSys(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_IsrActiveRaiNoChg_InterSys
- 功能描述  : ISR激活路由区未改变，idle态从L异系统到GU的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月21日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_GMM_IsrActiveRaiNoChg_InterSys(VOS_VOID)
 {
     if (GMM_FALSE == g_GmmRauCtrl.ucT3312ExpiredFlg)
@@ -6547,21 +4945,7 @@ VOS_VOID NAS_GMM_IsrActiveRaiNoChg_InterSys(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_IsRegNeedFillVoiceDomainPreferenceAndUeUsageSettingIE
- 功能描述  : 判断是否attach或rau注册消息中是否需要封装Voice domain preference and UE's usage setting IE
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 需要
-             VOS_FALSE - 不需要
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月4日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-*****************************************************************************/
 VOS_UINT32 NAS_GMM_IsRegNeedFillVoiceDomainPreferenceAndUeUsageSettingIE(VOS_VOID)
 {
     VOS_UINT32                                  ulSupportLteFlg;
@@ -6587,21 +4971,7 @@ VOS_UINT32 NAS_GMM_IsRegNeedFillVoiceDomainPreferenceAndUeUsageSettingIE(VOS_VOI
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_LogGasGmmRadioAccessCapability
- 功能描述  : 勾包NAS调用GAS的接口GASGCOM_GetMsCapability
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月21日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_GMM_LogGasGmmRadioAccessCapability(
     VOS_UINT32                          ulRst,
     VOS_UINT8                           ucMsCapType,
@@ -6645,20 +5015,7 @@ VOS_VOID NAS_GMM_LogGasGmmRadioAccessCapability(
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_StopT3311InIuPmmConnMode_T3312Exp
- 功能描述  : w进入pmm connected mode时如果t3312定时器超时，如果T3311在运行，停止T3311
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月4日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-*****************************************************************************/
 VOS_VOID NAS_GMM_StopT3311InIuPmmConnMode_T3312Exp(VOS_VOID)
 {
     NAS_MML_CONN_STATUS_INFO_STRU      *pstConnStatus = VOS_NULL_PTR;
@@ -6685,30 +5042,14 @@ VOS_VOID NAS_GMM_StopT3311InIuPmmConnMode_T3312Exp(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_DeleteRandAndResInfoInPmmIdleMode
- 功能描述  : w下pmm idle mode需要删除rand 和res信息，停止T3316
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月4日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-*****************************************************************************/
 VOS_VOID NAS_GMM_DeleteRandAndResInfoInPmmIdleMode(VOS_VOID)
 {
     NAS_MML_CONN_STATUS_INFO_STRU      *pstConnStatus = VOS_NULL_PTR;
 
     pstConnStatus = NAS_MML_GetConnStatus();
 
-    /* 24008_CR2084_(Rel-11)_C1-120652 24008 4.7.7.2描述如下:
-    The RAND and RES values stored in the mobile station shall be deleted and
-    timer T3316, if running, shall be stopped: -if the mobile station enters
-    PMM-IDLE mode (Iu mode only).*/
+    
     if ((NAS_MML_NET_RAT_TYPE_WCDMA == NAS_MML_GetCurrNetRatType())
      && (VOS_FALSE == pstConnStatus->ucPsSigConnStatusFlg))
     {
@@ -6720,21 +5061,7 @@ VOS_VOID NAS_GMM_DeleteRandAndResInfoInPmmIdleMode(VOS_VOID)
 }
 
 #if   (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_GMM_IsRegNeedFillOldLocationAreaIdentificationIE
- 功能描述  : 判断ATTCH和rau请求是否需要携带Old location area identification IE
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 需要
-             VOS_FALSE - 不需要
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月8日
-    作    者   : z00161729
-    修改内容   : 24008 23122 R11 CR升级项目修改
-*****************************************************************************/
 VOS_UINT32 NAS_GMM_IsRegNeedFillOldLocationAreaIdentificationIE(VOS_VOID)
 {
     NAS_GMM_SPEC_PROC_TYPE_ENUM_UINT8   enSpecProc;
@@ -6788,20 +5115,7 @@ VOS_UINT32 NAS_GMM_IsRegNeedFillOldLocationAreaIdentificationIE(VOS_VOID)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_FillOldLocationAreaIdentificationIE
- 功能描述  : 填充ATTCH和rau请求的Old location area identification的IE内容
- 输入参数  : pucAddr - 封装IE消息地址
- 输出参数  : 无
- 返 回 值  : 填写的IE的长度ucNumber
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月8日
-    作    者   : z00161729
-    修改内容   : 24008 23122 R11 CR升级项目修改
-*****************************************************************************/
 VOS_UINT8 NAS_GMM_FillOldLocationAreaIdentificationIE(
     VOS_UINT8                          *pucAddr
 )
@@ -6834,21 +5148,7 @@ VOS_UINT8 NAS_GMM_FillOldLocationAreaIdentificationIE(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_SaveGprsTimer3Value
- 功能描述  : 更新T3312定时器时长
- 输入参数  : ucTimerName     - 定时器名称
-             ucMsgTimerValue - 消息中定时器值
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年6月8日
-   作    者   : z00161729
-   修改内容   : 24008 23122 R11 CR升级项目修改
-*****************************************************************************/
 VOS_VOID NAS_GMM_SaveGprsTimer3Value(
     VOS_UINT8                            ucTimerName,
     VOS_UINT8                            ucMsgTimerValue
@@ -6933,21 +5233,7 @@ VOS_VOID NAS_GMM_SaveGprsTimer3Value(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_IsRegNeedFillTmsiStatusIE
- 功能描述  : 判断是否attach或rau注册消息中是否需要封装tmsi status IE
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 需要
-             VOS_FALSE - 不需要
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月4日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-*****************************************************************************/
 VOS_UINT32 NAS_GMM_IsRegNeedFillTmsiStatusIE(VOS_VOID)
 {
     /* 24008 9.4.1.3章节描述如下:
@@ -6967,39 +5253,13 @@ VOS_UINT32 NAS_GMM_IsRegNeedFillTmsiStatusIE(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_GetAllocT3302ValuePlmnWithRat
- 功能描述  : 获取下发t3302定时器时长网络信息
- 输入参数  : 无
- 输出参数  : VOS_VOID
- 返 回 值  : NAS_MML_PLMN_ID_STRU
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月10日
-    作    者   : z00161729
-    修改内容   : 24008 23122 R11 CR升级项目修改
-*****************************************************************************/
 NAS_MML_PLMN_WITH_RAT_STRU *NAS_GMM_GetAllocT3302ValuePlmnWithRat(VOS_VOID)
 {
     return &(g_GmmGlobalCtrl.stAllocT3302ValuePlmnWithRat);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_SetAllocT3302ValuePlmnWithRat
- 功能描述  : 设置下发t3302定时器时长网络信息
- 输入参数  : 无
- 输出参数  : VOS_VOID
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月10日
-    作    者   : z00161729
-    修改内容   : 24008 23122 R11 CR升级项目修改
-*****************************************************************************/
 VOS_VOID NAS_GMM_SetAllocT3302ValuePlmnWithRat(
     NAS_MML_PLMN_WITH_RAT_STRU         *pstPlmnWithRat
 )
@@ -7011,21 +5271,7 @@ VOS_VOID NAS_GMM_SetAllocT3302ValuePlmnWithRat(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_IsNeedUseDefaultT3302ValueRauAttempCntMax
- 功能描述  : 判断rau attempt cnt达到最大次数启动t3302定时器时是否需要使用T3302默认值
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 需要使用默认值
-             VOS_FALSE - 不需要使用默认值
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月10日
-    作    者   : z00161729
-    修改内容   : 24008 23122 R11 CR升级项目修改
-*****************************************************************************/
 VOS_UINT32 NAS_GMM_IsNeedUseDefaultT3302ValueRauAttempCntMax(VOS_VOID)
 {
     NAS_MML_PLMN_WITH_RAT_STRU         *pstAllocT3302PlmnWithRat = VOS_NULL_PTR;
@@ -7056,21 +5302,7 @@ VOS_UINT32 NAS_GMM_IsNeedUseDefaultT3302ValueRauAttempCntMax(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_IsRegNeedFillTmsiBasedNRIContainerIE
- 功能描述  : 判断ATTCH和rau请求是否需要携带TMSI based NRI container IE
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 需要
-             VOS_FALSE - 不需要
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月8日
-    作    者   : z00161729
-    修改内容   : 24008 23122 R11 CR升级项目修改
-*****************************************************************************/
 VOS_UINT32 NAS_GMM_IsRegNeedFillTmsiBasedNRIContainerIE(VOS_VOID)
 {
     NAS_GMM_SPEC_PROC_TYPE_ENUM_UINT8   enSpecProc;
@@ -7107,20 +5339,7 @@ VOS_UINT32 NAS_GMM_IsRegNeedFillTmsiBasedNRIContainerIE(VOS_VOID)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_FillTmsiBasedNRIContainerIE
- 功能描述  : 填充ATTCH和rau请求的TMSI based NRI container IE内容
- 输入参数  : pucAddr - 封装IE消息地址
- 输出参数  : 无
- 返 回 值  : 填写的IE的长度ucNumber
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月8日
-    作    者   : z00161729
-    修改内容   : 24008 23122 R11 CR升级项目修改
-*****************************************************************************/
 VOS_UINT8 NAS_GMM_FillTmsiBasedNRIContainerIE(
     VOS_UINT8                          *pucAddr
 )
@@ -7192,20 +5411,7 @@ VOS_UINT8 NAS_GMM_FillTmsiBasedNRIContainerIE(
     return ucLen;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_Gmm_FillMsNetworkFeatureSupportIE
- 功能描述  : 封装ms network feature support IE
- 输入参数  : pucAddr
- 输出参数  : pucAddr
- 返 回 值  : 长度
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年6月8日
-   作    者   : z00161729
-   修改内容   : 24008 23122 R11 CR升级项目修改
-*****************************************************************************/
 VOS_UINT8 NAS_GMM_FillMsNetworkFeatureSupportIE(
     VOS_UINT8                          *pucAddr
 )
@@ -7227,26 +5433,7 @@ VOS_UINT8 NAS_GMM_FillMsNetworkFeatureSupportIE(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_ConvertPdpCtxStatusToNetworkPdpCtxStatus
- 功能描述  : 将MML的pdp状态转换为发给网络格式
- 输入参数  : pstPsBearerCtx  - MML中pdp状态信息
- 输出参数  : pstPdpCtxStatus - 转换后pdp状态
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月15日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年3月15日
-    作    者   : l65478
-    修改内容   : DTS2013120300990:在PDP激活过程中发起RAU,第一次PDP激活失败
-  3.日    期   : 2014年12月06日
-    作    者   : A00165503
-    修改内容   : DTS2014120207400: 连续去激活多个PDP, 网侧不释放RRC连接
-*****************************************************************************/
 VOS_VOID NAS_GMM_ConvertPdpCtxStatusToNetworkPdpCtxStatus(
     NAS_MML_PS_BEARER_CONTEXT_STRU     *pstPsBearerCtx,
     VOS_UINT32                         *pulPdpCtxStatus
@@ -7276,21 +5463,7 @@ VOS_VOID NAS_GMM_ConvertPdpCtxStatusToNetworkPdpCtxStatus(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_ConverRrcGmmProcTypeToMml
- 功能描述  : rrmm的gmm proc type类型转换为MML的
- 输入参数  : enRrmmGmmProcType:rrmm的gmm proc type
- 输出参数  : penMmlGmmProcType:MML中gmm proc type
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年4月28日
-   作    者   : z00161729
-   修改内容   : 24301 R11 CR升级项目修改
-
-*****************************************************************************/
 VOS_VOID    NAS_GMM_ConverRrcGmmProcTypeToMml(
     RRMM_GMM_PROC_TYPE_ENUM_UINT16      enRrmmGmmProcType,
     NAS_MML_GMM_PROC_TYPE_ENUM_UINT16  *penMmlGmmProcType
@@ -7319,21 +5492,7 @@ VOS_VOID    NAS_GMM_ConverRrcGmmProcTypeToMml(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_ConverRrcGmmProcFlagToMml
- 功能描述  : rrmm的gmm proc flag类型转换为MML的
- 输入参数  : enRrmmGmmProcFlag:rrmm的gmm proc type
- 输出参数  : penMmlGmmProcFlag:MML中gmm proc type
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年4月28日
-   作    者   : z00161729
-   修改内容   : 24301 R11 CR升级项目修改
-
-*****************************************************************************/
 VOS_VOID    NAS_GMM_ConverRrcGmmProcFlagToMml(
     RRMM_GMM_PROC_FLAG_ENUM_UINT16      enRrmmGmmProcFlag,
     NAS_MML_GMM_PROC_FLAG_ENUM_UINT16  *penMmlGmmProcFlag
@@ -7357,21 +5516,7 @@ VOS_VOID    NAS_GMM_ConverRrcGmmProcFlagToMml(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_TransGmmNwCause2GmmSmCause
- 功能描述  : 将GMM Cause装换成GMM/SM Cause
- 输入参数  : enGmmCause - GMM Cause
- 输出参数  : 无
- 返 回 值  : GMM_SM_CAUSE_ENUM_UINT16
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月6日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 GMM_SM_CAUSE_ENUM_UINT16 NAS_GMM_TransGmmNwCause2GmmSmCause(
     VOS_UINT8  enGmmCause
 )
@@ -7391,21 +5536,7 @@ GMM_SM_CAUSE_ENUM_UINT16 NAS_GMM_TransGmmNwCause2GmmSmCause(
     return enGmmSmCause;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_LogGmmStateInfo
- 功能描述  : 勾GMM的状态
- 输入参数  : ucGmmState: GMM的当前状态
- 输出参数  : VOS_VOID
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年08月21日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  NAS_GMM_LogGmmStateInfo(
     VOS_UINT8                           ucGmmState
 )
@@ -7439,26 +5570,7 @@ VOS_VOID  NAS_GMM_LogGmmStateInfo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_LogGmmCtxInfo
- 功能描述  : 勾GMM全局变量
- 输入参数  : 无
- 输出参数  : VOS_VOID
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月20日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2015年2月12日
-    作    者   : s00217060
-    修改内容   : VOLTE SWITCH修改：勾出上次发attach/rau时的voice domain
-  3.日    期   : 2015年6月15日
-    作    者   : z00161729
-    修改内容   : 24008 23122 R11 CR升级项目修改
-*****************************************************************************/
 VOS_VOID  NAS_GMM_LogGmmCtxInfo(VOS_VOID)
 {
     GMMOM_LOG_CTX_INFO_STRU            *pstMsg = VOS_NULL_PTR;
@@ -7544,22 +5656,7 @@ VOS_VOID  NAS_GMM_LogGmmCtxInfo(VOS_VOID)
 }
 
 
-/* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-14, begin */
-/*****************************************************************************
- 函 数 名  : NAS_GMM_LogPsRegContainDrxInfo
- 功能描述  : GMM 更新是否携带Drx参数时需要把消息勾出到trace中
- 输入参数  : enPsRegContainDrx - Drx参数携带类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月14日
-    作    者   : t00212959
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_GMM_LogPsRegContainDrxInfo(
     NAS_MML_PS_REG_CONTAIN_DRX_PARA_ENUM_UINT8    enPsRegContainDrx
 )
@@ -7590,28 +5687,8 @@ VOS_VOID NAS_GMM_LogPsRegContainDrxInfo(
 
     return;
 }
-/* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-14, end */
 
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-20, begin */
-/*****************************************************************************
- 函 数 名  : NAS_GMM_IsCsPsModeAndNetworkI
- 功能描述  : 判断是否是A+I模式
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 是cs ps mode且网络模式为I
-             VOS_FALSE - 不是A+I模式
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月18日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2013年2月4日
-    作    者   : w00176964
-    修改内容   : DTS2011022802215:CS ONLY,网络模式I下也进行联合注册
-
-*****************************************************************************/
 VOS_UINT32 NAS_GMM_IsAModeAndNetworkI(VOS_VOID)
 {
     if ((VOS_TRUE == NAS_MML_GetCsAttachAllowFlg())
@@ -7623,22 +5700,7 @@ VOS_UINT32 NAS_GMM_IsAModeAndNetworkI(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_IsCombinedSpecProc
- 功能描述  : 判断GMM在进行的专有流程是否是联合的rau或联合rau with imsi attach
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - GMM的专有流程是联合rau或联合rau with imsi attach
-             VOS_FALSE - GMM的专有流程不是联合rau或联合rau with imsi attach
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月18日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_GMM_IsCombinedSpecProc(VOS_VOID)
 {
     NAS_GMM_SPEC_PROC_TYPE_ENUM_UINT8   enSpecProc;
@@ -7654,24 +5716,9 @@ VOS_UINT32 NAS_GMM_IsCombinedSpecProc(VOS_VOID)
     return VOS_FALSE;
 }
 
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-20, end */
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_GMM_GetLteInfo
- 功能描述  : 获取LTE信息公共接口函数
- 输入参数  : ulInfoType
- 输出参数  : pstLmmInfo
- 返 回 值  : VOS_TRUE:获取成功
-              VOS_FALSE:获取失败
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012年12月27日
-    作    者   : s46746
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_UINT32  NAS_GMM_GetLteInfo(
     NAS_LMM_INFO_TYPE_ENUM_UINT32       ulInfoType,
     NAS_LMM_INFO_STRU                  *pstLmmInfo
@@ -7691,20 +5738,7 @@ VOS_UINT32  NAS_GMM_GetLteInfo(
 
     return VOS_FALSE;
 }
-/*****************************************************************************
- 函 数 名  : NAS_GMM_HandleMsRadioCapLteSupportChanged
- 功能描述  : MS Radio cap能力中LTE是否支持发生改变的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年05月09日
-    作    者   : s46746
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID  NAS_GMM_HandleMsRadioCapLteSupportChanged(VOS_VOID)
 {
     NAS_MML_CONN_STATUS_INFO_STRU      *pstConnStatus = VOS_NULL_PTR;
@@ -7746,24 +5780,7 @@ VOS_VOID  NAS_GMM_HandleMsRadioCapLteSupportChanged(VOS_VOID)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_IsAllowedCombinedAttach_GmmRegisteredAttemptingToUpdateMm
- 功能描述  : GMM在GmmRegisteredAttemptingToUpdateMm状态判断是否可以进行联合注册
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE    - 可以发起联合注册
-              VOS_FALSE  - 不可以发起联合注册
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月18日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-        TS24.008:t3311超时发起COMBINED RA/LA updating with imsi attach.修改
-        以下场景不发起联合ATTACH.
-
-*****************************************************************************/
 VOS_UINT32 NAS_GMM_IsAllowedCombinedAttach_GmmRegisteredAttemptingToUpdateMm(VOS_VOID)
 {
     NAS_MML_CAMP_PLMN_INFO_STRU        *pstCampInfo         = VOS_NULL_PTR;
@@ -7810,22 +5827,7 @@ VOS_UINT32 NAS_GMM_IsAllowedCombinedAttach_GmmRegisteredAttemptingToUpdateMm(VOS
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_LogAuthInfo
- 功能描述  : 勾MM的期望的鉴权信息
- 输入参数  : VOS_VOID
- 输出参数  : ucRcvOpId    : 消息中接受到的OPID
-             ucExpectOpId : MM期望的OPID
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年08月21日
-    作    者   : l65478
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  NAS_GMM_LogAuthInfo(
     VOS_UINT8                           ucRcvOpId,
     VOS_UINT8                           ucExpectOpId
@@ -7861,23 +5863,7 @@ VOS_VOID  NAS_GMM_LogAuthInfo(
 }
 
 #if (FEATURE_ON == FEATURE_PTM)
-/*****************************************************************************
- 函 数 名  : NAS_GMM_NwDetachIndRecord
- 功能描述  : 记录网络Detach指示事件
- 输入参数  : VOS_UINT8  ucDetachType
-             VOS_UINT8  ucGmmCause
-             VOS_UINT8  ucForceToStandby
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月20日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_GMM_NwDetachIndRecord(
     VOS_UINT8                           ucDetachType,
     VOS_UINT8                           ucGmmCause,
@@ -7940,19 +5926,7 @@ VOS_VOID NAS_GMM_NwDetachIndRecord(
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_IsEnableRelPsSigCon
- 功能描述  : gmm 判断是否开启了网络防呆功能
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :  是否开启网络防呆功能，TRUE表示开启，FALSE:未开启
 
- 修改历史  :
- 1.日    期   : 2014年11月04日
-   作    者   : w000281933
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 NAS_GMM_IsEnableRelPsSigCon(VOS_VOID)
 {
     if (VOS_TRUE == NAS_USIMMAPI_IsTestCard())
@@ -7964,19 +5938,7 @@ VOS_UINT8 NAS_GMM_IsEnableRelPsSigCon(VOS_VOID)
     return (NAS_MML_GetRelPsSigConFlg());
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_GetRelPsSigConCfg_T3340TimerLen
- 功能描述  : gmm 在开启网络防呆功能后，获取配置的T3340 的值；
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :  配置的T3340 的时长；单位为毫秒；
 
- 修改历史  :
- 1.日    期   : 2014年11月04日
-   作    者   : w000281933
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_GMM_GetRelPsSigConCfg_T3340TimerLen(VOS_VOID)
 {
     VOS_UINT32                          ulTmpT3340timeLen;
@@ -7988,23 +5950,7 @@ VOS_UINT32 NAS_GMM_GetRelPsSigConCfg_T3340TimerLen(VOS_VOID)
 
 /*lint -restore */
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_IsUeInfoChangeTriggerRau
- 功能描述  : UE信息变化是否需要触发RAU
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :  VOS_TRUE:需要
-              VOS_FALSE:不需要
 
- 修改历史  :
- 1.日    期   : 2014年11月04日
-   作    者   : w000281933
-   修改内容   : 新生成函数
- 2.日    期   : 2015年8月13日
-   作    者   : l00289540
-   修改内容   : User_Exp_Improve修改
-
-*****************************************************************************/
 VOS_UINT32 NAS_GMM_IsUeInfoChangeTriggerRau(VOS_VOID)
 {
     VOS_INT8                            cVersion;
@@ -8032,21 +5978,7 @@ VOS_UINT32 NAS_GMM_IsUeInfoChangeTriggerRau(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : Gmm_ComConvertRrcEstCnfCauseToMmlRegCause
- 功能描述  : Gmm 建链失败原因值转换为MML Reg Fail Cause
- 输入参数  : ulRrcEstResult:RRC 建链结果
- 输出参数  : penMmlRegFailCause:转换之后的MML Reg fail cause
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月24日
-    作    者   : l00289540
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID Gmm_ComConvertRrcEstCnfCauseToMmlRegCause(
     RRC_NAS_EST_RESULT_ENUM_UINT32      ulRrcEstResult,
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16 *penMmlRegFailCause

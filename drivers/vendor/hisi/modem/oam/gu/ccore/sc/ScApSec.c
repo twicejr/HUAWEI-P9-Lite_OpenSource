@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2012, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名      : ScApSec.c
-  版 本 号      : 初稿
-  作    者      : h59254
-  生成日期      : 2012年8月27日
-  最近修改      :
-  功能描述      : 该C文件给出了ScApSec模块的实现
-  函数列表      :
-  修改历史      :
-  1.日    期    : 2012年8月27日
-    作    者    : h59254
-    修改内容    : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -214,18 +197,7 @@ SC_APSEC_SECTURE_ITEM_STRU        g_astSecItemDefaultTbl[][SC_SECURITY_ITEM_NUM]
 *****************************************************************************/
 
 
-/*****************************************************************************
- 函 数 名  : SC_APSEC_EncryptItem
- 功能描述  : 安全存储项更新接口
- 输入参数  : pucSrc: 未加密数据
-             ulItemLen: item的长度
- 输出参数  : pucDest:加密后密文
- 返 回 值  : VOS_UINT32
- 修改历史      :
-  1.日    期   : 2012年8月27日
-    作    者   : h59254
-    修改内容   : V7R1C50 ISDB安全存储项目新增
-*****************************************************************************/
+
 VOS_UINT32  SC_APSEC_EncryptItem(
     VOS_UINT32                          ulItemLen,
     const VOS_CHAR                     *pucSrc,
@@ -312,18 +284,7 @@ VOS_UINT32  SC_APSEC_EncryptItem(
 
 
 
-/*****************************************************************************
- 函 数 名  : SC_APSEC_UpdateSecItem
- 功能描述  : 安全存储项更新接口
- 输入参数  : pstSecItem: 需要更新的安全存储项内容
-             enSecItemId:安全存储项ID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 修改历史      :
-  1.日    期   : 2012年8月27日
-    作    者   : h59254
-    修改内容   : V7R1C50 ISDB安全存储项目新增
-*****************************************************************************/
+
 VOS_UINT32  SC_APSEC_UpdateSecItem(
     SC_APSEC_ITME_ENUM_UINT32           enSecItemId,
     SC_APSEC_DEFAULT_ITEM_STRU         *pstSecItem)
@@ -485,17 +446,7 @@ VOS_UINT32  SC_APSEC_UpdateSecItem(
 }
 
 
-/*****************************************************************************
- 函 数 名  : SC_APSEC_GetFileInitState
- 功能描述  : 获取双备份文件初始化状态
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 双备份文件初始化状态
- 修改历史      :
-  1.日    期   : 2012年8月30日
-    作    者   : h59254
-    修改内容   : V7R1C50 ISDB安全存储项目新增
-*****************************************************************************/
+
 VOS_UINT32  SC_APSEC_GetFileInitState(VOS_VOID)
 {
     VOS_UINT32                         *pulFileInitState;
@@ -505,17 +456,7 @@ VOS_UINT32  SC_APSEC_GetFileInitState(VOS_VOID)
     return *pulFileInitState;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_APSEC_SetFileInitState
- 功能描述  : 设置双备份文件初始化状态
- 输入参数  : ulState:双备份文件初始化状态
- 输出参数  : 无
- 返 回 值  : 无
- 修改历史      :
-  1.日    期   : 2012年8月30日
-    作    者   : h59254
-    修改内容   : V7R1C50 ISDB安全存储项目新增
-*****************************************************************************/
+
 VOS_VOID  SC_APSEC_SetFileInitState(SC_APSEC_FILE_STATE_INIT_ENUM_UINT32 ulState)
 {
     VOS_UINT32                         *pulFileInitState;
@@ -527,17 +468,7 @@ VOS_VOID  SC_APSEC_SetFileInitState(SC_APSEC_FILE_STATE_INIT_ENUM_UINT32 ulState
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_APSEC_ReadEncryptFile
- 功能描述  : 备份加密文件读取到内存中
- 输入参数  : pucFile:文件路径
- 输出参数  : ppstEncryptFile:文件内容在内存中保存的地址
- 返 回 值  : 加密文件在内存中的地址
- 修改历史      :
-  1.日    期   : 2012年8月31日
-    作    者   : h59254
-    修改内容   : V7R1C50 ISDB安全存储项目新增
-*****************************************************************************/
+
 SC_APSEC_ENCRYPT_STRU*  SC_APSEC_ReadEncryptFile(VOS_CHAR *pucFile)
 
 {
@@ -578,17 +509,7 @@ SC_APSEC_ENCRYPT_STRU*  SC_APSEC_ReadEncryptFile(VOS_CHAR *pucFile)
     return pstEncryptFile;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_APSEC_ReadEncryptItem
- 功能描述  : 双备份文件加密存储项读取，完成HASH检验并解密
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 双备份文件初始化状态
- 修改历史      :
-  1.日    期   : 2012年8月30日
-    作    者   : h59254
-    修改内容   : V7R1C50 ISDB安全存储项目新增
-*****************************************************************************/
+
 VOS_UINT32  SC_APSEC_ReadEncryptItem(
     SC_APSEC_ITME_ENUM_UINT32           enSecItemId,
     SC_APSEC_ENCRYPT_STRU              *pstFileContent,
@@ -686,17 +607,7 @@ VOS_UINT32  SC_APSEC_ReadEncryptItem(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_APSEC_ResyncFile
- 功能描述  : 双备份文件重同步处理函数
- 输入参数  : ulSyncFileFlg:双备份文件重同步标记
- 输出参数  : 无
- 返 回 值  : 双备份文件初始化状态
- 修改历史      :
-  1.日    期   : 2012年9月3日
-    作    者   : h59254
-    修改内容   : V7R1C50 ISDB安全存储项目新增
-*****************************************************************************/
+
 VOS_UINT32 SC_APSEC_ResyncFile(VOS_UINT32 ulSyncFileFlg)
 {
     /* 双备份文件重新写入 */
@@ -708,22 +619,7 @@ VOS_UINT32 SC_APSEC_ResyncFile(VOS_UINT32 ulSyncFileFlg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_APSEC_GetFileSyncFlg
- 功能描述  : 双备份文件重同步标记获取函数
- 输入参数  : enSecItemId:安全存储项
-             pstEncryptFileA:指向加密文件A中安全存储项的指针
-             pstEncryptFileC:指向加密文件C中安全存储项的指针
- 输出参数  : pstSecItemA:加密文件A解密后得到的安全存储项
-             pstSecItemC:加密文件C解密后得到的安全存储项
-             pulFileSyncFlgA:文件A需要重同步的标记
-             pulFileSyncFlgC:文件C需要重同步的标记
- 返 回 值  : 双备份文件初始化状态
- 修改历史      :
-  1.日    期   : 2012年9月3日
-    作    者   : h59254
-    修改内容   : V7R1C50 ISDB安全存储项目新增
-*****************************************************************************/
+
 VOS_VOID    SC_APSEC_GetFileSyncFlg(
     SC_APSEC_ITME_ENUM_UINT32           enSecItemId,
     SC_APSEC_ENCRYPT_STRU              *pstEncryptFileA,
@@ -750,17 +646,7 @@ VOS_VOID    SC_APSEC_GetFileSyncFlg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : SC_APSEC_InitDualBackFile
- 功能描述  : 双备份文件解密后的数据初始化到内存中
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 双备份文件初始化状态
- 修改历史      :
-  1.日    期   : 2012年8月30日
-    作    者   : h59254
-    修改内容   : V7R1C50 ISDB安全存储项目新增
-*****************************************************************************/
+
 VOS_UINT32  SC_APSEC_InitDualBackFile(VOS_VOID)
 {
     SC_APSEC_DEFAULT_ITEM_STRU          stApSecItemA;
@@ -921,26 +807,7 @@ VOS_UINT32  SC_APSEC_InitDualBackFile(VOS_VOID)
 
 
 
-/*****************************************************************************
- 函 数 名  : SC_APSEC_ReadSecItem
- 功能描述  : 安全存储荐读取
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 双备份文件初始化状态
- 修改历史      :
-  1.日    期   : 2012年8月30日
-    作    者   : h59254
-    修改内容   : V7R1C50 ISDB安全存储项目新增
-  2.日    期   : 2012年11月22日
-    作    者   : l00198894
-    修改内容   : 增加安全项默认值
-  3.日    期   : 2013年01月24日
-    作    者   : l00198894
-    修改内容   : DTS2013012209538: 安全项值为全0时作为无效值
-  4.日    期   : 2013年01月30日
-    作    者   : l00198894
-    修改内容   : DTS2013013008710: 安全项值为全0xFF且存在默认值时返回默认值
-*****************************************************************************/
+
 VOS_UINT32  SC_APSEC_ReadSecItem(
     SC_APSEC_ITME_ENUM_UINT32           enSecItemId,
     SC_APSEC_DEFAULT_ITEM_STRU         *pstSecItem)
@@ -960,10 +827,8 @@ VOS_UINT32  SC_APSEC_ReadSecItem(
     {
         SC_ERROR_LOG("SC_APSEC_ReadSecItem: SC_APSEC_InitDualBackFile fail.");
 
-        /* Modified by l00198894 for 安全存储 新增需求, 2012/11/22, begin */
         /* 双备份文件读取异常，返回默认值 */
         return SC_APSEC_GetDefaultSecItem(enSecItemId, pstSecItem);
-        /* Modified by l00198894 for 安全存储 新增需求, 2012/11/22, end */
     }
 
     /* 有可能文件不存在，写入某项之后再去读取一个不存在的项，需要判断指针是否为空 */
@@ -972,10 +837,8 @@ VOS_UINT32  SC_APSEC_ReadSecItem(
     {
         SC_ERROR_LOG("SC_APSEC_ReadSecItem: Item is null.");
 
-        /* Modified by l00198894 for 安全存储 新增需求, 2012/11/22, begin */
         /* 安全项未写入值，返回默认值 */
         return SC_APSEC_GetDefaultSecItem(enSecItemId, pstSecItem);
-        /* Modified by l00198894 for 安全存储 新增需求, 2012/11/22, end */
     }
 
     /* 用解密后的长度和内容数据计算HASH */
@@ -1000,10 +863,8 @@ VOS_UINT32  SC_APSEC_ReadSecItem(
     {
         SC_ERROR2_LOG("SC_APSEC_ReadSecItem: mdrv_crypto_hash fail lResult %d, lHashLen.", lResult, lHashLen);
 
-        /* Modified by l00198894 for 安全存储 新增需求, 2012/11/22, begin */
         /* 底软接口HASH失败，返回默认值 */
         return SC_APSEC_GetDefaultSecItem(enSecItemId, pstSecItem);
-        /* Modified by l00198894 for 安全存储 新增需求, 2012/11/22, end */
     }
 
     /* 将计算出的HASH与全局变量中的比较 */
@@ -1011,10 +872,8 @@ VOS_UINT32  SC_APSEC_ReadSecItem(
     {
         SC_ERROR_LOG("SC_APSEC_ReadSecItem: Compare HASH fail.");
 
-        /* Modified by l00198894 for 安全存储 新增需求, 2012/11/22, begin */
         /* 全局变量中的安全项被篡改，返回默认值 */
         return SC_APSEC_GetDefaultSecItem(enSecItemId, pstSecItem);
-        /* Modified by l00198894 for 安全存储 新增需求, 2012/11/22, end */
     }
 
     /* 安全存储项值有效性判断，存在默认值且为全0xFF则返回默认值 */
@@ -1045,17 +904,7 @@ VOS_UINT32  SC_APSEC_ReadSecItem(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_APSEC_FreshDualBackFile
- 功能描述  : 安全存储双备份文件刷新
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 双备份文件初始化状态
- 修改历史      :
-  1.日    期   : 2012年8月31日
-    作    者   : h59254
-    修改内容   : V7R1C50 ISDB安全存储项目新增
-*****************************************************************************/
+
 VOS_UINT32  SC_APSEC_FreshDualBackFile(VOS_VOID)
 {
     SC_APSEC_ITEM_STRU                 *pstSecItemAddr;
@@ -1141,21 +990,7 @@ VOS_UINT32  SC_APSEC_FreshDualBackFile(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : SC_APSEC_IncrementSeqID
- 功能描述  : 本地全局变量中的SeqID自增1
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月2日
-    作    者   : 李紫剑/00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID SC_APSEC_IncrementSeqID( VOS_VOID )
 {
     VOS_UINT8                           ucSeqID;
@@ -1179,21 +1014,7 @@ VOS_VOID SC_APSEC_IncrementSeqID( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_APSEC_RegressSeqID
- 功能描述  : 复原本地全局变量中的SeqID
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月2日
-    作    者   : 李紫剑/00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID SC_APSEC_RegressSeqID( VOS_VOID )
 {
     SC_CTX_SetApSecSeqID(SC_APSEC_SP_SEQID_MIN_VALUE);
@@ -1201,24 +1022,7 @@ VOS_VOID SC_APSEC_RegressSeqID( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_APSEC_GenerateSecATkey
- 功能描述  : 完成生成安全AT key功能
- 输入参数  : VOS_UINT32 *pulSPLen       -- 安全封包长度字节数
-             VOS_UINT8  *pucSecPacket   -- 安全封包二进制码流
- 输出参数  : VOS_UINT32 *pulSPLen       -- 回复安全封包长度字节数
-             VOS_UINT8  *pucSecPacket   -- 回复安全封包二进制码流
- 返 回 值  : VOS_OK     -- 安全AT key生成成功
-             VOS_ERR    -- 安全AT key生成失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月31日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 SC_APSEC_GenerateSecATkey(
     VOS_UINT32                         *pulSPLen,
     VOS_UINT8                          *pucSecPacket )
@@ -1312,22 +1116,7 @@ VOS_UINT32 SC_APSEC_GenerateSecATkey(
     return SC_APSEC_EncryptSecPacket(&stSecPacketCnf, pucSecPacket, pulSPLen);
 }
 
-/*****************************************************************************
- 函 数 名  : SC_APSEC_DecryptSecPacket
- 功能描述  : 使用AES-ECB算法解密安全封包
- 输入参数  : VOS_UINT8     *pucCipherSP     -- 安全封包密文
-             VOS_UINT32     ulCipherSPLen   -- 安全封包密文长度
- 输出参数  : SC_APSEC_SECURE_PACKET_STRU   *pstSecPacket    -- 解密后的安全封包
- 返 回 值  : SC_APSEC_DECRYPT_RESULT_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月2日
-    作    者   : 李紫剑/00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 SC_APSEC_SP_RESULT_ENUM_UINT32 SC_APSEC_DecryptSecPacket(
     VOS_UINT8                          *pucCipherSP,
     VOS_UINT32                          ulCipherSPLen,
@@ -1396,21 +1185,7 @@ SC_APSEC_SP_RESULT_ENUM_UINT32 SC_APSEC_DecryptSecPacket(
     return SC_APSEC_SP_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_APSEC_CheckSecPacket
- 功能描述  : 检查安全封包校验位
- 输入参数  : pstSecPacket   -- 待校验的安全封包
- 输出参数  : 无
- 返 回 值  : SC_APSEC_SP_RESULT_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月2日
-    作    者   : 李紫剑/00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 SC_APSEC_SP_RESULT_ENUM_UINT32 SC_APSEC_CheckSecPacket(
     SC_APSEC_SECURE_PACKET_STRU        *pstSecPacket )
 {
@@ -1453,24 +1228,7 @@ SC_APSEC_SP_RESULT_ENUM_UINT32 SC_APSEC_CheckSecPacket(
     return SC_APSEC_SP_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_APSEC_EncryptSecPacket
- 功能描述  : 使用AES-ECB算法加密安全封包
- 输入参数  : SC_APSEC_SECURE_PACKET_STRU   *pstSecPacket    -- 待加密的安全封包
- 输出参数  : VOS_UINT8     *pucCipherSP     -- 安全封包密文
-             VOS_UINT32    *ulCipherSPLen   -- 安全封包密文长度
- 返 回 值  : VOS_UINT32
-                VOS_OK  : 解密成功
-                VOS_ERR : 解密失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月31日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 SC_APSEC_EncryptSecPacket(
     SC_APSEC_SECURE_PACKET_STRU        *pstSecPacket,
     VOS_UINT8                          *pucCipherSP,
@@ -1522,21 +1280,7 @@ VOS_UINT32 SC_APSEC_EncryptSecPacket(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_APSEC_DealSecureStorage
- 功能描述  : 处理安全存储命令
- 输入参数  : SC_APSEC_SECURE_PACKET_STRU  *pstSecPacket -- 待处理的安全封包
- 输出参数  : SC_APSEC_SECURE_PACKET_STRU  *pstSecPacket -- 处理完成的安全封包
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月2日
-    作    者   : 李紫剑/00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID SC_APSEC_DealSecureStorage(
     SC_APSEC_SECURE_PACKET_STRU        *pstSecPacket )
 {
@@ -1598,23 +1342,7 @@ VOS_VOID SC_APSEC_DealSecureStorage(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_APSEC_CreateSecPacket
- 功能描述  : 根据结果值填写回复安全封包
- 输入参数  : enResult                   -- 安全封包处理结果值
-             pstSecPacket               -- 源安全封包
- 输出参数  : VOS_UINT8  *pucSecPacket   -- 回复安全封包二进制码流
-             VOS_UINT32 *pulSPLen       -- 回复安全封包长度字节数
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月31日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 SC_APSEC_CreateSecPacket(
     SC_APSEC_SP_RESULT_ENUM_UINT32      enResult,
     SC_APSEC_SECURE_PACKET_STRU        *pstSecPacket,
@@ -1679,24 +1407,7 @@ VOS_UINT32 SC_APSEC_CreateSecPacket(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : SC_APSEC_ParseSecPacket
- 功能描述  : 解析安全封包
- 输入参数  : VOS_UINT32 *pulSPLen       -- 安全封包长度字节数
-             VOS_UINT8  *pucSecPacket   -- 安全封包二进制码流
- 输出参数  : VOS_UINT32 *pulSPLen       -- 回复安全封包长度字节数
-             VOS_UINT8  *pucSecPacket   -- 回复安全封包二进制码流
- 返 回 值  : VOS_OK     -- 安全封包解析成功
-             VOS_ERR    -- 安全封包解析失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月31日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 SC_APSEC_ParseSecPacket(
     VOS_UINT32                         *pulSPLen,
     VOS_UINT8                          *pucSecPacket )
@@ -1752,21 +1463,7 @@ VOS_UINT32 SC_APSEC_ParseSecPacket(
     return SC_APSEC_CreateSecPacket(enResult, &stSecPacket, pucSecPacket, pulSPLen);
 }
 
-/*****************************************************************************
- 函 数 名  : SC_APSEC_GetSecItemDefaultTbl
- 功能描述  : 获取安全项默认值表
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : SC_APSEC_SECTURE_ITEM_STRU     -- 安全项默认值表
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年01月05日
-    作    者   : l00198894
-    修改内容   : DTS2013010400039: ISDB安全存储增加NV项，控制默认值版本
-
-*****************************************************************************/
 SC_APSEC_SECTURE_ITEM_STRU* SC_APSEC_GetSecItemDefaultTbl(VOS_VOID)
 {
     OM_ISDB_DEFAULT_KEY_STRU     stDefaultKeyVer;
@@ -1788,26 +1485,7 @@ SC_APSEC_SECTURE_ITEM_STRU* SC_APSEC_GetSecItemDefaultTbl(VOS_VOID)
     return g_astSecItemDefaultTbl[stDefaultKeyVer.aenISDBKey[0]];
 }
 
-/*****************************************************************************
- 函 数 名  : SC_APSEC_GetDefaultSecItem
- 功能描述  : 获取安全项默认值
- 输入参数  : SC_APSEC_ITME_ENUM_UINT32   enSecItemId    -- 安全项ID
- 输出参数  : SC_APSEC_DEFAULT_ITEM_STRU *pstSecItem     -- 安全项默认值
- 返 回 值  : VOS_OK     -- 安全项默认值获取成功
-             VOS_ERR    -- 安全项默认值获取失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月22日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-  2.日    期   : 2013年01月05日
-    作    者   : l00198894
-    修改内容   : DTS2013010400039: ISDB安全存储增加NV项，控制默认值版本
-
-*****************************************************************************/
 VOS_UINT32 SC_APSEC_GetDefaultSecItem(
     SC_APSEC_ITME_ENUM_UINT32           enSecItemId,
     SC_APSEC_DEFAULT_ITEM_STRU         *pstSecItem)

@@ -772,23 +772,7 @@ extern ULONG MSTP_SetPortPathCostInInstance(ULONG ulIfIndex, ULONG ulInstance, U
 *******************************************************************************/
 extern ULONG MSTP_SetDefaultPortPathCostInInstance(ULONG ulIfIndex, ULONG ulInstance);
 
-/*******************************************************************************
-*    Func Name: MSTP_SetEdgedPort
-* Date Created: 2008-10-22
-*       Author: lianglong111779
-*  Description: 设置port为边缘端口
-*        Input: ULONG ulIfIndex:接口索引
-*               ULONG ulSetYes:1,设置为边缘端口，0表示取消
-*       Output: 
-*       Return: 成功返回MSTP_OK,失败返回错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                                       DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-12-04   zengshaoyang62531,luowentong00105073       Create
-*
-*******************************************************************************/
+
 extern ULONG MSTP_SetEdgedPort(ULONG ulIfIndex, ULONG ulSetYes);
 
 /*******************************************************************************

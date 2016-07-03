@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmcFsmSyscfg.h
-  版 本 号   : 初稿
-  作    者   : z00161729
-  生成日期   : 2011年7月5日
-  最近修改   :
-  功能描述   : NasMmcFsmSyscfg.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年7月5日
-    作    者   : z00161729
-    修改内容   : 创建文件
-
-******************************************************************************/
 #ifndef __NASMMCFSMSYSCFG_H__
 #define __NASMMCFSMSYSCFG_H__
 
@@ -24,9 +7,7 @@
 *****************************************************************************/
 #include  "vos.h"
 
-/* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
 #include "MsccMmcInterface.h"
-/* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -192,7 +173,6 @@ VOS_UINT32  NAS_MMC_RcvLmmSuspendInd_SysCfg_WaitEpsConnRelInd(
 
 #endif
 
-/* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
 VOS_UINT32  NAS_MMC_IsPlmnSelectionNeeded_SysCfg(
     MSCC_MMC_SYS_CFG_SET_REQ_STRU        *pstSysCfgSetParm
 );
@@ -222,7 +202,6 @@ NAS_MML_NET_RAT_TYPE_ENUM_UINT8 NAS_MMC_GetDestModeRat_SysCfg(
     MSCC_MMC_SYS_CFG_SET_REQ_STRU        *pstSysCfgSetParm
 );
 
-/* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
 
 VOS_UINT32 NAS_MMC_IsNeedAttachPs_SysCfg(VOS_VOID);

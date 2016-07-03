@@ -161,5 +161,5 @@ struct ion_device * get_ion_device(void);
 void hisi_ionsysinfo(struct sysinfo *si);
 int ion_handle_get_flags(struct ion_client *client, struct ion_handle *handle,
 				unsigned long *flags);
-
+int hisi_ion_memory_info(bool verbose);
 #endif

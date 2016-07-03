@@ -1,13 +1,4 @@
-/************************************************************************
-  Copyright    : 2005-2007, Huawei Tech. Co., Ltd.
-  File name    : UsimmBase.c
-  Author       : zhuli 00100318
-  Version      : v00R002
-  Date         : 2008-5-15
-  Description  : 该C文件给出了---Base模块实现
-  Function List:
-  History      :
-************************************************************************/
+
 #include "product_config.h"
 
 #if (FEATURE_ON == FEATURE_UE_UICC_MULTI_APP_SUPPORT)
@@ -64,21 +55,7 @@ USIMM_VSIM_AUTH_INFO_STRU g_stUSIMMVSimAuthInfo;
 VOS_CHAR *g_pcUSIMMVSimXmlFilePath = VSIM_XML_FILE_PATH;
 
 
-/*****************************************************************************
-函 数 名  : USIMM_File_Open
-功能描述  : 打开文件
-输入参数  : pcFileName   --- 文件名
-            pcAccessMode --- 打开方式
-输出参数  : 无
-返 回 值  : SI_UINT32 函数执行结果
-调用函数  :
-被调函数  : 外部接口
 
-修改历史      :
-1.日    期  : 2013年08月28日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
 FILE *USIMM_File_Open(VOS_CHAR *pcFileName, VOS_CHAR *pcAccessMode)
 {
     FILE *fp;
@@ -93,20 +70,7 @@ FILE *USIMM_File_Open(VOS_CHAR *pcFileName, VOS_CHAR *pcAccessMode)
     return fp;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_File_Close
-功能描述  : 关闭文件
-输入参数  : Fp   --- 文件句柄
-输出参数  : 无
-返 回 值  : SI_UINT32 函数执行结果
-调用函数  :
-被调函数  : 外部接口
 
-修改历史      :
-1.日    期  : 2013年08月28日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
 VOS_INT32 USIMM_File_Close(FILE *Fp)
 {
     VOS_INT32 lRslt = VOS_ERR;
@@ -121,23 +85,7 @@ VOS_INT32 USIMM_File_Close(FILE *Fp)
     return lRslt;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_File_Write
-功能描述  : 写文件
-输入参数  : pBuf     --- 写入数据指针
-            ulSize   --- 写入数据长度
-            ulCount  --- 要写入内容的数据项个数
-            Fp       --- 文件句柄
-输出参数  : 无
-返 回 值  : SI_UINT32 函数执行结果
-调用函数  :
-被调函数  : 外部接口
 
-修改历史      :
-1.日    期  : 2013年08月28日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
 VOS_INT32 USIMM_File_Write(VOS_VOID *pBuf,VOS_UINT32 ulSize,VOS_UINT32 ulCount,FILE *Fp)
 {
     VOS_INT32                             lRslt;
@@ -153,22 +101,7 @@ VOS_INT32 USIMM_File_Write(VOS_VOID *pBuf,VOS_UINT32 ulSize,VOS_UINT32 ulCount,F
 
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_File_Seek
-功能描述  : 重定位文件指针
-输入参数  : Fp       --- 文件句柄
-            lOffset  --- 偏移量
-            lWhence  --- 偏移起始位置
-输出参数  : 无
-返 回 值  : SI_UINT32 函数执行结果
-调用函数  :
-被调函数  : 外部接口
 
-修改历史      :
-1.日    期  : 2013年08月28日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
 VOS_INT32 USIMM_File_Seek( FILE *Fp,VOS_INT32 lOffset,VOS_INT32 lWhence)
 {
     VOS_INT32 ulRslt = VOS_ERR;
@@ -183,20 +116,7 @@ VOS_INT32 USIMM_File_Seek( FILE *Fp,VOS_INT32 lOffset,VOS_INT32 lWhence)
     return ulRslt;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_File_Tell
-功能描述  : 返回FILE当前指针位置
-输入参数  : Fp       --- 文件句柄
-输出参数  : 无
-返 回 值  : SI_UINT32 函数执行结果
-调用函数  :
-被调函数  : 外部接口
 
-修改历史      :
-1.日    期  : 2013年08月28日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
 VOS_INT32 USIMM_File_Tell(FILE *Fp)
 {
     VOS_INT32 lFileSize = VOS_ERROR;
@@ -211,24 +131,7 @@ VOS_INT32 USIMM_File_Tell(FILE *Fp)
     return lFileSize;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_File_Read
-功能描述  : 从一个文件中读取内容
-输入参数  :
-            pBuf     --- 用于接收数据的内存地址
-            ulSize   --- 单个元素的大小
-            ulCount  --- 要读取内容的数据项个数
-            Fp       --- 文件句柄
-输出参数  : 无
-返 回 值  : SI_UINT32 函数执行结果
-调用函数  :
-被调函数  : 外部接口
 
-修改历史      :
-1.日    期  : 2013年08月28日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
 VOS_INT32 USIMM_File_Read(VOS_VOID *pBuf,VOS_UINT32 ulSize,VOS_UINT32 ulCount,FILE *Fp)
 {
     VOS_INT                             lRslt;
@@ -243,21 +146,7 @@ VOS_INT32 USIMM_File_Read(VOS_VOID *pBuf,VOS_UINT32 ulSize,VOS_UINT32 ulCount,FI
     return lRslt;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_File_Rename
-功能描述  : 文件重命名
-输入参数  : pcOldFileName   --- 旧文件名
-            pcNewFileName   --- 新文件名
-输出参数  : 无
-返 回 值  : SI_UINT32 函数执行结果
-调用函数  :
-被调函数  : 外部接口
 
-修改历史      :
-1.日    期  : 2013年08月28日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
 VOS_INT32 USIMM_File_Rename(VOS_CHAR *pcOldFileName,VOS_CHAR *pcNewFileName)
 {
     VOS_INT32 ulRslt;
@@ -272,20 +161,7 @@ VOS_INT32 USIMM_File_Rename(VOS_CHAR *pcOldFileName,VOS_CHAR *pcNewFileName)
     return ulRslt;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_OpenDir
-功能描述  : 打开文件夹
-输入参数  : pcDirName   --- 文件夹路径
-输出参数  : 无
-返 回 值  : SI_UINT32 函数执行结果
-调用函数  :
-被调函数  : 外部接口
 
-修改历史      :
-1.日    期  : 2013年08月28日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
 VOS_INT32 USIMM_OpenDir(VOS_CHAR *pcDirName)
 {
     DRV_DIR_S           *pstTmpDir;
@@ -301,20 +177,7 @@ VOS_INT32 USIMM_OpenDir(VOS_CHAR *pcDirName)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_Mkdir
-功能描述  : 建立文件夹
-输入参数  : pcDirName   --- 文件夹路径
-输出参数  : 无
-返 回 值  : SI_UINT32 函数执行结果
-调用函数  :
-被调函数  : 外部接口
 
-修改历史      :
-1.日    期  : 2013年08月28日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
 VOS_INT32 USIMM_Mkdir(VOS_CHAR *pcDirName)
 {
     VOS_INT32 ulRslt;
@@ -329,19 +192,7 @@ VOS_INT32 USIMM_Mkdir(VOS_CHAR *pcDirName)
     return ulRslt;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_InitVsimGlobal
-功能描述  :初始化vSIM需要的全局变量的内容　
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-调用函数  :
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_InitVsimGlobal(VOS_VOID)
 {
     USIMM_COMM_PIN_INFO_STRU           *pstCommPinInfo;
@@ -381,19 +232,7 @@ VOS_VOID USIMM_InitVsimGlobal(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_VsimGetRealKiOpc
-功能描述  :解密鉴权参数
-输入参数  :API层下发消息内容
-输出参数  :无
-返 回 值  :无
-调用函数  :
-修订记录  :
-1. 日    期   : 2013年3月18日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_VsimGetRealKiOpc(VOS_UINT8 *pucKi, VOS_UINT8 *pucOpc)
 {
     VOS_UINT8                           aucKey[VSIM_DH_AGREE_KEY] = {0};
@@ -487,23 +326,7 @@ VOS_UINT32 USIMM_VsimGetRealKiOpc(VOS_UINT8 *pucKi, VOS_UINT8 *pucOpc)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SetVsimFile
-功能描述  :实现了更新文件操作和结果返回
-输入参数  :API层下发消息内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_SetFileCnf
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-2. 日    期   : 2015年3月31日
-   作    者   : d00212987
-   修改内容   : 卡多应用迭代II开发
-*****************************************************************************/
 VOS_UINT32 USIMM_SetVsimFile(USIMM_UPDATEFILE_REQ_STRU *pstUpdateMsg, VOS_UINT16 usEFID)
 {
     VOS_UINT32                          ulResult;
@@ -570,24 +393,7 @@ VOS_UINT32 USIMM_SetVsimFile(USIMM_UPDATEFILE_REQ_STRU *pstUpdateMsg, VOS_UINT16
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_GetVsimFile
-功能描述  :实现了读取文件的操作和结果的返回
-输入参数  :API层下发消息内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :
-          USIMM_GetFileCnf
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-2. 日    期   : 2015年3月31日
-   作    者   : d00212987
-   修改内容   : 卡多应用迭代II开发
-*****************************************************************************/
 VOS_UINT32 USIMM_GetVsimFile(USIMM_READFILE_REQ_STRU *pstReadMsg, VOS_UINT16 usEFID)
 {
     VOS_UINT32                          ulFileNum = 0;
@@ -634,17 +440,7 @@ VOS_UINT32 USIMM_GetVsimFile(USIMM_READFILE_REQ_STRU *pstReadMsg, VOS_UINT16 usE
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_VsimConfidentialDataVerifyErrHandle
-功能描述  :VSIM机要数据校验出错处理
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-修订记录  :
-1. 日    期   : 2013年8月30日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID USIMM_VsimConfidentialDataVerifyErrHandle(VOS_VOID)
 {
     NVIM_VSIM_HVSDH_NV_STRU             stDhNv;
@@ -678,19 +474,7 @@ VOS_VOID USIMM_VsimConfidentialDataVerifyErrHandle(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_VsimBase16Decode
-功能描述  :VSIM机要数据从BASE16到HEX编码的转换
-输入参数  : pcSrc    源字符串内容
-            ulSrcLen 源字符串长度
-输出参数  : pcDst    目的ASCII串内容
-            pulDstLen目的ASCII串长度
-返 回 值  : VOS_ERR/VOS_OK
-修订记录  :
-1. 日    期   : 2013年8月30日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_VsimBase16Decode(VOS_CHAR *pcSrc, VOS_UINT32 ulSrcLen, VOS_UINT8 *pucDst, VOS_UINT32 *pulDstLen)
 {
     VOS_UINT32                          i;
@@ -744,18 +528,7 @@ VOS_UINT32 USIMM_VsimBase16Decode(VOS_CHAR *pcSrc, VOS_UINT32 ulSrcLen, VOS_UINT
 
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_VsimBase16Encode
-功能描述  : Base16编码
-输入参数  : pucSrc    源字符串内容
-            ulLen     源字符串长度
-输出参数  : pucDst    目的字符串长度
-返 回 值  : VOS_ERR/VOS_OK
-修订记录  :
-1. 日    期   : 2013年9月18日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID USIMM_VsimBase16Encode(VOS_UINT8 *pucSrc, VOS_UINT8 *pucDst, VOS_UINT32 ulLen)
 {
     VOS_UINT8   aucNibble[2];
@@ -787,17 +560,7 @@ VOS_VOID USIMM_VsimBase16Encode(VOS_UINT8 *pucSrc, VOS_UINT8 *pucDst, VOS_UINT32
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_VsimHUKDecode
-功能描述  :VSIM DH私钥解密
-输入参数  :无
-输出参数  :无
-返 回 值  :vos_ok/VOS_ERR
-修订记录  :
-1. 日    期   : 2013年8月30日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_VsimHUKDecode(
     VOS_UINT8                           *pucSrc,
     VOS_UINT32                          ulSrcLen,
@@ -828,17 +591,7 @@ VOS_UINT32 USIMM_VsimHUKDecode(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_VsimConfidentialDataVerify
-功能描述  :VSIM机要数据校验处理
-输入参数  :无
-输出参数  :无
-返 回 值  :vos_ok/VOS_ERR
-修订记录  :
-1. 日    期   : 2013年8月30日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_VsimConfidentialDataVerify(VOS_VOID)
 {
     VOS_UINT32                          ulImsiLen;
@@ -964,23 +717,7 @@ VOS_UINT32 USIMM_VsimConfidentialDataVerify(VOS_VOID)
     return VOS_OK;
 #endif  /*OAM_DMT*/
 }
-/*****************************************************************************
-函 数 名  :USIMM_VirtualUsimAuthenticationProc
-功能描述  :实现了鉴权下发和结果回复　
-输入参数  :API层下发消息内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_AuthencitionCnf
-           USIMM_VsimGetKiOpc
-           Milenage
-           Milenage2G
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_VirtualUsimAuthenticationProc(USIMM_AUTHENTICATION_REQ_STRU *pstMsg)
 {
     VOS_UINT8                           ucResult;
@@ -1082,23 +819,7 @@ VOS_UINT32 USIMM_VirtualUsimAuthenticationProc(USIMM_AUTHENTICATION_REQ_STRU *ps
     }
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_VirtualSimAuthenticationProc
-功能描述  :实现了鉴权下发和结果回复　
-输入参数  :API层下发消息内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :RUNA3A8_V1
-           RUNA3A8_V2
-           RUNA3A8_V3
-           USIMM_AuthencitionCnf
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_VirtualSimAuthenticationProc(USIMM_AUTHENTICATION_REQ_STRU *pstMsg)
 {
     VOS_UINT8                           aucOutPut[USIMM_AUTH_RES_LEN+USIMM_AUTH_KC_LEN] = {0};    /*RES+KC*/
@@ -1171,19 +892,7 @@ VOS_UINT32 USIMM_VirtualSimAuthenticationProc(USIMM_AUTHENTICATION_REQ_STRU *pst
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_VirtualAuthenticationProc
-功能描述  :实现了虚拟卡鉴权下发和结果回复　
-输入参数  :协议栈下发的消息内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
 
-修订记录  :
-1. 日    期   : 2015年3月7日
-   作    者   : h00300778
-   修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_VirtualAuthenticationProc(USIMM_AUTHENTICATION_REQ_STRU *pstMsg)
 {
     VOS_UINT32                          ulRslt;
@@ -1213,21 +922,7 @@ VOS_UINT32 USIMM_VirtualAuthenticationProc(USIMM_AUTHENTICATION_REQ_STRU *pstMsg
     return ulRslt;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_DeactiveVsim
-功能描述  : 释放所有资源
-输入参数  : 外部消息
-输出参数  : 无
-返 回 值  : VOS_ERR
-            VOS_OK
-调用函数  :
 
-修订记录  :
-1. 日    期   : 2010年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 USIMM_DeactiveVsim(USIMM_MsgBlock *pMsg)
 {
     USIMM_NORMAL_LOG("USIMM_DeactiveVSim: Deactive Card");
@@ -1237,19 +932,7 @@ VOS_UINT32 USIMM_DeactiveVsim(USIMM_MsgBlock *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_VsimPoolSearchFile
-功能描述  :搜索文件是否存在缓冲池，不判断当前密码状态
-输入参数  :usFileId: 文件ID
-输出参数  :pulData:  文件在缓冲池的索引
-返 回 值  :无
-调用函数  :无
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_VsimPoolSearchFile(VOS_UINT16 usFileId, VOS_UINT32 *pulData)
 {
     VOS_UINT32                          i;
@@ -1290,20 +973,7 @@ VOS_UINT32 USIMM_VsimPoolSearchFile(VOS_UINT16 usFileId, VOS_UINT32 *pulData)
     return VOS_ERR;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CheckVsimFileInPoll
-功能描述  :实现了XML文件FiLEID的检查
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2013年3月18日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 
 VOS_UINT32 USIMM_CheckVsimFileInPool(VOS_VOID)
 {
@@ -1352,20 +1022,7 @@ VOS_UINT32 USIMM_CheckVsimFileInPool(VOS_VOID)
 }
 
 
-/*****************************************************************************
-函 数 名  :USIMM_AddVSIMFileToPoll
-功能描述  :实现了XML文件内容的解析
-输入参数  :pstXmlNode: XML文件数据根节点
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2013年3月18日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 
 VOS_UINT32 USIMM_AddVsimFileToPool(VOS_CHAR *pucFileStr, VOS_UINT32 ulStrLen, VOS_CHAR *pcValue, VOS_UINT32 ulValueLen)
 {
@@ -1454,20 +1111,7 @@ VOS_UINT32 USIMM_AddVsimFileToPool(VOS_CHAR *pucFileStr, VOS_UINT32 ulStrLen, VO
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_AddVsimAuthPara
-功能描述  :实现了XML文件内容的解析
-输入参数  :pstXmlNode: XML文件数据根节点
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2013年3月18日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_AddVsimAuthPara(VOS_CHAR *pucFileStr, VOS_UINT32 ulFileLen, VOS_CHAR *pcValue, VOS_UINT32 ulValueLen)
 {
     VOS_UINT32      ulContentLen;
@@ -1573,20 +1217,7 @@ VOS_UINT32 USIMM_AddVsimAuthPara(VOS_CHAR *pucFileStr, VOS_UINT32 ulFileLen, VOS
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_AddVsimVerifyHashPara
-功能描述  :获取 base16 编码的verifyhash
-输入参数  :
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2013年9月18日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_AddVsimVerifyHashPara(VOS_CHAR *pucFileStr, VOS_UINT32 ulFileLen, VOS_CHAR *pcValue, VOS_UINT32 ulValueLen)
 {
     VOS_UINT32      ulContentLen;
@@ -1642,20 +1273,7 @@ VOS_UINT32 USIMM_AddVsimVerifyHashPara(VOS_CHAR *pucFileStr, VOS_UINT32 ulFileLe
 }
 
 
-/*****************************************************************************
-函 数 名  :USIMM_DecodeVsimEf
-功能描述  :实现了XML文件内容的解析
-输入参数  :pstXmlNode: XML文件数据根节点
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2013年3月18日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 
 VOS_UINT32 USIMM_DecodeVsimEf(OAM_XML_NODE_STRU *pstXmlNode)
 {
@@ -1748,20 +1366,7 @@ VOS_UINT32 USIMM_DecodeVsimEf(OAM_XML_NODE_STRU *pstXmlNode)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_VsimDecodeCardType
-功能描述  :实现了XML文件CardType内容的解析
-输入参数  :pstXmlNode: XML文件数据根节点
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2013年3月18日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_VsimDecodeCardType(
     VOS_CHAR                       *pucStr,
     VOS_UINT32                      ulStrLen,
@@ -1827,20 +1432,7 @@ VOS_VOID USIMM_VsimDecodeCardType(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_DecodeVsimRoot
-功能描述  :实现了XML文件内容的解析
-输入参数  :pstXmlNode: XML文件数据根节点
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2013年3月18日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_VsimDecodeAuthType(VOS_CHAR                  *pucStr,
                                             VOS_UINT32                  ulStrLen,
                                             USIMM_VSIM_AUTH_ENUM_UINT32*pulAuthType)
@@ -1909,20 +1501,7 @@ VOS_VOID USIMM_VsimDecodeAuthType(VOS_CHAR                  *pucStr,
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_DecodeVsimRoot
-功能描述  :实现了XML文件内容的解析
-输入参数  :pstXmlNode: XML文件数据根节点
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2013年3月18日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 
 VOS_UINT32 USIMM_DecodeVsimRoot(OAM_XML_NODE_STRU             *pstXmlNode,
                                         USIMM_PHYCARD_TYPE_ENUM_UINT32   *pulCardType,
@@ -1982,20 +1561,7 @@ VOS_UINT32 USIMM_DecodeVsimRoot(OAM_XML_NODE_STRU             *pstXmlNode,
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_DecodeVsimFile
-功能描述  :实现了XML文件内容的解析
-输入参数  :pucData: XML文件数据, 结尾使用'\0'标记
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2013年3月18日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_DecodeVsimFile(VOS_UINT8 *pucData)
 {
     OAM_XML_CTX_STRU                    stXmlCtx;
@@ -2055,20 +1621,7 @@ VOS_UINT32 USIMM_DecodeVsimFile(VOS_UINT8 *pucData)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ReadVsimFile
-功能描述  :实现了vSIM卡内容读取和内存返回
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_NULL_PTR
-           VSIM XML Data Pointer
-调用函数  :
-修订记录  :
-1. 日    期   : 2013年3月18日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT8* USIMM_ReadVsimFile(VOS_UINT32 ulReadPID)
 {
     FILE                                *pXmlFile;
@@ -2133,20 +1686,7 @@ VOS_UINT8* USIMM_ReadVsimFile(VOS_UINT32 ulReadPID)
     return pucXMLData;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_InitVsimCard
-功能描述  :实现了vSIM卡初始化和结果回复　
-输入参数  :API层下发消息内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2013年3月18日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_InitVsimCard(USIMM_MsgBlock *pMsg)
 {
     VOS_UINT8                           *pucXMLData;
@@ -2279,21 +1819,7 @@ USIMM_VSIM_AUTH_INFO_STRU g_stUSIMMVSimAuthInfo;
 
 VOS_CHAR *g_pcUSIMMVSimXmlFilePath = VSIM_XML_FILE_PATH;
 
-/*****************************************************************************
-函 数 名  : USIMM_File_Open
-功能描述  : 打开文件
-输入参数  : pcFileName   --- 文件名
-            pcAccessMode --- 打开方式
-输出参数  : 无
-返 回 值  : SI_UINT32 函数执行结果
-调用函数  :
-被调函数  : 外部接口
 
-修改历史      :
-1.日    期  : 2013年08月28日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
 FILE *USIMM_File_Open(VOS_CHAR *pcFileName, VOS_CHAR *pcAccessMode)
 {
     FILE *fp;
@@ -2308,20 +1834,7 @@ FILE *USIMM_File_Open(VOS_CHAR *pcFileName, VOS_CHAR *pcAccessMode)
     return fp;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_File_Close
-功能描述  : 关闭文件
-输入参数  : Fp   --- 文件句柄
-输出参数  : 无
-返 回 值  : SI_UINT32 函数执行结果
-调用函数  :
-被调函数  : 外部接口
 
-修改历史      :
-1.日    期  : 2013年08月28日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
 VOS_INT32 USIMM_File_Close(FILE *Fp)
 {
     VOS_INT32 lRslt = VOS_ERR;
@@ -2336,23 +1849,7 @@ VOS_INT32 USIMM_File_Close(FILE *Fp)
     return lRslt;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_File_Write
-功能描述  : 写文件
-输入参数  : pBuf     --- 写入数据指针
-            ulSize   --- 写入数据长度
-            ulCount  --- 要写入内容的数据项个数
-            Fp       --- 文件句柄
-输出参数  : 无
-返 回 值  : SI_UINT32 函数执行结果
-调用函数  :
-被调函数  : 外部接口
 
-修改历史      :
-1.日    期  : 2013年08月28日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
 VOS_INT32 USIMM_File_Write(
     VOS_VOID                            *pBuf,
     VOS_UINT32                          ulSize,
@@ -2372,22 +1869,7 @@ VOS_INT32 USIMM_File_Write(
 
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_File_Seek
-功能描述  : 重定位文件指针
-输入参数  : Fp       --- 文件句柄
-            lOffset  --- 偏移量
-            lWhence  --- 偏移起始位置
-输出参数  : 无
-返 回 值  : SI_UINT32 函数执行结果
-调用函数  :
-被调函数  : 外部接口
 
-修改历史      :
-1.日    期  : 2013年08月28日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
 VOS_INT32 USIMM_File_Seek( FILE *Fp,VOS_INT32 lOffset,VOS_INT32 lWhence)
 {
     VOS_INT32 ulRslt = VOS_ERR;
@@ -2402,20 +1884,7 @@ VOS_INT32 USIMM_File_Seek( FILE *Fp,VOS_INT32 lOffset,VOS_INT32 lWhence)
     return ulRslt;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_File_Tell
-功能描述  : 返回FILE当前指针位置
-输入参数  : Fp       --- 文件句柄
-输出参数  : 无
-返 回 值  : SI_UINT32 函数执行结果
-调用函数  :
-被调函数  : 外部接口
 
-修改历史      :
-1.日    期  : 2013年08月28日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
 VOS_INT32 USIMM_File_Tell(FILE *Fp)
 {
     VOS_INT32 lFileSize = VOS_ERROR;
@@ -2430,24 +1899,7 @@ VOS_INT32 USIMM_File_Tell(FILE *Fp)
     return lFileSize;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_File_Read
-功能描述  : 从一个文件中读取内容
-输入参数  :
-            pBuf     --- 用于接收数据的内存地址
-            ulSize   --- 单个元素的大小
-            ulCount  --- 要读取内容的数据项个数
-            Fp       --- 文件句柄
-输出参数  : 无
-返 回 值  : SI_UINT32 函数执行结果
-调用函数  :
-被调函数  : 外部接口
 
-修改历史      :
-1.日    期  : 2013年08月28日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
 VOS_INT32 USIMM_File_Read(VOS_VOID *pBuf,VOS_UINT32 ulSize,VOS_UINT32 ulCount,FILE *Fp)
 {
     VOS_INT                             lRslt;
@@ -2462,21 +1914,7 @@ VOS_INT32 USIMM_File_Read(VOS_VOID *pBuf,VOS_UINT32 ulSize,VOS_UINT32 ulCount,FI
     return lRslt;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_File_Rename
-功能描述  : 文件重命名
-输入参数  : pcOldFileName   --- 旧文件名
-            pcNewFileName   --- 新文件名
-输出参数  : 无
-返 回 值  : SI_UINT32 函数执行结果
-调用函数  :
-被调函数  : 外部接口
 
-修改历史      :
-1.日    期  : 2013年08月28日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
 VOS_INT32 USIMM_File_Rename(VOS_CHAR *pcOldFileName,VOS_CHAR *pcNewFileName)
 {
     VOS_INT32 ulRslt;
@@ -2491,20 +1929,7 @@ VOS_INT32 USIMM_File_Rename(VOS_CHAR *pcOldFileName,VOS_CHAR *pcNewFileName)
     return ulRslt;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_OpenDir
-功能描述  : 打开文件夹
-输入参数  : pcDirName   --- 文件夹路径
-输出参数  : 无
-返 回 值  : SI_UINT32 函数执行结果
-调用函数  :
-被调函数  : 外部接口
 
-修改历史      :
-1.日    期  : 2013年08月28日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
 VOS_INT32 USIMM_OpenDir(VOS_CHAR *pcDirName)
 {
     DRV_DIR_S           *pstTmpDir;
@@ -2520,20 +1945,7 @@ VOS_INT32 USIMM_OpenDir(VOS_CHAR *pcDirName)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_Mkdir
-功能描述  : 建立文件夹
-输入参数  : pcDirName   --- 文件夹路径
-输出参数  : 无
-返 回 值  : SI_UINT32 函数执行结果
-调用函数  :
-被调函数  : 外部接口
 
-修改历史      :
-1.日    期  : 2013年08月28日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
 VOS_INT32 USIMM_Mkdir(VOS_CHAR *pcDirName)
 {
     VOS_INT32 ulRslt;
@@ -2548,21 +1960,7 @@ VOS_INT32 USIMM_Mkdir(VOS_CHAR *pcDirName)
     return ulRslt;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_ClearVsimGlobal
-功能描述  : vSIM卡释放所有资源
-输入参数  : 外部消息
-输出参数  : 无
-返 回 值  : VOS_ERR
-            VOS_OK
-调用函数  :
 
-修订记录  :
-1. 日    期   : 2013年3月18日
-   作    者   : z00100318
-   修改内容   : Creat
-
-*****************************************************************************/
 
 VOS_VOID USIMM_ClearVsimGlobal(VOS_VOID)
 {
@@ -2577,19 +1975,7 @@ VOS_VOID USIMM_ClearVsimGlobal(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_InitVsimGlobal
-功能描述  :初始化vSIM需要的全局变量的内容　
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-调用函数  :
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_InitVsimGlobal(VOS_VOID)
 {
     gstUSIMMPOOL.enPoolStatus = USIMM_POOL_AVAILABLE;   /*设置当前的POOL的状态*/
@@ -2611,19 +1997,7 @@ VOS_VOID USIMM_InitVsimGlobal(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_VsimGetRealKiOpc
-功能描述  :解密鉴权参数
-输入参数  :API层下发消息内容
-输出参数  :无
-返 回 值  :无
-调用函数  :
-修订记录  :
-1. 日    期   : 2013年3月18日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_VsimGetRealKiOpc(VOS_UINT8 *pucKi, VOS_UINT8 *pucOpc)
 {
     VOS_UINT8                           aucKey[VSIM_DH_AGREE_KEY] = {0};
@@ -2717,20 +2091,7 @@ VOS_UINT32 USIMM_VsimGetRealKiOpc(VOS_UINT8 *pucKi, VOS_UINT8 *pucOpc)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SetVsimFile
-功能描述  :实现了更新文件操作和结果返回
-输入参数  :API层下发消息内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_SetFileCnf
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_SetVsimFile(USIMM_SETFILE_REQ_STRU *pstMsg, USIMM_UPDATEFILE_REQ_STRU *pstNewMsg)
 {
     VOS_UINT32                          ulResult;
@@ -2785,21 +2146,7 @@ VOS_UINT32 USIMM_SetVsimFile(USIMM_SETFILE_REQ_STRU *pstMsg, USIMM_UPDATEFILE_RE
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_GetVsimFile
-功能描述  :实现了读取文件的操作和结果的返回
-输入参数  :API层下发消息内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :
-          USIMM_GetFileCnf
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_GetVsimFile(USIMM_GETFILE_REQ_STRU  *pstOldMsg, USIMM_READFILE_REQ_STRU *pstNewMsg)
 {
     VOS_UINT32                  ulFileNum = 0;
@@ -2836,17 +2183,7 @@ VOS_UINT32 USIMM_GetVsimFile(USIMM_GETFILE_REQ_STRU  *pstOldMsg, USIMM_READFILE_
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_VsimConfidentialDataVerifyErrHandle
-功能描述  :VSIM机要数据校验出错处理
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-修订记录  :
-1. 日    期   : 2013年8月30日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID USIMM_VsimConfidentialDataVerifyErrHandle(VOS_VOID)
 {
     NVIM_VSIM_HVSDH_NV_STRU             stDhNv;
@@ -2880,19 +2217,7 @@ VOS_VOID USIMM_VsimConfidentialDataVerifyErrHandle(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_VsimBase16Decode
-功能描述  :VSIM机要数据从BASE16到HEX编码的转换
-输入参数  : pcSrc    源字符串内容
-            ulSrcLen 源字符串长度
-输出参数  : pcDst    目的ASCII串内容
-            pulDstLen目的ASCII串长度
-返 回 值  : VOS_ERR/VOS_OK
-修订记录  :
-1. 日    期   : 2013年8月30日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_VsimBase16Decode(VOS_CHAR *pcSrc, VOS_UINT32 ulSrcLen, VOS_UINT8 *pucDst, VOS_UINT32 *pulDstLen)
 {
     VOS_UINT32                          i;
@@ -2946,18 +2271,7 @@ VOS_UINT32 USIMM_VsimBase16Decode(VOS_CHAR *pcSrc, VOS_UINT32 ulSrcLen, VOS_UINT
 
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_VsimBase16Encode
-功能描述  : Base16编码
-输入参数  : pucSrc    源字符串内容
-            ulLen     源字符串长度
-输出参数  : pucDst    目的字符串长度
-返 回 值  : VOS_ERR/VOS_OK
-修订记录  :
-1. 日    期   : 2013年9月18日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID USIMM_VsimBase16Encode(VOS_UINT8 *pucSrc, VOS_UINT8 *pucDst, VOS_UINT32 ulLen)
 {
     VOS_UINT8   aucNibble[2];
@@ -2989,17 +2303,7 @@ VOS_VOID USIMM_VsimBase16Encode(VOS_UINT8 *pucSrc, VOS_UINT8 *pucDst, VOS_UINT32
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_VsimHUKDecode
-功能描述  :VSIM DH私钥解密
-输入参数  :无
-输出参数  :无
-返 回 值  :vos_ok/VOS_ERR
-修订记录  :
-1. 日    期   : 2013年8月30日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_VsimHUKDecode(
     VOS_UINT8                           *pucSrc,
     VOS_UINT32                          ulSrcLen,
@@ -3030,17 +2334,7 @@ VOS_UINT32 USIMM_VsimHUKDecode(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_VsimConfidentialDataVerify
-功能描述  :VSIM机要数据校验处理
-输入参数  :无
-输出参数  :无
-返 回 值  :vos_ok/VOS_ERR
-修订记录  :
-1. 日    期   : 2013年8月30日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_VsimConfidentialDataVerify(VOS_VOID)
 {
     VOS_UINT32                          ulImsiLen;
@@ -3167,23 +2461,7 @@ VOS_UINT32 USIMM_VsimConfidentialDataVerify(VOS_VOID)
 #endif  /*OAM_DMT*/
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_AuthenVtirlUsim
-功能描述  :实现了鉴权下发和结果回复　
-输入参数  :API层下发消息内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_AuthencitionCnf
-           USIMM_VsimGetKiOpc
-           Milenage
-           Milenage2G
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_AuthenVirtulUsim(USIMM_AUTH_REQ_STRU *pstMsg)
 {
     VOS_UINT8                           ucResult;
@@ -3274,23 +2552,7 @@ VOS_UINT32 USIMM_AuthenVirtulUsim(USIMM_AUTH_REQ_STRU *pstMsg)
     }
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_AuthenVirtulSim
-功能描述  :实现了鉴权下发和结果回复　
-输入参数  :API层下发消息内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :RUNA3A8_V1
-           RUNA3A8_V2
-           RUNA3A8_V3
-           USIMM_AuthencitionCnf
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_AuthenVirtulSim(USIMM_AUTH_REQ_STRU *pstMsg)
 {
     VOS_UINT8                           aucOutPut[USIMM_AUTH_RES_LEN+USIMM_AUTH_KC_LEN] = {0};    /*RES+KC*/
@@ -3352,21 +2614,7 @@ VOS_UINT32 USIMM_AuthenVirtulSim(USIMM_AUTH_REQ_STRU *pstMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_DeactiveVsim
-功能描述  : 释放所有资源
-输入参数  : 外部消息
-输出参数  : 无
-返 回 值  : VOS_ERR
-            VOS_OK
-调用函数  :
 
-修订记录  :
-1. 日    期   : 2010年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 USIMM_DeactiveVsim(USIMM_MsgBlock *pMsg)
 {
     USIMM_NORMAL_LOG("USIMM_DeactiveVSim: Deactive Card");
@@ -3376,19 +2624,7 @@ VOS_UINT32 USIMM_DeactiveVsim(USIMM_MsgBlock *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_VsimPoolSearchFile
-功能描述  :搜索文件是否存在缓冲池，不判断当前密码状态
-输入参数  :usFileId: 文件ID
-输出参数  :pulData:  文件在缓冲池的索引
-返 回 值  :无
-调用函数  :无
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_VsimPoolSearchFile(VOS_UINT16 usFileId, VOS_UINT32 *pulData)
 {
     VOS_UINT32 i;
@@ -3423,20 +2659,7 @@ VOS_UINT32 USIMM_VsimPoolSearchFile(VOS_UINT16 usFileId, VOS_UINT32 *pulData)
     return VOS_ERR;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CheckVsimFileInPoll
-功能描述  :实现了XML文件FiLEID的检查
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2013年3月18日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 
 VOS_UINT32 USIMM_CheckVsimFileInPool(VOS_VOID)
 {
@@ -3485,20 +2708,7 @@ VOS_UINT32 USIMM_CheckVsimFileInPool(VOS_VOID)
 }
 
 
-/*****************************************************************************
-函 数 名  :USIMM_AddVSIMFileToPoll
-功能描述  :实现了XML文件内容的解析
-输入参数  :pstXmlNode: XML文件数据根节点
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2013年3月18日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 
 VOS_UINT32 USIMM_AddVsimFileToPool(VOS_CHAR *pucFileStr, VOS_UINT32 ulStrLen, VOS_CHAR *pcValue, VOS_UINT32 ulValueLen)
 {
@@ -3576,20 +2786,7 @@ VOS_UINT32 USIMM_AddVsimFileToPool(VOS_CHAR *pucFileStr, VOS_UINT32 ulStrLen, VO
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_AddVsimAuthPara
-功能描述  :实现了XML文件内容的解析
-输入参数  :pstXmlNode: XML文件数据根节点
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2013年3月18日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_AddVsimAuthPara(VOS_CHAR *pucFileStr, VOS_UINT32 ulFileLen, VOS_CHAR *pcValue, VOS_UINT32 ulValueLen)
 {
     VOS_UINT32      ulContentLen;
@@ -3695,20 +2892,7 @@ VOS_UINT32 USIMM_AddVsimAuthPara(VOS_CHAR *pucFileStr, VOS_UINT32 ulFileLen, VOS
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_AddVsimVerifyHashPara
-功能描述  :获取 base16 编码的verifyhash
-输入参数  :
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2013年9月18日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_AddVsimVerifyHashPara(VOS_CHAR *pucFileStr, VOS_UINT32 ulFileLen, VOS_CHAR *pcValue, VOS_UINT32 ulValueLen)
 {
     VOS_UINT32      ulContentLen;
@@ -3764,20 +2948,7 @@ VOS_UINT32 USIMM_AddVsimVerifyHashPara(VOS_CHAR *pucFileStr, VOS_UINT32 ulFileLe
 }
 
 
-/*****************************************************************************
-函 数 名  :USIMM_DecodeVsimEf
-功能描述  :实现了XML文件内容的解析
-输入参数  :pstXmlNode: XML文件数据根节点
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2013年3月18日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 
 VOS_UINT32 USIMM_DecodeVsimEf(OAM_XML_NODE_STRU *pstXmlNode)
 {
@@ -3870,20 +3041,7 @@ VOS_UINT32 USIMM_DecodeVsimEf(OAM_XML_NODE_STRU *pstXmlNode)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_VsimDecodeCardType
-功能描述  :实现了XML文件CardType内容的解析
-输入参数  :pstXmlNode: XML文件数据根节点
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2013年3月18日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_VsimDecodeCardType(VOS_CHAR                  *pucStr,
                                             VOS_UINT32                  ulStrLen,
                                             USIMM_CARD_TYPE_ENUM_UINT32 *pulCardType)
@@ -3946,20 +3104,7 @@ VOS_VOID USIMM_VsimDecodeCardType(VOS_CHAR                  *pucStr,
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_DecodeVsimRoot
-功能描述  :实现了XML文件内容的解析
-输入参数  :pstXmlNode: XML文件数据根节点
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2013年3月18日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_VsimDecodeAuthType(VOS_CHAR                  *pucStr,
                                             VOS_UINT32                  ulStrLen,
                                             USIMM_VSIM_AUTH_ENUM_UINT32*pulAuthType)
@@ -4028,20 +3173,7 @@ VOS_VOID USIMM_VsimDecodeAuthType(VOS_CHAR                  *pucStr,
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_DecodeVsimRoot
-功能描述  :实现了XML文件内容的解析
-输入参数  :pstXmlNode: XML文件数据根节点
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2013年3月18日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 
 VOS_UINT32 USIMM_DecodeVsimRoot(OAM_XML_NODE_STRU             *pstXmlNode,
                                         USIMM_CARD_TYPE_ENUM_UINT32     *pulCardType,
@@ -4101,20 +3233,7 @@ VOS_UINT32 USIMM_DecodeVsimRoot(OAM_XML_NODE_STRU             *pstXmlNode,
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_DecodeVsimFile
-功能描述  :实现了XML文件内容的解析
-输入参数  :pucData: XML文件数据, 结尾使用'\0'标记
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2013年3月18日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_DecodeVsimFile(VOS_UINT8 *pucData)
 {
     OAM_XML_CTX_STRU                    stXmlCtx;
@@ -4169,20 +3288,7 @@ VOS_UINT32 USIMM_DecodeVsimFile(VOS_UINT8 *pucData)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ReadVsimFile
-功能描述  :实现了vSIM卡内容读取和内存返回
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_NULL_PTR
-           VSIM XML Data Pointer
-调用函数  :
-修订记录  :
-1. 日    期   : 2013年3月18日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT8* USIMM_ReadVsimFile(VOS_UINT32 ulReadPID)
 {
     FILE                                *pXmlFile;
@@ -4247,20 +3353,7 @@ VOS_UINT8* USIMM_ReadVsimFile(VOS_UINT32 ulReadPID)
     return pucXMLData;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_InitVsimCard
-功能描述  :实现了vSIM卡初始化和结果回复　
-输入参数  :API层下发消息内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2013年3月18日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_InitVsimCard(USIMM_MsgBlock *pMsg)
 {
     VOS_UINT8                           *pucXMLData;

@@ -1,14 +1,4 @@
-/******************************************************************************
 
-  Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : LPsFsmState.h
-  Description     : LPsCommFsmState.h header file
-  History         :
-      1.liutao 38432       2011-5-14   Draft Enact
-      2.lidui 143774       2012-4-25   DTS2012040905094:重配置和切换成功的时机理解与标杆不一致
-******************************************************************************/
 
 #ifndef __LPSFSMSTATE_H__
 #define __LPSFSMSTATE_H__
@@ -445,9 +435,7 @@ enum RRC_SS_ID_ENUM
     /* 状态机预处状态，子要用于不进状态机的消息的处理 */
     RRC_SS_PRE_PROCESS,
 
-    /* begin: add for Austin搜网优化 PhaseII , l00277963*/
     RRC_CSEL_SS_WAIT_CSS_CURR_GEO_RSP,
-    /* end:   add for Austin搜网优化 PhaseII , l00277963*/
 
     RRC_SS_ID_BUTT
 };

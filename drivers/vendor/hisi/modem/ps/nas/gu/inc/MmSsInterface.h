@@ -1,13 +1,4 @@
-/*******************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : MmSsInterface.h
-  Description : Ss与Mm接口头文件
-  History     :
-      1. 张志勇      2004.02.27   新版作成
-      2.日    期  : 2006年12月4日
-        作    者  : luojian id:60022475
-        修改内容  : 增加 #pragma pack(4)，问题单号:A32D07779
-*******************************************************************************/
+
 
 #ifndef _MM_SS_INTERFACE_H_
 #define _MM_SS_INTERFACE_H_
@@ -105,13 +96,7 @@ typedef struct
     NAS_MMCM_REL_CAUSE_ENUM_UINT32      enMmssRelCause;
 }MMSS_REL_IND_STRU;
 
-/*****************************************************************************
- 枚举名    : MMSS_SESSION_TYPE_ENUM_UINT8
- 枚举说明  : SS域SESSION类型
- 1.日    期   : 2014年5月28日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 enum MMSS_SESSION_TYPE_ENUM
 {
     MMSS_SESSION_TYPE_MO_SS,
@@ -120,13 +105,7 @@ enum MMSS_SESSION_TYPE_ENUM
 };
 typedef VOS_UINT8 MMSS_SESSION_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 结构名    : MMSS_BEGIN_SESSION_NOTIFY_STRU
- 结构说明  : SESSION开始指示
- 1.日    期   : 2014年5月28日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stMsgHeader;                /*_H2ASN_Skip*/
@@ -135,13 +114,7 @@ typedef struct
 } MMSS_BEGIN_SESSION_NOTIFY_STRU;
 
 
-/*****************************************************************************
- 结构名    : MMSS_END_SESSION_NOTIFY_STRU
- 结构说明  : SESSION结束指示
- 1.日    期   : 2014年5月28日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stMsgHeader;                /*_H2ASN_Skip*/
@@ -153,13 +126,7 @@ typedef struct
 
 typedef SSA_SS_STATUS_ENUM_UINT8 MMSS_STATUS_ENUM_UINT8;
 
-/*****************************************************************************
- 结构名    : MMSS_STATUS_NTY_STRU
- 结构说明  : SS建立状态指示
-  1.日    期   : 2015年8月18日
-    作    者   : s00217060
-    修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stMsgHeader;                /*_H2ASN_Skip*/

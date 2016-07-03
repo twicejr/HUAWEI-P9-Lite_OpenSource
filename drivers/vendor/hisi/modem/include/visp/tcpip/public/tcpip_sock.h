@@ -1,48 +1,4 @@
-/*******************************************************************************
-*
-*
-*                Copyright 2006, Huawei Technologies Co. Ltd.
-*                            ALL RIGHTS RESERVED
-*
-*-------------------------------------------------------------------------------
-*
-*                              tcpip_sock.h
-*
-*  Project Code: VISPV1R5
-*   Module Name: Public
-*  Date Created: 2005-05-10
-*        Author: Liqiang17164
-*   Description: VISP socket API的头文件，供非数通产品引用
-*                申明与VISP socket API相关的函数格式、数据结构、宏定义
-*                对本文件的必要说明：
-*                1、由于VISP和VXWORKS的协议栈代码都来源于FreeBSD，导致
-*                   必然存在着相同的数据结构定义、宏定义，因材，VISP必须对
-*                   相关的数据结构定义、宏定义做封装，具体办法就是在定义之前
-*                   添加"VRP"标识，以保证产品显示地调用VISP的API、数据结构
-*                   和宏定义
-*                2、对于非数通产品使用的VISP独有的数据结构、宏定义，直接在
-*                   本文件中重复定义，以避免使用对应的VISP H文件后导致产品
-*                   链编时产生大量的编译告警，很难解决，主要原因是DOPRA LIB +
-*                   VISP LIB + 产品代码，混在一起编译非常难解决编译告警
-*                3、本文件不在VISP内部使用，仅仅给非数通产品使用
-*                4、tcpip_sock.h文件中唯一允许用户修改取值的宏定义是
-*                   VRP_FD_SETSIZE，其余的宏定义、数据结构禁止修改
-*                5、本文件的内容主要来自sock_pub.h/sock_com.h/
-*                   sock_err.h/sock6_pub.h文件，因此当这些文件的对应定义发生
-*                   变化时，一定要及时同步到本文件之中.本文件的维护方法是:
-*                   VISP内部的相关定义修改后必须同步到本文件的对等定义之中；
-*                   否则，会出问题的
-*
-*-------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  -----------------------------------------------------------------------------
-*  2005-05-10      Liqiang17164       Create
-*  2005-05-16      Liqiang17164       根据朱昆意见---am4_pub.h文件中的数据结构
-*                                     不需要封装，非数通产品可以直接include该文件
-*  2007-09-20      z62474             同步A82D20312
-*  2008-09-28      z62474             modify for BC3D00425
-*******************************************************************************/
+
 
 #ifndef _TCPIP_SOCK_H_
 #define _TCPIP_SOCK_H_
@@ -270,7 +226,6 @@ extern "C" {
     VRP_FD_SETSIZE宏是tcpip_sock.h文件中唯一允许用户修改取值的宏定义,取值必须是32的整数倍，取值范围是[32，3072].
 即用户可以设置32/64/96/128。。。等，如果产品定义的值不为32的整数倍，则取默认值32 */
 /*为支持OSPF规格扩展为32个，并且需要同时支持OSPFv3,OSPF,RIP,RIPng，因此从32扩展到128*/
-/*Added by zhoushisong202096, 支持大规格SOCKET, 2013/11/7 */
 #ifdef TCPIP_NOVRP_HUGE_SOCKET
 #define VRP_FD_SETSIZE  128*1024
 #else
@@ -282,7 +237,6 @@ extern "C" {
 #define VRP_NFDBITS     0x20    /* number of bits in a long */
 #define VRP_NBBY        8       /* number of bits in a byte */
 
-/*Added by zhoushisong202096, 支持大规格SOCKET, 2013/11/7 */
 #ifdef TCPIP_NOVRP_HUGE_SOCKET
 #define VRP_FDSETLEN    4097    /* fd_set lenth, xxx long */
 #else
@@ -1378,21 +1332,7 @@ ULONG TCPIP_GetSockGlobleConfig(SOCK_GLOBLE_S *pstData);
 *
 *******************************************************************************/
 VOID TCPIP_ShowSockGlobleConfig(VOID);
-/*******************************************************************************
-*    Func Name: TCPIP_ShowMGInfoBySock
-*  Description: 基于socket显示多播信息
-*        Input: ULONG ulTaskId:任务ID
-*               ULONG ulSockId:socket ID
-*       Output:
-*       Return: VOID
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-17   z00104207               Create
-*
-*******************************************************************************/
+
 VOID  TCPIP_ShowMGInfoBySock(ULONG ulTaskId, LONG lSockId);
 
 /*******************************************************************************
@@ -1435,23 +1375,7 @@ ULONG TCPIP_SetSockLogSwitch(ULONG ulProtocol, ULONG ulLogSwitch);
 *******************************************************************************/
 ULONG TCPIP_GetSockLogSwitch(ULONG ulProtocol, ULONG *pulLogSwitch);
 
-/*******************************************************************************
-*    Func Name: TCPIP_ShowISISInfoBySock
-* Date Created: 2011-4-14
-*       Author: y00171195
-*  Description: 基于socket显示ISIS sock统计信息
-*        Input: ULONG ulTaskId:任务ID
-*               ULONG ulSockId:socket ID
-*       Output:
-*       Return: VOID
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-4-14    y00171195               Create(DTS2011041801697)
-*
-*******************************************************************************/
+
 VOID TCPIP_ShowISISInfoBySock(ULONG ulTaskId, LONG lSockId);
 
 /*ipv6相关*/
@@ -1602,236 +1526,41 @@ VOID  TCPIP_ShowSock6Debugging(VOID);
 *******************************************************************************/
 ULONG TCPIP_SetSock6DbgFilter(ULONG ulFlag, ULONG ulTaskId, ULONG ulSockId);
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetSockTcpState
-* Date Created: 2013-12-06
-*       Author: d00217007
-*  Description: 基于三元组/五元组查询socket信息
-*        Input: TCPIP_SOCK_SEARCH_IN_S * pstSearchIn:用于查询的五元组信息和vrf，其中TCP协议号为6
-*       Output: TCPIP_SOCK_SEARCH_OUT_S * pstSearchOut:查询到的socket id和TCP状态
-*       Return: VOS_OK:
-*               SOCK_SOCKETNOTFOUND:没有找到socket
-*               SOCK_INVALIDPRO:非法的协议号
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2013-12-06   d00217007               Create
-*
-*******************************************************************************/
+
 ULONG TCPIP_GetSockTcpState(TCPIP_SOCK_SEARCH_IN_S * pstSearchIn, TCPIP_SOCK_SEARCH_OUT_S * pstSearchOut);
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetSockPQ0Info
-* Date Created: 2013-12-06
-*       Author: d00217007
-*  Description: 查询监听socket Q0队列 
-*        Input: LONG lFd:socket id
-*       Output: TCPIP_SOCKPQINFO_S *pstSockPQInfo:获取到的socket信息
-*       Return: VOS_OK
-*               SOCK_QZEROEMPTY:Q0队列中没有节点
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2013-12-06   d00217007               Create
-*
-*******************************************************************************/
+
 ULONG TCPIP_GetSockPQ0Info(LONG lFd, TCPIP_SOCKPQINFO_S *pstPQInfo);
 
-/*******************************************************************************
-*    Func Name: TCPIP_OpenSockPQ0Entry
-* Date Created: 2013-12-06
-*       Author: d00217007
-*  Description: 查询监听socket Q0队列 Open操作
-*        Input: LONG lFd:socket id
-*       Output: UINTPTR *pulWaitListHandle:wait list句柄
-*       Return: VOS_OK
-*               SOCK_QZEROEMPTY:Q0队列中没有节点
-*               SOCK_FILTNULLPOINTER:传入的句柄指针为空
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2013-12-06   d00217007               Create
-*
-*******************************************************************************/
+
 ULONG TCPIP_OpenSockPQ0Entry (LONG lFd ,UINTPTR *pulWaitListHandle);
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetSockPQ0Entry
-* Date Created: 2013-12-06
-*       Author: d00217007
-*  Description: 查询监听socket Q0队列 Get操作
-*        Input: UINTPTR ulWaitListHandle:wait list句柄
-*       Output: TCPIP_SOCKPQINFO_S *pstSockPQInfo:获取到的socket信息
-*       Return: VOS_OK
-*               SOCK_QZEROEND:已到队列末端
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2013-12-06   d00217007               Create
-*
-*******************************************************************************/
+
 ULONG TCPIP_GetSockPQ0Entry(UINTPTR pulWaitListHandle, TCPIP_SOCKPQNODEINFO_S *pstSockNodePQInfo);
 
-/*******************************************************************************
-*    Func Name: TCPIP_CloseSockPQ0Entry
-* Date Created: 2013-12-06
-*       Author: d00217007
-*  Description: 查询监听socket Q0队列 Close操作
-*        Input: UINTPTR ulWaitListHandle:wait list句柄
-*       Output: 
-*       Return: VOS_OK
-*               SOCK_INVALIDHANDLE:句柄无效
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2013-12-06   d00217007               Create
-*
-*******************************************************************************/
+
 ULONG TCPIP_CloseSockPQ0Entry(UINTPTR ulWaitListHandle);
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetSockPQInfo
-* Date Created: 2013-12-06
-*       Author: d00217007
-*  Description: 查询监听socket Q队列 
-*        Input: LONG lFd:socket id
-*       Output: TCPIP_SOCKPQINFO_S *pstSockPQInfo:获取到的socket信息
-*       Return: VOS_OK
-*               SOCK_QEMPTY:Q队列没有节点
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2013-12-06   d00217007               Create
-*
-*******************************************************************************/
+
 ULONG TCPIP_GetSockPQInfo(LONG lFd, TCPIP_SOCKPQINFO_S *pstPQInfo);
 
-/*******************************************************************************
-*    Func Name: TCPIP_OpenSockPQEntry
-* Date Created: 2013-12-06
-*       Author: d00217007
-*  Description: 查询监听socket Q队列 Open操作
-*        Input: LONG lFd:socket id
-*       Output: UINTPTR *pulWaitListHandle:wait list句柄
-*       Return: VOS_OK
-*               SOCK_QEMPTY:Q队列没有节点
-*               SOCK_FILTNULLPOINTER:传入的句柄指针为空
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2013-12-06   d00217007               Create
-*
-*******************************************************************************/
+
 ULONG TCPIP_OpenSockPQEntry (LONG lFd ,UINTPTR *pulWaitListHandle);
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetSockPQEntry
-* Date Created: 2013-12-06
-*       Author: d00217007
-*  Description: 查询监听socket Q队列 Get操作
-*        Input: UINTPTR ulWaitListHandle:wait list句柄
-*       Output: TCPIP_SOCKPQINFO_S *pstSockPQInfo:获取到的socket信息
-*       Return: VOS_OK
-*               SOCK_QEND:已到队列末端
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2013-12-06   d00217007               Create
-*
-*******************************************************************************/
+
 ULONG TCPIP_GetSockPQEntry(UINTPTR pulWaitListHandle, TCPIP_SOCKPQNODEINFO_S *pstSockPQNodeInfo);
 
-/*******************************************************************************
-*    Func Name: TCPIP_CloseSockPQEntry
-* Date Created: 2013-12-06
-*       Author: d00217007
-*  Description: 查询监听socket Q队列 Close操作
-*        Input: UINTPTR ulWaitListHandle:wait list句柄
-*       Output: 
-*       Return: VOS_OK
-*               SOCK_INVALIDHANDLE:句柄无效
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2013-12-06   d00217007               Create
-*
-*******************************************************************************/
+
 ULONG TCPIP_CloseSockPQEntry(UINTPTR ulWaitListHandle);
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetSockResourceStatus
-* Date Created: 2013-12-06
-*       Author: d00217007
-*  Description: 查询socket使用情况
-*        Input: 
-*       Output: ULONG *pulTotalNum:当前配置的socket总数
-*               ULONG *pulUsedNum:当前已使用的socket总数
-*       Return: VOS_OK:
-*               SOCK_TCBNOTFOUND:无法获取Tcb
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2013-12-06   d00217007               Create
-*
-*******************************************************************************/
+
 ULONG TCPIP_GetSockResourceStatus(ULONG *pulTotalNum, ULONG *pulUsedNum);
 
 typedef ULONG (*TCPKEEPALIVECLOSE_HOOK_FUNC)(LONG lSocketId, vrp_asynsockset *pstAsynsocket, ULONG *pulCloseFlag );
-/*******************************************************************************
-*    Func Name: TCPIP_RegFuncTCPKeepAliveCloseHook
-* Date Created: 2014-01-16
-*       Author: l00213099
-*  Description: 注册TCP非保活时超时判断是否关闭连接钩子函数
-*        Input: pfHookFunc
-*       Output: 无
-*       Return: 成功或失败
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-01-16   l00213099               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_RegFuncTCPKeepAliveCloseHook( TCPKEEPALIVECLOSE_HOOK_FUNC pfFuncHook );
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetSockQosInfo
-* Date Created: 2013-12-06
-*       Author: d00217007
-*  Description: 查询TCP连接Qos使用情况
-*        Input: LONG lFd:socket id
-*       Output: TCPIP_SOCK_QOS_INFO_S *pstQosInfo:Qos信息
-*       Return: VOS_OK:
-*               VOS_ERR:当前发包量为0
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2013-12-06   d00217007               Create
-*
-*******************************************************************************/
+
 ULONG TCPIP_GetSockQosInfo(LONG lFd, TCPIP_SOCK_QOS_INFO_S *pstQosInfo);
 
 /*******************************************************************************

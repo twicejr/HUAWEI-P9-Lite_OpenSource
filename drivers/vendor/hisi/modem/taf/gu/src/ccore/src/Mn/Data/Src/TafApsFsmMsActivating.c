@@ -1,23 +1,5 @@
 
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafApsFsmMsActivating.c
-  版 本 号   : 初稿
-  作    者   : S62952
-  生成日期   : 2011年12月14日
-  最近修改   :
-  功能描述   : MsActivating状态机处理函数
-  函数列表   :
-
-  修改历史   :
-  1.日    期   : 2011年12月14日
-    作    者   : S62952
-    修改内容   : 创建文件
-
-******************************************************************************/
 /*****************************************************************************
   1 头文件包含
 *****************************************************************************/
@@ -75,39 +57,7 @@
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtSetPdpContextStateReq_MsActivating_Init
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_INIT子状态下
-             收到ID_MSG_TAF_PS_SET_PDP_CONTEXT_STATE_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_SET_PDP_CONTEXT_STATE_REQ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年5月3日
-    作    者   : A00165503
-    修改内容   : DTS2012042604902: GCF 8.2.2.35 用例失败
-
-  3.日    期   : 2012年12月22日
-    作    者   : z60575
-    修改内容   : DTS2012121900427: 记录PDP类型
-
-  4.日    期   : 2014年2月20日
-    作    者   : A00165503
-    修改内容   : DTS2013022201185: PS域呼叫建立流程优化
-
-  5.日    期   : 2014年6月28日
-    作    者   : A00165503
-    修改内容   : DSDS III 项目, 增加NO RF丢网场景时, 触发搜网流程
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtSetPdpContextStateReq_MsActivating_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -218,38 +168,7 @@ VOS_UINT32 TAF_APS_RcvAtSetPdpContextStateReq_MsActivating_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsPppDialOrigReq_MsActivating_Init
- 功能描述  : ACTIVATEING主状态下收到ID_MSG_TAF_PS_PPP_DIAL_ORIG_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年5月3日
-    作    者   : A00165503
-    修改内容   : DTS2012042604902: GCF 8.2.2.35 用例失败
-
-  3.日    期   : 2012年12月22日
-    作    者   : z60575
-    修改内容   : DTS2012121900427: 记录PDP类型
-
-  4.日    期   : 2014年2月20日
-    作    者   : A00165503
-    修改内容   : DTS2013022201185: PS域呼叫建立流程优化
-
-  5.日    期   : 2014年6月28日
-    作    者   : A00165503
-    修改内容   : DSDS III 项目, 增加NO RF丢网场景时, 触发搜网流程
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsPppDialOrigReq_MsActivating_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -350,45 +269,7 @@ VOS_UINT32 TAF_APS_RcvAtPsPppDialOrigReq_MsActivating_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallOrigReq_MsActivating_Init
- 功能描述  : ACTIVATEING主状态下收到ID_MSG_TAF_PS_CALL_ORIG_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年8月2日
-    作    者   : A00165503
-    修改内容   : DTS2012080200981: APS在挂起状态下收到IPv4v6类型拨号请求,
-                 在解挂前又收到断开拨号请求, 上报的断开拨号响应事件中承载类
-                 型填写错误, 导致再次拨号失败
-
-  3.日    期   : 2012年12月22日
-    作    者   : z60575
-    修改内容   : DTS2012121900427: 记录PDP类型
-
-  4.日    期   : 2014年2月20日
-    作    者   : A00165503
-    修改内容   : DTS2013022201185: PS域呼叫建立流程优化
-
-  5.日    期   : 2014年6月28日
-    作    者   : A00165503
-    修改内容   : DSDS III 项目, 增加NO RF丢网场景时, 触发搜网流程
-
-  6.日    期   : 2015年3月24日
-    作    者   : A00165503
-    修改内容   : DTS2015032403636: PDN连接建立过程中, 断开拨号连接, 上报的拨
-                 号类型错误, 导致AT对应类型的拨号连接状态异常. 后续拨号失败
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallOrigReq_MsActivating_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -524,32 +405,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallOrigReq_MsActivating_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtSetPdpContextStateReq_MsActivating_Suspend
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_MsActivating_Suspend子状态下
-             收到ID_MSG_TAF_PS_SET_PDP_CONTEXT_STATE_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_SET_PDP_CONTEXT_STATE_REQ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年5月22日
-    作    者   : A00165503
-    修改内容   : DTS2012032005030: 丢网状态下, +CGACT命令发起的激活承载请求
-                 在APS缓存的时间超过40s
-
-  3.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtSetPdpContextStateReq_MsActivating_Suspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -593,26 +449,7 @@ VOS_UINT32 TAF_APS_RcvAtSetPdpContextStateReq_MsActivating_Suspend(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsPppDialOrigReq_MsActivating_Suspend
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_MsActivating_Suspend子状态下
-             收到ID_MSG_TAF_PS_PPP_DIAL_ORIG_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_PPP_DIAL_ORIG_REQ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsPppDialOrigReq_MsActivating_Suspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -632,26 +469,7 @@ VOS_UINT32 TAF_APS_RcvAtPsPppDialOrigReq_MsActivating_Suspend(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallOrigReq_MsActivating_Suspend
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_MsActivating_Suspend子状态下
-             收到ID_MSG_TAF_PS_CALL_ORIG_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_CALL_ORIG_REQ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallOrigReq_MsActivating_Suspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -672,28 +490,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallOrigReq_MsActivating_Suspend(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallEndReq_MsActivating_Suspend
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_MsActivating_Suspend子状态下
-             收到ID_MSG_TAF_PS_CALL_END_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_CALL_END_REQ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年5月22日
-    作    者   : A00165503
-    修改内容   : DTS2012032005030: 丢网状态下, +CGACT命令发起的激活承载请求
-                 在APS缓存的时间超过40s
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallEndReq_MsActivating_Suspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -727,24 +524,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallEndReq_MsActivating_Suspend(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallModifyReq_MsActivating_Suspend
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_MsActivating_Suspend子状态下
-             收到ID_MSG_TAF_PS_CALL_MODIFY_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_CALL_MODIFY_REQ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallModifyReq_MsActivating_Suspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -764,36 +544,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallModifyReq_MsActivating_Suspend(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvInterServiceStatusChangeInd_MsActivating_Suspend
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_INTER_SERVICE_STATUS_CHANGE_IND消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_INTER_SERVICE_STATUS_CHANGE_IND消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年5月22日
-    作    者   : A00165503
-    修改内容   : DTS2012032005030: 丢网状态下, +CGACT命令发起的激活承载请求
-                 在APS缓存的时间超过40s
-
-  3.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-
-  4.日    期   : 2015年5月25日
-    作    者   : g00261581
-    修改内容   : 修改入口消息
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvInterServiceStatusChangeInd_MsActivating_Suspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -885,23 +636,7 @@ VOS_UINT32 TAF_APS_RcvInterServiceStatusChangeInd_MsActivating_Suspend(
 }
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvInterAttachBearerActivateInd_MsActivating_Suspend
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_ATTACH_BEARER_ACTIVATE_IND消息的处理
- 输入参数  : ulEventType --- 消息类型
-             pstMsg      --- ID_MSG_TAF_PS_ATTACH_BEARER_ACTIVATE_IND消息
- 输出参数  : 无
- 返 回 值  : VOS_TRUE    --- 处理消息成功
-             VOS_FALSE   --- 处理消息失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月20日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvInterAttachBearerActivateInd_MsActivating_Suspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -942,26 +677,7 @@ VOS_UINT32 TAF_APS_RcvInterAttachBearerActivateInd_MsActivating_Suspend(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiMsActivatingExpired_MsActivating_Suspend
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_SUSPEND子状态下
-             收到TI_TAF_APS_MS_ACTIVATING消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月25日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiMsActivatingExpired_MsActivating_Suspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -985,26 +701,7 @@ VOS_UINT32 TAF_APS_RcvTiMsActivatingExpired_MsActivating_Suspend(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtSetPdpContextStateReq_MsActivating_WaitSmActivateCnf
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_SM_ACTIVATE_CNF子状态下
-             收到ID_MSG_TAF_PS_SET_PDP_CONTEXT_STATE_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_SET_PDP_CONTEXT_STATE_REQ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtSetPdpContextStateReq_MsActivating_WaitSmActivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1050,26 +747,7 @@ VOS_UINT32 TAF_APS_RcvAtSetPdpContextStateReq_MsActivating_WaitSmActivateCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsPppDialOrigReq_MsActivating_WaitSmActivateCnf
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_SM_ACTIVATE_CNF子状态下
-             收到ID_MSG_TAF_PS_PPP_DIAL_ORIG_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_PPP_DIAL_ORIG_REQ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsPppDialOrigReq_MsActivating_WaitSmActivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1089,27 +767,7 @@ VOS_UINT32 TAF_APS_RcvAtPsPppDialOrigReq_MsActivating_WaitSmActivateCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallOrigReq_MsActivating_WaitSmActivateCnf
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_SM_ACTIVATE_CNF子状态下
-             收到ID_MSG_TAF_PS_CALL_ORIG_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_CALL_ORIG_REQ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallOrigReq_MsActivating_WaitSmActivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1130,27 +788,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallOrigReq_MsActivating_WaitSmActivateCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallEndReq_MsActivating_WaitSmActivateCnf
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_SM_ACTIVATE_CNF子状态下
-             收到ID_MSG_TAF_PS_CALL_END_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_CALL_END_REQ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2012年05月02日
-    作    者   : f00179208
-    修改内容   : 问题单号:DTS2012050203426,PDP激活过程中进行PDP去激活，需要上报
-                 PDP操作结果给AT.
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallEndReq_MsActivating_WaitSmActivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1158,16 +796,12 @@ VOS_UINT32 TAF_APS_RcvAtPsCallEndReq_MsActivating_WaitSmActivateCnf(
 {
     VOS_UINT8                           ucPdpId;
 
-    /* Added by f00179208 for DTS2012050203426，2012-05-02 Begin */
     TAF_PS_MSG_STRU                    *pstAppMsg;
     TAF_PS_CALL_END_REQ_STRU           *pstPsCallEndReq;
-    /* Added by f00179208 for DTS2012050203426，2012-05-02 End */
 
     /* 获取当前状态机的APS实体索引 */
-    /* Added by f00179208 for DTS2012050203426，2012-05-02 Begin */
     pstAppMsg       = (TAF_PS_MSG_STRU*)pstMsg;
     pstPsCallEndReq = (TAF_PS_CALL_END_REQ_STRU*)(pstAppMsg->aucContent);
-    /* Added by f00179208 for DTS2012050203426，2012-05-02 End */
 
     ucPdpId = TAF_APS_GetCurrFsmEntityPdpId();
 
@@ -1175,12 +809,10 @@ VOS_UINT32 TAF_APS_RcvAtPsCallEndReq_MsActivating_WaitSmActivateCnf(
     TAF_APS_StopTimer(TI_TAF_APS_MS_ACTIVATING,
                       ucPdpId);
 
-    /* Added by f00179208 for DTS2012050203426，2012-05-02 Begin */
     /* 上报PDP操作结果, NO_ERROR */
     TAF_APS_SndCallEndCnf(&(pstPsCallEndReq->stCtrl),
                          pstPsCallEndReq->ucCid,
                          TAF_PS_CAUSE_SUCCESS);
-    /* Added by f00179208 for DTS2012050203426，2012-05-02 End */
 
     /* 上报ID_EVT_TAF_PS_CALL_PDP_DEACTIVATE_CNF事件 */
     TAF_APS_SndPdpDeActivateCnf(ucPdpId, TAF_APS_GetPdpEntCurrCid(ucPdpId));
@@ -1198,24 +830,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallEndReq_MsActivating_WaitSmActivateCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallModifyReq_MsActivating_WaitSmActivateCnf
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_SM_ACTIVATE_CNF子状态下
-             收到ID_MSG_TAF_PS_CALL_MODIFY_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_CALL_MODIFY_REQ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallModifyReq_MsActivating_WaitSmActivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1235,26 +850,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallModifyReq_MsActivating_WaitSmActivateCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvSmPdpDeactivInd_MsActivating_WaitSmActivateCnf
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_SM_ACTIVATE_CNF子状态下
-             收到ID_PMC_SMREG_PDP_DEACTIV_IND消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_PMC_SMREG_PDP_DEACTIV_IND消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvSmPdpDeactivInd_MsActivating_WaitSmActivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1291,26 +887,7 @@ VOS_UINT32 TAF_APS_RcvSmPdpDeactivInd_MsActivating_WaitSmActivateCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvSmPdpActRej_MsActivating_WaitSmActivateCnf
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_SM_ACTIVATE_CNF子状态下
-             收到ID_PMC_SMREG_PDP_ACT_REJ消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_PMC_SMREG_PDP_ACT_REJ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvSmPdpActRej_MsActivating_WaitSmActivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1340,27 +917,7 @@ VOS_UINT32 TAF_APS_RcvSmPdpActRej_MsActivating_WaitSmActivateCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvSmPdpActSecRej_MsActivating_WaitSmActivateCnf
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_SM_ACTIVATE_CNF子状态下
-             收到ID_PMC_SMREG_PDP_ACT_SEC_REJ消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_PMC_SMREG_PDP_ACT_SEC_REJ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvSmPdpActSecRej_MsActivating_WaitSmActivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1390,39 +947,7 @@ VOS_UINT32 TAF_APS_RcvSmPdpActSecRej_MsActivating_WaitSmActivateCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvSmPdpActCnf_MsActivating_WaitSmActivateCnf
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_SM_ACTIVATE_CNF子状态下
-             收到ID_PMC_SMREG_PDP_ACT_CNF消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_PMC_SMREG_PDP_ACT_CNF消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年12月26日
-    作    者   : o00132663
-    修改内容   : PS融合项目，增加启动流量统计调用
-  3.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-
-  4.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-
-  5.日    期   : 2013年01月21日
-    作    者   : A00165503
-    修改内容   : DTS2013011803709: 激活ND Client增加接入技术判断, 防止在NULL
-                 状态下激活ND Client导致RS包被丢弃
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvSmPdpActCnf_MsActivating_WaitSmActivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1494,6 +1019,8 @@ VOS_UINT32 TAF_APS_RcvSmPdpActCnf_MsActivating_WaitSmActivateCnf(
         {
             TAF_APS_SndNdPdpActInd(pstPdpEntity->ucNsapi,
                                    pstPdpEntity->PdpAddr.aucIpV6Addr);
+
+            pstPdpEntity->ulNdClientActiveFlg = VOS_TRUE;
         }
 #endif
 
@@ -1538,31 +1065,7 @@ VOS_UINT32 TAF_APS_RcvSmPdpActCnf_MsActivating_WaitSmActivateCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvSmPdpActSecCnf_MsActivating_WaitSmActivateCnf
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_SM_ACTIVATE_CNF子状态下
-             收到ID_PMC_SMREG_PDP_ACT_SEC_CNF消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_PMC_SMREG_PDP_ACT_SEC_CNF消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年6月19日
-    作    者   : A00165503
-    修改内容   : DTS2012061504908: GCF 45.2.5.1.2.2 FAIL
-
-  3.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvSmPdpActSecCnf_MsActivating_WaitSmActivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1644,23 +1147,7 @@ VOS_UINT32 TAF_APS_RcvSmPdpActSecCnf_MsActivating_WaitSmActivateCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvApsInterPdpDeactivateReq_MsActivating_WaitSmActivateCnf
- 功能描述  : ACTIVATING主状态下收到ID_APS_APS_INTER_PDP_DEACTIVATE_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvApsInterPdpDeactivateReq_MsActivating_WaitSmActivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1680,26 +1167,7 @@ VOS_UINT32 TAF_APS_RcvApsInterPdpDeactivateReq_MsActivating_WaitSmActivateCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvApsLocalPdpDeactivateInd_MsActivating_WaitSmActivateCnf
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_SM_ACTIVATE_CNF子状态下
-             收到ID_APS_APS_LOCAL_PDP_DEACTIVATE_IND消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_APS_APS_LOCAL_PDP_DEACTIVATE_IND消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年06月07日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvApsLocalPdpDeactivateInd_MsActivating_WaitSmActivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1731,28 +1199,7 @@ VOS_UINT32 TAF_APS_RcvApsLocalPdpDeactivateInd_MsActivating_WaitSmActivateCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvInterServiceStatusChangeInd_MsActivating_WaitSmActivateCnf
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_SM_ACTIVATE_CNF子状态下
-             收到ID_MSG_TAF_PS_INTER_SERVICE_STATUS_CHANGE_IND消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_INTER_SERVICE_STATUS_CHANGE_IND消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年5月25日
-    作    者   : g00261581
-    修改内容   : 入口消息修改
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvInterServiceStatusChangeInd_MsActivating_WaitSmActivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1778,27 +1225,7 @@ VOS_UINT32 TAF_APS_RcvInterServiceStatusChangeInd_MsActivating_WaitSmActivateCnf
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiMsActivatingExpired_MsActivating_WaitSmActivateCnf
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_SM_ACTIVATE_CNF子状态下
-             收到TI_TAF_APS_MS_ACTIVATING消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月25日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiMsActivatingExpired_MsActivating_WaitSmActivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1825,27 +1252,7 @@ VOS_UINT32 TAF_APS_RcvTiMsActivatingExpired_MsActivating_WaitSmActivateCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtSetPdpContextStateReq_MsActivating_WaitSmActivateCnfSuspend
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_SM_ACTIVATE_CNF_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_SET_PDP_CONTEXT_STATE_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_SET_PDP_CONTEXT_STATE_REQ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtSetPdpContextStateReq_MsActivating_WaitSmActivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1891,27 +1298,7 @@ VOS_UINT32 TAF_APS_RcvAtSetPdpContextStateReq_MsActivating_WaitSmActivateCnfSusp
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsPppDialOrigReq_MsActivating_WaitSmActivateCnfSuspend
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_SM_ACTIVATE_CNF_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_PPP_DIAL_ORIG_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_PPP_DIAL_ORIG_REQ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsPppDialOrigReq_MsActivating_WaitSmActivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1930,27 +1317,7 @@ VOS_UINT32 TAF_APS_RcvAtPsPppDialOrigReq_MsActivating_WaitSmActivateCnfSuspend(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallOrigReq_MsActivating_WaitSmActivateCnfSuspend
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_SM_ACTIVATE_CNF_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_CALL_ORIG_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_CALL_ORIG_REQ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallOrigReq_MsActivating_WaitSmActivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1970,27 +1337,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallOrigReq_MsActivating_WaitSmActivateCnfSuspend(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallEndReq_MsActivating_WaitSmActivateCnfSuspend
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_SM_ACTIVATE_CNF_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_CALL_END_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_CALL_END_REQ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2012年05月02日
-    作    者   : f00179208
-    修改内容   : 问题单号:DTS2012050203426,PDP激活过程中进行PDP去激活，需要上报
-                 PDP操作结果给AT.
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallEndReq_MsActivating_WaitSmActivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1998,16 +1345,12 @@ VOS_UINT32 TAF_APS_RcvAtPsCallEndReq_MsActivating_WaitSmActivateCnfSuspend(
 {
     VOS_UINT8                           ucPdpId;
 
-    /* Added by f00179208 for DTS2012050203426，2012-05-02 Begin */
     TAF_PS_MSG_STRU                    *pstAppMsg;
     TAF_PS_CALL_END_REQ_STRU           *pstPsCallEndReq;
-    /* Added by f00179208 for DTS2012050203426，2012-05-02 End */
 
     /* 初始化, 获取消息内容 */
-    /* Added by f00179208 for DTS2012050203426，2012-05-02 Begin */
     pstAppMsg       = (TAF_PS_MSG_STRU*)pstMsg;
     pstPsCallEndReq = (TAF_PS_CALL_END_REQ_STRU*)(pstAppMsg->aucContent);
-    /* Added by f00179208 for DTS2012050203426，2012-05-02 End */
 
     ucPdpId                             = TAF_APS_GetCurrFsmEntityPdpId();
 
@@ -2015,12 +1358,10 @@ VOS_UINT32 TAF_APS_RcvAtPsCallEndReq_MsActivating_WaitSmActivateCnfSuspend(
     TAF_APS_StopTimer(TI_TAF_APS_MS_ACTIVATING,
                       ucPdpId);
 
-    /* Added by f00179208 for DTS2012050203426，2012-05-02 Begin */
     /* 上报PDP操作结果, NO_ERROR */
     TAF_APS_SndCallEndCnf(&(pstPsCallEndReq->stCtrl),
                          pstPsCallEndReq->ucCid,
                          TAF_PS_CAUSE_SUCCESS);
-    /* Added by f00179208 for DTS2012050203426，2012-05-02 End */
 
     /* 上报ID_EVT_TAF_PS_CALL_PDP_DEACTIVATE_CNF事件 */
     TAF_APS_SndPdpDeActivateCnf(ucPdpId, TAF_APS_GetPdpEntCurrCid(ucPdpId));
@@ -2038,24 +1379,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallEndReq_MsActivating_WaitSmActivateCnfSuspend(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallModifyReq_MsActivating_WaitSmActivateCnfSuspend
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_SM_ACTIVATE_CNF_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_CALL_MODIFY_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_CALL_MODIFY_REQ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallModifyReq_MsActivating_WaitSmActivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2075,27 +1399,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallModifyReq_MsActivating_WaitSmActivateCnfSuspend(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvSmPdpDeactivInd_MsActivating_WaitSmActivateCnfSuspend
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_SM_ACTIVATE_CNF_SUSPEND子状态下
-             收到ID_PMC_SMREG_PDP_DEACTIV_IND消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_PMC_SMREG_PDP_DEACTIV_IND消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvSmPdpDeactivInd_MsActivating_WaitSmActivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2132,27 +1436,7 @@ VOS_UINT32 TAF_APS_RcvSmPdpDeactivInd_MsActivating_WaitSmActivateCnfSuspend(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvApsLocalPdpDeactivateInd_MsActivating_WaitSmActivateCnfSuspend
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_SM_ACTIVATE_CNF_SUSPEND子状态下
-             收到ID_APS_APS_LOCAL_PDP_DEACTIVATE_IND消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_APS_APS_LOCAL_PDP_DEACTIVATE_IND消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年06月07日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvApsLocalPdpDeactivateInd_MsActivating_WaitSmActivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2182,27 +1466,7 @@ VOS_UINT32 TAF_APS_RcvApsLocalPdpDeactivateInd_MsActivating_WaitSmActivateCnfSus
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvSmPdpActRej_MsActivating_WaitSmActivateCnfSuspend
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_SM_ACTIVATE_CNF_SUSPEND子状态下
-             收到ID_PMC_SMREG_PDP_ACT_REJ消息的处理
- 输入参数  : ulEventType:消息类型
-             pstMsg     : ID_PMC_SMREG_PDP_ACT_REJ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月7日
-    作    者   : l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvSmPdpActRej_MsActivating_WaitSmActivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2232,28 +1496,7 @@ VOS_UINT32 TAF_APS_RcvSmPdpActRej_MsActivating_WaitSmActivateCnfSuspend(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvInterServiceStatusChangeInd_MsActivating_WaitSmActivateCnfSuspend
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_SM_ACTIVATE_CNF_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_INTER_SERVICE_STATUS_CHANGE_IND消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_INTER_SERVICE_STATUS_CHANGE_IND消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年5月25日
-    作    者   : g00261581
-    修改内容   : 入口消息修改
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvInterServiceStatusChangeInd_MsActivating_WaitSmActivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2315,23 +1558,7 @@ VOS_UINT32 TAF_APS_RcvInterServiceStatusChangeInd_MsActivating_WaitSmActivateCnf
 }
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvInterAttachBearerActivateInd_MsActivating_WaitSmActivateCnfSuspend
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_SM_ACTIVATE_CNF_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_ATTACH_BEARER_ACTIVATE_IND消息的处理
- 输入参数  : ulEventType --- 消息类型
-             pstMsg      --- ID_MSG_TAF_PS_ATTACH_BEARER_ACTIVATE_IND消息
- 输出参数  : 无
- 返 回 值  : VOS_TRUE    --- 处理消息成功
-             VOS_FALSE   --- 处理消息失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月20日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvInterAttachBearerActivateInd_MsActivating_WaitSmActivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2375,27 +1602,7 @@ VOS_UINT32 TAF_APS_RcvInterAttachBearerActivateInd_MsActivating_WaitSmActivateCn
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiMsActivatingExpired_MsActivating_WaitSmActivateCnfSuspend
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_SM_ACTIVATE_CNF_SUSPEND子状态下
-             收到TI_TAF_APS_MS_ACTIVATING消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月25日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiMsActivatingExpired_MsActivating_WaitSmActivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2422,24 +1629,7 @@ VOS_UINT32 TAF_APS_RcvTiMsActivatingExpired_MsActivating_WaitSmActivateCnfSuspen
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvSmPdpActCnf_MsActivating_WaitSmActivateCnfSuspend
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_SM_ACTIVATE_CNF_SUSPEND子状态下
-             收到ID_SMREG_PDP_ACTIVATE_CNF消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年07月30日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvSmPdpActCnf_MsActivating_WaitSmActivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2509,6 +1699,8 @@ VOS_UINT32 TAF_APS_RcvSmPdpActCnf_MsActivating_WaitSmActivateCnfSuspend(
         {
             TAF_APS_SndNdPdpActInd(pstPdpEntity->ucNsapi,
                                    pstPdpEntity->PdpAddr.aucIpV6Addr);
+
+            pstPdpEntity->ulNdClientActiveFlg = VOS_TRUE;
         }
 #endif
 
@@ -2553,23 +1745,7 @@ VOS_UINT32 TAF_APS_RcvSmPdpActCnf_MsActivating_WaitSmActivateCnfSuspend(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvApsInterPdpDeactivateReq_MsActivating_WaitSmActivateCnfSuspend
- 功能描述  : MsActivating_WaitSmActivateCnfSuspend状态下收到ID_APS_APS_INTER_PDP_DEACTIVATE_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年07月30日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvApsInterPdpDeactivateReq_MsActivating_WaitSmActivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2589,26 +1765,7 @@ VOS_UINT32 TAF_APS_RcvApsInterPdpDeactivateReq_MsActivating_WaitSmActivateCnfSus
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtSetPdpContextStateReq_MsActivating_WaitSndcpActivateRsp
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_SNDCP_ACTIVATE_RSP子状态下
-             收到ID_MSG_TAF_PS_SET_PDP_CONTEXT_STATE_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_SET_PDP_CONTEXT_STATE_REQ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtSetPdpContextStateReq_MsActivating_WaitSndcpActivateRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2652,26 +1809,7 @@ VOS_UINT32 TAF_APS_RcvAtSetPdpContextStateReq_MsActivating_WaitSndcpActivateRsp(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsPppDialOrigReq_MsActivating_WaitSndcpActivateRsp
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_SNDCP_ACTIVATE_RSP子状态下
-             收到ID_MSG_TAF_PS_PPP_DIAL_ORIG_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_PPP_DIAL_ORIG_REQ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsPppDialOrigReq_MsActivating_WaitSndcpActivateRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2692,26 +1830,7 @@ VOS_UINT32 TAF_APS_RcvAtPsPppDialOrigReq_MsActivating_WaitSndcpActivateRsp(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallOrigReq_MsActivating_WaitSndcpActivateRsp
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_SNDCP_ACTIVATE_RSP子状态下
-             收到ID_MSG_TAF_PS_CALL_ORIG_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_CALL_ORIG_REQ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallOrigReq_MsActivating_WaitSndcpActivateRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2733,24 +1852,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallOrigReq_MsActivating_WaitSndcpActivateRsp(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallEndReq_MsActivating_WaitSndcpActivateRsp
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_SNDCP_ACTIVATE_RSP子状态下
-             收到ID_MSG_TAF_PS_CALL_END_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_CALL_END_REQ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallEndReq_MsActivating_WaitSndcpActivateRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2779,24 +1881,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallEndReq_MsActivating_WaitSndcpActivateRsp(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallModifyReq_MsActivating_WaitSndcpActivateRsp
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_SNDCP_ACTIVATE_RSP子状态下
-             收到ID_MSG_TAF_PS_CALL_MODIFY_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_CALL_MODIFY_REQ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallModifyReq_MsActivating_WaitSndcpActivateRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2816,26 +1901,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallModifyReq_MsActivating_WaitSndcpActivateRsp(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvSmPdpDeactivInd_MsActivating_WaitSndcpActivateRsp
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_SNDCP_ACTIVATE_RSP子状态下
-             收到ID_PMC_SMREG_PDP_DEACTIV_IND消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_PMC_SMREG_PDP_DEACTIV_IND消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvSmPdpDeactivInd_MsActivating_WaitSndcpActivateRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2887,30 +1953,7 @@ VOS_UINT32 TAF_APS_RcvSmPdpDeactivInd_MsActivating_WaitSndcpActivateRsp(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvSndcpActivateRsp_MsActivating_WaitSndcpActivateRsp
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_SNDCP_ACTIVATE_RSP子状态下
-             收到APS_SN_ACT_RSP_MSG_TYPE消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年12月27日
-    作    者   : o00132663
-    修改内容   : PS融合项目，增加流量统计调用
-  3.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvSndcpActivateRsp_MsActivating_WaitSndcpActivateRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2975,26 +2018,7 @@ VOS_UINT32 TAF_APS_RcvSndcpActivateRsp_MsActivating_WaitSndcpActivateRsp(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvSndcpStatusReqMsgType_MsActivating_WaitSndcpActivateRsp
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_SNDCP_ACTIVATE_RSP_SUSPEND子状态下
-             收到APS_SN_STATUS_REQ_MSG_TYPE消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : APS_SN_STATUS_REQ_MSG_TYPE消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvSndcpStatusReq_MsActivating_WaitSndcpActivateRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3024,23 +2048,7 @@ VOS_UINT32 TAF_APS_RcvSndcpStatusReq_MsActivating_WaitSndcpActivateRsp(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvApsInterPdpDeactivateReq_MsActivating_WaitSndcpActivateRsp
- 功能描述  : ACTIVATING主状态下收到ID_APS_APS_INTER_PDP_DEACTIVATE_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvApsInterPdpDeactivateReq_MsActivating_WaitSndcpActivateRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3060,27 +2068,7 @@ VOS_UINT32 TAF_APS_RcvApsInterPdpDeactivateReq_MsActivating_WaitSndcpActivateRsp
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvApsLocalPdpDeactivateInd_MsActivating_WaitSndcpActivateRsp
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_SNDCP_ACTIVATE_RSP子状态下
-             收到ID_APS_APS_LOCAL_PDP_DEACTIVATE_IND消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_APS_APS_LOCAL_PDP_DEACTIVATE_IND消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 修改历史      :
-  1.日    期   : 2012年06月07日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvApsLocalPdpDeactivateInd_MsActivating_WaitSndcpActivateRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3124,27 +2112,7 @@ VOS_UINT32 TAF_APS_RcvApsLocalPdpDeactivateInd_MsActivating_WaitSndcpActivateRsp
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvInterServiceStatusChangeInd_MsActivating_WaitSndcpActivateRsp
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_SNDCP_ACTIVATE_RSP子状态下
-             收到ID_MSG_TAF_PS_INTER_SERVICE_STATUS_CHANGE_IND消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_INTER_SERVICE_STATUS_CHANGE_IND消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年5月25日
-    作    者   : g00261581
-    修改内容   : 入口消息修改
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvInterServiceStatusChangeInd_MsActivating_WaitSndcpActivateRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3170,26 +2138,7 @@ VOS_UINT32 TAF_APS_RcvInterServiceStatusChangeInd_MsActivating_WaitSndcpActivate
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiMsActivatingExpired_MsActivating_WaitSndcpActivateRsp
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_SNDCP_ACTIVATE_RSP子状态下
-             收到TI_TAF_APS_MS_ACTIVATING消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月25日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiMsActivatingExpired_MsActivating_WaitSndcpActivateRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3209,26 +2158,7 @@ VOS_UINT32 TAF_APS_RcvTiMsActivatingExpired_MsActivating_WaitSndcpActivateRsp(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtSetPdpContextStateReq_MsActivating_WaitSndcpActivateRspSuspend
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_SNDCP_ACTIVATE_RSP_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_SET_PDP_CONTEXT_STATE_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_SET_PDP_CONTEXT_STATE_REQ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtSetPdpContextStateReq_MsActivating_WaitSndcpActivateRspSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3273,26 +2203,7 @@ VOS_UINT32 TAF_APS_RcvAtSetPdpContextStateReq_MsActivating_WaitSndcpActivateRspS
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsPppDialOrigReq_MsActivating_WaitSndcpActivateRspSuspend
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_SNDCP_ACTIVATE_RSP_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_PPP_DIAL_ORIG_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_PPP_DIAL_ORIG_REQ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsPppDialOrigReq_MsActivating_WaitSndcpActivateRspSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3312,26 +2223,7 @@ VOS_UINT32 TAF_APS_RcvAtPsPppDialOrigReq_MsActivating_WaitSndcpActivateRspSuspen
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallOrigReq_MsActivating_WaitSndcpActivateRspSuspend
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_SNDCP_ACTIVATE_RSP_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_CALL_ORIG_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_CALL_ORIG_REQ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallOrigReq_MsActivating_WaitSndcpActivateRspSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3352,24 +2244,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallOrigReq_MsActivating_WaitSndcpActivateRspSuspend(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallEndReq_MsActivating_WaitSndcpActivateRspSuspend
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_SNDCP_ACTIVATE_RSP_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_CALL_END_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_CALL_END_REQ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallEndReq_MsActivating_WaitSndcpActivateRspSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3398,24 +2273,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallEndReq_MsActivating_WaitSndcpActivateRspSuspend(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallModifyReq_MsActivating_WaitSndcpActivateRspSuspend
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_SNDCP_ACTIVATE_RSP_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_CALL_MODIFY_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_CALL_MODIFY_REQ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallModifyReq_MsActivating_WaitSndcpActivateRspSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3435,26 +2293,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallModifyReq_MsActivating_WaitSndcpActivateRspSuspend
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvSmPdpDeactivateInd_MsActivating_WaitSndcpActivateRspSuspend
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_SNDCP_ACTIVATE_RSP_SUSPEND子状态下
-             收到ID_PMC_SMREG_PDP_DEACTIV_IND消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : D_PMC_SMREG_PDP_DEACTIV_IND消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvSmPdpDeactivateInd_MsActivating_WaitSndcpActivateRspSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3500,26 +2339,7 @@ VOS_UINT32 TAF_APS_RcvSmPdpDeactivateInd_MsActivating_WaitSndcpActivateRspSuspen
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvSndcpStatusReqMsgType_MsActivating_WaitSndcpActivateRspSuspend
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_SNDCP_DEACTIVATE_CNF子状态下
-             收到APS_SN_STATUS_REQ_MSG_TYPE消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : APS_SN_STATUS_REQ_MSG_TYPE消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvSndcpStatusReqMsgType_MsActivating_WaitSndcpActivateRspSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3552,23 +2372,7 @@ VOS_UINT32 TAF_APS_RcvSndcpStatusReqMsgType_MsActivating_WaitSndcpActivateRspSus
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvApsInterPdpDeactivateReq_MsActivating_WaitSndcpActivateRspSuspend
- 功能描述  : ACTIVATING主状态下收到ID_APS_APS_INTER_PDP_DEACTIVATE_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvApsInterPdpDeactivateReq_MsActivating_WaitSndcpActivateRspSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3588,26 +2392,7 @@ VOS_UINT32 TAF_APS_RcvApsInterPdpDeactivateReq_MsActivating_WaitSndcpActivateRsp
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvApsLocalPdpDeactivateInd_MsActivating_WaitSndcpActivateRspSuspend
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_SNDCP_ACTIVATE_RSP_SUSPEND子状态下
-             收到ID_APS_APS_LOCAL_PDP_DEACTIVATE_IND消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_APS_APS_LOCAL_PDP_DEACTIVATE_IND消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年06月07日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvApsLocalPdpDeactivateInd_MsActivating_WaitSndcpActivateRspSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3646,27 +2431,7 @@ VOS_UINT32 TAF_APS_RcvApsLocalPdpDeactivateInd_MsActivating_WaitSndcpActivateRsp
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvInterServiceStatusChangeInd_MsActivating_WaitSndcpActivateRspSuspend
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_SNDCP_ACTIVATE_RSP_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_INTER_SERVICE_STATUS_CHANGE_IND消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_INTER_SERVICE_STATUS_CHANGE_IND消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年5月25日
-    作    者   : g00261581
-    修改内容   : 入口消息修改
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvInterServiceStatusChangeInd_MsActivating_WaitSndcpActivateRspSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3720,26 +2485,7 @@ VOS_UINT32 TAF_APS_RcvInterServiceStatusChangeInd_MsActivating_WaitSndcpActivate
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiMsActivatingExpired_MsActivating_WaitSndcpActivateRspSuspend
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_SNDCP_ACTIVATE_RSP子状态下
-             收到TI_TAF_APS_MS_ACTIVATING消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月25日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiMsActivatingExpired_MsActivating_WaitSndcpActivateRspSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3758,23 +2504,7 @@ VOS_UINT32 TAF_APS_RcvTiMsActivatingExpired_MsActivating_WaitSndcpActivateRspSus
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvSndcpActivateRsp_MsActivating_WaitSndcpActivateRspSuspend
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_SNDCP_ACTIVATE_RSP子状态下
-             收到sndcp的激活rsp消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年07月30日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvSndcpActivateRsp_MsActivating_WaitSndcpActivateRspSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3840,26 +2570,7 @@ VOS_UINT32 TAF_APS_RcvSndcpActivateRsp_MsActivating_WaitSndcpActivateRspSuspend(
 }
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtSetPdpContextStateReq_MsActivating_WaitEsmActivateCnf
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_ESM_ACTIVATE_CNF子状态下
-             收到ID_MSG_TAF_PS_SET_PDP_CONTEXT_STATE_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_SET_PDP_CONTEXT_STATE_REQ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtSetPdpContextStateReq_MsActivating_WaitEsmActivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3905,26 +2616,7 @@ VOS_UINT32 TAF_APS_RcvAtSetPdpContextStateReq_MsActivating_WaitEsmActivateCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsPppDialOrigReq_MsActivating_WaitEsmActivateCnf
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_ESM_ACTIVATE_CNF子状态下
-             收到ID_MSG_TAF_PS_PPP_DIAL_ORIG_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_PPP_DIAL_ORIG_REQ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsPppDialOrigReq_MsActivating_WaitEsmActivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3943,26 +2635,7 @@ VOS_UINT32 TAF_APS_RcvAtPsPppDialOrigReq_MsActivating_WaitEsmActivateCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallOrigReq_MsActivating_WaitEsmActivateCnf
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_ESM_ACTIVATE_CNF子状态下
-             收到ID_MSG_TAF_PS_CALL_ORIG_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_CALL_ORIG_REQ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallOrigReq_MsActivating_WaitEsmActivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3983,24 +2656,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallOrigReq_MsActivating_WaitEsmActivateCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallEndReq_MsActivating_WaitEsmActivateCnf
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_ESM_ACTIVATE_CNF子状态下
-             收到ID_MSG_TAF_PS_CALL_END_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_CALL_END_REQ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallEndReq_MsActivating_WaitEsmActivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4029,24 +2685,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallEndReq_MsActivating_WaitEsmActivateCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallModifyReq_MsActivating_WaitEsmActivateCnf
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_ESM_ACTIVATE_CNF子状态下
-             收到ID_MSG_TAF_PS_CALL_MODIFY_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_CALL_MODIFY_REQ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallModifyReq_MsActivating_WaitEsmActivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4066,24 +2705,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallModifyReq_MsActivating_WaitEsmActivateCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEsmPdpSetupCnf_MsActivate_WaitEsmActivateCnf
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_ESM_ACTIVATE_CNF子状态下
-             收到ID_APP_ESM_PDP_SETUP_CNF消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_APP_ESM_PDP_SETUP_CNF消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEsmPdpSetupCnf_MsActivate_WaitEsmActivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4105,24 +2727,7 @@ VOS_UINT32 TAF_APS_RcvEsmPdpSetupCnf_MsActivate_WaitEsmActivateCnf(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEsmNdisconnCnf_MsActivate_WaitEsmActivateCnf
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_ESM_ACTIVATE_CNF子状态下
-             收到ID_APP_ESM_NDISCONN_CNF消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_APP_ESM_NDISCONN_CNF消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEsmNdisconnCnf_MsActivate_WaitEsmActivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4175,27 +2780,7 @@ VOS_UINT32 TAF_APS_RcvEsmNdisconnCnf_MsActivate_WaitEsmActivateCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEsmPdpActivateCnf_MsActivate_WaitEsmActivateCnf
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_ESM_ACTIVATE_CNF子状态下
-             收到ID_APP_ESM_PDP_SETUP_CNF消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_APP_ESM_PDP_SETUP_CNF消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年01月28日
-    作    者   : w00316404
-    修改内容   : send pdp activate inf to ND Client
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEsmPdpActivateCnf_MsActivate_WaitEsmActivateCnf(
     VOS_UINT32                          ulEventType,
     APP_ESM_PDP_SETUP_CNF_STRU         *pstEsmPdpSetupCnf
@@ -4246,6 +2831,8 @@ VOS_UINT32 TAF_APS_RcvEsmPdpActivateCnf_MsActivate_WaitEsmActivateCnf(
     {
         TAF_APS_SndNdPdpActInd(pstPdpEntity->ucNsapi,
                                pstPdpEntity->PdpAddr.aucIpV6Addr);
+
+        pstPdpEntity->ulNdClientActiveFlg = VOS_TRUE;
     }
 
     /* 更新错误码 */
@@ -4275,23 +2862,7 @@ VOS_UINT32 TAF_APS_RcvEsmPdpActivateCnf_MsActivate_WaitEsmActivateCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEsmPdpActivateRej_MsActivate_WaitEsmActivateCnf
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_ESM_ACTIVATE_CNF子状态下
-             收到ID_APP_ESM_PDP_SETUP_CNF消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_APP_ESM_PDP_SETUP_CNF消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEsmPdpActivateRej_MsActivate_WaitEsmActivateCnf(
     VOS_UINT32                          ulEventType,
     APP_ESM_PDP_SETUP_CNF_STRU         *pstEsmPdpActivateRej
@@ -4319,23 +2890,7 @@ VOS_UINT32 TAF_APS_RcvEsmPdpActivateRej_MsActivate_WaitEsmActivateCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvInterServiceStatusChangeInd_MsActivating_WaitEsmActivateCnf
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_ESM_ACTIVATE_CNF子状态下
-             收到ID_MSG_TAF_PS_INTER_SERVICE_STATUS_CHANGE_IND消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_INTER_SERVICE_STATUS_CHANGE_IND消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvInterServiceStatusChangeInd_MsActivating_WaitEsmActivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4359,31 +2914,7 @@ VOS_UINT32 TAF_APS_RcvInterServiceStatusChangeInd_MsActivating_WaitEsmActivateCn
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEsmSmEpsBearerInfoInd_MsActivating_WaitEsmActivateCnf
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_ESM_ACTIVATE_CNF主状态下收到ID_ESM_SM_EPS_BEARER_INFO_IND消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年01月07日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-  2.日    期   : 2013年01月21日
-    作    者   : A00165503
-    修改内容   : DTS2013011803709: 激活ND Client增加接入技术判断, 防止在NULL
-                 状态下激活ND Client导致RS包被丢弃
-
-  3.日    期   : 2013年4月23日
-    作    者   : A00165503
-    修改内容   : DTS2013041204937: 专用承载激活时不需要激活ND Client
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEsmSmEpsBearerInfoInd_MsActivating_WaitEsmActivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4405,16 +2936,6 @@ VOS_UINT32 TAF_APS_RcvEsmSmEpsBearerInfoInd_MsActivating_WaitEsmActivateCnf(
     if (SM_ESM_PDP_OPT_ACTIVATE == pstBearerInfo->enPdpOption)
     {
         MN_APS_ProcEsmBearerInfoIndOptActivate(pstPdpEntity, pstBearerInfo);
-
-#if (FEATURE_ON == FEATURE_IPV6)
-        /* 如果地址类型是IPv6, 需要同步给ND Client */
-        if ( (TAF_APS_CheckPrimaryPdp(ucPdpId))
-          && (TAF_APS_CheckPdpAddrTypeIpv6(ucPdpId)) )
-        {
-            TAF_APS_SndNdPdpActInd(pstPdpEntity->ucNsapi,
-                                   pstPdpEntity->PdpAddr.aucIpV6Addr);
-        }
-#endif
     }
     else
     {
@@ -4424,26 +2945,7 @@ VOS_UINT32 TAF_APS_RcvEsmSmEpsBearerInfoInd_MsActivating_WaitEsmActivateCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiMsActivatingExpired_MsActivating_WaitEsmActivateCnf
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_ESM_ACTIVATE_CNF子状态下
-             收到TI_TAF_APS_MS_ACTIVATING消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月25日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiMsActivatingExpired_MsActivating_WaitEsmActivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4470,26 +2972,7 @@ VOS_UINT32 TAF_APS_RcvTiMsActivatingExpired_MsActivating_WaitEsmActivateCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtSetPdpContextStateReq_MsActivating_WaitEsmActivateCnfSuspend
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_ESM_ACTIVATE_CNF_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_SET_PDP_CONTEXT_STATE_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_SET_PDP_CONTEXT_STATE_REQ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtSetPdpContextStateReq_MsActivating_WaitEsmActivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4532,26 +3015,7 @@ VOS_UINT32 TAF_APS_RcvAtSetPdpContextStateReq_MsActivating_WaitEsmActivateCnfSus
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsPppDialOrigReq_MsActivating_WaitEsmActivateCnfSuspend
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_ESM_ACTIVATE_CNF_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_PPP_DIAL_ORIG_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_PPP_DIAL_ORIG_REQ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsPppDialOrigReq_MsActivating_WaitEsmActivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4571,27 +3035,7 @@ VOS_UINT32 TAF_APS_RcvAtPsPppDialOrigReq_MsActivating_WaitEsmActivateCnfSuspend(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallOrigReq_MsActivating_WaitEsmActivateCnfSuspend
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_ESM_ACTIVATE_CNF_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_CALL_ORIG_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_CALL_ORIG_REQ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallOrigReq_MsActivating_WaitEsmActivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4612,27 +3056,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallOrigReq_MsActivating_WaitEsmActivateCnfSuspend(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallEndReq_MsActivating_WaitEsmActivateCnfSuspend
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_ESM_ACTIVATE_CNF_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_CALL_END_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_CALL_END_REQ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2012年05月02日
-    作    者   : f00179208
-    修改内容   : 问题单号:DTS2012050203426,PDP激活过程中进行PDP去激活，需要上报
-                 PDP操作结果给AT.
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallEndReq_MsActivating_WaitEsmActivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4640,16 +3064,12 @@ VOS_UINT32 TAF_APS_RcvAtPsCallEndReq_MsActivating_WaitEsmActivateCnfSuspend(
 {
     VOS_UINT8                           ucPdpId;
 
-    /* Added by f00179208 for DTS2012050203426，2012-05-02 Begin */
     TAF_PS_MSG_STRU                    *pstAppMsg;
     TAF_PS_CALL_END_REQ_STRU           *pstPsCallEndReq;
-    /* Added by f00179208 for DTS2012050203426，2012-05-02 End */
 
     /* 初始化, 获取消息内容 */
-    /* Added by f00179208 for DTS2012050203426，2012-05-02 Begin */
     pstAppMsg       = (TAF_PS_MSG_STRU*)pstMsg;
     pstPsCallEndReq = (TAF_PS_CALL_END_REQ_STRU*)(pstAppMsg->aucContent);
-    /* Added by f00179208 for DTS2012050203426，2012-05-02 End */
 
     ucPdpId = TAF_APS_GetCurrFsmEntityPdpId();
 
@@ -4658,12 +3078,10 @@ VOS_UINT32 TAF_APS_RcvAtPsCallEndReq_MsActivating_WaitEsmActivateCnfSuspend(
                       ucPdpId);
 
 
-    /* Added by f00179208 for DTS2012050203426，2012-05-02 Begin */
     /* 上报PDP操作结果, NO_ERROR */
     TAF_APS_SndCallEndCnf(&(pstPsCallEndReq->stCtrl),
                          pstPsCallEndReq->ucCid,
                          TAF_PS_CAUSE_SUCCESS);
-    /* Added by f00179208 for DTS2012050203426，2012-05-02 End */
 
     /* 上报ID_EVT_TAF_PS_CALL_PDP_DEACTIVATE_CNF事件 */
     TAF_APS_SndPdpDeActivateCnf(ucPdpId, TAF_APS_GetPdpEntCurrCid(ucPdpId));
@@ -4678,24 +3096,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallEndReq_MsActivating_WaitEsmActivateCnfSuspend(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallModifyReq_MsActivating_WaitEsmActivateCnfSuspend
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_ESM_ACTIVATE_CNF_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_CALL_MODIFY_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_CALL_MODIFY_REQ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallModifyReq_MsActivating_WaitEsmActivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4715,23 +3116,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallModifyReq_MsActivating_WaitEsmActivateCnfSuspend(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEsmPdpSetupCnfRej_MsActivate_WaitEsmActivateCnfSuspend
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_ESM_ACTIVATE_CNF_SUSPEND子状态下
-             收到ID_APP_ESM_PDP_SETUP_CNF消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_APP_ESM_PDP_SETUP_CNF消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEsmPdpSetupCnfRej_MsActivate_WaitEsmActivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4776,23 +3161,7 @@ VOS_UINT32 TAF_APS_RcvEsmPdpSetupCnfRej_MsActivate_WaitEsmActivateCnfSuspend(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEsmNdisconnCnfRej_MsActivate_WaitEsmActivateCnfSuspend
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_ESM_ACTIVATE_CNF_SUSPEND子状态下
-             收到ID_APP_ESM_NDISCONN_CNF消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_APP_ESM_NDISCONN_CNF消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEsmNdisconnCnfRej_MsActivate_WaitEsmActivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4838,26 +3207,7 @@ VOS_UINT32 TAF_APS_RcvEsmNdisconnCnfRej_MsActivate_WaitEsmActivateCnfSuspend(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiMsActivatingExpired_MsActivating_WaitEsmActivateCnfSuspend
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_ESM_ACTIVATE_CNF_SUSPEND子状态下
-             收到TI_TAF_APS_MS_ACTIVATING消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月25日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiMsActivatingExpired_MsActivating_WaitEsmActivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4888,31 +3238,7 @@ VOS_UINT32 TAF_APS_RcvTiMsActivatingExpired_MsActivating_WaitEsmActivateCnfSuspe
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEsmSmEpsBearerInfoInd_MsActivating_WaitEsmActivateCnfSuspend(
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_ESM_ACTIVATE_CNF_SUSPEND主状态下收到ID_ESM_SM_EPS_BEARER_INFO_IND消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年01月07日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-  2.日    期   : 2013年01月21日
-    作    者   : A00165503
-    修改内容   : DTS2013011803709: 激活ND Client增加接入技术判断, 防止在NULL
-                 状态下激活ND Client导致RS包被丢弃
-
-  3.日    期   : 2013年4月23日
-    作    者   : A00165503
-    修改内容   : DTS2013041204937: 专用承载激活时不需要激活ND Client
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEsmSmEpsBearerInfoInd_MsActivating_WaitEsmActivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4942,6 +3268,8 @@ VOS_UINT32 TAF_APS_RcvEsmSmEpsBearerInfoInd_MsActivating_WaitEsmActivateCnfSuspe
         {
             TAF_APS_SndNdPdpActInd(pstPdpEntity->ucNsapi,
                                    pstPdpEntity->PdpAddr.aucIpV6Addr);
+
+            pstPdpEntity->ulNdClientActiveFlg = VOS_TRUE;
         }
 #endif
     }
@@ -4953,30 +3281,7 @@ VOS_UINT32 TAF_APS_RcvEsmSmEpsBearerInfoInd_MsActivating_WaitEsmActivateCnfSuspe
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvInterServiceStatusChangeInd_MsActivating_WaitEsmActivateCnfSuspend(
- 功能描述  : TAF_APS_MS_ACTIVATING_SUBSTA_WAIT_ESM_ACTIVATE_CNF_SUSPEND主状态下收到ID_MSG_TAF_PS_INTER_SERVICE_STATUS_CHANGE_IND消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年01月07日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年5月25日
-    作    者   : g00261581
-    修改内容   : L丢网后，如果此时上报1X or Hrpd网络，需要先上报L下激活失败。由上层来触发重新激活
-
-  3.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : Split L4A Project
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvInterServiceStatusChangeInd_MsActivating_WaitEsmActivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -5029,23 +3334,7 @@ VOS_UINT32 TAF_APS_RcvInterServiceStatusChangeInd_MsActivating_WaitEsmActivateCn
 }
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvInterAttachBearerActivateInd_MsActivating_WaitEsmActivateCnfSuspend
- 功能描述  : Wait ESM Activate Cnf Suspend State, Rcv Ehsm Pdn Irat Hrpd
-             Ind Msg
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月26日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvInterAttachBearerActivateInd_MsActivating_WaitEsmActivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -5090,23 +3379,7 @@ VOS_UINT32 TAF_APS_RcvInterAttachBearerActivateInd_MsActivating_WaitEsmActivateC
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvApsInterPdpDeactivateReq_MsActivating_WaitEsmActivateCnf
- 功能描述  : ACTIVATING主状态下收到ID_APS_APS_INTER_PDP_DEACTIVATE_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvApsInterPdpDeactivateReq_MsActivating_WaitEsmActivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -5127,34 +3400,7 @@ VOS_UINT32 TAF_APS_RcvApsInterPdpDeactivateReq_MsActivating_WaitEsmActivateCnf(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtSetPdpContextStateReq_MsActivating_GuMode
- 功能描述  : ACTIVATEING主状态下收到ID_MSG_TAF_PS_SET_PDP_CONTEXT_STATE_REQ消息的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年11月13日
-    作    者   : A00165503
-    修改内容   : DTS2012111205973: LTE默认缺省承载IP类型IPv4v6, 用户拨号IP类
-                 型IPv4 only或IPv6 only, 缺省承载IP类型被错误的修改为用户拨
-                 号IP类型
-
-  3.日    期   : 2014年2月20日
-    作    者   : A00165503
-    修改内容   : DTS2013022201185: PS域呼叫建立流程优化
-
-  4.日    期   : 2014年5月16日
-    作    者   : A00165503
-    修改内容   : DTS2014050703206: 修改部分函数调用
-*****************************************************************************/
 VOS_VOID TAF_APS_RcvAtSetPdpContextStateReq_MsActivating_GuMode(VOS_VOID)
 {
     TAF_PDP_TABLE_STRU                 *pstTafCidInfo;
@@ -5219,34 +3465,7 @@ VOS_VOID TAF_APS_RcvAtSetPdpContextStateReq_MsActivating_GuMode(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsPppDialOrigReq_MsActivating_GuMode
- 功能描述  : ACTIVATEING主状态下收到ID_MSG_TAF_PS_PPP_DIAL_ORIG_REQ消息的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年11月13日
-    作    者   : A00165503
-    修改内容   : DTS2012111205973: LTE默认缺省承载IP类型IPv4v6, 用户拨号IP类
-                 型IPv4 only或IPv6 only, 缺省承载IP类型被错误的修改为用户拨
-                 号IP类型
-
-  3.日    期   : 2014年2月20日
-    作    者   : A00165503
-    修改内容   : DTS2013022201185: PS域呼叫建立流程优化
-
-  4.日    期   : 2014年5月16日
-    作    者   : A00165503
-    修改内容   : DTS2014050703206: 修改部分函数调用
-*****************************************************************************/
 VOS_VOID TAF_APS_RcvAtPsPppDialOrigReq_MsActivating_GuMode(VOS_VOID)
 {
     TAF_APS_ENTRY_MSG_STRU             *pstEntryMsg;
@@ -5311,34 +3530,7 @@ VOS_VOID TAF_APS_RcvAtPsPppDialOrigReq_MsActivating_GuMode(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallOrigReq_MsActivating_GuMode
- 功能描述  : ACTIVATEING主状态下收到ID_MSG_TAF_PS_CALL_ORIG_REQ消息的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年11月13日
-    作    者   : A00165503
-    修改内容   : DTS2012111205973: LTE默认缺省承载IP类型IPv4v6, 用户拨号IP类
-                 型IPv4 only或IPv6 only, 缺省承载IP类型被错误的修改为用户拨
-                 号IP类型
-
-  3.日    期   : 2014年2月20日
-    作    者   : A00165503
-    修改内容   : DTS2013022201185: PS域呼叫建立流程优化
-
-  4.日    期   : 2014年5月16日
-    作    者   : A00165503
-    修改内容   : DTS2014050703206: 修改部分函数调用
-*****************************************************************************/
 VOS_VOID TAF_APS_RcvAtPsCallOrigReq_MsActivating_GuMode(VOS_VOID)
 {
     TAF_APS_ENTRY_MSG_STRU             *pstEntryMsg;
@@ -5404,33 +3596,7 @@ VOS_VOID TAF_APS_RcvAtPsCallOrigReq_MsActivating_GuMode(VOS_VOID)
 }
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtSetPdpContextStateReq_MsActivating_LteMode
- 功能描述  : ACTIVATEING主状态下收到ID_MSG_TAF_PS_SET_PDP_CONTEXT_STATE_REQ消息的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2014年2月20日
-    作    者   : A00165503
-    修改内容   : DTS2013022201185: PS域呼叫建立流程优化
-
-  3.日    期   : 2014年3月20日
-    作    者   : A00165503
-    修改内容   : DTS2014032005866: 修改挂起呼叫请求的条件, 只要任意承载存在
-                 就需要建立新的PDN连接
-
-  4.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : Split L4A Project
-*****************************************************************************/
 VOS_VOID TAF_APS_RcvAtSetPdpContextStateReq_MsActivating_LteMode(VOS_VOID)
 {
     TAF_APS_ENTRY_MSG_STRU             *pstEntryMsg;
@@ -5501,37 +3667,7 @@ VOS_VOID TAF_APS_RcvAtSetPdpContextStateReq_MsActivating_LteMode(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsPppDialOrigReq_MsActivating_LteMode
- 功能描述  : ACTIVATEING主状态下收到ID_MSG_TAF_PS_PPP_DIAL_ORIG_REQ消息的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2014年2月20日
-    作    者   : A00165503
-    修改内容   : DTS2013022201185: PS域呼叫建立流程优化
-
-  3.日    期   : 2014年3月20日
-    作    者   : A00165503
-    修改内容   : DTS2014032005866: 修改挂起呼叫请求的条件, 只要任意承载存在
-                 就需要建立新的PDN连接
-
-  4.日    期   : 2015年4月20日
-    作    者   : Y00213812
-    修改内容   : LTE不支持PPP类型的PPP拨号，支持所有IP类型的拨号
-
-  5.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : Split L4A Project
-*****************************************************************************/
 VOS_VOID TAF_APS_RcvAtPsPppDialOrigReq_MsActivating_LteMode(VOS_VOID)
 {
     TAF_APS_ENTRY_MSG_STRU             *pstEntryMsg;
@@ -5643,37 +3779,7 @@ VOS_VOID TAF_APS_RcvAtPsPppDialOrigReq_MsActivating_LteMode(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallOrigReq_MsActivating_LteMode
- 功能描述  : ACTIVATEING主状态下收到ID_MSG_TAF_PS_CALL_ORIG_REQ消息的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2014年2月20日
-    作    者   : A00165503
-    修改内容   : DTS2013022201185: PS域呼叫建立流程优化
-
-  3.日    期   : 2014年3月20日
-    作    者   : A00165503
-    修改内容   : DTS2014032005866: 修改挂起呼叫请求的条件, 只要任意承载存在
-                 就需要建立新的PDN连接
-
-  4.日    期   : 2014年5月16日
-    作    者   : A00165503
-    修改内容   : DTS2014050703206: 根据呼叫参数设置当前IP类型
-
-  5.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : Split L4A Project
-*****************************************************************************/
 VOS_VOID TAF_APS_RcvAtPsCallOrigReq_MsActivating_LteMode(VOS_VOID)
 {
     TAF_APS_ENTRY_MSG_STRU             *pstEntryMsg;

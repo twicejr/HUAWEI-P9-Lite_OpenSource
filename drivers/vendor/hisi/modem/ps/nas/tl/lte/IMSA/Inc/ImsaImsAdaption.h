@@ -1,16 +1,4 @@
-/******************************************************************************
 
-
-        @(#)Copyright(C)2013,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : ImsaImsAdaption.h
-    Description : ImsaImsAdaption.cÍ·ÎÄ¼þ
-    History     :
-      1.sunbing 00049683    2013-06-19  Draft Enact
-
-
-******************************************************************************/
 
 #ifndef __IMSAIMSADAPTION_H__
 #define __IMSAIMSADAPTION_H__
@@ -113,8 +101,6 @@ extern VOS_VOID IMSA_SndImsMsgNvInfoEvent
 
 extern VOS_UINT32 IMSA_ImsInputParaMsgSave(const IMSA_IMS_INPUT_PARA_EVENT_STRU *pstParaEvt);
 extern VOS_VOID IMSA_ImsInputParaMsgClear(VOS_VOID);
-extern VOS_VOID IMSA_SendImsCcwaiSetReq(VOS_UINT8 ucCallWaiting);
-extern VOS_VOID IMSA_ProcImsMsgCcwaiSetCnf(const IMSA_IMS_OUTPUT_PARA_EVENT_STRU *pstOutPara);
 extern VOS_VOID IMSA_SndLRrcHifiSyncSwtichInd( VOS_UINT8   ucHifiSyncEnalbed);
 
 extern VOS_VOID IMSA_ImsAdaption_Init(VOS_VOID);

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2012, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafMtaSecure.c
-  版 本 号   : 初稿
-  作    者   : 李紫剑/00198894
-  生成日期   : 2012年8月30日
-  最近修改   :
-  功能描述   : 包含MTA模块安全相关函数
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年8月30日
-    作    者   : 李紫剑/00198894
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -56,20 +39,7 @@ extern "C" {
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : TAF_MTA_ConvertScErr
- 功能描述  : 转换SC模块返回的错误码
- 输入参数  : enErrCode  -- SC模块返回的错误码
- 输出参数  : 无
- 返 回 值  : MTA_AT_RESULT_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年04月04日
-    作    者   : l00198894
-    修改内容   : 新增函数
-*****************************************************************************/
 MTA_AT_RESULT_ENUM_UINT32 TAF_MTA_ConvertScErr(
     SC_ERROR_CODE_ENUM_UINT32           enErrCode
 )
@@ -128,21 +98,7 @@ MTA_AT_RESULT_ENUM_UINT32 TAF_MTA_ConvertScErr(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvAtApSecSetReq
- 功能描述  : 处理AT模块发送的ID_AT_MTA_APSEC_SET_REQ消息
- 输入参数  : VOS_VOID *pMsg     -- AT模块发送的消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月30日
-    作    者   : 李紫剑/00198894
-    修改内容   : V7R1C50 ISDB 安全存储项目新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvAtApSecSetReq( VOS_VOID *pMsg )
 {
     AT_MTA_MSG_STRU                    *pstAtMtaReqMsg;
@@ -180,21 +136,7 @@ VOS_VOID TAF_MTA_RcvAtApSecSetReq( VOS_VOID *pMsg )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvAtSimlockUnlockSetReq
- 功能描述  : 处理AT模块发送的ID_AT_MTA_SIMLOCKUNLOCK_SET_REQ消息
- 输入参数  : VOS_VOID *pMsg     -- AT模块发送的消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年09月18日
-    作    者   : 李紫剑/00198894
-    修改内容   : STK补充特性及DCM需求开发项目新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvAtSimlockUnlockSetReq( VOS_VOID *pMsg )
 {
     AT_MTA_MSG_STRU                    *pstAtMtaReqMsg;
@@ -229,20 +171,7 @@ VOS_VOID TAF_MTA_RcvAtSimlockUnlockSetReq( VOS_VOID *pMsg )
     return;
 }
 
-/**********************************************************
- 函 数 名  : TAF_MTA_RcvQryImeiVerifyReq
- 功能描述  : IMEI 校验
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年05月23日
-    作    者   : Y00213812
-    修改内容   : 新增函数
-*************************************************************/
 VOS_VOID TAF_MTA_RcvQryImeiVerifyReq(VOS_VOID *pMsg)
 {
     SC_ERROR_CODE_ENUM_UINT32           enScResult;
@@ -272,20 +201,7 @@ VOS_VOID TAF_MTA_RcvQryImeiVerifyReq(VOS_VOID *pMsg)
     return;
 }
 
-/**********************************************************
- 函 数 名  : TAF_MTA_RcvQryCgsnReq
- 功能描述  : IMEI 校验
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年05月23日
-    作    者   : Y00213812
-    修改内容   : 新增函数
-*************************************************************/
 VOS_VOID TAF_MTA_RcvQryCgsnReq(VOS_VOID *pMsg)
 {
     MODEM_ID_ENUM_UINT16                enModemId;
@@ -314,20 +230,7 @@ VOS_VOID TAF_MTA_RcvQryCgsnReq(VOS_VOID *pMsg)
 
 /*lint +e958*/
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvAtNvwrSecCtrlSetReq
- 功能描述  : 处理AT模块发送的ID_AT_MTA_NVWRSECCTRL_SET_REQ消息
- 输入参数  : VOS_VOID *pMsg     -- AT模块发送的消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年04月04日
-    作    者   : l00198894
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvAtNvwrSecCtrlSetReq( VOS_VOID *pMsg )
 {
     AT_MTA_MSG_STRU                    *pstAtMtaReqMsg;
@@ -488,22 +391,7 @@ VOS_UINT32 CAS_GetpEsnByMeid(VOS_UINT8 *pucMeid, VOS_UINT32 *pulEsn)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvMeidSetReq
- 功能描述  : MTA预处理中处理^MEID设置命令
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月23日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvMeidSetReq(
     VOS_VOID                           *pMsg
 )
@@ -607,22 +495,7 @@ VOS_VOID TAF_MTA_RcvMeidSetReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvMeidQryReq
- 功能描述  : MTA预处理中处理^MEID查询命令
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月18日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvMeidQryReq(
     VOS_VOID                           *pMsg
 )
@@ -695,22 +568,7 @@ VOS_VOID TAF_MTA_RcvMeidQryReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SndReadUsimmFileReq
- 功能描述  : MTA发送读卡请求
- 输入参数  : USIMM_CARDAPP_ENUM_UINT32           ulEventType
-             USIMM_DEF_FILEID_ENUM_UINT32        enFileId
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月18日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_SndReadUsimmFileReq(
     USIMM_CARDAPP_ENUM_UINT32           enCardApp,
     VOS_UINT16                          enFileId
@@ -728,20 +586,7 @@ VOS_VOID TAF_MTA_SndReadUsimmFileReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvRcvUsimGetFileRsp
- 功能描述  : 收到读取UIM_ID的处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-  1.日    期   : 2015年10月19日
-    作    者   : z00316370
-    修改内容   : 新增函数
 
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvRcvUsimGetFileRsp(
     VOS_VOID                           *pMsg
 )
@@ -799,20 +644,7 @@ VOS_VOID TAF_MTA_RcvRcvUsimGetFileRsp(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvUsimmReadUimidFileCnf
- 功能描述  : 解析UIM_ID的处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-  1.日    期   : 2015年10月19日
-    作    者   : z00316370
-    修改内容   : 新增函数
 
-*****************************************************************************/
 VOS_VOID  TAF_MTA_RcvUsimmReadUimidFileCnf(
     USIMM_READFILE_CNF_STRU            *pstUsimmReadCnfMsg,
     VOS_UINT8                          *paucEFRUIMID
@@ -868,20 +700,7 @@ VOS_VOID  TAF_MTA_RcvUsimmReadUimidFileCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvTiWaitUIMIDReadExpired
- 功能描述  : 读取UIM_ID超时的处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-  1.日    期   : 2015年10月19日
-    作    者   : z00316370
-    修改内容   : 新增函数
 
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvTiWaitUIMIDReadExpired(
     VOS_VOID                           *pMsg
 )

@@ -1,19 +1,4 @@
-/*******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasHsdFsmPowerSave.c
-  版 本 号   : 初稿
-  作    者   : Z00316370
-  生成日期   : 2015年04月08日
-  功能描述   : HRPD SD L2 POWER_SAVE状态机事件处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年04月08日
-    作    者   : Z00316370
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -52,22 +37,7 @@ extern "C"{
 *****************************************************************************/
 /*lint -save -e958*/
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_RcvMsccPowerSaveReq_PowerSave_Init
- 功能描述  : PowerSave状态机初始化状态收到ID_MSCC_HSD_POWER_SAVE_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年04月03日
-   作    者   : z00316370
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  CNAS_HSD_RcvMsccPowerSaveReq_PowerSave_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -87,22 +57,7 @@ VOS_UINT32  CNAS_HSD_RcvMsccPowerSaveReq_PowerSave_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_RcvCasSuspendCnf_PowerOff_WaitCasSuspendCnf
- 功能描述  : HSD在WaitCasSuspendCnf状态下，收到CAS的Suspend回复消息
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32：VOS_TRUE,VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年04月03日
-   作    者   : z00316370
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  CNAS_HSD_RcvCasSuspendCnf_PowerSave_WaitCasSuspendCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -120,22 +75,7 @@ VOS_UINT32  CNAS_HSD_RcvCasSuspendCnf_PowerSave_WaitCasSuspendCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_RcvTiWaitCasSuspendCnfExpired_PowerSave_WaitCasSuspendCnf
- 功能描述  : HSD在WaitCasSuspendCnf状态下，保护定时器超时
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32：VOS_TRUE,VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年04月03日
-   作    者   : z00316370
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  CNAS_HSD_RcvTiWaitCasSuspendCnfExpired_PowerSave_WaitCasSuspendCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -159,22 +99,7 @@ VOS_UINT32  CNAS_HSD_RcvTiWaitCasSuspendCnfExpired_PowerSave_WaitCasSuspendCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_RcvHsmPowerSaveCnf_PowerSave_WaitHsmPowerSaveCnf
- 功能描述  : HSD在HsmPowerSaveCnf状态下，收到HSM的power save回复消息
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32：VOS_TRUE,VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年06月09日
-   作    者   : z00316370
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  CNAS_HSD_RcvHsmPowerSaveCnf_PowerSave_WaitHsmPowerSaveCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -194,22 +119,7 @@ VOS_UINT32  CNAS_HSD_RcvHsmPowerSaveCnf_PowerSave_WaitHsmPowerSaveCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_RcvTiWaitHsmPowerSaveCnfExpired_PowerSave_WaitHsmPowerSaveCnf
- 功能描述  : HSD在WaitHsmPowerSaveCnf状态下，保护定时器超时
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32：VOS_TRUE,VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年06月09日
-   作    者   : z00316370
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  CNAS_HSD_RcvTiWaitHsmPowerSaveCnfExpired_PowerSave_WaitHsmPowerSaveCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -226,22 +136,7 @@ VOS_UINT32  CNAS_HSD_RcvTiWaitHsmPowerSaveCnfExpired_PowerSave_WaitHsmPowerSaveC
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_RcvRrmStatusInd_PowerSave
- 功能描述  : HSD在PowerSave流程中接收到RF_AVAIL消息需要进行缓存操作
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32：VOS_TRUE,VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2016年1月5日
-   作    者   : g00256031
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  CNAS_HSD_RcvRrmStatusInd_PowerSave(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg

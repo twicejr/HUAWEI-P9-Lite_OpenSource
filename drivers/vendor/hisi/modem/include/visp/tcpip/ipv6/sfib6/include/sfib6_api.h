@@ -100,7 +100,6 @@ extern "C"{
 #define FIB6_NETRT_MIN_PREFIX      1
 #define FIB6_NETRT_MAX_PREFIX      127
 
-/*added by limin00188004, 2011/8/12   问题单号:C06新需求 */
 #define  TCPIP_RIB6_MAX_VRFNAME_LENGTH   31      /*和TCPIP_MAX_VRFNAME_LENGTH保持一致*/
 
 #define FIB6_SEARCH_ALL                0x00    /*查询所有VRF全部路由 */
@@ -123,7 +122,6 @@ typedef struct tagTCPIP_RIB_RT6_ENTRY
     ULONG  ulRtUse;                                     /* 是否有效 */
     CHAR   szVrfName[TCPIP_RIB6_MAX_VRFNAME_LENGTH + 1];     /* VRF名称 */
 } TCPIP_RIB_RT6_ENTRY_S;
-/*End of Modified by limin00188004, 2011/8/12   问题单号:C06新需求 */
 
 
 /*支持通过预配置的方式配置路由选路策略*/
@@ -786,98 +784,22 @@ ULONG TCPIP_SetNetRoute6ByVrf(TCPIP_NET_RT6_WITH_VRF_S *pstNetRouter);
 *******************************************************************************/
 ULONG TCPIP_RegFuncUpdateIntfAddr6Hook(IPV6_SHELL_RM_CALLBACK_FUNC_PTR pfHookFunc);
 
-/*******************************************************************************
-*    Func Name: TCPIP_OpenRib6Table
-* Date Created: 2011-08-12
-*       Author: limin00188004
-*  Description:  通过传入的VRF名称，获取查询句柄。
-*        Input:  CHAR * pszVrfName  : 传入VRF的名称
-*       Output: ULONG *pulWaitlist : 传出句柄
-*       Return: RIB6_OK,RIB6_ERR_NULL_POINTER,RIB6_ERR_MALLOC_FAIL
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-08-12   limin00188004                 Create
-*
-*******************************************************************************/
+
 ULONG TCPIP_OpenRib6Table(UINTPTR *pulWaitlist, CHAR *pszVrfName);
 
-/******************************************************************************
-*
-*    Func Name: TCPIP_GetRib6Entry
-* Date Created: 2011-08-12
-*       Author: limin00188004
-*  Description:  通过查询句柄，获取下一个节点。
-*       Input:  ULONG ulWaitlist  : 查询句柄
-*       Output:  TCPIP_RIB_RT6_ENTRY_S *pstRtEntry : 查询出来的下一个节点
-*       Return: RIB6_OK,RIB6_ERR_NULL_INPUT,RIB6_ERR_NO_USE_ENTRY
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-08-12   limin00188004                 Create
-*
-*******************************************************************************/
+
 ULONG TCPIP_GetRib6Entry(UINTPTR ulWaitlist, TCPIP_RIB_RT6_ENTRY_S *pstRtEntry);
 
-/*******************************************************************************
-*    Func Name: TCPIP_CloseRib6Table
-* Date Created: 2011-08-12
-*       Author: limin00188004
-*  Description:  关闭 查询句柄。
-*        Input:  ULONG ulWaitlist: 查询句柄
-*       Output: 
-*       Return: RIB6_OK,RIB6_ERR_HANDLE
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-08-12   limin00188004                 Create
-*
-*******************************************************************************/
+
 ULONG TCPIP_CloseRib6Table(UINTPTR ulWaitlist);
 
-/*******************************************************************************
-*    Func Name: TCPIP_ShowRib6ByVrfName
-* Date Created: 2011-08-12
-*       Author: limin00188004
-*  Description: 显示IPv6 RIB路由表项信息。
-*        Input: CHAR *pszVrfName: VRF的名称
-*       Output: 
-*       Return: VOID
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-08-12   limin00188004                 Create
-*
-*******************************************************************************/
+
 VOID TCPIP_ShowRib6ByVrfName(CHAR *pszVrfName);
 
 
 ULONG TCPIP_OpenFib6TableByFilter(UINTPTR *pulHandle, FIB6_FILTER_COND_API_S *pstFilter);
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetNextFib6Entry
-* Date Created: 2013-10-10
-*       Author: a00900872
-*  Description:According to user-specified criteria, to return to the user a routing table entry
-*        Input: ULONG ulHandle: Handle
-*       Output: TCPIP_RT4_ENTRY_BY_VRF_S *pstRtEntry:Return routing table entry
-*       Return: VOS_OK,Error Code；FIB4_GET_END, routing table entry end of the query; other error codes
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2013-10-10  a00900872       Create
-*
-*******************************************************************************/
+
 ULONG TCPIP_GetNextFib6Entry(UINTPTR ulHandle, TCPIP_RT6_ENTRY_BY_VRF_S* pstRtEntry);
 
 

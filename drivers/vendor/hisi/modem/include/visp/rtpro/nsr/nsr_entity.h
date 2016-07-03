@@ -245,7 +245,6 @@ typedef struct nsr_ospf_local
 /*NSR备份是否计算CheckSum*/
 #define NSR_IS_CALC_CHECKSUM() (g_stNSROSPFLocal.bCalcCheckSum == BOOL_TRUE)
 
-/* Modified by lihaiming218630, 之前inbackup以 非NULL且非pending_cancel 作为判断，有误, 2013/9/5   问题单号:DTS2013090400144 */
 /*判断主板备份是否启动*/
 #define NSR_OSPF_IS_MASTER_BACKUP_STARTED()   \
   (NSR_OSPF_IS_MASTER_BOARD() && \
@@ -256,15 +255,12 @@ typedef struct nsr_ospf_local
   (NSR_OSPF_IS_MASTER_BOARD() && \
    ((g_stNSROSPFLocal.stNSRBackupCB.ucBackupState == NSR_BKS_INBACKUP) || \
    (g_stNSROSPFLocal.stNSRBackupCB.ucBackupState == NSR_BKS_BACKUP_OK)))
-/*End of Modified by lihaiming218630, 2013/9/5   问题单号:DTS2013090400144 */
 
-/* Modified by lihaiming218630, nsr通知ospf，start backup和backup cancel消息前提条件，因是两个任务，
-在nsr读取配置链上的ospf备份状态时可能存在时序问题, 2013/9/2   问题单号:DTS2013082303531  */
+
 /*判断主板NSR备份是否已经完成*/
 #define NSR_OSPF_IS_MASTER_BACKUP_OK()   \
       (NSR_OSPF_IS_MASTER_BOARD() && \
        (g_stNSROSPFLocal.stNSRBackupCB.ucBackupState == NSR_BKS_BACKUP_OK))
-/*End of Modified by lihaiming218630, 2013/10/30   问题单号:DTS2013082303531  */
 
 
 /*判断主板NSR模块是否处于取消备份状态*/
@@ -283,7 +279,6 @@ typedef struct nsr_ospf_local
    ((g_stNSROSPFLocal.stNSRFSMData.ucNSRState == NSR_STATE_INBACKUP) || \
     (g_stNSROSPFLocal.stNSRFSMData.ucNSRState == NSR_STATE_BACKUP_OK)))
 
-/* Modified by lihaiming218630, 将dcl定时器改为dopra定时器，及根据检视意见代码优化, 2013/8/28   问题单号:DTS2013081608457  */   
 /*判断备板NSR备份是否已经收到主板发来的备份开始消息*/
 #define NSR_OSPF_IS_SLAVE_BACKUP_INIT() \
     ((!NSR_OSPF_IS_MASTER_BOARD()) && \
@@ -299,9 +294,7 @@ typedef struct nsr_ospf_local
 
 #define NSR_GET_BACKUP_BEGIN_TIMER_ID()    \
     (g_stNSROSPFLocal.stNSRBackupCB.ulBackupBeginTimerID)    
-/*End of Modified by lihaiming218630, 2013/8/28   问题单号:DTS2013081608457  */
 
-/*Added by guojianjun178934, 【检视发现问题】NSR批备抑制处理：连续两次批备等待一定的时间启动，避免频繁启动批备, 2013/9/9   问题单号:DTS2013090509585 */
 /*NSR批备延时定时器ID*/
 #define NSR_GET_BACKUP_DELAY_TIMER_ID()    \
     (g_stNSROSPFLocal.stNSRBackupCB.ulBackupDelayTimerID)
@@ -319,7 +312,6 @@ typedef struct nsr_ospf_local
 
 #define NSR_IS_NSR_FSM_START()  \
   (g_stNSROSPFLocal.stNSRFSMData.ucNSRState != NSR_STATE_NULL)
-/* End of Added by guojianjun178934, 2013/9/9   问题单号:DTS2013090509585 */
    
 /*判断备份通道是否有效*/
 #define NSR_OSPF_IS_CHANNEL_ACTIVE()   (g_stNSROSPFLocal.ucChannelStatus == NSR_CHANNEL_ACTIVE)
@@ -467,8 +459,7 @@ NBB_VOID NSR_StatisticMsg(NBB_BYTE msg_direct, NBB_BYTE msg_type,
   (NSR_CAPABILITY_ENABLE ==g_stNSROSPFLocal.ucNSROSPFCapability)
 
 
-/* Modified by lihaiming218630, nsr通知ospf，start backup和backup cancel消息前提条件，因是两个任务，
-在nsr读取配置链上的ospf备份状态时可能存在时序问题, 2013/9/2   问题单号:DTS2013082303531  */
+
 /*NSR 对ospf操作*/
 #define NSR_NOTIFY_OSPF_START_BACKUP    0x01
 
@@ -476,27 +467,20 @@ NBB_VOID NSR_StatisticMsg(NBB_BYTE msg_direct, NBB_BYTE msg_type,
 extern NSR_OSPF_LOCAL g_stNSROSPFLocal;
 
 NBB_VOID NSR_DealOSPFProcessMsg(NSR_OSPF_CONTROL_MSG *nsr_ospf_control_msg);
-/*End of Modified by lihaiming218630, 2013/9/4   问题单号:DTS2013082303531  */
 
-/* Modified by lihaiming218630, 将dcl定时器改为dopra定时器，及根据检视意见代码优化, 2013/8/28   问题单号:DTS2013081608457  */
 NBB_VOID NSR_DeleteBackupTimer();
 NBB_VOID NSR_DeleteBackupBeginTimer();
-/*End of Modified by lihaiming218630, 2013/8/28   问题单号:DTS2013081608457  */
 
-/*Added by guojianjun178934, 【检视发现问题】NSR批备抑制处理：连续两次批备等待一定的时间启动，避免频繁启动批备, 2013/9/9   问题单号:DTS2013090509585 */
 /*NSR批备延时处理*/
 NBB_VOID NSR_StartBackupDelayTimer();
 NBB_VOID NSR_DeleteBackupDelayTimer();
 VOID NSR_OSPF_NotifyBFDFinish();
 NBB_VOID NSR_BackupDelayTimerPop();
-/* End of Added by guojianjun178934, 2013/9/9   问题单号:DTS2013090509585 */
 ULONG NSR_OSPF_SetNSRCapability(UCHAR  ucNSRCapability);
 VOID NSR_OSPF_NotifyNSRSwitchFinish();
 
-/* Modified by lihaiming218630, nsr与ospf 2个任务交互时, nsr读配置链g_ulOspfProcessId上ospf进程的状态, 
-   若此时用户下配置或ospf自身状态变化，可能导致nsr backup fsm 死在pending cancel状态，2013/10/25   问题单号:DTS2013082303531  */
+
 NSR_OSPF_PROCESS *NSR_OSPF_FindProcess(NBB_SHORT process_id);
-/*End of Modified by lihaiming218630, 2013/10/26   问题单号:DTS2013082303531  */
 
 
 #endif

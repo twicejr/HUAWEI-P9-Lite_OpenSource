@@ -1,87 +1,4 @@
-/*******************************************************************************
-  Copyright     : 2005-2007, Huawei Tech. Co., Ltd.
-  File name     : GmmDetach.c
-  Description   : GMM DETACH功能相关处理用源文件
-  Function List :
-    01.   Gmm_RcvMmcDetachReq
-    02.   Gmm_SimRemoveDetach
-    03.   Gmm_RcvMmcDetachReq_RegNoCell
-    04.   Gmm_MsInitNormalDetach
-    05.   Gmm_Com_MsInitNormalDetach
-    06.   Gmm_RcvMmcPowerOffReq
-    07.   Gmm_PowerOffDetach
-    08.   Gmm_DetachRequestMsgMake
-    09.   Gmm_RcvDetachRequestMsg
-    10.   Gmm_RcvDetachRequestMsg_RegInit
-    11.   Gmm_RcvDetachRequestMsg_DeregInit
-    12.   Gmm_RcvDetachRequestMsg_RauInit
-    13.   Gmm_RcvDetachRequestMsg_ServReqInit
-    14.   Gmm_RcvDetachRequestMsg_RegNmlServ
-    15.   Gmm_RcvDetachRequestMsg_RegAtmpToUpdtMm
-    16.   Gmm_RcvDetachRequestMsg_RegImsiDtchInit
-    17.   Gmm_NetInitNotRequiredDetach
-    18.   Gmm_Com_Cause2Detach
-    19.   Gmm_Com_CauseDetach
-    20.   Gmm_NetInitRequiredDetach
-    21.   Gmm_NetInitImsiDetach
-    22.   Gmm_DetachAcceptMsgMake
-    23.   Gmm_RcvDetachAcceptMsg
-    24.   Gmm_RcvDetachAcceptMsg_DeregInit
-    25.   Gmm_RcvDetachAcceptMsg_RegImsiDtchInit
-  History       :
-    1.  张志勇  2003.12.09  新规作成
-    2.  s46746  2006-03-08  根据问题单A32D02368修改
-    3.  s46746  2006-03-09  根据问题单A32D02387修改
-    4.  l40632  2006-04-17  根据问题单A32D03132修改
-    5.  l40632  2006-04-28  根据问题单A32D03272修改
-    6. x51137 2006/4/28 A32D02889
-    7.  s46746  2006-06-16  根据问题单A32D03581修改
-    8. 日    期   : 2006年9月9日
-       作    者   : sunxibo id:46746
-       修改内容   : 根据问题单号：A32D05604
-    9.日    期   : 2006年11月06日
-       作    者   : s46746
-       修改内容   : 问题单号:A32D05787
-    10.日    期   : 2006年11月9日
-       作    者   : sunxibo id:46746
-       修改内容   : 根据问题单号：A32D06822
-    11.日    期   : 2006年11月20日
-       作    者   : s46746
-       修改内容   : 创建，根据问题单号：A32D07433
-    12.日    期   : 2007年01月04日
-       作    者   : s46746
-       修改内容   : 创建，根据问题单号：A32D08235
-    13.日    期   : 2007年12月12日
-       作    者   : l00107747
-       修改内容   : 根据问题单号：A32D13861
-    14.日    期   : 2007年12月14日
-       作    者   : s46746
-       修改内容   : 问题单A32D13638，保证进行RAU之前不向网侧发送其它数据，并且RAU不成功，不恢复层2
-    15.日    期   : 2007年12月28日
-       作    者   : s46746
-       修改内容   : 根据问题单号：A32D13954,修改GMM在2G3过程中缓存消息机制
-    16.日    期   : 2008年7月2日
-       作    者   : l00107747
-       修改内容   : 根据问题单号：AT2D03900,FOLLOW ON标志清除排查
-    17.日    期   : 2008年9月23日
-       作    者   : o00132663
-       修改内容   : 根据问题单号：AT2D05839,清除无用全局变量 ucRlsMsgFlg和状态GMM_REGISTERED_WAIT_FOR_RAU
-    18.日    期   : 2009年01月20日
-       作    者   : l00130025
-       修改内容   : 问题单号:AT2D08378,当服务域改变时,MM/GMM没有对UE的mode进行改变;GMM在RAU过程中收到Detach请求时,直接返回,没有处理
-    19.日    期   : 2009年05月25日
-       作    者   : h44270
-       修改内容   : 问题单号:AT2D09923/AT2D12099,发送attach请求，所带的tlli有问题
-    20.日    期   : 2009年08月14日
-       作    者   : l60609
-       修改内容   : 问题单号:AT2D13779,IMSI DETACH上报事件不合理
-    21.日    期   : 2009年08月19日
-       作    者   : x00115505
-       修改内容   : 问题单号:AT2D13855,Combined Attach过程中通过SYSCFG设置仅支持PS域，设置失败
-    22.日    期   : 2009年08月24日
-       作    者   : x00115505
-       修改内容   : AT2D14023,测试GCF用例44.2.2.1.9失败
-*******************************************************************************/
+
 
 #include "GmmInc.h"
 #include "GmmCasGlobal.h"
@@ -114,21 +31,7 @@
 /*lint -save -e958 */
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_SaveDetachMsg
- 功能描述  : 缓冲detach消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月10日
-    作    者   : l65478
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_GMM_SaveDetachMsg(VOS_VOID *pMsg)
 {
     MMCGMM_DETACH_REQ_STRU      *pDetachMsg = VOS_NULL_PTR;
@@ -153,25 +56,7 @@ VOS_VOID NAS_GMM_SaveDetachMsg(VOS_VOID *pMsg)
     g_GmmGlobalCtrl.MsgHold.ulMsgHoldMsk |= GMM_MSG_HOLD_FOR_DETACH;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_DeleteSavedDetachMsg
- 功能描述  : 删除缓冲的detach消息
- 输入参数  : ulDelDetachType        - 删除的DETACH类型
- 输出参数  : 无
- 返 回 值  : VOS_TRUE               - 删除成功
-             VOS_FALSE              - 未进行删除
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月13日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-                 注:在网络模式I下，GMM缓存的可能是CS+PS两个域的detach消息。GMM和
-                 MM同时启动去注册保护定时器，且CS域超时时长比PS域长1秒。
-                 如果此时CS域超时，那么PS域信息也可以被清除；
-                 如果此时PS域超时，那么CS和PS域信息都可以被清除；
-*****************************************************************************/
 VOS_UINT32 NAS_GMM_DeleteSavedDetachMsg(
     NAS_GMM_DETACH_TYPE_ENUM_UINT32     ulDelDetachType
 )
@@ -202,21 +87,7 @@ VOS_UINT32 NAS_GMM_DeleteSavedDetachMsg(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_RcvMmcGmmDetachReqMsg_GmmRegisteredInitiated
- 功能描述  : GMM在GMM_REGISTERED_INITIATED状态收到DETACH REQ的处理
- 输入参数  : pMsg        - DETACH REQ 消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月17日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_GMM_RcvMmcGmmDetachReqMsg_GmmRegisteredInitiated(
     VOS_VOID                           *pMsg
 )
@@ -285,22 +156,7 @@ VOS_VOID NAS_GMM_RcvMmcGmmDetachReqMsg_GmmRegisteredInitiated(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_RcvMmcGmmDetachReqMsg_GmmServiceReqInitiated
- 功能描述  : GMM在GmmServiceReqInitiated状态收到DETACH REQ消息的处理
- 输入参数  : pMsg        - DETACH REQ 消息
- 输出参数  : 无
- 返 回 值  : VOS_TRUE               - 进行DETACH消息的处理
-             VOS_FALSE              - 未进行DETACH消息的处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月17日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_GMM_RcvMmcGmmDetachReqMsg_GmmServiceReqInitiated(
     VOS_VOID                           *pMsg
 )
@@ -363,20 +219,7 @@ VOS_VOID NAS_GMM_RcvMmcGmmDetachReqMsg_GmmServiceReqInitiated(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_LocalDetach_GmmDeregisteredNoImsi
- 功能描述  : GMM处于GmmDeregisteredNoImsi状态时，做本地DETACH操作
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年06月19日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_GMM_LocalDetach_GmmDeregisteredNoImsi(VOS_VOID)
 {
     NAS_MML_SetPsAttachAllowFlg( VOS_FALSE );     /* 设置禁止注册标志                         */
@@ -395,26 +238,7 @@ VOS_VOID NAS_GMM_LocalDetach_GmmDeregisteredNoImsi(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_LocalDetach_GmmDeregisteredNormalService
- 功能描述  : GMM处于GmmDeregisteredNormalService状态时，做本地DETACH操作
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年06月19日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2013年8月7日
-    作    者   : w00167002
-    修改内容   : DTS2013080207367:在CS only时候，用户发起PDP激活，网络模式I时候，
-                 会触发联合注册.用户发起PDP去激活，会导致PS域的去注册。收到网侧
-                 的去注册成功后需要通知MM，否则MM当前在NORMAL SERVICE状态，不
-                 触发T3212定时器的启动，长时间可能导致丢寻呼.
-*****************************************************************************/
 VOS_VOID NAS_GMM_LocalDetach_GmmDeregisteredNormalService(VOS_VOID)
 {
     NAS_MML_SetPsAttachAllowFlg( VOS_FALSE );     /* 设置禁止注册标志                         */
@@ -438,20 +262,7 @@ VOS_VOID NAS_GMM_LocalDetach_GmmDeregisteredNormalService(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_LocalDetach_GmmDeregisteredAttemptingToAttach
- 功能描述  : GMM处于GmmDeregisteredAttemptingToAttach状态时，做本地DETACH操作
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年06月19日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_GMM_LocalDetach_GmmDeregisteredAttemptingToAttach(VOS_VOID)
 {
     /* 通知MM模块 */
@@ -470,20 +281,7 @@ VOS_VOID NAS_GMM_LocalDetach_GmmDeregisteredAttemptingToAttach(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_LocalDetach_GmmDeregisteredInitiated
- 功能描述  : GMM处于GmmDeregisteredInitiated状态时，做本地DETACH操作
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年06月19日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_GMM_LocalDetach_GmmDeregisteredInitiated(VOS_VOID)
 {
     /* 如果当前PS域已经去注册了，并且存在P-TMSI signature,则清除P-TMSI signature */
@@ -516,20 +314,7 @@ VOS_VOID NAS_GMM_LocalDetach_GmmDeregisteredInitiated(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_LocalDetach_GmmRauInitiated
- 功能描述  : GMM处于GmmRauInitiated状态时，做本地DETACH操作
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年06月19日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_GMM_LocalDetach_GmmRauInitiated(VOS_VOID)
 {
     if (GMM_RAU_FOR_NORMAL != gstGmmSuspendCtrl.ucRauCause)
@@ -555,24 +340,7 @@ VOS_VOID NAS_GMM_LocalDetach_GmmRauInitiated(VOS_VOID)
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_StartDetachProtectingTimer
- 功能描述  : 启动GMM的Detach消息的保护定时器
- 输入参数  : MMCGMM_DETACH_REQ_STRU             *pstMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月4日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年4月11日
-    作    者   : y00245242
-    修改内容   : iteration 13开发
-*****************************************************************************/
 VOS_VOID NAS_GMM_StartDetachProtectingTimer(
     MMCGMM_DETACH_REQ_STRU             *pstMsg
 )
@@ -626,29 +394,7 @@ VOS_VOID NAS_GMM_StartDetachProtectingTimer(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_LocalDetach_GprsSuspension
- 功能描述  : GMM处于GPRS_SUSPENSION状态时，做本地DETACH操作
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 20013年02月19日
-    作    者   : l00167671
-    修改内容   : 新生成函数
-  2.日    期   : 2013年8月7日
-    作    者   : w00167002
-    修改内容   : DTS2013080207367:在CS only时候，用户发起PDP激活，网络模式I时候，
-                 会触发联合注册.用户发起PDP去激活，会导致PS域的去注册。收到网侧
-                 的去注册成功后需要通知MM，否则MM当前在NORMAL SERVICE状态，不
-                 触发T3212定时器的启动，长时间可能导致丢寻呼.
-  3.日    期   : 2014年3月12日
-    作    者   : f00261442
-    修改内容   : DTS2014031103926:在本地DETACH的时候通知SM
-*****************************************************************************/
 VOS_VOID NAS_GMM_LocalDetach_GprsSuspension(VOS_VOID)
 {
     /* 设置禁止注册标志                         */
@@ -688,20 +434,7 @@ VOS_VOID NAS_GMM_LocalDetach_GprsSuspension(VOS_VOID)
     NAS_GMM_ClearMsgFromBuff(MMCGMM_ATTACH_REQ,WUEPS_PID_MMC,WUEPS_PID_GMM);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_GprsLocalDetachRelCsPsAllConn
- 功能描述  : GMM做本地DETACH时如果存在连接的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月21日
-    作    者   : z00161729
-    修改内容   : DTS2014032105704:国内TDS丢网瞬间找回原小区ps迁移modem1后不再回迁modem0
-*****************************************************************************/
 VOS_VOID NAS_GMM_GprsLocalDetachRelCsPsAllConn(VOS_VOID)
 {
     NAS_UTRANCTRL_UTRAN_MODE_ENUM_UINT8 enUtranMode;
@@ -732,29 +465,7 @@ VOS_VOID NAS_GMM_GprsLocalDetachRelCsPsAllConn(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_GprsLocalDetach
- 功能描述  : GMM做本地DETACH的基本处理操作，不进行状态迁移
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年06月13日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2013年8月7日
-    作    者   : w00167002
-    修改内容   : DTS2013080207367:在CS only时候，用户发起PDP激活，网络模式I时候，
-                 会触发联合注册.用户发起PDP去激活，会导致PS域的去注册。收到网侧
-                 的去注册成功后需要通知MM，否则MM当前在NORMAL SERVICE状态，不
-                 触发T3212定时器的启动，长时间可能导致丢寻呼.
-  3.日    期   : 2014年3月21日
-    作    者   : z00161729
-    修改内容   : DTS2014032105704:国内TDS丢网瞬间找回原小区ps迁移modem1后不再回迁modem0
-*****************************************************************************/
 VOS_VOID NAS_GMM_GprsLocalDetach(VOS_VOID)
 {
 
@@ -823,22 +534,7 @@ VOS_VOID NAS_GMM_GprsLocalDetach(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_IsNeedProcUserCsDetach
- 功能描述  : 用来判别是否由GMM来处理用户发起的CS/CS+PS的detach
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_FALSE          -- 不需要GMM进行处理用户发起的CS/CS+PS的detach
-             VOS_TRUE           -- 需要GMM进行处理用户发起的CS/CS+PS的detach
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月19日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_GMM_IsNeedProcUserCsDetach(VOS_VOID)
 {
     NAS_MML_CAMP_PLMN_INFO_STRU        *pstCampInfo       = VOS_NULL_PTR;
@@ -910,21 +606,7 @@ VOS_UINT32 NAS_GMM_IsNeedProcUserCsDetach(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_ConvertDetachType
- 功能描述  : 用来转换去注册类型
- 输入参数  : enDetachType                    -- 转换前的去注册类型
- 输出参数  : 无
- 返 回 值  : NAS_GMM_DETACH_TYPE_ENUM_UINT32 -- 转换后的去注册类型
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月19日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_GMM_DETACH_TYPE_ENUM_UINT32 NAS_GMM_ConvertDetachType(
     NAS_GMM_DETACH_TYPE_ENUM_UINT32     ulDetachType
 )
@@ -953,22 +635,7 @@ NAS_GMM_DETACH_TYPE_ENUM_UINT32 NAS_GMM_ConvertDetachType(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_Gmm_RcvMmCsLocalDetachInd_RegImsiDtchInit
- 功能描述  : GMM在GMM_REGISTERED_IMSI_DETACH_INITIATED状态收到MM的
-             MMGMM_CS_LOCAL_DETACH_IND消息的处理
- 输入参数  : MMCGMM_DETACH_REQ_STRU             *pstMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月4日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_Gmm_RcvMmCsLocalDetachInd_RegImsiDtchInit(VOS_VOID)
 {
     Gmm_TimerStop(GMM_TIMER_T3318);                                             /* 停止T3318                                */
@@ -1012,25 +679,7 @@ VOS_VOID NAS_Gmm_RcvMmCsLocalDetachInd_RegImsiDtchInit(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_Gmm_RcvMmCsLocalDetachInd_RegImsiDtchInit
- 功能描述  : GMM在GMM_REGISTERED_IMSI_DETACH_INITIATED状态收到MM的
-             MMGMM_CS_LOCAL_DETACH_IND消息的处理
- 输入参数  : MMCGMM_DETACH_REQ_STRU             *pstMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月4日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-                联合RAU过程中，CS域的DETACH消息是被缓存的，如果这个时候CS域
-                定时器已经超时了，那么则释放当前的联合注册流程，待收到REL IND消息
-                后，等定时器超时再触发RAU:Gmm_RcvRrmmRelInd_RauInit
-
-*****************************************************************************/
 VOS_VOID NAS_Gmm_RcvMmCsLocalDetachInd_RegInit(VOS_VOID)
 {
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enCurRat;                           /* 当前的网络接入技术 */
@@ -1058,25 +707,7 @@ VOS_VOID NAS_Gmm_RcvMmCsLocalDetachInd_RegInit(VOS_VOID)
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_Gmm_RcvMmCsLocalDetachInd_RegImsiDtchInit
- 功能描述  : GMM在GMM_REGISTERED_IMSI_DETACH_INITIATED状态收到MM的
-             MMGMM_CS_LOCAL_DETACH_IND消息的处理
- 输入参数  : MMCGMM_DETACH_REQ_STRU             *pstMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月4日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-                联合RAU过程中，CS域的DETACH消息是被缓存的，如果这个时候CS域
-                定时器已经超时了，那么则释放当前的联合注册流程，待收到REL IND消息
-                后，等定时器超时再触发RAU:Gmm_RcvRrmmRelInd_RauInit
-
-*****************************************************************************/
 VOS_VOID NAS_Gmm_RcvMmCsLocalDetachInd_RauInit(VOS_VOID)
 {
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enCurRat;                           /* 当前的网络接入技术 */
@@ -1103,21 +734,7 @@ VOS_VOID NAS_Gmm_RcvMmCsLocalDetachInd_RauInit(VOS_VOID)
 
 
 #if (FEATURE_MULTI_MODEM == FEATURE_ON)
-/*****************************************************************************
- 函 数 名  : NAS_GMM_GprsLocalDetach_SvltePsTransfer
- 功能描述  : svlte ps transfer场景本地detach的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年11月25日
-   作    者   : z00161729
-   修改内容   : SVLTE优化G-TL ps切换性能修改
-
-*****************************************************************************/
 VOS_VOID NAS_GMM_GprsLocalDetach_SvltePsTransfer(VOS_VOID)
 {
     switch (g_GmmGlobalCtrl.ucState)
@@ -1230,72 +847,7 @@ VOS_VOID NAS_GMM_GprsLocalDetach_SvltePsTransfer(VOS_VOID)
 
 
 
-/*******************************************************************************
-Module   : Gmm_RcvMmcDetachReq
-Function : GMM收到MMCGMM_DETACH_REQ的分发处理
-Input    : VOS_VOID      *pMsg;    当前处理的消息
-Output   : 无
-NOTE     : 无
-Return   : 无
-History  :
-1. 张志勇  2003.12.08  新规作成
 
-2.日    期   : 2008年7月2日
-  作    者   : l00107747
-  修改内容   : 根据问题单号：AT2D03900
-
-3.日    期   : 2009年01月20日
-  作    者   : l00130025
-  修改内容   : 问题单号:AT2D08378,当服务域改变时,MM/GMM没有对UE的mode进行改变;GMM在RAU过程中收到Detach请求时,直接返回,没有处理
-
-4.日    期   : 2010年1月16日
-  作    者   : o00132663
-  修改内容   : NAS R7协议升级，当T3340正在运行时，表明前面流程正在释放链路
-               ，缓存当前Detach请求。
-5.日    期   : 2011年3月2日
-  作    者   : z00161729
-  修改内容   : DTS2010071601574:RAU过程完成收到rau accept需要等待RABM或WRR回复后再发送RAU cmp消息期间,
-               缓存detach请求,等RAU结束再发起
-6.日    期   : 2011年7月14日
-  作    者   : h44270
-  修改内容   : V7R1 PhaseII阶段调整，注册结果简化
-7.日    期   : 2011年07月13日
-  作    者   : w00166186
-   修改内容   : V7R1 PHASE II ATTACH/DETACH调整
-
-8. 日    期   : 2012年1月12日
-   作    者   : w00166186
-   修改内容   : DTS2011122704039:开机搜网后CS注册被拒#12,PS注册被拒#14，在ON
-                 PLMN状态，服务域被设置为不支持GMM需要将服务域不支持信息通知给MMC.
-9.日    期   : 2012年01月12日
-   作    者   : l65478
-   修改内容   : 问题单号：DTS2012010602762:SYSCFG设置成支持CS ONLY后
-                 PS仍然显示正常服务
-10.日    期   : 2012年2月15日
-   作    者   : w00166186
-   修改内容   : CSFB&PPAC&ETWS&ISR 开发
-11.日    期  : 2012年08月24日
-   作    者  : m00217266
-   修改内容  : 修改Gmm_SndSmEstablishCnf接口，添加原因值
-12.日    期   : 20013年02月19日
-   作    者   : l00167671
-   修改内容   : DTS2013020607201
-13.日    期   : 2013年1月22日
-   作    者   : W00176964
-   修改内容   : DTS2013012105162:OOS流程收到PS域detach需要进行本地detach
-14.日    期   : 2013年6月6日
-   作    者   : w00167002
-   修改内容   : V9R1_SVLTE项目修改
-                缓存DETACH消息时候需要释放先前已缓存的DETACH消息，否则会导致内存泄露
-
-                2. GMM当前无法处理CS域DEACH,则通知MM当前CS已本地去注册
-15.日    期   : 2013年12月8日
-   作    者   : z00161729
-   修改内容   : SVLTE优化G-TL ps切换性能修改
- 16.日    期   : 2013年12月8日
-    作    者   : z00161729
-    修改内容   : DTS2014010202583:SVLTE优化G-TL ps切换性能修改
-*******************************************************************************/
 VOS_VOID Gmm_RcvMmcDetachReq(
                          VOS_VOID       *pMsg                                   /* 当前处理的消息                           */
                          )
@@ -1492,26 +1044,7 @@ VOS_VOID Gmm_RcvMmcDetachReq(
     return;                                                                     /* 返回                                     */
 }
 
-/*******************************************************************************
-  Module   : Gmm_RcvMmcDetachReq_RegNoCell
-  Function : 在GMM_REGISTERED_NO_CELL_AVAILABLE状态下收到MMCGMM_DETACH_REQ的处理
-  Input    : 无
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1. 张志勇  2003.12.11  新规作成
-    2.日    期   : 2009年05月25日
-      作    者   : h44270
-      修改内容   : 问题单号:AT2D09923/AT2D12099,发送attach请求，所带的tlli有问题
-    3.日    期   : 2011年07月13日
-      作    者   : w00166186
-      修改内容   : V7R1 PHASE II ATTACH/DETACH调整
-    4. 日    期   : 2012年1月12日
-       作    者   : w00166186
-       修改内容   : DTS2011122704039:开机搜网后CS注册被拒#12,PS注册被拒#14，在ON
-                      PLMN状态，服务域被设置为不支持GMM需要将服务域不支持信息通知给MMC.
-*******************************************************************************/
+
 VOS_VOID Gmm_RcvMmcDetachReq_RegNoCell(VOS_VOID)
 {
     Gmm_ComStaChg(GMM_DEREGISTERED_NO_CELL_AVAILABLE);                          /* 调用状态的公共处理                       */
@@ -1531,38 +1064,7 @@ VOS_VOID Gmm_RcvMmcDetachReq_RegNoCell(VOS_VOID)
                                  NAS_MML_REG_FAIL_CAUSE_MS_CFG_DOMAIN_NOT_SUPPORT);
 }
 
-/*******************************************************************************
-  Module   : Gmm_MsInitNormalDetach
-  Function : MS启动的detach过程处理
-  Input    : VOS_UINT32    ulDetachType    detach类型
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1. 张志勇  2003.12.08  新规作成
 
-  2.日    期   : 2006年11月06日
-    作    者   : s46746
-    修改内容   : 问题单号:A32D05787
-
-  3.日    期   : 2009年01月20日
-    作    者   : l00130025
-    修改内容   : 问题单号:AT2D08378,当服务域改变时,MM/GMM没有对UE的mode进行改变;
-                 GMM在RAU过程中收到Detach请求时,直接返回,没有处理
-  4.日    期   : 2011年7月14日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
-  5.日    期   : 2012年2月15日
-    作    者   : w00166186
-    修改内容   : CSFB&PPAC&ETWS&ISR 开发
-  6.日    期   : 2013年6月8日
-    作    者   : w00167002
-    修改内容   : V9R1_SVLTE:代码走读:卡无效时，MMC_GMM_PS_CS_DETACH走
-                 GMM_DETACH_NORMAL类型的流程。
-  7.日    期   : 2014年7月9日
-    作    者   : w00242748
-    修改内容   : DSDS III新特性
-*******************************************************************************/
 VOS_VOID Gmm_MsInitNormalDetach(
     VOS_UINT32                          ulDetachType                   /* detach类型                               */
 )
@@ -1635,24 +1137,7 @@ VOS_VOID Gmm_MsInitNormalDetach(
     return;                                                                     /* 返回                                     */
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_ProcDetachReq_RegNmlServ
- 功能描述  : 正常服务状态处理DETACH请求
- 输入参数  : VOS_UINT32 ulOpID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月15日
-    作    者   : 王毛/00166186
-    修改内容   : 新生成函数
-  2.日    期   : 2013年02月01日
-    作    者   : l65478
-    修改内容   : DTS2013020104880
-
-*****************************************************************************/
 VOS_VOID NAS_GMM_ProcDetachReq_RegNmlServ(
     MMCGMM_DETACH_REQ_STRU             *pstDetachReq,
     VOS_UINT32                          ulDetachType                   /* detach类型                               */
@@ -1735,53 +1220,7 @@ VOS_VOID Gmm_Com_MsInitNormalDetach(VOS_VOID)
     return;                                                                     /* 返回                                     */
 }
 
-/*******************************************************************************
-  Module   : Gmm_RcvMmcPowerOffReq
-  Function : GMM收到MMCGMM_POWER_OFF_REQ的分发处理
-  Input    : VOS_VOID   *pMsg    原语指针
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1. 张志勇  2003.12.08  新规作成
-    2. 日    期   : 2009年5月9日
-       作    者   : l00130025
-       修改内容   : 根据问题单号：AT2D11645/AT2D11797,关机，若detach的EST_REQ失败，Gmm会反复发起EST_REQ
-    3. 日    期   : 2009年05月23日
-       作    者   : L65478
-       修改内容   : 问题单号:AT2D06770,RAU失败，因为GRM建链的原因是DATA，实际应该是信令
-    4. 日    期   : 2010年07月26日
-       作    者   : L65478
-       修改内容   : 问题单号:DTS2010072200479,开机注册过程中，关机，再开机时失败，因为GMM没有立刻处理关机消息，导致MMC保护定时器超时
-    5. 日    期   : 2010年09月13日
-       作    者   : L65478
-       修改内容   : 问题单号:DTS2010091301310,WCDMA下关机，重新开机后，在GSM模式下无法注册成功
-    6. 日    期   : 2010年11月11日
-       作    者   : 欧阳飞
-       修改内容   : DTS2010111003071，GSM下，网络模式II，CS Only，PDP激活后，直
-                    接关机，导致MM/GMM同时都发起了detach流程
-    7.日    期   : 2012年1月9日
-      作    者   : l00130025
-      修改内容   : DTS2011122900476,释放缓存的Gsm系统消息
-    8.日    期   : 2012年8月25日
-      作    者   : m00217266
-      修改内容   : 删除GMM_SaveErrCode，添加Gmm_Save_Detach_Cause，
-                 保存导致由Attach切换到Detach的原因值
 
-    9.日    期   : 2012年11月10日
-      作    者   : w00176964
-      修改内容   : DTS2012110707605:PS未attach上,直接给MMC回复关机结果,加快关机速度
-   10.日    期   : 2011年12月28日
-      作    者   : l00167671
-      修改内容   : 修改问题单DTS2012122001075,问题单场景如下:
-                  PS建链过程中发生RA改变，该场景中如果CS域有业务则PS域做RAU
-                  会被不确定的推迟到CS连接释放时才做，修改此场景中的操作如下:
-                  若CS域有业务则给WAS发送RRMM_REL_REQ请求，请WAS释放连接，
-                  并保存系统消息。在收到WAS的RRMM_REL_IND时用保存的系统消息做RAU
-   11.日    期   : 2013年2月4日
-      作    者   : w00176964
-      修改内容   : DTS2011022802215:CS ONLY,网络模式I下也进行联合注册
-*******************************************************************************/
 VOS_VOID Gmm_RcvMmcPowerOffReq(
                            VOS_VOID *pMsg                                       /* 原语指针                                 */
                            )
@@ -1957,37 +1396,7 @@ VOS_VOID Gmm_RcvMmcPowerOffReq(
     return;                                                                     /* 返回                                     */
 }
 
-/*******************************************************************************
-  Module   : Gmm_PowerOffDetach
-  Function : Power Off时的detach处理
-  Input    : 无
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1.张志勇  2003.12.08  新规作成
-  2.日    期   : 2009年5月9日
-    作    者   : l00130025
-    修改内容   : 根据问题单号：AT2D11645/AT2D11797,关机，若detach的EST_REQ失败，Gmm会反复发起EST_REQ
-  3.日    期   : 2009年05月23日
-    作    者   : L65478
-    修改内容   : 问题单号:AT2D06770,RAU失败，因为GRM建链的原因是DATA，实际应该是信令
-  4.日    期   : 2011年7月14日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
-  5.日    期   : 2011年07月13日
-    作    者   : w00166186
-    修改内容   : V7R1 PHASE II ATTACH/DETACH调整
-  6.日    期   : 2012年04月20日
-    作    者   : L65478
-    修改内容   : DTS2012042005349在G下关机时没有挂起TTF，导致TTF一直发数,IOT失败
-  7.日    期   : 2012年10月12日
-    作    者   : w00176964
-    修改内容   : DTS2012091400694:G模关机慢
-  8.日    期   : 2015年2月6日
-    作    者   : h00313353
-    修改内容   : USIMM卡接口调整
-*******************************************************************************/
+
 VOS_VOID Gmm_PowerOffDetach(VOS_VOID)
 {
     NAS_MSG_STRU        *pDetachRequest;                                        /* 定义指针                                 */
@@ -2118,28 +1527,7 @@ VOS_VOID Gmm_PowerOffDetach(VOS_VOID)
 
 /*lint -e438 -e830*/
 
-/*******************************************************************************
-  Module   : Gmm_DetachRequestMsgMake
-  Function : Detach request消息制作
-  Input    : 无
-  Output   : 无
-  NOTE     : 无
-  Return   : NAS_MSG_STRU *
-  History  :
-  1. 张志勇  2003.12.08  新规作成
-  2. 日    期   : 2006年11月20日
-     作    者   : s46746
-     修改内容   : 创建，根据问题单号：A32D07433
-  3. 日    期   : 2009年06月17日
-     作    者   : ouyangfei o00132663
-     修改内容   : 根据终端可配置需求修改，R99以前版本不生成可选IE
-  4. 日    期   : 2009年08月14日
-     作    者   : ouyangfei o00132663
-     修改内容   : AT2D13748:获取3GPP协议版本，函数参数错误，应该查询PS域版本。
-  5.日    期   : 2011年7月27日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-*******************************************************************************/
+
 NAS_MSG_STRU* Gmm_DetachRequestMsgMake(VOS_VOID)
 {
     NAS_MSG_FOR_PCLINT_STRU    *pDetachRequest;                                 /* 定义指针                                 */
@@ -2271,35 +1659,7 @@ NAS_MSG_STRU* Gmm_DetachRequestMsgMake(VOS_VOID)
 }
 /*lint +e438 +e830*/
 
-/*******************************************************************************
-  Module   : Gmm_RcvDetachRequestMsg
-  Function : GMM收到DETACH_REQUEST的分发处理
-  Input    : NAS_MSG_STRU   *pMsg  当前处理的消息
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1. 张志勇  2003.12.08  新规作成
-  2. x51137 2006/4/28 A32D02889
-  3.日    期   : 2012年1月12日
-    作    者   : w00166186
-    修改内容   : DTS2011122704039:开机搜网后CS注册被拒#12,PS注册被拒#14，在ON
-                 PLMN状态，服务域被设置为不支持GMM需要将服务域不支持信息通知给MMC.
-  4.日    期   : 2012年3月3日
-    作    者   : z00161729
-    修改内容   : V7R1 C50 支持ISR修改,T3312启动停止超时均需通知L
-  5.日    期   : 2012年8月25日
-    作    者   : m00217266
-    修改内容   : 删除GMM_SaveErrCode，添加Gmm_Save_Detach_Cause，
-                保存导致Attach失败的原因值
 
-  6.日    期   : 2013年6月8日
-    作    者   : w00167002
-    修改内容   : V9R1_SVLTE:代码走读发现:ucDetachType类型维护错误.
-  7.日    期   : 2014年10月20日
-    作    者   : h00285180
-    修改内容   : 拒绝原因值优化PhaseII DTS2014110307415
-*******************************************************************************/
 VOS_VOID Gmm_RcvDetachRequestMsg(
                              NAS_MSG_FOR_PCLINT_STRU       *pMsg
                              )
@@ -2449,26 +1809,7 @@ VOS_VOID Gmm_RcvDetachRequestMsg(
     return;                                                                     /* 返回                                     */
 }
 
-/*******************************************************************************
-  Module   : Gmm_RcvDetachRequestMsg_RegInit
-  Function : 在GMM-REGISTERED-INITIATED状态下收到DETACH_REQUEST的处理
-  Input    : VOS_UINT8     ucDetachType     detach类型
-             VOS_UINT8     ucGmmCause       detach原因
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-   1. 张志勇  2003.12.08  新规作成
-   2.日    期   : 2008年7月2日
-     作    者   : l00107747
-     修改内容   : 根据问题单号：AT2D03900
-   3.日    期  : 2012年08月24日
-     作    者  : m00217266
-     修改内容  : 修改Gmm_SndSmEstablishCnf接口，添加原因值
-   4.日    期   : 2015年6月5日
-     作    者   : z00161729
-     修改内容   : 24008 23122 R11 CR升级项目修改
-*******************************************************************************/
+
 VOS_VOID Gmm_RcvDetachRequestMsg_RegInit(
                                      VOS_UINT8      ucDetachType,                   /* detach类型                               */
                                      VOS_UINT8      ucGmmCause                      /* detach原因                               */
@@ -2512,43 +1853,7 @@ VOS_VOID Gmm_RcvDetachRequestMsg_RegInit(
     return;                                                                     /* 返回                                     */
 }
 
-/*******************************************************************************
-  Module   : Gmm_RcvDetachRequestMsg_DeregInit
-  Function : 在GMM-DEREGISTERED-INITIATED状态下收到DETACH_REQUEST的处理
-  Input    : 无
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1. 张志勇  2003.12.08  新规作成
-    2. 日    期   : 2007年12月12日
-       作    者   : l00107747
-       修改内容   : 根据问题单号：A32D13861
-    3. 日    期   : 2010年10月16日
-       作    者   : s46746
-       修改内容   : 根据问题单号：DTS2010100900274,接收到网络Detach请求后没有指示SM进入Detach状态
-    4. 日    期   : 2011年07月13日
-       作    者   : w00166186
-       修改内容   : V7R1 PHASE II ATTACH/DETACH调整
-    5. 日    期   : 2012年06月04日
-       作    者   : l65478
-       修改内容   : DTS2012060402840 MS发起的DETACH和网络的冲突时,没有清除ATTACH运行标志
-    6.日    期   : 2013年6月8日
-      作    者   : w00167002
-      修改内容   : V9R1_SVLTE:代码走读发现:如果当前是CS域的DETACH，则不更新服务域.
-    7.日    期   : 2013年8月7日
-      作    者   : w00167002
-      修改内容   : DTS2013080207367:在CS only时候，用户发起PDP激活，网络模式I时候，
-                 会触发联合注册.用户发起PDP去激活，会导致PS域的去注册。收到网侧
-                 的去注册成功后需要通知MM，否则MM当前在NORMAL SERVICE状态，不
-                 触发T3212定时器的启动，长时间可能导致丢寻呼.
-    8.日    期   : 2013年08月16日
-      作    者   : l65478
-      修改内容   : DTS2013092202614,G CCO到W失败回退到G,在G下通知了GAS进入了REDAY态
-    9.日    期   : 2015年6月5日
-      作    者   : z00161729
-      修改内容   : 24008 23122 R11 CR升级项目修改
-*******************************************************************************/
+
 VOS_VOID Gmm_RcvDetachRequestMsg_DeregInit(
     VOS_UINT8                           ucDetachType,           /* detach类型                               */
     VOS_UINT8                           ucGmmCause              /* detach原因                               */
@@ -2610,20 +1915,7 @@ VOS_VOID Gmm_RcvDetachRequestMsg_DeregInit(
     return;                                                                     /* 返回                                     */
 }
 
-/*******************************************************************************
-  Module   : Gmm_RcvDetachRequestMsg_RauInit
-  Function : GMM-RAU-INITIATED状态下收到DETACH_REQUEST的处理
-  Input    : VOS_UINT8     ucDetachType     detach类型
-             VOS_UINT8     ucGmmCause       detach原因
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1. 张志勇  2003.12.08  新规作成
-    2.日    期   : 2015年6月4日
-      作    者   : z00161729
-      修改内容   : 24008 23122 R11 CR升级项目修改
-*******************************************************************************/
+
 VOS_VOID Gmm_RcvDetachRequestMsg_RauInit(
                                      VOS_UINT8      ucDetachType,               /* detach类型                               */
                                      VOS_UINT8      ucGmmCause                  /* detach原因                               */
@@ -2675,20 +1967,7 @@ VOS_VOID Gmm_RcvDetachRequestMsg_RauInit(
     return;                                                                     /* 返回                                     */
 }
 
-/*******************************************************************************
-  Module   : Gmm_RcvDetachRequestMsg_ServReqInit
-  Function : 在GMM-SERVICE-REQUEST-INITIATED状态下收到DETACH_REQUEST的处理
-  Input    : VOS_UINT8     ucDetachType     detach类型
-             VOS_UINT8     ucGmmCause       detach原因
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1. 张志勇  2003.12.08  新规作成
-    2.日    期   : 2015年6月4日
-      作    者   : z00161729
-      修改内容   : 24008 23122  R11 CR升级项目修改
-*******************************************************************************/
+
 VOS_VOID Gmm_RcvDetachRequestMsg_ServReqInit(
                                          VOS_UINT8      ucDetachType,           /* detach类型                               */
                                          VOS_UINT8      ucGmmCause              /* detach原因                               */
@@ -2798,21 +2077,7 @@ VOS_VOID Gmm_RcvDetachRequestMsg_RegAtmpToUpdtMm(
     Gmm_RcvDetachRequestMsg_RegNmlServ(ucDetachType, ucGmmCause);
 }
 
-/*******************************************************************************
-  Module   : Gmm_RcvDetachRequestMsg_RegImsiDtchInit
-  Function : 在REGISTERED.IMSI-DETACH-INITIATED状态下收到DETACH_REQUEST的处理
-  Input    : 无
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1. 张志勇  2003.12.08  新规作成
-    2.日    期   : 2013年6月8日
-      作    者   : w00167002
-      修改内容   : V9R1_SVLTE:代码走读发现:
-                   原先调用函数Gmm_RcvDetachRequestMsg_DeregInit(ucDetachType, ucGmmCause);
-                   如果当前是CS域的DETACH，却设置PS不准许注册.
-*******************************************************************************/
+
 VOS_VOID Gmm_RcvDetachRequestMsg_RegImsiDtchInit(
     VOS_UINT8                           ucDetachType,           /* detach类型                               */
     VOS_UINT8                           ucGmmCause              /* detach原因                               */
@@ -2864,29 +2129,7 @@ VOS_VOID Gmm_RcvDetachRequestMsg_RegImsiDtchInit(
     return;
 }
 
-/*******************************************************************************
-  Module   : Gmm_NetInitNotRequiredDetach
-  Function : 网侧发起的类型为reattach not required的detach的处理
-  Input    : VOS_UINT8  ucGmmCause        detach的原因值
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1. 张志勇  2003.12.08  新规作成
-    2. 日    期   : 2009年06月22日
-       作    者   : l00130025
-       修改内容   : 问题单号:AT2D12541,【IOT测试】网络下发Detach(类型为 Re-attach not required)后，UE又重新发起attach请求
-    3. 日    期   : 2009年09月07日
-       作    者   : l65478
-       修改内容   : 问题单号:AT2D13980,网络detach后，会出现PDP持续无法激活的问题
-    4.日    期   : 2012年9月25日
-      作    者   : h00216089
-      修改内容   : DTS2012090304976:调整，网侧Detach(re-attach not required)后，MM定时器超时发起LU，
-                   LU结束后收到系统消息GMM不会再发起Attach
-    5.日    期   : 2015年6月3日
-      作    者   : z00161729
-      修改内容   : 24008 23122 R11 CR升级项目修改
-*******************************************************************************/
+
 VOS_VOID Gmm_NetInitNotRequiredDetach(
                                   VOS_UINT8         ucGmmCause                      /* detach的原因值                           */
                                   )
@@ -2913,10 +2156,7 @@ VOS_VOID Gmm_NetInitNotRequiredDetach(
         g_GmmGlobalCtrl.SysInfo.ucForbMask |= GMM_FORBIDDEN_PLMN;               /* 设置禁止注册列表标志                     */
         NAS_MML_SetPsUpdateStatus(NAS_MML_ROUTING_UPDATE_STATUS_ROUTING_AREA_NOT_ALLOWED);  /* Update status更新为GU3                   */
 
-        /* 24008_CR1229R1_(Rel-8)_C1-085365 24008 4.7.4.2.2章节描述如下:#11 The MS shall delete any RAI or LAI,
-        P-TMSI, P-TMSI signature and GPRS ciphering key sequence number, shall set
-        the GPRS update status to GU3 ROAMING NOT ALLOWED (and shall store it according to subclause 4.1.3.2)
-        and shall reset the GPRS attach attempt counter. The new GMM state is GMM-DEREGISTERED.*/
+        
         g_GmmAttachCtrl.ucAttachAttmptCnt = 0;
         break;
     case NAS_MML_REG_FAIL_CAUSE_LA_NOT_ALLOW:                                             /* 原因值12                                 */
@@ -2939,10 +2179,7 @@ VOS_VOID Gmm_NetInitNotRequiredDetach(
         NAS_MML_SetPsUpdateStatus(NAS_MML_ROUTING_UPDATE_STATUS_ROUTING_AREA_NOT_ALLOWED);  /* Update status更新为GU3                   */
         g_GmmGlobalCtrl.SysInfo.ucForbMask |= GMM_FORBIDDEN_PLMN_FOR_GPRS;      /* 设置禁止注册列表标志                     */
 
-        /* 24008_CR1229R1_(Rel-8)_C1-085365 24008 4.7.4.2.2章节描述如下:#14 The MS shall delete any RAI or LAI,
-        P-TMSI, P-TMSI signature and GPRS ciphering key sequence number, shall set
-        the GPRS update status to GU3 ROAMING NOT ALLOWED (and shall store it according to subclause 4.1.3.2)
-        and shall reset the GPRS attach attempt counter. The new GMM state is GMM-DEREGISTERED.*/
+        
         g_GmmAttachCtrl.ucAttachAttmptCnt = 0;
         break;
     default:
@@ -2972,22 +2209,7 @@ VOS_VOID Gmm_NetInitNotRequiredDetach(
 }
 
 
-/*******************************************************************************
-  Module   : Gmm_Com_Cause2Detach
-  Function : Reattch not required + #2的处理
-  Input    : VOS_VOID
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1.张志勇  2003.12.08  新规作成
-  2.日    期   : 2011年7月14日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
- 3 .日    期   : 2013年08月16日
-    作    者   : l65478
-    修改内容   : DTS2013092202614,G CCO到W失败回退到G,在G下通知了GAS进入了REDAY态
-*******************************************************************************/
+
 VOS_VOID Gmm_Com_Cause2Detach(VOS_VOID)
 {
     NAS_MSG_STRU    *pDetachAccept;                                             /* 定义消息指针                             */
@@ -3036,31 +2258,7 @@ VOS_VOID Gmm_Com_Cause2Detach(VOS_VOID)
     return;                                                                     /* 返回                                     */
 }
 
-/*******************************************************************************
-  Module   : Gmm_Com_CauseDetach
-  Function : Reattch not required + 非#2的处理
-  Input    : VOS_UINT8  ucGmmCause        detach的原因值
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1.张志勇  2003.12.09  新规作成
-  2.日    期   : 2007年01月04日
-    作    者   : s46746
-    修改内容   : 创建，根据问题单号：A32D08235
-  3.日    期   : 2009年09月07日
-    作    者   : l65478
-    修改内容   : 根据问题单号：AT2D13980,网络detach后，重新attach失败，因为tlli没有去指派
-  4.日    期   : 2010年01月03日
-    作    者   : o00132663
-    修改内容   : 问题单号：xxxx,NAS R7协议升级，引入监控PS信令链接释放定时器T3340
-  5.日    期   : 2011年7月14日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
-  6.日    期   : 2013年08月16日
-    作    者   : l65478
-    修改内容   : DTS2013092202614,G CCO到W失败回退到G,在G下通知了GAS进入了REDAY态
-*******************************************************************************/
+
 VOS_VOID Gmm_Com_CauseDetach(
                          VOS_UINT8  ucGmmCause                                      /* detach的原因值                           */
                          )
@@ -3103,25 +2301,7 @@ VOS_VOID Gmm_Com_CauseDetach(
     return;                                                                     /* 返回                                     */
 }
 
-/*******************************************************************************
-  Module   : Gmm_NetInitRequiredDetach
-  Function : 网侧启动的类型为reattach required的detach过程处理
-  Input    : 无
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1.张志勇  2003.12.09  新规作成
-  2.日    期    : 2009年9月03日
-    作    者    : l65478
-    修改内容    : created AT2D14239,detach完成后,再次发起ATTATCH REQ时,GAS使用旧的TLLI建立的TBF发送数据,没有及时使用新的TLLI,导致MS和仪器侧维护的TLLI不一致,从而导致GAS因为TLLI不匹配丢弃了建立下行TBF的指派命令,最终导致用例失败
-  3.日    期   : 2011年7月14日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
-  4.日    期   : 2013年08月16日
-    作    者   : l65478
-    修改内容   : DTS2013092202614,G CCO到W失败回退到G,在G下通知了GAS进入了REDAY态
-*******************************************************************************/
+
 VOS_VOID Gmm_NetInitRequiredDetach(VOS_VOID)
 {
     NAS_MSG_STRU    *pDetachAccept;                                             /* 定义消息指针                             */
@@ -3177,31 +2357,7 @@ VOS_VOID Gmm_NetInitRequiredDetach(VOS_VOID)
     return;                                                                     /* 返回                                     */
 }
 
-/*******************************************************************************
-  Module   : Gmm_NetInitImsiDetach
-  Function : 网侧启动的类型为IMSI detach的detach过程处理
-  Input    : 无
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1.张志勇  2003.12.09  新规作成
-  2.日    期   : 2007年01月04日
-    作    者   : s46746
-    修改内容   : 创建，根据问题单号：A32D08235
-  3.日    期   : 2009年05月23日
-    作    者   : L65478
-    修改内容   : 问题单号:AT2D06770,RAU失败，因为GRM建链的原因是DATA，实际应该是信令
-  4.日    期   : 2011年7月14日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
-  5.日     期  : 2011年9月26日
-    作    者   : c00173809
-    修改内容   : DTS2011092001088,GCF 44.2.2.2.4测试失败
-  6.日    期   : 2013年2月4日
-    作    者   : w00176964
-    修改内容   : DTS2011022802215:CS ONLY,网络模式I下也进行联合注册
-*******************************************************************************/
+
 VOS_VOID Gmm_NetInitImsiDetach(VOS_VOID)
 {
     NAS_MSG_STRU    *pDetachAccept;                                             /* 定义消息指针                             */
@@ -3273,39 +2429,7 @@ NAS_MSG_STRU* Gmm_DetachAcceptMsgMake(VOS_VOID)
     return pDetachAccept;                                                       /* 返回                                     */
 }
 
-/*******************************************************************************
-  Module   : Gmm_RcvDetachAcceptMsg
-  Function : GMM收到DETACH_ACCEPT的分发处理
-  Input    : NAS_MSG_STRU   *pMsg  当前处理的消息
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1. 张志勇  2003.12.09  新规作成
-  2. x51137 2006/4/28 A32D02889
-  3.日    期   : 2006年11月9日
-    作    者   : sunxibo id:46746
-    修改内容   : 根据问题单号：A32D06822
-  4.日    期   : 2009年05月23日
-    作    者   : L65478
-    修改内容   : 问题单号:AT2D06770,RAU失败，因为GRM建链的原因是DATA，实际应该是信令
-  5.日    期   : 2010年10月29日
-    作    者   : l00167671/罗开辉
-    修改内容   : 问题单号：DTS2010100802035,添加W模时对LLC的清理
-  6.日    期   : 2010年11月24日
-    作    者   : 王毛 00166186
-    修改内容   : 根据问题单号DTS2010112205253,DEFAULT分支，错误原因值填写不正确
-  7.日    期   : 2010年12月03日
-    作    者   : w00166186
-    修改内容   : DTS2010112403161 搜网整理发现问题
-  8.日    期   : 2012年3月3日
-    作    者   : z00161729
-    修改内容   : V7R1 C50 支持ISR修改,T3312启动停止超时均需通知L
-  9.日    期   : 2012年8月25日
-    作    者   : m00217266
-    修改内容   : 删除GMM_SaveErrCode，添加Gmm_Save_Detach_Cause，
-                保存导致Attach失败的原因值
-  *******************************************************************************/
+
 VOS_VOID Gmm_RcvDetachAcceptMsg(
                             NAS_MSG_FOR_PCLINT_STRU        *pMsg
                             )
@@ -3446,36 +2570,7 @@ VOS_VOID Gmm_RcvDetachAcceptMsg(
     return;                                                                     /* 返回                                     */
 }
 
-/*******************************************************************************
-  Module   : Gmm_RcvDetachAcceptMsg_DeregInit
-  Function : 在GMM-REGISTERED.IMSI-DETACH-INITIATED下收到DETACH_ACCEPT的处理
-  Input    : 无
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1. 张志勇  2003.12.09  新规作成
-  2. 日    期   : 2006年11月20日
-     作    者   : s46746
-     修改内容   : 创建，根据问题单号：A32D07433
-  3. 日    期   : 2011年07月13日
-     作    者   : w00166186
-     修改内容   : V7R1 PHASE II ATTACH/DETACH调整
-  4.日    期   : 2011年7月27日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-  5. 日    期   : 2012年1月12日
-     作    者   : w00166186
-     修改内容   : DTS2011122704039:开机搜网后CS注册被拒#12,PS注册被拒#14，在ON
-                   PLMN状态，服务域被设置为不支持GMM需要将服务域不支持信息通知给MMC.
 
-  6.日    期   : 2013年8月7日
-    作    者   : w00167002
-    修改内容   : DTS2013080207367:在CS only时候，用户发起PDP激活，网络模式I时候，
-                 会触发联合注册.用户发起PDP去激活，会导致PS域的去注册。收到网侧
-                 的去注册成功后需要通知MM，否则MM当前在NORMAL SERVICE状态，不
-                 触发T3212定时器的启动，长时间可能导致丢寻呼.
-*******************************************************************************/
 VOS_VOID Gmm_RcvDetachAcceptMsg_DeregInit(VOS_VOID)
 {
     Gmm_TimerStop(GMM_TIMER_T3321);                                             /* 停T3321                                  */
@@ -3555,22 +2650,7 @@ VOS_VOID Gmm_RcvDetachAcceptMsg_DeregInit(VOS_VOID)
     return;                                                                     /* 返回                                     */
 }
 
-/*******************************************************************************
-  Module   : Gmm_RcvDetachAcceptMsg_RegImsiDtchInit
-  Function : 在GMM-DEREGISTERED-INITIATED状态下收到DETACH_ACCEPT的处理
-  Input    : 无
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1. 张志勇  2003.12.09  新规作成
-  2. 日    期   : 2011年07月13日
-     作    者   : w00166186
-     修改内容   : V7R1 PHASE II ATTACH/DETACH调整
-  3.日    期   : 2011年7月27日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-*******************************************************************************/
+
 VOS_VOID Gmm_RcvDetachAcceptMsg_RegImsiDtchInit(VOS_VOID)
 {
     Gmm_TimerStop(GMM_TIMER_T3321);                                             /* 停T3321                                  */
@@ -3602,21 +2682,7 @@ VOS_VOID Gmm_RcvDetachAcceptMsg_RegImsiDtchInit(VOS_VOID)
     return;                                                                     /* 返回                                     */
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_SetAttach2DetachErrCode
- 功能描述  : 保存导致GMM由Attach状态切换到Detach状态的原因
- 输入参数  : GMM_SM_CAUSE_ENUM_UINT16
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月15日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_GMM_SetAttach2DetachErrCode(GMM_SM_CAUSE_ENUM_UINT16 enCause)
 {
     g_GmmGlobalCtrl.enAttach2DetachCause = enCause;
@@ -3624,21 +2690,7 @@ VOS_VOID NAS_GMM_SetAttach2DetachErrCode(GMM_SM_CAUSE_ENUM_UINT16 enCause)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_GetAttach2DetachErrCode
- 功能描述  : 获取导致GMM由Attach状态切换到Detach状态的原因
- 输入参数  : 无
- 输出参数  : GMM_SM_CAUSE_ENUM_UINT16
- 返 回 值  : GMM_SM_CAUSE_ENUM_UINT16
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月15日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 GMM_SM_CAUSE_ENUM_UINT16 NAS_GMM_GetAttach2DetachErrCode(VOS_VOID)
 {
     return g_GmmGlobalCtrl.enAttach2DetachCause;
@@ -3646,20 +2698,7 @@ GMM_SM_CAUSE_ENUM_UINT16 NAS_GMM_GetAttach2DetachErrCode(VOS_VOID)
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_ChangeDetachCauseAvoidInvalidSim
- 功能描述  : 网络Detach拒绝原因值自适应
- 输入参数  : VOS_UINT8 *pucRcvMsg  指向原始拒绝原因值的指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月20日
-    作    者   : h00285180
-    修改内容   : 拒绝原因值PhaseII DTS2014110307415
-*****************************************************************************/
 VOS_VOID NAS_GMM_ChangeDetachCauseAvoidInvalidSim(VOS_UINT8 *pucRcvMsg)
 {
     NAS_MML_PLMN_ID_STRU               *pstCurrCampPlmnId    = VOS_NULL_PTR;

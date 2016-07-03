@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : dmac_psm_sta.c
-  版 本 号   : 初稿
-  作    者   : l00280485
-  生成日期   : 2014年11月25日
-  最近修改   :
-  功能描述   : sta ps_poll低功耗功能所在函数
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年11月25日
-    作    者   : l00280485
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -52,7 +35,6 @@ oal_uint8  g_uc_max_powersave_limit = 100;		/*beacon*dtim<=100ms*/
 
 oal_uint32 dmac_send_null_frame_to_ap(dmac_vap_stru *pst_dmac_vap, oal_uint8  uc_psm, oal_bool_enum_uint8 en_qos);
 oal_uint32 dmac_psm_alarm_callback(void *p_arg);
-oal_uint8  dmac_psm_is_tx_queues_empty(dmac_vap_stru  *pst_dmac_vap);
 oal_uint8  dmac_psm_is_hw_queues_empty(mac_device_stru  *pst_device);
 oal_uint8  dmac_psm_is_tid_queues_empty(dmac_vap_stru  *pst_dmac_vap);
 
@@ -65,21 +47,7 @@ oal_uint8  dmac_psm_is_tid_queues_empty(dmac_vap_stru  *pst_dmac_vap);
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : dmac_psm_get_max_sleep_time
- 功能描述  : 获取协议最大允许睡眠时间
- 输入参数  : pst_dmac_vap dmac_vap 结构体
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月08日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_psm_get_max_sleep_time(dmac_vap_stru  *pst_dmac_vap)
 {
     oal_uint32    ul_dtim_period;
@@ -113,21 +81,7 @@ oal_uint32  dmac_psm_get_max_sleep_time(dmac_vap_stru  *pst_dmac_vap)
     return ul_max_allow_sleep_time;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_psm_process_no_powersave
- 功能描述  : 非节能模式下，处于非active状态的处理
- 输入参数  : pst_dmac_vap dmac_vap 结构体
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月19日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_psm_process_no_powersave(dmac_vap_stru *pst_dmac_vap)
 {
 
@@ -143,21 +97,7 @@ oal_void dmac_psm_process_no_powersave(dmac_vap_stru *pst_dmac_vap)
     }
 
 }
-/*****************************************************************************
- 函 数 名  : dmac_psm_process_fast_ps_state_change
- 功能描述  : fast ps 节能模式下的状态切换
- 输入参数  : pst_dmac_vap dmac_vap 结构体 uc_psm 要切换到的状态
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月22日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_psm_process_fast_ps_state_change(dmac_vap_stru *pst_dmac_vap, oal_uint8 uc_psm)
 {
     mac_sta_pm_handler_stru *pst_mac_sta_pm_handle;
@@ -198,21 +138,7 @@ oal_uint32  dmac_psm_process_fast_ps_state_change(dmac_vap_stru *pst_dmac_vap, o
 
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_psm_start_activity_timer
- 功能描述  : 启动activity 定时器
- 输入参数  : pst_dmac_vap dmac_vap 结构体
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月25日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_psm_start_activity_timer(dmac_vap_stru *pst_dmac_vap, mac_sta_pm_handler_stru *pst_sta_pm_handle)
 {
 
@@ -252,21 +178,7 @@ oal_void dmac_psm_start_activity_timer(dmac_vap_stru *pst_dmac_vap, mac_sta_pm_h
                         OAM_MODULE_ID_DMAC,
                         0);
 }
-/*****************************************************************************
- 函 数 名  : dmac_psm_sync_dtim_count
- 功能描述  : dtim listen interval count设置
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : oal_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月10日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_psm_sync_dtim_count(dmac_vap_stru *pst_dmac_vap, dmac_tim_ie_stru *pst_time_ie)
 {
     oal_uint16               us_listen_interval_count;
@@ -289,27 +201,13 @@ oal_void dmac_psm_sync_dtim_count(dmac_vap_stru *pst_dmac_vap, dmac_tim_ie_stru 
         {
             us_listen_interval_count = pst_dmac_vap->us_psm_listen_interval;
         }
-        
+
         hal_set_psm_listen_interval_count(pst_dmac_vap->pst_hal_vap, us_listen_interval_count);
     }
 
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_psm_max_powersave_enable
- 功能描述  : 使能或去使能最大节能(dtim*2策略)，同时需更新keepalive的门限
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : oal_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月25日
-    作    者   : zourong 274374
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_psm_max_powersave_enable(mac_device_stru *pst_mac_device)
 {
     oal_uint8       uc_vap_idx;
@@ -319,18 +217,20 @@ oal_void dmac_psm_max_powersave_enable(mac_device_stru *pst_mac_device)
     {
         return ;
     }
-    
+
     OAM_WARNING_LOG1(0, OAM_SF_PWR, "{dmac_psm_max_powersave_enable:enable[%d]}",pst_mac_device->uc_in_suspend);
 
     g_uc_max_powersave = (0== pst_mac_device->uc_in_suspend)?0:1;
-    
+
     for (uc_vap_idx = 0; uc_vap_idx < pst_mac_device->uc_vap_num; uc_vap_idx++)
     {
         pst_dmac_vap = mac_res_get_dmac_vap(pst_mac_device->auc_vap_id[uc_vap_idx]);
 
+        /* 关联的STAUT才需要更新 */
         if ((WLAN_VAP_MODE_BSS_STA == pst_dmac_vap->st_vap_base_info.en_vap_mode)
-            &&(0!=pst_dmac_vap->st_vap_base_info.pst_mib_info->st_wlan_mib_sta_config.ul_dot11DTIMPeriod))
-        {          
+            &&(0!=pst_dmac_vap->st_vap_base_info.pst_mib_info->st_wlan_mib_sta_config.ul_dot11DTIMPeriod)
+            &&((MAC_VAP_STATE_UP == pst_dmac_vap->st_vap_base_info.en_vap_state) || (MAC_VAP_STATE_PAUSE == pst_dmac_vap->st_vap_base_info.en_vap_state)))
+        {
             dmac_psm_update_dtime_period(pst_dmac_vap,
                                         (oal_uint8)pst_dmac_vap->st_vap_base_info.pst_mib_info->st_wlan_mib_sta_config.ul_dot11DTIMPeriod,
                                         pst_dmac_vap->st_vap_base_info.pst_mib_info->st_wlan_mib_sta_config.ul_dot11BeaconPeriod);
@@ -341,21 +241,31 @@ oal_void dmac_psm_max_powersave_enable(mac_device_stru *pst_mac_device)
 
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_psm_update_dtime_period
- 功能描述  : 跟新低功耗实际采用的dtime周期和listen interval的设置
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : oal_uint8
- 调用函数  :
- 被调函数  :
+oal_void  dmac_psm_update_bcn_tout_max_cnt(dmac_vap_stru  *pst_dmac_vap)
+{
+    oal_uint32  ul_div_value = (pst_dmac_vap->st_vap_base_info.pst_mib_info->st_wlan_mib_sta_config.ul_dot11BeaconPeriod)*(pst_dmac_vap->us_psm_dtim_period);
+    oal_uint32  ul_bcn_tout_max_time = DMAC_BEACON_TIMEOUT_MAX_TIME;
 
- 修改历史      :
-  1.日    期   : 2014年11月25日
-    作    者   : l00280485
-    修改内容   : 新生成函数
+    if (ul_div_value != 0)
+    {
+        /* 不能整除+1 1000 / (100 * 3) 取4 */
+        if (ul_bcn_tout_max_time % ul_div_value)
+        {
+            pst_dmac_vap->uc_bcn_tout_max_cnt = (oal_uint8)((ul_bcn_tout_max_time / ul_div_value) + 1);
+        }
+        else
+        {
+            pst_dmac_vap->uc_bcn_tout_max_cnt = (oal_uint8)(ul_bcn_tout_max_time / ul_div_value);
+        }
+    }
+    else
+    {
+        OAM_WARNING_LOG2(pst_dmac_vap->st_vap_base_info.uc_vap_id, OAM_SF_PWR, "{dmac_psm_update_bcn_tout_max_cnt::bcn period[%d],dtim period[%d]",pst_dmac_vap->st_vap_base_info.pst_mib_info->st_wlan_mib_sta_config.ul_dot11BeaconPeriod,
+                        pst_dmac_vap->us_psm_dtim_period);
+    }
+}
 
-*****************************************************************************/
+
 
 oal_void dmac_psm_update_dtime_period(dmac_vap_stru *pst_dmac_vap, oal_uint8 uc_mib_dtim_period,oal_uint32 ul_beacon_period)
 {
@@ -379,29 +289,17 @@ oal_void dmac_psm_update_dtime_period(dmac_vap_stru *pst_dmac_vap, oal_uint8 uc_
 
         pst_dmac_vap->us_psm_listen_interval = (pst_dmac_vap->us_psm_dtim_period  < DMAC_DEFAULT_DTIM_LISTEN_DIFF) ? ((oal_uint16)(pst_dmac_vap->us_psm_dtim_period )) : DMAC_DEFAULT_LISTEN_INTERVAL;
     }
+    /* 更新最大收不到beaocn睡眠值 */
+    dmac_psm_update_bcn_tout_max_cnt(pst_dmac_vap);
 
-    OAM_WARNING_LOG1(pst_dmac_vap->st_vap_base_info.uc_vap_id, OAM_SF_PWR, "{dmac_psm_update_dtime_period:set psm dtim period[%d]}",pst_dmac_vap->us_psm_dtim_period);
+    OAM_WARNING_LOG2(pst_dmac_vap->st_vap_base_info.uc_vap_id, OAM_SF_PWR, "{dmac_psm_update_dtime_period:set psm dtim period[%d],bcn tout max cnt[%d]}",pst_dmac_vap->us_psm_dtim_period,pst_dmac_vap->uc_bcn_tout_max_cnt);
     /* 设置period寄存器的值 */
     hal_set_sta_dtim_period(pst_dmac_vap->pst_hal_vap, pst_dmac_vap->us_psm_dtim_period);
     hal_set_psm_listen_interval(pst_dmac_vap->pst_hal_vap, pst_dmac_vap->us_psm_listen_interval);
 
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_psm_update_keepalive
- 功能描述  : 跟新keepalive的设置
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : oal_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月25日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 oal_void dmac_psm_update_keepalive(dmac_vap_stru *pst_dmac_vap)
 {
@@ -456,21 +354,7 @@ oal_void dmac_psm_update_keepalive(dmac_vap_stru *pst_dmac_vap)
 
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_psm_is_tim_dtim_set
- 功能描述  : 检查 beacon帧内，tim/dtim是否被set
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : oal_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月25日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 dmac_psm_is_tim_dtim_set(dmac_vap_stru *pst_dmac_vap, oal_uint8* puc_tim_elm)
 {
     oal_uint32                  ul_aid;
@@ -524,21 +408,7 @@ oal_uint32 dmac_psm_is_tim_dtim_set(dmac_vap_stru *pst_dmac_vap, oal_uint8* puc_
     }
 
 #if 0
-/*****************************************************************************
- 函 数 名  : dmac_psm_is_tim_dtim_set
- 功能描述  : 检查 beacon帧内，tim/dtim是否被set
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : oal_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月25日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint8 dmac_psm_is_tim_dtim_set(dmac_vap_stru *pst_dmac_vap, oal_uint8* puc_tim_elm)
 {
     oal_uint8                   uc_len  = 0;
@@ -611,22 +481,7 @@ oal_uint8 dmac_psm_is_tim_dtim_set(dmac_vap_stru *pst_dmac_vap, oal_uint8* puc_t
 }
 #endif
 #if (!defined(HI1102_EDA))
-/*****************************************************************************
- 函 数 名  : dmac_psm_process_tim_elm
- 功能描述  : 处理STA power save模式下的tim信息元素，每次处理beacon帧时，
-             进入该函数，tim如果是set，则发送ps_poll帧去获取ap侧缓存的数据。
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : oal_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月25日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 #if (_PRE_OS_VERSION_RAW == _PRE_OS_VERSION)
 #pragma arm section rwdata = "BTCM", code ="ATCM", zidata = "BTCM", rodata = "ATCM"
 #endif
@@ -666,7 +521,7 @@ oal_void dmac_psm_process_tim_elm(dmac_vap_stru *pst_dmac_vap, oal_netbuf_stru *
     {
         return;
     }
-    
+
     /* 非节能模式不进行beacon帧处理 */
     if ((mac_mib_get_powermanagementmode(&(pst_dmac_vap->st_vap_base_info)) != WLAN_MIB_PWR_MGMT_MODE_PWRSAVE) ||
             (0 == pst_dmac_vap->st_vap_base_info.us_sta_aid))
@@ -695,7 +550,6 @@ oal_void dmac_psm_process_tim_elm(dmac_vap_stru *pst_dmac_vap, oal_netbuf_stru *
         //OAL_IO_PRINT("tsf timer:[%u]\r\n",ul_tsf_lo);
     }
 
-    /* 如果此时处于doze状态先切到awake状态 DTS2016010901870 此处不能加日志,同频会刷屏,且这里的日志属无效日志 */
     if (STA_PWR_SAVE_STATE_DOZE == STA_GET_PM_STATE(pst_mac_sta_pm_handle))
     {
         dmac_pm_sta_post_event(pst_dmac_vap, STA_PWR_EVENT_TBTT, 0, OAL_PTR_NULL);
@@ -729,7 +583,7 @@ oal_void dmac_psm_process_tim_elm(dmac_vap_stru *pst_dmac_vap, oal_netbuf_stru *
                     pst_mac_sta_pm_handle->ul_ps_keepalive_cnt = 0;
                     return;
                 }
-       
+
                 pst_mac_sta_pm_handle->en_ps_deep_sleep = OAL_TRUE;
                 dmac_pm_sta_post_event(pst_dmac_vap, STA_PWR_EVENT_NORMAL_SLEEP, 0, OAL_PTR_NULL);
 
@@ -815,21 +669,7 @@ oal_void dmac_psm_process_tim_elm(dmac_vap_stru *pst_dmac_vap, oal_netbuf_stru *
     }
 }
 #else
-/*****************************************************************************
- 函 数 名  : dmac_psm_process_tim_elm
- 功能描述  : eda用例使用,收到beacon后立刻睡眠
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : oal_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月25日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_psm_process_tim_elm(dmac_vap_stru *pst_dmac_vap, oal_netbuf_stru *pst_netbuf)
 {
         mac_sta_pm_handler_stru     *pst_mac_sta_pm_handle;
@@ -841,21 +681,7 @@ oal_void dmac_psm_process_tim_elm(dmac_vap_stru *pst_dmac_vap, oal_netbuf_stru *
 
 }
 #endif
-/*****************************************************************************
- 函 数 名  : dmac_psm_rx_process_data_sta
- 功能描述  : Ps低功耗模式下的接收帧处理，ps_poll模式下如果是单播帧并且moredata位是1，则继续发送ps_poll帧获取缓存帧。
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月25日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  dmac_psm_rx_process_data_sta(dmac_vap_stru *pst_dmac_vap, oal_netbuf_stru *pst_buf)
 {
     oal_uint8                *puc_dest_addr;      /* 目的地址 */
@@ -880,7 +706,6 @@ oal_void  dmac_psm_rx_process_data_sta(dmac_vap_stru *pst_dmac_vap, oal_netbuf_s
     {
         dmac_psm_process_no_powersave(pst_dmac_vap);
 
-        /* SW-FIX:问题单DTS2013011502377,收到组播帧,不更新定时器 */
         if (!ETHER_IS_MULTICAST(puc_dest_addr))
         {
             //OAM_INFO_LOG2(pst_dmac_vap->st_vap_base_info.uc_vap_id, OAM_SF_KEEPALIVE, "keepalive rx data:type:[%d],subtype:[%d]", pst_frame_hdr->st_frame_control.bit_type, pst_frame_hdr->st_frame_control.bit_sub_type);
@@ -943,21 +768,7 @@ oal_void  dmac_psm_rx_process_data_sta(dmac_vap_stru *pst_dmac_vap, oal_netbuf_s
         }
     }
 }
-/*****************************************************************************
- 函 数 名  : dmac_psm_tx_process_data_sta
- 功能描述  : 主要查询MAC省电状态，并决定在帧控制字段中是否设置节能比特位
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : oal_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月26日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint8 dmac_psm_tx_process_data_sta(dmac_vap_stru *pst_dmac_vap, mac_tx_ctl_stru *pst_tx_ctl)
 {
     oal_uint8                 uc_pwr_mgmt_bit = 0;
@@ -1011,28 +822,13 @@ oal_uint8 dmac_psm_tx_process_data_sta(dmac_vap_stru *pst_dmac_vap, mac_tx_ctl_s
                 if ((STA_PWR_SAVE_STATE_AWAKE == STA_GET_PM_STATE(pst_mac_sta_pm_handle)))
                 {
                     pst_mac_sta_pm_handle->en_send_active_null_frame_to_ap = OAL_TRUE;
-                    uc_pwr_mgmt_bit = 0;
                 }
             }
         }
     }
     return uc_pwr_mgmt_bit;
 }
-/*****************************************************************************
- 函 数 名  : dmac_psm_tx_set_power_mgmt_bit
- 功能描述  : 根据是否是节能，设置MAC头里的power_mgmt位
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月29日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_psm_tx_set_power_mgmt_bit(dmac_vap_stru *pst_dmac_vap, mac_tx_ctl_stru *pst_tx_ctl)
 {
     oal_uint8                 uc_pwr_mgmt_bit = 0;
@@ -1044,23 +840,58 @@ oal_void dmac_psm_tx_set_power_mgmt_bit(dmac_vap_stru *pst_dmac_vap, mac_tx_ctl_
         mac_get_cb_frame_hdr(pst_tx_ctl)->st_frame_control.bit_power_mgmt = OAL_TRUE;
     }
 }
-/*****************************************************************************
- 函 数 名  : dmac_null_frame_complete
- 功能描述  : 如果当前STA处于非省电模式，则不做任何处理，只作定时器更新；
-            如果STA处于省电模式，则判断当前发送的帧是否为NULL帧，对NULL帧再进行处理。
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : oal_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月26日
-    作    者   : l00280485
-    修改内容   : 新生成函数
 
-*****************************************************************************/
-oal_uint8 dmac_null_frame_complete_sta(dmac_vap_stru *pst_dmac_vap, oal_uint8 uc_dscr_status, oal_netbuf_stru  *pst_netbuf)
+oal_void dmac_psm_init_null_frm_cnt(dmac_vap_stru *pst_dmac_vap)
+{
+    pst_dmac_vap->uc_null_frm_ofdm_succ_cnt = DMAC_ALG_NULL_FRM_INIT_CNT;
+    pst_dmac_vap->uc_null_frm_cnt = DMAC_ALG_NULL_FRM_INIT_CNT;
+}
+
+
+
+oal_void dmac_psm_inc_null_frm_ofdm_succ(dmac_vap_stru *pst_dmac_vap)
+{
+    if (pst_dmac_vap->uc_null_frm_ofdm_succ_cnt < DMAC_ALG_NULL_FRM_INIT_CNT)
+    {
+        pst_dmac_vap->uc_null_frm_ofdm_succ_cnt++;
+    }
+
+    dmac_psm_inc_null_frm(pst_dmac_vap);
+}
+
+
+oal_void dmac_psm_dec_null_frm_ofdm_succ(dmac_vap_stru *pst_dmac_vap)
+{
+    if (pst_dmac_vap->uc_null_frm_ofdm_succ_cnt > 0)
+    {
+         pst_dmac_vap->uc_null_frm_ofdm_succ_cnt--;
+    }
+
+    dmac_psm_inc_null_frm(pst_dmac_vap);
+}
+
+
+oal_void dmac_psm_inc_null_frm(dmac_vap_stru *pst_dmac_vap)
+{
+    if (pst_dmac_vap->uc_null_frm_cnt < DMAC_ALG_NULL_FRM_INIT_CNT)
+    {
+        pst_dmac_vap->uc_null_frm_cnt += DMAC_ALG_NULL_FRM_INC_CNT;
+    }
+}
+
+
+oal_void dmac_psm_dec_null_frm(dmac_vap_stru *pst_dmac_vap)
+{
+    if (pst_dmac_vap->uc_null_frm_cnt > 0)
+    {
+        pst_dmac_vap->uc_null_frm_cnt--;
+    }
+}
+
+
+
+oal_uint8 dmac_null_frame_complete_sta(dmac_vap_stru *pst_dmac_vap, oal_uint8 uc_dscr_status, oal_uint8 uc_send_rate_rank, oal_netbuf_stru  *pst_netbuf)
 {
     mac_sta_pm_handler_stru             *pst_mac_sta_pm_handle;
     mac_ieee80211_frame_stru            *pst_mac_header;
@@ -1101,10 +932,26 @@ oal_uint8 dmac_null_frame_complete_sta(dmac_vap_stru *pst_dmac_vap, oal_uint8 uc
             }
             dmac_pm_sta_post_event(pst_dmac_vap, STA_PWR_EVENT_SEND_NULL_SUCCESS, OAL_SIZEOF(mac_ieee80211_frame_stru), (oal_uint8 *)pst_mac_header);
 
+        #if (_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC == _PRE_MULTI_CORE_MODE)
+            /* 以6Mbps发送成功，则增加成功次数计数 */
+            if (uc_send_rate_rank == HAL_TX_RATE_RANK_0)
+            {
+                dmac_psm_inc_null_frm_ofdm_succ(pst_dmac_vap);
+            }
+            /* 只是以1Mbps发送成功，则减少成功次数计数 */
+            else
+            {
+                dmac_psm_dec_null_frm_ofdm_succ(pst_dmac_vap);
+            }
+        #endif
         }
         /* NULL帧发送不成功,软重传10次,硬件重传8次(一共80次)后,对端依然没有响应,代表此时链路异常,去关联liuzhengqi todo */
         else
         {
+        #if (_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC == _PRE_MULTI_CORE_MODE)
+            dmac_psm_dec_null_frm_ofdm_succ(pst_dmac_vap);
+        #endif
+
             if ((MAC_VAP_STATE_UP == pst_dmac_vap->st_vap_base_info.en_vap_state))
             {
                 /* If  transmission status is timeout reset the global flags and retransmit the NULL frame */
@@ -1169,32 +1016,38 @@ oal_uint8 dmac_null_frame_complete_sta(dmac_vap_stru *pst_dmac_vap, oal_uint8 uc
                     }
                 }
             }
+            /* 发送前up,发送完成时pause,发送不成功,清null帧等待标志位,防止再也睡不下去 */
+            else
+            {
+                OAM_WARNING_LOG3(pst_dmac_vap->st_vap_base_info.uc_vap_id, OAM_SF_PWR, "{dmac_null_frame_complete_sta::pm[%d]vap state[%d]send null fail[%d]}",pst_mac_header->st_frame_control.bit_power_mgmt,
+                                                                                                                 pst_dmac_vap->st_vap_base_info.en_vap_state, uc_dscr_status);
+                if (STA_PWR_SAVE_STATE_ACTIVE == pst_mac_header->st_frame_control.bit_power_mgmt)
+                {
+                    pst_mac_sta_pm_handle->st_null_wait.en_active_null_wait = OAL_FALSE;
+                }
+                else
+                {
+                    pst_mac_sta_pm_handle->st_null_wait.en_doze_null_wait = OAL_FALSE;
+
+                    /* acticve->doze的睡眠null帧,重启activtity定时器,防止处于active状态,无睡眠定时器,无法睡眠 */
+                    if (STA_PWR_SAVE_STATE_ACTIVE == STA_GET_PM_STATE(pst_mac_sta_pm_handle))
+                    {
+                        dmac_psm_start_activity_timer(pst_dmac_vap,pst_mac_sta_pm_handle);
+                    }
+                }
+            }
         }
     }
     return OAL_SUCC;
 }
-/*****************************************************************************
- 函 数 名  : dmac_psm_tx_complete_sta
- 功能描述  : 如果当前STA处于非省电模式，则不做任何处理，只作定时器更新；
-            如果STA处于省电模式，则判断当前发送的帧是否为NULL帧，对NULL帧再进行处理。
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月26日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_psm_tx_complete_sta(dmac_vap_stru *pst_dmac_vap, hal_tx_dscr_stru  *pst_dscr, oal_netbuf_stru *pst_netbuf)
 {
     hal_to_dmac_device_stru             *pst_hal_device;
     mac_ieee80211_frame_stru            *pst_mac_header;
     mac_sta_pm_handler_stru             *pst_mac_sta_pm_handle;
     oal_uint8                            uc_dscr_status;
+    oal_uint8                            uc_send_rate_rank;
     oal_uint8                            uc_subtype;
 
     /* p2p 扫描用dev 无低功耗状态机结构体，不需要进行低功耗处理 */
@@ -1228,8 +1081,8 @@ oal_void dmac_psm_tx_complete_sta(dmac_vap_stru *pst_dmac_vap, hal_tx_dscr_stru 
 
         /* 获取发送状态位 */
         hal_tx_get_dscr_status(pst_dmac_vap->pst_hal_device, pst_dscr, &uc_dscr_status);
+        hal_tx_get_dscr_send_rate_rank(pst_dmac_vap->pst_hal_device, pst_dscr, &uc_send_rate_rank);
 
-        /* DTS2014052908727 发送成功情况:keep alive功能只有数据帧发送成功后才清0，避免因为probe req帧导致keep alive失效 */
         if ((DMAC_TX_SUCC == uc_dscr_status) && (WLAN_FC0_TYPE_DATA == mac_get_frame_type((oal_uint8 *)pst_mac_header)))
         {
             pst_mac_sta_pm_handle->ul_ps_keepalive_cnt = 0;
@@ -1238,7 +1091,7 @@ oal_void dmac_psm_tx_complete_sta(dmac_vap_stru *pst_dmac_vap, hal_tx_dscr_stru 
         /* NULL帧的发送完成 */
         if ((WLAN_FC0_SUBTYPE_NODATA | WLAN_FC0_TYPE_DATA) == uc_subtype)
         {
-            if (OAL_SUCC != (dmac_null_frame_complete_sta(pst_dmac_vap, uc_dscr_status, pst_netbuf)))
+            if (OAL_SUCC != (dmac_null_frame_complete_sta(pst_dmac_vap, uc_dscr_status, uc_send_rate_rank, pst_netbuf)))
             {
                 return;
             }
@@ -1262,22 +1115,7 @@ oal_void dmac_psm_tx_complete_sta(dmac_vap_stru *pst_dmac_vap, hal_tx_dscr_stru 
         }
     }
 }
-/*****************************************************************************
- 函 数 名  : dmac_psm_process_tbtt_sta
- 功能描述  : 主要用于STA省电状态切换到AWAKE（包括RF上电，PHY上电的操作），
-            等待接收BEACON帧。在收到BEACON帧后，通过查询TIM信息元素确定AP中是否有缓存帧
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月27日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_psm_process_tbtt_sta(dmac_vap_stru *pst_dmac_vap, mac_device_stru  *pst_mac_device)
 {
     mac_sta_pm_handler_stru         *pst_sta_pm_handle;
@@ -1336,7 +1174,6 @@ oal_void dmac_psm_process_tbtt_sta(dmac_vap_stru *pst_dmac_vap, mac_device_stru 
         (pst_dmac_vap->st_vap_base_info.st_cap_flag.bit_dpd_enbale == OAL_TRUE) &&
         (pst_dmac_vap->st_vap_base_info.st_channel.en_band == WLAN_BAND_2G))
     {
-        //DTS2015120303724 疯狂打印
         //OAM_WARNING_LOG2(0, 0, "mac_vap address 0x%x, vap id %d", &pst_dmac_vap->st_vap_base_info, pst_dmac_vap->st_vap_base_info.uc_vap_id);
         //pst_dmac_vap->st_vap_base_info.st_cap_flag.bit_dpd_done = OAL_TRUE;
         //dmac_start_dpd_calibration(&pst_dmac_vap->st_vap_base_info);
@@ -1356,27 +1193,13 @@ oal_void dmac_psm_process_tbtt_sta(dmac_vap_stru *pst_dmac_vap, mac_device_stru 
     }
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_psm_is_tid_queues_empty
- 功能描述  : 硬件发送队列是否为空
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月28日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint8  dmac_psm_is_hw_queues_empty(mac_device_stru  *pst_device)
 {
     hal_to_dmac_device_stru         *pst_hal_device;
     oal_uint8                        uc_queue_num;
 
-    
+
     /*低功耗前面的流程已检查过合法性，不需要重复检查*/
     pst_hal_device = pst_device->pst_device_stru;
 
@@ -1394,21 +1217,7 @@ oal_uint8  dmac_psm_is_hw_queues_empty(mac_device_stru  *pst_device)
     return OAL_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_psm_is_tid_queues_empty
- 功能描述  : STA的TID是否为空
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月28日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint8  dmac_psm_is_tid_queues_empty(dmac_vap_stru  *pst_dmac_vap)
 {
     dmac_user_stru                   *pst_user;
@@ -1445,59 +1254,11 @@ oal_uint8  dmac_psm_is_tid_queues_empty(dmac_vap_stru  *pst_dmac_vap)
 
 }
 
-
-/*****************************************************************************
- 函 数 名  : dmac_psm_is_tx_queues_empty
- 功能描述  : STA的发送队列(硬件队列、TID队列)是否为空
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年11月28日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
-oal_uint8  dmac_psm_is_tx_queues_empty(dmac_vap_stru  *pst_dmac_vap)
-{
-    oal_uint8 uc_ret = OAL_TRUE;
-    mac_device_stru  *pst_device = mac_res_get_dev(pst_dmac_vap->st_vap_base_info.uc_device_id);
-
-    if(OAL_FALSE == dmac_psm_is_hw_queues_empty(pst_device))
-    {
-        uc_ret =  OAL_FALSE;
-    }
-
-    if(OAL_FALSE == dmac_psm_is_tid_queues_empty(pst_dmac_vap))
-    {
-        uc_ret = OAL_FALSE;
-    }
-
-    return uc_ret;
-}
-
 #if (_PRE_OS_VERSION_RAW == _PRE_OS_VERSION)
 #pragma arm section rodata, code, rwdata, zidata  // return to default placement
 #endif
 
-/*****************************************************************************
- 函 数 名  : dmac_send_pspoll_to_ap
- 功能描述  : 发送ps_poll帧给AP，以获取缓存的数据。
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月25日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 dmac_send_pspoll_to_ap(dmac_vap_stru *pst_dmac_vap)
 {
     oal_netbuf_stru                     *pst_net_buf;
@@ -1582,21 +1343,7 @@ oal_uint32 dmac_send_pspoll_to_ap(dmac_vap_stru *pst_dmac_vap)
 
     return OAL_SUCC;
 }
-/*****************************************************************************
- 函 数 名  : dmac_send_null_frame_to_ap_opt
- 功能描述  : null帧发送后状态机的NULL帧等待变量切换
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月25日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_send_null_frame_to_ap_opt(dmac_vap_stru *pst_dmac_vap, oal_uint8  uc_psm, oal_bool_enum_uint8 en_qos)
 {
     mac_sta_pm_handler_stru  *pst_sta_pm_handle;
@@ -1624,21 +1371,7 @@ oal_void dmac_send_null_frame_to_ap_opt(dmac_vap_stru *pst_dmac_vap, oal_uint8  
     }
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_send_null_frame_to_ap
- 功能描述  : 组一个NULL帧，发送给AP
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月25日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 dmac_send_null_frame_to_ap(dmac_vap_stru *pst_dmac_vap, oal_uint8  uc_psm, oal_bool_enum_uint8 en_qos)
 {
     oal_uint32      ul_ret = OAL_SUCC;
@@ -1725,23 +1458,7 @@ oal_uint32 dmac_send_null_frame_to_ap(dmac_vap_stru *pst_dmac_vap, oal_uint8  uc
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_psm_alarm_callback
- 功能描述  : 节能定时器（Activity Timer）主要用于监控STA的工作状态，
-            当STA完成一次操作发送或接收这个定时器都被重新启动。
-            如果一段时间没有检测到STA有动作，则STA将进入DOZE模式。
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月28日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 dmac_psm_alarm_callback(void *p_arg)
 {
     dmac_vap_stru                   *pst_dmac_vap;
@@ -1848,8 +1565,8 @@ oal_uint32 dmac_psm_alarm_callback(void *p_arg)
             {
                 OAM_WARNING_LOG1(pst_dmac_vap->st_vap_base_info.uc_vap_id, OAM_SF_PWR, "{dmac_psm_alarm_callback::event:[%d]change pm state doze.}", pst_sta_pm_handle->uc_doze_event);
             }
-
-            if (DMAC_TIMER_DOZE_TRANS_FAIL_NUM < pst_sta_pm_handle->uc_timer_fail_doze_trans_cnt)
+            /* uc_psm_timer_restart_cnt < g_pm_timer_restart_cnt 非异常不需打印 */
+            if ((DMAC_TIMER_DOZE_TRANS_FAIL_NUM < pst_sta_pm_handle->uc_timer_fail_doze_trans_cnt) && (pst_sta_pm_handle->uc_psm_timer_restart_cnt >= g_pm_timer_restart_cnt))
             {
                 OAM_WARNING_LOG3(pst_dmac_vap->st_vap_base_info.uc_vap_id, OAM_SF_PWR, "{dmac_psm_alarm_callback::pm state:[%d],doze trans flag:[%d]timer restart cnt[%d].}", STA_GET_PM_STATE(pst_sta_pm_handle),uc_doze_trans_flag,pst_sta_pm_handle->uc_psm_timer_restart_cnt);
                 pst_sta_pm_handle->uc_timer_fail_doze_trans_cnt = 0;
@@ -1880,21 +1597,7 @@ oal_uint32 dmac_psm_alarm_callback(void *p_arg)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_psm_get_state
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月28日
-    作    者   : z00274374
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint8  dmac_psm_get_state(dmac_vap_stru* pst_dmac_vap)
 {
     mac_sta_pm_handler_stru     *pst_mac_sta_pm_handle;

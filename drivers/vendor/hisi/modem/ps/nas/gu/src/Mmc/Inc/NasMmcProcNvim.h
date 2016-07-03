@@ -1,23 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmcProcNvim.h
-  版 本 号   : 初稿
-  作    者   : z00161729
-  生成日期   : 2011年7月14日
-  最近修改   :
-  功能描述   : NasMmcProcNvim.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年7月14日
-    作    者   : z00161729
-    修改内容   : 创建文件
-  2.日    期   : 2012年03月15日
-    作    者   : l00130025
-    修改内容   : DTS2012021407803,Eplmn维护修改，删除GMM/MM/MMC关于NVIM_EPLMN的冗余定义
-******************************************************************************/
 #ifndef _NAS_MMC_PROC_NVIM_H
 #define _NAS_MMC_PROC_NVIM_H
 
@@ -173,9 +154,7 @@ VOS_VOID NAS_MMC_ReadHplmnFirstSearchPeriodNvim(VOS_VOID);
 
 VOS_VOID NAS_MMC_ReadDefaultHplmnSrchPeriodNvim(VOS_VOID);
 
-/* Added by c00318887 for file refresh需要触发背景搜, 2015-4-28, begin */
 VOS_VOID NAS_MMC_ReadHighPrioPlmnRefreshTriggerBGSearchFlagNvim(VOS_VOID);
-/* Added by c00318887 for file refresh需要触发背景搜, 2015-4-28, end */
 
 VOS_VOID NAS_MMC_ReadSrchHplmnTtimerValueNvim(VOS_VOID);
 
@@ -249,9 +228,7 @@ VOS_VOID NAS_MMC_ReadHoWaitSysinfoTimeLenNvim(VOS_VOID);
 VOS_VOID  NAS_MMC_ReadLNasReleaseNvim(VOS_VOID);
 
 #endif
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-14, begin */
 VOS_VOID NAS_MMC_ReadCsfbEmgCallLaiChgLauFirstNvim(VOS_VOID);
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-14, end */
 
 VOS_VOID NAS_MMC_ReadLteRoamConfigNvim(VOS_VOID);
 VOS_VOID NAS_MMC_ReadDailRejectConfigNvim(VOS_VOID);
@@ -259,11 +236,9 @@ VOS_VOID NAS_MMC_ReaducWcdmaPriorityGsmNvim(VOS_VOID);
 VOS_VOID NAS_MMC_ReadPsOnlyCsServiceSupportNvim(VOS_VOID);
 VOS_VOID NAS_MMC_ReadAPPConfigSupportNvim(VOS_VOID);
 
-/* Modified by z40661 for 泰国AIS特性 2012-05-17, begin */
 
 VOS_VOID NAS_MMC_ReadAisRoamingNvim( VOS_VOID  );
 
-/* Modified by z40661 for 泰国AIS特性 2012-05-17, end */
 
 
 VOS_VOID NAS_MMC_ReadUserAutoReselCfgNvim(VOS_VOID);
@@ -279,9 +254,7 @@ VOS_VOID NAS_MMC_ReadSingleDomainFailActionListNvim(VOS_VOID);
 VOS_VOID NAS_MMC_ReadRegFailNetWorkFailureCustomFlagNvim(VOS_VOID);
 VOS_VOID NAS_MMC_ReadActingHPlmnSupportNvim(VOS_VOID);
 
-/* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-13, begin */
 VOS_VOID NAS_MMC_ReadPlmnExactlyCompareNvim(VOS_VOID);
-/* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-13, end */
 
 VOS_VOID NAS_MMC_ReadCustomizeServiceNvim(VOS_VOID);
 
@@ -300,11 +273,9 @@ VOS_UINT32 NAS_MMC_ConvertNvimTypePlatformRatCapToNasType(
     NAS_MML_PLATFORM_RAT_TYPE_ENUM_UINT8               *penNasPlatformRatCap
 );
 
-/* Added by w00176964 for 短信支持能力和UC2能力NV优化, 2013-3-11, begin */
 VOS_VOID NAS_MMC_ReadUcs2CustomizationNvim(VOS_VOID);
 
 VOS_VOID NAS_MMC_ReadCloseSmsCapabilityConfigNvim(VOS_VOID);
-/* Added by w00176964 for 短信支持能力和UC2能力NV优化, 2013-3-11, end */
 
 VOS_VOID NAS_MMC_ReadH3gCtrlNvim(VOS_VOID);
 
@@ -317,9 +288,7 @@ VOS_VOID NAS_MMC_ReadDamCfgNvim(VOS_VOID);
 #if  (FEATURE_ON == FEATURE_LTE)
 VOS_VOID NAS_MMC_ReadEnableLteTimerLenNvim(VOS_VOID);
 
-/* Added by c00318887 for 移植T3402 , 2015-6-17, begin */
 VOS_VOID NAS_MMC_ReadDisableLteStartT3402EnableLteCfgNvim(VOS_VOID);
-/* Added by c00318887 for 移植T3402 , 2015-6-17, end */
 
 VOS_VOID NAS_MMC_ReadCsfbRauFollowOnFlgNvim(VOS_VOID);
 
@@ -455,9 +424,7 @@ extern VOS_VOID NAS_MMC_ReadLteOos2GPrefPlmnSelCfgNvim(VOS_VOID);
 
 VOS_VOID NAS_MMC_ReadProtectMtCsfbPagingProcedureLenNvim(VOS_VOID);
 
-/* added by y00176023 for DTS2015091602371 澳电低优先级ANYCELL搜LTE定制, 2015-9-17, begin */
 VOS_VOID NAS_MMC_ReadLowPrioAnycellsearchLteCfgNvim(VOS_VOID);
-/* added by y00176023 for DTS2015091602371 澳电低优先级ANYCELL搜LTE定制, 2015-9-17, end */
 
 VOS_VOID NAS_MMC_ReadCsRegFailForbLaTimeCfgNvim(VOS_VOID);
 

@@ -31,17 +31,7 @@ extern "C" {
   3 Function
 *****************************************************************************/
 
-/*****************************************************************************
- Function Name   :  NAS_EMM_AppAttachReqMsgChk
- Description     : 检查APP发送消息内容是否正确
- Input           :
- Output          :
- Return          :
 
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-    2.zhengjunyan 00148421   2010-12-24  MOD:检查消息内容错误，回复APP_ATTACH_CNF
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_AppAttachReqMsgChk(const MMC_LMM_ATTACH_REQ_STRU *pMsgpMsg)
 {
     /*消息内容检查*/
@@ -59,19 +49,7 @@ VOS_UINT32  NAS_EMM_AppAttachReqMsgChk(const MMC_LMM_ATTACH_REQ_STRU *pMsgpMsg)
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsDrgSsNmlSrvMsgAppAttachReq
- Description     : 主状态DEREG+子状态NORMAL_SERVICE下收到应用层的ATTACH
-                   REQUEST消息
 
- Input           :
- Output          :
- Return          :
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsDrgSsNmlSrvMsgAppAttachReq( VOS_UINT32  ulMsgId,
                                                   VOS_VOID   *pMsgStru)
 {
@@ -144,18 +122,7 @@ VOS_UINT32    NAS_EMM_MsDrgSsNmlSrvMsgAppAttachReq( VOS_UINT32  ulMsgId,
 
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_EsmSendPdnConnInd
- Description     : 请求ESM的PDN CONNECTIVITY REQUEST消息
 
- Input           :
- Output          : None
- Return          : None
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-
-*****************************************************************************/
 /*lint -e960*/
 VOS_VOID    NAS_EMM_EsmSendPdnConnInd(VOS_UINT32 ulCid)
 {
@@ -202,18 +169,7 @@ VOS_VOID    NAS_EMM_EsmSendPdnConnInd(VOS_UINT32 ulCid)
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsDrgSsPlmnSrcMsgAppAttachReq
- Description     : 主状态DEREG+子状态DEREG_PLMN_SEARCH下收到APP发送的
-                   ATTACH REQUEST消息
- Input           :
- Output          :
- Return          :
 
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-    2.zhengjunyan 00148421   2010-12-24  MOD:修改APP_ATTACH_CNF结果值
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsDrgSsPlmnSrcMsgAppAttachReq(VOS_UINT32  ulMsgId,
                                                 VOS_VOID   *pMsgStru)
 
@@ -257,18 +213,7 @@ VOS_UINT32    NAS_EMM_MsDrgSsPlmnSrcMsgAppAttachReq(VOS_UINT32  ulMsgId,
     return  NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsDrgSsAttemptToAttMsgAppAttachReq
- Description     : 主状态DEREG+子状态DEREG_ATTEMPT_TO_ATTACH下收到APP发送的
-                   ATTACH REQUEST消息
- Input           :
- Output          :
- Return          :
 
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-    2.zhengjunyan 00148421   2010-12-24  MOD:修改APP_ATTACH_CNF结果值
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsDrgSsAttemptToAttMsgAppAttachReq(VOS_UINT32  ulMsgId,
                                                 VOS_VOID   *pMsgStru)
 
@@ -315,18 +260,7 @@ VOS_UINT32    NAS_EMM_MsDrgSsAttemptToAttMsgAppAttachReq(VOS_UINT32  ulMsgId,
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsDrgSsLimitedSrvMsgAppAttachReq
- Description     : 主状态DEREG+子状态DEREG_LIMITED_SERVICE下收到APP发送的
-                   ATTACH REQUEST消息
- Input           :
- Output          :
- Return          :
 
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsDrgSsLimitedSrvMsgAppAttachReq(VOS_UINT32  ulMsgId,
                                                      VOS_VOID   *pMsgStru)
 
@@ -374,18 +308,7 @@ VOS_UINT32    NAS_EMM_MsDrgSsLimitedSrvMsgAppAttachReq(VOS_UINT32  ulMsgId,
 
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsDrgSsNoImsiMsgAppAttachReq
- Description     : 主状态DEREG+子状态DEREG_NO_IMSI下收到APP发送的
-                   ATTACH REQUEST消息
- Input           :
- Output          :
- Return          :
 
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsDrgSsNoImsiMsgAppAttachReq(VOS_UINT32  ulMsgId,
                                                  VOS_VOID   *pMsgStru )
 {
@@ -431,18 +354,7 @@ VOS_UINT32    NAS_EMM_MsDrgSsNoImsiMsgAppAttachReq(VOS_UINT32  ulMsgId,
     return  NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsDrgSsNoCellAvailMsgAppAttachReq
- Description     : 主状态DEREG+子状态DEREG_NO_CELL_AVAILABLE下收到APP发送的
-                   ATTACH REQUEST消息
- Input           :
- Output          :
- Return          :
 
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsDrgSsNoCellAvailMsgAppAttachReq(VOS_UINT32  ulMsgId,
                                                       VOS_VOID   *pMsgStru )
 {
@@ -491,18 +403,7 @@ VOS_UINT32    NAS_EMM_MsDrgSsNoCellAvailMsgAppAttachReq(VOS_UINT32  ulMsgId,
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsDrgSsAttNeedMsgAppAttachReq
- Description     : 主状态DEREG+子状态DEREG_ATTACH_NEEDED下收到APP发送的
-                   ATTACH REQUEST消息
- Input           :
- Output          :
- Return          :
 
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsDrgSsAttNeedMsgAppAttachReq(VOS_UINT32  ulMsgId,
                                                   VOS_VOID   *pMsgStru )
 {
@@ -552,19 +453,7 @@ VOS_UINT32    NAS_EMM_MsDrgSsAttNeedMsgAppAttachReq(VOS_UINT32  ulMsgId,
   }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegInitSsWtEsmPdnRspMsgAppAttachReq
- Description     : 主状态REG_INIT+子状态ATTACH_WAIT_ESM_PDN_RSP下收到APP发送的
-                   ATTACH REQUEST消息
 
- Input           :
-
- Return          :
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-    2.zhengjunyan 00148421   2010-11-09  添加:保存APP参数
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsRegInitSsWtEsmPdnRspMsgAppAttachReq(VOS_UINT32  ulMsgId,
                                                          VOS_VOID   *pMsgStru  )
 {
@@ -617,19 +506,7 @@ VOS_UINT32    NAS_EMM_MsRegInitSsWtEsmPdnRspMsgAppAttachReq(VOS_UINT32  ulMsgId,
     return  NAS_LMM_MSG_DISCARD;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegInitSsWtCnAttCnfMsgAppAttachReq
- Description     : 主状态REG_INIT+子状态ATTACH_WAIT_CN_ATTACH_CNF下收到APP发送的
-                   ATTACH REQUEST消息
 
- Input           :
-
- Return          :
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-    2.zhengjunyan 00148421   2010-12-24  MOD:保存APP参数
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsRegInitSsWtCnAttCnfMsgAppAttachReq(VOS_UINT32  ulMsgId,
                                                          VOS_VOID   *pMsgStru  )
 {
@@ -684,19 +561,7 @@ VOS_UINT32    NAS_EMM_MsRegInitSsWtCnAttCnfMsgAppAttachReq(VOS_UINT32  ulMsgId,
 
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegInitSsWtEsmBearerCnfMsgAppAttachReq
- Description     : 主状态REG_INIT+子状态ATTACH_WAIT_ESM_BEARER_CNF下收到APP发送的
-                   ATTACH REQUEST消息
 
- Input           :
-
- Return          :
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsRegInitSsWtEsmBearerCnfMsgAppAttachReq(VOS_UINT32  ulMsgId,
                                                             VOS_VOID   *pMsgStru  )
 {
@@ -747,19 +612,7 @@ VOS_UINT32    NAS_EMM_MsRegInitSsWtEsmBearerCnfMsgAppAttachReq(VOS_UINT32  ulMsg
     TLPS_PRINT2LAYER_INFO(NAS_EMM_MsRegInitSsWtEsmBearerCnfMsgAppAttachReq_ENUM,LNAS_END);
     return NAS_LMM_STORE_LOW_PRIO_MSG;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegInitSsWaitRrcDataCnfMsgAppAttachReq
- Description     : 主状态REG_INIT+子状态ATTACH_WAIT_ESM_BEARER_CNF下收到APP发送的
-                   ATTACH REQUEST消息
 
- Input           :
-
- Return          :
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsRegInitSsWaitRrcDataCnfMsgAppAttachReq(VOS_UINT32  ulMsgId,
                                                             VOS_VOID   *pMsgStru  )
 {
@@ -796,19 +649,7 @@ VOS_UINT32    NAS_EMM_MsRegInitSsWaitRrcDataCnfMsgAppAttachReq(VOS_UINT32  ulMsg
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegSsNmlSrvMsgAppAttachReq
- Description     : 主状态REG+子状态REG_NORMAL_SERVICE下收到APP发送的
-                   ATTACH REQUEST消息
 
- Input           :
-
- Return          :
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsRegSsNmlSrvMsgAppAttachReq(VOS_UINT32  ulMsgId,
                                                  VOS_VOID   *pMsgStru  )
 {
@@ -885,18 +726,7 @@ VOS_UINT32    NAS_EMM_MsRegSsNmlSrvMsgAppAttachReq(VOS_UINT32  ulMsgId,
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegSsRegAttemptUpdateMmMsgAppAttachReq
- Description     : 状态REG+REG_ATTEMPTING_TO_UPDATE_MM收到MMC的MMC_LMM_ATTACH_REQ
-                    消息
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2011-7-12  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsRegSsRegAttemptUpdateMmMsgAppAttachReq
 (
     VOS_UINT32  ulMsgId,
@@ -949,19 +779,7 @@ VOS_UINT32  NAS_EMM_MsRegSsRegAttemptUpdateMmMsgAppAttachReq
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegSsAtmpToUpdMsgAppAttachReq
- Description     : 主状态REG+子状态REG_ATTEMPTING_TO_UPDATE下收到APP发送的
-                   ATTACH REQUEST消息
 
- Input           :
-
- Return          :
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsRegSsAtmpToUpdMsgAppAttachReq(VOS_UINT32  ulMsgId,
                                                     VOS_VOID   *pMsgStru  )
 {
@@ -1028,19 +846,7 @@ VOS_UINT32    NAS_EMM_MsRegSsAtmpToUpdMsgAppAttachReq(VOS_UINT32  ulMsgId,
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegSsLimitedSrvMsgAppAttachReq
- Description     : 主状态REG+子状态REG_LIMITED_SERVICE下收到APP发送的
-                   ATTACH REQUEST消息
 
- Input           :
-
- Return          :
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsRegSsLimitedSrvMsgAppAttachReq(VOS_UINT32  ulMsgId,
                                                     VOS_VOID   *pMsgStru  )
 {
@@ -1097,19 +903,7 @@ VOS_UINT32    NAS_EMM_MsRegSsLimitedSrvMsgAppAttachReq(VOS_UINT32  ulMsgId,
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegSsPlmnSrcMsgAppAttachReq
- Description     : 主状态REG+子状态REG_PLMN_SERVICE下收到APP发送的
-                   ATTACH REQUEST消息
 
- Input           :
-
- Return          :
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsRegSsPlmnSrcMsgAppAttachReq( VOS_UINT32  ulMsgId,
                                                     VOS_VOID   *pMsgStru  )
 {
@@ -1164,19 +958,7 @@ VOS_UINT32    NAS_EMM_MsRegSsPlmnSrcMsgAppAttachReq( VOS_UINT32  ulMsgId,
     return  NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegSsWaitAccessGrantIndMsgAppAttachReq
- Description     : 主状态REG+子状态REG_WAIT_ACCESS_GRANT_IND下收到APP发送的
-                   ATTACH REQUEST消息
 
- Input           :
-
- Return          :
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsRegSsWaitAccessGrantIndMsgAppAttachReq( VOS_UINT32  ulMsgId,
                                                     VOS_VOID   *pMsgStru  )
 {
@@ -1252,19 +1034,7 @@ VOS_UINT32    NAS_EMM_MsRegSsWaitAccessGrantIndMsgAppAttachReq( VOS_UINT32  ulMs
 }
 /*lint +e960*/
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegSsNoCellAvailMsgAppAttachReq
- Description     : 主状态REG+子状态REG_NO_CELL_AVAILABLE下收到APP发送的
-                   ATTACH REQUEST消息
 
- Input           :
-
- Return          :
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsRegSsNoCellAvailMsgAppAttachReq( VOS_UINT32  ulMsgId,
                                                     VOS_VOID   *pMsgStru  )
 {
@@ -1322,20 +1092,7 @@ VOS_UINT32    NAS_EMM_MsRegSsNoCellAvailMsgAppAttachReq( VOS_UINT32  ulMsgId,
     }
 
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegImsiDetachWtCnDetCnfMsgAppAttachReq
- Description     : 主状态REG+子状态ImsiDetachWtCnDetCnf下收到APP发送的
-                   ATTACH REQUEST消息
 
- Input           :
-
- Return          :
-
- History         :
-    1.zhangcaixia 00179470   2011-11-24  经分析，该状态下AT通道阻塞，不可能收到用户的ATTACH请求消息，
-                                         该状态下收到ID_MMC_LMM_ATTACH_REQ,加打印，统计出现概率。
-                                         如果后续该状态下收到ID_MMC_LMM_ATTACH_REQ增加处理
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsRegImsiDetachWtCnDetCnfMsgAppAttachReq( VOS_UINT32  ulMsgId,
                                                     VOS_VOID   *pMsgStru  )
 {
@@ -1352,24 +1109,7 @@ VOS_UINT32    NAS_EMM_MsRegImsiDetachWtCnDetCnfMsgAppAttachReq( VOS_UINT32  ulMs
 
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsDrgInitSsWtCnDetCnfMsgAppAttachReq
- Description     : 主状态DEREG_INIT+子状态DETACH_WAIT_CN_DETACH_CNF下收到APP发送
-                   的ATTACH REQUEST消息
 
- Input           :
-
- Return          :
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-    2.zhengjunyan 00148421   2010-11-16  添加回复APP FAIL
-    3.zhangcaixia 00179470   2011-11-24  经分析，该状态下AT通道阻塞，不可能收到用户的ATTACH请求消息，
-                                         该状态下收到ID_MMC_LMM_ATTACH_REQ,加打印，统计出现概率。
-                                         如果后续该状态下收到ID_MMC_LMM_ATTACH_REQ增加处理
-    4.niuxiufan 00181501     2012-12-03  为解决SYSCFG过程中设置为L单模后,本地detach之后不发起attach的问题
-                                         以及Detach过程中网侧无回复导致MMA侧Syscfg的20s等待detach结果定时器超时
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsDrgInitSsWtCnDetCnfMsgAppAttachReq( VOS_UINT32  ulMsgId,
                                                     VOS_VOID   *pMsgStru  )
 {
@@ -1448,19 +1188,7 @@ VOS_UINT32    NAS_EMM_MsDrgInitSsWtCnDetCnfMsgAppAttachReq( VOS_UINT32  ulMsgId,
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsTauInitSsWtCnTauCnfMsgAppAttachReq
- Description     : 主状态TAU_INIT+子状态TAU_WAIT_CN_TAU_CNF下收到APP发送的
-                   ATTACH REQUEST消息
 
- Input           :
-
- Return          :
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsTauInitSsWtCnTauCnfMsgAppAttachReq(VOS_UINT32  ulMsgId,
                                                     VOS_VOID   *pMsgStru )
 {
@@ -1526,19 +1254,7 @@ VOS_UINT32    NAS_EMM_MsTauInitSsWtCnTauCnfMsgAppAttachReq(VOS_UINT32  ulMsgId,
     return  NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsSerInitSsWtCnSerCnfMsgAppAttachReq
- Description     : 主状态SER_INIT+子状态SER_WAIT_CN_SER_CNF下收到APP发送的
-                   ATTACH REQUEST消息
 
- Input           :
-
- Return          :
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsSerInitSsWtCnSerCnfMsgAppAttachReq( VOS_UINT32  ulMsgId,
                                                          VOS_VOID   *pMsgStru )
 {

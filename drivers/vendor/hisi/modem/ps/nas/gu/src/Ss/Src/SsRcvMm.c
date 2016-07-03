@@ -33,20 +33,7 @@
 
 /*lint -save -e958 */
 
-/*****************************************************************************
- 函 数 名  : NAS_SS_ReportN2MOtaMsg
- 功能描述  : 勾取SS空口消息发给OM
- 输入参数  : pNasMsg   - SS空口消息内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月29日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_SS_ReportN2MOtaMsg(
     SS_MSG_STRU                        *pNasMsg
 )
@@ -131,23 +118,7 @@ VOS_UINT8 Ss_CheckAirMsg(
     return ucResult;
 }
 
-/***********************************************************************
-*  MODULE   : Ss_RcvMmssEstCnf
-*  FUNCTION : 接收MMSS_EST_CNF的处理
-*  INPUT    : VOS_VOID      *pMsg   当前处理的消息
-*  OUTPUT   : VOS_VOID
-*  RETURN   : VOS_VOID
-*  NOTE     : 无
-*  HISTORY  :
-*     1.  张志勇   04-03-08  新版作成
-*     2.  张志勇   05-01-08  新增对缓存的REGISTER消息的处理
-      3.日    期   :2013年9月10日
-        作    者   :z00161729
-        修改内容  :DTS2013082903019:支持ss重发功能
-      4.日    期   : 2014年6月24日
-        作    者   : w00167002
-        修改内容   : DSDS III项目
-************************************************************************/
+
 
 VOS_VOID Ss_RcvMmssEstCnf(
                       VOS_VOID *pMsg
@@ -192,23 +163,7 @@ VOS_VOID Ss_RcvMmssEstCnf(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : LCS_RcvMmlcsMsg
- 功能描述  : 处理MM发送给LCS的消息
- 输入参数  : VOS_UINT8         ucTi
-             VOS_VOID         *pAirMsg  --空口消息数据首地址
- 输出参数  : 无
- 返 回 值  : VOS_OK  消息处理成功
-             VOS_ERR 非LCS消息，未处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月19日
-    作    者   : l00198894
-    修改内容   : DTS2012121903140: LCS功能不支持，回复RELEASE COMPLETE
-
-*****************************************************************************/
 VOS_UINT32 LCS_RcvMmlcsMsg(
     VOS_UINT8                           ucTi,
     VOS_VOID                           *pAirMsg
@@ -294,33 +249,7 @@ VOS_UINT32 LCS_RcvMmlcsMsg(
     return VOS_OK;
 }
 
-/***********************************************************************
-*  MODULE   : Ss_RcvMmssEstInd
-*  FUNCTION : 接收MMSS_EST_IND的处理
-*  INPUT    : VOS_VOID      *pMsg   当前处理的消息
-*  OUTPUT   : VOS_VOID
-*  RETURN   : VOS_VOID
-*  NOTE     : 无
-*  HISTORY  :
-*     1.  张志勇 04-03-08  新版作成
 
-      2.日    期   : 2012年12月19日
-        作    者   : l00198894
-        修改内容   : DTS2012121903140: LCS功能不支持，回复RELEASE COMPLETE
-        
-      3.日    期   : 2012年12月29日
-        作    者   : l00198894
-        修改内容   : DTS2012122702627: 增加SS空口消息可维可测
-      4.日    期   : 2013年8月29日
-        作    者   : f62575
-        修改内容   : VSIM FEATURE
-      5.日    期   :2013年9月12日
-        作    者   :z00161729
-        修改内容   :DTS2013082903019:支持ss重发功能
-      6.日    期   : 2014年6月24日
-        作    者   : w00167002
-        修改内容   : DSDS III项目
-************************************************************************/
 
 VOS_VOID Ss_RcvMmssEstInd(
                       VOS_VOID *pMsg
@@ -393,30 +322,7 @@ VOS_VOID Ss_RcvMmssEstInd(
     }
 }
 
-/***********************************************************************
-*  MODULE   : Ss_RcvMmssDataInd
-*  FUNCTION : 接收MMSS_DATA_IND的处理
-*  INPUT    : VOS_VOID      *pMsg   当前处理的消息
-*  OUTPUT   : VOS_VOID
-*  RETURN   : VOS_VOID
-*  NOTE     : 无
-*  HISTORY  :
-*     1.  张志勇 04-03-08  新版作成
 
-      2.日    期   : 2012年12月19日
-        作    者   : l00198894
-        修改内容   : DTS2012121903140: LCS功能不支持，回复RELEASE COMPLETE
-        
-      3.日    期   : 2012年12月29日
-        作    者   : l00198894
-        修改内容   : DTS2012122702627: 增加SS空口消息可维可测
-      4.日    期   :2013年9月12日
-        作    者   :z00161729
-        修改内容  :DTS2013082903019:支持ss重发功能
-      5.日    期   : 2014年6月24日
-        作    者   : w00167002
-        修改内容   : DSDS III项目
-************************************************************************/
 
 VOS_VOID Ss_RcvMmssDataInd(
                        VOS_VOID *pMsg
@@ -480,23 +386,7 @@ VOS_VOID Ss_RcvMmssDataInd(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SS_ConvertMmssRelCauseToSsassCause
- 功能描述  : 将NAS_MMSS_REL_CAUSE_ENUM_UINT32转换为SSA_SS_REL_CAUSE_ENUM_UINT32中对应原因值
- 输入参数  : enMmssRelCause - mmss之间rel cause值
- 输出参数  : penSsCause     - ssass之间cause值
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   :2013年9月23日
-    作    者   :z00161729
-    修改内容   :DTS2013082903019:支持ss重发功能
-  2.日    期   :2014年9月24日
-    作    者   :s00217060
-    修改内容   :for cs_err_log
-*****************************************************************************/
 VOS_VOID TAF_SS_ConvertMmssRelCauseToSsassCause(
     NAS_MMCM_REL_CAUSE_ENUM_UINT32      enMmssRelCause,
     SSA_SS_REL_CAUSE_ENUM_UINT32       *penSsCause
@@ -511,25 +401,7 @@ VOS_VOID TAF_SS_ConvertMmssRelCauseToSsassCause(
 }
 
 
-/***********************************************************************
-*  MODULE   : Ss_RcvMmssRelInd
-*  FUNCTION : 接收MMSS_REL_IND的处理
-*  INPUT    : VOS_VOID      *pMsg   当前处理的消息
-*  OUTPUT   : VOS_VOID
-*  RETURN   : VOS_VOID
-*  NOTE     : 无
-*  HISTORY  :
-*     1.  张志勇 04-03-08  新版作成
-      2.日    期   :2013年9月14日
-        作    者   :z00161729
-        修改内容  :DTS2013082903019:支持ss重发功能
-      3.日    期   : 2014年6月24日
-        作    者   : z00161729
-        修改内容   : DSDS III新增
-      4.日    期   : 2014年9月23日
-        作    者   : b00269685
-        修改内容   : DTS2014092207910修改
-************************************************************************/
+
 
 VOS_VOID Ss_RcvMmssRelInd(
                       VOS_VOID *pMsg
@@ -561,7 +433,6 @@ VOS_VOID Ss_RcvMmssRelInd(
 
             Ss_EntityClear( ucTi );
             SSA_DealMsgFromSS(&stSsMsg);
-/* 释放对应的Ss实体                         */
         }
         else if (SS_S_CONNECT_PEND == g_SsEntity[ucTi].ucState)
         {

@@ -122,13 +122,11 @@ extern "C" {
 *****************************************************************************/
 extern VOS_VOID  NAS_EMM_SetBarInfo(NAS_EMM_BAR_PROCEDURE_ENUM_UINT32 enBarProc,
                             LRRC_LNAS_EST_RESULT_ENUM_UINT32 enBarType);
-/* leixiantiao 00258641 重构函数降低圈复杂度 begin */
 extern VOS_UINT32 NAS_EMM_IsBarTypeMoSingal(VOS_VOID);
 extern VOS_UINT32 NAS_EMM_IsBarTypeMoCall(VOS_VOID);
 extern VOS_UINT32 NAS_EMM_IsBarTypeMt(VOS_VOID);
 extern VOS_UINT32 NAS_EMM_IsBarTypeMoCsfb(VOS_VOID);
 extern VOS_UINT32 NAS_EMM_IsBarTypeMoCallAndCsfb(VOS_VOID);
-/* leixiantiao 00258641 重构函数降低圈复杂度 end */
 extern VOS_UINT32  NAS_EMM_JudgeBarType( NAS_EMM_BAR_TYPE_ENUM_UINT32 enBarType);
 extern VOS_VOID  NAS_EMM_ClearBarType( LRRC_LNAS_ACCESS_GRANT_ENUM_UINT32 enBarType);
 extern VOS_UINT32  NAS_EMM_GetBarProcedure(VOS_VOID );

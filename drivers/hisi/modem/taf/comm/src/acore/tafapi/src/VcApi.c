@@ -24,25 +24,7 @@
    2 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
-函 数 名  : VCI_SetVoiceVolume
-功能描述  : 设置输出音量
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_OK
-调用函数  : SI_InitGlobeVariable
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年07月05日
-    作    者   : h44270
-    修改内容   : Creat
-2.  日    期   : 2011年11月07日
-    作    者   : f00179208
-    修改内容   : AT Project, 修改虚拟WUEPS_PID_VC为WUEPS_PID_AT
-3.  日    期   : 2012年12月21日
-    作    者   : l00227485
-    修改内容   : DSDA PhaseII
-*****************************************************************************/
+
 VOS_UINT32  APP_VC_SetVoiceVolume(
     MN_CLIENT_ID_T                      ClientId,
     MN_OPERATION_ID_T                   OpId,
@@ -82,31 +64,7 @@ VOS_UINT32  APP_VC_SetVoiceVolume(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : APP_VC_SetVoiceMode
-功能描述  : 设置语音模式
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_OK
-调用函数  : SI_InitGlobeVariable
-被调函数  :
-修订记录  :
-  1.日    期   : 2009年07月05日
-    作    者   : h44270
-    修改内容   : Creat
-  2.日    期   : 2011年11月07日
-    作    者   : f00179208
-    修改内容   : AT Project, 修改虚拟WUEPS_PID_VC为WUEPS_PID_AT
-  3.日    期   : 2012年12月21日
-    作    者   : l00227485
-    修改内容   : DSDA PhaseII
-  4.日    期   : 2013年9月30日
-    作    者   : Y00213812
-    修改内容   : DTS2013092802198: ^VMSET & ^CVOICE发送到指定的模块
-  5.日    期   : 2015年5月28日
-    作    者   : l00198894
-    修改内容   : TSTS
-*****************************************************************************/
+
 VOS_UINT32  APP_VC_SetVoiceMode(
     MN_CLIENT_ID_T                      ClientId,
     MN_OPERATION_ID_T                   OpId,
@@ -146,25 +104,7 @@ VOS_UINT32  APP_VC_SetVoiceMode(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : APP_VC_SetVoicePort
-功能描述  : 设置语音端口
-输入参数  : APP_VC_VOICE_PORT_ENUM_U8   ucVoicePort - 设置的语音端口
-输出参数  : 无
-返 回 值  : 当前的语音端口
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2010年04月16日
-    作    者   : o00132663
-    修改内容   : Creat
-2.  日    期   : 2011年10月06日
-    作    者   : f00179208
-    修改内容   : AT移植项目
-3.  日    期   : 2012年12月21日
-    作    者   : l00227485
-    修改内容   : DSDA PhaseII
-*****************************************************************************/
+
 VOS_UINT32 APP_VC_SetVoicePort(
     MN_CLIENT_ID_T                      ClientId,
     MN_OPERATION_ID_T                   OpId,
@@ -205,25 +145,7 @@ VOS_UINT32 APP_VC_SetVoicePort(
 
 }
 
-/*****************************************************************************
-函 数 名  : APP_VC_GetVoiceMode
-功能描述  : 获取当前的语音模式
-输入参数  : 无
-输出参数  : 无
-返 回 值  : TAF_SUCCESS
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2011年10月05日
-    作    者   : f00179208
-    修改内容   : Creat
-2.  日    期   : 2011年10月06日
-    作    者   : f00179208
-    修改内容   : AT移植项目, 发送异步消息到C核获取语音模式
-3.  日    期   : 2012年12月21日
-    作    者   : l00227485
-    修改内容   : DSDA PhaseII
-*****************************************************************************/
+
 VOS_UINT32 APP_VC_GetVoiceMode(
     MN_CLIENT_ID_T                      ClientId,
     MN_OPERATION_ID_T                   OpId
@@ -262,28 +184,7 @@ VOS_UINT32 APP_VC_GetVoiceMode(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : APP_VC_GetVoicePort
-功能描述  : 获取当前的语音端口
-输入参数  :     MN_CLIENT_ID_T              ClientId
-                MN_OPERATION_ID_T           OpId
 
-输出参数  : 无
-返 回 值  : VOS_UINT32 - VOS_OK
-                         VOS_ERR
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2010年04月16日
-    作    者   : o00132663
-    修改内容   : Creat
-2.  日    期   : 2011年10月06日
-    作    者   : f00179208
-    修改内容   : AT移植项目
-3.  日    期   : 2012年12月21日
-    作    者   : l00227485
-    修改内容   : DSDA PhaseII
-*****************************************************************************/
 VOS_UINT32 APP_VC_GetVoicePort(
     MN_CLIENT_ID_T                      ClientId,
     MN_OPERATION_ID_T                   OpId
@@ -323,22 +224,7 @@ VOS_UINT32 APP_VC_GetVoicePort(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : APP_VC_AppVcVoiceMode2VcPhyVoiceMode
-功能描述  : 应用与VC模块语音模式定义转换为VC模块与物理层语音模式接口定义
-输入参数  : APP_VC_VOICE_MODE_ENUM_U16  usVoiceMode - 应用与VC接口语音模式定义
-输出参数  : 无
-返 回 值  : VC_PHY_DEVICE_MODE_ENUM_U16 - VC与物理层语音模式定义
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2021年04月17日
-    作    者   : o00132663
-    修改内容   : Creat
-2.  日    期   : 2011年10月06日
-    作    者   : f00179208
-    修改内容   : AT移植项目, 将该函数从C核移植到A核
-*****************************************************************************/
+
 VC_PHY_DEVICE_MODE_ENUM_U16  APP_VC_AppVcVoiceMode2VcPhyVoiceMode(
     APP_VC_VOICE_MODE_ENUM_U16          usVoiceMode
 )
@@ -364,22 +250,7 @@ VC_PHY_DEVICE_MODE_ENUM_U16  APP_VC_AppVcVoiceMode2VcPhyVoiceMode(
 
 }
 
-/*****************************************************************************
-函 数 名  : APP_VC_VcPhyVoiceMode2AppVcVoiceMode
-功能描述  : VC模块与物理层语音模式接口定义转换为应用与VC模块语音模式定义
-输入参数  : VC_PHY_DEVICE_MODE_ENUM_U16  usVoiceMode - VC与物理层语音模式定义
-输出参数  : 无
-返 回 值  : APP_VC_VOICE_MODE_ENUM_U16 - 应用与VC接口语音模式定义
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2021年04月17日
-    作    者   : o00132663
-    修改内容   : Creat
-2.  日    期   : 2011年10月06日
-    作    者   : f00179208
-    修改内容   : AT移植项目, 将该函数从C核移植到A核
-*****************************************************************************/
+
 APP_VC_VOICE_MODE_ENUM_U16  APP_VC_VcPhyVoiceMode2AppVcVoiceMode(
     VC_PHY_DEVICE_MODE_ENUM_U16         usVoiceMode
 )
@@ -405,24 +276,7 @@ APP_VC_VOICE_MODE_ENUM_U16  APP_VC_VcPhyVoiceMode2AppVcVoiceMode(
 
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VC_GetVoiceVolume
- 功能描述  : 获取输出音量
- 输入参数  : MN_CLIENT_ID_T                      ClientId
-             MN_OPERATION_ID_T                   OpId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月10日
-    作    者   : l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月21日
-    作    者   : l00227485
-    修改内容   : DSDA PhaseII
-*****************************************************************************/
 VOS_UINT32  APP_VC_GetVoiceVolume(
     MN_CLIENT_ID_T                      ClientId,
     MN_OPERATION_ID_T                   OpId
@@ -461,24 +315,7 @@ VOS_UINT32  APP_VC_GetVoiceVolume(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VC_GetMuteStatus
- 功能描述  : 获取静音状态
- 输入参数  : usClientId   - 客户端ID
-             ucOpId       - 操作码ID
-             enMuteStatus - 静音状态
- 输出参数  : 无
- 返 回 值  : VOS_OK       - 成功
-             VOS_ERR      - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月12日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 APP_VC_SetMuteStatus(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucOpId,
@@ -524,24 +361,7 @@ VOS_UINT32 APP_VC_SetMuteStatus(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VC_SetMuteStatus
- 功能描述  : 设置静音状态
- 输入参数  : usClientId   - 客户端ID
-             ucOpId       - 操作码ID
-             enMuteStatus - 静音状态
- 输出参数  : 无
- 返 回 值  : VOS_OK       - 成功
-             VOS_ERR      - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月12日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 APP_VC_GetMuteStatus(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucOpId
@@ -585,24 +405,7 @@ VOS_UINT32 APP_VC_GetMuteStatus(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VC_SetModemLoop
- 功能描述  : 设置进入或退出语音换回
- 输入参数  : usClientId   - 客户端ID
-             ucOpId       - 操作码ID
-             ucModemLoop  - 进入或退出语音环回状态
- 输出参数  : 无
- 返 回 值  : VOS_OK       - 成功
-             VOS_ERR      - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月8日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 APP_VC_SetModemLoop(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucOpId,

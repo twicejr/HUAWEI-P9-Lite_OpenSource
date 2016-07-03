@@ -1,14 +1,4 @@
-/******************************************************************************
 
-   Copyright(C)2013,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : CssMain.c
-  Description     : 该C文件给出了CSS模块初始化和消息处理入口的实现
-  History           :
-     1.wangchen 00209181    2015-05-14  Draft Enact
-
-******************************************************************************/
 
 /*****************************************************************************
   1 Include HeadFile
@@ -40,16 +30,7 @@ CSS_CLOUD_PUB_CONTROL_STRU              g_stCloudContrl;
   3 Function
 *****************************************************************************/
 
-/*****************************************************************************
- Function Name  : CSS_Init
- Description    : CSS模块上电初始化函数
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-15  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_Init(VOS_VOID)
 {
     /* 云特性全局变量初始化 */
@@ -82,16 +63,7 @@ VOS_VOID CSS_Init(VOS_VOID)
 
 }
 
-/*****************************************************************************
- Function Name  : CSS_MsgHandle()
- Description    : CSS函数处理函数，,根据接收到的消息的所属模块，将消息分发给处理该模块消息的子模块。
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-05-14  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_MsgHandle(const VOS_VOID *pRcvMsg )
 {
     /* 定义消息头指针*/
@@ -141,17 +113,7 @@ VOS_VOID CSS_MsgHandle(const VOS_VOID *pRcvMsg )
     }
 }
 
-/*****************************************************************************
- Function Name  : CSS_TaskEntry()
- Description    : CSS模块TASK入口处理
- Input          : struct MsgCB* pMsg-----------消息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1. wangchen 00209181  2015-05-14  Draft Enact
-
- *****************************************************************************/
 VOS_VOID CSS_TaskEntry(MsgBlock * pMsg)/*lint -e818 -e830*/
 {
     /* 判断入口参数是否合法*/
@@ -167,16 +129,7 @@ VOS_VOID CSS_TaskEntry(MsgBlock * pMsg)/*lint -e818 -e830*/
 
 }
 
-/*****************************************************************************
- Function Name  : CSS_PidInit
- Discription    : CSS的PID初始化函数
- Input          :
- Output         : None
- Return         : None
- History:
-      1. wangchen 00209181  2015-05-14  Draft Enact
 
-*****************************************************************************/
 VOS_UINT32 CSS_PidInit ( enum VOS_INIT_PHASE_DEFINE ip )
 {
     switch( ip )
@@ -209,16 +162,7 @@ VOS_UINT32 CSS_PidInit ( enum VOS_INIT_PHASE_DEFINE ip )
     return VOS_OK;
 }
 
-/*****************************************************************************
- Function Name  : CSS_FidInit
- Discription    : CSS的FID初始化函数
- Input          :
- Output         : None
- Return         : None
- History:
-      1. wangchen 00209181  2015-05-14  Draft Enact
 
-*****************************************************************************/
 VOS_UINT32 CSS_FidInit ( enum VOS_INIT_PHASE_DEFINE ip )
 {
     VOS_UINT32                              ulRet;

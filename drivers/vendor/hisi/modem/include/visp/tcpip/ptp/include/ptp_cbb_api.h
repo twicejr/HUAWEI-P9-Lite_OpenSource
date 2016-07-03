@@ -1,32 +1,4 @@
-/*******************************************************************************
-*
-*
-*                Copyright 2008, Huawei Technologies Co. Ltd.
-*                            ALL RIGHTS RESERVED
-*
-*-------------------------------------------------------------------------------
-*
-*                              ptp_cbb_api.h
-*
-*  Project Code: IPCLOCK SERVER V100R002
-*   Module Name: PTP api
-*  Date Created: 2008-05-15
-*        Author: lishenchuan
-*   Description: 主要提供给产品以及CBB自己调用
-*
-*-------------------------------------------------------------------------------
-*  Modification History
-*  DATE            NAME                DESCRIPTION
-*  -----------------------------------------------------------------------------
-*  2008-05-15      lishenchuan       Create
-*  2008-06-26      lishenchuan       modify the default and the range of
-*                                    logAnnounceInterval    default:1      range: -3 to 3
-*                                    logSycInterval         default:-4     range: -7 to 1
-*                                    logMinDelayInterval    default:-4     range: -7 to 6
-*                                    logMinPdelayInterval   default:-4     range: -7 to 6
-*                                    RecipteTimeOut         default: 3     rangge  2 to 255
-*  2008-12-17      wangchengyang     合入visp主线版本，整改头文件
-*******************************************************************************/
+
 
 #ifndef __ptp__cbb__api__h__
 #define __ptp__cbb__api__h__
@@ -64,31 +36,25 @@ extern "C" {
 #define PTPIF_MIN_VLAN_ID        1
 
 /* Master端设置最大地址个数 */
-/* Modified by dutianyi00217007 2014-1-17 支持PTP端口地址扩展 */
 #define PTP_MAX_IP_NUM         48
 #define PTP_DEFAULT_IP_NUM     1
 
 /* Slave 侧 配置VRF最大数量 */
 #define PTP_MAX_VRF_NUM         5
 
-/*Added by luogaowei 2013-4-7 支持1588 16.1可选需求
 
-注意: PTP_NEGO_MODE_DURATION;必须保证宏值和PTP_KEEP_ALIVE_MODE_NEW 相同
-*/
 #define PTP_NEGO_MODE_NO_DURATION   0   /*PTP 的协商模式: 无duration ,即早期1588草案*/
 #define PTP_NEGO_MODE_DURATION      1   /*PTP 的协商模式: 有duration ,即1588v2的可选16.1 、G8265.1*/
 #define PTP_BMC_MODE_IEEE_1588      0   /*选源算法: 1588标准 */
 #define PTP_BMC_MODE_ITU_G82651     1   /*选源算法: 8265.1标准*/
 /*End by luogaowei 2013-4-7*/
 
-/*Added by luogaowei 2013-4-7 支持1588 16.1可选需求
-  定义几个标记 用于PTP_SetNegoAndBmcSplitMode 和PTP_SetKeepAliveMode配置互斥*/
+
 #define PTP_MODE_API_FLAG_INIT      0
 #define PTP_MODE_API_FLAG_KEEPVLIE  1
 #define PTP_MODE_API_FLAG_SPLIT     2
 /*End by luogaowei 2013-4-7*/
 
-/*Added by dutianyi 2014-05-07 for DTS2014050703927 产品授权前，标识当前基站是否已存在于slave列表*/
 #define PTP_SLAVE_ALREADY_EXIST 1
 #define PTP_SLAVE_NOT_EXIST 0
 
@@ -214,17 +180,13 @@ typedef enum tagPTP_ERR_E
     PTP_ERR_PREPEND_MEM_SPACE,          /* 110 扩展内存空间失败 */
     PTP_ERR_INVALID_ENCAP_TYPE,         /* 111 无效以太封装类型 */
     
-    /*Add By t00110672/z00146309  10-1-11,支持路由器关于实现最新草案的需求 */
     PTP_ERR_DURATION_FIELD_INVALID, /*112 无效的发包时长*/
     PTP_ERR_STEPFLAG_SCOPE,         /*113 错误的STEP标记位*/
     PTP_ERR_PARA_INVALID,           /*114 参数错误，*/
     PTP_ERR_INVALID_VLANID,         /*115 错误的VLan id*/
-    /*Add By t00110672 For BC3D02767,【TD产品需求】【PTP】实现1588无线选源方案优化*/
     PTP_ERR_BMC_NO_PRI_CLOCK_SOURCE,/* 116 没有可优选的参考源*/
     
-    /*Add By z00146309 For DTS2010080400862 ,slave侧配置keeplive为老模式，不允许重新启动单播协商。 */
     PTP_ERR_ALIVE_MODE,/* 117 当KEEPALIVE是旧模式时，是不允许再次调用重协商接口的*/
-    /*Added by zhangbo146309, 层三多播零地址适应, 2010/8/20 */
     PTP_ERR_GET_IFINDEXGP,/* 118 获取接口索引组失败*/
     PTP_ERR_SET_MULTISOCK_OPTION,/* 119 设计多播SOCKET选项失败*/
     PTP_ERR_GET_IPV6_CMP_FAIL, /*120 获取IPv6地址模块组建失败*/
@@ -533,12 +495,10 @@ typedef struct tagPTP_PACKET_STAT_S
     /*丢包数 */
     ULONG ulTotalDropPackets;
 
-    /* 乱序,乱序一般不会影响协议处理，但是能知道中途链路丢了多少包added by wangchengyang for stat. 2008-06-16 */
     ULONG ulAnnSequenceError;  /* announce乱序 */
     ULONG ulSigSequenceError;  /* signaling乱序 */
 }PTP_PACKET_STAT_S;
 
-/*Added by z00208058, 维测需求, 2012/8/31 */
 typedef struct tagPTP_SLAVE_PACKET_S
 {       
     ULONG ulSndAnnReqPackets;        /*发送announce协商请求报文*/
@@ -608,15 +568,12 @@ typedef struct tagPTP_PORT_ID_S
 #pragma pack()
 #endif
 
-/* Add by heyijun 00218462 for DTS2012092803600 维测需求开发, 2012-9 */
 typedef struct tagSLAVE_PACKET_LIST_S
 {
     PTP_CLOCK_ID_SZ  szClockId;
     PTP_SLAVE_STAT_S stSlaveStat;
 }PTP_SLAVE_STAT_LIST_S;
-/* End of Add by heyijun 00218462 for DTS2012092803600 维测需求开发, 2012-9 */
 
-/*Added by weishanfengwKF61331, 钩子函数参所需消息结构体, 2011/11/23   问题单号:S.PTP.ANNCHOOK.01 */
 typedef struct tagPTP_Grant_Para_S
 {
     ULONG           ulMsgType;           /*消息类型: Ann 请求、Sync请求、Delay/Pdelay请求*/
@@ -625,7 +582,6 @@ typedef struct tagPTP_Grant_Para_S
     CHAR            cSlaveFlag;          /*发出请求的主机是否已在slave列表*/
     CHAR            cPad[4];             /*保留字段*/
 }PTP_GRANT_PARA_S;
-/* End of Added by weishanfengwKF61331, 2011/11/23   问题单号:S.PTP.ANNCHOOK.01 */
 
 typedef struct tagPTP_UNICAST_MASTER_S
 {
@@ -873,12 +829,8 @@ typedef ULONG (* PTP_CAPTURE_PACKET_FUNC)(ULONG ulInOrOut, UCHAR* pucPacket, ULO
 /*SYNC报文是否授权回调函数*/
 typedef ULONG (*PTP_GRANT_ACQUIRED_FUNC)(PTP_PORT_ADDR_S *pstPtpPortAdd, BOOL_T *pbGrant ,ULONG ulMsgType);
 
-/*Begin Add by heyijun KF37287 for DTS2011062105058 支持clock id授权方案*/
-/*Modified by weishanfengwKF61331, 产品授权导致函数参数发生改变 2011/11/23   问题单号:S.PTP.ANNCHOOK.01 */
 /*SYNC报文是否授权回调函数(新)*/
 typedef ULONG (*PTP_GRANT_ACQUIRED_ID_FUNC)(PTP_GRANT_PARA_S  *pstGrtInfo, BOOL_T *pbGrant);
-/* End of Modified by weishanfengwKF61331, 2011/11/23   问题单号:S.PTP.ANNCHOOK.01 */
-/*End Add by heyijun KF37287 for DTS2011062105058 支持clock id授权方案*/
 
 /* Debug消息输出函数指针类型定义 */
 typedef VOID (*PTP_DBG_OUTPUT_HOOK_FUNC)(CHAR *pszMsg);
@@ -886,9 +838,7 @@ typedef VOID (*PTP_DBG_OUTPUT_HOOK_FUNC)(CHAR *pszMsg);
 /* Warning消息输出函数指针类型定义 */
 typedef VOID (*PTP_WARN_OUTPUT_HOOK_FUNC)(ULONG ulWarnID, VOID *pWarnParam);
 
-/* Added by dutianyi00217007, MANAGEMENT MESSAGE回调处理函数定义 */
 typedef VOID (*PTP_GetInManagePkt_Func)(UCHAR *pucPacket, ULONG ulPacketLen, PTP_ADDRINFO_S *pstAddrInfo);
-/* End of adding by dutianyi00217007, MANAGEMENT MESSAGE回调处理函数定义 */
 
 #define PTP_COPY_UNICAST_SLAVE_OBJ(DEST, SRC)                         \
     (DEST)->ucAnnFlag               = (SRC)->ucAnnFlag;               \
@@ -1671,187 +1621,38 @@ extern ULONG PTP_ClearLinkPacketStat(PTP_PORT_ADDR_S *pstMasterPortAddress);
 *******************************************************************************/
 extern ULONG PTP_SetClockQuality(PTP_CLOCK_QA_S *pstClockQuality);
 
-/******************************************************************************
-*Func Name   : PTP_GetClockTwoStepFlag
-*Description : 获取时钟Step模式
-*Input       : 
-*Output      : bTwoStep; TRUE:TwoStep;FALSE:OneStep,默认为OneStep；
-*Return      : 成功返回PTP_OK，失败返回错误码
-*Caution     : 设置时钟为单步(不带Follow_Up)或者双步(带Follow_Up)，该接
-*                 在Master侧调用；
-*Calls       :
-*Called by   :
-*-----------------------------------------------------------------------------
-*  Modification History
-*  DATE                       NAME                       DESCRIPTION
-*  2010-1-11     t00110672/z00146309         create:支持路由器关于实现最新草案的需求
-*******************************************************************************/
+
 extern ULONG PTP_GetClockTwoStepFlag(BOOL_T   *bTwoStepFlag);
 
 
-/******************************************************************************
-*Func Name   : PTP_SetClockTwoStepFlag
-*Description : 设置时钟Step模式
-*Input       : bTwoStep; TRUE:TwoStep;FALSE:OneStep,默认为OneStep；
-*Output      : 
-*Return      : 成功返回PTP_OK，失败返回错误码
-*Caution     : 设置时钟为单步(不带Follow_Up)或者双步(带Follow_Up)，该接
-*                 在Master侧调用；
-*Calls       :
-*Called by   :
-*-----------------------------------------------------------------------------
-*  Modification History
-*  DATE                       NAME                       DESCRIPTION
-*  2010-1-11     t00110672/z00146309         create:支持路由器关于实现最新草案的需求
-*******************************************************************************/
+
 extern ULONG PTP_SetClockTwoStepFlag(BOOL_T   bTwoStepFlag);
 
-/******************************************************************************
-*Func Name   : PTP_SetKeepAliveMode
-*Description : 设置当前使用的KeepAlive模式是原有模式还是新模式;
-*                   该接口在Master侧调用;
-*Input       : UCHAR ucMode; 0:老模式;1:新模式;默认为1;
-*Output      : 
-*Return      : 成功返回PTP_OK，失败返回错误码
-*Caution     : Do not support changing between modes Dynamically.
-*              While switching between modes (old / New Profile), default values 
-*              are updated as following:
-*                                       New Profile         OLD
-*                   Domain number   :       4               0
-*                   Sync mode       :   Frequency           Time
-*                   Delay Mechanism :   One Way(0xFE)       E2E(0x01)
-*                   QueryMaxTimes   :       3               0xa
-*                   ClockClass      :      255              7
-*                   MAX UniMaster   :       5               2
-*Calls       :
-*Called by   :
-*-----------------------------------------------------------------------------
-*  Modification History
-*  DATE                       NAME                                 DESCRIPTION
-*  2010-1-11     t00110672/z00146309    create:支持路由器关于实现最新草案的需求
-*******************************************************************************/
+
 extern ULONG PTP_SetKeepAliveMode(UCHAR ucMode);
 
-/******************************************************************************
-*Func Name   : PTP_SetAnnDurationField
-*Description : 设置Ann报文的DurationField;
-*Input       : USHORT usPtpPortNumber:PTP端口号;
-*                ULONG ulAnnDuration:Ann报文的DurationField的值.范围(60~1000S),缺省300S;
-*Output      : 
-*Return      : 成功返回PTP_OK，失败返回错误码
-*Caution     : 
-*Calls       :
-*Called by   :
-*-----------------------------------------------------------------------------
-*  Modification History
-*  DATE                       NAME                                 DESCRIPTION
-*  2010-1-11     t00110672/z00146309    create:支持路由器关于实现最新草案的需求
-*******************************************************************************/
+
 extern ULONG PTP_SetAnnDurationField(USHORT usPtpPortNumber, ULONG ulAnnDuration);
 
 
-/******************************************************************************
-*Func Name   : PTP_SetSyncDurationField
-*Description : 设置SYNC报文的DurationField;
-*Input       : USHORT usPtpPortNumber:PTP端口号;
-*                ULONG ulSyncDuration:SYNC报文的DurationField的值.范围(60~1000S),缺省300S;
-*Output      : 
-*Return      : 成功返回PTP_OK，失败返回错误码
-*Caution     : 
-*Calls       :
-*Called by   :
-*-----------------------------------------------------------------------------
-*  Modification History
-*  DATE                       NAME                                 DESCRIPTION
-*  2010-1-11     t00110672/z00146309    create:支持路由器关于实现最新草案的需求
-*******************************************************************************/
+
 extern ULONG PTP_SetSyncDurationField(USHORT usPtpPortNumber, ULONG ulSyncDuration);
 
-/******************************************************************************
-*Func Name   : PTP_SetDelayDurationField
-*Description : 设置Delay Resp报文的DurationField;
-*Input       : USHORT usPtpPortNumber:PTP端口号;
-*                ULONG ulDelayDuration:DelayResp报文的DurationField的值.范围(60~1000S),缺省300S;
-*Output      : 
-*Return      : 成功返回PTP_OK，失败返回错误码
-*Caution     : 
-*Calls       :
-*Called by   :
-*-----------------------------------------------------------------------------
-*  Modification History
-*  DATE                       NAME                                 DESCRIPTION
-*  2010-1-11     t00110672/z00146309    create:支持路由器关于实现最新草案的需求
-*******************************************************************************/
+
 extern ULONG PTP_SetDelayDurationField(USHORT usPtpPortNumber, ULONG ulDelayRespDuration);
 
 
-/******************************************************************************
-*Func Name   : PTP_GetKeepAliveMode
-*Description : 获取当前使用的KeepAlive模式是原有模式还是新模式;
-*                   该接口在Master侧调用;
-*Input       : UCHAR指针
-*Output      : UCHAR ucMode; 0:老模式;1:新模式;默认为0;
-*Return      : 成功返回PTP_OK，失败返回错误码
-*Caution     : 
-*Calls       :
-*Called by   :
-*-----------------------------------------------------------------------------
-*  Modification History
-*  DATE                       NAME                                 DESCRIPTION
-*  2010-1-11     t00110672/z00146309    create:支持路由器关于实现最新草案的需求
-*******************************************************************************/
+
 extern ULONG PTP_GetKeepAliveMode(UCHAR *pucMode);
 
-/******************************************************************************
-*Func Name   : PTP_GetAnnDurationField
-*Description : 获取Ann报文的DurationField;
-*Input       : USHORT usPtpPortNumber:PTP端口号;
-*                
-*Output      : ULONG ulAnnDuration:Ann报文的DurationField的值.范围(60~1000S),缺省300S;
-*Return      : 成功返回PTP_OK，失败返回错误码
-*Caution     : 
-*Calls       :
-*Called by   :
-*-----------------------------------------------------------------------------
-*  Modification History
-*  DATE                       NAME                                 DESCRIPTION
-*  2010-1-11     t00110672/z00146309    create:支持路由器关于实现最新草案的需求
-*******************************************************************************/
+
 extern ULONG PTP_GetAnnDurationField(USHORT usPtpPortNumber, ULONG *pulAnnDuration);
 
-/******************************************************************************
-*Func Name   : PTP_GetSyncDurationField
-*Description : 获取SYNC报文的DurationField;
-*Input       : USHORT usPtpPortNumber:PTP端口号;
-*                
-*Output      : ULONG ulSyncDuration:SYNC报文的DurationField的值.范围(60~1000S),缺省300S;
-*Return      : 成功返回PTP_OK，失败返回错误码
-*Caution     : 
-*Calls       :
-*Called by   :
-*-----------------------------------------------------------------------------
-*  Modification History
-*  DATE                       NAME                                 DESCRIPTION
-*  2010-1-11     t00110672/z00146309    create:支持路由器关于实现最新草案的需求
-*******************************************************************************/
+
 extern ULONG PTP_GetSyncDurationField(USHORT usPtpPortNumber, ULONG *pulSyncDuration);
 
 
-/******************************************************************************
-*Func Name   : PTP_GetDelayDurationField
-*Description : 获取Delay Resp报文的DurationField;
-*Input       : USHORT usPtpPortNumber:PTP端口号;
-*               
-*Output      : ULONG ulDelayDuration:DelayResp报文的DurationField的值.范围(60~1000S),缺省300S;
-*Return      : 成功返回PTP_OK，失败返回错误码
-*Caution     : 
-*Calls       :
-*Called by   :
-*-----------------------------------------------------------------------------
-*  Modification History
-*  DATE                       NAME                                 DESCRIPTION
-*  2010-1-11     t00110672/z00146309    create:支持路由器关于实现最新草案的需求
-*******************************************************************************/
+
 extern ULONG PTP_GetDelayDurationField(USHORT usPtpPortNumber, ULONG *pulDelayRespDuration);
 
 
@@ -2568,70 +2369,16 @@ extern ULONG PTP_SetTimescaleProperties(BOOL_T bPtpTimescale,UCHAR ucTimeSource)
 *******************************************************************************/
 extern ULONG PTP_GetTimescaleProperties(BOOL_T *pbPtpTimescale,UCHAR *pucTimeSource);
 
-/******************************************************************************
-*Func Name   : PTP_SetClockClassIdentify
-*Description : 设置时钟Class识别功能开关
-*Input       : bClassIdentify: 时钟Class开关，TRUE :打开,FALSE:关闭；
-*Output      : 
-*Return      : 成功返回PTP_OK，失败返回错误码
-*Caution     : 
-*Calls       :
-*Called by   :
-*-----------------------------------------------------------------------------
-*  Modification History
-*  DATE                 NAME           DESCRIPTION
-*  2010-3-4         t00110672      create For BC3D02767,2010-3-4,【TD产品需求】【PTP】实现1588无线选源方案优化；
-*******************************************************************************/
+
 extern ULONG PTP_SetClockClassIdentify(BOOL_T bClassIdentify);
 
-/******************************************************************************
-*Func Name   : PTP_GetClockClassIdentify
-*Description : 获取时钟Class识别功能开关
-*Input       : bClassIdentify: 时钟Class开关，TRUE :打开,FALSE:关闭；
-*Output      : 
-*Return      : 成功返回PTP_OK，失败返回错误码
-*Caution     : 
-*Calls       :
-*Called by   :
-*-----------------------------------------------------------------------------
-*  Modification History
-*  DATE                 NAME           DESCRIPTION
-*  2010-3-4         t00110672      create For BC3D02767,2010-3-4,【TD产品需求】【PTP】实现1588无线选源方案优化；
-*******************************************************************************/
+
 extern ULONG PTP_GetClockClassIdentify(BOOL_T *pbClassIdentify);
 
-/******************************************************************************
-*Func Name   : PTP_SetPriClassGroup
-*Description : 设置设置一组优选时钟Class，参数按照优先级高低进行先后排序
-*                  默认使用6>13>7>14.
-*Input       : 按照优先级由高到底的顺序为:ucClass0>ucClass1>ucClass2>ucClass3
-*Output      : 
-*Return      : 成功返回PTP_OK，失败返回错误码
-*Caution     : 
-*Calls       :
-*Called by   :
-*-----------------------------------------------------------------------------
-*  Modification History
-*  DATE                 NAME           DESCRIPTION
-*  2010-3-4         t00110672      create For BC3D02767,2010-3-4,【TD产品需求】【PTP】实现1588无线选源方案优化；
-*******************************************************************************/
+
 extern ULONG PTP_SetPriClassGroup(UCHAR ucClass0,UCHAR ucClass1,UCHAR ucClass2,UCHAR ucClass3);
 
-/******************************************************************************
-*Func Name   : PTP_GetPriClassGroup
-*Description : 获取配置的一组优选时钟Class，参数按照优先级高低进行先后排序
-*                  默认使用6>13>7>14.
-*Input       : 按照优先级由高到底的顺序为:ucClass0>ucClass1>ucClass2>ucClass3
-*Output      : 
-*Return      : 成功返回PTP_OK，失败返回错误码
-*Caution     : 
-*Calls       :
-*Called by   :
-*-----------------------------------------------------------------------------
-*  Modification History
-*  DATE                 NAME           DESCRIPTION
-*  2010-3-4         t00110672      create For BC3D02767,2010-3-4,【TD产品需求】【PTP】实现1588无线选源方案优化；
-*******************************************************************************/
+
 extern ULONG PTP_GetPriClassGroup(UCHAR *pucClass0,UCHAR *pucClass1,UCHAR *pucClass2,UCHAR *pucClass3);
 
 /******************************************************************************
@@ -2768,25 +2515,7 @@ extern VOID PTP_ShowAcceptMaster(VOID);
 *******************************************************************************/
 extern VOID PTP_ShowLinkStatus(VOID);
 
-/*******************************************************************************
-*    Func Name: Ptp_SetMacVlan
-* Date Created: 2010-04-19
-*       Author: zhangbo146309
-*  Description: 设置层二组播VLAN ID
-*        Input: ULONG ulPhyPortNo:
-*               USHORT usVlanId:
-*               USHORT usVlanPri
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-04-19   zhangbo146309           Create
-*
-*  2010-12-15  wangchengyang62830         DTS2010121500894.
-*******************************************************************************/
+
 extern ULONG  Ptp_SetMacVlan(ULONG ulPhyPortNo, USHORT usVlanId, USHORT usVlanPri);
 
 
@@ -2902,40 +2631,10 @@ extern ULONG PTP_SetDomainSwitch(UCHAR ucSwitch);
 
 extern ULONG PTP_GetDomainSwitch(UCHAR *pucSwitch);
 
-/*******************************************************************************
-*    Func Name: PTP_SetConformitySwitch
-* Date Created: 2011-03-17
-*       Author: tuojinbin0011672
-*  Description: 设置协议一致性检查开关
-*        Input: UCHAR ucSwitch:协议一致性检查开关,1-打开,0-关闭，默认关闭
-*       Output: 无
-*       Return: PTP_OK或者相应错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-03-17   tuojinbin00110672      Create for  DTS2011031504784 
-*
-*******************************************************************************/
+
 extern ULONG PTP_SetConformitySwitch(UCHAR ucSwitch);
 
-/*******************************************************************************
-*    Func Name: PTP_GetConformitySwitch
-* Date Created: 2011-03-17
-*       Author: tuojinbin0011672
-*  Description: 获取协议一致性检查开关
-*        Input: 
-*       Output: UCHAR *pucSwitch:协议一致性检查开关,1-打开,0-关闭，默认关闭
-*       Return: PTP_OK或者相应错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-03-17   tuojinbin00110672      Create for  DTS2011031504784 
-*
-*******************************************************************************/
+
 extern ULONG PTP_GetConformitySwitch(UCHAR *pucSwitch);
 
 /*******************************************************************************
@@ -2974,92 +2673,19 @@ extern ULONG PTP_SetCancelQueryMaxTimes(ULONG ulCancelQueryMaxTimes);
 *******************************************************************************/
 extern ULONG PTP_GetCancelQueryMaxTimes(ULONG *pulCancelQueryMaxTimes);
 
-/*******************************************************************************
-*    Func Name: PTP_SetLogAnnounceSendTime
-* Date Created: 2011-03-18
-*       Author: wangchengyang62830
-*  Description: 设置Announce发送时间,Master侧调用,真正的发送时间为2的该值次幂
-*        Input: CHAR cLogAnnSndTime:announce发送间隔[-3,4]
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-03-18   wangchengyang62830      Create DTS2011031800047 
-*
-*******************************************************************************/
+
 extern ULONG PTP_SetLogAnnounceSendTime(USHORT usPtpPortNumber, CHAR cLogAnnSndTime);
 
-/*******************************************************************************
-*    Func Name: PTP_GetLogAnnounceSendTime
-* Date Created: 2011-03-18
-*       Author: wangchengyang62830
-*  Description: 获取Announce发送时间,Master侧调用,真正的发送时间为2的该值次幂
-*        Input: CHAR *pcLogAnnSndTime:announce发送间隔[-3,4]
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-03-18   wangchengyang62830      Create DTS2011031800047 
-*
-*******************************************************************************/
+
 extern ULONG PTP_GetLogAnnounceSendTime(USHORT usPtpPortNumber, CHAR *pcLogAnnSndTime);
 
-/*******************************************************************************
-*    Func Name: PTP_GetTimerDelayCount
-* Date Created: 2011-03-18
-*       Author: wangchengyang62830
-*  Description: 设置Master定时器的delay值(优化server性能时使用，即遍历多少定时器delay一下)
-*        Input: ULONG ulCount:具体定时器个数[500,10240]
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-03-18   wangchengyang62830      Create DTS2011031800047
-*
-*******************************************************************************/
+
 extern ULONG PTP_SetTimerDelayCount(ULONG ulCount);
 
-/*******************************************************************************
-*    Func Name: PTP_GetTimerDelayCount
-* Date Created: 2011-03-18
-*       Author: wangchengyang62830
-*  Description: 获取Master定时器的delay值(优化server性能时使用，即遍历多少定时器delay一下)
-*        Input: 
-*       Output: ULONG *pulCount:具体定时器个数[500,10240]
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-03-18   wangchengyang62830      Create DTS2011031800047
-*
-*******************************************************************************/
+
 extern ULONG PTP_GetTimerDelayCount(ULONG *pulCount);
 
-/******************************************************************************
-*Func Name   : PTP_RegFuncGrantAcquiredByIdHook
-*Description : 单播请求是否授权钩子函数(根据Slave id来授权)，由产品高层软件实现
-*Input       : PTP_GRANT_ACQUIRED_ID_FUNC pfPtpSetSyncGrantNotify 处理函数
-*Output      :
-*Return      : 成功返回PTP_OK，失败返回错误码，
-*Caution     :
-*Calls       :
-*Called by   :
-*-----------------------------------------------------------------------------
-*  Modification History
-*  DATE                 NAME                DESCRIPTION
-*  2011-6-22            heyijun KF37287     Create
-*******************************************************************************/
+
 extern ULONG PTP_RegFuncGrantAcquiredByIdHook(PTP_GRANT_ACQUIRED_ID_FUNC pfPtpSetSyncGrantNotify);
 
 
@@ -3068,370 +2694,66 @@ extern ULONG PTP_SetPortAddrMaxCfgNum(USHORT usNetworkProtocol, USHORT usMaxNum)
 
 extern ULONG PTP_GetPortAddrMaxCfgNum(USHORT usNetworkProtocol, USHORT *pusMaxNum);
 
-/*Added by limin00188004, 同步问题单：根据协议要求，annouce和signing报文的alternateMasterFlag字段都应为FALSE,但是修改的时候需要考虑与老版本对接, 2011/12/15   问题单号:DTS2011121501803 */
-/******************************************************************************
-*Func Name   : PTP_SetAlternateMasterFlag
-*Description : 设置Master侧AlternateMasterFlag字段值是否需要兼容老版本，老版本的Slave代码
-*            : 会检查该字段，在Master侧修改为全false的情况下，老版本的Slave检查会不通过。
-*Input       : UCHAR ucFlag,1：表示兼容老版本,0：表示不兼容老版本.默认是0.
-*Output      :
-*Return      : 成功返回PTP_OK，失败返回错误码，
-*Caution     :
-*Calls       :
-*Called by   :
-*-----------------------------------------------------------------------------
-*  Modification History
-*  DATE                 NAME                DESCRIPTION
-*  2011-12-9            tuojinbin 00110672     Create
-*******************************************************************************/
+
 extern ULONG PTP_SetAlternateMasterFlag(UCHAR ucFlag);
 
-/******************************************************************************
-*Func Name   : PTP_GetAlternateMasterFlag
-*Description : 获取Master侧AlternateMasterFlag字段值是否需要兼容老版本，老版本的Slave代码
-*            : 会检查该字段，在Master侧修改为全false的情况下，老版本的Slave检查会不通过。
-*Input       : UCHAR *pucFlag,1：表示兼容老版本,0：表示不兼容老版本.默认是0.
-*Output      :
-*Return      : 成功返回PTP_OK，失败返回错误码，
-*Caution     :
-*Calls       :
-*Called by   :
-*-----------------------------------------------------------------------------
-*  Modification History
-*  DATE                 NAME                DESCRIPTION
-*  2011-12-9            tuojinbin 00110672     Create
-*******************************************************************************/
-extern ULONG PTP_GetAlternateMasterFlag(UCHAR *pucFlag);
-/* End of Added by limin00188004, 2011/12/15   问题单号:DTS2011121501803 */
 
-/******************************************************************************
-*Func Name   : PTP_ShowMultCastTimerInfo
-*Description : 显示多播PTP定时器信息
-*Input       : USHORT usPtpPortNumber    时钟端口号
-*Output      :
-*Return      : 
-*Caution     :
-*Calls       :
-*Called by   :
-*-----------------------------------------------------------------------------
-*  Modification History
-*  DATE                 NAME                DESCRIPTION
-*  2011-12-20           chixiang 00198096     Create
-*******************************************************************************/
+extern ULONG PTP_GetAlternateMasterFlag(UCHAR *pucFlag);
+
+
 VOID PTP_ShowMultCastTimerInfo(USHORT usPtpPortNumber);
 
-/*******************************************************************************
-*    Func Name: PTP_SetPacketFilter
-* Date Created: 2011-12-23
-*       Author: heyijun KF62476
-*  Description: 设置PTP报文调试过滤条件
-*        Input: BOOL_T bSetYes:             打开或关闭报文调试过滤
-*                                           1-打开
-*                                           0-关闭
-*               USHORT ulNetworkProtocol:   报文协议类型
-*                                           1-IPv4 UDP报文
-*                                           2-IPv6 UDP报文
-*                                           3-层二多播报文
-*               CHAR *pszSrcIPorMacAddr:    源地址，  可不填
-*               CHAR *pszDstIPorMacAddr:    目的地址，可不填
-*       Output: 
-*       Return: 成功则返回PTP_OK，失败则返回其他错误码
-*      Caution: 如果不指定某个地址过滤条件时，应将该元素值置为0，如不过滤源地址，
-*               则将源地址值置为0
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-12-23   heyijun KF62476         Create for DTS2011122700669
-*
-*******************************************************************************/
+
 extern ULONG PTP_SetPacketFilter(BOOL_T bSetYes, USHORT usNetworkProtocol, 
                                 UCHAR *pszSrcIPorMacAddr, UCHAR *pszDstIPorMacAddr);
 
-/*******************************************************************************
-*    Func Name: PTP_AddPortAddrWithVrf
-* Date Created: 2011-12-07
-*       Author: z00187023/wKF61331/j00169178 
-*  Description: add a port address with vrf
-*        Input: USHORT usPtpPortNumber: 物理端口标识
-*               PTP_PORT_ADDR_S *pstPortAddr: 端口地址
-*               CHAR *pcVrfName: Vrf名称
-*       Output: 
-*       Return: 成功返回PTP_OK，失败返回错误码
-*      Caution: Slave, unicast, ipv4, keepAlive new mode only 
-                and only the last address added is stored.
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-12-07   z00187023/wKF61331/j00169178   Create for S_PTP_MULVRF_01
-*
-*******************************************************************************/
+
 extern ULONG PTP_AddPortAddrWithVrf(USHORT usPtpPortNumber, PTP_PORT_ADDR_S *pstPortAddr, CHAR *pcVrfName);
 
-/*******************************************************************************
-*    Func Name: PTP_DelPortAddrWithVrf
-* Date Created: 2011-12-08
-*       Author: z00187023/wKF61331/j00169178 
-*  Description: 
-*        Input: USHORT usPtpPortNumber: 物理端口标识
-*               PTP_PORT_ADDR_S *pstPortAddr: 端口地址
-*               CHAR *pcVrfName: Vrf名称
-*       Output: 删除带vrf的本地端口地址
-*       Return: 成功返回PTP_OK，失败返回错误码
-*      Caution: 如需支持基于线程socket, 此API必须与ADD在同一线程
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-12-08   z00187023/wKF61331/j00169178   Create for S_PTP_MULVRF_01
-*
-*******************************************************************************/
+
 extern ULONG PTP_DelPortAddrWithVrf(USHORT usPtpPortNumber, PTP_PORT_ADDR_S *pstPortAddr, CHAR *pcVrfName);
 
-/*******************************************************************************
-*    Func Name: PTP_GetPortAddrWithVrf
-* Date Created: 2011-12-08
-*       Author: z00187023/wKF61331/j00169178 
-*  Description: 返回本端地址列表
-*        Input: USHORT usPtpPortNumber: 物理端口标识
-*               CHAR *pcVrfName: Vrf名称
-*       Output: 
-*               PTP_ALL_PORT_ADDR_VRF_S *pstAllPortAddrVrf: 本端地址列表指针
-*       Return: 成功返回PTP_OK，失败返回错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-12-08   z00187023/wKF61331/j00169178   Create for S_PTP_MULVRF_01
-*
-*******************************************************************************/
+
 extern ULONG PTP_GetPortAddrWithVrf(USHORT usPtpPortNumber, CHAR *pcVrfName, PTP_ALL_PORT_ADDR_VRF_S *pstAllPortAddrVrf);
 
-/*******************************************************************************
-*    Func Name: PTP_ShowPortAddrWithVrf
-* Date Created: 2011-12-08
-*       Author: z00187023/wKF61331/j00169178 
-*  Description: 显示本地端口地址
-*        Input: USHORT usPtpPortNumber: 物理端口标识
-*       Output: 
-*       Return: 成功返回PTP_OK，失败返回错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-12-08   z00187023/wKF61331/j00169178   Create for S_PTP_MULVRF_01
-*
-*******************************************************************************/
+
 extern ULONG PTP_ShowPortAddrWithVrf(USHORT usPtpPortNumber);
 
-/*******************************************************************************
-*    Func Name: PTP_StartNegoWithVrf
-* Date Created: 2011-12-09
-*       Author: z00187023/wKF61331/j00169178 
-*  Description: 启动到某个vrf下的Master的单播协商
-*        Input: PTP_PORT_ADDR_S *pstMasterPortAddr: 要启动的单播master
-*               CHAR *pcVrfName: 单播master对应的vrf名称
-*       Output: 
-*       Return: 成功返回PTP_OK，失败返回错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-12-09   z00187023/wKF61331/j00169178   Create for S_PTP_MULVRF_01
-*
-*******************************************************************************/
+
 extern ULONG PTP_StartNegoWithVrf(PTP_PORT_ADDR_S *pstMasterPortAddr, CHAR *pcVrfName);
 
-/*******************************************************************************
-*    Func Name: PTP_EndNegoWithVrf
-* Date Created: 2011-12-09
-*       Author: z00187023/wKF61331/j00169178 
-*  Description:  终止到某个vrf下Master的单播协商
-*        Input: PTP_PORT_ADDR_S *pstMasterPortAddr: 要终止的单播master
-*               CHAR *pcVrfName: 单播master对应的vrf名称
-*       Output: 
-*       Return: 成功返回PTP_OK，失败返回错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-12-09   z00187023/wKF61331/j00169178   Create for S_PTP_MULVRF_01
-*
-*******************************************************************************/
+
 extern ULONG PTP_EndNegoWithVrf(PTP_PORT_ADDR_S *pstMasterPortAddr, CHAR *pcVrfName);
 
-/*******************************************************************************
-*    Func Name: PTP_AddUnicastMasterWithVrf
-* Date Created: 2011-12-09
-*       Author: z00187023/wKF61331/j00169178 
-*  Description:  往单播master表中加入一个vrf下的单播master
-*        Input: PTP_PORT_ADDR_S *pstPortAddr: 要添加的单播master
-*               PTP_PORT_ADDR_S*pstExtPortAddr: 扩展端口地址
-*               CHAR *pcVrfName: 单播master对应的vrf名称
-*       Output: 
-*       Return: 成功返回PTP_OK，失败返回错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-12-09   z00187023/wKF61331/j00169178   Create for S_PTP_MULVRF_01
-*
-*******************************************************************************/
+
 extern ULONG PTP_AddUnicastMasterWithVrf(PTP_PORT_ADDR_S *pstPortAddr, PTP_PORT_ADDR_S*pstExtPortAddr, CHAR *pcVrfName);
 
 
-/*******************************************************************************
-*    Func Name: PTP_DelUnicastMasterWithVrf
-* Date Created: 2011-12-09
-*       Author: z00187023/wKF61331/j00169178 
-*  Description:  从单播master表中删除一个vrf下的单播master
-*        Input: PTP_PORT_ADDR_S *pstPortAddr: 要删除的单播master
-*               CHAR *pcVrfName: 要删除的单播master对应的vrf名称
-*       Output: 
-*       Return: 成功返回PTP_OK，失败返回错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-12-09   z00187023/wKF61331/j00169178   Create for S_PTP_MULVRF_01
-*
-*******************************************************************************/
+
 extern ULONG PTP_DelUnicastMasterWithVrf(PTP_PORT_ADDR_S *pstPortAddr, CHAR *pcVrfName);
 
-/*******************************************************************************
-*    Func Name: PTP_QueryUnicastMasterWithVrf
-* Date Created: 2011-12-09
-*       Author: z00187023/wKF61331/j00169178 
-*  Description: 查询某一地址是否在UnicastMasterTable中
-*        Input: PTP_PORT_ADDR_S *pstPortAddr:  查询的地址
-*               CHAR *pcVrfName: vrf名称
-*       Output: 
-*               PTP_UNICAST_MASTER_S *pstUnicastMaster:  查找节点的信息, 外部分配释放内存
-*       Return:  成功返回PTP_OK，不在表中返回PTP_ERR_NOT_FOUND,其他失败返回错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-12-09   z00187023/wKF61331/j00169178   Create for S_PTP_MULVRF_01
-*
-*******************************************************************************/
+
 extern ULONG PTP_QueryUnicastMasterWithVrf(PTP_PORT_ADDR_S *pstPortAddr, 
                                   CHAR *pcVrfName, 
                                   PTP_UNICAST_MASTER_S *pstUnicastMaster);
 
-/*******************************************************************************
-*    Func Name: PTP_QueryLinkStatusWithVrf
-* Date Created: 2011-12-10
-*       Author: z00187023/wKF61331/j00169178 
-*  Description: 获取某条链路的通断情况
-*        Input: USHORT usPortNumber: 物理端口标识
-*               PTP_PORT_ADDR_S *pstPortAddr: 要查询链路的对端端口地址
-*               CHAR *pcVrfName: 端口地址对应的vrf名称
-*       Output: 
-*               BOOL_T* pbLink: BOOL_TRUE: 通  BOOL_FALSE: 断
-*       Return: 成功返回PTP_OK，失败返回错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-12-10   z00187023/wKF61331/j00169178   Create for S_PTP_MULVRF_01
-*
-*******************************************************************************/
+
 extern ULONG PTP_QueryLinkStatusWithVrf(USHORT usPortNumber, PTP_PORT_ADDR_S *pstPortAddr, CHAR *pcVrfName, BOOL_T* pbLink);
 
 
-/*******************************************************************************
-*    Func Name: PTP_GetLinkPacketStatWithVrf
-* Date Created: 2011-12-10
-*       Author: z00187023/wKF61331/j00169178 
-*  Description:  获取链路报文统计信息
-*        Input: PTP_PORT_ADDR_S *pstMasterPortAddress: 链路远端的网络地址
-*               CHAR *pcVrfName: 网络地址对应的vrf名称
-*       Output: 
-*               PTP_PACKET_STAT_S *pLinkPacketStat:  获得报文统计信息的指针。
-*       Return: 成功返回PTP_OK，失败返回错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-12-10   z00187023/wKF61331/j00169178   Create for S_PTP_MULVRF_01
-*
-*******************************************************************************/
+
 extern ULONG PTP_GetLinkPacketStatWithVrf(PTP_PORT_ADDR_S *pstMasterPortAddress, 
                                  CHAR *pcVrfName, 
                                  PTP_PACKET_STAT_S *pLinkPacketStat);
 
-/*******************************************************************************
-*    Func Name: PTP_ClearLinkPacketStatWithVrf
-* Date Created: 2011-12-10
-*       Author: z00187023/wKF61331/j00169178 
-*  Description:  清除链路报文统计信息
-*        Input: PTP_PORT_ADDR_S *pstMasterPortAddress: 链路远端的网络地址
-*               CHAR *pcVrfName: 网络地址对应的vrf名称
-*       Output: 
-*       Return:  成功返回PTP_OK，失败返回错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-12-10   z00187023/wKF61331/j00169178   Create for S_PTP_MULVRF_01
-*
-*******************************************************************************/
+
 extern ULONG PTP_ClearLinkPacketStatWithVrf(PTP_PORT_ADDR_S *pstMasterPortAddress, CHAR *pcVrfName);
 
 
-/*******************************************************************************
-*    Func Name: PTP_SetBMCSelectModeWithVrf
-* Date Created: 2011-12-10
-*       Author: z00187023/wKF61331/j00169178 
-: ulBMCSelectMode:
-               pstPortAddr:
-*  Description:  设置时钟选源模式
-*        Input: ULONG ulBMCSelectMode: 选源模式
-*               PTP_PORT_ADDR_S *pstPortAddr: 手动选源下有效，手动选源的Master地址
-*               CHAR *pcVrfName: Master地址的vrf名称
-*       Output: 
-*       Return: 成功返回PTP_OK，失败返回错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-12-10   z00187023/wKF61331/j00169178   Create for S_PTP_MULVRF_01
-*
-*******************************************************************************/
+
 extern ULONG PTP_SetBMCSelectModeWithVrf(ULONG ulBMCSelectMode, PTP_PORT_ADDR_S *pstPortAddr, CHAR *pcVrfName);
 
-/*******************************************************************************
-*    Func Name: PTP_GetBMCSelectModeWithVrf
-* Date Created: 2011-12-10
-*       Author: z00187023/wKF61331/j00169178 
-*  Description: 获得时钟选源模式
-*        Input: 
-*       Output: 
-*               ULONG *pulBMCSelectMode: 选源模式
-*               PTP_PORT_ADDR_S *pstPortAddr: 手动选源下有效，手动选源的Master地址
-*               CHAR *pcVrfName: Master地址的vrf名称
-*       Return: 成功返回PTP_OK，失败返回错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-12-10   z00187023/wKF61331/j00169178   Create for S_PTP_MULVRF_01
-*
-*******************************************************************************/
+
 extern ULONG PTP_GetBMCSelectModeWithVrf(ULONG *pulBMCSelectMode, PTP_PORT_ADDR_S *pstPortAddr, CHAR *pcVrfName);
 
 
@@ -3451,236 +2773,45 @@ extern ULONG PTP_SetPTSFByTypeWithVrf(PTP_PORT_ADDR_S *pstMaster, CHAR *pcVrfNam
 extern ULONG PTP_GetPTSFByTypeWithVrf(PTP_PORT_ADDR_S *pstMaster, CHAR *pcVrfName, ULONG ulType, ULONG *pulPTSFValue);
 
 
-/*******************************************************************************
-*    Func Name: PTP_GetCurrentParentWithVrf
-* Date Created: 2011-12-12
-*       Author: z00187023/wKF61331/j00169178 
-*  Description: 获得前时钟源端口地址
-*        Input: 
-*       Output: PTP_PORT_ADDR_S *pstParentPortAddr: 获取的单前源信息
-*               CHAR *pcVrfName: 单前源信息的vrf名称
-*       Return: PTP_OK:成功.
-*               else: 失败
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-12-12   z00187023/wKF61331/j00169178   Create for S_PTP_MULVRF_01
-*
-*******************************************************************************/
+
 extern ULONG PTP_GetCurrentParentWithVrf(PTP_PORT_ADDR_S *pstParentPortAddr, CHAR *pcVrfName);
 
 
-/*******************************************************************************
-*    Func Name: PTP_ShowLinkPacketStatisticWithVrf
-* Date Created: 2011-12-12
-*       Author: z00187023/wKF61331/j00169178 
-*  Description: 根据地址显示时钟链路的报文统计信息
-*        Input: USHORT usNetworkProtocol:
-*               USHORT usAddressLength:
-*               UCHAR *pszIPOrMacAddr:
-*               CHAR *pcVrfName:
-*       Output: 
-*       Return: 成功返回PTP_OK，失败返回错误码
-*      Caution: 根据不同的协议，输入不同的地址
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-12-12   z00187023/wKF61331/j00169178   Create for S_PTP_MULVRF_01
-*
-*******************************************************************************/
+
 extern ULONG PTP_ShowLinkPacketStatisticWithVrf(USHORT usNetworkProtocol, USHORT usAddressLength, UCHAR *pszIPOrMacAddr, CHAR *pcVrfName);
 
 
-/*******************************************************************************
-*    Func Name: PTP_SetSlaveMultiSelMode
-* Date Created: 2011-12-28
-*       Author: limin00188004/zhangliangzhi00187023/jijianhua00169178
-*  Description: 配置PTP 5路选源，默认为单路选源。
-*        Input: ULONG ulMultiSelMode: 0，为单路；1，为5路。默认为0，即单路。
-*       Output: 
-*       Return: PTP_OK，错误码。
-*      Caution: 必须在PTP_AddPtpPort()之前配置是否为5路选源，不能在协商后动态配置。
-*               Slave, unicast, ipv4, keepAlive new mode only.
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-12-28   limin00188004/zhangliangzhi00187023/jijianhua00169178    Create
-*
-*******************************************************************************/
+
 extern ULONG PTP_SetSlaveMultiSelectMode(ULONG ulMultiSelMode);
 
-/*******************************************************************************
-*    Func Name: PTP_GetSlaveMultiSelMode
-* Date Created: 2011-12-28
-*       Author: limin00188004/zhangliangzhi00187023/jijianhua00169178
-*  Description: 获取是否为5路选源。
-*        Input: 
-*       Output: ULONG *pulMultiSelMode:  0，为单路；1，为5路。默认为0，即单路。
-*       Return: PTP_OK, 错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-12-28   limin00188004/zhangliangzhi00187023/jijianhua00169178   Create
-*
-*******************************************************************************/
+
 extern ULONG PTP_GetSlaveMultiSelectMode(ULONG *pulMultiSelMode);
 
-/*******************************************************************************
-*    Func Name: PTP_SetSeqIdCompatSwitch
-* Date Created: 2012-01-06
-*       Author: guo00178934
-*  Description: 设定Slave端Single报文SequenceID比较模式
-*        Input: ULONG ulSwitch:
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2012-01-06   guo00178934             Create
-*
-*******************************************************************************/
+
 extern ULONG PTP_SetSeqIdCompatSwitch(ULONG ulSwitch);
 
-/*******************************************************************************
-*    Func Name: PTP_SetDurationTimeoutPercent
-* Date Created: 2012-01-07
-*       Author: guo00178934
-*  Description: 配置Annc，Sync， Delay Duration重协商超时百分比(相对Duration的百分比)
-*        Input: USHORT usPtpPortNumber:
-*               ULONG ulDurationType:
-*               ULONG ulTimeoutPrecent:
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2012-01-07   guo00178934             Create
-*
-*******************************************************************************/
+
 extern ULONG PTP_SetDurationTimeoutPercent(USHORT usPtpPortNumber, ULONG ulDurationType, ULONG ulTimeoutPrecent);
 
-/*******************************************************************************
-*    Func Name: PTP_GetDurationTimeoutPercent
-* Date Created: 2012-02-03
-*       Author: guo00178934
-*  Description: 获取Annc，Sync， Delay Duration重协商超时百分比(相对Duration的百分比)
-*        Input: USHORT usPtpPortNumber: 物理端口标识
-*               ULONG ulDurationType: 消息类型
-*                 (PTP_MSG_ANNOUNCE/PTP_MSG_SYNC/PTP_MSG_DELAY_RESP/PTP_MSG_PDELAY_RESP)
-*               
-*       Output: ULONG *pulTimeoutPrecent:Duration重协商超时百分比(50-99)
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2012-02-03   limin00188004           Create
-*
-*******************************************************************************/
+
 extern ULONG PTP_GetDurationTimeoutPercent(USHORT usPtpPortNumber, ULONG ulDurationType, ULONG *pulTimeoutPrecent);
 
-/*******************************************************************************
-*    Func Name: PTP_ShowDurationTimeoutPercent
-* Date Created: 2012-02-03
-*       Author: guo00178934
-*  Description: 
-*        Input: USHORT usPtpPortNumber: 物理端口标识
-*       Output: 
-*       Return: VOID
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2012-02-03   limin00188004           Create
-*
-*******************************************************************************/
+
 extern VOID PTP_ShowDurationTimeoutPercent(USHORT usPtpPortNumber);
 
-/*******************************************************************************
-*    Func Name: PTP_SetMasterLinkIndependSwitch
-* Date Created: 2012-09-21
-*       Author: limin00188004
-*  Description: 设置1588 PTP支持多TLV处理和协商链路单独删除的开关
-*        Input: ULONG ulSwitch: 0,关闭开关; 1,打开开关
-*       Output: 
-*       Return: 
-*      Caution: 仅在Master侧使用; 开关打开后，不能动态关闭。
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2012-09-21   limin00188004           Create
-*
-*******************************************************************************/
+
 extern ULONG PTP_SetMasterLinkIndependSwitch(ULONG ulSwitch);
 
-/*******************************************************************************
-*    Func Name: PTP_GetMasterLinkIndependSwitch
-* Date Created: 2012-09-21
-*       Author: limin00188004
-*  Description: 获取1588 PTP支持多TLV处理和协商链路单独删除的开关
-*        Input: ULONG *pulSwitch:传出参数。
-*       Output: 
-*       Return: 
-*      Caution: 仅在Master侧使用
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2012-09-21   limin00188004           Create
-*
-*******************************************************************************/
+
 extern ULONG PTP_GetMasterLinkIndependSwitch(ULONG *pulSwitch);
 
 
 ULONG PTP_GetSlaveStat(PTP_PORT_ID_S *pPortId, PTP_SLAVE_STAT_S *pStatPackets);
 
-/*******************************************************************************
-*    Func Name: PTP_ShowSlaveStat
-* Date Created: 2012-09-04
-*       Author: z00208058
-*  Description: Slave侧根据master的ClockId显示关于master的报文统计信息
-*        Input: CHAR *pcClockId:Master端的clockid
-*       Output: 
-*       Return: VOID
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2012-09-04   z00208058               Create
-*
-*******************************************************************************/
+
 VOID PTP_ShowSlaveStat(CHAR *pcClockId);
 
-/*******************************************************************************
-*    Func Name: PTP_ClearSlaveStat
-* Date Created: 2012-09-04
-*       Author: z00208058
-*  Description: Slave侧清除关于master的1588统计信息
-*        Input: PTP_PORT_ID_S *pPortId: Master端的portid
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2012-09-04   z00208058               Create
-*
-*******************************************************************************/
+
 ULONG PTP_ClearSlaveStat(PTP_PORT_ID_S *pPortId);
 
 
@@ -3734,29 +2865,7 @@ ULONG PTP_SetNegoAndBmcSplitMode(ULONG  ulNegoMode,  ULONG ulBmcMode);
 *******************************************************************************/
 ULONG PTP_GetNegoAndBmcSplitMode(ULONG  *pulNegoMode,  ULONG *pulBmcMode);
 
-/*******************************************************************************
-* Func Name: PTP_SendUsrManageMsg
-* Date Created: 2014-01-20
-* Author: dutianyi00217007
-* Description: 发送PTP管理消息
-* Input: USHORT usPtpPortNumber:发送管理消息的PTP端口号
-*           ULONG ulVrfIndex:VRF索引
-*           PTP_PORT_ADDR_S *pstDstAddr:发送管理消息的目的地址
-*           UCHAR *pucBuffer:构造好的管理消息
-*           ULONG ulPacketLen:欲发送的管理消息的长度
-* Output: 
-* Return: PTP_OK
-*             PTP_ERR_PORT_NUMBER:端口号非0
-*             PTP_ERR_VRF:VRF非0
-*             PTP_ERR_NOT_FOUND:当前为Master侧时，找不到目的地址所对应的Slave
-* Caution:PTP端口号与VRF索引只支持0；只针对3层单播
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-01-20   dutianyi00217007   Create
-*
-*******************************************************************************/
+
 
 ULONG PTP_SendUsrManageMsg(USHORT usPtpPortNumber, ULONG ulVrfIndex, PTP_PORT_ADDR_S *pstDstAddr, UCHAR *pucBuffer, ULONG ulPacketLen);
 

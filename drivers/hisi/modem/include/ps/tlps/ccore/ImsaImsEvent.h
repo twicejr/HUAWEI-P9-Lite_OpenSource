@@ -1,16 +1,4 @@
-/******************************************************************************
 
-
-        @(#)Copyright(C)2013,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : ImsaImsEvent.h
-    Description : IMSA与IMS的事件头文件
-    History     :
-      1.sunbing 00049683    2013-09-17  Draft Enact
-
-
-******************************************************************************/
 
 
 #ifndef __IMSA_IMS_EVENT_H__
@@ -199,7 +187,6 @@ enum IMAS_IMS_INPUT_PARA_REASON_ENUM{
     IMAS_IMS_INPUT_PARA_REASON_SET_NETWORK_CAPABILITIES,
     IMAS_IMS_INPUT_PARA_REASON_SET_TIMER_LENGTH,
     IMAS_IMS_INPUT_PARA_REASON_SET_IMEI,
-    IMAS_IMS_INPUT_PARA_REASON_SET_CALL_WAITING,
     IMAS_IMS_INPUT_PARA_REASON_SET_ERR_LOG_CTRL_INFO,
     IMAS_IMS_INPUT_PARA_REASON_QUERY_IMPU  = 0x100,
     IMAS_IMS_INPUT_PARA_REASON_BUTT
@@ -827,8 +814,6 @@ typedef struct{
             VOS_UINT8     ucSrvccAlerting;        /*0 不支持，1 支持*/
             VOS_UINT8     ucSrvccPreAlerting;     /*0 不支持，1 支持*/
             VOS_UINT8     ucSrvccTiFlag;          /*0 R10版本，1 R11之后版本*/
-            VOS_UINT8     ucCallWaiting;          /*0 不支持，1 支持*/
-            VOS_UINT8     aucRsv[3];
         } stUeCapability;
         struct{
             VOS_UINT8                               ucVoice;                /*0 不支持，1 支持*/
@@ -1042,7 +1027,7 @@ typedef struct {
     IMSA_IMS_CALL_MODE_ENUM_UINT8           enDstCallMode;  /* IMSA_IMS_CALL_MODE_ENUM_UINT8 */
     VOS_UINT8                               ucResult;       /* 0:succ   1:fail*/
     VOS_UINT8                               ucResver;
-    IMSA_IMS_OUTPUT_ERROR_STRU              stErrorCode;    /* 仅在Modify状态为end时，且结果为fail时，有效 */
+    IMSA_IMS_OUTPUT_ERROR_STRU              stErrorCode;
 }IMSA_IMS_CALL_MODIFY_STRU;
 /*****************************************************************************
  结构名    : IMSA_IMS_CALL_ECONF_NOTIFY_IND_STRU

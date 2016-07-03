@@ -1,29 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TlPhyInterface.h
-  版 本 号   : 初稿
-  作    者   : honghuiyong(164941)
-  生成日期   : 2012年12月01日
-  最近修改   :
-  功能描述   : 定义邮箱，BBP基地址等。针对ARM和TENSILICA访问同一个地方，看到的
-            地址不一样进行处理，例如协议栈和DSP都要访问同一邮箱，但其基地址在
-            ARM侧和TENSILCA侧看到的并不一样，通过本文件定义为同一的宏，大家使用
-            相同的名字即可。
-
-  函数列表   :
-  修改历史   :
-------------------------------------------------------------------------------
-  1.日  期     :    2012年12月1日
-    作  者     : 	honghuiyong(164941)
-    修改内容   : 	基于v7r1版本创建v7r2的头文件，优化邮箱设计。
-------------------------------------------------------------------------------
-  2.日  期     :    2015年5月3日
-    作  者     : 	honghuiyong(164941)
-    修改内容   : 	优化头文件中的分类定义，使得UT/ST以及FPGA支持多种芯片平台。
-******************************************************************************/
 #ifndef __TL_PHY_INTERFACE_H__
 #define __TL_PHY_INTERFACE_H__
 
@@ -430,7 +405,7 @@ typedef struct __TLPHY_OUTER_MEM_INFO_STRU__
     #define LPHY_MAILBOX_TOA_SIZE                       (0x00000600UL)  /*1.5k字节，TOA邮箱大小*/
 
     #define LTPHY_NV_COMM_CFG_SIZE                      (0x00000800UL)  /*02k字节，LT PHY 公共NV 大小*/
-    #define LPHY_NV_CFG_SIZE                            (0x00002800UL)  /*10k字节，LTE NV项配置区大小 s00181739 ADD*/
+    #define LPHY_NV_CFG_SIZE                            (0x00002800UL)
     #define TPHY_NV_CFG_SIZE                            (0x00001c00UL)  /*07k字节，TDS NV项配置区大小*/
     #define BAND_NV_DDR_IDX_SIZE                        (0x00000800UL)  /*02k字节，TDS NV项配置区大小*/
 
@@ -457,7 +432,7 @@ typedef struct __TLPHY_OUTER_MEM_INFO_STRU__
     #define LPHY_MAILBOX_TOA_SIZE                       (0x00000600UL)  /*1.5k字节，TOA邮箱大小*/
 
     #define LTPHY_NV_COMM_CFG_SIZE                      (0x00000400UL)  /*1k字节，LT PHY 公共NV 大小*/
-    #define LPHY_NV_CFG_SIZE                            (0x00002400UL)  /*9k字节，LTE NV项配置区大小 s00181739 ADD*/
+    #define LPHY_NV_CFG_SIZE                            (0x00002400UL)
     #define TPHY_NV_CFG_SIZE                            (0x00002000UL)  /*8k字节，TDS NV项配置区大小*/
     #define BAND_NV_DDR_IDX_SIZE                        (0x00000000UL)  /*00k字节，TDS NV项配置区大小*/
 

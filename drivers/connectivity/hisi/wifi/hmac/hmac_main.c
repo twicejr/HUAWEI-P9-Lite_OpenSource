@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : hmac_main.c
-  版 本 号   : 初稿
-  作    者   : 康国昌
-  生成日期   : 2012年9月18日
-  最近修改   :
-  功能描述   : HMAC模块初始化与卸载
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年9月18日
-    作    者   : 康国昌
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -145,43 +128,14 @@ extern oal_int32 hmac_hcc_adapt_init(oal_void);
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : hmac_board_get_instance
- 功能描述  : 获取HMAC board对象
- 输入参数  : 无
- 输出参数  : HMAC board对象引用
- 返 回 值  : 无
- 调用函数  : 无
- 被调函数  : 无
 
- 修改历史      :
-  1.日    期   : 2012年11月16日
-    作    者   : 康国昌
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  hmac_board_get_instance(mac_board_stru **ppst_hmac_board)
 {
     *ppst_hmac_board = &g_st_hmac_board;
 }
 
 #if (_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC == _PRE_MULTI_CORE_MODE)
-/*****************************************************************************
- 函 数 名  : hmac_init_event_process
- 功能描述  : dmac 抛给hmac的初始化回复事件
- 输入参数  : pst_event_mem: 事件结构体
- 输出参数  :
 
- 返 回 值  : 错误码
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年1月15日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
  oal_uint32 hmac_init_event_process(frw_event_mem_stru *pst_event_mem)
 {
     frw_event_stru        *pst_event;             /* 事件结构体 */
@@ -219,22 +173,7 @@ oal_void  hmac_board_get_instance(mac_board_stru **ppst_hmac_board)
     return OAL_SUCC;
 }
 #else
-/*****************************************************************************
- 函 数 名  : hmac_init_event_process
- 功能描述  : dmac 抛给hmac的初始化回复事件
- 输入参数  : pst_event_mem: 事件结构体
- 输出参数  :
 
- 返 回 值  : 错误码
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年1月15日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
  oal_uint32 hmac_init_event_process(frw_event_mem_stru *pst_event_mem)
 {
     frw_event_stru        *pst_event;             /* 事件结构体 */
@@ -273,21 +212,7 @@ oal_void  hmac_board_get_instance(mac_board_stru **ppst_hmac_board)
 
 #endif
 #if (_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC == _PRE_MULTI_CORE_MODE)
-/*****************************************************************************
- 函 数 名  : hmac_event_fsm_tx_adapt_subtable_register
- 功能描述  : hmac模块事件发送适配子表的注册函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : OAL_SUCC
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月20日
-    作    者   : h00217255
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void hmac_event_fsm_tx_adapt_subtable_register(oal_void)
 {
     /* 注册WLAN_CTX事件处理函数表 */
@@ -345,21 +270,7 @@ OAL_STATIC oal_void hmac_event_fsm_tx_adapt_subtable_register(oal_void)
     /* 注册WLAN_DTX事件处理函数表 */
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_event_fsm_rx_adapt_subtable_register
- 功能描述  : hmac模块事件接收适配子表的注册函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : OAL_SUCC
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月20日
-    作    者   : h00217255
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 OAL_STATIC oal_void hmac_event_fsm_rx_adapt_subtable_register(oal_void)
 {
@@ -404,21 +315,7 @@ OAL_STATIC oal_void hmac_event_fsm_rx_adapt_subtable_register(oal_void)
 }
 
 #endif
-/*****************************************************************************
- 函 数 名  : hmac_event_fsm_action_subtable_register
- 功能描述  : hmac模块事件执行子表的注册函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : OAL_SUCC
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月20日
-    作    者   : h00217255
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 OAL_STATIC oal_void hmac_event_fsm_action_subtable_register(oal_void)
 {
@@ -499,21 +396,7 @@ OAL_STATIC oal_void hmac_event_fsm_action_subtable_register(oal_void)
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_event_fsm_register
- 功能描述  : hmac模块事件及其处理函数的注册函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : OAL_SUCC
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月20日
-    作    者   : h00217255
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_event_fsm_register(oal_void)
 {
 #if (_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC == _PRE_MULTI_CORE_MODE)
@@ -533,21 +416,7 @@ oal_uint32  hmac_event_fsm_register(oal_void)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_param_check
- 功能描述  : Check the struct and var used in hmac
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : OAL_SUCC means ok, others failed!
- 调用函数  : 无
- 被调函数  : 无
 
- 修改历史      :
-  1.日    期   : 2015年5月20日
-    作    者   : Z00262551 zhouxinfeng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_int32 hmac_param_check(oal_void)
 {
     /*netbuf's cb size!*/
@@ -1002,21 +871,7 @@ OAL_STATIC oal_void hmac_hisi_thread_exit(oal_void)
     g_st_rxdata_thread.pst_rxdata_thread = NULL;
 }
 #endif
-/*****************************************************************************
- 函 数 名  : hmac_main_init
- 功能描述  : HMAC模块初始化总入口，包含HMAC模块内部所有特性的初始化。
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 初始化返回值，成功或失败原因
- 调用函数  : 无
- 被调函数  : 无
 
- 修改历史      :
-  1.日    期   : 2012年9月18日
-    作    者   : 康国昌
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_int32  hmac_main_init(oal_void)
 {
     oal_uint32            ul_return;
@@ -1178,21 +1033,7 @@ oal_int32  hmac_main_init(oal_void)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_main_exit
- 功能描述  : HMAC模块卸载
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  : 无
- 被调函数  : 无
 
- 修改历史      :
-  1.日    期   : 2012年9月18日
-    作    者   : 康国昌
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  hmac_main_exit(oal_void)
 {
     oal_uint32 ul_return;
@@ -1250,21 +1091,7 @@ oal_void  hmac_main_exit(oal_void)
 
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_sdt_recv_reg_cmd
- 功能描述  : SDT下发读写寄存器命令，在hmac层抛事件给dmac来处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月31日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_sdt_recv_reg_cmd(
                             mac_vap_stru  *pst_mac_vap,
                             oal_uint8     *puc_buf,
@@ -1300,21 +1127,7 @@ oal_uint32  hmac_sdt_recv_reg_cmd(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_sdt_up_reg_val
- 功能描述  : hmac接收dmac抛回来的寄存器的值，然后交给wal，wal上报SDT
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月31日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_sdt_up_reg_val(frw_event_mem_stru  *pst_event_mem)
 {
     frw_event_stru      *pst_event;
@@ -1340,21 +1153,7 @@ oal_uint32  hmac_sdt_up_reg_val(frw_event_mem_stru  *pst_event_mem)
    return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_create_ba_event
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月21日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  hmac_create_ba_event(frw_event_mem_stru  *pst_event_mem)
 {
     frw_event_stru      *pst_event;
@@ -1388,21 +1187,7 @@ OAL_STATIC oal_uint32  hmac_create_ba_event(frw_event_mem_stru  *pst_event_mem)
 
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_del_ba_event
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月21日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  hmac_del_ba_event(frw_event_mem_stru  *pst_event_mem)
 {
     oal_uint8           uc_tid;
@@ -1473,21 +1258,7 @@ OAL_STATIC oal_uint32  hmac_del_ba_event(frw_event_mem_stru  *pst_event_mem)
 
 }
 #if (_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC == _PRE_MULTI_CORE_MODE)
-/*****************************************************************************
- 函 数 名  : hmac_syn_info_event
- 功能描述  : 处理协议模式同步事件
- 输入参数  : pst_event_mem
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月9日
-    作    者   : j00196483
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  hmac_syn_info_event(frw_event_mem_stru  *pst_event_mem)
 {
     frw_event_stru      *pst_event;
@@ -1522,21 +1293,7 @@ OAL_STATIC oal_uint32  hmac_syn_info_event(frw_event_mem_stru  *pst_event_mem)
 
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_voice_aggr_event
- 功能描述  : 处理Voice聚合同步事件
- 输入参数  : pst_event_mem
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月9日
-    作    者   : j00196483
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  hmac_voice_aggr_event(frw_event_mem_stru  *pst_event_mem)
 {
     frw_event_stru      *pst_event;
@@ -1563,23 +1320,7 @@ OAL_STATIC oal_uint32  hmac_voice_aggr_event(frw_event_mem_stru  *pst_event_mem)
 
 #ifdef _PRE_SUPPORT_ACS
 
-/*****************************************************************************
- 函 数 名  : hmac_config_set_acs_cmd
- 功能描述  : HMAC 层设置DMAC ACS的命令
- 输入参数  : mac_vap_stru *pst_mac_vap
-             oal_uint16 us_len
-             oal_uint8 *puc_param
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月16日
-    作    者   : wangshanbo 00196298
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_config_set_acs_cmd(mac_vap_stru *pst_mac_vap, oal_uint16 us_len, oal_uint8 *puc_param)
 {
     mac_device_stru                *pst_mac_device;
@@ -1633,21 +1374,7 @@ oal_uint32 hmac_config_set_acs_cmd(mac_vap_stru *pst_mac_vap, oal_uint16 us_len,
     return ul_ret;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_handle_acs_response
- 功能描述  : 将DMAC ACS的命令处理结果返回给WAL层
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月16日
-    作    者   : w00196298
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_event_acs_response(frw_event_mem_stru  *pst_event_mem)
 {
     frw_event_stru                     *pst_event;
@@ -1666,21 +1393,7 @@ oal_uint32 hmac_event_acs_response(frw_event_mem_stru  *pst_event_mem)
 #endif /* #ifdef _PRE_SUPPORT_ACS */
 
 #ifdef _PRE_WLAN_FEATURE_FLOWCTL
-/*****************************************************************************
- 函 数 名  : hmac_flowctl_backp_event
- 功能描述  : 将dmac发送流控制反压信息传递给wal层
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月4日
-    作    者   : x00189397
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  hmac_flowctl_backp_event(frw_event_mem_stru  *pst_event_mem)
 {
     frw_event_stru              *pst_hmac_to_wal_event;  /* 指向申请事件的payload指针 */

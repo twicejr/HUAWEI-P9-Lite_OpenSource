@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasHsdCtx.h
-  版 本 号   : 初稿
-  作    者   : g00256031
-  生成日期   : 2014年12月16日
-  最近修改   :
-  功能描述   : CnasHsdCtx.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年12月16日
-    作    者   : g00256031
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __CNAS_HSD_CTX_H__
 #define __CNAS_HSD_CTX_H__
@@ -76,13 +59,7 @@ extern "C" {
 /*****************************************************************************
   3 枚举定义
 *****************************************************************************/
-/*****************************************************************************
- 枚举名    : CNAS_HSD_FSM_ID_ENUM
- 枚举说明  : 状态机ID枚举定义
- 1.日    期   : 2014年12月16日
-   作    者   : g00256031
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CNAS_HSD_FSM_ID_ENUM
 {
     /***********************************************************************
@@ -117,13 +94,7 @@ enum CNAS_HSD_FSM_ID_ENUM
 typedef VOS_UINT32 CNAS_HSD_FSM_ID_ENUM_UINT32;
 
 
-/*****************************************************************************
- 枚举名    : CNAS_HSD_INIT_CTX_TYPE_ENUM
- 结构说明  : 初始化HSD CTX类型
- 1.日    期   : 2014年12月16日
-   作    者   : g00256031
-   修改内容   : 新增
-*****************************************************************************/
+
 enum CNAS_HSD_INIT_CTX_TYPE_ENUM
 {
     CNAS_HSD_INIT_CTX_STARTUP                    = 0,
@@ -134,14 +105,7 @@ enum CNAS_HSD_INIT_CTX_TYPE_ENUM
 typedef VOS_UINT8 CNAS_HSD_INIT_CTX_TYPE_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名    : CNAS_HSD_READ_CARD_FILES_CNF_ENUM
- 结构说明  : 用于标记读取卡文件的回复消息
- 1.日    期   : 2014年12月16日
-   作    者   : g00256031
-   修改内容   : 新增
 
-*****************************************************************************/
 enum   CNAS_HSD_READ_CARD_FILES_CNF_ENUM
 {
     CNAS_HSD_READ_CARD_FILE_FLG_NULL                        = 0x00,
@@ -154,13 +118,7 @@ enum   CNAS_HSD_READ_CARD_FILES_CNF_ENUM
 typedef VOS_UINT32 CNAS_HSD_READ_CARD_FILES_CNF_ENUM_UINT32;
 
 
-/*****************************************************************************
- 枚举名    : CNAS_HSD_SCAN_LIST_BUILD_SCENE_ENUM
- 枚举说明  : 各种系统捕获场景的定义
- 1.日    期   : 2014年12月16日
-   作    者   : g00256031
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CNAS_HSD_SYS_ACQ_SCENE_ENUM
 {
     CNAS_HSD_SYS_ACQ_SCENE_SWITCH_ON  = 0,                  /* 开机 */
@@ -186,13 +144,7 @@ enum CNAS_HSD_SYS_ACQ_SCENE_ENUM
 };
 typedef VOS_UINT32 CNAS_HSD_SYS_ACQ_SCENE_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : CNAS_HSD_SYS_MODE_TYPD_ENUM_UINT32
- 枚举说明  : 系统类型
- 1.日    期   : 2014年12月16日
-   作    者   : g00256031
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CNAS_HSD_SYS_MODE_TYPD_ENUM
 {
     CNAS_HSD_SYS_MODE_HYBRID = 0,
@@ -202,13 +154,7 @@ enum CNAS_HSD_SYS_MODE_TYPD_ENUM
 
 typedef VOS_UINT32 CNAS_HSD_SYS_MODE_TYPD_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : CNAS_HSD_1X_SYSTEM_STATUS_ENUM_UINT32
- 枚举说明  : 1X系统是否有效
- 1.日    期   : 2014年12月16日
-   作    者   : g00256031
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CNAS_HSD_1X_SYSTEM_STATUS_ENUM
 {
     CNAS_HSD_1X_SYSTEM_UNAVAILABLE = 0,
@@ -218,13 +164,7 @@ enum CNAS_HSD_1X_SYSTEM_STATUS_ENUM
 
 typedef VOS_UINT32 CNAS_HSD_1X_SYSTEM_STATUS_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : CNAS_HSD_CAS_SESSION_NEG_STATUS_ENUM
- 枚举说明  : CAS是否处于session negotiation过程
- 1.日    期   : 2015年01月14日
-   作    者   : x00306642
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CNAS_HSD_CAS_SESSION_NEG_STATUS_ENUM
 {
     CNAS_HSD_NOT_IN_SESSION_NEG = 0,
@@ -233,13 +173,7 @@ enum CNAS_HSD_CAS_SESSION_NEG_STATUS_ENUM
 };
 typedef VOS_UINT32 CNAS_HSD_SESSION_NEG_STATUS_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : CNAS_HSD_AT_STATUS_ENUM_UINT32
- 枚举说明  : AT当前所处的状态
- 1.日    期   : 2015年01月14日
-   作    者   : x00306642
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CNAS_HSD_CAS_STATUS_ENUM
 {
     CNAS_HSD_AT_STATUS_ENUM_NONE       = 0x0000,
@@ -251,13 +185,7 @@ enum CNAS_HSD_CAS_STATUS_ENUM
 };
 typedef VOS_UINT32 CNAS_HSD_AT_STATUS_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : CNAS_HSD_AVOID_ITEM_USED_FALG_ENUM
- 枚举说明  : avoid项的使用标记
- 1.日    期   : 2015年01月07日
-   作    者   : x00306642
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CNAS_HSD_AVOID_ITEM_USED_FALG_ENUM
 {
     CNAS_HSD_AVOID_ITEM_UNUSED = 0,
@@ -267,13 +195,7 @@ enum CNAS_HSD_AVOID_ITEM_USED_FALG_ENUM
 };
 typedef VOS_UINT32 CNAS_HSD_AVOID_ITEM_USED_FALG_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : CNAS_HSD_SYS_REACQ_FALG_ENUM
- 枚举说明  : avoid模块通知HSD其他模块需不需要重新搜网
- 1.日    期   : 2015年01月15日
-   作    者   : x00306642
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CNAS_HSD_REACQ_FALG_ENUM
 {
     CNAS_HSD_NOT_NEED_REACQ = 0,
@@ -283,13 +205,7 @@ enum CNAS_HSD_REACQ_FALG_ENUM
 };
 typedef VOS_UINT32 CNAS_HSD_REACQ_FALG_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : CNAS_HSD_AVOID_REASON_ENUM
- 枚举说明  : avoid频点原因
- 1.日    期   : 2015年01月06日
-   作    者   : x00306642
-   修改内容   : 新增
-*****************************************************************************/
+
 enum CNAS_HSD_AVOID_REASON_ENUM
 {
     CNAS_HSD_AVOID_PROTOCAL_MISMATCH = 0,               /* protocal mismatch */
@@ -311,13 +227,7 @@ enum CNAS_HSD_AVOID_REASON_ENUM
 };
 typedef VOS_UINT8 CNAS_HSD_AVOID_REASON_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : CNAS_HSD_ABORT_REASON_ENUM
- 枚举说明  : ABORT频点原因
- 1.日    期   : 2015年04月16日
-   作    者   : z00316370
-   修改内容   : 新增
-*****************************************************************************/
+
 enum CNAS_HSD_ABORT_REASON_ENUM
 {
     CNAS_HSD_ABORT_REASON_POWER_OFF     = 0,                /* POWER_OFF*/
@@ -347,45 +257,22 @@ typedef VOS_UINT8 CNAS_HSD_ABORT_REASON_ENUM_UINT8;
   7 STRUCT定义
 *****************************************************************************/
 
-/*****************************************************************************
- 结构名    : CNAS_HSD_MSG_STRU
- 结构说明  : HSD消息结构，状态机保存的入口消息和CACHE消息都使用此结构
- 1.日    期   : 2014年12月16日
-   作    者   : g00256031
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          ulEventType;
     VOS_UINT8                           aucMsgBuffer[CNAS_HSD_MAX_MSG_BUFFER_LEN];
 }CNAS_HSD_MSG_STRU;
 
-/* Modified by d00212987 for CNAS内存裁剪, 2015-09-18, begin */
-/*****************************************************************************
- 结构名    : CNAS_HSD_CACHE_MSG_INFO_STRU
- 结构说明  : 缓存的消息队列
- 1.日    期   : 2014年12月16日
-   作    者   : g00256031
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucCacheMsgNum;                          /* 缓存消息的个数 */
     VOS_UINT8                           aucReserve[3];
     VOS_UINT8                          *pastCacheMsg[CNAS_HSD_MAX_CACHE_MSG_QUEUE_NUM]; /* XSD的消息队列数组，存储的是带通用消息头的消息 */
 }CNAS_HSD_CACHE_MSG_QUEUE_STRU;
- /* Modified by d00212987 for CNAS内存裁剪, 2015-09-18, end */
 
-/*****************************************************************************
- 结构名    : CNAS_HSD_INT_MSG_QUEUE_STRU
- 结构说明  : 缓存的消息队列
- 1.日    期   : 2015年1月13日
-   作    者   : g00256031
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucIntMsgNum;                                /* 缓存消息的个数 */
@@ -393,40 +280,20 @@ typedef struct
     VOS_UINT8                          *pastIntMsg[CNAS_HSD_MAX_INT_MSG_QUEUE_NUM]; /* HSD的消息队列数组，存放消息指针 */
 }CNAS_HSD_INT_MSG_QUEUE_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_HSD_FSM_L1_MAIN_CTX_STRU
- 结构说明  : 存放开机状态机的上下文信息
-  1.日    期   : 2015年1月21日
-    作    者   : g00256031
-    修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          ulCurAvailableTimerCount;               /* 当前Available Timer启动次数 */
 }CNAS_HSD_FSM_L1_MAIN_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_FSM_SWITCH_ON_CTX_STRU
- 结构说明  : 存放开机状态机的上下文信息
-  1.日    期   : 2015年1月21日
-    作    者   : g00256031
-    修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          ulHsdReadCardFileFlg;                   /* 标记卡文件是否读取完成 */
     VOS_UINT8                           aucReserved[4];
 }CNAS_HSD_FSM_SWITCH_ON_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_HSD_FSM_SYS_ACQ_CTX_STRU
- 结构说明  : 存放SYS ACQ状态机的上下文信息
-  1.日    期   : 2015年1月21日
-    作    者   : g00256031
-    修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                               ucAbortFlg;         /* 当前状态机标志是否收到终止要求,VOS_TRUE:收到, VOS_FALSE:未收到 */
@@ -434,13 +301,7 @@ typedef struct
     VOS_UINT8                                               aucRsved[2];
 }CNAS_HSD_FSM_SYS_ACQ_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_HSD_FSM_Inter_Sys_CTX_STRU
- 结构说明  : 存放Inter Sys状态机的上下文信息
-  1.日    期   : 2015年06月03日
-    作    者   : z00316370
-    修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                               ucAbortFlg;         /* 当前状态机标志是否收到终止要求,VOS_TRUE:收到, VOS_FALSE:未收到 */
@@ -448,16 +309,7 @@ typedef struct
     VOS_UINT8                                               aucRsved[2];
 }CNAS_HSD_FSM_INTER_SYS_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_HSD_FSM_EXTRA_CTX_UNION
- 结构说明  : 状态机状态描述结构,状态机上下文信息
- 1.日    期   : 2014年12月16日
-   作    者   : g00256031
-   修改内容   : 新建
- 2.日    期   : 2015年06月03日
-   作    者   : z00316370
-   修改内容   : 增加异系统上下文信息
-*****************************************************************************/
+
 typedef union
 {
     CNAS_HSD_FSM_L1_MAIN_CTX_STRU       stL1MainCtx;
@@ -466,14 +318,7 @@ typedef union
     CNAS_HSD_FSM_INTER_SYS_CTX_STRU     stInterSysCtx;
 }CNAS_HSD_FSM_EXTRA_CTX_UNION;
 
-/*****************************************************************************
- 结构名    : CNAS_HSD_FSM_CTX_STRU
- 结构说明  : 状态机状态描述结构
- 1.日    期   : 2014年12月16日
-   作    者   : g00256031
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     /* 状态机描述指针,指针为NULL表示当前状态机无效  */
@@ -498,13 +343,7 @@ typedef struct
     CNAS_HSD_FSM_EXTRA_CTX_UNION        unFsmCtx;
 }CNAS_HSD_FSM_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_HSD_FSM_STACK_STRU
- 结构说明  : 状态机栈描述结构
- 1.日    期   : 2014年12月16日
-   作    者   : g00256031
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usStackDepth;                           /* 当前压栈的状态机数 */
@@ -512,28 +351,14 @@ typedef struct
     CNAS_HSD_FSM_CTX_STRU               astFsmStack[CNAS_HSD_MAX_FSM_STACK_DEPTH];  /* 状态机栈的深度 */
 }CNAS_HSD_FSM_STACK_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_HSD_1X_SYSTEM_INFO_STRU
- 结构说明  : 1X系统信息
-  1.日    期   : 2014年12月16日
-    作    者   : g00256031
-    修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     CNAS_HSD_1X_SYSTEM_STATUS_ENUM_UINT32       enStatus;                       /* 指示当前1X系统是否有效 */
     CNAS_PRL_1X_SYSTEM_STRU                     st1xSys;                        /* 存放当前1X系统信息 */
 }CNAS_HSD_1X_SYSTEM_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_HSD_EVDO_MRU_LIST_STRU
- 结构说明  : hrpd系统MRU结构体
- 1.日    期   : 2014年12月16日
-   作    者   : g00256031
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucCurrMruNum;                           /* 指示当前MRU个数 */
@@ -541,14 +366,7 @@ typedef struct
     CNAS_PRL_HRPD_SYSTEM_STRU           astHrpdSys[CNAS_HSD_MAX_MRU_SYS_NUM];   /* 存放MRU信息 */
 }CNAS_HSD_HRPD_MRU_LIST_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_HSD_AVOID_FREQ_INFO_STRU
- 结构说明  : hrpd系统avoid表项信息
- 1.日    期   : 2015年01月06日
-   作    者   : x00306642
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     CNAS_HSD_AVOID_ITEM_USED_FALG_ENUM_UINT32               enUsedFlag;                 /* 使用标志 */
@@ -557,14 +375,7 @@ typedef struct
     CNAS_PRL_FREQENCY_CHANNEL_STRU                          stAvoidFreq;
 }CNAS_HSD_AVOID_FREQ_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_HSD_AVOID_FREQ_LIST_STRU
- 结构说明  : hrpd系统avoid表信息
- 1.日    期   : 2015年01月06日
-   作    者   : x00306642
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucAvoidItemUsedNum;
@@ -573,26 +384,13 @@ typedef struct
     CNAS_HSD_AVOID_FREQ_INFO_STRU       astAvoidFreqInfo[CNAS_HSD_MAX_AVOID_FREQ_NUM];
 }CNAS_HSD_AVOID_FREQ_LIST_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_HSD_SUBNET_STRU
- 结构说明  : 只存放subnet的结构体
- 1.日    期   : 2015年01月06日
-   作    者   : x00306642
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           aucSubnet[CNAS_PRL_BYTES_IN_SUBNET];
 }CNAS_HSD_SUBNET_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_HSD_HRPD_SYS_REC_ITEM_STRU
- 结构说明  : 系统表中HRPD项信息
- 1.日    期   : 2014年12月10日
-   作    者   : g00256031
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                                              usAcqIndex;         /* 此系统记录指向的ACQ表的Index */
@@ -602,13 +400,7 @@ typedef struct
     VOS_UINT8                                               aucRcv[2];
 }CNAS_HSD_HRPD_SYS_REC_ITEM_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_HSD_HRPD_SYS_LIST_STRU
- 结构说明  : 系统表中HRPD项表的信息
- 1.日    期   : 2014年12月10日
-   作    者   : c00299064
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usHrpdSysNum;                           /* 有效的HRPD系统信息个数 */
@@ -616,13 +408,7 @@ typedef struct
     CNAS_HSD_HRPD_SYS_REC_ITEM_STRU    *pstHrpdSysItem;                         /* 指向存放HRPD系统记录内存的指针 */
 }CNAS_HSD_HRPD_SYS_LIST_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_HSD_HRPD_SCAN_FREQ_ITEM_STRU
- 结构说明  : HRPD搜网表项信息
- 1.日    期   : 2014年12月10日
-   作    者   : g00256031
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                               ucPrioLevel;        /* 此频点的优先级，从0开始优先级逐渐降低 */
@@ -631,13 +417,7 @@ typedef struct
     CNAS_PRL_FREQENCY_CHANNEL_STRU                          stFreq;             /* 频点信息 */
 }CNAS_HSD_HRPD_SCAN_FREQ_ITEM_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_HSD_HRPD_SCAN_FREQ_LIST_STRU
- 结构说明  : HRPD搜网表信息
- 1.日    期   : 2014年12月10日
-   作    者   : g00256031
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usTotalFreqNum;                         /* 全部频点个数，对于整个申请空间大小 */
@@ -648,14 +428,7 @@ typedef struct
     CNAS_HSD_HRPD_SCAN_FREQ_ITEM_STRU  *pstScanFreqItem;                        /* 指向存放HRPD频点信息内存的指针 */
 }CNAS_HSD_HRPD_SCAN_FREQ_LIST_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_HSD_CTX_STRU
- 结构说明  : CNAS HSD 模块运行上下文
- 1.日    期   : 2015年1月12日
-   作    者   : d00212987
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                                               ucChanNum;
@@ -663,28 +436,14 @@ typedef struct
     CAS_CNAS_HRPD_DERECTION_CHANNEL_STRU                    aulChannel[CAS_CNAS_HRPD_MAX_REDIRECT_CH_NUM]; /**< Number of frequencies included in list */
 } CNAS_HSD_REDIRECTION_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_HSD_SYSTEM_ACQUIRE_FREQ_INFO_STRU
- 结构说明  : 高优先级搜网频点信息
- 1.日    期   : 2015年04月07日
-   作    者   : z00316370
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     CNAS_PRL_FREQENCY_CHANNEL_STRU              astFreq;             /* 存放HRPD的频点信息 */
     CNAS_HSD_HRPD_SYS_REC_ITEM_STRU             stHrpdSysItem;       /* 高优先级网对应的HRPD系统信息 */
 } CNAS_HSD_SYSTEM_ACQUIRE_FREQ_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_HSD_HIGHPRIORITY_STRU
- 结构说明  : 高优先级搜网频点信息列表
- 1.日    期   : 2015年04月07日
-   作    者   : z00316370
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                                   ucFreqNum;                                      /* 频点个数 */
@@ -693,14 +452,7 @@ typedef struct
 } CNAS_HSD_HIGHPRIORITY_STRU;
 
 
-/*****************************************************************************
 
- 结构名    : CNAS_HSD_OOC_CTX_INFO_STRU
- 结构说明  : OOC上下文信息
- 1.日    期   : 2015年1月13日
-   作    者   : z00316370
-   修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                                               ucWaitSearchFlag;           /* OOC等待搜索标志，即在MRU0搜索时，OOC定时器到期 */
@@ -711,26 +463,14 @@ typedef struct
     CNAS_HSD_SYS_ACQ_SCENE_ENUM_UINT32                      enOocSearchScene;
 }CNAS_HSD_OOC_CTX_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_HSD_OOC_TIMER_INFO_STRU
- 结构说明  : OOC搜网定时器信息
- 1.日    期   : 2015年1月13日
-   作    者   : z00316370
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usTimes;
     VOS_UINT16                          usTimerLen;
 }CNAS_HSD_OOC_TIMER_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_OOC_CONFIG_INFO_STRU
- 结构说明  : OOC搜网调度信息, 所有信息源与NV配置
- 1.日    期   : 2015年1月13日
-   作    者   : z00316370
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                               ucMru0SearchTimerLen;       /* 搜索MRU0时长 */
@@ -739,27 +479,14 @@ typedef struct
     CNAS_HSD_OOC_TIMER_INFO_STRU                            astOocTimerInfo[CNAS_HSD_MAX_OOC_SCHEDULE_PHASE_NUM];
 }CNAS_HSD_OOC_CONFIG_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_HSD_OOC_SCHEDULE_INFO_STRU
- 结构说明  : out of cell相关信息
- 1.日    期   : 2015年1月13日
-   作    者   : z00316370
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     CNAS_HSD_OOC_CTX_INFO_STRU                              stOocCtxInfo;
     CNAS_HSD_OOC_CONFIG_INFO_STRU                           stConfigInfo;               /* 保存OOC场景下，搜网配置信息 */
 }CNAS_HSD_OOC_SCHEDULE_INFO_STRU;
 
-/*****************************************************************************
 
- 枚举名    : CNAS_HSD_HRPD_SYSTEM_STATUS_ENUM
- 枚举说明  : HRPD系统是否有效
- 1.日    期   : 2015年1月12日
-   作    者   : d00212987
-   修改内容   : 新增
-*****************************************************************************/
 enum CNAS_HSD_HRPD_SYSTEM_STATUS_ENUM
 {
     CNAS_HSD_HRPD_SYSTEM_UNAVAILABLE = 0,
@@ -769,42 +496,21 @@ enum CNAS_HSD_HRPD_SYSTEM_STATUS_ENUM
 
 typedef VOS_UINT32 CNAS_HSD_HRPD_SYSTEM_STATUS_ENUM_UINT32;
 
-/*****************************************************************************
- 结构名    : CNAS_HSD_CAMPED_SYS_INFO_STRU
- 结构说明  : 驻留成功的系统信息
- 1.日    期   : 2015年1月12日
-   作    者   : d00212987
-   修改内容   : 新增
 
-*****************************************************************************/
 typedef struct
 {
     CNAS_HSD_HRPD_SYSTEM_STATUS_ENUM_UINT32                 enStatus;
     CNAS_PRL_HRPD_SYSTEM_STRU                               stCampedHrpdSysInfo;
 }CNAS_HSD_HRPD_SYSTEM_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_HSD_HISTORY_SYS_LIST_STRU
- 结构说明  : 开机后 驻留成功的系统信息
- 1.日    期   : 2015年1月12日
-   作    者   : x00306642
-   修改内容   : 新增
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          ulTotalNum;
     CNAS_PRL_HRPD_SYSTEM_STRU           stCampedHrpdSysInfo[CNAS_HSD_HRPD_ACQED_SUCC_SYS_MAX_NUM];
 }CNAS_HSD_HISTORY_SYS_LIST_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_HSD_NETWORK_LOST_SYS_RECORD_STRU
- 结构说明  : 系统连续丢网记录
- 1.日    期   : 2015年06月04日
-   作    者   : z00316370
-   修改内容   : 新增
 
-*****************************************************************************/
 typedef struct
 {
     CNAS_PRL_HRPD_SYSTEM_STRU           stHrpdSys;
@@ -813,14 +519,7 @@ typedef struct
     VOS_UINT8                           aucResv[3];
 }CNAS_HSD_NETWORK_LOST_SYS_RECORD_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_HSD_CFREQ_LOCK_SET_PARA_STRU
- 结构说明  : CNAS HSD 锁频信息
- 1.日    期   : 2015年07月14日
-   作    者   : x00306642
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                                       ucFreqLockMode;
@@ -831,14 +530,7 @@ typedef struct
 }CNAS_HSD_CFREQ_LOCK_SET_PARA_STRU;
 
 
-/*****************************************************************************
- 结构名    : CNAS_HSD_MATCHED_HRPD_SYS_INDEX_LIST_STRU
- 结构说明  : 最匹配的HRPD系统的系统表索引值
- 1.日    期   : 2015年12月30日
-   作    者   : z00316370
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16                          usIndexNum;
@@ -847,14 +539,7 @@ typedef struct
 }CNAS_HSD_MATCHED_HRPD_SYS_INDEX_LIST_STRU;
 
 
-/*****************************************************************************
- 结构名    : CNAS_HSD_SYSTEM_ACQUIRE_CTRL_STRU
- 结构说明  : hrpd搜网控制结构体
- 1.日    期   : 2014年12月16日
-   作    者   : g00256031
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     CNAS_HSD_SYS_MODE_TYPD_ENUM_UINT32                      enModeType;         /* 区分混合和非混合模式 */
@@ -877,14 +562,7 @@ typedef struct
 
 }CNAS_HSD_SYSTEM_ACQUIRE_CTRL_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_HSD_SYSTEM_ASSIST_INFO_STRU
- 结构说明  : 系统辅助信息记录
- 1.日    期   : 2014年12月16日
-   作    者   : g00256031
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     CNAS_HSD_SYS_ACQ_SCENE_ENUM_UINT32                      enNoRfScene;
@@ -899,13 +577,7 @@ typedef struct
     VOS_UINT8                                               aucResv[3];
 }CNAS_HSD_SYSTEM_ASSIST_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_HSD_TEST_CONFIG_STRU
- 结构说明  : CNAS HSD 测试控制
- 1.日    期   : 2015年10月20日
-   作    者   : z00316370
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucReadNvPrlDirectly;
@@ -914,14 +586,7 @@ typedef struct
     VOS_UINT8                           ucReserve;
 }CNAS_HSD_TEST_CONFIG_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_HSD_CTX_STRU
- 结构说明  : CNAS HSD 模块运行上下文
- 1.日    期   : 2014年12月16日
-   作    者   : g00256031
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     /**************************************************************************
@@ -966,12 +631,10 @@ extern VOS_VOID CNAS_HSD_InitFsmStackCtx(
     CNAS_HSD_FSM_STACK_STRU            *pstFsmStack
 );
 
-/* Modified by d00212987 for CNAS内存裁剪, 2015-09-18, begin */
 extern VOS_VOID CNAS_HSD_InitCacheMsgQueue(
     CNAS_HSD_CACHE_MSG_QUEUE_STRU      *pstCacheMsgQueue,
     CNAS_HSD_INIT_CTX_TYPE_ENUM_UINT8   enInitType
 );
-/* Modified by d00212987 for CNAS内存裁剪, 2015-09-18, end */
 
 extern VOS_VOID CNAS_HSD_InitSysRecList(
     CNAS_HSD_INIT_CTX_TYPE_ENUM_UINT8   enInitType,

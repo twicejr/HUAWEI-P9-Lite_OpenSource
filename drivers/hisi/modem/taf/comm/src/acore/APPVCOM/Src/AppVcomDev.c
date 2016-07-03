@@ -142,62 +142,19 @@ APP_VCOM_DEBUG_CFG_STRU              g_stAppVcomDebugCfg;
 /*****************************************************************************
    4 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : APP_VCOM_GetVcomCtxAddr
- 功能描述  : 获取当前设备的全局变量
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : APP_VCOM_DEV_CTX_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月5日
-    作    者   : z00220246
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 APP_VCOM_DEV_CTX_STRU* APP_VCOM_GetVcomCtxAddr(VOS_UINT8 ucIndex)
 {
     return &(g_astVcomCtx[ucIndex]);
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VCOM_GetAppVcomDevEntity
- 功能描述  : 获取当前VCOM的设备实体指针
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  :
- 返 回 值  : 返回当前VCOM的设备实体
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2012年12月03日
-   作    者   : z00220246
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 APP_VCOM_DEV_ENTITY_STRU* APP_VCOM_GetAppVcomDevEntity(VOS_UINT8 ucIndex)
 {
     return (g_astVcomCtx[ucIndex].pstAppVcomDevEntity);
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VCOM_RegDataCallback
- 功能描述  : VCOM上行数据处理模块为AT模块提供的注册上行AT码流接收函数接口
- 输入参数  : VOS_UINT8  ucDevIndex,    SEND_UL_AT_FUNC pFunc
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年11月23日
-    作    者   : z00220246
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 APP_VCOM_RegDataCallback(VOS_UINT8 ucDevIndex, SEND_UL_AT_FUNC pFunc)
 {
     APP_VCOM_DEV_CTX_STRU              *pstVcomCtx;
@@ -216,22 +173,7 @@ VOS_UINT32 APP_VCOM_RegDataCallback(VOS_UINT8 ucDevIndex, SEND_UL_AT_FUNC pFunc)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VCOM_RegEvtCallback
- 功能描述  : VCOM为外部模块提供的注册端口事件处理函数接口
- 输入参数  : VOS_UINT8  ucDevIndex,    EVENT_FUNC pFunc
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年11月23日
-    作    者   : z00220246
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 APP_VCOM_RegEvtCallback(VOS_UINT8 ucDevIndex, EVENT_FUNC pFunc)
 {
     APP_VCOM_DEV_CTX_STRU              *pstVcomCtx;
@@ -250,22 +192,7 @@ VOS_UINT32 APP_VCOM_RegEvtCallback(VOS_UINT8 ucDevIndex, EVENT_FUNC pFunc)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VCOM_GetIndexFromMajorDevId
- 功能描述  : 根据主设备号，得到设备在全局变量中的索引号
- 输入参数  : VOS_UINT32 ulMajorDevId
- 输出参数  : 无
- 返 回 值  : VOS_UINT8 设备索引号
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年11月23日
-    作    者   : z00220246
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 APP_VCOM_GetIndexFromMajorDevId(VOS_UINT ulMajorDevId)
 {
     VOS_UINT8                           ucLoop;
@@ -284,21 +211,7 @@ VOS_UINT8 APP_VCOM_GetIndexFromMajorDevId(VOS_UINT ulMajorDevId)
     return ucLoop;
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VCOM_InitSpecCtx
- 功能描述  : 初始化VCOM 模块全局变量
- 输入参数  : VOS_UINT8 ulDevIndex
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月23日
-    作    者   : z00220246
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  APP_VCOM_InitSpecCtx(VOS_UINT8 ucDevIndex)
 {
     APP_VCOM_DEV_CTX_STRU              *pstVcomCtx;
@@ -324,26 +237,7 @@ VOS_VOID  APP_VCOM_InitSpecCtx(VOS_UINT8 ucDevIndex)
     pstVcomCtx->ulAppVcomMajorId = APP_VCOM_MAJOR_DEV_ID + ucDevIndex;
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VCOM_Setup
- 功能描述  : 将虚拟串口添加到字符设备中
- 输入参数  : APP_VCOM_DEV_ENTITY_STRU *pstDev
-             VOS_UINT8                 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : sunshaohua
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年11月23日
-    作    者   : z00220246
-    修改内容   : DSDA Phase I
-
-*****************************************************************************/
 VOS_VOID APP_VCOM_Setup(
     APP_VCOM_DEV_ENTITY_STRU *pstDev,
     VOS_UINT8                 ucIndex
@@ -382,33 +276,7 @@ VOS_VOID APP_VCOM_Setup(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VCOM_Init
- 功能描述  : 虚拟串口初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_OK    成功
-             VOS_ERR   失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : sunshaohua
-    修改内容   : 新生成函数
-  2.日    期   : 2012年11月23日
-    作    者   : z00220246
-    修改内容   : DSDA Phase I
-  3.日    期   : 2013年08月01日
-    作    者   : j00177245
-    修改内容   : 调整appvcom初始化时序
-  4.日    期   : 2013年10月25日
-    作    者   : j00177245
-    修改内容   : 增加appvcom可维可测记录到文件
-  5.日    期   : 2014年4月22日
-    作    者   : A00165503
-    修改内容   : DTS2014042208020: 增加写信号量初始化
-*****************************************************************************/
 VOS_INT __init APP_VCOM_Init(VOS_VOID)
 {
     VOS_INT                             iResult1;
@@ -502,21 +370,7 @@ VOS_INT __init APP_VCOM_Init(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VCOM_Release
- 功能描述  : 文件关闭函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_OK    成功
-             VOS_ERROR   失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月14日
-    作    者   : sunshaohua
-    修改内容   : 新生成函数
-*****************************************************************************/
 int APP_VCOM_Release(
     struct inode                       *inode,
     struct file                        *filp
@@ -568,24 +422,7 @@ int APP_VCOM_Release(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VCOM_Open
- 功能描述  : 文件打开函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_OK    成功
-             VOS_ERROR   失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月14日
-    作    者   : sunshaohua
-    修改内容   : 新生成函数
-  2.日    期   : 2012年11月23日
-    作    者   : z00220246
-    修改内容   : DSDA Phase I
-*****************************************************************************/
 int APP_VCOM_Open(
     struct inode                       *inode,
     struct file                        *filp
@@ -636,32 +473,7 @@ int APP_VCOM_Open(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VCOM_Read
- 功能描述  : 虚拟串口读操作
- 输入参数  : struct file *stFilp
-             char __user *buf
-             size_t       count
-             loff_t      *ppos
- 输出参数  : 无
- 返 回 值  : ssize_t
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : sunshaohua
-    修改内容   : 新生成函数
-  2.日    期   : 2012年11月23日
-    作    者   : z00220246
-    修改内容   : DSDA Phase I
-  3.日    期   : 2013年08月01日
-    作    者   : j00177245
-    修改内容   : 调整appvcom初始化时序
-  4.日    期   : 2013年10月28日
-    作    者   : f00179208
-    修改内容   : DTS2013102801414:手机打电话及挂电话慢，上层读VCOM会读到0字节的长度
-*****************************************************************************/
 ssize_t APP_VCOM_Read(
     struct file                        *stFilp,
     char __user                        *buf,
@@ -760,32 +572,7 @@ ssize_t APP_VCOM_Read(
     return (ssize_t)count;
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VCOM_Write
- 功能描述  : 虚拟串口写操作
- 输入参数  : struct file       *stFilp
-             const char __user *buf
-             size_t             count
-             loff_t            *ppos
- 输出参数  : 无
- 返 回 值  : ssize_t
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : sunshaohua
-    修改内容   : 新生成函数
-  2.日    期   : 2012年11月23日
-    作    者   : z00220246
-    修改内容   : DSDA Phase I
-  3.日    期   : 2013年10月25日
-    作    者   : j00177245
-    修改内容  :  增加appvcom可维可测记录到文件
-  4.日    期   : 2014年4月22日
-    作    者   : A00165503
-    修改内容   : DTS2014042208020: 增加APPVCOM9和APPVCOM12的缓存处理
-*****************************************************************************/
 ssize_t APP_VCOM_Write(
     struct file                        *stFilp,
     const char __user                  *buf,
@@ -907,22 +694,7 @@ ssize_t APP_VCOM_Write(
     return (ssize_t)count;
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VCOM_Poll
- 功能描述  : 虚拟串口POLL
- 输入参数  : struct file *fp
-             struct poll_table_struct *wait
- 输出参数  : 无
- 返 回 值  : 0
-             POLLIN | POLLRDNORM
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月6日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 unsigned int APP_VCOM_Poll(struct file *fp, struct poll_table_struct *wait)
 {
     APP_VCOM_DEV_ENTITY_STRU           *pstVcomDev = VOS_NULL_PTR;
@@ -950,34 +722,7 @@ unsigned int APP_VCOM_Poll(struct file *fp, struct poll_table_struct *wait)
     return mask;
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VCOM_Send
- 功能描述  : 接收AT模块的码流，写入设备中
- 输入参数  : APP_VCOM_DEV_INDEX_UINT8 enDevIndex
-             VOS_UINT8  *pData
-             VOS_UINT32 uslength
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月20日
-    作    者   : lijun 00171473
-    修改内容   : 新生成函数
-  2.日    期   : 2012年11月23日
-    作    者   : z00220246
-    修改内容   : DSDA Phase I
-  3.日    期   : 2013年08月01日
-    作    者   : j00177245
-    修改内容   : 调整appvcom初始化时序
-  4.日    期   : 2013年10月25日
-    作    者   : j00177245
-    修改内容   : 增加appvcom可维可测记录到文件
-  5.日    期   : 2014年4月22日
-    作    者   : A00165503
-    修改内容   : DTS2014042208020: 增加APPVCOM9和APPVCOM12的缓存处理
-*****************************************************************************/
 VOS_UINT32  APP_VCOM_Send (
     APP_VCOM_DEV_INDEX_UINT8            enDevIndex,
     VOS_UINT8                          *pData,
@@ -1091,20 +836,7 @@ VOS_UINT32  APP_VCOM_Send (
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VCOM_ShowDebugInfo
- 功能描述  : 打印appvcom的可维可测信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年09月21日
-    作    者   : j00174725
-    修改内容  : 新增函数
-*****************************************************************************/
 VOS_VOID APP_VCOM_ShowDebugInfo(VOS_VOID)
 {
     int                                 i;
@@ -1123,20 +855,7 @@ VOS_VOID APP_VCOM_ShowDebugInfo(VOS_VOID)
 }
 
 #if (VOS_WIN32 == VOS_OS_VER)
-/*****************************************************************************
- 函 数 名  : APP_VCOM_FreeMem
- 功能描述  : APPVCOM 分配内存释放函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月24日
-    作    者   : j00174725
-    修改内容  : 新增函数
-*****************************************************************************/
 VOS_VOID APP_VCOM_FreeMem(VOS_VOID)
 {
     APP_VCOM_DEV_CTX_STRU              *pstVcomCtx;
@@ -1170,20 +889,7 @@ VOS_VOID APP_VCOM_FreeMem(VOS_VOID)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : APP_VCOM_SendDebugNvCfg
- 功能描述  : 接收关于VCOM Debug 配置相关的NV项
- 输入参数  : VOS_UINT32 ulAppVcomDebugNvCfg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月03日
-    作    者   : n00269697
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID APP_VCOM_SendDebugNvCfg(
     VOS_UINT32                          ulPortIdMask,
     VOS_UINT32                          ulDebugLevel
@@ -1193,21 +899,7 @@ VOS_VOID APP_VCOM_SendDebugNvCfg(
     g_stAppVcomDebugCfg.ulDebugLevel = ulDebugLevel;
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VCOM_MNTN_LogPrintf
- 功能描述  : APP VCOM可维可测LOG输出
- 输入参数  : VOS_CHAR *pcFmt
-             ...
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月03日
-    作    者   : N00269697
-    修改内容   : 新生成函数
-*****************************************************************************/
 /*lint -esym(960,69)*/
 VOS_VOID APP_VCOM_MNTN_LogPrintf(VOS_CHAR *pcFmt, ...)
 {

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmcProcSuspend.h
-  版 本 号   : 初稿
-  作    者   : w00176964
-  生成日期   : 2011年8月03日
-  最近修改   :
-  功能描述   : NasMmcProcSuspend.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年8月03日
-    作    者   : w00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 其他头文件包含
@@ -112,7 +95,6 @@ MMC_SUSPEND_CAUSE_ENUM_UINT8       NAS_MMC_GetSuspendCause(
     NAS_MMC_ENTRY_MSG_STRU             *pstEntryMsg
 );
 
-/* Added by s00246516 for L-C互操作项目, 2014-02-19, Begin */
 #if ((FEATURE_ON == FEATURE_CL_INTERWORK) || ((FEATURE_ON == FEATURE_UE_MODE_CDMA) && (FEATURE_ON == FEATURE_LTE)))
 VOS_UINT32 NAS_MMC_IsInterSysReselectToHrpd(
     NAS_MMC_ENTRY_MSG_STRU             *pstEntryMsg
@@ -122,7 +104,6 @@ MMC_LMM_SYS_CHNG_TYPE_ENUM_UINT32 NAS_MMC_ConvertMsccInterSysCauseToMmcFormat(
     NAS_MSCC_PIF_INTERSYS_CAUSE_ENUM_UINT32                 enMsccSuspendCause
 );
 #endif
-/* Added by s00246516 for L-C互操作项目, 2014-02-19, End */
 
 #if (FEATURE_ON == FEATURE_LTE)
 

@@ -48,7 +48,6 @@ extern    "C"{
 #define TCP6_MSS                         1024
 #define TCP6_INITIAL_SEQ                 0
 
-/*Added by likaikun00213099, 修改支持MCCP信令面设置MSS, 2013/12/18 */
 /* the max ethernet mtu is 1500,
 *  decrease IP6 head(40),TCP6 head(20)
 */

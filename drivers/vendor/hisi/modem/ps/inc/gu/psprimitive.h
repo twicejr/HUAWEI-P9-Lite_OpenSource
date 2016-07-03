@@ -1,17 +1,4 @@
-/*******************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : Psprimitive.h
-  Version     : V100R001
-  Date        : 2005-04-19
-  Description :
-  History     :
-  1. Date:2005-04-19
-     Author: w29695
-     Modification:Create
-  2.日    期   : 2006年5月19日
-    作    者   : liuyang id:48197
-    修改内容   : 问题单号:A32D03487
-*******************************************************************************/
+
 
 #ifndef _PS_INTER_PRIMITIVE_H_
 #define _PS_INTER_PRIMITIVE_H_

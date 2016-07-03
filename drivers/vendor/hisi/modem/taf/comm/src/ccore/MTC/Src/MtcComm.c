@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2013, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : MtcComm.c
-  版 本 号   : 初稿
-  作    者   : l00198894
-  生成日期   : 2013年08月19日
-  最近修改   :
-  功能描述   : MTC模块Modem状态公共消息处理文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年08月19日
-    作    者   : l00198894
-    修改内容   : 新生成
-
-******************************************************************************/
 /*****************************************************************************
   1 头文件包含
 *****************************************************************************/
@@ -30,11 +13,9 @@
 #include "CmmcaMtcInterface.h"
 #include "MtcRfLcdIntrusion.h"
 
-/* Add by j00174725 for K3V3 多模多天线特性, 2014-06-16, Begin */
 #include "ImsaMtcInterface.h"
 #include "TafMtcApi.h"
 #include "MtcMrma.h"
-/* Add by j00174725 for K3V3 多模多天线特性, 2014-06-16, End */
 #include  "NVIM_Interface.h"
 #include "MtcCalcFreq.h"
 
@@ -46,9 +27,7 @@ extern "C" {
 
 /*lint -e958*/
 
-/*lint -e767 修改人: l00198894; */
 #define    THIS_FILE_ID        PS_FILE_ID_MTC_COMM_C
-/*lint +e767 修改人: l00198894; */
 
 /*****************************************************************************
   2 全局变量定义
@@ -57,27 +36,7 @@ extern "C" {
 /*****************************************************************************
   3 函数定义
 *****************************************************************************/
-/* Added by l00198894 for V9R1 Notch Bypass项目, 2013-12-21, begin */
-/*****************************************************************************
- 函 数 名  : MTC_GetIntrusionActionEnableFlag
- 功能描述  : 获取频段信息上报使能标志
- 输入参数  : PS_BOOL_ENUM_UINT8 enFlag
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月21日
-    作    者   : l00198894
-    修改内容   : V9R1 Notch Bypass项目
-  2.日    期   : 2014年02月13日
-    作    者   : f00179208
-    修改内容   : Jazz Narrow Band dcs项目
-  3.日    期   : 2014年3月24日
-    作    者   : A00165503
-    修改内容   : B39&B32 Intrusion
-*****************************************************************************/
 PS_BOOL_ENUM_UINT8 MTC_GetIntrusionActionEnableFlag(VOS_VOID)
 {
     MTC_CFG_ENUM_UINT8                  enIntrusionCfg;
@@ -100,24 +59,8 @@ PS_BOOL_ENUM_UINT8 MTC_GetIntrusionActionEnableFlag(VOS_VOID)
 
     return PS_FALSE;
 }
-/* Added by l00198894 for V9R1 Notch Bypass项目, 2013-12-21, end */
 
-/*****************************************************************************
- 函 数 名  : MTC_GetOtherModemId
- 功能描述  : 获取另一个ModemID
- 输入参数  : enModemId          -- 源ModemID
-             penOtherModemId    -- 另一个ModemID
- 输出参数  : 无
- 返 回 值  : VOS_OK             -- 获取成功
-             VOS_ERR            -- 获取失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年01月17日
-    作    者   : l00198894
-    修改内容   : V9R1C53 C+L 离网重选项目
-*****************************************************************************/
 VOS_UINT32 MTC_GetOtherModemId(
     MODEM_ID_ENUM_UINT16                enModemId,
     MODEM_ID_ENUM_UINT16               *penOtherModemId
@@ -139,20 +82,7 @@ VOS_UINT32 MTC_GetOtherModemId(
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : MTC_ProcModem0BufMsg
- 功能描述  : MTC模块处理缓存消息
- 输入参数  : VOS_VOID
- 输出参数  : VOS_VOID
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月13日
-    作    者   : l00198894
-    修改内容   : V9R1 干扰控制项目
-*****************************************************************************/
 VOS_VOID MTC_ProcModem0BufMsg(VOS_VOID)
 {
     MTC_MSG_BUF_STRU                       *pstBufAddr     = VOS_NULL_PTR;
@@ -192,20 +122,7 @@ VOS_VOID MTC_ProcModem0BufMsg(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_RcvMmaRatModeInd
- 功能描述  : MTC模块接收MMA模块通知的接入模式信息
- 输入参数  : MsgBlock* pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月13日
-    作    者   : l00198894
-    修改内容   : V9R1 干扰控制项目
-*****************************************************************************/
 VOS_VOID MTC_RcvMmaRatModeInd(VOS_VOID *pMsg)
 {
     MMA_MTC_RAT_MODE_IND_STRU              *pstRatMode          = VOS_NULL_PTR;
@@ -241,38 +158,7 @@ VOS_VOID MTC_RcvMmaRatModeInd(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_RcvMmaCurrCampPlmnInfoInd
- 功能描述  : MTC模块接收MMA模块通知的当前驻留plmn相关信息
- 输入参数  : MsgBlock* pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月23日
-    作    者   : z00161729
-    修改内容   : SVLTE优化G-TL ps切换性能修改
-  2.日    期   : 2013年12月24日
-    作    者   : z00161729
-    修改内容   : SVLTE支持NCELL搜网
-  3.日    期   : 2014年1月6日
-    作    者   : z00161729
-    修改内容   : DTS2014010202583:SVLTE优化G-TL ps切换性能修改
-  4.日    期   : 2014年01月17日
-    作    者   : l00198894
-    修改内容   : V9R1C53 C+L 离网重选项目
-  5.日    期   : 2014年11月17日
-    作    者   : l00198894
-    修改内容   : ECID命令产品线定制需求
-  6.日    期   : 2015年01月07日
-    作    者   : l00198894
-    修改内容   : DTS2015010702687: 中国区跳过W搜网不生效
-  3.日    期   : 2015年05月30日
-    作    者   : w00281933
-    修改内容   : TSTS
-*****************************************************************************/
 VOS_VOID MTC_RcvMmaCurrCampPlmnInfoInd(VOS_VOID *pMsg)
 {
     VOS_UINT32                                  ulPid;
@@ -368,26 +254,7 @@ VOS_VOID MTC_RcvMmaCurrCampPlmnInfoInd(VOS_VOID *pMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : MTC_RcvMmaEplmnInfoInd
- 功能描述  : MTC模块接收MMA模块通知的当前驻留plmn等效plmn信息
- 输入参数  : MsgBlock* pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月24日
-    作    者   : z00161729
-    修改内容   : SVLTE支持NCELL搜网
-  2.日    期   : 2014年01月17日
-    作    者   : l00198894
-    修改内容   : V9R1C53 C+L 离网重选项目
-  3.日    期   : 2015年05月30日
-    作    者   : w00281933
-    修改内容   : Modified for The TSTS Project
-*****************************************************************************/
 VOS_VOID MTC_RcvMmaEplmnInfoInd(VOS_VOID *pMsg)
 {
     VOS_UINT32                                              ulPid;
@@ -432,27 +299,7 @@ VOS_VOID MTC_RcvMmaEplmnInfoInd(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_RcvRrcNcellInfoInd
- 功能描述  : gas上报tds和l的频点信息消息处理
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月24日
-    作    者   : z00161729
-    修改内容   : SVLTE支持NCELL搜网
-  2.日    期   : 2014年01月17日
-    作    者   : l00198894
-    修改内容   : V9R1C53 C+L 离网重选项目
-  3.日    期   : 2015年05月30日
-    作    者   : w00281933
-    修改内容   : Modified for The TSTS Project
-
-*****************************************************************************/
 VOS_VOID MTC_RcvRrcNcellInfoInd(VOS_VOID * pMsg)
 {
     MODEM_ID_ENUM_UINT16                                    enModemId;
@@ -504,21 +351,7 @@ VOS_VOID MTC_RcvRrcNcellInfoInd(VOS_VOID * pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_RcvMmaRegStatusInd
- 功能描述  : MTC模块接收MMA模块通知的注册状态相关信息
- 输入参数  : MsgBlock* pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月23日
-    作    者   : z00161729
-    修改内容   : DTS2014012305088:svlte特性开启卡无效场景mtc无需上报pstransfer:0
-
-*****************************************************************************/
 VOS_VOID MTC_RcvMmaRegStatusInd(VOS_VOID *pMsg)
 {
     VOS_UINT32                          ulPid;
@@ -543,21 +376,7 @@ VOS_VOID MTC_RcvMmaRegStatusInd(VOS_VOID *pMsg)
 
 
 
-/*****************************************************************************
- 函 数 名  : MTC_SndMmaOtherModemDplmnNplmnInfoNotify
- 功能描述  : 通知Modem0的mma modem1的nplmn和dplmn信息
- 输入参数  : enModemId          - Modem ID
-             enOtherModemId     - Other Modem ID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年11月3日
-   作    者   : z00161729
-   修改内容   : 开机漫游搜网项目修改
-*****************************************************************************/
 VOS_VOID MTC_SndMmaOtherModemDplmnNplmnInfoNotify(
     MODEM_ID_ENUM_UINT16                enModemId,
     MODEM_ID_ENUM_UINT16                enOtherModemId
@@ -642,7 +461,6 @@ VOS_VOID MTC_SndMmaOtherModemDplmnNplmnInfoNotify(
         PS_MEM_CPY(&pstOtherModemDplmnNplmnInfoNotify->stSelfLearnDplmnNplmnInfo,
             pstNvimCfgDPlmnNPlmnInfo, sizeof(pstOtherModemDplmnNplmnInfoNotify->stSelfLearnDplmnNplmnInfo));
     }
-    /* Modified by c00318887 for DPlmn扩容和优先接入HPLMN, 2015-5-28, end */
 
 
     /* 不存在自学习的DPLMN/NPLMN，则不通知Other Modem */
@@ -666,53 +484,12 @@ VOS_VOID MTC_SndMmaOtherModemDplmnNplmnInfoNotify(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MTC_RcvMmaPowerStateInd
- 功能描述  : MTC模块接收MMA模块通知的开机状态信息
- 输入参数  : MsgBlock* pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月13日
-    作    者   : j00174725
-    修改内容   : V9R1 干扰控制项目
-  2.日    期   : 2013年12月21日
-    作    者   : l00198894
-    修改内容   : V9R1 Notch Bypass项目
-  3.日    期   : 2014年02月13日
-    作    者   : f00179208
-    修改内容   : Jazz Narrow Band dcs项目
-  4.日    期   : 2014年3月24日
-    作    者   : A00165503
-    修改内容   : B39&B32 Intrusion
-  5.日    期   : 2014年9月24日
-    作    者   : j00174725
-    修改内容   : 打孔新方案
-  6.日    期   : 2014年11月3日
-    作    者   : z00161729
-    修改内容   : 开机漫游搜网项目修改
-  7.日    期   : 2015年03月13日
-    作    者   : l00198894
-    修改内容   : VOLTE Rank1方案项目
-  8.日    期   : 2015年05月30日
-    作    者   : w00281933
-    修改内容   : Modified for The TSTS Project
-  9.日    期   : 2015年07月20日
-    作    者   : zwx247453
-    修改内容   : Modified for 3 modem TAS
- 10.日    期   : 2015年12月11日
-    作    者   : w00242748
-    修改内容   : DTS2015103000174:支持软开关读取平台能力，为适配动态切C模
-*****************************************************************************/
 VOS_VOID MTC_RcvMmaPowerStateInd(VOS_VOID *pMsg)
 {
     VOS_UINT32                          ulPid;
     MODEM_ID_ENUM_UINT16                enModemId;
     MMA_MTC_POWER_STATE_IND_STRU       *pstPowerState = VOS_NULL_PTR;
-    /* Modified by l00198894 for V9R1 Notch Bypass项目, 2013-12-21, begin */
     MTC_CFG_ENUM_UINT8                  enIntrusionCfg;
     MTC_CFG_ENUM_UINT8                  enNotchCfg;
 
@@ -723,12 +500,9 @@ VOS_VOID MTC_RcvMmaPowerStateInd(VOS_VOID *pMsg)
 
     MODEM_ID_ENUM_UINT16                enOtherModemId;
 
-    /* Added by Y00213812 for 主动离网重选, 2014-04-10, begin */
     MTC_PS_TRANSFER_CTX_STRU           *pstPsTransferCtx = VOS_NULL_PTR;
 
-    /* Add by j00174725 for K3V3 多模多天线特性, 2014-06-16, Begin */
     MTC_MODEM_POWER_STATE_ENUM_UINT8    enPowerState;
-    /* Add by j00174725 for K3V3 多模多天线特性, 2014-06-16, End */
     VOS_UINT32                          ulRet;
     VOS_UINT16                          usIndex;
 
@@ -736,7 +510,6 @@ VOS_VOID MTC_RcvMmaPowerStateInd(VOS_VOID *pMsg)
     MTC_MODEM_INFO_STRU                *pastModemCtxAddr    = VOS_NULL_PTR;
 
     pstPsTransferCtx = MTC_GetPsTransferCtxAddr();
-    /* Added by Y00213812 for 主动离网重选, 2014-04-10, end */
 
     pstPowerState   = (MMA_MTC_POWER_STATE_IND_STRU *)pMsg;
     ulPid           = pstPowerState->stMsgHeader.ulSenderPid;
@@ -807,14 +580,12 @@ VOS_VOID MTC_RcvMmaPowerStateInd(VOS_VOID *pMsg)
                 MTC_SndMtaMipiClkInfoInd(usMipiClk);
             }
 
-            /* Added by Y00213812 for 主动离网重选, 2014-04-10, begin */
             /* 关机时重置PSTRANSFER的上报状态值 */
             if (MODEM_ID_0 == enModemId)
             {
                 pstPsTransferCtx->enReportCause     = MTC_PS_TRANSFER_CAUSE_BUTT;
                 pstPsTransferCtx->enRrcCause        = MTC_PS_TRANSFER_CAUSE_BUTT;
             }
-            /* Added by Y00213812 for 主动离网重选, 2014-04-10, end */
         }
     }
 
@@ -853,7 +624,6 @@ VOS_VOID MTC_RcvMmaPowerStateInd(VOS_VOID *pMsg)
             /* Notch裁决功能使能，执行Notch裁决 */
             MTC_ProcNotchStrategy();
         }
-        /* Modified by l00198894 for V9R1 Notch Bypass项目, 2013-12-21, end */
 
         /* 判断Narrow band dcs裁决是否使能 */
         enNarrowDcsCfg = MTC_GetNarrowBandDcsCfg();
@@ -888,23 +658,7 @@ VOS_VOID MTC_RcvMmaPowerStateInd(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_RcvTafCsSrvInfoInd
- 功能描述  : MTC模块处理TAF模块的ID_TAF_MTC_CS_SERVICE_INFO_IND消息函数
- 输入参数  : pMsg   --消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年08月19日
-    作    者   : l00198894
-    修改内容   : V9R1 干扰控制项目
-  2.日    期   : 2014年01月17日
-    作    者   : l00198894
-    修改内容   : V9R1C53 C+L 离网重选项目
-*****************************************************************************/
 VOS_VOID MTC_RcvTafCsSrvInfoInd(VOS_VOID *pMsg)
 {
     VOS_UINT32                          ulPid;
@@ -951,28 +705,7 @@ VOS_VOID MTC_RcvTafCsSrvInfoInd(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_SndMmaOtherModemInfoNotify
- 功能描述  : 通知Modem0的mma modem1的驻留plmn信息
- 输入参数  : enModemId          -- ModemID
-             pstCurrCampPlmnId  -- 当前驻留网络plmn id
-             pstEplmnInfo        - 等效plmn信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年11月25日
-   作    者   : z00161729
-   修改内容   : SVLTE优化G-TL ps切换性能修改
- 2.日    期   : 2013年12月24日
-   作    者   : z00161729
-   修改内容   : SVLTE支持NCELL搜网
- 3.日    期   : 2014年01月17日
-   作    者   : l00198894
-   修改内容   : V9R1C53 C+L 离网重选项目
-*****************************************************************************/
 VOS_VOID MTC_SndMmaOtherModemInfoNotify(
     MODEM_ID_ENUM_UINT16                enModemId,
     MTC_MMA_PLMN_ID_STRU               *pstCurrCampPlmnId,
@@ -1040,25 +773,7 @@ VOS_VOID MTC_SndMmaOtherModemInfoNotify(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_SndMmaNcellInfoNotify
- 功能描述  : 通知Modem0的mma modem1的ncell信息
- 输入参数  : pstTddNcellInfo - tds频点列表信息
-             pstLteNcellInfo - lte频点列表信息
-             ulRecievePid    - 接收pid
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年12月24日
-   作    者   : z00161729
-   修改内容   : SVLTE支持NCELL搜网
- 2.日    期   : 2014年01月17日
-   作    者   : l00198894
-   修改内容   : V9R1C53 C+L 离网重选项目
-*****************************************************************************/
 VOS_VOID MTC_SndMmaNcellInfoInd(
     MODEM_ID_ENUM_UINT16                enModemId,
     MTC_MMA_TDS_NCELL_INFO_STRU        *pstTddNcellInfo,
@@ -1126,20 +841,7 @@ VOS_VOID MTC_SndMmaNcellInfoInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MTC_TransCdmaPlmnId
- 功能描述  : 将CDMA发来的PLMN ID转换为MTC_MMA_PLMN_ID_STRU格式
- 输入参数  : ulSrcPlmnId
- 输出参数  : pstDetPlmnId
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年01月17日
-    作    者   : l00198894
-    修改内容   : V9R1C53 C+L 离网重选项目
-*****************************************************************************/
 VOS_VOID MTC_TransCdmaPlmnId(
     VOS_UINT32                          ulSrcPlmnId,
     MTC_MMA_PLMN_ID_STRU               *pstDetPlmnId
@@ -1161,23 +863,7 @@ VOS_VOID MTC_TransCdmaPlmnId(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_IsContainPlmnId
- 功能描述  : 判断是否已存在此PLMN ID
- 输入参数  : pstPlmnId      -- 待判断PLMN ID
-             ulPlmnNum      -- 源PLMN ID个数
-             pstSrcPlmnId   -- 源PLMN ID数组
- 输出参数  : 无
- 返 回 值  : VOS_TRUE   -- 存在
-             VOS_FALSE  -- 不存在
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年01月17日
-    作    者   : l00198894
-    修改内容   : V9R1C53 C+L 离网重选项目
-*****************************************************************************/
 VOS_UINT32 MTC_IsContainPlmnId(
     MTC_MMA_PLMN_ID_STRU               *pstPlmnId,
     VOS_UINT32                          ulPlmnNum,
@@ -1198,21 +884,7 @@ VOS_UINT32 MTC_IsContainPlmnId(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_GetEplmnFromOtherRatInfoInd
- 功能描述  : 从CMMCA_OTHER_RAT_INFO_IND_STRU中获取等效PLMN
- 输入参数  : pstOtherRatInfoInd
- 输出参数  : pstEplmnInfo
- 返 回 值  : VOS_OK     -- 获取成功
-             VOS_ERR    -- 获取失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年01月17日
-    作    者   : l00198894
-    修改内容   : V9R1C53 C+L 离网重选项目
-*****************************************************************************/
 VOS_UINT32 MTC_GetEplmnFromOtherRatInfoInd(
     MTC_MMA_EPLMN_INFO_STRU            *pstEplmnInfo,
     CMMCA_OTHER_RAT_INFO_IND_STRU      *pstOtherRatInfoInd
@@ -1262,21 +934,7 @@ VOS_UINT32 MTC_GetEplmnFromOtherRatInfoInd(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_GetLteNcellInfoFromOtherRatInfoInd
- 功能描述  : 从CMMCA_OTHER_RAT_INFO_IND_STRU中获取LTE频点信息
- 输入参数  : pstOtherRatInfoInd
- 输出参数  : pstLteNcellInfo
- 返 回 值  : VOS_OK     -- 获取成功
-             VOS_ERR    -- 获取失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年01月17日
-    作    者   : l00198894
-    修改内容   : V9R1C53 C+L 离网重选项目
-*****************************************************************************/
 VOS_UINT32 MTC_GetLteNcellInfoFromOtherRatInfoInd(
     MTC_MMA_LTE_NCELL_INFO_STRU        *pstLteNcellInfo,
     CMMCA_OTHER_RAT_INFO_IND_STRU      *pstOtherRatInfoInd
@@ -1304,23 +962,9 @@ VOS_UINT32 MTC_GetLteNcellInfoFromOtherRatInfoInd(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_RcvCmmcaOtherRatInfoInd
- 功能描述  : MTC模块接收CMMCA模块发来的LTE邻区信息
- 输入参数  : VOS_VOID* pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年01月17日
-    作    者   : l00198894
-    修改内容   : V9R1C53 C+L 离网重选项目
-*****************************************************************************/
 VOS_VOID MTC_RcvCmmcaOtherRatInfoInd(VOS_VOID* pMsg)
 {
-    /* Added by l60609 for L-C互操作项目, 2014-02-19, Begin */
     CMMCA_MTC_OTHER_RAT_INFO_IND_STRU  *pstOtherRatInfoInd = VOS_NULL_PTR;
     MTC_MMA_EPLMN_INFO_STRU             stEplmnInfo;
     MTC_MMA_LTE_NCELL_INFO_STRU         stLteNcellInfo;
@@ -1359,29 +1003,11 @@ VOS_VOID MTC_RcvCmmcaOtherRatInfoInd(VOS_VOID* pMsg)
     {
         MTC_SndMmaNcellInfoInd(MODEM_ID_0, VOS_NULL_PTR, &stLteNcellInfo);
     }
-    /* Added by l60609 for L-C互操作项目, 2014-02-19, End */
 
     return;
 }
 
-/* Add by j00174725 for K3V3 多模多天线特性, 2014-06-16, Begin */
-/*****************************************************************************
- 函 数 名  : MTC_ProcSetCdmaConnStateInfo
- 功能描述  : 处理外部cdma modem状态消息
- 输入参数  : struct MsgCB *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月16日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-  2.日    期   : 2015年7月20日
-    作    者   : zwx247453
-    修改内容   : 3 modem TAS
-*****************************************************************************/
 VOS_VOID MTC_ProcSetCdmaExtModemConnStateInfo(VOS_VOID* pMsg)
 {
     TAF_PS_MSG_STRU                    *pstMsg         = VOS_NULL_PTR;
@@ -1436,29 +1062,7 @@ VOS_VOID MTC_ProcSetCdmaExtModemConnStateInfo(VOS_VOID* pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_ProcModemServiceConnStateInd
- 功能描述  : 处理modem 服务状态信息
- 输入参数  : MsgBlock* pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月16日
-    作    者   : j00174725
-    修改内容   : K3V3 多模多天线特性
-  2.日    期   : 2014年09月24日
-    作    者   : j00174725
-    修改内容   : 打孔新方案
- 3 .日    期   : 2014年09月24日
-    作    者   : j00174725
-    修改内容   : DTS2015012600981
-  4.日    期   : 2015年07月20日
-    作    者   : zwx247453
-    修改内容   : 3 modem TAS
-*****************************************************************************/
 VOS_VOID MTC_ProcModemServiceConnStateInd(VOS_VOID *pMsg)
 {
     TAF_PS_MSG_STRU                    *pstMsg              = VOS_NULL_PTR;
@@ -1547,24 +1151,7 @@ VOS_VOID MTC_ProcModemServiceConnStateInd(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_ProcUsimmStateInd
- 功能描述  : 处理卡状态信息
- 输入参数  : MsgBlock* pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月16日
-    作    者   : j00174725
-    修改内容   : K3V3 多模多天线特性
-
-  2.日    期   : 2015年10月21日
-    作    者   : h00313353
-    修改内容   : Iteration 19 TAS
-*****************************************************************************/
 VOS_VOID MTC_ProcUsimmStateInd(VOS_VOID *pMsg)
 {
     TAF_PS_MSG_STRU                        *pstMsg              = VOS_NULL_PTR;
@@ -1634,23 +1221,7 @@ VOS_VOID MTC_ProcUsimmStateInd(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_RcvTcStatusInfo
- 功能描述  : MTC模块通知RCM模块TC环回测试状态
- 输入参数  : MsgBlock* pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月6日
-    作    者   : wx270776
-    修改内容   : 生成新函数
-  2.日    期   : 2015年7月20日
-    作    者   : zwx247453
-    修改内容   : 3 modem TAS
-*****************************************************************************/
 VOS_VOID MTC_RcvTcStatusInfo(
     VOS_VOID                           *pMsg
 )
@@ -1706,20 +1277,7 @@ VOS_VOID MTC_RcvTcStatusInfo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MTC_ConvertRcmRatMode
- 功能描述  : 将NAS给MTC的接入技术转换为MTC给RCM的形式
- 输入参数  : MTC_NAS_RAT_MODE_ENUM_UINT16   enMtcNasRatMode
- 输出参数  : 无
- 返 回 值  : MTC_RCM_RAT_MODE_ENUM_UINT16   enMtcRcmRatMode
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月22日
-    作    者   : wx270776
-    修改内容   : 新生成函数
-*****************************************************************************/
 MTC_RCM_RAT_MODE_ENUM_UINT16 MTC_ConvertRcmRatMode(
     MTC_NAS_RAT_MODE_ENUM_UINT16        enMtcNasRatMode
 )
@@ -1757,21 +1315,7 @@ MTC_RCM_RAT_MODE_ENUM_UINT16 MTC_ConvertRcmRatMode(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MTC_ConvertToRcmRatCfg
- 功能描述  : 将MTC存储的RatCfg转换成RCM的形式
- 输入参数  : TAF_MTC_USIMM_CARD_SERVIC_ENUM_UINT16    enUsimState--Usim卡状态
-             MTC_MODEM_RAT_CONFIG_STRU               *pstRatCfg  --配置信息
- 输出参数  : 无
- 返 回 值  : MTC_RCM_MODEM_RAT_CFG_ENUM_UINT16
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : h00313353
-    修改内容   : Iteration 19 TAS
-*****************************************************************************/
 MTC_RCM_MODEM_RAT_CFG_ENUM_UINT16 MTC_ConvertToRcmRatCfg(
     TAF_MTC_USIMM_CARD_SERVIC_ENUM_UINT16    enUsimmState,
     MTC_MODEM_RAT_CONFIG_STRU               *pstRatCfg
@@ -1811,26 +1355,7 @@ MTC_RCM_MODEM_RAT_CFG_ENUM_UINT16 MTC_ConvertToRcmRatCfg(
 }
 
 #if (FEATURE_ON == FEATURE_IMS)
-/*****************************************************************************
- 函 数 名  : MTC_ProcImsaSrvConnStateInfo
- 功能描述  : 处理IMSA状态消息
- 输入参数  : struct MsgCB *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月16日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-  2.日    期   : 2015年7月20日
-    作    者   : zwx247453
-    修改内容   : 3 modem TAS
-  3.日    期   : 2015年9月18日
-    作    者   : j00174725
-    修改内容   :  DTS2015091108014
-*****************************************************************************/
 VOS_VOID MTC_ProcImsaSrvConnStateInfo(VOS_VOID* pMsg)
 {
 
@@ -1885,22 +1410,8 @@ VOS_VOID MTC_ProcImsaSrvConnStateInfo(VOS_VOID* pMsg)
 
 }
 #endif
-/* Add by j00174725 for K3V3 多模多天线特性, 2014-06-16, End */
 
-/*****************************************************************************
- 函 数 名  : MTC_RcvGsmCellInfoExInd
- 功能描述  : 接收到ID_MTC_RRC_GSM_CELL_INFO_EX_IND将GSM小区扩展信息保存到上下文
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月17日
-    作    者   : l00198894
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_VOID MTC_RcvGsmCellInfoExInd(VOS_VOID *pMsg)
 {
     RRC_MTC_GSM_CELL_INFO_EX_IND_STRU  *pstGsmCellInfoExInd = VOS_NULL_PTR;
@@ -1929,20 +1440,7 @@ VOS_VOID MTC_RcvGsmCellInfoExInd(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_RcvMtaGsmCellInfoQryReq
- 功能描述  : 接收到ID_MTC_RRC_GSM_CELL_INFO_EX_IND将GSM小区扩展信息保存到上下文
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月17日
-    作    者   : l00198894
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_VOID MTC_RcvMtaGsmCellInfoQryReq(VOS_VOID *pMsg)
 {
     MTA_MTC_RESERVE_STRU               *pstReqMsg           = VOS_NULL_PTR;
@@ -1994,20 +1492,7 @@ VOS_VOID MTC_RcvMtaGsmCellInfoQryReq(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_RcvMmaImsaStateInd
- 功能描述  : MTC模块接收MMA模块通知的IMSA开机状态信息
- 输入参数  : MsgBlock* pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年03月13日
-    作    者   : l00198894
-    修改内容   : VOLTE Rank1方案项目
-*****************************************************************************/
 VOS_VOID MTC_RcvMmaImsaStateInd(VOS_VOID *pMsg)
 {
     VOS_UINT32                          ulPid;
@@ -2037,20 +1522,7 @@ VOS_VOID MTC_RcvMmaImsaStateInd(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_RcvMmaImsVoiceCapInd
- 功能描述  : MTC模块接收MMA模块通知的IMS语音可用状态信息
- 输入参数  : MsgBlock* pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月17日
-    作    者   : w00316404
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_VOID MTC_RcvMmaImsVoiceCapInd(VOS_VOID *pMsg)
 {
     MMA_MTC_IMS_VOICE_CAP_IND_STRU     *pstImsVoiceCap  = VOS_NULL_PTR;
@@ -2084,20 +1556,7 @@ VOS_VOID MTC_RcvMmaImsVoiceCapInd(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_RcvMmaRatCfgInd
- 功能描述  : MTC模块接收MMA模块Rat Cfg Ind消息的处理
- 输入参数  : MsgBlock* pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : h00313353
-    修改内容   : Iteration 19 TAS
-*****************************************************************************/
 VOS_VOID MTC_RcvMmaRatCfgInd(
     VOS_VOID                           *pMsg
 )
@@ -2184,26 +1643,7 @@ VOS_VOID MTC_RcvMmaRatCfgInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_ProcBeginSessionInd
- 功能描述  : 处理BEGIN SESSION 消息
- 输入参数  : MsgBlock* pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月04日
-    作    者   : j00174725
-    修改内容   : DTS2015082406288
-  2.日    期   : 2015年9月18日
-    作    者   : j00174725
-    修改内容   :  DTS2015091108014
-  3.日    期   : 2015年10月22日
-    作    者   : h00313353
-    修改内容   : Iteration 19 TAS
-*****************************************************************************/
 VOS_VOID MTC_ProcBeginSessionInd(VOS_VOID *pMsg)
 {
     TAF_PS_MSG_STRU                    *pstMsg              = VOS_NULL_PTR;
@@ -2326,26 +1766,7 @@ VOS_VOID MTC_ProcBeginSessionInd(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_ProcEndSessionInd
- 功能描述  : 处理END SESSION 消息
- 输入参数  : MsgBlock* pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月04日
-    作    者   : j00174725
-    修改内容   : DTS2015082406288
-  2.日    期   : 2015年9月18日
-    作    者   : j00174725
-    修改内容   :  DTS2015091108014
-  3.日    期   : 2015年10月22日
-    作    者   : h00313353
-    修改内容   : Iteration 19 TAS
-*****************************************************************************/
 VOS_VOID MTC_ProcEndSessionInd(VOS_VOID *pMsg)
 {
     TAF_PS_MSG_STRU                    *pstMsg              = VOS_NULL_PTR;
@@ -2475,20 +1896,7 @@ VOS_VOID MTC_ProcEndSessionInd(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_IsNeedSndTasCsInfo2Rcm
- 功能描述  : 判断是否需要将CS状态发送给rcm
- 输入参数  : MTC_CS_TYPE_ENUM_UINT8
- 输出参数  : 无
- 返 回 值  : PS_TRUE/PS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月18日
-    作    者   : j00174725
-    修改内容   : DTS2015091108014
-*****************************************************************************/
 PS_BOOL_ENUM_UINT8 MTC_IsNeedSndTasCsInfo2Rcm(
     MODEM_ID_ENUM_UINT16                enModemId,
     TAF_MTC_SRV_CONN_STATE_ENUM_UINT8   enCsSrvConnState,
@@ -2555,20 +1963,7 @@ PS_BOOL_ENUM_UINT8 MTC_IsNeedSndTasCsInfo2Rcm(
     return enSndFlag;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_IsNeedBufModem0Msg
- 功能描述  : 判断是否需要缓存消息
- 输入参数  : ulSendPid
- 输出参数  : 无
- 返 回 值  : PS_TRUE/PS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月18日
-    作    者   : j00174725
-    修改内容   : DTS2015091108014
-*****************************************************************************/
 PS_BOOL_ENUM_UINT8 MTC_IsNeedBufModem0Msg(VOS_UINT32 ulSendPid)
 {
     MTC_RATMODE_ENUM_UINT8                  enRatMode;
@@ -2602,20 +1997,7 @@ PS_BOOL_ENUM_UINT8 MTC_IsNeedBufModem0Msg(VOS_UINT32 ulSendPid)
     return PS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_IsNeedPopModem0BufMsg
- 功能描述  : 判断是否需要Pop缓存消息
- 输入参数  : ulSendPid
- 输出参数  : 无
- 返 回 值  : PS_TRUE/PS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月18日
-    作    者   : j00174725
-    修改内容   : DTS2015091108014
-*****************************************************************************/
 PS_BOOL_ENUM_UINT8 MTC_IsNeedPopModem0BufMsg(VOS_UINT32 ulSendPid)
 {
     MTC_RATMODE_ENUM_UINT8                  enRatMode;

@@ -1,16 +1,4 @@
-/******************************************************************************
 
-
-        @(#)Copyright(C)2013,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : ImsaProcSpmMsg.h
-    Description : ImsaProcSpmMsg.cÍ·ÎÄ¼þ
-    History     :
-      1.sunbing 00049683    2013-06-19  Draft Enact
-
-
-******************************************************************************/
 
 #ifndef __IMSAPROCSPMMSG_H__
 #define __IMSAPROCSPMMSG_H__
@@ -203,9 +191,6 @@ extern VOS_UINT32 IMSA_CallSendSpmEconfAddUserCnfMsg
     VOS_UINT32                          ulOpId,
     TAF_CS_CAUSE_ENUM_UINT32            ulResult
 );
-
-
-VOS_VOID IMSA_CallSendCcwaCapInfo(VOS_UINT8 ucCcwacap);
 
 
 extern VOS_VOID IMSA_CallSupsCmdReqSrvccingProc

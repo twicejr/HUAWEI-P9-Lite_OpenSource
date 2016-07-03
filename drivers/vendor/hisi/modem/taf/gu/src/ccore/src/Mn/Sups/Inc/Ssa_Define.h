@@ -1,36 +1,4 @@
-/************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : Ssa_Define.h
-  Author      : ---
-  Version     : V200R001
-  Date        : 2005-08-16
-  Description : 该头文件定义了SSA模块解码函数的接口
-  History     :
-  1. Date:2005-04-19
-     Author: ---
-     Modification:Create
-  2. Date:2006-04-11
-     Author: h44270
-     Modification: 问题单号:A32D02911
-  3.日    期   : 2006年08月09日
-    作    者   : 蒋丽萍j60010247
-    修改内容   : 问题单A32D03479，在PC机上实现时将#pragma pack(0)和#pragma pack()加编译开关
-  4.日    期   : 2006年10月8日
-    作    者   : luojian id:60022475
-    修改内容   : 问题单号:A32D06583,修改SSA_TimeoutProc函数的参数定义
-  5.日    期   : 2006年12月09日
-    作    者   : h44270
-    修改内容   : 问题单号:A32D07867，增加一个接口，用于判定字串的操作类型
-  6.Date:2007-01-19
-    Author: h44270
-    Modification: 问题单号:A32D08448
-  7.Date:2007-04-29
-    Author: Li Jilin 60827
-    Modification: 问题单号:A32D10708
-  8.日    期   : 2007年05月09日
-    作    者   : 罗建 id:60022475
-    修改内容   : 问题单号:A32D10838
-************************************************************************/
+
 #ifndef _SSA_DEFINEa_H_
 #define _SSA_DEFINEa_H_
 
@@ -41,9 +9,7 @@ extern "C" {
 #endif
 #include "PsTypeDef.h"
 #include "Ps.h"
-/* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, begin */
 #include "TafClientApi.h"
-/* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, end */
 #include "ExtAppCmInterface.h"
 #include "TafAppSsa.h"
 
@@ -51,9 +17,7 @@ extern "C" {
 
 #pragma pack(4)
 
-/* Deleted by f62575 for V9R1 STK升级, 2013-6-26, begin */
 /* Deleted TAF_SS_ERRCODE_OFFSET */
-/* Deleted by f62575 for V9R1 STK升级, 2013-6-26, end */
 
 /************************错误码的偏移***********************************/
 #define  TAF_SS_ERRCODE_OFFSET             TAF_ERR_SS_BASE
@@ -319,7 +283,6 @@ enum
 };
 typedef VOS_UINT8   ALPHA_TO_ASCII_TABLE_ENUM;
 
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-5-6, begin */
 /* TAF_SSA_USSD_STATE的枚举 */
 enum
 {
@@ -329,7 +292,6 @@ enum
     TAF_SSA_USSD_BUTT_STATE                    /* 无效值 */
 };
 typedef VOS_UINT8   TAF_SSA_USSD_STATE_ENUM_UINT8;
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-5-6, begin */
 
 
 /*BER编码中TAG值的分解*/
@@ -362,13 +324,7 @@ typedef struct
     VOS_UINT8               aucNewPwdCnf[4];
 }SSA_MMI_PARA_STRU;
 
-/*****************************************************************************
- 枚举名    : TAF_SSA_TIMER_STATUS_ENUM_UINT8
- 结构说明  : ssa定时器状态,停止或运行
-  1.日    期   : 2013年9月10日
-    作    者   : z00161729
-    修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_SSA_TIMER_STATUS_ENUM
 {
     TAF_SSA_TIMER_STATUS_STOP,              /* 定时器停止状态 */
@@ -378,13 +334,7 @@ enum TAF_SSA_TIMER_STATUS_ENUM
 typedef VOS_UINT8 TAF_SSA_TIMER_STATUS_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名    : TAF_SSA_STATE_ENUM
- 结构说明  : ssa状态
- 1.日    期   : 2011年7月11日
-   作    者   : zhoujun 40661
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_SSA_STATE_ENUM
 {
     TAF_SSA_STATE_IDLE,                                                         /* 空状态 */
@@ -394,13 +344,7 @@ enum TAF_SSA_STATE_ENUM
 };
 typedef VOS_UINT8 TAF_SSA_STATE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : TAF_SSA_TIMER_ID_ENUM_UINT8
- 枚举说明  : SSA定时器的ID
- 1.日    期   : 2013年9月10日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_SSA_TIMER_ID_ENUM
 {
     TI_TAF_SSA_WAIT_NETWORK_RSP_TIMER,
@@ -411,14 +355,7 @@ enum TAF_SSA_TIMER_ID_ENUM
 };
 typedef VOS_UINT8  TAF_SSA_TIMER_ID_ENUM_UINT8;
 
-/*****************************************************************************
- 结构名    : TAF_SSA_MSG_BUFF_STRU
- 结构说明  : 缓存ss D_SMC_BEGIN_REQ消息和D_SMC_END_IND消息
- 1.日    期   : 2013年9月10日
-   作    者   : z00161729
-   修改内容   : 支持ss重发新增结构
 
-****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          bitOpBufferedBeginReqMsg : 1;
@@ -426,13 +363,7 @@ typedef struct
     ST_SSP_MSG                          stBufferedBeginReqMsg;
 } TAF_SSA_MSG_BUFF_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SSA_TIMER_CXT_STRU
- 结构说明  : SSA定时器运行上下文
- 1.日    期   : 2013年9月10日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     HTIMER                              hTimer;                                 /* 定时器的运行指针 */
@@ -441,16 +372,7 @@ typedef struct
     VOS_UINT8                           aucReserve[2];
 } TAF_SSA_TIMER_CXT_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SSA_RETRY_CFG_STRU
- 结构说明  : 记录ss重发配置信息
- 1.日    期   : 2013年9月10日
-   作    者   : z00161729
-   修改内容   : 新建
- 2.日    期   : 2015年8月23日
-   作    者   : n00355355
-   修改内容   : User_Exp_Improve
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucIsSsRetrySupportFlg;                  /* 是否支持ss重发功能，VOS_TRUE:支持；VOS_FALSE:不支持*/
@@ -497,15 +419,7 @@ typedef  struct
      TAF_SSA_MSG_BUFF_STRU                    stSsaBufferedMsg;                 /* ss重建缓存的消息 */
 } SSA_STATE_TABLE_STRU;
 
-/*****************************************************************************
- 结构名    : SSA_FDN_INFO_STRU
- 结构说明  : SS业务模块FDN业务特性参数结构
-             ulFdnStatus        (U)SIM的FDN业务使能状态
-             stFdnConfig        ME的FDN业务NV配置
-1.日    期   : 2012年02月23日
-  作    者   : f62575
-  修改内容   : 创建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulFdnStatus;
@@ -513,7 +427,6 @@ typedef struct
 }SSA_FDN_INFO_STRU;
 
 /* 补充业务处理函数结构 */
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
 typedef VOS_UINT32 (*TAF_SSA_SERV_REQ_PROC_FUNC)(
     VOS_UINT16                          ClientId,
     VOS_UINT8                           OpId,
@@ -521,23 +434,13 @@ typedef VOS_UINT32 (*TAF_SSA_SERV_REQ_PROC_FUNC)(
     VOS_VOID                           *pContent
 );
 
-/*****************************************************************************
- 结构名    : TAF_SSA_SERV_REQ_PROC_FUNC_MAP_STRU
- 结构说明  : 消息与对应处理函数的结构
-             VOS_UINT16 usMsgType                               - 业务请求消息；
-             TAF_SSA_SERV_REQ_PROC_FUNC          pMsgProcFunc   - 编码处理函数
 
-  1.日    期   : 2013年06月26日
-    作    者   : 傅映君/62575
-    修改内容   : V9R1 STK升级
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16                          usMsgType;
     VOS_UINT8                           aucReserved1[2];
     TAF_SSA_SERV_REQ_PROC_FUNC          pMsgProcFunc;
 } TAF_SSA_SERV_REQ_PROC_FUNC_MAP_STRU;
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 
 extern VOS_UINT8                   gucCurrentTi;
 
@@ -568,7 +471,6 @@ VOS_VOID   Taf_SsMsgReq(ST_SSP_MSG *pMsg);
 VOS_UINT32 SSA_GetMmiPara(SSA_MMI_PARA_STRU *pstPara,  VOS_UINT8  *pMMIStr, VOS_UINT8  ucStrLen);
 VOS_VOID SSA_ReturnError(VOS_UINT16 usErrCode, VOS_UINT8 ucTi, VOS_UINT8 ucMsgType, VOS_UINT8 ucCause);
 VOS_VOID SSA_ReturnReject(VOS_UINT8 ucRejCode, VOS_UINT8 ucTi, VOS_UINT8 ucMsgType, VOS_UINT8 ucCause);
-/* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
 VOS_UINT32 SSA_RegisterSSReq(
     VOS_UINT16                          ClientId,
     VOS_UINT8                           OpId,
@@ -605,13 +507,11 @@ VOS_UINT32 SSA_RegisterPasswordReq(
     VOS_UINT16                          usMsgType,
     VOS_VOID                           *pMsg
 );
-/* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
 VOS_VOID SSA_GetPasswordRsp (TAF_SS_GETPWD_RSP_STRU  *para, VOS_UINT8 ucTi);
 VOS_UINT32 SSA_ProcessUnstructuredSSReq(VOS_UINT16  ClientId, TAF_SS_PROCESS_USS_REQ_STRU *para, VOS_UINT8 ucTi);
 VOS_UINT32 SSA_ProcessUSSDataReq(TAF_SS_PROCESS_USSDATA_REQ_STRU *para, VOS_UINT8 ucTi);
 
-/* Modified by z00161729 for V9R1 STK升级, 2013-7-25, begin */
 
 VOS_UINT32 SSA_UnstructuredSSRsp(
     TAF_SS_USS_RSP_STRU                *para,
@@ -619,11 +519,9 @@ VOS_UINT32 SSA_UnstructuredSSRsp(
     VOS_UINT16                          ClientId,
     VOS_UINT8                           OpId
 );
-/* Modified by z00161729 for V9R1 STK升级, 2013-7-25, end */
 
 
 VOS_VOID SSA_UssNotifyRsp(VOS_UINT8 ucTi);
-/* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
 VOS_UINT32 SSA_EraseCCEntryReq(
     VOS_UINT16                          ClientId,
     VOS_UINT8                           OpId,
@@ -646,17 +544,12 @@ VOS_UINT32 TAF_SSA_ProcUssdUnstructuredMsg(
 
 VOS_UINT32 TAF_SSA_IsSsStateIdle(VOS_VOID);
 
-/* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
 VOS_UINT8  SSA_GetInvokeId(VOS_UINT8 ucTi);
 VOS_UINT32 SSA_GetIdByTi(VOS_UINT16 *pClientId, VOS_UINT8 *pOpId, VOS_UINT8 ucTi);
-/* Deleted by l00208543 for V9R1 STK升级, 2013-7-10, begin */
 /*VOS_UINT32 SSA_GetTi(VOS_UINT16 ClientId, VOS_UINT8 OpId, VOS_UINT8 *pTi);*/
-/* Deleted by l00208543 for V9R1 STK升级, 2013-7-10, end */
 
-/* Added by l00208543 for V9R1 STK升级, 2013-07-10, begin */
 VOS_UINT32 TAF_SSA_GetUssdTi(VOS_UINT8 *pucTi);
-/* Added by l00208543 for V9R1 STK升级, 2013-07-10, end */
 
 VOS_UINT32 SSA_TiAlloc(VOS_UINT16 ClientId, VOS_UINT8 OpId, VOS_UINT8 *pTi);
 VOS_VOID   SSA_TiFree(VOS_UINT8 ucTi);
@@ -674,15 +567,11 @@ VOS_UINT32 SSA_TiIdle(VOS_VOID);
 VOS_UINT8  SSA_GetRepEvtFromOpCode(VOS_UINT8  ucOprationCode);
 
 VOS_UINT16  SSA_GetUssdTransMode(VOS_VOID);
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-5-6, Begin */
 VOS_VOID  TAF_SSA_UpdateUssdRptStatus(
     TAF_SS_PROCESS_USS_REQ_STRU        *pstSsReqMsg
 );
 VOS_UINT32 TAF_SSA_IsUssdStateIdle(VOS_VOID);
-/* Deleted by f62575 for V9R1 STK升级, 2013-6-26, begin */
 /* MOVE TAF_SSA_ProcUssdUnstructuredMsg */
-/* Deleted by f62575 for V9R1 STK升级, 2013-6-26, end */
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-5-6, End */
 
 VOS_VOID TAF_SSA_SetSsRetrySupportFlg(VOS_UINT8 ucIsSsRetrySupportFlg);
 VOS_UINT8 TAF_SSA_GetSsRetrySupportFlg(VOS_VOID);

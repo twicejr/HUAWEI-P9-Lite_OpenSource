@@ -1,22 +1,4 @@
-/******************************************************************************
 
-                  °æÈ¨ËùÓÐ (C), 2006, »ªÎª¼¼ÊõÓÐÏÞ¹«Ë¾
-
- ******************************************************************************
-  ÎÄ ¼þ Ãû   : CdsEntity.c
-  °æ ±¾ ºÅ   : ³õ¸å
-  ×÷    Õß   : y00151394
-  Éú³ÉÈÕÆÚ   : 2011Äê12ÔÂ12ÈÕ
-  ×î½üÐÞ¸Ä   :
-  ¹¦ÄÜÃèÊö   : ÊµÏÖCDSÈÎÎñ/ÊµÌå¹ÜÀí¡¢ÏûÏ¢´¦ÀíµÈ
-  º¯ÊýÁÐ±í   :
-
-  ÐÞ¸ÄÀúÊ·   :
-  1.ÈÕ    ÆÚ   : 2011Äê12ÔÂ12ÈÕ
-    ×÷    Õß   : y00151394
-    ÐÞ¸ÄÄÚÈÝ   : ´´½¨ÎÄ¼þ
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -87,21 +69,7 @@ CDS_ENTITY_STRU                    g_astCdsEntity[CDS_MAX_MODEM_NUM]; /*CDSÈÎÎñÊ
    5 º¯ÊýÊµÏÖ
 ******************************************************************************/
 
-/*****************************************************************************
- º¯ Êý Ãû  : CDS_GetCdsEntity
- ¹¦ÄÜÃèÊö  : »ñµÃµ±Ç°ModemµÄCDSÊµÌåÖ¸Õë
- ÊäÈë²ÎÊý  : MODEM_ID_ENUM_UINT16 enModemId
- Êä³ö²ÎÊý  : ÎÞ
- ·µ »Ø Öµ  : ÎÞ
- µ÷ÓÃº¯Êý  :
- ±»µ÷º¯Êý  :
 
- ÐÞ¸ÄÀúÊ·  :
-    1.ÈÕ    ÆÚ   : 2012Äê12ÔÂ28ÈÕ
-      ×÷    Õß   : y00151394
-      ÐÞ¸ÄÄÚÈÝ   : ÐÂÔöº¯Êý¡£
-
-*****************************************************************************/
 CDS_ENTITY_STRU* CDS_GetCdsEntity(MODEM_ID_ENUM_UINT16 enModemId)
 {
     if (enModemId >= CDS_MAX_MODEM_NUM)
@@ -113,21 +81,7 @@ CDS_ENTITY_STRU* CDS_GetCdsEntity(MODEM_ID_ENUM_UINT16 enModemId)
 }
 
 
-/*****************************************************************************
- º¯ Êý Ãû  : CDS_TmrInit
- ¹¦ÄÜÃèÊö  : CDS ¶¨Ê±Æ÷³õÊ¼»¯
- ÊäÈë²ÎÊý  : CDS_ENTITY_STRU *pstCdsEntity
- Êä³ö²ÎÊý  : ÎÞ
- ·µ »Ø Öµ  : VOS_VOID
- µ÷ÓÃº¯Êý  :
- ±»µ÷º¯Êý  :
 
- ÐÞ¸ÄÀúÊ·  :
-  1.ÈÕ    ÆÚ   : 2012Äê12ÔÂ13ÈÕ
-    ×÷    Õß   : y00151394
-    ÐÞ¸ÄÄÚÈÝ   : ÐÂÉú³Éº¯Êý
-
-*****************************************************************************/
 VOS_VOID CDS_TimerInit (CDS_ENTITY_STRU *pstCdsEntity)
 {
     CDS_TIMER_STRU          *pstTmr;
@@ -157,24 +111,7 @@ VOS_VOID CDS_TimerInit (CDS_ENTITY_STRU *pstCdsEntity)
 }
 
 
-/*****************************************************************************
- º¯ Êý Ãû  : CDS_StartTimer
- ¹¦ÄÜÃèÊö  : Æô¶¯¶¨Ê±Æ÷¡£
 
- ÊäÈë²ÎÊý  : CDS_ENTITY_STRU  *pstCdsEntity,
-             VOS_UINT32 ulTmrId
- Êä³ö²ÎÊý  : ÎÞ
- ·µ »Ø Öµ  : PS_SUCC : Æô¶¯¶¨Ê±Æ÷³É¹¦
-             PS_FAIL : Æô¶¯¶¨Ê±Æ÷Ê§°Ü
- µ÷ÓÃº¯Êý  :
- ±»µ÷º¯Êý  :
-
- ÐÞ¸ÄÀúÊ·  :
-    1.ÈÕ    ÆÚ   : 2013Äê1ÔÂ4ÈÕ
-      ×÷    Õß   : y00151394
-      ÐÞ¸ÄÄÚÈÝ   : ÐÂÉú³Éº¯Êý
-
-*****************************************************************************/
 VOS_UINT32 CDS_StartTimer(CDS_ENTITY_STRU  *pstCdsEntity, VOS_UINT32 ulTmrId)
 {
     CDS_TIMER_STRU          *pstTmr;
@@ -219,24 +156,7 @@ VOS_UINT32 CDS_StartTimer(CDS_ENTITY_STRU  *pstCdsEntity, VOS_UINT32 ulTmrId)
     return PS_SUCC;
 }
 
-/*****************************************************************************
- º¯ Êý Ãû  : CDS_StopTimer
- ¹¦ÄÜÃèÊö  : Í£Ö¹CDS¶¨Ê±Æ÷
 
- ÊäÈë²ÎÊý  : CDS_ENTITY_STRU  *pstCdsEntity
-             VOS_UINT32 ulTmrId
-
- Êä³ö²ÎÊý  : ÎÞ
- ·µ »Ø Öµ  : ÎÞ
- µ÷ÓÃº¯Êý  :
- ±»µ÷º¯Êý  :
-
- ÐÞ¸ÄÀúÊ·  :
-    1.ÈÕ    ÆÚ   : 2013Äê1ÔÂ4ÈÕ
-      ×÷    Õß   : y00151394
-      ÐÞ¸ÄÄÚÈÝ   : ÐÂÉú³Éº¯Êý
-
-*****************************************************************************/
 VOS_VOID CDS_StopTimer(CDS_ENTITY_STRU  *pstCdsEntity, VOS_UINT32 ulTmrId)
 {
     CDS_TIMER_STRU          *pstTmr;
@@ -277,21 +197,7 @@ VOS_VOID CDS_StopTimer(CDS_ENTITY_STRU  *pstCdsEntity, VOS_UINT32 ulTmrId)
 }
 
 
-/*****************************************************************************
- º¯ Êý Ãû  : CDS_ProcLoopBackQue
- ¹¦ÄÜÃèÊö  : ´¦Àí»·»ØÊý¾Ý
- ÊäÈë²ÎÊý  : CDS_ENTITY_STRU  *pstCdsEntity
- Êä³ö²ÎÊý  : ÎÞ
- ·µ »Ø Öµ  :
 
- µ÷ÓÃº¯Êý  :
- ±»µ÷º¯Êý  :
-
- ÐÞ¸ÄÀúÊ·  :
-    1.ÈÕ    ÆÚ   : 2013Äê1ÔÂ4ÈÕ
-      ×÷    Õß   : y00151394
-      ÐÞ¸ÄÄÚÈÝ   : ÐÂÉú³Éº¯Êý
-*****************************************************************************/
 VOS_VOID CDS_ProcLoopBackQue(CDS_ENTITY_STRU  *pstCdsEntity)
 {
     VOS_UINT32          ulCnt;
@@ -331,21 +237,7 @@ VOS_VOID CDS_ProcLoopBackQue(CDS_ENTITY_STRU  *pstCdsEntity)
     return;
 }
 
-/*****************************************************************************
- º¯ Êý Ãû  : CDS_ClearLoopBackQue
- ¹¦ÄÜÃèÊö  : Çå¿Õ»·»ØÏÂÐÐ»º´æ
- ÊäÈë²ÎÊý  : const CDS_ENTITY_STRU *pstCdsEntity
- Êä³ö²ÎÊý  : ÎÞ
- ·µ »Ø Öµ  : ÎÞ
- µ÷ÓÃº¯Êý  :
- ±»µ÷º¯Êý  :
 
- ÐÞ¸ÄÀúÊ·  :
-    1.ÈÕ    ÆÚ   : 2012Äê09ÔÂ17ÈÕ
-      ×÷    Õß   : y00151394
-      ÐÞ¸ÄÄÚÈÝ   : ÐÂÉú³Éº¯Êý
-
-*****************************************************************************/
 VOS_VOID CDS_ClearLoopBackQue(const CDS_ENTITY_STRU *pstCdsEntity)
 {
     TTF_MEM_ST      *pstIpPkt;
@@ -367,22 +259,7 @@ VOS_VOID CDS_ClearLoopBackQue(const CDS_ENTITY_STRU *pstCdsEntity)
     return;
 }
 
-/*****************************************************************************
- º¯ Êý Ãû  : CDS_RxLoopBackPkt
- ¹¦ÄÜÃèÊö  : CDS½ÓÊÕ»·»ØÊý¾Ý¡£ÓÉµ÷ÓÃÕß±£Ö¤Èë²ÎÕýÈ·ÐÔ¡£
- ÊäÈë²ÎÊý  : CDS_RABM_TRANS_DATA_STRU *pstDlData, CDS_ENTITY_STRU *pstCdsEntity
- Êä³ö²ÎÊý  : ÎÞ
- ·µ »Ø Öµ  :
 
- µ÷ÓÃº¯Êý  :
- ±»µ÷º¯Êý  :
-
- ÐÞ¸ÄÀúÊ·  :
-    1.ÈÕ    ÆÚ   : 2012Äê12ÔÂ31ÈÕ
-      ×÷    Õß   : y00151394
-      ÐÞ¸ÄÄÚÈÝ   : ÐÂÉú³Éº¯Êý
-
-*****************************************************************************/
 VOS_VOID CDS_RxLoopBackPkt(CDS_LB_DL_SDU_STRU *pstDlData, CDS_ENTITY_STRU *pstCdsEntity)
 {
     TTF_MEM_ST            *pstDstTtf;
@@ -452,21 +329,7 @@ VOS_VOID CDS_RxLoopBackPkt(CDS_LB_DL_SDU_STRU *pstDlData, CDS_ENTITY_STRU *pstCd
     return;
 }
 
-/*****************************************************************************
- º¯ Êý Ãû  : CDS_LoopBackModeBTimeoutProc
- ¹¦ÄÜÃèÊö  : »·»ØÄ£Ê½B¶¨Ê±Æ÷³¬Ê±´¦Àí
- ÊäÈë²ÎÊý  : EL_TIMER_MSG  *pstTmrMsg
- Êä³ö²ÎÊý  : ÎÞ
- ·µ »Ø Öµ  : ÎÞ
- µ÷ÓÃº¯Êý  :
- ±»µ÷º¯Êý  :
 
- ÐÞ¸ÄÀúÊ·  :
-    1.ÈÕ    ÆÚ   : 2012Äê09ÔÂ17ÈÕ
-      ×÷    Õß   : y00151394
-      ÐÞ¸ÄÄÚÈÝ   : ÐÂÉú³Éº¯Êý
-
-*****************************************************************************/
 VOS_VOID CDS_LoopBackModeBTimeoutProc(const REL_TIMER_MSG  *pstTmrMsg)
 {
     CDS_ENTITY_STRU             *pstCdsEntity;
@@ -509,21 +372,7 @@ VOS_VOID CDS_LoopBackModeBTimeoutProc(const REL_TIMER_MSG  *pstTmrMsg)
     return;
 }
 
-/*****************************************************************************
- º¯ Êý Ãû  : CDS_Dl10msPeridicTmrTimeoutProc
- ¹¦ÄÜÃèÊö  : ÏÂÐÐ10msÖÜÆÚÐÔ¶¨Ê±Æ÷³¬Ê±´¦Àí
- ÊäÈë²ÎÊý  : REL_TIMER_MSG  *pstTmrMsg
- Êä³ö²ÎÊý  : ÎÞ
- ·µ »Ø Öµ  : ÎÞ
- µ÷ÓÃº¯Êý  :
- ±»µ÷º¯Êý  :
 
- ÐÞ¸ÄÀúÊ·  :
-    1.ÈÕ    ÆÚ   : 2012Äê09ÔÂ17ÈÕ
-      ×÷    Õß   : y00151394
-      ÐÞ¸ÄÄÚÈÝ   : ÐÂÉú³Éº¯Êý
-
-*****************************************************************************/
 VOS_VOID CDS_Dl10msPeridicTmrTimeoutProc(const REL_TIMER_MSG  *pstTmrMsg)
 {
     CDS_ENTITY_STRU             *pstCdsEntity;
@@ -566,21 +415,7 @@ VOS_VOID CDS_Dl10msPeridicTmrTimeoutProc(const REL_TIMER_MSG  *pstTmrMsg)
     return;
 }
 
-/*****************************************************************************
- º¯ Êý Ãû  : CDS_UlDataProtectTmrTimeoutProc
- ¹¦ÄÜÃèÊö  : ÉÏÐÐ»º´æ±£»¤¶¨Ê±Æ÷³¬Ê±´¦Àí
- ÊäÈë²ÎÊý  : REL_TIMER_MSG  *pstTmrMsg
- Êä³ö²ÎÊý  : ÎÞ
- ·µ »Ø Öµ  : ÎÞ
- µ÷ÓÃº¯Êý  :
- ±»µ÷º¯Êý  :
 
- ÐÞ¸ÄÀúÊ·  :
-    1.ÈÕ    ÆÚ   : 2012Äê09ÔÂ17ÈÕ
-      ×÷    Õß   : y00151394
-      ÐÞ¸ÄÄÚÈÝ   : ÐÂÉú³Éº¯Êý
-
-*****************************************************************************/
 VOS_VOID CDS_UlDataProtectTmrTimeoutProc(const REL_TIMER_MSG  *pstTmrMsg)
 {
 
@@ -618,23 +453,7 @@ VOS_VOID CDS_UlDataProtectTmrTimeoutProc(const REL_TIMER_MSG  *pstTmrMsg)
 }
 
 
-/*****************************************************************************
- º¯ Êý Ãû  : CDS_GetBearerDataFlowInfo
- ¹¦ÄÜÃèÊö  : CDSÊµÌåÖÐRABID¶ÔÓ¦µÄÁ÷Á¿Í³¼ÆÊµÌå.
- ÊäÈë²ÎÊý  : VOS_UINT8 ucRabId
-             const CDS_ENTITY_STRU *pstCdsEntity
 
- Êä³ö²ÎÊý  : CDS_BEARER_DATA_FLOW_STRU *
- ·µ »Ø Öµ  : ÎÞ
- µ÷ÓÃº¯Êý  :
- ±»µ÷º¯Êý  :
-
- ÐÞ¸ÄÀúÊ·  :
-    1.ÈÕ    ÆÚ   : 2013Äê1ÔÂ4ÈÕ
-      ×÷    Õß   : y00151394
-      ÐÞ¸ÄÄÚÈÝ   : ÐÂÉú³Éº¯Êý
-
-*****************************************************************************/
 CDS_BEARER_DATA_FLOW_STRU* CDS_GetBearerDataFlowPtr(VOS_UINT8 ucRabId, const CDS_ENTITY_STRU *pstCdsEntity)
 {
 
@@ -652,27 +471,7 @@ CDS_BEARER_DATA_FLOW_STRU* CDS_GetBearerDataFlowPtr(VOS_UINT8 ucRabId, const CDS
 }
 
 
-/*****************************************************************************
- º¯ Êý Ãû  : CDS_GetBearerDataFlowInfo
- ¹¦ÄÜÃèÊö  : CDSÌá¹©¸øAPS²éÑ¯¶ÔÓ¦³ÐÔØµÄÁ÷Á¿Í³¼ÆÐÅÏ¢
- ÊäÈë²ÎÊý  : VOS_UINT8   ucRabId
-             CDS_BEARER_DATA_FLOW_STRU *pstDataFlowInfo
 
- Êä³ö²ÎÊý  : CDS_BEARER_DATA_FLOW_STRU *pstDataFlowInfo
- ·µ »Ø Öµ  : ÎÞ
- µ÷ÓÃº¯Êý  :
- ±»µ÷º¯Êý  :
-
- ÐÞ¸ÄÀúÊ·  :
-    1.ÈÕ    ÆÚ   : 2011Äê12ÔÂ12ÈÕ
-      ×÷    Õß   : y00151394
-      ÐÞ¸ÄÄÚÈÝ   : ÐÂÉú³Éº¯Êý
-
-    2.ÈÕ    ÆÚ   : 2013Äê1ÔÂ4ÈÕ
-      ×÷    Õß   : y00151394
-      ÐÞ¸ÄÄÚÈÝ   : DSDAÐÞ¸Ä
-
-*****************************************************************************/
 VOS_VOID CDS_GetBearerDataFlowInfo(VOS_UINT8 ucRabId,CDS_BEARER_DATA_FLOW_STRU *pstDataFlowInfo, MODEM_ID_ENUM_UINT16 enModemId)
 {
     CDS_BEARER_DATA_FLOW_STRU    *pstLocalValue;
@@ -711,25 +510,7 @@ VOS_VOID CDS_GetBearerDataFlowInfo(VOS_UINT8 ucRabId,CDS_BEARER_DATA_FLOW_STRU *
     return;
 }
 
-/*****************************************************************************
- º¯ Êý Ãû  : CDS_ClearBearerDataFlowInfo
- ¹¦ÄÜÃèÊö  : CDSÌá¹©¸øAPSÇå¿Õ¶ÔÓ¦³ÐÔØµÄÁ÷Á¿Í³¼ÆÐÅÏ¢
- ÊäÈë²ÎÊý  :
- Êä³ö²ÎÊý  : ÎÞ
- ·µ »Ø Öµ  : ÎÞ
- µ÷ÓÃº¯Êý  :
- ±»µ÷º¯Êý  :
 
- ÐÞ¸ÄÀúÊ·  :
-    1.ÈÕ    ÆÚ   : 2011Äê12ÔÂ12ÈÕ
-      ×÷    Õß   : y00151394
-      ÐÞ¸ÄÄÚÈÝ   : ÐÂÉú³Éº¯Êý
-
-    2.ÈÕ    ÆÚ   : 2013Äê1ÔÂ4ÈÕ
-      ×÷    Õß   : y00151394
-      ÐÞ¸ÄÄÚÈÝ   : DSDAÐÞ¸Ä
-
-*****************************************************************************/
 VOS_VOID CDS_ClearBearerDataFlowInfo(VOS_UINT8 ucBearerId, MODEM_ID_ENUM_UINT16 enModemId)
 {
     CDS_BEARER_DATA_FLOW_STRU    *pstLocalValue;
@@ -764,28 +545,7 @@ VOS_VOID CDS_ClearBearerDataFlowInfo(VOS_UINT8 ucBearerId, MODEM_ID_ENUM_UINT16 
     return;
 }
 
-/*****************************************************************************
- º¯ Êý Ãû  : CDS_DLDataFlowStats
- ¹¦ÄÜÃèÊö  : CDSÏÂÐÐ½ÓÊÕµ½µÄÁ÷Á¿
- ÊäÈë²ÎÊý  : VOS_UINT8 ucBearerId,
-             VOS_UINT32 ulPktLen,
-             CDS_ENTITY_STRU *pstCdsEntity
 
- Êä³ö²ÎÊý  : ÎÞ
- ·µ »Ø Öµ  : ÎÞ
- µ÷ÓÃº¯Êý  :
- ±»µ÷º¯Êý  :
-
- ÐÞ¸ÄÀúÊ·  :
-    1.ÈÕ    ÆÚ   : 2011Äê12ÔÂ12ÈÕ
-      ×÷    Õß   : y00151394
-      ÐÞ¸ÄÄÚÈÝ   : ÐÂÉú³Éº¯Êý
-
-    2.ÈÕ    ÆÚ   : 2013Äê1ÔÂ4ÈÕ
-      ×÷    Õß   : y00151394
-      ÐÞ¸ÄÄÚÈÝ   : DSDAÐÞ¸Ä
-
-*****************************************************************************/
 VOS_VOID CDS_DLDataFlowStats(VOS_UINT8 ucBearerId, VOS_UINT32 ulPktLen, const CDS_ENTITY_STRU *pstCdsEntity)
 {
     CDS_BEARER_DATA_FLOW_STRU   *pstBearerDFInfo;
@@ -813,28 +573,7 @@ VOS_VOID CDS_DLDataFlowStats(VOS_UINT8 ucBearerId, VOS_UINT32 ulPktLen, const CD
     return;
 }
 
-/*****************************************************************************
- º¯ Êý Ãû  : CDS_ULDataFlowStats
- ¹¦ÄÜÃèÊö  : CDSÉÏÐÐÁ÷Á¿Í³¼Æ
- ÊäÈë²ÎÊý  : VOS_UINT8 ucBearerId,
-             VOS_UINT32 ulPktLen,
-             CDS_ENTITY_STRU *pstCdsEntity
 
- Êä³ö²ÎÊý  : ÎÞ
- ·µ »Ø Öµ  : ÎÞ
- µ÷ÓÃº¯Êý  :
- ±»µ÷º¯Êý  :
-
- ÐÞ¸ÄÀúÊ·  :
-    1.ÈÕ    ÆÚ   : 2011Äê12ÔÂ12ÈÕ
-      ×÷    Õß   : y00151394
-      ÐÞ¸ÄÄÚÈÝ   : ÐÂÉú³Éº¯Êý
-
-    2.ÈÕ    ÆÚ   : 2013Äê1ÔÂ4ÈÕ
-      ×÷    Õß   : y00151394
-      ÐÞ¸ÄÄÚÈÝ   : DSDAÐÞ¸Ä
-
-*****************************************************************************/
 VOS_VOID CDS_ULDataFlowStats(VOS_UINT8 ucBearerId, VOS_UINT32 ulPktLen, const CDS_ENTITY_STRU *pstCdsEntity)
 {
     CDS_BEARER_DATA_FLOW_STRU   *pstBearerDFInfo;
@@ -862,20 +601,7 @@ VOS_VOID CDS_ULDataFlowStats(VOS_UINT8 ucBearerId, VOS_UINT32 ulPktLen, const CD
     return;
 }
 
-/*****************************************************************************
- º¯ Êý Ãû  : CDS_DLThrDataFlowStats
- ¹¦ÄÜÃèÊö  : CDSÏÂÐÐÍ³¼ÆÖ±Í¨Í¨µÀÁ÷Á¿,¹©LPDCPµ÷ÓÃ
- ÊäÈë²ÎÊý  : VOS_UINT32 ulPktLen
- Êä³ö²ÎÊý  : ÎÞ
- ·µ »Ø Öµ  : ÎÞ
- µ÷ÓÃº¯Êý  :
- ±»µ÷º¯Êý  :
 
- ÐÞ¸ÄÀúÊ·  :
-    1.ÈÕ    ÆÚ   : 2015Äê09ÔÂ15ÈÕ
-      ×÷    Õß   : l00304941
-      ÐÞ¸ÄÄÚÈÝ   : ÐÂÉú³Éº¯Êý
-*****************************************************************************/
 VOS_VOID CDS_LPDCP_DLThrDataFlowStats(VOS_UINT8 ucEpsbID,VOS_UINT32 ulPktLen)
 {
     CDS_ENTITY_STRU       *pstCdsEntity;
@@ -892,21 +618,7 @@ VOS_VOID CDS_LPDCP_DLThrDataFlowStats(VOS_UINT8 ucEpsbID,VOS_UINT32 ulPktLen)
 }
 
 
-/*****************************************************************************
- º¯ Êý Ãû  : CDS_SendEventToCds
- ¹¦ÄÜÃèÊö  : µ÷ÓÃ¸Ã½Ó¿ÚÏòCDS´¥·¢ÊÂ¼þ´¦Àí
- ÊäÈë²ÎÊý  :
- Êä³ö²ÎÊý  : ÎÞ
- ·µ »Ø Öµ  : ÎÞ
- µ÷ÓÃº¯Êý  :
- ±»µ÷º¯Êý  :
 
- ÐÞ¸ÄÀúÊ·  :
-    1.ÈÕ    ÆÚ   : 2011Äê12ÔÂ12ÈÕ
-      ×÷    Õß   : y00151394
-      ÐÞ¸ÄÄÚÈÝ   : ÐÂÉú³Éº¯Êý
-
-*****************************************************************************/
 VOS_VOID CDS_SendEventToCds(VOS_UINT32 ulEvent)
 {
     if (1 == g_ulCdsTaskReadyFlag)
@@ -917,21 +629,7 @@ VOS_VOID CDS_SendEventToCds(VOS_UINT32 ulEvent)
     return;
 }
 
-/*****************************************************************************
- º¯ Êý Ãû  : CDS_LPdcpWakeupCds
- ¹¦ÄÜÃèÊö  : LPdcp»½ÐÑCDS´¦ÀíÏÂÐÐÊý¾Ý
- ÊäÈë²ÎÊý  : ÎÞ
- Êä³ö²ÎÊý  : ÎÞ
- ·µ »Ø Öµ  : ÎÞ
- µ÷ÓÃº¯Êý  :
- ±»µ÷º¯Êý  :
 
- ÐÞ¸ÄÀúÊ·  :
-    1.ÈÕ    ÆÚ   : 2013Äê4ÔÂ22ÈÕ
-      ×÷    Õß   : h00218138
-      ÐÞ¸ÄÄÚÈÝ   : ÐÂÉú³Éº¯Êý
-
-*****************************************************************************/
 VOS_VOID CDS_LPdcpWakeupCds(VOS_VOID)
 {
     CDS_SendEventToCds(CDS_EVENT_DL_DATA_PROC);
@@ -940,21 +638,7 @@ VOS_VOID CDS_LPdcpWakeupCds(VOS_VOID)
 }
 
 
-/*****************************************************************************
- º¯ Êý Ãû  : CDS_LSubFrmIntWakeupCds
- ¹¦ÄÜÃèÊö  : LÄ£ÉÏÐÐ1ms×ÓÖ¡ÖÐ¶Ï´¥·¢ÊÂ¼þ£¬»½ÐÑCDS´¦ÀíÏÂÐÐÊý¾Ý
- ÊäÈë²ÎÊý  :
- Êä³ö²ÎÊý  : ÎÞ
- ·µ »Ø Öµ  : ÎÞ
- µ÷ÓÃº¯Êý  :
- ±»µ÷º¯Êý  :
 
- ÐÞ¸ÄÀúÊ·  :
-    1.ÈÕ    ÆÚ   : 2011Äê12ÔÂ12ÈÕ
-      ×÷    Õß   : y00151394
-      ÐÞ¸ÄÄÚÈÝ   : ÐÂÉú³Éº¯Êý
-
-*****************************************************************************/
 VOS_VOID CDS_LSubFrmIntWakeupCds(VOS_VOID)
 {
     CDS_SendEventToCds(CDS_EVENT_DL_DATA_PROC);
@@ -962,21 +646,7 @@ VOS_VOID CDS_LSubFrmIntWakeupCds(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- º¯ Êý Ãû  : CDS_UmtsIntWakeupCds
- ¹¦ÄÜÃèÊö  : UMTSÄ£DSPÉÏÐÐÖÐ¶Ï´¥·¢ÊÂ¼þ£¬»½ÐÑCDS´¦ÀíÏÂÐÐÊý¾Ý
- ÊäÈë²ÎÊý  :
- Êä³ö²ÎÊý  : ÎÞ
- ·µ »Ø Öµ  : ÎÞ
- µ÷ÓÃº¯Êý  :
- ±»µ÷º¯Êý  :
 
- ÐÞ¸ÄÀúÊ·  :
-    1.ÈÕ    ÆÚ   : 2012Äê02ÔÂ02ÈÕ
-      ×÷    Õß   : y00151394
-      ÐÞ¸ÄÄÚÈÝ   : ÐÂÉú³Éº¯Êý
-
-*****************************************************************************/
 VOS_VOID CDS_UmtsIntWakeupCds(VOS_VOID)
 {
     CDS_SendEventToCds(CDS_EVENT_DL_DATA_PROC);
@@ -985,21 +655,7 @@ VOS_VOID CDS_UmtsIntWakeupCds(VOS_VOID)
 }
 
 #if (CDS_FEATURE_ON == CDS_FEATURE_CDMA)
-/*****************************************************************************
- º¯ Êý Ãû  : CDS_CDMA_WakeupCds
- ¹¦ÄÜÃèÊö  : CDMAÉÏÐÐÖÐ¶Ï´¥·¢ÊÂ¼þ£¬»½ÐÑCDS´¦ÀíÏÂÐÐÊý¾Ý
- ÊäÈë²ÎÊý  :ÎÞ
- Êä³ö²ÎÊý  : ÎÞ
- ·µ »Ø Öµ  : ÎÞ
- µ÷ÓÃº¯Êý  :
- ±»µ÷º¯Êý  :
 
- ÐÞ¸ÄÀúÊ·  :
-    1.ÈÕ    ÆÚ   : 2014Äê10ÔÂ25ÈÕ
-      ×÷    Õß   : l00304941
-      ÐÞ¸ÄÄÚÈÝ   : ÐÂÉú³Éº¯Êý
-
-*****************************************************************************/
 VOS_VOID CDS_CDMA_WakeupCds(VOS_VOID)
 {
     CDS_SendEventToCds(CDS_EVENT_DL_DATA_PROC);
@@ -1008,21 +664,7 @@ VOS_VOID CDS_CDMA_WakeupCds(VOS_VOID)
 }
 #endif
 
-/*****************************************************************************
- º¯ Êý Ãû  : CDS_EventProc
- ¹¦ÄÜÃèÊö  : CDSÊÂ¼þ´¦Àí
- ÊäÈë²ÎÊý  :
- Êä³ö²ÎÊý  : ÎÞ
- ·µ »Ø Öµ  : ÎÞ
- µ÷ÓÃº¯Êý  :
- ±»µ÷º¯Êý  :
 
- ÐÞ¸ÄÀúÊ·  :
-    1.ÈÕ    ÆÚ   : 2011Äê12ÔÂ12ÈÕ
-      ×÷    Õß   : y00151394
-      ÐÞ¸ÄÄÚÈÝ   : ÐÂÉú³Éº¯Êý
-
-*****************************************************************************/
 VOS_VOID CDS_EventProc(VOS_UINT32 ulEvent)
 {
     /*´¦ÀíÉÏÐÐIPF»½ÐÑ*/
@@ -1067,21 +709,7 @@ VOS_VOID CDS_EventProc(VOS_UINT32 ulEvent)
     return;
 }
 
-/*****************************************************************************
- º¯ Êý Ãû  : CDS_EntityInit
- ¹¦ÄÜÃèÊö  : CDS ÊµÌå³õÊ¼»¯
- ÊäÈë²ÎÊý  :
- Êä³ö²ÎÊý  : ÎÞ
- ·µ »Ø Öµ  : VOS_UINT32
- µ÷ÓÃº¯Êý  :
- ±»µ÷º¯Êý  :
 
- ÐÞ¸ÄÀúÊ·  :
-  1.ÈÕ    ÆÚ   : 2011Äê12ÔÂ13ÈÕ
-    ×÷    Õß   : y00151394
-    ÐÞ¸ÄÄÚÈÝ   : ÐÂÉú³Éº¯Êý
-
-*****************************************************************************/
 VOS_VOID CDS_EntityInit (VOS_VOID)
 {
     VOS_UINT32               ulCnt;
@@ -1163,21 +791,7 @@ VOS_VOID CDS_EntityInit (VOS_VOID)
     return ;
 }
 
-/*****************************************************************************
- º¯ Êý Ãû  : CDS_PidInit
- ¹¦ÄÜÃèÊö  : CDS PID³õÊ¼»¯º¯Êý
- ÊäÈë²ÎÊý  : enum VOS_INIT_PHASE_DEFINE enPhase
- Êä³ö²ÎÊý  : ÎÞ
- ·µ »Ø Öµ  : VOS_UINT32
- µ÷ÓÃº¯Êý  :
- ±»µ÷º¯Êý  :
 
- ÐÞ¸ÄÀúÊ·  :
-  1.ÈÕ    ÆÚ   : 2011Äê12ÔÂ13ÈÕ
-    ×÷    Õß   : y00151394
-    ÐÞ¸ÄÄÚÈÝ   : ÐÂÉú³Éº¯Êý
-
-*****************************************************************************/
 STATIC VOS_UINT32 CDS_PidInit (enum VOS_INIT_PHASE_DEFINE enPhase)
 {
     switch (enPhase)
@@ -1238,24 +852,7 @@ STATIC VOS_UINT32 CDS_PidInit (enum VOS_INIT_PHASE_DEFINE enPhase)
 /*lint -e715*/
 #if (VOS_OS_VER == VOS_WIN32)
 
-/*****************************************************************************
- º¯ Êý Ãû  : CDS_FidTask
- ¹¦ÄÜÃèÊö  : CDS FIDÈÎÎñ´¦Àíº¯ÊýÓÃÓÚWIN32
- ÊäÈë²ÎÊý  : ulQueueID - Task Queue ID
-             FID_value - FID
-             Para1 - ²ÎÊý1, Î´Ê¹ÓÃ
-             Para2 - ²ÎÊý2, Î´Ê¹ÓÃ
- Êä³ö²ÎÊý  : ÎÞ
- ·µ »Ø Öµ  : ÎÞ
- µ÷ÓÃº¯Êý  :
- ±»µ÷º¯Êý  :
 
- ÐÞ¸ÄÀúÊ·  :
-    1.ÈÕ    ÆÚ   : 2011Äê12ÔÂ12ÈÕ
-      ×÷    Õß   : y00151394
-      ÐÞ¸ÄÄÚÈÝ   : ÐÂÉú³Éº¯Êý
-
-*****************************************************************************/
 VOS_VOID CDS_FidTask(VOS_UINT32 ulQueueID, VOS_UINT32 FID_value,
                                      VOS_UINT32 Para1, VOS_UINT32 Para2)
 {
@@ -1329,24 +926,7 @@ VOS_VOID CDS_FidTask(VOS_UINT32 ulQueueID, VOS_UINT32 FID_value,
 
 
 #else
-/*****************************************************************************
- º¯ Êý Ãû  : CDS_FidTask
- ¹¦ÄÜÃèÊö  : CDS FIDÈÎÎñ´¦Àíº¯ÊýÓÃÓÚVXWORK
- ÊäÈë²ÎÊý  : ulQueueID - Task Queue ID
-             FID_value - FID
-             Para1 - ²ÎÊý1, Î´Ê¹ÓÃ
-             Para2 - ²ÎÊý2, Î´Ê¹ÓÃ
- Êä³ö²ÎÊý  : ÎÞ
- ·µ »Ø Öµ  : ÎÞ
- µ÷ÓÃº¯Êý  :
- ±»µ÷º¯Êý  :
 
- ÐÞ¸ÄÀúÊ·  :
-    1.ÈÕ    ÆÚ   : 2011Äê12ÔÂ12ÈÕ
-      ×÷    Õß   : y00151394
-      ÐÞ¸ÄÄÚÈÝ   : ÐÂÉú³Éº¯Êý
-
-*****************************************************************************/
 VOS_VOID CDS_FidTask(VOS_UINT32 ulQueueID, VOS_UINT32 FID_value,
                                      VOS_UINT32 Para1, VOS_UINT32 Para2)
 {
@@ -1421,21 +1001,7 @@ VOS_VOID CDS_FidTask(VOS_UINT32 ulQueueID, VOS_UINT32 FID_value,
 #endif
 /*lint +e715*/
 
-/*****************************************************************************
- º¯ Êý Ãû  : CDS_FidInit
- ¹¦ÄÜÃèÊö  : CDSÈÎÎñ³õÊ¼»¯º¯Êý
- ÊäÈë²ÎÊý  : enum VOS_INIT_PHASE_DEFINE enPhase
- Êä³ö²ÎÊý  : ÎÞ
- ·µ »Ø Öµ  : VOS_UINT32
- µ÷ÓÃº¯Êý  :
- ±»µ÷º¯Êý  :
 
- ÐÞ¸ÄÀúÊ·  :
-  1.ÈÕ    ÆÚ   : 2011Äê12ÔÂ13ÈÕ
-    ×÷    Õß   : y00151394
-    ÐÞ¸ÄÄÚÈÝ   : ÐÂÉú³Éº¯Êý
-
-*****************************************************************************/
 VOS_UINT32 CDS_FidInit(enum VOS_INIT_PHASE_DEFINE enPhase)
 {
     VOS_UINT32   ulResult = PS_FAIL;

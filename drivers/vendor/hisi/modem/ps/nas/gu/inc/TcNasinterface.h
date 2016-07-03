@@ -1,14 +1,4 @@
-/*******************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : TcNasinterface.h
-  Description : TC与NAS其它TASK的接口头文件
-  History     :
-      1. 2004-05-17 Creat
-      2. L47619   2005.11.26   问题单:    A32D01107
-      3.日    期  : 2006年12月4日
-        作    者  : luojian id:60022475
-        修改内容  : 增加 #pragma pack(4)，问题单号:A32D07779
-*******************************************************************************/
+
 
 #ifndef TC_NAS_INTERFACE_H_
 #define TC_NAS_INTERFACE_H_
@@ -214,37 +204,19 @@ typedef struct tcgmm_data_req_stru{
 }TCGMM_DATA_REQ_STRU;
 
 
-/*****************************************************************************
- 结构名    : TCMM_RR_REL_IND_STRU
- 结构说明  :  MM用此消息通知TC连接释放
- 1.日    期   : 2011年9月14日
-   作    者   : l00171473
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /* 消息头    */
 }TCMM_RR_REL_IND_STRU;
 
-/*****************************************************************************
- 结构名    : TCGMM_RR_REL_IND_STRU
- 结构说明  :  GMM用此消息通知TC连接释放
- 1.日    期   : 2011年9月14日
-   作    者   : l00171473
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /* 消息头    */
 }TCGMM_RR_REL_IND_STRU;
 
-/*****************************************************************************
- 结构名    : TCGMM_HANDOVER_IND_STRU
- 结构说明  :  GMM用此消息通知TC异系统切换完成
- 1.日    期   : 2011年9月14日
-   作    者   : l00171473
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /* 消息头           */
@@ -254,14 +226,7 @@ typedef struct
 }TCGMM_HANDOVER_IND_STRU;
 
 
-/*****************************************************************************
-枚举名    : TC_UE_POS_TECH_ENUM_UINT8
-枚举说明  : RESET UE POSITIONING STORED INFORMATION消息中的IE "UE Positioning
-            Technology"的取值枚举定义
-1.日    期  : 2012年7月10日
-  作    者  : L47619
-  修改内容  : Add for V7R1C50 A-GPS Project
-*****************************************************************************/
+
 enum TC_UE_POS_TECH_ENUM
 {
     TC_UE_POS_TECH_AGPS   = 0 ,
@@ -270,13 +235,7 @@ enum TC_UE_POS_TECH_ENUM
 };
 typedef VOS_UINT8 TC_UE_POS_TECH_ENUM_UINT8;
 
-/*****************************************************************************
- 结构名    : TCMTA_RESET_UE_POS_STORED_INFO_STRU
- 结构说明  :  TC通知MTA清除定位辅助数据的指示
- 1.日    期   : 2011年9月14日
-   作    者   : l00171473
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /* 消息头           */

@@ -5,7 +5,6 @@
 extern "C"{
 #endif /* __cplusplus */
 
-/*ERRORCODE<错误码> added by 178934 2013-11-7*/
 enum  enNSRErrorCode
 {
     NSR_OK = 0,                                     /*<0>操作成功*/
@@ -188,7 +187,6 @@ typedef struct nsr_control_msg
 
 }NSR_CONTROL_MSG;
 
-/* Modified by w00207740, DTS2014021106399,数据结构对齐删除pad保留字段, 2014/2/14 */
 /*STRUCT<NSR COMMON的本地数据>*/
 typedef struct nsr_common_info_show
 {

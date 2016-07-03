@@ -106,7 +106,6 @@ typedef struct tag3ahCfgInfo
                                                
 }OAM3AH_CFG_INFO_S;
 
-/*Added by wangtong207740, HIU 3AH规格扩展, 2012/6/14 */
 /* 对外输出3AH配置信息结构体 */
 typedef struct tag3ahCfgInfoEx
 {
@@ -162,7 +161,6 @@ typedef ULONG (*GET_PHY_ERROR_FRAME_HOOK_FUNC)(ULONG ulIfIndex, DULONG_S *pstdul
 typedef ULONG (*SET_LINK_EVENT_WINTHRSH_HOOK_FUNC)(ULONG ulIfIndex, ULONG ulEventType, ULONG ulEnabled,
                                                    ULONG ulErrorWindow, ULONG ulErroredThreshold);
 
-/*Added by z00208058/w00207740, 3AH链路事件窗口和门限规格扩展, 2012/5/9 */
 typedef ULONG (*SET_LINK_EVENT_WINTHRSH_EX_HOOK_FUNC)(ULONG ulIfIndex, ULONG ulEventType, ULONG ulEnabled,DULONG_S dulErrorWindow, DULONG_S dulErroredThreshold);
 
 typedef ULONG (*LBINPUT_HOOK_FUNC) (struct tagMBuf *pstMBuf, ULONG ulIfIndex);
@@ -1063,23 +1061,7 @@ ULONG TCPIP_3AH_Set_NegTimeoutWaring (ULONG ulTime);
 *******************************************************************************/
 ULONG TCPIP_3AH_Get_NegTimeoutWaring (ULONG *pulTime);
 
-/*******************************************************************************
-*    Func Name: TCPIP_3AH_GetFaultWarnState
-* Date Created: 2010-10-13
-*       Author: c00168670
-*  Description: 获取3AH本地和远端的故障告警状态
-*        Input: ULONG ulIfIndex: 接口索引
-*               OAM3AH_WARN_STATE_S* pst3ahWarnState: 3AH告警状态数据结构指针
-*       Output: 
-*       Return: 成功:OAM3AH_OK;失败:返回错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-10-13   c00168670               Create
-*
-*******************************************************************************/
+
 ULONG TCPIP_3AH_GetFaultWarnState(ULONG ulIfIndex, OAM3AH_WARN_STATE_S* pst3ahWarnState);
 
 

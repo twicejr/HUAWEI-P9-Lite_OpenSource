@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : csimagent.c
-  版 本 号   : 初稿
-  作    者   :
-  生成日期   :
-  最近修改   :
-  功能描述   :
-  函数列表   :
-  修改历史   :
-
-  1.日    期   :
-    作    者   :
-    修改内容   :
-******************************************************************************/
 #include "product_config.h"
 
 #if (FEATURE_ON == FEATURE_UE_UICC_MULTI_APP_SUPPORT)
@@ -53,17 +36,7 @@ CSIMA_CBP_STATUS_IND_MSG_STRU           g_stCBPCardStatus;
 CSIMA_EVENTLIST_RESEND_ENUM_UINT32      g_enEventListReSendFlag = CSIMA_EVENTLIST_RESEND_INIT;
 CSIMA_CARDINFO_STRU                     g_stCpbCardInfo;
 
-/*****************************************************************************
-函 数 名  : CSIMA_CardStatusInd
-功能描述  : CSIMA模块非首次收到卡状态消息
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2015年03月18日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
+
 
 VOS_VOID CSIMA_CCB_SetCardType(CSIMA_CBP_CARD_TYPE_ENUM_UINT16 enCardType)
 {
@@ -72,17 +45,7 @@ VOS_VOID CSIMA_CCB_SetCardType(CSIMA_CBP_CARD_TYPE_ENUM_UINT16 enCardType)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_CardStatusInd
-功能描述  : CSIMA模块非首次收到卡状态消息
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2015年03月18日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
+
 
 VOS_VOID CSIMA_CCB_AddCardType(CSIMA_CBP_CARD_TYPE_ENUM_UINT16 enCardType)
 {
@@ -91,34 +54,14 @@ VOS_VOID CSIMA_CCB_AddCardType(CSIMA_CBP_CARD_TYPE_ENUM_UINT16 enCardType)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_CardStatusInd
-功能描述  : CSIMA模块非首次收到卡状态消息
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2015年03月18日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
+
 
 VOS_UINT16 CSIMA_CCB_GetCardType(VOS_VOID)
 {
     return g_stCBPCardStatus.usCardType;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_CardStatusInd
-功能描述  : CSIMA模块非首次收到卡状态消息
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2015年03月18日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
+
 
 VOS_VOID CSIMA_CCB_SetCardStatus(CSIMA_CBP_CARD_STATUS_ENUM_UINT16 enCardStatus)
 {
@@ -127,51 +70,21 @@ VOS_VOID CSIMA_CCB_SetCardStatus(CSIMA_CBP_CARD_STATUS_ENUM_UINT16 enCardStatus)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_CardStatusInd
-功能描述  : CSIMA模块非首次收到卡状态消息
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2015年03月18日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
+
 
 CSIMA_CBP_CARD_STATUS_ENUM_UINT16 CSIMA_CCB_GetCardStatus(VOS_VOID)
 {
     return g_stCBPCardStatus.enStatus;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_CCB_GetCSIMChannel
-功能描述  : CSIMA模块非首次收到卡状态消息
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2015年03月18日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
+
 
 VOS_UINT8 CSIMA_CCB_GetCSIMChannel(VOS_VOID)
 {
     return g_stCBPCardStatus.ucCSIMChanNum;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_CardStatusInd
-功能描述  : CSIMA模块非首次收到卡状态消息
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2015年03月18日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID CSIMA_CCB_ClearCardInfo(VOS_VOID)
 {
     /* lint -e534 */
@@ -194,18 +107,7 @@ VOS_VOID CSIMA_CCB_ClearCardInfo(VOS_VOID)
 }
 
 
-/*****************************************************************************
-函 数 名  : CSIMA_SendTerminalResponse
-功能描述  : CSIMA模块发送TERMINAL RESPONSE数据
-输入参数  : ucLen:TERMINAL RESPONSE数据长度
-            pucRsp:TERMINAL RESPONSE数据内容
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2013年12月19日
-  作    者  : h00300778
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 CSIMA_SendTerminalResponse(VOS_UINT8 ucLen, VOS_UINT8 *pucRsp)
 {
     USIMM_TERMINALRESPONSE_REQ_STRU    *pstMsg;
@@ -233,20 +135,7 @@ VOS_UINT32 CSIMA_SendTerminalResponse(VOS_UINT8 ucLen, VOS_UINT8 *pucRsp)
     return VOS_SendMsg(MAPS_STK_PID, pstMsg);
 }
 
-/*****************************************************************************
-函 数 名  :SI_PIH_SendTPDUReqMsg
-功能描述  :发送TPDU数据请求，该接口不检查卡状态，可用于后续合并CSIM和CGLA的接口
-输入参数  :ulSessionID:请求者的回话ID
-           pstFilePath:路径信息
-           pucADFName:TPDU内容
-输出参数  :无
-返 回 值  :VOS_OK:成功，其余失败
 
-修订记录  :
-1.日    期  : 2015年02月10日
-  作    者  : z00100318
-  修改内容  : Create
-*****************************************************************************/
 VOS_UINT32 CSIMA_SendTPDUReqMsg(
     USIMM_CARDAPP_ENUM_UINT32           enAppType,
     USIMM_SENDPARA_ENUM_UINT32          enSendPara,
@@ -286,19 +175,7 @@ VOS_UINT32 CSIMA_SendTPDUReqMsg(
     return VOS_SendMsg(WUEPS_PID_CSIMA, pstMsg);
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_SendInitCardReqMsg
-功能描述  : PIH模块SIM卡初始化消息发送函数
-输入参数  : enMsgName:初始化消息类型
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-调用函数  :
-被调函数  :
-修订记录  :
-1.日    期  : 2015年02月06日
-  作    者  : H00300778
-  修改内容  : 新建函数
-*****************************************************************************/
+
 VOS_UINT32 CSIMA_SendInitCardReqMsg(USIMM_CMDTYPE_REQ_ENUM_UINT32 enMsgName)
 {
     USIMM_ACTIVECARD_REQ_STRU          *pstMsg;
@@ -320,19 +197,7 @@ VOS_UINT32 CSIMA_SendInitCardReqMsg(USIMM_CMDTYPE_REQ_ENUM_UINT32 enMsgName)
     return VOS_SendMsg(WUEPS_PID_CSIMA, pstMsg);
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_SendActiveCardReqMsg
-功能描述  : PIH模块SIM卡初始化消息发送函数
-输入参数  : enMsgName:初始化消息类型
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-调用函数  :
-被调函数  :
-修订记录  :
-1.日    期  : 2015年02月06日
-  作    者  : H00300778
-  修改内容  : 新建函数
-*****************************************************************************/
+
 VOS_UINT32 CSIMA_SendActiveCardReqMsg(VOS_VOID)
 {
     NAS_NVIM_FOLLOWON_OPENSPEED_FLAG_STRU                   stUSIMMOpenSpeed;
@@ -363,17 +228,7 @@ VOS_UINT32 CSIMA_SendActiveCardReqMsg(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_UiccResAccRspMsg
-功能描述  : CSIMA模块处理USIM应用文件访问结果
-输入参数  : pstMsg -- 指向受限访问结果
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-History     :
-1.日    期  : 2013年12月19日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32  CSIMA_UiccResAccRspMsg(USIMM_RACCESS_CNF_STRU  *pstMsg)
 {
     VOS_UINT32                          ulResult;
@@ -451,22 +306,7 @@ VOS_UINT32  CSIMA_UiccResAccRspMsg(USIMM_RACCESS_CNF_STRU  *pstMsg)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_UiccRtpduMsg
-功能描述  : CSIMA模块处理逻辑通道访问结果
-输入参数  : ulResult   -- 结果字段
-            ucSW1      -- 状态字1
-            ucSW2      -- 状态字2
-            ucDataLen  -- 数据长度
-            paucData   -- 数据内容
 
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-History     :
-1.日    期  : 2013年12月19日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
 VOS_UINT32  CSIMA_UiccRtpduMsg(VOS_UINT32     ulResult,
                                          VOS_UINT8      ucSW1,
                                          VOS_UINT8      ucSW2,
@@ -554,18 +394,7 @@ VOS_UINT32  CSIMA_UiccRtpduMsg(VOS_UINT32     ulResult,
     return ulRslt;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_CBP_HandshakeReqMsg
-功能描述  : CSIMA模块处理CBPCA发来的握手消息
-输入参数  : 无
 
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-History     :
-1.日    期  : 2013年12月19日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
 VOS_UINT32 CSIMA_CBP_HandshakeReqMsg(VOS_VOID)
 {
     VOS_UINT32                          ulRslt;
@@ -588,18 +417,7 @@ VOS_UINT32 CSIMA_CBP_HandshakeReqMsg(VOS_VOID)
     return ulRslt;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_UiccResAccReqMsg
-功能描述  : CSIMA模块将CTPDU消息发送到USIM模块
-输入参数  : pstMsg -- 访问USIM应用请求消息
 
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-History     :
-1.日    期  : 2013年12月19日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
 VOS_UINT32  CSIMA_UiccResAccReqMsg(CSIMA_CBP_RESACC_REQ_MSG_STRU *pstMsg)
 {
     VOS_UINT32                          ulResult;
@@ -698,20 +516,7 @@ VOS_UINT32  CSIMA_UiccResAccReqMsg(CSIMA_CBP_RESACC_REQ_MSG_STRU *pstMsg)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_GetUiccAidAndChanNum
-功能描述  : CSIMA模块获取CSIM的AID及通道号
-输入参数  : enAidType  -- AID类型枚举值
-            pucAid     -- AID内容
-            pucChanNum -- 通道号
 
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-History     :
-1.日    期  : 2013年12月19日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
 VOS_UINT32  CSIMA_GetUiccAidAndChanNum(
     USIMM_AID_TYPE_ENUM_UINT32      enAidType,
     VOS_UINT8                      *pucAid,
@@ -745,18 +550,7 @@ VOS_UINT32  CSIMA_GetUiccAidAndChanNum(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_CBPEnvelopeSend
-功能描述  : 处理CBP发送的Envelope命令下发
-输入参数  : pstCtpduMsg  -- 命令数据
 
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-History     :
-1.日    期  : 2013年12月19日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
 
 VOS_UINT32 CSIMA_CBPEnvelopeSend(CSIMA_CBP_CTPDU_MSG_STRU *pstCtpduMsg)
 {
@@ -795,18 +589,7 @@ VOS_UINT32 CSIMA_CBPEnvelopeSend(CSIMA_CBP_CTPDU_MSG_STRU *pstCtpduMsg)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_SendTPDUOnBaseChan
-功能描述  : 处理CBP发送的命令下发到基本通道上
-输入参数  : pstCtpduMsg  -- 命令数据
 
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-History     :
-1.日    期  : 2013年12月19日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
 VOS_UINT32 CSIMA_SendTPDUOnChan(CSIMA_CBP_CTPDU_MSG_STRU *pstCtpduMsg)
 {
     CSIMA_CBP_RTPDU_MSG_STRU            stRtpdu;
@@ -874,17 +657,7 @@ VOS_UINT32 CSIMA_SendTPDUOnChan(CSIMA_CBP_CTPDU_MSG_STRU *pstCtpduMsg)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_UiccCtpduMsg
-功能描述  : CSIMA模块将CTPDU消息发送到USIM模块
-输入参数  : pstCtpduMsg -- 指向CTPDU请求数据结构
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-History     :
-1.日    期  : 2013年12月19日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32  CSIMA_UiccCtpduMsg(CSIMA_CBP_CTPDU_MSG_STRU *pstCtpduMsg)
 {
     VOS_UINT32                          ulResult;
@@ -903,18 +676,7 @@ VOS_UINT32  CSIMA_UiccCtpduMsg(CSIMA_CBP_CTPDU_MSG_STRU *pstCtpduMsg)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_CBP_TerminalResponseMsgProc
-功能描述  : CSIMA模块处理CBPCA模块发过来的TERMINAL RESPONSE消息
-输入参数  : pstMsg -- CBPCA转发给CSIMA处理的TERMINAL RESPONSE消息内容
 
-输出参数  : 无
-返 回 值  : VOS_VOID
-History     :
-1.日    期  : 2014年02月14日
-  作    者  : H59254
-  修改内容  : Create
-*****************************************************************************/
 VOS_UINT32 CSIMA_CBP_TerminalResponseMsgProc(CSIMA_CBP_TERMINALRESPONSE_MSG_STRU *pstMsg)
 {
     VOS_UINT32                          ulRslt;
@@ -933,18 +695,7 @@ VOS_UINT32 CSIMA_CBP_TerminalResponseMsgProc(CSIMA_CBP_TERMINALRESPONSE_MSG_STRU
     return ulRslt;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_CBPCADataIndProc
-功能描述  : CSIMA模块处理CBPCA模块发过来的消息
-输入参数  : pstMsg -- CBPCA转发给CSIMA处理消息内容
 
-输出参数  : 无
-返 回 值  : VOS_VOID
-History     :
-1.日    期  : 2013年12月19日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
 VOS_UINT32  CSIMA_CBPCADataIndProc(CBPCA_DATA_IND_MSG_STRU *pstMsg)
 {
     VOS_UINT32                          *pulMsgId;
@@ -1006,18 +757,7 @@ VOS_UINT32  CSIMA_CBPCADataIndProc(CBPCA_DATA_IND_MSG_STRU *pstMsg)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_CBPCAMsgProc
-功能描述  : CSIMA模块处理CBPCA模块发过来的消息
-输入参数  : pstMsg -- CBPCA向CSIMA发来的消息
 
-输出参数  : 无
-返 回 值  : VOS_VOID
-History     :
-1.日    期  : 2013年12月19日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
 VOS_UINT32  CSIMA_CBPCAMsgProc(CSIMA_CBP_MSG_STRU *pstMsg)
 {
     VOS_UINT32                          ulResult;
@@ -1035,17 +775,7 @@ VOS_UINT32  CSIMA_CBPCAMsgProc(CSIMA_CBP_MSG_STRU *pstMsg)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_UsimMsgProc
-功能描述  : CSIMA模块处理USIM模块回复消息
-输入参数  : pstMsg -- USIM模块回复消息内容
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-History     :
-1.日    期  : 2013年12月19日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32  CSIMA_UsimMsgProc(CSIMA_CBP_MSG_STRU *pstMsg)
 {
     VOS_UINT32                          ulResult;
@@ -1100,17 +830,7 @@ VOS_UINT32  CSIMA_UsimMsgProc(CSIMA_CBP_MSG_STRU *pstMsg)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_CBPResetInd
-功能描述  : 将CBP的复位状态发送给CBPCA模块
-输入参数  : enModemReset -- 复位状态
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2013年12月19日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID CSIMA_CBPResetInd(CSIMA_CBPCA_MODEM_RESET_ENUM_UINT32 enModemReset)
 {
     CSIMA_CBPCA_MODEM_RESET_IND_MSG_STRU    *pstResetInd;
@@ -1140,17 +860,7 @@ VOS_VOID CSIMA_CBPResetInd(CSIMA_CBPCA_MODEM_RESET_ENUM_UINT32 enModemReset)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_ATResetIndProc
-功能描述  : CSIMA模块处理AT下发的CBP复位状态
-输入参数  : pstMsg -- 指向复位消息
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-History     :
-1.日    期  : 2013年12月19日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32  CSIMA_ATResetIndProc(AT_CSIMA_RESET_STATUS_IND_MSG_STRU *pstMsg)
 {
     VOS_UINT32                          ulResult;
@@ -1181,18 +891,7 @@ VOS_UINT32  CSIMA_ATResetIndProc(AT_CSIMA_RESET_STATUS_IND_MSG_STRU *pstMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_ATMsgProc
-功能描述  : CSIMA模块处理AT命令
-输入参数  : pstMsg -- AT发给CSIMA处理的消息内容
 
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-History     :
-1.日    期  : 2013年12月19日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
 VOS_UINT32  CSIMA_ATMsgProc(CSIMA_CBP_MSG_STRU *pstMsg)
 {
     VOS_UINT32                          ulResult = VOS_ERR;
@@ -1211,18 +910,7 @@ VOS_UINT32  CSIMA_ATMsgProc(CSIMA_CBP_MSG_STRU *pstMsg)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_ProactiveIndProc
-功能描述  : CSIMA模块处理STK发过来的主动命令
-输入参数  : pstMsg -- STK主动命名上报消息内容
 
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-History     :
-1.日    期  : 2013年12月19日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
 VOS_UINT32  CSIMA_ProactiveIndProc(CSIMA_STK_PROACTIVE_CMD_MSG_STRU *pstMsg)
 {
     VOS_UINT32                          ulResult;
@@ -1250,18 +938,7 @@ VOS_UINT32  CSIMA_ProactiveIndProc(CSIMA_STK_PROACTIVE_CMD_MSG_STRU *pstMsg)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_STKMsgProc
-功能描述  : CSIMA模块处理STK发过来的消息
-输入参数  : pstMsg -- STK发来的消息内容
 
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-History     :
-1.日    期  : 2013年12月19日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
 VOS_UINT32  CSIMA_STKMsgProc(CSIMA_CBP_MSG_STRU *pstMsg)
 {
     VOS_UINT32                          ulResult = VOS_ERR;
@@ -1282,18 +959,7 @@ VOS_UINT32  CSIMA_STKMsgProc(CSIMA_CBP_MSG_STRU *pstMsg)
 }
 
 
-/*****************************************************************************
-函 数 名  : CSIMA_CardStatusMsgSend
-功能描述  : CSIMA模块上报卡状态给CBP
-输入参数  : enCardStatus:卡状态
-            enCardType:卡类型
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2014年01月16日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
+
 
 VOS_VOID CSIMA_CardStatusMsgSend(CSIMA_CBP_CARD_STATUS_ENUM_UINT16 enCardStatus)
 {
@@ -1320,17 +986,7 @@ VOS_VOID CSIMA_CardStatusMsgSend(CSIMA_CBP_CARD_STATUS_ENUM_UINT16 enCardStatus)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_CardStatusInd
-功能描述  : CSIMA模块非首次收到卡状态消息
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2015年03月18日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID CSIMA_UpdateUICCCardInfo(VOS_VOID)
 {
     VOS_UINT32                  ulResult;
@@ -1379,17 +1035,7 @@ VOS_VOID CSIMA_UpdateUICCCardInfo(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_CardStatusInd
-功能描述  : CSIMA模块非首次收到卡状态消息
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2015年03月18日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID CSIMA_UpdateICCCardInfo(VOS_VOID)
 {
     VOS_UINT32                      ulResult;
@@ -1411,17 +1057,7 @@ VOS_VOID CSIMA_UpdateICCCardInfo(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_CardStatusInd
-功能描述  : CSIMA模块非首次收到卡状态消息
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2015年03月18日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID CSIMA_UpdateCardInfo(USIMM_PHYCARD_TYPE_ENUM_UINT32 enCardType)
 {
     if (USIMM_PHYCARD_TYPE_ICC == enCardType)
@@ -1440,17 +1076,7 @@ VOS_VOID CSIMA_UpdateCardInfo(USIMM_PHYCARD_TYPE_ENUM_UINT32 enCardType)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_CardStatusInd
-功能描述  : CSIMA模块非首次收到卡状态消息
-输入参数  : pstMsg:卡状态消息
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2014年01月16日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID CSIMA_CardStatusInd(USIMM_CARDSTATUS_IND_STRU *pstMsg)
 {
     if (USIMM_PHYCARD_TYPE_NOCARD == pstMsg->enPhyCardType)    /*掉卡*/
@@ -1480,17 +1106,7 @@ VOS_VOID CSIMA_CardStatusInd(USIMM_CARDSTATUS_IND_STRU *pstMsg)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_PIHMsgProc
-功能描述  : CSIMA模块处理PIH模块上报的卡状态消息
-输入参数  : pstMsg -- 指向当前卡状态结构
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-History     :
-1.日    期  : 2013年12月19日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32  CSIMA_PIHMsgProc(USIMM_CARDSTATUS_IND_STRU *pstMsg)
 {
     if (USIMM_CARDSTATUS_IND != pstMsg->ulMsgName)
@@ -1506,18 +1122,7 @@ VOS_UINT32  CSIMA_PIHMsgProc(USIMM_CARDSTATUS_IND_STRU *pstMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_PidMsgProc
-功能描述  : CSIMA模块处理其他模块发过来的消息
-输入参数  : pstMsg -- 收到消息内容
 
-输出参数  : 无
-返 回 值  : VOS_VOID
-History     :
-1.日    期  : 2013年12月19日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
 VOS_VOID CSIMA_PidMsgProc(CSIMA_CBP_MSG_STRU *pstMsg)
 {
     VOS_UINT32                          ulResult = VOS_ERR;
@@ -1566,17 +1171,7 @@ VOS_VOID CSIMA_PidMsgProc(CSIMA_CBP_MSG_STRU *pstMsg)
 }
 
 
-/*****************************************************************************
-函 数 名  : CSIMA_Init
-功能描述  : CSIMA模块初始化
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-History     :
-1.日    期  : 2013年12月19日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 CSIMA_Init(VOS_VOID)
 {
     VOS_UINT32                          ulResult;
@@ -1618,17 +1213,7 @@ VOS_UINT32 CSIMA_PidInit(enum VOS_INIT_PHASE_DEFINE ip)
 }
 #endif /* FEATURE_ON == FEATURE_CL_INTERWORK */
 
-/*****************************************************************************
-函 数 名  : CSIMA_FidInit
-功能描述  : CSIMA模块FID初始化
-输入参数  : ip  ---初始化所处阶段
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-History     :
-1.日    期  : 2013年12月27日
-  作    者  : L00256032
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 CSIMA_FidInit(enum VOS_INIT_PHASE_DEFINE ip)
 {
 #if (FEATURE_ON == FEATURE_CL_INTERWORK)
@@ -1707,18 +1292,7 @@ CSIMA_CBP_STATUS_IND_MSG_STRU           g_stCBPCardStatus;
 CSIMA_EVENTLIST_RESEND_ENUM_UINT32      g_enEventListReSendFlag = CSIMA_EVENTLIST_RESEND_INIT;
 CSIMA_CARDINFO_STRU                     g_stCpbCardInfo;
 
-/*****************************************************************************
-函 数 名  : CSIMA_SendTerminalResponse
-功能描述  : CSIMA模块发送TERMINAL RESPONSE数据
-输入参数  : ucLen:TERMINAL RESPONSE数据长度
-            pucRsp:TERMINAL RESPONSE数据内容
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2013年12月19日
-  作    者  : h00300778
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 CSIMA_SendTerminalResponse(VOS_UINT8 ucLen, VOS_UINT8 *pucRsp)
 {
     USIMM_TERMINALRESPONSE_REQ_STRU    *pstMsg;
@@ -1746,20 +1320,7 @@ VOS_UINT32 CSIMA_SendTerminalResponse(VOS_UINT8 ucLen, VOS_UINT8 *pucRsp)
     return VOS_SendMsg(MAPS_STK_PID, pstMsg);
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_SendOpenChannelReqMsg
-功能描述  : CSIMA模块SIM逻辑通道请求消息发送函数
-输入参数  : ulAIDLen:AID长度
-            pucADFName:AID内容
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-调用函数  :
-被调函数  :
-修订记录  :
-1.日    期  : 2015年01月31日
-  作    者  : H00300778
-  修改内容  : 新建函数
-*****************************************************************************/
+
 VOS_UINT32 CSIMA_SendOpenChannelReqMsg(VOS_UINT32 ulAIDLen, VOS_UINT8 *pucADFName)
 {
     USIMM_OPENCHANNEL_REQ_STRU         *pstMsg;
@@ -1794,20 +1355,7 @@ VOS_UINT32 CSIMA_SendOpenChannelReqMsg(VOS_UINT32 ulAIDLen, VOS_UINT8 *pucADFNam
 }
 
 
-/*****************************************************************************
-函 数 名  :SI_PIH_SendTPDUReqMsg
-功能描述  :发送TPDU数据请求，该接口不检查卡状态，可用于后续合并CSIM和CGLA的接口
-输入参数  :ulSessionID:请求者的回话ID
-           pstFilePath:路径信息
-           pucADFName:TPDU内容
-输出参数  :无
-返 回 值  :VOS_OK:成功，其余失败
 
-修订记录  :
-1.日    期  : 2015年02月10日
-  作    者  : z00100318
-  修改内容  : Create
-*****************************************************************************/
 VOS_UINT32 CSIMA_SendTPDUReqMsg(
     USIMM_CARDAPP_ENUM_UINT32           enAppType,
     USIMM_SENDPARA_ENUM_UINT32          enSendPara,
@@ -1847,19 +1395,7 @@ VOS_UINT32 CSIMA_SendTPDUReqMsg(
     return VOS_SendMsg(WUEPS_PID_CSIMA, pstMsg);
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_SendInitCardReqMsg
-功能描述  : PIH模块SIM卡初始化消息发送函数
-输入参数  : enMsgName:初始化消息类型
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-调用函数  :
-被调函数  :
-修订记录  :
-1.日    期  : 2015年02月06日
-  作    者  : H00300778
-  修改内容  : 新建函数
-*****************************************************************************/
+
 VOS_UINT32 CSIMA_SendInitCardReqMsg(USIMM_CMDTYPE_REQ_ENUM_UINT32 enMsgName)
 {
     USIMM_ACTIVECARD_REQ_STRU          *pstMsg;
@@ -1881,19 +1417,7 @@ VOS_UINT32 CSIMA_SendInitCardReqMsg(USIMM_CMDTYPE_REQ_ENUM_UINT32 enMsgName)
     return VOS_SendMsg(WUEPS_PID_CSIMA, pstMsg);
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_SendActiveCardReqMsg
-功能描述  : PIH模块SIM卡初始化消息发送函数
-输入参数  : enMsgName:初始化消息类型
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-调用函数  :
-被调函数  :
-修订记录  :
-1.日    期  : 2015年02月06日
-  作    者  : H00300778
-  修改内容  : 新建函数
-*****************************************************************************/
+
 VOS_UINT32 CSIMA_SendActiveCardReqMsg(VOS_VOID)
 {
     NAS_NVIM_FOLLOWON_OPENSPEED_FLAG_STRU                   stUSIMMOpenSpeed;
@@ -1924,20 +1448,7 @@ VOS_UINT32 CSIMA_SendActiveCardReqMsg(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_DataHook
-功能描述  : 数据钩子函数
-输入参数  : ulLength:数据长度
-           pucData:数据内容
-输出参数  : 无
-返 回 值  : 无
-调用函数  : 无
-被调函数  :
-修订记录  :
-1. 日    期   : 2015年05月13日
-   作    者   : H00300778
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID CSIMA_DataHook(
     VOS_UINT32                          ulLength,
     VOS_UINT8                          *pucData)
@@ -1966,17 +1477,7 @@ VOS_VOID CSIMA_DataHook(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_UiccResAccRspMsg
-功能描述  : CSIMA模块处理USIM应用文件访问结果
-输入参数  : pstMsg -- 指向受限访问结果
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-History     :
-1.日    期  : 2013年12月19日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32  CSIMA_UiccResAccRspMsg(USIMM_RACCESS_CNF_STRU  *pstMsg)
 {
     VOS_UINT32                          ulResult;
@@ -2054,22 +1555,7 @@ VOS_UINT32  CSIMA_UiccResAccRspMsg(USIMM_RACCESS_CNF_STRU  *pstMsg)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_UiccRtpduMsg
-功能描述  : CSIMA模块处理逻辑通道访问结果
-输入参数  : ulResult   -- 结果字段
-            ucSW1      -- 状态字1
-            ucSW2      -- 状态字2
-            ucDataLen  -- 数据长度
-            paucData   -- 数据内容
 
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-History     :
-1.日    期  : 2013年12月19日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
 VOS_UINT32  CSIMA_UiccRtpduMsg(VOS_UINT32     ulResult,
                                          VOS_UINT8      ucSW1,
                                          VOS_UINT8      ucSW2,
@@ -2157,18 +1643,7 @@ VOS_UINT32  CSIMA_UiccRtpduMsg(VOS_UINT32     ulResult,
     return ulRslt;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_CBP_HandshakeReqMsg
-功能描述  : CSIMA模块处理CBPCA发来的握手消息
-输入参数  : 无
 
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-History     :
-1.日    期  : 2013年12月19日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
 VOS_UINT32 CSIMA_CBP_HandshakeReqMsg(VOS_VOID)
 {
     VOS_UINT32                          ulRslt;
@@ -2191,18 +1666,7 @@ VOS_UINT32 CSIMA_CBP_HandshakeReqMsg(VOS_VOID)
     return ulRslt;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_UiccResAccReqMsg
-功能描述  : CSIMA模块将CTPDU消息发送到USIM模块
-输入参数  : pstMsg -- 访问USIM应用请求消息
 
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-History     :
-1.日    期  : 2013年12月19日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
 VOS_UINT32  CSIMA_UiccResAccReqMsg(CSIMA_CBP_RESACC_REQ_MSG_STRU *pstMsg)
 {
     VOS_UINT32                          ulResult;
@@ -2303,20 +1767,7 @@ VOS_UINT32  CSIMA_UiccResAccReqMsg(CSIMA_CBP_RESACC_REQ_MSG_STRU *pstMsg)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_GetUiccAidAndChanNum
-功能描述  : CSIMA模块获取CSIM的AID及通道号
-输入参数  : enAidType  -- AID类型枚举值
-            pucAid     -- AID内容
-            pucChanNum -- 通道号
 
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-History     :
-1.日    期  : 2013年12月19日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
 VOS_UINT32  CSIMA_GetUiccAidAndChanNum(USIMM_AID_TYPE_ENUM_UINT32 enAidType,
                                                       VOS_UINT8 *pucAid, VOS_UINT8 *pucChanNum)
 {
@@ -2335,18 +1786,7 @@ VOS_UINT32  CSIMA_GetUiccAidAndChanNum(USIMM_AID_TYPE_ENUM_UINT32 enAidType,
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_CBPEnvelopeSend
-功能描述  : 处理CBP发送的Envelope命令下发
-输入参数  : pstCtpduMsg  -- 命令数据
 
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-History     :
-1.日    期  : 2013年12月19日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
 
 VOS_UINT32 CSIMA_CBPEnvelopeSend(CSIMA_CBP_CTPDU_MSG_STRU *pstCtpduMsg)
 {
@@ -2383,18 +1823,7 @@ VOS_UINT32 CSIMA_CBPEnvelopeSend(CSIMA_CBP_CTPDU_MSG_STRU *pstCtpduMsg)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_SendTPDUOnBaseChan
-功能描述  : 处理CBP发送的命令下发到基本通道上
-输入参数  : pstCtpduMsg  -- 命令数据
 
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-History     :
-1.日    期  : 2013年12月19日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
 VOS_UINT32 CSIMA_SendTPDUOnBaseChan(CSIMA_CBP_CTPDU_MSG_STRU *pstCtpduMsg)
 {
     CSIMA_CBP_RTPDU_MSG_STRU            stRtpdu;
@@ -2450,18 +1879,7 @@ VOS_UINT32 CSIMA_SendTPDUOnBaseChan(CSIMA_CBP_CTPDU_MSG_STRU *pstCtpduMsg)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_SendTPDUOnLogicChan
-功能描述  : 处理CBP发送的命令下发到逻辑通道上
-输入参数  : pstCtpduMsg  -- 命令数据
 
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-History     :
-1.日    期  : 2013年12月19日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
 
 VOS_UINT32 CSIMA_SendTPDUOnLogicChan(CSIMA_CBP_CTPDU_MSG_STRU *pstCtpduMsg)
 {
@@ -2540,17 +1958,7 @@ VOS_UINT32 CSIMA_SendTPDUOnLogicChan(CSIMA_CBP_CTPDU_MSG_STRU *pstCtpduMsg)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_UiccCtpduMsg
-功能描述  : CSIMA模块将CTPDU消息发送到USIM模块
-输入参数  : pstCtpduMsg -- 指向CTPDU请求数据结构
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-History     :
-1.日    期  : 2013年12月19日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32  CSIMA_UiccCtpduMsg(CSIMA_CBP_CTPDU_MSG_STRU *pstCtpduMsg)
 {
     VOS_UINT32                          ulResult;
@@ -2573,18 +1981,7 @@ VOS_UINT32  CSIMA_UiccCtpduMsg(CSIMA_CBP_CTPDU_MSG_STRU *pstCtpduMsg)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_CBP_TerminalResponseMsgProc
-功能描述  : CSIMA模块处理CBPCA模块发过来的TERMINAL RESPONSE消息
-输入参数  : pstMsg -- CBPCA转发给CSIMA处理的TERMINAL RESPONSE消息内容
 
-输出参数  : 无
-返 回 值  : VOS_VOID
-History     :
-1.日    期  : 2014年02月14日
-  作    者  : H59254
-  修改内容  : Create
-*****************************************************************************/
 VOS_UINT32 CSIMA_CBP_TerminalResponseMsgProc(CSIMA_CBP_TERMINALRESPONSE_MSG_STRU *pstMsg)
 {
     VOS_UINT32                          ulRslt;
@@ -2603,18 +2000,7 @@ VOS_UINT32 CSIMA_CBP_TerminalResponseMsgProc(CSIMA_CBP_TERMINALRESPONSE_MSG_STRU
     return ulRslt;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_CBPCADataIndProc
-功能描述  : CSIMA模块处理CBPCA模块发过来的消息
-输入参数  : pstMsg -- CBPCA转发给CSIMA处理消息内容
 
-输出参数  : 无
-返 回 值  : VOS_VOID
-History     :
-1.日    期  : 2013年12月19日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
 VOS_UINT32  CSIMA_CBPCADataIndProc(CBPCA_DATA_IND_MSG_STRU *pstMsg)
 {
     VOS_UINT32                          *pulMsgId;
@@ -2676,18 +2062,7 @@ VOS_UINT32  CSIMA_CBPCADataIndProc(CBPCA_DATA_IND_MSG_STRU *pstMsg)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_CBPCAMsgProc
-功能描述  : CSIMA模块处理CBPCA模块发过来的消息
-输入参数  : pstMsg -- CBPCA向CSIMA发来的消息
 
-输出参数  : 无
-返 回 值  : VOS_VOID
-History     :
-1.日    期  : 2013年12月19日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
 VOS_UINT32  CSIMA_CBPCAMsgProc(CSIMA_CBP_MSG_STRU *pstMsg)
 {
     VOS_UINT32                          ulResult;
@@ -2705,18 +2080,7 @@ VOS_UINT32  CSIMA_CBPCAMsgProc(CSIMA_CBP_MSG_STRU *pstMsg)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_OpenChanCnfProc
-功能描述  : CSIMA模块根据通道打开结果上报卡状态
-输入参数  : pstMsg -- 打开通道回复消息内容
 
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-History     :
-1.日    期  : 2013年12月19日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
 VOS_UINT32  CSIMA_OpenChanCnfProc(USIMM_OPENCHANNEL_CNF_STRU *pstMsg)
 {
     VOS_UINT32                          ulResult;
@@ -2797,17 +2161,7 @@ VOS_UINT32  CSIMA_OpenChanCnfProc(USIMM_OPENCHANNEL_CNF_STRU *pstMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_SendTPDUCnfMsg
-功能描述  : 处理USIM模块返回的TPDU结果
-输入参数  : pstMsg -- 指向TPDU返回数据结构
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-History     :
-1.日    期  : 2014年01月16日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 CSIMA_SendTPDUCnfMsg(USIMM_SENDTPDUDATA_CNF_STRU *pstMsg)
 {
     VOS_UINT32              ulResult = VOS_OK;
@@ -2858,17 +2212,7 @@ VOS_UINT32 CSIMA_SendTPDUCnfMsg(USIMM_SENDTPDUDATA_CNF_STRU *pstMsg)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_UsimMsgProc
-功能描述  : CSIMA模块处理USIM模块回复消息
-输入参数  : pstMsg -- USIM模块回复消息内容
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-History     :
-1.日    期  : 2013年12月19日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32  CSIMA_UsimMsgProc(CSIMA_CBP_MSG_STRU *pstMsg)
 {
     VOS_UINT32                          ulResult;
@@ -2934,17 +2278,7 @@ VOS_UINT32  CSIMA_UsimMsgProc(CSIMA_CBP_MSG_STRU *pstMsg)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_CBPResetInd
-功能描述  : 将CBP的复位状态发送给CBPCA模块
-输入参数  : enModemReset -- 复位状态
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2013年12月19日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID CSIMA_CBPResetInd(CSIMA_CBPCA_MODEM_RESET_ENUM_UINT32 enModemReset)
 {
     CSIMA_CBPCA_MODEM_RESET_IND_MSG_STRU    *pstResetInd;
@@ -2974,17 +2308,7 @@ VOS_VOID CSIMA_CBPResetInd(CSIMA_CBPCA_MODEM_RESET_ENUM_UINT32 enModemReset)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_ATResetIndProc
-功能描述  : CSIMA模块处理AT下发的CBP复位状态
-输入参数  : pstMsg -- 指向复位消息
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-History     :
-1.日    期  : 2013年12月19日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32  CSIMA_ATResetIndProc(AT_CSIMA_RESET_STATUS_IND_MSG_STRU *pstMsg)
 {
     VOS_UINT32                          ulResult;
@@ -3019,18 +2343,7 @@ VOS_UINT32  CSIMA_ATResetIndProc(AT_CSIMA_RESET_STATUS_IND_MSG_STRU *pstMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_ATMsgProc
-功能描述  : CSIMA模块处理AT命令
-输入参数  : pstMsg -- AT发给CSIMA处理的消息内容
 
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-History     :
-1.日    期  : 2013年12月19日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
 VOS_UINT32  CSIMA_ATMsgProc(CSIMA_CBP_MSG_STRU *pstMsg)
 {
     VOS_UINT32                          ulResult = VOS_ERR;
@@ -3049,18 +2362,7 @@ VOS_UINT32  CSIMA_ATMsgProc(CSIMA_CBP_MSG_STRU *pstMsg)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_ProactiveIndProc
-功能描述  : CSIMA模块处理STK发过来的主动命令
-输入参数  : pstMsg -- STK主动命名上报消息内容
 
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-History     :
-1.日    期  : 2013年12月19日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
 VOS_UINT32  CSIMA_ProactiveIndProc(CSIMA_STK_PROACTIVE_CMD_MSG_STRU *pstMsg)
 {
     VOS_UINT32                          ulResult;
@@ -3088,18 +2390,7 @@ VOS_UINT32  CSIMA_ProactiveIndProc(CSIMA_STK_PROACTIVE_CMD_MSG_STRU *pstMsg)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_STKMsgProc
-功能描述  : CSIMA模块处理STK发过来的消息
-输入参数  : pstMsg -- STK发来的消息内容
 
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-History     :
-1.日    期  : 2013年12月19日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
 VOS_UINT32  CSIMA_STKMsgProc(CSIMA_CBP_MSG_STRU *pstMsg)
 {
     VOS_UINT32                          ulResult = VOS_ERR;
@@ -3119,18 +2410,7 @@ VOS_UINT32  CSIMA_STKMsgProc(CSIMA_CBP_MSG_STRU *pstMsg)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_OpenCSIMOnLogicChannel
-功能描述  : CSIMA模块打开CSIM的逻辑通道
-输入参数  : ulAIDLen -- CSIM AID长度
-            pucAID -- CSIM AID
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2014年01月16日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
+
 
 VOS_VOID CSIMA_OpenCSIMOnLogicChannel(VOS_UINT32 ulAIDLen, VOS_UINT8 *pucAID)
 {
@@ -3155,18 +2435,7 @@ VOS_VOID CSIMA_OpenCSIMOnLogicChannel(VOS_UINT32 ulAIDLen, VOS_UINT8 *pucAID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_OpenCSIMOnBaseChannel
-功能描述  : CSIMA模块打开CSIM的基本逻辑通道
-输入参数  : ulAIDLen -- CSIM AID长度
-            pucAID -- CSIM AID
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2014年01月16日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
+
 
 VOS_VOID CSIMA_OpenCSIMOnBaseChannel(VOS_UINT32 ulAIDLen, VOS_UINT8 *pucAID)
 {
@@ -3195,17 +2464,7 @@ VOS_VOID CSIMA_OpenCSIMOnBaseChannel(VOS_UINT32 ulAIDLen, VOS_UINT8 *pucAID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_SelectDFCdma
-功能描述  : CSIMA模块打开UIM的DF
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2014年01月16日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
+
 
 VOS_VOID CSIMA_SelectDFCdma(VOS_VOID)
 {
@@ -3236,18 +2495,7 @@ VOS_VOID CSIMA_SelectDFCdma(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_CardStatusMsgSend
-功能描述  : CSIMA模块上报卡状态给CBP
-输入参数  : enCardStatus:卡状态
-            enCardType:卡类型
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2014年01月16日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
+
 
 VOS_VOID CSIMA_CardStatusMsgSend(
     CSIMA_CBP_CARD_STATUS_ENUM_UINT16   enCardStatus,
@@ -3293,17 +2541,7 @@ VOS_VOID CSIMA_CardStatusMsgSend(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_FirstCardStatusInd
-功能描述  : CSIMA模块首次收到卡状态消息
-输入参数  : pstMsg:卡状态消息
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2014年01月16日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID CSIMA_FirstCardStatusInd(USIMM_CARDSTATUS_IND_STRU *pstMsg)
 {
     VOS_UINT32                          ulCSIMExistFlag;
@@ -3371,17 +2609,7 @@ VOS_VOID CSIMA_FirstCardStatusInd(USIMM_CARDSTATUS_IND_STRU *pstMsg)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_CardStatusInd
-功能描述  : CSIMA模块非首次收到卡状态消息
-输入参数  : pstMsg:卡状态消息
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2014年01月16日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID CSIMA_CardStatusInd(USIMM_CARDSTATUS_IND_STRU *pstMsg)
 {
     VOS_UINT32                          ulCSIMExistFlag;
@@ -3421,17 +2649,7 @@ VOS_VOID CSIMA_CardStatusInd(USIMM_CARDSTATUS_IND_STRU *pstMsg)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_PIHMsgProc
-功能描述  : CSIMA模块处理PIH模块上报的卡状态消息
-输入参数  : pstMsg -- 指向当前卡状态结构
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-History     :
-1.日    期  : 2013年12月19日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32  CSIMA_PIHMsgProc(USIMM_CARDSTATUS_IND_STRU *pstMsg)
 {
     if (USIMM_CARDSTATUS_IND != pstMsg->ulMsgName)
@@ -3459,18 +2677,7 @@ VOS_UINT32  CSIMA_PIHMsgProc(USIMM_CARDSTATUS_IND_STRU *pstMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : CSIMA_PidMsgProc
-功能描述  : CSIMA模块处理其他模块发过来的消息
-输入参数  : pstMsg -- 收到消息内容
 
-输出参数  : 无
-返 回 值  : VOS_VOID
-History     :
-1.日    期  : 2013年12月19日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
 VOS_VOID CSIMA_PidMsgProc(CSIMA_CBP_MSG_STRU *pstMsg)
 {
     VOS_UINT32                          ulResult = VOS_ERR;
@@ -3520,17 +2727,7 @@ VOS_VOID CSIMA_PidMsgProc(CSIMA_CBP_MSG_STRU *pstMsg)
 }
 
 
-/*****************************************************************************
-函 数 名  : CSIMA_Init
-功能描述  : CSIMA模块初始化
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-History     :
-1.日    期  : 2013年12月19日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 CSIMA_Init(VOS_VOID)
 {
     /* 模块全局变量初始化 */
@@ -3578,17 +2775,7 @@ VOS_UINT32 CSIMA_PidInit(enum VOS_INIT_PHASE_DEFINE ip)
 }
 #endif /* FEATURE_ON == FEATURE_CL_INTERWORK */
 
-/*****************************************************************************
-函 数 名  : CSIMA_FidInit
-功能描述  : CSIMA模块FID初始化
-输入参数  : ip  ---初始化所处阶段
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-History     :
-1.日    期  : 2013年12月27日
-  作    者  : L00256032
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 CSIMA_FidInit(enum VOS_INIT_PHASE_DEFINE ip)
 {
 #if (FEATURE_ON == FEATURE_CL_INTERWORK)

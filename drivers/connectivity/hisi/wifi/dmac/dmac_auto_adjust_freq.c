@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : dmac_auto_adjust_freq.c
-  版 本 号   : 初稿
-  作    者   : w00316376
-  生成日期   : 2015年6月26日
-  最近修改   :
-  功能描述   :device调频相关函数实现
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年6月26日
-    作    者   : w00316376
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -52,21 +35,7 @@ oal_uint16 g_device_speed_freq[][FREQ_BUTT] = {
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : dmac_get_device_freq_level
- 功能描述  : 获取device的调频等级
- 输入参数  : 无
- 输出参数  : device的调频类型
- 返 回 值  : oal_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月16日
-    作    者   : z00185449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint8 dmac_get_device_freq_level(void)
 {
     oal_uint8 uc_vap_id;
@@ -118,23 +87,7 @@ oal_uint8 dmac_get_device_freq_level(void)
 //    OAM_WARNING_LOG1(0, OAM_SF_ANY, "{dmac_config_get_device_freq_type uc_auto_freq_bw_type = %d.}",uc_auto_freq_bw_type);
     return uc_auto_freq_bw_type;
 }
-/*****************************************************************************
- 函 数 名  : dmac_get_device_freq_value
- 功能描述  : 获取device的调频类型
- 输入参数  : 无
- 输出参数  : oal_device_freq_type_enum_uint8 uc_device_freq_type,device的调频类型,
-             wlan_auto_freq_bw_enum_uint8 uc_auto_freq_bw_type,调频频宽类型
-             oal_uint16* pusdevice_freq_value,device主频值
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月16日
-    作    者   : z00185449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 dmac_get_device_freq_value(oal_device_freq_type_enum_uint8 uc_device_freq_type,wlan_auto_freq_bw_enum_uint8 uc_auto_freq_bw_type,oal_uint16* pusdevice_freq_value)
 {
     if (uc_device_freq_type > FREQ_HIGHEST)

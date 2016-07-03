@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmcPreProcAct
-  版 本 号   : 初稿
-  作    者   : zhoujun /40661
-  生成日期   : 2010年11月16日
-  最近修改   :
-  功能描述   : NasMmcPreProcAct.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2010年11月16日
-    作    者   : zhoujun /40661
-    修改内容   : 创建文件
-
-******************************************************************************/
 #ifndef _NAS_MMC_PREPROCACT_H_
 #define _NAS_MMC_PREPROCACT_H_
 
@@ -24,16 +7,12 @@
 *****************************************************************************/
 #include  "vos.h"
 
-/* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
 #include "MsccMmcInterface.h"
-/* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
 #include  "Nasrrcinterface.h"
 #include  "NasMmlCtx.h"
 
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
 #include "MsccMmcInterface.h"
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
 #if (FEATURE_ON == FEATURE_LTE)
 #include   "MmcMmInterface.h"
@@ -119,9 +98,7 @@ VOS_UINT32  NAS_MMC_RcvGmmPdpStatusInd_PreProc(
 
 
 
-/* Deleted by s00261364 for V3R360_eCall项目, 2014-4-15, begin */
 
-/* Deleted by s00261364 for V3R360_eCall项目, 2014-4-15, end */
 
 VOS_UINT32  NAS_MMC_RcvMmInfo_PreProc(
     VOS_UINT32                          ulEventType,
@@ -130,9 +107,7 @@ VOS_UINT32  NAS_MMC_RcvMmInfo_PreProc(
 
 
 
-/* Deleted by s00261364 for V3R360_eCall项目, 2014-4-15, begin */
 
-/* Deleted by s00261364 for V3R360_eCall项目, 2014-4-15, end */
 
 VOS_UINT32  NAS_MMC_RcvGasScellRxInd_PreProc(
     VOS_UINT32                          ulEventType,
@@ -185,29 +160,11 @@ VOS_VOID  NAS_MMC_ProcAgentUsimReadFileCnf_PreProc(
     VOS_UINT8                          *pucEf
 );
 
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-15, begin */
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvGmmNetworkCapabilityInfoInd_PreProc
- 功能描述  : 收到GMM上报的网络能力参数信息后，转发给MSCC
- 输入参数  : ulEventType:PID+MSG TYPE表明独有的消息
-             *pstMsg:GMM发送过来的消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE: 函数预处理完成
-             VOS_FALSE:函数预处理未完成
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月13日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvGmmNetworkCapabilityInfoInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 );
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-15, end */
 
 #if (FEATURE_ON == FEATURE_LTE)
 VOS_UINT32  NAS_MMC_RcvGmmTinInd_PreProc(
@@ -253,39 +210,31 @@ VOS_UINT32 NAS_MMC_RcvOmInquireReq_PreProc(
     struct MsgCB                       *pstMsg
 );
 
-/* added  by l00167671 for v9r1 dcm logger可维可测项目, 2013-06-27, begin */
 VOS_UINT32 NAS_MMC_RcvOmConfigTimerReportReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 );
-/* added  by l00167671 for v9r1 dcm logger可维可测项目, 2013-06-27, end */
 
-/* Added by s00246516 for L-C互操作项目, 2014-02-14, Begin */
 VOS_UINT32 NAS_MMC_IsMsccAttachTypeValid(
     NAS_MSCC_PIF_ATTACH_TYPE_ENUM_UINT32                    enAttachType
 );
-/* Added by s00246516 for L-C互操作项目, 2014-02-14, End */
 
 VOS_UINT32  NAS_MMC_RcvMsccAttachReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                        *pstMsg
 );
 
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, begin */
 VOS_UINT32  NAS_MMC_RcvGmmGprsServiceInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 );
 
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, end */
 
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
 VOS_UINT32  NAS_MMC_RcvMsccSignReportReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 );
 
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
 #if (FEATURE_MULTI_MODEM == FEATURE_ON)
 VOS_UINT32  NAS_MMC_RcvMsccOtherModemInfoNotify_PreProc(
@@ -312,12 +261,10 @@ VOS_UINT32  NAS_MMC_RcvMsccPsTransferInd_PreProc(
 
 #endif
 
-/* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
 VOS_UINT32 NAS_MMC_ProcMsccAttachReqInForbLa_PreProc(
     MSCC_MMC_ATTACH_REQ_STRU            *pstTafAttachReq,
     VOS_UINT32                          ulForbType
 );
-/* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
 VOS_UINT32  NAS_MMC_RcvMsccDetachReq_PreProc(
     VOS_UINT32                          ulEventType,
@@ -330,13 +277,11 @@ VOS_UINT32  NAS_MMC_RcvLmmAttachCnf_PreProc(
     struct MsgCB                        *pstMsg
 );
 
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-28, begin */
 VOS_UINT32  NAS_MMC_RcvLmmServiceRsltInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 );
 
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-28, end */
 
 VOS_VOID  NAS_MMC_ProcAttachCnfAuthRej_PreProc(
     LMM_MMC_ATTACH_CNF_STRU            *pstLmmAttachCnf
@@ -433,12 +378,10 @@ VOS_UINT32  NAS_MMC_RcvTiAvailTimerExpired_PreProc(
     struct MsgCB                       *pstMsg
 );
 
-/* Added by c00318887 for 预置频点搜网优化, 2015-8-26, begin */
 VOS_UINT32  NAS_MMC_RcvTiPlmnSearchPhaseOneTotalTimerExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 );
-/* Added by c00318887 for 预置频点搜网优化, 2015-8-26, end */
 
 VOS_UINT32 NAS_MMC_IsNeedAddPhaseNumRcvPhaseTotalTimerExpired_PreProc(VOS_VOID);
 
@@ -622,7 +565,6 @@ VOS_UINT32 NAS_MMC_RcvWasAcInfoChange_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                        *pstMsg
 );
-/* Modified by z40661 for V7R1 点灯 , 2012-02-20, begin */
 #if (FEATURE_ON == FEATURE_LTE)
 VOS_UINT32  NAS_MMC_RcvLmmMmcStatusInd_PreProc(
     VOS_UINT32                          ulEventType,
@@ -640,7 +582,6 @@ VOS_UINT32  NAS_MMC_RcvLmmSimAuthFailInd_PreProc(
 );
 
 #endif
-/* Modified by z40661 for V7R1 点灯 , 2012-02-20, end */
 
 VOS_UINT32  NAS_MMC_RcvRrMmCipherInfoInd_PreProc(
     VOS_UINT32                          ulEventType,
@@ -668,24 +609,20 @@ VOS_UINT32  NAS_MMC_RcvTafOmMaintainInfoInd_PreProc(
 );
 
 
- /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
 VOS_UINT32  NAS_MMC_ProcUserReselReqUnNormalSrv_PreProc(
     MSCC_MMC_PLMN_USER_RESEL_REQ_STRU      *pUserReselReq
 );
 VOS_UINT32  NAS_MMC_ProcUserReselReqNormalService_PreProc(
     MSCC_MMC_PLMN_USER_RESEL_REQ_STRU      *pUserReselReq
 );
- /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
  VOS_UINT32 NAS_MMC_ProcUserReselReqNormalServiceFun(VOS_VOID);
 
-/* Added by c00318887 for file refresh需要触发背景搜, 2015-4-28, begin */
 VOS_VOID NAS_MMC_DelayBgSearch(VOS_VOID);
 
 VOS_UINT32  NAS_MMC_IsHighPrioPlmnFileRefreshed(
     VOS_UINT32                          ulFileId
 );
-/* Added by c00318887 for file refresh需要触发背景搜, 2015-4-28, end */
 
 VOS_UINT32  NAS_MMC_ProHighPrioPlmnRefreshInd_PreProc(VOS_VOID);
 
@@ -699,7 +636,6 @@ VOS_VOID NAS_MMC_ProcScanCtrl_PreProc(
     VOS_UINT8                          *pucEf
 );
 
-/* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-6, begin */
 VOS_UINT32  NAS_MMC_RcvCmServiceRejectInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                        *pstMsg
@@ -732,7 +668,6 @@ VOS_UINT32  NAS_MMC_RcvLmmEutranNotAllowNotify_PreProc(
 
 
 #if   (FEATURE_ON == FEATURE_LTE)
-/* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-6, end */
 
 VOS_UINT32  NAS_MMC_RcvMmAbortInd_PreProc(
     VOS_UINT32                          ulEventType,
@@ -756,12 +691,10 @@ VOS_UINT32 NAS_MMC_RcvMmCsfbAbortInd_PreProc(
     struct MsgCB                       *pstMsg
 );
 
-/* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-13, begin */
 VOS_UINT32  NAS_MMC_RcvLmmEmcPdpStatusNotify_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 );
-/* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-13, end */
 
 #endif
 
@@ -849,12 +782,10 @@ VOS_UINT32  NAS_MMC_RcvGasNcellMonitorInd_PreProc(
     struct MsgCB                       *pstMsg
 );
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-10, begin */
 VOS_UINT32 NAS_MMC_RcvMsccImsVoiceCapInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 );
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-10, end */
 
 VOS_UINT32 NAS_MMC_RcvWasAreaLostInd_PreProc(
     VOS_UINT32                          ulEventType,
@@ -928,12 +859,10 @@ VOS_VOID NAS_MMC_ProcNoRfAreaLost_PreProc(
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enNasRat
 );
 
-/* Add by j00174725 for K3V3 多模多天线特性, 2014-06-16, Begin */
 VOS_UINT32 NAS_MMC_RcvGmmSigStateInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 );
-/* Add by j00174725 for K3V3 多模多天线特性, 2014-06-16, End */
 
 
 #if (FEATURE_ON == FEATURE_IMS)

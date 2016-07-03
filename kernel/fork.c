@@ -1719,6 +1719,9 @@ long do_fork(unsigned long clone_flags,
 		}
 
 		put_pid(pid);
+#ifdef CONFIG_HUAWEI_UID_IO_STATS
+		profile_task_end_fork(p);
+#endif
 	} else {
 		nr = PTR_ERR(p);
 	}

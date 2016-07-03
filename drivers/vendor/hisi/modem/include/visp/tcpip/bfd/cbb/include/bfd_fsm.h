@@ -97,11 +97,9 @@ extern VOID BFD_PF_RetranPreProcess(ULONG ulVrfIndex, ULONG ulSessId);
     } \
 }
 
-/* Modified by likaikun213099,  , 2014/9/26   问题单号:DTS2014092501767 */
 #define BFD_NOSEND_FOR_RXZERO(pstSessEntry)  ((g_ulBfdComplianceSwitch & BFD_PROCOMPLIANCE_FOR_RXZERO)\
     && ((BFD_PROTO_STD == (pstSessEntry)->ulBfdProtocol) && (0 == (pstSessEntry)->stSessRunEntry.ulRemoteMinRxInterval)))
 
-/* End of Modified by likaikun213099, 2014/9/26   问题单号:DTS2014092501767 */
 
 #ifdef __cplusplus
 }

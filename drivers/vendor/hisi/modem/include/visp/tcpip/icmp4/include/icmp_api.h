@@ -94,12 +94,10 @@ extern  "C"{
 #define ICMP_ATTACKGUARD_SWITCH_REDIRECT       0x02
 #define ICMP_ATTACKGUARD_SWITCH_TIMXCEED       0x04
 #define ICMP_ATTACKGUARD_SWITCH_MASKREP        0x08
-#define ICMP_ATTACKGUARD_SWITCH_TSREP          0x10    /* 2010-9-6, z00142640 modified for 同步BC3D03521 */
-#define ICMP_ATTACKGUARD_SWITCH_PARAMPROB      0x20    /* 2010-10-20, pKF34550 modified for VISP183SZ-76:控制面DFNS,支持IP选项错误攻击防范 */
-#define ICMP_ATTACKGUARD_SWITCH_SRCADDRANY     0x40    /* 2010-10-21, cKF34558 modified for VISPDEVSZ-88:控制面DFNS,支持ICMP仿冒攻击请求报文源地址为 0.0.0.0 防范 */
-/*Added by wangbin, 当ping请求的目的IP地址为广播或者为本机已经加入的组播地址时，防攻击开关值, 2015/10/21   问题单号:DTS2015102607862 */
+#define ICMP_ATTACKGUARD_SWITCH_TSREP          0x10
+#define ICMP_ATTACKGUARD_SWITCH_PARAMPROB      0x20
+#define ICMP_ATTACKGUARD_SWITCH_SRCADDRANY     0x40
 #define ICMP_ATTACKGUARD_SWITCH_DSTBCASTORMCAST   0x80
-/* End of Added by wangbin, 2015/10/21   问题单号:DTS2015102607862 */
 
 typedef enum tagICMP_ERR
 {
@@ -340,46 +338,9 @@ extern ULONG TCPIP_SetIcmpDebugFlag(ULONG ulDebugFlag);
 *
 *******************************************************************************/
 extern VOID TCPIP_ShowIcmp4Statistic(VOID);
-/*******************************************************************************
-*    Func Name: TCPIP_SetPingAllowList
-*  Description: 设置ping allow list，0-新增地址;1-删除指定的地址;2-删除所有地址，
-*               此时不判断地址和掩码
-*        Input: ULONG ulOperation:操作类型 0-新增地址;1-删除指定的地址;2-删除所有地址
-*               ULONG ulIpAddr:地址(主机序)
-*               ULONG ulMask:子网掩码(主机序)
-*       Output: 
-*       Return: 成功 ICMP_PINGALLOWLIST_OK
-*               失败
-*                    ICMP_HA_IS_SMOOTHING:              处于平滑处理或手动倒换
-*                    ICMP_PINGALLOWLIST_LISTEMPTY:      ping allow list为空
-*                    ICMP_PINGALLOWLIST_INVALIDPARAM:   参数无效
-*                    ICMP_PINGALLOWLIST_ADDREXIST:      地址已经存在
-*                    ICMP_PINGALLOWLIST_LISTFULL:       ping allow list已满
-*                    ICMP_PINGALLOWLIST_MEMERR:         内存错误
-*                    ICMP_PINGALLOWLIST_ADDRNOTEXIST:   地址不存在
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-14   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_SetPingAllowList (ULONG ulOperation, ULONG ulIpAddr, ULONG ulMask);
-/*******************************************************************************
-*    Func Name: TCPIP_ShowPingAllowList
-*  Description: 显示ping allow list
-*        Input: 
-*       Output: 
-*       Return: VOID
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-14   z00104207               Create
-*
-*******************************************************************************/
+
 extern VOID TCPIP_ShowPingAllowList (VOID);
 
 /*******************************************************************************
@@ -439,22 +400,7 @@ extern ULONG TCPIP_GetIcmpAttackGuardSwitch(ULONG *pulSwitch);
 /* 获取自午夜0时到当前时刻的系统时间的钩子函数原型 */
 typedef ULONG (*ICMP_GETTMSINCEMNHT_HOOK_FUNC)(VOID);
 
-/*******************************************************************************
-*    Func Name: TCPIP_RegFuncGetTmSinceMnhtHook
-* Date Created: 2009-07-29
-*       Author: z00104207
-*  Description: 注册获取自午夜0时到当前时刻的系统时间的钩子函数
-*        Input: ICMP_GETTMSINCEMNHT_HOOK_FUNC pfHookFunc: 钩子函数指针
-*       Output: 
-*       Return: 
-*      Caution: 返回的时间必须以毫秒表示，字节序是主机序
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-07-29   z00104207               Create
-*
-*******************************************************************************/
+
 ULONG TCPIP_RegFuncGetTmSinceMnhtHook(ICMP_GETTMSINCEMNHT_HOOK_FUNC pfHookFunc);
 
 
@@ -475,7 +421,6 @@ ULONG TCPIP_ClearIcmpStatbyVrf(ULONG ulVrfIndex);
 
 ULONG TCPIP_EnableIcmpStat(ULONG ulFlag);
 
-/*Added by yanlei00216869, 同步问题单-DTS2014102406433 CSEC扫描的地址暴露安全问题，针对控制器提供API开关，可动态控制, 2014/10/28   问题单号:DTS2014102701441 */
 /*******************************************************************************
 *    Func Name: TCPIP_SetIcmpSrcipProtectSwitch
 * Date Created: 2014-10-25
@@ -511,7 +456,6 @@ ULONG TCPIP_SetIcmpSrcipProtectSwitch(ULONG ulSwitch);
 *
 *******************************************************************************/
 ULONG TCPIP_GetIcmpSrcipProtectSwitch(ULONG *pulSwitch);
-/* End of Added by yanlei00216869, 2014/10/28   问题单号:DTS2014102701441 */
 
 #ifdef __cplusplus
 }

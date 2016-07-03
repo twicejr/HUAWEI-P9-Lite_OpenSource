@@ -1,28 +1,4 @@
-/*************************************************************************
- *
- *              Copyright 2005, Huawei Technologies Co. Ltd.
- *                          ALL RIGHTS RESERVED
- * 
- *-----------------------------------------------------------------------*
- *
- *                             ppp_lcp_type.h
- *
- *  Project Code: VISP1.5
- *   Module Name: PPP
- *  Date Created: 2000-04-04
- *        Author: DengYiou
- *   Description: PPP的LCP协议处理模块数据结构
- *
- *-----------------------------------------------------------------------*
- *  Modification History
- *  DATE            NAME            DESCRIPTION
- *  2000-04-04      DengYiou        Create
- *  2004-07-01      YiAn            Modified for VISP
- *  2006-03-31      ZhuKun          Adjust for D00661
- *  2006-04-21      ZhuKun          Adjust for D00875
- *  2006-05-11      luyao           为支持ARM CPU字节对齐特性，修改结构。
- *
- ************************************************************************/
+
 
 #ifndef _LCP_TYPE_H_
 #define _LCP_TYPE_H_
@@ -102,7 +78,6 @@ extern "C" {
 #define LCP_DISCR_IPADDR        0x02
 #define LCP_DISCR_MACADDR       0x03
 #define LCP_DISCR_MAGICNUM      0x04
-/*Added by f54882, 2007-2-2, HDLC自动侦听非标需求开发*/
 #define LCP_DISCR_TELENUM       0x05
 #define LCP_DISCR_ANY           0xff
 /******** 终端描述符类型 *********/
@@ -333,7 +308,6 @@ extern "C" {
         (VOID)TCPIP_Mem_Copy((char *)(stTryOption.callbackinfo), (ULONG)(pstGotOptions->callbacklen - 3), (char *)pPacket, (ULONG)(pstGotOptions->callbacklen - 3)); \
         stNoOption.neg = 1;\
     }
-/* Modified by z43740: 异常情况下，下次不再协商MHF选项,2006/06/08 */
 #define NAKCIMHF(opt, neg, mhfcode, mhfclass) \
     if (pstGotOptions->neg && ulLen >= PPP_CILEN_SHORT && \
         PPP_CILEN_SHORT == pPacket[1] && opt == pPacket[0] ) \
@@ -925,7 +899,6 @@ ULONG PPP_LCP_UpResetCi(PPPINFO_S *);
 ULONG PPP_LCP_upcheck(PPPFSM_S *pstFsm);
 
 VOID PPP_LCP_ReceiveDiscReq(PPPFSM_S *pstFsm, UCHAR ucId, UCHAR *pPacket, ULONG ulLen);
-/* Add for DTS2011042101452, by z00166124, at 2011-04-21. 修改原因: 定时器传入接口索引指针 */
 VOID PPP_Ncp_Reset(VOID * pstFsm);
 VOID PPP_LCP_FSM_TimeOut(VOID *pIfIndex);
 

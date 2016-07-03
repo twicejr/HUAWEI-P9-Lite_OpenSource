@@ -64,7 +64,7 @@ enum enIfnetErrInfo
     VRP_IFNET_NO_HAVE_BEEN_DOWN,        /* 10 接口没有被shutdown*/
     VPR_IFNET_KEEPALIVE_VALUE_TOOBIG,   /* 11 KEEPALIVE 值太大*/
     VRP_IFNET_DESC_TOO_LONG,            /* 12 接口描述太长*/
-    VRP_IFNET_CANOT_BE_SHUTDOWN,        /* 13 接口不可被关闭,added for SWFD04676,20041228*/
+    VRP_IFNET_CANOT_BE_SHUTDOWN,
 
     VRP_IFNET_NULLPOINTER,              /* 14 输入参数指针为空 */
     VRP_IFNET_MTU_INVALID,              /* 15 用户配置的MTU值不在允许范围之内 */
@@ -85,12 +85,10 @@ enum enIfnetErrInfo
     VRP_IFNET_EENQUEUE,                 /* 30 Fail to put mbuf into link queue */
     VRP_IFNET_EWRITEQUEUE,              /* 31 Fail to write ioctl msg */
 
-    /* 由l00105073修改，问题单A82D20097:ifnet模块错误码唯一性整改 */    
     VRP_IFNET_TYPEERR,                  /* 32 ifnet的类型不匹配*/
     VRP_IFNET_ISNOTTRUNK,               /* 33 ifnet的类型不是TRUNK(当需要的是TRUNK时)*/
     VRP_IFNET_TRUNKVTBLNULL,            /* 34 TRUNK虚函数表指针为空*/
     VRP_IFNET_TRUNKHAVEPORT,            /* 35 TRUNK已经存在端口*/
-    /* 由l00105073修改，问题单A82D20097:ifnet模块错误码唯一性整改 */
     
     /* 由l52889修改，问题单A82D20371:IF_DeleteMpgroupIf函数错误码有问题 */
     VRP_IFNET_MPVTBLNULL,               /* 36 MP组件虚表为空 */
@@ -117,12 +115,10 @@ enum enIfnetErrInfo
     VRP_IFNET_DEL_IF_FAIL,              /* 56 删除接口失败 */ 
     VRP_IFNET_IS_L2IF,                  /* 57 L2IF接口 */
     VRP_IFNET_L2IFVTBLNULL,             /* 58 L2IF虚函数表指针为空*/
-    /*Add for BC3D00792,DR.131获取链路层状态 start*/
     VRP_IFNET_IPOA_NOINIT,              /* 59 IPOA模块未使用 */ 
     VRP_IFNET_IPOA_ERR,                 /* 60 IPOA模块API处理失败 */ 
     VRP_IFNET_ETH_NOINIT,               /* 61 Eth模块未使用*/ 
     VRP_IFNET_ETH_ERR,                  /* 62 Eth模块API处理失败 */ 
-    /*Add for BC3D00792,DR.131获取链路层状态 end*/
     VRP_IFNET_PPIGETMTU_ERR,            /* 63 向底层查询最大MTU错误 */
     VRP_IFNET_L2TRUNKPHYTRANSMIT_NULL,  /* 64 二层TRUNK的物理层报文发送函数为空 */
     VRP_IFNET_VRF_ERR,                  /* 65 VRF模块API处理失败 */ 
@@ -486,7 +482,7 @@ enum enumUpToLink
     /* 根据问题单D1370 用于从地址的添加 2002/01/11 Chenwejun */
     /* 由于删除和增加从地址都要使用，所以修改名字 2002/01/22 */
     SIOCPROADDRSEC,
-    SIOCDADDRSEC,  /* 删除从地址, 通知Eth删除ARP表项. Added by z36377 for SWFD12089 sys VRPD038,20050715*/
+    SIOCDADDRSEC,
     SIOCAIP6LINKLOCALADDR,
     SIOCAIP6GLOBALADDR,
     SIOCAIP6SITELOCALADDR,    /*增加 IPv6地址*/
@@ -500,7 +496,7 @@ enum enumUpToLink
     SIOCLEAVEMULTI,
     SIOCISISENABLE,    /*向链路层获取ISIS开关*/
 
-    SIOCMADDRSEC,  /* 修改从地址掩码长度, Added by l143205 for BC3D00874, 2008-12-9 */
+    SIOCMADDRSEC,
     SIOC_MAX_SIOCWORD1 /*No use actually.Just for adding enum word easily. ZhuKun,20041020*/
 };
 
@@ -604,7 +600,6 @@ enum enumLinkToUp
     SIOCDDRIFUP,
     SIOCOSIENABLE,
     SIOCRCVMAC,
-    /*add by huzhiyong 新增两个PPP与DDR之间的接口命令字2002/01/24*/
     SIOCDDRIFDOWN,
     SIOCDDRLOWERDOWN,
 

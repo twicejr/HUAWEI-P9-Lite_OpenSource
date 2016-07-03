@@ -1,25 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmcTimer.c
-  版 本 号   : 初稿
-  作    者   : zhoujun 40661
-  生成日期   : 2011年5月30日
-  最近修改   : 2011年5月30日
-  功能描述   : 管理MMC定时器，以及进行超时处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年5月30日
-    作    者   : zhoujun 40661
-    修改内容   : 创建文件
-  2.日    期   : 2012年1月30日
-    作    者   : l00130025
-    修改内容   : DTS2012010500368,调用同步接口VOS_GetRelTmRemainTimehTimer,
-                  删除NAS_MMC_GetTimerRemainLen/NAS_MMC_SetTimerStopStatus
-
-****************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -70,20 +49,7 @@ NAS_TIMER_PRECISION_STRU g_stNasMmcTimerPrcision[]=
   6 函数定义
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_InitAllTimers
- 功能描述  : 初始化所有定时器，应在MMC初始化及Reset时被调用
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月30日
-    作    者   : zhoujun 40661
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  NAS_MMC_InitAllTimers(
     NAS_MMC_TIMER_CTX_STRU              *pstMmcTimerCtx
 )
@@ -98,35 +64,7 @@ VOS_VOID  NAS_MMC_InitAllTimers(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_StartTimer
- 功能描述  : 启动指定的MMC定时器
- 输入参数  : enTimerId - 需要启动的定时器ID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年5月30日
-   作    者   : zhoujun 40661
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年5月30日
-   作    者   : w00167002
-   修改内容   : 增加定时器的时长打印
-
- 3.日    期   : 2012年11月7日
-   作    者   : l00167671
-   修改内容   : 增加返回值，以便于调用者知道是否启动定时器成功。
-                DTS2012110607212
- 4.日    期   : 2013年6月14日
-   作    者   : z00161729
-   修改内容   : SVLTE 和usim接口调整修改
-5. 日    期   : 2013年06月28日
-   作    者   : l00167671
-   修改内容   : DCM LOGGER项目定时器事件上报
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_StartTimer(
     NAS_MMC_TIMER_ID_ENUM_UINT16        enTimerId,
     VOS_UINT32                          ulLen
@@ -202,42 +140,14 @@ VOS_UINT32  NAS_MMC_StartTimer(
     NAS_MMC_SndOmMmcTimerStatus(NAS_MMC_TIMER_STATUS_RUNING, enTimerId, ulLen);
 
 
-    /* added  by l00167671 for v9r1 dcm logger可维可测项目, 2013-06-27, begin */
     NAS_TIMER_EventReport((VOS_UINT32)enTimerId, WUEPS_PID_MMC, NAS_OM_EVENT_TIMER_OPERATION_START);
-    /* added  by l00167671 for v9r1 dcm logger可维可测项目, 2013-06-27, end */
 
     return VOS_TRUE;
 
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_StopTimer
- 功能描述  : 停止指定的MMC定时器
- 输入参数  : enTimerId - 需要停止的定时器ID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月30日
-    作    者   : zhoujun 40661
-    修改内容   : 新生成函数
-  2.日    期   : 2011年10月06日
-    作    者   : z49106
-    修改内容   : 定时器指针不为空的时候, 才停止定时器
-  3.日    期   : 2012年1月30日
-    作    者   : l00130025
-    修改内容   : DTS2012010500368,调用同步接口VOS_GetRelTmRemainTimehTimer时没有判断hTimer是否为0，与定时器异步消息冲突导致异常打印
-
-  4.日    期   : 2012年8月21日
-    作    者   : z40661
-    修改内容   : DTS2012080208200,VOS_GetRelTmRemainTimehTimer时，未将tick转为ms。
-  5.日    期   : 2013年06月28日
-    作    者   : l00167671
-    修改内容   : DCM LOGGER项目定时器事件上报
-*****************************************************************************/
 VOS_VOID  NAS_MMC_StopTimer(
     NAS_MMC_TIMER_ID_ENUM_UINT16        enTimerId
 )
@@ -290,12 +200,10 @@ VOS_VOID  NAS_MMC_StopTimer(
 
 
 
-    /* added  by l00167671 for v9r1 dcm logger可维可测项目, 2013-06-27, begin */
     if (0!=ulTimerRemainLen)
     {
         NAS_TIMER_EventReport(enTimerId, WUEPS_PID_MMC, NAS_OM_EVENT_TIMER_OPERATION_STOP);
     }
-    /* added  by l00167671 for v9r1 dcm logger可维可测项目, 2013-06-27, end */
 
 
     /* 定时器状态勾包出来 */
@@ -307,33 +215,15 @@ VOS_VOID  NAS_MMC_StopTimer(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_StopAllTimer
- 功能描述  : 停止MMC的所有定时器
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月30日
-    作    者   : zhoujun 40661
-    修改内容   : 新生成函数
-  2.日    期   : 2014年3月12日
-    作    者   : s00246516
-    修改内容   : L-C互操作项目，增加可维可测信息
-*****************************************************************************/
 VOS_VOID  NAS_MMC_StopAllTimer( VOS_VOID )
 {
     NAS_MMC_TIMER_CTX_STRU             *pstMmcTimerCtx;
     VOS_UINT32                          i;
 
-    /* Added by s00246516 for L-C互操作项目, 2014-02-14, Begin */
     VOS_UINT32                          ulTimerRemainLen;
 
     ulTimerRemainLen = 0;
-    /* Added by s00246516 for L-C互操作项目, 2014-02-14, End */
 
     pstMmcTimerCtx   =  NAS_MMC_GetTimerAddr();
 
@@ -341,7 +231,6 @@ VOS_VOID  NAS_MMC_StopAllTimer( VOS_VOID )
     {
         if ( NAS_MMC_TIMER_STATUS_RUNING  == pstMmcTimerCtx[i].enTimerStatus )
         {
-            /* Modified by s00246516 for L-C互操作项目, 2014-02-14, Begin */
             if (VOS_OK != VOS_GetRelTmRemainTime(&(pstMmcTimerCtx[i].hTimer), &ulTimerRemainLen ))
             {
                 ulTimerRemainLen = 0;
@@ -351,7 +240,6 @@ VOS_VOID  NAS_MMC_StopAllTimer( VOS_VOID )
             (VOS_VOID)VOS_StopRelTimer(&(pstMmcTimerCtx[i].hTimer));
 
             NAS_MMC_SndOmMmcTimerStatus(NAS_MMC_TIMER_STATUS_STOP, pstMmcTimerCtx[i].enTimerId, ulTimerRemainLen * 10);
-            /* Modified by s00246516 for L-C互操作项目, 2014-02-14, End */
 
             pstMmcTimerCtx[i].hTimer        = VOS_NULL_PTR;
             pstMmcTimerCtx[i].enTimerId     = TI_NAS_MMC_TIMER_BUTT;
@@ -361,23 +249,7 @@ VOS_VOID  NAS_MMC_StopAllTimer( VOS_VOID )
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetTimerStatus
- 功能描述  : 查询指定的MMC定时器的状态
- 输入参数  : enTimerId  - 需要查询的定时器ID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_TIMER_STATUS_ENUM_U8:定时器状态
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月4日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年1月30日
-    作    者   : l00130025
-    修改内容   : DTS2012010500368,调用同步接口VOS_GetRelTmRemainTimehTimer时没有判断hTimer是否为0，与定时器异步消息冲突导致异常打印
-*****************************************************************************/
 NAS_MMC_TIMER_STATUS_ENUM_U8  NAS_MMC_GetTimerStatus(
     NAS_MMC_TIMER_ID_ENUM_UINT16        enTimerId
 )
@@ -405,26 +277,7 @@ NAS_MMC_TIMER_STATUS_ENUM_U8  NAS_MMC_GetTimerStatus(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetTimerPrecision
- 功能描述  : 获取MMC模块定时器精度范围
- 输入参数  : Pid       -- 启动定时器的PID
-             ulName    -- 定时器名
- 输出参数  : 无
- 返 回 值  : VOS_TIMER_PRECISION_ENUM_UINT32 -- 定时器精度范围
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月25日
-   作    者   : zhoujun \40661
-   修改内容   : 新生成函数
-
- 2.日    期   : 2013年9月4日
-   作    者   : w00167002
-   修改内容   : DTS2013090403562:NAS定时器清理，需要启动32K定时器。将MM/MMA/SMS
-                模块的循环定时器修改为非循环定时器。
-*****************************************************************************/
 VOS_TIMER_PRECISION_ENUM_UINT32 NAS_MMC_GetTimerPrecision(
     NAS_MMC_TIMER_ID_ENUM_UINT16        enTimerId
 )

@@ -1,0 +1,218 @@
+/*
+ *  Copyright (C) 2012-2013 Linaro Ltd.
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/ {
+	/*hi3xxx_regulator_operation_step = <1:mtcmos,2:softrest,3:iso,4:topcssys,5:clock,6:sysctrl,7:nocidlemode,8:reclock>*/
+	/*hisilicon,hisi-*-ctrl = <offset value base_addr>;base_addr 0:pmic;1:dss;*/
+	regulators_hi3xxx: regulator_hi3xxx@0xFFF35000 {
+		compatible = "hisilicon,hisi_regulator_hi3xxx_core";
+		reg = <0x00 0xFFF35000 0x00 0x1000>;
+		/*clocks = <&pclk>;*/
+
+		vivobus: hi3xxx@0 {
+			compatible = "hi3xxx-regulator-type2";
+			regulator-name = "vivobus";
+			hi3xxx_to_lpm3_enable_step = <0x000C0001 0x0A>;
+			hi3xxx_to_lpm3_disable_step = <0x000C0101 0x0A>;
+			hisilicon,hisi-regulator-id = <0>;
+		};
+		dsssubsys: hi3xxx@1 {
+			compatible = "hi3xxx-regulator-type2";
+			regulator-name = "dsssubsys";
+			hi3xxx_to_lpm3_enable_step = <0x000C0001 0x0B>;
+			hi3xxx_to_lpm3_disable_step = <0x000C0101 0x0B>;
+			hisilicon,hisi-regulator-id = <1>;
+			dsssubsys-supply = <&vivobus>;
+			hisilicon,supply_name = "dsssubsys";
+		};
+		vcodecsubsys: hi3xxx@2 {
+			compatible = "hi3xxx-regulator-type1";
+			regulator-name = "vcodecsubsys";
+			hisi,noc-node-name = "peri_vcodec_bus";
+
+			hi3xxx_regulator_operation_enable_step 	= <5 2 7 0 0 0 0 0>;
+			hi3xxx_regulator_enable_delay_time 		= <0 0 0 0 0 0 0 0>;
+			hi3xxx_regulator_operation_disable_step 	= <7 2 5 0 0 0 0 0>;
+			hi3xxx_regulator_disable_delay_time 		= <0 0 0 0 0 0 0 0>;
+
+			hisilicon,hisi-sw-reset-en-ctrl = <0x60 0x018 0>;/*software reset control addr*/
+			clocks = <&clk_gate_vcodecbus &clk_gate_vcodeccfg &clk_gate_autodiv_vcodecbus>;
+			clock-names = "clk_vcodecbus","clk_vcodeccfg", "clk_atdiv_vcbus";
+			hisilicon,hisi-regulator-id = <2>;
+			vcodecsubsys-supply = <&dsssubsys>;
+			hisilicon,supply_name = "vcodecsubsys";
+		};
+		vdec: hi3xxx@3 {
+			compatible = "hi3xxx-regulator-type1";
+			regulator-name = "vdec";
+
+			hi3xxx_regulator_operation_enable_step	= <1 8 3 2 5 7 0 0>;
+			hi3xxx_regulator_enable_delay_time		= <100 0 0 0 0 0 0 0>;
+			hi3xxx_regulator_operation_disable_step	= <7 2 5 3 1 0 0 0>;
+			hi3xxx_regulator_disable_delay_time 		= <0 0 0 0 0 0 0 0>;
+
+			hisilicon,hisi-mtcmos-state-ctrl = <0x15C 0x04 0>;/*MTCMOS enable state addr*/
+			hisilicon,hisi-mtcmos-en-ctrl = <0x150 0x04 0>;/*MTCMOS enable control addr*/
+			hisilicon,hisi-sw-reset-en-ctrl = <0x84 0x200 0>;/*software reset control addr*/
+			hisilicon,hisi-iso-en-ctrl = <0x144 0x04 0>;/*iso enable control addr*/
+			clocks = <&clk_gate_vdec>;
+			clock-names = "clk_vdec";
+			hisilicon,hisi-regulator-id = <3>;
+			vdec-supply = <&vcodecsubsys>;
+			hisilicon,supply_name = "vdec";
+		};
+		venc: hi3xxx@4 {
+			compatible = "hi3xxx-regulator-type1";
+			regulator-name = "venc";
+
+			hi3xxx_regulator_operation_enable_step	= <1 8 3 2 5 7 0 0>;
+			hi3xxx_regulator_enable_delay_time		= <100 0 0 0 0 0 0 0>;
+			hi3xxx_regulator_operation_disable_step	= <7 2 5 3 1 0 0 0>;
+			hi3xxx_regulator_disable_delay_time		= <0 0 0 0 0 0 0 0>;
+
+			hisilicon,hisi-mtcmos-state-ctrl = <0x15C 0x02 0>;/*MTCMOS enable state addr*/
+			hisilicon,hisi-mtcmos-en-ctrl = <0x150 0x02 0>;/*MTCMOS enable control addr*/
+			hisilicon,hisi-sw-reset-en-ctrl = <0x84 0x100 0>;/*software reset control addr*/
+			hisilicon,hisi-iso-en-ctrl = <0x144 0x02 0>;/*iso enable control addr*/
+			clocks = <&clk_gate_venc>;
+			clock-names = "clk_venc";
+			hisilicon,hisi-regulator-id = <4>;
+			venc-supply = <&vcodecsubsys>;
+			hisilicon,supply_name = "venc";
+		};
+		ispsubsys: hi3xxx@5 {
+			compatible = "hi3xxx-regulator-type2";
+			regulator-name = "ispsubsys";
+			hi3xxx_to_lpm3_enable_step = <0x000C0001 0x0C>;
+			hi3xxx_to_lpm3_disable_step = <0x000C0101 0x0C>;
+			hisilicon,hisi-regulator-id = <5>;
+			ispsubsys-supply = <&dsssubsys>;
+			hisilicon,supply_name = "ispsubsys";
+		};
+		debugsubsys: hi3xxx@7 {
+			compatible = "hi3xxx-regulator-type2";
+			regulator-name = "debugsubsys";
+			hi3xxx_to_lpm3_enable_step = <0x000C0001 0x01>;
+			hi3xxx_to_lpm3_disable_step = <0x000C0101 0x01>;
+			hisilicon,hisi-regulator-id = <7>;
+		};
+		sec_p: hi3xxx@8 {
+			compatible = "hi3xxx-regulator-type1";
+			regulator-name = "sec_p";
+
+			hi3xxx_regulator_operation_enable_step	= <5 2 0 0 0 0 0 0>;
+			hi3xxx_regulator_enable_delay_time		= <0 0 0 0 0 0 0 0>;
+			hi3xxx_regulator_operation_disable_step	= <2 5 0 0 0 0 0 0>;
+			hi3xxx_regulator_disable_delay_time		= <0 0 0 0 0 0 0 0>;
+
+			hisilicon,hisi-sw-reset-en-ctrl = <0x090 0x8000 0>;/*software reset control addr*/
+			clocks = <&clk_gate_secp>;
+			clock-names = "clk_secp";
+			hisilicon,hisi-regulator-id = <8>;
+			sec_p-supply = <&debugsubsys>;
+			hisilicon,supply_name = "sec_p";
+		};
+		perf: hi3xxx@9 {
+			compatible = "hi3xxx-regulator-type1";
+			regulator-name = "perf";
+
+			hi3xxx_regulator_operation_enable_step	= <5 2 0 0 0 0 0 0>;
+			hi3xxx_regulator_enable_delay_time		= <0 0 0 0 0 0 0 0>;
+			hi3xxx_regulator_operation_disable_step	= <2 5 0 0 0 0 0 0>;
+			hi3xxx_regulator_disable_delay_time		= <0 0 0 0 0 0 0 0>;
+
+			hisilicon,hisi-sw-reset-en-ctrl = <0x060 0x40000 0>;/*software reset control addr*/
+			clocks = <&aclk_gate_perf_stat &pclk_gate_perf_stat &clk_gate_perf_stat &clk_gate_60m>;
+			clock-names = "aclk_perf_stat","pclk_perf_stat","clk_perf_stat","clk_60m";
+			hisilicon,hisi-regulator-id = <9>;
+			perf-supply = <&debugsubsys>;
+			hisilicon,supply_name = "perf";
+		};
+		top_cssys: hi3xxx@10 {
+			compatible = "hi3xxx-regulator-type2";
+			regulator-name = "top_cssys";
+			hi3xxx_to_lpm3_enable_step = <0x000c0001 0x05>;
+			hi3xxx_to_lpm3_disable_step = <0x000c0101 0x05>;
+			hisilicon,hisi-regulator-id = <10>;
+		};
+		usbotg: hi3xxx@11 {
+			compatible = "hi3xxx-regulator-type1";
+			regulator-name = "usbotg";
+
+			hi3xxx_regulator_operation_enable_step	= <5 0 0 0 0 0 0 0>;
+			hi3xxx_regulator_enable_delay_time		= <5 0 0 0 0 0 0 0>;
+			hi3xxx_regulator_operation_disable_step	= <5 0 0 0 0 0 0 0>;
+			hi3xxx_regulator_disable_delay_time		= <5 0 0 0 0 0 0 0>;
+
+			clocks = <&clk_gate_usb2phy_ref &hclk_gate_usb2otg>;
+			clock-names = "clk_usb2phy_ref", "hclk_usb2otg";
+			hisilicon,hisi-regulator-id = <11>;
+			usbotg-supply = <&debugsubsys>;
+			hisilicon,supply_name = "usbotg";
+		};
+		sec_s: hi3xxx@12 {
+			compatible = "hi3xxx-regulator-type2";
+			regulator-name = "sec_s";
+			hi3xxx_to_lpm3_enable_step = <0x000C0001 0x03>;
+			hi3xxx_to_lpm3_disable_step = <0x000C0101 0x03>;
+			hisilicon,hisi-regulator-id = <12>;
+		};
+		socp: hi3xxx@13 {
+			compatible = "hi3xxx-regulator-type2";
+			regulator-name = "socp";
+			hi3xxx_to_lpm3_enable_step = <0x000C0001 0x04>;
+			hi3xxx_to_lpm3_disable_step = <0x000C0101 0x04>;
+			hisilicon,hisi-regulator-id = <13>;
+		};
+		g3d: hi3xxx@14 {
+			compatible = "hi3xxx-regulator-type2";
+			regulator-name = "g3d";
+			hi3xxx_to_lpm3_enable_step = <0x00030004 0x00>;
+			hi3xxx_to_lpm3_disable_step = <0x00030104 0x00>;
+			hisilicon,hisi-regulator-id = <14>;
+		};
+		asp: hi3xxx@15 {
+			compatible = "hi3xxx-regulator-type2";
+			regulator-name = "asp";
+			hisi,noc-node-name = "asp_bus";
+			hi3xxx_to_lpm3_enable_step = <0x00050001 0x00>;
+			hi3xxx_to_lpm3_disable_step = <0x00050101 0x00>;
+			hisilicon,hisi-regulator-id = <15>;
+		};
+		hifi: hi3xxx@16 {
+			compatible = "hi3xxx-regulator-type2";
+			regulator-name = "hifi";
+			hisi,noc-node-name = "asp_bus";
+			hi3xxx_to_lpm3_enable_step = <0x00060001 0x00>;
+			hi3xxx_to_lpm3_disable_step = <0x00060101 0x00>;
+			hisilicon,hisi-regulator-id = <16>;
+		};
+		mmbuf: hi3xxx@17 {
+			compatible = "hi3xxx-regulator-type2";
+			regulator-name = "mmbuf";
+			hi3xxx_to_lpm3_enable_step = <0x000C0001 0x09>;
+			hi3xxx_to_lpm3_disable_step = <0x000C0101 0x09>;
+			hisilicon,hisi-regulator-id = <17>;
+		};
+		ldo8: hi3xxx@18 {
+			compatible = "hi3xxx-regulator-type2";
+			regulator-name = "ldo8";
+			hi3xxx_to_lpm3_enable_step = <0x000C0001 0x02>;
+			hi3xxx_to_lpm3_disable_step = <0x000C0101 0x02>;
+			hisilicon,hisi-regulator-id = <18>;
+		};
+
+		sys_peri: hi3xxx@19 {
+			compatible = "hi3xxx-regulator-type2";
+			regulator-name = "sys_peri";
+			hi3xxx_to_lpm3_enable_step = <0x000C0006 0x0601>;
+			hi3xxx_to_lpm3_disable_step = <0x000C0106 0x0601>;
+			hisilicon,hisi-regulator-id = <19>;
+		};
+	};
+};

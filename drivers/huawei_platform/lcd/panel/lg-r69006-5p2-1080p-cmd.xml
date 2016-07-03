@@ -135,6 +135,7 @@
 	<LcdCtrlTpPower>1</LcdCtrlTpPower>
 	<LockCmdSupport>0</LockCmdSupport>
 	<ReadPowerStatus>1</ReadPowerStatus>
+	<EsdSetBacklight>0</EsdSetBacklight>
 
 	<!-- Panel Command information -->
 	<OnCommand>"0x29, 0x00, 0x0a, 0x00, 0x02, 0xB0, 0x00

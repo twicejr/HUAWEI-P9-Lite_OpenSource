@@ -249,20 +249,25 @@ static void hisi_smmu_domain_destroy(struct iommu_domain *domain)
 
 static int hisi_smmu_alloc_init_pte(struct smmu_pgd_t *ppgd,
 		unsigned long addr, unsigned long end,
-		unsigned long pfn, int prot)
+		unsigned long pfn, int prot, unsigned long *flags)
 {
 	smmu_pte_t *pte, *start;
 	pgtable_t table;
 	unsigned int pteval = SMMU_PTE_TYPE;
 
+	if (!smmu_pgd_none(*ppgd))
+		goto pte_ready;
+
+	/* Allocate a new set of tables */
+	spin_unlock_irqrestore(&hisi_smmu->lock, *flags);
+	table = alloc_page(GFP_KERNEL | __GFP_ZERO | __GFP_DMA);
+	spin_lock_irqsave(&hisi_smmu->lock, *flags);
+	if (!table) {
+		dbg("%s: alloc page fail\n", __func__);
+		return -ENOMEM;
+	}
+
 	if (smmu_pgd_none(*ppgd)) {
-		/* Allocate a new set of tables */
-		/*dbg("%s: alloc new page table for pgd entry\n",__func__);*/
-		table = alloc_page(GFP_ATOMIC|__GFP_ZERO|__GFP_DMA);
-		if (!table) {
-			dbg("%s: alloc page fail\n", __func__);
-			return -ENOMEM;
-		}
 		hisi_smmu_flush_pgtable(page_address(table), SMMU_PAGE_SIZE);
 		pgtable_page_ctor(table);
 		if (prot & IOMMU_SEC)
@@ -272,7 +277,10 @@ static int hisi_smmu_alloc_init_pte(struct smmu_pgd_t *ppgd,
 			smmu_pgd_populate(ppgd, table,
 					SMMU_PGD_TYPE_TABLE|SMMU_PGD_NS_BIT(1));
 		hisi_smmu_flush_pgtable(ppgd, sizeof(*ppgd));
-	}
+	}else
+		__free_page(table);
+
+pte_ready:
 	start = (smmu_pte_t *)smmu_pte_page_vaddr(ppgd) + smmu_pte_index(addr);
 	pte = start;
 
@@ -350,7 +358,7 @@ static int hisi_smmu_handle_mapping(struct iommu_domain *domain,
 		next = smmu_pgd_addr_end(iova, end);
 		/*dbg("%s: next = 0x%lx, pgd= %p\n",__func__, next, pgd);*/
 		ret = hisi_smmu_alloc_init_pte(pgd, iova, next,
-				__phys_to_pfn(paddr), prot);
+				__phys_to_pfn(paddr), prot, &flags);
 		if (ret)
 			goto out_unlock;
 		paddr += next - iova;

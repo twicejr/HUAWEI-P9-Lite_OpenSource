@@ -278,59 +278,14 @@ extern ULONG TCPIP_Traceroute(TrrtCommonParam *pstTrrtParam);
 *******************************************************************************/
 extern ULONG TCPIP_RegFuncTRRTStatHook(TCPIP_TRRTSTAT_HOOK_FUNC pfFunc);
 
-/*******************************************************************************
-*    Func Name: TCPIP_RegFuncTRRTDetectMtuHook
-* Date Created: 2009-03-25
-*       Author: zhangchi00142640
-*  Description: 注册TraceRouteMtu探测结果通知回调函数
-*        Input: TCPIP_TRRTDETECTMTU_HOOK_FUNC pfFunc: 回调函数
-*       Output: 
-*       Return: TRRT_API_PARA_WRONG：回调函数指针为空
-*               VOS_OK：处理成功
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-03-25   zhangchi00142640        Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_RegFuncTRRTDetectMtuHook(TCPIP_TRRTDETECTMTU_HOOK_FUNC pfFunc);
 
-/*****************************************************************************
- 函 数 名  : TCPIP_RegFuncTRRTExOutputHook
- 功能描述  : TRACEROUTE信息输出适配函数注册接口
- 输入参数  : TCPIP_TRRTExOutput_HOOK_FUNC pfHookFuc 提供给用户注册的TRRT模块信息输出函数指针 
- 输出参数  : 无
- 返 回 值  : VOS_OK成功,其他返回失败
- 调用函数  : 
- 被调函数  : 
- 
- 修改历史      :
-  1.日    期   : 2009年4月28日
-    作    者   : w62223
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 extern ULONG TCPIP_RegFuncTRRTExOutputHook(TCPIP_TRRTExOutput_HOOK_FUNC pfHookFuc); 
 
 
-/*****************************************************************************
- 函 数 名  : TCPIP_TracerouteEx
- 功能描述  : traceroute功能函数
- 输入参数  : ULONG ulExecID :用户ID                
-             TrrtCommonParam *pstTrrtParam  
- 输出参数  : 无
- 返 回 值  : 
- 调用函数  : 
- 被调函数  : 
- 
- 修改历史      :
-  1.日    期   : 2009年4月28日
-    作    者   : w62223
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 extern ULONG TCPIP_TracerouteEx(ULONG ulExecID,TrrtCommonParam *pstTrrtParam) ;
 
 /*******************************************************************************
@@ -375,52 +330,10 @@ ULONG TCPIP_RegFuncTRRTExStatHook(TCPIP_TRRTEXSTAT_HOOK_FUNC pfFunc);
 *******************************************************************************/
 extern ULONG TCPIP_TrrtDetectPathMtu(ULONG ulExecID, TCPIP_TRRT_DETECTMTU_S *pstTrrtMtuParam);
 
-/********************************************************************************** 
-*    Func Name: TCPIP_TRRT_SetPortRange 
-* Date Created: 2011-01-07 
-*       Author: c168670(cKF34546) 
-*      Purpose: 设置Traceroute目的端口号范围和默认端口号（主机序）
-*  Description: 设置Traceroute目的端口号范围和默认端口号（主机序）
-*        Input: USHORT usTrrtMinPort: 目的端口号下限<取值范围:[49152,65535]> 
-*               USHORT usTrrtMaxPort: 目的端口号上限<取值范围:[usTrrtMinPort,65535]> 
-*               USHORT usTrrtDefaultPort: 默认目的端口号<取值范围:[usTrrtMinPort,usTrrtMaxPort]>
-*       Output: 
-*       Return: 成功返回TRRT_SUCESS 
-*               失败返回错误码
-*      Caution: 端口上限不能小于端口下限，默认端口号在[端口下限，端口上限]范围内 
-*        Since: V200R003C03 
-*    Reference:  
-*---------------------------------------------------------------------------------- 
-*  Modification History 
-*  DATE         NAME                    DESCRIPTION 
-*  -------------------------------------------------------------------------------- 
-*  2011-01-07   c168670(cKF34546)       Create the first version. 
-* 
-**********************************************************************************/
+
 ULONG TCPIP_TRRT_SetPortRange(USHORT usTrrtMinPort, USHORT usTrrtMaxPort, USHORT usTrrtDefaultPort);
 
-/********************************************************************************** 
-*    Func Name: TCPIP_TRRT_GetPortRange 
-* Date Created: 2011-01-07 
-*       Author: c168670(cKF34546) 
-*      Purpose: 获取Traceroute目的端口号范围和默认端口号（主机序）
-*  Description: 获取Traceroute目的端口号范围和默认端口号（主机序）
-*        Input: USHORT *pusTrrtMinPort: 目的端口号下限的指针 
-*               USHORT *pusTrrtMaxPort: 目的端口号上限的指针
-*               USHORT *pusTrrtDefaultPort: 默认目的端口号的指针
-*       Output: 
-*       Return: 成功返回TRRT_SUCESS 
-*               失败返回错误码
-*      Caution: 
-*        Since: V200R003C03 
-*    Reference:  
-*---------------------------------------------------------------------------------- 
-*  Modification History 
-*  DATE         NAME                    DESCRIPTION 
-*  -------------------------------------------------------------------------------- 
-*  2011-01-07   c168670(cKF34546)       Create the first version. 
-* 
-**********************************************************************************/
+
 ULONG TCPIP_TRRT_GetPortRange(USHORT *pusTrrtMinPort, USHORT *pusTrrtMaxPort, USHORT *pusTrrtDefaultPort);
 
 #ifdef __cplusplus

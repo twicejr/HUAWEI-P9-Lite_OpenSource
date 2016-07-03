@@ -41,7 +41,6 @@ extern "C"{
 
 /*End    2008-09-10 V1R7C02 同步V1R7C01*/
 
-/* Added by z43740 for: ACL变化时对外通知,2008/03/12 */
 /**
 * @defgroup ACL_RefreshAclRegister ACL_RefreshAclRegister
 * @ingroup accssf ACL Functions

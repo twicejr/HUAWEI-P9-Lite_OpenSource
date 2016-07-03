@@ -36,7 +36,7 @@
 #define  AAA_AUTH_MSG_FMT_ERR       4  /* 消息格式错误 */
 #define  AAA_AUTH_IP_ERR            5  /* IP地址分配有误 */
 #define  AAA_POD_DELETE            6  /* POD去活 */
-#define NAI_NAME_LEN            63/* Modified by zhudaoming 62333 at 2007-12-05 GGSN9811V9R7C01B02 for L2TP/PPP V9移植 */
+#define NAI_NAME_LEN            63
 #define RD_FRAMED_INTERFACE_ID_LEN  8
 #define RD_FRAMED_IPV6_PREFIX_LEN   16
 #define RD_FRAMED_IPV6_PREFIX_BIT_LEN   64
@@ -166,12 +166,9 @@ typedef struct tagAaaAuthRspMsg
     VOS_UINT32 ulPIMARY_DNS_SERVER;      /* 主DNS SERVER */
     VOS_UINT32 ulSECOND_DNS_SERVER;      /* 从DNS SERVER */
     VOS_UINT32 ulAlwaysOn;               /*r002*/
-    /* Added start by liaomin 00130175, 2008/12/19 PDSN V900R007 问题单号: CR20081215006 */
     VOS_UINT32 ulMNAAAFlag;
-    /* Added end by liaomin 00130175, 2008/12/19 PDSN V900R007 问题单号: CR20081215006 */
     VOS_UINT32 ulAcctInterimInterval;
      /* L2TP */
-    /* Modified start by liaomin 00130175, 2008/11/26 PDSN V900R007 问题单号: AP8D05808 */
     VOS_UINT16 usTunnelType[AAA_L2TP_LNS_NUM];                 /* 隧道类型，目前只支持L2TP */
     VOS_UINT16 usTunnelMediaType[AAA_L2TP_LNS_NUM];            /* 公共网类型，目前只支持IP */
     VOS_UINT32  ulTunnelServer[AAA_L2TP_LNS_NUM];                   /* LNS地址 */
@@ -181,7 +178,6 @@ typedef struct tagAaaAuthRspMsg
     UCHAR  ucTunnelPrivateGroupId[AAA_L2TP_LNS_NUM][RD_TUNNEL_STR_MAX_LENG];          /* 隧道GroupID */
     UCHAR  ucTunnelAssignId[AAA_L2TP_LNS_NUM][RD_TUNNEL_STR_MAX_LENG];         /* 隧道ID */
     UCHAR  ucPassword[AAA_L2TP_LNS_NUM][RD_TUNNEL_STR_MAX_LENG+1];   /* 隧道密码 */
-    /* Modified end by liaomin 00130175, 2008/11/26 PDSN V900R007问题单号: AP8D05808 */
     UCHAR ucAAANotReturnIP;
     UCHAR ucRes;
 
@@ -199,7 +195,7 @@ typedef struct tagAaaAuthRspMsg
 
     MIPAGENT_SHARESECRET_S stMipAgentSecret;                   /* PMIPv4安全联盟 */
     UCHAR aucPmipV6Secret[RD_MIPV6AGENT_MNHA_SECRET_LEN];      /* PMIPv6安全联盟 */
-    UCHAR ucMdn[MDN_MAX_LEN+1];/* Added by l61463 at 2008-06-18 PDSN V9 for 电信MDN需求 */
+    UCHAR ucMdn[MDN_MAX_LEN+1];
     UCHAR ucResv3;
     VOS_UINT16  bulIpQosFlag : 1,                  /* IP Qos */
             bulInputPeakRateFlag : 1,  /*上行峰值速率， 单位为bps*/
@@ -217,18 +213,16 @@ typedef struct tagAaaAuthRspMsg
             bstAllowedDSCPMarkingFlag : 1; /* Allowed Differentiated Services Marking */
 
     A11_QOS_INFO_S stA11QoS;
-    UCHAR szUserProfileName[A11_USER_PROFILE_NAME_LENGTH + 1]; /*User Profile名称的字符串*/
+    UCHAR szUserProfileName[A11_USER_PROFILE_NAME_LENGTH + 1];
     UCHAR ucResv4[3];
 
     UCHAR aucVpnName[RD_HW_VPN_NAME_LEN_MAX + 1]; /* vpn name */
-    /* BEGIN: Added for PN:重定向 by wangyong 00138171, 2009/9/27 */
     UCHAR ucFilterID;
     UCHAR ucIPType;
     UCHAR ucIPTypeFlag; /* 用于区分是否携带了RD_3GPP2_IP_SERVICES_AUTHORIZED属性，1：携带。0：未携带 */
     UCHAR ucActiveStopIndication:1;
     UCHAR ucUserClassAAAFlag:1;
     UCHAR ucResrved:6;
-    /* END:   Added for PN:重定向 by wangyong 00138171, 2009/9/27 */
     UCHAR ucFramedInterfaceID[RD_FRAMED_INTERFACE_ID_LEN];
     UCHAR ucFramedIPV6Pool[RD_FRAMED_POOL_MAX_LENG + 1];
     UCHAR ucFramedIPV6Prefix[RD_FRAMED_IPV6_PREFIX_LEN];

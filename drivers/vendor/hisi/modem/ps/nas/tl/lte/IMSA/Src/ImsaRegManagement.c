@@ -318,15 +318,7 @@ VOS_UINT32 IMSA_FsmRun(IMSA_REG_ENTITY_STRU *pstEntity, VOS_UINT32 ulEvt, VOS_VO
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_RegResetPeriodTryImsRegTimes
- Description    : 清0周期尝试IMS注册次数
- Input          : enRegType--------------注册类型
- Output         : VOS_VOID
- Return Value   : VOS_VOID
- History        :
-      1.xiongxianghui 00253310      2015-10-12  Draft Enact
-*****************************************************************************/
+
 VOS_VOID IMSA_RegResetPeriodTryImsRegTimes
 (
     IMSA_REG_TYPE_ENUM_UINT8            enRegType
@@ -343,15 +335,7 @@ VOS_VOID IMSA_RegResetPeriodTryImsRegTimes
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_RegResetRetryTimes
- Description    : 清0重试次数
- Input          : enRegType--------------注册类型
- Output         : VOS_VOID
- Return Value   : VOS_VOID
- History        :
-      1.lihong 00150010      2013-10-08  Draft Enact
-*****************************************************************************/
+
 VOS_VOID IMSA_RegResetRetryTimes
 (
     IMSA_REG_TYPE_ENUM_UINT8            enRegType
@@ -364,18 +348,7 @@ VOS_VOID IMSA_RegResetRetryTimes
     pstRegEntity->ulRetryTimes = 0;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_RegConverterReg2Ims
- Description    : 发起注册消息参数的转换
- Input          : pacPcscfAddr     PCSCF地址
-                  pstInputEvent   存放转换结果的D2输入消息
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.liuhua 212067      2013-07-18  Draft Enact
-      2.wangchen 00209181    2013-10-09  Modify
-*****************************************************************************/
 VOS_VOID IMSA_RegConverterReg2Ims(IMSA_REG_TYPE_ENUM_UINT8 enRegType,
                                     const VOS_CHAR *pucIpAddr,
                                     const VOS_CHAR *pacPcscfAddr,
@@ -413,18 +386,7 @@ VOS_VOID IMSA_RegConverterReg2Ims(IMSA_REG_TYPE_ENUM_UINT8 enRegType,
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_RegConfigIpAddress2Ims
- Description    : 给IMS配置IP地址信息
- Input          : enRegType---------------------注册实体类型
-                  pacPcscfAddr------------------IP地址指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-07-17  Draft Enact
-      2.wangchen 00209181    2013-10-09  Modify
-*****************************************************************************/
 VOS_VOID IMSA_RegConfigIpAddress2Ims
 (
     IMSA_REG_TYPE_ENUM_UINT8            enRegType,
@@ -464,17 +426,7 @@ VOS_VOID IMSA_RegConfigIpAddress2Ims
 
 
 
-/*****************************************************************************
- Function Name  : IMSA_RegSendImsMsgDereg
- Description    : 通知IMS去注册
- Input          : enRegType------------------注册实体类型
-                  ulIsLocal------------------是否是本地去注册
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-07-17  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_RegSendImsMsgDereg
 (
     IMSA_REG_TYPE_ENUM_UINT8            enRegType,
@@ -504,16 +456,7 @@ VOS_VOID IMSA_RegSendImsMsgDereg
 
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SndD2MsgServiceRegInfo()
- Description    :  给D2发送service event的注册信息
- Input          : pstIMSCnf   卡鉴权结果
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.leili 00132387      2013-10-10  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SndD2MsgServiceRegInfo(IMSA_IMS_INPUT_SERVICE_REASON_ENUM_UINT32   enInputServeReason)
 {
     IMSA_IMS_INPUT_EVENT_STRU   *pstHiInputEvent;
@@ -896,18 +839,7 @@ VOS_UINT32 IMSA_RegFsmProcRegisteringImsRegSuccess(IMSA_REG_ENTITY_STRU *pstEnti
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_RegParseImsError
- Description    : 解析IMS上报的reasonDesc字段，转成IMSA希望的结构
- Input          : pstCsmOutputService----------OUTPUT SERVICE消息指针
-                  ulEvt------------------------事件ID
-                  pData------------------------错误信息指针
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
 
- History        :
-      1.lihong 00150010      2013-07-17  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_RegParseImsError
 (
     const IMSA_IMS_OUTPUT_SERVICE_EVENT_STRU  *pstOutputService,
@@ -931,16 +863,7 @@ VOS_UINT32 IMSA_RegParseImsError
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_RegCalculateRetryDelayTime
- Description    : 计算retry delay time
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
 
- History        :
-      1.lihong 00150010      2013-09-30  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_RegCalculateRetryDelayTime
 (
     VOS_UINT32                          ulMaxTime,
@@ -973,19 +896,7 @@ VOS_UINT32 IMSA_RegCalculateRetryDelayTime
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_RegCalculateRegFailureRetryIntervelTime
- Description    : 计算注册失败重新尝试间隔时间
- Input          : ulRetryTimes-----------------尝试次数
-                  ulRetryAfter-----------------retry after时长
-                  ulIsReRegisteration----------是否为重注册
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
 
- History        :
-      1.lihong 00150010      2013-07-16  Draft Enact
-      2.lihong 00150010      2013-10-08  Modify
-*****************************************************************************/
 VOS_UINT32 IMSA_RegCalculateRegFailureRetryIntervelTime
 (
     VOS_UINT32                          ulRetryTimes,
@@ -1040,16 +951,7 @@ VOS_UINT32 IMSA_RegCalculateRegFailureRetryIntervelTime
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_RegFsmProcRegisteringImsRegFailureTimerfOut
- Description    : 处理注册过程中IMS上报的注册失败，原因值为TIMERF_OUT；
- Input          : pstEntity--------------------实体信息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.xiongxianghui 00253310      2015-10-13  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_RegFsmProcRegisteringImsRegFailureTimerfOut
 (
     IMSA_REG_ENTITY_STRU               *pstEntity
@@ -1144,16 +1046,7 @@ VOS_VOID IMSA_RegFsmProcRegisteringImsRegFailureTimerfOut
 
 
 
-/*****************************************************************************
- Function Name  : IMSA_RegFsmProcRegisteringImsRegFailure
- Description    : 处理注册过程中IMS上报的注册失败，原因值为305；
- Input          : pstEntity--------------------实体信息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-07-15  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_RegFsmProcRegisteringImsRegFailure305
 (
     IMSA_REG_ENTITY_STRU               *pstEntity
@@ -1204,19 +1097,7 @@ VOS_VOID IMSA_RegFsmProcRegisteringImsRegFailure305
     IMSA_REG_FSM_STATE_TRANS(pstEntity, IMSA_REG_STATUS_REGISTERING);
 }
 
-/*****************************************************************************
- Function Name  : IMSA_RegInitRegWaitForRetryCommonProc
- Description    : 初始注册等待重试公共处理
- Input          : pstEntity--------------------实体信息指针
-                  ulRetryAfter-----------------retry after
-                  usSipStatusCode--------------错误码
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong   00150010      2013-10-11  Draft Enact
-      2.zhaochen 00308719      2015-12-19  F项目:将初始注册流程和重注册流程拆分开
-*****************************************************************************/
 VOS_VOID IMSA_RegInitRegWaitForRetryCommonProc
 (
     IMSA_REG_ENTITY_STRU               *pstEntity,
@@ -1274,19 +1155,7 @@ VOS_VOID IMSA_RegInitRegWaitForRetryCommonProc
 
 }
 
-/*****************************************************************************
- Function Name  : IMSA_RegWaitForRetryCommonProc
- Description    : 重注册等待重试公共处理
- Input          : pstEntity--------------------实体信息指针
-                  ulRetryAfter-----------------retry after
-                  usSipStatusCode--------------错误码
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong   00150010      2013-10-11  Draft Enact
-      2.zhaochen 00308719      2015-12-19  F项目:将初始注册流程和重注册流程拆分开
-*****************************************************************************/
 VOS_VOID IMSA_RegReRegWaitForRetryCommonProc
 (
     IMSA_REG_ENTITY_STRU               *pstEntity,
@@ -1334,18 +1203,7 @@ VOS_VOID IMSA_RegReRegWaitForRetryCommonProc
 
 }
 
-/*****************************************************************************
- Function Name  : IMSA_RegFsmProcRegisteringImsRegFailureRatNotSup
- Description    : 处理注册过程中IMS上报的注册失败
- Input          : pstEntity--------------------实体信息指针
-                  ulEvt------------------------事件ID
-                  pData------------------------错误信息指针
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
 
- History        :
-      1.wangchen 00209181   2015-12-01  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_RegFsmProcRegisteringImsRegFailureRatNotSup
 (
     IMSA_REG_ENTITY_STRU               *pstEntity
@@ -1378,18 +1236,7 @@ VOS_VOID IMSA_RegFsmProcRegisteringImsRegFailureRatNotSup
                              IMSA_ERR_LOG_EMC_REG_FAIL_REASON_MOVE_TO_NOT_SUP_IMS_RAT);
     #endif
 }
-/*****************************************************************************
- Function Name  : IMSA_RegFsmProcRegisteringImsRegFailureRatNotSup
- Description    : 处理注册过程中IMS上报的注册失败
- Input          : pstEntity--------------------实体信息指针
-                  ulEvt------------------------事件ID
-                  pData------------------------错误信息指针
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
 
- History        :
-      1.wangchen 00209181   2015-12-01  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_RegFsmProcRegisteringImsRegFailureOthers
 (
     IMSA_REG_ENTITY_STRU               *pstEntity,
@@ -1453,19 +1300,87 @@ VOS_UINT32 IMSA_RegFsmProcRegisteringImsRegFailureOthers
     return IMSA_TRUE;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_RegFsmProcRegisteringImsRegFailure
- Description    : 处理注册过程中IMS上报的注册失败
- Input          : pstEntity--------------------实体信息指针
-                  ulEvt------------------------事件ID
-                  pData------------------------错误信息指针
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
 
- History        :
-      1.lihong 00150010      2013-07-15  Draft Enact
-      2.lihong 00150010      2013-10-08  Modify:retry time
-*****************************************************************************/
+VOS_UINT32 IMSA_RegProcPermForbCause
+(
+    IMSA_REG_ENTITY_STRU               *pstEntity,
+    VOS_UINT16                          usSipStatusCode,
+    VOS_UINT32                          ulIsReRegisteration
+)
+{
+    IMSA_REG_REJ_FORBIDDEN_CTRL_STRU        *pstRegRejForbCtrl      = IMSA_REG_GetRegRejForbCtrlAddr();
+    IMSA_NV_REG_PERM_REJ_CAUSE_LIST_STRU    *pstRegPermRejCauseList = IMSA_REG_GetRegPermRejCauseListAddr();
+    VOS_UINT32                               i;
+
+    /* 定制NV没有打开，则不处理 */
+    if (VOS_TRUE != pstRegRejForbCtrl->ucPermForbFeatureFlag)
+    {
+        IMSA_INFO_LOG("IMSA_RegProcPermForbCause NV Not Open");
+        TLPS_PRINT2LAYER_INFO(IMSA_RegProcPermForbCause_ENUM, IMSA_NOT_SUPPORT);
+        return IMSA_NOT_HANDLED;
+    }
+
+    /* 循环遍历配置的永久原因值列表，如果列表中没有传入的参数的原因值，则不处理 */
+    for (i = 0 ; i < pstRegPermRejCauseList->ucSingleCauseNum ; i++)
+    {
+        TLPS_PRINT2LAYER_INFO2(IMSA_RegProcPermForbCause_ENUM, IMSA_REG_ERROR_CODE, 2 , pstRegPermRejCauseList->ausSingleCauseList[i]);
+        if (usSipStatusCode == pstRegPermRejCauseList->ausSingleCauseList[i])
+        {
+            TLPS_PRINT2LAYER_INFO1(IMSA_RegProcPermForbCause_ENUM, IMSA_REG_ERROR_CODE, usSipStatusCode);
+            break;
+        }
+    }
+
+    if (i == pstRegPermRejCauseList->ucSingleCauseNum)
+    {
+        IMSA_INFO_LOG("IMSA_RegProcPermForbCause Cause Not In Cause List");
+        return IMSA_NOT_HANDLED;
+    }
+
+    /* 周期性注册失败永久原因值处理 */
+    if (IMSA_TRUE == ulIsReRegisteration)
+    {
+        /* 通知SERVICE模块不再尝试注册 */
+        (VOS_VOID)IMSA_RegSendIntraMsgDeregInd( pstEntity->enRegType,
+                                                IMSA_REG_RESULT_FAIL_FORBIDDEN,
+                                                IMSA_RESULT_ACTION_NULL);
+        #if (FEATURE_ON == FEATURE_PTM)
+        if (IMSA_REG_TYPE_NORMAL == pstEntity->enRegType)
+        {
+            IMSA_NormRegFailErrRecord(  IMSA_ERR_LOG_REG_FAIL_REASON_REMOTE,
+                                        usSipStatusCode,
+                                        VOS_FALSE);
+        }
+        #endif
+
+        IMSA_INFO_LOG("IMSA_RegProcPermForbCause Registered Fail");
+        return IMSA_HANDLED;
+    }
+
+    IMSA_INFO_LOG("IMSA_RegProcPermForbCause Registering Fail");
+
+    /* 停止保护定时器 */
+    IMSA_RegTimerStop(&pstEntity->stProtectTimer);
+
+    /* 状态切换 */
+    IMSA_REG_FSM_STATE_TRANS(pstEntity, IMSA_REG_STATUS_NOT_REGISTER);
+
+    /* 通知SERVICE模块注册失败 */
+    (VOS_VOID)IMSA_RegSendIntraMsgRegInd(   pstEntity->enRegType,
+                                            IMSA_REG_RESULT_FAIL_FORBIDDEN,
+                                            IMSA_RESULT_ACTION_NULL);
+    #if (FEATURE_ON == FEATURE_PTM)
+    IMSA_RegFailErrLogRecord(pstEntity->enRegType,
+                             IMSA_ERR_LOG_REG_FAIL_REASON_REMOTE,
+                             usSipStatusCode,
+                             VOS_FALSE,
+                             IMSA_ERR_LOG_EMC_REG_FAIL_REASON_REMOTE);
+    #endif
+
+    return IMSA_HANDLED;
+}
+
+
 VOS_UINT32 IMSA_RegFsmProcRegisteringImsRegFailure
 (
     IMSA_REG_ENTITY_STRU               *pstEntity,
@@ -1499,7 +1414,12 @@ VOS_UINT32 IMSA_RegFsmProcRegisteringImsRegFailure
 
     if (VOS_NULL_PTR == pData)
     {
-        IMSA_RegFsmProcRegisteringImsRegFailure305(pstEntity);
+        /* 与IMS协议栈左政确认，如果OUTPUT_SERVICE_EVENT消息中没有携带error code
+           信元，则该消息不可能是注册失败结果。那么这条消息应该是网侧或者是本地
+           去注册结果，出现该场景一定是因为IMSA在之前发送了一次去注册请求，又发
+           送了一条本地去注册请求，再发一条注册请求。所以IMSA将该条消息丢弃，以
+           解决网侧去注册结果和本地区注册结果消息对冲的问题。 */
+        TLPS_PRINT2LAYER_WARNING(IMSA_RegFsmProcRegisteringImsRegFailure_ENUM, LNAS_NULL_PTR);
 
         return VOS_TRUE;
     }
@@ -1510,6 +1430,12 @@ VOS_UINT32 IMSA_RegFsmProcRegisteringImsRegFailure
     if (IMSA_HANDLED == IMSA_RegProcCustomBuildCause( pstEntity,
                                                   pstImsErrorInfo->ulRetryAfter,
                                                   pstImsErrorInfo->usSipStatusCode))
+    {
+        return VOS_TRUE;
+    }
+
+    /* 永久原因值处理, 若控制开关打开且原因值在永久原因值列表中, 则永久Forb */
+    if (IMSA_HANDLED == IMSA_RegProcPermForbCause(pstEntity, pstImsErrorInfo->usSipStatusCode, IMSA_FALSE))
     {
         return VOS_TRUE;
     }
@@ -1624,25 +1550,8 @@ VOS_UINT32 IMSA_RegFsmProcRegisteringImsRegFailure
             }
 
             break;
-        case IMSA_SIP_NW_ERROR_CAUSE_FORBIDDEN:
-            /* 停止保护定时器 */
-            IMSA_RegTimerStop(&pstEntity->stProtectTimer);
-
-            /* 状态切换 */
-            IMSA_REG_FSM_STATE_TRANS(pstEntity, IMSA_REG_STATUS_NOT_REGISTER);
-
-            /* 通知SERVICE模块注册失败 */
-            (VOS_VOID)IMSA_RegSendIntraMsgRegInd(   pstEntity->enRegType,
-                                                    IMSA_REG_RESULT_FAIL_FORBIDDEN,
-                                                    IMSA_RESULT_ACTION_NULL);
-            #if (FEATURE_ON == FEATURE_PTM)
-            IMSA_RegFailErrLogRecord(pstEntity->enRegType,
-                                     IMSA_ERR_LOG_REG_FAIL_REASON_REMOTE,
-                                     pstImsErrorInfo->usSipStatusCode,
-                                     VOS_FALSE,
-                                     IMSA_ERR_LOG_EMC_REG_FAIL_REASON_REMOTE);
-            #endif
-            break;
+        /* 403永久Fob处理放到上面永久原因值定制处理, 解决现网中由于网侧配置了多个
+            P-CSCF而第一个P-CSCF导致注册时回复403, 从而出现永久Forb未发起注册问题 */
         default:
             (VOS_VOID)IMSA_RegFsmProcRegisteringImsRegFailureOthers(pstEntity, pstImsErrorInfo);
             break;
@@ -1652,17 +1561,7 @@ VOS_UINT32 IMSA_RegFsmProcRegisteringImsRegFailure
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_RegProcNwNotifyMsgByEvent
- Description    : 根据notify event type进行不同处理
- Input          : pstEntity--------------------实体信息指针
-                  pData------------------------错误信息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.xiongxianghui 00150010      2014-12-30  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_RegProcNwNotifyMsgByEvent
 (
     IMSA_REG_ENTITY_STRU               *pstEntity,
@@ -1710,18 +1609,7 @@ VOS_VOID IMSA_RegProcNwNotifyMsgByEvent
             break;
     }
 }
-/*****************************************************************************
- Function Name  : IMSA_RegFsmProcRegisteredImsRegFailureAndRatNotSup
- Description    : 处理已注册状态下IMS上报的注册失败
- Input          : pstEntity--------------------实体信息指针
-                  ulEvt------------------------事件ID
-                  pData------------------------错误信息指针
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
 
- History        :
-      1.wangchen 00209181   2015-12-01  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_RegFsmProcRegisteredImsRegFailureAndRatNotSup
 (
     IMSA_REG_ENTITY_STRU               *pstEntity
@@ -1746,18 +1634,7 @@ VOS_VOID IMSA_RegFsmProcRegisteredImsRegFailureAndRatNotSup
     }
     #endif
 }
-/*****************************************************************************
- Function Name  : IMSA_RegFsmProcRegisteredImsRegFailureTimerFOut
- Description    : 处理已注册状态下IMS上报的注册失败
- Input          : pstEntity--------------------实体信息指针
-                  ulEvt------------------------事件ID
-                  pData------------------------错误信息指针
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
 
- History        :
-      1.wangchen 00209181   2015-12-01  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_RegFsmProcRegisteredImsRegFailureTimerFOut
 (
     IMSA_REG_ENTITY_STRU               *pstEntity,
@@ -1802,18 +1679,7 @@ VOS_VOID IMSA_RegFsmProcRegisteredImsRegFailureTimerFOut
     }
     #endif
 }
-/*****************************************************************************
- Function Name  : IMSA_RegFsmProcRegisteredImsRegFailureOthers
- Description    : 处理已注册状态下IMS上报的注册失败
- Input          : pstEntity--------------------实体信息指针
-                  ulEvt------------------------事件ID
-                  pData------------------------错误信息指针
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
 
- History        :
-      1.wangchen 00209181   2015-12-01  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_RegFsmProcRegisteredImsRegFailureOthers
 (
     IMSA_REG_ENTITY_STRU               *pstEntity,
@@ -1865,19 +1731,7 @@ VOS_VOID IMSA_RegFsmProcRegisteredImsRegFailureOthers
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_RegFsmProcRegisteredImsRegFailure
- Description    : 处理已注册状态下IMS上报的注册失败
- Input          : pstEntity--------------------实体信息指针
-                  ulEvt------------------------事件ID
-                  pData------------------------错误信息指针
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
 
- History        :
-      1.lihong 00150010      2013-07-16  Draft Enact
-      2.lihong 00150010      2013-10-08  Modify:retry time
-*****************************************************************************/
 VOS_UINT32 IMSA_RegFsmProcRegisteredImsRegFailure
 (
     IMSA_REG_ENTITY_STRU               *pstEntity,
@@ -1937,6 +1791,12 @@ VOS_UINT32 IMSA_RegFsmProcRegisteredImsRegFailure
     }
 
     pstImsErrorInfo = (IMSA_IMS_OUTPUT_ERROR_STRU*)pData;
+
+    /* 永久原因值处理, 若控制开关打开且原因值在永久原因值列表中, 则永久Forb */
+    if (IMSA_HANDLED == IMSA_RegProcPermForbCause(pstEntity, pstImsErrorInfo->usSipStatusCode, IMSA_TRUE))
+    {
+        return VOS_TRUE;
+    }
 
     switch (pstImsErrorInfo->usSipStatusCode)
     {
@@ -2004,20 +1864,8 @@ VOS_UINT32 IMSA_RegFsmProcRegisteredImsRegFailure
             }
             #endif
             break;
-        case IMSA_SIP_NW_ERROR_CAUSE_FORBIDDEN:
-            /* 通知SERVICE模块不再尝试注册 */
-            (VOS_VOID)IMSA_RegSendIntraMsgDeregInd( pstEntity->enRegType,
-                                                    IMSA_REG_RESULT_FAIL_FORBIDDEN,
-                                                    IMSA_RESULT_ACTION_NULL);
-            #if (FEATURE_ON == FEATURE_PTM)
-            if (IMSA_REG_TYPE_NORMAL == pstEntity->enRegType)
-            {
-                IMSA_NormRegFailErrRecord(  IMSA_ERR_LOG_REG_FAIL_REASON_REMOTE,
-                                            pstImsErrorInfo->usSipStatusCode,
-                                            VOS_FALSE);
-            }
-            #endif
-            break;
+        /* 403永久Fob处理放到上面永久原因值定制处理, 解决现网中由于网侧配置了多个
+            P-CSCF而第一个P-CSCF导致永久Forb未发起注册问题 */
 
         default:
             IMSA_RegReRegWaitForRetryCommonProc( pstEntity,
@@ -2144,18 +1992,7 @@ VOS_UINT32 IMSA_RegFsmProcRegisteredUserDereg(IMSA_REG_ENTITY_STRU *pstEntity, V
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_RegFsmProcDeregingUserDereg
- Description    : Dereging状态收到用户去注册请求的处理
- Input          : pstEntity     当前注册实体
-                  ulEvt         事件id
-                  pData         事件data
- Output         : VOS_VOID
- Return Value   : 处理结果
 
- History        :
-      1.x00253310       2013-07-18  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_RegFsmProcDeregingUserDereg(IMSA_REG_ENTITY_STRU *pstEntity, VOS_UINT32 ulEvt, VOS_VOID* pData)
 {
     IMSA_REG_DEREG_REQ_STRU *pstDeregReq = VOS_NULL_PTR;
@@ -2981,18 +2818,7 @@ VOS_VOID IMSA_RegProcTimeoutRetry(const VOS_VOID *pTimerMsg)
     (VOS_VOID)IMSA_FsmRun(pstRegEntity, IMSA_REG_EVT_TIMEOUT_RETRY, VOS_NULL_PTR);
 }
 
-/*****************************************************************************
- Function Name  : IMSA_RegProcCustomBuildCause()
- Description    : 处理定制需求中的原因值流程
- Input          : pstEntity-----------注册实体
-                  ulRetryAfter--------Retry-After头
-                  usSipStatusCode-----错误原因值
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.zhaochen 00308719     2015-12-19  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_RegProcCustomBuildCause
 (
     IMSA_REG_ENTITY_STRU               *pstEntity,
@@ -3451,18 +3277,7 @@ VOS_UINT32 IMSA_RegAddrPairMgrAddPcscfAddr(IMSA_REG_TYPE_ENUM_UINT8 ulRegType,
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_RegGetAddrPairListHead
- Description    : 获取地址对列表头指针
- Input          : ulRegType-----------------注册类型
-                  enIpType------------------IP类型
-                  pppstListHead--------------地址对列表头指针的指针的指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-07-16  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_RegGetAddrPairListHead
 (
     IMSA_REG_TYPE_ENUM_UINT8            ulRegType,
@@ -3498,18 +3313,7 @@ VOS_VOID IMSA_RegGetAddrPairListHead
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_RegAddrPairMgrRmvPcscfAddr
- Description    : 删除P-CSCF地址
- Input          : ulRegType-----------------注册类型
-                  enIpType------------------IP类型
-                  pacIpAddr-----------------P-CSCF地址指针
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
 
- History        :
-      1.lihong 00150010      2013-07-16  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_RegAddrPairMgrRmvPcscfAddr
 (
     IMSA_REG_TYPE_ENUM_UINT8            ulRegType,
@@ -3649,16 +3453,7 @@ VOS_UINT32 IMSA_RegAddrPairMgrAddUeAddr(IMSA_REG_TYPE_ENUM_UINT8 ulRegType,
     return ulResult;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_RegAddrPairMgrRmvUeAddrs
- Description    : 删除IP地址
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
 
- History        :
-      1.lihong 00150010      2013-07-16  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_RegAddrPairMgrRmvUeAddr
 (
     IMSA_REG_TYPE_ENUM_UINT8            ulRegType,
@@ -3904,18 +3699,7 @@ VOS_UINT32 IMSA_RegAddrPairMgrGetNextUnused(IMSA_REG_TYPE_ENUM_UINT8 ulRegType,
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_RegGetRegedPara
- Description    : 获取注册上的参数
- Input          : ulRegType--------------------注册实体类型
-                  pacUeAddr--------------------注册上的IP地址指针
-                  pacPcscfAddr-----------------注册上的P-CSCF地址指针
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
 
- History        :
-      1.lihong 00150010      2013-07-17  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_RegGetRegedPara
 (
     IMSA_REG_TYPE_ENUM_UINT8            ulRegType,
@@ -3960,16 +3744,7 @@ VOS_UINT32 IMSA_RegGetRegedPara
         return IMSA_SUCC;
     }
 }
-/*****************************************************************************
- Function Name  : IMSA_RegSaveRegedPara
- Description    : 去激活承载前，存储注册参数
- Input          : ulRegType--------------------注册实体类型
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
 
- History        :
-      1.wangchen 00209181   2014-3-18  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_RegSaveRegedPara
 (
     IMSA_REG_TYPE_ENUM_UINT8            ulRegType,
@@ -4078,17 +3853,7 @@ VOS_VOID IMSA_RegEntityInit(IMSA_REG_ENTITY_STRU *pstRegEntity)
     IMSA_RegAddrPairMgrInit(&pstRegEntity->stPairMgrCtx);
 }
 
-/*****************************************************************************
- Function Name  : IMSA_RegEntityDeinit
- Description    : 反初始化注册实体
- Input          : pstRegEntity    待反初始化的实体指针
- Output         : VOS_VOID
- Return Value   : 反初始化结果
 
- History        :
-      1.liuhua 212067      2013-07-18  Draft Enact
-      2.lihong 00150010    2013-08-31  Modify
-*****************************************************************************/
 VOS_VOID IMSA_RegEntityDeinit(IMSA_REG_ENTITY_STRU *pstRegEntity)
 {
     IMSA_INFO_LOG("IMSA_RegEntityDeinit is entered!");
@@ -4139,17 +3904,7 @@ VOS_VOID IMSA_RegMgrInit(VOS_VOID)
     pstRegCtx->stEmcRegEntity.enRegType = IMSA_REG_TYPE_EMC;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_RegMgrDeinit
- Description    : 注册实体管理上下文反初始化
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.liuhua 212067      2013-07-29  Draft Enact
-      2.lihong 00150010    2013-08-31  Modify
-*****************************************************************************/
 VOS_VOID IMSA_RegMgrDeinit( VOS_VOID )
 {
     IMSA_REG_MANAGER_STRU *pstRegCtx = IMSA_RegCtxGet();
@@ -4252,18 +4007,7 @@ VOS_VOID IMSA_RegPrintEmcRegState( VOS_VOID )
             break;
     }
 }
-/*****************************************************************************
- Function Name  : IMSA_RegGetRegedPara
- Description    : 获取注册上的参数
- Input          : ulRegType--------------------注册实体类型
-                  pacUeAddr--------------------注册上的IP地址指针
-                  pacPcscfAddr-----------------注册上的P-CSCF地址指针
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
 
- History        :
-      1.wangchen 00209181   2015-12-12  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_RegNotifyImsLocalDereg
 (
     VOS_VOID
@@ -4345,21 +4089,7 @@ VOS_VOID IMSA_RegFsmProcWaitRetryResourceApplyExp( VOS_VOID)
 #endif
 
 #if (FEATURE_ON == FEATURE_PTM)
-/*****************************************************************************
- 函 数 名  : IMSA_SndRegErrLogInfo
- 功能描述  : 将IMSA的注册ERROR LOG 信息勾到HIDS
- 输入参数  : stImsRegRstEvent   IMS注册失败结构
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年01月15日
-    作    者   : w00209181
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IMSA_SndRegErrLogInfo
 (
     IMSA_ERR_LOG_REG_FAIL_STRU  stImsRegRstEvent
@@ -4407,21 +4137,7 @@ VOS_VOID IMSA_SndRegErrLogInfo
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : IMSA_SndNotInitRegErrLogInfo
- 功能描述  : 将IMSA的注册ERROR LOG 信息勾到HIDS
- 输入参数  : stImsRegRstEvent   IMS注册失败结构
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年01月15日
-    作    者   : w00209181
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IMSA_SndNotInitRegErrLogInfo
 (
     IMSA_ERR_LOG_NOT_INIT_REG_STRU  stImsRegRstEvent
@@ -4470,21 +4186,7 @@ VOS_VOID IMSA_SndNotInitRegErrLogInfo
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IMSA_SndNormPdnConnFailErrLogInfo
- 功能描述  : 将IMSA的注册ERROR LOG 信息勾到HIDS
- 输入参数  : stImsRegRstEvent   IMS注册失败结构
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年01月15日
-    作    者   : w00209181
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IMSA_SndNormPdnConnFailErrLogInfo
 (
     IMSA_ERR_LOG_PDN_CONN_FAIL_STRU  stImsaPdnConnFail
@@ -4533,21 +4235,7 @@ VOS_VOID IMSA_SndNormPdnConnFailErrLogInfo
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IMSA_SndNormPdnConnFailErrLogInfo
- 功能描述  : 将IMSA的注册ERROR LOG 信息勾到HIDS
- 输入参数  : stImsRegRstEvent   IMS注册失败结构
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年01月15日
-    作    者   : w00209181
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IMSA_SndNormRegFailErrLogInfo
 (
     IMSA_ERR_LOG_NORM_REG_FAIL_STRU  stImsaNormRegFail
@@ -4596,21 +4284,7 @@ VOS_VOID IMSA_SndNormRegFailErrLogInfo
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IMSA_SndNormInitDeregErrLogInfo
- 功能描述  : 将IMSA的注册ERROR LOG 信息勾到HIDS
- 输入参数  : stImsRegRstEvent   IMS注册失败结构
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年01月15日
-    作    者   : w00209181
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IMSA_SndNormInitDeregErrLogInfo
 (
     IMSA_ERR_LOG_INIT_DEREG_CAUSE_STRU  stImsaNormInitDereg
@@ -4659,21 +4333,7 @@ VOS_VOID IMSA_SndNormInitDeregErrLogInfo
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IMSA_PdnRejErrRecord
- 功能描述  : 记录PDN建链被拒事件
- 输入参数  : enPdnConnRejCause  PDN被拒原因值
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月06日
-    作    者   : W00209181
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IMSA_PdnRejErrRecord
 (
     IMSA_ERR_LOG_PDNREJ_CAUSE_ENUM_UINT32   enPdnConnRejCause
@@ -4743,21 +4403,7 @@ VOS_VOID IMSA_PdnRejErrRecord
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : IMSA_RegErrRecord
- 功能描述  : 记录IMSA注册失败事件
- 输入参数  : enRegFailReason  注册失败原因值
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月06日
-    作    者   : W00209181
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IMSA_RegErrRecord
 (
     IMSA_REG_TYPE_ENUM_UINT8 enRegType,
@@ -4845,21 +4491,7 @@ VOS_VOID IMSA_RegErrRecord
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IMSA_NotInitRegErrRecord
- 功能描述  : 记录IMSA不发起注册的原因值
- 输入参数  : enRegFailReason  注册失败原因值
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月06日
-    作    者   : W00209181
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IMSA_NotInitRegErrRecord
 (
     VOS_VOID
@@ -4959,21 +4591,7 @@ VOS_VOID IMSA_NotInitRegErrRecord
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IMSA_NormPdnConnRejErrRecord
- 功能描述  : 记录IMSA发起PDN建链被拒事件
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月06日
-    作    者   : W00209181
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IMSA_NormPdnConnRejErrRecord
 (
     IMSA_ERR_LOG_NORM_PDNREJ_CAUSE_ENUM_UINT32      enPdnConnRejCause,
@@ -5028,21 +4646,7 @@ VOS_VOID IMSA_NormPdnConnRejErrRecord
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IMSA_NormRegFailErrRecord
- 功能描述  : 记录IMSA发起注册失败事件
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月06日
-    作    者   : W00209181
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IMSA_NormRegFailErrRecord
 (
     IMSA_ERR_LOG_REG_FAIL_REASON_ENUM_UINT8 enRegFailReason,
@@ -5116,21 +4720,7 @@ VOS_VOID IMSA_NormRegFailErrRecord
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IMSA_NormInitDeregErrRecord
- 功能描述  : 记录IMSA发起去注册事件
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月06日
-    作    者   : W00209181
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IMSA_NormInitDeregErrRecord
 (
     IMSA_ERR_LOG_INIT_DEREG_REASON_ENUM_UINT32  enInitDeregCause
@@ -5185,21 +4775,7 @@ VOS_VOID IMSA_NormInitDeregErrRecord
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : IMSA_RegFailErrLogRecord
- 功能描述  : 记录IMSA发起去注册事件
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月06日
-    作    者   : W00209181
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IMSA_PdnConnFailErrLogRecord
 (
     IMSA_CONN_TYPE_ENUM_UINT32                      enConnType,
@@ -5224,21 +4800,7 @@ VOS_VOID IMSA_PdnConnFailErrLogRecord
     }
 }
 
-/*****************************************************************************
- 函 数 名  : IMSA_RegFailErrLogRecord
- 功能描述  : 记录IMSA发起去注册事件
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月06日
-    作    者   : W00209181
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IMSA_RegFailErrLogRecord
 (
     IMSA_REG_TYPE_ENUM_UINT8                        enRegType,

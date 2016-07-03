@@ -1,15 +1,4 @@
-/*************************************************************************
-*   版权所有(C) 2008-2012, 深圳华为技术有限公司.
-*
-*   文 件 名 :  amon_balong.c
-*
-*   作    者 :  z00212940
-*
-*   描    述 :  可维可测AXI Monitor
-*
-*   修改记录 :  2013年1月29日  v1.00  z00212940  创建
-*
-*************************************************************************/
+
 
 #ifdef __cplusplus
 extern "C"
@@ -94,22 +83,7 @@ struct dpm_device amon_dpm_device={
 #endif
 #endif
 
-/*****************************************************************************
- 函 数 名  : amon_save_log
- 功能描述  : 匹配到监控项，记录log
-             保存格式: timestamp    soc/cpufast    id          port
-                       masterid     rd/wr          addr_start  addr_end
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年1月29日
-    作    者   : f
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void amon_save_log(axi_config_enum_uint32 mode, u32 id, u32 opt_type, amon_config_t * config)
 {
     u32 * data_wr = (u32 *)(g_amon_buff.buff + g_amon_buff.write_offset);
@@ -194,20 +168,7 @@ void amon_save_log(axi_config_enum_uint32 mode, u32 id, u32 opt_type, amon_confi
     }
 }
 
-/*****************************************************************************
- 函 数 名  : amon_int_handler
- 功能描述  : 中断处理函数，处理读写中断
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年1月29日
-    作    者   : f
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void amon_int_handler(void)
 {
     u32 i;
@@ -388,22 +349,7 @@ s32 amon_get_info(amon_count_stru *count)
 
 }
 
-/*****************************************************************************
- 函 数 名  : 下发配置
- 功能描述  : 获取AXI monitor运行/软复位状态，不能同时获取CPUFAST/SOC状态
- 输入参数  : axi_config_enum_uint32 config
-             axi_get_state_req_enum_uint32 state_req
- 输出参数  : 无
- 返 回 值  : axi_state_enum_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年1月29日
-    作    者   : f
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 /* coverity[pass by value] */
 s32 amon_set_config(amon_config_stru configinfo)
 {
@@ -460,22 +406,7 @@ s32 amon_set_config(amon_config_stru configinfo)
 
     return MDRV_OK;
 }
-/*****************************************************************************
- 函 数 名  : amon_get_state
- 功能描述  : 获取AXI monitor运行/软复位状态，不能同时获取CPUFAST/SOC状态
- 输入参数  : axi_config_enum_uint32 config
-             axi_get_state_req_enum_uint32 state_req
- 输出参数  : 无
- 返 回 值  : axi_state_enum_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年1月29日
-    作    者   : f
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 axi_state_enum_uint32 amon_get_state(axi_config_enum_uint32 config, axi_get_state_req_enum_uint32 state_req)
 {
     u32 reg_value = 0;
@@ -501,20 +432,7 @@ axi_state_enum_uint32 amon_get_state(axi_config_enum_uint32 config, axi_get_stat
     return reg_value;
 }
 
-/*****************************************************************************
- 函 数 名  : amon_state_check
- 功能描述  : 状态判定函数，是否正在运行
- 输出参数  : 无
- 返 回 值  : s32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年1月29日
-    作    者   : f
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32 amon_state_check(axi_config_enum_uint32 config)
 {
     axi_state_enum_uint32 axi_state;
@@ -529,20 +447,7 @@ s32 amon_state_check(axi_config_enum_uint32 config)
     return MDRV_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : amon_reset
- 功能描述  : monitor内部软复位
- 输出参数  : 无
- 返 回 值  : s32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年1月29日
-    作    者   : f
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32 amon_reset(axi_config_enum_uint32 config)
 {
     axi_state_enum_uint32 axi_state;
@@ -568,21 +473,7 @@ s32 amon_reset(axi_config_enum_uint32 config)
     return MDRV_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : amon_start
- 功能描述  : 启动AXI monitor，由系统控制器启动
- 输入参数  : axi_config_enum_uint32 config
- 输出参数  : 无
- 返 回 值  : s32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年1月29日
-    作    者   : f
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32 amon_start(axi_config_enum_uint32 config)
 {
     axi_state_enum_uint32 axi_state;
@@ -651,21 +542,7 @@ s32 amon_start(axi_config_enum_uint32 config)
     return MDRV_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : amon_stop
- 功能描述  : 停止AXI monitor，由系统控制器停止
- 输入参数  : axi_config_enum_uint32 config
- 输出参数  : 无
- 返 回 值  : s32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年1月29日
-    作    者   : f
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32 amon_stop(axi_config_enum_uint32 config)
 {
     axi_state_enum_uint32 axi_state;
@@ -699,21 +576,7 @@ s32 amon_stop(axi_config_enum_uint32 config)
     return MDRV_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : amon_config
- 功能描述  : 配置monitor监控ID
- 输入参数  : axi_config_enum_uint32 config
- 输出参数  : 无
- 返 回 值  : s32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年1月29日
-    作    者   : f
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void amon_config(axi_config_enum_uint32 config)
 {
     u32 i;
@@ -768,21 +631,7 @@ s32 amon_get_clk_node(void)
 #endif
     return MDRV_OK;
 }
-/*****************************************************************************
- 函 数 名  : bsp_amon_init
- 功能描述  : axi monitor初始化，读取NV配置监控ID
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : s32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年1月29日
-    作    者   : f
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32 bsp_amon_init(void)
 {
 

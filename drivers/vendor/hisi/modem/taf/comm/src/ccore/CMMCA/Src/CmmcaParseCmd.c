@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2012, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CmmcaParseCmd.c
-  版 本 号   : 初稿
-  作    者   : g00261581
-  生成日期   : 2014年01月23日
-  最近修改   :
-  功能描述   : CMMCA模块Cmd解析
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年01月23日
-    作    者   : g00261581
-    修改内容   : 新生成
-
-******************************************************************************/
 /*****************************************************************************
   1 头文件包含
 *****************************************************************************/
@@ -45,21 +28,7 @@ extern "C" {
   3 函数定义
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : CMMCA_ConvertDoubleOctetStrToU16
- 功能描述  : 2字节字符串转换为VOS_UINT16类型变量
- 输入参数  : VOS_UINT8                          *pucStr
- 输出参数  :
- 返 回 值  : VOS_UINT16
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年02月14日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT16 CMMCA_ConvertDoubleOctetStrToU16(VOS_UINT8 *pucStr)
 {
     VOS_UINT16                          ulAddr;
@@ -76,21 +45,7 @@ VOS_UINT16 CMMCA_ConvertDoubleOctetStrToU16(VOS_UINT8 *pucStr)
     return ulAddr;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_ConvertFourOctetStrToU32
- 功能描述  : 4字节字符串转换为VOS_UINT32类型变量
- 输入参数  : VOS_UINT8                          *pucStr
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年02月14日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_ConvertFourOctetStrToU32(VOS_UINT8 *pucStr)
 {
     VOS_UINT32                          ulTmpValue;
@@ -110,21 +65,7 @@ VOS_UINT32 CMMCA_ConvertFourOctetStrToU32(VOS_UINT8 *pucStr)
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_ConvertU16ToDoubleOctetStr
- 功能描述  : VOS_UINT16类型变量转换生成2字节字符串
- 输入参数  : VOS_UINT16                          usResult
- 输出参数  : VOS_UINT8                          *pucStr
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年02月14日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_ConvertU16ToDoubleOctetStr(
     VOS_UINT16                          usResult,
     VOS_UINT8                          *pucStr
@@ -143,21 +84,7 @@ VOS_VOID CMMCA_ConvertU16ToDoubleOctetStr(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_ConvertU32ToFourOctetStr
- 功能描述  : VOS_UINT32类型变量转换生成4字节字符串
- 输入参数  : VOS_UINT32                          usResult
- 输出参数  : VOS_UINT8                          *pucStr
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年02月14日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_ConvertU32ToFourOctetStr(
     VOS_UINT32                          ulResult,
     VOS_UINT8                          *pucStr
@@ -178,22 +105,7 @@ VOS_VOID CMMCA_ConvertU32ToFourOctetStr(
 
 
 
-/*****************************************************************************
- 函 数 名  : CMMCA_IsNasMccValid
- 功能描述  : NAS类型MCC是否有效
- 输入参数  : VOS_UINT32                          ulNasMnc
- 输出参数  : 无
- 返 回 值  : VOS_TRUE       - MCC有效
-             VOS_FALSE      - MCC无效
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年02月20日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_IsNasMccValid(
     VOS_UINT32                          ulNasMcc
 )
@@ -222,22 +134,7 @@ VOS_UINT32 CMMCA_IsNasMccValid(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_IsNasMncValid
- 功能描述  : NAS类型MNC是否有效
- 输入参数  : VOS_UINT32                          ulNasMnc
- 输出参数  : 无
- 返 回 值  : VOS_TRUE       - MNC有效
-             VOS_FALSE      - MNC无效
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年02月20日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_IsNasMncValid(
     VOS_UINT32                          ulNasMnc
 )
@@ -278,25 +175,7 @@ VOS_UINT32 CMMCA_IsNasMncValid(
 
 
 
-/*****************************************************************************
- 函 数 名  : CMMCA_ConvertNasMccToTwoBcdMccOctetStr
- 功能描述  : VOS_UINT32NAS类型MCC转换生成VIA 2字节格式字符串码流
- 输入参数  : VOS_UINT32                          ulNasMcc
- 输出参数  : VOS_UINT8                          *pucMccStr
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年02月20日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-    参见VIA关于MMC的接口讨论:MCC 460的BCD编码成0x46A,码流为0X04， 0X6A(将国家码中的0转换为A)
-                             MCC 462的BCD编码成0x462,码流为0X04， 0X62
-                             MCC 001的BCD编码成0xAA1,码流为0X0A， 0XA1
-
-    调用者保证输入ulNasMcc参数中没有异常字符
-*****************************************************************************/
 VOS_VOID CMMCA_ConvertNasMccToTwoBcdMccOctetStr(
     VOS_UINT32                          ulNasMcc,
     VOS_UINT8                          *pucMccStr
@@ -344,25 +223,7 @@ VOS_VOID CMMCA_ConvertNasMccToTwoBcdMccOctetStr(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_ConvertNasMncToTwoBcdMncOctetStr
- 功能描述  : VOS_UINT32NAS类型MNC转换生成VIA 2字节格式字符串码流
- 输入参数  : VOS_UINT32                          ulNasMnc
- 输出参数  : VOS_UINT8                          *pucMncStr
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年02月20日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-    参见VIA关于MMC的接口讨论:MNC 460的BCD编码成0x46A,码流为0X04， 0X6A(将国家码中的0转换为A)
-                             MNC 462的BCD编码成0x462,码流为0X04， 0X62
-                             MNC 001的BCD编码成0xAA1,码流为0X0A， 0XA1
-                             MNC 03的BCD编码成A3F,   码流为0X0A， 0X3F(第三位0转换为F)
-    调用者保证输入ulNasMnc参数中没有异常字符
-*****************************************************************************/
 VOS_VOID CMMCA_ConvertNasMncToTwoBcdMncOctetStr(
     VOS_UINT32                          ulNasMnc,
     VOS_UINT8                          *pucMncStr
@@ -410,25 +271,7 @@ VOS_VOID CMMCA_ConvertNasMncToTwoBcdMncOctetStr(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_ConvertNasPlmnToBcdPlmnOctetStr
- 功能描述  : VOS_UINT32NAS类型PLMN转换生成VIA 4字节BCD格式PLMN字符串码流
- 输入参数  : VOS_UINT32                 ulNasMcc
-             VOS_UINT32                 ulNasMnc
- 输出参数  : VOS_UINT8                 *pucPlmnStr
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年02月20日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-    参见VIA关于MMC的接口讨论:
-    PLMN 46003的BCD编码成0x46AA3F,码流为0X00,0X46，0XAA,0X3F(将国家码中的0转换为A)
-    PLMN 460233的BCD编码成0x46A233,码流为0X00,0X46，0XA2,0X33(将国家码中的0转换为A)
-
-*****************************************************************************/
 VOS_VOID CMMCA_ConvertNasPlmnToBcdPlmnOctetStr(
     VOS_UINT32                          ulNasMcc,
     VOS_UINT32                          ulNasMnc,
@@ -508,23 +351,7 @@ VOS_VOID CMMCA_ConvertNasPlmnToBcdPlmnOctetStr(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_ConvertFourBcdMccMncOctetStrToNasPlmn
- 功能描述  : VIA 4字节BCD格式PLMN字符串码流转换生成VOS_UINT32NAS类型PLMN
- 输入参数  : VOS_UINT8                 *pucMncStr
- 输出参数  : VOS_UINT8                 *pucPlmnStr
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年02月21日
-    作    者   : b00269685
-    修改内容   : 新生成函数
-    参见VIA关于MMC的接口讨论:
-    码流为0X00,0X46，0XAA,0X3F, BCD编码成0x46AA3F, PLMN 46003(将A转化为0)
-    码流为0X00,0X46，0XA2,0X33, BCD编码成0x46A233, PLMN 460233
-*****************************************************************************/
 VOS_VOID CMMCA_ConvertFourBcdMccMncOctetStrToNasPlmn(
     VOS_UINT8                          *pucPlmnStr,
     VOS_UINT32                         *pulNasMcc,
@@ -590,22 +417,7 @@ VOS_VOID CMMCA_ConvertFourBcdMccMncOctetStrToNasPlmn(
 
 #if (FEATURE_ON == FEATURE_CL_INTERWORK)
 
-/*****************************************************************************
- 函 数 名  : CMMCA_CheckApnFormat
- 功能描述  : 检查APN格式有效性, 具体格式要求请参考 TS 23.003 section 9.1
- 输入参数  : pucApn                     - APN字符串
-             usApnLen                   - APN长度
- 输出参数  : 无
- 返 回 值  : VOS_OK                     - APN格式符合协议要求
-             VOS_ERR                    - APN格式不符合协议要求
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月23日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 CMMCA_CheckApnFormat(
     VOS_UINT8                          *pucApn,
     VOS_UINT16                          usApnLen
@@ -650,22 +462,7 @@ VOS_UINT8 CMMCA_CheckApnFormat(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_ParseSetPdnTabReq
- 功能描述  : 解析PDN设置请求,并做参数检查
- 输入参数  : VOS_UINT16                          usParamBlklength
-             VOS_UINT8                          *pucParamBlk
- 输出参数  : CMMCA_MMC_RAT_SET_PDN_TAB_REQ_STRU *pstSetPdnTabReq
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月23日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_ParseSetPdnTabReq(
     VOS_UINT16                          usParamBlklength,
     VOS_UINT8                          *pucParamBlk,
@@ -790,22 +587,7 @@ VOS_UINT32 CMMCA_ParseSetPdnTabReq(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PackSetPdnTabRsp
- 功能描述  : 打包PDN设置回复
- 输入参数  : CMMCA_RAT_MMC_SET_PDN_TAB_CNF_STRU *pstSetPdnTabCnf
-             VOS_UINT16                          usParamBlklength
- 输出参数  : VOS_UINT8                          *pucParamBlk
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月23日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_PackSetPdnTabRsp(
     CMMCA_RAT_MMC_SET_PDN_TAB_CNF_STRU *pstSetPdnTabCnf,
     VOS_UINT16                          usParamBlklength,
@@ -858,22 +640,7 @@ VOS_UINT32 CMMCA_PackSetPdnTabRsp(
 }
 
 /*lint -e830 -e438*/
-/*****************************************************************************
- 函 数 名  : CMMCA_ParseDefaultBearConnReq
- 功能描述  : 解析拨号请求，并做参数检查
- 输入参数  : VOS_UINT16                                      usParamBlklength
-             VOS_UINT8                                      *pucParamBlk
- 输出参数  : CMMCA_MMC_RAT_DEFAULT_BEAR_CONN_REQ_STRU       *pstDefaultBearConnReq
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月17日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_ParseDefaultBearConnReq(
     VOS_UINT16                                      usParamBlklength,
     VOS_UINT8                                      *pucParamBlk,
@@ -980,22 +747,7 @@ VOS_UINT32 CMMCA_ParseDefaultBearConnReq(
 }
 /*lint +e830 +e438*/
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PackDefaultBearConnRsp
- 功能描述  : 打包默认承载激活回复消息
- 输入参数  : CMMCA_RAT_MMC_DEFAULT_BEAR_CONN_CNF_STRU       *pstDefaultBearConnCnf
-             VOS_UINT16                                      usParamBlklength
- 输出参数  : VOS_UINT8                                      *pucParamBlk
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月17日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_PackDefaultBearConnRsp(
     CMMCA_RAT_MMC_DEFAULT_BEAR_CONN_CNF_STRU               *pstDefaultBearConnCnf,
     VOS_UINT16                                              usParamBlklength,
@@ -1162,22 +914,7 @@ VOS_UINT32 CMMCA_PackDefaultBearConnRsp(
 }
 
 /*lint -e830 -e438*/
-/*****************************************************************************
- 函 数 名  : CMMCA_ParseBearDiscReq
- 功能描述  : 用户发起去激活，解析默认承载去激活请求，并做参数检查
- 输入参数  : VOS_UINT16                           usParamBlklength
-             VOS_UINT8                           *pucParamBlk
- 输出参数  : CMMCA_MMC_RAT_BEAR_DISC_REQ_STRU    *pstBearDiscReq
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月23日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_ParseBearDiscReq(
     VOS_UINT16                          usParamBlklength,
     VOS_UINT8                          *pucParamBlk,
@@ -1258,22 +995,7 @@ VOS_UINT32 CMMCA_ParseBearDiscReq(
 }
 /*lint +e830 +e438*/
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PackBearDiscRsp
- 功能描述  : 用户发起去激活，打包默认承载去激活回复消息
- 输入参数  : CMMCA_RAT_MMC_BEAR_DISC_CNF_STRU    *pstBearDiscCnf
-             VOS_UINT16                           usParamBlklength
- 输出参数  : VOS_UINT8                           *pucParamBlk
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月23日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_PackBearDiscRsp(
     CMMCA_RAT_MMC_BEAR_DISC_CNF_STRU   *pstBearDiscCnf,
     VOS_UINT16                          usParamBlklength,
@@ -1337,22 +1059,7 @@ VOS_UINT32 CMMCA_PackBearDiscRsp(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PackBearDiscInd
- 功能描述  : 网络发起去激活，打包去激活信息
- 输入参数  : CMMCA_RAT_MMC_BEAR_DISC_IND_STRU    *pstBearDiscInd
-             VOS_UINT16                           usParamBlklength
- 输出参数  : VOS_UINT8                           *pucParamBlk
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月23日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_PackBearDiscInd(
     CMMCA_RAT_MMC_BEAR_DISC_IND_STRU   *pstBearDiscInd,
     VOS_UINT16                          usParamBlklength,
@@ -1411,22 +1118,7 @@ VOS_UINT32 CMMCA_PackBearDiscInd(
 }
 
 /*lint -e830 -e438*/
-/*****************************************************************************
- 函 数 名  : CMMCA_ParseSystemChangeRsp
- 功能描述  : CMMCA发system change rsp消息到Mmc之前，解析消息内容
- 输入参数  : VOS_UINT16                                 usParamBlklength
-             VOS_UINT8                                 *pucParamBlk
- 输出参数  : CMMCA_MMC_RAT_IRAT_SYSTEM_CHG_RSP_STRU    *pstSystemChgInd
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月23日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_ParseSystemChangeRsp(
     VOS_UINT16                                              usParamBlklength,
     VOS_UINT8                                              *pucParamBlk,
@@ -1497,24 +1189,8 @@ VOS_UINT32 CMMCA_ParseSystemChangeRsp(
 }
 /*lint +e830 +e438*/
 
-/* Added by s00261364 for L-C互操作项目, 2014-2-13, begin */
 
-/*****************************************************************************
- 函 数 名  : CMMCA_ParseModeReq
- 功能描述  : 解析模式设置请求,并做参数检查
- 输入参数  : VOS_UINT16                          usParamBlklength
-             VOS_UINT8                          *pucParamBlk
- 输出参数  : CMMCA_MMC_RAT_MODE_REQ_STRU        *pstModeReq
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月12日
-    作    者   : s00261364
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_ParseModeReq(
     VOS_UINT16                          usParamBlklength,
     VOS_UINT8                          *pucParamBlk,
@@ -1564,22 +1240,7 @@ VOS_UINT32 CMMCA_ParseModeReq(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PackSetPdnTabRsp
- 功能描述  : 打包模式设置回复
- 输入参数  : CMMCA_RAT_MMC_RAT_MODE_RSP_STRU    *pstModeRsp
-             VOS_UINT16                          usParamBlklength
- 输出参数  : VOS_UINT8                          *pucParamBlk
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月23日
-    作    者   : s00261364
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_PackModeRsp(
     CMMCA_RAT_MMC_RAT_MODE_RSP_STRU    *pstModeRsp,
     VOS_UINT16                          usParamBlklength,
@@ -1619,22 +1280,7 @@ VOS_UINT32 CMMCA_PackModeRsp(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CMMCA_ParsePowerUpReq
- 功能描述  : 解析开机请求,并做参数检查
- 输入参数  : VOS_UINT16                          usParamBlklength
-             VOS_UINT8                          *pucParamBlk
- 输出参数  : CMMCA_MMC_RAT_POWERUP_REQ_STRU     *pstPowerUpReq;
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月12日
-    作    者   : s00261364
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_ParsePowerUpReq(
     VOS_UINT16                          usParamBlklength,
     VOS_UINT8                          *pucParamBlk,
@@ -1673,22 +1319,7 @@ VOS_UINT32 CMMCA_ParsePowerUpReq(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PackPowerUpRsp
- 功能描述  : 打包开机响应
- 输入参数  : CMMCA_RAT_MMC_POWERUP_RSP_STRU     *pstPowerUpRsp
-             VOS_UINT16                          usParamBlklength
- 输出参数  : VOS_UINT8                          *pucParamBlk
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月23日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_PackPowerUpRsp(
     CMMCA_RAT_MMC_POWERUP_RSP_STRU     *pstPowerUpRsp,
     VOS_UINT16                          usParamBlklength,
@@ -1728,22 +1359,7 @@ VOS_UINT32 CMMCA_PackPowerUpRsp(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CMMCA_ParsePowerDownReq
- 功能描述  : 解析关机请求,并做参数检查
- 输入参数  : VOS_UINT16                          usParamBlklength
-             VOS_UINT8                          *pucParamBlk
- 输出参数  : CMMCA_MMC_RAT_POWERDOWN_REQ_STRU   *pstPowerUpReq;
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月12日
-    作    者   : s00261364
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_ParsePowerDownReq(
     VOS_UINT16                          usParamBlklength,
     VOS_UINT8                          *pucParamBlk,
@@ -1782,22 +1398,7 @@ VOS_UINT32 CMMCA_ParsePowerDownReq(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PackPowerDownRsp
- 功能描述  : 打包关机响应
- 输入参数  : CMMCA_RAT_MMC_POWERDOWN_RSP_STRU   *pstPowerDownRsp
-             VOS_UINT16                          usParamBlklength
- 输出参数  : VOS_UINT8                          *pucParamBlk
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月23日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_PackPowerDownRsp(
     CMMCA_RAT_MMC_POWERDOWN_RSP_STRU   *pstPowerDownRsp,
     VOS_UINT16                          usParamBlklength,
@@ -1831,22 +1432,7 @@ VOS_UINT32 CMMCA_PackPowerDownRsp(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_ParseAcqReq
- 功能描述  : 解析搜网请求,并做参数检查
- 输入参数  : VOS_UINT16                          usParamBlklength
-             VOS_UINT8                          *pucParamBlk
- 输出参数  : CMMCA_MMC_RAT_ACQ_REQ_STRU         *pstAcqReq
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月12日
-    作    者   : s00261364
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_ParseAcqReq(
     VOS_UINT16                          usParamBlklength,
     VOS_UINT8                          *pucParamBlk,
@@ -1888,22 +1474,7 @@ VOS_UINT32 CMMCA_ParseAcqReq(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PackAcqRsp
- 功能描述  : 打包模式设置回复
- 输入参数  : CMMCA_RAT_MMC_ACQ_RSP_STRU         *pstAcqRsp
-             VOS_UINT16                          usParamBlklength
- 输出参数  : VOS_UINT8                          *pucParamBlk
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月23日
-    作    者   : s00261364
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_PackAcqRsp(
     CMMCA_RAT_MMC_ACQ_RSP_STRU         *pstAcqRsp,
     VOS_UINT16                          usParamBlklength,
@@ -1983,22 +1554,7 @@ VOS_UINT32 CMMCA_PackAcqRsp(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_ParseNoServiceReq
- 功能描述  : 解析搜网请求,并做参数检查
- 输入参数  : VOS_UINT16                          usParamBlklength
-             VOS_UINT8                          *pucParamBlk
- 输出参数  : CMMCA_MMC_RAT_NO_SERVICE_REQ_STRU  *pstNoServReq
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月12日
-    作    者   : s00261364
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_ParseNoServiceReq(
     VOS_UINT16                          usParamBlklength,
     VOS_UINT8                          *pucParamBlk,
@@ -2042,22 +1598,7 @@ VOS_UINT32 CMMCA_ParseNoServiceReq(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PackNoServiceRsp
- 功能描述  : 打包NoServiceRsp
- 输入参数  : CMMCA_RAT_MMC_NO_SERVICE_RSP_STRU  *pstNoServRsp
-             VOS_UINT16                          usParamBlklength
- 输出参数  : VOS_UINT8                          *pucParamBlk
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月23日
-    作    者   : s00261364
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_PackNoServiceRsp(
     CMMCA_RAT_MMC_NO_SERVICE_RSP_STRU  *pstNoServRsp,
     VOS_UINT16                          usParamBlklength,
@@ -2098,22 +1639,7 @@ VOS_UINT32 CMMCA_PackNoServiceRsp(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PackMccSearchRsp
- 功能描述  : 打包模式设置回复
- 输入参数  : CMMCA_RAT_MMC_MCC_SEARCH_RSP_STRU  *pstMccSearchRsp
-             VOS_UINT16                          usParamBlklength
- 输出参数  : VOS_UINT8                          *pucParamBlk
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月23日
-    作    者   : s00261364
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_PackMccSearchRsp(
     CMMCA_RAT_MMC_MCC_SEARCH_RSP_STRU  *pstMccSearchRsp,
     VOS_UINT16                          usParamBlklength,
@@ -2178,22 +1704,7 @@ VOS_UINT32 CMMCA_PackMccSearchRsp(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_ParsePsRegReq
- 功能描述  : 解析注册请求,并做参数检查
- 输入参数  : VOS_UINT16                          usParamBlklength
-             VOS_UINT8                          *pucParamBlk
- 输出参数  : CMMCA_MMC_RAT_PS_REG_REQ_STRU      *pstPsRegReq
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月12日
-    作    者   : s00261364
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_ParsePsRegReq(
     VOS_UINT16                          usParamBlklength,
     VOS_UINT8                          *pucParamBlk,
@@ -2245,24 +1756,7 @@ VOS_UINT32 CMMCA_ParsePsRegReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PackPsRegRsp
- 功能描述  : 打包模式设置回复
- 输入参数  : CMMCA_RAT_MMC_PS_REG_RSP_STRU      *pstPsRegRsp
-             VOS_UINT16                          usParamBlklength
- 输出参数  : VOS_UINT8                          *pucParamBlk
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月23日
-    作    者   : s00261364
-    修改内容   : 新生成函数
-  2.日    期   : 2015年4月22日
-    作    者   : wx270776
-    修改内容   : DTS2015031602665: 打包设置cl attach注册状态信息
-*****************************************************************************/
 VOS_UINT32 CMMCA_PackPsRegRsp(
     CMMCA_RAT_MMC_PS_REG_RSP_STRU      *pstPsRegRsp,
     VOS_UINT16                          usParamBlklength,
@@ -2344,24 +1838,7 @@ VOS_UINT32 CMMCA_PackPsRegRsp(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_ParseCellInfoPsRegReq
- 功能描述  : 解析注册请求,并做参数检查
- 输入参数  : VOS_UINT16                                    usParamBlklength
-             VOS_UINT8                                    *pucParamBlk
- 输出参数  : CMMCA_MMC_RAT_CELL_INFO_PS_REG_REQ_STRU      *pstCellInfoPsRegReq
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月12日
-    作    者   : s00261364
-    修改内容   : 新生成函数
-  2.日    期   : 2014年5月26日
-    作    者   : s00246516
-    修改内容   : PLMN无效时需要过滤
-*****************************************************************************/
 VOS_UINT32 CMMCA_ParseCellInfoPsRegReq(
     VOS_UINT16                                              usParamBlklength,
     VOS_UINT8                                              *pucParamBlk,
@@ -2479,24 +1956,7 @@ VOS_UINT32 CMMCA_ParseCellInfoPsRegReq(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PackCellInfoPsRegRsp
- 功能描述  : 打包模式设置回复
- 输入参数  : CMMCA_RAT_MMC_PS_REG_RSP_STRU      *pstPsRegRsp
-             VOS_UINT16                          usParamBlklength
- 输出参数  : VOS_UINT8                          *pucParamBlk
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月23日
-    作    者   : s00261364
-    修改内容   : 新生成函数
-  2.日    期   : 2015年4月22日
-    作    者   : wx270776
-    修改内容   : DTS2015031602665:打包cl attach注册状态信息
-*****************************************************************************/
 VOS_UINT32 CMMCA_PackCellInfoPsRegRsp(
     CMMCA_RAT_MMC_CELL_INFO_PS_REG_RSP_STRU                *pstCellInfoPsRegRsp,
     VOS_UINT16                                              usParamBlklength,
@@ -2591,22 +2051,7 @@ VOS_UINT32 CMMCA_PackCellInfoPsRegRsp(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PackNtwStateChangeInd
- 功能描述  : 打包模式设置回复
- 输入参数  : CMMCA_RAT_MMC_NTW_ST_CHG_IND_STRU  *pstNtwStChgInd
-             VOS_UINT16                          usParamBlklength
- 输出参数  : VOS_UINT8                          *pucParamBlk
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月23日
-    作    者   : s00261364
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_PackNtwStateChangeInd(
     CMMCA_RAT_MMC_NTW_ST_CHG_IND_STRU  *pstNtwStChgInd,
     VOS_UINT16                          usParamBlklength,
@@ -2688,22 +2133,7 @@ VOS_UINT32 CMMCA_PackNtwStateChangeInd(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PackNtwStateChangeInd
- 功能描述  : 打包模式设置回复
- 输入参数  : CMMCA_MMC_CMD_REJ_IND_STRU         *pstCmdRejInd
-             VOS_UINT16                          usParamBlklength
- 输出参数  : VOS_UINT8                          *pucParamBlk
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月19日
-    作    者   : b00269685
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_PackCmdRejInd(
     CMMCA_MMC_CMD_REJ_IND_STRU         *pstCmdRejInd,
     VOS_UINT16                          usParamBlklength,
@@ -2762,23 +2192,7 @@ VOS_UINT32 CMMCA_PackCmdRejInd(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PackPktDataCmdRsp
- 功能描述  : 打包开机响应
- 输入参数  : CMMCA_RAT_MMC_PKT_DATA_CMD_REQ_STRU   *pstPowerUpRsp,
-             VOS_UINT16                             usParamBlklength,
-             VOS_UINT8                             *pucParamBlk
- 输出参数  : VOS_UINT8                          *pucParamBlk
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月20日
-    作    者   : b00269685
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_PackPktDataCmdRsp(
     CMMCA_RAT_MMC_PKT_DATA_CMD_RSP_STRU                    *pstDataCmdRsp,
     VOS_UINT16                                              usParamBlklength,
@@ -2811,24 +2225,9 @@ VOS_UINT32 CMMCA_PackPktDataCmdRsp(
     return VOS_OK;
 }
 
-/* Added by s00261364 for L-C互操作项目, 2014-2-13, end */
 
 
-/*****************************************************************************
- 函 数 名  : CMMCA_ParseOtherRatInfo
- 功能描述  : 解析CMMCA_OTHER_RAT_INFO_STRU结构
- 输入参数  : ppMsgBuff
- 输出参数  : ppMsgBuff
-             pstOtherRatInfo
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年01月17日
-    作    者   : l00198894
-    修改内容   : V9R1C53 C+L 离网重选项目
-*****************************************************************************/
 VOS_VOID CMMCA_ParseOtherRatInfo(
     VOS_UINT8                         **ppMsgBuff,
     CMMCA_OTHER_RAT_INFO_STRU          *pstOtherRatInfo
@@ -2876,22 +2275,7 @@ VOS_VOID CMMCA_ParseOtherRatInfo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CMMCA_ParseOtherRatInfoInd
- 功能描述  : CMMCA发Ind消息到Mtc之前，解析Other Rat Info相关消息
- 输入参数  : VOS_UINT16                          usParamBlklength
-             VOS_UINT8                          *pucParamBlk
- 输出参数  : CMMCA_OTHER_RAT_INFO_IND_STRU      *pstOtherRatInfoInd
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月23日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_ParseOtherRatInfoInd(
     VOS_UINT16                          usParamBlklength,
     VOS_UINT8                          *pucParamBlk,
@@ -2959,22 +2343,7 @@ VOS_UINT32 CMMCA_ParseOtherRatInfoInd(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_ParseBearDetachReq
- 功能描述  : 解析Bearer Detach请求,并做参数检查
- 输入参数  : VOS_UINT16                              usParamBlklength
-             VOS_UINT8                              *pucParamBlk
- 输出参数  : CMMCA_MMC_RAT_BEARER_DETACH_REQ_STRU   *pstBearDetachReq
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年07月07日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_ParseBearDetachReq(
     VOS_UINT16                          usParamBlklength,
     VOS_UINT8                          *pucParamBlk,
@@ -3014,21 +2383,7 @@ VOS_UINT32 CMMCA_ParseBearDetachReq(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PackBearDetachRsp
- 功能描述  : 打包BearDetachRsp
- 输入参数  : CMMCA_RAT_MMC_BEAR_DETACH_RSP_STRU *pstBearDetachRsp
-             VOS_UINT16                          usParamBlklength
- 输出参数  : VOS_UINT8                          *pucParamBlk
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月7日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CMMCA_PackBearDetachRsp(
     CMMCA_RAT_MMC_BEAR_DETACH_RSP_STRU *pstBearDetachRsp,
     VOS_UINT16                          usParamBlklength,
@@ -3069,22 +2424,7 @@ VOS_UINT32 CMMCA_PackBearDetachRsp(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PackSetPdnPcoAuthRsp
- 功能描述  : 打包PDN鉴权回复
- 输入参数  : CMMCA_RAT_MMC_SET_PDN_TAB_CNF_STRU *pstSetPdnTabCnf
-             VOS_UINT16                          usParamBlklength
- 输出参数  : VOS_UINT8                          *pucParamBlk
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月26日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_PackSetPdnPcoAuthRsp(
     CMMCA_SET_PDN_PCO_AUTH_RESULT_ENUM_UINT8        enRslt,
     VOS_UINT16                                      usParamBlklength,
@@ -3132,21 +2472,7 @@ VOS_UINT32 CMMCA_PackSetPdnPcoAuthRsp(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_ConvertCdmaSetPdnPcoAuthModeToTaf
- 功能描述  : 将CDMA的鉴权模式转换为TAF的模式
- 输入参数  : enAuthMode  VIA鉴权模式
- 输出参数  : penTafMode  TAF鉴权模式
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月27日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_ConvertCdmaSetPdnPcoAuthModeToTaf(
     CMMCA_MMC_RAT_AUTH_MODE_ENUM_UINT8  enAuthMode,
     TAF_PDP_AUTH_TYPE_ENUM_UINT8       *penTafMode
@@ -3174,21 +2500,7 @@ VOS_UINT32 CMMCA_ConvertCdmaSetPdnPcoAuthModeToTaf(
 }
 
 /*lint -e830 -e438*/
-/*****************************************************************************
- 函 数 名  : CMMCA_ParseSetPdnPcoAuthReq
- 功能描述  : 解析PDN鉴权请求,并做参数检查
- 输入参数  :
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月27日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_ParseSetPdnPcoAuthReq(
     VOS_UINT16                          usParamBlklength,
     VOS_UINT8                          *pucParamBlk,
@@ -3304,21 +2616,7 @@ VOS_UINT32 CMMCA_ParseSetPdnPcoAuthReq(
 
 
 /*lint -e830 -e438*/
-/*****************************************************************************
- 函 数 名  : CMMCA_ParseStateInfo
- 功能描述  : 解析Cdma状态信息
- 输入参数  :
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月27日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_ParseStateInfo(
     VOS_UINT16                          usParamBlklength,
     VOS_UINT8                          *pucParamBlk,
@@ -3414,20 +2712,7 @@ VOS_UINT32 CMMCA_ParseStateInfo(
 }
 /*lint +e830 +e438*/
 
-/*****************************************************************************
- 函 数 名  : CMMCA_ConvertCdmaCardStatus
- 功能描述  : 将外挂CDMA上报的卡状态转换成MTC的卡状态
- 输入参数  : struct MsgCB *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月29日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CMMCA_ConvertCdmaCardStatus(
     TAF_MTC_CDMA_USIMM_CARD_ENUM_UINT8      enCardStatus,
     TAF_MTC_USIMM_CARD_SERVIC_ENUM_UINT16  *penDestCardStatus
@@ -3449,20 +2734,7 @@ VOS_UINT32 CMMCA_ConvertCdmaCardStatus(
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : CMMCA_ConvertLmmAttachRegStatus
- 功能描述  : 将TAF上报的ATTACH注册状态转为给CBPCA的形态
- 输入参数  : TAF_MMA_ATTACH_CL_REG_STATUS_ENUM8  enLmmAttachRegStatus
- 输出参数  : 无
- 返 回 值  : CMMCA_RAT_ATTACH_CL_REG_STATUS_ENUM8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月22日
-    作    者   : wx270776
-    修改内容   : 新生成函数
-*****************************************************************************/
 CMMCA_RAT_ATTACH_CL_REG_STATUS_ENUM8 CMMCA_ConvertLmmAttachRegStatus(
     TAF_MMA_ATTACH_CL_REG_STATUS_ENUM8  enLmmAttachRegStatus
 )
@@ -3505,21 +2777,7 @@ CMMCA_RAT_ATTACH_CL_REG_STATUS_ENUM8 CMMCA_ConvertLmmAttachRegStatus(
 
 
 /*lint -e830 -e438*/
-/*****************************************************************************
- 函 数 名  : CMMCA_ParseMeasurementInfo
- 功能描述  : 解析Cdma的测量信息
- 输入参数  :
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月27日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_ParseMeasurementInfo(
     VOS_UINT16                          usParamBlklength,
     VOS_UINT8                          *pucParamBlk,
@@ -3599,21 +2857,7 @@ VOS_UINT32 CMMCA_ParseMeasurementInfo(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_ParseEventInfo
- 功能描述  : 解析Cdma的事件信息
- 输入参数  :
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月27日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_ParseEventInfo(
     VOS_UINT16                          usParamBlklength,
     VOS_UINT8                          *pucParamBlk,

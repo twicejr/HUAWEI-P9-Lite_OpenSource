@@ -84,9 +84,7 @@ typedef struct tagAm4ICCallbackSet
     ULONG (*pfIP_AM4_SH_SendDebugInfoToIC)(CHAR *szBuf);
 }IP_AM4_IC_CALLBACK_SET_S;
 
-/*数据结构IP_AM4_IF_ADDR_S已经挪到am4_api.h, by z00104207*/
 
-/*枚举enum_IP_AM4_ERR已经挪到am4_api.h, by z00104207*/
 
 #endif  /* _AM4_CORE_H_  */
 

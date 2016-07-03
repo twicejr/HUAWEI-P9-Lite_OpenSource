@@ -42,17 +42,7 @@ extern "C"{
 /*****************************************************************************
   2 The Define Of The Gloabal Variable
 *****************************************************************************/
-/*****************************************************************************
- Variable Name       : g_astHsmDeactReasonMapReasonSendAnTbl
- Description         : Session deacitve map reason sned to AN table
-                       该表仅列出需要给网络发SessionClose的原因值
- 1.DATE              : 2015-05-29
-   AUTHOR            : y00174758
-   Modification      : Create
- 2.Date              : 2015-09-23
-   Author            : t00323010
-   Modify content    : HSM MNTN(DTS2015092201636): add uati aborted by power save/power off
-*****************************************************************************/
+
 CNAS_HSM_DEACT_REASON_MAP_REASON_SEND_AN_STRU g_astHsmDeactReasonMapReasonSendAnTbl[] =
 {
     {   CNAS_HSM_SESSION_DEACT_REASON_SCP_NEG_FAIL,             /* Session deactive reason */
@@ -567,9 +557,7 @@ VOS_VOID CNAS_HSM_ProcPowerOffReq(VOS_VOID)
     if (VOS_FALSE == CNAS_HSM_GetFirstSysAcqFlag())
     {
         /* 如果缓存队列中有ID_CNAS_HSM_HSM_SESSION_CLOSE_IND消息，将Session Info中的状态设置成CLOSE */
-        /* Modified by w00176964 for CNAS内存裁剪, 2015-9-18, begin */
         if (CNAS_HSM_INVAILD_CACHE_INDEX != CNAS_HSM_GetCacheIndexByEventType(CNAS_BuildEventType(UEPS_PID_HSM, ID_CNAS_HSM_HSM_SESSION_CLOSE_IND)))
-        /* Modified by w00176964 for CNAS内存裁剪, 2015-9-18, end */
         {
             CNAS_HSM_SetSessionStatus(CNAS_HSM_SESSION_STATUS_CLOSE);
 
@@ -912,19 +900,7 @@ VOS_VOID CNAS_HSM_HandleUatiAssignMsg(
 }
 
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_GetCloseReasonSendAnByDeactReason
-Description     :   Get session close reason sent to AN by session deative reason
-Input parameters:   enSessionDeactReason  - Session deactive reason
-Outout parameters:  penOutCloseReasonSendToAn - Session close reason send to AN
-                    原因值为BUTT说明不需要给网络发SessionClose
-Return Value    :   None
 
-Modify History  :
-1)  Date           : 2015-05-29
-    Author         : y00174758
-    Modify content : Create
-*****************************************************************************/
 VOS_VOID CNAS_HSM_GetCloseReasonSendAnByDeactReason(
     CNAS_HSM_SESSION_DEACT_REASON_ENUM_UINT8                enSessionDeactReason,
     CNAS_HSM_SESSION_CLOSE_PROTOCOL_REASON_ENUM_UINT8      *penOutCloseReasonSendToAn
@@ -1020,21 +996,7 @@ HSM_HLU_SESSION_RAT_MODE_ENUM_UINT8 CNAS_HSM_ConvertHsmSessionTypeToHluSessionRa
     return enHluSessionRatMode;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSM_ConvertPaModeToHsmSessionType
- 功能描述  : convert session type from PA mode to hsm session info type formate
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : CAS_HSM_SESSION_TYPE_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月30日
-    作    者   : x00314862
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_HSM_SESSION_TYPE_ENUM_UINT8 CNAS_HSM_ConvertPaModeToHsmSessionType(
     CAS_CNAS_HRPD_PA_MODE_ENUM_UINT8    enPaMode
 )
@@ -1052,21 +1014,7 @@ CNAS_HSM_SESSION_TYPE_ENUM_UINT8 CNAS_HSM_ConvertPaModeToHsmSessionType(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSM_ConvertHsmSessionToEhsmSessionType
- 功能描述  : convert HSM session type to EHSM session type formate
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : EHSM_HSM_SESSION_TYPE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月30日
-    作    者   : x00314862
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 EHSM_HSM_SESSION_TYPE_ENUM_UINT32 CNAS_HSM_ConvertHsmSessionToEhsmSessionType(
     CNAS_HSM_SESSION_TYPE_ENUM_UINT8   enSessionType
 )
@@ -1630,9 +1578,7 @@ VOS_UINT8 CNAS_HSM_IsEsnMeidMeChanged(
     CNAS_HSM_HARDWARE_ID_INFO_STRU                         *pstDstHwid
 )
 {
-    /* 如果卡做了store操作，若返回的结果是未改变则认为未换卡，否则为换卡了
-    *  如果卡未做store操作，则根据卡中的meid或者esn与nv中保存的最后一次session的meid
-    *  或者esn进行比较，判断是否换卡 */
+    
     if (VOS_TRUE == pstStoreEsnMeidRslt->ucIsStored)
     {
         if (VOS_TRUE == pstStoreEsnMeidRslt->ucIsChanged)
@@ -1817,25 +1763,7 @@ HSM_HSD_HRPD_CONN_OPEN_RSLT_ENUM_UINT8 CNAS_HSM_ConvertConnOpenRsltFromCasToHsm(
     return enConnOpenIndRsltConvert;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSM_UpdateHrpdAtiInfo
- 功能描述  : UATI RATI session status发生变化的时候上报给mma
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月4日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_HSM_UpdateHrpdAtiInfo(VOS_VOID)
 {
     CNAS_HSM_SESSION_STATUS_ENUM_UINT8  enCurrSessionStatus;
@@ -1853,19 +1781,7 @@ VOS_VOID CNAS_HSM_UpdateHrpdAtiInfo(VOS_VOID)
 
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_ConvertHrpdNetworkLostRsltToHsmApsErrCode
-Description     :   将cas的掉网原因值转换为hsm与aps之间的错误码
-Input parameters:   CAS_CNAS_HRPD_NETWORK_LOST_REASON_ENUM_UINT16     enNetworkLostReason
-Outout parameters:  None
-Return Value    :   HSM_APS_CAUSE_ENUM_UINT32
 
-Modify History  :
-1)  Date           : 2015-11-25
-    Author         : y00307564
-    Modify content : Create
-
-*****************************************************************************/
 HSM_APS_CAUSE_ENUM_UINT32 CNAS_HSM_ConvertHrpdNetworkLostRsltToHsmApsErrCode(
     CAS_CNAS_HRPD_NETWORK_LOST_REASON_ENUM_UINT16           enNetworkLostReason
 )
@@ -1892,19 +1808,7 @@ HSM_APS_CAUSE_ENUM_UINT32 CNAS_HSM_ConvertHrpdNetworkLostRsltToHsmApsErrCode(
     return enHsmApsCause;
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_ConvertHrpdNetworkLostRsltToHsmEhsmErrCode
-Description     :   将cas的掉网原因值转换为hsm与ehsm之间的错误码
-Input parameters:   CAS_CNAS_HRPD_NETWORK_LOST_REASON_ENUM_UINT16     enNetworkLostReason
-Outout parameters:  None
-Return Value    :   EHSM_HSM_RSLT_ENUM_UINT32
 
-Modify History  :
-1)  Date           : 2015-11-25
-    Author         : y00307564
-    Modify content : Create
-
-*****************************************************************************/
 EHSM_HSM_RSLT_ENUM_UINT32 CNAS_HSM_ConvertHrpdNetworkLostRsltToHsmEhsmErrCode(
     CAS_CNAS_HRPD_NETWORK_LOST_REASON_ENUM_UINT16           enNetworkLostReason
 )
@@ -2065,19 +1969,7 @@ HSM_APS_CAUSE_ENUM_UINT32 CNAS_HSM_ConvertCasCloseReasonToHsmCause(
     }
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_IsSubnetEqual
-Description     :   判断两个子网是否相同
-Input parameters:   pucDestSubnet 子网1
-                    pucSrcSubnet  子网2
-Outout parameters:  none
-Return Value    :   VOS_FALSE:两个子网不同。VOS_TRUE:两个子网相同
 
-Modify History  :
-1)  Date           : 2016-01-08
-    Author         : m00312079
-    Modify content : Create
-*****************************************************************************/
 
 VOS_UINT8 CNAS_HSM_IsSubnetEqual(
     VOS_UINT8                          *pucDestSubnet,
@@ -2096,19 +1988,7 @@ VOS_UINT8 CNAS_HSM_IsSubnetEqual(
 
     return VOS_TRUE;
 }
-/*****************************************************************************
-Function Name   :   CNAS_HSM_GetSubnet
-Description     :   获取子网。
-Input parameters:   pucInSectorId  sectorId
-                    ucSubetMask   子网掩码
-Outout parameters:  pucOutSubnet  子网
-Return Value    :   VOS_VOID
 
-Modify History  :
-1)  Date           : 2016-01-08
-    Author         : m00312079
-    Modify content : Create
-*****************************************************************************/
 
 VOS_VOID CNAS_HSM_GetSubnet(
     VOS_UINT8                          *pucOutSubnet,

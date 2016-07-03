@@ -1,15 +1,4 @@
-/*************************************************************************
-*   版权所有(C) 1987-2020, 深圳华为技术有限公司.
-*
-*   文 件 名 :  rf_power.c
-*
-*   作    者 :  zuofenghua
-*
-*   描    述 :  用于管理射频器件供电
-*
-*   修改记录 :  2015年3月23日  v1.00  zuofenghua  创建
-*
-*************************************************************************/
+
 #include <product_config.h>
 #include <osl_sem.h>
 #include <bsp_rf_balong.h>
@@ -48,44 +37,19 @@ RFFE_MIPI_ANTEN_CFG_S rffe_cfg;
 
 osl_sem_id rf_pwr_sem[SEM_NUM];
 
-/*****************************************************************************
-* 函 数    : mdrv_pmu_check_pastar
-* 功 能    : 通信模块检查PASTAR是否有异常接口
-* 输 入    : modem_id       卡号
-* 输 出    : 无
-* 返 回    : 0   没有异常，其它存在异常
-* 作 者    : z00228752
-* 说 明    : pa的编号根所chn号确定
-*****************************************************************************/
+
 s32 mdrv_pmu_check_pastar(PWC_COMM_MODEM_E modem_id)
 {
     return 0;
 }
 
-/*****************************************************************************
-* 函 数    : mdrv_pmu_set_voltage
-* 功 能    : 通信模块设置电压接口
-* 输 入    : consumer_id     电源id
-* 输 出    : 无
-* 返 回    : 0     设置成功，其它设置失败
-* 作 者    : z00228752
-* 说 明    :
-*****************************************************************************/
+
 s32 mdrv_pmu_set_voltage( EX_RFFE_POWER_ID_E consumer_id, u32 voltage_mv , PWC_COMM_CHANNEL_E chn)
 {
     return balong_rfpower_set_voltage(consumer_id, voltage_mv, chn);
 }
 
-/*****************************************************************************
-* 函 数    : mdrv_pmu_set_voltage
-*
-* 功 能    : 通信模块获取电压接口
-* 输 入    : consumer_id     电源id
-* 输 出    : 获得的电压值毫伏
-* 返 回    : 0     获取成功，其它设置失败
-* 作 者    : z00228752
-* 说 明    :
-*****************************************************************************/
+
 s32 mdrv_pmu_get_voltage( EX_RFFE_POWER_ID_E consumer_id, u32 *voltage_mv, PWC_COMM_CHANNEL_E chn )
 {
     int ret =  balong_rfpower_get_voltage(consumer_id, chn);
@@ -173,43 +137,19 @@ s32 mdrv_pmu_set_modem_mode(PWC_COMM_MODEM_E modem_id, PWC_COMM_MODE_E mode_id)
     return 0;
 }
 
-/*****************************************************************************
-* 函 数    : bsp_pa_power_up
-* 功 能    : PA 上电接口
-* 输 入    : 无
-* 输 出    :
-* 返 回    : 无
-* 作 者    : pa电源开关状态
-* 说 明    :
-*****************************************************************************/
+
 int bsp_pa_power_up(PWC_COMM_MODE_E mode, PWC_COMM_MODEM_E modem, PWC_COMM_CHANNEL_E chn)
 {
     return balong_pa_power_on(mode, modem, chn);
 }
 
-/*****************************************************************************
-* 函 数    : bsp_pa_power_down
-* 功 能    : PA 下电打桩
-* 输 入    : 无
-* 输 出    :
-* 返 回    : 无
-* 作 者    : pa 电源开关状态
-* 说 明    :
-****************************************************************/
+
 int bsp_pa_power_down(PWC_COMM_MODE_E mode, PWC_COMM_MODEM_E modem, PWC_COMM_CHANNEL_E chn)
 {
     return balong_pa_power_off(mode, modem, chn);
 }
 
-/*****************************************************************************
-* 函 数    : bsp_rfic_power_down
-* 功 能    : RF 下电打桩
-* 输 入    : 无
-* 输 出    :
-* 返 回    : 无
-* 作 者    : rf电源开关状态
-* 说 明    :
-*****************************************************************************/
+
 int bsp_rfic_power_down(PWC_COMM_MODE_E mode, PWC_COMM_MODEM_E modem, PWC_COMM_CHANNEL_E chn)
 {
     return balong_rfic_power_off(mode, modem, chn);
@@ -251,15 +191,7 @@ int bsp_rfclk_disable(PWC_COMM_MODE_E mode, PWC_COMM_MODEM_E modem, PWC_COMM_CHA
     return balong_rfclk_disable(mode, modem, chn);
 }
 
-/*****************************************************************************
-* 函 数    : bsp_fem_power_down
-* 功 能    : fem 下电打桩
-* 输 入    : 无
-* 输 出    :
-* 返 回    : rf电源开关状态
-* 作 者    : z00228752
-* 说 明    :
-*****************************************************************************/
+
 int bsp_fem_power_down(PWC_COMM_MODE_E mode, PWC_COMM_MODEM_E modem, PWC_COMM_CHANNEL_E chn)
 {
     int ret        = 0;

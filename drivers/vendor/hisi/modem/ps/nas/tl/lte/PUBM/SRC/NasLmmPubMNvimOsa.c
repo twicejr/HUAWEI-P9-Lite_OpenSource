@@ -1,16 +1,4 @@
-/******************************************************************************
 
-   Copyright(C)2008,Hisilicon Co. LTD.
-
-******************************************************************************
-  File Name       : NasLmmPubMNvimOsa.c
-  Description     : NVIM相关操作
-  History         :
-     1.leili 00132387      2009-02-17   Draft Enact
-     2.leili 00132387      2010-08-04   DTS2010072301741
-     3.zhengjunyan 00148421   2011-05-28 文件名由 NasMmPubMNvimOsa.c修改为
-                                           NasLmmPubMNvimOsa.c
-******************************************************************************/
 
 
 /*****************************************************************************
@@ -45,17 +33,7 @@ extern "C" {
   3 Function
 *****************************************************************************/
 
-/*****************************************************************************
- Function Name   : NAS_LMM_DecodeOneNvItem
- Description     : 通用的解码NV函数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2009-4-16  Draft Enact
-
-*****************************************************************************/
 /*lint -e960*/
 /*lint -e961*/
 VOS_UINT32  NAS_LMM_DecodeOneNvItem(NAS_NVIM_CTRL_TBL *pstNvCtrlTbl)
@@ -165,29 +143,13 @@ VOS_UINT32 NAS_LMM_DecodeNvFplmnList(NAS_NVIM_CTRL_TBL *pstNvCtrlTbl)
 }
 
 
-/*****************************************************************************
- Function Name  : NAS_LMM_DecodeNvUplmn
- Discription    : 解码UPLMN
- Input          : pstNvCtrlTbl:公共处理结构
- Output         : 解码后的数据
- Return         :
-        1 y00159566       2010-3-22          Draft Enact
- History:
-*****************************************************************************/
+
 VOS_UINT32  NAS_LMM_DecodeNvUplmn(NAS_NVIM_CTRL_TBL *pstNvCtrlTbl)
 {
     return  NAS_LMM_DecodeOneNvItem(pstNvCtrlTbl);
 
 }
-/*****************************************************************************
- Function Name  : NAS_LMM_DecodeNvOplmn
- Discription    : 解码OPLMN
- Input          : pstNvCtrlTbl:公共处理结构
- Output         : 解码后的数据
- Return         :
-         1 y00159566       2010-3-22          Draft Enact
- History:
-*****************************************************************************/
+
 VOS_UINT32  NAS_LMM_DecodeNvOplmn(NAS_NVIM_CTRL_TBL *pstNvCtrlTbl)
 {
     return  NAS_LMM_DecodeOneNvItem(pstNvCtrlTbl);
@@ -423,15 +385,7 @@ VOS_UINT32  NAS_LMM_DecodeSimPsLoc( NAS_NVIM_CTRL_TBL *pstNvCtrlTbl)
     return  NAS_LMM_NVIM_OK;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LMM_DecodeMncLen
- Discription    : 解码Mnc长度
- Input          : pstNvCtrlTbl:公共处理结构
- Output         : 解码后的数据
- Return         :
- History:
-    1. sunjitan 00193151   2015-01-04   Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  NAS_LMM_DecodeSimMncLen(NAS_NVIM_CTRL_TBL *pstNvCtrlTbl)
 {
     VOS_UINT32                          *pstImsiMncLen;
@@ -494,7 +448,6 @@ VOS_UINT32  NAS_LMM_DecodeSimImsi(NAS_NVIM_CTRL_TBL *pstNvCtrlTbl)
 ,LNAS_NULL_PTR);
         return NAS_LMM_NVIM_FAIL;
     }
-    /* Mod by y00307272 IMSI长度保护，当IMSI长度大于0x08或0时走无卡开机, 下面pNvData指针被强转了下 */
     if ((NAS_LMM_NVIM_IMSI_FILE_LEN != pstNvCtrlTbl->usNvDataLen)
         ||(((VOS_UINT8*)pstNvCtrlTbl->pNvData)[0] > NAS_LMM_NVIM_IMSI_FILE_LEN - 1)
         ||(((VOS_UINT8*)pstNvCtrlTbl->pNvData)[0] == 0))
@@ -655,17 +608,7 @@ VOS_UINT32  NAS_LMM_DecodeNvACC(  NAS_NVIM_CTRL_TBL *pstNvCtrlTbl  )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_LMM_DecodeNvSmc
- Description     : 从卡中读取安全上下文
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.yangfan  00159566      2009-10-9  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_LMM_DecodeSimSecContext( NAS_NVIM_CTRL_TBL *pstNvCtrlTbl )
 {
     NAS_LMM_SECU_CONTEXT_STRU            stCurSecuContext;
@@ -1157,18 +1100,7 @@ VOS_UINT32  NAS_LMM_EncodeNvHPLMNSelPriod( NAS_NVIM_CTRL_TBL *pstNvCtrlTbl )
     return  NAS_LMM_EncodeOneNvItem(pstNvCtrlTbl);
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_CheckNvDrxParamAndTransVal
- Description     : 检查NVIM中读取的DRX参数是否有效，如果无效则按照协议进行转换,
-                   数据最后给pstTransDrxParam赋值
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-8-19  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_LMM_CheckNvDrxParamAndTransVal(
                                          CONST  NAS_MM_DRX_STRU *pstNvimDrxParam,
                                                 NAS_MM_DRX_STRU *pstTransDrxParam)

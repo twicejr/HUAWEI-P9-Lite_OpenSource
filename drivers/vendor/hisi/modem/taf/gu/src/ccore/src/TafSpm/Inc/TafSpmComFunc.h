@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafSpmComFunc.h
-  版 本 号   : 初稿
-  作    者   : w00176964
-  生成日期   : 2013年12月16日
-  最近修改   :
-  功能描述   : TafSpmComFunc.c的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年12月16日
-    作    者   : w00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 #ifndef _TAF_SPM_COM_FUNC_H_
 #define _TAF_SPM_COM_FUNC_H_
 
@@ -170,11 +153,9 @@ VOS_UINT32 TAF_SPM_IsNeedCheckFdn(VOS_VOID);
 
 VOS_UINT32 TAF_SPM_IsNeedCallControl(VOS_VOID);
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-1-15, begin */
 VOS_UINT32 TAF_SPM_IsUESupportMoCallType(
     MN_CALL_TYPE_ENUM_U8                enCallType
 );
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-1-15, end */
 
 #if (FEATURE_ON == FEATURE_IMS)
 VOS_VOID TAF_SPM_ProcSmsRptEvent(TAF_SPM_MSG_REPORT_IND_STRU  *pstMsgReportInd);
@@ -216,7 +197,6 @@ VOS_UINT32 TAF_SPM_ProcEconfCheckResult(VOS_VOID);
 
 #endif
 
-/* Added by w00176964 for V3R3C60_eCall项目, 2014-5-4, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
 VOS_VOID TAF_SPM_ReadEcallNumber(
     VOS_UINT8                           ucFdnRecordNum,
@@ -233,7 +213,6 @@ VOS_VOID TAF_SPM_SndImsRelAllCall(
 #endif
 
 #endif
-/* Added by w00176964 for V3R3C60_eCall项目, 2014-5-4, end */
 
 VOS_UINT32  TAF_SPM_IsEmergencyNum_CDMA(
     MN_CALL_CALLED_NUM_STRU            *pstDialNum,

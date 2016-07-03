@@ -1,19 +1,4 @@
-/*******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasXsdFsmSysAcq.c
-  版 本 号   : 初稿
-  作    者   : l60609
-  生成日期   : 2014年07月28日
-  功能描述   : 1X SD SYSTEM ACQUIRE状态机事件处理函数
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年07月28日
-    作    者   : l60609
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -55,28 +40,7 @@ EXTERN VOS_UINT32                       g_CtrlCallRelScanList;
   3 函数定义
 *****************************************************************************/
 /*lint -save -e958*/
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvMsccSysAcqReq_SysAcq_Init
- 功能描述  : CNAS_XSD_SYS_ACQ_STA_INIT状态收到ID_MMA_XSD_SYSTEM_ACQUIRE_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月30日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年1月05日
-    作    者   : y00245242
-    修改内容   : 增加OOC搜索策略
-  3.日    期   : 2015年12月10日
-    作    者   : l00324781
-    修改内容   : CL_MUTIMODE_OPTIMIZE修改，增加场景 SWITCH_ON_INIT_SEARCH
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvMsccSysAcqReq_SysAcq_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -144,34 +108,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccSysAcqReq_SysAcq_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvXsdSysAcqReq_SysAcq_Init
- 功能描述  : CNAS_XSD_SYS_ACQ_STA_INIT状态收到ID_CNAS_XSD_XSD_SYSTEM_ACQUIRED_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月5日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年1月5日
-    作    者   : w00176964
-    修改内容   : CDMA 1X Iteration 6 Modified
-
-  3.日    期   : 2015年1月08日
-    作    者   : y00245242
-    修改内容   : 增加OOC搜索策略
-
-  4.日    期   : 2015年7月20日
-    作    者   : y00245242
-    修改内容   : iteration 17开发
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvXsdSysAcqReq_SysAcq_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -239,26 +176,7 @@ VOS_UINT32 CNAS_XSD_RcvXsdSysAcqReq_SysAcq_Init(
 
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvCasSysSyncCnf_SysAcq_WaitCasSysSyncCnf
- 功能描述  : CNAS_XSD_SYS_ACQ_STA_WAIT_CAS_SYNC_CNF状态收到ID_CAS_CNAS_1X_SYSTEM_SYNC_CNF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月30日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年7月2日
-    作    者   : y00245242
-    修改内容   : iteration 17开发
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvCasSysSyncCnf_SysAcq_WaitCasSysSyncCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -291,23 +209,7 @@ VOS_UINT32 CNAS_XSD_RcvCasSysSyncCnf_SysAcq_WaitCasSysSyncCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvTiWaitCasSysSyncCnfExpired_SysAcq_WaitCasSysSyncCnf
- 功能描述  : CNAS_XSD_SYS_ACQ_STA_WAIT_CAS_SYNC_CNF状态等ID_CAS_CNAS_1X_SYS-
-             TEM_SYNC_CNF消息超时
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvTiWaitCasSysSyncCnfExpired_SysAcq_WaitCasSysSyncCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -325,34 +227,14 @@ VOS_UINT32 CNAS_XSD_RcvTiWaitCasSysSyncCnfExpired_SysAcq_WaitCasSysSyncCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvMsccPowerOffReq_SysAcq_WaitCasSysSyncCnf
- 功能描述  : 等待CAS的系统同步回复状态收到关机请求的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2014年11月18日
-    作    者   : c00299063
-    修改内容   : 添加清空缓存
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvMsccPowerOffReq_SysAcq_WaitCasSysSyncCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 )
 {
     /* 清空缓存 */
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-18, begin */
     CNAS_XSD_InitCacheMsgQueue(CNAS_XSD_INIT_CTX_POWEROFF, &(CNAS_XSD_GetXsdCtxAddr()->stCacheMsgQueue));
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-18, end */
 
     /* 缓存关机请求 */
     CNAS_XSD_SaveCacheMsg(ulEventType, pstMsg);
@@ -363,22 +245,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccPowerOffReq_SysAcq_WaitCasSysSyncCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvTiPowerOffCampOnProtectTimerExpired_SysAcq_WaitCasSysSyncCnf
- 功能描述  : 等待CAS的系统同步回复状态收到关机保护定时器的超时处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvTiPowerOffCampOnProtectTimerExpired_SysAcq_WaitCasSysSyncCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -400,22 +267,7 @@ VOS_UINT32 CNAS_XSD_RcvTiPowerOffCampOnProtectTimerExpired_SysAcq_WaitCasSysSync
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvTiAvailableTimerExpired_SysAcq_WaitCasSysSyncCnf
- 功能描述  : 等待CAS的系统同步回复状态收到收到available定时器超时
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月4日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvTiAvailableTimerExpired_SysAcq_WaitCasSysSyncCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -442,9 +294,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccPowerSaveReq_SysAcq_WaitCasSysSyncCnf(
     }
 
     /* 清空缓存 */
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-18, begin */
     CNAS_XSD_InitCacheMsgQueue(CNAS_XSD_INIT_CTX_POWEROFF, &(CNAS_XSD_GetXsdCtxAddr()->stCacheMsgQueue));
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-18, end */
 
     /* Stop Sync Cnf protect timer */
     CNAS_XSD_StopTimer(TI_CNAS_XSD_WAIT_CAS_SYSTEM_SYNC_CNF);
@@ -465,29 +315,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccPowerSaveReq_SysAcq_WaitCasSysSyncCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvCasOhmInd_SysAcq_WaitCasOhmInd
- 功能描述  : CNAS_XSD_SYS_ACQ_STA_WAIT_CAS_OHM_IND状态收到ID_CAS_CNAS_1X_OHM_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月31日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年7月9日
-    作    者   : y00245242
-    修改内容   : iteration 17开发
-
-  3.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvCasOhmInd_SysAcq_WaitCasOhmInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -543,33 +371,7 @@ VOS_UINT32 CNAS_XSD_RcvCasOhmInd_SysAcq_WaitCasOhmInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvCasSysDeterminInd_SysAcq_WaitCasOhmInd
- 功能描述  : CNAS_XSD_SYS_ACQ_STA_WAIT_CAS_OHM_IND状态收到ID_CAS_CNAS_1X_SYSTEM_DETERMIN_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月13日
-    作    者   : l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2014年12月25日
-    作    者   : w00176964
-    修改内容   : CDMA Iteration 6 Modified:Add other SD reason
-  3.日    期   : 2015年5月20日
-    作    者   : h00313353
-    修改内容   : DSDS NO RF处理
-  4.日    期   : 2015年7月9日
-    作    者   : y00245242
-    修改内容   : iteration 17开发
-  5.日    期   : 2015年9月11日
-    作    者   : y00245242
-    修改内容   : DTS2015090601618
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvCasSysDeterminInd_SysAcq_WaitCasOhmInd
 (
     VOS_UINT32                          ulEventType,
@@ -664,27 +466,7 @@ VOS_UINT32 CNAS_XSD_RcvCasSysDeterminInd_SysAcq_WaitCasOhmInd
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvTiWaitCasOhmIndExpired_SysAcq_WaitCasOhmInd
- 功能描述  : CNAS_XSD_SYS_ACQ_STA_WAIT_CAS_OHM_IND状态等ID_CAS_CNAS_1X_OHM_-
-             IND消息超时
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年7月17日
-    作    者   : y00245242
-    修改内容   : iteration 17开发
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvTiWaitCasOhmIndExpired_SysAcq_WaitCasOhmInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -708,27 +490,7 @@ VOS_UINT32 CNAS_XSD_RcvTiWaitCasOhmIndExpired_SysAcq_WaitCasOhmInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvMsccPowerOffReq_SysAcq_WaitCasOhmInd
- 功能描述  : 等待CAS的系统消息状态收到关机请求的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2014年11月18日
-    作    者   : c00299063
-    修改内容   : 添加清空缓存
-  3.日    期   : 2015年8月6日
-    作    者   : h00313353
-    修改内容   : 迭代17 紧急呼
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvMsccPowerOffReq_SysAcq_WaitCasOhmInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -745,9 +507,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccPowerOffReq_SysAcq_WaitCasOhmInd(
     st1xSysInfo.stFreq                  = CNAS_XSD_GetHistorySyncedSysFreqList()->astFreq[0];
 
     /* 清空缓存 */
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-18, begin */
     CNAS_XSD_InitCacheMsgQueue(CNAS_XSD_INIT_CTX_POWEROFF, &(CNAS_XSD_GetXsdCtxAddr()->stCacheMsgQueue));
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-18, end */
 
     /* 缓存关机请求 */
     CNAS_XSD_SaveCacheMsg(ulEventType, pstMsg);
@@ -773,25 +533,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccPowerOffReq_SysAcq_WaitCasOhmInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvTiPowerOffCampOnProtectTimerExpired_SysAcq_WaitCasOhmInd
- 功能描述  : 等待CAS的系统消息状态收到关机驻留保护定时器超时的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-  2.日    期   : 2014年10月11日
-    作    者   : w00176964
-    修改内容   : DTS2015012608600:关机定时器超时不再继续等OHM消息,直接退出处理缓存
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvTiPowerOffCampOnProtectTimerExpired_SysAcq_WaitCasOhmInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -808,22 +550,7 @@ VOS_UINT32 CNAS_XSD_RcvTiPowerOffCampOnProtectTimerExpired_SysAcq_WaitCasOhmInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvTiAvailableTimerExpired_SysAcq_WaitCasOhmInd
- 功能描述  : 等待CAS的系统消息过程中，收到available定时器超时
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月4日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvTiAvailableTimerExpired_SysAcq_WaitCasOhmInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -834,22 +561,7 @@ VOS_UINT32 CNAS_XSD_RcvTiAvailableTimerExpired_SysAcq_WaitCasOhmInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_XSD_RcvMsccPowerSaveReq_SysAcq_WaitCasOhmInd
-Description     :   The function handles the power save request from MSCC in the wait OHM Ind State.
 
-Input parameters:   ulEventType   - Event type of the message.
-                    pstMsg        - POinter to the message.
-Outout parameters:  None
-Return Value    :   VOS_TRUE
-Modify History:
-    1)  Date    :   2014-01-31
-        Author  :   a00295761
-        Modify content :    Create
-    2)  Date    :   2015-05-28
-        Author  :   w00176964
-        Modify content :DTS2015052903319:power save在等OHM消息时需要延迟打断
-*****************************************************************************/
 
 VOS_UINT32 CNAS_XSD_RcvMsccPowerSaveReq_SysAcq_WaitCasOhmInd(
     VOS_UINT32                          ulEventType,
@@ -871,9 +583,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccPowerSaveReq_SysAcq_WaitCasOhmInd(
     }
 
     /* 清空缓存 */
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-18, begin */
     CNAS_XSD_InitCacheMsgQueue(CNAS_XSD_INIT_CTX_POWEROFF, &(CNAS_XSD_GetXsdCtxAddr()->stCacheMsgQueue));
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-18, end */
 
     st1xSysInfo.usSid                   = pstLastSyncedSys->usSid;
     st1xSysInfo.usNid                   = pstLastSyncedSys->usNid;
@@ -905,30 +615,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccPowerSaveReq_SysAcq_WaitCasOhmInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvCasStopSysSyncCnf_SysAcq_WaitCasStopSysSyncCnf
- 功能描述  : CNAS_XSD_SYS_ACQ_STA_WAIT_CAS_STOP_SYNC_CNF状态收到ID_CAS_CNAS_1X_STOP_SYSTEM_SYNC_CNF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年1月05日
-    作    者   : y00245242
-    修改内容   : 增加OOC搜索策略
-
-  3.日    期   : 2015年7月9日
-    作    者   : y00245242
-    修改内容   : iteration 17开发
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvCasStopSysSyncCnf_SysAcq_WaitCasStopSysSyncCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -956,30 +643,7 @@ VOS_UINT32 CNAS_XSD_RcvCasStopSysSyncCnf_SysAcq_WaitCasStopSysSyncCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvTiWaitCasStopSysSyncCnfExpired_SysAcq_WaitCasStopSysSyncCnf
- 功能描述  : CNAS_XSD_SYS_ACQ_STA_WAIT_CAS_STOP_SYNC_CNF状态等ID_CAS_CNAS_1-
-             X_STOP_SYSTEM_SYNC_CNF消息超时
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年1月05日
-    作    者   : y00245242
-    修改内容   : 增加OOC搜索策略
-
-  3.日    期   : 2015年7月9日
-    作    者   : y00245242
-    修改内容   : iteration 17开发
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvTiWaitCasStopSysSyncCnfExpired_SysAcq_WaitCasStopSysSyncCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1005,34 +669,14 @@ VOS_UINT32 CNAS_XSD_RcvTiWaitCasStopSysSyncCnfExpired_SysAcq_WaitCasStopSysSyncC
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvMsccPowerOffReq_SysAcq_WaitCasStopSysSyncCnf
- 功能描述  : 等待CAS的停止系统同步回复状态收到关机请求的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2014年11月18日
-    作    者   : c00299063
-    修改内容   : 添加清空缓存
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvMsccPowerOffReq_SysAcq_WaitCasStopSysSyncCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 )
 {
     /* 清空缓存 */
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-18, begin */
     CNAS_XSD_InitCacheMsgQueue(CNAS_XSD_INIT_CTX_POWEROFF, &(CNAS_XSD_GetXsdCtxAddr()->stCacheMsgQueue));
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-18, end */
 
     /* 缓存关机请求 */
     CNAS_XSD_SaveCacheMsg(ulEventType, pstMsg);
@@ -1043,22 +687,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccPowerOffReq_SysAcq_WaitCasStopSysSyncCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvTiPowerOffProtectTimerExpired_SysAcq_WaitCasStopSysSyncCnf
- 功能描述  : 等待CAS的停止系统同步回复状态收到关机保护定时器超时消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvTiPowerOffCampOnProtectTimerExpired_SysAcq_WaitCasStopSysSyncCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1070,22 +699,7 @@ VOS_UINT32 CNAS_XSD_RcvTiPowerOffCampOnProtectTimerExpired_SysAcq_WaitCasStopSys
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvTiAvailableTimerExpired_SysAcq_WaitCasStopSysSyncCnf
- 功能描述  : 等待CAS的停止系统同步过程中，收到available定时器超时
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月4日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvTiAvailableTimerExpired_SysAcq_WaitCasStopSysSyncCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1112,9 +726,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccPowerSaveReq_SysAcq_WaitCasStopSysSyncCnf(
     }
 
     /* 清空缓存 */
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-18, begin */
     CNAS_XSD_InitCacheMsgQueue(CNAS_XSD_INIT_CTX_POWEROFF, &(CNAS_XSD_GetXsdCtxAddr()->stCacheMsgQueue));
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-18, end */
 
     /* Save the Power Save Request in cache */
     CNAS_XSD_SaveCacheMsg(ulEventType, pstMsg);
@@ -1125,33 +737,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccPowerSaveReq_SysAcq_WaitCasStopSysSyncCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- FUNCTION NAME    : CNAS_XSD_PerformBestPreferedSystemSelectionAfterSyncSucc_SysAcq
- DESCRIPTION      : process system selection while the acquire mode is best prefered,in this case,we
-                    have to find the best prefered system in PRL
- INPUT PARAMETER  : pstSyncCnf  -- 同步确认消息
- OUTPUT PARAMETER : none
- RETURN           : none
- CALLING FUNCTION :
- CALLED FUNCTION  :
 
- History modification:
-  1.DATE         : 21/8/2014
-    EDITOR       : y00245242
-    MODIFICATION : create
-
-  2.DATE         : 5/1/2015
-    EDITOR       : w00176964
-    MODIFICATION : CDMA 1X Iteration 6 Modifed:modified the function name
-
-  3.日    期   : 2015年1月12日
-    作    者   : y00245242
-    修改内容   : 增加OOC搜索策略
-
-  4.日    期   : 2015年7月7日
-    作    者   : y00245242
-    修改内容   : iteration 17开发
-*****************************************************************************/
 VOS_VOID CNAS_XSD_PerformBestPreferedSystemSelectionAfterSyncSucc_SysAcq(
     CAS_CNAS_1X_SYSTEM_SYNC_CNF_STRU   *pstSyncCnf
 )
@@ -1179,34 +765,7 @@ VOS_VOID CNAS_XSD_PerformBestPreferedSystemSelectionAfterSyncSucc_SysAcq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_PerformNormalCallRedialSystemSeletion_SysAcq
- 功能描述  : Do system selection on normal call redial scene
 
- 输入参数  : pstCurSysInfo  -- the current system synchronized.
-             pstGeoListInfo -- GEO list information of the synchronized system
-
- 输出参数  : none
-
- 返 回 值  : VOS_TRUE  -- current system can be camped on
-             VOS_FALSE -- current system is not suitable to camp on
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 27/11/2014
-    作    者   : y00245242
-    修改内容   : create
-
-  2.日    期   : 31/12/2014
-    作    者   : y00245242
-    修改内容   : add home SID/NID list
-
-  3.日    期   : 2015/7/2
-    作    者   : w00242748
-    修改内容   : CDMA 1X Iteration 17
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_PerformNormalCallRedialSystemSeletion_SysAcq(
     CNAS_PRL_1X_SYSTEM_STRU            *pstCurSysInfo
 )
@@ -1287,32 +846,7 @@ VOS_UINT32 CNAS_XSD_PerformNormalCallRedialSystemSeletion_SysAcq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_PerformNotLessPrefSystemSelectionAfterSyncSucc_SysAcq
- 功能描述  : process system selection while the acquire mode is not less prefer,such as on
-             normal call redial scene,in this case,we have to find a system whose pri is same
-             or more prefered than the current system
- 输入参数  : pstSyncCnf  -- 同步确认消息
 
- 输出参数  : none
-
- 返 回 值  : none
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 27/11/2014
-    作    者   : y00245242
-    修改内容   : create
-
-  2.日    期   : 2015年1月05日
-    作    者   : y00245242
-    修改内容   : 增加OOC搜索策略
-
-  3.日    期   : 2015年7月7日
-    作    者   : y00245242
-    修改内容   : iteration 17开发
-*****************************************************************************/
 VOS_VOID CNAS_XSD_PerformNotLessPrefSystemSelectionAfterSyncSucc_SysAcq(
     CAS_CNAS_1X_SYSTEM_SYNC_CNF_STRU                       *pstSyncCnf
 )
@@ -1371,33 +905,7 @@ VOS_VOID CNAS_XSD_PerformNotLessPrefSystemSelectionAfterSyncSucc_SysAcq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_PerformSystemSelectionAfterSyncSucc_SysAcq
- 功能描述  : 运行同步成功后的系统选择
 
- 输入参数  : pstCurSysInfo -- the synchronized system
-
- 输出参数  : none
-
- 返 回 值  : none
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 27/11/2014
-    作    者   : y00245242
-    修改内容   : create
-  2.日    期   : 25/12/2014
-    作    者   : w00176964
-    修改内容   : CDMA Iteration 6 Modified:Add system acquire mode
-  3.日    期   : 2015年7月6日
-    作    者   : y00245242
-    修改内容   : iteration 17开发
-  4.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_PerformSystemSelectionAfterSyncSucc_SysAcq(
     CAS_CNAS_1X_SYSTEM_SYNC_CNF_STRU   *pstSyncCnf
 )
@@ -1476,36 +984,7 @@ VOS_VOID CNAS_XSD_PerformSystemSelectionAfterSyncSucc_SysAcq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_ProcCasSyncCnfSucc_SysAcq
- 功能描述  : 收到CAS的同步回复成功的处理
- 输入参数  : pstSyncCnf----同步回复消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月21日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2015年1月05日
-    作    者   : y00245242
-    修改内容   : 增加OOC搜索策略
-  3.日    期   : 2015年4月20日
-    作    者   : w00242748
-    修改内容   : DTS2015041609529:插入MRU0后，如果MRU0同步成功，但没办法驻留的
-                 情况下会导致死循环搜网。
-  4.日    期   : 2015年7月2日
-    作    者   : y00245242
-    修改内容   : iteration 17开发
-  5.日    期   : 2015年9月14日
-    作    者   : y00245242
-    修改内容   : DTS2015090601618
-  6.日    期   : 2015年12月10日
-    作    者   : l00324781
-    修改内容   : CL_MUTIMODE_OPTIMIZE修改，增加SWITCH_ON_INIT_SEARCH场景处理
-*****************************************************************************/
 VOS_VOID CNAS_XSD_ProcCasSyncCnfSucc_SysAcq(
     CAS_CNAS_1X_SYSTEM_SYNC_CNF_STRU   *pstSyncCnf
 )
@@ -1562,37 +1041,7 @@ VOS_VOID CNAS_XSD_ProcCasSyncCnfSucc_SysAcq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_ProcCasSyncCnfFail_SysAcq
- 功能描述  : 收到CAS的同步回复失败的处理
- 输入参数  : pstSyncCnf----同步回复消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月21日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年1月05日
-    作    者   : y00245242
-    修改内容   : 增加OOC搜索策略
-
-  3.日    期   : 2015年4月20日
-    作    者   : w00242748
-    修改内容   : DTS2015041609529:插入MRU0后，如果MRU0同步成功，但没办法驻留的
-                 情况下会导致死循环搜网。
-
-  4.日    期   : 2015年7月2日
-    作    者   : y00245242
-    修改内容   : iteration 17开发
-
-  5.日    期   : 2015年9月14日
-    作    者   : y00245242
-    修改内容   : DTS2015090601618
-*****************************************************************************/
 VOS_VOID CNAS_XSD_ProcCasSyncCnfFail_SysAcq(
     CAS_CNAS_1X_SYSTEM_SYNC_CNF_STRU   *pstSyncCnf
 )
@@ -1669,21 +1118,7 @@ VOS_VOID CNAS_XSD_ProcCasSyncCnfFail_SysAcq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_ProcCasSyncCnfNoRf_SysAcq
- 功能描述  : 收到CAS的同步回复为NO RF处理，对于NO RF场景，需要通知上层当前RF不
-             可用，且退出当前状态机
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月2日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_ProcCasSyncCnfNoRf_SysAcq(VOS_VOID)
 {
     /***********************************************************************************************
@@ -1698,29 +1133,7 @@ VOS_VOID CNAS_XSD_ProcCasSyncCnfNoRf_SysAcq(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_ProcScanListSyncComplete_SysAcq
- 功能描述  : 处理SCAN LIST已经全部同步完成
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月18日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年1月5日
-    作    者   : w00176964
-    修改内容   : CDMA 1X Iteration 6 Modified
-
-  3.日    期   : 2015年7月4日
-    作    者   : y00245242
-    修改内容   : iteration 17开发
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_ProcScanListSyncComplete_SysAcq(VOS_VOID)
 {
     CNAS_XSD_SYS_ACQ_SCENE_ENUM_UINT32                      enScanScene;
@@ -1761,22 +1174,7 @@ VOS_VOID CNAS_XSD_ProcScanListSyncComplete_SysAcq(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_ContinueSyncScanList_SysAcq
- 功能描述  : SCAN LIST继续同步
- 输入参数  : VOS_UINT16                          usDstChanNum
-             CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstDstChan
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月18日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_ContinueSyncScanList_SysAcq(
     VOS_UINT16                          usDstChanNum,
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstDstChan
@@ -1792,30 +1190,7 @@ VOS_VOID CNAS_XSD_ContinueSyncScanList_SysAcq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_PeformBestPreferedSystemSelectionUsingNewGeo_SysAcq
- 功能描述  : 基于一个新的GEOs进行最优的系统选择
- 输入参数  : pstGeoListInfo -- 本次搜索的GEO list信息
-             pstCurSysInfo  -- 当前的系统信息
-             ulIsNegSys     -- 当前系统是否是negative系统
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月12日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年1月05日
-    作    者   : y00245242
-    修改内容   : 增加OOC搜索策略
-
-  3.日    期   : 2015年7月2日
-    作    者   : y00245242
-    修改内容   : iteration 17开发
-*****************************************************************************/
 VOS_VOID CNAS_XSD_PeformBestPreferedSystemSelectionUsingNewGeo_SysAcq(
     CNAS_PRL_MATCHED_GEO_LIST_INFO_STRU                    *pstGeoListInfo,
     CNAS_PRL_1X_SYSTEM_STRU                                *pstCurSysInfo,
@@ -1964,29 +1339,7 @@ VOS_VOID CNAS_XSD_PeformBestPreferedSystemSelectionUsingNewGeo_SysAcq(
     CNAS_XSD_ProcScanListSyncComplete_SysAcq();
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_ContinueSysSync_SysAcq
- 功能描述  : 继续系统捕获
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月13日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年1月05日
-    作    者   : y00245242
-    修改内容   : 增加OOC搜索策略
-
-  2.日    期   : 2015年7月4日
-    作    者   : y00245242
-    修改内容   : iteration 17开发
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_ContinueSysSync_SysAcq(VOS_VOID)
 {
     CNAS_XSD_SCAN_CHANNEL_LIST_STRU                        *pstScanList          = VOS_NULL_PTR;
@@ -2041,23 +1394,7 @@ VOS_VOID CNAS_XSD_ContinueSysSync_SysAcq(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_GetCurSysAcqScene_SysAcq
- 功能描述  : 返回当前系统捕获场景
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : CNAS_XSD_SYS_ACQ_SCENE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月12日
-    作    者   : l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2014年12月10日
-    作    者   : l00324781
-    修改内容   : CL_MUTIMODE_OPTIMIZE 增加新场景SWITCH_ON_INIT_SEARCH
-*****************************************************************************/
 CNAS_XSD_SYS_ACQ_SCENE_ENUM_UINT32 CNAS_XSD_GetCurSysAcqScene_SysAcq(VOS_VOID)
 {
     CNAS_XSD_MSG_STRU                                      *pstEntryMsg  = VOS_NULL_PTR;
@@ -2093,25 +1430,7 @@ CNAS_XSD_SYS_ACQ_SCENE_ENUM_UINT32 CNAS_XSD_GetCurSysAcqScene_SysAcq(VOS_VOID)
     return CNAS_XSD_SYS_ACQ_SCENE_BUTT;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_IsImmediateSysAcq_SysAcq
- 功能描述  : 判断当前是否需要立即搜
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月18日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年7月20日
-    作    者   : y00245242
-    修改内容   : iteration 17开发
-
-*****************************************************************************/
 VOS_UINT8 CNAS_XSD_IsImmediateSysAcq_SysAcq(VOS_VOID)
 {
     CNAS_XSD_SYS_ACQ_SCENE_ENUM_UINT32  enSysAcqScene;
@@ -2130,29 +1449,7 @@ VOS_UINT8 CNAS_XSD_IsImmediateSysAcq_SysAcq(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_IsEmergencySysAcq_SysAcq
- 功能描述  : 判断当前是否为紧急呼叫的搜网场景，以下7种情况返回TRUE,其余情况返回FALSE
-             CNAS_XSD_SYS_ACQ_SCENE_EMC_CALLBACK_SYSTEM_LOST 紧急呼Call Back搜网
-             CNAS_XSD_SYS_ACQ_SCENE_EMERGENCY_CALL           紧急呼搜网
-             CNAS_XSD_SYS_ACQ_SCENE_EMC_CALL_RELEASED        紧急呼叫释放的搜网
-             CNAS_XSD_SYS_ACQ_SCENE_REGIS_REJ_WITH_REDIR_AND_RTF_EMC
-             CNAS_XSD_SYS_ACQ_SCENE_SYS_RESEL_NOT_IN_PRL_OR_NEG_EMC
-             CNAS_XSD_SYS_ACQ_SCENE_SYS_RESEL_IN_PRL_AND_PREF_EMC
-             CNAS_XSD_SYS_ACQ_SCENE_MAX_ACCESS_FAILURE_NOT_IN_PRL_EMC
 
- 输入参数  : enSysAcqScene  当前的搜网场景
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年12月1日
-    作    者   : h00313353
-    修改内容   : DTS2015101200488
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_IsEmergencySysAcq_SysAcq(
     CNAS_XSD_SYS_ACQ_SCENE_ENUM_UINT32                      enSysAcqScene
 )
@@ -2168,29 +1465,7 @@ VOS_UINT32 CNAS_XSD_IsEmergencySysAcq_SysAcq(
             return CNAS_XSD_IsEmcSDSysAcq_SysAcq(enSysAcqScene);
     }
 }
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_IsEmcSDSysAcq_SysAcq
- 功能描述  : 判断当前是否为紧急呼叫的搜网场景，以下7种情况返回TRUE,其余情况返回FALSE
-             CNAS_XSD_SYS_ACQ_SCENE_REGIS_REJ_WITH_REDIR_AND_RTF_EMC
-             CNAS_XSD_SYS_ACQ_SCENE_SYS_RESEL_NOT_IN_PRL_OR_NEG_EMC
-             CNAS_XSD_SYS_ACQ_SCENE_SYS_RESEL_IN_PRL_AND_PREF_EMC
-             CNAS_XSD_SYS_ACQ_SCENE_SYSTEM_LOST_SKIP_MRU0_EMC
-             CNAS_XSD_SYS_ACQ_SCENE_REDIRECTION_WITH_INVALID_GSRDM_EMC
-             CNAS_XSD_SYS_ACQ_SCENE_MAX_ACCESS_FAILURE_IN_PRL_EMC
-             CNAS_XSD_SYS_ACQ_SCENE_MAX_ACCESS_FAILURE_NOT_IN_PRL_EMC
 
- 输入参数  : enSysAcqScene  当前的搜网场景
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年12月09日
-    作    者   : h00313353
-    修改内容   : DTS2015120205246
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_IsEmcSDSysAcq_SysAcq(
     CNAS_XSD_SYS_ACQ_SCENE_ENUM_UINT32                      enSysAcqScene
 )
@@ -2211,28 +1486,7 @@ VOS_UINT32 CNAS_XSD_IsEmcSDSysAcq_SysAcq(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_GetNextAvailSysAcqList_SysAcq
- 功能描述  : 获取下一组需要捕获的列表
- 输入参数  : pstAcqSysInfo
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月14日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-  2.日    期   : 29/12/2014
-    作    者   : w00176964
-    修改内容   : CDMA Iteration 6:Move the avail system list to the global variables
-
-  3.日    期   : 2015年7月4日
-    作    者   : y00245242
-    修改内容   : iteration 17开发
-*****************************************************************************/
 VOS_VOID CNAS_XSD_GetNextAvailSysAcqList_SysAcq(
     VOS_UINT16                                             *pusFreqNum,
     CNAS_PRL_FREQENCY_CHANNEL_STRU                         *pstFreqList
@@ -2266,25 +1520,7 @@ VOS_VOID CNAS_XSD_GetNextAvailSysAcqList_SysAcq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_UpdateSyncFailFreqStatusInGeoSysRecordSrchList_SysAcq
- 功能描述  : 更新捕获失败的系统状态
- 输入参数  : usSyncFailChanNum  ------------  同步失败频点个数
-             pstSyncFailChanList--------------同步失败的频点列表
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年8月05日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
- 2.日    期   : 2015年7月4日
-   作    者   : y00245242
-   修改内容   : iteration 17开发
-*****************************************************************************/
 VOS_VOID CNAS_XSD_UpdateSyncFailFreqStatusInGeoSysRecordSrchList_SysAcq(
     VOS_UINT16                          usSyncFailChanNum,
     CNAS_CAS_1X_SYNC_RSLT_INFO_STRU    *pstSyncFailChanList
@@ -2311,26 +1547,7 @@ VOS_VOID CNAS_XSD_UpdateSyncFailFreqStatusInGeoSysRecordSrchList_SysAcq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_UpdateSyncSuccFreqStatusInGeoSysRecordSrchList_SysAcq
- 功能描述  : 更新GEO系统搜索列表中同步失败的频点状态
- 输入参数  : pstFreq        -- 同步成功的频点
-             pstSyncedSysId -- 同步到系统
 
- 输出参数  : VOS_VOID
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史     :
- 1.日    期   : 2014年8月05日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
- 2.日    期   : 2015年7月4日
-   作    者   : y00245242
-   修改内容   : iteration 17开发
-*****************************************************************************/
 VOS_VOID CNAS_XSD_UpdateSyncSuccFreqStatusInGeoSysRecordSrchList_SysAcq(
     CNAS_CAS_1X_FREQENCY_CHANNEL_STRU                      *pstFreq,
     CNAS_CAS_1X_SYSTEM_IDENTITY_STRU                       *pstSyncedSysId
@@ -2375,30 +1592,7 @@ VOS_VOID CNAS_XSD_UpdateSyncSuccFreqStatusInGeoSysRecordSrchList_SysAcq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_QuitFsmSysAcq
- 功能描述  : 退出SYSTEM ACQUIRED状态机
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月25日
-    作    者   : l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2014年12月3日
-    作    者   : w00176964
-    修改内容   : CDMA 1X Iteration 5 Modified
-  3.日    期   : 2015年7月9日
-    作    者   : y00245242
-    修改内容   : iteration 17开发
-
-  4.日    期   : 2015年7月21日
-    作    者   : h00313353
-    修改内容   : 迭代17 紧急呼
-*****************************************************************************/
 VOS_VOID CNAS_XSD_QuitFsmSysAcq_SysAcq(VOS_VOID)
 {
     CNAS_XSD_SCAN_CHANNEL_LIST_STRU                        *pstCallRedialScanChanList = VOS_NULL_PTR;
@@ -2458,25 +1652,7 @@ VOS_VOID CNAS_XSD_QuitFsmSysAcq_SysAcq(VOS_VOID)
     CNAS_XSD_QuitFsmL2();
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_ProcFreqAvoidedInCasSyncCnf
- 功能描述  : 处理CAS SYNC CNF消息中需要被禁的频点
- 输入参数  : pstSyncCnf -- 系统同步确认消息指针
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年10月14日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年7月20日
-    作    者   : h00313353
-    修改内容   : 迭代17 紧急呼
-*****************************************************************************/
 VOS_VOID CNAS_XSD_ProcFreqAvoidedInCasSyncCnf(
     CAS_CNAS_1X_SYSTEM_SYNC_CNF_STRU   *pstSyncCnf
 )
@@ -2546,22 +1722,7 @@ VOS_VOID CNAS_XSD_ProcFreqAvoidedInCasSyncCnf(
     CNAS_XSD_LogAvoidFreqList(CNAS_XSD_GetAvoidFreqListAddr());
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_PerformAbortProcedure_SysAcq
- 功能描述  : 执行状态机打断流程
- 输入参数  : 无
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年10月14日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_PerformAbortProcedure_SysAcq(VOS_VOID)
 {
     CNAS_XSD_StopTimer(TI_CNAS_XSD_POWEROFF_CAMP_ON_PROTECT_TIMER);
@@ -2577,25 +1738,7 @@ VOS_VOID CNAS_XSD_PerformAbortProcedure_SysAcq(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvMsccCallRedialSystemAcquireNtf_SysAcq_WaitCasSysSyncCnf
- 功能描述  : CNAS_XSD_SYS_ACQ_STA_WAIT_CAS_SYNC_CNF状态收到ID_MMA_XSD_CALL_REDIAL_SYSTEM_ACQUIRE_NTF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月18日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年7月20日
-    作    者   : h00313353
-    修改内容   : 迭代17 紧急呼
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvMsccCallRedialSystemAcquireNtf_SysAcq_WaitCasSysSyncCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2667,25 +1810,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccCallRedialSystemAcquireNtf_SysAcq_WaitCasSysSyncCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvMsccCallRedialSystemAcquireNtf_SysAcq_WaitCasOhmInd
- 功能描述  : CNAS_XSD_SYS_ACQ_STA_WAIT_CAS_OHM_IND状态收到ID_MMA_XSD_CALL_REDIAL_NTF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月18日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年7月20日
-    作    者   : h00313353
-    修改内容   : 迭代17 紧急呼
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvMsccCallRedialSystemAcquireNtf_SysAcq_WaitCasOhmInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2747,25 +1872,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccCallRedialSystemAcquireNtf_SysAcq_WaitCasOhmInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvMsccCallRedialSystemAcquireNtf_SysAcq_WaitCasStopSysSyncCnf
- 功能描述  : CNAS_XSD_SYS_ACQ_STA_WAIT_CAS_STOP_SYNC_CNF状态收到ID_MMA_XSD_CALL_REDIAL_NTF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月18日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年7月27日
-    作    者   : h00313353
-    修改内容   : 迭代17 紧急呼
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvMsccCallRedialSystemAcquireNtf_SysAcq_WaitCasStopSysSyncCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2829,26 +1936,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccCallRedialSystemAcquireNtf_SysAcq_WaitCasStopSysSyncC
 
 
 
-/*****************************************************************************
- FUNCTION NAME    : CNAS_XSD_PerformAllowedSystemSelectionAfterSyncSucc_SysAcq
- DESCRIPTION      : perfrom system selection with acquire mode is allowed: need not to match the most prefered system in PRL
- INPUT PARAMETER  : pstSyncCnf  -- 同步确认消息
- OUTPUT PARAMETER : none
- RETURN           : none
- CALLING FUNCTION :
- CALLED FUNCTION  :
 
- History modification:
-  1.DATE         : 21/8/2014
-    EDITOR       : w00176964
-    MODIFICATION : create
-  2.日    期   : 2015年7月2日
-    作    者   : w00242748
-    修改内容   : CDMA 1X Iteration 17 modified
-  3.日    期   : 2015年7月7日
-    作    者   : y00245242
-    修改内容   : iteration 17开发
-*****************************************************************************/
 VOS_VOID CNAS_XSD_PerformAllowedSystemSelectionAfterSyncSucc_SysAcq(
     CAS_CNAS_1X_SYSTEM_SYNC_CNF_STRU   *pstSyncCnf
 )
@@ -2901,33 +1989,7 @@ VOS_VOID CNAS_XSD_PerformAllowedSystemSelectionAfterSyncSucc_SysAcq(
     CNAS_XSD_StartTimer(TI_CNAS_XSD_WAIT_CAS_OHM_IND, TI_CNAS_XSD_WAIT_CAS_OHM_IND_LEN);
 }
 
-/*****************************************************************************
- FUNCTION NAME    : CNAS_XSD_PerformAnySystemSelectionAfterSyncSucc_SysAcq
- DESCRIPTION      : perfrom system selection with acq mode is any: could camp on any system while synced successfull expect
-                    the user settings
- INPUT PARAMETER  : pstSyncCnf  -- 同步确认消息
- OUTPUT PARAMETER : none
- RETURN           : none
- CALLING FUNCTION :
- CALLED FUNCTION  :
 
- History modification:
-  1.DATE         : 12/1/2015
-    EDITOR       : w00176964
-    MODIFICATION : create
-
-  2.日    期   : 2015年7月7日
-    作    者   : y00245242
-    修改内容   : iteration 17开发
-
-  3.日    期   : 2015年7月20日
-    作    者   : h00313353
-    修改内容   : 迭代17 紧急呼
-
-  4.日    期   : 2015年11月30日
-    作    者   : h00313353
-    修改内容   : DTS2015101200488
-*****************************************************************************/
 VOS_VOID CNAS_XSD_PerformAnySystemSelectionAfterSyncSucc_SysAcq(
     CAS_CNAS_1X_SYSTEM_SYNC_CNF_STRU   *pstSyncCnf
 )
@@ -2989,28 +2051,7 @@ VOS_VOID CNAS_XSD_PerformAnySystemSelectionAfterSyncSucc_SysAcq(
     return;
 }
 
-/*****************************************************************************
- FUNCTION NAME    : CNAS_XSD_PerformPreferedSystemSelectionAfterSyncSucc_SysAcq
- DESCRIPTION      : perfrom system selection with acq mode is prefered: in this case,
-                    we have to find a perfered system in PRL
- INPUT PARAMETER  : pstSyncCnf  -- 同步确认消息
- OUTPUT PARAMETER : none
- RETURN           : none
- CALLING FUNCTION :
- CALLED FUNCTION  :
 
- History modification:
-  1.DATE         : 12/1/2015
-    EDITOR       : w00176964
-    MODIFICATION : create
-  2.日    期   : 2015年4月20日
-    作    者   : w00242748
-    修改内容   : DTS2015041609529:插入MRU0后，如果MRU0同步成功，但没办法驻留的
-                 情况下会导致死循环搜网。
-  3.日    期   : 2015年7月7日
-    作    者   : y00245242
-    修改内容   : iteration 17开发
-*****************************************************************************/
 VOS_VOID CNAS_XSD_PerformPreferedSystemSelectionAfterSyncSucc_SysAcq(
     CAS_CNAS_1X_SYSTEM_SYNC_CNF_STRU   *pstSyncCnf
 )
@@ -3075,24 +2116,7 @@ VOS_VOID CNAS_XSD_PerformPreferedSystemSelectionAfterSyncSucc_SysAcq(
     CNAS_XSD_StartTimer(TI_CNAS_XSD_WAIT_CAS_OHM_IND, TI_CNAS_XSD_WAIT_CAS_OHM_IND_LEN);
 }
 
-/*****************************************************************************
- FUNCTION NAME    : CNAS_XSD_PerformSpecificSystemSelectionAfterSyncSucc_SysAcq
- DESCRIPTION      : process system selection for which the SID/NID is known
- INPUT PARAMETER  : pstSyncCnf  -- 同步确认消息
- OUTPUT PARAMETER : none
- RETURN           : none
- CALLING FUNCTION :
- CALLED FUNCTION  :
 
- History modification:
-  1.DATE         : 21/8/2014
-    EDITOR       : y00245242
-    MODIFICATION : create
-
-  2.日    期   : 2015年7月7日
-    作    者   : y00245242
-    修改内容   : iteration 17开发
-*****************************************************************************/
 VOS_VOID CNAS_XSD_PerformSpecificSystemSelectionAfterSyncSucc_SysAcq(
     CAS_CNAS_1X_SYSTEM_SYNC_CNF_STRU   *pstSyncCnf
 )
@@ -3125,24 +2149,7 @@ VOS_VOID CNAS_XSD_PerformSpecificSystemSelectionAfterSyncSucc_SysAcq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_ProcCasSystemDetermineIndWithProtoMisReason_SysAcq
- 功能描述  : process system determine indication message with protocol mismatch from CAS in system acquire state machine
- 输入参数  : pstSysDeterminInd
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 29/12/2014
-    作    者   : w00176964
-    修改内容   : Create
-
-  2.日    期   : 2015年7月17日
-    作    者   : y00245242
-    修改内容   : iteration 17开发
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_ProcCasSystemDetermineIndWithProtoMisReason_SysAcq(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3164,28 +2171,7 @@ VOS_UINT32 CNAS_XSD_ProcCasSystemDetermineIndWithProtoMisReason_SysAcq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_GetNextScanChanList_SysAcq
- 功能描述  : 获取下一个要搜索的scan list
- 输入参数  : usCurScanChanIndex----------当前扫描到的频点索引
-             pstScanChanList------当前的扫描频点列表
- 输出参数  : pusDstChanNum-----------获取到的频点个数
-             pstDstChan--------------获取到的频点列表
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年1月4日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-  2.日    期   : 2015年4月20日
-    作    者   : w00242748
-    修改内容   : DTS2015041609529:插入MRU0后，如果MRU0同步成功，但没办法驻留的
-                 情况下会导致死循环搜网。
-*****************************************************************************/
 VOS_VOID CNAS_XSD_GetNextScanChanList_SysAcq(
     VOS_UINT16                          usCurScanChanIndex,
     VOS_UINT16                         *pusDstChanNum,
@@ -3213,22 +2199,7 @@ VOS_VOID CNAS_XSD_GetNextScanChanList_SysAcq(
                                  ulIsAvoidListEnable);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvMsccSrvAcqReq_SysAcq_WaitCasSysSyncCnf
- 功能描述  : CNAS_XSD_SYS_ACQ_STA_WAIT_CAS_SYNC_CNF状态收到ID_MSCC_XSD_SRV_ACQ_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月02日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvMsccSrvAcqReq_SysAcq_WaitCasSysSyncCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3283,22 +2254,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccSrvAcqReq_SysAcq_WaitCasSysSyncCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvMsccCallEndNtf_SysAcq_WaitCasSysSyncCnf
- 功能描述  : CNAS_XSD_SYS_ACQ_STA_WAIT_CAS_SYNC_CNF状态收到ID_MSCC_XSD_MO_CALL_END_NTF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月02日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvMsccCallEndNtf_SysAcq_WaitCasSysSyncCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3340,22 +2296,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccCallEndNtf_SysAcq_WaitCasSysSyncCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvTiEmcCallBackNetWorkSrchTimerExpired_SysAcq_WaitCasSysSyncCnf
- 功能描述  : CNAS_XSD_SYS_ACQ_STA_WAIT_CAS_SYNC_CNF状态收到TI_CNAS_XSD_EMC_CALLBACK_NETWORK_SRCH_PROTECT_TIMER消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月02日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvTiEmcCallBackNetWorkSrchTimerExpired_SysAcq_WaitCasSysSyncCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3385,22 +2326,7 @@ VOS_UINT32 CNAS_XSD_RcvTiEmcCallBackNetWorkSrchTimerExpired_SysAcq_WaitCasSysSyn
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvTiEmcCallBackModeProtectTimerExpired_SysAcq_WaitCasSysSyncCnf
- 功能描述  : CNAS_XSD_SYS_ACQ_STA_WAIT_CAS_SYNC_CNF状态收到TI_CNAS_XSD_EMC_CALLBACK_MODE_PROTECT_TIMER消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月02日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvTiEmcCallBackModeProtectTimerExpired_SysAcq_WaitCasSysSyncCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3430,22 +2356,7 @@ VOS_UINT32 CNAS_XSD_RcvTiEmcCallBackModeProtectTimerExpired_SysAcq_WaitCasSysSyn
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvMsccEndEmcCallBackReq_SysAcq_WaitCasSysSyncCnf
- 功能描述  : CNAS_XSD_SYS_ACQ_STA_WAIT_CAS_SYNC_CNF状态收到ID_MSCC_XSD_END_EMC_CALLBACK_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月02日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvMsccEndEmcCallBackReq_SysAcq_WaitCasSysSyncCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3476,22 +2387,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccEndEmcCallBackReq_SysAcq_WaitCasSysSyncCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvMsccSrvAcqReq_SysAcq_WaitCasStopSysSyncCnf
- 功能描述  : CNAS_XSD_SYS_ACQ_STA_WAIT_CAS_STOP_SYNC_CNF状态收到ID_MSCC_XSD_SRV_ACQ_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月02日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvMsccSrvAcqReq_SysAcq_WaitCasStopSysSyncCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3536,22 +2432,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccSrvAcqReq_SysAcq_WaitCasStopSysSyncCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvMsccCallEndNtf_SysAcq_WaitCasStopSysSyncCnf
- 功能描述  : CNAS_XSD_SYS_ACQ_STA_WAIT_CAS_STOP_SYNC_CNF状态收到ID_MSCC_XSD_MO_CALL_END_NTF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月02日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvMsccCallEndNtf_SysAcq_WaitCasStopSysSyncCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3583,22 +2464,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccCallEndNtf_SysAcq_WaitCasStopSysSyncCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvTiEmcCallBackNetWorkSrchTimerExpired_SysAcq_WaitCasStopSysSyncCnf
- 功能描述  : CNAS_XSD_SYS_ACQ_STA_WAIT_CAS_STOP_SYNC_CNF状态收到TI_CNAS_XSD_EMC_CALLBACK_NETWORK_SRCH_PROTECT_TIMER消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月02日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvTiEmcCallBackNetWorkSrchTimerExpired_SysAcq_WaitCasStopSysSyncCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3618,22 +2484,7 @@ VOS_UINT32 CNAS_XSD_RcvTiEmcCallBackNetWorkSrchTimerExpired_SysAcq_WaitCasStopSy
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvTiEmcCallBackModeProtectTimerExpired_SysAcq_WaitCasStopSysSyncCnf
- 功能描述  : CNAS_XSD_SYS_ACQ_STA_WAIT_CAS_STOP_SYNC_CNF状态收到TI_CNAS_XSD_EMC_CALLBACK_MODE_PROTECT_TIMER消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月02日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvTiEmcCallBackModeProtectTimerExpired_SysAcq_WaitCasStopSysSyncCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3653,22 +2504,7 @@ VOS_UINT32 CNAS_XSD_RcvTiEmcCallBackModeProtectTimerExpired_SysAcq_WaitCasStopSy
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvMsccEndEmcCallBackReq_SysAcq_WaitCasStopSysSyncCnf
- 功能描述  : CNAS_XSD_SYS_ACQ_STA_WAIT_CAS_STOP_SYNC_CNF状态收到ID_MSCC_XSD_END_EMC_CALLBACK_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月02日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvMsccEndEmcCallBackReq_SysAcq_WaitCasStopSysSyncCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3689,22 +2525,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccEndEmcCallBackReq_SysAcq_WaitCasStopSysSyncCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvMsccSrvAcqReq_SysAcq_WaitCasOhmInd
- 功能描述  : CNAS_XSD_SYS_ACQ_STA_WAIT_CAS_OHM_IND状态收到ID_MSCC_XSD_SRV_ACQ_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月02日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvMsccSrvAcqReq_SysAcq_WaitCasOhmInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3748,22 +2569,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccSrvAcqReq_SysAcq_WaitCasOhmInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvMsccCallEndNtf_SysAcq_WaitCasOhmInd
- 功能描述  : CNAS_XSD_SYS_ACQ_STA_WAIT_CAS_OHM_IND状态收到ID_MSCC_XSD_MO_CALL_END_NTF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月02日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvMsccCallEndNtf_SysAcq_WaitCasOhmInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3819,22 +2625,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccCallEndNtf_SysAcq_WaitCasOhmInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvTiEmcCallBackNetWorkSrchTimerExpired_SysAcq_WaitCasOhmInd
- 功能描述  : CNAS_XSD_SYS_ACQ_STA_WAIT_CAS_OHM_IND状态收到TI_CNAS_XSD_EMC_CALLBACK_NETWORK_SRCH_PROTECT_TIMER消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月02日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvTiEmcCallBackNetWorkSrchTimerExpired_SysAcq_WaitCasOhmInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3854,22 +2645,7 @@ VOS_UINT32 CNAS_XSD_RcvTiEmcCallBackNetWorkSrchTimerExpired_SysAcq_WaitCasOhmInd
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvTiEmcCallBackModeProtectTimerExpired_SysAcq_WaitCasOhmInd
- 功能描述  : CNAS_XSD_SYS_ACQ_STA_WAIT_CAS_OHM_IND状态收到TI_CNAS_XSD_EMC_CALLBACK_MODE_PROTECT_TIMER消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月02日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvTiEmcCallBackModeProtectTimerExpired_SysAcq_WaitCasOhmInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3889,22 +2665,7 @@ VOS_UINT32 CNAS_XSD_RcvTiEmcCallBackModeProtectTimerExpired_SysAcq_WaitCasOhmInd
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvMsccEndEmcCallBackReq_SysAcq_WaitCasOhmInd
- 功能描述  : CNAS_XSD_SYS_ACQ_STA_WAIT_CAS_OHM_IND状态收到ID_MSCC_XSD_END_EMC_CALLBACK_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月02日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvMsccEndEmcCallBackReq_SysAcq_WaitCasOhmInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3924,26 +2685,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccEndEmcCallBackReq_SysAcq_WaitCasOhmInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_UpdateScanListChanStatusUponReceivedDeterminInd
- 功能描述  : 收到determine ind后, 更新determine ind失败的频点
- 输入参数  : usBeginScanListIndex -- 起始索引
-             pstFreq              -- 需要刷新的频点
-             pstScanChanList      -- 搜索列表
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年7月9日
-   作    者   : y00245242
-   修改内容   : iteration 17开发
-
- 2.日    期   : 2015年09月09日
-   作    者   : y00245242
-   修改内容   : DTS2015090601618
-*****************************************************************************/
 VOS_VOID CNAS_XSD_UpdateScanListChanStatusUponReceivedDeterminInd(
     VOS_UINT16                                              usBeginScanListIndex,
     CNAS_PRL_FREQENCY_CHANNEL_STRU                         *pstFreq,
@@ -3979,21 +2721,7 @@ VOS_VOID CNAS_XSD_UpdateScanListChanStatusUponReceivedDeterminInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_UpdateGeoSysRecordStatusUponReceivedDeterminInd
- 功能描述  : 收到determine ind后, 更新GEO系统记录搜索状态
- 输入参数  : pstFreq              -- 需要刷新的频点
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史     :
- 1.日    期   : 2015年7月9日
-   作    者   : y00245242
-   修改内容   : iteration 17开发
-*****************************************************************************/
 VOS_VOID CNAS_XSD_UpdateGeoSysRecordStatusUponReceivedDeterminInd(
     CNAS_PRL_FREQENCY_CHANNEL_STRU                         *pstFreq
 )
@@ -4010,21 +2738,7 @@ VOS_VOID CNAS_XSD_UpdateGeoSysRecordStatusUponReceivedDeterminInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_IsCurGeoListSrchedInGeoListSrchInfo
- 功能描述  : check当前GEO list在GEO list搜索信息是否已经搜索过
- 输入参数  : pstGeoListInfo -- match的GEO list信息
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年7月2日
-    作    者   : y00245242
-    修改内容   : iteration 17开发
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_IsCurGeoListSrchedInGeoListSrchInfo(
     CNAS_PRL_MATCHED_GEO_LIST_INFO_STRU                    *pstGeoListInfo
 )
@@ -4053,21 +2767,7 @@ VOS_UINT32 CNAS_XSD_IsCurGeoListSrchedInGeoListSrchInfo(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_GetMostMatched1xGeoList
- 功能描述  : 获取最match的GEO list
- 输入参数  : pstCurSysInfo ----当前系统信息
 
- 输出参数  : pstMostMatchGeoListInfo ----最match的GEO list信息
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年7月9日
-    作    者   : y00245242
-    修改内容   : iteration 17开发
-*****************************************************************************/
 VOS_VOID CNAS_XSD_GetMostMatched1xGeoList(
     CNAS_PRL_1X_SYSTEM_STRU                                *pstCurSysInfo,
     CNAS_PRL_MATCHED_GEO_LIST_INFO_STRU                    *pstMostMatchGeoListInfo
@@ -4086,26 +2786,7 @@ VOS_VOID CNAS_XSD_GetMostMatched1xGeoList(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_ConstructGeoSysRecordSrchList
- 功能描述  : 构造GEO搜索列表
- 输入参数  : pstGeoListInfo----GEO list信息
-             pstCurSysInfo ----当前系统信息
 
- 输出参数  : pstSysAcqList ----捕获表list
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年7月2日
-    作    者   : y00245242
-    修改内容   : iteration 17开发
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_ConstructGeoSysRecordSrchList(
     CNAS_PRL_MATCHED_GEO_LIST_INFO_STRU                    *pstGeoListInfo,
     CNAS_PRL_1X_SYSTEM_STRU                                *pstCurSysInfo,
@@ -4168,21 +2849,7 @@ VOS_VOID CNAS_XSD_ConstructGeoSysRecordSrchList(
     PS_MEM_FREE(UEPS_PID_XSD, pstSysRecord);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_ContinueGeoSysRecordSrch
- 功能描述  : 继续GEO系统记录列表中的频点搜索
- 输入参数  : 无
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年7月2日
-    作    者   : y00245242
-    修改内容   : iteration 17开发
-*****************************************************************************/
 VOS_VOID CNAS_XSD_ContinueGeoSysRecordSrch(VOS_VOID)
 {
     CNAS_XSD_SCAN_CHANNEL_LIST_STRU    *pstScanList = VOS_NULL_PTR;
@@ -4248,21 +2915,7 @@ VOS_VOID CNAS_XSD_ContinueGeoSysRecordSrch(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_ContinueAvailSysListSrch
- 功能描述  : 继续available系统列表搜索
- 输入参数  : 无
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年7月2日
-    作    者   : y00245242
-    修改内容   : iteration 17开发
-*****************************************************************************/
 VOS_VOID CNAS_XSD_ContinueAvailSysListSrch(VOS_VOID)
 {
     CNAS_PRL_FREQENCY_CHANNEL_STRU      astDstChan[CNAS_CAS_1X_MAX_FREQ_NUM];
@@ -4302,27 +2955,7 @@ VOS_VOID CNAS_XSD_ContinueAvailSysListSrch(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_IsCurrSysMostPref1xSysInGeoSysRecordSrchList
- 功能描述  : check当前系统是否是GEO系统记录搜索列表中最优先的系统
 
-             注: 在调用该函数之前，需要check系统是否是negative系统，否则negative
-                 系统可能会被选择!!!
-
- 输入参数  : pstCurSysInfo        -- 同步到系统信息
-             pstGeoSysRecSrchList -- GEO系统记录搜索列表
-
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  -- 是目前GEO中最优的系统
-             VOS_FALSE -- 不是目前GEO中最优的系统
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年7月2日
-    作    者   : y00245242
-    修改内容   : iteration 17开发
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_IsCurrSysMostPref1xSysInGeoSysRecordSrchList(
     CNAS_PRL_1X_SYSTEM_STRU                                *pstCurSysInfo,
     CNAS_XSD_GEO_SYS_RECORD_SRCH_LIST_STRU                 *pstGeoSysRecSrchList
@@ -4386,23 +3019,7 @@ VOS_UINT32 CNAS_XSD_IsCurrSysMostPref1xSysInGeoSysRecordSrchList(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_IsCurSysInGeoSysRecordSrchList
- 功能描述  : check当前系统是否在GEO系统记录搜索列表中
- 输入参数  : pstCurSysInfo -- 同步到系统信息
-             pstSysAcqList -- GEO系统记录搜索列表
 
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  -- 是目前GEO中最优的系统
-             VOS_FALSE -- 不是目前GEO中最优的系统
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年7月2日
-    作    者   : y00245242
-    修改内容   : iteration 17开发
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_IsCurSysInGeoSysRecordSrchList(
     CNAS_PRL_1X_SYSTEM_STRU                                *pstCurSysInfo,
     CNAS_XSD_GEO_SYS_RECORD_SRCH_LIST_STRU                 *pstGeoSysRecSrchList
@@ -4423,23 +3040,7 @@ VOS_UINT32 CNAS_XSD_IsCurSysInGeoSysRecordSrchList(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_IsCurSysGeoListSameAsCurSyncGeoInfo
- 功能描述  : check当前系统是否在GEO系统记录搜索列表中
- 输入参数  : pstGeoListInfo -- 当前系统同步到的GEO信息
-             pstSysAcqList  -- GEO系统记录搜索列表
 
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  -- 是目前GEO中最优的系统
-             VOS_FALSE -- 不是目前GEO中最优的系统
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年7月2日
-    作    者   : y00245242
-    修改内容   : iteration 17开发
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_IsCurSysGeoListSameAsCurSyncGeoInfo(
     CNAS_PRL_MATCHED_GEO_LIST_INFO_STRU                    *pstGeoListInfo,
     CNAS_XSD_GEO_SYS_RECORD_SRCH_LIST_STRU                 *pstGeoSysRecSrchList
@@ -4463,24 +3064,7 @@ VOS_UINT32 CNAS_XSD_IsCurSysGeoListSameAsCurSyncGeoInfo(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_PreformBestPreferedSystemSelectionAndNoGeoSysRecordSearchList_SysAcq
- 功能描述  : 进行最优先的系统选择，且GEO系统记录搜索列表不存在
- 输入参数  : pstSyncCnf----同步回复消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月2日
-    作    者   : y00245242
-    修改内容   : iteration 17开发
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-*****************************************************************************/
 VOS_VOID CNAS_XSD_PreformBestPreferedSystemSelectionAndNoGeoSysRecordSearchList_SysAcq(
     CAS_CNAS_1X_SYSTEM_SYNC_CNF_STRU   *pstSyncCnf
 )
@@ -4626,24 +3210,7 @@ VOS_VOID CNAS_XSD_PreformBestPreferedSystemSelectionAndNoGeoSysRecordSearchList_
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_PreformBestPreferedSystemSelectionAndGeoSysRecorSearchListExist_SysAcq
- 功能描述  : 进行最优先的系统选择，且GEO系统记录搜索列表存在
- 输入参数  : pstSyncCnf----同步回复消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月2日
-    作    者   : y00245242
-    修改内容   : iteration 17开发
-
-  2.日    期   : 2015年9月11日
-    作    者   : y00245242
-    修改内容   : DTS2015090601618
-*****************************************************************************/
 VOS_VOID CNAS_XSD_PreformBestPreferedSystemSelectionAndGeoSysRecordSearchListExist_SysAcq(
     CAS_CNAS_1X_SYSTEM_SYNC_CNF_STRU   *pstSyncCnf
 )
@@ -4849,20 +3416,7 @@ VOS_VOID CNAS_XSD_PreformBestPreferedSystemSelectionAndGeoSysRecordSearchListExi
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_ProcSyncFailAndNoGeoSysRecorSearchList_SysAcq
- 功能描述  : 收到CAS的同步回复失败，且无GEO系统记录搜索list
- 输入参数  : pstSyncCnf -- 系统同步结果
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月2日
-    作    者   : y00245242
-    修改内容   : iteration 17开发
-*****************************************************************************/
 VOS_VOID CNAS_XSD_ProcSyncFailAndNoGeoSysRecorSearchList_SysAcq(
     CAS_CNAS_1X_SYSTEM_SYNC_CNF_STRU   *pstSyncCnf
 )
@@ -4918,20 +3472,7 @@ VOS_VOID CNAS_XSD_ProcSyncFailAndNoGeoSysRecorSearchList_SysAcq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_ReportSrvAvailableInd_SysAcq
- 功能描述  : 上报服务状态获得指示
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月2日
-    作    者   : y00245242
-    修改内容   : iteration 17开发
-*****************************************************************************/
 VOS_VOID CNAS_XSD_ReportSrvAvailableInd_SysAcq(
     CNAS_PRL_1X_SYSTEM_STRU                                *pstCurSysInfo
 )
@@ -4976,21 +3517,7 @@ VOS_VOID CNAS_XSD_ReportSrvAvailableInd_SysAcq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_IsCallRelAnyCampOnFreq_SysAcq
- 功能描述  : 上报服务状态获得指示
- 输入参数  : pstFreq -- 当前同步成功的频点
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  -- 是首次同步的频点
-             VOS_FALSE -- 非首次同步的频点
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月2日
-    作    者   : y00245242
-    修改内容   : iteration 17开发
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_IsCallRelAnyCampOnFreq_SysAcq(
     CNAS_CAS_1X_FREQENCY_CHANNEL_STRU                      *pstFreq
 )
@@ -5012,23 +3539,7 @@ VOS_UINT32 CNAS_XSD_IsCallRelAnyCampOnFreq_SysAcq(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_UpdateSyncSuccChanStatus_SysAcq
- 功能描述  : 更新扫描成功的频点状态
- 输入参数  : VOS_UINT16                                     usBeginScanListIndex
-             CNAS_PRL_FREQENCY_CHANNEL_STRU                *pstChannel
-             CNAS_XSD_SCAN_CHANNEL_LIST_STRU               *pstScanChanList
-             CNAS_XSD_GEO_SYS_RECORD_SRCH_LIST_STRU        *pstGeoSysRecSrchList
- 输出参数  : 无
- 返 回 值  : VOS_UINT16 -- 返回当前同步成功的频点在scan list中的索引
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月8日
-    作    者   : y00245242
-    修改内容   : DTS2015090601618
-*****************************************************************************/
 VOS_UINT16 CNAS_XSD_UpdateSyncSuccChanStatus_SysAcq(
     VOS_UINT16                                              usBeginScanListIndex,
     CNAS_PRL_FREQENCY_CHANNEL_STRU                         *pstChannel,
@@ -5064,24 +3575,7 @@ VOS_UINT16 CNAS_XSD_UpdateSyncSuccChanStatus_SysAcq(
     return usCurFreqIndex;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_UpdateSyncFailChanStatus_SysAcq
- 功能描述  : 更新扫描失败的频点状态
- 输入参数  : usBeginScanListIndex ------------开始搜索频点的index
-             usSyncFailChanNum ---------------同步失败的频点个数
-             pstSyncFailChanList ------------ 同步失败的频点列表
-             pstScanChanList -----------------当前的频点扫描列表
-             pstGeoSysRecSrchList-------------GEO场景下的搜索列表信息地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT16 -- 返回当前刷新的最后一个失败频点在scan list中的索引
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年9月9日
-   作    者   : y00245242
-   修改内容   : DTS2015090601618
-*****************************************************************************/
 VOS_UINT16 CNAS_XSD_UpdateSyncFailChanStatus_SysAcq(
     VOS_UINT16                                              usBeginScanListIndex,
     VOS_UINT16                                              usSyncFailChanNum,
@@ -5179,21 +3673,7 @@ VOS_UINT16 CNAS_XSD_UpdateSyncFailChanStatus_SysAcq(
     return usCurFreqIndex;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_UpdateChanStatusUponRcvCasSyncCnfSucc_SysAcq
- 功能描述  : 收到CAS同步成功时，更新频点状态
- 输入参数  : pstSyncCnf -- 同步成功的确认消息
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史     :
- 1.日    期   : 2015年9月9日
-   作    者   : y00245242
-   修改内容   : DTS2015090601618
-*****************************************************************************/
 VOS_VOID CNAS_XSD_UpdateChanStatusUponRcvCasSyncCnfSucc_SysAcq(
     CAS_CNAS_1X_SYSTEM_SYNC_CNF_STRU   *pstSyncCnf
 )
@@ -5283,21 +3763,7 @@ VOS_VOID CNAS_XSD_UpdateChanStatusUponRcvCasSyncCnfSucc_SysAcq(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_UpdateChanStatusUponRcvCasSyncCnfFail_SysAcq
- 功能描述  : 收到CAS同步失败时，更新频点状态
- 输入参数  : pstSyncCnf -- 同步失败的确认消息
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史     :
- 1.日    期   : 2015年9月9日
-   作    者   : y00245242
-   修改内容   : DTS2015090601618
-*****************************************************************************/
 VOS_VOID CNAS_XSD_UpdateChanStatusUponRcvCasSyncCnfFail_SysAcq(
     CAS_CNAS_1X_SYSTEM_SYNC_CNF_STRU   *pstSyncCnf
 )
@@ -5343,24 +3809,7 @@ VOS_VOID CNAS_XSD_UpdateChanStatusUponRcvCasSyncCnfFail_SysAcq(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_UpdateChanStatusUponRcvCasDeterminInd_SysAcq
- 功能描述  : 收到CAS determine ind时，更新频点状态
- 输入参数  : pstDetermineInd -- determine ind消息
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史     :
- 1.日    期   : 2015年9月9日
-   作    者   : y00245242
-   修改内容   : DTS2015090601618
- 2.日    期   : 2015年10月8日
-   作    者   : c00299063
-   修改内容   : DTS2015090601618
-*****************************************************************************/
 VOS_VOID CNAS_XSD_UpdateChanStatusUponRcvCasDeterminInd_SysAcq(
     CNAS_PRL_FREQENCY_CHANNEL_STRU                         *pstTempFreq
 )
@@ -5403,21 +3852,7 @@ VOS_VOID CNAS_XSD_UpdateChanStatusUponRcvCasDeterminInd_SysAcq(
     CNAS_XSD_LogScanChannelList(ID_CNAS_XSD_MNTN_LOG_SCAN_CHAN_LIST_IND, pstScanList);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_UpdateAvailOrNegSystemChanStatusInScanChanList_SysAcq
- 功能描述  : 更新available或negative系统频点状态
- 输入参数  : pstChannel -- available系统频点
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史     :
- 1.日    期   : 2015年9月9日
-   作    者   : y00245242
-   修改内容   : DTS2015090601618
-*****************************************************************************/
 VOS_VOID CNAS_XSD_UpdateAvailOrNegSystemChanStatusInScanChanList_SysAcq(
     CNAS_PRL_FREQENCY_CHANNEL_STRU                         *pstFreq,
     CNAS_XSD_SCAN_CHANNEL_LIST_STRU                        *pstScanChanList

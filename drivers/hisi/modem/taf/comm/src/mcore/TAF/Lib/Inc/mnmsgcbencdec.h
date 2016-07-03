@@ -125,14 +125,12 @@ typedef struct
 /*****************************************************************************
   10 函数声明
 *****************************************************************************/
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
 VOS_UINT32 MN_MSG_DecodeCbsDcs(
     VOS_UINT8                           ucDcs,
     VOS_UINT8                          *pucContent,
     VOS_UINT32                          ulContentLength,
     MN_MSG_CBDCS_CODE_STRU             *pstDcsInfo
 );
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 
 
 #endif /* end of MnMsgCbEncDec.h */

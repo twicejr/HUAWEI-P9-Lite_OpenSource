@@ -21,9 +21,7 @@ extern "C"{
 #endif
 #endif
 
-/*lint -e767 修改人:d00212987;检视人:徐铖 51137;原因:Log打印 */
 #define    THIS_FILE_ID        PS_FILE_ID_OM_ERRORLOG_C
-/*lint +e767 修改人:d00212987;检视人:徐铖 51137; */
 
 /*****************************************************************************
   2 全局变量定义
@@ -193,20 +191,7 @@ APP_OM_FTM_MSG_PID_STRU    g_astModem2FTMMsgModule[]={
         }
 
 
-/*****************************************************************************
- 函 数 名  : OM_AcpuRcvMsgFinish
- 功能描述  : 各组件给Om上报消息完毕
- 输入参数  : 无
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2013年8月27日
-     作    者  : d00212987
-     修改内容  : Creat Function
-*****************************************************************************/
 VOS_VOID OM_AcpuRcvMsgFinish(VOS_VOID)
 {
     OM_APP_REPORT_STATUS_STRU               stOmAppReportStatus;
@@ -230,20 +215,7 @@ VOS_VOID OM_AcpuRcvMsgFinish(VOS_VOID)
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : OM_AcpuSendAppResult
- 功能描述  : OM给AP回复处理结果
- 输入参数  : ulRest: 给APP发送的
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2013年8月27日
-     作    者  : d00212987
-     修改内容  : Creat Function
-*****************************************************************************/
 VOS_VOID OM_AcpuSendAppResult(VOS_UINT32 ulRest, VOS_UINT16  usModemId)
 {
     OM_APP_RESULT_CNF_STRU               stOmAppResultCnf;
@@ -262,20 +234,7 @@ VOS_VOID OM_AcpuSendAppResult(VOS_UINT32 ulRest, VOS_UINT16  usModemId)
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : OM_AcpuSwitchOnOffErrLog
- 功能描述  : AP下发 Error Log开关命令，写入NV项同时给各组件发送开关状态
- 输入参数  : pstAppOmCtrlStatus : 收到数据
 
- 输出参数  : 无
- 返 回 值  : OK/ERR
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2013年8月27日
-     作    者  : d00212987
-     修改内容  : Creat Function
-*****************************************************************************/
 VOS_INT OM_AcpuSwitchOnOffErrLog(APP_OM_CTRL_STATUS_STRU  *pstAppOmCtrlStatus)
 {
     NV_ID_ERR_LOG_CTRL_INFO_STRU         stNvErrLogCtrlInfo;
@@ -356,20 +315,7 @@ VOS_INT OM_AcpuSwitchOnOffErrLog(APP_OM_CTRL_STATUS_STRU  *pstAppOmCtrlStatus)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : OM_AcpuReportFTMMsg
- 功能描述  : 根据NV项配置向各组件下发工程模式 上报请求
- 输入参数  : pstAppOmCtrlStatus: 收到数据
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2013年8月27日
-     作    者  : d00212987
-     修改内容  : Creat Function
-*****************************************************************************/
 VOS_INT OM_AcpuSwitchOnOffFTM(APP_OM_CTRL_STATUS_STRU *pstAppOmCtrlStatus)
 {
     NV_ID_FTM_DETAIL_STRU               stNvFTMDetail;
@@ -447,21 +393,7 @@ VOS_INT OM_AcpuSwitchOnOffFTM(APP_OM_CTRL_STATUS_STRU *pstAppOmCtrlStatus)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : OM_AcpuSwitchOnOff
- 功能描述  : 判断是Error log开关还是工程模式开关
- 输入参数  : pucData    : 收到数据
-             ulLen : 数据长度
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2013年8月27日
-     作    者  : d00212987
-     修改内容  : Creat Function
-*****************************************************************************/
 VOS_INT OM_AcpuSwitchOnOff(VOS_UINT8 *pucData, VOS_UINT32 ulLen)
 {
     APP_OM_CTRL_STATUS_STRU              *pstAppOmCtrlStatus;
@@ -492,20 +424,7 @@ VOS_INT OM_AcpuSwitchOnOff(VOS_UINT8 *pucData, VOS_UINT32 ulLen)
     return OM_APP_MSG_MODULE_ID_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : OM_AcpuRcvAppMsgCheck
- 功能描述  : 参数检查
- 输入参数  : pstAppOmReqErrLog    : 收到数据
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2013年8月27日
-     作    者  : d00212987
-     修改内容  : Creat Function
-*****************************************************************************/
 VOS_INT OM_AcpuRcvAppMsgCheck(APP_OM_REQ_ERR_LOG_STRU *pstAppOmReqErrLog)
 {
     NV_ID_ERR_LOG_CTRL_INFO_STRU        stNvErrLogCtrlInfo;
@@ -591,20 +510,7 @@ VOS_INT OM_AcpuRcvAppMsgCheck(APP_OM_REQ_ERR_LOG_STRU *pstAppOmReqErrLog)
 }
 
 
-/*****************************************************************************
- 函 数 名  : OM_AcpuRcvAppFaultIDCheck
- 功能描述  : 参数检查
- 输入参数  : pstAppOmReqErrLog    : 收到数据
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2013年8月27日
-     作    者  : d00212987
-     修改内容  : Creat Function
-*****************************************************************************/
 VOS_INT OM_AcpuRcvAppFaultIDCheck(APP_OM_REQ_ERR_LOG_STRU *pstAppOmReqErrLog)
 {
     NV_ALARM_ID_RELATIONSHIP_STRU       stAlarmIdRelationship;
@@ -655,21 +561,7 @@ VOS_INT OM_AcpuRcvAppFaultIDCheck(APP_OM_REQ_ERR_LOG_STRU *pstAppOmReqErrLog)
 
 }
 
-/*****************************************************************************
- 函 数 名  : OM_AcpuReportErrLogMsg
- 功能描述  : 根据NV项配置向各组件下发Errorlog 上报请求
- 输入参数  : pucData    : 收到数据
-             ulLen : 数据长度
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2013年8月27日
-     作    者  : d00212987
-     修改内容  : Creat Function
-*****************************************************************************/
 VOS_INT OM_AcpuReportErrLogMsg(VOS_UINT8 *pucData, VOS_UINT32 ulLen)
 {
     APP_OM_REQ_ERR_LOG_STRU            *pstAppOmReqErrLog;
@@ -744,22 +636,7 @@ VOS_INT OM_AcpuReportErrLogMsg(VOS_UINT8 *pucData, VOS_UINT32 ulLen)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  :  OM_AcpuErrLogHook
- 功能描述  :  可维可测，收到的消息内容发往log工具一份
- 输入参数  :  pucData    : 收到数据
-              ulLen      : 数据长度
-              ulDateType : 消息类型,收到的VCOM消息，还是发送给VCOM消息
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2013年9月19日
-     作    者  : d00212987
-     修改内容  : Creat Function
-*****************************************************************************/
 VOS_VOID OM_AcpuErrLogHook(VOS_UINT8 *pucData, VOS_UINT32 ulLen, VOS_UINT32 ulDateType)
 {
     DIAG_TRANS_IND_STRU stTrans = {0};
@@ -775,22 +652,7 @@ VOS_VOID OM_AcpuErrLogHook(VOS_UINT8 *pucData, VOS_UINT32 ulLen, VOS_UINT32 ulDa
     return;
 }
 
-/*****************************************************************************
- 函 数 名  :  OM_AcpuSendVComData
- 功能描述  :  调NAS接口，把数据发走
- 输入参数  :  ucDevIndex: 物理端口
-              pucData    : 收到数据
-              ulLen : 数据长度
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2013年8月27日
-     作    者  : d00212987
-     修改内容  : Creat Function
-*****************************************************************************/
 VOS_VOID OM_AcpuSendVComData(VOS_UINT8 *pucData, VOS_UINT32 ulLen)
 {
     /* 调用注册函数，给Vcom发数据 */
@@ -818,21 +680,7 @@ VOS_VOID OM_AcpuSendVComData(VOS_UINT8 *pucData, VOS_UINT32 ulLen)
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : OM_AcpuSendFTMMsgOther
- 功能描述  : 收到AP工程模式命令
- 输入参数  : pstAppOmReqFtm : 发送数据
-             ulLen          : 发送数据长度
-             ulPID          : 接收PID
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
-
- 修改历史  :
-   1.日    期  : 2014年2月14日
-     作    者  : d00212987
-     修改内容  : Creat Function
-*****************************************************************************/
 VOS_VOID OM_AcpuSendFTMMsgOther(APP_OM_FTM_REQ_STRU *pstAppOmFtmReq, VOS_UINT32 ulLen, VOS_UINT32 ulPID)
 {
     OM_FTM_REQUIRE_STRU                *pstOmFtmReq;
@@ -869,21 +717,7 @@ VOS_VOID OM_AcpuSendFTMMsgOther(APP_OM_FTM_REQ_STRU *pstAppOmFtmReq, VOS_UINT32 
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : OM_AcpuFTMMsgReq
- 功能描述  : 收到AP工程模式命令
- 输入参数  : pucData    : 收到数据
-             ulLen      : 收到数据长度
 
- 输出参数  : 无
- 返 回 值  : VOS_INT
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2014年2月14日
-     作    者  : d00212987
-     修改内容  : Creat Function
-*****************************************************************************/
 VOS_INT OM_AcpuFTMMsgReq(VOS_UINT8 *pucData, VOS_UINT32 ulLen)
 {
     APP_OM_FTM_REQ_STRU                *pstAppOmReqFtm;
@@ -969,20 +803,7 @@ VOS_INT OM_AcpuFTMMsgReq(VOS_UINT8 *pucData, VOS_UINT32 ulLen)
     return OM_APP_MSG_OK;
 }
 
-/*****************************************************************************
- 函 数 名  :  OM_AcpuRcvErrLogMsgCheck
- 功能描述  :  收到各组件消息，检查是否需要上报
- 输入参数  :  pstOmRcvDataInfo    : 收到数据
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2014年2月18日
-     作    者  : d00212987
-     修改内容  : Creat Function
-*****************************************************************************/
 VOS_UINT32 OM_AcpuRcvErrLogMsgCheck(OM_RCV_DATA_INFO_STRU *pstOmRcvDataInfo, VOS_UINT32 *pulSendPidCount)
 {
     VOS_ULONG                           ulLockLevel;
@@ -1030,20 +851,7 @@ VOS_UINT32 OM_AcpuRcvErrLogMsgCheck(OM_RCV_DATA_INFO_STRU *pstOmRcvDataInfo, VOS
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  :  OM_AcpuRcvFTMReportMsgCheck
- 功能描述  :  收到各组件消息，检查是否需要上报
- 输入参数  :  pstOmRcvDataInfo    : 收到数据
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2014年2月18日
-     作    者  : d00212987
-     修改内容  : Creat Function
-*****************************************************************************/
 VOS_UINT32 OM_AcpuRcvFTMReportMsgCheck(OM_RCV_DATA_INFO_STRU *pstOmRcvDataInfo, VOS_UINT32 *pulSendPidCount)
 {
     VOS_UINT32                          i;
@@ -1082,20 +890,7 @@ VOS_UINT32 OM_AcpuRcvFTMReportMsgCheck(OM_RCV_DATA_INFO_STRU *pstOmRcvDataInfo, 
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  :  OM_AcpuRcvFTMCnfMsgCheck
- 功能描述  :  收到各组件消息，检查是否需要上报
- 输入参数  :  pstOmRcvDataInfo    : 收到数据
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2014年2月18日
-     作    者  : d00212987
-     修改内容  : Creat Function
-*****************************************************************************/
 VOS_UINT32 OM_AcpuRcvFTMCnfMsgCheck(OM_RCV_DATA_INFO_STRU *pstOmRcvDataInfo, VOS_UINT32 *pulSendPidCount)
 {
     OM_APP_FTM_CNF_STRU                *pstOmAppFtmCnf;
@@ -1185,20 +980,7 @@ VOS_UINT32 OM_AcpuRcvFTMCnfMsgCheck(OM_RCV_DATA_INFO_STRU *pstOmRcvDataInfo, VOS
     return VOS_OK;
 
 }
-/*****************************************************************************
- 函 数 名  :  OM_AcpuRcvMsgCheck
- 功能描述  :  收到各组件消息，检查是否需要上报
- 输入参数  :  pstOmRcvDataInfo    : 收到数据
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2013年8月27日
-     作    者  : d00212987
-     修改内容  : Creat Function
-*****************************************************************************/
 VOS_UINT32 OM_AcpuRcvMsgCheck(OM_RCV_DATA_INFO_STRU *pstOmRcvDataInfo)
 {
     VOS_UINT32                          ulSendPidCount = 0;
@@ -1258,18 +1040,7 @@ VOS_UINT32 OM_AcpuRcvMsgCheck(OM_RCV_DATA_INFO_STRU *pstOmRcvDataInfo)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : OM_AcpuErrLogInfoShow
- 功能描述  : 用于打印 Error log 调测信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
 
- 修改历史  :
-   1.日    期  : 2013年08月27日
-     作    者  : d00212987
-     修改内容  : Creat Function
-*****************************************************************************/
 VOS_VOID OM_AcpuErrLogInfoShow(VOS_VOID)
 {
     /*lint -e534*/
@@ -1304,24 +1075,7 @@ VOS_VOID OM_AcpuErrLogInfoShow(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : OM_AcpuRcvAPCtrl
- 功能描述  : 测试桩函数 : 模拟AP发送开关消息
- 输入参数  :  ultype    : 消息类型
-              ulValuse  : 消息名称
-              usModemID : MODEM id
-              ucAlmStatus :开关名称
-              ucAlmLevel  :告警级别
 
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2013年8月27日
-     作    者  : d00212987
-     修改内容  : Creat Function
-*****************************************************************************/
 VOS_VOID OM_AcpuRcvAPCtrl(VOS_UINT32 ultype,          VOS_UINT32 ulValuse,
                           VOS_UINT16 usModemID,       VOS_UINT8  ucAlmStatus,
                           VOS_UINT8  ucAlmLevel)
@@ -1346,21 +1100,7 @@ VOS_VOID OM_AcpuRcvAPCtrl(VOS_UINT32 ultype,          VOS_UINT32 ulValuse,
 }
 
 
-/*****************************************************************************
- 函 数 名  : OM_AcpuReportErrLog
- 功能描述  : 测试桩函数:模拟AP请求上报Error log
- 输入参数  : usModemID : MODEM id
-             usFaultId :告警相关性
 
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2013年8月27日
-     作    者  : d00212987
-     修改内容  : Creat Function
-*****************************************************************************/
 VOS_VOID OM_AcpuReportErrLog(VOS_UINT16 usModemID, VOS_UINT16 usFaultId)
 {
     APP_OM_REQ_ERR_LOG_STRU              stAppOmCtrlStatus;
@@ -1517,20 +1257,7 @@ VOS_VOID OM_AcpuReportCltInfo(VOS_UINT16 modemID, VOS_UINT16 infoId, VOS_UINT32 
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : OM_AcpuErrLogMsgProc
- 功能描述  : OM收到各业务模块上报消息处理
- 输入参数  : pMsg    : 收到数据
 
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2013年8月27日
-     作    者  : d00212987
-     修改内容  : Creat Function
-*****************************************************************************/
 VOS_VOID OM_AcpuErrLogMsgProc(MsgBlock* pMsg)
 {
 #if(FEATURE_ON == FEATURE_PTM)
@@ -1584,22 +1311,7 @@ VOS_VOID OM_AcpuErrLogMsgProc(MsgBlock* pMsg)
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : OM_AcpuReadVComData
- 功能描述  : NAS把收到数据调用OM 接口读走
- 输入参数  :  ucDevIndex: 物理端口
-              pucData    : 收到数据
-              ulLen : 数据长度
 
- 输出参数  : 无
- 返 回 值  : VOS_ERR/VOS_OK
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2013年8月27日
-     作    者  : d00212987
-     修改内容  : Creat Function
-*****************************************************************************/
 VOS_INT OM_AcpuReadVComData(VOS_UINT8 ucDevIndex, VOS_UINT8 *pucData, VOS_UINT32 ulLen)
 {
 #if(FEATURE_ON == FEATURE_PTM)
@@ -1694,18 +1406,7 @@ VOS_INT OM_AcpuReadVComData(VOS_UINT8 ucDevIndex, VOS_UINT8 *pucData, VOS_UINT32
 }
 
 
-/*****************************************************************************
- 函 数 名  : GU_OamErrLogVComPortInit
- 功能描述  : 用于ErrLog Vcom 口通道的初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
 
- 修改历史  :
-   1.日    期  : 2013年08月27日
-     作    者  : d00212987
-     修改内容  : Creat Function
-*****************************************************************************/
 VOS_VOID GU_OamErrLogVComPortInit(VOS_VOID)
 {
 #if(FEATURE_ON == FEATURE_PTM)

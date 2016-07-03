@@ -701,28 +701,7 @@ VOS_VOID CNAS_HSM_LogQuitSlaveStateInfo(
     PS_MEM_FREE(UEPS_PID_HSM, pstLogMsg);
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_LogSessionRecoveryJudgeInfo
-Description     :   Log session recovery judge related info
-Input parameters:   ucCardChangedFlg   ------- is card changed
-                    ucIsSessionExpired ------- is Session expired
-Output parameters:  None
-Return Value    :   VOS_VOID
 
-Modify History  :
-1)  Date           : 2015-09-22
-    Author         : t00323010
-    Modify content : HSM MNTN(DTS2015092201636): Create
-2)  Date           : 2015-10-10
-    Author         : w00351686
-    Modification   : HSM MNTN(DTS2015092201636): Modified the structure name
-3. Date            : 2015-10-13
-   Author          : y00307564
-   Modification    : DTS2015082403731: 增加换卡逻辑新增的ESN_MEID_ME和ppp an鉴权信息
-4. Date            : 2015-12-22
-   Author          : m00312079
-   Modification    : DTS2015120208895: 增加UE的版本信息
-*****************************************************************************/
 VOS_VOID CNAS_HSM_LogSessionRecoveryJudgeInfo(
     VOS_UINT8                           ucCardChangedFlg,
     VOS_UINT32                          ulIsSessionExpired

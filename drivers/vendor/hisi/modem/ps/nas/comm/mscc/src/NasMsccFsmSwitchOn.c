@@ -66,26 +66,7 @@ NAS_MSCC_PIF_RAT_PRIO_STRU* NAS_MSCC_GetRatPrio_SwitchOn(VOS_VOID)
 }
 
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_SndStartReq_SwitchOn
-Description     :   THis function sends the start request to different modules based receivedPid value
 
-Input parameters:   ulReceivePid
-Output parameters:  None
-Return Value    :   VOS_VOID
-
-Modify History:
-    1)  Date    :   2015-1-31
-        Author  :   m00270891
-        Modify content :    Create
-
-    2.日    期   : 2015年4月15日
-      作    者   : y00245242
-      修改内容   : iteration 13开发
-    3.日    期   : 2015年07月26日
-      作    者   : f00179208
-      修改内容   : DTS2015052504823：增加打开IMS协议栈的操作类型
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndStartReq_SwitchOn(
     VOS_UINT32                          ulReceivePid
 )
@@ -280,22 +261,7 @@ VOS_UINT32 NAS_MSCC_RcvMmaStartReq_SwitchOn_Init(
 }
 
 #if (FEATURE_IMS == FEATURE_ON)
-/*****************************************************************************
-Function Name   :   NAS_MSCC_RcvImsaStartCnf_SwitchOn_WaitImsaStartCnf
-Description     :   MSCC receives Switch On confirmation from IMSA,this function is called to process the Comfif
 
-Input parameters:   ulEventType, *pstMsg
-Output parameters:  None
-Return Value    :   VOS_UINT32
-
-Modify History:
-    1)  Date    :   2015-1-31
-        Author  :   m00270891
-        Modify content :    Create
-     2.日    期   : 2015年4月15日
-       作    者   : f00179208
-       修改内容   : IMS SWITCH项:通知MMA当前IMS开关机状态
-*****************************************************************************/
 VOS_UINT32 NAS_MSCC_RcvImsaStartCnf_SwitchOn_WaitImsaStartCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -331,22 +297,7 @@ VOS_UINT32 NAS_MSCC_RcvImsaStartCnf_SwitchOn_WaitImsaStartCnf(
 
 }
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_RcvTiWaitImsaStartCnfExpired_SwitchOn_WaitImsaStartCnf
-Description     :   This function is used to handle timer expire message, when MSCC is waiting for strat confirmation message from IMSA
 
-Input parameters:   ulEventType, *pstMsg
-Output parameters:  None
-Return Value    :   VOS_UINT32
-
-Modify History:
-    1)  Date    :   2015-1-31
-        Author  :   m00270891
-        Modify content :    Create
-     2.日    期   : 2015年4月15日
-       作    者   : f00179208
-       修改内容   : IMS SWITCH项:通知MMA当前IMS开关机状态
-*****************************************************************************/
 VOS_UINT32 NAS_MSCC_RcvTiWaitImsaStartCnfExpired_SwitchOn_WaitImsaStartCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg

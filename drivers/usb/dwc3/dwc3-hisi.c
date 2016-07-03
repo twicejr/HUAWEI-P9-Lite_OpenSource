@@ -353,6 +353,8 @@ static int create_attr_file(struct device *dev)
 {
 	struct device_attribute **attrs = hisi_dwc3_attributes;
 	struct device_attribute *attr;
+	struct class *hisi_usb_class;
+	struct device *hisi_usb_dev;
 	int i;
 	int ret = 0;
 
@@ -364,6 +366,21 @@ static int create_attr_file(struct device *dev)
 			dev_err(dev, "create attr file error!\n");
 			goto err;
 		}
+	}
+
+	hisi_usb_class = class_create(THIS_MODULE, "hisi_usb_class");
+	if (IS_ERR(hisi_usb_class)) {
+		usb_dbg("create hisi_usb_class error!\n");
+	} else {
+		hisi_usb_dev = device_create(hisi_usb_class, NULL, 0, NULL, "hisi_usb_dev");
+		if (IS_ERR(hisi_usb_dev)) {
+			usb_dbg("create hisi_usb_dev error!\n");
+		} else {
+			ret |= sysfs_create_link(&hisi_usb_dev->kobj, &dev->kobj, "interface");
+		}
+	}
+	if (ret) {
+		usb_dbg("create attr file error!\n");
 	}
 
 	hiusb_debug_quick_register(platform_get_drvdata(to_platform_device(dev)), fakecharger_show, fakecharger_store);

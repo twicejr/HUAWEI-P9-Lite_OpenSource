@@ -76,6 +76,13 @@
 #define HI6421V500_SAVE_OCV_TEMP_ADDR      PMIC_SOFT_RESERE0_ADDR(0)/*OCV TEMP saved use 2bytes*/
 #define HI6421V500_SAVE_OCV_TEMP_RESERVED  PMIC_SOFT_RESERE1_ADDR(0)
 
+/*record last soc*/
+#define HI6421V500_SAVE_LAST_SOC  PMIC_SOFT_RESERE2_ADDR(0)/*last soc 0-6bit */
+#define HI6421V500_SAVE_LAST_SOC_VAILD  PMIC_SOFT_RESERE2_ADDR(0)/*last soc vaild 7bit */
+#define SAVE_LAST_SOC              (BIT(6) | BIT(5) | BIT(4) | BIT(3) | BIT(2) | BIT(1) | BIT(0))
+#define SAVE_LAST_SOC_FALG         BIT(7)
+#define CLEAR_LAST_SOC_FALG         0x7F
+
 /************************************************************
     coul register of smartstar
 ************************************************************/

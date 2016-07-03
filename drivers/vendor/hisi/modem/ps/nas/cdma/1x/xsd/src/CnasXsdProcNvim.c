@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasXsdProcNvim.c
-  版 本 号   : 初稿
-  作    者   : h00246512
-  生成日期   : 2014年07月08日
-  功能描述   : XSD处理NV的读取
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年07月08日
-    作    者   : h00246512
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -44,20 +29,7 @@ extern "C"{
   3 函数定义
 *****************************************************************************/
 /*lint -save -e958*/
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_ReadMruNvim
- 功能描述  : 从NV中获取MRU的内容
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年7月8日
-   作    者   : h00246512
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_ReadMruNvim(VOS_VOID)
 {
     CNAS_XSD_MRU_LIST_STRU             *pstMruList = VOS_NULL_PTR;
@@ -93,20 +65,7 @@ VOS_VOID CNAS_XSD_ReadMruNvim(VOS_VOID)
     CNAS_XSD_LogMruList(pstMruList);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_WriteMruNvim
- 功能描述  : 将MRU的内容写入NV中
- 输入参数  : pstMruList----------写入MRU的列表
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年9月25日
-   作    者   : w00176964
-   修改内容   : 1X BUILD2 BBIT发现问题修改
-*****************************************************************************/
 VOS_VOID CNAS_XSD_WriteMruNvim(
     CNAS_XSD_MRU_LIST_STRU             *pstMruList
 )
@@ -134,21 +93,7 @@ VOS_VOID CNAS_XSD_WriteMruNvim(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_ReadPrlNvim
- 功能描述  : 从NV中获取PRL的内容, 并解析PRL内容
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2014年10月11日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_ReadPrlNvim(VOS_VOID)
 {
     CNAS_NVIM_1X_EVDO_PRL_LIST_STRU                        *pPrlData = VOS_NULL_PTR;
@@ -190,24 +135,7 @@ VOS_VOID CNAS_XSD_ReadPrlNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_ReadChanRepeatScanScheduleConfigNvim
- 功能描述  : 从NV中获取重复搜索策略和
-             是否将先前驻留频点插入的频点列表首部的标记
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年1月4日
-   作    者   : c00299063
-   修改内容   : 新生成函数
- 2.日    期   : 2015年1月8日
-   作    者   : h00313353
-   修改内容   : 合并读取策略信息和频点列表首部的插入标记函数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_ReadChanRepeatScanScheduleConfigNvim(VOS_VOID)
 {
     CNAS_XSD_OOC_CONFIG_INFO_STRU                          *pstConfigInfo = VOS_NULL_PTR;
@@ -258,21 +186,7 @@ VOS_VOID CNAS_XSD_ReadBandClassNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_ReadHomeSidNidNvim
- 功能描述  : 从NV中获取HOME_SID_NID的内容
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2014年12月31日
-   作    者   : h00313353
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_ReadHomeSidNidNvim(VOS_VOID)
 {
     CNAS_CCB_1X_HOME_SID_NID_LIST_STRU                     *pstHomeSidNidList = VOS_NULL_PTR;
@@ -310,21 +224,7 @@ VOS_VOID CNAS_XSD_ReadHomeSidNidNvim(VOS_VOID)
     CNAS_XSD_LogHomeSidNidList(pstHomeSidNidList);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_ReadSearchIntervalNvim
- 功能描述  : 从NV中获取扫描间隔相关的内容
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2014年12月31日
-   作    者   : h00313353
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_ReadSearchIntervalNvim(VOS_VOID)
 {
     CNAS_XSD_OOC_SCHEDULE_INFO_STRU                   *pstOocScheduleInfo = VOS_NULL_PTR;
@@ -373,20 +273,7 @@ VOS_VOID CNAS_XSD_ReadSearchIntervalNvim(VOS_VOID)
     CNAS_XSD_LogOocScheduleInfo(&stNvTimerScheduleInfo);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_ReadTestConfigNvim
- 功能描述  : 从NV中获取TestConfig的内容
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年5月11日
-   作    者   : c00299063
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_ReadTestConfigNvim(VOS_VOID)
 {
     CNAS_XSD_TEST_CONFIG_STRU          *pstTestConfig = VOS_NULL_PTR;
@@ -419,20 +306,7 @@ VOS_VOID CNAS_XSD_ReadTestConfigNvim(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_ReadAddAvoidListCfgNvim
- 功能描述  : 从NV中获取控制添加avoid频点的内容
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年6月4日
-   作    者   : c00299063
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_ReadAddAvoidListCfgNvim(VOS_VOID)
 {
     CNAS_XSD_ADD_AVOID_LIST_CFG_STRU                       *pstAddAvoidListCfg = VOS_NULL_PTR;
@@ -455,20 +329,7 @@ VOS_VOID CNAS_XSD_ReadAddAvoidListCfgNvim(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_ReadNegSysCtrlCfgNvim
- 功能描述  : 从NV中获取negative system的判断策略
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年6月5日
-   作    者   : c00299063
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_ReadNegPrefSysCmpCtrlNvim(VOS_VOID)
 {
     CNAS_XSD_NEG_PREF_SYS_CMP_CTRL_STRU                   *pstNegPrefSysCmpCtrl = VOS_NULL_PTR;
@@ -491,20 +352,7 @@ VOS_VOID CNAS_XSD_ReadNegPrefSysCmpCtrlNvim(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_ReadCallBackCfgNvim
- 功能描述  : 从NV中获取紧急呼CallBack模式相关配置并存储
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年7月2日
-   作    者   : h00313353
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_ReadCallBackCfgNvim( VOS_VOID )
 {
     CNAS_XSD_CALLBACK_CFG_STRU         *pstCallBackCfg = VOS_NULL_PTR;
@@ -534,20 +382,7 @@ VOS_VOID CNAS_XSD_ReadCallBackCfgNvim( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_ReadHomeSidNidPriCfgNvim
- 功能描述  : 读取HOME SID/NID优先级配置的NV
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年7月3日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_ReadHomeSidNidDependOnCfgNvim(VOS_VOID)
 {
     CNAS_NVIM_HOME_SID_NID_DEPEND_ON_PRL_CFG_STRU           stHomeSidNidDependOnPrlCfg;
@@ -568,20 +403,7 @@ VOS_VOID CNAS_XSD_ReadHomeSidNidDependOnCfgNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_ReadOperLockWhiteSidInfoNvim
- 功能描述  : 读取白名单中SID信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年7月3日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_ReadOperLockSysWhiteListInfoNvim(VOS_VOID)
 {
     CNAS_NVIM_OPER_LOCK_SYS_WHITE_LIST_STRU                 stOperLockSysWhiteList;
@@ -613,20 +435,7 @@ VOS_VOID CNAS_XSD_ReadOperLockSysWhiteListInfoNvim(VOS_VOID)
     CNAS_XSD_LogOperLockSysWhiteList(pstOperLockSysWhiteList);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_ReadCTCCCustomizeFreqNvim
- 功能描述  : 读取中国电信自定义频点
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年7月3日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_ReadCTCCCustomizeFreqNvim(VOS_VOID)
 {
     CNAS_NVIM_CTCC_CUSTOMIZE_FREQ_LIST_STRU                 stCustFreqList;
@@ -657,22 +466,7 @@ VOS_VOID CNAS_XSD_ReadCTCCCustomizeFreqNvim(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_WriteOperLockWhiteSidInfoNvim
- 功能描述  : 写入白名单中SID信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
-             VOS_TRUE:写入成功
-             VOS_FALSE:写入失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年7月3日
-   作    者   : h00313353
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_WriteOperLockWhiteSidListInfoNvim(
     MSCC_XSD_OPER_LOCK_SYS_WHITE_STRU  *pstOPerLockWhiteSid
 )
@@ -693,21 +487,7 @@ VOS_UINT32 CNAS_XSD_WriteOperLockWhiteSidListInfoNvim(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_ReadCdmaStandardChannelsNvim
- 功能描述  : 从NV中读取cdma标准频段
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2015年7月14日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_ReadCdmaStandardChannelsNvim(VOS_VOID)
 {
     CNAS_NVIM_CDMA_STANDARD_CHANNELS_STRU                  stNvimCdmaStandardChan;
@@ -738,20 +518,7 @@ VOS_VOID CNAS_XSD_ReadCdmaStandardChannelsNvim(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_Read1xSupportBandClassMaskNvim
- 功能描述  : 从NV中获取1x支持的Band Class
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年8月4日
-   作    者   : c00299063
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_Read1xSupportBandClassMaskNvim(VOS_VOID)
  {
     VOS_UINT32                                            *pul1xSupportBandClassMask = VOS_NULL_PTR;
@@ -774,21 +541,7 @@ VOS_VOID CNAS_XSD_Read1xSupportBandClassMaskNvim(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_ReadCdma1XPrefChannelsNvim
- 功能描述  : 从NV中读取cdma 1x优选频点
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2015年7月14日
-   作    者   : h00313353
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_ReadCdma1XCustomPrefChannelsNvim( VOS_VOID )
 {
     CNAS_NVIM_CDMA_1X_CUSTOM_PREF_CHANNELS_STRU             stNvimCdma1XCustomPrefChan;
@@ -826,21 +579,7 @@ VOS_VOID CNAS_XSD_ReadCdma1XCustomPrefChannelsNvim( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_ReadNoCardModeCfgNvim
- 功能描述  : 从NV中读取无卡模式控制
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2015年8月27日
-   作    者   : c00299063
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_ReadNoCardModeCfgNvim(VOS_VOID)
 {
     CNAS_NVIM_NO_CARD_MODE_CFG_STRU     stNoCardModeCfg;
@@ -863,21 +602,7 @@ VOS_VOID CNAS_XSD_ReadNoCardModeCfgNvim(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_ReadEmcRedialSysAcqCfgNvim
- 功能描述  : 获取紧急呼叫重拨控制
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2015年10月26日
-   作    者   : c00299063
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_ReadEmcRedialSysAcqCfgNvim(VOS_VOID)
 {
     VOS_UINT32                                              i;
@@ -904,21 +629,7 @@ VOS_VOID CNAS_XSD_ReadEmcRedialSysAcqCfgNvim(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_Read1xAvoidScheduleInfoNvim
- 功能描述  : avoid 策略信息
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2015年10月26日
-   作    者   : c00299063
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_Read1xAvoidScheduleInfoNvim(VOS_VOID)
 {
     CNAS_NVIM_1X_AVOID_SCHEDULE_INFO_STRU                  stAvoidScheduleInfo;
@@ -970,21 +681,7 @@ VOS_VOID CNAS_XSD_Read1xAvoidScheduleInfoNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_Read1xPowerOffCampOnCtrlFlgNvim
- 功能描述  : 读取关机注册控制标记
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2015年12月21日
-   作    者   : c00299063
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_Read1xPowerOffCampOnCtrlFlgNvim(VOS_VOID)
 {
     CNAS_NVIM_1X_POWER_OFF_CAMP_ON_CTRL_STRU                st1xPowerOffCampOnCtrl;

@@ -291,8 +291,6 @@ TAF_UINT32 TAF_ProcessUnstructuredSSReq ( MN_CLIENT_ID_T                   Clien
 }
 
 
-/* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-5-6, begin */
-/* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-5-6, end */
 
 
 /*****************************************************************************

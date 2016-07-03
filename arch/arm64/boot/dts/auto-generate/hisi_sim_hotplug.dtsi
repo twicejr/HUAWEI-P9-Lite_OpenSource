@@ -4,7 +4,7 @@
     pmic: pmic@FFF34000 {
         sim0 {
             compatible = "hisilicon,sim-hotplug0";
-            gpios = <&gpio27 5 0>;
+            gpios = <&gpio25 3 0>;
             sim_id = <0>;
             /*
             pinctrl-names = "default", "idle";
@@ -26,24 +26,24 @@
             interrupt-parent = <&pmic>;
             interrupts = <25 0>;
             interrupt-names = "hpd0_falling";
-            pmu_status1_address = <0x007>;
-            pmu_ldo11_onoff_eco_address = <0x06E>;
-            pmu_ldo11_vset_address = <0x06F>;
-            pmu_ldo12_onoff_eco_address = <0x070>;
-            pmu_ldo12_vset_address = <0x071>;
-            pmu_sim_ctrl_address = <0x0DE>;
-            pmu_sim_deb_ctrl_address = <0x0DF>;
-            pmu_irq_mask3_address = <0x0E4>;
-            pmu_irq3_address = <0x123>;
-            pmu_ldo11_onoff_value = <0x02>;
-            pmu_ldo11_vset_value = <0x01>;
-            pmu_ldo12_onoff_value = <0x02>;
-            pmu_ldo12_vset_value = <0x01>;
+            pmu_status1_address= <0>;
+            pmu_ldo11_onoff_eco_address = <0>;
+            pmu_ldo11_vset_address = <0>;
+            pmu_ldo12_onoff_eco_address = <0>;
+            pmu_ldo12_vset_address = <0>;
+            pmu_sim_ctrl_address= <0>;
+            pmu_sim_deb_ctrl_address= <0>;
+            pmu_irq_mask3_address= <0>;
+            pmu_irq3_address= <0>;
+            pmu_ldo11_onoff_value= <0>;
+            pmu_ldo11_vset_value= <0>;
+            pmu_ldo12_onoff_value= <0>;
+            pmu_ldo12_vset_value= <0>;
         };
 
         sim1 {
             compatible = "hisilicon,sim-hotplug1";
-            gpios = <&gpio27 5 0>;
+            gpios = <&gpio25 3 0>;
             sim_id = <1>;
             /*
             pinctrl-names = "default", "idle";
@@ -65,19 +65,20 @@
             interrupt-parent = <&pmic>;
             interrupts = <29 0>;
             interrupt-names = "hpd1_falling";
-            pmu_status1_address = <0x007>;
-            pmu_ldo11_onoff_eco_address = <0x06E>;
-            pmu_ldo11_vset_address = <0x06F>;
-            pmu_ldo12_onoff_eco_address = <0x070>;
-            pmu_ldo12_vset_address = <0x071>;
-            pmu_sim_ctrl_address = <0x0DE>;
-            pmu_sim_deb_ctrl_address = <0x0DF>;
-            pmu_irq_mask3_address = <0x0E4>;
-            pmu_irq3_address = <0x123>;
-            pmu_ldo11_onoff_value = <0x02>;
-            pmu_ldo11_vset_value = <0x01>;
-            pmu_ldo12_onoff_value = <0x02>;
-            pmu_ldo12_vset_value = <0x01>;
+            pmu_status1_address= <0>;
+            pmu_ldo11_onoff_eco_address = <0>;
+            pmu_ldo11_vset_address = <0>;
+            pmu_ldo12_onoff_eco_address = <0>;
+            pmu_ldo12_vset_address = <0>;
+            pmu_sim_ctrl_address= <0>;
+            pmu_sim_deb_ctrl_address= <0>;
+            pmu_irq_mask3_address= <0>;
+            pmu_irq3_address= <0>;
+            pmu_ldo11_onoff_value= <0>;
+            pmu_ldo11_vset_value= <0>;
+            pmu_ldo12_onoff_value= <0>;
+            pmu_ldo12_vset_value= <0>;
         };
+
     };
 };

@@ -1,23 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : lt_nv_common_interface.h
-  版 本 号   : 初稿
-  作    者   : wangxu
-  生成日期   : 2014年3月13日
-  最近修改   :
-  功能描述   : TL 公共NV定义
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年3月13日
-    作    者   : wangxu
-    修改内容   : 创建文件
---------------------------------------------------------------------------------
-
-
-******************************************************************************/
 
 
 #ifndef __LT_NV_COMMON_INTERFACE_H__
@@ -49,6 +30,7 @@ extern "C"{
 #define TL_DCXO_POLY_COEF_DEFAULT_A2_EXP						(16379)
 #define TL_DCXO_POLY_COEF_DEFAULT_A3_MANTISSA					(3271384601)
 #define TL_DCXO_POLY_COEF_DEFAULT_A3_EXP						(16369)
+#define TL_DCDC_GPIO_PIN_MAX_NUM                                (8)
 
 
 /************************************************************
@@ -271,6 +253,33 @@ typedef struct
     UINT32 ulRsv;
 }TLCOMM_NV_XO_AGING_STRU;
 
+
+typedef struct
+{
+	UINT32 ulAptPdmHoldNtxFlag; /* 1:有效   0:无效 */
+}TL_COMM_NV_APT_PDM_HOLD_NTX_STRU;
+
+typedef struct
+{
+    UINT32 ulRegAddr; /*GPIO 地址*/
+    UINT32 ulRegCfg;  /*GPIO 配置值*/
+}TLCOMM_NV_GPIO_BBP_CFG_STRU;
+
+typedef struct
+{
+    UINT32 usGpioPinNum;
+    TLCOMM_NV_GPIO_BBP_CFG_STRU stGpioEnCfg;/*配置GPIO使能*/
+    TLCOMM_NV_GPIO_BBP_CFG_STRU stGpioIOCfg;/*配置GPIO I/O*/
+}TLCOMM_NV_GPIO_CFG_STRU;
+
+typedef struct
+{
+    UINT16 usDcdcEnFlag;
+    UINT16 usGpioPin;
+    TLCOMM_NV_GPIO_CFG_STRU stDcdcGpioCfg[TL_DCDC_GPIO_PIN_MAX_NUM];
+}TL_COMM_NV_PA_GPIO_CTRL_PARA_STRU;
+
+
 /*****************************************************************************
  结构名    : TLCOMM_NV_PARA_STRU
  协议表格  :
@@ -295,6 +304,8 @@ typedef struct
     UCOM_NV_XO_SELF_CAL_DONE_STRU           stXoSelfCalDone; /*XO温补系数a1, a0是否已校准标志*/
     UCOM_NV_XO_REF_TEMP_COMP_STRU           stXoRefTempComp; /*存放T0值和校准a0, a1时参与计算的a2, a3值，同时存放校准曲线的a2, a3的default值，还有XO最大、最小工作温度*/
     UCOM_NV_DCXO_TEMP_COMP_STRU             stXoTempCompRes; /*存放a3, a2, a1, a0， 其中a1, a0为新校准方案后的校准结果， a3, a2仍为提取值， 需备份恢复，和原NV 10024的结构相同*/
+    TL_COMM_NV_APT_PDM_HOLD_NTX_STRU        stAptPdmHoldFlag;
+    TL_COMM_NV_PA_GPIO_CTRL_PARA_STRU       stPaGpioCtrl;    /*存放GPIO控制信息*/
 }TLCOMM_NV_PARA_STRU;
 
 extern TLCOMM_NV_PARA_STRU *gpTLNvCommPara;
@@ -394,16 +405,14 @@ enum PS_NV_INDEX_ENUM
     NV_IDX_LTE_HD3_CAL_RSULT_STRU,
     NV_IDX_TX_RF_FREQ_COMP_STRU,
     NV_IDX_TX_PA_TEMP_COMP,
-    /* BEGIN: Added by y00272211, 2015/8/1   问题单号:V7R5_AMPR*/
     NV_IDX_LTE_TX_AMPR_NS03,
     NV_IDX_LTE_TX_AMPR_NS22,
-    /* BEGIN: Added by m00128895, 2016/1/18   N:HP 降SAR特性开发*/
     EN_NV_ID_LTE_HP_SAR,
 	/*hrl*/
     NV_IDX_HRL_SPUR_INFO,
     NV_IDX_TXIQ_PARA_STRU,
     NV_IDX_RESERVED_NV_STRU,
-	
+
     PS_NV_IDX_BUTT
 };
 #else

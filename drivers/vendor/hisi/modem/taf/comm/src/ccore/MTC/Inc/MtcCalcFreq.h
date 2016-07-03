@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : MtcCalcFreq.h
-  版 本 号   : 初稿
-  作    者   : j00174725
-  生成日期   : 2014年03月04日
-  最近修改   :
-  功能描述   : MtcCalcFreq.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年03月04日
-    作    者   : j00174725
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __MTC_CALC_FREQ_H__
 #define __MTC_CALC_FREQ_H__
@@ -46,10 +29,8 @@ extern "C" {
 /*****************************************************************************
   2 宏定义
 *****************************************************************************/
-/* Add by j00174725 for RF&LCD INTRUSION, 2014-03-04, GU 结构定义(由上官声长00266224提供) Begin */
 #define DC_MIMO_REMOVEINTERFREQOFF                  ( 0xbfff )                  /* 去除偏移值 */
 #define FREQ_BAND_NUM                               ( 10 )                               /* 目前支持的频带数目 */
-/* Add by j00174725 for RF&LCD INTRUSION, 2014-03-04, GU 结构定义(由上官声长00266224提供) End */
 
 #if (FEATURE_ON == FEATURE_LTE)
 /* 检查是否为FDD的band ind */
@@ -65,7 +46,6 @@ extern "C" {
     ((((LTE_COMM_NONSTANDARD_BAND_BEGIN  <= ucBandInd) && (LTE_COMM_NONSTANDARD_BAND_END >= ucBandInd)) )? VOS_TRUE:VOS_FALSE)
 #endif
 
-/* Add by y00213812 for RF&LCD INTRUSION, 2014-03-04, Begin WCDMA 相关定义(shangguanshengchang提供)*/
 #define MTC_GAS_BAND_TYPE_UNKNOWN                      (0)                      /* 未知频段 */
 
 #define MTC_GSM_BAND_TYPE_450                          (0x0001)                /* ARFCN所代表的频段:GSM 450 */
@@ -77,11 +57,9 @@ extern "C" {
 #define MTC_GSM_BAND_TYPE_1800                         (0x0040)                /* ARFCN所代表的频段:DCS 1800 */
 #define MTC_GSM_BAND_TYPE_1900                         (0x0080)                /* ARFCN所代表的频段:PCS 1900 */
 #define MTC_GSM_BAND_TYPE_700                          (0x0100)                /* ARFCN所代表的频段:GSM 700 */
-/* Add by y00213812 for RF&LCD INTRUSION, 2014-03-04, Begin WCDMA 相关定义(shangguanshengchang提供)*/
 
 
 
-/* Add by j00174725 for RF&LCD INTRUSION, 2014-03-04, Begin WCDMA 相关定义(jiachangqin提供)*/
 #define MTC_WAS_FREQ_BAND2_ADD_MAX_FREQ_NUM             (12)                    /*频段2的最大附加频率数*/
 #define MTC_WAS_FREQ_BAND4_ADD_MAX_FREQ_NUM             (9)                     /*频段4的最大附加频率数*/
 #define MTC_WAS_FREQ_BAND5_ADD_MAX_FREQ_NUM             (6)                     /*频段5的最大附加频率数*/
@@ -137,11 +115,8 @@ extern "C" {
 #define MTC_WAS_FREQ_BAND19_DL_HIGH_FREQ                (763)
 #define MTC_WAS_FREQ_BAND19_TXRXSEPERATION              (400)
 
-/* Add by j00174725 for RF&LCD INTRUSION, 2014-03-04, End WCDMA 相关定义(jiachangqin提供)*/
 
-/* Add by j00174725 for RF&LCD INTRUSION, 2014-03-04, End WCDMA 相关定义(baihongjin提供)*/
 #define MTC_TDS_FRQ_UNIN                                (2) /* 单位为100KHZ */
-/* Add by j00174725 for RF&LCD INTRUSION, 2014-03-04, End WCDMA 相关定义(baihongjin提供)*/
 
 /*****************************************************************************
   3 枚举定义
@@ -165,7 +140,6 @@ extern "C" {
 /*****************************************************************************
   7 STRUCT定义
 *****************************************************************************/
-/* Add by j00174725 for RF&LCD INTRUSION, 2014-03-04, GU 结构定义 Begin */
 /*****************************************************************************
  结构名    : MTC_RF_WCDMA_FREQ_BAND_INFO_STRU
  协议表格  : 25.101协议
@@ -186,7 +160,6 @@ typedef struct
     VOS_UINT16                          uhwBandWidth;                           /* 频段带宽 */
     VOS_UINT16                          uhwStartFreq;                           /* 频段起始频率 100kHZ */
 }MTC_RF_WCDMA_FREQ_BAND_INFO_STRU;
-/* Add by j00174725 for RF&LCD INTRUSION, 2014-03-04, GU 结构定义 End */
 
 /*****************************************************************************
   8 UNION定义

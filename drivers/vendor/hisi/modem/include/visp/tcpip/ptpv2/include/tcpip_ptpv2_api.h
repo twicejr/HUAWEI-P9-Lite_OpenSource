@@ -366,7 +366,6 @@ typedef enum tagTCPIP_PTP_DEBUG_FLAG_E
     TCPIP_PTP_DEBUG_PPI    = 0x20         /* PPI信息的调试 */
 }TCPIP_PTP_DEBUG_FLAG_E;
 
-/*Add by heyijun 00218462 for AR-IP-PTP.001 支持PTSF配置参与选源, 2014-11 */
 /*Ptsf类型，目前仅支持TCPIP_PTP_PTSF_SYNC*/
 typedef enum tagTCPIP_PTP_PTSF_TYPE_E
 {

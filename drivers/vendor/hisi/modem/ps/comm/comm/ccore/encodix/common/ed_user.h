@@ -15,10 +15,7 @@
 #endif
 #endif
 
-/* x00309227,2015/06/06,编解码方修改文件Ed_lib.c里面函数定义，将其中long更新为ED_EXLONG,
-   并且从version 1.0.144之后，在Ed_data.h中ED_EXLONG被定义为int，
-   但Ed_lib.c中的函数同时应用于CDMA和GSM，所以没有更新Ed_lib.c、Ed_lib.h编解码方的修改，
-   同时,ED_EXLONG除common以外，只应用于CDMA，现重新定义其值为long */
+
 #ifndef ED_EXLONG
 #define ED_EXLONG long
 #endif

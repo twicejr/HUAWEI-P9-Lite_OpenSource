@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NASUTRANCTRLCtx.c
-  版 本 号   : 初稿
-  作    者   : w00167002
-  生成日期   : 2012年7月12日
-  最近修改   :
-  功能描述   : NASUTRANCTRLCtx.C文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年7月12日
-    作    者   : w00167002
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -76,45 +59,13 @@ NAS_UTRANCTRL_CTX_STRU                    g_stNasUtranCtrlCtx;
 *****************************************************************************/
 
 #if (FEATURE_ON == FEATURE_UE_MODE_TDS)
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_GetUtranCtrlCtx
- 功能描述  : 获取当前MMAGENT的CTX
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 当前MMAGENT的CTX
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年7月12日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-*****************************************************************************/
 NAS_UTRANCTRL_CTX_STRU* NAS_UTRANCTRL_GetUtranCtrlCtx( VOS_VOID )
 {
     return &(g_stNasUtranCtrlCtx);
 }
 
-/*****************************************************************************
-函 数 名  : NAS_UTRANCTRL_InitCustomCfgInfo
-功能描述  : 初始化客户定制特性
-输入参数  : 无
-输出参数  : pstCustomCfg:初始化客户定制特性
-返 回 值  :
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2012年7月12日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-
-3.日    期   : 2013年11月18日
-  作    者   : w00167002
-  修改内容   : DTS2013112006986:控制在3G TDD模式下是否需要开启SMC验证标记:中国移动拉萨网络设备在
-                TD下不发起SMC流程。
-               默认需要进行SMC流程。 
-*****************************************************************************/
 VOS_VOID  NAS_UTRANCTRL_InitCustomCfgInfo(
     NAS_UTRANCTRL_CUSTOM_CFG_INFO_STRU   *pstCustomCfg
 )
@@ -156,20 +107,7 @@ VOS_VOID  NAS_UTRANCTRL_InitCustomCfgInfo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_InitMsCfgCtx
- 功能描述  : 初始化MML_CTX中手机配置相关信息
- 输入参数  : pstMsCfgInfo:手机配置信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年7月12日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  NAS_UTRANCTRL_InitMsCfgCtx(
     NAS_UTRANCTRL_MS_CFG_INFO_STRU       *pstMsCfgInfo
 )
@@ -178,21 +116,7 @@ VOS_VOID  NAS_UTRANCTRL_InitMsCfgCtx(
     NAS_UTRANCTRL_InitCustomCfgInfo(&(pstMsCfgInfo->stCustomCfg));
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_InitCurrFsmCtx
- 功能描述  : 初始化当前状态机上下文
- 输入参数  : 无
- 输出参数  : pstCurrFsmCtx:当前状态机上下文信息
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月19日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  NAS_UTRANCTRL_InitCurrFsmCtx(
     NAS_UTRANCTRL_FSM_CTX_STRU         *pstCurrFsmCtx
 )
@@ -207,27 +131,7 @@ VOS_VOID  NAS_UTRANCTRL_InitCurrFsmCtx(
                NAS_UTRANCTRL_MAX_MSG_BUFFER_LEN);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_InitMainCtrlInfo
- 功能描述  : 初始化当前UTRANCTRL模块的主控信息
- 输入参数  : 无
- 输出参数  : pstMainCtrl:当前UTRANCTRL模块的主控信息
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年8月14日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2012年8月14日
-   作    者   : w00176964
-   修改内容   : 修改函数名
- 3.日    期   : 2014年11月25日
-   作    者   : z00161729
-   修改内容   : 开机搜网优化项目修改
-
-*****************************************************************************/
 VOS_VOID  NAS_UTRANCTRL_InitMainCtrlInfo(
     NAS_UTRANCTRL_MAIN_CTRL_INFO_STRU  *pstMainCtrl
 )
@@ -253,21 +157,7 @@ VOS_VOID  NAS_UTRANCTRL_InitMainCtrlInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_InitFsmBufferEntryMsgQueueCtx
- 功能描述  : 初始化缓存消息队列上下文
- 输入参数  : 无
- 输出参数  : pstCurrFsmCtx:当前缓存消息队列上下文
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月19日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  NAS_UTRANCTRL_InitFsmBufferEntryMsgQueueCtx(
     NAS_UTRANCTRL_MSG_QUEUE_STRU       *pstBufferEntryMsgQueue
 )
@@ -288,21 +178,7 @@ VOS_VOID  NAS_UTRANCTRL_InitFsmBufferEntryMsgQueueCtx(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_InitFsmPlmnSearchCtrlCtx
- 功能描述  : 初始化搜网控制上下文
- 输入参数  : 无
- 输出参数  : pstPlmnSearchCtrl:搜网控制结构上下文
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月19日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  NAS_UTRANCTRL_InitFsmPlmnSearchCtrlCtx(
     NAS_UTRANCTRL_PLMN_SEARCH_CTRL_CTX_STRU       *pstPlmnSearchCtrl
 )
@@ -318,21 +194,7 @@ VOS_VOID  NAS_UTRANCTRL_InitFsmPlmnSearchCtrlCtx(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_InitMaintainInfo
- 功能描述  : 初始化UTRANCTRL_CTX中可维可测部分
- 输入参数  : pstMaintainInfo:可维可测全局变量
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年8月16日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  NAS_UTRANCTRL_InitMaintainInfo(
     NAS_UTRANCTRL_INIT_CTX_TYPE_ENUM_UINT8                  enInitType,
     NAS_UTRANCTRL_MAINTAIN_CTX_STRU                        *pstMaintainInfo
@@ -356,23 +218,7 @@ VOS_VOID  NAS_UTRANCTRL_InitMaintainInfo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_SwitchCurrFsmCtx
- 功能描述  : 切换当前的状态机的上下文
- 输入参数  : 无
- 输出参数  : enNewFsmId:新的状态机名称
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年8月6日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-  2.日    期   : 2012年12月11日
-    作    者   : l00167671
-    修改内容   : DTS2012121802573, TQE清理
-*****************************************************************************/
 VOS_VOID  NAS_UTRANCTRL_SwitchCurrFsmCtx(
     NAS_UTRANCTRL_FSM_ID_ENUM_UINT32    enNewFsmId
 )
@@ -443,24 +289,7 @@ VOS_VOID  NAS_UTRANCTRL_SwitchCurrFsmCtx(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_SaveCurEntryMsg
- 功能描述  : 保存当前状态机的入口消息
- 输入参数  : ulEventType            :入口消息类型
-              pstMsg             :入口消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012-08-6
-    作    者   : W00176964
-    修改内容   : 新生成函数
 
-  2.日    期   : 2012年8月30日
-    作    者   : w00167002
-    修改内容   : 使用NAS_UTRANCTRL_ENTRY_MSG_STRU类型
-*****************************************************************************/
 VOS_VOID NAS_UTRANCTRL_SaveCurEntryMsg(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -495,20 +324,7 @@ VOS_VOID NAS_UTRANCTRL_SaveCurEntryMsg(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_FSM_SetCurrState
- 功能描述  : 设置当前需要迁移的状态
- 输入参数  : ulCurrState:当前迁移的状态
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月7日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  NAS_UTRANCTRL_FSM_SetCurrState(
     VOS_UINT32                          ulCurrState
 )
@@ -527,20 +343,7 @@ VOS_VOID  NAS_UTRANCTRL_FSM_SetCurrState(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_FSM_GetCurrState
- 功能描述  : 获取当前的状态
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : ulCurrState:当前迁移的状态
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月15日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_FSM_GetCurrState(VOS_VOID)
 {
     NAS_UTRANCTRL_FSM_CTX_STRU         *pstCurFsm   = VOS_NULL_PTR;
@@ -554,23 +357,7 @@ VOS_UINT32 NAS_UTRANCTRL_FSM_GetCurrState(VOS_VOID)
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_InitCtx
- 功能描述  : 开机初始化NAS_UTRANCTRL的时CTX
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2012年7月12日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2012年8月7日
-   作    者   : w00176964
-   修改内容   : 修改注册状态机函数名
-*****************************************************************************/
 VOS_VOID  NAS_UTRANCTRL_InitCtx(
     VOS_UINT8                           ucInitType
 )
@@ -606,27 +393,7 @@ VOS_VOID  NAS_UTRANCTRL_InitCtx(
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_GetCurrUtranMode
- 功能描述  : 获取当前的UTRAN模式,如果外部模块调用需要确保为驻留状态,否则可能会不准确
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : NAS_UTRANCTRL_UTRAN_MODE_ENUM_UINT8:当前的UTRAN模式
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年7月12日
-   作    者   : w00167002
-   修改内容   : 新建函数
- 2.日    期   : 2012年8月14日
-   作    者   : w00176964
-   修改内容   : 根据UTRAN的切换模式获取工作模式
- 3.日    期   : 2012年12月25日
-   作    者   : s00217060
-   修改内容   : for DSDA GUNAS C CORE:平台接入技术能力只支持W/TD中的一个时，
-                UtranMode为TDD或FDD不变，两者都不支持时为BUTT
-*****************************************************************************/
 NAS_UTRANCTRL_UTRAN_MODE_ENUM_UINT8 NAS_UTRANCTRL_GetCurrUtranMode(VOS_VOID)
 {
     /* !!获取当前的UTRAN模式,如果外部模块调用需要确保为驻留状态,否则可能会不准确 */
@@ -674,21 +441,7 @@ NAS_UTRANCTRL_UTRAN_MODE_ENUM_UINT8 NAS_UTRANCTRL_GetCurrUtranMode(VOS_VOID)
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_GetRatModeBasedOnUtranMode
- 功能描述  : 将当前的utran mode值转换成相应的接入技术
- 输入参数  : NAS_UTRANCTRL_UTRAN_MODE_ENUM_UINT8 enUtranMode
- 输出参数  : 无
- 返 回 值  : VOS_RATMODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月2日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_RATMODE_ENUM_UINT32 NAS_UTRANCTRL_GetRatModeBasedOnUtranMode(
     NAS_UTRANCTRL_UTRAN_MODE_ENUM_UINT8 enUtranMode
 )
@@ -718,22 +471,7 @@ VOS_RATMODE_ENUM_UINT32 NAS_UTRANCTRL_GetRatModeBasedOnUtranMode(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_GetUtranTddCsSmcNeededFlg
- 功能描述  : 获取UTRANCTRL中保存的UTRAN TDD模式下是否需要检测CS SMC流程
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE: UTRAN TDD模式下需要检测CS SMC流程
-             VOS_FALSE:UTRAN TDD模式下不需要检测CS SMC流程
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年11月18日
-   作    者   : w00167002
-   修改内容   : 新建函数
-
-*****************************************************************************/
 VOS_UINT8 NAS_UTRANCTRL_GetUtranTddCsSmcNeededFlg(VOS_VOID)
 {
 #if (FEATURE_ON == FEATURE_UE_MODE_TDS)
@@ -749,22 +487,7 @@ VOS_UINT8 NAS_UTRANCTRL_GetUtranTddCsSmcNeededFlg(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_GetUtranTddPsSmcNeededFlg
- 功能描述  : 获取UTRANCTRL中保存的UTRAN TDD模式下是否需要检测PS SMC流程
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE: UTRAN TDD模式下需要检测PS SMC流程
-             VOS_FALSE:UTRAN TDD模式下不需要检测PS SMC流程
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年11月18日
-   作    者   : w00167002
-   修改内容   : 新建函数
-
-*****************************************************************************/
 VOS_UINT8 NAS_UTRANCTRL_GetUtranTddPsSmcNeededFlg(VOS_VOID)
 {
 #if (FEATURE_ON == FEATURE_UE_MODE_TDS)
@@ -779,22 +502,7 @@ VOS_UINT8 NAS_UTRANCTRL_GetUtranTddPsSmcNeededFlg(VOS_VOID)
 #endif    
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_IsUtranCsSmcNeeded
- 功能描述  : 获取UTRANCTRL中保存的UTRAN TDD模式下是否需要检测CS SMC流程
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE: UTRAN 模式下需要检测CS SMC流程
-             VOS_FALSE:UTRAN 模式下不需要检测CS SMC流程
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年11月18日
-   作    者   : w00167002
-   修改内容   : 新建函数
-
-*****************************************************************************/
 VOS_UINT8 NAS_UTRANCTRL_IsUtranCsSmcNeeded(VOS_VOID)
 {
     VOS_UINT8                           ucIsUtranTddCsSmcNeeded;
@@ -820,22 +528,7 @@ VOS_UINT8 NAS_UTRANCTRL_IsUtranCsSmcNeeded(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_IsUtranPsSmcNeeded
- 功能描述  : 获取UTRANCTRL中保存的UTRAN TDD模式下是否需要检测PS SMC流程
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE: UTRAN 模式下需要检测PS SMC流程
-             VOS_FALSE:UTRAN 模式下不需要检测PS SMC流程
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年11月18日
-   作    者   : w00167002
-   修改内容   : 新建函数
-
-*****************************************************************************/
 VOS_UINT8 NAS_UTRANCTRL_IsUtranPsSmcNeeded(VOS_VOID)
 {
     VOS_UINT8                           ucIsUtranTddPsSmcNeeded;
@@ -862,21 +555,7 @@ VOS_UINT8 NAS_UTRANCTRL_IsUtranPsSmcNeeded(VOS_VOID)
 
 
 #if (FEATURE_ON == FEATURE_UE_MODE_TDS)
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_SetCurrUtranMode
- 功能描述  : 设置UTRANCTRL中保存的UTRAN模式
- 输入参数  : UTRAN模式
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年7月12日
-   作    者   : w00167002
-   修改内容   : 新建函数
-
-*****************************************************************************/
 VOS_VOID NAS_UTRANCTRL_SetCurrUtranMode(
     NAS_UTRANCTRL_UTRAN_MODE_ENUM_UINT8 enUtranMode
 )
@@ -887,21 +566,7 @@ VOS_VOID NAS_UTRANCTRL_SetCurrUtranMode(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_SetUtranTddCsSmcNeededFlg
- 功能描述  : 设置UTRANCTRL中保存的UTRAN TDD模式下是否需要检测CS SMC流程
- 输入参数  : ucIsUtranTddSmcNeeded
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年11月18日
-   作    者   : w00167002
-   修改内容   : 新建函数
-
-*****************************************************************************/
 VOS_VOID NAS_UTRANCTRL_SetUtranTddCsSmcNeededFlg(
     VOS_UINT8                           ucIsUtranTddCsSmcNeeded
 )
@@ -911,21 +576,7 @@ VOS_VOID NAS_UTRANCTRL_SetUtranTddCsSmcNeededFlg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_SetUtranTddPsSmcNeededFlg
- 功能描述  : 设置UTRANCTRL中保存的UTRAN TDD模式下是否需要检测PS SMC流程
- 输入参数  : ucIsUtranTddSmcNeeded
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年11月18日
-   作    者   : w00167002
-   修改内容   : 新建函数
-
-*****************************************************************************/
 VOS_VOID NAS_UTRANCTRL_SetUtranTddPsSmcNeededFlg(
     VOS_UINT8                           ucIsUtranTddPsSmcNeeded
 )
@@ -936,21 +587,7 @@ VOS_VOID NAS_UTRANCTRL_SetUtranTddPsSmcNeededFlg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_SetSwithOnPlmnSearchFlag
- 功能描述  : 设置UTRANCTRL模块中是否为开机搜网场景
- 输入参数  : ucSwitchOnPlmnSearchFlag - 是否是开机搜网
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年11月25日
-   作    者   : z00161729
-   修改内容   : 开机搜网优化项目修改
-
-*****************************************************************************/
 VOS_VOID NAS_UTRANCTRL_SetSwithOnPlmnSearchFlag(
     VOS_UINT8                           ucSwitchOnPlmnSearchFlag
 )
@@ -959,21 +596,7 @@ VOS_VOID NAS_UTRANCTRL_SetSwithOnPlmnSearchFlag(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_GetSwithOnPlmnSearchFlag
- 功能描述  : 获取UTRANCTRL模块中是否为开机搜网场景标识
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 开机搜网标识
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年11月25日
-   作    者   : z00161729
-   修改内容   : 开机搜网优化项目修改
-
-*****************************************************************************/
 VOS_UINT8 NAS_UTRANCTRL_GetSwithOnPlmnSearchFlag(VOS_VOID)
 {
     return NAS_UTRANCTRL_GetUtranCtrlCtx()->stMainCtrlInfo.ucSwitchOnPlmnSearchFlag;
@@ -982,21 +605,7 @@ VOS_UINT8 NAS_UTRANCTRL_GetSwithOnPlmnSearchFlag(VOS_VOID)
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_SetReplaceMmcMsgFlg
- 功能描述  : 设置UTRANCTRL模块中替换MMC消息的标记
- 输入参数  : ucReplaceFlg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年8月8日
-   作    者   : w00176964
-   修改内容   : 新建函数
-
-*****************************************************************************/
 VOS_VOID NAS_UTRANCTRL_SetReplaceMmcMsgFlg(
     VOS_UINT8                           ucReplaceFlg
 )
@@ -1004,61 +613,19 @@ VOS_VOID NAS_UTRANCTRL_SetReplaceMmcMsgFlg(
     NAS_UTRANCTRL_GetUtranCtrlCtx()->stMainCtrlInfo.ucReplaceMmcMsgFlg = ucReplaceFlg;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_GetReplaceMmcMsgFlg
- 功能描述  : 获取UTRANCTRL模块中替换MMC消息的标记
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : UTRANCTRL模块中替换MMC消息的标记
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年8月8日
-   作    者   : w00176964
-   修改内容   : 新建函数
-
-*****************************************************************************/
 VOS_UINT8 NAS_UTRANCTRL_GetReplaceMmcMsgFlg(VOS_VOID)
 {
     return (NAS_UTRANCTRL_GetUtranCtrlCtx()->stMainCtrlInfo.ucReplaceMmcMsgFlg);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_GetPreUtranMode
- 功能描述  : 获取UTRANCTRL中保存的上次发给RRC的UTRAN模式
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : UTRANCTRL中保存的UTRAN模式
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年7月12日
-   作    者   : w00167002
-   修改内容   : 新建函数
-
-*****************************************************************************/
 NAS_UTRANCTRL_UTRAN_MODE_ENUM_UINT8 NAS_UTRANCTRL_GetPreUtranMode(VOS_VOID)
 {
     return NAS_UTRANCTRL_GetUtranCtrlCtx()->stMsCfgInfo.stCustomCfg.enPreUtranMode;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_SetPreUtranMode
- 功能描述  : 设置UTRANCTRL中保存的上次发给RRC的UTRAN模式
- 输入参数  : UTRAN模式
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年7月12日
-   作    者   : w00167002
-   修改内容   : 新建函数
-
-*****************************************************************************/
 VOS_VOID NAS_UTRANCTRL_SetPreUtranMode(
     NAS_UTRANCTRL_UTRAN_MODE_ENUM_UINT8 enUtranMode
 )
@@ -1068,80 +635,25 @@ VOS_VOID NAS_UTRANCTRL_SetPreUtranMode(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_GetCurFsmAddr
- 功能描述  : 获取当前状态机地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 当前状态机地址
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月29日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_UTRANCTRL_FSM_CTX_STRU* NAS_UTRANCTRL_GetCurFsmAddr(VOS_VOID)
 {
     return &(NAS_UTRANCTRL_GetUtranCtrlCtx()->stCurFsm);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_GetCurFsmDesc
- 功能描述  : 获取当前状态机表的地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 当前状态机表的地址
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年7月19日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_FSM_DESC_STRU* NAS_UTRANCTRL_GetCurFsmDesc(VOS_VOID)
 {
     return (NAS_UTRANCTRL_GetUtranCtrlCtx()->stCurFsm.pstFsmDesc);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_GetCurrEntryMsgAddr
- 功能描述  : 获取当前状态机入口消息的地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 当前状态机入口消息的地址
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年7月19日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-*****************************************************************************/
 NAS_UTRANCTRL_ENTRY_MSG_STRU* NAS_UTRANCTRL_GetCurrEntryMsgAddr(VOS_VOID)
 {
     return &(NAS_UTRANCTRL_GetUtranCtrlCtx()->stCurFsm.stEntryMsg);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_GetCurrFsmId
- 功能描述  : 获取当前状态机的ID
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 当前状态机的ID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年7月19日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_UTRANCTRL_FSM_ID_ENUM_UINT32 NAS_UTRANCTRL_GetCurrFsmId(VOS_VOID)
 {
     return (NAS_UTRANCTRL_GetUtranCtrlCtx()->stCurFsm.enFsmId);
@@ -1149,41 +661,13 @@ NAS_UTRANCTRL_FSM_ID_ENUM_UINT32 NAS_UTRANCTRL_GetCurrFsmId(VOS_VOID)
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_GetCachMsgBufferAddr
- 功能描述  : 获取当前的缓存消息地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : NAS UTRANCTRL缓存消息队列
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年8月7日
-   作    者   : W00176964
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_UTRANCTRL_MSG_QUEUE_STRU* NAS_UTRANCTRL_GetCachMsgBufferAddr(VOS_VOID)
 {
     return &(NAS_UTRANCTRL_GetUtranCtrlCtx()->stBufferEntryMsgQueue);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_ClearCacheMsg
- 功能描述  : 清除指定的缓存消息
- 输入参数  : ulEventType:清除需求缓存的消息类型
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年11月05日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_UTRANCTRL_ClearCacheMsg(
     VOS_UINT32                          ulEventType
 )
@@ -1234,21 +718,7 @@ VOS_VOID NAS_UTRANCTRL_ClearCacheMsg(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_InitCachBufferMsgQueue
- 功能描述  : 初始化外部队列消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年8月8日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_UTRANCTRL_InitCachBufferMsgQueue( VOS_VOID )
 {
     NAS_UTRANCTRL_MSG_QUEUE_STRU       *pstBufferMsgQueue;
@@ -1266,21 +736,7 @@ VOS_VOID NAS_UTRANCTRL_InitCachBufferMsgQueue( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_GetNextCachBufferMsg
- 功能描述  : 获取下一条可用的外部消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 内部消息队列的指针
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年8月8日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID* NAS_UTRANCTRL_GetNextCachBufferMsg( VOS_VOID )
 {
     NAS_UTRANCTRL_MSG_QUEUE_STRU       *pstBufferMsgQueue;
@@ -1309,25 +765,7 @@ VOS_VOID* NAS_UTRANCTRL_GetNextCachBufferMsg( VOS_VOID )
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_SaveCacheMsgInMsgQueue
- 功能描述  : 将缓存消息保存的缓存内存池中
- 输入参数  : ulEventType:消息ID+PID
-             pMsg      :消息内容
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月6日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2012年9月15日
-    作    者   : w00167002
-    修改内容   : 如果消息长度超过了缓存的长度，则不保存, 防止数组越界
-
-*****************************************************************************/
 VOS_VOID  NAS_UTRANCTRL_SaveCacheMsgInMsgQueue(
     VOS_UINT32                          ulEventType,
     VOS_VOID                           *pstMsg
@@ -1369,43 +807,14 @@ VOS_VOID  NAS_UTRANCTRL_SaveCacheMsgInMsgQueue(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_GetCurrFsmEventType
- 功能描述  : 获取当前状态机的消息类型
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 当前状态机的消息类型
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年7月19日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_GetCurrFsmEventType(VOS_VOID)
 {
     return (NAS_UTRANCTRL_GetUtranCtrlCtx()->stCurFsm.stEntryMsg.ulEventType);
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_SaveBufferedSndUtranReqMsg
- 功能描述  : 保存缓存的发送给W/TD的请求消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012-08-6
-    作    者   : W00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2012年9月15日
-    作    者   : w00167002
-    修改内容   : 如果消息长度超过了缓存的长度，则不保存, 防止数组越界
-*****************************************************************************/
+
 VOS_VOID NAS_UTRANCTRL_SaveBufferedSndUtranReqMsg(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1445,19 +854,7 @@ VOS_VOID NAS_UTRANCTRL_SaveBufferedSndUtranReqMsg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_ClearBufferedSndUtranReqMsg
- 功能描述  : 清空缓存的发送给UTRAN的请求消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012-08-6
-    作    者   : W00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_VOID NAS_UTRANCTRL_ClearBufferedSndUtranReqMsg(VOS_VOID)
 {
     NAS_UTRANCTRL_ENTRY_MSG_STRU       *pstEntryMsg  = VOS_NULL_PTR;
@@ -1469,40 +866,13 @@ VOS_VOID NAS_UTRANCTRL_ClearBufferedSndUtranReqMsg(VOS_VOID)
     PS_MEM_SET(pstEntryMsg, (VOS_UINT8)0x00, sizeof(NAS_UTRANCTRL_ENTRY_MSG_STRU));
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_GetBufferedSndUtranReqMsgAddr
- 功能描述  : 获取状态机缓存的发送给UTRAN的请求消息地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 缓存的发送给UTRAN的请求消息地址
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012-08-6
-    作    者   : W00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 NAS_UTRANCTRL_ENTRY_MSG_STRU* NAS_UTRANCTRL_GetBufferedSndUtranReqMsgAddr(VOS_VOID)
 {
     return &(NAS_UTRANCTRL_GetUtranCtrlCtx()->stMainCtrlInfo.stBufferMmcSndUtranMsg);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_GetBufferedPlmnSearchReqType
- 功能描述  : 获取状态机缓存的搜网请求类型
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 缓存的搜网请求类型
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012-08-15
-    作    者   : W00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2012-08-24
-    作    者   : W00167002
-    修改内容   : 取缓存的消息发送PID是WUEPS_PID_MMC，而不是WRR
-*****************************************************************************/
+
 VOS_UINT32 NAS_UTRANCTRL_GetBufferedPlmnSearchReqType(VOS_VOID)
 {
     RRMM_PLMN_SEARCH_REQ_STRU           stPlmnSearchReqMsg;
@@ -1524,19 +894,7 @@ VOS_UINT32 NAS_UTRANCTRL_GetBufferedPlmnSearchReqType(VOS_VOID)
     return stPlmnSearchReqMsg.ulSearchType;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_GetSearchedSpecTdMccFlg
- 功能描述  : 获取搜到指定td的MCC的标记
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT8:搜到指定TD的MCC的标记
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012-08-6
-    作    者   : W00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_UINT8 NAS_UTRANCTRL_GetSearchedSpecTdMccFlg(VOS_VOID)
 {
     return (NAS_UTRANCTRL_GetUtranCtrlCtx()->stPlmnSearchCtrl.ucSearchedSpecTdMccFlg);
@@ -1544,62 +902,19 @@ VOS_UINT8 NAS_UTRANCTRL_GetSearchedSpecTdMccFlg(VOS_VOID)
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_GetSpecTdMccListNum
- 功能描述  : 获取定制的TD国家码列表个数
- 输入参数  : 无
- 输出参数  : 定制的国家码列表个数
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年8月10日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8   NAS_UTRANCTRL_GetSpecTdMccListNum(VOS_VOID)
 {
     return (NAS_UTRANCTRL_GetUtranCtrlCtx()->stMsCfgInfo.stCustomCfg.stUtranModeAutoSwitch.ucTdMccListNum);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_GetSpecTdMccList
- 功能描述  : 获取定制的TD国家码列表
- 输入参数  : 无
- 输出参数  : pulMcc 定制的TD国家码列表
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年8月10日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32* NAS_UTRANCTRL_GetSpecTdMccList(VOS_VOID)
 {
     return NAS_UTRANCTRL_GetUtranCtrlCtx()->stMsCfgInfo.stCustomCfg.stUtranModeAutoSwitch.aulTdMccList;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_SetCurUtranSwitchMode
- 功能描述  : 设置当前UTRAN的切换模式
- 输入参数  : ucSwitchMode:UTRAND的切换模式
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012-08-6
-    作    者   : W00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2012-08-10
-    作    者   : W00176964
-    修改内容   : 修改函数名
-*****************************************************************************/
+
 VOS_VOID  NAS_UTRANCTRL_SetCurUtranSwitchMode(
     VOS_UINT8                               ucSwitchMode
 )
@@ -1607,41 +922,13 @@ VOS_VOID  NAS_UTRANCTRL_SetCurUtranSwitchMode(
     (NAS_UTRANCTRL_GetUtranCtrlCtx()->stMsCfgInfo.stCustomCfg.enCurUtranSwitchMode) = ucSwitchMode;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_GetUePcRecurFlg
- 功能描述  : 获取当前的UE侧的PC回放标志
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 当前的UE侧的PC回放标志
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年08月16日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 NAS_UTRANCTRL_GetUePcRecurFlg(VOS_VOID)
 {
     return (NAS_UTRANCTRL_GetUtranCtrlCtx()->stMaintainInfo.stUeMaintainInfo.ucUeSndPcRecurFlg);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_SetUePcRecurFlg
- 功能描述  : 更新UE的PC回放使能标志
- 输入参数  : ucUePcRecurFlg: UE侧的PC回放标志
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年08月16日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_UTRANCTRL_SetUePcRecurFlg(
     VOS_UINT8                           ucUePcRecurFlg
 )
@@ -1650,105 +937,34 @@ VOS_VOID NAS_UTRANCTRL_SetUePcRecurFlg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_GetCurUtranSwitchMode
- 功能描述  : 获取UTRAN的切换模式
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT8:UTRAN的切换模式
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012-08-6
-    作    者   : W00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2012-08-14
-    作    者   : W00176964
-    修改内容   : 修改函数名
-*****************************************************************************/
+
 VOS_UINT8 NAS_UTRANCTRL_GetCurUtranSwitchMode(VOS_VOID)
 {
     return (NAS_UTRANCTRL_GetUtranCtrlCtx()->stMsCfgInfo.stCustomCfg.enCurUtranSwitchMode);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_InitFsmCtx_Main
- 功能描述  : 初始化主状态机上下文
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月7日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 VOS_VOID  NAS_UTRANCTRL_InitFsmCtx_Main(VOS_VOID)
 {
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_InitFsmCtx_SwitchOn
- 功能描述  : 初始化开机状态机上下文
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月7日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 VOS_VOID  NAS_UTRANCTRL_InitFsmCtx_SwitchOn(VOS_VOID)
 {
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_InitFsmCtx_PowerOff
- 功能描述  : 初始化关机状态机上下文
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月7日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 VOS_VOID  NAS_UTRANCTRL_InitFsmCtx_PowerOff(VOS_VOID)
 {
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_InitFsmCtx_PlmnSelection
- 功能描述  : 初始化搜网状态机上下文
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月7日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 VOS_VOID  NAS_UTRANCTRL_InitFsmCtx_PlmnSelection(VOS_VOID)
 {
@@ -1757,42 +973,14 @@ VOS_VOID  NAS_UTRANCTRL_InitFsmCtx_PlmnSelection(VOS_VOID)
     NAS_UTRANCTRL_SetRcvMmcAbortFsmReqMsgFlg_PlmnSelection(VOS_FALSE);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_InitFsmCtx_Syscfg
- 功能描述  : 初始化syscfg状态机上下文
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月7日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 VOS_VOID  NAS_UTRANCTRL_InitFsmCtx_Syscfg(VOS_VOID)
 {
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_InitFsmCtx_ModeChange
- 功能描述  : 初始化模式改变状态机上下文
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月7日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 VOS_VOID  NAS_UTRANCTRL_InitFsmCtx_ModeChange(VOS_VOID)
 {
@@ -1801,19 +989,7 @@ VOS_VOID  NAS_UTRANCTRL_InitFsmCtx_ModeChange(VOS_VOID)
 }
 
 /* 搜网状态机上下文操作函数 */
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_SetAbortFlg_PlmnSelection
- 功能描述  : 设置状态机打断标记
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT8:状态机打断标记
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012-08-6
-    作    者   : W00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_VOID NAS_UTRANCTRL_SetAbortFlg_PlmnSelection(
     VOS_UINT8       ucAbortFlg
 )
@@ -1823,37 +999,13 @@ VOS_VOID NAS_UTRANCTRL_SetAbortFlg_PlmnSelection(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_GetAbortFlg_PlmnSelection
- 功能描述  : 获取状态机打断标记
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT8:状态机打断标记
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012-08-6
-    作    者   : W00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_UINT8 NAS_UTRANCTRL_GetAbortFlg_PlmnSelection(VOS_VOID)
 {
     return  (NAS_UTRANCTRL_GetUtranCtrlCtx()->stCurFsm.unFsmCtx.stPlmnSelectionCtx.ucAbortFlg);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_SetRcvMmcAbortFsmReqMsgFlg_PlmnSelection
- 功能描述  : 设置状态机打断标记
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT8:状态机打断标记
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2015-12-17
-    作    者   : w00167002
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_VOID NAS_UTRANCTRL_SetRcvMmcAbortFsmReqMsgFlg_PlmnSelection(
     VOS_UINT8                           ucRcvMmcAbortFsmReqMsgFlg
 )
@@ -1863,42 +1015,14 @@ VOS_VOID NAS_UTRANCTRL_SetRcvMmcAbortFsmReqMsgFlg_PlmnSelection(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_GetRcvMmcAbortFsmReqMsgFlg_PlmnSelection
- 功能描述  : 获取状态机打断标记
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT8:状态机打断标记
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2015-12-17
-    作    者   : w00167002
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_UINT8 NAS_UTRANCTRL_GetRcvMmcAbortFsmReqMsgFlg_PlmnSelection(VOS_VOID)
 {
     return  (NAS_UTRANCTRL_GetUtranCtrlCtx()->stCurFsm.unFsmCtx.stPlmnSelectionCtx.ucRcvMmcAbortFsmReqMsgFlg);
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_SaveBufferUtranSndMmcMsg
- 功能描述  : 保存UTRAN模块缓存的W/TD发给MMC的消息
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012-08-6
-    作    者   : W00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2012年9月15日
-    作    者   : w00167002
-    修改内容   : 如果消息长度超过了缓存的长度，则不保存, 防止数组越界
-*****************************************************************************/
+
 VOS_VOID NAS_UTRANCTRL_SaveBufferUtranSndMmcMsg(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1943,77 +1067,26 @@ VOS_VOID NAS_UTRANCTRL_SaveBufferUtranSndMmcMsg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_GetBufferUtranSndMmcMsgAddr
- 功能描述  : 获取UTRAN模块缓存的W/TD发给MMC的消息地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : UTRAN模块缓存的W/TD发给MMC的消息地址
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012-08-6
-    作    者   : W00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 NAS_UTRANCTRL_ENTRY_MSG_STRU* NAS_UTRANCTRL_GetBufferUtranSndMmcMsgAddr(VOS_VOID)
 {
     return &(NAS_UTRANCTRL_GetUtranCtrlCtx()->stMainCtrlInfo.stBufferUtranSndMmcMsg);
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_GetUtranModeAutoSwtich
- 功能描述  : 获取存储当前UTRAN MODE自动切换的NVIM内容
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 当前状态机表的地址
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年8月9日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_UTRANCTRL_UTRAN_MODE_AUTO_SWITCH_STRU* NAS_UTRANCTRL_GetUtranModeAutoSwtich(VOS_VOID)
 {
     return &(NAS_UTRANCTRL_GetUtranCtrlCtx()->stMsCfgInfo.stCustomCfg.stUtranModeAutoSwitch);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_GetWaitSlaveModeUtranModeCnfFlg_ModeChange
- 功能描述  : 获取是否已经收到Gass的模式变更回复标记
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE：需要等待从模的模式变更回复
-              VOS_FALSE：不需要等待从模的模式变更回复
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012-8-8
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_UINT8  NAS_UTRANCTRL_GetWaitSlaveModeUtranModeCnfFlg_ModeChange(VOS_VOID)
 {
     return (NAS_UTRANCTRL_GetUtranCtrlCtx()->stCurFsm.unFsmCtx.stModeChangeCtx.ucWaitSlaveModeUtranModeCnfFlg);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_SetWaitSlaveModeUtranModeCnfFlg_ModeChange
- 功能描述  : 设置是否需要等待从模的模式变更回复标记
- 输入参数  : ucWaitSlaveModeUtranModeCnfFlg:是否需要等待从模的模式变更回复标记
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012-8-8
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_VOID  NAS_UTRANCTRL_SetWaitSlaveModeUtranModeCnfFlg_ModeChange(
     VOS_UINT8                           ucWaitSlaveModeUtranModeCnfFlg
 )
@@ -2021,19 +1094,7 @@ VOS_VOID  NAS_UTRANCTRL_SetWaitSlaveModeUtranModeCnfFlg_ModeChange(
     (NAS_UTRANCTRL_GetUtranCtrlCtx()->stCurFsm.unFsmCtx.stModeChangeCtx.ucWaitSlaveModeUtranModeCnfFlg) |= ucWaitSlaveModeUtranModeCnfFlg;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_ClearWaitSlaveUtranModeCnfFlg_ModeChange
- 功能描述  : 清除等待模式变更回复标志
- 输入参数  : ucWaitUtranModeCnfFlg:是否需要等待模式变更回复标记
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012-8-8
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_VOID  NAS_UTRANCTRL_ClearWaitSlaveUtranModeCnfFlg_ModeChange(
     VOS_UINT8                           ucWaitUtranModeCnfFlg
 )
@@ -2051,19 +1112,7 @@ VOS_VOID  NAS_UTRANCTRL_ClearWaitSlaveUtranModeCnfFlg_ModeChange(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_ClearAllWaitUtranModeCnfFlg_ModeChange
- 功能描述  : 清除等待模式变更回复标志
- 输入参数  : ucWaitUtranModeCnfFlg:是否需要等待模式变更回复标记
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012-8-8
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_VOID  NAS_UTRANCTRL_ClearAllWaitAsUtranModeCnfFlg_ModeChange(VOS_VOID)
 {
     /* 如果当前状态机不是MODE CHANGE状态机 */
@@ -2079,19 +1128,7 @@ VOS_VOID  NAS_UTRANCTRL_ClearAllWaitAsUtranModeCnfFlg_ModeChange(VOS_VOID)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_SetSearchedSpecTdMccFlg
- 功能描述  : 设置当前搜到的指定TD的MCC的标记
- 输入参数  : ucFlg:当前搜到的指定TD的MCC的标记
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012-08-6
-    作    者   : W00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_VOID  NAS_UTRANCTRL_SetSearchedSpecTdMccFlg(
     VOS_UINT8       ucFlg
 )

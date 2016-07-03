@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2015, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafMtaModemInfoQuery.c
-  版 本 号   : 初稿
-  作    者   : zwx247453
-  生成日期   : 2015年10月19日
-  最近修改   :
-  功能描述   : MTA模块处理AT侧下发查询功能
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年10月19日
-    作    者   : zwx247453
-    修改内容   : Network Monitor新增
-
-******************************************************************************/
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -49,23 +32,7 @@ extern "C" {
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvQryWrrAutotestReq
- 功能描述  : MTA处理at命令^WAS
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-  2.日    期   : 2013年3月18日
-    作    者   : s00217060
-    修改内容   : DTS2013031800705：关机状态下发CWAS回复ERROR
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvQryWrrAutotestReq(
     VOS_VOID                           *pMsg
 )
@@ -125,23 +92,7 @@ VOS_VOID TAF_MTA_RcvQryWrrAutotestReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvQryWrrCellInfoReq
- 功能描述  : MTA处理at命令^CELLINFO查询小区信息
- 输入参数  : void *pMsg
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-  2.日    期   : 2013年3月18日
-    作    者   : s00217060
-    修改内容   : DTS2013031800705：关机状态下发CWAS回复ERROR
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvQryWrrCellInfoReq(
     VOS_VOID                           *pMsg
 )
@@ -203,23 +154,7 @@ VOS_VOID TAF_MTA_RcvQryWrrCellInfoReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvQryWrrMeanrptReq
- 功能描述  : MTA处理^MEANRPT命令
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-  2.日    期   : 2013年3月18日
-    作    者   : s00217060
-    修改内容   : DTS2013031800705：关机状态下发CWAS回复ERROR
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvQryWrrMeanrptReq(
     VOS_VOID                           *pMsg
 )
@@ -276,21 +211,7 @@ VOS_VOID TAF_MTA_RcvQryWrrMeanrptReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SndWrrQryAutotestReqMsg
- 功能描述  : 给as发送mntn查询消息
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月31日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_SndWrrQryAutotestReqMsg(
     MTA_WRR_AUTOTEST_PARA_STRU         *pAutotestQryPara
 )
@@ -330,21 +251,7 @@ VOS_UINT32 TAF_MTA_SndWrrQryAutotestReqMsg(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SndWrrQryCellinfoReqMsg
- 功能描述  : 给as发送Cellinfo查询消息
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月31日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_SndWrrQryCellinfoReqMsg(
     VOS_UINT32                          ulSetCellInfo
 )
@@ -381,21 +288,7 @@ VOS_UINT32 TAF_MTA_SndWrrQryCellinfoReqMsg(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SndWrrQryMeanrptReqMsg
- 功能描述  : 给as发送查询meanrpt查询消息
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月31日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_SndWrrQryMeanrptReqMsg( VOS_VOID )
 {
     VOS_UINT32                          ulLength;
@@ -428,21 +321,7 @@ VOS_UINT32 TAF_MTA_SndWrrQryMeanrptReqMsg( VOS_VOID )
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvWrrAutotestQryCnf
- 功能描述  : MTA收到was回复的MNTN消息
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvWrrAutotestQryCnf(
     VOS_VOID                           *pWrrCnfMsg
 )
@@ -487,21 +366,7 @@ VOS_VOID TAF_MTA_RcvWrrAutotestQryCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvWrrCellInfoQryCnf
- 功能描述  : MTA收到WAS回复的CELLINFO信息
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvWrrCellInfoQryCnf(
     VOS_VOID                           *pWrrCnfMsg
 )
@@ -545,21 +410,7 @@ VOS_VOID TAF_MTA_RcvWrrCellInfoQryCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvWrrMeanrptQryCnf
- 功能描述  : 收到was回复的MEANRPT信息
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvWrrMeanrptQryCnf(
     VOS_VOID                           *pWrrCnfMsg
 )
@@ -602,21 +453,7 @@ VOS_VOID TAF_MTA_RcvWrrMeanrptQryCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvTiReqAutotestQryExpired
- 功能描述  : CWAS命令执行超时
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvTiReqAutotestQryExpired(
     VOS_VOID                           *pMsg
 )
@@ -652,21 +489,7 @@ VOS_VOID TAF_MTA_RcvTiReqAutotestQryExpired(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvTiReqCellInfoQryExpired
- 功能描述  : ^CELLINFO执行超时处理
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvTiReqCellInfoQryExpired(
     VOS_VOID                           *pMsg
 )
@@ -704,21 +527,7 @@ VOS_VOID TAF_MTA_RcvTiReqCellInfoQryExpired(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvTiReqMeanrptQryExpired
- 功能描述  : ^MEANRPT执行超时处理
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvTiReqMeanrptQryExpired(
     VOS_VOID                           *pMsg
 )
@@ -754,20 +563,7 @@ VOS_VOID TAF_MTA_RcvTiReqMeanrptQryExpired(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvAtTransModeQryReq
- 功能描述  : mta收到ID_AT_MTA_TRANSMODE_QRY_REQ消息处理函数
- 输入参数  : VOS_VOID *pMsg  --消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 日    期   : 2015年7月30日
- 作    者   : lwx277467
- 修改内容   : ^TRANSMODE新增函数
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvAtTransModeQryReq(VOS_VOID *pMsg)
 {
     AT_MTA_MSG_STRU                    *pstTransModeQryReq      = VOS_NULL_PTR;
@@ -825,20 +621,7 @@ VOS_VOID TAF_MTA_RcvAtTransModeQryReq(VOS_VOID *pMsg)
 }
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SndLrrcTransModeQryReq
- 功能描述  : MTA发消息ID_MTA_LRRC_TRANSMODE_QRY_REQ给LRRC查询LTE传输模式
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月30日
-    作    者   : lwx277467
-    修改内容   : 新增^TRANSMODE命令
-*****************************************************************************/
 VOS_VOID TAF_MTA_SndLrrcTransModeQryReq(VOS_VOID)
 {
     VOS_UINT32                           ulLength;
@@ -869,20 +652,7 @@ VOS_VOID TAF_MTA_SndLrrcTransModeQryReq(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SndLrrcTransModeQryCnf
- 功能描述  : MTA收到LTE接入层传输模式查询回复消息处理函数
- 输入参数  : pMsg  -- 消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月30日
-    作    者   : lwx277467
-    修改内容   : 新增^TRANSMODE命令
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvLrrcTransModeQryCnf(VOS_VOID *pMsg)
 {
     TAF_MTA_CMD_BUFFER_STRU             *pstCmdBuf          = VOS_NULL_PTR;
@@ -932,19 +702,7 @@ VOS_VOID TAF_MTA_RcvLrrcTransModeQryCnf(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvTiWaitLrrcTransModeQryExpired
- 功能描述  : 查询LTE传输模式超时的处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-  1.日    期   : 2015年08月04日
-    作    者   : lwx277467
-    修改内容   : 新增函数
-*****************************************************************************/
+
 VOS_VOID TAF_MTA_RcvTiWaitLrrcTransModeQryExpired(
     VOS_VOID                           *pMsg
 )
@@ -982,21 +740,7 @@ VOS_VOID TAF_MTA_RcvTiWaitLrrcTransModeQryExpired(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvAtSetNetMonSCellReq
- 功能描述  : 处理at下发的设置MONSC命令
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月19日
-    作    者   : zwx247453
-    修改内容   : 新建
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvAtSetNetMonSCellReq(
     VOS_VOID                           *pMsg
 )
@@ -1057,21 +801,7 @@ VOS_VOID TAF_MTA_RcvAtSetNetMonSCellReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvAtSetNetMonNCellReq
- 功能描述  : 处理at下发的设置MONNC命令
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月19日
-    作    者   : zwx247453
-    修改内容   : 新建
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvAtSetNetMonNCellReq(
     VOS_VOID                           *pMsg
 )
@@ -1132,21 +862,7 @@ VOS_VOID TAF_MTA_RcvAtSetNetMonNCellReq(
                                     sizeof(AT_APPCTRL_STRU));
    return;
 }
-/*****************************************************************************
- 函 数 名  : TAF_MTA_GetNetMonSndMsgInfo
- 功能描述  : 获取要发送消息的ID 及接收PID
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月19日
-    作    者   : zwx247453
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_GetNetMonSndMsgInfo(
     VOS_UINT32                         *pulMsgName,
     VOS_UINT32                         *pulReceiverPid
@@ -1211,21 +927,7 @@ VOS_UINT32 TAF_MTA_GetNetMonSndMsgInfo(
      return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SndRrcSetNetMonCellReq
- 功能描述  : mta给GUAS发送小区信息查询消息
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月19日
-    作    者   : zwx247453
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_SndRrcSetNetMonCellReq(
     VOS_UINT32                          ulMsgName,
     VOS_UINT32                          ulReceiverPid,
@@ -1263,21 +965,7 @@ VOS_VOID TAF_MTA_SndRrcSetNetMonCellReq(
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SndGasNetMonQryTaReq
- 功能描述  : 向GAS发送请求，获取TA信息
- 输入参数  :
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月19日
-    作    者   : zwx247453
-    修改内容   : 新建
-
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_SndGasNetMonQryTaReq(
     AT_APPCTRL_STRU                    *pstAppCtrl
 )
@@ -1318,21 +1006,7 @@ VOS_UINT32 TAF_MTA_SndGasNetMonQryTaReq(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvGasNetMonTaQryCnf
- 功能描述  : MTA收到GAS ID_MTA_GAS_QRY_TA_CNF消息处理函数
- 输入参数  : VOS_VOID *pMsg  --消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月19日
-    作    者   : zwx247453
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvGasNetMonTaQryCnf(
     VOS_VOID                           *pMsg
 )
@@ -1400,21 +1074,7 @@ VOS_VOID TAF_MTA_RcvGasNetMonTaQryCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvGasNetMonCellQryCnf
- 功能描述  : MTA收到GAS ID_RRC_MTA_MON_CELL_INFO_CNF消息处理函数
- 输入参数  : VOS_VOID *pMsg  --消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月19日
-    作    者   : zwx247453
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvGasNetMonCellQryCnf(
     VOS_VOID                           *pMsg
 )
@@ -1528,21 +1188,7 @@ VOS_VOID TAF_MTA_RcvGasNetMonCellQryCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvWrrNetMonCellQryCnf
- 功能描述  : MTA收到WRR ID_RRC_MTA_MON_CELL_INFO_CNF消息处理函数
- 输入参数  : VOS_VOID *pMsg  --消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月19日
-    作    者   : zwx247453
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvWrrNetMonCellQryCnf(
     VOS_VOID                           *pMsg
 )
@@ -1624,21 +1270,7 @@ VOS_VOID TAF_MTA_RcvWrrNetMonCellQryCnf(
 }
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SndLrrcSetNetMonCellReq
- 功能描述  : mta给Lrrc发送小区信息查询消息
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月19日
-    作    者   : zwx247453
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_SndLrrcSetNetMonCellReq(
     VOS_UINT32                          ulMsgName,
     VOS_UINT32                          ulReceiverPid,
@@ -1670,21 +1302,7 @@ VOS_VOID TAF_MTA_SndLrrcSetNetMonCellReq(
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvLrrcNetMonCellQryCnf
- 功能描述  : MTA收到LTE ID_LRRC_MTA_NETMON_CELL_QRY_CNF消息处理函数
- 输入参数  : VOS_VOID *pMsg  --消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月19日
-    作    者   : zwx247453
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvLrrcNetMonCellQryCnf(
     VOS_VOID                            *pMsg
 )
@@ -1768,21 +1386,7 @@ VOS_VOID TAF_MTA_RcvLrrcNetMonCellQryCnf(
 #endif
 
 #if (FEATURE_ON == FEATURE_UE_MODE_TDS)
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvTrrcNetMonCellQryCnf
- 功能描述  : MTA收到TRRC ID_RRC_MTA_NETMON_CELL_QRY_CNF消息处理函数
- 输入参数  : VOS_VOID *pMsg  --消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月19日
-    作    者   : zwx247453
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvTrrcNetMonCellQryCnf(
     VOS_VOID                           *pMsg
 )
@@ -1863,20 +1467,7 @@ VOS_VOID TAF_MTA_RcvTrrcNetMonCellQryCnf(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvTiWaitGrrNetMonTaQryExpired
- 功能描述  : 查询TA消息超时处理
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-  1.日    期   : 2015年10月19日
-    作    者   : zwx247453
-    修改内容   : 新增函数
 
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvTiWaitGrrNetMonTaQryExpired(
     VOS_VOID                            *pMsg
 )
@@ -1915,20 +1506,7 @@ VOS_VOID TAF_MTA_RcvTiWaitGrrNetMonTaQryExpired(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvTiWaitRrcNetMonSCellQryExpired
- 功能描述  : MONSC查询服务小区信息超时的处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-  1.日    期   : 2015年10月19日
-    作    者   : zwx247453
-    修改内容   : 新增函数
 
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvTiWaitRrcNetMonSCellQryExpired(
     VOS_VOID                           *pMsg
 )
@@ -1960,20 +1538,7 @@ VOS_VOID TAF_MTA_RcvTiWaitRrcNetMonSCellQryExpired(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvTiWaitRrcNetMonNCellQryExpired
- 功能描述  : MONNC查询邻区信息超时的处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-  1.日    期   : 2015年10月19日
-    作    者   : zwx247453
-    修改内容   : 新增函数
 
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvTiWaitRrcNetMonNCellQryExpired(
     VOS_VOID                           *pMsg
 )
@@ -2006,19 +1571,7 @@ VOS_VOID TAF_MTA_RcvTiWaitRrcNetMonNCellQryExpired(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvAtQryAfcAndXoInfoReq
- 功能描述  : 查询温补系数的处理
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-  1.日    期   : 2015年12月24日
-    作    者   : c00299064
-    修改内容   : 新增函数
-*****************************************************************************/
+
 VOS_VOID TAF_MTA_RcvAtQryAfcAndXoInfoReq(
     VOS_VOID                           *pMsg
 )
@@ -2054,19 +1607,7 @@ VOS_VOID TAF_MTA_RcvAtQryAfcAndXoInfoReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvTiWaitRcmAfcInfoQryExpired
- 功能描述  : wait rcm afc info cnf超时的处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-  1.日    期   : 2015年12月24日
-    作    者   : c00299064
-    修改内容   : 新增函数
-*****************************************************************************/
+
 VOS_VOID TAF_MTA_RcvTiWaitRcmAfcInfoQryExpired(
     VOS_VOID                           *pMsg
 )
@@ -2098,19 +1639,7 @@ VOS_VOID TAF_MTA_RcvTiWaitRcmAfcInfoQryExpired(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvRcmAfcInfoCnf
- 功能描述  : 收到RCM查询温补系数的CNF的处理
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-  1.日    期   : 2015年12月24日
-    作    者   : c00299064
-    修改内容   : 新增函数
-*****************************************************************************/
+
 VOS_VOID TAF_MTA_RcvRcmAfcInfoCnf(
     VOS_VOID                           *pMsg
 )
@@ -2169,19 +1698,7 @@ VOS_VOID TAF_MTA_RcvRcmAfcInfoCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_GetAfcClkStatus
- 功能描述  : 收到RCM查询温补系数的CNF的AFC CLK STATUS 的处理
- 输入参数  : PHY_MTA_AFC_CLK_STATUS_ENUM_UINT16  enStatus
- 输出参数  : 无
- 返 回 值  : AT_MTA_AFC_CLK_STATUS_ENUM_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史  :
-  1.日    期   : 2015年12月24日
-    作    者   : c00299064
-    修改内容   : 新增函数
-*****************************************************************************/
+
 AT_MTA_AFC_CLK_STATUS_ENUM_UINT32 TAF_MTA_GetAfcClkStatus(PHY_MTA_AFC_CLK_STATUS_ENUM_UINT16  enStatus)
 {
     AT_MTA_AFC_CLK_STATUS_ENUM_UINT32   enAfcClkStatus;

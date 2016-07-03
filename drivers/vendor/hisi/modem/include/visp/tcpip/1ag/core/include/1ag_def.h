@@ -66,7 +66,6 @@
 /*最大MD数*/
 #define OAM_1AG_MAX_MDNUM 8
 /*最大MA数*/
-/* Modified by z00208058/w00207740, 1AG规格扩展, 2012/5/4 */
 #define OAM_1AG_MAX_MANUM 3000
 /*最大MEP数*/
 #define OAM_1AG_MAX_MEPNUM 3000
@@ -176,9 +175,9 @@
 /* LTR 中的 TLV 要用到的宏 */
 #define REPLY_INGRESS_TLV_LENGTH 13
 #define REPLY_EGRESS_TLV_LENGTH 13
-#define INGRESS_PORT_ID_LENGTH 4    /* 应该为4，协议规定必须为lenth-9=portid_len  DTS2011083001954 */
+#define INGRESS_PORT_ID_LENGTH 4
 #define INGRESS_PORT_ID_SUBTYPE 5
-#define EGRESS_PORT_ID_LENGTH 4     /* 应该为4，协议规定必须为lenth-9=portid_len  DTS2011083001954 */
+#define EGRESS_PORT_ID_LENGTH 4
 #define EGRESS_PORT_ID_SUBTYPE 5
 #define REPLY_Y1731INGRESS_TLV_LENGTH 7
 #define REPLY_Y1731EGRESS_TLV_LENGTH 7
@@ -213,7 +212,6 @@ MA,MEP,RMEP是则必须发送备份消息 */
 #define OAM_1AG_MALENGTH_OFFSET 3
 #define OAM_1AG_MANAME_OFFSET   4
 
-/* Add for V2R3C06, by b0177000/z00187940, at 2011-09-29. 修改原因: V2R3C06 Y1731协议CCM报文MEGID格式 */
 #define OAM_Y1731_MEGID_TYPE_ICC      32
 #define OAM_Y1731_MEGID_LEN_ICC       13
 
@@ -468,7 +466,6 @@ typedef enum enOAM_1AG_PKT_DEBUG
     (pstPpiCcmInfo)->usLossDetectTimer = (pstMepInfo)->usLossDetectTimer;\
 }
 
-/* Add for V2R3C06, by z00171897/p00193127, at 2011-10-17. 修改原因: 支持Y1731使能/去使性能检测 */
 /*组装Y1731 PM下发信息*/
 #define PPI_Y1731_COPYPMINFO(pstPpiPMInfo,pstMepInfo)\
 {\
@@ -527,12 +524,7 @@ if (g_pfOAM1AGOutputInfo)               \
 #define OAM_1AG_10TIMERSOLD(x)   ((x) * 120)
 #define OAM_1AG_100TIMERSOLD(x)  ((x) * 12)
 
-/*Added by luogaowei 2013-2-2  DTS2013020403949
-由于Y1731和1AG 功能是独立的，需要共享RMEP信息； 所以表项的下发和 CC探测 两个功能需要分离。
-考虑到其他产品不使用Y1731，需要兼容老功能。
-即 g_ulRmepCCDetectMode 打开情况下 底层对应表项下发不再启动CC探测功能(hert3.3)
-其他产品 在接收RMEP下发后继续启动CC探测功能
-*/
+
 
 #define OAM_1AG_RMEP_NOTIFY     1  /*1AG 表项下发标记*/
 #define OAM_1AG_RMEP_CC_DETECT  2  /*1AG  RMEP CC探测标记*/

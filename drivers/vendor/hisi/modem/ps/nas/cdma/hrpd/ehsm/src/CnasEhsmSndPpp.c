@@ -47,23 +47,7 @@ extern "C"{
 /*lint -save -e958*/
 
 /* To Do: Need to write deifinitions of all functions to send message is PPP */
-/*****************************************************************************
-Function Name   :   CNAS_EHSM_SndPppEhrpdPdnConnReq
-Description     :   Sends ID_CNAS_CTTF_EHRPD_PDN_CONN_REQ message to PPP.
-Input parameters:   VOS_VOID
-Output parameters:  None
-Return Value    :   VOS_VOID
 
-Modify History  :
-1)  Date           : 2015-05-14
-    Author         : K00902809
-    Modify content : Create
-
-2)  日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_SndCttfEhrpdPdnConnReq(
     VOS_UINT8                           ucPdnId
 )
@@ -183,23 +167,7 @@ VOS_VOID CNAS_EHSM_SndCttfEhrpdPdnConnReq(
     return;
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_EHSM_SndCttfEhrpdAttachReq
-Description     :   Sends ID_CNAS_CTTF_EHRPD_ATTACH_REQ message to PPP.
-Input parameters:   VOS_VOID
-Output parameters:  None
-Return Value    :   VOS_VOID
 
-Modify History  :
-1)  Date           : 2015-05-14
-    Author         : K00902809
-    Modify content : Create
-
-2)  日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_SndCttfEhrpdAttachReq(
     VOS_UINT8                                       ucPdnId,
     CNAS_EHSM_ATTACH_REASON_ENUM_UINT32             enAttachReason
@@ -330,23 +298,7 @@ VOS_VOID CNAS_EHSM_SndCttfEhrpdAttachReq(
 }
 
 
-/*****************************************************************************
-Function Name   :   CNAS_EHSM_SndCttfEhrpdPdnDiscReq
-Description     :   Sends ID_CNAS_CTTF_EHRPD_PDN_DISC_REQ message to PPP.
-Input parameters:   VOS_VOID
-Output parameters:  None
-Return Value    :   VOS_VOID
 
-Modify History  :
-1)  Date           : 2015-05-14
-    Author         : y00322978
-    Modify content : Create
-
-2)  日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_SndCttfEhrpdPdnDiscReq(
     VOS_UINT8                           ucPdnId
 )
@@ -380,22 +332,7 @@ VOS_VOID CNAS_EHSM_SndCttfEhrpdPdnDiscReq(
     return;
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_EHSM_SndCttfEhrpdDetachReq
-Description     :   Sends ID_CNAS_CTTF_EHRPD_DETACH_REQ message to PPP.
-Input parameters:   VOS_VOID
-Output parameters:  None
-Return Value    :   VOS_VOID
 
-Modify History  :
-1)  Date           : 2015-05-14
-    Author         : K00902809
-    Modify content : Create
-
-2)  日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_SndCttfEhrpdDetachReq(
     VOS_VOID
 )
@@ -424,25 +361,7 @@ VOS_VOID CNAS_EHSM_SndCttfEhrpdDetachReq(
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_SndCttfEhrpdPdnLocalDiscInd
- 功能描述  : ehsm notify ppp that pdn has disc
- 输入参数  : ulPdnID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_SndCttfEhrpdPdnLocalDiscInd(
     VOS_UINT8                ucPdnId
 )
@@ -473,25 +392,7 @@ VOS_VOID CNAS_EHSM_SndCttfEhrpdPdnLocalDiscInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_SndCttfEhrpdDetachInd
- 功能描述  : ehsm tell cttf that local pdn is all disc
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月30日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_SndCttfEhrpdDetachInd(
     VOS_VOID
 )
@@ -521,21 +422,7 @@ VOS_VOID CNAS_EHSM_SndCttfEhrpdDetachInd(
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_SndCttfEhrpdLinkStatusNotify
- 功能描述  : EHSM Notify CTTF Link Statuas
- 输入参数  : CNAS_CTTF_EHRPD_LINK_STATUS_ENUM_UINT8                  enLinkStatus
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月30日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_SndCttfEhrpdLinkStatusNotify(
     CNAS_CTTF_EHRPD_LINK_STATUS_ENUM_UINT8                  enLinkStatus
 )
@@ -567,21 +454,7 @@ VOS_VOID CNAS_EHSM_SndCttfEhrpdLinkStatusNotify(
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_GetPdnLinkStatus
- 功能描述  : 提供给L2的查询接口，查询链路状态
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : CNAS_CTTF_EHRPD_LINK_STATUS_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月10日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_CTTF_EHRPD_LINK_STATUS_ENUM_UINT8 CNAS_EHSM_GetPdnLinkStatus(VOS_VOID)
 {
     if (VOS_TRUE == CNAS_EHSM_GetAirLinkExistFlag())

@@ -21,7 +21,6 @@
 extern "C"{
 #endif
 
-/*Added by wangbin, for DTS2015102607923 ，解决发送IP报文频繁使用TCPIP_Rand_Safe导致性能恶化问题, 2015/10/24 */
 extern ULONG g_ulIP6UniqueID;
 extern ULONG g_ulNewIp6Id;
 extern UCHAR g_ucIP6SlowTimeoutCount;

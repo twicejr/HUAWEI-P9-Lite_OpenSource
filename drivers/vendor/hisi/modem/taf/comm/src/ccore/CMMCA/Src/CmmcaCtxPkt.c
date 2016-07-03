@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2012, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CmmcaCtxPkt.c
-  版 本 号   : 初稿
-  作    者   : l60609
-  生成日期   : 2014年01月24日
-  最近修改   :
-  功能描述   : CMMCA模块PKT的上下文维护
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年01月24日
-    作    者   : l60609
-    修改内容   : 新生成
-
-******************************************************************************/
 /*****************************************************************************
   1 头文件包含
 *****************************************************************************/
@@ -44,21 +27,7 @@ extern "C" {
 *****************************************************************************/
 
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_InitCtx
- 功能描述  : 初始化PKT相关的上下文
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月23日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_PKT_InitCtx(VOS_VOID)
 {
     VOS_UINT32                          ulIndex;
@@ -100,41 +69,13 @@ VOS_VOID CMMCA_PKT_InitCtx(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_GetCtxAddr
- 功能描述  : 获取PKT上下文地址
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : CMMCA_PKT_CTX_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月23日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CMMCA_PKT_CTX_STRU* CMMCA_PKT_GetCtxAddr(VOS_VOID)
 {
     return &(CMMCA_GetCtxAddr()->stPktCtx);
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_GetPdnEntityAddr
- 功能描述  : 获取PDN实体地址
- 输入参数  : VOS_UINT8                           ucIndex
- 输出参数  : 无
- 返 回 值  : CMMCA_PDN_CONN_ENTITY_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月23日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CMMCA_PDN_CONN_ENTITY_STRU* CMMCA_PKT_GetPdnEntityAddr(
     VOS_UINT8                           ucIndex
 )
@@ -147,21 +88,7 @@ CMMCA_PDN_CONN_ENTITY_STRU* CMMCA_PKT_GetPdnEntityAddr(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_GetConnStatus
- 功能描述  : 获取连接状态
- 输入参数  : VOS_UINT8                           ucIndex
- 输出参数  : 无
- 返 回 值  : CMMCA_CONN_STATUS_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月23日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CMMCA_CONN_STATUS_ENUM_UINT8 CMMCA_PKT_GetConnStatus(
     VOS_UINT8                           ucIndex
 )
@@ -173,22 +100,7 @@ CMMCA_CONN_STATUS_ENUM_UINT8 CMMCA_PKT_GetConnStatus(
     return pstPdnConnEntity->enConnStatus;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_SetConnStatus
- 功能描述  : 设置连接状态
- 输入参数  : VOS_UINT8                           ucIndex
-             CMMCA_CONN_STATUS_ENUM_UINT8        enConnStatus
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月23日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_PKT_SetConnStatus(
     VOS_UINT8                           ucIndex,
     CMMCA_CONN_STATUS_ENUM_UINT8        enConnStatus
@@ -203,22 +115,7 @@ VOS_VOID CMMCA_PKT_SetConnStatus(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_SetUserPdnType
- 功能描述  : 保存用户设置的PDN类型
- 输入参数  : VOS_UINT8                           ucIndex
-             CMMCA_IP_TYPE_ENUM_UINT8            enPdnType
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月29日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_PKT_SetUserPdnType(
     VOS_UINT8                           ucIndex,
     CMMCA_IP_TYPE_ENUM_UINT8            enPdnType
@@ -233,21 +130,7 @@ VOS_VOID CMMCA_PKT_SetUserPdnType(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_GetUserPdnType
- 功能描述  : 获取用户设置的PDN类型
- 输入参数  : VOS_UINT8                           ucIndex
- 输出参数  : 无
- 返 回 值  : CMMCA_IP_TYPE_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月14日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CMMCA_IP_TYPE_ENUM_UINT8 CMMCA_PKT_GetUserPdnType(
     VOS_UINT8                           ucIndex
 )
@@ -260,22 +143,7 @@ CMMCA_IP_TYPE_ENUM_UINT8 CMMCA_PKT_GetUserPdnType(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_SetPdnRequestType
- 功能描述  : 设置PDN请求类型
- 输入参数  : VOS_UINT8                           ucIndex
-             CMMCA_PDN_REQUEST_TYPE_ENUM_UINT8   enPdnReqType
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月29日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_PKT_SetPdnRequestType(
     VOS_UINT8                           ucIndex,
     CMMCA_PDN_REQUEST_TYPE_ENUM_UINT8   enPdnReqType
@@ -290,22 +158,7 @@ VOS_VOID CMMCA_PKT_SetPdnRequestType(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_SavePdpInfo
- 功能描述  : 保存PDP信息
- 输入参数  : CMMCA_PDP_INFO_STRU                *pstPdpInfo
-             TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstPdpActivateCnf
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月23日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_PKT_SavePdpInfo(
     CMMCA_PDP_INFO_STRU                *pstPdpInfo,
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstPdpActivateCnf
@@ -362,22 +215,7 @@ VOS_VOID CMMCA_PKT_SavePdpInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_SaveIpv6RaInfo
- 功能描述  : 保存IPV6的RA INFO
- 输入参数  : CMMCA_PDP_INFO_STRU                *pstPdpInfo
-             TAF_PS_IPV6_INFO_IND_STRU          *pstIpv6InfoInd
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月23日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_PKT_SaveIpv6RaInfo(
     CMMCA_PDP_INFO_STRU                *pstPdpInfo,
     TAF_PS_IPV6_INFO_IND_STRU          *pstIpv6InfoInd
@@ -402,21 +240,7 @@ VOS_VOID CMMCA_PKT_SaveIpv6RaInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_FindPdnConnEntityIndex
- 功能描述  : 根据PDN ID查找PDN连接实体的index值
- 输入参数  : VOS_UINT8                           ucPdnId
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月28日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 CMMCA_PKT_FindPdnConnEntityIndex(
     VOS_UINT8                           ucPdnId
 )
@@ -428,22 +252,7 @@ VOS_UINT8 CMMCA_PKT_FindPdnConnEntityIndex(
     return pstPktCtxAddr->aucPdnToIndexTbl[ucPdnId];
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_SavePdnConnEntityIndex
- 功能描述  : 保存PDN ID对应的PDN实体index值
- 输入参数  : VOS_UINT8                           ucPdnId
-             VOS_UINT8                           ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月28日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_PKT_SavePdnConnEntityIndex(
     VOS_UINT8                           ucPdnId,
     VOS_UINT8                           ucIndex
@@ -459,22 +268,7 @@ VOS_VOID CMMCA_PKT_SavePdnConnEntityIndex(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_AssignPdnConnEntity
- 功能描述  : 为PDN ID分配连接实体
- 输入参数  : VOS_UINT8                           ucPdnId
-             VOS_UINT8                          *pucIndex
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月28日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_PKT_AssignPdnConnEntity(
     VOS_UINT8                           ucPdnId,
     VOS_UINT8                          *pucIndex
@@ -504,21 +298,7 @@ VOS_VOID CMMCA_PKT_AssignPdnConnEntity(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_FreePdnConnEntity
- 功能描述  : 清除PDN实体信息
- 输入参数  : VOS_UINT8                           ucPdnId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月26日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_PKT_FreePdnConnEntity(
     VOS_UINT8                           ucPdnId
 )

@@ -1,14 +1,4 @@
-/*************************************************************************
-*   版权所有(C) 2008-2014, 深圳华为技术有限公司.
-*
-*   文 件 名 :  reset_balong.c
-*
-*   作    者 :  y00184236
-*
-*   描    述 :  本文件主要完成C核单独复位主控流程
-*
-*   修改记录 :  2014年02月15日  v1.00  y00184236  创建
-*************************************************************************/
+
 #include <osl_cache.h>
 #include <securec.h>
 #include <bsp_pm.h>
@@ -40,6 +30,7 @@ do {                               \
 
 struct ccore_reset_ctrl g_reset_ctrl = {0};
 struct wake_lock reset_wakelock;
+struct crg_clkstat_ctrl g_clkstat_ctrl = {0};
 
 int mdrv_sysboot_ok(void)
 {
@@ -80,6 +71,13 @@ int ccpu_reset_hdlc_and_wait_idle(void)
     unsigned int u32slicebegin = 0;
 
     if (NULL != mdrv_misc_get_ip_baseaddr(BSP_IP_TYPE_HDLC)) {
+        /*查询hdlc clk的状态*/
+        regvalue = readl((unsigned long)bsp_sysctrl_addr_byindex(sysctrl_mdm) + g_clkstat_ctrl.addr_offset);
+        regvalue &= (unsigned int)0x1 << g_clkstat_ctrl.hdlc;
+        if(regvalue != ((unsigned int)0x1 << g_clkstat_ctrl.hdlc)){
+            return CCORE_RST_OK;
+        }
+
         /* reset HDLC*/
         writel(0x1, (unsigned long)mdrv_misc_get_ip_baseaddr(BSP_IP_TYPE_HDLC) + 0x0);
 
@@ -118,9 +116,14 @@ int ccpu_reset_cicom_and_wait_idle(void)
     unsigned int regvalue1 = 0;
     unsigned int u32slicebegin = 0;
 
-    bsp_reset_timestamp(bsp_get_slice_value(), STAMP_RESET_CICOM0_SOFT_RESET);
-
     if (NULL != mdrv_misc_get_ip_baseaddr(BSP_IP_TYPE_CICOM0)) {
+        /*查询cicom0 clk的状态*/
+        regvalue = readl((unsigned long)bsp_sysctrl_addr_byindex(sysctrl_mdm) + g_clkstat_ctrl.addr_offset);
+        regvalue &= (unsigned int)0x1 << g_clkstat_ctrl.cicom0;
+        if(regvalue != ((unsigned int)0x1 << g_clkstat_ctrl.cicom0)){
+            goto cicom1;
+        }
+
         u32slicebegin = bsp_get_slice_value();
         do{
             regvalue = readl((unsigned long)mdrv_misc_get_ip_baseaddr(BSP_IP_TYPE_CICOM0) + 0x28);
@@ -130,9 +133,24 @@ int ccpu_reset_cicom_and_wait_idle(void)
             bsp_reset_timestamp((0x1U << ENUM_RESET_CICOM)|*(u32 *)STAMP_RESET_IDLE_FAIL_COUNT, STAMP_RESET_IDLE_FAIL_COUNT);
             return CCORE_RST_ERR;
         }
+
+        /*复位cicom0*/
+        regvalue = readl((unsigned long)mdrv_misc_get_ip_baseaddr(BSP_IP_TYPE_CICOM0) + 0x0);
+        regvalue |= (unsigned int)0x1;
+        writel(regvalue, (unsigned long)mdrv_misc_get_ip_baseaddr(BSP_IP_TYPE_CICOM0) + 0x0);
     }
 
+    bsp_reset_timestamp(bsp_get_slice_value(), STAMP_RESET_CICOM0_SOFT_RESET);
+
+cicom1:
     if (NULL != mdrv_misc_get_ip_baseaddr(BSP_IP_TYPE_CICOM1)) {
+        /*查询cicom1 clk的状态*/
+        regvalue = readl((unsigned long)bsp_sysctrl_addr_byindex(sysctrl_mdm) + g_clkstat_ctrl.addr_offset);
+        regvalue &= (unsigned int)0x1 << g_clkstat_ctrl.cicom1;
+        if(regvalue != ((unsigned int)0x1 << g_clkstat_ctrl.cicom1)){
+            return CCORE_RST_OK;
+        }
+
         u32slicebegin = bsp_get_slice_value();
         do{
             regvalue = readl((unsigned long)mdrv_misc_get_ip_baseaddr(BSP_IP_TYPE_CICOM1) + 0x28);
@@ -142,23 +160,14 @@ int ccpu_reset_cicom_and_wait_idle(void)
             bsp_reset_timestamp((0x1U << ENUM_RESET_CICOM)|*(u32 *)STAMP_RESET_IDLE_FAIL_COUNT, STAMP_RESET_IDLE_FAIL_COUNT);
             return CCORE_RST_ERR;
         }
-    }
 
-    if (NULL != mdrv_misc_get_ip_baseaddr(BSP_IP_TYPE_CICOM0)) {
-        /*复位cicom0*/
-        regvalue = readl((unsigned long)mdrv_misc_get_ip_baseaddr(BSP_IP_TYPE_CICOM0) + 0x0);
-        regvalue |= (unsigned int)0x1;
-        writel(regvalue, (unsigned long)mdrv_misc_get_ip_baseaddr(BSP_IP_TYPE_CICOM0) + 0x0);
-    }
-
-    bsp_reset_timestamp(bsp_get_slice_value(), STAMP_RESET_CICOM1_SOFT_RESET);
-
-    if (NULL != mdrv_misc_get_ip_baseaddr(BSP_IP_TYPE_CICOM1)) {
         /*复位cicom1*/
         regvalue = readl((unsigned long)mdrv_misc_get_ip_baseaddr(BSP_IP_TYPE_CICOM1) + 0x0);
         regvalue |= (unsigned int)0x1;
         writel(regvalue, (unsigned long)mdrv_misc_get_ip_baseaddr(BSP_IP_TYPE_CICOM1) + 0x0);
     }
+
+    bsp_reset_timestamp(bsp_get_slice_value(), STAMP_RESET_CICOM1_SOFT_RESET);
 
     return CCORE_RST_OK;
 }
@@ -183,6 +192,13 @@ int ccpu_reset_upacc_and_wait_idle(void)
     unsigned int u32slicebegin = 0;
 
     bsp_reset_timestamp(bsp_get_slice_value(), STAMP_RESET_UPACC_ENTER_IDLE_1);
+
+    /*查询upacc clk的状态*/
+    regvalue = readl((unsigned long)bsp_sysctrl_addr_byindex(sysctrl_mdm) + g_clkstat_ctrl.addr_offset);
+    regvalue &= (unsigned int)0x1 << g_clkstat_ctrl.upacc;
+    if(regvalue != ((unsigned int)0x1 << g_clkstat_ctrl.upacc)){
+        return CCORE_RST_OK;
+    }
 
     u32slicebegin = bsp_get_slice_value();
     do{
@@ -258,21 +274,7 @@ void bsp_modem_master_enter_idle(void)
     return;/*lint !e438*/
 }
 
-/*****************************************************************************
- 函 数 名  : FIQ_IntHandle
- 功能描述  : 中断处理函数
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年5月20日
-    作    者   : x68638
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 static void reset_stamp_addr_value(void)
 {
     unsigned int len = 0;
@@ -340,6 +342,13 @@ int reset_of_node_init(void)
 	if(ret)
 	{
 		reset_print_err("read scbakdata13 from dts is failed,ret = %d!\n", ret);
+		return RESET_ERROR;
+	}
+
+	ret = of_property_read_u32_array(node, "crg_clkstat", (unsigned int*)(&g_clkstat_ctrl), (unsigned int)(sizeof(struct crg_clkstat_ctrl) / sizeof(unsigned int)));
+	if(ret)
+	{
+		reset_print_err("read crg_clkstat from dts is failed,ret = %d!\n", ret);
 		return RESET_ERROR;
 	}
 

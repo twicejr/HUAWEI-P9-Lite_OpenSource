@@ -1,38 +1,4 @@
-/************************************************************************
-  Copyright    : 2005-2007, Huawei Tech. Co., Ltd.
-  File name    : SSA_Decode.c
-  Author       : ---
-  Version      : V200R001
-  Date         : 2008-08-16
-  Description  : 该C文件给出了TAFM模块中和SSA功能相关的函数的实现
-  Function List:
-        ---
-        ---
-        ---
-  History      :
-  1. Date:2005-08-16
-     Author: ---
-     Modification:UE 1.5
-  3. Date:2006-04-11
-     Author: h44270
-     Modification: 问题单号:A32D03053
 
-  2.日    期   : 2006年4月5日
-    作    者   : liuyang id:48197
-    修改内容   : 问题单号:A32D01738
-  4.日    期   : 2006年10月8日
-    作    者   : luojian id:60022475
-    修改内容   : 问题单号:A32D06583，修改SSA_TimeoutProc函数
-  5.Date:2007-01-19
-    Author: h44270
-    Modification: 问题单号:A32D08448
-  6.Date        : 2007-08-29
-    Author      : h44270
-    Modification: Create SSA_PowerOff for A32D12744
- 7. 日    期   : 2010年05月07日
-     作    者   : s62952
-     修改内容   : 问题单号:A2D18963
-************************************************************************/
 
 #include "vos.h"
 #include "Ps.h"
@@ -42,14 +8,10 @@
 #include "Taf_Ssa_EncodeDef.h"
 #include "SsDef.h"
 #include "Taf_Tafm_Local.h"
-/* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, begin */
 #include "TafClientApi.h"
-/* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, end */
 #include "PsNvId.h"
 #include "NVIM_Interface.h"
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-2, begin */
 #include "TafSdcLib.h"
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-2, end */
 
 #include "NasUsimmApi.h"
 #include "NasComm.h"
@@ -88,21 +50,7 @@ VOS_UINT16                  g_usTafSsaUssdTransMode   = AT_USSD_TRAN_MODE;
 
 TAF_SSA_RETRY_CFG_STRU     g_stSsaRetryCfgInfo;
 
-/*****************************************************************************
- 函 数 名  : TAF_SSA_GetSsaRetryCfgInfo
- 功能描述  : 新增函数
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : g_stSsaRetryCfgInfo的地址
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月25日
-    作    者   : n00355355
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_SSA_RETRY_CFG_STRU* TAF_SSA_GetSsaRetryCfgInfo(VOS_VOID)
 {
     return  &g_stSsaRetryCfgInfo;
@@ -110,34 +58,7 @@ TAF_SSA_RETRY_CFG_STRU* TAF_SSA_GetSsaRetryCfgInfo(VOS_VOID)
 
 /*lint -save -e958 */
 
-/*******************************************************************************
-Prototype       : SSA_Init()
-Description     : 初始化SSA模块的所有全局变量
-Input           : 无
-Output          : 无
-Calls           :
-Called          :供TAFM模块调用。
-Return          :无
-History         : ---
-  1.Date        : 2005-08-15
-    Author      : ---
-    Modification: UE 1.5d function
-  2. 日    期   : 2010年05月07日
-     作    者   : s62952
-     修改内容   : 问题单号:A2D18963
-  3.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  4.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-  5.日    期   : 2013年5月17日
-    作    者   : w00176964
-    修改内容   : SS FDN&Call Control项目:NVen_NV_Item_USSD_Apha_To_Ascii读取放到SDC中
-  6.日    期   :2013年9月14日
-    作    者   :z00161729
-    修改内容   :DTS2013082903019:支持ss重发功能
-*******************************************************************************/
+
 VOS_VOID  SSA_Init(VOS_VOID)
 {
 
@@ -164,22 +85,7 @@ VOS_VOID  SSA_Init(VOS_VOID)
 
 }
 
-/*******************************************************************************
-Prototype       : SSA_PowerOff()
-Description     : 关闭计时器，初始化SSA模块的所有全局变量
-Input           : 无
-Output          : 无
-Calls           :
-Called          :供TAFM模块调用。
-Return          :无
-History         : ---
-  1.Date        : 2007-08-29
-    Author      : h44270
-    Modification: Create function for A32D12744
-  2.日    期   :2013年9月12日
-    作    者   :z00161729
-    修改内容   :DTS2013082903019:支持ss重发功能
-*******************************************************************************/
+
 VOS_VOID  SSA_PowerOff(VOS_VOID)
 {
     VOS_UINT8                           i;
@@ -190,11 +96,9 @@ VOS_VOID  SSA_PowerOff(VOS_VOID)
     }
     SSA_Init();
 
-/* Modified by z40661 for DMT工程修改, 2013-2-01, begin */
 #ifdef DMT
     Ss_TaskInit();
 #endif
-/* Modified by z40661 for DMT工程修改, 2013-2-01, end */
 
 }
 
@@ -272,29 +176,7 @@ VOS_UINT32 SSA_PackMsgHeader(ST_SSP_IES_FACILITY  *pstFacility, TAF_SS_OPERATION
 
     return SSA_SUCCESS;
 }
-/*****************************************************************************
- Prototype      : TAF_SSA_WaitNetworkRspTimerExpired
- Description    : SSA模块的超时处理，由定时器消息参数的不同，来区别定时器
- Input          : REL_TIMER_MSG
- Output         : 无
- Return Value   : 操作结果
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-08-15
-    Author      : ---
-    Modification: UE 1.5d function
-  2. 日    期   : 2006年10月8日
-     作    者   : luojian id:60022475
-     修改内容   : 问题单号:A32D06583，修改SSA_TimeoutProc函数
-  3.日    期   : 2013年6月26日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级
-  4.日    期   :2013年9月12日
-    作    者   :z00161729
-    修改内容   :DTS2013082903019:支持ss重发功能重命名
-*****************************************************************************/
 VOS_VOID TAF_SSA_WaitNetworkRspTimerExpired(VOS_UINT8 ucTi)
 {
     TAF_SS_CALL_INDEPENDENT_EVENT_STRU      *pstSsEvent;
@@ -321,7 +203,6 @@ VOS_VOID TAF_SSA_WaitNetworkRspTimerExpired(VOS_UINT8 ucTi)
     PS_MEM_SET(pstSsEvent, 0, sizeof(TAF_SS_CALL_INDEPENDENT_EVENT_STRU));
     pstSsEvent->SsEvent = TAF_SS_EVT_ERROR;
     pstSsEvent->OP_Error = 1;
-    /* Modified by s00217060 for 主动上报AT命令控制下移至C核, 2013-5-6, begin */
     pstSsEvent->ClientId = gastSsaStatetable[ucTi].ClientId;
     pstSsEvent->OpId = gastSsaStatetable[ucTi].OpId;
 
@@ -329,16 +210,13 @@ VOS_VOID TAF_SSA_WaitNetworkRspTimerExpired(VOS_UINT8 ucTi)
         AT上报+CUSD: 5时会用到；其他情况下ErrorCode为TAF_ERR_TIME_OUT */
     if (TAF_SSA_USSD_MO_CONN_STATE == gastSsaStatetable[ucTi].ucUssdFlag)
     {
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
         pstSsEvent->ErrorCode = TAF_ERR_USSD_NET_TIMEOUT;
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
     }
     else
     {
         pstSsEvent->ErrorCode = TAF_ERR_TIME_OUT;
     }
 
-    /* Modified by s00217060 for 主动上报AT命令控制下移至C核, 2013-5-6, end */
 
     TAF_SsEventReport(pstSsEvent);
     PS_MEM_FREE(WUEPS_PID_SS, pstSsEvent);
@@ -346,20 +224,7 @@ VOS_VOID TAF_SSA_WaitNetworkRspTimerExpired(VOS_UINT8 ucTi)
     SSA_ReturnError(0, ucTi, TAF_SS_MSG_TYPE_RLCOMPLETE,SS_CAUSE_RECOVERY_TIMER_EXPIRY);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SSA_WaitAppRspTimerExpired
- 功能描述  : TI_TAF_SSA_WAIT_APP_RSP_TIMER定时器超时的处理
- 输入参数  : ucTi - transaction id
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月15日
-    作    者   : z001617
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_SSA_WaitAppRspTimerExpired(VOS_UINT8  ucTi)
 {
     TAF_SS_CALL_INDEPENDENT_EVENT_STRU      *pstSsEvent;
@@ -510,24 +375,7 @@ VOS_UINT32 SSA_CheckPassWord(VOS_UINT8 ucTi)
     return SSA_FAILURE;
 }
 
-/*****************************************************************************
- 函 数 名  : SSA_CheckOperationCode
- 功能描述  : 判断OperationCode的值是否异常,如果异常,进入异常处理
- 输入参数  : VOS_UINT8 ucTi
-             VOS_UINT8  ucOperationCode
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2005年8月15日
-    作    者   :
-    修改内容   : 新生成函数
-  2.日    期   : 2010年8月16日
-    作    者   : 王毛/00166186
-    修改内容   : DTS2010081702586 德国电信USSD PHASE1 兼容性问题
-*****************************************************************************/
 VOS_UINT32 SSA_CheckOperationCode(VOS_UINT8 ucTi, VOS_UINT8  ucOperationCode)
 {
     switch (ucOperationCode)
@@ -587,26 +435,9 @@ VOS_UINT32 SSA_GetIdByTi(VOS_UINT16 *pClientId, VOS_UINT8 *pOpId, VOS_UINT8 ucTi
 
 }
 
-/* Deleted by l00208543 for V9R1 STK升级, 2013-7-10, begin */
 /* 删掉函数SSA_GetTi()，所有的调用使用TAF_SSA_GetUssdTi()替换 */
-/* Deleted by l00208543 for V9R1 STK升级, 2013-7-10, end */
 
-/* Added by l00208543 for V9R1 STK升级, 2013-07-10, begin */
-/*****************************************************************************
- 函 数 名  : TAF_SSA_GetUssdTi
- 功能描述  : 根据ClientId和OpId获取相应的Ti
- 输入参数  : 无
- 输出参数  : pucTi    -   分配的Ti
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月10日
-    作    者   : l00208543
-    修改内容   : V9R1 STK升级
-
-*****************************************************************************/
 VOS_UINT32 TAF_SSA_GetUssdTi(VOS_UINT8 *pucTi)
 {
     VOS_UINT8                           i;
@@ -632,31 +463,9 @@ VOS_UINT32 TAF_SSA_GetUssdTi(VOS_UINT8 *pucTi)
 
 }
 
-/* Added by l00208543 for V9R1 STK升级, 2013-07-10, end */
 
 
-/*****************************************************************************
- Prototype      : SSA_TiAlloc
- Description    : 根据ClientId和OpId分配Ti
- Input          : ClientId -   APP/AT客户端标识
-                  OpId     -   操作标识
- Output         : pucTi    -   分配的Ti
- Return Value   : 操作结果
- Calls          : ---
- Called By      :
 
- History        : ---
-  1.Date        : 2005-08-15
-    Author      : ---
-    Modification: UE 1.5d function
-  2.日    期   : 2013年6月17日
-    作    者   : s00217060
-    修改内容   : V9R1_SVLTE
-  3.日    期   : 2013年08月19日
-    作    者   : l00198894
-    修改内容   : V9R1 干扰控制项目，给MTC上报CS域业务状态
-
-*****************************************************************************/
 VOS_UINT32 SSA_TiAlloc(VOS_UINT16 ClientId, VOS_UINT8 OpId, VOS_UINT8 *pucTi)
 {
     VOS_UINT8     ucAllocTi = TAF_MIDDLE_SSA_TI;
@@ -693,12 +502,10 @@ VOS_UINT32 SSA_TiAlloc(VOS_UINT16 ClientId, VOS_UINT8 OpId, VOS_UINT8 *pucTi)
         /* TI分配成功之后，置一下CS域的SS业务是否存在的标志 */
         TAF_SDC_SetCsSsSrvExistFlg(VOS_TRUE);
 
-        /* Added by l00198894 for V9R1 干扰控制, 2013/08/19, begin */
 #if (FEATURE_MULTI_MODEM == FEATURE_ON)
         /* 给MTC模块上报当前CS域业务状态 */
         TAF_SendMtcCsSrvInfoInd();
 #endif
-        /* Added by l00198894 for V9R1 干扰控制, 2013/08/19, end */
 
         return SSA_SUCCESS;
     }
@@ -744,29 +551,7 @@ VOS_UINT32 SSA_TiIdle(VOS_VOID)
     return   SSA_IDLE;
 }
 
-/*****************************************************************************
- Prototype      : Ssa_TiFree
- Description    : Ssa模块释放Ti
- Input          : ucTi -- 分配的Ti
- Output         :
- Return Value   : 操作结果
- Calls          : ---
- Called By      :
 
- History        : ---
-  1.Date        : 2005-08-15
-    Author      : ---
-    Modification: UE 1.5d function
-  2.Date:2007-01-19
-    Author: h44270
-    Modification: 问题单号:A32D08448
-  3.日    期   : 2013年6月17日
-    作    者   : s00217060
-    修改内容   : V9R1_SVLTE
-  4.日    期   : 2013年08月19日
-    作    者   : l00198894
-    修改内容   : V9R1 干扰控制项目，给MTC上报CS域业务状态
-*****************************************************************************/
 VOS_VOID SSA_TiFree(VOS_UINT8 ucTi)
 {
     if ((ucTi > TAF_MAX_SSA_TI) || (ucTi == TAF_MIDDLE_SSA_TI))
@@ -789,12 +574,10 @@ VOS_VOID SSA_TiFree(VOS_UINT8 ucTi)
     {
         TAF_SDC_SetCsSsSrvExistFlg(VOS_FALSE);
 
-        /* Added by l00198894 for V9R1 干扰控制, 2013/08/19, begin */
 #if (FEATURE_MULTI_MODEM == FEATURE_ON)
         /* 给MTC模块上报当前CS域业务状态 */
         TAF_SendMtcCsSrvInfoInd();
 #endif
-        /* Added by l00198894 for V9R1 干扰控制, 2013/08/19, end */
     }
 
     return ;
@@ -865,21 +648,7 @@ VOS_UINT8 SSA_GetRepEvtFromOpCode(VOS_UINT8  ucOprationCode)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : SSA_GetUssdMode
- 功能描述  : 返回USSD透传模式设置
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月31日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT16  SSA_GetUssdTransMode(VOS_VOID)
 {
     /* 若g_usTafSsaUssdTransMode非法，则返回AT_USSD_TRAN_MODE */
@@ -895,27 +664,11 @@ VOS_UINT16  SSA_GetUssdTransMode(VOS_VOID)
     return g_usTafSsaUssdTransMode;
 }
 
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-5-6, Begin */
-/*****************************************************************************
- 函 数 名  : TAF_SSA_UpdateUssdRptStatus
- 功能描述  : 更新UUSD的主动上报状态
- 输入参数  : usMsgType:消息类型 pMsg:AT下发的消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月6日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核新生成函数
-
-*****************************************************************************/
 VOS_VOID  TAF_SSA_UpdateUssdRptStatus(
     TAF_SS_PROCESS_USS_REQ_STRU        *pstSsReqMsg
 )
 {
-    /* Modified by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-8, begin */
     VOS_UINT32                               ulRptCmdStatus;
 
     ulRptCmdStatus  = VOS_TRUE;
@@ -935,20 +688,7 @@ VOS_VOID  TAF_SSA_UpdateUssdRptStatus(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SSA_IsUssdStateIdle
- 功能描述  : 判断USSD是否处于IDLE态
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:处于IDLE态；VOS_FALSE:不处于IDLE态
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月6日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SSA_IsUssdStateIdle(VOS_VOID)
 {
     VOS_UINT32  i;
@@ -970,143 +710,44 @@ VOS_UINT32 TAF_SSA_IsUssdStateIdle(VOS_VOID)
 
     return   VOS_TRUE;
 }
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-5-6, End */
 
-/*****************************************************************************
- 函 数 名  : TAF_SSA_GetSsRetrySupportFlg
- 功能描述  : 获取是否支持ss重发功能标识
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 支持ss重发功能
-             VOS_FALSE - 不支持ss重发功能
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年9月10日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 TAF_SSA_GetSsRetrySupportFlg(VOS_VOID)
 {
     return g_stSsaRetryCfgInfo.ucIsSsRetrySupportFlg;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SSA_SetSsRetrySupportFlg
- 功能描述  : 设置是否支持ss重发功能标识
- 输入参数  : ucIsSsRetrySupportFlg - 是否支持ss重发功能
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年9月10日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_SSA_SetSsRetrySupportFlg(VOS_UINT8 ucIsSsRetrySupportFlg)
 {
     g_stSsaRetryCfgInfo.ucIsSsRetrySupportFlg = ucIsSsRetrySupportFlg;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SSA_GetSsRetryIntervalTimerLen
- 功能描述  : 获取ss重发间隔定时器的时长
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 定时器时长
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年9月10日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_SSA_GetSsRetryIntervalTimerLen(VOS_VOID)
 {
     return g_stSsaRetryCfgInfo.ulSsRetryInterval;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SSA_SetSsRetryIntervalTimerLen
- 功能描述  : 设置ss重发间隔定时器的时长
- 输入参数  : ulSsRetryInterval - 定时器时长
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年9月10日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_SSA_SetSsRetryIntervalTimerLen(VOS_UINT32 ulSsRetryInterval)
 {
     g_stSsaRetryCfgInfo.ulSsRetryInterval = ulSsRetryInterval;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SSA_GetSsRetryPeriodTimerLen
- 功能描述  : 获取ss重发最大时长定时器的时长
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 定时器时长
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年9月10日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_SSA_GetSsRetryPeriodTimerLen(VOS_VOID)
 {
     return g_stSsaRetryCfgInfo.ulSsRetryPeriod;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SSA_SetSsRetryPeriodTimerLen
- 功能描述  : 设置ss重发尝试最大时间定时器的时长
- 输入参数  : ulSsRetryPeriod - 定时器时长
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年9月10日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_SSA_SetSsRetryPeriodTimerLen(VOS_UINT32 ulSsRetryPeriod)
 {
     g_stSsaRetryCfgInfo.ulSsRetryPeriod = ulSsRetryPeriod;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SSA_ReadSsRetryCfgNvim
- 功能描述  : 获取NVIM中的en_NV_Item_SS_Retry_CFG的内容
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月10日
-    作    者   : z00161729
-    修改内容   : 支持ss重发新增nv项
-*****************************************************************************/
 VOS_VOID  TAF_SSA_ReadSsRetryCfgNvim( VOS_VOID )
 {
     TAF_SSA_NVIM_RETRY_CFG_STRU         stSsaRetryCfg;
@@ -1171,20 +812,7 @@ VOS_VOID  TAF_SSA_ReadSsRetryCfgNvim( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SSA_ReadSsRetryCmSrvRejCfgNvim
- 功能描述  : 获取NVIM中的en_NV_Item_SS_RETRY_CM_SRV_REJ_CAUSE_CFG的内容
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月24日
-    作    者   : n00355355
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  TAF_SSA_ReadSsRetryCmSrvRejCfgNvim( VOS_VOID )
 {
     TAF_SSA_NVIM_RETRY_CM_SRV_REJ_CFG_STRU      stSsRetryCmSrvRejCfg;
@@ -1234,62 +862,20 @@ VOS_VOID  TAF_SSA_ReadSsRetryCmSrvRejCfgNvim( VOS_VOID )
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SSA_ClearBufferedMsg
- 功能描述  : 清空缓存的消息
- 输入参数  : ucTi - transaction id
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年9月10日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_SSA_ClearBufferedMsg(VOS_UINT8 ucTi)
 {
     PS_MEM_SET(&gastSsaStatetable[ucTi].stSsaBufferedMsg, 0x0, sizeof(TAF_SSA_MSG_BUFF_STRU));
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SSA_GetBufferedMsg
- 功能描述  : 获取对应ti缓存的消息
- 输入参数  : ucTi - transaction id
- 输出参数  : 无
- 返 回 值  : 获取对应ti缓存的消息
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年9月10日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_SSA_MSG_BUFF_STRU*  TAF_SSA_GetBufferedMsg( VOS_UINT8 ucTi )
 {
     return &(gastSsaStatetable[ucTi].stSsaBufferedMsg);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SSA_GetTimerRemainLen
- 功能描述  : 获取定时器剩余的时间
- 输入参数  : enTimerId - 定时器id
-             ucTi      - transaction id
- 输出参数  : 无
- 返 回 值  : 定时器剩余时长,单位:毫秒
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月10日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  TAF_SSA_GetTimerRemainLen(
     TAF_SSA_TIMER_ID_ENUM_UINT8         enTimerId,
     VOS_UINT8                           ucTi
@@ -1340,21 +926,7 @@ VOS_UINT32  TAF_SSA_GetTimerRemainLen(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SSA_GetTimerStatus
- 功能描述  : 查询指定的ssa定时器的状态
- 输入参数  : enTimerId  - 需要查询的定时器ID
-             ucTi       - transation id
- 输出参数  : 无
- 返 回 值  : 定时器状态
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月10日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-*****************************************************************************/
 TAF_SSA_TIMER_STATUS_ENUM_UINT8  TAF_SSA_GetTimerStatus(
     TAF_SSA_TIMER_ID_ENUM_UINT8         enTimerId,
     VOS_UINT8                           ucTi
@@ -1391,23 +963,7 @@ TAF_SSA_TIMER_STATUS_ENUM_UINT8  TAF_SSA_GetTimerStatus(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SSA_StartTimer
- 功能描述  : 启动指定的SSA定时器
- 输入参数  : enTimerId - 需要启动的定时器ID
-             ulLen     - 定时器时长
-             ucTi      - transaction id
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年9月10日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_SSA_StartTimer(
     TAF_SSA_TIMER_ID_ENUM_UINT8         enTimerId,
     VOS_UINT32                          ulLen,
@@ -1504,21 +1060,7 @@ VOS_UINT32  TAF_SSA_StartTimer(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SSA_StopTimer
- 功能描述  : 停止指定的SSA定时器
- 输入参数  : enTimerId - 需要停止的定时器ID
-             ucTi      - transaction id
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月10日
-    作    者   : z001617
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  TAF_SSA_StopTimer(
     TAF_SSA_TIMER_ID_ENUM_UINT8         enTimerId,
     VOS_UINT8                           ucTi
@@ -1564,20 +1106,7 @@ VOS_VOID  TAF_SSA_StopTimer(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SSA_StopAllTimer
- 功能描述  : 停止对应ti SSA的所有定时器
- 输入参数  : ucTi - transaction id
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月10日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  TAF_SSA_StopAllTimer(VOS_UINT8 ucTi)
 {
 
@@ -1607,39 +1136,13 @@ VOS_VOID  TAF_SSA_StopAllTimer(VOS_UINT8 ucTi)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SSA_RetryPeriodTimerExpired
- 功能描述  : TI_TAF_SSA_RETRY_PERIOD_TIMER定时器超时处理
- 输入参数  : ucTi - transaction id
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月12日
-    作    者   : z001617
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_SSA_RetryPeriodTimerExpired(VOS_UINT8 ucTi)
 {
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SSA_RetryIntervalTimerExpired
- 功能描述  : TI_TAF_SSA_RETRY_INTERVAL_TIMER定时器超时处理
- 输入参数  : ucTi - transaction id
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月12日
-    作    者   : z001617
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_SSA_RetryIntervalTimerExpired(VOS_UINT8 ucTi)
 {
     TAF_SSA_MSG_BUFF_STRU              *pstBufferdMsg = VOS_NULL_PTR;
@@ -1670,21 +1173,7 @@ VOS_VOID TAF_SSA_RetryIntervalTimerExpired(VOS_UINT8 ucTi)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SSA_RcvTimerExpired
- 功能描述  : SSA定时器超时
- 输入参数  : enTimerId - 超时的定时器ID
-             ucTi      - transaction id
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月12日
-    作    者   : z001617
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  TAF_SSA_RcvTimerExpired(
     TAF_SSA_TIMER_ID_ENUM_UINT8         enTimerId,
     VOS_UINT8                           ucTi
@@ -1727,20 +1216,7 @@ VOS_VOID  TAF_SSA_RcvTimerExpired(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SSA_InitAllTimers
- 功能描述  : 初始化ssa定时器
- 输入参数  : pstSsaTimerCtx - 定时器信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月15日
-    作    者   : z001617
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  TAF_SSA_InitAllTimers(
     TAF_SSA_TIMER_CXT_STRU              *pstSsaTimerCtx
 )
@@ -1755,21 +1231,7 @@ VOS_VOID  TAF_SSA_InitAllTimers(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SSA_IsTiValid
- 功能描述  : 判断ti是否合法
- 输入参数  : ucTi - Transaction id
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:ti合法
-             VOS_FALSE: ti非法
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月15日
-    作    者   : z001617
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  TAF_SSA_IsTiValid(
     VOS_UINT8                           ucTi
 )

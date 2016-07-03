@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : FeatureConfig.h
-  版 本 号   :
-  作    者   : 孙飞 62584
-  生成日期   : 2008年03月11日
-  最近修改   :
-  功能描述   : 定义了产品级跨模块特性宏定义
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2008年03月11日
-    作    者   : 孙飞 62584
-    修改内容   : 创建文件
-
-******************************************************************************/
 #ifndef __FEATURECONFIG_H__
 #define __FEATURECONFIG_H__
 
@@ -214,7 +197,6 @@ BBP邮箱规格, 达到裁剪内存的目的 */
 #define FEATURE_TEMP_DSP_CORE_POWER_DOWN            FEATURE_OFF
 #define FEATURE_RECONFIG                            FEATURE_ON
 
-/* 硬加密版本改制特性宏，E5 上打开，stick 等版本关闭。参见 matao00151948 的邮件 */
 #define FEATURE_HWENCRY_REWORK                      FEATURE_OFF
 
 /* 内存池管理单元 */
@@ -228,7 +210,6 @@ BBP邮箱规格, 达到裁剪内存的目的 */
 
 #define FEATURE_SDUPDATE                            FEATURE_OFF
 
-/* x00195127 add for SHELL LOCK特性 */
 #define FEATURE_SECURITY_SHELL                      FEATURE_ON
 
 #define FEATURE_EPAD                                FEATURE_OFF

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmcSndLmm.c
-  版 本 号   : 初稿
-  作    者   : w00176964
-  生成日期   : 2010年5月9日
-  最近修改   :
-  功能描述   : MMC发给Lmm的消息的处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年05月9日
-    作    者   : w00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 /*****************************************************************************
   1 头文件包含
 *****************************************************************************/
@@ -24,9 +7,7 @@
 #include "NasComm.h"
 #include "NasMmcComFunc.h"
 
-/* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
 #include "MsccMmcInterface.h"
-/* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
 #if (FEATURE_ON == FEATURE_LTE)
 #include "NasMmlCtx.h"
@@ -36,9 +17,7 @@
 #include "NasMmcProcUsim.h"
 #include "asnasapi.h"
 #include "NasMmlLib.h"
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-7, begin */
 /* 删除ExtAppMmcInterface.h*/
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-7, end */
 #include "NasMmlMsgProc.h"
 #include "MmcLmmInterface.h"
 #include "NasMmcFsmPlmnSelection.h"
@@ -84,32 +63,7 @@ enum NAS_MMC_LMM_START_RAT_MASK{
 
 };
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndLmmStopReq
- 功能描述  : 向LMM发送关机请求
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年3月28日
-   作    者   : W00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2011年8月11日
-   作    者   : W00167002
-   修改内容   : 增加消息长度的赋值
- 3.日    期   : 2011年11月28日
-   作    者   : z00161729
-   修改内容   : MMC与LMM消息交互采用内部消息队列，为保证PC上GTR功能已有用例可以正常使用，
-                在PC上MMC、GMM和LMM的交互还使用外部消息，发送消息函数需要用宏NAS_STUB隔开
-
- 4.日    期   : 2013年7月4日
-   作    者   : z00234330
-   修改内容   : 增加开机LOG
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndLmmStopReq( VOS_VOID )
 {
     /* 定义原语类型指针 */
@@ -155,38 +109,14 @@ VOS_VOID NAS_MMC_SndLmmStopReq( VOS_VOID )
     NAS_MML_SndInternalMsg(pstMsg);
 #endif
 
-    /* Modified by z00234330 for 开机LOG, 2013-6-24, begin */
     (VOS_VOID)vos_printf("NAS_MMC_SndLmmStopReq, tick = 0x%x\r\n ", VOS_GetSlice());
-    /* Modified by z00234330 for 开机LOG, 2013-6-24, begin */
 
     NAS_TRACE_HIGH("Snd poweroff req to LMM!");
 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndLmmUsimStatusReq
- 功能描述  : NAS通知Lmm usim卡状态
- 输入参数  : MMC_LMM_USIM_STATUS_ENUM_UINT32     ulUsimState
- 输出参数  : 无
- 返 回 值  : VOS_ERR: ID_MMC_LMM_USIM_STATUS_REQ消息发送失败
-             VOS_OK : ID_MMC_LMM_USIM_STATUS_REQ消息发送成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年3月28日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2011年8月11日
-   作    者   : W00167002
-   修改内容   : 增加消息长度的赋值
- 3.日    期   : 2011年11月28日
-   作    者   : z00161729
-   修改内容   : MMC与LMM消息交互采用内部消息队列，为保证PC上GTR功能已有用例可以正常使用，
-                在PC上MMC、GMM和LMM的交互还使用外部消息，发送消息函数需要用宏NAS_STUB隔开
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndLmmUsimStatusReq(
     MMC_LMM_USIM_STATUS_ENUM_UINT32     enUsimState
 )
@@ -240,33 +170,7 @@ VOS_VOID NAS_MMC_SndLmmUsimStatusReq(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndLmmPlmnAnyCellSrchReq
- 功能描述  : 向LTE发送任意搜网请求
- 输入参数  : ulEventType:消息类型
-             pstMsg:ID_MMA_MMC_START_REQ消息的首地址
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年5月9日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年8月11日
-   作    者   : W00167002
-   修改内容   : 增加消息长度的赋值
- 3.日    期   : 2011年11月28日
-   作    者   : z00161729
-   修改内容   : MMC与LMM消息交互采用内部消息队列，为保证PC上GTR功能已有用例可以正常使用，
-                在PC上MMC、GMM和LMM的交互还使用外部消息，发送消息函数需要用宏NAS_STUB隔开
- 4.日    期   : 2015年5月26日
-   作    者   : w00167002
-   修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_2.0项目修改
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndLmmPlmnAnyCellSrchReq(VOS_VOID)
 {
     /* 定义原语类型指针 */
@@ -322,27 +226,7 @@ VOS_VOID NAS_MMC_SndLmmPlmnAnyCellSrchReq(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndLmmPlmnListReq
- 功能描述  : 向LTE发送LIST搜网请求
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月22日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2011年11月28日
-   作    者   : z00161729
-   修改内容   : MMC与LMM消息交互采用内部消息队列，为保证PC上GTR功能已有用例可以正常使用，
-                在PC上MMC、GMM和LMM的交互还使用外部消息，发送消息函数需要用宏NAS_STUB隔开
- 3.日    期   : 2015年5月26日
-   作    者   : w00167002
-   修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_2.0项目修改
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndLmmPlmnListReq(VOS_VOID)
 {
     /* 定义原语类型指针 */
@@ -398,21 +282,7 @@ VOS_VOID NAS_MMC_SndLmmPlmnListReq(VOS_VOID)
     return;
 }
 #if (FEATURE_ON == FEATURE_CSG)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndLmmCsgListSearchReq
- 功能描述  : 向LTE发送CSG LIST搜网请求
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年10月15日
-   作    者   : y00358807
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndLmmCsgListSearchReq(VOS_VOID)
 {
     /* 定义原语类型指针 */
@@ -462,31 +332,7 @@ VOS_VOID NAS_MMC_SndLmmCsgListSearchReq(VOS_VOID)
     return;
 }
 #endif
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndLmmSuspendReq
- 功能描述  : 向LTE发送挂起消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年5月9日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2011年8月11日
-   作    者   : W00167002
-   修改内容   : 增加消息长度的赋值
- 3.日    期   : 2011年8月17日
-   作    者   : w00167002
-   修改内容   : V7R1 PHASEII 重构: 添加pc回放
- 4.日    期   : 2011年11月28日
-   作    者   : z00161729
-   修改内容   : MMC与LMM消息交互采用内部消息队列，为保证PC上GTR功能已有用例可以正常使用，
-                在PC上MMC、GMM和LMM的交互还使用外部消息，发送消息函数需要用宏NAS_STUB隔开
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndLmmSuspendReq(VOS_VOID)
 {
     /* 定义原语类型指针 */
@@ -541,28 +387,7 @@ VOS_VOID NAS_MMC_SndLmmSuspendReq(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndLmmPlmnSrchStopReq
- 功能描述  : 向LTE发送停止搜网请求
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年5月10日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2011年8月11日
-   作    者   : W00167002
-   修改内容   : 增加消息长度的赋值
- 3.日    期   : 2011年11月28日
-   作    者   : z00161729
-   修改内容   : MMC与LMM消息交互采用内部消息队列，为保证PC上GTR功能已有用例可以正常使用，
-                在PC上MMC、GMM和LMM的交互还使用外部消息，发送消息函数需要用宏NAS_STUB隔开
-
-*****************************************************************************/
 
 VOS_VOID NAS_MMC_SndLmmPlmnSrchStopReq( VOS_VOID )
 {
@@ -612,43 +437,7 @@ VOS_VOID NAS_MMC_SndLmmPlmnSrchStopReq( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndLmmStartReq
- 功能描述  : 发送开机请求,本函数只能使用于L模的接入层开机请求。
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
-修改历史      :
- 1.日    期   : 2011年4月8日
-   作    者   : luokaihui /l00167671
-   修改内容   : 新生成函数
- 2.日    期   : 2011年8月10日
-   作    者   : w00176964
-   修改内容   : V7R1 PhaseII 开机接口调整
- 3.日    期   : 2011年8月11日
-   作    者   : W00167002
-   修改内容   : 增加消息长度的赋值
- 4.日    期   : 2011年11月28日
-   作    者   : z00161729
-   修改内容   : MMC与LMM消息交互采用内部消息队列，为保证PC上GTR功能已有用例可以正常使用，
-                在PC上MMC、GMM和LMM的交互还使用外部消息，发送消息函数需要用宏NAS_STUB隔开
- 5.日    期   : 2012年8月30日
-   作    者   : w00176964
-   修改内容   : GUTL PhaseII 开机通知RRC当前的UTRAN MODE
- 6.日    期   : 2013年7月4日
-   作    者   : z00234330
-   修改内容   : 增加开机LOG
- 7.日    期   : 2015年5月5日
-   作    者   : y00245242
-   修改内容   : iteration 13开发
- 8.日    期   : 2015年8月20日
-   作    者   : w00242748
-   修改内容   : 动态加载项目
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndLmmStartReq(VOS_VOID)
 {
     MMC_LMM_START_REQ_STRU             *pstMsg     = VOS_NULL_PTR;
@@ -706,7 +495,6 @@ VOS_VOID NAS_MMC_SndLmmStartReq(VOS_VOID)
     pstMsg->aucRatPrioList[1]              = NAS_MMC_GetSpecRatPrio(NAS_MML_NET_RAT_TYPE_WCDMA, pstRatList);
     pstMsg->aucRatPrioList[2]              = NAS_MMC_GetSpecRatPrio(NAS_MML_NET_RAT_TYPE_LTE, pstRatList);
 
-    /* Added by s00246516 for L-C互操作项目, 2014-01-28, Begin */
     /* 如果有支持的3GPP2接入技术pstMsg->aucRatPrioList[3]填写为1X的优先级RRMM_RAT_PRIO_LOW */
     if (VOS_TRUE == NAS_MML_IsSpec3Gpp2RatInRatList(NAS_MML_3GPP2_RAT_TYPE_CDMA1X, NAS_MML_GetMs3Gpp2PrioRatList()))
     {
@@ -728,7 +516,6 @@ VOS_VOID NAS_MMC_SndLmmStartReq(VOS_VOID)
     {
         pstMsg->aucRatPrioList[4]          = RRMM_RAT_PRIO_NULL;
     }
-    /* Added by s00246516 for L-C互操作项目, 2014-01-28, End */
 
 #if (defined (NAS_STUB) || defined(__PS_WIN32_RECUR__))
     /* 调用VOS发送原语 */
@@ -743,63 +530,12 @@ VOS_VOID NAS_MMC_SndLmmStartReq(VOS_VOID)
     /* 内部消息的发送 */
     NAS_MML_SndInternalMsg(pstMsg);
 #endif
-    /* Modified by z00234330 for 开机LOG, 2013-6-24, begin */
     (VOS_VOID)vos_printf("NAS_MMC_SndLmmStartReq, tick = 0x%x\r\n ", VOS_GetSlice());
-    /* Modified by z00234330 for 开机LOG, 2013-6-24, begin */
 
     return;
 }
 
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, begin */
-/*****************************************************************************
- 函 数 名  : NAS_MMC_BuildSndLmmEquPlmnInfo
- 功能描述  : 构造通知Lmm的等效plmn信息
- 输入参数  : 无
- 输出参数  : pstEquPlmnInfo - 构造后的等效plmn列表
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2012年8月21日
-   作    者   : z00161729
-   修改内容   : 新生成函数
- 2.日    期   : 2012年8月15日
-   作    者   : w00176964
-   修改内容   : V7R1C50_GUTL_PhaseII:在disabled RAT中的PLMN从等效PLMN
-                列表中删除后发送给RRC
- 3.日    期   : 2012年12月4日
-   作    者   : w00176964
-   修改内容   : DTS201212905979:通知RRC当前EPLMN时,清除禁止PLMN
- 4.日    期   : 2013年1月13日
-   作    者   : w00242748
-   修改内容   : DTS2014010906851:NV 9052配置不允许国际漫游，配置允许漫游MCC为440，
-                当前设置接入模式支持GL，L的46012在禁止国际漫游列表中，不应该发起
-                注册。刚开始驻留在G，衰减G 46012小区信号，紧急驻留在L的46012，此时
-                发生同系统切换到另一个PLMN为46012的小区上，L会报假的TAU流程，MMC收到
-                TAU结果后，给LNAS发送等效PLMN 46012，此时LAS因为ANYCELL驻留又收到
-                等效PLMN通知，则认为正常驻留，因此会发起注册。
- 5.日    期   : 2013年12月13日
-   作    者   : s00217060
-   修改内容   : VoLTE_PhaseIII项目
- 6.日    期   : 2014年5月15日
-   作    者   : s00217060
-   修改内容   : DTS2014050804905: 删除forb plmn for gprs
- 7.日    期   : 2015年4月23日
-   作    者   : z00161729
-   修改内容   : 24301 R11 CR升级项目修改
- 8.日    期   : 2015年5月21日
-   作    者   : w001670000
-   修改内容   : DTS2015071604422:联通3g卡未开通4g，在46001上LTE注册拒绝#15,LNAS通知MMC需要进行DISABLE
-                LTE，后续在WCDMA网络上注册成功。
-                接着在W下丢网，触发了搜网LTE失败，后续重新回到WCDMA网络上。接着发起了
-                W->LTE的盲重定向，mmc通知LMM等效PLMN时候，删除了禁止网络，即EPLMN个数为0.
-                由于LRRC只判断驻留在EPLMN上得TAI信息，导致没有给LNAS上报当前的禁止TAI
-                信息，导致LNAS没有给MMC上报禁止LTE的指示，没有禁止LTE网络。
-                修改为；MMC在通知LNAS当前EPLMN时候，不删除拒绝#15惩罚的网络，这样
-                后续ENABLE LTE后，发生了gu->lte的重定向，LNAS会给MMC上报触发需要DISABLE
-                LTE的消息，从而解决了GU->LTE盲重定向的问题。
-*****************************************************************************/
 VOS_VOID NAS_MMC_BuildSndLmmEquPlmnInfo(
      NAS_MML_EQUPLMN_INFO_STRU          *pstEquPlmnInfo
 )
@@ -888,39 +624,8 @@ VOS_VOID NAS_MMC_BuildSndLmmEquPlmnInfo(
 
 
 
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, end */
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndLmmEquPlmnReq
- 功能描述  : 向LTE下发eplmn 请求
- 输入参数  : pstEquPlmnInfo: 发送到LMM的等效PLMN列表信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月9日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2011年7月24日
-    作    者   : l00130025
-    修改内容   : PhaseII修改
-  3.日    期   : 2011年11月28日
-    作    者   : z00161729
-    修改内容   : MMC与LMM消息交互采用内部消息队列，为保证PC上GTR功能已有用例可以正常使用，
-                 在PC上MMC、GMM和LMM的交互还使用外部消息，发送消息函数需要用宏NAS_STUB隔开
-  4.日    期   : 2011年11月24日
-    作    者   : w00167002
-    修改内容   : DTS2011112405567:原有的函数名NAS_MML_IsPlmnIdInDestPlmnList
-                更改为NAS_MML_IsBcchPlmnIdInDestSimPlmnList
-  5.日    期   : 2012年05月28日
-    作    者   : sunxibo /46746
-    修改内容   : Added for V7R1 C50 CS/PS mode 1
-  6.日    期   : 2012年8月14日
-    作    者   : z00161729
-    修改内容   : DCM定制需求和遗留问题
-**************************************************************************/
 VOS_VOID NAS_MMC_SndLmmEquPlmnReq(
     NAS_MML_EQUPLMN_INFO_STRU          *pstEquPlmnInfo
 )
@@ -953,7 +658,6 @@ VOS_VOID NAS_MMC_SndLmmEquPlmnReq(
     pstLmmEquPlmnStru->ulMsgId         = ID_MMC_LMM_EPLMN_NOTIFY_REQ;
     pstLmmEquPlmnStru->ulLength        = sizeof(MMC_LMM_EPLMN_NOTIFY_REQ_STRU) - VOS_MSG_HEAD_LENGTH;
 
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, begin */
     /* 填充Eplmn,转换为LMM的格式 */
     pstLmmEquPlmnStru->ulEplmnNum = pstEquPlmnInfo->ucEquPlmnNum;
 
@@ -962,7 +666,6 @@ VOS_VOID NAS_MMC_SndLmmEquPlmnReq(
         NAS_MML_ConvertNasPlmnToLMMFormat(&(pstLmmEquPlmnStru->astEplmnList[i]),
                                           &(pstEquPlmnInfo->astEquPlmnAddr[i]));
     }
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, end */
 #if (defined (NAS_STUB) || defined(__PS_WIN32_RECUR__))
     /* 调用VOS发送原语 */
     if ( VOS_OK != PS_SEND_MSG( WUEPS_PID_MMC, pstLmmEquPlmnStru ) )
@@ -980,21 +683,7 @@ VOS_VOID NAS_MMC_SndLmmEquPlmnReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndLmmLocalDetachIndActionResultReq
- 功能描述  : Local detach通知LMM
- 输入参数  : ulLocalDetachType - 本地detach类型
- 输出参数  : 无
- 返 回 值  : VOS_OK : ID_MMC_LMM_ACTION_RESULT_REQ 消息发送成功
-             VOS_ERR: ID_MMC_LMM_ACTION_RESULT_REQ 消息发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月02日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndLmmLocalDetachIndActionResultReq(
     MMC_LMM_GU_LOCAL_DETACH_TYPE_ENUM_UINT32                ulLocalDetachType
 )
@@ -1051,20 +740,7 @@ VOS_VOID NAS_MMC_SndLmmLocalDetachIndActionResultReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndLmmMoDetachIndActionResultReq
- 功能描述  : GU下cs或ps mo detach成功后通知LMM
- 输入参数  : ulMoDetachType - UE主动detach类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月02日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndLmmMoDetachIndActionResultReq(
     MMC_LMM_MO_DETACH_TYPE_ENUM_UINT32  ulMoDetachType
 )
@@ -1142,30 +818,7 @@ VOS_VOID NAS_MMC_SndLmmMoDetachIndActionResultReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndLmmMtDetachIndActionResultReq
- 功能描述  : GU业务流程：网络发起的detach
-              通过此原语把业务流程结果通知LMM；LMM将按照24.008，24.301成功
-              或拒绝描述进行处理
- 输入参数  : enMtType:网络发起的DETACH 类型
-             enCnCause:DEATCH失败原因值
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月11日
-    作    者   : z40661
-    修改内容   : 新生成函数
-  2.日    期   : 2011年11月28日
-    作    者   : z00161729
-    修改内容   : MMC与LMM消息交互采用内部消息队列，为保证PC上GTR功能已有用例可以正常使用，
-                 在PC上MMC、GMM和LMM的交互还使用外部消息，发送消息函数需要用宏NAS_STUB隔开
-  3.日    期   : 2011年12月5日
-    作    者   : z00161729
-    修改内容   : V7R1 Phase IV调整,修改函数名
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndLmmMtDetachIndActionResultReq(
     NAS_MMC_GMM_NT_DETACH_ENUM_U32      enMtType,
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16  enCnCause
@@ -1211,31 +864,7 @@ VOS_VOID NAS_MMC_SndLmmMtDetachIndActionResultReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndLmmRegActionResultReq
- 功能描述  : GU业务流程：发起业务时的类型:仅ATTACH, RAU, DETACH
-              通过此原语把业务流程结果通知LMM；LMM将按照24.008，24.301成功
-              或拒绝描述进行处理
- 输入参数  : NAS_MMC_GU_ACTION_RSLT_INFO_STRU   *pstGuActionRslt
- 输出参数  : 无
- 返 回 值  : VOS_OK : ID_MMC_LMM_ACTION_RESULT_REQ 消息发送成功
-             VOS_ERR: ID_MMC_LMM_ACTION_RESULT_REQ 消息发送失败
- 调用函数  : NAS_MMC_FormatProcTypeToLmm
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月11日
-    作    者   : z40661
-    修改内容   : 新生成函数
-  2.日    期   : 2011年11月28日
-    作    者   : z00161729
-    修改内容   : MMC与LMM消息交互采用内部消息队列，为保证PC上GTR功能已有用例可以正常使用，
-                 在PC上MMC、GMM和LMM的交互还使用外部消息，发送消息函数需要用宏NAS_STUB隔开
-  3.日    期   : 2012年7月13日
-    作    者   : s00217060
-    修改内容   : for sync lmm cs state:在消息中增加CS update状态和Lai是否改变的标志
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndLmmRegActionResultReq(
     NAS_MMC_GU_ACTION_RSLT_INFO_STRU   *pstGuActionRslt
 )
@@ -1338,24 +967,7 @@ VOS_VOID NAS_MMC_SndLmmRegActionResultReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndLmmRelReq
- 功能描述  : 向LMM发送链路释放请求
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月11日
-    作    者   : z40661
-    修改内容   : 新生成函数
-  2.日    期   : 2011年11月28日
-    作    者   : z00161729
-    修改内容   : MMC与LMM消息交互采用内部消息队列，为保证PC上GTR功能已有用例可以正常使用，
-                 在PC上MMC、GMM和LMM的交互还使用外部消息，发送消息函数需要用宏NAS_STUB隔开
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndLmmRelReq( VOS_VOID )
 {
     /* 定义原语类型指针 */
@@ -1403,28 +1015,7 @@ VOS_VOID NAS_MMC_SndLmmRelReq( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndLmmAttachReq
- 功能描述  : 向LMM发送注册请求
- 输入参数  : ulAttachType:Attach类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年4月11日
-   作    者   : z40661
-   修改内容   : 新生成函数
- 2.日    期   : 2011年8月11日
-   作    者   : W00167002
-   修改内容   : 增加消息长度的赋值
- 3.日    期   : 2011年11月28日
-   作    者   : z00161729
-   修改内容   : MMC与LMM消息交互采用内部消息队列，为保证PC上GTR功能已有用例可以正常使用，
-                在PC上MMC、GMM和LMM的交互还使用外部消息，发送消息函数需要用宏NAS_STUB隔开
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndLmmAttachReq(
     VOS_UINT32                                              ulOpId,
     VOS_UINT32                                              ulAttachType,
@@ -1468,9 +1059,7 @@ VOS_VOID NAS_MMC_SndLmmAttachReq(
     pstMsg->ulOpId                      = ulOpId;
     pstMsg->ulAttachType                = enAttachType;
 
-    /* Added by s00246516 for L-C互操作项目, 2014-02-14, Begin */
     pstMsg->ulAttachReason              = enEpsAttachReason;
-    /* Added by s00246516 for L-C互操作项目, 2014-02-14, End */
 
 #if (defined (NAS_STUB) || defined(__PS_WIN32_RECUR__))
     /* 调用VOS发送原语 */
@@ -1489,34 +1078,7 @@ VOS_VOID NAS_MMC_SndLmmAttachReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndLmmDetachReq
- 功能描述  : 向LMM发送去注册请求
- 输入参数  : ulDetachType:detach类型
- 输出参数  : 无
- 返 回 值  : VOS_OK : ID_MMC_LMM_DETACH_REQ 消息发送成功
-             VOS_ERR: ID_MMC_LMM_DETACH_REQ 消息发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年4月11日
-   作    者   : z40661
-   修改内容   : 新生成函数
- 2.日    期   : 2011年8月11日
-   作    者   : W00167002
-   修改内容   : 增加消息长度的赋值
- 3.日    期   : 2011年11月28日
-   作    者   : z00161729
-   修改内容   : MMC与LMM消息交互采用内部消息队列，为保证PC上GTR功能已有用例可以正常使用，
-                在PC上MMC、GMM和LMM的交互还使用外部消息，发送消息函数需要用宏NAS_STUB隔开
- 4.日    期   : 2014年2月13日
-   作    者   : s00246516
-   修改内容   : L-C互操作项目:增加异系统到HRPD的处理
- 5.日    期   : 2015年4月11日
-   作    者   : y00245242
-   修改内容   : iteration 13开发
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndLmmDetachReq(
     VOS_UINT32                                              ulOpId,
     VOS_UINT32                                              ulDetachType,
@@ -1559,7 +1121,6 @@ VOS_VOID NAS_MMC_SndLmmDetachReq(
     pstMsg->ulOpId                      = ulOpId;
     pstMsg->ulDetachType                = enLmmDetachType;
 
-    /* Added by s00246516 for L-C互操作项目, 2014-02-14, Begin */
     if (NAS_MSCC_PIF_DETACH_REASON_3GPP2_ATTACHED == enDetachReason)
     {
         pstMsg->ulDetachReason = MMC_LMM_DETACH_RESEAON_NON_3GPP_ATTACH;
@@ -1568,7 +1129,6 @@ VOS_VOID NAS_MMC_SndLmmDetachReq(
     {
         pstMsg->ulDetachReason = MMC_LMM_DETACH_RESEAON_NULL;
     }
-    /* Added by s00246516 for L-C互操作项目, 2014-02-14, End */
 
 #if (defined (NAS_STUB) || defined(__PS_WIN32_RECUR__))
     /* 调用VOS发送原语 */
@@ -1588,29 +1148,7 @@ VOS_VOID NAS_MMC_SndLmmDetachReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndLmmResumeNotify
- 功能描述  : 向LMM发送挂起恢复通知
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_OK : ID_MMC_LMM_RESUME_NOTIFY 消息发送成功
-             VOS_ERR: ID_MMC_LMM_RESUME_NOTIFY 消息发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年5月12日
-   作    者   : zhoujun /40661
-   修改内容   : 新生成函数
- 2.日    期   : 2011年8月11日
-   作    者   : W00167002
-   修改内容   : 增加消息长度的赋值
- 3.日    期   : 2011年11月28日
-   作    者   : z00161729
-   修改内容   : MMC与LMM消息交互采用内部消息队列，为保证PC上GTR功能已有用例可以正常使用，
-                在PC上MMC、GMM和LMM的交互还使用外部消息，发送消息函数需要用宏NAS_STUB隔开
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndLmmResumeNotify( VOS_VOID )
 {
     /* 定义原语类型指针 */
@@ -1659,25 +1197,7 @@ VOS_VOID NAS_MMC_SndLmmResumeNotify( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndLmmSuspendRsp
- 功能描述  : 向LMM发送挂起回复消息
- 输入参数  : ulRst:挂起结果
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月12日
-    作    者   : zhoujun /40661
-    修改内容   : 新生成函数
-  2.日    期   : 2011年11月28日
-    作    者   : z00161729
-    修改内容   : MMC与LMM消息交互采用内部消息队列，为保证PC上GTR功能已有用例可以正常使用，
-                 在PC上MMC、GMM和LMM的交互还使用外部消息，发送消息函数需要用宏NAS_STUB隔开
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndLmmSuspendRsp(
     VOS_UINT32                          ulRst
 )
@@ -1730,22 +1250,7 @@ VOS_VOID NAS_MMC_SndLmmSuspendRsp(
 }
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SetRatPriorityInCLMode
- 功能描述  : 设置CL模式下的RAT优先级
- 输入参数  : pstRatOrderList -- RAT order list
-             pstPriorityList -- RAT优先级list
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
-修改历史      :
- 1.日    期   : 2015年5月5日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SetRatPriorityInCLMode(
     NAS_MML_PLMN_RAT_PRIO_STRU         *pstRatOrderList,
     RRMM_RAT_PRIO_ENUM_UINT8           *pstPriorityList
@@ -1788,20 +1293,7 @@ VOS_VOID NAS_MMC_SetRatPriorityInCLMode(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndLmmC2LInterSysStartNtf
- 功能描述  : 向LMM发送CL异系统开始指示
- 输入参数  : enSuspendCause
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月27日
-    作    者   : y00346957
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndLmmCLInterSysStartNtf(
     MMC_LMM_SYS_CHNG_TYPE_ENUM_UINT32                       enSuspendCause
 )
@@ -1855,30 +1347,7 @@ VOS_VOID NAS_MMC_SndLmmCLInterSysStartNtf(
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndLmmSyscfgReq
- 功能描述  : 向LMM发送SYSCFG设置消息
- 输入参数  : MMA_MMC_SYS_CFG_SET_REQ_STRU        *pstSysCfgMsg,用户设置的SYSCFG消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月5日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2011年11月28日
-    作    者   : z00161729
-    修改内容   : MMC与LMM消息交互采用内部消息队列，为保证PC上GTR功能已有用例可以正常使用，
-                 在PC上MMC、GMM和LMM的交互还使用外部消息，发送消息函数需要用宏NAS_STUB隔开
-  3.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  4.日    期   : 2015年4月15日
-    作    者   : y00245242
-    修改内容   : iteration 13开发
-*****************************************************************************/
 VOS_VOID  NAS_MMC_SndLmmSyscfgReq(
     MSCC_MMC_SYS_CFG_SET_REQ_STRU        *pstSysCfgSetParm
 )
@@ -1982,23 +1451,7 @@ VOS_VOID  NAS_MMC_SndLmmSyscfgReq(
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndLmmDisableLteNotify
- 功能描述  : 向LMM发送disable LTE通知
- 输入参数  : enDisableLteReason:Disable LTE在的原因值
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月1日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2012年7月27日
-    作    者   : s00217060
-    修改内容   : for CS/PS mode 1, 上报服务状态时，带Disable LTE原因值
-*****************************************************************************/
 VOS_VOID  NAS_MMC_SndLmmDisableLteNotify(
     MMC_LMM_DISABLE_LTE_REASON_ENUM_UINT32                  enDisableLteReason
 )
@@ -2052,20 +1505,7 @@ VOS_VOID  NAS_MMC_SndLmmDisableLteNotify(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndLmmEnableLteNotify
- 功能描述  : 向LMM发送enable LTE通知
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月1日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  NAS_MMC_SndLmmEnableLteNotify(VOS_VOID)
 {
     /* 定义原语类型指针 */
@@ -2117,21 +1557,7 @@ VOS_VOID  NAS_MMC_SndLmmEnableLteNotify(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndLmmConnStatusNotify
- 功能描述  : MMC向LMM发送ID_MMC_LMM_CONN_STATUS_NOTIFY消息
- 输入参数  : enSrvccStatus---SRVCC的状态
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年4月14日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndLmmCsConnStatusNotify(
     VOS_UINT8                           ucCsRrConnStatusFlg,
     VOS_UINT8                           ucCsEmergencyConnStatusFlg
@@ -2186,30 +1612,7 @@ VOS_VOID NAS_MMC_SndLmmCsConnStatusNotify(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_FormatProcTypeToLmm
- 功能描述  : 将内部定义的过程类型转换为发送给LMM的类型
- 输入参数  : enProcType:内部的过程类型
- 输出参数  : penSerType:LMM的过程类型
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月9日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2012年3月1日
-    作    者   : w00176964
-    修改内容   : DTS2012022407450:增加联合注册类型
-  3.日    期   : 2012年7月12日
-    作    者   : s00217060
-    修改内容   : for sync lmm cs state:增加MM Abort类型转换s
-  4.日    期   : 2013年3月30日
-    作    者   : w00176964
-    修改内容   : DTS2013030802929,周期性RAU需要通知LMM
-
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_FormatProcTypeToLmm(
     NAS_MML_PROC_TYPE_ENUM_U32          enProcType,
     MMC_LMM_ACTION_TYPE_ENUM_UINT32    *penActionType
@@ -2270,26 +1673,7 @@ VOS_UINT32  NAS_MMC_FormatProcTypeToLmm(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConvertAttachTypeToLmm
- 功能描述  : 将attach type转换为LMM的类型
- 输入参数  : ulAttachType:gu模的ATTACH类型
- 输出参数  : penLmmAttachType:LMM的ATTACH类型
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月12日
-    作    者   : zhoujun /40661
-    修改内容   : 新生成函数
- 2.日    期   : 2011年4月12日
-   作    者   : w00176964
-   修改内容   : V7R1 PhaseIV调整:UE attach类型结构变更
- 3.日    期   : 2013年3月30日
-   作    者   : l00167671
-   修改内容   : 主动上报AT命令控制下移至C核
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_ConvertAttachTypeToLmm(
     VOS_UINT32                          ulAttachType,
     MMC_LMM_ATT_REQ_TYPE_ENUM_UINT32   *penLmmAttachType
@@ -2297,7 +1681,6 @@ VOS_UINT32  NAS_MMC_ConvertAttachTypeToLmm(
 {
     switch (ulAttachType)
     {
-        /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
         case NAS_MSCC_PIF_ATTACH_TYPE_GPRS:
             *penLmmAttachType = MMC_LMM_ATT_REQ_TYPE_PS_ONLY;
             break;
@@ -2312,7 +1695,6 @@ VOS_UINT32  NAS_MMC_ConvertAttachTypeToLmm(
 
         default:
             return VOS_ERR;
-       /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
     }
 
@@ -2320,21 +1702,7 @@ VOS_UINT32  NAS_MMC_ConvertAttachTypeToLmm(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConvertLmmPlmnToGUNasFormat
- 功能描述  : 将LMM的3字节格式PLMN转换为MCC和MNC分开的格式
- 输入参数  : pLMMPlmn
- 输出参数  : pGUNasPlmn
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年3月28日
-    作    者   : likelai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  NAS_MMC_ConvertLmmPlmnToGUNasFormat(
     MMC_LMM_PLMN_ID_STRU               *pstLMMPlmn,
     NAS_MML_PLMN_ID_STRU               *pstGUNasPlmn
@@ -2352,23 +1720,7 @@ VOS_VOID  NAS_MMC_ConvertLmmPlmnToGUNasFormat(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConvertLmmPlmnToGUNasPlmn
- 功能描述  : 将指定个数的LMM的PLMN转换为GUnas格式的plmn
- 输入参数  : VOS_UINT32                          ulLmmPlmnNum
-              MMC_LMM_PLMN_ID_STRU               *pstLmmPlmn
-              MMC_PLMN_ID_STRU                   *pstGUNasPlmn
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月12日
-    作    者   : W00167002
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_ConvertLmmPlmnToGUNasPlmn(
     VOS_UINT32                          ulLmmPlmnNum,
     MMC_LMM_PLMN_ID_STRU               *pstLmmPlmn,
@@ -2383,33 +1735,12 @@ VOS_VOID NAS_MMC_ConvertLmmPlmnToGUNasPlmn(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConvertDetachCauseToLmm
- 功能描述  : 将detach Cause转换为LMM的类型
- 输入参数  : ulDetachType:DETACH 类型
- 输出参数  : penLmmDetachType:LMM的DETACH类型
- 返 回 值  : 返回成功VOS_OK 或者失败VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年4月12日
-   作    者   : zhoujun /40661
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年7月14日
-   作    者   : w00167002
-   修改内容   : TAF_MMC_PS_CS_DETACH类型重复，更改为TAF_MMC_CS_DETACH
- 3.日    期   : 2013年3月30日
-   作    者   : l00167671
-   修改内容   : 主动上报AT命令控制下移至C核
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_ConvertDetachTypeToLmm(
     VOS_UINT32                          ulDetachType,
     MMC_LMM_MO_DETACH_TYPE_ENUM_UINT32 *penLmmDetachType
 )
 {
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
     if ( NAS_MSCC_PIF_DETACH_TYPE_GPRS          == ulDetachType )
     {
         *penLmmDetachType = MMC_LMM_MO_DET_PS_ONLY;
@@ -2426,26 +1757,11 @@ VOS_UINT32  NAS_MMC_ConvertDetachTypeToLmm(
     {
         return VOS_ERR;
     }
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MML_GetTinTypeToLmm
- 功能描述  : 获取TIN类型给LMM
- 输入参数  : 无
- 输出参数  : penTinType:LMM的TIN类型
- 返 回 值  : VOS_OK:获取成功,VOS_ERR:获取失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月28日
-    作    者   : zhoujun /40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_GetTinTypeToLmm(
     MMC_LMM_TIN_TYPE_ENUM_UINT32        *penTinType
 )
@@ -2474,21 +1790,7 @@ VOS_UINT32  NAS_MMC_GetTinTypeToLmm(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetEplmnToLmm
- 功能描述  : 获取EPLMN通知LMM
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_OK:获取成功,VOS_ERR:获取失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月28日
-    作    者   : zhoujun /40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_GetEplmnToLmm(
     MMC_LMM_EPLMN_STRU                  *pstEplmnList
 )
@@ -2508,21 +1810,7 @@ VOS_UINT32  NAS_MMC_GetEplmnToLmm(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetFplmnToLmm
- 功能描述  : 获取FPLMN通知LMM
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_OK:获取成功,VOS_ERR:获取失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年4月28日
-   作    者   : zhoujun /40661
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_GetFplmnToLmm(
     MMC_LMM_PLMN_LIST_STRU              *pstFplmnList
 )
@@ -2545,21 +1833,7 @@ VOS_UINT32  NAS_MMC_GetFplmnToLmm(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetFplmnForGprsToLmm
- 功能描述  : 获取FPLMN for Gprs通知LMM
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_OK:获取成功,VOS_ERR:获取失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年4月28日
-   作    者   : zhoujun /40661
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_GetFplmnForGprsToLmm(
     MMC_LMM_PLMN_LIST_STRU              *pstFplmnForGprsList
 )
@@ -2584,23 +1858,7 @@ VOS_UINT32  NAS_MMC_GetFplmnForGprsToLmm(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetEHplmnToLmm
- 功能描述  : 获取EHPLMN通知LMM,EHPLMN不存在或不支持时，使用IMSI-derived Plmn
- 输入参数  : 无
- 输出参数  : pstEHplmnList:EHPLMN信息
- 返 回 值  : VOS_OK:获取成功,VOS_ERR:获取失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年4月28日
-   作    者   : zhoujun /40661
-   修改内容   : 新生成函数
- 2.日    期   : 2012年6月28日
-   作    者   : w00166186
-   修改内容   : AT&T&DCM项目
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_GetEHplmnToLmm(
     MMC_LMM_PLMN_LIST_STRU             *pstEHplmnList
 )
@@ -2633,21 +1891,7 @@ VOS_UINT32  NAS_MMC_GetEHplmnToLmm(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetHplmnToLmm
- 功能描述  : 获取HPLMN通知LMM
- 输入参数  : 无
- 输出参数  : pstHplmn:HPLMN信息
- 返 回 值  : VOS_OK:获取成功,VOS_ERR:获取失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年6月20日
-   作    者   : w00166186
-   修改内容   : AT&T&DCM项目
-
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_GetHplmnToLmm(
     MMC_LMM_PLMN_ID_STRU               *pstHplmn
 )
@@ -2687,24 +1931,7 @@ VOS_UINT32  NAS_MMC_GetHplmnToLmm(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : Nas_GetPubInfo
- 功能描述  : L调用接口获取GU模信息
- 输入参数  : ulInfoType:L需获取的信息
- 输出参数  : pstPubInfo:GU提供的信息
- 返 回 值  : VOS_OK:获取成功,VOS_ERR:获取失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月28日
-    作    者   : zhoujun /40661
-    修改内容   : 新生成函数
-  2.日    期   : 2012年6月20日
-    作    者   : w00166186
-    修改内容   : AT&T&DCM项目
-
-*****************************************************************************/
 MMC_LMM_RESULT_ID_ENUM_UINT32 Nas_GetPubInfo(
     MMC_LMM_INFO_TYPE_ENUM_UINT32       ulInfoType,
     MMC_LMM_PUB_INFO_STRU              *pstPubInfo
@@ -2753,20 +1980,7 @@ MMC_LMM_RESULT_ID_ENUM_UINT32 Nas_GetPubInfo(
     return MMC_LMM_FAIL;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_FillGprsRegInfoInLmmActionRslt
- 功能描述  : 填充Gprs update状态和Rai是否改变标志
- 输入参数  : pstMsg:消息的首地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2012年7月13日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_FillGprsRegInfoInLmmActionRslt(
     MMC_LMM_ACTION_RESULT_REQ_STRU     *pstMsg
 )
@@ -2799,21 +2013,7 @@ VOS_VOID NAS_MMC_FillGprsRegInfoInLmmActionRslt(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_FillCsRegInfoInLmmActionRslt
- 功能描述  : 填充CS update状态和Lai是否改变标志
- 输入参数  : ulEventType:消息类型
-             pstMsg:消息的首地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2012年7月12日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_FillCsRegInfoInLmmActionRslt(
     MMC_LMM_ACTION_RESULT_REQ_STRU     *pstMsg
 )
@@ -2879,22 +2079,7 @@ VOS_VOID NAS_MMC_FillCsRegInfoInLmmActionRslt(
     return;
 }
 
-/* Modified by s00246516 for L-C互操作项目, 2014-02-14, Begin */
-/*****************************************************************************
- 函 数 名  : NAS_MMC_PlmnIdIsAllowRegManualMode
- 功能描述  : 判断手动选网模式下网络是否允许注册
- 输入参数  : pstPlmn:当前的PLMN信息
- 输出参数  : 无
- 返 回 值  : VOS_TRUE允许注册,
-              VOS_FALSE:不允许注册
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月28日
-    作    者   : s00246516
-    修改内容   : L-C互操作项目:增加获取和注册请求的处理
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_PlmnIdIsAllowRegManualMode(
     NAS_MML_PLMN_ID_STRU               *pstPlmnId
 )
@@ -2936,52 +2121,16 @@ VOS_UINT32 NAS_MMC_PlmnIdIsAllowRegManualMode(
 
     return VOS_TRUE;
 }
-/* Modified by s00246516 for L-C互操作项目, 2014-02-14, end */
 
-/*****************************************************************************
- 函 数 名  : Nas_PlmnIdIsForbid
- 功能描述  : L调用接口获取该PLMN是否被禁止
- 输入参数  : pstPlmn:当前的PLMN信息
- 输出参数  : 无
- 返 回 值  : MMC_LMM_PLMN_ALLOW_REG允许注册,
-              MMC_LMM_PLMN_NOT_ALLOW_REG:不允许注册
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月28日
-    作    者   : zhoujun /40661
-    修改内容   : 新生成函数
-  2.日    期   : 2012年01月08日
-    作    者   : w00176964
-    修改内容   : DTS2013010703141:提供API给LNAS再任意驻留时判断是否需要发起注册
-  3.日    期   : 2013年11月01日
-    作    者   : l00208543
-    修改内容   : 根据卡类型禁止网络制式
-  4.日    期   : 2014年2月14日
-    作    者   : z00161729
-    修改内容   : DTS2014021000537:sim卡anycell驻留l的小区mmc收到系统消息转给mma时应该将禁止网络标识置为TRUE，
-                 不上报pstransfer:1,否则导致ps迁移到modem0后l不注册，乒乓ps迁移
-  5.日    期   : 2014年1月28日
-    作    者   : s00246516
-    修改内容   : L-C互操作项目:增加获取和注册请求的处理
-  6.日    期   : 2015年1月15日
-    作    者   : z00161729
-    修改内容   : AT&T 支持DAM特性修改
-  7.日    期   : 2015年4月23日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-*****************************************************************************/
 MMC_LMM_PLMN_CTRL_ENUM_UINT32  Nas_PlmnIdIsForbid(
     MMC_LMM_PLMN_ID_STRU                *pstPlmn
 )
 {
-    /* Modified by s00246516 for L-C互操作项目, 2014-02-14, Begin */
     NAS_MML_PLMN_ID_STRU                                    stGuPlmnId;
     NAS_MML_PLMN_WITH_RAT_STRU                              stPlmnWithRat;
     NAS_MML_SIM_FORBIDPLMN_INFO_STRU                       *pstForbidPlmnInfo = VOS_NULL_PTR;
     VOS_UINT8                                               ucAsAnyCampOn;
-    /* Modified by s00246516 for L-C互操作项目, 2014-02-14, End */
 
     /* 将PLMN ID进行转换 */
     NAS_MMC_ConvertLmmPlmnToGUNasFormat(pstPlmn, &stGuPlmnId);
@@ -3004,7 +2153,6 @@ MMC_LMM_PLMN_CTRL_ENUM_UINT32  Nas_PlmnIdIsForbid(
         return MMC_LMM_PLMN_NOT_ALLOW_REG;
     }
 
-    /* Modified by s00246516 for L-C互操作项目, 2014-02-14, Begin */
     ucAsAnyCampOn = NAS_MMC_GetAsAnyCampOn();
 
     /* 如果是3GPP2控制注册，当前L为限制驻留，不允许发起注册 */
@@ -3018,7 +2166,6 @@ MMC_LMM_PLMN_CTRL_ENUM_UINT32  Nas_PlmnIdIsForbid(
     {
         return MMC_LMM_PLMN_NOT_ALLOW_REG;
     }
-    /* Modified by s00246516 for L-C互操作项目, 2014-02-14, End */
 
     /* 该PLMN ID是否在锁网锁卡的PLMN 列表中 */
     if (VOS_TRUE == NAS_MML_IsBcchPlmnIdInLockPlmnList(&stGuPlmnId))
@@ -3071,27 +2218,7 @@ MMC_LMM_PLMN_CTRL_ENUM_UINT32  Nas_PlmnIdIsForbid(
     return MMC_LMM_PLMN_ALLOW_REG;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_BuildLmmSpecPlmnSearchReqMsg
- 功能描述  : 构造通知Lmm指定搜网的消息体
- 输入参数  : pstPlmnId, 指定搜网的PLMN ID
- 输出参数  : pstMsg  返回构造消息体指针
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年7月19日
-   作    者   : sunxibo 46746
-   修改内容   : 新生成函数
- 2.日    期   : 2011年12月15日
-   作    者   : W00166186
-   修改内容   : dts2011111502641,L下PLMN加入禁止TA后不再搜网
- 3.日    期   : 2014年3月19日
-   作    者   : w00242748
-   修改内容   : DTS2014031200137:当NV特性打开时，自动开机或者搜网时，如果首次搜索RPLMN的话，
-                需要将HPLMN/EHPLMN带给接入层。
-*****************************************************************************/
 VOS_VOID NAS_MMC_BuildLmmSpecPlmnSearchReqMsg(
     MMC_LMM_PLMN_SRCH_REQ_STRU         *pstMsg,
     NAS_MML_PLMN_LIST_WITH_RAT_STRU    *pstDestPlmnList,
@@ -3152,35 +2279,7 @@ VOS_VOID NAS_MMC_BuildLmmSpecPlmnSearchReqMsg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndLmmSpecPlmnSearchReq
- 功能描述  : 根据是否用户指定搜网时，向LMM发送指定搜网请求消息
- 输入参数  : stDestPlmn
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年7月11日
-   作    者  : s46746
-   修改内容  : 新生成函数
-
- 2.日    期   : 2011年8月17日
-   作    者   : w00167002
-   修改内容   : V7R1 PHASEII 重构: 添加pc回放
- 3.日    期   : 2011年12月15日
-   作    者   : W00166186
-   修改内容   : dts2011111502641,L下PLMN加入禁止TA后不再搜网
- 4.日    期   : 2011年11月28日
-   作    者   : z00161729
-   修改内容   : MMC与LMM消息交互采用内部消息队列，为保证PC上GTR功能已有用例可以正常使用，
-                在PC上MMC、GMM和LMM的交互还使用外部消息，发送消息函数需要用宏NAS_STUB隔开
- 5.日    期   : 2014年3月19日
-   作    者   : w00242748
-   修改内容   : DTS2014031200137:当NV特性打开时，自动开机或者搜网时，如果首次搜索RPLMN的话，
-                需要将HPLMN/EHPLMN带给接入层。
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndLmmSpecPlmnSearchReq(
     NAS_MML_PLMN_LIST_WITH_RAT_STRU    *pstDestPlmnList,
     VOS_UINT32                          ulUserSpecFlag,
@@ -3237,20 +2336,7 @@ VOS_VOID NAS_MMC_SndLmmSpecPlmnSearchReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_BuildLmmHistoryPlmnSearchReqMsg
- 功能描述  : 构造通知Lmm指定历史频点搜网的消息体
- 输入参数  : pstDestPlmnList, 指定搜网的PLMN列表
- 输出参数  : pstMsg  返回构造消息体指针
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年6月3日
-   作    者   : w00167002
-   修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_2.0项目修改
-*****************************************************************************/
 VOS_VOID NAS_MMC_BuildLmmHistoryPlmnSearchReqMsg(
     MMC_LMM_PLMN_SRCH_REQ_STRU         *pstMsg,
     NAS_MML_PLMN_LIST_WITH_RAT_STRU    *pstDestPlmnList
@@ -3294,21 +2380,7 @@ VOS_VOID NAS_MMC_BuildLmmHistoryPlmnSearchReqMsg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndLmmHistoryPlmnSearchReq
- 功能描述  : 给LMM发送history类型的搜网请求
- 输入参数  : NAS_MML_PLMN_LIST_WITH_RAT_STRU    *pstDestPlmnList
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月02日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndLmmHistoryPlmnSearchReq(
     NAS_MML_PLMN_LIST_WITH_RAT_STRU    *pstDestPlmnList
 )
@@ -3353,23 +2425,7 @@ VOS_VOID NAS_MMC_SndLmmHistoryPlmnSearchReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_BuildLmmPrefBandPlmnSearchReqMsg
- 功能描述  : 构造发送给LMM的Pref band搜网请求
- 输入参数  : MMC_LMM_PLMN_SRCH_REQ_STRU         *pstMsg
-             NAS_MML_PLMN_LIST_WITH_RAT_STRU    *pstDestPlmnList
-             VOS_UINT32                          ulUserSpecFlag
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月28日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_BuildLmmPrefBandPlmnSearchReqMsg(
     MMC_LMM_PLMN_SRCH_REQ_STRU         *pstMsg,
     NAS_MML_PLMN_LIST_WITH_RAT_STRU    *pstDestPlmnList,
@@ -3415,22 +2471,7 @@ VOS_VOID NAS_MMC_BuildLmmPrefBandPlmnSearchReqMsg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndLmmPrefBandPlmnSearchReq
- 功能描述  : 向LMM发送指定搜网请求
- 输入参数  : NAS_MML_PLMN_LIST_WITH_RAT_STRU    *pstDestPlmnList
-             VOS_UINT32                          ulUserSpecFlag
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月28日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndLmmPrefBandPlmnSearchReq(
     NAS_MML_PLMN_LIST_WITH_RAT_STRU    *pstDestPlmnList,
     VOS_UINT32                          ulUserSpecFlag
@@ -3480,27 +2521,7 @@ VOS_VOID NAS_MMC_SndLmmPrefBandPlmnSearchReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndLmmNcellSpecPlmnSearchReq
- 功能描述  : 向lmm发送ncell快速指定搜网消息
- 输入参数  : pstLteNcellInfo        - lte 频点列表信息
-             pstOtherModemEplmnInfo - 等效plmn信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2013年12月25日
-   作    者   : z00161729
-   修改内容   : SVLTE支持NCELL搜网
- 2.日    期   : 2014年2月14日
-   作    者   : s00246516
-   修改内容   : L-C互操作项目:增加获取和注册请求的处理
- 3.日    期   : 2015年5月26日
-   作    者   : w00167002
-   修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_2.0项目修改
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndLmmNcellSpecPlmnSearchReq(
     NAS_MMC_LTE_NCELL_INFO_STRU        *pstLteNcellInfo,
     NAS_MML_EQUPLMN_INFO_STRU          *pstOtherModemEplmnInfo
@@ -3546,11 +2567,9 @@ VOS_VOID NAS_MMC_SndLmmNcellSpecPlmnSearchReq(
     PS_MEM_CPY(pstMsg->stNcellInfo.aulLteArfcnList, pstLteNcellInfo->aulLteArfcnList,
                sizeof(pstMsg->stNcellInfo.aulLteArfcnList));
 
-    /* Added by s00246516 for L-C互操作项目, 2014-02-14, Begin */
     pstMsg->stNcellInfo.ucLteCellIdNum = pstLteNcellInfo->ucLteCellNum;
     PS_MEM_CPY(pstMsg->stNcellInfo.ausLteCellIdList, pstLteNcellInfo->ausLteCellList,
                sizeof(pstMsg->stNcellInfo.ausLteCellIdList));
-    /* Added by s00246516 for L-C互操作项目, 2014-02-14, End */
 
     ucMaxEplmnNum        = pstOtherModemEplmnInfo->ucEquPlmnNum;
 
@@ -3591,44 +2610,7 @@ VOS_VOID NAS_MMC_SndLmmNcellSpecPlmnSearchReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_BuildMmcLmmDetachIndActionResultReqMsg
- 功能描述  : 构造通知Lmm业务流程结果的消息体
- 输入参数  : NAS_MMC_GMM_NT_DETACH_ENUM_U32       enMtType,
-             NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16   enCnCause 拒绝原因值
- 输出参数  : MMC_LMM_ACTION_RESULT_REQ_STRU      *pstMsg  返回构造消息体指针
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 协议说明  : TS 24008 10.5.5.5
-   Type of detach (octet 1)
 
-   In the MS to network direction:
-   Bits
-   3   2   1
-   0   0   1       GPRS detach
-   0   1   0       IMSI detach
-   0   1   1       Combined GPRS/IMSI detach
-
-   All other values are interpreted as Combined GPRS/IMSI detach by this version of the protocol.
-
-   In the network to MS direction:
-   Bits
-   3   2   1
-   0   0   1       re-attach required
-   0   1   0       re-attach not required
-   0   1   1       IMSI detach (after VLR failure)
-
-   All other values are interpreted as re-attach not required by this version of the protocol.
- 修改历史      :
- 1.日    期   : 2011年4月19日
-   作    者   : W00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2011年8月11日
-   作    者   : W00167002
-   修改内容   : 增加消息长度的赋值
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_BuildMmcLmmDetachIndActionResultReqMsg(
     NAS_MMC_GMM_NT_DETACH_ENUM_U32      enMtType,
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16  enCnCause,
@@ -3693,21 +2675,7 @@ VOS_VOID NAS_MMC_BuildMmcLmmDetachIndActionResultReqMsg(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConverCnDomainToLmm
- 功能描述  : 将MMC内部保存的Domain转换为LMM格式的
- 输入参数  : enCnDoamin:MMC内部保存的域
- 输出参数  : penLmmDomain:LMM格式的域
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月12日
-    作    者   : zhoujun /40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_ConverCnDomainToLmm(
     NAS_MMC_REG_DOMAIN_ENUM_UINT8      enCnDoamin,
     MMC_LMM_DOMAIN_ENUM_UINT32         *penLmmDomain
@@ -3729,23 +2697,7 @@ VOS_UINT32 NAS_MMC_ConverCnDomainToLmm(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConvertMmCauseToEmmCause
- 功能描述  : 将MM的注册结果转换为EMM的注册结果,由于需要明确告诉EMM是否是网络
-              拒绝还是其他原因拒绝
- 输入参数  : enCnCause:MM注册结果
- 输出参数  : penProtolCause:协议中规定的结果
- 返 回 值  : VOS_OK:转换成功
-              VOS_ERR:转换失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月11日
-    作    者   : zhoujun /40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_ConvertMmCauseToEmmCause(
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16  enCnCause,
     NAS_LMM_CN_CAUSE_ENUM_UINT8        *penProtolCause
@@ -3768,25 +2720,7 @@ VOS_UINT32  NAS_MMC_ConvertMmCauseToEmmCause(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConvertGuRsltToLmmFormat
- 功能描述  : 根据GU的注册结果，转换成L的格式
- 输入参数  : enRegRst  注册结果
-             enCnCause 注册原因值
- 输出参数  :
- 返 回 值  : VOS_OK:转换成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月11日
-    作    者   : zhoujun /40661
-    修改内容   : 新生成函数
-  2.日    期   : 2012年7月13日
-    作    者   : s00217060
-    修改内容   : for sync lmm cs state:增加注册结果为Bar的类型转换
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_ConvertGuRsltToLmmFormat(
     NAS_MML_REG_RESULT_ENUM_UINT8       enGuRegRslt,
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16  enGuCnCause,
@@ -3828,23 +2762,7 @@ VOS_VOID NAS_MMC_ConvertGuRsltToLmmFormat(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndLmmUserSpecPlmnSearchEndNotify
- 功能描述  : 向LTE发送用户搜网结束通知
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年12月06日
-   作    者   : w00166186
-   修改内容   : 新生成函数
- 2.日    期   : 2012年2月24日
-   作    者   : w00176964
-   修改内容   : V7R1 PhaseIV 调整
-*****************************************************************************/
 
 VOS_VOID NAS_MMC_SndLmmUserSpecPlmnSearchEndNotify( VOS_VOID )
 {
@@ -3891,20 +2809,7 @@ VOS_VOID NAS_MMC_SndLmmUserSpecPlmnSearchEndNotify( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndLmmBgStopPlmnSearchReq
- 功能描述  : 向LTE发送停止背景搜网消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年4月25日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndLmmBgStopPlmnSearchReq(VOS_VOID)
 {
     /* 定义原语类型指针 */
@@ -3953,23 +2858,7 @@ VOS_VOID NAS_MMC_SndLmmBgStopPlmnSearchReq(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndLmmFastPlmnSearchReq
- 功能描述  : 向LTE发送快速指定搜网消息
- 输入参数  : pstDestPlmn - 搜索PLMN信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年4月25日
-   作    者   : z00161729
-   修改内容   : 新生成函数
- 2.日    期   : 2015年5月26日
-   作    者   : w00167002
-   修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_2.0项目修改
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndLmmFastPlmnSearchReq(
     NAS_MML_PLMN_ID_STRU               *pstDestPlmn
 )
@@ -4031,20 +2920,7 @@ VOS_VOID NAS_MMC_SndLmmFastPlmnSearchReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndLmmBgPlmnSearchReq
- 功能描述  : 向LTE发送快背景搜网消息
- 输入参数  : pstDestPlmn - 搜索PLMN信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年4月25日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndLmmBgPlmnSearchReq(
     NAS_MML_PLMN_WITH_RAT_STRU         *pstDestPlmn
 )
@@ -4142,20 +3018,7 @@ VOS_VOID NAS_MMC_SndLmmBgPlmnSearchReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndLmmGetGeoPlmnSearchReq
- 功能描述  : 向LMM发送获取地理信息请求消息
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年05月08日
-   作    者   : sunjitan 00193151
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndLmmGetGeoPlmnSearchReq(VOS_VOID)
 {
     /* 定义原语类型指针 */
@@ -4211,20 +3074,7 @@ VOS_VOID NAS_MMC_SndLmmGetGeoPlmnSearchReq(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndLmmStopGetGeoPlmnSearchReq
- 功能描述  : 向LMM发送停止获取地理信息请求消息
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年05月08日
-   作    者   : sunjitan 00193151
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndLmmStopGetGeoPlmnSearchReq(VOS_VOID)
 {
     NAS_MMC_SndLmmPlmnSrchStopReq();
@@ -4236,21 +3086,7 @@ VOS_VOID NAS_MMC_SndLmmStopGetGeoPlmnSearchReq(VOS_VOID)
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndLmmUeOocStatusInd
- 功能描述  : 通知LMM当前进入OOC状态
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年3月31日
-   作    者   : z40661
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  NAS_MMC_SndLmmUeOocStatusInd( VOS_VOID )
 {
     /* 定义原语类型指针 */
@@ -4297,21 +3133,7 @@ VOS_VOID  NAS_MMC_SndLmmUeOocStatusInd( VOS_VOID )
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndLmmWcdmaSysInfoInd
- 功能描述  : 向LMM转发W的系统消息中的主要信息
- 输入参数  : pstMsg: W的系统消息
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年6月15日
-   作    者   : l00171473
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndLmmWcdmaSysInfoInd(
     struct MsgCB                       *pstMsg
 )
@@ -4388,21 +3210,7 @@ VOS_VOID NAS_MMC_SndLmmWcdmaSysInfoInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndLmmGsmSysInfoInd
- 功能描述  : 向LMM转发G的系统消息中的主要信息
- 输入参数  : pstMsg: G的系统消息
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年6月15日
-   作    者   : l00171473
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndLmmGsmSysInfoInd(
     struct MsgCB                       *pstMsg
 )
@@ -4478,20 +3286,7 @@ VOS_VOID NAS_MMC_SndLmmGsmSysInfoInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndLmmCellSelReq
- 功能描述  : 向LTE下发送CELL_SELECTION_CTRL_REQ的处理
- 输入参数  : ulSelType: 发送到LMM的等效PLMN列表信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
-修改历史      :
- 1.日    期   : 2012年10月12日
-   作    者   : t00212959
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndLmmCellSelReq(
     MMC_LMM_CELL_SEL_TYPE_ENUM_UINT32       ulSelType
 )
@@ -4542,20 +3337,7 @@ VOS_VOID NAS_MMC_SndLmmCellSelReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndLmmCellSelReq
- 功能描述  : 向LTE下发送CELL_SELECTION_CTRL_REQ的处理
- 输入参数  : ulSelType: 发送到LMM的等效PLMN列表信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
-修改历史      :
- 1.日    期   : 2012年10月12日
-   作    者   : t00212959
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndLmmSuspendRelReq(VOS_VOID)
 {
     MMC_LMM_SUSPEND_REL_REQ_STRU                   *pstMmcLmmSuspendRelReq = VOS_NULL_PTR;
@@ -4604,20 +3386,7 @@ VOS_VOID NAS_MMC_SndLmmSuspendRelReq(VOS_VOID)
 }
 
 #if (FEATURE_MULTI_MODEM == FEATURE_ON)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndLmmOtherModemInfoNotify
- 功能描述  : MMC给LMM下发Modem1的信息，LMM根据需要透传给LRRC
- 输入参数  : pstLmmSysInfoMsg: 发送到LMM的LTE的系统消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
-修改历史      :
- 1.日    期   : 2013年11月22日
-   作    者   : z00161729
-   修改内容   : SVLTE优化G-TL ps切换性能修改
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndLmmOtherModemInfoNotify(
     MMC_LMM_OTHER_MODEM_INFO_NOTIFY_STRU                   *pstOtherModemInfoMsg
 )
@@ -4672,20 +3441,7 @@ VOS_VOID NAS_MMC_SndLmmOtherModemInfoNotify(
 #endif
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndLmmLteSysInfoInd
- 功能描述  : 向LTE下发送LTE系统消息的处理
- 输入参数  : pstLmmSysInfoMsg: 发送到LMM的LTE的系统消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
-修改历史      :
- 1.日    期   : 2012年12月20日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndLmmLteSysInfoInd(
     LMM_MMC_SYS_INFO_IND_STRU          *pstLmmSysInfoMsg
 )
@@ -4739,20 +3495,7 @@ VOS_VOID NAS_MMC_SndLmmLteSysInfoInd(
 }
 
 #if (FEATURE_ON == FEATURE_DSDS)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndLmmBeginSessionNotify
- 功能描述  : 向LMM下发送ID_MMC_LMM_BEGIN_SESSION_NOTIFY
- 输入参数  : enSessionType - 通知接入层的session type
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
-修改历史      :
- 1.日    期   : 2014年6月23日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndLmmBeginSessionNotify(
     MMC_LMM_SESSION_TYPE_ENUM_UINT8     enSessionType
 )
@@ -4803,20 +3546,7 @@ VOS_VOID NAS_MMC_SndLmmBeginSessionNotify(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndLmmEndSessionNotify
- 功能描述  : 向LMM下发送ID_MMC_LMM_END_SESSION_NOTIFY
- 输入参数  : enSessionType - 通知接入层的session type
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
-修改历史      :
- 1.日    期   : 2014年6月23日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndLmmEndSessionNotify(
     MMC_LMM_SESSION_TYPE_ENUM_UINT8     enSessionType
 )
@@ -4869,21 +3599,7 @@ VOS_VOID NAS_MMC_SndLmmEndSessionNotify(
 
 #endif
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-19, begin */
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndLmmImsVoiceCapChangeNtf
- 功能描述  : 向LMM下发送IMS VOICE CAP改变消息的处理
- 输入参数  : ucImsVoiceAvail: 当前IMS VOICE是否可用
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
-修改历史      :
- 1.日    期   : 2013年12月20日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndLmmImsVoiceCapChangeNtf(
     VOS_UINT8       ucImsVoiceAvail
 )
@@ -4941,24 +3657,10 @@ VOS_VOID NAS_MMC_SndLmmImsVoiceCapChangeNtf(
     return;
 }
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-19, end */
 
 /*lint -restore */
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndLmmCellSignReportNotify
- 功能描述  : 由MMC通知LMM信号质量上报间隔和门限
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
-修改历史      :
- 1.日    期   : 2014年12月05日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndLmmCellSignReportNotify(VOS_VOID)
 {
     /* NAS_MMC_GetMaintainInfo中取出ucSignThreshold和ucMinRptTimerInterval，通知LMM */
@@ -5021,20 +3723,7 @@ VOS_VOID NAS_MMC_SndLmmCellSignReportNotify(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndLmmVoiceDomainChangeInd
- 功能描述  : 由MMC通知LMM voice domain发生改变
- 输入参数  : enVoiceDomain: 语音优选域
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
-修改历史      :
-  1.日    期   : 2015年2月2日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndLmmVoiceDomainChangeInd(
     MMC_LMM_VOICE_DOMAIN_ENUM_UINT32    enVoiceDomain
 )

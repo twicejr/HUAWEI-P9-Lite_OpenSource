@@ -1,61 +1,4 @@
-/*******************************************************************************
-  Copyright    : 2005-2007, Huawei Tech. Co., Ltd.
-  File name:          SmsCsSmProcess.c
-  Description:        CS DOMAIN的SM过程
-  Function List:
-               1. SMC_RcvNwCsMtData
-               2. SMC_RcvMmEstInd
-               3. SMC_RcvNwCsMoData
-               4. SMC_RcvMmEstCnf
-               5. SMC_ComCsMtErr
-               6. SMC_ComCsMoErr
-               7. SMC_ComCsWaitAckSta
-               8. SMC_RcvMmRelInd
-               9. SMC_SndMmDataReq
-              10. SMC_SndRelReq
-              11. SMC_SndMmMsg
-              12. SMC_ComCsInitEnt
-              13. SMC_RcvMmRegStaInd
 
-  History:
-      1.  张志勇      2004.03.09   新规作成
-      2.  张志勇   2005.06.28   对应测试记录06-19修改
-  3. Date:          2006-08-17
-     Author:        郜东东
-     Modification:  OSA优化整改,问题单号:A32D05312
-  4. Date         : 2007-04-02
-     Author       : x51137
-     Modification : A32D09710
-  5. Date         : 2007-08-20
-     Author       : z40661
-     Modification : A32D12705
-  6. 日    期   : 2008年7月23日
-     作    者   : luojian id:107747
-     修改内容   : 根据问题单：AT2D04627/AT2D04237
-  7.日    期   : 2009年3月23日
-    作    者   : f62575
-    修改内容   : AT2D08752, W接入方式下，信号较弱时连续发送多条短信会概率性出现发送操作失败；
-  8.日    期   : 2009年3月23日
-    作    者   : f62575
-    修改内容   : AT2D105722, 发送CS域短信时会出现内存泄露；
-  9.日    期   : 2009年5月23日
-    作    者   : f62575
-    修改内容   : AT2D10986, 2G下PS域发送短信连续两次发送失败后，
-                 CP层再次超时事件与RP层超时事件同时到达SMS模块内存的错误操作，
-                 导致单板的复位
-  10.日    期   : 2009年5月10日
-     作    者   : f62575
-     修改内容   : AT2D12319, NAS R6升级；
-  11.日    期   : 2009年8月14日
-     作    者   : f62575
-     修改内容   : AT2D13631, CS短信接收失败的问题，CS短信自发自收时，发送成功，但是接收时回复CP error，原因是msg not compatible with protocl state
-  12.日    期   : 2010年01月26日
-     作    者   : f62575
-     修改内容   : 问题单号AT2D16570
-                  接收到DATA-IND消息的无效的消息类型，应回复CP-ERROR错误原因值97
-                  接收到DATA-IND消息的无CP-USER-DATA，应回复CP-ERROR错误原因值96
-                  非SMC_MO_WAIT_FOR_CP_ACK状态，应回复CP-ERROR错误原因值98
-*******************************************************************************/
 #include "smsinclude.h"
 
 
@@ -79,22 +22,7 @@ extern VOS_VOID SMC_ReportM2NOtaMsg(NAS_MSG_STRU *pMsg);
 
 /*lint -save -e958 */
 
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
-/*****************************************************************************
- 函 数 名  : NAS_SMS_ResendCsRpData
- 功能描述  : 重发RP-DATA消息
- 输入参数  : ucRetransFlg 是否要求修改TP-RD标志，仅SUBMIT且需要修改TP-RD标志时为VOS_TRUE
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 VOS_FALSE 消息发送失败
-                        VOS_TRUE  消息发送成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2013年6月26日
-   作    者   : f62575
-   修改内容   : V9R1 STK升级
-*****************************************************************************/
 VOS_UINT32 NAS_SMS_ResendCsRpData(VOS_UINT8 ucRetransFlg)
 {
     VOS_UINT8                           ucRdPos;
@@ -126,21 +54,7 @@ VOS_UINT32 NAS_SMS_ResendCsRpData(VOS_UINT8 ucRetransFlg)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SMS_ResendCsRpReport
- 功能描述  : 重发RP-ACK或RP-ERROR消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 VOS_FALSE 消息发送失败
-                        VOS_TRUE  消息发送成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2013年6月26日
-   作    者   : f62575
-   修改内容   : V9R1 STK升级
-*****************************************************************************/
 VOS_UINT32 NAS_SMS_ResendCsRpReport(VOS_VOID)
 {
 
@@ -158,20 +72,7 @@ VOS_UINT32 NAS_SMS_ResendCsRpReport(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_SMS_RcvNackMsg
- 功能描述  : 未发送消息处理函数
- 输入参数  : MMSMS_NACK_DATA_IND_STRU *pstNackMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2013年6月26日
-   作    者   : f62575
-   修改内容   : V9R1 STK升级
-*****************************************************************************/
 VOS_VOID NAS_SMS_RcvNackMsg(MMSMS_NACK_DATA_IND_STRU *pstNackMsg)
 {
     VOS_UINT8                           ucPos;
@@ -273,37 +174,9 @@ VOS_VOID NAS_SMS_RcvNackMsg(MMSMS_NACK_DATA_IND_STRU *pstNackMsg)
 
     return;
 }
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 
 
-/*******************************************************************************
-  Module:   SMC_RcvNwCsMtData
-  Function: mt实体接收到cs域数据的处理
-  Input:    VOS_UINT8*  pucCpdu   --- 指向短消息CPDU的指针
-            VOS_UINT32   ulCpduLen --- 短消息CPDU的长度
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1. Date         : 2004-03-09
-     Author       : g41091
-     Modification : 新规作成
-  2. Date         : 2006-02-22
-     Author       : g41091
-     Modification : 增加了通过GPRS发送短信的功能,问题单号:A32D02833
-  3. Date         : 2006-04-26
-     Author       : 郜东东
-     Modification : 修改了无法连续接收多条短信的问题,问题单号:A32D02986
-  4. Date         : 2007-04-02
-     Author       : x51137
-     Modification : A32D09710
-  5.日    期   : 2013年6月4日
-    作    者   : s00217060
-    修改内容   : for V9R1_SVLTE:接收短信时，把接收域是CS还是PS域带上去，MSG要用
-  6.日    期   : 2014年6月24日
-    作    者   : w00167002
-    修改内容   : DSDS III项目
-*******************************************************************************/
+
 VOS_VOID SMC_RcvNwCsMtData(
                        VOS_UINT8*   pucCpdu,
                        VOS_UINT32    ulCpduLen
@@ -445,37 +318,7 @@ VOS_VOID SMC_RcvNwCsMtData(
     }
     return;
 }
-/*******************************************************************************
-  Module:   SMC_RcvMmEstInd
-  Function: 建立cs域的smc实体
-  Input:    MMSMS_EST_IND_STRU * pRcvMsg   收到的消息
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1. Date         : 2004-03-09
-     Author       : g41091
-     Modification : 新规作成
-  2. Date         : 2006-02-22
-     Author       : g41091
-     Modification : 增加了通过GPRS发送短信的功能,问题单号:A32D02833
 
-  3.日    期   : 2010年04月28日
-    作    者   : z40661
-    修改内容   : 问题单号AT2D16570
-                 接收到DATA-IND消息的无效的消息类型，应回复CP-ERROR错误原因值97
-                 接收到DATA-IND消息的无CP-USER-DATA，应回复CP-ERROR错误原因值96
-                 非SMC_MO_WAIT_FOR_CP_ACK状态，应回复CP-ERROR错误原因值98
-  4.日    期   : 2013年6月4日
-    作    者   : s00217060
-    修改内容   : for V9R1_SVLTE:接收短信时，把接收域是CS还是PS域带上去，MSG要用
-  5.日    期   : 2014年02月20日
-    作    者   : f62575
-    修改内容   : DTS2014012108756: 无效的EST_IND
-  6.日    期   : 2014年6月24日
-    作    者   : w00167002
-    修改内容   : DSDS III项目
-*******************************************************************************/
 VOS_VOID SMC_RcvMmEstInd(
                      VOS_UINT8*   pucCpdu,
                      VOS_UINT32    ulCpduLen
@@ -577,40 +420,7 @@ VOS_VOID SMC_RcvMmEstInd(
     }
     return;
 }
-/*******************************************************************************
-  Module:   SMC_RcvNwCsMoData
-  Function: mo实体接收到cs域数据的处理
-  Input:    VOS_UINT8*  pucCpdu   --- 指向短消息CPDU的指针
-            VOS_UINT32   ulCpduLen --- 短消息CPDU的长度
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1. Date         : 2004-03-09
-     Author       : g41091
-     Modification : 新规作成
-  2. Date         : 2006-02-22
-     Author       : g41091
-     Modification : 增加了通过GPRS发送短信的功能,问题单号:A32D02833
-  3. Date         : 2007-04-06
-     Author       : h44270
-     Modification : 问题单号:A32D10113
-  4.日    期   : 2010年01月26日
-    作    者   : f62575
-    修改内容   : 问题单号AT2D16570
-                  接收到DATA-IND消息的无效的消息类型，应回复CP-ERROR错误原因值97
-                  接收到DATA-IND消息的无CP-USER-DATA，应回复CP-ERROR错误原因值96
-                  非SMC_MO_WAIT_FOR_CP_ACK状态，应回复CP-ERROR错误原因值98
-  5.日    期   : 2012年8月29日
-    作    者   : z00161729
-    修改内容   : DCM定制需求和遗留问题修改
-  6.日    期   : 2013年07月11日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级项目
-  7.日    期   : 2014年6月24日
-    作    者   : w00167002
-    修改内容   : DSDS III项目
-*******************************************************************************/
+
 VOS_VOID SMC_RcvNwCsMoData(
                        VOS_UINT8* pucCpdu,
                        VOS_UINT32  ulCpduLen
@@ -728,9 +538,7 @@ VOS_VOID SMC_RcvNwCsMoData(
         {                                                                       /* 状态正确                                 */
             SMC_ComCsInitEnt(SMS_FALSE);                                        /* 初始化CS域的实体                         */
 
-            /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
             SMR_SmcApiErrorInd((SMR_SMT_ERROR_CP_ERROR_BEGIN | pucCpdu[2]) , SMS_FALSE);                        /* 向上层报错                               */
-            /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
         }
         else
         {
@@ -750,30 +558,7 @@ VOS_VOID SMC_RcvNwCsMoData(
     SMS_LOG1(PS_LOG_LEVEL_NORMAL, "SMC_RcvNwCsMoData: g_SmcPsEnt.SmcMo.ucState.", g_SmcPsEnt.SmcMo.ucState);
     return;
 }
-/*******************************************************************************
-  Module:   SMC_RcvMmEstCnf
-  Function: 发送缓存的数据
-  Input:    MMSMS_DATA_IND_STRU * pRcvMsg   收到的消息首地址
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1. Date         : 2004-03-09
-     Author       : g41091
-     Modification : 新规作成
-  2. Date         : 2006-02-22
-     Author       : g41091
-     Modification : 增加了通过GPRS发送短信的功能,问题单号:A32D02833
-  3. Date         : 2007-04-06
-     Author       : h44270
-     Modification : 问题单号:A32D10113
-  4.日    期   : 2012年12月28日
-    作    者   : f62575
-    修改内容   : DTS2012122700666, 解决TR1M定时器在TC1M定时器前超时发送GCF仪器不期望的CP-ERROR问题
-  5.日    期   : 2014年6月24日
-    作    者   : w00167002
-    修改内容   : DSDS III项目
-*******************************************************************************/
+
 VOS_VOID SMC_RcvMmEstCnf(
                         MMSMS_EST_CNF_STRU * pRcvMsg                            /* 收到的消息首地址                         */
                     )
@@ -841,6 +626,15 @@ VOS_VOID SMC_RcvMmEstCnf(
         usMsgLen = sizeof(MMSMS_DATA_REQ_STRU);                                 /* 计算消息的长度                           */
     }
 
+    /* 异常保护 */
+    if (usMsgLen > sizeof(aucSnd))
+    {
+        PS_NAS_LOG(WUEPS_PID_SMS, VOS_NULL, PS_LOG_LEVEL_WARNING, "SMC_RcvMmEstCnf:WARNING:message len error.");
+        SMS_Free( g_SmcCsEnt.SmcMo.HoldRcvMsg.pMsg );
+        g_SmcCsEnt.SmcMo.HoldRcvMsg.ulMsgLen = 0;
+        return;
+    }
+
     SMS_Memset( aucSnd,0,usMsgLen );
 
     pucData = ((MMSMS_DATA_REQ_STRU *)aucSnd)->SmsMsg.aucNasMsg;
@@ -892,29 +686,7 @@ VOS_VOID SMC_RcvMmEstCnf(
 
     return;
 }
-/*******************************************************************************
-  Module:   SMC_ComCsMtErr
-  Function: 释放CS域的MT实体，进入空闲
-  Input:    MMSMS_DATA_IND_STRU * pRcvMsg   收到的消息
-                                  enErrType 错误类型
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.  张志勇      2004.03.09   新规作成
-  2. Date         : 2007-04-06
-     Author       : h44270
-     Modification : 问题单号:A32D10113
-  3.日    期   : 2012年8月29日
-    作    者   : z00161729
-    修改内容   : DCM定制需求和遗留问题修改，增加入参enErrType
-  4.日    期   : 2013年07月11日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级项目
-  5.日    期   : 2014年6月24日
-    作    者   : w00167002
-    修改内容   : DSDS III项目
-*******************************************************************************/
+
 VOS_VOID SMC_ComCsMtErr(
     SMR_SMT_ERROR_ENUM_UINT32           enErrorCode,
     VOS_UINT8                           ucTi
@@ -934,32 +706,11 @@ VOS_VOID SMC_ComCsMtErr(
         NAS_SMS_ChangeCsMtEntityState(SMC_MT_IDLE);
 
         SMC_ComCsInitEnt(SMS_TRUE);                                             /* 初始化CS域的实体                         */
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
         SMR_SmcApiErrorInd(enErrorCode, SMS_TRUE);                              /* 上报错误                                 */
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
     }
     return;
 }
-/*******************************************************************************
-  Module:   SMC_ComCsMoErr
-  Function: 释放CS域的MO实体，进入空闲
-  Input:    MMSMS_DATA_IND_STRU * pRcvMsg   收到的消息
-                                  enErrType 错误类型
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇      2004.03.09   新规作成
-      2.日    期   : 2012年8月29日
-        作    者   : z00161729
-        修改内容   : DCM定制需求和遗留问题修改，增加入参
-      3.日    期   : 2013年07月11日
-        作    者   : f62575
-        修改内容   : V9R1 STK升级项目
-      4.日    期   : 2014年6月24日
-        作    者   : w00167002
-        修改内容   : DSDS III项目
-*******************************************************************************/
+
 VOS_VOID SMC_ComCsMoErr(
     SMR_SMT_ERROR_ENUM_UINT32           enErrorCode,
     VOS_UINT8                           ucTi
@@ -981,9 +732,7 @@ VOS_VOID SMC_ComCsMoErr(
             NAS_SMS_ChangeCsMoEntityState(SMC_MO_IDLE);
 
             SMC_ComCsInitEnt(SMS_FALSE);                                        /* 初始化CS域的实体                         */
-            /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
             SMR_SmcApiErrorInd(enErrorCode, SMS_FALSE);                             /* 上报错误                                 */
-            /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
             break;
         default:
             break;
@@ -1042,22 +791,7 @@ VOS_VOID SMC_ComCsWaitAckSta(
     }
     return;
 }
-/*******************************************************************************
-  Module:   SMC_RcvMmRelInd
-  Function: 收到MMSMS_REL_IND后的处理
-  Input:    MMSMS_REL_IND_STRU  *pRcvMsg    收到的消息
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇      2004.03.09   新规作成
-      2. 日    期   : 2012年8月13日
-         作    者   : z00161729
-         修改内容   : DCM定制需求和遗留问题修改
-      3.日    期   : 2013年07月11日
-        作    者   : f62575
-        修改内容   : V9R1 STK升级项目
-*******************************************************************************/
+
 VOS_VOID SMC_RcvMmRelInd(
                      MMSMS_REL_IND_STRU  *pRcvMsg                               /* 收到的消息                               */
                      )
@@ -1068,10 +802,8 @@ VOS_VOID SMC_RcvMmRelInd(
         {                                                                       /* SMC MT实体状态为非空                     */
             if( g_SmcCsEnt.SmcMt.ucTi == pRcvMsg->ulTi )
             {                                                                   /* TI相等                                   */
-                /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
                 SMC_ComCsMtErr( (SMR_SMT_ERROR_CS_ERROR_BEGIN | pRcvMsg->ulRelCause),
                                 (VOS_UINT8)pRcvMsg->ulTi);                         /* 调用CS域MT实体的处理                     */
-                /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
             }
         }
     }
@@ -1081,10 +813,8 @@ VOS_VOID SMC_RcvMmRelInd(
         {                                                                       /* SMC MO实体状态为非空                     */
             if( g_SmcCsEnt.SmcMo.ucTi == pRcvMsg->ulTi )
             {                                                                   /* TI相等                                   */
-                /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
                 SMC_ComCsMoErr( (SMR_SMT_ERROR_CS_ERROR_BEGIN | pRcvMsg->ulRelCause),
                                 (VOS_UINT8)pRcvMsg->ulTi);                         /* 调用CS域MO实体的处理                     */
-                /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
             }
             else if ((SMS_TRUE == g_SmcCsEnt.SmcMo.ucCpAckFlg)
                   && (g_SmcCsEnt.SmcMo.ucPreTi == pRcvMsg->ulTi))
@@ -1171,22 +901,7 @@ VOS_VOID SMC_SndRelReq(
 
     return;
 }
-/*******************************************************************************
-  Module:   SMC_SndMmMsg
-  Function: 组织并向MM发送消息
-  Input:    VOS_UINT8     *pucMsg   发送消息的首地址
-            VOS_UINT8     ucType    消息类型
-            VOS_UINT16    usLen     消息长度
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.   张志勇      2004.03.11   新规作成
-      2.日    期  : 2013年03月13日
-        作    者  : z00214637
-        修改内容  : BodySAR项目
 
-*******************************************************************************/
 VOS_VOID SMC_SndMmMsg(
                   VOS_UINT8     *pucSnd,                                            /* 发送消息的首地址                         */
                   VOS_UINT8     ucType,                                             /* 消息类型                                 */
@@ -1230,21 +945,7 @@ VOS_VOID SMC_SndMmMsg(
     }
 }
 
-/*******************************************************************************
-  Module:   SMC_SndMmCpAckMsg
-  Function: 组织并向MM发送CP-ACK消息
-  Input:    ucTi    - 发送CP-ACK消息的TI
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1. 日    期   : 2009年2月26日
-         作    者   : F62575
-         修改内容   : 新生成函数
-  2.日    期   : 2010年1月26日
-    作    者   : f62575
-    修改内容   : PC-LINT问题修改
-*******************************************************************************/
+
 VOS_VOID SMC_SndMmCpAckMsg(
                       VOS_UINT8     ucTi)
 {
@@ -1270,22 +971,7 @@ VOS_VOID SMC_SndMmCpAckMsg(
     return;
 }
 
-/*******************************************************************************
-  Module:   SMC_ComCsInitEnt
-  Function: 初始化CS域的实体
-  Input:    VOS_UINT8   ucMtFlg   判断MO,MT过程的标识
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.  张志勇      2004.03.09   新规作成
-  2. Date         : 2007-04-06
-     Author       : h44270
-     Modification : 问题单号:A32D10113
-  3.日    期   : 2014年6月24日
-    作    者   : w00167002
-    修改内容   : DSDS III项目
-*******************************************************************************/
+
 VOS_VOID SMC_ComCsInitEnt(
                          VOS_UINT8   ucMtFlg                                        /* 判断MO,MT过程的标识                      */
                      )
@@ -1356,21 +1042,7 @@ VOS_VOID SMC_ComCsInitEnt(
 }
 
 #if (FEATURE_ON == FEATURE_DSDS)
-/*****************************************************************************
- 函 数 名  : NAS_SMS_SndMmBeginSessionNotify
- 功能描述  : 向MM发送begin session notify
- 输入参数  : enSessionType - session type
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月16日
-    作    者   : z00161729
-    修改内容   : DSDS III新增
-
-*****************************************************************************/
 VOS_VOID NAS_SMS_SndMmBeginSessionNotify(
     MMSMS_SESSION_TYPE_ENUM_UINT8       enSessionType
 )
@@ -1411,21 +1083,7 @@ VOS_VOID NAS_SMS_SndMmBeginSessionNotify(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SMS_SndMmEndSessionNotify
- 功能描述  : 向MM发送end session notify
- 输入参数  : enSessionType - session type
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月16日
-    作    者   : z00161729
-    修改内容   : DSDS III新增
-
-*****************************************************************************/
 VOS_VOID NAS_SMS_SndMmEndSessionNotify(
     MMSMS_SESSION_TYPE_ENUM_UINT8       enSessionType
 )
@@ -1469,25 +1127,7 @@ VOS_VOID NAS_SMS_SndMmEndSessionNotify(
 
 #endif
 
-/*******************************************************************************
-  Module:   SMC_RcvMmRegStaInd
-  Function: 根据结果进行释放或维护cs域的实体
-  Input:    MMSMS_REG_STATE_IND_STRU  *pRcvMsg   收到的消息首地址
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇   2005.06.28   新规作成
-      2. 日    期   : 2008年7月23日
-         作    者   : luojian id:107747
-         修改内容   : 根据问题单：AT2D04627/AT2D04237
-      3.日    期   : 2012年8月29日
-        作    者   : z00161729
-        修改内容   : DCM定制需求和遗留问题修改
-      4.日    期   : 2013年07月11日
-        作    者   : f62575
-        修改内容   : V9R1 STK升级项目
-*******************************************************************************/
+
 VOS_VOID SMC_RcvMmRegStaInd(
                        MMSMS_REG_STATE_IND_STRU  *pRcvMsg                       /* 收到的消息首地址                         */
                        )
@@ -1503,10 +1143,8 @@ VOS_VOID SMC_RcvMmRegStaInd(
     {
         g_ucCsRegFlg = SMS_FALSE;                                                 /* 记录此状态                               */
 
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
         SMC_ComCsMtErr( SMR_SMT_ERROR_NO_SERVICE, g_SmcCsEnt.SmcMt.ucTi);         /* 调用CS域MT实体的处理                     */
         SMC_ComCsMoErr( SMR_SMT_ERROR_NO_SERVICE, g_SmcCsEnt.SmcMo.ucTi);         /* 调用CS域MO实体的处理                     */
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
     }
     SMS_AttachFlag(SMS_SEND_DOMAIN_CS,g_ucCsRegFlg);
 

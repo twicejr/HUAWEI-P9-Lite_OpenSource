@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : MemRecycle.c
-  版 本 号   : 初稿
-  作    者   : s00164817
-  生成日期   : 2011年12月8日
-  最近修改   :
-  功能描述   : 垃圾回收模块
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年12月8日
-    作    者   : s00164817
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -91,21 +74,7 @@ VOS_SPINLOCK             g_stTtfMemRBSpinLock;
   4 函数实现
 *****************************************************************************/
 /*lint -save -e958 */
-/******************************************************************************
- 函 数 名  : TTF_DebugLOG
- 功能描述  : TTF 封装的打印
- 输入参数  : VOS_CHAR *pcString
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月2日
-    作    者   : s00164817
-    修改内容   : 新生成函数
-
-******************************************************************************/
 VOS_VOID TTF_DebugLOG
 (
     VOS_CHAR       *pcString
@@ -117,22 +86,7 @@ VOS_VOID TTF_DebugLOG
 }/* TTF_DebugLOG */
 
 
-/******************************************************************************
- 函 数 名  : TTF_DebugLOG1
- 功能描述  : TTF 封装的打印
- 输入参数  : VOS_CHAR *pcString
-             VOS_INT32 lPara1
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月2日
-    作    者   : s00164817
-    修改内容   : 新生成函数
-
-******************************************************************************/
 VOS_VOID TTF_DebugLOG1
 (
     VOS_CHAR       *pcString,
@@ -145,23 +99,7 @@ VOS_VOID TTF_DebugLOG1
 }/* TTF_DebugLOG1 */
 
 
-/******************************************************************************
- 函 数 名  : TTF_DebugLOG2
- 功能描述  : TTF 封装的打印
- 输入参数  : VOS_CHAR *pcString
-             VOS_INT32 lPara1
-             VOS_INT32 lPara2
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月2日
-    作    者   : s00164817
-    修改内容   : 新生成函数
-
-******************************************************************************/
 VOS_VOID TTF_DebugLOG2
 (
     VOS_CHAR       *pcString,
@@ -175,24 +113,7 @@ VOS_VOID TTF_DebugLOG2
 }/* TTF_DebugLOG2 */
 
 
-/******************************************************************************
- 函 数 名  : TTF_DebugLOG3
- 功能描述  : TTF 封装的打印
- 输入参数  : VOS_CHAR *pcString
-             VOS_INT32 lPara1
-             VOS_INT32 lPara2
-             VOS_INT32 lPara3
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月2日
-    作    者   : s00164817
-    修改内容   : 新生成函数
-
-******************************************************************************/
 VOS_VOID TTF_DebugLOG3
 (
     VOS_CHAR       *pcString,
@@ -207,25 +128,7 @@ VOS_VOID TTF_DebugLOG3
 }/* TTF_DebugLOG3 */
 
 
-/******************************************************************************
- 函 数 名  : TTF_DebugLOG4
- 功能描述  : TTF 封装的打印
- 输入参数  : VOS_CHAR *pcString
-             VOS_INT32 lPara1
-             VOS_INT32 lPara2
-             VOS_INT32 lPara3
-             VOS_INT32 lPara4
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月2日
-    作    者   : s00164817
-    修改内容   : 新生成函数
-
-******************************************************************************/
 VOS_VOID TTF_DebugLOG4
 (
     VOS_CHAR       *pcString,
@@ -241,21 +144,7 @@ VOS_VOID TTF_DebugLOG4
 }/* TTF_DebugLOG4 */
 
 
-/******************************************************************************
- 函 数 名  : TTF_MemRbRelDataIsr
- 功能描述  : TTF_MemRb 释放内存中断服务程序
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月2日
-    作    者   : s00164817
-    修改内容   : 新生成函数
-
-******************************************************************************/
 VOS_VOID TTF_MemRbRelDataIsr(VOS_VOID)
 {
     if ( VOS_NULL == g_ulTtfMemRbFreeSem )
@@ -271,21 +160,7 @@ VOS_VOID TTF_MemRbRelDataIsr(VOS_VOID)
 }    /* TTF_MemRbRelDataIsr */
 
 
-/*****************************************************************************
- 函 数 名  : TTF_MemRbFreeMsgProc
- 功能描述  : TTF_MemRb 数据接收task消息处理函数
- 输入参数  : MsgBlock *pMsg 待处理消息
- 输出参数  : 无
- 返 回 值  : 成功VOS_OK, 失败VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月2日
-    作    者   : s00164817
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TTF_MemRbFreeMsgProc(const MsgBlock *pMsg)
 {
     VOS_UINT32           ulMsgType;
@@ -323,20 +198,7 @@ VOS_UINT32 TTF_MemRbFreeMsgProc(const MsgBlock *pMsg)
 } /* TTF_MemRbFreeMsgProc */
 
 
-/*****************************************************************************
- 函 数 名  : TTF_MemRbRemoteFreeMem
- 功能描述  : TTF_MemRb 释放A核内存
- 输入参数  : VOS_VOID *pucAddr 内存指针
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月1日
-    作    者   : s00164817
-    修改内容   : Created
-*****************************************************************************/
 VOS_VOID TTF_MemRbRemoteFreeMem( VOS_VOID *pucAddr)
 {
     VOS_ULONG                           ulLockLevel;
@@ -382,22 +244,7 @@ VOS_VOID TTF_MemRbRemoteFreeMem( VOS_VOID *pucAddr)
 
 
 
-/*****************************************************************************
-函 数 名  : IMM_RbIsrInit
-功能描述  : TTF MEM RB 用户中断初始化
-输入参数  : VOS_UINT32  ulPid           调用的PID
-            VOS_UINT32  ulIntLevel      中断级别
-            VOIDFUNCPTR pfuncRecvIsr    中断服务函数指针
-输出参数  : 无
-返 回 值  : 操作成功与否, VOS_OK - 成功, 其它 - 失败
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2011年12月8日
-   作    者   : y00171741
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TTF_MemRbIsrInit(VOS_UINT32 ulPid, VOS_UINT32 ulIntLevel,
                             VOIDFUNCPTR pfuncRecvIsr)
 {
@@ -428,21 +275,7 @@ VOS_UINT32 TTF_MemRbIsrInit(VOS_UINT32 ulPid, VOS_UINT32 ulIntLevel,
 }    /* IMM_RbIsrInit */
 
 
-/*****************************************************************************
- 函 数 名  : PS_MemFreePidInit
- 功能描述  : PS 数据接收PID初始化
- 输入参数  : ip - 初始化状态
- 输出参数  : 无
- 返 回 值  : 成功VOS_OK, 失败VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月2日
-    作    者   : s00164817
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TTF_MemRbFreePidInit( enum VOS_INIT_PHASE_DEFINE ip )
 {
     switch( ip )
@@ -470,20 +303,7 @@ VOS_UINT32 TTF_MemRbFreePidInit( enum VOS_INIT_PHASE_DEFINE ip )
 }/* TTF_MemRbFreePidInit */
 
 
-/*****************************************************************************
- 函 数 名  :TTF_MemFreeFromQue
- 功能描述  :cCpu侧处理来自aCpu通知释放cCpu内存
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月1日
-    作    者   : s00164817
-    修改内容   : Created
-*****************************************************************************/
 VOS_VOID TTF_MemFreeFromQue(VOS_VOID)
 {
     TTF_MEM_ST *pstTtfMem = VOS_NULL_PTR;
@@ -522,21 +342,7 @@ VOS_VOID TTF_MemFreeFromQue(VOS_VOID)
 }/* TTF_MemFreeFromQue */
 
 
-/*****************************************************************************
- 函 数 名  : TTF_MemRbRxFreeMemTaskInit
- 功能描述  : TTF_MEM_RB_RxFreeMem的初始化
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月2日
-    作    者   : s00164817
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TTF_RbRxFreeMemTaskInit( VOS_VOID )
 {
     VOS_UINT32              ulResult;
@@ -580,21 +386,7 @@ VOS_VOID TTF_RbRxFreeMemTaskInit( VOS_VOID )
 }/* TTF_RbRxFreeMemTaskInit */
 
 
-/*****************************************************************************
- 函 数 名  : TTF_MemRbRxFreeMemTask
- 功能描述  : 接受对端的释放任务请求
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月2日
-    作    者   : s00164817
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TTF_MemRbRxFreeMemTask(VOS_VOID)
 {
     /* 解决UT死循环问题 */
@@ -639,21 +431,7 @@ VOS_VOID TTF_MemRbRxFreeMemTask(VOS_VOID)
 }/* TTF_MemRbRxFreeMemTask */
 
 
-/*****************************************************************************
- 函 数 名  : TTF_MemRbFreeFidInit
- 功能描述  : TTF 垃圾回收任务初始化
- 输入参数  : ip - 初始化状态
- 输出参数  : 无
- 返 回 值  : 成功VOS_OK, 失败VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月2日
-    作    者   : s00164817
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TTF_MemRbFreeFidInit ( enum VOS_INIT_PHASE_DEFINE ip )
 {
     VOS_UINT32                          ulRslt;
@@ -715,21 +493,7 @@ VOS_UINT32 TTF_MemRbFreeFidInit ( enum VOS_INIT_PHASE_DEFINE ip )
 }/* TTF_MemRbFreeFidInit */
 
 
-/*****************************************************************************
- 函 数 名  : TTF_MemRbShowMntnInfo
- 功能描述  : 打印TTF MEM RB内存可维可测信息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月19日
-    作    者   : s00164817
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TTF_MemRbShowMntnInfo( VOS_VOID )
 {
     (VOS_VOID)vos_printf("===========================================\n" );
@@ -746,21 +510,7 @@ VOS_VOID TTF_MemRbShowMntnInfo( VOS_VOID )
     return;
 
 }/* TTF_MemMntnInfo */
-/*****************************************************************************
- 函 数 名  : TTF_MemShowMntnInfo
- 功能描述  : 输出TTF MEM 可维可测信息，包括TTF MEM RB可维可测信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月7日
-    作    者   : s00164817
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TTF_MemShowMntnInfo( VOS_VOID )
 {
     TTF_MemFreeShowMntnInfo();
@@ -768,21 +518,7 @@ VOS_VOID TTF_MemShowMntnInfo( VOS_VOID )
 }
 
 
-/*****************************************************************************
- 函 数 名  : TTF_MemClearMntnInfo
- 功能描述  : 清除 TTF MEM 内存可维可测信息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月9日
-    作    者   : s00164817
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TTF_MemClearMntnInfo( VOS_VOID )
 {
     PS_MEM_SET(&g_stTtfMemFreeMntnEntity, 0x0, sizeof(TTF_MEM_FREE_MNTN_INFO_STRU));
@@ -790,21 +526,7 @@ VOS_VOID TTF_MemClearMntnInfo( VOS_VOID )
 }
 
 
-/*****************************************************************************
- 函 数 名  : TTF_MemSetTraceFunc
- 功能描述  : 设置函数轨迹打印开关
- 输入参数  : VOS_UINT8 ucChoice     PS_TRUE 打开，PS_FALSE 关闭
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月19日
-    作    者   : s00164817
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 #if(TTF_DEBUG_TRACE_FUNC == FEATURE_ON)
 VOS_VOID TTF_MemSetTraceFunc(VOS_UINT8 ucChoice)
 {
@@ -814,21 +536,7 @@ VOS_VOID TTF_MemSetTraceFunc(VOS_UINT8 ucChoice)
 }/* TTF_MemSetTraceFunc */
 #endif
 
-/*****************************************************************************
- 函 数 名  : TTF_RbMemPrintIsrCnt
- 功能描述  : 打印C核收到IPF中断次数
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月21日
-    作    者   : s00164817
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TTF_RbMemPrintIsrCnt( VOS_VOID )
 {
     (VOS_VOID)vos_printf("C核收到IPF中断次数: %d\n" , (VOS_INT32)g_stTtfMemRbMntnEntity.ulTtfMemRbReceiveIntCnt );
@@ -836,21 +544,7 @@ VOS_VOID TTF_RbMemPrintIsrCnt( VOS_VOID )
 }/* TTF_RbMemPrintIsrCnt */
 
 #else
-/*****************************************************************************
- 函 数 名  : TTF_MemRbFreeFidInit
- 功能描述  : TTF 垃圾回收任务初始化
- 输入参数  : ip - 初始化状态
- 输出参数  : 无
- 返 回 值  : 成功VOS_OK, 失败VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月2日
-    作    者   : s00164817
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TTF_MemRbFreeFidInit ( enum VOS_INIT_PHASE_DEFINE ip )
 {
 

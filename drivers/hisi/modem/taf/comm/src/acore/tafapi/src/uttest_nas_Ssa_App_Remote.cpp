@@ -47,14 +47,7 @@ extern void UT_STUB_INIT(void);
 
 
 
-/*****************************************************************************
-类名     : Test_TAF_EraseSSReq
-功能描述 : TAF_EraseSSReq UT工程类
-修改历史 :
-1.日    期   : 2013年05月29日
-  作    者   : f62575
-  修改内容   : 新生成类
-*****************************************************************************/
+
 class Test_TAF_EraseSSReq: public ::testing::Test
 {
 public:
@@ -69,15 +62,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_TAF_EraseSSReq_001
-测试用例标题      : 业务删除操作
-预期结果          : 调用MN_FillAndSndAppReqMsg发送业务请求到TAF
-修改历史          :
-1.日    期   : 2013年05月29日
-  作    者   : f62575
-  修改内容   : 新增函数
-*******************************************************************/
+
 TEST_F(Test_TAF_EraseSSReq, Test_TAF_EraseSSReq_001)
 {
     VOS_UINT32                          ulRet;
@@ -105,14 +90,7 @@ TEST_F(Test_TAF_EraseSSReq, Test_TAF_EraseSSReq_001)
 
 }
 
-/*****************************************************************************
-类名     : Test_TAF_ActivateSSReq
-功能描述 : TAF_InterrogateSSReq UT工程类
-修改历史 :
-1.日    期   : 2013年05月29日
-  作    者   : f62575
-  修改内容   : 新生成类
-*****************************************************************************/
+
 class Test_TAF_ActivateSSReq: public ::testing::Test
 {
 public:
@@ -127,15 +105,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_TAF_ActivateSSReq_001
-测试用例标题      : 业务激活操作
-预期结果          : 调用MN_FillAndSndAppReqMsg发送业务请求到TAF
-修改历史          :
-1.日    期   : 2013年05月29日
-  作    者   : f62575
-  修改内容   : 新增函数
-*******************************************************************/
+
 TEST_F(Test_TAF_ActivateSSReq, Test_TAF_ActivateSSReq_001)
 {
     VOS_UINT32                          ulRet;
@@ -164,14 +134,7 @@ TEST_F(Test_TAF_ActivateSSReq, Test_TAF_ActivateSSReq_001)
 
 }
 
-/*****************************************************************************
-类名     : Test_TAF_RegisterPasswordReq
-功能描述 : TAF_RegisterPasswordReq UT工程类
-修改历史 :
-1.日    期   : 2013年05月29日
-  作    者   : f62575
-  修改内容   : 新生成类
-*****************************************************************************/
+
 class Test_TAF_RegisterPasswordReq: public ::testing::Test
 {
 public:
@@ -186,15 +149,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_TAF_RegisterPasswordReq_001
-测试用例标题      : 注册密码操作
-预期结果          : 调用MN_FillAndSndAppReqMsg发送业务请求到TAF
-修改历史          :
-1.日    期   : 2013年05月29日
-  作    者   : f62575
-  修改内容   : 新增函数
-*******************************************************************/
+
 TEST_F(Test_TAF_RegisterPasswordReq, Test_TAF_RegisterPasswordReq_001)
 {
     VOS_UINT32                          ulRet;
@@ -223,14 +178,7 @@ TEST_F(Test_TAF_RegisterPasswordReq, Test_TAF_RegisterPasswordReq_001)
 
 }
 
-/*****************************************************************************
-类名     : Test_TAF_EraseCCEntryReq
-功能描述 : TAF_EraseCCEntryReq UT工程类
-修改历史 :
-1.日    期   : 2013年05月29日
-  作    者   : f62575
-  修改内容   : 新生成类
-*****************************************************************************/
+
 class Test_TAF_EraseCCEntryReq: public ::testing::Test
 {
 public:
@@ -245,15 +193,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_TAF_EraseCCEntryReq_001
-测试用例标题      : 去激活CCBS操作
-预期结果          : 调用MN_FillAndSndAppReqMsg发送业务请求到TAF
-修改历史          :
-1.日    期   : 2013年05月29日
-  作    者   : f62575
-  修改内容   : 新增函数
-*******************************************************************/
+
 TEST_F(Test_TAF_EraseCCEntryReq, Test_TAF_EraseCCEntryReq_001)
 {
     VOS_UINT32                          ulRet;
@@ -282,14 +222,7 @@ TEST_F(Test_TAF_EraseCCEntryReq, Test_TAF_EraseCCEntryReq_001)
 
 }
 
-/*****************************************************************************
-类名     : Test_TAF_SsReleaseComplete
-功能描述 : TAF_SsReleaseComplete UT工程类
-修改历史 :
-1.日    期   : 2013年05月29日
-  作    者   : f62575
-  修改内容   : 新生成类
-*****************************************************************************/
+
 class Test_TAF_SsReleaseComplete: public ::testing::Test
 {
 public:
@@ -304,15 +237,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_TAF_SsReleaseComplete_001
-测试用例标题      : 释放链路操作
-预期结果          : 调用MN_FillAndSndAppReqMsg发送业务请求到TAF
-修改历史          :
-1.日    期   : 2013年05月29日
-  作    者   : f62575
-  修改内容   : 新增函数
-*******************************************************************/
+
 TEST_F(Test_TAF_SsReleaseComplete, Test_TAF_SsReleaseComplete_001)
 {
     VOS_UINT32                          ulRet;

@@ -2230,106 +2230,6 @@ ssize_t dpe_show_cinema_value(char *buf)
 	return snprintf(buf, PAGE_SIZE, "g_cinema_value = %d\n", g_cinema_value);
 }
 
-void dpe_set_cinema_acm(struct hisi_fb_data_type *hisifd, unsigned int value)
-{
-	char __iomem *acm_base = NULL;
-	char __iomem *dpp_base = NULL;
-	struct hisi_panel_info *pinfo = NULL;
-
-	if (hisifd == NULL) {
-		return;
-	}
-
-	pinfo = &(hisifd->panel_info);
-	if (pinfo->acm_support != 1) {
-		HISI_FB_DEBUG("fb%d, not support acm!\n", hisifd->index);
-		return;
-	}
-
-	if (!HISI_DSS_SUPPORT_DPP_MODULE_BIT(DPP_MODULE_ACM)) {
-		return ;
-	}
-
-	acm_base = hisifd->dss_base + DSS_DPP_ACM_OFFSET;
-	dpp_base = hisifd->dss_base + DSS_DPP_OFFSET;
-	/*Protect other register is not modified. */
-	set_reg(hisifd->dss_base + DSS_DPP_RD_SHADOW_OFFSET, 0x1, 1, 0);
-	/*disable acm. */
-	set_reg(acm_base + ACM_EN, 0x0, 1, 0);
-	/*if value == 1,it will be into cineme mode. */
-	if(1 == value) {
-		/*set ACM. */
-		set_reg(acm_base + ACM_R0_H, ((pinfo->cinema_r0_hh & 0x3ff) << 16) | (pinfo->cinema_r0_lh & 0x3ff), 32, 0);
-		set_reg(acm_base + ACM_R1_H, ((pinfo->cinema_r1_hh & 0x3ff) << 16) | (pinfo->cinema_r1_lh & 0x3ff), 32, 0);
-		set_reg(acm_base + ACM_R2_H, ((pinfo->cinema_r2_hh & 0x3ff) << 16) | (pinfo->cinema_r2_lh & 0x3ff), 32, 0);
-		set_reg(acm_base + ACM_R3_H, ((pinfo->cinema_r3_hh & 0x3ff) << 16) | (pinfo->cinema_r3_lh & 0x3ff), 32, 0);
-		set_reg(acm_base + ACM_R4_H, ((pinfo->cinema_r4_hh & 0x3ff) << 16) | (pinfo->cinema_r4_lh & 0x3ff), 32, 0);
-		set_reg(acm_base + ACM_R5_H, ((pinfo->cinema_r5_hh & 0x3ff) << 16) | (pinfo->cinema_r5_lh & 0x3ff), 32, 0);
-		set_reg(acm_base + ACM_R6_H, ((pinfo->cinema_r6_hh & 0x3ff) << 16) | (pinfo->cinema_r6_lh & 0x3ff), 32, 0);
-		/*set ACM_LUT_HUE. */
-		if (pinfo->cinema_acm_lut_hue_table && pinfo->cinema_acm_lut_hue_table_len > 0) {
-			acm_set_lut_hue(dpp_base + ACM_LUT_HUE, pinfo->cinema_acm_lut_hue_table, pinfo->cinema_acm_lut_hue_table_len);
-		} else {
-			HISI_FB_ERR("fb%d, acm_lut_hue_table is NULL or acm_lut_hue_table_len less than 0!\n", hisifd->index);
-			return;
-		}
-		/*set ACM_LUT_SATA. */
-		if (pinfo->cinema_acm_lut_sata_table && pinfo->cinema_acm_lut_sata_table_len > 0) {
-			acm_set_lut(dpp_base + ACM_LUT_SATA, pinfo->cinema_acm_lut_sata_table, pinfo->cinema_acm_lut_sata_table_len);
-		} else {
-			HISI_FB_ERR("fb%d, acm_lut_sata_table is NULL or acm_lut_sata_table_len less than 0!\n", hisifd->index);
-			return;
-		}
-		/*set ACM_LUT_SATA. */
-		if (pinfo->cinema_acm_lut_satr_table && pinfo->cinema_acm_lut_satr_table_len > 0) {
-			acm_set_lut(dpp_base + ACM_LUT_SATR, pinfo->cinema_acm_lut_satr_table, pinfo->cinema_acm_lut_satr_table_len);
-		} else {
-			HISI_FB_ERR("fb%d, acm_lut_satr_table is NULL or acm_lut_satr_table_len less than 0!\n", hisifd->index);
-			return;
-		}
-	} else {
-		/*set ACM. */
-		set_reg(acm_base + ACM_R0_H, ((pinfo->r0_hh & 0x3ff) << 16) | (pinfo->r0_lh & 0x3ff), 32, 0);
-		set_reg(acm_base + ACM_R1_H, ((pinfo->r1_hh & 0x3ff) << 16) | (pinfo->r1_lh & 0x3ff), 32, 0);
-		set_reg(acm_base + ACM_R2_H, ((pinfo->r2_hh & 0x3ff) << 16) | (pinfo->r2_lh & 0x3ff), 32, 0);
-		set_reg(acm_base + ACM_R3_H, ((pinfo->r3_hh & 0x3ff) << 16) | (pinfo->r3_lh & 0x3ff), 32, 0);
-		set_reg(acm_base + ACM_R4_H, ((pinfo->r4_hh & 0x3ff) << 16) | (pinfo->r4_lh & 0x3ff), 32, 0);
-		set_reg(acm_base + ACM_R5_H, ((pinfo->r5_hh & 0x3ff) << 16) | (pinfo->r5_lh & 0x3ff), 32, 0);
-		set_reg(acm_base + ACM_R6_H, ((pinfo->r6_hh & 0x3ff) << 16) | (pinfo->r6_lh & 0x3ff), 32, 0);
-		/*set ACM_LUT_HUE. */
-		if (pinfo->acm_lut_hue_table && pinfo->acm_lut_hue_table_len > 0) {
-			acm_set_lut_hue(dpp_base + ACM_LUT_HUE, pinfo->acm_lut_hue_table, pinfo->acm_lut_hue_table_len);
-		} else {
-			HISI_FB_ERR("fb%d, acm_lut_hue_table is NULL or acm_lut_hue_table_len less than 0!\n", hisifd->index);
-			return;
-		}
-		/*set ACM_LUT_SATA. */
-		if (pinfo->acm_lut_sata_table && pinfo->acm_lut_sata_table_len > 0) {
-			acm_set_lut(dpp_base + ACM_LUT_SATA, pinfo->acm_lut_sata_table, pinfo->acm_lut_sata_table_len);
-		} else {
-			HISI_FB_ERR("fb%d, acm_lut_sata_table is NULL or acm_lut_sata_table_len less than 0!\n", hisifd->index);
-			return;
-		}
-		/*set ACM_LUT_SATR. */
-		if (pinfo->acm_lut_satr_table && pinfo->acm_lut_satr_table_len > 0) {
-			acm_set_lut(dpp_base + ACM_LUT_SATR, pinfo->acm_lut_satr_table, pinfo->acm_lut_satr_table_len);
-		} else {
-			HISI_FB_ERR("fb%d, acm_lut_satr_table is NULL or acm_lut_satr_table_len less than 0!\n", hisifd->index);
-			return;
-		}
-	}
-	/*enable acm. */
-	set_reg(acm_base + ACM_EN, 0x1, 1, 0);
-	if(1 == value) {
-		set_reg(acm_base + ACM_EN, pinfo->cinema_acm_valid_num & 0x7, 3, 4);
-	} else {
-		set_reg(acm_base + ACM_EN, pinfo->acm_valid_num & 0x7, 3, 4);
-	}
-	/*Protect other register is not modified. */
-	set_reg(hisifd->dss_base + DSS_DPP_RD_SHADOW_OFFSET, 0x0, 1, 0);
-
-	return;
-}
 
 int dpe_set_cinema(struct hisi_fb_data_type *hisifd, unsigned int value)
 {
@@ -2342,8 +2242,6 @@ int dpe_set_cinema(struct hisi_fb_data_type *hisifd, unsigned int value)
 		HISI_FB_DEBUG("fb%d, cinema mode is already in %d!\n", hisifd->index, value);
 		return -1;
 	}
-
-	dpe_set_cinema_acm(hisifd, value);
 
 	g_cinema_value = value;
 	hisifd->panel_info.gamma_type = g_cinema_value;

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmcFsmBgPlmnSearch.c
-  版 本 号   : 初稿
-  作    者   : s46746
-  生成日期   : 2011年9月10日
-  最近修改   :
-  功能描述   : NAS BG搜网状态机内的动作处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年9月10日
-    作    者   : s46746
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -39,17 +22,13 @@
 #include "NasMmcProcSuspend.h"
 #include "NasMmcSndOm.h"
 #include "NasMmcProcNvim.h"
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-7, begin */
 /* 删除ExtAppMmcInterface.h*/
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-7, end */
 #include "MmcMmInterface.h"
 #include "MmcGmmInterface.h"
 #include "NasMmcComFunc.h"
 #include "NasUtranCtrlInterface.h"
 
-/* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
 #include "MsccMmcInterface.h"
-/* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 #include "NasUtranCtrlInterface.h"
 #include "NasMmcSndCss.h"
 
@@ -73,28 +52,7 @@ extern "C" {
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiHplmnTimerExpired_BgPlmnSearch_Init
- 功能描述  : BG搜网状态机初始状态接收到HPLMN定时器超时消息的处理
- 输入参数  : pstMsg        - HPLMN 定时器超时消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年5月8日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
- 3.日    期   : 2012年06月02日
-   作    者   : s00217060
-   修改内容   : for CS/PS mode 1, 如果已经Disable L，PS卡有效且允许注册，Enable L
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvTiHPlmnTimerExpired_BgPlmnSearch_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -160,22 +118,7 @@ VOS_UINT32    NAS_MMC_RcvTiHPlmnTimerExpired_BgPlmnSearch_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiHighPrioRatHPlmnTimerExpired_BgPlmnSearch_Init
- 功能描述  : BG搜网状态机初始状态接收到High_Prio_rat_HPLMN定时器超时消息的处理
- 输入参数  : pstMsg        - HPLMN 定时器超时消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年2月19日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvTiHighPrioRatHPlmnTimerExpired_BgPlmnSearch_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -185,11 +128,9 @@ VOS_UINT32    NAS_MMC_RcvTiHighPrioRatHPlmnTimerExpired_BgPlmnSearch_Init(
     NAS_MML_EQUPLMN_INFO_STRU                              *pstEquPlmnInfo           = VOS_NULL_PTR;
     NAS_MML_PLMN_ID_STRU                                   *pstCurrCampPlmnId        = VOS_NULL_PTR;
     NAS_MMC_PLMN_SELECTION_PLMN_INFO_STRU                   stHighPrioPlmnInfo;
-    /* Added by w00176964 for coverity清理, 2014-3-10, begin */
 #if (FEATURE_ON == FEATURE_LTE)
     NAS_MML_LTE_CAPABILITY_STATUS_ENUM_UINT32               enLteCapabilityStatus;
 #endif
-    /* Added by w00176964 for coverity清理, 2014-3-10, end */
 
     /* 获取高优先级网络列表 */
     pstPlmnSelectionListInfo = NAS_MMC_GetHighPrioPlmnList();
@@ -210,7 +151,6 @@ VOS_UINT32    NAS_MMC_RcvTiHighPrioRatHPlmnTimerExpired_BgPlmnSearch_Init(
     NAS_MMC_SetPreEquPlmnInfo_BgPlmnSearch(pstCurrCampPlmnId, pstEquPlmnInfo);
 
 #if (FEATURE_ON == FEATURE_LTE)
-    /* Modified by w00176964 for coverity清理, 2014-3-10, begin */
     enLteCapabilityStatus = NAS_MML_GetLteCapabilityStatus();
 
     /* 保存当前L disable状态到状态机上下文 */
@@ -218,7 +158,6 @@ VOS_UINT32    NAS_MMC_RcvTiHighPrioRatHPlmnTimerExpired_BgPlmnSearch_Init(
     {
         NAS_MMC_SetPreLteDisableFlg_BgPlmnSearch(enLteCapabilityStatus);
     }
-    /* Modified by w00176964 for coverity清理, 2014-3-10, end */
     /* 设置是否需要enable LTE标志,在快速指定搜中调用 */
     if (VOS_TRUE == NAS_MMC_IsNeedEnableLTE_FastSpecSearch())
     {
@@ -254,26 +193,7 @@ VOS_UINT32    NAS_MMC_RcvTiHighPrioRatHPlmnTimerExpired_BgPlmnSearch_Init(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiPeriodHighPrioPlmnSearchExpired_BgPlmnSearch_Init
- 功能描述  : BG搜网状态机初始状态接收到周期性高优先级搜网定时器超时消息的处理
- 输入参数  : pstMsg        - 周期性尝试高优先级搜网定时器超时消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年5月8日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvTiPeriodHighPrioPlmnSearchExpired_BgPlmnSearch_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -339,27 +259,7 @@ VOS_UINT32    NAS_MMC_RcvTiPeriodHighPrioPlmnSearchExpired_BgPlmnSearch_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitWasBgPlmnSearchCnf
- 功能描述  : 等待BG搜网回复状态收到MMCMMC_ABORT_FSM_REQ消息的处理
- 输入参数  : pstMsg        - MMCMMC_ABORT_FSM_REQ消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年11月29日
-   作    者   : w00167002
-   修改内容   : DTS2011112301233:保存打断事件类型到状态机上下文中
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitWasBgPlmnSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -387,43 +287,7 @@ VOS_UINT32    NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitWasBgPlmnSearchCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitWasBgPlmnSearchCnf
- 功能描述  : 等待BG搜网回复状态收到RRMM_SYS_INFO_IND消息的处理
- 输入参数  : pstMsg        - RRMM_SYS_INFO_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年6月16日
-   作    者   : l00171473
-   修改内容   : DTS2012061409086, 收到W或G的系统消息时通知L模
- 3.日    期   : 2012年8月21日
-   作    者   : z00161729
-   修改内容   : DCM定制需求和遗留问题修改
- 4.日    期   : 2012年12月11日
-   作    者   : w00176964
-   修改内容   : 收到系统消息接入禁止信息变化则通知MMA
- 5.日    期   : 2013年3月30日
-   作    者   : l00167671
-   修改内容   : 主动上报AT命令控制下移至C核
-
- 6.日    期   : 2014年1月18日
-   作    者   : z00234330
-   修改内容   : dts2014011801513,接入层上报的系统消息里面有可能没有携带plmnid,
-                 此处判断并没有判断plmnid是否有效
-
-  7.日    期   : 2014年5月4日
-    作    者   : t00173447
-    修改内容   : DTS2014042105390,软银定制需求
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitWasBgPlmnSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -431,13 +295,10 @@ VOS_UINT32    NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitWasBgPlmnSearchCnf(
 {
     NAS_MML_CAMP_PLMN_INFO_STRU                            *pstCurCampInfo = VOS_NULL_PTR;
     NAS_MML_CAMP_PLMN_INFO_STRU                             stOldCampInfo;
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, begin */
     NAS_MML_ACCESS_RESTRICTION_STRU                         *pstCurCsRestrictInfo = VOS_NULL_PTR;
     NAS_MML_ACCESS_RESTRICTION_STRU                          stOldCsRestrictInfo;
     NAS_MML_ACCESS_RESTRICTION_STRU                         *pstCurPsRestrictInfo = VOS_NULL_PTR;
     NAS_MML_ACCESS_RESTRICTION_STRU                          stOldPsRestrictInfo;
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, end */
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, begin */
 #if (FEATURE_ON == FEATURE_LTE)
 
     NAS_MML_LTE_CAPABILITY_STATUS_ENUM_UINT32               enLCapabilityStatus;
@@ -448,7 +309,6 @@ VOS_UINT32    NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitWasBgPlmnSearchCnf(
 
     NAS_MMC_RcvGuSysInfoIndSetLteAbility(pstMsg,enLCapabilityStatus);
 #endif
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, end */
 
     PS_MEM_SET(&stOldCampInfo, 0, sizeof(NAS_MML_CAMP_PLMN_INFO_STRU));
     PS_MEM_SET(&stOldCsRestrictInfo, 0, sizeof(NAS_MML_ACCESS_RESTRICTION_STRU));
@@ -461,18 +321,15 @@ VOS_UINT32    NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitWasBgPlmnSearchCnf(
     pstCurCampInfo  = NAS_MML_GetCurrCampPlmnInfo();
     PS_MEM_CPY(&stOldCampInfo, pstCurCampInfo, sizeof(NAS_MML_CAMP_PLMN_INFO_STRU));
 
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, begin */
     pstCurCsRestrictInfo    = NAS_MML_GetCsAcRestrictionInfo();
     pstCurPsRestrictInfo    = NAS_MML_GetPsAcRestrictionInfo();
 
     PS_MEM_CPY(&stOldCsRestrictInfo, pstCurCsRestrictInfo, sizeof(NAS_MML_ACCESS_RESTRICTION_STRU));
     PS_MEM_CPY(&stOldPsRestrictInfo, pstCurPsRestrictInfo, sizeof(NAS_MML_ACCESS_RESTRICTION_STRU));
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, end */
 
     /* 根据系统消息，更新MML的全部变量 */
     NAS_MMC_UpdateNetworkInfo_WasSysInfo(pstMsg);
 
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
     /* 驻留小区变化或重新搜网时，上报系统消息 */
     if (VOS_TRUE == NAS_MML_IsCampPlmnInfoChanged(&stOldCampInfo, pstCurCampInfo))
     {
@@ -482,7 +339,6 @@ VOS_UINT32    NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitWasBgPlmnSearchCnf(
 
     NAS_MMC_SetSpecPlmnSearchState(NAS_MMC_SPEC_PLMN_SEARCH_STOP);
 
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, begin */
     /* 驻留小区的接入受限信息变化时,通知MMA模块当前接入受限信息 */
     if (VOS_TRUE == NAS_MML_IsAcInfoChanged(&stOldCsRestrictInfo, pstCurCsRestrictInfo))
     {
@@ -493,8 +349,6 @@ VOS_UINT32    NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitWasBgPlmnSearchCnf(
     {
         NAS_MMC_SndMsccAcInfoChangeInd(NAS_MSCC_PIF_SRVDOMAIN_PS, pstCurPsRestrictInfo);
     }
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, end */
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
 #if ((FEATURE_ON == FEATURE_GCBS) || (FEATURE_ON == FEATURE_WCBS))
 
@@ -502,9 +356,7 @@ VOS_UINT32    NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitWasBgPlmnSearchCnf(
     NAS_MMC_SndCbaMsgNetModInd(NAS_MML_NET_RAT_TYPE_WCDMA);
 #endif
 
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-18, begin */
     NAS_MMC_SndMsccCampOnInd(VOS_TRUE);
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-18, end */
 
     /* 转发系统消息通知 给 MM/GMM */
     NAS_MMC_SndMmWasSysInfoInd (NAS_MMC_GetCurrentLaiForbbidenType(), VOS_FALSE, pstMsg);
@@ -518,26 +370,7 @@ VOS_UINT32    NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitWasBgPlmnSearchCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvRrMmRelInd_BgPlmnSearch_WaitWasBgPlmnSearchCnf
- 功能描述  : 等待BG搜网回复状态收到RRMM_REL_IND消息的处理
- 输入参数  : pstMsg        - RRMM_REL_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年6月18日
-   作    者   : l00171473
-   修改内容   : DTS2012051104124, 如果不判原因值，流程不会有问题(但WAS后面还会上报RRMM_BG_PLMN_SEARCH_CNF)，
-                因为接入层发送RRMM_REL_IND后，都会进行重新驻留，此时接入层是不会进行bg搜索，也不会缓存BG搜索的
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvRrMmRelInd_BgPlmnSearch_WaitWasBgPlmnSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -560,37 +393,7 @@ VOS_UINT32    NAS_MMC_RcvRrMmRelInd_BgPlmnSearch_WaitWasBgPlmnSearchCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvBgPlmnSearchCnf_BgPlmnSearch_WaitWasBgPlmnSearchCnf
- 功能描述  : 等待BG搜网回复状态收到RRMM_BG_PLMN_SEARCH_CNF消息的处理
- 输入参数  : pstMsg        - RRMM_BG_PLMN_SEARCH_CNF消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2011年12月20日
-   作    者   : h44270
-   修改内容   : BG搜网状态机开始快速指定搜网时，认为当前无网络，通知APS挂起
- 3.日    期   : 2012年4月24日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
- 4.日    期   : 2012年10月29日
-   作    者   : t00212959
-   修改内容   : DTS2012080305980，相同PLMN，不同RAT，不再发起快速指定搜
- 5.日    期   : 2012年12月13日
-   作    者   : L00171473
-   修改内容   : DTS2012121802573, TQE清理
- 6.日    期   : 2014年2月22日
-   作    者   : w00176964
-   修改内容   : High_Rat_Hplmn_Search调整:不比较驻留PLMN与BG搜的PLMN同时BG搜成功enable LTE
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvBgPlmnSearchCnf_BgPlmnSearch_WaitWasBgPlmnSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -672,9 +475,7 @@ VOS_UINT32    NAS_MMC_RcvBgPlmnSearchCnf_BgPlmnSearch_WaitWasBgPlmnSearchCnf(
                 NAS_MMC_SndGmmPlmnSchInit();
                 NAS_MMC_SndMmPlmnSchInit();
 
-                /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, begin */
                 NAS_MMC_SndMsccCampOnInd(VOS_FALSE);
-                /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, end */
 
                 NAS_MMC_NotifyModeChange(NAS_MML_NET_RAT_TYPE_BUTT,
                                          NAS_MML_GetSimPsRegStatus());
@@ -710,28 +511,7 @@ VOS_UINT32    NAS_MMC_RcvBgPlmnSearchCnf_BgPlmnSearch_WaitWasBgPlmnSearchCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiWaitBgPlmnSearchCnfExpired_BgPlmnSearch_WaitWasBgPlmnSearchCnf
- 功能描述  : 等待BG搜网回复状态收到TI_NAS_MMC_WAIT_BG_PLMN_SEARCH_CNF消息的处理
- 输入参数  : pstMsg        - TI_NAS_MMC_WAIT_BG_PLMN_SEARCH_CNF消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2011年12月31日
-   作    者   : w00166186
-   修改内容   : DTS2011082902017,ON PLMN下注册被拒,搜网状态机重复搜索该网络
- 3.日    期   : 2014年2月24日
-   作    者   : w00176964
-   修改内容   : High_Rat_Hplmn_Search特性调整
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvTiWaitBgPlmnSearchCnfExpired_BgPlmnSearch_WaitWasBgPlmnSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -767,27 +547,7 @@ VOS_UINT32    NAS_MMC_RcvTiWaitBgPlmnSearchCnfExpired_BgPlmnSearch_WaitWasBgPlmn
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitGasBgPlmnSearchCnf
- 功能描述  : 等待BG搜网回复状态收到MMCMMC_ABORT_FSM_REQ消息的处理
- 输入参数  : pstMsg        - MMCMMC_ABORT_FSM_REQ消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年11月29日
-   作    者   : w00167002
-   修改内容   : DTS2011112301233:保存打断事件类型到状态机上下文中
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitGasBgPlmnSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -815,40 +575,7 @@ VOS_UINT32    NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitGasBgPlmnSearchCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitGasBgPlmnSearchCnf
- 功能描述  : 等待BG搜网回复状态收到GRRMM_SYS_INFO_IND消息的处理
- 输入参数  : pstMsg        - GRRMM_SYS_INFO_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年6月16日
-   作    者   : l00171473
-   修改内容   : DTS2012061409086, 收到W或G的系统消息时通知L模
- 3.日    期   : 2012年8月21日
-   作    者   : z00161729
-   修改内容   : DCM定制需求和遗留问题修改
- 4.日    期   : 2012年12月11日
-   作    者   : w00176964
-   修改内容   : 收到系统消息接入禁止信息变化则通知MMA
- 5.日    期   : 2013年3月30日
-   作    者   : l00167671
-   修改内容   : 主动上报AT命令控制下移至C核
- 6.日    期   : 2013年11月01日
-   作    者   : l00208543
-   修改内容   : 根据卡类型禁止网络制式
- 7.日    期   : 2014年5月4日
-   作    者   : t00173447
-   修改内容   : DTS2014042105390,软银定制需求
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitGasBgPlmnSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -856,13 +583,10 @@ VOS_UINT32    NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitGasBgPlmnSearchCnf(
 {
     NAS_MML_CAMP_PLMN_INFO_STRU                           *pstCurCampInfo = VOS_NULL_PTR;
     NAS_MML_CAMP_PLMN_INFO_STRU                            stOldCampInfo;
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, begin */
     NAS_MML_ACCESS_RESTRICTION_STRU                         *pstCurCsRestrictInfo = VOS_NULL_PTR;
     NAS_MML_ACCESS_RESTRICTION_STRU                          stOldCsRestrictInfo;
     NAS_MML_ACCESS_RESTRICTION_STRU                         *pstCurPsRestrictInfo = VOS_NULL_PTR;
     NAS_MML_ACCESS_RESTRICTION_STRU                          stOldPsRestrictInfo;
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, end */
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, begin */
 #if (FEATURE_ON == FEATURE_LTE)
 
     NAS_MML_LTE_CAPABILITY_STATUS_ENUM_UINT32               enLCapabilityStatus;
@@ -870,7 +594,6 @@ VOS_UINT32    NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitGasBgPlmnSearchCnf(
     /* 获取LTE能力状态 */
     enLCapabilityStatus  = NAS_MML_GetLteCapabilityStatus();
 #endif
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, end */
 
     PS_MEM_SET(&stOldCampInfo, 0, sizeof(NAS_MML_CAMP_PLMN_INFO_STRU));
     PS_MEM_SET(&stOldCsRestrictInfo, 0, sizeof(NAS_MML_ACCESS_RESTRICTION_STRU));
@@ -879,11 +602,9 @@ VOS_UINT32    NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitGasBgPlmnSearchCnf(
     /* 更新驻留状态 */
     NAS_MMC_SetAsCellCampOn(NAS_MMC_AS_CELL_CAMP_ON);
 
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, begin */
 #if (FEATURE_ON == FEATURE_LTE)
     NAS_MMC_RcvGuSysInfoIndSetLteAbility(pstMsg, enLCapabilityStatus);
 #endif
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, end */
 
     /* 如果收到GAS的系统消息，且目前Utran被Enable，则重新Disable Utran */
     NAS_MMC_RcvGasSysInfoSetUtranCapabilityStatus();
@@ -893,18 +614,15 @@ VOS_UINT32    NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitGasBgPlmnSearchCnf(
     pstCurCampInfo  = NAS_MML_GetCurrCampPlmnInfo();
     PS_MEM_CPY(&stOldCampInfo, pstCurCampInfo, sizeof(NAS_MML_CAMP_PLMN_INFO_STRU));
 
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, begin */
     pstCurCsRestrictInfo    = NAS_MML_GetCsAcRestrictionInfo();
     pstCurPsRestrictInfo    = NAS_MML_GetPsAcRestrictionInfo();
 
     PS_MEM_CPY(&stOldCsRestrictInfo, pstCurCsRestrictInfo, sizeof(NAS_MML_ACCESS_RESTRICTION_STRU));
     PS_MEM_CPY(&stOldPsRestrictInfo, pstCurPsRestrictInfo, sizeof(NAS_MML_ACCESS_RESTRICTION_STRU));
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, end */
 
     /* 根据系统消息，更新MML的全部变量 */
     NAS_MMC_UpdateNetworkInfo_GasSysInfo(pstMsg);
 
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
     /* 驻留小区变化或重新搜网时，上报系统消息 */
     if (VOS_TRUE == NAS_MML_IsCampPlmnInfoChanged(&stOldCampInfo, pstCurCampInfo))
     {
@@ -915,7 +633,6 @@ VOS_UINT32    NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitGasBgPlmnSearchCnf(
 
     NAS_MMC_SetSpecPlmnSearchState(NAS_MMC_SPEC_PLMN_SEARCH_STOP);
 
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, begin */
     /* 驻留小区的接入受限信息变化时,通知MMA模块当前接入受限信息 */
     if (VOS_TRUE == NAS_MML_IsAcInfoChanged(&stOldCsRestrictInfo, pstCurCsRestrictInfo))
     {
@@ -926,8 +643,6 @@ VOS_UINT32    NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitGasBgPlmnSearchCnf(
     {
         NAS_MMC_SndMsccAcInfoChangeInd(NAS_MSCC_PIF_SRVDOMAIN_PS, pstCurPsRestrictInfo);
     }
-	/* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, end */
 
 #if ((FEATURE_ON == FEATURE_GCBS) || (FEATURE_ON == FEATURE_WCBS))
 
@@ -935,9 +650,7 @@ VOS_UINT32    NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitGasBgPlmnSearchCnf(
     NAS_MMC_SndCbaMsgNetModInd(NAS_MML_NET_RAT_TYPE_GSM);
 #endif
 
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-18, begin */
     NAS_MMC_SndMsccCampOnInd(VOS_TRUE);
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-18, end */
 
     /*转发系统消息通知 给 MM/GMM */
     NAS_MMC_SndMmGsmSysInfoInd (NAS_MMC_GetCurrentLaiForbbidenType(), VOS_FALSE, pstMsg);
@@ -951,44 +664,7 @@ VOS_UINT32    NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitGasBgPlmnSearchCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvBgPlmnSearchCnf_BgPlmnSearch_WaitGasBgPlmnSearchCnf
- 功能描述  : 等待BG搜网回复状态收到RRMM_BG_PLMN_SEARCH_CNF消息的处理
- 输入参数  : pstMsg        - RRMM_BG_PLMN_SEARCH_CNF消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2011年12月20日
-   作    者   : h44270
-   修改内容   : BG搜网状态机开始快速指定搜网时，认为当前无网络，通知APS挂起
- 3.日    期   : 2012年4月24日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
- 4.日    期   : 2012年9月3日
-   作    者   : w00167002
-   修改内容   : V7R1C50_GUTL_PhaseII:如果在BG搜时候发生了同系统重选到TD国家网络,则在TDD模式下，
-                 需要退出BG状态机。
- 5.日    期   : 2012年10月29日
-   作    者   : t00212959
-   修改内容   : DTS2012080305980，相同PLMN，不同RAT，不再发起快速指定搜
- 6.日    期   : 2012年12月13日
-   作    者   : L00171473
-   修改内容   : DTS2012121802573, TQE清理
- 7.日    期   : 2013年12月20日
-   作    者   : w00167002
-   修改内容   : DTS2013112917981:guNAS删除在TD模式下不能进行bg搜的限制
- 8.日    期   : 2014年2月22日
-   作    者   : w00176964
-   修改内容   : High_Rat_Hplmn_Search调整:不比较驻留PLMN与BG搜的PLMN同时BG搜成功enable LTE
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvBgPlmnSearchCnf_BgPlmnSearch_WaitGasBgPlmnSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1061,9 +737,7 @@ VOS_UINT32    NAS_MMC_RcvBgPlmnSearchCnf_BgPlmnSearch_WaitGasBgPlmnSearchCnf(
             NAS_MMC_SndGmmPlmnSchInit();
             NAS_MMC_SndMmPlmnSchInit();
 
-            /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, begin */
             NAS_MMC_SndMsccCampOnInd(VOS_FALSE);
-            /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, end */
 
             NAS_MMC_NotifyModeChange(NAS_MML_NET_RAT_TYPE_BUTT,
                                      NAS_MML_GetSimPsRegStatus());
@@ -1097,28 +771,7 @@ VOS_UINT32    NAS_MMC_RcvBgPlmnSearchCnf_BgPlmnSearch_WaitGasBgPlmnSearchCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiWaitBgPlmnSearchCnfExpired_BgPlmnSearch_WaitGasBgPlmnSearchCnf
- 功能描述  : 等待BG搜网回复状态收到TI_NAS_MMC_WAIT_BG_PLMN_SEARCH_CNF消息的处理
- 输入参数  : pstMsg        - TI_NAS_MMC_WAIT_BG_PLMN_SEARCH_CNF消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2011年12月31日
-   作    者   : w00166186
-   修改内容   : DTS2011082902017,ON PLMN下注册被拒,搜网状态机重复搜索该网络
- 3.日    期   : 2014年2月24日
-   作    者   : w00176964
-   修改内容   : High_Rat_Hplmn_Search特性调整
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvTiWaitBgPlmnSearchCnfExpired_BgPlmnSearch_WaitGasBgPlmnSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1155,27 +808,7 @@ VOS_UINT32    NAS_MMC_RcvTiWaitBgPlmnSearchCnfExpired_BgPlmnSearch_WaitGasBgPlmn
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitWasSuspendCnf
- 功能描述  : 等待接入挂起回复状态收到MMCMMC_ABORT_FSM_REQ消息的处理
- 输入参数  : pstMsg        - MMCMMC_ABORT_FSM_REQ消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年11月29日
-   作    者   : w00167002
-   修改内容   : DTS2011112301233:保存打断事件类型到状态机上下文中
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitWasSuspendCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1195,46 +828,7 @@ VOS_UINT32    NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitWasSuspendCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvRrMmSuspendCnf_BgPlmnSearch_WaitWasSuspendCnf
- 功能描述  : 等待接入挂起回复状态收到RRMM_SUSPEND_CNF消息的处理
- 输入参数  : pstMsg        - RRMM_SUSPEND_CNF消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年12月15日
-   作    者   : w00167002
-   修改内容   : DTS2011120702166:MMC复位后无复位信息,在MML模块封装复位信息，
-                 以供MM层调用，进行软复位。
- 3.日    期   : 2012年4月30日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
- 4.日    期   : 2012年4月30日
-   作    者   : w00176964
-   修改内容   : V7R1C50 GUL BG搜网修改
- 5.日    期   : 2012年8月27日
-   作    者   : l00167671
-   修改内容   : 问题单: DTS2012080605217,背景搜没能找到可以注册的网络回退到V时，
-                 V在禁止列表中或者forbid plmn for gprs列表中时进入限制服务并不再
-                 发起搜网,将原函数NAS_MMC_IsVplmnNetRatValid改名成NAS_MMC_IsVplmnValid
-                 并在该函数中增加了判断V是否在禁止列表中或者forbid plmn for gprs列表中，
-                 若在两个列表中的任意一个列表中则认为Vplmn已经无效
- 6.日    期   : 2014年2月18日
-   作    者  :  w00242748
-   修改内容  :  DTS2014021803515:复位时明确是收到哪个接入技术的异常消息导致的。
- 7.日    期   : 2015年3月11日
-   作    者   : wx270776
-   修改内容   : 增加复位场景
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvRrMmSuspendCnf_BgPlmnSearch_WaitWasSuspendCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1316,33 +910,7 @@ VOS_UINT32    NAS_MMC_RcvRrMmSuspendCnf_BgPlmnSearch_WaitWasSuspendCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiWaitAsSuspendCnfExpired_BgPlmnSearch_WaitAsSuspendCnf
- 功能描述  : 等待接入挂起回复状态收到TI_NAS_MMC_WAIT_WAS_SUSPEND_CNF消息的处理
- 输入参数  : pstMsg        - TI_NAS_MMC_WAIT_WAS_SUSPEND_CNF消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年12月15日
-   作    者   : w00167002
-   修改内容   : DTS2011120702166:MMC复位后无复位信息,在MML模块封装复位信息，
-                  以供MM层调用，进行软复位。
- 3.日    期   : 2014年2月18日
-   作    者  :  w00242748
-   修改内容  :  DTS2014021803515:复位时明确是收到哪个接入技术的异常消息导致的。
- 4.日    期   : 2015年3月11日
-   作    者   : wx270776
-   修改内容   : DTS2015011212939:增加复位场景
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvTiWaitAsSuspendCnfExpired_BgPlmnSearch_WaitAsSuspendCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1378,27 +946,7 @@ VOS_UINT32    NAS_MMC_RcvTiWaitAsSuspendCnfExpired_BgPlmnSearch_WaitAsSuspendCnf
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitGasSuspendCnf
- 功能描述  : 等待接入挂起回复状态收到MMCMMC_ABORT_FSM_REQ消息的处理
- 输入参数  : pstMsg        - MMCMMC_ABORT_FSM_REQ消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年11月29日
-   作    者   : w00167002
-   修改内容   : DTS2011112301233:保存打断事件类型到状态机上下文中
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitGasSuspendCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1419,43 +967,7 @@ VOS_UINT32    NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitGasSuspendCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvRrMmSuspendCnf_BgPlmnSearch_WaitGasSuspendCnf
- 功能描述  : 等待接入挂起回复状态收到RRMM_SUSPEND_CNF消息的处理
- 输入参数  : pstMsg        - RRMM_SUSPEND_CNF消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年12月15日
-   作    者   : w00167002
-   修改内容   : DTS2011120702166:MMC复位后无复位信息,在MML模块封装复位信息，
-                 以供MM层调用，进行软复位。
- 3.日    期   : 2012年4月30日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
- 4.日    期   : 2012年5月18日
-   作    者   : w00176964
-   修改内容   : V7R1C50 GUL BG搜网修改
- 5.日    期   : 2012年8月27日
-   作    者   : l00167671
-   修改内容   : 问题单: DTS2012080605217,背景搜没能找到可以注册的网络回退到V时，
-                 V在禁止列表中或者forbid plmn for gprs列表中时进入限制服务并不再
-                 发起搜网,将原函数NAS_MMC_IsVplmnNetRatValid改名成NAS_MMC_IsVplmnValid
-                 并在该函数中增加了判断V是否在禁止列表中或者forbid plmn for gprs列表中，
-                 若在两个列表中的任意一个列表中则认为Vplmn已经无效
- 6.日    期   : 2015年3月11日
-   作    者   : wx270776
-   修改内容   : DTS2015011212939:增加复位场景
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvRrMmSuspendCnf_BgPlmnSearch_WaitGasSuspendCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1527,27 +1039,7 @@ VOS_UINT32    NAS_MMC_RcvRrMmSuspendCnf_BgPlmnSearch_WaitGasSuspendCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitWasBgStopCnf
- 功能描述  : 等待停止背景搜网回复状态收到MMCMMC_ABORT_FSM_REQ消息的处理
- 输入参数  : pstMsg        - MMCMMC_ABORT_FSM_REQ消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年11月29日
-   作    者   : w00167002
-   修改内容   : DTS2011112301233:保存打断事件类型到状态机上下文中
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitWasBgStopCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1567,45 +1059,7 @@ VOS_UINT32    NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitWasBgStopCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitWasBgStopCnf
- 功能描述  : 等待停止背景搜网回复状态收到RRMM_SYS_INFO_IND消息的处理
- 输入参数  : pstMsg        - RRMM_SYS_INFO_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年6月16日
-   作    者   : l00171473
-   修改内容   : DTS2012061409086, 收到W或G的系统消息时通知L模
- 3.日    期   : 2012年8月21日
-   作    者   : z00161729
-   修改内容   : DCM定制需求和遗留问题修改
- 4.日    期   : 2012年12月11日
-   作    者   : w00176964
-   修改内容   : 收到系统消息接入禁止信息变化则通知MMA
-
- 5.日    期   : 2014年1月18日
-   作    者   : z00234330
-   修改内容   : dts2014011801513,接入层上报的系统消息里面有可能没有携带plmnid,
-                 此处判断并没有判断plmnid是否有效
- 6.日    期   : 2014年1月23日
-   作    者   : z00161729
-   修改内容   : DTS2014012305088:svlte特性tds或l上系统消息后pstransfer:1，注册随机接入失败，ps迁移
-                到modem1后tds或l再次驻留mmc收到系统消息判断驻留信息未改变不会给mma发送系统消息导致
-                mtc无法上报pstransfer:1,需要在搜网状态机退出后给mma再发次系统消息
-
- 7.日    期   : 2014年5月4日
-   作    者   : t00173447
-   修改内容   : DTS2014042105390,软银定制需求
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitWasBgStopCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1613,15 +1067,12 @@ VOS_UINT32    NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitWasBgStopCnf(
 {
     NAS_MML_CAMP_PLMN_INFO_STRU                            *pstCurCampInfo = VOS_NULL_PTR;
     NAS_MML_CAMP_PLMN_INFO_STRU                             stOldCampInfo;
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, begin */
     NAS_MML_ACCESS_RESTRICTION_STRU                         *pstCurCsRestrictInfo = VOS_NULL_PTR;
     NAS_MML_ACCESS_RESTRICTION_STRU                          stOldCsRestrictInfo;
     NAS_MML_ACCESS_RESTRICTION_STRU                         *pstCurPsRestrictInfo = VOS_NULL_PTR;
     NAS_MML_ACCESS_RESTRICTION_STRU                          stOldPsRestrictInfo;
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, end */
 
     NAS_MMC_SPEC_PLMN_SEARCH_STATE_ENUM_UINT8                enSpecPlmnSearchState;
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, begin */
 #if (FEATURE_ON == FEATURE_LTE)
 
     NAS_MML_LTE_CAPABILITY_STATUS_ENUM_UINT32               enLCapabilityStatus;
@@ -1631,7 +1082,6 @@ VOS_UINT32    NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitWasBgStopCnf(
 
     NAS_MMC_RcvGuSysInfoIndSetLteAbility(pstMsg,enLCapabilityStatus);
 #endif
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, end */
 
     PS_MEM_SET(&stOldCampInfo, 0, sizeof(NAS_MML_CAMP_PLMN_INFO_STRU));
     PS_MEM_SET(&stOldCsRestrictInfo, 0, sizeof(NAS_MML_ACCESS_RESTRICTION_STRU));
@@ -1645,18 +1095,15 @@ VOS_UINT32    NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitWasBgStopCnf(
     pstCurCampInfo  = NAS_MML_GetCurrCampPlmnInfo();
     PS_MEM_CPY(&stOldCampInfo, pstCurCampInfo, sizeof(NAS_MML_CAMP_PLMN_INFO_STRU));
 
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, begin */
     pstCurCsRestrictInfo    = NAS_MML_GetCsAcRestrictionInfo();
     pstCurPsRestrictInfo    = NAS_MML_GetPsAcRestrictionInfo();
 
     PS_MEM_CPY(&stOldCsRestrictInfo, pstCurCsRestrictInfo, sizeof(NAS_MML_ACCESS_RESTRICTION_STRU));
     PS_MEM_CPY(&stOldPsRestrictInfo, pstCurPsRestrictInfo, sizeof(NAS_MML_ACCESS_RESTRICTION_STRU));
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, end */
 
     /* 根据系统消息，更新MML的全部变量 */
     NAS_MMC_UpdateNetworkInfo_WasSysInfo(pstMsg);
 
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
     /* 驻留小区变化或重新搜网时，上报系统消息 */
     enSpecPlmnSearchState = NAS_MMC_GetSpecPlmnSearchState();
 
@@ -1670,7 +1117,6 @@ VOS_UINT32    NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitWasBgStopCnf(
 
     NAS_MMC_SetSpecPlmnSearchState(NAS_MMC_SPEC_PLMN_SEARCH_STOP);
 
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, begin */
     /* 驻留小区的接入受限信息变化时,通知MSCC模块当前接入受限信息 */
     if (VOS_TRUE == NAS_MML_IsAcInfoChanged(&stOldCsRestrictInfo, pstCurCsRestrictInfo))
     {
@@ -1681,8 +1127,6 @@ VOS_UINT32    NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitWasBgStopCnf(
     {
         NAS_MMC_SndMsccAcInfoChangeInd(NAS_MSCC_PIF_SRVDOMAIN_PS, pstCurPsRestrictInfo);
     }
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, end */
 
 #if ((FEATURE_ON == FEATURE_GCBS) || (FEATURE_ON == FEATURE_WCBS))
 
@@ -1690,9 +1134,7 @@ VOS_UINT32    NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitWasBgStopCnf(
     NAS_MMC_SndCbaMsgNetModInd(NAS_MML_NET_RAT_TYPE_WCDMA);
 #endif
 
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-18, begin */
     NAS_MMC_SndMsccCampOnInd(VOS_TRUE);
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-18, end */
 
     /* 转发系统消息通知 给 MM/GMM */
     NAS_MMC_SndMmWasSysInfoInd (NAS_MMC_GetCurrentLaiForbbidenType(), VOS_FALSE, pstMsg);
@@ -1706,26 +1148,7 @@ VOS_UINT32    NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitWasBgStopCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvRrMmRelInd_BgPlmnSearch_WaitWasBgStopCnf
- 功能描述  : 等待停止背景搜网回复状态收到RRMM_REL_IND消息的处理
- 输入参数  : pstMsg        - RRMM_REL_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年6月18日
-   作    者   : l00171473
-   修改内容   : DTS2012051104124, 如果不判原因值，流程不会有问题，
-                因为接入层发送RRMM_REL_IND后，bg搜索肯定已经停止，也不会有缓存BG搜索
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvRrMmRelInd_BgPlmnSearch_WaitWasBgStopCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1756,23 +1179,7 @@ VOS_UINT32    NAS_MMC_RcvRrMmRelInd_BgPlmnSearch_WaitWasBgStopCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvBgPlmnStopCnf_BgPlmnSearch_WaitWasBgStopCnf
- 功能描述  : 等待停止背景搜网回复状态收到RRMM_BG_PLMN_STOP_CNF消息的处理
- 输入参数  : pstMsg        - RRMM_BG_PLMN_STOP_CNF消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvBgPlmnStopCnf_BgPlmnSearch_WaitWasBgStopCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1799,25 +1206,7 @@ VOS_UINT32    NAS_MMC_RcvBgPlmnStopCnf_BgPlmnSearch_WaitWasBgStopCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvBgPlmnSearchCnf_BgPlmnSearch_WaitAsBgStopCnf
- 功能描述  : 等待停止背景搜网回复状态收到RRMM_BG_PLMN_SEARCH_CNF消息的处理
- 输入参数  : pstMsg        - RRMM_BG_PLMN_SEARCH_CNF消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2012年6月4日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2012年6月14日
-   作    者   : t00212959
-   修改内容   : GU都调用此函数，需要停两个定时器
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvBgPlmnSearchCnf_BgPlmnSearch_WaitAsBgStopCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1873,23 +1262,7 @@ VOS_UINT32    NAS_MMC_RcvBgPlmnSearchCnf_BgPlmnSearch_WaitAsBgStopCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiBgStopCnfExpired_BgPlmnSearch_WaitWasBgStopCnf
- 功能描述  : 等待停止背景搜网回复状态收到TI_NAS_MMC_WAIT_BG_STOP_CNF消息的处理
- 输入参数  : pstMsg        - TI_NAS_MMC_WAIT_BG_STOP_CNF消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvTiBgStopCnfExpired_BgPlmnSearch_WaitWasBgStopCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1915,27 +1288,7 @@ VOS_UINT32    NAS_MMC_RcvTiBgStopCnfExpired_BgPlmnSearch_WaitWasBgStopCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitGasBgPlmnStopCnf
- 功能描述  : 等待停止背景搜网回复状态收到MMCMMC_ABORT_FSM_REQ消息的处理
- 输入参数  : pstMsg        - MMCMMC_ABORT_FSM_REQ消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年11月29日
-   作    者   : w00167002
-   修改内容   : DTS2011112301233:保存打断事件类型到状态机上下文中
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitGasBgPlmnStopCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1955,42 +1308,7 @@ VOS_UINT32    NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitGasBgPlmnStopCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitGasBgStopCnf
- 功能描述  : 等待停止背景搜网回复状态收到GRRMM_SYS_INFO_IND消息的处理
- 输入参数  : pstMsg        - GRRMM_SYS_INFO_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年6月16日
-   作    者   : l00171473
-   修改内容   : DTS2012061409086, 收到W或G的系统消息时通知L模
- 3.日    期   : 2012年8月21日
-   作    者   : z00161729
-   修改内容   : DCM定制需求和遗留问题修改
- 4.日    期   : 2012年12月11日
-   作    者   : w00176964
-   修改内容   : 收到系统消息接入禁止信息变化则通知MMA
- 5.日    期   : 2013年11月01日
-   作    者   : l00208543
-   修改内容   : 根据卡类型禁止网络制式
- 6.日    期   : 2014年1月23日
-   作    者   : z00161729
-   修改内容   : DTS2014012305088:svlte特性tds或l上系统消息后pstransfer:1，注册随机接入失败，ps迁移
-                到modem1后tds或l再次驻留mmc收到系统消息判断驻留信息未改变不会给mma发送系统消息导致
-                mtc无法上报pstransfer:1,需要在搜网状态机退出后给mma再发次系统消息
- 7.日    期   : 2014年5月4日
-   作    者   : t00173447
-   修改内容   : DTS2014042105390,软银定制需求
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitGasBgStopCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1998,15 +1316,12 @@ VOS_UINT32    NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitGasBgStopCnf(
 {
     NAS_MML_CAMP_PLMN_INFO_STRU                           *pstCurCampInfo = VOS_NULL_PTR;
     NAS_MML_CAMP_PLMN_INFO_STRU                            stOldCampInfo;
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, begin */
     NAS_MML_ACCESS_RESTRICTION_STRU                         *pstCurCsRestrictInfo = VOS_NULL_PTR;
     NAS_MML_ACCESS_RESTRICTION_STRU                          stOldCsRestrictInfo;
     NAS_MML_ACCESS_RESTRICTION_STRU                         *pstCurPsRestrictInfo = VOS_NULL_PTR;
     NAS_MML_ACCESS_RESTRICTION_STRU                          stOldPsRestrictInfo;
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, end */
     NAS_MMC_SPEC_PLMN_SEARCH_STATE_ENUM_UINT8                enSpecPlmnSearchState;
 
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, begin */
 #if (FEATURE_ON == FEATURE_LTE)
 
     NAS_MML_LTE_CAPABILITY_STATUS_ENUM_UINT32               enLCapabilityStatus;
@@ -2014,7 +1329,6 @@ VOS_UINT32    NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitGasBgStopCnf(
     /* 获取LTE能力状态 */
     enLCapabilityStatus  = NAS_MML_GetLteCapabilityStatus();
 #endif
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, end */
 
     PS_MEM_SET(&stOldCampInfo, 0, sizeof(NAS_MML_CAMP_PLMN_INFO_STRU));
     PS_MEM_SET(&stOldCsRestrictInfo, 0, sizeof(NAS_MML_ACCESS_RESTRICTION_STRU));
@@ -2023,11 +1337,9 @@ VOS_UINT32    NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitGasBgStopCnf(
     /* 更新驻留状态 */
     NAS_MMC_SetAsCellCampOn(NAS_MMC_AS_CELL_CAMP_ON);
 
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, begin */
 #if (FEATURE_ON == FEATURE_LTE)
     NAS_MMC_RcvGuSysInfoIndSetLteAbility(pstMsg, enLCapabilityStatus);
 #endif
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, end */
 
     /* 如果收到GAS的系统消息，且目前Utran被Enable，则重新Disable Utran */
     NAS_MMC_RcvGasSysInfoSetUtranCapabilityStatus();
@@ -2036,18 +1348,15 @@ VOS_UINT32    NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitGasBgStopCnf(
     pstCurCampInfo  = NAS_MML_GetCurrCampPlmnInfo();
     PS_MEM_CPY(&stOldCampInfo, pstCurCampInfo, sizeof(NAS_MML_CAMP_PLMN_INFO_STRU));
 
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, begin */
     pstCurCsRestrictInfo    = NAS_MML_GetCsAcRestrictionInfo();
     pstCurPsRestrictInfo    = NAS_MML_GetPsAcRestrictionInfo();
 
     PS_MEM_CPY(&stOldCsRestrictInfo, pstCurCsRestrictInfo, sizeof(NAS_MML_ACCESS_RESTRICTION_STRU));
     PS_MEM_CPY(&stOldPsRestrictInfo, pstCurPsRestrictInfo, sizeof(NAS_MML_ACCESS_RESTRICTION_STRU));
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, end */
 
     /* 根据系统消息，更新MML的全部变量 */
     NAS_MMC_UpdateNetworkInfo_GasSysInfo(pstMsg);
 
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
     /* 驻留小区变化或重新搜网时，上报系统消息 */
     enSpecPlmnSearchState = NAS_MMC_GetSpecPlmnSearchState();
 
@@ -2061,7 +1370,6 @@ VOS_UINT32    NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitGasBgStopCnf(
 
     NAS_MMC_SetSpecPlmnSearchState(NAS_MMC_SPEC_PLMN_SEARCH_STOP);
 
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, begin */
     /* 驻留小区的接入受限信息变化时,通知MMA模块当前接入受限信息 */
     if (VOS_TRUE == NAS_MML_IsAcInfoChanged(&stOldCsRestrictInfo, pstCurCsRestrictInfo))
     {
@@ -2072,8 +1380,6 @@ VOS_UINT32    NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitGasBgStopCnf(
     {
         NAS_MMC_SndMsccAcInfoChangeInd(NAS_MSCC_PIF_SRVDOMAIN_PS, pstCurPsRestrictInfo);
     }
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, end */
-	/* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
 #if ((FEATURE_ON == FEATURE_GCBS) || (FEATURE_ON == FEATURE_WCBS))
 
@@ -2081,9 +1387,7 @@ VOS_UINT32    NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitGasBgStopCnf(
     NAS_MMC_SndCbaMsgNetModInd(NAS_MML_NET_RAT_TYPE_GSM);
 #endif
 
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-18, begin */
     NAS_MMC_SndMsccCampOnInd(VOS_TRUE);
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-18, end */
 
     /*转发系统消息通知 给 MM/GMM */
     NAS_MMC_SndMmGsmSysInfoInd (NAS_MMC_GetCurrentLaiForbbidenType(), VOS_FALSE, pstMsg);
@@ -2097,23 +1401,7 @@ VOS_UINT32    NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitGasBgStopCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvBgPlmnStopCnf_BgPlmnSearch_WaitGasBgStopCnf
- 功能描述  : 等待停止背景搜网回复状态收到RRMM_BG_PLMN_STOP_CNF消息的处理
- 输入参数  : pstMsg        - RRMM_BG_PLMN_STOP_CNF消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvBgPlmnStopCnf_BgPlmnSearch_WaitGasBgStopCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2140,23 +1428,7 @@ VOS_UINT32    NAS_MMC_RcvBgPlmnStopCnf_BgPlmnSearch_WaitGasBgStopCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiBgStopCnfExpired_BgPlmnSearch_WaitGasBgStopCnf
- 功能描述  : 等待停止背景搜网回复状态收到TI_NAS_MMC_WAIT_BG_STOP_CNF消息的处理
- 输入参数  : pstMsg        - TI_NAS_MMC_WAIT_BG_STOP_CNF消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvTiBgStopCnfExpired_BgPlmnSearch_WaitGasBgStopCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2182,27 +1454,7 @@ VOS_UINT32    NAS_MMC_RcvTiBgStopCnfExpired_BgPlmnSearch_WaitGasBgStopCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitWasFastPlmnStopCnf
- 功能描述  : 等待停止快速指定搜网回复状态收到MMCMMC_ABORT_FSM_REQ消息的处理
- 输入参数  : pstMsg        - MMCMMC_ABORT_FSM_REQ消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年11月29日
-   作    者   : w00167002
-   修改内容   : DTS2011112301233:保存打断事件类型到状态机上下文中
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitWasFastPlmnStopCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2222,42 +1474,7 @@ VOS_UINT32    NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitWasFastPlmnStopCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvRrMmRelInd_BgPlmnSearch_WaitWasFastPlmnStopCnf
- 功能描述  : 等待停止快速指定搜网回复状态收到 RRMM_REL_IND 消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月19日
-   作    者   : L00171473
-   修改内容   : 新生成函数
- 2.日    期   : 2012年6月18日
-   作    者   : l00171473
-   修改内容   : DTS2012051104124, WAS:接收到RRMM_PLMN_SEARCH_STOP_REQ时，
-                可能发送有异常原因的rel ind或者RRMM_PLMN_SEARCH_STOP_CNF.
-                收到rel ind时认为停止快速搜网结束
- 3.日    期   : 2012年4月30日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
- 4.日    期   : 2012年5月18日
-   作    者   : w00176964
-   修改内容   : V7R1C50 GUL BG搜网修改
- 5.日    期   : 2012年8月27日
-   作    者   : l00167671
-   修改内容   : 问题单: DTS2012080605217,背景搜没能找到可以注册的网络回退到V时，
-                 V在禁止列表中或者forbid plmn for gprs列表中时进入限制服务并不再
-                 发起搜网,将原函数NAS_MMC_IsVplmnNetRatValid改名成NAS_MMC_IsVplmnValid
-                 并在该函数中增加了判断V是否在禁止列表中或者forbid plmn for gprs列表中，
-                 若在两个列表中的任意一个列表中则认为Vplmn已经无效
- 6.日    期   : 2014年6月12日
-   作    者   : w00167002
-   修改内容   : WAS异常且NO RF,直接进ooc进行处理
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvRrMmRelInd_BgPlmnSearch_WaitWasFastPlmnStopCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2328,34 +1545,7 @@ VOS_UINT32    NAS_MMC_RcvRrMmRelInd_BgPlmnSearch_WaitWasFastPlmnStopCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvRrMmPlmnSrchStopCnf_BgPlmnSearch_WaitWasFastPlmnStopCnf
- 功能描述  : 等待停止快速指定搜网回复状态收到RRMM_PLMN_SEARCH_STOP_CNF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月19日
-   作    者   : L00171473
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月30日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
- 3.日    期   : 2012年5月18日
-   作    者   : w00176964
-   修改内容   : V7R1C50 GUL BG搜网修改
- 4.日    期   : 2012年8月27日
-   作    者   : l00167671
-   修改内容   : 问题单: DTS2012080605217,背景搜没能找到可以注册的网络回退到V时，
-                 V在禁止列表中或者forbid plmn for gprs列表中时进入限制服务并不再
-                 发起搜网,将原函数NAS_MMC_IsVplmnNetRatValid改名成NAS_MMC_IsVplmnValid
-                 并在该函数中增加了判断V是否在禁止列表中或者forbid plmn for gprs列表中，
-                 若在两个列表中的任意一个列表中则认为Vplmn已经无效
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvRrMmPlmnSrchStopCnf_BgPlmnSearch_WaitWasFastPlmnStopCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2409,35 +1599,7 @@ VOS_UINT32    NAS_MMC_RcvRrMmPlmnSrchStopCnf_BgPlmnSearch_WaitWasFastPlmnStopCnf
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiWaitWasStopCnfExpired_BgPlmnSearch_WaitWasFastPlmnStopCnf
- 功能描述  : 等待停止快速指定搜网回复状态收到TI_NAS_MMC_WAIT_WAS_PLMN_STOP_CNF消息的处理
- 输入参数  : pstMsg        - TI_NAS_MMC_WAIT_WAS_PLMN_STOP_CNF消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月30日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
- 3.日    期   : 2012年5月18日
-   作    者   : w00176964
-   修改内容   : V7R1C50 GUL BG搜网修改
- 4.日    期   : 2012年8月27日
-   作    者   : l00167671
-   修改内容   : 问题单: DTS2012080605217,背景搜没能找到可以注册的网络回退到V时，
-                 V在禁止列表中或者forbid plmn for gprs列表中时进入限制服务并不再
-                 发起搜网,将原函数NAS_MMC_IsVplmnNetRatValid改名成NAS_MMC_IsVplmnValid
-                 并在该函数中增加了判断V是否在禁止列表中或者forbid plmn for gprs列表中，
-                 若在两个列表中的任意一个列表中则认为Vplmn已经无效
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvTiWaitWasStopCnfExpired_BgPlmnSearch_WaitWasFastPlmnStopCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2493,27 +1655,7 @@ VOS_UINT32    NAS_MMC_RcvTiWaitWasStopCnfExpired_BgPlmnSearch_WaitWasFastPlmnSto
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitGasFastPlmnStopCnf
- 功能描述  : 等待停止快速指定搜网回复状态收到MMCMMC_ABORT_FSM_REQ消息的处理
- 输入参数  : pstMsg        - MMCMMC_ABORT_FSM_REQ消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年11月29日
-   作    者   : w00167002
-   修改内容   : DTS2011112301233:保存打断事件类型到状态机上下文中
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitGasFastPlmnStopCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2533,35 +1675,7 @@ VOS_UINT32    NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitGasFastPlmnStopCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvRrMmPlmnSearchStopCnf_BgPlmnSearch_WaitGasFastPlmnStopCnf
- 功能描述  : 等待停止快速指定搜网回复状态收到RRMM_PLMN_SEARCH_STOP_CNF消息的处理
- 输入参数  : pstMsg        - RRMM_PLMN_SEARCH_STOP_CNF消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月30日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
- 3.日    期   : 2012年5月18日
-   作    者   : w00176964
-   修改内容   : V7R1C50 GUL BG搜网修改
- 5.日    期   : 2012年8月27日
-   作    者   : l00167671
-   修改内容   : 问题单: DTS2012080605217,背景搜没能找到可以注册的网络回退到V时，
-                 V在禁止列表中或者forbid plmn for gprs列表中时进入限制服务并不再
-                 发起搜网,将原函数NAS_MMC_IsVplmnNetRatValid改名成NAS_MMC_IsVplmnValid
-                 并在该函数中增加了判断V是否在禁止列表中或者forbid plmn for gprs列表中，
-                 若在两个列表中的任意一个列表中则认为Vplmn已经无效
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvRrMmPlmnSearchStopCnf_BgPlmnSearch_WaitGasFastPlmnStopCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2615,35 +1729,7 @@ VOS_UINT32    NAS_MMC_RcvRrMmPlmnSearchStopCnf_BgPlmnSearch_WaitGasFastPlmnStopC
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvRrMmPlmnSrchCnf_BgPlmnSearch_WaitAsFastPlmnStopCnf
- 功能描述  : 等待停止快速指定搜网回复状态收到RRMM_PLMN_SEARCH_STOP_CNF消息的处理
- 输入参数  : pstMsg        - RRMM_PLMN_SEARCH_STOP_CNF消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2012年6月4日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2012年6月14日
-   作    者   : t00212959
-   修改内容   : GU都调用此函数，需要停两个定时器
- 3.日    期   : 2012年8月27日
-   作    者   : l00167671
-   修改内容   : 问题单: DTS2012080605217,背景搜没能找到可以注册的网络回退到V时，
-                 V在禁止列表中或者forbid plmn for gprs列表中时进入限制服务并不再
-                 发起搜网,将原函数NAS_MMC_IsVplmnNetRatValid改名成NAS_MMC_IsVplmnValid
-                 并在该函数中增加了判断V是否在禁止列表中或者forbid plmn for gprs列表中，
-                 若在两个列表中的任意一个列表中则认为Vplmn已经无效
- 4.日    期   : 2014年6月25日
-   作    者   : b00269685
-   修改内容   : DSDS III项目
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvRrMmPlmnSrchCnf_BgPlmnSearch_WaitAsFastPlmnStopCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2738,35 +1824,7 @@ VOS_UINT32    NAS_MMC_RcvRrMmPlmnSrchCnf_BgPlmnSearch_WaitAsFastPlmnStopCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiWaitGasStopCnfExpired_BgPlmnSearch_WaitGasFastPlmnStopCnf
- 功能描述  : 等待停止快速指定搜网回复状态收到TI_NAS_MMC_WAIT_GAS_PLMN_STOP_CNF消息的处理
- 输入参数  : pstMsg        - TI_NAS_MMC_WAIT_GAS_PLMN_STOP_CNF消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月30日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
- 3.日    期   : 2012年5月18日
-   作    者   : w00176964
-   修改内容   : V7R1C50 GUL BG搜网修改
- 4.日    期   : 2012年8月27日
-   作    者   : l00167671
-   修改内容   : 问题单: DTS2012080605217,背景搜没能找到可以注册的网络回退到V时，
-                 V在禁止列表中或者forbid plmn for gprs列表中时进入限制服务并不再
-                 发起搜网,将原函数NAS_MMC_IsVplmnNetRatValid改名成NAS_MMC_IsVplmnValid
-                 并在该函数中增加了判断V是否在禁止列表中或者forbid plmn for gprs列表中，
-                 若在两个列表中的任意一个列表中则认为Vplmn已经无效
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvTiWaitGasStopCnfExpired_BgPlmnSearch_WaitGasFastPlmnStopCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2823,27 +1881,7 @@ VOS_UINT32    NAS_MMC_RcvTiWaitGasStopCnfExpired_BgPlmnSearch_WaitGasFastPlmnSto
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitWasPlmnFastSearchCnf
- 功能描述  : 等待快速指定搜网回复状态收到MMCMMC_ABORT_FSM_REQ消息的处理
- 输入参数  : pstMsg        - MMCMMC_ABORT_FSM_REQ消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年11月29日
-   作    者   : w00167002
-   修改内容   : DTS2011112301233:保存打断事件类型到状态机上下文中
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitWasPlmnFastSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2871,31 +1909,7 @@ VOS_UINT32    NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitWasPlmnFastSearchCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvRrMmPlmnSrchCnf_BgPlmnSearch_WaitWasPlmnFastSearchCnf
- 功能描述  : 等待快速指定搜网回复状态收到RRMM_PLMN_SEARCH_CNF消息的处理
- 输入参数  : pstMsg        - RRMM_PLMN_SEARCH_CNF消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月30日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
- 3.日    期   : 2013年4月9日
-   作    者   : y00176023
-   修改内容   : DSDS GUNAS II项目:收到NO RF 退状态机，发送失败迁移到ooc
- 4.日    期   : 2014年6月27日
-   作    者   : b00269685
-   修改内容   : DSDS III修改
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvRrMmPlmnSrchCnf_BgPlmnSearch_WaitWasPlmnFastSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2958,33 +1972,7 @@ VOS_UINT32    NAS_MMC_RcvRrMmPlmnSrchCnf_BgPlmnSearch_WaitWasPlmnFastSearchCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvRrMmRelInd_BgPlmnSearch_WaitWasPlmnFastSearchCnf
- 功能描述  : 等待快速指定搜网回复状态收到RRMM_REL_IND消息的处理
- 输入参数  : pstMsg        - RRMM_REL_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年6月18日
-   作    者   : l00171473
-   修改内容   : DTS2012051104124, WAS:接收到RRMM_PLMN_SEARCH_REQ时，
-                不会上报正常原因的rel ind，只有异常原因的rel ind.
-                收到rel ind时认为快速指定搜结束
- 3.日    期   : 2012年4月30日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
- 4.日    期   : 2014年6月17日
-   作    者   : w00167002
-   修改内容   : DSDS III项目
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvRrMmRelInd_BgPlmnSearch_WaitWasPlmnFastSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3045,22 +2033,7 @@ VOS_UINT32    NAS_MMC_RcvRrMmRelInd_BgPlmnSearch_WaitWasPlmnFastSearchCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiWaitWasPlmnSearchCnfExpired_BgPlmnSearch_WaitWasPlmnFastSearchCnf
- 功能描述  : 等待快速指定搜网回复状态收到TI_NAS_MMC_WAIT_WAS_PLMN_SEARCH_CNF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月19日
-   作    者   : L00171473
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvTiWaitWasPlmnSearchCnfExpired_BgPlmnSearch_WaitWasPlmnFastSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3091,27 +2064,7 @@ VOS_UINT32    NAS_MMC_RcvTiWaitWasPlmnSearchCnfExpired_BgPlmnSearch_WaitWasPlmnF
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitGasPlmnFastSearchCnf
- 功能描述  : 等待快速指定搜网回复状态收到MMCMMC_ABORT_FSM_REQ消息的处理
- 输入参数  : pstMsg        - MMCMMC_ABORT_FSM_REQ消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年11月29日
-   作    者   : w00167002
-   修改内容   : DTS2011112301233:保存打断事件类型到状态机上下文中
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitGasPlmnFastSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3139,28 +2092,7 @@ VOS_UINT32    NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitGasPlmnFastSearchCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvRrMmPlmnSrchCnf_BgPlmnSearch_WaitGasPlmnFastSearchCnf
- 功能描述  : 等待快速指定搜网回复状态收到RRMM_PLMN_SEARCH_CNF消息的处理
- 输入参数  : pstMsg        - RRMM_PLMN_SEARCH_CNF消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月30日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
- 3.日    期   : 2013年4月9日
-   作    者   : y00176023
-   修改内容   : DSDS GUNAS II项目:收到NO RF 退状态机，发送失败迁移到ooc时
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvRrMmPlmnSrchCnf_BgPlmnSearch_WaitGasPlmnFastSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3225,23 +2157,7 @@ VOS_UINT32    NAS_MMC_RcvRrMmPlmnSrchCnf_BgPlmnSearch_WaitGasPlmnFastSearchCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiWaitGasPlmnSearchCnfExpired_BgPlmnSearch_WaitGasPlmnFastSearchCnf
- 功能描述  : 等待快速指定搜网回复状态收到TI_NAS_MMC_WAIT_GAS_PLMN_SEARCH_CNF消息的处理
- 输入参数  : pstMsg        - TI_NAS_MMC_WAIT_GAS_PLMN_SEARCH_CNF消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvTiWaitGasPlmnSearchCnfExpired_BgPlmnSearch_WaitGasPlmnFastSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3272,27 +2188,7 @@ VOS_UINT32    NAS_MMC_RcvTiWaitGasPlmnSearchCnfExpired_BgPlmnSearch_WaitGasPlmnF
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitWasSysInfoInd
- 功能描述  : 等待系统消息状态收到MMCMMC_ABORT_FSM_REQ消息的处理
- 输入参数  : pstMsg        - MMCMMC_ABORT_FSM_REQ消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年11月29日
-   作    者   : w00167002
-   修改内容   : DTS2011112301233:保存打断事件类型到状态机上下文中
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitWasSysInfoInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3312,60 +2208,7 @@ VOS_UINT32    NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitWasSysInfoInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitWasSysInfoInd
- 功能描述  : 等待系统消息状态收到RRMM_SYS_INFO_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月19日
-   作    者   : L00171473
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月30日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
- 3.日    期   : 2012年5月18日
-   作    者   : w00176964
-   修改内容   : V7R1C50 GUL BG搜网修改
- 4.日    期   : 2012年6月25日
-   作    者   : l60609
-   修改内容   : AT&T&DCM:正常服务状态，等注册状态后再发系统消息，否则立即发
-                系统消息
- 5.日    期   : 2012年6月16日
-   作    者   : l00171473
-   修改内容   : DTS2012061409086, 收到W或G的系统消息时通知L模
- 6.日    期   : 2012年8月27日
-   作    者   : l00167671
-   修改内容   : 问题单: DTS2012080605217,背景搜没能找到可以注册的网络回退到V时，
-                 V在禁止列表中或者forbid plmn for gprs列表中时进入限制服务并不再
-                 发起搜网,将原函数NAS_MMC_IsVplmnNetRatValid改名成NAS_MMC_IsVplmnValid
-                 并在该函数中增加了判断V是否在禁止列表中或者forbid plmn for gprs列表中，
-                 若在两个列表中的任意一个列表中则认为Vplmn已经无效
- 7.日    期   : 2012年8月14日
-   作    者   : t00212959
-   修改内容   : DCM定制需求和遗留问题,禁止LTE漫游
- 8.日    期   : 2012年12月11日
-   作    者   : w00176964
-   修改内容   : 收到系统消息接入禁止信息变化则通知MMA
- 9.日    期   : 2014年1月18日
-   作    者   : z00234330
-   修改内容   : dts2014011801513,接入层上报的系统消息里面有可能没有携带plmnid,
-                 此处判断并没有判断plmnid是否有效
- 10.日    期   : 2014年1月23日
-   作    者   : z00161729
-   修改内容   : DTS2014012305088:svlte特性tds或l上系统消息后pstransfer:1，注册随机接入失败，ps迁移
-                到modem1后tds或l再次驻留mmc收到系统消息判断驻留信息未改变不会给mma发送系统消息导致
-                mtc无法上报pstransfer:1,需要在搜网状态机退出后给mma再发次系统消息
- 11.日    期   : 2014年5月4日
-    作    者   : t00173447
-    修改内容   : DTS2014042105390,软银定制需求
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitWasSysInfoInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3373,22 +2216,18 @@ VOS_UINT32    NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitWasSysInfoInd(
 {
     NAS_MML_CAMP_PLMN_INFO_STRU                            *pstCurCampInfo = VOS_NULL_PTR;
     NAS_MML_CAMP_PLMN_INFO_STRU                             stOldCampInfo;
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, begin */
     NAS_MML_ACCESS_RESTRICTION_STRU                         *pstCurCsRestrictInfo = VOS_NULL_PTR;
     NAS_MML_ACCESS_RESTRICTION_STRU                          stOldCsRestrictInfo;
     NAS_MML_ACCESS_RESTRICTION_STRU                         *pstCurPsRestrictInfo = VOS_NULL_PTR;
     NAS_MML_ACCESS_RESTRICTION_STRU                          stOldPsRestrictInfo;
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, end */
 
     NAS_MMC_SPEC_PLMN_SEARCH_STATE_ENUM_UINT8                enSpecPlmnSearchState;
-    /* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-15, begin */
 #if (FEATURE_ON == FEATURE_LTE)
     NAS_MML_LTE_CAPABILITY_STATUS_ENUM_UINT32               enLCapabilityStatus;
 
     /* 获取LTE能力状态 */
     enLCapabilityStatus  = NAS_MML_GetLteCapabilityStatus();
 #endif
-    /* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-15, end */
 
     PS_MEM_SET(&stOldCampInfo, 0, sizeof(NAS_MML_CAMP_PLMN_INFO_STRU));
     PS_MEM_SET(&stOldCsRestrictInfo, 0, sizeof(NAS_MML_ACCESS_RESTRICTION_STRU));
@@ -3400,12 +2239,10 @@ VOS_UINT32    NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitWasSysInfoInd(
     /* 更新驻留状态 */
     NAS_MMC_SetAsCellCampOn(NAS_MMC_AS_CELL_CAMP_ON);
 
-    /* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-15, begin */
 #if (FEATURE_ON == FEATURE_LTE)
 
     NAS_MMC_RcvGuSysInfoIndSetLteAbility(pstMsg,enLCapabilityStatus);
 #endif
-    /* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-15, end */
 
     /* 如果当前存在立即打断标志，则退状态机 */
     if (NAS_MMC_ABORT_FSM_IMMEDIATELY == NAS_MMC_GetAbortType_BgPlmnSearch())
@@ -3443,18 +2280,15 @@ VOS_UINT32    NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitWasSysInfoInd(
     pstCurCampInfo  = NAS_MML_GetCurrCampPlmnInfo();
     PS_MEM_CPY(&stOldCampInfo, pstCurCampInfo, sizeof(NAS_MML_CAMP_PLMN_INFO_STRU));
 
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, begin */
     pstCurCsRestrictInfo    = NAS_MML_GetCsAcRestrictionInfo();
     pstCurPsRestrictInfo    = NAS_MML_GetPsAcRestrictionInfo();
 
     PS_MEM_CPY(&stOldCsRestrictInfo, pstCurCsRestrictInfo, sizeof(NAS_MML_ACCESS_RESTRICTION_STRU));
     PS_MEM_CPY(&stOldPsRestrictInfo, pstCurPsRestrictInfo, sizeof(NAS_MML_ACCESS_RESTRICTION_STRU));
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, end */
 
     /* 根据系统消息，更新MML的全部变量 */
     NAS_MMC_UpdateNetworkInfo_WasSysInfo(pstMsg);
 
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
     /* 驻留小区变化或重新搜网时，上报系统消息 */
     enSpecPlmnSearchState = NAS_MMC_GetSpecPlmnSearchState();
 
@@ -3475,7 +2309,6 @@ VOS_UINT32    NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitWasSysInfoInd(
 
     NAS_MMC_SetSpecPlmnSearchState(NAS_MMC_SPEC_PLMN_SEARCH_STOP);
 
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, begin */
     /* 驻留小区的接入受限信息变化时,通知MMA模块当前接入受限信息 */
     if (VOS_TRUE == NAS_MML_IsAcInfoChanged(&stOldCsRestrictInfo, pstCurCsRestrictInfo))
     {
@@ -3486,8 +2319,6 @@ VOS_UINT32    NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitWasSysInfoInd(
     {
         NAS_MMC_SndMsccAcInfoChangeInd(NAS_MSCC_PIF_SRVDOMAIN_PS, pstCurPsRestrictInfo);
     }
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, end */
-	/* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
 #if ((FEATURE_ON == FEATURE_GCBS) || (FEATURE_ON == FEATURE_WCBS))
 
@@ -3495,9 +2326,7 @@ VOS_UINT32    NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitWasSysInfoInd(
     NAS_MMC_SndCbaMsgNetModInd(NAS_MML_NET_RAT_TYPE_WCDMA);
 #endif
 
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-18, begin */
     NAS_MMC_SndMsccCampOnInd(VOS_TRUE);
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-18, end */
 
     /* 转发系统消息通知 给 MM/GMM */
     NAS_MMC_SndMmWasSysInfoInd (NAS_MMC_GetCurrentLaiForbbidenType(), VOS_FALSE, pstMsg);
@@ -3524,35 +2353,7 @@ VOS_UINT32    NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitWasSysInfoInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiWaitWasSysInfoExpired_BgPlmnSearch_WaitWasSysInfoInd
- 功能描述  : 等待系统消息状态收到TI_NAS_MMC_WAIT_WAS_SYS_INFO消息的处理
- 输入参数  : pstMsg        - TI_NAS_MMC_WAIT_WAS_SYS_INFO消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月30日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
- 3.日    期   : 2012年5月18日
-   作    者   : w00176964
-   修改内容   : V7R1C50 GUL BG搜网修改
- 4.日    期   : 2012年8月27日
-   作    者   : l00167671
-   修改内容   : 问题单: DTS2012080605217,背景搜没能找到可以注册的网络回退到V时，
-                 V在禁止列表中或者forbid plmn for gprs列表中时进入限制服务并不再
-                 发起搜网,将原函数NAS_MMC_IsVplmnNetRatValid改名成NAS_MMC_IsVplmnValid
-                 并在该函数中增加了判断V是否在禁止列表中或者forbid plmn for gprs列表中，
-                 若在两个列表中的任意一个列表中则认为Vplmn已经无效
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvTiWaitWasSysInfoExpired_BgPlmnSearch_WaitWasSysInfoInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3607,27 +2408,7 @@ VOS_UINT32    NAS_MMC_RcvTiWaitWasSysInfoExpired_BgPlmnSearch_WaitWasSysInfoInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitGasSysInfo
- 功能描述  : 等待系统消息状态收到MMCMMC_ABORT_FSM_REQ消息的处理
- 输入参数  : pstMsg        - MMCMMC_ABORT_FSM_REQ消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年11月29日
-   作    者   : w00167002
-   修改内容   : DTS2011112301233:保存打断事件类型到状态机上下文中
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitGasSysInfo(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3647,59 +2428,7 @@ VOS_UINT32    NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitGasSysInfo(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitGasSysInfoInd
- 功能描述  : 等待系统消息状态收到GRRMM_SYS_INFO_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月19日
-   作    者   : L00171473
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月30日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
- 3.日    期   : 2012年5月18日
-   作    者   : w00176964
-   修改内容   : V7R1C50 GUL BG搜网修改
- 4.日    期   : 2012年6月25日
-   作    者   : l60609
-   修改内容   : AT&T&DCM:正常服务状态，等注册状态后再发系统消息，否则立即发
-                系统消息
- 5.日    期   : 2012年6月16日
-   作    者   : l00171473
-   修改内容   : DTS2012061409086, 收到W或G的系统消息时通知L模
- 6.日    期   : 2012年8月27日
-   作    者   : l00167671
-   修改内容   : 问题单: DTS2012080605217,背景搜没能找到可以注册的网络回退到V时，
-                 V在禁止列表中或者forbid plmn for gprs列表中时进入限制服务并不再
-                 发起搜网,将原函数NAS_MMC_IsVplmnNetRatValid改名成NAS_MMC_IsVplmnValid
-                 并在该函数中增加了判断V是否在禁止列表中或者forbid plmn for gprs列表中，
-                 若在两个列表中的任意一个列表中则认为Vplmn已经无效
- 7.日    期   : 2012年8月14日
-   作    者   : t00212959
-   修改内容   : DCM定制需求和遗留问题,禁止LTE漫游
- 8.日    期   : 2012年12月11日
-   作    者   : w00176964
-   修改内容   : 收到系统消息接入禁止信息变化则通知MMA
- 9.日    期   : 2013年11月01日
-   作    者   : l00208543
-   修改内容   : 根据卡类型禁止网络制式
- 10.日    期   : 2014年1月23日
-    作    者   : z00161729
-    修改内容   : DTS2014012305088:svlte特性tds或l上系统消息后pstransfer:1，注册随机接入失败，ps迁移
-                到modem1后tds或l再次驻留mmc收到系统消息判断驻留信息未改变不会给mma发送系统消息导致
-                mtc无法上报pstransfer:1,需要在搜网状态机退出后给mma再发次系统消息
- 11.日    期   : 2014年5月4日
-    作    者   : t00173447
-    修改内容   : DTS2014042105390,软银定制需求
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitGasSysInfoInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3707,16 +2436,13 @@ VOS_UINT32    NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitGasSysInfoInd(
 {
     NAS_MML_CAMP_PLMN_INFO_STRU                            *pstCurCampInfo = VOS_NULL_PTR;
     NAS_MML_CAMP_PLMN_INFO_STRU                             stOldCampInfo;
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, begin */
     NAS_MML_ACCESS_RESTRICTION_STRU                         *pstCurCsRestrictInfo = VOS_NULL_PTR;
     NAS_MML_ACCESS_RESTRICTION_STRU                          stOldCsRestrictInfo;
     NAS_MML_ACCESS_RESTRICTION_STRU                         *pstCurPsRestrictInfo = VOS_NULL_PTR;
     NAS_MML_ACCESS_RESTRICTION_STRU                          stOldPsRestrictInfo;
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, end */
 
     NAS_MMC_SPEC_PLMN_SEARCH_STATE_ENUM_UINT8                enSpecPlmnSearchState;
 
-    /* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-15, begin */
 #if (FEATURE_ON == FEATURE_LTE)
 
     NAS_MML_LTE_CAPABILITY_STATUS_ENUM_UINT32               enLCapabilityStatus;
@@ -3724,7 +2450,6 @@ VOS_UINT32    NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitGasSysInfoInd(
     /* 获取LTE能力状态 */
     enLCapabilityStatus  = NAS_MML_GetLteCapabilityStatus();
 #endif
-    /* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-15, end */
 
     PS_MEM_SET(&stOldCampInfo, 0, sizeof(NAS_MML_CAMP_PLMN_INFO_STRU));
     PS_MEM_SET(&stOldCsRestrictInfo, 0, sizeof(NAS_MML_ACCESS_RESTRICTION_STRU));
@@ -3739,11 +2464,9 @@ VOS_UINT32    NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitGasSysInfoInd(
     /* 如果收到GAS的系统消息，且目前Utran被Enable，则重新Disable Utran */
     NAS_MMC_RcvGasSysInfoSetUtranCapabilityStatus();
 
-    /* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-15, begin */
 #if (FEATURE_ON == FEATURE_LTE)
     NAS_MMC_RcvGuSysInfoIndSetLteAbility(pstMsg, enLCapabilityStatus);
 #endif
-    /* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-15, end */
 
     /* 如果当前存在立即打断标志，则退状态机 */
     if (NAS_MMC_ABORT_FSM_IMMEDIATELY == NAS_MMC_GetAbortType_BgPlmnSearch())
@@ -3781,18 +2504,15 @@ VOS_UINT32    NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitGasSysInfoInd(
     pstCurCampInfo  = NAS_MML_GetCurrCampPlmnInfo();
     PS_MEM_CPY(&stOldCampInfo, pstCurCampInfo, sizeof(NAS_MML_CAMP_PLMN_INFO_STRU));
 
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, begin */
     pstCurCsRestrictInfo    = NAS_MML_GetCsAcRestrictionInfo();
     pstCurPsRestrictInfo    = NAS_MML_GetPsAcRestrictionInfo();
 
     PS_MEM_CPY(&stOldCsRestrictInfo, pstCurCsRestrictInfo, sizeof(NAS_MML_ACCESS_RESTRICTION_STRU));
     PS_MEM_CPY(&stOldPsRestrictInfo, pstCurPsRestrictInfo, sizeof(NAS_MML_ACCESS_RESTRICTION_STRU));
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, end */
 
     /* 根据系统消息，更新MML的全部变量 */
     NAS_MMC_UpdateNetworkInfo_GasSysInfo(pstMsg);
 
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
     /* 驻留小区变化或重新搜网时，上报系统消息 */
     enSpecPlmnSearchState = NAS_MMC_GetSpecPlmnSearchState();
 
@@ -3813,7 +2533,6 @@ VOS_UINT32    NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitGasSysInfoInd(
 
     NAS_MMC_SetSpecPlmnSearchState(NAS_MMC_SPEC_PLMN_SEARCH_STOP);
 
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, begin */
     /* 驻留小区的接入受限信息变化时,通知MSCC模块当前接入受限信息 */
     if (VOS_TRUE == NAS_MML_IsAcInfoChanged(&stOldCsRestrictInfo, pstCurCsRestrictInfo))
     {
@@ -3824,17 +2543,13 @@ VOS_UINT32    NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitGasSysInfoInd(
     {
         NAS_MMC_SndMsccAcInfoChangeInd(NAS_MSCC_PIF_SRVDOMAIN_PS, pstCurPsRestrictInfo);
     }
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, end */
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
 #if ((FEATURE_ON == FEATURE_GCBS) || (FEATURE_ON == FEATURE_WCBS))
     /* CBS上报*/
     NAS_MMC_SndCbaMsgNetModInd(NAS_MML_NET_RAT_TYPE_GSM);
 #endif
 
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-18, begin */
     NAS_MMC_SndMsccCampOnInd(VOS_TRUE);
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-18, end */
 
     /*转发系统消息通知 给 MM/GMM */
     NAS_MMC_SndMmGsmSysInfoInd (NAS_MMC_GetCurrentLaiForbbidenType(), VOS_FALSE, pstMsg);
@@ -3861,35 +2576,7 @@ VOS_UINT32    NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitGasSysInfoInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiWaitGasSysInfoExpired_BgPlmnSearch_WaitGasSysInfoInd
- 功能描述  : 等待系统消息状态收到TI_NAS_MMC_WAIT_GAS_SYS_INFO消息的处理
- 输入参数  : pstMsg        - TI_NAS_MMC_WAIT_GAS_SYS_INFO消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月30日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
- 3.日    期   : 2012年5月18日
-   作    者   : w00176964
-   修改内容   : V7R1C50 GUL BG搜网修改
- 4.日    期   : 2012年8月27日
-   作    者   : l00167671
-   修改内容   : 问题单: DTS2012080605217,背景搜没能找到可以注册的网络回退到V时，
-                 V在禁止列表中或者forbid plmn for gprs列表中时进入限制服务并不再
-                 发起搜网,将原函数NAS_MMC_IsVplmnNetRatValid改名成NAS_MMC_IsVplmnValid
-                 并在该函数中增加了判断V是否在禁止列表中或者forbid plmn for gprs列表中，
-                 若在两个列表中的任意一个列表中则认为Vplmn已经无效
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvTiWaitGasSysInfoExpired_BgPlmnSearch_WaitGasSysInfoInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3945,45 +2632,7 @@ VOS_UINT32    NAS_MMC_RcvTiWaitGasSysInfoExpired_BgPlmnSearch_WaitGasSysInfoInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitCsPsRegRsltInd
- 功能描述  : 等待注册结果状态收到MMCMMC_ABORT_FSM_REQ消息的处理
- 输入参数  : pstMsg        - MMCMMC_ABORT_FSM_REQ消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年11月3日
-   作    者   : w00167002
-   修改内容   : 在注册过程中收到立即打断，意味着注册尚未完成，更新未完成的域的服务
-                 状态为LIMIT SERVICE，否则当前的服务状态可能为NORMAL_SERVICE,这样若被用户
-                 指定搜打断，且网络接入技术都相同的情况下，就不会进行搜网注册了
- 3.日    期   : 2011年11月29日
-   作    者   : w00167002
-   修改内容   : DTS2011112301233:增加打断事件ID，状态机可以知道是什么事件
-                打断自己的。
-                修改原因:用户下发关机命令后，当前可能在等注册结果或者在等连接
-                释放，可能需要比较久的时间才能处理关机命令，通过增加打断事件，
-                如归当前在等注册结果或者等链接释放状态，若收到关机命令，则直接
-                退出当前状态机，处理用户的关机命令。
- 4.日    期   : 2012年6月25日
-   作    者   : l60609
-   修改内容   : AT&T&DCM:判断是否需要发送系统消息
- 5.日    期   : 2012年12月11日
-   作    者   : l00167671
-   修改内容   : DTS2012121802573, TQE清理
- 6.日    期   : 2015年1月7日
-   作    者   : s00217060
-   修改内容   : Service_State_Optimize_PhaseI修改
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitCsPsRegRsltInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3998,7 +2647,6 @@ VOS_UINT32    NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitCsPsRegRsltInd(
 
 
     /* 若打断类型是用户请求的关机，则直接退出等注册结果状态机 */
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
     if (NAS_BuildEventType(UEPS_PID_MSCC, ID_MSCC_MMC_POWER_OFF_REQ) == pstAbortMsg->ulEventType)
     {
         NAS_MMC_StopTimer(TI_NAS_MMC_WAIT_CSPS_REG_IND);
@@ -4012,7 +2660,6 @@ VOS_UINT32    NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitCsPsRegRsltInd(
 
         return VOS_TRUE;
     }
-     /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
     /* 记录状态机上下文中Abort事件类型 */
     NAS_MMC_SetAbortEventType_BgPlmnSearch(pstAbortMsg->ulEventType);
@@ -4071,28 +2718,7 @@ VOS_UINT32    NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitCsPsRegRsltInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvGmmPsRegResultInd_BgPlmnSearch_WaitCsPsRegRsltInd
- 功能描述  : 等待注册结果状态收到GMMMMC_PS_REG_RESULT_IND消息的处理
- 输入参数  : pstMsg        - GMMMMC_PS_REG_RESULT_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年6月25日
-   作    者   : l60609
-   修改内容   : AT&T&DCM:判断是否需要发送系统消息
- 3.日    期   : 2014年11月28日
-   作    者   : w00281933
-   修改内容   : 服务状态优化Phase I
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvGmmPsRegResultInd_BgPlmnSearch_WaitCsPsRegRsltInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4148,28 +2774,7 @@ VOS_UINT32    NAS_MMC_RcvGmmPsRegResultInd_BgPlmnSearch_WaitCsPsRegRsltInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmCsRegResultInd_BgPlmnSearch_WaitCsPsRegRsltInd
- 功能描述  : 等待注册结果状态收到MMMMC_CS_REG_RESULT_IND消息的处理
- 输入参数  : pstMsg        - MMMMC_CS_REG_RESULT_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年6月25日
-   作    者   : l60609
-   修改内容   : AT&T&DCM:判断是否需要发送系统消息
- 3.日    期   : 2014年11月28日
-   作    者   : w00281933
-   修改内容   : 服务状态优化Phase I
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvMmCsRegResultInd_BgPlmnSearch_WaitCsPsRegRsltInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4225,21 +2830,7 @@ VOS_UINT32    NAS_MMC_RcvMmCsRegResultInd_BgPlmnSearch_WaitCsPsRegRsltInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmAbortInd_BgPlmnSearch_WaitCsPsRegRsltInd
- 功能描述  : 等待CS PS注册结果过程中收到MM Abort消息的处理
- 输入参数  : ulEventType:消息类型
-             pstMsg:消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:处理完成
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2012年7月12日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMmAbortInd_BgPlmnSearch_WaitCsPsRegRsltInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4287,35 +2878,7 @@ VOS_UINT32 NAS_MMC_RcvMmAbortInd_BgPlmnSearch_WaitCsPsRegRsltInd(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvGmmNetworkDetachInd_BgPlmnSearch_WaitCsPsRegRsltInd
- 功能描述  : 等待注册结果状态收到MMCGMM_NETWORK_DETACH_IND消息的处理
- 输入参数  : pstMsg        - MMCGMM_NETWORK_DETACH_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2011年12月15日
-   作    者   : w00176964
-   修改内容   : V7R1 Phase IV调整,当前SYSCFG中L不在时，也需要向LMM通知ID_MMC_LMM_ACTION_RESULT_REQ
- 3.日    期   : 2012年2月13日
-   作    者   : w00167002
-   修改内容   : DTS2011122704039:additional action值若为无效值NAS_MMC_ADDITIONAL_ACTION_BUTT
-                 则不更新当前的additional action
- 4.日    期   : 2012年6月25日
-   作    者   : l60609
-   修改内容   : AT&T&DCM:判断是否需要发送系统消息
- 5.日    期   : 2014年11月28日
-   作    者   : w00281933
-   修改内容   : 服务状态优化Phase I
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvGmmNetworkDetachInd_BgPlmnSearch_WaitCsPsRegRsltInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4377,35 +2940,7 @@ VOS_UINT32    NAS_MMC_RcvGmmNetworkDetachInd_BgPlmnSearch_WaitCsPsRegRsltInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvGmmServiceRequestResultInd_BgPlmnSearch_WaitCsPsRegRsltInd
- 功能描述  : 等待注册结果状态收到GMMMMC_SERVICE_REQUEST_RESULT_IND消息的处理
- 输入参数  : pstMsg        - GMMMMC_SERVICE_REQUEST_RESULT_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2011年12月15日
-   作    者   : w00176964
-   修改内容   : V7R1 Phase IV调整,当前SYSCFG中L不在时，也需要向LMM通知ID_MMC_LMM_ACTION_RESULT_REQ
- 3.日    期   : 2012年2月13日
-   作    者   : w00167002
-   修改内容   : DTS2011122704039:additional action值若为无效值NAS_MMC_ADDITIONAL_ACTION_BUTT
-                 则不更新当前的additional action
- 4.日    期   : 2012年6月25日
-   作    者   : l60609
-   修改内容   : AT&T&DCM:判断是否需要发送系统消息
- 5.日    期   : 2014年11月28日
-   作    者   : w00281933
-   修改内容   : 服务状态优化Phase I
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvGmmServiceRequestResultInd_BgPlmnSearch_WaitCsPsRegRsltInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4497,32 +3032,7 @@ VOS_UINT32    NAS_MMC_RcvGmmServiceRequestResultInd_BgPlmnSearch_WaitCsPsRegRslt
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvCmServiceRejectInd_BgPlmnSearch_WaitCsPsRegRsltInd
- 功能描述  : 等待注册结果状态收到MMCMM_CM_SERVICE_REJECT_IND消息的处理
- 输入参数  : pstMsg        - MMCMM_CM_SERVICE_REJECT_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2011年12月15日
-   作    者   : w00176964
-   修改内容   : V7R1 Phase IV调整,当前SYSCFG中L不在时，也需要向LMM通知ID_MMC_LMM_ACTION_RESULT_REQ
- 3.日    期   : 2012年6月25日
-   作    者   : l60609
-   修改内容   : AT&T&DCM:判断是否需要发送系统消息
- 4.日    期   : 2015年1月7日
-   作    者   : s00217060
-   修改内容   : Service_State_Optimize_PhaseI修改
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvCmServiceRejectInd_BgPlmnSearch_WaitCsPsRegRsltInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4580,23 +3090,7 @@ VOS_UINT32    NAS_MMC_RcvCmServiceRejectInd_BgPlmnSearch_WaitCsPsRegRsltInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvWasSuspendInd_BgPlmnSearch_WaitCsPsRegRsltInd
- 功能描述  : 等待注册结果状态收到RRMM_SUSPEND_IND消息的处理
- 输入参数  : pstMsg        - RRMM_SUSPEND_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvWasSuspendInd_BgPlmnSearch_WaitCsPsRegRsltInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4621,23 +3115,7 @@ VOS_UINT32    NAS_MMC_RcvWasSuspendInd_BgPlmnSearch_WaitCsPsRegRsltInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvGasSuspendInd_BgPlmnSearch_WaitCsPsRegRsltInd
- 功能描述  : 等待注册结果状态收到RRMM_SUSPEND_IND消息的处理
- 输入参数  : pstMsg        - RRMM_SUSPEND_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvGasSuspendInd_BgPlmnSearch_WaitCsPsRegRsltInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4662,42 +3140,7 @@ VOS_UINT32    NAS_MMC_RcvGasSuspendInd_BgPlmnSearch_WaitCsPsRegRsltInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcMmcSuspendRslt_BgPlmnSearch_WaitCsPsRegRsltInd
- 功能描述  : 等待注册结果状态收到MMCMMC_SUSPEND_RSLT_CNF消息的处理
- 输入参数  : pstMsg        - MMCMMC_SUSPEND_RSLT_CNF消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月24日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
- 3.日    期   : 2012年5月18日
-   作    者   : w00176964
-   修改内容   : V7R1C50 GUL BG搜网修改
- 4.日    期   : 2012年8月27日
-   作    者   : l00167671
-   修改内容   : 问题单: DTS2012080605217,背景搜没能找到可以注册的网络回退到V时，
-                 V在禁止列表中或者forbid plmn for gprs列表中时进入限制服务并不再
-                 发起搜网,将原函数NAS_MMC_IsVplmnNetRatValid改名成NAS_MMC_IsVplmnValid
-                 并在该函数中增加了判断V是否在禁止列表中或者forbid plmn for gprs列表中，
-                 若在两个列表中的任意一个列表中则认为Vplmn已经无效
- 5.日    期   : 2013年2月7日
-   作    者   : W00176964
-   修改内容   : Volte_phase3项目调整:增加IMS不可用时disable L模的逻辑修改
- 6.日    期   : 2013年4月9日
-   作    者   : y00176023
-   修改内容   : DSDS GUNAS II项目:收到NO RF 退状态机，发送失败迁移到ooc
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvMmcMmcSuspendRslt_BgPlmnSearch_WaitCsPsRegRsltInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4737,9 +3180,7 @@ VOS_UINT32    NAS_MMC_RcvMmcMmcSuspendRslt_BgPlmnSearch_WaitCsPsRegRsltInd(
                 NAS_MMC_SndGmmPlmnSchInit();
                 NAS_MMC_SndMmPlmnSchInit();
 
-                /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, begin */
                 NAS_MMC_SndMsccCampOnInd(VOS_FALSE);
-                /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, end */
 
                 NAS_MMC_ReCampVPlmn_BgPlmnSearch();
                 return VOS_TRUE;
@@ -4769,9 +3210,7 @@ VOS_UINT32    NAS_MMC_RcvMmcMmcSuspendRslt_BgPlmnSearch_WaitCsPsRegRsltInd(
             NAS_MMC_SndGmmPlmnSchInit();
             NAS_MMC_SndMmPlmnSchInit();
 
-            /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, begin */
             NAS_MMC_SndMsccCampOnInd(VOS_FALSE);
-            /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, end */
         }
 
         return VOS_TRUE;
@@ -4788,12 +3227,10 @@ VOS_UINT32    NAS_MMC_RcvMmcMmcSuspendRslt_BgPlmnSearch_WaitCsPsRegRsltInd(
         NAS_MMC_ClearAllWaitRegRsltFlag_BgPlmnSearch();
         NAS_MMC_SetWaitRegRsltFlag_BgPlmnSearch(NAS_MMC_WAIT_REG_RESULT_IND_PS);
 
-        /* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-2-7, begin */
 #if (FEATURE_ON == FEATURE_IMS)
         /* 增加等待IMS是否可用结果FLG,MMA保证收到PS注册结果上报IMS是否可用指示到MMC */
         NAS_MMC_SetWaitRegRsltFlag_BgPlmnSearch(NAS_MMC_WAIT_REG_RESULT_IND_IMS);
 #endif
-        /* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-2-7, end */
 
         /* 更新CS的注册Cause和AdditionalAction */
         NAS_MMC_SetCsRegAdditionalAction_BgPlmnSearch(NAS_MMC_ADDITIONAL_ACTION_BUTT);
@@ -4811,58 +3248,7 @@ VOS_UINT32    NAS_MMC_RcvMmcMmcSuspendRslt_BgPlmnSearch_WaitCsPsRegRsltInd(
     return VOS_TRUE;
 }
 
- /*****************************************************************************
- 函 数 名  : NAS_MMC_RcvAreaLostInd_BgPlmnSearch_WaitCsPsRegRsltInd
- 功能描述  : 等待注册结果状态收到RRMM_AREA_LOST_IND消息的处理
- 输入参数  : pstMsg        - RRMM_AREA_LOST_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
-
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月30日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
- 3.日    期   : 2012年5月18日
-   作    者   : w00176964
-   修改内容   : V7R1C50 GUL BG搜网修改
- 4.日    期   : 2012年6月25日
-   作    者   : l60609
-   修改内容   : AT&T&DCM:判断是否需要发送系统消息
- 5.日    期   : 2012年8月27日
-   作    者   : l00167671
-   修改内容   : 问题单: DTS2012080605217,背景搜没能找到可以注册的网络回退到V时，
-                 V在禁止列表中或者forbid plmn for gprs列表中时进入限制服务并不再
-                 发起搜网,将原函数NAS_MMC_IsVplmnNetRatValid改名成NAS_MMC_IsVplmnValid
-                 并在该函数中增加了判断V是否在禁止列表中或者forbid plmn for gprs列表中，
-                 若在两个列表中的任意一个列表中则认为Vplmn已经无效
- 6.日    期   : 2013年4月4日
-   作    者   : y00176023
-   修改内容   : DSDS GUNAS II项目:收到NO RF 退状态机，发送失败消息后迁移到ooc
- 7.日    期   : 2014年5月4日
-   作    者   : t00173447
-   修改内容   : DTS2014042105390,软银定制需求
- 8.日    期   : 2014年4月30日
-   作    者   : s00261364
-   修改内容   : ecall项目修改服务状态上报
- 9.日    期   : 2014年6月17日
-   作    者   : w00167002
-   修改内容   : DSDS III项目
- 10.日    期   : 2014年10月13日
-    作    者   : w00167002
-    修改内容   : DTS2014102005694:G下，CS注册成功后，PS还未注册成功时候，则
-               发起电话业务，在电话业务建联时候丢网，MM没有释放信令，MMC没有发起ANY
-               CELL搜网。
- 11.日    期   : 2015年1月7日
-    作    者   : s00217060
-    修改内容   : Service_State_Optimize_PhaseI修改
-*****************************************************************************/
+ 
 VOS_UINT32    NAS_MMC_RcvAreaLostInd_BgPlmnSearch_WaitCsPsRegRsltInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4874,11 +3260,9 @@ VOS_UINT32    NAS_MMC_RcvAreaLostInd_BgPlmnSearch_WaitCsPsRegRsltInd(
     /* 停止等待注册结果定时器 */
     NAS_MMC_StopTimer(TI_NAS_MMC_WAIT_CSPS_REG_IND);
 
-    /* Modified by c00318887 for 预置频点搜网优化, 2015-9-9, begin */
     NAS_MMC_SaveLastCampedPlmnWithRat(NAS_MML_GetCurrCampPlmnInfo()->stLai.stPlmnId.ulMcc,
                            NAS_MML_GetCurrCampPlmnInfo()->stLai.stPlmnId.ulMnc,
                            NAS_MML_GetCurrCampPlmnInfo()->stLai.enCampPlmnNetRat);
-    /* Modified by c00318887 for 预置频点搜网优化, 2015-9-9, end */
 
     NAS_MMC_SndMsccSysInfo_BgPlmnSearch();
 
@@ -4904,9 +3288,7 @@ VOS_UINT32    NAS_MMC_RcvAreaLostInd_BgPlmnSearch_WaitCsPsRegRsltInd(
     NAS_MMC_SndMmCoverageLostInd();
     NAS_MMC_SndGmmCoverageLostInd();
 
-    /* Deleted by s00261364 for V3R360_eCall项目, 2014-4-30, begin */
 
-    /* Deleted by s00261364 for V3R360_eCall项目, 2014-4-30, end */
     /* 如果当前存在NO RF，退状态机，发送失败消息后迁移到OOC状态 */
     if (VOS_FALSE == NAS_MML_GetRfAvailFlg())
     {
@@ -4930,9 +3312,7 @@ VOS_UINT32    NAS_MMC_RcvAreaLostInd_BgPlmnSearch_WaitCsPsRegRsltInd(
             NAS_MMC_SndGmmPlmnSchInit();
             NAS_MMC_SndMmPlmnSchInit();
 
-            /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, begin */
             NAS_MMC_SndMsccCampOnInd(VOS_FALSE);
-            /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, end */
 
             NAS_MMC_ReCampVPlmn_BgPlmnSearch();
             return VOS_TRUE;
@@ -4965,58 +3345,12 @@ VOS_UINT32    NAS_MMC_RcvAreaLostInd_BgPlmnSearch_WaitCsPsRegRsltInd(
     NAS_MMC_SndGmmPlmnSchInit();
     NAS_MMC_SndMmPlmnSchInit();
 
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, begin */
     NAS_MMC_SndMsccCampOnInd(VOS_FALSE);
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, end */
 
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitCsPsRegRsltInd
- 功能描述  : 等待注册结果状态收到RRMM_SYS_INFO_IND消息的处理
- 输入参数  : pstMsg        - RRMM_SYS_INFO_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年11月28日
-   作    者   : w00167002
-   修改内容   : DTS2011112406707:删除将当前的Additional Action进行初始化的代码.
-                修改原因:在ROAMING BROKER时候，设置1次失败,注册失败1次后，
-                MMC需要搜网，但是MMC可能要等两个域的结果(如在选网状态机)，
-                当收到系统消息的时候，假流程会更改MMC的AdditionalAction的值,
-                导致ROMING BROKER特性失效。
- 3.日    期   : 2012年6月25日
-   作    者   : l60609
-   修改内容   : AT&T&DCM:判断是否需要发送系统消息
- 4.日    期   : 2012年6月16日
-   作    者   : l00171473
-   修改内容   : DTS2012061409086, 收到W或G的系统消息时通知L模
- 5.日    期   : 2012年8月21日
-   作    者   : z00161729
-   修改内容   : DCM定制需求和遗留问题修改
- 6.日    期   : 2012年12月11日
-   作    者   : w00176964
-   修改内容   : 收到系统消息接入禁止信息变化则通知MMA
-
- 7.日    期   : 2014年1月18日
-   作    者   : z00234330
-   修改内容   : dts2014011801513,接入层上报的系统消息里面有可能没有携带plmnid,
-               此处判断并没有判断plmnid是否有效
- 8.日    期   : 2014年5月4日
-   作    者   : t00173447
-   修改内容   : DTS2014042105390,软银定制需求
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitCsPsRegRsltInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -5024,13 +3358,10 @@ VOS_UINT32    NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitCsPsRegRsltInd(
 {
     NAS_MML_CAMP_PLMN_INFO_STRU                            *pstCurCampInfo = VOS_NULL_PTR;
     NAS_MML_CAMP_PLMN_INFO_STRU                             stOldCampInfo;
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, begin */
     NAS_MML_ACCESS_RESTRICTION_STRU                         *pstCurCsRestrictInfo = VOS_NULL_PTR;
     NAS_MML_ACCESS_RESTRICTION_STRU                          stOldCsRestrictInfo;
     NAS_MML_ACCESS_RESTRICTION_STRU                         *pstCurPsRestrictInfo = VOS_NULL_PTR;
     NAS_MML_ACCESS_RESTRICTION_STRU                          stOldPsRestrictInfo;
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, end */
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, begin */
 #if (FEATURE_ON == FEATURE_LTE)
     NAS_MML_LTE_CAPABILITY_STATUS_ENUM_UINT32               enLCapabilityStatus;
 
@@ -5040,7 +3371,6 @@ VOS_UINT32    NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitCsPsRegRsltInd(
 
     NAS_MMC_RcvGuSysInfoIndSetLteAbility(pstMsg,enLCapabilityStatus);
 #endif
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, end */
 
     PS_MEM_SET(&stOldCampInfo, 0, sizeof(NAS_MML_CAMP_PLMN_INFO_STRU));
     PS_MEM_SET(&stOldCsRestrictInfo, 0, sizeof(NAS_MML_ACCESS_RESTRICTION_STRU));
@@ -5050,13 +3380,11 @@ VOS_UINT32    NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitCsPsRegRsltInd(
     pstCurCampInfo  = NAS_MML_GetCurrCampPlmnInfo();
     PS_MEM_CPY(&stOldCampInfo, pstCurCampInfo, sizeof(NAS_MML_CAMP_PLMN_INFO_STRU));
 
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, begin */
     pstCurCsRestrictInfo    = NAS_MML_GetCsAcRestrictionInfo();
     pstCurPsRestrictInfo    = NAS_MML_GetPsAcRestrictionInfo();
 
     PS_MEM_CPY(&stOldCsRestrictInfo, pstCurCsRestrictInfo, sizeof(NAS_MML_ACCESS_RESTRICTION_STRU));
     PS_MEM_CPY(&stOldPsRestrictInfo, pstCurPsRestrictInfo, sizeof(NAS_MML_ACCESS_RESTRICTION_STRU));
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, end */
 
     /* 根据系统消息，更新MML的全部变量 */
     NAS_MMC_UpdateNetworkInfo_WasSysInfo(pstMsg);
@@ -5069,31 +3397,23 @@ VOS_UINT32    NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitCsPsRegRsltInd(
         if (VOS_FALSE == NAS_MMC_GetNeedSndSysInfo_BgPlmnSearch())
         {
             /* 主动上报 */
-           /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
             NAS_MMC_SndMsccSysInfo();
-           /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
         }
     }
 
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, begin */
     /* 驻留小区的接入受限信息变化时,通知MMA模块当前接入受限信息 */
     if (VOS_TRUE == NAS_MML_IsAcInfoChanged(&stOldCsRestrictInfo, pstCurCsRestrictInfo))
     {
-        /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
         NAS_MMC_SndMsccAcInfoChangeInd(NAS_MSCC_PIF_SRVDOMAIN_CS, pstCurCsRestrictInfo);
-        /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
     }
 
     if (VOS_TRUE == NAS_MML_IsAcInfoChanged(&stOldPsRestrictInfo, pstCurPsRestrictInfo))
     {
-        /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
         NAS_MMC_SndMsccAcInfoChangeInd(NAS_MSCC_PIF_SRVDOMAIN_PS, pstCurPsRestrictInfo);
-        /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
     }
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, end */
 
     /* 状态更新为当前已经驻留 */
     NAS_MMC_SetAsCellCampOn(NAS_MMC_AS_CELL_CAMP_ON);
@@ -5104,9 +3424,7 @@ VOS_UINT32    NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitCsPsRegRsltInd(
     NAS_MMC_SndCbaMsgNetModInd(NAS_MML_NET_RAT_TYPE_WCDMA);
 #endif
 
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-18, begin */
     NAS_MMC_SndMsccCampOnInd(VOS_TRUE);
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-18, end */
 
     /* 重新设置等待CS、PS注册结果 */
     NAS_MMC_ClearAllWaitRegRsltFlag_BgPlmnSearch();
@@ -5130,49 +3448,7 @@ VOS_UINT32    NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitCsPsRegRsltInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitCsPsRegRsltInd
- 功能描述  : 等待注册结果状态收到GRRMM_SYS_INFO_IND消息的处理
- 输入参数  : pstMsg        - GRRMM_SYS_INFO_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年11月28日
-   作    者   : w00167002
-   修改内容   : DTS2011112406707:删除将当前的Additional Action进行初始化的代码.
-                修改原因:在ROAMING BROKER时候，设置1次失败,注册失败1次后，
-                MMC需要搜网，但是MMC可能要等两个域的结果(如在选网状态机)，
-                当收到系统消息的时候，假流程会更改MMC的AdditionalAction的值,
-                导致ROMING BROKER特性失效。
- 3.日    期   : 2012年6月25日
-   作    者   : l60609
-   修改内容   : AT&T&DCM:判断是否需要发送系统消息
- 4.日    期   : 2012年6月16日
-   作    者   : l00171473
-   修改内容   : DTS2012061409086, 收到W或G的系统消息时通知L模
- 5.日    期   : 2012年8月21日
-   作    者   : z00161729
-   修改内容   : DCM定制需求和遗留问题修改
- 6.日    期   : 2012年12月11日
-   作    者   : w00176964
-   修改内容   : 收到系统消息接入禁止信息变化则通知MMA
- 7.日    期   : 2013年11月01日
-   作    者   : l00208543
-   修改内容   : 根据卡类型禁止网络制式
-
- 8.日    期   : 2014年5月4日
-   作    者   : t00173447
-   修改内容   : DTS2014042105390,软银定制需求
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitCsPsRegRsltInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -5180,13 +3456,10 @@ VOS_UINT32    NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitCsPsRegRsltInd(
 {
     NAS_MML_CAMP_PLMN_INFO_STRU                            *pstCurCampInfo = VOS_NULL_PTR;
     NAS_MML_CAMP_PLMN_INFO_STRU                             stOldCampInfo;
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, begin */
     NAS_MML_ACCESS_RESTRICTION_STRU                         *pstCurCsRestrictInfo = VOS_NULL_PTR;
     NAS_MML_ACCESS_RESTRICTION_STRU                          stOldCsRestrictInfo;
     NAS_MML_ACCESS_RESTRICTION_STRU                         *pstCurPsRestrictInfo = VOS_NULL_PTR;
     NAS_MML_ACCESS_RESTRICTION_STRU                          stOldPsRestrictInfo;
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, end */
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, begin */
 #if (FEATURE_ON == FEATURE_LTE)
     NAS_MML_LTE_CAPABILITY_STATUS_ENUM_UINT32               enLCapabilityStatus;
 
@@ -5194,7 +3467,6 @@ VOS_UINT32    NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitCsPsRegRsltInd(
     /* 获取LTE能力状态 */
     enLCapabilityStatus  = NAS_MML_GetLteCapabilityStatus();
 #endif
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, end */
 
     PS_MEM_SET(&stOldCampInfo, 0, sizeof(NAS_MML_CAMP_PLMN_INFO_STRU));
     PS_MEM_SET(&stOldCsRestrictInfo, 0, sizeof(NAS_MML_ACCESS_RESTRICTION_STRU));
@@ -5207,13 +3479,11 @@ VOS_UINT32    NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitCsPsRegRsltInd(
     pstCurCampInfo  = NAS_MML_GetCurrCampPlmnInfo();
     PS_MEM_CPY(&stOldCampInfo, pstCurCampInfo, sizeof(NAS_MML_CAMP_PLMN_INFO_STRU));
 
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, begin */
     pstCurCsRestrictInfo    = NAS_MML_GetCsAcRestrictionInfo();
     pstCurPsRestrictInfo    = NAS_MML_GetPsAcRestrictionInfo();
 
     PS_MEM_CPY(&stOldCsRestrictInfo, pstCurCsRestrictInfo, sizeof(NAS_MML_ACCESS_RESTRICTION_STRU));
     PS_MEM_CPY(&stOldPsRestrictInfo, pstCurPsRestrictInfo, sizeof(NAS_MML_ACCESS_RESTRICTION_STRU));
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, end */
 
     /* 根据系统消息，更新MML的全部变量 */
     NAS_MMC_UpdateNetworkInfo_GasSysInfo(pstMsg);
@@ -5226,39 +3496,29 @@ VOS_UINT32    NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitCsPsRegRsltInd(
         if (VOS_FALSE == NAS_MMC_GetNeedSndSysInfo_BgPlmnSearch())
         {
             /* 主动上报 */
-            /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
             NAS_MMC_SndMsccSysInfo();
-            /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
         }
     }
 
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, begin */
     /* 驻留小区的接入受限信息变化时,通知MSCC模块当前接入受限信息 */
     if (VOS_TRUE == NAS_MML_IsAcInfoChanged(&stOldCsRestrictInfo, pstCurCsRestrictInfo))
     {
-        /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
         NAS_MMC_SndMsccAcInfoChangeInd(NAS_MSCC_PIF_SRVDOMAIN_CS, pstCurCsRestrictInfo);
-        /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
     }
 
     if (VOS_TRUE == NAS_MML_IsAcInfoChanged(&stOldPsRestrictInfo, pstCurPsRestrictInfo))
     {
-        /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
         NAS_MMC_SndMsccAcInfoChangeInd(NAS_MSCC_PIF_SRVDOMAIN_PS, pstCurPsRestrictInfo);
-        /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
     }
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, end */
 
     /* 状态更新为当前已经驻留 */
     NAS_MMC_SetAsCellCampOn(NAS_MMC_AS_CELL_CAMP_ON);
 
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, begin */
 #if (FEATURE_ON == FEATURE_LTE)
     NAS_MMC_RcvGuSysInfoIndSetLteAbility(pstMsg, enLCapabilityStatus);
 #endif
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, end */
 
 #if ((FEATURE_ON == FEATURE_GCBS) || (FEATURE_ON == FEATURE_WCBS))
 
@@ -5266,9 +3526,7 @@ VOS_UINT32    NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitCsPsRegRsltInd(
     NAS_MMC_SndCbaMsgNetModInd(NAS_MML_NET_RAT_TYPE_GSM);
 #endif
 
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-18, begin */
     NAS_MMC_SndMsccCampOnInd(VOS_TRUE);
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-18, end */
 
     /* 重新设置等待CS、PS注册结果 */
     NAS_MMC_ClearAllWaitRegRsltFlag_BgPlmnSearch();
@@ -5292,23 +3550,7 @@ VOS_UINT32    NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitCsPsRegRsltInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTafSysCfgReq_BgPlmnSearch_WaitCsPsRegRsltInd
- 功能描述  : 等待注册结果状态收到ID_MSCC_MMC_SYS_CFG_SET_REQ消息的处理
- 输入参数  : pstMsg        - ID_MSCC_MMC_SYS_CFG_SET_REQ消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvTafSysCfgReq_BgPlmnSearch_WaitCsPsRegRsltInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -5320,26 +3562,7 @@ VOS_UINT32    NAS_MMC_RcvTafSysCfgReq_BgPlmnSearch_WaitCsPsRegRsltInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcSyscfgRsltCnf_BgPlmnSearch_WaitCsPsRegRsltInd
- 功能描述  : 等待注册结果状态收到MMCMMC_SYSCFG_RSLT_CNF消息的处理
- 输入参数  : pstMsg        - MMCMMC_SYSCFG_RSLT_CNF消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月26日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvMmcSyscfgRsltCnf_BgPlmnSearch_WaitCsPsRegRsltInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -5351,41 +3574,7 @@ VOS_UINT32    NAS_MMC_RcvMmcSyscfgRsltCnf_BgPlmnSearch_WaitCsPsRegRsltInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiWaitCsPsRegRsltIndExpired_BgPlmnSearch_WaitCsPsRegRsltInd
- 功能描述  : 等待注册结果状态收到TI_NAS_MMC_WAIT_CSPS_REG_IND消息的处理
- 输入参数  : pstMsg        - TI_NAS_MMC_WAIT_CSPS_REG_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月30日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
- 3.日    期   : 2012年5月18日
-   作    者   : w00176964
-   修改内容   : V7R1C50 GUL BG搜网修改
- 4.日    期   : 2012年6月25日
-   作    者   : l60609
-   修改内容   : AT&T&DCM:判断是否需要发送系统消息
- 5.日    期   : 2012年8月27日
-   作    者   : l00167671
-   修改内容   : 问题单: DTS2012080605217,背景搜没能找到可以注册的网络回退到V时，
-                 V在禁止列表中或者forbid plmn for gprs列表中时进入限制服务并不再
-                 发起搜网,将原函数NAS_MMC_IsVplmnNetRatValid改名成NAS_MMC_IsVplmnValid
-                 并在该函数中增加了判断V是否在禁止列表中或者forbid plmn for gprs列表中，
-                 若在两个列表中的任意一个列表中则认为Vplmn已经无效
-  6.日    期   : 2015年1月7日
-    作    者   : s00217060
-    修改内容   : Service_State_Optimize_PhaseI修改
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvTiWaitCsPsRegRsltIndExpired_BgPlmnSearch_WaitCsPsRegRsltInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -5420,9 +3609,7 @@ VOS_UINT32    NAS_MMC_RcvTiWaitCsPsRegRsltIndExpired_BgPlmnSearch_WaitCsPsRegRsl
             NAS_MMC_SndGmmPlmnSchInit();
             NAS_MMC_SndMmPlmnSchInit();
 
-            /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, begin */
             NAS_MMC_SndMsccCampOnInd(VOS_FALSE);
-            /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, end */
 
             NAS_MMC_ReCampVPlmn_BgPlmnSearch();
             return VOS_TRUE;
@@ -5456,40 +3643,13 @@ VOS_UINT32    NAS_MMC_RcvTiWaitCsPsRegRsltIndExpired_BgPlmnSearch_WaitCsPsRegRsl
         NAS_MMC_SndGmmPlmnSchInit();
         NAS_MMC_SndMmPlmnSchInit();
 
-        /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, begin */
         NAS_MMC_SndMsccCampOnInd(VOS_FALSE);
-        /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, end */
     }
 
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitRrcConnRelInd
- 功能描述  : 等待连接释放状态收到MMCMMC_ABORT_FSM_REQ消息的处理
- 输入参数  : pstMsg        - MMCMMC_ABORT_FSM_REQ消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年11月29日
-   作    者   : w00167002
-   修改内容   : DTS2011112301233:增加打断事件ID，状态机可以知道是什么事件
-                打断自己的。
-                修改原因:用户下发关机命令后，当前可能在等注册结果或者在等连接
-                释放，可能需要比较久的时间才能处理关机命令，通过增加打断事件，
-                如归当前在等注册结果或者等链接释放状态，若收到关机命令，则直接
-                退出当前状态机，处理用户的关机命令。
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitRrcConnRelInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -5502,9 +3662,7 @@ VOS_UINT32    NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitRrcConnRelInd(
 
 
     /* 若打断类型是用户请求的关机，则直接退出等链接释放结果状态机 */
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
     if (NAS_BuildEventType(UEPS_PID_MSCC, ID_MSCC_MMC_POWER_OFF_REQ) == pstAbortMsg->ulEventType)
-     /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
     {
         NAS_MMC_StopTimer(TI_NAS_MMC_WAIT_RRC_CONN_REL);
@@ -5544,38 +3702,7 @@ VOS_UINT32    NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitRrcConnRelInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvGmmSignalingStatusInd_BgPlmnSearch_WaitRrcConnRelInd
- 功能描述  : 等待连接释放状态收到MMCGMM_SIGNALING_STATUS_IND消息的处理
- 输入参数  : pstMsg      - MMCGMM_SIGNALING_STATUS_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月30日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
- 3.日    期   : 2012年4月30日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
- 4.日    期   : 2012年8月27日
-   作    者   : l00167671
-   修改内容   : 问题单: DTS2012080605217,背景搜没能找到可以注册的网络回退到V时，
-                 V在禁止列表中或者forbid plmn for gprs列表中时进入限制服务并不再
-                 发起搜网,将原函数NAS_MMC_IsVplmnNetRatValid改名成NAS_MMC_IsVplmnValid
-                 并在该函数中增加了判断V是否在禁止列表中或者forbid plmn for gprs列表中，
-                 若在两个列表中的任意一个列表中则认为Vplmn已经无效
- 5.日    期   : 2014年2月24日
-   作    者   : w00176964
-   修改内容   : High_Rat_Hplmn_Search特性调整:P态下BG搜成功后快速指定搜网时enable LTE
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvGmmSignalingStatusInd_BgPlmnSearch_WaitRrcConnRelInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -5614,9 +3741,7 @@ VOS_UINT32    NAS_MMC_RcvGmmSignalingStatusInd_BgPlmnSearch_WaitRrcConnRelInd(
             NAS_MMC_SndGmmPlmnSchInit();
             NAS_MMC_SndMmPlmnSchInit();
 
-            /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, begin */
             NAS_MMC_SndMsccCampOnInd(VOS_FALSE);
-            /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, end */
 
             NAS_MMC_ReCampVPlmn_BgPlmnSearch();
             return VOS_TRUE;
@@ -5651,9 +3776,7 @@ VOS_UINT32    NAS_MMC_RcvGmmSignalingStatusInd_BgPlmnSearch_WaitRrcConnRelInd(
         NAS_MMC_SndGmmPlmnSchInit();
         NAS_MMC_SndMmPlmnSchInit();
 
-        /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, begin */
         NAS_MMC_SndMsccCampOnInd(VOS_FALSE);
-        /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, end */
     }
     else
     {
@@ -5665,26 +3788,7 @@ VOS_UINT32    NAS_MMC_RcvGmmSignalingStatusInd_BgPlmnSearch_WaitRrcConnRelInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvGmmNetworkDetachInd_BgPlmnSearch_WaitRrcConnRelInd
- 功能描述  : 等待连接释放状态收到MMCGMM_NETWORK_DETACH_IND消息的处理
- 输入参数  : pstMsg        - MMCGMM_NETWORK_DETACH_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年2月13日
-   作    者   : w00167002
-   修改内容   : DTS2011122704039:additional action值若为无效值NAS_MMC_ADDITIONAL_ACTION_BUTT
-                 则不更新当前的additional action
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvGmmNetworkDetachInd_BgPlmnSearch_WaitRrcConnRelInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -5707,35 +3811,7 @@ VOS_UINT32    NAS_MMC_RcvGmmNetworkDetachInd_BgPlmnSearch_WaitRrcConnRelInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvGmmTbfRelInd_BgPlmnSearch_WaitRrcConnRelInd
- 功能描述  : 等待连接释放状态收到MMCGMM_TBF_REL_IND消息的处理
- 输入参数  : pstMsg        - MMCGMM_TBF_REL_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月30日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
- 3.日    期   : 2012年5月18日
-   作    者   : w00176964
-   修改内容   : V7R1C50 GUL BG搜网修改
- 4.日    期   : 2012年8月27日
-   作    者   : l00167671
-   修改内容   : 问题单: DTS2012080605217,背景搜没能找到可以注册的网络回退到V时，
-                 V在禁止列表中或者forbid plmn for gprs列表中时进入限制服务并不再
-                 发起搜网,将原函数NAS_MMC_IsVplmnNetRatValid改名成NAS_MMC_IsVplmnValid
-                 并在该函数中增加了判断V是否在禁止列表中或者forbid plmn for gprs列表中，
-                 若在两个列表中的任意一个列表中则认为Vplmn已经无效
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvGmmTbfRelInd_BgPlmnSearch_WaitRrcConnRelInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -5774,9 +3850,7 @@ VOS_UINT32    NAS_MMC_RcvGmmTbfRelInd_BgPlmnSearch_WaitRrcConnRelInd(
             NAS_MMC_SndGmmPlmnSchInit();
             NAS_MMC_SndMmPlmnSchInit();
 
-            /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, begin */
             NAS_MMC_SndMsccCampOnInd(VOS_FALSE);
-            /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, end */
 
             NAS_MMC_ReCampVPlmn_BgPlmnSearch();
             return VOS_TRUE;
@@ -5810,9 +3884,7 @@ VOS_UINT32    NAS_MMC_RcvGmmTbfRelInd_BgPlmnSearch_WaitRrcConnRelInd(
         NAS_MMC_SndGmmPlmnSchInit();
         NAS_MMC_SndMmPlmnSchInit();
 
-        /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, begin */
         NAS_MMC_SndMsccCampOnInd(VOS_FALSE);
-        /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, end */
     }
     else
     {
@@ -5823,29 +3895,7 @@ VOS_UINT32    NAS_MMC_RcvGmmTbfRelInd_BgPlmnSearch_WaitRrcConnRelInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvGmmServiceRequestResultInd_BgPlmnSearch_WaitRrcConnRelInd
- 功能描述  : 等待连接释放状态收到GMMMMC_SERVICE_REQUEST_RESULT_IND消息的处理
- 输入参数  : pstMsg        - GMMMMC_SERVICE_REQUEST_RESULT_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2011年12月5日
-   作    者   : z00161729
-   修改内容   : V7R1 Phase IV调整,当前SYSCFG中L不在时，也需要向LMM通知ID_MMC_LMM_ACTION_RESULT_REQ
- 3.日    期   : 2012年2月13日
-   作    者   : w00167002
-   修改内容   : DTS2011122704039:additional action值若为无效值NAS_MMC_ADDITIONAL_ACTION_BUTT
-                 则不更新当前的additional action
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvGmmServiceRequestResultInd_BgPlmnSearch_WaitRrcConnRelInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -5904,35 +3954,7 @@ VOS_UINT32    NAS_MMC_RcvGmmServiceRequestResultInd_BgPlmnSearch_WaitRrcConnRelI
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmConnInfoInd_BgPlmnSearch_WaitRrcConnRelInd
- 功能描述  : 等待连接释放状态收到MMCMM_RR_CONN_INFO_IND消息的处理
- 输入参数  : pstMsg        - MMCMM_RR_CONN_INFO_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月30日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
- 3.日    期   : 2012年5月18日
-   作    者   : w00176964
-   修改内容   : V7R1C50 GUL BG搜网修改
- 4.日    期   : 2012年8月27日
-   作    者   : l00167671
-   修改内容   : 问题单: DTS2012080605217,背景搜没能找到可以注册的网络回退到V时，
-                 V在禁止列表中或者forbid plmn for gprs列表中时进入限制服务并不再
-                 发起搜网,将原函数NAS_MMC_IsVplmnNetRatValid改名成NAS_MMC_IsVplmnValid
-                 并在该函数中增加了判断V是否在禁止列表中或者forbid plmn for gprs列表中，
-                 若在两个列表中的任意一个列表中则认为Vplmn已经无效
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvMmConnInfoInd_BgPlmnSearch_WaitRrcConnRelInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -5971,9 +3993,7 @@ VOS_UINT32    NAS_MMC_RcvMmConnInfoInd_BgPlmnSearch_WaitRrcConnRelInd(
             NAS_MMC_SndGmmPlmnSchInit();
             NAS_MMC_SndMmPlmnSchInit();
 
-            /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, begin */
             NAS_MMC_SndMsccCampOnInd(VOS_FALSE);
-            /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, end */
 
             NAS_MMC_ReCampVPlmn_BgPlmnSearch();
             return VOS_TRUE;
@@ -6006,9 +4026,7 @@ VOS_UINT32    NAS_MMC_RcvMmConnInfoInd_BgPlmnSearch_WaitRrcConnRelInd(
         NAS_MMC_SndGmmPlmnSchInit();
         NAS_MMC_SndMmPlmnSchInit();
 
-        /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, begin */
         NAS_MMC_SndMsccCampOnInd(VOS_FALSE);
-        /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, end */
     }
     else
     {
@@ -6019,35 +4037,7 @@ VOS_UINT32    NAS_MMC_RcvMmConnInfoInd_BgPlmnSearch_WaitRrcConnRelInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmRrRelInd_BgPlmnSearch_WaitRrcConnRelInd
- 功能描述  : 等待连接释放状态收到MMCMM_RR_REL_IND消息的处理
- 输入参数  : pstMsg        - MMCMM_RR_REL_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月30日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
- 3.日    期   : 2012年5月18日
-   作    者   : w00176964
-   修改内容   : V7R1C50 GUL BG搜网修改
- 4.日    期   : 2012年8月27日
-   作    者   : l00167671
-   修改内容   : 问题单: DTS2012080605217,背景搜没能找到可以注册的网络回退到V时，
-                 V在禁止列表中或者forbid plmn for gprs列表中时进入限制服务并不再
-                 发起搜网,将原函数NAS_MMC_IsVplmnNetRatValid改名成NAS_MMC_IsVplmnValid
-                 并在该函数中增加了判断V是否在禁止列表中或者forbid plmn for gprs列表中，
-                 若在两个列表中的任意一个列表中则认为Vplmn已经无效
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvMmRrRelInd_BgPlmnSearch_WaitRrcConnRelInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -6086,9 +4076,7 @@ VOS_UINT32    NAS_MMC_RcvMmRrRelInd_BgPlmnSearch_WaitRrcConnRelInd(
             NAS_MMC_SndGmmPlmnSchInit();
             NAS_MMC_SndMmPlmnSchInit();
 
-            /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, begin */
             NAS_MMC_SndMsccCampOnInd(VOS_FALSE);
-            /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, end */
 
             NAS_MMC_ReCampVPlmn_BgPlmnSearch();
             return VOS_TRUE;
@@ -6122,9 +4110,7 @@ VOS_UINT32    NAS_MMC_RcvMmRrRelInd_BgPlmnSearch_WaitRrcConnRelInd(
         NAS_MMC_SndGmmPlmnSchInit();
         NAS_MMC_SndMmPlmnSchInit();
 
-        /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, begin */
         NAS_MMC_SndMsccCampOnInd(VOS_FALSE);
-        /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, end */
     }
     else
     {
@@ -6134,23 +4120,7 @@ VOS_UINT32    NAS_MMC_RcvMmRrRelInd_BgPlmnSearch_WaitRrcConnRelInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvCmServiceRejectInd_BgPlmnSearch_WaitRrcConnRelInd
- 功能描述  : 等待连接释放状态收到MMCMM_CM_SERVICE_REJECT_IND消息的处理
- 输入参数  : pstMsg        - MMCMM_CM_SERVICE_REJECT_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvCmServiceRejectInd_BgPlmnSearch_WaitRrcConnRelInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -6170,23 +4140,7 @@ VOS_UINT32    NAS_MMC_RcvCmServiceRejectInd_BgPlmnSearch_WaitRrcConnRelInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvGmmPsRegResultInd_BgPlmnSearch_WaitRrcConnRelInd
- 功能描述  : 等待连接释放状态收到GMMMMC_PS_REG_RESULT_IND消息的处理
- 输入参数  : pstMsg        - GMMMMC_PS_REG_RESULT_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvGmmPsRegResultInd_BgPlmnSearch_WaitRrcConnRelInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -6208,23 +4162,7 @@ VOS_UINT32    NAS_MMC_RcvGmmPsRegResultInd_BgPlmnSearch_WaitRrcConnRelInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmCsRegResultInd_BgPlmnSearch_WaitRrcConnRelInd
- 功能描述  : 等待连接释放状态收到MMMMC_CS_REG_RESULT_IND消息的处理
- 输入参数  : pstMsg        - MMMMC_CS_REG_RESULT_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvMmCsRegResultInd_BgPlmnSearch_WaitRrcConnRelInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -6246,21 +4184,7 @@ VOS_UINT32    NAS_MMC_RcvMmCsRegResultInd_BgPlmnSearch_WaitRrcConnRelInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmAbortInd_BgPlmnSearch_WaitRrcConnRelInd
- 功能描述  : 等待RRC连接释放过程中收到MM Abort消息的处理
- 输入参数  : ulEventType:消息类型
-             pstMsg:消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:处理完成
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2012年7月12日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMmAbortInd_BgPlmnSearch_WaitRrcConnRelInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -6307,42 +4231,7 @@ VOS_UINT32 NAS_MMC_RcvMmAbortInd_BgPlmnSearch_WaitRrcConnRelInd(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvRrMmRelInd_BgPlmnSearch_WaitRrcConnRelInd
- 功能描述  : 等待连接释放状态收到RRMM_REL_IND消息的处理
- 输入参数  : pstMsg        - RRMM_REL_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月30日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
- 3.日    期   : 2012年4月30日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
- 4.日    期   : 2012年8月27日
-   作    者   : l00167671
-   修改内容   : 问题单: DTS2012080605217,背景搜没能找到可以注册的网络回退到V时，
-                 V在禁止列表中或者forbid plmn for gprs列表中时进入限制服务并不再
-                 发起搜网,将原函数NAS_MMC_IsVplmnNetRatValid改名成NAS_MMC_IsVplmnValid
-                 并在该函数中增加了判断V是否在禁止列表中或者forbid plmn for gprs列表中，
-                 若在两个列表中的任意一个列表中则认为Vplmn已经无效
- 5.日    期   : 2014年2月24日
-   作    者   : w00176964
-   修改内容   : High_Rat_Hplmn_Search特性调整
-
- 6.日    期   : 2014年6月17日
-   作    者   : w00167002
-   修改内容   : DSDS III:异常且NO RF，则进入OOC进行处理
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvRrMmRelInd_BgPlmnSearch_WaitRrcConnRelInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -6414,9 +4303,7 @@ VOS_UINT32    NAS_MMC_RcvRrMmRelInd_BgPlmnSearch_WaitRrcConnRelInd(
             NAS_MMC_SndGmmPlmnSchInit();
             NAS_MMC_SndMmPlmnSchInit();
 
-            /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, begin */
             NAS_MMC_SndMsccCampOnInd(VOS_FALSE);
-            /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, end */
 
             NAS_MMC_ReCampVPlmn_BgPlmnSearch();
             return VOS_TRUE;
@@ -6450,9 +4337,7 @@ VOS_UINT32    NAS_MMC_RcvRrMmRelInd_BgPlmnSearch_WaitRrcConnRelInd(
         NAS_MMC_SndGmmPlmnSchInit();
         NAS_MMC_SndMmPlmnSchInit();
 
-        /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, begin */
         NAS_MMC_SndMsccCampOnInd(VOS_FALSE);
-        /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, end */
     }
     else
     {
@@ -6463,22 +4348,7 @@ VOS_UINT32    NAS_MMC_RcvRrMmRelInd_BgPlmnSearch_WaitRrcConnRelInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvRrMmSuspendInd_BgPlmnSearch_WaitRrcConnRelInd
- 功能描述  : 等待连接释放状态收到RRMM_SUSPEND_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月19日
-   作    者   : L00171473
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvRrMmSuspendInd_BgPlmnSearch_WaitRrcConnRelInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -6509,32 +4379,7 @@ VOS_UINT32    NAS_MMC_RcvRrMmSuspendInd_BgPlmnSearch_WaitRrcConnRelInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcSuspendRslt_BgPlmnSearch_WaitRrcConnRelInd
- 功能描述  : 等待连接释放状态收到MMCMMC_SUSPEND_RSLT_CNF消息的处理
- 输入参数  : pstMsg        - MMCMMC_SUSPEND_RSLT_CNF消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月26日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
- 3.日    期   : 2013年2月7日
-   作    者   : W00176964
-   修改内容   : Volte_phase3项目调整:增加IMS不可用时disable L模的逻辑修改
- 4.日    期   : 2013年4月9日
-   作    者   : y00176023
-   修改内容   : DSDS GUNAS II项目:收到NO RF 退状态机，发送失败迁移到ooc
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvMmcSuspendRslt_BgPlmnSearch_WaitRrcConnRelInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -6574,9 +4419,7 @@ VOS_UINT32    NAS_MMC_RcvMmcSuspendRslt_BgPlmnSearch_WaitRrcConnRelInd(
         NAS_MMC_SndGmmPlmnSchInit();
         NAS_MMC_SndMmPlmnSchInit();
 
-        /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, begin */
         NAS_MMC_SndMsccCampOnInd(VOS_FALSE);
-        /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, end */
 
         return VOS_TRUE;
     }
@@ -6592,12 +4435,10 @@ VOS_UINT32    NAS_MMC_RcvMmcSuspendRslt_BgPlmnSearch_WaitRrcConnRelInd(
         NAS_MMC_ClearAllWaitRegRsltFlag_BgPlmnSearch();
         NAS_MMC_SetWaitRegRsltFlag_BgPlmnSearch(NAS_MMC_WAIT_REG_RESULT_IND_PS);
 
-        /* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-2-7, begin */
 #if (FEATURE_ON == FEATURE_IMS)
         /* 增加等待IMS是否可用结果FLG,MSCC保证收到PS注册结果上报IMS是否可用指示到MMC */
         NAS_MMC_SetWaitRegRsltFlag_BgPlmnSearch(NAS_MMC_WAIT_REG_RESULT_IND_IMS);
 #endif
-        /* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-2-7, end */
 
         /* 更新CS的AdditionalAction */
         NAS_MMC_SetCsRegAdditionalAction_BgPlmnSearch(NAS_MMC_ADDITIONAL_ACTION_BUTT);
@@ -6627,44 +4468,7 @@ VOS_UINT32    NAS_MMC_RcvMmcSuspendRslt_BgPlmnSearch_WaitRrcConnRelInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitRrcConnRelInd
- 功能描述  : 等待连接释放状态收到RRMM_SYS_INFO_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月19日
-   作    者   : L00171473
-   修改内容   : 新生成函数
- 2.日    期   : 2012年6月16日
-   作    者   : l00171473
-   修改内容   : DTS2012061409086, 收到W或G的系统消息时通知L模
- 3.日    期   : 2012年8月21日
-   作    者   : t00212959
-   修改内容   : DCM定制需求和遗留问题
- 4.日    期   : 2012年12月11日
-   作    者   : w00176964
-   修改内容   : 收到系统消息接入禁止信息变化则通知MMA
-
- 5.日    期   : 2014年1月18日
-   作    者   : z00234330
-   修改内容   : dts2014011801513,接入层上报的系统消息里面有可能没有携带plmnid,
-                 此处判断并没有判断plmnid是否有效
- 6.日    期   : 2014年1月23日
-   作    者   : z00161729
-   修改内容   : DTS2014012305088:svlte特性tds或l上系统消息后pstransfer:1，注册随机接入失败，ps迁移
-                到modem1后tds或l再次驻留mmc收到系统消息判断驻留信息未改变不会给mma发送系统消息导致
-                mtc无法上报pstransfer:1,需要在搜网状态机退出后给mma再发次系统消息
-
- 7.日    期   : 2014年5月4日
-   作    者   : t00173447
-   修改内容   : DTS2014042105390,软银定制需求
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitRrcConnRelInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -6672,15 +4476,12 @@ VOS_UINT32    NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitRrcConnRelInd(
 {
     NAS_MML_CAMP_PLMN_INFO_STRU                            *pstCurCampInfo = VOS_NULL_PTR;
     NAS_MML_CAMP_PLMN_INFO_STRU                             stOldCampInfo;
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, begin */
     NAS_MML_ACCESS_RESTRICTION_STRU                         *pstCurCsRestrictInfo = VOS_NULL_PTR;
     NAS_MML_ACCESS_RESTRICTION_STRU                          stOldCsRestrictInfo;
     NAS_MML_ACCESS_RESTRICTION_STRU                         *pstCurPsRestrictInfo = VOS_NULL_PTR;
     NAS_MML_ACCESS_RESTRICTION_STRU                          stOldPsRestrictInfo;
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, end */
 
     NAS_MMC_SPEC_PLMN_SEARCH_STATE_ENUM_UINT8                enSpecPlmnSearchState;
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, begin */
 #if (FEATURE_ON == FEATURE_LTE)
     NAS_MML_LTE_CAPABILITY_STATUS_ENUM_UINT32               enLCapabilityStatus;
 
@@ -6688,7 +4489,6 @@ VOS_UINT32    NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitRrcConnRelInd(
     enLCapabilityStatus  = NAS_MML_GetLteCapabilityStatus();
 
 #endif
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, end */
 
     PS_MEM_SET(&stOldCampInfo, 0, sizeof(NAS_MML_CAMP_PLMN_INFO_STRU));
     PS_MEM_SET(&stOldCsRestrictInfo, 0, sizeof(NAS_MML_ACCESS_RESTRICTION_STRU));
@@ -6707,22 +4507,18 @@ VOS_UINT32    NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitRrcConnRelInd(
     pstCurCampInfo  = NAS_MML_GetCurrCampPlmnInfo();
     PS_MEM_CPY(&stOldCampInfo, pstCurCampInfo, sizeof(NAS_MML_CAMP_PLMN_INFO_STRU));
 
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, begin */
     pstCurCsRestrictInfo    = NAS_MML_GetCsAcRestrictionInfo();
     pstCurPsRestrictInfo    = NAS_MML_GetPsAcRestrictionInfo();
 
     PS_MEM_CPY(&stOldCsRestrictInfo, pstCurCsRestrictInfo, sizeof(NAS_MML_ACCESS_RESTRICTION_STRU));
     PS_MEM_CPY(&stOldPsRestrictInfo, pstCurPsRestrictInfo, sizeof(NAS_MML_ACCESS_RESTRICTION_STRU));
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, end */
 
     /* 根据系统消息，更新MML的全部变量 */
     NAS_MMC_UpdateNetworkInfo_WasSysInfo(pstMsg);
 
-/* Modified by t00212959 for DCM定制需求和遗留问题, 2012-8-24, begin */
 #if (FEATURE_ON == FEATURE_LTE)
     NAS_MMC_RcvGuSysInfoIndSetLteAbility(pstMsg,enLCapabilityStatus);
 #endif
-/* Modified by t00212959 for DCM定制需求和遗留问题, 2012-8-24, end */
 
     /* 驻留小区变化或重新搜网时，上报系统消息 */
     enSpecPlmnSearchState = NAS_MMC_GetSpecPlmnSearchState();
@@ -6731,30 +4527,22 @@ VOS_UINT32    NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitRrcConnRelInd(
      || (NAS_MMC_SPEC_PLMN_SEARCH_RUNNING == enSpecPlmnSearchState))
     {
         /* 主动上报 */
-        /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
         NAS_MMC_SndMsccSysInfo();
-        /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
     }
 
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, begin */
     /* 驻留小区的接入受限信息变化时,通知MSCC模块当前接入受限信息 */
     if (VOS_TRUE == NAS_MML_IsAcInfoChanged(&stOldCsRestrictInfo, pstCurCsRestrictInfo))
     {
-        /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
         NAS_MMC_SndMsccAcInfoChangeInd(NAS_MSCC_PIF_SRVDOMAIN_CS, pstCurCsRestrictInfo);
-       /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
     }
 
     if (VOS_TRUE == NAS_MML_IsAcInfoChanged(&stOldPsRestrictInfo, pstCurPsRestrictInfo))
     {
-       /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
         NAS_MMC_SndMsccAcInfoChangeInd(NAS_MSCC_PIF_SRVDOMAIN_PS, pstCurPsRestrictInfo);
-       /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
     }
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, end */
 
     NAS_MMC_SetSpecPlmnSearchState(NAS_MMC_SPEC_PLMN_SEARCH_STOP);
 
@@ -6764,9 +4552,7 @@ VOS_UINT32    NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitRrcConnRelInd(
     NAS_MMC_SndCbaMsgNetModInd(NAS_MML_NET_RAT_TYPE_WCDMA);
 #endif
 
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-18, begin */
     NAS_MMC_SndMsccCampOnInd(VOS_TRUE);
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-18, end */
 
     /*转发系统消息通知 给 MM/GMM,并将当前系统消息的 Forbidden 类型携带过去 */
     NAS_MMC_SndMmWasSysInfoInd(NAS_MMC_GetCurrentLaiForbbidenType(), VOS_FALSE, pstMsg);
@@ -6780,42 +4566,7 @@ VOS_UINT32    NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitRrcConnRelInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitRrcConnRelInd
- 功能描述  : 等待连接释放状态收到GRRMM_SYS_INFO_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月19日
-   作    者   : L00171473
-   修改内容   : 新生成函数
- 2.日    期   : 2012年6月16日
-   作    者   : l00171473
-   修改内容   : DTS2012061409086, 收到W或G的系统消息时通知L模
- 3.日    期   : 2012年8月21日
-   作    者   : z00161729
-   修改内容   : DCM定制需求和遗留问题修改
- 4.日    期   : 2012年12月11日
-   作    者   : w00176964
-   修改内容   : 收到系统消息接入禁止信息变化则通知MMA
- 5.日    期   : 2013年11月01日
-   作    者   : l00208543
-   修改内容   : 根据卡类型禁止网络制式
- 6.日    期   : 2014年1月23日
-   作    者   : z00161729
-   修改内容   : DTS2014012305088:svlte特性tds或l上系统消息后pstransfer:1，注册随机接入失败，ps迁移
-                到modem1后tds或l再次驻留mmc收到系统消息判断驻留信息未改变不会给mma发送系统消息导致
-                mtc无法上报pstransfer:1,需要在搜网状态机退出后给mma再发次系统消息
-
- 7.日    期   : 2014年5月4日
-   作    者   : t00173447
-   修改内容   : DTS2014042105390,软银定制需求
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitRrcConnRelInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -6823,15 +4574,12 @@ VOS_UINT32    NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitRrcConnRelInd(
 {
     NAS_MML_CAMP_PLMN_INFO_STRU                            *pstCurCampInfo = VOS_NULL_PTR;
     NAS_MML_CAMP_PLMN_INFO_STRU                             stOldCampInfo;
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, begin */
     NAS_MML_ACCESS_RESTRICTION_STRU                         *pstCurCsRestrictInfo = VOS_NULL_PTR;
     NAS_MML_ACCESS_RESTRICTION_STRU                          stOldCsRestrictInfo;
     NAS_MML_ACCESS_RESTRICTION_STRU                         *pstCurPsRestrictInfo = VOS_NULL_PTR;
     NAS_MML_ACCESS_RESTRICTION_STRU                          stOldPsRestrictInfo;
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, end */
 
     NAS_MMC_SPEC_PLMN_SEARCH_STATE_ENUM_UINT8                enSpecPlmnSearchState;
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, begin */
 #if (FEATURE_ON == FEATURE_LTE)
     NAS_MML_LTE_CAPABILITY_STATUS_ENUM_UINT32               enLCapabilityStatus;
 
@@ -6840,7 +4588,6 @@ VOS_UINT32    NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitRrcConnRelInd(
     enLCapabilityStatus  = NAS_MML_GetLteCapabilityStatus();
 
 #endif
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, end */
 
     PS_MEM_SET(&stOldCampInfo, 0, sizeof(NAS_MML_CAMP_PLMN_INFO_STRU));
     PS_MEM_SET(&stOldCsRestrictInfo, 0, sizeof(NAS_MML_ACCESS_RESTRICTION_STRU));
@@ -6862,22 +4609,18 @@ VOS_UINT32    NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitRrcConnRelInd(
     pstCurCampInfo  = NAS_MML_GetCurrCampPlmnInfo();
     PS_MEM_CPY(&stOldCampInfo, pstCurCampInfo, sizeof(NAS_MML_CAMP_PLMN_INFO_STRU));
 
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, begin */
      pstCurCsRestrictInfo    = NAS_MML_GetCsAcRestrictionInfo();
      pstCurPsRestrictInfo    = NAS_MML_GetPsAcRestrictionInfo();
 
      PS_MEM_CPY(&stOldCsRestrictInfo, pstCurCsRestrictInfo, sizeof(NAS_MML_ACCESS_RESTRICTION_STRU));
      PS_MEM_CPY(&stOldPsRestrictInfo, pstCurPsRestrictInfo, sizeof(NAS_MML_ACCESS_RESTRICTION_STRU));
-     /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, end */
 
     /* 根据系统消息，更新MML的全部变量 */
     NAS_MMC_UpdateNetworkInfo_GasSysInfo(pstMsg);
 
-    /* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-24, begin */
 #if (FEATURE_ON == FEATURE_LTE)
     NAS_MMC_RcvGuSysInfoIndSetLteAbility(pstMsg, enLCapabilityStatus);
 #endif
-    /* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-24, end */
 
     /* 驻留小区变化或重新搜网时，上报系统消息 */
     enSpecPlmnSearchState = NAS_MMC_GetSpecPlmnSearchState();
@@ -6886,27 +4629,21 @@ VOS_UINT32    NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitRrcConnRelInd(
      || (NAS_MMC_SPEC_PLMN_SEARCH_RUNNING == enSpecPlmnSearchState))
     {
         /* 主动上报 */
-        /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
         NAS_MMC_SndMsccSysInfo();
-	    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
 
     }
 
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, begin */
     /* 驻留小区的接入受限信息变化时,通知MSCC模块当前接入受限信息 */
     if (VOS_TRUE == NAS_MML_IsAcInfoChanged(&stOldCsRestrictInfo, pstCurCsRestrictInfo))
     {
-       /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
         NAS_MMC_SndMsccAcInfoChangeInd(NAS_MSCC_PIF_SRVDOMAIN_CS, pstCurCsRestrictInfo);
     }
 
     if (VOS_TRUE == NAS_MML_IsAcInfoChanged(&stOldPsRestrictInfo, pstCurPsRestrictInfo))
     {
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
         NAS_MMC_SndMsccAcInfoChangeInd(NAS_MSCC_PIF_SRVDOMAIN_PS, pstCurPsRestrictInfo);
     }
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, end */
 
     NAS_MMC_SetSpecPlmnSearchState(NAS_MMC_SPEC_PLMN_SEARCH_STOP);
 
@@ -6916,9 +4653,7 @@ VOS_UINT32    NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitRrcConnRelInd(
     NAS_MMC_SndCbaMsgNetModInd(NAS_MML_NET_RAT_TYPE_GSM);
 #endif
 
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-18, begin */
     NAS_MMC_SndMsccCampOnInd(VOS_TRUE);
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-18, end */
 
     /*转发系统消息通知 给 MM/GMM,并将当前系统消息的 Forbidden 类型携带过去 */
     NAS_MMC_SndMmGsmSysInfoInd(NAS_MMC_GetCurrentLaiForbbidenType(), VOS_FALSE, pstMsg);
@@ -6932,23 +4667,7 @@ VOS_UINT32    NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitRrcConnRelInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTafSysCfgReq_BgPlmnSearch_WaitRrcConnRelInd
- 功能描述  : 等待连接释放状态收到ID_MSCC_MMC_SYS_CFG_SET_REQ消息的处理
- 输入参数  : pstMsg        - ID_MSCC_MMC_SYS_CFG_SET_REQ消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvTafSysCfgReq_BgPlmnSearch_WaitRrcConnRelInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -6960,26 +4679,7 @@ VOS_UINT32    NAS_MMC_RcvTafSysCfgReq_BgPlmnSearch_WaitRrcConnRelInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcSyscfgRsltCnf_BgPlmnSearch_WaitRrcConnRelInd
- 功能描述  : 等待连接释放状态收到MMCMMC_SYSCFG_RSLT_CNF消息的处理
- 输入参数  : pstMsg        - MMCMMC_SYSCFG_RSLT_CNF消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月26日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvMmcSyscfgRsltCnf_BgPlmnSearch_WaitRrcConnRelInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -6991,44 +4691,7 @@ VOS_UINT32    NAS_MMC_RcvMmcSyscfgRsltCnf_BgPlmnSearch_WaitRrcConnRelInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiWaitRrcConnRelExpired_BgPlmnSearch_WaitRrcConnRelInd
- 功能描述  : 等待连接释放状态收到TI_NAS_MMC_WAIT_RRC_CONN_REL消息的处理
- 输入参数  : pstMsg        - TI_NAS_MMC_WAIT_RRC_CONN_REL消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年12月3日
-   作    者   : w00167002
-   修改内容   : DTS2011120300667:在背景搜时，可能有紧急呼业务，同时注册结果
-                需要导致搜网，在等链接释放超时时，需要启动AVAILABLE 定时器，
-                等此定时器超时后，发起搜网。
- 3.日    期   : 2012年4月30日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
- 4.日    期   : 2012年5月18日
-   作    者   : w00176964
-   修改内容   : V7R1C50 GUL BG搜网修改
- 5.日    期   : 2012年8月27日
-   作    者   : l00167671
-   修改内容   : 问题单: DTS2012080605217,背景搜没能找到可以注册的网络回退到V时，
-                 V在禁止列表中或者forbid plmn for gprs列表中时进入限制服务并不再
-                 发起搜网,将原函数NAS_MMC_IsVplmnNetRatValid改名成NAS_MMC_IsVplmnValid
-                 并在该函数中增加了判断V是否在禁止列表中或者forbid plmn for gprs列表中，
-                 若在两个列表中的任意一个列表中则认为Vplmn已经无效
- 6.日    期   : 2014年2月24日
-   作    者   : w00176964
-   修改内容   : High_Rat_Hplmn_Search特性调整:BG搜成功快速指定搜时enable LTE
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvTiWaitRrcConnRelExpired_BgPlmnSearch_WaitRrcConnRelInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -7072,9 +4735,7 @@ VOS_UINT32    NAS_MMC_RcvTiWaitRrcConnRelExpired_BgPlmnSearch_WaitRrcConnRelInd(
                 NAS_MMC_SndGmmPlmnSchInit();
                 NAS_MMC_SndMmPlmnSchInit();
 
-                /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, begin */
                 NAS_MMC_SndMsccCampOnInd(VOS_FALSE);
-                /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, end */
 
                 NAS_MMC_ReCampVPlmn_BgPlmnSearch();
                 return VOS_TRUE;
@@ -7122,9 +4783,7 @@ VOS_UINT32    NAS_MMC_RcvTiWaitRrcConnRelExpired_BgPlmnSearch_WaitRrcConnRelInd(
         NAS_MMC_SndGmmPlmnSchInit();
         NAS_MMC_SndMmPlmnSchInit();
 
-        /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, begin */
         NAS_MMC_SndMsccCampOnInd(VOS_FALSE);
-        /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, end */
 
         return VOS_TRUE;
     }
@@ -7164,26 +4823,7 @@ VOS_UINT32    NAS_MMC_RcvTiWaitRrcConnRelExpired_BgPlmnSearch_WaitRrcConnRelInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitWasSuspendCnfReCampVPlmn
- 功能描述  : 回VPLMN等待指定搜网回复状态收到MMCMMC_ABORT_FSM_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月19日
-   作    者   : L00171473
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年11月29日
-   作    者   : w00167002
-   修改内容   : DTS2011112301233:保存打断事件类型到状态机上下文中
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitWasSuspendCnfReCampVPlmn(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -7203,48 +4843,7 @@ VOS_UINT32    NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitWasSuspendCnfReCampVPlm
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvRrMmSuspendCnf_BgPlmnSearch_WaitWasSuspendCnfReCampVPlmn
- 功能描述  : 回VPLMN等待指定搜网回复状态收到RRMM_SUSPEND_CNF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月19日
-   作    者   : L00171473
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年12月15日
-   作    者   : w00167002
-   修改内容   : DTS2011120702166:MMC复位后无复位信息,在MML模块封装复位信息，
-                 以供MM层调用，进行软复位。
- 3.日    期   : 2012年4月30日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
- 4.日    期   : 2012年5月18日
-   作    者   : w00176964
-   修改内容   : V7R1C50 GUL BG搜网修改
- 5.日    期   : 2012年6月14日
-   作    者   : t00212959
-   修改内容   : V7R1C50 GUL BG搜网修改,回VPLMN失败，区分是否打断
- 6.日    期   : 2012年8月27日
-   作    者   : l00167671
-   修改内容   : 问题单: DTS2012080605217,背景搜没能找到可以注册的网络回退到V时，
-                 V在禁止列表中或者forbid plmn for gprs列表中时进入限制服务并不再
-                 发起搜网,将原函数NAS_MMC_IsVplmnNetRatValid改名成NAS_MMC_IsVplmnValid
-                 并在该函数中增加了判断V是否在禁止列表中或者forbid plmn for gprs列表中，
-                 若在两个列表中的任意一个列表中则认为Vplmn已经无效
- 7.日    期   : 2014年2月18日
-   作    者  :  w00242748
-   修改内容  :  DTS2014021803515:复位时明确是收到哪个接入技术的异常消息导致的。
- 8.日    期   : 2015年3月11日
-   作    者   : wx270776
-   修改内容   : DTS2015011212939:增加复位场景
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvRrMmSuspendCnf_BgPlmnSearch_WaitWasSuspendCnfReCampVPlmn(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -7302,9 +4901,7 @@ VOS_UINT32    NAS_MMC_RcvRrMmSuspendCnf_BgPlmnSearch_WaitWasSuspendCnfReCampVPlm
         NAS_MMC_SndGmmPlmnSchInit();
         NAS_MMC_SndMmPlmnSchInit();
 
-        /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, begin */
         NAS_MMC_SndMsccCampOnInd(VOS_FALSE);
-        /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, end */
 
         NAS_MMC_ReCampVPlmn_BgPlmnSearch();
         return VOS_TRUE;
@@ -7328,34 +4925,7 @@ VOS_UINT32    NAS_MMC_RcvRrMmSuspendCnf_BgPlmnSearch_WaitWasSuspendCnfReCampVPlm
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiWaitAsSuspendCnfExpired_BgPlmnSearch_WaitAsSuspendCnfReCampVPlmn
- 功能描述  : 回VPLMN等待指定搜网回复状态收到TI_NAS_MMC_WAIT_WAS_SUSPEND_CNF
-             TI_NAS_MMC_WAIT_GAS_SUSPEND_CNF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月19日
-   作    者   : L00171473
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年12月15日
-   作    者   : w00167002
-   修改内容   : DTS2011120702166:MMC复位后无复位信息,在MML模块封装复位信息，
-                 以供MM层调用，进行软复位。
- 3.日    期   : 2014年2月18日
-   作    者  :  w00242748
-   修改内容  :  DTS2014021803515:复位时明确是收到哪个接入技术的异常消息导致的。
- 4.日    期   : 2015年3月11日
-   作    者   : wx270776
-   修改内容   : DTS2015011212939:增加复位场景
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvTiWaitAsSuspendCnfExpired_BgPlmnSearch_WaitAsSuspendCnfReCampVPlmn(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -7391,26 +4961,7 @@ VOS_UINT32    NAS_MMC_RcvTiWaitAsSuspendCnfExpired_BgPlmnSearch_WaitAsSuspendCnf
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitGasSuspendCnfReCampVPlmn
- 功能描述  : 回VPLMN等待指定搜网回复状态收到MMCMMC_ABORT_FSM_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月19日
-   作    者   : L00171473
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年11月29日
-   作    者   : w00167002
-   修改内容   : DTS2011112301233:保存打断事件类型到状态机上下文中
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitGasSuspendCnfReCampVPlmn(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -7430,45 +4981,7 @@ VOS_UINT32    NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitGasSuspendCnfReCampVPlm
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvRrMmSuspendCnf_BgPlmnSearch_WaitGasSuspendCnfReCampVPlmn
- 功能描述  : 回VPLMN等待指定搜网回复状态收到RRMM_SUSPEND_CNF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月19日
-   作    者   : L00171473
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年12月15日
-   作    者   : w00167002
-   修改内容   : DTS2011120702166:MMC复位后无复位信息,在MML模块封装复位信息，
-                 以供MM层调用，进行软复位。
- 3.日    期   : 2012年4月30日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
- 4.日    期   : 2012年5月18日
-   作    者   : w00176964
-   修改内容   : V7R1C50 GUL BG搜网修改
- 5.日    期   : 2012年6月14日
-   作    者   : t00212959
-   修改内容   : V7R1C50 GUL BG搜网修改,回VPLMN失败，区分是否打断
- 6.日    期   : 2012年8月27日
-   作    者   : l00167671
-   修改内容   : 问题单: DTS2012080605217,背景搜没能找到可以注册的网络回退到V时，
-                 V在禁止列表中或者forbid plmn for gprs列表中时进入限制服务并不再
-                 发起搜网,将原函数NAS_MMC_IsVplmnNetRatValid改名成NAS_MMC_IsVplmnValid
-                 并在该函数中增加了判断V是否在禁止列表中或者forbid plmn for gprs列表中，
-                 若在两个列表中的任意一个列表中则认为Vplmn已经无效
- 7.日    期   : 2015年3月11日
-   作    者   : wx270776
-   修改内容   : DTS2015011212939:增加复位场景
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvRrMmSuspendCnf_BgPlmnSearch_WaitGasSuspendCnfReCampVPlmn(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -7514,9 +5027,7 @@ VOS_UINT32    NAS_MMC_RcvRrMmSuspendCnf_BgPlmnSearch_WaitGasSuspendCnfReCampVPlm
         NAS_MMC_SndGmmPlmnSchInit();
         NAS_MMC_SndMmPlmnSchInit();
 
-        /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, begin */
         NAS_MMC_SndMsccCampOnInd(VOS_FALSE);
-        /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, end */
 
         NAS_MMC_ReCampVPlmn_BgPlmnSearch();
         return VOS_TRUE;
@@ -7540,27 +5051,7 @@ VOS_UINT32    NAS_MMC_RcvRrMmSuspendCnf_BgPlmnSearch_WaitGasSuspendCnfReCampVPlm
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitWasPlmnSearchCnfReCampVPlmn
- 功能描述  : 回VPLMN等待指定搜网回复状态收到MMCMMC_ABORT_FSM_REQ消息的处理
- 输入参数  : pstMsg        - MMCMMC_ABORT_FSM_REQ消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年11月29日
-   作    者   : w00167002
-   修改内容   : DTS2011112301233:保存打断事件类型到状态机上下文中
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitWasPlmnSearchCnfReCampVPlmn(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -7596,31 +5087,7 @@ VOS_UINT32    NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitWasPlmnSearchCnfReCampV
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvRrMmPlmnSrchCnf_BgPlmnSearch_WaitWasPlmnSearchCnfReCampVPlmn
- 功能描述  : 回VPLMN等待指定搜网回复状态收到RRMM_PLMN_SEARCH_CNF消息的处理
- 输入参数  : pstMsg        - RRMM_PLMN_SEARCH_CNF消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月24日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改函数名
- 3.日    期   : 2012年11月05日
-   作    者   : w00176964
-   修改内容   : DTS2011082405001:更新网络覆盖类型
- 4.日    期   : 2014年6月24日
-   作    者   : w00167002
-   修改内容   : DSDS III：搜网NO RF则进入OOC状态
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvRrMmPlmnSrchCnf_BgPlmnSearch_WaitWasPlmnSearchCnfReCampVPlmn(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -7684,28 +5151,7 @@ VOS_UINT32    NAS_MMC_RcvRrMmPlmnSrchCnf_BgPlmnSearch_WaitWasPlmnSearchCnfReCamp
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvRrMmRelInd_BgPlmnSearch_WaitWasPlmnSearchCnfReCampVPlmn
- 功能描述  : 回VPLMN等待指定搜网回复状态收到RRMM_REL_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月19日
-   作    者   : L00171473
-   修改内容   : 新生成函数
- 2.日    期   : 2012年6月18日
-   作    者   : l00171473
-   修改内容   : DTS2012051104124, WAS:接收到RRMM_PLMN_SEARCH_REQ时，
-                不会上报正常原因的rel ind，只有异常原因的rel ind
- 3.日    期   : 2014年6月12日
-   作    者   : w00167002
-   修改内容   : WAS异常且NO RF,直接进OOC处理
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvRrMmRelInd_BgPlmnSearch_WaitWasPlmnSearchCnfReCampVPlmn(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -7748,23 +5194,7 @@ VOS_UINT32    NAS_MMC_RcvRrMmRelInd_BgPlmnSearch_WaitWasPlmnSearchCnfReCampVPlmn
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiWaitWasPlmnSearchCnf_BgPlmnSearch_WaitWasPlmnSearchCnfReCampVPlmn
- 功能描述  : 回VPLMN等待指定搜网回复状态收到TI_NAS_MMC_WAIT_WAS_PLMN_SEARCH_CNF消息的处理
- 输入参数  : pstMsg        - TI_NAS_MMC_WAIT_WAS_PLMN_SEARCH_CNF消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvTiWaitWasPlmnSearchCnf_BgPlmnSearch_WaitWasPlmnSearchCnfReCampVPlmn(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -7781,27 +5211,7 @@ VOS_UINT32    NAS_MMC_RcvTiWaitWasPlmnSearchCnf_BgPlmnSearch_WaitWasPlmnSearchCn
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitGasPlmnSearchCnfReCampVPlmn
- 功能描述  : 回VPLMN等待指定搜网回复状态收到MMCMMC_ABORT_FSM_REQ消息的处理
- 输入参数  : pstMsg        - MMCMMC_ABORT_FSM_REQ消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年11月29日
-   作    者   : w00167002
-   修改内容   : DTS2011112301233:保存打断事件类型到状态机上下文中
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitGasPlmnSearchCnfReCampVPlmn(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -7838,32 +5248,7 @@ VOS_UINT32    NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitGasPlmnSearchCnfReCampV
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvRrMmPlmnSrchCnf_BgPlmnSearch_WaitGasPlmnSearchCnfReCampVPlmn
- 功能描述  : 回VPLMN等待指定搜网回复状态收到RRMM_PLMN_SEARCH_CNF消息的处理
- 输入参数  : pstMsg        - RRMM_PLMN_SEARCH_CNF消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月26日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改函数名
- 3.日    期   : 2012年11月05日
-   作    者   : w00176964
-   修改内容   : DTS2011082405001:更新网络覆盖类型
-
- 4.日    期   : 2014年6月24日
-   作    者   : w00167002
-   修改内容   : DSDS III:搜网NO RF后进入OOC
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvRrMmPlmnSrchCnf_BgPlmnSearch_WaitGasPlmnSearchCnfReCampVPlmn(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -7927,23 +5312,7 @@ VOS_UINT32    NAS_MMC_RcvRrMmPlmnSrchCnf_BgPlmnSearch_WaitGasPlmnSearchCnfReCamp
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiWaitGasPlmnSearchCnf_BgPlmnSearch_WaitGasPlmnSearchCnfReCampVPlmn
- 功能描述  : 回VPLMN等待指定搜网回复状态收到TI_NAS_MMC_WAIT_GAS_PLMN_SEARCH_CNF消息的处理
- 输入参数  : pstMsg        - TI_NAS_MMC_WAIT_GAS_PLMN_SEARCH_CNF消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvTiWaitGasPlmnSearchCnf_BgPlmnSearch_WaitGasPlmnSearchCnfReCampVPlmn(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -7960,26 +5329,7 @@ VOS_UINT32    NAS_MMC_RcvTiWaitGasPlmnSearchCnf_BgPlmnSearch_WaitGasPlmnSearchCn
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitWasPlmnStopCnfReCampVPlmn
- 功能描述  : 回VPLMN等待指定搜网回复状态收到MMCMMC_ABORT_FSM_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月19日
-   作    者   : L00171473
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年11月29日
-   作    者   : w00167002
-   修改内容   : DTS2011112301233:保存打断事件类型到状态机上下文中
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitWasPlmnStopCnfReCampVPlmn(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8000,26 +5350,7 @@ VOS_UINT32    NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitWasPlmnStopCnfReCampVPl
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvRrMmRelInd_BgPlmnSearch_WaitWasPlmnStopCnfReCampVPlmn
- 功能描述  : 回VPLMN等待指定搜网回复状态收到RRMM_REL_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月19日
-   作    者   : L00171473
-   修改内容   : 新生成函数
- 2.日    期   : 2012年6月18日
-   作    者   : l00171473
-   修改内容   : DTS2012051104124, WAS:接收到RRMM_PLMN_SEARCH_STOP_REQ时，
-                可能发送有异常原因的rel ind或者RRMM_PLMN_SEARCH_STOP_CNF，
-                收到rel ind时认为停止搜网结束
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvRrMmRelInd_BgPlmnSearch_WaitWasPlmnStopCnfReCampVPlmn(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8050,22 +5381,7 @@ VOS_UINT32    NAS_MMC_RcvRrMmRelInd_BgPlmnSearch_WaitWasPlmnStopCnfReCampVPlmn(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvRrMmPlmnSrchStopCnf_BgPlmnSearch_WaitWasPlmnStopCnfReCampVPlmn
- 功能描述  : 回VPLMN等待指定搜网回复状态收到RRMM_PLMN_SEARCH_STOP_CNF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月19日
-   作    者   : L00171473
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvRrMmPlmnSrchStopCnf_BgPlmnSearch_WaitWasPlmnStopCnfReCampVPlmn(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8091,22 +5407,7 @@ VOS_UINT32    NAS_MMC_RcvRrMmPlmnSrchStopCnf_BgPlmnSearch_WaitWasPlmnStopCnfReCa
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvRrMmPlmnSearchCnf_BgPlmnSearch_WaitWasPlmnStopCnfReCampVPlmn
- 功能描述  : 回VPLMN等待停止指定搜网回复状态收到RRMM_PLMN_SEARCH_CNF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年6月25日
-   作    者   : b00269685
-   修改内容   : DSDS III新生成函数
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvRrMmPlmnSearchCnf_BgPlmnSearch_WaitWasPlmnStopCnfReCampVPlmn(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8144,22 +5445,7 @@ VOS_UINT32    NAS_MMC_RcvRrMmPlmnSearchCnf_BgPlmnSearch_WaitWasPlmnStopCnfReCamp
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiWaitWasStopCnfExpired_BgPlmnSearch_WaitWasPlmnStopCnfReCampVPlmn
- 功能描述  : 回VPLMN等待指定搜网回复状态收到TI_NAS_MMC_WAIT_WAS_PLMN_STOP_CNF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月19日
-   作    者   : L00171473
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvTiWaitWasStopCnfExpired_BgPlmnSearch_WaitWasPlmnStopCnfReCampVPlmn(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8185,26 +5471,7 @@ VOS_UINT32    NAS_MMC_RcvTiWaitWasStopCnfExpired_BgPlmnSearch_WaitWasPlmnStopCnf
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitGasPlmnStopCnfReCampVPlmn
- 功能描述  : 回VPLMN等待指定搜网回复状态收到MMCMMC_ABORT_FSM_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月19日
-   作    者   : L00171473
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年11月29日
-   作    者   : w00167002
-   修改内容   : DTS2011112301233:保存打断事件类型到状态机上下文中
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitGasPlmnStopCnfReCampVPlmn(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8224,22 +5491,7 @@ VOS_UINT32    NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitGasPlmnStopCnfReCampVPl
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvRrMmPlmnSearchStopCnf_BgPlmnSearch_WaitGasPlmnStopCnfReCampVPlmn
- 功能描述  : 回VPLMN等待指定搜网回复状态收到RRMM_PLMN_SEARCH_STOP_CNF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月19日
-   作    者   : L00171473
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvRrMmPlmnSearchStopCnf_BgPlmnSearch_WaitGasPlmnStopCnfReCampVPlmn(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8265,22 +5517,7 @@ VOS_UINT32    NAS_MMC_RcvRrMmPlmnSearchStopCnf_BgPlmnSearch_WaitGasPlmnStopCnfRe
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvRrMmPlmnSearchCnf_BgPlmnSearch_WaitGasPlmnStopCnfReCampVPlmn
- 功能描述  : 回VPLMN等待指定搜网回复状态收到RRMM_PLMN_SEARCH_CNF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年6月28日
-   作    者   : b00269685
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvRrMmPlmnSearchCnf_BgPlmnSearch_WaitGasPlmnStopCnfReCampVPlmn(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8319,22 +5556,7 @@ VOS_UINT32    NAS_MMC_RcvRrMmPlmnSearchCnf_BgPlmnSearch_WaitGasPlmnStopCnfReCamp
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiWaitGasStopCnfExpired_BgPlmnSearch_WaitGasPlmnStopCnfReCampVPlmn
- 功能描述  : 回VPLMN等待指定搜网回复状态收到TI_NAS_MMC_WAIT_GAS_PLMN_STOP_CNF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月19日
-   作    者   : L00171473
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvTiWaitGasStopCnfExpired_BgPlmnSearch_WaitGasPlmnStopCnfReCampVPlmn(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8360,26 +5582,7 @@ VOS_UINT32    NAS_MMC_RcvTiWaitGasStopCnfExpired_BgPlmnSearch_WaitGasPlmnStopCnf
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitWasSysInfoIndReCampVPlmn
- 功能描述  : 回VPLMN等待系统消息状态收到MMCMMC_ABORT_FSM_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月19日
-   作    者   : L00171473
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年11月29日
-   作    者   : w00167002
-   修改内容   : DTS2011112301233:保存打断事件类型到状态机上下文中
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitWasSysInfoIndReCampVPlmn(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8399,43 +5602,7 @@ VOS_UINT32    NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitWasSysInfoIndReCampVPlm
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitWasSysInfoIndReCampVPlmn
- 功能描述  : 回VPLMN等待系统消息状态收到RRMM_SYS_INFO_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月19日
-   作    者   : L00171473
-   修改内容   : 新生成函数
- 2.日    期   : 2012年6月16日
-   作    者   : l00171473
-   修改内容   : DTS2012061409086, 收到W或G的系统消息时通知L模
- 3.日    期   : 2012年8月14日
-   作    者   : t00212959
-   修改内容   : DCM定制需求和遗留问题，禁止LTE漫游
- 4.日    期   : 2012年12月11日
-   作    者   : w00176964
-   修改内容   : 收到系统消息接入禁止信息变化则通知MSCC
- 5.日    期   : 2014年1月18日
-   作    者   : z00234330
-   修改内容   : dts2014011801513,接入层上报的系统消息里面有可能没有携带plmnid,
-               此处判断并没有判断plmnid是否有效
- 6.日    期   : 2014年1月23日
-   作    者   : z00161729
-   修改内容   : DTS2014012305088:svlte特性tds或l上系统消息后pstransfer:1，注册随机接入失败，ps迁移
-                到modem1后tds或l再次驻留mmc收到系统消息判断驻留信息未改变不会给mma发送系统消息导致
-                mtc无法上报pstransfer:1,需要在搜网状态机退出后给mma再发次系统消息
-
- 7.日    期   : 2014年5月4日
-   作    者   : t00173447
-   修改内容   : DTS2014042105390,软银定制需求
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitWasSysInfoIndReCampVPlmn(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8445,22 +5612,18 @@ VOS_UINT32    NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitWasSysInfoIndReCampVPlm
     NAS_MML_CAMP_PLMN_INFO_STRU                             stOldCampInfo;
     NAS_MMC_ABORT_FSM_TYPE_UINT8                            enAbortType;
     NAS_MMC_BG_PLMN_SEARCH_RSLT_ENUM_UINT32                 enSearchRslt;
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, begin */
     NAS_MML_ACCESS_RESTRICTION_STRU                         *pstCurCsRestrictInfo = VOS_NULL_PTR;
     NAS_MML_ACCESS_RESTRICTION_STRU                          stOldCsRestrictInfo;
     NAS_MML_ACCESS_RESTRICTION_STRU                         *pstCurPsRestrictInfo = VOS_NULL_PTR;
     NAS_MML_ACCESS_RESTRICTION_STRU                          stOldPsRestrictInfo;
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, end */
 
     NAS_MMC_SPEC_PLMN_SEARCH_STATE_ENUM_UINT8                enSpecPlmnSearchState;
-    /* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-15, begin */
 #if (FEATURE_ON == FEATURE_LTE)
     NAS_MML_LTE_CAPABILITY_STATUS_ENUM_UINT32               enLCapabilityStatus;
 
     /* 获取LTE能力状态 */
     enLCapabilityStatus  = NAS_MML_GetLteCapabilityStatus();
 #endif
-    /* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-15, end */
 
     PS_MEM_SET(&stOldCampInfo, 0, sizeof(NAS_MML_CAMP_PLMN_INFO_STRU));
     PS_MEM_SET(&stOldCsRestrictInfo, 0, sizeof(NAS_MML_ACCESS_RESTRICTION_STRU));
@@ -8475,11 +5638,9 @@ VOS_UINT32    NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitWasSysInfoIndReCampVPlm
     /* 状态更新为当前已经驻留 */
     NAS_MMC_SetAsCellCampOn(NAS_MMC_AS_CELL_CAMP_ON);
 
-    /* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-15, begin */
 #if (FEATURE_ON == FEATURE_LTE)
     NAS_MMC_RcvGuSysInfoIndSetLteAbility(pstMsg,enLCapabilityStatus);
 #endif
-    /* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-15, end */
 
     /* 如果Abort类型为立即退 */
     if (NAS_MMC_ABORT_FSM_IMMEDIATELY == enAbortType)
@@ -8507,13 +5668,11 @@ VOS_UINT32    NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitWasSysInfoIndReCampVPlm
     pstCurCampInfo  = NAS_MML_GetCurrCampPlmnInfo();
     PS_MEM_CPY(&stOldCampInfo, pstCurCampInfo, sizeof(NAS_MML_CAMP_PLMN_INFO_STRU));
 
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, begin */
     pstCurCsRestrictInfo    = NAS_MML_GetCsAcRestrictionInfo();
     pstCurPsRestrictInfo    = NAS_MML_GetPsAcRestrictionInfo();
 
     PS_MEM_CPY(&stOldCsRestrictInfo, pstCurCsRestrictInfo, sizeof(NAS_MML_ACCESS_RESTRICTION_STRU));
     PS_MEM_CPY(&stOldPsRestrictInfo, pstCurPsRestrictInfo, sizeof(NAS_MML_ACCESS_RESTRICTION_STRU));
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, end */
 
     /* 根据系统消息，更新MML的全部变量 */
     NAS_MMC_UpdateNetworkInfo_WasSysInfo(pstMsg);
@@ -8525,26 +5684,20 @@ VOS_UINT32    NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitWasSysInfoIndReCampVPlm
      || (NAS_MMC_SPEC_PLMN_SEARCH_RUNNING == enSpecPlmnSearchState))
     {
         /* 主动上报 */
-       /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
         NAS_MMC_SndMsccSysInfo();
-       /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
     }
 
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, begin */
     /* 驻留小区的接入受限信息变化时,通知MSCC模块当前接入受限信息 */
     if (VOS_TRUE == NAS_MML_IsAcInfoChanged(&stOldCsRestrictInfo, pstCurCsRestrictInfo))
     {
-        /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
         NAS_MMC_SndMsccAcInfoChangeInd(NAS_MSCC_PIF_SRVDOMAIN_CS, pstCurCsRestrictInfo);
     }
 
     if (VOS_TRUE == NAS_MML_IsAcInfoChanged(&stOldPsRestrictInfo, pstCurPsRestrictInfo))
     {
-        /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
         NAS_MMC_SndMsccAcInfoChangeInd(NAS_MSCC_PIF_SRVDOMAIN_PS, pstCurPsRestrictInfo);
     }
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, end */
 
     NAS_MMC_SetSpecPlmnSearchState(NAS_MMC_SPEC_PLMN_SEARCH_STOP);
 
@@ -8554,9 +5707,7 @@ VOS_UINT32    NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitWasSysInfoIndReCampVPlm
     NAS_MMC_SndCbaMsgNetModInd(NAS_MML_NET_RAT_TYPE_WCDMA);
 #endif
 
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-18, begin */
     NAS_MMC_SndMsccCampOnInd(VOS_TRUE);
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-18, end */
 
     /*转发系统消息通知 给 MM/GMM,并将当前系统消息的 Forbidden 类型携带过去 */
     NAS_MMC_SndMmWasSysInfoInd(NAS_MMC_GetCurrentLaiForbbidenType(), VOS_FALSE, pstMsg);
@@ -8576,23 +5727,7 @@ VOS_UINT32    NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitWasSysInfoIndReCampVPlm
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiWaitWasSysInfoExpired_BgPlmnSearch_WaitWasSysInfoIndReCampVPlmn
- 功能描述  : 回VPLMN等待系统消息状态收到TI_NAS_MMC_WAIT_WAS_SYS_INFO消息
-             的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月19日
-   作    者   : L00171473
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvTiWaitWasSysInfoExpired_BgPlmnSearch_WaitWasSysInfoIndReCampVPlmn(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8619,27 +5754,7 @@ VOS_UINT32    NAS_MMC_RcvTiWaitWasSysInfoExpired_BgPlmnSearch_WaitWasSysInfoIndR
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitGasSysInfoReCampVPlmn
- 功能描述  : 回VPLMN等待系统消息状态收到MMCMMC_ABORT_FSM_REQ消息
-             的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月19日
-   作    者   : L00171473
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年11月29日
-   作    者   : w00167002
-   修改内容   : DTS2011112301233:保存打断事件类型到状态机上下文中
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitGasSysInfoReCampVPlmn(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8660,42 +5775,7 @@ VOS_UINT32    NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitGasSysInfoReCampVPlmn(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitGasSysInfoIndReCampVPlmn
- 功能描述  : 回VPLMN等待系统消息状态收到GRRMM_SYS_INFO_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月19日
-   作    者   : L00171473
-   修改内容   : 新生成函数
- 2.日    期   : 2012年6月16日
-   作    者   : l00171473
-   修改内容   : DTS2012061409086, 收到W或G的系统消息时通知L模
- 3.日    期   : 2012年8月14日
-   作    者   : t00212959
-   修改内容   : DCM定制需求和遗留问题,禁止LTE漫游
- 4.日    期   : 2012年12月11日
-   作    者   : w00176964
-   修改内容   : 收到系统消息接入禁止信息变化则通知MMA
- 5.日    期   : 2013年11月01日
-   作    者   : l00208543
-   修改内容   : 根据卡类型禁止网络制式
- 6.日    期   : 2014年1月23日
-   作    者   : z00161729
-   修改内容   : DTS2014012305088:svlte特性tds或l上系统消息后pstransfer:1，注册随机接入失败，ps迁移
-                到modem1后tds或l再次驻留mmc收到系统消息判断驻留信息未改变不会给mma发送系统消息导致
-                mtc无法上报pstransfer:1,需要在搜网状态机退出后给mma再发次系统消息
- 7.日    期   : 2014年5月4日
-   作    者   : t00173447
-   修改内容   : DTS2014042105390,软银定制需求
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitGasSysInfoIndReCampVPlmn(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8705,15 +5785,12 @@ VOS_UINT32    NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitGasSysInfoIndReCampVPl
     NAS_MML_CAMP_PLMN_INFO_STRU                             stOldCampInfo;
     NAS_MMC_ABORT_FSM_TYPE_UINT8                            enAbortType;
     NAS_MMC_BG_PLMN_SEARCH_RSLT_ENUM_UINT32                 enSearchRslt;
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, begin */
     NAS_MML_ACCESS_RESTRICTION_STRU                         *pstCurCsRestrictInfo = VOS_NULL_PTR;
     NAS_MML_ACCESS_RESTRICTION_STRU                          stOldCsRestrictInfo;
     NAS_MML_ACCESS_RESTRICTION_STRU                         *pstCurPsRestrictInfo = VOS_NULL_PTR;
     NAS_MML_ACCESS_RESTRICTION_STRU                          stOldPsRestrictInfo;
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, end */
 
     NAS_MMC_SPEC_PLMN_SEARCH_STATE_ENUM_UINT8                enSpecPlmnSearchState;
-    /* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-15, begin */
 #if (FEATURE_ON == FEATURE_LTE)
     NAS_MML_LTE_CAPABILITY_STATUS_ENUM_UINT32               enLCapabilityStatus;
 
@@ -8721,7 +5798,6 @@ VOS_UINT32    NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitGasSysInfoIndReCampVPl
     /* 获取LTE能力状态 */
     enLCapabilityStatus  = NAS_MML_GetLteCapabilityStatus();
 #endif
-    /* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-15, end */
 
     PS_MEM_SET(&stOldCampInfo, 0, sizeof(NAS_MML_CAMP_PLMN_INFO_STRU));
     PS_MEM_SET(&stOldCsRestrictInfo, 0, sizeof(NAS_MML_ACCESS_RESTRICTION_STRU));
@@ -8739,11 +5815,9 @@ VOS_UINT32    NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitGasSysInfoIndReCampVPl
     /* 如果收到GAS的系统消息，且目前Utran被Enable，则重新Disable Utran */
     NAS_MMC_RcvGasSysInfoSetUtranCapabilityStatus();
 
-    /* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-15, begin */
 #if (FEATURE_ON == FEATURE_LTE)
     NAS_MMC_RcvGuSysInfoIndSetLteAbility(pstMsg, enLCapabilityStatus);
 #endif
-    /* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-15, end */
 
     /* 如果Abort类型为立即退 */
     if (NAS_MMC_ABORT_FSM_IMMEDIATELY == enAbortType)
@@ -8772,13 +5846,11 @@ VOS_UINT32    NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitGasSysInfoIndReCampVPl
     pstCurCampInfo  = NAS_MML_GetCurrCampPlmnInfo();
     PS_MEM_CPY(&stOldCampInfo, pstCurCampInfo, sizeof(NAS_MML_CAMP_PLMN_INFO_STRU));
 
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, begin */
      pstCurCsRestrictInfo    = NAS_MML_GetCsAcRestrictionInfo();
      pstCurPsRestrictInfo    = NAS_MML_GetPsAcRestrictionInfo();
 
      PS_MEM_CPY(&stOldCsRestrictInfo, pstCurCsRestrictInfo, sizeof(NAS_MML_ACCESS_RESTRICTION_STRU));
      PS_MEM_CPY(&stOldPsRestrictInfo, pstCurPsRestrictInfo, sizeof(NAS_MML_ACCESS_RESTRICTION_STRU));
-     /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, end */
 
     /* 根据系统消息，更新MML的全部变量 */
     NAS_MMC_UpdateNetworkInfo_GasSysInfo(pstMsg);
@@ -8790,31 +5862,23 @@ VOS_UINT32    NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitGasSysInfoIndReCampVPl
      || (NAS_MMC_SPEC_PLMN_SEARCH_RUNNING == enSpecPlmnSearchState))
     {
         /* 主动上报 */
-        /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
         NAS_MMC_SndMsccSysInfo();
-        /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
     }
 
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, begin */
     /* 驻留小区的接入受限信息变化时,通知MSCC模块当前接入受限信息 */
     if (VOS_TRUE == NAS_MML_IsAcInfoChanged(&stOldCsRestrictInfo, pstCurCsRestrictInfo))
     {
 
-        /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
         NAS_MMC_SndMsccAcInfoChangeInd(NAS_MSCC_PIF_SRVDOMAIN_CS, pstCurCsRestrictInfo);
-        /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
     }
 
     if (VOS_TRUE == NAS_MML_IsAcInfoChanged(&stOldPsRestrictInfo, pstCurPsRestrictInfo))
     {
-        /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
         NAS_MMC_SndMsccAcInfoChangeInd(NAS_MSCC_PIF_SRVDOMAIN_PS, pstCurPsRestrictInfo);
-        /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
     }
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, end */
 
     NAS_MMC_SetSpecPlmnSearchState(NAS_MMC_SPEC_PLMN_SEARCH_STOP);
 
@@ -8824,9 +5888,7 @@ VOS_UINT32    NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitGasSysInfoIndReCampVPl
     NAS_MMC_SndCbaMsgNetModInd(NAS_MML_NET_RAT_TYPE_GSM);
 #endif
 
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-18, begin */
     NAS_MMC_SndMsccCampOnInd(VOS_TRUE);
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-18, end */
 
     /*转发系统消息通知 给 MM/GMM,并将当前系统消息的 Forbidden 类型携带过去 */
     NAS_MMC_SndMmGsmSysInfoInd(NAS_MMC_GetCurrentLaiForbbidenType(), VOS_FALSE, pstMsg);
@@ -8847,22 +5909,7 @@ VOS_UINT32    NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitGasSysInfoIndReCampVPl
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiWaitGasSysInfoExpired_BgPlmnSearch_WaitGasSysInfoIndReCampVPlmn
- 功能描述  : 回VPLMN等待系统消息状态收到TI_NAS_MMC_WAIT_GAS_SYS_INFO消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月19日
-   作    者   : L00171473
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvTiWaitGasSysInfoExpired_BgPlmnSearch_WaitGasSysInfoIndReCampVPlmn(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -8891,67 +5938,7 @@ VOS_UINT32    NAS_MMC_RcvTiWaitGasSysInfoExpired_BgPlmnSearch_WaitGasSysInfoIndR
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcPsRegRslt_BgPlmnSearch
- 功能描述  : 对Ps注册结果的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月20日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年11月28日
-   作    者   : w00167002
-   修改内容   : DTS2011112406707:若当前为假流程且当前的AdditionalAction不为
-                初始无效值，则不更新当前的AdditionalAction的值，否则若当前为
-                真流程或当前为假流程且AdditionalAction为初始无效值，则更新
-                当前的AdditionalAction的值.
-                修改原因:在ROAMING BROKER时候，设置1次失败,注册失败1次后，
-                MMC需要搜网，但是MMC可能要等两个域的结果(如在选网状态机)，
-                当收到系统消息的时候，假流程会更改MMC的AdditionalAction的值,
-                导致ROMING BROKER特性失效。
- 3.日    期   : 2011年12月5日
-   作    者   : z00161729
-   修改内容   : V7R1 phaseIV修改合并原NAS_MMC_HPLMN_REG_REJ_STRU和NAS_MMC_PLMN_REG_INFO_STRU
- 4.日    期   : 2011年12月15日
-   作    者   : w00176964
-   修改内容   : V7R1 Phase IV调整,当前SYSCFG中L不在时，也需要向LMM通知ID_MMC_LMM_ACTION_RESULT_REQ
- 5.日    期   : 2012年1月3日
-   作    者   : w00167002
-   修改内容   : DTS2011122006209:g下PS ONLY注册成功_更改为CS后注册失败4次后未发起搜网
-                统一调整注册ADDITIONAL ACTION的值，若是用户自定义的原因值(>=256)，则
-                不保存注册结果。
-                若当前支持L模，则注册原因值小于260时通知LMM当前的注册结果.
- 6.日    期   : 2012年3月1日
-   作    者   : w00176964
-   修改内容   : DTS2012022407450:增加GMM的联合RAU/ATTACH类型，MMC转发给LMM
- 7.日    期   : 2012年03月30日
-   作    者   : l00130025
-   修改内容   : DTS2012032307791,发给LMM注册结果,CombineReg时需要区分结果域
- 8.日    期   : 2012年6月8日
-   作    者   : l00130025
-   修改内容   : DTS2012060702423:Anycell驻留后，注册成功时，没有通知通知APS/CDS消息，无法数传
- 9.日    期   : 2012年12月6日
-   作    者   : s00217060
-   修改内容   : DTS2012120410842:注册成功时，需要删除ForbPlmn,ForbLa,ForbGprs等信息
-10.日    期   : 2013年05月08日
-   作    者   : s46746
-   修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-11.日    期   : 2013年12月24日
-   作    者   : z00161729
-   修改内容   : SVLTE支持NCELL搜网
-12.日    期   : 2014年01月10日
-   作    者   : w00176964
-   修改内容   : VoLTE_PhaseIII项目
-13.日    期   : 2014年05月4日
-   作    者   : w00176964
-   修改内容   : V3R3C60_eCall项目调整
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcPsRegRslt_BgPlmnSearch(
     GMMMMC_PS_REG_RESULT_IND_STRU      *pstPsRegRsltInd
 )
@@ -8984,18 +5971,14 @@ VOS_VOID NAS_MMC_ProcPsRegRslt_BgPlmnSearch(
 
     PS_MEM_SET(&stSndEquPlmnInfo, 0, sizeof(NAS_MML_EQUPLMN_INFO_STRU));
 
-    /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-5-4, begin */
 
-    /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-5-4, end */
 
     if (GMM_MMC_ACTION_RESULT_SUCCESS == pstPsRegRsltInd->enActionResult)
     {
         enAdditionalAction = NAS_MMC_ADDITIONAL_ACTION_NORMAL_CAMP_ON;
 
-        /* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-2-10, begin */
         /* 保存注册结果消息 */
         NAS_MMC_SaveRegRsltCtx(GMM_MMC_PS_REG_RESULT_IND, pstPsRegRsltInd);
-        /* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-2-10, end */
 
         /* 根据注册结果更新注册信息表 */
         NAS_MMC_UpdatePlmnRegInfoList(NAS_MML_GetCurrCampPlmnId(), NAS_MMC_REG_DOMAIN_PS, NAS_MML_REG_FAIL_CAUSE_NULL);
@@ -9019,9 +6002,7 @@ VOS_VOID NAS_MMC_ProcPsRegRslt_BgPlmnSearch(
 
         NAS_MMC_UpdatePsRegStatePsRegSucc();
 
-        /* Added by w00176964 for V3R3C60_eCall项目, 2014-5-4, begin */
         NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_PS, NAS_MMC_NORMAL_SERVICE);
-        /* Added by w00176964 for V3R3C60_eCall项目, 2014-5-4, end */
 
 #if   (FEATURE_ON == FEATURE_LTE)
 
@@ -9037,9 +6018,7 @@ VOS_VOID NAS_MMC_ProcPsRegRslt_BgPlmnSearch(
         }
 #endif
 
-        /* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, begin */
         NAS_MMC_SndMsccRegResultInd(NAS_MSCC_PIF_SRVDOMAIN_PS, VOS_TRUE, pstPsRegRsltInd->enRegFailCause);
-        /* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, end */
 
     }
     else
@@ -9092,68 +6071,7 @@ VOS_VOID NAS_MMC_ProcPsRegRslt_BgPlmnSearch(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCsRegRslt_BgPlmnSearch
- 功能描述  : 对Cs注册结果的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月20日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2011年11月28日
-   作    者   : w00167002
-   修改内容   : DTS2011112406707:若当前为假流程且当前的AdditionalAction不为
-                初始无效值，则不更新当前的AdditionalAction的值，否则若当前为
-                真流程或当前为假流程且AdditionalAction为初始无效值，则更新
-                当前的AdditionalAction的值.
-                修改原因:在ROAMING BROKER时候，设置1次失败,注册失败1次后，
-                MMC需要搜网，但是MMC可能要等两个域的结果(如在选网状态机)，
-                当收到系统消息的时候，假流程会更改MMC的AdditionalAction的值,
-                导致ROMING BROKER特性失效。
-  3.日    期   : 2011年12月5日
-    作    者   : z00161729
-    修改内容   : V7R1 phaseIV修改合并原NAS_MMC_HPLMN_REG_REJ_STRU和NAS_MMC_PLMN_REG_INFO_STRU
-
-  4.日    期   : 2011年12月15日
-    作    者   : w00176964
-    修改内容   : V7R1 Phase IV调整,当前SYSCFG中L不在时，也需要向LMM通知ID_MMC_LMM_ACTION_RESULT_REQ
-  5.日    期   : 2012年1月3日
-    作    者   : w00167002
-    修改内容   : DTS2011122006209:g下PS ONLY注册成功_更改为CS后注册失败4次后未发起搜网
-                  统一调整注册ADDITIONAL ACTION的值，若是用户自定义的原因值(>=256)，则
-                  不保存注册结果。若当前支持L模，则注册原因值小于260时通知LMM.
-
-  6.日    期   : 2012年1月20日
-    作    者   : w00167002
-    修改内容   : DTS2011122006209:将注册失败的消息通知给处理注册结果函数，
-                  能进行更好的扩展.
-  7.日    期   : 2012年3月1日
-    作    者   : w00176964
-    修改内容   : DTS2012022407450:联合ATTACH时,MM不能通知LMM此时CS的注册结果，否则导致TAU的类型不正确
-  8.日    期   : 2012年12月6日
-    作    者   : s00217060
-    修改内容   : DTS2012120410842:注册成功时，需要删除ForbPlmn,ForbLa,ForbGprs等信息
-  9.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
- 10.日    期   : 2013年12月24日
-    作    者   : z00161729
-    修改内容   : SVLTE支持NCELL搜网
- 11.日    期   : 2014年01月10日
-    作    者   : w00176964
-    修改内容   : VoLTE_PhaseIII项目
- 12.日    期   : 2014年05月4日
-    作    者   : w00176964
-    修改内容   : V3R3C60_eCall项目调整
- 13.日    期   : 2014年11月3日
-   作    者   : z00161729
-   修改内容   : 开机漫游搜网项目修改
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcCsRegRslt_BgPlmnSearch(
     MMMMC_CS_REG_RESULT_IND_STRU       *pstCsRegRsltInd
 )
@@ -9170,9 +6088,7 @@ VOS_VOID NAS_MMC_ProcCsRegRslt_BgPlmnSearch(
     NAS_MMC_DPLMN_NPLMN_CFG_INFO_STRU                      *pstDPlmnNPlmnCfgInfo = VOS_NULL_PTR;
     pstDPlmnNPlmnCfgInfo  = NAS_MMC_GetDPlmnNPlmnCfgInfo();
 
-    /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-5-4, begin */
 
-    /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-5-4, end */
 
     PS_MEM_SET(&stSndEquPlmnInfo, 0, sizeof(NAS_MML_EQUPLMN_INFO_STRU));
 
@@ -9202,9 +6118,7 @@ VOS_VOID NAS_MMC_ProcCsRegRslt_BgPlmnSearch(
 
         NAS_MMC_UpdateCsRegStateCsRegSucc();
 
-        /* Added by w00176964 for V3R3C60_eCall项目, 2014-5-4, begin */
         NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_CS, NAS_MMC_NORMAL_SERVICE);
-        /* Added by w00176964 for V3R3C60_eCall项目, 2014-5-4, end */
 
 #if   (FEATURE_ON == FEATURE_LTE)
         /* 非联合注册时并且为真流程才通知LMM此时LU的结果 */
@@ -9222,9 +6136,7 @@ VOS_VOID NAS_MMC_ProcCsRegRslt_BgPlmnSearch(
         }
 #endif
 
-        /* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, begin */
         NAS_MMC_SndMsccRegResultInd(NAS_MSCC_PIF_SRVDOMAIN_CS, VOS_TRUE, pstCsRegRsltInd->enRegFailCause);
-        /* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, end */
 
     }
     else
@@ -9289,44 +6201,7 @@ VOS_VOID NAS_MMC_ProcCsRegRslt_BgPlmnSearch(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndSpecSearchReq_BgPlmnSearch
- 功能描述  : 向接入层发送搜网请求消息
- 输入参数  : stDestPlmn
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月23日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年11月11日
-   作    者   : w00167002
-   修改内容   : DTS2011110907180:将禁止漫游位置区信息作为参数传递进来，向
-                接入层发送此FORB ROAM LAS即可
-
- 3.日    期   : 2011年11月29日
-   作    者   : w00167002
-   修改内容   : DTS2011112301233:当前为关机类型的打断，为了快速响应关机，
-                故启动等回复比较短的定时器
- 4.日    期   : 2012年4月24日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
- 5.日    期   : 2013年1月15日
-   作    者   : s00217060
-   修改内容   : for DSDA GUNAS C CORE:等待WAS的搜网回复定时器长度封装成函数
- 6.日    期   : 2014年3月19日
-   作    者   : w00242748
-   修改内容   : DTS2014031200137:当NV特性打开时，自动开机或者搜网时，如果首次搜索RPLMN的话，
-                需要将HPLMN/EHPLMN带给接入层。
-7.日    期   : 2015年02月11日
-   作    者   : w00167002
-   修改内容   : DTS2015021000324:当前在DSDS双卡中，GSM下搜网可能不回NAS 搜网NO RF,那么
-                NAS搜网定时器超时，则上报无服务了。修改为延长NAS定时器时长
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndSpecSearchReq_BgPlmnSearch(
     NAS_MML_PLMN_WITH_RAT_STRU         *pstDestPlmn
 )
@@ -9429,34 +6304,7 @@ VOS_VOID NAS_MMC_SndSpecSearchReq_BgPlmnSearch(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsVplmnValid
- 功能描述  : 回vplmn时，判断vplmn接入技术是否有效
-             1) 如果vplmn是L的网络且当前ps卡无效
-                或此时L已disable或syscfg设置L不支持时认为vplmn接入技术无效，无需回vplmn直接退状态机;
-             2) 如果vplmn是GU的网络，syscfg设置不支持GU，此时认为vplmn接入技术无效，无需回vplmn直接退状态机
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - vplmn接入技术有效
-             VOS_FALSE - vplmn接入技术无效
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月30日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年8月27日
-    作    者   : l00167671
-    修改内容   : 问题单: DTS2012080605217,背景搜没能找到可以注册的网络回退到V时，
-                 V在禁止列表中或者forbid plmn for gprs列表中时进入限制服务并不再
-                 发起搜网
-  3.日    期   : 2012年10月20日
-    作    者   : s00217060
-    修改内容   : 问题单: DTS2012082306472,背景搜没能找到可以注册的网络回退到V时，
-                 如果Vplmn是Lte网络,并且PS卡有效且允许注册,需要Enable Lte,重回Vplmn
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsVplmnValid(VOS_VOID)
 {
 	NAS_MML_PLMN_WITH_RAT_STRU                             *pstPreCampPlmn = VOS_NULL_PTR;
@@ -9521,33 +6369,7 @@ VOS_UINT32 NAS_MMC_IsVplmnValid(VOS_VOID)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReCampVPlmn_BgPlmnSearch
- 功能描述  : 回VPLMN的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年9月20日
-    作    者   : s46746
-    修改内容   : 新生成函数
-  2.日    期   : 2012年10月20日
-    作    者   : s00217060
-    修改内容   : 问题单: DTS2012082306472,背景搜没能找到可以注册的网络回退到V时，
-                 如果Vplmn是Lte网络,并且PS卡有效且允许注册,需要Enable Lte,重回Vplmn
-  3.日    期   : 2013年01月23日
-    作    者   : s00217060
-    修改内容   : 问题单: DTS2013012106172,Enable Lte时停止定时器TI_NAS_MMC_WAIT_ENABLE_LTE_TIMER
-  4.日    期   : 2013年11月01日
-    作    者   : l00208543
-    修改内容   : 根据卡类型禁止网络制式
-  5.日    期   : 2015年1月5日
-    作    者   : z00161729
-    修改内容   : AT&T 支持DAM特性修改
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReCampVPlmn_BgPlmnSearch()
 {
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enNetRatType;
@@ -9625,21 +6447,7 @@ VOS_VOID NAS_MMC_ReCampVPlmn_BgPlmnSearch()
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsAdditionalTriggerPlmnSearch_BgPlmnSearch
- 功能描述  : 根据当前注册导致的addition值,判断是否需要导致搜网
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月1日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsAdditionalTriggerPlmnSearch_BgPlmnSearch()
 {
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    enAdditionalAction;
@@ -9666,31 +6474,7 @@ VOS_UINT32 NAS_MMC_IsAdditionalTriggerPlmnSearch_BgPlmnSearch()
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SearchNextHighPrioPlmn_BgPlmnSearch
- 功能描述  : 搜索下一个高优先级网络的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 获取下一个高优先级网络成功
-             VOS_FALSE - 获取下一个高优先级网络失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年9月20日
-    作    者   : s46746
-    修改内容   : 新生成函数
-  2.日    期   : 2012年4月30日
-    作    者   : z00161729
-    修改内容   : V7R1C50 GUL BG搜网修改
-  3.日    期   : 2012年8月27日
-    作    者   : l00167671
-    修改内容   : 问题单: DTS2012080605217,背景搜没能找到可以注册的网络回退到V时，
-                 V在禁止列表中或者forbid plmn for gprs列表中时进入限制服务并不再
-                 发起搜网,将原函数NAS_MMC_IsVplmnNetRatValid改名成NAS_MMC_IsVplmnValid
-                 并在该函数中增加了判断V是否在禁止列表中或者forbid plmn for gprs列表中，
-                 若在两个列表中的任意一个列表中则认为Vplmn已经无效
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_SearchNextHighPrioPlmn_BgPlmnSearch()
 {
     NAS_MMC_PLMN_SELECTION_LIST_INFO_STRU                  *pstPlmnSelectionListInfo = VOS_NULL_PTR;
@@ -9743,36 +6527,7 @@ VOS_UINT32 NAS_MMC_SearchNextHighPrioPlmn_BgPlmnSearch()
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_PerformAbortRegFinished_BgPlmnSearch
- 功能描述  : CS、PS注册结果接收到后存在Abort标志处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年9月20日
-    作    者   : s46746
-    修改内容   : 新生成函数
-  2.日    期   : 2012年4月24日
-    作    者   : z00161729
-    修改内容   : V7R1C50 GUL BG搜网修改
-  3.日    期   : 2012年5月18日
-    作    者   : w00176964
-    修改内容   : V7R1C50 GUL BG搜网修改
-  4.日    期   : 2012年8月27日
-    作    者   : l00167671
-    修改内容   : 问题单: DTS2012080605217,背景搜没能找到可以注册的网络回退到V时，
-                 V在禁止列表中或者forbid plmn for gprs列表中时进入限制服务并不再
-                 发起搜网,将原函数NAS_MMC_IsVplmnNetRatValid改名成NAS_MMC_IsVplmnValid
-                 并在该函数中增加了判断V是否在禁止列表中或者forbid plmn for gprs列表中，
-                 若在两个列表中的任意一个列表中则认为Vplmn已经无效
- 6.日    期   : 2012年11月22日
-   作    者   : t00212959
-   修改内容   : DTS2012112006974:#18造成disable LTE，主动释放链接
-*****************************************************************************/
 VOS_VOID NAS_MMC_PerformAbortRegFinished_BgPlmnSearch()
 {
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    enAdditionalAction;
@@ -9859,9 +6614,7 @@ VOS_VOID NAS_MMC_PerformAbortRegFinished_BgPlmnSearch()
             NAS_MMC_SndGmmPlmnSchInit();
             NAS_MMC_SndMmPlmnSchInit();
 
-            /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, begin */
             NAS_MMC_SndMsccCampOnInd(VOS_FALSE);
-            /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, end */
 
             NAS_MMC_ReCampVPlmn_BgPlmnSearch();
             return;
@@ -9878,32 +6631,7 @@ VOS_VOID NAS_MMC_PerformAbortRegFinished_BgPlmnSearch()
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_PerformAdditionalActionRegFinished_BgPlmnSearch
- 功能描述  : CS、PS注册结果接收到后的附加处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年9月20日
-    作    者   : s46746
-    修改内容   : 新生成函数
-  2.日    期   : 2012年4月24日
-    作    者   : z00161729
-    修改内容   : V7R1C50 GUL BG搜网修改
-  3.日    期   : 2012年11月22日
-    作    者   : t00212959
-    修改内容   : DTS2012112006974
-  4.日    期   : 2013年2月7日
-    作    者   : W00176964
-    修改内容   : Volte_phase3项目调整:增加IMS不可用时disable L模的逻辑修改
-  5.日    期   : 2015年8月13日
-    作    者   : l00289540
-    修改内容   : User_Exp_Improve修改
-*****************************************************************************/
 VOS_VOID NAS_MMC_PerformAdditionalActionRegFinished_BgPlmnSearch()
 {
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    enAdditionalAction;
@@ -10010,30 +6738,12 @@ VOS_VOID NAS_MMC_PerformAdditionalActionRegFinished_BgPlmnSearch()
     NAS_MMC_SndGmmPlmnSchInit();
     NAS_MMC_SndMmPlmnSchInit();
 
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, begin */
     NAS_MMC_SndMsccCampOnInd(VOS_FALSE);
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, end */
 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_PerformAdditionalActionConnRel_BgPlmnSearch
- 功能描述  : 连接释放后的附加处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年9月20日
-    作    者   : s46746
-    修改内容   : 新生成函数
-  2.日    期   : 2012年4月24日
-    作    者   : z00161729
-    修改内容   : V7R1C50 GUL BG搜网修改函数名
-*****************************************************************************/
 VOS_VOID NAS_MMC_PerformAdditionalActionConnRel_BgPlmnSearch()
 {
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 enAdditionalAction;
@@ -10116,32 +6826,12 @@ VOS_VOID NAS_MMC_PerformAdditionalActionConnRel_BgPlmnSearch()
     NAS_MMC_SndMmPlmnSchInit();
 
 
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, begin */
     NAS_MMC_SndMsccCampOnInd(VOS_FALSE);
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, end */
 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndRslt_BgPlmnSearch
- 功能描述  : 发送BgPlmnSearch状态机退出结果消息
- 输入参数  : enRslt,状态机结果
-             ulNeedPlmnSearchFlg,是否需要搜网
-             pstSearchPlmnList,接入层搜索到的列表
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年9月22日
-    作    者   : s46746
-    修改内容   : 新生成函数
-  2.日    期   : 2012年4月24日
-    作    者   : z00161729
-    修改内容   : V7R1C50 GUL BG搜网修改
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndRslt_BgPlmnSearch(
     NAS_MMC_BG_PLMN_SEARCH_RSLT_ENUM_UINT32                 enRslt,
     VOS_UINT32                                              ulNeedPlmnSearchFlg,
@@ -10216,25 +6906,7 @@ VOS_VOID NAS_MMC_SndRslt_BgPlmnSearch(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndBgPlmnSearchReq_BgPlmnSearch
- 功能描述  : 向接入层发送BG搜网请求消息
- 输入参数  : *pstPlmnId,需要搜索的网络
-              enRat,需要搜索的接入技术
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月22日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月28日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndBgPlmnSearchReq_BgPlmnSearch(
     NAS_MML_PLMN_ID_STRU               *pstPlmnId,
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enRat
@@ -10276,24 +6948,7 @@ VOS_VOID NAS_MMC_SndBgPlmnSearchReq_BgPlmnSearch(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndSuspendReq_BgPlmnSearch
- 功能描述  : 向接入层发送挂起请求
- 输入参数  : enRat,需要挂起的接入技术
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月22日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月24日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndSuspendReq_BgPlmnSearch(
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enRat
 )
@@ -10334,24 +6989,7 @@ VOS_VOID NAS_MMC_SndSuspendReq_BgPlmnSearch(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndSuspendReqReCampVPlmn_BgPlmnSearch
- 功能描述  : 向接入层发送挂起请求
- 输入参数  : enRat,需要挂起的接入技术
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月22日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月24日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndSuspendReqReCampVPlmn_BgPlmnSearch(
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enRat
 )
@@ -10391,21 +7029,7 @@ VOS_VOID NAS_MMC_SndSuspendReqReCampVPlmn_BgPlmnSearch(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndAsSpecPlmnSearchReq_BgPlmnSearch
- 功能描述  : BG search 成功后，向接入层发送指定搜请求
- 输入参数  : pstPlmnId  -  需要指定搜的 plmn
-             enRat      -  需要指定搜的接入技术
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
-  1.日    期   : 2015年12月19日
-    作    者   : c00318887
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndAsSpecPlmnSearchReq_BgPlmnSearch(
     NAS_MML_PLMN_ID_STRU               *pstPlmnId,
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enRat
@@ -10437,33 +7061,7 @@ VOS_VOID NAS_MMC_SndAsSpecPlmnSearchReq_BgPlmnSearch(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndFastSpecSearchReq_BgPlmnSearch
- 功能描述  : 向接入层发送快速指定搜网
- 输入参数  : *pstPlmnId,需要搜索的网络
-              enRat,需要搜索的接入技术
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月22日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月24日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
-
- 3.日    期   : 2012年9月4日
-   作    者   : w00167002
-   修改内容   : V7R1C50_GUTL_PhaseII:等W快速指定搜网时，不需要到TD下搜网，故修改
-                定时器的时长只用于保护在W下搜网。
- 4.日    期   : 2015年02月11日
-   作    者   : w00167002
-   修改内容   : DTS2015021000324:当前在DSDS双卡中，GSM下搜网可能不回NAS 搜网NO RF,那么
-                NAS搜网定时器超时，则上报无服务了。修改为延长NAS定时器时长。
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndFastSpecSearchReq_BgPlmnSearch(
     NAS_MML_PLMN_ID_STRU               *pstPlmnId,
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enRat
@@ -10514,22 +7112,7 @@ VOS_VOID NAS_MMC_SndFastSpecSearchReq_BgPlmnSearch(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_PerformFastSpecSearch_BgPlmnSearch
- 功能描述  : BG搜索完成后进行快速指定搜网
- 输入参数  : *pstPlmnId,需要搜索的网络
-              enRat,需要搜索的接入技术
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月22日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_PerformFastSpecSearch_BgPlmnSearch(
     NAS_MML_PLMN_ID_STRU               *pstPlmnId,
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enRat
@@ -10564,21 +7147,7 @@ VOS_VOID NAS_MMC_PerformFastSpecSearch_BgPlmnSearch(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_LoadInterSysFsm_BgPlmnSearch
- 功能描述  : 根据SUSPEND的原因值起不同的状态机
- 输入参数  : MMC_SUSPEND_CAUSE_ENUM_UINT8        enSuspendCause
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月23日
-   作    者   : L00171473
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_LoadInterSysFsm_BgPlmnSearch(
     MMC_SUSPEND_CAUSE_ENUM_UINT8        enSuspendCause
 )
@@ -10614,29 +7183,7 @@ VOS_VOID NAS_MMC_LoadInterSysFsm_BgPlmnSearch(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcBgPlmnSearchRlstFail_BgPlmnSearch
- 功能描述  : 处理BG搜网的失败结果
- 输入参数  : pstSearchedPlmnListInfo -- BG搜网的结果消息转换来的内部搜网信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年10月6日
-   作    者   : L00171473
-   修改内容   : 新生成函数
- 2.日    期   : 2011年12月20日
-   作    者   : h44270
-   修改内容   : BG搜网状态机开始快速指定搜网时，认为当前无网络，通知APS挂起
- 3.日    期   : 2012年4月24日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改函数入参
- 4.日    期   : 2012年5月7日
-   作    者   : w00176964
-   修改内容   : V7R1C50 GUL BG搜网项目调整
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcBgPlmnSearchRlstFail_BgPlmnSearch(
     NAS_MMC_SEARCHED_PLMN_LIST_INFO_STRU                   *pstSearchedPlmnListInfo
 )
@@ -10708,9 +7255,7 @@ VOS_VOID NAS_MMC_ProcBgPlmnSearchRlstFail_BgPlmnSearch(
         NAS_MMC_SndGmmPlmnSchInit();
         NAS_MMC_SndMmPlmnSchInit();
 
-        /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, begin */
         NAS_MMC_SndMsccCampOnInd(VOS_FALSE);
-        /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, end */
 
         NAS_MMC_NotifyModeChange(NAS_MML_NET_RAT_TYPE_BUTT,
                                  NAS_MML_GetSimPsRegStatus());
@@ -10722,30 +7267,7 @@ VOS_VOID NAS_MMC_ProcBgPlmnSearchRlstFail_BgPlmnSearch(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvRrMmAreaLostInd_BgPlmnSearch_WaitWasBgPlmnSearchCnf
- 功能描述  : 等待BG搜网回复状态收到RRMM_AREA_LOST_IND消息的处理
- 输入参数  : pstMsg        - RRMM_AREA_LOST_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年11月14日
-   作    者   : z40661
-   修改内容   : 新生成函数
-
- 2.日    期   : 2014年5月4日
-   作    者   : t00173447
-   修改内容   : DTS2014042105390,软银定制需求
- 3.日    期   : 2015年10月22日
-   作    者   : s00217060
-   修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_3.0:RRMM_AREA_LOST_IND消息接口变更
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvRrMmAreaLostInd_BgPlmnSearch_WaitWasBgPlmnSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -10759,11 +7281,9 @@ VOS_UINT32    NAS_MMC_RcvRrMmAreaLostInd_BgPlmnSearch_WaitWasBgPlmnSearchCnf(
     /* 停止保护定时器 */
     NAS_MMC_StopTimer(TI_NAS_MMC_WAIT_WAS_BG_PLMN_SEARCH_CNF);
 
-    /* Modified by c00318887 for 预置频点搜网优化, 2015-9-9, begin */
     NAS_MMC_SaveLastCampedPlmnWithRat(NAS_MML_GetCurrCampPlmnInfo()->stLai.stPlmnId.ulMcc,
                            NAS_MML_GetCurrCampPlmnInfo()->stLai.stPlmnId.ulMnc,
                            NAS_MML_GetCurrCampPlmnInfo()->stLai.enCampPlmnNetRat);
-    /* Modified by c00318887 for 预置频点搜网优化, 2015-9-9, end */
 
 
     /* 清除驻留状态 */
@@ -10780,9 +7300,7 @@ VOS_UINT32    NAS_MMC_RcvRrMmAreaLostInd_BgPlmnSearch_WaitWasBgPlmnSearchCnf(
     NAS_MMC_SndGmmCoverageLostInd();
 
     /* 更新服务状态 */
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
     NAS_MMC_SndMsccCoverageInd( NAS_MSCC_PIF_COVERAGE_AREA_CHANGE_MODE_LOST );
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
 
     NAS_EventReport(WUEPS_PID_MMC, NAS_OM_EVENT_COVERAGE_LOST,
@@ -10800,29 +7318,7 @@ VOS_UINT32    NAS_MMC_RcvRrMmAreaLostInd_BgPlmnSearch_WaitWasBgPlmnSearchCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvRrMmAreaLostInd_BgPlmnSearch_WaitGasBgPlmnSearchCnf
- 功能描述  : 等待BG搜网回复状态收到RRMM_AREA_LOST_IND消息的处理
- 输入参数  : pstMsg        - RRMM_AREA_LOST_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年11月14日
-   作    者   : z40661
-   修改内容   : 新生成函数
- 2.日    期   : 2014年5月4日
-   作    者   : t00173447
-   修改内容   : DTS2014042105390,软银定制需求
- 3.日    期   : 2015年10月22日
-   作    者   : s00217060
-   修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_3.0:RRMM_AREA_LOST_IND消息接口变更
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvRrMmAreaLostInd_BgPlmnSearch_WaitGasBgPlmnSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -10836,11 +7332,9 @@ VOS_UINT32    NAS_MMC_RcvRrMmAreaLostInd_BgPlmnSearch_WaitGasBgPlmnSearchCnf(
     /* 停止保护定时器 */
     NAS_MMC_StopTimer(TI_NAS_MMC_WAIT_WAS_BG_PLMN_SEARCH_CNF);
 
-    /* Modified by c00318887 for 预置频点搜网优化, 2015-9-9, begin */
     NAS_MMC_SaveLastCampedPlmnWithRat(NAS_MML_GetCurrCampPlmnInfo()->stLai.stPlmnId.ulMcc,
                            NAS_MML_GetCurrCampPlmnInfo()->stLai.stPlmnId.ulMnc,
                            NAS_MML_GetCurrCampPlmnInfo()->stLai.enCampPlmnNetRat);
-    /* Modified by c00318887 for 预置频点搜网优化, 2015-9-9, end */
 
     /* 清除驻留状态 */
     NAS_MMC_SetAsCellCampOn(NAS_MMC_AS_CELL_NOT_CAMP_ON);
@@ -10856,9 +7350,7 @@ VOS_UINT32    NAS_MMC_RcvRrMmAreaLostInd_BgPlmnSearch_WaitGasBgPlmnSearchCnf(
     NAS_MMC_SndGmmCoverageLostInd();
 
     /* 更新服务状态 */
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
     NAS_MMC_SndMsccCoverageInd( NAS_MSCC_PIF_COVERAGE_AREA_CHANGE_MODE_LOST );
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
 
     NAS_EventReport(WUEPS_PID_MMC, NAS_OM_EVENT_COVERAGE_LOST,
@@ -10875,29 +7367,7 @@ VOS_UINT32    NAS_MMC_RcvRrMmAreaLostInd_BgPlmnSearch_WaitGasBgPlmnSearchCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvRrMmAreaLostInd_BgPlmnSearch_WaitWasBgStopCnf
- 功能描述  : 等待停止背景搜网回复状态收到RRMM_AREA_LOST_IND消息的处理
- 输入参数  : pstMsg        - RRMM_REL_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年11月14日
-   作    者   : z40661
-   修改内容   : 新生成函数
- 2.日    期   : 2014年5月4日
-   作    者   : t00173447
-   修改内容   : DTS2014042105390,软银定制需求
- 3.日    期   : 2015年10月22日
-   作    者   : s00217060
-   修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_3.0:RRMM_AREA_LOST_IND消息接口变更
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvRrMmAreaLostInd_BgPlmnSearch_WaitWasBgStopCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -10911,11 +7381,9 @@ VOS_UINT32    NAS_MMC_RcvRrMmAreaLostInd_BgPlmnSearch_WaitWasBgStopCnf(
     /* 停止保护定时器 */
     NAS_MMC_StopTimer(TI_NAS_MMC_WAIT_WAS_BG_PLMN_STOP_CNF);
 
-    /* Modified by c00318887 for 预置频点搜网优化, 2015-9-9, begin */
     NAS_MMC_SaveLastCampedPlmnWithRat(NAS_MML_GetCurrCampPlmnInfo()->stLai.stPlmnId.ulMcc,
                            NAS_MML_GetCurrCampPlmnInfo()->stLai.stPlmnId.ulMnc,
                            NAS_MML_GetCurrCampPlmnInfo()->stLai.enCampPlmnNetRat);
-    /* Modified by c00318887 for 预置频点搜网优化, 2015-9-9, end */
 
     /* 清除驻留状态 */
     NAS_MMC_SetAsCellCampOn(NAS_MMC_AS_CELL_NOT_CAMP_ON);
@@ -10931,9 +7399,7 @@ VOS_UINT32    NAS_MMC_RcvRrMmAreaLostInd_BgPlmnSearch_WaitWasBgStopCnf(
     NAS_MMC_SndGmmCoverageLostInd();
 
     /* 更新服务状态 */
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
     NAS_MMC_SndMsccCoverageInd( NAS_MSCC_PIF_COVERAGE_AREA_CHANGE_MODE_LOST );
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
 
     NAS_EventReport(WUEPS_PID_MMC, NAS_OM_EVENT_COVERAGE_LOST,
@@ -10951,29 +7417,7 @@ VOS_UINT32    NAS_MMC_RcvRrMmAreaLostInd_BgPlmnSearch_WaitWasBgStopCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvRrMmAreaLostInd_BgPlmnSearch_WaitGasBgStopCnf
- 功能描述  : 等待停止背景搜网回复状态收到RRMM_AREA_LOST_IND消息的处理
- 输入参数  : pstMsg        - RRMM_REL_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年11月14日
-   作    者   : z40661
-   修改内容   : 新生成函数
- 2.日    期   : 2014年5月4日
-   作    者   : t00173447
-   修改内容   : DTS2014042105390,软银定制需求
- 3.日    期   : 2015年10月22日
-   作    者   : s00217060
-   修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_3.0:RRMM_AREA_LOST_IND消息接口变更
-
-*****************************************************************************/
 VOS_UINT32    NAS_MMC_RcvRrMmAreaLostInd_BgPlmnSearch_WaitGasBgStopCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -10987,11 +7431,9 @@ VOS_UINT32    NAS_MMC_RcvRrMmAreaLostInd_BgPlmnSearch_WaitGasBgStopCnf(
     /* 停止保护定时器 */
     NAS_MMC_StopTimer(TI_NAS_MMC_WAIT_WAS_BG_PLMN_STOP_CNF);
 
-    /* Modified by c00318887 for 预置频点搜网优化, 2015-9-9, begin */
     NAS_MMC_SaveLastCampedPlmnWithRat(NAS_MML_GetCurrCampPlmnInfo()->stLai.stPlmnId.ulMcc,
                            NAS_MML_GetCurrCampPlmnInfo()->stLai.stPlmnId.ulMnc,
                            NAS_MML_GetCurrCampPlmnInfo()->stLai.enCampPlmnNetRat);
-    /* Modified by c00318887 for 预置频点搜网优化, 2015-9-9, end */
 
     /* 清除驻留状态 */
     NAS_MMC_SetAsCellCampOn(NAS_MMC_AS_CELL_NOT_CAMP_ON);
@@ -11007,9 +7449,7 @@ VOS_UINT32    NAS_MMC_RcvRrMmAreaLostInd_BgPlmnSearch_WaitGasBgStopCnf(
     NAS_MMC_SndGmmCoverageLostInd();
 
     /* 更新服务状态 */
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
     NAS_MMC_SndMsccCoverageInd( NAS_MSCC_PIF_COVERAGE_AREA_CHANGE_MODE_LOST );
-     /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
 
     NAS_EventReport(WUEPS_PID_MMC, NAS_OM_EVENT_COVERAGE_LOST,
@@ -11027,22 +7467,7 @@ VOS_UINT32    NAS_MMC_RcvRrMmAreaLostInd_BgPlmnSearch_WaitGasBgStopCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvRrmmLimitServiceCampInd_BgPlmnSearch_WaitCsPsRegRsltInd
- 功能描述  : 高优先级搜网等注册结果时，对OOS消息RRMM_LIMIT_SERVICE_CAMP_IND的处理
- 输入参数  : pstMsg        - RRMM_LIMIT_SERVICE_CAMP_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月15日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvRrmmLimitServiceCampInd_BgPlmnSearch_WaitCsPsRegRsltInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -11051,23 +7476,7 @@ VOS_UINT32  NAS_MMC_RcvRrmmLimitServiceCampInd_BgPlmnSearch_WaitCsPsRegRsltInd(
     return NAS_MMC_RcvRrmmLimitServiceCampInd_BgPLmnSearch(ulEventType, pstMsg);
 }
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-2-8, begin */
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMsccImsVoiceCapInd_BgPlmnSearch_WaitCsPsRegRsltInd
- 功能描述  : 处理MSCC的IMS VOICE不可用的消息
- 输入参数  : ulEventType:消息类型
-             pstMsg:消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:处理完成
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年2月8日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMsccImsVoiceCapInd_BgPlmnSearch_WaitCsPsRegRsltInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -11080,24 +7489,8 @@ VOS_UINT32 NAS_MMC_RcvMsccImsVoiceCapInd_BgPlmnSearch_WaitCsPsRegRsltInd(
     return VOS_TRUE;
 }
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-2-8, end */
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvRrmmLimitServiceCampInd_BgPLmnSearch_WaitRrcConnRelInd
- 功能描述  : 高优先级搜网等连接释放时，对OOS消息RRMM_LIMIT_SERVICE_CAMP_IND的处理
- 输入参数  : pstMsg        - RRMM_LIMIT_SERVICE_CAMP_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月15日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvRrmmLimitServiceCampInd_BgPLmnSearch_WaitRrcConnRelInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -11107,28 +7500,7 @@ VOS_UINT32  NAS_MMC_RcvRrmmLimitServiceCampInd_BgPLmnSearch_WaitRrcConnRelInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvRrmmLimitServiceCampInd_BgPLmnSearch
- 功能描述  : 高优先级搜网时，对OOS消息的处理
- 输入参数  : pstMsg        - RRMM_LIMIT_SERVICE_CAMP_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年06月27日
-    作    者   : l65478
-    修改内容   : 新生成函数
-  2.日    期   : 2014年6月17日
-    作    者   : s00217060
-    修改内容   : DTS2014061003286:RRMM_LIMITED_CAMP_IND需要搜网，主动释放链接时设置标志
-  3.日    期   : 2015年10月21日
-    作    者   : s00217060
-    修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_3.0修改
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvRrmmLimitServiceCampInd_BgPLmnSearch(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -11213,23 +7585,7 @@ VOS_UINT32  NAS_MMC_RcvRrmmLimitServiceCampInd_BgPLmnSearch(
 
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitLmmBgPlmnSearchCnf
- 功能描述  : 等待背景搜网回复状态收到MMCMMC_ABORT_FSM_REQ消息的处理
- 输入参数  : pstMsg        - MMCMMC_ABORT_FSM_REQ消息
-             ulEventType   - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2012年4月25
-   作    者   : z00161729
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitLmmBgPlmnSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -11257,41 +7613,7 @@ VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitLmmBgPlmnSearchCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvLmmSysInfoInd_BgPlmnSearch_WaitLmmBgPlmnSearchCnf
- 功能描述  : 等待背景搜网回复状态收到ID_LMM_MMC_SYS_INFO_IND消息的处理
- 输入参数  : pstMsg        - ID_LMM_MMC_SYS_INFO_IND消息
-             ulEventType   - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2012年4月25
-   作    者   : z00161729
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月18日
-   作    者   : l00130025
-   修改内容   : DTS2012040200480,单独维护EPS注册状态,供L模下CEREG/CGREG查询和上报使用
- 3.日    期   : 2012年11月29日
-   作    者   : w00176964
-   修改内容   : DTS2012042804167:通知CBA模块当前接入模式为LTE
- 4.日    期   : 2012年12月20日
-   作    者   : w00176964
-   修改内容   : DTS2012121906946:收到L的系统消息转发给LMM
- 5.日    期   : 2012年12月20日
-   作    者   : w00176964
-   修改内容   : DTS2012121906946:收到L的系统消息转发给LMM
- 6.日    期   : 2013年1月19日
-    作    者   : t00212959
-    修改内容   : DTS2012122900189:EPS注册状态完全由L上报
- 7.日    期   : 2015年02月11日
-   作    者   : l00305157
-   修改内容   : Service_State_Optimize_PhaseII 项目修改
-                 方案优化后，LTE下的小区发生变化，LMM会通过系统消息通知MMC
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvLmmSysInfoInd_BgPlmnSearch_WaitLmmBgPlmnSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -11323,9 +7645,7 @@ VOS_UINT32 NAS_MMC_RcvLmmSysInfoInd_BgPlmnSearch_WaitLmmBgPlmnSearchCnf(
     /* CBS上报*/
     NAS_MMC_SndCbaMsgNetModInd(NAS_MML_NET_RAT_TYPE_LTE);
 
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-18, begin */
     NAS_MMC_SndMsccCampOnInd(VOS_TRUE);
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-18, end */
 
     /* 转发系统消息给GMM,供RABM使用 */
     NAS_MMC_SndGmmLteSysinfoInd((LMM_MMC_SYS_INFO_IND_STRU*)pstMsg);
@@ -11338,44 +7658,7 @@ VOS_UINT32 NAS_MMC_RcvLmmSysInfoInd_BgPlmnSearch_WaitLmmBgPlmnSearchCnf(
 }
 
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_RcvBgPlmnSearchCnf_BgPlmnSearch_WaitLmmBgPlmnSearchCnf
-功能描述  : 等待背景搜网回复状态收到ID_LMM_MMC_BG_PLMN_SEARCH_CNF消息的处理
-输入参数  : pstMsg        - ID_LMM_MMC_BG_PLMN_SEARCH_CNF消息
-            ulEventType   - 消息类型
-输出参数  : 无
-返 回 值  : VOS_FALSE:处理消息失败
-            VOS_TRUE:处理消息成功
-调用函数  :
-被调函数  :
 
-修改历史     :
-1.日    期   : 2012年4月25
-  作    者   : z00161729
-  修改内容   : 新生成函数
-2.日    期   : 2012年5月17
-  作    者   : w00176964
-  修改内容   : GUL BG项目调整
-3.日    期   : 2012年6月25
-  作    者   : z00161729
-  修改内容   : DTS2012061908820:L上报bg搜网失败没有带任何网络时未更新接入技术
-4.日    期   : 2012年9月3日
-  作    者   : w00167002
-  修改内容   : V7R1C50_GUTL_PhaseII:如果在BG搜时候发生了同系统重选到TD国家网络,则在TDD模式下，
-               需要退出BG状态机。
-5.日    期   : 2012年10月29日
-  作    者   : t00212959
-  修改内容   : DTS2012080305980，相同PLMN，不同RAT，不再发起快速指定搜
-6.日    期   : 2012年12月13日
-  作    者   : L00171473
-  修改内容   : DTS2012121802573, TQE清理
-7.日    期   : 2013年12月20日
-   作    者   : w00167002
-   修改内容   : DTS2013112917981:guNAS删除在TD模式下不能进行bg搜的限制
- 8.日    期   : 2014年2月22日
-   作    者   : w00176964
-   修改内容   : High_Rat_Hplmn_Search调整:不比较驻留PLMN与BG搜的PLMN同时BG搜成功进行快速指定搜网时enable LTE
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvBgPlmnSearchCnf_BgPlmnSearch_WaitLmmBgPlmnSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -11448,9 +7731,7 @@ VOS_UINT32 NAS_MMC_RcvBgPlmnSearchCnf_BgPlmnSearch_WaitLmmBgPlmnSearchCnf(
                 NAS_MMC_SndGmmPlmnSchInit();
                 NAS_MMC_SndMmPlmnSchInit();
 
-                /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, begin */
                 NAS_MMC_SndMsccCampOnInd(VOS_FALSE);
-                /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, end */
 
                 NAS_MMC_NotifyModeChange(NAS_MML_NET_RAT_TYPE_BUTT,
                                          NAS_MML_GetSimPsRegStatus());
@@ -11484,23 +7765,7 @@ VOS_UINT32 NAS_MMC_RcvBgPlmnSearchCnf_BgPlmnSearch_WaitLmmBgPlmnSearchCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_RcvTiWaitBgPlmnSearchCnfExpired_BgPlmnSearch_WaitLmmBgPlmnSearchCnf
-功能描述  : 等待背景搜网回复状态收到TI_NAS_MMC_WAIT_LMM_BG_PLMN_SEARCH_CNF消息的处理
-输入参数  : pstMsg        - TI_NAS_MMC_WAIT_LMM_BG_PLMN_SEARCH_CNF消息
-            ulEventType   - 消息类型
-输出参数  : 无
-返 回 值  : VOS_FALSE:处理消息失败
-            VOS_TRUE:处理消息成功
-调用函数  :
-被调函数  :
 
-修改历史     :
-1.日    期   : 2012年4月25
- 作    者   : z00161729
- 修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvTiWaitBgPlmnSearchCnfExpired_BgPlmnSearch_WaitLmmBgPlmnSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -11537,29 +7802,7 @@ VOS_UINT32 NAS_MMC_RcvTiWaitBgPlmnSearchCnfExpired_BgPlmnSearch_WaitLmmBgPlmnSea
     return VOS_TRUE;
 }
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_RcvLmmMmcAreaLostInd_BgPlmnSearch_WaitLmmBgPlmnSearchCnf
-功能描述  : 等待背景搜网回复状态收到ID_LMM_MMC_AREA_LOST_IND消息的处理
-输入参数  : pstMsg        - ID_LMM_MMC_AREA_LOST_IND消息
-            ulEventType   - 消息类型
-输出参数  : 无
-返 回 值  : VOS_FALSE:处理消息失败
-            VOS_TRUE:处理消息成功
-调用函数  :
-被调函数  :
 
-修改历史     :
-1.日    期   : 2012年4月25
-  作    者   : z00161729
-  修改内容   : 新生成函数
-2.日    期   : 2014年5月5日
-  作    者   : w00242748
-  修改内容   : DTS2014043000311:注册状态服务状态不一致，将MMC中报服务状态的场景，都加
-               注册状态的上报。
-3.日    期   : 2015年10月22日
-  作    者   : s00217060
-  修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_3.0:RRMM_AREA_LOST_IND消息接口变更
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvLmmMmcAreaLostInd_BgPlmnSearch_WaitLmmBgPlmnSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -11593,9 +7836,7 @@ VOS_UINT32 NAS_MMC_RcvLmmMmcAreaLostInd_BgPlmnSearch_WaitLmmBgPlmnSearchCnf(
     /* 通知TAF当前的服务状态*/
 
     /* 向TAF上报出服务区 */
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
     NAS_MMC_SndMsccCoverageInd( NAS_MSCC_PIF_COVERAGE_AREA_CHANGE_MODE_LOST );
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
 
     NAS_EventReport(WUEPS_PID_MMC, NAS_OM_EVENT_COVERAGE_LOST,
@@ -11611,23 +7852,7 @@ VOS_UINT32 NAS_MMC_RcvLmmMmcAreaLostInd_BgPlmnSearch_WaitLmmBgPlmnSearchCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitLmmBgStopCnf
-功能描述  : 等待停止背景搜网回复状态收到MMCMMC_ABORT_FSM_REQ消息的处理
-输入参数  : pstMsg        - MMCMMC_ABORT_FSM_REQ消息
-            ulEventType   - 消息类型
-输出参数  : 无
-返 回 值  : VOS_FALSE:处理消息失败
-            VOS_TRUE:处理消息成功
-调用函数  :
-被调函数  :
 
-修改历史     :
-1.日    期   : 2012年4月25
-  作    者   : z00161729
-  修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitLmmBgStopCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -11647,38 +7872,7 @@ VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitLmmBgStopCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_RcvLmmSysInfoInd_BgPlmnSearch_WaitLmmBgStopCnf
-功能描述  : 等待停止背景搜网回复状态收到ID_LMM_MMC_SYS_INFO_IND消息的处理
-输入参数  : pstMsg        - ID_LMM_MMC_SYS_INFO_IND消息
-            ulEventType   - 消息类型
-输出参数  : 无
-返 回 值  : VOS_FALSE:处理消息失败
-            VOS_TRUE:处理消息成功
-调用函数  :
-被调函数  :
 
-修改历史     :
-1.日    期   : 2012年4月25
-  作    者   : z00161729
-  修改内容   : 新生成函数
-2.日    期   : 2012年4月18日
-  作    者   : l00130025
-  修改内容   : DTS2012040200480,单独维护EPS注册状态,供L模下CEREG/CGREG查询和上报使用
-3.日    期   : 2012年11月29日
-  作    者   : w00176964
-  修改内容   : DTS2012042804167:通知CBA模块当前接入模式为LTE
-4.日    期   : 2012年12月20日
-  作    者   : w00176964
-  修改内容   : DTS2012121906946:收到L的系统消息转发给LMM
-5.日    期   : 2013年1月19日
-  作    者   : t00212959
-  修改内容   : DTS2012122900189:EPS注册状态完全由L上报
-6.日    期   : 2015年02月11日
-  作    者   : l00305157
-  修改内容   : Service_State_Optimize_PhaseII 项目修改
-                 方案优化后，LTE下的小区发生变化，LMM会通过系统消息通知MMC
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvLmmSysInfoInd_BgPlmnSearch_WaitLmmBgStopCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -11719,9 +7913,7 @@ VOS_UINT32 NAS_MMC_RcvLmmSysInfoInd_BgPlmnSearch_WaitLmmBgStopCnf(
     /* CBS上报*/
     NAS_MMC_SndCbaMsgNetModInd(NAS_MML_NET_RAT_TYPE_LTE);
 
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-18, begin */
     NAS_MMC_SndMsccCampOnInd(VOS_TRUE);
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-18, end */
 
     /* 转发系统消息给GMM,供RABM使用 */
     NAS_MMC_SndGmmLteSysinfoInd((LMM_MMC_SYS_INFO_IND_STRU*)pstMsg);
@@ -11733,25 +7925,7 @@ VOS_UINT32 NAS_MMC_RcvLmmSysInfoInd_BgPlmnSearch_WaitLmmBgStopCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_RcvBgPlmnStopCnf_BgPlmnSearch_WaitLmmBgStopCnf
-功能描述  : 等待停止背景搜网回复状态收到ID_LMM_MMC_STOP_BG_PLMN_SEARCH_CNF消息的处理
-输入参数  : pstMsg        - ID_LMM_MMC_STOP_BG_PLMN_SEARCH_CNF消息
-            ulEventType   - 消息类型
-输出参数  : 无
-返 回 值  : VOS_FALSE:处理消息失败
-            VOS_TRUE:处理消息成功
-调用函数  :
-被调函数  :
 
-修改历史     :
-1.日    期   : 2012年4月25
-  作    者   : z00161729
-  修改内容   : 新生成函数
-2.日    期   : 2015年9月30
-  作    者   : y00346957
-  修改内容   : DTS2015070910885 modify
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvBgPlmnStopCnf_BgPlmnSearch_WaitLmmBgStopCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -11799,26 +7973,7 @@ VOS_UINT32 NAS_MMC_RcvBgPlmnStopCnf_BgPlmnSearch_WaitLmmBgStopCnf(
 }
 
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_RcvBgPlmnSearchCnf_BgPlmnSearch_WaitLmmBgStopCnf
-功能描述  : 等待停止背景搜网回复状态收到ID_LMM_MMC_BG_PLMN_SEARCH_CNF消息的处理
-输入参数  : pstMsg        - ID_LMM_MMC_STOP_BG_PLMN_SEARCH_CNF消息
-            ulEventType   - 消息类型
-输出参数  : 无
-返 回 值  : VOS_FALSE:处理消息失败
-            VOS_TRUE:处理消息成功
-调用函数  :
-被调函数  :
 
-修改历史     :
-1.日    期   : 2012年6月4
-  作    者   : w00176964
-  修改内容   : 新生成函数
-2.日    期   : 2012年6月25
-  作    者   : z00161729
-  修改内容   : DTS2012061908820:L上报bg搜网失败没有带任何网络时未更新接入技术
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvBgPlmnSearchCnf_BgPlmnSearch_WaitLmmBgStopCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -11876,22 +8031,7 @@ VOS_UINT32 NAS_MMC_RcvBgPlmnSearchCnf_BgPlmnSearch_WaitLmmBgStopCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_RcvTiBgStopCnfExpired_BgPlmnSearch_WaitLmmBgStopCnf
-功能描述  : 等待停止背景搜网回复状态收到TI_NAS_MMC_WAIT_LMM_BG_PLMN_STOP_CNF消息的处理
-输入参数  : pstMsg        - TI_NAS_MMC_WAIT_LMM_BG_PLMN_STOP_CNF消息
-            ulEventType   - 消息类型
-输出参数  : 无
-返 回 值  : VOS_FALSE:处理消息失败
-            VOS_TRUE:处理消息成功
-调用函数  :
-被调函数  :
 
-修改历史     :
-1.日    期   : 2012年4月25
-  作    者   : z00161729
-  修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvTiBgStopCnfExpired_BgPlmnSearch_WaitLmmBgStopCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -11918,29 +8058,7 @@ VOS_UINT32 NAS_MMC_RcvTiBgStopCnfExpired_BgPlmnSearch_WaitLmmBgStopCnf(
 }
 
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_RcvLmmMmcAreaLostInd_BgPlmnSearch_WaitLmmBgStopCnf
-功能描述  : 等待停止背景搜网回复状态收到ID_LMM_MMC_AREA_LOST_IND消息的处理
-输入参数  : pstMsg        - ID_LMM_MMC_AREA_LOST_IND消息
-            ulEventType   - 消息类型
-输出参数  : 无
-返 回 值  : VOS_FALSE:处理消息失败
-            VOS_TRUE:处理消息成功
-调用函数  :
-被调函数  :
 
-修改历史     :
-1.日    期   : 2012年4月25
-  作    者   : z00161729
-  修改内容   : 新生成函数
-2.日    期   : 2014年5月5日
-  作    者   : w00242748
-  修改内容   : DTS2014043000311:注册状态服务状态不一致，将MMC中报服务状态的场景，都加
-               注册状态的上报。
-3.日    期   : 2015年10月22日
-  作    者   : s00217060
-  修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_3.0:RRMM_AREA_LOST_IND消息接口变更
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvLmmMmcAreaLostInd_BgPlmnSearch_WaitLmmBgStopCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -11974,9 +8092,7 @@ VOS_UINT32 NAS_MMC_RcvLmmMmcAreaLostInd_BgPlmnSearch_WaitLmmBgStopCnf(
     /* 通知TAF当前的服务状态*/
 
     /* 向TAF上报出服务区 */
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
     NAS_MMC_SndMsccCoverageInd( NAS_MSCC_PIF_COVERAGE_AREA_CHANGE_MODE_LOST );
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
 
     NAS_EventReport(WUEPS_PID_MMC, NAS_OM_EVENT_COVERAGE_LOST,
@@ -11994,23 +8110,7 @@ VOS_UINT32 NAS_MMC_RcvLmmMmcAreaLostInd_BgPlmnSearch_WaitLmmBgStopCnf(
 }
 
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitLmmPlmnFastSearchCnf
-功能描述  : 等待快速指定搜网回复状态收到MMCMMC_ABORT_FSM_REQ消息的处理
-输入参数  : pstMsg        - MMCMMC_ABORT_FSM_REQ消息
-            ulEventType   - 消息类型
-输出参数  : 无
-返 回 值  : VOS_FALSE:处理消息失败
-            VOS_TRUE:处理消息成功
-调用函数  :
-被调函数  :
 
-修改历史     :
-1.日    期   : 2012年4月25
-  作    者   : z00161729
-  修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitLmmPlmnFastSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -12037,26 +8137,7 @@ VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitLmmPlmnFastSearchCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_RcvLmmPlmnSrchCnf_BgPlmnSearch_WaitLmmPlmnFastSearchCnf
-功能描述  : 等待快速指定搜网回复状态收到ID_LMM_MMC_PLMN_SRCH_CNF消息的处理
-输入参数  : pstMsg        - ID_LMM_MMC_PLMN_SRCH_CNF消息
-            ulEventType   - 消息类型
-输出参数  : 无
-返 回 值  : VOS_FALSE:处理消息失败
-            VOS_TRUE:处理消息成功
-调用函数  :
-被调函数  :
 
-修改历史     :
-1.日    期   : 2012年4月25
-  作    者   : z00161729
-  修改内容   : 新生成函数
-
-2.日    期   : 2014年6月12日
-  作    者   : w00167002
-  修改内容   : DSDS III:搜网NO RF后的处理
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvLmmPlmnSrchCnf_BgPlmnSearch_WaitLmmPlmnFastSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -12120,23 +8201,7 @@ VOS_UINT32 NAS_MMC_RcvLmmPlmnSrchCnf_BgPlmnSearch_WaitLmmPlmnFastSearchCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_RcvTiWaitLmmPlmnSearchCnfExpired_BgPlmnSearch_WaitLmmPlmnFastSearchCnf
-功能描述  : 等待快速指定搜网回复状态收到TI_NAS_MMC_WAIT_LMM_PLMN_SEARCH_CNF消息的处理
-输入参数  : pstMsg        - TI_NAS_MMC_WAIT_LMM_PLMN_SEARCH_CNF消息
-            ulEventType   - 消息类型
-输出参数  : 无
-返 回 值  : VOS_FALSE:处理消息失败
-            VOS_TRUE:处理消息成功
-调用函数  :
-被调函数  :
 
-修改历史     :
-1.日    期   : 2012年4月25
-  作    者   : z00161729
-  修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvTiWaitLmmPlmnSearchCnfExpired_BgPlmnSearch_WaitLmmPlmnFastSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -12167,23 +8232,7 @@ VOS_UINT32 NAS_MMC_RcvTiWaitLmmPlmnSearchCnfExpired_BgPlmnSearch_WaitLmmPlmnFast
     return VOS_TRUE;
 }
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitLmmFastPlmnStopCnf
-功能描述  : 等待停止快速指定搜网回复状态收到MMCMMC_ABORT_FSM_REQ消息的处理
-输入参数  : pstMsg        - MMCMMC_ABORT_FSM_REQ消息
-            ulEventType   - 消息类型
-输出参数  : 无
-返 回 值  : VOS_FALSE:处理消息失败
-            VOS_TRUE:处理消息成功
-调用函数  :
-被调函数  :
 
-修改历史     :
-1.日    期   : 2012年4月25
-  作    者   : z00161729
-  修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitLmmFastPlmnStopCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -12202,36 +8251,7 @@ VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitLmmFastPlmnStopCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_RcvLmmPlmnSrchStopCnf_BgPlmnSearch_WaitLmmFastPlmnStopCnf
-功能描述  : 等待停止快速指定搜网回复状态收到ID_LMM_MMC_STOP_PLMN_SRCH_CNF消息的处理
-输入参数  : pstMsg        - ID_LMM_MMC_STOP_PLMN_SRCH_CNF消息
-            ulEventType   - 消息类型
-输出参数  : 无
-返 回 值  : VOS_FALSE:处理消息失败
-            VOS_TRUE:处理消息成功
-调用函数  :
-被调函数  :
 
-修改历史     :
-1.日    期   : 2012年4月25
-  作    者   : z00161729
-  修改内容   : 新生成函数
-2.日    期   : 2012年5月5
-  作    者   : w00176964
-  修改内容   : GUL BG项目调整
-  修改内容   : 新生成函数
-3.日    期   : 2012年5月18
-  作    者   : w00176964
-  修改内容   : GUL BG项目调整
-5.日    期   : 2012年8月27日
-  作    者   : l00167671
-  修改内容   : 问题单: DTS2012080605217,背景搜没能找到可以注册的网络回退到V时，
-                 V在禁止列表中或者forbid plmn for gprs列表中时进入限制服务并不再
-                 发起搜网,将原函数NAS_MMC_IsVplmnNetRatValid改名成NAS_MMC_IsVplmnValid
-                 并在该函数中增加了判断V是否在禁止列表中或者forbid plmn for gprs列表中，
-                 若在两个列表中的任意一个列表中则认为Vplmn已经无效
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvLmmPlmnSrchStopCnf_BgPlmnSearch_WaitLmmFastPlmnStopCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -12287,32 +8307,7 @@ VOS_UINT32 NAS_MMC_RcvLmmPlmnSrchStopCnf_BgPlmnSearch_WaitLmmFastPlmnStopCnf(
 }
 
 
-/*****************************************************************************
-函 数 名  : NAS_MMC_RcvBgPlmnSearchCnf_BgPlmnSearch_WaitLmmFastPlmnStopCnf
-功能描述  : 等待停止快速指定搜网回复状态收到ID_LMM_MMC_PLMN_SRCH_CNF消息的处理
-输入参数  : pstMsg        - ID_LMM_MMC_PLMN_SRCH_CNF消息
-            ulEventType   - 消息类型
-输出参数  : 无
-返 回 值  : VOS_FALSE:处理消息失败
-            VOS_TRUE:处理消息成功
-调用函数  :
-被调函数  :
 
-修改历史     :
- 1.日    期   : 2012年6月4
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2012年8月27日
-   作    者   : l00167671
-   修改内容   : 问题单: DTS2012080605217,背景搜没能找到可以注册的网络回退到V时，
-                 V在禁止列表中或者forbid plmn for gprs列表中时进入限制服务并不再
-                 发起搜网,将原函数NAS_MMC_IsVplmnNetRatValid改名成NAS_MMC_IsVplmnValid
-                 并在该函数中增加了判断V是否在禁止列表中或者forbid plmn for gprs列表中，
-                 若在两个列表中的任意一个列表中则认为Vplmn已经无效
- 3.日    期   : 2014年6月25日
-   作    者   : b00269685
-   修改内容   : DSDS III项目
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvBgPlmnSearchCnf_BgPlmnSearch_WaitLmmFastPlmnStopCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -12402,32 +8397,7 @@ VOS_UINT32 NAS_MMC_RcvBgPlmnSearchCnf_BgPlmnSearch_WaitLmmFastPlmnStopCnf(
 
     return VOS_TRUE;
 }
-/*****************************************************************************
-函 数 名  : NAS_MMC_RcvTiWaitLmmStopCnfExpired_BgPlmnSearch_WaitLmmFastPlmnStopCnf
-功能描述  : 等待停止快速指定搜网回复状态收到TI_NAS_MMC_WAIT_LMM_PLMN_STOP_CNF消息的处理
-输入参数  : pstMsg        - TI_NAS_MMC_WAIT_LMM_PLMN_STOP_CNF消息
-            ulEventType   - 消息类型
-输出参数  : 无
-返 回 值  : VOS_FALSE:处理消息失败
-            VOS_TRUE:处理消息成功
-调用函数  :
-被调函数  :
 
-修改历史     :
- 1.日    期   : 2012年4月25
-   作    者   : z00161729
-   修改内容   : 新生成函数
- 2.日    期   : 2012年5月2日
-   作    者   : w00176964
-   修改内容   : GUL BG项目调整
- 3.日    期   : 2012年8月27日
-   作    者   : l00167671
-   修改内容   : 问题单: DTS2012080605217,背景搜没能找到可以注册的网络回退到V时，
-                 V在禁止列表中或者forbid plmn for gprs列表中时进入限制服务并不再
-                 发起搜网,将原函数NAS_MMC_IsVplmnNetRatValid改名成NAS_MMC_IsVplmnValid
-                 并在该函数中增加了判断V是否在禁止列表中或者forbid plmn for gprs列表中，
-                 若在两个列表中的任意一个列表中则认为Vplmn已经无效
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvTiWaitLmmStopCnfExpired_BgPlmnSearch_WaitLmmFastPlmnStopCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -12482,28 +8452,7 @@ VOS_UINT32 NAS_MMC_RcvTiWaitLmmStopCnfExpired_BgPlmnSearch_WaitLmmFastPlmnStopCn
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitLmmSuspendCnf
- 功能描述  : 等待挂起回复状态收到MMCMMC_ABORT_FSM_REQ消息的处理
- 输入参数  : pMsg        - MMCMMC_ABORT_FSM_REQ消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2011年11月29日
-   作    者   : w00167002
-   修改内容   : DTS2011112301233:保存打断事件类型到状态机上下文中
- 3.日    期   : 2012年4月24日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改函数名
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitLmmSuspendCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -12523,35 +8472,7 @@ VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitLmmSuspendCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvLmmSuspendCnf_BgPlmnSearch_WaitLmmSuspendCnf
- 功能描述  : 等待挂起回复状态收到ID_LMM_MMC_SUSPEND_CNF消息的处理
- 输入参数  : pMsg        - ID_LMM_MMC_SUSPEND_CNF消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2012年4月24日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
- 2.日    期   : 2012年5月18日
-   作    者   : w00176964
-   修改内容   : V7R1C50 GUL BG搜网修改
- 3.日    期   : 2012年8月27日
-   作    者   : l00167671
-   修改内容   : 问题单: DTS2012080605217,背景搜没能找到可以注册的网络回退到V时，
-                 V在禁止列表中或者forbid plmn for gprs列表中时进入限制服务并不再
-                 发起搜网,将原函数NAS_MMC_IsVplmnNetRatValid改名成NAS_MMC_IsVplmnValid
-                 并在该函数中增加了判断V是否在禁止列表中或者forbid plmn for gprs列表中，
-                 若在两个列表中的任意一个列表中则认为Vplmn已经无效
- 4.日    期   : 2015年3月11日
-   作    者   : wx270776
-   修改内容   : DTS2015011212939:增加复位场景
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvLmmSuspendCnf_BgPlmnSearch_WaitLmmSuspendCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -12622,67 +8543,7 @@ VOS_UINT32 NAS_MMC_RcvLmmSuspendCnf_BgPlmnSearch_WaitLmmSuspendCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvLSysInfoInd_BgPlmnSearch_WaitLSysInfoInd
- 功能描述  : 等待系统消息状态收到ID_LMM_MMC_SYS_INFO_IND消息的处理
- 输入参数  : pMsg        - ID_LMM_MMC_SYS_INFO_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年11月3日
-   作    者   : w00167002
-   修改内容   : 如果当前为PS ONLY或者当前仅仅支持L模，则更新CS的AdditionalAction为
-                 NAS_MMC_ADDITIONAL_ACTION_BUTT，即后续的搜网动作完全由PS域结果来确定
- 3.日    期   : 2011年12月30日
-   作    者   : l65478
-   修改内容   : 在迁到L模时,不立刻把CS设置成可选搜网,而是等待PS注册结果时
-                根据具体的原因值再设置
- 4.日    期   : 2012年4月24日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改函数名和替换函数
- 5.日    期   : 2012年4月18日
-   作    者   : l00130025
-   修改内容   : DTS2012040200480,单独维护EPS注册状态,供L模下CEREG/CGREG查询和上报使用
- 6.日    期   : 2012年5月18日
-   作    者   : w00176964
-   修改内容   : V7R1C50 GUL BG搜网调整
- 7.日    期   : 2012年6月25日
-   作    者   : l60609
-   修改内容   : AT&T&DCM:正常服务状态，等注册状态后再发系统消息，否则立即发
-                系统消息
- 8.日    期   : 2012年8月27日
-   作    者   : l00167671
-   修改内容   : 问题单: DTS2012080605217,背景搜没能找到可以注册的网络回退到V时，
-                 V在禁止列表中或者forbid plmn for gprs列表中时进入限制服务并不再
-                 发起搜网,将原函数NAS_MMC_IsVplmnNetRatValid改名成NAS_MMC_IsVplmnValid
-                 并在该函数中增加了判断V是否在禁止列表中或者forbid plmn for gprs列表中，
-                 若在两个列表中的任意一个列表中则认为Vplmn已经无效
- 9.日    期   : 2012年11月29日
-   作    者   : w00176964
-   修改内容   : DTS2012042804167:通知CBA模块当前接入模式为LTE
-10.日    期   : 2012年12月20日
-   作    者   : w00176964
-   修改内容   : DTS2012121906946:收到L的系统消息转发给LMM
-11.日    期   : 2013年1月19日
-   作    者   : t00212959
-   修改内容   : DTS2012122900189:EPS注册状态完全由L上报
-12.日    期   : 2013年2月7日
-   作    者   : W00176964
-   修改内容   : Volte_phase3项目调整:增加IMS不可用时disable L模的逻辑修改
-13.日    期   : 2015年02月11日
-   作    者   : l00305157
-   修改内容   : Service_State_Optimize_PhaseII 项目修改
-                 方案优化后，LTE下的小区发生变化，LMM会通过系统消息通知MMC
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvLSysInfoInd_BgPlmnSearch_WaitLSysInfoInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -12746,12 +8607,10 @@ VOS_UINT32 NAS_MMC_RcvLSysInfoInd_BgPlmnSearch_WaitLSysInfoInd(
     NAS_MMC_ClearAllWaitRegRsltFlag_BgPlmnSearch();
     NAS_MMC_SetWaitRegRsltFlag_BgPlmnSearch(NAS_MMC_WAIT_REG_RESULT_IND_PS);
 
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-2-7, begin */
 #if (FEATURE_ON == FEATURE_IMS)
     /* 增加等待IMS是否可用结果FLG,MSCC保证收到PS注册结果上报IMS是否可用指示到MMC */
     NAS_MMC_SetWaitRegRsltFlag_BgPlmnSearch(NAS_MMC_WAIT_REG_RESULT_IND_IMS);
 #endif
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-2-7, end */
 
     /* 更新CS的AdditionalAction */
     NAS_MMC_SetCsRegAdditionalAction_BgPlmnSearch(NAS_MMC_ADDITIONAL_ACTION_BUTT);
@@ -12761,9 +8620,7 @@ VOS_UINT32 NAS_MMC_RcvLSysInfoInd_BgPlmnSearch_WaitLSysInfoInd(
     /* CBS上报*/
     NAS_MMC_SndCbaMsgNetModInd(NAS_MML_NET_RAT_TYPE_LTE);
 
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-18, begin */
     NAS_MMC_SndMsccCampOnInd(VOS_TRUE);
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-18, end */
 
     /*方案优化后，LTE下的小区发生变化，LMM会通过系统消息通知MMC*/
     enSpecPlmnSearchState = NAS_MMC_GetSpecPlmnSearchState();
@@ -12802,32 +8659,7 @@ VOS_UINT32 NAS_MMC_RcvLSysInfoInd_BgPlmnSearch_WaitLSysInfoInd(
 /* 删除LTE上报服务状态和注册状态的接口   NAS_MMC_RcvLmmMmcRegStatusInd_BgPlmnSearch_WaitLSysInfoInd()处理函数 */
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiWaitLSysInfoExpired_BgPlmnSearch_WaitLSysInfoInd
- 功能描述  : 等待系统消息状态收到TI_NAS_MMC_WAIT_LMM_SYS_INFO消息的处理
- 输入参数  : pMsg        - TI_NAS_MMC_WAIT_LMM_SYS_INFO消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2012年4月24日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
- 2.日    期   : 2012年5月18日
-   作    者   : w00176964
-   修改内容   : V7R1C50 GUL BG搜网修改
- 3.日    期   : 2012年8月27日
-   作    者   : l00167671
-   修改内容   : 问题单: DTS2012080605217,背景搜没能找到可以注册的网络回退到V时，
-                 V在禁止列表中或者forbid plmn for gprs列表中时进入限制服务并不再
-                 发起搜网,将原函数NAS_MMC_IsVplmnNetRatValid改名成NAS_MMC_IsVplmnValid
-                 并在该函数中增加了判断V是否在禁止列表中或者forbid plmn for gprs列表中，
-                 若在两个列表中的任意一个列表中则认为Vplmn已经无效
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvTiWaitLSysInfoExpired_BgPlmnSearch_WaitLSysInfoInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -12879,30 +8711,7 @@ VOS_UINT32 NAS_MMC_RcvTiWaitLSysInfoExpired_BgPlmnSearch_WaitLSysInfoInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitLSysInfoInd
- 功能描述  : 等待系统消息状态收到MMCMMC_ABORT_FSM_REQ消息的处理
- 输入参数  : pMsg        - MMCMMC_ABORT_FSM_REQ消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年11月29日
-   作    者   : w00167002
-   修改内容   : DTS2011112301233:保存打断事件类型
- 3.日    期   : 2012年4月24日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改函数名
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitLSysInfoInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -12922,29 +8731,7 @@ VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitLSysInfoInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvLmmMmcStatusInd_BgPlmnSearch_WaitEpsRegRsltInd
- 功能描述  : 等待注册结果状态收到ID_LMM_MMC_STATUS_IND消息的处理
- 输入参数  : pMsg        - ID_LMM_MMC_STATUS_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月24日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改函数名
- 3.日    期   : 2015年9月17日
-   作    者   : y00346957
-   修改内容   : DTS2015070910885，增加对当前搜索lte的plmn是否可以搜的判断
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvLmmMmcStatusInd_BgPlmnSearch_WaitEpsRegRsltInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -12999,37 +8786,7 @@ VOS_UINT32 NAS_MMC_RcvLmmMmcStatusInd_BgPlmnSearch_WaitEpsRegRsltInd(
 
 /* 删除LTE上报服务状态和注册状态的接口   NAS_MMC_RcvLmmMmcRegStatusInd_BgPlmnSearch_WaitEpsRegRsltInd()处理函数 */
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvLmmMmcAttachInd_BgPlmnSearch_WaitEpsRegRsltInd
- 功能描述  : 等待注册结果状态收到ID_LMM_MMC_ATTACH_IND消息的处理
- 输入参数  : pMsg        - ID_LMM_MMC_ATTACH_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2011年10月25日
-   作    者   : z00161729
-   修改内容   : V7R1 phase III 联合注册修改
- 3.日    期   : 2012年1月8日
-   作    者   : z00161729
-   修改内容   : V7R1 Phase IV调整
- 4.日    期   : 2012年4月24日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改函数名
- 5.日    期   : 2012年6月25日
-   作    者   : l60609
-   修改内容   : AT&T&DCM:判断是否需要发送系统消息
- 6.日    期   : 2014年11月28日
-   作    者   : w00281933
-   修改内容   : 服务状态优化Phase I
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvLmmMmcAttachInd_BgPlmnSearch_WaitEpsRegRsltInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -13094,34 +8851,7 @@ VOS_UINT32 NAS_MMC_RcvLmmMmcAttachInd_BgPlmnSearch_WaitEpsRegRsltInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvLmmMmcTauResultInd_BgPlmnSearch_WaitEpsRegRsltInd
- 功能描述  : 等待注册结果状态收到ID_LMM_MMC_TAU_RESULT_IND消息的处理
- 输入参数  : pMsg        - ID_LMM_MMC_TAU_RESULT_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2011年10月26日
-   作    者   : w00176964
-   修改内容   : V7R1 Phase III调整:联合注册修改
- 3.日    期   : 2012年4月24日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改函数名
- 4.日    期   : 2012年6月25日
-   作    者   : l60609
-   修改内容   : AT&T&DCM:判断是否需要发送系统消息
- 5.日    期   : 2014年11月28日
-   作    者   : w00281933
-   修改内容   : 服务状态优化Phase I
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvLmmMmcTauResultInd_BgPlmnSearch_WaitEpsRegRsltInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -13173,22 +8903,7 @@ VOS_UINT32 NAS_MMC_RcvLmmMmcTauResultInd_BgPlmnSearch_WaitEpsRegRsltInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvLmmMmcDetachInd_BgPlmnSearch_WaitEpsRegRsltInd
- 功能描述  : 等待注册结果状态收到ID_LMM_MMC_DETACH_IND消息的处理
- 输入参数  : pMsg        - LMM_MMC_DETACH_IND_STRU消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2012年6月19日
-   作    者   : s46746
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvLmmMmcDetachInd_BgPlmnSearch_WaitEpsRegRsltInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -13198,10 +8913,8 @@ VOS_UINT32 NAS_MMC_RcvLmmMmcDetachInd_BgPlmnSearch_WaitEpsRegRsltInd(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    enCsAdditionalAction;
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    enPsAdditionalAction;
 
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, begin */
     NAS_MML_EQUPLMN_INFO_STRU                              *pstEquPlmnInfo;
     NAS_MML_EQUPLMN_INFO_STRU                               stSndEquPlmnInfo;
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, end */
 
     PS_MEM_SET(&stSndEquPlmnInfo, 0, sizeof(NAS_MML_EQUPLMN_INFO_STRU));
     pstDetachMsg        = (LMM_MMC_DETACH_IND_STRU*)pstMsg;
@@ -13235,12 +8948,10 @@ VOS_UINT32 NAS_MMC_RcvLmmMmcDetachInd_BgPlmnSearch_WaitEpsRegRsltInd(
 
     if (VOS_TRUE == NAS_MMC_IsNeedSndEplmn())
     {
-        /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, begin */
         pstEquPlmnInfo = NAS_MML_GetEquPlmnList();
         PS_MEM_CPY(&stSndEquPlmnInfo, pstEquPlmnInfo, sizeof(stSndEquPlmnInfo));
         NAS_MMC_BuildSndLmmEquPlmnInfo(&stSndEquPlmnInfo);
         NAS_MMC_SndLmmEquPlmnReq(&stSndEquPlmnInfo);
-        /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, end */
 
         NAS_MMC_SndOmEquPlmn();
     }
@@ -13248,22 +8959,7 @@ VOS_UINT32 NAS_MMC_RcvLmmMmcDetachInd_BgPlmnSearch_WaitEpsRegRsltInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvLmmMmcServiceRsltInd_BgPlmnSearch_WaitEpsRegRsltInd
- 功能描述  : 等待注册结果状态收到ID_LMM_MMC_SERVICE_RESULT_IND消息的处理
- 输入参数  : pMsg        - LMM_MMC_SERVICE_RESULT_IND_STRU消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2012年6月19日
-   作    者   : s46746
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvLmmMmcServiceRsltInd_BgPlmnSearch_WaitEpsRegRsltInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -13298,25 +8994,7 @@ VOS_UINT32 NAS_MMC_RcvLmmMmcServiceRsltInd_BgPlmnSearch_WaitEpsRegRsltInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvLmmSuspendInd_BgPlmnSearch_WaitEpsRegRsltInd
- 功能描述  : 等待注册结果状态收到ID_LMM_MMC_SUSPEND_IND消息的处理
- 输入参数  : pMsg        - ID_LMM_MMC_SUSPEND_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月24日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改函数名
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvLmmSuspendInd_BgPlmnSearch_WaitEpsRegRsltInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -13345,38 +9023,7 @@ VOS_UINT32 NAS_MMC_RcvLmmSuspendInd_BgPlmnSearch_WaitEpsRegRsltInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcMmcSuspendRslt_BgPlmnSearch_WaitEpsRegRsltInd
- 功能描述  : 等待注册结果状态收到MMCMMC_SUSPEND_RSLT_CNF消息的处理
- 输入参数  : pMsg        - MMCMMC_SUSPEND_RSLT_CNF消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2012年4月24日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
- 2.日    期   : 2012年5月18日
-   作    者   : w00176964
-   修改内容   : V7R1C50 GUL BG搜网修改
- 3.日    期   : 2012年8月27日
-   作    者   : l00167671
-   修改内容   : 问题单: DTS2012080605217,背景搜没能找到可以注册的网络回退到V时，
-                 V在禁止列表中或者forbid plmn for gprs列表中时进入限制服务并不再
-                 发起搜网,将原函数NAS_MMC_IsVplmnNetRatValid改名成NAS_MMC_IsVplmnValid
-                 并在该函数中增加了判断V是否在禁止列表中或者forbid plmn for gprs列表中，
-                 若在两个列表中的任意一个列表中则认为Vplmn已经无效
-4.日    期   : 2013年4月9日
-  作    者   : y00176023
-  修改内容   : DSDS GUNAS II项目:收到NO RF 退状态机，发送失败迁移到ooc
- 5.日    期   : 2014年1月27日
-   作    者   : s00246516
-   修改内容   : L-C互操作项目:增加异系统到HRPD的处理
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMmcMmcSuspendRslt_BgPlmnSearch_WaitEpsRegRsltInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -13418,9 +9065,7 @@ VOS_UINT32 NAS_MMC_RcvMmcMmcSuspendRslt_BgPlmnSearch_WaitEpsRegRsltInd(
                 NAS_MMC_SndGmmPlmnSchInit();
                 NAS_MMC_SndMmPlmnSchInit();
 
-                /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, begin */
                 NAS_MMC_SndMsccCampOnInd(VOS_FALSE);
-                /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, end */
 
                 NAS_MMC_ReCampVPlmn_BgPlmnSearch();
                 return VOS_TRUE;
@@ -13452,9 +9097,7 @@ VOS_UINT32 NAS_MMC_RcvMmcMmcSuspendRslt_BgPlmnSearch_WaitEpsRegRsltInd(
         NAS_MMC_SndGmmPlmnSchInit();
         NAS_MMC_SndMmPlmnSchInit();
 
-        /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, begin */
         NAS_MMC_SndMsccCampOnInd(VOS_FALSE);
-        /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, end */
 
         return VOS_TRUE;
     }
@@ -13483,7 +9126,6 @@ VOS_UINT32 NAS_MMC_RcvMmcMmcSuspendRslt_BgPlmnSearch_WaitEpsRegRsltInd(
 
     }
 
-    /* Added by s00246516 for L-C互操作项目, 2014-01-27, Begin */
 #if (FEATURE_ON == FEATURE_CL_INTERWORK)
     /* 重选到HRPD后,退出背景搜索状态机 */
     if ((NAS_MML_NET_RAT_TYPE_BUTT == enRatType)
@@ -13501,43 +9143,11 @@ VOS_UINT32 NAS_MMC_RcvMmcMmcSuspendRslt_BgPlmnSearch_WaitEpsRegRsltInd(
         return VOS_TRUE;
     }
 #endif
-    /* Added by s00246516 for L-C互操作项目, 2014-01-27, End */
 
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiWaitEpsRegRsltIndExpired_BgPlmnSearch_WaitEpsRegRsltInd
- 功能描述  : 等待注册结果状态收到TI_NAS_MMC_WAIT_EPS_REG_IND消息的处理
- 输入参数  : pMsg        - TI_NAS_MMC_WAIT_EPS_REG_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2012年4月24日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
- 2.日    期   : 2012年5月18日
-   作    者   : w00176964
-   修改内容   : V7R1C50 GUL BG搜网修改
- 3.日    期   : 2012年6月25日
-   作    者   : l60609
-   修改内容   : AT&T&DCM:判断是否需要发送系统消息
- 4.日    期   : 2012年8月27日
-   作    者   : l00167671
-   修改内容   : 问题单: DTS2012080605217,背景搜没能找到可以注册的网络回退到V时，
-                 V在禁止列表中或者forbid plmn for gprs列表中时进入限制服务并不再
-                 发起搜网,将原函数NAS_MMC_IsVplmnNetRatValid改名成NAS_MMC_IsVplmnValid
-                 并在该函数中增加了判断V是否在禁止列表中或者forbid plmn for gprs列表中，
-                 若在两个列表中的任意一个列表中则认为Vplmn已经无效
-  5.日    期   : 2015年1月7日
-    作    者   : s00217060
-    修改内容   : Service_State_Optimize_PhaseI修改
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvTiWaitEpsRegRsltIndExpired_BgPlmnSearch_WaitEpsRegRsltInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -13569,9 +9179,7 @@ VOS_UINT32 NAS_MMC_RcvTiWaitEpsRegRsltIndExpired_BgPlmnSearch_WaitEpsRegRsltInd(
             NAS_MMC_SndGmmPlmnSchInit();
             NAS_MMC_SndMmPlmnSchInit();
 
-            /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, begin */
             NAS_MMC_SndMsccCampOnInd(VOS_FALSE);
-            /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, end */
 
             NAS_MMC_ReCampVPlmn_BgPlmnSearch();
             return VOS_TRUE;
@@ -13605,64 +9213,13 @@ VOS_UINT32 NAS_MMC_RcvTiWaitEpsRegRsltIndExpired_BgPlmnSearch_WaitEpsRegRsltInd(
         NAS_MMC_SndGmmPlmnSchInit();
         NAS_MMC_SndMmPlmnSchInit();
 
-        /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, begin */
         NAS_MMC_SndMsccCampOnInd(VOS_FALSE);
-        /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, end */
     }
 
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvLmmAreaLostInd_BgPlmnSearch_WaitEpsRegRsltInd
- 功能描述  : 等待注册结果状态收到ID_LMM_MMC_AREA_LOST_IND消息的处理
- 输入参数  : pMsg        - ID_LMM_MMC_AREA_LOST_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2011年11月9日
-   作    者   : w00167002
-   修改内容   : 在注册过程中收到丢网指示，则更新当前的网络的注册状态为
-                 NAS_MMC_NET_STATUS_SEARCHED_REGISTERED,否则查找下一个网络依然为
-                 已经丢网的网络。
- 3.日    期   : 2012年4月24日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
- 4.日    期   : 2012年6月16日
-   作    者   : t00212959
-   修改内容   : V7R1C50 GUL BG搜网修改
- 5.日    期   : 2012年6月25日
-   作    者   : l60609
-   修改内容   : AT&T&DCM:判断是否需要发送系统消息
- 6.日    期   : 2012年8月27日
-   作    者   : l00167671
-   修改内容   : 问题单: DTS2012080605217,背景搜没能找到可以注册的网络回退到V时，
-                 V在禁止列表中或者forbid plmn for gprs列表中时进入限制服务并不再
-                 发起搜网,将原函数NAS_MMC_IsVplmnNetRatValid改名成NAS_MMC_IsVplmnValid
-                 并在该函数中增加了判断V是否在禁止列表中或者forbid plmn for gprs列表中，
-                 若在两个列表中的任意一个列表中则认为Vplmn已经无效
- 7.日    期   : 2014年5月5日
-   作    者   : w00242748
-   修改内容   : DTS2014043000311:注册状态服务状态不一致，将MMC中报服务状态的场景，都加
-                注册状态的上报。
- 8.日    期   : 2014年6月12日
-   作    者   : w00167002
-   修改内容   : DSDS III:在NO RF丢网后进OOC状态
- 9.日    期   : 2015年1月7日
-   作    者   : s00217060
-   修改内容   : Service_State_Optimize_PhaseI修改
-10.日    期   : 2015年10月22日
-   作    者   : s00217060
-   修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_3.0:RRMM_AREA_LOST_IND消息接口变更
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvLmmAreaLostInd_BgPlmnSearch_WaitEpsRegRsltInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -13722,9 +9279,7 @@ VOS_UINT32 NAS_MMC_RcvLmmAreaLostInd_BgPlmnSearch_WaitEpsRegRsltInd(
             NAS_MMC_SndGmmPlmnSchInit();
             NAS_MMC_SndMmPlmnSchInit();
 
-            /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, begin */
             NAS_MMC_SndMsccCampOnInd(VOS_FALSE);
-            /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, end */
 
             NAS_MMC_ReCampVPlmn_BgPlmnSearch();
             return VOS_TRUE;
@@ -13758,51 +9313,12 @@ VOS_UINT32 NAS_MMC_RcvLmmAreaLostInd_BgPlmnSearch_WaitEpsRegRsltInd(
     NAS_MMC_SndMmPlmnSchInit();
 
 
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, begin */
     NAS_MMC_SndMsccCampOnInd(VOS_FALSE);
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, end */
 
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvLSysInfoInd_BgPlmnSearch_WaitEpsRegRsltInd
- 功能描述  : 等待注册结果状态收到ID_LMM_MMC_SYS_INFO_IND消息的处理
- 输入参数  : pMsg        - ID_LMM_MMC_SYS_INFO_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月24日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改函数名
- 3.日    期   : 2012年4月18日
-   作    者   : l00130025
-   修改内容   : DTS2012040200480,单独维护EPS注册状态,供L模下CEREG/CGREG查询和上报使用
- 4.日    期   : 2012年6月25日
-   作    者   : l60609
-   修改内容   : AT&T&DCM:判断是否需要发送系统消息
- 5.日    期   : 2012年11月29日
-   作    者   : w00176964
-   修改内容   : DTS2012042804167:通知CBA模块当前接入模式为LTE
- 6.日    期   : 2012年12月20日
-   作    者   : w00176964
-   修改内容   : DTS2012121906946:收到L的系统消息转发给LMM
- 7.日    期   : 2013年1月19日
-    作    者   : t00212959
-    修改内容   : DTS2012122900189:EPS注册状态完全由L上报
- 8.日    期   : 2015年02月11日
-   作    者   : l00305157
-   修改内容   : Service_State_Optimize_PhaseII 项目修改
-                 方案优化后，LTE下的小区发生变化，LMM会通过系统消息通知MMC
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvLSysInfoInd_BgPlmnSearch_WaitEpsRegRsltInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -13831,9 +9347,7 @@ VOS_UINT32 NAS_MMC_RcvLSysInfoInd_BgPlmnSearch_WaitEpsRegRsltInd(
     /* CBS上报*/
     NAS_MMC_SndCbaMsgNetModInd(NAS_MML_NET_RAT_TYPE_LTE);
 
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-18, begin */
     NAS_MMC_SndMsccCampOnInd(VOS_TRUE);
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-18, end */
 
     enSpecPlmnSearchState = NAS_MMC_GetSpecPlmnSearchState();
 
@@ -13859,25 +9373,7 @@ VOS_UINT32 NAS_MMC_RcvLSysInfoInd_BgPlmnSearch_WaitEpsRegRsltInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTafSysCfgReq_BgPlmnSearch_WaitEpsRegRsltInd
- 功能描述  : 等待注册结果状态收到ID_MSCC_MMC_SYS_CFG_SET_REQ消息的处理
- 输入参数  : pMsg        - ID_MSCC_MMC_SYS_CFG_SET_REQ消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月24日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改函数名
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvTafSysCfgReq_BgPlmnSearch_WaitEpsRegRsltInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -13889,23 +9385,7 @@ VOS_UINT32 NAS_MMC_RcvTafSysCfgReq_BgPlmnSearch_WaitEpsRegRsltInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcSyscfgRsltCnf_BgPlmnSearch_WaitEpsRegRsltInd
- 功能描述  : 等待注册结果状态收到MMCMMC_SYSCFG_RSLT_CNF消息的处理
- 输入参数  : pMsg        - MMCMMC_SYSCFG_RSLT_CNF消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2012年4月24日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMmcSyscfgRsltCnf_BgPlmnSearch_WaitEpsRegRsltInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -13918,27 +9398,7 @@ VOS_UINT32 NAS_MMC_RcvMmcSyscfgRsltCnf_BgPlmnSearch_WaitEpsRegRsltInd(
 
 }
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-2-7, begin */
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMsccImsVoiceCapInd_BgPlmnSearch_WaitEpsRegRsltInd
- 功能描述  : 处理MSCC的IMS VOICE是否可用消息
- 输入参数  : ulEventType:消息类型
-             pstMsg:消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:处理完成
-             VOS_FALSE:处理未完成
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年2月7日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2015年1月7日
-   作    者   : s00217060
-   修改内容   : Service_State_Optimize_PhaseI修改
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMsccImsVoiceCapInd_BgPlmnSearch_WaitEpsRegRsltInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -13989,50 +9449,8 @@ VOS_UINT32 NAS_MMC_RcvMsccImsVoiceCapInd_BgPlmnSearch_WaitEpsRegRsltInd(
     return VOS_TRUE;
 }
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-2-7, end */
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitEpsRegRsltInd
- 功能描述  : 等待注册结果状态收到MMCMMC_ABORT_FSM_REQ消息的处理
- 输入参数  : pMsg        - MMCMMC_ABORT_FSM_REQ消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年11月3日
-   作    者   : w00167002
-   修改内容   : 在注册过程中收到立即打断，意味着注册尚未完成，更新未完成的域的服务
-                 状态为LIMIT SERVICE，否则当前的服务状态可能为NORMAL_SERVICE,这样若被用户
-                 指定搜打断，且网络接入技术都相同的情况下，就不会进行搜网注册了
- 3.日    期   : 2011年11月29日
-   作    者   : w00167002
-   修改内容   : DTS2011112301233:增加打断事件ID，状态机可以知道是什么事件
-                打断自己的。
-                修改原因:用户下发关机命令后，当前可能在等注册结果或者在等连接
-                释放，可能需要比较久的时间才能处理关机命令，通过增加打断事件，
-                如归当前在等注册结果或者等链接释放状态，若收到关机命令，则直接
-                退出当前状态机，处理用户的关机命令。
- 4.日    期   : 2012年4月24日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改函数名
- 5.日    期   : 2012年6月25日
-   作    者   : l60609
-   修改内容   : AT&T&DCM:判断是否需要发送系统消息
- 6.日    期   : 2012年12月11日
-   作    者   : l00167671
-   修改内容   : DTS2012121802573, TQE清理
- 7.日    期   : 2015年1月7日
-   作    者   : s00217060
-   修改内容   : Service_State_Optimize_PhaseI修改
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitEpsRegRsltInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -14118,35 +9536,7 @@ VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitEpsRegRsltInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvLmmMmcStatusInd_BgPlmnSearch_WaitEpsConnRelInd
- 功能描述  : 等待连接释放状态收到ID_LMM_MMC_STATUS_IND消息的处理
- 输入参数  : pMsg        - ID_LMM_MMC_STATUS_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月26日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
- 3.日    期   : 2012年5月18日
-   作    者   : w00176964
-   修改内容   : V7R1C50 GUL BG搜网修改
- 4.日    期   : 2012年8月27日
-   作    者   : l00167671
-   修改内容   : 问题单: DTS2012080605217,背景搜没能找到可以注册的网络回退到V时，
-                 V在禁止列表中或者forbid plmn for gprs列表中时进入限制服务并不再
-                 发起搜网,将原函数NAS_MMC_IsVplmnNetRatValid改名成NAS_MMC_IsVplmnValid
-                 并在该函数中增加了判断V是否在禁止列表中或者forbid plmn for gprs列表中，
-                 若在两个列表中的任意一个列表中则认为Vplmn已经无效
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvLmmMmcStatusInd_BgPlmnSearch_WaitEpsConnRelInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -14199,9 +9589,7 @@ VOS_UINT32 NAS_MMC_RcvLmmMmcStatusInd_BgPlmnSearch_WaitEpsConnRelInd(
             NAS_MMC_SndGmmPlmnSchInit();
             NAS_MMC_SndMmPlmnSchInit();
 
-            /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, begin */
             NAS_MMC_SndMsccCampOnInd(VOS_FALSE);
-            /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, end */
 
             NAS_MMC_ReCampVPlmn_BgPlmnSearch();
             return VOS_TRUE;
@@ -14234,9 +9622,7 @@ VOS_UINT32 NAS_MMC_RcvLmmMmcStatusInd_BgPlmnSearch_WaitEpsConnRelInd(
         NAS_MMC_SndGmmPlmnSchInit();
         NAS_MMC_SndMmPlmnSchInit();
 
-        /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, begin */
         NAS_MMC_SndMsccCampOnInd(VOS_FALSE);
-        /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, end */
     }
     else
     {
@@ -14247,35 +9633,7 @@ VOS_UINT32 NAS_MMC_RcvLmmMmcStatusInd_BgPlmnSearch_WaitEpsConnRelInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiWaitEpsConnRelIndExpired_BgPlmnSearch_WaitEpsConnRelInd
- 功能描述  : 等待连接释放状态收到TI_NAS_MMC_WAIT_EPS_CONN_REL_IND消息的处理
- 输入参数  : pMsg        - TI_NAS_MMC_WAIT_EPS_CONN_REL_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月24日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改函数名
- 3.日    期   : 2012年5月18日
-   作    者   : w00176964
-   修改内容   : V7R1C50 GUL BG搜网调整
- 4.日    期   : 2012年8月27日
-   作    者   : l00167671
-   修改内容   : 问题单: DTS2012080605217,背景搜没能找到可以注册的网络回退到V时，
-                 V在禁止列表中或者forbid plmn for gprs列表中时进入限制服务并不再
-                 发起搜网,将原函数NAS_MMC_IsVplmnNetRatValid改名成NAS_MMC_IsVplmnValid
-                 并在该函数中增加了判断V是否在禁止列表中或者forbid plmn for gprs列表中，
-                 若在两个列表中的任意一个列表中则认为Vplmn已经无效
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvTiWaitEpsConnRelIndExpired_BgPlmnSearch_WaitEpsConnRelInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -14318,9 +9676,7 @@ VOS_UINT32 NAS_MMC_RcvTiWaitEpsConnRelIndExpired_BgPlmnSearch_WaitEpsConnRelInd(
                 NAS_MMC_SndGmmPlmnSchInit();
                 NAS_MMC_SndMmPlmnSchInit();
 
-                /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, begin */
                 NAS_MMC_SndMsccCampOnInd(VOS_FALSE);
-                /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, end */
 
                 NAS_MMC_ReCampVPlmn_BgPlmnSearch();
                 return VOS_TRUE;
@@ -14364,9 +9720,7 @@ VOS_UINT32 NAS_MMC_RcvTiWaitEpsConnRelIndExpired_BgPlmnSearch_WaitEpsConnRelInd(
         NAS_MMC_SndGmmPlmnSchInit();
         NAS_MMC_SndMmPlmnSchInit();
 
-        /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, begin */
         NAS_MMC_SndMsccCampOnInd(VOS_FALSE);
-        /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, end */
 
         return VOS_TRUE;
     }
@@ -14395,41 +9749,7 @@ VOS_UINT32 NAS_MMC_RcvTiWaitEpsConnRelIndExpired_BgPlmnSearch_WaitEpsConnRelInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvLSysInfoInd_BgPlmnSearch_WaitEpsConnRelInd
- 功能描述  : 等待连接释放状态收到ID_LMM_MMC_SYS_INFO_IND消息的处理
- 输入参数  : pMsg        - ID_LMM_MMC_SYS_INFO_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月24日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改函数名
- 3.日    期   : 2012年4月18日
-   作    者   : l00130025
-   修改内容   : DTS2012040200480,单独维护EPS注册状态,供L模下CEREG/CGREG查询和上报使用
- 4.日    期   : 2012年11月29日
-   作    者   : w00176964
-   修改内容   : DTS2012042804167:通知CBA模块当前接入模式为LTE
- 5.日    期   : 2012年12月20日
-   作    者   : w00176964
-   修改内容   : DTS2012121906946:收到L的系统消息转发给LMM
- 6.日    期   : 2013年1月19日
-    作    者   : t00212959
-    修改内容   : DTS2012122900189:EPS注册状态完全由L上报
- 7.日    期   : 2015年02月11日
-   作    者   : l00305157
-   修改内容   : Service_State_Optimize_PhaseII 项目修改
-                 方案优化后，LTE下的小区发生变化，LMM会通过系统消息通知MMC
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvLSysInfoInd_BgPlmnSearch_WaitEpsConnRelInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -14474,9 +9794,7 @@ VOS_UINT32 NAS_MMC_RcvLSysInfoInd_BgPlmnSearch_WaitEpsConnRelInd(
     /* CBS上报*/
     NAS_MMC_SndCbaMsgNetModInd(NAS_MML_NET_RAT_TYPE_LTE);
 
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-18, begin */
     NAS_MMC_SndMsccCampOnInd(VOS_TRUE);
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-18, end */
 
     /* 转发系统消息给GMM,供RABM使用 */
     NAS_MMC_SndGmmLteSysinfoInd((LMM_MMC_SYS_INFO_IND_STRU*)pstMsg);
@@ -14488,26 +9806,7 @@ VOS_UINT32 NAS_MMC_RcvLSysInfoInd_BgPlmnSearch_WaitEpsConnRelInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvLmmSuspendInd_BgPlmnSearch_WaitEpsConnRelInd
- 功能描述  : 等待连接释放状态收到ID_LMM_MMC_SUSPEND_IND消息的处理
- 输入参数  : pMsg        - ID_LMM_MMC_SUSPEND_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月24日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改函数名
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvLmmSuspendInd_BgPlmnSearch_WaitEpsConnRelInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -14541,31 +9840,7 @@ VOS_UINT32 NAS_MMC_RcvLmmSuspendInd_BgPlmnSearch_WaitEpsConnRelInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcSuspendRslt_BgPlmnSearch_WaitEpsConnRelInd
- 功能描述  : 等待连接释放状态收到MMCMMC_SUSPEND_RSLT_CNF消息的处理
- 输入参数  : pMsg        - MMCMMC_SUSPEND_RSLT_CNF消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月24日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改函数名
- 3.日    期   : 2013年4月9日
-   作    者   : y00176023
-   修改内容   : DSDS GUNAS II项目:收到NO RF 退状态机，发送失败迁移到ooc
- 4.日    期   : 2014年1月27日
-   作    者   : s00246516
-   修改内容   : L-C互操作项目:增加异系统到HRPD的处理
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMmcSuspendRslt_BgPlmnSearch_WaitEpsConnRelInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -14609,9 +9884,7 @@ VOS_UINT32 NAS_MMC_RcvMmcSuspendRslt_BgPlmnSearch_WaitEpsConnRelInd(
         NAS_MMC_SndGmmPlmnSchInit();
         NAS_MMC_SndMmPlmnSchInit();
 
-        /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, begin */
         NAS_MMC_SndMsccCampOnInd(VOS_FALSE);
-        /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, end */
 
         return VOS_TRUE;
     }
@@ -14639,7 +9912,6 @@ VOS_UINT32 NAS_MMC_RcvMmcSuspendRslt_BgPlmnSearch_WaitEpsConnRelInd(
         return VOS_TRUE;
     }
 
-    /* Added by s00246516 for L-C互操作项目, 2014-01-27, Begin */
 #if (FEATURE_ON == FEATURE_CL_INTERWORK)
     /* 重选到HRPD后,退出背景搜索状态机 */
     if ((NAS_MML_NET_RAT_TYPE_BUTT == enRatType)
@@ -14657,7 +9929,6 @@ VOS_UINT32 NAS_MMC_RcvMmcSuspendRslt_BgPlmnSearch_WaitEpsConnRelInd(
         return VOS_TRUE;
     }
 #endif
-    /* Added by s00246516 for L-C互操作项目, 2014-01-27, End */
 
     /*  如果存在信令连接，则继续等待  */
     if (VOS_TRUE == NAS_MML_IsRrcConnExist())
@@ -14673,26 +9944,7 @@ VOS_UINT32 NAS_MMC_RcvMmcSuspendRslt_BgPlmnSearch_WaitEpsConnRelInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTafSysCfgReq_BgPlmnSearch_WaitEpsConnRelInd
- 功能描述  : 等待连接释放状态收到ID_MSCC_MMC_SYS_CFG_SET_REQ消息的处理
- 输入参数  : pMsg        - ID_MSCC_MMC_SYS_CFG_SET_REQ消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月24日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改函数名
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvTafSysCfgReq_BgPlmnSearch_WaitEpsConnRelInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -14704,22 +9956,7 @@ VOS_UINT32 NAS_MMC_RcvTafSysCfgReq_BgPlmnSearch_WaitEpsConnRelInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcSyscfgRsltCnf_BgPlmnSearch_WaitEpsConnRelInd
- 功能描述  : 等待连接释放状态收到MMCMMC_SYSCFG_RSLT_CNF消息的处理
- 输入参数  : pMsg        - MMCMMC_SYSCFG_RSLT_CNF消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2012年4月24日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMmcSyscfgRsltCnf_BgPlmnSearch_WaitEpsConnRelInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -14733,25 +9970,7 @@ VOS_UINT32 NAS_MMC_RcvMmcSyscfgRsltCnf_BgPlmnSearch_WaitEpsConnRelInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvLmmMmcDetachInd_BgPlmnSearch_WaitEpsConnRelInd
- 功能描述  : 等待注册结果状态收到ID_LMM_MMC_DETACH_IND消息的处理
- 输入参数  : pMsg        - ID_LMM_MMC_DETACH_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年12月01日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月24日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改函数名
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvLmmMmcDetachInd_BgPlmnSearch_WaitEpsConnRelInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -14761,10 +9980,8 @@ VOS_UINT32 NAS_MMC_RcvLmmMmcDetachInd_BgPlmnSearch_WaitEpsConnRelInd(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    enCsAdditionalAction;
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    enPsAdditionalAction;
 
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, begin */
     NAS_MML_EQUPLMN_INFO_STRU                              *pstEquPlmnInfo;
     NAS_MML_EQUPLMN_INFO_STRU                               stSndEquPlmnInfo;
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, end */
 
     PS_MEM_SET(&stSndEquPlmnInfo, 0, sizeof(NAS_MML_EQUPLMN_INFO_STRU));
     pstDetachMsg        = (LMM_MMC_DETACH_IND_STRU*)pstMsg;
@@ -14786,12 +10003,10 @@ VOS_UINT32 NAS_MMC_RcvLmmMmcDetachInd_BgPlmnSearch_WaitEpsConnRelInd(
 
     if (VOS_TRUE == NAS_MMC_IsNeedSndEplmn())
     {
-        /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, begin */
         pstEquPlmnInfo = NAS_MML_GetEquPlmnList();
         PS_MEM_CPY(&stSndEquPlmnInfo, pstEquPlmnInfo, sizeof(stSndEquPlmnInfo));
         NAS_MMC_BuildSndLmmEquPlmnInfo(&stSndEquPlmnInfo);
         NAS_MMC_SndLmmEquPlmnReq(&stSndEquPlmnInfo);
-        /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, end */
 
         NAS_MMC_SndOmEquPlmn();
     }
@@ -14800,24 +10015,7 @@ VOS_UINT32 NAS_MMC_RcvLmmMmcDetachInd_BgPlmnSearch_WaitEpsConnRelInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvLmmMmcDetachCnf_BgPlmnSearch_WaitEpsConnRelInd
- 功能描述  : 在等待EPS链路释放的时候用户detach CNF的的处理
- 输入参数  : ulEventType:消息类型
-             pstMsg: ID_LMM_MMC_DETACH_CNF消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:处理完成
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月14日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2012年4月24日
-    作    者   : z00161729
-    修改内容   : V7R1C50 GUL BG搜网修改函数名
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvLmmMmcDetachCnf_BgPlmnSearch_WaitEpsConnRelInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -14845,33 +10043,7 @@ VOS_UINT32 NAS_MMC_RcvLmmMmcDetachCnf_BgPlmnSearch_WaitEpsConnRelInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitEpsConnRelInd
- 功能描述  : 等待连接释放状态收到MMCMMC_ABORT_FSM_REQ消息的处理
- 输入参数  : pMsg        - MMCMMC_ABORT_FSM_REQ消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2011年11月29日
-   作    者   : w00167002
-   修改内容   : DTS2011112301233:增加打断事件ID，状态机可以知道是什么事件
-                打断自己的。
-                修改原因:用户下发关机命令后，当前可能在等注册结果或者在等连接
-                释放，可能需要比较久的时间才能处理关机命令，通过增加打断事件，
-                如归当前在等注册结果或者等链接释放状态，若收到关机命令，则直接
-                退出当前状态机，处理用户的关机命令。
- 3.日    期   : 2012年4月24日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改函数名
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitEpsConnRelInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -14884,9 +10056,7 @@ VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitEpsConnRelInd(
 
 
     /* 若打断类型是用户请求的关机，则直接退出等链接释放结果状态机 */
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
     if (NAS_BuildEventType(UEPS_PID_MSCC, ID_MSCC_MMC_POWER_OFF_REQ) == pstAbortMsg->ulEventType)
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
     {
         NAS_MMC_StopTimer(TI_NAS_MMC_WAIT_EPS_CONN_REL_IND);
@@ -14923,23 +10093,7 @@ VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitEpsConnRelInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvLmmMmcTauResultInd_BgPlmnSearch_WaitEpsConnRelInd
- 功能描述  : 在等待EPS链路释放的时候用户ID_LMM_MMC_TAU_RESULT_IND的的处理,
-             在主动释放连接场景可能会收到注册结果
- 输入参数  : ulEventType:消息类型
-             pstMsg: ID_LMM_MMC_TAU_RESULT_IND消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:处理成功
-             VOS_FALSE:处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月12日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvLmmMmcTauResultInd_BgPlmnSearch_WaitEpsConnRelInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -14962,23 +10116,7 @@ VOS_UINT32 NAS_MMC_RcvLmmMmcTauResultInd_BgPlmnSearch_WaitEpsConnRelInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvLmmMmcAttachInd_BgPlmnSearch_WaitEpsConnRelInd
- 功能描述  : 在等待EPS链路释放的时候用户ID_LMM_MMC_ATTACH_IND的的处理,
-             在主动释放连接场景可能会收到注册结果
- 输入参数  : ulEventType:消息类型
-             pstMsg: ID_LMM_MMC_ATTACH_IND消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:处理成功
-             VOS_FALSE:处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月12日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvLmmMmcAttachInd_BgPlmnSearch_WaitEpsConnRelInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -15013,28 +10151,7 @@ VOS_UINT32 NAS_MMC_RcvLmmMmcAttachInd_BgPlmnSearch_WaitEpsConnRelInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitLmmPlmnSearchCnfReCampVPlmn
- 功能描述  : 回VPlmn等待搜网结果回复状态收到MMCMMC_ABORT_FSM_REQ消息的处理
- 输入参数  : pMsg        - MMCMMC_ABORT_FSM_REQ消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2011年11月29日
-   作    者   : w00167002
-   修改内容   : DTS2011112301233:保存打断事件类型
- 3.日    期   : 2012年4月24日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改函数名
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitLmmPlmnSearchCnfReCampVPlmn(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -15071,32 +10188,7 @@ VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitLmmPlmnSearchCnfReCampVPlm
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvLmmPlmnCnf_BgPlmnSearch_WaitLmmPlmnSearchCnfReCampVPlmn
- 功能描述  : 回VPlmn等待搜网结果回复状态收到ID_LMM_MMC_PLMN_SRCH_CNF消息的处理
- 输入参数  : pMsg        - ID_LMM_MMC_PLMN_SRCH_CNF消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月24日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改函数名
- 3.日    期   : 2012年11月05日
-   作    者   : w00176964
-   修改内容   : DTS2011082405001:根据搜网列表信息更新网络覆盖类型
-
- 4.日    期   : 2014年6月24日
-   作    者   : w00167002
-   修改内容   : DSDS III:在RECAMP LTE时候，如果NO RF，则进入OOC
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvLmmPlmnCnf_BgPlmnSearch_WaitLmmPlmnSearchCnfReCampVPlmn(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -15158,25 +10250,7 @@ VOS_UINT32 NAS_MMC_RcvLmmPlmnCnf_BgPlmnSearch_WaitLmmPlmnSearchCnfReCampVPlmn(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiWaitLmmSrchCnf_BgPlmnSearch_WaitLmmPlmnSearchCnfReCampVPlmn
- 功能描述  : 回VPlmn等待搜网结果回复状态收到TI_NAS_MMC_WAIT_LMM_PLMN_SEARCH_CNF消息的处理
- 输入参数  : pMsg        - TI_NAS_MMC_WAIT_LMM_PLMN_SEARCH_CNF消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月24日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改函数名
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvTiWaitLmmSrchCnf_BgPlmnSearch_WaitLmmPlmnSearchCnfReCampVPlmn(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -15195,28 +10269,7 @@ VOS_UINT32 NAS_MMC_RcvTiWaitLmmSrchCnf_BgPlmnSearch_WaitLmmPlmnSearchCnfReCampVP
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitLmmSuspendCnfReCampVPlmn
- 功能描述  : 回VPlmn等待挂起回复状态收到MMCMMC_ABORT_FSM_REQ消息的处理
- 输入参数  : pMsg        - MMCMMC_ABORT_FSM_REQ消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2011年11月29日
-   作    者   : w00167002
-   修改内容   : DTS2011112301233:保存打断事件类型
- 3.日    期   : 2012年4月24日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改函数名
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitLmmSuspendCnfReCampVPlmn(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -15236,46 +10289,7 @@ VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitLmmSuspendCnfReCampVPlmn(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvLmmSuspendCnf_BgPlmnSearch_WaitLmmSuspendCnfReCampVPlmn
- 功能描述  : 回VPlmn等待挂起回复状态收到ID_LMM_MMC_SUSPEND_CNF消息的处理
- 输入参数  : pMsg        - ID_LMM_MMC_SUSPEND_CNF消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年12月15日
-   作    者   : w00167002
-   修改内容   : DTS2011120702166:MMC复位后无复位信息,在MML模块封装复位信息，
-                 以供MM层调用，进行软复位。
- 3.日    期   : 2012年4月24日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改函数名
- 4.日    期   : 2012年5月14日
-   作    者   : w00176964
-   修改内容   : V7R1C50 GUL BG搜网调整
-  5.日    期   : 2012年6月14日
-   作    者   : t00212959
-   修改内容   : V7R1C50 GUL BG搜网修改,回VPLMN失败，区分是否打断
- 6.日    期   : 2012年8月27日
-   作    者   : l00167671
-   修改内容   : 问题单: DTS2012080605217,背景搜没能找到可以注册的网络回退到V时，
-                 V在禁止列表中或者forbid plmn for gprs列表中时进入限制服务并不再
-                 发起搜网,将原函数NAS_MMC_IsVplmnNetRatValid改名成NAS_MMC_IsVplmnValid
-                 并在该函数中增加了判断V是否在禁止列表中或者forbid plmn for gprs列表中，
-                 若在两个列表中的任意一个列表中则认为Vplmn已经无效
- 7.日    期   : 2015年3月11日
-   作    者   : wx270776
-   修改内容   : DTS2015011212939:增加复位场景
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvLmmSuspendCnf_BgPlmnSearch_WaitLmmSuspendCnfReCampVPlmn(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -15325,9 +10339,7 @@ VOS_UINT32 NAS_MMC_RcvLmmSuspendCnf_BgPlmnSearch_WaitLmmSuspendCnfReCampVPlmn(
         NAS_MMC_SndGmmPlmnSchInit();
         NAS_MMC_SndMmPlmnSchInit();
 
-        /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, begin */
         NAS_MMC_SndMsccCampOnInd(VOS_FALSE);
-        /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, end */
 
         NAS_MMC_ReCampVPlmn_BgPlmnSearch();
         return VOS_TRUE;
@@ -15351,28 +10363,7 @@ VOS_UINT32 NAS_MMC_RcvLmmSuspendCnf_BgPlmnSearch_WaitLmmSuspendCnfReCampVPlmn(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitLmmPlmnStopCnfReCampVPlmn
- 功能描述  : 等待接入层停止搜网状态收到MMCMMC_ABORT_FSM_REQ消息的处理
- 输入参数  : pMsg        - MMCMMC_ABORT_FSM_REQ消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2011年11月29日
-   作    者   : w00167002
-   修改内容   : DTS2011112301233:保存打断事件类型
- 3.日    期   : 2012年4月24日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改函数名
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitLmmPlmnStopCnfReCampVPlmn(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -15392,25 +10383,7 @@ VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitLmmPlmnStopCnfReCampVPlmn(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvLmmPlmnStopCnf_BgPlmnSearch_WaitLmmPlmnStopCnfReCampVPlmn
- 功能描述  : 回VPlmn等待停止搜网回复状态收到ID_LMM_MMC_STOP_PLMN_SRCH_CNF消息的处理
- 输入参数  : pMsg        - ID_LMM_MMC_STOP_PLMN_SRCH_CNF消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月24日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改函数名
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvLmmPlmnStopCnf_BgPlmnSearch_WaitLmmPlmnStopCnfReCampVPlmn(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -15436,22 +10409,7 @@ VOS_UINT32 NAS_MMC_RcvLmmPlmnStopCnf_BgPlmnSearch_WaitLmmPlmnStopCnfReCampVPlmn(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvLmmPlmnSearchCnf_BgPlmnSearch_WaitLmmPlmnStopCnfReCampVPlmn
- 功能描述  : 回VPlmn等待停止搜网回复状态收到ID_LMM_MMC_PLMN_SRCH_CNF消息的处理
- 输入参数  : pMsg        - ID_LMM_MMC_PLMN_SRCH_CNF消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年6月25日
-   作    者   : b00269685
-   修改内容   : DSDS III新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvLmmPlmnSearchCnf_BgPlmnSearch_WaitLmmPlmnStopCnfReCampVPlmn(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -15490,25 +10448,7 @@ VOS_UINT32 NAS_MMC_RcvLmmPlmnSearchCnf_BgPlmnSearch_WaitLmmPlmnStopCnfReCampVPlm
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiWaitLmmStopCnf_BgPlmnSearch_WaitLmmPlmnStopCnfReCampVPlmn
- 功能描述  : 回VPlmn等待停止搜网回复状态收到TI_NAS_MMC_WAIT_LMM_PLMN_STOP_CNF消息的处理
- 输入参数  : pMsg        - TI_NAS_MMC_WAIT_LMM_PLMN_STOP_CNF消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月24日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改函数名
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvTiWaitLmmStopCnf_BgPlmnSearch_WaitLmmPlmnStopCnfReCampVPlmn(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -15535,41 +10475,7 @@ VOS_UINT32 NAS_MMC_RcvTiWaitLmmStopCnf_BgPlmnSearch_WaitLmmPlmnStopCnfReCampVPlm
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvLSysInfoInd_BgPlmnSearch_WaitLSysInfoIndReCampVPlmn
- 功能描述  : 回VPlmn等待系统消息状态收到ID_LMM_MMC_SYS_INFO_IND消息的处理
- 输入参数  : pMsg        - ID_LMM_MMC_SYS_INFO_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月24日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改函数名
- 3.日    期   : 2012年4月18日
-   作    者   : l00130025
-   修改内容   : DTS2012040200480,单独维护EPS注册状态,供L模下CEREG/CGREG查询和上报使用
- 4.日    期   : 2012年11月29日
-   作    者   : w00176964
-   修改内容   : DTS2012042804167:通知CBA模块当前接入模式为LTE
- 5.日    期   : 2012年12月20日
-   作    者   : w00176964
-   修改内容   : DTS2012121906946:收到L的系统消息转发给LMM
- 6.日    期   : 2013年1月19日
-    作    者   : t00212959
-    修改内容   : DTS2012122900189:EPS注册状态完全由L上报
- 7.日    期   : 2015年02月11日
-   作    者   : l00305157
-   修改内容   : Service_State_Optimize_PhaseII 项目修改
-                 方案优化后，LTE下的小区发生变化，LMM会通过系统消息通知MMC
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvLSysInfoInd_BgPlmnSearch_WaitLSysInfoIndReCampVPlmn(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -15644,9 +10550,7 @@ VOS_UINT32 NAS_MMC_RcvLSysInfoInd_BgPlmnSearch_WaitLSysInfoIndReCampVPlmn(
     /* CBS上报*/
     NAS_MMC_SndCbaMsgNetModInd(NAS_MML_NET_RAT_TYPE_LTE);
 
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-18, begin */
     NAS_MMC_SndMsccCampOnInd(VOS_TRUE);
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-18, end */
 
     /* 转发系统消息给GMM,供RABM使用 */
     NAS_MMC_SndGmmLteSysinfoInd((LMM_MMC_SYS_INFO_IND_STRU*)pstMsg);
@@ -15665,25 +10569,7 @@ VOS_UINT32 NAS_MMC_RcvLSysInfoInd_BgPlmnSearch_WaitLSysInfoIndReCampVPlmn(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiWaitLSysInfoExpired_BgPlmnSearch_WaitLSysInfoIndReCampVPlmn
- 功能描述  : 回VPlmn等待系统消息状态收到TI_NAS_MMC_WAIT_LMM_SYS_INFO消息的处理
- 输入参数  : pMsg        - TI_NAS_MMC_WAIT_LMM_SYS_INFO消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月24日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改函数名
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvTiWaitLSysInfoExpired_BgPlmnSearch_WaitLSysInfoIndReCampVPlmn(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -15716,28 +10602,7 @@ VOS_UINT32 NAS_MMC_RcvTiWaitLSysInfoExpired_BgPlmnSearch_WaitLSysInfoIndReCampVP
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitLSysInfoIndReCampVPlmn
- 功能描述  : 回VPlmn等待系统消息状态收到MMCMMC_ABORT_FSM_REQ消息的处理
- 输入参数  : pMsg        - MMCMMC_ABORT_FSM_REQ消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年9月14日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2011年11月29日
-   作    者   : w00167002
-   修改内容   : DTS2011112301233:保存打断事件类型
- 3.日    期   : 2012年4月24日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改函数名
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitLSysInfoIndReCampVPlmn(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -15757,45 +10622,7 @@ VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitLSysInfoIndReCampVPlmn(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcLmmCombinedAttachInd_BgPlmnSearch
- 功能描述  : 高优先级搜网时，对Eps联合注册结果的处理
- 输入参数  : pstLmmAttachIndMsg - combine attach消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月25日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月8日
-    作    者   : w00176964
-    修改内容   : V7R1 PhaseIV 调整
-  3.日    期   : 2011年12月5日
-    作    者   : z00161729
-    修改内容   : V7R1 phaseIV修改合并原NAS_MMC_HPLMN_REG_REJ_STRU和NAS_MMC_PLMN_REG_INFO_STRU
-  4.日    期   : 2011年12月13日
-    作    者   : z00161729
-    修改内容   : DTS2011121302231:attach被拒#9/#10按协议应该按other cause处理
-  5.日    期   : 2012年2月4日
-    作    者   : w00167002
-    修改内容   : DTS2011122704039:将注册结果类型以及注册消息传递给处理注册结果
-                  函数，扩展注册结果函数的处理能力。
-                    additional action值若为无效值NAS_MMC_ADDITIONAL_ACTION_BUTT
-                 则不更新当前的additional action
-  6.日    期   : 2012年06月01日
-    作    者   : sunxibo /46746
-    修改内容   : Added for V7R1 C50 CS/PS mode 1
-  7.日    期   : 2012年8月21日
-    作    者   : z00161729
-    修改内容   : DCM定制需求和遗留问题修改,DTS2012090401249
-  8.日    期   : 2014年5月5日
-    作    者   : w00242748
-    修改内容   : DTS2014043000311:注册状态服务状态不一致，将MMC中报服务状态的场景，都加
-                 注册状态的上报。
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcLmmCombinedAttachInd_BgPlmnSearch(
     LMM_MMC_ATTACH_IND_STRU            *pstLmmAttachIndMsg
 )
@@ -15805,10 +10632,8 @@ VOS_VOID NAS_MMC_ProcLmmCombinedAttachInd_BgPlmnSearch(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    enPsAdditionalAction;
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    enCsAdditionalAction;
 
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, begin */
     NAS_MML_EQUPLMN_INFO_STRU                              *pstEquPlmnInfo = VOS_NULL_PTR;
     NAS_MML_EQUPLMN_INFO_STRU                               stSndEquPlmnInfo;
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, end */
 
     PS_MEM_SET(&stSndEquPlmnInfo, 0, sizeof(NAS_MML_EQUPLMN_INFO_STRU));
 
@@ -15832,9 +10657,7 @@ VOS_VOID NAS_MMC_ProcLmmCombinedAttachInd_BgPlmnSearch(
                 enCsAdditionalAction = NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON;
 
 
-                /* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, begin */
                 NAS_MMC_SndMsccRegResultInd(NAS_MSCC_PIF_SRVDOMAIN_CS_PS, VOS_FALSE, NAS_MML_REG_FAIL_CAUSE_OTHER_CAUSE);
-                /* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, end */
             }
             else
             {
@@ -15911,12 +10734,10 @@ VOS_VOID NAS_MMC_ProcLmmCombinedAttachInd_BgPlmnSearch(
 
     if (VOS_TRUE == NAS_MMC_IsNeedSndEplmn())
     {
-        /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, begin */
         pstEquPlmnInfo = NAS_MML_GetEquPlmnList();
         PS_MEM_CPY(&stSndEquPlmnInfo, pstEquPlmnInfo, sizeof(stSndEquPlmnInfo));
         NAS_MMC_BuildSndLmmEquPlmnInfo(&stSndEquPlmnInfo);
         NAS_MMC_SndLmmEquPlmnReq(&stSndEquPlmnInfo);
-        /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, end */
 
         NAS_MMC_SndOmEquPlmn();
 
@@ -15928,86 +10749,7 @@ VOS_VOID NAS_MMC_ProcLmmCombinedAttachInd_BgPlmnSearch(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcLmmEpsOnlyAttachInd_BgPlmnSearch
- 功能描述  : 高优先级搜网时，对Eps注册结果的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年9月20日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2011年10月30日
-    作    者   : z00161729
-    修改内容   : V7R1 phaseIII修改函数名
-  3.日    期   : 2011年12月5日
-    作    者   : z00161729
-    修改内容   : V7R1 phaseIV修改合并原NAS_MMC_HPLMN_REG_REJ_STRU和NAS_MMC_PLMN_REG_INFO_STRU
-  4.日    期   : 2011年12月14日
-    作    者   : w00176964
-    修改内容   : V7R1 phaseIV调整:EPS单域注册假流程调整
-  5.日    期   : 2011年12月15日
-    作    者   : w00167002
-    修改内容   : DTS2011121307570: MMC没有维护LMM的EPLMN信息，现在统一调整
-                  ATTACH/TAU/DETACH/SERVICE中被拒时EPLMN的维护。
-                  将函数名由NAS_MMC_ProcEpsRegFail更改为NAS_MMC_ProcEpsAttachRegFail
-                  调用ATTACH的注册原因值表进行处理。
-  6.日    期   : 2012年1月8日
-    作    者   : z00161729
-    修改内容   : V7R1 phaseIV调整:EPS单域注册假流程调整
-  7.日    期   : 2012年2月4日
-    作    者   : w00167002
-    修改内容   : DTS2011122704039:将注册结果类型以及注册消息传递给处理注册结果
-                  函数，扩展注册结果函数的处理能力。
-                  additional action值若为无效值NAS_MMC_ADDITIONAL_ACTION_BUTT
-                 则不更新当前的additional action
-  8.日    期   : 2012年4月24日
-    作    者   : z00161729
-    修改内容   : V7R1C50 GUL BG搜网修改函数名
-  9.日    期   : 2012年06月01日
-    作    者   : sunxibo /46746
-    修改内容   : Added for V7R1 C50 CS/PS mode 1
-  10.日    期   : 2012年9月4日
-     作    者   : z00161729
-     修改内容   : DCM定制需求和遗留问题修改DTS2012090401249
-  11.日    期   : 2012年09月12日
-     作    者   : z00161729
-     修改内容   : DTS2012082904888：cs ps mode1，on plmn、plmn list、bg plmn search状态机在eps only注册成功未调用NAS_MMC_IsNeedDisableL_EpsOnlyRegSucc判断是否需要disable lte
-  12.日    期   : 2012年12月6日
-     作    者   : s00217060
-     修改内容   : DTS2012120410842:注册成功时，需要删除ForbPlmn,ForbGprs等信息
-  13.日    期   : 2013年05月08日
-     作    者   : s46746
-     修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  14.日    期   : 2013年12月10日
-     作    者   : w00176964
-     修改内容   : VoLTE_PhaseIII 项目:修改Disable L模的逻辑
-  15.日    期   : 2014年5月6日
-     作    者   : z00161729
-     修改内容   : DTS2014050602850:l下联合注册eps成功，cs注册被#18拒绝，disable lte到gu下搜网注册成功，后指定搜l cs注册被#18拒绝的网络，l发起eps单域注册成功，mmc没有disable lte
-  16.日    期   : 2014年5月5日
-     作    者   : w00242748
-     修改内容   : DTS2014043000311:注册状态服务状态不一致，将MMC中报服务状态的场景，都加
-                  注册状态的上报。
-  17.日    期   : 2015年4月18日
-     作    者   : z00161729
-     修改内容   : 24301 R11 CR升级项目修改
-  18.日    期   : 2015年02月11日
-     作    者   : l00305157
-     修改内容   : Service_State_Optimize_PhaseII 项目修改
-                    MMC接收到LMM模块注册结果ATTACH (EPS ONLY)成功，上报注册状态
-  19.日    期   : 2015年06月09日
-     作    者   : l00305157
-     修改内容   : Service_State_Optimize_PhaseII 项目修改
-                    MMC接收到LMM模块注册结果，需先更新EPLMN LIST，在处理注册状态的上报
-  20.日    期   : 2015年10月14日
-    作    者   : c00318887
-    修改内容   : DTS2015082002854: 漫游标记不准
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcLmmEpsOnlyAttachInd_BgPlmnSearch(
     LMM_MMC_ATTACH_IND_STRU            *pstLmmAttachIndMsg
 )
@@ -16018,10 +10760,8 @@ VOS_VOID NAS_MMC_ProcLmmEpsOnlyAttachInd_BgPlmnSearch(
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16                      enRegRsltCause;
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    enAdditionalAction;
 
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, begin */
     NAS_MML_EQUPLMN_INFO_STRU                              *pstEquPlmnInfo = VOS_NULL_PTR;
     NAS_MML_EQUPLMN_INFO_STRU                               stSndEquPlmnInfo;
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, end */
     VOS_UINT8                                               ucSimCsRegStatus;
 
     PS_MEM_SET(&stSndEquPlmnInfo, 0, sizeof(NAS_MML_EQUPLMN_INFO_STRU));
@@ -16055,7 +10795,6 @@ VOS_VOID NAS_MMC_ProcLmmEpsOnlyAttachInd_BgPlmnSearch(
         /* EPS单域注册成功时，需要删除ForbPlmn,ForbGprs等信息 */
         NAS_MMC_DelForbInfo_LmmAttRsltSucc(VOS_NULL_PTR, NAS_MMC_IsEpsEmergencyAttachType(pstLmmAttachIndMsg->ulReqType));
 
-        /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, begin */
         /* 如果CS允许注册而且CS卡有效则更改CS注册状态为NAS_MML_REG_NOT_REGISTERED_NOT_SEARCH */
         ucSimCsRegStatus = NAS_MML_GetSimCsRegStatus();
         if ((VOS_TRUE == NAS_MML_GetCsAttachAllowFlg())
@@ -16065,28 +10804,21 @@ VOS_VOID NAS_MMC_ProcLmmEpsOnlyAttachInd_BgPlmnSearch(
 
             NAS_MMC_ChangeCsRegState(NAS_MML_REG_NOT_REGISTERED_NOT_SEARCH);
         }
-        /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, end */
 
         /*注意: 需要先更新EPLMN LIST，在处理注册状态的上报,因为NAS_MMC_UpdatePsRegStatePsRegSucc()函数中会根据EPLMN LIST上报注册状态 */
 
         NAS_MMC_UpdateGURegRlstRPlmnIdInNV();
 
-        /* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, begin */
         NAS_MMC_SndMsccRegResultInd(NAS_MSCC_PIF_SRVDOMAIN_PS, VOS_TRUE, NAS_MML_REG_FAIL_CAUSE_NULL);
-        /* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, end */
-        /* Added by w00176964 for APS服务状态通知清理, 2014-4-7, begin */
         NAS_MMC_NotifyModeChange(NAS_MML_GetCurrNetRatType(),
                                   NAS_MML_GetSimPsRegStatus());
-        /* Added by w00176964 for APS服务状态通知清理, 2014-4-7, end */
     }
     else if ((MMC_LMM_ATT_RSLT_FAILURE == pstLmmAttachIndMsg->ulAttachRslt)
           && (VOS_FALSE == pstLmmAttachIndMsg->bitOpAtmpCnt))
     {
         enAdditionalAction = NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON;
 
-        /* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, begin */
         NAS_MMC_SndMsccRegResultInd(NAS_MSCC_PIF_SRVDOMAIN_PS, VOS_FALSE, NAS_MML_REG_FAIL_CAUSE_OTHER_CAUSE);
-        /* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, end */
     }
     else
     {
@@ -16101,12 +10833,10 @@ VOS_VOID NAS_MMC_ProcLmmEpsOnlyAttachInd_BgPlmnSearch(
 
     if (VOS_TRUE == NAS_MMC_IsNeedSndEplmn())
     {
-        /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, begin */
         pstEquPlmnInfo = NAS_MML_GetEquPlmnList();
         PS_MEM_CPY(&stSndEquPlmnInfo, pstEquPlmnInfo, sizeof(stSndEquPlmnInfo));
         NAS_MMC_BuildSndLmmEquPlmnInfo(&stSndEquPlmnInfo);
         NAS_MMC_SndLmmEquPlmnReq(&stSndEquPlmnInfo);
-        /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, end */
 
         NAS_MMC_SndOmEquPlmn();
 
@@ -16118,21 +10848,7 @@ VOS_VOID NAS_MMC_ProcLmmEpsOnlyAttachInd_BgPlmnSearch(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcLmmAttachInd_BgPlmnSearch
- 功能描述  : 高优先级搜网时，对Eps注册结果的处理
- 输入参数  : pstLmmAttachIndMsg - lmm attach消息内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月25日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcLmmAttachInd_BgPlmnSearch(
     LMM_MMC_ATTACH_IND_STRU            *pstLmmAttachIndMsg
 )
@@ -16166,44 +10882,7 @@ VOS_VOID NAS_MMC_ProcLmmAttachInd_BgPlmnSearch(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcLmmCombinedTauResultInd_BgPlmnSearch
- 功能描述  : 高优先级搜网时，对Eps 联合TAU结果的处理
- 输入参数  : pstLmmTauIndMsg - combined tau消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月27日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月8日
-    作    者   : w00176964
-    修改内容   : V7R1 PhaseIV 调整
-  3.日    期   : 2011年12月5日
-    作    者   : z00161729
-    修改内容   : V7R1 phaseIV修改合并原NAS_MMC_HPLMN_REG_REJ_STRU和NAS_MMC_PLMN_REG_INFO_STRU
-  4.日    期   : 2011年12月13日
-    作    者   : z00161729
-    修改内容   : DTS2011121302231:attach被拒#9/#10按协议应该按other cause处理
-  4.日    期   : 2012年2月4日
-    作    者   : w00167002
-    修改内容   : DTS2011122704039:将注册结果类型以及注册消息传递给处理注册结果
-                  函数，扩展注册结果函数的处理能力。
-                  additional action值若为无效值NAS_MMC_ADDITIONAL_ACTION_BUTT
-                 则不更新当前的additional action
-  5.日    期   : 2012年4月24日
-    作    者   : z00161729
-    修改内容   : V7R1C50 GUL BG搜网修改
-  6.日    期   : 2012年06月01日
-    作    者   : sunxibo /46746
-    修改内容   : Added for V7R1 C50 CS/PS mode 1
-  7.日    期   : 2012年8月21日
-    作    者   : z00161729
-    修改内容   : DCM定制需求和遗留问题修改DTS2012090401249
-*****************************************************************************/
 VOS_VOID  NAS_MMC_ProcLmmCombinedTauResultInd_BgPlmnSearch(
     LMM_MMC_TAU_RESULT_IND_STRU        *pstLmmTauIndMsg
 )
@@ -16213,10 +10892,8 @@ VOS_VOID  NAS_MMC_ProcLmmCombinedTauResultInd_BgPlmnSearch(
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    enPsAdditionalAction;
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                    enCsAdditionalAction;
 
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, begin */
     NAS_MML_EQUPLMN_INFO_STRU                              *pstEquPlmnInfo = VOS_NULL_PTR;
     NAS_MML_EQUPLMN_INFO_STRU                               stSndEquPlmnInfo;
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, end */
 
     PS_MEM_SET(&stSndEquPlmnInfo, 0, sizeof(NAS_MML_EQUPLMN_INFO_STRU));
     enPsAdditionalAction = NAS_MMC_ADDITIONAL_ACTION_BUTT;
@@ -16241,12 +10918,10 @@ VOS_VOID  NAS_MMC_ProcLmmCombinedTauResultInd_BgPlmnSearch(
 
     if (VOS_TRUE == NAS_MMC_IsNeedSndEplmn())
     {
-        /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, begin */
         pstEquPlmnInfo = NAS_MML_GetEquPlmnList();
         PS_MEM_CPY(&stSndEquPlmnInfo, pstEquPlmnInfo, sizeof(stSndEquPlmnInfo));
         NAS_MMC_BuildSndLmmEquPlmnInfo(&stSndEquPlmnInfo);
         NAS_MMC_SndLmmEquPlmnReq(&stSndEquPlmnInfo);
-        /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, end */
 
         NAS_MMC_SndOmEquPlmn();
 
@@ -16257,86 +10932,7 @@ VOS_VOID  NAS_MMC_ProcLmmCombinedTauResultInd_BgPlmnSearch(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcLmmEpsOnlyTauResultInd_BgPlmnSearch
- 功能描述  : 高优先级搜网时，对Eps TAU结果的处理
- 输入参数  : pstLmmTauIndMsg - lmm tau消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年9月20日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月5日
-    作    者   : z00161729
-    修改内容   : V7R1 phaseIV修改合并原NAS_MMC_HPLMN_REG_REJ_STRU和NAS_MMC_PLMN_REG_INFO_STRU
-  3.日    期   : 2011年12月15日
-    作    者   : w00167002
-    修改内容   : DTS2011121307570: MMC没有维护LMM的EPLMN信息，现在统一调整
-                ATTACH/TAU/DETACH/SERVICE中被拒时EPLMN的维护。
-                将函数名由NAS_MMC_ProcEpsRegFail更改为NAS_MMC_ProcEpsTauRegFail
-                调用TAU的注册原因值表进行处理。
-  4.日    期   : 2011年12月20日
-    作    者   : w00176964
-    修改内容   : V7R1 PhaseIV 调整:UT修改NAS_MMC_SetUserSpecPlmnRegisterStatus
-                 只在搜网状态机和ON PLMN下进行设置
-  5.日    期   : 2012年1月8日
-    作    者   : z00161729
-    修改内容   : V7R1 phaseIV调整:EPS单域注册假流程调整
-  6.日    期   : 2012年2月4日
-    作    者   : w00167002
-    修改内容   : DTS2011122704039:将注册结果类型以及注册消息传递给处理注册结果
-                  函数，扩展注册结果函数的处理能力。
-                  additional action值若为无效值NAS_MMC_ADDITIONAL_ACTION_BUTT
-                 则不更新当前的additional action
-  7.日    期   : 2012年4月24日
-    作    者   : z00161729
-    修改内容   : V7R1C50 GUL BG搜网修改函数名
-  8.日    期   : 2012年06月01日
-    作    者   : sunxibo /46746
-    修改内容   : Added for V7R1 C50 CS/PS mode 1
-  9.日    期   : 2012年8月21日
-    作    者   : z00161729
-    修改内容   : DCM定制需求和遗留问题修改DTS2012090401249
-  10.日    期   : 2012年09月12日
-     作    者   : z00161729
-     修改内容   : DTS2012082904888：cs ps mode1，on plmn、plmn list、bg plmn search状态机在eps only注册成功未调用NAS_MMC_IsNeedDisableL_EpsOnlyRegSucc判断是否需要disable lte
-  11.日    期   : 2012年12月6日
-     作    者   : s00217060
-     修改内容   : DTS2012120410842:注册成功时，需要删除ForbPlmn,ForbGprs等信息
-  12.日    期   : 2013年05月08日
-     作    者   : s46746
-     修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  13.日    期   : 2013年12月10日
-     作    者   : w00176964
-     修改内容   : VoLTE_PhaseIII 项目:修改Disable L模的逻辑
-  14.日    期   : 2014年5月6日
-     作    者   : z00161729
-     修改内容   : DTS2014050602850:l下联合注册eps成功，cs注册被#18拒绝，disable lte到gu下搜网注册成功，后指定搜l cs注册被#18拒绝的网络，l发起eps单域注册成功，mmc没有disable lte
-  15.日    期   : 2014年5月5日
-     作    者   : w00242748
-     修改内容   : DTS2014043000311:注册状态服务状态不一致，将MMC中报服务状态的场景，都加
-                  注册状态的上报。
-  16.日    期   : 2014年5月14日
-     作    者   : w00242748
-     修改内容   : DTS2014051206381:枚举值使用不对
-  17.日    期   : 2015年4月18日
-     作    者   : z00161729
-     修改内容   : 24301 R11 CR升级项目修改
-  18.日    期   : 2015年02月11日
-     作    者   : l00305157
-     修改内容   : Service_State_Optimize_PhaseII 项目修改
-  19.日    期   : 2015年06月09日
-     作    者   : l00305157
-     修改内容   : Service_State_Optimize_PhaseII 项目修改
-                    MMC接收到LMM模块注册结果，先更新EPLMN LIST，在处理注册状态的上报
- 20.日    期   : 2015年10月14日
-    作    者   : c00318887
-    修改内容   : DTS2015082002854: 漫游标记不准  
-*****************************************************************************/
 VOS_VOID  NAS_MMC_ProcLmmEpsOnlyTauResultInd_BgPlmnSearch(
     LMM_MMC_TAU_RESULT_IND_STRU        *pstLmmTauIndMsg
 )
@@ -16347,10 +10943,8 @@ VOS_VOID  NAS_MMC_ProcLmmEpsOnlyTauResultInd_BgPlmnSearch(
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16  enRegRsltCause;
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 enAdditionalAction;
 
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, begin */
     NAS_MML_EQUPLMN_INFO_STRU          *pstEquPlmnInfo = VOS_NULL_PTR;
     NAS_MML_EQUPLMN_INFO_STRU           stSndEquPlmnInfo;
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, end */
     VOS_UINT8                           ucSimCsRegStatus;
 
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8          enCsRegAdditionalAction;
@@ -16389,7 +10983,6 @@ VOS_VOID  NAS_MMC_ProcLmmEpsOnlyTauResultInd_BgPlmnSearch(
         /* EPS单域注册成功时，需要删除ForbPlmn,ForbGprs等信息 */
         NAS_MMC_DelForbInfo_LmmAttRsltSucc(VOS_NULL_PTR, VOS_FALSE);
 
-        /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, begin */
         /* 此处更新CS addition原因是联合TAU仅EPS成功时,LMM启动T3411再次尝试TAU过程中,
            用户Detach CS,LMM会直接报TAU成功,不再尝试联合TAU */
         NAS_MMC_SetCsRegAdditionalAction_BgPlmnSearch(NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON);
@@ -16403,19 +10996,14 @@ VOS_VOID  NAS_MMC_ProcLmmEpsOnlyTauResultInd_BgPlmnSearch(
 
             NAS_MMC_ChangeCsRegState(NAS_MML_REG_NOT_REGISTERED_NOT_SEARCH);
         }
-        /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, end */
 
         /*注意: 需要先更新EPLMN LIST，在处理注册状态的上报,因为NAS_MMC_UpdatePsRegStatePsRegSucc()函数中会根据EPLMN LIST上报注册状态 */
 
         NAS_MMC_UpdateGURegRlstRPlmnIdInNV();
 
-        /* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, begin */
         NAS_MMC_SndMsccRegResultInd(NAS_MSCC_PIF_SRVDOMAIN_PS, VOS_TRUE, NAS_MML_REG_FAIL_CAUSE_NULL);
-        /* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, end */
-        /* Added by w00176964 for APS服务状态通知清理, 2014-4-7, begin */
         NAS_MMC_NotifyModeChange(NAS_MML_GetCurrNetRatType(),
                                   NAS_MML_GetSimPsRegStatus());
-        /* Added by w00176964 for APS服务状态通知清理, 2014-4-7, end */
     }
     else if ((MMC_LMM_TAU_RSLT_FAILURE == pstLmmTauIndMsg->ulTauRst)
           && (VOS_FALSE == pstLmmTauIndMsg->bitOpAtmpCnt))
@@ -16423,9 +11011,7 @@ VOS_VOID  NAS_MMC_ProcLmmEpsOnlyTauResultInd_BgPlmnSearch(
         enAdditionalAction = NAS_MMC_ADDITIONAL_ACTION_LIMITED_CAMP_ON;
 
 
-        /* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, begin */
         NAS_MMC_SndMsccRegResultInd(NAS_MSCC_PIF_SRVDOMAIN_PS, VOS_FALSE, NAS_MML_REG_FAIL_CAUSE_OTHER_CAUSE);
-        /* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, end */
     }
     else if (MMC_LMM_TAU_RSLT_T3402_RUNNING_EPS_ONLY_SUCC == pstLmmTauIndMsg->ulTauRst)
     {
@@ -16445,12 +11031,10 @@ VOS_VOID  NAS_MMC_ProcLmmEpsOnlyTauResultInd_BgPlmnSearch(
 
     if (VOS_TRUE == NAS_MMC_IsNeedSndEplmn())
     {
-        /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, begin */
         pstEquPlmnInfo = NAS_MML_GetEquPlmnList();
         PS_MEM_CPY(&stSndEquPlmnInfo, pstEquPlmnInfo, sizeof(stSndEquPlmnInfo));
         NAS_MMC_BuildSndLmmEquPlmnInfo(&stSndEquPlmnInfo);
         NAS_MMC_SndLmmEquPlmnReq(&stSndEquPlmnInfo);
-        /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, end */
 
         NAS_MMC_SndOmEquPlmn();
 
@@ -16461,26 +11045,7 @@ VOS_VOID  NAS_MMC_ProcLmmEpsOnlyTauResultInd_BgPlmnSearch(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcLmmTauResultInd_BgPlmnSearch
- 功能描述  : 高优先级搜网时，对Eps TAU结果的处理
- 输入参数  : pstLmmTauIndMsg - lmm tau消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月30日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月28日
-    作    者   : z00161729
-    修改内容   : V7R1 phaseIV修改周期性tau处理
-  3.日    期   : 2012年4月24日
-    作    者   : z00161729
-    修改内容   : V7R1C50 GUL BG搜网修改
-*****************************************************************************/
 VOS_VOID  NAS_MMC_ProcLmmTauResultInd_BgPlmnSearch(
     LMM_MMC_TAU_RESULT_IND_STRU        *pstLmmTauIndMsg
 )
@@ -16512,21 +11077,7 @@ VOS_VOID  NAS_MMC_ProcLmmTauResultInd_BgPlmnSearch(
 }
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMsccCLAssociatedInfoNtf_BgPlmnSearch_WaitLmmPlmnFastSearchCnf
- 功能描述  : 等待L模上报快速指定搜网结果收到ID_MSCC_MMC_CL_ASSOCIATED_INFO_NTF消息的处理
- 输入参数  : pstMsg      - ID_MSCC_MMC_MSPL_INFO_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
 
- 修改历史     :
- 1.日    期   : 2015年9月12日
-   作    者   : y00346957
-   修改内容   : 新建
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMsccCLAssociatedInfoNtf_BgPlmnSearch_WaitLmmPlmnFastSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -16559,21 +11110,7 @@ VOS_UINT32 NAS_MMC_RcvMsccCLAssociatedInfoNtf_BgPlmnSearch_WaitLmmPlmnFastSearch
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMsccMsplInfoInd_BgPlmnSearch_WaitLmmBgPlmnSearchCnf
- 功能描述  : 等待L模上报BG搜网结果收到ID_MSCC_MMC_MSPL_INFO_IND消息的处理
- 输入参数  : pstMsg      - ID_MSCC_MMC_MSPL_INFO_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
 
- 修改历史     :
- 1.日    期   : 2015年9月12日
-   作    者   : y00346957
-   修改内容   : 新建
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMsccCLAssociatedInfoNtf_BgPlmnSearch_WaitLmmBgPlmnSearchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -16605,21 +11142,7 @@ VOS_UINT32 NAS_MMC_RcvMsccCLAssociatedInfoNtf_BgPlmnSearch_WaitLmmBgPlmnSearchCn
     return  VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMsccLteSysPriClassInfoInd_BgPlmnSearch_WaitEpsRegRsltInd
- 功能描述  : 等待L模上报BG搜网结果收到ID_MSCC_MMC_MSPL_INFO_IND消息的处理
- 输入参数  : pstMsg      - ID_MSCC_MMC_MSPL_INFO_IND消息
-             ulEventType - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
 
- 修改历史     :
- 1.日    期   : 2015年9月12日
-   作    者   : y00346957
-   修改内容   : 新建
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMsccCLAssociatedInfoNtf_BgPlmnSearch_WaitEpsRegRsltInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -16675,22 +11198,7 @@ VOS_UINT32 NAS_MMC_RcvMsccCLAssociatedInfoNtf_BgPlmnSearch_WaitEpsRegRsltInd(
 #endif
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsHighPrioRatHplmnSearch_BgPlmnSearch
- 功能描述  : 判断是否为高优先级RAT的HPLMN搜索
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  高优先级RAT的HPLMN搜索
-             VOS_FALSE 非高优先级RAT的HPLMN搜索
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月22日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8  NAS_MMC_IsHighPrioRatHplmnSearch_BgPlmnSearch(VOS_VOID)
 {
     NAS_MMC_ENTRY_MSG_STRU             *pstEntryMsg    = VOS_NULL_PTR;
@@ -16707,42 +11215,16 @@ VOS_UINT8  NAS_MMC_IsHighPrioRatHplmnSearch_BgPlmnSearch(VOS_VOID)
 }
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedEnableLTE_FastSpecSearch
- 功能描述  : 判断是否需要 Enable L
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:不需要 Enable L
-             VOS_TRUE: 需要 Enable L
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年02月14日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2015年1月5日
-   作    者   : z00161729
-   修改内容   : AT&T 支持DAM特性修改
- 3.日    期   : 2015年1月5日
-   作    者   : h00285180
-   修改内容   : LTE #14拒绝优化:DTS2015010401946
- 4.日    期   : 2015年11月23日
-   作    者   : z00359541
-   修改内容   : DTS2015111706562:TAU被网络#17拒绝5次DISABLE LTE，后续背景搜
-                又ENABLE LTE导致又会发起TAU被网络#17拒绝。TAU期间收不到网络寻呼
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedEnableLTE_FastSpecSearch(VOS_VOID)
 {
     NAS_MML_LTE_CAPABILITY_STATUS_ENUM_UINT32               enLteCapabilityStatus;
 
     VOS_UINT32                                              ulIsPlmnSupportDam;
     NAS_MML_PLMN_ID_STRU                                   *pstCurrPlmn;
-    /* Added by c00318887 for 移植T3402 , 2015-6-23, begin */
     VOS_UINT8                                               ucHighRatBgProc;
 
     ucHighRatBgProc = NAS_MMC_IsHighPrioRatHplmnSearch_BgPlmnSearch();
-    /* Added by c00318887 for 移植T3402 , 2015-6-23, end*/
 
     enLteCapabilityStatus = NAS_MML_GetLteCapabilityStatus();
 
@@ -16770,14 +11252,12 @@ VOS_UINT32 NAS_MMC_IsNeedEnableLTE_FastSpecSearch(VOS_VOID)
         return VOS_FALSE;
     }
 
-    /* Added by c00318887 for 移植T3402 , 2015-6-23, begin */
     /* nv已经设置不需要ENABLE LTE并且是高优先RAT背景搜时，不ENABLE LTE */
     if ( (NAS_MML_HIGH_PRIO_RAT_BG_SEARCH_PROC_LTE_NOT_ENABLE_LTE == NAS_MML_GetHighPrioRatBgEnableLteFlag())
       && (VOS_TRUE == ucHighRatBgProc))
     {
         return VOS_FALSE;
     }    
-    /* Added by c00318887 for 移植T3402 , 2015-6-23, end */
 
     /* 当前驻留VPLMN，enable LTE，否则不enable */
     pstCurrPlmn = NAS_MML_GetCurrCampPlmnId();
@@ -16807,27 +11287,7 @@ VOS_UINT32 NAS_MMC_IsNeedEnableLTE_FastSpecSearch(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SendEnableLTE_FastSpecSearch
- 功能描述  : 通知GU AS进行enable LTE
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年02月14日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2014年06月12日
-   作    者   : b00269685
-   修改内容   : 若是因为禁止LTE漫游而没有enable LTE，也需要停止定时器，并且更新disable LTE能力标记
- 3.日    期   : 2015年1月5日
-   作    者   : z00161729
-   修改内容   : AT&T 支持DAM特性修改
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SendEnableLTE_FastSpecSearch(VOS_VOID)
 {
     NAS_MML_LTE_CAPABILITY_STATUS_ENUM_UINT32               enLteCapabilityStatus;
@@ -16859,20 +11319,7 @@ VOS_VOID NAS_MMC_SendEnableLTE_FastSpecSearch(VOS_VOID)
 #endif
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcNoRf_BgPlmnSelection
- 功能描述  : 背景搜状态机中有no rf处理
- 输入参数  : 接入技术
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年06月27日
-   作    者   : b00269685
-   修改内容   : DSDS III新增函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcNoRf_BgPlmnSelection(
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enNasRat
 )
@@ -16897,22 +11344,7 @@ VOS_VOID NAS_MMC_ProcNoRf_BgPlmnSelection(
 
 /*lint -restore */
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndMsccSysInfo_BgPlmnSearch
- 功能描述  : BG搜状态机中给MMA发送系统消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  高优先级RAT的HPLMN搜索
-             VOS_FALSE 非高优先级RAT的HPLMN搜索
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月7日
-    作    者   : s00217060
-    修改内容   : Service_State_Optimize_PhaseI 新增
-
-*****************************************************************************/
 VOS_VOID  NAS_MMC_SndMsccSysInfo_BgPlmnSearch(VOS_VOID)
 {
     /* 发送系统消息标志置上的时候通知MMA系统消息，并清除标志 */

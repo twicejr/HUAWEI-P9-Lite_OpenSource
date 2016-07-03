@@ -47,8 +47,8 @@ TRACE_EVENT(menu_select,
 			__entry->cpu_id = cpu_id;
 			),
 
-		TP_printk("%s time_us = %d cpuid=0x%lx", __get_str(name),
-			(unsigned long)__entry->time_us, __entry->cpu_id)
+		TP_printk("%s time_us = %lu cpuid=0x%lu", __get_str(name),
+			(unsigned long)__entry->time_us, (unsigned long)__entry->cpu_id)
 );
 
 DEFINE_EVENT(cpu, cpu_idle,

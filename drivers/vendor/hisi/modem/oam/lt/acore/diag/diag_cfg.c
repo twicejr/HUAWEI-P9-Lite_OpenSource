@@ -62,16 +62,7 @@ HTIMER          g_DebugTimer;
   3 Function
 *****************************************************************************/
 
-/*****************************************************************************
- Function Name   : diag_CfgResetAllSwt
- Description     : 重置开关状态
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.w00182550      2012-12-1  Draft Enact
-
-*****************************************************************************/
 VOS_VOID diag_CfgResetAllSwt(VOS_VOID)
 {
     /*清空空口开关等状态，清成1是因为DIAG初始化状态不能清*/
@@ -98,19 +89,7 @@ VOS_VOID diag_CfgResetAllSwt(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Function Name   : diag_CfgSetGlobalBitValue
- Description     : 设置DIAG空口等开关状态
- Input           :VOS_UINT32* pstDiagGlobal
-                ENUM_DIAG_CFG_BIT enBit
-                VOS_UINT32 enSwtich
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.w00182550      2012-12-1  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 diag_CfgSetGlobalBitValue(VOS_UINT32* pstDiagGlobal,ENUM_DIAG_CFG_BIT_U32 enBit,ENUM_DIAG_CFG_SWT_U8 enSwtich)
 {
     /*设置为open 1时，需要使用|才能置该bit 为1*/
@@ -132,18 +111,7 @@ VOS_UINT32 diag_CfgSetGlobalBitValue(VOS_UINT32* pstDiagGlobal,ENUM_DIAG_CFG_BIT
     return ERR_MSP_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : diag_AirCfgProc
- Description     : 该函数用于处理CfgProcEntry传进来的空口开关命令
- Input           : pstReq 待处理数据
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.y00228784      2012-11-22  Draft Enact
-    2.c64416         2014-11-18  适配新的诊断架构
-
-*****************************************************************************/
 VOS_UINT32 diag_AirCfgProc (VOS_UINT8* pstReq)
 {
     VOS_UINT32 ret = ERR_MSP_SUCCESS;
@@ -208,18 +176,7 @@ DIAG_ERROR:
 
 /*lint -save -e830 -e539*/
 
-/*****************************************************************************
- Function Name   : diag_CfgSetLayerSwt
- Description     : 设置层间消息开关
- Input           :DIAG_CMD_LOG_CAT_LAYER_REQ_STRU* pstLayerReq
-                VOS_UINT32 ulCfgCnt
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.w00182550      2012-11-29  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 diag_CfgSetLayerSwt(DIAG_CMD_LOG_CAT_LAYER_REQ_STRU* pstLayerReq, VOS_UINT32 ulCfgSize)
 {
     VOS_UINT32 ret = ERR_MSP_SUCCESS;
@@ -270,18 +227,7 @@ VOS_UINT32 diag_CfgSetLayerSwt(DIAG_CMD_LOG_CAT_LAYER_REQ_STRU* pstLayerReq, VOS
 
 /*lint -restore*/
 
-/*****************************************************************************
- Function Name   : diag_LayerCfgProc
- Description     : 该函数用于处理CfgProcEntry传进来的层间开关命令
- Input           : pstReq 待处理数据
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.y00228784      2012-11-22  Draft Enact
-    2.c64416         2014-11-18  适配新的诊断架构
-
-*****************************************************************************/
 VOS_UINT32 diag_LayerCfgProc (VOS_UINT8* pstReq)
 {
     VOS_UINT32 ret = ERR_MSP_SUCCESS;
@@ -334,18 +280,7 @@ DIAG_ERROR:
 }
 
 
-/*****************************************************************************
- Function Name   : diag_EventCfgProc
- Description     : 该函数用于处理CfgProcEntry传进来的事件开关命令
- Input           : pstReq 待处理数据
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.y00228784      2012-11-22  Draft Enact
-    2.c64416         2014-11-18  适配新的诊断架构
-
-*****************************************************************************/
 VOS_UINT32 diag_EventCfgProc(VOS_UINT8* pstReq)
 {
     DIAG_CMD_LOG_CAT_EVENT_REQ_STRU* pstEvtSwtReq = NULL;
@@ -414,18 +349,7 @@ DIAG_ERROR:
     return ret;
 }
 
-/*****************************************************************************
- Function Name   : diag_SetMsgCfgSwt
- Description     : 消息ID过滤开关设置
- Input           :DIAG_CMD_LOG_CAT_CFG_REQ_STRU *pstCatCfgReq
-                VOS_UINT32 ulCfgSize
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.w00182550      2012-12-5  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 diag_CfgSetMsgSwt(DIAG_CMD_LOG_CAT_CFG_REQ_STRU *pstCatCfgReq,VOS_UINT32 ulCfgSize)
 {
     /*lint -save -e958*/
@@ -495,18 +419,7 @@ VOS_UINT32 diag_CfgSetMsgSwt(DIAG_CMD_LOG_CAT_CFG_REQ_STRU *pstCatCfgReq,VOS_UIN
 
 }
 
-/*****************************************************************************
- Function Name   : diag_MsgCfgProc
- Description     : 该函数用于处理CfgProcEntry传进来的消息开关命令
- Input           : pstReq 待处理数据
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.y00228784      2012-11-22  Draft Enact
-    2.c64416         2014-11-18  适配新的诊断架构
-
-*****************************************************************************/
 VOS_UINT32 diag_MsgCfgProc(VOS_UINT8* pstReq)
 {
     DIAG_CMD_LOG_CAT_CFG_CNF_STRU stCatSwtCnf = {0};
@@ -560,19 +473,7 @@ DIAG_ERROR:
 }
 
 
-/*****************************************************************************
- Function Name   : diag_CfgSetPrintSwt
- Description     : 设置打印开关状态
- Input           :DIAG_CMD_LOG_CAT_PRINT_REQ_STRU* pstPrintReq
-                VOS_UINT32 ulCfgCnt
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.w00182550      2012-12-6  Draft Enact
-    2.c64416         2014-11-18  适配新的诊断架构
-
-*****************************************************************************/
 VOS_UINT32 diag_CfgSetPrintSwt(DIAG_CMD_LOG_CAT_PRINT_REQ_STRU* pstPrintReq, VOS_UINT32 ulCfgSize)
 {
     /*lint -save -e958*/
@@ -623,18 +524,7 @@ VOS_UINT32 diag_CfgSetPrintSwt(DIAG_CMD_LOG_CAT_PRINT_REQ_STRU* pstPrintReq, VOS
 }
 
 
-/*****************************************************************************
- Function Name   : diag_PrintCfgProc
- Description     : 该函数用于处理CfgProcEntry传进来的打印开关命令
- Input           : pstReq 待处理数据
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.y00228784      2012-11-22  Draft Enact
-    2.c64416         2014-11-18  适配新的诊断架构
-
-*****************************************************************************/
 VOS_UINT32 diag_PrintCfgProc(VOS_UINT8* pstReq)
 {
     VOS_UINT32 ret = ERR_MSP_SUCCESS;
@@ -686,17 +576,7 @@ DIAG_ERROR:
     return ret;
 }
 
-/*****************************************************************************
- Function Name   : diag_FwSetChanSta
- Description     : 给C核发送连接状态，在USB拔除等情况使用到
- Input           : VOS_UINT32 flag
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.w00182550      2013-1-15  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 diag_SetChanDisconn(MsgBlock* pMsgBlock)
 {
     if(!DIAG_IS_CONN_ON)
@@ -726,14 +606,7 @@ VOS_UINT32 diag_SetChanDisconn(MsgBlock* pMsgBlock)
 
 
 #if ((VOS_OS_VER == VOS_RTOSCK) || (VOS_OS_VER == VOS_VXWORKS))
-/*****************************************************************************
- Function Name   : diag_DisConnNotifyOtherCpu
- Description     : 断链时通知其他CPU断开状态
 
- History         :
-    1.c00326366      2012-11-22  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 diag_DisConnNotifyOtherCpu(VOS_VOID)
 {
     VOS_UINT32 ret = ERR_MSP_UNKNOWN;
@@ -775,18 +648,7 @@ VOS_UINT32 diag_DisConnNotifyOtherCpu(VOS_VOID)
 #endif
 
 
-/*****************************************************************************
- Function Name   : diag_DisConnProc
- Description     : 该函数用于处理ConnProcEntry传进来的HSO断开命令
- Input           : pstReq 待处理数据
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.y00228784      2012-11-22  Draft Enact
-    2.c64416         2014-11-18  适配新的诊断架构
-
-*****************************************************************************/
 VOS_UINT32 diag_DisConnProc(VOS_UINT8* pstReq)
 {
     VOS_UINT32 ret = ERR_MSP_SUCCESS;
@@ -853,17 +715,7 @@ DIAG_ERROR:
 
 #if (VOS_OS_VER == VOS_LINUX)
 
-/*****************************************************************************
- Function Name   : diag_GetFrameTime
- Description     : 获取时间戳
- Input           :VOS_VOID
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.w00182550      2012-12-19  Draft Enact
-
-*****************************************************************************/
 VOS_UINT64 diag_GetFrameTime(VOS_VOID)
 {
     VOS_UINT32 ultimelow = 0;
@@ -917,17 +769,7 @@ VOS_UINT32 diag_GetTimeStampInitValue(VOS_UINT8* pstReq)
 
 
 #define DIAG_NV_IMEI_LEN                             15
-/*****************************************************************************
- Function Name   : diag_GetImei
- Description     : 获取imei号
- Input           :VOS_VOID
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.y00228784      2012-12-19  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 diag_GetImei(VOS_CHAR szimei [ 16 ])
 {
     VOS_UINT32  ret;
@@ -967,18 +809,7 @@ VOS_UINT32 diag_GetImei(VOS_CHAR szimei [ 16 ])
 }
 
 
-/*****************************************************************************
- Function Name   : diag_ConnProc
- Description     : 该函数用于处理ConnProcEntry传进来的HSO连接命令
- Input           : pstReq 待处理数据
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.y00228784      2012-11-22  Draft Enact
-    2.c64416         2014-11-18  适配新的诊断架构
-
-*****************************************************************************/
 VOS_UINT32 diag_ConnProc(VOS_UINT8* pstReq)
 {
     VOS_UINT32 ulCnfRst = ERR_MSP_UNAVAILABLE;

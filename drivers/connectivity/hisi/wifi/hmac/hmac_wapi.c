@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : hmac_wpi_crypt.c
-  版 本 号   : 初稿
-  作    者   : z00260280
-  生成日期   : 2015年5月20日
-  最近修改   :
-  功能描述   : wpi数据加解密
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年5月20日
-    作    者   : z00260280
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -55,20 +38,7 @@ OAL_CONST oal_uint8 g_auc_wapi_oui[WAPI_IE_OUI_SIZE] = {0x00,0x14,0x72};
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : hmac_wapi_is_qos
- 功能描述  : 判断是否为qos帧
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月20日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-*****************************************************************************/
 oal_bool_enum_uint8  hmac_wapi_is_qos(mac_ieee80211_frame_stru *pst_mac_hdr)
 {
     if ((WLAN_DATA_BASICTYPE == pst_mac_hdr->st_frame_control.bit_type)
@@ -81,24 +51,7 @@ oal_bool_enum_uint8  hmac_wapi_is_qos(mac_ieee80211_frame_stru *pst_mac_hdr)
 
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_wapi_calc_mic_data
- 功能描述  : 计算mic数据，作为计算mic之用
- 输入参数  :
- 输出参数  : mic数据缓冲区的长度
- 返 回 值  : 申请到的空间指针
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-
-  1.日    期   : 2015年5月21日
-    作    者   : z00260280
-    修改内容   : 创建
-    其    他   :hmac_rx_get_mac_hdr_len已经过滤4地址的情况，此处不再考虑
-                mic数据具体构成见<wapi实施指南>5.2.2.3
-
-*****************************************************************************/
 oal_uint32 hmac_wapi_calc_mic_data(mac_ieee80211_frame_stru *pst_mac_hdr, oal_uint8 uc_mac_hdr_len, oal_uint8 uc_keyidx, oal_uint8 *puc_payload, oal_uint16 us_pdu_len, oal_uint8 *puc_mic, oal_uint16 us_mic_len)
 {
     oal_uint8       us_is_qos;
@@ -169,23 +122,7 @@ oal_uint32 hmac_wapi_calc_mic_data(mac_ieee80211_frame_stru *pst_mac_hdr, oal_ui
 
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_wapi_mic_alloc
- 功能描述  : 申请空间，用于存放mic
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 申请到的空间指针
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-
-  1.日    期   : 2015年5月21日
-    作    者   : z00260280
-    修改内容   : 创建
-    其    他
-
-*****************************************************************************/
 oal_uint8 *hmac_wapi_mic_alloc(oal_uint8 is_qos, oal_uint16 us_pdu_len, oal_uint16 *pus_mic_len)
 {
     oal_uint16      us_mic_part1_len;
@@ -205,23 +142,7 @@ oal_uint8 *hmac_wapi_mic_alloc(oal_uint8 is_qos, oal_uint16 us_pdu_len, oal_uint
 
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_wapi_mic_free
- 功能描述  : 释放申请的mic空间
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-
-  1.日    期   : 2015年5月21日
-    作    者   : z00260280
-    修改内容   : 创建
-    其    他
-
-*****************************************************************************/
 oal_uint32 hmac_wapi_mic_free(oal_uint8 *puc_mic)
 {
     if (OAL_PTR_NULL != puc_mic)
@@ -241,20 +162,7 @@ oal_uint8 hmac_wapi_get_keyidx(oal_uint8 *puc_wapi_hdr)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : hmac_wapi_is_keyidx_valid
- 功能描述  : 判断keyidx是否合法
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月2日
-    作    者   : z00206031
-    修改内容   : 新生成函数
-*****************************************************************************/
 oal_uint8 hmac_wapi_is_keyidx_valid(hmac_wapi_stru *pst_wapi, oal_uint8 uc_keyidx_rx)
 {
 
@@ -283,45 +191,13 @@ oal_uint8 hmac_wapi_is_keyidx_valid(hmac_wapi_stru *pst_wapi, oal_uint8 uc_keyid
     return OAL_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_wapi_is_pn_odd_ucast
- 功能描述  : 单播帧判断数据奇偶正确性
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 如果为偶数则返回false
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-
-  1.日    期   : 2015年5月21日
-    作    者   : z00260280
-    修改内容   : 创建
-    其    他
-
-*****************************************************************************/
 oal_bool_enum_uint8 hmac_wapi_is_pn_odd_ucast(oal_uint8 *puc_pn)
 {
     return (oal_bool_enum_uint8)((0 == (*puc_pn & BIT0))?OAL_FALSE:OAL_TRUE);
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_wapi_is_pn_bigger
- 功能描述  : 判断接收到的pn是否大于记录的pn,最后一个数值进位后会小于AP侧记录的值，所以不用检查
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : oal_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-
-  1.日    期   : 2015年5月21日
-    作    者   : z00260280
-    修改内容   : 创建
-    其    他
-
-*****************************************************************************/
 oal_uint8 hmac_wapi_is_pn_bigger(oal_uint8 *puc_pn, oal_uint8 *puc_pn_rx)
 {
     oal_uint8   uc_pnidx;
@@ -344,45 +220,13 @@ oal_uint8 hmac_wapi_is_pn_bigger(oal_uint8 *puc_pn, oal_uint8 *puc_pn_rx)
 }
 
 
-/*****************************************************************************
- 函 数 名  : hmac_wapi_is_pn_odd_bcast
- 功能描述  : 组播帧判断数据奇偶性
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : oal_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-
-  1.日    期   : 2015年5月21日
-    作    者   : z00260280
-    修改内容   : 创建
-    其    他
-
-*****************************************************************************/
 oal_uint8 hmac_wapi_is_pn_odd_bcast(oal_uint8 *puc_pn)
 {
     return OAL_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_wapi_pn_update
- 功能描述  : 每收到一个帧，更新pn
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : oal_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-
-  1.日    期   : 2015年5月21日
-    作    者   : z00260280
-    修改内容   : 创建
-    其    他
-
-*****************************************************************************/
 oal_uint8 hmac_wapi_pn_update(oal_uint8 *puc_pn, oal_uint8  uc_inc)
 {
     oal_uint32          ul_loop;
@@ -412,25 +256,7 @@ oal_uint8 hmac_wapi_pn_update(oal_uint8 *puc_pn, oal_uint8  uc_inc)
     return OAL_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_wapi_netbuff_tx_handle
- 功能描述  : 处理已经分片或者不需分片的netbuff链
-             1)如果已经分片，则处理这个链，将链上所有netbuff上的数据进行加密处理
-             2)如果没有分片，则处理单个netbuff,将这个netbuff上的数据进行加密处理
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : oal_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-
-  1.日    期   : 2015年5月21日
-    作    者   : z00260280
-    修改内容   : 创建
-    其    他
-
-*****************************************************************************/
 oal_netbuf_stru  *hmac_wapi_netbuff_tx_handle(hmac_wapi_stru *pst_wapi, oal_netbuf_stru  *pst_buf)
 {
     oal_uint32           ul_ret;
@@ -492,25 +318,7 @@ oal_netbuf_stru  *hmac_wapi_netbuff_tx_handle(hmac_wapi_stru *pst_wapi, oal_netb
     return pst_buf_first;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_wapi_netbuff_rx_handle
- 功能描述  : 接收处理比发送要简单，因为每次只会有一个netbuff需要处理
-             假设加密的netbuff为1，解密后的为0，那么输入为1,解密完成后变为
-             1->0 本函数将1删掉，然后将已经解密的0往上送
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : oal_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-
-  1.日    期   : 2015年5月21日
-    作    者   : z00260280
-    修改内容   : 创建
-    其    他
-
-*****************************************************************************/
 oal_netbuf_stru  *hmac_wapi_netbuff_rx_handle(hmac_wapi_stru *pst_wapi, oal_netbuf_stru  *pst_buf)
 {
     oal_uint32                    ul_ret;
@@ -536,23 +344,7 @@ oal_netbuf_stru  *hmac_wapi_netbuff_rx_handle(hmac_wapi_stru *pst_wapi, oal_netb
     return pst_buf;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_wapi_add_key
- 功能描述  : 增加/更新 key
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : oal_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-
-  1.日    期   : 2015年5月21日
-    作    者   : z00260280
-    修改内容   : 创建
-    其    他
-
-*****************************************************************************/
 oal_uint32 hmac_wapi_add_key(hmac_wapi_stru *pst_wapi, oal_uint8 uc_key_index, oal_uint8 *puc_key)
 {
     hmac_wapi_key_stru              *pst_key;
@@ -579,23 +371,7 @@ oal_uint32 hmac_wapi_add_key(hmac_wapi_stru *pst_wapi, oal_uint8 uc_key_index, o
 
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_wapi_is_wpihdr_valid
- 功能描述  : 检验wpi头的合法性
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : oal_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-
-  1.日    期   : 2015年5月21日
-    作    者   : z00260280
-    修改内容   : 创建
-    其    他
-
-*****************************************************************************/
 oal_uint8 hmac_wapi_is_wpihdr_valid(hmac_wapi_stru *pst_wapi, oal_uint8  *puc_wapi_hdr)
 {
     oal_uint8 uc_keyidx_rx;
@@ -629,23 +405,7 @@ oal_uint8 hmac_wapi_is_wpihdr_valid(hmac_wapi_stru *pst_wapi, oal_uint8  *puc_wa
     return OAL_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_wapi_decrypt
- 功能描述  : 对数据进行解密
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : oal_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-
-  1.日    期   : 2015年5月21日
-    作    者   : z00260280
-    修改内容   : 创建
-    其    他   : 此函数如果返回错误，需要将netbuff释放掉，不需要再送到后面进行处理
-
-*****************************************************************************/
 oal_uint32 hmac_wapi_decrypt(hmac_wapi_stru *pst_wapi, oal_netbuf_stru  *pst_netbuf)
 {
     oal_netbuf_stru             *pst_netbuff_des   = NULL;
@@ -843,25 +603,7 @@ oal_uint32 hmac_wapi_decrypt(hmac_wapi_stru *pst_wapi, oal_netbuf_stru  *pst_net
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_wapi_encrypt
- 功能描述  : 对数据进行加密,处理完成之后，无论是否分片，
-            第一个netbuff为处理前，没有加密的netbuff，
-            后面挂的netbuff为加密过的netbuff,请注意!
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : oal_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-
-  1.日    期   : 2015年5月21日
-    作    者   : z00260280
-    修改内容   : 创建
-    其    他
-
-*****************************************************************************/
 oal_uint32 hmac_wapi_encrypt(hmac_wapi_stru *pst_wapi, oal_netbuf_stru  *pst_netbuf)
 {
     mac_ieee80211_frame_stru        *pst_mac_hdr;
@@ -1019,21 +761,7 @@ oal_uint32 hmac_wapi_encrypt(hmac_wapi_stru *pst_wapi, oal_netbuf_stru  *pst_net
 
 
 
-/*****************************************************************************
- 函 数 名  : hmac_wapi_deinit
- 功能描述  : 去初始化wapi对象
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月26日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_wapi_deinit(hmac_wapi_stru *pst_wapi)
 {
     OAL_MEMZERO(pst_wapi, OAL_SIZEOF(hmac_wapi_stru));
@@ -1041,21 +769,7 @@ oal_uint32 hmac_wapi_deinit(hmac_wapi_stru *pst_wapi)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_wapi_reset_port
- 功能描述  : 将port重置
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月26日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_wapi_reset_port(hmac_wapi_stru *pst_wapi)
 {
     //OAL_MEMZERO(pst_wapi, OAL_SIZEOF(hmac_wapi_stru));
@@ -1063,21 +777,7 @@ oal_uint32 hmac_wapi_reset_port(hmac_wapi_stru *pst_wapi)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_wapi_init
- 功能描述  : 初始化wapi对象
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月26日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_wapi_init(hmac_wapi_stru *pst_wapi, oal_uint8 uc_pairwise)
 {
     oal_uint32                  ul_loop;
@@ -1112,39 +812,9 @@ oal_uint32 hmac_wapi_init(hmac_wapi_stru *pst_wapi, oal_uint8 uc_pairwise)
 }
 
 
-/*****************************************************************************
- 函 数 名  : alg_autorate_command_print_rate_set
- 功能描述  : 打印proxy arp调试信息
- 输入参数  : pst_mac_vap : mac_vap指针
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月8日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 #ifdef _PRE_WAPI_DEBUG
-/*****************************************************************************
- 函 数 名  : hmac_wapi_dump_frame
- 功能描述  : 打印帧内容
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : oal_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-
-  1.日    期   : 2015年5月21日
-    作    者   : z00260280
-    修改内容   : 创建
-    其    他
-
-*****************************************************************************/
 oal_void hmac_wapi_dump_frame(oal_uint8 *puc_info, oal_uint8 *puc_data, oal_uint32 ul_len)
 {
     oal_uint32 ul_loop;
@@ -1158,23 +828,7 @@ oal_void hmac_wapi_dump_frame(oal_uint8 *puc_info, oal_uint8 *puc_data, oal_uint
 
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_wapi_display_usr_info
- 功能描述  : 打印用户wapi内容
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-
-  1.日    期   : 2015年5月21日
-    作    者   : z00260280
-    修改内容   : 创建
-    其    他
-
-*****************************************************************************/
 oal_uint32 hmac_wapi_display_usr_info(hmac_user_stru *pst_hmac_user)
 {
     oal_uint32                       ul_loop = 0;
@@ -1241,23 +895,7 @@ oal_uint32 hmac_wapi_display_usr_info(hmac_user_stru *pst_hmac_user)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_wapi_display_info
- 功能描述  : 打印wapi内容
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-
-  1.日    期   : 2015年5月21日
-    作    者   : z00260280
-    修改内容   : 创建
-    其    他
-
-*****************************************************************************/
 oal_uint32 hmac_wapi_display_info(mac_vap_stru *pst_mac_vap, oal_uint16 us_usr_idx)
 {
 

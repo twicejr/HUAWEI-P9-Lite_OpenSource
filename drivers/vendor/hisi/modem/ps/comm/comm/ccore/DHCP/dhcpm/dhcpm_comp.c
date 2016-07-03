@@ -1,57 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : dhcpm_comp.c
-  版 本 号   : 初稿
-  作    者   : y00138047
-  生成日期   : 2012年6月21日
-  最近修改   :
-  功能描述   : dhcpm F板主文件
-  函数列表   :
-*
-*       1.                DHCPM_ModDhcpServerGroupNode
-*       2.                DHCPM_AlarmProcByDhcpServerIndex
-*       3.                DHCPM_AlarmTimerProc
-*       4.                DHCPM_CommInit1
-*       5.                DHCPM_CommInit3
-*       6.                DHCPM_CompConstruct
-*       7.                DHCPM_CompDestruct
-*       8.                DHCPM_CompMsgDistribute
-*       9.                DHCPM_CompMsgProc
-*       10.                DHCPM_CompTimerMsgProc
-*       11.                DHCPM_DhcpServerStatusWriteLock
-*       12.                DHCPM_DhcpServerStatusWriteUnlock
-*       13.                DHCPM_GetDhcpSrvCfgByIndex
-*       14.                DHCPM_GetDhcpSrvCfgStatusByIndex
-*       15.                DHCPM_GetDhcpSrvStatusByIndex
-*       16.                DHCPM_GetSelfCompInfo
-*       17.                DHCPM_InitDhcpServerCfgManager
-*       18.                DHCPM_InitDhcpServerStatusManager
-*       19.                DHCPM_InitTimer
-*       20.                DHCPM_RegDhcpServer
-*       21.                DHCPM_RegDhcpServerCfgManager
-*       22.                DHCPM_InitDhcpServerStatus
-*       23.                DHCPM_RemoveDhcpServerByIndex
-*       24.                DHCPM_RenewSoftPara
-*       25.                DHCPM_ReportAlarm
-*       26.                DHCPM_SetPrimarySrvStatusByIndex
-*       27.                DHCPM_SetPrimarySrvTestByIndex
-*       28.                DHCPM_SetPrimSrvTimerStatusByIndex
-*       29.                DHCPM_SetPrimTimeoutNumByIndex
-*       30.                DHCPM_SetSecondarySrvStatusByIndex
-*       31.                DHCPM_SetSecondarySrvTestByIndex
-*       32.                DHCPM_SetSecTimeoutNumByIndex
-*       33.                DHCPM_StartWorkProc
-*
-
-  修改历史   :
-  1.日    期   : 2012年6月21日
-    作    者   : y00138047
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #include "dhcp_inc.h"
 #include "dhcpc_def.h"
@@ -150,22 +97,7 @@ ULONG DHCPM_DhcpServerCfgWriteUnLock()
 }
 
 
-/*****************************************************************************
- 函 数 名  : DHCPM_GetDhcpSrvCfgByIndex
- 功能描述  : dhcpm根据dhcp server index获取配置
- 输入参数  : ULONG ulDhcpIndex
-             LAP_DHCP_CFG_S *pstDhcpServer
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月20日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPM_GetDhcpSrvCfgByIndex(ULONG ulDhcpIndex, LAP_DHCP_CFG_S *pstDhcpServer)
 {
     ULONG ulFindFlag = VOS_FALSE;
@@ -257,22 +189,7 @@ ULONG DHCPM_GetDhcpSrvCfgStatusByIndex(ULONG ulDhcpIndex, LAP_DHCP_CFG_S *pstDhc
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPM_GetDhcpSrvVpnByIndex
- 功能描述  : 获取与dhcp server绑定的vpn的索引
- 输入参数  : ULONG ulDhcpIndex
-             ULONG *pusVpnIndex
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月25日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPM_GetDhcpSrvVpnByIndex(ULONG ulDhcpIndex, ULONG *pulVpnIndex)
 {
     ULONG ulReturn = VOS_ERR;
@@ -301,23 +218,7 @@ ULONG DHCPM_GetDhcpSrvVpnByIndex(ULONG ulDhcpIndex, ULONG *pulVpnIndex)
 }
 
 
-/*****************************************************************************
- 函 数 名  : DHCPM_GetRetransmitCfgByIndex
- 功能描述  : 获取重发超时时间
- 输入参数  : ULONG ulDhcpIndex
-             UCHAR *pucRetransmitNum
-             UCHAR *pucRetransmitTimeOut
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月17日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 inline ULONG DHCPM_GetRetransmitTimeOutByIndex(ULONG ulDhcpIndex, UCHAR *pucRetransmitTimeOut)
 {
     ULONG ulReturn = VOS_ERR;
@@ -579,21 +480,7 @@ VOID DHCPM_AlarmProcByDhcpServerIndex(ULONG ulDhcpIndex, ULONG ulAlarmDownFlg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : DHCPM_RenewSoftPara
- 功能描述  : dhcpm更新告警相关软参
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月20日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPM_RenewSoftPara()
 {
     UCHAR ucSoftParaByte133 = 0;
@@ -670,21 +557,7 @@ VOID DHCPM_AlarmTimerProc( )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPM_PrimTryStatusTimeCountDown
- 功能描述  : 主服务器Try时间倒计时处理.
- 输入参数  : ULONG ulSvrGrpIndex
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月2日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPM_PrimTryStatusTimeCountDown(ULONG ulSvrGrpIndex)
 {
     LAP_DHCP_CFG_S *pstDhcpServer = g_stDhcpServerCfgManager.pstDhcpServer + ulSvrGrpIndex;
@@ -723,21 +596,7 @@ VOID DHCPM_PrimTryStatusTimeCountDown(ULONG ulSvrGrpIndex)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPM_SecTryStatusTimeCountDown
- 功能描述  : 备服务器Try时间倒计时处理
- 输入参数  : ULONG ulSvrGrpIndex
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月2日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPM_SecTryStatusTimeCountDown(ULONG ulSvrGrpIndex)
 {
     LAP_DHCP_CFG_S *pstDhcpServer = g_stDhcpServerCfgManager.pstDhcpServer + ulSvrGrpIndex;
@@ -776,20 +635,7 @@ VOID DHCPM_SecTryStatusTimeCountDown(ULONG ulSvrGrpIndex)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPM_TryStatusTimeCountDown
- 功能描述  : 所有dhcp server group try状态转化倒计时处理
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月2日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPM_TryStatusTimeCountDown()
 {
     ULONG ulSvrGrpIndex = 0;
@@ -811,20 +657,7 @@ VOID DHCPM_TryStatusTimeCountDown()
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPCM_OneSecondTimerProc
- 功能描述  : DHCPCM 1秒定时器处理
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月2日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPCM_OneSecondTimerProc()
 {
     UCHAR ucLogicSlot = 0;
@@ -845,21 +678,7 @@ VOID DHCPCM_OneSecondTimerProc()
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPM_ModDhcpServerGroupNode
- 功能描述  : 修改dhcp server group到全局数据结构中
- 输入参数  : LAP_DHCP_CFG_S * pstDhcpServerGrpInfo
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007 年10月29日
-    作    者   : heguangwei 65937
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPM_ModDhcpServerGroupNode(LAP_DHCP_CFG_S * pstDhcpServerGrpInfo)
 {
     ULONG ulServerIndex = 0;
@@ -960,21 +779,7 @@ ULONG DHCPM_GetTryStatusTimerIntreval()
 
 #define __DHCPM_INIT___________
 
-/*****************************************************************************
- 函 数 名  : DHCPM_RegDhcpServerCfgManager
- 功能描述  : 注册dhcp server配置管理器
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月20日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPM_RegDhcpServerCfgManager()
 {
     ULONG ulMemSize = 0;
@@ -1006,21 +811,7 @@ ULONG DHCPM_RegDhcpServerCfgManager()
 }
 
 
-/*****************************************************************************
- 函 数 名  : DHCPM_InitDhcpServerCfgManager
- 功能描述  : 初始化dhcp server配置管理器
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月20日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPM_InitDhcpServerCfgManager()
 {
     ULONG ulRet = 0;
@@ -1069,21 +860,7 @@ ULONG DHCPM_InitDhcpServerCfgManager()
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPM_InitDhcpServerStatus
- 功能描述  : 注册dhcp server状态管理器
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月20日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPM_InitDhcpServerStatus()
 {
     ULONG ulMemSize = 0;
@@ -1111,21 +888,7 @@ ULONG DHCPM_InitDhcpServerStatus()
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPM_RegDhcpServer
- 功能描述  : 注册dhcp server配置和状态管理器
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月20日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPM_RegDhcpServer()
 {
     ULONG ulReturn = VOS_OK;
@@ -1185,21 +948,7 @@ ULONG DHCPM_InitTimer()
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPM_CommInit1
- 功能描述  : 第一阶段公共初始化
- 输入参数  :
- 输出参数  :
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月10日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPM_CommInit1()
 {
     ULONG ulReturn = VOS_OK;
@@ -1240,21 +989,7 @@ ULONG DHCPM_CommInit1()
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPM_CommInit3
- 功能描述  : 第三阶段公共初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月20日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPM_CommInit3()
 {
     ULONG ulReturn = VOS_OK;
@@ -1281,21 +1016,7 @@ ULONG DHCPM_CommInit3()
 
 #define __DHCPM_COMP_MSG_PROC___________
 
-/*****************************************************************************
- 函 数 名  : DHCPM_StartWorkProc
- 功能描述  : dhcpm开工消息处理
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月20日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPM_StartWorkProc( )
 {
     ULONG ulRet = VOS_OK;
@@ -1312,21 +1033,7 @@ ULONG DHCPM_StartWorkProc( )
 
 #ifdef __LINUX_PLATFORM__
 
-/*****************************************************************************
- 函 数 名  : DHCPM_GetSelfCompInfo
- 功能描述  : 获取本组件相关信息
- 输入参数  : DMS_COMMID_T myCSI
- 输出参数  :
- 返 回 值   :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月10日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPM_GetSelfCompInfo(DMS_COMMID_T myCSI )
 {
     g_stDhcpMCompInfo.ullSelfCsi = PSM_Inf_GetSelfCSI(E_COMP_TYPE_DHCPCGM);
@@ -1338,45 +1045,14 @@ VOID DHCPM_GetSelfCompInfo(DMS_COMMID_T myCSI )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPM_CompMsgDistribute
- 功能描述  : 组件消息分发函数
- 输入参数  : VOID* pMsg
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月10日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPM_CompMsgDistribute(ULONG ulMsgType, VOID* pMsg )
 {
     return VOS_OK;
 }
 
 #define __DHCPM_COMP_FRAME____________
-/*****************************************************************************
- 函 数 名  : DHCPM_CompConstruct
- 功能描述  : DHCPM组件构造函数
- 输入参数  : RTF_COMP_CONSTRUCT_STAGE_E eConstructStage
-             DMS_COMMID_T myCSI
-             DMS_COMMID_T myCPI
-             VOID* pThis
- 输出参数  :
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月10日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPM_CompConstruct( RTF_COMP_CONSTRUCT_STAGE_E eConstructStage,
                             DMS_COMMID_T myCSI, DMS_COMMID_T myCPI, VOID* pThis )
 {
@@ -1434,44 +1110,14 @@ ULONG DHCPM_CompConstruct( RTF_COMP_CONSTRUCT_STAGE_E eConstructStage,
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPM_CompDestruct
- 功能描述  : DHCPM组件析构函数
- 输入参数  : DMS_COMMID_T myPid
-             VOID* pThis
- 输出参数  :
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月10日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPM_CompDestruct( DMS_COMMID_T myPid, VOID* pThis )
 {
     vos_printf("Destruct Component DHCPM\r\n");
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPM_CompMsgProc
- 功能描述  : DHCPM组件消息处理函数
- 输入参数  : VOID* pMsg
-                  VOID* pThis
- 输出参数  :
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月10日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPM_CompMsgProc(VOID* pMsg, VOID* pThis)
 {
     DMS_IID_T recvIId;
@@ -1665,24 +1311,7 @@ ULONG inline DHCPM_SetSecTimeoutNumByIndex(ULONG ulDhcpIndex, UCHAR ucValue)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPM_TrySetPrimStatusAbnormalByIndex
- 功能描述  : 尝试将主服务器的状态变为Abnormal.
-             如果当前状态为Abnormal,什么都不做。
-             如果不为Abnormal,将主服务器状态设置为Abnormal,同时设置状态变为
-             TRY的时间间隔。
- 输入参数  : ULONG ulDhcpIndex
- 输出参数  : 无
- 返 回 值  : ULONG inline
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月3日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG inline DHCPM_TrySetPrimStatusAbnormalByIndex(ULONG ulDhcpIndex)
 {
     ULONG   ulTryTimeInterval = 0;
@@ -1708,24 +1337,7 @@ ULONG inline DHCPM_TrySetPrimStatusAbnormalByIndex(ULONG ulDhcpIndex)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPM_TrySetSecStatusAbnormalByIndex
- 功能描述  : 尝试将备服务器的状态设置为Abnormal.
-             如果当前状态为Abnormal,什么都不做。
-             如果不为Abnormal,将备服务器状态设置为Abnormal,同时设置状态变为
-             TRY的时间间隔。
- 输入参数  : ULONG ulDhcpIndex
- 输出参数  : 无
- 返 回 值  : ULONG inline
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月3日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG inline DHCPM_TrySetSecStatusAbnormalByIndex(ULONG ulDhcpIndex)
 {
     ULONG   ulTryTimeInterval = 0;

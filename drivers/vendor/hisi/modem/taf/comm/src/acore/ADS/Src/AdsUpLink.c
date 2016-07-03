@@ -34,21 +34,7 @@ extern "C" {
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : ADS_UL_CCpuResetCallback
- 功能描述  : C核单独复位时ADS UL的回调处理函数
- 输入参数  : enParam   -- 0表示复位前， 其他表示复位后
-             iUserData -- 用户数据
- 输出参数  : 无
- 返 回 值  : VOS_INT
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2013年04月10日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_INT ADS_UL_CCpuResetCallback(
     DRV_RESET_CB_MOMENT_E               enParam,
     VOS_INT                             iUserData
@@ -111,21 +97,7 @@ VOS_INT ADS_UL_CCpuResetCallback(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_UL_StartDsFlowStats
- 功能描述  : 启动流量统计
- 输入参数  : ucInstance - 实体索引
-             ucRabId    - RABID [5,15]
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月22日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID ADS_UL_StartDsFlowStats(
     VOS_UINT8                           ucInstance,
     VOS_UINT8                           ucRabId
@@ -140,21 +112,7 @@ VOS_VOID ADS_UL_StartDsFlowStats(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_UL_StopDsFlowStats
- 功能描述  : 停止流量统计
- 输入参数  : ucInstance - 实体索引
-             ucRabId    - RABID [5,15]
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月22日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID ADS_UL_StopDsFlowStats(
     VOS_UINT8                           ucInstance,
     VOS_UINT8                           ucRabId
@@ -170,23 +128,7 @@ VOS_VOID ADS_UL_StopDsFlowStats(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_UL_SendPacket
- 功能描述  : ADS上行为上层模块提供的数据发送函数，本接口不释放内存。
-             上层模块根据返回值判断是否需要释放内存
- 输入参数  : pstImmZc  --- IMM数据
-             ucExRabId --- RABID [5, 15]
- 输出参数  : 无
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月7日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 ADS_UL_SendPacket(
     IMM_ZC_STRU                        *psImmZc,
     VOS_UINT8                           ucExRabId
@@ -235,24 +177,7 @@ VOS_UINT32 ADS_UL_SendPacket(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_UL_SendPacketEx
- 功能描述  : 上行发送数据扩展接口, 使用该接口发送的数据在ADS记录其信息, 用于
-             下行数据过滤匹配, 该接口必须和ADS_DL_RegFilterDataCallback配合
-             使用, 只有使用ADS_DL_RegFilterDataCallback注册过下行过滤回调后,
-             下行数据才需要根据使用该接口记录的信息进行过滤
- 输入参数  : pstImmZc  --- IMM数据
-             enIpType  --- IP类型
-             ucExRabId --- RABID [5, 15]
- 输出参数  : 无
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年6月3日
-    作    者   : L47619
-    修改内容   : V3R3 Share-PDP项目修改
-*****************************************************************************/
+
 VOS_UINT32 ADS_UL_SendPacketEx(
     IMM_ZC_STRU                        *pstImmZc,
     ADS_PKT_TYPE_ENUM_UINT8             enIpType,
@@ -311,26 +236,7 @@ VOS_UINT32 ADS_UL_SendPacketEx(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_UL_GetInstanceNextQueueNode
- 功能描述  : 获取上行一个实例的结点
- 输入参数  : VOS_UINT8                           ucInstanceIndex,
- 输出参数  : VOS_UINT8                          *pucRabId
- 返 回 值  : IMM_ZC_STRU                        *pstNode
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月20日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2012年02月21日
-    作    者   : f00179208
-    修改内容   : V7R1C50项目，根据优先级发送数据
-  3.日    期   : 2012年11月24日
-    作    者   : l60609
-    修改内容   : DSDA Phase II:双实例
-*****************************************************************************/
 IMM_ZC_STRU* ADS_UL_GetInstanceNextQueueNode(
     VOS_UINT8                           ucInstanceIndex,
     VOS_UINT8                          *pucRabId,
@@ -406,21 +312,7 @@ IMM_ZC_STRU* ADS_UL_GetInstanceNextQueueNode(
     return pstNode;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_UL_GetNextQueueNode
- 功能描述  : DSDA Phase II:双实例
- 输入参数  : VOS_UINT8 *pucRabId
- 输出参数  : 无
- 返 回 值  : IMM_ZC_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月24日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 IMM_ZC_STRU* ADS_UL_GetNextQueueNode(
     VOS_UINT8                          *pucRabId,
     VOS_UINT8                          *pucInstanceIndex,
@@ -459,22 +351,7 @@ IMM_ZC_STRU* ADS_UL_GetNextQueueNode(
     return pstNode;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_UL_SaveIpfSrcMem
- 功能描述  : 在上行配置完IPF BD后，保存需要释放的源内存
- 输入参数  : const ADS_IPF_BD_BUFF_STRU         *pstIpfUlBdBuff
-             VOS_UINT32                          ulSaveNum
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月06日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ADS_UL_SaveIpfSrcMem(
     const ADS_IPF_BD_BUFF_STRU         *pstIpfUlBdBuff,
     VOS_UINT32                          ulSaveNum
@@ -496,21 +373,7 @@ VOS_VOID ADS_UL_SaveIpfSrcMem(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_UL_FreeIpfSrcMem
- 功能描述  : 释放源内存队列中可释放的已经配置成功的源系统内存
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月30日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ADS_UL_FreeIpfSrcMem(VOS_VOID)
 {
     IMM_ZC_STRU                        *pstImmZc = VOS_NULL_PTR;
@@ -559,21 +422,7 @@ VOS_VOID ADS_UL_FreeIpfSrcMem(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_UL_ClearIpfSrcMem
- 功能描述  : 清空上行IPF Src Mem
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月31日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ADS_UL_ClearIpfSrcMem(VOS_VOID)
 {
     IMM_ZC_STRU                      *pstImmZc = VOS_NULL_PTR;
@@ -622,22 +471,7 @@ VOS_VOID ADS_UL_ClearIpfSrcMem(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_UL_GetBdFcHead
- 功能描述  : 获取IPF过滤组
- 输入参数  : VOS_UINT8                           ucInstanceIndex
-             VOS_UINT8                           uc1XorHrpdUlIpfFlag
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月19日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 ADS_UL_GetBdFcHead(
     VOS_UINT8                           ucInstanceIndex,
     VOS_UINT8                           uc1XorHrpdUlIpfFlag
@@ -656,21 +490,7 @@ VOS_UINT8 ADS_UL_GetBdFcHead(
     return ucIpfFlterCh;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_UL_CalcBuffTime
- 功能描述  : 计算数据缓存时间
- 输入参数  : ulBeginSlice --- 起始时间
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月06日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 ADS_UL_CalcBuffTime(VOS_UINT32 ulBeginSlice)
 {
     VOS_UINT32                          ulEndSlice;
@@ -686,25 +506,7 @@ VOS_UINT32 ADS_UL_CalcBuffTime(VOS_UINT32 ulBeginSlice)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_UL_ConfigBD
- 功能描述  : ADS配置上行BD写入IPF
- 输入参数  : VOS_UINT32 ulBdNum
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月7日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年9月22日
-    作    者   : A00165503
-    修改内容   : DTS2015081008249: ADS数传过程中持锁, 防止系统进入休眠
-
-*****************************************************************************/
 VOS_VOID ADS_UL_ConfigBD(VOS_UINT32 ulBdNum)
 {
     IPF_CONFIG_ULPARAM_S               *pstUlCfgParam = VOS_NULL_PTR;
@@ -783,37 +585,7 @@ VOS_VOID ADS_UL_ConfigBD(VOS_UINT32 ulBdNum)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_UL_ProcLinkData
- 功能描述  : 从缓存队列中取数据包，经过处理后写入IPF
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月7日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年3月30日
-    作    者   : l60609
-    修改内容   : DTS2012031206512：十次获取不到BD启定时器
-
-  3.日    期   : 2012年4月12日
-    作    者   : A00165503
-    修改内容   : DTS2012020708222: ADS性能优化
-
-  4.日    期   : 2012年4月27日
-    作    者   : l60609
-    修改内容   : DTS2012041802250: ADS上行10ms延时
-
-  5.日    期   : 2012年8月31日
-    作    者   : l60609
-    修改内容   : AP适配项目：配置BD前，释放源内存队列中可释放的内存
-
-*****************************************************************************/
 VOS_VOID ADS_UL_ProcLinkData(VOS_VOID)
 {
     VOS_UINT32                          ulAllUlQueueDataNum;
@@ -889,21 +661,7 @@ VOS_VOID ADS_UL_ProcLinkData(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_UL_ProcPdpStatusInd
- 功能描述  : 处理PDP状态变化函数
- 输入参数  : MsgBlock *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月7日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 ADS_UL_ProcPdpStatusInd(
     ADS_PDP_STATUS_IND_STRU            *pstStatusInd
 )
@@ -979,36 +737,7 @@ VOS_UINT32 ADS_UL_ProcPdpStatusInd(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_UL_RcvAtPdpStatusInd
- 功能描述  : 处理ID_APS_ADS_PDP_STATUS_IND消息
- 输入参数  : MsgBlock *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月6日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2012年02月20日
-    作    者   : f00179208
-    修改内容   : V7R1C50项目，新增PDP状态
-  3.日    期   : 2012年8月31日
-    作    者   : l60609
-    修改内容   : AP适配项目：释放源内存队列
-  4.日    期   : 2012年11月24日
-    作    者   : l60609
-    修改内容   : DSDA Phase II:双实例
-  5.日    期   : 2013年05月22日
-    作    者   : f00179208
-    修改内容   : V3R3 PPP PROJECT
-
-  6.日    期   : 2013年9月22日
-    作    者   : A00165503
-    修改内容   : DTS2013092200927: 定时器使用优化
-*****************************************************************************/
 VOS_UINT32 ADS_UL_RcvTafPdpStatusInd(MsgBlock *pMsg)
 {
     ADS_PDP_STATUS_IND_STRU            *pstPdpStatusInd;
@@ -1021,28 +750,7 @@ VOS_UINT32 ADS_UL_RcvTafPdpStatusInd(MsgBlock *pMsg)
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_UL_RcvCdsIpPacketMsg
- 功能描述  : 接收ID_CDS_ADS_IP_PACKET_IND消息
- 输入参数  : MsgBlock *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月7日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年8月31日
-    作    者   : l60609
-    修改内容   : AP适配项目：IMM接口修改
-
-  3.日    期   : 2012年12月21日
-    作    者   : l60609
-    修改内容   : DSDA Phase II
-*****************************************************************************/
 VOS_UINT32 ADS_UL_RcvCdsIpPacketMsg(MsgBlock *pMsg)
 {
     VOS_UINT32                          ulResult;
@@ -1105,28 +813,7 @@ VOS_UINT32 ADS_UL_RcvCdsIpPacketMsg(MsgBlock *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_UL_RcvCcpuResetStartInd
- 功能描述  : ADS_UL收到ADS_UL消息ID_CCPU_RESET_START_ADS_UL_TO_ADS_UL_NOTIFY的处理
- 输入参数  : pMsg:消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2013年04月15日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-
- 2.日    期   : 2013年06月18日
-   作    者   : l00198894
-   修改内容   : V3R3 Share-PDP项目新增函数
-
-  3.日    期   : 2015年9月1日
-    作    者   : A00165503
-    修改内容   : DTS2015082300106: 下行灌小包, A核触发C核单独复位后整机重启
-*****************************************************************************/
 VOS_UINT32 ADS_UL_RcvCcpuResetStartInd(
     MsgBlock                           *pstMsg
 )
@@ -1177,22 +864,7 @@ VOS_UINT32 ADS_UL_RcvCcpuResetStartInd(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_UL_RcvTiSendExpired
- 功能描述  : TI_ADS_UL_SEND超时处理函数
- 输入参数  : VOS_UINT32                          ulParam,
-             VOS_UINT32                          ulTimerName
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年01月25日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ADS_UL_RcvTiSendExpired(
     VOS_UINT32                          ulParam,
     VOS_UINT32                          ulTimerName
@@ -1203,37 +875,7 @@ VOS_VOID ADS_UL_RcvTiSendExpired(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_UL_RcvTiDsFlowStatsExpired
- 功能描述  : 流量统计定时器超时处理，计算ADS数传中当前的速率
- 输入参数  : ulTimerName
-             ulParam
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2012年1月10日
-   作    者   : l60609
-   修改内容   : 新生成函数
-
-  2.日    期   : 2012年4月12日
-    作    者   : A00165503
-    修改内容   : DTS2012020708222: ADS性能优化
-
-  3.日    期   : 2012年11月24日
-    作    者   : l60609
-    修改内容   : DSDA Phase II:双实例
-
-  4.日    期   : 2013年9月22日
-    作    者   : A00165503
-    修改内容   : DTS2013092200927: 定时器使用优化
-
-  5.日    期   : 2015年5月21日
-    作    者   : l00198894
-    修改内容   : TSTS
-*****************************************************************************/
 VOS_VOID ADS_UL_RcvTiDsFlowStatsExpired(
     VOS_UINT32                          ulTimerName,
     VOS_UINT32                          ulParam
@@ -1273,21 +915,7 @@ VOS_VOID ADS_UL_RcvTiDsFlowStatsExpired(
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_UL_RcvTiStatExpired
- 功能描述  : 上行统计定时器超时处理
- 输入参数  : VOS_UINT32    ulParam,
-             VOS_UINT32    ulTimerName
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年06月03日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID ADS_UL_RcvTiDataStatExpired(
     VOS_UINT32                          ulTimerName,
     VOS_UINT32                          ulParam
@@ -1332,23 +960,7 @@ VOS_VOID ADS_UL_RcvTiDataStatExpired(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_UL_RcvTafMsg
- 功能描述  : 接收来自AT的消息
- 输入参数  : MsgBlock *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月6日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2014年02月14日
-    作    者   : m00217266
-    修改内容   : pdp status ind 改为taf aps发送
-*****************************************************************************/
 VOS_UINT32 ADS_UL_RcvTafMsg(MsgBlock *pMsg)
 {
     MSG_HEADER_STRU                    *pstMsg;
@@ -1369,24 +981,7 @@ VOS_UINT32 ADS_UL_RcvTafMsg(MsgBlock *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_UL_RcvCdsMsg
- 功能描述  : 接收来自CDS的消息
- 输入参数  : MsgBlock *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月6日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年6月16日
-    作    者   : l00198894
-    修改内容   : TSTS
-*****************************************************************************/
 VOS_UINT32 ADS_UL_RcvCdsMsg(MsgBlock *pMsg)
 {
     MSG_HEADER_STRU                    *pstMsg;
@@ -1406,37 +1001,7 @@ VOS_UINT32 ADS_UL_RcvCdsMsg(MsgBlock *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_UL_RcvTimerMsg
- 功能描述  : 处理定时器超时消息
- 输入参数  : MsgBlock *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月7日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-
-  2.日    期   : 2013年9月22日
-    作    者   : A00165503
-    修改内容   : DTS2013092200927: 定时器使用优化
-
-  3.日    期   : 2014年06月03日
-    作    者   : f00179208
-    修改内容   : CCPU LOAD优化
-
-  4.日    期   : 2015年5月21日
-    作    者   : l00198894
-    修改内容   : TSTS
-
-  5.日    期   : 2015年9月22日
-    作    者   : A00165503
-    修改内容   : DTS2015081008249: ADS数传过程中持锁, 防止系统进入休眠
-
-*****************************************************************************/
 VOS_UINT32 ADS_UL_RcvTimerMsg(MsgBlock *pMsg)
 {
     REL_TIMER_MSG                      *pstTimerMsg;
@@ -1467,21 +1032,7 @@ VOS_UINT32 ADS_UL_RcvTimerMsg(MsgBlock *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_UL_RcvAdsUlMsg
- 功能描述  : 接收来自ADS UL的消息
- 输入参数  : MsgBlock *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年04月15日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 ADS_UL_RcvAdsUlMsg(MsgBlock *pMsg)
 {
     MSG_HEADER_STRU                    *pstMsg;
@@ -1507,32 +1058,7 @@ VOS_UINT32 ADS_UL_RcvAdsUlMsg(MsgBlock *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_UL_ProcMsg
- 功能描述  : ADS上行消息处理函数
- 输入参数  : MsgBlock* pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月6日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2012年4月12日
-    作    者   : A00165503
-    修改内容   : DTS2012020708222: ADS性能优化
-  3.日    期   : 2013年4月15日
-    作    者   : f00179208
-    修改内容   : C核单独复位项目
-  4.日    期   : 2014年02月14日
-    作    者   : m00217266
-    修改内容   : pdp status ind 改为taf aps发送
-  5.日    期   : 2015年5月21日
-    作    者   : l00198894
-    修改内容   : TSTS
-*****************************************************************************/
 VOS_VOID ADS_UL_ProcMsg(MsgBlock* pMsg)
 {
     if (VOS_NULL_PTR == pMsg)

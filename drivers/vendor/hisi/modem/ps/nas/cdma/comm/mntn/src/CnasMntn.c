@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasMntn.c
-  版 本 号   : 初稿
-  作    者   : l60609
-  生成日期   : 2014年07月03日
-  功能描述   : CNAS的可维可测
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年07月03日
-    作    者   : l60609
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -26,9 +11,7 @@
 #include  "CnasXsdSndMscc.h"
 #include  "msp_diag_comm.h"
 #include  "NasOmTrans.h"
-/* added by wx270776 for OM融合, 2015-08-21, begin */
 #include "msp_diag_comm.h"
-/* added by wx270776 for OM融合, 2014-08-21, end */
 #include  "Nas_Mem.h"
 #include "CnasXsdCtx.h"
 #include "CnasXccCtx.h"
@@ -60,21 +43,7 @@ CNAS_MNTN_CTX_STRU                      g_stCnasMntnCtx;
 *****************************************************************************/
 /*lint -save -e958*/
 
-/*****************************************************************************
- 函 数 名  : CNAS_MNTN_SetPrintType
- 功能描述  : 设置打印类型，默认是SDT打印，可通过此函数设置串口打印
- 输入参数  : CNAS_MNTN_PRINT_TYPE_ENUM_UINT32    enPrintType
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月4日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_MNTN_SetPrintType(
     CNAS_MNTN_PRINT_TYPE_ENUM_UINT32    enPrintType
 )
@@ -88,24 +57,7 @@ VOS_VOID CNAS_MNTN_SetPrintType(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_MNTN_SetPrintCtrlFlg
- 功能描述  : 设置打印级别
- 输入参数  : VOS_UINT32                          ulInfoPrintFlg
-             VOS_UINT32                          ulNorPrintFlg
-             VOS_UINT32                          ulWarnPrintFlg
-             VOS_UINT32                          ulErrPrintFlg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月8日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_MNTN_SetPrintCtrlFlg(
     VOS_UINT32                          ulInfoPrintFlg,
     VOS_UINT32                          ulNorPrintFlg,
@@ -125,21 +77,7 @@ VOS_VOID CNAS_MNTN_SetPrintCtrlFlg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_MNTN_GetPrintCtrlFlg
- 功能描述  : 获取打印控制开关
- 输入参数  : LOG_LEVEL_EN                        enLevel
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月8日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_MNTN_GetPrintCtrlFlg(
     LOG_LEVEL_EN                        enLevel
 )
@@ -167,21 +105,7 @@ VOS_UINT32 CNAS_MNTN_GetPrintCtrlFlg(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_MNTN_InitPrintMsgBuff
- 功能描述  : 初始化需要打印消息的缓存
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月11日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_MNTN_InitPrintMsgBuff(VOS_VOID)
 {
     CNAS_MNTN_PRINT_MSG_STRU           *pstPrintMsg = VOS_NULL_PTR;
@@ -194,21 +118,7 @@ VOS_VOID CNAS_MNTN_InitPrintMsgBuff(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_MNTN_InitCtx
- 功能描述  : 初始化可维可测上下文
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月8日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_MNTN_InitCtx(VOS_VOID)
 {
     /* 设置打印类型，默认输出到SDT */
@@ -223,23 +133,7 @@ VOS_VOID CNAS_MNTN_InitCtx(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_MNTN_PrintToCom
- 功能描述  : 串口打印处理
- 输入参数  : LOG_LEVEL_EN                        enLevel
-             VOS_CHAR                           *pcString,
-             CNAS_MNTN_LOG_SAVE_PARA_STRU       *pstPara
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月4日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_MNTN_PrintToCom(
     LOG_LEVEL_EN                        enLevel,
     VOS_CHAR                           *pcString,
@@ -298,21 +192,7 @@ VOS_VOID CNAS_MNTN_PrintToCom(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_MNTN_PrintToOm
- 功能描述  : log信息输出到OM(SDT中勾消息)
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年07月07日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_MNTN_PrintToOm(VOS_VOID)
 {
     CNAS_MNTN_PRINT_MSG_STRU           *pstPrintMsg = VOS_NULL_PTR;
@@ -352,24 +232,7 @@ VOS_VOID CNAS_MNTN_PrintToOm(VOS_VOID)
     PS_MEM_FREE(UEPS_PID_XSD, pstMsg);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_MNTN_LogSave
- 功能描述  : 保存打印信息
- 输入参数  : VOS_UINT32                          ulPid
-             VOS_CHAR                           *pcString
-             LOG_LEVEL_EN                        enLevel
-             CNAS_MNTN_LOG_SAVE_PARA_STRU       *pstPara
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月4日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_MNTN_LogSave(
     VOS_UINT32                          ulPid,
     VOS_CHAR                           *pcString,
@@ -412,9 +275,7 @@ VOS_VOID CNAS_MNTN_LogSave(
     }
 
     /* 填写打印信息记录内容 */
-	/* Modified by wx270776 for OM融合, 2015-7-24, begin */
     pstPrintMsg->astPrintRecord[ulMsgCnt].ulTick      = VOS_GetTick();
-	/* Modified by wx270776 for OM融合, 2015-7-24, end */
     pstPrintMsg->astPrintRecord[ulMsgCnt].enFile      = pstPara->enFile;
     pstPrintMsg->astPrintRecord[ulMsgCnt].ulLine      = pstPara->ulLine;
     pstPrintMsg->astPrintRecord[ulMsgCnt].enLevel     = enLevel;
@@ -435,24 +296,7 @@ VOS_VOID CNAS_MNTN_LogSave(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_MNTN_LogFsmInfo
- 功能描述  : 为CNAS各个PID提供的勾状态机信息的函数
- 输入参数  : VOS_UINT32                          ulPid
-             VOS_UINT32                          ulFsmId
-             VOS_UINT32                          ulFsmState
-             VOS_UINT8                           ucConnectId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月4日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_MNTN_LogFsmInfo(
     VOS_UINT32                          ulPid,
     VOS_UINT32                          ulFsmId,
@@ -489,27 +333,7 @@ VOS_VOID CNAS_MNTN_LogFsmInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_MNTN_LogReadNVInfo
- 功能描述  : 勾取读取的NV信息上报 可维可测
- 输入参数  : enNvItem,  nv项
-             usNvDataLength,  nv数据长度
-             ulPid,
-            *pData
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月7日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-  2.日    期   : 2015年10月08日
-    作    者   : t00323010
-    修改内容   : DTS2015092201636修改接头体名字
-
-*****************************************************************************/
 VOS_VOID CNAS_MNTN_LogReadNVInfo(
     VOS_UINT16                          enNvItem,
     VOS_UINT16                          usNvDataLength,
@@ -542,24 +366,7 @@ VOS_VOID CNAS_MNTN_LogReadNVInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_MNTN_LogWriteNVInfo
- 功能描述  : 勾取写NV信息上报 可维可测
- 输入参数  : enNvItem,  nv项
-             usNvDataLength,  nv数据长度
-             ulPid,
-            *pData
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月8日
-    作    者   : t00323010
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_MNTN_LogWriteNVInfo(
     VOS_UINT16                          enNvItem,
     VOS_UINT16                          usNvDataLength,
@@ -592,22 +399,7 @@ VOS_VOID CNAS_MNTN_LogWriteNVInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_MNTN_LogKeyEvent
- 功能描述  : 关键事件上报
- 输入参数  : enEvent   事件名称
-             ulSendPid  发送pid
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月8日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_MNTN_LogKeyEvent(
     NAS_OM_EVENT_ID_ENUM                enEvent,
     VOS_UINT32                          ulSendPid
@@ -643,23 +435,7 @@ VOS_VOID CNAS_MNTN_LogKeyEvent(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_MNTN_LogUsimmApiGetFileReq
- 功能描述  : 调用API接口USIMM_GetFileReq时，以消息形式在SDT中进行显示
- 输入参数  : VOS_UINT32                          ulModuleId
-             VOS_UINT32                          ulRslt
-             CNAS_MNTN_LOG_GETFILE_INFO_STRU    *pstGetFileInfo
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月17日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_MNTN_LogUsimmApiGetFileReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT32                          ulRslt,
@@ -702,22 +478,7 @@ VOS_VOID CNAS_MNTN_LogUsimmApiGetFileReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_MNTN_TraceIntMsg
- 功能描述  : CNAS内部模块间消息勾包
- 输入参数  : ulSenderPid     申请消息的模块
-             *pstSndMsg      消息
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年07月07日
-    作    者   : Y00213812
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_VOID  CNAS_MNTN_TraceIntMsg(
     VOS_UINT32                          ulModuleId,
     VOS_UINT32                          ulLength,
@@ -745,22 +506,7 @@ VOS_VOID  CNAS_MNTN_TraceIntMsg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_MNTN_TraceTimerMsg
- 功能描述  : CNAS内部模块间timer消息勾包
- 输入参数  : ulSenderPid     申请消息的模块
-             *pstSndMsg      消息
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年07月07日
-    作    者   : y00245242
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_VOID CNAS_MNTN_TraceTimerMsg(
     VOS_UINT32                          ulModuleId,
     CNAS_MNTN_TIMER_INFO_STRU          *pstMntnTimerInfo
@@ -797,23 +543,7 @@ VOS_VOID CNAS_MNTN_TraceTimerMsg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_MNTN_LogEncodeAbnormalInfoInd
- 功能描述  : 调用encodix编码API进行编码失败，上报可维可测消息
- 输入参数  : VOS_UINT32                              ulModuleId,
-             VOS_INT32                               lRslt,
-             CAS_CNAS_1X_TX_TCH_MSG_TYPE_ENUM_UINT8  enEncodeMsgType
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月17日
-    作    者   : l00256032
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_MNTN_LogEncodeAbnormalInfoInd(
     VOS_UINT32                              ulModuleId,
     VOS_INT32                               lRslt,
@@ -852,23 +582,7 @@ VOS_VOID CNAS_MNTN_LogEncodeAbnormalInfoInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_MNTN_LogDecodeAbnormalInfoInd
- 功能描述  : 调用encodix编码API进行解码失败，上报可维可测消息
- 输入参数  : VOS_UINT32                              ulModuleId,
-             VOS_INT32                               lRslt,
-             CAS_CNAS_1X_TX_TCH_MSG_TYPE_ENUM_UINT8  enEncodeMsgType
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月17日
-    作    者   : l00256032
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_MNTN_LogDecodeAbnormalInfoInd(
     VOS_UINT32                              ulModuleId,
     VOS_INT32                               lRslt,
@@ -921,9 +635,7 @@ VOS_VOID CNAS_SoftReBoot_WithLineNoAndFileID(
     VOS_UINT32                          ulFsmTopState;
     VOS_UINT8                           ucRebootScene;
 
-    /* Modified by wx270776 for OM融合, 2015-7-23, begin */
     ulSlice   = VOS_GetSlice();
-    /* Modified by wx270776 for OM融合, 2015-7-23, end */
 
     if (UEPS_PID_XSD == stCnasRebootInfo.ulPid)
     {
@@ -954,22 +666,7 @@ VOS_VOID CNAS_SoftReBoot_WithLineNoAndFileID(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HandsetInfoQry_Proc
- 功能描述  : 处理MSCC的手机信息查询请求
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_HandsetInfoQry_Proc(
     VOS_UINT32                          ulInfoType
 )
@@ -986,22 +683,7 @@ VOS_VOID CNAS_HandsetInfoQry_Proc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HandsetStateInfo_Proc
- 功能描述  : 处理MSCC的手机状态信息查询请求
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_TRUE
-             VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_HandsetStateInfo_Proc(
     VOS_UINT32                          ulInfoType
 )
@@ -1051,22 +733,7 @@ VOS_VOID CNAS_HandsetStateInfo_Proc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HandsetHighVerInfo_Proc
- 功能描述  : 处理MSCC的手机的版本信息查询请求
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_TRUE
-             VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_HandsetHighVerInfo_Proc(
     VOS_UINT32                          ulInfoType
 )
@@ -1083,25 +750,7 @@ VOS_VOID CNAS_HandsetHighVerInfo_Proc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_LogOmAirMsg
- 功能描述  : HRPD空口消息上报 可维可测接口
- 输入参数  : ulDir,  消息方向
-             ulAirMsgId, 消息id
-             ulSendPid, 发送pid
-             ulLength,  数据长度
-             *pucData   数据码流
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月6日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_MNTN_LogOmAirMsg(
     CNAS_HRPD_OM_AIR_MSG_UP_DOWN_ENUM_UINT8                 ulDir,
     VOS_UINT16                                              ulAirMsgId,
@@ -1167,17 +816,7 @@ VOS_VOID CNAS_MNTN_LogOmAirMsg(
 }
 
 
-/*****************************************************************************
-函 数 名  : CNAS_MNTN_AddLogMsgState
-功能描述  : 增加stLogMsgState
-输入参数  : usSendPid, usMsgName,usReceivePid
-输出参数  : 无
-修改历史      :
-1.日    期   : 2015年7月2日
-  作    者   : y00322978
-  修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID CNAS_MNTN_AddLogMsgState(
     VOS_UINT32                          ulSendPid,
     VOS_UINT32                          ulReceivePid,
@@ -1258,18 +897,7 @@ VOS_VOID CNAS_MNTN_AddLogMsgState(
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_UpdateExitTime
- 功能描述  : 更新消息退出的时间
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 修改历史      :
-  1.日    期   : 2015年7月2日
-    作    者   : y00322978
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID CNAS_MNTN_UpdateMsgExitTime( VOS_VOID )
 {
     CNAS_CCB_LOG_MSG_STATUS_STRU       *pstLogMsgState;
@@ -1283,17 +911,7 @@ VOS_VOID CNAS_MNTN_UpdateMsgExitTime( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_MNTN_LogMsgInfo
- 功能描述  : 判断消息是否是定时器发出的，如果是就打印定时器信息，否则打印消
-             息信息
- 输入参数  : MSG_HEADER_STRU
- 修改历史      :
-  1.日    期   : 2015年7月2日
-    作    者   : y00322978
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID CNAS_MNTN_LogMsgInfo(
     MSG_HEADER_STRU                    *pstMsgHeader
 )
@@ -1323,18 +941,7 @@ VOS_VOID CNAS_MNTN_LogMsgInfo(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_MNTN_LogCommonStatusInfo
- 功能描述  : 勾取公共状态信息(目前仅有卡状态)
- 输入参数  : VOS_UINT32                          ulPid,
-             VOS_UINT8                           ucCardStatus
 
- 修改历史      :
-  1.日    期   : 2015年7月2日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_MNTN_LogCommonStatusInfo(
     VOS_UINT32                          ulPid,
     VOS_UINT8                           ucCardStatus
@@ -1363,21 +970,7 @@ VOS_VOID CNAS_MNTN_LogCommonStatusInfo(
 
     PS_MEM_FREE(ulPid, pstMsg);
 }
-/*****************************************************************************
- 函 数 名  : CNAS_MNTN_Log1xCschDataIndMsg
- 功能描述  : 勾取cas发给cnas的csch data ind消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月4日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_MNTN_Log1xCschDataIndMsg(
     VOS_UINT32                                              ulPid,
     VOS_UINT16                                              usMsgDataLen,

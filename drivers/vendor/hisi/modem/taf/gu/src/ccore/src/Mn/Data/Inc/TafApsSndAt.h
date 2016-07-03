@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafApsSndAt.h
-  版 本 号   : 初稿
-  作    者   : s62952
-  生成日期   : 2011年12月16日
-  最近修改   :
-  功能描述   : TafApsSndAt.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年12月16日
-    作    者   : s62952
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __TAF_APS_SNDAT_H__
 #define __TAF_APS_SNDAT_H__
@@ -91,13 +74,11 @@ VOS_VOID  TAF_APS_SndDsFlowRptInd(
     TAF_DSFLOW_REPORT_STRU             *pstDsFlowRptInfo
 );
 
-/* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
 VOS_VOID  TAF_APS_SndGetDsFlowInfoCnf(
     TAF_CTRL_STRU                    *pstCtrl,
     VOS_UINT32                          ulErrCode,
     TAF_DSFLOW_QUERY_INFO_STRU         *pstDsFlowQryInfo
 );
-/* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
 
 VOS_VOID  TAF_APS_SndConfigDsFlowRptCnf(
     TAF_CTRL_STRU                    *pstCtrl,
@@ -184,7 +165,6 @@ VOS_UINT32  TAF_APS_SndGetPdpDnsInfoCnf(
     VOS_VOID                           *pData,
     VOS_UINT32                          ulLength
 );
-/* Add by w00199382 for V7代码同步, 2012-04-07, Begin   */
 #if(FEATURE_ON == FEATURE_LTE)
 VOS_VOID  TAF_APS_SndGetLtecsInfoCnf(
     TAF_CTRL_STRU                    *pstCtrl,
@@ -199,7 +179,6 @@ VOS_VOID  TAF_APS_SndSetPdprofInfoCnf(
     VOS_UINT32                          ulErrCode
 );
 #endif
-/* Add by w00199382 for V7代码同步, 2012-04-07, End   */
 
 VOS_UINT32  TAF_APS_SndSetCqosPriCnf(
     TAF_CTRL_STRU                    *pstCtrl,

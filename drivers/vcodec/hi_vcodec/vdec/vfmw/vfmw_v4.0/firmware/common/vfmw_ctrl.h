@@ -260,8 +260,7 @@ typedef struct hiVFMW_CHAN_S
     VFMW_MEM_ARRANGE_INFO_S       stMemArrangeInfo;
     VFMW_DYNAMIC_FS_TIMESTAMP_S   stDynamicFSTimestamp;
     
-    /*此成员必须放在最后一个定义,创建通道时即使mvc support，但是配置的能力集不是mvc相关的，
-      该结构体内存也只分配次大的CTX所需，以达到内存裁剪目的。 l00225186*/
+    
     SYNTAX_CTX_S                  stSynCtx;
 
 } VFMW_CHAN_S;

@@ -109,7 +109,6 @@ extern "C"{
 #define TCPIP_MODULE_HA        VRP_NO
 #endif
 
-/* Add by p00193127 2012-3-30 DTS2012033004012,修改原因:网络整改,剥离分层获取报文过滤 */
 /******************************************************************************
  * 剥离分层获取报文功能,默认没有该功能
 ******************************************************************************/
@@ -142,13 +141,11 @@ extern "C"{
 #else
 #define TCPIP_FOR_BALONG           VRP_YES
 #endif
-/*Added by yanlei00216869, 【代码检视】通过增加编译宏控制，使得以.so方式提供给bluestar的visp，不依赖产品代码, 2014/10/25   问题单号:DTS2014102504024  */
 #ifndef TCPIP_FORBLUESTAR
 #define TCPIP_FOR_BLUESTAR           VRP_NO
 #else
 #define TCPIP_FOR_BLUESTAR           VRP_YES
 #endif
-/* End of Added by yanlei00216869, 2014/10/25   问题单号:DTS2014102504024  */
 /************************************************************************
  * 有些函数被声明为static，这样在单元测试时就无法调用该函数，因此，在
  * 单元测试之前，将static改成STATIC，STATIC定义如下
@@ -182,9 +179,7 @@ extern "C"{
 #define  VOS_FUNC_TYPE_SAFE     2  /*安全vos函数集*/
 #define  VOS_FUNC_TYPE_BALONG   3  /*balong  vos 函数集*/
 
-/*Added by yanlei00216869, 支持控制器安全函数适配, 2015/1/6   问题单号:DTS2015010508058 */
 #define  VOS_FUNC_TYPE_SAFE_MBSC     4  /*配套控制器产品的安全函数集*/
-/* End of Added by yanlei00216869, 2015/1/6   问题单号:DTS2015010508058 */
 
 #ifdef TCPIP_FORBALONG
     #define  TCPIP_VOS_FUNC_TYPE  VOS_FUNC_TYPE_BALONG
@@ -295,7 +290,6 @@ extern "C"{
 #define _VRPCFG_H_
 #endif
 
-/* Added by X36317, 新增为支持ARM CPU字节对齐特性的公共宏, 2006/5/9 */
 #ifdef TCPIP_SUPPORT_ARMCPU
 /*字节对齐专用宏，VOS_CopyVar(Dest, Src) ，将数据结构（或基本数据类型）变量Src的内容拷贝到Dest。
 注意：Dest和Src的数据结构类型，在操作时，必须保证正确而且一致。*/
@@ -370,7 +364,7 @@ extern "C"{
 #define TCPIP_MODULE_FIBA         VRP_YES
 #define VRP_MODULE_DNS_CLIENT     VRP_YES
 #define VRP_MODULE_DHCP4C_BASE    VRP_YES
-#define VRP_MODULE_IP_MCAST_BASE  VRP_YES  /* 多播收发Added by x36317 2004-9-30*/
+#define VRP_MODULE_IP_MCAST_BASE  VRP_YES
 
 #define VRP_MODULE_CFG_PING       VRP_YES
 #define VRP_MODULE_LINK_PPPOE     VRP_YES
@@ -383,8 +377,8 @@ extern "C"{
 #define VRP_IFNET_LOGIC_ENHENCE  VRP_YES
 #define VRP_MAX_ADAPTOR_NUM      3
 #define VRP_IFNET_MP_GROUP       VRP_YES
-#define VRP_IP_ICMP_REDIRECTS    VRP_YES /*added by x36530  trace to D03534 20041124 控制重定向报文的发送*/
-#define VRP_IP_ICMP_HOST_UNREACH VRP_YES /*added by x36530  trace to D03534 20041124 控制主机不可达报文的发送*/
+#define VRP_IP_ICMP_REDIRECTS    VRP_YES
+#define VRP_IP_ICMP_HOST_UNREACH VRP_YES
 
 #ifndef VRP_NO_VRF6
 #define VRP_MODULE_VRF6  VRP_YES
@@ -495,7 +489,6 @@ extern "C"{
 #define VRP_MODULE_LINK_DDRS                VRP_NO
 #define VRP_MODULE_SEC_FIREWALL             VRP_NO
 
-/* Added by X36317, 定义如下宏以消除PC-LINT告警, 2006/5/23 */
 #define IF_HOT_CTL                          VRP_NO
 #define IF_INFO_CTL                         VRP_NO
 #define VRP_MODULE_LINK_DLSW                VRP_NO
@@ -510,7 +503,6 @@ extern "C"{
 #define VRP_MODULE_TRUNK                    VRP_NO
 #define VRP_MODULE_MPLS_LSPM                VRP_NO
 
-/* 为消ipv6三个模块的pc-lint告警加这两个宏 */
 #define VRPV5_PERF_OPT_VER                  VRP_NO
 #define NE80_MODULE_DPT                     VRP_NO
 

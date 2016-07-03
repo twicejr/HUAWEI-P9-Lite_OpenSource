@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasRabmMsgProc.h
-  版 本 号   : 初稿
-  作    者   : anhuiqing / 00165503
-  生成日期   : 2011年03月30日
-  最近修改   :
-  功能描述   : NasRabmMgr.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年03月30日
-    作    者   : anhuiqing / 00165503
-    修改内容   : 创建文件
-
-******************************************************************************/
 #ifndef _NAS_RABM_MSG_PROC_H_
 #define _NAS_RABM_MSG_PROC_H_
 
@@ -181,19 +164,7 @@ VOS_VOID NAS_RABM_WProcDataSuspendInd(
     VOS_BOOL                            bRatChangeFlg
 );
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_WProcDataResumeInd
- 功能描述  : WCDMA系统模式下处理恢复指示
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2011年7月13日
-   作    者   : w00176964
-   修改内容   : V7R1 PhaseII阶段调整，向RABM指示RAB是否需要重?
-*****************************************************************************/
+
 VOS_VOID NAS_RABM_WProcDataResumeInd(
     VOS_UINT8                           ucRebuildRabFlag
 );
@@ -237,19 +208,7 @@ VOS_VOID NAS_RABM_GProcDataSuspendInd(
 );
 
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_GProcDataResumeInd
- 功能描述  : GPRS系统模式下处理恢复指示
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2011年7月13日
-   作    者   : w00176964
-   修改内容   : V7R1 PhaseII阶段调整，向RABM指示RAB是否需要重建
-*****************************************************************************/
+
 VOS_VOID NAS_RABM_GProcDataResumeInd(
     VOS_UINT8                           ucRebuildRabFlag
 );
@@ -294,19 +253,7 @@ VOS_VOID NAS_RABM_LProcDataSuspendInd(
 );
 
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_LProcDataResumeInd
- 功能描述  : LTE系统模式下处理恢复指示
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
- 修改历史
- 1. 日    期   : 2011年7月13日
-    作    者   : w00176964
-    修改内容   : V7R1 PhaseII阶段调整，向RABM指示RAB是否需要重建
-*****************************************************************************/
+
 VOS_VOID NAS_RABM_LProcDataResumeInd(
     VOS_UINT8                           ucRebuildRabFlag
 );
@@ -366,21 +313,7 @@ VOS_VOID NAS_RABM_InitGProcFuncTbl(VOS_VOID);
 VOS_VOID NAS_RABM_InitLProcFuncTbl(VOS_VOID);
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_InitProcFuncTbl
- 功能描述  : 初始化和注册各个系统模式的处理函数表
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月27日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_RABM_InitProcFuncTbl(VOS_VOID);
 
 

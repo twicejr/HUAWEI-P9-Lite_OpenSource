@@ -36,22 +36,7 @@ extern "C" {
 /*
 选源:
 */
-/******************************************************************************
-*Func Name   : PTP_Shell_CompareClockClass
-*Description : 比较时钟等级
-*Input       : pstPtpPort      时钟端口指针
-               pstForeMasterA  需比较时钟质量的foreignmaster结构的指针
-               pstForeMasterB  需比较时钟质量的foreignmaster结构的指针
-*Output      : pstSelectMaster :优先级高的时钟源
-*Return      : 成功返回PTP_OK，失败返回错误码
-*Caution     :
-*Calls       :
-*Called by   :
-*-----------------------------------------------------------------------------
-*  Modification History
-*  DATE 2012/2/14    NAME  z00208058  AR-IP-PTP.002
-*
-*******************************************************************************/
+
 ULONG PTPV2_CompareClockClass(PTPV2_FOREIGN_MASTER_S* pstForeMasterA,
                               PTPV2_FOREIGN_MASTER_S* pstForeMasterB,
                               PTPV2_FOREIGN_MASTER_S** pstSelectMaster)
@@ -296,26 +281,7 @@ EXIT_LABEL:
     return TCPIP_PTP_OK;
 }
 
-/*******************************************************************************
-*    Func Name: PTPV2_1588_BMC
-* Date Created: 2014-11-08
-*       Author: w00217009
-*  Description: 选择最佳源,包括两种情况 AR-IP-PTP.002
-*               有两种场景:1.选择全系统的最佳源Ebest
-*                          2.选择一个具体端口的最佳源Erbest
-*        Input: DLL_S *pstDll : foreignmaster链表:
-*               BOOL_T bEbest : 本次执行是否为选最佳源Ebest
-*                               因Ebest和Erbest操作的链表位置不同
-*       Output: PTPV2_FOREIGN_MASTER_S** pstSelectMaster : 返回最佳源
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-11-08   w00217009               Create
-*
-*******************************************************************************/
+
 ULONG PTPV2_1588_BMC(DLL_S *pstDll, PTPV2_FOREIGN_MASTER_S** pstSelectMaster, BOOL_T bEbest)
 {
 
@@ -339,9 +305,7 @@ ULONG PTPV2_1588_BMC(DLL_S *pstDll, PTPV2_FOREIGN_MASTER_S** pstSelectMaster, BO
         pstIterForeMaster = bEbest ? (PTPV2_FOREIGN_MASTER_S *)((CHAR *)pstIter - ((CHAR *)&pstIter->stGlobalDllNode - (CHAR *)pstIter))
                                     : (PTPV2_FOREIGN_MASTER_S *)((CHAR *)pstIter - ((CHAR *)&pstIter->stPortDllNode - (CHAR *)pstIter));
 
-        /*Add by heyijun 00218462 for AR-IP-PTP.001 支持PTSF配置参与选源, 2014-11 
-        * 收到的ann报文少于2的foremaster,不参与选源
-        */
+        
         if ((NULL == pstIterForeMaster) || (PTPV2_IS_FOREMASTER_GOT_PTSF(pstIterForeMaster)) 
              || (pstIterForeMaster->ulRecvAnnCount < 2))
         {
@@ -369,9 +333,7 @@ ULONG PTPV2_AddForeignMaster(PTPV2_PORT_S* pstPtpPort, TCPIP_PTP_ADDRINFO_S* pst
                              PTPV2_FOREIGN_MASTER_S** ppstForeMaster)
 {
     PTPV2_FOREIGN_MASTER_S* pstAddForeign = NULL;
-    /* Modified by wuling201943, 申请内存长度不对, 2014/11/11   问题单号:DTS2014111107372 */
     ULONG ulStructLen = sizeof(PTPV2_FOREIGN_MASTER_S);
-    /*End of Modified by wuling201943, 2014/11/11   问题单号:DTS2014111107372 */
     ULONG ulRet = TCPIP_PTP_ERR;
 
     if (NULL == pstAddrInfo || NULL == ppstForeMaster)
@@ -644,9 +606,7 @@ ULONG PTPV2_BMCPreProcess(PTPV2_PORT_S* pstPortInfo, PTPV2_ANNOUNCE_MSG_S* pstAn
     (VOID)PTPV2_GetGlobalInfo(PTPV2_CMD_MASTER_NUM_LIMIT, &ulMaxCfgMasterNum);
     (VOID)PTPV2_GetGlobalInfo(PTPV2_CMD_CURRENT_MASTER_NUMS, &ulCurrentMasterNum);
 
-    /*Modified by dutianyi for DTS2014060505599, 2014/6/7, ForeMaster数量等于最大值时就不能继续新增*/
     if (ulCurrentMasterNum >= ulMaxCfgMasterNum)/*达到最大配置值*/
-    /*End of modifying by dutianyi for DTS2014060505599, 2014/6/7, ForeMaster数量等于最大值时就不能继续新增*/
     {
         /*后续考虑替换最差的那个时钟源*/
         return TCPIP_PTP_ERR_MASTER_UP_MAX;
@@ -727,26 +687,7 @@ ULONG PTPV2_BMCProcess(PTPV2_FOREIGN_MASTER_S** ppstSelectMaster)
 
 }
 
-/*******************************************************************************
-*    Func Name: PTPV2_BMCNotify
-* Date Created: 2014-11-26
-*       Author: w00217009
-*  Description: 选源变更处理
-*               1.第一次选中源,属于Ebest变更,需重新走决策流程,下发passive和slave
-*               2.未选中源,属于Ebest变更,需重新走决策流程,下发passive和slave
-*               3.切源,属于Ebest变更,需重新走决策流程,下发passive和slave
-*               4.不切源,考虑update源即可
-*        Input: PTPV2_FOREIGN_MASTER_S* pstSelectMaster: 当前选中的源
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-11-08   w00217009               Create
-*
-*******************************************************************************/
+
 ULONG PTPV2_BMCNotify(PTPV2_FOREIGN_MASTER_S* pstSelectMaster)
 {
     ULONG ulChangeField = TCPIP_PTP_PARA_CHANGE_FIELD_NONE;
@@ -845,21 +786,7 @@ ULONG PTPV2_BMCNotify(PTPV2_FOREIGN_MASTER_S* pstSelectMaster)
     return TCPIP_PTP_OK;
 }
 
-/******************************************************************************
-*Func Name   : PTPV2_ForeMasterPrint
-*Description : ForeMaster信息打印接口
-*Input       : PTPV2_FOREIGN_MASTER_S *pstForeMaster
-*Output      : 
-*Return      : 
-*Caution     :
-*Calls       :
-*Called by   :
-*-----------------------------------------------------------------------------
-*  Modification History
-*  DATE                 NAME           DESCRIPTION
-*  2014-05-14           dutianyi       Create
-*  2014-11-07           heyijun        Add PtsfSync to display
-*******************************************************************************/
+
 VOID PTPV2_ForeMasterPrint(PTPV2_FOREIGN_MASTER_S *pstForeMaster)
 {
     CHAR szBuf[LEN_512] = {0};      /* 缓冲区长度512个字节，存放报文信息 */
@@ -937,22 +864,7 @@ VOID PTPV2_ForeMasterPrint(PTPV2_FOREIGN_MASTER_S *pstForeMaster)
 }
 
 
-/*******************************************************************************
-*    Func Name: PTPV2_BMC_SDAProcess
-* Date Created: 2014-11-01
-*       Author: z00208058
-*  Description: AR-IP-PTP.002 源变化,走BMC状态决策流程
-*        Input: VOID
-*       Output: 
-*       Return: VOID
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-11-01   z00208058               Create
-*
-*******************************************************************************/
+
 VOID PTPV2_BMC_SDAProcess(VOID)
 {
     ULONG ulIter = 0;
@@ -990,22 +902,7 @@ VOID PTPV2_BMC_SDAProcess(VOID)
 
 }
 
-/*******************************************************************************
-*    Func Name: PTPV2_UpdateVirtualD0
-* Date Created: 2014-11-08
-*       Author: w00217009
-*  Description: AR-IP-PTP.002 更新虚拟D0的Master信息
-*        Input: VOID
-*       Output: 
-*       Return: VOID
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-11-08   w00217009               Create
-*
-*******************************************************************************/
+
 VOID PTPV2_UpdateVirtualD0()
 {    
      if (NULL == g_pstVirtualD0)
@@ -1025,22 +922,7 @@ VOID PTPV2_UpdateVirtualD0()
 }
 
 
-/*******************************************************************************
-*    Func Name: PTPV2_CreateVirtualD0
-* Date Created: 2014-11-08
-*       Author: w00217009
-*  Description: AR-IP-PTP.002 创建虚拟D0的Master信息
-*        Input: VOID
-*       Output: 
-*       Return: VOID
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-11-08   w00217009               Create
-*
-*******************************************************************************/
+
 PTPV2_FOREIGN_MASTER_S *PTPV2_CreateVirtualD0()
 {    
     PTPV2_FOREIGN_MASTER_S *pstVirtualD0 = NULL;
@@ -1091,22 +973,7 @@ EXIT_LABEL:
     return pstVirtualD0;
 }
 
-/*******************************************************************************
-*    Func Name: PTPV2_FreeVirtualD0
-* Date Created: 2014-11-08
-*       Author: w00217009
-*  Description: AR-IP-PTP.002 释放虚拟D0的Master信息
-*        Input: VOID
-*       Output: 
-*       Return: VOID
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-11-08   w00217009               Create
-*
-*******************************************************************************/
+
 VOID PTPV2_FreeVirtualD0()
 {
     if (NULL == g_pstVirtualD0)
@@ -1122,23 +989,7 @@ VOID PTPV2_FreeVirtualD0()
     return ;
 }
 
-/*******************************************************************************
-*    Func Name: PTPV2_BMCStateDecisionProcessOnPort
-* Date Created: 2014-11-01
-*       Author: z00208058
-*  Description: AR-IP-PTP.002 决策出端口上的最佳源
-*        Input: TCPIP_PTP_DEFAULT_DS_S *pstCfgDefaultDs:
-*               PTPV2_PORT_S *pstPtpPortInfo:
-*       Output: 
-*       Return: PORT FSM ENUM
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-11-01   z00208058               Create
-*
-*******************************************************************************/
+
 UCHAR PTPV2_BMC_SDAForPort(PTPV2_PORT_S* pstPortInfo,
                                           PTPV2_FOREIGN_MASTER_S *pstVirutalD0,
                                           PTPV2_FOREIGN_MASTER_S *pstErbest, 
@@ -1214,28 +1065,7 @@ UCHAR PTPV2_BMC_SDAForPort(PTPV2_PORT_S* pstPortInfo,
     return PTPV2_PORT_FSM_MASTER;
 }
 
-/*******************************************************************************
-*    Func Name: PTPV2_BMC_DSCA_Part2
-* Date Created: 2014-11-08
-*       Author: w00217009
-*  Description: 数据集比较算法的第二部分
-*        Input: PTPV2_FOREIGN_MASTER_S* pstForeMasterA
-*               PTPV2_FOREIGN_MASTER_S* pstForeMasterB
-*       Output: PTPV2_FOREIGN_MASTER_S** ppstSelectMaster  从Input中选择的更佳源
-*               BOOL_T* pbBetter: 选源结果是否为源更优
-*               BOOL_T* pbTopoBetter: 选源结果是否为拓扑更优
-*       Return: TCPIP_PTP_OK: 选到更好的源
-*               TCPIP_PTP_ERR_POINTER_NULL:入参错误
-*               TCPIP_PTP_ERR_BMC_ERRNO1: foremaster与本端的时钟id一样
-*               TCPIP_PTP_ERR_BMC_ERRNO2: foremaster与本端的portnum一样
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-11-08   w00217009               Create
-*
-*******************************************************************************/
+
 ULONG PTPV2_BMC_DSCA_Part2(ULONG ulCompareType, 
                                 PTPV2_FOREIGN_MASTER_S* pstForeMasterA,
                                 PTPV2_FOREIGN_MASTER_S* pstForeMasterB,
@@ -1367,27 +1197,7 @@ ULONG PTPV2_BMC_DSCA_Part2(ULONG ulCompareType,
     return TCPIP_PTP_ERR_BMC_ERRNO2;
 }
 
-/*******************************************************************************
-*    Func Name: PTPV2_BMC_PPI_SlaveRole
-* Date Created: 2014-11-26
-*       Author: w00217009
-*  Description: 下发Slave角色
-*                1.如果源变化，则重新下发PPI 更新
-*                2.如果源不变，但参数变化，则下发参数变化命令字
-*                3.其他，则不处理
-*        Input: PTPV2_FOREIGN_MASTER_S* pstSelectMaster: 下发slave对应的Ebest
-*               ULONG ulCmd:下发的命令字
-*               ULONG ulChangeField: 参数变化标志
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-11-08   w00217009               Create
-*
-*******************************************************************************/
+
 ULONG PTPV2_BMC_PPI_SlaveRole(PTPV2_FOREIGN_MASTER_S* pstSelectMaster,  ULONG ulCmd, ULONG ulChangeField)
 {
     TCPIP_PTP_SLAVE_PPI_S  stPpiData;
@@ -1462,23 +1272,7 @@ ULONG PTPV2_BMC_PPI_SlaveRole(PTPV2_FOREIGN_MASTER_S* pstSelectMaster,  ULONG ul
     return ulRet;
 }
 
-/*******************************************************************************
-*    Func Name: PTPV2_PPI_PassiveRole
-* Date Created: 2014-11-08
-*       Author: w00217009
-*  Description: 下发passive角色
-*        Input: ULONG ulCmd:下发的命令字
-*               PTPV2_PORT_S* pstPortInfo:需要下发passive信息的端口
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-11-08   w00217009               Create
-*
-*******************************************************************************/
+
 VOID PTPV2_PPI_PassiveRole(ULONG ulCmd, PTPV2_PORT_S* pstPortInfo)
 {
     ULONG ulRet = 0;
@@ -1519,22 +1313,7 @@ VOID PTPV2_PPI_PassiveRole(ULONG ulCmd, PTPV2_PORT_S* pstPortInfo)
     return;
 }
 
-/*******************************************************************************
-*    Func Name: PTPV2_BMC_PPI_PassiveRoleForAll
-* Date Created: 2014-11-08
-*       Author: w00217009
-*  Description: 遍历所有端口,判断是否下发passive角色
-*        Input: 
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-11-08   w00217009               Create
-*
-*******************************************************************************/    
+
 VOID PTPV2_BMC_PPI_PassiveRoleForAll()
 {
     ULONG ulIter = 0;

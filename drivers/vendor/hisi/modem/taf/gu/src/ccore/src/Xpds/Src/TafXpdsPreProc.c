@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafXpdsPreProc.c
-  版 本 号   : 初稿
-  作    者   : g00256031
-  生成日期   : 2015年08月26日
-  功能描述   : XPDS预状态机事件处理函数
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年08月26日
-    作    者   : g00256031
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -54,21 +39,7 @@ TAF_XPDS_DOWN_DATA_CTRL_STRU g_stTafXpdsDownCtrlPreProc = {0};
   3 函数定义
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvAtGpsStartReq_PreProc
- 功能描述  : 预处理^CAGPSSTART命令
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月16日
-    作    者   : g00256031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvAtGpsStartReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -101,21 +72,7 @@ VOS_UINT32 TAF_XPDS_RcvAtGpsStartReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvAtGpsCfgMpcAddrReq_PreProc
- 功能描述  : 预处理^CAGPSCFGMPCADDR命令
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月16日
-    作    者   : g00256031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvAtGpsCfgMpcAddrReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -149,21 +106,7 @@ VOS_UINT32 TAF_XPDS_RcvAtGpsCfgMpcAddrReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvAtGpsCfgPdeAddrReq_PreProc
- 功能描述  : 预处理^CAGPSCFGPDEADDR命令
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月16日
-    作    者   : g00256031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvAtGpsCfgPdeAddrReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -197,21 +140,7 @@ VOS_UINT32 TAF_XPDS_RcvAtGpsCfgPdeAddrReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvAtGpsCfgPositionModeReq_PreProc
- 功能描述  : 预处理^CAGPSCFGPOSMODE命令
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月16日
-    作    者   : g00256031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvAtGpsCfgPositionModeReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -245,21 +174,7 @@ VOS_UINT32 TAF_XPDS_RcvAtGpsCfgPositionModeReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvAtGpsQryRefLocInfoReq_PreProc
- 功能描述  : 预处理^CAGPSCFGPOSMODE命令
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月16日
-    作    者   : g00256031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvAtGpsQryRefLocInfoReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -303,20 +218,7 @@ VOS_UINT32 TAF_XPDS_RcvAtGpsQryRefLocInfoReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvAtGpsQryTimeInfoReq_PreProc
- 功能描述  : 预处理收到AT发来的ID_AT_XPDS_SYNC_TIME_REQ消息处理函数
- 输入参数  : pstMsg  -- 消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月10日
-    作    者   : d00212987
-    修改内容   : AGPS迭代1新增
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvAtGpsQryTimeInfoReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -364,22 +266,7 @@ VOS_UINT32 TAF_XPDS_RcvAtGpsQryTimeInfoReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvAtApServerBindStatusInd_PreProc
- 功能描述  : 预处理状态收到AP发送而来的服务器Bind Cnf的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月8日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvAtApServerBindStatusInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -424,22 +311,7 @@ VOS_UINT32 TAF_XPDS_RcvAtApServerBindStatusInd_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvAtGpsStopReq_PreProc
- 功能描述  : 收到用户Stop Agps流程的预处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月9日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvAtGpsStopReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -451,20 +323,7 @@ VOS_UINT32 TAF_XPDS_RcvAtGpsStopReq_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvCasTimeSyncInd_PreProc
- 功能描述  : XPDS收到Cas获取Sync Timer结果
- 输入参数  : pMsg : CAS上报sync time结果
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月10日
-    作    者   : d00212987
-    修改内容   : AGPS迭代1新增
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvCasTimeSyncInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -479,20 +338,7 @@ VOS_UINT32 TAF_XPDS_RcvCasTimeSyncInd_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvCasRefLocInd
- 功能描述  : XPDS收到CAS获取位置信息通知
- 输入参数  : pMsg : CAS上报参考位置IND消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月10日
-    作    者   : d00212987
-    修改内容   : AGPS迭代1新增
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvCasRefLocInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -587,21 +433,7 @@ VOS_UINT32 TAF_XPDS_RcvCasRefLocInd_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_CheckForwardData_PreProc
- 功能描述  : 检查MPC/PDE下行数据
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月16日
-    作    者   : C00299064
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_CheckForwardData_PreProc(
     AT_XPDS_AP_FORWARD_DATA_IND_STRU   *pstDownDataInd
 )
@@ -631,21 +463,7 @@ VOS_UINT32 TAF_XPDS_CheckForwardData_PreProc(
     return VOS_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvApForwardDataInd_PreProc
- 功能描述  : XPDS处理ID_AT_XPDS_AP_FORWARD_DATA_IND消息
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : y00174758
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvApForwardDataInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -726,21 +544,7 @@ VOS_UINT32 TAF_XPDS_RcvApForwardDataInd_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_ProcForwardMpcMsg_PreProc
- 功能描述  :
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月16日
-    作    者   : C00299064
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_ProcForwardMpcMsg_PreProc(
     VOS_UINT8                          *pucData,
     VOS_UINT32                          ulDataLen
@@ -770,21 +574,7 @@ VOS_VOID TAF_XPDS_ProcForwardMpcMsg_PreProc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvAtMpcStartPosRespHandle
- 功能描述  : XPDS处理MPC命令
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月16日
-    作    者   : C00299064
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_RcvAtMpcStartPosRespHandle_PreProc(
     VOS_UINT32                          ulDataLen,
     VOS_UINT8                          *pucData
@@ -812,21 +602,7 @@ VOS_VOID TAF_XPDS_RcvAtMpcStartPosRespHandle_PreProc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvAtMpPosReportRspHandle
- 功能描述  : XPDS处理MPC命令
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月16日
-    作    者   : C00299064
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_RcvAtMpcPosReportRspHandle_PreProc(
     VOS_UINT32                          ulDataLen,
     VOS_UINT8                          *pucData
@@ -858,22 +634,7 @@ VOS_VOID TAF_XPDS_RcvAtMpcPosReportRspHandle_PreProc(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_ProcForwardPdeMsg_PreProc
- 功能描述  : Process Forward Msg from PDE
- 输入参数  : VOS_UINT8                          *pucMsgBuf
-             VOS_UINT32                          ulTotLength
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : y00174758
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_ProcForwardPdeMsg_PreProc(
     VOS_UINT8                          *pucMsgBuf,
     VOS_UINT32                          ulTotLength
@@ -929,20 +690,7 @@ VOS_VOID TAF_XPDS_ProcForwardPdeMsg_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_ProcEphData_PreProc
- 功能描述  : 处理从PDE服务器接收到的EPH数据
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : y00174758
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XPDS_ProcEphData_PreProc(VOS_VOID)
 {
     VOS_UINT32                                              ulPdeDataMask;
@@ -960,20 +708,7 @@ VOS_VOID TAF_XPDS_ProcEphData_PreProc(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_ProcAlmData_PreProc
- 功能描述  : 处理从PDE服务器接收到的ALM数据
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : y00174758
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XPDS_ProcAlmData_PreProc(VOS_VOID)
 {
     VOS_UINT32                                              ulPdeDataMask;
@@ -992,25 +727,7 @@ VOS_VOID TAF_XPDS_ProcAlmData_PreProc(VOS_VOID)
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvXsmsRcvInd_PreProc
- 功能描述  : 预处理状态收到XSMS消息处理函数
- 输入参数  : ulEventType - 消息类型
-             pstMsg      - 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 已处理
-             VOS_FALSE - 未处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-  2.日    期   : 2015年9月6日
-    作    者   : y00174758
-    修改内容   : AGPS迭代2: 判断MPC下发短信的版本
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvXsmsRcvInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1082,21 +799,7 @@ VOS_UINT32 TAF_XPDS_RcvXsmsRcvInd_PreProc(
 }
 
 
-/****************************************************************************
- 函 数 名  : TAF_XPDS_ProcXsmsMsg
- 功能描述  : 处理来自XSMS模块的消息
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : TAF_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月17日
-    作    者   : C00299064
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_XPDS_ProcXsmsMsg_PreProc(
     TAF_XPDS_RCV_XSMS_MSG_STRU         *pstXsmsMsg
 )
@@ -1132,21 +835,7 @@ VOS_UINT32  TAF_XPDS_ProcXsmsMsg_PreProc(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_XsmsNiPosReqHandle
- 功能描述  : 处理来自XSMS模块的消息
- 输入参数  : pstXsmsMsg
- 输出参数  : 无
- 返 回 值  : TAF_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月17日
-    作    者   : C00299064
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_XPDS_XsmsNiPosReqHandle_PreProc(
     TAF_XPDS_RCV_XSMS_POS_REQ_STRU     *pstXsmsMsg
 )
@@ -1179,21 +868,7 @@ VOS_UINT32  TAF_XPDS_XsmsNiPosReqHandle_PreProc(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_XsmsCancelPosHandle
- 功能描述  : 处理来自XSMS模块的消息
- 输入参数  : struct MsgCB *pstMsg
- 输出参数  : 无
- 返 回 值  : TAF_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月17日
-    作    者   : C00299064
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_XPDS_XsmsCancelPosHandle_PreProc(
     TAF_XPDS_RCV_CANCEL_NI_TRACK_STRU *pstXsmsMsg
 )
@@ -1209,21 +884,7 @@ VOS_UINT32  TAF_XPDS_XsmsCancelPosHandle_PreProc(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_XsmsRefreshMrSessionHandle
- 功能描述  : 处理来自XSMS模块的消息
- 输入参数  : struct MsgCB *pstMsg
- 输出参数  : 无
- 返 回 值  : TAF_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月17日
-    作    者   : C00299064
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_XPDS_XsmsRefreshMrSessionHandle_PreProc(
     TAF_XPDS_RCV_REFRESH_MR_TRACK_STRU    *pstXsmsMsg
 )
@@ -1254,22 +915,7 @@ VOS_UINT32  TAF_XPDS_XsmsRefreshMrSessionHandle_PreProc(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvTiXpdsIs801SessionExpired_PreProc
- 功能描述  : Is801定时器超时，转换为内部Abort场景
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月9日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvTiXpdsIs801SessionExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1280,22 +926,7 @@ VOS_UINT32 TAF_XPDS_RcvTiXpdsIs801SessionExpired_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvTiWaitGpsAnswerNiReqExpire_PreProc
- 功能描述  : 等待回复NI请求超时的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月6日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvTiWaitGpsAnswerNiReqExpire_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1308,22 +939,7 @@ VOS_UINT32 TAF_XPDS_RcvTiWaitGpsAnswerNiReqExpire_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvCasDataInd_PreProc
- 功能描述  : 预处理状态收到CAS DATA IND消息处理函数
- 输入参数  : ulEventType - 消息类型
-             pstMsg      - 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 已处理
-             VOS_FALSE - 未处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvCasDschDataInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1354,22 +970,7 @@ VOS_UINT32 TAF_XPDS_RcvCasDschDataInd_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvCasRefLocCnf_PreProc
- 功能描述  : 预处理状态收到CAS DATA IND消息处理函数
- 输入参数  : ulEventType - 消息类型
-             pstMsg      - 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 已处理
-             VOS_FALSE - 未处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvCasRefLocCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1402,21 +1003,7 @@ VOS_UINT32 TAF_XPDS_RcvPpmTimerExpire_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvAtUtsTestStartReq_PreProc
- 功能描述  : XPDS处理ID_AT_XPDS_UTS_TEST_START_REQ
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月16日
-    作    者   : d00212987
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvAtUtsTestStartReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1437,21 +1024,7 @@ VOS_UINT32 TAF_XPDS_RcvAtUtsTestStartReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvAtGpsPosInfoRsp_PreProc
- 功能描述  : XPDS处理ID_AT_XPDS_GPS_POS_INFO_RSP
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月16日
-    作    者   : d00212987
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvAtGpsPosInfoRsp_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1476,21 +1049,7 @@ VOS_UINT32 TAF_XPDS_RcvAtGpsPosInfoRsp_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvAtUtsTestStopReq_PreProc
- 功能描述  : XPDS处理ID_AT_XPDS_UTS_TEST_STOP_REQ
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月24日
-    作    者   : y00174758
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvAtUtsTestStopReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1508,21 +1067,7 @@ VOS_UINT32 TAF_XPDS_RcvAtUtsTestStopReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvOmStartGpsFixReq_PreProc
- 功能描述  : XPDS处理ID_OM_NAS_CDMA_START_GPS_FIX_REQ
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月16日
-    作    者   : y00174758
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvOmStartGpsFixReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1557,21 +1102,7 @@ VOS_UINT32 TAF_XPDS_RcvOmStartGpsFixReq_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvOmStopGpsPosFix_PreProc
- 功能描述  : XPDS处理ID_OM_NAS_CDMA_STOP_GPS_FIX_REQ
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月16日
-    作    者   : y00174758
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvOmStopGpsFixReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg

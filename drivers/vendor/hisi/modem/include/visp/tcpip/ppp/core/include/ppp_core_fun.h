@@ -1,27 +1,4 @@
-/*************************************************************************
- *
- *              Copyright 2005, Huawei Technologies Co. Ltd.
- *                          ALL RIGHTS RESERVED
- * 
- *-----------------------------------------------------------------------*
- *
- *                             ppp_core_func.h
- *
- *  Project Code: VISP1.5
- *   Module Name: PPP
- *  Date Created: 2004-07-01
- *        Author: YiAn
- *   Description: PPP模块的函数声明
- *
- *-----------------------------------------------------------------------*
- *  Modification History
- *  DATE            NAME            DESCRIPTION
- *  2004-07-01      YiAn            Create
- *  2006-03-31      ZhuKun          Adjust for D00661
- *  2006-04-21      ZhuKun          Adjust for D00875
- *  2008-01-10      z62474          Modify for A82D22582
- *  2008-08-25      f54882          Modify for BC3D00263
- *************************************************************************/
+
 
 #ifndef _PPP_CORE_FUNC_H_
 #define _PPP_CORE_FUNC_H_
@@ -95,7 +72,6 @@ VOID PPP_Core_TerminatePhase(PPPINFO_S *);
 /* 其他 */
 ULONG PPP_GetMagicNumber(VOID);
 
-/*add by y36299 for visp3 2005/10/11 同步VRPV5R3 SWFD09347*/
 VOID PPP_Core_UpdateUsedConfigInfo( PPPINFO_S * pstPppInfo );
 
 /****************** 内核 *******************/
@@ -243,7 +219,6 @@ ULONG PPP_GetPppByIndex(ULONG ulIfIndex, PPPINFO_S **pstPppInfo);
 
 ULONG PPP_GetPppFsmState(ULONG ulIfIndex, ULONG * pulPppPhase, 
                          ULONG * pulPppNegoType, ULONG * pulPppFsmState);
-/* Added by z43740 for PPP接口整改, 2006/06/07 */
 ULONG PPP_GetPppFsmState_PT(ULONG ulIfIndex, ULONG * pulPppPhase, 
                             ULONG * pulPppNegoType, ULONG * pulPppFsmState);
 
@@ -358,10 +333,8 @@ VOID PPP_PPI_DownLoadConfigInfo(PPPINFO_S *pstPppInfo);
 ULONG PPP_GetHcNegoResult(PPPINFO_S* pstPppInfo,ULONG* pulNegAcfc,ULONG *pulNegPfc);
 UCHAR PPP_GetHeaderLen(ULONG ulNegAcfc, ULONG ulNegPfc, USHORT usProtocol);
 
-/*(同步问题单A82D11804)Added by f54882, 2007-2-2, HDLC自动侦听非标需求功能开关*/
 ULONG PPP_SetDiscrSpecial (ULONG ulSet);
 
-/*(同步问题单A82D17438)add by wuhailan, 2007-7-5.设置PPP复位定时器*/
 ULONG PPP_SetPPPResetTime(ULONG ulTime);
 
 ULONG PPP_DealNothing(MBUF_S *pMBuf); 
@@ -386,9 +359,8 @@ ULONG PPP_ProcessLQMPeriod(ULONG ulIfIndex, USHORT usLqrPeriod);
 ULONG PPP_ProcessLQMLimit(ULONG ulIfIndex, ULONG ulCloseValue,ULONG ulResumeValue);
 
 ULONG PPP_SetIpcpNegoDns (ULONG ulIfIndex, ULONG ulSetYes);
-ULONG PPP_AddrCheck(ULONG ulAddr);/*added by l61496 2007-9-10 声明*/
+ULONG PPP_AddrCheck(ULONG ulAddr);
 
-/*add by wuhailan for A82D18512, 2007-8-2.设置MP终端描述符一致性检测开关*/
 ULONG PPP_SetMpEDConsistent(ULONG ulSetYes);
 ULONG PPP_GetMpEDConsistent(VOID);
 

@@ -1,124 +1,9 @@
-/*******************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : MMGLOBAL.c
-  Description :
-  History     :
-      1.  张志勇   2003.11.27   新版作成
-      2.  s46746 2006-03-39  根据问题单A32D02486修改
-      3.  x51137  2006/4/14 A32D02955
-      4.  s46746 2006-04-17  根据问题单A32D02829修改
-      5.  x51137 2006/5/5 A32D03487
-      6.  x51137 2006/11/3 A32D06511
-      7.  x51137 2006/11/3 A32D06821
-      8.  d49431 2006/11/23 A32D07452
-      9. 日    期   : 2006年11月23日
-         作    者   : luojian   id:60022475
-         修改内容   : 问题单号：A32D07583
-      10.日    期   : 2007年01月04日
-         作    者   : luojian id:60022475
-         修改内容   : 根据问题单号：A32D06408
-      11.日    期   : 2007年1月26日
-         作    者   : liurui id:40632
-         修改内容   : 根据问题单号：A32D08577
-      12.日    期   : 2007年03月09日
-         作    者   : luojian id:60022475
-         修改内容   : 根据问题单A32D09099修改
-      13.日    期   : 2007年3月20日
-         作    者   : s46746
-         修改内容   : 问题单号：A32D09497
-      14.日    期   : 2007年05月11日
-         作    者   : luojian id:60022475
-         修改内容   : 问题单号:A32D10713
-      15.日    期   : 2007年06月01日
-         作    者   : luojian id:60022475
-         修改内容   : 根据问题单A32D10964修改
-      16.日    期   : 2007年06月30日
-         作    者   : s46746
-         修改内容   : 问题单号:A32D12011,MM在no cell available状态下，接入层可能限制驻留，容许重选
-      17.日    期   : 2007年08月03日
-         作    者   : l65478
-         修改内容   : 问题单号:A32D12650
-      18.日    期   : 2007年08月19日
-         作    者   : luojian id:60022475
-         修改内容   : 根据问题单号：A32D12706
-      19.日    期   : 2007年9月29日
-         作    者   : luojian id:107747
-         修改内容   : 根据问题单号：A32D12966,增加部分状态对RRMM_REL_IND的处理
-      20.日    期   : 2007年11月22日
-         作    者   : s46746
-         修改内容   : 问题单号:A32D13465,MMC接收到底层出服务区消息后，
-                      如果CS和PS正在进行连接建立，不需要缓存对出服务区消息的处理
-      21.日    期   : 2007年11月22日
-         作    者   : l00107747
-         修改内容   : 问题单号:A32D13535
-      22.日    期   : 2007年12月11日
-         作    者   : s46746
-         修改内容   : 根据问题单号：A32D13845,出服务区后，MMC立即启动异系统相同PLMN
-                      搜索
-      23.日    期   : 2007年12月12日
-         作    者   : l00107747
-         修改内容   : 根据问题单号：A32D13859,支持对SMS的缓存处理
-      24.日    期   : 2007年12月29日
-         作    者   : l0010747
-         修改内容   : 问题单号:A32D13958,部分状态下对RRMM_REL_IND处理修改
-      25.日    期   : 2008年5月27日
-         作    者   : s46746
-         修改内容   : 问题单号:AT2D03209,增加列表搜索时响应寻呼处理
-      26.日    期   : 2008年7月21日
-         作    者   : luojian 00107747
-         修改内容   : 问题单号：AT2D04201/AT2D04536,修改IMSI DETACH流程
-      27.日    期   : 2008年8月22日
-         作    者   : o00132663
-         修改内容   : 问题单号:AT2D05087,增加函数 Mm_Cell_S4_E31
-      28.日    期   : 2008年8月26日
-         作    者   : o00132663
-         修改内容   : 问题单号:AT2D05268,增加在重建过程中对鉴权的处理。
-      29.日    期   : 2008年10月15日
-         作    者   : x00115505
-         修改内容   : 问题单AT2D06189
-      30.日    期   : 2008年11月10日
-         作    者   : l00130025
-         修改内容   : 问题单号：AT2D06577, 修改aMmEvent22
-      31.日    期   : 2008年11月26日
-         作    者   : x00115505
-         修改内容   : 问题单号:AT2D06551，MS在响应网侧Paging过程中不处理
-                      USSD业务
-      32.日    期   : 2008年12月22日
-         作    者   : o00132663
-         修改内容   : 问题单号:AT2D07757,MM丢网后重回原小区，不发起LU
-      33.日    期   : 2009年01月15日
-         作    者   : l00130025
-         修改内容   : 问题单号:AT2D07018,LAU或RAU过程中搜网和SYSCFG设置,发起底层释放链接的操作
-      34.日    期   : 2009年04月29日
-         作    者   : x00115505
-         修改内容   : AT2D11365,2G下MM建立信令链接保护定时器的长度过长，从190s修改为15s。
-      35.日    期   : 2009年07月13日
-         作    者   : z40661
-         修改内容   : AT2D12727,Gmm在Suspension状态下，软开机失败
-      36.日    期   : 2009年07月24日
-         作    者   : z40661
-         修改内容   : 异系统重选后，紧急呼叫不能接通
-      37.日    期   : 2009年9月7日
-         作    者   : s46746
-         修改内容   : 根据问题单号：AT2D14311，出服务区后，GMM存在连接时先进行了连接释放，会导致服务状态临时更新为Normal service
-      38.日    期   : 2009年10月3日
-         作    者   : l00130025
-         修改内容   : 根据问题单号：AT2D14889,G网络模式I下,Combined RAU过程中，
-                            设置需要CS detach的SYSCFG失败,修改ammevent10
-      39.日    期   : 2010年03月19日
-         作    者   : s46746
-         修改内容   : 根据问题单号：AT2D17453,异系统切换状态，MM接收到底层GAS channal open消息，直接透传到CC模块
 
-*******************************************************************************/
 #include        "MM_Inc.h"
 
-/* Added by l00167671 for NV拆分项目 , 2013-05-17, begin */
 #include "NasNvInterface.h"
-/* Added by l00167671 for NV拆分项目 , 2013-05-17, end*/
 
-/* Added by y00245242 for V3R3C60_eCall项目, 2014-4-2, begin */
 #include "NasMmEcall.h"
-/* Added by y00245242 for V3R3C60_eCall项目, 2014-4-2, end */
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -168,9 +53,7 @@ MM_USIM_AUTHENTICATION_CNF_STRU      g_AgentUsimAuthCnf;
 
 /* MM内部全局变量 */
 MM_GLOBAL_CTRL_STRU                     g_MmGlobalInfo;
-/* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-9, begin */
 MM_TIMER_STRU                           gstMmTimer[MM_TIMER_MAX];
-/* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-9, end */
 
 /* AS提供API函数指针结构体 */
 NAS_MM_IMPORTED_FUNC_LIST_STRU          g_NasMmImportFunc;
@@ -182,7 +65,6 @@ VOS_UINT32    g_MmMutexCnt;
 
 VOS_UINT8     g_T3211Flag = 0;
 
-/* Modified by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
 const MM_CELL_FUN_TYPE        aMmEvent1[MM_STATE_MAX] = {
     Mm_Cell_S0_E1,                                  /* S0 : MM_NULL                                     */
     Mm_Cell_S1_E1,                                  /* S1 : MM IDLE NO CELL AVAILABLE                   */
@@ -219,9 +101,7 @@ const MM_CELL_FUN_TYPE        aMmEvent1[MM_STATE_MAX] = {
     Mm_Cell_S31_E1,                                 /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                         /* S32: MM_INTER_RAT_CHANGE                         */
     
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */
 };
 const MM_CELL_FUN_TYPE        aMmEvent2[MM_STATE_MAX] = {
     Mm_Cell_S0_E2,                                  /* S0 : MM_NULL                                     */
@@ -259,11 +139,9 @@ const MM_CELL_FUN_TYPE        aMmEvent2[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     NAS_MM_RcvAttachReq_InterRatChange,             /* S32: MM_INTER_RAT_CHANGE                         */
 
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-3-31, begin */
 #if (FEATURE_ON == FEATURE_ECALL)    
     NAS_MM_RcvMmcMmAttachReq_MmIdleECallInactive,  /* S33: MM_IDLE_ECALL_INACTIVE                      */
 #endif
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-3-31, end */    
 };
 const MM_CELL_FUN_TYPE        aMmEvent3[MM_STATE_MAX] = {
     Mm_Cell_S0_E3,                                  /* S0 : MM_NULL                                     */
@@ -301,14 +179,11 @@ const MM_CELL_FUN_TYPE        aMmEvent3[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                         /* S32: MM_INTER_RAT_CHANGE                          */
 
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-3-31, begin */    
 #if (FEATURE_ON == FEATURE_ECALL)    
     NAS_MM_RcvMmcMmPlmnSrchInit_MmIdleECallInactive, /* S33: MM_IDLE_ECALL_INACTIVE                      */
 #endif
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-3-31, end */     
 };
 
-/* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-1, begin */
 const MM_CELL_FUN_TYPE        aMmEvent5[MM_STATE_MAX] = {
     Mm_Nop       ,                                  /* S0 : MM_NULL                                     */
     Mm_Cell_S1_E5,                                  /* S1 : MM IDLE NO CELL AVAILABLE                   */
@@ -345,13 +220,10 @@ const MM_CELL_FUN_TYPE        aMmEvent5[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                        /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-3-31, begin */
 #if (FEATURE_ON == FEATURE_ECALL)    
     NAS_MM_RcvMmcMmSysInfo_MmIdleECallInactive,    /* S33: MM_IDLE_ECALL_INACTIVE                      */
 #endif
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-3-31, end */     
 };
-/* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-1, end */
 
 
 const MM_CELL_FUN_TYPE        aMmEvent6[MM_STATE_MAX] = {
@@ -390,9 +262,7 @@ const MM_CELL_FUN_TYPE        aMmEvent6[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                        /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */     
 };
 const MM_CELL_FUN_TYPE        aMmEvent7[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S0 : MM_NULL                                     */
@@ -430,9 +300,7 @@ const MM_CELL_FUN_TYPE        aMmEvent7[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                        /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */     
 };
 const MM_CELL_FUN_TYPE        aMmEvent8[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S0 : MM_NULL                                     */
@@ -470,9 +338,7 @@ const MM_CELL_FUN_TYPE        aMmEvent8[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                        /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */     
 };
 const MM_CELL_FUN_TYPE        aMmEvent9[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S0 : MM_NULL                                     */
@@ -510,9 +376,7 @@ const MM_CELL_FUN_TYPE        aMmEvent9[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                        /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */     
 };
 const MM_CELL_FUN_TYPE        aMmEvent10[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S0 : MM_NULL                                     */
@@ -550,9 +414,7 @@ const MM_CELL_FUN_TYPE        aMmEvent10[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                        /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */     
 };
 const MM_CELL_FUN_TYPE        aMmEvent11[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S0 : MM_NULL                                     */
@@ -593,9 +455,7 @@ const MM_CELL_FUN_TYPE        aMmEvent11[MM_STATE_MAX] = {
 
     Mm_Nop,                                        /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */     
 };
 const MM_CELL_FUN_TYPE        aMmEvent12[MM_STATE_MAX] = {
     Mm_Cell_S4_E12,                                 /* S0 : MM_NULL                                     */
@@ -635,9 +495,7 @@ const MM_CELL_FUN_TYPE        aMmEvent12[MM_STATE_MAX] = {
     Mm_Cell_S4_E12,                                 /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                        /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */     
 };
 const MM_CELL_FUN_TYPE        aMmEvent13[MM_STATE_MAX] = {
     Mm_Cell_S0_E13,                                 /* S0 : MM_NULL                                     */
@@ -675,9 +533,7 @@ const MM_CELL_FUN_TYPE        aMmEvent13[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                        /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */     
 };
 const MM_CELL_FUN_TYPE        aMmEvent14[MM_STATE_MAX] = {
     Mm_Cell_S0_E14,                                 /* S0 : MM_NULL                                     */
@@ -715,9 +571,7 @@ const MM_CELL_FUN_TYPE        aMmEvent14[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                        /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */     
 };
 const MM_CELL_FUN_TYPE        aMmEvent15[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S0 : MM_NULL                                     */
@@ -758,9 +612,7 @@ const MM_CELL_FUN_TYPE        aMmEvent15[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                        /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */     
 };
 const MM_CELL_FUN_TYPE        aMmEvent16[MM_STATE_MAX] = {
     Mm_Cell_S0_E16, /* Mm_Nop, */                   /* S0 : MM_NULL                                     */
@@ -798,9 +650,7 @@ const MM_CELL_FUN_TYPE        aMmEvent16[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                        /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */     
 };
 
 const MM_CELL_FUN_TYPE        aMmEvent17[MM_STATE_MAX] = {
@@ -839,9 +689,7 @@ const MM_CELL_FUN_TYPE        aMmEvent17[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                        /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */     
 };
 
 const MM_CELL_FUN_TYPE        aMmEvent18[MM_STATE_MAX] = {
@@ -880,9 +728,7 @@ const MM_CELL_FUN_TYPE        aMmEvent18[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                        /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */     
 };
 
 const MM_CELL_FUN_TYPE        aMmEvent19[MM_STATE_MAX] = {
@@ -921,9 +767,7 @@ const MM_CELL_FUN_TYPE        aMmEvent19[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                        /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */     
 };
 
 const MM_CELL_FUN_TYPE        aMmEvent20[MM_STATE_MAX] = {
@@ -962,11 +806,9 @@ const MM_CELL_FUN_TYPE        aMmEvent20[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                        /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-3-31, begin */
 #if (FEATURE_ON == FEATURE_ECALL)   
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
 #endif
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-3-31, end */     
 };
 const MM_CELL_FUN_TYPE        aMmEvent21[MM_STATE_MAX] = {
     Mm_Cell_S0_E21, /* Mm_Nop, */                   /* S0 : MM_NULL                                     */
@@ -1005,11 +847,9 @@ const MM_CELL_FUN_TYPE        aMmEvent21[MM_STATE_MAX] = {
     Mm_Cell_S2_E21,                                 /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                        /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
 #if (FEATURE_ON == FEATURE_ECALL)    
     NAS_MM_RcvMmcMmCoverageLostInd_MmIdleECallInactive, /* S33: MM_IDLE_ECALL_INACTIVE                      */
 #endif
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */     
 };
 const MM_CELL_FUN_TYPE        aMmEvent22[MM_STATE_MAX] = {
     Mm_Cell_S0_E22,                                 /* S0 : MM_NULL                                     */
@@ -1047,9 +887,7 @@ const MM_CELL_FUN_TYPE        aMmEvent22[MM_STATE_MAX] = {
     Mm_Cell_S9_E22, /* Mm_Nop, */                   /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Cell_S32_E22,                                /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */     
 };
 const MM_CELL_FUN_TYPE        aMmEvent23[MM_STATE_MAX] = {
     Mm_Cell_S0_E23,                                 /* S0 : MM_NULL                                     */
@@ -1087,11 +925,9 @@ const MM_CELL_FUN_TYPE        aMmEvent23[MM_STATE_MAX] = {
     Mm_Cell_S31_E23,                                /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Cell_S32_E23,                                /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-3-31, begin */
 #if (FEATURE_ON == FEATURE_ECALL)   
     NAS_MM_RcvMmcMmPowerOffReq_MmIdleECallInactive, /* S33: MM_IDLE_ECALL_INACTIVE                      */
 #endif
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-3-31, end */     
 };
 const MM_CELL_FUN_TYPE        aMmEvent24[MM_STATE_MAX] = {
     Mm_Cell_S0_E24, /* Mm_Nop, */                   /* S0 : MM_NULL                                     */
@@ -1129,11 +965,9 @@ const MM_CELL_FUN_TYPE        aMmEvent24[MM_STATE_MAX] = {
     Mm_Cell_S0_E24,                                 /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Cell_S32_CCEstREQ,                           /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-3-31, begin */
 #if (FEATURE_ON == FEATURE_ECALL)    
     NAS_MM_RcvCcEstReq_MmIdleECallInactive,        /* S33: MM_IDLE_ECALL_INACTIVE                      */
 #endif
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-3-31, end */     
 };
 const MM_CELL_FUN_TYPE        aMmEvent25[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S0 : MM_NULL                                     */
@@ -1172,9 +1006,7 @@ const MM_CELL_FUN_TYPE        aMmEvent25[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Cell_S32_DataTransfer,                       /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */     
 };
 const MM_CELL_FUN_TYPE        aMmEvent26[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S0 : MM_NULL                                     */
@@ -1214,9 +1046,7 @@ const MM_CELL_FUN_TYPE        aMmEvent26[MM_STATE_MAX] = {
     Mm_Cell_S32_E26,                       /* S32: MM_INTER_RAT_CHANGE  */
 
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */     
 };
 const MM_CELL_FUN_TYPE        aMmEvent27[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S0 : MM_NULL                                     */
@@ -1254,9 +1084,7 @@ const MM_CELL_FUN_TYPE        aMmEvent27[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Cell_S32_DataTransfer,          /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */     
 };
 const MM_CELL_FUN_TYPE        aMmEvent28[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S0 : MM_NULL                                     */
@@ -1294,9 +1122,7 @@ const MM_CELL_FUN_TYPE        aMmEvent28[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Cell_S32_CCEstREQ,                /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */     
 };
 const MM_CELL_FUN_TYPE        aMmEvent29[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S0 : MM_NULL                                     */
@@ -1334,9 +1160,7 @@ const MM_CELL_FUN_TYPE        aMmEvent29[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Cell_S32_DataTransfer,         /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */     
 };
 const MM_CELL_FUN_TYPE        aMmEvent30[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S0 : MM_NULL                                     */
@@ -1374,9 +1198,7 @@ const MM_CELL_FUN_TYPE        aMmEvent30[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                        /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */
 };
 
 const MM_CELL_FUN_TYPE        aMmEvent31[MM_STATE_MAX] = {
@@ -1415,9 +1237,7 @@ const MM_CELL_FUN_TYPE        aMmEvent31[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                        /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */     
 };
 const MM_CELL_FUN_TYPE        aMmEvent32[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S0 : MM_NULL                                     */
@@ -1455,9 +1275,7 @@ const MM_CELL_FUN_TYPE        aMmEvent32[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Cell_S32_E32,                               /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */     
 };
 const MM_CELL_FUN_TYPE        aMmEvent33[MM_STATE_MAX] = {
     Mm_Cell_S0_E33,                                 /* S0 : MM_NULL                                     */
@@ -1495,9 +1313,7 @@ const MM_CELL_FUN_TYPE        aMmEvent33[MM_STATE_MAX] = {
     Mm_Cell_S31_E33,                                /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Cell_S2_E33,                                 /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */     
 };
 const MM_CELL_FUN_TYPE        aMmEvent34[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S0 : MM_NULL                                     */
@@ -1535,9 +1351,7 @@ const MM_CELL_FUN_TYPE        aMmEvent34[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                        /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */     
 };
 const MM_CELL_FUN_TYPE        aMmEvent35[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S0 : MM_NULL                                     */
@@ -1575,9 +1389,7 @@ const MM_CELL_FUN_TYPE        aMmEvent35[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Cell_S9_E35,                                 /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */     
 };
 const MM_CELL_FUN_TYPE        aMmEvent36[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S0 : MM_NULL                                     */
@@ -1615,9 +1427,7 @@ const MM_CELL_FUN_TYPE        aMmEvent36[MM_STATE_MAX] = {
     Mm_Cell_S9_E36,                                 /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                        /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */     
 };
 const MM_CELL_FUN_TYPE        aMmEvent37[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S0 : MM_NULL                                     */
@@ -1655,9 +1465,7 @@ const MM_CELL_FUN_TYPE        aMmEvent37[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                        /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */     
 };
 const MM_CELL_FUN_TYPE        aMmEvent38[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S0 : MM_NULL                                     */
@@ -1695,9 +1503,7 @@ const MM_CELL_FUN_TYPE        aMmEvent38[MM_STATE_MAX] = {
     Mm_Cell_S9_E38,                                 /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                        /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */     
 };
 const MM_CELL_FUN_TYPE        aMmEvent39[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S0 : MM_NULL                                     */
@@ -1735,9 +1541,7 @@ const MM_CELL_FUN_TYPE        aMmEvent39[MM_STATE_MAX] = {
     Mm_Cell_S9_E39,                                 /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                        /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */     
 };
 const MM_CELL_FUN_TYPE        aMmEvent40[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S0 : MM_NULL                                     */
@@ -1775,9 +1579,7 @@ const MM_CELL_FUN_TYPE        aMmEvent40[MM_STATE_MAX] = {
     Mm_Cell_S10_E40, /* Mm_Nop, */                  /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                        /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */     
 };
 const MM_CELL_FUN_TYPE        aMmEvent41[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S0 : MM_NULL                                     */
@@ -1815,9 +1617,7 @@ const MM_CELL_FUN_TYPE        aMmEvent41[MM_STATE_MAX] = {
     Mm_Cell_S10_E40, /* Mm_Nop, */                  /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                         /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */     
 };
 const MM_CELL_FUN_TYPE        aMmEvent42[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S0 : MM_NULL                                     */
@@ -1855,9 +1655,7 @@ const MM_CELL_FUN_TYPE        aMmEvent42[MM_STATE_MAX] = {
     Mm_Cell_S10_E40, /* Mm_Nop, */                  /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                        /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */     
 };
 const MM_CELL_FUN_TYPE        aMmEvent43[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S0 : MM_NULL                                     */
@@ -1895,9 +1693,7 @@ const MM_CELL_FUN_TYPE        aMmEvent43[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                        /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */     
 };
 const MM_CELL_FUN_TYPE        aMmEvent44[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S0 : MM_NULL                                     */
@@ -1935,9 +1731,7 @@ const MM_CELL_FUN_TYPE        aMmEvent44[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                        /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */     
 };
 const MM_CELL_FUN_TYPE        aMmEvent45[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S0 : MM_NULL                                     */
@@ -1975,9 +1769,7 @@ const MM_CELL_FUN_TYPE        aMmEvent45[MM_STATE_MAX] = {
     Mm_Cell_S10_E40, /* Mm_Nop, */                  /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                        /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */
 };
 const MM_CELL_FUN_TYPE        aMmEvent46[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S0 : MM_NULL                                     */
@@ -2015,9 +1807,7 @@ const MM_CELL_FUN_TYPE        aMmEvent46[MM_STATE_MAX] = {
     Mm_Cell_S10_E40, /* Mm_Nop, */                  /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                        /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */     
 };
 const MM_CELL_FUN_TYPE        aMmEvent47[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S0 : MM_NULL                                     */
@@ -2055,9 +1845,7 @@ const MM_CELL_FUN_TYPE        aMmEvent47[MM_STATE_MAX] = {
     Mm_Cell_S10_E40, /* Mm_Nop, */                  /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                        /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */     
 };
 const MM_CELL_FUN_TYPE        aMmEvent48[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S0 : MM_NULL                                     */
@@ -2095,9 +1883,7 @@ const MM_CELL_FUN_TYPE        aMmEvent48[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Cell_S32_DataTransfer,         /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */ 
 
 };
 const MM_CELL_FUN_TYPE        aMmEvent49[MM_STATE_MAX] = {
@@ -2136,9 +1922,7 @@ const MM_CELL_FUN_TYPE        aMmEvent49[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                         /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */     
 };
 const MM_CELL_FUN_TYPE        aMmEvent50[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S0 : MM_NULL                                     */
@@ -2176,9 +1960,7 @@ const MM_CELL_FUN_TYPE        aMmEvent50[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                        /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */     
 };
 const MM_CELL_FUN_TYPE        aMmEvent51[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S0 : MM_NULL                                     */
@@ -2216,9 +1998,7 @@ const MM_CELL_FUN_TYPE        aMmEvent51[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                        /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */     
 };
 const MM_CELL_FUN_TYPE        aMmEvent52[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S0 : MM_NULL                                     */
@@ -2256,9 +2036,7 @@ const MM_CELL_FUN_TYPE        aMmEvent52[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                        /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */     
 };
 const MM_CELL_FUN_TYPE        aMmEvent53[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S0 : MM_NULL                                     */
@@ -2296,9 +2074,7 @@ const MM_CELL_FUN_TYPE        aMmEvent53[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Cell_S1_E53,           /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */     
 };
 const MM_CELL_FUN_TYPE        aMmEvent54[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S0 : MM_NULL                                     */
@@ -2336,9 +2112,7 @@ const MM_CELL_FUN_TYPE        aMmEvent54[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                        /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */     
 };
 const MM_CELL_FUN_TYPE        aMmEvent55[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S0 : MM_NULL                                     */
@@ -2376,9 +2150,7 @@ const MM_CELL_FUN_TYPE        aMmEvent55[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                        /* S32: MM_INTER_RAT_CHANGE */
     
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */
 };
 const MM_CELL_FUN_TYPE        aMmEvent56[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S0 : MM_NULL                                     */
@@ -2416,9 +2188,7 @@ const MM_CELL_FUN_TYPE        aMmEvent56[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                        /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */    
 };
 const MM_CELL_FUN_TYPE        aMmEvent57[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S0 : MM_NULL                                     */
@@ -2456,9 +2226,7 @@ const MM_CELL_FUN_TYPE        aMmEvent57[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                        /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */    
 };
 const MM_CELL_FUN_TYPE        aMmEvent58[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S0 : MM_NULL                                     */
@@ -2496,9 +2264,7 @@ const MM_CELL_FUN_TYPE        aMmEvent58[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                        /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */    
 };
 
 const MM_CELL_FUN_TYPE        aMmEvent59[MM_STATE_MAX] = {
@@ -2537,9 +2303,7 @@ const MM_CELL_FUN_TYPE        aMmEvent59[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                        /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */    
 };
 const MM_CELL_FUN_TYPE        aMmEvent60[MM_STATE_MAX] = {
     Mm_Cell_S0_E60,                                 /* S0 : MM_NULL                                     */
@@ -2577,9 +2341,7 @@ const MM_CELL_FUN_TYPE        aMmEvent60[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                        /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */    
 };
 const MM_CELL_FUN_TYPE        aMmEvent61[MM_STATE_MAX] = {
     Mm_Cell_S0_E61,                                 /* S0 : MM_NULL                                     */
@@ -2617,9 +2379,7 @@ const MM_CELL_FUN_TYPE        aMmEvent61[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                        /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */    
 };
 
 
@@ -2659,11 +2419,9 @@ const MM_CELL_FUN_TYPE        aMmEvent62[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Cell_S32_SMSEstREQ,             /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-3-31, begin */
 #if (FEATURE_ON == FEATURE_ECALL)    
     NAS_MM_RcvSmsEstReq_MmIdleECallInactive,         /* S33: MM_IDLE_ECALL_INACTIVE                      */
 #endif
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-3-31, end */    
 };
 
 
@@ -2703,9 +2461,7 @@ const MM_CELL_FUN_TYPE        aMmEvent63[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Cell_S32_E63,                               /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */    
 };
 
 const MM_CELL_FUN_TYPE        aMmEvent64[MM_STATE_MAX] = {
@@ -2744,9 +2500,7 @@ const MM_CELL_FUN_TYPE        aMmEvent64[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Cell_S32_DataTransfer,         /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */    
 };
 
 const MM_CELL_FUN_TYPE        aMmEvent65[MM_STATE_MAX] = {
@@ -2788,11 +2542,9 @@ const MM_CELL_FUN_TYPE        aMmEvent65[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Cell_S32_SSEstREQ,                /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
 #if (FEATURE_ON == FEATURE_ECALL)    
     NAS_MM_RcvSsEstReq_MmIdleECallInactive,         /* S33: MM_IDLE_ECALL_INACTIVE                      */
 #endif
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */    
 };
 
 const MM_CELL_FUN_TYPE        aMmEvent66[MM_STATE_MAX] = {
@@ -2831,9 +2583,7 @@ const MM_CELL_FUN_TYPE        aMmEvent66[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Cell_S32_DataTransfer,         /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */    
 };
 
 const MM_CELL_FUN_TYPE        aMmEvent67[MM_STATE_MAX] = {
@@ -2872,9 +2622,7 @@ const MM_CELL_FUN_TYPE        aMmEvent67[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Cell_S32_DataTransfer,          /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */    
 };
 
 const MM_CELL_FUN_TYPE        aMmEvent68[MM_STATE_MAX] = {
@@ -2913,9 +2661,7 @@ const MM_CELL_FUN_TYPE        aMmEvent68[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Cell_S32_DataTransfer,                       /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */    
 };
 
 const MM_CELL_FUN_TYPE        aMmEvent69[MM_STATE_MAX] = {
@@ -2954,9 +2700,7 @@ const MM_CELL_FUN_TYPE        aMmEvent69[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                         /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */    
 };
 
 const MM_CELL_FUN_TYPE        aMmEvent70[MM_STATE_MAX] = {
@@ -2995,9 +2739,7 @@ const MM_CELL_FUN_TYPE        aMmEvent70[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                         /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */    
 };
 
 const MM_CELL_FUN_TYPE        aMmEvent71[MM_STATE_MAX] = {
@@ -3036,9 +2778,7 @@ const MM_CELL_FUN_TYPE        aMmEvent71[MM_STATE_MAX] = {
     Mm_Cell_S31_E71,                                /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                         /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */    
 };
 
 const MM_CELL_FUN_TYPE        aMmEvent72[MM_STATE_MAX] = {
@@ -3077,9 +2817,7 @@ const MM_CELL_FUN_TYPE        aMmEvent72[MM_STATE_MAX] = {
     Mm_Cell_S31_E72,                                /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                         /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */    
 };
 
 const MM_CELL_FUN_TYPE        aMmEvent73[MM_STATE_MAX] = {
@@ -3118,9 +2856,7 @@ const MM_CELL_FUN_TYPE        aMmEvent73[MM_STATE_MAX] = {
     Mm_Cell_S9_E73,                                 /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                         /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */    
 };
 const MM_CELL_FUN_TYPE        aMmEvent74[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S0 : MM_NULL                                     */
@@ -3158,9 +2894,7 @@ const MM_CELL_FUN_TYPE        aMmEvent74[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                         /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                          /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */    
 };
 const MM_CELL_FUN_TYPE        aMmEvent75[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S0 : MM_NULL                                     */
@@ -3198,9 +2932,7 @@ const MM_CELL_FUN_TYPE        aMmEvent75[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                         /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */    
 };
 
 const MM_CELL_FUN_TYPE        aMmEvent76[MM_STATE_MAX] = {
@@ -3239,9 +2971,7 @@ const MM_CELL_FUN_TYPE        aMmEvent76[MM_STATE_MAX] = {
     Mm_Cell_S25_E76,                                /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                         /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */    
 };
 
 const MM_CELL_FUN_TYPE        aMmEvent77[MM_STATE_MAX] = {
@@ -3280,9 +3010,7 @@ const MM_CELL_FUN_TYPE        aMmEvent77[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                         /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */    
 };
 
 const MM_CELL_FUN_TYPE        aMmEvent78[MM_STATE_MAX] = {
@@ -3321,9 +3049,7 @@ const MM_CELL_FUN_TYPE        aMmEvent78[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Cell_S0_E78,                                 /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */    
 };
 
 const MM_CELL_FUN_TYPE        aMmEvent79[MM_STATE_MAX] = {
@@ -3363,9 +3089,7 @@ const MM_CELL_FUN_TYPE        aMmEvent79[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                         /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */    
 };
 const MM_CELL_FUN_TYPE        aMmEvent80[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S0 : MM_NULL                                     */
@@ -3403,9 +3127,7 @@ const MM_CELL_FUN_TYPE        aMmEvent80[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Cell_S32_E80,                                /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */    
 };
 const MM_CELL_FUN_TYPE        aMmEvent81[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S0 : MM_NULL                                     */
@@ -3443,9 +3165,7 @@ const MM_CELL_FUN_TYPE        aMmEvent81[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Cell_S32_DataTransfer,                       /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */    
 };
 
 const MM_CELL_FUN_TYPE        aMmEvent82[MM_STATE_MAX] = {
@@ -3484,9 +3204,7 @@ const MM_CELL_FUN_TYPE        aMmEvent82[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                         /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */    
 };
 
 const MM_CELL_FUN_TYPE        aMmEvent83[MM_STATE_MAX] = {
@@ -3525,9 +3243,7 @@ const MM_CELL_FUN_TYPE        aMmEvent83[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                        /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */    
 };
 
 const MM_CELL_FUN_TYPE        aMmEvent84[MM_STATE_MAX] = {
@@ -3568,9 +3284,7 @@ const MM_CELL_FUN_TYPE        aMmEvent84[MM_STATE_MAX] = {
     Mm_Cell_S3_E84,                                 /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                         /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Cell_S3_E84,                                 /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */    
 };
 
 const MM_CELL_FUN_TYPE        aMmEvent85[MM_STATE_MAX] = {
@@ -3609,9 +3323,7 @@ const MM_CELL_FUN_TYPE        aMmEvent85[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Cell_S32_E85,                                /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Cell_S32_E85,                                /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */    
 };
 const MM_CELL_FUN_TYPE        aMmEvent86[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S0 : MM_NULL                                     */
@@ -3649,9 +3361,7 @@ const MM_CELL_FUN_TYPE        aMmEvent86[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Cell_S6_E86,                                 /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */    
 };
 
 const MM_CELL_FUN_TYPE        aMmEvent87[MM_STATE_MAX] = {
@@ -3690,9 +3400,7 @@ const MM_CELL_FUN_TYPE        aMmEvent87[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Cell_S32_DataTransfer,          /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */
 };
 
 const MM_CELL_FUN_TYPE        aMmEvent88[MM_STATE_MAX] = {
@@ -3731,11 +3439,9 @@ const MM_CELL_FUN_TYPE        aMmEvent88[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                         /* S32: MM_INTER_RAT_CHANGE */
     
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-3-31, begin */
 #if (FEATURE_ON == FEATURE_ECALL)   
     NAS_MM_RcvMmcMmWAcInfoChangeInd_MmIdleECallInactive, /* S33: MM_IDLE_ECALL_INACTIVE                      */
 #endif
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-3-31, end */
 
 };
 
@@ -3783,14 +3489,10 @@ const MM_CELL_FUN_TYPE        aMmEvent89[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S31: TEST_CONTROL_ACTIVE                         */
     Mm_Nop,                                         /* S32: MM_INTER_RAT_CHANGE */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACTIVE                      */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */    
 };
-/* Modified by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */
 
 
-/* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
 const MM_CELL_FUN_TYPE        aMmEvent_T3242ExpiredProcTbl[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S0 : MM_NULL                                     */
@@ -3868,9 +3570,7 @@ const MM_CELL_FUN_TYPE        aMmEvent_T3243ExpiredProcTbl[MM_STATE_MAX] = {
     Mm_Nop,                                         /* S33: MM_IDLE_ECALL_INACITVE */
 };
 #endif
-/* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */
 
-/* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-2, begin */
 const MM_CELL_FUN_TYPE*       gaMmStateTable[91] = {
     aMmEvent1,
     aMmEvent2,
@@ -3974,7 +3674,6 @@ const MM_CELL_FUN_TYPE*       gaMmStateTable[91] = {
 #endif
 
 };
-/* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-2, end */
 
 
 

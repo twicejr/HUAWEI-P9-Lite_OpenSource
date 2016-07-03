@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : MnCallSendApp.h
-  版 本 号   : 初稿
-  作    者   : y00245242
-  生成日期   : 2014年04月18日
-  最近修改   : 2014年04月18日
-  功能描述   : CALL模块发送消息给APP，即AT或STK
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年04月18日
-    作    者   : y00245242
-    修改内容   : 创建文件
-
-******************************************************************************/
 #ifndef  MN_CALL_SEND_APP_H
 #define  MN_CALL_SEND_APP_H
 
@@ -58,7 +41,6 @@ extern "C" {
 /*****************************************************************************
   6 接口函数声明
 *****************************************************************************/
-/* Added by s00217060 for VoLTE_PhaseI  项目, 2013-07-09, begin */
 VOS_VOID TAF_CALL_SendCallOrigCnf(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId,
@@ -71,7 +53,6 @@ VOS_VOID TAF_CALL_SendSupsCmdCnf(
     MN_CALL_ID_T                        callId,
     TAF_CS_CAUSE_ENUM_UINT32            ulErrorCode
 );
-/* Added by s00217060 for VoLTE_PhaseI  项目, 2013-07-09, end */
 
 VOS_VOID TAF_CALL_UpdateCallInfoWhenSendSupsCmdCnf(
     MN_CLIENT_ID_T                      clientId,
@@ -85,6 +66,13 @@ VOS_VOID TAF_CALL_SendDtmfCnf(
     MN_OPERATION_ID_T                   opId,
     MN_CALL_EVENT_ENUM_U32              enEventType,
     TAF_CS_CAUSE_ENUM_UINT32            enCause
+);
+
+VOS_VOID TAF_CALL_SendCcwaiCnf(
+    MN_CLIENT_ID_T                      usClientId,
+    MN_OPERATION_ID_T                   opId,
+    MN_CALL_EVENT_ENUM_U32              enEventType,
+    VOS_UINT32                          ulResult
 );
 
 VOS_VOID MN_CALL_SndStkMtCallEvent(
@@ -103,7 +91,6 @@ VOS_VOID MN_CALL_SndStkCallConnEvent(
     MN_CALL_DIR_ENUM_U8                 enCallDir
 );
 
-/* Added by y00245242 for V3R3C60_eCall项目, 2014-4-18, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
 VOS_VOID TAF_CALL_SendQueryEcallInfoCnf(
     MN_CLIENT_ID_T                       usClientId,
@@ -117,7 +104,6 @@ VOS_VOID TAF_CALL_SendTafRelCallCnf(
     MN_OPERATION_ID_T                   ucOpId,
     TAF_CS_CAUSE_ENUM_UINT32            enCause
 );
-/* Added by y00245242 for V3R3C60_eCall项目, 2014-4-18, end */
 
 #if ((VOS_OS_VER == VOS_WIN32) || (VOS_OS_VER == VOS_NUCLEUS))
 #pragma pack()

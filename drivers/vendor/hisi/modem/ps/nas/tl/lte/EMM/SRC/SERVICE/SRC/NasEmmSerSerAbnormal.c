@@ -1,13 +1,4 @@
-/*******************************************************************************
-  Copyright     : 2005-2007, Huawei Tech. Co., Ltd.
-  File name     : EmmService.c
-  Description   : EMM SERVICE REQUEST功能相关处理用源文件
-  Function List :
 
-  History       :
-    1.  Zhouyan 00125190  2008.09.10  新规作成
-    2.  leili       00132387    2009.06.25   BJ9001269 收到系统消息后处理优化
-*******************************************************************************/
 
 
 /*****************************************************************************
@@ -122,17 +113,7 @@ VOS_UINT32 NAS_EMM_SER_AbnormalNeedtoContinueTau(VOS_VOID)
 
 }
 
-/*******************************************************************************
-  Module   : NAS_EMM_SER_SuccNeedtoContinueTau
-  Function :
-  Input    :
-  Output   : pulTauStartType:TAU发起原因
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1.FTY                  2012-02-27 新规作成
-    2.leixiantiao 00258641 2015-07-23 关键信息上报
-*******************************************************************************/
+
 VOS_UINT32 NAS_EMM_SER_SuccNeedtoContinueTau(NAS_LMM_OM_TAU_START_TYPE_ENUM_UINT32 *pulTauStartType)
 {
     *pulTauStartType = NAS_LMM_OM_TAU_START_TYPE_OTHERS;
@@ -158,21 +139,7 @@ VOS_UINT32 NAS_EMM_SER_SuccNeedtoContinueTau(NAS_LMM_OM_TAU_START_TYPE_ENUM_UINT
 
 }
 
-/*******************************************************************************
-  Module   : Nas_Emm_RcvRrcRelInd
-  Function : 收到RRC_MM_REL_IND原语后的处理
-  Input    : VOS_VOID *pMsg     原语首地址
-  Output   : 无
-  NOTE     : 处理异常原因为底层失败的函数
-  Return   : VOS_UINT32
-  History  :
-    1.  sunbing49683            2010.11.16      新规作成
-    2.  zhengjunyan 00148421    2010-11-23      MOD:重新触发TAU时不携带'ACTIVE'标志，且要
-                                                区分TauStartCause
-    3.  lihong 00150010         2012.02.25      MOD:CSFB
-    4.  sunjitan 00193151       2012-12-07      Mod:如果有未完成TAU不不在这里触发TAU
-    5.  lihong 00150010         2012-12-18      Modify:Emergency
-*******************************************************************************/
+
 VOS_VOID    NAS_EMM_SER_RcvRrcRelInd(VOS_VOID)
 {
     /* 打印进入该函数， INFO_LEVEL */
@@ -203,18 +170,7 @@ VOS_VOID    NAS_EMM_SER_RcvRrcRelInd(VOS_VOID)
     return;
 }
 
-/*******************************************************************************
-  Module   : NAS_EMM_ServiceReqRejectOtherCause
-  Function : 收到RRC_MM_REL_IND原语后的处理
-  Input    : VOS_VOID *pMsg     原语首地址
-  Output   : 无
-  NOTE     : 无
-  Return   : VOS_UINT32
-  History  :
-    1.Zhouyan 00125190  2008.09.09  新规作成
-    2.zhengjunyan 001418421 2010-11-25 MOD:添加重新触发未完成的TAU
-    3.lihong 00150010   2012.12.13  Modify:Emergency
-*******************************************************************************/
+
 VOS_VOID  NAS_EMM_ServiceReqRejectOtherCause
 (
     const NAS_EMM_CN_SER_REJ_STRU   *pMsgStru
@@ -253,17 +209,7 @@ VOS_VOID  NAS_EMM_ServiceReqRejectOtherCause
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SerClearEsmDataBuf
- Description     : ESM_DATA触发的SER流程异常结束时，清空ESM_DATA的缓存
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2009-12-23  Draft Enact
-
-*****************************************************************************/
 /*lint -e960*/
 /*lint -e961*/
 VOS_VOID NAS_EMM_SerClearEsmDataBuf( VOS_VOID )
@@ -302,15 +248,7 @@ VOS_VOID NAS_EMM_SerClearEsmDataBuf( VOS_VOID )
 }
 
 
-/*******************************************************************************
-  Module   : NAS_EMM_SER_IsNotEmergencyCsfb
-  Function : 判断是否是紧急CSFB流程
-  Input    : VOS_VOID
-  Output   : VOS_VOID
-  Return   : VOS_UINT32
-  History  :
-    1.sunjitan 00193151   2012-08-22    Draft Enact
-*******************************************************************************/
+
 VOS_UINT32 NAS_EMM_SER_IsNotEmergencyCsfb(VOS_VOID)
 {
     if (NAS_EMM_SER_START_CAUSE_MO_EMERGENCY_CSFB_REQ != NAS_EMM_SER_GetEmmSERStartCause())
@@ -321,16 +259,7 @@ VOS_UINT32 NAS_EMM_SER_IsNotEmergencyCsfb(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_IsEsrRej39OptimizeOpen
- Description     : 判断ESR REJ #39定制优化是否打开
- Input           : None
- Output          : None
- Return          : NAS_EMM_NO:优化没打开 NAS_EMM_YES:优化打开
 
-  History             :
-     1.leixiantiao 00258641        2015-11-19   Draft Enact
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_IsEsrRej39OptimizeOpen(VOS_VOID)
 {
     TLPS_PRINT2LAYER_INFO(NAS_EMM_IsEsrRej39OptimizeOpen_ENUM,LNAS_ENTRY);
@@ -352,17 +281,7 @@ VOS_UINT32 NAS_EMM_IsEsrRej39OptimizeOpen(VOS_VOID)
     return NAS_EMM_YES;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SER_SERREJ3678
- Description     : 处理SER REJ #3,#6,#7,#8
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
-  History             :
-     1.wangchen 00209181        2012-08-21   Draft Enact
-     2.wangchen 00209181        2014-09-03   Modify:R11,增加原因值#8的处理
-*****************************************************************************/
 /* #7需要去GU下尝试 */
 VOS_VOID  NAS_EMM_SER_SERREJ368
 (
@@ -401,7 +320,6 @@ VOS_VOID  NAS_EMM_SER_SERREJ368
     if ((VOS_TRUE == NAS_EMM_SER_IsCsfbProcedure())
         && (VOS_TRUE == NAS_EMM_SER_IsNotEmergencyCsfb()))
     {
-        /* s00193151 mod 2014-10-11: DTS2014102701776 for csfb err log 上报 */
         NAS_EMM_MmSendCsfbSerEndInd(MM_LMM_CSFB_SERVICE_RSLT_CN_REJ, pMsgStru->ucEMMCause);
     }
 
@@ -417,16 +335,7 @@ VOS_VOID  NAS_EMM_SER_SERREJ368
 
     return;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_SER_SERREJ7
- Description     : 处理SER REJ #7,为提升呼通率,需要去GU下尝试
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
-  History             :
-     1.leixiantiao 00258641 2015-06-04 Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SER_SERREJ7
 (
     const NAS_EMM_CN_SER_REJ_STRU   *pMsgStru
@@ -486,17 +395,7 @@ VOS_VOID  NAS_EMM_SER_SERREJ7
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SER_SERREJ3678
- Description     : 处理SER REJ #3,#6,#7,#8
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
-  History             :
-     1.wangchen 00209181        2012-08-21   Draft Enact
-     2.wangchen 00209181        2014-09-03   Modify:R11,增加原因值#8的处理
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SER_SERREJ8
 (
     const NAS_EMM_CN_SER_REJ_STRU   *pMsgStru
@@ -512,23 +411,7 @@ VOS_VOID  NAS_EMM_SER_SERREJ8
         NAS_EMM_ServiceReqRejectOtherCause(pMsgStru);
     }
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_SER_SERREJ9
- Description     : 处理SER REJ #9
- Input           : None
- Output          : None
- NOTE : 1)set the EPS update status to EU2 NOT UPDATED (and shall store it according to subclause 5.1.3.3)
-        2)delete any GUTI, last visited registered TAI, TAI list and KSI.
-        3)enter the state EMM-DEREGISTERED.
-        4)automatically initiate the attach procedure.
- Return          : VOS_VOID
 
- History         :
-    1.zhengjunyan 00148421   2010-11-9  Draft Enact
-    2.lihong00150010         2012-03-17 Modify
-    3.lihong 00150010        2012-12-13 Modify:Emergency
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SER_SERREJ9
 (
     const NAS_EMM_CN_SER_REJ_STRU   *pMsgStru
@@ -606,22 +489,7 @@ VOS_VOID  NAS_EMM_SER_SERREJ9
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SER_SERREJ10
- Description     : 处理SER REJ #10
- Input           : None
- Output          : None
- NOTE  : 1)enter the state EMM-DEREGISTERED.NORMAL-SERVICE.
-         2)delete any partial native EPS security context
-         3)perform a new attach procedure.
- Return          : VOS_VOID
 
- History         :
-    1.zhengjunyan 00148421   2010-11-9  Draft Enact
-    2.lihong00150010         2012-03-17 Modify
-    3.lihong 00150010        2012-12-13 Modify:Emergency
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SER_SERREJ10
 (
     const NAS_EMM_CN_SER_REJ_STRU   *pMsgStru
@@ -734,7 +602,6 @@ VOS_VOID  NAS_EMM_SER_SERREJ11
     /* 如果是CSFB流程，且不是紧急CSFB，则给MM发终止消息 */
     if (NAS_EMM_SER_START_CAUSE_MT_CSFB_REQ== NAS_EMM_SER_GetEmmSERStartCause())
     {
-        /* s00193151 mod 2014-10-11: DTS2014102701776 for csfb err log 上报*/
         NAS_EMM_MmSendCsfbSerEndInd(MM_LMM_CSFB_SERVICE_RSLT_CN_REJ, pMsgStru->ucEMMCause);
     }
 
@@ -800,7 +667,6 @@ VOS_VOID  NAS_EMM_SER_SERREJ12
     /* 如果是CSFB流程，且不是紧急CSFB，则给MM发终止消息 */
     if (NAS_EMM_SER_START_CAUSE_MT_CSFB_REQ== NAS_EMM_SER_GetEmmSERStartCause())
     {
-        /* s00193151 mod 2014-10-11: DTS2014102701776 for csfb err log 上报*/
         NAS_EMM_MmSendCsfbSerEndInd(MM_LMM_CSFB_SERVICE_RSLT_CN_REJ, pMsgStru->ucEMMCause);
     }
     #if (FEATURE_ON == FEATURE_PTM)
@@ -859,7 +725,6 @@ VOS_VOID  NAS_EMM_SER_SERREJ13
     /* 如果是CSFB流程，且不是紧急CSFB，则给MM发终止消息 */
     if (NAS_EMM_SER_START_CAUSE_MT_CSFB_REQ== NAS_EMM_SER_GetEmmSERStartCause())
     {
-        /* s00193151 mod 2014-10-11: DTS2014102701776 for csfb err log 上报*/
         NAS_EMM_MmSendCsfbSerEndInd(MM_LMM_CSFB_SERVICE_RSLT_CN_REJ, pMsgStru->ucEMMCause);
     }
 
@@ -935,7 +800,6 @@ VOS_VOID  NAS_EMM_SER_SERREJ15
     /* 如果是CSFB流程，且不是紧急CSFB，则给MM发终止消息 */
     if (NAS_EMM_SER_START_CAUSE_MT_CSFB_REQ== NAS_EMM_SER_GetEmmSERStartCause())
     {
-        /* s00193151 mod 2014-10-11: DTS2014102701776 for csfb err log 上报*/
         NAS_EMM_MmSendCsfbSerEndInd(MM_LMM_CSFB_SERVICE_RSLT_CN_REJ, pMsgStru->ucEMMCause);
     }
 
@@ -968,22 +832,7 @@ VOS_VOID  NAS_EMM_SER_SERREJ15
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SER_SERREJ18
- Description     : 处理SER REJ #18
- Input           : None
- Output          : None
- NOTE  : 1)enter the state EMM-REGISTERED.NORMAL-SERVICE.
-         2)If the request was related to CS fallback, the UE shall send an
-           indication to the MM sublayer and shall not attempt CS fallback until
-           combined tracking area updating procedure has been successfully completed.
- Return          : VOS_VOID
 
- History         :
-    1.lihong 00150010   2012-03-05  Draft Enact
-    2.wangchen 00209181 2012-08-21 Modify
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SER_SERREJ18
 (
     const NAS_EMM_CN_SER_REJ_STRU   *pMsgStru
@@ -996,7 +845,6 @@ VOS_VOID  NAS_EMM_SER_SERREJ18
         &&(VOS_TRUE == NAS_EMM_SER_IsCsfbProcedure())
         && (VOS_TRUE == NAS_EMM_SER_IsNotEmergencyCsfb()))
     {
-        /* s00193151 mod 2014-10-11: DTS2014102701776 for csfb err log 上报*/
         NAS_EMM_MmSendCsfbSerEndInd(MM_LMM_CSFB_SERVICE_RSLT_CN_REJ, pMsgStru->ucEMMCause);
     }
 
@@ -1029,17 +877,7 @@ VOS_VOID  NAS_EMM_SER_SERREJ18
     return;
 
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_SER_SERREJ22
- Description     : 目前按其other cause值处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
-  History        :
-     1.yanglei 00307272    2014-12-09  Draft Enact
-
-*****************************************************************************/
 
 VOS_VOID  NAS_EMM_SER_SERREJ22
 (
@@ -1077,16 +915,7 @@ VOS_VOID  NAS_EMM_SER_SERREJ22
     return;
 }
 #if(FEATURE_ON == FEATURE_CSG)
-/*******************************************************************************
-Module   : NAS_EMM_SER_SERREJ25
-Function : 收到NAS_EMM_SER_REJ_CAUSE25原语后的处理
-Input    : VOS_VOID *pMsg     原语首地址
-Output   : 无
-NOTE     :
-Return   : VOS_UINT32
-History  :
-     1.  yanglei 00307272  2015-09-25  新规作成
-*******************************************************************************/
+
 VOS_VOID NAS_EMM_SER_SERREJ25
 (
     const NAS_EMM_CN_SER_REJ_STRU   *pMsgStru
@@ -1129,7 +958,6 @@ VOS_VOID NAS_EMM_SER_SERREJ25
     return;
 }
 #endif
-/* leixiantiao 00258641 重构代码降低圈复杂度 2014-7-30 begin */
 
 
 VOS_VOID NAS_EMM_SER_SERREJ35
@@ -1149,7 +977,6 @@ VOS_VOID NAS_EMM_SER_SERREJ35
     return;
 
 }
-/* leixiantiao 00258641 重构代码降低圈复杂度 2014-7-30 end */
 
 
 VOS_VOID  NAS_EMM_SER_SERREJ40
@@ -1205,20 +1032,7 @@ VOS_VOID  NAS_EMM_SER_SERREJ40
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SER_SERREJ39
- Description     : 处理SER REJ #39
- Input           : None
- Output          : None
- NOTE  : 1)enter the state EMM-REGISTERED.NORMAL-SERVICE.
-         2)start T3442
- Return          : VOS_VOID
 
- History         :
-    1.lihong      00150010 2012-02-25  Draft Enact
-    2.wangchen    00209181 2012-08-21  Modify
-    3.leixiantiao 00258641 2015-11-19  Esr Rej #39定制优化
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SER_SERREJ39
 (
     const NAS_EMM_CN_SER_REJ_STRU   *pMsgStru
@@ -1234,7 +1048,6 @@ VOS_VOID  NAS_EMM_SER_SERREJ39
         && (VOS_TRUE == NAS_EMM_SER_IsNotEmergencyCsfb())
         && (NAS_EMM_NO == NAS_EMM_IsEsrRej39OptimizeOpen()))
     {
-        /* s00193151 mod 2014-10-11: DTS2014102701776 for csfb err log 上报*/
         NAS_EMM_MmSendCsfbSerEndInd(MM_LMM_CSFB_SERVICE_RSLT_CN_REJ, pMsgStru->ucEMMCause);
     }
 
@@ -1328,16 +1141,7 @@ VOS_VOID  NAS_EMM_SER_SERREJ42
 
 
 #if (FEATURE_PTM == FEATURE_ON)
- /*******************************************************************************
- Module   : NAS_EMM_SerCnRejErrRecord
- Function : service过程中收到网络拒绝的处理
- Input    :
- Output   : 无
- NOTE     : 无
- Return   : VOS_UINT32
- History  :
-     1.lifuxin 00253982 2015-1-14  新规制成
- *******************************************************************************/
+ 
  VOS_VOID NAS_EMM_SerCnRejErrRecord(
                     NAS_EMM_CN_SER_REJ_STRU *pMsgStru,
                     EMM_OM_LMM_CSFB_FAIL_CAUSE_ENUM_UINT8 enCsfbFailCause,
@@ -1356,21 +1160,7 @@ VOS_VOID  NAS_EMM_SER_SERREJ42
  }
 #endif
 
-/*******************************************************************************
-Module   : Nas_Emm_RcvServiceRejectMsg
-Function : 收到NAS_EMM_SER_REJ原语后的处理
-Input    : VOS_VOID *pMsg     原语首地址
-Output   : 无
-NOTE     : 无
-Return   : VOS_UINT32
-History  :
-    1.Zhouyan 00125190  2008.09.09  新规作成
-    2.zhengjunyan 00148421  2010-11-09 Mod:SER REJ #9&#10不释放信令连接
-    3.zhengjunyan 00148421  2011-12-23 DTS2011122103346:CSG功能尚未实现，收到
-                                     REJ #25按非CSG处理，进入default处理分支
-    4.houzhiyuan 00285180   2014-10-20  add: 拒绝原因值优化 DTS2014110307415
-    5.wangchen 00209181     2014-09-03  Modify:R11增加拒绝原因值#8的处理
-*******************************************************************************/
+
 VOS_VOID    NAS_EMM_SER_RcvServiceRejectMsg(NAS_EMM_CN_SER_REJ_STRU   *pMsgStru)
 {
     VOS_UINT32                              ulIndex = 0;
@@ -1390,7 +1180,6 @@ VOS_VOID    NAS_EMM_SER_RcvServiceRejectMsg(NAS_EMM_CN_SER_REJ_STRU   *pMsgStru)
     NAS_LMM_AdaptRegRejCau(&(pMsgStru->ucEMMCause));
 
 
-    /* 2014-10-11 s00193151 add: CSFB ERR LOG上报，在此记录失败原因  DTS2014102701776*/
 
     #if (FEATURE_PTM == FEATURE_ON)
     NAS_EMM_SerCnRejErrRecord((VOS_VOID*)pMsgStru, EMM_OM_LMM_CSFB_FAIL_CAUSE_CN_REJ, EMM_OM_ERRLOG_TYPE_CN_REJ);
@@ -1471,16 +1260,7 @@ VOS_VOID NAS_EMM_TranStateRegNormalServiceOrRegUpdateMm(VOS_VOID)
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_TranStatePsNormalServiceOrPsLimitService
- Description     : 转到PS正常服务状态或者PS限制服务状态
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong 00150010    2012-12-18  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_EMM_TranStatePsNormalServiceOrPsLimitService(VOS_VOID)
 {
     if (VOS_TRUE == NAS_EMM_IsEnterRegLimitService())
@@ -1494,22 +1274,7 @@ VOS_VOID NAS_EMM_TranStatePsNormalServiceOrPsLimitService(VOS_VOID)
         NAS_EMM_TranStateRegNormalServiceOrRegUpdateMm();
     }
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_MsSerInitSsWaitCnSerCnfProcMsgRrcRelInd
- Description     :
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.X00148705    2009-9-30  Draft Enact
-    2.Z00148421    2010-12-23 DTS2010111701490:CONN_FAIL和 LOAD_BALANCE_REQ原因值
-                              不立即触发TAU，收到SYS_INFO_IND再触发。
-    3.Z00148421    2011-02-15 DTS2011021401149
-    4.l00150010    2012-02-25 Modify:CSFB
-    5.l00150010    2012-12-13 Modify:Emergency
-    6.s00193151    2014-10-11 Mod:CSFB err log上报
-*****************************************************************************/
 VOS_VOID  NAS_EMM_MsSerInitSsWaitCnSerCnfProcMsgRrcRelInd( VOS_UINT32 ulCause)
 {
     NAS_EMM_SER_LOG_INFO("NAS_EMM_MsSerInitSsWaitCnSerCnfProcMsgRrcRelInd is entered.");
@@ -1531,7 +1296,6 @@ VOS_VOID  NAS_EMM_MsSerInitSsWaitCnSerCnfProcMsgRrcRelInd( VOS_UINT32 ulCause)
             /*向MMC发送LMM_MMC_SERVICE_RESULT_IND消息*/
             NAS_EMM_MmcSendSerResultIndOtherType(MMC_LMM_SERVICE_RSLT_FAILURE);
 
-            /* 2014-10-11 s00193151 add: CSFB ERR LOG上报，在此记录失败原因 DTS2014102701776*/
             #if (FEATURE_PTM == FEATURE_ON)
             if (VOS_TRUE == NAS_EMM_SER_IsCsfbProcedure())
             {
@@ -1626,17 +1390,7 @@ VOS_UINT32  NAS_EMM_MsSerInitSsWaitCnSerCnfMsgAuthRej(
 
 }
 
-/*******************************************************************************
-  Module   :
-  Function :NAS_EMM_MsSerInitSsWaitCnSerCnfMsgRrcRelInd
-  Input    :
-  Output   :
-  NOTE     :
-  Return   :
-  History  :
-    1.  Zhouyan 00125190  2008.09.10  新规作成
-    2.  X00148705         2009.09.30  重构
-*******************************************************************************/
+
 VOS_UINT32 NAS_EMM_MsSerInitSsWaitCnSerCnfMsgRrcRelInd(
                                                             VOS_UINT32  ulMsgId,
                                                             VOS_VOID   *pMsgStru)
@@ -1662,23 +1416,7 @@ VOS_UINT32 NAS_EMM_MsSerInitSsWaitCnSerCnfMsgRrcRelInd(
 
     return NAS_LMM_MSG_HANDLED;
 }
-/*******************************************************************************
-  Module   :
-  Function :NAS_EMM_MsSERInitMsgTimer3417Exp
-  Input    :
-  Output   :
-  NOTE     :
-  UE shall enter state EMM-REGISTERED.
-  If the UE is in EMM-IDLE mode then the procedure shall be aborted and the UE shall release locally any resources allocated for the service request procedure.
-  If the UE is in EMM-CONNECTED mode, then the procedure shall be aborted.
-  Return   :
-  History  :
-    1.  Zhouyan     00125190  2008.09.10  新规作成
-    2.  zhengjunyan 00148421  2009.01.14  修改
-    3.  zhengjunyan 00148421  2009.07.08  24301-810协议刷新
-    4.  sunbing     00049683  2012.12.30  增加SMS功能
-    5.  lihong      00150010  2012.12.13  Modify:Emergency
-*******************************************************************************/
+
 VOS_UINT32 NAS_EMM_MsSerInitSsWaitCnSerCnfMsgTimer3417Exp(  VOS_UINT32  ulMsgId,
                                                              VOS_VOID   *pMsgStru
                                                           )
@@ -1756,20 +1494,7 @@ VOS_UINT32 NAS_EMM_MsSerInitSsWaitCnSerCnfMsgTimer3417Exp(  VOS_UINT32  ulMsgId,
     return NAS_LMM_MSG_HANDLED;
 
 }
-/*******************************************************************************
-  Module   :
-  Function : NAS_EMM_MsSerInitSsWaitCnSerCnfMsgTimer3417ExtExp
-  Input    :
-  Output   :
-  NOTE     :
-  UE shall enter state EMM-REGISTERED.
-  If the UE is in EMM-IDLE mode then the procedure shall be aborted and the UE shall release locally any resources allocated for the service request procedure.
-  If the UE triggered service request procedure from EMM-CONNECTED mode, the EMM sublayer shall abort the procedure and consider the 1xCS fallback procedure has failed. The UE shall stay in EMM-CONNECTED mode.
-  Return   :
-  History  :
-    1.  lihong 00150010  2012.02.25  新规作成
-    2.  sunjitan 00193151 2014-10-11 Mod:CSFB err log上报
-*******************************************************************************/
+
 VOS_UINT32 NAS_EMM_MsSerInitSsWaitCnSerCnfMsgTimer3417ExtExp
 (
     VOS_UINT32                          ulMsgId,
@@ -1794,7 +1519,6 @@ VOS_UINT32 NAS_EMM_MsSerInitSsWaitCnSerCnfMsgTimer3417ExtExp
 
     NAS_EMM_SER_AbnormalOver();
 
-    /* 2014-10-11 s00193151 add: CSFB ERR LOG上报，在此记录失败原因 */
     #if (FEATURE_PTM == FEATURE_ON)
         if (VOS_TRUE == NAS_EMM_SER_IsCsfbProcedure())
         {
@@ -1844,16 +1568,7 @@ VOS_UINT32 NAS_EMM_MsSerInitSsWaitCnSerCnfMsgTimer3417ExtExp
 
 }
 
-/*******************************************************************************
-  Module   :
-  Function :NAS_EMM_MsSERInitMsgServiceRejectMsg
-  Input    :
-  Output   :
-  NOTE     :
-  Return   :
-  History  :
-    1.  Zhouyan 00125190  2008.09.10  新规作成
-*******************************************************************************/
+
 VOS_UINT32 NAS_EMM_MsSerInitSsWaitCNSerCnfMsgServiceReject(  VOS_UINT32  ulMsgId,
                                                                   VOS_VOID   *pMsgStru
                                                               )
@@ -1888,21 +1603,7 @@ VOS_UINT32 NAS_EMM_MsSerInitSsWaitCNSerCnfMsgServiceReject(  VOS_UINT32  ulMsgId
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*******************************************************************************
-  Module   :
-  Function :NAS_EMM_MsSerInitSsWaitCnSerCnfProcMsgAuthRej
-  NOTE     :主状态:SerInit 子状态:WtCnSerCnf 收到 INTRA_AUTH_REJ
-            作为卡无效处理
-  Input    :
-  Output   :
 
-  Return   :
-  History  :
-    1.  Zhouyan 00125190  2008.09.10  新规作成
-    2.  X00148705         2009.09.30  重构
-    3.  w00209181         2012.08.21  Modify
-    4.  l00150010         2012.12.13  Modify:Emergency
-*******************************************************************************/
 VOS_VOID NAS_EMM_MsSerInitSsWaitCnSerCnfProcMsgAuthRej(VOS_UINT32  ulCause)
 {
     NAS_EMM_SER_LOG_INFO(              "NAS_EMM_MsSerInitSsWaitCnSerCnfProcMsgAuthRej is entered.");
@@ -1963,17 +1664,7 @@ VOS_VOID NAS_EMM_MsSerInitSsWaitCnSerCnfProcMsgAuthRej(VOS_UINT32  ulCause)
 }
 /*lint +e961*/
 /*lint +e960*/
-/*******************************************************************************
-  Module   :
-  Function :NAS_EMM_SerbarCommProc
-  Input    :
-  Output   :
-  NOTE     :
-  Return   :
-  History  :
-    1.  leili  00132387  2013.01.31  新规作成
-    2.  sunjitan 00193151 2014-10-11 Mod: CSFB err log上报
-*******************************************************************************/
+
 VOS_VOID NAS_EMM_SerbarCommProc(VOS_VOID)
 {
     /*停止SERVICE流程*/
@@ -1986,7 +1677,6 @@ VOS_VOID NAS_EMM_SerbarCommProc(VOS_VOID)
     /*send INTRA_CONN2IDLE_REQ，更新连接状态*/
     NAS_EMM_CommProcConn2Ilde();
 
-    /* 2014-10-11 s00193151 add: CSFB ERR LOG上报，在此记录失败原因 DTS2014102701776*/
     #if (FEATURE_PTM == FEATURE_ON)
     if (VOS_TRUE == NAS_EMM_SER_IsCsfbProcedure())
     {
@@ -2153,21 +1843,7 @@ VOS_VOID  NAS_EMM_SER_ProcCellSearchFail(VOS_VOID)
 }
 
 
-/*******************************************************************************
-  Module   :
-  Function :NAS_EMM_MsSerInitSsWaitCnSerCnfMsgIntraConnectFailInd
-  Input    :
-  Output   :
-  NOTE     :Access barred because of access class barring or NAS signalling
-            connection establishment rejected by the network
-  Return   :
-  History  :
-    1.  leili  00132387  2009.03.24  新规作成
-    2.  zhengjunyan 00148421 2010-12-22 DTS2010111701490:添加建链失败原因值
-                                      CELL_SEATCHING的处理
-    3.  lihong00150010  2012-12-13   Modify:Emergency
-    4.  sunjitan 00193151 2014-10-11 Mod: CSFB err log上报
-*******************************************************************************/
+
 VOS_UINT32 NAS_EMM_MsSerInitSsWaitCnSerCnfMsgIntraConnectFailInd(   VOS_UINT32  ulMsgId,
                                                          VOS_VOID   *pMsgStru)
 {
@@ -2281,7 +1957,6 @@ VOS_UINT32 NAS_EMM_MsSerInitSsWaitCnSerCnfMsgIntraConnectFailInd(   VOS_UINT32  
                 NAS_EMM_SER_AbnormalOver();
                 NAS_EMM_SER_RcvRrcRelInd();
 
-                /* 2014-10-11 s00193151 add: CSFB ERR LOG上报，在此记录失败原因 DTS2014102701776*/
                 #if (FEATURE_PTM == FEATURE_ON)
                 if (VOS_TRUE == NAS_EMM_SER_IsCsfbProcedure())
                 {
@@ -2295,16 +1970,7 @@ VOS_UINT32 NAS_EMM_MsSerInitSsWaitCnSerCnfMsgIntraConnectFailInd(   VOS_UINT32  
     return  NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SndServiceReqFailProc
- Description     : SER REQ发送失败时的处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         : wangchen  00209181   2013-03-30  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_SndServiceReqFailProc(VOS_VOID* pMsg,VOS_UINT32 *pulIsDelBuff)
 {
 
@@ -2368,16 +2034,7 @@ VOS_UINT32 NAS_EMM_SndServiceReqFailProc(VOS_VOID* pMsg,VOS_UINT32 *pulIsDelBuff
 
     return NAS_EMM_SUCC;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_SndExtendedServiceReqSuccProc
- Description     : EXSER REQ发送成功时的处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         : lifuxin      00253982   2015-03-12  Draft Enact
-                   leixiantiao  00258641   2015-07-09  fix DTS2015062509266
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_SndExtendedServiceReqSuccProc(VOS_VOID* pMsg)
 {
     /*问题背景:主叫走CSFB流程被用户快速挂断电话，此时走CSFB回退流程，
@@ -2400,16 +2057,7 @@ VOS_UINT32 NAS_EMM_SndExtendedServiceReqSuccProc(VOS_VOID* pMsg)
     return NAS_EMM_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SndExtendedServiceReqFailProc
- Description     : EXSER REQ发送失败时的处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         : wangchen  00209181   2013-03-30  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_SndExtendedServiceReqFailProc(VOS_VOID* pMsg,VOS_UINT32 *pulIsDelBuff)
 {
     LRRC_LMM_DATA_CNF_STRU              *pstRrcMmDataCnf = VOS_NULL_PTR;

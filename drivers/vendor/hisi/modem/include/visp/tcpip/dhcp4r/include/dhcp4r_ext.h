@@ -1,27 +1,4 @@
-/*******************************************************************************
-*
-*
-*                Copyright 2007, Huawei Technologies Co. Ltd.
-*                            ALL RIGHTS RESERVED
-*
-*-------------------------------------------------------------------------------
-*
-*                              dhcp4r_ext.h
-*
-*  Project Code: VISPV1R6
-*   Module Name: DHCP4R  
-*  Date Created: 2007-7-23
-*        Author: LY(57500)
-*   Description: DHCP4R模块需要的外部头文件及函数声明
-*
-*-------------------------------------------------------------------------------
-*  Modification History
-*  DATE        NAME             DESCRIPTION    
-*-------------------------------------------------------------------------------
-*  2007-7-23  LY(57500)     Create the first version.
-*  2008-4-18  f54882        for A82D24952, Modify path of the waitlist.h
-*
-*******************************************************************************/
+
 
 #ifndef _DHCP4R_EXT_H_
 #define _DHCP4R_EXT_H_

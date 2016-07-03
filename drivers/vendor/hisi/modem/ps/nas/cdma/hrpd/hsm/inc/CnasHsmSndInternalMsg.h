@@ -59,16 +59,7 @@ enum CNAS_HSM_INTERNAL_MSG_TYPE_ENUM
 };
 typedef VOS_UINT16 CNAS_HSM_INTERNAL_MSG_TYPE_ENUM_UINT16;
 
-/*****************************************************************************
- Enumeration Name    : CNAS_HSM_UATI_REQUEST_RESULT_ENUM
- Description         : The HSM module UATI REQEUST result type enum
- 1.DATE              : 26/1/2015
-   AUTHOR            : w00176964
-   Modification      : Create
- 2.DATE              : 26/11/2015
-   AUTHOR            : m00312079
-   Modification      : DTS2015111102189:添加Cancel原因值
-*****************************************************************************/
+
 
 enum CNAS_HSM_UATI_REQUEST_RESULT_ENUM
 {

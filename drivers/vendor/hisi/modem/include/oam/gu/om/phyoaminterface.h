@@ -1,23 +1,6 @@
 
 
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : phyoaminterface.h
-  版 本 号   : 初稿
-  作    者   : luoqingquan
-  生成日期   : 2012年11月14日
-  最近修改   :
-  功能描述   : phyoaminterface.h 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年10月14日
-    作    者   : luoqingquan
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 其他头文件包含
@@ -729,22 +712,7 @@ VOS_UINT32 SLEEP_MasterWakeSlave(
                     SLEEP_MODE_ENUM_UINT32   enRatMode );
 
 
-/*****************************************************************************
- 函 数 名  : SLEEP_AwakeInfoGet
- 功能描述  : 获取器件上电流程
- 输入参数  : SLEEP_MODE_ENUM_UINT32 enMode  当前模式
-             VOS_UINT32 uLen                传入的数组长度,32bit为单位
- 输出参数  : VOS_UINT32 *pstDrxInfo         上电流程时间信息
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月11日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 SLEEP_AwakeInfoGet( SLEEP_MODE_ENUM_UINT32 enMode, VOS_UINT32 *pstAwakeHWInfo, VOS_UINT32 uLen );
 VOS_VOID HPA_2GFrameIsr_CB(MODEM_ID_ENUM_UINT16 enModemID);
 VOS_VOID HPA_3GFrameIsr_CB(VOS_VOID);
@@ -752,21 +720,7 @@ extern UPHY_OAM_RTT_STATE_ENUM_UINT16 UPHY_COMM_GetRttStateInfo( MODEM_ID_ENUM_U
 
 VOS_UINT16 UPHY_DSDA_GetGsmSlaveDrxFlag( MODEM_ID_ENUM_UINT16 enModemId );
 
-/*****************************************************************************
- 函 数 名  : SLEEP_BBE16CprocResumeProc
- 功能描述  : OAM提供注册函数给CPROC注册resume proc
- 输入参数  : SLEEP_BBE16_CPROC_RESUME_FUNC pFun
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月15日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 typedef VOS_VOID (*SLEEP_BBE16_CPROC_WAKEUP_FUNC)(VOS_VOID* pulPara);
 
 typedef VOS_VOID (*SLEEP_BBE16_CPROC_SLEEP_FUNC)(VOS_VOID* pulPara);
@@ -799,22 +753,7 @@ VOS_VOID SLEEP_BBE16CprocWakeupProc(SLEEP_BBE16_CPROC_WAKEUP_FUNC pFun, VOS_RATM
 *****************************************************************************/
 VOS_VOID SLEEP_BBE16CprocSleepProc(SLEEP_BBE16_CPROC_SLEEP_FUNC pFun, VOS_RATMODE_ENUM_UINT32 enMode, VOS_VOID *pulPara);
 
-/*****************************************************************************
- 函 数 名  : SLEEP_IsSlaveSleep
- 功能描述  : 获取当前模式是否处于从模低功耗状态
- 输入参数  : SLEEP_MODE_ENUM_UINT32 enMode  当前模式
- 输出参数  : 无
- 返 回 值  : VOS_BOOL   VOS_TRUE    当前模式处于从模低功耗态
-                        VOS_FALSE   当前模式没有处于从模低功耗状态
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月30日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_BOOL SLEEP_IsSlaveSleep(SLEEP_MODE_ENUM_UINT32 enMode);
 
 #if ((VOS_OS_VER == VOS_WIN32) || (VOS_OS_VER == VOS_NUCLEUS))

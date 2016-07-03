@@ -1,21 +1,4 @@
-/******************************************************************************
 
-              版权所有 (C), 2001-2011, 华为技术有限公司
-
-******************************************************************************
-文 件 名   : NasMmcFsmBgPlmnSearch.h
-版 本 号   : 初稿
-作    者   : z00161729
-生成日期   : 2011年9月4日
-最近修改   :
-功能描述   : NasMmcFsmBgPlmnSearch.c 的头文件
-函数列表   :
-修改历史   :
-1.日    期   : 2011年9月4日
-作    者   : z00161729
-修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
 1 其他头文件包含
@@ -444,9 +427,7 @@ VOS_UINT32    NAS_MMC_RcvRrMmSysInfoInd_BgPlmnSearch_WaitWasSysInfoInd(
     struct MsgCB                       *pstMsg
 );
 
-/* Deleted by s00261364 for V3R360_eCall项目, 2014-5-5, begin */
 
-/* Deleted by s00261364 for V3R360_eCall项目, 2014-5-5, end */
 VOS_UINT32    NAS_MMC_RcvTiWaitWasSysInfoExpired_BgPlmnSearch_WaitWasSysInfoInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1122,20 +1103,16 @@ VOS_UINT32  NAS_MMC_RcvRrmmLimitServiceCampInd_BgPLmnSearch_WaitRrcConnRelInd(
     struct MsgCB                       *pstMsg
 );
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-2-8, begin */
 VOS_UINT32 NAS_MMC_RcvMsccImsVoiceCapInd_BgPlmnSearch_WaitCsPsRegRsltInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 );
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-2-8, end */
 
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-2-7, begin */
 VOS_UINT32 NAS_MMC_RcvMsccImsVoiceCapInd_BgPlmnSearch_WaitEpsRegRsltInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 );
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-2-7, end */
 
 VOS_UINT8  NAS_MMC_IsHighPrioRatHplmnSearch_BgPlmnSearch(VOS_VOID);
 

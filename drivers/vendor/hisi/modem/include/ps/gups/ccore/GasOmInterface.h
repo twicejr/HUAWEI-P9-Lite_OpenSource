@@ -1,24 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : GasOmInterface.h
-  版 本 号   : 初稿
-  作    者   : 杨龙
-  生成日期   : 2008年5月6日
-  最近修改   :
-  功能描述   : GAS模块和OM之间的接口文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2008年05月06日
-    作    者   : 杨龙 y58800
-    修改内容   : 新生成文件
-  2.日    期   : 2013年07月23日
-    作    者   : y00142674
-    修改内容   : 删除重复定义LOG_MIN_FILE_ID_PS，for code_check_report compile warning
-
-******************************************************************************/
 
 #ifndef __GASOMINTERFACE_H__
 #define __GASOMINTERFACE_H__
@@ -69,12 +49,9 @@
 #define  GAS_OM_MAX_LTE_NCELL_NUM                  32                   /* GAS上报OM的LTE小区最大个数 */
 #endif
 
-/* Added by d00132956 for 内存优化，2011-10-21,begin */
 #define GAS_OM_PRINT_MSG_MAX_NUM          40  
 #define GAS_OM_PRINT_MSG_MIN_NUM          10        
-/* Added by d00132956 for 内存优化，2011-10-21,end */
 
-/* Added by j00178524 for 路测需求, 2012-11-09, begin */
 #define GAS_OM_RD_TEST_UINT16_INVALID_VALUE         0xFFFF
 #define GAS_OM_RD_TEST_INT16_INVALID_VALUE          (VOS_INT16)0x8000
 
@@ -84,7 +61,6 @@
 #define GAS_OM_2G_NCELL_CNT_MAX_NUM                 6
 #define GAS_OM_3G_NCELL_CNT_MAX_NUM                 96
 #define GAS_OM_HOPPING_REQ_CNT_MAX_NUM              64
-/* Added by j00178524 for 路测需求, 2012-11-09, end */
 
 #define GAS_OM_APPLY_TASK_LIST_MAX_NUM           (8)                            /* 申请资源的最大任务个数 */
 
@@ -143,10 +119,8 @@ enum OM_GAS_MSG_ID_ENUM
     /* 空口消息配置确认 */
     ID_GAS_OM_OTA_CNF                            = 0xA015,    /* _H2ASN_MsgChoice  GAS_OM_OTA_CNF_STRUCT */
 
-    /* Added by d00132956 for 内存优化，2011-10-21,begin */
     /* 打印调试信息 */
     ID_GAS_OM_PRINT_MSG                          = 0xA016,
-    /* Added by d00132956 for 内存优化，2011-10-21,end */
 
     /* 数据/状态上报 */
     ID_GAS_OM_CELL_INFO_IND                      = 0xA021,    /* _H2ASN_MsgChoice GAS_OM_CELL_INFO_IND_ST */
@@ -165,11 +139,9 @@ enum OM_GAS_MSG_ID_ENUM
     ID_GAS_OM_GSM_UNAVAILABLE_LIST_IND           = 0xA02A,
 
     ID_GAS_OM_MM_INFO_IND                        = 0xA02B,
-    /* Added by yangsicong for probe接口新开发, 2012-10-30, begin */
     ID_OM_GAS_ROAD_TEST_INFO_REQ                 = 0xA02C,   /* _H2ASN_MsgChoice GAS_OM_ROAD_TEST_INFO_REQ_STRU */
     ID_GAS_OM_ROAD_TEST_INFO_CNF                 = 0xA02D,   /* _H2ASN_MsgChoice GAS_OM_ROAD_TEST_INFO_CNF_STRU */
     ID_GAS_OM_ROAD_TEST_INFO_IND                 = 0xA02E,   /* _H2ASN_MsgChoice GAS_OM_ROAD_TEST_INFO_IND_STRU */
-    /* Added by yangsicong for probe接口新开发, 2012-10-30, end */
 
     ID_GAS_OM_JAM_DETECT_CTX_IND                 = 0xA030,   /* _H2ASN_MsgChoice GAS_OM_JAM_DETECT_CTX_IND_STRU */
 
@@ -192,13 +164,9 @@ enum OM_GAS_MSG_ID_ENUM
 
     ID_GAS_OM_GSM_HISTORY_SI_CTX_IND              = 0xA039,   /* _H2ASN_MsgChoice GAS_OM_GSM_HISTORY_SI_CONTEXT_STRU */
 
-    /* Added by y00142674 for 邻区继承, 2015-07-14, begin */
     ID_GAS_OM_GSM_HISTORY_NCELL_SI_CTX_IND        = 0xA03A,   /* _H2ASN_MsgChoice GAS_OM_GSM_HISTORY_NCELL_SI_CTX_IND_STRU */
-    /* Added by y00142674 for 邻区继承, 2015-07-14, end */
 
-    /* Added by p00166345 for DTS2015052601104(伪基站识别), 2015-08-02, begin */
     ID_GAS_OM_PSEUD_BTS_IDENT_INFO                = 0xA03B,   /* _H2ASN_MsgChoice GAS_OM_PSEUD_BTS_IDENT_INFO_STRU */
-    /* Added by p00166345 for DTS2015052601104(伪基站识别), 2015-08-02, end */
 
     ID_GAS_OM_PARALLEL_SRCH_CTX_IND               = 0xA03C,   /* _H2ASN_MsgChoice GAS_OM_PARALLEL_SRCH_CTX_STRU */
     ID_GAS_OM_PARALLEL_SRCH_RULE_IND              = 0xA03D,   /* _H2ASN_MsgChoice GAS_OM_PARALLEL_SRCH_RULE_STRU */
@@ -343,13 +311,11 @@ enum OM_GAS_MSG_ID_ENUM
     ID_GAS_OM_EVENT_GSM_TO_UTRAN_TDD_REDIR_START       = 0xA0FE,    /* _H2ASN_MsgChoice GAS_OM_EVENT_GSM_TO_UTRAN_TDD_REDIR_START_ST */
     ID_GAS_OM_EVENT_GSM_TO_UTRAN_TDD_REDIR_END         = 0xA0FF,    /* _H2ASN_MsgChoice GAS_OM_EVENT_GSM_TO_UTRAN_TDD_REDIR_END_ST */
 
-    /* Added by y00142674 for GSM自主重定向到LTE, 2013-06-21, begin */
     ID_GAS_OM_EVENT_GSM_TO_LTE_AUTO_FAST_RETURN_VALID   = 0xA100,   /* _H2ASN_MsgChoice GAS_OM_EVENT_IND_COMMON_ST */
     ID_GAS_OM_EVENT_GSM_TO_LTE_AUTO_FAST_RETURN_INVALID = 0xA101,   /* _H2ASN_MsgChoice GAS_OM_EVENT_IND_COMMON_ST */
 
     ID_GAS_OM_EVENT_GAS_INTERNAL_MSG_LENGTH_TOO_LONG    = 0xA102,   /* _H2ASN_MsgChoice GAS_OM_EVENT_IND_COMMON_ST */
     ID_GAS_OM_EVENT_GAS_INTERNAL_MSG_QUEUE_IS_FULL      = 0xA103,   /* _H2ASN_MsgChoice GAS_OM_EVENT_IND_COMMON_ST */
-    /* Added by y00142674 for GSM自主重定向到LTE, 2013-06-21, end */
 
 #if (FEATURE_ON == FEATURE_LTE)
     ID_GAS_OM_EVENT_LTE_TO_GSM_HO_START                 = 0xA104,    /* _H2ASN_MsgChoice GAS_OM_EVENT_LTE_TO_GSM_HANDOVER_START_ST */
@@ -379,9 +345,7 @@ enum OM_GAS_MSG_ID_ENUM
 
     ID_GAS_OM_AFC_INFO_IND                              = 0xA110,    /* _H2ASN_MsgChoice GAS_OM_AFC_INFO_IND_ST */
 
-    /* Added by y00142674 for 漫游搜网优化, 2015-04-30, begin */
     ID_GAS_OM_EVENT_SB_IND_FAIL_NO_RF                   = 0xA111,    /* _H2ASN_MsgChoice GAS_OM_EVENT_IND_COMMON_ST */
-    /* Added by y00142674 for 漫游搜网优化, 2015-04-30, end */
 
     ID_GAS_OM_EVENT_LAU_REQ_INFO                        = 0xA112,     /* _H2ASN_MsgChoice GAS_OM_EVENT_LAU_REQ_INFO_STRU */
 
@@ -577,15 +541,7 @@ enum GAS_OM_RESEL_TYPE_ENUM
 typedef VOS_UINT8 GAS_OM_RESEL_TYPE_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名    : GAS_OM_RESEL_CAUSE_ENUM_UINT8
- 协议表格  :
- ASN.1描述 :
- 枚举说明  : GAS -> OM   小区重选原因
-  1.日    期   : 2015年12月21日
-    作    者   : x00220225
-    修改内容   : 增加重选原因的类型和GasGcomcPublicCellReselection.h一致，for DTS20151219018810 
-*****************************************************************************/
+
 enum GAS_OM_RESEL_CAUSE_ENUM
 {
     GAS_OM_RESEL_CAUSE_ACTIVE_C2                    = 0,   /* 小区重选原因:主动的重选 */
@@ -755,14 +711,7 @@ enum GAS_OM_REDIR_L2G_RESULT_ENUM
 };
 typedef VOS_UINT8 GAS_OM_REDIR_L2G_RESULT_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : GAS_OM_ANR_L2G_RESULT_ENUM
- 枚举说明  : ANR L2G的退出原因值
- 修改历史  : 
- 1.日    期    : 2012-04-19
-   作    者    : w00176595
-   修改内容    : 新建枚举类型
-*****************************************************************************/
+
 enum GAS_OM_ANR_L2G_RESULT_ENUM
 {
     GAS_OM_ANR_L2G_RESULT_SUCC                        = 0 ,   /* ANR成功 */
@@ -780,14 +729,7 @@ enum GAS_OM_ANR_L2G_RESULT_ENUM
 };
 typedef VOS_UINT8 GAS_OM_ANR_L2G_RESULT_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : GAS_OM_RESEL_CCO_W2G_RESULT_ENUM
- 枚举说明  : W2G Resel/CCO的退出原因值
- 修改历史  : 
- 1.日    期    : 2012-04-19
-   作    者    : w00176595
-   修改内容    : 新建枚举类型
-*****************************************************************************/
+
 enum GAS_OM_RESEL_CCO_W2G_RESULT_ENUM
 {
     GAS_OM_RESEL_CCO_W2G_RESULT_SUCC                        = 0 ,   /* Resel/CCO成功 */
@@ -802,17 +744,7 @@ enum GAS_OM_RESEL_CCO_W2G_RESULT_ENUM
 };
 typedef VOS_UINT8 GAS_OM_RESEL_CCO_W2G_RESULT_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : GAS_OM_BG_PLMN_LIST_SEARCH_RESULT_ENUM
- 枚举说明  : 背景方式列表搜结果值
- 修改历史  : 
-  1.日    期   : 2012-05-07
-    作    者   : s00184266
-    修改内容   : 新建枚举类型
-  2.日    期   : 2014年3月15日
-    作    者   : s00184266
-    修改原因   : multi-mode evolution phase I, 新增WRRC相关的列表搜结果值
-*****************************************************************************/
+
 enum GAS_OM_BG_PLMN_LIST_SEARCH_RESULT_ENUM
 {
     GAS_OM_BG_PLMN_LIST_SEARCH_RESULT_SUCC                        = 0x0 ,       /* 列表搜成功 */
@@ -839,14 +771,7 @@ enum GAS_OM_BG_PLMN_LIST_SEARCH_RESULT_ENUM
 };
 typedef VOS_UINT8 GAS_OM_BG_PLMN_LIST_SEARCH_RESULT_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : GAS_OM_BG_PLMN_SEARCH_LTE_EVENT_ENUM
- 枚举说明  : 背景搜LTE结果值
- 修改历史  : 
- 1.日    期    : 2012-05-14
-   作    者    : w00146666
-   修改内容    : 新建枚举类型
-*****************************************************************************/
+
 enum GAS_OM_BG_PLMN_SEARCH_LTE_ABNORMAL_EVENT_ENUM
 {
     GAS_OM_BG_PLMN_SEARCH_LTE_ABNORMAL_EVENT_LRRC_START_TIMEOUT     = 0x0 ,       /* 背景搜LTE */
@@ -882,7 +807,6 @@ enum GAS_OM_RESEL_EVALUATE_RMV_CELL_CAUSE_ENUM
 };
 typedef VOS_UINT8 GAS_OM_RESEL_EVALUATE_RMV_CELL_CAUSE_ENUM_UINT8;
 
-/* Added by yangsicong for probe接口新开发, 2012-10-30, begin */
 /*****************************************************************************
  枚举名    : GAS_ROAD_TEST_INFO_TYPE_ENUM
  协议表格  :
@@ -1008,17 +932,10 @@ enum GAS_OM_SPECCH_CODEC_ENUM
 typedef VOS_UINT16  GAS_OM_SPECCH_CODEC_ENUM_UINT16;
 
 
-/* Added by yangsicong for probe接口新开发, 2012-10-30, end */
 
 
 #if ( FEATURE_ON == FEATURE_DSDS )
-/*******************************************************************************
- 枚举名    : GAS_OM_TASK_STATUS_ENUM_UINT16
- 结构说明  : OM申请任务的资源状态
- 1.日    期   : 2014年02月12日
-   作    者   : l67237
-   修改内容   : Added for GAS DSDS
-*******************************************************************************/
+
 enum GAS_OM_TASK_STATUS_ENUM
 {
     GAS_OM_TASK_STATUS_NONE                             = 0,                    /* 无状态 */
@@ -1029,15 +946,7 @@ enum GAS_OM_TASK_STATUS_ENUM
 typedef VOS_UINT16 GAS_OM_TASK_STATUS_ENUM_UINT16;
 #endif
 
-/*****************************************************************************
- 枚 举 名  : GAS_OM_SEARCH_PROC_ENUM
- 枚举说明  : 搜网流程枚举
- 修改历史  :
-  1.日  期   : 2015年9月10日
-    作  者   : s00184266
-    修改内容 : 新生成枚举
 
-*****************************************************************************/
 enum GAS_OM_SEARCH_PROC_ENUM
 {
     GAS_OM_SEARCH_PROC_L_REDIR_G_SPEC_SRCH              = 0,
@@ -1069,18 +978,7 @@ enum GAS_OM_SEARCH_PROC_ENUM
 };
 typedef VOS_UINT8 GAS_OM_SEARCH_PROC_ENUM_UINT8;
 
-/*****************************************************************************
- 枚 举 名  : GAS_OM_SEARCH_PROC_BUILD_RESULT_ENUM
- 枚举说明  : 流程构建频点列表结果
- 修改历史  :
-  1.日  期   : 2015年9月10日
-    作  者   : s00184266
-    修改内容 : 新生成枚举
-  2.日    期   : 2015年12月16日
-    作    者   : s00184266
-    修改原因   : dts2015121505454, 新增获取CSS频段信息失败的枚举
 
-*****************************************************************************/
 enum GAS_OM_SEARCH_PROC_BUILD_RESULT_ENUM
 {
     GAS_OM_SEARCH_PROC_BUILD_RESULT_SUCC                = 0,
@@ -1096,15 +994,7 @@ enum GAS_OM_SEARCH_PROC_BUILD_RESULT_ENUM
 };
 typedef VOS_UINT8 GAS_OM_SEARCH_PROC_BUILD_RESULT_ENUM_UINT8;
 
-/*****************************************************************************
- 枚 举 名  : GAS_OM_CSS_INTERFACE_NAME_ENUM
- 枚举说明  : GAS调用CSS提供的云端函数名枚举
- 修改历史  :
-  1.日  期   : 2015年11月5日
-    作  者   : s00184266
-    修改内容 : 新生成枚举
 
-*****************************************************************************/
 enum GAS_OM_CSS_INTERFACE_NAME_ENUM
 {
     GAS_OM_CSS_INTERFACE_NAME_IS_MCC_FREQ_EXIST         = 0,
@@ -1133,15 +1023,7 @@ typedef VOS_UINT32 GAS_OM_CSS_INTERFACE_NAME_ENUM_UINT32;
 /*****************************************************************************
   7 STRUCT定义
 *****************************************************************************/
-/*****************************************************************************
- 结 构 名  : DIAG_GAS_MSG_COMM_HEAD_ST
- 结构描述  : DIAG消息公共头
- 修改历史      :
-  1.日    期   : 2016年6月23日
-    作    者   : 华宏 h00166210
-    修改内容   : 新生成结构
 
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* _H2ASN_Skip */
@@ -1154,16 +1036,7 @@ typedef struct
     VOS_UINT32                          ulSN;
 } DIAG_GAS_MSG_COMM_HEAD_ST;
 
-/*****************************************************************************
- 结 构 名  : OM_GAS_INFO_REQ_ST
- 结构描述  : OM消息查询的结构。
 
- 修改历史      :
-  1.日    期   : 2008年4月19日
-    作    者   : 杨龙 y58800
-    修改内容   : 新生成结构
-
-*****************************************************************************/
 typedef struct
 {
     DIAG_GAS_MSG_COMM_HEAD_ST           stMsgCommHead;
@@ -1174,16 +1047,7 @@ typedef struct
     VOS_UINT16                          usReserved;
 } OM_GAS_INFO_REQ_ST;
 
-/*****************************************************************************
- 结 构 名  : GAS_OM_INFO_CNF_ST
- 结构描述  : GAS回复消息确认的结构。
 
- 修改历史      :
-  1.日    期   : 2008年4月19日
-    作    者   : 杨龙 y58800
-    修改内容   : 新生成结构
-
-*****************************************************************************/
 typedef struct
 {
     DIAG_GAS_MSG_COMM_HEAD_ST           stMsgCommHead;
@@ -1211,16 +1075,7 @@ typedef struct
         _H2ASN_MsgChoice_When_Comment          OM_GAS_MSG_ID_ENUM_UINT16
     ****************************************************************************/
 }GAS_OM_EVENT_IND_ST;
-/*****************************************************************************
- 结 构 名  : GAS_OM_CELL_BASIC_INFO_ST
- 结构描述  : 小区基本信息的结构体。
 
- 修改历史      :
-  1.日    期   : 2008年4月19日
-    作    者   : 杨龙 y58800
-    修改内容   : 新生成结构
-
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16                       usArfcn;
@@ -1239,40 +1094,13 @@ typedef struct
     VOS_UINT16                       usRsv;
 } GAS_OM_CELL_BASIC_INFO_ST;
 
-/*****************************************************************************
- 结 构 名  : OM_GAS_CELL_INFO_REQ_ST
- 结构描述  : OM 发出的 小区信息查询请求
 
- 修改历史      :
-  1.日    期   : 2008年4月19日
-    作    者   : 杨龙 y58800
-    修改内容   : 新生成结构
-
-*****************************************************************************/
 typedef OM_GAS_INFO_REQ_ST  OM_GAS_CELL_INFO_REQ_ST;
 
-/*****************************************************************************
- 结 构 名  : GAS_OM_CELL_INFO_CNF_ST
- 结构描述  : GAS对小区信息查询请求的确认
 
- 修改历史      :
-  1.日    期   : 2008年4月19日
-    作    者   : 杨龙 y58800
-    修改内容   : 新生成结构
-
-*****************************************************************************/
 typedef GAS_OM_INFO_CNF_ST  GAS_OM_CELL_INFO_CNF_ST;
 
-/*****************************************************************************
- 结 构 名  : GAS_OM_CELL_COMM_INFO_ST
- 结构描述  : GAS向OM上报服务小区的一般信息。
 
- 修改历史      :
-  1.日    期   : 2008年10月13日
-    作    者   : 刘德国  00126771
-    修改内容   : 新生成结构
-
-*****************************************************************************/
 typedef struct
 {
     NAS_GMM_STATE_ENUM_UINT8                enGmmState;
@@ -1283,16 +1111,7 @@ typedef struct
     VOS_UINT8                               astRsv[3];    /*保留位*/
 }GAS_OM_CELL_COMM_INFO_ST;
 
-/*****************************************************************************
- 结 构 名  : GAS_OM_CELL_INFO_IND_ST
- 结构描述  : GAS向OM上报服务小区和最强邻区信息。
 
- 修改历史      :
-  1.日    期   : 2008年4月19日
-    作    者   : 杨龙 y58800
-    修改内容   : 新生成结构
-
-*****************************************************************************/
 typedef struct
 {
     OM_GAS_REPORT_TYPE_ENUM_UINT16          enReportType;
@@ -1302,16 +1121,7 @@ typedef struct
     GAS_OM_CELL_BASIC_INFO_ST               astNCellInfo[6];
 } GAS_OM_CELL_INFO_IND_ST;
 
-/*****************************************************************************
- 结 构 名  : GAS_MSP_CELL_INFO_IND_ST
- 结构描述  : GAS向MSP上报服务小区和最强邻区信息。
 
- 修改历史      :
-  1.日    期   : 2015年9月18日
-    作    者   : 华宏 h00166210
-    修改内容   : 新生成结构
-
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16                          usPrimId;
@@ -1324,16 +1134,7 @@ typedef struct
     GAS_OM_CELL_BASIC_INFO_ST           astNCellInfo[6];
 } GAS_MSP_CELL_INFO_IND_ST;
 
-/*****************************************************************************
- 结 构 名  : GAS_OM_DCH_QUALITY_ST
- 结构描述  : GAS向OM上报DCH信道的信道质量
 
- 修改历史      :
-  1.日    期   : 2008年4月19日
-    作    者   : 杨龙 y58800
-    修改内容   : 新生成结构
-
-*****************************************************************************/
 typedef struct
 {
     VOS_INT16         sRxlevFull;
@@ -1348,16 +1149,7 @@ typedef struct
     VOS_UINT16        usRxqualSub;
 } GAS_OM_DCH_QUALITY_ST;
 
-/*****************************************************************************
- 结 构 名  : GAS_OM_PDTCH_QUALITY_ST
- 结构描述  : GAS向OM上报PDTCH信道的信道质量
 
- 修改历史      :
-  1.日    期   : 2008年4月19日
-    作    者   : 杨龙 y58800
-    修改内容   : 新生成结构
-
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16         usBitsErrNum;
@@ -1369,42 +1161,15 @@ typedef struct
     VOS_UINT16         ausInLevelTn[8];
 } GAS_OM_PDTCH_QUALITY_ST;
 
-/*****************************************************************************
- 结 构 名  : OM_GAS_CHANNEL_QUALITY_REQ_ST
- 结构描述  : OM 发出的 信道质量查询请求
 
- 修改历史      :
-  1.日    期   : 2008年4月19日
-    作    者   : 杨龙 y58800
-    修改内容   : 新生成结构
-
-*****************************************************************************/
 typedef OM_GAS_INFO_REQ_ST  OM_GAS_CHANNEL_QUALITY_REQ_ST;
 
 
-/*****************************************************************************
- 结 构 名  : GAS_OM_CHANNEL_QUALITY_CNF_ST
- 结构描述  : GAS对信道质量查询请求的确认
 
- 修改历史      :
-  1.日    期   : 2008年4月19日
-    作    者   : 杨龙 y58800
-    修改内容   : 新生成结构
-
-*****************************************************************************/
 typedef GAS_OM_INFO_CNF_ST  GAS_OM_CHANNEL_QUALITY_CNF_ST;
 
 
-/*****************************************************************************
- 结 构 名  : GAS_OM_CHANNEL_QUALITY_IND_ST
- 结构描述  : GAS向OM上报信道质量
 
- 修改历史      :
-  1.日    期   : 2008年4月19日
-    作    者   : 杨龙 y58800
-    修改内容   : 新生成结构
-
-*****************************************************************************/
 typedef struct
 {
     OM_GAS_REPORT_TYPE_ENUM_UINT16      enReportType;
@@ -1414,16 +1179,7 @@ typedef struct
 } GAS_OM_CHANNEL_QUALITY_IND_ST;
 
 
-/*****************************************************************************
- 结 构 名  : GAS_OM_3G_NCELL_INFO_ST
- 结构描述  : GAS向OM上报3G(WCDMA)邻区的信息
 
- 修改历史      :
-  1.日    期   : 2008年4月19日
-    作    者   : 杨龙 y58800
-    修改内容   : 新生成结构
-
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16                     usUARFCN;          /* 频点 */
@@ -1436,40 +1192,13 @@ typedef struct
 
 } GAS_OM_3G_NCELL_INFO_ST;
 
-/*****************************************************************************
- 结 构 名  : OM_GAS_3G_NCELL_MEAS_REQ_ST
- 结构描述  : OM 发出的 3G邻小区测量信息查询请求
 
- 修改历史      :
-  1.日    期   : 2008年4月19日
-    作    者   : 杨龙 y58800
-    修改内容   : 新生成结构
-
-*****************************************************************************/
 typedef OM_GAS_INFO_REQ_ST  OM_GAS_3G_NCELL_MEAS_REQ_ST;
 
-/*****************************************************************************
- 结 构 名  : GAS_OM_3G_NCELL_MEAS_CNF_ST
- 结构描述  : GAS对3G邻小区测量查询请求的确认
 
- 修改历史      :
-  1.日    期   : 2008年4月19日
-    作    者   : 杨龙 y58800
-    修改内容   : 新生成结构
-
-*****************************************************************************/
 typedef GAS_OM_INFO_CNF_ST  GAS_OM_3G_NCELL_MEAS_CNF_ST;
 
-/*****************************************************************************
- 结 构 名  : GAS_OM_3G_SETTINGS_ST
- 结构描述  : GAS上报3G邻区的配置信息
 
- 修改历史      :
-  1.日    期   : 2008年10月13日
-    作    者   : 刘德国  00126771
-    修改内容   : 新生成结构
-
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                               ucQsearch_I;
@@ -1480,16 +1209,7 @@ typedef struct
     VOS_UINT16                              usRsv;
 }GAS_OM_3G_SETTINGS_ST;
 
-/*****************************************************************************
- 结 构 名  : GAS_OM_3G_NCELL_MEAS_IND_ST
- 结构描述  : GAS上报3G邻小区测量信息
 
- 修改历史      :
-  1.日    期   : 2008年4月19日
-    作    者   : 杨龙 y58800
-    修改内容   : 新生成结构
-
-*****************************************************************************/
 typedef struct
 {
     OM_GAS_REPORT_TYPE_ENUM_UINT16      enReportType;
@@ -1498,16 +1218,7 @@ typedef struct
     GAS_OM_3G_NCELL_INFO_ST             ast3GNcellInfo[GAS_OM_3G_NCELL_NUMBER];
 } GAS_OM_3G_NCELL_MEAS_IND_ST;
 
-/*****************************************************************************
- 结 构 名  : GAS_MSP_3G_NCELL_MEAS_IND_ST
- 结构描述  : GAS上报3G邻小区测量信息
 
- 修改历史      :
-  1.日    期   : 2015年9月18日
-    作    者   : 华宏 h00166210
-    修改内容   : 新生成结构
-
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16                          usPrimId;
@@ -1519,40 +1230,13 @@ typedef struct
     GAS_OM_3G_NCELL_INFO_ST             ast3GNcellInfo[GAS_OM_3G_NCELL_NUMBER];
 } GAS_MSP_3G_NCELL_MEAS_IND_ST;
 
-/*****************************************************************************
- 结 构 名  : OM_GAS_GSM_INFO_REQ_ST
- 结构描述  : OM 发出的 GSM 信息查询请求
 
- 修改历史      :
-  1.日    期   : 2008年4月19日
-    作    者   : 杨龙 y58800
-    修改内容   : 新生成结构
-
-*****************************************************************************/
 typedef OM_GAS_INFO_REQ_ST  OM_GAS_GSM_INFO_REQ_ST;
 
-/*****************************************************************************
- 结 构 名  : GAS_OM_GSM_INFO_CNF_ST
- 结构描述  : GAS对 GSM 信息查询请求的确认
 
- 修改历史      :
-  1.日    期   : 2008年4月19日
-    作    者   : 杨龙 y58800
-    修改内容   : 新生成结构
-
-*****************************************************************************/
 typedef GAS_OM_INFO_CNF_ST  GAS_OM_GSM_INFO_CNF_ST;
 
-/*****************************************************************************
- 结 构 名  : GAS_GSM_INFO_ST
- 结构描述  : GSM基本信息
 
- 修改历史      :
-  1.日    期   : 2008年4月19日
-    作    者   : 杨龙 y58800
-    修改内容   : 新生成结构
-
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                             ulMcc;           /* 移动国家码 */
@@ -1563,16 +1247,7 @@ typedef struct
     GAS_OM_STATE_ENUM_UINT16               enGasState;      /* GAS状态 */
 }GAS_GSM_INFO_ST;
 
-/*****************************************************************************
- 结 构 名  : GAS_TBF_INFO_ST
- 结构描述  : GRPS的 TBF 信息
 
- 修改历史      :
-  1.日    期   : 2008年4月19日
-    作    者   : 杨龙 y58800
-    修改内容   : 新生成结构
-
-*****************************************************************************/
 typedef struct
 {
     GAS_OM_RLC_MODE_ENUM_UINT8             enRlcMode;       /* RLC模式 */
@@ -1585,16 +1260,7 @@ typedef struct
     VOS_UINT8                              ucRsv[3];        /* 保留 */
 }GAS_TBF_INFO_ST;
 
-/*****************************************************************************
- 结 构 名  : GAS_GPRS_INFO_ST
- 结构描述  : 上报给OM的GRPS信息
 
- 修改历史      :
-  1.日    期   : 2008年4月19日
-    作    者   : 杨龙 y58800
-    修改内容   : 新生成结构
-
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                              ucGprsSupport;   /* GRPS 是否支持: 0-不支持, 1-支持 */
@@ -1610,16 +1276,7 @@ typedef struct
     GAS_TBF_INFO_ST                        stDlTbfInfo;     /* 下行TBF信息 */
 }GAS_GPRS_INFO_ST;
 
-/*****************************************************************************
- 结 构 名  : GAS_OM_GSM_INFO_IND_ST
- 结构描述  : GAS上报 GSM/GPRS 信息
 
- 修改历史      :
-  1.日    期   : 2008年4月19日
-    作    者   : 杨龙 y58800
-    修改内容   : 新生成结构
-
-*****************************************************************************/
 typedef struct
 {
     OM_GAS_REPORT_TYPE_ENUM_UINT16         enReportType;
@@ -1632,48 +1289,21 @@ typedef struct
 
 
 
-/*****************************************************************************
- 结 构 名  : GAS_OM_EVENT_GSM_LINK_FAILURE_ST
- 结构描述  : GAS向OM上报事件的描述
 
- 修改历史      :
-  1.日    期   : 2008年4月21日
-    作    者   : 杨龙 y58800
-    修改内容   : 新生成结构
-
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8              ucLinkInitVaule;     /* 无线链路初始值，范围[4,64] */
     VOS_UINT8              aucReserved[3];      /* 保留 */
 } GAS_OM_EVENT_GSM_LINK_FAILURE_ST;
 
-/*****************************************************************************
- 结 构 名  : GAS_OM_EVENT_GSM_DOWNLINK_FAILURE_ST
- 结构描述  : GAS向OM上报事件的描述
 
- 修改历史      :
-  1.日    期   : 2008年4月21日
-    作    者   : 杨龙 y58800
-    修改内容   : 新生成结构
-
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8              ucDscInitValue;       /* 下行链路计数器初始值，范围[10,45] */
     VOS_UINT8              aucReserved[3];
 } GAS_OM_EVENT_GSM_DOWNLINK_FAILURE_ST;
 
-/*****************************************************************************
- 结 构 名  : GAS_OM_EVENT_GSM_RESELECT_START_ST
- 结构描述  : GAS向OM上报事件的描述
 
- 修改历史      :
-  1.日    期   : 2008年4月21日
-    作    者   : 杨龙 y58800
-    修改内容   : 新生成结构
-
-*****************************************************************************/
 typedef struct
 {
     GAS_OM_RESEL_TYPE_ENUM_UINT8      enReselType;    /* 重选类型 */
@@ -1685,16 +1315,7 @@ typedef struct
 } GAS_OM_EVENT_GSM_RESELECT_START_ST;
 
 
-/*****************************************************************************
- 结 构 名  : GAS_OM_EVENT_GSM_RESELECT_END_ST
- 结构描述  : GAS向OM上报事件的描述
 
- 修改历史      :
-  1.日    期   : 2008年4月21日
-    作    者   : 杨龙 y58800
-    修改内容   : 新生成结构
-
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucResult;        /* 执行结果 */
@@ -1702,16 +1323,7 @@ typedef struct
 } GAS_OM_EVENT_GSM_RESELECT_END_ST;
 
 
-/*****************************************************************************
- 结 构 名  : GAS_OM_EVENT_GSM_CAMP_ATTEMPT_START_ST
- 结构描述  : GAS向OM上报事件的描述
 
- 修改历史      :
-  1.日    期   : 2008年4月21日
-    作    者   : 杨龙 y58800
-    修改内容   : 新生成结构
-
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16                        usTargetArfcn;  /* 目标频点 */
@@ -1719,32 +1331,14 @@ typedef struct
     VOS_UINT8                         ucBcc;          /* 基站色码 */
 } GAS_OM_EVENT_GSM_CAMP_ATTEMPT_START_ST;
 
-/*****************************************************************************
- 结 构 名  : GAS_OM_EVENT_GSM_CAMP_ATTEMPT_END_ST
- 结构描述  : GAS向OM上报事件的描述
 
- 修改历史      :
-  1.日    期   : 2008年4月21日
-    作    者   : 杨龙 y58800
-    修改内容   : 新生成结构
-
-*****************************************************************************/
 typedef struct
 {
     GAS_OM_RESULT_ENUM_UINT8          enResult;        /* 执行结果，0-失败，1-成功 */
     VOS_UINT8                         aucReserved[3];  /* 保留 */
 } GAS_OM_EVENT_GSM_CAMP_ATTEMPT_END_ST;
 
-/*****************************************************************************
- 结 构 名  : GAS_OM_EVENT_GSM_TO_WCDMA_RESELECT_START_ST
- 结构描述  : GAS向OM上报事件的描述
 
- 修改历史      :
-  1.日    期   : 2008年4月21日
-    作    者   : 杨龙 y58800
-    修改内容   : 新生成结构
-
-*****************************************************************************/
 typedef struct
 {
     GAS_OM_RESEL_TYPE_ENUM_UINT8      enReselType;   /* 重选类型 */  
@@ -1753,16 +1347,7 @@ typedef struct
     VOS_UINT16                        usPSC;         /* 主扰码 */
 } GAS_OM_EVENT_GSM_TO_WCDMA_RESELECT_START_ST;
 
-/*****************************************************************************
- 结 构 名  : GAS_OM_EVENT_GSM_TO_WCDMA_RESELECT_END_ST
- 结构描述  : GAS向OM上报事件的描述
 
- 修改历史      :
-  1.日    期   : 2008年4月21日
-    作    者   : 杨龙 y58800
-    修改内容   : 新生成结构
-
-*****************************************************************************/
 typedef struct
 {
     GAS_OM_RESULT_ENUM_UINT8          enResult;        /* 执行结果，0-失败，1-成功 */
@@ -1770,63 +1355,27 @@ typedef struct
 } GAS_OM_EVENT_GSM_TO_WCDMA_RESELECT_END_ST;
 
 
-/*****************************************************************************
- 结 构 名  : GAS_OM_EVENT_GSM_TO_WCDMA_AFTER_CHAN_REL_SELECT_START_ST
- 结构描述  : GAS向OM上报事件的描述
 
- 修改历史      :
-  1.日    期   : 2010年4月15日
-    作    者   : h00129908
-    修改内容   : 新生成结构
-
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                         aucReserve1[4];                         /* 4字节对齐，保留 */
 } GAS_OM_EVENT_GSM_TO_WCDMA_AFTER_CHAN_REL_SELECT_START_ST;
 
-/*****************************************************************************
- 结 构 名  : GAS_OM_EVENT_GSM_TO_WCDMA_AFTER_CHAN_REL_SELECT_END_ST
- 结构描述  : GAS向OM上报事件的描述
 
- 修改历史      :
-  1.日    期   : 2010年4月15日
-    作    者   : h00129908
-    修改内容   : 新生成结构
-
-*****************************************************************************/
 typedef struct
 {
     GAS_OM_RESULT_ENUM_UINT8          enResult;        /* 执行结果，0-失败，1-成功 */
     VOS_UINT8                         aucReserved[3];  /* 保留 */
 } GAS_OM_EVENT_GSM_TO_WCDMA_AFTER_CHAN_REL_SELECT_END_ST;
 
-/*****************************************************************************
- 结 构 名  : GAS_OM_EVENT_GPRS_TBF_ABNORMAL_RELEASE_ST
- 结构描述  : GAS向OM上报事件的描述
 
- 修改历史      :
-  1.日    期   : 2008年4月21日
-    作    者   : 杨龙 y58800
-    修改内容   : 新生成结构
-
-*****************************************************************************/
 typedef struct
 {
     GAS_OM_TBF_ABNORMAL_REL_CAUSE_ENUM_UINT8    enReleaseCause;  /* TBF异常释放原因 */
     VOS_UINT8                                   aucReserved[3];  /* 保留 */
 } GAS_OM_EVENT_GPRS_TBF_ABNORMAL_RELEASE_ST;
 
-/*****************************************************************************
- 结 构 名  : GAS_OM_EVENT_RR_CONNECTION_ABNORMAL_ST
- 结构描述  : GAS向OM上报事件的描述
 
- 修改历史      :
-  1.日    期   : 2009年4月21日
-    作    者   : yaoqinbo
-    修改内容   : 新生成结构
-
-*****************************************************************************/
 typedef struct
 {
     GAS_OM_RR_CONNECTION_ABNORMAL_TYPE_ENUM_UINT32     enAbnormalType;  /* RR连接异常类型 */
@@ -1834,31 +1383,13 @@ typedef struct
 } GAS_OM_EVENT_RR_CONNECTION_ABNORMAL_ST;
 
 
-/*****************************************************************************
- 结 构 名  : GAS_OM_EVENT_GPRS_INVALID_ASSIGN_ST
- 结构描述  : GAS向OM上报事件的描述
 
- 修改历史      :
-  1.日    期   : 2008年4月21日
-    作    者   : 杨龙 y58800
-    修改内容   : 新生成结构
-
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32    ulInvalidCause;  /* 异常原因 */
 } GAS_OM_EVENT_GPRS_INVALID_ASSIGN_ST;
 
-/*****************************************************************************
- 结 构 名  : OM_GAS_OTA_REQ_STRUCT
- 结构描述  : OM向GAS发送的空口配置消息
 
- 修改历史      :
-  1.日    期   : 2008年4月21日
-    作    者   : 杨龙 y58800
-    修改内容   : 新生成结构
-
-*****************************************************************************/
 typedef struct
 {
     DIAG_GAS_MSG_COMM_HEAD_ST           stMsgCommHead;
@@ -1866,16 +1397,7 @@ typedef struct
     VOS_UINT32                          ulOnOff;                                /* 0 - 停止上报 1 - 开始上报 */
 }OM_GAS_OTA_REQ_STRUCT;
 
-/*****************************************************************************
- 结 构 名  : GAS_OM_OTA_CNF_STRUCT
- 结构描述  : GAS向OM发送的空口配置确认消息
 
- 修改历史      :
-  1.日    期   : 2008年4月21日
-    作    者   : 杨龙 y58800
-    修改内容   : 新生成结构
-
-*****************************************************************************/
 typedef struct
 {
     DIAG_GAS_MSG_COMM_HEAD_ST           stMsgCommHead;
@@ -1883,16 +1405,7 @@ typedef struct
     VOS_UINT32                          ulErrCode;
 }GAS_OM_OTA_CNF_STRUCT;
 
-/*****************************************************************************
- 结 构 名  : OM_GAS_SPECIFIC_FREQ_CAMP_REQ_ST
- 结构描述  : OM向GAS发送的指定频点请求消息
 
- 修改历史      :
-  1.日    期   : 2008年4月21日
-    作    者   : 杨龙 y58800
-    修改内容   : 新生成结构
-
-*****************************************************************************/
 typedef struct
 {
     DIAG_GAS_MSG_COMM_HEAD_ST           stMsgCommHead;
@@ -1903,15 +1416,7 @@ typedef struct
 
 typedef GAS_OM_OTA_CNF_STRUCT  GAS_OM_SPECIFIC_FREQ_CAMP_CNF_ST;
 
-/*****************************************************************************
- Structure      : GAS_OM_EVENT_TIMER_ACTION_ST
- Description    : GAS定时器事件上报
- Message origin :
- 修改历史 :
-  1.日    期    : 2008年11月05日
-    作    者    :  刘德国 00126771
-    修改内容    : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulTimerName;
@@ -1925,30 +1430,14 @@ typedef struct
 }GAS_OM_EVENT_OUT_OF_SERVICE_ST;
 
 
-/*****************************************************************************
- Structure      : GAS_OM_EVENT_GSM_2G_NCELL_LIST_CHANGE_ST
- Description    : 2G 邻区改变通知结构体
- Message origin :
- 修改历史 :
-  1.日    期    : 2010年02月21日
-    作    者    : 王畅 00146666
-    修改内容    : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     GAS_OM_NCELL_LIST_CHANGE_CAUSE_ENUM_UINT8 en2GNCellListChangeCause;  /*2G邻区改变原因*/
     VOS_UINT8                                 aucReserved[3];           /* 保留 */
 }GAS_OM_EVENT_GSM_2G_NCELL_LIST_CHANGE_ST;
 
-/*****************************************************************************
- Structure      : GAS_OM_EVENT_GSM_3G_NCELL_LIST_CHANGE_ST
- Description    : 2G 邻区改变通知结构体
- Message origin :
- 修改历史 :
-  1.日    期    : 2010年02月21日
-    作    者    : 王畅 00146666
-    修改内容    : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     GAS_OM_NCELL_LIST_CHANGE_CAUSE_ENUM_UINT8 en3GNCellListChangeCause;     /*3G邻区改变原因*/
@@ -1970,19 +1459,7 @@ enum OM_GAS_FREQ_MEAS_TYPE_ENUM
 };
 typedef VOS_UINT8 OM_GAS_FREQ_MEAS_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- Structure      : GAS_OM_EVENT_X_BG_SEARCH_G_FREQ_MEAS_START_STs
- Description    :
- Message origin :
- 修改历史 :
-  1.日    期    : 2010年12月21日
-    作    者    : 王畅 00146666
-    修改内容    : 新增结构体
-  2.日    期    : 2014年05月16日
-    作    者    : q00261930
-    修改内容    : 改名为GAS_OM_EVENT_X_BG_SEARCH_G_FREQ_MEAS_START_ST
 
-*****************************************************************************/
 typedef struct
 {
     OM_GAS_FREQ_MEAS_TYPE_ENUM_UINT8       enFreqMeasType;       /* 频点测量类型(历史频点搜，全频段搜)*/
@@ -1990,112 +1467,48 @@ typedef struct
     VOS_UINT16                             usFreqNum;            /* 频点测量的总个数 */
 }GAS_OM_EVENT_X_BG_SEARCH_G_FREQ_MEAS_START_ST;
 
-/*****************************************************************************
- Structure      : GAS_OM_EVENT_X_BG_SEARCH_G_FREQ_MEAS_END_ST
- Description    :
- Message origin :
- 修改历史 :
-  1.日    期    : 2010年12月21日
-    作    者    : 王畅 00146666
-    修改内容    : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                             usQualFreqNum;           /* 符合条件的频点个数 */
     VOS_UINT8                              aucReserved[2];          /* 保留 */
 }GAS_OM_EVENT_X_BG_SEARCH_G_FREQ_MEAS_END_ST;
 
-/*****************************************************************************
- Structure      : GAS_OM_EVENT_INIT_WEAK_SIGNAL_ST
- Description    : 开机初始化后弱信号事件发生时上报OM事件的结构
- Message origin :
- 修改历史 :
-  1.日    期    : 2011年02月25日
-    作    者    : L00167020
-    修改内容    : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     GAS_MNTN_INIT_WEAK_SIGNAL_EVT_STRU         stInitWeakSignal;   /*开机后最多上报3次弱信号事件及相关信息*/
     
 }GAS_OM_EVENT_INIT_WEAK_SIGNAL_ST;
 
-/*****************************************************************************
- Structure      : GAS_OM_EVENT_PERIOD_WEAK_SIGNAL_ST
- Description    : 当前分钟发生的弱信号信息上报OM事件的结构
- Message origin :
- 修改历史 :
-  1.日    期    : 2011年02月25日
-    作    者    : L00167020
-    修改内容    : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     GAS_MNTN_WEAK_SIGNAL_INFO_STRU      stCurWeakSignalInfo;    /*每分钟发生弱信号及相关信息*/
     
 }GAS_OM_EVENT_PERIOD_WEAK_SIGNAL_ST;
 
-/*****************************************************************************
- Structure      : GAS_OM_EVENT_WEAK_SIGNAL_LIST_ST
- Description    : 每30分钟周期性上报弱信号时上报OM的事件结构
- Message origin :
- 修改历史 :
-  1.日    期    : 2011年02月25日
-    作    者    : L00167020
-    修改内容    : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     GAS_MNTN_PERIOD_WEAK_SIGNAL_LIST_EVT_STRU    stPeriodWeakSignalList;  /*30分钟每分钟发生的弱信号及相关信息*/
 
 }GAS_OM_EVENT_WEAK_SIGNAL_LIST_ST;
 
-/*****************************************************************************
- Structure      : GAS_OM_EVENT_RCV_SI_ON_PCH_STRU
- Description    : 在PCH信道上收到系统消息
- Message origin :
- 修改历史 :
-  1.日    期    : 2011年02月25日
-    作    者    : L00167020
-    修改内容    : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16 usSiType;        /* 系统消息类型 */
     VOS_UINT16 usChanType;      /* 逻辑信道类型 */
 }GAS_OM_EVENT_RCV_SI_ON_PCH_STRU;
 
-/*****************************************************************************
- 结 构 名  : OM_GAS_LTE_NCELL_MEAS_REQ_ST
- 结构描述  : OM 发出的 LTE邻小区测量信息查询请求
 
- 修改历史      :
-  1.日    期   : 2011年03月21日
-    作    者   : g00149376
-    修改内容   : 新生成结构
-*****************************************************************************/
 typedef OM_GAS_INFO_REQ_ST  OM_GAS_LTE_NCELL_MEAS_REQ_ST;
 
-/*****************************************************************************
- 结 构 名  : OM_GAS_LTE_NCELL_MEAS_CNF_ST
- 结构描述  : GAS对LTE邻小区测量查询请求的确认
 
- 修改历史      :
-  1.日    期   : 2011年03月21日
-    作    者   : g00149376
-    修改内容   : 新生成结构
-*****************************************************************************/
 typedef GAS_OM_INFO_CNF_ST  GAS_OM_LTE_NCELL_MEAS_CNF_ST;
 
-/*****************************************************************************
- 结 构 名  : GAS_OM_LTE_SETTINGS_ST
- 结构描述  : GAS上报LTE邻区的配置信息
 
- 修改历史      :
-  1.日    期   : 2011年03月21日
-    作    者   : g00149376
-    修改内容   : 新生成函数,for V7R1
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                               ucLteQsearchP;      /* QSearchP */
@@ -2104,15 +1517,7 @@ typedef struct
     VOS_UINT8                               aucRsv[1];          /* 保留位 */
 }GAS_OM_LTE_SETTINGS_ST;
 
-/*****************************************************************************
- 结 构 名  : GAS_OM_LTE_NCELL_INFO_ST
- 结构描述  : GAS向OM上报LTE邻区的信息
 
- 修改历史      :
-  1.日    期   : 2011年03月21日
-    作    者   : g00149376
-    修改内容   : 新生成函数,for V7R1
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16                     usArfcn;            /* 频点 */
@@ -2124,15 +1529,7 @@ typedef struct
 } GAS_OM_LTE_NCELL_INFO_ST;
 
 
-/*****************************************************************************
- 结 构 名  : GAS_OM_LTE_NCELL_MEAS_IND_ST
- 结构描述  : GAS上报LTE邻小区测量信息
 
- 修改历史      :
- 1.日    期   : 2011年03月21日
-    作    者   : g00149376
-    修改内容   : 新生成函数,for V7R1
-*****************************************************************************/
 typedef struct
 {
     OM_GAS_REPORT_TYPE_ENUM_UINT16      enReportType;
@@ -2141,15 +1538,7 @@ typedef struct
     GAS_OM_LTE_NCELL_INFO_ST            astLteNcellInfo[GAS_OM_MAX_LTE_NCELL_NUM];
 } GAS_OM_LTE_NCELL_MEAS_IND_ST;
 
-/*****************************************************************************
- 结 构 名  : GAS_MSP_LTE_NCELL_MEAS_IND_ST
- 结构描述  : GAS上报LTE邻小区测量信息
 
- 修改历史      :
- 1.日    期    : 2015年09月18日
-    作    者   : h00166210
-    修改内容   : 新增结构体
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16                          usPrimId;
@@ -2162,15 +1551,7 @@ typedef struct
 } GAS_MSP_LTE_NCELL_MEAS_IND_ST;
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- Structure      : GAS_OM_EVENT_GSM_TO_LTE_RESEL_START_ST
- Description    : GAS 向 OM 上报 G 到 L 重选开始, 携带目标小区信息
- Message origin :
- 修改历史 :
-  1.日    期    : 2011年03月10日
-    作    者    : p00166345
-    修改内容    : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     /* 目标小区 频点 */
@@ -2186,29 +1567,13 @@ typedef struct
     VOS_UINT8   aucRsv[2];
 }GAS_OM_EVENT_GSM_TO_LTE_RESEL_START_ST;
 
-/*****************************************************************************
- Structure      : GAS_OM_EVENT_GSM_TO_LTE_RESEL_END_ST
- Description    : GAS 向 OM 上报 G 到 L 重选结束
- Message origin :
- 修改历史 :
-  1.日    期    : 2011年03月10日
-    作    者    : p00166345
-    修改内容    : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     LRRC_GURRC_CELL_RESEL_RESULT_ENUM_UINT32   ulGLReselRlt;
 }GAS_OM_EVENT_GSM_TO_LTE_RESEL_END_ST;
 
-/*****************************************************************************
- Structure      : GAS_OM_EVENT_LTE_TO_GSM_RESEL_START_ST
- Description    : GAS 向 OM 上报 L 到 G 重选开始
- Message origin :
- 修改历史 :
-  1.日    期    : 2011年03月10日
-    作    者    : p00166345
-    修改内容    : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usArfcn;
@@ -2216,58 +1581,26 @@ typedef struct
     VOS_UINT8                           ucBcc;                                  /* (3bit) 基站色码  */
 }GAS_OM_EVENT_LTE_TO_GSM_RESEL_START_ST;
 
-/*****************************************************************************
- Structure      : GAS_OM_EVENT_LTE_TO_GSM_RESEL_END_ST
- Description    : GAS 向 OM 上报 L 到 G 重选结束
- Message origin :
- 修改历史 :
-  1.日    期    : 2011年03月10日
-    作    者    : p00166345
-    修改内容    : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     LRRC_GURRC_CELL_RESEL_RESULT_ENUM_UINT32   ulLGReselRlt;
 }GAS_OM_EVENT_LTE_TO_GSM_RESEL_END_ST;
 
-/*****************************************************************************
- Structure      : GAS_OM_EVENT_GSM_TO_LTE_CCO_START_ST
- Description    : GAS 向 OM 上报 G 到 L CCO 开始
- Message origin :
- 修改历史 :
-  1.日    期    : 2011年03月10日
-    作    者    : p00166345
-    修改内容    : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16  usEArfcn;
     VOS_UINT16  usCellId;
 }GAS_OM_EVENT_GSM_TO_LTE_CCO_START_ST;
 
-/*****************************************************************************
- Structure      : GAS_OM_EVENT_GSM_TO_LTE_CCO_END_ST
- Description    : GAS 向 OM 上报 G 到 L CCO 结束
- Message origin :
- 修改历史 :
-  1.日    期    : 2011年03月10日
-    作    者    : p00166345
-    修改内容    : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     LRRC_GURRC_CELL_RESEL_RESULT_ENUM_UINT32   ulGLCCORlt;
 }GAS_OM_EVENT_GSM_TO_LTE_CCO_END_ST;
 
-/*****************************************************************************
- Structure      : GAS_OM_EVENT_LTE_TO_GSM_CCO_START_ST
- Description    : GAS 向 OM 上报 L 到 G CCO 开始
- Message origin :
- 修改历史 :
-  1.日    期    : 2011年03月10日
-    作    者    : p00166345
-    修改内容    : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usArfcn;
@@ -2275,29 +1608,13 @@ typedef struct
     VOS_UINT8                           ucBcc;                                  /* (3bit) 基站色码  */
 }GAS_OM_EVENT_LTE_TO_GSM_CCO_START_ST;
 
-/*****************************************************************************
- Structure      : GAS_OM_EVENT_LTE_TO_GSM_CCO_END_ST
- Description    : GAS 向 OM 上报 L 到 G CCO 结束
- Message origin :
- 修改历史 :
-  1.日    期    : 2011年03月10日
-    作    者    : p00166345
-    修改内容    : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     LRRC_GURRC_CELL_RESEL_RESULT_ENUM_UINT32   ulLGCCORlt;
 }GAS_OM_EVENT_LTE_TO_GSM_CCO_END_ST;
 
-/*****************************************************************************
- Structure      : GAS_OM_EVENT_GSM_TO_LTE_REDIR_START_ST
- Description    : GAS向 OM上报 LRRC重定向请求的 GSM小区
- Message origin :
- 修改历史 :
-  1.日    期    : 2011年07月15日
-    作    者    : s00184266
-    修改内容    : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usArfcn;
@@ -2306,44 +1623,20 @@ typedef struct
     VOS_UINT8                           aucData[2];
 }GAS_OM_REDIRECTED_INFO_ST;
 
-/*****************************************************************************
- Structure      : GAS_OM_EVENT_GSM_TO_LTE_REDIR_START_ST
- Description    : GAS 向 OM 上报 G 到 L 重定向 开始
- Message origin :
- 修改历史 :
-  1.日    期    : 2011年07月15日
-    作    者    : s00184266
-    修改内容    : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                   	ulRedirInfoNum;
     GRR_LRRC_REDIRECTED_INFO_STRU   astGrrRedirInfo[LRRC_GURRC_LTE_ARFCN_MAX_NUM];
 }GAS_OM_EVENT_GSM_TO_LTE_REDIR_START_ST;
 
-/*****************************************************************************
- Structure      : GAS_OM_EVENT_GSM_TO_LTE_REDIR_END_ST
- Description    : GAS 向 OM 上报 G 到 L 重定向 结束
- Message origin :
- 修改历史 :
-  1.日    期    : 2011年07月15日
-    作    者    : s00184266
-    修改内容    : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     LRRC_GURRC_REDIRECTED_RESULT_ENUM_UINT32  enLrrcGrrRedirRlt;
 }GAS_OM_EVENT_GSM_TO_LTE_REDIR_END_ST;
 
-/*****************************************************************************
- Structure      : GAS_OM_EVENT_LTE_TO_GSM_REDIR_START_ST
- Description    : GAS 向 OM 上报 L 到 G 重定向 开始
- Message origin :
- 修改历史 :
-  1.日    期    : 2011年07月15日
-    作    者    : s00184266
-    修改内容    : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     LRRC_GURRC_CELL_CAMPEDON_TYPE_ENUM_UINT8    enCellCampedType;
@@ -2353,29 +1646,14 @@ typedef struct
     GAS_OM_REDIRECTED_INFO_ST                   astGsmCellInfo[LRRC_GURRC_GERAN_ARFCN_MAX_NUM];
 }GAS_OM_EVENT_LTE_TO_GSM_REDIR_START_ST;
 
-/*****************************************************************************
- Structure      : GAS_OM_EVENT_LTE_TO_GSM_REDIR_END_ST
- Description    : GAS 向 OM 上报 L 到 G 重定向 结束
- Message origin :
- 修改历史 :
-  1.日    期    : 2011年07月15日
-    作    者    : s00184266
-    修改内容    : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     GAS_OM_REDIR_L2G_RESULT_ENUM_UINT8  enGrrLrrcRedirRlt;
     VOS_UINT8                           aucData[3];
 }GAS_OM_EVENT_LTE_TO_GSM_REDIR_END_ST;
 
-/*****************************************************************************
- 结构名    : GAS_OM_EVENT_LTE_TO_GSM_ANR_END_ST
- 结构说明  : 给OM上报L到G ANR的结果
- 修改历史 :
- 1.日    期    : 2012年04月19日
-   作    者    : w00176595
-   修改内容    : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     GAS_OM_ANR_L2G_RESULT_ENUM_UINT8    enGrrLrrcAnrRlt;
@@ -2383,29 +1661,14 @@ typedef struct
 }GAS_OM_EVENT_LTE_TO_GSM_ANR_END_ST;
 #endif /* #if (FEATURE_ON == FEATURE_LTE) */
 
-/*****************************************************************************
- 消息名称  : GAS_OM_EVENT_BG_PLMN_LIST_SEARCH_END_ST
- 功能描述  : GAS 向 OM 上报 列表搜结果
- 修改历史  : 
-  1.日    期   : 2011年06月27日
-    作    者   : s00184266
-    修改内容   : 新生成结构
-    
-*****************************************************************************/
+
 typedef struct
 {
     GAS_OM_BG_PLMN_LIST_SEARCH_RESULT_ENUM_UINT8            enBgPlmnListSearchRlt;
     VOS_UINT8                                               aucData[3];
 } GAS_OM_EVENT_BG_PLMN_LIST_SEARCH_END_ST;
 
-/*****************************************************************************
- 消息名称  : GAS_OM_EVENT_BG_PLMN_SEARCH_ST
- 功能描述  : GAS向OM报背景搜LTE过程中的结果
- 修改历史  : 
-  1.日    期   : 20112年05月07日
-    作    者   : w00146666
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     GAS_OM_BG_PLMN_SEARCH_LTE_ABNORMAL_EVENT_ENUM_UINT8           enBgPlmnSearchLEvent;
@@ -2413,14 +1676,7 @@ typedef struct
 } GAS_OM_ABNORMAL_EVENT_BG_PLMN_SEARCH_LTE_ST;
 
 #if ( FEATURE_ON == FEATURE_UE_MODE_TDS )
-/*****************************************************************************
- 消息名称  : GAS_OM_EVENT_GSM_TO_UTRAN_TDD_RESEL_START_ST
- 功能描述  : GAS 向 OM 上报 GSM 到 UTRAN TDD 重选开始, 携带目标小区信息
- 修改历史  :
-  1.日    期    : 2011年11月20日
-    作    者    : W00176595
-    修改内容    : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     /* 目标小区 频点 */
@@ -2442,27 +1698,13 @@ typedef struct
     VOS_UINT8   aucRsv;   /* 填充字段  */
 }GAS_OM_EVENT_GSM_TO_UTRAN_TDD_RESEL_START_ST;
 
-/*****************************************************************************
-消息名称  : GAS_OM_EVENT_GSM_TO_UTRAN_TDD_RESEL_END_ST
-功能描述  : GAS 向 OM 上报 G 到 UTRAN TDD 重选结束
-修改历史  :
-  1.日    期    : 2011年11月20日
-    作    者    : w00176595
-    修改内容    : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     TRRC_GRR_CELL_RESEL_CCO_RESULT_ENUM_UINT32   ulGTReselRlt;
 }GAS_OM_EVENT_GSM_TO_UTRAN_TDD_RESEL_END_ST;
 
-/*****************************************************************************
-消息名称  : GAS_OM_EVENT_UTRAN_TDD_TO_GSM_RESEL_START_ST
-功能描述  : GAS 向 OM 上报 UTRAN TDD 到 G 重选开始
-修改历史  :
-  1.日    期    : 2011年11月20日
-    作    者    : w00176595
-    修改内容    : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usArfcn;
@@ -2470,57 +1712,26 @@ typedef struct
     VOS_UINT8                           ucBcc;                                  /* (3bit) 基站色码  */
 }GAS_OM_EVENT_UTRAN_TDD_TO_GSM_RESEL_START_ST;
 
-/*****************************************************************************
- 消息名称  : GAS_OM_EVENT_UTRAN_TDD_TO_GSM_RESEL_END_ST
- 功能描述  : GAS 向 OM 上报 UTRAN TDD 到 G 重选结束
- 修改历史  :
-  1.日    期    : 2011年11月20日
-    作    者    : w00176595
-    修改内容    : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     TRRC_GRR_CELL_RESEL_CCO_RESULT_ENUM_UINT32   ulTGReselRlt;
 }GAS_OM_EVENT_UTRAN_TDD_TO_GSM_RESEL_END_ST;
 
-/*****************************************************************************
- Structure      : GAS_OM_EVENT_GSM_TO_UTRAN_TDD_CCO_START_ST
- Description    : GAS 向 OM 上报 G 到 UTRAN_TDD CCO 开始
- Message origin :
- 修改历史 :
-  1.日    期    : 2012年02月21日
-    作    者    : w00176595
-    修改内容    : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16  usTddArfcn;      /* 目标小区 频点 */
     VOS_UINT16  usCellParaId;    /* 目标小区 小区 ID */
 }GAS_OM_EVENT_GSM_TO_UTRAN_TDD_CCO_START_ST;
 
-/*****************************************************************************
- Structure      : GAS_OM_EVENT_GSM_TO_UTRAN_TDD_CCO_END_ST
- Description    : GAS 向 OM 上报 G 到 UTRAN_TDD CCO 结束
- Message origin :
- 修改历史 :
-  1.日    期    : 2012年02月21日
-    作    者    : w00176595
-    修改内容    : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     TRRC_GRR_CELL_RESEL_CCO_RESULT_ENUM_UINT32   ulGTCCORlt;
 }GAS_OM_EVENT_GSM_TO_UTRAN_TDD_CCO_END_ST;
 
-/*****************************************************************************
- Structure      : GAS_OM_EVENT_UTRAN_TDD_TO_GSM_CCO_START_ST
- Description    : GAS 向 OM 上报 UTRAN_TDD 到 G CCO 开始
- Message origin :
- 修改历史 :
-  1.日    期    : 2012年02月21日
-    作    者    : w00176595
-    修改内容    : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usArfcn;
@@ -2528,59 +1739,27 @@ typedef struct
     VOS_UINT8                           ucBcc;                                  /* (3bit) 基站色码  */
 }GAS_OM_EVENT_UTRAN_TDD_TO_GSM_CCO_START_ST;
 
-/*****************************************************************************
- Structure      : GAS_OM_EVENT_UTRAN_TDD_TO_GSM_CCO_END_ST
- Description    : GAS 向 OM 上报 UTRAN_TDD 到 G CCO 结束
- Message origin :
- 修改历史 :
-  1.日    期    : 2012年02月21日
-    作    者    : w00176595
-    修改内容    : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     TRRC_GRR_CELL_RESEL_CCO_RESULT_ENUM_UINT32   ulTGCCORlt;
 }GAS_OM_EVENT_UTRAN_TDD_TO_GSM_CCO_END_ST;
 
-/*****************************************************************************
- Structure      : GAS_OM_EVENT_UTRAN_TDD_TO_GSM_HANDOVER_END_ST
- Description    : GAS 向 OM 上报 UTRAN_TDD 到 G HANDOVER 结束
- Message origin :
- 修改历史 :
-  1.日    期    : 2012年02月21日
-    作    者    : L00167020
-    修改内容    : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     TRRC_GRR_HANDOVER_RESULT_ENUM_UINT32   ulT2gHoRlt;
 
 }GAS_OM_EVENT_UTRAN_TDD_TO_GSM_HANDOVER_END_ST;
 
-/*****************************************************************************
- 消息名称   : GAS_OM_EVENT_GSM_TO_UTRAN_TDD_REDIR_START_ST
- 功能描述   : GAS 向 OM 上报 G 到 UTRAN TDD 重定向 开始
 
- 修改历史 :
-  1.日    期    : 2013年05月16日
-    作    者    : y00142674
-    修改内容    : 新增结构体，GUTL 准FR
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                              ulUtranTddCellCnt;
     RRC_CELL_SEL_UTRAN_TDD_CELL_STRU        astUtranTddCell[RR_TRRC_MAX_UTRAN_TDD_CELL_NUM];
 }GAS_OM_EVENT_GSM_TO_UTRAN_TDD_REDIR_START_ST;
 
-/*****************************************************************************
- 消息名称   : GAS_OM_EVENT_GSM_TO_UTRAN_TDD_REDIR_END_ST
- 功能描述   : GAS 向 OM 上报 G 到 UTRAN TDD 重定向 结束
 
- 修改历史 :
-  1.日    期    : 2013年05月16日
-    作    者    : y00142674
-    修改内容    : 新增结构体，GUTL 准FR
-*****************************************************************************/
 typedef struct
 {
     TRRC_GRR_REDIRECTED_RESULT_ENUM_UINT32  enTrrcGrrRedirRlt;
@@ -2588,14 +1767,7 @@ typedef struct
 
 #endif
 
-/*****************************************************************************
- 消息名称  : GAS_OM_EVENT_GSM_TO_UTRAN_FDD_RESEL_START_ST
- 功能描述  : GAS 向 OM 上报 GSM 到 UTRAN FDD 重选开始, 携带目标小区信息
- 修改历史  :
-  1.日    期    : 2012年02月25日
-    作    者    : j00178524
-    修改内容    : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     /* 目标小区 频点 */
@@ -2618,28 +1790,14 @@ typedef struct
     VOS_UINT8   aucRsv[3];   /* 填充字段  */
 }GAS_OM_EVENT_GSM_TO_UTRAN_FDD_RESEL_START_ST;
 
-/*****************************************************************************
- 消息名称  : GAS_OM_EVENT_GSM_TO_UTRAN_FDD_RESEL_END_ST
- 功能描述  : GAS 向 OM 上报 GSM 到 UTRAN FDD 重选开始, 携带目标小区信息
- 修改历史  :
-  1.日    期    : 2012年02月25日
-    作    者    : j00178524
-    修改内容    : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     /* 重选结果 */
     VOS_UINT32              ulResult;
 }GAS_OM_EVENT_GSM_TO_UTRAN_FDD_RESEL_END_ST;
 
-/*****************************************************************************
- 消息名称  : GAS_OM_EVENT_GSM_TO_UTRAN_FDD_CCO_START_ST
- 功能描述  : GAS 向 OM 上报 GSM 到 UTRAN FDD CCO开始, 携带目标小区信息
- 修改历史  :
-  1.日    期    : 2012年02月25日
-    作    者    : j00178524
-    修改内容    : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     /* 目标小区 频点 */
@@ -2650,14 +1808,7 @@ typedef struct
 
 }GAS_OM_EVENT_GSM_TO_UTRAN_FDD_CCO_START_ST;
 
-/*****************************************************************************
- 枚举名    : GAS_OM_EVENT_GSM_TO_UTRAN_FDD_CCO_RESULT_ENUM
- 枚举说明  : 向 OM上报 GAS CCO 到 UTRAN FDD 小区的结果
- 修改历史  :
- 1.日    期    : 2012年03月06日
-   作    者    : j00178524
-   修改内容    : 新建枚举类型, for V7R1 GTL PhaseII
-*****************************************************************************/
+
 enum GAS_OM_EVENT_GSM_TO_UTRAN_FDD_CCO_RESULT_ENUM
 {
     GAS_OM_EVENT_GSM_TO_UTRAN_FDD_CCO_RESULT_SUCC                               = 0x1,        /* 成功 */
@@ -2670,14 +1821,7 @@ enum GAS_OM_EVENT_GSM_TO_UTRAN_FDD_CCO_RESULT_ENUM
 
 typedef VOS_UINT32 GAS_OM_EVENT_GSM_TO_UTRAN_FDD_CCO_RESULT_ENUM32;
 
-/**********************************************************************************************************************************************************
- 消息名称  : GAS_OM_EVENT_GSM_TO_UTRAN_FDD_CCO_END_ST
- 功能描述  : GAS 向 OM 上报 GSM 到 UTRAN FDD CCO开始, 携带目标小区信息
- 修改历史  :
-  1.日    期    : 2012年02月25日
-    作    者    : j00178524
-    修改内容    : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     /* 重选结果 */
@@ -2686,14 +1830,7 @@ typedef struct
 
 #define GAS_OM_INTER_RESEL_CELL_EVALUATE_INFO_LST_SIZE          (32)
 
-/*****************************************************************************
- 消息名称  : GAS_OM_INTER_RESEL_CELL_EVALUATE_INFO_STRU
- 功能描述  : GAS 向 OM 上报的系统评估结果
- 修改历史  :
-  1.日    期    : 2016-01-06
-    作    者    : p00166345
-    修改内容    : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                                              usArfcn;
@@ -2707,14 +1844,7 @@ typedef struct
     VOS_UINT8                                               ucEvaluateRlt;
 }GAS_OM_INTER_RESEL_CELL_EVALUATE_INFO_STRU;
 
-/*****************************************************************************
- 消息名称  : GAS_OM_INTER_RESEL_CELL_EVALUATE_INFO_STRU
- 功能描述  : GAS 向 OM 上报的系统评估结果
- 修改历史  :
-  1.日    期    : 2016-01-06
-    作    者    : p00166345
-    修改内容    : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     VOS_INT16                                   sQoffset;
@@ -2738,14 +1868,7 @@ typedef struct
     GAS_OM_INTER_RESEL_RANKING_PARA_STRU        stRankingBasedParas;
 }GAS_OM_INTER_RESEL_EVALUATE_RLT_STRU;
 
-/*****************************************************************************
- 消息名称  : GAS_OM_EVENT_INTER_RESEL_EVALUATE_START_ST
- 功能描述  : GAS 向 OM 上报异系统重选评估开始的事件
- 修改历史  :
-  1.日    期    : 2011年11月20日
-    作    者    : w00176595
-    修改内容    : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8          ucReselType;                           /*  主动重选或被动重选 */
@@ -2753,43 +1876,21 @@ typedef struct
     VOS_UINT8          aucResv[2];                            /* 保留位 */
 }GAS_OM_EVENT_INTER_RESEL_EVALUATE_START_ST;
 
-/*****************************************************************************
- 消息名称  : GAS_OM_EVENT_INTER_RESEL_EVALUATE_TIMER_START_ST
- 功能描述  : GAS 向 OM 上报异系统重选评估定时器启动的事件
- 修改历史  :
-  1.日    期    : 2011年11月20日
-    作    者    : w00176595
-    修改内容    : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32          ulTimerId;                            /*  定时器的ID */
     VOS_UINT32          ulTimerLen;                           /*  定时器的长度 */
 }GAS_OM_EVENT_INTER_RESEL_EVALUATE_TIMER_START_ST;
 
-/*****************************************************************************
- 消息名称  : GAS_OM_EVENT_INTER_RESEL_EVALUATE_TIMER_EXPIRED_ST
- 功能描述  : GAS 向 OM 上报异系统重选评估定时器超时的事件
- 修改历史  :
-  1.日    期    : 2011年11月20日
-    作    者    : w00176595
-    修改内容    : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32          ulTimerId;                            /*  定时器的ID */
 }GAS_OM_EVENT_INTER_RESEL_EVALUATE_TIMER_EXPIRED_ST;
 
 
-/*****************************************************************************
- Structure      : GAS_OM_EVENT_RESEL_EVALUATE_ADD_CELL_ST
- Description    : GAS 向 OM 上报 异系统重选评估新小区入围
- Message origin :
- 修改历史 :
-  1.日    期    : 2011年07月22日
-    作    者    : j00178524
-    修改内容    : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucCellType;                             /* 小区类型 */
@@ -2798,15 +1899,7 @@ typedef struct
     VOS_UINT16                          usCellData;                             /* 小区标识，扰码或小区ID */
 }GAS_OM_EVENT_RESEL_EVALUATE_ADD_CELL_ST;
 
-/*****************************************************************************
- Structure      : GAS_OM_EVENT_RESEL_EVALUATE_RMV_CELL_ST
- Description    : GAS 向 OM 上报 异系统重选评估小区从候选列表中删除
- Message origin :
- 修改历史 :
-  1.日    期    : 2011年07月22日
-    作    者    : j00178524
-    修改内容    : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucCause;                                /* 小区从候选列表中删除的原因 */
@@ -2821,14 +1914,7 @@ typedef struct
 #define GAS_OM_FREQ_SEARCHING_USED_MAX_NUM               (150)
 #define GAS_OM_MAX_PREFER_CELL_NUM                     (15)
 
-/*****************************************************************************
- 结构名    : GAS_OM_DEC_FAIL_ARFCN_ST
- 结构说明  : 每次LIST搜网的时候, 记录解码未成功的小区
- 修改历史 :
- 1.日    期    : 2011年08月04日
-   作    者    : w00176595
-   修改内容    : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16    usArfcn;
@@ -2848,15 +1934,7 @@ typedef struct
 } GAS_OM_FREQUENCY_RXLEV_MEAS_RESULT_ST;
 
 
-/*****************************************************************************
- Structure      : GAS_OM_EVENT_PLMN_SEARCH_DEC_CELL_STRU
- Description    : 搜网过程中使用的黑名单数据
- Message origin :
- 修改历史 :
- 1.日    期    : 2011年08月04日
-   作    者    : w00176595
-   修改内容    : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                usCount;
@@ -2864,15 +1942,7 @@ typedef struct
     GAS_OM_DEC_FAIL_ARFCN_ST  astDecFailArfcn[GAS_OM_PLMN_LIST_SEARCHED_FREQ_MAX_NUM];
 }GAS_OM_EVENT_PLMN_SEARCH_DEC_CELL_STRU;
 
-/*****************************************************************************
- Structure      : GAS_OM_EVENT_PLMN_SEARCH_RXLEV_STRU
- Description    : 搜网过程中电平过滤后剩余的排序后的电平数据
- Message origin :
- 修改历史 :
- 1.日    期    : 2011年08月04日
-   作    者    : w00176595
-   修改内容    : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                usCount;
@@ -2901,14 +1971,7 @@ typedef struct
 } GAS_OM_PREFER_CELL_ST;
 
 
-/*****************************************************************************
- 结构名    : GAS_OM_EVENT_WCDMA_TO_GSM_RESEL_CCO_END_ST
- 结构说明  : 给OM上报W到G Resel/CCO的结果
- 修改历史 :
- 1.日    期    : 2012年04月19日
-   作    者    : w00176595
-   修改内容    : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     GAS_OM_RESEL_CCO_W2G_RESULT_ENUM_UINT8    enReselCCORst;
@@ -2940,40 +2003,19 @@ typedef struct
     GAS_OM_LOG_RECORD_STRU              astData[GAS_OM_PRINT_MSG_MAX_NUM];
 }GAS_OM_LOG_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : Gas_WRITE_PREFER_CELL_SWITCH_TO_NV_MSG
- 结构说明  : 
- 修改历史  : 
- 1.日    期    : 2012年09月26日
-   作    者    : z00206003
-   修改内容    : 新建结构体 DTS2012092601774
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usSwitch;
 }Gas_WRITE_PREFER_CELL_SWITCH_TO_NV_MSG;
 
-/*****************************************************************************
- 结构名    : Gas_WRITE_PREFER_PLMN_NUM_TO_NV_MSG
- 结构说明  : 
- 修改历史  : 
- 1.日    期    : 2012年09月26日
-   作    者    : z00206003
-   修改内容    : 新建结构体 DTS2012092601774
-*****************************************************************************/
+
 typedef struct
 {
    VOS_UINT16                           usPlmnCnt;          
 }Gas_WRITE_PREFER_PLMN_NUM_TO_NV_MSG;
 
-/*****************************************************************************
- 结构名    : Gas_PREFER_CELL_PLMN_LIST_STRU
- 结构说明  : 优选小区NV项中plmn list结构
- 修改历史  : 
- 1.日    期    : 2012年09月26日
-   作    者    : z00206003
-   修改内容    : 新建结构体 DTS2012092601774
-*****************************************************************************/
+
 typedef struct 
 {
     VOS_UINT32                          ulMcc;            
@@ -2982,27 +2024,13 @@ typedef struct
     VOS_UINT16                          aArfs[60];          
 }Gas_PREFER_CELL_PLMN_LIST_STRU;
 
-/*****************************************************************************
- 结构名    : Gas_WRITE_PREFER_CELL_TO_NV_MSG
- 结构说明  : 
- 修改历史  : 
- 1.日    期    : 2012年09月26日
-   作    者    : z00206003
-   修改内容    : 新建结构体 DTS2012092601774
-*****************************************************************************/
+
 typedef struct
 {
     Gas_PREFER_CELL_PLMN_LIST_STRU      aPlmnlist[5];     
 }Gas_WRITE_PREFER_CELL_TO_NV_MSG;
 
-/*****************************************************************************
- 结构名    : GAS_OM_WRITE_NV_REQ_ST
- 结构说明  : 
- 修改历史  : 
- 1.日    期    : 2012年09月26日
-   作    者    : z00206003
-   修改内容    : 新建结构体 DTS2012092601774
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                           /* _H2ASN_Skip */        
@@ -3016,15 +2044,7 @@ typedef struct
     **********************************************************************/
 }GAS_OM_WRITE_NV_REQ_ST;
 
-/*****************************************************************************
- Structure      : GAS_OM_EVENT_UTRAN_CELL_BAR_INFO_STRU
- Description    : 发送UTRAN小区被惩罚的可维可测结构体信息
- Message origin :
- 修改历史 :
- 1.日    期    : 2015年07月24日
-   作    者    : w00146666
-   修改内容    : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16 usArfcn;      /* UTRAN小区频点 */
@@ -3034,14 +2054,7 @@ typedef struct
     VOS_UINT32 ulTimerLen;  /* 惩罚的时长, 单位ms */
 }GAS_OM_EVENT_UTRAN_CELL_BAR_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : GAS_OM_EVENT_IND_COMMON_ST
- 结构说明  : 对应GAS_OM_EVENT_IND_ST中aucData[4]
- 修改历史  : 
- 1.日    期    : 2012年09月26日
-   作    者    : z00206003
-   修改内容    : 新建结构体 DTS2012092601774
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           aucReserved[4];      
@@ -3087,14 +2100,7 @@ typedef struct
     GAS_OM_APPLY_TASK_INFO_STRU              astOmApplyTaskInfo[GAS_OM_APPLY_TASK_LIST_MAX_NUM]; /* 申请的任务列表 */
 }GAS_OM_APPLY_TASK_LIST_STRU;
 
-/*****************************************************************************
- 结构名    : GAS_OM_EVENT_RF_RESOURCE_TASK_LIST_STRU
- 结构说明  : 上报整个资源任务列表
- 修改历史  : 
- 1.日    期    : 2014年02月25日
-   作    者    : l67237
-   修改内容    : 新建结构体 GAS DSDS
-*****************************************************************************/
+
 typedef struct
 {
     GAS_OM_APPLY_TASK_LIST_STRU                stGasRfResTaskList;
@@ -3102,14 +2108,7 @@ typedef struct
 #endif
 
 
-/*****************************************************************************
- 结构名    : GAS_OM_MSG_DATA
- 结构说明  : 
- 修改历史  : 
- 1.日    期    : 2012年09月26日
-   作    者    : z00206003
-   修改内容    : 新建结构体 DTS2012092601774
-*****************************************************************************/
+
 typedef struct
 {
     OM_GAS_MSG_ID_ENUM_UINT16           usMsgID;          /*_H2ASN_MsgChoice_Export OM_GAS_MSG_ID_ENUM_UINT16*/
@@ -3122,14 +2121,7 @@ typedef struct
 }GAS_OM_MSG_DATA;
 /*_H2ASN_Length UINT32*/
 
-/*****************************************************************************
- 结构名    : GasOmInterface_MSG
- 结构说明  : GasOmInterface 根节点
- 修改历史  : 
- 1.日    期    : 2012年09月26日
-   作    者    : z00206003
-   修改内容    : 新建结构体 DTS2012092601774
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER             
@@ -3137,27 +2129,13 @@ typedef struct
     GAS_OM_MSG_DATA                     stMsgData;
 }GasOmInterface_MSG;
 
-/*****************************************************************************
- 结构名    : GasEvent_MSG
- 结构说明  : GASEvent 根节点
- 修改历史  : 
- 1.日    期    : 2012年09月26日
-   作    者    : z00206003
-   修改内容    : 新建结构体 DTS2012092601774
-*****************************************************************************/
+
 typedef struct   
 {
     GAS_OM_EVENT_IND_ST                 stMsgData;
 }GasEvent_MSG;
 
-/*****************************************************************************
- 结构名    : GAS_OM_EVENT_GCOM_CACHED_MSG_OVERFLOW_ST
- 结构说明  : 消息队列溢出时上报给OM事件的结构
- 修改历史  : 
- 1.日    期    : 2012年09月29日
-   作    者    : w00176595
-   修改内容    : 新建结构体 DTS2012092900233
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usMsgId;        /* 丢弃的消息的MSG ID */
@@ -3165,14 +2143,7 @@ typedef struct
     VOS_UINT8                           ucRsv;          /* 保留位  */
 }GAS_OM_EVENT_GCOM_CACHED_MSG_OVERFLOW_ST;
 
-/*****************************************************************************
- 结构名    : GAS_OM_EVENT_TRANSACTION_INFO_ST
- 结构说明  : 查询NAS呼叫状态结果的打印
- 修改历史  : 
- 1.日    期    : 2012年11月16日
-   作    者    : w00176595
-   修改内容    : 新建结构体
-*****************************************************************************/
+
 typedef struct   
 {
     VOS_UINT8                           ucCsTransactInfo;   /* CS的呼叫状态 */
@@ -3198,15 +2169,7 @@ typedef struct
 #endif
 
 
-/* Added by yangsicong for probe接口新开发, 2012-10-30, begin */
-/*****************************************************************************
- 结构名    : GAS_OM_ROAD_TEST_INFO_REQ_STRU
- 结构说明  : 路测需求 OM向GAS请求上报信息的原语结构
- 修改历史  : 
- 1.日    期    : 2012年11月07日
-   作    者    : y49634
-   修改内容    : 新建结构体 
-*****************************************************************************/
+
 typedef struct
 {
     DIAG_GAS_MSG_COMM_HEAD_ST           stMsgCommHead;
@@ -3217,14 +2180,7 @@ typedef struct
     GAS_ROAD_TEST_INFO_TYPE_ENUM_UINT16   enRtInfoType;
 }GAS_OM_ROAD_TEST_INFO_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : GAS_OM_ROAD_TEST_INFO_CNF_STRU
- 结构说明  : 路测需求 GAS向OM回复的请求上报信息确认的原语结构
- 修改历史  : 
- 1.日    期    : 2012年11月07日
-   作    者    : y49634
-   修改内容    : 新建结构体 
-*****************************************************************************/
+
 typedef struct
 {
     DIAG_GAS_MSG_COMM_HEAD_ST           stMsgCommHead;
@@ -3235,14 +2191,7 @@ typedef struct
     OM_GAS_REPORT_TYPE_ENUM_UINT16      enReportType;
 }GAS_OM_ROAD_TEST_INFO_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : GAS_OM_ROAD_TEST_MEAS_RESULT_STRU
- 结构说明  : 路测需求 GAS向OM上报的服务小区测量结果信息结构
- 修改历史  : 
- 1.日    期    : 2012年11月07日
-   作    者    : y49634
-   修改内容    : 新建结构体 
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                      usArfcn;           /* 取值范围[0,1023],无效值=65535 */
@@ -3267,14 +2216,7 @@ typedef struct
     VOS_UINT16                      usCvBep;            /* 取值范围[0, 7],无效值=-32768 */
 }GAS_OM_ROAD_TEST_SCELL_MEAS_RESULT_STRU;
 
-/*****************************************************************************
- 结构名    : GAS_OM_ROAD_TEST_GNCELL_MEAS_RESULT_STRU
- 结构说明  : 路测需求 GAS向OM上报的G邻小区测量结果信息结构
- 修改历史  : 
- 1.日    期    : 2012年11月07日
-   作    者    : y49634
-   修改内容    : 新建结构体 
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16  usArfcn;                               /* 取值范围[0,1023],无效值=65535 */
@@ -3287,14 +2229,7 @@ typedef struct
     VOS_INT16   sC32;                                  /* 取值范围[-127, 127],无效值=-32768 */
 }GAS_OM_ROAD_TEST_GNCELL_MEAS_RESULT_STRU;
 
-/*****************************************************************************
- 结构名    : GAS_OM_ROAD_TEST_3G_FCELL_MEAS_RESULT_STRU
- 结构说明  : 路测需求 GAS向OM上报的3G邻小区测量结果信息结构
- 修改历史  : 
- 1.日    期    : 2012年11月07日
-   作    者    : y49634
-   修改内容    : 新建结构体 
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16 usUArfcn;            /* 取值范围[0, 16383],无效值=65535 */
@@ -3305,14 +2240,7 @@ typedef struct
     VOS_UINT8   aucResv[2];
 }GAS_OM_ROAD_TEST_3G_FCELL_MEAS_RESULT_STRU;
 
-/*****************************************************************************
- 结构名    : GAS_OM_ROAD_TEST_MEAS_RESULT_STRU
- 结构说明  : 路测需求 GAS向OM上报的测量结果信息结构
- 修改历史  : 
- 1.日    期    : 2012年11月07日
-   作    者    : y49634
-   修改内容    : 新建结构体 
-*****************************************************************************/
+
 typedef struct
 {
     GAS_OM_ROAD_TEST_SCELL_MEAS_RESULT_STRU     stScellMeasResult;              
@@ -3322,14 +2250,7 @@ typedef struct
     GAS_OM_ROAD_TEST_3G_FCELL_MEAS_RESULT_STRU  ast3GFCellMeasResult[GAS_OM_3G_NCELL_CNT_MAX_NUM];       
 }GAS_OM_ROAD_TEST_MEAS_RESULT_STRU;
 
-/*****************************************************************************
- 结构名    : GAS_OM_ROAD_TEST_CELL_FULL_ID_STRU
- 结构说明  : 路测需求 GAS向OM上报的服务小区标识结构
- 修改历史  : 
- 1.日    期    : 2012年11月07日
-   作    者    : y49634
-   修改内容    : 新建结构体 
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usArfcn;           	/* 取值范围[0, 1023],无效值=65535 */
@@ -3342,14 +2263,7 @@ typedef struct
     VOS_UINT16                          usRac;              /* 取值范围[0,255],无效值=65535 */   // TODO: 待确认
 }GAS_OM_ROAD_TEST_CELL_FULL_ID_STRU;
 
-/*****************************************************************************
- 结构名    : GAS_OM_ROAD_TEST_CCCH_PARA_STRU
- 结构说明  : 路测需求 GAS向OM上报的服务小区CCCH参数结构
- 修改历史  : 
- 1.日    期    : 2012年11月07日
-   作    者    : y49634
-   修改内容    : 新建结构体 
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16  usAttachAllowed;    /* 取值范围[0,1],无效值=65535 */
@@ -3358,14 +2272,7 @@ typedef struct
     VOS_UINT16  usMfrms;            /* 取值范围[2,9],无效值=65535 */
 }GAS_OM_ROAD_TEST_CCCH_PARA_STRU;
 
-/*****************************************************************************
- 结构名    : GAS_OM_ROAD_TEST_CCCH_PARA_STRU
- 结构说明  : 路测需求 GAS向OM上报的服务小区RACH参数结构
- 修改历史  : 
- 1.日    期    : 2012年11月07日
-   作    者    : y49634
-   修改内容    : 新建结构体 
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16  usTxInt;            /* 取值范围[3,50],无效值=65535 */
@@ -3374,14 +2281,7 @@ typedef struct
     VOS_UINT16  usReestablishment;  /* 取值范围[0,1],无效值=65535 */
 }GAS_OM_ROAD_TEST_RACH_PARA_STRU;
 
-/*****************************************************************************
- 结构名    : GAS_OM_ROAD_TEST_CELL_SEL_RESEL_PARA_STRU
- 结构说明  : 路测需求 GAS向OM上报的服务小区重选参数结构
- 修改历史  : 
- 1.日    期    : 2012年11月07日
-   作    者    : y49634
-   修改内容    : 新建结构体 
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16  usMsTxPwrMaxCch;        /* 取值范围[0,31],无效值=65535 */
@@ -3396,14 +2296,7 @@ typedef struct
     VOS_UINT16  usCellPri;              /* 取值范围[0,1],无效值=65535 */
 }GAS_OM_ROAD_TEST_CELL_SEL_RESEL_PARA_STRU;
 
-/*****************************************************************************
- 结构名    : GAS_OM_ROAD_TEST_SCELL_CELL_PARA_STRU
- 结构说明  : 路测需求 GAS向OM上报的服务小区信息结构
- 修改历史  : 
- 1.日    期    : 2012年11月07日
-   作    者    : y49634
-   修改内容    : 新建结构体 
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                                      usGprsSupported;    /* 取值范围[0,1],无效值=65535 */
@@ -3417,14 +2310,7 @@ typedef struct
 }GAS_OM_ROAD_TEST_SCELL_CELL_PARA_STRU;
 
 
-/*****************************************************************************
- 结构名    : GAS_OM_ROAD_TEST_DCH_CHAN_PARA_STRU
- 结构说明  : 路测需求 GAS向OM上报的DCH信息结构
- 修改历史  : 
- 1.日    期    : 2012年11月07日
-   作    者    : y49634
-   修改内容    : 新建结构体 
-*****************************************************************************/
+
 typedef struct
 {
 
@@ -3444,28 +2330,14 @@ typedef struct
 
 }GAS_OM_ROAD_TEST_DCH_CHAN_PARA_STRU;
 
-/*****************************************************************************
- 结构名    : GAS_OM_ROAD_TEST_RUN_MODE_STRU
- 结构说明  : 路测需求 GAS向OM上报的GAS当前的运行状态信息结构
- 修改历史  : 
- 1.日    期    : 2012年11月07日
-   作    者    : y49634
-   修改内容    : 新建结构体 
-*****************************************************************************/
+
 typedef struct
 {
     GAS_OM_GSM_RUNNING_MODE_ENUM_UINT16  enGsmMode;          /* 取值范围[0,1],无效值=65535 */
     GAS_OM_GPRS_RUNNING_MODE_ENUM_UINT16  enGprsMode;         /* 取值范围[0,1],无效值=65535 */
 }GAS_OM_ROAD_TEST_RUN_MODE_STRU;
 
-/*****************************************************************************
- 结构名    : GAS_OM_ROAD_TEST_INFO_IND_STRU
- 结构说明  : 路测需求 GAS向OM上报信息原语结构
- 修改历史  : 
- 1.日    期    : 2012年11月07日
-   作    者    : y49634
-   修改内容    : 新建结构体 
-*****************************************************************************/
+
 typedef struct
 {
     OM_GAS_REPORT_TYPE_ENUM_UINT16          enReportType;                       /* 上报方式 */
@@ -3481,19 +2353,9 @@ typedef struct
     GAS_OM_ROAD_TEST_RUN_MODE_STRU          stRtRunMode;                        /* GSM/GPRS状态 */
     
 }GAS_OM_ROAD_TEST_INFO_IND_STRU;
-/* Added by yangsicong for probe接口新开发, 2012-10-30, end */
 
 
-/*****************************************************************************
- 结构名      : GAS_OM_JAM_DETECT_CTX_IND_STRU
- 描述        : GAS给OM上报的Jamming Detection 上下文
- 
- 修改历史 :
- 1.日    期   : 2015年2月17日
-   作    者   : y00142674
-   修改内容   : 新增结构, for W Jamming Detection
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16                          usHighRxlevArfcnNum;                    /* 全部强信号频点 */
@@ -3510,41 +2372,20 @@ typedef struct
 }GAS_OM_JAM_DETECT_CTX_IND_STRU;
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 结构名    : GAS_OM_EVENT_LTE_TO_GSM_HANDOVER_START_ST
- 结构说明  : GAS 向 OM 上报 获取LTE切换到GSM指令的SLICE值
- 修改历史  : 
- 1.日    期    : 2013年12月18日
-   作    者    : s00184266
-   修改内容    : 新建结构体 
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32      ulCurSlice;
 }GAS_OM_EVENT_LTE_TO_GSM_HANDOVER_START_ST;
 
-/*****************************************************************************
- 结构名    : GAS_OM_EVENT_LTE_TO_GSM_HANDOVER_END_ST
- 结构说明  : GAS 向 OM 上报 Lte 到 Geran HANDOVER 结束
- 修改历史  : 
- 1.日    期    : 2013年9月13日
-   作    者    : s00184266
-   修改内容    : 新建结构体 
-*****************************************************************************/
+
 typedef struct
 {
     LRRC_GURRC_HANDOVER_RESULT_ENUM_UINT32   enL2gHoRlt;
 }GAS_OM_EVENT_LTE_TO_GSM_HANDOVER_END_ST;
 #endif /* end of (FEATURE_ON == FEATURE_LTE) */
 
-/*****************************************************************************
- 结构名    : GAS_OM_EVENT_LAU_REQ_INFO_STRU
- 结构说明  : GAS 向 OM 上报 LAU 的相关信息
- 修改历史  : 
- 1.日    期    : 2015年05月11日
-   作    者    : p00166345
-   修改内容    : 新建结构体 
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulRlt;
@@ -3568,18 +2409,7 @@ typedef struct
 
 #define GAS_OM_PLMN_SEARCH_CELL_SATISFACTION_RESULT_MAX_NUM           (60)
 
-/*****************************************************************************
- 结构名    : GAS_OM_CELL_SATISFACTION_RESULT_ST
- 结构说明  : 小区的判决结果
- 修改历史 :
-  1.日    期   : 2014年04月01日
-    作    者   : w00176595
-    修改内容   : 新增结构体
-  2.日    期   : 2015年8月19日
-    作    者   : y00142674
-    修改内容   : 上报区分结果和优先级，for ParallelSrch
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16      usArfcn;                                        /* 频点 */
@@ -3587,14 +2417,7 @@ typedef struct
     VOS_UINT8       ucCellPriorityFlag;                             /* 优先级 */                                         
 }GAS_OM_CELL_SATISFACTION_RESULT_ST;
 
-/*****************************************************************************
- 结构名    : GAS_OM_PLMN_SRCH_CELL_SATISFACTION_RESULT_ST
- 结构说明  : 小区的判决结果
- 修改历史 :
- 1.日    期    : 2014年04月01日
-   作    者    : w00176595
-   修改内容    : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                               usCellCount;
@@ -3602,15 +2425,7 @@ typedef struct
     GAS_OM_CELL_SATISFACTION_RESULT_ST       astCellSatisfaction[GAS_OM_PLMN_SEARCH_CELL_SATISFACTION_RESULT_MAX_NUM];
 }GAS_OM_PLMN_SRCH_CELL_SATISFACTION_RESULT_ST;
 
-/*****************************************************************************
- 结 构 名  : GAS_OM_EVENT_UTRAN_FDD_TO_GSM_CCO_START_ST
- 结构说明  : GAS 向 OM 上报 UTRAN_FDD 到 G CCO 开始
- 修改历史  :
-  1.日  期   : 2014年5月5日
-    作  者   : s00184266
-    修改内容 : 新生成结构
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16                          usArfcn;
@@ -3618,29 +2433,13 @@ typedef struct
     VOS_UINT8                           ucBcc;                                  /* (3bit) 基站色码  */
 }GAS_OM_EVENT_UTRAN_FDD_TO_GSM_CCO_START_ST;
 
-/*****************************************************************************
- 结 构 名  : GAS_OM_EVENT_UTRAN_FDD_TO_GSM_CCO_END_ST
- 结构说明  : GAS 向 OM 上报 UTRAN_FDD 到 G CCO 结束
- 修改历史  :
-  1.日  期   : 2014年5月5日
-    作  者   : s00184266
-    修改内容 : 新生成结构
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                         ulW2GCcoRlt;
 }GAS_OM_EVENT_UTRAN_FDD_TO_GSM_CCO_END_ST;
 
-/*****************************************************************************
- 结 构 名  : GAS_OM_EVENT_UTRAN_FDD_TO_GSM_RESEL_START_ST
- 结构说明  : GAS 向 OM 上报 UTRAN_FDD 到 G RESEL 开始
- 修改历史  :
-  1.日  期   : 2014年5月20日
-    作  者   : s00186226
-    修改内容 : 新生成结构
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          ulArfcn;
@@ -3648,15 +2447,7 @@ typedef struct
     VOS_UINT32                          ulBcc;                                  /* (3bit) 基站色码  */
 }GAS_OM_EVENT_UTRAN_FDD_TO_GSM_RESEL_START_ST;
 
-/*****************************************************************************
- 结 构 名  : GAS_OM_FREQ_INFO_LIST_STRU
- 结构说明  : OM上报频点列表
- 修改历史  :
-  1.日  期   : 2015年9月10日
-    作  者   : s00184266
-    修改内容 : 新生成结构
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16                          usFreqNum; 
@@ -3664,15 +2455,7 @@ typedef struct
     VOS_UINT16                          ausFreqInfo[SEARCH_FREQ_BA_MAX_NUM];  
 }GAS_OM_FREQ_INFO_LIST_STRU;
 
-/*****************************************************************************
- 结 构 名  : GAS_OM_SEARCH_PROC_INFO_STRU
- 结构说明  : GAS搜网流程相关信息上报
- 修改历史  :
-  1.日  期   : 2015年9月10日
-    作  者   : s00184266
-    修改内容 : 新生成结构
 
-*****************************************************************************/
 typedef struct
 {
     GAS_OM_SEARCH_PROC_ENUM_UINT8               enSrchProc;
@@ -3681,29 +2464,13 @@ typedef struct
     GAS_OM_FREQ_INFO_LIST_STRU                  stFreqInfoList;
 }GAS_OM_SEARCH_PROC_INFO_STRU;
 
-/*****************************************************************************
- 结 构 名  : GAS_OM_SEARCHED_FREQ_LIST_STRU
- 结构说明  : GAS已搜索列表上报
- 修改历史  :
-  1.日  期   : 2015年9月10日
-    作  者   : s00184266
-    修改内容 : 新生成结构
 
-*****************************************************************************/
 typedef struct
 {
     GAS_OM_FREQ_INFO_LIST_STRU                  stFreqInfoList;
 }GAS_OM_SEARCHED_FREQ_LIST_STRU;
 
-/*****************************************************************************
- 结 构 名  : GAS_OM_CSS_CLOUD_INTERFACE_STRU
- 结构说明  :
- 修改历史  :
-  1.日  期   : 2015年11月5日
-    作  者   : s00184266
-    修改内容 : 新生成结构
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                                  ulReturnValue;
@@ -3735,16 +2502,7 @@ typedef struct
 
 typedef GAS_OM_OTA_CNF_STRUCT  GAS_OM_NV_WRITE_CNF_STRU;
 
-/*****************************************************************************
- 结 构 名  : SDT_GAS_CONNECTED_IND_STRU
- 结构描述  : OM向GAS发送的HiDS连接消息
 
- 修改历史      :
-  1.日    期   : 2015年6月24日
-    作    者   : 华宏 h00166210
-    修改内容   : 新生成结构
-
-*****************************************************************************/
 typedef struct
 {
     DIAG_GAS_MSG_COMM_HEAD_ST           stMsgCommHead;
@@ -3764,16 +2522,7 @@ typedef struct
     VOS_UINT8   aucData[4];
 }GAS_OM_TRANS_IND_ST;
 
-/*****************************************************************************
- 结 构 名  : GAS_OM_OTA_IND_STRUCT
- 结构描述  : GAS向OM上报空口消息
 
- 修改历史      :
-  1.日    期   : 2008年4月21日
-    作    者   : 杨龙 y58800
-    修改内容   : 新生成结构
-
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16    usOtaMsgID;

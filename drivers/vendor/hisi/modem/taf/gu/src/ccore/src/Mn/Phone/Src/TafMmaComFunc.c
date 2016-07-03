@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2005-2015, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafMmaComFunc.c
-  版 本 号   : 初稿
-  作    者   : f00179208
-  生成日期   : 2015年02月09日
-  最近修改   :
-  功能描述   : TafMmaComFunc.c文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年02月09日
-    作    者   : f00179208
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -141,21 +124,7 @@ extern STATUS_CONTEXT_STRU              g_StatusContext;
 *****************************************************************************/
 
 #if (FEATURE_IMS == FEATURE_ON)
-/*****************************************************************************
- 函 数 名  : TAF_MMA_UpdataVoiceDomain
- 功能描述  : 更新语音优选域
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_TRUE
-             VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月04日
-    作    者   : f00179208
-    修改内容   : IMS动态开关配置项目
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_UpdataVoiceDomain(
     TAF_SDC_VOICE_DOMAIN_ENUM_UINT32    enVoiceDomain
 )
@@ -180,21 +149,7 @@ VOS_UINT32 TAF_MMA_UpdataVoiceDomain(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_UpdateLteImsSupportFlag
- 功能描述  : 更新LTE IMS使能标识
- 输入参数  : ucFlag 标识
- 输出参数  : 无
- 返 回 值  : VOS_TRUE
-             VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年02月04日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_UpdateLteImsSupportFlag(
     VOS_UINT8                           ucFlag
 )
@@ -224,20 +179,7 @@ VOS_UINT32 TAF_MMA_UpdateLteImsSupportFlag(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_TransMsccImsStartResultToTafErrorCode
- 功能描述  : 将MSCC的IMS打开结果值转换为TAF层的错误码
- 输入参数  : enResult
- 输出参数  : penErrorCode
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年04月15日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_TransMsccImsStartResultToTafErrorCode(
     NAS_MSCC_PIF_IMS_START_RESULT_ENUM_UINT32               enResult,
     TAF_ERROR_CODE_ENUM_UINT32                             *penErrorCode
@@ -261,20 +203,7 @@ VOS_VOID TAF_MMA_TransMsccImsStartResultToTafErrorCode(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_TransMsccImsStopResultToTafErrorCode
- 功能描述  : 将MSCC的IMS关闭结果值转换为TAF层的错误码
- 输入参数  : enResult
- 输出参数  : penErrorCode
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年04月15日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_TransMsccImsStopResultToTafErrorCode(
     NAS_MSCC_PIF_IMS_STOP_RESULT_ENUM_UINT32                enResult,
     TAF_ERROR_CODE_ENUM_UINT32                             *penErrorCode
@@ -299,22 +228,7 @@ VOS_VOID TAF_MMA_TransMsccImsStopResultToTafErrorCode(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SetSysCfgRatSetFlg
- 功能描述  : 设置SYSCFG中RAT标志
- 输入参数  : TAF_MMA_RAT_TYPE_ENUM_UINT8         enRatType
-             VOS_UINT32                         *pucRatExistedFlg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月15日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SetSysCfgRatSetFlg(
     TAF_MMA_RAT_TYPE_ENUM_UINT8         enRatType,
     VOS_UINT32                         *pucRatExistedFlg
@@ -345,21 +259,7 @@ VOS_VOID TAF_MMA_SetSysCfgRatSetFlg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_GetSysCfgRatFlag
- 功能描述  : 获取SYS CFG参数中的RAT所对应的Flag 参数
- 输入参数  : TAF_MMA_SYS_CFG_PARA_STRU          *pstSysCfgPara
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月28日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_GetSysCfgRatFlag(
     TAF_MMA_RAT_ORDER_STRU             *pstRatOrder,
     VOS_UINT32                         *pulRatExistedFlg
@@ -386,24 +286,7 @@ VOS_UINT32 TAF_MMA_GetSysCfgRatFlag(
 
     return VOS_TRUE;
 }
-/*****************************************************************************
- 函 数 名  : TAF_MMA_IsUserSettedSysCfgParaValid
- 功能描述  : 用户设置的syscfg参数有效性检查
- 输入参数  : TAF_MMA_SYS_CFG_PARA_STRU          *pstSysCfgPara
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月8日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年4月10日
-    作    者   : h00313353
-    修改内容   : SysCfg重构
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_IsUserSettedSysCfgParaValid(
     TAF_MMA_SYS_CFG_PARA_STRU          *pstSysCfgPara
 )
@@ -476,21 +359,7 @@ VOS_UINT32 TAF_MMA_IsUserSettedSysCfgParaValid(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_IsUserSettedGuBandValid
- 功能描述  : 判断用户设置的GU频段是否有效
- 输入参数  : TAF_USER_SET_PREF_BAND64           *pstGuBand
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月7日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_MMA_IsUserSettedGuBandValid(
     TAF_USER_SET_PREF_BAND64           *pstGuBand
 )
@@ -522,21 +391,7 @@ VOS_UINT32  TAF_MMA_IsUserSettedGuBandValid(
 }
 
 #if(FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : TAF_MMA_IsUserSettedLBandValid
- 功能描述  : 判断用户设置的L频段是否有效
- 输入参数  : TAF_USER_SET_PREF_BAND64           *pstLBand
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月7日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_MMA_IsUserSettedLBandValid(
     TAF_USER_SET_PREF_BAND64           *pstLBand
 )
@@ -563,21 +418,7 @@ VOS_UINT32  TAF_MMA_IsUserSettedLBandValid(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SetAttachAllowFlg
- 功能描述  : 根据attach类型设置attach是否允许标志
- 输入参数  : VOS_UINT32                          ulAttachType
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月18日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SetAttachAllowFlg(
     TAF_MMA_ATTACH_TYPE_ENUM_UINT8     ulAttachType
 )
@@ -601,24 +442,7 @@ VOS_VOID TAF_MMA_SetAttachAllowFlg(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_IsRatOrderChange
- 功能描述  : 检查当前的设置与上次的设置是否发生变化
- 输入参数  : pstCurrRat -- 当前设置的RAT
-             pstLastRat -- 上次设置的RAT
 
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  -- RAT发生变化
-             VOS_FALSE -- RAT未发生变化
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年4月9日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_IsRatOrderChange(
     TAF_MMA_RAT_ORDER_STRU             *pstCurrRat,
     TAF_MMA_RAT_ORDER_STRU             *pstLastRat
@@ -638,28 +462,7 @@ VOS_UINT32 TAF_MMA_IsRatOrderChange(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_GetValidUserCfgEhplmnInfo
- 功能描述  : 根据用户配置的EHPLMN信息取出EHPLMN列表
- 输入参数  : VOS_UINT8                                               ucHplmnMncLen
-             VOS_UINT8                                              *pucImsi
-             VOS_UINT8                                              *pucEhplmnListNum
-             TAF_SDC_PLMN_ID_STRU                                   *pstEhPlmnList
-             NAS_MMC_NVIM_USER_CFG_EXT_EHPLMN_INFO_STRU             *pstNvimCfgExtEhplmnInfo
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2015年12月12日
-    作    者   : s00217060
-    修改内容   : DTS2015120901555:pclint告警消除
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_GetValidUserCfgEhplmnInfo(
     VOS_UINT8                                               ucHplmnMncLen,
     VOS_UINT8                                              *pucImsi,
@@ -803,22 +606,7 @@ VOS_VOID TAF_MMA_MapCdmaNetworkExistanceSrvStaToSysMode(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_UpdateSerRegSta_HrpdToNone
- 功能描述  : 更新从HRPD到不存在HRPD时的服务状态和注册状态
- 输入参数  : TAF_SDC_SERVICE_STATUS_ENUM_UINT8   enServiceStatus
-             TAF_SDC_REG_STATUS_ENUM_UINT8       enRegStatus
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月1日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_UpdateSerRegSta_HrpdToNone(
     TAF_SDC_SRV_REG_INFO_STRU          *pstSrvInfo
 )
@@ -836,22 +624,7 @@ VOS_VOID TAF_MMA_UpdateSerRegSta_HrpdToNone(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAT_SDC_UpdateSerRegSta_HybridTo1x
- 功能描述  : 更新从Hybrid到1x时的服务状态和注册状态
- 输入参数  : TAF_SDC_SERVICE_STATUS_ENUM_UINT8   enServiceStatus
-             TAF_SDC_REG_STATUS_ENUM_UINT8       enRegStatus
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月1日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAT_MMA_UpdateSerRegSta_HybridTo1x(
     TAF_SDC_SRV_REG_INFO_STRU          *pstSrvInfo
 )
@@ -864,22 +637,7 @@ VOS_VOID TAT_MMA_UpdateSerRegSta_HybridTo1x(
     pstSrvInfo->enPsRegSta    = TAF_SDC_REG_NOT_REGISTERED_NOT_SEARCH;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_UpdateSerRegSta_1xToNone
- 功能描述  : 更新从1X到None时的服务状态和注册状态
- 输入参数  : TAF_SDC_SERVICE_STATUS_ENUM_UINT8   enServiceStatus
-             TAF_SDC_REG_STATUS_ENUM_UINT8       enRegStatus
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月1日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_UpdateSerRegSta_1xToNone(
     TAF_SDC_SRV_REG_INFO_STRU          *pstSrvInfo
 )
@@ -896,22 +654,7 @@ VOS_VOID TAF_MMA_UpdateSerRegSta_1xToNone(
     pstSrvInfo->enSrvDomain    = TAF_SDC_SERVICE_DOMAIN_NO_DOMAIN;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_UpdateSerRegSta_HybridToHrpd
- 功能描述  : 更新从Hybrid到HRPD时的服务状态和注册状态
- 输入参数  : TAF_SDC_SERVICE_STATUS_ENUM_UINT8   enServiceStatus
-             TAF_SDC_REG_STATUS_ENUM_UINT8       enRegStatus
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月1日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_UpdateSerRegSta_HybridToHrpd(
     TAF_SDC_SRV_REG_INFO_STRU          *pstSrvInfo
 )
@@ -927,22 +670,7 @@ VOS_VOID TAF_MMA_UpdateSerRegSta_HybridToHrpd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_UpdateSerRegSta_SvlteToLte
- 功能描述  : 更新从svlte到lte时的服务状态和注册状态
- 输入参数  : TAF_SDC_SERVICE_STATUS_ENUM_UINT8   enServiceStatus
-             TAF_SDC_REG_STATUS_ENUM_UINT8       enRegStatus
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月1日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_UpdateSerRegSta_SvlteToLte(
     TAF_SDC_SRV_REG_INFO_STRU          *pstSrvInfo
 )
@@ -957,22 +685,7 @@ VOS_VOID TAF_MMA_UpdateSerRegSta_SvlteToLte(
     pstSrvInfo->enSrvDomain    = TAF_SDC_SERVICE_DOMAIN_PS;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_UpdateSerRegSta_LteToNone
- 功能描述  : 更新从lte到none时的服务状态和注册状态
- 输入参数  : TAF_SDC_SERVICE_STATUS_ENUM_UINT8   enServiceStatus
-             TAF_SDC_REG_STATUS_ENUM_UINT8       enRegStatus
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月1日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_UpdateSerRegSta_LteToNone(
     TAF_SDC_SRV_REG_INFO_STRU          *pstSrvInfo
 )
@@ -990,22 +703,7 @@ VOS_VOID TAF_MMA_UpdateSerRegSta_LteToNone(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_UpdateSerRegSta_SvlteTo1x
- 功能描述  : 更新从svlte到1x时的服务状态和注册状态
- 输入参数  : TAF_SDC_SERVICE_STATUS_ENUM_UINT8   enServiceStatus
-             TAF_SDC_REG_STATUS_ENUM_UINT8       enRegStatus
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月1日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_UpdateSerRegSta_SvlteTo1x(
     TAF_SDC_SRV_REG_INFO_STRU          *pstSrvInfo
 )
@@ -1019,24 +717,7 @@ VOS_VOID TAF_MMA_UpdateSerRegSta_SvlteTo1x(
 }
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- 函 数 名  : TAF_MMA_UpdateSrvRegSta_Main
- 功能描述  : 更新服务状态服务状态
- 输入参数  : TAF_SDC_SRV_REG_INFO_STRU          *pstSrvInfo,
-             TAF_PH_ACCESS_TECH_ENUM_UINT8       enAct
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月1日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-  2.日    期   : 2015年10月21日
-    作    者   : l00324781
-    修改内容   : CDMA Iteration 18修改
-*****************************************************************************/
 VOS_VOID TAF_MMA_UpdateSrvRegSta_Main(
     TAF_SDC_SRV_REG_INFO_STRU          *pstSrvInfo,
     TAF_PH_ACCESS_TECH_ENUM_UINT8       enAct
@@ -1093,24 +774,7 @@ VOS_VOID TAF_MMA_UpdateSrvRegSta_Main(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ChgSysModeAndSrvRegSta
- 功能描述  : 该函数用于更新SYS MODE和注册服务状态
- 输入参数  : TAF_PH_ACCESS_TECH_ENUM_UINT8                           enAct
-             TAF_SDC_SYS_MODE_ENUM_UINT8                             enSysMode
-             TAF_SDC_SYS_SUBMODE_ENUM_UINT8                          enSubMode
-             pTafSdcSysmodServiceRegStaUpdateFunc                    pFuncTafSdcSysmodServiceRegStaUpdate
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月4日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_ChgSysModeAndSrvRegSta(
     TAF_PH_ACCESS_TECH_ENUM_UINT8                           enAct,
     TAF_SDC_SYS_MODE_ENUM_UINT8                             enSysMode,
@@ -1145,21 +809,7 @@ VOS_VOID TAF_MMA_ChgSysModeAndSrvRegSta(
     TAF_MMA_LogCLDelayRptSrvStatusCtx(TAF_MMA_LOG_CL_DELAY_REPORT_CTX_TYPE_EXIT);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_MapHsmSessionStatus
- 功能描述  : cdma session map table convert
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月6日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 TAF_MMA_MapHsmSessionStatus(
     HSM_MMA_SESSION_STATUS_ENUM_UINT8  enSessionStatus
 )
@@ -1182,21 +832,7 @@ VOS_UINT8 TAF_MMA_MapHsmSessionStatus(
     return HSM_MMA_SESSION_STATUS_BUTT;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_MapCdmaPhoneMode
- 功能描述  : map phone mode for om ind
- 输入参数  : enPhoneMode 手机模式
- 输出参数  : 无
- 返 回 值  : NAS_OM_MMA_PHONE_MODE_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月10日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 TAF_MMA_MapCdmaPhoneMode(
     TAF_SDC_PHONE_MODE_ENUM_UINT8       enPhoneMode
 )
@@ -1219,21 +855,7 @@ VOS_UINT8 TAF_MMA_MapCdmaPhoneMode(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_MapSysMode
- 功能描述  : map sys mode for om ind
- 输入参数  : enSysMode 驻留系统网络模式
- 输出参数  : 无
- 返 回 值  : NAS_OM_MMA_SYS_MODE_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月10日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 TAF_MMA_MapSysMode(
     TAF_SDC_SYS_MODE_ENUM_UINT8         enSysMode
 )
@@ -1255,21 +877,7 @@ VOS_UINT8 TAF_MMA_MapSysMode(
     return SYS_MODE_BUTT;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_MapSubSysMode
- 功能描述  : map sub sys mode for om ind
- 输入参数  : TAF_SDC_SYS_SUBMODE_ENUM_UINT8 enSysSubMode  驻留网络的子系统模式
- 输出参数  : 无
- 返 回 值  : NAS_OM_MMA_SYS_SUBMODE_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月10日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 TAF_MMA_MapSysSubMode(
     TAF_SDC_SYS_SUBMODE_ENUM_UINT8      enSysSubMode
 )
@@ -1292,21 +900,7 @@ VOS_UINT8 TAF_MMA_MapSysSubMode(
     return NAS_OM_MMA_SYS_SUBMODE_BUTT;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_MapCdataBearStatus
- 功能描述  : 映射PPP状态上报
- 输入参数  : TAF_PS_CDATA_BEAR_STATUS_ENUM_UINT8                     enBearStatus
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月20日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 TAF_MMA_MapCdataBearStatus(
     TAF_PS_CDATA_BEAR_STATUS_ENUM_UINT8                     enBearStatus
 )
@@ -1335,23 +929,7 @@ VOS_UINT8 TAF_MMA_MapCdataBearStatus(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ConvertMeidToUl
- 功能描述  : 把meid 56bit转换为两个uint32数
- 输入参数  : VOS_UINT8                          *pucMeid,
-             VOS_UINT32                          ulMeid,
-             VOS_UINT32                          ulMeidCnt
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月25日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_ConvertMeidToUl(
     VOS_UINT8                          *pucMeid,
     VOS_UINT32                         *pMeid,
@@ -1375,22 +953,7 @@ VOS_VOID TAF_MMA_ConvertMeidToUl(
     *pMeidCnt = ulMeidCnt;
 
 }
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ConvertUimidToUl
- 功能描述  : 把RUIMID转化为两个32位整型上报
- 输入参数  : pucUimid
- 输出参数  : VOS_UINT32                         *pulUimidHigh,
-             VOS_UINT32                         *pulUimidLow
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月14日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_ConvertUimidToUl(
     VOS_UINT8                          *pucUimid,
     VOS_UINT32                         *pulUimidHigh,
@@ -1420,22 +983,7 @@ VOS_VOID TAF_MMA_ConvertUimidToUl(
     *pulUimidLow  = ulUimidLow;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ConvertImsiToUl
- 功能描述  : 把RUIMID转化为两个32位整型上报
- 输入参数  : pucImsi
- 输出参数  : VOS_UINT32                         *pulImsiHigh,
-             VOS_UINT32                         *pulImsiLow
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月14日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_ConvertImsiToUl(
     VOS_UINT8                          *pucImsi,
     VOS_UINT32                         *pulImsiHigh,
@@ -1466,22 +1014,7 @@ VOS_VOID TAF_MMA_ConvertImsiToUl(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ConvertUatiToUl
- 功能描述  : 把128bit的uati转换为4个32bit的整数 4个VOS_UINT8合并成一个VOS_UINT32数
- 输入参数  : VOS_UINT8                          *pstUati,
-             VOS_UINT32                          ulLength
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月4日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_ConvertUatiToUl(
     VOS_UINT8                          *pstUati
 )
@@ -1502,21 +1035,7 @@ VOS_UINT32 TAF_MMA_ConvertUatiToUl(
     return ulUati;
 
 }
-/*****************************************************************************
- 函 数 名  : TAF_MMA_MapModemId
- 功能描述  :  modemid映射
- 输入参数  : MODEM_ID_ENUM_UINT16                enModemId
- 输出参数  : MODEM_ID_ASN_ENUM_UINT16
- 返 回 值  : VOS_UINT16
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月8日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 MODEM_ID_ASN_ENUM_UINT16 TAF_MMA_MapModemId(
     MODEM_ID_ENUM_UINT16                enModemId
 )
@@ -1540,27 +1059,7 @@ MODEM_ID_ASN_ENUM_UINT16 TAF_MMA_MapModemId(
     return enModemIdAsn;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_QryCdmaStatusInfo
- 功能描述  : 可维可测OM查询CDMA状态信息处理
- 输入参数  : NAS_OM_MMA_CDMA_STATUS_COMMON_INFO_STRU             *pstCdmaCommInfo,
-             NAS_OM_MMA_1X_SYS_INFO_STRU                         *pst1xSysInfo,
-             NAS_OM_MMA_HRPD_SYS_INFO_STRU                       *pstHrpdSysInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月6日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月24日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_QryCdmaStatusInfo(
     NAS_OM_MMA_CDMA_STATUS_COMMON_INFO_STRU             *pstCdmaCommInfo,
     NAS_OM_MMA_1X_SYS_INFO_STRU                         *pst1xSysInfo,
@@ -1731,23 +1230,7 @@ VOS_UINT8 TAF_MMA_IsUIMIDValid(
 
 
 #if (FEATURE_ON == FEATURE_PTM)
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RatFrequentlySwitchRecord
- 功能描述  : 记录四模频繁切换事件
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年03月13日
-    作    者   : zwx247453
-    修改内容   : 新生成函数
-  2.日    期   : 2015年07月06日
-    作    者   : n00269697
-    修改内容   : ERR LOG上报类型分为故障上报和告警上报
-*****************************************************************************/
 VOS_VOID TAF_MMA_RatFrequentlySwitchRecord(VOS_VOID)
 {
     NAS_ERR_LOG_RAT_FREQUENTLY_SWITCH_EVENT_STRU           *pstRatFreqSwitchEvent = VOS_NULL_PTR;
@@ -1824,21 +1307,7 @@ VOS_VOID TAF_MMA_RatFrequentlySwitchRecord(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReportErrlogOosBegin
- 功能描述  : 上报无服务开始信息
- 输入参数  : enOosCause     -- 无服务的原因
-             enLostDomain   -- 无服务的域
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月13日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReportErrlogOosBegin(
     NAS_ERR_LOG_OOS_CAUSE_ENUM_UINT32   enOosCause,
     NAS_ERR_LOG_OOS_DOMAIN_ENUM_UINT32  enLostDomain
@@ -1899,20 +1368,7 @@ VOS_VOID TAF_MMA_ReportErrlogOosBegin(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_OosEndRecord
- 功能描述  : 上报无服务结束信息
- 输入参数  : enResumeDomain  -- 恢复域
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月13日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReportErrlogOosEnd(
     NAS_ERR_LOG_OOS_DOMAIN_ENUM_UINT32  enResumeDomain
 )
@@ -1981,23 +1437,7 @@ VOS_VOID TAF_MMA_ReportErrlogOosEnd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcErrlogDomainOosReport
- 功能描述  : 处理ERRLOG单个域无服务的上报
- 输入参数  : enOldRegState    -- 旧的注册状态
-             enNewRegState    -- 新的注册状态
-             ulOosCause       -- 无服务的原因
-             enOosDomain      -- 无服务的域
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月16日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_ProcErrlogDomainOosReport(
     TAF_SDC_REG_STATUS_ENUM_UINT8       enOldRegState,
     NAS_MSCC_PIF_REG_STATE_ENUM_UINT8   enNewRegState,
@@ -2050,22 +1490,7 @@ VOS_VOID TAF_MMA_ProcErrlogDomainOosReport(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcErrlogOosReport
- 功能描述  : 处理ERRLOG无服务的上报
- 输入参数  : enOldCsRegState  -- 旧的CS域注册状态
-             enOldPsRegState  -- 旧的PS域注册状态
-             pstServiceStatus -- MMC上报的服务状态消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月13日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_ProcErrlogOosReport(
     TAF_SDC_REG_STATUS_ENUM_UINT8       enOldCsRegState,
     TAF_SDC_REG_STATUS_ENUM_UINT8       enOldPsRegState,
@@ -2098,20 +1523,7 @@ VOS_VOID TAF_MMA_ProcErrlogOosReport(
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RecordRegStatusReportFlag
- 功能描述  : 记录是否上报过注册状态
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月16日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_RecordRegStatusReportFlag(
     NAS_MSCC_PIF_SRVDOMAIN_ENUM_UINT32  enCnDomainId,
     NAS_MSCC_PIF_REG_STATE_ENUM_UINT8   enRegState
@@ -2138,20 +1550,7 @@ VOS_VOID TAF_MMA_RecordRegStatusReportFlag(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_IsUsimServiceAvailable
- 功能描述  : 检查卡的服务状态是否可用
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月16日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_IsUsimServiceAvailable(VOS_VOID)
 {
     VOS_UINT32                           ulRslt;
@@ -2187,25 +1586,7 @@ VOS_UINT32 TAF_MMA_IsUsimServiceAvailable(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_UpdateGeoPlmnIdInfo
- 功能描述  : 更新geo信息
- 输入参数  : VOS_UINT8                           ucRegResult
-             TAF_SDC_PLMN_ID_STRU               *pstPlmnid
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月15日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2日    期   : 2015年12月10日
-    作    者   : l00324781
-    修改内容   : CL_MUTIMODE_OPTIMIZE 函数名修改
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_UpdateGeoPlmnIdInfo(
     TAF_SDC_PLMN_ID_STRU               *pstPlmnId
 )
@@ -2227,23 +1608,7 @@ VOS_VOID TAF_MMA_UpdateGeoPlmnIdInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ConvertSysInfoExSysMode
- 功能描述  : 转换当前的sysmode为AT模式
- 输入参数  : TAF_SDC_SYS_MODE_ENUM_UINT8         enSrcSysMode,
- 输出参数  : MN_PH_SYS_MODE_EX_ENUM_U8          *penDestSysMode
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月26日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-  2.日    期   : 2015年08月21日
-    作    者   : y00307564
-    修改内容   : DTS2015081005519修改
-*****************************************************************************/
 VOS_VOID TAF_MMA_ConvertSysInfoExSysMode(
     TAF_SDC_SYS_MODE_ENUM_UINT8         enSrcSysMode,
     MN_PH_SYS_MODE_EX_ENUM_U8          *penDestSysMode
@@ -2282,20 +1647,7 @@ VOS_VOID TAF_MMA_ConvertSysInfoExSysMode(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ConvertSysInfoExSysSubMode
- 功能描述  : 转换当前的sys sub mode为AT模式
- 输入参数  : TAF_SDC_SYS_MODE_ENUM_UINT8         enSrcSysMode,
- 输出参数  : MN_PH_SUB_SYS_MODE_EX_ENUM_U8      *penDestSysSubMode
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月26日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_ConvertSysInfoExSysSubMode(
     TAF_SDC_SYS_SUBMODE_ENUM_UINT8      enSrcSysSubMode,
     MN_PH_SUB_SYS_MODE_EX_ENUM_U8      *penDestSysSubMode
@@ -2309,22 +1661,7 @@ VOS_VOID TAF_MMA_ConvertSysInfoExSysSubMode(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_IsSameAsAppServiceStatus
- 功能描述  : 判断域的服务状态是否发生变换
- 输入参数  : ulServiceStatus 在service status状态当前指定域的服务状态
-             ulCnDomainId    在service status中指定的域
- 输出参数  : 无
- 返 回 值  : TRUE 指定域的服务状态与APP中相同, FALSE:域APP保存的状态不同
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月11日
-    作    者   : w00281933
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 VOS_UINT8 TAF_MMA_IsSameAsAppServiceStatus(
     TAF_SDC_SERVICE_STATUS_ENUM_UINT8   enServiceStatus,
@@ -2370,23 +1707,7 @@ VOS_UINT8 TAF_MMA_IsSameAsAppServiceStatus(
     return ucIsSameAsAppSrvStatus;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_UpdateAppSrvStatusInfo
- 功能描述  : 更新AppNetworkInfo中保存的服务状态信息
- 输入参数  : enCnDomainId:需要更新的域
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月10日
-    作    者   : l00305157
-    修改内容   : 新增函数 Service_State_Optimize_PhaseII
-  2.日    期   : 2015年10月8日
-    作    者   : l00324781
-    修改内容   : Iteration 18 ,CL模服务状态显示优化
-*****************************************************************************/
 VOS_VOID TAF_MMA_UpdateAppSrvStatusInfo(
     NAS_MSCC_PIF_SRVDOMAIN_ENUM_UINT32  enCnDomainId
 )
@@ -2449,23 +1770,7 @@ VOS_VOID TAF_MMA_UpdateAppSrvStatusInfo(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_UpdateAppRegStatusInfo
- 功能描述  : 更新AppNetworkInfo中保存的注册状态信息
- 输入参数  : enCnDomainId:需要更新的域
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月10日
-    作    者   : l00305157
-    修改内容   : 新增函数 Service_State_Optimize_PhaseII
-  2.日    期   : 2015年10月8日
-    作    者   : l00324781
-    修改内容   : Iteration 18 ,CL模服务状态显示优化
-*****************************************************************************/
 VOS_VOID TAF_MMA_UpdateAppRegStatusInfo(
     NAS_MSCC_PIF_SRVDOMAIN_ENUM_UINT32  enCnDomainId
 )
@@ -2521,27 +1826,7 @@ VOS_VOID TAF_MMA_UpdateAppRegStatusInfo(
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_UpdateAppNetworkInfo
- 功能描述  : 更新AppNetworkInfo
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月16日
-    作    者   : s00217060
-    修改内容   : 新增函数
-  2.日    期   : 2015年02月11日
-    作    者   : l00305157
-    修改内容   : Service_State_Optimize_PhaseII
-                 服务状态更新到AppNetworkInfo
-  3.日    期   : 2015年10月8日
-    作    者   : l00324781
-    修改内容   : Iteration 18 ,CL模服务状态显示优化
-*****************************************************************************/
 VOS_VOID TAF_MMA_UpdateAppNetworkInfo(VOS_VOID)
 {
     TAF_SDC_NETWORK_INFO_STRU          *pstCurNwInfo = VOS_NULL_PTR;
@@ -2586,23 +1871,7 @@ VOS_VOID TAF_MMA_UpdateAppNetworkInfo(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_UpdateAppServPlmnInfo
- 功能描述  : 更新AppServPlmnInfo
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月14日
-    作    者   : s00217060
-    修改内容   : 新增函数
-  2.日    期   : 2015年10月8日
-    作    者   : l00324781
-    修改内容   : Iteration 18 ,CL模服务状态显示优化
-*****************************************************************************/
 VOS_VOID TAF_MMA_UpdateAppServPlmnInfo(VOS_VOID)
 {
     TAF_SDC_NETWORK_INFO_STRU          *pstCurNwInfo = VOS_NULL_PTR;
@@ -2628,21 +1897,7 @@ VOS_VOID TAF_MMA_UpdateAppServPlmnInfo(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_UpdateAppReportSrvStatus
- 功能描述  : 更新AppNetworkInfo中保存的总的服务状态
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月10日
-    作    者   : l00305157
-    修改内容   : 新增函数 Service_State_Optimize_PhaseII
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_UpdateAppReportSrvStatus(VOS_VOID)
 {
     TAF_SDC_SERVICE_STATUS_ENUM_UINT8   ulAppPsServiceStatus;
@@ -2694,21 +1949,7 @@ VOS_VOID TAF_MMA_UpdateAppReportSrvStatus(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_UpdateAppReportSrvDomain
- 功能描述  : 更新AppNetworkInfo中保存的总的服务状态和服务域信息
- 输入参数  : enCnDomainId:上报的当期的服务域信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月10日
-    作    者   : l00305157
-    修改内容   : 新增函数 Service_State_Optimize_PhaseII
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_UpdateAppReportSrvDomain(
     NAS_MSCC_PIF_SRVDOMAIN_ENUM_UINT32  enCnDomainId
 )
@@ -2771,21 +2012,7 @@ VOS_VOID TAF_MMA_UpdateAppReportSrvDomain(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcDelayReport
- 功能描述  : 处理延迟上报
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月17日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_ProcDelayReport(VOS_VOID)
 {
     if ( TAF_MMA_TIMER_STATUS_RUNING != TAF_MMA_GetTimerStatus(TI_TAF_MMA_DELAY_REPORT_SERVICE_STATUS))
@@ -2798,22 +2025,7 @@ VOS_VOID TAF_MMA_ProcDelayReport(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcServiceStatusImmediatelyReport
- 功能描述  : 处理服务状态立即上报
- 输入参数  : TAF_SDC_REPORT_SRVSTA_ENUM_UINT8    ucNewSrvSta
-             TAF_SDC_REPORT_SRVSTA_ENUM_UINT8    ucOldSrvSta
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月17日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_ProcServiceStatusImmediatelyReport(
     MSCC_MMA_SERVICE_STATUS_IND_STRU   *pstServiceStatus
 )
@@ -2832,21 +2044,7 @@ VOS_VOID TAF_MMA_ProcServiceStatusImmediatelyReport(
 }
 
 
-/*****************************************************************************
- 函 数 名  : VOS_VOID　TAF_MMA_ProcServiceStatusNotReport
- 功能描述  : 处理服务状态不上报
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月17日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_ProcServiceStatusNotReport(
     MSCC_MMA_SERVICE_STATUS_IND_STRU   *pstServiceStatus
 )
@@ -2866,20 +2064,7 @@ VOS_VOID TAF_MMA_ProcServiceStatusNotReport(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_FillActForAtCmdCregInClMode
- 功能描述  : CL模式给CGREG/CGREG命令赋值ACT
- 输入参数  : enQryRegStaType-------注册状态查询类型
- 输出参数  : TAF_PH_ACCESS_TECH_ENUM_UINT8  *pucAct      : 接入技术
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月19日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_FillActForAtCmdCregInClMode(
     TAF_MMA_QRY_REG_STATUS_TYPE_ENUM_UINT32                 enQryRegStaType,
     TAF_PH_ACCESS_TECH_ENUM_UINT8                          *pucAct
@@ -2931,21 +2116,7 @@ VOS_VOID TAF_MMA_FillActForAtCmdCregInClMode(
 
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- 函 数 名  : TAF_MMA_UpdateAppSysModeAndSysSubModeInClMode
- 功能描述  : 更新stAppNetworkInfo结构体中系统模式和系统子模式
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月23日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_UpdateAppSysModeAndSysSubModeInClMode(VOS_VOID)
 {
     TAF_SDC_NETWORK_INFO_STRU          *pstCurNwInfo = VOS_NULL_PTR;
@@ -2963,24 +2134,7 @@ VOS_VOID TAF_MMA_UpdateAppSysModeAndSysSubModeInClMode(VOS_VOID)
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_Add1XToAppSysModeAndSysSubMode
- 功能描述  : 将1X加入到系统模式和系统子模式中
- 输入参数  : TAF_SDC_SYS_MODE_ENUM_UINT8                             enCurAppSysMode
-             TAF_SYS_SUBMODE_ENUM_UINT8                              enCurAppSubMode
-             TAF_SDC_SYS_MODE_ENUM_UINT8                            *penNewAppSysMode
-             TAF_SYS_SUBMODE_ENUM_UINT8                             *penNewAppSubMode
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月9日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_Add1XToAppSysModeAndSysSubMode(
     TAF_SDC_SYS_MODE_ENUM_UINT8                             enCurAppSysMode,
     TAF_SYS_SUBMODE_ENUM_UINT8                              enCurAppSubMode,
@@ -3016,24 +2170,7 @@ VOS_VOID TAF_MMA_Add1XToAppSysModeAndSysSubMode(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_Del1XFromAppSysModeAndSysSubMode
- 功能描述  : 从现在系统模式和子模式中删除1X
- 输入参数  : TAF_SDC_SYS_MODE_ENUM_UINT8                             enCurAppSysMode
-             TAF_SYS_SUBMODE_ENUM_UINT8                              enCurAppSubMode
-             TAF_SDC_SYS_MODE_ENUM_UINT8                            *penNewAppSysMode
-             TAF_SYS_SUBMODE_ENUM_UINT8                             *penNewAppSubMode
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月9日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_Del1XFromAppSysModeAndSysSubMode(
     TAF_SDC_SYS_MODE_ENUM_UINT8                             enCurAppSysMode,
     TAF_SYS_SUBMODE_ENUM_UINT8                              enCurAppSubMode,
@@ -3070,21 +2207,7 @@ VOS_VOID TAF_MMA_Del1XFromAppSysModeAndSysSubMode(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_UpdateAppSysModeAndSysSubModeInClMode1x
- 功能描述  : 1X变化时更新APP中的系统模式和系统子模式
- 输入参数  : TAF_SDC_NETWORK_EXISTANCE_ENUM_UINT32                   en1xNetworkExist
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月8日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_UpdateAppSysModeAndSysSubModeInClMode1x(
     TAF_SDC_NETWORK_EXISTANCE_ENUM_UINT32                   en1xNetworkExist
 )
@@ -3134,21 +2257,7 @@ VOS_VOID TAF_MMA_UpdateAppSysModeAndSysSubModeInClMode1x(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_UpdateAppSysModeAndSysSubModeInClModeHrpd
- 功能描述  : Ehrp变化时更新APP中的系统模式和系统子模式
- 输入参数  : TAF_SDC_NETWORK_EXISTANCE_ENUM_UINT32                   enHrpdNetworkExist
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月8日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_UpdateAppSysModeAndSysSubModeInClModeHrpd(
     TAF_SDC_NETWORK_EXISTANCE_ENUM_UINT32                   enHrpdNetworkExist
 )
@@ -3213,21 +2322,7 @@ VOS_VOID TAF_MMA_UpdateAppSysModeAndSysSubModeInClModeHrpd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_UpdateAppSysModeAndSysSubModeInClModeLte
- 功能描述  : Lte变化时更新APP中的系统模式和系统子模式
- 输入参数  : TAF_SDC_NETWORK_EXISTANCE_ENUM_UINT32                   enLteNetworkExist
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月8日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_UpdateAppSysModeAndSysSubModeInClModeLte(
     TAF_SDC_NETWORK_EXISTANCE_ENUM_UINT32                   enLteNetworkExist
 )
@@ -3282,20 +2377,7 @@ VOS_VOID TAF_MMA_UpdateAppSysModeAndSysSubModeInClModeLte(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_UpdateAppCsSrvInfoInClMode
- 功能描述  : 更新stAppNetworkInfo结构体中cs域的相关信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月30日
-    作    者   : j00354216
-    修改内容   : CDMA Iteration 18 修改
-*****************************************************************************/
 VOS_VOID TAF_MMA_UpdateAppCsSrvInfoInClMode(VOS_VOID)
 {
     TAF_SDC_NETWORK_INFO_STRU          *pstCurNwInfo = VOS_NULL_PTR;
@@ -3322,20 +2404,7 @@ VOS_VOID TAF_MMA_UpdateAppCsSrvInfoInClMode(VOS_VOID)
     TAF_SDC_SetAppCsRegStatus(TAF_SDC_GetCsRegStatus());
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_UpdateAppPsSrvInfoInClMode
- 功能描述  : 更新stAppNetworkInfo结构体中ps域的信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月30日
-    作    者   : j00354216
-    修改内容   : CDMA Iteration 18 修改
-*****************************************************************************/
 VOS_VOID TAF_MMA_UpdateAppPsSrvInfoInClMode(VOS_VOID)
 {
     TAF_SDC_NETWORK_INFO_STRU          *pstCurNwInfo = VOS_NULL_PTR;
@@ -3377,20 +2446,7 @@ VOS_VOID TAF_MMA_UpdateAppPsSrvInfoInClMode(VOS_VOID)
     TAF_SDC_SetAppPsRegStatus(TAF_SDC_GetPsRegStatus());
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndCsRegStatusInClMode
- 功能描述  : CS注册状态上报
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月30日
-    作    者   : j00354216
-    修改内容   : CDMA Iteration 18 修改
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndCsRegStatusInClMode(VOS_VOID)
 {
     TAF_SDC_REG_STATUS_ENUM_UINT8       enCsRegStatus;
@@ -3417,23 +2473,7 @@ VOS_VOID TAF_MMA_SndCsRegStatusInClMode(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_Report1xSidInClMode
- 功能描述  : Sid上报
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月30日
-    作    者   : j00354216
-    修改内容   : CDMA Iteration 18 修改
-  2.日    期   : 2015年12月15日
-    作    者   : l00359089
-    修改内容   : 从无入参修改成携带入参  lSid, 且SID 的值保存在 pstSdcCtx->stNetworkInfo.lSid 中
-*****************************************************************************/
 VOS_VOID TAF_MMA_Report1xSidInClMode(
     VOS_INT32                          lSid
 )
@@ -3454,20 +2494,7 @@ VOS_VOID TAF_MMA_Report1xSidInClMode(
     pstSdcCtx->stNetworkInfo.lSid = lSid;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_Report1xSigQulityInClMode
- 功能描述  : 信号质量上报
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月30日
-    作    者   : j00354216
-    修改内容   : CDMA Iteration 18 修改
-*****************************************************************************/
 VOS_VOID TAF_MMA_Report1xSigQulityInClMode(VOS_VOID)
 {
     TAF_SDC_1X_SIG_QUALITY_INFO_STRU   *pstSdc1xSigQualityInfo    = VOS_NULL_PTR;
@@ -3485,23 +2512,7 @@ VOS_VOID TAF_MMA_Report1xSigQulityInClMode(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_DelayReportCsCmdInClMode
- 功能描述  : 处理需要上报的消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月30日
-    作    者   : j00354216
-    修改内容   : CDMA Iteration 18 修改
-  1.日    期   : 2015年11月30日
-    作    者   : l00359089
-    修改内容   : for DTS2015120703071 修改
-*****************************************************************************/
 VOS_VOID TAF_MMA_DelayReportCsReferCmdInClMode(VOS_VOID)
 {
     /* 信号质量是否上报的处理 */
@@ -3511,20 +2522,7 @@ VOS_VOID TAF_MMA_DelayReportCsReferCmdInClMode(VOS_VOID)
     TAF_MMA_Report1xLocinfoInClMode();
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndPsRegStatusInClMode
- 功能描述  : PS注册状态上报
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月30日
-    作    者   : j00354216
-    修改内容   : CDMA Iteration 18 修改
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndPsRegStatusInClMode(VOS_VOID)
 {
     TAF_SDC_REG_STATUS_ENUM_UINT8       enPsRegStatus;
@@ -3599,21 +2597,7 @@ VOS_VOID TAF_MMA_SndPsRegStatusInClMode(VOS_VOID)
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_IsDelayReportFeatureActiveInClMode
- 功能描述  : CL延迟上报定时器是否开启
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_FALSE没有开启， VOS_TRUE开启
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月30日
-    作    者   : j00354216
-    修改内容   : CDMA Iteration 18 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 TAF_MMA_IsDelayReportFeatureActiveInClMode(VOS_VOID)
 {
     if (VOS_FALSE == TAF_MMA_GetCLDelayReptSrvStatusFlg())
@@ -3631,20 +2615,7 @@ VOS_UINT8 TAF_MMA_IsDelayReportFeatureActiveInClMode(VOS_VOID)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_IsNeedDelayReportServiceStatusInClMode
- 功能描述  : 是否需要延迟上报服务状态
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_FALSE不需要延迟上报， VOS_TRUE需要延迟上报
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月30日
-    作    者   : j00354216
-    修改内容   : CDMA Iteration 18 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_IsNeedDelayReportServiceStatusInClMode(VOS_VOID)
 {
     TAF_SDC_REPORT_SRVSTA_ENUM_UINT8    enNetSrvStatus;
@@ -3678,20 +2649,7 @@ VOS_UINT32 TAF_MMA_IsNeedDelayReportServiceStatusInClMode(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_IsNeedDelayReportCsRegStatusInClMode
- 功能描述  : 是否需要延迟上报1X注册状态
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_FALSE不需要延迟上报， VOS_TRUE需要延迟上报
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月30日
-    作    者   : j00354216
-    修改内容   : CDMA Iteration 18 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_IsNeedDelayReportCsRegStatusInClMode(VOS_VOID)
 {
     TAF_SDC_REG_STATUS_ENUM_UINT8       enNetCsRegStatus;
@@ -3726,20 +2684,7 @@ VOS_UINT32 TAF_MMA_IsNeedDelayReportCsRegStatusInClMode(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_IsNeedDelayReportPsRegStatusInClMode
- 功能描述  : 是否需要延迟上报Ps注册状态
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_FALSE不需要延迟上报， VOS_TRUE需要延迟上报
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月30日
-    作    者   : j00354216
-    修改内容   : CDMA Iteration 18 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_IsNeedDelayReportPsRegStatusInClMode(VOS_VOID)
 {
     TAF_SDC_REG_STATUS_ENUM_UINT8       enNetPsRegStatus;
@@ -3774,21 +2719,7 @@ VOS_UINT32 TAF_MMA_IsNeedDelayReportPsRegStatusInClMode(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_StopDelayReportSeriveStatusTimerInClMode
- 功能描述  : 处理停止延迟上报定时器的流程,如果定时器运作，停止，并且比较新旧信息，判断是否需要上报at命令
- 输入参数  : enDelayTimerId -- 需要停止的定时器，CS域或PS域的
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月30日
-    作    者   : j00354216
-    修改内容   : CDMA Iteration_18新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_StopDelayReportSeriveStatusTimerInClMode(
     TAF_MMA_TIMER_ID_ENUM_UINT32        enDelayTimerId
 )
@@ -3826,22 +2757,7 @@ VOS_VOID TAF_MMA_StopDelayReportSeriveStatusTimerInClMode(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_UpdateServiceDomainInClMode
- 功能描述  : CL模式下，更新stNetworkInfo中的服务域，根据SysMOde更新。
-            注意:单1X的情况下，更新成CS_PS
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月30日
-    作    者   : j00354216
-    修改内容   : CDMA Iteration_18新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_UpdateServiceDomainInClMode(
     TAF_SDC_SYS_MODE_ENUM_UINT8        enSysMode
 )
@@ -3864,40 +2780,14 @@ VOS_VOID TAF_MMA_UpdateServiceDomainInClMode(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_DelayReportPsCmdInClMode
- 功能描述  : 处理需要上报的消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月30日
-    作    者   : c00299064
-    修改内容   : PAM CDMA Iteration 2 修改
-*****************************************************************************/
 VOS_VOID TAF_MMA_DelayReportPsCmdInClMode(VOS_VOID)
 {
     /*信号质量是否上报的处理*/
     TAF_MMA_ReportHdrSigQulityInClMode();
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReportHdrSigQulityInClMode
- 功能描述  : 信号质量上报
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月30日
-    作    者   : c00299064
-    修改内容   : PAM CDMA Iteration 2 修改
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReportHdrSigQulityInClMode(VOS_VOID)
 {
     TAF_SDC_HRPD_SIG_QUALITY_INFO_STRU   *pstSdcHrpdSigQualityInfo    = VOS_NULL_PTR;
@@ -3918,22 +2808,7 @@ VOS_VOID TAF_MMA_ReportHdrSigQulityInClMode(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_UpdateAppServiceDomainInClMode
- 功能描述  : CL模式下，更新stAppNetworkInfo中的服务域，根据SysMOde更新。
-            注意:单1X的情况下，更新成CS_PS
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月24日
-    作    者   : l00324781
-    修改内容   :DTS2015121801944新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_UpdateAppServiceDomainInClMode(
     TAF_SDC_SYS_MODE_ENUM_UINT8        enSysMode
 )
@@ -3956,20 +2831,7 @@ VOS_VOID TAF_MMA_UpdateAppServiceDomainInClMode(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_Report1xLocinfoInClMode
- 功能描述  : CLOCINFO上报
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月30日
-    作    者   : l00359089
-    修改内容   : 新生成函数 for DTS2015120703071
-*****************************************************************************/
 VOS_VOID TAF_MMA_Report1xLocinfoInClMode(VOS_VOID)
 {
     TAF_SDC_1X_SYS_INFO_STRU           *pstSdc1xSysInfo     = VOS_NULL_PTR;
@@ -4031,23 +2893,7 @@ VOS_VOID TAF_MMA_Report1xLocinfoInClMode(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ConvertCsimCardStatusToTafErrorCode
- 功能描述  : 转换CSIM状态到TAF错误码
- 输入参数  : enCsimStatus -- CSIM卡状态
 
- 输出参数  : 无
- 返 回 值  : TAF_ERROR_CODE_ENUM_UINT32  -- 返回错误码
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年4月9日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_ERROR_CODE_ENUM_UINT32 TAF_MMA_ConvertCsimCardStatusToTafErrorCode(
     TAF_SDC_USIM_STATUS_ENUM_UINT8      enCsimStatus
 )
@@ -4096,21 +2942,7 @@ TAF_ERROR_CODE_ENUM_UINT32 TAF_MMA_ConvertCsimCardStatusToTafErrorCode(
 #endif
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_UpdateReportService
- 功能描述  : CL模式下，更新stNetworkInfo中的总的服务状态，根据CS域服务状态和PS域服务状态更新
- 输入参数  : 无
- 输出参数  : 生改变
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月30日
-    作    者   : j00354216
-    修改内容   : CDMA Iteration_18新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_UpdateReportService(VOS_VOID)
 {
     TAF_SDC_SERVICE_STATUS_ENUM_UINT8   enCsServiceStatus;
@@ -4155,20 +2987,7 @@ VOS_VOID TAF_MMA_UpdateReportService(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_IsUserOperate
- 功能描述  : 判断是否是由用户主动发起的操作
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_TRUE用户主动发起的操作， VOS_FALSE 非用户主动发起的操作，
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月13日
-    作    者   : j00354216
-    修改内容   : CDMA Iteration 18 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_IsUserOperate(VOS_VOID)
 {
     TAF_MMA_FSM_ID_ENUM_UINT32          enFsmId;
@@ -4186,20 +3005,7 @@ VOS_UINT32 TAF_MMA_IsUserOperate(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcMsccSystemAcquireEndInd3GppType
- 功能描述  : MMA收到MSCC_MMA_SYSTEM_ACQUIRE_END_IND消息，enAcqSysType为MSCC_MMA_ACQ_SYS_TYPE_3GPP类型，处理消息
- 输入参数  : pstSysAcqEndInd   MSCC_MMA_SYSTEM_ACQUIRE_END_IND_STRU消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月20日
-    作    者   : l00324781
-    修改内容   : CDMA Iteration 18 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_ProcMsccSystemAcquireEndInd3GppType(
     MSCC_MMA_SYSTEM_ACQUIRE_END_IND_STRU    *pstSysAcqEndInd
 )
@@ -4248,21 +3054,7 @@ VOS_VOID TAF_MMA_ProcMsccSystemAcquireEndInd3GppType(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_UpdateRatPrioFromClToGul
- 功能描述  : 更新Start Req消息中携带的接入结束，第一次无卡开机时，如果是CL模式，则改为GUl
- 输入参数  : TAF_MMA_RAT_ORDER_STRU     pstSndRatPrioList   当前支持的接入技术
- 输出参数  : TAF_MMA_RAT_ORDER_STRU     pstSndRatPrioList   修改后的计入技术
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月10日
-    作    者   : l00324781
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_UpdateRatPrioFromClToGul(
     TAF_MMA_RAT_ORDER_STRU             *pstSndRatPrioList
 )
@@ -4303,18 +3095,7 @@ VOS_VOID TAF_MMA_UpdateRatPrioFromClToGul(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_IsNeedProcessSystemAcquireResult
- 功能描述  : 根据MSCC上报的SYS_ACQ结果判定是否需要通知APS模式改变
- 输入参数  : enResult
- 输出参数  : VOS_VOID
- 返 回 值  : VOS_TRUE、VOS_FALSE
 
-  1.日    期   : 2016年01月18日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_IsNeedProcessSystemAcquireResult(
     MSCC_MMA_SYSTEM_ACQUIRE_RESULT_ENUM_UINT32              enResult
 )
@@ -4337,27 +3118,7 @@ VOS_UINT32 TAF_MMA_IsNeedProcessSystemAcquireResult(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_GetRatModeType
- 功能描述  : 获取RAT改变类型
- 输入参数  : enLastRatType -- 上次CL RAT类型
-             enCurrRatType -- 当前CL RAT类型
 
- 输出参数  : 无
- 返 回 值  : TAF_MMA_RAT_MODE_GUL_TO_GUL －－ GUL间的模式变化
-             TAF_MMA_RAT_MODE_GUL_TO_CL  －－ GUL到CL的模式变化
-             TAF_MMA_RAT_MODE_CL_TO_GUL  －－ CL到GUL的模式变化
-             TAF_MMA_RAT_MODE_CL_TO_CL   －－ CL到CL的模式变化
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年4月9日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_MMA_RAT_MODE_TYPE_ENUM_UINT8 TAF_MMA_GetRatModeType(
     TAF_MMA_RAT_SET_TYPE_ENUM_UINT8     enLastRatType,
     TAF_MMA_RAT_SET_TYPE_ENUM_UINT8     enCurrRatType
@@ -4366,24 +3127,7 @@ TAF_MMA_RAT_MODE_TYPE_ENUM_UINT8 TAF_MMA_GetRatModeType(
     return (g_aenRatModeTypeTab[enLastRatType][enCurrRatType]);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_GetRatModeChangeType
- 功能描述  : 根据当前的与上次的RAT设置，获取当前RAT的设置类型
- 输入参数  : pstCurrRat -- 当前设置的RAT
-             pstLastRat -- 上次设置的RAT
 
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  -- RAT发生变化
-             VOS_FALSE -- RAT未发生变化
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年4月9日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_MMA_RAT_MODE_TYPE_ENUM_UINT8 TAF_MMA_GetRatModeChangeType(
     TAF_MMA_RAT_ORDER_STRU             *pstCurrRat,
     TAF_MMA_RAT_ORDER_STRU             *pstLastRat

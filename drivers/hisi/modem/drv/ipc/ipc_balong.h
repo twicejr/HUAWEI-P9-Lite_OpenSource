@@ -89,6 +89,7 @@ struct ipc_debug_s
 	u32 u32SemTakeFailTimes[INTSRC_NUM];					/*某信号量占用失败次数*/
 	u32 u32SemGiveTimes[INTSRC_NUM];						/*某信号量释放次数*/
 	u32 u32IntTimeDelta[INTSRC_NUM];						/*记录每个中断对应处理函数所用时间*/
+	u32 u32SemCore;											/*获取信号量超时时对应的持有核*/
 };
 struct ipc_control{
     u32     core_num;										/*记录IPC模块工作所在的核ID*/

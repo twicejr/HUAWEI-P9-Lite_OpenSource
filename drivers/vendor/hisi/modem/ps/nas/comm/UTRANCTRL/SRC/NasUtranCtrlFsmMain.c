@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasUtranCtrlFsmMain.c
-  版 本 号   : 初稿
-  作    者   : w00167002
-  生成日期   : 2012年7月12日
-  最近修改   :
-  功能描述   : NasUtranCtrlFsmMain.C文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年7月12日
-    作    者   : w00167002
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -31,9 +14,7 @@
 #include "NasUtranCtrlProcNvim.h"
 #include "NasMmcTimerMgmt.h"
 #include "NasMmlLib.h"
-/* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
 #include "MsccMmcInterface.h"
-/* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 #include "NasMmcComFunc.h"
 #include "NVIM_Interface.h"
 #include "NasMmcSndLmm.h"
@@ -73,20 +54,7 @@ extern "C" {
 
 #if defined (__PS_WIN32_RECUR__)
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_InitFsmDesc
- 功能描述  : 根据FsmId取得PC工程中的相应状态机的地址
- 输入参数  : VOS_UINT32                          ulPcRecurFsmId
- 输出参数  : NAS_FSM_DESC_STRU                  *pstFsmDesc
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年8月16日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_UTRANCTRL_ReloadFsmDesc(
     NAS_UTRANCTRL_FSM_CTX_STRU         *pstFsmCtx,
     VOS_UINT32                          ulPcRecurFsmId
@@ -125,25 +93,7 @@ VOS_VOID NAS_UTRANCTRL_ReloadFsmDesc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RestoreContextData_Main
- 功能描述  : 恢复UTRANCTRL全局变量。
- 输入参数  : ulEventType:消息类型
-              pstMsg:需要恢复的全局变量
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:处理完成
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年08月16日
-   作    者   : w00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2013年6月4日
-   作    者   : z00161729
-   修改内容   : SVLTE 和usim接口调整修改
-
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RestoreContextData_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -204,25 +154,7 @@ VOS_UINT32 NAS_UTRANCTRL_RestoreContextData_Main(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvWasSysInfo_Main
- 功能描述  : 收到系统消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年8月7日
-   作    者   : s00217060
-   修改内容   : for V7R1C50_GUTL_PhaseII新生成函数
- 2.日    期   : 2012年8月14日
-   作    者   : w00176964
-   修改内容   : 模式写入NV修改
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvWasSysInfo_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -258,25 +190,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvWasSysInfo_Main(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvGasSysInfo_Main
- 功能描述  : 收到系统消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年8月7日
-   作    者   : s00217060
-   修改内容   : for V7R1C50_GUTL_PhaseII新生成函数
- 2.日    期   : 2012年8月14日
-   作    者   : w00176964
-   修改内容   : 模式写入NV修改
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvGasSysInfo_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -329,25 +243,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvGasSysInfo_Main(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvTdSysInfo_Main
- 功能描述  : 收到系统消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年8月7日
-   作    者   : s00217060
-   修改内容   : for V7R1C50_GUTL_PhaseII新生成函数
- 2.日    期   : 2012年8月14日
-   作    者   : w00176964
-   修改内容   : 模式写入NV修改
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvTdSysInfo_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -386,22 +282,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvTdSysInfo_Main(
 
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvLmmSysInfo_Main
- 功能描述  : 收到系统消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年8月7日
-   作    者   : s00217060
-   修改内容   : for V7R1C50_GUTL_PhaseII新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvLmmSysInfo_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -466,37 +347,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvLmmSysInfo_Main(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvMmcGmmStartCnf_Main
- 功能描述  : 收到开机请求消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年7月14日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2012年7月14日
-   作    者   : w00176964
-   修改内容   : GUTL PhaseII 开机时通知RRC当前的UTRAN MODE,记录发给RRC的PRE UTRAN MODE
- 3.日    期   : 2012年10月13日
-   作    者   : w00167002
-   修改内容   : DTS2012101300714:开机读取HOME PLMN时候，在没有读取指示网络号
-                 长度文件时6FAD时，默认按照网络号长度为3位，导致在网络号长度
-                 为2时出错.
-                 修改为在收到GMM的开机回复时候更新AUTO SWITCH 模式，此时网络
-                 长度是确定的。
- 4.日    期   : 2013年11月19日
-   作    者   : w00167002
-   修改内容   : DTS2013112006986:控制在3G TDD模式下是否需要开启SMC验证标记:中国移动拉萨网络设备在
-                TD下不发起SMC流程。
-
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvMmcGmmStartCnf_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -537,26 +388,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvMmcGmmStartCnf_Main(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvPlmnSearchReq_Main
- 功能描述  : 收到开机搜网消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年11月25日
-   作    者   : z00161729
-   修改内容   : 开机搜网优化项目修改
- 2.日    期   : 2/4/2015
-   作    者   : w00176964
-   修改内容   : CDMA Iteration 10 Modified
-
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvPlmnSearchReq_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -575,23 +407,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvPlmnSearchReq_Main(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvMmaAcqReq_Main
- 功能描述  : 收到ID_MMA_MMC_ACQ_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年11月25日
-   作    者   : z00161729
-   修改内容   : 开机搜网优化项目修改
-
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvMsccAcqReq_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -605,26 +421,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvMsccAcqReq_Main(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvPlmnSpecialReq_Main
- 功能描述  : 收到开机指定搜网消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年8月24日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2014年11月25日
-   作    者   : z00161729
-   修改内容   : 开机搜网优化项目修改
-
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvPlmnSpecialReq_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -641,22 +438,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvPlmnSpecialReq_Main(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvWasStartCnf_Main
- 功能描述  : 收到was的开机回复消息
- 输入参数  : ulEventType:消息类型
-              pstMsg:RRMM_START_CNF消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月7日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvWasStartCnf_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -693,22 +475,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvWasStartCnf_Main(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvTiWaitWasStartCnfExpired_Main
- 功能描述  : 收到was的开机回复超时消息
- 输入参数  : ulEventType:消息类型
-              pstMsg:RRMM_START_CNF超时消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月22日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvTiWaitWasStartCnfExpired_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -753,22 +520,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvTiWaitWasStartCnfExpired_Main(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvTdStartCnf_Main
- 功能描述  : 收到td的开机回复消息
- 输入参数  : ulEventType:消息类型
-              pstMsg:RRMM_START_CNF消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月7日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvTdStartCnf_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -805,22 +557,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvTdStartCnf_Main(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvTiWaitTdStartCnfExpired_Main
- 功能描述  : 收到was的开机回复超时消息
- 输入参数  : ulEventType:消息类型
-              pstMsg:RRMM_START_CNF超时消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月22日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvTiWaitTdStartCnfExpired_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -866,22 +603,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvTiWaitTdStartCnfExpired_Main(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvWasPowerOffCnf_Main
- 功能描述  : 收到Was的关机回复消息
- 输入参数  : ulEventType:消息类型
-              pstMsg:RRMM_POWER_OFF_CNF消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月7日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvWasPowerOffCnf_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -907,22 +629,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvWasPowerOffCnf_Main(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvTiWaitWasPowerOffCnfExpired_Main
- 功能描述  : 收到was的关机回复超时消息
- 输入参数  : ulEventType:消息类型
-              pstMsg:RRMM_POWER_OFF_CNF超时消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月22日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvTiWaitWasPowerOffCnfExpired_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -939,22 +646,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvTiWaitWasPowerOffCnfExpired_Main(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvTdPowerOffCnf_Main
- 功能描述  : 收到td的关机回复消息
- 输入参数  : ulEventType:消息类型
-              pstMsg:RRMM_POWER_OFF_CNF消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月7日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvTdPowerOffCnf_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -980,22 +672,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvTdPowerOffCnf_Main(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvTiWaitTdPowerOffCnfExpired_Main
- 功能描述  : 收到was的关机回复超时消息
- 输入参数  : ulEventType:消息类型
-              pstMsg:RRMM_POWER_OFF_CNF超时消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月22日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvTiWaitTdPowerOffCnfExpired_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1012,22 +689,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvTiWaitTdPowerOffCnfExpired_Main(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvWasSysCfgCnf_Main
- 功能描述  : 收到Was的SYSCFG设置回复消息
- 输入参数  : ulEventType:消息类型
-              pstMsg:RRMM_SYS_CFG_CNF消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月7日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvWasSysCfgCnf_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1063,22 +725,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvWasSysCfgCnf_Main(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvTiWaitWasSysCfgCnfExpired_Main
- 功能描述  : 收到was的SYSCFG设置回复超时消息
- 输入参数  : ulEventType:消息类型
-              pstMsg:RRMM_SYS_CFG_CNF超时消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月22日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvTiWaitWasSysCfgCnfExpired_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1122,22 +769,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvTiWaitWasSysCfgCnfExpired_Main(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvTdSysCfgCnf_Main
- 功能描述  : 收到Td的SYSCFG设置回复消息
- 输入参数  : ulEventType:消息类型
-              pstMsg:RRMM_SYS_CFG_CNF消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月7日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvTdSysCfgCnf_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1173,22 +805,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvTdSysCfgCnf_Main(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvTiWaitTdSysCfgCnfExpired_Main
- 功能描述  : 收到td的SYSCFG设置回复超时消息
- 输入参数  : ulEventType:消息类型
-              pstMsg:RRMM_SYS_CFG_CNF超时消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月22日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvTiWaitTdSysCfgCnfExpired_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1232,50 +849,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvTiWaitTdSysCfgCnfExpired_Main(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvWasPlmnSrchCnf_Main
- 功能描述  : 收到was的RRMM_PLMN_SEARCH_CNF回复消息
- 输入参数  : ulEventType:消息类型
-              pstMsg:RRMM_PLMN_SEARCH_CNF消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月7日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新生成函数
-  2.日    期   : 2012年8月23日
-    作    者   : w00176964
-    修改内容   : V7R1C50_GUTL_PhaseII:修改函数NAS_MMC_IsSpecMccListInDestPlmnIdList
-  3.日    期   : 2012年9月28日
-    作    者   : w00176964
-    修改内容   : DTS2012092702790:GUL模式下快速指定搜网回复消息错误的丢弃导致NAS流程异常
-  4.日    期   : 2012年11月16日
-    作    者   : z00161729
-    修改内容   : DTS2012111605452:search cnf 增加list fail接口需要进list搜状态机处理
-  5.日    期   : 2014年1月20日
-    作    者   : w00167002
-    修改内容   : SVLTE共天线项目:在W下搜网失败为NO RF，表示当前天线资源不可用，
-                 则不需要再搜TD，直接进入MMC状态机进行处理。
-  6.日    期   : 2014年2月21日
-    作    者   : s00217060
-    修改内容   : DTS2014021902519:CSFB存在时并且当前是FDD模式，不需要再搜TD的网络
-  7.日    期   : 2014年11月13日
-    作    者   : z00161729
-    修改内容   : 开机搜网优化项目修改
-  8.日    期   : 2015年5月26日
-    作    者   : w00167002
-    修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_2.0项目修改
-
-  9.日    期   : 2016年2月2日
-    作    者   : w00167002
-    修改内容   : DTS2015110904588: 移动用户搜TD失败，进UTRANCTRL搜W,搜到W时候发现
-                 需要漫游排序，触发停W搜网。MMC通知UTRANCTRL退出后发送停止搜网消息，
-                 此时收到了W的搜网CNF消息，导致异常进入选网状态机。
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvWasPlmnSrchCnf_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1361,23 +935,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvWasPlmnSrchCnf_Main(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvInterAbortUtranCtrlPlmnSearchReq_Main
- 功能描述  : 收到was的inter abort utran ctrl plmn search req回复消息
- 输入参数  : ulEventType:消息类型
-             pstMsg:消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月13日
-    作    者   : z00161729
-    修改内容   : 开机搜网优化项目修改
-
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvInterAbortUtranCtrlPlmnSearchReq_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1407,29 +965,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvInterAbortUtranCtrlPlmnSearchReq_Main(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvMmcInterSkipSearchWasIndMsg_Main
- 功能描述  : 收到MMC发送的跳过搜索W的指示消息
- 输入参数  : ulEventType:消息类型
-             pstMsg:MMCMMC_INTER_SKIP_SEARCH_W_IND消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月11日
-    作    者   : w00167002
-    修改内容   : 跳过搜网W结果.
-                 注:SVLTE共天线，在W下搜网NO RF后，在G下搜网成功国内驻留成功后，
-                 后续再发起搜网时候不能搜WAS,否则G会丢网。但在UTRANCTRL状态机时候
-                 ，NO RF时候当前是FDD模式的，因而MMC再发起搜网时候，会先给WAS发送，
-                 UTRAN构造SKIP W消息，在UTRANCTRL状态机搜索TDD.
-  2.日    期   : 2015年5月18日
-    作    者   : b00269685
-    修改内容   : 增加当前正在搜W停止当前搜W的处理
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvMmcInterSkipSearchWasIndMsg_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1452,22 +988,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvMmcInterSkipSearchWasIndMsg_Main(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvMmcInterSkipSearchTdsIndMsg_Main
- 功能描述  : 收到MMC发送的跳过搜索TDS的指示消息
- 输入参数  : ulEventType:消息类型
-             pstMsg:MMCMMC_INTER_SKIP_SEARCH_TDS_IND消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月3日
-    作    者   : z00161729
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvMmcInterSkipSearchTdsIndMsg_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1484,25 +1005,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvMmcInterSkipSearchTdsIndMsg_Main(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvTiWaitWasPlmnSearchCnfExpired_Main
- 功能描述  : 收到td的指定搜网回复超时消息
- 输入参数  : ulEventType:消息类型
-              pstMsg:搜网超时消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月22日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新生成函数
-  2.日    期   : 2014年2月21日
-    作    者   : s00217060
-    修改内容   : DTS2014021902519:CSFB存在时并且当前是FDD模式，不需要再搜TD的网络
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvTiWaitWasPlmnSearchCnfExpired_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1566,26 +1069,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvTiWaitWasPlmnSearchCnfExpired_Main(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvWasRrMmRelInd_Main
- 功能描述  : 收到td的指定搜网回复超时消息
- 输入参数  : ulEventType:消息类型
-              pstMsg:RRMM_REL_IND消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月22日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新生成函数
-
-  2.日    期   : 2014年6月12日
-    作    者   : w00167002
-    修改内容   : WAS异常且当前NO RF,则进入MMC进行处理
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvWasRrMmRelInd_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1626,28 +1110,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvWasRrMmRelInd_Main(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvGasPlmnSrchCnf_Main
- 功能描述  : 收到Gas的RRMM_PLMN_SEARCH_CNF回复消息
- 输入参数  : ulEventType:消息类型
-             pstMsg:RRMM_PLMN_SEARCH_CNF消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月7日
-    作    者   : w00176964
-    修改内容   : V7R1C50_GUTL_PhaseII:新生成函数
-  2.日    期   : 2012年11月16日
-    作    者   : z00161729
-    修改内容   : DTS2012111605452:search cnf 增加list fail接口需要进list搜状态机处理
-  3.日    期   : 2014年6月24日
-    作    者   : b00269685
-    修改内容   : DSDS III:G下搜网NO RF场景，进入状态机处理
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvGasPlmnSrchCnf_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1680,31 +1143,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvGasPlmnSrchCnf_Main(
 }
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvRcvLmmPlmnSrchCnf_Main
- 功能描述  : 收到lmm的ID_LMM_MMC_PLMN_SRCH_CNF回复消息
- 输入参数  : ulEventType:消息类型
-              pstMsg:ID_LMM_MMC_PLMN_SRCH_CNF消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月7日
-    作    者   : W00176964
-    修改内容   : V7R1C50_GUTL_PhaseII:新生成函数
-  2.日    期   : 2012年12月11日
-    作    者   : l00167671
-    修改内容   : DTS2012121802573, TQE清理
-  3.日    期   : 2013年8月26日
-    作    者   : w00242748
-    修改内容   : DTS2013071808373, 编译告警清理
-  4.日    期   : 2014年6月10日
-    作    者   : w00167002
-    修改内容   : DSDS III:L下搜网NO RF场景，进入状态机处理
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvRcvLmmPlmnSrchCnf_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1751,42 +1190,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvRcvLmmPlmnSrchCnf_Main(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvTdPlmnSrchCnf_Main
- 功能描述  : 收到Td的RRMM_PLMN_SEARCH_CNF回复消息
- 输入参数  : ulEventType:消息类型
-              pstMsg:RRMM_PLMN_SEARCH_CNF消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月7日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新生成函数
-  2.日    期   : 2012年9月28日
-    作    者   : w00176964
-    修改内容   : DTS2012092702790:GUL模式下快速指定搜网回复消息错误的丢弃导致NAS流程异常
-  3.日    期   : 2012年11月16日
-    作    者   : z00161729
-    修改内容   : DTS2012111605452:search cnf 增加list fail接口需要进list搜状态机处理
-  4.日    期   : 2013年11月25日
-    作    者   : z00161729
-    修改内容   : SVLTE优化G-TL ps切换性能修改
-  5.日    期   : 2014年2月21日
-    作    者   : s00217060
-    修改内容   : DTS2014021902519:CSFB存在时并且当前是TDD模式，不需要再搜W的网络
-  6.日    期   : 2014年6月10日
-    作    者   : w00167002
-    修改内容   : DSDS GUNAS III项目:自动切换模式下如果搜网NO RF直接透传到MMC状态机处理
-  7.日    期   : 2016年2月2日
-    作    者   : w00167002
-    修改内容   : DTS2015110904588: 移动用户搜TD失败，进UTRANCTRL搜W,搜到W时候发现
-                 需要漫游排序，触发停W搜网。MMC通知UTRANCTRL退出后发送停止搜网消息，
-                 此时收到了W的搜网CNF消息，导致异常进入选网状态机。  
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvTdPlmnSrchCnf_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1869,25 +1273,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvTdPlmnSrchCnf_Main(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvTiWaitTdPlmnSearchCnfExpired_Main
- 功能描述  : 收到td的指定搜网回复超时消息
- 输入参数  : ulEventType:消息类型
-              pstMsg:RRMM_SYS_CFG_CNF超时消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月22日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新生成函数
-  2.日    期   : 2014年2月21日
-    作    者   : s00217060
-    修改内容   : DTS2014021902519:CSFB存在时并且当前是TDD模式，不需要再搜W的网络
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvTiWaitTdPlmnSearchCnfExpired_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1956,25 +1342,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvTiWaitTdPlmnSearchCnfExpired_Main(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvMmcInterSearchReq_Main
- 功能描述  : 收到MMC 内部搜网请求,清除中国网络标记
- 输入参数  : ulEventType:消息类型
-              pstMsg:消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月22日
-    作    者   : x00203213
-    修改内容   : V7R1C50_GUTL_PhaseII:新生成函数
-  2.日    期   : 2014年11月25日
-    作    者   : z00161729
-    修改内容   : 开机搜网优化项目修改
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvMmcInterSearchReq_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1994,25 +1362,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvMmcInterSearchReq_Main(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvTiHplmnTimerExpired_Main
- 功能描述  : 收到HPLMN TIMER超时消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年7月14日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2013年12月20日
-   作    者   : w00167002
-   修改内容   : DTS2013112917981:guNAS删除在TD模式下不能进行bg搜的限制。
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvTiHplmnTimerExpired_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2023,25 +1373,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvTiHplmnTimerExpired_Main(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvTiTryingHighPrioPlmnSearchExpired_Main
- 功能描述  : 收到10S定时器超时消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年7月14日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2013年12月20日
-   作    者   : w00167002
-   修改内容   : DTS2013112917981:guNAS删除在TD模式下不能进行bg搜的限制。
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvTiTryingHighPrioPlmnSearchExpired_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg

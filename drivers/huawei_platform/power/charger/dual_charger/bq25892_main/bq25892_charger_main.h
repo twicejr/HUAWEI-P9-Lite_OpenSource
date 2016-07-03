@@ -50,6 +50,7 @@ struct bq25892_main_device_info {
 #define IINLIM_MIN_100          (100)
 #define IINLIM_STEP_50          (50)
 #define IINLIM_MAX_3250       (3250)
+#define IINLIM_FOR_BQ25892_EXIT_PFM     (400)
 
 
 /*BHOT / BCOLD / VINDPM_OS  Register REG0x01*/
@@ -68,6 +69,8 @@ struct bq25892_main_device_info {
 #define BQ25892_MAIN_REG_02     0x02
 #define BQ25892_MAIN_REG_02_CONV_START_MASK      BIT(7)
 #define BQ25892_MAIN_REG_02_CONV_START_SHIFT   (7)
+#define BQ25892_MAIN_REG_02_CONV_RATE_MASK      BIT(6)
+#define BQ25892_MAIN_REG_02_CONV_RATE_SHIFT   (6)
 #define BQ25892_MAIN_REG_02_ICO_EN_MASK      BIT(4)
 #define BQ25892_MAIN_REG_02_ICO_EN_SHIFT   (4)
 #define BQ25892_MAIN_REG_02_FORCE_DPDM_MASK      BIT(1)
@@ -426,6 +429,8 @@ struct bq25892_main_device_info {
 #define BQ25892_MAIN_REG_14_REG_RST_SHIFT      7
 #define BQ25892_MAIN_REG_14_ICO_OPTIMIZED_MASK BIT(6)
 #define BQ25892_MAIN_REG_14_ICO_OPTIMIZED_SHIFT      6
+#define BQ25892_MAIN_REG_14_REG_PN_MASK  (BIT(5) | BIT(4) | BIT(3))
+#define BQ25892_MAIN_REG_14_REG_PN_IS_25892      0
 
 
 #define CHIP_VERSION_MASK   (0x38)

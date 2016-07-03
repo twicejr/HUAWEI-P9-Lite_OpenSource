@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmcFsmPLmnSelectionTbl.h
-  版 本 号   : 初稿
-  作    者   : sunxibo /46746
-  生成日期   : 2011年07月04日
-  最近修改   :
-  功能描述   : NasMmcFsmPLmnSelectionTbl.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年07月04日
-    作    者   : sunxibo /46746
-    修改内容   : Added for V7R1 phase II
-
-******************************************************************************/
 #ifndef _NAS_MMC_FSM_PLMN_SELECTION_TBL_H_
 #define _NAS_MMC_FSM_PLMN_SELECTION_TBL_H_
 
@@ -50,19 +33,7 @@ extern NAS_STA_STRU                                         g_astNasMmcPlmnSelec
   3 枚举定义
 *****************************************************************************/
 
-/*****************************************************************************
- 枚举名    : NAS_MMC_PLMN_SELECTION_STA_ENUM
- 枚举说明  : 状态机PLMN SELECTION的状态枚举定义
- 1.日    期   : 2011年07月04日
-   作    者   : sunxibo /46746
-   修改内容   : Added for V7R1 phase II
- 2.日    期   : 2012年05月28日
-   作    者   : sunxibo /46746
-   修改内容   : Added for V7R1 C50 CS/PS mode 1
- 3.日    期   : 2014年1月28日
-   作    者   : s00246516
-   修改内容   : L-C互操作项目:增加获取和注册请求的处理
-*****************************************************************************/
+
 enum NAS_MMC_PLMN_SELECTION_STA_ENUM
 {
     /* 自动搜网状态机等待消息状态 */
@@ -138,10 +109,8 @@ enum NAS_MMC_PLMN_SELECTION_STA_ENUM
     /*  CS/PS mode 1重回L模等待EPS连接释放 */
     NAS_MMC_PLMN_SELECTION_STA_WAIT_EPS_REL_IND_CSPSMODE1_RECAMP_LTE            =23,
 
-    /* Added by s00246516 for L-C互操作项目, 2014-01-28, Begin */
     /*  等待MSCC的注册请求 */
     NAS_MMC_PLMN_SELECTION_STA_WAIT_MSCC_REG_REQ                                 =24,
-    /* Added by s00246516 for L-C互操作项目, 2014-01-28, End */
 
     NAS_MMC_PLMN_SELECTION_STA_BUTT
 };

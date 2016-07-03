@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasXccCtx.c
-  版 本 号   : 初稿
-  作    者   : Y00213812
-  生成日期   : 2014年06月27日
-  功能描述   : XccCtx，任务入口函数处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年06月27日
-    作    者   : Y00213812
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -51,142 +36,44 @@ CNAS_XCC_CTX_STRU                       g_stCnasXccCtx;
   3 函数定义
 *****************************************************************************/
 /*lint -save -e958*/
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetCtxAddr
- 功能描述  : 获取当前XCC的CTX
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回当前XCC的CTX地址
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年07月04日
-   作    者   : Y00213812
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_XCC_CTX_STRU* CNAS_XCC_GetCtxAddr(VOS_VOID)
 {
     return &(g_stCnasXccCtx);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetFsmStackAddr
- 功能描述  : 获取当前状态机栈地址
- 输入参数  : ucIndex -- 状态机实例索引
- 输出参数  : 无
- 返 回 值  : 当前状态机栈地址
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年09月03日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_XCC_FSM_STACK_STRU* CNAS_XCC_GetFsmStackAddr(VOS_VOID)
 {
     return &(CNAS_XCC_GetCtxAddr()->pstCurFsmEntity->stFsmStack);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetCurFsmAddr
- 功能描述  : 获取当前状态机地址
- 输入参数  : ucIndex -- 状态机实例索引
- 输出参数  : 无
- 返 回 值  : 当前状态机地址
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年09月03日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_XCC_FSM_CTX_STRU* CNAS_XCC_GetCurFsmAddr(VOS_VOID)
 {
     return &(CNAS_XCC_GetCtxAddr()->pstCurFsmEntity->stCurFsm);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetFsmTopState
- 功能描述  : 获取状态机顶层的状态
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 当前状态机的顶层状态
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年09月04日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_GetFsmTopState(VOS_VOID)
 {
     return (CNAS_XCC_GetCurFsmAddr()->ulState);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetFsmConnectId
- 功能描述  : 获取状态机顶层的connect id状态
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 当前状态机的顶层connect id状态
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年09月04日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 CNAS_XCC_GetFsmConnectId(VOS_VOID)
 {
     return (CNAS_XCC_GetCurFsmAddr()->ucConnectId);
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetMainCtrlCtx
- 功能描述  : 获取main control上下文地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回当前main control上下文地址
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年09月10日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_XCC_MAIN_CTRL_CTX_STRU* CNAS_XCC_GetMainCtrlCtx(VOS_VOID)
 {
     return &(CNAS_XCC_GetCtxAddr()->stMainCtrlCtx);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_InitEmergencyCallCtrlCtx
- 功能描述  : 初始化emergency ctrl 上下文
- 输入参数  : pstEmcCtrl -- emergency call ctrl ctx
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年11月26日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_InitEmergencyCallCtrlCtx(
     CNAS_XCC_EMERGENCY_CALL_CTRL_STRU  *pstEmcCtrl
 )
@@ -198,33 +85,7 @@ VOS_VOID CNAS_XCC_InitEmergencyCallCtrlCtx(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_InitMainCtrlCtx
- 功能描述  : 初始化main control 上下文
- 输入参数  : pstMainCtrlCtx -- main control上下文索引
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年09月10日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
- 2.日    期   : 2014年11月17日
-   作    者   : w00176964
-   修改内容   : CDMA 1X项目迭代5修改
-
- 3.日    期   : 2015年1月6日
-   作    者   : y00245242
-   修改内容   : NDSS ORIG功能增加
-
- 4.日    期   : 2015年11月06日
-   作    者   : w00176964
-   修改内容   : Modify for CDMA DMT Stability Optimize
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_InitMainCtrlCtx(
     CNAS_XCC_INIT_TYPE_ENUM_UINT8       enInitType,
     CNAS_XCC_MAIN_CTRL_CTX_STRU        *pstMainCtrlCtx
@@ -257,20 +118,7 @@ VOS_VOID CNAS_XCC_InitMainCtrlCtx(
     CNAS_XCC_InitEmergencyCallCtrlCtx(&(pstMainCtrlCtx->stEmcCallCtrl));
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_InitCallNvimCfg
- 功能描述  : 初始化CallNvimCfg
- 输入参数  : CNAS_XCC_CALL_NVIM_CFG_STRU        *pstCallNvimCfg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年6月17日
-   作    者   : c00299063
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XCC_InitCallNvimCfg(
     CNAS_XCC_CALL_NVIM_CFG_STRU        *pstCallNvimCfg
 )
@@ -279,21 +127,7 @@ VOS_VOID CNAS_XCC_InitCallNvimCfg(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_Init1xPagingRspSoCfg
- 功能描述  : 初始化1x paging rsp带so的配置项
- 输入参数  : CNAS_XCC_1X_PAGING_RSP_SO_CFG_STRU *pstPagingRspSoCfg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月2日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_Init1xPagingRspSoCfg(
     CNAS_XCC_1X_PAGING_RSP_SO_CFG_STRU *pstPagingRspSoCfg
 )
@@ -302,19 +136,7 @@ VOS_VOID CNAS_XCC_Init1xPagingRspSoCfg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ReadNvimInfo
- 功能描述  : 读取NV控制信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
-1. 日    期   : 2015年6月15日
-   作    者   : c00299063
-   修改内容   : 新增函数
-*****************************************************************************/
 VOS_VOID CNAS_XCC_ReadNvimInfo()
 {
     CNAS_XCC_ReadCallCfgNvim();
@@ -326,25 +148,7 @@ VOS_VOID CNAS_XCC_ReadNvimInfo()
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_InitCtx
- 功能描述  : XCC 上下文全局变量初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
-
- 修改历史      :
- 1.日    期   : 2014年07月04日
-   作    者   : Y00213812
-   修改内容   : 新生成函数
- 2.日    期   : 2015年11月06日
-   作    者   : w00176964
-   修改内容   : Modify for CDMA DMT Stability Optimize
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_InitCtx(CNAS_XCC_INIT_TYPE_ENUM_UINT8 enInitType)
 {
     VOS_UINT32                          i;
@@ -383,21 +187,7 @@ VOS_VOID CNAS_XCC_InitCtx(CNAS_XCC_INIT_TYPE_ENUM_UINT8 enInitType)
     CNAS_XCC_ReadNvimInfo();
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_LoadSubFsm
- 功能描述  : 加载L2状态机的信息
- 输入参数  : enFsmId - L2状态机ID
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年09月04日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  CNAS_XCC_LoadSubFsm(
     CNAS_XCC_FSM_ID_ENUM_UINT32         enFsmId,
     CNAS_XCC_FSM_CTX_STRU              *pstCurFsm
@@ -430,22 +220,7 @@ VOS_VOID  CNAS_XCC_LoadSubFsm(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_PushFsm
- 功能描述  : 对状态机进行压栈
- 输入参数  : pstFsmStack -- 状态机栈
-             pstNewFsm   -- 需要压入的状态机
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年07月04日
-   作    者   : Y00213812
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_PushFsm(
     CNAS_XCC_FSM_STACK_STRU            *pstFsmStack,
     CNAS_XCC_FSM_CTX_STRU              *pstNewFsm
@@ -482,22 +257,7 @@ VOS_VOID CNAS_XCC_PushFsm(
     pstFsmStack->usStackDepth++;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_PopFsm
- 功能描述  : 对状态机进行出栈
- 输入参数  : 无
-             无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年07月04日
-   作    者   : Y00213812
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_PopFsm(VOS_VOID)
 {
     CNAS_XCC_FSM_STACK_STRU            *pstFsmStack = VOS_NULL_PTR;
@@ -526,22 +286,7 @@ VOS_VOID CNAS_XCC_PopFsm(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_InitFsmL2
- 功能描述  : XCC启动一个L2的状态机。启动流程的同时启动状态以及保护定时器
-              该函数会进行压栈操作,如果不需要进行协议栈压栈, 必须保证退出前流程
- 输入参数  : enFsmId -- L2状态机ID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年07月07日
-   作    者   : Y00213812
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_InitFsmL2(
     CNAS_XCC_FSM_ID_ENUM_UINT32          enFsmId
 )
@@ -579,21 +324,7 @@ VOS_VOID CNAS_XCC_InitFsmL2(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_QuitFsmL2
- 功能描述  : 结束L2状态机。如果结束流程，状态机弹出状态栈
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年07月07日
-   作    者   : Y00213812
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_QuitFsmL2(VOS_VOID)
 {
 
@@ -619,21 +350,7 @@ VOS_VOID CNAS_XCC_QuitFsmL2(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetFsmStackDepth
- 功能描述  : 获取当前协议栈的栈深度
- 输入参数  : ucIndex -- 状态机实例索引
- 输出参数  : 无
- 返 回 值  : 当前状态机的深度
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年09月03日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT16 CNAS_XCC_GetFsmStackDepth(VOS_VOID)
 {
     CNAS_XCC_FSM_STACK_STRU            *pstFsmStack = VOS_NULL_PTR;
@@ -643,108 +360,31 @@ VOS_UINT16 CNAS_XCC_GetFsmStackDepth(VOS_VOID)
     return pstFsmStack->usStackDepth;
 }
 
-/*****************************************************************************
-函 数 名  : CNAS_XCC_GetCurrFsmId
-功能描述  : 获取当前状态机标识
-输入参数  : 无
-输出参数  : 无
-返 回 值  : CNAS_XCC_FSM_ID_ENUM_UINT32 -- 返回当前状态机ID
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2014年09月03日
-作    者   : w00242748
-修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_XCC_FSM_ID_ENUM_UINT32 CNAS_XCC_GetCurrFsmId(VOS_VOID)
 {
     return (CNAS_XCC_GetCtxAddr()->pstCurFsmEntity->stCurFsm.enFsmId);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetCurFsmDesc
- 功能描述  : 获取当前状态机表的地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 当前状态机表的地址
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年09月13日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_FSM_DESC_STRU* CNAS_XCC_GetCurFsmDesc(VOS_VOID)
 {
     return (CNAS_XCC_GetCurFsmAddr()->pstFsmDesc);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetBufferedMsgNum
- 功能描述  : 获取当前缓存的消息数目
- 输入参数  : 无
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT8 -- 返回缓存的消息数目
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期   : 2014年9月16日
-     作    者   : y00245242
-     修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 CNAS_XCC_GetBufferedMsgNum(VOS_VOID)
 {
     return (CNAS_XCC_GetMainCtrlCtx()->stBufferMsgQueue.ucMsgNum);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetNextBufferMsg
- 功能描述  : 获取下一个缓存消息
- 输入参数  : 无
 
- 输出参数  :
- 返 回 值  : VOS_UINT8* -- 缓存消息地址
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期   : 2014年9月16日
-     作    者   : y00245242
-     修改内容   : 新生成函数
-   2.日    期   : 2015年9月8日
-     作    者   : w00176964
-     修改内容   : CNAS内存裁剪调整
-*****************************************************************************/
 VOS_UINT8 *CNAS_XCC_GetNextBufferMsg(VOS_VOID)
 {
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-8, begin */
     return (CNAS_XCC_GetMainCtrlCtx()->stBufferMsgQueue.pastBufferMsg[0]);
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-8, end */
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_FreeCurrentBufferMsg
- 功能描述  : free当前首个缓存的消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期   : 2014年9月16日
-     作    者   : y00245242
-     修改内容   : 新生成函数
-   2.日    期   : 2015年9月8日
-     作    者   : w00176964
-     修改内容   : CNAS内存裁剪调整
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_FreeCurrentBufferMsg(VOS_VOID)
 {
     VOS_UINT8                           ucMsgNum;
@@ -762,7 +402,6 @@ VOS_VOID CNAS_XCC_FreeCurrentBufferMsg(VOS_VOID)
     /* 更新缓存消息数目 */
     CNAS_XCC_GetMainCtrlCtx()->stBufferMsgQueue.ucMsgNum = ucMsgNum;
 
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-8, begin */
     if (VOS_NULL_PTR != (CNAS_XCC_GetMainCtrlCtx()->stBufferMsgQueue.pastBufferMsg[0]))
     {
         PS_MEM_FREE(UEPS_PID_XCC, (CNAS_XCC_GetMainCtrlCtx()->stBufferMsgQueue.pastBufferMsg[0]));
@@ -779,55 +418,18 @@ VOS_VOID CNAS_XCC_FreeCurrentBufferMsg(VOS_VOID)
     }
 
     (CNAS_XCC_GetMainCtrlCtx()->stBufferMsgQueue.pastBufferMsg[ucMsgNum]) = VOS_NULL_PTR;
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-8, end */
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetSpecifiedIndexBufferMsg
- 功能描述  : 获取指定索引的用户请求信息
- 输入参数  : ucIndex -- 缓存消息索引
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT8* -- 缓存消息地址
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期   : 2014年9月16日
-     作    者   : y00245242
-     修改内容   : 新生成函数
-   2.日    期   : 2015年9月8日
-     作    者   : w00176964
-     修改内容   : CNAS内存裁剪调整
-
-*****************************************************************************/
 VOS_UINT8  *CNAS_XCC_GetSpecifiedIndexBufferMsg(
     VOS_UINT8                           ucIndex
 )
 {
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-8, begin */
     return (CNAS_XCC_GetMainCtrlCtx()->stBufferMsgQueue.pastBufferMsg[ucIndex]);
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-8, end */
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_FreeSpecifiedIndexBufferMsg
- 功能描述  : free指定的用户请求消息
- 输入参数  : ucIndex -- 缓存消息索引
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期   : 2014年9月16日
-     作    者   : y00245242
-     修改内容   : 新生成函数
-   2.日    期   : 2015年9月8日
-     作    者   : w00176964
-     修改内容   : CNAS内存裁剪调整
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_FreeSpecifiedIndexBufferMsg(VOS_UINT8 ucIndex)
 {
     VOS_UINT8                           ucMsgNum;
@@ -844,7 +446,6 @@ VOS_VOID CNAS_XCC_FreeSpecifiedIndexBufferMsg(VOS_UINT8 ucIndex)
     /* 更新缓存消息数目 */
     CNAS_XCC_GetMainCtrlCtx()->stBufferMsgQueue.ucMsgNum = ucMsgNum;
 
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-8, begin */
     if (VOS_NULL_PTR != (CNAS_XCC_GetMainCtrlCtx()->stBufferMsgQueue.pastBufferMsg[ucIndex]))
     {
         PS_MEM_FREE(UEPS_PID_XCC, (CNAS_XCC_GetMainCtrlCtx()->stBufferMsgQueue.pastBufferMsg[ucIndex]));
@@ -861,29 +462,11 @@ VOS_VOID CNAS_XCC_FreeSpecifiedIndexBufferMsg(VOS_UINT8 ucIndex)
     }
 
     (CNAS_XCC_GetMainCtrlCtx()->stBufferMsgQueue.pastBufferMsg[ucMsgNum]) = VOS_NULL_PTR;
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-8, end */
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_FreeAllBufferMsgInQueue
- 功能描述  : free所有用户请求消息
- 输入参数  : 无
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期   : 2014年9月16日
-     作    者   : y00245242
-     修改内容   : 新生成函数
-   2.日    期   : 2015年9月8日
-     作    者   : w00176964
-     修改内容   : CNAS内存裁剪调整
-*****************************************************************************/
 VOS_VOID CNAS_XCC_FreeAllBufferMsgInQueue(VOS_VOID)
 {
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-8, begin */
     VOS_UINT32                          ulIndex;
     VOS_UINT32                          ulMsgNum;
 
@@ -893,45 +476,24 @@ VOS_VOID CNAS_XCC_FreeAllBufferMsgInQueue(VOS_VOID)
     {
         CNAS_XCC_FreeSpecifiedIndexBufferMsg((VOS_UINT8)ulIndex);
     }
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-8, end */
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_BufferMsgInQueue
- 功能描述  : 缓存用户请求信息，待后续处理
- 输入参数  : ulEventType -- 入口消息类型
-             pstMsg      -- 入口消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期   : 2014年9月16日
-     作    者   : y00245242
-     修改内容   : 新生成函数
-   2.日    期   : 2015年9月8日
-     作    者   : w00176964
-     修改内容   : CNAS内存裁剪调整
 
-*****************************************************************************/
 VOS_VOID CNAS_XCC_BufferMsgInQueue(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 )
 {
     VOS_UINT8                           ucIndex;
-    /* Added by w00176964 for CNAS内存裁剪, 2015-9-8, begin */
     MSG_HEADER_STRU                     *pstMsgHdr;
 
     pstMsgHdr = (MSG_HEADER_STRU *)pstMsg;
-    /* Added by w00176964 for CNAS内存裁剪, 2015-9-8, end */
 
     ucIndex = CNAS_XCC_GetMainCtrlCtx()->stBufferMsgQueue.ucMsgNum;
 
     if (ucIndex < CNAS_XCC_MAX_BUFFER_MSG_QUEUE_NUM)
     {
-        /* Modified by w00176964 for CNAS内存裁剪, 2015-9-8, begin */
         if (CNAS_XCC_MAX_MSG_BUFFER_LEN < pstMsg->ulLength)
         {
             CNAS_ERROR_LOG( UEPS_PID_XCC, "CNAS_XCC_BufferMsgInQueue: message is too length!");
@@ -950,47 +512,18 @@ VOS_VOID CNAS_XCC_BufferMsgInQueue(
                        pstMsgHdr->ulLength + VOS_MSG_HEAD_LENGTH,
                        pstMsgHdr,
                        pstMsgHdr->ulLength + VOS_MSG_HEAD_LENGTH);
-        /* Modified by w00176964 for CNAS内存裁剪, 2015-9-8, end */
 
         CNAS_XCC_GetMainCtrlCtx()->stBufferMsgQueue.ucMsgNum++;
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetIntCacheMsgAddr
- 功能描述  : 获取当前的缓存消息地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : CNAS XCC缓存消息队列
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年07月04日
-   作    者   : Y00213812
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_XCC_INT_MSG_QUEUE_STRU* CNAS_XCC_GetIntMsgQueueAddr(VOS_VOID)
 {
     return &(CNAS_XCC_GetCtxAddr()->stIntMsgQueue);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_InitInternalBuffer
- 功能描述  : 初始化内部队列
- 输入参数  : pstIntMsgQueue -- 内部队列地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年07月04日
-   作    者   : Y00213812
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_InitInternalBuffer(
     CNAS_XCC_INT_MSG_QUEUE_STRU        *pstIntMsgQueue
 )
@@ -1005,22 +538,7 @@ VOS_VOID CNAS_XCC_InitInternalBuffer(
     pstIntMsgQueue->ucIntMsgNum = 0;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_PutMsgInIntMsgQueue
- 功能描述  : 保存当前需要处理的缓存
- 输入参数  : pstMsg -- 消息地址
-             pMsg        -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年07月05日
-   作    者   : Y00213812
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_PutMsgInIntMsgQueue(
     VOS_UINT8                          *pstMsg
 )
@@ -1047,23 +565,7 @@ VOS_VOID CNAS_XCC_PutMsgInIntMsgQueue(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetNextIntMsg
- 功能描述  : 获取当前需要处理的缓存
- 输入参数  : 无
- 输出参数  :
 
- 返 回 值  : pstIntMSg -- 返回下一条内部消息
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2014年07月04日
-   作    者   : Y00213812
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 *CNAS_XCC_GetNextIntMsg(VOS_VOID)
 {
     VOS_UINT8                           ucIntMsgNum;
@@ -1097,21 +599,7 @@ VOS_UINT8 *CNAS_XCC_GetNextIntMsg(VOS_VOID)
     return pstIntMsg;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetIntMsgNum
- 功能描述  : 获取当前XCC内部消息个数
- 输入参数  : 无
- 输出参数  :
- 返 回 值  : 当前存在的缓存个数
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年07月04日
-   作    者   : Y00213812
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_GetIntMsgNum(VOS_VOID)
 {
     CNAS_XCC_INT_MSG_QUEUE_STRU      *pstMsgQueue = VOS_NULL_PTR;
@@ -1121,82 +609,26 @@ VOS_UINT32 CNAS_XCC_GetIntMsgNum(VOS_VOID)
     return pstMsgQueue->ucIntMsgNum;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_InitFsmCtx_L1Main
- 功能描述  : 初始化L1状态机上下文
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年09月03日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_InitFsmCtx_L1Main(VOS_VOID)
 {
 
     /* 暂时没有需要初始化的全局变量，后续有变量需初始化再在此添加 */
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_InitFsmCtx_MoCalling
- 功能描述  : 初始化L1状态机上下文
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年09月03日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_InitFsmCtx_MoCalling(VOS_VOID)
 {
     /* 暂时没有需要初始化的全局变量，后续有变量需初始化再在此添加 */
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_InitFsmCtx_MtCalling
- 功能描述  : 初始化L1状态机上下文
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年09月03日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_InitFsmCtx_MtCalling(VOS_VOID)
 {
     /* 暂时没有需要初始化的全局变量，后续有变量需初始化再在此添加 */
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_InitCurrFsmCtx
- 功能描述  : 初始化当前状态机
- 输入参数  : ucIndex -- 状态机实例索引
- 输出参数  : 无
- 返 回 值  : 当前状态机地址
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年09月03日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  CNAS_XCC_InitCurrFsmCtx(
     CNAS_XCC_INIT_TYPE_ENUM_UINT8       enInitType,
     CNAS_XCC_FSM_CTX_STRU              *pstCurrFsmCtx
@@ -1230,20 +662,7 @@ VOS_VOID  CNAS_XCC_InitCurrFsmCtx(
                   CNAS_XCC_MAX_MSG_BUFFER_LEN);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_InitFsmStackCtx
- 功能描述  : 初始化状态机栈上下文
- 输入参数  : 无
- 输出参数  : pstFsmStack:状态机栈信息
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年9月4日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 
 VOS_VOID  CNAS_XCC_InitFsmStackCtx(
     CNAS_XCC_FSM_STACK_STRU            *pstFsmStack
@@ -1261,30 +680,7 @@ VOS_VOID  CNAS_XCC_InitFsmStackCtx(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_InitCallInfoCtx
- 功能描述  : 初始化呼叫信息上下文
- 输入参数  : 无
- 输出参数  : pstFsmStack:状态机栈信息
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年9月4日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-
- 2.日    期   : 2015年7月20日
-   作    者   : h00313353
-   修改内容   : 迭代17 紧急呼
- 3.日    期   : 2015年7月27日
-   作    者   : l00324781
-   修改内容   : Iter16 修改
- 4.日    期   : 2015年12月24日
-   作    者   : y00245242
-   修改内容   : privacy mode特性开发
-*****************************************************************************/
 VOS_VOID  CNAS_XCC_InitCallInfoCtx(
     CNAS_XCC_CALL_INFO_CTX_STRU                            *pstCallInfo,
     CNAS_XCC_INIT_CALLINFO_SCENE_ENUM_UINT8                 enScene
@@ -1364,21 +760,7 @@ VOS_VOID  CNAS_XCC_InitCallInfoCtx(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_InitIntMsgQueue
- 功能描述  : 清除内部缓存消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年9月4日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  CNAS_XCC_InitIntMsgQueue(
     CNAS_XCC_INT_MSG_QUEUE_STRU      *pstIntMsgQueue
 )
@@ -1391,20 +773,7 @@ VOS_VOID  CNAS_XCC_InitIntMsgQueue(
                   CNAS_XCC_MAX_INT_MSG_QUEUE_NUM);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SetCurrFsmState
- 功能描述  : 设置当前需要迁移的状态
- 输入参数  : ulCurrState:当前迁移的状态
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月9日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  CNAS_XCC_SetCurrFsmState(
     VOS_UINT32                          ulCurrState
 )
@@ -1423,140 +792,44 @@ VOS_VOID  CNAS_XCC_SetCurrFsmState(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetCurrFsmEntityCallInfoCtx
- 功能描述  : 获取当前状态机实体中的呼叫相关信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : CNAS_XCC_CALL_INFO_CTX_STRU
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月9日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-*****************************************************************************/
 CNAS_XCC_CALL_INFO_CTX_STRU*  CNAS_XCC_GetCurrFsmEntityCallInfoCtx( VOS_VOID )
 {
     return &(g_stCnasXccCtx.pstCurFsmEntity->stCallInfoCtx);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetCurrFsmMsgAddr
- 功能描述  : 获取当前状态机入口消息的地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 当前状态机入口消息的地址
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年9月13日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_XCC_ENTRY_MSG_STRU* CNAS_XCC_GetCurrFsmMsgAddr(VOS_VOID)
 {
     return &(g_stCnasXccCtx.pstCurFsmEntity->stCurFsm.stEntryMsg);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetInitSo
- 功能描述  : 获取初始化的SO
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : CAS_CNAS_1X_SERVICE_OPTION_ENUM_UINT16
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年9月13日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 CAS_CNAS_1X_SERVICE_OPTION_ENUM_UINT16 CNAS_XCC_GetInitSo(VOS_VOID)
 {
     return (g_stCnasXccCtx.pstCurFsmEntity->stCallInfoCtx.enInitSo);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SetInitSo
- 功能描述  : 设置初始化的SO
- 输入参数  : enSo:CAS_CNAS_1X_SERVICE_OPTION_ENUM_UINT16
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月29日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SetInitSo(CAS_CNAS_1X_SERVICE_OPTION_ENUM_UINT16 enSo)
 {
     g_stCnasXccCtx.pstCurFsmEntity->stCallInfoCtx.enInitSo = enSo;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetCurrentSo
- 功能描述  : 获取当前的SO
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : CAS_CNAS_1X_SERVICE_OPTION_ENUM_UINT16
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年9月13日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 CAS_CNAS_1X_SERVICE_OPTION_ENUM_UINT16 CNAS_XCC_GetCurrentSo(VOS_VOID)
 {
     return (g_stCnasXccCtx.pstCurFsmEntity->stCallInfoCtx.enCurrentSo);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SetCurrentSo
- 功能描述  : 设置当前的SO
- 输入参数  : enSo:CAS_CNAS_1X_SERVICE_OPTION_ENUM_UINT16
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月29日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SetCurrentSo(CAS_CNAS_1X_SERVICE_OPTION_ENUM_UINT16 enSo)
 {
     g_stCnasXccCtx.pstCurFsmEntity->stCallInfoCtx.enCurrentSo = enSo;
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SaveCurEntryMsg
- 功能描述  : 保存当前状态机的入口消息
- 输入参数  : ulEventType            :入口消息类型
-              pstMsg             :入口消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2014-09-13
-    作    者   : w00242748
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_VOID CNAS_XCC_SaveCurEntryMsg(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1580,14 +853,12 @@ VOS_VOID CNAS_XCC_SaveCurEntryMsg(
 
     ulLen                       = pstMsgHeader->ulLength + VOS_MSG_HEAD_LENGTH;
 
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-16, begin */
     if (ulLen > CNAS_XCC_MAX_MSG_BUFFER_LEN)
     {
         CNAS_WARNING_LOG(UEPS_PID_XCC, "CNAS_XCC_SaveCurEntryMsg:beyond the Size!");
 
         ulLen = CNAS_XCC_MAX_MSG_BUFFER_LEN;
     }
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-16, end */
 
     /* 将当前处理的入口消息拷贝到Context对应的缓冲区 */
     NAS_MEM_CPY_S( pstEntryMsg->aucMsgBuffer, CNAS_XCC_MAX_MSG_BUFFER_LEN, pstMsg, ulLen );
@@ -1598,21 +869,7 @@ VOS_VOID CNAS_XCC_SaveCurEntryMsg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetSeqNum
- 功能描述  : 获取seqnum
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年9月13日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 CNAS_XCC_AllocSeqNum(VOS_VOID)
 {
     VOS_UINT8                           ucSeqNum;
@@ -1624,22 +881,7 @@ VOS_UINT8 CNAS_XCC_AllocSeqNum(VOS_VOID)
     return ucSeqNum;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_BufferAWIOrEAWIInfoReco
- 功能描述  : 缓存AWI/EAWI的Info record
- 输入参数  : pstDschDataInd
-             pstCallInfoCtx
- 输出参数  : 无
- 返 回 值  : VOS_OK      -- 处理成功
-             VOS_ERR     -- 处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年11月12日
-   作    者   : L00256032
-   修改内容   : 1X SS Project修改
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_BufferAWIOrEAWIInfoReco(
     CAS_CNAS_1X_DSCH_DATA_IND_STRU     *pstDschDataInd,
     CNAS_XCC_CALL_INFO_CTX_STRU        *pstCallInfoCtx
@@ -1706,20 +948,7 @@ VOS_UINT32 CNAS_XCC_BufferAWIOrEAWIInfoReco(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ClearAWIOrEAWIInfoRecoBuffer
- 功能描述  : 清空AWI/EAWI的Info record缓存
- 输入参数  : ucCallId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年11月12日
-   作    者   : L00256032
-   修改内容   : 1X SS Project修改
-*****************************************************************************/
 VOS_VOID CNAS_XCC_ClearAWIOrEAWIInfoRecoBuffer(VOS_VOID)
 {
     CNAS_XCC_CALL_INFO_CTX_STRU        *pstCallInfoCtx = VOS_NULL_PTR;
@@ -1739,21 +968,7 @@ VOS_VOID CNAS_XCC_ClearAWIOrEAWIInfoRecoBuffer(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SetWaitEmcFlashMsgRspFlg
- 功能描述  : 设置等待紧急呼叫flash消息回复标记
- 输入参数  : VOS_UINT8                           ucFlg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月19日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SetWaitEmcFlashMsgRspFlg(
     VOS_UINT8                           ucFlg
 )
@@ -1767,21 +982,7 @@ VOS_VOID CNAS_XCC_SetWaitEmcFlashMsgRspFlg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetWaitEmcFlashMsgRspFlg
- 功能描述  : 获取等待紧急呼叫flash消息回复标记
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月19日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 CNAS_XCC_GetWaitEmcFlashMsgRspFlg(VOS_VOID)
 {
     CNAS_XCC_MAIN_CTRL_CTX_STRU        *pstMainCtrl = VOS_NULL_PTR;
@@ -1791,21 +992,7 @@ VOS_UINT8 CNAS_XCC_GetWaitEmcFlashMsgRspFlg(VOS_VOID)
     return pstMainCtrl->stEmcCallCtrl.ucWaitFlashMsgRspFlg;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SaveEmcCallId
- 功能描述  : 保存紧急呼叫的CALL ID
- 输入参数  : VOS_UINT8                           ucCallId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月19日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SaveEmcCallId(
     VOS_UINT8                           ucCallId
 )
@@ -1819,21 +1006,7 @@ VOS_VOID CNAS_XCC_SaveEmcCallId(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetEmcCallId
- 功能描述  : 获取紧急呼叫的CALL ID
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月19日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 CNAS_XCC_GetEmcCallId(VOS_VOID)
 {
     CNAS_XCC_MAIN_CTRL_CTX_STRU        *pstMainCtrl = VOS_NULL_PTR;
@@ -1843,21 +1016,7 @@ VOS_UINT8 CNAS_XCC_GetEmcCallId(VOS_VOID)
     return pstMainCtrl->stEmcCallCtrl.ucEmcCallId;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SaveMtVoiceCallId
- 功能描述  : 保存MT被叫的CALL ID
- 输入参数  : VOS_UINT8                           ucCallId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月19日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SaveMtVoiceCallId(
     VOS_UINT8                           ucCallId
 )
@@ -1871,21 +1030,7 @@ VOS_VOID CNAS_XCC_SaveMtVoiceCallId(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetMtVoiceCallId
- 功能描述  : 获取MT被叫的CALL ID
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月19日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 CNAS_XCC_GetMtVoiceCallId(VOS_VOID)
 {
     CNAS_XCC_MAIN_CTRL_CTX_STRU        *pstMainCtrl = VOS_NULL_PTR;
@@ -1897,21 +1042,7 @@ VOS_UINT8 CNAS_XCC_GetMtVoiceCallId(VOS_VOID)
 
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SaveEmcFlashMsgSeqNum
- 功能描述  : 保存发送紧急呼叫的flash消息的sequence number
- 输入参数  : VOS_UINT8                           ucSeqNum
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月19日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SaveEmcFlashMsgSeqNum(
     VOS_UINT8                           ucSeqNum
 )
@@ -1925,21 +1056,7 @@ VOS_VOID CNAS_XCC_SaveEmcFlashMsgSeqNum(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetEmcFlashMsgSeqNum
- 功能描述  : 获取发送紧急呼叫的flash消息的sequence number
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月19日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 CNAS_XCC_GetEmcFlashMsgSeqNum(VOS_VOID)
 {
     CNAS_XCC_MAIN_CTRL_CTX_STRU        *pstMainCtrl = VOS_NULL_PTR;
@@ -1950,22 +1067,7 @@ VOS_UINT8 CNAS_XCC_GetEmcFlashMsgSeqNum(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_AllocSrId
- 功能描述  : 分配SR_ID
- 输入参数  : enSo           - 使用的SO
-             ucConnectId    - 使用的Connect Id
- 输出参数  : pucSrId - 分配的SR_ID
- 返 回 值  : SR_ID的分配结果,VOS_TRUE:分配成功；VOS_FALSE:分配失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月4日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32   CNAS_XCC_AllocSrId(
     CAS_CNAS_1X_SERVICE_OPTION_ENUM_UINT16      enSo,
     VOS_UINT8                                  *pucSrId,
@@ -2007,23 +1109,7 @@ VOS_UINT32   CNAS_XCC_AllocSrId(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_UpdateSrIdUsed
- 功能描述  : 刷新已经使用的SR_ID
- 输入参数  : ucSrId       - 已经使用的SR_ID
-             enSo         - 当前使用的SO
-             ucConnectId  - 当前使用的Connect Id
- 输出参数  : 无
- 返 回 值  : 设置结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月4日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32   CNAS_XCC_UpdateSrIdUsed(
     CAS_CNAS_1X_SERVICE_OPTION_ENUM_UINT16      enSo,
     VOS_UINT8                                   ucSrId,
@@ -2070,21 +1156,7 @@ VOS_UINT32   CNAS_XCC_UpdateSrIdUsed(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SetOrigCallOrderIndex
- 功能描述  : 设置最后一路呼叫索引
- 输入参数  : VOS_UINT8                           ucLatestCallIndex
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月6日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SetOrigCallOrderIndex(
     VOS_UINT8                           ucCallIndex
 )
@@ -2103,25 +1175,7 @@ VOS_VOID CNAS_XCC_SetOrigCallOrderIndex(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ClearSpecificedOrigCallIndex
- 功能描述  : 设置最后一路呼叫索引
- 输入参数  : VOS_UINT8                           ucCallIndex
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月6日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年3月6日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_ClearSpecificedOrigCallOrderIndex(
     VOS_UINT8                           ucCallIndex
 )
@@ -2164,21 +1218,7 @@ VOS_VOID CNAS_XCC_ClearSpecificedOrigCallOrderIndex(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ClearAllOrigCallOrderIndex
- 功能描述  : 清除所有呼叫顺序索引
- 输入参数  : VOS_UINT8                           ucCallIndex
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月6日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_ClearAllOrigCallOrderIndex(VOS_VOID)
 {
     CNAS_XCC_RECORD_ORIG_CALL_INDEX_ORDER_STRU             *pstOrigCallIndexOrder = VOS_NULL_PTR;
@@ -2196,21 +1236,7 @@ VOS_VOID CNAS_XCC_ClearAllOrigCallOrderIndex(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetLastCallIndex
- 功能描述  : 清除所有呼叫顺序索引
- 输入参数  : VOS_UINT8                           ucCallIndex
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月6日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 CNAS_XCC_GetLastCallIndex(VOS_VOID)
 {
     CNAS_XCC_RECORD_ORIG_CALL_INDEX_ORDER_STRU             *pstOrigCallIndexOrder = VOS_NULL_PTR;
@@ -2225,41 +1251,13 @@ VOS_UINT8 CNAS_XCC_GetLastCallIndex(VOS_VOID)
     return pstOrigCallIndexOrder->aucCallIndex[pstOrigCallIndexOrder->ucCallNum - 1];
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_INIT_SRID_INFO
- 功能描述  : 初始化SR ID相关信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月14日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_INIT_SRID_INFO( VOS_VOID )
 {
     NAS_MEM_SET_S(CNAS_XCC_GetCtxAddr()->astSridInfo, sizeof(CNAS_XCC_SRID_INFO_STRU) * (CNAS_XCC_MAX_SRID_NUM + 1), 0, sizeof(CNAS_XCC_SRID_INFO_STRU) * (CNAS_XCC_MAX_SRID_NUM + 1));
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ClearSpecificedSrIdByConnectId
- 功能描述  : 根据特定的connect id来清除sr id信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月14日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_ClearSpecificedSrIdByConnectId(
     VOS_UINT8                           ucConnectId
 )
@@ -2283,20 +1281,7 @@ VOS_VOID CNAS_XCC_ClearSpecificedSrIdByConnectId(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_IsExist1xDataOperation
- 功能描述  : 获取当前状态机状态
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年01月18日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_IsExist1xDataOperation(
     TAF_CDMA_SO_TYPE_ENUM_UINT16        enSo
 )

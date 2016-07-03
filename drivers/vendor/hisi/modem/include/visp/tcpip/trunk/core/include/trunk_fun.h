@@ -132,11 +132,8 @@ ULONG TRUNK_ActiveNumChangeProcess(ULONG ulTrunkId);
 ULONG  TRUNK_SetTrunkSysPriById(ULONG ulTrunkId, USHORT usSysPri);
 ULONG  TRUNK_GetTrunkSysPriById(ULONG ulTrunkId, USHORT *pusSysPri);
 
-/* Add by shuxieliu00176784/baiweiqiang00177000, at 2011-06-27. 修改原因: 获取TRUNK成员接口的原始physical地址*/
 ULONG TRUNK_GetTrunkPortOriginalMac(ULONG ulIfIndex, UCHAR *pucMac);
-/* Add by shuxieliu00176784/baiweiqiang00177000, at 2011-06-27. 修改原因: 设置指定trunk的产品定制策略*/
 ULONG TRUNK_SetTrunkProductProcPolicy(ULONG ulTrunkId, ULONG ulPolicy);
-/* Add by shuxieliu00176784/baiweiqiang00177000, at 2011-06-27. 修改原因: 对指定trunk进行产品定制策略设置判断*/
 ULONG TRUNK_SetPolicy_Check(ULONG ulTrunkId, ULONG ulPolicy);
 /* end of Trunk_cfg.c */
 
@@ -168,7 +165,6 @@ VOID TRUNK_RecordActorParaChange(TRUNK_PORT_INFO_S *pstPortCtl,
     TRUNK_BASIC_INFO_S *pstTrunkBaseInfo,
     LACP_NEGO_S *pstPortNegoInfo, LACP_PDU_S *pstLACPDU);
 
-/*Added by z00208058/w00207740, TRUNK LACP下移需求开发, 2012/4/25 */
 VOID TRUNK_BuildLacpPPIInfo(TRUNK_PORT_INFO_S *pstPortCtl, TRUNK_INFO_TBL_S *pstTrunkInfo, PPI_TRUNK_LACP_S *stTrunkPPI);
 VOID TRUNK_LACP_PPI_Update(TRUNK_PORT_INFO_S *pstPortCtl, TRUNK_INFO_TBL_S *pstTrunkInfo, ULONG ulCmd);
 
@@ -229,7 +225,6 @@ ULONG TRUNK_LACP_UpdateNTT(TRUNK_BASIC_INFO_S *pstTrunkBaseInfo,LACP_PDU_S *pstL
 ULONG TRUNK_LACP_UpdateDefaultSelected( TRUNK_PORT_INFO_S *pstPortCtl );
 VOID TRUNK_LACP_RecordPDU(TRUNK_BASIC_INFO_S *pstTrunkBaseInfo, LACP_PDU_S *pstLACPDU );
 VOID TRUNK_LACP_StartCurrentWhileTimer(LACP_PORT_FSM_S *pstPortFSMInfo, ULONG ulTimeOutLen);
-/* Add for V2R3C07, by z00208058/w00207740, at 2012-4-16. 修改原因: TRUNK LACP下移需求开发 */
 VOID TRUNK_LACP_StopCurrentWhileTimer(LACP_PORT_FSM_S *pstPortFSMInfo);
 
 ULONG TRUNK_LACP_RXSetPartnerStateSync_FALSE(TRUNK_PORT_INFO_S *pstPortCtl);
@@ -245,7 +240,6 @@ ULONG TRUNK_LACP_TransferTo_RXLacpDisable(LACP_PORT_FSM_S *pstPortFSMInfo);
 ULONG TRUNK_LACP_TransferTo_RXInit(LACP_PORT_FSM_S *pstPortFSMInfo);
 ULONG TRUNK_LACP_TransferTo_RXDefault(LACP_PORT_FSM_S *pstPortFSMInfo);
 ULONG TRUNK_LACP_TransferTo_RXCurrent(LACP_PORT_FSM_S *pstPortFSMInfo);
-/*Added by z00208058/w00207740, TRUNK LACP下移需求开发, 2012/4/28 */
 ULONG LACP_PPI_UpdatePartenerInfo(TRUNK_BASIC_INFO_S *pstTrunkBaseInfo, LACP_PDU_S *pstLACPDU);
 /* end of trunk_lacp_rx.c */
 
@@ -305,14 +299,12 @@ ULONG TRUNK_Health_TrunkPack(UCHAR *pucData, USHORT usOffset, ULONG ulTrunkId,
                                               USHORT *pusMsgAddLen, USHORT *pusItemAddNum);
 VOID TRUNK_Health_CntPackLen(ULONG ulTrunkId, USHORT *pusTrunkPackLen);
 ULONG TRUNK_LastWord_BatchCheckup(CHAR *pstBuf, ULONG *pulLastWordLen);
-/* Add for V2R3C07, by z00208058/w00207740, at 2012-4-16. 修改原因: TRUNK LACP下移需求开发 */
 ULONG TRUNK_LacpExpiredNotify(TRUNK_LACP_NOTIFY_S *pstData);
 VOID Trunk_Lacp_DealMsg(UINTPTR aulMsg[4]);
 ULONG TRUNK_LACP_PPIUpdateTrunkById(ULONG ulTkId);
 
 
-/* Modified by likaikun213099, 按AC要求，L2 TRUNK会下发（PPI_TRUNK_IS_PHYUP和PPI_TRUNK_IS_PHYDOWN）的PPI，
-不用编译宏控制，但是结果没有下发, 2014/11/21   问题单号:DTS2014112008708 */
+
 /* IFNET是不可裁减组件 */
 #define TRUNK_PPI_DOWNLOAD_IFSTATE(pIf, ulIfState)\
 if(g_pfTCPIP_PPI_IFNET_Update)\
@@ -325,7 +317,6 @@ if(g_pfTCPIP_PPI_IFNET_Update)\
     MAKE_NP_ENDDOT(PPI_TYPE_IFNETMSG);/*记录下发后时间点*/\
     TCPIP_PPI_LogIfMsg(ulPpiRet, pIf, ulPpiOpr, (VOID *)&ulProtocol);\
 }
-/*End of Modified by likaikun213099, 2014/11/21   问题单号:DTS2014112008708 */
 
 /* end of trunk_hdr.c */
 

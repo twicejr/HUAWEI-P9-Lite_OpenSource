@@ -1,14 +1,4 @@
-/******************************************************************************
 
-   Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : NasEmmcPublic.c
-  Description     : EMMC模块的公共操作
-  History         :
-     1.lining 00141619       2008-10-9   Draft Enact
-
-******************************************************************************/
 
 
 /*****************************************************************************
@@ -43,16 +33,7 @@ NAS_EMMC_GU_SYS_INFO_STRU               g_stEmmcGuSysInfo;
 /*****************************************************************************
   3 Function
 *****************************************************************************/
-/*****************************************************************************
- Function Name   : NAS_EMMC_FillRrcNasForbTaList
- Description     : 按照NAS_RRC接口结构填充禁止TA列表
- Input           : RRC_NAS_FORB_TA_LIST_STRU           *pstRrcNasForbTaList
- Output          : RRC_NAS_FORB_TA_LIST_STRU           *pstRrcNasForbTaList
- Return          : VOS_VOID
- History         :
-     1.luojian 00107747      2008-10-10  Draft Enact
 
-*****************************************************************************/
 VOS_VOID NAS_EMMC_FillRrcNasForbTaList
 (
     LRRC_LNAS_FORB_TA_LIST_STRU           *pstRrcNasForbTaList
@@ -99,17 +80,7 @@ VOS_VOID NAS_EMMC_FillRrcNasForbTaList
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_FillUserSpecRrcNasForbTaList
- Description     : 用户指定搜网时填充下发给RRC的禁止TA列表
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2011-11-15  Draft Enact
-
-*****************************************************************************/
 /*lint -e960*/
 /*lint -e961*/
 VOS_VOID  NAS_EMMC_FillUserSpecRrcNasForbTaList
@@ -177,17 +148,7 @@ VOS_VOID  NAS_EMMC_FillUserSpecRrcNasForbTaList
 
 
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_GetCurrentTa
- Description     : 获取当前TAs
- Input           : NAS_MM_TA_STRU pstTa
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.luojian 00107747      2008-10-15  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_EMMC_GetCurrentTa( NAS_MM_TA_STRU *pstTa )
 {
     NAS_MM_NETWORK_ID_STRU              *pstAreaInfo;
@@ -261,18 +222,7 @@ VOS_VOID  NAS_EMMC_GetForbPlmnInfo
 
 
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_GetCurrentForbInfo
- Description     : 获取当前区域禁止信息
- Input           : VOS_VOID
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.luojian 00107747      2008-10-16  Draft Enact
-    2.leili   00132387      2011-02-25  Modify EMMC适配
-
-*****************************************************************************/
 VOS_VOID NAS_EMMC_GetCurrentForbInfo
 (
     EMMC_EMM_FORBIDDEN_INFO_ENUM_UINT32  *pulForbdInfo
@@ -343,17 +293,7 @@ VOS_VOID NAS_EMMC_GetCurrentForbInfo
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_LMM_IsCellStatusNormal
- Description     : 判断小区状态是否为NORMAL
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong 00150010      2014-01-23  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_LMM_IsCellStatusNormal
 (
     MMC_LMM_PLMN_ID_STRU               *pstPlmn,
@@ -383,37 +323,7 @@ VOS_UINT32 NAS_LMM_IsCellStatusNormal
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_ProcessMmcLteSysInfoInd
- Description     : RRC系统消息上报处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.luojian 00107747      2008-10-16  Draft Enact
-    2.Date         : 2009/5/7
-      Author       : lining 00141619
-      Modification : 问题单BA8D01630
-                     修改了MMC对RRC系统消息的处理
-    3.Date         : 2009/5/20
-      Author       : lining 00141619
-      Modification : 问题单BN8D00126
-                     增加了低质量PLMN LIST初始化
-    4.Date         : 2009/7/22
-      Author       : zhengjunyan 00148421
-      Modification : 24301_CR97
-                     比较系统消息与当前网络信息，获取信息变化情况。
-    5.Date         : 2011/02/25
-      Author       : leili 00132387
-      Modification : EMMC适配
-    6.Date         : 2012/12/17
-      Author       : lihong00150010
-      Modification : Emergency
-    7.Date         : 2012/12/22
-      Author       : lihong 00150010
-      Modification : DTS2012121306127，系统消息机制变更
-*****************************************************************************/
 VOS_VOID  NAS_EMMC_ProcessMmcLteSysInfoInd
 (
     const MMC_LMM_SYS_INFO_STRU        *pstLteInfoIndMsg,
@@ -492,7 +402,6 @@ VOS_VOID  NAS_EMMC_ProcessMmcLteSysInfoInd
 
     pstAreaInfo->ulForbiddenInfo = enForbdInfo;
 
-/* s00193151 mod for GU NAS LAU 停止T3212定时器的问题 begin */
     pstAreaInfo->ulCellStatus = pstLteInfoIndMsg->enCellStatusInd;
     enCellStatus              = pstLteInfoIndMsg->enCellStatusInd;
 
@@ -510,7 +419,6 @@ VOS_VOID  NAS_EMMC_ProcessMmcLteSysInfoInd
     /* 当前TA仍在拒绝原因12的TA内，记录标记，便于服务状态上报 */
     NAS_EMM_GetCurrentTa(&stTa);
     /* 注册/服务状态上报上移MMC，删除注册/服务状态相关代码 */
-/* s00193151 mod for GU NAS LAU 停止T3212定时器的问题 end */
 
     *pulChangeInfo                      = ulChangeInfo;
     *penForbdInfo                       = enForbdInfo;
@@ -523,17 +431,7 @@ VOS_VOID  NAS_EMMC_ProcessMmcLteSysInfoInd
 #endif
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_DeleteForbTa
- Description     : 删除一个禁止TA
- Input           : NAS_MM_PLMN_ID_STRU stPlmnId
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.luojian 00107747      2008-10-15  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_EMMC_DeleteForbTa
 (
     const NAS_MM_TA_STRU               *pstTa,
@@ -546,19 +444,7 @@ VOS_VOID NAS_EMMC_DeleteForbTa
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_UpdateForbTaList
- Description     : TAI List发生变化，根据新的TAI List刷新ForbTa for Roaming
-                   和ForbTA for RPOS列表，如果ForbTA for Roaming发生变化，发消息
-                   通知RRC。
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2009-8-25  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMMC_UpdateForbTaList( VOS_VOID )
 {
     NAS_MM_TA_LIST_STRU                         *pstCurTaiList           = VOS_NULL_PTR;
@@ -655,17 +541,7 @@ VOS_VOID  NAS_EMMC_DeleteCurrentAreaCellId( VOS_VOID )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_ProcessRrcAreaLostInd
- Description     : 小区级覆盖区丢失上报处理
- Input           :VOS_VOID
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.luojian 00107747      2008-10-18  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_EMMC_ProcessRrcAreaLostInd(VOS_VOID)
 {
     NAS_LMM_EMMC_LOG_NORM("NAS_EMMC_ProcessRrcAreaLostInd is entered.");
@@ -700,17 +576,7 @@ VOS_VOID NAS_EMMC_ProcessRrcNotCampOnInd(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_IsBgListSearch
- Description     : 判断是否进行背景LIST搜
- Input           : ulSearchType   网侧下发的搜网类型
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.liuhua 00212067      2013-02-02  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_EMMC_IsBgListSearch(MMC_LMM_PLMN_SRCH_TYPE_ENUM_UINT32 ulSearchType)
 {
     NAS_LMM_EMMC_LOG_NORM("NAS_EMMC_IsBgListSearch is entered.");
@@ -738,18 +604,7 @@ VOS_UINT32 NAS_EMMC_IsBgListSearch(MMC_LMM_PLMN_SRCH_TYPE_ENUM_UINT32 ulSearchTy
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_ProcessMmcLteSysInfoIndTaOrCellID
- Description     : RRC系统消息上报处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.z00179470            2011-08-01   Draft Enact
-    2.lihong 00150010      2012-12-22   Modify:DTS2012121306127，系统消息机制变更
-
-*****************************************************************************/
 VOS_VOID  NAS_EMMC_ProcessMmcLteSysInfoIndTaOrCellID
 (
     const MMC_LMM_SYS_INFO_STRU          *pstLteInfoIndMsg,
@@ -801,17 +656,7 @@ VOS_VOID  NAS_EMMC_ProcessMmcLteSysInfoIndTaOrCellID
     *pulChangeInfo                      = ulChangeInfo;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_GetUserSpecPlmnFlag
- Description     : 获取用户指定搜网标识
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2011-11-15  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMMC_GetUserSpecPlmnFlag(VOS_VOID)
 {
     NAS_EMMC_GLOBAL_STRU               *pstEmmcInfo;
@@ -824,17 +669,7 @@ VOS_UINT32  NAS_EMMC_GetUserSpecPlmnFlag(VOS_VOID)
     return ulUserFlag;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_SetUserSpecPlmnFlag
- Description     : 设置用户指定搜网标识
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2011-11-15  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMMC_SetUserSpecPlmnFlag(NAS_EMMC_USER_SPEC_PLMN_FLAG_UINT32  ulUserFlag)
 {
     NAS_EMMC_GLOBAL_STRU               *pstEmmcInfo;
@@ -846,17 +681,7 @@ VOS_VOID  NAS_EMMC_SetUserSpecPlmnFlag(NAS_EMMC_USER_SPEC_PLMN_FLAG_UINT32  ulUs
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_AddPlmnInRej18PlmnList
- Description     : 把当前PLMN加入到拒绝#18的PLMN列表中
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2011-12-16  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMMC_AddPlmnInRej18PlmnList(const NAS_MM_PLMN_ID_STRU *pstPlmnId)
 {
     NAS_EMMC_GLOBAL_STRU                *pstEmmcInfo;
@@ -869,17 +694,7 @@ VOS_VOID  NAS_EMMC_AddPlmnInRej18PlmnList(const NAS_MM_PLMN_ID_STRU *pstPlmnId)
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_PlmnMatchRej18PlmnList
- Description     : 判断输入的PLMN是否在拒绝#18PLMN列表中
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2011-12-16  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_EMMC_PlmnMatchRej18PlmnList
 (
     NAS_MM_PLMN_ID_STRU *pstPlmnId
@@ -902,17 +717,7 @@ VOS_UINT32 NAS_EMMC_PlmnMatchRej18PlmnList
     return ulRslt;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_SetRejCause18Flag
- Description     : 设置当前PLMN在拒绝#18PLMN列表中的标识
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2011-12-19  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_EMMC_SetRejCause18Flag
 (
     NAS_EMM_REJ_FLAG_ENUM_UINT32 ulRej18Flag
@@ -927,17 +732,7 @@ VOS_VOID NAS_EMMC_SetRejCause18Flag
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_GetRejCause18Flag
- Description     : 获取当前PLMN在拒绝#18列表中的标识
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2011-12-19  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_EMMC_GetRejCause18Flag(VOS_VOID)
 {
     NAS_EMMC_GLOBAL_STRU                *pstEmmcInfo;
@@ -954,17 +749,7 @@ VOS_UINT32 NAS_EMMC_GetRejCause18Flag(VOS_VOID)
                              ulRej18Flag);
     return ulRej18Flag;
 }
-/*****************************************************************************
- Function Name   : NAS_EMMC_SndOmLogForbPlmnInfo
- Description     : 勾出被禁PLMN信息
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leixiantiao 00258641      2015-03-18  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_EMMC_SndOmLogForbiddenInfo(VOS_VOID)
 {
     NAS_EMMC_OM_LOG_FORBIDDEN_INFO_STRU            *pstMsg = VOS_NULL_PTR;
@@ -1023,17 +808,7 @@ VOS_VOID NAS_EMMC_SndOmLogForbiddenInfo(VOS_VOID)
 /*lint +e961*/
 /*lint +e960*/
 #if (FEATURE_ON == FEATURE_CSG)
-/*****************************************************************************
- Function Name   : NAS_EMMC_IsBgCsgListSearch
- Description     : 判断是否进行背景Csg LIST搜
- Input           : none
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.yanglei 00307272      2015-10-28  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_EMMC_IsBgCsgListSearch(VOS_VOID)
 {
     NAS_LMM_EMMC_LOG_NORM("NAS_EMMC_IsBgCsgListSearch is entered.");

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2012, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafXpdsCommFunc.c
-  版 本 号   : 初稿
-  作    者   : c00299064
-  生成日期   : 2015年9月14日
-  最近修改   :
-  功能描述   :
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年9月14日
-    作    者   : g00261581
-    修改内容   : CDMA-AGPS项目新增
-
-******************************************************************************/
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -70,21 +53,7 @@ TAF_XPDS_RSLT_REASON_ITEM_STRU          g_astTafXpdsRlstReasonMapItem[] =
 /*****************************************************************************
   3 Function Definitions
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_ConvertPrefRespQualValueToTimerLimitLen
- 功能描述  : 转换PrefRespQual字段值为定时器时长
- 输入参数  : VOS_UINT8                           ucPrefRespQual
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月24日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_ConvertPrefRespQualValueToTimerLimitLen(
     VOS_UINT8                           ucPrefRespQual
 )
@@ -134,23 +103,7 @@ VOS_UINT32 TAF_XPDS_ConvertPrefRespQualValueToTimerLimitLen(
     return ulTimerLen;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_GetPnbyPhaseID
- 功能描述  : 在指定缓存中找出对应小区ID的所有Pn Phase
- 输入参数  : usPilotPN          -- 小区ID
-             pstCasRptPilotBuff -- 待查查找PN phase
 
- 输出参数  : pstCasRptPilotBuff -- 对应小区的所有PN phase
-
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年07月10日
-    作    者   : d00212987
-    修改内容   : AGPS迭代1新增
-*****************************************************************************/
 VOS_VOID TAF_XPDS_GetPnbyPhaseID(
     VOS_UINT16                          usPilotPN,
     TAF_XPDS_CAS_RPT_PILOT_BUFF_STRU   *pstCasRptPilotBuff
@@ -176,20 +129,7 @@ VOS_VOID TAF_XPDS_GetPnbyPhaseID(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_CalcDataVar
- 功能描述  : 计算方差
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月27日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_FLOAT TAF_XPDS_CalcDataVar
 (
     VOS_UINT32                          ulDataNum,
@@ -224,20 +164,7 @@ VOS_FLOAT TAF_XPDS_CalcDataVar
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SquareRoot
- 功能描述  : 计算平方根的函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月27日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_FLOAT TAF_XPDS_SquareRoot(VOS_FLOAT sfNumber)
 {
     VOS_UINT32                      ulMagic = 0;
@@ -261,20 +188,7 @@ VOS_FLOAT TAF_XPDS_SquareRoot(VOS_FLOAT sfNumber)
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_CalcPnPhaseSqrt
- 功能描述  : 计算RMS_ERR_PHASE的函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月27日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 TAF_XPDS_CalcRmsErrPhase(
     VOS_FLOAT                           sfSqrt
 )
@@ -297,20 +211,7 @@ VOS_UINT8 TAF_XPDS_CalcRmsErrPhase(
     return 63;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_CalcPnPhaseSqrt
- 功能描述  : 计算平方根的函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月27日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 TAF_XPDS_CalcPnPhaseSqrt(
     VOS_UINT32                         *pulData,
     VOS_UINT32                          ulDataLen
@@ -332,20 +233,7 @@ VOS_UINT8 TAF_XPDS_CalcPnPhaseSqrt(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_UpdatePpmInGlobal
- 功能描述  : 处理PPM INFO 相关的消息
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月10日
-    作    者   : c00299064
-    修改内容   : AGPS迭代1新增
-*****************************************************************************/
 VOS_VOID TAF_XPDS_UpdatePpmInGlobal(VOS_VOID)
 {
     TAF_XPDS_REVLINK_RSP_PILOT_PHASE_MEAS_STRU        *pstPilotInfo;
@@ -389,20 +277,7 @@ VOS_VOID TAF_XPDS_UpdatePpmInGlobal(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_FormatPnStrength
- 功能描述  : XPDS收到CAS PnStrength 按协议强转成需求值
- 输入参数  : sRefPnStrength : CAS上报sRefPnStrength
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月10日
-    作    者   : d00212987
-    修改内容   : AGPS迭代1新增
-*****************************************************************************/
 VOS_UINT8 TAF_XPDS_FormatPnStrength(
     VOS_INT16                           sRefPnStrength
 )
@@ -429,20 +304,7 @@ VOS_UINT8 TAF_XPDS_FormatPnStrength(
     return (VOS_UINT8)sPnStrengthTemp;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_FormatServFreqRssi
- 功能描述  : XPDS收到CAS ServFreqRssi 按协议强转成需求值
- 输入参数  : sServFreqRssi : CAS上报sServFreqRssi
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月10日
-    作    者   : d00212987
-    修改内容   : AGPS迭代1新增
-*****************************************************************************/
 VOS_UINT8 TAF_XPDS_FormatServFreqRssi(
     VOS_INT16                           sServFreqRssi
 )
@@ -473,20 +335,7 @@ VOS_UINT8 TAF_XPDS_FormatServFreqRssi(
     return (VOS_UINT8)sServFreqRssiTemp;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_FindCancelReasonByRslt
- 功能描述  : 通过当前的处理结果查找CANCEL原因值
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月09日
-    作    者   : g00256031
-    修改内容   : AGPS迭代2新增
-*****************************************************************************/
 TAF_XPDS_CANCEL_REASON_ENUM_UINT8 TAF_XPDS_FindCancelReasonByRslt(
     TAF_XPDS_POS_PROC_RSLT_ENUM_UINT32  enProcRslt
 )
@@ -508,20 +357,7 @@ TAF_XPDS_CANCEL_REASON_ENUM_UINT8 TAF_XPDS_FindCancelReasonByRslt(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_ConvertOmGpsFixModeToXpdsGpsFixMode
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月16日
-    作    者   : y00174758
-    修改内容   : AGPS迭代2新增
-*****************************************************************************/
 TAF_XPDS_FIX_MODE_ENUM_UINT8 TAF_XPDS_ConvertOmGpsFixModeToXpdsGpsFixMode(
     NAS_OM_CDMA_GPS_FIX_MODE_ENUM_UINT8                     enOmGpsFixMode
 )
@@ -545,20 +381,7 @@ TAF_XPDS_FIX_MODE_ENUM_UINT8 TAF_XPDS_ConvertOmGpsFixModeToXpdsGpsFixMode(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_ConvertOmGpsFixModeToXpdsGpsFixMode
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月16日
-    作    者   : y00174758
-    修改内容   : AGPS迭代2新增
-*****************************************************************************/
 TAF_XPDS_GPS_START_MODE_ENUM_UINT8 TAF_XPDS_ConvertOmGpsStartModeToXpdsStartMode(
     NAS_OM_CDMA_GPS_START_MODE_ENUM_UINT8                     enOmGpsStartMode
 )
@@ -576,20 +399,7 @@ TAF_XPDS_GPS_START_MODE_ENUM_UINT8 TAF_XPDS_ConvertOmGpsStartModeToXpdsStartMode
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_ConvertXpdsGpsFixTypeToOmGpsFixType
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月16日
-    作    者   : y00174758
-    修改内容   : AGPS迭代2新增
-*****************************************************************************/
 NAS_OM_CDMA_GPS_FIX_TYPE_ENUM_UINT8 TAF_XPDS_ConvertXpdsGpsFixTypeToOmGpsFixType(
     TAF_MSG_CDMA_GPS_FIX_TYPE_ENUM_UINT8                    enXpdsFixType
 )
@@ -613,20 +423,7 @@ NAS_OM_CDMA_GPS_FIX_TYPE_ENUM_UINT8 TAF_XPDS_ConvertXpdsGpsFixTypeToOmGpsFixType
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_ConvertFlPdeRspMsgTypeToOmGpsMsgType
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月16日
-    作    者   : y00174758
-    修改内容   : AGPS迭代2新增
-*****************************************************************************/
 NAS_OM_CDMA_GPS_SIGNAL_MSG_TYPE_ENUM_UINT8 TAF_XPDS_ConvertFlPdeRspMsgTypeToOmGpsMsgType(
     VOS_UINT32                          ulRspType
 )
@@ -653,20 +450,7 @@ NAS_OM_CDMA_GPS_SIGNAL_MSG_TYPE_ENUM_UINT8 TAF_XPDS_ConvertFlPdeRspMsgTypeToOmGp
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_ConvertFlPdeReqMsgTypeToOmGpsMsgType
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月16日
-    作    者   : y00174758
-    修改内容   : AGPS迭代2新增
-*****************************************************************************/
 NAS_OM_CDMA_GPS_SIGNAL_MSG_TYPE_ENUM_UINT8 TAF_XPDS_ConvertFlPdeReqMsgTypeToOmGpsMsgType(
     VOS_UINT32                          ulReqType
 )

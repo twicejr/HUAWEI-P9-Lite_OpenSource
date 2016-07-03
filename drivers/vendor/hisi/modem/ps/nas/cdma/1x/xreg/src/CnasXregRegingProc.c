@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasXregRegingProc.c
-  版 本 号   : 初稿
-  作    者   : Y00213812
-  生成日期   : 2014年06月27日
-  功能描述   : 1X REG模块正在注册流程
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年06月27日
-    作    者   : Y00213812
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -48,22 +33,7 @@ extern "C"{
   3 函数定义
 *****************************************************************************/
 /*lint -save -e958*/
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_RcvRegReq_Reging_Init
- 功能描述  : 发送注册请求的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月19日
-    作    者   : g00256031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  CNAS_XREG_RcvRegReq_Reging_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -93,22 +63,7 @@ VOS_UINT32  CNAS_XREG_RcvRegReq_Reging_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_RcvAbortFsm_Reging_WaitEstCnf
- 功能描述  : 在等待中止状态机消息
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月19日
-    作    者   : g00256031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  CNAS_XREG_RcvAbortFsm_Reging_WaitEstCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -139,22 +94,7 @@ VOS_UINT32  CNAS_XREG_RcvAbortFsm_Reging_WaitEstCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_RcvEstCnf_Reging_WaitEstCnf
- 功能描述  : 接收到EstCnf消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月19日
-    作    者   : g00256031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  CNAS_XREG_RcvEstCnf_Reging_WaitEstCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -225,22 +165,7 @@ VOS_UINT32  CNAS_XREG_RcvEstCnf_Reging_WaitEstCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_RcvAbortInd_Reging_WaitEstCnf
- 功能描述  : 等待EstCnf时接收到AbortInd消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月19日
-    作    者   : g00256031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  CNAS_XREG_RcvAbortInd_Reging_WaitEstCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -276,22 +201,7 @@ VOS_UINT32  CNAS_XREG_RcvAbortInd_Reging_WaitEstCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_RcvTimeOut_Reging_WaitEstCnf
- 功能描述  : 接收EstCnf超时处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月19日
-    作    者   : g00256031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  CNAS_XREG_RcvTimeOut_Reging_WaitEstCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -325,22 +235,7 @@ VOS_UINT32  CNAS_XREG_RcvTimeOut_Reging_WaitEstCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_RcvAbortInd_Reging_WaitAbortInd
- 功能描述  : 接收到AbortInd消息
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月19日
-    作    者   : g00256031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  CNAS_XREG_RcvAbortInd_Reging_WaitAbortInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -372,22 +267,7 @@ VOS_UINT32  CNAS_XREG_RcvAbortInd_Reging_WaitAbortInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_RcvTimeOut_Reging_WaitAbortInd
- 功能描述  : 等待AbortInd消息的超时处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月19日
-    作    者   : g00256031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  CNAS_XREG_RcvTimeOut_Reging_WaitAbortInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -416,25 +296,7 @@ VOS_UINT32  CNAS_XREG_RcvTimeOut_Reging_WaitAbortInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_PostProcessMsg_Reging
- 功能描述  : 处理层二状态机的后处理消息
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月19日
-    作    者   : g00256031
-    修改内容   : 新生成函数
-
- 2.日    期   : 2015年09月18日
-   作    者   : d00212987
-   修改内容   : CNAS内存裁剪
-*****************************************************************************/
 VOS_UINT32  CNAS_XREG_PostProcessMsg_Reging(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -456,29 +318,13 @@ VOS_UINT32  CNAS_XREG_PostProcessMsg_Reging(
         CNAS_XREG_SndAbortFsmMsg();
 
         /* 缓存消息 */
-        /* Modified by d00212987 for CNAS内存裁剪, 2015-09-18, begin */
         CNAS_XREG_SaveMsgToCache(ulEventType, (VOS_UINT8*)pstMsg);
-        /* Modified by d00212987 for CNAS内存裁剪, 2015-09-18, end */
     }
 
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_IsNeedNotifyApsRegBegin
- 功能描述  : 判断是否需要通知APS触发了注册
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:需要通知APS； VOS_FALSE:不需要通知APS
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月31日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XREG_IsNeedNotifyApsRegBegin(
     CAS_CNAS_1X_REGISTRATION_TYPE_ENUM_UINT8                enRegType
 )
@@ -506,22 +352,7 @@ VOS_UINT32 CNAS_XREG_IsNeedNotifyApsRegBegin(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_RcvPwrOffTimeOut_Reging_WaitEstCnf
- 功能描述  : 接收Poweroff超时处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月21日
-    作    者   : g00256031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  CNAS_XREG_RcvPwrOffTimeOut_Reging_WaitEstCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg

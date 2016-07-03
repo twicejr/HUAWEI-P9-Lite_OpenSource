@@ -1,0 +1,250 @@
+
+/*
+ *  Copyright (C) 2012-2014 Hisilicon
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/ {
+	scharger_power {
+		compatible = "hisilicon,hisi-scharger-driver";
+
+     schg_boost1: regulator@a44 {
+			compatible = "hisilicon,hisi-regulator-scharger";
+			regulator-name = "schg_boost1";
+			regulator-min-microvolt = <5000000>;
+			regulator-max-microvolt = <5000000>;
+			hisilicon,valid-modes-mask = <0x02>;
+			hisilicon,valid-ops-mask = <0x01d>;
+			hisilicon,initial-mode = <0x02>;
+			hisilicon,regulator-type = <0x6>;
+
+			hisilicon,off-on-delay = <400>;
+			hisilicon,ctrl-regs = <0x012 0x012 0x012>;
+			hisilicon,ctrl-data = <3 0x1>;
+			hisilicon,hisi-scharger-regulator-id = <0>;
+			hisilicon,vset-regs = <0x0fff>;
+			hisilicon,vset-data = <9 0x0>;
+			hisilicon,regulator-n-vol = <1>;
+			hisilicon,vset-table = <5000000>;
+			hisilicon,num_consumer_supplies = <1>;
+			hisilicon,consumer-supplies = "vbus_otg";
+		};
+
+     schg_boost2: regulator@a45 {
+			compatible = "hisilicon,hisi-regulator-scharger";
+			regulator-name = "schg_boost2";
+			regulator-min-microvolt = <0>;
+			regulator-max-microvolt = <0>;
+			hisilicon,valid-modes-mask = <0x02>;
+			hisilicon,valid-ops-mask = <0x0e>;
+			hisilicon,initial-mode = <0x02>;
+			hisilicon,regulator-type = <0x6>;
+
+			hisilicon,off-on-delay = <5000>;
+			hisilicon,ctrl-regs = <0x012 0x012 0x012>;
+			hisilicon,ctrl-data = <2 0x1>;
+			hisilicon,hisi-scharger-regulator-id = <1>;
+			hisilicon,vset-regs = <0x0fff>;
+			hisilicon,vset-data = <9 0x0>;
+			hisilicon,regulator-n-vol = <0>;
+			hisilicon,vset-table = <0>;
+			hisilicon,num_consumer_supplies = <1>;
+			hisilicon,consumer-supplies = "whiteled_power";
+		};
+
+     schg_boost3: regulator@a46 {
+			compatible = "hisilicon,hisi-regulator-scharger";
+			regulator-name = "schg_boost3";
+			regulator-min-microvolt = <3200000>;
+			regulator-max-microvolt = <5600000>;
+			hisilicon,valid-modes-mask = <0x02>;
+			hisilicon,valid-ops-mask = <0x0d>;
+			hisilicon,initial-mode = <0x02>;
+			hisilicon,regulator-type = <0x6>;
+
+			hisilicon,off-on-delay = <500>;
+			hisilicon,ctrl-regs = <0x011 0x011 0x011>;
+			hisilicon,ctrl-data = <3 0x1>;
+			hisilicon,hisi-scharger-regulator-id = <2>;
+			hisilicon,vset-regs = <0x05f>;
+			hisilicon,vset-data = <0 0x5>;
+			hisilicon,regulator-n-vol = <32>;
+			hisilicon,vset-table = <5500000>,<5400000>,<5300000>,<5200000>,
+									<5100000>,<5000000>,<4900000>,<4800000>,
+									<4700000>,<4600000>,<4500000>,<4400000>,
+									<4300000>,<4200000>,<4100000>,<4000000>,
+									<3900000>,<3800000>,<3700000>,<3600000>,
+									<3500000>,<3400000>,<3300000>,<3200000>,
+									<5600000>,<5600000>,<5600000>,<5600000>,
+									<5600000>,<5600000>,<5600000>,<5600000>;
+			hisilicon,num_consumer_supplies = <1>;
+			hisilicon,consumer-supplies = "pvdd_classd";
+		};
+
+     schg_source1: regulator@a47 {
+			compatible = "hisilicon,hisi-regulator-scharger";
+			regulator-name = "schg_source1";
+			regulator-min-microvolt = <125000>;
+			regulator-max-microvolt = <1500000>;
+			hisilicon,valid-modes-mask = <0x02>;
+			hisilicon,valid-ops-mask = <0x0e>;
+			hisilicon,initial-mode = <0x02>;
+			hisilicon,regulator-type = <0x6>;
+
+			hisilicon,off-on-delay = <600>;
+			hisilicon,ctrl-regs = <0x011 0x011 0x011>;
+			hisilicon,ctrl-data = <4 0x1>;
+			hisilicon,hisi-scharger-regulator-id = <3>;
+			hisilicon,vset-regs = <0x066>;
+			hisilicon,vset-data = <3 0x4>;
+			hisilicon,regulator-n-vol = <16>;
+			hisilicon,vset-table = <125000>,<250000>,<375000>,<500000>,
+									<625000>,<750000>,<875000>,<1000000>,
+									<1125000>,<1250000>,<1375000>,<1500000>,
+									<1500000>,<1500000>,<1500000>,<1500000>;
+			hisilicon,num_consumer_supplies = <1>;
+			hisilicon,consumer-supplies = "flashled_power";
+		};
+
+     schg_source2: regulator@a48 {
+			compatible = "hisilicon,hisi-regulator-scharger";
+			regulator-name = "schg_source2";
+			regulator-min-microvolt = <50000>;
+			regulator-max-microvolt = <400000>;
+			hisilicon,valid-modes-mask = <0x02>;
+			hisilicon,valid-ops-mask = <0x0e>;
+			hisilicon,initial-mode = <0x02>;
+			hisilicon,regulator-type = <0x6>;
+
+			hisilicon,off-on-delay = <160>;
+			hisilicon,ctrl-regs = <0x011 0x011 0x011>;
+			hisilicon,ctrl-data = <5 0x1>;
+			hisilicon,hisi-scharger-regulator-id = <4>;
+			hisilicon,vset-regs = <0x066>;
+			hisilicon,vset-data = <0 0x3>;
+			hisilicon,regulator-n-vol = <8>;
+			hisilicon,vset-table = <50000>,<100000>,<150000>,<200000>,
+									<250000>,<300000>,<350000>,<400000>;
+			hisilicon,num_consumer_supplies = <1>;
+			hisilicon,consumer-supplies = "torchled_power";
+		};
+
+     schg_boost4: regulator@a49 {
+			compatible = "hisilicon,hisi-regulator-scharger";
+			regulator-name = "schg_boost4";
+			regulator-min-microvolt = <4000000>;
+			regulator-max-microvolt = <6000000>;
+			hisilicon,valid-modes-mask = <0x02>;
+			hisilicon,valid-ops-mask = <0x0d>;
+			hisilicon,initial-mode = <0x02>;
+			hisilicon,regulator-type = <0x6>;
+
+			hisilicon,off-on-delay = <400>;
+			hisilicon,ctrl-regs = <0x011 0x011 0x011>;
+			hisilicon,ctrl-data = <2 0x1>;
+			hisilicon,hisi-scharger-regulator-id = <5>;
+			hisilicon,vset-regs = <0x026>;
+			hisilicon,vset-data = <0 0x5>;
+			hisilicon,regulator-n-vol = <32>;
+			hisilicon,vset-table = <4000000>,<4100000>,<4200000>,<4300000>,
+									<4400000>,<4500000>,<4600000>,<4700000>,
+									<4800000>,<4900000>,<5000000>,<5100000>,
+									<5200000>,<5300000>,<5400000>,<5500000>,
+									<5600000>,<5700000>,<5800000>,<5900000>,
+									<6000000>,<6000000>,<6000000>,<6000000>,
+									<6000000>,<6000000>,<6000000>,<6000000>,
+									<6000000>,<6000000>,<6000000>,<6000000>;
+			hisilicon,num_consumer_supplies = <1>;
+			hisilicon,consumer-supplies = "vcc_lcdbias";
+		};
+
+     schg_ldo3: regulator@a50 {
+			compatible = "hisilicon,hisi-regulator-scharger";
+			regulator-name = "schg_ldo3";
+			regulator-min-microvolt = <4000000>;
+			regulator-max-microvolt = <6000000>;
+			hisilicon,valid-modes-mask = <0x02>;
+			hisilicon,valid-ops-mask = <0x0d>;
+			hisilicon,initial-mode = <0x02>;
+			hisilicon,regulator-type = <0x6>;
+
+			hisilicon,off-on-delay = <200>;
+			hisilicon,ctrl-regs = <0x011 0x011 0x011>;
+			hisilicon,ctrl-data = <1 0x1>;
+			hisilicon,hisi-scharger-regulator-id = <6>;
+			hisilicon,vset-regs = <0x034>;
+			hisilicon,vset-data = <0 0x5>;
+			hisilicon,regulator-n-vol = <32>;
+			hisilicon,vset-table = <4000000>,<4100000>,<4200000>,<4300000>,
+									<4400000>,<4500000>,<4600000>,<4700000>,
+									<4800000>,<4900000>,<5000000>,<5100000>,
+									<5200000>,<5300000>,<5400000>,<5500000>,
+									<5600000>,<5700000>,<5800000>,<5900000>,
+									<6000000>,<6000000>,<6000000>,<6000000>,
+									<6000000>,<6000000>,<6000000>,<6000000>,
+									<6000000>,<6000000>,<6000000>,<6000000>;
+			hisilicon,num_consumer_supplies = <1>;
+			hisilicon,consumer-supplies = "lcd_vsp";
+		};
+
+     schg_cpn1: regulator@a51 {
+			compatible = "hisilicon,hisi-regulator-scharger";
+			regulator-name = "schg_cpn1";
+			regulator-min-microvolt = <4000000>;
+			regulator-max-microvolt = <6000000>;
+			hisilicon,valid-modes-mask = <0x02>;
+			hisilicon,valid-ops-mask = <0x0d>;
+			hisilicon,initial-mode = <0x02>;
+			hisilicon,regulator-type = <0x6>;
+
+			hisilicon,off-on-delay = <200>;
+			hisilicon,ctrl-regs = <0x011 0x011 0x011>;
+			hisilicon,ctrl-data = <0 0x1>;
+			hisilicon,hisi-scharger-regulator-id = <7>;
+			hisilicon,vset-regs = <0x02e>;
+			hisilicon,vset-data = <2 0x5>;
+			hisilicon,regulator-n-vol = <32>;
+			hisilicon,vset-table = <4000000>,<4100000>,<4200000>,<4300000>,
+									<4400000>,<4500000>,<4600000>,<4700000>,
+									<4800000>,<4900000>,<5000000>,<5100000>,
+									<5200000>,<5300000>,<5400000>,<5500000>,
+									<5600000>,<5700000>,<5800000>,<5900000>,
+									<6000000>,<6000000>,<6000000>,<6000000>,
+									<6000000>,<6000000>,<6000000>,<6000000>,
+									<6000000>,<6000000>,<6000000>,<6000000>;
+			hisilicon,num_consumer_supplies = <1>;
+			hisilicon,consumer-supplies = "lcd_vsn";
+		};
+
+     schg_ldo1: regulator@a52 {
+			compatible = "hisilicon,hisi-regulator-scharger";
+			regulator-name = "schg_ldo1";
+			regulator-min-microvolt = <1500000>;
+			regulator-max-microvolt = <3300000>;
+			hisilicon,valid-modes-mask = <0x02>;
+			hisilicon,valid-ops-mask = <0x0d>;
+			hisilicon,initial-mode = <0x02>;
+			hisilicon,regulator-type = <0x6>;
+
+			hisilicon,off-on-delay = <50>;
+			hisilicon,ctrl-regs = <0x012 0x012 0x012>;
+			hisilicon,ctrl-data = <1 0x1>;
+			hisilicon,hisi-scharger-regulator-id = <8>;
+			hisilicon,vset-regs = <0x035>;
+			hisilicon,vset-data = <4 0x4>;
+			hisilicon,regulator-n-vol = <16>;
+			hisilicon,vset-table = <1500000>,<1600000>,<1700000>,<1800000>,
+									<1900000>,<2000000>,<2200000>,<2400000>,
+									<2600000>,<2700000>,<2800000>,<2900000>,
+									<3000000>,<3100000>,<3200000>,<3300000>;
+			hisilicon,num_consumer_supplies = <1>;
+			hisilicon,consumer-supplies = "tp_analog";
+		};
+
+
+	};
+
+ };

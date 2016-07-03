@@ -1,33 +1,4 @@
-/*******************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : MM_Global.h
-  Description : MM全局控制数据结构头文件
-  History     :
-      1.  张志勇     2003.11.24   新规作成
-      2.  张志勇  2004.10.23   CK,IK,FailPara的存储结构改为字节流
-      3.  s46746  2006-03-39  根据问题单A32D02486修改
-      4.  x51137 modify MM_GLOBAL_CTRL_STRU for A32D02955 at 2006/4/14
-      5.  x51137 2006/5/5 A32D03487
-      6.  s46746 2006-07-25 根据问题单A32D03975修改
-      7.日    期  : 2006年12月4日
-        作    者  : luojian id:60022475
-        修改内容  : 增加 #pragma pack(4)，问题单号:A32D07779
-      8.日    期  : 2007年05月11日
-        作    者  : luojian id:60022475
-        修改内容  : 问题单号:A32D10713
-      9.日    期  : 2007年06月01日
-        作    者  : luojian id:60022475
-        修改内容  : 根据问题单A32D10964修改
-     10.日    期  : 2008年12月2日
-        作    者  : s62952
-        修改内容  : 根据问题单A32D07110修改
-     11.日    期   : 2009年07月24日
-        作    者   : z40661
-        修改内容   : 异系统重选后，紧急呼叫不能接通
-     12.日    期   : 2012年03月15日
-        作    者   : l00130025
-        修改内容   : DTS2012021407803,Eplmn维护修改，删除GMM/MM/MMC关于NVIM_EPLMN的冗余定义
-*******************************************************************************/
+
 #ifndef _MM_GLOBAL_H_
 #define _MM_GLOBAL_H_
 
@@ -82,13 +53,7 @@ enum NAS_MM_PROC_TYPE_ENUM
 };
 typedef VOS_UINT8   NAS_MM_PROC_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MM_T3212_START_SCEAN_ENUM
- 结构说明  : LAU失败场景，包括建联失败和建联时被接入层REL
- 1.日    期   : 2015年3月14日
-   作    者   : w00167002
-   修改内容   : 新建,当前枚举可用于后续扩展，在NV中可以对枚举场景进行控制
-*****************************************************************************/
+
 enum NAS_MM_T3212_START_SCENE_ENUM
 {
     NAS_MM_T3212_START_SCENE_NORMAL_START                                 = 0,  /* 正常的启动T3212场景 */
@@ -101,13 +66,7 @@ enum NAS_MM_T3212_START_SCENE_ENUM
 typedef VOS_UINT32 NAS_MM_T3212_START_SCENE_ENUM_UINT32;
 
 
-/*****************************************************************************
- 枚举名    : NAS_MM_T3212_LEN_TYPE_ENUM_UINT8
- 结构说明  : 启用的T3212时长类型
- 1.日    期   : 2015年3月23日
-   作    者   : w00167002
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MM_T3212_LEN_TYPE_ENUM
 {
     NAS_MM_T3212_LEN_TYPE_NETWORK_ALLOC_LEN             = 0,
@@ -188,9 +147,7 @@ typedef struct {
 
 typedef struct
 {
-    /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-4-3, begin */
 
-    /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-4-3, end */
     #define     MM_NO_FORBIDDEN                         MMCMM_NO_FORBIDDEN
     #define     MM_FORBIDDEN_PLMN                       MMCMM_FORBIDDEN_PLMN
     #define     MM_FORBIDDEN_PLMN_FOR_GPRS              MMCMM_FORBIDDEN_PLMN_FOR_GPRS
@@ -198,9 +155,7 @@ typedef struct
     #define     MM_FORBIDDEN_LA_FOR_REG_PRVS_SVS        MMCMM_FORBIDDEN_LA_FOR_REG_PRVS_SVS
     VOS_UINT32                          ulCurFobidnFlg;                         /* 当前PLMN的禁止信息                       */
 
-    /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-4-2, begin */
     /* 删除新旧LAI信息,旧的LAI放到MML中保存 */
-    /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-4-2, end */
 
     VOS_UINT8                           ucCsDrxLen;                             /* CS域的DRX length系数 */
     MM_MOBILE_ID_STRU                   MobileId;                               /* MOBILE ID  */
@@ -324,15 +279,7 @@ typedef struct
 /* MM 全局量 */
 #define  MM_RAU_ATTACH_COUNTER_MAX                      5                       /* RAU/ATTACH attempt counter最大个数       */
 
-/* Modified by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
-/*****************************************************************************
- 枚举名       : MM_STATE_ENUM
- 结构说明     : MM状态枚举
 
- 1.日    期   : 2014年03月31日
-   作    者   : y00245242
-   修改内容   : 为eCall feature修改，方便后续状态扩展
-*****************************************************************************/
 enum MN_STATE_ENUM
 {
     MM_STATE_NULL                                           = 0,
@@ -368,7 +315,6 @@ enum MN_STATE_ENUM
     MM_STATE_MAX
 };
 typedef VOS_UINT8 NAS_MM_STATE_ENUM_UINT8;
-/* Modified by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */
 
 /* 服务状态定义 */
 enum MM_SERVICE_STATUS_ENUM
@@ -392,19 +338,7 @@ typedef VOS_UINT8 MM_SERVICE_STATUS_ENUM_UINT8;
 /* 恢复结果 ResumeResult 取值 */
 #define MM_RESUME_RESULT_SUCCESS    0x00
 #define MM_RESUME_RESULT_FAILURE    0x01
-/*****************************************************************************
- 结构名     : MM_SUSPEND_SHARE_STRU
- 结构说明   : 收到挂起指示时保存的一些参数
- 1.日    期  : 2011年6月30日
-   作    者  : w00176964
-   修改内容  : 新建
- 2.日    期   : 2011年8月20日
-   作    者   : w00167002
-   修改内容   : 回放消息不对，进行字节对齐
- 3.日    期   : 2013年4月1日
-   作    者   : y00176023
-   修改内容   : DSDS GUNAS II项目: 增加挂起时的目的RAT
-*****************************************************************************/
+
 typedef struct
 {
     NAS_RRC_RE_TX_MSG_STRU              astReTxMsg[NAS_RRC_MAX_RE_TX_MSG_NUM];  /* 接入层上报的重传消息 */
@@ -415,16 +349,7 @@ typedef struct
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enDestSuspendRat;                       /* 要挂起的目标RAT */
 }MM_SUSPEND_SHARE_STRU;
 
-/*****************************************************************************
- 结构名     : MM_BACKUP_SHARE_STRU
- 结构说明   : 对MM中一些参数进行备份恢复，目前只有CCO流程会用到
- 1.日    期  : 2011年6月30日
-   作    者  : w00176964
-   修改内容  : 新建
- 2.日    期   : 2012年03月08日
-   作    者   : l00130025
-   修改内容   : DTS2012030107623: G->W Est_Rej_Cogest,CCO回退过程，需要保存Eplmn
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                       ucState;                           /* MM状态*/
@@ -450,13 +375,7 @@ typedef struct
 
 }MM_BACKUP_SHARE_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MM_NVIM_TIN_INFO_STRU
- 结构说明  : en_NV_Item_TIN_INFO NV项结构
-  1.日    期   : 2012年3月6日
-    作    者   : z00161729
-    修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     NAS_MML_TIN_TYPE_ENUM_UINT8         enTinType;                              /* TIN类型 */
@@ -465,13 +384,7 @@ typedef struct
 }NAS_MM_NVIM_TIN_INFO_STRU;
 
 
-/*****************************************************************************
- 枚举名    : NAS_MM_ATTACH_TYPE_ENUM
- 说明  : 等待ATTACH结果的类型
- 1.日    期   : 2011年6月30日
-   作    者   : w00166186
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MM_ATTACH_TYPE_ENUM
 {
     MM_WAIT_NULL_ATTACH  = 0,
@@ -482,13 +395,7 @@ enum NAS_MM_ATTACH_TYPE_ENUM
 };
 typedef VOS_UINT32 NAS_MM_ATTACH_TYPE_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : NAS_MM_DETACH_TYPE_ENUM
- 说明  : 等待DETACH结果的类型
- 1.日    期   : 2011年6月30日
-   作    者   : w00166186
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MM_DETACH_TYPE_ENUM
 {
     MM_WAIT_NULL_DETACH  = 0,
@@ -499,40 +406,21 @@ enum NAS_MM_DETACH_TYPE_ENUM
 };
 typedef VOS_UINT32 NAS_MM_DETACH_TYPE_ENUM_UINT32;
 
-/*****************************************************************************
- 结构名    : MM_ATTACH_INFO_STRU
- 结构说明  : MM等待ATTACH结果的信息
- 1.日    期   : 2011年6月30日
-   作    者   : w00166186
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulOpid;                                 /* MMA生成和使用 */
     NAS_MM_ATTACH_TYPE_ENUM_UINT32      enAttachType;                           /* 等待ATTACH响应消息的类型 */
 }NAS_MM_ATTACH_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : MM_ATTACH_INFO_STRU
- 结构说明  : MM等待DETACH结果的信息
-1.日    期   : 2011年6月30日
-  作    者   : w00166186
-  修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulOpid;                                 /* MMA生成和使用 */
     NAS_MM_DETACH_TYPE_ENUM_UINT32      enDetachType;                           /* 等待DETACH响应消息的类型                 */
 }NAS_MM_DETACH_INFO_STRU;
 
-/* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
-/*****************************************************************************
- 结构名    : MM_ECALL_INFO_STRU
- 结构说明  : 与eCall特性相关的数据信息结构
-1.日    期   : 2014年3月31日
-  作    者   : y00245242
-  修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucT3242ExpiredFlg;
@@ -541,15 +429,8 @@ typedef struct
     VOS_UINT8                           ucT3243StartNeededFlg;
 
 }NAS_MM_ECALL_INFO_STRU;
-/* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */
 
-/*****************************************************************************
- 枚举名    : NAS_MM_NETWORK_T3212_VALUE_TYPE_ENUM_UINT8
- 结构说明  : 网络下发T3212定时器时长来源类型定义
- 1.日    期   : 2015年6月15日
-   作    者   : z00161729
-   修改内容   : 24008 23122 R11 CR升级项目修改
-*****************************************************************************/
+
 enum NAS_MM_NETWORK_T3212_VALUE_TYPE_ENUM
 {
     NAS_MM_T3212_VALUE_TYPE_BROADCAST,       /* T3212定时器时长取自系统消息中携带的时长 */
@@ -559,16 +440,7 @@ enum NAS_MM_NETWORK_T3212_VALUE_TYPE_ENUM
 typedef VOS_UINT8 NAS_MM_NETWORK_T3212_VALUE_TYPE_ENUM_UINT8;
 
 
-/*****************************************************************************
- 结构名    : NAS_MM_T3212_INFO_STRU
- 结构说明  : 保存T3212相关信息
-1.日    期   : 2015年3月20日
-  作    者   : w00167002
-  修改内容   : DTS2015030305199:T3212时长可配置。
-2.日    期   : 2015年6月15日
-  作    者   : z00161729
-  修改内容   : 24008 23122 R11 CR升级项目修改
-*****************************************************************************/
+
 typedef struct
 {
     /* 使用NV中的T3212时长计数 */
@@ -759,24 +631,18 @@ typedef struct
 
     VOS_UINT8                           ucLauAcceptContainDiffNbLaiFlg;             /* lau accept消息中携带与系统消息中位置区不同的NB LAI,UE需要在连接释放后马上发起lau */
 
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-22, begin */
     VOS_UINT8                           ucSrvccFlg;
     /* VOS_TRUE:当前处于SRVCC过程中 VOS_FALSE:当前不处于SRVCC过程中;收到RRC的SRVCC通知更新为TRUE,收到RRC的RESUME IND指示后清除 */
 
     VOS_UINT8                           ucRcvSrvccCallInfoFlg;                  /* SRVCC过程中CC同步CALLINFO标识 */
     VOS_UINT8                           aucReserve[1];
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-22, end */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, begin */
     NAS_MM_ECALL_INFO_STRU              stEcallInfo;
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-3-31, end */
 
     RRC_NAS_EST_RESULT_ENUM_UINT32     enEstCnfResult;
 
     NAS_MM_T3212_INFO_STRU              stT3212Info;
-    /* Added by n00355355 for 呼叫重建, 2015-9-29, begin */
     VOS_UINT32                          ulTransactionEnqSenderPid;
-    /* Added by n00355355 for 呼叫重建, 2015-9-29, end */
 }MM_GLOBAL_CTRL_STRU;
 
 

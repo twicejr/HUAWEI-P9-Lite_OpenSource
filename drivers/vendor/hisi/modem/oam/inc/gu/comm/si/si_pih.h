@@ -1,18 +1,6 @@
 
 
-/************************************************************************
-Copyright   : 2005-2008, Huawei Tech. Co., Ltd.
-File name   : SI_SIM.h
-Author      : H59254
-Version     : V200R001
-Date        : 2008-10-18
-Description : SIM卡的头文件
-History     :
-History     :
-1.日    期  : 2008年10月18日
-  作    者  : H59254
-  修改内容  : Create
-************************************************************************/
+
 #ifndef __SI_PIH_H__
 #define __SI_PIH_H__
 
@@ -277,12 +265,7 @@ enum SI_PIH_HVTEE_DATAFLAG_ENUM
 };
 typedef VOS_UINT32      SI_PIH_HVTEE_DATAFLAG_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : SI_PIH_RACCESS_SRC_TYPE_ENUM
- 结构说明  : 用来区分PIH发来的CRSM命令类型
-  1.日    期   : 2015年4月9日
-    作    者   : g00256031
-*****************************************************************************/
+
 enum SI_PIH_RACCESS_SRC_TYPE_ENUM
 {
     SI_PIH_RACCESS_FROM_PIH      = 0,
@@ -290,13 +273,7 @@ enum SI_PIH_RACCESS_SRC_TYPE_ENUM
 };
 typedef VOS_UINT8      SI_PIH_RACCESS_SRC_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 结构名    : SI_PIH_INFO_LIST_ENUM_UINT8
- 结构说明  :
- 1.日    期   : 2012年08月28日
-   作    者   : h59254
-   修改内容   : 新建
-*****************************************************************************/
+
 enum SI_PIH_INFO_LIST_ENUM
 {
     SI_PIH_INFO_USED_LIST_ID = 0,
@@ -338,13 +315,7 @@ typedef struct
     VOS_UINT8                           aucData[8];
 }SI_PIH_GACCESS_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : SI_PIH_ISDB_ACCESS_REQ_STRU
- 结构说明  : ISDB透传APDU的请求数据结构
- 1.日    期   : 2012年08月28日
-   作    者   : h59254
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     SI_PIH_MSG_HEADER_STRU              stMsgHeader;        /* PIH消息头    */
@@ -453,13 +424,7 @@ typedef struct
     VOS_UINT8                       aucContent[4];      /* 数据内容 */
 }SI_PIH_HOOK_MSG_STRU;
 
-/*****************************************************************************
- 结构名    : SI_PIH_CCHO_SET_REQ_STRU
- 结构说明  : 打开逻辑通道请求数据结构
- 1.日    期   : 2013年05月14日
-   作    者   : g47350
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     SI_PIH_MSG_HEADER_STRU              stMsgHeader;                            /* PIH消息头 */
@@ -467,26 +432,14 @@ typedef struct
     VOS_UINT8                           aucADFName[2*USIMM_AID_LEN_MAX];        /* 考虑到中移动不对AID长度检测的需求将长度增大1倍 */
 }SI_PIH_CCHO_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : SI_PIH_CCHC_SET_REQ_STRU
- 结构说明  : 打开逻辑通道请求数据结构
- 1.日    期   : 2013年05月14日
-   作    者   : g47350
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     SI_PIH_MSG_HEADER_STRU              stMsgHeader;                            /* PIH消息头 */
     VOS_UINT32                          ulSessionID;                            /* 逻辑通道号 */
 }SI_PIH_CCHC_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : SI_PIH_CGLA_REQ_STRU
- 结构说明  : 透传逻辑通道APDU的请求数据结构
- 1.日    期   : 2013年05月14日
-   作    者   : g47350
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     SI_PIH_MSG_HEADER_STRU              stMsgHeader;                            /* PIH消息头    */
@@ -591,26 +544,14 @@ typedef struct
     USIMM_CARD_SERVIC_ENUM_UINT32       enCDMASvcStatus;    /*CSIM/UIM Status*/
 }SI_PIH_CARDINFO_STRU;
 
-/*****************************************************************************
- 结构名    : SI_PIH_CRSM_SET_REQ_STRU
- 结构说明  : CRSM请求数据结构
- 1.日    期   : 2015年04月08日
-   作    者   : g00256031
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     SI_PIH_MSG_HEADER_STRU              stMsgHeader;                            /* PIH消息头 */
     SI_PIH_CRSM_STRU                    stMsgContent;
 }SI_PIH_CRSM_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : SI_PIH_CRLA_SET_REQ_STRU
- 结构说明  : CRLA请求数据结构
- 1.日    期   : 2015年04月08日
-   作    者   : g00256031
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     SI_PIH_MSG_HEADER_STRU              stMsgHeader;                            /* PIH消息头 */
@@ -623,13 +564,7 @@ typedef struct
     VOS_UINT32                          ulSessionID;
 }SI_PIH_CHANNELAPPINFO_STRU;
 
-/*****************************************************************************
- 结构名    : SI_PIH_CTRL_INFO_NODE_STRU
- 结构说明  : PIH控制信息节点
- 1.日    期   : 2015年05月12日
-   作    者   : g00256031
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     OM_LIST_S                           stListNode;

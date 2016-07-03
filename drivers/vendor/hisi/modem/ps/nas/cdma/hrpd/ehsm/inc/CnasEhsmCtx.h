@@ -117,14 +117,7 @@ enum CNAS_EHSM_EHRPD_STA_ENUM
 };
 typedef VOS_UINT32 CNAS_EHSM_EHRPD_STA_ENUM_UINT32;
 
-/* Added by w00176964 for CNAS内存裁剪, 2015-9-18, begin */
-/*****************************************************************************
- 枚举名    : CNAS_EHSM_INIT_CTX_TYPE_ENUM
- 结构说明  : 初始化EHSM CTX类型
- 1.日    期   : 2015年9月18日
-   作    者   : w00176964
-   修改内容   : 新增
-*****************************************************************************/
+
 enum CNAS_EHSM_INIT_CTX_TYPE_ENUM
 {
     CNAS_EHSM_INIT_CTX_STARTUP                    = 0,
@@ -133,7 +126,6 @@ enum CNAS_EHSM_INIT_CTX_TYPE_ENUM
 };
 typedef VOS_UINT8 CNAS_EHSM_INIT_CTX_TYPE_ENUM_UINT8;
 
-/* Added by w00176964 for CNAS内存裁剪, 2015-9-18, end */
 
 /*****************************************************************************
   4 全局变量声明
@@ -242,24 +234,12 @@ typedef struct
     CNAS_EHSM_FSM_CTX_STRU              astFsmStack[CNAS_EHSM_MAX_FSM_STACK_DEPTH];  /* Array of FSM contexts */
 }CNAS_EHSM_FSM_STACK_STRU;
 
-/****************************************************************************
-Structure name  :   CNAS_EHSM_CACHE_MSG_QUEUE_STRU
-Description     :   Structure definition of the Cache Message queue of the EHSM module
-Modify History:
-    1)  Date    :   2015-05-14
-        Author  :   m00270891
-        Modify content :    Create
-    2)  Date    :   2015-09-09
-        Author  :   w00176964
-        Modify content :    CNAS内存裁剪
-****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucCacheMsgNum;                          /* Stores the number of Cache messages */
     VOS_UINT8                           aucReserve[3];                          /* Required for padding */
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-9, begin */
     VOS_UINT8                          *pastCacheMsg[CNAS_EHSM_MAX_CACHE_MSG_QUEUE_NUM]; /* Queue of cache messages */
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-9, end */
 }CNAS_EHSM_CACHE_MSG_QUEUE_STRU;
 
 
@@ -476,11 +456,9 @@ typedef struct
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
 CNAS_EHSM_CTX_STRU* CNAS_EHSM_GetEhsmCtxAddr(VOS_VOID);
 
-/* Modified by w00176964 for CNAS内存裁剪, 2015-9-18, begin */
 VOS_VOID CNAS_EHSM_InitCtx(
     CNAS_EHSM_INIT_CTX_TYPE_ENUM_UINT8  enInitType
 );
-/* Modified by w00176964 for CNAS内存裁剪, 2015-9-18, end */
 
 VOS_VOID CNAS_EHSM_ClearCtx(
     CNAS_EHSM_INIT_CTX_TYPE_ENUM_UINT8  enInitType
@@ -559,13 +537,11 @@ VOS_VOID CNAS_EHSM_SaveCacheMsgInMsgQueue(
     VOS_VOID                           *pstMsg
 );
 
-/* Modified by w00176964 for CNAS内存裁剪, 2015-9-18, begin */
 VOS_VOID CNAS_EHSM_InitCacheMsgQueue(
     CNAS_EHSM_INIT_CTX_TYPE_ENUM_UINT8  enInitType,
     CNAS_EHSM_CACHE_MSG_QUEUE_STRU     *pstCacheMsgQueue
 );
 
-/* Modified by w00176964 for CNAS内存裁剪, 2015-9-18, end */
 
 VOS_VOID CNAS_EHSM_SaveCurEntryMsg(
     VOS_UINT32                          ulEventType,

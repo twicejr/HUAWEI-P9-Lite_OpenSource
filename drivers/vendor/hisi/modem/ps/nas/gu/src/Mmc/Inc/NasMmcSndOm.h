@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmcSndOm.h
-  版 本 号   : 初稿
-  作    者   : w00176964
-  生成日期   : 2011年5月9日
-  最近修改   :
-  功能描述   : 定义MMC发送给OM的消息处理头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年5月9日
-    作    者   : w00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 #ifndef _NAS_MMC_SND_OM_H
 #define _NAS_MMC_SND_OM_H_
 
@@ -50,13 +33,7 @@ extern "C" {
 /*****************************************************************************
   3 枚举定义
 *****************************************************************************/
-/*****************************************************************************
- 枚举名    : NAS_MMC_OUTSIDE_CONTEXT_TYPE_ENUM
- 结构说明  : MMC发送给OM的回放的上下文消息的类型
-  1.日    期   : 2011年8月22日
-    作    者   : l00130025
-    修改内容   : MMC发送给OM的回放的上下文消息的类型
-*****************************************************************************/
+
 
 enum NAS_MMC_OUTSIDE_CONTEXT_TYPE_ENUM
 {
@@ -66,13 +43,7 @@ enum NAS_MMC_OUTSIDE_CONTEXT_TYPE_ENUM
 };
 typedef VOS_UINT32 NAS_MMC_OUTSIDE_CONTEXT_TYPE_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : NAS_MMC_OM_MSG_ID_ENUM_U32
- 结构说明  : MMC发送给OM的可维可测消息
-  1.日    期   : 2011年5月9日
-    作    者   : zhoujun 40661
-    修改内容   : MMC发送给OM的可维可测消息ID枚举
-*****************************************************************************/
+
 enum NAS_MMC_OM_MSG_ID_ENUM
 {
     /* MMC发送给OM的消息 */
@@ -156,13 +127,7 @@ typedef struct
 }NAS_MMC_LOG_BUffER_MSG_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_MMC_LOG_INTER_MSG_INFO_STRU
- 结构说明  : 内部消息队列满的通知
- 1.日    期   : 2012年4月12日
-   作    者   : zhoujun 40661
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;/* 消息头                                   */ /*_H2ASN_Skip*/
@@ -172,13 +137,7 @@ typedef struct
 }NAS_MMC_LOG_INTER_MSG_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_MMC_LOG_DPLMNLIST_STRU
- 结构说明  : DPLMN NPLMN list
- 1.日    期   : 2014年11月11日
-   作    者   : b00269685
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                         stMsgHeader;/* 消息头    */ /*_H2ASN_Skip*/
@@ -187,13 +146,7 @@ typedef struct
     NAS_MMC_SIM_PLMN_WITH_REG_DOMAIN_STRU                   astDPlmnList[NAS_MMC_MAX_CFG_DPLMN_NUM];
 }NAS_MMC_LOG_DPLMN_LIST_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_LOG_NPLMN_LIST_STRU
- 结构说明  : DPLMN NPLMN list
- 1.日    期   : 2014年11月11日
-   作    者   : b00269685
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                         stMsgHeader;/* 消息头    */ /*_H2ASN_Skip*/
@@ -202,13 +155,7 @@ typedef struct
     NAS_MMC_SIM_PLMN_WITH_REG_DOMAIN_STRU                   astNPlmnList[NAS_MMC_MAX_CFG_NPLMN_NUM];
 }NAS_MMC_LOG_NPLMN_LIST_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_LOG_NPLMN_LIST_STRU
- 结构说明  : MMCOM_LOG_DPLMN_NPLMN_CFG对应的结构体
-  1.日    期   : 2015年12月15日
-    作    者   : s00217060
-    修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                         stMsgHeader;/* 消息头    */ /*_H2ASN_Skip*/
@@ -218,19 +165,7 @@ typedef struct
     NAS_MML_PLMN_ID_STRU                                    astEHplmnList[NAS_MMC_MAX_CFG_HPLMN_NUM];
 }NAS_MMC_LOG_DPLMN_NPLMN_CFG_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_FIXED_CONTEXT_MSG_STRU
- 结构说明  : PC回放工程，所有MMC和MML相关的固定全局变量通过以下消息结构发送
- 1.日    期   : 2011年7月20日
-   作    者   : zhoujun 40661
-   修改内容   : 新建
- 2.日    期   : 2011年8月20日
-   作    者   : l00130025
-   修改内容   : 回放消息修改
- 3.日    期   : 2011年11月30日
-   作    者   : z00161729
-   修改内容   : 实现pc回放压缩功能修改
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                               aucImeisv[NAS_MML_MAX_IMEISV_LEN];          /* IMEISV */
@@ -244,13 +179,7 @@ typedef struct
 } NAS_MMC_FIXED_CONTEXT_MSG_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_MMC_LOG_PLMN_SELECTION_LIST_STRU
- 结构说明  : 输出到SDT的搜网列表结构体
- 1.日    期   : 2011年7月29日
-   作    者   : s46746
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct{
     VOS_UINT32                          ulMcc;             /* 此网络的MCC    */
     VOS_UINT32                          ulMnc;             /* 此网络的MNC    */
@@ -260,53 +189,27 @@ typedef struct{
     NAS_MMC_NET_QUALITY_ENUM_UINT8      enQuality;         /* 网络的信号质量 */
 }NAS_MMC_LOG_PLMN_SELECTION_LIST_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_LOG_PLMN_SELECTION_LIST_MSG_STRU
- 结构说明  : 输出到SDT的搜网列表消息结构体
- 1.日    期   : 2011年7月29日
-   作    者   : s46746
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct{
     MSG_HEADER_STRU                                         stMsgHeader;/* 消息头                                   */ /*_H2ASN_Skip*/
     VOS_UINT32                                              ulPlmnNum;
     NAS_MMC_LOG_PLMN_SELECTION_LIST_STRU                    astPlmnSelectionList[NAS_MMC_MAX_PLMN_NUM_IN_SELECTION_LIST];/* 网络列表 */
 }NAS_MMC_LOG_PLMN_SELECTION_LIST_MSG_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_LOG_AS_PLMN_LIST_MSG_STRU
- 结构说明  : 输出到SDT的接入层上报的搜网列表消息结构体
- 1.日    期   : 2011年8月9日
-   作    者   : z00161729
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct{
     MSG_HEADER_STRU                                         stMsgHeader;/* 消息头                                   */ /*_H2ASN_Skip*/
     NAS_MMC_SEARCHED_PLMN_LIST_INFO_STRU                    stSrchedPlmn;
 }NAS_MMC_LOG_AS_PLMN_LIST_MSG_STRU;
 
-/*****************************************************************************
- 结构名称:  NAS_MMC_LOG_PLMN_REG_REJ_INFO_STRU
- 结构说明:  MMC->MMC,PLMN REG REJ INFO 消息
-  1.日    期   : 2015年10月20日
-    作    者   : c00318887
-    修改内容   :  新增结构
 
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;        /* 消息头 */
     NAS_MMC_PLMN_REG_REJ_CTX_STRU       stPlmnRegRejInfo;   /* PLMN 注册被拒信息 */
 } NAS_MMC_LOG_PLMN_REG_REJ_INFO_STRU;
 
-/*****************************************************************************
- 结构名称:  NAS_MMC_LOG_PLMN_REG_REJ_INFO_STRU
- 结构说明:  MMC->MMC,PLMN REG REJ INFO 消息
-  1.日    期   : 2015年10月20日
-    作    者   : c00318887
-    修改内容   :  新增结构
 
-*****************************************************************************/
 typedef struct
 {
     NAS_MML_PLMN_ID_STRU                stPlmnId;                               /* PlMN标识 */
@@ -320,14 +223,7 @@ typedef struct
 
 } NAS_MMC_LOG_PLMN_RELATED_INFO_STRU;
 
-/*****************************************************************************
- 结构名称:  NAS_MMC_LOG_PLMN_REG_REJ_INFO_STRU
- 结构说明:  MMC->MMC,PLMN REG REJ INFO 消息
-  1.日    期   : 2015年10月20日
-    作    者   : c00318887
-    修改内容   :  新增结构
 
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;        /* 消息头 */
@@ -336,13 +232,7 @@ typedef struct
 
 
 
-/*****************************************************************************
- 结构名    : NAS_MMC_LOG_RPLMN_RELATED_INFO_STRU
- 结构说明  : 输出RPLMN相关的可维可测信息结构体
- 1.日    期   : 2015年1月5日
-   作    者   : w00167002
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct{
     MSG_HEADER_STRU                                         stMsgHeader;/* 消息头                                   */ /*_H2ASN_Skip*/
     NAS_MML_PLMN_ID_STRU                                    stGetLteRplmn;      /* 获取当前LTE的RPLMN */
@@ -357,26 +247,14 @@ typedef struct{
 }NAS_MMC_LOG_RPLMN_RELATED_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_MMC_LOG_RPLMN_CFG_INFO_STRU
- 结构说明  : 输出RPLMN平配置的可维可测信息结构体
- 1.日    期   : 2015年1月5日
-   作    者   : w00167002
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct{
     MSG_HEADER_STRU                                         stMsgHeader;/* 消息头                                   */ /*_H2ASN_Skip*/
     NAS_MML_RPLMN_CFG_INFO_STRU                             stRplmnCfg;         /* RPLMN的定制特性 */
 }NAS_MMC_LOG_RPLMN_CFG_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_MMC_LOG_FORBIDDEN_PLMN_RELATED_INFO_STRU
- 结构说明  : 输出FORB PLMN相关的可维可测信息结构体
- 1.日    期   : 2015年1月5日
-   作    者   : w00167002
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct{
     MSG_HEADER_STRU                                         stMsgHeader;/* 消息头                                   */ /*_H2ASN_Skip*/
     NAS_MML_SIM_FORBIDPLMN_INFO_STRU                        stSimForbidenInfo;  /* SIM卡中的禁止网络信息 */
@@ -391,13 +269,7 @@ typedef struct{
 
 
 
-/*****************************************************************************
- 结构名    : NAS_MMC_LOG_OOS_PLMN_SEARCH_STRATEGY_RELATED_INFO_STRU
- 结构说明  : 输出History/PrefBand/FullBand选网状态机上下文相关的可维可测信息结构体
- 1.日    期   : 2015年10月10日
-   作    者   : h00281185
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                         stMsgHeader;/* 消息头                                   */ /*_H2ASN_Skip*/
@@ -405,13 +277,7 @@ typedef struct
     NAS_MMC_GET_GEO_INFO_STRU                               stGetGeoInfo;
 }NAS_MMC_LOG_OOS_PLMN_SEARCH_STRATEGY_RELATED_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_LOG_FSM_PLMN_SELECTON_CTX_RELATED_INFO_STRU
- 结构说明  : 输出选网状态机上下文相关的可维可测信息结构体
- 1.日    期   : 2015年6月5日
-   作    者   : w00167002
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                           stMsgHeader;                      /* 消息头                                   */ /*_H2ASN_Skip*/
@@ -431,13 +297,7 @@ typedef struct
 }NAS_MMC_LOG_FSM_PLMN_SELECTON_CTX_RELATED_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_MMC_LOG_FSM_L1_MAIN_CTX_RELATED_INFO_STRU
- 结构说明  : 输出L1 MAIN状态机上下文相关的可维可测信息结构体
- 1.日    期   : 2015年6月5日
-   作    者   : w00167002
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                           stMsgHeader;                      /* 消息头                                   */ /*_H2ASN_Skip*/
@@ -452,13 +312,7 @@ typedef struct
 }NAS_MMC_LOG_FSM_L1_MAIN_CTX_RELATED_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_MMC_LOG_FORB_LA_WITH_VALID_PERIOD_LIST_INFO_STRU
- 结构说明  : 禁止LA有效时长列表相关的可维可测信息结构体
- 1.日    期   : 2015年9月23日
-   作    者   : z00359541
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                         stMsgHeader;/* 消息头                                   */ /*_H2ASN_Skip*/
@@ -466,17 +320,7 @@ typedef struct
     NAS_MML_FORB_LA_WITH_VALID_PERIOD_LIST_STRU             stForbLaWithValidPeriod;
 }NAS_MMC_LOG_FORB_LA_WITH_VALID_PERIOD_LIST_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_TIMER_INFO_STRU
- 结构说明  : log出MMC定时器运行情况
- 1.日    期   : 2011年7月20日
-   作    者   : zhoujun 40661
-   修改内容   : 新建
 
- 2.日    期   : 2011年10月24日
-   作    者   : w00167002
-   修改内容   : 增加定时器的时长LOG
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;/* 消息头                                   */ /*_H2ASN_Skip*/
@@ -488,16 +332,7 @@ typedef struct
     VOS_UINT32                          ulTimerRemainLen;/* 定时器的时长 */
 }NAS_MMC_TIMER_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_GET_CACHE_FILE_STRU
- 结构说明  : 调用USIMM_GetCachedFile接口，勾消息
 
- 修改记录  :
- 1.日    期   : 2012年06月30日
-   作    者   : l60609
-   修改内容   : 新增
-
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /* 消息头 */
@@ -506,16 +341,7 @@ typedef struct
 }NAS_MMC_GET_CACHE_FILE_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_MMC_DRX_TIMER_STAUTS_STRU
- 结构说明  : 调用OM的接口
 
- 修改记录  :
- 1.日    期   : 2012年11月9日
-   作    者   : z40661
-   修改内容   : 新增
-
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /* 消息头 */
@@ -524,16 +350,7 @@ typedef struct
 }NAS_MMC_DRX_TIMER_STAUTS_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_MMC_PLATFORM_RAT_CAP_STRU
- 结构说明  : 调用OM的接口
 
- 修改记录  :
- 1.日    期   : 2012年12月29日
-   作    者   : s00217060
-   修改内容   : 新增
-
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /* 消息头 */
@@ -575,12 +392,10 @@ VOS_VOID NAS_MMC_SndPcRepalyCtxInfo(
 
 VOS_VOID NAS_MMC_SndOutsideContextData( VOS_VOID );
 
-/* Modified by wx270776 for OM融合, 2015-7-10, begin */
 VOS_VOID NAS_MMC_SndOmOtaCnf(
     VOS_UINT32                          ulErrCode,
     OM_NAS_OTA_REQ_STRUCT              *pstOtaReq
 );
-/* Modified by wx270776 for OM融合, 2015-7-10, end */
 
 VOS_VOID NAS_MMC_SndOmInquireCnfMsg(
     ID_NAS_OM_INQUIRE_STRU             *pstOmInquireMsg

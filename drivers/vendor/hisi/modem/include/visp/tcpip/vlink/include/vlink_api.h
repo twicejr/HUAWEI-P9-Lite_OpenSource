@@ -28,7 +28,6 @@
 extern "C"{
 #endif /* __cplusplus */
 
-/* Add for DTS2011022102588, by tanyiming00171953, at 2011-02-22. 修改原因: 新增Vlink路由查询接口,增强Vlink维测手段  */
 typedef enum tagVLINK_ERR_E
 {
     VLINK_OK,                         /* 0 */

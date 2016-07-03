@@ -96,12 +96,10 @@ VOS_UINT32 TAF_AGENT_GetCallInfoReq(
 );
 
 
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-2, begin */
 VOS_UINT32 TAF_AGENT_GetSysMode(
     VOS_UINT16                                 usClientId,
     TAF_AGENT_SYS_MODE_STRU                   *pstSysMode
 );
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-2, end */
 
 extern VOS_VOID TAF_AGENT_ClearAllSem(VOS_VOID);
 

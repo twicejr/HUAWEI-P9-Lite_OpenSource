@@ -768,7 +768,6 @@ typedef struct
     TRRC_APP_RRC_STATE_ENUM_UINT8               enRrcState;            /* RRC状态，内部状态，非协议状态 */
     TRRC_APP_FLOW_CTRL_TYPE_ENUM_UINT16         enErrcFlowCtrlType;    /* TD-SCDMA发生异系统过程时，异系统过程标识 */
 }TRRC_APP_STATE_INFO_STRU;
-/*随机接入建连失败CHR上报 add by lilin 00297133 2015-9-16 begin******************/
 /*****************************************************************************
  结构名    : TRRC_APP_ACC_FAIL_INFO_STRU
  结构说明  : ERROR LOG RRC建连失败上报信息
@@ -787,7 +786,6 @@ typedef struct
     VOS_UINT8                                  aucResv[2];      /*保留位*/
 
 }TRRC_APP_ACC_FAIL_INFO_STRU;
-/*随机接入建连失败CHR上报 add by lilin 00297133 2015-9-16 end******************/
 /*****************************************************************************
  结构名    : TRRC_APP_EST_INFO_STRU
  结构说明  : ERROR LOG RRC建连信息
@@ -801,9 +799,7 @@ typedef struct
     TRRC_APP_STATE_INFO_STRU                   stRrcAppStateInfo;       /* 发生故障时状态信息 */
     TRRC_APP_EST_SIGNALLING_TYPE_UINT32        enEstSignallingType[2];  /* 域建连状态信息*/
     TRRC_APP_EST_CAUSE_ENUM_UINT32             enEstCause;              /* 建连原因 */
-    /*随机接入建连失败CHR上报 add by lilin 2015-9-16 begin*/
     TRRC_APP_ACC_FAIL_INFO_STRU                stRrcAppAccFailInfo;              
-    /*随机接入建连失败CHR上报 add by lilin 2015-9-16 end*/
 }TRRC_APP_EST_INFO_STRU;
 
 /* ErrorLog新增丢网信息begin */
@@ -920,9 +916,7 @@ typedef struct
     TRRC_APP_ERROR_CODE_ENUM_UINT8             enErrorCode;             /* 错误码*/
     VOS_UINT8                                  aucResv[3];
     TRRC_APP_STATE_INFO_STRU                   stRrcAppStateInfo;       /* 发生故障时状态信息 */
-    /*随机接入建连失败CHR上报 add by lilin 2015-9-16 begin*/
     TRRC_APP_ACC_FAIL_INFO_STRU                stRrcAppAccFailInfo;              
-    /*随机接入建连失败CHR上报 add by lilin 2015-9-16 end*/
 }TRRC_APP_CELLUPDATE_ERROR_INFO_STRU;
 
 /*****************************************************************************
@@ -987,14 +981,7 @@ typedef struct
     VOS_UINT8                           aucContent[4]; /* 故障内容 */
 } TRRC_OM_ERR_LOG_REPORT_CNF_STRU;
 
-/*****************************************************************************
- Structure      : TRRC_OM_TDS_SERV_CELL_INFO_STRU
- Description    : 当前注册的小区信息
- 修改历史 :
-  1.日    期    : 2015年2月27日
-    作    者    : f00272207
-    修改内容    : 新建结构
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                 ulMcc;           /* MCC,3 bytes      */
@@ -1007,14 +994,7 @@ typedef struct
 
 }TRRC_OM_TDS_SERV_CELL_INFO_STRU;
 
-/*****************************************************************************
- Structure      : TRRC_ OM_TDS_CELLS_LIST_WITHOUT_LTE_NCELL_STRU
- Description    : 未配置4G邻区的小区列表结构体
- 修改历史 :
-  1.日    期     : 2015年2月27日
-    作    者    :  f00272207
-    修改内容    :  新建结构
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                   ucTdsCellNum;                   /* 未配置4G邻区的TDS小区个数 */
@@ -1024,14 +1004,7 @@ typedef struct
 } TRRC_OM_TDS_CELLS_LIST_WITHOUT_LTE_NCELL_STRU;
 
 
-/*****************************************************************************
- Structure      : TRRC_ERR_LOG_EVT_NO_T2L_OPERATION_ONE_CYCLE_STRU
- Description    : TRRC长时间不回LTE事件上报的结构体
- 修改历史 :
-  1.日    期    : 2015年2月27日
-    作    者    : f00272207
-    修改内容    : 新建结构
-*****************************************************************************/
+
 typedef struct
 {
     OM_ERR_LOG_HEADER_STRU                              stHeader;
@@ -1042,14 +1015,7 @@ typedef struct
     TRRC_OM_TDS_SERV_CELL_INFO_STRU                     stServCellInfo;                  /*当前注册小区信息 */
 
 } TRRC_ERR_LOG_EVT_NO_T2L_OPERATION_ONE_CYCLE_STRU;
-/*****************************************************************************
- Structure      : TRRC_APP_CS_RELEASE_CELL_INFO_STRU
- Description    : TRR CS链路释放当前服务区信息
- 修改历史 :
-  1.日    期    : 2015年10月25日
-    作    者    : f00272207
-    修改内容    : 新建结构
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                                 usCellId;                /* 服务小区ID */
@@ -1060,15 +1026,7 @@ typedef struct
 }TRRC_APP_CS_RELEASE_CELL_INFO_STRU;
 
 #if (FEATURE_ON == FEATURE_PTM)
-/*****************************************************************************
-Structure      : TRRC_APP_CS_NO_RBSETUP_INFO_STRU
-Description    : 问题单DTS2015120803646:TRRC 在组装完RRC CONN SETUP COMPLETE后,TRRC 进入内部状态机RRC_CNF态,
-                 此时收到多条UM_DATA_IND进行缓存,最后缓存达到最大值,TRRC流程走CONN TO IDLE。此CHR TRRC给CHR上报的内容。
-修改历史 :
- 1.日    期    : 2016年01月12日
-   作    者    : l00280875
-   修改内容    : 新建结构
-*****************************************************************************/
+
 typedef struct
 {
     OM_ERR_LOG_HEADER_STRU                            stHeader;                /*Errorlog消息头*/
@@ -1091,14 +1049,7 @@ typedef struct
 
 #endif
 
-/*****************************************************************************
- Structure      : TRRC_APP_CS_RELEASE_INFO_STRU
- Description    : TRRC CS链路释放上报的结构体
- 修改历史 :
-  1.日    期    : 2015年10月25日
-    作    者    : f00272207
-    修改内容    : 新建结构
-*****************************************************************************/
+
 typedef struct
 {
     OM_ERR_LOG_HEADER_STRU                     stHeader;                /* Errorlog 消息头 */
@@ -1109,14 +1060,7 @@ typedef struct
 }TRRC_APP_CS_RELEASE_INFO_STRU;
 
 #if (FEATURE_ON == FEATURE_PTM)
-/*****************************************************************************
-Structure      : TRRC_APP_CS_NO_RBSETUP_INFO_STRU
-Description    : CS域收不到网侧下发的RB SETUP时，TRRC上报给CHR的信息内容。
-修改历史 :
- 1.日    期    : 2015年12月20日
-   作    者    : l00280875
-   修改内容    : 新建结构
-*****************************************************************************/
+
 typedef struct
 {
     OM_ERR_LOG_HEADER_STRU                       stHeader;              /* Errorlog 消息头 */
@@ -1141,13 +1085,7 @@ typedef struct
 
 }TRRC_APP_CS_NO_RBSETUP_INFO_STRU;
 
-/*****************************************************************************
-Description    : CS域打电话的T2G CCO过程中，TRRC上报给CHR的信息内容。
-修改历史 :
- 1.日    期    : 2015年12月20日
-   作    者    : l00280875
-   修改内容    : 新建结构
-*****************************************************************************/
+
 typedef struct
 {
 
@@ -1173,13 +1111,7 @@ typedef struct
 
 }TRRC_APP_CS_T2G_CCO_INFO_STRU;
 
-/*****************************************************************************
-Description    : TRRC本地保存的CS域打电话的过程中发生失步流程的有关信息
-修改历史 :
- 1.日    期    : 2015年12月20日
-   作    者    : l00280875
-   修改内容    : 新建结构
-*****************************************************************************/
+
 typedef struct
 {
     TRRC_APP_STATE_INFO_STRU                        stRrcAppStateInfo;    /* 发生故障时状态信息 */
@@ -1190,13 +1122,7 @@ typedef struct
 
 }TRRC_CHR_CS_CALL_OUTOFSYNC_INFO_STRU;
 
-/*****************************************************************************
-Description    : TRRC本地保存的CS域打电话的过程中发生失步流程的有关信息
-修改历史 :
- 1.日    期    : 2015年12月20日
-   作    者    : l00280875
-   修改内容    : 新建结构
-*****************************************************************************/
+
 typedef struct
 {
     TRRC_APP_STATE_INFO_STRU                         stRrcAppStateInfo;    /* 发生故障时状态信息 */
@@ -1207,13 +1133,7 @@ typedef struct
 
 }TRRC_CHR_CS_CALL_CONN_REL_INFO_STRU;
 
-/*****************************************************************************
-Description    : TRRC本地保存的CS CALL时SMC COMP 流程有关的CHR信息
-修改历史 :
- 1.日    期    : 2015年12月20日
-   作    者    : l00280875
-   修改内容    : 新建结构
-*****************************************************************************/
+
 typedef struct
 {
     TRRC_APP_STATE_INFO_STRU                         stRrcAppStateInfo;     /* 发生故障时状态信息 */
@@ -1224,13 +1144,7 @@ typedef struct
     VOS_UINT32                                       ulCsCallChrCodeBitmap;
 }TRRC_CHR_CS_CALL_SMC_CPL_INFO_STRU;
 
-/*****************************************************************************
-Description    : TRRC本地保存的CS CALL时SIGNAL CONN REL时的有关CHR信息
-修改历史 :
- 1.日    期    : 2015年12月20日
-   作    者    : l00280875
-   修改内容    : 新建结构
-*****************************************************************************/
+
 typedef struct
 {
     TRRC_APP_STATE_INFO_STRU                         stRrcAppStateInfo;     /* 发生故障时状态信息 */
@@ -1241,13 +1155,7 @@ typedef struct
     VOS_UINT32                                       ulCsCallChrCodeBitmap;
 }TRRC_CHR_CS_CALL_SIGNAL_REL_INFO_STRU;
 
-/*****************************************************************************
-Description    : TRRC本地保存的CS CALL过程中GU REL REQ时的有关CHR信息
-修改历史 :
- 1.日    期    : 2015年12月20日
-   作    者    : l00280875
-   修改内容    : 新建结构
-*****************************************************************************/
+
 typedef struct
 {
     TRRC_APP_STATE_INFO_STRU                          stRrcAppStateInfo;     /* 发生故障时状态信息 */
@@ -1258,13 +1166,7 @@ typedef struct
     VOS_UINT32                                        ulCsCallChrCodeBitmap;
 }TRRC_CHR_CS_CALL_GU_REL_REQ_INFO_STRU;
 
-/*****************************************************************************
-Description    : TRRC本地保存的CS CALL过程中GU REL REQ时的有关CHR信息
-修改历史 :
- 1.日    期    : 2015年12月20日
-   作    者    : l00280875
-   修改内容    : 新建结构
-*****************************************************************************/
+
 typedef struct
 {
     TRRC_APP_STATE_INFO_STRU                          stRrcAppStateInfo;      /* 发生故障时状态信息 */
@@ -1275,13 +1177,7 @@ typedef struct
     VOS_UINT32                                        ulCsCallChrCodeBitmap;
 }TRRC_CHR_CS_CALL_GU_TRANS_NTFY_INFO_STRU;
 
-/*****************************************************************************
-Description    : TRRC本地保存的CS域打电话EST REQ CHR信息内容。
-修改历史 :
- 1.日    期    : 2015年12月22日
-   作    者    : l00280875
-   修改内容    : 新建结构
-*****************************************************************************/
+
 typedef struct
 {
 
@@ -1295,13 +1191,7 @@ typedef struct
 
 }TRRC_CHR_CS_CALL_EST_REQ_INFO_STRU;
 
-/*****************************************************************************
-Description    : TRRC本地保存的CS域打电话RRC CONN REQ ERR LOG信息内容。
-修改历史 :
- 1.日    期    : 2015年12月22日
-   作    者    : l00280875
-   修改内容    : 新建结构
-*****************************************************************************/
+
 typedef struct
 {
     TRRC_APP_STATE_INFO_STRU                           stRrcAppStateInfo;      /* 发生故障时状态信息 */
@@ -1320,13 +1210,7 @@ typedef struct
 
 }TRRC_CHR_CS_CALL_CONN_REQ_INFO_STRU;
 
-/*****************************************************************************
-Description    : TRRC本地保存的CS域打电话EST CNF ERR LOG信息内容。
-修改历史 :
- 1.日    期    : 2015年12月20日
-   作    者    : l00280875
-   修改内容    : 新建结构
-*****************************************************************************/
+
 typedef struct
 {
     TRRC_APP_CS_RELEASE_CELL_INFO_STRU                  stServCellInfo;        /* 服务小区信息 */
@@ -1338,13 +1222,7 @@ typedef struct
     RRC_NAS_EST_RESULT_ENUM_UINT32                      ulResult;              /* 该信令连接建立结果，取值见枚举定义 */
 }TRRC_CHR_CS_CALL_EST_CNF_INFO_STRU;
 
-/*****************************************************************************
-Description    : TRRC本地保存的CS域打电话T2G CCO时的 ERR LOG信息内容。
-修改历史 :
- 1.日    期    : 2015年12月20日
-   作    者    : l00280875
-   修改内容    : 新建结构
-*****************************************************************************/
+
 typedef struct
 {
     TRRC_APP_CS_RELEASE_CELL_INFO_STRU                  stServCellInfo;        /* 服务小区信息 */
@@ -1355,13 +1233,7 @@ typedef struct
 
 }TRRC_CHR_CS_CALL_T2G_CCO_INFO_STRU;
 
-/*****************************************************************************
-Description    : TRRC本地保存的所有有关CS域打电话的一般信息内容。
-修改历史 :
- 1.日    期    : 2015年12月20日
-   作    者    : l00280875
-   修改内容    : 新建结构
-*****************************************************************************/
+
 typedef struct
 {
     TRRC_CHR_CS_CALL_EST_REQ_INFO_STRU                   stCsCallEstReqInfo;     /*打电话流程走到EST REQ时本地保存的CHR信息*/
@@ -1375,13 +1247,7 @@ typedef struct
     TRRC_CHR_CS_CALL_GU_TRANS_NTFY_INFO_STRU             stCsCallGuTransNtfyInfo;/*打电话流程走到GU TRANS STATUS NOTIFY时本地保存的CHR信息*/
 }TRRC_CHR_CS_CALL_GENERAL_INFO_STRU;
 
-/*****************************************************************************
-Description    : TRRC本地保存的所有有关CS域打电话的CHR信息内容。
-修改历史 :
- 1.日    期    : 2015年12月20日
-   作    者    : l00280875
-   修改内容    : 新建结构
-*****************************************************************************/
+
 typedef struct
 {
     PS_BOOL_ENUM_UINT8                                   enTrrcChrCsCallFlag;    /*标识是否是打电话流程的FLAG*/

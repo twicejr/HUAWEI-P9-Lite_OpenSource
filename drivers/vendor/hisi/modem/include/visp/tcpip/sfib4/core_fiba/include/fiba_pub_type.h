@@ -1,29 +1,4 @@
-/*******************************************************************************
-*
-*                Copyright 2006, Huawei Technologies Co. Ltd.
-*                            ALL RIGHTS RESERVED
-*
-*-------------------------------------------------------------------------------
-*
-*                              fiba_pub_type.h
-*
-* Project Code: VISPV100R005
-*  Module Name: SFIB4
-* Date Created: 2003-07-07
-*       Author: Zhang Hongyan
-*  Description: Fibagent public type define in this file
-*
-*-------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  -----------------------------------------------------------------------------
-*  2003-07-07   Zhang Hongyan           Create
-*  2006-03-30   Jiangtao                Adjust for D00646
-*  2006-04-21   Jiangtao                Adjust for D00859 
-*  2006-05-11   luyao(60000758)         为支持ARM CPU字节对齐特性，修改结构。
-*  2006-05-13   l48923                  Delete useless code
-*
-*******************************************************************************/
+
 
 #ifdef  __cplusplus
 extern  "C"{

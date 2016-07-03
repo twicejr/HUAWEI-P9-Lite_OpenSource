@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : hmac_frag.c
-  版 本 号   : 初稿
-  作    者   : t00231215
-  生成日期   : 2014年2月15日
-  最近修改   :
-  功能描述   : 分片去分片功能
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年2月15日
-    作    者   : t00231215
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -51,21 +34,7 @@ OAL_STATIC oal_void  hmac_defrag_check_seq_addr(hmac_user_stru *pst_hmac_user,
   3 函数实现
 *****************************************************************************/
 #if (_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC == _PRE_MULTI_CORE_MODE)
-/*****************************************************************************
- 函 数 名  : hmac_frag_process
- 功能描述  : 报文分片处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月19日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  hmac_frag_process(hmac_vap_stru *pst_hmac_vap,
                                    oal_netbuf_stru *pst_netbuf_original,
                                    mac_tx_ctl_stru *pst_tx_ctl,
@@ -163,21 +132,7 @@ OAL_STATIC oal_uint32  hmac_frag_process(hmac_vap_stru *pst_hmac_vap,
 }
 #else
 
-/*****************************************************************************
- 函 数 名  : hmac_frag_process
- 功能描述  : 报文分片处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月19日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  hmac_frag_process(hmac_vap_stru *pst_hmac_vap,
                                    oal_netbuf_stru *pst_netbuf_original,
                                    mac_tx_ctl_stru *pst_tx_ctl,
@@ -275,21 +230,7 @@ OAL_STATIC oal_uint32  hmac_frag_process(hmac_vap_stru *pst_hmac_vap,
 }
 
 #endif
-/*****************************************************************************
- 函 数 名  : hmac_frag_process_proc
- 功能描述  : 报文分片处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月18日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_frag_process_proc(hmac_vap_stru *pst_hmac_vap, hmac_user_stru *pst_hmac_user, oal_netbuf_stru *pst_netbuf, mac_tx_ctl_stru *pst_tx_ctl)
 {
     oal_uint32          ul_threshold    = 0;
@@ -309,7 +250,6 @@ oal_uint32  hmac_frag_process_proc(hmac_vap_stru *pst_hmac_vap, hmac_user_stru *
         OAM_ERROR_LOG1(pst_hmac_vap->st_vap_base_info.uc_vap_id, OAM_SF_ANY, "{hmac_frag_process::hmac_en_mic failed[%d].}", ul_ret);
         return ul_ret;
     }
-    /*规避问题单DTS2014092901156，D2手机ping不通问题,将门限值4*n+2*/
     ul_threshold = (ul_threshold & (~(BIT0|BIT1))) + 2;
 
     /* 规避1151硬件bug,调整分片门限：TKIP加密时，当最后一个分片的payload长度小于等于8时，无法进行加密 */
@@ -331,21 +271,7 @@ oal_uint32  hmac_frag_process_proc(hmac_vap_stru *pst_hmac_vap, hmac_user_stru *
 
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_defrag_timeout_fn
- 功能描述  : 解分片超时处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月20日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_defrag_timeout_fn(oal_void *p_arg)
 {
     hmac_user_stru  *pst_hmac_user;
@@ -366,21 +292,7 @@ oal_uint32  hmac_defrag_timeout_fn(oal_void *p_arg)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_defrag_process
- 功能描述  : 去分片处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月20日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_netbuf_stru* hmac_defrag_process(hmac_user_stru *pst_hmac_user, oal_netbuf_stru *pst_netbuf, oal_uint32 ul_hrdsize)
 {
     mac_ieee80211_frame_stru *pst_mac_hdr   = OAL_PTR_NULL;
@@ -505,7 +417,6 @@ oal_netbuf_stru* hmac_defrag_process(hmac_user_stru *pst_hmac_user, oal_netbuf_s
     }
     else
     {
-        /* 按代码逻辑此分支不可能进来，为了让pc lint闭嘴 */
         if (OAL_UNLIKELY(OAL_PTR_NULL == pst_last_hdr))
         {
             OAM_ERROR_LOG0(pst_hmac_user->st_user_base_info.uc_vap_id, OAM_SF_ANY, "{hmac_defrag_process::pst_last_hdr is NULL.}");
@@ -532,7 +443,6 @@ oal_netbuf_stru* hmac_defrag_process(hmac_user_stru *pst_hmac_user, oal_netbuf_s
     }
     else
     {
-        /* 按代码逻辑此分支不可能进来，为了让pc lint闭嘴 */
         if (OAL_UNLIKELY(OAL_PTR_NULL == pst_last_hdr))
         {
             OAM_ERROR_LOG0(pst_hmac_user->st_user_base_info.uc_vap_id, OAM_SF_ANY, "{hmac_defrag_process::pst_last_hdr is NULL.}");

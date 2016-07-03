@@ -69,19 +69,7 @@ VOS_UINT32 g_aulNvAuthIdList[] =
     en_NV_Item_AT_SHELL_OPEN_FLAG,
 };
 
-/*****************************************************************************
- Function Name   : NvRdProc
- Description     : 该函数用于处理从NvProcEntry传进来的读NV命令
- Input           : pstReq 待处理数据
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.y00228784      2012-11-22  Draft Enact
-    2.c64416         2014-11-18  适配新的诊断架构
-    2.c00326366      2015-06-10  新增多条NV的读取处理
-
-*****************************************************************************/
 VOS_UINT32 diag_NvRdProc(VOS_UINT8* pstReq)
 {
     VOS_UINT32 ret = ERR_MSP_SUCCESS;
@@ -179,17 +167,7 @@ DIAG_ERROR:
 }
 
 
-/*****************************************************************************
- Function Name   : diag_GetNvListProc
- Description     : HIMS获取NV list命令的处理接口
- Input           : pstReq 待处理数据
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.c00326366      2012-11-22  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 diag_GetNvListProc(VOS_UINT8* pstReq)
 {
     VOS_UINT32 ret, ulNvNum, ulTotalLen;
@@ -251,17 +229,7 @@ DIAG_ERROR:
     return ret;
 }
 
-/*****************************************************************************
- Function Name   : diag_NvAuthProc
- Description     : 初始化鉴权全局变量
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.c00326366      2012-11-22  Draft Enact
-
-*****************************************************************************/
 VOS_VOID diag_InitAuthVariable(VOS_VOID)
 {
     IMEI_STRU stIMEI;
@@ -279,17 +247,7 @@ VOS_VOID diag_InitAuthVariable(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Function Name   : diag_NvAuthProc
- Description     : 判断此NV项是否可以进行修改
- Input           : ulNvId
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.c00326366      2012-11-22  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 diag_IsAuthNv(VOS_UINT32 ulNvId)
 {
     VOS_UINT32 i;
@@ -316,21 +274,7 @@ VOS_VOID diag_AuthNvCfg(MsgBlock* pMsgBlock)
     g_ulPrivilegeLevel = pstMsg->ulLevel;
 }
 
-/*****************************************************************************
- Function Name   : diag_NvWrProc
- Description     : 该函数用于处理从NvProcEntry传进来的写NV命令
- Input           : pstReq 待处理数据
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.y00228784      2012-11-22  Draft Enact
-    2.c64416         2014-11-18  适配新的诊断架构
-    2.c00326366      2015-06-10  新增多条NV的写处理，并把写操作转到C核处理
-                     转到C核处理的原因: 1. 避免NV写接口阻塞导致其他DIAG命令处理延迟
-                                        2. NV鉴权的操作在C核，鉴权状态在C核记录
-
-*****************************************************************************/
 VOS_UINT32 diag_NvWrProc(VOS_UINT8* pstReq)
 {
     VOS_UINT32 ret;
@@ -398,15 +342,7 @@ DIAG_ERROR2:
 }
 
 #else
-/*****************************************************************************
- Function Name   : diag_NvAuthSendAcore
- Description     : 向A核发送NV鉴权结果
- Input           : ulLev
 
- History         :
-    1.c00326366      2015-08-04  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 diag_NvAuthSendAcore(VOS_UINT32 ulLev)
 {
     DIAG_BSP_NV_AUTH_STRU *pstNvAuth;
@@ -432,17 +368,7 @@ VOS_UINT32 diag_NvAuthSendAcore(VOS_UINT32 ulLev)
 }
 #endif
 
-/*****************************************************************************
- Function Name   : diag_NvAuthProc
- Description     : HIMS获取NV鉴权命令的处理接口
- Input           : pstReq 待处理数据
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.c00326366      2012-11-22  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 diag_NvAuthProc(VOS_UINT8* pstReq)
 {
     VOS_UINT32 ulRet;
@@ -857,18 +783,7 @@ DIAG_ERROR:
 #endif
 }
 
-/*****************************************************************************
- Function Name   : diag_BspUtraceStart
- Description     : USB Trace命令处理入口
- Input           :VOS_UINT8* pstReq
-                VOS_UINT32 ulCmdId
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.w00182550      2013-3-5  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 diag_BspUtraceStart(VOS_UINT8* pstReq)
 {
     VOS_UINT32 ulRet = ERR_MSP_SUCCESS;
@@ -890,18 +805,7 @@ VOS_UINT32 diag_BspUtraceStart(VOS_UINT8* pstReq)
     return ulRet;
 }
 
-/*****************************************************************************
- Function Name   : diag_BspUtraceStop
- Description     : USB Trace命令处理入口
- Input           :VOS_UINT8* pstReq
-                VOS_UINT32 ulCmdId
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.w00182550      2013-3-5  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 diag_BspUtraceStop(VOS_UINT8* pstReq)
 {
     VOS_UINT32 ulRet = ERR_MSP_SUCCESS;

@@ -1,0 +1,19 @@
+
+
+/ {
+    hisi_efuse: efuse {
+        compatible = "hisilicon, efuse";
+        hisi,bl31-share-mem = <0x800 0x400>;
+        efuse_mem_attr_group_max = <64>;
+        efuse_mem_attr_huk = <256>;
+        efuse_mem_attr_scp = <64>;
+        efuse_mem_attr_authkey = <64>;
+        efuse_mem_attr_chipid = <64>;
+        efuse_mem_attr_tsensor_calibration = <55>;
+        efuse_mem_attr_huk_rd_disable = <3>;
+        efuse_mem_attr_authkey_rd_disable = <1>;        
+        efuse_mem_attr_dbg_class_ctrl = <2>;
+        efuse_mem_attr_dieid = <156>;
+        efuse_mem_attr_sltfinishflag = <3>;
+    };
+};

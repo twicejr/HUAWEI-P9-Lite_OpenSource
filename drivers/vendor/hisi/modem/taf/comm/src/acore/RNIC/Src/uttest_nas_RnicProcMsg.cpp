@@ -22,14 +22,7 @@ using namespace testing;
 *****************************************************************************/
 
 
-/*****************************************************************************
-类名       : Test_RNIC_RcvAtIpv4PdpActInd
-功能描述   : RNIC_RcvAtIpv4PdpActInd UT工程类
-修改历史   :
-1.日   期  : 2012-12-11
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_RcvAtIpv4PdpActInd: public ::testing::Test
 {
 public:
@@ -52,16 +45,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvAtIpv4PdpActInd_001
-测试用例标题      : modem0,当前为手动拨号模式，RNIC收到AT消息ID_AT_RNIC_IPV4_PDP_ACT_IND的处理
-预期结果          : 拨号保护定时器停止，拨号断开定时器未启动,PDP上下文中IPV4为已激活状态
-修改历史   :
-1.日   期  : 2012-12-11
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvAtIpv4PdpActInd, Test_RNIC_RcvAtIpv4PdpActInd_001)
 {
     RNIC_TIMER_STATUS_ENUM_UINT8        enTimerStatus1;
@@ -121,16 +105,7 @@ TEST_F(Test_RNIC_RcvAtIpv4PdpActInd, Test_RNIC_RcvAtIpv4PdpActInd_001)
 }
 
 #if (FEATURE_MULTI_MODEM == FEATURE_ON)
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvAtIpv4PdpActInd_002
-测试用例标题      : modem1,当前为手动拨号模式，RNIC收到AT消息ID_AT_RNIC_IPV4_PDP_ACT_IND的处理
-预期结果          : 拨号保护定时器停止，拨号断开定时器未启动,PDP上下文中IPV4为已激活状态
-修改历史   :
-1.日   期  : 2012-12-11
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvAtIpv4PdpActInd, Test_RNIC_RcvAtIpv4PdpActInd_002)
 {
     RNIC_TIMER_STATUS_ENUM_UINT8        enTimerStatus1;
@@ -193,16 +168,7 @@ TEST_F(Test_RNIC_RcvAtIpv4PdpActInd, Test_RNIC_RcvAtIpv4PdpActInd_002)
 }
 #endif
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvAtIpv4PdpActInd_003
-测试用例标题      : 当前为按需拨号模式,且PDP激活成功。RNIC收到AT消息ID_AT_RNIC_IPV4_PDP_ACT_IND的处理
-预期结果          : 拨号断开定时器启动，拨号保护定时器停止,PDP上下文中IPV4为已激活状态
-修改历史   :
-1.日   期  : 2012-12-11
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvAtIpv4PdpActInd, Test_RNIC_RcvAtIpv4PdpActInd_003)
 {
     RNIC_TIMER_STATUS_ENUM_UINT8        enTimerStatus1;
@@ -259,16 +225,7 @@ TEST_F(Test_RNIC_RcvAtIpv4PdpActInd, Test_RNIC_RcvAtIpv4PdpActInd_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvAtIpv4PdpActInd_004
-测试用例标题      : 填充RabID失败
-预期结果          : 返回错误
-修改历史   :
-1.日   期  : 2012-12-11
-  作   者  : z00220246
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvAtIpv4PdpActInd, Test_RNIC_RcvAtIpv4PdpActInd_004)
 {
     RNIC_TIMER_STATUS_ENUM_UINT8        enTimerStatus1;
@@ -301,16 +258,7 @@ TEST_F(Test_RNIC_RcvAtIpv4PdpActInd, Test_RNIC_RcvAtIpv4PdpActInd_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvAtIpv4PdpActInd_005
-测试用例标题      : 存储rabid对应网卡失败
-预期结果          : 返回错误
-修改历史   :
-1.日   期  : 2012-12-11
-  作   者  : z00220246
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvAtIpv4PdpActInd, Test_RNIC_RcvAtIpv4PdpActInd_005)
 {
     RNIC_TIMER_STATUS_ENUM_UINT8        enTimerStatus1;
@@ -343,14 +291,7 @@ TEST_F(Test_RNIC_RcvAtIpv4PdpActInd, Test_RNIC_RcvAtIpv4PdpActInd_005)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名       : Test_RNIC_RcvAtIpv6PdpActInd
-功能描述   : RNIC_RcvAtIpv6PdpActInd UT工程类
-修改历史   :
-1.日   期  : 2012-12-11
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_RcvAtIpv6PdpActInd: public ::testing::Test
 {
 public:
@@ -373,16 +314,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvAtIpv6PdpActInd_001
-测试用例标题      : modem0,当前为手动拨号模式，RNIC收到AT消息ID_AT_RNIC_IPV6_PDP_ACT_IND的处理
-预期结果          : 启动流量统计定时器, PDP上下文中IPV6为已激活状态
-修改历史   :
-1.日   期  : 2012-12-11
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvAtIpv6PdpActInd, Test_RNIC_RcvAtIpv6PdpActInd_001)
 {
     RNIC_TIMER_STATUS_ENUM_UINT8        enTimerStatus;
@@ -435,16 +367,7 @@ TEST_F(Test_RNIC_RcvAtIpv6PdpActInd, Test_RNIC_RcvAtIpv6PdpActInd_001)
 }
 
 #if (FEATURE_MULTI_MODEM == FEATURE_ON)
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvAtIpv6PdpActInd_002
-测试用例标题      : modem1,当前为手动拨号模式，RNIC收到AT消息ID_AT_RNIC_IPV6_PDP_ACT_IND的处理
-预期结果          : 启动流量统计定时器, PDP上下文中IPV6为已激活状态
-修改历史   :
-1.日   期  : 2012-12-11
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvAtIpv6PdpActInd, Test_RNIC_RcvAtIpv6PdpActInd_002)
 {
     RNIC_TIMER_STATUS_ENUM_UINT8        enTimerStatus;
@@ -498,16 +421,7 @@ TEST_F(Test_RNIC_RcvAtIpv6PdpActInd, Test_RNIC_RcvAtIpv6PdpActInd_002)
 }
 #endif
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvAtIpv6PdpActInd_003
-测试用例标题      : 当前为按需拨号模式,RNIC收到AT消息ID_AT_RNIC_IPV6_PDP_ACT_IND的处理
-预期结果          : 启动流量统计定时器, PDP上下文中IPV6为已激活状态
-修改历史   :
-1.日   期  : 2012-12-12
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvAtIpv6PdpActInd, Test_RNIC_RcvAtIpv6PdpActInd_003)
 {
     RNIC_TIMER_STATUS_ENUM_UINT8        enTimerStatus;
@@ -557,16 +471,7 @@ TEST_F(Test_RNIC_RcvAtIpv6PdpActInd, Test_RNIC_RcvAtIpv6PdpActInd_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvAtIpv6PdpActInd_004
-测试用例标题      : 当前为按需拨号模式,且IPV4 PDP激活成功。RNIC收到AT消息ID_AT_RNIC_IPV6_PDP_ACT_IND的处理
-预期结果          : 启动流量统计定时器, PDP上下文中IPV6为已激活状态
-修改历史   :
-1.日   期  : 2012-12-12
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvAtIpv6PdpActInd, Test_RNIC_RcvAtIpv6PdpActInd_004)
 {
     RNIC_TIMER_STATUS_ENUM_UINT8        enTimerStatus;
@@ -622,16 +527,7 @@ TEST_F(Test_RNIC_RcvAtIpv6PdpActInd, Test_RNIC_RcvAtIpv6PdpActInd_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvAtIpv6PdpActInd_005
-测试用例标题      : 填充RabID失败
-预期结果          : 返回错误
-修改历史   :
-1.日   期  : 2012-12-11
-  作   者  : z00220246
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvAtIpv6PdpActInd, Test_RNIC_RcvAtIpv6PdpActInd_005)
 {
     RNIC_TIMER_STATUS_ENUM_UINT8        enTimerStatus;
@@ -668,16 +564,7 @@ TEST_F(Test_RNIC_RcvAtIpv6PdpActInd, Test_RNIC_RcvAtIpv6PdpActInd_005)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvAtIpv6PdpActInd_006
-测试用例标题      : 存储rabid对应网卡失败
-预期结果          : 返回错误
-修改历史   :
-1.日   期  : 2012-12-11
-  作   者  : z00220246
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvAtIpv6PdpActInd, Test_RNIC_RcvAtIpv6PdpActInd_006)
 {
    RNIC_TIMER_STATUS_ENUM_UINT8        enTimerStatus;
@@ -710,14 +597,7 @@ TEST_F(Test_RNIC_RcvAtIpv6PdpActInd, Test_RNIC_RcvAtIpv6PdpActInd_006)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名       : Test_RNIC_RcvAtIpv4v6PdpActInd
-功能描述   : RNIC_RcvAtIpv4v6PdpActInd UT工程类
-修改历史   :
-1.日   期  : 2012-12-12
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_RcvAtIpv4v6PdpActInd: public ::testing::Test
 {
 public:
@@ -740,16 +620,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvAtIpv4v6PdpActInd_001
-测试用例标题      : modem0,当前为手动拨号模式，RNIC收到AT消息ID_AT_RNIC_IPV6_PDP_ACT_IND的处理
-预期结果          : 启动流量统计定时器, PDP上下文中IPV4V6为已激活状态
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvAtIpv4v6PdpActInd, Test_RNIC_RcvAtIpv4v6PdpActInd_001)
 {
     RNIC_TIMER_STATUS_ENUM_UINT8        enTimerStatus;
@@ -801,16 +672,7 @@ TEST_F(Test_RNIC_RcvAtIpv4v6PdpActInd, Test_RNIC_RcvAtIpv4v6PdpActInd_001)
 }
 
 #if (FEATURE_MULTI_MODEM == FEATURE_ON)
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvAtIpv4v6PdpActInd_002
-测试用例标题      : modem1,当前为手动拨号模式，RNIC收到AT消息ID_AT_RNIC_IPV6_PDP_ACT_IND的处理
-预期结果          : 启动流量统计定时器, PDP上下文中IPV4V6为已激活状态
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvAtIpv4v6PdpActInd, Test_RNIC_RcvAtIpv4v6PdpActInd_002)
 {
     RNIC_TIMER_STATUS_ENUM_UINT8        enTimerStatus;
@@ -865,16 +727,7 @@ TEST_F(Test_RNIC_RcvAtIpv4v6PdpActInd, Test_RNIC_RcvAtIpv4v6PdpActInd_002)
 }
 #endif
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvAtIpv4v6PdpActInd_003
-测试用例标题      : modem错误
-预期结果          : 失败
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : z00220246
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvAtIpv4v6PdpActInd, Test_RNIC_RcvAtIpv4v6PdpActInd_003)
 {
     RNIC_TIMER_STATUS_ENUM_UINT8        enTimerStatus;
@@ -907,16 +760,7 @@ TEST_F(Test_RNIC_RcvAtIpv4v6PdpActInd, Test_RNIC_RcvAtIpv4v6PdpActInd_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvAtIpv4v6PdpActInd_004
-测试用例标题      : rabid不在范围内
-预期结果          : 失败
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : z00220246
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvAtIpv4v6PdpActInd, Test_RNIC_RcvAtIpv4v6PdpActInd_004)
 {
     RNIC_TIMER_STATUS_ENUM_UINT8        enTimerStatus;
@@ -948,14 +792,7 @@ TEST_F(Test_RNIC_RcvAtIpv4v6PdpActInd, Test_RNIC_RcvAtIpv4v6PdpActInd_004)
     /* 检查调用时, 需要在用例结束位置加上这句 */
     GlobalMockObject::verify();
 }
-/*****************************************************************************
-类名       : Test_RNIC_RcvAtPdpDeactInd
-功能描述   : RNIC_RcvAtPdpDeactInd UT工程类
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_RcvAtPdpDeactInd: public ::testing::Test
 {
 public:
@@ -979,16 +816,7 @@ public:
 };
 
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvAtPdpDeactInd_001
-测试用例标题      : IPV4激活状态, IPV6激活状态，收到AT下发的IPV4去激活消息
-预期结果          : 拨号断开定时器停止， 流量统计定时器未停止,PDP上下文中IPV4为去激活状态
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvAtPdpDeactInd, Test_RNIC_RcvAtPdpDeactInd_001)
 {
     RNIC_TIMER_STATUS_ENUM_UINT8        enTimerStatus1;
@@ -1040,16 +868,7 @@ TEST_F(Test_RNIC_RcvAtPdpDeactInd, Test_RNIC_RcvAtPdpDeactInd_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvAtPdpDeactInd_002
-测试用例标题      : IPV4激活状态，IPV6激活状态，收到AT下发的IPV6去激活消息
-预期结果          : 断开拨号定时器未停止，流量统计定时器未停止, PDP上下文中IPV6为去激活状态
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvAtPdpDeactInd, Test_RNIC_RcvAtPdpDeactInd_002)
 {
     RNIC_TIMER_STATUS_ENUM_UINT8        enTimerStatus1;
@@ -1101,16 +920,7 @@ TEST_F(Test_RNIC_RcvAtPdpDeactInd, Test_RNIC_RcvAtPdpDeactInd_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvAtPdpDeactInd_003
-测试用例标题      : IPV4未激活状态，IPV6未激活状态，IPV4V6激活状态，收到AT下发的IPV4V6去激活消息
-预期结果          : 流量统计定时器停止, PDP上下文中IPV4V6为去激活状态
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvAtPdpDeactInd, Test_RNIC_RcvAtPdpDeactInd_003)
 {
     RNIC_TIMER_STATUS_ENUM_UINT8        enTimerStatus1;
@@ -1160,16 +970,7 @@ TEST_F(Test_RNIC_RcvAtPdpDeactInd, Test_RNIC_RcvAtPdpDeactInd_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvAtPdpDeactInd_004
-测试用例标题      : IPV4未激活状态，IPV6未激活状态，IPV4V6未激活状态，收到AT下发的去激活消息
-预期结果          : 拨号断开定时器停止, 流量统计定时器停止，都为去激活状态
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvAtPdpDeactInd, Test_RNIC_RcvAtPdpDeactInd_004)
 {
     RNIC_TIMER_STATUS_ENUM_UINT8        enTimerStatus1;
@@ -1219,16 +1020,7 @@ TEST_F(Test_RNIC_RcvAtPdpDeactInd, Test_RNIC_RcvAtPdpDeactInd_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvAtPdpDeactInd_005
-测试用例标题      : IPV4激活状态, IPV6激活状态，收到AT下发的IPV4去激活消息,清除rabid对应网卡失败
-预期结果          : 返回VOS_ERR
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : z00220246
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvAtPdpDeactInd, Test_RNIC_RcvAtPdpDeactInd_005)
 {
     RNIC_TIMER_STATUS_ENUM_UINT8        enTimerStatus1;
@@ -1280,14 +1072,7 @@ TEST_F(Test_RNIC_RcvAtPdpDeactInd, Test_RNIC_RcvAtPdpDeactInd_005)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名       : Test_RNIC_RcvAtMtuChangeInd
-功能描述   : RNIC_RcvAtMtuChangeInd UT工程类
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_RcvAtMtuChangeInd: public ::testing::Test
 {
 public:
@@ -1311,16 +1096,7 @@ public:
 };
 
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvAtMtuChangeInd_001
-测试用例标题      : MTU值发生改变后，AT发来的指示消息
-预期结果          : 改变对应网卡信息的MTU值
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvAtMtuChangeInd, Test_RNIC_RcvAtMtuChangeInd_001)
 {
 	AT_RNIC_MTU_CHANGE_IND_STRU         stAtRnicMtuChangeInd;
@@ -1349,14 +1125,7 @@ TEST_F(Test_RNIC_RcvAtMtuChangeInd, Test_RNIC_RcvAtMtuChangeInd_001)
 }
 
 
-/*****************************************************************************
-类名       : Test_RNIC_RcvAtDsflowInd
-功能描述   : RNIC_RcvAtDsflowInd UT工程类
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_RcvAtDsflowInd: public ::testing::Test
 {
 public:
@@ -1379,16 +1148,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvAtDsflowInd_001
-测试用例标题      : 内存分配失败
-预期结果          : 返回VOS_ERR
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvAtDsflowInd, Test_RNIC_RcvAtDsflowInd_001)
 {
     AT_RNIC_DSFLOW_IND_STRU             stAtRnicDsflowInd;
@@ -1416,16 +1176,7 @@ TEST_F(Test_RNIC_RcvAtDsflowInd, Test_RNIC_RcvAtDsflowInd_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvAtDsflowInd_002
-测试用例标题      : PDP未激活的情况下，消息发送成功
-预期结果          : 上报的速率为0
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvAtDsflowInd, Test_RNIC_RcvAtDsflowInd_002)
 {
     AT_RNIC_DSFLOW_IND_STRU             stAtRnicDsflowInd;
@@ -1474,16 +1225,7 @@ TEST_F(Test_RNIC_RcvAtDsflowInd, Test_RNIC_RcvAtDsflowInd_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvAtDsflowInd_003
-测试用例标题      : PDP激活的情况下，消息发送成功
-预期结果          : 上报的速率为当前的速率
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvAtDsflowInd, Test_RNIC_RcvAtDsflowInd_003)
 {
     AT_RNIC_DSFLOW_IND_STRU             stAtRnicDsflowInd;
@@ -1533,16 +1275,7 @@ TEST_F(Test_RNIC_RcvAtDsflowInd, Test_RNIC_RcvAtDsflowInd_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvAtDsflowInd_004
-测试用例标题      : PDP激活的情况下，消息发送失败
-预期结果          : 返回VOS_ERR
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvAtDsflowInd, Test_RNIC_RcvAtDsflowInd_004)
 {
     AT_RNIC_DSFLOW_IND_STRU             stAtRnicDsflowInd;
@@ -1591,14 +1324,7 @@ TEST_F(Test_RNIC_RcvAtDsflowInd, Test_RNIC_RcvAtDsflowInd_004)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名       : Test_RNIC_RcvAtDialModeReq
-功能描述   : RNIC_RcvAtDialModeReq UT工程类
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_RcvAtDialModeReq: public ::testing::Test
 {
 public:
@@ -1621,16 +1347,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvAtDialModeReq_001
-测试用例标题      :
-预期结果          :
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvAtDialModeReq, Test_RNIC_RcvAtDialModeReq_001)
 {
 	AT_RNIC_DIAL_MODE_REQ_STRU          stAtRnicDialModeReq;
@@ -1659,16 +1376,7 @@ TEST_F(Test_RNIC_RcvAtDialModeReq, Test_RNIC_RcvAtDialModeReq_001)
 	GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvAtDialModeReq_002
-测试用例标题      :
-预期结果          :
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvAtDialModeReq, Test_RNIC_RcvAtDialModeReq_002)
 {
 	AT_RNIC_DIAL_MODE_REQ_STRU          stAtRnicDialModeReq;
@@ -1695,16 +1403,7 @@ TEST_F(Test_RNIC_RcvAtDialModeReq, Test_RNIC_RcvAtDialModeReq_002)
 	GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvAtDialModeReq_003
-测试用例标题      :
-预期结果          :
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvAtDialModeReq, Test_RNIC_RcvAtDialModeReq_003)
 {
 	AT_RNIC_DIAL_MODE_REQ_STRU          stAtRnicDialModeReq;
@@ -1732,14 +1431,7 @@ TEST_F(Test_RNIC_RcvAtDialModeReq, Test_RNIC_RcvAtDialModeReq_003)
 	GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名       : Test_RNIC_RcvTiDsflowStatsExpired
-功能描述   : RNIC_RcvTiDsflowStatsExpired UT工程类
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_RcvTiDsflowStatsExpired: public ::testing::Test
 {
 public:
@@ -1762,16 +1454,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvTiDsflowStatsExpired_001
-测试用例标题      : PDP未激活。RNIC收到定时器超时消息消息TI_RNIC_APP_DSFLOW的处理
-预期结果          : 保存速率的全局变量中没有值，周期统计Byte数清除
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvTiDsflowStatsExpired, Test_RNIC_RcvTiDsflowStatsExpired_001)
 {
     REL_TIMER_MSG                       stTimeMsg;
@@ -1819,16 +1502,7 @@ TEST_F(Test_RNIC_RcvTiDsflowStatsExpired, Test_RNIC_RcvTiDsflowStatsExpired_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvTiDsflowStatsExpired_002
-测试用例标题      : PDP激活时。RNIC收到定时器超时消息消息TI_RNIC_APP_DSFLOW的处理
-预期结果          : 保存速率的全局变量中有值,周期统计Byte数清除
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvTiDsflowStatsExpired, Test_RNIC_RcvTiDsflowStatsExpired_002)
 {
     REL_TIMER_MSG                       stTimeMsg;
@@ -1878,14 +1552,7 @@ TEST_F(Test_RNIC_RcvTiDsflowStatsExpired, Test_RNIC_RcvTiDsflowStatsExpired_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名       : Test_RNIC_RcvTiDemandDialDisconnectExpired
-功能描述   : RNIC_RcvTiDemandDialDisconnectExpired UT工程类
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_RcvTiDemandDialDisconnectExpired: public ::testing::Test
 {
 public:
@@ -1908,16 +1575,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvTiDemandDialDisconnectExpired_001
-测试用例标题      : 手动拨号模式下。RNIC收到定时器超时消息消息TI_RNIC_APP_DEMAND_DIAL_DOWN的处理
-预期结果          : 返回VOS_OK
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvTiDemandDialDisconnectExpired, Test_RNIC_RcvTiDemandDialDisconnectExpired_001)
 {
     REL_TIMER_MSG                       stTimeMsg;
@@ -1966,16 +1624,7 @@ TEST_F(Test_RNIC_RcvTiDemandDialDisconnectExpired, Test_RNIC_RcvTiDemandDialDisc
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvTiDemandDialDisconnectExpired_002
-测试用例标题      : 按需拨号模式下，当前有用户数据且有用户连接。
-预期结果          : 断开拨号定时器计数器清零
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvTiDemandDialDisconnectExpired, Test_RNIC_RcvTiDemandDialDisconnectExpired_002)
 {
     VOS_UINT32                          ulCount;
@@ -2034,16 +1683,7 @@ TEST_F(Test_RNIC_RcvTiDemandDialDisconnectExpired, Test_RNIC_RcvTiDemandDialDisc
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvTiDemandDialDisconnectExpired_003
-测试用例标题      : 按需拨号模式下，当前有用户数据且无用户连接。
-预期结果          : 断开拨号定时器计数器增加
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvTiDemandDialDisconnectExpired, Test_RNIC_RcvTiDemandDialDisconnectExpired_003)
 {
     VOS_UINT32                          ulCount;
@@ -2101,16 +1741,7 @@ TEST_F(Test_RNIC_RcvTiDemandDialDisconnectExpired, Test_RNIC_RcvTiDemandDialDisc
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvTiDemandDialDisconnectExpired_004
-测试用例标题      : 按需拨号模式下，当前有用户数据且无用户连接，定时器超时已达到了统计的次数
-预期结果          : 断开拨号定时器计数器增加， 通知应用拨号
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvTiDemandDialDisconnectExpired, Test_RNIC_RcvTiDemandDialDisconnectExpired_004)
 {
     VOS_UINT32                          i;
@@ -2174,16 +1805,7 @@ TEST_F(Test_RNIC_RcvTiDemandDialDisconnectExpired, Test_RNIC_RcvTiDemandDialDisc
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvTiDemandDialDisconnectExpired_005
-测试用例标题      : 通知应用断开拨号失败
-预期结果          : 断开拨号失败计数器增加
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : z00220246
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvTiDemandDialDisconnectExpired, Test_RNIC_RcvTiDemandDialDisconnectExpired_005)
 {
     VOS_UINT32                          i;
@@ -2250,14 +1872,7 @@ TEST_F(Test_RNIC_RcvTiDemandDialDisconnectExpired, Test_RNIC_RcvTiDemandDialDisc
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_RNIC_RcvTiDemandDialProtectExpired
-功能描述 : Test_RNIC_RcvTiDemandDialProtectExpired UT工程类
-修改历史     :
-1.日   期  : 2012-06-06
-  作   者  : A00165503
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_RcvTiDemandDialProtectExpired: public ::testing::Test
 {
 public:
@@ -2280,15 +1895,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvTiDemandDialProtectExpired_001
-测试用例标题      : 停止按需拨号保护定时器
-预期结果          : 停止按需拨号保护定时器
-修改历史     :
-1.日   期  : 2012-06-06
-  作   者  : A00165503
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_RNIC_RcvTiDemandDialProtectExpired, Test_RNIC_RcvTiDemandDialProtectExpired_001)
 {
     //参数定义
@@ -2314,14 +1921,7 @@ TEST_F(Test_RNIC_RcvTiDemandDialProtectExpired, Test_RNIC_RcvTiDemandDialProtect
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名       : Test_RNIC_RcvAtMsg
-功能描述   : RNIC_RcvAtMsg UT工程类
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_RcvAtMsg: public ::testing::Test
 {
 public:
@@ -2344,16 +1944,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvAtMsg_001
-测试用例标题      : 收到的消息没有需要处理的
-预期结果          : 返回VOS_OK
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvAtMsg, Test_RNIC_ProcMsg_001)
 {
     MSG_HEADER_STRU                     stMsgHeader;
@@ -2390,15 +1981,7 @@ TEST_F(Test_RNIC_RcvAtMsg, Test_RNIC_ProcMsg_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvAtMsg_002
-测试用例标题      : 收到AT PDN配置消息
-预期结果          : 进入PDN配置分发处理函数
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_RNIC_RcvAtMsg,Test_RNIC_RcvAtMsg_002)
 {
     /*变量定义*/
@@ -2421,15 +2004,7 @@ TEST_F(Test_RNIC_RcvAtMsg,Test_RNIC_RcvAtMsg_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvAtMsg_003
-测试用例标题      : 收到AT PDN释放消息
-预期结果          : 进入PDN配置释放分发处理函数
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_RNIC_RcvAtMsg,Test_RNIC_RcvAtMsg_003)
 {
     /*变量定义*/
@@ -2453,14 +2028,7 @@ TEST_F(Test_RNIC_RcvAtMsg,Test_RNIC_RcvAtMsg_003)
 }
 
 
-/*****************************************************************************
-类名       : Test_RNIC_RcvTimerMsg
-功能描述   : RNIC_RcvTimerMsg UT工程类
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_RcvTimerMsg: public ::testing::Test
 {
 public:
@@ -2483,16 +2051,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvTimerMsg_001
-测试用例标题      : 收到的定时器消息没有需要处理的
-预期结果          : 返回VOS_OK
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvTimerMsg, Test_RNIC_RcvTimerMsg_001)
 {
     REL_TIMER_MSG                       stTimeMsg;
@@ -2523,16 +2082,7 @@ TEST_F(Test_RNIC_RcvTimerMsg, Test_RNIC_RcvTimerMsg_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvTimerMsg_002
-测试用例标题      : 收到的定时器消息，处理函数返回值为ERR
-预期结果          : 返回VOS_ERR
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvTimerMsg, Test_RNIC_RcvTimerMsg_002)
 {
 	 REL_TIMER_MSG                       stTimeMsg;
@@ -2555,14 +2105,7 @@ TEST_F(Test_RNIC_RcvTimerMsg, Test_RNIC_RcvTimerMsg_002)
 
 }
 
-/*****************************************************************************
-类名       : Test_RNIC_ProcMsg
-功能描述   : RNIC_ProcMsg UT工程类
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_ProcMsg: public ::testing::Test
 {
 public:
@@ -2585,16 +2128,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_ProcMsg_001
-测试用例标题      : 收到的消息为空时
-预期结果          : 返回VOS_ERR
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_ProcMsg, Test_RNIC_ProcMsg_001)
 {
     MsgBlock                     *pstMsgBlock = VOS_NULL_PTR;
@@ -2612,16 +2146,7 @@ TEST_F(Test_RNIC_ProcMsg, Test_RNIC_ProcMsg_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_ProcMsg_002
-测试用例标题      : 收到的消息没有对应的PID时
-预期结果          : 返回VOS_ERR
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_ProcMsg, Test_RNIC_ProcMsg_002)
 {
     MsgBlock                            stMsgBlock;
@@ -2643,14 +2168,7 @@ TEST_F(Test_RNIC_ProcMsg, Test_RNIC_ProcMsg_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名       : Test_RNIC_GetDsflowTimerIdByNetId
-功能描述   : RNIC_GetDsflowTimerIdByNetId UT工程类
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : z00220246
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_GetDsflowTimerIdByNetId: public ::testing::Test
 {
 public:
@@ -2665,16 +2183,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_GetDsflowTimerIdByNetId_001
-测试用例标题      : 网卡ID分别为1,2,3,4
-预期结果          : 流量统计定时器为1,2,3,4
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : z00220246
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_GetDsflowTimerIdByNetId, Test_RNIC_GetDsflowTimerIdByNetId_001)
 {
 	RNIC_TIMER_ID_ENUM_UINT16 enTimerID1;
@@ -2704,14 +2213,7 @@ TEST_F(Test_RNIC_GetDsflowTimerIdByNetId, Test_RNIC_GetDsflowTimerIdByNetId_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名       : Test_RNIC_GetNetIdByTimerId
-功能描述   : RNIC_GetNetIdByTimerId UT工程类
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : z00220246
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_GetNetIdByTimerId: public ::testing::Test
 {
 public:
@@ -2726,16 +2228,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_GetNetIdByTimerId_001
-测试用例标题      : 流量统计定时器为1,2,3,4
-预期结果          : 网卡分别为1,2,3,4
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : z00220246
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_GetNetIdByTimerId, Test_RNIC_GetNetIdByTimerId_001)
 {
 	VOS_UINT8 ucRmNedId1;
@@ -2762,14 +2255,7 @@ TEST_F(Test_RNIC_GetNetIdByTimerId, Test_RNIC_GetNetIdByTimerId_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名       : Test_RNIC_BuildRabIdByModemId
-功能描述   : RNIC_BuildRabIdByModemId UT工程类
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : z00220246
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_BuildRabIdByModemId: public ::testing::Test
 {
 public:
@@ -2784,16 +2270,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_BuildRabIdByModemId_001
-测试用例标题      : modemID既不为0也不为1
-预期结果          : 返回VOS_ERR
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : z00220246
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_BuildRabIdByModemId, Test_RNIC_BuildRabIdByModemId_001)
 {
 	VOS_UINT8 ucRabId = 6;
@@ -2806,14 +2283,7 @@ TEST_F(Test_RNIC_BuildRabIdByModemId, Test_RNIC_BuildRabIdByModemId_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名       : Test_RNIC_SaveNetIdByRabId
-功能描述   : RNIC_SaveNetIdByRabId UT工程类
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : z00220246
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_SaveNetIdByRabId: public ::testing::Test
 {
 public:
@@ -2828,16 +2298,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_SaveNetIdByRabId_001
-测试用例标题      : RABID不符合5-15
-预期结果          : 返回VOS_ERR
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : z00220246
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_SaveNetIdByRabId, Test_RNIC_SaveNetIdByRabId_001)
 {
 	VOS_UINT8  ucRabId = 4;
@@ -2850,14 +2311,7 @@ TEST_F(Test_RNIC_SaveNetIdByRabId, Test_RNIC_SaveNetIdByRabId_001)
 }
 
 
-/*****************************************************************************
-类名       : Test_RNIC_RcvCcpuResetStartInd
-功能描述   : RNIC_RcvCcpuResetStartInd UT工程类
-修改历史   :
-1.日   期  : 2013-04-19
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_RcvCcpuResetStartInd: public ::testing::Test
 {
 public:
@@ -2870,16 +2324,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvCcpuResetStartInd_001
-测试用例标题      : 收到ID_CCPU_RNIC_RESET_START_IND
-预期结果          : 返回VOS_ERROR
-修改历史   :
-1.日   期  : 2013-04-19
-  作   者  : f00179208
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvCcpuResetStartInd, Test_RNIC_RcvCcpuResetStartInd_001)
 {
     VOS_UINT32                          ulRst;
@@ -2912,14 +2357,7 @@ TEST_F(Test_RNIC_RcvCcpuResetStartInd, Test_RNIC_RcvCcpuResetStartInd_001)
 
 }
 
-/*****************************************************************************
-类名       : Test_RNIC_RcvRnicMsg
-功能描述   : RNIC_RcvRnicMsg UT工程类
-修改历史   :
-1.日   期  : 2013-04-19
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_RcvRnicMsg: public ::testing::Test
 {
 public:
@@ -2932,16 +2370,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvRnicMsg_001
-测试用例标题      : 收到ID_CCPU_RNIC_RESET_END_IND
-预期结果          : 返回VOS_ERROR
-修改历史   :
-1.日   期  : 2013-04-19
-  作   者  : f00179208
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvRnicMsg, Test_RNIC_RcvRnicMsg_001)
 {
     VOS_UINT32                          ulRst;
@@ -2974,16 +2403,7 @@ TEST_F(Test_RNIC_RcvRnicMsg, Test_RNIC_RcvRnicMsg_001)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvRnicMsg_002
-测试用例标题      : 收到ID_RNIC_RESET_MSG_ID_ENUM_BUTT
-预期结果          : 返回VOS_ERROR
-修改历史   :
-1.日   期  : 2013-04-19
-  作   者  : f00179208
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvRnicMsg, Test_RNIC_RcvRnicMsg_002)
 {
     VOS_UINT32                          ulRst;
@@ -3016,14 +2436,7 @@ TEST_F(Test_RNIC_RcvRnicMsg, Test_RNIC_RcvRnicMsg_002)
 
 }
 
-/*****************************************************************************
-类名     : Test_RNIC_RcvAtPdnInfoCfgInd
-功能描述 : RNIC_RcvAtPdnInfoCfgInd UT工程类
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_RcvAtPdnInfoCfgInd: public ::testing::Test
 {
 public:
@@ -3047,15 +2460,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvAtPdnInfoCfgInd_001
-测试用例标题      : 根据ModemId生成RABID失败
-预期结果          : 返回VOS_ERR
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_RNIC_RcvAtPdnInfoCfgInd,Test_RNIC_RcvAtPdnInfoCfgInd_001)
 {
     /*变量定义*/
@@ -3080,15 +2485,7 @@ TEST_F(Test_RNIC_RcvAtPdnInfoCfgInd,Test_RNIC_RcvAtPdnInfoCfgInd_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvAtPdnInfoCfgInd_002
-测试用例标题      : 存储RABID对应的网卡ID
-预期结果          : 返回VOS_ERR
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_RNIC_RcvAtPdnInfoCfgInd,Test_RNIC_RcvAtPdnInfoCfgInd_002)
 {
     /*变量定义*/
@@ -3111,15 +2508,7 @@ TEST_F(Test_RNIC_RcvAtPdnInfoCfgInd,Test_RNIC_RcvAtPdnInfoCfgInd_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvAtPdnInfoCfgInd_003
-测试用例标题      : 收到IPV4类型的PDN配置消息
-预期结果          : 更新IPV4 PDN信息，返回VOS_OK
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_RNIC_RcvAtPdnInfoCfgInd,Test_RNIC_RcvAtPdnInfoCfgInd_003)
 {
     /*变量定义*/
@@ -3155,15 +2544,7 @@ TEST_F(Test_RNIC_RcvAtPdnInfoCfgInd,Test_RNIC_RcvAtPdnInfoCfgInd_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvAtPdnInfoCfgInd_004
-测试用例标题      : 收到IPV6类型的PDN配置消息
-预期结果          : 更新IPV6 PDN信息，返回VOS_OK
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_RNIC_RcvAtPdnInfoCfgInd,Test_RNIC_RcvAtPdnInfoCfgInd_004)
 {
     /*变量定义*/
@@ -3199,14 +2580,7 @@ TEST_F(Test_RNIC_RcvAtPdnInfoCfgInd,Test_RNIC_RcvAtPdnInfoCfgInd_004)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_RNIC_RcvAtPdnInfoRelInd
-功能描述 : RNIC_RcvAtPdnInfoRelInd UT工程类
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_RcvAtPdnInfoRelInd: public ::testing::Test
 {
 public:
@@ -3230,15 +2604,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvAtPdnInfoRelInd_001
-测试用例标题      : 一个承载时，收到IPV4\IPV6类型的PDN重置消息
-预期结果          : 更新注册状态，清除IPV4\IPv6 PDN信息
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_RNIC_RcvAtPdnInfoRelInd,Test_RNIC_RcvAtPdnInfoRelInd_001)
 {
     /*变量定义*/
@@ -3276,15 +2642,7 @@ TEST_F(Test_RNIC_RcvAtPdnInfoRelInd,Test_RNIC_RcvAtPdnInfoRelInd_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvAtPdnInfoRelInd_002
-测试用例标题      : 一个承载时，收到IPV4V6类型的PDN重置消息
-预期结果          : 更新注册状态，清除IPV4V6 PDN信息
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_RNIC_RcvAtPdnInfoRelInd,Test_RNIC_RcvAtPdnInfoRelInd_002)
 {
     /*变量定义*/
@@ -3318,15 +2676,7 @@ TEST_F(Test_RNIC_RcvAtPdnInfoRelInd,Test_RNIC_RcvAtPdnInfoRelInd_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvAtPdnInfoRelInd_003
-测试用例标题      : 多个承载时，收到IPV4类型的PDN重置消息
-预期结果          : 更新注册状态，清除IPV4 PDN信息
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_RNIC_RcvAtPdnInfoRelInd,Test_RNIC_RcvAtPdnInfoRelInd_003)
 {
     /*变量定义*/
@@ -3364,15 +2714,7 @@ TEST_F(Test_RNIC_RcvAtPdnInfoRelInd,Test_RNIC_RcvAtPdnInfoRelInd_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvAtPdnInfoRelInd_004
-测试用例标题      : 收到PDN重置消息，清除RABID对应的网卡ID失败
-预期结果          : 返回VOS_ERR
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_RNIC_RcvAtPdnInfoRelInd,Test_RNIC_RcvAtPdnInfoRelInd_004)
 {
     /*变量定义*/
@@ -3411,15 +2753,7 @@ TEST_F(Test_RNIC_RcvAtPdnInfoRelInd,Test_RNIC_RcvAtPdnInfoRelInd_004)
     GlobalMockObject::verify();
 }
 
-/* Added by m00217266 for L-C互操作项目, 2014-2-7, begin */
-/*****************************************************************************
-类名       : Test_RNIC_RcvRnicRmnetConfigReq
-功能描述   : RNIC_RcvRnicRmnetConfigReq UT工程类
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_RcvRnicRmnetConfigReq: public ::testing::Test
 {
 public:
@@ -3440,16 +2774,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvRnicRmnetConfigReq_001
-测试用例标题      : 配置内部modem，ipv4类型网卡up
-预期结果          : 保持网卡的配置信息
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvRnicRmnetConfigReq, Test_RNIC_RcvRnicRmnetConfigReq_001)
 {
     /* 参数初始化 */
@@ -3545,16 +2870,7 @@ TEST_F(Test_RNIC_RcvRnicRmnetConfigReq, Test_RNIC_RcvRnicRmnetConfigReq_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvRnicRmnetConfigReq_002
-测试用例标题      : 配置内部modem，ipv6类型网卡up
-预期结果          : 保持网卡的配置信息
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvRnicRmnetConfigReq, Test_RNIC_RcvRnicRmnetConfigReq_002)
 {
     /* 参数初始化 */
@@ -3633,16 +2949,7 @@ TEST_F(Test_RNIC_RcvRnicRmnetConfigReq, Test_RNIC_RcvRnicRmnetConfigReq_002)
 }
 
 #if (FEATURE_ON == FEATURE_CL_INTERWORK)
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvRnicRmnetConfigReq_003
-测试用例标题      : 配置外部modem，ipv4类型网卡up
-预期结果          : 保持网卡的配置信息
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvRnicRmnetConfigReq, Test_RNIC_RcvRnicRmnetConfigReq_003)
 {
     /* 参数初始化 */
@@ -3755,16 +3062,7 @@ TEST_F(Test_RNIC_RcvRnicRmnetConfigReq, Test_RNIC_RcvRnicRmnetConfigReq_003)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvRnicRmnetConfigReq_004
-测试用例标题      : 配置外部modem，ipv6类型网卡up
-预期结果          : 保持网卡的配置信息
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvRnicRmnetConfigReq, Test_RNIC_RcvRnicRmnetConfigReq_004)
 {
     /* 参数初始化 */
@@ -3805,16 +3103,7 @@ TEST_F(Test_RNIC_RcvRnicRmnetConfigReq, Test_RNIC_RcvRnicRmnetConfigReq_004)
 }
 #endif
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvRnicRmnetConfigReq_005
-测试用例标题      : 配置内部modem，ipv4类型网卡down
-预期结果          : 清除ipv4网卡的配置信息
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvRnicRmnetConfigReq, Test_RNIC_RcvRnicRmnetConfigReq_005)
 {
     /* 参数初始化 */
@@ -3865,16 +3154,7 @@ TEST_F(Test_RNIC_RcvRnicRmnetConfigReq, Test_RNIC_RcvRnicRmnetConfigReq_005)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvRnicRmnetConfigReq_006
-测试用例标题      : 配置内部modem，ipv6类型网卡down
-预期结果          : 清除ipv6网卡的配置信息
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvRnicRmnetConfigReq, Test_RNIC_RcvRnicRmnetConfigReq_006)
 {
     /* 参数初始化 */
@@ -3933,16 +3213,7 @@ TEST_F(Test_RNIC_RcvRnicRmnetConfigReq, Test_RNIC_RcvRnicRmnetConfigReq_006)
 }
 
 #if (FEATURE_ON == FEATURE_CL_INTERWORK)
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvRnicRmnetConfigReq_007
-测试用例标题      : 配置外部modem，ipv4类型网卡down
-预期结果          : 清除ipv4网卡的配置信息
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvRnicRmnetConfigReq, Test_RNIC_RcvRnicRmnetConfigReq_007)
 {
     /* 参数初始化 */
@@ -3999,16 +3270,7 @@ TEST_F(Test_RNIC_RcvRnicRmnetConfigReq, Test_RNIC_RcvRnicRmnetConfigReq_007)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvRnicRmnetConfigReq_008
-测试用例标题      : 配置外部modem，ipv6类型网卡down
-预期结果          : 清除ipv6网卡的配置信息
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvRnicRmnetConfigReq, Test_RNIC_RcvRnicRmnetConfigReq_008)
 {
     /* 参数初始化 */
@@ -4065,16 +3327,7 @@ TEST_F(Test_RNIC_RcvRnicRmnetConfigReq, Test_RNIC_RcvRnicRmnetConfigReq_008)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvRnicRmnetConfigReq_009
-测试用例标题      : 配置内部modem切换到外modem，ipv4类型PDP激活(首次modem切换)
-预期结果          : 网卡上下文只保存外modem的激活信息
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvRnicRmnetConfigReq, Test_RNIC_RcvRnicRmnetConfigReq_009)
 {
     /* 参数初始化 */
@@ -4183,16 +3436,7 @@ TEST_F(Test_RNIC_RcvRnicRmnetConfigReq, Test_RNIC_RcvRnicRmnetConfigReq_009)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvRnicRmnetConfigReq_010
-测试用例标题      : 配置内部modem切换到外modem，ipv6类型PDP激活(第二次modem切换)
-预期结果          : 网卡上下文只保存外modem的激活信息
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvRnicRmnetConfigReq, Test_RNIC_RcvRnicRmnetConfigReq_010)
 {
     /* 参数初始化 */
@@ -4330,16 +3574,7 @@ TEST_F(Test_RNIC_RcvRnicRmnetConfigReq, Test_RNIC_RcvRnicRmnetConfigReq_010)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvRnicRmnetConfigReq_011
-测试用例标题      : 配置外部modem切换到内modem，ipv4类型PDP激活(首次modem切换)
-预期结果          : 网卡上下文只保存内modem的激活信息
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvRnicRmnetConfigReq, Test_RNIC_RcvRnicRmnetConfigReq_011)
 {
     /* 参数初始化 */
@@ -4452,16 +3687,7 @@ TEST_F(Test_RNIC_RcvRnicRmnetConfigReq, Test_RNIC_RcvRnicRmnetConfigReq_011)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvRnicRmnetConfigReq_012
-测试用例标题      : 配置外部modem切换到内modem，ipv6类型PDP激活(第二次modem切换)
-预期结果          : 网卡上下文只保存内modem的激活信息
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvRnicRmnetConfigReq, Test_RNIC_RcvRnicRmnetConfigReq_012)
 {
     /* 参数初始化 */
@@ -4622,16 +3848,7 @@ TEST_F(Test_RNIC_RcvRnicRmnetConfigReq, Test_RNIC_RcvRnicRmnetConfigReq_012)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvRnicRmnetConfigReq_013
-测试用例标题      : handover流程压力测试
-预期结果          : 网卡上下文工作正常
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvRnicRmnetConfigReq, Test_RNIC_RcvRnicRmnetConfigReq_013)
 {
     /* 参数初始化 */
@@ -4841,16 +4058,7 @@ TEST_F(Test_RNIC_RcvRnicRmnetConfigReq, Test_RNIC_RcvRnicRmnetConfigReq_013)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvRnicRmnetConfigReq_014
-测试用例标题      : handover过程中清除ipv4上下文中异常rabid对应网卡id失败
-预期结果          : 网卡上下文工作正常
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvRnicRmnetConfigReq, Test_RNIC_RcvRnicRmnetConfigReq_014)
 {
     /* 参数初始化 */
@@ -4899,16 +4107,7 @@ TEST_F(Test_RNIC_RcvRnicRmnetConfigReq, Test_RNIC_RcvRnicRmnetConfigReq_014)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvRnicRmnetConfigReq_015
-测试用例标题      : handover过程中清除ipv6上下文中异常rabid对应网卡id失败
-预期结果          : 网卡上下文工作正常
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvRnicRmnetConfigReq, Test_RNIC_RcvRnicRmnetConfigReq_015)
 {
     /* 参数初始化 */
@@ -4960,16 +4159,7 @@ TEST_F(Test_RNIC_RcvRnicRmnetConfigReq, Test_RNIC_RcvRnicRmnetConfigReq_015)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvRnicRmnetConfigReq_016
-测试用例标题      : handover过程中清除ipv4v6上下文中异常rabid对应网卡id失败
-预期结果          : 网卡上下文工作正常
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvRnicRmnetConfigReq, Test_RNIC_RcvRnicRmnetConfigReq_016)
 {
     /* 参数初始化 */
@@ -5021,16 +4211,7 @@ TEST_F(Test_RNIC_RcvRnicRmnetConfigReq, Test_RNIC_RcvRnicRmnetConfigReq_016)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvRnicRmnetConfigReq_017
-测试用例标题      : handover过程中清除ipv4v6上下文中异常pdnid对应网卡id失败
-预期结果          : 网卡上下文工作正常
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvRnicRmnetConfigReq, Test_RNIC_RcvRnicRmnetConfigReq_017)
 {
     /* 参数初始化 */
@@ -5082,16 +4263,7 @@ TEST_F(Test_RNIC_RcvRnicRmnetConfigReq, Test_RNIC_RcvRnicRmnetConfigReq_017)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvRnicRmnetConfigReq_018
-测试用例标题      : handover过程中清除ipv6上下文中异常pdnid对应网卡id失败
-预期结果          : 网卡上下文工作正常
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvRnicRmnetConfigReq, Test_RNIC_RcvRnicRmnetConfigReq_018)
 {
     /* 参数初始化 */
@@ -5143,16 +4315,7 @@ TEST_F(Test_RNIC_RcvRnicRmnetConfigReq, Test_RNIC_RcvRnicRmnetConfigReq_018)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvRnicRmnetConfigReq_019
-测试用例标题      : handover过程中清除ipv4上下文中异常pdnid对应网卡id失败
-预期结果          : 网卡上下文工作正常
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvRnicRmnetConfigReq, Test_RNIC_RcvRnicRmnetConfigReq_019)
 {
     /* 参数初始化 */
@@ -5201,16 +4364,7 @@ TEST_F(Test_RNIC_RcvRnicRmnetConfigReq, Test_RNIC_RcvRnicRmnetConfigReq_019)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvRnicRmnetConfigReq_020
-测试用例标题      : handover过程中清除ipv4上下文中异常pdnid对应网卡id失败
-预期结果          : 网卡上下文工作正常
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvRnicRmnetConfigReq, Test_RNIC_RcvRnicRmnetConfigReq_020)
 {
     /* 参数初始化 */
@@ -5259,16 +4413,7 @@ TEST_F(Test_RNIC_RcvRnicRmnetConfigReq, Test_RNIC_RcvRnicRmnetConfigReq_020)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvRnicRmnetConfigReq_021
-测试用例标题      : 外部modem激活时，收到IPV4V6类型去激活，去激活成功
-预期结果          : 去激活成功
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvRnicRmnetConfigReq, Test_RNIC_RcvRnicRmnetConfigReq_021)
 {
     /* 参数初始化 */
@@ -5320,16 +4465,7 @@ TEST_F(Test_RNIC_RcvRnicRmnetConfigReq, Test_RNIC_RcvRnicRmnetConfigReq_021)
 
 }
 #endif
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvRnicRmnetConfigReq_022
-测试用例标题      : 内部modem激活时，收到IPV4V6类型去激活，去激活成功
-预期结果          : 去激活成功
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvRnicRmnetConfigReq, Test_RNIC_RcvRnicRmnetConfigReq_022)
 {
     /* 参数初始化 */
@@ -5385,14 +4521,7 @@ TEST_F(Test_RNIC_RcvRnicRmnetConfigReq, Test_RNIC_RcvRnicRmnetConfigReq_022)
 
 
 /* 补充覆盖率 */
-/*****************************************************************************
-类名       : Test_RNIC_ProcInsideModemIpv4ActInd
-功能描述   : RNIC_ProcInsideModemIpv4ActInd UT工程类
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_ProcInsideModemIpv4ActInd: public ::testing::Test
 {
 public:
@@ -5413,16 +4542,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_ProcInsideModemIpv4ActInd_001
-测试用例标题      : 配置内部modem，构造rabid失败
-预期结果          : 保持网卡的配置信息
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_ProcInsideModemIpv4ActInd, Test_RNIC_ProcInsideModemIpv4ActInd_001)
 {
     /* 参数初始化 */
@@ -5444,16 +4564,7 @@ TEST_F(Test_RNIC_ProcInsideModemIpv4ActInd, Test_RNIC_ProcInsideModemIpv4ActInd_
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_ProcInsideModemIpv4ActInd_002
-测试用例标题      : 配置内部modem，保存网卡id失败
-预期结果          : 保持网卡的配置信息
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_ProcInsideModemIpv4ActInd, Test_RNIC_ProcInsideModemIpv4ActInd_002)
 {
     /* 参数初始化 */
@@ -5471,14 +4582,7 @@ TEST_F(Test_RNIC_ProcInsideModemIpv4ActInd, Test_RNIC_ProcInsideModemIpv4ActInd_
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名       : Test_RNIC_ProcInsideModemIpv6ActInd
-功能描述   : RNIC_ProcInsideModemIpv6ActInd UT工程类
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_ProcInsideModemIpv6ActInd: public ::testing::Test
 {
 public:
@@ -5499,16 +4603,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_ProcInsideModemIpv6ActInd_001
-测试用例标题      : 配置内部modem，构造rabid失败
-预期结果          : 保持网卡的配置信息
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_ProcInsideModemIpv6ActInd, Test_RNIC_ProcInsideModemIpv6ActInd_001)
 {
     /* 参数初始化 */
@@ -5530,16 +4625,7 @@ TEST_F(Test_RNIC_ProcInsideModemIpv6ActInd, Test_RNIC_ProcInsideModemIpv6ActInd_
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_ProcInsideModemIpv6ActInd_002
-测试用例标题      : 配置内部modem，保存网卡id失败
-预期结果          : 保持网卡的配置信息
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_ProcInsideModemIpv6ActInd, Test_RNIC_ProcInsideModemIpv6ActInd_002)
 {
     /* 参数初始化 */
@@ -5558,14 +4644,7 @@ TEST_F(Test_RNIC_ProcInsideModemIpv6ActInd, Test_RNIC_ProcInsideModemIpv6ActInd_
 }
 
 #if (FEATURE_ON == FEATURE_CL_INTERWORK)
-/*****************************************************************************
-类名       : Test_RNIC_ProcOutsideModemIpv6ActInd
-功能描述   : RNIC_ProcOutsideModemIpv6ActInd UT工程类
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_ProcOutsideModemIpv6ActInd: public ::testing::Test
 {
 public:
@@ -5586,16 +4665,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_ProcOutsideModemIpv6ActInd_001
-测试用例标题      : 配置内部modem，构造rabid失败
-预期结果          : 保持网卡的配置信息
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_ProcOutsideModemIpv6ActInd, Test_RNIC_ProcOutsideModemIpv6ActInd_001)
 {
     /* 参数初始化 */
@@ -5613,14 +4683,7 @@ TEST_F(Test_RNIC_ProcOutsideModemIpv6ActInd, Test_RNIC_ProcOutsideModemIpv6ActIn
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名       : Test_RNIC_ProcOutsideModemIpv4ActInd
-功能描述   : RNIC_ProcOutsideModemIpv4ActInd UT工程类
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_ProcOutsideModemIpv4ActInd: public ::testing::Test
 {
 public:
@@ -5641,16 +4704,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_ProcOutsideModemIpv4ActInd_001
-测试用例标题      : 配置内部modem，构造rabid失败
-预期结果          : 保持网卡的配置信息
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_ProcOutsideModemIpv4ActInd, Test_RNIC_ProcOutsideModemIpv4ActInd_001)
 {
     /* 参数初始化 */
@@ -5670,5 +4724,4 @@ TEST_F(Test_RNIC_ProcOutsideModemIpv4ActInd, Test_RNIC_ProcOutsideModemIpv4ActIn
 
 /* 补充覆盖率 */
 #endif
-/* Added by m00217266 for L-C互操作项目, 2014-2-7, end */
 #endif

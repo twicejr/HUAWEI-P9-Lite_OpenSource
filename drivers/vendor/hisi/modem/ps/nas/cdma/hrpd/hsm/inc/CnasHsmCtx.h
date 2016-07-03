@@ -113,17 +113,7 @@ extern "C" {
   3 The Enumeration Define
 *****************************************************************************/
 
-/*****************************************************************************
- Enumeration Name    : CNAS_HSM_SESSION_CLOSE_PROTOCOL_REASON_ENUM
- Description         : The Close Reason of SessionClose message
-                       C.S0024-A_v3.0_060912.pdf [Section:7.2.6.2.1]
- 1.DATE              : 02/02/2015
-   AUTHOR            : s00250401
-   Modification      : Create
- 2.DATE              : 2015-05-30
-   AUTHOR            : y00174758
-   Modification      : Lint时文件重复包含错误，从CnasHsmEncode.h移过来
-*****************************************************************************/
+
 enum CNAS_HSM_SESSION_CLOSE_PROTOCOL_REASON_ENUM
 {
     CNAS_HSM_SESSION_CLOSE_PROTOCOL_REASON_NORMAL                       = 0x00,
@@ -216,13 +206,7 @@ enum CNAS_HSM_SESSION_DEACT_REASON_ENUM
 };
 typedef VOS_UINT8 CNAS_HSM_SESSION_DEACT_REASON_ENUM_UINT8;
 
-/*****************************************************************************
- Enumeration Name    : CNAS_HSM_SESSION_DEACT_REVISE_TIMER_SCENE_ENUM
- Description         : session deactive需要启动修正定时器的场景,数值越小，优先级越高
- 1.DATE              : 12/11/15
-   AUTHOR            : y00307564
-   Modification      : Create
-*****************************************************************************/
+
 enum CNAS_HSM_SESSION_DEACT_REVISE_TIMER_SCENE_ENUM
 {
     CNAS_HSM_SESSION_DEACT_REVISE_TIMER_SCENE_POWER_OFF,
@@ -386,17 +370,7 @@ enum  CNAS_HSM_UATI_REQ_TRIGGER_ENUM
 typedef VOS_UINT8 CNAS_HSM_UATI_REQ_TRIGGER_ENUM_UINT8;
 
 
-/*****************************************************************************
- Name    : CNAS_HSM_WAIT_CARD_READ_CNF_FLAG_ENUM
- Description  : Enum definition for wait card cnf flag
- History     :
-  1.Date     : 2015-05-30
-    Author   : y00307564
-    Modify   : create
-  2.Date     : 2015-09-30
-    Author   : y00307564
-    Modify   : DTS2015082403731 增加读取增加读取ESNMEIDME和PPP AN鉴权用户名卡文件
-*****************************************************************************/
+
 enum CNAS_HSM_WAIT_CARD_READ_CNF_FLAG_ENUM
 {
     CNAS_HSM_WAIT_CARD_READ_CNF_FLAG_NULL                       = 0x00,
@@ -484,16 +458,7 @@ typedef struct
     VOS_UINT8                          *pastIntMsg[CNAS_HSM_MAX_INT_MSG_QUEUE_NUM]; /* HSM module internal message,store the message pointer here */
 }CNAS_HSM_INT_MSG_QUEUE_STRU;
 
-/*****************************************************************************
- Structure Name    : CNAS_HSM_CACHE_MSG_INFO_STRU
- Description       : The structure of HSM buffer message
- 1.Date            : 26/1/2015
-   Author          : w00176964
-   Modification    : Create
- 2.Date            : 8/9/2015
-   Author          : w00176964
-   Modification    : CNAS内存裁剪调整
-*****************************************************************************/
+
 
 typedef struct
 {
@@ -755,13 +720,7 @@ typedef struct
     VOS_UINT8                                               aucRsv[1];
 }CNAS_HSM_HARDWARE_ID_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_HSM_HRPD_AMP_NEG_ATTRIB_STRU
- 结构说明  : AMP协商参数
- 1.日    期   : 2015年05月30日
-   作    者   : y00307564
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usMaxNoMonitorDistance;
@@ -772,13 +731,7 @@ typedef struct
     VOS_UINT8                           aucRsv[2];
 }CNAS_HSM_HRPD_AMP_NEG_ATTRIB_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_HSM_LAST_HRPD_SESSION_INFO_STRU
- 结构说明  : 与hrpd session相关的NV上下文
- 1.日    期   : 2015年05月30日
-   作    者   : y00307564
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     CNAS_HSM_SESSION_STATUS_ENUM_UINT8  enSessionStatus;
@@ -787,20 +740,7 @@ typedef struct
     CNAS_HSM_HARDWARE_ID_INFO_STRU      stHwid;             /* 最后一次session中保存的hardware id */
 }CNAS_HSM_LAST_HRPD_SESSION_INFO_STRU;
 
-/****************************************************************************
-Structure name  :   CNAS_HSM_CUSTOM_CONFIG_STRU
-Description     :   Structure definition containing the Containing the NV Values
-Modify History:
-    1)  Date    :   2015-06-08
-        Author  :   y00307564
-        Modify content :    Create
-    2)  Date    :   2015-10-15
-        Author  :   y00307564
-        Modify content :    DTS2015082403731修改，增加hrpd ppp an鉴权用户名
-    3)  Date    :   2015-12-21
-        Author  :   m00312079
-        Modify content :    DTS2015120208895修改，增加UE的版本信息
-****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                               aucHrpdNvimIccId[CNAS_CCB_ICCID_OCTET_LEN]; /* 最后一次session中保存的ICCID*/
@@ -856,26 +796,14 @@ typedef struct
 }CNAS_HSM_KEEP_ALIVE_CTRL_CTX_STRU;
 
 
-/*****************************************************************************
- 结构名    : CNAS_HSM_MULTI_MODE_CTRL_INFO_STRU
- 结构说明  : 与多模控制相关的CTX变量
- 1.日    期   : 2015年06月03日
-   作    者   : t00323010
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucLteRegSuccFlg;                /* LTE reg succ while HRPD in slave mode */
     VOS_UINT8                           aucRsv[3];
 }CNAS_HSM_MULTI_MODE_CTRL_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_HSM_SNP_DATA_REQ_OPID_INFO_STRU
- 结构说明  : OpId for HSM Send Snp Data Requset message
- 1.日    期   : 2015年06月11日
-   作    者   : t00323010
-   修改内容   : Iteration 12: create
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usSessionCloseOpId;         /* Save OpId for Session Close msg,AT init or AN init, only one session close send at same time */
@@ -886,13 +814,7 @@ typedef struct
     VOS_UINT16                          usHardWareIdRspOpId;        /* Save OpId for HardWareId Response msg */
 }CNAS_HSM_SNP_DATA_REQ_OPID_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_HSM_SNP_DATA_REQ_OPID_CTRL_STRU
- 结构说明  : Snp Data Req OpId Ctrl Stru for HSM module
- 1.日    期   : 2015年06月11日
-   作    者   : t00323010
-   修改内容   : Iteration 12: create
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                                              usHsmSnpDataReqOpId;            /* Hsm module current OpId, +1 each timer after used,[0~65535] */
@@ -901,13 +823,7 @@ typedef struct
 }CNAS_HSM_SNP_DATA_REQ_OPID_CTRL_STRU;
 
 
-/*****************************************************************************
- 结构名    : CNAS_HSM_LOW_POWER_CTRL_STRU
- 结构说明  : Low power Ctrl Stru for HSM module
- 1.日    期   : 2015年12月07日
-   作    者   : m00312079
-   修改内容   : Create
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                               ucSlotVoteBox;
@@ -996,12 +912,10 @@ VOS_VOID CNAS_HSM_InitCtx(
     CNAS_HSM_INIT_CTX_TYPE_ENUM_UINT8   enInitType
 );
 
-/* Modified by w00176964 for CNAS内存裁剪, 2015-9-18, begin */
 VOS_VOID CNAS_HSM_InitCacheMsgQueue(
     CNAS_HSM_INIT_CTX_TYPE_ENUM_UINT8   enInitType,
     CNAS_HSM_CACHE_MSG_QUEUE_STRU      *pstCacheMsgQueue
 );
-/* Modified by w00176964 for CNAS内存裁剪, 2015-9-18, end */
 
 VOS_VOID CNAS_HSM_InitIntMsgQueue(
     CNAS_HSM_INT_MSG_QUEUE_STRU        *pstIntMsgQueue
@@ -1180,9 +1094,7 @@ VOS_UINT8 *CNAS_HSM_GetNextIntMsg(VOS_VOID);
 
 VOS_UINT32 CNAS_HSM_GetIntMsgNum(VOS_VOID);
 
-/* Deleted by w00176964 for CNAS内存裁剪, 2015-9-18, begin */
 
-/* Deleted by w00176964 for CNAS内存裁剪, 2015-9-18, end */
 
 /* public data interface */
 

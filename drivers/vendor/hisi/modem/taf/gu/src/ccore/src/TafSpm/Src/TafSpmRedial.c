@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafSpmRedial.c
-  版 本 号   : 初稿
-  作    者   : y00245242
-  生成日期   : 2013年12月11日
-  最近修改   :
-  功能描述   : TafSpmRedial.c文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年12月11日
-    作    者   : y00245242
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -66,27 +49,7 @@ extern "C" {
 /*****************************************************************************
   6 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : TAF_SPM_IsCallRedialCauseFromImsToCs
- 功能描述  : 检查cause值是否时来自IMS域的换域重拨cause值
 
- 输入参数  : enCause -- 呼叫cause值
-
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  -- 是重拨cause值
-             VOS_FALSE -- 不是重拨cause值
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2013年12月12日
-   作    者   : y00245242
-   修改内容   : 新生成函数
- 2.日    期   : 2015年8月13日
-   作    者   : l00289540
-   修改内容   : User_Exp_Improve修改
-*****************************************************************************/
 VOS_UINT8 TAF_SPM_IsCallRedialCauseFromImsToCs(TAF_CS_CAUSE_ENUM_UINT32 enCause)
 {
 
@@ -115,30 +78,7 @@ VOS_UINT8 TAF_SPM_IsCallRedialCauseFromImsToCs(TAF_CS_CAUSE_ENUM_UINT32 enCause)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_IsCsCallRedialAllowed
- 功能描述  : 检查呼叫是否允许在CS域尝试重拨
 
- 输入参数  : pstCallInfo -- 呼叫信息地址
-
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  -- 需要在CS域尝试
-             VOS_FALSE -- 不需要在CS域尝试
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2013年12月12日
-   作    者   : y00245242
-   修改内容   : 新生成函数
- 2.日    期   : 2014年05月26日
-   作    者   : s00217060
-   修改内容   : DTS2014051909982: 第一路IMS电话接通后保持，拨打第二路电话，在IMS发起失败，不换域重拨，否则AP异常
- 3.日    期   : 2014年07月31日
-   作    者   : f00179208
-   修改内容   : VTLTE项目:视频呼叫不需要重拨
-*****************************************************************************/
 VOS_UINT8 TAF_SPM_IsCsCallRedialAllowed(MN_CALL_INFO_STRU *pstCallInfo)
 {
 
@@ -198,24 +138,7 @@ VOS_UINT8 TAF_SPM_IsCsCallRedialAllowed(MN_CALL_INFO_STRU *pstCallInfo)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_GetCallRedialBufferWithCallId
- 功能描述  : 根据指定call ID来清除对应的重拨缓存消息
 
- 输入参数  : callId -- call Id
-
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  -- 需要在CS域尝试
-             VOS_FALSE -- 不需要在CS域尝试
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2013年12月12日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 TAF_SPM_ENTRY_MSG_STRU *TAF_SPM_GetCallRedialBufferWithCallId(MN_CALL_ID_T ucCallId)
 {
     VOS_UINT8                           i;
@@ -240,24 +163,7 @@ TAF_SPM_ENTRY_MSG_STRU *TAF_SPM_GetCallRedialBufferWithCallId(MN_CALL_ID_T ucCal
     return VOS_NULL_PTR;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_FreeCallRedialBufferWithClientId
- 功能描述  : 根据指定client ID来清除对应的重拨缓存消息
 
- 输入参数  : usClientId -- 用户ID
-
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  -- 需要在CS域尝试
-             VOS_FALSE -- 不需要在CS域尝试
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2013年12月12日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_SPM_FreeCallRedialBufferWithClientId(MN_CLIENT_ID_T usClientId)
 {
     VOS_UINT8                           i;
@@ -289,24 +195,7 @@ VOS_VOID TAF_SPM_FreeCallRedialBufferWithClientId(MN_CLIENT_ID_T usClientId)
     TAF_SPM_LogSrvDomainSelRedialInfo();
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_FreeCallRedialBufferWithCallId
- 功能描述  : 根据指定call ID来清除对应的重拨缓存消息
 
- 输入参数  : ucCallId -- call Id
-
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  -- 需要在CS域尝试
-             VOS_FALSE -- 不需要在CS域尝试
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2013年12月12日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_SPM_FreeCallRedialBufferWithCallId(MN_CALL_ID_T ucCallId)
 {
     VOS_UINT8                           i;
@@ -338,24 +227,7 @@ VOS_VOID TAF_SPM_FreeCallRedialBufferWithCallId(MN_CALL_ID_T ucCallId)
     TAF_SPM_LogSrvDomainSelRedialInfo();
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_UpdateCallRedialBufferMsgWithCallId
- 功能描述  : 根据client Id更新呼叫重拨缓存中的call ID
 
- 输入参数  : usClientId -- 用户ID
-             ucCallId   -- 呼叫ID
-
- 输出参数  : 无
- 返 回 值  : 无
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2013年12月13日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_SPM_UpdateCallRedialBufferMsgWithCallId(
     MN_CLIENT_ID_T                      usClientId,
     MN_CALL_ID_T                        ucCallId
@@ -390,24 +262,7 @@ VOS_VOID TAF_SPM_UpdateCallRedialBufferMsgWithCallId(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_UpdateCallRedialBufferMsgWithCallType
- 功能描述  : 根据client Id更新呼叫重拨缓存中的call type
 
- 输入参数  : usClientId -- 用户ID
-             ucCallType -- 呼叫类型
-
- 输出参数  : 无
- 返 回 值  : 无
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2014年7月17日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_SPM_UpdateCallRedialBufferMsgWithCallType(
     MN_CLIENT_ID_T                      usClientId,
     MN_CALL_TYPE_ENUM_U8                enDestCallType,
@@ -438,37 +293,17 @@ VOS_VOID TAF_SPM_UpdateCallRedialBufferMsgWithCallType(
             /* 更新call Id */
             pstAtMsg->unParm.stOrig.enCallType  = enDestCallType;
 
-            /* Modified by s00217060 for 中移动VoLTE需求, 2014-10-17, begin */
             /* 呼叫类型由普通呼叫变为紧急呼叫时，紧急呼的类型也要更新 */
             if (MN_CALL_TYPE_EMERGENCY == enDestCallType)
             {
                 PS_MEM_CPY(&(pstAtMsg->unParm.stOrig.stEmergencyCat), pstEmcCat, sizeof(MN_CALL_EMERGENCY_CAT_STRU));
             }
-            /* Modified by s00217060 for 中移动VoLTE需求, 2014-10-17, End */
             break;
         }
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_StoreMsgIntoCallRedialBuffer
- 功能描述  : 存放消息进重拨缓存
 
- 输入参数  : ulEventType －－消息事件类型
-             pstMsg      －－ 消息事件类型
-
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  -- 函数执行成功
-             VOS_FALSE -- 函数执行失败
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2013年12月24日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 TAF_SPM_StoreMsgIntoCallRedialBuffer(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -489,27 +324,7 @@ VOS_UINT8 TAF_SPM_StoreMsgIntoCallRedialBuffer(
     return ucStoreRlst;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MSG_IsSmsRedialCauseValueFromImsDomain
- 功能描述  : 检查cause值是否是来自IMS域的换域重拨cause值
 
- 输入参数  : enCause -- 短信cause值
-
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  -- 是重拨cause值
-             VOS_FALSE -- 不是重拨cause值
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2013年12月12日
-   作    者   : y00245242
-   修改内容   : 新生成函数
- 2.日    期   : 2015年03月12日
-   作    者   : f00179208
-   修改内容   : DTS2015031000182:新增短信TR1M定时器超时重发场景
-*****************************************************************************/
 VOS_UINT8 TAF_MSG_IsSmsRedialCauseValueFromImsDomain(SMR_SMT_ERROR_ENUM_UINT32 enCause)
 {
     MN_MSG_IMSA_CAUSE_ENUM_UINT8        enImsaCause;
@@ -618,24 +433,7 @@ VOS_UINT8 TAF_MSG_IsSmsRedialCauseValueFromImsDomain(SMR_SMT_ERROR_ENUM_UINT32 e
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_GetSmsRedialBufferWithClientId
- 功能描述  : 根据指定client ID来清获取重拨缓存
 
- 输入参数  : usClientId  -- client Id
-
- 输出参数  : pucIndex -- 返回缓存索引index
-
- 返 回 值  : 返回缓存消息的地址，如果没有找到缓存消息，返回空
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2013年12月12日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 TAF_SPM_ENTRY_MSG_STRU *TAF_SPM_GetSmsRedialBufferWithClientId(
     VOS_UINT8                          *pucIndex,
     MN_CLIENT_ID_T                      usClientId
@@ -665,25 +463,7 @@ TAF_SPM_ENTRY_MSG_STRU *TAF_SPM_GetSmsRedialBufferWithClientId(
     return VOS_NULL_PTR;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_StoreMsgIntoSmsRedialBuffer
- 功能描述  : 存放消息进短信重拨缓存
 
- 输入参数  : ulEventType －－消息事件类型
-             pstMsg      －－ 消息事件类型
-
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  -- 需要在CS域尝试
-             VOS_FALSE -- 不需要在CS域尝试
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2013年12月24日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 TAF_SPM_StoreMsgIntoSmsRedialBuffer(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg

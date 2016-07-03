@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafXpdsFsmMain.c
-  版 本 号   : 初稿
-  作    者   : g00256031
-  生成日期   : 2015年08月26日
-  功能描述   : XPDS层一状态机事件处理函数
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年08月26日
-    作    者   : g00256031
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -48,21 +33,7 @@ extern "C"{
   3 函数定义
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvAtGpsStartReq_Init
- 功能描述  : XPDS处理^CAGPSSTART命令
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月16日
-    作    者   : g00256031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvAtGpsStartReq_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -112,21 +83,7 @@ VOS_UINT32 TAF_XPDS_RcvAtGpsStartReq_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvAtGpsCfgMpcAddrReq_Init
- 功能描述  : XPDS处理^CAGPSCFGMPCADDR命令
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月16日
-    作    者   : g00256031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvAtGpsCfgMpcAddrReq_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -158,21 +115,7 @@ VOS_UINT32 TAF_XPDS_RcvAtGpsCfgMpcAddrReq_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvAtGpsCfgPdeAddrReq_Init
- 功能描述  : XPDS处理^CAGPSCFGPDEADDR命令
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月16日
-    作    者   : g00256031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvAtGpsCfgPdeAddrReq_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -218,21 +161,7 @@ VOS_UINT32 TAF_XPDS_RcvAtGpsCfgPdeAddrReq_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvAtGpsCfgPositionModeReq_Init
- 功能描述  : XPDS处理^CAGPSCFGPOSMODE命令
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月16日
-    作    者   : g00256031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvAtGpsCfgPositionModeReq_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -304,21 +233,7 @@ VOS_UINT32 TAF_XPDS_RcvAtGpsCfgPositionModeReq_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvAtGpsReplyNiReq_Init
- 功能描述  : XPDS处理^CAGPSREPLYNIREQ命令
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月16日
-    作    者   : g00256031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvAtGpsReplyNiReq_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -363,20 +278,7 @@ VOS_UINT32 TAF_XPDS_RcvAtGpsReplyNiReq_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvAtGpsQryTimeInfoReq_Init
- 功能描述  : XPDS收到AT发来的ID_AT_XPDS_SYNC_TIME_REQ消息处理函数
- 输入参数  : pstMsg  -- 消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月10日
-    作    者   : d00212987
-    修改内容   : AGPS迭代1新增
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvAtGpsQryTimeInfoReq_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -427,20 +329,7 @@ VOS_UINT32 TAF_XPDS_RcvAtGpsQryTimeInfoReq_Init(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvCasPdeDataInd_Init
- 功能描述  : XPDS收到AT发来的ID_AT_XPDS_SYNC_TIME_REQ消息处理函数
- 输入参数  : pstMsg  -- 消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月10日
-    作    者   : c00299064
-    修改内容   : AGPS迭代1新增
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvCasPdeDataInd_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -474,20 +363,7 @@ VOS_UINT32 TAF_XPDS_RcvCasPdeDataInd_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvXccIncomingInd_Init
- 功能描述  : XPDS收到XCC INCOMING CALL IND
- 输入参数  : pstMsg  -- 消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月10日
-    作    者   : c00299064
-    修改内容   : AGPS迭代1新增
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvXccIncomingInd_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -500,21 +376,7 @@ VOS_UINT32 TAF_XPDS_RcvXccIncomingInd_Init(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvAtGpsPosInfoRsp_Pos
- 功能描述  : XPDS处理ID_AT_XPDS_POS_INFO_RSP
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月16日
-    作    者   : x00314862
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvAtGpsPosInfoRsp_Pos(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -542,20 +404,7 @@ VOS_UINT32 TAF_XPDS_RcvAtGpsPosInfoRsp_Pos(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvCasPdeDataInd_Pos
- 功能描述  :
- 输入参数  : pstMsg  -- 消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月10日
-    作    者   : c00299064
-    修改内容   : AGPS迭代1新增
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvCasPdeDataInd_Pos(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -589,20 +438,7 @@ VOS_UINT32 TAF_XPDS_RcvCasPdeDataInd_Pos(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_ProcNiCancelPos
- 功能描述  : 判断是否需要发送CANCEL给网侧
- 输入参数  : enProcRslt  -- 处理结果值
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月09日
-    作    者   : g00256031
-    修改内容   : AGPS迭代2新增
-*****************************************************************************/
 VOS_VOID TAF_XPDS_ProcNiCancelPos(
     TAF_XPDS_POS_PROC_RSLT_ENUM_UINT32  enProcRslt
 )
@@ -629,20 +465,7 @@ VOS_VOID TAF_XPDS_ProcNiCancelPos(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_ProcAtGpsStopReq
- 功能描述  : 处理AT发来STOP消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月09日
-    作    者   : g00256031
-    修改内容   : AGPS迭代2新增
-*****************************************************************************/
 VOS_VOID TAF_XPDS_ProcAtGpsStopReq(VOS_VOID)
 {
     TAF_XPDS_UP_LINK_STATUS_ENUM_UINT8  enLinkStatus;
@@ -699,20 +522,7 @@ VOS_VOID TAF_XPDS_ProcAtGpsStopReq(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_ProcServerBindRsltSucc_NoLink
- 功能描述  : 链路回复成功并且没有链路存在的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月10日
-    作    者   : g00256031
-    修改内容   : AGPS迭代2新增
-*****************************************************************************/
 VOS_VOID TAF_XPDS_ProcServerBindRsltSucc_NoLink(VOS_VOID)
 {
     TAF_XPDS_CFG_INFO_STRU             *pstAgpsConfig;
@@ -788,20 +598,7 @@ VOS_VOID TAF_XPDS_ProcServerBindRsltSucc_NoLink(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_ProcServerBindRsltSucc
- 功能描述  : 链路回复成功后的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月10日
-    作    者   : g00256031
-    修改内容   : AGPS迭代2新增
-*****************************************************************************/
 VOS_VOID TAF_XPDS_ProcServerBindRsltSucc(VOS_VOID)
 {
     TAF_XPDS_UP_LINK_STATUS_ENUM_UINT8  enLinkStatus;
@@ -858,21 +655,7 @@ VOS_VOID TAF_XPDS_ProcServerBindRsltSucc(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_ProcTrackingMpcConnectFail
- 功能描述  : 跟踪型定位下MPC建链失败的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_ERR - 执行失败，需要继续处理后面流程
-             VOS_OK  - 执行成功，可直接返回
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月10日
-    作    者   : g00256031
-    修改内容   : AGPS迭代2新增
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_ProcTrackingMpcConnectFail(VOS_VOID)
 {
     TAF_XPDS_CFG_INFO_STRU             *pstAgpsConfig;
@@ -913,20 +696,7 @@ VOS_UINT32 TAF_XPDS_ProcTrackingMpcConnectFail(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RestartPosProc
- 功能描述  : 重启整个定位流程
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月15日
-    作    者   : g00256031
-    修改内容   : AGPS迭代1新增
-*****************************************************************************/
 VOS_VOID TAF_XPDS_RestartPosProc(VOS_VOID)
 {
     TAF_XPDS_SetPosProcRslt(TAF_XPDS_PROC_RSLT_SUCC);
@@ -947,23 +717,7 @@ VOS_VOID TAF_XPDS_RestartPosProc(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvXpdsBindServerCnf_Pos
- 功能描述  : 用户面建链结果处理
- 输入参数  : pstMsg  -- 消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月10日
-    作    者   : d00212987
-    修改内容   : AGPS迭代1新增
-  2.日    期   : 2015年09月08日
-    作    者   : x00314862
-    修改内容   : 新增跟踪定位逻辑处理
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvXpdsBindServerCnf_Pos(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1042,24 +796,7 @@ VOS_UINT32 TAF_XPDS_RcvXpdsBindServerCnf_Pos(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_ProcMpcRsltSucc
- 功能描述  : MPC交互数据成功之后的处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月7日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-  2.日    期   : 2015年9月8日
-    作    者   : x00314862
-    修改内容   : 修改pos report成功的处理逻辑
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_ProcMpcRsltSucc(VOS_VOID)
 {
     if (VOS_FALSE == TAF_XPDS_GetCtrlInfoAddr()->ucIsMpcAuthSucc)
@@ -1085,23 +822,7 @@ VOS_VOID TAF_XPDS_ProcMpcRsltSucc(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvXpdsMpcProcRsltInd_Pos
- 功能描述  : XPDS收到AT发来的ID_AT_XPDS_SYNC_TIME_REQ消息处理函数
- 输入参数  : pstMsg  -- 消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月10日
-    作    者   : d00212987
-    修改内容   : AGPS迭代1新增
-  2.日    期   : 2015年09月02日
-    作    者   : x00314862
-    修改内容   : AGPS迭代1新增
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvXpdsMpcProcRsltInd_Pos(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1153,22 +874,7 @@ VOS_UINT32 TAF_XPDS_RcvXpdsMpcProcRsltInd_Pos(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvTiPosReportExpired_Pos
- 功能描述  : 定时上报Position Report定时器超时的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月7日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvTiPosReportExpired_Pos(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1192,20 +898,7 @@ VOS_UINT32 TAF_XPDS_RcvTiPosReportExpired_Pos(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvXpdsPdeProcRsltInd_Pos
- 功能描述  : 处理PDE结果
- 输入参数  : pstMsg  -- 消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月10日
-    作    者   : d00212987
-    修改内容   : AGPS迭代1新增
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvXpdsPdeProcRsltInd_Pos(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1282,21 +975,7 @@ VOS_UINT32 TAF_XPDS_RcvXpdsPdeProcRsltInd_Pos(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvXpdsAbnormalAbortAgpsSessionInd_Pos
- 功能描述  : 层一状态机接收到Abort消息的处理
- 输入参数  : pstMsg
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月16日
-    作    者   : g00256031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvXpdsAbnormalAbortAgpsSessionInd_Pos(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg

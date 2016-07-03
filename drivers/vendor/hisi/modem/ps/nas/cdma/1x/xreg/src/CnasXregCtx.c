@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasXregCtx.c
-  版 本 号   : 初稿
-  作    者   : l60609
-  生成日期   : 2014年07月03日
-  功能描述   : 1X REG(register)任务上下文管理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年07月03日
-    作    者   : l60609
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -24,9 +9,7 @@
 #include  "CnasXregRegingProcTbl.h"
 #include  "CnasXregFsmSwitchOnTbl.h"
 
-/* add by d00212987 for CNAS内存裁剪, 2015-09-18, begin */
 #include  "CnasCcb.h"
-/* add by d00212987 for CNAS内存裁剪, 2015-09-18, end */
 
 #ifdef  __cplusplus
 #if  __cplusplus
@@ -48,21 +31,7 @@ CNAS_XREG_CTX_STRU                      g_stCnasXregCtx;
   3 函数定义
 *****************************************************************************/
 /*lint -save -e958*/
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_InitCurrFsmCtx
- 功能描述  : 初始化当前状态机上下文
- 输入参数  : CNAS_XREG_FSM_CTX_STRU             *pstCurrFsmCtx
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月8日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XREG_InitCurrFsmCtx(
     CNAS_XREG_FSM_CTX_STRU             *pstCurrFsmCtx
 )
@@ -82,21 +51,7 @@ VOS_VOID CNAS_XREG_InitCurrFsmCtx(
     /* unFsmCtx本次迭代不涉及 */
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_InitFsmStackCtx
- 功能描述  : 初始化状态机栈上下文
- 输入参数  : CNAS_XREG_FSM_STACK_STRU           *pstFsmStack
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月8日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XREG_InitFsmStackCtx(
     CNAS_XREG_FSM_STACK_STRU           *pstFsmStack
 )
@@ -114,29 +69,11 @@ VOS_VOID CNAS_XREG_InitFsmStackCtx(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_InitCacheMsgQueue
- 功能描述  : 初始化缓存消息队列
- 输入参数  : CNAS_XREG_CACHE_MSG_QUEUE_STRU     *pstCacheMsgQueue
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月8日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
- 2.日    期   : 2015年09月18日
-   作    者   : d00212987
-   修改内容   : CNAS内存裁剪
-*****************************************************************************/
 VOS_VOID CNAS_XREG_InitCacheMsgQueue(
     CNAS_XREG_CACHE_MSG_QUEUE_STRU     *pstCacheMsgQueue
 )
 {
-    /* Modified by d00212987 for CNAS内存裁剪, 2015-09-18, begin */
     VOS_UINT32                          i;
 
     pstCacheMsgQueue->ulCurrIndex     = 0;
@@ -146,24 +83,9 @@ VOS_VOID CNAS_XREG_InitCacheMsgQueue(
     {
         pstCacheMsgQueue->pastCacheMsg[i] = VOS_NULL_PTR;
     }
-    /* Modified by d00212987 for CNAS内存裁剪, 2015-09-18, end */
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_InitCtx
- 功能描述  : 初始化上下文
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月3日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XREG_InitCtx(VOS_VOID)
 {
     CNAS_XREG_CTX_STRU                 *pstXregCtx = VOS_NULL_PTR;
@@ -182,21 +104,7 @@ VOS_VOID CNAS_XREG_InitCtx(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_InitFsmCtx_L1Main
- 功能描述  : 初始化L1状态机上下文
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月11日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XREG_InitFsmCtx_L1Main(VOS_VOID)
 {
     /* 本次迭代不涉及 */
@@ -205,22 +113,7 @@ VOS_VOID CNAS_XREG_InitFsmCtx_L1Main(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_LoadSubFsm
- 功能描述  : 加载L2状态机的信息
- 输入参数  : CNAS_XREG_FSM_ID_ENUM_UINT32         enFsmId
-             CNAS_XREG_FSM_CTX_STRU              *pstCurFsm
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月15日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  CNAS_XREG_LoadSubFsm(
     CNAS_XREG_FSM_ID_ENUM_UINT32         enFsmId,
     CNAS_XREG_FSM_CTX_STRU              *pstCurFsm
@@ -252,22 +145,7 @@ VOS_VOID  CNAS_XREG_LoadSubFsm(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_PushFsm
- 功能描述  : 对状态机进行压栈
- 输入参数  : pstFsmStack -- 状态机栈
-             pstNewFsm   -- 需要压入的状态机
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年07月15日
-   作    者   : l60609
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XREG_PushFsm(
     CNAS_XREG_FSM_STACK_STRU           *pstFsmStack,
     CNAS_XREG_FSM_CTX_STRU             *pstNewFsm
@@ -306,22 +184,7 @@ VOS_VOID CNAS_XREG_PushFsm(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_PopFsm
- 功能描述  : 对状态机进行出栈
- 输入参数  : 无
-             无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年07月15日
-   作    者   : l60609
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XREG_PopFsm(VOS_VOID)
 {
     CNAS_XREG_FSM_STACK_STRU           *pstFsmStack = VOS_NULL_PTR;
@@ -349,22 +212,7 @@ VOS_VOID CNAS_XREG_PopFsm(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_InitFsmL2
- 功能描述  : XREG启动一个L2的状态机。启动流程的同时启动状态以及保护定时器
-             该函数会进行压栈操作,如果不需要进行压栈, 必须保证退出前流程
- 输入参数  : CNAS_XREG_FSM_ID_ENUM_UINT32        enFsmId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月15日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XREG_InitFsmL2(
     CNAS_XREG_FSM_ID_ENUM_UINT32        enFsmId
 )
@@ -400,21 +248,7 @@ VOS_VOID CNAS_XREG_InitFsmL2(
     CNAS_MNTN_LogFsmInfo(UEPS_PID_XREG, CNAS_XREG_GetCurrFsmId(), CNAS_XREG_GetFsmTopState(), 0);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_QuitFsmL2
- 功能描述  : 结束L2状态机。如果结束流程，状态机弹出状态栈
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年07月07日
-   作    者   : l60609
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XREG_QuitFsmL2(VOS_VOID)
 {
     CNAS_XREG_FSM_CTX_STRU             *pstCurFsm   = VOS_NULL_PTR;
@@ -440,161 +274,49 @@ VOS_VOID CNAS_XREG_QuitFsmL2(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_GetCtxAddr
- 功能描述  : 获取上下文地址
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : CNAS_XREG_CTX_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月3日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_XREG_CTX_STRU* CNAS_XREG_GetCtxAddr(VOS_VOID)
 {
     return &(g_stCnasXregCtx);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_GetCurFsmAddr
- 功能描述  : 获取当前状态机地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 当前状态机地址
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年7月7日
-   作    者   : h00246512
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_XREG_FSM_CTX_STRU* CNAS_XREG_GetCurFsmAddr(VOS_VOID)
 {
     return &(CNAS_XREG_GetCtxAddr()->stCurFsm);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_GetFsmStackAddr
- 功能描述  : 获取当前状态机栈地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 当前状态机栈地址
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年7月7日
-   作    者   : h00246512
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_XREG_FSM_STACK_STRU* CNAS_XREG_GetFsmStackAddr(VOS_VOID)
 {
     return &(CNAS_XREG_GetCtxAddr()->stFsmStack);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_GetCurFsmDesc
- 功能描述  : 获取当前状态机表的地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 当前状态机表的地址
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年7月7日
-   作    者   : h00246512
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_FSM_DESC_STRU* CNAS_XREG_GetCurFsmDesc(VOS_VOID)
 {
     return (CNAS_XREG_GetCtxAddr()->stCurFsm.pstFsmDesc);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_GetCurrFsmEntryMsgAddr
- 功能描述  : 获取当前状态机入口消息的地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 当前状态机入口消息的地址
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年7月7日
-   作    者   : h00246512
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_XREG_MSG_STRU* CNAS_XREG_GetCurrFsmEntryMsgAddr(VOS_VOID)
 {
     return &(CNAS_XREG_GetCtxAddr()->stCurFsm.stEntryMsg);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_GetCurrFsmId
- 功能描述  : 获取当前状态机的ID
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 当前状态机的ID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年7月7日
-   作    者   : h00246512
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_XREG_FSM_ID_ENUM_UINT32 CNAS_XREG_GetCurrFsmId(VOS_VOID)
 {
     return (CNAS_XREG_GetCtxAddr()->stCurFsm.enFsmId);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_GetFsmTopState
- 功能描述  : 获取状态机顶层的状态
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月15日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XREG_GetFsmTopState(VOS_VOID)
 {
     return (CNAS_XREG_GetCurFsmAddr()->ulState);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_GetFsmStackDepth
- 功能描述  : 获取当前协议栈的栈深度
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 当前状态机的深度
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年7月7日
-   作    者   : h00246512
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT16  CNAS_XREG_GetFsmStackDepth(VOS_VOID)
 {
     CNAS_XREG_FSM_STACK_STRU            *pstFsmStack = VOS_NULL_PTR;
@@ -604,21 +326,7 @@ VOS_UINT16  CNAS_XREG_GetFsmStackDepth(VOS_VOID)
     return pstFsmStack->usStackDepth;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_SetCurrFsmState
- 功能描述  : 设置当前状态机状态
- 输入参数  : VOS_UINT32                          ulCurrState
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月11日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XREG_SetCurrFsmState(
     VOS_UINT32                          ulCurrState
 )
@@ -637,21 +345,7 @@ VOS_VOID CNAS_XREG_SetCurrFsmState(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_SetFsmStackPopFlg
- 功能描述  : 设置状态机栈pop标志
- 输入参数  : ucStackPopFlg:栈pop标志
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月7日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  CNAS_XREG_SetFsmStackPopFlg(
     VOS_UINT16                          ucStackPopFlg
 )
@@ -663,21 +357,7 @@ VOS_VOID  CNAS_XREG_SetFsmStackPopFlg(
     pstFsmStack->usStackPopFlg  = ucStackPopFlg;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_GetFsmStackPopFlg
- 功能描述  : 获取状态机栈pop标志
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月7日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT16  CNAS_XREG_GetFsmStackPopFlg(VOS_VOID)
 {
     CNAS_XREG_FSM_STACK_STRU           *pstFsmStack = VOS_NULL_PTR;
@@ -687,21 +367,7 @@ VOS_UINT16  CNAS_XREG_GetFsmStackPopFlg(VOS_VOID)
     return pstFsmStack->usStackPopFlg;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_SaveCurEntryMsg
- 功能描述  : 保存当前状态机的入口消息
- 输入参数  : ulEventType            :入口消息类型
-              pstMsg             :入口消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期   : 2014年8月27日
-     作    者   : h00246512
-     修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID CNAS_XREG_SaveCurEntryMsg(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -724,21 +390,7 @@ VOS_VOID CNAS_XREG_SaveCurEntryMsg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_GetCacheMsgNum
- 功能描述  : 获取当前缓存消息的个数
- 输入参数  : 无
- 输出参数  : 当前缓存消息的个数
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月7日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  CNAS_XREG_GetCacheMsgNum(VOS_VOID)
 {
     CNAS_XREG_CACHE_MSG_QUEUE_STRU     *pstMsgQueue = VOS_NULL_PTR;
@@ -748,45 +400,13 @@ VOS_UINT32  CNAS_XREG_GetCacheMsgNum(VOS_VOID)
     return pstMsgQueue->ucCacheMsgNum;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_GetCacheMsgAddr
- 功能描述  : 获取缓存消息队列地址
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : CNAS_XREG_CACHE_MSG_QUEUE_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月8日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_XREG_CACHE_MSG_QUEUE_STRU* CNAS_XREG_GetCacheMsgAddr(VOS_VOID)
 {
     return &(CNAS_XREG_GetCtxAddr()->stCacheMsgQueue);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_ClearCacheMsg
- 功能描述  : 清除当前的缓存消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:清除成功
-             VOS_FALSE:清除失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年8月06日
-   作    者   : zhoujun /40661
-   修改内容   : 新生成函数
-
- 2.日    期   : 2015年09月18日
-   作    者   : d00212987
-   修改内容   : CNAS内存裁剪
-*****************************************************************************/
 VOS_VOID CNAS_XREG_ClearCacheMsg(VOS_VOID)
 {
     CNAS_XREG_CACHE_MSG_QUEUE_STRU     *pstMsgQueue = VOS_NULL_PTR;
@@ -802,12 +422,10 @@ VOS_VOID CNAS_XREG_ClearCacheMsg(VOS_VOID)
 
     ulOffset = (pstMsgQueue->ulCurrIndex % CNAS_XREG_MAX_CACHE_MSG_QUEUE_NUM);
 	
-    /* Modified by d00212987 for CNAS内存裁剪, 2015-09-18, begin */
     if(VOS_NULL_PTR != pstMsgQueue->pastCacheMsg[ulOffset])
     {
         PS_MEM_FREE(UEPS_PID_XREG, pstMsgQueue->pastCacheMsg[ulOffset]);
     }
-    /* Modified by d00212987 for CNAS内存裁剪, 2015-09-18, end */
 
     pstMsgQueue->ulCurrIndex = (pstMsgQueue->ulCurrIndex + 1) % CNAS_XREG_MAX_CACHE_MSG_QUEUE_NUM;
 
@@ -817,37 +435,17 @@ VOS_VOID CNAS_XREG_ClearCacheMsg(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_GetNextCachedMsg
- 功能描述  : 获取当前需要处理的缓存
- 输入参数  : 无
- 输出参数  : pstEntryMSg:当前优先级最高的缓存消息
- 返 回 值  : VOS_TRUE:获取成功
-             VOS_FALSE:获取失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年7月7日
-   作    者   : h00246512
-   修改内容   : 新生成函数
-
- 2.日    期   : 2015年09月18日
-   作    者   : d00212987
-   修改内容   : CNAS内存裁剪
-*****************************************************************************/
 VOS_UINT32  CNAS_XREG_GetNextCachedMsg(
     CNAS_XREG_MSG_STRU                 *pstEntryMsg
 )
 {
     /* 获取缓存消息成功,返回缓存消息 */
     CNAS_XREG_CACHE_MSG_QUEUE_STRU     *pstMsgQueue    = VOS_NULL_PTR;
-    /* Modified by d00212987 for CNAS内存裁剪, 2015-09-18, begin */
     MSG_HEADER_STRU                    *pstCacheMsgHdr = VOS_NULL_PTR;
     REL_TIMER_MSG                      *pstTimerMsg    = VOS_NULL_PTR;
     VOS_UINT32                          ulMsgLen;
     VOS_UINT32                          i;
-    /* Modified by d00212987 for CNAS内存裁剪, 2015-09-18, end */
 
     if (VOS_NULL_PTR == pstEntryMsg)
     {
@@ -861,7 +459,6 @@ VOS_UINT32  CNAS_XREG_GetNextCachedMsg(
         return VOS_FALSE;
     }
 
-    /* Modified by d00212987 for CNAS内存裁剪, 2015-09-18, begin */
     if ((pstMsgQueue->ucCacheMsgNum >= CNAS_XREG_MAX_CACHE_MSG_QUEUE_NUM)
         ||(pstMsgQueue->ucCacheMsgNum == VOS_NULL))
     {
@@ -903,32 +500,13 @@ VOS_UINT32  CNAS_XREG_GetNextCachedMsg(
     }
 
     VOS_MemCpy(&pstEntryMsg->aucMsgBuffer[0], pstCacheMsgHdr, ulMsgLen);
-    /* Modified by d00212987 for CNAS内存裁剪, 2015-09-18, end */
 
     CNAS_XREG_ClearCacheMsg();
 
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_SaveMsgToCache
- 功能描述  : 获取当前需要处理的缓存
- 输入参数  : 无
- 输出参数  : pstEntryMSg:当前优先级最高的缓存消息
- 返 回 值  : VOS_TRUE:获取成功
-             VOS_FALSE:获取失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年7月7日
-   作    者   : h00246512
-   修改内容   : 新生成函数
-
- 2.日    期   : 2015年09月18日
-   作    者   : d00212987
-   修改内容   : CNAS内存裁剪
-*****************************************************************************/
 VOS_VOID  CNAS_XREG_SaveMsgToCache(
     VOS_UINT32                          ulEventType,
     VOS_UINT8                           *pucMsg
@@ -936,7 +514,6 @@ VOS_VOID  CNAS_XREG_SaveMsgToCache(
 {
     /* 获取缓存消息成功,返回缓存消息 */
     CNAS_XREG_CACHE_MSG_QUEUE_STRU     *pstMsgQueue = VOS_NULL_PTR;
-    /* Modified by d00212987 for CNAS内存裁剪, 2015-09-18, begin */
     MSG_HEADER_STRU                    *pstMsgHeader  = VOS_NULL_PTR;
     VOS_UINT32                          ulMsgLen;
     VOS_UINT32                          ulOffset;
@@ -978,28 +555,13 @@ VOS_VOID  CNAS_XREG_SaveMsgToCache(
     }
 
     PS_MEM_CPY(pstMsgQueue->pastCacheMsg[ulOffset], pucMsg, ulMsgLen);
-    /* Modified by d00212987 for CNAS内存裁剪, 2015-09-18, end */
 
     pstMsgQueue->ucCacheMsgNum++;
 
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_InitFsmCtx_SwitchOn
- 功能描述  : 初始化开机状态机上下文
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年01月05日
-   作    者   : g00256031
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XREG_InitFsmCtx_SwitchOn(VOS_VOID)
 {
     /* 检查当前状态机是否时开机状态机 */
@@ -1016,20 +578,7 @@ VOS_VOID CNAS_XREG_InitFsmCtx_SwitchOn(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_GetWaitCardFilesCnfFlg_SwitchOn
- 功能描述  : 开机过程中获取读取卡文件回复标记
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 读取卡文件回复标记
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2015年01月05日
-    作    者   : g00256031
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 CNAS_XREG_READ_CARD_FILES_CNF_ENUM_UINT32 CNAS_XREG_GetWaitCardFilesCnfFlg_SwitchOn(VOS_VOID)
 {
     /* 如果当前状态机不是switch on */
@@ -1042,20 +591,7 @@ CNAS_XREG_READ_CARD_FILES_CNF_ENUM_UINT32 CNAS_XREG_GetWaitCardFilesCnfFlg_Switc
     return g_stCnasXregCtx.stCurFsm.unFsmCtx.stSwitchOnCtx.ulXregReadCardFileFlg;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_SetWaitCardFilesCnfFlg_SwitchOn
- 功能描述  : 开机过程中设置读取卡文件回复标记
- 输入参数  : 设置卡文件回复标记
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2015年01月05日
-    作    者   : g00256031
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID CNAS_XREG_SetWaitCardFilesCnfFlg_SwitchOn(
     CNAS_XREG_READ_CARD_FILES_CNF_ENUM_UINT32               enReadCardFileCnfFlg
 )
@@ -1074,20 +610,7 @@ VOS_VOID CNAS_XREG_SetWaitCardFilesCnfFlg_SwitchOn(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_ClearWaitCardFilesCnfFlg_SwitchOn
- 功能描述  : 开机过程中清除读取卡文件回复标记
- 输入参数  : 卡文件回复标记
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2015年01月05日
-    作    者   : g00256031
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID CNAS_XREG_ClearWaitCardFilesCnfFlg_SwitchOn(
     CNAS_XREG_READ_CARD_FILES_CNF_ENUM_UINT32               enReadCardFileCnfFlg
 )
@@ -1104,39 +627,13 @@ VOS_VOID CNAS_XREG_ClearWaitCardFilesCnfFlg_SwitchOn(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_GetReadCardFilesIndFlg
- 功能描述  : 预处理过程中获取读取卡文件回复标记
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 读取卡文件回复标记
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2015年10月25日
-    作    者   : d00212987
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 CNAS_XREG_REFRESH_CARD_FILES_IND_ENUM_UINT32 CNAS_XREG_GetReadCardFilesIndFlg(VOS_VOID)
 {
     return g_stCnasXregCtx.stRegPreProcCtx.stXregRefreshCardFileStatus.enRefreshReadCard;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_SetReadCardFilesIndFlg
- 功能描述  : 预处理过程中获取读取卡文件回复标记
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 读取卡文件回复标记
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2015年10月25日
-    作    者   : d00212987
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID CNAS_XREG_SetReadCardFilesIndFlg(
     CNAS_XREG_REFRESH_CARD_FILES_IND_ENUM_UINT32    enRefreshReadCard
 )
@@ -1146,20 +643,7 @@ VOS_VOID CNAS_XREG_SetReadCardFilesIndFlg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_ClearReadCardFilesIndFlg
- 功能描述  : 预处理过程中获取读取卡文件回复标记
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 读取卡文件回复标记
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2015年10月25日
-    作    者   : d00212987
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID CNAS_XREG_ClearReadCardFilesIndFlg(
     VOS_UINT32                          ulEfId
 )
@@ -1183,39 +667,13 @@ VOS_VOID CNAS_XREG_ClearReadCardFilesIndFlg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_GetCardFilesChangeFlg
- 功能描述  : 预处理过程中卡文件变化标记
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 读取卡文件回复标记
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2015年10月25日
-    作    者   : d00212987
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 CNAS_XREG_CARD_FILES_CHANGE_ENUM_UINT32 CNAS_XREG_GetCardFilesChangeFlg(VOS_VOID)
 {
     return g_stCnasXregCtx.stRegPreProcCtx.stXregRefreshCardFileStatus.enCardFileChange;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_SetCardFilesChangeFlg
- 功能描述  : 预处理过程中卡文件变化标记
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 读取卡文件回复标记
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2015年10月25日
-    作    者   : d00212987
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID CNAS_XREG_SetCardFilesChangeFlg(
     CNAS_XREG_CARD_FILES_CHANGE_ENUM_UINT32    enCardFileChange
 )
@@ -1225,20 +683,7 @@ VOS_VOID CNAS_XREG_SetCardFilesChangeFlg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_ClearRefreshCardFilesCtx
- 功能描述  : 预处理过程中卡文件变化标记
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 读取卡文件回复标记
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2015年10月25日
-    作    者   : d00212987
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID CNAS_XREG_ClearRefreshCardFilesCtx(VOS_VOID)
 {
     g_stCnasXregCtx.stRegPreProcCtx.stXregRefreshCardFileStatus.enCardFileChange  = CNAS_XREG_CARD_FILE_CHANGE_FLG_NULL;

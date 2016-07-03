@@ -349,7 +349,6 @@ ULONG ND_FetchNBEntry(ULONG ulIfnetIndex, IN6ADDR_S *pstIPv6Addr,
                                                 ND_NBENTRY_INFO_S *pstNBInfo);
 ULONG ND_GetNBEntryNum(ULONG *pulTotalNum, ULONG *pulTotalStaticNum);
 
-/*Added by guojianjun178934, 接口状态变化或physical地址变化主动发送通告NA报文, 2014/1/27   问题单号:S-IP-005-PUBLIC-FUNC-003 */
 /*******************************************************************************
 *    Func Name: ND_SetNAAttempts
 * Date Created: 2014-02-07
@@ -430,7 +429,6 @@ ULONG ND_SetNAInterval(CHAR *szIfName, ULONG ulValue,
 *
 *******************************************************************************/
 ULONG ND_GetNAInterval(CHAR *szIfName, ULONG *pulRetVal);
-/* End of Added by guojianjun178934, 2014/2/7   问题单号:S-IP-005-PUBLIC-FUNC-003 */
 
 /*******************************************************************************
 *    Func Name: TCPIP_OpenNDTable
@@ -593,214 +591,37 @@ ULONG TCPIP_GetIfNDInfo(ULONG ulIfIndex, TCPIP_IF_NDINFO_S *pstIfNDInfo);
 *******************************************************************************/
 VOID TCPIP_IfND_Display(CHAR *pcIfName);
 
-/*******************************************************************************
-*    Func Name: TCPIP_NDMiss
-* Date Created: 2014-04-22
-*       Author: wuling 00201943
-*  Description: ND MISS的时候根据目的地址触发地址解析
-*源地址选择规则：
-*1、如果目的地址是linklocal地址，源地址=当前接口的linklocal地址，没有linklocal地址填全0地址
-*2、如果目的地址是golbal地址，源地址=1）当前接口最长匹配的gloabal地址
-*                                  2）如果没有选到前缀匹配的地址，则随机选一个gloabal地址
-*                                  3）如果当前接口没有gloabal地址，则选择接口的linklocal地址，没有linklocal地址，填全0地址
-*
-*  Input: ULONG ulIfIndex:接口索引
-*         IN6ADDR_S *pstIP6Addr:ND MISS的目的地址
-*  Return: 
-*  Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-04-22   wuling 00201943         Create
-*
-*******************************************************************************/
+
 ULONG TCPIP_NDMiss(ULONG ulIfIndex, IN6ADDR_S *pstIP6Addr);
 
-/*******************************************************************************
-*    Func Name: ND_SendAdvertiseNAByIf
-* Date Created: 2014-05-27
-*       Author: wuling 00201943
-*  Description: 发送免费NA报文
-*        Input: ULONG ulIfIndex:接口索引
-*               IN6ADDR_S *pstDstAddr:目的地址
-*               UCHAR *pucMac:physical地址
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-05-27   wuling 00201943         Create
-*
-*******************************************************************************/
+
 ULONG ND_SendAdvertiseNAByIf(ULONG ulIfIndex, IN6ADDR_S *pstDstAddr, UCHAR *pucMac);
 
-/*******************************************************************************
-*    Func Name: ND_GetReachableTimeByIndex
-* Date Created: 2014-07-23
-*       Author: wuling 00201943
-*  Description: 获取接口的ND reachable老化时间
-*  Input:    ULONG ulIfIndex:接口索引
-*  Output:  ULONG *pulRetVal:接口的ND reachable老化时间
-*  Return: VOS_OK:查询成功
-*             其他:查询失败
-*  Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-07-23   wuling 00201943         Create
-*
-*******************************************************************************/
+
 ULONG ND_GetReachableTimeByIndex(ULONG ulIfIndex, ULONG *pulRetVal);
 
-/*******************************************************************************
-*    Func Name: ND_GetDADAttemptsByIndex
-* Date Created: 2014-07-23
-*       Author: wuling 00201943
-*  Description: 获取接口的DAD探测次数
-*  Input:    ULONG ulIfIndex:接口索引
-*  Output:  ULONG *pulRetVal:接口的DAD探测次数
-*  Return: VOS_OK:查询成功
-*             其他:查询失败
-*  Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE            NAME                         DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-07-23   wuling 00201943         Create
-*
-*******************************************************************************/
+
 ULONG ND_GetDADAttemptsByIndex(ULONG ulIfIndex, ULONG *pulRetVal);
 
-/*******************************************************************************
-*    Func Name: ND_SetDADAttemptsByIndex
-* Date Created: 2014-08-01
-*       Author: wuling 00201943
-*  Description: 设置接口的DAD探测次数
-*  Input:    ULONG ulIfIndex:接口索引
-*              ULONG ulValue   :DAD探测次数
-*              IP6_ND_SETFLAG_E enFlag:操作类型
-*  Output:  
-*  Return: VOS_OK:成功
-*             其他:失败
-*  Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE            NAME                         DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-08-01   wuling 00201943         Create for DTS2014101506272
-*
-*******************************************************************************/
+
 ULONG ND_SetDADAttemptsByIndex(ULONG ulIfIndex, ULONG ulValue,
                                             IP6_ND_SETFLAG_E enFlag);
 
-/*******************************************************************************
-*    Func Name: ND_SetReachableTime_RouterByIndex
-* Date Created: 2014-08-01
-*       Author: wuling 00201943
-*  Description: 设置接口的ND reachable时间
-*  Input:    ULONG ulIfIndex:接口索引
-*              ULONG ulValue   :ND reachable时间
-*              IP6_ND_SETFLAG_E enFlag:操作类型
-*  Output:  
-*  Return: VOS_OK:成功
-*             其他:失败
-*  Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE            NAME                         DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-08-01   wuling 00201943         Create for DTS2014101506272
-*
-*******************************************************************************/
+
 ULONG ND_SetReachableTime_RouterByIndex(ULONG ulIfIndex, ULONG ulValue,
                                 IP6_ND_SETFLAG_E enFlag);
 
-/*******************************************************************************
-*    Func Name: ND_GetNSInterval_RouterByIndex
-* Date Created: 2014-08-01
-*       Author: wuling 00201943
-*  Description: 获取接口的NS探测间隔
-*  Input:    ULONG ulIfIndex:接口索引
-*  Output:  ULONG *pulRetVal:NS探测间隔
-*  Return: VOS_OK:成功
-*             其他:失败
-*  Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE            NAME                         DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-08-01   wuling 00201943         Create for DTS2014101506272
-*
-*******************************************************************************/
+
 ULONG ND_GetNSInterval_RouterByIndex(ULONG ulIfIndex, ULONG *pulRetVal);
 
-/*******************************************************************************
-*    Func Name: ND_SetNSInterval_RouterByIndex
-* Date Created: 2014-08-01
-*       Author: wuling 00201943
-*  Description: 设置接口的NS探测间隔
-*  Input:    ULONG ulIfIndex:接口索引
-*              ULONG ulValue   :NS探测间隔
-*              IP6_ND_SETFLAG_E enFlag:操作类型
-*  Output:  
-*  Return: VOS_OK:成功
-*             其他:失败
-*  Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE            NAME                         DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-08-01   wuling 00201943         Create for DTS2014101506272
-*
-*******************************************************************************/
+
 ULONG ND_SetNSInterval_RouterByIndex(ULONG ulIfIndex, ULONG ulValue,
                                                IP6_ND_SETFLAG_E enFlag);
 
-/*******************************************************************************
-*    Func Name: ND_DelStaticNBEntryByIndex
-* Date Created: 2014-08-01
-*       Author: wuling 00201943
-*  Description:删除指定接口+地址的静态ND表项
-*  Input:    ULONG ulIfIndex:接口索引
-*              CHAR *szIp6Addr:目的IPv6地址
-*  Output:  
-*  Return: VOS_OK:成功
-*             其他:失败
-*  Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE            NAME                         DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-08-01   wuling 00201943         Create for DTS2014101506272
-*
-*******************************************************************************/
+
 ULONG ND_DelStaticNBEntryByIndex(ULONG ulIfIndex, CHAR *szIp6Addr);
 
-/*******************************************************************************
-*    Func Name: ND_AddStaticNBEntry_VlanByIndex
-* Date Created: 2014-08-01
-*       Author: wuling 00201943
-*  Description: 配置静态ND表项
-*  Input:    ULONG ulIfIndex:接口索引
-*              CHAR *pcIp6Addr:目的地址
-*              UCHAR *pucMac :目的physical地址
-*              USHORT usVlanId:Vlan ID
-*              ULONG ulPortIndex:二层口索引
-*  Output:  
-*  Return: VOS_OK:成功
-*             其他:失败
-*  Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE            NAME                         DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-08-01   wuling 00201943         Create for DTS2014101506272
-*
-*******************************************************************************/
+
 ULONG ND_AddStaticNBEntry_VlanByIndex(ULONG ulIfIndex, CHAR *pcIp6Addr, UCHAR *pucMac,
                                         USHORT usVlanId, ULONG ulPortIndex);
 

@@ -999,6 +999,60 @@ ssize_t panel_next_lcd_dynamic_sram_checksum_store(struct platform_device *pdev,
 	return ret;
 }
 
+ssize_t panel_next_lcd_ic_color_enhancement_mode_show(struct platform_device *pdev, char *buf)
+{
+	ssize_t ret = 0;
+	struct hisi_fb_panel_data *pdata = NULL;
+	struct hisi_fb_panel_data *next_pdata = NULL;
+	struct platform_device *next_pdev = NULL;
+
+	if (NULL == pdev) {
+		HISI_FB_ERR("NULL Pointer!\n");
+		return 0;
+	}
+	pdata = dev_get_platdata(&pdev->dev);
+	if (NULL == pdata) {
+		HISI_FB_ERR("NULL Pointer!\n");
+		return 0;
+	}
+
+	next_pdev = pdata->next;
+	if (next_pdev) {
+		next_pdata = dev_get_platdata(&next_pdev->dev);
+		if ((next_pdata) && (next_pdata->lcd_ic_color_enhancement_mode_show))
+			ret = next_pdata->lcd_ic_color_enhancement_mode_show(next_pdev, buf);
+	}
+
+	return ret;
+}
+
+ssize_t panel_next_lcd_ic_color_enhancement_mode_store(struct platform_device *pdev,
+	const char *buf, size_t count)
+{
+	ssize_t ret = 0;
+	struct hisi_fb_panel_data *pdata = NULL;
+	struct hisi_fb_panel_data *next_pdata = NULL;
+	struct platform_device *next_pdev = NULL;
+
+	if (NULL == pdev) {
+		HISI_FB_ERR("NULL Pointer!\n");
+		return 0;
+	}
+	pdata = dev_get_platdata(&pdev->dev);
+	if (NULL == pdata) {
+		HISI_FB_ERR("NULL Pointer!\n");
+		return 0;
+	}
+
+	next_pdev = pdata->next;
+	if (next_pdev) {
+		next_pdata = dev_get_platdata(&next_pdev->dev);
+		if ((next_pdata) && (next_pdata->lcd_ic_color_enhancement_mode_store))
+			ret = next_pdata->lcd_ic_color_enhancement_mode_store(next_pdev, buf, count);
+	}
+
+	return ret;
+}
 
 ssize_t panel_next_lcd_voltage_enable_store(struct platform_device *pdev, const char *buf, size_t count)
 {
@@ -1272,6 +1326,73 @@ ssize_t panel_next_lcd_hbm_ctrl_show(struct platform_device *pdev, char *buf)
 		next_pdata = dev_get_platdata(&next_pdev->dev);
 		if ((next_pdata) && (next_pdata->lcd_hbm_ctrl_show))
 			ret = next_pdata->lcd_hbm_ctrl_show(next_pdev, buf);
+	}
+
+	return ret;
+}
+
+ssize_t panel_next_lcd_amoled_vr_mode_store(struct platform_device *pdev,
+	const char *buf, size_t count)
+{
+	ssize_t ret = 0;
+	struct hisi_fb_panel_data *pdata = NULL;
+	struct hisi_fb_panel_data *next_pdata = NULL;
+	struct platform_device *next_pdev = NULL;
+
+	if (NULL == pdev) {
+		HISI_FB_ERR("NULL Pointer!\n");
+		return -EINVAL;
+	}
+
+	if (NULL == buf) {
+		HISI_FB_ERR("NULL Pointer!\n");
+		return -EINVAL;
+	}
+
+	pdata = dev_get_platdata(&pdev->dev);
+	if (NULL == pdata) {
+		HISI_FB_ERR("NULL Pointer!\n");
+		return -EINVAL;
+	}
+
+	next_pdev = pdata->next;
+	if (next_pdev) {
+		next_pdata = dev_get_platdata(&next_pdev->dev);
+		if ((next_pdata) && (next_pdata->lcd_amoled_vr_mode_store))
+			ret = next_pdata->lcd_amoled_vr_mode_store(next_pdev, buf, count);
+	}
+
+	return ret;
+}
+
+ssize_t panel_next_lcd_amoled_vr_mode_show(struct platform_device *pdev, char *buf)
+{
+	ssize_t ret = 0;
+	struct hisi_fb_panel_data *pdata = NULL;
+	struct hisi_fb_panel_data *next_pdata = NULL;
+	struct platform_device *next_pdev = NULL;
+
+	if (NULL == pdev) {
+		HISI_FB_ERR("NULL Pointer!\n");
+		return -EINVAL;
+	}
+
+	if (NULL == buf) {
+		HISI_FB_ERR("NULL Pointer!\n");
+		return -EINVAL;
+	}
+
+	pdata = dev_get_platdata(&pdev->dev);
+	if (NULL == pdata) {
+		HISI_FB_ERR("NULL Pointer!\n");
+		return -EINVAL;
+	}
+
+	next_pdev = pdata->next;
+	if (next_pdev) {
+		next_pdata = dev_get_platdata(&next_pdev->dev);
+		if ((next_pdata) && (next_pdata->lcd_amoled_vr_mode_show))
+			ret = next_pdata->lcd_amoled_vr_mode_show(next_pdev, buf);
 	}
 
 	return ret;
@@ -1750,6 +1871,7 @@ void panel_check_status_and_report_by_dsm(struct lcd_reg_read_t *lcd_status_reg,
 	int dsm_error_found = 0, dsm_client_ready = 0;
 	u32 pkg_status = 0, try_times = 100, i = 0;
 	struct dsi_cmd_desc packet_size_set_cmd = {DTYPE_MAX_PKTSIZE, 0, 10, WAIT_TYPE_US, 1, NULL};
+	bool for_debug = false;
 
 	if (!dsm_client_ocuppy(lcd_dclient)) {
 		dsm_client_ready = 1;
@@ -1764,6 +1886,12 @@ void panel_check_status_and_report_by_dsm(struct lcd_reg_read_t *lcd_status_reg,
 		reg_name = lcd_status_reg[i].reg_name;
 		expected_value = lcd_status_reg[i].expected_value;
 		read_mask = lcd_status_reg[i].read_mask;
+		for_debug = lcd_status_reg[i].for_debug;
+
+		/* Do not read debug register to avoid lcd light delay */
+		if (for_debug) {
+			continue;
+		}
 
 		/*Send MIPI read command, and wait the return value no longer than 100*30us*/
 		try_times = 100;
@@ -1809,6 +1937,36 @@ void panel_check_status_and_report_by_dsm(struct lcd_reg_read_t *lcd_status_reg,
 
 	/*Report error to Device Status Monitor*/
 	if (dsm_error_found > 0) {
+		for (i = 0; i < cnt; i++) {
+			reg_addr = lcd_status_reg[i].reg_addr;
+			for_debug = lcd_status_reg[i].for_debug;
+			expected_value = lcd_status_reg[i].expected_value;
+
+			/* Do not read status registers because already read them just now */
+			if (!for_debug) {
+				continue;
+			}
+
+			/*Send MIPI read command, and wait the return value no longer than 100*30us*/
+			try_times = 100;
+			outp32(mipi_dsi0_base + MIPIDSI_GEN_HDR_OFFSET, reg_addr << 8 | 0x06);
+			udelay(20);
+			do {
+				pkg_status = inp32(mipi_dsi0_base + MIPIDSI_CMD_PKT_STATUS_OFFSET);
+				if (!(pkg_status & 0x10)) {
+					break;
+				}
+				udelay(30);
+			} while (--try_times);
+
+			/* dump the register which you want to read for debug */
+			read_value = inp32(mipi_dsi0_base + MIPIDSI_GEN_PLD_DATA_OFFSET);
+
+			if (dsm_client_ready) {
+				dsm_client_record(lcd_dclient,"Read 0x%X = 0x%x expect_value = 0x%x\n",
+												reg_addr,read_value,expected_value);
+			}
+		}
 		dsm_client_notify(lcd_dclient, DSM_LCD_STATUS_ERROR_NO);
 	}
 

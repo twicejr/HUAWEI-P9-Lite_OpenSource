@@ -83,15 +83,7 @@ enum IMSA_ERR_LOG_MSG_TYPE_ENUM
 };
 typedef VOS_UINT32    IMSA_ERR_LOG_MSG_TYPE_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : IMSA_ERR_LOG_ALARM_TYPE_ENUM_UINT16
- 枚举说明  : 商用告警类型枚举定义
- 修改历史  :
 
- 1.日    期    : 2015年01月5日
-   作    者    : W00209181
-   修改内容    : 新建枚举类型
-*****************************************************************************/
 enum IMSA_ERR_LOG_ALARM_TYPE_ENUM
 {
     IMSA_ERR_LOG_ALARM_TYPE_COMMUNICATION               = 0x01,         /* 表示通信 */
@@ -280,15 +272,7 @@ enum IMSA_ERR_LOG_REG_FAIL_REASON_ENUM
 };
 typedef VOS_UINT8  IMSA_ERR_LOG_REG_FAIL_REASON_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名称: IMSA_ERR_LOG_PDNREJ_CAUSE_ENUM
- 枚举说明: PDN建链被拒原因值
 
- 修改历史      :
-  1.日    期   : 2015年01月06日
-    作    者   : w00209181
-    修改内容   : 新增枚举
-*****************************************************************************/
 enum IMSA_ERR_LOG_PDNREJ_CAUSE_ENUM
 {
     /* IMSA内部错误 */
@@ -385,15 +369,7 @@ enum    IMSA_ERR_LOG_CAMPED_RAT_TYPE_ENUM
 };
 typedef VOS_UINT8 IMSA_ERR_LOG_CAMPED_RAT_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名称: IMSA_ERR_LOG_NORM_PDNREJ_CAUSE_ENUM_UINT32
- 枚举说明: PDN建链被拒原因值
 
- 修改历史      :
-  1.日    期   : 2015年01月06日
-    作    者   : w00209181
-    修改内容   : 新增枚举
-*****************************************************************************/
 enum IMSA_ERR_LOG_NORM_PDNREJ_CAUSE_ENUM
 {
     /* IMSA内部错误 */
@@ -414,15 +390,7 @@ enum IMSA_ERR_LOG_NORM_PDNREJ_CAUSE_ENUM
 };
 typedef VOS_UINT32 IMSA_ERR_LOG_NORM_PDNREJ_CAUSE_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名称: IMSA_ERR_LOG_PDN_CONN_NW_REJ_CAUSE_ENUM
- 枚举说明: PDN建链被网侧拒原因值
 
- 修改历史      :
-  1.日    期   : 2015年07月31日
-    作    者   : w00209181
-    修改内容   : 新增枚举
-*****************************************************************************/
 enum IMSA_ERR_LOG_PDN_CONN_NW_REJ_CAUSE_ENUM
 {
     IMSA_ERR_LOG_PDN_CONN_NW_REJ_CAUSE_NONE                                 = 0,

@@ -1,17 +1,4 @@
-/******************************************************************************
 
-        @(#)Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File Name       : NasLmmPubMOsa.h
-    Description     : NasLmmPubMOsa.c header file
-    History         :
-      1.  hanlufeng 41410  2009-03-11  BA8D01164 NAS_LMM_LOG 视为对PRINTF的
-          适配，放在OSA文件中定义，避免对NasLmmPubMOm.h的包含；
-          并增加MM ASSERT的定义
-      2.  z00148421    2011-05-28   文件名由 NasMmPubMOsa.h修改为
-                                    NasLmmPubMOsa.h
-******************************************************************************/
 
 #ifndef __NASLMMPUBMOSA_H__
 #define __NASLMMPUBMOSA_H__
@@ -96,7 +83,6 @@ extern "C" {
 
 #define NAS_LMM_LOG_INFO(SubModId, String)            LPS_LOG(UE_MODULE_MM_ID, SubModId, NAS_LOG_LEVEL_INFO, String)
 #define NAS_LMM_LOG_NORM(SubModId, String)            LPS_LOG(UE_MODULE_MM_ID, SubModId, NAS_LOG_LEVEL_NORMAL, String)
-/* leixiantiao 00258641 EMM 添加可维可测 begin */
 #define NAS_LMM_LOG_WARN(SubModId, String) \
     {\
         LPS_LOG(UE_MODULE_MM_ID, SubModId, NAS_LOG_LEVEL_WARNING, String);\
@@ -146,7 +132,6 @@ extern "C" {
         LPS_LOG3(UE_MODULE_MM_ID, SubModId, NAS_LOG_LEVEL_ERROR,   String, (long)Para1, (long)Para2, (long)Para3); \
         NAS_LMM_SndDebugInfoInd(THIS_NAS_FILE_ID, __LINE__, (VOS_UINT16)Para1, (VOS_UINT16)Para2, (VOS_UINT16)Para3, VOS_NULL_PTR); \
     }
-/* leixiantiao 00258641 EMM 添加可维可测 end */
 
 #endif
 

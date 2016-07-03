@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasXregMain.c
-  版 本 号   : 初稿
-  作    者   : y00245242
-  生成日期   : 2014年06月27日
-  功能描述   : 1X REG(register)任务初始化，任务入口函数处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年06月27日
-    作    者   : y00245242
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -35,9 +20,7 @@
 #endif
 #include  "NVIM_Interface.h"
 
-/* Added by wx270776 for OM融合, 2015-7-25, begin */
 #include "NasNvInterface.h"
-/* Added by wx270776 for OM融合, 2015-7-25, end */
 
 #include "CnasXregMntn.h"
 
@@ -82,58 +65,19 @@ CNAS_XREG_DBG_STAT_STRU                 g_stCnasXregDbgStat = {0};
 *****************************************************************************/
 /*lint -save -e958*/
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_GetRegStateAddr
- 功能描述  : 获取注册状态全局变量地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月27日
-    作    者   : ganlan
-    修改内容   : 新生成函数
-*****************************************************************************/
 CNAS_XREG_REGSTATE_STRU* CNAS_XREG_GetRegStateAddr(VOS_VOID)
 {
     return &g_stCnasXregStateInfo;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_GetSysMsgAddr
- 功能描述  : 系统消息处理函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月27日
-    作    者   : ganlan
-    修改内容   : 新生成函数
-*****************************************************************************/
 CNAS_XREG_SYS_MSG_CONTENT_STRU* CNAS_XREG_GetSysMsgAddr(VOS_VOID)
 {
     return &g_stCnasXregSysMsgCont;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_SquareRoot
- 功能描述  : 计算平方根的函数，源于Quack 3代码库
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月27日
-    作    者   : zhuli
-    修改内容   : 新生成函数
-*****************************************************************************/
 
 VOS_UINT32 CNAS_XREG_SquareRoot(VOS_UINT32 ulNumber)
 {
@@ -167,23 +111,7 @@ VOS_UINT32 CNAS_XREG_SquareRoot(VOS_UINT32 ulNumber)
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_CalcDistance
- 功能描述  : 计算距离的函数
- 输入参数  : ulOldLat: Old value of lat
-             ulNewLat: New value of lat
-             ulOldLong: Old value of long
-             ulNewLong: new value of long
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月27日
-    作    者   : ganlan
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XREG_CalcDistance(
     VOS_INT32                           lOldLat,
     VOS_INT32                           lOldLong,
@@ -248,21 +176,7 @@ VOS_UINT32 CNAS_XREG_CalcDistance(
     return ulDist;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_StartTime
- 功能描述  : 打开XREG模块使用的定时器
- 输入参数  : ulTimerId:定时器ID
-             ulTimerLen: 定时器时长
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月27日
-    作    者   : zhuli
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XREG_StartTime(VOS_UINT32 ulTimerId, VOS_UINT32 ulTimerLen)
 {
     CNAS_TIMER_INFO_STRU                stTimerInfo;
@@ -277,24 +191,7 @@ VOS_VOID CNAS_XREG_StartTime(VOS_UINT32 ulTimerId, VOS_UINT32 ulTimerLen)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_SetRegEnabled
- 功能描述  : 判断漫游状态以及自注册是否使能
- 输入参数  : usSid         -- system id
-             usNid         -- network id
-             ucHomeReg     -- Home注册指示
-             ucSidRoamReg  -- SidHome注册指示
-             ucNidRoamReg  -- NidHome注册指示
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月27日
-    作    者   : ganlan
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XREG_SetRegEnabled(VOS_UINT16 usSid,
                                               VOS_UINT16 usNid,
                                               VOS_UINT8  ucHomeReg,
@@ -370,20 +267,7 @@ VOS_VOID CNAS_XREG_SetRegEnabled(VOS_UINT16 usSid,
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_RegSuccProc
- 功能描述  : 注册成功处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月27日
-    作    者   : ganlan
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XREG_RegSuccProc(VOS_VOID)
 {
 
@@ -489,20 +373,7 @@ VOS_VOID CNAS_XREG_RegSuccProc(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_RegFailProc
- 功能描述  : 注册失败处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月27日
-    作    者   : g002563031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XREG_RegFailProc(VOS_VOID)
 {
     
@@ -537,20 +408,7 @@ VOS_VOID CNAS_XREG_RegFailProc(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_MobTermSet
- 功能描述  : 设置(MOB_TERMs)指示
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月27日
-    作    者   : 甘兰
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XREG_MobTermSet(VOS_UINT16 usSid, VOS_UINT16 usNid)
 {
     CNAS_XREG_ROAMING_STATE_UINT8       enRoamingState;
@@ -600,45 +458,10 @@ VOS_VOID CNAS_XREG_MobTermSet(VOS_UINT16 usSid, VOS_UINT16 usNid)
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_MSRMProc
- 功能描述  : 处理CAS消息中的基站位置信息等内容
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月27日
-    作    者   : 甘兰
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XREG_MSRMProc(CNAS_XREG_MSRM_STRU *pstMsrm)
 {
-/*
-The mobile station shall perform the following actions:
-   1、If the mobile station supports the 800 MHz analog mode, set the First-Idle ID status to enabled (see [6]).
-   2、Set DIGITAL_REGs-p to '00000001'.
-   3、Add REG_ZONEs, SIDs, and NIDs to ZONE_LISTs if not already in the list. If required,
-      include the band class identifier and block identifier for the current band and frequency block as specified in 2.6.5.1.5.
-   4、Delete all entries from ZONE_LISTs belonging to a different band class (see 2.1.1.1 of [2]) than CDMABANDs.
-   5、Disable the zone list entry timer for the entry of ZONE_LISTs containing REG_ZONEs, SIDs, and NIDs. For any other entry of ZONE_LISTs whose entry timer
-      is not active, enable the entry timer with the duration specified by ZONE_TIMERs (see 2.6.5.1.5).
-   6、If ZONE_LISTs contains more than TOTAL_ZONESs entries, delete the excess entries according to the rules specified in 2.6.5.1.5.
-   7、Delete all entries from SID_NID_LISTs belonging to a different band class (see [2]) than CDMABANDs.
-   8、Add SIDs and NIDs to 1 SID_NID_LISTs if not already in the list. If required, include the band class identifier
-      and block identifier for the current band and frequency block as specified in 2.6.5.1.5.
-   9、Disable the SID/NID list entry timer for the entry of SID_NID_LISTs containing SIDs, and NIDs.
-      For any other entry of SID_NID_LISTs whose entry timer is not active, enable the entry timer with the duration specified in 2.6.5.1.5.
-  10、If SID_NID_LISTs contains more than N10m entries, delete the excess entries according to the rules specified in 2.6.5.1.5.
-  11、If MULT_SIDSs is equal to '0' and SID_NID_LIST contains entries with different SIDs, delete the excess entries according to the rules specified in 2.6.5.1.5.
-  12、If MULT_NIDSs is equal to '0' and SID_NID_LIST contains more than one entry for any SID, delete the excess entries according to the rules specified in 2.6.5.1.5.
-  13、Set the stored location of last registration (BASE_LAT_REGs-p and BASE_LONG-_REGs-p) to the base station’s location (BASE_LATs and BASE_LONGs).
-      Set thestored registration distance (REG_DIST_REGs-p) to the base station’s registration distance (REG_DISTs).
-  14、Update its roaming status and set MOB_TERMs as specified in 2.6.5.3. The mobile station should indicate to the user whether the mobile station is roaming.
 
-*/
     XSD_XREG_SYS_INFO_STRU             *pstSysInfo;
 
     /* 记录注册结果 */
@@ -705,20 +528,7 @@ The mobile station shall perform the following actions:
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_ORDMCheck
- 功能描述  : 判断CAS消息中参数
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月27日
-    作    者   : 甘兰
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XREG_ORDMCheck(CNAS_XREG_ORDM_STRU *pstOrdm)
 {
     /* Registration Request Order */
@@ -730,20 +540,7 @@ VOS_UINT32 CNAS_XREG_ORDMCheck(CNAS_XREG_ORDM_STRU *pstOrdm)
     return VOS_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_GetCountMax
- 功能描述  : 获取周期定时器的最大时长
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月27日
-    作    者   : 甘兰
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XREG_GetCountMax(VOS_UINT8 ucRegPeriod)
 {
     if ((CNAS_XREG_MIN_REG_PRD <= ucRegPeriod) && (CNAS_XREG_MAX_REG_PRD >= ucRegPeriod))
@@ -755,20 +552,7 @@ VOS_UINT32 CNAS_XREG_GetCountMax(VOS_UINT8 ucRegPeriod)
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_RegTimerStart
- 功能描述  : 启动周期性注册定时器
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月27日
-    作    者   : zhuli
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XREG_RegTimerStart(XSD_XREG_SYS_INFO_STRU *pstSysInfo,
                                              CNAS_XREG_REGSTATE_STRU  *pstSysState)
 {
@@ -817,20 +601,7 @@ VOS_VOID CNAS_XREG_RegTimerStart(XSD_XREG_SYS_INFO_STRU *pstSysInfo,
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_RegTimerStop
- 功能描述  : 周期注册定时器停止
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月27日
-    作    者   : ganlan
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XREG_RegTimerStop(VOS_VOID)
 {
     CNAS_StopTimer(UEPS_PID_XREG, TI_CNAS_XREG_TIMER_PERIOD_REG, 0);
@@ -840,20 +611,7 @@ VOS_VOID CNAS_XREG_RegTimerStop(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_RegTimerRefresh
- 功能描述  : 周期注册定时器时长刷新
- 输入参数  : ucRegPeriod -- 系统消息中的PEG_PRDs
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月27日
-    作    者   : 甘兰
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XREG_RegTimerRefresh(VOS_UINT8 ucRegPeriod)
 {
     VOS_UINT32                          ulCountMax;
@@ -926,20 +684,7 @@ VOS_VOID CNAS_XREG_RegTimerRefresh(VOS_UINT8 ucRegPeriod)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_PowerUpCheck
- 功能描述  : 可否进行开机注册的检查
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月27日
-    作    者   : 祝锂
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_BOOL CNAS_XREG_PowerUpCheck(CNAS_XREG_SYS_MSG_CONTENT_STRU   *pstSysInfoSave,
                                                 CNAS_XREG_REGSTATE_STRU         *pstSysState)
 {
@@ -958,20 +703,7 @@ VOS_BOOL CNAS_XREG_PowerUpCheck(CNAS_XREG_SYS_MSG_CONTENT_STRU   *pstSysInfoSave
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_PowerUpParaCheck
- 功能描述  : 是否由于参数改变引起开机注册检查
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月27日
-    作    者   : 祝锂
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_BOOL CNAS_XREG_PowerUpParaCheck(CNAS_XREG_SYS_MSG_CONTENT_STRU   *pstSysInfoSave,
                                                     CNAS_XREG_REGSTATE_STRU          *pstSysState)
 {
@@ -993,20 +725,7 @@ VOS_BOOL CNAS_XREG_PowerUpParaCheck(CNAS_XREG_SYS_MSG_CONTENT_STRU   *pstSysInfo
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_TimerBaseCheck
- 功能描述  : 是否可以进行周期注册检查
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月27日
-    作    者   : 祝锂
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_BOOL CNAS_XREG_TimerBaseCheck(CNAS_XREG_REGSTATE_STRU  *pstSysState)
 {
     /*PARAMETER_REG  is equal to 1; and
@@ -1022,20 +741,7 @@ VOS_BOOL CNAS_XREG_TimerBaseCheck(CNAS_XREG_REGSTATE_STRU  *pstSysState)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_PowerDownCheck
- 功能描述  : 关机注册检查
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月27日
-    作    者   : 祝锂
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_BOOL CNAS_XREG_PowerDownCheck(VOS_VOID)
 {
 
@@ -1060,20 +766,7 @@ VOS_BOOL CNAS_XREG_PowerDownCheck(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_DistanceCheck
- 功能描述  : 是否超出基站距离检查
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月27日
-    作    者   :
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_BOOL CNAS_XREG_DistanceCheck(CNAS_XREG_SYS_MSG_CONTENT_STRU   *pstSysInfoSave,
                                             CNAS_XREG_REGSTATE_STRU         *pstSysState)
 {
@@ -1094,20 +787,7 @@ VOS_BOOL CNAS_XREG_DistanceCheck(CNAS_XREG_SYS_MSG_CONTENT_STRU   *pstSysInfoSav
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_ZoneCheck
- 功能描述  : 区域注册检查
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月27日
-    作    者   :
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_BOOL CNAS_XREG_ZoneCheck(CNAS_XREG_SYS_MSG_CONTENT_STRU   *pstSysInfoSave,
                                         CNAS_XREG_REGSTATE_STRU         *pstSysState)
 {
@@ -1129,20 +809,7 @@ VOS_BOOL CNAS_XREG_ZoneCheck(CNAS_XREG_SYS_MSG_CONTENT_STRU   *pstSysInfoSave,
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_SciParaCheck
- 功能描述  : SCI参数变更注册检查
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月24日
-    作    者   :
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_BOOL CNAS_XREG_SciParaCheck(VOS_VOID)
 {
     VOS_UINT8                               ucCardSci;
@@ -1159,20 +826,7 @@ VOS_BOOL CNAS_XREG_SciParaCheck(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_TermParaCheck
- 功能描述  : TERM参数变更注册检查
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月03日
-    作    者   :
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_BOOL CNAS_XREG_TermParaCheck(VOS_VOID)
 {
     CNAS_NVIM_1X_MOB_TERM_STRU          stTermNv;
@@ -1201,20 +855,7 @@ VOS_BOOL CNAS_XREG_TermParaCheck(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_ParaCheck
- 功能描述  : 参数变更注册检查
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月27日
-    作    者   :
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_BOOL CNAS_XREG_ParaCheck(CNAS_XREG_SYS_MSG_CONTENT_STRU   *pstSysInfoSave,
                                         CNAS_XREG_REGSTATE_STRU          *pstSysState)
 {
@@ -1258,58 +899,19 @@ VOS_BOOL CNAS_XREG_ParaCheck(CNAS_XREG_SYS_MSG_CONTENT_STRU   *pstSysInfoSave,
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_UserZoneCheck
- 功能描述  : 用户区域注册检查
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月27日
-    作    者   :
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_BOOL CNAS_XREG_UserZoneCheck(CNAS_XREG_REGSTATE_STRU  *pstSysState)
 {
     return VOS_FALSE;   /*本地迭代不实现*/
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_EncryptCheck
- 功能描述  : 加密能力变化注册检查
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月27日
-    作    者   :
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_BOOL CNAS_XREG_EncryptCheck(CNAS_XREG_REGSTATE_STRU  *pstSysState)
 {
     return VOS_FALSE;   /*本地迭代不实现*/
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_IdleRegCheck
- 功能描述  : 系统自动注册类型检查
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月27日
-    作    者   : 祝锂
-    修改内容   : 新生成函数
-*****************************************************************************/
 CAS_CNAS_1X_REGISTRATION_TYPE_ENUM_UINT8 CNAS_XREG_IdleRegCheck(VOS_VOID)
 {
     VOS_UINT32      ulResult;
@@ -1372,20 +974,7 @@ CAS_CNAS_1X_REGISTRATION_TYPE_ENUM_UINT8 CNAS_XREG_IdleRegCheck(VOS_VOID)
     return CAS_CNAS_1X_REGISTRATION_TYPE_BUTT;
 }
 
-/*****************************************************************************
- 函 数 名  : CAS_XREG_GetTrueCodeByComplementCode
- 功能描述  : 补码转换成原码
- 输入参数  : VOS_UINT32 ulCompCode,VOS_UINT8 ucCompLende
- 输出参数  : 无
- 返 回 值  : VOS_INT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月18日
-    作    者   : g00256031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CAS_XREG_GetTrueCodeByComplementCode(
     VOS_INT32                          *plTrueCode,
     VOS_UINT32                          ulCompCode,
@@ -1422,20 +1011,7 @@ VOS_VOID CAS_XREG_GetTrueCodeByComplementCode(
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_DSCHDataTrans
- 功能描述  : CAS发送的DSCH数据转换
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月27日
-    作    者   : 甘兰
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XREG_DSCHDataTrans(CAS_CNAS_1X_DSCH_DATA_IND_STRU *pstDschData)
 {
     CS0005E_Details                     stCS0005Detail;
@@ -1486,20 +1062,7 @@ VOS_UINT32 CNAS_XREG_DSCHDataTrans(CAS_CNAS_1X_DSCH_DATA_IND_STRU *pstDschData)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_CSCHDataTrans
- 功能描述  : CAS发送的cSCH数据转换
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月27日
-    作    者   :
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XREG_CSCHDataTrans(CAS_CNAS_1X_CSCH_DATA_IND_STRU *pstCschData)
 {
     CS0005E_Details                     stCS0005Detail;
@@ -1548,20 +1111,7 @@ VOS_UINT32 CNAS_XREG_CSCHDataTrans(CAS_CNAS_1X_CSCH_DATA_IND_STRU *pstCschData)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_ClearGlobal
- 功能描述  : 全局变量清空
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月27日
-    作    者   : zhuli
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XREG_ClearGlobal(VOS_VOID)
 {
     VOS_MemSet(&g_stCnasXregStateInfo, 0, sizeof(g_stCnasXregStateInfo));
@@ -1584,20 +1134,7 @@ VOS_VOID CNAS_XREG_ClearGlobal(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_GlobalMntn
- 功能描述  : 全局变量可维可测消息
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月27日
-    作    者   : zhuli
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XREG_GlobalMntn(VOS_UINT32 ulMsgID,VOS_UINT32 ulEvent)
 {
     CNAS_XREG_MNTN_MSG_STRU     *pstMsg;
@@ -1625,20 +1162,7 @@ VOS_VOID CNAS_XREG_GlobalMntn(VOS_UINT32 ulMsgID,VOS_UINT32 ulEvent)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_BandFreqToBlkSys
- 功能描述  : 频段参数转换
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月27日
-    作    者   : ganlan
-    修改内容   : 新生成函数
-*****************************************************************************/
 CNAS_XREG_BLKSYS_ENUM_UINT8 CNAS_XREG_BandFreqToBlkSys(VOS_UINT16 usBandClass, VOS_UINT16 usFreq)
 {
     if (0 == usBandClass)
@@ -1693,20 +1217,7 @@ CNAS_XREG_BLKSYS_ENUM_UINT8 CNAS_XREG_BandFreqToBlkSys(VOS_UINT16 usBandClass, V
     return CNAS_XREG_BLKSYS_BUTT;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_RecordRegRslt
- 功能描述  : 记录注册结果
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月27日
-    作    者   : ganlan
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XREG_RecordRegRslt(CAS_CNAS_1X_REGISTRATION_TYPE_ENUM_UINT8 enRegType,
                                             CAS_CNAS_1X_EST_RSLT_ENUM_UINT8 enEstRslt)
 {
@@ -1724,20 +1235,7 @@ VOS_VOID CNAS_XREG_RecordRegRslt(CAS_CNAS_1X_REGISTRATION_TYPE_ENUM_UINT8 enRegT
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_RecordShow
- 功能描述  : 打印注册记录信息
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月27日
-    作    者   : ganlan
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XREG_RecordShow(VOS_VOID)
 {
     VOS_UINT32                          ulIndex;
@@ -1762,21 +1260,7 @@ VOS_VOID CNAS_XREG_RecordShow(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_SetPowerOffDeregFlg
- 功能描述  : 设置关机去注册标记
- 输入参数  : ucPowerOffDeregFlg------------------关机去注册标记
- 输出参数  : 无
- 返 回 值  : 物
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年10月18日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XREG_SetPowerOffDeregFlg(
     VOS_UINT8                           ucPowerOffDeregFlg
 )
@@ -1784,44 +1268,14 @@ VOS_VOID CNAS_XREG_SetPowerOffDeregFlg(
     g_stCnasXregStateInfo.ucPowerOffDeregFlg = ucPowerOffDeregFlg;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_GetPowerOffDeregFlg
- 功能描述  : 获取关机去注册标记
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年10月18日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 CNAS_XREG_GetPowerOffDeregFlg(VOS_VOID)
 {
     return g_stCnasXregStateInfo.ucPowerOffDeregFlg;
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_IsSetMobTerm
- 功能描述  : 保存被叫模式使能标记
- 输入参数  : VOS_UINT8                           ucMobTermForNid
-             VOS_UINT8                           ucMobTermForSid
-             VOS_UINT8                           ucMobTermHome
- 输出参数  : 无
- 返 回 值  : VOS_BOOL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年1月13日
-   作    者   : g00256031
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_BOOL CNAS_XREG_IsSetMobTerm(
     VOS_UINT8                           ucMobTermForNid,
     VOS_UINT8                           ucMobTermForSid,
@@ -1854,21 +1308,7 @@ VOS_BOOL CNAS_XREG_IsSetMobTerm(
     return bIsValueChange;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_SetCardSciValue
- 功能描述  : 保存卡中的SIC值
- 输入参数  : VOS_UINT8                           ucSciValue
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年1月13日
-   作    者   : g00256031
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XREG_SetCardSciValue(
     VOS_UINT8                           ucSciValue
 )
@@ -1878,41 +1318,13 @@ VOS_VOID CNAS_XREG_SetCardSciValue(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_GetCardSciValue
- 功能描述  : 获取卡中的SIC值
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT8                           ucSciValue
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年1月13日
-   作    者   : g00256031
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 CNAS_XREG_GetCardSciValue(VOS_VOID)
 {
     return g_stCnasXregHomeInfo.ucCardSci;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_SetLastSciValue
- 功能描述  : 保存上次使用的SIC值
- 输入参数  : VOS_UINT8                           ucSciValue
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年1月13日
-   作    者   : g00256031
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XREG_SetLastSciValue(
     VOS_UINT8                           ucSciValue
 )
@@ -1922,41 +1334,13 @@ VOS_VOID CNAS_XREG_SetLastSciValue(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_GetLastSciValue
- 功能描述  : 获取上次使用的SCI值
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年1月13日
-   作    者   : g00256031
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 CNAS_XREG_GetLastSciValue(VOS_VOID)
 {
     return g_stCnasXregHomeInfo.ucLastSci;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_CalcSciValue
- 功能描述  : 计算SCI值并发送给接入层
- 输入参数  : VOS_UINT8                           ucSciValue
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年1月13日
-   作    者   : g00256031
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XREG_CalcSciValue(VOS_VOID)
 {
     VOS_UINT8                           ucSciValue;
@@ -1994,25 +1378,7 @@ VOS_VOID CNAS_XREG_CalcSciValue(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_BlkSysChange
- 功能描述  : 判断系统是否发生变化
- 输入参数  : pstNewSysInfo
-             pstOldSysInfo
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年6月3日
-   作    者   : g00256031
-   修改内容   : 新生成函数
- 2.日    期   : 2015年07月13日
-   作    者   : m00312079
-   修改内容   : DTS2015063003186添加returnCause值的维护逻辑
-
-*****************************************************************************/
 VOS_VOID CNAS_XREG_BlkSysChange(
     XSD_XREG_SYS_INFO_STRU             *pstNewSysInfo,
     XSD_XREG_SYS_INFO_STRU             *pstOldSysInfo
@@ -2047,21 +1413,7 @@ VOS_VOID CNAS_XREG_BlkSysChange(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_EnableNoCardMode
- 功能描述  : 使能无卡注册模式
- 输入参数  : VOS_UINT8                           ucSciValue
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年1月13日
-   作    者   : g00256031
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XREG_EnableNoCardMode(VOS_VOID)
 {
     g_stCnasXregHomeInfo.ucNoCardMode = VOS_TRUE;
@@ -2069,40 +1421,13 @@ VOS_VOID CNAS_XREG_EnableNoCardMode(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_GetNoCardMode
- 功能描述  : 获取卡注册标记
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT8                           ucNoCardMode
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年1月13日
-   作    者   : g00256031
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 CNAS_XREG_GetNoCardMode(VOS_VOID)
 {
     return g_stCnasXregHomeInfo.ucNoCardMode;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_SetOmReportFlag
- 功能描述  : 开机过程中清除读取卡文件回复标记
- 输入参数  : 卡文件回复标记
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2015年01月05日
-    作    者   : g00256031
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID  CNAS_XREG_SetOmRegReportFlag(
     NAS_OM_REPORT_ACTION_ENUM_UINT8     enRptAction
 )
@@ -2112,43 +1437,13 @@ VOS_VOID  CNAS_XREG_SetOmRegReportFlag(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_GetOmReportFlag
- 功能描述  : 开机过程中清除读取卡文件回复标记
- 输入参数  : 卡文件回复标记
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2015年01月05日
-    作    者   : g00256031
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 NAS_OM_REPORT_ACTION_ENUM_UINT8  CNAS_XREG_GetOmRegReportFlag(VOS_VOID)
 {
     return g_enCnasXregRptAction;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_ProcCardReadFileCnf_EF_TERM
- 功能描述  : 将EFterm文件内容保存到全局变量中
- 输入参数  : struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年01月05日
-   作    者   : g00256031
-   修改内容   : 新生成函数
- 2.日    期   : 2015年3月7日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XREG_ProcCardReadFileCnf_EF_TERM(
     struct MsgCB                       *pstMsg
 )
@@ -2209,23 +1504,7 @@ VOS_VOID CNAS_XREG_ProcCardReadFileCnf_EF_TERM(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_ProcCardReadFileCnf_EF_SSCI
- 功能描述  : 将EFssci文件内容保存到全局变量中.
- 输入参数  : struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年01月05日
-   作    者   : g00256031
-   修改内容   : 新生成函数
- 2.日    期   : 2015年3月7日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XREG_ProcCardReadFileCnf_EF_SSCI(
     struct MsgCB                       *pstMsg
 )
@@ -2257,25 +1536,7 @@ VOS_VOID CNAS_XREG_ProcCardReadFileCnf_EF_SSCI(
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_ClearWaitCardFilesCnfFlg_SwitchOn_WaitCardFilesCnf
- 功能描述  : 将MMA下发的卡状态信息转换成CCB使用的形式
-             保存到全局变量中.
- 输入参数  : ucCardStatus卡状态
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年01月05日
-   作    者   : g00256031
-   修改内容   : 新生成函数
- 2.日    期   : 2015年3月7日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XREG_ProcCardReadFileCnf(
     struct MsgCB                       *pstMsg
 )
@@ -2310,21 +1571,7 @@ VOS_VOID CNAS_XREG_ProcCardReadFileCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_TchHandoffProc
- 功能描述  : 判断TCH态下Handoff的系统是否有注册过
- 输入参数  : pstSysInfoMsg------------------当前的系统信息
- 输出参数  : 无
- 返 回 值  : 物
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2016年1月30日
-   作    者   : g00256031
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XREG_TchHandoffProc(
     XSD_XREG_SYS_INFO_IND_STRU         *pstSysInfoMsg
 )

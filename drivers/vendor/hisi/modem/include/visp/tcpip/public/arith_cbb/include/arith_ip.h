@@ -28,9 +28,7 @@ extern "C" {
 
 struct tagMBuf;
 
-/* Modified by h00121208 在升级dopraV2时为了兼容两个版本, 由于两个
-   版本中VOS_UINT32定义不一致, 因此此处不能自定义类型, 需要与dopra头文件一起使用,
-   如果需要单独用此文件请先定义VOS_UINT32类型 */
+
 /*
 #ifndef VOS_UINT32
 #define VOS_UINT32     unsigned long
@@ -93,7 +91,6 @@ ULONG vrp_InetAddr(CHAR *);
 #define InetAddr(a)   vrp_InetAddr(a)
 #endif
 
-/* Added by y00176567, at 2011-05-25. 修改原因: 消除VC三级告警 */
 extern ULONG VOS_strlen(const CHAR *);
 extern VOS_INT32  VOS_atol( const VOS_CHAR * pcStr, VOS_INT32 * pnVal );
 
@@ -144,22 +141,7 @@ ULONG InetAddr(CHAR *pIpChar);
 *
 *******************************************************************************/
 USHORT IP_MaskBitLen(ULONG ulMask);
-/*******************************************************************************
-*    Func Name: Ip_Fast_Cksum
-*  Description: Checksum routine for Internet Protocol family headers (Portable Version).
-*               This routine is very heavily used in the network
-*               code and should be modified for each CPU to be as fast as possible.    
-*        Input: USHORT * pusWord: IP首部指针
-*       Output: 
-*       Return: IP首部校验和
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2007-07-11   mafeng 59090            Create
-*
-*******************************************************************************/
+
 USHORT Ip_Fast_Cksum(USHORT * pusWord);
 /*******************************************************************************
 *    Func Name: IN_Cksum

@@ -61,16 +61,7 @@ VOS_UINT32 At_GetSecondAddr(VOS_UINT8 *pData,VOS_UINT16 usLen, VOS_UINT8** ppDat
 }
 
 
-/******************************************************************************
- 函数名称: At_GetFirstCmdLen
- 功能描述: 获取第一个命令的长度
 
- 参数说明:
-   pData [in] 字符串内容
-   usLen [in] 字符串长度
-
- 作    者: 崔军强/00064416 [2011-06-21]
-******************************************************************************/
 VOS_UINT32 At_GetFirstCmdLen( VOS_UINT8 *pData, VOS_UINT16 usLen)
 {
     VOS_UINT8* pucBegin  = pData;
@@ -91,16 +82,7 @@ VOS_UINT32 At_GetFirstCmdLen( VOS_UINT8 *pData, VOS_UINT16 usLen)
 }
 
 
-/******************************************************************************
- 函数名称: At_ResetCombinCmdInfo
- 功能描述: 重置AT组合命令解析的信息
 
- 作    者: 崔军强/64416 [2011-08-25]
-
- 2.日    期   : 2011年12月25日
-   作    者   : 黎客来/00130025
-   修改内容   : 问题单DTS2011120703681，组合命令解析使用空指针导致单板复位
-******************************************************************************/
 VOS_VOID At_ResetCombinCmdInfo(HI_LIST_S* pstCombList)
 {
     VOS_UINT8 i = 0;
@@ -175,25 +157,7 @@ VOS_VOID At_ResetCombinCmdInfo(HI_LIST_S* pstCombList)
 }
 
 
-/******************************************************************************
- 函 数 名  : At_ResetCombinParseInfo
- 功能描述  : 重置AT组合命令解析的信息
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月14日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年12月25日
-    作    者   : 黎客来/00130025
-    修改内容   : 问题单DTS2011120703681，组合命令解析使用空指针导致单板复位
-
-******************************************************************************/
 VOS_VOID At_ResetCombinParseInfo(VOS_UINT8 ucIndex)
 {
     HI_LIST_S* pstCombList = NULL;
@@ -267,12 +231,7 @@ VOS_VOID At_PrintCombinCmd(VOS_VOID)
 }
 
 
-/******************************************************************************
- 函数名称: At_StoreSubCombCmd
- 功能描述: 保存组合命令中的子命令
 
- 作    者: 崔军强/64416 [2011-08-25]
-******************************************************************************/
 static VOS_UINT32 At_StoreSubCombCmd(HI_LIST_S* pstCombList, VOS_UINT8 *pDataIn, VOS_UINT16 usLenIn)
 {
     AT_FW_COMBINE_CMD_STRU* pstCombCmd = NULL;
@@ -375,12 +334,7 @@ VOS_UINT32 At_BasicExCombineCmdParse(HI_LIST_S* pstCombList, VOS_UINT8 *pDataIn,
 }
 
 
-/******************************************************************************
- 函数名称: At_UpStringCmdName
- 功能描述: 把命令参数前的字母转为大写(对于组合命令可能转换多条基础命令的名称)
 
- 作    者: 崔军强/64416 [2011-11-14]
-******************************************************************************/
 static VOS_VOID At_UpStringCmdName(VOS_UINT8 *pData, VOS_UINT16 usLen)
 {
     TAF_UINT8  *pTmp  = pData;                 /* current Char */
@@ -403,17 +357,7 @@ static VOS_VOID At_UpStringCmdName(VOS_UINT8 *pData, VOS_UINT16 usLen)
     return ;
 }
 
-/******************************************************************************
- 函数名称: At_SemicolonCmdParse
- 功能描述: 每个;前的命令的解析
 
- 作    者: 崔军强/64416 [2011-08-25]
-
-  2.日    期   : 2013年10月12日
-    作    者   : l00198894
-    修改内容   : DTS2013100901373:ATD命令PPP拨号参数解析
-
-******************************************************************************/
 VOS_UINT32 At_SemicolonCmdParse(HI_LIST_S* pstCombList, VOS_UINT8 *pDataIn, VOS_UINT16 usLenIn)
 {
     VOS_UINT32 ulRet = ERR_MSP_FAILURE;
@@ -512,12 +456,7 @@ VOS_UINT32 At_SemicolonCmdParse(HI_LIST_S* pstCombList, VOS_UINT8 *pDataIn, VOS_
 }
 
 
-/******************************************************************************
- 函数名称: At_CombineCmdPreProc
- 功能描述: 组合命令的预处理,把命令拆分放入缓存中
 
- 作    者: 崔军强/64416 [2011-08-25]
-******************************************************************************/
 PRIVATE VOS_UINT32 At_CombineCmdPreProc(HI_LIST_S* pstCombList, VOS_UINT8 *pDataIn, VOS_UINT16 usLenIn)
 {
     VOS_UINT16 i = 0;
@@ -568,21 +507,7 @@ PRIVATE VOS_UINT32 At_CombineCmdPreProc(HI_LIST_S* pstCombList, VOS_UINT8 *pData
     return ERR_MSP_SUCCESS;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_IsDCmdValidChar
- 功能描述  : 检查用户输入字符是否D命令在任意位置都支持的字符；
- 输入参数  : VOS_UINT8                           ucPara 用户输入字符
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 VOS_TRUE    用户输入字符是D命令在任意位置都支持的字符
-                        VOS_FALSE   用户输入字符不是D命令在任意位置都支持的字符
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月16日
-    作    者   : f62575
-    修改内容   : DTS2013121606723 新生成
-*****************************************************************************/
 VOS_UINT32 AT_IsDCmdValidChar(
     VOS_UINT8                           ucPara
 )
@@ -627,24 +552,7 @@ VOS_UINT32 AT_IsDCmdValidChar(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_ProcDCmdGIPara
- 功能描述  : D命令的G和I参数处理
- 输入参数  : VOS_UINT32                  *pulSrcStrLen 待整理的字符串长度
-             VOS_UINT8                   *pucSrcStr    待整理的字符串
-             VOS_UINT32                   ulInsertStrLen, 待插入的字符串长度
-             VOS_UINT8                   *pucInsertStr  待插入的字符串
- 输出参数  : VOS_UINT32                  *pulSrcStrLen 待整理的字符串长度
-             VOS_UINT8                   *pucSrcStr    待整理的字符串
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月16日
-    作    者   : f62575
-    修改内容   : DTS2013121606723 新生成
-*****************************************************************************/
 VOS_VOID AT_InsertDCmdGIPara(
     VOS_UINT32                  *pulSrcStrLen,
     VOS_UINT8                   *pucSrcStr,
@@ -676,22 +584,7 @@ VOS_VOID AT_InsertDCmdGIPara(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_ProcDCmdGIPara
- 功能描述  : D命令的G和I参数处理
- 输入参数  : VOS_UINT32                   ulSrcStrLen 待整理的字符串长度
-             VOS_UINT8                   *pucSrcStr   待整理的字符串
- 输出参数  : VOS_UINT32                   ulSrcStrLen 待整理的字符串长度
-             VOS_UINT8                   *pucSrcStr   待整理的字符串
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月16日
-    作    者   : f62575
-    修改内容   : DTS2013121606723 新生成
-*****************************************************************************/
 VOS_VOID AT_ProcDCmdGIPara(
     VOS_UINT32                         *pulSrcStrLen,
     VOS_UINT8                          *pucSrcStr
@@ -798,20 +691,7 @@ VOS_VOID AT_ProcDCmdGIPara(
 }
 
 
-/*****************************************************************************
- 函 数 名  : At_FilterSpecCharacter
- 功能描述  : 过滤特殊字符
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年05月10日
-    作    者   : l65478
-    修改内容   : 新生成
-*****************************************************************************/
 VOS_VOID At_FilterDCmdSpecCharacter(
     VOS_UINT32                  *pulParaLen,
     VOS_UINT8                   *pucPara
@@ -885,15 +765,7 @@ VOS_VOID At_FilterDCmdSpecCharacter(
     return;
 }
 
-/******************************************************************************
- 函数名称: At_CombineCmdProc
- 功能描述: 组合命令处理
 
- 参数说明:
-   ucClientId [in] client id
-
- 作    者: 崔军强/64416 [2011-08-25]
-******************************************************************************/
 VOS_UINT32 At_CombineCmdProc(VOS_UINT8 ucClientId)
 {
     VOS_UINT32 i = 0;
@@ -981,17 +853,7 @@ VOS_UINT32 At_CombineCmdProc(VOS_UINT8 ucClientId)
 }
 
 
-/******************************************************************************
- 函数名称: At_CombineCmdChkProc
- 功能描述: 组合命令检查、处理
 
- 参数说明:
-   ucClientId [in] client id
-   VOS_UINT8 * pDataIn [in/out] 字符串内容
-   usLenIn [in] 字符串长度
-
- 作    者: 崔军强/00064416 [2011-04-01]
-******************************************************************************/
 VOS_UINT32 At_CombineCmdChkProc(VOS_UINT8 ucClientId,  VOS_UINT8 *pDataIn, VOS_UINT16 usLenIn)
 {
     VOS_UINT16 usLen = usLenIn;
@@ -1052,18 +914,7 @@ VOS_UINT32 At_CombineCmdChkProc(VOS_UINT8 ucClientId,  VOS_UINT8 *pDataIn, VOS_U
 }
 
 
-/******************************************************************************
- 函数名称: At_CombCmdProcAfterCmd
- 功能描述: 命令处理结束后的下一个组合命令处理
 
- 参数说明:
-   ucClientId [in] client id
-
- 作    者: 崔军强/64416 [2011-08-25]
-  3.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-******************************************************************************/
 VOS_VOID At_CombCmdProcAfterCmd(VOS_UINT8 ucClientId)
 {
     AT_RRETURN_CODE_ENUM_UINT32         ulResult = AT_FAILURE;
@@ -1095,23 +946,7 @@ VOS_VOID At_CombCmdProcAfterCmd(VOS_UINT8 ucClientId)
 }
 
 
-/******************************************************************************
- 函 数 名  : At_CombCmdisFinal
- 功能描述  : 判断是否是组合命令的最后一个子命令，用来AT上报AT_OK输出用
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  :
-             VOS_FALSE : 不是最后一个命令的返回结果，不能上报AT_OK
-             VOS_TRUE  : 是最后一个命令的返回结果，可以上报AT_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月11日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-******************************************************************************/
 VOS_BOOL At_CombCmdisFinal(VOS_UINT8 ucIndex)
 {
     AT_PARSE_CONTEXT_STRU* pstClientCont = NULL;

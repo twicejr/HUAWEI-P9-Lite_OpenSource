@@ -40,18 +40,7 @@ extern "C" {
 /*****************************************************************************
   3 Function
 *****************************************************************************/
-/*****************************************************************************
- Function Name  : IMSA_CONN_SndCdsSetImsBearerReq
- Description    : 给CDS发送ID_IMSA_CDS_SET_IMS_BEARER_REQ消息
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-07-02  Draft Enact
-      2.lihong 00150010      2013-12-06  Modify:emc dedicated
-      3.lihong 00150010      2013-12-24  Modify:Ut and IMS same APN
-*****************************************************************************/
 VOS_VOID IMSA_CONN_SndCdsSetImsBearerReq( VOS_VOID )
 {
     IMSA_CDS_SET_IMS_BEARER_REQ_STRU   *pstSetImsBearerReq  = VOS_NULL_PTR;

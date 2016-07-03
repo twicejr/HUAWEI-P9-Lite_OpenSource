@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMsccMscc.c
-  版 本 号   : 初稿
-  作    者   : w00176964
-  生成日期   : 2015年04月4日
-  功能描述   : NAS MSCC 公共处理函数存放文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年04月4日
-    作    者   : w00176964
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -116,21 +101,7 @@ VOS_UINT32 NAS_MSCC_IsBgSearchHighPriSysAllowed(VOS_VOID)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_IsCampOnHighestPrioritySystem
-Description     :   This function is used to check whether current system have the highest priority
-Input parameters:   None
-Output parameters:  None
-Return Value    :   VOS_TRUE:Y
-                    VOS_FALSE:N
-Modify History:
-    1)  Date    :   2014-4-2
-        Author  :   t00323010
-        Modify content :    Create for Iteration 10
-    2)  Date    :   2015-12-10
-        Author  :   j00354216
-        Modify content :    CL_MUTIMODE_OPTIMIZE修改
-*****************************************************************************/
+
 VOS_UINT32 NAS_MSCC_IsCampOnHighestPrioritySystem(VOS_VOID)
 {
     NAS_MSCC_3GPP_SYS_INFO_STRU                            *pst3gppSysInfo  = VOS_NULL_PTR;
@@ -359,21 +330,7 @@ VOS_VOID NAS_MSCC_StartBsrTimer()
     return;
 }
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_IsNeedStartBsrTimer
-Description     :   This function is used to check whether need to start Bsr Timer
-Input parameters:   None
-Output parameters:  None
-Return Value    :   VOS_TRUE:Y
-                    VOS_FALSE:N
-Modify History:
-    1)  Date    :   2014-4-2
-        Author  :   t00323010
-        Modify content :    Create for Iteration 10
-    2)  Date    :   2016-1-14
-        Author  :   w00176964
-        Modify content : DTS2015122900807:规避底层不支持L到C的BSR流程,避免异常
-*****************************************************************************/
+
 VOS_UINT32 NAS_MSCC_IsNeedStartBsrTimer(VOS_VOID)
 {
     /* 非主状态机不启动BSR定时器，在退出子状态机后再判断是否需要启动BSR定时器 */
@@ -436,25 +393,7 @@ VOS_UINT32 NAS_MSCC_IsNeedRestartBsrTimer(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_Convert1xServiceStatusToMsccFormat
- 功能描述  : 将MMC的PS服务状态转换为MSCC内部格式
- 输入参数  : 无
 
- 输出参数  : 无
- 返 回 值  : 返回当前PS业务状态:
-             NAS_MSCC_NORMAL_SERVICE  PS业务服务正常
-             NAS_MSCC_LIMITED_SERVICE PS业务服务受限
-             NAS_MSCC_NO_SERVICE      PS业务无服务
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2015年4月13日
-   作    者   : t00323010
-   修改内容   : add for Iteration 10 修改
-*****************************************************************************/
 NAS_MSCC_SERVICE_STATUS_ENUM_UINT8 NAS_MSCC_Convert1xServiceStatusToMsccFormat(
     NAS_MSCC_PIF_SERVICE_STATUS_ENUM_UINT32                 en1xPsServiceStatus
 )
@@ -491,24 +430,7 @@ NAS_MSCC_SERVICE_STATUS_ENUM_UINT8 NAS_MSCC_Convert1xServiceStatusToMsccFormat(
     return enPsSrvStatus;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_ConvertHsdSysPriClassToMsccFormat
- 功能描述  : 将HSD和MMC上报的网络优先级转换为MSCC的网络优先级
- 输入参数  : MSCC_HSD_PRI_CLASS_ENUM_UINT8:Hsd网络优先级
- 输出参数  : None
- 返 回 值  : NAS_MSCC_PIF_PRI_CLASS_ENUM_UINT8:Mscc网络优先级
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年4月12日
-   作    者   : t00323010
-   修改内容   : 新生成函数,for Iteration 10
- 2.日    期   : 2015年9月21日
-   作    者   : y00346957
-   修改内容   : DTS2015070910885 修改，删掉了mscc sys pri class这个结构体
-
-*****************************************************************************/
 NAS_MSCC_PIF_PRI_CLASS_ENUM_UINT8 NAS_MSCC_ConvertHsdSysPriClassToMsccFormat(
     MSCC_HSD_PRI_CLASS_ENUM_UINT8       enPriClass
 )
@@ -545,20 +467,7 @@ NAS_MSCC_PIF_PRI_CLASS_ENUM_UINT8 NAS_MSCC_ConvertHsdSysPriClassToMsccFormat(
 
 
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_Update1xSysInfo
-Description     :   The function is used to update 1x sys info
-Input parameters:   pst1xSrvInfoInd---1x service info
-Output parameters:  NONE
-Return Value    :   VOS_VOID
-Modify History:
-    1)  Date    :   2015-04-23
-        Author  :   w00176964
-        Modify content :    Create
-    2)  Date    :   2015-09-22
-        Author  :   y00346957
-        Modify content :    DTS2015070910885 修改，删掉了mscc sys pri class这个结构体
-*****************************************************************************/
+
 
 VOS_VOID NAS_MSCC_Update1xSysInfo(
     XSD_MSCC_1X_SYSTEM_SERVICE_INFO_IND_STRU               *pst1xSrvInfoInd
@@ -677,23 +586,7 @@ VOS_VOID NAS_MSCC_GetHighPriSysInfoInHrpdSysInfoListWithPriClass(
 }
 
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_GetCurrentCampedSysMsplIndex
-Description     :   Get the current camped sys mspl index
-Input parameters:   VOS_VOID
-Outout parameters:  pucMatchedMsplIndex
-                    pucDefMsplRec----是否使用default mspl记录
-Return Value     :  VOS_TRUE  - GET SUCC
-                    VOS_FALSE - GET FAIL
-Modify History:
-    1)  Date    :   2015-5-19
-        Author  :   w00176964
-        Modify content :    Create
-    2)  Date    :   2016-01-07
-        Author  :   w00176964
-        Modify content :DTS2016010602409:CCF用例CL互操作用例11002失败(MSPL表LTE优先,无HRPD系统
-                        ,驻留HRPD后,不启动BSR定时器回LTE)
-*****************************************************************************/
+
 VOS_UINT32 NAS_MSCC_GetCurrentCampedSysMsplIndex(
     VOS_UINT8                          *pucMatchedMsplIndex,
     VOS_UINT8                          *pucDefMsplRec
@@ -788,24 +681,7 @@ VOS_UINT32 NAS_MSCC_GetCurrentCampedSysMsplIndex(
 }
 
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_GetPlmnListAccordingtoSpecMsplIndex
-Description     :   Get the plmn list according to spec mspl index
-Input parameters:   ucOrigSysMsplIndex
-                    pstSrcPlmnList
-Outout parameters:  pstDestPlmnList
-Return Value     :  VOS_VOID
-Modify History:
-    1)  Date    :   2015-5-19
-        Author  :   w00176964
-        Modify content :    Create
-    2)  Date    :   2015-6-3
-        Author  :   w00176964
-        Modify content :CDMA Iteration 12
-    3)  Date    :   2015-9-22
-        Author  :   y00346957
-        Modify content :DTS2015070910885 修改，删掉了mscc sys pri class这个枚举
-*****************************************************************************/
+
 VOS_VOID NAS_MSCC_GetPlmnListAccordingtoSpecMsplIndex(
     VOS_UINT8                                               ucOrigSysMsplIndex,
     NAS_MSCC_PIF_SEARCHED_PLMN_LIST_INFO_STRU              *pstSrcPlmnList,
@@ -882,22 +758,7 @@ VOS_VOID NAS_MSCC_GetPlmnListAccordingtoSpecMsplIndex(
     pstDestPlmnList->enRat        = pstSrcPlmnList->enRat;
 }
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_IsNeedAcqLteFrist
-Description     :   The function is used to judge if need acquire LTE first sor not
-Input parameters:   None
-Output parameters:  None.
-Return Value    :   VOS_TRUE:need acquire lte first
-                    VOS_FALSE:need not acquire lte first
-Modify History:
-    1)  Date    :   2015-06-08
-        Author  :   w00176964
-        Modify content :    Create
-    2)  Date    :   2015-10-09
-        Author  :   w00176964
-        Modify content :DTS2015100901995:1X+LTE时,LTE注册被拒卡无效后,SLEEP超时后
-                        还是发起了LTE的搜索
-*****************************************************************************/
+
 
 VOS_UINT32 NAS_MSCC_IsNeedAcqLteFrist(VOS_VOID)
 {
@@ -976,18 +837,7 @@ VOS_UINT32 NAS_MSCC_IsNeedStartScanTimerUponSyscfg(VOS_VOID)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_ConvertMsplPriClassToPIfFormat
-Description     :   将 NAS_MSCC_MSPL_SYS_PRI_CLASS_ENUM_UINT8 对应的转换成 NAS_MSCC_PIF_PLMN_PRIORITY_CLASS_ENUM_UINT8
-Input parameters:   enPriClass
-Output parameters:  None.
-Return Value    :   NAS_MSCC_PIF_PLMN_PRIORITY_CLASS_ENUM_UINT8类型的枚举
 
-Modify History:
-    1)  Date    :   2015-09-18
-        Author  :   y00346957
-        Modify content :    Create for DTS2015070910885
-*****************************************************************************/
 
 NAS_MSCC_PIF_PLMN_PRIORITY_CLASS_ENUM_UINT8 NAS_MSCC_ConvertMsplPriClassToPIfFormat(
     NAS_MSCC_MSPL_SYS_PRI_CLASS_ENUM_UINT8   enPriClass
@@ -1151,25 +1001,7 @@ VOS_UINT8 NAS_MSCC_IsPlmnIdValid(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_ConvertMmcServiceStatusToMsccFormat
- 功能描述  : 将MMC的PS服务状态转换为MSCC内部格式的
- 输入参数  : 无
 
- 输出参数  : 无
- 返 回 值  : 返回当前PS业务状态:
-             NAS_MSCC_NORMAL_SERVICE  PS业务服务正常
-             NAS_MSCC_LIMITED_SERVICE PS业务服务受限
-             NAS_MSCC_NO_SERVICE      PS业务无服务
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2013年7月13日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 NAS_MSCC_SERVICE_STATUS_ENUM_UINT8 NAS_MSCC_ConvertMmcServiceStatusToMsccFormat(
     NAS_MSCC_PIF_SERVICE_STATUS_ENUM_UINT32                 enMmcPsServiceStatus
 )
@@ -1208,24 +1040,7 @@ NAS_MSCC_SERVICE_STATUS_ENUM_UINT8 NAS_MSCC_ConvertMmcServiceStatusToMsccFormat(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_ConvertMmcSysPriClassToMsccFormat
- 功能描述  : 将HSD和MMC上报的网络优先级转换为MSCC的网络优先级
- 输入参数  : NAS_MSCC_PIF_PLMN_PRIORITY_CLASS_ENUM_UINT8: Mmc网络优先级
- 输出参数  : None
- 返 回 值  : NAS_MSCC_PIF_PRI_CLASS_ENUM_UINT8:           Mscc网络优先级
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年4月12日
-   作    者   : t00323010
-   修改内容   : 新生成函数,for Iteration 10
- 2.日    期   : 2015年9月21日
-   作    者   : y00346957
-   修改内容   : DTS2015070910885 修改，删掉了mscc sys pri class这个结构体
-
-*****************************************************************************/
 NAS_MSCC_PIF_PRI_CLASS_ENUM_UINT8 NAS_MSCC_ConvertMmcSysPriClassToMsccFormat(
     NAS_MSCC_PIF_PLMN_PRIORITY_CLASS_ENUM_UINT8             enPriClass
 )
@@ -1340,20 +1155,7 @@ VOS_UINT32 NAS_MSCC_IsLtePlmnIdChanged(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_SaveSysAcqTimerCfg
-Description     :   The function is used to read the System acquire timer cfg from NV
-Input parameters:   Address of NV Data.
-Output parameters:  Address of MMSS Cfg Info Global variable.
-Return Value    :   None.
-Modify History:
-    1)  Date    :   2015-04-14
-        Author  :   a00295761
-        Modify content :    Create
-     2.Date     : 2016-01-14
-       Author   : W00176964
-       Modify   : DTS2016011505496:增加对原始系统不在MSPL表进行BSR流程,定时器时长的NV控制
-*****************************************************************************/
+
 
 VOS_VOID NAS_MSCC_SaveSysAcqTimerCfg(
     NAS_NVIM_MSCC_SYS_ACQ_TIMER_CFG_STRU                   *pstNvimSysAcqTimerCfg,
@@ -1495,25 +1297,7 @@ VOS_VOID NAS_MSCC_UpdateLocationInfoToNvim(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_ConvertMmcPlmnSelRsltToMmaSysAcqRlst
- 功能描述  : 将MMC的搜网结果的原因值转换为MMA搜网结果的原因值
- 输入参数  : NAS_MSCC_PIF_PLMN_SELECTION_RESULT_ENUM_UINT32          enMmcPlmnSelRslt
 
- 输出参数  : MSCC_MMA_SYSTEM_ACQUIRE_RESULT_ENUM_UINT32              enMmaSysAcqRlst
- 返 回 值  :
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2015年04月16日
-   作    者   : m00312079
-   修改内容   : 新生成函数
- 2.日    期   : 2015年05月21日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 MSCC_MMA_SYSTEM_ACQUIRE_RESULT_ENUM_UINT32 NAS_MSCC_ConvertMmcPlmnSelRsltToMmaSysAcqRlst(
     NAS_MSCC_PIF_PLMN_SELECTION_RESULT_ENUM_UINT32          enMmcPlmnSelRslt
 )

@@ -34,30 +34,7 @@ extern "C"{
 /*****************************************************************************
   3 Function Define
 *****************************************************************************/
-/*****************************************************************************
-Function Name   :   CNAS_HSM_ReadNvim
-Description     :   Read NV proc
-Input parameters:   None
-Outout parameters:  None
-Return Value    :   None
 
-Modify History  :
-1)  Date           : 2015-02-07
-    Author         : s00250401
-    Modify content : Create
-2)  Date           : 2015-05-30
-    Author         : y00174758
-    Modify content : Iteration 12: Read session act and retry NV
-3)  Date           : 2015-05-30
-    Author         : t00323010
-    Modify content : Iteration 12: add EHRPD Support NVIM read
-4)  Date           : 2015-09-18
-    Author         : m00312079
-    Modify content : DTS2015091604029:读取SessionInfoEx中的session seed
-5)  Date           : 2015-09-23
-    Author         : m00312079
-    Modify content : DTS2015091705555:读取ucStartUatiReqAfterSectorIdChgFlg
-*****************************************************************************/
 VOS_VOID CNAS_HSM_ReadNvim(VOS_VOID)
 {
     CNAS_HSM_ReadSessionRetryCfgNvim();
@@ -297,21 +274,7 @@ VOS_VOID CNAS_HSM_WriteSessionKeepAliveInfoNvim(
                              (VOS_UINT8 *)&stNvimKeepAliveInfo);
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_ReadHrpdSessionInfoNvim
-Description     :   Read en_Nv_Item_HRPD_Session_Info proc
-Input parameters:   None
-Outout parameters:  None
-Return Value    :   None
 
-Modify History  :
-1)  Date           : 2015-06-03
-    Author         : y00307564
-    Modify content : Create
-2)  Date           : 2015-09-18
-    Author         : m00312079
-    Modify content : DTS2015091604029:session有效则读取uati assigngment的sequence number
-*****************************************************************************/
 VOS_VOID CNAS_HSM_ReadHrpdSessionInfoNvim(VOS_VOID)
 {
     CNAS_HSM_HARDWARE_ID_INFO_STRU     *pstHwid;
@@ -376,25 +339,7 @@ VOS_VOID CNAS_HSM_ReadHrpdSessionInfoNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_WriteHrpdSessionInfoNvim
-Description     :   Write en_Nv_Item_HRPD_Session_Info
-Input parameters:   None
 
-Outout parameters:  None
-Return Value    :   None
-
-Modify History  :
-1)  Date           : 2015-06-03
-    Author         : y00307564
-    Modify content : Create
-2)  Date           : 2015-09-18
-    Author         : m00312079
-    Modify content : DTS2015091604029:nv中保存有效uati assigngment的sequence number
-3)  Date           : 2015-09-23
-    Author         : t00323010
-    Modify content : HSM MNTN(DTS2015092201636): log write session info Nvim
-*****************************************************************************/
 VOS_VOID CNAS_HSM_WriteHrpdSessionInfoNvim(VOS_VOID)
 {
     VOS_UINT8                          *pucIccid;
@@ -469,21 +414,7 @@ VOS_VOID CNAS_HSM_WriteHrpdSessionInfoNvim(VOS_VOID)
                              UEPS_PID_HSM,
                              (VOS_UINT8 *)&stHrpdSessionInfo);
 }
-/*****************************************************************************
-Function Name   :   CNAS_HSM_ReadHrpdSessionInfoExNvim
-Description     :   Read en_Nv_Item_HRPD_Session_Info_Ex proc
-Input parameters:   None
-Outout parameters:  None
-Return Value    :   None
 
-Modify History  :
-1)  Date           : 2015-09-18
-    Author         : m00312079
-    Modify content : Create
-2)  Date           : 2015-12-21
-    Author         : m00312079
-    Modify content : DTS2015120208895,增加读取与session关联的UE的版本信息
-*****************************************************************************/
 VOS_VOID CNAS_HSM_ReadHrpdSessionInfoExNvim(VOS_VOID)
 {
     CNAS_NVIM_HRPD_SESSION_INFO_EX_STRU                     stHrpdSessionInfoEx;
@@ -514,25 +445,7 @@ VOS_VOID CNAS_HSM_ReadHrpdSessionInfoExNvim(VOS_VOID)
                   sizeof(CNAS_NVIM_HRPD_UE_REV_INFO_STRU));
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_WriteHrpdSessionInfoExNvim
-Description     :   Write en_Nv_Item_HRPD_Session_Info_Ex
-Input parameters:   None
 
-Outout parameters:  None
-Return Value    :   None
-
-Modify History  :
-1)  Date           : 2015-09-18
-    Author         : m00312079
-    Modify content : Create
-2)  Date           : 2015-09-23
-    Author         : t00323010
-    Modify content : HSM MNTN(DTS2015092201636): log write NV
-3)  Date           : 2015-12-21
-    Author         : m00312079
-    Modify content : DTS2015120208895: 增加UE的版本信息
-*****************************************************************************/
 VOS_VOID CNAS_HSM_WriteHrpdSessionInfoExNvim(VOS_VOID)
 {
     CNAS_NVIM_HRPD_SESSION_INFO_EX_STRU                     stHrpdSessionInfoEx;

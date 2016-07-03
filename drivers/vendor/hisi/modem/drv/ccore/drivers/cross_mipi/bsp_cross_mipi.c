@@ -294,8 +294,8 @@ void bsp_cross_mipi_init(void)
         writel(g_tuner.ctrl_info.tas_ind_en,           (u32)g_tuner.ctu_base + TUNER_TAS_IND_OFFSET);
 
        // CROSS_MIPI_USE_BBP_DMA
-        bsp_bbp_dma_tran(&g_tuner.dma_mipi);
         bsp_bbp_dma_tran(&g_tuner.dma_gpio);
+        bsp_bbp_dma_tran(&g_tuner.dma_mipi);
         if (!g_tuner.is_inited){
             bsp_bbp_dma_finish(&g_tuner.dma_gpio);
             bsp_bbp_dma_finish(&g_tuner.dma_mipi);

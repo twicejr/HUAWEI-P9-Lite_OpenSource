@@ -1,17 +1,4 @@
-/******************************************************************************
 
-        @(#)Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : NasEmmPubUMain.c
-    Description :
-    History     :
-      1.  hanlufeng 41410  Draft Enact
-      2.  leili 00132387        2009-02-20 问题单BA8D00962
-     描述:增加了在REG + REG_WAIT_MRRC_REL_CNF状态下的处理函数
-      3.  zhengjunyan 00148421  2010-12-29  在Reg.Normal_Service和TauInit.WtTauCnf
-                                            状态下添加对ID_EMM_ERABM_REL_REQ的处理
-******************************************************************************/
 
 /*****************************************************************************
   1 Include HeadFile
@@ -503,7 +490,7 @@ NAS_EMM_ACT_STRU    g_astEmmMsRegInitSsWaitCnAttachCnfTable[] =
                     NAS_EMM_MsRegInitMsgCnDetachReq),
 
     NAS_EMM_ACT_TBL_ITEM(PS_PID_MM,
-                    ID_NAS_LMM_INTRA_EMMC_EMM_SYS_INFO_IND,/*X00148705 处理可能有问题*/
+                    ID_NAS_LMM_INTRA_EMMC_EMM_SYS_INFO_IND,
                     NAS_EMM_MsRegInitSsWtCnAttCnfMsgSysInfo),
 
     NAS_EMM_ACT_TBL_ITEM(PS_PID_MM,
@@ -834,7 +821,7 @@ NAS_EMM_ACT_STRU    g_astEmmMsRegSsAttemptToUpdateTable[] =
                     NAS_EMM_MsRegSsAtpUpdataMsgT3346Exp),
     /*============= SERVICE =======================================*/
 /*  全编译时此函数未定义
-    NAS_EMM_ACT_TBL_ITEM(PS_PID_RABM,//X00148705 处理可能有问题
+    NAS_EMM_ACT_TBL_ITEM(PS_PID_RABM,
                     ID_EMM_ERABM_REEST_REQ,
                     NAS_EMM_MsRegSsAtpUpdataMsgRabmReestReq),
 */
@@ -1943,7 +1930,6 @@ NAS_EMM_ACT_STRU    g_astEmmMsAuthInitSsWaitCnAuthTable[] =
     /*NAS_EMM_ACT_TBL_ITEM(PS_PID_MM,
                     ID_NAS_LMM_INTRA_MRRC_DATA_REQ,
                     NAS_EMM_MsNoRrcConnInitSsAllMsgMrrcDataReq),*/
-        /*X00148705 没有对APP DETACH,REL IND消息处理*/
 
 };
 
@@ -2147,19 +2133,7 @@ LRRC_LNAS_PLMN_ID_STRU                    gstRrcNasPlmnId;
 
 
 
-/*****************************************************************************
- Function Name   : LRRC_LNAS_GetPrioSelectPlmn
- Description     : 该函数的获取结果是在系统消息中优先选择的PLMN
-                   主要适用于在共享网络中一个小区有多个PLMN的场景
-                   目的是解决切换之后计算KASME使用的PLMN参数问题
- Input           :VOS_VOID
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.sunjitan 00193151      2012-08-11  Draft Enact
-
-*****************************************************************************/
 /*lint -e960*/
 /*lint -e961*/
 VOS_UINT32  Nas_GetPrioSelectPlmn
@@ -2224,17 +2198,7 @@ VOS_UINT32  Nas_GetPrioSelectPlmn
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_GetMmInfoNoSimOrSimInvlid
- Description     : 当无卡或者卡无效时，获取MM信息
- Input           :LRRC_LNAS_INFO_TYPE_ENUM_UINT32  enInfoType
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong 00150010       2014-01-23  Draft Enact
-
-*****************************************************************************/
 VOS_VOID*  NAS_EMM_GetMmInfoNoSimOrSimInvlid
 (
     LRRC_LNAS_INFO_TYPE_ENUM_UINT32     enInfoType
@@ -2409,7 +2373,6 @@ VOS_VOID*  LRRC_LNAS_GetMmInfo( LRRC_LNAS_INFO_TYPE_ENUM_UINT32  enInfoType )
 
         return &gstRrcNasPlmnId;
     }
-    /* s00265702  为RRC增加保存GU系统消息  begin */
     else if(LRRC_LNAS_INFO_TYPE_GU_PLMN == enInfoType)
     {
         gstRrcNasPlmnId.aucPlmnId[0] = NAS_EMMC_GetGuSysInfoPlmnAddr()->aucPlmnId[0];
@@ -2417,7 +2380,6 @@ VOS_VOID*  LRRC_LNAS_GetMmInfo( LRRC_LNAS_INFO_TYPE_ENUM_UINT32  enInfoType )
         gstRrcNasPlmnId.aucPlmnId[2] = NAS_EMMC_GetGuSysInfoPlmnAddr()->aucPlmnId[2];
         return &gstRrcNasPlmnId;
     }
-    /* s00265702  为RRC增加保存GU系统消息  end */
     else
     {
     }
@@ -2426,17 +2388,7 @@ VOS_VOID*  LRRC_LNAS_GetMmInfo( LRRC_LNAS_INFO_TYPE_ENUM_UINT32  enInfoType )
 
 }
 
-/*****************************************************************************
- Function Name   : LRRC_LNAS_GetSmcState
- Description     : RRC通过该函数获取NAS安全模式是否启动
- Input           :VOS_VOID
- Output          : None
- Return          : LRRC_LNAS_SMC_CTRL_ENUM_UINT8
 
- History         :
-    1.zhengjunyan 00148421      2009-6-26  Draft Enact
-
-*****************************************************************************/
 LRRC_LNAS_SMC_CTRL_ENUM_UINT8 LRRC_LNAS_GetSmcState( VOS_VOID )
 {
     NAS_LMM_PUBM_LOG_INFO("LRRC_LNAS_GetSmcState: entered!");
@@ -2450,18 +2402,7 @@ LRRC_LNAS_SMC_CTRL_ENUM_UINT8 LRRC_LNAS_GetSmcState( VOS_VOID )
     return LRRC_LNAS_SMC_CLOSE;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ReadAccClassMask
- Description     : 从NV读取AC，给AC附初值
- Input           : VOS_VOID
- Output          : None
- Return          : NAS_LMM_SUCC
-                   NAS_LMM_FAIL
-                   NAS_LMM_ERR_CODE_HARD_USIM: 硬卡已发出读卡请求
- History         :
-    1.h41410             2009-12-28   Draft Enact
-    2.sunjitan 00193151  2015-03-15   Modify
-*****************************************************************************/
+
 VOS_VOID NAS_EMM_ReadAccClassMask( VOS_VOID )
 {
     NAS_LMM_PUBM_LOG_INFO("NAS_EMM_ReadAccClassMask is entered.");
@@ -2473,7 +2414,6 @@ VOS_VOID NAS_EMM_ReadAccClassMask( VOS_VOID )
     return;
 }
 
-/* leixiantiao 00258641 降低圈复杂度 2014-7-30 begin */
 
 
 VOS_UINT32 NAS_LMM_GetLteGutiInfo
@@ -2501,21 +2441,7 @@ VOS_UINT32 NAS_LMM_GetLteGutiInfo
     return ulRslt;
 
 }
-/* leixiantiao 00258641 降低圈复杂度 2014-7-30 end */
-/*****************************************************************************
- Function Name   : Nas_GetLteInfo
- Description     : 提供给MMC LTE相关信息
- Input           : ulInfoType       ---MMC当前获取的LTE信息类型
-                   pstLmmInfo       ---MMC当前获取的LTE信息
- Output          : pstLmmInfo       ---提供给MMC的信息
- Return          : NAS_LMM_SUCC
-                   NAS_LMM_FAIL
 
- History         :
-    1.leili 00132387      2012-5-10     Draft Enact
-    2.wangchen 00209181   2012-06-28    Modify:cs/ps1
-
-*****************************************************************************/
 MMC_LMM_RESULT_ID_ENUM_UINT32  Nas_GetLteInfo
 (
     NAS_LMM_INFO_TYPE_ENUM_UINT32  ulInfoType,
@@ -2543,9 +2469,7 @@ MMC_LMM_RESULT_ID_ENUM_UINT32  Nas_GetLteInfo
 
     if (NAS_LMM_GUTI == ulInfoType)
     {
-        /* leixiantiao 00258641 降低圈复杂度 2014-7-30 begin */
         ulRslt = NAS_LMM_GetLteGutiInfo(pstLmmInfo,pstMmUeId);
-        /* leixiantiao 00258641 降低圈复杂度 2014-7-30 end */
 
     }
     else if (NAS_LMM_FORB_TAI_ROAM_LIST == ulInfoType)
@@ -2625,18 +2549,7 @@ MMC_LMM_RESULT_ID_ENUM_UINT32  Nas_GetLteInfo
 
 }
 
-/*****************************************************************************
- Function Name   : Nas_GetEutraUeCap
- Description     : 获取LTE当前UE能力信息
- Input           : stPlmnId:当前PLMN信息
- Output          : pusEUeCapDataLen:ue能力长度
-                    pucEUeCapData:ue能力信息，最长128字节
- Return          : NAS_LMM_SUCC
-                   NAS_LMM_FAIL
- History         :
-    1.w00151278      2012-05-15  Draft Enact
 
-*****************************************************************************/
 MMC_LMM_RESULT_ID_ENUM_UINT32  Nas_GetEutraUeCap(
     MMC_LMM_PLMN_ID_STRU stPlmnId, VOS_UINT16 *pusEUeCapDataLen, VOS_UINT8 *pucEUeCapData)
 {
@@ -2659,17 +2572,7 @@ MMC_LMM_RESULT_ID_ENUM_UINT32  Nas_GetEutraUeCap(
     return MMC_LMM_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : Nas_GetLrrcConnFailureFlag
- Description     : 获取rrc connection failure标识，LNAS提供给GU NAS调用
- Input           : None
- Output          : None
- Return          : VOS_TRUE表示标识有效，异系统到GU需要发起RAU
-                   VOS_FALSE表示标识无效
- History         :
-    1.l00150010      2013-11-02  Draft Enact
 
-*****************************************************************************/
 VOS_UINT32  Nas_GetLrrcConnFailureFlag( VOS_VOID )
 {
     NAS_EMM_TRIGGER_TAU_RRC_REL_ENUM_UINT32      enTriggerTauRrcRel = NAS_EMM_TRIGGER_TAU_RRC_REL_NO;
@@ -2688,51 +2591,21 @@ VOS_UINT32  Nas_GetLrrcConnFailureFlag( VOS_VOID )
         return VOS_FALSE;
     }
 }
-/*****************************************************************************
- Function Name   : LRRC_LNAS_GetPowerOffFlag
- Description     : LRRC通过该接口获取EMM关机标识，用于判断LRRC收到的空口是否是关机detach
-                   该标志在LMM收到MMC关机请求置上，在收到LRRC power off cnf、收到开机请求
-                   或者等待LRRC power off cnf超时时清除
- Input           : None
- Output          : None
- Return          : 1 表示标识有效，即LMM正在关机过程中
-                   0 表示标识无效
- History         :
-    1.leixiantiao 00258641      2014-07-14  Draft Enact
 
-*****************************************************************************/
 
 VOS_UINT8 LRRC_LNAS_GetPowerOffFlag(VOS_VOID)
 {
     return NAS_LMM_GetEmmInfoLtePowerOffFlag();
 }
 
-/*****************************************************************************
- Function Name   : LRRC_LNAS_IsDamConfitionSatisfied
- Description     : LRRC通过该接口获取是否需要使用DAM
- Input           : None
- Output          : Nones
- Return          : 1 表示需使用
-                   0 表示不需使用
- History         :
-    1.sunjitan 00193151      2014-07-14  Draft Enact
-*****************************************************************************/
+
 
 VOS_UINT8 LRRC_LNAS_IsDamConfitionSatisfied(VOS_VOID)
 {
     return NAS_EMM_IsDamConfitionSatisfied();
 }
 
-/*****************************************************************************
- Function Name   : LRRC_LNAS_IsMsgContainsSMS
- Description     : LRRC通过该接口获取空口消息中是否含有短信内容
- Input           : None
- Output          : None
- Return          : 1 表示含有短信
-                   0 表示不含有短信
- History         :
-    1.zhaochen 00308719      2015-07-21  Draft Enact
-*****************************************************************************/
+
 
 VOS_UINT8 LRRC_LNAS_IsMsgContainsSMS(VOS_UINT32 ulMsgSize, VOS_UINT8 *pstMsg)
 {

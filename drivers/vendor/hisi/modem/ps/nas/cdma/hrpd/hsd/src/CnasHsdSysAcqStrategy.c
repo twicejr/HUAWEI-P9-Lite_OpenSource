@@ -1,20 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2014-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasHsdSysAcqStrategy.c
-  版 本 号   : 初稿
-  作    者   : C00299064
-  生成日期   : 2014年12月15日
-  最近修改   :
-  功能描述   : CNAS 层状态机系统捕获的搜网策略文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年12月15日
-    作    者   : C00299064
-    修改内容   : Added for HRPD
-******************************************************************************/
 
 
 /*****************************************************************************
@@ -76,24 +60,7 @@ CNAS_HSD_GET_SCAN_CHANNEL_LIST_TBL_STRU             g_astCnasHsdGetScanChanListT
     {CNAS_HSD_SYS_ACQ_SCENE_OOC_SWITCH_ON,          CNAS_HSD_GetScanChanListFromHrpdList_SwitchOn},
 };
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_IsAcqedHrpdSysMatchTheSysRecs
- 功能描述  : 判断CAS上传的SYS是不是和当前的SYS表匹配
- 输入参数  : pstHrpdSys               - CAS上报系统
- 输出参数  : pucPrio                  - 匹配到的系统的优先级
-             pusHrpeSysListMatchIndex - 匹配到的系统在系统表里面的INDEX
- 返 回 值  : VOS_TRUE/VOS_FALSE 表示匹配结果
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年12月10日
-   作    者   : C00299064
-   修改内容   : 新生成函数
- 2.日    期   : 2015年12月30日
-   作    者   : z00316370
-   修改内容   : DTS2015122407681,修改匹配规则
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_IsAcqedHrpdSysMatchTheSysRecs
 (
     CNAS_PRL_HRPD_SYSTEM_STRU                              *pstHrpdSys,
@@ -121,21 +88,7 @@ VOS_UINT32 CNAS_HSD_IsAcqedHrpdSysMatchTheSysRecs
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_RefreshScanListByMatchLvl()
- 功能描述  : 高LEVEL系统收到低LEVEL系统
- 输入参数  : usScanlistPos  - 当前的band channel在scan list中的INDEX
-             ucPrio         - 匹配到的SYS RECS里面的优先级
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年12月10日
-   作    者   : C00299064
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_RefreshScanListByMatchLvl
 (
     VOS_UINT16                          usScanListPos,
@@ -193,21 +146,7 @@ VOS_UINT32 CNAS_HSD_RefreshScanListByMatchLvl
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_IsCurrFreqStay
- 功能描述  : 当前的系统是不是可以驻留
- 输入参数  : pstHrpdSys - 当前系统
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 可以驻留
-             VOS_FALSE - 不能驻留
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年12月10日
-   作    者   : C00299064
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_IsCurrFreqStay
 (
     CNAS_PRL_HRPD_SYSTEM_STRU          *pstHrpdSys
@@ -285,20 +224,7 @@ VOS_UINT32 CNAS_HSD_IsCurrFreqStay
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_RefreshScanListIndex
- 功能描述  : 更新SCAN LIST的 INDEX
- 输入参数  : usFreqNumUsed - 新的current index
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年12月10日
-   作    者   : C00299064
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_HSD_RefreshScanListIndex(VOS_UINT16 usFreqNumUsed)
 {
     VOS_UINT16                          usCurIndex;
@@ -312,20 +238,7 @@ VOS_VOID CNAS_HSD_RefreshScanListIndex(VOS_UINT16 usFreqNumUsed)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_BuildHrpdScanList
- 功能描述  : 根据不同的捕获场景，构造扫描列表
- 输入参数  : enSysAcqScene - 捕获场景
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年12月12日
-   作    者   : C00299064
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_HSD_BuildHrpdScanList(
     CNAS_HSD_SYS_ACQ_SCENE_ENUM_UINT32  enSysAcqScene
 )
@@ -369,22 +282,7 @@ VOS_VOID CNAS_HSD_BuildHrpdScanList(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_BuildScanChanList_SwitchOn
- 功能描述  : 开机扫描频点列表构造
- 输入参数  : enSysAcqScene    - 捕获场景
 
- 输出参数  : 无
-
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史     :
- 1.日    期   : 2014年12月12日
-   作    者   : C00299064
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_HSD_BuildScanChanList_SwitchOn(
     CNAS_HSD_SYS_ACQ_SCENE_ENUM_UINT32                      enSysAcqScene
 )
@@ -420,22 +318,7 @@ VOS_VOID CNAS_HSD_BuildScanChanList_SwitchOn(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_BuildScanChanList_PilotSearch
- 功能描述  : 开机扫描频点列表构造
- 输入参数  : enSysAcqScene    - 捕获场景
 
- 输出参数  : 无
-
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史     :
- 1.日    期   : 2015年01月15日
-   作    者   : x00306642
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_HSD_BuildScanChanList_PilotSearch(
     CNAS_HSD_SYS_ACQ_SCENE_ENUM_UINT32                      enSysAcqScene
 )
@@ -470,24 +353,7 @@ VOS_VOID CNAS_HSD_BuildScanChanList_PilotSearch(
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_CreateHrpdSysList
- 功能描述  : 构造HRPD列表
- 输入参数  : enModeType     - 当前的搜网场景类型 (混合、非混合)
-             pst1xSysInfo   - 当前1X系统信息(包含 SID/NID Freq
-             pstSysList     - 存放Hrpd系统信息地址
 
- 输出参数  : pstSysList     - 获取到的Hrpd系统信息
-
- 返 回 值  : VOS_UINT32     - 构造HRPD列表的结果是成功还是失败
- 调用函数  :
- 被调函数  :
-
- 修改历史     :
- 1.日    期   : 2014年12月18日
-   作    者   : C00299064
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_CreateHrpdSysList(
     CNAS_HSD_SYS_MODE_TYPD_ENUM_UINT32                      enModeType,
     CNAS_HSD_1X_SYSTEM_INFO_STRU                           *pst1xSysInfo,
@@ -529,22 +395,7 @@ VOS_UINT32 CNAS_HSD_CreateHrpdSysList(
 
     return ulResult;
 }
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_GetScanChanelList
- 功能描述  : 根据不同的捕获场景，提取扫描频点列表
- 输入参数  : enSysAcqScene       - 捕获场景
-             pstHrpdSysRecList   -
-             pstHrpdScanFreqList -
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年1月22日
-   作    者   : d00212987
-   修改内容   : 新增
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_GetScanChanelList(
     CNAS_HSD_SYS_ACQ_SCENE_ENUM_UINT32  enSysAcqScene,
     CNAS_HSD_HRPD_SYS_LIST_STRU        *pstHrpdSysRecList,
@@ -575,24 +426,7 @@ VOS_UINT32 CNAS_HSD_GetScanChanelList(
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_BuildScanChanList_SwitchOn
- 功能描述  : 构造捕获列表
- 输入参数  : enModeType  - 当前的搜网场景
-             pstScanList - 扫描频点列表地址
-             pstSysList  - Hrpd系统信息
 
- 输出参数  : pstScanList - 扫描频点列表
-
- 返 回 值  : VOS_FALSE/VOS_TRUE - 获取扫描频点列表结果
- 调用函数  :
- 被调函数  :
-
- 修改历史     :
- 1.日    期   : 2014年12月18日
-   作    者   : C00299064
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_CreateScanFreqList(
     CNAS_HSD_SYS_ACQ_SCENE_ENUM_UINT32  enSysAcqScene,
     CNAS_HSD_HRPD_SCAN_FREQ_LIST_STRU  *pstScanList,
@@ -619,22 +453,7 @@ VOS_UINT32 CNAS_HSD_CreateScanFreqList(
     return CNAS_HSD_GetScanChanelList(enSysAcqScene, pstSysList, pstScanList);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_MallocMemForScanList
- 功能描述  : 构建扫描频点列表时,估算频点个数用于申请内存
- 输入参数  : enSysAcqScene - 捕获场景
-             pstSysList    - Hrpd系统信息
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT16 获取到频点数量
- 调用函数  :
- 被调函数  :
-
- 修改历史     :
- 1.日    期   : 2014年12月12日
-   作    者   : C00299064
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT16 CNAS_HSD_CalcFreqNumForScanList(
     CNAS_HSD_SYS_ACQ_SCENE_ENUM_UINT32  enSysAcqScene,
     CNAS_HSD_HRPD_SYS_LIST_STRU        *pstSysList
@@ -678,24 +497,7 @@ VOS_UINT16 CNAS_HSD_CalcFreqNumForScanList(
     return usTotalFreqNum;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_MallocMemForScanList
- 功能描述  : 构建扫描频点列表时，申请内存
- 输入参数  : usTotalFreqNum - 估算出的扫描频点总数
-             pstScanList    - 申请内存地址
 
- 输出参数  : pstScanList    - 存放扫描频点地址
-
- 返 回 值  : VOS_TRUE - 申请内存成功
-             VOS_FALSE - 申请内存失败
- 调用函数  :
- 被调函数  :
-
- 修改历史     :
- 1.日    期   : 2014年12月12日
-   作    者   : C00299064
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_MallocMemForScanList(
     CNAS_HSD_HRPD_SCAN_FREQ_LIST_STRU  *pstScanList,
     VOS_UINT16                          usTotalFreqNum
@@ -730,25 +532,7 @@ VOS_UINT32 CNAS_HSD_MallocMemForScanList(
 
     return VOS_TRUE;
 }
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_Create1xMatchedHrpdSysRecs
- 功能描述  : 创建1X相关的HRPD系统表
- 输入参数  : pst1xSys    - 1X系统信息(包含SID/NID Freq)
-             pstSysList  - 存放Hrpd系统信息地址
 
- 输出参数  : pstSysList  - Hrpd系统信息
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史     :
- 1.日    期   : 2014年12月12日
-   作    者   : C00299064
-   修改内容   : 新生成函数
- 2.日    期   : 2015年07月16日
-   作    者   : x00306642
-   修改内容   : evdo pilot iteration 1
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_Create1xMatchedHrpdSysRecs(
     CNAS_PRL_1X_SYSTEM_STRU                                *pst1xSys,
     CNAS_HSD_HRPD_SYS_LIST_STRU                            *pstSysList,
@@ -842,21 +626,7 @@ VOS_UINT32 CNAS_HSD_Create1xMatchedHrpdSysRecs(
 
     return VOS_TRUE;
 }
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_MallocMemForSysRec
- 功能描述  : HRPD系统表申请空间
- 输入参数  : usSysRecNum  - 系统个数
- 输出参数  : pstSysList   - 粗放HRPD系统信息地址
 
- 返 回 值  : VOS_UINT32   - 内测申请结果
- 调用函数  :
- 被调函数  :
-
- 修改历史     :
- 1.日    期   : 2014年12月12日
-   作    者   : C00299064
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_MallocMemForSysRec(
     VOS_UINT16                          usSysRecNum,
     CNAS_HSD_HRPD_SYS_LIST_STRU        *pstSysList
@@ -881,23 +651,7 @@ VOS_UINT32 CNAS_HSD_MallocMemForSysRec(
 
     return VOS_TRUE;
 }
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_CreateAllHrpdSysRecs
- 功能描述  : 得到系统表
- 输入参数  : enCheckAssnIncl  - 是不是需要判断ASSNINCL
-             enIsSortNeeded   - 是不是需要排序
-             pstSysList       - 获取到的Hrpd系统信息
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史     :
- 1.日    期   : 2014年12月11日
-   作    者   : c00299064
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_CreateAllHrpdSysRecs(
     CNAS_PRL_CHECK_ASSN_INCL_ENUM_UINT16          enCheckAssnIncl,
     CNAS_PRL_SORT_ENUM_UINT16                     enIsSortNeeded,
@@ -937,21 +691,7 @@ VOS_UINT32 CNAS_HSD_CreateAllHrpdSysRecs(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_BuildScanChanList_SystemLost
- 功能描述  : 丢网场景下扫描频点列表构造
- 输入参数  : enSysAcqScene    - 系统捕获场景
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史     :
- 1.日    期   : 2014年12月12日
-   作    者   : C00299064
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_HSD_BuildScanChanList_SystemLost(
     CNAS_HSD_SYS_ACQ_SCENE_ENUM_UINT32                      enSysAcqScene
 )
@@ -989,21 +729,7 @@ VOS_VOID CNAS_HSD_BuildScanChanList_SystemLost(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_BuildScanChanList_Redirection
- 功能描述  : 重定向场景下扫描频点列表构造
- 输入参数  : enSysAcqScene    - 系统捕获场景
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史     :
- 1.日    期   : 2015年1月6日
-   作    者   : d00212987
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_HSD_BuildScanChanList_Redirection(
     CNAS_HSD_SYS_ACQ_SCENE_ENUM_UINT32                      enSysAcqScene
 )
@@ -1047,21 +773,7 @@ VOS_VOID CNAS_HSD_BuildScanChanList_Redirection(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_BuildScanChanList_DataCallQuick
- 功能描述  : Data Call场景下快速搜索扫描频点列表构造
- 输入参数  : enSysAcqScene    - 系统捕获场景
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史     :
- 1.日    期   : 2015年1月6日
-   作    者   : d00212987
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_HSD_BuildScanChanList_DataCallQuick(
     CNAS_HSD_SYS_ACQ_SCENE_ENUM_UINT32                      enSysAcqScene
 )
@@ -1099,24 +811,7 @@ VOS_VOID CNAS_HSD_BuildScanChanList_DataCallQuick(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_AddMRUToScanList_SwitchOn
- 功能描述  : 开机场景把MRU中的频点添加到搜网列表中
- 输入参数  : 无
- 输出参数  : pstHrpdScanFreqList - 搜网列表
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月10日
-    作    者   : j00304117
-    修改内容   : 新生成函数
-  1.日    期   : 2015年07月15日
-    作    者   : x00306642
-    修改内容   : 修改hybrid模式下的策略
-
-*****************************************************************************/
 void CNAS_HSD_AddMruToScanList_SwitchOn
 (
     CNAS_HSD_HRPD_SCAN_FREQ_LIST_STRU                       *pstHrpdScanFreqList
@@ -1190,21 +885,7 @@ void CNAS_HSD_AddMruToScanList_SwitchOn
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_AddMRUToScanList_SystemLost
- 功能描述  : System Lost场景把MRU中的频点添加到搜网列表中
- 输入参数  : 无
- 输出参数  : pstHrpdScanFreqList   - 搜网列表
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月10日
-    作    者   : j00304117
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_AddMruToScanList_SystemLost
 (
     CNAS_HSD_HRPD_SCAN_FREQ_LIST_STRU                       *pstHrpdScanFreqList
@@ -1282,23 +963,7 @@ VOS_VOID CNAS_HSD_AddMruToScanList_SystemLost
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_AddMatchedGEOFreqToScanFreqList
- 功能描述  : 把EVDO系统的频点添加到搜网列表里(排除Negative系统)
- 输入参数  : pstHrpdItemInfo            - EVDO系统表
-             pstHrpdScanFreqList        - 搜网列表
- 输出参数  : 无
- 返 回 值  : VOS_TRUE               - 所有频点添加成功
-             VOS_FALSE              - 有频点添加到搜网列表中失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月10日
-    作    者   : j00304117
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_AddMatchedGeoFreqToScanFreqList_SwitchOn
 (
     CNAS_HSD_HRPD_SYS_LIST_STRU                            *pstHrpdItemInfo,
@@ -1388,23 +1053,7 @@ VOS_UINT32 CNAS_HSD_AddMatchedGeoFreqToScanFreqList_SwitchOn
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_AddMatchedGeoFreqToScanFreqList_SystemLost
- 功能描述  : 把EVDO系统的频点添加到搜网列表里(排除Negative系统)
- 输入参数  : pstHrpdItemInfo            - EVDO系统表
-             pstHrpdScanFreqList        - 搜网列表
- 输出参数  : 无
- 返 回 值  : VOS_TRUE               - 所有频点添加成功
-             VOS_FALSE              - 有频点添加到搜网列表中失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月10日
-    作    者   : j00304117
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_AddMatchedGeoFreqToScanFreqList_SystemLost
 (
     CNAS_HSD_HRPD_SYS_LIST_STRU                            *pstHrpdItemInfo,
@@ -1521,25 +1170,7 @@ VOS_UINT32 CNAS_HSD_AddMatchedGeoFreqToScanFreqList_SystemLost
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_AddMatchedGeoFreqToScanFreqList_Redirection
- 功能描述  : 把EVDO系统的频点添加到搜网列表里(排除Negative系统)
- 输入参数  : pstHrpdItemInfo            - EVDO系统表
-             pstHrpdScanFreqList        - 搜网列表
 
- 输出参数  : 无
-
- 返 回 值  : VOS_TRUE               - 所有频点添加成功
-             VOS_FALSE              - 有频点添加到搜网列表中失败
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年1月7日
-    作    者   : d00212987
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_AddMatchedGeoFreqToScanFreqList_Redirection
 (
     CNAS_HSD_HRPD_SYS_LIST_STRU                            *pstHrpdItemInfo,
@@ -1595,22 +1226,7 @@ VOS_UINT32 CNAS_HSD_AddMatchedGeoFreqToScanFreqList_Redirection
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_GetScanChanListFromHrpdList_SwitchOn
- 功能描述  : 非混合模式下开机场景创建搜网列表
- 输入参数  : ulTotalMatchedGeoChanNum  - 总共的频点数
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                  - 所有频点添加成功
-             VOS_FALSE                 - 有频点添加到搜网列表中失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月10日
-    作    者   : j00304117
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_GetScanChanListFromHrpdList_SwitchOn(
     CNAS_HSD_HRPD_SYS_LIST_STRU        *pstHrpdSysRecList,
     CNAS_HSD_HRPD_SCAN_FREQ_LIST_STRU  *pstHrpdScanFreqList
@@ -1629,22 +1245,7 @@ VOS_UINT32 CNAS_HSD_GetScanChanListFromHrpdList_SwitchOn(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_GetScanChanListFromHrpdList_SystemLost
- 功能描述  : System Lost场景把频点添加到搜网列表中
- 输入参数  : ulTotalMatchedGeoChanNum  - 需要添加的频点总共数
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                  - 有频点添加成功
-             VOS_FALSE                 - 有频点添加到搜网列表中失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月10日
-    作    者   : j00304117
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_GetScanChanListFromHrpdList_SystemLost
 (
     CNAS_HSD_HRPD_SYS_LIST_STRU        *pstHrpdSysRecList,
@@ -1670,25 +1271,7 @@ VOS_UINT32 CNAS_HSD_GetScanChanListFromHrpdList_SystemLost
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_GetScanChanListFromHrpdList_Redirection
- 功能描述  : Redirection场景把频点添加到搜网列表中
- 输入参数  : ulTotalMatchedGeoChanNum  - 需要添加的频点总共数
 
- 输出参数  : 无
-
- 返 回 值  : VOS_TRUE                  - 有频点添加成功
-             VOS_FALSE                 - 有频点添加到搜网列表中失败
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年1月6日
-    作    者   : d00212987
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_GetScanChanListFromHrpdList_Redirection
 (
     CNAS_HSD_HRPD_SYS_LIST_STRU        *pstHrpdSysRecList,
@@ -1711,22 +1294,7 @@ VOS_UINT32 CNAS_HSD_GetScanChanListFromHrpdList_Redirection
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_GetScanChanListFromHrpdList_Redirection
- 功能描述  : Redirection场景把频点添加到搜网列表中
- 输入参数  : ulTotalMatchedGeoChanNum  - 需要添加的频点总共数
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                  - 有频点添加成功
-             VOS_FALSE                 - 有频点添加到搜网列表中失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月6日
-    作    者   : d00212987
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_GetScanChanListFromHrpdList_DataCallQuick
 (
     CNAS_HSD_HRPD_SYS_LIST_STRU        *pstHrpdSysRecList,
@@ -1842,21 +1410,7 @@ VOS_UINT32 CNAS_HSD_GetScanChanListFromHrpdList_DataCallQuick
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_FreqIsMru0Pos
- 功能描述  : 检查当前位置是否是MRU0插入的位置
- 输入参数  : usPos            - 需要写入频点的位置
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年12月15日
-   作    者   : j00304117
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_FreqIsMru0Pos
 (
     VOS_UINT16                          usPos
@@ -1890,22 +1444,7 @@ VOS_UINT32 CNAS_HSD_FreqIsMru0Pos
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_FreqIsSupport
- 功能描述  : 频点是否被设备支持
- 输入参数  : stFreq         - 需要判断的频点
- 输出参数  : 无
- 返 回 值  : VOS_TRUE       - 频点被设备支持
-             VOS_TRUE       - 频点不被设备支持
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年12月15日
-   作    者   : j00304117
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_FreqIsSupport
 (
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstFreq
@@ -1934,22 +1473,7 @@ VOS_UINT32 CNAS_HSD_FreqIsSupport
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SortHrpdSystem_NoHybrid
- 功能描述  : 把获取到的DRDP系统根据优先级和index排序
- 输入参数  : pstHrpdList     - 需要排序的EVDO系统的记录
- 输出参数  : pstHrpdList     - 排序完成的EVDO系统的记录
 
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年12月10日
-    作    者   : j00304117
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SortHrpdSystem_NoHybrid
 (
     CNAS_HSD_HRPD_SYS_LIST_STRU        *pstHrpdList
@@ -1993,24 +1517,7 @@ VOS_VOID CNAS_HSD_SortHrpdSystem_NoHybrid
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_CalcMatchHrpdSystemFreqNum
- 功能描述  : 计算匹配的EVDO系统的频点总数(排除Negative系统)
- 输入参数  : pstHrpdItemInfo   - 匹配的1X的EVDO系统表
- 输出参数  : 无
- 返 回 值  : 匹配1X的EVDO系统的频点总数
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月10日
-    作    者   : j00304117
-    修改内容   : 新生成函数
-  1.日    期   : 2015年07月16日
-    作    者   : x00306642
-    修改内容   : 增加MRU0关联性判断
-
-*****************************************************************************/
 VOS_UINT16 CNAS_HSD_CalcMatchHrpdSystemFreqNum(
     CNAS_HSD_HRPD_SYS_LIST_STRU        *pstHrpdItemInfo
 )
@@ -2064,24 +1571,7 @@ VOS_UINT16 CNAS_HSD_CalcMatchHrpdSystemFreqNum(
     return usTotalMatchedGeoChanNum;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_IsRepeatFreqInSpecPrio
- 功能描述  : 检查频点在搜网表指定优先级中是否重复
- 输入参数  : pstHrpdScanFreqList    - 搜网列表
-             stFreq                 - 需要检查的频点
-             usPrio                 - 指定的优先级
- 输出参数  : 无
- 返 回 值  : VOS_TRUE               - 频点在搜网列表指定优先级中已存在
-             VOS_FALSE              - 频点在搜网列表指定优先级中不存在
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月10日
-    作    者   : j00304117
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_IsRepeatFreqInSpecPrio
 (
     CNAS_HSD_HRPD_SCAN_FREQ_LIST_STRU  *pstHrpdScanFreqList,
@@ -2121,23 +1611,7 @@ VOS_UINT32 CNAS_HSD_IsRepeatFreqInSpecPrio
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_IsRepeatFreq
- 功能描述  : 检查频点是否重复
- 输入参数  : pstHrpdScanFreqList    - 搜网列表
-             stFreq                 - 需要检查的频点
- 输出参数  : 无
- 返 回 值  : VOS_TRUE               - 频点在搜网列表指定优先级中已存在
-             VOS_FALSE              - 频点在搜网列表指定优先级中不存在
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月28日
-    作    者   : g00256031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_IsRepeatFreq
 (
     CNAS_HSD_HRPD_SCAN_FREQ_LIST_STRU  *pstHrpdScanFreqList,
@@ -2159,24 +1633,7 @@ VOS_UINT32 CNAS_HSD_IsRepeatFreq
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_GetScanListSameLevelFreq
- 功能描述  : 从Scan List中获取相同Level的可用频点
- 输入参数  : ulFreqNum    - 最大存放频点个数
-             pstFreq      - 存放频点地址
 
- 输出参数  : pstFreq      - 获取到的频点列表
-
- 返 回 值  : 获取到频点个数
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年12月8日
-    作    者   : d00212987
-    修改内容   : EVDO HSD Phase0
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_GetScanListSameLevelFreq(
     VOS_UINT32                          ulFreqNum,
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstFreq
@@ -2240,26 +1697,7 @@ VOS_UINT32 CNAS_HSD_GetScanListSameLevelFreq(
     return ulHrpdFreqNum;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_GetNonHybridHrpdSysRecNum
- 功能描述  : 非混合情况下获取Hrpd SYS RECORD个数
- 输入参数  : bIsAssnIncl    - 是否需要判断Assn Incl在SYS RECORD中的状态
 
- 输出参数  : NA
-
- 返 回 值  : 获取到非混合情况下 Hrpd SYS RECORD个数
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年12月8日
-    作    者   : d00212987
-    修改内容   : EVDO HSD Phase0
-  2.日    期   : 2015年04月07日
-    作    者   : z00316370
-    修改内容   : 高优先搜网时增加筛选判断
-
-*****************************************************************************/
 VOS_UINT16 CNAS_HSD_GetNonHybridHrpdSysRecNum(
     CNAS_PRL_CHECK_ASSN_INCL_ENUM_UINT16    enCheckAssnIncl
 )
@@ -2310,27 +1748,7 @@ VOS_UINT16 CNAS_HSD_GetNonHybridHrpdSysRecNum(
     return usNonHybridHrpdSysRecNum;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_GetNonHybridHrpdSysRecList
- 功能描述  : 非混合情况下获取Hrpd SYS RECORD ITEM LIST
- 输入参数  : bIsAssnIncl     - 是否需要判断Assn Incl在SYS RECORD中的状态
-             pstSysRecIList  - 分配好存放SYS RECORD ITEM的空间
 
- 输出参数  : pstSysRecIList   - 返回实际SYS RECORD ITEM
-
- 返 回 值  : VOS_TRUE/VOS_FALSE
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年12月8日
-    作    者   : d00212987
-    修改内容   : EVDO HSD Phase0
-  2.日    期   : 2015年04月07日
-    作    者   : z00316370
-    修改内容   : 高优先搜网时增加筛选判断
-
-*****************************************************************************/
 VOS_UINT16 CNAS_HSD_GetNonHybridHrpdSysRecList(
     CNAS_PRL_CHECK_ASSN_INCL_ENUM_UINT16    enCheckAssnIncl,
     CNAS_HSD_HRPD_SYS_LIST_STRU            *pstSysRecList
@@ -2428,25 +1846,7 @@ VOS_UINT16 CNAS_HSD_GetNonHybridHrpdSysRecList(
 
     return VOS_TRUE;
 }
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_GetHybridHrpdSysRecParaCheck
- 功能描述  : 混合情况下获取Hrpd SYS RECORD ITEM LIST
- 输入参数  : pstMatchGeoInfo     - 待获取Geo列表信息
-             usSysRecordNum      -
-             usGeoEndIndex       -
 
- 输出参数  : NA
-
- 返 回 值  : VOS_TRUE/VOS_FALSE
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年12月8日
-    作    者   : d00212987
-    修改内容   : EVDO HSD Phase0
-
-*****************************************************************************/
 VOS_UINT16 CNAS_HSD_GetHybridHrpdSysRecParaCheck(
     CNAS_PRL_MULTI_MATCHED_GEO_INFO_STRU    *pstGeoInfoList,
     VOS_UINT16                               usSysRecordNum,
@@ -2476,31 +1876,7 @@ VOS_UINT16 CNAS_HSD_GetHybridHrpdSysRecParaCheck(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_GetHybridHrpdSysRecNum
- 功能描述  : 混合情况下获取Hrpd SYS RECORD个数
- 输入参数  : pstMatchGeoInfo    - 待匹配Geo列表信息
 
- 输出参数  : NA
-
- 返 回 值  : 获取到混合情况下Geo列表数量
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年12月8日
-    作    者   : d00212987
-    修改内容   : EVDO HSD Phase0
-  2.日    期   : 2015年04月07日
-    作    者   : z00316370
-    修改内容   : 高优先搜网时增加筛选判断
-  3.日    期   : 2015年07月16日
-    作    者   : x00306642
-    修改内容   : evdo pilot iteration 1
-  4.日    期   : 2015年12月07日
-    作    者   : c00299064
-    修改内容   : GEO结构体修改
-*****************************************************************************/
 VOS_UINT16 CNAS_HSD_GetHybridHrpdSysRecNum(
     CNAS_PRL_MULTI_MATCHED_GEO_INFO_STRU     *pstGeoInfoList
 )
@@ -2579,31 +1955,7 @@ VOS_UINT16 CNAS_HSD_GetHybridHrpdSysRecNum(
     return usHybridHrpdSysRecNum;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_GetHybridHrpdSysRecList
- 功能描述  : 混合情况下获取Hrpd SYS RECORD ITEM LIST
- 输入参数  : pstMatchGeoInfo     - 待获取Geo列表信息
-             pstSysRecIList      - 分配好存放SYS RECORD ITEM空间
-             usAviHrpdSysNum     - 可用空间数量
 
- 输出参数  : pstSysRecIList      - 返回实际SYS RECORD ITEM
-
- 返 回 值  : 返回获取到的HRPD SYS RECIRD ITEM数量
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年12月8日
-    作    者   : d00212987
-    修改内容   : EVDO HSD Phase0
-  2.日    期   : 2015年04月07日
-    作    者   : z00316370
-    修改内容   : 高优先搜网时增加筛选判断
-  3.日    期   : 2015年07月16日
-    作    者   : x00306642
-    修改内容   : evdo pilot iteration 1
-
-*****************************************************************************/
 VOS_UINT16 CNAS_HSD_GetHybridHrpdSysRecList(
     CNAS_PRL_MULTI_MATCHED_GEO_INFO_STRU    *pstGeoList,
     CNAS_HSD_HRPD_SYS_REC_ITEM_STRU         *pstHrpdSysItem,
@@ -2723,22 +2075,7 @@ VOS_UINT16 CNAS_HSD_GetHybridHrpdSysRecList(
     return usHybridHrpdSysRecNum;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_BuildScanChanList_MRU0
- 功能描述  : MRU0频点搜索scan list构造
- 输入参数  :
 
- 输出参数  :
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史     :
- 1.日    期   : 2015年1月14日
-   作    者   : z00316370
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_BuildScanChanList_OocMru0(
     CNAS_HSD_SYS_ACQ_SCENE_ENUM_UINT32                      enSysAcqScene
 )
@@ -2778,26 +2115,7 @@ VOS_VOID CNAS_HSD_BuildScanChanList_OocMru0(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_CheckHrpdFreqAssnWith1X
- 功能描述  : 判断当前HRPD频点和1X系统相关联性
- 输入参数  : pstHrpdSys         HRPD系统信息
- 输出参数  : VOS_VOID
 
- 返 回 值  : VOS_TRUE           - 相关联
-             VOS_FALSE          - 不相关联
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年1月22日
-    作    者   : g00256031
-    修改内容   : EVDO HSD Phase0
-  2.日    期   : 2015年06月04日
-    作    者   : z00316370
-    修改内容   : 增加入参pstHrpdSys
-
-*****************************************************************************/
 CNAS_HSD_ASSN_RLST_ENUM_UINT32 CNAS_HSD_CheckHrpdFreqAssnWith1X(
     CNAS_PRL_HRPD_SYSTEM_STRU          *pstHrpdSys
 )
@@ -2834,26 +2152,7 @@ CNAS_HSD_ASSN_RLST_ENUM_UINT32 CNAS_HSD_CheckHrpdFreqAssnWith1X(
     return CNAS_HSD_ASSN_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_GetScanChanListFromMru0_Ooc
- 功能描述  : OOC场景通过MRU0创建搜网列表
- 输入参数  : pstHrpdSysRecList
-             pstHrpdScanFreqList
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                  - 所有频点添加成功
-             VOS_FALSE                 - 有频点添加到搜网列表中失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年01月21日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-  2.日    期   : 2015年02月27日
-    作    者   : z00316370
-    修改内容   : 修改为添加第一个硬件支持的MRU频点到搜网列表
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_GetScanChanListFromMru0_Ooc(
     CNAS_HSD_HRPD_SYS_LIST_STRU        *pstHrpdSysRecList,
     CNAS_HSD_HRPD_SCAN_FREQ_LIST_STRU  *pstHrpdScanFreqList
@@ -2895,22 +2194,7 @@ VOS_UINT32 CNAS_HSD_GetScanChanListFromMru0_Ooc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_BuildScanChanList_HighPriority
- 功能描述  : 高优先级搜网扫描频点列表构造
- 输入参数  : enSysAcqScene    - 捕获场景
 
- 输出参数  : 无
-
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史     :
- 1.日    期   : 2015年04月07日
-   作    者   : z00316370
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_HSD_BuildScanChanList_HighPriority(
     CNAS_HSD_SYS_ACQ_SCENE_ENUM_UINT32                      enSysAcqScene
 )
@@ -2946,22 +2230,7 @@ VOS_VOID CNAS_HSD_BuildScanChanList_HighPriority(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_GetScanChanListFromHrpdList_HighPriority
- 功能描述  : 把高优先级系统的频点添加到搜网列表里，排除Negative系统
- 输入参数  : ulTotalMatchedGeoChanNum  - 总共的频点数
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                  - 所有频点添加成功
-             VOS_FALSE                 - 有频点添加到搜网列表中失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年04月07日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_GetScanChanListFromHrpdList_HighPriority(
     CNAS_HSD_HRPD_SYS_LIST_STRU        *pstHrpdSysRecList,
     CNAS_HSD_HRPD_SCAN_FREQ_LIST_STRU  *pstHrpdScanFreqList
@@ -3034,21 +2303,7 @@ VOS_UINT32 CNAS_HSD_GetScanChanListFromHrpdList_HighPriority(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_IsCurHrpdSysNeedInHighPriScene
- 功能描述  : 高优先级搜网时，判断当前hrpd sys的是否需要添加计算
- 输入参数  : usSysIndex               - 当前HRPD的SysIndex
-             pstSysRecord             - 当前sys rec表项
- 输出参数  : 无
- 返 回 值  : VOS_TRUE/VOS_FALSE 表示是否需要添加记录
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年04月21日
-   作    者   : z00316370
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 CNAS_HSD_IsCurHrpdSysNeedInHighPriScene(
     VOS_UINT16                          usSysIndex,
     CNAS_PRL_EXT_SYS_RECORD_STRU       *pstSysRecord
@@ -3073,20 +2328,7 @@ VOS_UINT8 CNAS_HSD_IsCurHrpdSysNeedInHighPriScene(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_IsCurHrpdSysInHighPriList
- 功能描述  : 判断当前HRPD的Sys Index在下发的高优先级列表中
- 输入参数  : usSysIndex               - 当前HRPD的SysIndex
- 输出参数  : 无
- 返 回 值  : VOS_TRUE/VOS_FALSE 表示匹配结果
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年04月07日
-   作    者   : z00316370
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 CNAS_HSD_IsCurHrpdSysInHighPriList(
     VOS_UINT16                          usSysIndex
 )
@@ -3112,20 +2354,7 @@ VOS_UINT8 CNAS_HSD_IsCurHrpdSysInHighPriList(
     return ucExist;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_IsCurSysSubnetWildCard
- 功能描述  : 判断当前sys rec的subnet为通配的
- 输入参数  : pstSysRecord             - 当前sys rec表项
- 输出参数  : 无
- 返 回 值  : VOS_TRUE/VOS_FALSE 表示是否通配
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年04月21日
-   作    者   : z00316370
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 CNAS_HSD_IsCurSysSubnetWildCard(
     CNAS_PRL_EXT_SYS_RECORD_STRU       *pstSysRecord
 )
@@ -3149,23 +2378,7 @@ VOS_UINT8 CNAS_HSD_IsCurSysSubnetWildCard(
     return ucRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_CheckHrpdSysAssnWith1X
- 功能描述  : 判断当前HRPD频点和1X系统相关联性
- 输入参数  : pstHrpdSys         HRPD系统信息
- 输出参数  : VOS_VOID
 
- 返 回 值  : VOS_TRUE           - 相关联
-             VOS_FALSE          - 不相关联
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年06月12日
-    作    者   : z00316370
-    修改内容   : 新增函数
-
-*****************************************************************************/
 CNAS_HSD_ASSN_RLST_ENUM_UINT32 CNAS_HSD_CheckHrpdSysAssnWith1X(
     CNAS_PRL_HRPD_SYSTEM_STRU          *pstHrpdSys
 )
@@ -3203,21 +2416,7 @@ CNAS_HSD_ASSN_RLST_ENUM_UINT32 CNAS_HSD_CheckHrpdSysAssnWith1X(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_GetMostMatched1xGeoList
- 功能描述  : 获取最match的GEO list
- 输入参数  : pstCurSysInfo ----当前系统信息
 
- 输出参数  : pstMostMatchGeoListInfo ----最match的GEO list信息
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年07月16日
-    作    者   : x00306642
-    修改内容   : evdo pilot iteration 1开发
-*****************************************************************************/
 VOS_VOID CNAS_HSD_GetMostMatched1xGeoList(
     CNAS_PRL_1X_SYSTEM_STRU                                *pstCurSysInfo,
     CNAS_PRL_MATCHED_GEO_LIST_INFO_STRU                    *pstMostMatchGeoListInfo
@@ -3239,22 +2438,7 @@ VOS_VOID CNAS_HSD_GetMostMatched1xGeoList(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_BuildScanChanList_SwitchOn
- 功能描述  : 锁频扫描频点列表构造
- 输入参数  : enSysAcqScene    - 捕获场景
 
- 输出参数  : 无
-
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史     :
- 1.日    期   : 2015年07月14日
-   作    者   : x00306642
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_HSD_BuildScanChanList_CFreqLock(
     CNAS_HSD_SYS_ACQ_SCENE_ENUM_UINT32                      enSysAcqScene
 )
@@ -3286,22 +2470,7 @@ VOS_VOID CNAS_HSD_BuildScanChanList_CFreqLock(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_Mru0IsRelate
- 功能描述  : 判断Mru0是否属于关联DO系统对应的ACQ记录
- 输入参数  : enSysAcqScene    - 捕获场景
 
- 输出参数  : 无
-
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史     :
- 1.日    期   : 2015年07月14日
-   作    者   : x00306642
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_HSD_ProcMru0Relate(
     CNAS_PRL_ACQ_REC_FREQ_INFO_STRU    *pstFreqInfo
 )
@@ -3327,21 +2496,7 @@ VOS_VOID CNAS_HSD_ProcMru0Relate(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_SortHrpdSystem_Hybrid
- 功能描述  : 把获取到的DRDP系统根据优先级和index排序
- 输入参数  : pstHrpdList     - 需要排序的EVDO系统的记录
- 输出参数  : pstHrpdList     - 排序完成的EVDO系统的记录
 
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_PRL_SortHrpdSystem_Hybrid
 (
     CNAS_HSD_HRPD_SYS_LIST_STRU        *pstHrpdList
@@ -3414,21 +2569,7 @@ VOS_VOID CNAS_PRL_SortHrpdSystem_Hybrid
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_SortHrpdSystem
- 功能描述  : 把获取到的DRDP系统根据优先级和index排序
- 输入参数  : pstHrpdList     - 需要排序的EVDO系统的记录
- 输出参数  : pstHrpdList     - 排序完成的EVDO系统的记录
 
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SortHrpdSystem
 (
     CNAS_HSD_HRPD_SYS_LIST_STRU        *pstHrpdList
@@ -3449,21 +2590,7 @@ VOS_VOID CNAS_HSD_SortHrpdSystem
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_GetPivot1xSysPriosInGeos
- 功能描述  : 得到每个匹配的1X在GEO里面的优先级(支点INDEX)
- 输入参数  : pstHrpdList     - 需要排序的EVDO系统的记录
- 输出参数  : pstHrpdList     - 排序完成的EVDO系统的记录
 
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年11月10日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_GetPivot1xSysPriosInGeos
 (
     CNAS_PRL_MULTI_MATCHED_GEO_LIST_INFO_STRU              *pstGeoList,
@@ -3516,22 +2643,7 @@ VOS_UINT32 CNAS_HSD_GetPivot1xSysPriosInGeos
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_Is1xSysStillMatchHrpdSearchList
- 功能描述  : 判断最新的1X是不是和原来的HRPD搜网列表匹配
- 输入参数  :    CNAS_PRL_1X_SYSTEM_STRU            *pstSrcSys,
-                CNAS_PRL_1X_SYSTEM_STRU            *pstDstSys
- 输出参数  :
 
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年11月23日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_Is1xSysStillMatchHrpdSearchList
 (
     CNAS_PRL_1X_SYSTEM_STRU            *pstHrpdSrcSys, /*  生成HRPD列表的1x系统 */
@@ -3581,22 +2693,7 @@ VOS_UINT32 CNAS_HSD_Is1xSysStillMatchHrpdSearchList
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_Get1XMostMatchedGeoList
- 功能描述  : 通过驻留的1X系统获最匹配的GEO列表
- 输入参数  :    CNAS_PRL_1X_SYSTEM_STRU                              *pstSrcSys,
-                CNAS_PRL_MULTI_MATCHED_GEO_LIST_INFO_STRU            *pstMatchedGeoList,
- 输出参数  :
 
- 返 回 值  :   VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年12月04日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_Get1XMostMatchedGeoList
 (
     CNAS_PRL_1X_SYSTEM_STRU                                *pst1xSrcSys,
@@ -3687,24 +2784,7 @@ VOS_UINT32 CNAS_HSD_Get1XMostMatchedGeoList
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_IsTheHrpdSysAsso1xSys
- 功能描述  : 通过驻留的1X系统获最匹配的GEO列表
- 输入参数  :
-    CNAS_PRL_EXT_SYS_RECORD_STRU                           *pstSrcHrpdSys,
-    CNAS_PRL_EXT_SYS_RECORD_STRU                          **ppst1xSys,
-    VOS_UINT8                                               uc1xSysNum
 
- 输出参数  :
-
- 返 回 值  :   VOS_TURE/VOS_FALSE
- 调用函数  :
-
- 修改历史      :
-  1.日    期   : 2015年12月07日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_IsTheHrpdSysAsso1xSys
 (
     CNAS_PRL_EXT_SYS_RECORD_STRU                           *pstSrcHrpdSys,
@@ -3728,20 +2808,7 @@ VOS_UINT32 CNAS_HSD_IsTheHrpdSysAsso1xSys
 
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_GetAcqedHrpdSysMatchIndex
- 功能描述  : 获取和CAS上传的SYS相匹配的系统表的索引集
- 输入参数  : pstHrpdSys               - CAS上报系统
- 输出参数  :
- 返 回 值  : VOS_TRUE/VOS_FALSE 表示匹配结果
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年12月30日
-   作    者   : z00316370
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_HSD_GetAcqedHrpdSysMatchIndexList(
     CNAS_PRL_HRPD_SYSTEM_STRU                              *pstHrpdSys
 )
@@ -3811,20 +2878,7 @@ VOS_VOID CNAS_HSD_GetAcqedHrpdSysMatchIndexList(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_GetAcqedHrpdSysMatchIndex
- 功能描述  : 判断指定的index是否在匹配的索引集中
- 输入参数  : pstHrpdSys               - CAS上报系统
- 输出参数  :
- 返 回 值  : VOS_TRUE/VOS_FALSE 表示是否存在
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年12月30日
-   作    者   : z00316370
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_IsAcqedHrpdSysInMatchIndexList(
     VOS_UINT16                                              usSysIndex
 )

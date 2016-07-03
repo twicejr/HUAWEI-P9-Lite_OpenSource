@@ -70,7 +70,6 @@ typedef enum tagBFD_HA_MSG_TYPE
     BFD_VRF_NEW_MULTIHOP_PORT_BAK,   /* 28 备份多跳会话改变后的目的端口号 */
     BFD_SESSION_NAME_BAK,            /* 29 备份BFD名字 */
     BFD_SESSION_DESC_BAK,            /* 30 备份BFD描述 */
-    /* Add for V2R3C05, by b0177000/y00176567, at 2011-06-03. 修改原因: V2R3C05 会话创建协议类型备份 */   
     BFD_SESSION_BFDPROTOCOL_BAK,     /* 31 备份创建BFD会话的协议类型 */
     BFD_SESSION_REMOTEMRI_BAK,       /* 32 备份对端RequiredMinRxInterval值 */  
     BFD_SESSION_REMOTE_DEMANDMODE_BAK,       /* 32 备份对端DemandMode值 */  
@@ -194,7 +193,6 @@ typedef struct tagBFD_SESSION_TOS_BAK
     ULONG  ulVrfIndex;             
 }BFD_SESSION_TOS_BAK_S;
 
-/* Begin:Add for V2R3C05, by b0177000/y00176567, at 2011-06-03. 修改原因: V2R3C05 创建会话的协议类型备份包 */   
 /* 备份bfd会话的协议类型，1:RFC协议 0:草案04*/
 typedef struct tagBFD_SESSION_BFDPROTOCOL_BAK
 {
@@ -204,9 +202,7 @@ typedef struct tagBFD_SESSION_BFDPROTOCOL_BAK
     ULONG  ulVrfIndex;                /* VRF索引 */
     ULONG  ulBfdProtocol;             /* bfd会话协议类型 */
 }BFD_SESSION_BFDPROTOCOL_BAK_S;
-/* End:Add for V2R3C05, by b0177000/y00176567, at 2011-06-03. 修改原因: V2R3C05 创建会话的协议类型备份包 */   
 
-/* Begin:Add for V2R3C05, by b0177000/y00176567, at 2011-06-03. 修改原因: V2R3C05 会话的对端RequiredMinRxInterval备份包 */   
 /* 备份bfd会话的协议类型，1:RFC协议 0:草案04*/
 typedef struct tagBFD_SESSION_REMOTEMRI_BAK
 {
@@ -216,9 +212,7 @@ typedef struct tagBFD_SESSION_REMOTEMRI_BAK
     ULONG  ulVrfIndex;                /* VRF索引 */
     ULONG  ulRemoteMinRxInterval;     /* 对端的RequiredMinRxInterval值 */
 }BFD_SESSION_REMOTEMRI_BAK_S;
-/* End:Add for V2R3C05, by b0177000/y00176567, at 2011-06-03. 修改原因: V2R3C05 创建会话的协议类型备份包 */  
 
-/* Begin:Add for V2R3C05, by b0177000/y00176567, at 2011-06-05. 修改原因: V2R3C05 会话的对端RequiredMinRxInterval备份包 */   
 /* 备份bfd会话对端的DemandMode值*/
 typedef struct tagBFD_SESSION_REMOTE_DEMANDMODE_BAK
 {
@@ -229,7 +223,6 @@ typedef struct tagBFD_SESSION_REMOTE_DEMANDMODE_BAK
     USHORT usRemoteDemandMode;        /* 对端的DemandMode值 */
     USHORT usReserved;                /* 四字节对齐，保留不用 */
 }BFD_SESSION_REMOTE_DEMANDMODE_BAK_S;
-/* End:Add for V2R3C05, by b0177000/y00176567, at 2011-06-05. 修改原因: V2R3C05 创建会话的协议类型备份包 */ 
 
 typedef struct tagBFD_CREATE_SESSION_BAK
 {

@@ -89,21 +89,7 @@ CPULOAD_CFG_STRU        g_stNvCfg;
    5 函数实现
 ******************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : CPULOAD_ReadCpuStat
- 功能描述  : 调用系统接口读取CPU使用情况数据
- 输入参数  : pstCpu -   记录两次CPU统计数据
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CPULOAD_ReadCpuStat(CPULOAD_STAT_INFO_STRU *pstCpu)
 {
     /* V9R1项目中使用宏开关判断是否读取CPU使用情况数据 */
@@ -113,21 +99,7 @@ VOS_VOID CPULOAD_ReadCpuStat(CPULOAD_STAT_INFO_STRU *pstCpu)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CPULOAD_UpdateSavInfo
- 功能描述  : 将上次CPU数据更新为当前数据，用于下次计算
- 输入参数  : pstCpu -   记录两次CPU统计数据
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CPULOAD_UpdateSavInfo(CPULOAD_STAT_INFO_STRU *pstCpu)
 {
     /* 更新保存的结果 */
@@ -136,21 +108,7 @@ VOS_VOID CPULOAD_UpdateSavInfo(CPULOAD_STAT_INFO_STRU *pstCpu)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CPULOAD_CalLoad
- 功能描述  : 计算两次读取CPU使用情况期间的CPU占用率
- 输入参数  : pstCpu -   记录两次CPU统计数据
- 输出参数  : 无
- 返 回 值  : CPU占用率
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CPULOAD_CalLoad(CPULOAD_STAT_INFO_STRU *pstCpu)
 {
     /* V9R1项目中使用宏开关进行打桩处理 */
@@ -179,42 +137,14 @@ VOS_UINT32 CPULOAD_CalLoad(CPULOAD_STAT_INFO_STRU *pstCpu)
     return ulLoad;
 }
 
-/*****************************************************************************
- 函 数 名  : CPULOAD_GetCpuLoad
- 功能描述  : 返回LINUX当前CPU占用率
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : CPU占用率
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  CPULOAD_GetCpuLoad(VOS_VOID)
 {
     /* 使用宏开关判断是否需要打桩处理 */
     return g_stRegularCpuLoad.ulCpuLoad;
 }
 
-/*****************************************************************************
- 函 数 名  : CPULOAD_InvokeRtpHooks
- 功能描述  : 执行注册的CPU贡载回调函数
- 输入参数  : ulLoad -   当前CPU负载
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  : 注册的回调函数
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CPULOAD_InvokeRtpHooks(VOS_UINT32  ulLoad)
 {
     VOS_UINT32                          ulHookLoop;
@@ -231,21 +161,7 @@ VOS_VOID CPULOAD_InvokeRtpHooks(VOS_UINT32  ulLoad)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CPULOAD_RegularTimeoutProc
- 功能描述  : 计算定时时长内的CPU负载
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  : 注册的回调函数
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CPULOAD_RegularTimeoutProc(VOS_VOID)
 {
     CPULOAD_STAT_INFO_STRU             *pstCpu = &g_stRegularCpuLoad;
@@ -271,21 +187,7 @@ VOS_VOID CPULOAD_RegularTimeoutProc(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CPULOAD_RcvTimerExpireMsg
- 功能描述  : 定时器超时消息处理
- 输入参数  : pTimerMsg  -   超时消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CPULOAD_RcvTimerExpireMsg(REL_TIMER_MSG *pTimerMsg)
 {
     switch (pTimerMsg->ulName)
@@ -300,22 +202,7 @@ VOS_VOID CPULOAD_RcvTimerExpireMsg(REL_TIMER_MSG *pTimerMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CPULOAD_Init
- 功能描述  : 执行初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_OK     --  成功
-             VOS_ERR    --  失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CPULOAD_Init(VOS_VOID)
 {
     VOS_UINT32                          ulHookLoop;
@@ -357,21 +244,7 @@ VOS_UINT32 CPULOAD_Init(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CPULOAD_PidMsgProc
- 功能描述  : CPU监测模块消息处理
- 输入参数  : pRcvMsg    --  消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月14日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CPULOAD_PidMsgProc(MsgBlock *pRcvMsg)
 {
     switch( pRcvMsg->ulSenderPid )
@@ -385,20 +258,7 @@ VOS_VOID CPULOAD_PidMsgProc(MsgBlock *pRcvMsg)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CPULOAD_FidInit
- 功能描述  : CPU监测FID初始化函数
- 输入参数  : enum VOS_INIT_PHASE_DEFINE enPhase
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月14日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CPULOAD_FidInit(enum VOS_INIT_PHASE_DEFINE enPhase)
 {
     VOS_UINT32  ulResult = VOS_ERR;
@@ -451,22 +311,7 @@ VOS_UINT32 CPULOAD_FidInit(enum VOS_INIT_PHASE_DEFINE enPhase)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CPULOAD_RegRptHook
- 功能描述  : CPU负载的回调函数注册接口
- 输入参数  : pRptHook   --  回调函数
- 输出参数  : 无
- 返 回 值  : VOS_OK     --  成功
-             VOS_ERR    --  失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  CPULOAD_RegRptHook(CPULOAD_RPT_HOOK_FUNC pRptHook)
 {
     VOS_UINT32                          ulHookLoop;
@@ -491,21 +336,7 @@ VOS_UINT32  CPULOAD_RegRptHook(CPULOAD_RPT_HOOK_FUNC pRptHook)
     return VOS_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : CPULOAD_ResetUserDefLoad
- 功能描述  : 用户控制监测时长，初始化接口
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CPULOAD_ResetUserDefLoad()
 {
     CPULOAD_STAT_INFO_STRU             *pstCpu = &g_stUserDefCpuLoad;
@@ -520,21 +351,7 @@ VOS_VOID CPULOAD_ResetUserDefLoad()
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CPULOAD_GetUserDefLoad
- 功能描述  : 用户控制监测时长，读取CPU负载接口
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 从初始化接口被调用至当前这段时期内的CPU负载
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CPULOAD_GetUserDefLoad()
 {
     CPULOAD_STAT_INFO_STRU             *pstCpu = &g_stUserDefCpuLoad;
@@ -553,21 +370,7 @@ VOS_UINT32 CPULOAD_GetUserDefLoad()
     return ulLoad;
 }
 
-/*****************************************************************************
- 函 数 名  : CPULOAD_GetRegularTimerLen
- 功能描述  : 返回常规定时器时长，单位毫秒
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 常规定时器时长
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  CPULOAD_GetRegularTimerLen()
 {
     return g_stNvCfg.ulMonitorTimerLen;
@@ -584,20 +387,7 @@ VOS_UINT32  CPULOAD_GetRegularTimerLen()
    5 函数实现
 ******************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : CPULOAD_FidInit
- 功能描述  : CPU监测FID初始化函数
- 输入参数  : enum VOS_INIT_PHASE_DEFINE enPhase
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月14日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CPULOAD_FidInit(enum VOS_INIT_PHASE_DEFINE enPhase)
 {
     return VOS_OK;

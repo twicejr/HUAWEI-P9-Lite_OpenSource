@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : VcMain.h
-  版 本 号   : 初稿
-  作    者   : s62952
-  生成日期   : 2012年03月03日
-  最近修改   :
-  功能描述   : VcMain.c 的头文件
-  函数列表   :
-  修改历史   :
-   1. 日    期   : 2012年03月03日
-      作    者   : s62952
-      修改内容   : 创建文件
-
-******************************************************************************/
 #ifndef _VC_MAIN_H_
 #define _VC_MAIN_H_
 
@@ -25,13 +8,11 @@
 #include  "vos.h"
 #include  "PsTypeDef.h"
 #include "AppVcApi.h"
-/* Added by s00217060 for VoLTE_PhaseI  项目, 2013-07-31, begin */
 #include "VcComm.h"
 #if (FEATURE_ON == FEATURE_IMS)
 #include "VcImsaInterface.h"
 #endif
 #include "VcCallInterface.h"
-/* Added by s00217060 for VoLTE_PhaseI  项目, 2013-07-31, end */
 
 
 #ifdef __cplusplus
@@ -69,9 +50,7 @@ extern "C" {
 
 #define APP_VC_GetCallStatus()              (g_stVcStateMgmt.bInCall)
 
-/* Added by s00217060 for VoLTE_PhaseI  项目, 2013-07-11, begin */
 #define APP_VC_GetStartHifiOrig()           (g_stVcStateMgmt.enStartHifiOrig)
-/* Added by s00217060 for VoLTE_PhaseI  项目, 2013-07-11, end */
 
 /*****************************************************************************
   3 枚举定义
@@ -88,9 +67,7 @@ enum APP_VC_STATE_ENUM
     APP_VC_S_WAIT_AT_SET_VOLUME_RSLT,                                           /* 等待AT设置VOLUME结果状态 */
     APP_VC_S_WAIT_AT_SET_MUTE_STATUS_RSLT,                                      /* 等待AT设置静音结果状态 */
 
-    /* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, begin */
     APP_VC_S_WAIT_SET_ECALL_CFG_RSLT,                                           /* 等待设置ECALL配置结果状态 */
-    /* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, end */
 
     APP_VC_S_WAIT_SET_FOREGROUND_RSLT,                                          /* 等待设置前台模式结果状态 */
     APP_VC_S_WAIT_SET_BACKGROUND_RSLT,                                          /* 等待设置后台模式结果状态 */
@@ -104,9 +81,7 @@ enum APP_VC_MSG_ORIGIN_ENUM
 {
     APP_VC_MSG_ORIGIN_AT,                                                       /* 来自AT设置的消息 */
     APP_VC_MSG_ORIGIN_TAF,                                                      /* 来自内部消息 */
-    /* Added by s00217060 for VoLTE_PhaseI  项目, 2013-08-16, begin */
     APP_VC_MSG_ORIGIN_IMSA,                                                     /* 来自IMSA的消息 */
-    /* Added by s00217060 for VoLTE_PhaseI  项目, 2013-08-16, end */
     APP_VC_MSG_ORIGIN_BUTT
 };
 typedef VOS_UINT16  APP_VC_MSG_ORIGIN_ENUM_U16;
@@ -168,7 +143,6 @@ VOS_VOID  APP_VC_AppSetPortReqProc(APP_VC_REQ_MSG_STRU *pstAppMsg);
 VOS_VOID  APP_VC_AppQryPortReqProc(APP_VC_REQ_MSG_STRU *pstAppMsg);
 VOS_UINT32 APP_VC_GetVoiceTestFlag(VOS_UINT32 *pVoiceTestFlag);
 
-/* Added by s00217060 for VoLTE_PhaseI  项目, 2013-07-31, begin */
 #if (FEATURE_ON == FEATURE_IMS)
 VC_IMSA_EXCEPTION_CAUSE_ENUM_UINT32  APP_VC_ConvertVcOpenChannelFailCauseToImsaExceptionCause(
     APP_VC_OPEN_CHANNEL_FAIL_CAUSE_ENUM_UINT32              enVcCause
@@ -182,7 +156,6 @@ VOS_VOID  APP_VC_ImsaHifiParaChangeNtfProc(IMSA_VC_HIFI_PARA_CHANGED_NTF_STRU* p
 VOS_VOID  APP_VC_ImsaMsgProc(VOS_VOID *pMsg);
 
 #endif
-/* Added by s00217060 for VoLTE_PhaseI  项目, 2013-07-31, end */
  #if (FEATURE_ON == FEATURE_PTM)
 VOS_VOID APP_VC_AppVCFailErrRecord(
     VOS_UINT16                          usName,
@@ -203,7 +176,6 @@ VOS_VOID APP_VC_AppVCFailErrRecord(
  VOS_VOID APP_VC_InitTTYMode(VOS_VOID);
 
 
-/* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, begin */
 VOS_VOID  APP_VC_CallChannelCloseProc(VOS_VOID);
 
 #if (FEATURE_ON == FEATURE_ECALL)
@@ -279,7 +251,6 @@ VOS_UINT32 APP_VC_IsVcVoiceWorkTypeTest();
 
 VCVOICE_WORK_TYPE_ENUM_UINT16 APP_VC_GetWorkType(VOS_VOID);
 
-/* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, end */
 
 VOS_VOID APP_VC_ProcDtmfInd(
     VOICEVC_DTMF_IND_STRU             *pstDtmfInd

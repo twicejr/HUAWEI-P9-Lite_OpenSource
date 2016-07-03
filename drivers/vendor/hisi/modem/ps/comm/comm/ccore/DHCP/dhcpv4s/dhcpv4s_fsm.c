@@ -9,21 +9,7 @@
 #include "dhcpv4s_dbgcmd.h"
 
 
-/*****************************************************************************
- 函 数 名      : DHCPS_FSM_Run
- 功能描述   : DHCPS的状态机入口函数
- 输入参数   : 无
- 输出参数   : 无
- 返 回 值      : 无
- 调用函数   :
- 被调函数   :
 
- 修改历史   :
-  1.日    期      : 2008年11月27日
-    作    者       : dongmingzhou 42828
-    修改内容: 新生成函数
-
-*****************************************************************************/
 VOID DHCPS_FSM_Run(DHCPS_PRE_RESULT_S *pstPreResult)
 {
     UCHAR                    ucMsgType             = 0xff;
@@ -105,9 +91,7 @@ VOID DHCPS_FSM_Run(DHCPS_PRE_RESULT_S *pstPreResult)
         {
             DHCPS_DebugPrint(PTM_LOG_INFO, " DHCPS_FSM_Run : Finite State Machine Run times = %u",ulCount);
             DHCPS_DebugPrint(PTM_LOG_DEBUG, "\r\n DHCPS_FSM_Run : Finite State Machine Run times = %u",ulCount);
-            /* z00175135 DTS2012031905269 删除无用断言 2012-03-19 start */
             //VOS_Assert(0);
-            /* z00175135 DTS2012031905269 删除无用断言 2012-03-19 end   */
             DHCPS_InternalBranchCounter(DHCPS_INTERNAL_BRANCH_004);
             return;
         }
@@ -286,21 +270,7 @@ VOID DHCPS_FSM_Run(DHCPS_PRE_RESULT_S *pstPreResult)
     }
 }
 
-/*****************************************************************************
- 函 数 名      : DHCPS_FSM_Register
- 功能描述   : 注册DHCPS状态机的处理函数
- 输入参数   : 无
- 输出参数   : 无
- 返 回 值      : 无
- 调用函数   :
- 被调函数   :
 
- 修改历史   :
-  1.日    期      : 2008年11月27日
-    作    者       : dongmingzhou 42828
-    修改内容: 新生成函数
-
-*****************************************************************************/
 VOID DHCPS_FSM_Register()
 {
 
@@ -379,7 +349,6 @@ VOID DHCPS_FSM_Register()
     g_stDHCPSStateMachine[DHCPS_STATE_COMMITED].pFuncStateMachine[DHCPS_MSG_TIMER]                            = DHCPS_FSM_COMMITED_LeaseTimerOut;
     g_stDHCPSStateMachine[DHCPS_STATE_COMMITED].pFuncStateMachine[DHCPS_MSG_RELAY_SERVER_NAK]                     = NULL;
 
-    /* Added start by ZhangYang  z00142225 at 2008-12-29 UGWV900R001C001 for 地址分配功能 */
     /*relay态的状态机处理函数注册*/
     g_stDHCPSStateMachine[DHCPS_STATE_RELAY].pFuncStateMachine[DHCPS_MSG_RECIVE_DISCOVER]          = NULL;
     g_stDHCPSStateMachine[DHCPS_STATE_RELAY].pFuncStateMachine[DHCPS_MSG_RECIVE_REQUEST]            = NULL;
@@ -391,29 +360,9 @@ VOID DHCPS_FSM_Register()
     g_stDHCPSStateMachine[DHCPS_STATE_RELAY].pFuncStateMachine[DHCPS_MSG_USM_DEACTIVE]               = DHCPS_FSM_RELAY_ReceiveDeactive;
     g_stDHCPSStateMachine[DHCPS_STATE_RELAY].pFuncStateMachine[DHCPS_MSG_TIMER]                     = NULL;
     g_stDHCPSStateMachine[DHCPS_STATE_RELAY].pFuncStateMachine[DHCPS_MSG_RELAY_SERVER_NAK]           = DHCPS_FSM_RELAY_ReceiveDecline;
-    /* Added end by ZhangYang  z00142225 at 2008-12-29 UGWV900R001C001 for 地址分配功能 */
 }
 
-/*****************************************************************************
- 函 数 名      : DHCPS_FSM_ReleaseResource
- 功能描述   : 释放租约相关的所有资源
-                            1.释放报文内存。
-                            2.停定时器。
-                            3.释放IP地址。
-                            不设置状态。
-                            不设置使用标志。
- 输入参数   : 无
- 输出参数   : 无
- 返 回 值      : VOS_OK    成功; VOS_ERR    失败
- 调用函数   :
- 被调函数   :
 
- 修改历史   :
-  1.日    期      : 2008年12月2日
-    作    者       : dongmingzhou 42828
-    修改内容: 新生成函数
-
-*****************************************************************************/
 ULONG   DHCPS_FSM_ReleaseResource(DHCPS_LEASE_S *pstLease)
 {
     /*入参判断*/
@@ -436,21 +385,7 @@ ULONG   DHCPS_FSM_ReleaseResource(DHCPS_LEASE_S *pstLease)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名      : DHCPS_FSM_InitLease
- 功能描述   : 初始化租约数据。
- 输入参数   : 无
- 输出参数   : 无
- 返 回 值      : VOS_OK    成功; VOS_ERR    失败
- 调用函数   :
- 被调函数   :
 
- 修改历史   :
-  1.日    期      : 2008年12月2日
-    作    者       : dongmingzhou 42828
-    修改内容: 新生成函数
-
-*****************************************************************************/
 ULONG   DHCPS_FSM_InitLease(DHCPS_LEASE_S *pstLease)
 {
 

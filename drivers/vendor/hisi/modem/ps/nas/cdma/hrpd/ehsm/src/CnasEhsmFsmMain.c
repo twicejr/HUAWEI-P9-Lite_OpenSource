@@ -42,9 +42,7 @@ VOS_UINT32 CNAS_EHSM_RcvHsdStartReq_Inactive(
 )
 {
     /*Init Context*/
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-18, begin */
     CNAS_EHSM_InitCtx(CNAS_EHSM_INIT_CTX_STARTUP);
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-18, end */
 
     /* send start confirm to HSD */
     CNAS_EHSM_SndHsdStartCnf(EHSM_HSD_START_RESULT_SUCC);
@@ -195,22 +193,7 @@ VOS_UINT32 CNAS_EHSM_RcvEsmSyncPdnInfoInd_Inactive(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_RcvApsPsRatTypeNotify_Inactive
- 功能描述  : Process APS Message Notifying EHSM the Rat of PS service changed
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月1日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_RcvApsPsRatTypeNotify_Inactive(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -248,22 +231,7 @@ VOS_UINT32 CNAS_EHSM_RcvApsPsRatTypeNotify_Inactive(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_RcvApsPdnAttachReq_Inactive
- 功能描述  : EHSM Inactive状态下收到TAF APS发送的Attach请求
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月25日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_RcvApsPdnAttachReq_Inactive(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -275,22 +243,7 @@ VOS_UINT32 CNAS_EHSM_RcvApsPdnAttachReq_Inactive(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_RcvApsReconnReq_Inactive
- 功能描述  : 对冲场景保护
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月6日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_RcvApsReconnReq_Inactive(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -307,22 +260,7 @@ VOS_UINT32 CNAS_EHSM_RcvApsReconnReq_Inactive(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_RcvApsReconnReq_Inactive
- 功能描述  : 对冲场景保护
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月6日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_RcvApsPdnDeactivateReq_Inactive(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -339,22 +277,7 @@ VOS_UINT32 CNAS_EHSM_RcvApsPdnDeactivateReq_Inactive(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_RcvEhsmLocalDetachAllReq_Inactive
- 功能描述  : 本地去激活的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月17日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_RcvEhsmLocalDetachAllReq_Inactive(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -368,22 +291,7 @@ VOS_UINT32 CNAS_EHSM_RcvEhsmLocalDetachAllReq_Inactive(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_RcvApsLocalDeactiveNtf_Inactive
- 功能描述  : 处理APS通知的localDeactive消息
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月12日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_RcvApsLocalDeactiveNtf_Inactive(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -424,9 +332,7 @@ VOS_UINT32 CNAS_EHSM_RcvHsdPowerOffReq_Inactive(
     }
 
     /* INit the context */
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-18, begin */
     CNAS_EHSM_InitCtx(CNAS_EHSM_INIT_CTX_POWEROFF);
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-18, end */
 
     return VOS_TRUE;
 }
@@ -740,22 +646,7 @@ VOS_UINT32 CNAS_EHSM_RcvApsPsRatTypeNty_Suspend(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_RcvApsLocDeactivateNty_Suspend
- 功能描述  : 收到ID_APS_EHSM_LOC_DEACTIVATE_NOTIFY消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月21日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_RcvApsLocDeactivateNty_Suspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1229,22 +1120,7 @@ VOS_UINT32 CNAS_EHSM_RcvHsmSessionInfoInd_Active(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_RcvPppModifyInd_Active
- 功能描述  : ehsm 在active状态下收到ppp发送的ip地址变化的消息处理
- 输入参数  : VOS_UINT32                          ulEventType,
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月6日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_RcvPppModifyInd_Active(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg

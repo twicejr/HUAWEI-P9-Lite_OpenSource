@@ -179,22 +179,7 @@ unsigned int exm_exmbist_is_done()
 }
 #endif	
 
-/*****************************************************************************
- 函 数 名  : exmbsit_io_wr_cmd
- 功能描述  : exmbist API IO层 写命令接口实现
- 输入参数  : ExmCtx * ctx
-             exmbist_uint32 cmd
- 输出参数  : 无
- 返 回 值  : exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月25日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 exmbist_uint32 exm_wr_cmd (exmbist_uint32 cmd)
 {
     volatile SOC_EXMBIST_CMD_ADDR_UNION * cmd_addr_ptr;
@@ -203,22 +188,7 @@ exmbist_uint32 exm_wr_cmd (exmbist_uint32 cmd)
     return 0;
 }
 
-/*****************************************************************************
- 函 数 名  : exmbsit_io_wr_din
- 功能描述  : exmbist API IO层 写数据接口实现
- 输入参数  : ExmCtx * ctx
-             exmbist_uint32 data
- 输出参数  : 无
- 返 回 值  : exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月25日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 exmbist_uint32 exm_wr_din (exmbist_uint32 data)
 {
     volatile SOC_EXMBIST_DAT_ADDR_UNION * dat_addr_ptr;
@@ -230,21 +200,7 @@ exmbist_uint32 exm_wr_din (exmbist_uint32 data)
     return 0;
 }
 
-/*****************************************************************************
- 函 数 名  : exmbsit_io_rd_dout
- 功能描述  : exmbist API IO层 读数据接口实现
- 输入参数  : ExmCtx * ctx
- 输出参数  : 无
- 返 回 值  : exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月25日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 exmbist_uint32 exm_rd_dout (void)
 {
     volatile SOC_EXMBIST_CMD_ADDR_UNION * cmd_addr_ptr;
@@ -252,21 +208,7 @@ exmbist_uint32 exm_rd_dout (void)
     return cmd_addr_ptr->value;
 }
 
-/*****************************************************************************
- 函 数 名  : exmbsit_io_rd_status
- 功能描述  : exmbist API IO层 读状态接口实现
- 输入参数  : ExmCtx * ctx
- 输出参数  : 无
- 返 回 值  : exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月25日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 exmbist_uint32 exm_rd_status (void)
 {
     volatile SOC_EXMBIST_STATUS_UNION * status_ptr;
@@ -276,21 +218,7 @@ exmbist_uint32 exm_rd_status (void)
 }
 
 
-/*****************************************************************************
- 函 数 名  : exm_wrap_fix_init
- 功能描述  : 自研wrap IP 初始化固定部分
- 输入参数  : ExmCtx *ctx
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月25日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 static void  exm_wrap_fix_init(ExmCtx *ctx)
 {
     volatile SOC_EXMBIST_PCLK_GATE_UNION *pclk_gate_ptr = NULL;
@@ -340,24 +268,7 @@ static void  exm_wrap_fix_init(ExmCtx *ctx)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : exm_wrap_adapt_init
- 功能描述  : 自研wrap IP 初始化变化部分
- 输入参数  : ExmCtx *ctx
-             int subsys_num
-             int dmc_num
-             int rank_num
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月25日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void  exm_wrap_adapt_init(ExmCtx *ctx,int subsys_num,int dmc_num,int rank_num)
 {
     volatile SOC_EXMBIST_RANK_VOL_UNION *rank_vol_ptr = NULL;
@@ -429,21 +340,7 @@ void  exm_wrap_adapt_init(ExmCtx *ctx,int subsys_num,int dmc_num,int rank_num)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : exm_addr_to_ap_addr
- 功能描述  : exmbist 地址转化为ap看到的地址
- 输入参数  : unsigned int addr
- 输出参数  : 无
- 返 回 值  : unsigned int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月25日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 unsigned int exm_addr_to_ap_addr(unsigned int addr)
 {
 	/*获取当前测试的rank,bank,col,dmc,subsys,然后重组地址*/
@@ -595,21 +492,7 @@ unsigned int exm_wait_bist_pass(void)
 	return ret;	
 }
 
-/*****************************************************************************
- 函 数 名  : exm_api_pra_num_max
- 功能描述  : 查找cmd需要的配置参数个数
- 输入参数  : unsigned int  cmd_id
- 输出参数  : 无
- 返 回 值  : unsigned int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月28日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 static unsigned int exm_cmd_pra_num_max(unsigned int  cmd_id)
 {
 
@@ -651,22 +534,7 @@ static unsigned int exm_cmd_pra_num_max(unsigned int  cmd_id)
     return num;
 }
 
-/*****************************************************************************
- 函 数 名  : exm_api_set_cmd
- 功能描述  : 配置命令接口
- 输入参数  : unsigned int  cmd_id       配置命令编码
-             unsigned int  param_value  配置参数i，重复该函数调用时i递增
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月25日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 unsigned int exm_set_cmd(unsigned int  cmd_id,unsigned int  param_value)
 {
     static unsigned int cmd_param_cnt = 0;/*cmd 参数计数器*/
@@ -719,21 +587,7 @@ unsigned int exm_set_cmd(unsigned int  cmd_id,unsigned int  param_value)
     return uiret;
 }
 
-/*****************************************************************************
- 函 数 名  : exm_api_init
- 功能描述  : 初始化函数
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月25日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 unsigned int exm_init(void)
 {
     unsigned int uiret = EXMBIST_OK;
@@ -754,46 +608,14 @@ unsigned int exm_init(void)
 
     return uiret;
 }
-/*****************************************************************************
- 函 数 名  : exm_algo_run
- 功能描述  : 算法运行接口
- 输入参数  : unsigned int algo_id   
-             unsigned int loop_cnt  
- 输出参数  : 无
- 返 回 值  : unsigned int
- 调用函数  : 
- 被调函数  : 
- 
- 修改历史      :
-  1.日    期   : 2015年4月13日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 unsigned int exm_algo_run(unsigned int algo_id, unsigned int loop_cnt)
 {
     unsigned int uiret = EXMBIST_OK;
     uiret = exmbist_algo_run(&g_austin_exmbist,algo_id,loop_cnt);
     return uiret;
 }
-/*****************************************************************************
- 函 数 名  : exm_rank_algo_run
- 功能描述  :  单rank算法运行函数
- 输入参数  : unsigned int algo_id   定义指定运行了哪种算法
-             unsigned int loop_cnt  算法运行的次数
-             sub_dmc_rank           当前算法在哪个subsys/dmc/rank执行
-                                    bit[3:0]rank标号，bit[7:4]dmc标号，bit[13:8]subsys标号
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月25日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 unsigned int exm_rank_algo_run(unsigned int algo_id, unsigned int loop_cnt,unsigned int sub_dmc_rank)
 {
     unsigned int uiret = EXMBIST_OK;
@@ -813,22 +635,7 @@ unsigned int exm_rank_algo_run(unsigned int algo_id, unsigned int loop_cnt,unsig
     return uiret;
 }
 
-/*****************************************************************************
- 函 数 名  : exm_all_space_algo_run
- 功能描述  : 全空间算法运行函数
- 输入参数  : unsigned int algo_id
-             unsigned int loop_cnt
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月25日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 unsigned int exm_all_space_algo_run(unsigned int algo_id, unsigned int loop_cnt)
 {
     unsigned int uiret = EXMBIST_OK;
@@ -858,21 +665,7 @@ unsigned int exm_all_space_algo_run(unsigned int algo_id, unsigned int loop_cnt)
     return uiret;
 }
 
-/*****************************************************************************
- 函 数 名  : exm_close
- 功能描述  : exmbist关闭函数
- 输入参数  : ExmCtx * ctx
- 输出参数  : 无
- 返 回 值  : exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月15日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 unsigned int exm_close(void)
 {
     volatile SOC_EXMBIST_EN_UNION *en_ptr = NULL;

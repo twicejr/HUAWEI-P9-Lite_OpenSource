@@ -209,6 +209,18 @@ struct hisifb_secure {
 	struct hisi_fb_data_type *hisifd;
 };
 
+/* esd func define */
+struct hisifb_esd {
+	int esd_inited;
+	struct hrtimer esd_hrtimer;
+	struct workqueue_struct *esd_check_wq;
+	struct work_struct esd_check_work;
+	struct task_struct *esd_handle_thread;
+	wait_queue_head_t esd_handle_wait;
+
+	struct hisi_fb_data_type *hisifd;
+};
+
 #ifdef CONFIG_BUF_SYNC_USED
 #include <linux/sync.h>
 #include <linux/sw_sync.h>
@@ -348,6 +360,8 @@ struct hisi_fb_data_type {
 	void (*buf_sync_unregister) (struct platform_device *pdev);
 	void (*buf_sync_signal) (struct hisi_fb_data_type *hisifd);
 	void (*buf_sync_suspend) (struct hisi_fb_data_type *hisifd);
+	void (*esd_register) (struct platform_device *pdev);
+	void (*esd_unregister) (struct platform_device *pdev);
 
 	bool (*set_fastboot_fnc) (struct fb_info *info);
 	int (*open_sub_fnc) (struct fb_info *info);
@@ -396,14 +410,12 @@ struct hisi_fb_data_type {
 	struct hisifb_buf_sync buf_sync_ctrl;
 	struct dss_clk_rate dss_clk_rate;
 	struct hisifb_secure secure_ctrl;
+	struct hisifb_esd esd_ctrl;
 
 #ifdef CONFIG_FAKE_VSYNC_USED
 	bool fake_vsync_used;
 	struct hrtimer fake_vsync_hrtimer;
 #endif
-	struct hrtimer esd_hrtimer;
-	struct workqueue_struct *frame_end_wq;
-	struct work_struct frame_end_work;
 	dss_module_reg_t dss_module;
 	dss_overlay_t ov_req;
 	dss_overlay_block_t ov_block_infos[HISI_DSS_OV_BLOCK_NUMS];
@@ -428,7 +440,7 @@ struct hisi_fb_data_type {
 	dss_module_reg_t dss_module_default;
 
 	struct dss_rect dirty_region_updt;
-	uint8_t dirty_region_updt_enable;
+	uint32_t esd_happened;
 
 	struct ion_client *ion_client;
 	struct ion_handle *ion_handle;
@@ -542,6 +554,7 @@ extern uint32_t g_logo_buffer_base;
 extern uint32_t g_logo_buffer_size;
 extern uint32_t g_underflow_stop_perf_stat;
 
+extern uint32_t g_fastboot_already_set;
 
 extern int g_debug_enable_lcd_sleep_in;
 
@@ -590,6 +603,9 @@ int hisifb_vsync_suspend(struct hisi_fb_data_type *hisifd);
 void hisifb_vsync_isr_handler(struct hisi_fb_data_type *hisifd);
 void hisifb_vsync_register(struct platform_device *pdev);
 void hisifb_vsync_unregister(struct platform_device *pdev);
+
+void hisifb_esd_register(struct platform_device *pdev);
+void hisifb_esd_unregister(struct platform_device *pdev);
 
 /* buffer sync */
 int hisifb_layerbuf_lock_offline(struct hisi_fb_data_type *hisifd,
@@ -641,6 +657,11 @@ struct platform_device *hisi_fb_device_alloc(struct hisi_fb_panel_data *pdata,
 struct platform_device *hisi_fb_add_device(struct platform_device *pdev);
 #if defined (CONFIG_HUAWEI_DSM)
 void dss_underflow_debug_func(struct work_struct *work);
+#endif
+
+#ifdef CONFIG_HUAWEI_OCP
+int hisi_lcd_ocp_recover(struct notifier_block *nb,
+		unsigned long event, void *data);
 #endif
 
 #endif /* HISI_FB_H */

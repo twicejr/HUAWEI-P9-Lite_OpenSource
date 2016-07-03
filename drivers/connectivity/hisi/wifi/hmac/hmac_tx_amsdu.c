@@ -1,21 +1,4 @@
-/****************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : hmac_tx_amsdu.c
-  版 本 号   : 初稿
-  作    者   : t00231215
-  生成日期   : 2012年11月12日
-  最近修改   :
-  功能描述   : amsdu聚合
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年11月12日
-    作    者   : t00231215
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -51,23 +34,7 @@ OAL_STATIC oal_bool_enum_uint8 hmac_tx_amsdu_is_overflow(
   3 函数实现
 *****************************************************************************/
 #if (_PRE_PRODUCT_ID == _PRE_PRODUCT_ID_HI1102_HOST)
-/*****************************************************************************
- 函 数 名  : hmac_amsdu_encap
- 功能描述  : amsdu子帧头封装
- 输入参数  : pst_amsdu: amsdu结构体指针
-             pst_buf: 新加入的子帧
-             ul_framelen: 对齐后的长度
- 输出参数  : 无
- 返 回 值  : 成功:OAL_SUCC;失败OAL_ERR_CODE_PTR_NULL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月13日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  hmac_amsdu_encap_hdr(hmac_amsdu_stru *pst_amsdu, oal_netbuf_stru **pst_netbuf, oal_uint32 ul_framelen)
 {
     oal_uint32              ul_headroom;    /* 暂存skb剩余头部空间 */
@@ -198,22 +165,7 @@ OAL_STATIC oal_uint32  hmac_amsdu_encap_hdr(hmac_amsdu_stru *pst_amsdu, oal_netb
 }
 
 
-/*****************************************************************************
- 函 数 名  : hmac_amsdu_send
- 功能描述  : 发送amsdu
- 输入参数  : pst_user: 用户结构体指针
-             pst_amsdu: 要发送的amsdu
- 输出参数  : 无
- 返 回 值  : 成功OAL_SUCC；失败OAL_ERR_CODE_PTR_NULL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月13日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  hmac_amsdu_send(hmac_vap_stru *pst_vap, hmac_user_stru *pst_user, hmac_amsdu_stru *pst_amsdu)
 {
     frw_event_mem_stru *pst_amsdu_send_event_mem;
@@ -355,21 +307,7 @@ OAL_STATIC oal_uint32  hmac_amsdu_send(hmac_vap_stru *pst_vap, hmac_user_stru *p
     return  ul_ret;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_amsdu_build_netbuf
- 功能描述  : 聚合组装amsdu
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月6日
-    作    者   : s00304087
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void hmac_amsdu_build_netbuf(hmac_vap_stru *pst_vap, hmac_amsdu_stru *pst_amsdu, oal_netbuf_stru *pst_buf)
 {
     oal_uint16       us_buf_len;
@@ -401,21 +339,7 @@ OAL_STATIC OAL_INLINE oal_void hmac_amsdu_build_netbuf(hmac_vap_stru *pst_vap, h
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : hmac_amsdu_alloc_netbuf
- 功能描述  : 申请netbuf用于聚合组装amsdu
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月6日
-    作    者   : s00304087
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32 hmac_amsdu_alloc_netbuf(hmac_amsdu_stru *pst_amsdu, oal_netbuf_stru *pst_dest_buf, oal_netbuf_stru *pst_buf)
 {
     mac_tx_ctl_stru *pst_cb;
@@ -441,21 +365,7 @@ OAL_STATIC OAL_INLINE oal_uint32 hmac_amsdu_alloc_netbuf(hmac_amsdu_stru *pst_am
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_amsdu_tx_process
- 功能描述  : amsdu聚合发送处理函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月6日
-    作    者   : s00304087
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_amsdu_tx_process(hmac_vap_stru *pst_vap, hmac_user_stru *pst_user, oal_netbuf_stru *pst_buf)
 {
     oal_uint8           uc_tid_no;
@@ -531,21 +441,7 @@ oal_uint32  hmac_amsdu_tx_process(hmac_vap_stru *pst_vap, hmac_user_stru *pst_us
     return HMAC_TX_BUFF;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_tx_amsdu_is_overflow
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月16日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC  oal_bool_enum_uint8 hmac_tx_amsdu_is_overflow(
                 hmac_amsdu_stru    *pst_amsdu,
                 mac_tx_ctl_stru    *pst_tx_ctl,
@@ -595,23 +491,7 @@ OAL_STATIC  oal_bool_enum_uint8 hmac_tx_amsdu_is_overflow(
 
 #elif(_PRE_PRODUCT_ID == _PRE_PRODUCT_ID_HI1151)
 
-/*****************************************************************************
- 函 数 名  : hmac_amsdu_encap
- 功能描述  : amsdu子帧头封装
- 输入参数  : pst_amsdu: amsdu结构体指针
-             pst_buf: 新加入的子帧
-             ul_framelen: 对齐后的长度
- 输出参数  : 无
- 返 回 值  : 成功:OAL_SUCC;失败OAL_ERR_CODE_PTR_NULL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月13日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  hmac_amsdu_encap(hmac_amsdu_stru *pst_amsdu, oal_netbuf_stru *pst_buf, oal_uint32 ul_framelen)
 {
     oal_uint32              ul_headroom;    /* 暂存skb剩余头部空间 */
@@ -747,22 +627,7 @@ OAL_STATIC oal_uint32  hmac_amsdu_encap(hmac_amsdu_stru *pst_amsdu, oal_netbuf_s
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_amsdu_send
- 功能描述  : 发送amsdu
- 输入参数  : pst_user: 用户结构体指针
-             pst_amsdu: 要发送的amsdu
- 输出参数  : 无
- 返 回 值  : 成功OAL_SUCC；失败OAL_ERR_CODE_PTR_NULL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月13日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  hmac_amsdu_send(hmac_vap_stru *pst_vap, hmac_user_stru *pst_user, hmac_amsdu_stru *pst_amsdu)
 {
     frw_event_mem_stru *pst_amsdu_send_event_mem;
@@ -912,22 +777,7 @@ OAL_STATIC oal_uint32  hmac_amsdu_send(hmac_vap_stru *pst_vap, hmac_user_stru *p
     return  ul_ret;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_amsdu_update_cap
- 功能描述  : 配置AMSDU聚合能力
- 输入参数  : pst_hmac_user_sta: 用户结构体指针
-             pst_amsdu: 要发送的amsdu
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月06日
-    作    者   : ywx282918
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void hmac_amsdu_update_cap(hmac_user_stru *pst_hmac_user_sta, hmac_amsdu_stru *pst_amsdu)
 {
     mac_user_stru      *pst_mac_user;
@@ -985,22 +835,7 @@ oal_void hmac_amsdu_update_cap(hmac_user_stru *pst_hmac_user_sta, hmac_amsdu_str
     }
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_amsdu_process
- 功能描述  : amsdu处理函数
- 输入参数  : pst_user: 用户结构体指针
-             pst_buf: skb结构体指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月12日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_amsdu_tx_process(hmac_vap_stru *pst_vap, hmac_user_stru *pst_user, oal_netbuf_stru *pst_buf)
 {
     oal_uint8           uc_tid_no;
@@ -1103,21 +938,7 @@ oal_uint32  hmac_amsdu_tx_process(hmac_vap_stru *pst_vap, hmac_user_stru *pst_us
 }
 
 
-/*****************************************************************************
- 函 数 名  : hmac_tx_amsdu_is_overflow
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月16日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC  oal_bool_enum_uint8 hmac_tx_amsdu_is_overflow(
                 hmac_amsdu_stru    *pst_amsdu,
                 mac_tx_ctl_stru    *pst_tx_ctl,
@@ -1164,22 +985,7 @@ OAL_STATIC  oal_bool_enum_uint8 hmac_tx_amsdu_is_overflow(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : hmac_amsdu_notify
- 功能描述  : amsdu入口函数
- 输入参数  : pst_user: 用户结构体指针
-             pst_buf: skb结构体指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月12日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_amsdu_notify(hmac_vap_stru *pst_vap, hmac_user_stru *pst_user, oal_netbuf_stru *pst_buf)
 {
     oal_uint8           uc_tid_no;
@@ -1286,24 +1092,7 @@ oal_uint32  hmac_amsdu_notify(hmac_vap_stru *pst_vap, hmac_user_stru *pst_user, 
     return ul_ret;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_amsdu_tx_timeout_process
- 功能描述  : 时钟中断事件的处理函数
- 输入参数  : pst_hmac_vap:
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月13日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-  2.日    期   : 2015年1月31日
-    作    者   : s00304087
-    修改内容   : 加入互斥锁
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  hmac_amsdu_tx_timeout_process(oal_void *p_arg)
 {
     hmac_amsdu_stru         *pst_temp_amsdu;
@@ -1366,24 +1155,7 @@ OAL_STATIC oal_uint32  hmac_amsdu_tx_timeout_process(oal_void *p_arg)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_amsdu_init_user
- 功能描述  : 初始化用户tid队列的AMSDU特性值
- 输入参数  : hmac_user_stru *pst_hmac_user_sta
- 输出参数  : 无
- 返 回 值  : OAL_STATIC OAL_INLINE oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月12日,星期四
-    作    者   : y00201072
-    修改内容   : 新生成函数
-  2.日    期   : 2015年1月31日
-    作    者   : s00304087
-    修改内容   : 初始化自旋锁
-
-*****************************************************************************/
 oal_void hmac_amsdu_init_user(hmac_user_stru *pst_hmac_user_sta)
 {
     oal_uint32           ul_amsdu_idx;

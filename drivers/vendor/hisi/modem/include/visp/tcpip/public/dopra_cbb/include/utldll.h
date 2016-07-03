@@ -25,7 +25,6 @@
 
 /*暂不修改为_UTLDLL_H_, 因为目前VISP代码中有些地方同时包含了utldll.h和vrp_dll.h*/
 //#ifndef __VRP_DLL_H__  /* 升级DopraV2后vrp_dll.h改了预编译宏为__VRP_DLL_H__, */
-/*为了防止同时包含两个头文件导致重定义, 添加此预编译宏 h00121208 091113*/
 #ifndef _VRP_DLL_H
 #ifndef __VRP_DLL_H__
 #define _VRP_DLL_H

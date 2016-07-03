@@ -1,24 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : ppp_type.h
-  版 本 号   : 初稿
-  作    者   : luofang
-  生成日期   : 2012年11月8日
-  最近修改   :
-  功能描述   : PPP模块类型定义
-  函数列表   :
-*
-*
-
-  修改历史   :
-  1.日    期   : 2012年11月8日
-    作    者   : luofang
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifndef      _PPP_TYPE_H_
@@ -397,7 +377,7 @@ typedef struct tagPppInfo
           bVjFlag           : 1,        /* VJ用户数统计标志 */
           bLzs0Flag         : 1,        /* Stac_Lzs0用户数统计 */
           bLzs1Flag         : 1,        /* Stac_Lzs1用户数统计 */
-          bPpcAAAFlag       : 1,        /* 该字段已经没有意义，参考问题单DTS2013010508014  */
+          bPpcAAAFlag       : 1,
           bPppSuccess       : 1,        /* PPP建立成功标记,用于PPP指标优化 */
           bAuthFlag         : 1,        /* 用于判断是否已经完成过chap或pap鉴权,若是VOS_TRUE,则重协商不再走AAA */
           bIpcpSucFlag      : 1,        /* PPP协商IPCP协商成功标记,该标记在重协商过程也不会改变 */
@@ -429,7 +409,7 @@ typedef struct tagPppInfo
     VOS_UINT32 ulDNSAddr1;
     VOS_UINT32 ulDNSAddr2;
     ULONG64 ulNegoStartTime;      /* PPP协商开始时间 */
-    ULONG64 ulNegoEndTime;        /* 双栈ipv6先协商成功记录该值,问题单号:DTS2012051200799 */
+    ULONG64 ulNegoEndTime;
     VOS_UINT16 usPeerId;                /* 保存第一次发送服务器id */
     VOS_UINT16 usTokenId;
 
@@ -536,7 +516,7 @@ typedef struct tagPppFsmCallbacks
     UCHAR (*reqci)(PPPFSM_S *, UCHAR *, VOS_UINT32 *);
 
     /* 处理对方的request报文 */
-    VOS_UINT16 (*extcode)(PPPFSM_S *, UCHAR, UCHAR, UCHAR *, UCHAR *, VOS_UINT32, VOS_UINT32);/* Modified by liutao 38563 at 2004-09-22 V800R002 for PPP压缩移植 */
+    VOS_UINT16 (*extcode)(PPPFSM_S *, UCHAR, UCHAR, UCHAR *, UCHAR *, VOS_UINT32, VOS_UINT32);
     /* 处理协议特有的报文，如protocol reject等 */
 
     /* 事件：协议转入了终止状态 */

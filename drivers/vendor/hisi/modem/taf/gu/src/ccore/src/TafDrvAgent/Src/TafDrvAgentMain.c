@@ -1,24 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : DRVAGENTMain.c
-  版 本 号   : 初稿
-  作    者   : 鲁琳/l60609
-  生成日期   : 2011年10月3日
-  最近修改   :
-  功能描述   : At Agent
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年10月3日
-    作    者   : 鲁琳/l60609
-    修改内容   : 创建文件
-  2.日    期   : 2011年12月31日
-    作    者   : s46746
-    修改内容   : 删除^HWNATQRY命令
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -90,20 +70,14 @@ const DRV_AGENT_MSG_PROC_STRU g_astDrvAgentMsgProcTab[]=
     {DRV_AGENT_TSELRF_SET_REQ,              DRVAGENT_RcvDrvAgentTseLrfSet},
     {DRV_AGENT_HKADC_GET_REQ,               DRVAGENT_RcvDrvAgentHkAdcGet},
     {DRV_AGENT_TBAT_QRY_REQ,                DRVAGENT_RcvDrvAgentTbatQry},
-    /* Added by 傅映君/f62575 for CPULOAD&MFREELOCKSIZE处理过程移至C核, 2011/11/15, begin */
     {DRV_AGENT_CPULOAD_QRY_REQ,             DRVAGENT_RcvDrvAgentCpuloadQry},
     {DRV_AGENT_MFREELOCKSIZE_QRY_REQ,       DRVAGENT_RcvDrvAgentMfreelocksizeQry},
-    /* Added by 傅映君/f62575 for CPULOAD&MFREELOCKSIZE处理过程移至C核, 2011/11/15, end */
-    /* Added by l00171473 for 内存监控AT命令, 2011-11-29,  begin */
     {DRV_AGENT_MEMINFO_QRY_REQ,             DRVAGENT_RcvDrvAgentMemInfoQry},
-    /* Added by l00171473 for 内存监控AT命令, 2011-11-29,  end */
     {DRV_AGENT_IMSICHG_QRY_REQ,             DRVAGENT_RcvDrvAgentImsiChgQry},
     {DRV_AGENT_INFORBU_SET_REQ,             DRVAGENT_RcvDrvAgentInfoRbuSet},
-    /*DTS2012041102190 : h00135900 start in 2011-04-11 AT代码融合*/
     #if ( FEATURE_ON == FEATURE_LTE )
     {DRV_AGENT_INFORRS_SET_REQ,             DRVAGENT_RcvDrvAgentInfoRrsSet},
     #endif
-    /*DTS2012041102190 : h00135900 end in 2011-04-11 AT代码融合*/
     {DRV_AGENT_CPNN_QRY_REQ,                DRVAGENT_RcvDrvAgentCpnnQry},
     {DRV_AGENT_CPNN_TEST_REQ,               DRVAGENT_RcvDrvAgentCpnnTest},
     {DRV_AGENT_NVBACKUP_SET_REQ,            DRVAGENT_RcvDrvAgentNvBackupSet},
@@ -153,9 +127,7 @@ const DRV_AGENT_MSG_PROC_STRU g_astDrvAgentMsgProcTab[]=
     {DRV_AGENT_HVPDH_REQ,                   DRVAGENT_RcvDrvAgentHvpdhSetReq},
 #endif
 
-    /* Added by d00212987 for BalongV9R1 NV备份数据丢失容错&恢复 项目 2013-10-24, begin */
     {DRV_AGENT_NVMANUFACTUREEXT_SET_REQ,    DRVAGENT_RcvDrvAgentNvManufactureExtSet},
-    /* Added by d00212987 for BalongV9R1 NV备份数据丢失容错&恢复 项目 2013-10-24, end */
 
     {DRV_AGENT_ANTSWITCH_SET_REQ,           DRVAGENT_RcvDrvAgentSetAntSwitchReq},
     {DRV_AGENT_ANTSWITCH_QRY_REQ,           DRVAGENT_RcvDrvAgentQryAntSwitchReq},
@@ -170,45 +142,13 @@ VOS_UINT16         *g_pusDrvAgentAdcTable       = VOS_NULL_PTR;                 
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : DRVAGENT_GetSystemAppConfigAddr
- 功能描述  : 获取DRVAGENT模块控制特性的NV的地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 控制特性的信息
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年12月07日
-   作    者   : s62952
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8* DRVAGENT_GetSystemAppConfigAddr(VOS_VOID)
 {
     return &g_ucDrvAgentSystemAppConfigAddr;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_ReadSystemAppConfigNV
- 功能描述  : 读取特性控制NV相关信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年5月18日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  3.日    期   : 2013年05月17日
-    作    者   : m00217266
-    修改内容   : nv项拆分
-*****************************************************************************/
 VOS_VOID  DRVAGENT_ReadSystemAppConfigNV(VOS_VOID)
 {
     VOS_UINT8                                   *pucSystemAppConfig;
@@ -241,21 +181,7 @@ VOS_VOID  DRVAGENT_ReadSystemAppConfigNV(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_Init
- 功能描述  : DRVAGENT任务初始化函数
- 输入参数  : enum VOS_INIT_PHASE_DEFINE  ip
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月3日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  DRVAGENT_Init(enum VOS_INIT_PHASE_DEFINE  ip)
 {
     switch( ip )
@@ -278,21 +204,7 @@ VOS_UINT32  DRVAGENT_Init(enum VOS_INIT_PHASE_DEFINE  ip)
 }
 
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_DispatchMsg
- 功能描述  : 分发AT发给DRVAGENT的消息
- 输入参数  : struct MsgCB * pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月3日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  DRVAGENT_DispatchMsg (struct MsgCB * pstMsg)
 {
     /*消息为空，直接返回*/
@@ -319,21 +231,7 @@ VOS_VOID  DRVAGENT_DispatchMsg (struct MsgCB * pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_ProcMsgFromSPY
- 功能描述  : 处理来自SPY的消息
- 输入参数  : const VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月9日
-    作    者   : w00184875
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID DRVAGENT_ProcMsgFromSPY(VOS_VOID *pMsg)
 {
     MN_APP_SAR_ANTENSTATUS_MSG_STRU    *pSpyMsg;
@@ -348,21 +246,7 @@ VOS_VOID DRVAGENT_ProcMsgFromSPY(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_ProcMsgFromAt
- 功能描述  : 处理来自AT的消息
- 输入参数  : const VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月3日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID DRVAGENT_ProcMsgFromAt(VOS_VOID *pMsg)
 {
     VOS_UINT32                          i;
@@ -401,26 +285,7 @@ VOS_VOID DRVAGENT_ProcMsgFromAt(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_SendMsg
- 功能描述  : AT AGENT向AT发送消息函数
- 输入参数  : VOS_UINT32                          ulMsgId
-             VOS_UINT32                         ulLen
-             VOS_UINT8                          *pData
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月4日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年11月15日
-    作    者   : o00132663
-    修改内容   : AT融合项目，根据检视意见修改，结构定义前增加st
-*****************************************************************************/
 VOS_VOID DRVAGENT_SendMsg(
     VOS_UINT32                          ulRcvPid,
     VOS_UINT32                          ulMsgId,
@@ -466,21 +331,7 @@ VOS_VOID DRVAGENT_SendMsg(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_TempReadInit
- 功能描述  : 温度读取初始化相关全局变量
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年02月27日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_TempReadInit(VOS_VOID)
 {
     VOS_UINT32      ulAdcTblLen     = VOS_NULL;

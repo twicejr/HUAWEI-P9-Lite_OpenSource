@@ -1,14 +1,4 @@
-/******************************************************************************
 
-   Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : NasEsmBackoffAlgMain.c
-  Description     : ESM模块Back-off算法实现
-  History         :
-     1.sunjitan 00193151      2015-01-12  Draft Enact
-
-******************************************************************************/
 
 
 /*****************************************************************************
@@ -42,15 +32,7 @@ NAS_BACKOFF_ALGORITHM_ENTITY_STRU  g_stBackOffEntity;
   3 Function
 *****************************************************************************/
 
-/*****************************************************************************
- Function Name   : NAS_BACKOFF_OperateInit
- Description     : 调用Back-off算法的操作接口初始化，此接口只能LNAS使用
- Input           : NAS_BACKOFF_INIT_INFO_STRU           初始化入参
- Output          : None
- Return          : VOS_VOID
- History         :
-    1.sunjitan 00193151      2015-01-15  Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_BACKOFF_OperateInit
 (
     NAS_BACKOFF_INIT_INFO_STRU            *pstInitPara
@@ -68,16 +50,7 @@ VOS_VOID NAS_BACKOFF_OperateInit
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_BACKOFF_OperateJudgment
- Description     : 调用Back-off算法的操作接口判定
- Input           : NAS_BACKOFF_NETRAT_ENUM_UINT32       接入技术
-                   NAS_BACKOFF_JUDGMENT_PARA_STRU       判定入参
- Output          : None
- Return          : VOS_UINT32     0表示不允许发起，1表示允许发起。
- History         :
-    1.sunjitan 00193151      2015-01-15  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32 NAS_BACKOFF_OperateJudgment
 (
     NAS_BACKOFF_NETRAT_ENUM_UINT32     enNetRat,
@@ -112,16 +85,7 @@ VOS_UINT32 NAS_BACKOFF_OperateJudgment
     return NAS_BACKOFF_MainTaskEntry(enNetRat, NAS_BACKOFF_OPERATE_TYPE_JUDGMENT, pstOpPara);
 }
 
-/*****************************************************************************
- Function Name   : NAS_BACKOFF_OperateMaintain
- Description     : 调用Back-off算法的操作接口维护
- Input           : NAS_BACKOFF_NETRAT_ENUM_UINT32       接入技术
-                   NAS_BACKOFF_MAINTAIN_PARA_STRU       维护入参
- Output          : None
- Return          : VOS_VOID
- History         :
-    1.sunjitan 00193151      2015-01-15  Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_BACKOFF_OperateMaintain
 (
     NAS_BACKOFF_NETRAT_ENUM_UINT32     enNetRat,
@@ -158,16 +122,7 @@ VOS_VOID NAS_BACKOFF_OperateMaintain
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_BACKOFF_OperateReset
- Description     : 调用Back-off算法的操作接口复位
- Input           : NAS_BACKOFF_NETRAT_ENUM_UINT32       接入技术
-                   NAS_BACKOFF_RESET_CAUSE_ENUM_UINT32  复位原因
- Output          : None
- Return          : VOS_VOID
- History         :
-    1.sunjitan 00193151      2015-01-15  Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_BACKOFF_OperateReset
 (
     NAS_BACKOFF_NETRAT_ENUM_UINT32        enNetRat,
@@ -186,30 +141,13 @@ VOS_VOID NAS_BACKOFF_OperateReset
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_BACKOFF_GetAlgFlagAddr
- Description     : 获取算法开关标识地址
- Input           : VOS_VOID
- Output          : None
- Return          : VOS_UINT8*   算法开关地址
- History         :
-    1.sunjitan 00193151      2015-01-15  Draft Enact
-*****************************************************************************/
+
 VOS_UINT8* NAS_BACKOFF_GetAlgFlagAddr(VOS_VOID)
 {
     return &g_stBackOffEntity.ucBackOffAlgFlag;
 }
 
-/*****************************************************************************
- Function Name   : NAS_BACKOFF_GetApnEntityAddr
- Description     : 获取APN实体地址
- Input           : NAS_BACKOFF_NETRAT_ENUM_UINT32       接入技术
-                   VOS_UINT32                           APN实体索引
- Output          : None
- Return          : NAS_BACKOFF_APN_ENTITY_STRU*         APN实体地址
- History         :
-    1.sunjitan 00193151      2015-01-15  Draft Enact
-*****************************************************************************/
+
 NAS_BACKOFF_APN_ENTITY_STRU* NAS_BACKOFF_GetApnEntityAddr
 (
     NAS_BACKOFF_NETRAT_ENUM_UINT32  enNetRat,
@@ -219,58 +157,25 @@ NAS_BACKOFF_APN_ENTITY_STRU* NAS_BACKOFF_GetApnEntityAddr
     return &g_stBackOffEntity.stNetRatEntity[enNetRat].stApnEntity[ulIndex];
 }
 
-/*****************************************************************************
- Function Name   : NAS_BACKOFF_GetCommParaAddr
- Description     : 获取算法公共参数地址
- Input           : VOS_VOID
- Output          : None
- Return          : NAS_BACKOFF_COMM_PARA_STRU*        公共参数地址
- History         :
-    1.sunjitan 00193151      2015-01-15  Draft Enact
-*****************************************************************************/
+
 NAS_BACKOFF_COMM_PARA_STRU* NAS_BACKOFF_GetCommParaAddr(VOS_VOID)
 {
     return &g_stBackOffEntity.stCommPara;
 }
 
-/*****************************************************************************
- Function Name   : NAS_BACKOFF_GetPdpPermCauseListAddr
- Description     : 获取算法PDP永久拒绝原因值列表地址
- Input           : VOS_VOID
- Output          : None
- Return          : NAS_BACKOFF_COMM_PARA_STRU*   永久拒绝原因值列表地址
- History         :
-    1.sunjitan 00193151      2015-01-15  Draft Enact
-*****************************************************************************/
+
 NAS_CONFIG_PDP_PERM_CAUSE_STRU* NAS_BACKOFF_GetPdpPermCauseListAddr(VOS_VOID)
 {
     return &g_stBackOffEntity.stPdpPermCause;
 }
 
-/*****************************************************************************
- Function Name   : NAS_BACKOFF_GetPdpTempCauseListAddr
- Description     : 获取算法PDP临时拒绝原因值列表地址
- Input           : VOS_VOID
- Output          : None
- Return          : NAS_CONFIG_PDP_TEMP_CAUSE_STRU*   临时拒绝原因值列表地址
- History         :
-    1.sunjitan 00193151      2015-01-15  Draft Enact
-*****************************************************************************/
+
 NAS_CONFIG_PDP_TEMP_CAUSE_STRU* NAS_BACKOFF_GetPdpTempCauseListAddr(VOS_VOID)
 {
     return &g_stBackOffEntity.stPdpTempCause;
 }
 
-/*****************************************************************************
- Function Name   : NAS_BACKOFF_SetBackOffState
- Description     : 设置Back-off算法状态
- Input           : NAS_BACKOFF_STATE_ENUM_UINT8  目标状态
-                   NAS_BACKOFF_APN_ENTITY_STRU   APN实体
- Output          : None
- Return          : VOS_VOID
- History         :
-    1.sunjitan 00193151      2015-01-15  Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_BACKOFF_SetBackOffState
 (
     NAS_BACKOFF_STATE_ENUM_UINT8     enDestState,
@@ -281,18 +186,7 @@ VOS_VOID NAS_BACKOFF_SetBackOffState
     return ;
 }
 
-/*****************************************************************************
- Function Name   : NAS_BACKOFF_MainTaskEntry
- Description     : Back-off算法主任务入口
- Input           : NAS_BACKOFF_NETRAT_ENUM_UINT32       接入技术
-                   NAS_BACKOFF_OPERATE_TYPE_ENUM_UINT32 操作类型
-                   NAS_BACKOFF_OPERATE_PARA_STRU        操作提供的入参
- Output          : None
- Return          : VOS_UINT32
-                   根据操作类型的不同，执行不同的动作。
- History         :
-    1.sunjitan 00193151      2015-01-15  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32 NAS_BACKOFF_MainTaskEntry
 (
     NAS_BACKOFF_NETRAT_ENUM_UINT32             enNetRat,
@@ -365,15 +259,7 @@ VOS_UINT32 NAS_BACKOFF_MainTaskEntry
 
 }
 
-/*****************************************************************************
-Function Name   : NAS_BACKOFF_Init
-Description     : Back-off算法根据接入技术类型，执行相应接入技术的初始化。
-Input           : NAS_BACKOFF_INIT_INFO_STRU       入参
-Output          : None
-Return          : VOS_VOID
-History         :
-   1.sunjitan 00193151      2015-01-15  Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_BACKOFF_Init
 (
     NAS_BACKOFF_INIT_INFO_STRU  *pstInitInfo
@@ -432,18 +318,7 @@ VOS_VOID NAS_BACKOFF_Init
 
 }
 
-/*****************************************************************************
-Function Name   : NAS_BACKOFF_Judgment
-Description     : Back-off算法根据接入技术类型和APN信息进行判定是否允许发起PDP激活。
-Input           : NAS_BACKOFF_NETRAT_ENUM_UINT32   接入技术
-                  NAS_BACKOFF_JUDGMENT_PARA_STRU   待判定的APN
-Output          : None
-Return          : VOS_UINT32
-                    NAS_BACKOFF_SUCC 允许发起
-                    NAS_BACKOFF_FAIL 不允许发起
-History         :
-   1.sunjitan 00193151      2015-01-15  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32 NAS_BACKOFF_Judgment
 (
     NAS_BACKOFF_NETRAT_ENUM_UINT32     enNetRat,
@@ -478,18 +353,7 @@ VOS_UINT32 NAS_BACKOFF_Judgment
     return NAS_BACKOFF_FAIL;
 
 }
-/*****************************************************************************
-Function Name   : NAS_BACKOFF_Maintain
-Description     : Back-off算法根据接入技术、APN和失败原因，
-                  执行相应算法实体的维护。
-Input           : NAS_BACKOFF_NETRAT_ENUM_UINT32       接入技术
-                  APP_ESM_APN_INFO_STRU                需维护实体的APN信息
-                  VOS_UINT8                            失败原因值
-Output          : None
-Return          : VOS_VOID
-History         :
-   1.sunjitan 00193151      2015-01-15  Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_BACKOFF_Maintain
 (
     NAS_BACKOFF_NETRAT_ENUM_UINT32     enNetRat,
@@ -518,16 +382,7 @@ VOS_VOID NAS_BACKOFF_Maintain
 
     return;
 }
-/*****************************************************************************
-Function Name   : NAS_BACKOFF_Reset
-Description     : Back-off算法复位。
-Input           : NAS_BACKOFF_NETRAT_ENUM_UINT32        接入技术
-                  NAS_BACKOFF_RESET_CAUSE_ENUM_UINT32   复位原因
-Output          : None
-Return          : VOS_VOID
-History         :
-   1.sunjitan 00193151      2015-01-15  Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_BACKOFF_Reset
 (
     NAS_BACKOFF_NETRAT_ENUM_UINT32        enNetRat,
@@ -595,18 +450,7 @@ VOS_VOID NAS_BACKOFF_Reset
     return;
 
 }
-/*****************************************************************************
-Function Name   : NAS_BACKOFF_QueryInfo
-Description     : Back-off算法查询功能。
-Input           : NAS_BACKOFF_NETRAT_ENUM_UINT32   接入技术
-                  APP_ESM_APN_INFO_STRU*           APN
-                  NAS_BACKOFF_QUERY_RESULT_STRU*   查询结果
-Output          : None
-Return          : VOS_UINT32
-                  0 查询成功；1 查询失败
-History         :
-   1.sunjitan 00193151      2015-01-15  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32 NAS_BACKOFF_QueryInfo
 (
     NAS_BACKOFF_NETRAT_ENUM_UINT32      enNetRat,
@@ -649,16 +493,7 @@ VOS_UINT32 NAS_BACKOFF_QueryInfo
 
 }
 
-/*****************************************************************************
-Function Name   : NAS_BACKOFF_PdpActiveSuccProc
-Description     : PDP激活成功时的处理
-Input           : NAS_BACKOFF_NETRAT_ENUM_UINT32   接入技术
-                  NAS_BACKOFF_MAINTAIN_PARA_STRU*  APN
-Output          : None
-Return          : VOS_VOID
-History         :
-   1.sunjitan 00193151      2015-01-15  Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_BACKOFF_PdpActiveSuccProc
 (
     NAS_BACKOFF_NETRAT_ENUM_UINT32     enNetRat,
@@ -683,16 +518,7 @@ VOS_VOID NAS_BACKOFF_PdpActiveSuccProc
 
 }
 
-/*****************************************************************************
-Function Name   : NAS_BACKOFF_PdpActiveFailProc
-Description     : PDP激活失败时的处理
-Input           : NAS_BACKOFF_NETRAT_ENUM_UINT32   接入技术
-                  NAS_BACKOFF_MAINTAIN_PARA_STRU*  维护信息
-Output          : None
-Return          : VOS_VOID
-History         :
-   1.sunjitan 00193151      2015-01-15  Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_BACKOFF_PdpActiveFailProc
 (
     NAS_BACKOFF_NETRAT_ENUM_UINT32     enNetRat,
@@ -759,18 +585,7 @@ VOS_VOID NAS_BACKOFF_PdpActiveFailProc
 
 }
 
-/*****************************************************************************
-Function Name   : NAS_BACKOFF_InactiveProc
-Description     : Back-off算法未激活态下的处理。
-Input           : NAS_BACKOFF_NETRAT_ENUM_UINT32      接入技术
-                  VOS_UINT32                          APN实体索引
-                  NAS_BACKOFF_PDP_ACTIVE_RESULT_ENUM8 失败原因
-                  VOS_UINT8                           网侧原因值
-Output          : None
-Return          : VOS_VOID
-History         :
-   1.sunjitan 00193151      2015-01-15  Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_BACKOFF_InactiveProc
 (
     NAS_BACKOFF_NETRAT_ENUM_UINT32           enNetRat,
@@ -829,17 +644,7 @@ VOS_VOID NAS_BACKOFF_InactiveProc
 
 }
 
-/*****************************************************************************
-Function Name   : NAS_BACKOFF_ActiveProc
-Description     : Back-off算法激活态下的处理。
-Input           : NAS_BACKOFF_NETRAT_ENUM_UINT32   接入技术
-                  VOS_UINT32                       APN实体索引
-                  NAS_BACKOFF_PDP_FAIL_CAUSE_ENUM8 失败原因
-Output          : None
-Return          : VOS_VOID
-History         :
-   1.sunjitan 00193151      2015-01-15  Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_BACKOFF_ActiveProc
 (
     NAS_BACKOFF_NETRAT_ENUM_UINT32           enNetRat,
@@ -872,15 +677,7 @@ VOS_VOID NAS_BACKOFF_ActiveProc
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_BACKOFF_ReadNvDamParaPdpCauseList
- Description     : 读取AT&T定制需求参数NV项
- Input           : None
- Output          : None
- Return          : VOS_VOID
- History         :
-    1.    sunjitan 00193151      2015-01-15  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  NAS_BACKOFF_ReadNvDamBackOffPara
 (
     LNAS_ESM_NV_BACKOFF_CONFIG_PARA_STRU  *pstNvDamPara
@@ -906,15 +703,7 @@ VOS_UINT32  NAS_BACKOFF_ReadNvDamBackOffPara
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_BACKOFF_InitPdpRejCauseList
- Description     : 初始化Back-off算法的PDP拒绝原因值列表
- Input           : None
- Output          : None
- Return          : VOS_VOID
- History         :
-    1.    sunjitan 00193151      2015-01-15  Draft Enact
-*****************************************************************************/
+
 VOS_VOID  NAS_BACKOFF_InitPdpRejCauseList
 (
     LNAS_ESM_NV_BACKOFF_CONFIG_PARA_STRU    *pstNvDamPara
@@ -975,16 +764,7 @@ VOS_VOID  NAS_BACKOFF_InitPdpRejCauseList
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_BACKOFF_InitCommParaFx
- Description     : 初始化Back-off算法的公共参数Fx
- Input           : None
- Output          : None
- Return          : VOS_UINT8     初始化公共参数Fx的结果
-                   0  成功；  1 失败
- History         :
-    1.    sunjitan 00193151      2015-01-15  Draft Enact
-*****************************************************************************/
+
 VOS_VOID  NAS_BACKOFF_InitCommParaFx
 (
     LNAS_ESM_NV_BACKOFF_CONFIG_PARA_STRU  *pstNvDamPara,
@@ -1024,15 +804,7 @@ VOS_VOID  NAS_BACKOFF_InitCommParaFx
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_BACKOFF_InitCommParaFb
- Description     : 初始化Back-off算法的公共参数Fb
- Input           : None
- Output          : None
- Return          : VOS_UINT8     初始化公共参数结果
- History         :
-    1.    sunjitan 00193151      2015-01-15  Draft Enact
-*****************************************************************************/
+
 VOS_VOID  NAS_BACKOFF_InitCommParaFb
 (
     NAS_BACKOFF_COMM_PARA_STRU     *pstCommPara
@@ -1044,15 +816,7 @@ VOS_VOID  NAS_BACKOFF_InitCommParaFb
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_BACKOFF_InitCommParaTimerPara
- Description     : 初始化Back-off算法的公共参数定时器上下限
- Input           : NAS_BACKOFF_COMM_PARA_STRU       公共参数
- Output          : None
- Return          : VOS_VOID
- History         :
-    1.    sunjitan 00193151      2015-01-15  Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_BACKOFF_InitCommParaTimerPara
 (
     NAS_BACKOFF_COMM_PARA_STRU     *pstCommPara
@@ -1073,15 +837,7 @@ VOS_VOID NAS_BACKOFF_InitCommParaTimerPara
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_BACKOFF_CheckFx
- Description     : 检查Back-off算法Fx参数是否合法
- Input           : NAS_BACKOFF_COMM_PARA_STRU   公共参数
- Output          : None
- Return          : VOS_UINT8
- History         :
-    1.sunjitan 00193151      2015-01-15  Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_BACKOFF_CheckFx
 (
     NAS_BACKOFF_COMM_PARA_STRU     *pstCommPara
@@ -1107,24 +863,7 @@ VOS_VOID NAS_BACKOFF_CheckFx
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_BACKOFF_SelectFb
- Description     : 选取Fb
-                   ---------------------------
-                   - Fx所处范围区间 - Fb取值 -
-                   - [5,6]          - 1      -
-                   - [7,10]         - 2      -
-                   - [11,15]        - 4      -
-                   - [16,20]        - 6      -
-                   - [21,29]        - 8      -
-                   - [30,255]       - Fx/3   -
-                   ---------------------------
- Input           : VOS_UINT8   公共参数Fx
- Output          : None
- Return          : VOS_UINT8   Fb
- History         :
-    1.sunjitan 00193151      2015-01-15  Draft Enact
-*****************************************************************************/
+
 VOS_UINT8 NAS_BACKOFF_SelectFb(VOS_UINT8 ucFx)
 {
     /* Fx值落在不同区间，选择不同的Fb */
@@ -1168,16 +907,7 @@ VOS_UINT8 NAS_BACKOFF_SelectFb(VOS_UINT8 ucFx)
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_BACKOFF_CalcTimerLenMinAndMax
- Description     : 计算Back-off算法惩罚定时器上下限，单位: 毫秒
- Input           : VOS_UINT8                        ucFx
-                   VOS_UINT8                        ucFb
- Output          : NAS_BACKOFF_TIMER_INFO_STRU   定时器上下限
- Return          : VOS_UINT8
- History         :
-    1.sunjitan 00193151      2015-01-15  Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_BACKOFF_CalcTimerLenMinAndMax
 (
     VOS_UINT8                           ucFx,
@@ -1206,17 +936,7 @@ VOS_VOID NAS_BACKOFF_CalcTimerLenMinAndMax
 }
 
 
-/*****************************************************************************
-Function Name   : NAS_BACKOFF_AllocNewApnEntity
-Description     : 获取新的APN实体位置
-Input           : NAS_BACKOFF_NETRAT_ENUM_UINT32   接入技术
-                  VOS_UINT32*                          分配成功返回的索引值
-Output          : None
-Return          : VOS_UINT32
-                  0 分配成功；1 分配失败
-History         :
-   1.sunjitan 00193151      2015-01-15  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32 NAS_BACKOFF_AllocApnEntity
 (
     NAS_BACKOFF_NETRAT_ENUM_UINT32      enNetRat,
@@ -1246,15 +966,7 @@ VOS_UINT32 NAS_BACKOFF_AllocApnEntity
 
 }
 
-/*****************************************************************************
-Function Name   : NAS_BACKOFF_GetPdpCnRejType
-Description     : 获取PDP拒绝类型
-Input           : NAS_BACKOFF_PDP_CAUSE_ENUM_UINT8   PDP拒绝原因值
-Output          : None
-Return          : VOS_UINT8   PDP拒绝类型
-History         :
-   1.sunjitan 00193151      2015-01-15  Draft Enact
-*****************************************************************************/
+
 VOS_UINT8 NAS_BACKOFF_GetPdpCnRejType(VOS_UINT8  ucCnCause)
 {
     VOS_UINT32                          ulIndex = 0;
@@ -1287,15 +999,7 @@ VOS_UINT8 NAS_BACKOFF_GetPdpCnRejType(VOS_UINT8  ucCnCause)
 
 }
 
-/*****************************************************************************
-Function Name   : NAS_BACKOFF_ClearApnEntity
-Description     : 清除APN实体信息
-Input           : VOS_UINT32   APN实体索引
-Output          : None
-Return          : VOS_VOID
-History         :
-   1.sunjitan 00193151      2015-01-15  Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_BACKOFF_ClearApnEntity
 (
     NAS_BACKOFF_NETRAT_ENUM_UINT32      enNetRat,
@@ -1333,15 +1037,7 @@ VOS_VOID NAS_BACKOFF_ClearApnEntity
     return;
 }
 
-/*****************************************************************************
-Function Name   : NAS_BACKOFF_ForbidTimerLenCalc
-Description     : Back-off算法激活态下惩罚定时器长度计算
-Input           : NAS_BACKOFF_TIMER_INFO_STRU  定时器信息
-Output          : None
-Return          : VOS_UINT32                   随机得到的定时器长度
-History         :
-   1.sunjitan 00193151      2015-01-15  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32 NAS_BACKOFF_TimerLenRandom
 (
     NAS_BACKOFF_TIMER_INFO_STRU       *pstTimerInfo
@@ -1359,15 +1055,7 @@ VOS_UINT32 NAS_BACKOFF_TimerLenRandom
     return ulTimerLen;
 }
 
-/*****************************************************************************
-Function Name   : NAS_BACKOFF_ForbidTimerLenCalc
-Description     : Back-off算法激活态下惩罚定时器长度计算
-Input           : NAS_TIMER_PARA_ENUM_UINT8   定时器类型
-Output          : None
-Return          : VOS_UINT32                  定时器长度
-History         :
-   1.sunjitan 00193151      2015-01-15  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32 NAS_BACKOFF_ForbidTimerLenCalc
 (
     NAS_ESM_TIMER_PARA_ENUM_UINT8       enTimerType
@@ -1403,17 +1091,7 @@ VOS_UINT32 NAS_BACKOFF_ForbidTimerLenCalc
 
 }
 
-/*****************************************************************************
- Function Name  : NAS_BACKOff_ForbidTimerStart
- Discription    : 启动Back-off算法惩罚定时器
- Input          : NAS_BACKOFF_NETRAT_ENUM_UINT32  接入技术
-                  VOS_UINT32                      APN实体索引
-                  NAS_TIMER_PARA_ENUM_UINT8       定时器类型
- Output         : VOS_VOID
- Return         : None
- History:
-      1.sunjitan 00193151      2015-01-15  Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_BACKOFF_ForbidTimerStart
 (
     NAS_BACKOFF_NETRAT_ENUM_UINT32      enNetRat,
@@ -1481,17 +1159,7 @@ VOS_VOID NAS_BACKOFF_ForbidTimerStart
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_BACKOff_ForbidTimerStop
- Discription    : 停止Backoff算法惩罚定时器
- Input          : NAS_BACKOFF_NETRAT_ENUM_UINT32  接入技术
-                  VOS_UINT32                      APN实体索引
-                  NAS_TIMER_PARA_ENUM_UINT8       定时器类型
- Output         : VOS_VOID
- Return         : None
- History:
-      1.sunjitan 00193151      2015-01-15  Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_BACKOFF_ForbidTimerStop
 (
     NAS_BACKOFF_NETRAT_ENUM_UINT32      enNetRat,
@@ -1537,15 +1205,7 @@ VOS_VOID NAS_BACKOFF_ForbidTimerStop
     return;
 }
 
-/*****************************************************************************
-Function Name   : NAS_BACKOFF_GetForbidTimerState
-Description     : 获取惩罚定时器运行状态
-Input           : NAS_BACKOFF_APN_ENTITY_STRU   APN实体
-Output          : None
-Return          : VOS_UINT8   惩罚定时器运行状态
-History         :
-   1.sunjitan 00193151      2015-01-15  Draft Enact
-*****************************************************************************/
+
 VOS_UINT8 NAS_BACKOFF_GetForbidTimerState
 (
     NAS_BACKOFF_APN_ENTITY_STRU    *pstApnEntity
@@ -1561,16 +1221,7 @@ VOS_UINT8 NAS_BACKOFF_GetForbidTimerState
         return NAS_BACKOFF_FOBID_TIMER_STATE_STOP;
     }
 }
-/*****************************************************************************
-Function Name   : NAS_BACKOFF_SndOmLogInitInfo
-Description     : Back-off算法的Init操作可维可测信息
-Input           : NAS_BACKOFF_NETRAT_ENUM_UINT32         接入技术
-                  NAS_BACKOFF_OPERATE_PARA_STRU          操作参数
-Output          : None
-Return          : VOS_VOID
-History         :
-   1.sunjitan 00193151      2015-01-15  Draft Enact
-*****************************************************************************/
+
 VOS_VOID  NAS_BACKOFF_SndOmLogInitInfo
 (
     NAS_BACKOFF_NETRAT_ENUM_UINT32         enNetRat,
@@ -1609,16 +1260,7 @@ VOS_VOID  NAS_BACKOFF_SndOmLogInitInfo
     (VOS_VOID)LTE_MsgHook((VOS_VOID*)pstMsg);
     NAS_ESM_MEM_FREE(pstMsg);
 }
-/*****************************************************************************
-Function Name   : NAS_BACKOFF_SndOmLogJudgmentInfo
-Description     : Back-off算法的Judgment操作可维可测信息
-Input           : NAS_BACKOFF_NETRAT_ENUM_UINT32         接入技术
-                  NAS_BACKOFF_OPERATE_PARA_STRU          操作参数
-Output          : None
-Return          : VOS_VOID
-History         :
-   1.sunjitan 00193151      2015-01-15  Draft Enact
-*****************************************************************************/
+
 VOS_VOID  NAS_BACKOFF_SndOmLogJudgmentInfo
 (
     NAS_BACKOFF_NETRAT_ENUM_UINT32         enNetRat,
@@ -1657,16 +1299,7 @@ VOS_VOID  NAS_BACKOFF_SndOmLogJudgmentInfo
     (VOS_VOID)LTE_MsgHook((VOS_VOID*)pstMsg);
     NAS_ESM_MEM_FREE(pstMsg);
 }
-/*****************************************************************************
-Function Name   : NAS_BACKOFF_SndOmLogMaintainInfo
-Description     : Back-off算法的Mainttain操作可维可测信息
-Input           : NAS_BACKOFF_NETRAT_ENUM_UINT32         接入技术
-                  NAS_BACKOFF_OPERATE_PARA_STRU          操作参数
-Output          : None
-Return          : VOS_VOID
-History         :
-   1.sunjitan 00193151      2015-01-15  Draft Enact
-*****************************************************************************/
+
 VOS_VOID  NAS_BACKOFF_SndOmLogMaintainInfo
 (
     NAS_BACKOFF_NETRAT_ENUM_UINT32         enNetRat,
@@ -1705,16 +1338,7 @@ VOS_VOID  NAS_BACKOFF_SndOmLogMaintainInfo
     (VOS_VOID)LTE_MsgHook((VOS_VOID*)pstMsg);
     NAS_ESM_MEM_FREE(pstMsg);
 }
-/*****************************************************************************
-Function Name   : NAS_BACKOFF_SndOmLogResetInfo
-Description     : Back-off算法的Reset操作可维可测信息
-Input           : NAS_BACKOFF_NETRAT_ENUM_UINT32         接入技术
-                  NAS_BACKOFF_OPERATE_PARA_STRU          操作参数
-Output          : None
-Return          : VOS_VOID
-History         :
-   1.sunjitan 00193151      2015-01-15  Draft Enact
-*****************************************************************************/
+
 VOS_VOID  NAS_BACKOFF_SndOmLogResetInfo
 (
     NAS_BACKOFF_NETRAT_ENUM_UINT32         enNetRat,
@@ -1754,17 +1378,7 @@ VOS_VOID  NAS_BACKOFF_SndOmLogResetInfo
     NAS_ESM_MEM_FREE(pstMsg);
 }
 
-/*****************************************************************************
-Function Name   : NAS_BACKOFF_SndOmLogOperateInfo
-Description     : Back-off算法的操作可维可测信息
-Input           : NAS_BACKOFF_NETRAT_ENUM_UINT32         接入技术
-                  NAS_BACKOFF_OPERATE_TYPE_ENUM_UINT32   操作类型
-                  NAS_BACKOFF_OPERATE_PARA_STRU          操作参数
-Output          : None
-Return          : VOS_VOID
-History         :
-   1.sunjitan 00193151      2015-01-15  Draft Enact
-*****************************************************************************/
+
 VOS_VOID  NAS_BACKOFF_SndOmLogOperateInfo
 (
     NAS_BACKOFF_NETRAT_ENUM_UINT32         enNetRat,
@@ -1806,15 +1420,7 @@ VOS_VOID  NAS_BACKOFF_SndOmLogOperateInfo
     return;
 }
 
-/*****************************************************************************
-Function Name   : NAS_BACKOFF_SndOmLogNvPara
-Description     : Back-off算法的可维可测信息，输出读到的NV参数
-Input           : PS_NV_DAM_CONFIG_PARA_STRU       NV参数
-Output          : None
-Return          : VOS_VOID
-History         :
-   1.sunjitan 00193151      2015-01-15  Draft Enact
-*****************************************************************************/
+
 VOS_VOID  NAS_BACKOFF_SndOmLogNvPara
 (
     LNAS_ESM_NV_BACKOFF_CONFIG_PARA_STRU         *pstNvDamPara
@@ -1860,15 +1466,7 @@ VOS_VOID  NAS_BACKOFF_SndOmLogNvPara
     return;
 }
 
-/*****************************************************************************
-Function Name   : NAS_BACKOFF_SndOmLogCommInfo
-Description     : Back-off算法的可维可测信息，输出当前公共参数
-Input           : VOS_VOID
-Output          : None
-Return          : VOS_VOID
-History         :
-   1.sunjitan 00193151      2015-01-15  Draft Enact
-*****************************************************************************/
+
 VOS_VOID  NAS_BACKOFF_SndOmLogCommInfo(VOS_VOID)
 {
     NAS_BACKOFF_LOG_COMM_INFO_STRU      *pstMsg = VOS_NULL_PTR;
@@ -1912,15 +1510,7 @@ VOS_VOID  NAS_BACKOFF_SndOmLogCommInfo(VOS_VOID)
 
 }
 
-/*****************************************************************************
-Function Name   : NAS_BACKOFF_SndOmLogEntityState
-Description     : Back-off算法的可维可测信息，输出对应接入技术的实体列表
-Input           : NAS_BACKOFF_NETRAT_ENUM_UINT32    需输出列表的接入技术类型
-Output          : None
-Return          : VOS_VOID
-History         :
-   1.sunjitan 00193151      2015-01-15  Draft Enact
-*****************************************************************************/
+
 VOS_VOID  NAS_BACKOFF_SndOmLogApnEntityList(NAS_BACKOFF_NETRAT_ENUM_UINT32 enNetRat)
 {
     NAS_BACKOFF_LOG_APN_ENTITY_LIST_STRU      *pstMsg = VOS_NULL_PTR;

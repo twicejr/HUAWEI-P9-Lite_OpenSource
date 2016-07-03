@@ -1,41 +1,4 @@
-/*******************************************************************************
-  Copyright    : 2005-2007, Huawei Tech. Co., Ltd.
-  File name:          SmsPsSmProcess.c
-  Description:        PS DOMAIN的SM过程
-  Function List:
-               1. SMC_RcvPsMtData
-               2. SMC_RcvPsMoData
-               3. SMC_RcvGmmEstCnf
-               4. SMC_ComPsMtErr
-               5. SMC_ComPsMoErr
-               6. SMC_ComPsWaitAckSta
-               7. SMC_RcvGmmStaInd
-               8. SMC_RcvGmmErrInd
-               9. SMC_SndGmmDataReq
-              10. SMC_SndGmmMsg
 
-  History:
-  1.日    期   : 2009年5月23日
-    作    者   : f62575
-    修改内容   : AT2D10986, 2G下PS域发送短信连续两次发送失败后，
-                 CP层再次超时事件与RP层超时事件同时到达SMS模块内存的错误操作，
-                 导致单板的复位
-  2.日    期   : 2009年5月10日
-    作    者   : f62575
-    修改内容   : AT2D12319, NAS R6升级；
-  3.日    期   : 2010年1月26日
-    作    者   : f62575
-    修改内容   : 问题单号AT2D16564
-                 PS 域短信连发功能未启用，导致GCF用例不过；需要增加AT 命令启
-                 用PS域短信连发功能，方便测试；
-
-   4.日    期   : 2010年04月28日
-     作    者   : z40661
-     修改内容   : 问题单号AT2D16570
-                  接收到DATA-IND消息的无效的消息类型，应回复CP-ERROR错误原因值97
-                  接收到DATA-IND消息的无CP-USER-DATA，应回复CP-ERROR错误原因值96
-                  非SMC_MO_WAIT_FOR_CP_ACK状态，应回复CP-ERROR错误原因值98
-*******************************************************************************/
 #include "smsinclude.h"
 #include "LLInterface.h"
 #include "NasGmmInterface.h"
@@ -60,25 +23,7 @@ extern VOS_UINT8  Smt_StartMemNotification( VOS_VOID );
 
 /*lint -save -e958 */
 
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
-/*****************************************************************************
- 函 数 名  : NAS_SMS_ResendPsRpData
- 功能描述  : 重发RP-DATA消息
- 输入参数  : ucRetransFlg 是否要求修改TP-RD标志，仅SUBMIT且需要修改TP-RD标志时为VOS_TRUE
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 VOS_FALSE 消息发送失败
-                        VOS_TRUE  消息发送成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2013年6月26日
-   作    者   : f62575
-   修改内容   : V9R1 STK升级
- 2.日    期   : 2015年1月29日
-   作    者   : s00217060
-   修改内容   : DTS2015011309518修改
-*****************************************************************************/
 VOS_UINT32 NAS_SMS_ResendPsRpData(VOS_UINT8 ucRetransFlg)
 {
     VOS_UINT8                           ucRdPos;
@@ -128,21 +73,7 @@ VOS_UINT32 NAS_SMS_ResendPsRpData(VOS_UINT8 ucRetransFlg)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SMS_ResendPsRpData
- 功能描述  : 重发RP-DATA消息
- 输入参数  : ucRetransFlg 是否要求修改TP-RD标志，仅SUBMIT且需要修改TP-RD标志时为VOS_TRUE
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 VOS_FALSE 消息发送失败
-                        VOS_TRUE  消息发送成功
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2013年6月26日
-   作    者   : f62575
-   修改内容   : V9R1 STK升级
-*****************************************************************************/
 VOS_UINT32 NAS_SMS_ResendPsRpReport(VOS_VOID)
 {
     if ((VOS_NULL_PTR == g_SmcPsEnt.SmcMt.HoldSndMsg.pMsg)
@@ -165,7 +96,6 @@ VOS_UINT32 NAS_SMS_ResendPsRpReport(VOS_VOID)
     return VOS_TRUE;
 }
 
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 
 /*******************************************************************************
   Module:      SMC_ReportM2NOtaMsg
@@ -208,51 +138,7 @@ VOS_VOID SMC_ReportM2NOtaMsg(NAS_MSG_STRU *pNasMsg)
         NAS_SendAirMsgToOM(WUEPS_PID_SMS, usNasOtaMsyId, NAS_OTA_DIRECTION_UP, pNasMsg->ulNasMsgSize + 4, (VOS_UINT8*)pNasMsg);
     }
 }
-/*******************************************************************************
-  Module:   SMC_RcvPsMtData
-  Function: mt实体接收到ps域数据的处理
-  Input:    VOS_UINT8*  pucCpdu   --- 指向短消息CPDU的指针
-            VOS_UINT32   ulCpduLen --- 短消息CPDU的长度
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1. Date         : 2004-03-09
-     Author       : g41091
-     Modification : 新规作成
-  2. Date         : 2006-02-22
-     Author       : g41091
-     Modification : 增加了通过GPRS发送短信的功能,问题单号:A32D02833
-  3. Date         : 2007-04-06
-     Author       : h44270
-     Modification : 问题单号:A32D10113
 
-  4.日    期   : 2010年04月28日
-    作    者   : z40661
-    修改内容   : 问题单号AT2D16570
-                 接收到DATA-IND消息的无效的消息类型，应回复CP-ERROR错误原因值97
-                 接收到DATA-IND消息的无CP-USER-DATA，应回复CP-ERROR错误原因值96
-                 非SMC_MO_WAIT_FOR_CP_ACK状态，应回复CP-ERROR错误原因值98
-
-  5.日    期   : 2010年8月21日
-    作    者   : zhoujun /40661
-    修改内容   : DTS2010081901387,网络下发的长度过短时,短信有可能内存越界
-  6.日    期   : 2011年11月28日
-    作    者   : z00161729
-    修改内容   : 增加给L模发送SMS_LMM_DATA_REQ的处理
-  7.日    期   : 2012年8月29日
-    作    者   : z00161729
-    修改内容   : DCM定制需求和遗留问题修改
-  8.日    期   : 2013年6月4日
-    作    者   : s00217060
-    修改内容   : for V9R1_SVLTE:接收短信时，把接收域是CS还是PS域带上去，MSG要用
-  9.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
- 10.日    期   : 2014年6月24日
-    作    者   : w00167002
-    修改内容   : DSDS III项目
-*******************************************************************************/
 VOS_VOID SMC_RcvPsMtData(
                      VOS_UINT8* pucCpdu,
                      VOS_UINT32  ulCpduLen
@@ -411,9 +297,7 @@ VOS_VOID SMC_RcvPsMtData(
     case SMC_DATA_TYPE_CP_ERR:
         if( SMC_MT_IDLE != g_SmcPsEnt.SmcMt.ucState )
         {                                                                       /* 与实体的状态兼容                         */
-            /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
             SMR_SmcApiErrorInd( (SMR_SMT_ERROR_CP_ERROR_BEGIN | pucCpdu[SMC_MSG_HDR_LEN]), SMS_TRUE);                                     /* 向上层报错                               */
-            /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
             if( 0 != g_SmcPsEnt.SmcMt.HoldSndMsg.ulMsgLen )
             {                                                                   /* 调用公共处理                             */
@@ -449,28 +333,7 @@ VOS_VOID SMC_RcvPsMtData(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SMC_BufferPsCpAck
- 功能描述  : 判断当前配置和网络环境下PS域是否需要缓存CP-ACK消息
- 输入参数  : 无
- 输出参数  : VOS_BOOL                            *pbBufferFlag 缓存CP-ACK消息标志
-                    VOS_TRUE    需要缓存消息；
-                    VOS_FALSE   不需要缓存消息；
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年3月13日
-    作    者   : f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月05日
-    作    者   : z00161729
-    修改内容   : V7R1 phaseIV修改
-  3.日    期   : 2015年05月18日
-    作    者   : j00174725
-    修改内容   : DTS2015051106584
-*****************************************************************************/
 VOS_VOID NAS_SMC_BufferPsCpAck(
     VOS_BOOL                            *pbBufferFlag
 )
@@ -529,33 +392,7 @@ VOS_VOID NAS_SMC_BufferPsCpAck(
 
 }
 
-/*******************************************************************************
-  Module:   SMC_RcvPsMoCpData
-  Function: mo实体接收到ps域CP-DATA数据的处理
-  Input:    VOS_UINT8*  pucCpdu   --- 指向短消息CPDU的指针
-            VOS_UINT32   ulCpduLen --- 短消息CPDU的长度
-  Output:   VOS_VOID
-  NOTE:
-            协议24011 R4版本支持在Iu 模式下多条PS域短信或内存可用通知在一条信令连接上发送。
-                            对CS域短信连发流程有修改，在新短信发送前必须发送当前短信RP-ACK消息的确认消息的要求修改为可选的；
-            协议24011 R4版本R6版本支持在A/Gb模式下多条PS域短信或内存可用通知在一条RR连接上发送。
-  Return:   VOS_VOID
-  History:
-  1. Date         : 2009-05-11
-     Author       : f62575
-     Modification : 新规作成
-  2.日    期   : 2010年1月26日
-    作    者   : f62575
-    修改内容   : 问题单号AT2D16564
-                 PS 域短信连发功能未启用，导致GCF用例不过；需要增加AT 命令启
-                 用PS域短信连发功能，方便测试；
-  3. 日    期   : 2011年11月28日
-     作    者   : z00161729
-     修改内容   : 增加给L模发送SMS_LMM_DATA_REQ的处理
-  4.日    期   : 2014年6月24日
-    作    者   : w00167002
-    修改内容   : DSDS III项目
-*******************************************************************************/
+
 VOS_VOID SMC_RcvPsMoCpData(
                      VOS_UINT8* pucCpdu,
                      VOS_UINT32  ulCpduLen
@@ -652,31 +489,7 @@ VOS_VOID SMC_RcvPsMoCpData(
     return;
 }
 
-/*******************************************************************************
-  Module:   SMC_RcvPsMoData
-  Function: mo实体接收到ps域数据的处理
-  Input:    VOS_UINT8*  pucCpdu   --- 指向短消息CPDU的指针
-            VOS_UINT32   ulCpduLen --- 短消息CPDU的长度
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1. Date         : 2004-03-09
-     Author       : g41091
-     Modification : 新规作成
-  2. Date         : 2006-02-22
-     Author       : g41091
-     Modification : 增加了通过GPRS发送短信的功能,问题单号:A32D02833
-  3. Date         : 2007-04-06
-     Author       : h44270
-     Modification : 问题单号:A32D10113
-  4. 日    期   : 2011年11月28日
-     作    者   : z00161729
-     修改内容   : 增加给L模发送SMS_LMM_DATA_REQ的处理
-  5.日    期   : 2014年6月24日
-    作    者   : w00167002
-    修改内容   : DSDS III项目
-*******************************************************************************/
+
 VOS_VOID SMC_RcvPsMoData(
                      VOS_UINT8* pucCpdu,
                      VOS_UINT32  ulCpduLen
@@ -753,9 +566,7 @@ VOS_VOID SMC_RcvPsMoData(
         {                                                                       /* 状态是等待CP-ACK                         */
             SMC_ComPsWaitAckSta(SMS_FALSE);                                     /* 调用公共处理                             */
 
-            /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
             SMR_SmcApiErrorInd( (SMR_SMT_ERROR_CP_ERROR_BEGIN | pucCpdu[2]), SMS_FALSE);                        /* 向上层报错                               */
-            /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
             PS_NAS_LOG(WUEPS_PID_SMS, VOS_NULL, PS_LOG_LEVEL_NORMAL, "SMC_RcvPsMoData:NORMAL: SMS state = SMC_MO_IDLE ");
 
@@ -763,7 +574,6 @@ VOS_VOID SMC_RcvPsMoData(
         }
         else if( SMC_MO_WAIT_FOR_CP_DATA == g_SmcPsEnt.SmcMo.ucState )
         {                                                                       /* 状态是等待CP-DAT                         */
-            /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
             if( SMS_CP_ERR_INVALID_TI == pucCpdu[2] )
             {
                 SMR_SmcApiErrorInd( (SMR_SMT_ERROR_CP_ERROR_BEGIN | SMS_CP_ERR_PROT_ERR_UNSPEC), SMS_FALSE );
@@ -772,7 +582,6 @@ VOS_VOID SMC_RcvPsMoData(
             {
                 SMR_SmcApiErrorInd( (SMR_SMT_ERROR_CP_ERROR_BEGIN | pucCpdu[2]), SMS_FALSE );
             }
-            /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
             PS_NAS_LOG(WUEPS_PID_SMS, VOS_NULL, PS_LOG_LEVEL_NORMAL, "SMC_RcvPsMoData:NORMAL: SMS state = SMC_MO_IDLE ");
 
@@ -803,23 +612,7 @@ VOS_VOID SMC_RcvPsMoData(
     }
 }
 
-/*******************************************************************************
-  Module:   SMC_RcvGmmEstCnf
-  Function: 发送缓存的数据
-  Input:    VOS_VOID
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇      2004.03.09   新规作成
-      2.
-      3.日    期   : 2012年12月28日
-        作    者   : f62575
-        修改内容   : DTS2012122700666, 解决TR1M定时器在TC1M定时器前超时发送GCF仪器不期望的CP-ERROR问题
-      6.日    期   : 2014年6月24日
-        作    者   : w00167002
-        修改内容   : DSDS III项目
-*******************************************************************************/
+
 VOS_VOID SMC_RcvGmmEstCnf()
 {
     VOS_UINT16 usMsgLen;
@@ -908,32 +701,7 @@ VOS_VOID SMC_RcvGmmEstCnf()
         NAS_SMS_ChangePsMoEntityState(SMC_MO_WAIT_FOR_CP_ACK);
     }
 }
-/*******************************************************************************
-  Module:   SMC_ComPsMtErr
-  Function: 释放PS域的MT实体，进入空闲
-  Input:    VOS_UINT8     ucCause     错误原因
-                          enErrType   错误类型
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇      2004.03.09   新规作成
-      2. Date         : 2006-04-14
-         Author       : 郜东东
-         Modification : 修改了两次上报ERROR的问题,问题单号:A32D03078
-      3. Date         : 2007-04-06
-         Author       : h44270
-         Modification : 问题单号:A32D10113
-      4.日    期   : 2012年8月29日
-        作    者   : z00161729
-        修改内容   : DCM定制需求和遗留问题修改,新增入参
-      5.日    期   : 2013年07月11日
-        作    者   : f62575
-        修改内容   : V9R1 STK升级项目
-      6.日    期   : 2014年6月24日
-        作    者   : w00167002
-        修改内容   : DSDS III项目
-*******************************************************************************/
+
 VOS_VOID SMC_ComPsMtErr(SMR_SMT_ERROR_ENUM_UINT32           enErrorCode)
 {
     if( SMC_MT_WAIT_FOR_CP_ACK == g_SmcPsEnt.SmcMt.ucState )
@@ -943,9 +711,7 @@ VOS_VOID SMC_ComPsMtErr(SMR_SMT_ERROR_ENUM_UINT32           enErrorCode)
     }
     else if( SMC_MT_WAIT_FOR_RP_ACK == g_SmcPsEnt.SmcMt.ucState )
     {                                                                           /* MT实体在等待高层确认                     */
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
         SMR_SmcApiErrorInd(enErrorCode, SMS_TRUE);                       /* 上报错误                                 */
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
     }
     else
     {
@@ -958,35 +724,14 @@ VOS_VOID SMC_ComPsMtErr(SMR_SMT_ERROR_ENUM_UINT32           enErrorCode)
 
     return;
 }
-/*******************************************************************************
-  Module:   SMC_ComPsMoErr
-  Function: 释放PS域的MO实体，进入空闲
-  Input:    VOS_UINT8     ucCause     错误原因
-                          enErrType   错误类型
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇      2004.03.09   新规作成
-      2.  日    期   : 2012年8月26日
-          作    者   : z00161729
-          修改内容   : DCM定制需求和遗留问题修改,增加入参enErrType
-      3.  日    期   : 2013年07月11日
-          作    者   : f62575
-          修改内容   : V9R1 STK升级项目
-      4.日    期   : 2014年6月24日
-        作    者   : w00167002
-        修改内容   : DSDS III项目
-*******************************************************************************/
+
 VOS_VOID SMC_ComPsMoErr(SMR_SMT_ERROR_ENUM_UINT32           enCause)
 {
     switch(g_SmcPsEnt.SmcMo.ucState)
     {
     case SMC_MO_WAIT_FOR_CP_ACK:
         SMC_ComPsWaitAckSta(SMS_FALSE);                                         /* 调用公共处理                             */
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
         SMR_SmcApiErrorInd(enCause, SMS_FALSE);                                 /* 上报错误                                 */
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
         break;
     case SMC_MO_GMM_CONN_PENDING:
         if (0 != g_SmcPsEnt.SmcMo.HoldRcvMsg.ulMsgLen)
@@ -994,14 +739,10 @@ VOS_VOID SMC_ComPsMoErr(SMR_SMT_ERROR_ENUM_UINT32           enCause)
             SMS_Free(g_SmcPsEnt.SmcMo.HoldRcvMsg.pMsg);                             /* 释放消息                                 */
             g_SmcPsEnt.SmcMo.HoldRcvMsg.ulMsgLen = 0;                               /* 初始化消息长度                           */
         }
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
         SMR_SmcApiErrorInd(enCause, SMS_FALSE);                                 /* 上报错误                                 */
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
         break;
     case SMC_MO_WAIT_FOR_CP_DATA:
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
         SMR_SmcApiErrorInd(enCause, SMS_FALSE);                                 /* 上报错误                                 */
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
         break;
     case SMC_MO_WAIT_TO_SND_CP_ACK:
         if (SMS_TRUE == g_SmcPsEnt.SmcMo.ucCpAckFlg)
@@ -1077,21 +818,7 @@ VOS_VOID SMC_ComPsWaitAckSta(
     return;
 }
 
-/*******************************************************************************
-  Module:   SMC_RcvGmmServStatusInd
-  Function: 根据结果进行释放或维护ps域的实体
-  Input:    GMMSMS_SERVICE_STATUS_IND_STRU  *pRcvMsg   收到的消息首地址
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-    1. Date         : 2009-06-30
-       Author       : f62575
-       Modification : 新规作成
-     4.日    期   : 2012年8月13日
-       作    者   : z00161729
-       修改内容   : DCM定制需求和遗留问题修改
-*******************************************************************************/
+
 VOS_VOID SMC_RcvGmmServStatusInd(
                       GMMSMS_SERVICE_STATUS_IND_STRU  *pRcvMsg                  /* 收到的消息首地址                         */
                       )
@@ -1105,10 +832,8 @@ VOS_VOID SMC_RcvGmmServStatusInd(
     {
         g_ucPsServiceStatus = SMS_FALSE;                                        /* 记录此状态                               */
 
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
         SMC_ComPsMtErr(SMR_SMT_ERROR_NO_SERVICE);                                  /* 调用PS域MT实体的处理                     */
         SMC_ComPsMoErr(SMR_SMT_ERROR_NO_SERVICE);
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
         /* 调用PS域MO实体的处理                     */
     }
@@ -1116,30 +841,14 @@ VOS_VOID SMC_RcvGmmServStatusInd(
     SMS_AttachFlag(SMS_SEND_DOMAIN_PS,g_ucPsServiceStatus);
     return;
 }
-/*******************************************************************************
-  Module:   SMC_RcvGmmErrInd
-  Function: 进行实体的初始化
-  Input:    PMMSMS_ERROR_IND_STRU  *pRcvMsg   收到的消息首地址
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇      2004.03.09   新规作成
-     4.日    期   : 2012年8月13日
-       作    者   : z00161729
-       修改内容   : DCM定制需求和遗留问题修改GMM上报错误原因，需要与SMR原因值统一编码:
-                    #define    GMM_SMS_SIGN_NO_EXIST          201
-                    #define    GMM_SMS_SPEC_PROC_ONGOING      202
-*******************************************************************************/
+
 VOS_VOID SMC_RcvGmmErrInd(
                       PMMSMS_ERROR_IND_STRU  *pRcvMsg                           /* 收到的消息首地址                         */
                       )
 {
 
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     SMC_ComPsMtErr(SMR_SMT_ERROR_PS_ERROR_BEGIN | pRcvMsg->ulCause);                                  /* 调用PS域MT实体的处理                     */
     SMC_ComPsMoErr(SMR_SMT_ERROR_PS_ERROR_BEGIN | pRcvMsg->ulCause);                                  /* 调用PS域MO实体的处理                     */
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
 }
 
@@ -1187,40 +896,7 @@ VOS_VOID SMC_SndGmmDataReq(
 
     return;
 }
-/*******************************************************************************
-  Module:   SMC_SndGmmMsg
-  Function: 组织并向GMM发送消息
-  Input:    VOS_UINT8     *pucMsg   发送消息的首地址
-            VOS_UINT8     ucType    消息类型
-            VOS_UINT16    usLen     消息长度
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1. Date         : 2004-03-11
-     Author       : g41091
-     Modification : 新规作成
-  2. Date         : 2006-02-22
-     Author       : g41091
-     Modification : 增加了通过GPRS发送短信的功能,问题单号:A32D02833
 
-  3. Date         : 2007-02-15
-     Author       : x51137
-     Modification : A32D08912
-  4. Date         : 2007-04-06
-     Author       : h44270
-     Modification : 问题单号:A32D10113
-  5.日    期   : 2009年05月14日
-    作    者   : h44270
-    修改内容   : 问题单号:AT2D11898/AT2D11828,在IDLE态下发送PS域短信，没有按照ATTACH ACCEPT消息中Radio Priority for SMS来请求资源
-  6.日    期   : 2012年04月26日
-    作    者   : w00176964
-    修改内容   : GUL BG项目调整
-  7.日    期  : 2013年03月13日
-    作    者  : z00214637
-    修改内容  : BodySAR项目
-
-*******************************************************************************/
 VOS_VOID SMC_SndGmmMsg(
                     VOS_UINT8     *pucTempMsg,                                          /* 发送消息的首地址                         */
                     VOS_UINT8     ucType,                                           /* 消息类型                                 */
@@ -1362,26 +1038,7 @@ VOS_VOID SMC_SndGmmMsg(
 
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_SMS_ProcLmmEstCnf
- 功能描述  : 处理LMM的LMM_SMS_EST_CNF消息
- 输入参数  : pRcvMsg - LMM_SMS_EST_CNF消息内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年11月28日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月28日
-    作    者   : f62575
-    修改内容   : DTS2012122700666, 解决TR1M定时器在TC1M定时器前超时发送GCF仪器不期望的CP-ERROR问题
-  3.日    期   : 2014年6月24日
-    作    者   : w00167002
-    修改内容   : DSDS III项目
-*****************************************************************************/
 VOS_VOID NAS_SMS_ProcLmmEstCnf(
     VOS_VOID                           *pRcvMsg
 )
@@ -1484,21 +1141,7 @@ VOS_VOID NAS_SMS_ProcLmmEstCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SMS_ProcLmmDataInd
- 功能描述  : 处理LMM的LMM_SMS_DATA_IND消息
- 输入参数  : pRcvMsg - LMM_SMS_DATA_IND消息内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年11月28日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_SMS_ProcLmmDataInd(
     VOS_VOID                           *pRcvMsg
 )
@@ -1538,62 +1181,23 @@ VOS_VOID NAS_SMS_ProcLmmDataInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SMS_ProcLmmErrInd
- 功能描述  : 处理LMM的LMM_SMS_ERR_IND消息
- 输入参数  : pRcvMsg - LMM_SMS_ERR_IND消息内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年11月28日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月15日
-    作    者   : z00161729
-    修改内容   : DCM定制需求和遗留问题修改
-  3.日    期   : 2013年6月26日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级
-*****************************************************************************/
 VOS_VOID NAS_SMS_ProcLmmErrInd(
     VOS_VOID                           *pRcvMsg
 )
 {
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, begin */
     LMM_SMS_ERR_IND_STRU               *pstLmmSmsErrInd;
 
     pstLmmSmsErrInd = (LMM_SMS_ERR_IND_STRU *)pRcvMsg;
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, end */
 
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     SMC_ComPsMtErr(SMR_SMT_ERROR_EPS_ERROR_BEGIN | pstLmmSmsErrInd->enErrCause);    /* 调用PS域MT实体的处理 */
 
     SMC_ComPsMoErr(SMR_SMT_ERROR_EPS_ERROR_BEGIN | pstLmmSmsErrInd->enErrCause);    /* 调用PS域MO实体的处理 */
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SMS_SndLmmDataReq
- 功能描述  : 向LMM发送SMS_LMM_DATA_REQ消息
- 输入参数  : ucType  - 消息类型CP_ERROR或者CP_ACK
-             ucCause - 错误原因
-             ucTi    - Transaction ID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年11月28日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_SMS_SndLmmDataReq(
     VOS_UINT8                           ucType,
     VOS_UINT8                           ucCause,
@@ -1657,26 +1261,7 @@ VOS_VOID NAS_SMS_SndLmmDataReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_SMS_SndLmmCpDataReq
- 功能描述  : 向LMM发送SMS_LMM_DATA_REQ消息
- 输入参数  : pucSndMsg - 发送消息内容
-             ulMsgLen  - 发送消息长度
- 输出参数  : 无
- 返 回 值  : VOS_FALSE - 失败
-             VOS_TRUE  - 成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年11月28日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月11日
-    作    者   : l00167671
-    修改内容   : DTS2012121802573, TQE清理
-
-*****************************************************************************/
 VOS_UINT32 NAS_SMS_SndLmmCpDataReq(
     VOS_UINT8                          *pucSndMsg,
     VOS_UINT32                          ulMsgLen
@@ -1716,21 +1301,7 @@ VOS_UINT32 NAS_SMS_SndLmmCpDataReq(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SMS_SndLmmEstReq
- 功能描述  : 向LMM发送SMS_LMM_EST_REQ消息
- 输入参数  : ulEstCause - 建链原因
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年11月28日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_SMS_SndLmmEstReq(
     VOS_UINT32                          ulEstCause
 )
@@ -1773,21 +1344,7 @@ VOS_VOID NAS_SMS_SndLmmEstReq(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_SMS_SndGmmBeginSessionNotify
- 功能描述  : 向GMM发送begin session notify
- 输入参数  : enSessionType - session type
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月16日
-    作    者   : z00161729
-    修改内容   : DSDS III新增
-
-*****************************************************************************/
 VOS_VOID NAS_SMS_SndGmmBeginSessionNotify(
     GMMSMS_SESSION_TYPE_ENUM_UINT8      enSessionType
 )
@@ -1829,21 +1386,7 @@ VOS_VOID NAS_SMS_SndGmmBeginSessionNotify(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_SMS_SndGmmEndSessionNotify
- 功能描述  : 向GMM发送end session notify
- 输入参数  : enSessionType - session type
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月16日
-    作    者   : z00161729
-    修改内容   : DSDS III新增
-
-*****************************************************************************/
 VOS_VOID NAS_SMS_SndGmmEndSessionNotify(
     GMMSMS_SESSION_TYPE_ENUM_UINT8      enSessionType
 )
@@ -1885,22 +1428,7 @@ VOS_VOID NAS_SMS_SndGmmEndSessionNotify(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_SMS_IsPsDomainIdle
- 功能描述  : 确认短信PS域是否空闲
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE   短信PS域是空闲;
-             VOS_FALSE  短信PS域占用
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月20日
-    作    者   : f62575
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  NAS_SMS_IsPsDomainIdle(VOS_VOID)
 {
     if ((SMC_MT_IDLE == g_SmcPsEnt.SmcMt.ucState)
@@ -1915,25 +1443,7 @@ VOS_UINT32  NAS_SMS_IsPsDomainIdle(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SMS_ReSendLmmCpDataReq
- 功能描述  : 根据缓存中的消息构造LTE下的CP_DATA,并发送给LMM
- 输入参数  : 无
- 输出参数  : pstLmmMsg:LTE下的CP_DATA
-             pulMsgLen:CP_DATA消息长度
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月28日
-    作    者   : s00217060
-    修改内容   : DTS2015011309518新增
-  2.日    期   : 2015年4月2日
-    作    者   : w00316404
-    修改内容   : clean coverity
-
-*****************************************************************************/
 VOS_VOID  NAS_SMS_ReSendLmmCpDataReq(
     VOS_UINT32                          ulResendMoFlg
 )
@@ -2061,22 +1571,7 @@ VOS_VOID  NAS_SMS_ReSendLmmCpDataReq(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SMS_BuildGmmCpDataReq
- 功能描述  : 根据缓存中的消息构造GU下的CP_DATA并发给GMM
- 输入参数  : 无
- 输出参数  : pstLmmMsg:LTE下的CP_DATA
-             pulMsgLen:CP_DATA消息长度
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月28日
-    作    者   : s00217060
-    修改内容   : DTS2015011309518新增
-
-*****************************************************************************/
 VOS_VOID  NAS_SMS_ReSendGmmCpDataReq(
     VOS_UINT32                          ulResendMoFlg
 )

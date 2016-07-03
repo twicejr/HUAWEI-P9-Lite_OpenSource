@@ -2725,19 +2725,13 @@ static long binder_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 	struct binder_thread *thread;
 	unsigned int size = _IOC_SIZE(cmd);
 	void __user *ubuf = (void __user *)arg;
-	if (unlikely(current->mm != proc->tsk->mm)) {
-		/*we find that when a process which use binder fork a new process
-		 *and forget to call execv or execv function fail, the child process exit,
-		 *but in some case, exit call some hook funtion ,such as global object destuctor
-		 *which will destory the parent process binder.
-		 */
-		binder_user_error("a binder_ioctl in wrong process context:"
-				"%d:%d %x %lx\n", proc->pid, current->pid, cmd, arg);
-		WARN_ON(1);
-		return -EINVAL;
-	}
+
 	/*pr_info("binder_ioctl: %d:%d %x %lx\n",
 			proc->pid, current->pid, cmd, arg);*/
+	if (unlikely(current->mm != proc->vma_vm_mm)) {
+		pr_err("current mm mismatch proc mm\n");
+		return -EINVAL;
+	}
 
 	trace_binder_ioctl(cmd, arg);
 
@@ -3020,6 +3014,7 @@ static int binder_open(struct inode *nodp, struct file *filp)
 		return -ENOMEM;
 	get_task_struct(current);
 	proc->tsk = current;
+	proc->vma_vm_mm = current->mm;
 	INIT_LIST_HEAD(&proc->todo);
 	init_waitqueue_head(&proc->wait);
 	proc->default_priority = task_nice(current);

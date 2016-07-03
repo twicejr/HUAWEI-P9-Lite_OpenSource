@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2012, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafMtaCtx.c
-  版 本 号   : 初稿
-  作    者   : 闫志吉
-  生成日期   : 2012年6月27日
-  最近修改   :
-  功能描述   : MTA模块全局变量定义
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年6月27日
-    作    者   : Y00213812
-    修改内容   : A-GPS项目新增
-
-******************************************************************************/
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -44,96 +27,31 @@ TAF_MTA_CONTEXT_STRU            g_stTafMtaCtx;
 /*****************************************************************************
   3 函数声明
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : TAF_MTA_GetMtaAgpsCtxAddr
- 功能描述  : 获取MTA CTX模块中的AGPS的上下文
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : MTA CTX模块中的AGPS的上下文指针
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年06月27日
-    作    者   : y00213812
-    修改内容   : V7R1C50 A_GPS项目新增
-*****************************************************************************/
 TAF_MTA_AGPS_CTX_STRU*  TAF_MTA_GetMtaAgpsCtxAddr( VOS_VOID )
 {
     return &(g_stTafMtaCtx.stAgpsCtx);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_GetMtaCtxAddr
- 功能描述  : 获取MTA CTX模块的上下文
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : MTA CTX模块的上下文指针
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年06月27日
-    作    者   : y00213812
-    修改内容   : V7R1C50 A_GPS项目新增
-*****************************************************************************/
 TAF_MTA_CONTEXT_STRU*  TAF_MTA_GetMtaCtxAddr( VOS_VOID )
 {
     return &(g_stTafMtaCtx);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_GetTimerCtxAddr
- 功能描述  : 获取MTA CTX模块中定时器的上下文
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : MTA CTX模块中定时器的上下文指针
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年06月27日
-    作    者   : y00213812
-    修改内容   : V7R1C50 A_GPS项目新增
-*****************************************************************************/
 TAF_MTA_TIMER_CTX_STRU*  TAF_MTA_GetTimerCtxAddr( VOS_VOID )
 {
     return g_stTafMtaCtx.astTimerCtx;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_GetRfLcdCtxAddr
- 功能描述  : 获取MTA CTX模块中Rf&Lcd干扰规避的上下文
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : MTA CTX模块中定时器的上下文指针
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年03月04日
-    作    者   : j00174725
-    修改内容   : RF&LCD INTRUSION项目新增
-*****************************************************************************/
 TAF_MTA_RF_LCD_CTX_STRU* TAF_MTA_GetRfLcdCtxAddr( VOS_VOID )
 {
     return &g_stTafMtaCtx.stMtaRfLcdCtx;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_InitRfLcdIntrusionCtx
- 功能描述  : 初始化MTA中Rf&Lcd干扰规避相关上下文
- 输入参数  : TAF_MTA_RF_LCD_CTX_STRU*
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年07月09日
-   作    者   : Y00213812
-   修改内容   : V7R1C50 A_GPS项目新增
-*****************************************************************************/
 VOS_VOID  TAF_MTA_InitRfLcdIntrusionCtx(
     TAF_MTA_RF_LCD_CTX_STRU            *pstRfLcdCtx
 )
@@ -182,20 +100,7 @@ VOS_VOID  TAF_MTA_InitRfLcdIntrusionCtx(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_InitCmdBufferQueue
- 功能描述  : 初始化等待的消息队列
- 输入参数  : pstCmdBufferQueue:需要等待初始化的队列
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年07月09日
-   作    者   : Y00213812
-   修改内容   : V7R1C50 A_GPS项目新增
-*****************************************************************************/
 VOS_VOID  TAF_MTA_InitCmdBufferQueue(
     TAF_MTA_CMD_BUFFER_STRU            *pstCmdBufferQueue
 )
@@ -212,41 +117,13 @@ VOS_VOID  TAF_MTA_InitCmdBufferQueue(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_GetCmdBufferQueueAddr
- 功能描述  : 获取MTA消息队列的地址
- 输入参数  :  VOID
- 输出参数  : 无
- 返 回 值  : MTA消息队列的地址
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年07月09日
-   作    者   : Y00213812
-   修改内容   : V7R1C50 A_GPS项目新增
-
-*****************************************************************************/
 TAF_MTA_CMD_BUFFER_STRU  *TAF_MTA_GetCmdBufferQueueAddr( VOS_VOID )
 {
     return g_stTafMtaCtx.astCmdBufferQueue;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_DelItemInCmdBufferQueue
- 功能描述  : 从队列中删除相对应的等待消息
- 输入参数  : 之前等待的消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2012年07月09日
-   作    者   : Y00213812
-   修改内容   : V7R1C50 A_GPS项目新增
-
-*****************************************************************************/
 VOS_VOID  TAF_MTA_DelItemInCmdBufferQueue(
     TAF_MTA_TIMER_ID_ENUM_UINT32        enTimerId
 )
@@ -278,23 +155,7 @@ VOS_VOID  TAF_MTA_DelItemInCmdBufferQueue(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SaveItemInCmdBufferQueue
- 功能描述  : 将相关信息存入到等待的缓存队列中, 等待处理的结果
- 输入参数  :  TAF_MTA_TIMER_ID_ENUM_UINT32        enTimerId,
-              VOS_UINT32                         *pulMsgInfo,
-              VOS_UINT32                          ulMsgInfoLen
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2012年07月09日
-   作    者   : Y00213812
-   修改内容   : V7R1C50 A_GPS项目新增
-
-*****************************************************************************/
 VOS_VOID  TAF_MTA_SaveItemInCmdBufferQueue(
     TAF_MTA_TIMER_ID_ENUM_UINT32        enTimerId,
     VOS_UINT8                          *pucMsgInfo,
@@ -352,21 +213,7 @@ VOS_VOID  TAF_MTA_SaveItemInCmdBufferQueue(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_GetItemFromCmdBufferQueue
- 功能描述  : 从等待的缓存队列中获取相关信息
- 输入参数  : TAF_MTA_TIMER_ID_ENUM_UINT32                enTimerId
- 输出参数  : 无
- 返 回 值  : TAF_MTA_BUF_WAIT_CNF_MSG_INFO_STRU      消息指针
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年07月09日
-   作    者   : Y00213812
-   修改内容   : V7R1C50 A_GPS项目新增
-
-*****************************************************************************/
 TAF_MTA_CMD_BUFFER_STRU  *TAF_MTA_GetItemFromCmdBufferQueue(
     TAF_MTA_TIMER_ID_ENUM_UINT32                enTimerId
 )
@@ -401,23 +248,7 @@ TAF_MTA_CMD_BUFFER_STRU  *TAF_MTA_GetItemFromCmdBufferQueue(
     return &pstCmdBufferQueue[i];
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_InitRefClockInfo
- 功能描述  : 初始化GPS参考时钟信息
- 输入参数  : pstRefClockInfo
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月22日
-    作    者   : l00198894
-    修改内容   : V9R1 AGPS
-  2.日    期   : 2014年04月25日
-    作    者   : l00198894
-    修改内容   : DTS2014042408217: 修改GPS参考时钟默认锁定状态
-*****************************************************************************/
 VOS_VOID TAF_MTA_InitRefClockInfo(
     TAF_MTA_REFCLOCK_INFO_STRU         *pstRefClockInfo
 )
@@ -432,40 +263,14 @@ VOS_VOID TAF_MTA_InitRefClockInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_GetRefClockInfo
- 功能描述  : 获取GPS参考时钟信息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : TAF_MTA_REFCLOCK_INFO_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月22日
-    作    者   : l00198894
-    修改内容   : V9R1 AGPS
-*****************************************************************************/
 TAF_MTA_REFCLOCK_INFO_STRU* TAF_MTA_GetRefClockInfo(VOS_VOID)
 {
     return &(g_stTafMtaCtx.stAgpsCtx.stRefClockInfo);
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_InitEcidCfg
- 功能描述  : 初始化GPS业务ECID命令配置
- 输入参数  : pstEcidCfg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月11日
-    作    者   : l00198894
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_VOID TAF_MTA_InitEcidCfg(
     TAF_NVIM_ECID_TL2GSM_CFG_STRU      *pstEcidCfg
 )
@@ -493,40 +298,14 @@ VOS_VOID TAF_MTA_InitEcidCfg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_GetEcidCfg
- 功能描述  : 获取AGPS特性ECID命令的配置
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : TAF_NVIM_ECID_TL2GSM_CFG_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月17日
-    作    者   : l00198894
-    修改内容   : 新增函数
-*****************************************************************************/
 TAF_NVIM_ECID_TL2GSM_CFG_STRU* TAF_MTA_GetEcidCfg(VOS_VOID)
 {
     return &(g_stTafMtaCtx.stAgpsCtx.stEcidCfg);
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_InitNetmonGsmInfo
- 功能描述  : 初始化MTA中GSM查询时相关信息
- 输入参数  : TAF_MTA_NETMON_GSM_INFO_STRU*
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月19日
-    作    者   : zwx247453
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_VOID  TAF_MTA_InitNetmonGsmInfo(
     TAF_MTA_NETMON_GSM_INFO_STRU       *pstNetmonGsmInfo
 )
@@ -537,39 +316,13 @@ VOS_VOID  TAF_MTA_InitNetmonGsmInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_GetNetmonGsmState
- 功能描述  : 获取MTA中GSM 查询所处在的查询状态
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : MTA_AT_NETMON_GSM_STATE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月19日
-    作    者   : zwx247453
-    修改内容   : 新增函数
-*****************************************************************************/
 MTA_AT_NETMON_GSM_STATE_ENUM_UINT32  TAF_MTA_GetNetmonGsmState(VOS_VOID)
 {
     return g_stTafMtaCtx.stNetmonGsmInfo.enNetMonGsmState;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SetNetmonGsmState
- 功能描述  : 设定MTA中GSM 查询所处在的查询状态
- 输入参数  : MTA_AT_NETMON_GSM_STATE_ENUM_UINT32
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月19日
-    作    者   : zwx247453
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_VOID  TAF_MTA_SetNetmonGsmState(
     MTA_AT_NETMON_GSM_STATE_ENUM_UINT32 enNetMonGsmState
 )
@@ -579,20 +332,7 @@ VOS_VOID  TAF_MTA_SetNetmonGsmState(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_GetNetmonCellInfo
- 功能描述  : 获取MTA中GSM 小区信息的全局变量
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : MTA_AT_NETMON_CELL_INFO_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月19日
-    作    者   : zwx247453
-    修改内容   : 新增函数
-*****************************************************************************/
 MTA_AT_NETMON_CELL_INFO_STRU*  TAF_MTA_GetNetmonCellInfo(VOS_VOID)
 {
     return &(g_stTafMtaCtx.stNetmonGsmInfo.stNetMonCellInfoCnf);
@@ -600,39 +340,13 @@ MTA_AT_NETMON_CELL_INFO_STRU*  TAF_MTA_GetNetmonCellInfo(VOS_VOID)
 
 
 #if(FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : TAF_MTA_GetIsmCoexAddr
- 功能描述  : 获取MTA CTX模块中IsmCoex参数列表首地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : MTA CTX模块中IsmCoex参数列表指针
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月22日
-    作    者   : w00316404
-    修改内容   : 新增函数
-*****************************************************************************/
 TAF_MTA_COEX_PARA_STRU*  TAF_MTA_GetIsmCoexAddr( VOS_VOID )
 {
     return g_stTafMtaCtx.astIsmCoex;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_InitIsmCoex
- 功能描述  : 初始化IsmCoex参数列表
- 输入参数  : pstMtaCoexPara
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月22日
-    作    者   : w00316404
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_VOID  TAF_MTA_InitIsmCoex(
     TAF_MTA_COEX_PARA_STRU              *pstMtaCoexPara
 )
@@ -650,20 +364,7 @@ VOS_VOID  TAF_MTA_InitIsmCoex(
 
 
 #if (FEATURE_ON == FEATURE_PTM)
-/*****************************************************************************
- 函 数 名  : TAF_MMA_InitInfoCltCtx
- 功能描述  : 初始化MTA中信息收集相关上下文
- 输入参数  : TAF_MTA_INFO_CLT_CTX_STRU*
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月22日
-    作    者   : y00270069
-    修改内容   : 云通信项目新增
-*****************************************************************************/
 VOS_VOID  TAF_MMA_InitInfoCltCtx(
     TAF_MTA_INFO_CLT_CTX_STRU          *pstInfoCltCtx
 )
@@ -679,20 +380,7 @@ VOS_VOID  TAF_MMA_InitInfoCltCtx(
 }
 
 /*lint -e429 -e830*/
-/*****************************************************************************
- 函 数 名  : TAF_MMA_AllocFreqInfoCltCtx
- 功能描述  : 初始化MTA中信息收集相关上下文
- 输入参数  : TAF_MTA_INFO_CLT_CTX_STRU*
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月22日
-    作    者   : y00270069
-    修改内容   : 云通信项目新增
-*****************************************************************************/
 VOS_VOID  TAF_MMA_AllocFreqInfoCltCtx(VOS_VOID)
 {
     TAF_MTA_INFO_CLT_CTX_STRU                  *pstInfoCltCtx  = VOS_NULL_PTR;
@@ -720,20 +408,7 @@ VOS_VOID  TAF_MMA_AllocFreqInfoCltCtx(VOS_VOID)
 }
 /*lint +e429 +e830*/
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_FreeFreqInfoCltCtx
- 功能描述  : 释放MTA中信息收集相关上下文
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月22日
-    作    者   : y00270069
-    修改内容   : 云通信项目新增
-*****************************************************************************/
 VOS_VOID  TAF_MMA_FreeFreqInfoCltCtx(VOS_VOID)
 {
     TAF_MTA_INFO_CLT_CTX_STRU                   *pstInfoCltCtx;
@@ -752,58 +427,19 @@ VOS_VOID  TAF_MMA_FreeFreqInfoCltCtx(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_GetCloudFreqInfoCltAddr
- 功能描述  : 获取MTA信息采集上下文
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : MTA信息采集上下文
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月22日
-    作    者   : y00270069
-    修改内容   : 云通信项目新增
-*****************************************************************************/
 TAF_MTA_INFO_CLT_CTX_STRU*  TAF_MTA_GetInfoCltAddr(VOS_VOID)
 {
     return &g_stTafMtaCtx.stInfoCltCtx;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_GetWaitFreqCltCnfFlag
- 功能描述  : 获取频点收集回复标识
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月22日
-    作    者   : y00270069
-    修改内容   : 云通信项目新增
-*****************************************************************************/
 VOS_UINT8 TAF_MTA_GetWaitFreqCltCnfFlag(VOS_VOID)
 {
     return g_stTafMtaCtx.stInfoCltCtx.ucWaitFreqCltCnfFlag;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SetWaitFreqCltCnfFlag
- 功能描述  : 设置频点收集回复标识
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月22日
-    作    者   : y00270069
-    修改内容   : 云通信项目新增
-*****************************************************************************/
 VOS_VOID TAF_MTA_SetWaitFreqCltCnfFlag(
     TAF_MTA_WAIT_FREQ_CLT_CNF_FLAG_ENUM_UINT8       enFreqCltCnf
 )
@@ -811,20 +447,7 @@ VOS_VOID TAF_MTA_SetWaitFreqCltCnfFlag(
     g_stTafMtaCtx.stInfoCltCtx.ucWaitFreqCltCnfFlag |= enFreqCltCnf;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_ClrWaitFreqCltCnfFlag
- 功能描述  : 清除频点收集回复标识
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月22日
-    作    者   : y00270069
-    修改内容   : 云通信项目新增
-*****************************************************************************/
 VOS_VOID TAF_MTA_ClrWaitFreqCltCnfFlag(
     TAF_MTA_WAIT_FREQ_CLT_CNF_FLAG_ENUM_UINT8       enFreqCltCnf
 )
@@ -832,95 +455,30 @@ VOS_VOID TAF_MTA_ClrWaitFreqCltCnfFlag(
     g_stTafMtaCtx.stInfoCltCtx.ucWaitFreqCltCnfFlag &= (~enFreqCltCnf);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_ClrAllWaitFreqCltCnfFlag
- 功能描述  : 清除所有频点收集回复标识
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月22日
-    作    者   : y00270069
-    修改内容   : 云通信项目新增
-*****************************************************************************/
 VOS_VOID TAF_MTA_ClrAllWaitFreqCltCnfFlag(VOS_VOID)
 {
     g_stTafMtaCtx.stInfoCltCtx.ucWaitFreqCltCnfFlag = TAF_MTA_WAIT_FREQ_CLT_CNF_FLAG_NULL;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ClearNetworkInfo
- 功能描述  : 清除全局变量中的NetworkInfo
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月01日
-    作    者   : g00322017
-    修改内容   : 双卡互扰
-*****************************************************************************/
 VOS_VOID  TAF_MMA_ClearNetworkInfo(VOS_VOID)
 {
     PS_MEM_SET(&(g_stTafMtaCtx.stInfoCltCtx.stNetworkInfo), 0, sizeof(TAF_NETWORK_INFO_CLT_CTX_STRU));
 }
-/*****************************************************************************
- 函 数 名  : TAF_MTA_ClrAllWaitNetworkInfoCnfFlag
- 功能描述  : 清除所有网络信息收集回复标识
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月01日
-    作    者   : g00322017
-    修改内容   : 双卡互扰
-*****************************************************************************/
 VOS_VOID TAF_MTA_ClrAllWaitNetworkInfoCnfFlag(VOS_VOID)
 {
     g_stTafMtaCtx.stInfoCltCtx.ucWaitNetworkInfoCnfFlag = TAF_MTA_WAIT_NETWORK_INFO_CNF_FLAG_NULL;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_GetWaitNetworkInfoCnfFlag
- 功能描述  : 获取网络信息收集回复标识
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月01日
-    作    者   : g00322017
-    修改内容   : 双卡互扰
-*****************************************************************************/
 VOS_UINT8 TAF_MTA_GetWaitNetworkInfoCnfFlag(VOS_VOID)
 {
     return g_stTafMtaCtx.stInfoCltCtx.ucWaitNetworkInfoCnfFlag;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SetWaitFreqCltCnfFlag
- 功能描述  : 设置网络信息收集回复标识
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月01日
-    作    者   : g00322017
-    修改内容   : 双卡互扰
-*****************************************************************************/
 VOS_VOID TAF_MTA_SetWaitNetworkInfoCnfFlag(
     TAF_MTA_WAIT_NETWORK_INFO_CNF_FLAG_ENUM_UINT8           enNetworkInfoCltCnfFlag
 )
@@ -928,20 +486,7 @@ VOS_VOID TAF_MTA_SetWaitNetworkInfoCnfFlag(
     g_stTafMtaCtx.stInfoCltCtx.ucWaitNetworkInfoCnfFlag |= enNetworkInfoCltCnfFlag;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_ClrWaitNetworkInfoCnfFlag
- 功能描述  : 清除网络信息收集回复标识
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月01日
-    作    者   : g00322017
-    修改内容   : 双卡互扰
-*****************************************************************************/
 VOS_VOID TAF_MTA_ClrWaitNetworkInfoCnfFlag(
     TAF_MTA_WAIT_NETWORK_INFO_CNF_FLAG_ENUM_UINT8           enNetworkInfoCltCnfFlag
 )

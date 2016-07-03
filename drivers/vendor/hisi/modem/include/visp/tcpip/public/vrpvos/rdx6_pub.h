@@ -1,28 +1,4 @@
-/*******************************************************************************
-*
-*
-*                Copyright 2006, Huawei Technologies Co. Ltd.
-*                            ALL RIGHTS RESERVED
-*
-*-------------------------------------------------------------------------------
-*
-*                              rdx6_pub.h
-*
-*  Project Code: VISP1.5
-*   Module Name: Radix6  
-*  Date Created: 2003-06-17
-*        Author: Vinoo
-*   Description: Contains prototype definition for the Radix algorithm for IPV6
-*
-*-------------------------------------------------------------------------------
-*  Modification History
-*  DATE        NAME             DESCRIPTION    
-*  -----------------------------------------------------------------------------
-*  2003-6-17   Vinoo            Creat the first version.
-*  2006-4-28   w60006501        adjust format
-*  2006-05-10  lu yao(60000758)     为支持ARM CPU字节对齐特性，修改结构。
-*  2007-11-28  wangmingxia      modify for A82D21611(同步V1R5C02问题单A82D21450：消除产品编译告警)
-*******************************************************************************/
+
 
 #ifdef _cplusplus
 extern "C"
@@ -75,7 +51,6 @@ typedef struct tagVOS_RDX6_EXTNODE
 /*****************************Error Codes*********************************************/
 
 #define RDX6_ERROR_BASE          5000
-/* Modify by w60786 for A82D21450 2007-11-20,消除产品编译告警*/
 /* typedef enum RDX_ENUM */
 enum RDX_ENUM
 {

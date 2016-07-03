@@ -1,16 +1,4 @@
-/************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : usimmglobal.h
-  Author      : g00256031
-  Version     : V800R001
-  Date        : 2015-3-12
-  Description : 该头文件定义了---
-  History     :
-  1.Date:2015-3-13
-     Author: g00256031
-     Modification:Modify the definition of enum
 
-************************************************************************/
 
 #ifndef __USIMM_GLOBAL_H__
 #define __USIMM_GLOBAL_H__

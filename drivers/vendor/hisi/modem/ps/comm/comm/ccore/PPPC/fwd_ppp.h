@@ -1,16 +1,4 @@
- /******************************************************************************
-  文 件 名   : fwd_ppp.h
-  版 本 号   : 初稿
-  作    者   : zhangnan 68158
-  生成日期   : 2007年07月14日
-  最近修改   :
-  功能描述   : PPP模块头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2007年07月14日
-    作    者   : zhangnan 68158
-    修改内容   : 创建文件
-******************************************************************************/
+ 
 
 #ifndef __FWD_PPP_H__
 #define __FWD_PPP_H__
@@ -34,10 +22,8 @@ extern "C" {
 #define PPP_PARSE_R_LCP_ECHO_REPLY  6       /*表示ECHO reply 报文*/
 #define PPP_PARSE_R_VSCP_DATA       7       /*表示VSCP数据报文*/
 #define PPP_PARSE_R_VSNP_SIG        10      /*表示VSCP信令报文*/
-/*add:by xsm00201057 2012-3-1 PDSN_C6 IPV6移植_ppp压缩修改*/
 #define PPP_PARSE_R_DATA_V4         11      /*ppp IPV4报文*/
 #define PPP_PARSE_R_DATA_V6         12      /*ppp IPV6报文*/
-/*end:by xsm00201057 2012-3-1 PDSN_C6 IPV6移植_ppp压缩修改*/
 
 /*PPP加/解封装返回值定义*/
 #define PPP_R_DATA                   0       /*表示数据报文需转发*/
@@ -100,14 +86,7 @@ extern "C" {
 #define MAX_LINK_ITEM_NUM       (100)
 #define PPP_FREELIST_SIZE       (20000)
 
-/*****************************************************************************
-枚举名    : FWD_PKT_TYPE_ENUM_UINT8
-结构说明  : 数据包类型定义
 
-  1.日    期   : 2014年10月28日
-    作    者   : h00246512
-    修改内容   : 定义数据包类型
-*****************************************************************************/
 enum FWD_PKT_TYPE_ENUM
 {
     FWD_PKT_TYPE_IPV4 = 0x00,                                                   /* IPV4 */

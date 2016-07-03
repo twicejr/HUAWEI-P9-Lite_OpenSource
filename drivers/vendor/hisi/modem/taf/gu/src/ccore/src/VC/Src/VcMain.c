@@ -1,26 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : VcMain.c
-  版 本 号   : 初稿
-  作    者   : 胡文 44270
-  生成日期   : 2009年7月05日
-  最近修改   : 2007年7月05日
-  功能描述   : 实现VC模块的功能
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2009年7月05日
-    作    者   : 胡文 44270
-    修改内容   : 创建文件
-  2.日    期   : 2009-12-04
-    作    者   : h44270
-    修改内容   : 问题单号:AT2D15720,驱动接口清理
-  3.日    期   : 2010-12-04
-    作    者   : h44270
-    修改内容   : 问题单号:DTS2010120304771,当前只支持PC VOICE，默认值不对
-******************************************************************************/
 
 /*****************************************************************************
    1 头文件包含
@@ -40,15 +18,11 @@
 #include "VcCtx.h"
 #include "VcProcNvim.h"
 #include "NVIM_Interface.h"
-/* Added by l00167671 for NV拆分项目 , 2013-05-17, begin */
 #include "NasNvInterface.h"
 #include "TafNvInterface.h"
-/* Added by l00167671 for NV拆分项目 , 2013-05-17, end*/
-/* Added by s00217060 for VoLTE_PhaseI  项目, 2013-07-09, begin */
 #if (FEATURE_ON == FEATURE_IMS)
 #include "VcImsaInterface.h"
 #endif
-/* Added by s00217060 for VoLTE_PhaseI  项目, 2013-07-09, end */
 #if (FEATURE_ON == FEATURE_PTM)
 #include "NasComm.h"
 #include "TafSdcCtx.h"
@@ -73,9 +47,7 @@
 /*****************************************************************************
   2 全局变量定义
 *****************************************************************************/
-/* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, begin */
 extern APP_VC_STATE_MGMT_STRU           g_stVcStateMgmt;
-/* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, end */
 
 
 #if (FEATURE_HIFI == FEATURE_ON)
@@ -89,19 +61,7 @@ VOS_UINT32                                  g_Vc_VoiceOpenFlg = VOS_FALSE;
 *****************************************************************************/
 extern VOS_VOID APP_VC_ReadNvimInfo(VOS_VOID);
 
-/*****************************************************************************
- 函 数 名  : APP_VC_GetTTYMode
- 功能描述  : 获取当前TTY MODE
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修订记录  :
-  1. 日    期   : 2015年02月07日
-     作    者   : w00316404
-     修改内容   : 新增函数
-*****************************************************************************/
+
 TAF_VC_TTYMODE_ENUM_UINT8 APP_VC_GetTTYMode(VOS_VOID)
 {
     TAF_NV_TTY_CFG_STRU                 stTTYCfgStru;
@@ -125,19 +85,7 @@ TAF_VC_TTYMODE_ENUM_UINT8 APP_VC_GetTTYMode(VOS_VOID)
     return (TAF_VC_TTYMODE_ENUM_UINT8)stTTYCfgStru.ucTTYMode;
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VC_SetTTYMode
- 功能描述  : 设置TTY MODE
- 输入参数  : TTY模式
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修订记录  :
-  1. 日    期   : 2015年02月07日
-     作    者   : w00316404
-     修改内容   : 新增函数
-*****************************************************************************/
+
 VOS_UINT32 APP_VC_SetTTYMode(TAF_VC_TTYMODE_ENUM_UINT8 enTTYMode)
 {
     TAF_NV_TTY_CFG_STRU                 stTTYCfgStru;
@@ -157,19 +105,7 @@ VOS_UINT32 APP_VC_SetTTYMode(TAF_VC_TTYMODE_ENUM_UINT8 enTTYMode)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_VC_InitTTYMode
- 功能描述  : 初始化TTY MODE
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修订记录  :
-  1. 日    期   : 2015年02月07日
-     作    者   : w00316404
-     修改内容   : 新增函数
-*****************************************************************************/
+
 VOS_VOID APP_VC_InitTTYMode(VOS_VOID)
 {
     TAF_VC_TTYMODE_ENUM_UINT8           enTTYMode;
@@ -187,30 +123,7 @@ VOS_VOID APP_VC_InitTTYMode(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VC_IsVcVoiceWorkTypeTest
- 功能描述  : 判断当前是否处于测试模式
 
-                           |--->NV9235(0x55AA55AA)，测试模式
-                   |--->0--|
-                   |       |--->NV9235(0或者0x34343434)，正常通话
-            ^CQST--|
-                   |       |--->NV9235(0或者0x55AA55AA)，测试模式
-                   |--->1--|
-                           |--->NV9235(0x34343434)，正常通话
-
- 输出参数  : 无
- 返 回 值  : VOS_TRUE : 测试模式
-             VOS_FALSE: 正常通话
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年7月1日
-    作    者   : n00269697
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 APP_VC_IsVcVoiceWorkTypeTest()
 {
     NAS_NVIM_FOLLOWON_OPENSPEED_FLAG_STRU                   stQuickStartFlg;
@@ -256,28 +169,7 @@ VOS_UINT32 APP_VC_IsVcVoiceWorkTypeTest()
     return ulIsTestMode;
 }
 
-/*****************************************************************************
-函 数 名  : APP_VC_GetWorkType
-功能描述  : 获取当前是否处于工作模式，是正常模式还是测试模式
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2010年06月30日
-    作    者   : h44270
-    修改内容   : Creat
-2.  日    期   : 2013年12月24日
-    作    者   : m00217266
-    修改内容   : 添加vcvoice test nv值判断
-3.  日    期   : 2014年3月27日
-    作    者   : j00174725
-    修改内容   : Ecall项目
-4.  日    期   : 2015年2月7日
-    作    者   : w00316404
-    修改内容   : M项目TTY功能： 添加TTY MODE nv值判断
-*****************************************************************************/
+
 VCVOICE_WORK_TYPE_ENUM_UINT16 APP_VC_GetWorkType(VOS_VOID)
 {
     TAF_VC_TTYMODE_ENUM_UINT8           enTTYMode;
@@ -292,14 +184,12 @@ VCVOICE_WORK_TYPE_ENUM_UINT16 APP_VC_GetWorkType(VOS_VOID)
     {
         return VCVOICE_WORK_TYPE_TEST;
     }
-    /* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
     else if (PS_TRUE == APP_VC_GetInEcallFlag())
     {
         return VCVOICE_WORK_TYPE_ECALL;
     }
 #endif
-    /* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, end */
     else if((TAF_VC_TTY_OFF != enTTYMode) && (TAF_VC_TTYMODE_BUTT > enTTYMode))
     {
         if (TAF_VC_TTY_FULL == enTTYMode)
@@ -333,98 +223,32 @@ VCVOICE_WORK_TYPE_ENUM_UINT16 APP_VC_GetWorkType(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VC_UpdateState
- 功能描述  : 刷新当前状态
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年7月14日
-    作    者   : h44270
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID APP_VC_UpdateState(APP_VC_GLOBAL_STATE_ENUM_U16    enState)
 {
     g_stVcStateMgmt.enState = enState;
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VC_UpdateRadioMode
- 功能描述  : 刷新当前RadioMode
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年7月14日
-    作    者   : h44270
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID APP_VC_UpdateRadioMode(CALL_VC_RADIO_MODE_ENUM_U8    enRadioMode)
 {
     g_stVcStateMgmt.enRadioMode = enRadioMode;
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VC_UpdateClientId
- 功能描述  : 刷新当前ClientId
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年7月14日
-    作    者   : h44270
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID APP_VC_UpdateClientId(MN_CLIENT_ID_T   clientId)
 {
     g_stVcStateMgmt.clientId = clientId;
 }
 
 
-/*****************************************************************************
- 函 数 名  : APP_VC_UpdateClientId
- 功能描述  : 刷新当前ClientId
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年7月14日
-    作    者   : h44270
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID APP_VC_UpdateOpId(MN_OPERATION_ID_T   opId)
 {
     g_stVcStateMgmt.opId = opId;
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VC_UpdataPreMuteStatus
- 功能描述  : 刷新静音状态
- 输入参数  : enMuteStatus - 静音状态
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月12日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID APP_VC_UpdataPreMuteStatus(APP_VC_MUTE_STATUS_ENUM_UINT8 enMuteStatus)
 {
     g_stVcStateMgmt.enPreMuteStatus = enMuteStatus;
@@ -432,21 +256,7 @@ VOS_VOID APP_VC_UpdataPreMuteStatus(APP_VC_MUTE_STATUS_ENUM_UINT8 enMuteStatus)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VC_UpdataCurrMuteStatus
- 功能描述  : 刷新静音状态
- 输入参数  : enMuteStatus - 静音状态
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月12日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID APP_VC_UpdataCurrMuteStatus(APP_VC_MUTE_STATUS_ENUM_UINT8 enMuteStatus)
 {
     g_stVcStateMgmt.enCurrMuteStatus = enMuteStatus;
@@ -454,32 +264,7 @@ VOS_VOID APP_VC_UpdataCurrMuteStatus(APP_VC_MUTE_STATUS_ENUM_UINT8 enMuteStatus)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VC_ReportEvent
- 功能描述  : 向所有Client上报呼叫事件
- 输入参数  : callId      - 需要上报事件的呼叫的ID
-              enEventType - 事件类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年7月14日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年5月10日
-    作    者   : l60609
-    修改内容   : DTS2011102400120:AT+CLVL增加NV控制
-
-  3.日    期   : 2012年9月12日
-    作    者   : A00165503
-    修改内容   : DTS2012091405101: ^CMUT命令实现
-  4.日    期   : 2015年05月30日
-    作    者   : w00281933
-    修改内容   : Modified for The TSTS Project
-*****************************************************************************/
 VOS_VOID  APP_VC_ReportEvent(
     APP_VC_EVENT_ENUM_U32               enEventType,
     VOS_UINT32                          ulErrCode
@@ -501,12 +286,10 @@ VOS_VOID  APP_VC_ReportEvent(
     stVcEvtInfo.enDevMode    = stClvlVolume.usCurrDevMode;
     stVcEvtInfo.enMuteStatus = APP_VC_GetCurrMuteStatus();
 
-    /* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
     stVcEvtInfo.enEcallState       = APP_VC_GetEcallState();
     stVcEvtInfo.ulEcallDescription = APP_VC_GetEcallDescription();
 #endif
-    /* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, end */
 
     if (ulErrCode != MN_ERR_NO_ERROR)
     {
@@ -525,12 +308,10 @@ VOS_VOID  APP_VC_ReportEvent(
         case APP_VC_EVT_GET_VOLUME:
         case APP_VC_EVT_SET_MUTE_STATUS:
         case APP_VC_EVT_GET_MUTE_STATUS:
-        /* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
         case APP_VC_EVT_SET_ECALL_CFG:
         case APP_VC_EVT_ECALL_TRANS_STATUS:
 #endif
-        /* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, end */
             MN_SendClientEvent(g_stVcStateMgmt.clientId,
                                MN_CALLBACK_VOICE_CONTROL,
                                enEventType,
@@ -545,48 +326,7 @@ VOS_VOID  APP_VC_ReportEvent(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VC_InitGlobeVariable
- 功能描述  : 初始化和VC相关的全局变量
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_OK
- 调用函数  : SI_InitGlobeVariable
- 被调函数  :
- 修订记录  :
-  1.日    期   : 2009年07月05日
-    作    者   : h44270
-    修改内容   : Creat
 
-  2.日    期   : 2011年01月21日
-    作    者   : z00161729
-    修改内容   : 问题单DTS2011012101429:stick与W723V VOX对接概率性出现回铃音刺耳，
-                 音量默认值从0修改为－6db
-
-  3.日    期   : 2012年03月03日
-    作    者   : s62952
-    修改内容   : BalongV300R002 Build优化项目
-
-  4.日    期   : 2012年5月10日
-    作    者   : l60609
-    修改内容   : DTS2011102400120:AT+CLVL增加NV控制
-
-  5.日    期   : 2012年9月12日
-    作    者   : A00165503
-    修改内容   : DTS2012091405101: ^CMUT命令实现
-
-  6.日    期   : 2013年12月24日
-    作    者   : m00217266
-    修改内容   : 初始化vcvoice test FLAG
-
-  7.日    期   : 2014年08月30日
-    作    者   : l00198894
-    修改内容   : DTS2014082905824 CBG命令未考虑缓存机制
-
-  8.日    期   : 2015年05月30日
-    作    者   : w00281933
-    修改内容   : TSTS
-*****************************************************************************/
 VOS_VOID  APP_VC_InitGlobeVariable(VOS_VOID)
 {
     APP_VC_MS_CFG_INFO_STRU             *pstMsCfgInfo;
@@ -644,12 +384,10 @@ VOS_VOID  APP_VC_InitGlobeVariable(VOS_VOID)
 
     g_stVcStateMgmt.enCurrMuteStatus = APP_VC_MUTE_STATUS_UNMUTED;
 
-    /* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
     APP_VC_SetEcallState(APP_VC_ECALL_TRANS_STATUS_BUTT);
     APP_VC_SetAllowSetMsdFlag(PS_TRUE);
 #endif
-    /* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, end */
 
     /*lint -e717*/
     HI_INIT_LIST_HEAD(&g_stVcStateMgmt.stBuffMsgListHead);
@@ -660,23 +398,7 @@ VOS_VOID  APP_VC_InitGlobeVariable(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : APP_VC_StartProtectTimer
-功能描述  : 启动计时器
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_OK
-调用函数  : SI_InitGlobeVariable
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年07月05日
-    作    者   : h44270
-    修改内容   : Creat
-2.  日    期   : 2013年9月4日
-    作    者   : w00167002
-    修改内容   : DTS2013090403562:NAS定时器清理，需要启动32K定时器。将MM/MMA/SMS
-                模块的循环定时器修改为非循环定时器。
-*****************************************************************************/
+
 VOS_VOID  APP_VC_StartProtectTimer(APP_VC_TIMER_ID_ENUM_U16 enTimerName)
 {
     /* 启动VOS定时器 */
@@ -692,19 +414,7 @@ VOS_VOID  APP_VC_StartProtectTimer(APP_VC_TIMER_ID_ENUM_U16 enTimerName)
     }
 }
 
-/*****************************************************************************
-函 数 名  : APP_VC_StopProtectTimer
-功能描述  : 停止计时器
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_OK
-调用函数  : SI_InitGlobeVariable
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年07月05日
-    作    者   : h44270
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID  APP_VC_StopProtectTimer(VOS_VOID)
 {
     /* 启动VOS定时器 */
@@ -714,21 +424,7 @@ VOS_VOID  APP_VC_StopProtectTimer(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VC_GetNVIdForGsm
- 功能描述  : 获取GSM模式下的语音配置参数
- 输入参数  : enDevMode   - 设备模式
- 输出参数  : 无
- 返 回 值  : 对应该语音模式的NV项ID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年4月17日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  APP_VC_GetNVIdForGsm(
     VC_PHY_DEVICE_MODE_ENUM_U16         enDevMode
 )
@@ -752,21 +448,7 @@ VOS_UINT32  APP_VC_GetNVIdForGsm(
             return en_NV_Item_ID_BUTT;
     }
 }
-/*****************************************************************************
- 函 数 名  : APP_VC_GetNVIdForWcdma
- 功能描述  : 获取WCDMA模式下的语音配置参数
- 输入参数  : enDevMode   - 设备模式
- 输出参数  : 无
- 返 回 值  : 对应该语音模式的NV项ID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年4月17日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  APP_VC_GetNVIdForWcdma(
     VC_PHY_DEVICE_MODE_ENUM_U16         enDevMode
 )
@@ -797,20 +479,7 @@ VOS_UINT32  APP_VC_GetNVIdForWcdma(
     }
 }
 
-/*****************************************************************************
-函 数 名  : APP_VC_GetNVId
-功能描述  : 通过接入模式和设备模式，获取NVId
-输入参数  : enRadioMode - 接入模式
-             enDevMode   - 设备模式
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年07月05日
-    作    者   : h44270
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32   APP_VC_GetNVId(
     CALL_VC_RADIO_MODE_ENUM_U8          enRadioMode,
     VC_PHY_DEVICE_MODE_ENUM_U16         enDevMode
@@ -829,23 +498,7 @@ VOS_UINT32   APP_VC_GetNVId(
 }
 
 
-/*****************************************************************************
-函 数 名  : APP_VC_GetInDevMode
-功能描述  : 获取打开底软IN_DEV的通道类型
-输入参数  : pMsg - Call模块发来的消息
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年07月05日
-    作    者   : h44270
-    修改内容   : Creat
 
-  2.日    期   : 2013年7月10日
-    作    者   : A00165503
-    修改内容   : DTS2013071002570: 增加HEADPHONE模式
-*****************************************************************************/
 VOS_UINT16  APP_VC_GetInDevMode(VC_PHY_DEVICE_MODE_ENUM_U16  enDevMode)
 {
     switch(enDevMode)
@@ -875,23 +528,7 @@ VOS_UINT16  APP_VC_GetInDevMode(VC_PHY_DEVICE_MODE_ENUM_U16  enDevMode)
 
 }
 
-/*****************************************************************************
-函 数 名  : APP_VC_GetOutDevMode
-功能描述  : 获取打开底软OUT_DEV的通道类型
-输入参数  : pMsg - Call模块发来的消息
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年07月05日
-    作    者   : h44270
-    修改内容   : Creat
 
-  2.日    期   : 2013年7月10日
-    作    者   : A00165503
-    修改内容   : DTS2013071002570: 增加HEADPHONE模式
-*****************************************************************************/
 VOS_UINT16  APP_VC_GetOutDevMode(VC_PHY_DEVICE_MODE_ENUM_U16  enDevMode)
 {
     switch(enDevMode)
@@ -921,21 +558,8 @@ VOS_UINT16  APP_VC_GetOutDevMode(VC_PHY_DEVICE_MODE_ENUM_U16  enDevMode)
 
 }
 
-/* Added by s00217060 for VoLTE_PhaseI  项目, 2013-07-20, begin */
 #if (FEATURE_ON == FEATURE_IMS)
-/*****************************************************************************
-函 数 名  : APP_VC_ConvertVcOpenChannelFailCauseToImsaExceptionCause
-功能描述  : 把VC开启信道失败的原因值转换成发给给IMSA的异常消息所带的原因值
-输入参数  : enVcCause - VC开启信道失败的原因值
-输出参数  : 无
-返 回 值  : IMSA的异常消息所带的原因值
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2013年07月20日
-    作    者   : s00217060
-    修改内容   : Creat
-*****************************************************************************/
+
 VC_IMSA_EXCEPTION_CAUSE_ENUM_UINT32  APP_VC_ConvertVcOpenChannelFailCauseToImsaExceptionCause(
     APP_VC_OPEN_CHANNEL_FAIL_CAUSE_ENUM_UINT32              enVcCause
 )
@@ -973,19 +597,7 @@ VC_IMSA_EXCEPTION_CAUSE_ENUM_UINT32  APP_VC_ConvertVcOpenChannelFailCauseToImsaE
 
 }
 
-/*****************************************************************************
-函 数 名  : APP_VC_ConvertImsaCodeTypeToCallCodeType
-功能描述  : 把IMSA模块带的编码方式转换成CALL/CODEC类型的编码方式
-输入参数  : enVcCause - VC开启信道失败的原因值
-输出参数  : 无
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2013年07月20日
-    作    者   : s00217060
-    修改内容   : Creat
-*****************************************************************************/
+
 CALL_VC_CODEC_TYPE_ENUM_U8  APP_VC_ConvertImsaCodeTypeToCallCodeType(
     IMSA_VC_CODEC_TYPE_ENUM_UINT8       enImsaCodeType
 )
@@ -1009,46 +621,8 @@ CALL_VC_CODEC_TYPE_ENUM_U8  APP_VC_ConvertImsaCodeTypeToCallCodeType(
 }
 
 #endif
-/* Added by s00217060 for VoLTE_PhaseI  项目, 2013-07-20, end */
 
-/*****************************************************************************
-    函 数 名  : APP_VC_InputOutPutPortCfg
-    功能描述  : 输入输出通道端口的配置
-    输入参数  : 无
-    输出参数  : 无
-    返 回 值  : 无
-    调用函数  :
-    被调函数  :
-    修订记录  :
-    1.  日    期   : 2009年07月30日
-        作    者   : h44270
-        修改内容   : Creat
-    2.  日    期   : 2010年10月20日
-        作    者   : z00161729
-        修改内容   : DTS2010102002463:增加定位信息,PC VOICE场景调用OM接口打开语音通道操作构造为假消息在trace中勾取
-    3.  日    期   : 2010年12月2日
-        作    者   : 傅映君/f62575
-        修改内容   : CS ERROR LOG
-    4.  日    期   : 2011年10月15日
-        作    者   : f00179208
-        修改内容   : AT移植项目
 
-    5.  日    期   : 2012年2月9日
-        作    者   : z40661
-        修改内容   : 支持AMR-WB，设置采样率
-    6.  日    期   : 2012年03月03日
-        作    者   : s62952
-        修改内容   : BalongV300R002 Build优化项目
-    7.  日    期   : 2013年3月18日
-        作    者   : z60575
-        修改内容   : 蓝牙设备不需要配置模拟codec
-    8.  日    期   : 2013年07月20日
-        作    者   : s00217060
-        修改内容   : VoLTE_PhaseI项目
-    9.  日    期   : 2014年3月27日
-        作    者   : j00174725
-        修改内容   : Ecall项目
-*****************************************************************************/
 VOS_UINT32  APP_VC_InputOutPutPortCfg(
     CALL_VC_CODEC_TYPE_ENUM_U8          enCodecType
 )
@@ -1057,7 +631,6 @@ VOS_UINT32  APP_VC_InputOutPutPortCfg(
     APP_VC_IOCTL_AUDIO_IN_DEV_ENUM_U16  enAudioInDev;
     APP_VC_IOCTL_AUDIO_OUT_DEV_ENUM_U16 enAudioOutDev;
     VOS_UINT8                           ucSampleRate;
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     VC_OM_PCVOICE_TRANS_STATUS_STRU    *pstPcVoiceTransStatusMsg;
     VOS_UINT32                          ulRet;
     APP_VC_MS_CFG_INFO_STRU            *pstMsCfgInfo;
@@ -1066,7 +639,6 @@ VOS_UINT32  APP_VC_InputOutPutPortCfg(
     enCurrDevMode = APP_VC_GetCurrDevMode();
 
     pstMsCfgInfo                         = APP_VC_GetCustomCfgInfo();
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
     pstPcVoiceTransStatusMsg = VOS_NULL_PTR;
 
@@ -1076,23 +648,17 @@ VOS_UINT32  APP_VC_InputOutPutPortCfg(
         /*PC Voice功能未使能*/
         if (VOS_FALSE == g_stVcStateMgmt.ucPcVoiceSupportFlag)
         {
-            /* Modified by j00174725 for V3R3C60_eCall项目, 2014-3-29, begin */
             if (VCVOICE_WORK_TYPE_TEST != APP_VC_GetWorkType())
-            /* Modified by j00174725 for V3R3C60_eCall项目, 2014-3-29, end */
             {
                 if (APP_VC_INVALID_DEV_HANDLE == APP_VC_GetDevHandle())
                 {
-                    /* Deleted by s00217060 for VoLTE_PhaseI  项目, 2013-07-20, begin */
                     /* APP_VC_SendEndCallReq();在外面统一发送，以下修改相同 */
-                    /* Deleted by s00217060 for VoLTE_PhaseI  项目, 2013-07-20, end */
                     VC_WARN_LOG("APP_VC_CallChannelOpenProc: Open Codec Fail" );
                     return VOS_ERR;
                 }
 
                 if (VOS_OK != DRV_CODEC_IOCTL(APP_VC_GetDevHandle(), APP_VC_IOCTL_AUDIO_PCM_MODE_SET, 0))
                 {
-                    /* Deleted by s00217060 for VoLTE_PhaseI  项目, 2013-07-20, begin */
-                    /* Deleted by s00217060 for VoLTE_PhaseI  项目, 2013-07-20, end */
                     VC_WARN_LOG("APP_VC_CallChannelOpenProc: AUDIO_PCM_MODE_SET Fail" );
                     return VOS_ERR;
                 }
@@ -1109,31 +675,25 @@ VOS_UINT32  APP_VC_InputOutPutPortCfg(
                 if (VOS_OK != DRV_CODEC_IOCTL(APP_VC_GetDevHandle(), APP_VC_IOCTL_AUDIO_SAMPLE_RATE_SET, ucSampleRate))
                 {
                     (VOS_VOID)DRV_CODEC_IOCTL(APP_VC_GetDevHandle(), APP_VC_IOCTL_AUDIO_VOICE_CLOSE, 0);
-                    /* Deleted by s00217060 for VoLTE_PhaseI  项目, 2013-07-20, begin */
-                    /* Deleted by s00217060 for VoLTE_PhaseI  项目, 2013-07-20, end */
                     VC_WARN_LOG("APP_VC_CallChannelOpenProc: Sample rate failed" );
                     return VOS_ERR;
                 }
 
                 if (VOS_OK != DRV_CODEC_IOCTL(APP_VC_GetDevHandle(), APP_VC_IOCTL_AUDIO_VOICE_OPEN, 0))
                 {
-                    /* Deleted by s00217060 for VoLTE_PhaseI  项目, 2013-07-20, begin */
-                    /* Deleted by s00217060 for VoLTE_PhaseI  项目, 2013-07-20, end */
                     VC_WARN_LOG("APP_VC_CallChannelOpenProc: VOICE_OPEN Fail" );
                     return VOS_ERR;
                 }
 
-                /* Modified by z60575 for DTS2013031803032，2013-3-18,  Begin */
                 /* 蓝牙和车载设备不需要配置模拟codec */
                 if ((VC_PHY_DEVICE_MODE_BLUETOOTH != enCurrDevMode)
-                 && (VC_PHY_DEVICE_MODE_CAR_FREE != enCurrDevMode))
+                 && (VC_PHY_DEVICE_MODE_CAR_FREE != enCurrDevMode)
+                 && (VC_PHY_DEVICE_MODEM_USBVOICE != enCurrDevMode))
                 {
                     enAudioInDev = APP_VC_GetInDevMode(enCurrDevMode);
                     enAudioOutDev = APP_VC_GetOutDevMode(enCurrDevMode);
                     if (APP_VC_IN_DEV_BUTT == enAudioInDev)
                     {
-                        /* Deleted by s00217060 for VoLTE_PhaseI  项目, 2013-07-20, begin */
-                        /* Deleted by s00217060 for VoLTE_PhaseI  项目, 2013-07-20, end */
                         VC_WARN_LOG("APP_VC_CallChannelOpenProc: GET IN_OUT_DEV Fail" );
                         return VOS_ERR;
                     }
@@ -1141,8 +701,6 @@ VOS_UINT32  APP_VC_InputOutPutPortCfg(
                     if (VOS_OK != DRV_CODEC_IOCTL(APP_VC_GetDevHandle(), APP_VC_IOCTL_AUDIO_IN_DEV_SELECT, enAudioInDev))
                     {
                         (VOS_VOID)DRV_CODEC_IOCTL(APP_VC_GetDevHandle(), APP_VC_IOCTL_AUDIO_VOICE_CLOSE, 0);
-                        /* Deleted by s00217060 for VoLTE_PhaseI  项目, 2013-07-20, begin */
-                        /* Deleted by s00217060 for VoLTE_PhaseI  项目, 2013-07-20, end */
                         VC_WARN_LOG("APP_VC_CallChannelOpenProc: IN_DEV_SELECT Fail" );
                         return VOS_ERR;
                     }
@@ -1150,16 +708,12 @@ VOS_UINT32  APP_VC_InputOutPutPortCfg(
                     if (VOS_OK != DRV_CODEC_IOCTL(APP_VC_GetDevHandle(), APP_VC_IOCTL_AUDIO_OUT_DEV_SELECT, enAudioOutDev))
                     {
                         (VOS_VOID)DRV_CODEC_IOCTL(APP_VC_GetDevHandle(), APP_VC_IOCTL_AUDIO_VOICE_CLOSE, 0);
-                        /* Deleted by s00217060 for VoLTE_PhaseI  项目, 2013-07-20, begin */
-                        /* Deleted by s00217060 for VoLTE_PhaseI  项目, 2013-07-20, end */
                         VC_WARN_LOG("APP_VC_CallChannelOpenProc: OUT_DEV_SELECT Fail" );
                         return VOS_ERR;
                     }
                 }
-                /* Modified by z60575 for DTS2013031803032，2013-3-18,  End */
             }
         }
-        /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
         else
         {
              if (APP_VC_NV_ITEM_ACTIVE == pstMsCfgInfo->usVcPcvoiceSupportFlag)
@@ -1187,8 +741,6 @@ VOS_UINT32  APP_VC_InputOutPutPortCfg(
                      ulRet = APP_VC_SendVcReqToOm(OM_PCV_CHANNEL_OPEN, APP_VC_GetPcVoicePort());
                      if (VOS_OK != ulRet)
                      {
-                         /* Deleted by s00217060 for VoLTE_PhaseI  项目, 2013-07-20, begin */
-                         /* Deleted by s00217060 for VoLTE_PhaseI  项目, 2013-07-20, end */
                          VC_WARN_LOG("APP_VC_CallChannelOpenProc: OM_PCV_CHANNEL_OPEN FAIL!" );
                          NAS_MNTN_FailtoOpenCsChannel(g_stVcStateMgmt.ucVoicePort, ulRet);
                          g_stVcStateMgmt.ucVoicePort              = APP_VC_VOICE_PORT_BUTT;
@@ -1206,60 +758,13 @@ VOS_UINT32  APP_VC_InputOutPutPortCfg(
              }
 
         }
-        /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
     }
 
     return VOS_OK;
 }
 
 
-/*****************************************************************************
-函 数 名  : APP_VC_CallChannelOpenProc
-功能描述  : 处理信道开启消息
-输入参数  : pMsg - Call模块发来的消息
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年07月05日
-    作    者   : h44270
-    修改内容   : Creat
-2.  日    期   : 2010年07月28日
-    作    者   : h44270
-    修改内容   : 问题单号:DTS2010072302149,PC VOICE被叫不能接通
-3.  日    期   : 2012年03月08日
-    作    者   : h44270
-    修改内容   : 问题单号:DTS2012030806066,测试调制谱，需要增加测试模式
-4.日    期   : 2012年2月9日
-  作    者   : z40661
-  修改内容   : 读取NVIM中音频信息在MED模块读取,VC模块删除此部分内容
-5.日    期   : 2012年5月10日
-  作    者   : l60609
-  修改内容   : DTS2011102400120:AT+CLVL增加NV控制
-6.日    期   : 2012年7月30日
-  作    者   : M00217266
-  修改内容   : DTS2012071804157:调整音量控制时间点
 
-  7.日    期   : 2012年9月12日
-    作    者   : A00165503
-    修改内容   : DTS2012091405101: ^CMUT命令实现
-  8.日    期   : 2012年12月11日
-    作    者   : l00167671
-    修改内容   : DTS2012121802573, TQE清理
-  9.日    期   : 2012年12月26日
-    作    者   : m00217266
-    修改内容   : DSDA C核项目接口修改
- 10.日    期   : 2013年2月2日
-    作    者   : l00227485
-    修改内容   : DSDA C核项目DMT
- 11.日    期   : 2013年07月222日
-    作    者   : j00177245
-    修改内容   : 清理Coverity
- 11.日    期   : 2013年07月11日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseI项目
-*****************************************************************************/
 VOS_UINT32  APP_VC_CallChannelOpenProc(
     CALL_VC_CHANNEL_INFO_STRU                              *pstChanInfo,
     APP_VC_OPEN_CHANNEL_FAIL_CAUSE_ENUM_UINT32             *penCause
@@ -1271,11 +776,7 @@ VOS_UINT32  APP_VC_CallChannelOpenProc(
     PS_MEM_SET(&stClvlVolume, 0, sizeof(stClvlVolume));
     APP_VC_GetClvlVolume(&stClvlVolume);
 
-    /* Modified by s00217060 for VoLTE_PhaseI  项目, 2013-07-11, begin */
-    /* 修改点:
-        1.函数添加返回值
-        2.把失败的原因值作为输出参数带出来
-        3.异常情况时，给call模块发EndCallReq，或者给IMSA发ExceptionNtf放在外面一层发送 */
+    
 
     /* 如果当前是测试模式，则实际发送测试模式的消息给物理层 */
     if (VCVOICE_WORK_TYPE_TEST == APP_VC_GetWorkType())
@@ -1334,7 +835,6 @@ VOS_UINT32  APP_VC_CallChannelOpenProc(
     }
 
     *penCause = APP_VC_OPEN_CHANNEL_CAUSE_SUCC;
-    /* Modified by s00217060 for VoLTE_PhaseI  项目, 2013-07-11, end */
     APP_VC_StartProtectTimer(APP_VC_TIMER_START);
     APP_VC_UpdateState(APP_VC_S_WAIT_INTERNAL_SET_DEV_RSLT);
     g_stVcStateMgmt.bInCall = VOS_TRUE;
@@ -1342,50 +842,15 @@ VOS_UINT32  APP_VC_CallChannelOpenProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
-    函 数 名  : APP_VC_CallChannelCloseProc
-    功能描述  : 处理信道关闭消息
-    输入参数  : pMsg - Call模块发来的消息
-    输出参数  : 无
-    返 回 值  : 无
-    调用函数  :
-    被调函数  :
-    修订记录  :
-    1.  日    期   : 2009年07月05日
-        作    者   : h44270
-        修改内容   : Creat
-    2.  日    期   : 2010年07月28日
-        作    者   : h44270
-        修改内容   : 问题单号:DTS2010072302149,PC VOICE被叫不能接通
-    3.  日    期   : 2010年08月07日
-        作    者   : h44270
-        修改内容   : 问题单号:DTS2010080300514,有异常打印
-    4.  日    期   : 2010年10月20日
-        作    者   : z00161729
-        修改内容  : DTS2010102002463:增加定位信息,PC VOICE场景调用OM接口关闭语音通道操作构造为假消息在trace中勾取
-    5.  日    期   : 2011年10月15日
-        作    者   : f00179208
-        修改内容   : AT移植项目
-      6.日    期   : 2012年03月03日
-        作    者   : s62952
-        修改内容   : BalongV300R002 Build优化项目
-    6.  日    期   : 2012年03月08日
-        作    者   : h44270
-        修改内容   : 问题单号:DTS2012030806066,测试调制谱，需要增加测试模式
-    7.  日    期   : 2013年4月26日
-        作    者   : z00234330
-        修改内容   : C50 SYNC 初始化电话为未通话状态
-*****************************************************************************/
+
 VOS_VOID  APP_VC_CallChannelCloseProc(VOS_VOID)
 {
     /* TODO: 待和底软确认接口 */
     VC_OM_PCVOICE_TRANS_STATUS_STRU     *pstPcVoiceTransStatusMsg;
     VOS_UINT32                           ulRst;
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     APP_VC_MS_CFG_INFO_STRU             *pstMsCfgInfo;
 
     pstMsCfgInfo                         = APP_VC_GetCustomCfgInfo();
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
     /* 如果当前是测试模式，则直接退出 */
     if (VCVOICE_WORK_TYPE_TEST == APP_VC_GetWorkType())
     {
@@ -1407,7 +872,6 @@ VOS_VOID  APP_VC_CallChannelCloseProc(VOS_VOID)
             }
         }
     }
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     else
     {
         if (APP_VC_NV_ITEM_ACTIVE == pstMsCfgInfo->usVcPcvoiceSupportFlag)
@@ -1442,7 +906,6 @@ VOS_VOID  APP_VC_CallChannelCloseProc(VOS_VOID)
         }
 
     }
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
     APP_VC_SendStopReq(APP_VC_GetRadioMode());
     APP_VC_StartProtectTimer(APP_VC_TIMER_STOP);
@@ -1453,38 +916,7 @@ VOS_VOID  APP_VC_CallChannelCloseProc(VOS_VOID)
 #endif
 }
 
-/*****************************************************************************
-函 数 名  : APP_VC_CallChannelParaChangeProc
-功能描述  : 处理信道参数改变消息
-输入参数  : pMsg - Call模块发来的消息
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年07月05日
-    作    者   : h44270
-    修改内容   : Creat
-2.  日    期   : 2012年03月08日
-    作    者   : h44270
-    修改内容   : 问题单号:DTS2012030806066,测试调制谱，需要增加测试模式
-3.  日    期   : 2012年2月9日
-    作    者   : z40661
-    修改内容   : 支持AMR-WB
-4.  日    期   : 2012年4月13日
-    作    者   : w00166186
-    修改内容   : DTS2012041007645,PC VOICE电话信令被UE挂断
-5.  日    期   : 2013年07月20日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseI项目
-6.  日    期   : 2014年06月24日
-    作    者   : s00217060
-    修改内容   : DTS2014061306721:设置采样率失败时挂断电话增加可维可测
-7.  日    期   :2014年9月24日
-    作    者   :s00217060
-    修改内容   :for cs_err_log
 
-*****************************************************************************/
 VOS_VOID  APP_VC_CallChannelParaChangeProc(CALL_VC_CHANNEL_INFO_STRU *pstChanInfo)
 {
     VOS_UINT8                           ucSampleRate;
@@ -1521,7 +953,6 @@ VOS_VOID  APP_VC_CallChannelParaChangeProc(CALL_VC_CHANNEL_INFO_STRU *pstChanInf
         {
             VC_WARN_LOG("APP_VC_CallChannelOpenProc: Sample rate failed" );
 
-            /* Modified by s00217060 for VoLTE_PhaseI  项目, 2013-07-20, begin */
 #if (FEATURE_ON == FEATURE_IMS)
             if (APP_VC_START_HIFI_ORIG_IMSA == APP_VC_GetStartHifiOrig())
             {
@@ -1547,27 +978,13 @@ VOS_VOID  APP_VC_CallChannelParaChangeProc(CALL_VC_CHANNEL_INFO_STRU *pstChanInf
 
     /* 更新全局变量enStartHifiOrig */
     g_stVcStateMgmt.enStartHifiOrig = APP_VC_START_HIFI_ORIG_BUTT;
-    /* Modified by s00217060 for VoLTE_PhaseI  项目, 2013-07-20, end */
 
     APP_VC_SendSetCodecReq(pstChanInfo);
     APP_VC_StartProtectTimer(APP_VC_TIMER_SET_CODEC);
     APP_VC_UpdateState(APP_VC_S_WAIT_INTERNAL_SET_CODEC_RSLT);
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VC_AddBufferTafMsg
- 功能描述  : VC模块缓存Call消息到队列
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月7日
-    作    者   : W00316404
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID APP_VC_AddBufferTafMsg(MsgBlock* pMsg)
 {
     CALL_VC_CHANNEL_INFO_MSG_STRU      *pstChanInfo = (CALL_VC_CHANNEL_INFO_MSG_STRU *)pMsg;
@@ -1594,29 +1011,7 @@ VOS_VOID APP_VC_AddBufferTafMsg(MsgBlock* pMsg)
 }
 
 #if 0
-/*****************************************************************************
-函 数 名  : APP_VC_BufferTafMsg
-功能描述  : 缓存Call模块发来的消息
-输入参数  : pMsg - Call模块发来的消息
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年07月05日
-    作    者   : h44270
-    修改内容   : Creat
-2.  日    期   : 2010年07月30日
-    作    者   : h44270
-    修改内容   : 问题单号：AT2D18172，打电话的时候切换，丢消息，保护处理
-3.  日    期   : 2013年08月16日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseI项目
 
-  4.日    期   : 2014年9月17日
-    作    者   : y00218312
-    修改内容   : 按照消息类型缓存消息
-*****************************************************************************/
 VOS_VOID  APP_VC_BufferTafMsg(
     MsgBlock                           *pstMsg
 )
@@ -1678,22 +1073,8 @@ VOS_VOID  APP_VC_BufferTafMsg(
 }
 #endif
 
-/* Added by s00217060 for VoLTE_PhaseI  项目, 2013-08-16, begin */
 #if (FEATURE_ON == FEATURE_IMS)
-/*****************************************************************************
- 函 数 名  : APP_VC_AddBufferImsaMsg
- 功能描述  : VC模块缓存Imsa消息到队列
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月7日
-    作    者   : W00316404
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID APP_VC_AddBufferImsaMsg(MsgBlock* pMsg)
 {
     MSG_HEADER_STRU                    *pMsgHeader = VOS_NULL_PTR;
@@ -1727,36 +1108,12 @@ VOS_VOID APP_VC_AddBufferImsaMsg(MsgBlock* pMsg)
 }
 
 #endif
-/* Added by s00217060 for VoLTE_PhaseI  项目, 2013-08-16, end */
 
-/*****************************************************************************
-函 数 名  : APP_VC_TafMsgProc
-功能描述  : 处理Call模块发来的消息
-输入参数  : pMsg - Call模块发来的消息
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年07月05日
-    作    者   : h44270
-    修改内容   : Creat
-2.  日    期   : 2013年07月20日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseI项目
-3.  日    期   : 2014年3月27日
-    作    者   : j00174725
-    修改内容   : Ecall项目
 
-  4.日    期   : 2014年9月17日
-    作    者   : y00218312
-    修改内容   : 增加XCALL发送的消息
-*****************************************************************************/
 VOS_VOID  APP_VC_TafMsgProc(
     MsgBlock                           *pstMsg
 )
 {
-    /* Modified by s00217060 for VoLTE_PhaseI  项目, 2013-07-20, begin */
     APP_VC_OPEN_CHANNEL_FAIL_CAUSE_ENUM_UINT32          enCause;
     VC_CALL_MSG_STRU                   *pstVcCallMsg    = VOS_NULL_PTR;
     CALL_VC_CHANNEL_INFO_MSG_STRU      *pstChannelInfo  = VOS_NULL_PTR;
@@ -1789,25 +1146,21 @@ VOS_VOID  APP_VC_TafMsgProc(
                 return;
             }
 
-            /* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
             if (CALL_VC_CALL_TYPE_ECALL == pstChannelInfo->stChannelInfo.stChannelParam.enCallType)
             {
                 APP_VC_SetInEcallFlag(PS_TRUE);
             }
 #endif
-            /* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, end */
 
             /* 更新全局变量，记录是CALL要启动HIFI */
             g_stVcStateMgmt.enStartHifiOrig = APP_VC_START_HIFI_ORIG_CALL;
 
             if (VOS_FALSE == APP_VC_CallChannelOpenProc(&(pstChannelInfo->stChannelInfo), &enCause))
             {
-                /* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
                 APP_VC_SetInEcallFlag(PS_FALSE); /* 清除eCall标识 */
 #endif
-                /* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, end */
 
                 /* 如果开启信道时异常，给CALL发送EndCallReq消息，
                     同时更新全局变量enStartHifiOrig */
@@ -1831,15 +1184,12 @@ VOS_VOID  APP_VC_TafMsgProc(
             g_stVcStateMgmt.enStartHifiOrig = APP_VC_START_HIFI_ORIG_CALL;
             APP_VC_CallChannelParaChangeProc(&(pstChannelInfo->stChannelInfo));
             break;
-    /* Modified by s00217060 for VoLTE_PhaseI  项目, 2013-07-20, end */
 
-        /* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
         case CALL_VC_CHANNEL_CONNECT:
             APP_VC_CallChannelConnectProc();
             break;
 #endif
-        /* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, end */
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
         case CALL_VC_SO_CTRL_ORDER_IND:
@@ -1857,20 +1207,7 @@ VOS_VOID  APP_VC_TafMsgProc(
 }
 
 /*lint -e429 -e830*/
-/*****************************************************************************
- 函 数 名  : APP_VC_AddBufferMsg
- 功能描述  : VC模块缓存消息到队列
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月7日
-    作    者   : W00316404
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID APP_VC_AddBufferMsg(MsgBlock* pMsg)
 {
     APP_VC_BUFF_MSG_NODE_STRU          *pstNode     = VOS_NULL_PTR;
@@ -1907,29 +1244,7 @@ VOS_VOID APP_VC_AddBufferMsg(MsgBlock* pMsg)
 /*lint +e429 +e830*/
 
 
-/*****************************************************************************
-函 数 名  : APP_VC_AppSetVolumeProc
-功能描述  : 处理AT命令的音量设置
-输入参数  : pMsg - Call模块发来的消息
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年07月05日
-    作    者   : h44270
-    修改内容   : Creat
 
-  2.日    期   : 2010年8月25日
-    作    者   : zhoujun /40661
-    修改内容   : 问题单DTS2010082301478,关机时该命令也应该生效
-  3.日    期   : 2012年12月26日
-    作    者   : m00217266
-    修改内容   : DSDA C核项目接口修改
-  4.日    期   : 2015年05月30日
-    作    者   : w00281933
-    修改内容   : TSTS
-*****************************************************************************/
 VOS_VOID  APP_VC_AppSetVolumeProc(
     APP_VC_REQ_MSG_STRU                 *pstAppMsg
 )
@@ -1980,28 +1295,7 @@ VOS_VOID  APP_VC_AppSetVolumeProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : APP_VC_AppQryVolumeProc
- 功能描述  : 处理AT命令的音量查询
- 输入参数  : APP_VC_REQ_MSG_STRU                 *pstAppMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月10日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-  2.日    期   : 2013年02月06日
-    作    者   : l00198894
-    修改内容   : DTS2013020508621: 更新ClientId和OpId全局变量
-
-  3.日    期   : 2015年6月16日
-    作    者   : l00198894
-    修改内容   : TSTS
-*****************************************************************************/
 VOS_VOID  APP_VC_AppQryVolumeProc(
     APP_VC_REQ_MSG_STRU                 *pstAppMsg
 )
@@ -2015,34 +1309,7 @@ VOS_VOID  APP_VC_AppQryVolumeProc(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : APP_VC_AppSetModeProc
-功能描述  : 处理AT命令的模式设置命令
-输入参数  : pMsg - Call模块发来的消息
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修订记录  :
-  1.日    期   : 2009年07月05日
-    作    者   : h44270
-    修改内容   : Creat
-  2.日    期   : 2012年2月9日
-    作    者   : z40661
-    修改内容   : 删除设置CODEC模块DEVICE_REQ的相关音频参数
-  3.日    期   : 2012年12月26日
-    作    者   : m00217266
-    修改内容   : DSDA C核项目接口修改
-  4.日    期   : 2013年3月18日
-    作    者   : z60575
-    修改内容   : 蓝牙设备不需要配置模拟codec
-  5.日    期   : 2013年07月222日
-    作    者   : j00177245
-    修改内容   : 清理Coverity
-  6.日    期   : 2015年05月30日
-    作    者   : w00281933
-    修改内容   : TSTS
-*****************************************************************************/
+
 VOS_VOID  APP_VC_AppSetModeProc(
     APP_VC_REQ_MSG_STRU                 *pstAppMsg
 )
@@ -2089,10 +1356,10 @@ VOS_VOID  APP_VC_AppSetModeProc(
             return;
         }
 
-        /* Modified by z60575 for DTS2013031803032，2013-3-18,  Begin */
         /* 蓝牙和车载设备不需要配置模拟codec */
         if ((VC_PHY_DEVICE_MODE_BLUETOOTH != stClvlVolume.usCurrDevMode)
-         && (VC_PHY_DEVICE_MODE_CAR_FREE != stClvlVolume.usCurrDevMode))
+         && (VC_PHY_DEVICE_MODE_CAR_FREE != stClvlVolume.usCurrDevMode)
+         && (VC_PHY_DEVICE_MODEM_USBVOICE != stClvlVolume.usCurrDevMode))
         {
             enAudioInDev = APP_VC_GetInDevMode(stClvlVolume.usCurrDevMode);
             enAudioOutDev = APP_VC_GetOutDevMode(stClvlVolume.usCurrDevMode);
@@ -2121,7 +1388,8 @@ VOS_VOID  APP_VC_AppSetModeProc(
 
         /* 蓝牙和车载设备不需要配置模拟codec */
         if ((VC_PHY_DEVICE_MODE_BLUETOOTH != usDeviceMode)
-         && (VC_PHY_DEVICE_MODE_CAR_FREE != usDeviceMode))
+         && (VC_PHY_DEVICE_MODE_CAR_FREE != usDeviceMode)
+        && (VC_PHY_DEVICE_MODEM_USBVOICE != usDeviceMode))
         {
             enAudioInDev = APP_VC_GetInDevMode(usDeviceMode);
             enAudioOutDev = APP_VC_GetOutDevMode(usDeviceMode);
@@ -2147,7 +1415,6 @@ VOS_VOID  APP_VC_AppSetModeProc(
             }
         }
 
-        /* Modified by z60575 for DTS2013031803032，2013-3-18, end */
     }
 
     if (VOS_OK != APP_VC_SendSetDeviceReq(usDeviceMode))
@@ -2164,7 +1431,6 @@ VOS_VOID  APP_VC_AppSetModeProc(
     /* 保存NV项 */
     APP_VC_SaveClvlVolume(&stClvlVolume);
 
-    /* Modified by z60575 for DTS2013031803032，2013-3-18, begin */
     if (VOS_OK != APP_VC_SendSetVolumeReq(VCVOICE_VOLUME_TARGET_DOWN,
                                           APP_VC_GetCurrVolume(&stClvlVolume)))
     {
@@ -2172,7 +1438,6 @@ VOS_VOID  APP_VC_AppSetModeProc(
         APP_VC_ReportEvent(APP_VC_EVT_SET_VOICE_MODE, MN_ERR_UNSPECIFIED);
         return;
     }
-    /* Modified by z60575 for DTS2013031803032，2013-3-18, end */
 
     APP_VC_UpdateState(APP_VC_S_WAIT_AT_SET_DEV_RSLT);
     APP_VC_StartProtectTimer(APP_VC_TIMER_SET_DEV);
@@ -2180,24 +1445,7 @@ VOS_VOID  APP_VC_AppSetModeProc(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : APP_VC_AppSetModeProc
-功能描述  : 处理AT命令的语音模式查询命令
-输入参数  : pstAppMsg - AT模块发来的消息
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修订记录  :
-  1.日    期   : 2011年10月05日
-    作    者   : f00179208
-    修改内容   : 创建函数，处理A核发来的消息请求后再回发到A核
-  2.日    期   : 2012年12月22日
-    作    者   : z00220246
-    修改内容   : DSDA Phase II,根据SenderPid获得上报的ClientId
-
-*****************************************************************************/
 VOS_VOID  APP_VC_AppQryModeReqProc(
     APP_VC_REQ_MSG_STRU                *pstAppMsg
 )
@@ -2253,24 +1501,7 @@ VOS_VOID  APP_VC_AppQryModeReqProc(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : APP_VC_AppSetPortReqProc
-功能描述  : 处理AT命令的端口设置命令
-输入参数  : pstAppMsg - AT模块发来的消息
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修订记录  :
-  1.日    期   : 2011年10月06日
-    作    者   : f00179208
-    修改内容   : 创建函数，处理A核发来的消息请求后再回发到A核
-  2.日    期   : 2012年12月22日
-    作    者   : z00220246
-    修改内容   : DSDA Phase II,根据SenderPid获得上报的ClientId
-
-*****************************************************************************/
 VOS_VOID  APP_VC_AppSetPortReqProc(
     APP_VC_REQ_MSG_STRU                *pstAppMsg
 )
@@ -2365,23 +1596,7 @@ VOS_VOID  APP_VC_AppSetPortReqProc(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : APP_VC_AppQryPortReqProc
-功能描述  : 处理AT命令的端口查询命令
-输入参数  : pstAppMsg - AT模块发来的消息
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修订记录  :
-  1.日    期   : 2011年10月17日
-    作    者   : f00179208
-    修改内容   : 创建函数，处理A核发来的消息请求后再回发到A核
-  2.日    期   : 2012年12月22日
-    作    者   : z00220246
-    修改内容   : DSDA Phase II,根据SenderPid获得上报的ClientId
-*****************************************************************************/
 VOS_VOID  APP_VC_AppQryPortReqProc(
     APP_VC_REQ_MSG_STRU                *pstAppMsg
 )
@@ -2436,23 +1651,7 @@ VOS_VOID  APP_VC_AppQryPortReqProc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VC_AppSetMuteStatusProc
- 功能描述  : 处理AT命令的设置静音状态请求
- 输入参数  : pstAppMsg - 消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月12日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月26日
-    作    者   : m00217266
-    修改内容   : DSDA C核项目接口修改
-*****************************************************************************/
 VOS_VOID APP_VC_AppSetMuteStatusProc(
     APP_VC_REQ_MSG_STRU                *pstAppMsg
 )
@@ -2484,25 +1683,7 @@ VOS_VOID APP_VC_AppSetMuteStatusProc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VC_AppGetMuteStatusProc
- 功能描述  : 处理AT命令的获取静音状态请求
- 输入参数  : pstAppMsg - 消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月12日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年12月28日
-    作    者   : l00198894
-    修改内容   : DTS2012122602051: 解决+CMUT查询命令执行超时，C核未记录ClientID问题
-
-*****************************************************************************/
 VOS_VOID  APP_VC_AppGetMuteStatusProc(
     APP_VC_REQ_MSG_STRU                *pstAppMsg
 )
@@ -2516,24 +1697,7 @@ VOS_VOID  APP_VC_AppGetMuteStatusProc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VC_AppSetForeGroundProc
- 功能描述  : 处理AT命令的消息
- 输入参数  : pstAppMsg - AT 下发的设置前台模式的消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修订记录  :
-  1.日    期   : 2012年12月28日
-    作    者   : 张鹏/00214637
-    修改内容   : Creat
 
-  2.日    期   : 2014年08月30日
-    作    者   : l00198894
-    修改内容   : DTS2014082905824 CBG命令未考虑缓存机制
-
-*****************************************************************************/
 VOS_VOID  APP_VC_AppSetForeGroundProc(
     APP_VC_REQ_MSG_STRU                *pstAppMsg
 )
@@ -2566,24 +1730,7 @@ VOS_VOID  APP_VC_AppSetForeGroundProc(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VC_AppSetBackGroundProc
- 功能描述  : 处理AT命令的消息
- 输入参数  : pstAppMsg - AT 下发的设置后向模式的消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修订记录  :
-  1.日    期   : 2012年12月28日
-    作    者   : 张鹏/00214637
-    修改内容   : Creat
 
-  2.日    期   : 2014年08月30日
-    作    者   : l00198894
-    修改内容   : DTS2014082905824 CBG命令未考虑缓存机制
-
-*****************************************************************************/
 VOS_VOID  APP_VC_AppSetBackGroundProc(
     APP_VC_REQ_MSG_STRU                *pstAppMsg
 )
@@ -2615,24 +1762,7 @@ VOS_VOID  APP_VC_AppSetBackGroundProc(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VC_AppQryGroundProc
- 功能描述  : 处理AT命令的消息
- 输入参数  : pstAppMsg - AT 下发的模式查询请求消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修订记录  :
-  1.日    期   : 2012年12月28日
-    作    者   : 张鹏/00214637
-    修改内容   : Creat
 
-  2.日    期   : 2014年08月30日
-    作    者   : l00198894
-    修改内容   : DTS2014082905824 CBG命令未考虑缓存机制
-
-*****************************************************************************/
 VOS_VOID  APP_VC_AppQryGroundProc(
     APP_VC_REQ_MSG_STRU                *pstAppMsg
 )
@@ -2664,29 +1794,7 @@ VOS_VOID  APP_VC_AppQryGroundProc(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VC_AppSetModemLoopProc
- 功能描述  : 设置语音环回模式消息处理函数
- 输入参数  : APP_VC_REQ_MSG_STRU                *pstAppMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月5日
-    作    者   : s00190137
-    修改内容   : 新生成函数
-  2.日    期   : 2013年9月2日
-    作    者   : z60575
-    修改内容   : DTS2013090208260
-  3.日    期   : 2014年3月27日
-    作    者   : j00174725
-    修改内容   : Ecall项目
-  4.日    期   : 2015年05月30日
-    作    者   : w00281933
-    修改内容   : Modified for The TSTS Project
-*****************************************************************************/
 VOS_VOID  APP_VC_AppSetModemLoopProc(
     APP_VC_REQ_MSG_STRU                *pstAppMsg
 )
@@ -2701,9 +1809,7 @@ VOS_VOID  APP_VC_AppSetModemLoopProc(
     /* 获取设置语音环回的状态:退出或进入语音环回 */
     enModemLoop = (VCVOICE_LOOP_ENUM_UINT16)pstAppMsg->aucContent[0];
 
-    /* Modified by j00174725 for V3R3C60_eCall项目, 2014-3-29, begin */
     if (VCVOICE_WORK_TYPE_TEST != APP_VC_GetWorkType())
-    /* Modified by j00174725 for V3R3C60_eCall项目, 2014-3-29, end */
     {
         if (VCVOICE_LOOP_START == enModemLoop)
         {
@@ -2759,21 +1865,8 @@ VOS_VOID  APP_VC_AppSetModemLoopProc(
     return;
 }
 
-/* Added by s00217060 for VoLTE_PhaseI  项目, 2013-07-09, begin */
 #if (FEATURE_ON == FEATURE_IMS)
-/*****************************************************************************
-函 数 名  : APP_VC_ImsaStartHifiNtfProc
-功能描述  : 处理IMSA启动HIFI消息
-输入参数  : pMsg - IMSA模块发来的消息
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2013年07月10日
-    作    者   : s00217060
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID  APP_VC_ImsaStartHifiNtfProc(IMSA_VC_START_HIFI_NTF_STRU* pstMsg)
 {
     CALL_VC_CHANNEL_INFO_STRU                               stChanInfo;
@@ -2782,8 +1875,6 @@ VOS_VOID  APP_VC_ImsaStartHifiNtfProc(IMSA_VC_START_HIFI_NTF_STRU* pstMsg)
 
     enVcCause = APP_VC_OPEN_CHANNEL_CAUSE_SUCC;
 
-    /* Deleted by s00217060 for VoLTE_PhaseII  项目, 2013-12-05, begin */
-    /* Deleted by s00217060 for VoLTE_PhaseII  项目, 2013-12-05, end */
 
     /* 更新全局变量，记录是IMSA要启动HIFI */
     g_stVcStateMgmt.enStartHifiOrig = APP_VC_START_HIFI_ORIG_IMSA;
@@ -2815,31 +1906,14 @@ VOS_VOID  APP_VC_ImsaStartHifiNtfProc(IMSA_VC_START_HIFI_NTF_STRU* pstMsg)
 
 }
 
-/*****************************************************************************
-函 数 名  : APP_VC_ImsaStopHifiNtfProc
-功能描述  : 处理IMSA停止HIFI消息
-输入参数  : pMsg - IMSA模块发来的消息
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2013年07月10日
-    作    者   : s00217060
-    修改内容   : Creat
-2.  日    期   : 2013年11月20日
-    作    者   : w00176964
-    修改内容   : Volte PhaseII项目修改
-*****************************************************************************/
+
 VOS_VOID  APP_VC_ImsaStopHifiNtfProc(IMSA_VC_STOP_HIFI_NTF_STRU* pstMsg)
 {
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-20, begin */
     /* 增加异常保护,如果当前的工作模式为GU则丢弃该消息 */
     if (CALL_VC_MODE_IMS_EUTRAN != APP_VC_GetRadioMode())
     {
         return;
     }
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-20, end */
 
 
     /* 和信道关闭时的处理相同，直接调用已有函数 */
@@ -2847,19 +1921,7 @@ VOS_VOID  APP_VC_ImsaStopHifiNtfProc(IMSA_VC_STOP_HIFI_NTF_STRU* pstMsg)
 
 }
 
-/*****************************************************************************
-函 数 名  : APP_VC_ImsaHifiParaChangeNtfProc
-功能描述  : 处理IMSA参数改变消息
-输入参数  : pMsg - IMSA模块发来的消息
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2013年07月10日
-    作    者   : s00217060
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID  APP_VC_ImsaHifiParaChangeNtfProc(IMSA_VC_HIFI_PARA_CHANGED_NTF_STRU* pstMsg)
 {
     CALL_VC_CHANNEL_INFO_STRU           stChanInfo;
@@ -2878,21 +1940,8 @@ VOS_VOID  APP_VC_ImsaHifiParaChangeNtfProc(IMSA_VC_HIFI_PARA_CHANGED_NTF_STRU* p
 
 }
 #endif
-/* Added by s00217060 for VoLTE_PhaseI  项目, 2013-07-09, end */
 
-/*****************************************************************************
- 函 数 名  : APP_VC_AppQryTTYModeProc
- 功能描述  : 处理AT命令的消息
- 输入参数  : pstAppMsg - AT 下发的模式查询请求消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修订记录  :
-  1.日    期   : 2015年02月07日
-    作    者   : w00316404
-    修改内容   : 新增函数
-*****************************************************************************/
+
 VOS_VOID  APP_VC_AppQryTTYModeProc(
     APP_VC_REQ_MSG_STRU                *pstAppMsg
 )
@@ -2951,19 +2000,7 @@ VOS_VOID  APP_VC_AppQryTTYModeProc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VC_AppSetTTYModeProc
- 功能描述  : 处理AT命令的消息
- 输入参数  : pstAppMsg - AT 下发的设置TTY模式的消息
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修订记录  :
-  1.日    期   : 2015年02月07日
-    作    者   : w00316404
-    修改内容   : 新增函数
-*****************************************************************************/
+
 VOS_VOID  APP_VC_AppSetTTYModeProc(
     APP_VC_REQ_MSG_STRU                *pstAppMsg
 )
@@ -3020,33 +2057,7 @@ VOS_VOID  APP_VC_AppSetTTYModeProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : APP_VC_AtParaSetProc
- 功能描述  : 处理AT命令的消息
- 输入参数  : pMsg - Call模块发来的消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修订记录  :
-  1.日    期   : 2009年07月05日
-    作    者   : h44270
-    修改内容   : Creat
 
-  2.日    期   : 2011年10月06日
-    作    者   : f00179208
-    修改内容   : AT移植项目，增加消息处理分支
-
-  3.日    期   : 2012年9月12日
-    作    者   : A00165503
-    修改内容   : DTS2012091405101: ^CMUT命令实现
-  4.日    期   : 2012年12月28日
-    作    者   : 张鹏/00214637
-    修改内容   :  ^CBG命令实现
-  5.日    期   : 2014年3月27日
-    作    者   : j00174725
-    修改内容   : Ecall项目
-*****************************************************************************/
 VOS_VOID  APP_VC_AtParaProc(APP_VC_REQ_MSG_STRU *pstAppMsg)
 {
 
@@ -3114,7 +2125,6 @@ VOS_VOID  APP_VC_AtParaProc(APP_VC_REQ_MSG_STRU *pstAppMsg)
             APP_VC_AppSetModemLoopProc(pstAppMsg);
             break;
 
-        /* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
         case APP_VC_MSG_SET_MSD_REQ:
             APP_VC_SetMsdProc(pstAppMsg);
@@ -3132,7 +2142,6 @@ VOS_VOID  APP_VC_AtParaProc(APP_VC_REQ_MSG_STRU *pstAppMsg)
             APP_VC_QryEcallCfgProc(pstAppMsg);
             break;
 #endif
-        /* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, end */
 
         case APP_VC_MSG_QRY_TTYMODE_REQ:
             APP_VC_AppQryTTYModeProc(pstAppMsg);
@@ -3147,19 +2156,7 @@ VOS_VOID  APP_VC_AtParaProc(APP_VC_REQ_MSG_STRU *pstAppMsg)
     }
 }
 
-/*****************************************************************************
-函 数 名  : APP_VC_SetDevCnfProc
-功能描述  : 处理PHY_VC_SET_DEVICE_CNF消息原语
-输入参数  : pMsg - Call模块发来的消息
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年07月05日
-    作    者   : h44270
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID  APP_VC_SetDevCnfProc(
     VCVOICE_OP_RSLT_STRU              *pOpRsltMsg
 )
@@ -3212,32 +2209,13 @@ VOS_VOID  APP_VC_SetDevCnfProc(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : APP_VC_StartCnfProc
-功能描述  : 收到ID_CODEC_VC_START_CNF的处理
-输入参数  : pMsg - HPA发来的消息
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2010年7月30日
-    作    者   : h44270
-    修改内容   : Creat
-2.  日    期   : 2013年07月22日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseI项目
-3.  日    期   :2014年9月24日
-    作    者   :s00217060
-    修改内容   :for cs_err_log
-*****************************************************************************/
+
 VOS_VOID  APP_VC_StartCnfProc(
     VCVOICE_OP_RSLT_STRU              *pstMsg
 )
 {
     CALL_VC_CHANNEL_INFO_STRU           stChanInfo;
 
-    /* Modified by s00217060 for VoLTE_PhaseI  项目, 2013-07-22, begin */
     if(pstMsg->enExeRslt != VCVOICE_EXECUTE_RSLT_SUCC)
     {
         /*只有在APP_VC_S_WAIT_INTERNAL_SET_DEV_START_RSLT状态的时候，
@@ -3282,34 +2260,13 @@ VOS_VOID  APP_VC_StartCnfProc(
 
     /* 清除全局变量 */
     g_stVcStateMgmt.enStartHifiOrig = APP_VC_START_HIFI_ORIG_BUTT;
-    /* Modified by s00217060 for VoLTE_PhaseI  项目, 2013-07-22, end */
     APP_VC_UpdateState(APP_VC_S_NULL);
     APP_VC_StopProtectTimer();
     APP_VC_BufferMsgProc();
 
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VC_SetVolumeCnfProc
- 功能描述  : 处理ID_CODEC_VC_SET_VOLUME_CNF消息
- 输入参数  : pstOpRsltMsg - 消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月12日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年9月29日
-    作    者   : l60609
-    修改内容   : DTS2012082507775:^CONF后带OK
-  3.日    期   : 2015年05月30日
-    作    者   : w00281933
-    修改内容   : TSTS
-*****************************************************************************/
 VOS_VOID APP_VC_SetVolumeCnfProc(
     VCVOICE_OP_RSLT_STRU              *pstOpRsltMsg
 )
@@ -3368,19 +2325,7 @@ VOS_VOID APP_VC_SetVolumeCnfProc(
     return;
  }
 
-/*****************************************************************************
-函 数 名  : APP_VC_ProcDtmfInd
-功能描述  : VC处理Codec发送过来的DTMF信号消息
-输入参数  : VOICEVC_DTMF_IND_STRU              *pstDtmfInd
-输出参数  : 无
-返 回 值  : VOS_VOID
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2014年5月9日
-    作    者   : g00261581
-    修改内容   : 新增
-*****************************************************************************/
+
 VOS_VOID APP_VC_ProcDtmfInd(
     VOICEVC_DTMF_IND_STRU              *pstDtmfInd
 )
@@ -3420,20 +2365,7 @@ VOS_VOID APP_VC_ProcDtmfInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VC_ForegroundCnfProc
- 功能描述  : 处理ID_VOICE_VC_FOREGROUND_CNF消息
- 输入参数  : pstOpRsltMsg - 消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年08月30日
-    作    者   : l00198894
-    修改内容   : DTS2014082905824 CBG命令未考虑缓存机制
-*****************************************************************************/
 VOS_VOID APP_VC_ForegroundCnfProc(
     VCVOICE_OP_RSLT_STRU              *pstOpRsltMsg
 )
@@ -3451,20 +2383,7 @@ VOS_VOID APP_VC_ForegroundCnfProc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VC_BackgroundCnfProc
- 功能描述  : 处理ID_VOICE_VC_BACKGROUND_CNF消息
- 输入参数  : pstOpRsltMsg - 消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年08月30日
-    作    者   : l00198894
-    修改内容   : DTS2014082905824 CBG命令未考虑缓存机制
-*****************************************************************************/
 VOS_VOID APP_VC_BackgroundCnfProc(
     VCVOICE_OP_RSLT_STRU              *pstOpRsltMsg
 )
@@ -3482,20 +2401,7 @@ VOS_VOID APP_VC_BackgroundCnfProc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VC_GroundRspProc
- 功能描述  : 处理ID_VOICE_VC_GROUND_RSP消息
- 输入参数  : pstOpRsltMsg - 消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年08月30日
-    作    者   : l00198894
-    修改内容   : DTS2014082905824 CBG命令未考虑缓存机制
-*****************************************************************************/
 VOS_VOID APP_VC_GroundRspProc(
     VCVOICE_OP_RSLT_STRU              *pstOpRsltMsg
 )
@@ -3513,40 +2419,7 @@ VOS_VOID APP_VC_GroundRspProc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VC_MedMsgProc
- 功能描述  : 处理物理层发来的对于物理层VOICE模块操作结果的消息
- 输入参数  : pMsg - Call模块发来的消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修订记录  :
-  1.日    期   : 2009年07月05日
-    作    者   : h44270
-    修改内容   : Creat
 
-  2.日    期   : 2010年07月28日
-    作    者   : h44270
-    修改内容   : 问题单号:DTS2010072302149,PC VOICE被叫不能接通
-
-  3.日    期   : 2012年9月12日
-    作    者   : A00165503
-    修改内容   : DTS2012091405101: ^CMUT命令实现
-
-  4.日    期   : 2012年12月28日
-    作    者   : 张鹏/z00214637
-    修改内容   : ^CBG命令实现
-
-  5.日    期   : 2014年3月27日
-    作    者   : j00174725
-    修改内容   : Ecall项目
-
-  6.日    期   : 2014年08月30日
-    作    者   : l00198894
-    修改内容   : DTS2014082905824 CBG命令未考虑缓存机制
-
-*****************************************************************************/
 VOS_VOID  APP_VC_MedMsgProc(VOS_VOID *pMsg)
 {
     VCVOICE_OP_RSLT_STRU              *pOpRsltMsg;
@@ -3556,12 +2429,10 @@ VOS_VOID  APP_VC_MedMsgProc(VOS_VOID *pMsg)
     /*有一个正常的流程打印信息*/
     VC_INFO_LOG1("APP_VC_MedMsgProc: msg Name.", pOpRsltMsg->usMsgName);
 
-    /* Modify by j00174725 for V3R3C60_eCall项目, 2014-3-29, begin */
     if ( (pOpRsltMsg->enExeRslt != VCVOICE_EXECUTE_RSLT_SUCC)
       && (pOpRsltMsg->usMsgName != ID_VOICE_VC_ECALL_TRANS_STATUS_NTF)
       && (pOpRsltMsg->usMsgName != ID_VOICE_VC_AL_ACK_REPORT_IND)
       && (pOpRsltMsg->usMsgName != ID_VOICE_VC_START_SEND_MSD_IND) )
-    /* Modify by j00174725 for V3R3C60_eCall项目, 2014-3-29, end */
     {
         /* 打印异常打印 */
         VC_WARN_LOG1("APP_VC_MedMsgProc: Exe Result.", pOpRsltMsg->enExeRslt);
@@ -3607,7 +2478,6 @@ VOS_VOID  APP_VC_MedMsgProc(VOS_VOID *pMsg)
             APP_VC_GroundRspProc(pOpRsltMsg);
             break;
 
-        /* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
         case ID_VOICE_VC_ECALL_TRANS_STATUS_NTF:
             APP_VC_ReportEcallState(pMsg);
@@ -3624,7 +2494,6 @@ VOS_VOID  APP_VC_MedMsgProc(VOS_VOID *pMsg)
             APP_VC_StartSendMsdData(pMsg);
             break;
 #endif
-        /* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, end */
 
         case ID_VOICE_VC_DTMF_IND:
             APP_VC_ProcDtmfInd((VOICEVC_DTMF_IND_STRU *)pMsg);
@@ -3641,28 +2510,14 @@ VOS_VOID  APP_VC_MedMsgProc(VOS_VOID *pMsg)
 
 }
 
-/* Added by s00217060 for VoLTE_PhaseI  项目, 2013-07-09, begin */
 #if (FEATURE_ON == FEATURE_IMS)
-/*****************************************************************************
- 函 数 名  : APP_VC_ImsaMsgProc
- 功能描述  : 处理IMSA发来的消息
- 输入参数  : pMsg - IMSA模块发来的消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修订记录  :
-  1.日    期   : 2013年07月10日
-    作    者   : s00217060
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID  APP_VC_ImsaMsgProc(VOS_VOID *pMsg)
 {
     MSG_HEADER_STRU                     *pMsgHeader = VOS_NULL_PTR;
 
     pMsgHeader = (MSG_HEADER_STRU *)pMsg;
 
-    /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-12-05, begin */
     /* 如果已经启动HIFI,并且本次消息类型为ID_IMSA_VC_START_HIFI_NTF，丢弃不处理 */
     if ( (VOS_TRUE == APP_VC_GetCallStatus())
       && (ID_IMSA_VC_START_HIFI_NTF == pMsgHeader->ulMsgName) )
@@ -3672,7 +2527,6 @@ VOS_VOID  APP_VC_ImsaMsgProc(VOS_VOID *pMsg)
 
         return;
     }
-    /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-12-05, end */
 
 
     /* 如果VC状态不为NULL，表示VC正在处理别的消息，把当前这条消息先缓存起来 */
@@ -3706,23 +2560,9 @@ VOS_VOID  APP_VC_ImsaMsgProc(VOS_VOID *pMsg)
 
 }
 #endif
-/* Added by s00217060 for VoLTE_PhaseI  项目, 2013-07-09, end */
 
 /*lint -e424*/
-/*****************************************************************************
- 函 数 名  : APP_VC_BufferMsgProc
- 功能描述  : 处理VC模块缓存队列中的消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月07日
-    作    者   : W00316404
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID APP_VC_BufferMsgProc(VOS_VOID)
 {
     APP_VC_BUFF_MSG_NODE_STRU          *pstNode     = VOS_NULL_PTR;
@@ -3754,28 +2594,9 @@ VOS_VOID APP_VC_BufferMsgProc(VOS_VOID)
 /*lint +e424*/
 
 
-/*****************************************************************************
-函 数 名  : APP_VC_StartTimeoutProc
-功能描述  : APP_VC_TIMER_START超时的处理
-输入参数  : pMsg - 超时消息
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2010年07月30日
-    作    者   : h44270
-    修改内容   : Creat
-2.  日    期   : 2013年07月22日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseI项目
-3.  日    期   :2014年9月24日
-    作    者   :s00217060
-    修改内容   :for cs_err_log
-*****************************************************************************/
+
 VOS_VOID  APP_VC_StartTimeoutProc(VOS_VOID)
 {
-    /* Modified by s00217060 for VoLTE_PhaseI  项目, 2013-07-20, begin */
     CALL_VC_CHANNEL_INFO_STRU                               stChanInfo;
     APP_VC_OPEN_CHANNEL_FAIL_CAUSE_ENUM_UINT32              enVcCause;
 #if (FEATURE_ON == FEATURE_IMS)
@@ -3842,45 +2663,10 @@ VOS_VOID  APP_VC_StartTimeoutProc(VOS_VOID)
     }
 
     return;
-    /* Modified by s00217060 for VoLTE_PhaseI  项目, 2013-07-20, end */
 
 }
 
-/*****************************************************************************
-  函 数 名  : APP_VC_TimeoutMsgProc
-  功能描述  : 处理超时消息
-  输入参数  : pMsg - Call模块发来的消息
-  输出参数  : 无
-  返 回 值  : 无
-  调用函数  :
-  被调函数  :
-  修订记录  :
-  1.日    期   : 2009年07月05日
-    作    者   : h44270
-    修改内容   : Creat
 
-  2.日    期   : 2010年07月28日
-    作    者   : h44270
-    修改内容   : 问题单号:DTS2010072302149,PC VOICE被叫不能接通
-
-  3 日    期   : 2010年07月30
-    作    者   : h44270
-    修改内容   : 问题单号:AT2D18172,打电话的时候切换，丢消息，保护处理
-
-  4.日    期   : 2010年12月2日
-    作    者   : 傅映君/f62575
-    修改内容   : CS ERROR LOG
-
-  5.日    期   : 2012年9月12日
-    作    者   : A00165503
-    修改内容   : DTS2012091405101: ^CMUT命令实现
-  6.日    期   : 2012年12月28日
-    作    者   : 张鹏/z00214637
-    修改内容   : ^CBG命令实现
-  7.日    期   : 2015年05月30日
-    作    者   : w00281933
-    修改内容   : Modified for The TSTS Project
-*****************************************************************************/
 VOS_VOID  APP_VC_TimeoutMsgProc(VOS_VOID *pMsg)
 {
     REL_TIMER_MSG                      *pTimerMsg;
@@ -3966,13 +2752,11 @@ VOS_VOID  APP_VC_TimeoutMsgProc(VOS_VOID *pMsg)
             APP_VC_SendGroundRsp( g_stVcStateMgmt.clientId, VCVOICE_GROUND_BUTT, VOS_ERR);
             break;
 
-        /* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
         case APP_VC_TIMER_SET_ECALL_CFG:
             APP_VC_ReportEvent(APP_VC_EVT_SET_ECALL_CFG, MN_ERR_UNSPECIFIED);
             break;
 #endif
-        /* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, end */
 
         default:
             VC_WARN_LOG1("APP_VC_TimeoutMsgProc: Wrong Timer Name.", (VOS_INT32)pTimerMsg->ulName);
@@ -3985,29 +2769,7 @@ VOS_VOID  APP_VC_TimeoutMsgProc(VOS_VOID *pMsg)
 }
 
 
-/*****************************************************************************
-函 数 名  : APP_VC_MsgProc
-功能描述  : 初始化和VC相关的全局变量
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_OK
-调用函数  : SI_InitGlobeVariable
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年07月05日
-    作    者   : h44270
-    修改内容   : Creat
-2.  日    期   : 2011年11月07日
-    作    者   : f00179208
-    修改内容   : AT Project, 修改虚拟WUEPS_PID_VC为WUEPS_PID_AT
-3.  日    期   : 2013年07月11日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseI项目
 
-  4.日    期   : 2014年9月17日
-    作    者   : y00218312
-    修改内容   : CDMA 1X项目，修改channelinfo处理函数的入参
-*****************************************************************************/
 VOS_VOID  APP_VC_MsgProc(MsgBlock* pMsg)
 {
     switch(pMsg->ulSenderPid)
@@ -4028,13 +2790,11 @@ VOS_VOID  APP_VC_MsgProc(MsgBlock* pMsg)
             APP_VC_TimeoutMsgProc(pMsg);
             break;
 
-/* Modified by s00217060 for VoLTE_PhaseI  项目, 2013-07-15, begin */
 #if (FEATURE_ON == FEATURE_IMS)
         case PS_PID_IMSA:
             APP_VC_ImsaMsgProc(pMsg);
             break;
 #endif
-/* Modified by s00217060 for VoLTE_PhaseI  项目, 2013-07-15, end */
 
         default:
             VC_WARN_LOG1("APP_VC_MsgProc: Timer Pid.", (VOS_INT32)pMsg->ulSenderPid);
@@ -4042,25 +2802,7 @@ VOS_VOID  APP_VC_MsgProc(MsgBlock* pMsg)
     }
 }
 
-/*****************************************************************************
-函 数 名  : WuepsVCPidInit
-功能描述  : 初始化和VC相关的全局变量
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_OK
-调用函数  : SI_InitGlobeVariable
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年07月05日
-    作    者   : h44270
-    修改内容   : Creat
-  2.日    期   : 2012年03月03日
-    作    者   : s62952
-    修改内容   : BalongV300R002 Build优化项目
-  3.日    期   : 2014年08月30日
-    作    者   : l00198894
-    修改内容   : DTS2014082905824
-*****************************************************************************/
+
 VOS_UINT32 WuepsVCPidInit(enum VOS_INIT_PHASE_DEFINE InitPhrase)
 {
     switch( InitPhrase )
@@ -4087,20 +2829,7 @@ VOS_UINT32 WuepsVCPidInit(enum VOS_INIT_PHASE_DEFINE InitPhrase)
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_VC_SndOutsideContextData
- 功能描述  : 把VC外部上下文作为SDT消息发送出去，以便在回放时通过桩函数还原
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年11月30日
-    作    者   : 王毛 00166186
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_VC_SndOutsideContextData()
 {
     NAS_VC_SDT_MSG_ST                      *pSndMsgCB     = VOS_NULL_PTR;
@@ -4132,20 +2861,7 @@ VOS_VOID NAS_VC_SndOutsideContextData()
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VC_SendVCReqToOm
- 功能描述  : 将VC的异步请求发送到OM所在任务处理
- 输入参数  : ulStatus - 命令类型
- 输出参数  : ulPort   - 端口号
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月17日
-    作    者   : f00179208
-    修改内容   : 新增，AT移植项目:将OM_PcvTransStatus接口改为异步消息发给OM
-*****************************************************************************/
 VOS_UINT32  APP_VC_SendVcReqToOm(VOS_UINT32 ulStatus, VOS_UINT32 ulPort)
 {
     MN_APP_CS_SET_TRANS_PORT_MSG_STRU  *pstMsg =
@@ -4180,20 +2896,7 @@ VOS_UINT32  APP_VC_SendVcReqToOm(VOS_UINT32 ulStatus, VOS_UINT32 ulPort)
 }
 
 #ifdef __PS_WIN32_RECUR__
-/*****************************************************************************
- 函 数 名  : NAS_VC_RestoreContextData
- 功能描述  : 恢复VC全局变量。
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年12月1日
-    作    者   : 王毛 00166186
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_VC_RestoreContextData(struct MsgCB * pMsg)
 {
     NAS_VC_SDT_MSG_ST                      *pRcvMsgCB;
@@ -4213,21 +2916,7 @@ VOS_UINT32 NAS_VC_RestoreContextData(struct MsgCB * pMsg)
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : APP_VC_SaveClvlVolume
- 功能描述  : 保存NV项en_NV_Item_Clvl_Volume
- 输入参数  : APP_VC_NV_CLVL_VOLUME_STRU         *pstClvlVolume
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月16日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID APP_VC_SaveClvlVolume(
     APP_VC_NV_CLVL_VOLUME_STRU         *pstClvlVolume
 )
@@ -4242,21 +2931,7 @@ VOS_VOID APP_VC_SaveClvlVolume(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VC_GetClvlVolume
- 功能描述  : 读取NV项en_NV_Item_Clvl_Volume
- 输入参数  : APP_VC_NV_CLVL_VOLUME_STRU         *pstClvlVolume
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月16日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID APP_VC_GetClvlVolume(
     APP_VC_NV_CLVL_VOLUME_STRU         *pstClvlVolume
 )
@@ -4288,20 +2963,7 @@ VOS_VOID APP_VC_GetClvlVolume(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VC_GetCurrVolume
- 功能描述  : 获取当前设备的音量
- 输入参数  : APP_VC_NV_CLVL_VOLUME_STRU         *pstClvlVolume
- 输出参数  : 无
- 返 回 值  : VOS_INT16
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月30日
-    作    者   : w00281933
-    修改内容   : TSTS
-*****************************************************************************/
 VOS_INT16 APP_VC_GetCurrVolume(
     APP_VC_NV_CLVL_VOLUME_STRU         *pstClvlVolume
 )
@@ -4346,6 +3008,10 @@ VOS_INT16 APP_VC_GetCurrVolume(
             sCurrVolume = pstClvlVolume->sSmartTalkVolValue;
             break;
 
+        case VC_PHY_DEVICE_MODEM_USBVOICE:
+            sCurrVolume = 0;
+            break;
+
         default:
             sCurrVolume = VC_VOLUME_DEFAULT_VALUE;
             break;
@@ -4354,22 +3020,7 @@ VOS_INT16 APP_VC_GetCurrVolume(
     return sCurrVolume;
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VC_SetCurrVolume
- 功能描述  : 设置当前设备的音量
- 输入参数  : APP_VC_NV_CLVL_VOLUME_STRU         *pstClvlVolume
-             VOS_INT16                           sCurrVolume
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月17日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID APP_VC_SetCurrVolume(
     APP_VC_NV_CLVL_VOLUME_STRU         *pstClvlVolume,
     VOS_INT16                           sCurrVolume
@@ -4420,20 +3071,7 @@ VOS_VOID APP_VC_SetCurrVolume(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VC_GetCurrDevMode
- 功能描述  : 获取当前设备的device mode
- 输入参数  : VOS_INT16 无
- 输出参数  : 无
- 返 回 值  : VOS_INT16
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  3.日    期   : 2015年05月30日
-    作    者   : w00281933
-    修改内容   : TSTS
-*****************************************************************************/
 VC_PHY_DEVICE_MODE_ENUM_U16 APP_VC_GetCurrDevMode(VOS_VOID)
 {
     APP_VC_NV_CLVL_VOLUME_STRU          stClvlVolume;
@@ -4445,20 +3083,7 @@ VC_PHY_DEVICE_MODE_ENUM_U16 APP_VC_GetCurrDevMode(VOS_VOID)
     return stClvlVolume.usCurrDevMode;
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VC_GetVoiceTestFlag
- 功能描述  : 获取当前vc voice test flag
- 输入参数  : VOS_UINT32 *pVcVoiceFlag
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月24日
-    作    者   : m00217266
-    修改内容   : 添加vcvoice test nv读写判断
-*****************************************************************************/
 VOS_UINT32 APP_VC_GetVoiceTestFlag(VOS_UINT32 *pVoiceTestFlag)
 {
     VOS_UINT32                          ulLength;
@@ -4485,21 +3110,7 @@ VOS_UINT32 APP_VC_GetVoiceTestFlag(VOS_UINT32 *pVoiceTestFlag)
 }
 
  #if (FEATURE_ON == FEATURE_PTM)
-/*****************************************************************************
- 函 数 名  : APP_VC_AppVCFailErrRecord
- 功能描述  : 记录VC异常事件
- 输入参数  : VOS_UINT32 ulName,VOS_UINT16 usCause
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月23日
-    作    者   : s00190137
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID APP_VC_AppVCFailErrRecord(
     VOS_UINT16                          usName,
     VOS_UINT16                          usCause
@@ -4555,22 +3166,8 @@ VOS_VOID APP_VC_AppVCFailErrRecord(
 }
 #endif
 
-/* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
-/*****************************************************************************
- 函 数 名  : APP_VC_StartSendMsdData
- 功能描述  : HIFI请求开始发送MSD数据
- 输入参数  : APP_VC_REQ_MSG_STRU                *pstAppMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月06日
-    作    者   : g00248710
-    修改内容   : 新生成函数
-*****************************************************************************/
 
 VOS_VOID  APP_VC_StartSendMsdData(VOS_VOID *pMsg)
 {
@@ -4611,20 +3208,7 @@ VOS_VOID  APP_VC_StartSendMsdData(VOS_VOID *pMsg)
     }
 
 }
-/*****************************************************************************
- 函 数 名  : APP_VC_SetMsdProc
- 功能描述  : 设置eCall MSD数据消息处理函数
- 输入参数  : APP_VC_REQ_MSG_STRU                *pstAppMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年03月27日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  APP_VC_SetMsdProc(
     APP_VC_REQ_MSG_STRU                *pstAppMsg
 )
@@ -4665,20 +3249,7 @@ VOS_VOID  APP_VC_SetMsdProc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VC_QryMsdProc
- 功能描述  : 查询eCall MSD数据消息处理函数
- 输入参数  : APP_VC_REQ_MSG_STRU                *pstAppMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年03月27日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  APP_VC_QryMsdProc(
     APP_VC_REQ_MSG_STRU                *pstAppMsg
 )
@@ -4692,20 +3263,7 @@ VOS_VOID  APP_VC_QryMsdProc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VC_SetEcallCfgProc
- 功能描述  : 设置eCall配置消息处理函数
- 输入参数  : APP_VC_REQ_MSG_STRU                *pstAppMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年03月27日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  APP_VC_SetEcallCfgProc(
     APP_VC_REQ_MSG_STRU                *pstAppMsg
 )
@@ -4734,20 +3292,7 @@ VOS_VOID  APP_VC_SetEcallCfgProc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VC_QryEcallCfgProc
- 功能描述  : 查询eCall 配置消息处理函数
- 输入参数  : APP_VC_REQ_MSG_STRU                *pstAppMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年03月27日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  APP_VC_QryEcallCfgProc(
     APP_VC_REQ_MSG_STRU                *pstAppMsg
 )
@@ -4761,20 +3306,7 @@ VOS_VOID  APP_VC_QryEcallCfgProc(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : APP_VC_MapAppEcallTransStatus
-功能描述  : VC上报的传送状态与AT状态映射
-输入参数  : enVcTransStatus  -- VC传送状态
-输出参数  : penAppStatus     -- APP传送状态
-返 回 值  : VOS_VOID
-调用函数  :
-被调函数  :
-修订记录  :
-1.日    期   : 2014年3月27日
-  作    者   : j00174725
-  修改内容   : V3R3C60_eCall项目
-  说    明   : 传入参数正确性由调用都保证
-*****************************************************************************/
+
 VOS_VOID APP_VC_MapAppEcallTransStatus(
     VCVOICE_ECALL_TRANS_STATUS_ENUM_UINT8  enVcTransStatus,
     APP_VC_ECALL_TRANS_STATUS_ENUM_UINT8  *penAppStatus
@@ -4802,20 +3334,7 @@ VOS_VOID APP_VC_MapAppEcallTransStatus(
 
 }
 
-/*****************************************************************************
-函 数 名  : APP_VC_MapAppEcallTransFailCause
-功能描述  : VC上报的传送失败原因与AT失败原因映射
-输入参数  : enVcTransStatus  -- VC传送状态
-输出参数  : penAppStatus     -- APP传送状态
-返 回 值  : VOS_VOID
-调用函数  :
-被调函数  :
-修订记录  :
-1.日    期   : 2014年3月27日
-  作    者   : j00174725
-  修改内容   : V3R3C60_eCall项目
-  说    明   : 传入参数正确性由调用都保证
-*****************************************************************************/
+
 VOS_VOID APP_VC_MapAppEcallTransFailCause(
     VCVOICE_ECALL_TRANS_FAIL_CAUSE_ENUM_UINT8  enVcFailCause,
     APP_VC_ECALL_TRANS_FAIL_CAUSE_ENUM_UINT8  *penAppFailCause
@@ -4845,20 +3364,7 @@ VOS_VOID APP_VC_MapAppEcallTransFailCause(
 }
 
 
-/*****************************************************************************
-函 数 名  : APP_VC_MapCallEcallTransStatus
-功能描述  : VC上报的传送状态与CALL状态映射
-输入参数  : enVcTransStatus  -- VC传送状态
-输出参数  : penAppStatus     -- APP传送状态
-返 回 值  : VOS_VOID
-调用函数  :
-被调函数  :
-修订记录  :
-1.日    期   : 2014年3月27日
-  作    者   : j00174725
-  修改内容   : V3R3C60_eCall项目
-  说    明   : 传入参数正确性由调用都保证
-*****************************************************************************/
+
 VOS_VOID APP_VC_MapCallEcallTransStatus(
     VCVOICE_ECALL_TRANS_STATUS_ENUM_UINT8   enVcTransStatus,
     VC_CALL_ECALL_TRANS_STATUS_ENUM_UINT8  *penCallStatus
@@ -4886,20 +3392,7 @@ VOS_VOID APP_VC_MapCallEcallTransStatus(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : APP_VC_MapCallEcallTransFailCause
-功能描述  : VC上报的传送失败原因与CALL失败原因映射
-输入参数  : enVcTransStatus  -- VC传送状态
-输出参数  : penAppStatus     -- APP传送状态
-返 回 值  : VOS_VOID
-调用函数  :
-被调函数  :
-修订记录  :
-1.日    期   : 2014年3月27日
-  作    者   : j00174725
-  修改内容   : V3R3C60_eCall项目
-  说    明   : 传入参数正确性由调用都保证
-*****************************************************************************/
+
 VOS_VOID APP_VC_MapCallEcallTransFailCause(
     VCVOICE_ECALL_TRANS_FAIL_CAUSE_ENUM_UINT8   enVcFailCause,
     VC_CALL_ECALL_TRANS_FAIL_CAUSE_ENUM_UINT8  *penCallFailCause
@@ -4929,19 +3422,7 @@ VOS_VOID APP_VC_MapCallEcallTransFailCause(
 }
 
 
-/*****************************************************************************
-函 数 名  : APP_VC_ReportEcallState
-功能描述  : 主动上报eCall数据传送状态
-输入参数  : VOS_VOID* --消息指针
-输出参数  : 无
-返 回 值  : VOS_VOID
-调用函数  :
-被调函数  :
-修订记录  :
-1.日    期   : 2014年3月27日
-  作    者   : j00174725
-  修改内容   : V3R3C60_eCall项目
-*****************************************************************************/
+
 VOS_VOID  APP_VC_ReportEcallState(VOS_VOID *pMsg)
 {
     VCVOICE_ECALL_TRANS_STATUS_NTF_STRU        *pstStatus;
@@ -5013,19 +3494,7 @@ VOS_VOID  APP_VC_ReportEcallState(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : APP_VC_CallChannelConnectProc
-功能描述  : 处理CALL_VC_CHANNEL_CONNECT消息
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修订记录  :
-1.日    期   : 2014年3月27日
-  作    者   : j00174725
-  修改内容   : V3R3C60_eCall项目
-*****************************************************************************/
+
 VOS_VOID  APP_VC_CallChannelConnectProc(VOS_VOID)
 {
     /* 给MED下发MSD数据 */
@@ -5034,19 +3503,7 @@ VOS_VOID  APP_VC_CallChannelConnectProc(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : APP_VC_MapMedMsdMode
-功能描述  : APP下发的MSD 数据传送模式转换成Med的传送模式
-输入参数  : enAppMode               -- VC传送模式
-输出参数  : penVoiceMode            --VOICE的传送模式
-返 回 值  : VOS_UINT32
-调用函数  :
-被调函数  :
-修订记录  :
-1.日    期   : 2014年3月27日
-  作    者   : j00174725
-  修改内容   : V3R3C60_eCall项目
-*****************************************************************************/
+
 VOS_VOID APP_VC_MapMedMsdMode(
     APP_VC_ECALL_MSD_MODE_ENUM_UINT16   enAppMode,
     VCVOICE_ECALL_MSD_MODE_ENUM_UINT16 *penVoiceMode
@@ -5067,19 +3524,7 @@ VOS_VOID APP_VC_MapMedMsdMode(
 
 }
 
-/*****************************************************************************
-函 数 名  : APP_VC_MapMedVocConfig
-功能描述  : APP下发的语音模式转换成Med的语音模式
-输入参数  : enAppMode               -- VC传送模式
-输出参数  : penVoiceMode            --VOICE的传送模式
-返 回 值  : VOS_UINT32
-调用函数  :
-被调函数  :
-修订记录  :
-1.日    期   : 2014年3月27日
-  作    者   : j00174725
-  修改内容   : V3R3C60_eCall项目
-*****************************************************************************/
+
 VOS_VOID APP_VC_MapMedVocConfig(
     APP_VC_ECALL_VOC_CONFIG_ENUM_UINT16           enAppMode,
     VCVOICE_ECALL_MSD_VOICE_ABANDON_ENUM_UINT16  *penVoiceMode
@@ -5104,19 +3549,7 @@ VOS_VOID APP_VC_MapMedVocConfig(
 
 }
 
-/*****************************************************************************
-函 数 名  : APP_VC_SetEcallCfgCnfProc
-功能描述  : 处理设置 ecall 回复消息
-输入参数  : VOS_VOID* --消息指针
-输出参数  : 无
-返 回 值  : VOS_VOID
-调用函数  :
-被调函数  :
-修订记录  :
-1.日    期   : 2014年3月27日
-  作    者   : j00174725
-  修改内容   : V3R3C60_eCall项目
-*****************************************************************************/
+
 VOS_VOID  APP_VC_SetEcallCfgCnfProc
 (
     VCVOICE_EXECUTE_RSLT_ENUM_UINT16    enExeRslt
@@ -5133,19 +3566,7 @@ VOS_VOID  APP_VC_SetEcallCfgCnfProc
     APP_VC_BufferMsgProc();
 }
 
-/*****************************************************************************
-函 数 名  : APP_VC_RecordAlAckInfo
-功能描述  : 将Med的上报记录到上下文中
-输入参数  :
-输出参数  : 无
-返 回 值  : VOS_VOID
-调用函数  :
-被调函数  :
-修订记录  :
-1.日    期   : 2014年6月30日
-  作    者   : j00174725
-  修改内容   : V3R3C60_eCall项目
-*****************************************************************************/
+
 VOS_VOID APP_VC_RecordAlAckInfo(
     VOS_UINT32                          ulTimesTamp,
     VOS_UINT8                           ucAkAckValue
@@ -5164,22 +3585,7 @@ VOS_VOID APP_VC_RecordAlAckInfo(
 }
 
 
-/*****************************************************************************
-函 数 名  : APP_VC_ReportAlAckProc
-功能描述  : 处理MED的AlAck上报
-输入参数  : VOS_VOID* --消息指针
-输出参数  : 无
-返 回 值  : VOS_VOID
-调用函数  :
-被调函数  :
-修订记录  :
-1.日    期   : 2014年6月30日
-  作    者   : j00174725
-  修改内容   : V3R3C60_eCall项目
-2.日    期   :2014年9月24日
-  作    者   :s00217060
-  修改内容   :for cs_err_log
-*****************************************************************************/
+
 VOS_VOID  APP_VC_ReportAlAckProc(VOS_VOID *pMsg)
 {
     VOICEVC_AL_ACK_REPORT_IND_STRU      *pstAlAckInfo = VOS_NULL_PTR;
@@ -5199,24 +3605,9 @@ VOS_VOID  APP_VC_ReportAlAckProc(VOS_VOID *pMsg)
 
 
 #endif
-/* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, end */
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- 函 数 名  : APP_VC_CallChannelSoCtrlOrderInd
- 功能描述  : 处理VC_CALL_SO_CTRL_ORDER_IND消息
- 输入参数  : MsgBlock                           *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月17日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID APP_VC_CallChannelSoCtrlOrderInd(
     MsgBlock                           *pstMsg
 )
@@ -5231,21 +3622,7 @@ VOS_VOID APP_VC_CallChannelSoCtrlOrderInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VC_CallChannelSoCtrlMsgInd
- 功能描述  : 处理VC_CALL_SO_CTRL_MSG_IND消息
- 输入参数  : MsgBlock                           *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月17日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID APP_VC_CallChannelSoCtrlMsgInd(
     MsgBlock                           *pstMsg
 )
@@ -5271,19 +3648,7 @@ VOS_VOID APP_VC_CallChannelSoCtrlMsgInd(
 #endif
 
 
-/*****************************************************************************
-函 数 名  : APP_VC_ConvertCallCodeTypeToVodecType
-功能描述  : 把CALL模块带的编码方式转换成CALL/CODEC类型的编码方式
-输入参数  : enCodeType - VC/CALL之间的声音编码类型
-输出参数  : 无
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2014年12月31日
-    作    者   : y00213812
-    修改内容   : Creat
-*****************************************************************************/
+
 VCVOICE_TYPE_ENUM_UINT16 APP_VC_ConvertCallCodeTypeToVodecType(
     CALL_VC_CODEC_TYPE_ENUM_U8       enCodeType
 )

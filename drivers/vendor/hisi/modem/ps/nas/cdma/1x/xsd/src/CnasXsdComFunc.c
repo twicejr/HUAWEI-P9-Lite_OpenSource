@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasXsdComFunc.c
-  版 本 号   : 初稿
-  作    者   : h00246512
-  生成日期   : 2014年7月14日
-  最近修改   :
-  功能描述   : XSD模块公用函数处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年7月14日
-    作    者   : h00246512
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -88,22 +71,7 @@ VOS_UINT32                              g_ulCurSlice = 0;
   3 函数实现
 *****************************************************************************/
 /*lint -save -e958*/
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_StartTimer
- 功能描述  : XSD模块封装的启动定时器函数
- 输入参数  : CNAS_XSD_TIMER_ID_ENUM_UINT32       enTimerId,
-             VOS_UINT32                          ulTimerLen
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月14日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_StartTimer(
     CNAS_XSD_TIMER_ID_ENUM_UINT32       enTimerId,
     VOS_UINT32                          ulTimerLen
@@ -131,21 +99,7 @@ VOS_VOID CNAS_XSD_StartTimer(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_StopTimer
- 功能描述  : XSD模块封装的停止定时器函数
- 输入参数  : CNAS_XSD_TIMER_ID_ENUM_UINT32       enTimerId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月14日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_StopTimer(
     CNAS_XSD_TIMER_ID_ENUM_UINT32       enTimerId
 )
@@ -154,24 +108,7 @@ VOS_VOID CNAS_XSD_StopTimer(
     CNAS_StopTimer(UEPS_PID_XSD, enTimerId, 0);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_GetAvoidTimerLen
- 功能描述  : 获取avoid timer时长
- 输入参数  : enReason -- avoid原因值
-             VOS_UINT8                           ucAvoidTimes
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月20日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-  2.日    期   : 2015年11月12日
-    作    者   : c00299063
-    修改内容   : avoid timer时长可变
-*****************************************************************************/
 VOS_UINT16 CNAS_XSD_GetAvoidTimerLen(
     CNAS_XSD_AVOID_REASON_ENUM_UINT8    enReason,
     VOS_UINT16                          usAvoidTimes
@@ -198,26 +135,7 @@ VOS_UINT16 CNAS_XSD_GetAvoidTimerLen(
     return 0;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_UpdataAvoidListInfo
- 功能描述  : 添加频点信息进avoid频点列表
- 输入参数  : pstFreq        -- avoid频点
-             ulExpiredSlice -- 到期slice
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年10月14日
-    作    者   : y00245242
-    修改内容   : 新生成函数
- 修改历史      :
-  2.日    期   : 2015年11月12日
-    作    者   : c00299063
-    修改内容   : 增加记录加入avoid频点的次数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_UpdataAvoidListInfo(
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstFreq,
     CNAS_XSD_AVOID_REASON_ENUM_UINT8    enAvoidReason
@@ -279,21 +197,7 @@ VOS_VOID CNAS_XSD_UpdataAvoidListInfo(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_DeleteAcqSuccFreqOfAvoidList
- 功能描述  : 从avoid列表中删除频点信息
- 输入参数  : 无
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年11月16日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_DeleteAcqSuccFreqOfAvoidList(
     CNAS_PRL_FREQENCY_CHANNEL_STRU                         *pstFreq
 )
@@ -317,21 +221,7 @@ VOS_VOID CNAS_XSD_DeleteAcqSuccFreqOfAvoidList(
 }
 
 
-/*****************************************************************************
- 函 数 名  : IsExistAvoidFlagInAvoidlist
- 功能描述  : avoid list 中是否有的频点还未解禁
- 输入参数  : 无
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年11月16日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 CNAS_XSD_IsExistAvoidFlagInAvoidlist()
 {
     CNAS_XSD_AVOID_FREQ_LIST_STRU      *pstAvoidFreqList = VOS_NULL_PTR;
@@ -351,21 +241,7 @@ VOS_UINT8 CNAS_XSD_IsExistAvoidFlagInAvoidlist()
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_ClearAccessSuccessFreqFormAvoidList
- 功能描述  : 从avoid列表中删除频点信息
- 输入参数  : 无
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年11月16日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_ClearAccessSuccessFreqFormAvoidList()
 {
     CNAX_XSD_CAMPED_SYS_INFO_STRU      *pstCampedSysInfo = VOS_NULL_PTR;
@@ -393,22 +269,7 @@ VOS_VOID CNAS_XSD_ClearAccessSuccessFreqFormAvoidList()
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_DeleteAvoidFreqInfoOfAvoidList
- 功能描述  : 从avoid列表中删除频点信息
- 输入参数  : 无
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年11月16日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_ClearAvoidFreqInfoOfAvoidList(
     VOS_UINT8                           ucAvoidListIndex
 )
@@ -448,22 +309,7 @@ VOS_VOID CNAS_XSD_ClearAvoidFreqInfoOfAvoidList(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_IsAddSyncFailFreqInAvoidList
- 功能描述  : 如果频点同步失败的时刻到加入avoid列表的时刻已经超过了解禁的时间，则不加入
- 输入参数  :     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstSyncFailFreq,
-                 VOS_UINT32                          ulSyncFailSlice,
-                 CNAS_XSD_AVOID_REASON_ENUM_UINT8    enAvoidReason
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 CNAS_XSD_IsAddSyncFailFreqInAvoidList(
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstSyncFailFreq,
     VOS_UINT32                          ulSyncFailSlice,
@@ -500,21 +346,7 @@ VOS_UINT8 CNAS_XSD_IsAddSyncFailFreqInAvoidList(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_GetAvoidTimesOfAvoidFreq
- 功能描述  : 获取频点列表被禁止的次数
- 输入参数  : CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstAvoidFreq,
-             CNAS_XSD_AVOID_REASON_ENUM_UINT8    enAvoidReason
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 CNAS_XSD_GetAvoidTimesOfAvoidFreq(
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstAvoidFreq,
     CNAS_XSD_AVOID_REASON_ENUM_UINT8    enAvoidReason
@@ -538,21 +370,7 @@ VOS_UINT8 CNAS_XSD_GetAvoidTimesOfAvoidFreq(
     return 0;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_ClearAvoidCountFromAvoidList
- 功能描述  : 清除avoid计数从avoid列表中
- 输入参数  : VOS_UINT8                           ucAvoidListIndex,
-             CNAS_XSD_AVOID_REASON_ENUM_UINT8    enAvoidReason
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_ClearAvoidCountFromAvoidList(
     VOS_UINT8                           ucAvoidListIndex,
     CNAS_XSD_AVOID_REASON_ENUM_UINT8    enAvoidReason
@@ -567,20 +385,7 @@ VOS_VOID CNAS_XSD_ClearAvoidCountFromAvoidList(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_IsClearFreqInfoOfAvoidList
- 功能描述  : 清除avoid计数从avoid列表中
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 CNAS_XSD_IsClearFreqInfoOfAvoidList(
     VOS_UINT8                           ucAvoidListIndex
 )
@@ -602,25 +407,7 @@ VOS_UINT8 CNAS_XSD_IsClearFreqInfoOfAvoidList(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_ProcRequiredAvoidedFreqByAvoidReason
- 功能描述  : process required avoid frequency according to avoid reason
- 输入参数  : enAvoidReason----avoid reason
-             pstAvoidFreq ----avoid frequency
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月20日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-  2.日    期   : 2014年12月26日
-    作    者   : w00176964
-    修改内容   : CDMA Iteration 6 Modified
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_ProcRequiredAvoidedFreqByAvoidReason(
     CNAS_XSD_AVOID_REASON_ENUM_UINT8    enAvoidReason,
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstAvoidFreq
@@ -645,22 +432,7 @@ VOS_VOID CNAS_XSD_ProcRequiredAvoidedFreqByAvoidReason(
     CNAS_XSD_LogAvoidFreqList(CNAS_XSD_GetAvoidFreqListAddr());
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_GetSystemSlice
- 功能描述  : 获取系统slice
- 输入参数  : 无
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年10月20日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_GetSystemSlice(VOS_VOID)
 {
 #ifdef DMT
@@ -671,44 +443,14 @@ VOS_UINT32 CNAS_XSD_GetSystemSlice(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_GetSystemSliceNumOfEverySecond
- 功能描述  : 获取1秒slice的个数
- 输入参数  : 无
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年10月20日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_GetSystemSliceNumOfOneSecond(VOS_VOID)
 {
     return VOS_GetSliceUnit();
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_TransferMsccCallTypeToXsdFormat
- 功能描述  : 收到测试配置消息处理函数
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月2日
-    作    者   : W00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_XSD_CALL_EXIST_FLAG_ENUM_UINT8 CNAS_XSD_TransferMsccCallTypeToXsdFormat(
     NAS_MSCC_PIF_CDMA_CALL_TYPE_ENUM_UINT8          enMsccCallType
 )
@@ -737,27 +479,7 @@ CNAS_XSD_CALL_EXIST_FLAG_ENUM_UINT8 CNAS_XSD_TransferMsccCallTypeToXsdFormat(
    return enCallExistFlg;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_IsUeSupportedFreq
- 功能描述  : check the band class and chenne are supported by UE or not
- 输入参数  : CNAS_PRL_FREQENCY_CHANNEL_STRU      stFreqChan
- 输出参数  : NONE
- 返 回 值  : VOS_TRUE----UE support
-             VOS_FALSE---UE could not support
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 26/12/2014
-    作    者   : w00176964
-    修改内容   : Create
-  1.日    期   : 19/1/2015
-    作    者   : y00307564
-    修改内容   : 清PCLINT
-  3.日    期   : 3/8/2015
-    作    者   : c00299063
-    修改内容   : 增加频点过滤
-*****************************************************************************/
 VOS_UINT8 CNAS_XSD_IsUeSupportedFreq(
     CNAS_PRL_FREQENCY_CHANNEL_STRU      stFreqChan
 )
@@ -792,21 +514,7 @@ VOS_UINT8 CNAS_XSD_IsUeSupportedFreq(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_IsUeSupportedChannel_BandClass_0
- 功能描述  : 判断该频点是否在移动终端所支持的传输列表当中
- 输入参数  : VOS_UINT16                          usChannel
- 输出参数  : 无
 
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年4月18日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 CNAS_XSD_IsUeSupportedChannel_BandClass_0(
     VOS_UINT16                          usChannel
 )
@@ -821,21 +529,7 @@ VOS_UINT8 CNAS_XSD_IsUeSupportedChannel_BandClass_0(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_IsUeSupportedChannel_BandClass_1
- 功能描述  : 判断该频点是否在移动终端所支持的传输列表当中
- 输入参数  : VOS_UINT16                          usChannel
- 输出参数  : 无
 
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年4月18日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 CNAS_XSD_IsUeSupportedChannel_BandClass_1(
     VOS_UINT16                          usChannel
 )
@@ -849,21 +543,7 @@ VOS_UINT8 CNAS_XSD_IsUeSupportedChannel_BandClass_1(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_IsUeSupportedChannel_BandClass_2
- 功能描述  : 判断该频点是否在移动终端所支持的传输列表当中
- 输入参数  : VOS_UINT16                          usChannel
- 输出参数  : 无
 
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年4月18日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 CNAS_XSD_IsUeSupportedChannel_BandClass_2(
     VOS_UINT16                          usChannel
 )
@@ -877,21 +557,7 @@ VOS_UINT8 CNAS_XSD_IsUeSupportedChannel_BandClass_2(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_IsUeSupportedChannel_BandClass_3
- 功能描述  : 判断该频点是否在移动终端所支持的传输列表当中
- 输入参数  : VOS_UINT16                          usChannel
- 输出参数  : 无
 
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年4月18日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 CNAS_XSD_IsUeSupportedChannel_BandClass_3(
     VOS_UINT16                          usChannel
 )
@@ -907,21 +573,7 @@ VOS_UINT8 CNAS_XSD_IsUeSupportedChannel_BandClass_3(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_IsUeSupportedChannel_BandClass_4
- 功能描述  : 判断该频点是否在移动终端所支持的传输列表当中
- 输入参数  : VOS_UINT16                          usChannel
- 输出参数  : 无
 
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年4月18日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 CNAS_XSD_IsUeSupportedChannel_BandClass_4(
     VOS_UINT16                          usChannel
 )
@@ -934,21 +586,7 @@ VOS_UINT8 CNAS_XSD_IsUeSupportedChannel_BandClass_4(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_IsUeSupportedChannel_BandClass_5
- 功能描述  : 判断该频点是否在移动终端所支持的传输列表当中
- 输入参数  : VOS_UINT16                          usChannel
- 输出参数  : 无
 
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年4月18日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 CNAS_XSD_IsUeSupportedChannel_BandClass_5(
     VOS_UINT16                          usChannel
 )
@@ -965,21 +603,7 @@ VOS_UINT8 CNAS_XSD_IsUeSupportedChannel_BandClass_5(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_IsUeSupportedChannel_BandClass_6
- 功能描述  : 判断该频点是否在移动终端所支持的传输列表当中
- 输入参数  : VOS_UINT16                          usChannel
- 输出参数  : 无
 
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年4月18日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 CNAS_XSD_IsUeSupportedChannel_BandClass_6(
     VOS_UINT16                          usChannel
 )
@@ -987,21 +611,7 @@ VOS_UINT8 CNAS_XSD_IsUeSupportedChannel_BandClass_6(
     return CNAS_XSD_IsUeSupportedChannel_BandClass_1(usChannel);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_IsUeSupportedChannel_BandClass_7
- 功能描述  : 判断该频点是否在移动终端所支持的传输列表当中
- 输入参数  : VOS_UINT16                          usChannel
- 输出参数  : 无
 
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年4月18日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 CNAS_XSD_IsUeSupportedChannel_BandClass_7(
     VOS_UINT16                          usChannel
 )
@@ -1014,21 +624,7 @@ VOS_UINT8 CNAS_XSD_IsUeSupportedChannel_BandClass_7(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_IsUeSupportedChannel_BandClass_8
- 功能描述  : 判断该频点是否在移动终端所支持的传输列表当中
- 输入参数  : VOS_UINT16                          usChannel
- 输出参数  : 无
 
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年4月18日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 CNAS_XSD_IsUeSupportedChannel_BandClass_8(
     VOS_UINT16                          usChannel
 )
@@ -1041,21 +637,7 @@ VOS_UINT8 CNAS_XSD_IsUeSupportedChannel_BandClass_8(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_IsUeSupportedChannel_BandClass_9
- 功能描述  : 判断该频点是否在移动终端所支持的传输列表当中
- 输入参数  : VOS_UINT16                          usChannel
- 输出参数  : 无
 
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年4月18日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 CNAS_XSD_IsUeSupportedChannel_BandClass_9(
     VOS_UINT16                          usChannel
 )
@@ -1068,21 +650,7 @@ VOS_UINT8 CNAS_XSD_IsUeSupportedChannel_BandClass_9(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_IsUeSupportedChannel_BandClass_10
- 功能描述  : 判断该频点是否在移动终端所支持的传输列表当中
- 输入参数  : VOS_UINT16                          usChannel
- 输出参数  : 无
 
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年4月18日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 CNAS_XSD_IsUeSupportedChannel_BandClass_10(
     VOS_UINT16                          usChannel
 )
@@ -1095,21 +663,7 @@ VOS_UINT8 CNAS_XSD_IsUeSupportedChannel_BandClass_10(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_IsUeSupportedChannel_BandClass_11
- 功能描述  : 判断该频点是否在移动终端所支持的传输列表当中
- 输入参数  : VOS_UINT16                          usChannel
- 输出参数  : 无
 
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年4月18日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 CNAS_XSD_IsUeSupportedChannel_BandClass_11(
     VOS_UINT16                          usChannel
 )
@@ -1117,21 +671,7 @@ VOS_UINT8 CNAS_XSD_IsUeSupportedChannel_BandClass_11(
     return CNAS_XSD_IsUeSupportedChannel_BandClass_5(usChannel);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_IsUeSupportedChannel_BandClass_12
- 功能描述  : 判断该频点是否在移动终端所支持的传输列表当中
- 输入参数  : VOS_UINT16                          usChannel
- 输出参数  : 无
 
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年4月18日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 CNAS_XSD_IsUeSupportedChannel_BandClass_12(
     VOS_UINT16                          usChannel
 )
@@ -1144,21 +684,7 @@ VOS_UINT8 CNAS_XSD_IsUeSupportedChannel_BandClass_12(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_IsUeSupportedChannel_BandClass_13
- 功能描述  : 判断该频点是否在移动终端所支持的传输列表当中
- 输入参数  : VOS_UINT16                          usChannel
- 输出参数  : 无
 
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年4月18日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 CNAS_XSD_IsUeSupportedChannel_BandClass_13(
     VOS_UINT16                          usChannel
 )
@@ -1171,21 +697,7 @@ VOS_UINT8 CNAS_XSD_IsUeSupportedChannel_BandClass_13(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_IsUeSupportedChannel_BandClass_14
- 功能描述  : 判断该频点是否在移动终端所支持的传输列表当中
- 输入参数  : VOS_UINT16                          usChannel
- 输出参数  : 无
 
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年4月18日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 CNAS_XSD_IsUeSupportedChannel_BandClass_14(
     VOS_UINT16                          usChannel
 )
@@ -1198,21 +710,7 @@ VOS_UINT8 CNAS_XSD_IsUeSupportedChannel_BandClass_14(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_IsUeSupportedChannel_BandClass_15
- 功能描述  : 判断该频点是否在移动终端所支持的传输列表当中
- 输入参数  : VOS_UINT16                          usChannel
- 输出参数  : 无
 
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年4月18日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 CNAS_XSD_IsUeSupportedChannel_BandClass_15(
     VOS_UINT16                          usChannel
 )
@@ -1226,21 +724,7 @@ VOS_UINT8 CNAS_XSD_IsUeSupportedChannel_BandClass_15(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_SaveRedirectionInfo
- 功能描述  : Save the redirection info from CAS
- 输入参数  : pstCasRedirInfo-----the redirection info from CAS
- 输出参数  : NONE
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 26/12/2014
-    作    者   : w00176964
-    修改内容   : Create
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_SaveRedirectionInfo(
     CNAS_CAS_1X_REDIRECTION_INFO_STRU  *pstCasRedirInfo
 )
@@ -1296,21 +780,7 @@ VOS_VOID CNAS_XSD_SaveRedirectionInfo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_TransformMccToBcd
- 功能描述  : 转换十进制的MCC为BCD格式
- 输入参数  : VOS_UINT16                          usMcc
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年4月14日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_TransformMccToBcd(
     VOS_UINT16                          usMcc
 )
@@ -1339,21 +809,7 @@ VOS_UINT32 CNAS_XSD_TransformMccToBcd(
     return ulBcdMcc;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_TransformImsiToBcd
- 功能描述  : 转换十进制的Imsi为BCD格式
- 输入参数  : VOS_UINT8                           ucImsi
- 输出参数  : 无
- 返 回 值  : VOS_UINT16
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年4月14日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT16 CNAS_XSD_TransformImsiToBcd(
     VOS_UINT8                           ucImsi
 )
@@ -1382,21 +838,7 @@ VOS_UINT16 CNAS_XSD_TransformImsiToBcd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_DeleteUsableFreqFormAvoidList
- 功能描述  : 从avoid频点列表中删除可用的频点
- 输入参数  : CNAS_PRL_FREQENCY_CHANNEL_STRU                          stFreq
- 输出参数  : 无
- 返 回 值  : VOS_VOID
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年6月27日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_DeleteUsableFreqFormAvoidList(
     CNAS_PRL_FREQENCY_CHANNEL_STRU                         *pstFreq
 )
@@ -1434,31 +876,7 @@ VOS_VOID CNAS_XSD_DeleteUsableFreqFormAvoidList(
 }
 
 
-/*****************************************************************************
-Function Name   :   CNAS_XSD_ProcCasOhmInd
-Description     :   Process the OHM Indication message received from CAS.
-                    Send Notification to XREG And MMA, about the current camped system details.
-Input parameters:
-                    pstMsg       - pointer to OHM Indication message structure.
-Outout parameters:  None
-Return Value    :   VOS_TRUE
 
-Modify History:
-    1)  Date    :   2014-12-27
-        Author  :   a00295761
-        Modify content :    Create
-
-    2)日    期   : 2015年1月3日
-      作    者   : y00245242
-      修改内容   : home SID/NID功能开发
-
-    3).日    期   : 2015年7月9日
-      作    者   : y00245242
-      修改内容   : iteration 17开发
-   4).日    期   :  2015年12月15日
-      作    者   :  l00324781
-      修改内容   :  CL_MUTIMODE_OPTIMIZE 修改
-*****************************************************************************/
 
 VOS_VOID CNAS_XSD_ProcCasOhmInd(
     CAS_CNAS_1X_OHM_IND_STRU           *pstMsg,
@@ -1576,21 +994,7 @@ VOS_VOID CNAS_XSD_ProcCasOhmInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_UpdateReturnCauseValue
- 功能描述  : 更新returnCause
- 输入参数  : usSyncFailChanNum ------------------同步失败的频点个数
-             pstSyncFailChanList ------------ 同步失败的频点列表
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年07月13日
-   作    者   : m00312079
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_UpdateReturnCauseValue(
     VOS_UINT16                          usSyncFailChanNum,
     CNAS_CAS_1X_SYNC_RSLT_INFO_STRU    *pstSyncFailChanList
@@ -1623,24 +1027,7 @@ VOS_VOID CNAS_XSD_UpdateReturnCauseValue(
 
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_GetCurrentSystemRoamingInd
- 功能描述  : 获取当前系统的漫游指示值
- 输入参数  : CNAS_PRL_1X_SYSTEM_STRU            *pstCurSysInfo
- 输出参数  : 无
- 返 回 值  : CNAS_PRL_SYS_ROAMING_IND_ENUM_UINT8 -- 漫游指示值
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月31日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-  2.日    期   : 2015年7月2日
-    作    者   : w00242748
-    修改内容   : CDMA 1X Iteration 17 modified
-
-*****************************************************************************/
 CNAS_PRL_SYS_ROAMING_IND_ENUM_UINT8 CNAS_XSD_GetCurrentSystemRoamingInd(
     CNAS_PRL_1X_SYSTEM_STRU            *pstCurSysInfo
 )
@@ -1676,25 +1063,7 @@ CNAS_PRL_SYS_ROAMING_IND_ENUM_UINT8 CNAS_XSD_GetCurrentSystemRoamingInd(
     return enRoamingInd;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RemoveNegativeFreqs
- 功能描述  : 根据当前传入的系统以及频点列表,过滤negative的频点
- 输入参数  : pstSysId -- 传入的系统ID
-             pstSrcFreqInfo----原始的频点信息
- 输出参数  : pstDstFreqInfo----过滤negative后的频点信息
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月15日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2015年7月2日
-    作    者   : w00242748
-    修改内容   : CDMA 1X Iteration 17 modified
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_RemoveNegativeFreqs(
     CNAS_PRL_1X_SYSTEM_ID_STRU         *pstSysId,
     CNAS_PRL_ACQ_REC_FREQ_INFO_STRU    *pstSrcFreqInfo,
@@ -1739,25 +1108,7 @@ VOS_VOID CNAS_XSD_RemoveNegativeFreqs(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_GetCur1xSysMatchPrioInGeoWithCdma2k1xSysType
- 功能描述  : 查看当前的1x系统在GEO中的匹配优先级,当前sys type为cdma2K_1X
- 输入参数  : pstCurSysInfo -- 当前搜到的系统信息
-             对于CDMA2000_1x的sys type,pri class是1x系统所在的优先级,即
-             1X系统记录之间出现HRPD的系统,以1X系统的相对优先级为准;
-             对于CDMA2000_AI的sys type,pri class是1x系统所在的绝对优先级,即
-             1X系统记录之间出现更高优先级的HRPD的系统,1X系统的优先级也要递减;
- 输出参数  : penMatchPrio        -----匹配的优先级
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月8日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_PRL_GetCur1xSysMatchPrioInGeoWithCdma2k1xSysType(
     CNAS_PRL_1X_SYSTEM_STRU                                *pstCurSysInfo,
     CNAS_PRL_1X_MATCH_PRIO_LVL_ENUM_UINT8                  *penMatchPrio
@@ -1841,25 +1192,7 @@ VOS_VOID CNAS_PRL_GetCur1xSysMatchPrioInGeoWithCdma2k1xSysType(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_GetCur1xSysMatchPrioInGeoWithCdma2kAISysType
- 功能描述  : 查看当前的1x系统在GEO中的匹配优先级,当前sys type为CDMA2K_ai
- 输入参数  : pstCurSysInfo -- 当前搜到的系统信息
-             对于CDMA2000_1x的sys type,pri class是1x系统所在的优先级,即
-             1X系统记录之间出现HRPD的系统,以1X系统的相对优先级为准;
-             对于CDMA2000_AI的sys type,pri class是1x系统所在的绝对优先级,即
-             1X系统记录之间出现更高优先级的HRPD的系统,1X系统的优先级也要递减;
- 输出参数  : penMatchPrio        -----匹配的优先级
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月8日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_PRL_GetCur1xSysMatchPrioInGeoWithCdma2kAISysType(
     CNAS_PRL_1X_SYSTEM_STRU                                *pstCurSysInfo,
     CNAS_PRL_1X_MATCH_PRIO_LVL_ENUM_UINT8                  *penMatchPrio
@@ -1942,21 +1275,7 @@ VOS_VOID CNAS_PRL_GetCur1xSysMatchPrioInGeoWithCdma2kAISysType(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_GetCurrentSystemPriClass
- 功能描述  : 获取当前系统的PRI CLASS
- 输入参数  : enSysType
- 输出参数  : 无
- 返 回 值  : NAS_MSCC_PIF_PRI_CLASS_ENUM_UINT8 -- PRI CLASS
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 7/4/2015
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_MSCC_PIF_PRI_CLASS_ENUM_UINT8 CNAS_XSD_GetCurrentSystemPriClass(
     CNAS_PRL_1X_SYSTEM_STRU            *pstCurSysInfo,
     MSCC_XSD_SYS_TYPE_ENUM_UINT8        enSysType
@@ -2049,21 +1368,7 @@ VOS_VOID CNAS_XSD_StopAllTimerExceptSpecifiedTimerId(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_IsAddNegSysInAvoidList
- 功能描述  : 获取是否添加neg sys到avoid频点列表
- 输入参数  :
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年6月5日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 CNAS_XSD_IsAddInAvoidList(
     CNAS_XSD_AVOID_REASON_ENUM_UINT8                        enReason
 )
@@ -2080,21 +1385,7 @@ VOS_UINT8 CNAS_XSD_IsAddInAvoidList(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RegisterRrmResourceNtf
- 功能描述  : 处理向RRM发送注册信息，RF恢复提醒
- 输入参数  : RRM_PS_TASK_TYPE_ENUM_UINT16
-             enRrmTaskType : 注册的任务类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月20日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_RegisterRrmResourceNtf(
     RRM_PS_TASK_TYPE_ENUM_UINT16        enRrmTaskType
 )
@@ -2105,21 +1396,7 @@ VOS_VOID CNAS_XSD_RegisterRrmResourceNtf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_DeRegisterRrmResourceNtf
- 功能描述  : 处理向RRM发送去注册信息，取消RF恢复提醒
- 输入参数  : RRM_PS_TASK_TYPE_ENUM_UINT16
-             enRrmTaskType : 注册的任务类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月20日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_DeRegisterRrmResourceNtf(
     RRM_PS_TASK_TYPE_ENUM_UINT16        enRrmTaskType
 )
@@ -2131,21 +1408,7 @@ VOS_VOID CNAS_XSD_DeRegisterRrmResourceNtf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_ConvertSrvTypeToSessionType
- 功能描述  : 将服务类型转换成相应的Session类型
- 输入参数  : 业务类型
- 输出参数  : 无
- 返 回 值  : 相应的Session类型
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月20日
-    作    者   : w00242748时
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_CAS_1X_SESSION_TYPE_ENUM_UINT16 CNAS_XSD_ConvertSrvTypeToSessionType(
     NAS_MSCC_PIF_SRV_TYPE_ENUM_UINT8    enSrvType
 )
@@ -2182,22 +1445,7 @@ CNAS_CAS_1X_SESSION_TYPE_ENUM_UINT16 CNAS_XSD_ConvertSrvTypeToSessionType(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_IsSidInOperLockWhiteSidList
- 功能描述  : 判断SID是否在白名单中
- 输入参数  : usSid
- 输出参数  : 无
- 返 回 值  : VOS_TRUE   表示在白名单中
-             VOS_FALSE  表示不在白名单中
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月3日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_IsSidInOperLockSysWhiteList(
     VOS_UINT16                          usSid
 )
@@ -2231,22 +1479,7 @@ VOS_UINT32 CNAS_XSD_IsSidInOperLockSysWhiteList(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_IsMccInOperLockWhiteSidList
- 功能描述  : 判断MCC是否在白名单中
- 输入参数  : usSid
- 输出参数  : 无
- 返 回 值  : VOS_TRUE   表示在白名单中
-             VOS_FALSE  表示不在白名单中
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月3日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_IsMccInOperLockSysWhiteList(
     VOS_UINT32                          ulMcc
 )
@@ -2276,24 +1509,7 @@ VOS_UINT32 CNAS_XSD_IsMccInOperLockSysWhiteList(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_IsCurSysInSysWhiteList
- 功能描述  : 判断当前系统是否在系统白名单中
- 输入参数  : pstCurSysInfo -- 当前系统信息
-             ulMccValidFlg -- 是否需要check MCC
-             usMcc         -- MCC
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  --  表示在白名单中
-             VOS_FALSE --  表示不在白名单中
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月1日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_IsCurSysInSysWhiteList
 (
     CNAS_PRL_1X_SYSTEM_STRU            *pstCurSysInfo,
@@ -2319,23 +1535,7 @@ VOS_UINT32 CNAS_XSD_IsCurSysInSysWhiteList
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RefreshPriLvlInSysRecord
- 功能描述  : 刷新系统表中的优先级等级
- 输入参数  : usTmpSysRecNum - 系统表记录个数
-             pstSysRecord - 系统表记录
-             usDistance - 需要增加的值
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月7日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_ReducePriLvlInSysRecordList(
     VOS_UINT16                          usTmpSysRecNum,
     CNAS_PRL_EXT_SYS_RECORD_STRU       *pstSysRecord,
@@ -2355,22 +1555,7 @@ VOS_VOID CNAS_XSD_ReducePriLvlInSysRecordList(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_BuildSysRecordListBasedOnGeo
- 功能描述  : 根据GEO的信息来构建系统记录表(调用者需保证，
-             pstSysRecord申请的内存个数是该GEO中，系统记录表的个数)
- 输入参数  : pstMatchedGeo - GEO信息
- 输出参数  : pstSysRecord - 系统记录表
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月7日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_BuildSysRecordListBasedOnGeo(
     CNAS_PRL_MATCHED_GEO_INFO_STRU     *pstMatchedGeo,
     CNAS_PRL_EXT_SYS_RECORD_STRU       *pstSysRecord
@@ -2387,28 +1572,7 @@ VOS_VOID CNAS_XSD_BuildSysRecordListBasedOnGeo(
     NAS_MEM_CPY_S(pstSysRecord, sizeof(CNAS_PRL_EXT_SYS_RECORD_STRU)*usSysRecNum, pstPrlSysInfo->pstSysRecord + usGeoFirstSysRecIndex, sizeof(CNAS_PRL_EXT_SYS_RECORD_STRU)*usSysRecNum);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_AddGeoIntoCompsiteGeo
- 功能描述  : 将某个GEO加入到拼接的GEO中，拼接GEO以系统记录个数、以及相应的系统记录表示
-            (内存在该函数内申请，但释放由调用者释放)
- 输入参数  : pstMatchedGeo - 需要拼接的GEO
- 输出参数  : pusSysRecNum - 系统记录个数
-             ppstSysRecord - 系统记录列表
-             pusPriLvl - 拼接后，最匹配系统对应的优先级等级
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月7日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月26日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_AddGeoIntoCompsiteGeo(
     CNAS_PRL_MATCHED_GEO_INFO_STRU     *pstMatchedGeo,
     VOS_UINT16                         *pusSysRecNum,
@@ -2505,22 +1669,7 @@ VOS_UINT32 CNAS_XSD_AddGeoIntoCompsiteGeo(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_BuildCompsiteGeoFromMostMatchedGeoList
- 功能描述  : 将几个最匹配的GEO拼接，(内存在该函数内申请，但释放由调用者释放)
- 输入参数  : pstMatchedGeoList - 需要拼接的GEO的集合
- 输出参数  : pusSysRecNum - 系统记录个数
-             ppstSysRecord - 系统记录列表
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月7日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_BuildCompsiteGeoFromMostMatchedGeoList(
     CNAS_PRL_MATCHED_GEO_LIST_INFO_STRU                    *pstMatchedGeoList,
     VOS_UINT16                                             *pusSysRecNum,
@@ -2563,24 +1712,7 @@ VOS_VOID CNAS_XSD_BuildCompsiteGeoFromMostMatchedGeoList(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_BuildGeoListBasedOnSysRecord
- 功能描述  : 根据系统记录信息获取相应的GEO
- 输入参数  : pstPrlSysInfo - PRL表中系统表记录
- 输出参数  : pstGeoList - GEO列表
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月7日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_BuildGeoListBasedOnSysRecord(
     CNAS_PRL_SYS_RECORD_INFO_STRU      *pstPrlSysInfo,
     CNAS_XSD_GEO_LIST_SRCH_INFO_STRU   *pstGeoList
@@ -2629,21 +1761,7 @@ VOS_VOID CNAS_XSD_BuildGeoListBasedOnSysRecord(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_GetGeoListFromPrlSysRecordInfo
- 功能描述  : 根据系统记录信息获取相应的GEO
- 输入参数  : 无
- 输出参数  : pstGeoList - GEO列表
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月7日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_GetGeoListFromPrlSysRecordInfo(
     CNAS_XSD_GEO_LIST_SRCH_INFO_STRU   *pstGeoList
 )
@@ -2655,23 +1773,7 @@ VOS_VOID CNAS_XSD_GetGeoListFromPrlSysRecordInfo(
     CNAS_XSD_BuildGeoListBasedOnSysRecord(pstPrlSysInfo, pstGeoList);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_CalcPrlSysRecListTotalFreqNum
- 功能描述  : 计算PRL系统记录列表的总的频点个数，(MCC-MNC记录的话，得分成多条记录处理)
- 输入参数  : usSysRecNum-----------系统记录总个数
-             pstSysRecord----------系统记录列表
- 输出参数  : 无
 
- 返 回 值  : 获取表中总的频点个数
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年7月10日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT16 CNAS_XSD_CalcPrlSysRecListTotalFreqNum(
     VOS_UINT16                          usSysRecNum,
     CNAS_PRL_EXT_SYS_RECORD_STRU       *pstSysRecord
@@ -2740,22 +1842,7 @@ VOS_UINT16 CNAS_XSD_CalcPrlSysRecListTotalFreqNum(
 
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_IsCurSysHomeSystemIndependenceOnPrl
- 功能描述  : check当前不在PRL表中的系统是否是home SID/NID系统
- 输入参数  : pstCurSysInfo -- 当前系统信息
- 输出参数  : 无
- 返 回 值  : VOS_TRUE   表示是home系统
-             VOS_FALSE  表示不是home系统
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月3日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_IsCurSysHomeSystemIndependenceOnPrl(
     CNAS_PRL_1X_SYSTEM_STRU            *pstCurSysInfo
 )
@@ -2781,26 +1868,7 @@ VOS_UINT32 CNAS_XSD_IsCurSysHomeSystemIndependenceOnPrl(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_IsCurSystemInAvailSysList
- 功能描述  : 判断一个system是否在available system list中
- 输入参数  : CNAS_PRL_1X_SYSTEM_STRU            *pstCurSys
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2014年12月25日
-    作    者   : w00176964
-    修改内容   : CDMA Iteration 6:Move the avail system list to the global variables
-  3.日    期   : 2015年7月17日
-    作    者   : y00245242
-    修改内容   : iteration 17开发
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_IsCurSystemInAvailSysList(
     CNAS_PRL_1X_SYSTEM_STRU            *pstCurSys
 )
@@ -2838,20 +1906,7 @@ VOS_UINT32 CNAS_XSD_IsCurSystemInAvailSysList(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_QuitCallBackMode
- 功能描述  : 紧急呼退出CallBack模式函数
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月02日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_QuitCallBackMode( VOS_VOID )
 {
     /* 上报退出CALLBACK模式NTF */
@@ -2871,22 +1926,7 @@ VOS_VOID CNAS_XSD_QuitCallBackMode( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_IsCurSysNotSuitableSys
- 功能描述  : 判断当前系统是否能驻留
- 输入参数  : pstCurSysInfo -- 当前系统信息
- 输出参数  : 无
- 返 回 值  : VOS_TRUE   表示是not suitable系统，即认为是neg系统
-             VOS_FALSE  表示是suitable系统，不是negative系统
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月3日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_IsCurSysNotSuitableSys(
     CNAS_PRL_1X_SYSTEM_STRU            *pstCurSysInfo,
     VOS_UINT32                          ulMccValidFlg,
@@ -2943,22 +1983,7 @@ VOS_UINT32 CNAS_XSD_IsCurSysNotSuitableSys(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_Is1xSysAllowedCampOn
- 功能描述  : 判断当前系统是否是neg系统
- 输入参数  : pstCurSysInfo -- 当前系统信息
- 输出参数  : 无
- 返 回 值  : VOS_TRUE   表示是neg系统
-             VOS_FALSE  表示不是neg系统
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月3日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_Is1xSysNegative(
     CNAS_PRL_1X_SYSTEM_STRU            *pstCurSysInfo,
     VOS_UINT32                          ulMccValidFlg,

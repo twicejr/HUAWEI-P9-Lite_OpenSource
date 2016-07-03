@@ -1,33 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : pwrctrl_common.c
-  版 本 号   : 初稿
-  作    者   : 刘永富 56193
-  生成日期   : 2012年7月25日
-  最近修改   :
-  功能描述   :  低功耗公共模块
-  函数列表   :
-              pwrctrl_clr_bits
-              pwrctrl_common_initial
-              pwrctrl_debug_info_show
-              pwrctrl_get_slice_time
-              pwrctrl_is_bit_set
-              pwrctrl_is_func_on
-              pwrctrl_mem_cpy
-              pwrctrl_read_reg32
-              pwrctrl_timer_delay
-              pwrctrl_write_reg32
-              pwrctrl_set_bits
-
-  修改历史   :
-  1.日    期   : 2012年7月25日
-    作    者   : 刘永富 56193
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -100,21 +71,7 @@ extern s32_t pwrctrl_timer_addr_remap(void);
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : pwrctrl_print_switch_set
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 根据模块设置打印开关
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月22日
-    作    者   : 张柬 00179562
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void pwrctrl_print_switch_set(unsigned int flag,int mode)
 {
     /*bit模式*/
@@ -129,61 +86,18 @@ void pwrctrl_print_switch_set(unsigned int flag,int mode)
         g_ulpwrctrl_print_switch = flag;
     }
 }
-/*****************************************************************************
- 函 数 名  : print_switch_get
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 获取打印开关值
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月22日
-    作    者   : 张柬 00179562
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 u32_t pwrctrl_print_switch_get(void)
 {
     return g_ulpwrctrl_print_switch;
 }
-/*****************************************************************************
- 函 数 名  : pwrctrl_get_slice_time
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 定时器当前值
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月31日
-    作    者   : 刘永富 56193
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 u32_t  pwrctrl_get_slice_time( void_t )
 {
     return BSP_GetSliceValue();
 }
 
-/*****************************************************************************
- 函 数 名  : pwrctrl_early_init
- 功能描述  : 需要提前初始化的操作
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : RET_OK         成功
-             RET_ERR        失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月25日
-    作    者   : 刘永富 56193
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32_t __init pwrctrl_early_init(void_t)
 {
   	g_stAcpuPwcSwitch =(ST_PWC_SWITCH_STRU *)IO_ADDRESS(SOC_PERI_SCTRL_SC_RESERVED8_ADDR(SOC_PERI_SCTRL_BASE_ADDR));
@@ -195,22 +109,7 @@ s32_t __init pwrctrl_early_init(void_t)
     pwrctrl_asm_mem_copy();
 
 }
-/*****************************************************************************
- 函 数 名  : pwrctrl_common_initial
- 功能描述  : 低功耗初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : RET_OK         成功
-             RET_ERR        失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月25日
-    作    者   : 刘永富 56193
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32_t __init pwrctrl_common_initial ( void_t )
 {
 /*lint -e553*/
@@ -277,22 +176,7 @@ void release_acpu_test_wakelock()
 	printk("%s wake unlock\n", __FUNCTION__);
 	wake_unlock(&g_ulTstwakelock);
 }
-/*****************************************************************************
- 函 数 名  : pwrctrl_timer_delay
- 功能描述  : 延时函数
- 输入参数  : s32_t time
- 输出参数  : 无
- 返 回 值  : RET_OK         成功
-             RET_ERR        失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月30日
-    作    者   : 刘永富 56193
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32_t pwrctrl_timer_delay (u32_t time)
 {
     u32_t uDecValue = (u32_t)(time * PWRCTRL_SLICE_CLK) / PWRCTRL_SLICE_UNIT_CONV;
@@ -325,23 +209,7 @@ s32_t pwrctrl_timer_delay (u32_t time)
     return RET_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : pwrctrl_write_reg32
- 功能描述  : 寄存器写接口
- 输入参数  : s32_t ulRegAddr
-             s32_t ulRegVal
- 输出参数  : 无
- 返 回 值  : RET_OK         成功
-             RET_ERR        失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月30日
-    作    者   : 刘永富 56193
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32_t pwrctrl_write_reg32( u32_t ulRegAddr, u32_t ulRegVal)
 {
     if (0 != (ulRegAddr & 0x03))/* not 4byte aligned */
@@ -353,21 +221,7 @@ s32_t pwrctrl_write_reg32( u32_t ulRegAddr, u32_t ulRegVal)
     *(volatile u32_t *)ulRegAddr = ulRegVal;
     return RET_OK;
 }
-/*****************************************************************************
- 函 数 名  : pwrctrl_read_reg32
- 功能描述  : 寄存器读接口
- 输入参数  : s32_t ulRegAddr
- 输出参数  : 无
- 返 回 值  : int            目标寄存器的值
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月30日
-    作    者   : 刘永富 56193
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 u32_t pwrctrl_read_reg32 ( u32_t ulRegAddr )
 {
     if (0 != (ulRegAddr & 0x03))/* not 4byte aligned */
@@ -379,24 +233,7 @@ u32_t pwrctrl_read_reg32 ( u32_t ulRegAddr )
     return *(volatile u32_t *)ulRegAddr;
 }
 
-/*****************************************************************************
- 函 数 名  : pwrctrl_write_reg32_mask
- 功能描述  : 带mask的寄存器写接口
- 输入参数  : s32_t ulRegAddr
-             s32_t ulRegVal
-             u32_t ulMask
- 输出参数  : 无
- 返 回 值  : RET_OK         成功
-             RET_ERR        失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月30日
-    作    者   : 刘永富 56193
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void pwrctrl_write_reg32_mask (u32_t ulRegAddr, u32_t ulRegVal, u32_t ulMask)
 {
     u32_t reg_val = pwrctrl_read_reg32(ulRegAddr);
@@ -408,44 +245,13 @@ void pwrctrl_write_reg32_mask (u32_t ulRegAddr, u32_t ulRegVal, u32_t ulMask)
     pwrctrl_write_reg32(ulRegAddr, reg_val);
 }
 
-/*****************************************************************************
- 函 数 名  : pwrctrl_clear_reg32_mask
- 功能描述  : 带mask的寄存器读接口
- 输入参数  : s32_t ulRegAddr
-             u32_t ulMask
- 输出参数  : 无
- 返 回 值  : int            目标寄存器的值
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月30日
-    作    者   : 刘永富 56193
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 u32_t pwrctrl_read_reg32_mask(u32_t ulRegAddr, u32_t ulMask)
 {
     return pwrctrl_read_reg32(ulRegAddr) & ulMask;
 }
 
-/*****************************************************************************
- 函 数 名  : pwrctrl_set_bits
- 功能描述  : 寄存器BIT设置接口
- 输入参数  : s32_t ulRegAddr
-             s32_t ulMask
- 输出参数  : 无
- 返 回 值  : RET_OK         成功
-             RET_ERR        失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月30日
-    作    者   : 刘永富 56193
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32_t pwrctrl_set_bits (u32_t ulRegAddr, u32_t ulMask)
 {
     if (0 != (ulRegAddr & 0x03))/* not 4byte aligned */
@@ -458,23 +264,7 @@ s32_t pwrctrl_set_bits (u32_t ulRegAddr, u32_t ulMask)
     return RET_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : pwrctrl_clr_bits
- 功能描述  : 寄存器BIT清除接口
- 输入参数  : s32_t ulRegAddr
-             s32_t ulMask
- 输出参数  : 无
- 返 回 值  : RET_OK         成功
-             RET_ERR        失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月30日
-    作    者   : 刘永富 56193
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32_t pwrctrl_clr_bits (u32_t ulRegAddr, u32_t ulMask)
 {
     if (0 != (ulRegAddr & 0x03))/* not 4byte aligned */
@@ -487,22 +277,7 @@ s32_t pwrctrl_clr_bits (u32_t ulRegAddr, u32_t ulMask)
     return RET_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : pwrctrl_is_bits_set
- 功能描述  : 寄存器BITS判断接口
- 输入参数  : s32_t ulRegAddr
-             s32_t ulMask
- 输出参数  : 无
- 返 回 值  : TRUE / FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月30日
-    作    者   : 刘永富 56193
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 bool_t pwrctrl_is_bits_set(u32_t ulRegAddr, u32_t ulMask)
 {
     LOG_IF (0 != (ulRegAddr & 0x03));
@@ -510,22 +285,7 @@ bool_t pwrctrl_is_bits_set(u32_t ulRegAddr, u32_t ulMask)
     return (pwrctrl_read_reg32(ulRegAddr) & ulMask) == ulMask;
 }
 
-/*****************************************************************************
- 函 数 名  : pwrctrl_is_bits_clr
- 功能描述  : 寄存器BITS判断接口
- 输入参数  : s32_t ulRegAddr
-             s32_t ulMask
- 输出参数  : 无
- 返 回 值  : TRUE / FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月30日
-    作    者   : 刘永富 56193
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 bool_t pwrctrl_is_bits_clr(u32_t ulRegAddr, u32_t ulMask)
 {
     LOG_IF (0 != (ulRegAddr & 0x03));
@@ -533,23 +293,7 @@ bool_t pwrctrl_is_bits_clr(u32_t ulRegAddr, u32_t ulMask)
     return (pwrctrl_read_reg32(ulRegAddr) & ulMask) == 0x0;
 }
 
-/*****************************************************************************
- 函 数 名  : pwrctrl_is_bit_set
- 功能描述  : 检查寄存器BIT状态
- 输入参数  : u32_t addr    寄存器地址
-             u32_t offset  bit 偏移
- 输出参数  : 无
- 返 回 值  : PWC_TRUE         1
-             PWC_FALSE        0
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月30日
-    作    者   : 刘永富 56193
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 u32_t pwrctrl_is_bit_set ( u32_t addr,  u32_t offset)
 {
     if ((pwrctrl_read_reg32(addr) & (1<<offset)) == (1<<offset))
@@ -563,22 +307,7 @@ u32_t pwrctrl_is_bit_set ( u32_t addr,  u32_t offset)
 }
 
 
-/*****************************************************************************
- 函 数 名  : pwrctrl_is_func_on
- 功能描述  : 检查低功耗子特性是否使能
- 输入参数  : EM_PWC_SWITCH funId    子功耗模块id
- 输出参数  : 无
- 返 回 值  : RET_OK         成功
-             RET_ERR        失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月30日
-    作    者   : 刘永富 56193
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32_t pwrctrl_is_func_on ( EM_PWC_SWITCH funId )
 {
     if (pwrctrl_is_bit_set((u32_t)(g_stAcpuPwcSwitch),funId))
@@ -591,24 +320,7 @@ s32_t pwrctrl_is_func_on ( EM_PWC_SWITCH funId )
     }
 }
 
-/*****************************************************************************
- 函 数 名  : pwrctrl_mem_cpy
- 功能描述  : 低功耗内存拷贝
- 输入参数  : dest   目标内存
-             src    源内存
-             size   长度，单位 32bit
- 输出参数  : 无
- 返 回 值  : RET_OK         成功
-             RET_ERR        失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月30日
-    作    者   : 刘永富 56193
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32_t pwrctrl_mem_cpy ( void_t * dest, void_t * src, u32_t size )
 {
     u32_t length = 0;
@@ -624,22 +336,7 @@ s32_t pwrctrl_mem_cpy ( void_t * dest, void_t * src, u32_t size )
 
     return RET_OK;
 }
-/*****************************************************************************
- 函 数 名  : pwrctrl_debug_info_show
- 功能描述  : 低功耗调试信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : RET_OK         成功
-             RET_ERR        失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月30日
-    作    者   : 刘永富 56193
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32_t pwrctrl_debug_info_show( void_t )
 {
     PWC_TRACE(PWC_LOG_MAX, "################################ A核 core0 ############################\n", 0, 0, 0, 0, 0, 0);

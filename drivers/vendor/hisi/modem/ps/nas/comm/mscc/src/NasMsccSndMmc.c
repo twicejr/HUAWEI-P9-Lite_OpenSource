@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMsccSndMma.c
-  版 本 号   : 初稿
-  作    者   : y00245242
-  生成日期   : 2015年01月27日
-  功能描述   : MSCC发送IMSA消息处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年01月27日
-    作    者   : y00245242
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -38,23 +23,7 @@ extern "C"{
 /*****************************************************************************
   3 函数定义
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmcImsVoiceCapNotify
- 功能描述  : 向mmc发送IMS VOICE CAP消息
- 输入参数  : ucImsVoiceAvail           -IMS voice是否可用
-             ucIsExistPersistentBearer -persistent eps bearer是否存在标识
- 输出参数  : 无
- 返 回 值  : 无
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年01月27日
-   作    者   : y00245242
-   修改内容   : 新生成函数
- 2.日    期   : 2015年4月25日
-   作    者   : z00161729
-   修改内容   : 24301 R11 CR升级项目修改
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmcImsVoiceCapNotify(
     VOS_UINT8                           ucImsVoiceAvail,
     VOS_UINT8                           ucIsExistPersistentBearer
@@ -95,20 +64,7 @@ VOS_VOID NAS_MSCC_SndMmcImsVoiceCapNotify(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmcSignalReportReq
- 功能描述  : 向mmc发送信号上报配置消息
- 输入参数  : pstSigReportReq
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年1月29日
-   作    者   : l00208516
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmcSignalReportReq(
     MMA_MSCC_SIGN_REPORT_REQ_STRU      *pstSigReportReq
 )
@@ -148,20 +104,7 @@ VOS_VOID NAS_MSCC_SndMmcSignalReportReq(
     return;
 
 }
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmcModeChangeReq
- 功能描述  : 向mmc发送模式变更消息
- 输入参数  : pstModeChangeReq
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年1月29日
-   作    者   : l00208516
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmcModeChangeReq(
     MMA_MSCC_MODE_CHANGE_REQ_STRU      *pstModeChangeReq
 )
@@ -197,20 +140,7 @@ VOS_VOID NAS_MSCC_SndMmcModeChangeReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmcAttachReq
- 功能描述  : 向mmc发送attach请求消息
- 输入参数  : pstAttachReq
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年1月29日
-   作    者   : l00208516
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmcAttachReq(
     MMA_MSCC_ATTACH_REQ_STRU           *pstAttachReq
 )
@@ -248,20 +178,7 @@ VOS_VOID NAS_MSCC_SndMmcAttachReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmcDetachReq
- 功能描述  : 向mmc发送detach请求消息
- 输入参数  : pstDetachReq
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年1月29日
-   作    者   : l00208516
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmcDetachReq(
     MMA_MSCC_DETACH_REQ_STRU           *pstDetachReq
 )
@@ -300,20 +217,7 @@ VOS_VOID NAS_MSCC_SndMmcDetachReq(
 }
 
 #if (FEATURE_ON == FEATURE_CSG)
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmcCsgListSearchReq
- 功能描述  : 向mmc发送CSG list搜网请求消息
- 输入参数  : pstCsgListSearchReq - csg list搜网请求消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年9月10日
-   作    者   : z00161729
-   修改内容   : 支持LTE CSG功能新增
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmcCsgListSearchReq(
     MMA_MSCC_CSG_LIST_SEARCH_REQ_STRU  *pstCsgListSearchReq
 )
@@ -348,20 +252,7 @@ VOS_VOID NAS_MSCC_SndMmcCsgListSearchReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmcCsgListAbortReq
- 功能描述  : 向mmc发送CSG list搜网终止请求消息
- 输入参数  : pstCsgListAbortReq - csg list abort请求
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年9月10日
-   作    者   : z00161729
-   修改内容   : 支持LTE CSG功能新增
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmcCsgListAbortReq(
     MMA_MSCC_CSG_LIST_ABORT_REQ_STRU   *pstCsgListAbortReq
 )
@@ -397,20 +288,7 @@ VOS_VOID NAS_MSCC_SndMmcCsgListAbortReq(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmcPlmnListReq
- 功能描述  : 向mmc发送list搜网请求消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年1月29日
-   作    者   : l00208516
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmcPlmnListReq(VOS_VOID)
 {
     MSCC_MMC_PLMN_LIST_REQ_STRU        *pstMsg = VOS_NULL_PTR;
@@ -443,22 +321,7 @@ VOS_VOID NAS_MSCC_SndMmcPlmnListReq(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmcPlmnListAbortReq
- 功能描述  : 向mmc发送list搜网中止请求消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_OK : 消息发送成功
-             VOS_ERR: 消息发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年1月29日
-   作    者   : l00208516
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmcPlmnListAbortReq(VOS_VOID)
 {
     MSCC_MMC_PLMN_LIST_ABORT_REQ_STRU  *pstMsg = VOS_NULL_PTR;
@@ -491,21 +354,7 @@ VOS_VOID NAS_MSCC_SndMmcPlmnListAbortReq(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmcPlmnUserReselReq
- 功能描述  : 向mmc发送重选请求消息
- 输入参数  : pstPlmnUserReselReq
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年1月29日
-   作    者   : l00208516
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmcPlmnUserReselReq(
     MMA_MSCC_PLMN_USER_RESEL_REQ_STRU  *pstPlmnUserReselReq
 )
@@ -542,23 +391,7 @@ VOS_VOID NAS_MSCC_SndMmcPlmnUserReselReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmcPlmnSpecialReq
- 功能描述  : 向mmc发送指定搜网请求
- 输入参数  : pstPlmnId    - 指定搜plmn id
-             enAccessMode - 接入技术
- 输出参数  : 无
- 返 回 值  : VOS_OK : 消息发送成功
-             VOS_ERR: 消息发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年1月29日
-   作    者   : l00208516
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmcPlmnSpecialReq(
     MMA_MSCC_PLMN_SPECIAL_REQ_STRU     *pstPlmnSpecialReq
 )
@@ -594,21 +427,7 @@ VOS_VOID NAS_MSCC_SndMmcPlmnSpecialReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmcSysCfgReq
- 功能描述  : 发送syscfg请求消息
- 输入参数  : pstSysCfgReq
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
-
- 修改历史      :
- 1.日    期   : 2015年1月29日
-   作    者   : l00208516
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  NAS_MSCC_SndMmcSysCfgReq(
     MMA_MSCC_SYS_CFG_SET_REQ_STRU      *pstSysCfgReq
 )
@@ -665,20 +484,7 @@ VOS_VOID  NAS_MSCC_SndMmcSysCfgReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmcNetScanMsgReq
- 功能描述  : MSCC模块通知MMC模块NetScanReq消息
- 输入参数  : pstNetScanReq
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年1月29日
-   作    者   : l00208516
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmcNetScanMsgReq(
     MMA_MSCC_NET_SCAN_REQ_STRU         *pstNetScanReq
 )
@@ -721,20 +527,7 @@ VOS_VOID NAS_MSCC_SndMmcNetScanMsgReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmcAbortNetScanMsgReq
- 功能描述  : MSCC模块通知MMC模块打断NetScanReq消息
- 输入参数  : pstAbortScanMsgReq
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年1月29日
-   作    者   : l00208516
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmcAbortNetScanMsgReq(VOS_VOID)
 {
     MSCC_MMC_ABORT_NET_SCAN_REQ_STRU   *pstMsg              = VOS_NULL_PTR;
@@ -769,33 +562,7 @@ VOS_VOID NAS_MSCC_SndMmcAbortNetScanMsgReq(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmcPlmnSearchReq
- 功能描述  : 向mmc发送开机搜网请求消息
- 输入参数  : enAcqReason           -- 搜网原因值
-             enSrchType            ---搜索类型
-             pstInitAcqPlmnInfo    ---初始搜网的PLMN信息
-             pstHighPrioPlmnInfo   ---高优先级的PLMN信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年1月29日
-   作    者   : l00208516
-   修改内容   : 新生成函数
- 2.日    期   : 2/4/2015
-   作    者   : w00176964
-   修改内容   : CDMA Iteration 10 Modified
-   修改内容   : 新生成函数
- 3.日    期   : 30/5/2015
-   作    者   : w00176964
-   修改内容   : CDMA Iteration 12
- 4.日    期   : 2015/12/11
-   作    者   : w00176964
-   修改内容   : CL_MUTIMODE_OPTIMIZE调整
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmcPlmnSearchReq(
     NAS_MSCC_PIF_ACQ_REASON_ENUM_UINT32                     enAcqReason,
     NAS_MSCC_PIF_PLMN_SEARCH_TYPE_ENUM_UINT32               enSrchType,
@@ -848,21 +615,7 @@ VOS_VOID NAS_MSCC_SndMmcPlmnSearchReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmcSpecPlmnSearchAbortReq
- 功能描述  : 向mmc发送指定搜网中止请求消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年1月29日
-   作    者   : l00208516
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmcSpecPlmnSearchAbortReq(VOS_VOID)
 {
     MSCC_MMC_SPEC_PLMN_SEARCH_ABORT_REQ_STRU               *pstMsg = VOS_NULL_PTR;
@@ -895,21 +648,7 @@ VOS_VOID NAS_MSCC_SndMmcSpecPlmnSearchAbortReq(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmcOmMaintainInfoInd
- 功能描述  : 处理OAM发来的TRACE 配置请求
- 输入参数  : pstMaintainInfoInd
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年1月29日
-   作    者   : l00208516
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmcOmMaintainInfoInd(
     MMA_MSCC_OM_MAINTAIN_INFO_IND_STRU *pstMaintainInfoInd
 )
@@ -947,21 +686,7 @@ VOS_VOID NAS_MSCC_SndMmcOmMaintainInfoInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmcUpdateUplmnNtf
- 功能描述  : mscc给mmc发送UPLMN更新通知
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年1月29日
-   作    者   : l00208516
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmcUpdateUplmnNotify( VOS_VOID )
 {
     MSCC_MMC_UPDATE_UPLMN_NTF_STRU      *pstMsg = VOS_NULL_PTR;
@@ -995,21 +720,7 @@ VOS_VOID NAS_MSCC_SndMmcUpdateUplmnNotify( VOS_VOID )
 }
 
 #if (FEATURE_MULTI_MODEM == FEATURE_ON)
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmcOtherModemInfoNotify
- 功能描述  : 向mmc发送ID_MSCC_MMC_OTHER_MODEM_INFO_NOTIFY请求消息
- 输入参数  : pstOtherModemInfoNtf
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年1月29日
-   作    者   : l00208516
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmcOtherModemInfoNotify(
     MSCC_MMC_OTHER_MODEM_INFO_NOTIFY_STRU                  *pstOtherModemInfoNtf
 )
@@ -1052,22 +763,7 @@ VOS_VOID NAS_MSCC_SndMmcOtherModemInfoNotify(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmcOtherModemDplmnNplmnInfoNotify
- 功能描述  : 向mmc发送dplmn和nplmn信息
- 输入参数  : pstMsg - 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_OK : 消息发送成功
-             VOS_ERR: 消息发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年2月5日
-   作    者   : l00208516
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmcOtherModemDplmnNplmnInfoNotify(
     MMA_MSCC_OTHER_MODEM_DPLMN_NPLMN_INFO_NOTIFY_STRU     *pstOhterModemDplmnNplmnInfoNtf
 )
@@ -1110,21 +806,7 @@ VOS_VOID NAS_MSCC_SndMmcOtherModemDplmnNplmnInfoNotify(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmcNcellInfoNotify
- 功能描述  : 向mmc发送ID_MSCC_MMC_TDS_LTE_NCELL_INFO_NOTIFY请求消息
- 输入参数  : pstNcellInfoNtf
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年1月29日
-   作    者   : l00208516
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmcNcellInfoNotify(
     MMA_MSCC_NCELL_INFO_NOTIFY_STRU    *pstNcellInfoNtf
 )
@@ -1167,20 +849,7 @@ VOS_VOID NAS_MSCC_SndMmcNcellInfoNotify(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmcPsTransferNotify
- 功能描述  : 向mmc发送ID_MSCC_MMC_PS_TRANSFER_NOTIFY请求消息
- 输入参数  : pstPsTransferNtf
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年1月29日
-   作    者   : l00208516
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmcPsTransferNotify(
     MMA_MSCC_PS_TRANSFER_NOTIFY_STRU   *pstPsTransferNtf
 )
@@ -1219,20 +888,7 @@ VOS_VOID NAS_MSCC_SndMmcPsTransferNotify(
 #endif
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmcEOPlmnSetReq
- 功能描述  : MSCC模块通知MMC模块ID_MSCC_MMC_EOPLMN_SET_REQ消息
- 输入参数  : pstEOPlmnSetReq
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年1月29日
-   作    者   : l00208516
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmcEOPlmnSetReq(
     MMA_MSCC_EOPLMN_SET_REQ_STRU       *pstEOPlmnSetReq
 )
@@ -1276,21 +932,7 @@ VOS_VOID NAS_MSCC_SndMmcEOPlmnSetReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmcAcqReq
- 功能描述  : 向MMC发送开机搜网请求消息
- 输入参数  : stMsccAcqPara
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年1月29日
-   作    者   : l00208516
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmcAcqReq(
     MMA_MSCC_ACQ_REQ_STRU              *pstAcqReq
 )
@@ -1327,21 +969,7 @@ VOS_VOID NAS_MSCC_SndMmcAcqReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmcRegReq
- 功能描述  : 向MMC发送开机注册请求消息
- 输入参数  : pstRegReq
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年1月29日
-   作    者   : l00208516
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmcRegReq(
     MMA_MSCC_REG_REQ_STRU              *pstRegReq
 )
@@ -1382,21 +1010,7 @@ VOS_VOID NAS_MSCC_SndMmcRegReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmcPowerSaveReq
- 功能描述  : 向MMC发送开机搜网请求消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年1月29日
-   作    者   : l00208516
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmcPowerSaveReq(VOS_VOID)
 {
     MSCC_MMC_POWER_SAVE_REQ_STRU       *pstMsg = VOS_NULL_PTR;
@@ -1432,21 +1046,7 @@ VOS_VOID NAS_MSCC_SndMmcPowerSaveReq(VOS_VOID)
 }
 
 #if(FEATURE_ON == FEATURE_DSDS)
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmcSrvAcqReq
- 功能描述  : 向MMC发送因服务触发的搜网指示请求消息
- 输入参数  : pstSrvAcqReq
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年1月29日
-   作    者   : l00208516
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmcSrvAcqReq(
     MMA_MSCC_SRV_ACQ_REQ_STRU          *pstSrvAcqReq
 )
@@ -1482,21 +1082,7 @@ VOS_VOID NAS_MSCC_SndMmcSrvAcqReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmcBeginSessionNotify
- 功能描述  : 向MMC发送申请资源消息
- 输入参数  : enSessionType:Session类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年1月29日
-   作    者   : l00208516
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmcBeginSessionNotify(
     MMA_MSCC_BEGIN_SESSION_NOTIFY_STRU *pstBeginSessionNtf
 )
@@ -1533,21 +1119,7 @@ VOS_VOID NAS_MSCC_SndMmcBeginSessionNotify(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmcEndSessionNotify
- 功能描述  : 向MMC发送释放资源消息
- 输入参数  : pstEndSessionNtf
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年1月29日
-   作    者   : l00208516
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmcEndSessionNotify(
     MMA_MSCC_END_SESSION_NOTIFY_STRU   *pstEndSessionNtf
 )
@@ -1586,20 +1158,7 @@ VOS_VOID NAS_MSCC_SndMmcEndSessionNotify(
 #endif
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmcImsSrvInfoNotify
- 功能描述  : 向mmc发送ID_MSCC_MMC_IMS_SRV_INFO_NOTIFY
- 输入参数  : ucImsCallFlg---IMS call是否存在
- 输出参数  : 无
- 返 回 值  : 无
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年1月29日
-   作    者   : l00208516
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmcImsSrvInfoNotify(
     MMA_MSCC_IMS_SRV_INFO_NOTIFY_STRU  *pstImsSrvInfoNtf
 )
@@ -1775,21 +1334,7 @@ VOS_UINT32 NAS_MSCC_SndMmcPowerOffReq(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmcCFPlmnSetReq
- 功能描述  : 向MMC发送fplmn的请求消息
- 输入参数  : pstCFPlmnReq
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年2月7日
-   作    者   : f00279542s
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmcCFPlmnSetReq(
     MMA_MSCC_CFPLMN_SET_REQ_STRU       *pstCFPlmnReq
 )
@@ -1825,21 +1370,7 @@ VOS_VOID NAS_MSCC_SndMmcCFPlmnSetReq(
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmcCFPlmnQueryReq
- 功能描述  : 向MMC发送fplmn的请求消息
- 输入参数  :pstCFPlmnReq : query req info
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年2月7日
-   作    者   : f00279542s
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmcCFPlmnQueryReq(
     MMA_MSCC_CFPLMN_QUERY_REQ_STRU     *pstCFPlmnReq
 )
@@ -1872,21 +1403,7 @@ VOS_VOID NAS_MSCC_SndMmcCFPlmnQueryReq(
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmcSdtConnedInd
- 功能描述  : 处理mscc发来的 配置请求
- 输入参数  : pstMaintainInfoInd
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年2月7日
-   作    者   : f00279542s
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmcSdtConnedInd(
     MMA_MSCC_OM_MAINTAIN_INFO_IND_STRU *pstSdtConnInfoInd
 )
@@ -1920,20 +1437,7 @@ VOS_VOID NAS_MSCC_SndMmcSdtConnedInd(
     PS_SEND_MSG(UEPS_PID_MSCC, pstMsg);
     return;
 }
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmcPrefPlmnSetReq
- 功能描述  : 发送ID_MSCC_MMC_PREF_PLMN_SET_REQ消息
- 输入参数  : MMA_MSCC_PREF_PLMN_QUERY_REQ_STRU  *pstMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年02月04日
-   作    者   : y00307564
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmcPrefPlmnSetReq(
     MMA_MSCC_PREF_PLMN_SET_REQ_STRU    *pstMsg
 )
@@ -1983,20 +1487,7 @@ VOS_VOID NAS_MSCC_SndMmcPrefPlmnSetReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmcPrefPlmnQueryReq
- 功能描述  : 发送ID_MSCC_MMC_PREF_PLMN_QUERY_REQ消息
- 输入参数  : MMA_MSCC_PREF_PLMN_QUERY_REQ_STRU  *pstMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年02月04日
-   作    者   : y00307564
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmcPrefPlmnQueryReq(
     MMA_MSCC_PREF_PLMN_QUERY_REQ_STRU  *pstMsg
 )
@@ -2040,23 +1531,7 @@ VOS_VOID NAS_MSCC_SndMmcPrefPlmnQueryReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmcDplmnSetReq
- 功能描述  : MSCC给MMC发送ID_MSCC_MMC_DPLMN_SET_REQ 消息
- 输入参数  : MMA_MSCC_DPLMN_SET_REQ_STRU        *pstRcvMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月12日
-    作    者   : n00355355
-    修改内容   : 新生成函数
-  2.日    期   : 2015年11月2日
-    作    者   : l00289540
-    修改内容   : 在消息中增加更新Dplmn的场景
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmcDplmnSetReq(
     MMA_MSCC_DPLMN_SET_REQ_STRU        *pstRcvMsg
 )
@@ -2102,21 +1577,7 @@ VOS_VOID NAS_MSCC_SndMmcDplmnSetReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmcGetGeoReq
- 功能描述  : 给MMC发送ID_MSCC_MMC_GET_GEO_REQ消息
- 输入参数  : MSCC_MMC_GET_GEO_REQ_STRU          *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月27日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmcGetGeoReq(
     MMA_MSCC_GET_GEO_REQ_STRU          *pstMsg
 )
@@ -2150,21 +1611,7 @@ VOS_VOID NAS_MSCC_SndMmcGetGeoReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmcStopGetGeoReq
- 功能描述  : 给MMC发送ID_MSCC_STOP_MMC_GET_GEO_REQ消息
- 输入参数  : MMA_MSCC_STOP_GET_GEO_REQ_STRU          *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月01日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmcStopGetGeoReq(
     MMA_MSCC_STOP_GET_GEO_REQ_STRU     *pstMsg
 )
@@ -2198,20 +1645,7 @@ VOS_VOID NAS_MSCC_SndMmcStopGetGeoReq(
 
 
 #if (FEATURE_ON == FEATURE_IMS)
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmcVoiceDomainChangeInd
- 功能描述  : 向mmc发送ID_MSCC_MMC_VOICE_DOMAIN_CHANGE_IND消息
- 输入参数  : enVoiceDomain
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年04月15日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmcVoiceDomainChangeInd(
     NAS_MSCC_PIF_VOICE_DOMAIN_ENUM_UINT32                   enVoiceDomain
 )
@@ -2247,20 +1681,7 @@ VOS_VOID NAS_MSCC_SndMmcVoiceDomainChangeInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmcImsSwitchStateInd
- 功能描述  : 向mmc发送ID_MSCC_MMC_IMS_SWITCH_STATE_IND消息
- 输入参数  : enImsSwitch
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年04月15日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmcImsSwitchStateInd(
     NAS_MSCC_PIF_IMS_SWITCH_STATE_ENUM_UINT8                enImsSwitch
 )
@@ -2298,20 +1719,7 @@ VOS_VOID NAS_MSCC_SndMmcImsSwitchStateInd(
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmcAutoReselSetReq
- 功能描述  : 向mmc发送ID_MSCC_MMC_AUTO_RESEL_SET_REQ消息
- 输入参数  : ucActiveFlg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年04月15日
-   作    者   : b00269685
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmcAutoReselSetReq(
     VOS_UINT8                           ucActiveFlg
 )
@@ -2421,23 +1829,7 @@ VOS_VOID NAS_MSCC_SndMmcStopBgSearchReq(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmcPlmnPriClassQueryReq
- 功能描述  : 发送ID_MSCC_MMC_PLMN_PRI_CLASS_QUERY_REQ消息
- 输入参数  : pstPlmnList----查询的plmn 列表
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年05月04日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2015年06月04日
-   作    者   : w00176964
-   修改内容   : CDMA Iteration 12:modify interface
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmcPlmnPriClassQueryReq(
     NAS_MSCC_PIF_SEARCHED_PLMN_LIST_INFO_STRU              *pstPlmnList
 )
@@ -2477,20 +1869,7 @@ VOS_VOID NAS_MSCC_SndMmcPlmnPriClassQueryReq(
 
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmcInterSysHrpdInd
- 功能描述  : 发送MSCC_MMC_INTERSYS_HRPD_NTF_STRU消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年05月30日
-   作    者   : l00324781
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmcInterSysHrpdInd(VOS_VOID)
 {
     MSCC_MMC_INTERSYS_HRPD_NTF_STRU    *pstInterSysHrpdInd = VOS_NULL_PTR;
@@ -2523,21 +1902,7 @@ VOS_VOID NAS_MSCC_SndMmcInterSysHrpdInd(VOS_VOID)
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmcCLAssociatedInfoNtf
- 功能描述  : 向MMC发送CLAssociatedInfo
- 输入参数  : enLteSysPriClass lte的priclass
-             ucAllowSrchLteFlg 是否允许搜lte的标志位
 
- 输出参数  : 无
- 返 回 值  : 无
-
- 修改历史      :
- 1.日    期   : 2015年9月11日
-   作    者   : y00346957
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmcCLAssociatedInfoNtf(
     NAS_MSCC_PIF_PLMN_PRIORITY_CLASS_ENUM_UINT8             enLteSysPriClass,
     VOS_UINT8                                               ucAllowSrchLteFlg
@@ -2576,19 +1941,7 @@ VOS_VOID NAS_MSCC_SndMmcCLAssociatedInfoNtf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SncMmcC2LInterSysStartNtf
- 功能描述  : mscc给mmc发送ID_MSCC_MMC_C2L_INTERSYS_START_NTF消息
- 输入参数  : 无
 
- 输出参数  : 无
- 返 回 值  : 无
-
- 修改历史      :
- 1.日    期   : 2016年1月27日
-   作    者   : y00346957
-   修改内容   : 新建
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SncMmcCLInterSysStartNtf(
     NAS_MSCC_PIF_INTERSYS_CAUSE_ENUM_UINT32                 enInterSysCause
 )

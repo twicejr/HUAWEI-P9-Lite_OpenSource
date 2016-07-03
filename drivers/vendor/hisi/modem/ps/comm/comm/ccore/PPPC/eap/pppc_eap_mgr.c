@@ -1,24 +1,4 @@
-/************************************************************************
-*                                                                      *
-*                             Eap.c                                    *
-*                                                                      *
-*  Project Code:       VRP3.0                                          *
-*  Create Date:        2010/07/05                                      *
-*  Author:             WANGYONG                                        *
-*  Modify Date:                                                        *
-*  Document:                                                           *
-*  Function:           PPP的EAP协议模块                                *
-*  Others:                                                             *
-*----------------------------------------------------------------------*
-*                                                                      *
-* Copyright 2000-2010 VRP3.0 Team Beijing Institute HuaWei Tech, Inc.  *
-*                     ALL RIGHTS RESERVED                              *
-*                                                                      *
-*----------------------------------------------------------------------*
-*                                                                      *
-*   这个文件定义了EAP协议模块的全部接口函数和内部处理函数              *
-*                                                                      *
-************************************************************************/
+
 
 
 
@@ -56,20 +36,7 @@ extern "C" {
 *****************************************************************************/
 /*lint -save -e958 */
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_Init
- 功能描述  : EAP模块初始化.
- 输入参数  : pstPppInfo     PPP实体信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-11-9
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOID PPPC_EAP_Init(PPPINFO_S *pstPppInfo)
 {
     PPPC_EAP_INFO_STRU                 *pstEapInfo;
@@ -103,20 +70,7 @@ VOID PPPC_EAP_Init(PPPINFO_S *pstPppInfo)
 }
 
 
-/****************************************************************************
-* CREATE DATE  ：2010/07/12                                                 *
-* CREATED BY   ：WANGYONG                                                   *
-* FUNCTION     ：EAP接收外部事件.事件包括：ServerUp、Down                   *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-*                ulCmd:命令字, 可以为如下值:                                *
-*                EAP_EVENT_SERVERLOWERUP:对端下层UP                         *
-*                EAP_EVENT_LOWERDOWN:下层DOWN                               *
-*                pPara:事件的参数, 为NULL                                   *
-* OUTPUT       ：                                                           *
-* RETURN       ：NULL                                                       *
-* CALLED BY    ：PPP_Core_ReceiveEventFromShell                             *
-****************************************************************************/
+
 VOS_VOID PPPC_EAP_ReceiveEventFromCore
 (
     PPPINFO_S *pstPppInfo, VOS_UINT32 ulCmd, VOS_UINT8 *pPara
@@ -143,18 +97,7 @@ VOS_VOID PPPC_EAP_ReceiveEventFromCore
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2010/07/12                                                 *
-* CREATED BY   ：WANGYONG                                                   *
-* FUNCTION     ：PPP_EAP_LowerDown                                          *
-*                进入EAP_STATE_SERVER_INITIAL状态                           *
-*                同时删除定时器                                             *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-* OUTPUT       ：                                                           *
-* RETURN       ：                                                           *
-* CALLED BY    ：PPP_EAP_ReceiveEventFromCore                               *
-****************************************************************************/
+
 VOID PPPC_EAP_LowerDown(PPPINFO_S *pstPppInfo)
 {
     PPPC_EAP_INFO_STRU                 *pstEapInfo;
@@ -183,21 +126,7 @@ VOID PPPC_EAP_LowerDown(PPPINFO_S *pstPppInfo)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_SendResponse
- 功能描述  : 发送EAP Response报文
- 输入参数  : pstPppInfo     PPP实体
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月09日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_EAP_SendResponse(VOS_UINT32 ulPppId)
 {
     PPPC_EAP_INFO_STRU                 *pstEapInfo;
@@ -268,20 +197,7 @@ VOS_VOID PPPC_EAP_SendResponse(VOS_UINT32 ulPppId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_EAP_DeleteTimer
- 功能描述  : 停定时器
- 输入参数  : pstEapInfo     EAP实体信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-11-9
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_EAP_DeleteTimer(PPPC_EAP_INFO_STRU *pstEapInfo)
 {
     VOS_UINT32                              ulRet;

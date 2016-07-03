@@ -18,69 +18,21 @@
 #define BSP_MAILBOX_CHANNEL_MCU_TO_ACPU_MCA_CH 3
 #define BSP_MAILBOX_CHANNEL_ACPU_TO_MCU_MCA_CH 1
 
-/*****************************************************************************
- 函 数 名  : mailbox_send_msg
- 功能描述  : 邮箱用户发送邮件数据
- 输入参数  : MailCode   -- 邮编, 指定邮件发送目标
-             pData      -- 指向邮件数据的指针
-             Length     -- 待发送数据长度, 单位byte
- 输出参数  : 无
- 返 回 值  : 正确:MAILBOX_OK / 错误:MAILBOX_ERRO或者其他错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月28日
-    作    者   : 莫南 00176101
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 unsigned long mailbox_send_msg(
                 unsigned long           MailCode,
                 void                   *pData,
                 unsigned long           Lengt)
 { return MAILBOX_OK; }
 
-/*****************************************************************************
- 函 数 名  : mailbox_reg_msg_cb
- 功能描述  : 注册邮件数据接收函数
- 输入参数  : MailCode   -- 数据接收函数处理的对象邮编
-             pFun       -- 邮件数据接收处理函数指针
-             UserHandle -- 用户定义句柄, 数据接收函数被调用时会作为入参, 无则填空
- 输出参数  : 无
- 返 回 值  : 正确:MAILBOX_OK / 错误:MAILBOX_ERRO或者其他错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月29日
-    作    者   : 莫南 00176101
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 unsigned long mailbox_reg_msg_cb(
                 unsigned long           MailCode,
                 void *  pFun,
                 void                   *UserHandle)
 { return MAILBOX_OK; }
 
-/*****************************************************************************
- 函 数 名  : mailbox_read_msg_data
- 功能描述  : 邮箱用户在数据接收回调函数中调用, 从邮箱中读取一封最先到达的邮件
- 输入参数  : MailHandle -- 邮箱句柄, 数据接收回调函数入参
-             pData      -- 保存待读出数据的缓存地址
-             *pSize     -- 缓存长度, 单位byte, 需要大于待读取邮件长度
- 输出参数  : *pSize     -- 实际读取长度, 单位byte
- 返 回 值  : 正确:MAILBOX_OK / 错误:MAILBOX_ERRO或者其他错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月26日
-    作    者   : 莫南 00176101
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 unsigned long mailbox_read_msg_data(
                 void                   *MailHandle,
                 unsigned char          *pData,

@@ -192,22 +192,7 @@ VOS_UINT32 CNAS_EHSM_RcvApsPdnActivateReq_Activating_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_RcvApsPdnAttachReq_Activating_Init
- 功能描述  : EHSM激活状态机处理APS Attach请求
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月25日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_RcvApsPdnAttachReq_Activating_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -524,23 +509,7 @@ VOS_UINT32 CNAS_EHSM_RcvEhsmAbortReq_Activating_WaitConnEstRetry(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_RcvCttfEhrpdPdnConnCnf_Activating_WaitConnEstRetry
- 功能描述  : 子状态CNAS_EHSM_ACTIVATING_STA_WAIT_CONN_EST_RETRY_TIME_OUT下收
-             到消息ID_CTTF_CNAS_EHRPD_PDN_CONN_CNF的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月2日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_RcvCttfEhrpdPdnConnCnf_Activating_WaitConnEstRetry(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -568,23 +537,7 @@ VOS_UINT32 CNAS_EHSM_RcvCttfEhrpdPdnConnCnf_Activating_WaitConnEstRetry(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_RcvCttfEhrpdPdnAttachCnf_Activating_WaitConnEstRetry
- 功能描述  : 子状态CNAS_EHSM_ACTIVATING_STA_WAIT_CONN_EST_RETRY_TIME_OUT下收
-             到消息ID_CTTF_CNAS_EHRPD_ATTACH_CNF的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月2日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_RcvCttfEhrpdPdnAttachCnf_Activating_WaitConnEstRetry(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -607,23 +560,7 @@ VOS_UINT32 CNAS_EHSM_RcvCttfEhrpdPdnAttachCnf_Activating_WaitConnEstRetry(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_RcvTiWaitCttfPdnSetupCnfExpired_Activating_WaitConnEstRetry
- 功能描述  : 子状态CNAS_EHSM_ACTIVATING_STA_WAIT_CONN_EST_RETRY_TIME_OUT下收
-             到定时器TI_CNAS_EHSM_WAIT_CTTF_PDN_SETUP_CNF超时消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月2日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_RcvTiWaitCttfPdnSetupCnfExpired_Activating_WaitConnEstRetry(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -667,22 +604,7 @@ VOS_UINT32 CNAS_EHSM_RcvTiWaitCttfPdnSetupCnfExpired_Activating_WaitConnEstRetry
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_RcvHsmSessionInfoInd_Activating_WaitConnEstRetry
- 功能描述  : 等待链路重建时收到HSM发送的Session Info Ind消息
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月28日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_RcvHsmSessionInfoInd_Activating_WaitConnEstRetry(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -849,23 +771,7 @@ VOS_UINT32 CNAS_EHSM_RcvCttfEhrpdPdnAttachCnf_Activating_WaitCttfPdnSetupCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_RcvCttfEhrpdReconnInd_Activating_WaitCttfPdnSetupCnf
- 功能描述  : CNAS_EHSM_ACTIVATING_STA_WAIT_CTTF_PDN_SETUP_CNF子状态下收到消
-             息ID_CTTF_CNAS_EHRPD_RECONN_IND的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月30日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_RcvCttfEhrpdReconnInd_Activating_WaitCttfPdnSetupCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1037,22 +943,7 @@ VOS_UINT32 CNAS_EHSM_RcvAbortReq_Activating_WaitHsmConnCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_RcvCttfEhrpdPdnConnCnf_Activating_WaitHsmConnCnf
- 功能描述  : CNAS_EHSM_ACTIVATING_STA_WAIT_HSM_CONN_CNF状态下收到消息ID_CTTF_CNAS_EHRPD_PDN_CONN_CNF的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月30日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_RcvCttfEhrpdPdnConnCnf_Activating_WaitHsmConnCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1081,22 +972,7 @@ VOS_UINT32 CNAS_EHSM_RcvCttfEhrpdPdnConnCnf_Activating_WaitHsmConnCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_RcvCttfEhrpdPdnAttachCnf_Activating_WaitHsmConnCnf
- 功能描述  : CNAS_EHSM_ACTIVATING_STA_WAIT_HSM_CONN_CNF收到消息ID_CTTF_CNAS_EHRPD_ATTACH_CNF的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月30日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_RcvCttfEhrpdPdnAttachCnf_Activating_WaitHsmConnCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1123,22 +999,7 @@ VOS_UINT32 CNAS_EHSM_RcvCttfEhrpdPdnAttachCnf_Activating_WaitHsmConnCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_RcvTiWaitCttfPdnSetupCnfExpired_Activating_WaitHsmConnCnf
- 功能描述  : CNAS_EHSM_ACTIVATING_STA_WAIT_HSM_CONN_CNF收到定时器TI_CNAS_EHSM_WAIT_CTTF_PDN_SETUP_CNF超时消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月30日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_RcvTiWaitCttfPdnSetupCnfExpired_Activating_WaitHsmConnCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1194,21 +1055,7 @@ VOS_VOID CNAS_EHSM_IncreConntRetryTimes_Activating(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_ResetConntRetryTimes_Activating
- 功能描述  : 重置链路Retry建链次数为0
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月1日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_ResetConntRetryTimes_Activating(VOS_VOID)
 {
     CNAS_EHSM_ACTIVATING_RETRY_INFO_STRU                   *pstRetryInfo = VOS_NULL_PTR;
@@ -1547,20 +1394,7 @@ VOS_VOID CNAS_EHSM_AttachFailureHandler_Activating(
     return;
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_EHSM_PdnSetupFailureHandler_Activating
-Description     :  默认承载外的其他pdn建立失败时的处理
-Input parameters:       EHSM_APS_CAUSE_ENUM_UINT32          enCause,
-                        VOS_UINT32                          ulEventType,
-                        VOS_UINT8                           ucPdnId
-Output parameters:  None
-Return Value    :   None
 
-Modify History  :
-1)  Date           : 2015-07-23
-    Author         : f00279542
-    Modify content : Create
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_PdnSetupFailureHandler_Activating(
     VOS_UINT8                                               ucPdnId,
     CNAS_CTTF_EHRPD_ERROR_CODE_ENUM_UINT16                  enErrorCode,

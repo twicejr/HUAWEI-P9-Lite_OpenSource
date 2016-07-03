@@ -1,55 +1,4 @@
-/************************************************************************
-  Copyright    : 2005-2007, Huawei Tech. Co., Ltd.
-  File name    : GmmCasSuspend.c
-  Author       : Roger Leo
-  Version      : V200R001
-  Date         : 2005-08-25
-  Description  : 该C文件给出了GmmCasSuspend模块的实现
-  Function List:
-        ---
-        ---
-        ---
-  History      :
-  1. Date:2005-08-25
-     Author: Roger Leo
-     Modification:update
-  2. s46746 2006-03-07 根据问题单A32D02356修改
-  2. s46746 2006-03-08 根据问题单A32D02368修改
-  3.x51137 2006/11/3 A32D06511
-  4. 日    期   : 2007年07月14日
-     作    者   : luojian id:60022475
-     修改内容   : 根据问题单号：A32D12436
-  5. 日    期   : 2007年09月05日
-     作    者   : s46746
-     修改内容   : 根据问题单号：AT2D01456
-  6. 日    期   : 2007年09月21日
-     作    者   : luojian id:107747
-     修改内容   : 根据问题单号：AT2D01670
-  7. 日    期   : 2007年10月13日
-     作    者   : s46746
-     修改内容   : 根据问题单号：A32D13060
-  8. 日    期   : 2007年11月22日
-     作    者   : s46746
-     修改内容   : 根据问题单号：A32D13475,修改异系统改变后指派的old TLLI和开机加密密钥为全0问题
-  9. 日    期   : 2007年12月28日
-     作    者   : s46746
-     修改内容   : 根据问题单号：A32D13954,修改GMM在2G3过程中缓存消息机制
-  10.日    期   : 2008年3月17日
-     作    者   : s46746
-     修改内容   : 问题单号:AT2D02570,NAS B005版本新增需求合入
-  11.日    期   : 2008年9月26日
-     作    者   : x00115505
-     修改内容   : 问题单号:AT2D05431
-  12.日    期   : 2009年4月9日
-     作    者   : s46746
-     修改内容   : 问题单号:AT2D10867,异系统改变后，未完成的Detach流程没有继续
-  13.日    期   : 2009年08月24日
-     作    者   : x00115505
-     修改内容   : AT2D14023,测试GCF用例44.2.2.1.9失败
-  14.日    期   : 2009年09月25日
-     作    者   : s46746
-     修改内容   : AT2D14760,异系统重选完成后立即上报出服务区，NAS上报服务状态不正确
-************************************************************************/
+
 
 /*****************************************************************************
    1 头文件包含
@@ -62,9 +11,7 @@
 #include "GmmCasSend.h"
 #include "NasGmmSndOm.h"
 #include "NasUtranCtrlInterface.h"
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-25, begin */
 #include "NasMmlCtx.h"
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-25, end */
 
 #ifdef  __cplusplus
   #if  __cplusplus
@@ -169,24 +116,7 @@ VOS_UINT32 GMM_BufferMsgQueueOut(VOS_VOID)
     return ulRet;   /* 返回消息队列的头条缓存消息的索引值 */
 }
 
-/*****************************************************************************
- Prototype      : GMM_BufferMsgSend
- Description    : 重新发送从消息缓存队列取出GMM挂起消息
-                  HSS 4100 V200R001 新增
- Input          :
- Output         :
- Return Value   :
- Calls          :
- Called By      :
 
- History        :
-  1.Date        : 2005-08-25
-    Author      : Roger Leo
-    Modification: Created function
- 2. 日    期   : 2011年12月01日
-    作    者   : w00166186
-    修改内容   : DTS2011112400118,CS语音过程发起PS ATTACH，后处理缓存时返回ERROR
-*****************************************************************************/
 VOS_UINT32 GMM_BufferMsgSend(VOS_VOID)
 {
     VOS_VOID       *pBufMsg;
@@ -221,22 +151,7 @@ VOS_UINT32 GMM_BufferMsgSend(VOS_VOID)
     return GMM_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_ClearSameMsgFromBuff
- 功能描述  : 从缓存消息中删除和要缓存的消息相同的内容
- 输入参数  : struct MsgCB                   *pstMsgIn
-             VOS_UINT32                     *pulIndex
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年12月17日
-    作    者   : l65478
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_GMM_ClearSameMsgFromBuff(
         struct MsgCB                   *pstMsgIn,
         VOS_UINT32                     *pulIndex
@@ -326,25 +241,7 @@ VOS_VOID GMM_BufferMsgReceive(struct MsgCB* pMsgIn)
     return;                    /* 结束返回 */
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_ClearMsgFromBuff
- 功能描述  : 根据消息名字清除缓存中的消息
- 输入参数  :
-             VOS_UINT32         ulMsgName
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月17日
-    作    者   : l00167671
-    修改内容   : 新生成函数FOR DTS2013021804440
-
-  2.日    期   : 2014年6月17日
-    作    者   : z00234330
-    修改内容   : PCINT清理
-*****************************************************************************/
 VOS_VOID NAS_GMM_ClearMsgFromBuff(
         VOS_UINT32                     ulMsgName,
         VOS_UINT32                     ulSenderPid,
@@ -359,11 +256,9 @@ VOS_VOID NAS_GMM_ClearMsgFromBuff(
     for (i = 0; i < gstGmmCasMsgBuf.ucBufMsgTotal; i++)
     {
         pstBuffMsg = (MSG_HEADER_STRU *)gstGmmCasMsgBuf.apBufMsg[i];
-        /* Modified by z00234330 for PCLINT清理, 2014-06-24, begin */
         if ( (pstBuffMsg->ulMsgName == ulMsgName)
           && (pstBuffMsg->ulSenderPid == ulSenderPid)
           && (pstBuffMsg->ulReceiverPid == ulReceiverPid) )
-        /* Modified by z00234330 for PCLINT清理, 2014-06-24, end */
         {
             Gmm_MemFree(gstGmmCasMsgBuf.apBufMsg[i]);
             gstGmmCasMsgBuf.apBufMsg[i]     = VOS_NULL_PTR;
@@ -443,28 +338,7 @@ VOS_VOID GMM_BufferMsgResume(VOS_VOID)
     return;                    /* 结束返回 */
 }
 
-/*****************************************************************************
- Prototype      : GMM_BufferMsgDump
- Description    : 缓存消息队列中的消息清空
-                  HSS 4100 V200R001 新增
- Input          :
- Output         :
- Return Value   :
- Calls          :
- Called By      :
 
- History        :
-  1.Date        : 2005-08-25
-    Author      : Roger Leo
-    Modification: Created function
-
-  2.日    期   : 2014年9月26日
-    作    者   : w00167002
-    修改内容   : DTS2014091904027:GSM下，在gmm上报DETACH时候，用户发起电话，GMM被
-                挂起，发起PDP业务，GMM缓存GMMSM_ESTABLISH_REQ消息，在电话挂断后，
-                GAS上报GPRS resume fail,GMM会清空缓存，但没给SM上报EST CNF消息。
-                后续GMM注册成功，SM依然等待EST CNF消息直到定时器超时。
-*****************************************************************************/
 VOS_VOID GMM_BufferMsgDump(VOS_VOID)
 {
     VOS_UINT32  ulIndex;
@@ -520,30 +394,7 @@ VOS_VOID GMM_BufferMsgDump(VOS_VOID)
     return;                    /* 结束返回 */
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_BackupCcoFallbackCtx
- 功能描述  : 对CCO 回退流程需要的GMM上下文进行备份，当CCO回退时，GMM直接
-              可以恢复到正常服务
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月12日
-   作    者   : h44270
-   修改内容   : 新生成函数
- 2.日    期   : 2012年03月08日
-   作    者   : l00130025
-   修改内容   : DTS2012030107623: G->W Est_Rej_Cogest,CCO回退过程，Eplmn被删除，导致受限驻留
- 3.日    期   : 2012年3月15日
-   作    者   : z00161729
-   修改内容   : V7R1 C50 ISR特性修改
- 4.日    期   : 2013年2月4日
-   作    者   : w00176964
-   修改内容   : DTS2011082402748:EST CNF fail导致CCO回退时,3311不需要恢复启动
-*****************************************************************************/
 VOS_VOID NAS_GMM_BackupCcoFallbackCtx(VOS_VOID)
 {
     /* 对g_GmmGlobalCtrl.stBackShare进行赋值，将g_GmmGlobalCtrl.stBackShare
@@ -584,38 +435,7 @@ VOS_VOID NAS_GMM_BackupCcoFallbackCtx(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_ResumeCcoFallbackCtx
- 功能描述  : 对CCO 回退流程，恢复为CCO流程发起时的GMM参数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月12日
-   作    者   : h44270
-   修改内容   : 新生成函数
- 2.日    期   : 2012年03月08日
-   作    者   : l00130025
-   修改内容   : DTS2012030107830:CCO回退过程，停掉挂起的定时器
- 3.日    期   : 2012年03月08日
-   作    者   : l00130025
-   修改内容   : DTS2012030107623: G->W Est_Rej_Cogest,CCO回退过程，Eplmn被删除，导致受限驻留
- 4.日    期   : 2012年3月15日
-   作    者   : z00161729
-   修改内容   : V7R1 C50 ISR特性修改
- 5.日    期   : 2012年9月07日
-   作    者   : l00171473
-   修改内容   : DTS2012081701006, 添加GMM状态的可维可测消息
- 6.日    期   : 2013年2月4日
-   作    者   : w00176964
-   修改内容   : DTS2011082402748:EST CNF fail导致CCO回退时,3311不需要恢复启动
- 7.日    期   : 2013年3月20日
-   作    者   : w00176964
-   修改内容   : DTS2012112909686:W CCO到G，G下RAU无响应，超时回退到W未停止T3312
-*****************************************************************************/
 VOS_VOID NAS_GMM_ResumeCcoFallbackCtx(VOS_VOID)
 {
 
@@ -722,90 +542,7 @@ VOS_VOID NAS_GMM_ResumeCcoFallbackCtx(VOS_VOID)
 
 
 
-/*****************************************************************************
- Prototype      : GMM_RcvMmcSuspendInd
- Description    : 收到MMC挂起指示的处理
-                  HSS 4100 V200R001 新增
- Input          :
- Output         :
- Return Value   :
- Calls          :
- Called By      :
 
- History        :
-  1.Date        : 2005-08-25
-    Author      : Roger Leo
-    Modification: Created function
-  2.日    期   : 2010年09月27日
-    作    者   : z00161729
-    修改内容   : 问题单号：AT2D19560
-  3.日    期   : 2010年12月23日
-    作    者   : s46746
-    修改内容   : DTS2010122305821:GPRS数传过程中高优先级定时器超时会发起指定搜网
-  4.日    期   : 2011年7月12日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，用于缓存CCO流程中的GMM全局变量
-  5.日    期   : 2011年7月13日
-    作    者   : w00176964
-    修改内容   : V7R1 PhaseII阶段调整，向RABM指示RAB是否需要重建
-  6.日    期   : 2011年7月28日
-    作    者   : sunxibo 46746
-    修改内容   : V7R1 phase II,autoplmnsrch状态机调整为PlmnSelection状态机
-  7.日    期   : 2011年10月8日
-    作    者   : l00171473
-    修改内容   : V7R1 phase II,TC环回调整，MMC不维护TC状态
-  8.日    期   : 2011年10月27日
-    作    者   : s46746
-    修改内容   : V7R1 PhaseIII,支持L模联合注册
-  9.日    期   : 2011年12月2日
-    作    者   : s46746
-    修改内容   : 从L异系统改变到GU后，没有指派加密密钥到GU接入层
-  7.日    期   : 2012年2月27日
-    作    者   : z00161729
-    修改内容   : V7R1 C50 支持ISR修改
-  8.日    期   : 2012年04月11日
-    作    者   : z00161729
-    修改内容  : csfb mt L重定向到W失败回退到L，再csfb mt失败
-  9.日    期   : 2012年04月24日
-    作    者   : w00166186
-    修改内容   : DTS2012042303735，从L CCO到G后再重选会L，第一次TAU失败
- 10.日    期   : 2012年09月24日
-    作    者   : z00161729
-    修改内容   : DTS2012072701845:日本外场测试ISR激活L HO到GU未向L获取安全上下文概率出现ho失败
-  11.日    期   : 2012年10月10日
-     作    者   : z00161729
-     修改内容   : DTS201210100991:csfb mt到g，lai未改变呼叫结束后rel ind指示重定向到l，未做tau
-  12.日    期   : 2012年11月15日
-     作    者   : w00176964
-     修改内容   : TD->L进行异系统操作时,不需要在TC状态起2S定时器延迟给RRC回复
-
-  13.日    期   : 2012年12月10日
-    作    者   : z40661
-    修改内容   : DTS2012120705386,异系统过程中,目标系统为G模时,需要通知GAS RAI,PTMSI
-
-  14.日    期   : 2012年12月10日
-     作    者   : z40661
-     修改内容   : DTS2012122105035,异系统过程中,目标系统为G模时,需要通知PS域Attach状态
-  15.日    期   : 2011年12月28日
-     作    者  : l00167671
-     修改内容  : 修改问题单DTS2012122001075,问题单场景如下:
-                 PS建链过程中发生RA改变，该场景中如果CS域有业务则PS域做RAU
-                 会被不确定的推迟到CS连接释放时才做，修改此场景中的操作如下:
-                 若CS域有业务则给WAS发送RRMM_REL_REQ请求，请WAS释放连接，
-                 并保存系统消息。在收到WAS的RRMM_REL_IND时用保存的系统消息做RAU
-  16.日    期   : 2013年08月07日
-     作    者  : l65478
-     修改内容  : 修改问题单DTS2013080502397,在备份原来的状态时,如果原来已经是挂起状态,需要备份,否则恢复状态时可能导致GMM的状态恢复到挂起状态
-  17.日    期   : 2013年11月1日
-     作    者   : z00161729
-     修改内容   : DTS2013110103529:L重建到gu，ISR激活位置区未改变，gmm未发起rau
-  18.日    期   : 2013年9月24日
-     作    者   : w00176964
-     修改内容   : Volte_phaseII 项目:PS的安全上下文增加备份恢复机制
-  19.日    期   : 2015年1月12日
-     作    者   : s00217060
-     修改内容   : Service_State_Optimize_PhaseI修改
-*****************************************************************************/
 VOS_VOID GMM_RcvMmcSuspendInd(VOS_VOID* pRcvMsg)
 {
     MMCGMM_SUSPEND_IND_ST              *pSuspendIndMsg;
@@ -956,12 +693,10 @@ VOS_VOID GMM_RcvMmcSuspendInd(VOS_VOID* pRcvMsg)
     if ((MMC_SUSPEND_CAUSE_HANDOVER == pSuspendIndMsg->ucSuspendCause)
      && (NAS_MML_NET_RAT_TYPE_LTE == pSuspendIndMsg->ucSuspendOrigen))
     {
-        /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-24, begin */
         /* 备份PS的安全上下文,由于HO失败的回退 */
         PS_MEM_CPY(&(g_GmmGlobalCtrl.stBackupShare.stSimPsSecurity),
                    NAS_MML_GetSimPsSecurity(), sizeof(NAS_MML_SIM_PS_SECURITY_INFO_STRU));
 
-        /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-24, end */
 
         /* 给L模发送GMM_LMM_HO_SECU_INFO_REQ */
         NAS_GMM_SndLmmHoSecuInfoReq();
@@ -1018,140 +753,7 @@ VOS_VOID GMM_RcvMmcSuspendInd(VOS_VOID* pRcvMsg)
     GMM_SndMmcSuspendRsp();
 }
 
-/*****************************************************************************
- Prototype      : GMM_RcvMmcResumeInd
- Description    : 收到MMC恢复指示的处理
-                  HSS 4100 V200R001 新增
- Input          :
- Output         :
- Return Value   :
- Calls          :
- Called By      :
 
- History        :
-  1.Date        : 2005-08-25
-    Author      : Roger Leo
-    Modification: Created function
-  2.日    期   : 2007年07月14日
-    作    者   : luojian id:60022475
-    修改内容   : 根据问题单号：A32D12436
-  3.日    期   : 2007年09月21日
-    作    者   : luojian id:107747
-    修改内容   : 根据问题单号：AT2D01670
-  4.日    期   : 2007年09月21日
-    作    者   : l00130025
-    修改内容   : 根据问题单号：AT2D11326,G下数传时发起了HPLMN搜索
-  5.日    期   : 2010年8月14日
-    作    者   : s46746
-    修改内容   : DTS2010073001405,G2W异系统重选后，不向层2发送去指派而是挂起层2
-  6.日    期   : 2010年9月9日
-    作    者   : z00161729
-    修改内容   : DTS2010090800871,W下进行PS业务，G下设置为接入禁止，
-                 W2G2W直接进入紧急驻留状态，无法正常提供正常业务
-  7.日    期   : 2010年09月27日
-    作    者   : z00161729
-    修改内容   : 问题单号：AT2D19560
-  8.日    期   : 2010年09月27日
-    作    者   : z00161729
-    修改内容   : 问题单号：DTS2010122404478,W挂起NAS后，用户发起PDP激活，重选失败后
-                 重回到W下，未发起PDP激活。
-  9.日    期   : 2011年3月3日
-    作    者   : z00161729
-    修改内容   : DTS2011021201997:PS、CS完整性保护是否开启由GMM和MM分开维护,MMC不再维护
- 10.日    期   : 2011年7月12日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，用于恢复CCO流程开始前的GMM全局变量
- 11.日    期   : 2011年7月13日
-    作    者   : w00176964
-    修改内容   : V7R1 PhaseII阶段调整，向RABM指示RAB是否需要重建
- 12.日    期   : 2011年07月29日
-	作    者   : L65478
-	修改内容   : 根据问题单号：DTS2011072503161,CS ONLY在重选过程中,发起PDP激活
- 13.日    期   : 2011年05月03日
-    作    者   : l65478
-    修改内容   : 问题单DTS2011043000267,ready状态，G->W->G CCO,在W下接入禁止,在W下没有启动T3312
- 14.日    期   : 2011年4月13日
-    作    者   : l65478
-    修改内容   : DTS2011041100237:在W下进行服务请求的过程中，发生W->G的cell change，到G后，没有发起RAU，导致后续PS业务无法发起
- 15.日    期   : 2011年11月11日
-    作    者   : l00130025
-    修改内容   : DTS2011091607198: 无卡，W下重选到L模后，Resume处理Gmm的状态错误,
-                 迁移到GMM_REGISTERED_NO_CELL_AVAILABLE，导致L丢网到W下发起了RAU
- 16.日    期   : 2011年12月8日
-    作    者   : s46746
-    修改内容   : 问题单号：DTS2011111603445,接收到系统消息而且层2已经指派后才能恢复RABM
- 17.日    期   : 2011年12月24日
-    作    者   : w00166186
-    修改内容   : L -CCO/HO-W后，链路存在，发起RAU又发起了建链请求
- 18.日    期   : 2011年12月1日
-    作    者   : w00176964
-    修改内容   : V7R1 PhaseIV 调整:RRC链接维护调整
- 19.日    期   : 2012年03月08日
-    作    者   : l00130025
-    修改内容   : DTS2012030107830: G->W Est_Rej_Cogest,CCO回退过程，T3211没有停止，导致错误发起LAU,LAU Type错误
- 20.日    期   : 2012年04月16日
-    作    者   : w00166186
-    修改内容   : DTS2012041601505，service req状态重定向，挂起过程收到SM_data_req,重复发送业务请求
- 21.日    期   : 2012年3月3日
-    作    者   : z00161729
-    修改内容   : V7R1 C50 支持ISR修改
- 22.日    期   : 2012年5月16日
-    作    者   : l00171473
-    修改内容   : DTS2012051501127, 进入TC状态后, W2G时未通知GPHY.
- 23.日    期   : 2012年06月03日
-    作    者   : l65478
-    修改内容   : DTS2012060201181, 从G回退到W后，不处理网络的消息.
-
- 23.日    期   : 2012年6月9日
-    作    者   : z40661
-    修改内容   : PDP激活过程中异系统从GU到L，PDP激活失败，实际后续APS会给ESM
-                 发送，此处不需要给SM回复service rej。
- 24.日    期   : 2012年6月21日
-    作    者   : l00171473
-    修改内容   : DTS2012061908142, L到W的HO失败回退到W, 不需通知 RABM 等待等待W接入层RAB的恢复
- 25.日    期   : 2012年7月04日
-    作    者   : l00171473
-    修改内容   : DTS2012070202083, W到L的异系统流程, 此时W接入层已清除了PDCP, 此时需通知RABM
-                 以便RABM清除W的RAB信息
- 26.日    期   : 2013年2月06日
-    作    者   : w00176964
-    修改内容   : DTS2013020601874:gmm内存泄露清理
- 27.日    期   : 2013年2月4日
-    作    者   : w00176964
-    修改内容   : DTS2011082402748:EST CNF fail导致CCO回退时,3311不需要恢复启动
- 28.日    期   : 2013年7月22日
-    作    者   : z00161729
-    修改内容   : DTS2013071908566:rau init状态从w cco到g再回退到w，gmm不重新发起rau
- 29.日    期   : 2013年08月16日
-    作    者   : l65478
-    修改内容   : DTS2013081400197,T3314超时后,不能终止当前的注册过程
- 30.日    期   : 2013年08月16日
-    作    者   : l65478
-    修改内容   : DTS2013092202614,G CCO到W失败回退到G,在G下通知了GAS进入了REDAY态
- 31.日    期   : 2013年08月16日
-    作    者   : l65478
-    修改内容   : DTS2013091003969,L handover to W后收到鉴权消息没有处理
- 32.日    期   : 2013年9月22日
-    作    者   : w00176964
-    修改内容   : Volte_phaseII 项目:增加PS安全上下文失败回退处理
- 33.日    期   : 2014年2月8日
-    作    者   : s00246516
-    修改内容   : L-C互操作项目:增加异系统到HRPD的处理
- 34.日    期   : 2014年6月17日
-   作    者   : z00234330
-   修改内容   : PCINT清理
- 35.日    期   : 2014年8月19日
-    作    者    : b00269685
-    修改内容    : L->GU,CS handover重新获取重定向的安全上下文
- 36.日    期   : 2014年12月25日
-    作    者   : w00167002
-    修改内容   : DTS2014122201960:在L下SRVCC HO到G再HO到W,RABM触发重建，导致立即
-                 触发RAU，后续收到系统消息又再次发起RAU,导致网络REL了链路，导致
-                 掉话。修改为在HO后，启动保护定时器等系统消息。
- 37.日    期   : 2014年12月13日
-    作    者   : s00217060
-    修改内容   : Service_State_Optimize_PhaseI 切换流程修改
-*****************************************************************************/
 VOS_VOID GMM_RcvMmcResumeInd(VOS_VOID* pRcvMsg)
 {
     MMCGMM_RESUME_IND_ST                *pResumeIndMsg;
@@ -1234,15 +836,12 @@ VOS_VOID GMM_RcvMmcResumeInd(VOS_VOID* pRcvMsg)
 
     if ( NAS_MML_NET_RAT_TYPE_LTE == enCurrNetType )
     {
-        /* Modified by s00246516 for L-C互操作项目, 2014-01-27, Begin */
         NAS_GMM_ProcResumeToLTE();
-        /* Modified by s00246516 for L-C互操作项目, 2014-01-27, End */
 
         return ;
     }
 #endif
 
-    /* Added by s00246516 for L-C互操作项目, 2014-01-27, Begin */
 #if (FEATURE_ON == FEATURE_CL_INTERWORK)
     /* 异系统变换到EHRPD下的处理 */
     if ( MMC_RESUME_ORIGEN_HRPD == pResumeIndMsg->ucResumeOrigen )
@@ -1252,7 +851,6 @@ VOS_VOID GMM_RcvMmcResumeInd(VOS_VOID* pRcvMsg)
         return;
     }
 #endif
-    /* Added by s00246516 for L-C互操作项目, 2014-01-27, End */
 
     switch (pResumeIndMsg->ucPsResumeResult)
     {
@@ -1404,29 +1002,7 @@ VOS_VOID GMM_ResumeSuccess()
 
 }
 
-/*****************************************************************************
- Prototype      : GMM_ResumeFailure
- Description    : 收到MMC恢复指示的处理
-                  HSS 4100 V200R001 新增
- Input          :
- Output         :
- Return Value   :
- Calls          :
- Called By      :
 
- History        :
-  1.Date        : 2005-08-25
-    Author      : Roger Leo
-    Modification: Created function
-  2.日    期   : 2007年09月21日
-    作    者   : luojian id:107747
-    修改内容   : 根据问题单号：AT2D01670
-  2.日    期   : 2011年1月3日
-    作    者   : z00161729
-    修改内容  : DTS2011011100386：CS ONLY模式W重选到G过程pdp激活失败，
-                因为GMM收到RESUME_IND后状态迁到DEREGISTERED_LIMIT_SERVICE,
-                该状态收到SM建链请求直接回复失败.
-*****************************************************************************/
 VOS_VOID GMM_ResumeFailure()
 {
     RRMM_REL_IND_STRU      stRrRelIndMsg;
@@ -1459,20 +1035,7 @@ VOS_VOID GMM_ResumeFailure()
     Gmm_ComCnfHandle();
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_ProcBufferSmMsg_ResumeSuccess
- 功能描述  : resume成功时处理缓存的SM的消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月6日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_GMM_ProcBufferSmMsg_ResumeSuccess()
 {
     VOS_VOID                           *pstBuffMsg      = VOS_NULL_PTR;
@@ -1515,38 +1078,19 @@ VOS_VOID NAS_GMM_ProcBufferSmMsg_ResumeSuccess()
     }
 }
 
-/* Added by s00246516 for L-C互操作项目, 2014-01-27, Begin */
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_GMM_ProcResumeToLTE
- 功能描述  : 处理异系统到LTE后收到resume ind消息的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2014年1月27日
-   作    者   : s00246516
-   修改内容   : 新生成函数
- 2.日    期   : 2015年1月5日
-   作    者   : z00161729
-   修改内容   : AT&T 支持DAM特性修改
 
-*****************************************************************************/
 VOS_VOID NAS_GMM_ProcResumeToLTE(VOS_VOID)
 {
     RRMM_REL_IND_STRU                    stRrMmRelIndMsg;
 
     VOS_UINT8                           aucTimerId[3];
 
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-24, begin */
     /* ps的安全上下文失败回退 */
     if (MMC_SUSPEND_CAUSE_HANDOVER == gstGmmSuspendCtrl.ucSuspendCause)
     {
         NAS_MML_SetSimPsSecurity(&(g_GmmGlobalCtrl.stBackupShare.stSimPsSecurity));
     }
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-24, end */
 
     if (GMM_TRUE == gstGmmCasGlobalCtrl.ucTlliAssignFlg)
     {
@@ -1595,7 +1139,8 @@ VOS_VOID NAS_GMM_ProcResumeToLTE(VOS_VOID)
 
     if (VOS_FALSE == NAS_MML_IsPlmnSupportDam(NAS_MML_GetCurrCampPlmnId()))
     {
-        Gmm_TimerStop(GMM_TIMER_ALL_EXCEPT_T3312_T3323);
+        NAS_NORMAL_LOG(WUEPS_PID_GMM, "NAS_GMM_ProcResumeToLTE: Stop GMM timer except T3312,T3323 and T3302");
+        Gmm_TimerStop(GMM_TIMER_ALL_EXCEPT_T3312_T3323_T3302);
         return;
     }
 
@@ -1611,19 +1156,7 @@ VOS_VOID NAS_GMM_ProcResumeToLTE(VOS_VOID)
 
 
 #if (FEATURE_ON == FEATURE_CL_INTERWORK)
-/*****************************************************************************
- 函 数 名  : NAS_GMM_ProcResumeToHRPD
- 功能描述  : 处理异系统到HRPD后收到resume ind消息的处理
- 输入参数  : pstResumeMsg----MMC的resume ind消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2014年1月27日
-   作    者   : s00246516
-   修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_VOID NAS_GMM_ProcResumeToHRPD(
     MMCGMM_RESUME_IND_ST               *pstResumeMsg
 )
@@ -1655,23 +1188,10 @@ VOS_VOID NAS_GMM_ProcResumeToHRPD(
     return;
 }
 #endif
-/* Added by s00246516 for L-C互操作项目, 2014-01-27, End */
 
 /*lint -restore */
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_ProcRabmSysSrvChgInd_ResumeInd
- 功能描述  : 收到resume ind消息后恢复RABM的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2014年12月13日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_VOID NAS_GMM_ProcRabmSysSrvChgInd_ResumeInd(VOS_VOID)
 {
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8      enCurrNetType;
@@ -1715,19 +1235,7 @@ VOS_VOID NAS_GMM_ProcRabmSysSrvChgInd_ResumeInd(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_ProcPsSigConn_ResumeInd
- 功能描述  : 收到resume ind消息后PS信令链接的处理
- 输入参数  : pstResumeMsg----MMC的resume ind消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2014年12月13日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_VOID NAS_GMM_ProcPsSigConn_ResumeInd(
     MMCGMM_RESUME_IND_ST               *pstResumeMsg
 )
@@ -1760,19 +1268,7 @@ VOS_VOID NAS_GMM_ProcPsSigConn_ResumeInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_ProcResumeToGU
- 功能描述  : 收到resume ind消息到GU的处理
- 输入参数  : pstResumeMsg----MMC的resume ind消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2014年12月13日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_VOID NAS_GMM_ProcResumeToGU(
     MMCGMM_RESUME_IND_ST               *pstResumeMsg
 )
@@ -1877,19 +1373,7 @@ VOS_VOID NAS_GMM_ProcResumeToGU(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_RcvMmcResumeInd_CcoFallbak
- 功能描述  : CCO回退流程的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2014年12月13日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_VOID NAS_GMM_RcvMmcResumeInd_CcoFallbak(VOS_VOID)
 {
 
@@ -1917,19 +1401,7 @@ VOS_VOID NAS_GMM_RcvMmcResumeInd_CcoFallbak(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_RcvMmcResumeInd_Handover
- 功能描述  : 切换流程的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2014年12月13日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_VOID NAS_GMM_RcvMmcResumeInd_Handover(
     MMCGMM_RESUME_IND_ST               *pstResumeIndMsg
 )

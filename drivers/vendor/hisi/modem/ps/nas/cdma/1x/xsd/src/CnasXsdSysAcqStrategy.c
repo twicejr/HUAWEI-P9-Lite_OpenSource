@@ -1,20 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2014-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasXsdSysAcqStrategy.c
-  版 本 号   : 初稿
-  作    者   : wenlutao /00176964
-  生成日期   : 2014年08月05日
-  最近修改   :
-  功能描述   : CNAS 层状态机系统捕获的搜网策略文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年08月05日
-    作    者   : wenlutao /00176964
-    修改内容   : Added for CDMA 1X IT&1上
-******************************************************************************/
 
 
 /*****************************************************************************
@@ -99,21 +83,7 @@ CNAS_XSD_SCAN_CHANNEL_LIST_BUILD_TBL_STRU                   g_astCnasXsdScanChan
 
 VOS_UINT32                              g_CtrlCallRelScanList = VOS_TRUE;
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RemoveSpecialFreqFromScanList
- 功能描述  : 从搜网列表中删除指定频点
- 输入参数  : pstSpecialFreq  ---------- 指定频点
-             pstScanChanList ---------- 同步列表
- 输出参数  : pstScanChanList ---------- 同步列表
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年12月21日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_RemoveSpecialFreqFromScanList(
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstSpecialFreq,
     CNAS_XSD_SCAN_CHANNEL_LIST_STRU    *pstScanChanList
@@ -149,22 +119,7 @@ VOS_VOID CNAS_XSD_RemoveSpecialFreqFromScanList(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_BuildScanChanList
- 功能描述  : 系统捕获状态机启动时,频点扫描表初始化
- 输入参数  : enSysAcqScene ------------   捕获场景
-             usPreSrchChanNum ------------当前需要优先搜索的频点个数,构造时需要增加到扫描频点列表中
-             pstPreSrchChanArray ----------当前需要优先搜索的频点数组头指针,构造时需要增加到扫描频点列表中
- 输出参数  : pstScanChanListInfo -----------构造好的扫描频点列表指针
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年08月05日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_BuildScanChanList(
     CNAS_XSD_SYS_ACQ_SCENE_ENUM_UINT32 enSysAcqScene,
     VOS_UINT16                         usPreSrchChanNum,
@@ -225,26 +180,7 @@ VOS_VOID CNAS_XSD_BuildScanChanList(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_BuildGeoSysRecordSrchList
- 功能描述  : 频点同步完成,需要捕获系统时,捕获列表的构造
- 输入参数  : usMatchedSysRecNum--------------同步成功的系统ID:呼叫释放等场景下直接使用同步成功的SID+NID构造列表
-             pusMatchedSysRecNum-----------系统GEO列表中匹配的系统表记录总个数,如果无匹配的,个数填写为0
-             pstMatchedSysRecord ----------系统GEO列表中匹配的系统表记录指针,在GEO查找中已经分配了内存
- 输出参数  : pstSysAcqList ---------------构造好的捕获系统列表信息
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年08月05日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
- 2.日    期   : 2015年7月9日
-   作    者   : y00245242
-   修改内容   : iteration 17开发
-*****************************************************************************/
 VOS_VOID CNAS_XSD_BuildGeoSysRecordSrchList(
     CNAS_PRL_1X_SYSTEM_STRU                                *pstSyncSuccSysId,
     VOS_UINT16                                              usMatchedSysRecNum,
@@ -338,22 +274,7 @@ VOS_VOID CNAS_XSD_BuildGeoSysRecordSrchList(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_BuildScanChanList_SwitchOn
- 功能描述  : 开机扫描频点列表构造
- 输入参数  : usPreSrchChanNum ------------ 当前需要优先搜索的频点个数,构造时需要增加到扫描频点列表中
-             pstPreSrchChanArray---------- 当前需要优先搜索的频点数组头指针,构造时需要增加到扫描频点列表中
- 输出参数  : pstScanChanList---------------构造好的频点扫描列表
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年8月05日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_BuildScanChanList_SwitchOn(
     VOS_UINT16                         usPreSrchChanNum,
     CNAS_PRL_FREQENCY_CHANNEL_STRU    *pstPreSrchChanArray,
@@ -389,25 +310,7 @@ VOS_VOID CNAS_XSD_BuildScanChanList_SwitchOn(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_BuildChanScanList_SystemLost
- 功能描述  : 丢网场景下扫描频点列表构造
- 输入参数  : usPreSrchChanNum ------------ 当前需要优先搜索的频点个数,构造时需要增加到扫描频点列表中
-             pstPreSrchChanArray---------- 当前需要优先搜索的频点数组头指针,构造时需要增加到扫描频点列表中
- 输出参数  : pstScanChanList---------------构造好的频点扫描列表
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年8月05日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-  修改历史     :
- 2.日    期   : 2015年1月5日
-   作    者   : c00299063
-   修改内容   : 封装原函数，增加重复搜索策略
-*****************************************************************************/
 VOS_VOID CNAS_XSD_BuildScanChanList_SystemLost(
     VOS_UINT16                          usPreSrchChanNum,
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstPreSrchChanArray,
@@ -462,24 +365,7 @@ VOS_VOID CNAS_XSD_BuildScanChanList_SystemLost(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_BuildScanChanList_AvailableTimerExpired
- 功能描述  : 选网定时器超时场景下扫描频点列表初始化
- 输入参数  : usPreSrchChanNum ------------ 当前需要优先搜索的频点个数,构造时需要增加到扫描频点列表中
-             pstPreSrchChanArray---------- 当前需要优先搜索的频点数组头指针,构造时需要增加到扫描频点列表中
- 输出参数  : pstScanChanList---------------构造好的频点扫描列表
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年8月05日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2014年11月28日
-   作    者   : c00299063
-   修改内容   : 记录当前搜网场景
-*****************************************************************************/
 VOS_VOID CNAS_XSD_BuildScanChanList_AvailableTimerExpired(
     VOS_UINT16                         usPreSrchChanNum,
     CNAS_PRL_FREQENCY_CHANNEL_STRU    *pstPreSrchChanArray,
@@ -492,29 +378,7 @@ VOS_VOID CNAS_XSD_BuildScanChanList_AvailableTimerExpired(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_BuildScanChanList_CallReleased
- 功能描述  : 呼叫释放场景下扫描频点列表构造
- 输入参数  : usPreSrchChanNum ------------ 当前需要优先搜索的频点个数,构造时需要增加到扫描频点列表中
-             pstPreSrchChanArray---------- 当前需要优先搜索的频点数组头指针,构造时需要增加到扫描频点列表中
- 输出参数  : pstScanChanList---------------构造好的频点扫描列表
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年8月05日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
- 2.日    期   : 2015年7月9日
-   作    者   : y00245242
-   修改内容   : iteration 17开发
- 3.日    期   : 2015年12月21日
-   作    者   : w00242748
-   修改内容   : DTS2015121511023:call release申请的资源优先级需提高
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_BuildScanChanList_CallReleased(
     VOS_UINT16                         usPreSrchChanNum,
     CNAS_PRL_FREQENCY_CHANNEL_STRU    *pstPreSrchChanArray,
@@ -597,22 +461,7 @@ VOS_VOID CNAS_XSD_BuildScanChanList_CallReleased(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_BuildScanChanList_EmcCallReleased
- 功能描述  : 紧急呼叫释放场景下扫描频点列表构造
- 输入参数  : usPreSrchChanNum ------------ 当前需要优先搜索的频点个数,构造时需要增加到扫描频点列表中
-             pstPreSrchChanArray---------- 当前需要优先搜索的频点数组头指针,构造时需要增加到扫描频点列表中
- 输出参数  : pstScanChanList---------------构造好的频点扫描列表
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年7月9日
-   作    者   : h00313353
-   修改内容   : iteration 17开发
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_BuildScanChanList_EmcCallReleased(
     VOS_UINT16                         usPreSrchChanNum,
     CNAS_PRL_FREQENCY_CHANNEL_STRU    *pstPreSrchChanArray,
@@ -643,22 +492,7 @@ VOS_VOID CNAS_XSD_BuildScanChanList_EmcCallReleased(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_BuildScanChanList_SystemLostSkipMru0
- 功能描述  : 同丢网场景构造列表，只是将MRU0从scanList中清除
- 输入参数  : usPreSrchChanNum ------------ 当前需要优先搜索的频点个数,构造时需要增加到扫描频点列表中
-             pstPreSrchChanArray---------- 当前需要优先搜索的频点数组头指针,构造时需要增加到扫描频点列表中
- 输出参数  : pstScanChanList---------------构造好的频点扫描列表
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年08月26日
-   作    者   : m00312079
-   修改内容   : DTS2015070400587:同丢网场景构造列表，只是将MRU0从scanList中清除
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_BuildScanChanList_SystemLostSkipMru0(
     VOS_UINT16                         usPreSrchChanNum,
     CNAS_PRL_FREQENCY_CHANNEL_STRU    *pstPreSrchChanArray,
@@ -694,22 +528,7 @@ VOS_VOID CNAS_XSD_BuildScanChanList_SystemLostSkipMru0(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_BuildScanChanList_PowerOnInitSearch
- 功能描述  : 上电开机，第一次无卡开机，发起X模初搜，只为了获取X模位置信息，只构造电信常用频点
- 输入参数  : usPreSrchChanNum ------------ 当前需要优先搜索的频点个数,构造时需要增加到扫描频点列表中
-             pstPreSrchChanArray---------- 当前需要优先搜索的频点数组头指针,构造时需要增加到扫描频点列表中
- 输出参数  : pstScanChanList---------------构造好的频点扫描列表
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年12月10日
-   作    者   : l00324781
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_BuildScanChanList_PowerOnInitSearch(
     VOS_UINT16                         usPreSrchChanNum,
     CNAS_PRL_FREQENCY_CHANNEL_STRU    *pstPreSrchChanArray,
@@ -723,21 +542,7 @@ VOS_VOID CNAS_XSD_BuildScanChanList_PowerOnInitSearch(
     pstScanChanList->usCurScanIndex    = 0;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_OrderScanListByMruList
- 功能描述  : scan list is ordered according MRU list,
- 输入参数  : pstScanChanList -- scan list
-             pstMruList      -- MRU list
- 输出参数  : none
- 返 回 值  : none
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2/12/2014
-   作    者   : y00245242
-   修改内容   : create
-*****************************************************************************/
 VOS_VOID CNAS_XSD_OrderScanListByMruList(
     CNAS_XSD_SCAN_CHANNEL_LIST_STRU    *pstScanChanList,
     CNAS_XSD_MRU_LIST_STRU             *pstMruList
@@ -772,30 +577,7 @@ VOS_VOID CNAS_XSD_OrderScanListByMruList(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_GetLastIndexOfSameOrMorePreferredThanSpecifiedSystemInGeo
- 功能描述  : get the last index of system that is same or more preferred than the
-             specified system in GEO.
 
- 输入参数  : pstGeoListInfo -- orignal system GEO information
-
- 输出参数  : pstScanChanList -- return silent normal call scan list
-
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史     :
- 1.日    期   : 2/12/2014
-   作    者   : y00245242
-   修改内容   : create
- 2.日    期   : 1/17/2015
-   作    者   : y00307564
-   修改内容   : 清TQE
- 3.日    期   : 4/17/2015
-   作    者   : c00299063
-   修改内容   : DTS2015032505314
-*****************************************************************************/
 VOS_UINT16 CNAS_XSD_GetSystemIndexOfSameOrMorePreferredThanSpecifiedSystemInGeo(
     VOS_UINT16                                              usSysMatchedIndex,
     CNAS_PRL_MATCHED_GEO_INFO_STRU                         *pstMatchedGeoInfo
@@ -823,28 +605,7 @@ VOS_UINT16 CNAS_XSD_GetSystemIndexOfSameOrMorePreferredThanSpecifiedSystemInGeo(
     return usGeoEndIndex;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_BuildCallRedialScanChanListUponOrigSystemInGeo
- 功能描述  : construct scan list when orignal system is in GEO.
- 输入参数  : pstGeoListInfo -- orignal system GEO information
 
- 输出参数  : pstScanChanList -- return silent normal call scan list
-
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史     :
- 1.日    期   : 2/12/2014
-   作    者   : y00245242
-   修改内容   : create
- 2.日    期   : 1/17/2015
-   作    者   : y00307564
-   修改内容   : 清TQE
- 3.日    期   : 17/1/2015
-   作    者   : y00245242
-   修改内容   : home SID/NID list开发
-*****************************************************************************/
 VOS_VOID CNAS_XSD_BuildCallRedialScanChanListUponOrigSystemInGeo(
     CNAS_PRL_1X_SYSTEM_STRU                                *pstOrigSysInfo,
     CNAS_PRL_MATCHED_GEO_LIST_INFO_STRU                    *pstGeoListInfo,
@@ -944,20 +705,7 @@ VOS_VOID CNAS_XSD_BuildCallRedialScanChanListUponOrigSystemInGeo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_BuildCallRedialScanChanList
- 功能描述  : 呼叫开始时构造呼叫重拨搜网频点列表
- 输入参数  : pstOrigSysInfo---------------呼叫发起的系统,如果未驻留,指针为空
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年11月18日
-   作    者   : c00299063
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_BuildCallRedialScanChanList(
     CNAX_XSD_CAMPED_SYS_INFO_STRU      *pstCurCampSysInfo
 )
@@ -1038,20 +786,7 @@ VOS_VOID CNAS_XSD_BuildCallRedialScanChanList(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_BuildEmcCallRedialScanChanList
- 功能描述  : 呼叫开始时构造紧急呼叫重拨搜网频点列表
- 输入参数  : pstOrigSysInfo---------------呼叫发起的系统,如果未驻留,指针为空
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年07月07日
-   作    者   : h00313353
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_BuildEmcCallRedialScanChanList( VOS_VOID )
 {
     CNAS_XSD_SCAN_CHANNEL_LIST_STRU                        *pstScanChanList = VOS_NULL_PTR;
@@ -1088,21 +823,7 @@ VOS_VOID CNAS_XSD_BuildEmcCallRedialScanChanList( VOS_VOID )
 
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_AddOrigChanToScanChanlist_REACQ_0_1_2_3_4s
- 功能描述  : 重复搜索策略REACQ_0_1_2_3_4s
- 输入参数  : CNAS_XSD_SCAN_CHANNEL_LIST_STRU                        *pstScanChanList
-             CNAS_PRL_FREQENCY_CHANNEL_STRU                         *pstPreCampFreq
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年1月5日
-   作    者   : c00299063
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_AddOrigChanToScanChanlist_REACQ_0_1_2_3_4s(
     CNAS_XSD_SCAN_CHANNEL_LIST_STRU                        *pstScanChanList,
     CNAS_PRL_FREQENCY_CHANNEL_STRU                         *pstPreCampFreq
@@ -1193,21 +914,7 @@ VOS_VOID CNAS_XSD_AddOrigChanToScanChanlist_REACQ_0_1_2_3_4s(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_AddOrigChanToScanChanlist_PING_5
- 功能描述  : 重复搜索策略PING_5
- 输入参数  : CNAS_XSD_SCAN_CHANNEL_LIST_STRU                        *pstScanChanList
-             CNAS_PRL_FREQENCY_CHANNEL_STRU                         *pstPreCampFreq
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年1月5日
-   作    者   : c00299063
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_AddOrigChanToScanChanlist_PING_5(
     CNAS_XSD_SCAN_CHANNEL_LIST_STRU                        *pstScanChanList,
     CNAS_PRL_FREQENCY_CHANNEL_STRU                         *pstPreCampFreq
@@ -1291,21 +998,7 @@ VOS_VOID CNAS_XSD_AddOrigChanToScanChanlist_PING_5(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_AddOrigChanToScanChanlist_PING_5
- 功能描述  : 重复搜索策略2_7
- 输入参数  : CNAS_XSD_SCAN_CHANNEL_LIST_STRU                        *pstScanChanList
-             CNAS_PRL_FREQENCY_CHANNEL_STRU                         *pstPreCampFreq
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年1月5日
-   作    者   : c00299063
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_AddOrigChanToScanChanlist_2_7(
     CNAS_XSD_SCAN_CHANNEL_LIST_STRU                        *pstScanChanList,
     CNAS_PRL_FREQENCY_CHANNEL_STRU                         *pstPreCampFreq
@@ -1398,20 +1091,7 @@ VOS_VOID CNAS_XSD_AddOrigChanToScanChanlist_2_7(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_BuildCallRedialScanChanList
- 功能描述  : 系统丢网后构造重新搜网频点列表
- 输入参数  : CNAS_XSD_SCAN_CHANNEL_LIST_STRU                        *pstScanChanList
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年11月18日
-   作    者   : c00299063
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_BuildNormalSystemLostScanChanlist(
     CNAS_XSD_SCAN_CHANNEL_LIST_STRU                        *pstScanChanList
 )
@@ -1497,20 +1177,7 @@ VOS_VOID CNAS_XSD_BuildNormalSystemLostScanChanlist(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_ClearCallRedialScanChanList
- 功能描述  : 呼叫开始时清除呼叫重拨搜网频点列表
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年11月18日
-   作    者   : c00299063
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_ClearCallRedialScanChanList(VOS_VOID)
 {
     CNAS_XSD_SCAN_CHANNEL_LIST_STRU                        *pstScanChanList = VOS_NULL_PTR;
@@ -1530,20 +1197,7 @@ VOS_VOID CNAS_XSD_ClearCallRedialScanChanList(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_UpdateScanChanList
- 功能描述  : 更新频点扫描列表
- 输入参数  : pstSrcScanChanList------------更新前的频点扫描列表
- 输出参数  : pstDestScanChanList-----------更新后的频点扫描列表
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年12月5日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_UpdateScanChanList(
     CNAS_XSD_SCAN_CHANNEL_LIST_STRU    *pstDestScanChanList,
     CNAS_XSD_SCAN_CHANNEL_LIST_STRU    *pstSrcScanChanList
@@ -1572,21 +1226,7 @@ VOS_VOID CNAS_XSD_UpdateScanChanList(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_BuildScanChanList_CallRedial
- 功能描述  : 开机扫描频点列表构造
- 输入参数  : usPreSrchChanNum ------------ 当前需要优先搜索的频点个数,构造时需要增加到扫描频点列表中
-             pstPreSrchChanArray---------- 当前需要优先搜索的频点数组头指针,构造时需要增加到扫描频点列表中
- 输出参数  : pstScanChanList---------------构造好的频点扫描列表
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年11月18日
-   作    者   : c00299063
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_BuildScanChanList_CallRedial(
     VOS_UINT16                          usPreSrchChanNum,
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstPreSrchChanArray,
@@ -1616,27 +1256,7 @@ VOS_VOID CNAS_XSD_BuildScanChanList_CallRedial(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_UpdateChanStatusInScanChanList
- 功能描述  : 更新指定频点在扫描频点列表中的频点搜索状态
- 输入参数  : usBeginScanListIndex --------------- 开始的index
-             pstChannel--------------- 指定频点
-             enChanStatus--------------------频点状态
-             pstScanChanList -----------------当前的频点扫描列表
- 输出参数  : pstScanChanList-------------------当前的频点扫描列表
- 返 回 值  : VOS_UINT16 -- 返回当前刷新的频点在scan list中的索引
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年8月05日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
- 2.日    期   : 2015年9月8日
-   作    者   : y00245242
-   修改内容   : DTS2015090601618
-*****************************************************************************/
 VOS_UINT16 CNAS_XSD_UpdateChanStatusInScanChanList(
     VOS_UINT16                                              usBeginScanListIndex,
     CNAS_PRL_FREQENCY_CHANNEL_STRU                         *pstChannel,
@@ -1661,22 +1281,7 @@ VOS_UINT16 CNAS_XSD_UpdateChanStatusInScanChanList(
     return usBeginScanListIndex;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_UpdateSysFreqStatusBySysInGeoSysRecordSrchList
- 功能描述  : 更新指定系统在捕获系统列表中的状态
- 输入参数  : pstSysInfo--------------- 指定系统
-             enSysStatus----------------系统状态
-             pstSysAcqList ---------------系统捕获列表
- 输出参数  : pstSysAcqList------------------系统捕获列表
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年8月16日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_UpdateSysFreqStatusBySysInGeoSysRecordSrchList(
     CNAS_PRL_1X_SYSTEM_STRU                                *pstSysInfo,
     CNAS_XSD_SCAN_CHAN_STATUS_ENUM_UINT8                    enSysStatus,
@@ -1701,26 +1306,7 @@ VOS_VOID CNAS_XSD_UpdateSysFreqStatusBySysInGeoSysRecordSrchList(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_UpdateSysFreqStatusByFreqChanInGeoSysRecordSrchList
- 功能描述  : 根据指定的频点在系统捕获列表中查找对应的系统列表并更新状态
- 输入参数  : pstFreqChan--------------- 指定频点
-             enSysStatus----------------系统状态
-             pstSysAcqList ---------------系统捕获列表
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年8月28日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
- 2.日    期   : 2015年7月27日
-   作    者   : y00245242
-   修改内容   : iteration 17开发
-*****************************************************************************/
 
 VOS_VOID CNAS_XSD_UpdateSysFreqStatusByFreqChanInGeoSysRecordSrchList(
     CNAS_PRL_FREQENCY_CHANNEL_STRU                         *pstFreqChan,
@@ -1744,22 +1330,7 @@ VOS_VOID CNAS_XSD_UpdateSysFreqStatusByFreqChanInGeoSysRecordSrchList(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RemoveExpiredFreqFromAvoidList
- 功能描述  : 检查到期的频点，如果有频点到期，从avoid列表中剔除该频点
- 输入参数  : 无
 
- 输出参数  : 无
-
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史     :
- 1.日    期   : 2014年10月14日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_RemoveExpiredFreqFromAvoidList(VOS_VOID)
 {
     VOS_UINT32                                              ulCurSlice;
@@ -1821,23 +1392,7 @@ VOS_VOID CNAS_XSD_RemoveExpiredFreqFromAvoidList(VOS_VOID)
     CNAS_XSD_LogAvoidFreqList(CNAS_XSD_GetAvoidFreqListAddr());
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_IsCurFreqAvoided
- 功能描述  : 检查当前频点是否在avoid列表中被禁
- 输入参数  : pstFreqChan -- 频点信息指针
 
- 输出参数  : 无
-
- 返 回 值  : VOS_TRUE  -- 当前频点被禁
-             VOS_FALSE -- 当前频点不被禁
- 调用函数  :
- 被调函数  :
-
- 修改历史     :
- 1.日    期   : 2014年10月14日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 CNAS_XSD_IsCurFreqAvoided(
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstFreqChan
 )
@@ -1865,31 +1420,7 @@ VOS_UINT8 CNAS_XSD_IsCurFreqAvoided(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_GetNextScanChanList
- 功能描述  : 获取下个未扫描过的频点列表
- 输入参数  : ucInsertMru0Freq  ----------插入MRU0频点
-             usCurScanChanIndex----------当前扫描到的频点索引
-             pstScanChanList------当前的扫描频点列表
- 输出参数  : pusDstChanNum-----------获取到的频点个数
-             pstDstChan--------------获取到的频点列表
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年8月05日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
- 2.日    期   : 2015年1月05日
-   作    者   : y00245242
-   修改内容   : 增加OOC搜索策略
-
- 3.日    期   : 2015年7月21日
-   作    者   : y00245242
-   修改内容   : iteration 17开发
-*****************************************************************************/
 VOS_VOID CNAS_XSD_GetNextScanChanList(
     VOS_UINT16                          usCurScanChanIndex,
     VOS_UINT16                         *pusDstChanNum,
@@ -1970,23 +1501,7 @@ VOS_VOID CNAS_XSD_GetNextScanChanList(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_IsSpecifiedFreqSrchedInGeoSysRecordSrchList
- 功能描述  : GEO系统记录搜索列表是否搜索过
- 输入参数  : pstFreq       -- 指定的频点
-             pstAcqSysInfo -- 捕获的系统信息
- 输出参数  :
 
- 返 回 值  : VOS_TRUE  -- 已经搜索过
-             VOS_FALSE -- 未搜索过
- 调用函数  :
- 被调函数  :
-
- 修改历史     :
- 1.日    期   : 2015年7月6日
-   作    者   : y00245242
-   修改内容   : iteration 17开发
-*****************************************************************************/
 VOS_UINT8 CNAS_XSD_IsSpecifiedFreqSrchedInGeoSysRecordSrchList(
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstFreq,
     CNAS_XSD_ACQUIRE_SYSTEM_INFO_STRU  *pstAcqSysInfo
@@ -2005,25 +1520,7 @@ VOS_UINT8 CNAS_XSD_IsSpecifiedFreqSrchedInGeoSysRecordSrchList(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_GetNextSysSyncListFromGeoSysRecordSrchList
- 功能描述  : 获取下个未捕获过的系统列表
- 输入参数  : pstSysAcqList  -- 当前的系统捕获列表
- 输出参数  : pusScanChanNum -- 返回下次同步的搜索频点数目
-             pstScanList    -- 获取到下发发给AS的scan list
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年8月15日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
- 2.日    期   : 2015年7月4日
-   作    者   : y00245242
-   修改内容   : iteration 17开发
-*****************************************************************************/
 VOS_VOID CNAS_XSD_GetNextSysSyncListFromGeoSysRecordSrchList(
     CNAS_XSD_GEO_SYS_RECORD_SRCH_LIST_STRU                 *pstGeoSysRecSrchList,
     VOS_UINT16                                             *pusScanChanNum,
@@ -2108,28 +1605,7 @@ VOS_VOID CNAS_XSD_GetNextSysSyncListFromGeoSysRecordSrchList(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_PraseChannelInMatchedGeoList
- 功能描述  : 根据匹配的GEO列表解析出对应的频点
- 输入参数  : pstMatchedGeoList------匹配的GEO列表
-             usMaxGeoChanNum--------最大的GEO频点个数
- 输出参数  : pusGeoChanNum-------解析GEO后的频点个数
-             pstGeoChanList------解析GEO后的频点列表
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年8月5日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 3/1/2015
-   作    者   : w00176964
-   修改内容   : place the alloc memory logic outside of this function
- 3.日    期   : 2015年08月27日
-   作    者   : t00323010
-   修改内容   : DTS2015081904804 clear pc-lint warning
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_PraseChannelInMatchedGeoList(
     CNAS_PRL_1X_SYSTEM_STRU                                *pstSysInfo,
     CNAS_PRL_MATCHED_GEO_LIST_INFO_STRU                    *pstMatchedGeoList,
@@ -2209,23 +1685,7 @@ VOS_UINT32 CNAS_XSD_PraseChannelInMatchedGeoList(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_SortChanListByMruList
- 功能描述  : 根据MRU列表对已知的频点列表进行排序
- 输入参数  : usChanNum------原始的频点列表个数
-             pstChanList----原始的频点列表
-             pstMruList----MRU列表
- 输出参数  : usChanNum------排好序的频点列表个数
-             pstChanList----排好序的频点列表
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年8月85日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
 /*lint -e429*/
 VOS_VOID CNAS_XSD_SortChanListByMruList(
     VOS_UINT16                          usChanNum,
@@ -2262,21 +1722,7 @@ VOS_VOID CNAS_XSD_SortChanListByMruList(
 }
 /*lint +e429*/
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_GetScanChanStatusInScanChanList
- 功能描述  : 判断指定的频点在扫描频点列表中的扫描状态
- 输入参数  : pstFreq-------------指定的频点
-             pstScanChanList-------频点扫描列表
- 输出参数  : 无
- 返 回 值  : 频点扫描状态
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年8月21日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
 
 CNAS_XSD_SCAN_CHAN_STATUS_ENUM_UINT8 CNAS_XSD_GetScanChanStatusInScanChanList(
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstFreq,
@@ -2302,22 +1748,7 @@ CNAS_XSD_SCAN_CHAN_STATUS_ENUM_UINT8 CNAS_XSD_GetScanChanStatusInScanChanList(
     return enChanSta;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_AddFreqChanListInScanChanList
- 功能描述  : 向频点扫描列表中增加频点扫描列表
- 输入参数  : usChanNum---------频点列表个数
-             pstChanList------频点列表
- 输出参数  : pstScanChanList-------------增加PRL中获取记录列表后的频点扫描列表
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年8月12日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 /*lint -e429*/
 VOS_VOID CNAS_XSD_AddFreqChanListInScanChanList(
     VOS_UINT16                          usChanNum,
@@ -2344,21 +1775,7 @@ VOS_VOID CNAS_XSD_AddFreqChanListInScanChanList(
 /*lint +e429*/
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_AddMruListInScanChanList
- 功能描述  : 向频点扫描列表中增加MRU列表
- 输入参数  : 无
- 输出参数  : pstScanChanList-------------增加MRU列表后的频点扫描列表
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年8月12日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_AddMruListInScanChanList(
     CNAS_XSD_SCAN_CHANNEL_LIST_STRU    *pstScanChanList
 )
@@ -2383,24 +1800,7 @@ VOS_VOID CNAS_XSD_AddMruListInScanChanList(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_AddUePreferredListInScanChanList
- 功能描述  : 向频点扫描列表中增加Band0和Band10中Preferred频点
- 输入参数  : 无
- 输出参数  : pstScanChanList
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年07月07日
-   作    者   : h00313353
-   修改内容   : 新生成函数
-
- 2.日    期   : 2015年9月23日
-   作    者   : y00245242
-   修改内容   : DTS2015091901326
-*****************************************************************************/
 VOS_VOID CNAS_XSD_AddUePreferredListInScanChanList(
     CNAS_XSD_SCAN_CHANNEL_LIST_STRU    *pstScanChanList
 )
@@ -2463,21 +1863,7 @@ VOS_VOID CNAS_XSD_AddUePreferredListInScanChanList(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_AddSyncedSuccFreqListinScanChanlist
- 功能描述  : 向频点扫描列表中增加开机后同步成功过的频点
- 输入参数  : 无
- 输出参数  : pstScanChanList
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年07月07日
-   作    者   : h00313353
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_AddHistorySyncedSuccFreqListInScanChanlist(
     CNAS_XSD_SCAN_CHANNEL_LIST_STRU    *pstScanChanList
 )
@@ -2503,21 +1889,7 @@ VOS_VOID CNAS_XSD_AddHistorySyncedSuccFreqListInScanChanlist(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_AddCdma1XPrefChannelsInScanChanlist
- 功能描述  : 向频点扫描列表中增加CDMA 1X 优选频点
- 输入参数  : 无
- 输出参数  : pstScanChanList
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年07月07日
-   作    者   : h00313353
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_AddCdma1XCustomPrefChannelsInScanChanlist(
     CNAS_XSD_SCAN_CHANNEL_LIST_STRU    *pstScanChanList
 )
@@ -2549,21 +1921,7 @@ VOS_VOID CNAS_XSD_AddCdma1XCustomPrefChannelsInScanChanlist(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_AddMruListExcludeMru0InScanChanList
- 功能描述  : 向频点扫描列表中增加除MRU0以外的MRU列表
- 输入参数  : 无
- 输出参数  : pstScanChanList-------------增加MRU0以外的MRU列表后的频点扫描列表
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年8月12日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_AddMruListExcludeMru0InScanChanList(
     CNAS_XSD_SCAN_CHANNEL_LIST_STRU    *pstScanChanList
 )
@@ -2589,21 +1947,7 @@ VOS_VOID CNAS_XSD_AddMruListExcludeMru0InScanChanList(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_AddSpecPrlAcqRecInScanChanList
- 功能描述  : 向频点扫描列表中增加PRL中指定获取记录频点信息
- 输入参数  : pstPrlAcqRec---------------指定的PRL中的系统表记录
- 输出参数  : pstScanChanList-------------增加PRL中获取记录列表后的频点扫描列表
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年8月12日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_AddSpecPrlAcqRecInScanChanList(
     CNAS_PRL_ACQ_RECORD_STRU           *pstPrlAcqRec,
     CNAS_XSD_SCAN_CHANNEL_LIST_STRU    *pstScanChanList
@@ -2636,21 +1980,7 @@ VOS_VOID CNAS_XSD_AddSpecPrlAcqRecInScanChanList(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_AddPrlAcqRecListInScanChanList
- 功能描述  : 向频点扫描列表中增加PRL中的获取记录列表
- 输入参数  : 无
- 输出参数  : pstScanChanList-------------增加PRL中获取记录列表后的频点扫描列表
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年8月12日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_AddPrlAcqRecListInScanChanList(
     CNAS_XSD_SCAN_CHANNEL_LIST_STRU    *pstScanChanList
 )
@@ -2679,23 +2009,7 @@ VOS_VOID CNAS_XSD_AddPrlAcqRecListInScanChanList(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_AppendFreqChanInScanChanList
- 功能描述  : 向频点扫描列表中加入指定频点
- 输入参数  : pstScanChanInfo-----指定的扫描频点信息
- 输出参数  : pstScanChanList----------频点扫描列表信息
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年8月12日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2014年12月26日
-   作    者   : w00176964
-   修改内容   : CDMA 1X Iteration Modifed:Remove the band class that are not supported BY MS
-*****************************************************************************/
 VOS_VOID CNAS_XSD_AppendFreqChanInScanChanList(
     CNAS_XSD_SCAN_CHANNEL_INFO_STRU    *pstScanChanInfo,
     CNAS_XSD_SCAN_CHANNEL_LIST_STRU    *pstScanChanList
@@ -2738,27 +2052,7 @@ VOS_VOID CNAS_XSD_AppendFreqChanInScanChanList(
 
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_IsChannelInSndCasSyncList
- 功能描述  : check当前发送给CAS中的频点列表中是否有需要同步的频点
- 输入参数  : pstFreqChan -- 需要同步的频点
-             pstScanList -- 发送给AS的同步列表
-             usScanNum   -- 当前同步列表中数目
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:当前频点在里面
-             VOS_FALSE:当前频点不在里面
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年8月12日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
- 2.日    期   : 2015年7月4日
-   作    者   : y00245242
-   修改内容   : iteration 17开发
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_IsChannelInSndCasSyncList(
     CNAS_PRL_FREQENCY_CHANNEL_STRU                         *pstFreqChan,
     CNAS_PRL_FREQENCY_CHANNEL_STRU                         *pstScanList,
@@ -2780,23 +2074,7 @@ VOS_UINT32 CNAS_XSD_IsChannelInSndCasSyncList(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_AppendAcqSysInfoInAcqSysList
- 功能描述  : 向捕获系统列表中增加捕获系统信息
- 输入参数  : pstAcqSysInfo-----指定的捕获系统信息
- 输出参数  : pstScanChanList----------捕获系统列表
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年8月12日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2015年7月6日
-   作    者   : y00245242
-   修改内容   : iteration 17开发
-*****************************************************************************/
 VOS_VOID CNAS_XSD_AppendAcqSysInfoInAcqSysList(
     CNAS_XSD_ACQUIRE_SYSTEM_INFO_STRU                      *pstAcqSysInfo,
     CNAS_XSD_GEO_SYS_RECORD_SRCH_LIST_STRU                 *pstGeoSysRecSrchList
@@ -2841,24 +2119,7 @@ VOS_VOID CNAS_XSD_AppendAcqSysInfoInAcqSysList(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_AddSysRecordIntoSysList
- 功能描述  : 向捕获系统列表中增加捕获系统信息
- 输入参数  : pstFreq             -----频点信息
-             pstSysRecord        -----系统记录
- 输出参数  : pstGeoSysRecSrchList-----GEO系统记录搜索列表
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年8月12日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2015年7月6日
-   作    者   : y00245242
-   修改内容   : iteration 17开发
-*****************************************************************************/
 VOS_VOID CNAS_XSD_AddSysRecordIntoSysList(
     CNAS_PRL_FREQENCY_CHANNEL_STRU                         *pstFreq,
     CNAS_PRL_EXT_SYS_RECORD_STRU                           *pstSysRecord,
@@ -2916,23 +2177,7 @@ VOS_VOID CNAS_XSD_AddSysRecordIntoSysList(
 
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_IsChannelInChannelList
- 功能描述  : 判定指定频点是否在频点列表止呕能够
- 输入参数  : pstChannel-----指定的扫描频点信息
-             usChanListNum---频点列表个数
-             pstChanList----------频点扫描列表信表
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 VOS_TRUE :在频点列表里
-                        VOS_FALSE:不在频点列表
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年8月18日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
 /*lint -e429*/
 VOS_UINT32 CNAS_XSD_IsChannelInChannelList(
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstChannel,
@@ -2956,23 +2201,7 @@ VOS_UINT32 CNAS_XSD_IsChannelInChannelList(
 }
 /*lint +e429*/
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_MoveFreqChantoEndOfChanList
- 功能描述  : The channel over which origination failed shall be placed last in
-             the channels list.
 
- 输入参数  : pstSysInfo      -- system information
-             pstScanChanList -- scan list
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史     :
- 1.日    期   : 2014年11月21日
-   作    者   : c00299063
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_MoveFreqChantoEndOfChanList(
     CNAS_PRL_1X_SYSTEM_STRU                                *pstSysInfo,
     CNAS_XSD_SCAN_CHANNEL_LIST_STRU                        *pstScanChanList
@@ -3018,20 +2247,7 @@ VOS_VOID CNAS_XSD_MoveFreqChantoEndOfChanList(
 
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_CalculateSystemLostMaxScanChanListSize
- 功能描述  : 计算丢网场景下重复搜索策略时最大的频点数
- 输入参数  : VOS_UINT16                         *pstMaxScanListSize
- 输出参数  : VOS_UINT16                         *pstMaxScanListSize
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
-  1.日    期   : 2015年1月5日
-    作    者   : c00299063
-    修改内容   : 新建
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_CalculateSystemLostMaxScanChanListSize(
     VOS_UINT16                         *pusMaxScanListSize
 )
@@ -3069,28 +2285,7 @@ VOS_VOID CNAS_XSD_CalculateSystemLostMaxScanChanListSize(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_AllocMemoryForScanChanList
- 功能描述  : 为扫描频点列表分配内存
- 输入参数  : 无
- 输出参数  : pstScanChanList-----频点扫描列表
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月21日
-    作    者   : w00176964
-    修改内容   : 新生成函数
- 修改历史      :
-  2.日    期   : 2015年1月5日
-    作    者   : c00299063
-    修改内容   : 增加入参，搜网场景
-
-  3.日    期   : 2015年7月20日
-    作    者   : h00313353
-    修改内容   : 迭代17 紧急呼
-*****************************************************************************/
 VOS_VOID CNAS_XSD_AllocMemoryForScanChanList(
     CNAS_XSD_SCAN_CHANNEL_LIST_STRU                        *pstScanChanList,
     CNAS_XSD_SYS_ACQ_SCENE_ENUM_UINT32                      enSysAcqScene
@@ -3161,25 +2356,7 @@ VOS_VOID CNAS_XSD_AllocMemoryForScanChanList(
 
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_AllocMemoryForGeoSysRecordSrchList
- 功能描述  : 为捕获系统列表分配内存
- 输入参数  : usMatchedSysRecNum----------选中的GEO列表中的系统记录条数
-             pstMatchedSysRecord---------选中的GEO列表中的系统记录
- 输出参数  : pstAcqSysList---------------捕获系统列表
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月21日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年7月20日
-    作    者   : y00245242
-    修改内容   : iteration 17开发
-*****************************************************************************/
 VOS_VOID CNAS_XSD_AllocMemoryForGeoSysRecordSrchList(
     VOS_UINT16                                              usMatchedSysRecNum,
     CNAS_PRL_EXT_SYS_RECORD_STRU                           *pstMatchedSysRecord,
@@ -3218,21 +2395,7 @@ VOS_VOID CNAS_XSD_AllocMemoryForGeoSysRecordSrchList(
     pstGeoSysRecSrchList->usMaxAcqSysSize = usMaxAcqSysIdNum;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_AllocMemoryForScanChanList_FreqLock
- 功能描述  : 为扫描频点列表分配内存
- 输入参数  : 无
- 输出参数  : pstScanChanList-----频点扫描列表
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月29日
-    作    者   : y00307564
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_AllocMemoryForScanChanList_FreqLock(
     CNAS_XSD_SCAN_CHANNEL_LIST_STRU   *pstScanChanList
 )
@@ -3261,25 +2424,7 @@ VOS_VOID CNAS_XSD_AllocMemoryForScanChanList_FreqLock(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_BuildScanChanList_CallReleasedWithRedir
- 功能描述  : build scan channel list with SD ind with release while redirection flag is true
- 输入参数  : usPreSrchChanNum ------------ Number of the channels which are synced at first
-             pstPreSrchChanArray---------- The channels which are synced at first,we have to add the list to the scan chanel list while building
- 输出参数  : pstScanChanList---------------The scan channel list which has been built
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年12月25日
-   作    者   : w00176964
-   修改内容   : Create
-
- 2.日    期   : 2015年7月20日
-   作    者   : y00245242
-   修改内容   : iteration 17开发
-*****************************************************************************/
 VOS_VOID CNAS_XSD_BuildScanChanList_CallReleasedWithRedir(
     VOS_UINT16                          usPreSrchChanNum,
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstPreSrchChanArray,
@@ -3321,21 +2466,7 @@ VOS_VOID CNAS_XSD_BuildScanChanList_CallReleasedWithRedir(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_BuildScanChanList_RedirectionFail
- 功能描述  : build scan channel list while redirection failed
- 输入参数  : usPreSrchChanNum ------------ Number of the channels which are synced at first
-             pstPreSrchChanArray---------- The channels which are synced at first,we have to add the list to the scan chanel list while building
- 输出参数  : pstScanChanList---------------The scan channel list which has been built
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年12月25日
-   作    者   : w00176964
-   修改内容   : Create
-*****************************************************************************/
 VOS_VOID CNAS_XSD_BuildScanChanList_RedirectionFail(
     VOS_UINT16                          usPreSrchChanNum,
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstPreSrchChanArray,
@@ -3403,21 +2534,7 @@ VOS_VOID CNAS_XSD_BuildScanChanList_RedirectionFail(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_BuildScanChanList_RedirectionWithInvalidGSRDM
- 功能描述  : build scan channel list while redirection failed
- 输入参数  : usPreSrchChanNum ------------ Number of the channels which are synced at first
-             pstPreSrchChanArray---------- The channels which are synced at first,we have to add the list to the scan chanel list while building
- 输出参数  : pstScanChanList---------------The scan channel list which has been built
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年12月25日
-   作    者   : w00176964
-   修改内容   : Create
-*****************************************************************************/
 VOS_VOID CNAS_XSD_BuildScanChanList_RedirectionWithInvalidGSRDM(
     VOS_UINT16                          usPreSrchChanNum,
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstPreSrchChanArray,
@@ -3431,21 +2548,7 @@ VOS_VOID CNAS_XSD_BuildScanChanList_RedirectionWithInvalidGSRDM(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_BuildScanChanList_Rescan
- 功能描述  : build scan channel list with SD ind with reason reason
- 输入参数  : usPreSrchChanNum ------------ Number of the channels which are synced at first
-             pstPreSrchChanArray---------- The channels which are synced at first,we have to add the list to the scan chanel list while building
- 输出参数  : pstScanChanList---------------The scan channel list which has been built
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年12月25日
-   作    者   : w00176964
-   修改内容   : Create
-*****************************************************************************/
 VOS_VOID CNAS_XSD_BuildScanChanList_Rescan(
     VOS_UINT16                          usPreSrchChanNum,
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstPreSrchChanArray,
@@ -3458,21 +2561,7 @@ VOS_VOID CNAS_XSD_BuildScanChanList_Rescan(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_BuildScanChanList_ProtoMismatch
- 功能描述  : build scan channel list with SD ind with protocol mismatch reason
- 输入参数  : usPreSrchChanNum ------------ Number of the channels which are synced at first
-             pstPreSrchChanArray---------- The channels which are synced at first,we have to add the list to the scan chanel list while building
- 输出参数  : pstScanChanList---------------The scan channel list which has been built
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年12月25日
-   作    者   : w00176964
-   修改内容   : Create
-*****************************************************************************/
 VOS_VOID CNAS_XSD_BuildScanChanList_ProtoMismatch(
     VOS_UINT16                          usPreSrchChanNum,
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstPreSrchChanArray,
@@ -3484,21 +2573,7 @@ VOS_VOID CNAS_XSD_BuildScanChanList_ProtoMismatch(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_BuildScanChanList_AccessDenied
- 功能描述  : build scan channel list with SD ind with access denied reason
- 输入参数  : usPreSrchChanNum ------------ Number of the channels which are synced at first
-             pstPreSrchChanArray---------- The channels which are synced at first,we have to add the list to the scan chanel list while building
- 输出参数  : pstScanChanList---------------The scan channel list which has been built
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年12月25日
-   作    者   : w00176964
-   修改内容   : Create
-*****************************************************************************/
 VOS_VOID CNAS_XSD_BuildScanChanList_AccessDenied(
     VOS_UINT16                          usPreSrchChanNum,
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstPreSrchChanArray,
@@ -3510,21 +2585,7 @@ VOS_VOID CNAS_XSD_BuildScanChanList_AccessDenied(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_BuildScanChanList_AcctBlocked
- 功能描述  : build scan channel list with SD ind with acct blocked reason
- 输入参数  : usPreSrchChanNum ------------ Number of the channels which are synced at first
-             pstPreSrchChanArray---------- The channels which are synced at first,we have to add the list to the scan chanel list while building
- 输出参数  : pstScanChanList---------------The scan channel list which has been built
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年12月25日
-   作    者   : w00176964
-   修改内容   : Create
-*****************************************************************************/
 VOS_VOID CNAS_XSD_BuildScanChanList_AcctBlocked(
     VOS_UINT16                          usPreSrchChanNum,
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstPreSrchChanArray,
@@ -3536,21 +2597,7 @@ VOS_VOID CNAS_XSD_BuildScanChanList_AcctBlocked(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_BuildScanChanList_NdssOff
- 功能描述  : build scan channel list with SD ind with ndss off reason
- 输入参数  : usPreSrchChanNum ------------ Number of the channels which are synced at first
-             pstPreSrchChanArray---------- The channels which are synced at first,we have to add the list to the scan chanel list while building
- 输出参数  : pstScanChanList---------------The scan channel list which has been built
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年12月25日
-   作    者   : w00176964
-   修改内容   : Create
-*****************************************************************************/
 VOS_VOID CNAS_XSD_BuildScanChanList_NdssOff(
     VOS_UINT16                          usPreSrchChanNum,
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstPreSrchChanArray,
@@ -3563,21 +2610,7 @@ VOS_VOID CNAS_XSD_BuildScanChanList_NdssOff(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_BuildScanChanList_Error
- 功能描述  : build scan channel list with SD ind with error ind reason
- 输入参数  : usPreSrchChanNum ------------ Number of the channels which are synced at first
-             pstPreSrchChanArray---------- The channels which are synced at first,we have to add the list to the scan chanel list while building
- 输出参数  : pstScanChanList---------------The scan channel list which has been built
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年12月25日
-   作    者   : w00176964
-   修改内容   : Create
-*****************************************************************************/
 VOS_VOID CNAS_XSD_BuildScanChanList_Error(
     VOS_UINT16                          usPreSrchChanNum,
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstPreSrchChanArray,
@@ -3589,21 +2622,7 @@ VOS_VOID CNAS_XSD_BuildScanChanList_Error(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_BuildScanChanList_RegisRej
- 功能描述  : build scan channel list with SD ind with register reject ind reason
- 输入参数  : usPreSrchChanNum ------------ Number of the channels which are synced at first
-             pstPreSrchChanArray---------- The channels which are synced at first,we have to add the list to the scan chanel list while building
- 输出参数  : pstScanChanList---------------The scan channel list which has been built
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年12月25日
-   作    者   : w00176964
-   修改内容   : Create
-*****************************************************************************/
 VOS_VOID CNAS_XSD_BuildScanChanList_RegisRej(
     VOS_UINT16                          usPreSrchChanNum,
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstPreSrchChanArray,
@@ -3615,21 +2634,7 @@ VOS_VOID CNAS_XSD_BuildScanChanList_RegisRej(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_BuildScanChanList_RegisRejWithRedirAndRtf
- 功能描述  : build scan channel list with SD ind with register reject ind reason while rediection flag is true and return_if_fail is true
- 输入参数  : usPreSrchChanNum ------------ Number of the channels which are synced at first
-             pstPreSrchChanArray---------- The channels which are synced at first,we have to add the list to the scan chanel list while building
- 输出参数  : pstScanChanList---------------The scan channel list which has been built
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年12月25日
-   作    者   : w00176964
-   修改内容   : Create
-*****************************************************************************/
 VOS_VOID CNAS_XSD_BuildScanChanList_RegisRejWithRedirAndRtf(
     VOS_UINT16                          usPreSrchChanNum,
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstPreSrchChanArray,
@@ -3652,21 +2657,7 @@ VOS_VOID CNAS_XSD_BuildScanChanList_RegisRejWithRedirAndRtf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_BuildScanChanList_SysReselWithPrefPrl
- 功能描述  : build scan channel list with SD ind with system reselection ind reason while the current system is in PRL and is prefered system
- 输入参数  : usPreSrchChanNum ------------ Number of the channels which are synced at first
-             pstPreSrchChanArray---------- The channels which are synced at first,we have to add the list to the scan chanel list while building
- 输出参数  : pstScanChanList---------------The scan channel list which has been built
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年12月25日
-   作    者   : w00176964
-   修改内容   : Create
-*****************************************************************************/
 VOS_VOID CNAS_XSD_BuildScanChanList_SysReselWithPrefPrl(
     VOS_UINT16                          usPreSrchChanNum,
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstPreSrchChanArray,
@@ -3738,21 +2729,7 @@ VOS_VOID CNAS_XSD_BuildScanChanList_SysReselWithPrefPrl(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_BuildScanChanList_SysReselNotInPrlOrNeg
- 功能描述  : build scan channel list with SD ind with system reselection ind reason while the current system is not in PRL or negative in PRL
- 输入参数  : usPreSrchChanNum ------------ Number of the channels which are synced at first
-             pstPreSrchChanArray---------- The channels which are synced at first,we have to add the list to the scan chanel list while building
- 输出参数  : pstScanChanList---------------The scan channel list which has been built
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年12月25日
-   作    者   : w00176964
-   修改内容   : Create
-*****************************************************************************/
 VOS_VOID CNAS_XSD_BuildScanChanList_SysReselNotInPrlOrNeg(
     VOS_UINT16                          usPreSrchChanNum,
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstPreSrchChanArray,
@@ -3780,29 +2757,7 @@ VOS_VOID CNAS_XSD_BuildScanChanList_SysReselNotInPrlOrNeg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_BuildScanChanList_MaxAccessFailureInPrl
- 功能描述  : build scan channel list with SD ind with max access failure reason while the current system is in PRL
- 输入参数  : usPreSrchChanNum ------------ Number of the channels which are synced at first
-             pstPreSrchChanArray---------- The channels which are synced at first,we have to add the list to the scan chanel list while building
- 输出参数  : pstScanChanList---------------The scan channel list which has been built
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年12月25日
-   作    者   : w00176964
-   修改内容   : Create
-
- 2.日    期   : 2015年3月21日
-   作    者   : c00299063
-   修改内容   : DTS2015031106822
-
- 3.日    期   : 27/1/2016
-   作    者   : w00176964
-   修改内容   : DTS2015120204031:SD指示max access failure,balong回原始频点时间比较慢
-*****************************************************************************/
 VOS_VOID CNAS_XSD_BuildScanChanList_MaxAccessFailureInPrl(
     VOS_UINT16                          usPreSrchChanNum,
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstPreSrchChanArray,
@@ -3880,25 +2835,7 @@ VOS_VOID CNAS_XSD_BuildScanChanList_MaxAccessFailureInPrl(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_BuildScanChanList_MaxAccessFailureNotInPrl
- 功能描述  : build scan channel list with SD ind with max access failure reason while the current system is not in PRL
- 输入参数  : usPreSrchChanNum ------------ Number of the channels which are synced at first
-             pstPreSrchChanArray---------- The channels which are synced at first,we have to add the list to the scan chanel list while building
- 输出参数  : pstScanChanList---------------The scan channel list which has been built
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年12月25日
-   作    者   : w00176964
-   修改内容   : Create
-
- 2.日    期   : 27/1/2016
-   作    者   : w00176964
-   修改内容   : DTS2015120204031:SD指示max access failure,balong回原始频点时间比较慢
-*****************************************************************************/
 VOS_VOID CNAS_XSD_BuildScanChanList_MaxAccessFailureNotInPrl(
     VOS_UINT16                          usPreSrchChanNum,
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstPreSrchChanArray,
@@ -3959,21 +2896,7 @@ VOS_VOID CNAS_XSD_BuildScanChanList_MaxAccessFailureNotInPrl(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_BuildScanChanList_Abnormal
- 功能描述  : build scan channel list with SD ind with abnormal ind reason
- 输入参数  : usPreSrchChanNum ------------ Number of the channels which are synced at first
-             pstPreSrchChanArray---------- The channels which are synced at first,we have to add the list to the scan chanel list while building
- 输出参数  : pstScanChanList---------------The scan channel list which has been built
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年12月25日
-   作    者   : w00176964
-   修改内容   : Create
-*****************************************************************************/
 VOS_VOID CNAS_XSD_BuildScanChanList_Abnormal(
     VOS_UINT16                          usPreSrchChanNum,
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstPreSrchChanArray,
@@ -4067,23 +2990,7 @@ CNAS_XSD_SYSTEM_ACQUIRE_MODE_ENUM_UINT8 CNAS_XSD_GetSysAcqModeOfSpecialAcqScene(
 }
 
 
-/*****************************************************************************
-Function Name   :   CNAS_XSD_BuildScanChanList_Redirection
-Description     :   Build the channel scan list with SD ind reason is redirecton
-Input parameters:   pstRedirectionInfo
-                    pstScanList
 
-Output parameters:  None
-Return Value    :   VOS_VOID
-
-Modify History:
-    1)  Date    :   2014-12-26
-        Author  :   m00270891
-        Modify content :    Create
-    2)  Date    :   2015-6-09
-        Author  :   W00176964
-        Modify content : DTS2015053003202:重定向过滤AS携带过来的重复频点
-*****************************************************************************/
 VOS_VOID CNAS_XSD_BuildScanChanList_Redirection(
     CNAS_XSD_REDIRECTION_INFO_STRU     *pstRedirectionInfo,
     CNAS_XSD_SCAN_CHANNEL_LIST_STRU    *pstScanList
@@ -4126,21 +3033,7 @@ VOS_VOID CNAS_XSD_BuildScanChanList_Redirection(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_BuildScanChanList_FreqLock
- 功能描述  : 构建扫描列表
- 输入参数  : 无
- 输出参数  : pstScanChanList-----频点扫描列表
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月29日
-    作    者   : y00307564
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_BuildScanChanList_FreqLock(
     CNAS_XSD_SCAN_CHANNEL_LIST_STRU    *pstScanChanList
 )
@@ -4158,21 +3051,7 @@ VOS_VOID CNAS_XSD_BuildScanChanList_FreqLock(
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_IsChannelInPrlAcqTbl
- 功能描述  : 判定指定频点是否在PRL中
- 输入参数  : pstChannel-----指定的扫描频点信息
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 VOS_TRUE :在PRL中
-                        VOS_FALSE:不在PRL中
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年1月9日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_IsChannelInPrlAcqTbl(
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstChannel
 )
@@ -4217,21 +3096,7 @@ VOS_UINT32 CNAS_XSD_IsChannelInPrlAcqTbl(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_IsAvailableSys
- 功能描述  : 判定当前系统是否为available system
- 输入参数  : pstCurSys-----当前系统
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 VOS_TRUE :是available system
-                        VOS_FALSE:不是available system
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年1月9日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_IsAvailableSys(
     CNAS_PRL_1X_SYSTEM_STRU            *pstCurSys
 )
@@ -4259,21 +3124,7 @@ VOS_UINT32 CNAS_XSD_IsAvailableSys(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_IsAcquireAvaialSysNeeded
- 功能描述  : 判定是否需要捕获available system
- 输入参数  : pstCurSys-----当前系统
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 VOS_TRUE :是available system
-                        VOS_FALSE:不是available system
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年1月9日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_IsAcquireAvaialSysNeeded(
     CNAS_XSD_SYS_ACQ_SCENE_ENUM_UINT32  enScanScene
 )
@@ -4302,22 +3153,7 @@ VOS_UINT32 CNAS_XSD_IsAcquireAvaialSysNeeded(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_BuildScanChanList_MRU0
- 功能描述  : MRU0频点搜索scan list构造
- 输入参数  : usPreSrchChanNum ------------ 当前需要优先搜索的频点个数,构造时需要增加到扫描频点列表中
-             pstPreSrchChanArray---------- 当前需要优先搜索的频点数组头指针,构造时需要增加到扫描频点列表中
- 输出参数  : pstScanChanList---------------构造好的频点扫描列表
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年1月5日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_BuildScanChanList_MRU0(
     VOS_UINT16                         usPreSrchChanNum,
     CNAS_PRL_FREQENCY_CHANNEL_STRU    *pstPreSrchChanArray,
@@ -4346,22 +3182,7 @@ VOS_VOID CNAS_XSD_BuildScanChanList_MRU0(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_BuildScanChanList_EMC
- 功能描述  : 紧急呼频点搜索scan list构造
- 输入参数  : VOS_UINT16                          usPreSrchChanNum
-             CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstPreSrchChanArray
- 输出参数  : pstScanChanList---------------构造好的频点扫描列表
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年07月07日
-   作    者   : h00313353
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_BuildScanChanList_EMC(
     VOS_UINT16                          usPreSrchChanNum,
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstPreSrchChanArray,
@@ -4390,25 +3211,7 @@ VOS_VOID CNAS_XSD_BuildScanChanList_EMC(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_BuildScanChanList_CALLBACK
- 功能描述  : 紧急呼频点搜索scan list构造
- 输入参数  : VOS_UINT16                          usPreSrchChanNum
-             CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstPreSrchChanArray
- 输出参数  : pstScanChanList---------------构造好的频点扫描列表
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年07月07日
-   作    者   : h00313353
-   修改内容   : 新生成函数
-
- 2.日    期   : 2016年1月27日
-   作    者   : h00313353
-   修改内容   : DTS2015091603440
-*****************************************************************************/
 VOS_VOID CNAS_XSD_BuildScanChanList_CALLBACK(
     VOS_UINT16                          usPreSrchChanNum,
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstPreSrchChanArray,
@@ -4452,26 +3255,7 @@ VOS_VOID CNAS_XSD_BuildScanChanList_CALLBACK(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_UpdateSyncSuccChanStatus
- 功能描述  : 更新扫描成功的频点状态
- 输入参数  : VOS_UINT16                          usBeginScanListIndex
-             CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstChannel
-             CNAS_XSD_SCAN_CHANNEL_LIST_STRU    *pstScanChanList
- 输出参数  : 无
- 返 回 值  : VOS_UINT16 -- 返回当前刷新的频点在scan list中的索引
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月14日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年9月8日
-    作    者   : y00245242
-    修改内容   : DTS2015090601618
-*****************************************************************************/
 VOS_UINT16 CNAS_XSD_UpdateSyncSuccChanStatus(
     VOS_UINT16                          usBeginScanListIndex,
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstChannel,
@@ -4484,31 +3268,7 @@ VOS_UINT16 CNAS_XSD_UpdateSyncSuccChanStatus(
                                                    pstScanChanList);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_UpdateSyncFailChanStatus
- 功能描述  : 更新扫描失败的频点状态
- 输入参数  : usBeginScanListIndex ------------ 开始搜索频点的index
-             usSyncFailChanNum ------------------同步失败的频点个数
-             pstSyncFailChanList ------------ 同步失败的频点列表
-             pstScanChanList -----------------当前的频点扫描列表
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年8月14日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
- 2.日    期   : 2015年7月9日
-   作    者   : y00245242
-   修改内容   : iteration 17开发
-
- 3.日    期   : 2015年9月8日
-   作    者   : y00245242
-   修改内容   : DTS2015090601618
-*****************************************************************************/
 VOS_UINT16 CNAS_XSD_UpdateSyncFailChanStatus(
     VOS_UINT16                          usBeginScanListIndex,
     VOS_UINT16                          usSyncFailChanNum,
@@ -4540,21 +3300,7 @@ VOS_UINT16 CNAS_XSD_UpdateSyncFailChanStatus(
     return usCurFreqIndex;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_UpdateGeoListSrchStatus
- 功能描述  : 更新GEO list搜索状态
- 输入参数  : pstGeoListInfo -- match的GEO list信息
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年7月2日
-    作    者   : y00245242
-    修改内容   : iteration 17开发
-*****************************************************************************/
 VOS_VOID CNAS_XSD_UpdateGeoListSrchStatus(
     CNAS_PRL_MATCHED_GEO_LIST_INFO_STRU                    *pstGeoListInfo,
     VOS_UINT16                                              usGeoSrchStatus
@@ -4590,21 +3336,7 @@ VOS_VOID CNAS_XSD_UpdateGeoListSrchStatus(
     CNAS_XSD_LogGeoListSrchStatus(pstGeoListSrchInfo);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_UpdateGeoSysRecordListInfoAccordingToScanChanList
- 功能描述  : 根据scan chan list更新GEO系统记录搜索
- 输入参数  : pstGeoSysRecSrchList -- GEO系统记录搜索列表
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年7月2日
-    作    者   : y00245242
-    修改内容   : iteration 17开发
-*****************************************************************************/
 VOS_VOID CNAS_XSD_UpdateGeoSysRecordListInfoAccordingToScanChanList(
     CNAS_XSD_GEO_SYS_RECORD_SRCH_LIST_STRU                 *pstGeoSysRecSrchList
 )
@@ -4654,21 +3386,7 @@ VOS_VOID CNAS_XSD_UpdateGeoSysRecordListInfoAccordingToScanChanList(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_UpdateRedirectionFreqStatusAccordingToScanChanList
- 功能描述  : 根据scan chan list更新重定向频点状态
- 输入参数  : pstScanChanList -- scan chan list地址
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年7月2日
-    作    者   : y00245242
-    修改内容   : iteration 17开发
-*****************************************************************************/
 VOS_VOID CNAS_XSD_UpdateRedirectionFreqStatusAccordingToScanChanList(
     CNAS_XSD_SCAN_CHANNEL_LIST_STRU                        *pstScanChanList
 )
@@ -4698,23 +3416,7 @@ VOS_VOID CNAS_XSD_UpdateRedirectionFreqStatusAccordingToScanChanList(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_IsOocSceneAndRepeatMru0FreqSrchExist
- 功能描述  : check当前是否是OOC场景且重复MRU0频点搜索存在
- 输入参数  : pstMru0SysId -- MRU0频点信息
 
- 输出参数  : 无
-
- 返 回 值  : VOS_TRUE  -- 当前是OOC场景且MRU0频点存在
-             VOS_FALSE -- 不是OOC场景且MRU0频点存在
- 调用函数  :
- 被调函数  :
-
- 修改历史     :
- 1.日    期   : 2015年09月07日
-   作    者   : y00245242
-   修改内容   : DTS2015090601618
-*****************************************************************************/
 VOS_UINT32  CNAS_XSD_IsOocSceneAndRepeatMru0FreqSrchExist(
     CNAS_PRL_1X_SYSTEM_STRU            *pstMru0SysId
 )
@@ -4746,23 +3448,7 @@ VOS_UINT32  CNAS_XSD_IsOocSceneAndRepeatMru0FreqSrchExist(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_IsMru0FreqInOocScene
- 功能描述  : 检查当前频点是否是MRU0频点
- 输入参数  : pstFreqChan -- 频点信息指针
 
- 输出参数  : 无
-
- 返 回 值  : VOS_TRUE  -- 是MRU0频点
-             VOS_FALSE -- 不是MRU0频点
- 调用函数  :
- 被调函数  :
-
- 修改历史     :
- 1.日    期   : 2015年09月07日
-   作    者   : y00245242
-   修改内容   : DTS2015090601618
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_IsMru0FreqInOocScene(
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstFreqChan
 )
@@ -4783,26 +3469,7 @@ VOS_UINT32 CNAS_XSD_IsMru0FreqInOocScene(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_UpdateFreqStatusBeforeCurIndexInScanChanList
- 功能描述  : 更新scan list中从开始到当前索引指定的频点状态
- 输入参数  : enChanStatus       -- 频点状态
-             usCurScanChanIndex -- 当前频点索引
-             pstFreqChan        -- 频点信息地址
-             pstScanChanList    -- scan chan list信息地址
 
- 输出参数  : 无
-
- 返 回 值  : 无
-
- 调用函数  :
- 被调函数  :
-
- 修改历史     :
- 1.日    期   : 2015年09月07日
-   作    者   : y00245242
-   修改内容   : DTS2015090601618
-*****************************************************************************/
 VOS_VOID CNAS_XSD_UpdateFreqStatusBeforeCurIndexInScanChanList(
     CNAS_XSD_SCAN_CHAN_STATUS_ENUM_UINT8                    enChanStatus,
     VOS_UINT16                                              usCurScanChanIndex,
@@ -4824,26 +3491,7 @@ VOS_VOID CNAS_XSD_UpdateFreqStatusBeforeCurIndexInScanChanList(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_UpdateNoSyncedOrSyncSuccScanChanInScanChanList
- 功能描述  : 更新scan list中未同步的或同步成功的频点状态
- 输入参数  : enChanStatus       -- 频点状态
-             usCurScanChanIndex -- 当前频点索引
-             pstFreqChan        -- 频点信息地址
-             pstScanChanList    -- scan chan list信息地址
 
- 输出参数  : 无
-
- 返 回 值  : VOS_UINT16 -- 当前刷新的频点索引
-
- 调用函数  :
- 被调函数  :
-
- 修改历史     :
- 1.日    期   : 2015年09月07日
-   作    者   : y00245242
-   修改内容   : DTS2015090601618
-*****************************************************************************/
 VOS_UINT16 CNAS_XSD_UpdateNoSyncedOrSyncSuccScanChanInScanChanList(
     CNAS_XSD_SCAN_CHAN_STATUS_ENUM_UINT8                    enChanStatus,
     VOS_UINT16                                              usCurScanIndex,
@@ -4876,20 +3524,7 @@ VOS_UINT16 CNAS_XSD_UpdateNoSyncedOrSyncSuccScanChanInScanChanList(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_BuildEmcRedialMruList
- 功能描述  : 记录当前MRU LIST，用于紧急呼叫重拨计数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月26日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_BuildEmcRedialMruList()
 {
     CNAS_XSD_MRU_LIST_STRU                                 *pstMruList            = VOS_NULL_PTR;
@@ -4906,20 +3541,7 @@ VOS_VOID CNAS_XSD_BuildEmcRedialMruList()
     return;
 
 }
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_ClearEmcRedialSysAcqCount
- 功能描述  : 清空紧急呼重拨搜网计数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月26日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_ClearEmcRedialSysAcqCfgInfo()
 {
     CNAS_XSD_EMC_REDIAL_SYS_ACQ_CFG_STRU                   *pstEmcRedialSysAcqCfg = VOS_NULL_PTR;
@@ -4934,21 +3556,7 @@ VOS_VOID CNAS_XSD_ClearEmcRedialSysAcqCfgInfo()
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_GetCurSysIndexOfEmcRedialMruList
- 功能描述  : 保存当前系统在mru列表中的索引
- 输入参数  : CNAS_PRL_1X_SYSTEM_STRU                                *pstSysInfo
- 输出参数  : VOS_UINT8                                              *pucindex
- 返 回 值  : VOS_TRUE      获取索引成功
-             VOS_FALSE     获取索引失败，系统不在MruList表中
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月26日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 CNAS_XSD_GetCurSysIndexOfEmcRedialMruList(
     CNAS_PRL_1X_SYSTEM_STRU                                *pstSysInfo,
     VOS_UINT32                                             *pulIndex
@@ -4977,21 +3585,7 @@ VOS_UINT8 CNAS_XSD_GetCurSysIndexOfEmcRedialMruList(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_BuildScanChanList_CallReleaseSystemLost
- 功能描述  : 丢网场景下扫描频点列表构造
- 输入参数  : usPreSrchChanNum ------------ 当前需要优先搜索的频点个数,构造时需要增加到扫描频点列表中
-             pstPreSrchChanArray---------- 当前需要优先搜索的频点数组头指针,构造时需要增加到扫描频点列表中
- 输出参数  : pstScanChanList---------------构造好的频点扫描列表
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年12月21日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_BuildScanChanList_CallReleaseSystemLost(
     VOS_UINT16                          usPreSrchChanNum,
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstPreSrchChanArray,

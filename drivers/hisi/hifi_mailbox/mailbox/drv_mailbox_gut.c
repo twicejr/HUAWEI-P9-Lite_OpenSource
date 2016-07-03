@@ -1,38 +1,4 @@
-/******************************************************************************
 
-版权所有 (C), 2001-2011, 华为技术有限公司
-
-******************************************************************************
-文 件 名   : drv_mailbox.c
-版 本 号   : 初稿
-作	  者   : 莫南 00176101
-生成日期   : 2012年9月21日
-最近修改   :
-功能描述   : mailbox&跨核邮箱驱动软件，主体代码。
-函数列表   :
-	MAILBOX_BufIdleSize
-	MAILBOX_BufDataSize
-	mailbox_queue_write
-	mailbox_request_channel
-	mailbox_release_channel
-	mailbox_read_mail
-	MAILBOX_PostMails
-	mailbox_receive_all_mails
-	mailbox_check_mail
-	mailbox_read_channel
-	mailbox_init_mem
-	mailbox_create_box
-	mailbox_log_erro
-	mailbox_init
-	mailbox_queue_read
-	MAILBOX_MailReceiverRegister
-	mailbox_send_msg
-	mailbox_show
-修改历史   :
-1.日	期	 : 2012年9月21日
-作	  者   : 莫南 00176101
-修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
 1 头文件包含
@@ -89,25 +55,7 @@ MAILBOX_LOCAL int mailbox_init_mem(struct mb_cfg *config);
 *****************************************************************************/
 
 /*邮箱内部接口开始*/
-/*****************************************************************************
-函 数 名  : mailbox_queue_write
-函数类型  :
-功能描述  : 往队列写入指定长度数据并更新写指针
-输入参数  : struct mb_queue    *queue - 待写入队列操作符
-signed char 	   *data	  - 待写入数据指针
-unsigned long	   size 	  - 待写入数据长度，单位byte
-输出参数  : struct mb_queue    *queue	 - 更队列状态,更新队列写指针。
-返 回 值  : void
-调用函数  :
-被调函数  : mailbox_write_mail()
-MAILBOX_Read()
 
-修改历史	  :
-1.日	期	 : 2011年6月14日
-作	  者   : 袁旦 00145322
-修改内容   : 新生成函数
-
-*****************************************************************************/
 MAILBOX_EXTERN int mailbox_queue_write(
                 struct mb_queue      *queue,
                 char                 *data,
@@ -140,24 +88,7 @@ MAILBOX_EXTERN int mailbox_queue_write(
     return (int)size;
 }
 
-/*****************************************************************************
-函 数 名  : mailbox_queue_read
-功能描述  : 邮箱用户在数据接收回调函数中调用, 从邮箱中读取一封最先到达的邮件
 
-输入参数  : queue -- 邮箱句柄, 数据接收回调函数入参
-buff	  -- 保存待读出数据的缓存地址
-size	  -- 待读取邮件长度
-输出参数  : struct mb_queue    *pMailQueue	 - 更队列状态,更新队列读指针，指针按4字节向前对齐。
-返 回 值  : 实际读取长度, 单位byte
-调用函数  :
-被调函数  :
-
-修改历史	  :
-1.日	期	 : 2012年10月26日
-作	  者   : 莫南 00176101
-修改内容   : 新生成函数
-
-*****************************************************************************/
 MAILBOX_GLOBAL int mailbox_queue_read(
                 struct mb_queue   *queue,
                 char              *buff,
@@ -191,24 +122,7 @@ MAILBOX_GLOBAL int mailbox_queue_read(
 }
 
 
-/*****************************************************************************
-函 数 名  : mailbox_check_mail
-接口类型  : 对内接口
-功能描述  : 检查读到的消息是否存在异常，包括SN号是否连续、消息滞留时间是否
-过长
-输入参数  : mb_buff 			*mbuff - 邮箱操作句柄
-struct mb_mail		*msg_head  - 读到消息的消息头
-输出参数  : 无
-返 回 值  : 消息头是否有效
-调用函数  :
-被调函数  :
 
-修改历史	  :
-1.日	期	 : 2012年9月24日
-作	  者   : 莫南 00176101
-修改内容   : 新生成函数
-
-*****************************************************************************/
 MAILBOX_LOCAL int mailbox_check_mail(struct mb_buff *mbuff,
                 struct mb_mail *msg_head,
                 unsigned long data_addr)
@@ -248,23 +162,7 @@ MAILBOX_LOCAL int mailbox_check_mail(struct mb_buff *mbuff,
     return ret_val;
 }
 
-/*****************************************************************************
-函 数 名  : mailbox_get_mb
-接口类型  : 对外接口
-功能描述  : 获取邮箱控制总句柄
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 邮箱控制总句柄
-调用函数  :
 
-被调函数  :
-
-修改历史	  :
-1.日	期	 : 2012年9月27日
-作	  者   : 莫南 00176101
-修改内容   : 新生成函数
-
-*****************************************************************************/
 MAILBOX_EXTERN struct mb *mailbox_get_mb(void)
 {
     if (MAILBOX_INIT_MAGIC == g_mailbox_handle.init_flag) {
@@ -276,25 +174,7 @@ MAILBOX_EXTERN struct mb *mailbox_get_mb(void)
 	return MAILBOX_NULL;
 }
 
-/*****************************************************************************
-函 数 名  : mailbox_request_channel
-接口类型  : 对外接口
-功能描述  : 打开一个邮箱通道，准备开始写或者一封邮件。
-根据现有的邮箱通道号，创建一个邮箱操作符号，并根据邮箱头填充邮箱操作符信息
-输入参数  : struct mb *mailbox 邮箱控制总句柄
-unsigned long	  mailcode	-- 待访问邮件的ID
-输出参数  : 无
-返 回 值  : 一个邮箱通道的操作符
-调用函数  :
 
-被调函数  :
-
-修改历史	  :
-1.日	期	 : 2012年9月27日
-作	  者   : 莫南 00176101
-修改内容   : 新生成函数
-
-*****************************************************************************/
 MAILBOX_EXTERN struct mb_buff *mailbox_get_channel_handle(
                 struct mb *mailbox,
                 unsigned int mailcode)
@@ -356,26 +236,7 @@ MAILBOX_EXTERN struct mb_buff *mailbox_get_channel_handle(
     return mbuff;
 }
 
-/*****************************************************************************
- 函 数 名  : mailbox_request_channel
- 接口类型  : 对外接口
- 功能描述  : 打开一个邮箱通道，准备开始写或者一封邮件。
-             根据现有的邮箱通道号，创建一个邮箱操作符号，并根据邮箱头填充邮箱操作符信息
- 输入参数  : struct mb *mb     -- 邮箱总句柄
-             struct mb_buff ** -- 邮箱通道缓存描述符
-             unsigned long     mailcode  -- 待访问邮件的ID
- 输出参数  : 无
- 返 回 值  : 一个邮箱通道的操作符
- 调用函数  :
 
-被调函数  :
-
-修改历史	  :
-1.日	期	 : 2012年9月27日
-作	  者   : 莫南 00176101
-修改内容   : 新生成函数
-
-*****************************************************************************/
 MAILBOX_LOCAL int mailbox_request_channel(
                 struct mb *mb,
                 struct mb_buff ** mb_buf,
@@ -442,23 +303,7 @@ request_erro:
 	return ret_val;
 }
 
-/*****************************************************************************
-函 数 名  : mailbox_release_channel
-接口类型  : 对内接口
-功能描述  : 关闭邮箱，释放资源。
 
-输入参数  : mb_buff* fpMailBox	- 邮箱通道缓存操作符
-输出参数  : 无
-返 回 值  : 邮箱关闭是否成功
-调用函数  :
-被调函数  :
-
-修改历史	  :
-1.日	期	 : 2012年9月27日
-作	  者   : 莫南 00176101
-修改内容   : 新生成函数
-
-*****************************************************************************/
 MAILBOX_LOCAL int mailbox_release_channel(struct mb *mb,
                 struct mb_buff *mbuff)
 {
@@ -478,24 +323,7 @@ MAILBOX_LOCAL int mailbox_release_channel(struct mb *mb,
 	return MAILBOX_OK;
 }
 
-/*****************************************************************************
-函 数 名  : mailbox_read_mail
-接口类型  : 对内接口
-功能描述  : 读取并处理一封邮箱的正文数据内容,接受邮箱数据的数据层入口，
-并且调用上层注册的邮件数据处理回调函数
-输入参数  : mb_buff*	   pstMailbox  - 邮箱通道操作符
 
-输出参数  : 无
-返 回 值  : 读取的邮件数据长度，包括邮件头，返回0表示失败。
-调用函数  :
-被调函数  :
-
-修改历史	  :
-1.日	期	 : 2012年9月24日
-作	  者   : 莫南 00176101
-修改内容   : 新生成函数
-
-*****************************************************************************/
 MAILBOX_LOCAL int mailbox_read_mail(struct mb_buff *mbuff)
 {
     struct mb_mail        mail;
@@ -576,23 +404,7 @@ EXIT:
 
 }
 
-/****************************************************************************************************
-函 数 名  : mailbox_receive_all_mails
-接口类型  : 对内接口
-功能描述  : 获取当前邮箱的未读取数据长度，如果长度大于0，依次读取并处理一封邮件，
-直到所有数据读取完.
-输入参数  : mb_buff*  fpMail -- 某个邮箱通道的操作句柄
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史	  :
-1.日	期	 : 2012年9月24日
-作	  者   : 莫南 00176101
-修改内容   : 新生成函数
-
-*****************************************************************************************************/
 MAILBOX_LOCAL int mailbox_receive_all_mails(struct mb_buff *mbuf)
 {
 
@@ -628,24 +440,7 @@ MAILBOX_LOCAL int mailbox_receive_all_mails(struct mb_buff *mbuf)
     return ret_val ;
 }
 
-/*****************************************************************************
-函 数 名  : mailbox_read_channel
-接口类型  : 对内接口
-功能描述  : 邮箱共享内存通道接受到新数据的处理回调函数.
-根据传入的参数(MailBoxID)描述的邮箱通道层次来区分，使用不同的扫描邮箱读取策略:
-高24bit有效 通知哪个CPU的哪条通道有邮件到达:扫描此邮箱通道，处理所有邮件。
-输入参数  : unsigned long MailBoxID -- 邮箱通道号
-输出参数  : 无
-返 回 值  : 无
-调用函数  : mailbox_receive_all_mails()
-被调函数  :
 
-修改历史	  :
-1.日	期	 : 2012年9月24日
-作	  者   : 莫南 00176101
-修改内容   : 新生成函数
-
-*****************************************************************************/
 MAILBOX_LOCAL int mailbox_read_channel(unsigned int channel_id)
 {
     struct mb_buff      *mbuf  = MAILBOX_NULL;     /*邮箱操作句柄*/
@@ -682,22 +477,7 @@ MAILBOX_LOCAL int mailbox_read_channel(unsigned int channel_id)
 	return ret_val;
 }
 
-/*****************************************************************************
-函 数 名  : mailbox_init_mem
-接口类型  : 对内接口
-功能描述  : 初始化邮箱通道内存,初始化邮箱头及邮箱体，设置结构初始值和保护字等
-输入参数  : pstDrvMbMemCfg -- 某个邮箱内存通道描述符
-输出参数  : 无
-返 回 值  : 成功或失败
-调用函数  :
-被调函数  :
 
-修改历史	  :
-1.日	期	 : 2012年9月24日
-作	  者   : 莫南 00176101
-修改内容   : 新生成函数
-
-*****************************************************************************/
 MAILBOX_LOCAL int mailbox_init_mem(struct mb_cfg *config)
 {
     struct mb_head       *head = (struct mb_head*)config->head_addr;
@@ -735,24 +515,7 @@ MAILBOX_LOCAL int mailbox_init_mem(struct mb_cfg *config)
 	return MAILBOX_OK;
 }
 
-/*****************************************************************************
-函 数 名  : mailbox_calculate_space
-接口类型  : 对内接口
-功能描述  : 统计通道信息，计算需要分配的内存空间
-输入参数  : pMailbox  -- 邮箱总句柄
-ChCfgTbl  -- 邮箱通道的全局配置表。
-CpuID	  -- 注册此通道的CPU号。
-输出参数  : 无
-返 回 值  : 邮箱操作句柄
-调用函数  :
-被调函数  :
 
-修改历史	  :
-1.日	期	 : 2012年9月7日
-作	  者   : 莫南 00176101
-修改内容   : 新生成函数
-
-*****************************************************************************/
 MAILBOX_LOCAL int mailbox_calculate_space(
                 struct mb           *mb,
                 struct mb_cfg    *config,
@@ -812,24 +575,7 @@ MAILBOX_LOCAL int mailbox_calculate_space(
 	return ret_val;
 }
 
-/*****************************************************************************
-函 数 名  : mailbox_init_all_handle
-接口类型  : 对内接口
-功能描述  : 初始化邮箱的所有通道句柄
-输入参数  : pMailbox  -- 邮箱总句柄
-ChCfgTbl  -- 邮箱通道的全局配置表。
-CpuID	  -- 注册此通道的CPU号。
-输出参数  : 无
-返 回 值  : 邮箱操作句柄
-调用函数  :
-被调函数  :
 
-修改历史	  :
-1.日	期	 : 2012年9月7日
-作	  者   : 莫南 00176101
-修改内容   : 新生成函数
-
-*****************************************************************************/
 MAILBOX_LOCAL int mailbox_init_all_handle(
                 struct mb           *mb,
                 struct mb_cfg    *config,
@@ -976,23 +722,7 @@ MAILBOX_LOCAL int mailbox_init_all_handle(
 	return ret_val;
 }
 
-/*****************************************************************************
-函 数 名  : mailbox_create_box
-接口类型  : 对内接口
-功能描述  : 创建邮箱操作句柄,申请邮箱总操作句柄空间，并初始化邮箱通道资源.
-输入参数  : ChCfgTbl  -- 邮箱通道的全局配置表。
-CpuID	  -- 注册此通道的CPU号。
-输出参数  : 无
-返 回 值  : 邮箱操作句柄
-调用函数  :
-被调函数  :
 
-修改历史	  :
-1.日	期	 : 2012年9月7日
-作	  者   : 莫南 00176101
-修改内容   : 新生成函数
-
-*****************************************************************************/
 MAILBOX_LOCAL int mailbox_create_box(
                 struct mb          *mb,
                 struct mb_cfg   *config,
@@ -1054,24 +784,7 @@ void *mem_remap_type(unsigned long phys_addr, size_t size, pgprot_t pgprot)
     return (void *)vaddr;
 }
 
-/*****************************************************************************
-函 数 名  : mailbox_init
-接口类型  : 对外接口
-功能描述  : 邮箱模块平台适配部分初始化
-输入参数  :
 
-输出参数  : 无
-返 回 值  : 线程操作句柄
-调用函数  :
-被调函数  : mailbox_init_platform()
-
-修改历史	  :
-1.日	期	 : 2012年9月24日
-作	  者   : 莫南 00176101
-修改内容   : 新生成函数
-
-详细描述: 初始化邮箱并初始化与平台相关的差异化部分，在邮箱初始化的时候调用。
-*****************************************************************************/
 MAILBOX_GLOBAL int mailbox_init(void)
 {
 	unsigned long offset = 0;
@@ -1155,23 +868,7 @@ MAILBOX_GLOBAL int mailbox_init(void)
 }
 
 /*邮箱对外接口开始*/
-/*****************************************************************************
-函 数 名  : MAILBOX_RegisterRecvFuncByHandle
-功能描述  : 核间邮件数据接收回调函数的注册
-输入参数  : struct mb				*pMailBox	 -- 某个核的邮箱总句柄。
-unsigned long				MailId		-- 接收到的邮件的id号。与发送方的邮件发送目标ID号一致。
-mb_cb_func		pFun		-- 邮件数据接收处理回调函数
-输出参数  : 无
-返 回 值  : MAILBOX_OK, 异常返回值
-调用函数  :
-被调函数  :
 
-修改历史	  :
-1.日	期	 : 2012年9月29日
-作	  者   : 莫南 00176101
-修改内容   : 新生成函数
-
-*****************************************************************************/
 MAILBOX_EXTERN int mailbox_register_cb(
                 unsigned int  mailcode,
                 void (*cb)(void *mbuf, void *handle, void *data),
@@ -1352,23 +1049,7 @@ MAILBOX_EXTERN int mailbox_sealup_buff(struct mb_buff * mb_buf , unsigned int us
 	return mailbox_init_usr_queue(mb_buf);
 }
 
-/*****************************************************************************
-函 数 名  : mailbox_flush_buff
-接口类型  : 对内接口
-功能描述  : 把邮箱消息队列的头尾指针写入邮箱头
 
-输入参数  : mb_buff* fpMailBox	- 邮箱通道操作符
-输出参数  : 无
-返 回 值  : 邮箱关闭是否成功
-调用函数  :
-被调函数  :
-
-修改历史	  :
-1.日	期	 : 2013年5月08日
-作	  者   : 莫南 00176101
-修改内容   : 新生成函数
-
-*****************************************************************************/
 MAILBOX_EXTERN int mailbox_flush_buff( struct mb_buff *mbuff)
 {
     struct mb_head       *head = MAILBOX_NULL;

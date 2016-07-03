@@ -1,23 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmcProcRegRslt.h
-  版 本 号   : 初稿
-  作    者   : w00176964
-  生成日期   : 2011年5月10日
-  最近修改   :
-  功能描述   : NAS处理注册相关的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年5月10日
-    作    者   : w00176964
-    修改内容   : 创建文件
-  2.日    期   : 2011年7月21日
-    作    者   : l00130025
-    修改内容   : PhaseII修改
-******************************************************************************/
 #ifndef _NAS_MMC_PROC_REG_RSLT_H
 #define _NAS_MMC_PROC_REG_RSLT_H
 
@@ -50,22 +31,7 @@ extern "C" {
   3 枚举定义
 *****************************************************************************/
 
-/*****************************************************************************
- 枚举名    : NAS_MMC_REG_RSLT_TYPE_ENUM
- 枚举说明  : 注册结果消息类型的枚举定义
- 1.日    期   : 2012年1月20日
-   作    者   : w00167002
-   修改内容   : DTS2011122006209:枚举处理注册结果的消息类型.
-                在NasMmcProcRegRslt.c文件中处理注册结果表中，主要是通过CAUSE
-                来进行处理，然而仅根据此信息来处理注册结果是不完备的，譬如
-                需要知道Attemp Counter信息，现在将处理注册结果的消息保存在
-                本地的全局变量里面，这样在处理注册结果时候，可获得所有的注
-                册结果信息，这样函数处理能力得到了极大的扩张，注册结果处理函数
-                本省的架构得到稳定。
- 2.日    期   : 2012年3月5日
-   作    者   : w00167002
-   修改内容   : V7R1C50 CSFB调整:增加LMM 上报的service结果的保存
-*****************************************************************************/
+
 enum NAS_MMC_REG_RSLT_TYPE_ENUM
 {
     MM_MMC_CS_REG_RESULT_IND            = 0X01,             /* MM通知MMC当前CS域注册结果 */
@@ -100,71 +66,32 @@ typedef VOS_UINT8 NAS_MMC_REG_RSLT_TYPE_ENUM_UINT8;
   7 STRUCT定义
 *****************************************************************************/
 
-/*****************************************************************************
- 结构名    : NAS_MMC_PROC_REG_REJ_FUNC_PTR
- 结构说明  : MM/GMM的注册结果处理函数指针
-  1.日    期   : 2011年6月27日
-    作    者   : l00130025
-    修改内容   : 新增
-*****************************************************************************/
+
 typedef NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 (*NAS_MMC_PROC_REG_FAIL_FUNC_PTR)(VOS_VOID);
 
-/*****************************************************************************
- 结构名    : NAS_MMC_REG_REJ_PROC_ENTITY
- 结构说明  :每个注册被拒原因值，处理实体
-   1.日    期   : 2011年6月27日
-    作    者   : l00130025
-    修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16                  enRegCause;
     NAS_MMC_PROC_REG_FAIL_FUNC_PTR                      pRegFailProcFunc;
 }NAS_MMC_REG_FAIL_PROC_ENTITY;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_PROC_REG_REJ_FUNC_PTR
- 结构说明  : MM/GMM的注册结果处理函数指针
-  1.日    期   : 2011年6月27日
-    作    者   : l00130025
-    修改内容   : 新增
-*****************************************************************************/
+
 typedef VOS_VOID (*NAS_MMC_PROC_COMBINED_EPS_REG_FAIL_FUNC_PTR)(NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 *penPsRegAdditionalAction, NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 *penCsRegAdditionalAction);
 
-/*****************************************************************************
- 结构名    : NAS_MMC_COMBINED_EPS_REG_REJ_PROC_ENTITY
- 结构说明  :EPS联合注册被拒原因值，处理实体
-   1.日    期   : 2011年10月25日
-    作    者   : z00161729
-    修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16                  enRegCause;
     NAS_MMC_PROC_COMBINED_EPS_REG_FAIL_FUNC_PTR         pCombinedEpsRegFailProcFunc;
 }NAS_MMC_COMBINED_EPS_REG_REJ_PROC_ENTITY;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_PROC_EPS_DETACH_CAUSE_FUNC_PTR
- 结构说明  : eps的网侧DETACH结果处理函数指针
-  1.日    期   : 2011年11月1日
-    作    者   : w00176964
-    修改内容   : 新增
-  2.日    期   : 2011年11月19日
-    作    者   : w00176964
-    修改内容   : 联合注册ST修改
-*****************************************************************************/
+
 typedef VOS_VOID (*NAS_MMC_PROC_EPS_DETACH_CAUSE_FUNC_PTR)(NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 *penPsRegAdditionalAction,
                                                            NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 *penCsRegAdditionalAction
                                                            );
 
-/*****************************************************************************
- 结构名    : NAS_MMC_EPS_DETACH_CAUSE_PROC_ENTITY
- 结构说明  :EPS网侧DETACH被拒原因值，处理实体
-   1.日    期   : 2011年11月1日
-    作    者   : w00176964
-    修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16                      enRegCause;
@@ -172,13 +99,7 @@ typedef struct
 }NAS_MMC_EPS_DETACH_CAUSE_PROC_ENTITY;
 
 
-/*****************************************************************************
- 结构名    : NAS_MMC_ADDITIONAL_ACTION_PRIORITY_PAIR
- 结构说明  :每个注册被拒原因值，处理实体
-  1.日    期   : 2011年7月27日
-    作    者   : l00130025
-    修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8                 enAdditionalAction;
@@ -186,36 +107,14 @@ typedef struct
 }NAS_MMC_ADDITIONAL_ACTION_PRIORITY_PAIR;
 
 
-/*****************************************************************************
- 结构名    : NAS_MMC_LMM_ATTACH_CL_REG_STATUS_PRIORITY_PAIR
- 结构说明  : lmm attach cl 注册状态
-  1.日    期   : 2015年4月22日
-    作    者   : wx270776
-    修改内容   : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     MMC_LMM_ATTACH_CL_REG_STATUS_ENUM8                   enLmmAttachClReqStatus;
     VOS_UINT8                                            ucPriority;
 }NAS_MMC_LMM_ATTACH_CL_REG_STATUS_PRIORITY_PAIR;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_REG_RSLT_CTX_UNION
- 结构说明  :  保存注册结果消息
- 1.日    期   : 2012年1月20日
-   作    者   : w00167002
-   修改内容   : DTS2011122006209:
-                在NasMmcProcRegRslt.c文件中处理注册结果表中，主要是通过CAUSE
-                来进行处理，然而仅根据此信息来处理注册结果是不完备的，譬如
-                需要知道Attemp Counter信息，现在将处理注册结果的消息保存在
-                本地的全局变量里面，这样在处理注册结果时候，可获得所有的注
-                册结果信息，这样函数处理能力得到了极大的扩张，注册结果处理函数
-                本省的架构得到稳定。
 
-  2.日    期   : 2012年3月5日
-    作    者   : w00167002
-    修改内容   : V7R1C50 CSFB调整:增加LMM 上报的service结果的保存
-*****************************************************************************/
 typedef union
 {
     /* MM向MMC上报的CS注册结果消息 */
@@ -245,25 +144,7 @@ typedef union
 #endif
 }NAS_MMC_REG_RSLT_CTX_UNION;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_REG_RSLT_CTX_STRU
- 结构说明  :  保存注册类型和注册结果消息
- 1.日    期   : 2012年1月20日
-   作    者   : w00167002
-   修改内容   : DTS2011122006209:
-                在NasMmcProcRegRslt.c文件中处理注册结果表中，主要是通过CAUSE
-                来进行处理，然而仅根据此信息来处理注册结果是不完备的，譬如
-                需要知道Attemp Counter信息，现在将处理注册结果的消息保存在
-                本地的全局变量里面，这样在处理注册结果时候，可获得所有的注
-                册结果信息，这样函数处理能力得到了极大的扩张，注册结果处理函数
-                本省的架构得到稳定。
- 2.日    期   : 2012年07月05日
-   作    者   : s46746
-   修改内容   : For CS/PS mode 1，记录EPS的AttemptCounter
- 3.日    期   : 2014年5月6日
-   作    者   : z00161729
-   修改内容   : DTS2014050602850:l下联合注册eps成功，cs注册被#18拒绝，disable lte到gu下搜网注册成功，后指定搜l cs注册被#18拒绝的网络，l发起eps单域注册成功，mmc没有disable lte
-*****************************************************************************/
+
 typedef struct
 {
     /* 注册结果消息类型 */
@@ -306,9 +187,7 @@ VOS_VOID  NAS_MML_SetRegRsltCtxUnion(
     NAS_MMC_REG_RSLT_CTX_UNION         *punRegRsltCtx
 );
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-1-4, begin */
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-1-4, end */
 
 
 
@@ -967,12 +846,10 @@ VOS_UINT32  NAS_MMC_IsNeedEnableLte_MmAbortInd(
 
 VOS_UINT32  NAS_MMC_IsNeedEnableLte_EnableLteTimerExp(VOS_VOID);
 
-/* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-14, begin */
 VOS_VOID NAS_MMC_ProcEmcPdpRelease_DetachPs( VOS_VOID );
 VOS_UINT32 NAS_MMC_IsNeedSndEplmn_LmmDetachCnf(
     LMM_MMC_DETACH_CNF_STRU            *pstLmmDetachCnf
 );
-/* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-14, end */
 
 VOS_VOID NAS_MMC_ConvertLmmDetachIndTypeToMmcType(
     MMC_LMM_MT_DETACH_TYPE_ENUM_UINT32                      enCnReqType,
@@ -1032,12 +909,10 @@ VOS_UINT32 NAS_MMC_GetLmmAttaClRegStatPrioValue(
     MMC_LMM_ATTACH_CL_REG_STATUS_ENUM8  enLmmAttachClRegStatus
 );
 
-/* Added by w00176964 for V3R3C60_eCall项目, 2014-4-30, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8 NAS_MMC_ProcCsRegFailCause417ECallInactive(VOS_VOID);
 
 #endif
-/* Added by w00176964 for V3R3C60_eCall项目, 2014-4-30, end */
 
 #if (VOS_OS_VER == VOS_WIN32)
 #pragma pack()

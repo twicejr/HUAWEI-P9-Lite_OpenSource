@@ -1026,13 +1026,7 @@ enum    NAS_LMM_SYS_CHNG_ORI_ENUM
 typedef VOS_UINT32 NAS_LMM_SYS_CHNG_ORI_ENUM_UINT32;
 
 
-/*****************************************************************************
- 结构名称:NAS_LMM_GU_ACTION_TYPE_ENUM
- 协议表格:
- ASN.1 描述:
- 结构说明:  z00179470   2011-06-02 new
-            GU ACTION TYPE
-*****************************************************************************/
+
 enum    NAS_LMM_GU_ACTION_TYPE_ENUM
 {
     MMC_LMM_GU_ACTION_ATTACH              = 0x00000000,
@@ -1045,13 +1039,7 @@ enum    NAS_LMM_GU_ACTION_TYPE_ENUM
 };
 typedef VOS_UINT32 NAS_LMM_GU_ACTION_TYPE_ENUM_UINT32;
 
-/*****************************************************************************
- 结构名称:NAS_LMM_GU_ACTION_RSLT_TYPE_ENUM
- 协议表格:
- ASN.1 描述:
- 结构说明:  z00179470   2011-06-02 new
-            GU ACTION RST
-*****************************************************************************/
+
 
 enum    NAS_LMM_GU_ACTION_RSLT_TYPE_ENUM
 {
@@ -1063,13 +1051,7 @@ enum    NAS_LMM_GU_ACTION_RSLT_TYPE_ENUM
 };
 typedef VOS_UINT32 NAS_LMM_GU_ACTION_RSLT_TYPE_ENUM_UINT32;
 
-/*****************************************************************************
- 结构名称:NAS_LMM_GU_DOMAIN_ENUM
- 协议表格:
- ASN.1 描述:
- 结构说明:  z00179470   2011-06-02 new
-            GU ACTION REQ and RST DOMAIN
-*****************************************************************************/
+
 enum NAS_LMM_GU_DOMAIN_ENUM
 {
     MMC_LMM_GU_PS_ONLY                     = 0x00000000,                           /*当前RAU/Attach类型为PS only  */
@@ -1080,13 +1062,7 @@ enum NAS_LMM_GU_DOMAIN_ENUM
 };
 typedef VOS_UINT32 NAS_LMM_GU_DOMAIN_ENUM_UINT32;
 
-/*****************************************************************************
- 结构名称:NAS_LMM_MT_DETACH_TYPE_ENUM
- 协议表格:
- ASN.1 描述:
- 结构说明:  z00179470   2011-06-02 new
-            GU MT DETACH TYPE
-*****************************************************************************/
+
 
 enum NAS_LMM_MT_DETACH_TYPE_ENUM
 {
@@ -1158,13 +1134,7 @@ typedef struct
 
 }NAS_LMM_SYS_CHNG_CTRL_STRU;
 
-/*****************************************************************************
- 结构名称: NAS_LMM_GU_ACT_RST_STRU
- 协议表格:
- ASN.1描述:
- 结构说明 :z00179470    2011-06-02 new
-           保存GU ACTION RSLT到本地
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          bitOpGuReqDomain  : 1;

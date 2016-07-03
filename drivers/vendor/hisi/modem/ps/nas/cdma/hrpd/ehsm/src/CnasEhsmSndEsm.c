@@ -45,25 +45,7 @@ extern "C"{
 *****************************************************************************/
 
 /* To Do: Need to write deifinitions of all functions to send message is ESM */
-/*****************************************************************************
-Function Name   :   CNAS_EHSM_SndEsmSyncEhrpdPdnInfoInd
-Description     :   Sends message ID_EHSM_ESM_SYNC_PDN_INFO_IND to ESM.
-Input parameters:   VOS_VOID
-Output parameters:  None
-Return Value    :   VOS_VOID
 
-Modify History  :
-1)  Date           : 2015-05-14
-    Author         : y00322978
-    Modify content : Create
-
-2.  日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-3.  日    期   : 2015年12月24日
-    作    者   : w00242748
-    修改内容   : DTS2015121805249:副卡支持EHRPD
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_SndEsmSyncEhrpdPdnInfoInd(
     CNAS_EHSM_EHRPD_PDN_BEAR_INFO_STRU *pstPdnInfo,
     VOS_UINT32                          ulAttachFlag,
@@ -131,27 +113,7 @@ VOS_VOID CNAS_EHSM_SndEsmSyncEhrpdPdnInfoInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_SndEsmClearAllNtf
- 功能描述  : bear info clear all notify LANS
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-  3.日    期   : 2015年12月24日
-    作    者   : w00242748
-    修改内容   : DTS2015121805249:副卡支持EHRPD
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_SndEsmClearAllNtf(VOS_VOID)
 {
     EHSM_ESM_CLEAR_ALL_BEARER_NOTIFY_STRU        *pstMsg;

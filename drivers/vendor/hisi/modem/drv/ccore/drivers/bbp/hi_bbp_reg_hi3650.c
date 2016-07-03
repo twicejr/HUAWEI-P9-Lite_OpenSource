@@ -1,14 +1,4 @@
-/*************************************************************************
-*   版权所有(C) 2008-2013, 深圳华为技术有限公司.
-*
-*   文 件 名 :  hi_bbp_reg_hi3650.c
-*
-*   作    者 :  x00195528
-*
-*   描    述 :  实现bbp v711相关的寄存器操作及bug修复
-*
-*   修改记录 :  2013年2月2日  v1.00  x00195528  创建
-*************************************************************************/
+
 /*lint -save -e537 -e656 -e801*/
 #include "product_config.h"
 #include "osl_bio.h"
@@ -24,6 +14,7 @@
 #include "hi_bbp_ul.h"
 
 #include <bsp_sysctrl.h>
+#include <bsp_dump.h>
 #include "bsp_hardtimer.h"
 #include "bsp_clk.h"
 #include "bsp_ipc.h"
@@ -107,9 +98,9 @@ void hi_bbp_int_ltewp_clear(void)
     u32 reg_base = g_bbpinfo.part[BBP_LDRX].reg_base;
 
     /* IPC锁为归避bbp_on 连读问题,单号2013121200228*/
-    bsp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
     bbp_bit_set((reg_base + HI_BBP_LTEDRX_ARM_SLEEP_INT_CLEAR_OFFSET),(0x1 << 1));
-    bsp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
 }
 void hi_bbp_int_ltewp_mask(void)
 {
@@ -118,9 +109,9 @@ void hi_bbp_int_ltewp_mask(void)
     u32 reg_base = g_bbpinfo.part[BBP_LDRX].reg_base;
 
     /* IPC锁为归避bbp_on 连读问题,单号2013121200228*/
-    bsp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
     bbp_bit_clr((reg_base + HI_BBP_LTEDRX_ARM_SLEEP_INT_MSK_OFFSET),(0x1 << 1));
-    bsp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
 }
 void hi_bbp_int_ltewp_unmask(void)
 {
@@ -129,9 +120,9 @@ void hi_bbp_int_ltewp_unmask(void)
     u32 reg_base = g_bbpinfo.part[BBP_LDRX].reg_base;
 
     /* IPC锁为归避bbp_on 连读问题,单号2013121200228*/
-    bsp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
     bbp_bit_set((reg_base + HI_BBP_LTEDRX_ARM_SLEEP_INT_MSK_OFFSET),(0x1 << 1));
-    bsp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
 }
 unsigned int hi_bbp_int_ltewp_status(void)
 {
@@ -141,10 +132,10 @@ unsigned int hi_bbp_int_ltewp_status(void)
     u32 reg_base = g_bbpinfo.part[BBP_LDRX].reg_base;
 
     /* IPC锁为归避bbp_on 连读问题,单号2013121200228*/
-    bsp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
     hi_bbp_drxbug_evade();
     reg_value = bbp_bit_chk((reg_base + HI_BBP_LTEDRX_ARM_INT_STATE_OFFSET),(0x1 << 1));
-    bsp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
 
     return reg_value;
 }
@@ -155,9 +146,9 @@ void hi_bbp_int_tdswp_clear(void)
     u32 reg_base = g_bbpinfo.part[BBP_TDRX].reg_base;
 
     /* IPC锁为归避bbp_on 连读问题,单号2013121200228*/
-    bsp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
     bbp_bit_set((reg_base + HI_BBP_TDSDRX_ARM_SLEEP_INT_CLEAR_OFFSET),(0x1 << 1));
-    bsp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
 }
 void hi_bbp_int_tdswp_mask(void)
 {
@@ -166,9 +157,9 @@ void hi_bbp_int_tdswp_mask(void)
     u32 reg_base = g_bbpinfo.part[BBP_TDRX].reg_base;
 
     /* IPC锁为归避bbp_on 连读问题,单号2013121200228*/
-    bsp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
     bbp_bit_clr((reg_base + HI_BBP_TDSDRX_ARM_SLEEP_INT_MSK_OFFSET),(0x1 << 1));
-    bsp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
 }
 void hi_bbp_int_tdswp_unmask(void)
 {
@@ -177,9 +168,9 @@ void hi_bbp_int_tdswp_unmask(void)
     u32 reg_base = g_bbpinfo.part[BBP_TDRX].reg_base;
 
     /* IPC锁为归避bbp_on 连读问题,单号2013121200228*/
-    bsp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
     bbp_bit_set((reg_base + HI_BBP_TDSDRX_ARM_SLEEP_INT_MSK_OFFSET),(0x1 << 1));
-    bsp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
 }
 
 unsigned int hi_bbp_int_tdswp_status(void)
@@ -190,10 +181,10 @@ unsigned int hi_bbp_int_tdswp_status(void)
     u32 reg_base = g_bbpinfo.part[BBP_TDRX].reg_base;
 
     /* IPC锁为归避bbp_on 连读问题,单号2013121200228*/
-    bsp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
     hi_bbp_drxbug_evade();
     reg_value =  bbp_bit_chk((reg_base + HI_BBP_TDSDRX_ARM_INT_STATE_OFFSET),(0x1 << 1));
-    bsp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
 
     return reg_value;
 }
@@ -233,7 +224,7 @@ void hi_bbp_int_wakeup_lte_clear(void)
     unsigned int    new_slice;
 
     /* IPC锁为归避bbp_on 连读问题,单号2013121200228*/
-    bsp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
     /*清除wake up 中断*/
     /*为了不重复调用锁，不使用hi_bbp_int_ltewp_clear()接口，直接操作寄存器;*/
     bbp_bit_set((reg_base + HI_BBP_LTEDRX_ARM_SLEEP_INT_CLEAR_OFFSET),(0x1 << 1));
@@ -248,7 +239,7 @@ void hi_bbp_int_wakeup_lte_clear(void)
     if(int_status != 0){
         bbp_print_error("wakeup lte int cannot clear!\n");
     }
-    bsp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
 
     return;
 }
@@ -261,7 +252,7 @@ void hi_bbp_int_wakeup_tds_clear(void)
     unsigned int    new_slice;
 
     /* IPC锁为归避bbp_on 连读问题,单号2013121200228*/
-    bsp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
     /*清除wake up 中断*/
     /*hi_bbp_int_tdswp_clear();*/
     bbp_bit_set((reg_base + HI_BBP_TDSDRX_ARM_SLEEP_INT_CLEAR_OFFSET),(0x1 << 1));
@@ -276,7 +267,7 @@ void hi_bbp_int_wakeup_tds_clear(void)
     if(int_status != 0){
         bbp_print_error("wakeup tds int cannot clear!\n");
     }
-    bsp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
 
     return;
 }
@@ -366,9 +357,9 @@ unsigned int hi_bbp_get_lte_slp_time(void)
     u32 reg_base = g_bbpinfo.part[BBP_LDRX].reg_base;
 
     /* IPC锁为归避bbp_on 连读问题,单号2013121200228*/
-    bsp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
     reg_value = readl(reg_base + HI_BBP_LTEDRX_SLP_TIME_CUR_OFFSET);
-    bsp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
 
     return reg_value;
 }
@@ -380,9 +371,9 @@ unsigned int hi_bbp_get_tds_slp_time(void)
     u32 reg_base = g_bbpinfo.part[BBP_TDRX].reg_base;
 
     /* IPC锁为归避bbp_on 连读问题,单号2013121200228*/
-    bsp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
     reg_value = readl(reg_base + HI_BBP_TDSDRX_SLP_TIME_CUR_OFFSET);
-    bsp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
 
     return reg_value;
 }
@@ -394,9 +385,9 @@ unsigned int hi_bbp_get_lte_clk_switch_state(void)
     u32 reg_base = g_bbpinfo.part[BBP_LDRX].reg_base;
 
     /* IPC锁为归避bbp_on 连读问题,单号2013121200228*/
-    bsp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
     reg_value = bbp_bit_get((reg_base + HI_BBP_LTEDRX_CLK_SWITCH_STATE_OFFSET),(0x1 << 0));
-    bsp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
 
     return reg_value;
 }
@@ -408,9 +399,9 @@ unsigned int hi_bbp_get_tds_clk_switch_state(void)
     u32 reg_base = g_bbpinfo.part[BBP_TDRX].reg_base;
 
     /* IPC锁为归避bbp_on 连读问题,单号2013121200228*/
-    bsp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
     reg_value = bbp_bit_get((reg_base + HI_BBP_TDSDRX_CLK_SWITCH_STATE_OFFSET),(0x1 << 0));
-    bsp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
     return reg_value;
 }
 unsigned int hi_bbp_get_lte_wakeup_time(void)
@@ -423,7 +414,7 @@ unsigned int hi_bbp_get_lte_wakeup_time(void)
     u32 ret;
 
     /* IPC锁为归避bbp_on 连读问题,单号2013121200228*/
-    bsp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
 
     /*判断睡眠时长是否有效,0xfff12000+0x200*/
     //effect = hi_bbp_get_lte_clk_switch_state();
@@ -442,7 +433,7 @@ unsigned int hi_bbp_get_lte_wakeup_time(void)
     ret = sleep_t-sleeped_t;
 
 out:
-    bsp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
     return ret;
 }
 unsigned int hi_bbp_get_tds_wakeup_time(void)
@@ -455,7 +446,7 @@ unsigned int hi_bbp_get_tds_wakeup_time(void)
     u32 ret;
 
     /* IPC锁为归避bbp_on 连读问题,单号2013121200228*/
-    bsp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_lock_irqsave(IPC_SEM_BBP,bbp_flag);
     /*判断睡眠时长是否有效*/
     //effect = hi_bbp_get_tds_clk_switch_state();/*0xfff13400+0x200*/
     effect = bbp_bit_get((reg_base + HI_BBP_TDSDRX_CLK_SWITCH_STATE_OFFSET),(0x1 << 0));
@@ -471,7 +462,7 @@ unsigned int hi_bbp_get_tds_wakeup_time(void)
     ret = sleep_t-sleeped_t;
 
 out:
-    bsp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
+    bbp_ipc_spin_unlock_irqrestore(IPC_SEM_BBP,bbp_flag);
     return ret;
 }
 unsigned int hi_bbp_get_lte_meanflag(void)

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : hmac_11i.c
-  版 本 号   : 初稿
-  作    者   : louyueyun
-  生成日期   : 2013年8月15日
-  最近修改   :
-  功能描述   : STA侧管理帧处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年8月15日
-    作    者   : louyueyun
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -74,21 +57,7 @@ extern "C" {
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : hmac_get_key_info
- 功能描述  : 获取key
- 输入参数  :
- 输出参数  : oal_uint32
- 返 回 值  : 0:成功,其他:失败
- 调用函数  : 无
- 被调函数  : 无
 
- 修改历史      :
-  1.日    期   : 2013年11月22日
-    作    者   : louyueyun
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC wlan_priv_key_param_stru *hmac_get_key_info(mac_vap_stru *pst_mac_vap, oal_uint8 *puc_mac_addr,
                                         oal_bool_enum_uint8 en_pairwise,oal_uint8 uc_key_index)
 {
@@ -139,22 +108,7 @@ OAL_STATIC wlan_priv_key_param_stru *hmac_get_key_info(mac_vap_stru *pst_mac_vap
     return mac_user_get_key(pst_mac_user, uc_key_index);
 }
 #ifdef _PRE_WLAN_FEATURE_WAPI
-/*****************************************************************************
- 函 数 名  : hmac_config_wapi_add_key
- 功能描述  : 配置wapi key并且同步
- 输入参数  :
- 输出参数  : oal_uint32
- 返 回 值  : 0:成功,其他:失败
- 调用函数  : 无
- 被调函数  : 无
 
- 修改历史      :
-  1.日    期   : 2015年2月26日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-
-*****************************************************************************/
 oal_uint32 hmac_config_wapi_add_key(mac_vap_stru *pst_mac_vap, mac_addkey_param_stru *pst_payload_addkey_params)
 {
     oal_uint8                        uc_key_index;
@@ -215,22 +169,7 @@ oal_uint32 hmac_config_wapi_add_key(mac_vap_stru *pst_mac_vap, mac_addkey_param_
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_config_wapi_add_key_and_sync
- 功能描述  : 保存wapi key并且同步
- 输入参数  :
- 输出参数  : oal_uint32
- 返 回 值  : 0:成功,其他:失败
- 调用函数  : 无
- 被调函数  : 无
 
- 修改历史      :
-  1.日    期   : 2015年2月26日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-
-*****************************************************************************/
 oal_uint32 hmac_config_wapi_add_key_and_sync(mac_vap_stru *pst_mac_vap, mac_addkey_param_stru *pst_payload_addkey_params)
 {
     hmac_vap_stru                   *pst_hmac_vap;
@@ -271,21 +210,7 @@ oal_uint32 hmac_config_wapi_add_key_and_sync(mac_vap_stru *pst_mac_vap, mac_addk
 
 #endif /* #ifdef _PRE_WLAN_FEATURE_WAPI */
 
-/*****************************************************************************
- 函 数 名  : hmac_config_11i_add_key
- 功能描述  : add key 逻辑，抛事件到DMAC
- 输入参数  : frw_event_mem_stru *pst_event_mem
- 输出参数  : oal_uint32
- 返 回 值  : 0:成功,其他:失败
- 调用函数  : 无
- 被调函数  : 无
 
- 修改历史      :
-  1.日    期   : 2013年12月26日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_config_11i_add_key(mac_vap_stru *pst_mac_vap, oal_uint16 us_len, oal_uint8 *puc_param)
 {
     oal_uint8                       *puc_mac_addr;
@@ -420,24 +345,7 @@ oal_uint32 hmac_config_11i_add_key(mac_vap_stru *pst_mac_vap, oal_uint16 us_len,
     return ul_ret;
 }
 
-/*****************************************************************************
-函 数 名  : hmac_config_11i_get_key
-功能描述  : 获取密钥，不需要抛事件到DMAC,直接从hmac数据区中拿数据
-输入参数  : frw_event_mem_stru *pst_event_mem
-输出参数  : oal_uint32
-返 回 值  : 0:成功,其他:失败
-调用函数  : 无
-被调函数  : 无
 
-修改历史      :
-1.日    期   : 2013年8月16日
-作    者   : louyueyun
-修改内容   : 新生成函数
-1.日    期   : 2014年1月4日
-作    者   : g00260350
-修改内容   : 使用局部变量替代malloc，以减少释放内存的复杂度
-
-*****************************************************************************/
 oal_uint32 hmac_config_11i_get_key(mac_vap_stru *pst_mac_vap, oal_uint16 us_len, oal_uint8 *puc_param)
 {
     wlan_priv_key_param_stru     *pst_priv_key = OAL_PTR_NULL;
@@ -475,7 +383,6 @@ oal_uint32 hmac_config_11i_get_key(mac_vap_stru *pst_mac_vap, oal_uint16 us_len,
 
     /*3.1 获取密钥*/
     pst_priv_key = hmac_get_key_info(pst_mac_vap, puc_mac_addr, en_pairwise, uc_key_index);
-    /* begin: DTS2015060302134 四次握手获取密钥信息长度为0 是正常值,不应该为error 级别打印 */
     if (OAL_PTR_NULL == pst_priv_key)
     {
         OAM_ERROR_LOG2(pst_mac_vap->uc_vap_id, OAM_SF_WPA, "{hmac_config_11i_get_key::key is null.pairwise[%d], key_idx[%d]}",
@@ -489,7 +396,6 @@ oal_uint32 hmac_config_11i_get_key(mac_vap_stru *pst_mac_vap, oal_uint16 us_len,
                     en_pairwise, uc_key_index);
         return OAL_ERR_CODE_SECURITY_KEY_LEN;
     }
-    /* end: DTS2015060302134 四次握手获取密钥信息长度为0 是正常值,不应该为error 级别打印 */
 
 
     /*4.1 密钥赋值转换*/
@@ -509,21 +415,7 @@ oal_uint32 hmac_config_11i_get_key(mac_vap_stru *pst_mac_vap, oal_uint16 us_len,
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_config_11i_remove_key
- 功能描述  : 处理remove key事件，抛事件到DMAC
- 输入参数  : mac_vap_stru *pst_mac_vap, oal_uint16 us_len, oal_uint8 *puc_param
- 输出参数  : oal_uint32
- 返 回 值  : 0:成功,其他:失败
- 调用函数  : 无
- 被调函数  : 无
 
- 修改历史      :
-  1.日    期   : 2014年1月4日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_config_11i_remove_key(mac_vap_stru *pst_mac_vap, oal_uint16 us_len, oal_uint8 *puc_param)
 {
     wlan_priv_key_param_stru  *pst_priv_key = OAL_PTR_NULL;
@@ -621,24 +513,7 @@ oal_uint32 hmac_config_11i_remove_key(mac_vap_stru *pst_mac_vap, oal_uint16 us_l
     return ul_ret;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_config_11i_set_default_key
- 功能描述  : 处理set default key事件，抛事件到DMAC
- 输入参数  : mac_vap_stru *pst_mac_vap, oal_uint16 us_len, oal_uint8 *puc_param
- 输出参数  : oal_uint32
- 返 回 值  : 0:成功,其他:失败
- 调用函数  : 无
- 被调函数  : 无
 
- 修改历史      :
-  1.日    期   : 2014年1月4日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-  2.日    期   : 2014年7月31日
-    作    者   : duankaiyong 00194999
-    修改内容   : 合并设置数据帧默认密钥和设置管理帧默认密钥函数
-
-*****************************************************************************/
 oal_uint32 hmac_config_11i_set_default_key(mac_vap_stru *pst_mac_vap, oal_uint16 us_len, oal_uint8 *puc_param)
 {
     oal_uint32                    ul_ret       = OAL_SUCC;
@@ -707,21 +582,7 @@ oal_uint32 hmac_config_11i_set_default_key(mac_vap_stru *pst_mac_vap, oal_uint16
     return ul_ret;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_config_11i_add_wep_entry
- 功能描述  : add wep加密，抛事件到DMAC
- 输入参数  : mac_vap_stru *pst_mac_vap, oal_uint16 us_len, oal_uint8 *puc_param
- 输出参数  : oal_uint32
- 返 回 值  : 0:成功,其他:失败
- 调用函数  : 无
- 被调函数  : 无
 
- 修改历史      :
-  1.日    期   : 2013年11月13日
-    作    者   : louyueyun
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_config_11i_add_wep_entry(mac_vap_stru *pst_mac_vap, oal_uint16 us_len, oal_uint8 *puc_param)
 {
     mac_user_stru                    *pst_mac_user;
@@ -764,21 +625,7 @@ oal_uint32 hmac_config_11i_add_wep_entry(mac_vap_stru *pst_mac_vap, oal_uint16 u
     return ul_ret;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_init_security
- 功能描述  : 初始化加密数据。
- 输入参数  : pst_hmac_user,puc_addr
- 输出参数  : 无
- 返 回 值  : mac_status_code_enum_uint16
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月18日
-    作    者   : l00218984
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_init_security(mac_vap_stru *pst_mac_vap,oal_uint8 *puc_addr)
 {
     oal_uint32 ul_ret = OAL_SUCC;
@@ -828,23 +675,7 @@ oal_uint32 hmac_init_security(mac_vap_stru *pst_mac_vap,oal_uint8 *puc_addr)
 }
 
 
-/*****************************************************************************
- 函 数 名  : hmac_check_pcip_wpa_policy
- 功能描述  : 检测单播密钥是否匹配
- 输入参数  : wlan_mib_ieee802dot11_stru *pst_mib_info
-             oal_uint8 uc_policy
- 输出参数  : 无
- 返 回 值  : oal_bool_enum_uint8    OAL_TRUE:匹配成功
-                                    OAL_FALSE:匹配失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月31日
-    作    者   : duankaiyong 00194999
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_bool_enum_uint8 hmac_check_pcip_wpa_policy(wlan_mib_ieee802dot11_stru *pst_mib_info,
                                             oal_uint8 uc_policy)
 {
@@ -861,23 +692,7 @@ oal_bool_enum_uint8 hmac_check_pcip_wpa_policy(wlan_mib_ieee802dot11_stru *pst_m
     return OAL_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_check_pcip_wpa2_policy
- 功能描述  : 检测单播密钥是否匹配
- 输入参数  : wlan_mib_ieee802dot11_stru *pst_mib_info
-             oal_uint8 uc_policy
- 输出参数  : 无
- 返 回 值  : oal_bool_enum_uint8    OAL_TRUE:匹配成功
-                                    OAL_FALSE:匹配失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月31日
-    作    者   : duankaiyong 00194999
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_bool_enum_uint8 hmac_check_pcip_wpa2_policy(wlan_mib_ieee802dot11_stru *pst_mib_info,
                                             oal_uint8 uc_policy)
 {
@@ -895,24 +710,7 @@ oal_bool_enum_uint8 hmac_check_pcip_wpa2_policy(wlan_mib_ieee802dot11_stru *pst_
 }
 
 
-/*****************************************************************************
- 函 数 名  : hmac_check_pcip_policy
- 功能描述  : 检测单播密钥是否匹配
- 输入参数  : wlan_mib_ieee802dot11_stru *pst_mib_info
-             oal_uint8 uc_policy
-             oal_uint8 uc_80211i_mode
- 输出参数  : 无
- 返 回 值  : oal_uint32    OAL_SUCC:匹配成功
-                           OAL_FAIL:匹配失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月13日
-    作    者   : duankaiyong 00194999
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_check_pcip_policy(wlan_mib_ieee802dot11_stru *pst_mib_info,
                                             oal_uint8 uc_policy,
                                             oal_uint8 uc_80211i_mode)
@@ -943,21 +741,7 @@ oal_uint32 hmac_check_pcip_policy(wlan_mib_ieee802dot11_stru *pst_mib_info,
 }
 
 
-/*****************************************************************************
- 函 数 名  : hmac_check_rsn_capability
- 功能描述  : 检查RSN能力是否匹配
- 输入参数  : us_rsn_capability
- 输出参数  : 无
- 返 回 值  : oal_uint16
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月23日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_check_rsn_capability(mac_vap_stru *pst_mac_vap, const oal_uint8 *puc_rsn_ie, mac_status_code_enum_uint16 *pen_status_code)
 {
     wlan_mib_ieee802dot11_stru         *pst_mib_info;
@@ -1019,21 +803,7 @@ oal_uint32 hmac_check_rsn_capability(mac_vap_stru *pst_mac_vap, const oal_uint8 
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_get_security_oui
- 功能描述  : 根据WPA/WPA2模式获取WPA/WPA2 oui
- 输入参数  : oal_uint8 uc_80211i_mode
- 输出参数  : 无
- 返 回 值  : oal_uint8 *
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月17日
-    作    者   : duankaiyong 00194999
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint8 * hmac_get_security_oui(oal_uint8 uc_80211i_mode)
 {
     oal_uint8 * puc_oui;
@@ -1054,23 +824,7 @@ oal_uint8 * hmac_get_security_oui(oal_uint8 uc_80211i_mode)
     return puc_oui;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_get_pcip_policy_auth
- 功能描述  : 从数据包中提取出单播加密套件信息
- 输入参数  : oal_uint8 *puc_frame   WPA/WPA2 信息元素中，保存的单播起始地址
-             oal_uint8 *puc_len     加密信息长度
-             oal_uint8 *puc_oui     WPA/WPA2 信息元素OUI
- 输出参数  : 无
- 返 回 值  : oal_uint8              获取的单播套件信息
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月26日
-    作    者   : duankaiyong 00194999
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint8 hmac_get_pcip_policy_auth(oal_uint8 *puc_frame, oal_uint8 *puc_len, oal_uint8 *puc_oui)
 {
     oal_uint8 uc_indext         = 0;
@@ -1106,23 +860,7 @@ oal_uint8 hmac_get_pcip_policy_auth(oal_uint8 *puc_frame, oal_uint8 *puc_len, oa
 }
 
 
-/*****************************************************************************
- 函 数 名  : hmac_get_auth_policy_auth
- 功能描述  : 从数据包中提取出认证套件信息
- 输入参数  : oal_uint8 * puc_frame
-             oal_uint8 *uc_len
-             oal_uint8 *puc_oui
- 输出参数  : 无
- 返 回 值  : oal_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月31日
-    作    者   : duankaiyong 00194999
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint8 hmac_get_auth_policy_auth(oal_uint8 * puc_frame, oal_uint8 *uc_len, oal_uint8 *puc_oui)
 {
     oal_uint8 uc_index        = 0;
@@ -1158,23 +896,7 @@ oal_uint8 hmac_get_auth_policy_auth(oal_uint8 * puc_frame, oal_uint8 *uc_len, oa
 
 
 
-/*****************************************************************************
- 函 数 名  : hmac_check_join_req_parewise_cipher_supplicant
- 功能描述  : STA 检测扫描到的单播加密能力和设备能力是否匹配。
- 输入参数  : wlan_mib_ieee802dot11_stru  *pst_mib_info
-             oal_uint8                   *puc_pcip_policy_match
-             oal_uint8                   *puc_pcip_policy
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月8日
-    作    者   : duankaiyong 00194999
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_check_join_req_parewise_cipher_supplicant(
                                 wlan_mib_ieee802dot11_stru  *pst_mib_info,
                                 oal_uint8                   *puc_pcip_policy_match,
@@ -1240,23 +962,7 @@ oal_uint32 hmac_check_join_req_parewise_cipher_supplicant(
 }
 
 #if defined(_PRE_WLAN_FEATURE_WPA) || defined(_PRE_WLAN_FEATURE_WPA2)
-/*****************************************************************************
- 函 数 名  : hmac_check_join_req_auth_suite_supplicant
- 功能描述  : STA 检测扫描到的认证套件和设备能力是否匹配。
- 输入参数  : wlan_mib_ieee802dot11_stru  *pst_mib_info
-             oal_uint8                   *puc_auth_policy_match
-             oal_uint8                   *puc_auth_policy
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月8日
-    作    者   : duankaiyong 00194999
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32 hmac_check_join_req_auth_suite_supplicant(
                                 wlan_mib_ieee802dot11_stru  *pst_mib_info,
                                 oal_uint8                   *puc_auth_policy_match,
@@ -1293,27 +999,7 @@ OAL_STATIC oal_uint32 hmac_check_join_req_auth_suite_supplicant(
 }
 
 
-/*****************************************************************************
- 函 数 名  : hmac_check_security_cap_supplicant
- 功能描述  : STA 检测扫描到的 RSN/WPA 加密能力和设备能力是否匹配。
- 输入参数  : mac_bss_dscr_stru *st_bss_dscr     AP  的BSS 结构
-             oal_uint8  uc_802_11i_mode         STA 支持的安全加密模式
-             oal_uint8 *puc_grp_policy_match
-             oal_uint8 *puc_pcip_policy_match
-             oal_uint8 *puc_auth_policy_match
-             oal_uint8  uc_802_11i_mode         WPA/WPA2
- 输出参数  : 无
- 返 回 值  : oal_uint32 OAL_SUCC  匹配成功
-                        OAL_FAIL  匹配失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月22日
-    作    者   : duankaiyong 00194999
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32 hmac_check_join_req_security_cap_supplicant(
                                 mac_bss_dscr_stru           *pst_bss_dscr,
                                 wlan_mib_ieee802dot11_stru  *pst_mib_info,
@@ -1382,23 +1068,7 @@ OAL_STATIC oal_uint32 hmac_check_join_req_security_cap_supplicant(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_check_security_capability_supplicant
- 功能描述  : STA 在JOIN 前检测加密能力是否匹配
- 输入参数  : mac_vap_stru pst_mac_vap
-             mac_bss_dscr_stru *pst_bss_dscr
- 输出参数  : 无
- 返 回 值  : oal_uint32 OAL_SUCC 匹配成功
-                        OAL_FAIL 匹配失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月25日
-    作    者   : duankaiyong 00194999
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32 hmac_check_security_capability_supplicant(mac_vap_stru *pst_mac_vap,
                                                                 mac_bss_dscr_stru *pst_bss_dscr)
 {
@@ -1496,23 +1166,7 @@ OAL_STATIC oal_uint32 hmac_check_security_capability_supplicant(mac_vap_stru *ps
 }
 #endif /* (_PRE_WLAN_FEATURE_WPA) || defined(_PRE_WLAN_FEATURE_WPA2) */
 
-/*****************************************************************************
- 函 数 名  : hmac_check_capability_mac_phy_supplicant
- 功能描述  : 检测期望join 的AP能力信息是否匹配
- 输入参数  : mac_vap_stru pst_mac_vap         STA 自己
-             mac_bss_dscr_stru *pst_bss_dscr  AP bss 信息
- 输出参数  : 无
- 返 回 值  : oal_uint32 OAL_SUCC 匹配成功
-                        OAL_FAIL 匹配失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月25日
-    作    者   : duankaiyong 00194999
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_check_capability_mac_phy_supplicant(mac_vap_stru      *pst_mac_vap,
                                                                mac_bss_dscr_stru  *pst_bss_dscr)
 {
@@ -1552,22 +1206,7 @@ oal_uint32 hmac_check_capability_mac_phy_supplicant(mac_vap_stru      *pst_mac_v
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_update_pcip_policy_prot_supplicant
- 功能描述  : 根据STA 的单播加密方式和保护模式，更新STA 工作速率
-             在WEP / TKIP 加密模式下，不能工作在HT MODE
- 输入参数  : mac_vap_stru *pst_mac_vap
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月30日
-    作    者   : duankaiyong 00194999
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void hmac_update_pcip_policy_prot_supplicant(mac_vap_stru *pst_mac_vap,
                                                             oal_uint8 uc_pcip_policy_match)
 {
@@ -1605,7 +1244,6 @@ oal_void hmac_update_pcip_policy_prot_supplicant(mac_vap_stru *pst_mac_vap,
         OAM_ERROR_LOG0(pst_mac_vap->uc_vap_id, OAM_SF_CFG, "{hmac_update_pcip_policy_prot_supplicant::pst_hmac_vap null.}");
         return;
     }
-    //DTS2014110702909 降协议或恢复后需要对bit_protocol_fall更新
     pst_hmac_vap->bit_protocol_fall = uc_protocol_fall_flag;
 
     if (st_cfg_mode.en_protocol >= WLAN_HT_MODE)
@@ -1630,22 +1268,7 @@ oal_void hmac_update_pcip_policy_prot_supplicant(mac_vap_stru *pst_mac_vap,
                   "{hmac_update_pcip_policy_prot_supplicant::en_protocol=%d, bandwidth=%d.}", pst_mac_vap->en_protocol, pst_mac_vap->st_channel.en_bandwidth);
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_update_current_join_req_parms_11i
- 功能描述  : 更新STA 加密的mib 信息
- 输入参数  : mac_vap_stru          *pst_mac_vap     STA 本机信息
-             hmac_join_req_stru    *pst_join_req    STA join 的AP bss 信息
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月21日
-    作    者   : duankaiyong 00194999
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_update_current_join_req_parms_11i(
                     mac_vap_stru           *pst_mac_vap,
                     mac_bss_80211i_info_stru     *pst_11i)
@@ -1672,7 +1295,6 @@ oal_uint32  hmac_update_current_join_req_parms_11i(
 
     if (OAL_TRUE != pst_mac_vap->pst_mib_info->st_wlan_mib_privacy.en_dot11PrivacyInvoked)
     {
-        /* DTS2014110702909 降协议的不加密情况，需要更新恢复  */
         if(OAL_TRUE == pst_hmac_vap->bit_protocol_fall)
         {
             hmac_update_pcip_policy_prot_supplicant(pst_mac_vap, WLAN_80211_CIPHER_SUITE_NO_ENCRYP);
@@ -1729,21 +1351,7 @@ oal_uint32  hmac_update_current_join_req_parms_11i(
     return OAL_SUCC;
 }
 #if (_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC == _PRE_MULTI_CORE_MODE)
-/*****************************************************************************
- 函 数 名  : hmac_en_mic
- 功能描述  : 增加mic校验码
- 输入参数  :
- 输出参数  : iv头的长度
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月23日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_en_mic(hmac_vap_stru *pst_hmac_vap, hmac_user_stru *pst_hmac_user, oal_netbuf_stru *pst_netbuf, oal_uint8 *puc_iv_len)
 {
     wlan_priv_key_param_stru             *pst_key        = OAL_PTR_NULL;
@@ -1814,21 +1422,7 @@ oal_uint32 hmac_en_mic(hmac_vap_stru *pst_hmac_vap, hmac_user_stru *pst_hmac_use
 
 #else
 
-/*****************************************************************************
- 函 数 名  : hmac_en_mic
- 功能描述  : 增加mic校验码
- 输入参数  :
- 输出参数  : iv头的长度
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月23日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_en_mic(hmac_vap_stru *pst_hmac_vap, hmac_user_stru *pst_hmac_user, oal_netbuf_stru *pst_netbuf, oal_uint8 *puc_iv_len)
 {
     wlan_priv_key_param_stru             *pst_key        = OAL_PTR_NULL;
@@ -1884,21 +1478,7 @@ oal_uint32 hmac_en_mic(hmac_vap_stru *pst_hmac_vap, hmac_user_stru *pst_hmac_use
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : hmac_de_mic
- 功能描述  : mic码校验
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月23日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_de_mic(hmac_user_stru *pst_hmac_user, oal_netbuf_stru *pst_netbuf)
 {
     wlan_priv_key_param_stru             *pst_key        = OAL_PTR_NULL;
@@ -1946,21 +1526,7 @@ oal_uint32 hmac_de_mic(hmac_user_stru *pst_hmac_user, oal_netbuf_stru *pst_netbu
 }
 
 
-/*****************************************************************************
- 函 数 名  : hmac_rx_tkip_mic_failure_process
- 功能描述  : ap 和 sta 接收到MIC faile 事件处理
- 输入参数  : frw_event_mem_stru *pst_event_mem
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月28日
-    作    者   : duankaiyong 00194999
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_rx_tkip_mic_failure_process(frw_event_mem_stru *pst_event_mem)
 {
     frw_event_stru                     *pst_event;
@@ -2008,23 +1574,7 @@ oal_uint32 hmac_rx_tkip_mic_failure_process(frw_event_mem_stru *pst_event_mem)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_11i_port_filter
- 功能描述  : 接收数据，安全相关过滤
- 输入参数  : (1)vap
-             (2)mac地址
-             (3)接收数据类型
- 输出参数  : 无
- 返 回 值  : 成功或者失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月6日
-    作    者   : duankaiyong 00194999
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_11i_ether_type_filter(hmac_vap_stru *pst_vap, oal_uint8 *puc_mac_addr, oal_uint16 us_ether_type)
 {
     mac_user_stru               *pst_mac_user;

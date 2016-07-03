@@ -265,10 +265,7 @@ typedef  VOS_UINT32    NAS_EMM_EVENT_TYPE_ENUM_UINT32;
 /*****************************************************************************
   5 STRUCT
 *****************************************************************************/
-/*************************************************
-结构描述: Errorlog建链失败以及直传失败时候处理结构
-作    者: lifuxin 00253982 2015-02-10s
-*************************************************/
+
 typedef VOS_VOID (* NAS_LMM_ERRLOG_ACT_FUN )
 (
     VOS_VOID*,
@@ -323,12 +320,10 @@ extern  VOS_UINT32  NAS_LMM_GetEventType(MsgBlock                        *pMsg,
 extern  VOS_UINT32  NAS_LMM_MsgPreProcess(MsgBlock *         pMsg );
 extern  VOS_UINT32  NAS_LMM_PreProcAppStopReq(   MsgBlock  * pMsg);
 extern  VOS_UINT32  NAS_LMM_PreProcAppStartReq(   MsgBlock  * pMsg);
-/* leixiantiao 00258641 降低圈复杂度 2014-7-30 begin */
 extern VOS_UINT32  NAS_LMM_ProcAppDetReq
 (
     const MMC_LMM_DETACH_REQ_STRU            *pstAppDetReq
 );
-/* leixiantiao 00258641 降低圈复杂度 2014-7-30 end */
 
 extern  VOS_UINT32  NAS_LMM_PreProcAppDetReq(MsgBlock  * pMsg);
 extern  VOS_UINT32  NAS_LMM_PreProcIntraSystemInfoInd(MsgBlock  * pMsg);

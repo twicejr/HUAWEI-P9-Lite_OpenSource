@@ -373,7 +373,6 @@ typedef struct  tag6DOMAIN
 
 typedef struct tagIP6_PROTOSW
 {
-    /* Modified by X36317, 将此变量类型有short改为LONG，以解决ARM CPU四字节对齐问题, 2006/5/20 */
     LONG   pr_sType;                       /* socket type used for */
     struct tag6DOMAIN *pr_pDomain;         /* domain protocol a member of */
     SHORT  pr_sProtocol;                   /* protocol number */
@@ -769,7 +768,6 @@ typedef struct tagIP6_PKTOPTS_S {
      */
     ULONG ip6po_ulNeedFree;
     
-    /* Add for Jira: VISPV2R3C05STACK-119 , by y00176567, at 2011-09-14. 修改原因: 增加IPv6报文头流标签选项 */
     ULONG ip6po_ulFlowID;
 }IP6_PKTOPTS_S;
 

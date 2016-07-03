@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : test_immzc.cpp
-  版 本 号   : 初稿
-  作    者   :
-  生成日期   : 2014年05月15日
-  最近修改   :
-  功能描述   : UT测试脚本
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年01月29日
-    作    者   :
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -109,17 +92,7 @@ extern unsigned int uDataRingSize;
 /*****************************************************************************
   2 测试用例
 *****************************************************************************/
-/*****************************************************************************
- 被测函数  : test_NFExt_RegHooks
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_RegHooks, RegHooksTest01)
 {
     int     iRet;
@@ -153,17 +126,7 @@ TEST(test_test_NFExt_RegHooks, RegHooksTest01)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_NFExt_RegHooks
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_RegHooks, RegHooksTest02)
 {
     int     iRet;
@@ -199,17 +162,7 @@ TEST(test_test_NFExt_RegHooks, RegHooksTest02)
 }
 
 
-/*****************************************************************************
- 被测函数  : test_NFExt_RegHooks
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_ReRegHooks, ReRegHooksTest01)
 {
     int     iRet;
@@ -243,17 +196,7 @@ TEST(test_test_NFExt_ReRegHooks, ReRegHooksTest01)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_NFExt_RegHooks
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_ReRegHooks, ReRegHooksTest02)
 {
     int     iRet;
@@ -288,17 +231,7 @@ TEST(test_test_NFExt_ReRegHooks, ReRegHooksTest02)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_NFExt_ConfigEffective
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_ConfigEffective, ConfigEffectiveTest01)
 {
     int     iRet;
@@ -333,17 +266,7 @@ TEST(test_test_NFExt_ConfigEffective, ConfigEffectiveTest01)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_NFExt_ConfigEffective
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_ConfigEffective, ConfigEffectiveTest02)
 {
     int     iRet;
@@ -377,17 +300,7 @@ TEST(test_test_NFExt_ConfigEffective, ConfigEffectiveTest02)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_NFExt_Get1stInetIpv4Addr
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_Get1stInetIpv4Addr, NFExt_Get1stInetIpv4AddrTest01)
 {
     int     iRet;
@@ -420,17 +333,7 @@ TEST(test_test_NFExt_Get1stInetIpv4Addr, NFExt_Get1stInetIpv4AddrTest01)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_NFExt_Get1stInetIpv4Addr
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_Get1stInetIpv4Addr, NFExt_Get1stInetIpv4AddrTest02)
 {
     int     iRet;
@@ -463,17 +366,7 @@ TEST(test_test_NFExt_Get1stInetIpv4Addr, NFExt_Get1stInetIpv4AddrTest02)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_NFExt_Get1stInetIpv4Addr
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_Get1stInetIpv4Addr, NFExt_Get1stInetIpv4AddrTest03)
 {
     int     iRet;
@@ -506,17 +399,7 @@ TEST(test_test_NFExt_Get1stInetIpv4Addr, NFExt_Get1stInetIpv4AddrTest03)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_NFExt_Get1stInetIpv4Addr
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_Get1stInetIpv4Addr, NFExt_Get1stInetIpv4AddrTest04)
 {
     int     iRet;
@@ -549,17 +432,7 @@ TEST(test_test_NFExt_Get1stInetIpv4Addr, NFExt_Get1stInetIpv4AddrTest04)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_NFExt_RcvNfExtInfoCfgReq
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_RcvNfExtInfoCfgReq, NFExt_RcvNfExtInfoCfgReqTest01)
 {
     int     iRet;
@@ -592,17 +465,7 @@ TEST(test_test_NFExt_RcvNfExtInfoCfgReq, NFExt_RcvNfExtInfoCfgReqTest01)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_NFExt_SelfTaskInit
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_SelfTaskInit, NFExt_SelfTaskInitTest01)
 {
     int     iRet;
@@ -638,17 +501,7 @@ TEST(test_test_NFExt_SelfTaskInit, NFExt_SelfTaskInitTest01)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_NFExt_SelfTaskInit
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_SelfTaskInit, NFExt_SelfTaskInitTest02)
 {
     int     iRet;
@@ -683,17 +536,7 @@ TEST(test_test_NFExt_SelfTaskInit, NFExt_SelfTaskInitTest02)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_NFExt_RingBufferPut
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_RingBufferPut, NFExt_RingBufferPutTest01)
 {
     int     iRet;
@@ -729,17 +572,7 @@ TEST(test_test_NFExt_RingBufferPut, NFExt_RingBufferPutTest01)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_NFExt_RingBufferGet
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_RingBufferGet, NFExt_RingBufferGetTest01)
 {
     int     iRet;
@@ -774,17 +607,7 @@ TEST(test_test_NFExt_RingBufferGet, NFExt_RingBufferGetTest01)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_NFExt_FlushRingBuffer
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_FlushRingBuffer, NFExt_FlushRingBufferTest01)
 {
     int     iRet;
@@ -823,17 +646,7 @@ TEST(test_test_NFExt_FlushRingBuffer, NFExt_FlushRingBufferTest01)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_NFExt_AddDataToRingBuf
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_AddDataToRingBuf, NFExt_AddDataToRingBufTest01)
 {
     int     iRet;
@@ -865,17 +678,7 @@ TEST(test_test_NFExt_AddDataToRingBuf, NFExt_AddDataToRingBufTest01)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_NFExt_AddDataToRingBuf
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_AddDataToRingBuf, NFExt_AddDataToRingBufTest02)
 {
     int     iRet;
@@ -909,17 +712,7 @@ TEST(test_test_NFExt_AddDataToRingBuf, NFExt_AddDataToRingBufTest02)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_NFExt_AddDataToRingBuf
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_AddDataToRingBuf, NFExt_AddDataToRingBufTest03)
 {
     int     iRet;
@@ -955,17 +748,7 @@ TEST(test_test_NFExt_AddDataToRingBuf, NFExt_AddDataToRingBufTest03)
 }
 
 
-/*****************************************************************************
- 被测函数  : test_NFExt_AddDataToRingBuf
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_AddDataToRingBuf, NFExt_AddDataToRingBufTest04)
 {
     int     iRet;
@@ -999,17 +782,7 @@ TEST(test_test_NFExt_AddDataToRingBuf, NFExt_AddDataToRingBufTest04)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_NFExt_CtrlTxMsgTask
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_CtrlTxMsgTask, NFExt_CtrlTxMsgTaskTest01)
 {
     int     iRet;
@@ -1041,17 +814,7 @@ TEST(test_test_NFExt_CtrlTxMsgTask, NFExt_CtrlTxMsgTaskTest01)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_NFExt_CtrlTxMsgTask
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_CtrlTxMsgTask, NFExt_CtrlTxMsgTaskTest02)
 {
     int     iRet;
@@ -1086,17 +849,7 @@ TEST(test_test_NFExt_CtrlTxMsgTask, NFExt_CtrlTxMsgTaskTest02)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_NFExt_CtrlTxMsgTask
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_CtrlTxMsgTask, NFExt_CtrlTxMsgTaskTest03)
 {
     int     iRet;
@@ -1131,17 +884,7 @@ TEST(test_test_NFExt_CtrlTxMsgTask, NFExt_CtrlTxMsgTaskTest03)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_NFExt_ReadNvCfg
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_ReadNvCfg, NFExt_ReadNvCfgTest01)
 {
     int     iRet;
@@ -1175,17 +918,7 @@ TEST(test_test_NFExt_ReadNvCfg, NFExt_ReadNvCfgTest01)
 }
 
 
-/*****************************************************************************
- 被测函数  : test_NFExt_ReadNvCfg
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_ReadNvCfg, NFExt_ReadNvCfgTest02)
 {
     int     iRet;
@@ -1218,17 +951,7 @@ TEST(test_test_NFExt_ReadNvCfg, NFExt_ReadNvCfgTest02)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_NFExt_Init
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_Init, NFExt_InitTest01)
 {
     int     iRet;
@@ -1263,17 +986,7 @@ TEST(test_test_NFExt_Init, NFExt_InitTest01)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_NFExt_BrFlowCtrl
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_BrFlowCtrl, NFExt_BrFlowCtrlTest01)
 {
     int     iRet;
@@ -1307,17 +1020,7 @@ TEST(test_test_NFExt_BrFlowCtrl, NFExt_BrFlowCtrlTest01)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_NFExt_SaveBrDev
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_SaveBrDev, NFExt_SaveBrDevTest01)
 {
     int     iRet;
@@ -1350,17 +1053,7 @@ TEST(test_test_NFExt_SaveBrDev, NFExt_SaveBrDevTest01)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_NFExt_SaveBrDev
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_SaveBrDev, NFExt_SaveBrDevTest02)
 {
     int     iRet;
@@ -1395,17 +1088,7 @@ TEST(test_test_NFExt_SaveBrDev, NFExt_SaveBrDevTest02)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_NFExt_ResetPri
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_ResetPri, NFExt_ResetPriTest01)
 {
     int     iRet;
@@ -1439,17 +1122,7 @@ TEST(test_test_NFExt_ResetPri, NFExt_ResetPriTest01)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_NFExt_ResetPri
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_ResetPri, NFExt_ResetPriTest02)
 {
     int     iRet;
@@ -1483,17 +1156,7 @@ TEST(test_test_NFExt_ResetPri, NFExt_ResetPriTest02)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_NFExt_RcvOmMsg
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_RcvOmMsg, NFExt_RcvOmMsgTest01)
 {
     int     iRet;
@@ -1529,17 +1192,7 @@ TEST(test_test_NFExt_RcvOmMsg, NFExt_RcvOmMsgTest01)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_NFExt_MsgProc
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_MsgProc, NFExt_MsgProcTest01)
 {
     int     iRet;
@@ -1572,17 +1225,7 @@ TEST(test_test_NFExt_MsgProc, NFExt_MsgProcTest01)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_NFExt_MsgProc
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_MsgProc, NFExt_MsgProcTest02)
 {
     int     iRet;
@@ -1615,17 +1258,7 @@ TEST(test_test_NFExt_MsgProc, NFExt_MsgProcTest02)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_NFExt_MsgProc
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_MsgProc, NFExt_MsgProcTest03)
 {
     int     iRet;
@@ -1658,17 +1291,7 @@ TEST(test_test_NFExt_MsgProc, NFExt_MsgProcTest03)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_NFExt_FidInit
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_FidInit, NFExt_FidInitTest01)
 {
     int     iRet;
@@ -1701,17 +1324,7 @@ TEST(test_test_NFExt_FidInit, NFExt_FidInitTest01)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_NFExt_FidInit
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_FidInit, NFExt_FidInitTest02)
 {
     int     iRet;
@@ -1744,17 +1357,7 @@ TEST(test_test_NFExt_FidInit, NFExt_FidInitTest02)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_NFExt_FidInit
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_FidInit, NFExt_FidInitTest03)
 {
     int     iRet;
@@ -1788,17 +1391,7 @@ TEST(test_test_NFExt_FidInit, NFExt_FidInitTest03)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_NFExt_FidInit
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_FidInit, NFExt_FidInitTest04)
 {
     int     iRet;
@@ -1833,17 +1426,7 @@ TEST(test_test_NFExt_FidInit, NFExt_FidInitTest04)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_NFExt_FidInit
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_FidInit, NFExt_FidInitTest05)
 {
     int     iRet;
@@ -1879,17 +1462,7 @@ TEST(test_test_NFExt_FidInit, NFExt_FidInitTest05)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_NFExt_FidInit
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_FidInit, NFExt_FidInitTest06)
 {
     int     iRet;

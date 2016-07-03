@@ -51,6 +51,8 @@
 #define BL_MIN 0
 #define BL_MAX 2047
 
+#define LOG_LEVEL_INFO 7
+
 #define LM36923_EMERG(msg, ...)    \
 	do { if (lm36923_msg_level > 0)  \
 		printk(KERN_EMERG "[lm36923]%s: "msg, __func__, ## __VA_ARGS__); } while (0)

@@ -1250,6 +1250,11 @@ extern VOS_UINT32                              g_ulEmmT3402length ;
 extern VOS_UINT32        g_ulEsrRej39OptimizeCtr;
 
 extern VOS_UINT32                       g_ulNasAustraliaFlag;
+
+extern VOS_UINT32        g_ulImsiAttachWithInvalidTinFlag;
+
+extern VOS_UINT8         g_ucConnStateRcvDrbReestTimes;
+
 /*****************************************************************************
   8 Fuction Extern
 *****************************************************************************/
@@ -1531,9 +1536,7 @@ extern VOS_VOID  NAS_EMM_SaveEmcEsmMsg
 );
 extern VOS_UINT32  NAS_EMM_IsDeregState( VOS_VOID );
 extern VOS_VOID  NAS_EMM_SendUsimStatusToRrc( LRRC_LNAS_SIM_STATUS_ENUM_UINT32  enSimStatus);
-/* s00193151 begin for 自适应网络拒绝原因值 */
 extern VOS_VOID NAS_LMM_AdaptRegRejCau(VOS_UINT8 *pucCause);
-/* s00193151 end for 自适应网络拒绝原因值 */
 extern MMC_LMM_RESULT_ID_ENUM_UINT32 NAS_EMM_GetGulPubInfo
 (
     MMC_LMM_INFO_TYPE_ENUM_UINT32    ulInfoType,

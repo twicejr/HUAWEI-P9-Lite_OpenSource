@@ -1,15 +1,4 @@
-/******************************************************************************
 
-   Copyright(C)2013,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : ImsaProcMsccMsg.c
-  Description     : 该C文件实现MSCC消息处理和MSCC消息发送
-  History           :
-     1.sunbing 49683      2013-06-19  Draft Enact
-     2.zhaochen 00308719  2015-02-02  Modify for MSCC Interface
-
-******************************************************************************/
 
 /*****************************************************************************
   1 Include HeadFile
@@ -52,17 +41,7 @@ extern "C" {
 *****************************************************************************/
 
 /*lint -e961*/
-/*****************************************************************************
- Function Name  : IMSA_ProcMsccMsg()
- Description    : MSCC消息处理函数
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.sunbing 49683      2013-06-21  Draft Enact
-      2.zhaochen 00308719  2015-02-02  Modify for MSCC Interface
-*****************************************************************************/
 VOS_VOID IMSA_ProcMsccMsg(const VOS_VOID *pRcvMsg )
 {
     /* 定义消息头指针*/
@@ -100,17 +79,7 @@ VOS_VOID IMSA_ProcMsccMsg(const VOS_VOID *pRcvMsg )
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_ProcMsccMsgStartReq()
- Description    : MSCC开机消息处理函数
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.sunbing 49683      2013-06-21  Draft Enact
-      2.zhaochen 00308719  2015-02-02  Modify for MSCC Interface
-*****************************************************************************/
 VOS_VOID IMSA_ProcMsccMsgStartReq(VOS_VOID  )
 {
     IMSA_CONTROL_MANAGER_STRU  *pstControlManager;
@@ -164,17 +133,7 @@ VOS_VOID IMSA_ProcMsccMsgStartReq(VOS_VOID  )
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SndMsccMsgStartCnf()
- Description    : 给MSCC发送开机回复消息
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.sunbing 49683      2013-06-26  Draft Enact
-      2.zhaochen 00308719  2015-02-02  Modify for MSCC Interface
-*****************************************************************************/
 VOS_VOID IMSA_SndMsccMsgStartCnf(VOS_VOID  )
 {
     IMSA_MSCC_START_CNF_STRU           *pstImsaMsccStartCnf;
@@ -207,17 +166,7 @@ VOS_VOID IMSA_SndMsccMsgStartCnf(VOS_VOID  )
 
 
 
-/*****************************************************************************
- Function Name  : IMSA_ProcMsccMsgStopReq()
- Description    : MSCC关机消息处理函数
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.sunbing 49683      2013-06-21  Draft Enact
-      2.zhaochen 00308719  2015-02-02  Modify for MSCC Interface
-*****************************************************************************/
 VOS_VOID IMSA_ProcMsccMsgStopReq
 (
     const VOS_VOID                     *pRcvMsg
@@ -336,17 +285,7 @@ VOS_VOID IMSA_ProcMsccMsgStopReq
     //IMSA_SndImsMsgStopReq();
 }
 
-/*****************************************************************************
- Function Name  : IMSA_ProcMsccMsgStopReq()
- Description    : MSCC关机消息处理函数
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.sunbing 49683      2013-06-21  Draft Enact
-      2.zhaochen 00308719  2015-02-02  Modify for MSCC Interface
-*****************************************************************************/
 VOS_VOID IMSA_ProcStopResourceApplyCnf
 (
     VOS_VOID
@@ -355,17 +294,7 @@ VOS_VOID IMSA_ProcStopResourceApplyCnf
     IMSA_SndImsMsgStopReq();
 }
 
-/*****************************************************************************
- Function Name  : IMSA_ProcMsccMsgStopReq()
- Description    : MSCC关机消息处理函数
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.sunbing 49683      2013-06-21  Draft Enact
-      2.zhaochen 00308719  2015-02-02  Modify for MSCC Interface
-*****************************************************************************/
 VOS_VOID IMSA_ProcStopResourceApplyTimerExp
 (
     VOS_VOID
@@ -381,17 +310,7 @@ VOS_VOID IMSA_ProcStopResourceApplyTimerExp
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_SndMsccMsgStopCnf()
- Description    : 给MSCC发送开机回复消息
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.sunbing 49683      2013-06-21  Draft Enact
-      2.zhaochen 00308719  2015-02-02  Modify for MSCC Interface
-*****************************************************************************/
 VOS_VOID IMSA_SndMsccMsgStopCnf(VOS_VOID  )
 {
     IMSA_MSCC_STOP_CNF_STRU           *pstImsaMsccStopCnf;
@@ -426,17 +345,7 @@ VOS_VOID IMSA_SndMsccMsgStopCnf(VOS_VOID  )
 
 
 
-/*****************************************************************************
- Function Name  : IMSA_ProcMsccMsgDeregReq()
- Description    : MSCC去注册消息处理函数
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.sunbing 49683      2013-06-21  Draft Enact
-      2.zhaochen 00308719  2015-02-02  Modify for MSCC Interface
-*****************************************************************************/
 VOS_VOID IMSA_ProcMsccMsgDeregReq(VOS_VOID )
 {
     /* SRVCC异常(例如关机，DEREG REQ，状态迁离CONN+REG)，清缓存 */
@@ -447,17 +356,7 @@ VOS_VOID IMSA_ProcMsccMsgDeregReq(VOS_VOID )
     return ;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_ProcMsccMsgDeregReq()
- Description    : MSCC SERVICE CHANGE IND消息处理函数
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.sunbing 49683      2013-06-21  Draft Enact
-      2.zhaochen 00308719  2015-02-02  Modify for MSCC Interface
-*****************************************************************************/
 VOS_VOID IMSA_ProcMsccMsgServiceChangeInd
 (
     const VOS_VOID                     *pRcvMsg
@@ -468,16 +367,7 @@ VOS_VOID IMSA_ProcMsccMsgServiceChangeInd
     return ;
 }
 
-/*****************************************************************************
- Description    : MMA RAOMING CHANGE IND消息处理函数
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-07-27  Draft Enact
-      2.zhaochen 00308719  2015-02-02  Modify for MSCC Interface
-*****************************************************************************/
 VOS_VOID IMSA_ProcMsccMsgCampInfoChangeInd
 (
     const VOS_VOID                     *pRcvMsg
@@ -489,17 +379,7 @@ VOS_VOID IMSA_ProcMsccMsgCampInfoChangeInd
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_SndMsccMsgDeregCnf()
- Description    : 给MSCC发送去注册回复消息
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.sunbing 49683      2013-06-26  Draft Enact
-      2.zhaochen 00308719  2015-02-02  Modify for MSCC Interface
-*****************************************************************************/
 VOS_VOID IMSA_SndMsccMsgDeregCnf(VOS_VOID )
 {
     IMSA_MSCC_DEREGISTER_CNF_STRU           *pstImsaMsccDeregCnf;
@@ -528,15 +408,7 @@ VOS_VOID IMSA_SndMsccMsgDeregCnf(VOS_VOID )
     /*调用消息发送函数 */
     IMSA_SND_MSG(pstImsaMsccDeregCnf);
 }
-/*****************************************************************************
- Description    : MMA VOICE DOMAIN CHANGE IND消息处理函数
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-02-26  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_ProcMsccMsgVoiceDomainChangeInd
 (
     const VOS_VOID                     *pRcvMsg
@@ -547,17 +419,7 @@ VOS_VOID IMSA_ProcMsccMsgVoiceDomainChangeInd
     return ;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_ProcImsMsgStartOrStopCnf()
- Description    : 处理IMS开机或者关机结果
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.sunbing 49683      2013-06-24  Draft Enact
-      2.zhaochen 00308719  2015-02-02  Modify for MSCC Interface
-*****************************************************************************/
 VOS_VOID IMSA_ProcImsMsgStartOrStopCnf(VOS_VOID)
 {
     IMSA_CONTROL_MANAGER_STRU          *pstControlManager;
@@ -719,17 +581,7 @@ VOS_VOID IMSA_ProcImsMsgStartOrStopCnf(VOS_VOID)
 }
 
 
- /*****************************************************************************
- Function Name  : IMSA_SndMsccMsgImsVoiceCapNotify()
- Description    : 给MSCC发送ID_IMSA_MSCC_IMS_VOICE_CAP_NOTIFY消息
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
-
- History        :
-      1.l00132387      2013-12-17  Draft Enact
-      2.zhaochen 00308719  2015-02-02  Modify for MSCC Interface
-*****************************************************************************/
+ 
  VOS_VOID IMSA_SndMsccMsgImsVoiceCapNotify
  (
     MSCC_IMSA_IMS_VOICE_CAP_ENUM_UINT8   enImsVoiceCap,
@@ -769,16 +621,7 @@ VOS_VOID IMSA_ProcImsMsgStartOrStopCnf(VOS_VOID)
  }
 
 #if (FEATURE_ON == FEATURE_DSDS)
-/*****************************************************************************
- Function Name  : IMSA_ProcTimerMsgWaitPowerOffRfExp()
- Description    : 等待关机资源定时器超时的处理
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-12-08  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_ProcTimerMsgWaitPowerOffRfExp(const VOS_VOID *pRcvMsg)
 {
     /* 通知RRM模块释放资源 */

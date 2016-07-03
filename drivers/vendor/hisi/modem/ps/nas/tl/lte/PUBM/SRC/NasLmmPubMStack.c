@@ -1,15 +1,4 @@
-/******************************************************************************
 
-        @(#)Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : NasLmmPubMStack.c
-    Description : EMM模块收到的所有外部PID的消息, 从这里入口
-    History     :
-      1.  hanlufeng 41410  Draft Enact
-      2.  zhengjunyan 00148421   2011-05-28 文件名由 NasMmPubMStack.c修改为
-                                            NasLmmPubMStack.c
-******************************************************************************/
 
 
 
@@ -161,23 +150,7 @@ VOS_VOID NAS_LMM_FSM_PushState( NAS_LMM_PARALLEL_FSM_ENUM_UINT16 enParalFsmId)
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LMM_FSM_PushTimer
- Discription    : 当前状态机入栈前,分析当前状态涉及到哪些需要保护的定时器
-                    本函数只执行两个操作:
-                               暂停当前状态运行的状态保护定时器;
-                               修改g_stMmMainContext中对应定时器的运行标识
-                    入栈操作在 "状态入栈" 中的 enStaTId入栈 操作中实现；
-                    出栈时，根据入栈的enStaTId和当前该enStaTId的运行标识，判断
-                    enStaTId是否被暂停，是否需要恢复该enStaTId的运行；
- Input          : 并行状态机ID, UE1.0中固定填NAS_LMM_PARALLEL_FSM_EMM
- Output         : None
- Return         : None
- History:
-      1.  hanlufeng 41410  Draft Enact
-      2.  X00148705 直接调用NAS_LMM_StopStateTimer,函数NAS_LMM_SuspendStateTimer没有充分验证
 
-*****************************************************************************/
 VOS_VOID    NAS_LMM_FSM_PushTimer(  NAS_LMM_PARALLEL_FSM_ENUM_UINT16 enParalFsmId)
 {
     NAS_LMM_FSM_STATE_STRU              *pstCurFsm;          /* 状态机地址 */
@@ -362,21 +335,7 @@ VOS_VOID NAS_LMM_FSM_PopState( NAS_LMM_PARALLEL_FSM_ENUM_UINT16 enParalFsmId )
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LMM_FSM_PopTimer
- Discription    : 栈顶状态出栈，该栈顶状态对应的定时器在压栈时同步入栈了，则
-                  此时需要同步恢复，常见的情况是，把暂停的定时器重新启动；
-                    本函数只执行两个操作:
-                               恢复运行出栈后的状态的状态保护定时器;
-                               修改g_stMmMainContext中对应定时器的运行标识
- Input          : 并行状态机ID, UE1.0中固定填NAS_LMM_PARALLEL_FSM_EMM
- Output         : None
- Return         : None
- History:
-      1.  hanlufeng 41410  Draft Enact
-      2.  X00148705 直接调用NAS_LMM_StartStateTimer,函数NAS_LMM_ResumeStateTimer没有充分验证
 
-*****************************************************************************/
 VOS_VOID    NAS_LMM_FSM_PopTimer(  NAS_LMM_PARALLEL_FSM_ENUM_UINT16 enParalFsmId)
 {
     NAS_LMM_FSM_STATE_STRU               *pstCurFsm;          /* 状态机地址 */
@@ -423,17 +382,7 @@ VOS_VOID    NAS_LMM_FSM_PopGlobPar(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_FSM_GetStaAtStackBase
- Description     : 获取栈底的状态
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.z00148421      2010-10-23  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_LMM_FSM_GetStaAtStackBase(
                                         NAS_LMM_PARALLEL_FSM_ENUM_UINT16 enParalFsmId)
 {
@@ -453,17 +402,7 @@ VOS_UINT32  NAS_LMM_FSM_GetStaAtStackBase(
     return NAS_LMM_PUB_COMP_EMMSTATE(enMainState, enSubState);
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_FSM_GetStaAtStackTop
- Description     : 获取栈顶的状态
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2012-8-10  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_LMM_FSM_GetStaAtStackTop(
                                         NAS_LMM_PARALLEL_FSM_ENUM_UINT16 enParalFsmId)
 {
@@ -484,18 +423,7 @@ VOS_UINT32  NAS_LMM_FSM_GetStaAtStackTop(
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_LMM_PrintFsmTimer
- Description     : 打印当前状态定时器处于哪种状态，打印当前所有协议定时器处于
-                   哪种状态
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.qilili 00145085      2008-11-14  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_LMM_PrintFsmTimer(NAS_LMM_PARALLEL_FSM_ENUM_UINT16         enParallelFsmId)
 {
     NAS_LMM_FSM_STATE_STRU              *pstCurFsm;          /* 状态机地址 */
@@ -573,19 +501,7 @@ VOS_VOID  NAS_LMM_PrintFsmTimer(NAS_LMM_PARALLEL_FSM_ENUM_UINT16         enParal
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LMM_FSM_ClearstackCombine()
- Discription    : 清空栈的综合操作，包括3个操作:
-                                    状态清空，
-                                    定时器清空
-                                    全局变量清空，
-                  目前只有收到AUTH REJ过程涉及此操作,
- Input          : 并行状态机ID, UE1.0中固定填NAS_LMM_PARALLEL_FSM_EMM
- Output         : None
- Return         : None
- History:
-      1.  leili 00132387    2009-03-31  Draft Enact
-*****************************************************************************/
+
 VOS_VOID  NAS_LMM_FSM_ClearStackCombine( NAS_LMM_PARALLEL_FSM_ENUM_UINT16 enParalFsmId)
 {
 
@@ -641,17 +557,7 @@ VOS_VOID  NAS_LMM_FSM_ClearStackCombine( NAS_LMM_PARALLEL_FSM_ENUM_UINT16 enPara
 }
 
 
-/*****************************************************************************
- Function Name  : NAS_LMM_FSM_ClearState
- Discription    : 将CCB状态栈中状态清空。在流程模块调用
-                  RRC_FSM_EndProcess时由MAIN模块自动完成，该接口不对外提供。
- Input          : 状态机栈地址
- Output         : None
- Return         : None
- History:
-      1.  leili 00132387   Draft Enact
 
-*****************************************************************************/
 VOS_VOID NAS_LMM_FSM_ClearState( NAS_LMM_PARALLEL_FSM_ENUM_UINT16 enParalFsmId )
 {
 
@@ -748,16 +654,7 @@ VOS_VOID    NAS_LMM_FSM_ClearTimer(  NAS_LMM_PARALLEL_FSM_ENUM_UINT16 enParalFsm
 /*lint +e961*/
 /*lint +e960*/
 
-/*****************************************************************************
- Function Name  : NAS_LMM_FSM_ClearGlobPar
- Discription    : 当前状态机出栈
- Input          : 状态机栈地址 新状态
- Output         : None
- Return         : None
- History:
-      1.  leili 00132387  Draft Enact
 
-*****************************************************************************/
 VOS_VOID    NAS_LMM_FSM_ClearGlobPar(VOS_VOID)
 {
 

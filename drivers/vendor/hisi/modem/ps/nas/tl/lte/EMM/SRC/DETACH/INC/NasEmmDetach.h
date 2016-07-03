@@ -1,17 +1,5 @@
 
-/******************************************************************************
 
-  Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : NasEmmDetach.h
-  Description     : NasEmmDetach.h
-  History           :
-      1.leili       00132387  2008-09-04  Draft Enact
-      2.zhengjunyan 00148421  2009-07-31  24301_CR37:收到网侧re-attach类型的DETACH,
-                                          释放当前连接，再发起ATTACH
-      3.zhengjunyan 00148421   2009-07-17  CR165:Add value reserved for detach type
-******************************************************************************/
 
 #ifndef __NASEMMDETACH_H__
 #define __NASEMMDETACH_H__

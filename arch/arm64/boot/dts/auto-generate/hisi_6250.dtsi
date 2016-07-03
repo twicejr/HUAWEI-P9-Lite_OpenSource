@@ -1,0 +1,51 @@
+/**
+ * Note: any file.dtsi or node in this file will be compile into all config.dts
+ *so, if your node or file.dtsi will not use on some products, please don't put it here
+ */
+/include/ "hisi_6250_clock.dtsi"
+/include/ "hisi_6250_hwspinlock.dtsi"
+/include/ "hisi_6250_ddr.dtsi"
+/include/ "hisi_6250_mmc.dtsi"
+/include/ "hisi_6250_ipc.dtsi"
+/include/ "hisi_6250_isp_ipc.dtsi"
+/include/ "hisi_6250_gpio.dtsi"
+/include/ "hisi_6250_usb.dtsi"
+/include/ "hisi_6250_ion.dtsi"
+/include/ "hisi_6250_i2c.dtsi"
+/include/ "hisi_6250_i2cdev.dtsi"
+/include/ "hisi_6250_gpu.dtsi"
+/include/ "hisi_6250_memory.dtsi"
+/include/ "hisi_6250_efuse.dtsi"
+/include/ "hisi_6250_noc.dtsi"
+/include/ "hisi_6250_qos.dtsi"
+/include/ "hisi_6250_powerip.dtsi"
+/include/ "hisi_6555v100_pmic.dtsi"
+/include/ "hisi_6555v100_pmic_mntn.dtsi"
+/include/ "hisi_6522_chargerpower.dtsi"
+/include/ "hisi_freq_autodown.dtsi"
+/include/ "hisi_6250_uart.dtsi"
+/include/ "hisi_6250_spi.dtsi"
+/include/ "hisi_6250_dma.dtsi"
+/include/ "hisi_6250_perfstat.dtsi"
+/include/ "hisi_6250_vdec.dtsi"
+/include/ "hisi_6250_trustedcore.dtsi"
+/include/ "hisi_6250_venc.dtsi"
+/include/ "hisi_6250_mntn.dtsi"
+/include/ "hisi_6250_framebuffer.dtsi"
+/include/ "hisi_6250_camera3.dtsi"
+/include/ "hisi_6250_jtag.dtsi"
+/include/ "huawei_camera.dtsi"
+/include/ "huawei_hall_inputhub.dtsi"
+/include/ "hisi_6250_ddrflux.dtsi"
+/include/ "fastboot_6555v100_mntn.dtsi"
+/include/ "hisi_6250_lowpm.dtsi"
+/{
+    hisi_flp:flp {
+        compatible = "hisilicon,flp-common";
+        reg = <0x0 0xfff19000 0x0 0x1000>;
+        interrupts = <0x0 0x3a 0x4>;
+        clocks = <&clk_gate_timer5>;
+        clock-names = "clk_timer5";
+        status = "ok";
+    };
+};

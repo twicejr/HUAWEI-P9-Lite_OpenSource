@@ -1,35 +1,4 @@
-/************************************************************************
- *                                                                      *
- *                             ROOT.H                                   *
- *                                                                      *
- *  Project Code:       VRP3.0                                          *
- *  Create Date:        2000/01/25                                      *
- *  Author:             Hu Bo                                           *
- *  Modify Date:                                                        *
- *  Document:                                                           *
- *  Function:                                                           *
- *  Others:                                                             *
- *----------------------------------------------------------------------*
- *                                                                      *
- *  Copyright 2000-2002 VRP3.0 Team Beijing Institute HuaWei Tech, Inc. *
- *                      ALL RIGHTS RESERVED                             *
- *                                                                      *
- *----------------------------------------------------------------------*
- *                                                                      *
- *  这是VRP的启动模块的头文件。                                         *
- *  在这个头文件中定义了以下东西（以下的“所有”不包括VOS）：           *
- *                                                                      *
- *    VRP中所有任务的名字、ID、入口函数、优先级、模式、栈长、入口参数； *
- *    VRP中所有队列的名字、长度、模式、ID；                             *
- *    VRP中所有事件的值；                                               *
- *    VRP的SockRun任务中所有子任务的标志位。                            *
- *                                                                      *
- *  这个头文件至少被root.c包含；如果某个C文件用到了上述变量或宏，则这个 *
- *  C文件也需要包含root.h。                                             *
- *                                                                      *
- *  具体描述VRP启动流程的文档是《VRP编程手册--VRP启动流程说明书》。     *
- *                                                                      *
- ************************************************************************/
+
 
  
 #ifndef	_ROOT_H_
@@ -1659,7 +1628,7 @@ extern ULONG CLI_ScheduleReboot_Init (VOID);
 extern VOID IFMD_Init(VOID);
 #endif
 
-#if ((R8070_ENTITYEXTMIB == VRP_YES) || (R8011_ENTITYMIB == VRP_YES)) /*added by wangyue 2003.11.28 for 环境监控MIB*/
+#if ((R8070_ENTITYEXTMIB == VRP_YES) || (R8011_ENTITYMIB == VRP_YES))
 extern VOID ENTITYEXTMIB_Init( VOID );
 #endif
 

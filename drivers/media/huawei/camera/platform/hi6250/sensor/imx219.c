@@ -10,9 +10,10 @@
 #include "hwsensor.h"
 #include "sensor_commom.h"
 #include "hw_csi.h"
+#include <linux/pinctrl/consumer.h>
 
 #define I2S(i) container_of(i, sensor_t, intf)
-
+static char *sensor_dts_name = "IMX219_VENDOR";
 static hwsensor_vtbl_t s_imx219_vtbl;
 
 enum rear_sensor_dvdd_type_t{
@@ -254,13 +255,115 @@ static int imx219_match_id(
 {
     sensor_t* sensor = I2S(si);
     struct sensor_cfg_data *cdata = (struct sensor_cfg_data *)data;
+    struct pinctrl_state *pinctrl_def;
+    struct pinctrl_state *pinctrl_idle;
+    uint32_t module_id_0 = 0;
+    uint32_t module_id_1 = 0;
+    struct pinctrl *p;
+    int rc = 0;
+    char *sensor_name [] = { "IMX219_SUNNY", "IMX219_LITEON"};
 
-    cam_info("%s enter.", __func__);
+    memset(cdata->cfg.name, 0, DEVICE_NAME_SIZE);
+    if (!strncmp(sensor->board_info->name, sensor_dts_name, strlen(sensor_dts_name))) {
+        p = devm_pinctrl_get(s_imx219.dev);
+        if (IS_ERR_OR_NULL(p)) {
+            cam_err("could not get pinctrl.\n");
+            rc = -1;
+            goto matchID_exit;
+        }
 
-    cdata->data = sensor->board_info->sensor_index;
+        rc = gpio_request(sensor->board_info->gpios[FSIN].gpio, NULL);
+        if(rc < 0) {
+            cam_err("%s failed to request gpio[%d]", __func__, sensor->board_info->gpios[FSIN].gpio);
+            rc = -1;
+            goto matchID_exit;
+        }
+        cam_info("%s gpio[%d].", __func__, sensor->board_info->gpios[FSIN].gpio);
 
-    hwsensor_writefile(sensor->board_info->sensor_index, sensor->board_info->name);
-    return 0;
+        pinctrl_def = pinctrl_lookup_state(p, "default");
+        if (IS_ERR_OR_NULL(pinctrl_def)) {
+            cam_err("could not get defstate.\n");
+            rc = -1;
+            goto pinctrl_error;
+        }
+
+        pinctrl_idle = pinctrl_lookup_state(p, "idle");
+        if (IS_ERR_OR_NULL(pinctrl_idle)) {
+            pr_err("could not get idle defstate.\n");
+            rc = -1;
+            goto pinctrl_error;
+        }
+        /*PULL UP*/
+        rc = pinctrl_select_state(p, pinctrl_def);
+        if (rc) {
+            cam_err("could not set pins to default state.\n");
+            rc = -1;
+            goto pinctrl_error;
+        }
+        udelay(10);
+        cam_info("%s gpio[%d].", __func__, sensor->board_info->gpios[FSIN].gpio);
+        rc = gpio_direction_input(sensor->board_info->gpios[FSIN].gpio);
+        if (rc < 0) {
+            cam_err("%s failed to config gpio(%d) input.\n",__func__, sensor->board_info->gpios[FSIN].gpio);
+            rc = -1;
+            goto pinctrl_error;
+        }
+        module_id_0 = gpio_get_value(sensor->board_info->gpios[FSIN].gpio);
+
+        /*PULL DOWN*/
+        rc = pinctrl_select_state(p, pinctrl_idle);
+        if (rc) {
+            cam_err("could not set pins to idle state.\n");
+            rc = -1;
+            goto pinctrl_error;
+        }
+        udelay(10);
+        cam_info("%s gpio[%d].", __func__, sensor->board_info->gpios[FSIN].gpio);
+        rc = gpio_direction_input(sensor->board_info->gpios[FSIN].gpio);
+        if (rc < 0) {
+            cam_err("%s failed to config gpio(%d) input.\n",__func__, sensor->board_info->gpios[FSIN].gpio);
+            rc = -1;
+            goto pinctrl_error;
+        }
+        module_id_1 = gpio_get_value(sensor->board_info->gpios[FSIN].gpio);
+
+        cam_info("%s module_id_0 %d module_id_1 %d .\n",__func__, module_id_0, module_id_1);
+        if((module_id_0 == 1) && (module_id_1 == 1)){
+            //sunny module
+            strncpy(cdata->cfg.name, sensor_name[0], strlen(sensor_name[0])+1);
+            cdata->data = sensor->board_info->sensor_index;
+            rc = 0;
+        }
+        else if((module_id_0 == 1) && (module_id_1 == 0)){
+            //liteon module
+            strncpy(cdata->cfg.name, sensor_name[1], strlen(sensor_name[1])+1);
+            cdata->data = sensor->board_info->sensor_index;
+            rc = 0;
+        }
+        else{
+            strncpy(cdata->cfg.name, sensor->board_info->name, strlen(sensor->board_info->name)+1);
+            cdata->data = sensor->board_info->sensor_index;
+            cam_err("%s failed to get the module id value.\n",__func__);
+            rc = 0;
+        }
+        gpio_free(sensor->board_info->gpios[FSIN].gpio);
+        goto matchID_exit;
+    }else {
+            strncpy(cdata->cfg.name, sensor->board_info->name, strlen(sensor->board_info->name)+1);
+            cdata->data = sensor->board_info->sensor_index;
+            rc = 0;
+            goto matchID_exit;
+        }
+
+pinctrl_error:
+            gpio_free(sensor->board_info->gpios[FSIN].gpio);
+matchID_exit:
+            if (cdata->data != SENSOR_INDEX_INVALID) {
+                hwsensor_writefile(sensor->board_info->sensor_index, cdata->cfg.name);
+                cam_info("%s, cdata->cfg.name = %s", __func__,cdata->cfg.name );
+            }
+
+    return rc;
 }
 
 static hwsensor_vtbl_t s_imx219_vtbl =

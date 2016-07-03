@@ -1,26 +1,4 @@
-/*************************************************************************
- *
- *              Copyright 2005, Huawei Technologies Co. Ltd.
- *                          ALL RIGHTS RESERVED
- * 
- *-----------------------------------------------------------------------*
- *
- *                         IF_VOS.H 
- *
- *  Project Code: VISP1.5
- *   Module Name: IFNET
- *  Date Created: 2004/04/28
- *        Author: luohanjun
- *   Description: 
- *               
- *-----------------------------------------------------------------------*
- *  Modification History
- *  DATE            NAME            DESCRIPTION
- *  2004/04/28      luohanjun       Create File
- *  2006/03/30      liai            Adjust for D00654
- *  2006/04/21      liai            Adjust for D00878
- *  2007/09/20      luowentong 00105073 删除在产品工程目录(vos/vospubh)中没有的头文件
- ************************************************************************/
+
 #ifndef _IF_VOS_H_
 #define _IF_VOS_H_
      
@@ -30,7 +8,6 @@
 
 #include "vos/vospubh/basetype.h"
 
-/* 2007-9-19由l00105073修改，问题单A82D20236：tcpip_ifnet.h包含的头文件有包含长路径*/
 #include "vos/vospubh/vos_def.h"
 
 /* #include "dopra/vos/include/v_typdef.h" */
@@ -60,7 +37,6 @@
 #include "vos/vospubh/vos_que.h"
 
 /* #if( VRP_MODULE_IFNET_EXT == VRP_YES ) */
-/* 由l00105073修改，问题单A82D20236：tcpip_ifnet.h包含的头文件有包含长路径*/
 #include "vos/vospubh/compbase.h"
 #include "vos/vospubh/iunknown.h"
 #include "vos/vospubh/icompfactory.h"

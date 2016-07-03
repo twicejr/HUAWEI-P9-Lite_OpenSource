@@ -517,6 +517,7 @@ struct status_count{
 	u32 stable_state;
 	u32 noise_state;
 	u32 vnoise_state;
+	u32 moisture_state;
 };
 struct t72_noise_level{
 	u32 total_count;
@@ -647,6 +648,7 @@ struct mxt_data {
 	u8 T72_reportid_max;
 	u16 T78_address;
 	u16 T80_address;
+	u8 T80_reportid;
 	u16 T81_address;
 	u8 T81_reportid_min;
 	u8 T81_reportid_max;

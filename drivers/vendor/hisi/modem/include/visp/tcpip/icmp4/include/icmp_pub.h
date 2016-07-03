@@ -49,7 +49,6 @@ extern  "C"{
 #define ICMPCTL_MASKREPL    1   /* allow replies to netmask requests */
 #define ICMPCTL_MAXID       2
 
-/*Added by wangbin,增加组播广播ping防攻击类型值, 2015/10/21   DTS:DTS2015102607862 */
 #define     ICMP_SRCADDR_ANY          20    /* ICMP源地址 0.0.0.0 */
 #define     ICMP_DSTADDR_BCASTORMCAST    21    /* ICMP报文目的广播地址或子网广播地址 */
 

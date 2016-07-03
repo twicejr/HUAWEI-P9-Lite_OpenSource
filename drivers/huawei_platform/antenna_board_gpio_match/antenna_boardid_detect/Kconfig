@@ -1,0 +1,6 @@
+config ANTENNA_BOARDID_GPIO_DETECT
+    bool "antenna_boardid_gpio_detect support"
+    default n
+
+
+

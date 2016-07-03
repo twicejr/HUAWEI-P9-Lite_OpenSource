@@ -347,20 +347,7 @@ VOS_VOID  NAS_Rabm3GTo2GT3Expired( REL_TIMER_MSG  *pTimerExpiredMsg )
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_ProcTiRabReestRequestExpired
- 功能描述  : RAB重建(DATA SERVICE REQUEST)保护定时器超时处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年3月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_RABM_ProcTiRabReestRequestExpired(VOS_VOID)
 {
     VOS_UINT8                           ucEntId;
@@ -384,20 +371,7 @@ VOS_VOID NAS_RABM_ProcTiRabReestRequestExpired(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_ProcTiRabReestPendingExpired
- 功能描述  : RB建立保护定时器超时处理
- 输入参数  : ucRabId - RABID [5,15]
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年3月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_RABM_ProcTiRabReestPendingExpired(VOS_UINT8 ucRabId)
 {
     NAS_NORMAL_LOG(WUEPS_PID_RABM,

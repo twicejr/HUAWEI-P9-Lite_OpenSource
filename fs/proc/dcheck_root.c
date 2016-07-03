@@ -80,7 +80,7 @@ static int is_recorded(int action_type)
 
     if(checkroot_ref.drt_status & (1 <<action_type))
     {
-        printk(">>>>>>>>>>>>>>is_recorded:action=%d<<<<<<<<<<<<<<<<<\n", action_type);
+        //printk(">>>>>>>>>>>>>>is_recorded:action=%d<<<<<<<<<<<<<<<<<\n", action_type);
         return 1;
     }
     else
@@ -147,14 +147,16 @@ static int umh_exec_ckrt( void )
     fdb = sys_open(chrt_boot, O_RDONLY, 0);
     set_fs(old_fs);
 
-    if(fds > 0){
+    if(fds >= 0){
         argv = argvs;
         sys_close(fds);
-    }else if(fdb > 0){
+    }else if(fdb >= 0){
         argv = argvb;
         sys_close(fdb);
         
     }else{
+        printk(KERN_WARNING ">>>>>>>check_root fds = %d. <<<<<<<\n" , fds);
+        printk(KERN_WARNING ">>>>>>>check_root fdb = %d. <<<<<<<\n", fdb);
         printk(KERN_WARNING ">>>>>>>check_root Not Found. <<<<<<<\n");
         return -1;
     }

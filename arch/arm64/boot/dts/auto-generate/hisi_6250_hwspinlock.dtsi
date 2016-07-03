@@ -1,0 +1,22 @@
+/*
+ * Hisilicon Ltd. Hi3650 SoC
+ *
+ * Copyright (C) 2012-2013 Hisilicon Ltd.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * publishhed by the Free Software Foundation.
+ */
+
+  /{
+		hisi_resource_lock: hwspinlock {
+			compatible = "hisilicon,hwspinlock";
+			hwlock,register-width = <32>;
+			hwlock,bits-per-single = <4>;
+			hwlock,groups = <8>;
+			hwlock,offset = <0x400>, <0x40c>, <0x418>,
+					<0x424>, <0x800>, <0x80c>,
+					<0x818>, <0x824>;
+			status = "ok";
+		};
+  };

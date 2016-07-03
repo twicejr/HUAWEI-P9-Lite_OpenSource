@@ -1,37 +1,13 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasCcMmccSend.c
-  版 本 号   : 初稿
-  作    者   : 丁庆 49431
-  生成日期   : 2007年10月17日
-  最近修改   : 2007年10月17日
-  功能描述   : 发送MMCC原语
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2007年10月17日
-    作    者   : 丁庆 49431
-    修改内容   : 创建文件
-
-  2.日    期   : 2010年3月2日
-    作    者   : zhoujun /z40661
-    修改内容   : NAS R7协议升级
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
 *****************************************************************************/
 #include "NasCcInclude.h"
 #include  "NasOmInterface.h"
-/* Added by n00355355 for 呼叫重建, 2015-9-17, begin */
 #include "NasCcEntityMgmt.h"
-/* Added by n00355355 for 呼叫重建, 2015-9-17, end */
 
 
-/* delete by z00234330 for PCLINT??àí, 2014-06-24, begin */
-/* delete by z00234330 for PCLINT??àí, 2014-06-24, end */
 
 
 #ifdef  __cplusplus
@@ -77,20 +53,7 @@ NAS_CC_OTA_MSG_ID_STRU    g_astNasOtaMsgIdM2N[] = {
   2 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_AllocMmccPrim
- 功能描述  : 申请MMCC原语消息
- 输入参数  : ulMsgName  - 消息名称
-              ulMsgLen   - 消息长度
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月17日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 LOCAL VOS_VOID * NAS_CC_AllocMmccPrim(
     VOS_UINT32                          ulMsgName,
     VOS_UINT32                          ulMsgLen
@@ -117,22 +80,7 @@ LOCAL VOS_VOID * NAS_CC_AllocMmccPrim(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_SendMmccPrim
- 功能描述  : 发送MMCC原语消息
- 输入参数  : pMsg  - 需要发送的消息指针
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月17日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月11日
-    作    者   : l00167671
-    修改内容   : DTS2012121802573, TQE清理
-*****************************************************************************/
 LOCAL VOS_VOID  NAS_CC_SendMmccPrim(
     VOS_VOID                            *pMsg
 )
@@ -144,19 +92,7 @@ LOCAL VOS_VOID  NAS_CC_SendMmccPrim(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_SendMmccAbortReq
- 功能描述  : 发送MMCC_ABORT_REQ原语
- 输入参数  : ucTi - Transaction ID
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月17日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  NAS_CC_SendMmccAbortReq(
     VOS_UINT8                           ucTi
 )
@@ -177,20 +113,7 @@ VOS_VOID  NAS_CC_SendMmccAbortReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_SendMmccRelReq
- 功能描述  : 发送MMCC_REL_REQ原语
- 输入参数  : ucTi      - Transaction ID
-              ulRelType - 释放的类型(MMCC_RELEASE_ALL/MMCC_RELEASE_SPECIFIC)
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月17日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  NAS_CC_SendMmccRelReq(
     VOS_UINT8                           ucTi,
     VOS_UINT32                          ulRelType
@@ -214,29 +137,7 @@ VOS_VOID  NAS_CC_SendMmccRelReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_SendMmccEstReq
- 功能描述  : 发送MMCC_EST_REQ原语
- 输入参数  : ucTi       - Transaction ID
-              ulCallType - 呼叫的类型(紧急呼叫/普通呼叫)
-              ulPriority - 呼叫的优先级
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月17日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-
-  2.日    期   : 2010年3月1日
-    作    者   : zhoujun /z40661
-    修改内容   : 增加当前电话模式，可视电话或语音电话
-  3.日    期   : 2015年8月13日
-    作    者   : s00217060
-    修改内容   : User_Exp_Improve修改:函数增加入参ucRedialFlg
-
-*****************************************************************************/
 VOS_VOID  NAS_CC_SendMmccEstReq(
     VOS_UINT8                           ucTi,
     VOS_UINT32                          ulCallType,
@@ -265,19 +166,7 @@ VOS_VOID  NAS_CC_SendMmccEstReq(
     NAS_CC_SendMmccPrim(pstMsg);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ReportM2NOtaMsg
- 功能描述  : 对trace中勾取CC的空口消息
- 输入参数  : pNasMsg - 消息内容
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月13日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_CC_ReportM2NOtaMsg(
     CC_MSG_STRU                         *pNasMsg
 )
@@ -309,25 +198,7 @@ VOS_VOID NAS_CC_ReportM2NOtaMsg(
     NAS_SendAirMsgToOM(WUEPS_PID_CC, enNasOtaMsyId, NAS_OTA_DIRECTION_UP, pNasMsg->ulCcMsgSize + 4, (VOS_UINT8*)pNasMsg);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_SendMmccDataReq
- 功能描述  : 发送MMCC_DATA_REQ原语
- 输入参数  : ucTi        - Transaction ID
-              pucCcMsg    - 原语中携带的CC消息
-              ulCcMsgSize - CC消息的长度
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月17日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2013年03月13日
-    作    者   : z00214637
-    修改内容   : Delete M2
-
-*****************************************************************************/
 VOS_VOID  NAS_CC_SendMmccDataReq(
     VOS_UINT8                           ucTi,
     VOS_UINT8                           *pucCcMsg,
@@ -361,19 +232,7 @@ VOS_VOID  NAS_CC_SendMmccDataReq(
     NAS_CC_SendMmccPrim(pstMsg);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_SendMmccPromptRej
- 功能描述  : 发送MMCC_PROMPT_REJ原语
- 输入参数  : ulCause - 拒绝的原因
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月17日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  NAS_CC_SendMmccPromptRej(
     VOS_UINT32                          ulCause
 )
@@ -392,19 +251,7 @@ VOS_VOID  NAS_CC_SendMmccPromptRej(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_SendMmccReestReq
- 功能描述  : 发送MMCC_REEST_REQ原语
- 输入参数  : ucTi - Transaction ID
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月17日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  NAS_CC_SendMmccReestReq(
     VOS_UINT8                           ucTi
 )
@@ -424,21 +271,7 @@ VOS_VOID  NAS_CC_SendMmccReestReq(
     NAS_CC_SendMmccPrim(pstMsg);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_SendMmccStartCc
- 功能描述  : 发送MMCC_START_CC原语
- 输入参数  : ucTi      - Transaction ID
-             pucCcMsg  - 原语中携带的CC消息
-             ulCcMsgSize - CC消息的长度
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009-12-25
-    作    者   : z00161729
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  NAS_CC_SendMmccStartCc(
     VOS_UINT8                           ucTi,
     VOS_UINT8                           *pucCcMsg,
@@ -464,19 +297,7 @@ VOS_VOID  NAS_CC_SendMmccStartCc(
     NAS_CC_SendMmccPrim(pstMsg);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_SendMmccCallStatusNty
- 功能描述  : 发送MMCC_CALL_STATUS_NTY原语
- 输入参数  : enCallStatus: 呼叫建立状态
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月15日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  NAS_CC_SendMmccCallStatusNty(
     MMCC_CALL_STATUS_ENUM_UINT8         enCallStatus
 )
@@ -498,21 +319,7 @@ VOS_VOID  NAS_CC_SendMmccCallStatusNty(
 }
 
 
-/* Added by n00355355 for 呼叫重建, 2015-9-17, begin */
-/*****************************************************************************
- 函 数 名  : NAS_CC_SendMmccCallInfoCnf
- 功能描述  : 发送MMCC_GET_CALL_INFO_CNF原语
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月17日
-    作    者   : n00355355
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_CC_SendMmccCallInfoCnf(
     MMCC_CALL_INFO_STRU                *pstCallInfo
 )
@@ -535,21 +342,7 @@ VOS_VOID NAS_CC_SendMmccCallInfoCnf(
    return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_GetCallInfo
- 功能描述  : 获取Get Call Info的API接口
- 输入参数  : MMCC_CALL_INFO_STRU                *pstCallInfo
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月18日
-    作    者   : n00355355
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_CC_GetCallInfo(
     MMCC_CALL_INFO_STRU                *pstCallInfo
 )
@@ -576,24 +369,9 @@ VOS_VOID NAS_CC_GetCallInfo(
 
     return;
 }
-/* Added by n00355355 for 呼叫重建, 2015-9-17, end */
 
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-10, begin */
 #if (FEATURE_ON == FEATURE_IMS)
-/*****************************************************************************
- 函 数 名  : NAS_CC_SendMmccSrvccCallInfoNtf
- 功能描述  : 发送MMCC_SRVCC_CALL_INFO_NOTIFY原语
- 输入参数  : ucSyncTiNum-----同步过来的TI个数
-             pucSyncTi-------同步过来的TI值
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013-10-10
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  NAS_CC_SendMmccSrvccCallInfoNtf(
     VOS_UINT8                           ucSyncTiNum,
     VOS_UINT8                          *pucSyncTi
@@ -624,22 +402,9 @@ VOS_VOID  NAS_CC_SendMmccSrvccCallInfoNtf(
     NAS_CC_SendMmccPrim(pstMsg);
 }
 #endif
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-10, end */
 
 #if (FEATURE_ON == FEATURE_DSDS)
-/*****************************************************************************
- 函 数 名  : NAS_CC_SendMmccBeginSessionNotify
- 功能描述  : 发送MMCC_BEGIN_SESSION_NOTIFY原语
- 输入参数  : enSessionType:Session类型
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014-6-16
-    作    者   : w00242748
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  NAS_CC_SendMmccBeginSessionNotify(
     MMCC_SESSION_TYPE_ENUM_UINT8        enSessionType
 )
@@ -663,19 +428,7 @@ VOS_VOID  NAS_CC_SendMmccBeginSessionNotify(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_SendMmccEndSessionNotify
- 功能描述  : 发送MMCC_END_SESSION_NOTIFY原语
- 输入参数  : enSessionType:Session类型
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014-6-16
-    作    者   : w00242748
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  NAS_CC_SendMmccEndSessionNotify(
     MMCC_SESSION_TYPE_ENUM_UINT8        enSessionType
 )

@@ -1,19 +1,4 @@
-/*******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : hids_elf_taf.h
-  版 本 号   : 初稿
-  作    者   : h00360002
-  生成日期   : 2015年12月03日
-  功能描述   : TAF的elf文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年12月03日
-    作    者   : h00360002
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -69,13 +54,7 @@ extern "C" {
 /*****************************************************************************
   3 枚举定义
 *****************************************************************************/
-/*****************************************************************************
- 枚举名    : TAF_ELF_PH_PIN_CMD_TYPE
- 枚举说明  : TAF_PH_PIN_CMD_TYPE类型枚举
- 1.日    期   : 2015年12月09日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_ELF_PH_PIN_CMD_TYPE
 {
     ELF_TAF_PIN_CMD_NULL    = 0x00,
@@ -90,13 +69,7 @@ enum TAF_ELF_PH_PIN_CMD_TYPE
 };
 typedef VOS_UINT8   TAF_ELF_PH_PIN_CMD_TYPE_UINT8;
 
-/*****************************************************************************
- 枚举名    : TAF_ELF_PH_PIN_TYPE
- 枚举说明  : TAF_PH_PIN_TYPE类型枚举
- 1.日    期   : 2015年12月09日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_ELF_PH_PIN_TYPE
 {
     ELF_TAF_SIM_PIN         = 0,            /*PIN1*/
@@ -114,13 +87,7 @@ enum TAF_ELF_PH_PIN_TYPE
 };
 typedef VOS_UINT8   TAF_ELF_PH_PIN_TYPE_UINT8;
 
-/*****************************************************************************
- 枚举名    : TAF_ELF_ME_PERSONALISATION_CMD_TYPE
- 枚举说明  : TAF_ME_PERSONALISATION_CMD_TYPE类型枚举
- 1.日    期   : 2015年12月09日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_ELF_ME_PERSONALISATION_CMD_TYPE
 {
     ELF_TAF_ME_PERSONALISATION_SET          = 0X01,     /*移动设备私有特性设置*/
@@ -133,13 +100,7 @@ enum TAF_ELF_ME_PERSONALISATION_CMD_TYPE
 };
 typedef VOS_UINT8   TAF_ELF_ME_PERSONALISATION_CMD_TYPE_UINT8;
 
-/*****************************************************************************
- 枚举名    : TAF_ELF_ME_PERSONALISATION_TYPE
- 枚举说明  : TAF_ME_PERSONALISATION_TYPE类型枚举
- 1.日    期   : 2015年12月09日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_ELF_ME_PERSONALISATION_TYPE
 {
     ELF_TAF_SIM_PERSONALISATION                 = 0x01, /*锁卡*/
@@ -151,13 +112,7 @@ enum TAF_ELF_ME_PERSONALISATION_TYPE
 };
 typedef VOS_UINT8   TAF_ELF_ME_PERSONALISATION_TYPE_UINT8;
 
-/*****************************************************************************
- 枚举名    : TAF_ELF_PH_ICC_TYPE
- 枚举说明  : TAF_PH_ICC_TYPE类型枚举
- 1.日    期   : 2015年12月09日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_ELF_PH_ICC_TYPE
 {
     ELF_TAF_PH_ICC_UNKNOW       = 0,
@@ -166,13 +121,7 @@ enum TAF_ELF_PH_ICC_TYPE
 };
 typedef VOS_UINT8   TAF_ELF_PH_ICC_TYPE_UINT8;
 
-/*****************************************************************************
- 枚举名    : OM_ELF_MTA_MSG_TYPE_ENUM
- 枚举说明  : OM和MTA间的消息类型枚举
- 1.日    期   : 2015年12月16日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 enum OM_ELF_MTA_MSG_TYPE_ENUM
 {
     ELF_ID_OM_ERR_LOG_CTRL_IND      = 0x9001,
@@ -185,13 +134,7 @@ enum OM_ELF_MTA_MSG_TYPE_ENUM
 };
 typedef VOS_UINT32   OM_ELF_MTA_MSG_TYPE_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : OM_ELF_ERR_LOG_ALM_STATUS_ENUM
- 枚举说明  : OM ERROR LOG上报控制开关枚举
- 1.日    期   : 2015年12月16日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 enum OM_ELF_ERR_LOG_ALM_STATUS_ENUM
 {
     ELF_OM_ERR_LOG_ALM_OFF,
@@ -200,13 +143,7 @@ enum OM_ELF_ERR_LOG_ALM_STATUS_ENUM
 };
 typedef VOS_UINT8   OM_ELF_ERR_LOG_ALM_STATUS_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : OM_ELF_ERR_LOG_ALM_STATUS_ENUM
- 枚举说明  : OM ERROR LOG上报级别枚举
- 1.日    期   : 2015年12月16日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 enum OM_ELF_ERR_LOG_CTRL_LEVEL_ENUM
 {
     ELF_OM_ERR_LOG_CTRL_LEVEL_NULL,
@@ -218,13 +155,7 @@ enum OM_ELF_ERR_LOG_CTRL_LEVEL_ENUM
 typedef VOS_UINT8   OM_ELF_ERR_LOG_CTRL_LEVEL_ENUM_UINT8;
 typedef VOS_UINT16   OM_ELF_ERR_LOG_CTRL_LEVEL_ENUM_UINT16;
 
-/*****************************************************************************
- 枚举名    : OM_ELF_FTM_CTRL_STATUS_ENUM
- 枚举说明  : 工程模式主动上报控制开关枚举
- 1.日    期   : 2015年12月16日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 enum OM_ELF_FTM_CTRL_STATUS_ENUM
 {
     ELF_OM_FTM_CTRL_OFF,
@@ -237,13 +168,7 @@ typedef VOS_UINT8   OM_ELF_FTM_CTRL_STATUS_ENUM_UINT8;
   4 结构体定义
 *****************************************************************************/
 
-/*****************************************************************************
- 结构名    : TAF_ELF_NULL_STRU
- 结构说明  : 填充结构体
- 1.日    期   : 2015年12月04日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                       aucReserve[4];
@@ -251,13 +176,7 @@ typedef struct
 
 
 
-/*****************************************************************************
- 结构名    :  MN_CALL_ELF_INFO_QRY_CNF_STRU
- 结构说明  :  AT与MN Call模块间获取Call信息的消息结构的去事件类型后的映射结构体
- 1.日    期   : 2015年12月04日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_CLIENT_ID_T                      clientId;                               /* 用户ID */
@@ -266,13 +185,7 @@ typedef struct
     MN_CALL_INFO_PARAM_STRU             astCallInfos[MN_CALL_MAX_NUM];           /* 所用正在通话的信息 */
 } MN_CALL_ELF_INFO_QRY_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_PH_ELF_SET_UUS1_INFO_CNF_STRU
- 结构说明  :  设置UUS1 INFO回复消息的去事件类型后的映射结构体
- 1.日    期   : 2015年12月04日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_CLIENT_ID_T          ClientId;   /*端口号*/
@@ -281,13 +194,7 @@ typedef struct
     VOS_UINT32              ulRet;      /*回复结果*/
 }TAF_PH_ELF_SET_UUS1_INFO_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_PH_ELF_QRY_UUS1_INFO_CNF_STRU
- 结构说明  :  查询UUS1 INFO回复消息的去事件类型后的映射结构体
- 1.日    期   : 2015年12月04日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_CLIENT_ID_T          ClientId;                               /*端口号*/
@@ -299,13 +206,7 @@ typedef struct
     MN_CALL_SET_UUS1_TYPE_ENUM_U32      aenSetType[MN_CALL_MAX_UUS1_MSG_NUM];  /*要设置的用户服务信令1类型 */
 }TAF_PH_ELF_QRY_UUS1_INFO_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  MN_CALL_ELF_SET_ALS_CNF_STRU
- 结构说明  :  设置ALS回复消息的去事件类型后的映射结构体
- 1.日    期   : 2015年12月04日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_CLIENT_ID_T          ClientId;   /*端口号*/
@@ -314,13 +215,7 @@ typedef struct
     VOS_UINT32              ulRet;      /*回复结果*/
 }MN_CALL_ELF_SET_ALS_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  MN_CALL_ELF_QRY_ALS_CNF_STRU
- 结构说明  :  AT与CS AT^ALS命令查询结构的去事件类型后的映射结构体
- 1.日    期   : 2015年12月04日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_CLIENT_ID_T                  ClientId;                                   /*端口号*/
@@ -331,13 +226,7 @@ typedef struct
     VOS_UINT8                       aucReserved2[3];                            /* 保留字段 */
 }MN_CALL_ELF_QRY_ALS_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  MN_CALL_ELF_ECC_NUM_INFO_STRU
- 结构说明  :  CALL向AT上报当前所有的紧急呼号码列表的去事件类型后的映射结构体
- 1.日    期   : 2015年12月04日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_CLIENT_ID_T                      usClientId;
@@ -346,13 +235,7 @@ typedef struct
     MN_CALL_CUSTOM_ECC_NUM_STRU         astCustomEccNumList[MN_CALL_MAX_EMC_NUM];
 } MN_CALL_ELF_ECC_NUM_INFO_STRU;
 
-/*****************************************************************************
- 结构名    :  MN_CALL_ELF_EVT_HOLD_STRU
- 结构说明  :  呼叫保持事件上报结构体的去事件类型后的映射结构体
- 1.日    期   : 2015年12月04日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_CLIENT_ID_T                      usClientId;
@@ -364,13 +247,7 @@ typedef struct
     VOS_UINT8                           aucUnsolicitedRptCfg[MN_CALL_RPT_CFG_MAX_SIZE]; /* 单个命令设置的主动上报标识 */
 } MN_CALL_ELF_EVT_HOLD_STRU;
 
-/*****************************************************************************
- 结构名    :  MN_CALL_ELF_EVT_RETRIEVE_STRU
- 结构说明  :  呼叫保持事件上报结构体的去事件类型后的映射结构体
- 1.日    期   : 2015年12月04日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_CLIENT_ID_T                      usClientId;
@@ -382,13 +259,7 @@ typedef struct
     VOS_UINT8                           aucUnsolicitedRptCfg[MN_CALL_RPT_CFG_MAX_SIZE]; /* 单个命令设置的主动上报标识 */
 } MN_CALL_ELF_EVT_RETRIEVE_STRU;
 
-/*****************************************************************************
- 结构名    :  MN_CALL_ELF_CLPR_GET_CNF_STRU
- 结构说明  :  查询呼叫源号码回复结果的去事件类型后的映射结构体
- 1.日    期   : 2015年12月04日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulRet;
@@ -396,13 +267,7 @@ typedef struct
     MN_CALL_REDIRECT_INFO               stRedirectInfo;
 }MN_CALL_ELF_CLPR_GET_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  MN_CALL_ELF_EVT_CHANNEL_INFO_STRU
- 结构说明  :  MN_CALL_EVT_CHANNEL_INFO_IND事件的去事件类型后的映射结构体
- 1.日    期   : 2015年12月04日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_CLIENT_ID_T                      usClientId;
@@ -414,13 +279,7 @@ typedef struct
     VOS_UINT8                           aucRsv[3];
 } MN_CALL_ELF_EVT_CHANNEL_INFO_STRU;
 
-/*****************************************************************************
- 结构名    :  MN_CALL_ELF_SET_CSSN_CNF_STRU
- 结构说明  :  MN_CALL_EVT_SET_CSSN_CNF事件结构的去事件类型后的映射结构体
- 1.日    期   : 2015年12月04日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     TAF_ERROR_CODE_ENUM_UINT32          ulRet;          /*回复结果*/
@@ -429,13 +288,7 @@ typedef struct
     VOS_UINT8                           ucReserved;     /* 保留字段 */
 } MN_CALL_ELF_SET_CSSN_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  MN_CALL_ELF_MODIFY_CNF_STRU
- 结构说明  :  Modify回复消息的去事件类型后的映射结构体
- 1.日    期   : 2015年12月04日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_CLIENT_ID_T                      usClientId;                             /* 端口号 */
@@ -444,13 +297,7 @@ typedef struct
     TAF_CS_CAUSE_ENUM_UINT32            enCause;                                /* 错误码 */
 }MN_CALL_ELF_MODIFY_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  MN_CALL_ELF_EVT_MODIFY_STATUS_IND_STRU
- 结构说明  :  Modify状态指示的去事件类型后的映射结构体
- 1.日    期   : 2015年12月04日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_CLIENT_ID_T                                  usClientId;
@@ -463,13 +310,7 @@ typedef struct
     TAF_CS_CAUSE_ENUM_UINT32                        enCause;                    /* 错误码，仅在MODIFY_PROC_END有异常时才使用 */
 } MN_CALL_ELF_EVT_MODIFY_STATUS_IND_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_CALL_ELF_ECONF_DIAL_CNF_STRU
- 结构说明  :  Modify回复消息的去事件类型后的映射结构体
- 1.日    期   : 2015年12月04日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_CLIENT_ID_T                      usClientId;                             /* 端口号 */
@@ -478,13 +319,7 @@ typedef struct
     TAF_CS_CAUSE_ENUM_UINT32            enCause;                                /* 错误码 */
 }TAF_CALL_ELF_ECONF_DIAL_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_CALL_ELF_EVT_ECONF_NOTIFY_IND_STRU
- 结构说明  :  增强型会议的状态指示的去事件类型后的映射结构体
- 1.日    期   : 2015年12月04日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_CLIENT_ID_T                                  usClientId;
@@ -493,13 +328,7 @@ typedef struct
     TAF_CALL_ECONF_INFO_PARAM_STRU                  astCallInfo[TAF_CALL_MAX_ECONF_CALLED_NUM];     /* 所用正在通话的信息 */
 } TAF_CALL_ELF_EVT_ECONF_NOTIFY_IND_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_CALL_ELF_ECONF_INFO_QRY_CNF_STRU
- 结构说明  :  AT与MN Call模块间获取增强型多方通话信息的消息结构的去事件类型后的映射结构体
- 1.日    期   : 2015年12月04日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_CLIENT_ID_T                                          usClientId;         /* 用户ID */
@@ -508,13 +337,7 @@ typedef struct
     TAF_CALL_ECONF_INFO_PARAM_STRU                          astCallInfo[TAF_CALL_MAX_ECONF_CALLED_NUM];     /* 所用正在通话的信息 */
 }TAF_CALL_ELF_ECONF_INFO_QRY_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_AT_ELF_MN_CALLBACK_CS_CALL_STRU
- 结构说明  :  从TAF发往AT的MN_CALLBACK_CS_CALL消息对应的结构体
- 1.日    期   : 2015年12月03日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -590,13 +413,7 @@ typedef struct
 
 }TAF_AT_ELF_MN_CALLBACK_CS_CALL_STRU;
 
-/*****************************************************************************
- 结构名    : ID_AT_IMSA_CIREG_SET_REQ_ELF_STRU
- 结构说明  : ID_AT_IMSA_CIREG_SET_REQ消息对应的映射结构体
- 1.日    期   : 2015年12月04日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -607,13 +424,7 @@ typedef struct
     AT_IMSA_IMS_REG_STATE_REPORT_ENUM_UINT32        enCireg;                          /* 消息内容 */
 }ID_AT_IMSA_CIREG_SET_REQ_ELF_STRU;
 
-/*****************************************************************************
- 结构名    : ID_AT_IMSA_CIREG_QRY_REQ_ELF_STRU
- 结构说明  : ID_AT_IMSA_CIREG_QRY_REQ消息对应的映射结构体
- 1.日    期   : 2015年12月04日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -623,13 +434,7 @@ typedef struct
     VOS_UINT8                                       aucReserve2[1];                         /* 保留 */
 }ID_AT_IMSA_CIREG_QRY_REQ_ELF_STRU;
 
-/*****************************************************************************
- 结构名    : ID_AT_IMSA_CIREP_SET_REQ_ELF_STRU
- 结构说明  : ID_AT_IMSA_CIREP_SET_REQ消息对应的映射结构体
- 1.日    期   : 2015年12月04日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -640,13 +445,7 @@ typedef struct
     AT_IMSA_CIREP_REPORT_ENUM_UINT32                enReport;                          /* 消息内容 */
 }ID_AT_IMSA_CIREP_SET_REQ_ELF_STRU;
 
-/*****************************************************************************
- 结构名    : ID_AT_IMSA_CIREP_QRY_REQ_ELF_STRU
- 结构说明  : ID_AT_IMSA_CIREP_QRY_REQ消息对应的映射结构体
- 1.日    期   : 2015年12月04日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -658,13 +457,7 @@ typedef struct
 
 
 
-/*****************************************************************************
- 结构名    : TAF_XSMS_ELF_APP_AT_CNF_STRU
- 结构说明  : XSMS给AT上报的消息结构对应的映射结构体
- 1.日    期   : 2015年12月04日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -691,13 +484,7 @@ typedef struct
 
 
 
-/*****************************************************************************
- 结构名    :  MN_CALL_ELF_APP_REQ_MSG_STRU
- 结构说明  :  从AT发往TAF的APP呼叫请求消息对应的结构体
- 1.日    期   : 2015年12月05日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -737,806 +524,434 @@ typedef struct
     }u;
 } MN_CALL_ELF_APP_REQ_MSG_STRU;
 
-/*****************************************************************************
- 结构名    :  MN_ELF_MSG_SEND_PARM_STRU
- 结构说明  :  MN_MSG_SEND_PARM_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     MN_MSG_SEND_PARM_STRU                           stSndParm;
 }MN_ELF_MSG_SEND_PARM_STRU;
 
-/*****************************************************************************
- 结构名    :  MN_ELF_MSG_SEND_FROMMEM_PARM_STRU
- 结构说明  :  MN_MSG_SEND_FROMMEM_PARM_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     MN_MSG_SEND_FROMMEM_PARM_STRU                   stSndFormmenParm;
 }MN_ELF_MSG_SEND_FROMMEM_PARM_STRU;
 
-/*****************************************************************************
- 结构名    :  MN_ELF_MSG_SEND_ACK_PARM_STRU
- 结构说明  :  MN_MSG_SEND_ACK_PARM_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     MN_MSG_SEND_ACK_PARM_STRU                       stSndAckParm;
 }MN_ELF_MSG_SEND_ACK_PARM_STRU;
 
-/*****************************************************************************
- 结构名    :  MN_ELF_MSG_WRITE_PARM_STRU
- 结构说明  :  MN_MSG_WRITE_PARM_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     MN_MSG_WRITE_PARM_STRU                          stWriteParm;
 }MN_ELF_MSG_WRITE_PARM_STRU;
 
-/*****************************************************************************
- 结构名    :  MN_ELF_MSG_READ_PARM_STRU
- 结构说明  :  MN_MSG_READ_PARM_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     MN_MSG_READ_PARM_STRU                           stReadParm;
 }MN_ELF_MSG_READ_PARM_STRU;
 
-/*****************************************************************************
- 结构名    :  MN_ELF_MSG_LIST_PARM_STRU
- 结构说明  :  MN_MSG_LIST_PARM_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     MN_MSG_LIST_PARM_STRU                           stListParm;
 }MN_ELF_MSG_LIST_PARM_STRU;
 
-/*****************************************************************************
- 结构名    :  MN_ELF_MSG_DELETE_PARAM_STRU
- 结构说明  :  MN_MSG_DELETE_PARAM_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     MN_MSG_DELETE_PARAM_STRU                        stDelParm;
 }MN_ELF_MSG_DELETE_PARAM_STRU;
 
-/*****************************************************************************
- 结构名    :  MN_ELF_MSG_DELETE_TEST_STRU
- 结构说明  :  MN_MSG_LIST_PARM_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     MN_MSG_LIST_PARM_STRU                           stListPara;
 }MN_ELF_MSG_DELETE_TEST_STRU;
 
-/*****************************************************************************
- 结构名    :  MN_ELF_MSG_WRITE_SRV_PARAM_STRU
- 结构说明  :  MN_MSG_WRITE_SRV_PARAM_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     MN_MSG_WRITE_SRV_PARAM_STRU                     stWriteSrvParm;
 }MN_ELF_MSG_WRITE_SRV_PARAM_STRU;
 
-/*****************************************************************************
- 结构名    :  MN_ELF_MSG_READ_COMM_PARAM_STRU
- 结构说明  :  MN_MSG_READ_COMM_PARAM_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     MN_MSG_READ_COMM_PARAM_STRU                     stReadCommParm;
 }MN_ELF_MSG_READ_COMM_PARAM_STRU;
 
-/*****************************************************************************
- 结构名    :  MN_ELF_MSG_MODIFY_STATUS_PARM_STRU
- 结构说明  :  MN_MSG_MODIFY_STATUS_PARM_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     MN_MSG_MODIFY_STATUS_PARM_STRU                  stModifyStatus;
 }MN_ELF_MSG_MODIFY_STATUS_PARM_STRU;
 
-/*****************************************************************************
- 结构名    :  MN_ELF_MSG_SET_RCVMSG_PATH_PARM_STRU
- 结构说明  :  MN_MSG_SET_RCVMSG_PATH_PARM_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     MN_MSG_SET_RCVMSG_PATH_PARM_STRU                stSetRcvPath;
 }MN_ELF_MSG_SET_RCVMSG_PATH_PARM_STRU;
 
-/*****************************************************************************
- 结构名    :  MN_ELF_MSG_GET_RCVMSG_PATH_PARM_STRU
- 结构说明  :  MN_MSG_GET_RCVMSG_PATH_PARM_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     MN_MSG_GET_RCVMSG_PATH_PARM_STRU                stGetRcvPath;
 }MN_ELF_MSG_GET_RCVMSG_PATH_PARM_STRU;
 
-/*****************************************************************************
- 结构名    :  MN_ELF_MSG_GET_STORAGE_STATUS_PARM_STRU
- 结构说明  :  MN_MSG_GET_STORAGE_STATUS_PARM_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     MN_MSG_GET_STORAGE_STATUS_PARM_STRU             stGetStorageStatus;
 }MN_ELF_MSG_GET_STORAGE_STATUS_PARM_STRU;
 
-/*****************************************************************************
- 结构名    :  MN_ELF_MSG_SET_MEMSTATUS_PARM_STRU
- 结构说明  :  MN_MSG_SET_MEMSTATUS_PARM_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     MN_MSG_SET_MEMSTATUS_PARM_STRU                  stSetMemStatus;
 }MN_ELF_MSG_SET_MEMSTATUS_PARM_STRU;
 
-/*****************************************************************************
- 结构名    :  MN_ELF_MSG_SET_LINK_CTRL_STRU
- 结构说明  :  MN_MSG_SET_LINK_CTRL_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     MN_MSG_SET_LINK_CTRL_STRU                       stSetLinkCtrl;
 }MN_ELF_MSG_SET_LINK_CTRL_STRU;
 
-/*****************************************************************************
- 结构名    :  MN_ELF_MSG_APP_REQ_MSG_STRU
- 结构说明  :  MN_MSG_APP_REQ_MSG_STRU结构体消息内容为空情况的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     VOS_UINT8                                       aucContent[4];
 }MN_ELF_MSG_APP_REQ_MSG_STRU;
 
-/*****************************************************************************
- 结构名    :  MN_ELF_MSG_STUB_MSG_STRU
- 结构说明  :  MN_ELF_MSG_STUB_MSG_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     MN_MSG_STUB_MSG_STRU                            stStubMsg;
 }MN_ELF_MSG_STUB_MSG_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_CBA_CBMI_RANGE_LIST_STRU
- 结构说明  :  TAF_CBA_CBMI_RANGE_LIST_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     TAF_CBA_CBMI_RANGE_LIST_STRU                    stCbmiRangeList;
 }TAF_ELF_CBA_CBMI_RANGE_LIST_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_SS_REGISTERSS_REQ_STRU
- 结构说明  :  TAF_SS_REGISTERSS_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     TAF_SS_REGISTERSS_REQ_STRU                      stSsRegReq;
 }TAF_ELF_SS_REGISTERSS_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_SS_ERASESS_REQ_STRU
- 结构说明  :  TAF_SS_ERASESS_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     TAF_SS_ERASESS_REQ_STRU                         stSsEraseReq;
 }TAF_ELF_SS_ERASESS_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_SS_ACTIVATESS_REQ_STRU
- 结构说明  :  TAF_SS_ACTIVATESS_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     TAF_SS_ACTIVATESS_REQ_STRU                      stSsActReq;
 }TAF_ELF_SS_ACTIVATESS_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_SS_DEACTIVATESS_REQ_STRU
- 结构说明  :  TAF_SS_DEACTIVATESS_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     TAF_SS_DEACTIVATESS_REQ_STRU                    stSsDeactReq;
 }TAF_ELF_SS_DEACTIVATESS_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_SS_INTERROGATESS_REQ_STRU
- 结构说明  :  TAF_SS_INTERROGATESS_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     TAF_SS_INTERROGATESS_REQ_STRU                   stSsInterrogateReq;
 }TAF_ELF_SS_INTERROGATESS_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_SS_REGPWD_REQ_STRU
- 结构说明  :  TAF_SS_REGPWD_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     TAF_SS_REGPWD_REQ_STRU                          stSsRegPwdReq;
 }TAF_ELF_SS_REGPWD_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_SS_PROCESS_USS_REQ_STRU
- 结构说明  :  TAF_SS_PROCESS_USS_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     TAF_SS_PROCESS_USS_REQ_STRU                     stSsProcUssReq;
 }TAF_ELF_SS_PROCESS_USS_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_SS_ERASECC_ENTRY_REQ_STRU
- 结构说明  :  TAF_SS_ERASECC_ENTRY_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     TAF_SS_ERASECC_ENTRY_REQ_STRU                   stSsEraseCCEntryReq;
 }TAF_ELF_SS_ERASECC_ENTRY_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  ELF_USSD_TRANS_MODE_STRU
- 结构说明  :  USSD_TRANS_MODE_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     USSD_TRANS_MODE_STRU                            stUssdMode;
 }ELF_USSD_TRANS_MODE_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_PS_SET_PRIM_PDP_CONTEXT_INFO_REQ_STRU
- 结构说明  :  TAF_PS_SET_PRIM_PDP_CONTEXT_INFO_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stHeader;
     TAF_PS_SET_PRIM_PDP_CONTEXT_INFO_REQ_STRU       stSetPrimPdp;
 }TAF_ELF_PS_SET_PRIM_PDP_CONTEXT_INFO_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_PS_GET_PRIM_PDP_CONTEXT_INFO_REQ_STRU
- 结构说明  :  TAF_PS_GET_PRIM_PDP_CONTEXT_INFO_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stHeader;
     TAF_PS_GET_PRIM_PDP_CONTEXT_INFO_REQ_STRU       stGetPrimPdp;
 }TAF_ELF_PS_GET_PRIM_PDP_CONTEXT_INFO_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_PS_SET_SEC_PDP_CONTEXT_INFO_REQ_STRU
- 结构说明  :  TAF_PS_SET_SEC_PDP_CONTEXT_INFO_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stHeader;
     TAF_PS_SET_SEC_PDP_CONTEXT_INFO_REQ_STRU        stSetSecPdp;
 }TAF_ELF_PS_SET_SEC_PDP_CONTEXT_INFO_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_PS_GET_SEC_PDP_CONTEXT_INFO_REQ_STRU
- 结构说明  :  TAF_PS_GET_SEC_PDP_CONTEXT_INFO_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stHeader;
     TAF_PS_GET_SEC_PDP_CONTEXT_INFO_REQ_STRU        stGetSecPdp;
 }TAF_ELF_PS_GET_SEC_PDP_CONTEXT_INFO_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_PS_SET_TFT_INFO_REQ_STRU
- 结构说明  :  TAF_PS_SET_TFT_INFO_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stHeader;
     TAF_PS_SET_TFT_INFO_REQ_STRU                    stSetTftInfo;
 }TAF_ELF_PS_SET_TFT_INFO_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_PS_GET_TFT_INFO_REQ_STRU
- 结构说明  :  TAF_PS_GET_TFT_INFO_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stHeader;
     TAF_PS_GET_TFT_INFO_REQ_STRU                    stGetTftInfo;
 }TAF_ELF_PS_GET_TFT_INFO_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_PS_SET_UMTS_QOS_INFO_REQ_STRU
- 结构说明  :  TAF_PS_SET_UMTS_QOS_INFO_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stHeader;
     TAF_PS_SET_UMTS_QOS_INFO_REQ_STRU               stSetUmtsQosInfo;
 }TAF_ELF_PS_SET_UMTS_QOS_INFO_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_PS_GET_UMTS_QOS_INFO_REQ_STRU
- 结构说明  :  TAF_PS_GET_UMTS_QOS_INFO_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stHeader;
     TAF_PS_GET_UMTS_QOS_INFO_REQ_STRU               stGetUmtsQosInfo;
 }TAF_ELF_PS_GET_UMTS_QOS_INFO_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_PS_SET_UMTS_QOS_MIN_INFO_REQ_STRU
- 结构说明  :  TAF_PS_SET_UMTS_QOS_MIN_INFO_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stHeader;
     TAF_PS_SET_UMTS_QOS_MIN_INFO_REQ_STRU           stSetUmtsQosMinInfo;
 }TAF_ELF_PS_SET_UMTS_QOS_MIN_INFO_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_PS_GET_UMTS_QOS_MIN_INFO_REQ_STRU
- 结构说明  :  TAF_PS_GET_UMTS_QOS_MIN_INFO_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stHeader;
     TAF_PS_GET_UMTS_QOS_MIN_INFO_REQ_STRU           stGetUmtsQosMinInfo;
 }TAF_ELF_PS_GET_UMTS_QOS_MIN_INFO_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_PS_GET_DYNAMIC_UMTS_QOS_INFO_REQ_STRU
- 结构说明  :  TAF_PS_GET_DYNAMIC_UMTS_QOS_INFO_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stHeader;
     TAF_PS_GET_DYNAMIC_UMTS_QOS_INFO_REQ_STRU       stGetDynamicUmtsQosInfo;
 }TAF_ELF_PS_GET_DYNAMIC_UMTS_QOS_INFO_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_PS_SET_PDP_STATE_REQ_STRU
- 结构说明  :  TAF_PS_SET_PDP_STATE_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stHeader;
     TAF_PS_SET_PDP_STATE_REQ_STRU                   stSetPdpState;
 }TAF_ELF_PS_SET_PDP_STATE_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_PS_GET_PDP_STATE_REQ_STRU
- 结构说明  :  TAF_PS_GET_PDP_STATE_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stHeader;
     TAF_PS_GET_PDP_STATE_REQ_STRU                   stGetPdpState;
 }TAF_ELF_PS_GET_PDP_STATE_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_PS_CALL_MODIFY_REQ_STRU
- 结构说明  :  TAF_PS_CALL_MODIFY_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stHeader;
     TAF_PS_CALL_MODIFY_REQ_STRU                     stCallModifyReq;
 }TAF_ELF_PS_CALL_MODIFY_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_PS_CALL_ANSWER_REQ_STRU
- 结构说明  :  TAF_PS_CALL_ANSWER_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stHeader;
     TAF_PS_CALL_ANSWER_REQ_STRU                     stCallAnswerReq;
 }TAF_ELF_PS_CALL_ANSWER_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_PS_CALL_HANGUP_REQ_STRU
- 结构说明  :  TAF_PS_CALL_HANGUP_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stHeader;
     TAF_PS_CALL_HANGUP_REQ_STRU                     stCallHangupReq;
 }TAF_ELF_PS_CALL_HANGUP_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_PS_GET_PDP_IP_ADDR_INFO_REQ_STRU
- 结构说明  :  TAF_PS_GET_PDP_IP_ADDR_INFO_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stHeader;
     TAF_PS_GET_PDP_IP_ADDR_INFO_REQ_STRU            stGetPdpIpAddr;
 }TAF_ELF_PS_GET_PDP_IP_ADDR_INFO_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_PS_GET_PDP_CONTEXT_INFO_REQ_STRU
- 结构说明  :  TAF_PS_GET_PDP_CONTEXT_INFO_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stHeader;
     TAF_PS_GET_PDP_CONTEXT_INFO_REQ_STRU            stGetPdpCtxInfo;
 }TAF_ELF_PS_GET_PDP_CONTEXT_INFO_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_PS_SET_ANSWER_MODE_INFO_REQ_STRU
- 结构说明  :  TAF_PS_SET_ANSWER_MODE_INFO_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stHeader;
     TAF_PS_SET_ANSWER_MODE_INFO_REQ_STRU            stSetAnswerMode;
 }TAF_ELF_PS_SET_ANSWER_MODE_INFO_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_PS_GET_ANSWER_MODE_INFO_REQ_STRU
- 结构说明  :  TAF_PS_GET_ANSWER_MODE_INFO_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stHeader;
     TAF_PS_GET_ANSWER_MODE_INFO_REQ_STRU            stGetAnswerMode;
 }TAF_ELF_PS_GET_ANSWER_MODE_INFO_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_PS_GET_DYNAMIC_PRIM_PDP_CONTEXT_INFO_REQ_STRU
- 结构说明  :  TAF_PS_GET_DYNAMIC_PRIM_PDP_CONTEXT_INFO_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                             stHeader;
     TAF_PS_GET_DYNAMIC_PRIM_PDP_CONTEXT_INFO_REQ_STRU           stGetDynamicPrimPdp;
 }TAF_ELF_PS_GET_DYNAMIC_PRIM_PDP_CONTEXT_INFO_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_PS_GET_DYNAMIC_SEC_PDP_CONTEXT_INFO_REQ_STRU
- 结构说明  :  TAF_PS_GET_DYNAMIC_SEC_PDP_CONTEXT_INFO_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                             stHeader;
     TAF_PS_GET_DYNAMIC_SEC_PDP_CONTEXT_INFO_REQ_STRU            stGetDynamicSecPdp;
 }TAF_ELF_PS_GET_DYNAMIC_SEC_PDP_CONTEXT_INFO_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_PS_GET_DYNAMIC_TFT_INFO_REQ_STRU
- 结构说明  :  TAF_PS_GET_DYNAMIC_TFT_INFO_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stHeader;
     TAF_PS_GET_DYNAMIC_TFT_INFO_REQ_STRU            stGetDynamicTft;
 }TAF_ELF_PS_GET_DYNAMIC_TFT_INFO_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_PS_SET_EPS_QOS_INFO_REQ_STRU
- 结构说明  :  TAF_PS_SET_EPS_QOS_INFO_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stHeader;
     TAF_PS_SET_EPS_QOS_INFO_REQ_STRU                stSetEpsQos;
 }TAF_ELF_PS_SET_EPS_QOS_INFO_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_PS_GET_EPS_QOS_INFO_REQ_STRU
- 结构说明  :  TAF_PS_GET_EPS_QOS_INFO_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stHeader;
     TAF_PS_GET_EPS_QOS_INFO_REQ_STRU                stGetEpsQos;
 }TAF_ELF_PS_GET_EPS_QOS_INFO_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_PS_GET_DYNAMIC_EPS_QOS_INFO_REQ_STRU
- 结构说明  :  TAF_PS_GET_DYNAMIC_EPS_QOS_INFO_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stHeader;
     TAF_PS_GET_DYNAMIC_EPS_QOS_INFO_REQ_STRU        stGetDynamicEpsQos;
 }TAF_ELF_PS_GET_DYNAMIC_EPS_QOS_INFO_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_PS_CALL_ORIG_REQ_STRU
- 结构说明  :  TAF_PS_CALL_ORIG_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stHeader;
     TAF_PS_CALL_ORIG_REQ_STRU                       stCallOrigReq;
 }TAF_ELF_PS_CALL_ORIG_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_PS_CALL_END_REQ_STRU
- 结构说明  :  TAF_PS_CALL_END_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stHeader;
     TAF_PS_CALL_END_REQ_STRU                        stCallEndReq;
 }TAF_ELF_PS_CALL_END_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_PS_GET_D_GPRS_ACTIVE_TYPE_REQ_STRU
- 结构说明  :  TAF_PS_GET_D_GPRS_ACTIVE_TYPE_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stHeader;
     TAF_PS_GET_D_GPRS_ACTIVE_TYPE_REQ_STRU          stGetDGprsActType;
 }TAF_ELF_PS_GET_D_GPRS_ACTIVE_TYPE_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_PS_PPP_DIAL_ORIG_REQ_STRU
- 结构说明  :  TAF_PS_PPP_DIAL_ORIG_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stHeader;
     TAF_PS_PPP_DIAL_ORIG_REQ_STRU                   stPPPDialOrigReq;
 }TAF_ELF_PS_PPP_DIAL_ORIG_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_PS_GET_DSFLOW_INFO_REQ_STRU
- 结构说明  :  TAF_PS_GET_DSFLOW_INFO_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stHeader;
     TAF_PS_GET_DSFLOW_INFO_REQ_STRU                 stGetDsflowInfo;
 }TAF_ELF_PS_GET_DSFLOW_INFO_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_PS_CLEAR_DSFLOW_REQ_STRU
- 结构说明  :  TAF_PS_CLEAR_DSFLOW_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stHeader;
     TAF_PS_CLEAR_DSFLOW_REQ_STRU                    stClearDsflow;
 }TAF_ELF_PS_CLEAR_DSFLOW_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_PS_CONFIG_DSFLOW_RPT_REQ_STRU
- 结构说明  :  TAF_PS_CONFIG_DSFLOW_RPT_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stHeader;
     TAF_PS_CONFIG_DSFLOW_RPT_REQ_STRU               stConfigDsflowRpt;
 }TAF_ELF_PS_CONFIG_DSFLOW_RPT_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_PS_CONFIG_NBNS_FUNCTION_REQ_STRU
- 结构说明  :  TAF_PS_CONFIG_NBNS_FUNCTION_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stHeader;
@@ -1544,78 +959,42 @@ typedef struct
 }TAF_ELF_PS_CONFIG_NBNS_FUNCTION_REQ_STRU;
 
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_PS_SET_PDP_AUTH_INFO_REQ_STRU
- 结构说明  :  TAF_PS_SET_PDP_AUTH_INFO_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stHeader;
     TAF_PS_SET_PDP_AUTH_INFO_REQ_STRU               stSetPdpAuth;
 }TAF_ELF_PS_SET_PDP_AUTH_INFO_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_PS_GET_PDP_AUTH_INFO_REQ_STRU
- 结构说明  :  TAF_PS_GET_PDP_AUTH_INFO_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stHeader;
     TAF_PS_GET_PDP_AUTH_INFO_REQ_STRU               stGetPdpAuth;
 }TAF_ELF_PS_GET_PDP_AUTH_INFO_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_PS_SET_PDP_DNS_INFO_REQ_STRU
- 结构说明  :  TAF_PS_SET_PDP_DNS_INFO_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stHeader;
     TAF_PS_SET_PDP_DNS_INFO_REQ_STRU                stSetPdpDns;
 }TAF_ELF_PS_SET_PDP_DNS_INFO_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_PS_GET_PDP_DNS_INFO_REQ_STRU
- 结构说明  :  TAF_PS_GET_PDP_DNS_INFO_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stHeader;
     TAF_PS_GET_PDP_DNS_INFO_REQ_STRU                stGetPdpDns;
 }TAF_ELF_PS_GET_PDP_DNS_INFO_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_PS_TRIG_GPRS_DATA_REQ_STRU
- 结构说明  :  TAF_PS_TRIG_GPRS_DATA_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stHeader;
     TAF_PS_TRIG_GPRS_DATA_REQ_STRU                  stTrigGprsData;
 }TAF_ELF_PS_TRIG_GPRS_DATA_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_PS_LTECS_REQ_STRU
- 结构说明  :  TAF_PS_LTECS_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stHeader;
@@ -1624,39 +1003,21 @@ typedef struct
 
 
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_PS_SET_AUTHDATA_INFO_REQ_STRU
- 结构说明  :  TAF_PS_SET_AUTHDATA_INFO_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stHeader;
     TAF_PS_SET_AUTHDATA_INFO_REQ_STRU               stSetAuthDataInfo;
 }TAF_ELF_PS_SET_AUTHDATA_INFO_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_PS_GET_AUTHDATA_INFO_REQ_STRU
- 结构说明  :  TAF_PS_GET_AUTHDATA_INFO_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stHeader;
     TAF_PS_GET_AUTHDATA_INFO_REQ_STRU               stGetAuthDataInfo;
 }TAF_ELF_PS_GET_AUTHDATA_INFO_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_PS_GET_NEGOTIATION_DNS_REQ_STRU
- 结构说明  :  TAF_PS_GET_NEGOTIATION_DNS_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stHeader;
@@ -1664,338 +1025,182 @@ typedef struct
 }TAF_ELF_PS_GET_NEGOTIATION_DNS_REQ_STRU;
 
 
-/*****************************************************************************
- 结构名    :  GAS_ELF_AT_CMD_STRU
- 结构说明  :  GAS_AT_CMD_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     GAS_AT_CMD_STRU                                 stGasAtCmd;
 }GAS_ELF_AT_CMD_STRU;
 
-/*****************************************************************************
- 结构名    :  DRV_ELF_AGENT_GPIOPL_SET_REQ_STRU
- 结构说明  :  DRV_AGENT_GPIOPL_SET_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月07日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     DRV_AGENT_GPIOPL_SET_REQ_STRU                   stGpioplSetReq;
 }DRV_ELF_AGENT_GPIOPL_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  DRV_ELF_AGENT_DATALOCK_SET_REQ_STRU
- 结构说明  :  DRV_AGENT_DATALOCK_SET_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月09日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     DRV_AGENT_DATALOCK_SET_REQ_STRU                 stDatalockSetReq;
 }DRV_ELF_AGENT_DATALOCK_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  DRV_ELF_AGENT_TMODE_SET_REQ_STRU
- 结构说明  :  DRV_AGENT_TMODE_SET_REQ消息的映射结构体
- 1.日    期   : 2015年12月09日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     VOS_UINT8                                       ucUpdateFlag;
 }DRV_ELF_AGENT_TMODE_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  DRV_ELF_AGENT_FCHAN_SET_REQ_STRU
- 结构说明  :  DRV_AGENT_FCHAN_SET_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月09日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     DRV_AGENT_FCHAN_SET_REQ_STRU                    stFchanSetReq;
 }DRV_ELF_AGENT_FCHAN_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  AT_ELF_DRV_AGENT_RXDIV_SET_STRU
- 结构说明  :  AT_DRV_AGENT_RXDIV_SET_STRU结构体的映射结构体
- 1.日    期   : 2015年12月09日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     AT_DRV_AGENT_RXDIV_SET_STRU                     stRxdivSet;
 }AT_ELF_DRV_AGENT_RXDIV_SET_STRU;
 
-/*****************************************************************************
- 结构名    :  DRV_ELF_AGENT_SIMLOCK_SET_REQ_STRU
- 结构说明  :  DRV_AGENT_SIMLOCK_SET_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月09日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     DRV_AGENT_SIMLOCK_SET_REQ_STRU                  stSimlockReq;
 }DRV_ELF_AGENT_SIMLOCK_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  SPY_ELF_TEMP_THRESHOLD_PARA_STRU
- 结构说明  :  SPY_TEMP_THRESHOLD_PARA_STRU结构体的映射结构体
- 1.日    期   : 2015年12月09日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     SPY_TEMP_THRESHOLD_PARA_STRU                    stTempPara;
 }SPY_ELF_TEMP_THRESHOLD_PARA_STRU;
 
-/*****************************************************************************
- 结构名    :  DRV_ELF_AGENT_TSELRF_SET_REQ_STRU
- 结构说明  :  DRV_AGENT_TSELRF_SET_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月09日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     DRV_AGENT_TSELRF_SET_REQ_STRU                   stTseLrf;
 }DRV_ELF_AGENT_TSELRF_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_CUSTOM_CARDLOCK_STATUS_STRU
- 结构说明  :  TAF_CUSTOM_CARDLOCK_STATUS_STRU结构体的映射结构体
- 1.日    期   : 2015年12月09日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     TAF_CUSTOM_CARDLOCK_STATUS_STRU                 stCardLockStatus;
 }TAF_ELF_CUSTOM_CARDLOCK_STATUS_STRU;
 
-/*****************************************************************************
- 结构名    :  DRV_ELF_AGENT_SPWORD_SET_REQ_STRU
- 结构说明  :  DRV_AGENT_SPWORD_SET_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月09日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     DRV_AGENT_SPWORD_SET_REQ_STRU                   stSpwordSetReq;
 }DRV_ELF_AGENT_SPWORD_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  DRV_ELF_AGENT_PSTANDBY_REQ_STRU
- 结构说明  :  DRV_AGENT_PSTANDBY_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月09日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     DRV_AGENT_PSTANDBY_REQ_STRU                     stPstandbyInfo;
 }DRV_ELF_AGENT_PSTANDBY_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  DRV_ELF_AGENT_HUK_SET_REQ_STRU
- 结构说明  :  DRV_AGENT_HUK_SET_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月09日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     DRV_AGENT_HUK_SET_REQ_STRU                      stHukSetReq;
 }DRV_ELF_AGENT_HUK_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  DRV_ELF_AGENT_FACAUTHPUBKEY_SET_REQ_STRU
- 结构说明  :  DRV_AGENT_FACAUTHPUBKEY_SET_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月09日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     DRV_AGENT_FACAUTHPUBKEY_SET_REQ_STRU            stFacAuthPubkeySetReq;
 }DRV_ELF_AGENT_FACAUTHPUBKEY_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  DRV_ELF_AGENT_IDENTIFYEND_SET_REQ_STRU
- 结构说明  :  DRV_AGENT_IDENTIFYEND_SET_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月09日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     DRV_AGENT_IDENTIFYEND_SET_REQ_STRU              stIdentifyEndSetReq;
 }DRV_ELF_AGENT_IDENTIFYEND_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  DRV_ELF_AGENT_SIMLOCKDATAWRITE_SET_REQ_STRU
- 结构说明  :  DRV_AGENT_SIMLOCKDATAWRITE_SET_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月09日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     DRV_AGENT_SIMLOCKDATAWRITE_SET_REQ_STRU         stSimlockDataWriteSetReq;
 }DRV_ELF_AGENT_SIMLOCKDATAWRITE_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  DRV_ELF_AGENT_PHONEPHYNUM_SET_REQ_STRU
- 结构说明  :  DRV_AGENT_PHONEPHYNUM_SET_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月09日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     DRV_AGENT_PHONEPHYNUM_SET_REQ_STRU              stPhonePhynumSetReq;
 }DRV_ELF_AGENT_PHONEPHYNUM_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  DRV_ELF_AGENT_PORTCTRLTMP_SET_REQ_STRU
- 结构说明  :  DRV_AGENT_PORTCTRLTMP_SET_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月09日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     DRV_AGENT_PORTCTRLTMP_SET_REQ_STRU              stPortCtrlTmpSetReq;
 }DRV_ELF_AGENT_PORTCTRLTMP_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  DRV_ELF_AGENT_PORTATTRIBSET_SET_REQ_STRU
- 结构说明  :  DRV_AGENT_PORTATTRIBSET_SET_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月09日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     DRV_AGENT_PORTATTRIBSET_SET_REQ_STRU            stPortAttribSetReq;
 }DRV_ELF_AGENT_PORTATTRIBSET_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  DRV_ELF_AGENT_OPWORD_SET_REQ_STRU
- 结构说明  :  DRV_AGENT_OPWORD_SET_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月09日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     DRV_AGENT_OPWORD_SET_REQ_STRU                   stOpwordSetReq;
 }DRV_ELF_AGENT_OPWORD_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  DRV_ELF_AGENT_SARREDUCTION_SET_REQ_STRU
- 结构说明  :  DRV_AGENT_SARREDUCTION_SET_REQ消息的映射结构体
- 1.日    期   : 2015年12月09日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     VOS_UINT16                                      usSarReduction;
 }DRV_ELF_AGENT_SARREDUCTION_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_CUSTOM_SIM_LOCK_MAX_TIMES_STRU
- 结构说明  :  TAF_CUSTOM_SIM_LOCK_MAX_TIMES_STRU结构体的映射结构体
- 1.日    期   : 2015年12月09日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     TAF_CUSTOM_SIM_LOCK_MAX_TIMES_STRU              stSimLockMaxTimes;
 }TAF_ELF_CUSTOM_SIM_LOCK_MAX_TIMES_STRU;
 
-/*****************************************************************************
- 结构名    :  DRV_ELF_AGENT_AP_SIMST_SET_REQ_STRU
- 结构说明  :  DRV_AGENT_AP_SIMST_SET_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月09日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     DRV_AGENT_AP_SIMST_SET_REQ_STRU                 stApSimStSetReq;
 }DRV_ELF_AGENT_AP_SIMST_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  DRV_ELF_AGENT_HVPDH_REQ_STRU
- 结构说明  :  DRV_AGENT_HVPDH_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月09日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     DRV_AGENT_HVPDH_REQ_STRU                        stHvpdhReq;
 }DRV_ELF_AGENT_HVPDH_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  DRV_ELF_AGENT_ANTSWITCH_SET_STRU
- 结构说明  :  DRV_AGENT_ANTSWITCH_SET_STRU结构体的映射结构体
- 1.日    期   : 2015年12月09日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     DRV_AGENT_ANTSWITCH_SET_STRU                    stAntSwitchSetPara;
 }DRV_ELF_AGENT_ANTSWITCH_SET_STRU;
 
-/*****************************************************************************
- 结构名    :  AT_ELF_NDIS_PDNINFO_CFG_REQ_STRU
- 结构说明  :  ID_AT_NDIS_PDNINFO_CFG_REQ消息的映射结构体
- 1.日    期   : 2015年12月09日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -2007,13 +1212,7 @@ typedef struct
     AT_NDIS_PDNINFO_CFG_REQ_STRU                    stNdisCfgReq;
 }AT_ELF_NDIS_PDNINFO_CFG_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  AT_ELF_NDIS_PDNINFO_REL_REQ_STRU
- 结构说明  :  ID_AT_NDIS_PDNINFO_REL_REQ消息的映射结构体
- 1.日    期   : 2015年12月09日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -2025,13 +1224,7 @@ typedef struct
     AT_NDIS_PDNINFO_REL_REQ_STRU                    stNdisRelReq;
 }AT_ELF_NDIS_PDNINFO_REL_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  AT_ELF_NDIS_PDNINFO_CFG_CNF_STRU
- 结构说明  :  ID_AT_NDIS_PDNINFO_CFG_CNF消息的映射结构体
- 1.日    期   : 2015年12月09日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -2043,13 +1236,7 @@ typedef struct
     AT_NDIS_PDNINFO_CFG_CNF_STRU                    stPdnCfgCnf;
 }AT_ELF_NDIS_PDNINFO_CFG_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  AT_ELF_NDIS_PDNINFO_REL_CNF_STRU
- 结构说明  :  ID_AT_NDIS_PDNINFO_REL_CNF消息的映射结构体
- 1.日    期   : 2015年12月09日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -2061,39 +1248,21 @@ typedef struct
     AT_NDIS_PDNINFO_REL_CNF_STRU                    stPdnRelCnf;
 }AT_ELF_NDIS_PDNINFO_REL_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  USIMM_ELF_RACCESS_REQ_STRU
- 结构说明  :  TAF_MSG_MMA_USIM_RESTRICTED_ACCESS消息的映射结构体
- 1.日    期   : 2015年12月09日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     USIMM_RACCESS_REQ_STRU                          stCommand;
 }USIMM_ELF_RACCESS_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_MSG_PARA_READ_STRU
- 结构说明  :  TAF_MSG_PARA_READ消息的映射结构体
- 1.日    期   : 2015年12月09日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     VOS_UINT8                                       ucPara;
 }TAF_ELF_MSG_PARA_READ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_PH_PIN_DATA_STRU
- 结构说明  :  TAF_MSG_MMA_OP_PIN_REQ消息的映射结构体
- 1.日    期   : 2015年12月09日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
@@ -2104,13 +1273,7 @@ typedef struct
 }TAF_ELF_PH_PIN_DATA_STRU;
 
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_ME_PERSONALISATION_DATA_STRU
- 结构说明  :  TAF_MSG_MMA_ME_PERSONAL_REQ消息的映射结构体
- 1.日    期   : 2015年12月09日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
@@ -2121,13 +1284,7 @@ typedef struct
     TAF_ME_PERSONALISATION_SET_UN                   unMePersonalisationSet;
 }TAF_ELF_ME_PERSONALISATION_DATA_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_PH_QRY_USIM_INFO_STRU
- 结构说明  :  TAF_MSG_MMA_USIM_INFO消息的映射结构体
- 1.日    期   : 2015年12月09日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
@@ -2138,390 +1295,210 @@ typedef struct
     TAF_MMA_PNN_INFO_QUERY_REQ_INDEX_STRU           stPnnQryIndex;
 }TAF_ELF_PH_QRY_USIM_INFO_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_PH_QRY_CPNN_INFO_STRU
- 结构说明  :  TAF_MSG_MMA_CPNN_INFO消息的映射结构体
- 1.日    期   : 2015年12月09日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     TAF_ELF_PH_ICC_TYPE_UINT8                       Icctype;
 }TAF_ELF_PH_QRY_CPNN_INFO_STRU;
 
-/*****************************************************************************
- 结构名    :  MN_ELF_PH_SET_CPIN_REQ_STRU
- 结构说明  :  MN_PH_SET_CPIN_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月09日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     MN_PH_SET_CPIN_REQ_STRU                         stSetCPinReq;
 }MN_ELF_PH_SET_CPIN_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_MMA_COPS_FORMAT_TYPE_SET_REQ_STRU
- 结构说明  :  TAF_MMA_COPS_FORMAT_TYPE_SET_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月09日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     TAF_MMA_COPS_FORMAT_TYPE_SET_REQ_STRU           stCopsFormatType;
 }TAF_ELF_MMA_COPS_FORMAT_TYPE_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_MMA_USIM_STUB_SET_REQ_STRU
- 结构说明  :  TAF_MMA_USIM_STUB_SET_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月09日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     TAF_MMA_USIM_STUB_SET_REQ_STRU                  stUsimStub;
 }TAF_ELF_MMA_USIM_STUB_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_MMA_REFRESH_STUB_SET_REQ_STRU
- 结构说明  :  TAF_MMA_REFRESH_STUB_SET_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月09日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     TAF_MMA_REFRESH_STUB_SET_REQ_STRU               stRefreshStub;
 }TAF_ELF_MMA_REFRESH_STUB_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_MMA_AUTO_RESEL_STUB_SET_REQ_STRU
- 结构说明  :  TAF_MMA_AUTO_RESEL_STUB_SET_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月09日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     TAF_MMA_AUTO_RESEL_STUB_SET_REQ_STRU            stAutoReselStub;
 }TAF_ELF_MMA_AUTO_RESEL_STUB_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  AT_ELF_MTA_CPOS_REQ_STRU
- 结构说明  :  AT_MTA_CPOS_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     AT_MTA_CPOS_REQ_STRU                            stCposSetReq;
 }AT_ELF_MTA_CPOS_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  AT_ELF_MTA_APSEC_REQ_STRU
- 结构说明  :  AT_MTA_APSEC_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     AT_MTA_APSEC_REQ_STRU                           stApSecSetReq;
 }AT_ELF_MTA_APSEC_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  AT_ELF_MTA_SIMLOCKUNLOCK_REQ_STRU
- 结构说明  :  AT_MTA_SIMLOCKUNLOCK_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     AT_MTA_SIMLOCKUNLOCK_REQ_STRU                   stSimlockUnlockSetReq;
 }AT_ELF_MTA_SIMLOCKUNLOCK_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  AT_ELF_MTA_QRY_NMR_REQ_STRU
- 结构说明  :  AT_MTA_QRY_NMR_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     AT_MTA_QRY_NMR_REQ_STRU                         stQryNmrReq;
 }AT_ELF_MTA_QRY_NMR_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  AT_ELF_MTA_RESEL_OFFSET_CFG_SET_NTF_STRU
- 结构说明  :  AT_MTA_RESEL_OFFSET_CFG_SET_NTF_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     AT_MTA_RESEL_OFFSET_CFG_SET_NTF_STRU            stReselOffsetCfgNtf;
 }AT_ELF_MTA_RESEL_OFFSET_CFG_SET_NTF_STRU;
 
-/*****************************************************************************
- 结构名    :  AT_ELF_MTA_WRR_AUTOTEST_QRY_PARA_STRU
- 结构说明  :  AT_MTA_WRR_AUTOTEST_QRY_PARA_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     AT_MTA_WRR_AUTOTEST_QRY_PARA_STRU               stAtCmd;
 }AT_ELF_MTA_WRR_AUTOTEST_QRY_PARA_STRU;
 
-/*****************************************************************************
- 结构名    :  AT_ELF_MTA_WRR_CELLINFO_QRY_REQ_STRU
- 结构说明  :  ID_AT_MTA_WRR_CELLINFO_QRY_REQ消息的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     VOS_UINT32                                      ulAtCmdCellInfo;
 }AT_ELF_MTA_WRR_CELLINFO_QRY_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_WRR_FREQLOCK_CTRL_STRU
- 结构说明  :  MTA_AT_WRR_FREQLOCK_CTRL_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     MTA_AT_WRR_FREQLOCK_CTRL_STRU                   stFreqLock;
 }MTA_ELF_AT_WRR_FREQLOCK_CTRL_STRU;
 
-/*****************************************************************************
- 结构名    :  AT_ELF_MTA_WRR_RRC_VERSION_SET_REQ_STRU
- 结构说明  :  ID_AT_MTA_WRR_RRC_VERSION_SET_REQ消息的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     VOS_UINT8                                       ucRRCVersion;
 }AT_ELF_MTA_WRR_RRC_VERSION_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  AT_ELF_MTA_WRR_CELLSRH_SET_REQ_STRU
- 结构说明  :  ID_AT_MTA_WRR_CELLSRH_SET_REQ消息的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     VOS_UINT8                                       ucCellSrh;
 }AT_ELF_MTA_WRR_CELLSRH_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  AT_ELF_MTA_BODY_SAR_SET_REQ_STRU
- 结构说明  :  AT_MTA_BODY_SAR_SET_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     AT_MTA_BODY_SAR_SET_REQ_STRU                    stBodySarSetReq;
 }AT_ELF_MTA_BODY_SAR_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  AT_ELF_MTA_CURC_SET_NOTIFY_STRU
- 结构说明  :  AT_MTA_CURC_SET_NOTIFY_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     AT_MTA_CURC_SET_NOTIFY_STRU                     stAtCmd;
 }AT_ELF_MTA_CURC_SET_NOTIFY_STRU;
 
-/*****************************************************************************
- 结构名    :  AT_ELF_MTA_UNSOLICITED_RPT_SET_REQ_STRU
- 结构说明  :  AT_MTA_UNSOLICITED_RPT_SET_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     AT_MTA_UNSOLICITED_RPT_SET_REQ_STRU             stAtCmd;
 }AT_ELF_MTA_UNSOLICITED_RPT_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  AT_ELF_MTA_UNSOLICITED_RPT_QRY_REQ_STRU
- 结构说明  :  AT_MTA_UNSOLICITED_RPT_QRY_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     AT_MTA_UNSOLICITED_RPT_QRY_REQ_STRU             stAtCmd;
 }AT_ELF_MTA_UNSOLICITED_RPT_QRY_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  AT_ELF_MTA_NCELL_MONITOR_SET_REQ_STRU
- 结构说明  :  AT_MTA_NCELL_MONITOR_SET_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     AT_MTA_NCELL_MONITOR_SET_REQ_STRU               stAtCmd;
 }AT_ELF_MTA_NCELL_MONITOR_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  AT_ELF_MTA_REFCLKFREQ_SET_REQ_STRU
- 结构说明  :  AT_MTA_REFCLKFREQ_SET_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     AT_MTA_REFCLKFREQ_SET_REQ_STRU                  stRefClockReq;
 }AT_ELF_MTA_REFCLKFREQ_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  AT_ELF_MTA_HANDLEDECT_SET_REQ_STRU
- 结构说明  :  ID_AT_MTA_HANDLEDECT_SET_REQ消息的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     VOS_UINT8                                       ucHandleType;
 }AT_ELF_MTA_HANDLEDECT_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  AT_ELF_MTA_ECID_SET_REQ_STRU
- 结构说明  :  AT_MTA_ECID_SET_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     AT_MTA_ECID_SET_REQ_STRU                        stEcidSetReq;
 }AT_ELF_MTA_ECID_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  AT_ELF_MTA_SET_DPDTTEST_FLAG_REQ_STRU
- 结构说明  :  AT_MTA_SET_DPDTTEST_FLAG_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     AT_MTA_SET_DPDTTEST_FLAG_REQ_STRU               stAtCmd;
 }AT_ELF_MTA_SET_DPDTTEST_FLAG_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  AT_ELF_MTA_SET_DPDT_VALUE_REQ_STRU
- 结构说明  :  AT_MTA_SET_DPDT_VALUE_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     AT_MTA_SET_DPDT_VALUE_REQ_STRU                  stAtCmd;
 }AT_ELF_MTA_SET_DPDT_VALUE_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  AT_ELF_MTA_QRY_DPDT_VALUE_REQ_STRU
- 结构说明  :  AT_MTA_QRY_DPDT_VALUE_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     AT_MTA_QRY_DPDT_VALUE_REQ_STRU                  stAtCmd;
 }AT_ELF_MTA_QRY_DPDT_VALUE_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  AT_ELF_MTA_RRC_PROTECT_PS_REQ_STRU
- 结构说明  :  AT_MTA_RRC_PROTECT_PS_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     AT_MTA_RRC_PROTECT_PS_REQ_STRU                  stAtCmd;
 }AT_ELF_MTA_RRC_PROTECT_PS_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  AT_ELF_MTA_PHY_INIT_REQ_STRU
- 结构说明  :  AT_MTA_PHY_INIT_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     AT_MTA_PHY_INIT_REQ_STRU                        stPhyInit;
 }AT_ELF_MTA_PHY_INIT_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  AT_ELF_MTA_SET_GSM_FREQLOCK_REQ_STRU
- 结构说明  :  AT_MTA_SET_GSM_FREQLOCK_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
@@ -2529,130 +1506,70 @@ typedef struct
 }AT_ELF_MTA_SET_GSM_FREQLOCK_REQ_STRU;
 
 
-/*****************************************************************************
- 结构名    :  AT_ELF_MTA_MBMS_SERVICE_OPTION_SET_REQ_STRU
- 结构说明  :  AT_MTA_MBMS_SERVICE_OPTION_SET_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     AT_MTA_MBMS_SERVICE_OPTION_SET_REQ_STRU         stMBMSServiceOption;
 }AT_ELF_MTA_MBMS_SERVICE_OPTION_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  AT_ELF_MTA_MBMS_PREFERENCE_SET_REQ_STRU
- 结构说明  :  AT_MTA_MBMS_PREFERENCE_SET_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     AT_MTA_MBMS_PREFERENCE_SET_REQ_STRU             stMBMSCastMode;
 }AT_ELF_MTA_MBMS_PREFERENCE_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  AT_ELF_MTA_MBMS_UNSOLICITED_CFG_SET_REQ_STRU
- 结构说明  :  AT_MTA_MBMS_UNSOLICITED_CFG_SET_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     AT_MTA_MBMS_UNSOLICITED_CFG_SET_REQ_STRU        stMBMSUnsolicitedCfg;
 }AT_ELF_MTA_MBMS_UNSOLICITED_CFG_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  AT_ELF_MTA_LOW_POWER_CONSUMPTION_SET_REQ_STRU
- 结构说明  :  AT_MTA_LOW_POWER_CONSUMPTION_SET_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     AT_MTA_LOW_POWER_CONSUMPTION_SET_REQ_STRU       stPowerConsumption;
 }AT_ELF_MTA_LOW_POWER_CONSUMPTION_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  AT_ELF_MTA_MBMS_INTERESTLIST_SET_REQ_STRU
- 结构说明  :  AT_MTA_MBMS_INTERESTLIST_SET_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     AT_MTA_MBMS_INTERESTLIST_SET_REQ_STRU           stMBMSInterestList;
 }AT_ELF_MTA_MBMS_INTERESTLIST_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  AT_ELF_MTA_MBMS_SERVICE_STATE_SET_REQ_STRU
- 结构说明  :  AT_MTA_MBMS_SERVICE_STATE_SET_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     AT_MTA_MBMS_SERVICE_STATE_SET_REQ_STRU          stMBMSServiceState;
 }AT_ELF_MTA_MBMS_SERVICE_STATE_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  AT_ELF_MTA_LTE_WIFI_COEX_SET_REQ_STRU
- 结构说明  :  AT_MTA_LTE_WIFI_COEX_SET_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     AT_MTA_LTE_WIFI_COEX_SET_REQ_STRU               stIsmCoex;
 }AT_ELF_MTA_LTE_WIFI_COEX_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  AT_ELF_MTA_SET_FR_REQ_STRU
- 结构说明  :  AT_MTA_SET_FR_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     AT_MTA_SET_FR_REQ_STRU                          stAtMtaSetFrReq;
 }AT_ELF_MTA_SET_FR_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  AT_ELF_MTA_SET_UE_CENTER_REQ_STRU
- 结构说明  :  AT_MTA_SET_UE_CENTER_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MN_ELF_APP_REQ_MSG_STRU
     AT_MTA_SET_UE_CENTER_REQ_STRU                   stSetUeCenterInfo;
 }AT_ELF_MTA_SET_UE_CENTER_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_CPOS_CNF_STRU
- 结构说明  :  MTA_AT_CPOS_CNF_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -2661,13 +1578,7 @@ typedef struct
     MTA_AT_CPOS_CNF_STRU                            stMtaAtCposCnf;
 }MTA_ELF_AT_CPOS_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_CGPSCLOCK_CNF_STRU
- 结构说明  :  MTA_AT_CGPSCLOCK_CNF_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -2676,13 +1587,7 @@ typedef struct
     MTA_AT_CGPSCLOCK_CNF_STRU                       stMtaAtCgpsClockCnf;
 }MTA_ELF_AT_CGPSCLOCK_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_CPOSR_IND_STRU
- 结构说明  :  MTA_AT_CPOSR_IND_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -2691,13 +1596,7 @@ typedef struct
     MTA_AT_CPOSR_IND_STRU                           stCposrInd;
 }MTA_ELF_AT_CPOSR_IND_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_XCPOSRRPT_IND_STRU
- 结构说明  :  MTA_AT_XCPOSRRPT_IND_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -2706,13 +1605,7 @@ typedef struct
     MTA_AT_XCPOSRRPT_IND_STRU                       stXcposrRptInd;
 }MTA_ELF_AT_XCPOSRRPT_IND_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_APSEC_CNF_STRU
- 结构说明  :  MTA_AT_APSEC_CNF_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -2721,13 +1614,7 @@ typedef struct
     MTA_AT_APSEC_CNF_STRU                           stApSecCnf;
 }MTA_ELF_AT_APSEC_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_SIMLOCKUNLOCK_CNF_STRU
- 结构说明  :  MTA_AT_SIMLOCKUNLOCK_CNF_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -2736,13 +1623,7 @@ typedef struct
     MTA_AT_SIMLOCKUNLOCK_CNF_STRU                   stSimlockUnlockCnf;
 }MTA_ELF_AT_SIMLOCKUNLOCK_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_QRY_NMR_CNF_STRU
- 结构说明  :  MTA_AT_QRY_NMR_CNF_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -2751,13 +1632,7 @@ typedef struct
     MTA_AT_QRY_NMR_CNF_STRU                         stQryNmrCnf;
 }MTA_ELF_AT_QRY_NMR_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_WRR_AUTOTEST_QRY_CNF_STRU
- 结构说明  :  MTA_AT_WRR_AUTOTEST_QRY_CNF_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -2766,13 +1641,7 @@ typedef struct
     MTA_AT_WRR_AUTOTEST_QRY_CNF_STRU                stQryCnf;
 }MTA_ELF_AT_WRR_AUTOTEST_QRY_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_WRR_CELLINFO_QRY_CNF_STRU
- 结构说明  :  MTA_AT_WRR_CELLINFO_QRY_CNF_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -2781,13 +1650,7 @@ typedef struct
     MTA_AT_WRR_CELLINFO_QRY_CNF_STRU                stQryCnf;
 }MTA_ELF_AT_WRR_CELLINFO_QRY_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_WRR_MEANRPT_QRY_CNF_STRU
- 结构说明  :  MTA_AT_WRR_MEANRPT_QRY_CNF_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -2796,13 +1659,7 @@ typedef struct
     MTA_AT_WRR_MEANRPT_QRY_CNF_STRU                 stQryCnf;
 }MTA_ELF_AT_WRR_MEANRPT_QRY_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_WRR_FREQLOCK_SET_CNF_STRU
- 结构说明  :  MTA_AT_WRR_FREQLOCK_SET_CNF_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -2811,13 +1668,7 @@ typedef struct
     MTA_AT_WRR_FREQLOCK_SET_CNF_STRU                stQryCnf;
 }MTA_ELF_AT_WRR_FREQLOCK_SET_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_WRR_RRC_VERSION_SET_CNF_STRU
- 结构说明  :  MTA_AT_WRR_RRC_VERSION_SET_CNF_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -2826,13 +1677,7 @@ typedef struct
     MTA_AT_WRR_RRC_VERSION_SET_CNF_STRU             stSetCnf;
 }MTA_ELF_AT_WRR_RRC_VERSION_SET_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_WRR_CELLSRH_SET_CNF_STRU
- 结构说明  :  MTA_AT_WRR_CELLSRH_SET_CNF_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -2841,13 +1686,7 @@ typedef struct
     MTA_AT_WRR_CELLSRH_SET_CNF_STRU                 stSetCnf;
 }MTA_ELF_AT_WRR_CELLSRH_SET_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_WRR_FREQLOCK_QRY_CNF_STRU
- 结构说明  :  MTA_AT_WRR_FREQLOCK_QRY_CNF_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -2856,13 +1695,7 @@ typedef struct
     MTA_AT_WRR_FREQLOCK_QRY_CNF_STRU                stQryCnf;
 }MTA_ELF_AT_WRR_FREQLOCK_QRY_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_WRR_RRC_VERSION_QRY_CNF_STRU
- 结构说明  :  MTA_AT_WRR_RRC_VERSION_QRY_CNF_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -2871,13 +1704,7 @@ typedef struct
     MTA_AT_WRR_RRC_VERSION_QRY_CNF_STRU             stQryCnf;
 }MTA_ELF_AT_WRR_RRC_VERSION_QRY_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_WRR_CELLSRH_QRY_CNF_STRU
- 结构说明  :  MTA_AT_WRR_CELLSRH_QRY_CNF_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -2886,13 +1713,7 @@ typedef struct
     MTA_AT_WRR_CELLSRH_QRY_CNF_STRU                 stQryCnf;
 }MTA_ELF_AT_WRR_CELLSRH_QRY_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_RESULT_CNF_STRU
- 结构说明  :  MTA_AT_RESULT_CNF_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -2901,13 +1722,7 @@ typedef struct
     MTA_AT_RESULT_CNF_STRU                          stResultCnf;
 }MTA_ELF_AT_RESULT_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_CURC_QRY_CNF_STRU
- 结构说明  :  MTA_AT_CURC_QRY_CNF_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -2916,13 +1731,7 @@ typedef struct
     MTA_AT_CURC_QRY_CNF_STRU                        stQryCurcCnf;
 }MTA_ELF_AT_CURC_QRY_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_UNSOLICITED_RPT_SET_CNF_STRU
- 结构说明  :  MTA_AT_UNSOLICITED_RPT_SET_CNF_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -2931,13 +1740,7 @@ typedef struct
     MTA_AT_UNSOLICITED_RPT_SET_CNF_STRU             stSetUnsolicitedRptCnf;
 }MTA_ELF_AT_UNSOLICITED_RPT_SET_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_UNSOLICITED_RPT_QRY_CNF_STRU
- 结构说明  :  MTA_AT_UNSOLICITED_RPT_QRY_CNF_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -2955,13 +1758,7 @@ typedef struct
     VOS_UINT8                           aucReserve[2];
 }MTA_ELF_AT_UNSOLICITED_RPT_QRY_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_IMEI_VERIFY_QRY_CNF_STRU
- 结构说明  :  ID_MTA_AT_IMEI_VERIFY_QRY_CNF消息的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -2970,13 +1767,7 @@ typedef struct
     VOS_UINT32                                      ulImeiVerify;
 }MTA_ELF_AT_IMEI_VERIFY_QRY_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_CGSN_QRY_CNF_STRU
- 结构说明  :  MTA_AT_CGSN_QRY_CNF_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -2985,13 +1776,7 @@ typedef struct
     MTA_AT_CGSN_QRY_CNF_STRU                        stCgsnCnf;
 }MTA_ELF_AT_CGSN_QRY_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_NCELL_MONITOR_QRY_CNF_STRU
- 结构说明  :  MTA_AT_NCELL_MONITOR_QRY_CNF_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -3000,13 +1785,7 @@ typedef struct
     MTA_AT_NCELL_MONITOR_QRY_CNF_STRU               stQryCnf;
 }MTA_ELF_AT_NCELL_MONITOR_QRY_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_NCELL_MONITOR_IND_STRU
- 结构说明  :  MTA_AT_NCELL_MONITOR_IND_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -3015,13 +1794,7 @@ typedef struct
     MTA_AT_NCELL_MONITOR_IND_STRU                   stMtaAtInd;
 }MTA_ELF_AT_NCELL_MONITOR_IND_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_REFCLKFREQ_QRY_CNF_STRU
- 结构说明  :  MTA_AT_REFCLKFREQ_QRY_CNF_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -3030,13 +1803,7 @@ typedef struct
     MTA_AT_REFCLKFREQ_QRY_CNF_STRU                  stRefClkFreqCnf;
 }MTA_ELF_AT_REFCLKFREQ_QRY_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_REFCLKFREQ_IND_STRU
- 结构说明  :  MTA_AT_REFCLKFREQ_IND_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -3045,13 +1812,7 @@ typedef struct
     MTA_AT_REFCLKFREQ_IND_STRU                      stRefClkFreqInd;
 }MTA_ELF_AT_REFCLKFREQ_IND_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_HANDLEDECT_SET_CNF_STRU
- 结构说明  :  MTA_AT_HANDLEDECT_SET_CNF_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -3060,13 +1821,7 @@ typedef struct
     MTA_AT_HANDLEDECT_SET_CNF_STRU                  stSetCnf;
 }MTA_ELF_AT_HANDLEDECT_SET_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_HANDLEDECT_QRY_CNF_STRU
- 结构说明  :  MTA_AT_HANDLEDECT_QRY_CNF_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -3075,13 +1830,7 @@ typedef struct
     MTA_AT_HANDLEDECT_QRY_CNF_STRU                  stQryCnf;
 }MTA_ELF_AT_HANDLEDECT_QRY_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_PS_TRANSFER_IND_STRU
- 结构说明  :  MTA_AT_PS_TRANSFER_IND_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -3090,13 +1839,7 @@ typedef struct
     MTA_AT_PS_TRANSFER_IND_STRU                     stPsTransferInd;
 }MTA_ELF_AT_PS_TRANSFER_IND_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_ECID_SET_CNF_STRU
- 结构说明  :  MTA_AT_ECID_SET_CNF_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -3106,13 +1849,7 @@ typedef struct
     VOS_UINT8                                       aucCellInfoStr[MTA_ECID_CELLINFO_MAX_STRLEN];
 }MTA_ELF_AT_ECID_SET_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_RF_LCD_MIPICLK_CNF_STRU
- 结构说明  :  MTA_AT_RF_LCD_MIPICLK_CNF_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -3121,13 +1858,7 @@ typedef struct
     MTA_AT_RF_LCD_MIPICLK_CNF_STRU                  stQryMipiCnf;
 }MTA_ELF_AT_RF_LCD_MIPICLK_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_RF_LCD_MIPICLK_IND_STRU
- 结构说明  :  MTA_AT_RF_LCD_MIPICLK_IND_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -3136,13 +1867,7 @@ typedef struct
     MTA_AT_RF_LCD_MIPICLK_IND_STRU                  stMipClkInd;
 }MTA_ELF_AT_RF_LCD_MIPICLK_IND_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_SET_DPDTTEST_FLAG_CNF_STRU
- 结构说明  :  MTA_AT_SET_DPDTTEST_FLAG_CNF_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -3151,13 +1876,7 @@ typedef struct
     MTA_AT_SET_DPDTTEST_FLAG_CNF_STRU               stMtaAtQryCnf;
 }MTA_ELF_AT_SET_DPDTTEST_FLAG_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_SET_DPDT_VALUE_CNF_STRU
- 结构说明  :  MTA_AT_SET_DPDT_VALUE_CNF_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -3166,13 +1885,7 @@ typedef struct
     MTA_AT_SET_DPDT_VALUE_CNF_STRU                  stMtaAtQryCnf;
 }MTA_ELF_AT_SET_DPDT_VALUE_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_QRY_DPDT_VALUE_CNF_STRU
- 结构说明  :  MTA_AT_QRY_DPDT_VALUE_CNF_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -3181,13 +1894,7 @@ typedef struct
     MTA_AT_QRY_DPDT_VALUE_CNF_STRU                  stMtaAtQryCnf;
 }MTA_ELF_AT_QRY_DPDT_VALUE_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_RRC_PROTECT_PS_CNF_STRU
- 结构说明  :  MTA_AT_RRC_PROTECT_PS_CNF_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -3196,13 +1903,7 @@ typedef struct
     MTA_AT_RRC_PROTECT_PS_CNF_STRU                  stMtaAtPortectPSCnf;
 }MTA_ELF_AT_RRC_PROTECT_PS_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_PHY_INIT_CNF_STRU
- 结构说明  :  MTA_AT_PHY_INIT_CNF_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -3211,13 +1912,7 @@ typedef struct
     MTA_AT_PHY_INIT_CNF_STRU                        stSndAtPhyInitCnf;
 }MTA_ELF_AT_PHY_INIT_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_SET_GSM_FREQLOCK_CNF_STRU
- 结构说明  :  MTA_AT_SET_GSM_FREQLOCK_CNF_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -3226,13 +1921,7 @@ typedef struct
     MTA_AT_SET_GSM_FREQLOCK_CNF_STRU                stSetGFreqLockCnf;
 }MTA_ELF_AT_SET_GSM_FREQLOCK_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_SET_FEMCTRL_CNF_STRU
- 结构说明  :  MTA_AT_SET_FEMCTRL_CNF_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -3241,13 +1930,7 @@ typedef struct
     MTA_AT_SET_FEMCTRL_CNF_STRU                     stSetCnf;
 }MTA_ELF_AT_SET_FEMCTRL_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_SET_FEMCTRL_CNF_STRU
- 结构说明  :  MTA_AT_SET_FEMCTRL_CNF_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -3256,13 +1939,7 @@ typedef struct
     MTA_AT_XPASS_INFO_IND_STRU                      stXpassInfoInd;
 }MTA_ELF_AT_XPASS_INFO_IND_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_MBMS_SIB16_NETWORK_TIME_QRY_CNF_STRU
- 结构说明  :  MTA_AT_MBMS_SIB16_NETWORK_TIME_QRY_CNF_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -3271,13 +1948,7 @@ typedef struct
     MTA_AT_MBMS_SIB16_NETWORK_TIME_QRY_CNF_STRU     stQryCnf;
 }MTA_ELF_AT_MBMS_SIB16_NETWORK_TIME_QRY_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_MBMS_BSSI_SIGNAL_LEVEL_QRY_CNF_STRU
- 结构说明  :  MTA_AT_MBMS_BSSI_SIGNAL_LEVEL_QRY_CNF_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -3286,13 +1957,7 @@ typedef struct
     MTA_AT_MBMS_BSSI_SIGNAL_LEVEL_QRY_CNF_STRU      stQryCnf;
 }MTA_ELF_AT_MBMS_BSSI_SIGNAL_LEVEL_QRY_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_MBMS_NETWORK_INFO_QRY_CNF_STRU
- 结构说明  :  MTA_AT_MBMS_NETWORK_INFO_QRY_CNF_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -3301,13 +1966,7 @@ typedef struct
     MTA_AT_MBMS_NETWORK_INFO_QRY_CNF_STRU           stQryCnf;
 }MTA_ELF_AT_MBMS_NETWORK_INFO_QRY_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_EMBMS_STATUS_QRY_CNF_STRU
- 结构说明  :  MTA_AT_EMBMS_STATUS_QRY_CNF_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -3316,13 +1975,7 @@ typedef struct
     MTA_AT_EMBMS_STATUS_QRY_CNF_STRU                stQryCnf;
 }MTA_ELF_AT_EMBMS_STATUS_QRY_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_MBMS_SERVICE_EVENT_IND_STRU
- 结构说明  :  MTA_AT_MBMS_SERVICE_EVENT_IND_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -3331,13 +1984,7 @@ typedef struct
     MTA_AT_MBMS_SERVICE_EVENT_IND_STRU              stMtaAtInd;
 }MTA_ELF_AT_MBMS_SERVICE_EVENT_IND_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_MBMS_AVL_SERVICE_LIST_QRY_CNF_STRU
- 结构说明  :  MTA_AT_MBMS_AVL_SERVICE_LIST_QRY_CNF_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -3346,13 +1993,7 @@ typedef struct
     MTA_AT_MBMS_AVL_SERVICE_LIST_QRY_CNF_STRU       stQryCnf;
 }MTA_ELF_AT_MBMS_AVL_SERVICE_LIST_QRY_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_LTE_WIFI_COEX_QRY_CNF_STRU
- 结构说明  :  MTA_AT_LTE_WIFI_COEX_QRY_CNF_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -3361,13 +2002,7 @@ typedef struct
     MTA_AT_LTE_WIFI_COEX_QRY_CNF_STRU               stCoexCnf;
 }MTA_ELF_AT_LTE_WIFI_COEX_QRY_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_SET_FR_CNF_STRU
- 结构说明  :  MTA_AT_SET_FR_CNF_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -3376,13 +2011,7 @@ typedef struct
     MTA_AT_SET_FR_CNF_STRU                          stMtaAtSetFrCnf;
 }MTA_ELF_AT_SET_FR_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_TRANSMODE_QRY_CNF_STRU
- 结构说明  :  MTA_AT_TRANSMODE_QRY_CNF_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -3391,13 +2020,7 @@ typedef struct
     MTA_AT_TRANSMODE_QRY_CNF_STRU                   stTransModeQryCnf;
 }MTA_ELF_AT_TRANSMODE_QRY_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_SET_UE_CENTER_CNF_STRU
- 结构说明  :  MTA_AT_SET_UE_CENTER_CNF_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -3406,13 +2029,7 @@ typedef struct
     MTA_AT_SET_UE_CENTER_CNF_STRU                   stMtaAtUECenterSetCnf;
 }MTA_ELF_AT_SET_UE_CENTER_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_AT_QRY_UE_CENTER_CNF_STRU
- 结构说明  :  MTA_AT_QRY_UE_CENTER_CNF_STRU结构体的映射结构体
- 1.日    期   : 2015年12月10日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -3421,13 +2038,7 @@ typedef struct
     MTA_AT_QRY_UE_CENTER_CNF_STRU                   stMtaAtUECenterQryCnf;
 }MTA_ELF_AT_QRY_UE_CENTER_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  AGPS_ELF_SHAPE_DATA_STRU
- 结构说明  :  AGPS_SHAPE_DATA_STRU结构体的映射结构体
- 1.日    期   : 2015年12月15日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                   aucRsv[3];                      /* 保留位 */
@@ -3444,13 +2055,7 @@ typedef struct
     } u;
 } AGPS_ELF_SHAPE_DATA_STRU;
 
-/*****************************************************************************
- 结构名    :  AGPS_ELF_LOCATION_PARA_STRU
- 结构说明  :  AGPS_LOCATION_PARA_STRU结构体的映射结构体
- 1.日    期   : 2015年12月15日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                  bitOpTime              : 1;
@@ -3463,13 +2068,7 @@ typedef struct
     AGPS_ELF_SHAPE_DATA_STRU                    stShapeData;                    /* shape_data */
 } AGPS_ELF_LOCATION_PARA_STRU;
 
-/*****************************************************************************
- 结构名    :  AGPS_ELF_LOCATION_INFO_STRU
- 结构说明  :  AGPS_LOCATION_INFO_STRU结构体的映射结构体
- 1.日    期   : 2015年12月15日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                  bitOpTimeOfFix         : 1;
@@ -3479,13 +2078,7 @@ typedef struct
     VOS_UINT32                                  ulTimeOfFix;                    /* time_of_fix, 当前接入层不使用 */
 } AGPS_ELF_LOCATION_INFO_STRU;
 
-/*****************************************************************************
- 结构名    :  MTA_ELF_RRC_POSITION_CNF_STRU
- 结构说明  :  MTA_RRC_POSITION_CNF_STRU结构体的映射结构体
- 1.日    期   : 2015年12月15日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                     stMsgHeader;            /*_H2ASN_Skip*/
@@ -3501,13 +2094,7 @@ typedef struct
     }u;
 }MTA_ELF_RRC_POSITION_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  RRC_ELF_MTA_QRY_NMR_CNF_STRU
- 结构说明  :  RRC_MTA_QRY_NMR_CNF_STRU结构体的映射结构体
- 1.日    期   : 2015年12月15日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                     MsgHeader;          /* 消息头    */     /*_H2ASN_Skip*/
@@ -3520,13 +2107,7 @@ typedef struct
     }u;
 } RRC_ELF_MTA_QRY_NMR_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  RRC_ELF_MTA_PLMN_FREQ_QRY_CNF_STRU
- 结构说明  :  RRC_MTA_PLMN_FREQ_QRY_CNF_STRU结构体的映射结构体
- 1.日    期   : 2015年12月15日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                     stMsgHeader;            /*_H2ASN_Skip*/
@@ -3539,13 +2120,7 @@ typedef struct
     }u;
 } RRC_ELF_MTA_PLMN_FREQ_QRY_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  OM_NAS_ELF_ERROR_LOG_CTRL_IND_STRU
- 结构说明  :  OM_ERROR_LOG_CTRL_IND_STRU结构体的映射结构体
- 1.日    期   : 2015年12月16日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -3555,13 +2130,7 @@ typedef struct
     OM_ELF_ERR_LOG_CTRL_LEVEL_ENUM_UINT8                ucAlmLevel;   /* 上报级别 */
 }OM_NAS_ELF_ERROR_LOG_CTRL_IND_STRU;
 
-/*****************************************************************************
- 结构名    :  OM_NAS_ELF_ERR_LOG_REPORT_REQ_STRU
- 结构说明  :  OM_ERR_LOG_REPORT_REQ_STRU结构体的映射结构体
- 1.日    期   : 2015年12月16日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -3570,13 +2139,7 @@ typedef struct
     VOS_UINT8                                           aucRsv[2];
 }OM_NAS_ELF_ERR_LOG_REPORT_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  OM_NAS_ELF_ERR_LOG_HEADER_STRU
- 结构说明  :  OM_ERR_LOG_HEADER_STRU结构体的映射结构体
- 1.日    期   : 2015年12月16日
-   作    者   : h00360002
-   修改内容   : 新建
-*******************************************************************************/
+
 typedef struct
 {
     OM_ERR_LOG_MOUDLE_ID_ENUM_UINT32                    ulMsgModuleId;
@@ -3589,26 +2152,14 @@ typedef struct
     VOS_UINT32                                          ulAlmLength;
 }OM_NAS_ELF_ERR_LOG_HEADER_STRU;
 
-/*****************************************************************************
- 结构名    :  NAS_ELF_ERR_LOG_MNTN_EVENT_STRU
- 结构说明  :  NAS_ERR_LOG_MNTN_EVENT_STRU结构体的映射结构体
- 1.日    期   : 2015年12月16日
-   作    者   : h00360002
-   修改内容   : 新建
-*******************************************************************************/
+
 typedef struct
 {
     OM_NAS_ELF_ERR_LOG_HEADER_STRU                      stHeader;
     VOS_UINT32                                          ulCount;
 }NAS_ELF_ERR_LOG_MNTN_EVENT_STRU;
 
-/*****************************************************************************
- 结构名    :  OM_NAS_ELF_ERR_LOG_REPORT_CNF_STRU
- 结构说明  :  OM_ERR_LOG_REPORT_CNF_STRU结构体的映射结构体
- 1.日    期   : 2015年12月16日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -3619,13 +2170,7 @@ typedef struct
     NAS_ELF_ERR_LOG_MNTN_EVENT_STRU                     stContent;      /* 故障内容 */
 }OM_NAS_ELF_ERR_LOG_REPORT_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  OM_NAS_ELF_FTM_CTRL_IND_STRU
- 结构说明  :  OM_FTM_CTRL_IND_STRU结构体的映射结构体
- 1.日    期   : 2015年12月16日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -3635,13 +2180,7 @@ typedef struct
     VOS_UINT8                                           aucRsv[1];
 }OM_NAS_ELF_FTM_CTRL_IND_STRU;
 
-/*****************************************************************************
- 结构名    :  OM_NAS_ELF_FTM_HEADER_STRU
- 结构说明  :  OM_FTM_HEADER_STRU结构体的映射结构体
- 1.日    期   : 2015年12月16日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     OM_ERR_LOG_MOUDLE_ID_ENUM_UINT32                    ulMsgModuleId;
@@ -3651,26 +2190,14 @@ typedef struct
     VOS_UINT32                                          ulProjectLength;
 }OM_NAS_ELF_FTM_HEADER_STRU;
 
-/*****************************************************************************
- 结构名    :  NAS_ELF_FTM_PTMSI_RPT_EVENT_STRU
- 结构说明  :  NAS_FTM_PTMSI_RPT_EVENT_STRU结构体的映射结构体
- 1.日    期   : 2015年12月16日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     OM_NAS_ELF_FTM_HEADER_STRU                          stHeader;
     VOS_UINT8                                           aucPtmsi[NAS_FTM_MAX_PTMSI_LEN];    /* ptmsi的内容 */
 }NAS_ELF_FTM_PTMSI_RPT_EVENT_STRU;
 
-/*****************************************************************************
- 结构名    :  OM_NAS_ELF_FTM_REPROT_IND_STRU
- 结构说明  :  OM_FTM_REPROT_IND_STRU结构体的映射结构体
- 1.日    期   : 2015年12月16日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -3681,13 +2208,7 @@ typedef struct
     NAS_ELF_FTM_PTMSI_RPT_EVENT_STRU                    stContent;     /* 工程模式上报的内容 */
 }OM_NAS_ELF_FTM_REPROT_IND_STRU;
 
-/*****************************************************************************
- 结构名    :  NAS_ELF_ERR_LOG_ALM_MNTN_STRU
- 结构说明  :  NAS_ERR_LOG_ALM_MNTN消息的映射结构体
- 1.日    期   : 2015年12月16日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -3695,13 +2216,7 @@ typedef struct
     NAS_ELF_ERR_LOG_MNTN_EVENT_STRU                     stContent;                          /* 消息内容 */
 }NAS_ELF_ERR_LOG_ALM_MNTN_STRU;
 
-/*****************************************************************************
- 结构名    :  OM_NAS_ELF_INFO_CLT_REPORT_REQ_STRU
- 结构说明  :  OM_INFO_CLT_REPORT_REQ_STRU消息的映射结构体
- 1.日    期   : 2015年12月16日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -3712,13 +2227,7 @@ typedef struct
     MNTN_PLMN_ID_STRU                                   stContent;
 }OM_NAS_ELF_INFO_CLT_REPORT_REQ_STRU;
 
-/*****************************************************************************
- 结构名    :  OM_NAS_ELF_INFO_CLT_REPORT_CNF_STRU
- 结构说明  :  OM_INFO_CLT_REPORT_CNF_STRU消息的映射结构体
- 1.日    期   : 2015年12月16日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -3729,65 +2238,35 @@ typedef struct
     NAS_INFO_CLT_CLOUD_FREQ_BAND_EVENT_STRU             stContent; /* 故障主动上报的内容 */
 } OM_NAS_ELF_INFO_CLT_REPORT_CNF_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_MTC_CDMA_STATE_IND_STRU
- 结构说明  :  TAF_MTC_CDMA_STATE_IND_STRU消息的映射结构体
- 1.日    期   : 2015年12月17日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                     stHeader;
     TAF_MTC_CDMA_STATE_IND_STRU                         stSetCdmaConnSt;
 } TAF_ELF_MTC_CDMA_STATE_IND_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_MTC_MODEM_CONN_STATUS_IND_STRU
- 结构说明  :  TAF_MTC_MODEM_CONN_STATUS_IND_STRU消息的映射结构体
- 1.日    期   : 2015年12月17日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                     stHeader;
     TAF_MTC_MODEM_CONN_STATUS_IND_STRU                  stModemConnSt;
 } TAF_ELF_MTC_MODEM_CONN_STATUS_IND_STRU;
 
-/*****************************************************************************
- 结构名    :  TAF_ELF_MTC_MODEM_CONN_STATUS_IND_STRU
- 结构说明  :  TAF_ELF_MTC_USIMM_STATUS_IND_STRU消息的映射结构体
- 1.日    期   : 2015年12月17日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                     stHeader;
     TAF_MTC_USIMM_STATUS_IND_STRU                       stUsimmState;
 } TAF_ELF_MTC_USIMM_STATUS_IND_STRU;
 
-/*****************************************************************************
- 结构名    :  MTC_ELF_BEGIN_SESSION_IND_STRU
- 结构说明  :  MTC_BEGIN_SESSION_IND_STRU消息的映射结构体
- 1.日    期   : 2015年12月17日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                     stHeader;
     MTC_BEGIN_SESSION_IND_STRU                          stSessionInfo;
 } MTC_ELF_BEGIN_SESSION_IND_STRU;
 
-/*****************************************************************************
- 结构名    :  MTC_ELF_END_SESSION_IND_STRU
- 结构说明  :  MTC_END_SESSION_IND_STRU消息的映射结构体
- 1.日    期   : 2015年12月17日
-   作    者   : h00360002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                     stHeader;

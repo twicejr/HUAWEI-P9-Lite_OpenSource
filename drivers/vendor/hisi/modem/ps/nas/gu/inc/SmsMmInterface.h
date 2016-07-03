@@ -1,14 +1,4 @@
-/********************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : SmsMmInterface.h
-  Description : SMS与MM接口头文件
-  History     :
-      1.  张志勇   2004.2.24   新版作成
-      2.日    期   : 2008年7月18日
-        作    者   : luojian 00107747
-        修改内容   : 根据问题单号：AT2D04627/AT2D04237,
-                     MM在IDEL ATTEMPT TO UPDATE状态支持SMS
-*******************************************************************************/
+
 #ifndef _SMS_MM_INTERFACE_H_
 #define _SMS_MM_INTERFACE_H_
 
@@ -38,24 +28,15 @@ extern "C" {
 #define MMSMS_ERR_IND                                       8
 #define MMSMS_REG_STATE_IND                                 10
 
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
 #define MMSMS_NACK_DATA_IND                                (12)
 
-/*****************************************************************************
- 结构名    : MMSMS_NACK_DATA_IND_STRU
- 结构说明  : MMSMS_NACK_DATA_IND消息与对应处理函数的结构
 
-  1.日    期   : 2013年6月26日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级，DTS20121809369
-*****************************************************************************/
 typedef struct                                             
 {                                                          
     MSG_HEADER_STRU                     MsgHeader;         
     NAS_MSG_STRU                        stNackMsg;
 }MMSMS_NACK_DATA_IND_STRU;
 
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 
 /* 原语MMSMS_EST_REQ的结构体                */
 typedef struct
@@ -127,13 +108,7 @@ typedef struct
     VOS_UINT32                   ulTransactionId;                                    /* TI                                       */
 }MMSMS_ABORT_REQ_STRU;
 
-/*****************************************************************************
- 枚举名    : MMSMS_SESSION_TYPE_ENUM_UINT8
- 枚举说明  : SMS域SESSION类型
- 1.日    期   : 2014年5月28日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 enum MMSMS_SESSION_TYPE_ENUM
 {
     MMSMS_SESSION_TYPE_MO_SMS,
@@ -142,13 +117,7 @@ enum MMSMS_SESSION_TYPE_ENUM
 };
 typedef VOS_UINT8 MMSMS_SESSION_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 结构名    : MMSMS_BEGIN_SESSION_NOTIFY_STRU
- 结构说明  : SESSION开始指示
- 1.日    期   : 2014年5月28日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stMsgHeader;                /*_H2ASN_Skip*/
@@ -156,13 +125,7 @@ typedef struct
     VOS_UINT8                                       aucReserved[3];
 } MMSMS_BEGIN_SESSION_NOTIFY_STRU;
 
-/*****************************************************************************
- 结构名    : MMSMS_END_SESSION_NOTIFY_STRU
- 结构说明  : SESSION结束指示
- 1.日    期   : 2014年5月28日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stMsgHeader;                /*_H2ASN_Skip*/

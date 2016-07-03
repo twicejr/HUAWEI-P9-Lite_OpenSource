@@ -1,14 +1,4 @@
-/******************************************************************************
 
-   Copyright(C)2013,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : CssProcLmmMsg.c
-  Description     : 该C文件给出了IMSA模块初始化和消息处理入口的实现
-  History           :
-     1.wangchen 00209181    2015-05-14  Draft Enact
-
-******************************************************************************/
 
 
 /*****************************************************************************
@@ -31,16 +21,7 @@
   3 Function
 *****************************************************************************/
 
-/*****************************************************************************
- Function Name  : CSS_TimerInit()
- Description    : 定时器初始化函数
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-05-14  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_TimerInit
 (
     VOS_VOID
@@ -80,16 +61,7 @@ VOS_VOID CSS_TimerInit
     return ;
 }
 
-/*****************************************************************************
- Function Name  : CSS_StopAllTimer
- Description    : 停止所有定时器
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_StopAllTimer(VOS_VOID)
 {
     CSS_CONTROL_STRU                   *pstCssControl;
@@ -106,16 +78,7 @@ VOS_VOID CSS_StopAllTimer(VOS_VOID)
 
 
 
-/*****************************************************************************
- Function Name  : CSS_ProcLmmMsgStartInd()
- Description    : ID_LMM_CSS_START_IND消息处理函数
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-05-14  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_ProcLmmMsgStartInd
 (
     const VOS_VOID                     *pRcvMsg
@@ -200,16 +163,7 @@ VOS_VOID CSS_ProcLmmMsgStartInd
 
     return ;
 }
-/*****************************************************************************
- Function Name  : CSS_ProcLmmMsgStopInd()
- Description    : ID_LMM_CSS_STOP_IND消息处理函数
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-05-14  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_ProcLmmMsgStopInd
 (
     const VOS_VOID                     *pRcvMsg
@@ -237,16 +191,7 @@ VOS_VOID CSS_ProcLmmMsgStopInd
     return ;
 }
 
-/*****************************************************************************
- Function Name  : CSS_ProcLmmMsg()
- Description    : LPHY消息处理函数
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-05-14  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_ProcLmmMsg(const VOS_VOID *pRcvMsg)
 {
 

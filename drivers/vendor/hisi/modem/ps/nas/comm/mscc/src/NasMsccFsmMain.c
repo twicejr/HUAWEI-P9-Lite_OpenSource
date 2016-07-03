@@ -66,23 +66,7 @@ VOS_UINT32 NAS_MSCC_RcvMmaStartReq_Main_Null(
 }
 
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_RcvMsccStartCnf_Main_Null
-Description     :   The function receives the Internal message from Switch On FSM. IF Start result is success,
-                    Success result is sent to MSCC. If start result is not success, fail result is sent to MMA.
 
-Input parameters:   ulEventType   - Event type of the message.
-                    pstMsg        - POinter to the message.
-Outout parameters:  None
-Return Value    :   None
-Modify History:
-    1)  Date    :   2014-01-31
-        Author  :   a00295761
-        Modify content :    Create
-    2)  Date    :   2015-08-20
-        Author  :   w00242748
-        Modify content : 动态加载项目
-*****************************************************************************/
 
 VOS_UINT32 NAS_MSCC_RcvMsccStartCnf_Main_Null(
     VOS_UINT32                          ulEventType,
@@ -159,27 +143,7 @@ VOS_UINT32 NAS_MSCC_RcvMmaPowerOffReq_Main_Deactive(
 }
 
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_RcvMmaSysAcquireReq_Main_Deactive
-Description     :   The function receives the System Acquire request from MMA.
-                    Send system acquire request all enabled modules.
-                    Change the current state to NAS_MSCC_L1_STA_ACTIVE
 
-Input parameters:   ulEventType   - Event type of the message.
-                    pstMsg        - POinter to the message.
-Outout parameters:  None
-Return Value    :   None
-Modify History:
-    1)  Date    :   2014-01-31
-        Author  :   a00295761
-        Modify content :    Create
-    2)  Date    :   2015-04-08
-        Author  :   m00312079
-        Modify content :    add the logic for CL system acquire
-    3)  日    期   : 2015年6月19日
-        作    者   : s00217060
-        修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_2.0修改
-*****************************************************************************/
 
 VOS_UINT32 NAS_MSCC_RcvMmaSysAcquireReq_Main_Deactive(
     VOS_UINT32                          ulEventType,
@@ -309,22 +273,7 @@ VOS_UINT32 NAS_MSCC_RcvInternalSysAcqReq_Main_Active(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_RcvMmcRegRejPlmnSeleInd_Main_Active
-Description     :   process ID_MMC_MSCC_REG_REJ_PLMN_SELE_IND message
 
-Input parameters:   ulEventType   - Event type of the message.
-                    pstMsg        - POinter to the message.
-Outout parameters:  None
-Return Value    :   None
-Modify History:
-    1)  Date    :   2015-04-03
-        Author  :   m00312079
-        Modify content :    Create
-    2)  Date    :   2016-01-18
-        Author  :   w00176964
-        Modify content :DTS2016011802320调整
-*****************************************************************************/
 VOS_UINT32 NAS_MSCC_RcvMmcMmssLteUnavailableInd_Main_Active(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -481,25 +430,7 @@ VOS_UINT32 NAS_MSCC_RcvInternalBsrRsltCnf_Main_Active(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_RcvTiBsrTimerExpired_Main_Active
-Description     :   process the BSR Timer Expiry message
 
-Input parameters:   ulEventType   - Event type of the message.
-                    pstMsg        - Pointer to the message.
-Outout parameters:  None
-Return Value    :   None
-Modify History:
-    1)  Date    :   2015-04-07
-        Author  :   t00323010
-        Modify content :    Create for Iteration 10
-    2)  Date    :   2015-06-11
-        Author  :   W00176964
-        Modify content : CDMA Iteration 12 Modified
-    3)  Date    :   2015-12-15
-        Author  :   W00176964
-        Modify content : CL_MUTIMODE_OPTIMIZE调整:BSR触发指定搜逻辑删除
-*****************************************************************************/
 VOS_UINT32 NAS_MSCC_RcvTiBsrTimerExpired_Main_Active(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -523,22 +454,7 @@ VOS_UINT32 NAS_MSCC_RcvTiPeriodTryingHighPrioNetworkSearchExpired_Main_Active(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_ProcInterSysAcqSucc_Main
- 功能描述  : MAIN上处理内部系统捕获成功结果
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月3日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2015年12月10日
-    作    者   : w00176964
-    修改内容   : CL_MUTIMODE_OPTIMIZE调整
-*****************************************************************************/
 VOS_VOID NAS_MSCC_ProcInterSysAcqSucc_Main(VOS_VOID)
 {
 
@@ -581,22 +497,7 @@ VOS_VOID NAS_MSCC_ProcInterSysAcqSucc_Main(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_ProcInterSysAcqFail_Main
- 功能描述  : MAIN上处理内部系统捕获失败结果
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月3日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2015年12月11日
-    作    者   : w00176964
-    修改内容   : CL_MUTIMODE_OPTIMIZE调整
-*****************************************************************************/
 VOS_VOID NAS_MSCC_ProcInterSysAcqFail_Main(
     NAS_MSCC_MSCC_SYS_ACQ_RSLT_CNF_STRU                    *pstSysAcqRslt
 )
@@ -659,31 +560,7 @@ VOS_VOID NAS_MSCC_ProcInterSysAcqFail_Main(
 }
 
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_RcvInterSysAcqRsltCnf_Main_Active
-Description     :   in active state process the system acquire result indication message
 
-Input parameters:   ulEventType   - Event type of the message.
-                    pstMsg        - POinter to the message.
-Outout parameters:  None
-Return Value    :   None
-Modify History:
-    1)  Date    :   2015-04-07
-        Author  :   w00176964
-        Modify content :    Create
-    2)  Date    :   2015-06-11
-        Author  :   W00176964
-        Modify content : CDMA Iteration 12 Modified
-    3)  Date           : 2015-06-04
-        Author         : w00176964
-        Modify content : CDMA Iteration 15 Modified
-    4)  Date           : 2015-08-25
-        Author         : m00312079
-        Modify content : DTS2015082004682:L2C过程中往MMA上报无服务
-    5)  Date           : 2016-01-15
-        Author         : j00354216
-        Modify content : DTS2016011403391
-*****************************************************************************/
 VOS_UINT32 NAS_MSCC_RcvInterSysAcqRsltCnf_Main_Active(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -743,20 +620,7 @@ VOS_UINT32 NAS_MSCC_RcvTiSleepTimerExpired_Main_Deactive(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_ProcRfAvailableInd_Main_Deactive
- 功能描述  : MSCC在deactive状态下，处理RF资源可用请求
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月2日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_ProcRfAvailableInd_Main_Deactive()
 {
     NAS_MSCC_PIF_CARD_STATUS_ENUM_UINT8 enUsimCardStatus;
@@ -989,21 +853,7 @@ VOS_UINT32 NAS_MSCC_RcvMmaCdmaMoCallStartNtf_Main_Deactive(
 
 
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_RcvTiAvailableTimerExpired_Main_Active
-Description     :   proc for TI_NAS_MSCC_AVAILABLE_TIMER message
-Input parameters:   ulEventType
-                    pstMsg
-Output parameters:  None
-Return Value    :   VOS_UINT32
-Modify History:
-    1)  Date    :   2014-4-7
-        Author  :   w00176964
-        Modify content :Create
-    2)  Date    :   2015-12-11
-        Author  :   w00176964
-        Modify content :CL_MUTIMODE_OPTIMIZE调整
-*****************************************************************************/
+
 VOS_UINT32 NAS_MSCC_RcvTiAvailableTimerExpired_Main_Active(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1129,22 +979,7 @@ VOS_VOID NAS_MSCC_PerformSystemAcquireUponSleepTimerExpired_Main(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_RcvHsdInterSysStartInd_Main_Active
- 功能描述  : mscc收到消息HSD_MSCC_INTERSYS_START_IND,处理该消息
- 输入参数  : pstMsg      - 消息内容
-             ulEventType - 消息类型
- 输出参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:消息处理完成
-             VOS_FALSE:消息处理未完成
 
- 修改历史      :
- 1.日    期   : 2015年11月05日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MSCC_RcvHsdInterSysStartInd_Main_Active(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1155,22 +990,7 @@ VOS_UINT32 NAS_MSCC_RcvHsdInterSysStartInd_Main_Active(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_RcvMmcInterSysStartInd_Main_Active
- 功能描述  : mscc收到消息MMC_MSCC_INTERSYS_START_IND,处理该消息
- 输入参数  : pstMsg      - 消息内容
-             ulEventType - 消息类型
- 输出参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:消息处理完成
-             VOS_FALSE:消息处理未完成
 
- 修改历史      :
- 1.日    期   : 2015年11月05日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MSCC_RcvMmcInterSysStartInd_Main_Active(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1182,22 +1002,7 @@ VOS_UINT32 NAS_MSCC_RcvMmcInterSysStartInd_Main_Active(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_RcvMsccCLInterSysRsltCnf_Main_Active
- 功能描述  : mscc收到消息ID_NAS_MSCC_MSCC_CL_INTERSYS_RSLT_CNF,处理该消息
- 输入参数  : pstMsg      - 消息内容
-             ulEventType - 消息类型
- 输出参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:消息处理完成
-             VOS_FALSE:消息处理未完成
 
- 修改历史      :
- 1.日    期   : 2015年11月05日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MSCC_RcvMsccCLInterSysRsltCnf_Main_Active(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1207,22 +1012,7 @@ VOS_UINT32 NAS_MSCC_RcvMsccCLInterSysRsltCnf_Main_Active(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_RcvMmaCdmaMoCallSusccessNtf_Main_Active
- 功能描述  : mscc收到消息ID_MMA_MSCC_CDMA_MO_CALL_SUCCESS_NTF,处理该消息
- 输入参数  : pstMsg      - 消息内容
-             ulEventType - 消息类型
- 输出参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:消息处理完成
-             VOS_FALSE:消息处理未完成
 
- 修改历史      :
- 1.日    期   : 2015年11月05日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MSCC_RcvMmaCdmaMoCallSusccessNtf_Main_Active(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1236,22 +1026,7 @@ VOS_UINT32 NAS_MSCC_RcvMmaCdmaMoCallSusccessNtf_Main_Active(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_RcvXsdEmcCallBackInd_Main_Active
- 功能描述  : mscc收到消息ID_XSD_MSCC_EMC_CALLBACK_IND,处理该消息
- 输入参数  : pstMsg      - 消息内容
-             ulEventType - 消息类型
- 输出参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:消息处理完成
-             VOS_FALSE:消息处理未完成
 
- 修改历史      :
- 1.日    期   : 2016年1月6日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MSCC_RcvXsdEmcCallBackInd_Main_Active(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1328,20 +1103,7 @@ VOS_UINT32 NAS_MSCC_ProcTiAvailableTimerExpiredOosSrch_L1Main(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_ProcTiAvailableTimerExpiredLteFullBandSrchWith1xSrvExist_L1Main
-Description     :   proc for TI_NAS_MSCC_AVAILABLE_TIMER message
-Input parameters:   VOS_VOID
-Output parameters:  None
-Return Value    :   VOS_UINT32
-Modify History:
-    1)  Date    :   2015-12-11
-        Author  :   w00176964
-        Modify content :Create
-    2)  Date    :   2016-1-16
-        Author  :   w00176964
-        Modify content :DTS2016011505664:进行LTE的全频段搜索之前穿插NV限定次数的LTE历史频点搜索
-*****************************************************************************/
+
 VOS_UINT32 NAS_MSCC_ProcTiAvailableTimerExpiredLteFullBandSrchWith1xSrvExist_L1Main(VOS_VOID)
 {
     VOS_UINT8                           ucFullBandSrchCount;
@@ -1513,18 +1275,7 @@ NAS_MSCC_SYS_ACQ_SCENE_MAP_LTE_SRCH_TYPE_STRU g_astSysAcqSceneMapLteSrchTypeTbl[
 };
 
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_GetSysAcqLteSrchType_L1Main
-Description     :   获取系统捕获Lte时的搜索类型
-Input parameters:   enSysAcqScene--捕获场景
-Output parameters:  VOS_VOID
-Return Value    :   NAS_MSCC_PIF_PLMN_SEARCH_TYPE_ENUM_UINT32
 
-Modify History:
-    1)  Date    :   2015-12-30
-        Author  :   w00176964
-        Modify content :CL_MUTIMODE_OPTIMIZE新增
-*****************************************************************************/
 
 NAS_MSCC_PIF_PLMN_SEARCH_TYPE_ENUM_UINT32 NAS_MSCC_GetSysAcqLteSrchType_L1Main(
     NAS_MSCC_SYS_ACQ_SCENE_ENUM_UINT32  enSysAcqScene
@@ -1646,17 +1397,7 @@ VOS_VOID NAS_MSCC_PerformSystemAcquireUponPowerOn_Main(
     return;
 }
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_PerformSystemAcquireUponSysCfg_Main
-Description     :   在SYS CFG场景下，发起系统捕获
-Input parameters:   VOS_VOID
-Output parameters:  VOS_VOID
-Return Value    :   VOS_VOID
-Modify History:
-    1)  Date    :   2015-5-29
-        Author  :   y00245242
-        Modify content :Create
-*****************************************************************************/
+
 VOS_VOID NAS_MSCC_PerformSystemAcquireUponSysCfg_Main(VOS_VOID)
 {
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
@@ -2040,27 +1781,7 @@ VOS_UINT32 NAS_MSCC_RcvMsccSysCfgCnf_Main_Deactive(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_RcvMsccSysCfgCnf_Main_Active
-Description     :   The function is used to Handle System config Confirm internal message from MSCC in L1 Main active state.
 
-Input parameters:   ulEventType   - Event type of the message.
-                    pstMsg        - POinter to the message.
-Outout parameters:  None
-Return Value    :   None
-Modify History:
-    1)  Date    :   2014-04-10
-        Author  :   m00270891
-        Modify content :    Create
-
-    2)  Date    :   2015-05-29
-        Author  :   y00245242
-        Modify content : DTS2015052903319
-
-    3)  Date    :   2015-12-11
-        Author  :   w00176964
-        Modify content : CL_MUTIMODE_OPTIMIZE调整
-*****************************************************************************/
 VOS_UINT32 NAS_MSCC_RcvMsccSysCfgCnf_Main_Active(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2120,24 +1841,7 @@ VOS_UINT32 NAS_MSCC_RcvMsccSysCfgCnf_Main_Active(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_ProcPowerOffResult_Main
-Description     :   proc power off result ind
-Input parameters:   VOS_VOID
-Output parameters:  VOS_VOID
-Return Value    :   VOS_VOID
-Modify History:
-    1)  Date    :   2014-4-7
-        Author  :   w00176964
-        Modify content :Create
-    2)  Date    :   2015-8-26
-        Author  :   w00242748
-        Modify content :Create
-      3.日    期   : 2016年1月6日
-        作    者   : w00242748
-        修改内容   : DTS2015072705348:进入紧急呼回呼模式后，挂起HRPD和LTE；退出紧急呼
-                     回呼模式后，再进行搜网，紧急呼回呼模式下，不进行其他任何形式搜网；
-*****************************************************************************/
+
 VOS_VOID NAS_MSCC_ProcPowerOffResult_Main(
     NAS_MSCC_POWEROFF_RSLT_ENUM_UINT32  enRslt
 )
@@ -2196,23 +1900,7 @@ VOS_VOID NAS_MSCC_ProcPowerOffResult_Main(
 }
 
 #if (FEATURE_ON == FEATURE_TDS_WCDMA_DYNAMIC_LOAD)
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_ProcDynamicLoadAfterStartCnf_Main
- 功能描述  : 在开机完成后，处理动态加载的处理
- 输入参数  : ucImsVoiceAvail           -IMS voice是否可用
-             ucIsExistPersistentBearer -persistent eps bearer是否存在标识
- 输出参数  : 无
- 返 回 值  : 无
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年01月27日
-   作    者   : y00245242
-   修改内容   : 新生成函数
- 2.日    期   : 2015年4月25日
-   作    者   : z00161729
-   修改内容   : 24301 R11 CR升级项目修改
-*****************************************************************************/
 VOS_VOID NAS_MSCC_ProcDynamicLoadAfterStartCnf_Main(VOS_VOID)
 {
     VOS_RATMODE_ENUM_UINT32                                 enRatMode;
@@ -2233,19 +1921,7 @@ VOS_VOID NAS_MSCC_ProcDynamicLoadAfterStartCnf_Main(VOS_VOID)
 #endif
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
-Function Name   :   NAS_MSCC_RcvMmaPlmnUserReselReq_Main_Deactive
-Description     :   在deactive状态下，收到MMA的用户PLMN请求消息
-Input parameters:   ulEventType -- 事件类型
-                    pstMsg      -- 消息
-Output parameters:  VOS_VOID
-Return Value    :   VOS_TRUE  -- 消息处理完毕；
-                    VOS_FALSE -- 消息需要进一步处理
-Modify History:
-    1)  Date    :   2015-12-30
-        Author  :   y00245242
-        Modify content :Create
-*****************************************************************************/
+
 VOS_UINT32 NAS_MSCC_RcvMmaPlmnUserReselReq_Main_Deactive(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2299,19 +1975,7 @@ VOS_UINT32 NAS_MSCC_RcvMmaPlmnUserReselReq_Main_Deactive(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_RcvMmaPlmnUserReselReq_Main_Active
-Description     :   在active状态下，收到MMA的用户PLMN请求消息
-Input parameters:   ulEventType -- 事件类型
-                    pstMsg      -- 消息
-Output parameters:  VOS_VOID
-Return Value    :   VOS_TRUE  -- 消息处理完毕；
-                    VOS_FALSE -- 消息需要进一步处理
-Modify History:
-    1)  Date    :   2015-12-30
-        Author  :   y00245242
-        Modify content :Create
-*****************************************************************************/
+
 VOS_UINT32 NAS_MSCC_RcvMmaPlmnUserReselReq_Main_Active(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg

@@ -1,39 +1,4 @@
-/*******************************************************************************
-  Copyright    : 2005-2007, Huawei Tech. Co., Ltd.
-  File name    : MM_Main.c
-  Description  : MM主处理
-  Function List: Mm_Event_Analy
-                 Mm_Timer_Event_Analy
-                 Mm_Main
 
-  History:
-      1.  张志勇   2003.12.20 新版做成
-      2.  s46746  2005.10.19  打印全局数据结构 问题单A32D00636
-      3.  s46746  2006.02.28  依据问题单A32D02234修改
-      4.  s46746  2006.02.28  依据问题单A32D02235修改
-
-      5.日    期   : 2006年4月19日
-        作    者   : liuyang id:48197
-        修改内容   : 问题单号：A32D03208
-
-      6. x51137 2006/5/5 A32D03487
-      7. x51137 2006/5/30 A32D04051
-      8. s46746 2006-07-25 根据问题单A32D04901修改
-      10.x51137 2006/11/3 A32D06821
-      11.h44270 2007/01/26 A32D08575
-      12.日    期  : 2007年06月07日
-         作    者  : luojian id:60022475
-         修改内容  : 问题单号:A32D11534
-      13.日    期  : 2008年08月05日
-         作    者  : ouyangfei id:00132663
-         修改内容  : 问题单号:AT2D04738
-      14.日    期   : 2009年01月15日
-         作    者   : l00130025
-         修改内容   : 问题单号:AT2D07018,LAU或RAU过程中搜网和SYSCFG设置,发起底层释放链接的操作
-      15.日    期   : 2009年09月25日
-         作    者   : x00115505
-         修改内容   : 问题单号:AT2d14773,关机时，SDT中可维可测功能查询IMSI为空
-*******************************************************************************/
 #include        "MM_Inc.h"
 #include        "MmSuspend.h"
 #include        "NasComm.h"
@@ -43,10 +8,8 @@
 #include        "MmLmmInterface.h"
 #include        "NasMmProcLResult.h"
 #endif
-/* Added by w00176964 for V3R3C60_eCall项目, 2014-4-8, begin */
 #include        "NasMmEcall.h"
 #include        "NasMmPreProc.h"
-/* Added by w00176964 for V3R3C60_eCall项目, 2014-4-8, end */
 
 #include        "NasMmSndOm.h"
 
@@ -70,20 +33,7 @@ extern MM_TIMER_ST  gstMmTimerSuspend;
 VOS_UINT32 WuepsMmcPidInit ( enum VOS_INIT_PHASE_DEFINE ip );
 VOS_UINT32 WuepsGmmPidInit ( enum VOS_INIT_PHASE_DEFINE ip );
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_Event_Analy_From_GMM
- 功能描述  : 处理GMM的消息处理
- 输入参数  : pMsgHeader:来自GMM的消息
- 输出参数  : 无
- 返 回 值  : 事件ID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月01日
-    作    者   : h44270
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32   NAS_MM_Event_Analy_From_GMM(MSG_HEADER_STRU* pMsgHeader)
 {
     VOS_UINT8 ucEventID = MM_EVENT_ID_INVALID;
@@ -142,26 +92,7 @@ VOS_UINT32   NAS_MM_Event_Analy_From_GMM(MSG_HEADER_STRU* pMsgHeader)
 
 }
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_MM_AnalyzeLmmEvent
- 功能描述  : 来自LMM的消息处理
- 输入参数  : pMsgHeader - 来自LMM的消息头
- 输出参数  : 无
- 返 回 值  : 事件ID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年11月28日
-   作    者   : z00161729
-   修改内容   : 新生成函数
- 2.日    期   : 2012年2月14日
-   作    者   : z00161729
-   修改内容   : V7R1C50 支持CSFB特性修改
-3. 日    期   : 2012年9月22日
-   作    者   : w00176964
-   修改内容   : Volte_phaseII 项目:增加CS安全上下文回复的处理
-*****************************************************************************/
 VOS_UINT8  NAS_MM_AnalyzeLmmEvent(MSG_HEADER_STRU *pMsgHeader)
 {
     VOS_UINT8                           ucEventID = MM_EVENT_ID_INVALID;
@@ -180,11 +111,9 @@ VOS_UINT8  NAS_MM_AnalyzeLmmEvent(MSG_HEADER_STRU *pMsgHeader)
             ucEventID = NAS_MM_RcvLmmCsPagingInd(pMsgHeader);
             break;
 
-        /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-22, begin */
         case ID_LMM_MM_HO_SECU_INFO_CNF:
             ucEventID = NAS_MM_RcvLmmHoSecuInfoCnf((struct MsgCB*)pMsgHeader);
             break;
-        /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-22, end */
 
          default:
              NAS_LOG(WUEPS_PID_MM, VOS_NULL, PS_LOG_LEVEL_WARNING, "NAS_MM_AnalyzeLmmEvent:WARNING: Msg name from LMM is Error");
@@ -197,39 +126,7 @@ VOS_UINT8  NAS_MM_AnalyzeLmmEvent(MSG_HEADER_STRU *pMsgHeader)
 
 #endif
 
-/***********************************************************************
- *  MODULE   : Mm_Event_Analy_From_MMC
- *  FUNCTION : Mm_Event_Analy函数降复杂度: 来自MMC的消息处理
- *  INPUT    : VOS_VOID
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8 ucEventID
- *  NOTE     :
- *  HISTORY  :
-     1.  欧阳飞   2009.06.11  新版作成
-     2. 日    期   : 2011年10月27日
-        作    者   : s46746
-        修改内容   : V7R1 PhaseIII,支持L模联合注册
 
-     3. 日    期   : 2011年11月30日
-        作    者   : w00176964
-        修改内容   : V7R1 Phase IV调整:增加对L下detach回复结果的处理
-     4. 日    期   : 2012年2月15日
-        作    者   : w00166186
-        修改内容   : CSFB&PPAC&ETWS&ISR 开发
-
-     5. 日    期   : 2013年4月1日
-        作    者   : y00176023
-        修改内容   : DSDS GUNAS II项目:增加对CSFB过程中RAT改变的处理
-
-     6.日    期   : 2014年5月21日
-       作    者   : w00167002
-       修改内容   : DTS2014051602857:在SOR打开时候，如果CS注册失败达到4次，则等周期
-                搜网定时器超时发起LIST搜网，如果当前仅有原有网络，则发起LAU,否则
-                触发MM发起LAU;如果LIST搜后，发现有其他网络，则发起其他网络的搜网注册。
-     7. 日    期   : 2014年04月1日
-        作    者   : w00176964
-        修改内容   : V3R3C60_eCall项目:系统消息处理优化
-************************************************************************/
 VOS_UINT8   Mm_Event_Analy_From_MMC(MSG_HEADER_STRU* pMsgHeader)
 {
     VOS_UINT8 ucEventID = MM_EVENT_ID_INVALID;
@@ -290,9 +187,7 @@ VOS_UINT8   Mm_Event_Analy_From_MMC(MSG_HEADER_STRU* pMsgHeader)
 
     case MMCMM_SYS_INFO_IND:
     case MMCMM_GSM_SYS_INFO_IND:
-        /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-1, begin */
         ucEventID   = NAS_MM_RcvMmcMmSysInfoInd_PreProc(pMsgHeader);
-        /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-1, end */
         break;
     case MMCMM_MODE_CHANGE_REQ:
         ucEventID   = 20;
@@ -338,22 +233,7 @@ VOS_UINT8   Mm_Event_Analy_From_MMC(MSG_HEADER_STRU* pMsgHeader)
     return ucEventID;
 }
 
-/***********************************************************************
- *  MODULE   : Mm_Event_Analy_From_CC
- *  FUNCTION : Mm_Event_Analy函数降复杂度: 来自CC的消息处理
- *  INPUT    : VOS_VOID
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8 ucEventID
- *  NOTE     :
- *  HISTORY  :
-     1.  欧阳飞   2009.06.11  新版作成
-     2.日    期   : 2013年09月22日
-       作    者   : w00176964
-       修改内容   : VoLTE_PhaseII 项目:增加CC模块通知的呼叫消息处理
-     3.日    期   : 2014年6月13日
-       作    者   : w00242748
-       修改内容   : DSDS 新特性
- ************************************************************************/
+
 VOS_UINT8   Mm_Event_Analy_From_CC(MSG_HEADER_STRU* pMsgHeader)
 {
     VOS_UINT8 ucEventID = MM_EVENT_ID_INVALID;
@@ -385,13 +265,11 @@ VOS_UINT8   Mm_Event_Analy_From_CC(MSG_HEADER_STRU* pMsgHeader)
         ucEventID   = 87;
         break;
 
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-23, begin */
 #if (FEATURE_ON == FEATURE_IMS)
     case MMCC_SRVCC_CALL_INFO_NOTIFY:
         NAS_MM_RcvCcSrvccCallInfoNtf((MMCC_SRVCC_CALL_INFO_NOTIFY_STRU*)pMsgHeader);
         break;
 #endif
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-23, end */
 
 #if (FEATURE_ON == FEATURE_DSDS)
     case MMCC_BEGIN_SESSION_NOTIFY:
@@ -407,12 +285,10 @@ VOS_UINT8   Mm_Event_Analy_From_CC(MSG_HEADER_STRU* pMsgHeader)
         NAS_MM_RcvMmccCallStatusNty((MMCC_CALL_STATUS_NTF_STRU*)pMsgHeader);
         break;
 
-    /* Added by n00355355 for 呼叫重建, 2015-9-17, begin */
     case MMCC_GET_CALL_INFO_CNF:
         NAS_MM_RcvMmccGetCallInfoCnf((MMCC_GET_CALL_INFO_CNF_STRU*)pMsgHeader);
         break;
 
-    /* Added by n00355355 for 呼叫重建, 2015-9-17, end */
 
     default:
         PS_NAS_LOG(WUEPS_PID_MM, VOS_NULL, PS_LOG_LEVEL_WARNING, "Mm_Event_Analy_From_CC:WARNING: Msg name from CC is Error");
@@ -422,21 +298,7 @@ VOS_UINT8   Mm_Event_Analy_From_CC(MSG_HEADER_STRU* pMsgHeader)
     return ucEventID;
 }
 
-/* Added by f62575 for V9R1 STK升级, 2013/07/11, begin */
-/*****************************************************************************
- 函 数 名  : NAS_MM_SndSmsNackMsg
- 功能描述  : 转发GAS的RRMM_NACK_DATA_IND给SMS模块，消息名修改为MMSMS_NACK_DATA_IND
- 输入参数  : RRMM_NACK_DATA_IND_STRU *pstMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2013年6月26日
-   作    者   : f62575
-   修改内容   : V9R1 STK升级
-*****************************************************************************/
 VOS_VOID NAS_MM_SndSmsNackMsg(RRMM_NACK_DATA_IND_STRU *pstMsg)
 {
     MMSMS_NACK_DATA_IND_STRU           *pstMmSmsNackMsg = VOS_NULL_PTR;
@@ -468,20 +330,7 @@ VOS_VOID NAS_MM_SndSmsNackMsg(RRMM_NACK_DATA_IND_STRU *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_RcvNackMsg
- 功能描述  : 处理接入层上报的未发送消息，目前仅支持GAS上报的短信未发送消息，透传给SMS处理
- 输入参数  : pstMsg GAS上报的短信未发送消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月26日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级
-*****************************************************************************/
 VOS_VOID NAS_MM_RcvNackMsg(RRMM_NACK_DATA_IND_STRU *pstMsg)
 {
     /* 判断PD                                   */
@@ -493,21 +342,8 @@ VOS_VOID NAS_MM_RcvNackMsg(RRMM_NACK_DATA_IND_STRU *pstMsg)
     return;
 }
 
-/* Added by f62575 for V9R1 STK升级, 2013/07/11, end */
 
-/***********************************************************************
- *  MODULE   : Mm_Event_Analy_From_GAS
- *  FUNCTION : Mm_Event_Analy函数降复杂度: 来自GAS的消息处理
- *  INPUT    : VOS_VOID
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8 ucEventID
- *  NOTE     :
- *  HISTORY  :
-     1.  欧阳飞   2009.06.11  新版作成
-     2.日    期   : 2013年07月11日
-       作    者   : f62575
-       修改内容   : V9R1 STK升级项目
- ************************************************************************/
+
 VOS_UINT8   Mm_Event_Analy_From_GAS(MSG_HEADER_STRU* pMsgHeader)
 {
     VOS_UINT8 ucEventID = MM_EVENT_ID_INVALID;
@@ -538,17 +374,13 @@ VOS_UINT8   Mm_Event_Analy_From_GAS(MSG_HEADER_STRU* pMsgHeader)
     case GAS_RR_CHAN_IND:
         ucEventID   = 86;
         break;
-    /* Added by f62575 for V9R1 STK升级, 2013/07/11, begin */
     case RRMM_NACK_DATA_IND:
         NAS_MM_RcvNackMsg((RRMM_NACK_DATA_IND_STRU *)pMsgHeader);
         break;
-    /* Added by f62575 for V9R1 STK升级, 2013/07/11, end */
 
-    /* Added by n00355355 for 呼叫重建 , 2015-9-17, begin */
     case RRMM_TRANSACTION_INFO_ENQ:
         NAS_MM_RcvRrMmGetTransactionReq((RRMM_TRANSACTION_INFO_ENQ_STRU*)pMsgHeader);
         break;
-    /* Added by n00355355 for 呼叫重建, 2015-9-17, end */
 
     default:
         PS_NAS_LOG1(WUEPS_PID_MM, VOS_NULL, PS_LOG_LEVEL_WARNING, "Mm_Event_Analy_From_GAS:WARNING: Msg name from GAS is Error", (VOS_INT32) pMsgHeader->ulMsgName);
@@ -593,11 +425,9 @@ VOS_UINT8   Mm_Event_Analy_From_RRCF(MSG_HEADER_STRU* pMsgHeader)
         ucEventID   = Mm_ComMsgChkProc((RRMM_DATA_IND_FOR_PCLINT_STRU*)pMsgHeader);
         break;
 
-    /* Added by n00355355 for 呼叫重建 , 2015-9-17, begin */
     case RRMM_TRANSACTION_INFO_ENQ:
         NAS_MM_RcvRrMmGetTransactionReq((RRMM_TRANSACTION_INFO_ENQ_STRU*)pMsgHeader);
         break;
-    /* Added by n00355355 for 呼叫重建, 2015-9-17, end */
 
     default:
         PS_NAS_LOG1(WUEPS_PID_MM, VOS_NULL, PS_LOG_LEVEL_WARNING, "Mm_Event_Analy_From_RRCF:WARNING: Msg name from RRC is Error", (VOS_INT32)pMsgHeader->ulMsgName);
@@ -639,20 +469,7 @@ VOS_UINT8   Mm_Event_Analy_From_USIM(MSG_HEADER_STRU* pMsgHeader)
     return ucEventID;
 }
 
-/***********************************************************************
- *  MODULE   : Mm_Event_Analy_From_SMS
- *  FUNCTION : Mm_Event_Analy函数降复杂度: 来自SMS的消息处理
- *  INPUT    : VOS_VOID
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8 ucEventID
- *  NOTE     :
- *  HISTORY  :
-     1.  欧阳飞   2009.06.11  新版作成
-     2.日    期   : 2014年6月25日
-       作    者   : z00161729
-       修改内容   : DSDS III新增
 
- ************************************************************************/
 VOS_UINT8   Mm_Event_Analy_From_SMS(MSG_HEADER_STRU* pMsgHeader)
 {
     VOS_UINT8 ucEventID = MM_EVENT_ID_INVALID;
@@ -689,20 +506,7 @@ VOS_UINT8   Mm_Event_Analy_From_SMS(MSG_HEADER_STRU* pMsgHeader)
     return ucEventID;
 }
 
-/***********************************************************************
- *  MODULE   : Mm_Event_Analy_From_SS
- *  FUNCTION : Mm_Event_Analy函数降复杂度: 来自SS的消息处理
- *  INPUT    : VOS_VOID
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8 ucEventID
- *  NOTE     :
- *  HISTORY  :
-     1.  欧阳飞   2009.06.11  新版作成
-     2.日    期   : 2014年6月25日
-       作    者   : z00161729
-       修改内容   : DSDS III新增
 
- ************************************************************************/
 VOS_UINT8   Mm_Event_Analy_From_SS(MSG_HEADER_STRU* pMsgHeader)
 {
     VOS_UINT8 ucEventID = MM_EVENT_ID_INVALID;
@@ -775,21 +579,7 @@ VOS_UINT8   Mm_Event_Analy_From_TC(MSG_HEADER_STRU* pMsgHeader)
 }
 
 
-/*******************************************************************************
-  Module:   Mm_Event_Analy
-  Function: MM 事件解析
-  Input:    VOS_VOID
-  Output:
-  NOTE:
-  Return:   VOS_UINT8,事件ID
-  History:
-      1.  张志勇   2003.12.20 新版做成
-      2。 s46746 2005-09-08 修改
-      3. x51137 2006/5/5 A32D03487
-      4. 日    期   : 2009年01月15日
-         作    者   : l00130025
-         修改内容   : 问题单号:AT2D07018,LAU或RAU过程中搜网和SYSCFG设置,发起底层释放链接的操作
-*******************************************************************************/
+
 VOS_UINT8   Mm_Event_Analy(MSG_HEADER_STRU* pMsgHeader)
 {
     VOS_UINT8 ucEventID = MM_EVENT_ID_INVALID;
@@ -836,26 +626,7 @@ VOS_UINT8   Mm_Event_Analy(MSG_HEADER_STRU* pMsgHeader)
     return ucEventID;
 }
 
-/*****************************************************************************
- Prototype      : MM_DelayLuGsmTimeout
- Description    : G下延迟发起LU定时器超时的处理
- Input          :
- Output         :
- Return Value   : 无
- Calls          :
- Called By      :
 
- History        : ---
-  1.Date        : 2009-03-12
-    Author      : o00132663
-    Modification: Created function
-  2. 日    期   : 2012年03月23日
-     作    者   : L65478
-     修改内容   : 问题单号:DTS2012032002585,网络模式I下连续5次ATTACH失败后,MM没有发起LU
-  3.日    期   : 2015年6月29日
-    作    者   : z00161729
-    修改内容   : 24008 23122 R11 CR升级项目修改
-*****************************************************************************/
 VOS_VOID MM_DelayLuGsmTimeout()
 {
     NAS_LOG(WUEPS_PID_MM, MM_GSMDIFMSG, PS_LOG_LEVEL_INFO,
@@ -873,20 +644,7 @@ VOS_VOID MM_DelayLuGsmTimeout()
     return;
 }
 
-/*****************************************************************************
- Prototype      : MM_DelayCsServiceGsmTimeout
- Description    : G下延迟发起CS业务定时器超时的处理
- Input          :
- Output         :
- Return Value   : 无
- Calls          :
- Called By      :
 
- History        : ---
-  1.Date        : 2009-08-8
-    Author      : o00132663
-    Modification: Created function
-*****************************************************************************/
 VOS_VOID MM_DelayCsServiceGsmTimeout()
 {
     NAS_LOG(WUEPS_PID_MM, MM_GSMDIFMSG, PS_LOG_LEVEL_INFO,
@@ -902,26 +660,7 @@ VOS_VOID MM_DelayCsServiceGsmTimeout()
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_WaitConnectRelTimeOut
- 功能描述  : 等待主动连接释放的保护定时器超时处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年7月11日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年10月29日
-    作    者   : z00161729
-    修改内容   : DTS2012083102536:支持cc呼叫重建
- 3.日    期   :2014年9月24日
-   作    者   :s00217060
-   修改内容   :for cs_err_log
-*****************************************************************************/
 VOS_VOID NAS_MM_WaitConnectRelTimeOut()
 {
     PS_NAS_LOG(WUEPS_PID_MM, VOS_NULL, PS_LOG_LEVEL_WARNING, "NAS_MM_WaitConnectRelTimeOut:WARNING: Wait connect rel time out.");
@@ -943,29 +682,7 @@ VOS_VOID NAS_MM_WaitConnectRelTimeOut()
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_NormalCsfbHoWaitSysinfoTimeOut
- 功能描述  : CSFB HO流程中等待系统消息定时器超时的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2012年2月15日
-   作    者   : z00161729
-   修改内容   : 新生成函数
- 2.日    期   : 2014年12月13日
-   作    者   : s00217060
-   修改内容   : Service_State_Optimize_PhaseI 切换流程修改
- 3.日    期   : 2015年5月4日
-   作    者   : w00167002
-   修改内容   : 若是csmt定时器在运行，则需要携带csmt标志
- 4.日    期   : 2015年10月16日
-   作    者   : j00174725
-   修改内容   : DTS2015101603066
-*****************************************************************************/
 VOS_VOID NAS_MM_NormalCsfbHoWaitSysinfoTimeOut(VOS_VOID)
 {
 
@@ -989,28 +706,7 @@ VOS_VOID NAS_MM_NormalCsfbHoWaitSysinfoTimeOut(VOS_VOID)
 }
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_MM_EmergencyCallCsfbWaitHoSysInfoTimeOut
- 功能描述  : 紧急呼叫CSFB HO流程中等待系统消息定时器超时的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2012年3月27日
-   作    者   : w00166186
-   修改内容   : 新生成函数
- 2.日    期   : 2013年7月25日
-   作    者   : w00242748
-   修改内容   : DTS2013072200933:vodafone r8网络csfb mt到w，cs ps链接释放后1.5s内重选回l，
-                网络后续2s左右会重新下发paging消息，存在丢寻呼被叫打不通，参考标杆实现，
-                rau req中带follow on标志,无明确协议依据
- 3.日    期   : 2014年6月13日
-   作    者   : w00242748
-   修改内容   : DSDS 新特性
-*****************************************************************************/
 VOS_VOID NAS_MM_EmergencyCallCsfbWaitHoSysInfoTimeOut(VOS_VOID)
 {
     /* 处于紧急呼CSFB流程发起紧急呼叫 */
@@ -1046,26 +742,7 @@ VOS_VOID NAS_MM_EmergencyCallCsfbWaitHoSysInfoTimeOut(VOS_VOID)
 #endif
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_CsHoWaitSysinfoTimeOut
- 功能描述  : CS HO流程中等待系统消息定时器超时的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年01月04日
-   作    者   : s00217060
-   修改内容   : Service_State_Optimize_PhaseI 切换流程修改
-
- 2.日    期   : 2016年1月28日
-   作    者   : w00167002
-   修改内容   : 在IMS电话后SRVCC到G,没有系统消息，但下发了TMSI充分配，更新当前的RAT
-                为GSM;因判断RAT没有改变，没有给MSCC上报系统消息，导致界面一直显示为
-                4G.
-*****************************************************************************/
 VOS_VOID NAS_MM_CsHoWaitSysinfoTimeOut(VOS_VOID)
 {
     
@@ -1076,24 +753,7 @@ VOS_VOID NAS_MM_CsHoWaitSysinfoTimeOut(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_ModeICsPsPowerOffProtectTimeOut
- 功能描述  : MM的关机保护定时器超时处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月29日
-    作    者   : l00171473
-    修改内容   : 新生成函数, 关机保护定时器超时处理，清除本地链路信息
-  2.日    期   : 2013年05月15日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-
-*****************************************************************************/
 VOS_VOID NAS_MM_ModeICsPsPowerOffProtectTimeOut(VOS_VOID)
 {
     Mm_ComSetMmState(MM_STATE_NULL);
@@ -1108,39 +768,7 @@ VOS_VOID NAS_MM_ModeICsPsPowerOffProtectTimeOut(VOS_VOID)
 }
 
 
-/*******************************************************************************
-  Module:   Mm_Timer_Event_Analy
-  Function: MM Timer事件解析
-  Input:    VOS_VOID
-  Output:
-  NOTE:
-  Return:   VOS_UINT8,事件ID
-  History:
-      1.  张志勇   2003.12.20 新版做成
-      2.  s46746 2005-09-23 修改
-      3.  s46746 2006-07-25 根据问题单A32D04901修改
-      4. 日    期   : 2011年7月11日
-         作    者   : sunxibo 46746
-         修改内容   : V7R1 phase II,autoplmnsrch状态机调整为PlmnSelection状态机
-      5. 日    期   : 2012年2月15日
-         作    者   : z00161729
-         修改内容   : V7R1C50 支持CSFB特性修改
-      6. 日    期   : 2012年9月07日
-         作    者   : l00171473
-         修改内容   : DTS2012081701006, 添加MM关机保护定时器
-      7.日    期   : 2013年6月6日
-        作    者   : w00167002
-        修改内容   : V9R1_SVLTE项目修改
-      8. 日    期   : 2013年06月28日
-         作    者   : l00167671
-         修改内容   : DCM LOGGER项目定时器事件上报
-      9. 日    期   : 2013年09月22日
-         作    者   : w00176964
-         修改内容   : Volte_phaseII项目:增加CS安全上下文获取超时的处理
-     10. 日    期   : 2015年5月5日
-         作    者   : w00167002
-         修改内容   : csmt修改
-*******************************************************************************/
+
 
 VOS_UINT8 Mm_Timer_Event_Analy(VOS_UINT32 *aulRcvMsg)
 {
@@ -1154,9 +782,7 @@ VOS_UINT8 Mm_Timer_Event_Analy(VOS_UINT32 *aulRcvMsg)
     {
         ucTimerId = (VOS_UINT8)aulRcvMsg[1];
 
-        /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-9, begin */
         if (ucTimerId >= MM_TIMER_MAX)
-        /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-9, end */
         {
             PS_NAS_LOG(WUEPS_PID_MM, VOS_NULL, PS_LOG_LEVEL_WARNING, "Mm_Timer_Event_Analy:WARNING: TIMER ID is illegal.");
             return ucEventId;
@@ -1178,9 +804,7 @@ VOS_UINT8 Mm_Timer_Event_Analy(VOS_UINT32 *aulRcvMsg)
         }
     }
 
-    /* added  by l00167671 for v9r1 dcm logger可维可测项目, 2013-06-27, begin */
     NAS_TIMER_EventReport(aulRcvMsg[1], WUEPS_PID_MM, NAS_OM_EVENT_TIMER_OPERATION_EXPIRED);
-    /* added  by l00167671 for v9r1 dcm logger可维可测项目, 2013-06-27, end */
 
     switch ( aulRcvMsg[1] )
     {
@@ -1289,15 +913,12 @@ VOS_UINT8 Mm_Timer_Event_Analy(VOS_UINT32 *aulRcvMsg)
         ucEventId = MM_EVENT_ID_INVALID;
         break;
 
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-22, begin */
     case MM_TIMER_WAIT_GET_HO_SECU_INFO_CNF:
 #if (FEATURE_ON == FEATURE_LTE)
         NAS_MM_RcvMmTimerGetHoSecuInfoCnfExpired();
 #endif
         break;
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-22, end */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-4-1, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
     case MM_TIMER_T3242:
         ucEventId = MM_EVENT_ID_T3242_EXPIRED;
@@ -1307,7 +928,6 @@ VOS_UINT8 Mm_Timer_Event_Analy(VOS_UINT32 *aulRcvMsg)
         ucEventId = MM_EVENT_ID_T3243_EXPIRED;
         break;
 #endif
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-4-1, end */
 
     case MM_TIMER_PROTECT_MT_CSFB_PAGING_PROCEDURE:
         NAS_MM_RcvProtectingMtCsfbPagingProcedureExpired();
@@ -1323,21 +943,7 @@ VOS_UINT8 Mm_Timer_Event_Analy(VOS_UINT32 *aulRcvMsg)
 #ifdef __PS_WIN32_RECUR__
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_SetMmSigFunc
- 功能描述  : 根据当前的网络模式，设置MM的MmImportFunc的函数指针
- 输入参数  : 当前的网络接入模式
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月1日
-    作    者   : l00130025
-    修改内容   : 回放调整，避免空指针操作
-
-*****************************************************************************/
 VOS_VOID  NAS_MM_SetMmSigFunc(NAS_MML_NET_RAT_TYPE_ENUM_UINT8 enRat)
 {
     if (NAS_MML_NET_RAT_TYPE_GSM == enRat)
@@ -1366,23 +972,7 @@ VOS_VOID  NAS_MM_SetMmSigFunc(NAS_MML_NET_RAT_TYPE_ENUM_UINT8 enRat)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_RestoreContextData
- 功能描述  : 恢复MM全局变量。
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年01月04日
-    作    者   : 欧阳飞 00132663
-    修改内容   : 新生成函数
-  2.日    期   : 2011年01月04日
-    作    者   : z00161729
-    修改内容   : pc回放压缩功能修改
-*****************************************************************************/
 VOS_UINT32 NAS_MM_RestoreContextData(struct MsgCB * pMsg)
 {
     NAS_MML_PC_REPLAY_COMPRESS_CONTEXT_STRU                 *pstRcMsg;
@@ -1397,13 +987,11 @@ VOS_UINT32 NAS_MM_RestoreContextData(struct MsgCB * pMsg)
     ulCount       = 0;
     ulItemCount   = 0;
 
-    /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-9, begin */
     ulExpectCount  = sizeof(VOS_UINT8)                     /* gucMmProcessFlg */
                    + sizeof(VOS_UINT8)                     /* g_T3211Flag*/
                    + sizeof(MM_NSD_INFO_ST)                /* g_stMmNsd*/
                    + sizeof(MM_GLOBAL_CTRL_STRU)           /* g_MmGlobalInfo*/
                    + sizeof(MM_TIMER_STRU) * MM_TIMER_MAX; /*gstMmTimer*/
-    /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-9, end */
 
     pstRcMsg = (NAS_MML_PC_REPLAY_COMPRESS_CONTEXT_STRU *)pMsg;
     pucSrc   = pstRcMsg->aucData;
@@ -1464,9 +1052,7 @@ VOS_UINT32 NAS_MM_RestoreContextData(struct MsgCB * pMsg)
 
     /* gstMmTimer目标地址 */
     pucDest     = (VOS_UINT8 *)gstMmTimer;
-    /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-9, begin */
     ulDestLen   = sizeof(MM_TIMER_STRU) * MM_TIMER_MAX;
-    /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-9, end */
 
     /* 解压缩 */
     if (VOS_FALSE == NAS_MML_UnCompressData(pucDest, &ulDestLen, pucSrc, &ulItemCount) )
@@ -1482,23 +1068,7 @@ VOS_UINT32 NAS_MM_RestoreContextData(struct MsgCB * pMsg)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_SndOutsideContextData
- 功能描述  : 把MM外部上下文作为SDT消息发送出去，以便在回放时通过桩函数还原
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年01月03日
-    作    者   : 欧阳飞 00132663
-    修改内容   : 新生成函数
-  2.日    期   : 2011年11月30日
-    作    者   : z00161729
-    修改内容   : 实现pc回放压缩功能修改
-*****************************************************************************/
 VOS_VOID NAS_MM_SndOutsideContextData()
 {
     VOS_UINT8                                              *pucCompressBuf;
@@ -1513,13 +1083,11 @@ VOS_VOID NAS_MM_SndOutsideContextData()
 
 
     /*lint -e961*/
-    /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-9, begin */
     ulCount     = sizeof(VOS_UINT8)                     /* gucMmProcessFlg */
                 + sizeof(VOS_UINT8)                     /* g_T3211Flag*/
                 + sizeof(MM_NSD_INFO_ST)                /* g_stMmNsd*/
                 + sizeof(MM_GLOBAL_CTRL_STRU)           /* g_MmGlobalInfo*/
                 + sizeof(MM_TIMER_STRU) * MM_TIMER_MAX; /*gstMmTimer*/
-    /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-9, end */
     /*lint +e961*/
 
     ulItemCount = 0;
@@ -1603,9 +1171,7 @@ VOS_VOID NAS_MM_SndOutsideContextData()
 
     /* 压缩gstMmTimer */
     pucSrc      = (VOS_UINT8 *)gstMmTimer;
-    /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-9, begin */
     ulItemCount = sizeof(MM_TIMER_STRU) * MM_TIMER_MAX;
-    /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-9, end */
     /*lint -e961*/
     ulCmLen     = (VOS_UINT32)(pucEndBuf - pucDest + 1);
     /*lint +e961*/
@@ -1633,43 +1199,7 @@ VOS_VOID NAS_MM_SndOutsideContextData()
 
 VOS_UINT8 gucMmProcessFlg = WAIT_FOR_MMCMM_START_REQ;    /* MM Task 启动过程的flag */
 
-/*******************************************************************************
-  Module:   MmMsgProc
-  Function: MM任务入口，接收消息函数
-  Input:    struct MsgCB* pMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇      2005-1-25  新建
-      2。 s46746  2005-09-01 修改
 
-      3.日    期   : 2006年4月19日
-        作    者   : liuyang id:48197
-        修改内容   : 问题单号：A32D03208
-
-      4. x51137 2006/5/5 A32D03487
-      5. x51137 2006/5/30 A32D04051
-      6. h44270 2007/01/26 A32D08575
-      7. 日    期  : 2007年06月07日
-         作    者  : luojian id:60022475
-         修改内容  : 问题单号:A32D11534
-                     Reject CM Service REQ at Power off State.
-
-      8.日    期   : 2012年05月21日
-        作    者   :  z40661
-        修改内容   :  DTS2012052308001:从L重选到G后反复进行LAU
-      9.日    期   : 2012年12月11日
-        作    者   : l00167671
-        修改内容   : DTS2012121802573, TQE清理
-     10.日    期  : 2013年03月13日
-        作    者  : z00214637
-        修改内容  : BodySAR项目
-     11.日    期   : 2014年3月22日
-        作    者   : z00234330
-        修改内容   : dts2014032202060增加可谓可测，mm没收到一条消息，输出信息
-
-*******************************************************************************/
 VOS_VOID MmMsgProc (struct MsgCB* pMsg)
 {
     VOS_VOID                *pRcvMsg = VOS_NULL_PTR;                            /* 接收消息使用的头地址定义                 */
@@ -1719,9 +1249,7 @@ VOS_VOID MmMsgProc (struct MsgCB* pMsg)
 
             ucEventId = Mm_Timer_Event_Analy(aulRcvTimerMsg);
         }
-        /* Deleted by wx270776 for OM融合, 2015-7-16, begin */
 
-        /* Deleted by wx270776 for OM融合, 2015-7-16, end */
         else if (WUEPS_PID_ADMIN == pMsg->ulSenderPid)
         {
             pMsgHeader = (MSG_HEADER_STRU *)pMsg;
@@ -1881,7 +1409,6 @@ VOS_VOID MmMsgProc (struct MsgCB* pMsg)
 */
 }
 
-/* add by 张志勇    for VOS 2005-1-25 end */
 
 /******************************************************************************
  * 函数名称 ： WuepsMmPidInit
@@ -1925,20 +1452,7 @@ VOS_UINT32 WuepsMmPidInit ( enum VOS_INIT_PHASE_DEFINE ip )
 
 
 
-/*****************************************************************************
- 函 数 名  : Mm_GetState
- 功能描述  :
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年5月7日
-    作    者   : luojian id:107747
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 Mm_GetState()
 {
     return g_MmGlobalInfo.ucState;
@@ -1947,36 +1461,11 @@ VOS_UINT32 Mm_GetState()
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_FillNasMmState
- 功能描述  : 根据MM状态填充OM查询消息MM State和Substate项
- 输入参数  : 无
- 输出参数  : pMsg:填充完成MM当前状态
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2010年3月4日
-   作    者   : zhoujun \40661
-   修改内容   : 新生成函数
- 2.日    期   : 2014年6月16日
-   作    者   : w00176964
-   修改内容   : DTS2014061006131:MM增加新的协议状态
- 3.日    期   : 2015年7月25日
-   作    者   : wx270776
-   修改内容   : OM融合
- 4.日    期   : 2015年9月17日
-   作    者   : zwx247453
-   修改内容   : Dallas寄存器按原语上报及BBP采数项目
-*****************************************************************************/
 VOS_VOID NAS_MM_FillNasMmState(
-    /* Modified by wx270776 for OM融合, 2015-7-25, begin */
     NAS_OM_MM_IND_STRU                  *pMsg
-    /* Modified by wx270776 for OM融合, 2015-7-25, end */
 )
 {
-    /* Modified by zwx247453 for 寄存器上报, 2015-09-17, begin */
     pMsg->enMmSubState = MM_SUB_STATE_BUTT;
     switch (g_MmGlobalInfo.ucState)
     {
@@ -2081,26 +1570,11 @@ VOS_VOID NAS_MM_FillNasMmState(
         NAS_WARNING_LOG(WUEPS_PID_MM, "NAS_MM_FillNasMmState:WARNING: g_MmGlobalInfo.ucState Abnormal");
        break;
     }
-    /* Modified by zwx247453 for 寄存器上报, 2015-09-17, end */
 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetMmRegStateForInterPLmnList
- 功能描述  : 获取MM的注册状态
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年1月21日
-    作    者   : zhoujun /40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_GetMmRegStateForInterPLmnList( VOS_VOID )
 {
     if ( ( MM_IDLE_ATTEMPTING_TO_UPDATE  == g_MmGlobalInfo.ucState )

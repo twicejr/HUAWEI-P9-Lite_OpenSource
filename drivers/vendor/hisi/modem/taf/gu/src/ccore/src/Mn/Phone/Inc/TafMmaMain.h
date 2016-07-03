@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafMmaMain.h
-  版 本 号   : 初稿
-  作    者   : w00176964
-  生成日期   : 2013年7月9日
-  最近修改   :
-  功能描述   : TafMmaMain.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年7月9日
-    作    者   : w00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef _TAF_MMA_MAIN_
 #define _TAF_MMA_MAIN_
@@ -138,11 +121,9 @@ VOS_VOID  TAF_MMA_InitAllTimers(
     TAF_MMA_TIMER_CTX_STRU              *pstMsccTimerCtx
 );
 
-/* Added by w00167002 for L-C互操作项目, 2014-2-18, begin */
 VOS_VOID  TAF_MMA_InitOperCtx(
     TAF_MMA_OPER_CTX_STRU               *pstMmaOperCtx
 );
-/* Added by w00167002 for L-C互操作项目, 2014-2-18, end */
 VOS_VOID TAF_MMA_InitOrigMeInfo( VOS_VOID );
 VOS_VOID TAF_MMA_InitPhoneModeCtrlCtx(
     TAF_MMA_PHONE_MODE_CTRL_CTX_STRU   *pstCtrlCtx

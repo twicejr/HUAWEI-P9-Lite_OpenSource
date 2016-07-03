@@ -1,14 +1,4 @@
-/******************************************************************************
 
-   Copyright(C)2013,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : CssProcLphyMsg.c
-  Description     : 该C文件给出了CSS模块初始化和消息处理入口的实现
-  History           :
-     1.wangchen 00209181    2015-05-14  Draft Enact
-
-******************************************************************************/
 
 /*****************************************************************************
   1 Include HeadFile
@@ -36,16 +26,7 @@ extern "C" {
 /*****************************************************************************
   3 Function
 *****************************************************************************/
-/*****************************************************************************
- Function Name  : CSS_AssignLphyOpid
- Description    : 分配CSS模块和LPHY模块间的OPID
- Input          :
- Output         : pulOpid-----------------分配的OPID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-05-16  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_AssignLphyOpid
 (
     VOS_UINT16                          *pusOpid
@@ -72,16 +53,7 @@ VOS_VOID CSS_AssignLphyOpid
     TLPS_PRINT2LAYER_INFO1(CSS_AssignLphyOpid_ENUM, LNAS_FUNCTION_LABEL1, (*pusOpid));
 }
 
-/*****************************************************************************
- Function Name  : CSS_MsScanSsWaitActModeCnfMsgSetActModeCnfSucc()
- Description    : 等待物理层切模回复过程中收到切模回复成功消息
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-05-18  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_MsScanSsWaitActModeCnfMsgSetActModeCnfSucc(VOS_VOID)
 {
     CSS_CONTROL_STRU                   *pstCssControl = CSS_GetControlAddr();
@@ -96,16 +68,7 @@ VOS_VOID CSS_MsScanSsWaitActModeCnfMsgSetActModeCnfSucc(VOS_VOID)
     CSS_SndLphyMsgStartBgSearchReq();
 }
 
-/*****************************************************************************
- Function Name  : CSS_MsScanSsWaitStartBgsCnfMsgStartBgsCnfSucc()
- Description    : 等待物理层启动背景搜回复过程中收到启动背景搜回复成功消息
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-12-05  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_MsScanSsWaitStartBgsCnfMsgStartBgsCnfSucc(VOS_VOID)
 {
     CSS_CONTROL_STRU                   *pstCssControl;
@@ -143,16 +106,7 @@ VOS_VOID CSS_MsScanSsWaitStartBgsCnfMsgStartBgsCnfSucc(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- Function Name  : CSS_MsScanSsWaitActModeCnfMsgSetActModeCnfFail()
- Description    : 等待物理层起背景搜收到起背景搜失败消息
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-12-14  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_MsScanSsWaitStartBgsCnfMsgStartBgsCnfFail()
 {
     CSS_CONTROL_STRU                        *pstCssControl;
@@ -182,16 +136,7 @@ VOS_VOID CSS_MsScanSsWaitStartBgsCnfMsgStartBgsCnfFail()
 
 }
 
-/*****************************************************************************
- Function Name  : CSS_MsScanSsWaitActModeCnfMsgSetActModeCnfFail()
- Description    : 等待物理层切模回复过程中收到切模回复失败消息
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-12-14  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_MsScanSsWaitActModeCnfMsgSetActModeCnfFail()
 {
     CSS_CONTROL_STRU                        *pstCssControl;
@@ -226,16 +171,7 @@ VOS_VOID CSS_MsScanSsWaitActModeCnfMsgSetActModeCnfFail()
 }
 
 
-/*****************************************************************************
- Function Name  : CSS_MsScanSsWaitInactModeCnfMsgSetInactModeCnfSucc()
- Description    : 等待物理层切从模回复过程中收到切从模回复成功消息
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-05-18  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_MsScanSsWaitInactModeCnfMsgSetInactModeCnfSucc(VOS_VOID)
 {
     CSS_CONTROL_STRU                   *pstCssControl;
@@ -351,16 +287,7 @@ VOS_VOID CSS_SndLphyMsgSetWorkModeReq
 }
 
 
-/*****************************************************************************
- Function Name  : CSS_SndLphyMsgBandScanReq
- Description    : 向LPHY发送BandScan请求
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-05-16  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_SndLphyMsgCommBandScanReq
 (
     CSS_COMM_SCAN_BAND_NODE_STRU               *pstBandNode,
@@ -418,16 +345,7 @@ VOS_VOID CSS_SndLphyMsgCommBandScanReq
 }
 
 
-/*****************************************************************************
- Function Name  : CSS_SndLphyMsgStartBgSearchReq
- Description    : 向LPHY发送start bg search请求
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-12-05  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_SndLphyMsgStartBgSearchReq(VOS_VOID)
 {
     CSS_LPHY_START_BG_SEARCH_REQ_STRU            *pstCssStartBgsReq;
@@ -462,16 +380,7 @@ VOS_VOID CSS_SndLphyMsgStartBgSearchReq(VOS_VOID)
 
 }
 
-/*****************************************************************************
- Function Name  : CSS_SndLphyMsgStopBgSearchReq
- Description    : 向LPHY发送stop bg search请求
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-12-05  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_SndLphyMsgStopBgSearchReq(VOS_VOID)
 {
     CSS_LPHY_STOP_BG_SEARCH_REQ_STRU             *pstCssStopBgsReq;
@@ -505,16 +414,7 @@ VOS_VOID CSS_SndLphyMsgStopBgSearchReq(VOS_VOID)
 }
 
 
-/*****************************************************************************
- Function Name  : CSS_ProcLphyMsgScanIndForCommScan
- Description    : ID_CSS_LPHY_BAND_SCAN_IND消息处理函数
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-12-14  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_ProcLphyMsgScanIndForCommScan
 (
     const CSS_LPHY_BAND_SCAN_IND_STRU *pRcvMsg
@@ -571,16 +471,7 @@ VOS_VOID CSS_ProcLphyMsgScanIndForCommScan
     TLPS_PRINT2LAYER_INFO2(CSS_ProcLphyMsgScanInd_ENUM, LNAS_FreqRangeNum, pRcvMsg->stBandScanResult.usFreqRangeNum,1);
 }
 
-/*****************************************************************************
- Function Name  : CSS_ProcLphyMsgScanIndForAsScan
- Description    : ID_CSS_LPHY_BAND_SCAN_IND消息处理函数
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-12-14  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_ProcLphyMsgScanIndForAsScan
 (
     const CSS_LPHY_BAND_SCAN_IND_STRU *pRcvMsg
@@ -638,16 +529,7 @@ VOS_VOID CSS_ProcLphyMsgScanIndForAsScan
 }
 
 
-/*****************************************************************************
- Function Name  : CSS_ProcLphyMsgScanInd()
- Description    : ID_CSS_LPHY_BAND_SCAN_IND消息处理函数
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-05-14  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_ProcLphyMsgScanInd
 (
     const CSS_LPHY_BAND_SCAN_IND_STRU *pRcvMsg
@@ -710,16 +592,7 @@ VOS_VOID CSS_ProcLphyMsgScanInd
     return ;
 }
 
-/*****************************************************************************
- Function Name  : CSS_ProcLphyMsgStopScanCnf()
- Description    : ID_CSS_LPHY_STOP_BAND_SCAN_CNF消息处理函数
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-05-14  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_ProcLphyMsgStopScanCnf
 (
     const CSS_LPHY_STOP_BAND_SCAN_CNF_STRU  *pRcvMsg
@@ -767,16 +640,7 @@ VOS_VOID CSS_ProcLphyMsgStopScanCnf
 
     return ;
 }
-/*****************************************************************************
- Function Name  : CSS_ProcLphyMsgSetModeCnf()
- Description    : ID_CSS_LPHY_SET_WORK_MODE_CNF消息处理函数
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-05-14  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_MsScanProcLphyMsgSetModeCnf
 (
     const CSS_LPHY_SET_WORK_MODE_CNF_STRU   *pstSetModeCnf
@@ -820,16 +684,7 @@ VOS_VOID CSS_MsScanProcLphyMsgSetModeCnf
         CSS_MsScanSsWaitInactModeCnfMsgSetInactModeCnfSucc();
     }
 }
-/*****************************************************************************
- Function Name  : CSS_ProcLphyMsgSetModeCnf()
- Description    : ID_CSS_LPHY_SET_WORK_MODE_CNF消息处理函数
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-05-14  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_ProcLphyMsgSetModeCnf
 (
     const CSS_LPHY_SET_WORK_MODE_CNF_STRU   *pstSetModeCnf
@@ -933,16 +788,7 @@ VOS_VOID CSS_ProcLphyMsgSetModeCnf
     return ;
 }
 
-/*****************************************************************************
- Function Name  : CSS_ProcLphyMsgStartBgSearchCnf()
- Description    : ID_CSS_LPHY_START_BG_SEARCH_CNF消息处理函数
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-12-05  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_ProcLphyMsgStartBgSearchCnf
 (
     const CSS_LPHY_START_BG_SEARCH_CNF_STRU  *pRcvMsg
@@ -982,16 +828,7 @@ VOS_VOID CSS_ProcLphyMsgStartBgSearchCnf
         }
     }
 }
-/*****************************************************************************
- Function Name  : CSS_ProcLphyMsgStopBgSearchCnf()
- Description    : ID_CSS_LPHY_STOP_BG_SEARCH_CNF消息处理函数
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-12-05  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_ProcLphyMsgStopBgSearchCnf
 (
     const CSS_LPHY_STOP_BG_SEARCH_CNF_STRU  *pRcvMsg
@@ -1011,16 +848,7 @@ VOS_VOID CSS_ProcLphyMsgStopBgSearchCnf
 
 
 
-/*****************************************************************************
- Function Name  : CSS_ProcLphyMsg()
- Description    : LPHY消息处理函数
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-05-14  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_ProcLphyMsg(const VOS_VOID *pRcvMsg )
 {
     /* 定义消息头指针*/

@@ -32,21 +32,7 @@ exmbist_uint32 g_actual_data[8];/*一次记录中的实际数据*/
 exmbist_uint32 exm_drv_half_reset (ExmCtx * ctx);
 extern void exm_log_record(char* log_file, char* buf);
 	
-/*****************************************************************************
- 函 数 名  : exm_drv_get_cfg
- 功能描述  : 获取EXMBIST IP cfg0-3配置
- 输入参数  : ExmCtx * ctx
- 输出参数  : 无
- 返 回 值  : exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月15日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 exmbist_uint32 exm_drv_get_cfg (ExmCtx * ctx) {
     exmbist_uint32 uiret = EXMBIST_OK;
     exmbist_uint32 ret;
@@ -79,21 +65,7 @@ exmbist_uint32 exm_drv_get_cfg (ExmCtx * ctx) {
     return uiret;
 }
 
-/*****************************************************************************
- 函 数 名  : exm_drv_get_status
- 功能描述  : 获取exmbsit 状态
- 输入参数  : ExmCtx * ctx
- 输出参数  : 无
- 返 回 值  : exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月15日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 exmbist_uint32 exm_drv_get_status (ExmCtx * ctx) 
 {
     exmbist_uint32 uiret = EXMBIST_OK;
@@ -109,21 +81,7 @@ exmbist_uint32 exm_drv_get_status (ExmCtx * ctx)
     return uiret;
 }
 
-/*****************************************************************************
- 函 数 名  : exm_drv_full_reset
- 功能描述  : 全复位,寄存器所有配置清除
- 输入参数  : ExmCtx * ctx
- 输出参数  : 无
- 返 回 值  : exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月18日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 exmbist_uint32 exm_drv_full_reset (ExmCtx * ctx) 
 {
     exmbist_uint32 uiret = EXMBIST_OK;
@@ -131,21 +89,7 @@ exmbist_uint32 exm_drv_full_reset (ExmCtx * ctx)
     return uiret;
 }
 
-/*****************************************************************************
- 函 数 名  : exm_drv_full_set
- 功能描述  : 配置重新设置
- 输入参数  : ExmCtx * ctx
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月18日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void exm_drv_full_set(ExmCtx * ctx)
 {
 
@@ -165,21 +109,7 @@ void exm_drv_full_set(ExmCtx * ctx)
 
 }
 
-/*****************************************************************************
- 函 数 名  : exm_drv_half_reset
- 功能描述  : 半复位，exmbist IP内配置不变
- 输入参数  : ExmCtx * ctx
- 输出参数  : 无
- 返 回 值  : exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月18日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 exmbist_uint32 exm_drv_half_reset (ExmCtx * ctx) 
 {
     exmbist_uint32 uiret = EXMBIST_OK;
@@ -187,21 +117,7 @@ exmbist_uint32 exm_drv_half_reset (ExmCtx * ctx)
     return uiret;
 }
 
-/*****************************************************************************
- 函 数 名  : exm_drv_load_counter
- 功能描述  : 加载地址计数器相关功能
- 输入参数  : ExmCtx * ctx
- 输出参数  : 无
- 返 回 值  : exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月18日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 exmbist_uint32 exm_drv_load_counter (ExmCtx * ctx) 
 {
     exmbist_uint32 uiret = EXMBIST_OK;
@@ -221,21 +137,7 @@ exmbist_uint32 exm_drv_load_counter (ExmCtx * ctx)
     return uiret;
 }
 
-/*****************************************************************************
- 函 数 名  : exm_drv_set_interleave
- 功能描述  : 设置bank交织
- 输入参数  : ExmCtx * ctx
- 输出参数  : 无
- 返 回 值  : exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月18日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 exmbist_uint32 exm_drv_set_interleave (ExmCtx * ctx) 
 {
     exmbist_uint32 uiret = EXMBIST_OK;
@@ -244,21 +146,7 @@ exmbist_uint32 exm_drv_set_interleave (ExmCtx * ctx)
     return uiret;
 }
 
-/*****************************************************************************
- 函 数 名  : exm_drv_set_repeat_count
- 功能描述  : 设置repeat次数
- 输入参数  : ExmCtx * ctx
- 输出参数  : 无
- 返 回 值  : exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月18日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 exmbist_uint32 exm_drv_set_repeat_count (ExmCtx * ctx) 
 {
     exmbist_uint32 uiret = EXMBIST_OK;
@@ -266,21 +154,7 @@ exmbist_uint32 exm_drv_set_repeat_count (ExmCtx * ctx)
     return uiret;
 }
 
-/*****************************************************************************
- 函 数 名  : exm_drv_set_loop_en
- 功能描述  : 设置loop功能使能
- 输入参数  : ExmCtx * ctx
- 输出参数  : 无
- 返 回 值  : exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月18日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 exmbist_uint32 exm_drv_set_loop_en (ExmCtx * ctx) 
 {
     exmbist_uint32 uiret = EXMBIST_OK;
@@ -288,21 +162,7 @@ exmbist_uint32 exm_drv_set_loop_en (ExmCtx * ctx)
     return uiret;
 }
 
-/*****************************************************************************
- 函 数 名  : exm_drv_set_row_col_bank_bits
- 功能描述  : 设置bank/row/col地址线
- 输入参数  : ExmCtx * ctx
- 输出参数  : 无
- 返 回 值  : exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月18日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 exmbist_uint32 exm_drv_set_row_col_bank_bits (ExmCtx * ctx) 
 {
     exmbist_uint32 uiret = EXMBIST_OK;
@@ -313,21 +173,7 @@ exmbist_uint32 exm_drv_set_row_col_bank_bits (ExmCtx * ctx)
 
 
 
-/*****************************************************************************
- 函 数 名  : exm_drv_set_inorder
- 功能描述  : 设置global_inorder功能
- 输入参数  : ExmCtx * ctx
- 输出参数  : 无
- 返 回 值  : exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月18日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 exmbist_uint32 exm_drv_set_inorder (ExmCtx * ctx) 
 {
     exmbist_uint32 uiret = EXMBIST_OK;
@@ -335,21 +181,7 @@ exmbist_uint32 exm_drv_set_inorder (ExmCtx * ctx)
     return uiret;
 }
 
-/*****************************************************************************
- 函 数 名  : exm_drv_set_diag_cnt
- 功能描述  : 设置Diag cnt 功能
- 输入参数  : ExmCtx * ctx
- 输出参数  : 无
- 返 回 值  : exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月18日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 exmbist_uint32 exm_drv_set_diag_cnt (ExmCtx * ctx) 
 {
     exmbist_uint32 uiret = EXMBIST_OK;
@@ -357,21 +189,7 @@ exmbist_uint32 exm_drv_set_diag_cnt (ExmCtx * ctx)
     return uiret;
 }
 
-/*****************************************************************************
- 函 数 名  : exm_drv_set_addr_range
- 功能描述  : 设置扫描地址范围
- 输入参数  : ExmCtx * ctx
- 输出参数  : 无
- 返 回 值  : exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月18日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 exmbist_uint32 exm_drv_set_addr_range (ExmCtx * ctx) 
 {
     exmbist_uint32 uiret = EXMBIST_OK;
@@ -383,21 +201,7 @@ exmbist_uint32 exm_drv_set_addr_range (ExmCtx * ctx)
     return uiret;
 }
 
-/*****************************************************************************
- 函 数 名  : exm_drv_set_base_pattern
- 功能描述  : 设置base 数据pattern
- 输入参数  : ExmCtx * ctx
- 输出参数  : 无
- 返 回 值  : exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月18日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 exmbist_uint32 exm_drv_set_base_pattern (ExmCtx * ctx) 
 {
     exmbist_uint32 uiret = EXMBIST_OK;
@@ -414,21 +218,7 @@ exmbist_uint32 exm_drv_set_base_pattern (ExmCtx * ctx)
     return uiret;
 }
 
-/*****************************************************************************
- 函 数 名  : exm_drv_set_alt_pattern
- 功能描述  : 设置alt 数据pattern
- 输入参数  : ExmCtx * ctx
- 输出参数  : 无
- 返 回 值  : exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月18日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 exmbist_uint32 exm_drv_set_alt_pattern (ExmCtx * ctx) 
 {
     exmbist_uint32 uiret = EXMBIST_OK;
@@ -444,21 +234,7 @@ exmbist_uint32 exm_drv_set_alt_pattern (ExmCtx * ctx)
     }
     return uiret;
 }
-/*****************************************************************************
- 函 数 名  : exm_drv_sel_prbs
- 功能描述  : 设置prbs功能
- 输入参数  : ExmCtx * ctx
- 输出参数  : 无
- 返 回 值  : exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月18日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 exmbist_uint32 exm_drv_sel_prbs (ExmCtx * ctx) 
 {
     exmbist_uint32 uiret = EXMBIST_OK;
@@ -468,21 +244,7 @@ exmbist_uint32 exm_drv_sel_prbs (ExmCtx * ctx)
     return uiret;
 }
 
-/*****************************************************************************
- 函 数 名  : exm_drv_set_addr_prbs_seed
- 功能描述  : 设置prbs 种子
- 输入参数  : ExmCtx * ctx
- 输出参数  : 无
- 返 回 值  : exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月18日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 exmbist_uint32 exm_drv_set_addr_prbs_seed (ExmCtx * ctx) 
 {
     exmbist_uint32 uiret = EXMBIST_OK;
@@ -490,21 +252,7 @@ exmbist_uint32 exm_drv_set_addr_prbs_seed (ExmCtx * ctx)
     return uiret;
 }
 
-/*****************************************************************************
- 函 数 名  : exm_drv_set_alt_fix_addr
- 功能描述  : 设置alt_fix_addr功能
- 输入参数  : ExmCtx * ctx
- 输出参数  : 无
- 返 回 值  : exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月18日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 exmbist_uint32 exm_drv_set_alt_fix_addr (ExmCtx * ctx) 
 {
     exmbist_uint32 uiret = EXMBIST_OK;
@@ -570,21 +318,7 @@ act: 0x%x 0x%x 0x%x 0x%x 0x%x 0x%x 0x%x 0x%x\n",
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : exm_drv_get_diag
- 功能描述  : 检查diag_fifo中的错误diag记录
- 输入参数  : ExmCtx * ctx
- 输出参数  : 无
- 返 回 值  : exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月18日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 exmbist_uint32 exm_drv_get_diag(ExmCtx * ctx) 
 {
      exmbist_uint32 uiret = EXMBIST_OK;
@@ -623,21 +357,7 @@ exmbist_uint32 exm_drv_get_diag(ExmCtx * ctx)
 }
 
 
-/*****************************************************************************
- 函 数 名  : exm_drv_get_single_diag
- 功能描述  : 获取一次diag记录
- 输入参数  : ExmCtx * ctx
- 输出参数  : 无
- 返 回 值  : ExmDiag *
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月18日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void exm_drv_get_single_diag(ExmCtx * ctx) 
 {
     exmbist_uint32 i;
@@ -679,21 +399,7 @@ void exm_drv_get_single_diag(ExmCtx * ctx)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : exm_drv_diag_fifo_advance
- 功能描述  : 切换到下一个diag记录
- 输入参数  : ExmCtx * ctx
- 输出参数  : 无
- 返 回 值  : exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月18日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 exmbist_uint32 exm_drv_diag_fifo_advance (ExmCtx * ctx) 
 {
     exmbist_uint32 uiret = EXMBIST_OK;
@@ -701,24 +407,7 @@ exmbist_uint32 exm_drv_diag_fifo_advance (ExmCtx * ctx)
     return uiret;
 }
 
-/*****************************************************************************
- 函 数 名  : exm_drv_set_base_dir
- 功能描述  : 设置base地址扫描方向
- 输入参数  : ExmCtx * ctx
-             exmbist_uint32 row
-             exmbist_uint32 col
-             exmbist_uint32 bank
- 输出参数  : 无
- 返 回 值  : exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月18日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 exmbist_uint32 exm_drv_set_base_dir (ExmCtx * ctx, exmbist_uint32 row, exmbist_uint32 col, exmbist_uint32 bank) 
 {
     exmbist_uint32 uiret = EXMBIST_OK;
@@ -728,24 +417,7 @@ exmbist_uint32 exm_drv_set_base_dir (ExmCtx * ctx, exmbist_uint32 row, exmbist_u
     return uiret;
 }
 
-/*****************************************************************************
- 函 数 名  : exm_drv_set_alt_dir
- 功能描述  : 设置alt地址扫描方向
- 输入参数  : ExmCtx * ctx
-             exmbist_uint32 row
-             exmbist_uint32 col
-             exmbist_uint32 bank
- 输出参数  : 无
- 返 回 值  : exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月18日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 exmbist_uint32 exm_drv_set_alt_dir (ExmCtx * ctx, exmbist_uint32 row, exmbist_uint32 col, exmbist_uint32 bank) 
 {
     exmbist_uint32 uiret = EXMBIST_OK;
@@ -756,22 +428,7 @@ exmbist_uint32 exm_drv_set_alt_dir (ExmCtx * ctx, exmbist_uint32 row, exmbist_ui
     return uiret;
 }
 
-/*****************************************************************************
- 函 数 名  : exm_drv_set_alt_mode
- 功能描述  : 设置alt 地址模式
- 输入参数  : ExmCtx * ctx
-             exmbist_uint32 mode
- 输出参数  : 无
- 返 回 值  : exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月18日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 exmbist_uint32 exm_drv_set_alt_mode (ExmCtx * ctx, exmbist_uint32 mode) 
 {
     exmbist_uint32 uiret = EXMBIST_OK;
@@ -782,25 +439,7 @@ exmbist_uint32 exm_drv_set_alt_mode (ExmCtx * ctx, exmbist_uint32 mode)
     return uiret;
 }
 
-/*****************************************************************************
- 函 数 名  : exm_drv_set_inst
- 功能描述  : 指令设置功能
- 输入参数  : ExmCtx * ctx
-             exmbist_uint32 id
-             exmbist_uint32 wr
-             exmbist_uint32 rd
-             exmbist_uint32 exec
- 输出参数  : 无
- 返 回 值  : exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月18日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 exmbist_uint32 exm_drv_set_inst (ExmCtx * ctx, exmbist_uint32 id, exmbist_uint32 wr, exmbist_uint32 rd, exmbist_uint32 exec) 
 {
     exmbist_uint32 uiret = EXMBIST_OK;
@@ -808,21 +447,7 @@ exmbist_uint32 exm_drv_set_inst (ExmCtx * ctx, exmbist_uint32 id, exmbist_uint32
     return uiret;
 }
 
-/*****************************************************************************
- 函 数 名  : exm_drv_load_instruction
- 功能描述  : 指令加载执行
- 输入参数  : ExmCtx * ctx
- 输出参数  : 无
- 返 回 值  : exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月18日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 exmbist_uint32 exm_drv_load_instruction (ExmCtx * ctx) 
 {
     exmbist_uint32 uiret = EXMBIST_OK;
@@ -837,23 +462,7 @@ exmbist_uint32 exm_drv_load_instruction (ExmCtx * ctx)
 
 /***********以下函数为cmd流程处理函数******************************/
 
-/*****************************************************************************
- 函 数 名  : exm_drv_set_cmd_check1
- 功能描述  :  exmbist 配置cmd 检查part1
- 输入参数  : ExmCtx *ctx
-             exmbist_uint32 cmd
-             void *cmd_para
- 输出参数  : 无
- 返 回 值  : exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月18日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 exmbist_uint32 exm_drv_set_cmd_check1(ExmCtx *ctx, exmbist_uint32 cmd, void *cmd_para)
 {
     exmbist_uint32 uiret = EXMBIST_OK;
@@ -927,23 +536,7 @@ exmbist_uint32 exm_drv_set_cmd_check1(ExmCtx *ctx, exmbist_uint32 cmd, void *cmd
     return uiret;
 }
 
-/*****************************************************************************
- 函 数 名  : exm_drv_set_cmd_check2
- 功能描述  : exmbist 配置cmd 检查part2
- 输入参数  : ExmCtx *ctx
-             exmbist_uint32 cmd
-             void *cmd_para
- 输出参数  : 无
- 返 回 值  : exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月18日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 exmbist_uint32 exm_drv_set_cmd_check2(ExmCtx *ctx, exmbist_uint32 cmd, void *cmd_para)
 {
     exmbist_uint32 uiret = EXMBIST_OK;
@@ -1007,23 +600,7 @@ exmbist_uint32 exm_drv_set_cmd_check2(ExmCtx *ctx, exmbist_uint32 cmd, void *cmd
     return uiret;
 }
 
-/*****************************************************************************
- 函 数 名  : exm_drv_set_cmd_check
- 功能描述  : exmbist 配置cmd 检查
- 输入参数  : ExmCtx *ctx
-             exmbist_uint32 cmd
-             void *cmd_para
- 输出参数  : 无
- 返 回 值  : exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月18日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 exmbist_uint32 exm_drv_set_cmd_check(ExmCtx *ctx, exmbist_uint32 cmd, void *cmd_para)
 {
     exmbist_uint32 uiret = EXMBIST_OK;
@@ -1039,23 +616,7 @@ exmbist_uint32 exm_drv_set_cmd_check(ExmCtx *ctx, exmbist_uint32 cmd, void *cmd_
     return uiret;
 }
 
-/*****************************************************************************
- 函 数 名  : exm_drv_set_cmd1
- 功能描述  : 设置命令part1
- 输入参数  : ExmCtx *ctx
-             exmbist_uint32 cmd
-             void *cmd_para
- 输出参数  : 无
- 返 回 值  : exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月18日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 exmbist_uint32 exm_drv_set_cmd1(ExmCtx *ctx, exmbist_uint32 cmd, void *cmd_para)
 {
     exmbist_uint32 uiret = EXMBIST_OK;
@@ -1140,23 +701,7 @@ exmbist_uint32 exm_drv_set_cmd1(ExmCtx *ctx, exmbist_uint32 cmd, void *cmd_para)
     return uiret;
 }
 
-/*****************************************************************************
- 函 数 名  : exm_drv_set_cmd2
- 功能描述  : 设置命令part2
- 输入参数  : ExmCtx *ctx
-             exmbist_uint32 cmd
-             void *cmd_para
- 输出参数  : 无
- 返 回 值  : exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月18日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 exmbist_uint32 exm_drv_set_cmd2(ExmCtx *ctx, exmbist_uint32 cmd, void *cmd_para)
 {
     exmbist_uint32 uiret = EXMBIST_OK;
@@ -1204,23 +749,7 @@ exmbist_uint32 exm_drv_set_cmd2(ExmCtx *ctx, exmbist_uint32 cmd, void *cmd_para)
     return uiret;
 }
 
-/*****************************************************************************
- 函 数 名  : exm_drv_set_cmd
- 功能描述  : 设置命令主流程
- 输入参数  : ExmCtx *ctx
-             exmbist_uint32 cmd
-             void *cmd_para
- 输出参数  : 无
- 返 回 值  : exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月18日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 exmbist_uint32 exm_drv_set_cmd(ExmCtx *ctx, exmbist_uint32 cmd, void *cmd_para)
 {
     exmbist_uint32 uiret = EXMBIST_OK;
@@ -1244,23 +773,7 @@ exmbist_uint32 exm_drv_set_cmd(ExmCtx *ctx, exmbist_uint32 cmd, void *cmd_para)
 
 #if 0
 
-/*****************************************************************************
- 函 数 名  : exmbist_set_cmd
- 功能描述  : exmbist 命令配置接口函数
- 输入参数  : ExmCtx *ctx
-             exmbist_uint32 cmd_id
-             void *cmd_para
- 输出参数  : 无
- 返 回 值  : exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月15日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 exmbist_uint32 exmbist_set_cmd(ExmCtx *ctx, exmbist_uint32 cmd_id, void *cmd_para)
 {
     exmbist_uint32 uiret = EXMBIST_OK;
@@ -1291,21 +804,7 @@ exmbist_uint32 exmbist_set_cmd(ExmCtx *ctx, exmbist_uint32 cmd_id, void *cmd_par
 static exmbist_uint32 g_default_base_pattern[DATA_PATTERN_LENGTH];
 static exmbist_uint32 g_default_alt_pattern[DATA_PATTERN_LENGTH];
 
-/*****************************************************************************
- 函 数 名  : exmbist_init
- 功能描述  : 初始化入口函数
- 输入参数  : ExmCtx *ctx
- 输出参数  : 无
- 返 回 值  : exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月18日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 exmbist_uint32 exmbist_init(ExmCtx *ctx)
 {
     exmbist_uint32 uiret = EXMBIST_OK;

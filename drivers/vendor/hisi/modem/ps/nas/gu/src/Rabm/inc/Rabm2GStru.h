@@ -1,21 +1,4 @@
-/************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : Rabm2GStru.h
-  Author      : l47619
-  Version     : V200R001
-  Date        : 2005-08-20
-  Description : 该头文件定义了RABM模块所用的数据结构
-  History     :
-  1. Date:2005-08-20
-     Author: l47619
-     Modification:Create
-  2.日    期   : 2006年08月09日
-    作    者   : 蒋丽萍j60010247
-    修改内容   : 问题单A32D03479，在PC机上实现时将#pragma pack(0)和#pragma pack()加编译开关
-  3. Date:2006-06-26
-     Author: l47619
-     Modification:根据问题单修改: A32D05709
-************************************************************************/
+
 
 #ifndef __RABM_2G_STRU_H__
 #define __RABM_2G_STRU_H__
@@ -293,13 +276,7 @@ typedef enum
     RABM_FLUX_BUTT
 }RABM_FLOW_NV_OPT_ENUM;
 
-/*****************************************************************************
- 枚举名    : NAS_RABM_TIMER_STATUS_ENUM
- 结构说明  : RABM定时器状态,停止或运行
-  1.日    期   : 2011年10月28日
-    作    者   : h44270
-    修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_RABM_TIMER_STATUS_ENUM
 {
     NAS_RABM_TIMER_STATUS_RUNING,            /* 定时器运行状态 */

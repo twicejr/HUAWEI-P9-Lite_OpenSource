@@ -1,27 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
-******************************************************************************
- 文 件 名   : AFC.h
- 版 本 号   : 初稿
- 作    者   : Shen Guang
- 生成日期   : 2010年12月23日
- 最近修改   :
- 功能描述   : AFC的头文件
- 函数列表   :
- 修改历史   :
- 1.日    期   : 2010年12月23日
-   作    者   : Shen Guang
-   修改内容   : 创建文件
- 2.日    期   : 2012年04月17日
-   作    者   : Shen Guang
-   修改内容   : [DTS2012022700423]FDD-TDD互操作
- 3.日    期   : 2012年05月05日
-   作    者   : Shen Guang
-   修改内容   : [DTS2012050201496]修改AGC驻留失步问题
-
-******************************************************************************/
 
 
 #ifndef __AGC_OM_DEF_H__
@@ -89,7 +66,6 @@ typedef enum
     LPHY_REQ_HRL_FIX_COM_IDX_ENA
 }LPHY_REQ_AGC_ENUM;
 
-/* BEGIN: Added by s00175552, 2011/6/27   问题单号:DTS2011062704134*/
 typedef enum
 {
     AGC_OM_SWITCH_OFF = 0,
@@ -133,7 +109,6 @@ typedef struct
 {
     AGC_OM_SWITCH_ENUM    enReportEn;    /*1 使能AFC状态上报*/
 }LPHY_REQ_AGC_REPORT_ENA_STRU;
-/* END: Added by s00175552, 2011/6/27   问题单号:DTS2011062704134*/
 
 typedef enum
 {
@@ -603,7 +578,6 @@ typedef struct
 
 
 
-/* END: Added by s00175552, 2011/8/01   问题单号:DTS2011080101213*/
 
 /************************************************************
                            4. TRACE数据结构定义
@@ -869,14 +843,10 @@ typedef struct
 typedef union
 {
     LPHY_TRACE_AGC_STATE_STRU         stAgcStateTrace;
-    /* BEGIN: Added by s00175552, 2011/7/13   问题单号:DTS2011062704134*/
     LPHY_TRACE_TDD_BLK_STRU           stAgcTddBlockEvent;
     LPHY_TRACE_AGC_EMBMS_FRAME_STRU   stAgcEmbmsTrace;
     AGC_SPECIAL_SENARION_TRACE_STRU   stAgcSpecialSenario;
-    /* BEGIN: Added by s00175552, 2011/8/01   问题单号:DTS2011080101213*/
     LPHY_TRACE_FREQ_INFO_STRU        stAGCFreqInfo;
-    /* END: Added by s00175552, 2011/8/01   问题单号:DTS2011080101213*/
-    /* END: Added by s00175552, 2011/7/13   问题单号:DTS2011062704134*/
     //AGC_SPECIAL_SENARION_TRACE_STRU   stAgcSpecialSenario3;
     //AGC_SPECIAL_SENARION_TRACE_STRU   stAgcSpecialSenario4;
     //AGC_SPECIAL_SENARION_TRACE_STRU   stAgcSpecialSenario6;

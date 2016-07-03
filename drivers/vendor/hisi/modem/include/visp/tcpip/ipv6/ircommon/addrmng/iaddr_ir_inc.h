@@ -54,10 +54,8 @@ DECLARE_INTERFACE(IIF_IP6_ADDR_IR_FUN)
                                                    IN6ADDR_S *pstIP6Addr);
     METHOD_(IP6IFADDR_S *, pfIP6_Addr_GetExactAddrNoPrefix)(ULONG ulVrfIndex, 
                                                         IN6ADDR_S *pstIn6Addr);
-    /* Modified by guojianjun178934, 【检视问题单---DAD告警优化】产品定期发送地址冲突检测的NS报文，如果收到了NA我们需要启动DAD探测, 2014/2/21   问题单号:DTS2014021206259  */
     /*DAD扩展通知处理*/
     METHOD_(VOID, pfIP6_Addr_DADExtCompleteNotify)(IP6IFADDR_S *pstIp6IfAddr);
-    /*End of Modified by guojianjun178934, 2014/2/21   问题单号:DTS2014021206259  */
 
 };
 
@@ -107,10 +105,8 @@ DECLARE_INTERFACE(IIF_IP6_ADDR_HOST_IR_FUN)
                                                    IN6ADDR_S *pstIP6Addr);
     METHOD_(IP6IFADDR_S *, pfIP6_Addr_GetExactAddrNoPrefix)(ULONG ulVrfIndex, 
                                                         IN6ADDR_S *pstIn6Addr);
-    /* Modified by guojianjun178934, 【检视问题单---DAD告警优化】产品定期发送地址冲突检测的NS报文，如果收到了NA我们需要启动DAD探测, 2014/2/21   问题单号:DTS2014021206259  */
     /*DAD扩展通知处理*/
     METHOD_(VOID, pfIP6_Addr_DADExtCompleteNotify)(IP6IFADDR_S *pstIp6IfAddr);
-    /*End of Modified by guojianjun178934, 2014/2/21   问题单号:DTS2014021206259  */
 
 };
 

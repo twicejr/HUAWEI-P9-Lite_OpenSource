@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2012, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CmmcaRegMgmt.c
-  版 本 号   : 初稿
-  作    者   : s00261364
-  生成日期   : 2014年01月26日
-  最近修改   :
-  功能描述   : CMMCA模块搜网注册相关的处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年01月26日
-    作    者   : s00261364
-    修改内容   : 新生成
-
-******************************************************************************/
 /*****************************************************************************
   1 头文件包含
 *****************************************************************************/
@@ -73,23 +56,7 @@ const VOS_UINT32 g_ulCmmcaRegEvtFuncTblSize  = sizeof(g_astCmmcaRegEvtFuncTbl) /
 *****************************************************************************/
 
 
-/*****************************************************************************
- 函 数 名  : CMMCA_REG_RcvRatModeReq
- 功能描述  : 处理ID_CMMCA_MMC_RAT_RAT_MODE_REQ消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月24日
-    作    者   : s00261364
-    修改内容   : 新生成函数
-  2.日    期   : 2015年4月10日
-    作    者   : h00313353
-    修改内容   : SysCfg重构
-*****************************************************************************/
 VOS_VOID CMMCA_REG_RcvRatModeReq(
     VOS_VOID                           *pMsg
 )
@@ -170,21 +137,7 @@ VOS_VOID CMMCA_REG_RcvRatModeReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_REG_RcvPowerUpReq
- 功能描述  : 处理ID_CMMCA_MMC_RAT_POWERUP_REQ消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月24日
-    作    者   : s00261364
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_REG_RcvPowerUpReq(
     VOS_VOID                           *pMsg
 )
@@ -247,21 +200,7 @@ VOS_VOID CMMCA_REG_RcvPowerUpReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_REG_RcvPowerDownReq
- 功能描述  : 处理ID_CMMCA_MMC_RAT_POWERDOWN_REQ消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月24日
-    作    者   : s00261364
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_REG_RcvPowerDownReq(
     VOS_VOID                           *pMsg
 )
@@ -323,21 +262,7 @@ VOS_VOID CMMCA_REG_RcvPowerDownReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_REG_RcvRatAcqReq
- 功能描述  : 处理ID_CMMCA_MMC_RAT_ACQ_REQ消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月24日
-    作    者   : s00261364
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_REG_RcvRatAcqReq(
     VOS_VOID                           *pMsg
 )
@@ -424,21 +349,7 @@ VOS_VOID CMMCA_REG_RcvRatAcqReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_REG_RcvMccSearchReq
- 功能描述  : 处理ID_CMMCA_MMC_RAT_MCC_SEARCH_REQ消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月24日
-    作    者   : s00261364
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_REG_RcvMccSearchReq(
     VOS_VOID                           *pMsg
 )
@@ -462,21 +373,7 @@ VOS_VOID CMMCA_REG_RcvMccSearchReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_REG_RcvPsRegReq
- 功能描述  : 处理ID_CMMCA_MMC_RAT_PS_REG_REQ消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月24日
-    作    者   : s00261364
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_REG_RcvPsRegReq(
     VOS_VOID                           *pMsg
 )
@@ -570,21 +467,7 @@ VOS_VOID CMMCA_REG_RcvPsRegReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_REG_RcvCellInfoPsRegReq
- 功能描述  : 处理ID_CMMCA_MMC_RAT_CELL_INFO_PS_REG_REQ消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月24日
-    作    者   : s00261364
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_REG_RcvCellInfoPsRegReq(
     VOS_VOID                           *pMsg
 )
@@ -694,21 +577,7 @@ VOS_VOID CMMCA_REG_RcvCellInfoPsRegReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_REG_RcvPktDataCmdReq
- 功能描述  : 处理ID_CMMCA_MMC_RAT_DATACONNECTION_CMD_REQ消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月24日
-    作    者   : s00261364
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_REG_RcvPktDataCmdReq(
     VOS_VOID                           *pMsg
 )
@@ -754,21 +623,7 @@ VOS_VOID CMMCA_REG_RcvPktDataCmdReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_REG_RcvNoServiceReq
- 功能描述  : 处理ID_CMMCA_MMC_RAT_NO_SERVICE_REQ消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月24日
-    作    者   : s00261364
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_REG_RcvNoServiceReq(
     VOS_VOID                           *pMsg
 )
@@ -852,20 +707,7 @@ VOS_VOID CMMCA_REG_RcvNoServiceReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_REG_RcvBearDetachReq
- 功能描述  : 处理ID_CMMCA_MMC_RAT_BEARER_DETACH_REQ消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月7日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CMMCA_REG_RcvBearDetachReq(
     VOS_VOID                           *pMsg
 )
@@ -933,21 +775,7 @@ VOS_VOID CMMCA_REG_RcvBearDetachReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_REG_RcvMmaSysCfgCnf
- 功能描述  : 处理来自MMA模块ID_TAF_MMA_SYS_CFG_CNF消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月24日
-    作    者   : s00261364
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_REG_RcvMmaSysCfgCnf(
     VOS_VOID                           *pMsg
 )
@@ -990,21 +818,7 @@ VOS_VOID CMMCA_REG_RcvMmaSysCfgCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_REG_RcvPhoneModeSetcnf
- 功能描述  : 处理ID_TAF_MMA_PHONE_MODE_SET_CNF消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月24日
-    作    者   : s00261364
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_REG_RcvMmaPhoneModeSetcnf(
     VOS_VOID                           *pMsg
 )
@@ -1066,8 +880,6 @@ VOS_VOID CMMCA_REG_RcvMmaPhoneModeSetcnf(
     {
         CMMCA_REG_SndPowerDownRsp(CMMCA_MMC_RAT_ID_EUTRAN);  /* 关机成功 */
 
-        /* Deleted by w00167002 for L-C互操作项目, 2014-3-15, begin */
-        /* Deleted by w00167002 for L-C互操作项目, 2014-3-15, end */
     }
 
     /* 释放opid,清空缓存 */
@@ -1076,21 +888,7 @@ VOS_VOID CMMCA_REG_RcvMmaPhoneModeSetcnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_REG_RcvMmaAcqCnf
- 功能描述  : 处理ID_TAF_MMA_ACQ_CNF消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月24日
-    作    者   : s00261364
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_REG_RcvMmaAcqCnf(
     VOS_VOID                           *pMsg
 )
@@ -1158,8 +956,6 @@ VOS_VOID CMMCA_REG_RcvMmaAcqCnf(
 
     CMMCA_REG_SndAcqRsp(CMMCA_MMC_RAT_ID_EUTRAN, enRslt, &stRatInfo);
 
-    /* Deleted by w00167002 for L-C互操作项目, 2014-3-15, begin */
-    /* Deleted by w00167002 for L-C互操作项目, 2014-3-15, end */
 
     /* 释放opid,清空缓存 */
     CMMCA_DelItemInCmdBufferQueue(ucOpid);
@@ -1167,21 +963,7 @@ VOS_VOID CMMCA_REG_RcvMmaAcqCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_REG_RcvMmaServiceStateInd
- 功能描述  : 处理MMA上报的服务指示消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月24日
-    作    者   : s00261364
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_REG_RcvMmaServiceStateInd(
     VOS_VOID                           *pMsg
 )
@@ -1253,21 +1035,7 @@ VOS_VOID CMMCA_REG_RcvMmaServiceStateInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_REG_RcvMmaAcqInd
- 功能描述  : 处理ID_TAF_MMA_ACQ_IND消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月24日
-    作    者   : s00261364
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_REG_RcvMmaAcqInd(
     VOS_VOID                           *pMsg
 )
@@ -1303,21 +1071,7 @@ VOS_VOID CMMCA_REG_RcvMmaAcqInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_REG_RcvMmaPowerSaveCnf
- 功能描述  : 处理MMA模块的ID_TAF_MMA_POWER_SAVE_CNF消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月24日
-    作    者   : s00261364
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_REG_RcvMmaPowerSaveCnf(
     VOS_VOID                           *pMsg
 )
@@ -1357,8 +1111,6 @@ VOS_VOID CMMCA_REG_RcvMmaPowerSaveCnf(
             /* 回复ID_CMMCA_RAT_MMC_NO_SERVICE_RSP到CBPCA */
             CMMCA_REG_SndNoServiceRsp(CMMCA_MMC_RAT_ID_EUTRAN, CMMCA_MMC_NO_SERV_RSP_SUCC);
 
-            /* Deleted by w00167002 for L-C互操作项目, 2014-3-15, begin */
-            /* Deleted by w00167002 for L-C互操作项目, 2014-3-15, end */
 
 
             /* 设置Modem的状态为INACTIVE */
@@ -1375,8 +1127,6 @@ VOS_VOID CMMCA_REG_RcvMmaPowerSaveCnf(
         /* 回复ID_CMMCA_RAT_MMC_DATACONNECTION_CMD_RSP到CBPCA */
         CMMCA_REG_SndPktDataCmdRsp(CMMCA_MMC_RAT_ID_EUTRAN, CMMCA_IRAT_DATA_CONNECT_CMD_RSP_PKT_DISABLED);
 
-        /* Deleted by w00167002 for L-C互操作项目, 2014-3-15, begin */
-        /* Deleted by w00167002 for L-C互操作项目, 2014-3-15, end */
 
         /* 设置Modem的状态为INACTIVE */
         CMMCA_SetModemStatus(CMMCA_MODEM_STATUS_INACTIVE);
@@ -1408,23 +1158,7 @@ VOS_VOID CMMCA_REG_RcvMmaPowerSaveCnf(
     return;
 }
 
- /*****************************************************************************
-  函 数 名  : CMMCA_REG_RcvMmaRegCnf
-  功能描述  : 处理MMA模块的ID_TAF_MMA_REG_CNF消息
-  输入参数  : VOS_VOID *pMsg
-  输出参数  : 无
-  返 回 值  : VOS_VOID
-  调用函数  :
-  被调函数  :
-
-  修改历史      :
-   1.日    期   : 2014年1月24日
-     作    者   : s00261364
-     修改内容   : 新生成函数
-   2.日    期   : 2015年4月22日
-     作    者   : wx270776
-     修改内容   : DTS2015031602665:将LMM ATTACH注册状态带给VIA
- *****************************************************************************/
+ 
  VOS_VOID CMMCA_REG_RcvMmaRegCnf(
      VOS_VOID                           *pMsg
  )
@@ -1494,21 +1228,7 @@ VOS_VOID CMMCA_REG_RcvMmaPowerSaveCnf(
      return;
  }
 
-/*****************************************************************************
-函 数 名  : CMMCA_REG_RcvMmaDetachCnf
-功能描述  : 处理MMA模块的ID_TAF_MMA_DETACH_CNF消息
-输入参数  : VOS_VOID *pMsg
-输出参数  : 无
-返 回 值  : VOS_VOID
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2014年1月24日
- 作    者   : s00261364
- 修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_REG_RcvMmaDetachCnf(
     VOS_VOID                           *pMsg
 )
@@ -1554,21 +1274,7 @@ VOS_VOID CMMCA_REG_RcvMmaDetachCnf(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : CMMCA_REG_RcvMmaSimStatusInd
-功能描述  : 处理MMA模块的ID_TAF_MMA_SIM_STATUS_IND消息
-输入参数  : VOS_VOID *pMsg
-输出参数  : 无
-返 回 值  : VOS_VOID
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2014年1月24日
- 作    者   : s00261364
- 修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_REG_RcvMmaSimStatusInd(
     VOS_VOID                           *pMsg
 )
@@ -1593,21 +1299,7 @@ VOS_VOID CMMCA_REG_RcvMmaSimStatusInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_REG_RcvMmaSysInfoInd
- 功能描述  : 收到MMA的位置信息上报指示
- 输入参数  :  pMsg:消息指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月29日
-    作    者   : s00246516
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  CMMCA_REG_RcvMmaSysInfoInd(
     VOS_VOID                           *pMsg
 )
@@ -1668,21 +1360,7 @@ VOS_VOID  CMMCA_REG_RcvMmaSysInfoInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_REG_RcvMmaMsg
- 功能描述  : 处理MMA发来的消息
- 输入参数  : struct MsgCB                     *pstEvt
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月11日
-    作    者   : s00261364
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_REG_RcvMmaMsg(struct MsgCB *pstMsg)
 {
     VOS_UINT32                          ulIndex;
@@ -1716,21 +1394,7 @@ VOS_VOID CMMCA_REG_RcvMmaMsg(struct MsgCB *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_REG_SndNtwIndRpt
- 功能描述  : 发送ntw消息根据MMA上报的服务指示消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月24日
-    作    者   : s00261364
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_REG_SndNtwIndRpt(
     CMMCA_RAT_SYS_INFO_STRU            *pstRatInfo,
     TAF_MMA_SERVICE_STATUS_IND_STRU    *pstServStatusInd
@@ -1770,22 +1434,7 @@ VOS_VOID CMMCA_REG_SndNtwIndRpt(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_REG_SndPowerUpRsp
- 功能描述  : 发送开机请求结果ID_CMMCA_RAT_MMC_POWERUP_RSP
- 输入参数  : CMMCA_RAT_MMC_RAT_ID_ENUM_UINT8                         enRatId,
-             CMMCA_RAT_POWERUP_RSP_RESULT_ENUM_UINT8                 enResult
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月12日
-    作    者   : s00261364
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_REG_SndPowerUpRsp(
     CMMCA_MMC_RAT_ID_ENUM_UINT8                             enRatId,
     CMMCA_RAT_POWERUP_RSP_RESULT_ENUM_UINT8                 enResult
@@ -1834,21 +1483,7 @@ VOS_VOID CMMCA_REG_SndPowerUpRsp(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_REG_SndPowerDownRsp
- 功能描述  : 发送模式请求结果ID_CMMCA_RAT_MMC_POWERDOWN_RSP
- 输入参数  : CMMCA_RAT_MMC_RAT_ID_ENUM_UINT8     enRatId,
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月12日
-    作    者   : s00261364
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_REG_SndPowerDownRsp(
     CMMCA_MMC_RAT_ID_ENUM_UINT8     enRatId
 )
@@ -1892,22 +1527,7 @@ VOS_VOID CMMCA_REG_SndPowerDownRsp(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_REG_SndModeRsp
- 功能描述  : 发送模式请求结果ID_CMMCA_RAT_MMC_RAT_MODE_RSP
- 输入参数  : CMMCA_RAT_MMC_RAT_ID_ENUM_UINT8     enRatId,
-             CMMCA_RAT_MMC_RESULT_ENUM_UINT8     enRslt
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月12日
-    作    者   : s00261364
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_REG_SndModeRsp(
     CMMCA_MMC_RAT_ID_ENUM_UINT8                             enRatId,
     CMMCA_MMC_MODE_RSP_RESULT_ENUM_UINT8                    enResult
@@ -1954,23 +1574,7 @@ VOS_VOID CMMCA_REG_SndModeRsp(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_REG_SndAcqRsp
- 功能描述  : 发送模式请求结果ID_CMMCA_RAT_MMC_ACQ_RSP
- 输入参数  : CMMCA_MMC_RAT_ID_ENUM_UINT8         enRatId,
-             CMMCA_RAT_ACQ_RESULT_ENUM_UINT8     enRslt,
-            S CMMCA_RAT_SYS_INFO_STRU            *pstRatInfo
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月12日
-    作    者   : s00261364
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_REG_SndAcqRsp(
     CMMCA_MMC_RAT_ID_ENUM_UINT8         enRatId,
     CMMCA_RAT_ACQ_RESULT_ENUM_UINT8     enRslt,
@@ -2032,22 +1636,7 @@ VOS_VOID CMMCA_REG_SndAcqRsp(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_REG_SndMccSearchRsp
- 功能描述  : 发送ID_CMMCA_RAT_MMC_MCC_SEARCH_RSP
- 输入参数  : CMMCA_MMC_RAT_ID_ENUM_UINT8         enRatId,
-             CMMCA_RAT_MMC_RESULT_ENUM_UINT8     enRslt
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月12日
-    作    者   : s00261364
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_REG_SndMccSearchRsp(
     CMMCA_MMC_RAT_ID_ENUM_UINT8         enRatId,
     CMMCA_RAT_MMC_RAT_SYS_INFO_STRU    *pstSysInfo
@@ -2100,24 +1689,7 @@ VOS_VOID CMMCA_REG_SndMccSearchRsp(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_REG_SndRegRsp
- 功能描述  : 发送ID_CMMCA_RAT_MMC_PS_REG_RSP/ID_CMMCA_RAT_MMC_CELL_INFO_PS_REG_RSP
- 输入参数  : TAF_MMA_APP_OPER_RESULT_ENUM_UINT32 enRslt
-             CMMCA_MMC_RAT_CMD_ID_ENUM_UINT16    usCmdId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月12日
-    作    者   : s00261364
-    修改内容   : 新生成函数
-  2.日    期   : 2015年4月22日
-    作    者   : wx270776
-    修改内容   : 增加VIA的消息增加CL ATTACH注册状态
-*****************************************************************************/
 VOS_VOID CMMCA_REG_SndRegRsp(
     TAF_MMA_APP_OPER_RESULT_ENUM_UINT32 enRslt,
     TAF_MMA_ATTACH_CL_REG_STATUS_ENUM8  enLmmAttachRegStatus,
@@ -2180,25 +1752,7 @@ VOS_VOID CMMCA_REG_SndRegRsp(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_REG_SndPsRegRsp
- 功能描述  : 发送ID_CMMCA_RAT_MMC_PS_REG_RSP
- 输入参数  : CMMCA_MMC_RAT_ID_ENUM_UINT8             enRatId,
-             CMMCA_RAT_REG_RESULT_ENUM_UINT8         enResult
-             CMMCA_RAT_SYS_INFO_STRU                *pstRatInfo
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月12日
-    作    者   : s00261364
-    修改内容   : 新生成函数
-  2.日    期   : 2015年4月22日
-    作    者   : wx270776
-    修改内容   : 增加VIA的消息增加CL ATTACH注册状态
-*****************************************************************************/
 VOS_VOID CMMCA_REG_SndPsRegRsp(
     CMMCA_MMC_RAT_ID_ENUM_UINT8                             enRatId,
     CMMCA_RAT_REG_RESULT_ENUM_UINT8                         enResult,
@@ -2263,26 +1817,7 @@ VOS_VOID CMMCA_REG_SndPsRegRsp(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_REG_SndCellInfoPsRegRsp
- 功能描述  : 发送ID_CMMCA_MMC_RAT_CELL_INFO_PS_REG_REQ
- 输入参数  : CMMCA_MMC_RAT_ID_ENUM_UINT8                             enRatId,
-             CMMCA_RAT_REG_RESULT_ENUM_UINT8                         enResult,
-             CMMCA_RAT_ATTACH_CL_REG_STATUS_ENUM8                    enLmmAttachRegStatus,
-             CMMCA_RAT_SYS_INFO_STRU                                *pstRatInfo
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月12日
-    作    者   : s00261364
-    修改内容   : 新生成函数
-  2.日    期   : 2015年4月22日
-    作    者   : wx270776
-    修改内容   : 增加VIA的消息增加CL ATTACH注册状态
-*****************************************************************************/
 VOS_VOID CMMCA_REG_SndCellInfoPsRegRsp(
     CMMCA_MMC_RAT_ID_ENUM_UINT8                             enRatId,
     CMMCA_RAT_MMC_STATUS_ENUM_UINT8                         enResult,
@@ -2344,22 +1879,7 @@ VOS_VOID CMMCA_REG_SndCellInfoPsRegRsp(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_REG_SndNoServiceRsp
- 功能描述  : 发送ID_CMMCA_RAT_MMC_NO_SERVICE_RSP
- 输入参数  : CMMCA_MMC_RAT_ID_ENUM_UINT8         enRatId,
-             VOS_UINT8                           ucStatus
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月12日
-    作    者   : s00261364
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_REG_SndNoServiceRsp(
     CMMCA_MMC_RAT_ID_ENUM_UINT8         enRatId,
     VOS_UINT8                           ucStatus
@@ -2406,23 +1926,7 @@ VOS_VOID CMMCA_REG_SndNoServiceRsp(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_REG_SndNtwStChgInd
- 功能描述  : 发送ID_CMMCA_RAT_MMC_NWT_ST_CHG_IND
- 输入参数  : CMMCA_MMC_RAT_ID_ENUM_UINT8           enRatId,
-             CMMCA_RAT_NOTIFY_CAUSE_ENUM_UINT8     enCause,
-             CMMCA_RAT_CPST_ENUM_UINT8             enStatus
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月12日
-    作    者   : s00261364
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_REG_SndNtwStChgInd(
     CMMCA_MMC_RAT_ID_ENUM_UINT8         enRatId,
     CMMCA_RAT_NOTIFY_CAUSE_ENUM_UINT8   enCause,
@@ -2486,23 +1990,7 @@ VOS_VOID CMMCA_REG_SndNtwStChgInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_REG_SndMmcRejInd
- 功能描述  : 发送拒绝指示消息ID_CMMCA_RAT_MMC_CMD_REJ_IND
- 输入参数  : CMMCA_RAT_MMC_RAT_ID_ENUM_UINT8     enSourceRat,
-             CMMCA_MMC_RAT_CMD_ID_ENUM_UINT16    enApiID
-             CMMCA_RAT_CMD_REJ_REASON_ENUM_UINT8 enCause
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月12日
-    作    者   : s00261364
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_REG_SndMmcRejInd(
     CMMCA_MMC_RAT_ID_ENUM_UINT8         enSourceRat,
     CMMCA_MMC_RAT_CMD_ID_ENUM_UINT16    enApiID,
@@ -2550,22 +2038,7 @@ VOS_VOID CMMCA_REG_SndMmcRejInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_REG_SndPktDataCmdRsp
- 功能描述  : 发送ID_CMMCA_RAT_MMC_DATACONNECTION_CMD_RSP
- 输入参数  : CMMCA_MMC_RAT_ID_ENUM_UINT8                enRatId,
-             CMMCA_IRAT_DATA_CONNECT_CMD_RSP_ENUM_UINT8 enCmdRsp
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月12日
-    作    者   : s00261364
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_REG_SndPktDataCmdRsp(
     CMMCA_MMC_RAT_ID_ENUM_UINT8                             enRatId,
     CMMCA_IRAT_DATA_CONNECT_CMD_RSP_ENUM_UINT8              enCmdRsp
@@ -2612,21 +2085,7 @@ VOS_VOID CMMCA_REG_SndPktDataCmdRsp(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_SndBearDetachRsp
- 功能描述  : 发送ID_CMMCA_RAT_MMC_BEARER_DETACH_RSP
- 输入参数  : CMMCA_MMC_RAT_ID_ENUM_UINT8         enRatId,
-             VOS_UINT8                           ucStatus
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月7日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CMMCA_PKT_SndBearDetachRsp(
     CMMCA_MMC_RAT_ID_ENUM_UINT8         enRatId,
     VOS_UINT8                           ucStatus
@@ -2674,21 +2133,7 @@ VOS_VOID CMMCA_PKT_SndBearDetachRsp(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_REG_ConvertTafPriToCmmcaPri
- 功能描述  : 将TAF定义的PRI转换为CMMCA的PRI
- 输入参数  : TAF_MMA_PLMN_PRIORITY_CLASS_ENUM_UINT8       enTafPriClass
- 输出参数  : 无
- 返 回 值  : CMMCA_RAT_GMSS_PRIORITY_CLASS_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月24日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CMMCA_RAT_GMSS_PRIORITY_CLASS_ENUM_UINT8 CMMCA_REG_ConvertTafPriToCmmcaPri(
     TAF_MMA_PLMN_PRIORITY_CLASS_ENUM_UINT8      enTafPriClass
 )

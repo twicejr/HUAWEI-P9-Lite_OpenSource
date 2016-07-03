@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : dmac_config.h
-  版 本 号   : 初稿
-  作    者   : zourong
-  生成日期   : 2013年1月8日
-  最近修改   :
-  功能描述   : dmac_config.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年1月8日
-    作    者   : zourong
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __DMAC_CONFIG_H__
 #define __DMAC_CONFIG_H__
@@ -38,6 +21,7 @@ extern "C" {
 #ifdef _PRE_WLAN_FEATURE_P2P
 #include "dmac_p2p.h"
 #endif
+#include "dmac_alg_if.h"
 #undef  THIS_FILE_ID
 #define THIS_FILE_ID OAM_FILE_ID_DMAC_CONFIG_H
 
@@ -138,6 +122,7 @@ extern oal_uint32 dmac_pkt_mem_opt_stat_event_process(frw_event_mem_stru *pst_ev
 #ifdef _PRE_PLAT_FEATURE_CUSTOMIZE
 extern oal_void dmac_config_update_rate_pow_table(oal_void);
 extern oal_void dmac_config_update_scaling_reg(oal_void);
+extern oal_void dmac_config_update_dsss_scaling_reg(dmac_alg_tpc_user_distance_enum_uint8 en_dmac_device_distance_enum);
 #endif  /* _PRE_PLAT_FEATURE_CUSTOMIZE */
 
 #ifdef __cplusplus

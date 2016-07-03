@@ -1,24 +1,4 @@
-/*******************************************************************************
-  Copyright    : 2005-2007, Huawei Tech. Co., Ltd.
-  File name    : RabmMain.c
-  Description  : Rabm的入口，初始化及消息分发函数
-  Function List:
-                 1.  Rabm_3GTaskEntry
-                 2.  Rabm_TimerProcess
-                 3.  Rabm_Init
-                 4.  RABM_TimerStart
-                 5.  RABM_TimerStop
-                 6.  WuepsRabmPidInit
-                 7.  WuepsRabmFidInit
 
-  History:
-      1. 张志勇   2003.12.08   新规作成
-      2. l47619   2005.10.19   打印全局数据结构 问题单A32D00636
-      3. l47619   2005.10.21   Modify for V200R001
-      4. l47619   2006.05.08   Modify for A32D03487
-      5. l47619   2006.06.26   Modify for A32D05709
-      6. L47619   2007.01.30   Modify for A32D08529
-*******************************************************************************/
 #include "rabminclude.h"
 #include "NasRabmMain.h"
 
@@ -43,21 +23,7 @@ extern VOS_VOID Sm_TaskEntry  (struct MsgCB * pRcvMsg);
 extern VOS_VOID RABM_TcDataQInit(VOS_VOID);
 
 #ifdef __PS_WIN32_RECUR__
-/*****************************************************************************
- 函 数 名  : NAS_RABM_RestoreContextData
- 功能描述  : 恢复RABM全局变量。
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年03月16日
-    作    者   : 欧阳飞 00132663
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_RABM_RestoreContextData(struct MsgCB * pMsg)
 {
     NAS_RABM_SDT_MSG_ST                      *pRcvMsgCB;
@@ -85,21 +51,7 @@ VOS_UINT32 NAS_RABM_RestoreContextData(struct MsgCB * pMsg)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_SndOutsideContextData
- 功能描述  : 把RABM外部上下文作为SDT消息发送出去，以便在回放时通过桩函数还原
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年03月16日
-    作    者   : 欧阳飞 00132663
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_RABM_SndOutsideContextData()
 {
     NAS_RABM_SDT_MSG_ST                      *pSndMsgCB     = VOS_NULL_PTR;
@@ -139,22 +91,7 @@ VOS_UINT32 NAS_RABM_SndOutsideContextData()
 }
 
 
-/***********************************************************************
-*  MODULE   : Rabm_3GTaskEntry
-*  FUNCTION : Rabm模块TASK入口处理
-*  INPUT    : struct MsgCB* pMsg-----------消息指针
-*  OUTPUT   : VOS_VOID
-*  RETURN   : VOS_VOID
-*  NOTE     : 消息指针由DOPRA释放，入口函数不需要释放
-*  HISTORY  :
-*     1.  张志勇   05-01-28  新规作成
-*     2.  张志勇   05-03-08  使用PID进行分发处理
-*     3.  L47619   06-05-08  A32D03487
-*     4.  L47619   06-06-26  A32D05709
-      5.日    期   : 2011年10月21日
-        作    者   : h44270
-        修改内容   : V7R1 FAST DORMANCY特性，增加RRRABM_FASTDORM_INFO_IND消息的处理
-************************************************************************/
+
 
 VOS_VOID Rabm_3GTaskEntry( struct MsgCB* pMsg )
 {
@@ -286,34 +223,7 @@ VOS_VOID Rabm_3GTaskEntry( struct MsgCB* pMsg )
 
 }
 
-/*******************************************************************************
-  Module:      Rabm_TimerProcess
-  Function:    TIMER溢出处理：重发RAB重建请求
-  Input:        pTimer   超时消息指针
-  Output:      VOS_VOID
-  NOTE:
-  Return:      VOS_VOID
-  History:
-      1.  张志勇      2003.12.11   新规作成
-      2.  l47619      2005.10.12   修改函数的实现
-      3.  l47619      2006.05.06   问题单:A32D03487
-      4.  l47619      2006.06.26   问题单:A32D05709
-  2.日    期   : 2010年12月13日
-    作    者   : lijun 00171473
-    修改内容   : DTS2010112903583, 起个Timer, 流量数据每10分钟保存一次NV
-                 TIMER 到时,写流量到NV
 
-  3.日    期   : 2012年6月13日
-    作    者   : A00165503
-    修改内容   : DTS2012061302495: RAB重建保护定时器超时处理修改, 清除RAB重
-                 建标识, 通知CDS释放缓存
-  4.日    期   : 2012年10月31日
-    作    者   : z60575
-    修改内容   : DTS2012101906800,特殊原因值时增加0.5s延时
-  5.日    期   : 2013年04月12日
-    作    者   : l65478
-    修改内容   : DTS2013031901654:彩信并发发送失败
-*******************************************************************************/
 VOS_VOID Rabm_TimerProcess( REL_TIMER_MSG *pTimer )
 {
     /*入口参数合法性检查:指针是否为空，ulPara项是否合法:*/
@@ -382,27 +292,7 @@ VOS_VOID Rabm_TimerProcess( REL_TIMER_MSG *pTimer )
     return;
 }
 
-/*******************************************************************************
-  Module:      Rabm_Init
-  Function:    初始化RABM实体
-  Input:       VOS_VOID
-  Output:      VOS_VOID
-  NOTE:
-  Return:      VOS_VOID
-  History:
-      1.  张志勇      2003.12.11   新规作成
-      2.  L47619      2006.06.26   根据问题单修改:A32D05709
-      3.  L47619      2007.01.30   根据问题单修改:A32D08529
-      4.日    期   : 2007年8月28日
-        作    者   : l60022475
-        修改内容   : 问题单号：A32D12744,初始化RABM Timer句柄
-      5.日    期   : 2011年10月18日
-        作    者   : h44270
-        修改内容   : FASTDORMANCY，增加初始化处理
-      6.日    期   : 2013年04月12日
-        作    者   : l65478
-        修改内容   : DTS2013031901654:彩信并发发送失败
-*******************************************************************************/
+
 VOS_VOID Rabm_Init()
 {
     VOS_UINT8   i;
@@ -461,20 +351,7 @@ VOS_VOID Rabm_Init()
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_SetRbProtectTmrLen
- 功能描述  : 设置RB保护定时器时长
- 输入参数  : ulTmrLen - 定时器时长(ms)
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月1日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_RABM_SetRbProtectTmrLen(VOS_UINT32 ulTmrLen)
 {
     NAS_RABM_SET_RAB_PENDING_TMR_LEN(ulTmrLen);
@@ -482,20 +359,7 @@ VOS_VOID NAS_RABM_SetRbProtectTmrLen(VOS_UINT32 ulTmrLen)
     return;
 }
 
-/*******************************************************************************
-  Module:   RABM_TimerStart
-  Function: 启动Timer
-  Input:    VOS_UINT8   ucTimerId
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.   张志勇      2003.12.09   新规作成
 
-  2.日    期   : 2013年2月18日
-    作    者   : A00165503
-    修改内容   : DTS2013021805741: RB建立流程优化
-*******************************************************************************/
 VOS_VOID RABM_TimerStart(
     VOS_UINT8                           ucTimerId,
     VOS_UINT32                          ulTimerLen
@@ -582,23 +446,7 @@ VOS_UINT32 WuepsRabmPidInit ( enum VOS_INIT_PHASE_DEFINE ip )
     return VOS_OK;
 }
 
-/******************************************************************************
- * 函数名称 ： WuepsRabmFidInit
- * 功能描述 ： WUEPS RABM FID的初始化函数
- * 参数说明 ： 无
- * 备    注 ：
- * 返 回 值 ： VOS_UINT32 初始化结果：
- *             0  : 成功
- *             非0: 失败
- *
- * 变更历史 ：
- *           No.  姓名      变更                                    日   期
- *           1    张志勇    新建                                   2005.02.24
- *           2    张志勇    AS IT时启动dummyRABM                   2005.03.08
-  2.日    期   : 2012年5月9日
-    作    者   : z60575
-    修改内容   : DTS2012050905268, C核任务优先级调整
- *****************************************************************************/
+
 VOS_UINT32 WuepsRabmFidInit ( enum VOS_INIT_PHASE_DEFINE ip )
 {
     VOS_UINT32 ulReturnCode;

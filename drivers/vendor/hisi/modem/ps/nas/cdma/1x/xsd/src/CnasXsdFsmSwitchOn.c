@@ -1,19 +1,4 @@
-/*******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasXsdFsmSwitchOn.c
-  版 本 号   : 初稿
-  作    者   : y00245242
-  生成日期   : 2014年07月03日
-  功能描述   : 1X SD开机状态机事件处理函数
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年07月03日
-    作    者   : y00245242
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -53,25 +38,7 @@ extern "C"{
   3 函数定义
 *****************************************************************************/
 /*lint -save -e958*/
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvMsccStartReq_SwitchOn_Init
- 功能描述  : SwitchOn状态机，初始化的状态，收到MSCC的开机消息
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月4日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-  2.日    期   : 2015年5月21日
-    作    者   : w00242748
-    修改内容   : CDMA Iteration 15 modified
-
-*****************************************************************************/
 VOS_UINT32  CNAS_XSD_RcvMsccStartReq_SwitchOn_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -264,26 +231,7 @@ VOS_UINT32  CNAS_XSD_RcvMsccStartReq_SwitchOn_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvGetCardFileCnf_SwitchOn_WaitUimFileCnf
- 功能描述  : XSD在WAIT_CARD_FILE_CNF状态下，收到读取卡文件信息的回复消息
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月4日
-    作    者   : h00246512
-    修改内容   : 新生成函数
- 修改历史      :
-  2.日    期   : 2015年02月06日
-    作    者   : h00313353
-    修改内容   : Usimm卡接口调整
-
-*****************************************************************************/
 VOS_UINT32  CNAS_XSD_RcvCardGetFileCnf_SwitchOn_WaitCardFileCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -352,25 +300,7 @@ VOS_UINT32  CNAS_XSD_RcvCardGetFileCnf_SwitchOn_WaitCardFileCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvTiCardGetFileCnfExpired_SwitchOn_WaitCardFileCnf
- 功能描述  : XSD在WAIT_CARD_FILE_CNF状态下，等待读取UIM卡文件超时
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月4日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-  2.日    期   : 2015年6月30日
-   作    者   : z00316370
-   修改内容   : 卡状态更改
-
-*****************************************************************************/
 VOS_UINT32  CNAS_XSD_RcvTiCardGetFileCnfExpired_SwitchOn_WaitCardFileCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -457,23 +387,7 @@ VOS_UINT32  CNAS_XSD_RcvTiCardGetFileCnfExpired_SwitchOn_WaitCardFileCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvXccStartCnf_SwitchOn_WaitXccStartCnf
- 功能描述  : XSD在WAIT_XCC_START_CNF 状态下,收到XCC的开机确认回复消息
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
-
- 修改历史      :
-  1.日    期   : 2014年7月4日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  CNAS_XSD_RcvXccStartCnf_SwitchOn_WaitXccStartCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -494,22 +408,7 @@ VOS_UINT32  CNAS_XSD_RcvXccStartCnf_SwitchOn_WaitXccStartCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvTiXccStartCnfExpired_SwitchOn_WaitXccStartCnf
- 功能描述  : XSD在WAIT_XCC_START_CNF 状态下,等待XCC的开机确认回复消息超时
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月4日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  CNAS_XSD_RcvTiXccStartCnfExpired_SwitchOn_WaitXccStartCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -528,25 +427,7 @@ VOS_UINT32  CNAS_XSD_RcvTiXccStartCnfExpired_SwitchOn_WaitXccStartCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvXregStartCnf_SwitchOn_WaitXregStartCnf
- 功能描述  : XSD在WAIT_XREG_START_CNF 状态下,收到XREG的开机确认回复消息
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
-
- 修改历史      :
-  1.日    期   : 2014年7月4日
-    作    者   : h00246512
-    修改内容   : 新生成函数
- 2.日    期   : 2015年4月15日
-   作    者   : y00245242
-   修改内容   : iteration 13开发
-*****************************************************************************/
 VOS_UINT32  CNAS_XSD_RcvXregStartCnf_SwitchOn_WaitXregStartCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -571,24 +452,7 @@ VOS_UINT32  CNAS_XSD_RcvXregStartCnf_SwitchOn_WaitXregStartCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvTiXregStartCnfExpired_SwitchOn_WaitXregStartCnf
- 功能描述  : XSD在WAIT_XREG_START_CNF 状态下,等待XREG的开机确认回复消息超时
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月4日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-  2.日    期   : 2015年4月15日
-    作    者   : y00245242
-    修改内容   : iteration 13开发
-*****************************************************************************/
 VOS_UINT32  CNAS_XSD_RcvTiXregStartCnfExpired_SwitchOn_WaitXregStartCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -612,22 +476,7 @@ VOS_UINT32  CNAS_XSD_RcvTiXregStartCnfExpired_SwitchOn_WaitXregStartCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvCasStartCnf_SwitchOn_WaitCasStartCnf
- 功能描述  : XSD在WAIT_CAS_START_CNF 状态下,收到CAS的开机确认回复消息
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
-
- 修改历史      :
-  1.日    期   : 2014年7月4日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  CNAS_XSD_RcvCasStartCnf_SwitchOn_WaitCasStartCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -670,22 +519,7 @@ VOS_UINT32  CNAS_XSD_RcvCasStartCnf_SwitchOn_WaitCasStartCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvTiCasStartCnfExpired_SwitchOn_WaitCasStartCnf
- 功能描述  : XSD在WAIT_CAS_START_CNF 状态下,等待CAS的开机确认回复消息超时
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月4日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  CNAS_XSD_RcvTiCasStartCnfExpired_SwitchOn_WaitCasStartCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -705,28 +539,7 @@ VOS_UINT32  CNAS_XSD_RcvTiCasStartCnfExpired_SwitchOn_WaitCasStartCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_ReadNvimInfo_SwitchOn
- 功能描述  :  开机时读取NV设置值
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月8日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年1月8日
-    作    者   : y00245242
-    修改内容   : 迭代7开发
-  3.日    期   : 2015年7月3日
-    作    者   : w00242748
-    修改内容   : CDMA 1X Iteration 17
-
-*****************************************************************************/
 VOS_VOID  CNAS_XSD_ReadNvimInfo_SwitchOn(VOS_VOID)
 {
     /* 读取NV中的MRU信息 */
@@ -774,21 +587,7 @@ VOS_VOID  CNAS_XSD_ReadNvimInfo_SwitchOn(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_ReadNvimInfo_SwitchOn
- 功能描述  :  开机时读取NV设置值
- 输入参数  : enFileId -- 文件ID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月8日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  CNAS_XSD_SndCardReadFileReq(USIMM_DEF_FILEID_ENUM_UINT32 enFileId)
 {
     NAS_USIMM_GETFILE_INFO_STRU         stGetFileInfo;
@@ -811,25 +610,7 @@ VOS_VOID  CNAS_XSD_SndCardReadFileReq(USIMM_DEF_FILEID_ENUM_UINT32 enFileId)
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_SaveCardStatus_SwitchOn
- 功能描述  : 将MMA下发的卡状态信息转换成CCB使用的形式
-             保存到全局变量中.
- 输入参数  : ucCardStatus卡状态
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年7月15日
-   作    者   : h00246512
-   修改内容   : 新生成函数
- 2.日    期   : 2015年6月30日
-   作    者   : z00316370
-   修改内容   : 卡状态更改
-
-*****************************************************************************/
 VOS_VOID  CNAS_XSD_SaveCardStatus_SwitchOn(
     NAS_MSCC_PIF_CARD_STATUS_ENUM_UINT8     enCardStatus
 )
@@ -848,22 +629,7 @@ VOS_VOID  CNAS_XSD_SaveCardStatus_SwitchOn(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_SaveCardStatus_SwitchOn
- 功能描述  : 将MMA下发的卡状态信息转换成CCB使用的形式
-             保存到全局变量中.
- 输入参数  : ucCardStatus卡状态
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年7月15日
-   作    者   : h00246512
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_ClearWaitCardFilesCnfFlg_SwitchOn_WaitCardFilesCnf(
     VOS_UINT16                          usEfId
 )
@@ -893,21 +659,7 @@ VOS_VOID CNAS_XSD_ClearWaitCardFilesCnfFlg_SwitchOn_WaitCardFilesCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_ReadDefaultPrl
- 功能描述  : 获取default PRL并解析
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2014年10月11日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XSD_ReadDefaultPrl(VOS_VOID)
 {
     VOS_UINT8                          *pucPrlBuf = VOS_NULL_PTR;
@@ -935,24 +687,7 @@ VOS_VOID CNAS_XSD_ReadDefaultPrl(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_ProcTestConfig_SwitchOn_Init
- 功能描述  : 开机处理测试控制项
- 输入参数  : VOS_UINT8                           ucIsReadNvPrlDirectly
-             VOS_UINT8                           ucIsReadDefaultPrl
-             CNAS_CCB_CARD_STATUS_ENUM_UINT8     enCsimCardStatus
-             USIMM_DEF_FILEID_ENUM_UINT32        enHomeSidNidFileId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月31日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_ProcTestConfig_SwitchOn_Init(
     VOS_UINT8                           ucIsReadNvPrlDirectly,
     VOS_UINT8                           ucIsReadDefaultPrl,

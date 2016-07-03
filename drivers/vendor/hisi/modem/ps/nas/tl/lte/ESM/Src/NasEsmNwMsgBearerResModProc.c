@@ -1,18 +1,4 @@
-/******************************************************************************
 
-        @(#)Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : NasEsmNwMsgBearerResModProc.c
-    Description : 处理EMM发给SM的网侧消息
-    History     :
-     1.丁丽 00128736        2008-09-01  Draft Enact
-     2.祝义强 00138739      2008-12-03  Modify BA8D00656
-     3.孙兵 49683           2009-01-06  Modify BA8D00870
-     4.杨茜惠 00135146      2009-03-06  Modify BA8D01127
-     5.李洪00150010         2009-08-03  Modify  BJ9D01608
-     6.李洪00150010         2009-08-05  Modify  BJ9D01627
-******************************************************************************/
 
 
 /*****************************************************************************
@@ -46,20 +32,7 @@ extern "C" {
 /*****************************************************************************
   3 Function
 *****************************************************************************/
-/*****************************************************************************
- Function Name   : NAS_ESM_ProcNwMsgResModRej
- Description     : 处理资源修改拒绝这条空口消息
- Input           : ulStateTblIndex -- 动态表索引
-                   pRcvMsg         -- 收到的空口消息
- Output          : None
- Return          : None
 
- History         :
-    1.丁丽 00128736      2008-9-10  Draft Enact
-    2.sunbing 49683         2009-02-05 Modify
-    3.lihong00150010        2010-2-02  Modify
-    4.liuwenyu00143951      2010-11-11 Modify
-*****************************************************************************/
 VOS_VOID  NAS_ESM_ProcValidNwMsgResModRej
 (
     VOS_UINT32                          ulStateTblIndex,
@@ -137,19 +110,7 @@ VOS_VOID  NAS_ESM_ProcValidNwMsgResModRej
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ESM_ProcValidNwMsgActDedictdEpsbReq
- Description     : 处理专有承载激活这条空口消息
- Input           : ulStateTblIndex -- 动态表索引
-                   pRcvMsg         -- 收到的空口消息
- Output          : None
- Return          : None
 
- History         :
-    1.丁丽 00128736      2008-9-10  Draft Enact
-    2.sunbing 49683         2009-02-05  Modify
-    3.liuwenyu00143951      2010-11-11  Modify
-*****************************************************************************/
 /*lint -e960*/
 /*lint -e961*/
 VOS_VOID  NAS_ESM_ProcValidNwMsgActDedictdEpsbReq
@@ -242,17 +203,7 @@ VOS_VOID  NAS_ESM_ProcValidNwMsgActDedictdEpsbReq
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_InformAppEpsBearerModFail
- Description     : 通知APP承载修改信息失败
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong 00150010       2009-4-21  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ESM_InformAppEpsBearerModFail
 (
     VOS_UINT32                          ulStateTblIndex,
@@ -290,18 +241,7 @@ VOS_VOID NAS_ESM_InformAppEpsBearerModFail
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_InformAppModEspBearerSucc
- Description     : 通知APP专有承载信息修改成功
- Input           : pstMsgIE--------------------译码后的空口消息
-                   ulStateTblIndex-------------状态表记录索引号
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2010-5-25  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_InformAppDediBearModSucc
 (
     const  NAS_ESM_NW_MSG_STRU         *pstMsgIE,
@@ -337,18 +277,7 @@ VOS_VOID  NAS_ESM_InformAppDediBearModSucc
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_InformAppEpsBearerModSucc
- Description     : 通知APP承载修改信息成功
- Input           : pstMsgIE--------------------译码后的空口消息
-                   ulStateTblIndex-------------状态表记录索引号
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong 00150010       2009-4-21  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ESM_InformAppEpsBearerModSucc
 (
     const  NAS_ESM_NW_MSG_STRU         *pstMsgIE,
@@ -371,20 +300,7 @@ VOS_VOID NAS_ESM_InformAppEpsBearerModSucc
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ESM_ProcValidNwMsgModEpsbReq
- Description     : 处理承载修改这条空口消息
- Input           : ulStateTblIndex -- 动态表索引
-                   pRcvMsg         -- 收到的空口消息
- Output          : None
- Return          : None
 
- History         :
-    1.丁丽 00128736    2008-9-10   Draft Enact
-    2.sunbing 49683       2009-02-05  Modify
-    3.lihong00150010      2010-2-02   Modify
-    4.liuwenyu00143951    2010-11-11  Modify
-*****************************************************************************/
 VOS_VOID  NAS_ESM_ProcValidNwMsgModEpsbReq
 (
     VOS_UINT32                          ulStateTblIndex,
@@ -467,19 +383,7 @@ VOS_VOID  NAS_ESM_ProcValidNwMsgModEpsbReq
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_IsExistSameEpsbIdInList
- Description     : 判断承载号数组中是否已经有指定的承载号了
- Input           : ucEpsbId-------------------------承载号
-                   ucEpsBearNum---------------------承载数
-                   pucEpsbIdArray-------------------承载号数组首地址
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.liuwenyu 00143951      2010-5-26  Draft Enact
-
-*****************************************************************************/
 
 VOS_UINT32 NAS_ESM_IsExistSameEpsbIdInList
 (
@@ -501,17 +405,7 @@ VOS_UINT32 NAS_ESM_IsExistSameEpsbIdInList
     return NAS_ESM_FAILURE;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_IsNeedPreferrenceCollision
- Description     : 判读是否需要进行优先级冲突处理
- Input           : pstNwMsg -- 译码后的空口消息指针
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2011-04-08  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_ESM_IsNeedPreferrenceCollision
 (
     const NAS_ESM_NW_MSG_STRU          *pstNwMsg
@@ -533,18 +427,7 @@ VOS_UINT32  NAS_ESM_IsNeedPreferrenceCollision
     return PS_FALSE;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_ValidateLinkedEpsbId
- Description     : 获取空口消息中携带的承载关联的缺省承载
- Input           : pstNwMsg---------------------译码后的空口消息指针
-                   pucLinkedEpsbId--------------缺省承载号指针
- Output          : None
- Return          : NAS_ESM_CAUSE_ENUM_UINT8
 
- History         :
-    1.lihong00150010      2010-5-14  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_GetDefltBearLinkToBearInAirMsg
 (
     const NAS_ESM_NW_MSG_STRU          *pstNwMsg,
@@ -571,20 +454,7 @@ VOS_VOID  NAS_ESM_GetDefltBearLinkToBearInAirMsg
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_ValidatePfPrecedence
- Description     : 验证空口消息中携带的PF优先级与当前此PDN下所有承载的PF的优先级是否冲突
- Input           : pstNwMsg---------------------译码后的空口消息
-                   pucPfNum---------------------packet filter数
-                   pstPfPVList------------------优先级验证列表首地址
- Output          : pucEpsBearNum----------------承载数
-                   pucEpsbIdArray---------------承载号数组首地址
- Return          : VOS_VOID
 
- History         :
-    1.lihong 00150010      2010-5-27  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_ValidatePfPrecedence
 (
     const NAS_ESM_NW_MSG_STRU          *pstNwMsg,
@@ -777,21 +647,7 @@ VOS_UINT32  NAS_ESM_SndMsgToRelEpsBearer
     return NAS_ESM_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_ProcPfPrecedenceCollision
- Description     : PF优先级冲突处理
- Input           : enEsmCnMsgType-----------------------空口消息类型
-                   pstEncodeInfo------------------------编码所需信息
-                   ulStateTblIndex----------------------动态表索引
-                   ucEpsBearNum-------------------------承载数
-                   pucEpsbIdArray-----------------------承载数组首地址
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2010-5-26  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_ProcPfPrecedenceCollision
 (
     const NAS_ESM_NW_MSG_STRU                *pstNwMsg
@@ -852,17 +708,7 @@ VOS_VOID  NAS_ESM_ProcPfPrecedenceCollision
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ESM_GetPacketFilter
- Description     : 根据PF号获取SDF下的某个filter
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong 00150010      2009-7-15  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_ESM_GetPacketFilter
 (
     NAS_ESM_SDF_CNTXT_INFO_STRU        *pstSdfCntxtInfo,
@@ -888,17 +734,7 @@ VOS_UINT32  NAS_ESM_GetPacketFilter
     }
     return NAS_ESM_FAILURE;
 }
-/*****************************************************************************
- Function Name   : NAS_ESM_DeleteOnePacketFilter
- Description     : 根据PF号删除SDF下的某个filter
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.liuwenyu 00143951      2010-5-20  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ESM_DeleteOnePacketFilter
 (
     NAS_ESM_SDF_CNTXT_INFO_STRU        *pstSdfCntxtInfo,
@@ -933,19 +769,7 @@ VOS_VOID NAS_ESM_DeleteOnePacketFilter
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_DeletePacketFilterProc
- Description     : 删除SDF处理
- Input           : pstEpsbCntxtInfo---------------承载信息
-                   pstSdfCntxtInfo----------------SDF信息
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2010-2-3  Draft Enact
-    2.lihong00150010      2010-5-31 Modify
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_DeletePacketFilterProc
 (
     const  NAS_ESM_NW_MSG_STRU         *pstMsgIE,
@@ -996,18 +820,7 @@ VOS_VOID  NAS_ESM_DeletePacketFilterProc
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_ReplacePacketFilterProc
- Description     : 修改SDF处理
- Input           : pstMsgIE-----------------------译码后的消息
-                   pstSdfCntxtInfo----------------SDF信息
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2010-2-3  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_ReplacePacketFilterProc
 (
     const  NAS_ESM_NW_MSG_STRU         *pstMsgIE,
@@ -1089,17 +902,7 @@ VOS_VOID  NAS_ESM_ReplacePacketFilterProc
     NAS_ESM_MEM_FREE(pstTadInfoTmp);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_CreateTftProc
- Description     : 修改承载过程中TAD码是Create TFT 的处理函数
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.liuwenyu 00143951      2010-5-12  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ESM_CreateTftProc
 (
     const  NAS_ESM_NW_MSG_STRU                  *pstMsgIE,
@@ -1137,20 +940,7 @@ VOS_VOID NAS_ESM_DeleteTftProc
     pstSdfCntxtInfo->ulSdfPfNum = NAS_ESM_NULL;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_AddPacketFilterProc
- Description     : 添加SDF处理
- Input           : pstMsgIE-----------------------译码后的消息
-                   pstEpsbCntxtInfo---------------承载信息
-                   pstSdfCntxtInfo----------------SDF信息
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2010-2-3  Draft Enact
-    2.lihong00150010      2010-5-31 Modify
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_AddPacketFilterProc
 (
     const  NAS_ESM_NW_MSG_STRU         *pstMsgIE,
@@ -1242,21 +1032,7 @@ VOS_VOID  NAS_ESM_AddPacketFilterProc
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_UpdatePacketFilterToSdfCntxt
- Description     : 保存承载修改消息中的TFT信息
- Input           : pstMsgIE-----------------------译码后的消息
-                   pstEpsbCntxtInfo---------------承载信息
-                   pstSdfCntxtInfo----------------SDF信息
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong 00150010      2009-6-18  Draft Enact
-    2.lihong 00150010      2009-12-02 Modify
-    3.lihong00150010       2010-02-03 Modify
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_UpdatePacketFilterToSdfCntxt
 (
     const  NAS_ESM_NW_MSG_STRU         *pstMsgIE,
@@ -1324,19 +1100,7 @@ VOS_VOID  NAS_ESM_UpdatePacketFilterToSdfCntxt
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_UpdateEpsQosInfo
- Description     : 保存承载修改消息中的QOS信息
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong 00150010      2009-6-18  Draft Enact
-    2.lihong 00150010      2009-12-02 Modify
-    3.lihong 00150010      2009-03-18 Modify
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_UpdateEpsQosInfo
 (
     const  NAS_ESM_NW_MSG_STRU         *pstMsgIE,
@@ -1403,20 +1167,7 @@ VOS_VOID  NAS_ESM_UpdateEpsQosInfo
                             sizeof(NAS_ESM_CONTEXT_LTE_QOS_STRU));
     }
 }
-/*****************************************************************************
- Function Name   : NAS_ESM_SndEsmAppSdfRelCnfFailMsg
- Description     :
- Input           : VOS_UINT32 ulEpsbId
-                   VOS_UINT32 ulErrorCode
-                   NAS_ESM_CAUSE_ENUM_UINT8 enEsmCause
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.丁丽 00128736      2008-9-25  Draft Enact
-    2.祝义强 00138739    2009-2-13  Modify
-
-*****************************************************************************/
 VOS_VOID NAS_ESM_SndEsmAppSdfRelCnfFailMsg
 (
     VOS_UINT32                          ulStateTblIndex,
@@ -1466,17 +1217,7 @@ VOS_VOID NAS_ESM_SndEsmAppSdfRelCnfFailMsg
     NAS_ESM_SndEsmAppSdfRelCnfMsg(&stEsmAppCnfMsg);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SndEsmAppSdfRelCnfSuccMsg
- Description     :
- Input           : VOS_UINT32 ulEpsbId
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.丁丽 00128736      2008-9-25  Draft Enact
-    2.祝义强 00138739    2009-2-13  Modify
-*****************************************************************************/
 VOS_VOID NAS_ESM_SndEsmAppSdfRelCnfSuccMsg(   VOS_UINT32 ulStateTblIndex)
 {
     NAS_ESM_APP_CNF_MSG_STRU            stEsmAppCnfMsg;
@@ -1523,17 +1264,7 @@ VOS_VOID NAS_ESM_SndEsmAppSdfRelCnfSuccMsg(   VOS_UINT32 ulStateTblIndex)
     NAS_ESM_SndEsmAppSdfRelCnfMsg(&stEsmAppCnfMsg);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SndEsmAppSdfSetupCnfSuccMsg
- Description     :
- Input           : VOS_UINT32 ulEpsbId
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.丁丽 00128736      2008-9-25  Draft Enact
-    2.祝义强 00138739    2009-2-13  Modify
-*****************************************************************************/
 VOS_VOID NAS_ESM_SndEsmAppSdfSetupCnfSuccMsg(   VOS_UINT32 ulStateTblIndex)
 {
     NAS_ESM_APP_CNF_MSG_STRU            stEsmAppCnfMsg;
@@ -1594,18 +1325,7 @@ VOS_VOID NAS_ESM_SndEsmAppSdfSetupCnfSuccMsg(   VOS_UINT32 ulStateTblIndex)
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SndEsmAppSdfSetupCnfFailMsg
- Description     :
- Input           : VOS_UINT32 ulStateTblIndex
-                   VOS_UINT32 ulErrorCode
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.丁丽 00128736      2008-9-25  Draft Enact
-    2.祝义强 00138739    2009-2-13  Modify
-*****************************************************************************/
 VOS_VOID NAS_ESM_SndEsmAppSdfSetupCnfFailMsg
 (
     VOS_UINT32                          ulStateTblIndex,
@@ -1763,18 +1483,7 @@ VOS_VOID NAS_ESM_SndEsmAppNdisConnCnfFailMsg
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SndEsmAppSdfModCnfSuccMsg
- Description     :
- Input           : VOS_UINT32 ulEpsbId
-                   NAS_ESM_CAUSE_ENUM_UINT8    enEsmCause
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.丁丽 00128736      2008-9-25  Draft Enact
-    2.祝义强 00138739    2009-2-13  Modify
-*****************************************************************************/
 VOS_VOID NAS_ESM_SndEsmAppSdfModCnfSuccMsg
 (
     VOS_UINT32                          ulStateTblIndex,
@@ -1840,18 +1549,7 @@ VOS_VOID NAS_ESM_SndEsmAppSdfModCnfSuccMsg
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SndEsmAppSdfModCnfFailMsg
- Description     :
- Input           : VOS_UINT32                          ulStateTblIndex
-                   VOS_UINT32                          ulErrorCode
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.丁丽 00128736      2008-9-25  Draft Enact
-    2.祝义强 00138739    2009-2-13  Modify
-*****************************************************************************/
 VOS_VOID NAS_ESM_SndEsmAppSdfModCnfFailMsg
 (
     VOS_UINT32                          ulStateTblIndex,
@@ -1898,17 +1596,7 @@ VOS_VOID NAS_ESM_SndEsmAppSdfModCnfFailMsg
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SndSmEspBearerMdfIndMsg
- Description     : 向SM发送承载修改消息
- Input           : ucEpsbId-----------------承载号
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2011-04-30  Draft Enact
-
-*****************************************************************************/
 /*lint -specific(-e433)*/
 VOS_VOID NAS_ESM_SndSmEspBearerMdfIndMsg
 (
@@ -1952,17 +1640,7 @@ VOS_VOID NAS_ESM_SndSmEspBearerMdfIndMsg
     NAS_ESM_SND_MSG(pstEpsBearInfoInd);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SndSmEspBearerDeactIndMsg
- Description     : 向SM发送承载去激活消息
- Input           : ucEpsbId-----------------承载号
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2011-04-30  Draft Enact
-
-*****************************************************************************/
 
 VOS_VOID NAS_ESM_SndSmEspBearerDeactIndMsg
 (
@@ -2114,17 +1792,7 @@ VOS_VOID NAS_ESM_DeactBearerAndInformApp(   VOS_UINT32 ulEpsbId )
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_GetBearModifyType
- Description     : 获取专有承载修改类型
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2010-5-25  Draft Enact
-
-*****************************************************************************/
 APP_ESM_BEARER_MODIFY_ENUM_UINT32  NAS_ESM_GetBearModifyType
 (
     const  NAS_ESM_NW_MSG_STRU *pstMsgIE
@@ -2222,19 +1890,7 @@ VOS_UINT32  NAS_ESM_IsRemotePortRangeSameToSinglePort
     }
 
 }
-/*****************************************************************************
- Function Name   : NAS_ESM_MatchIpAddrandMask
- Description     : 匹配TFT数据项Ip地址和子网掩码
- Input           : pstNwTFT -- 网侧的TFT信息
-                   pstUeTFT -- Ue的TFT信息
- Output          : None
- Return          :
-                   NAS_ESM_SUCCESS -- Ip地址和子网掩码相同
-                   NAS_ESM_FAILURE -- Ip地址或子网掩码不相同
-  History         :
-    1.liuwenyu00143951      2009-12-15  Draft Enact
 
-*****************************************************************************/
 VOS_UINT32 NAS_ESM_MatchIpAddrandMask
 (
     const NAS_ESM_CONTEXT_TFT_STRU              *pstPf1,
@@ -2298,19 +1954,7 @@ VOS_UINT32 NAS_ESM_MatchIpAddrandMask
     return NAS_ESM_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_MatchLocalPort
- Description     : 匹配TFT数据项Local Port
- Input           : pstNwTFT -- 网侧的TFT信息
-                   pstUeTFT -- Ue的TFT信息
- Output          : None
- Return          :
-                   NAS_ESM_SUCCESS -- Local Port相同
-                   NAS_ESM_FAILURE -- Local Port不相同
-  History         :
-    1.liuwenyu00143951      2009-12-15  Draft Enact
 
-*****************************************************************************/
 VOS_UINT32 NAS_ESM_MatchLocalPort
 (
     const NAS_ESM_CONTEXT_TFT_STRU              *pstPf1,
@@ -2346,19 +1990,7 @@ VOS_UINT32 NAS_ESM_MatchLocalPort
     return NAS_ESM_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_MatchRemotePort
- Description     : 匹配TFT数据项Remote Port
- Input           : pstNwTFT -- 网侧的TFT信息
-                   pstUeTFT -- Ue的TFT信息
- Output          : None
- Return          :
-                   NAS_ESM_SUCCESS -- Remote Port相同
-                   NAS_ESM_FAILURE -- Remote Port不相同
-  History         :
-    1.liuwenyu00143951      2009-12-15  Draft Enact
 
-*****************************************************************************/
 VOS_UINT32 NAS_ESM_MatchRemotePort
 (
     const NAS_ESM_CONTEXT_TFT_STRU              *pstPf1,
@@ -2394,20 +2026,7 @@ VOS_UINT32 NAS_ESM_MatchRemotePort
     return NAS_ESM_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_MatchTftOtherItem
- Description     : 匹配TFT数据项ProtocolId,security parameter index,
-                   TypeOfService,Flow Label Type
- Input           : pstNwTFT -- 网侧的TFT信息
-                   pstUeTFT -- Ue的TFT信息
- Output          : None
- Return          :
-                   NAS_ESM_SUCCESS -- 相同
-                   NAS_ESM_FAILURE -- 不相同
-  History         :
-    1.liuwenyu00143951      2009-12-15  Draft Enact
 
-*****************************************************************************/
 VOS_UINT32 NAS_ESM_MatchTftOtherItem
 (
     const NAS_ESM_CONTEXT_TFT_STRU              *pstPf1,
@@ -2453,19 +2072,7 @@ VOS_UINT32 NAS_ESM_MatchTftOtherItem
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ESM_PfMatch
- Description     : 匹配两个packet filter的内容(第二个PF与第一个PF相比)
- Input           : pstPf1 -- 第一个PF信息
-                   pstPf2 -- 第二个PF信息
- Output          : None
- Return          :
-                   NAS_ESM_SUCCESS -- 两个packet filter匹配
-                   NAS_ESM_FAILURE -- 两个packet filter不匹配
-  History         :
-    1.liuwenyu00143951      2009-10-23  Draft Enact
 
-*****************************************************************************/
 VOS_UINT32 NAS_ESM_PfMatch
 (
     const NAS_ESM_CONTEXT_TFT_STRU              *pstPf1,
@@ -2517,20 +2124,7 @@ VOS_UINT32 NAS_ESM_PfMatch
     return NAS_ESM_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_TftMatch
- Description     : 匹配两个TFT的内容(第一个TFT与第二个TFT相比)
- Input           : pstTft1PfInfo    -- TFT1中PF数组首地址
-                   ulTft1PfNum      -- TFT1中PF个数
-                   pstTft2PfInfo    -- TFT2中PF数组首地址
-                   ulTft2PfNum      -- TFT2中PF个数
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.liuwenyu00143951      2009-10-23  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_ESM_TftMatch
 (
     const NAS_ESM_CONTEXT_TFT_STRU           *pstTft1PfInfo,
@@ -2591,18 +2185,7 @@ VOS_UINT32 NAS_ESM_TftMatch
     return NAS_ESM_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SaveNwActDedictdEpsbReqInfo
- Description     : 保存专有承载激活的上下文信息
- Input           : pstMsgIE         -- 译码后的网络消息
-                   ulStateTblIndex  -- 动态表索引
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.liuwenyu00143951      2009-12-02  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ESM_SaveNwActDedictdEpsbReqInfo
 (
     const  NAS_ESM_NW_MSG_STRU          *pstMsgIE,
@@ -2682,17 +2265,7 @@ VOS_VOID NAS_ESM_SaveNwActDedictdEpsbReqInfo
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SaveNwModEpsbReqInfo
- Description     : 保存承载修改激活的上下文信息
- Input           : pstMsgIE         -- 译码后的网络消息
-                   ulStateTblIndex  -- 动态表索引
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2009-12-2  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_SaveNwModEpsbReqInfo
 (
     const  NAS_ESM_NW_MSG_STRU          *pstMsgIE,
@@ -2792,17 +2365,7 @@ VOS_VOID  NAS_ESM_SaveNwModEpsbReqInfo
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_DediBearActMsgManualProc
- Description     : 专有承载激活手动处理
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2009-12-3  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_DediBearActMsgManualProc
 (
     VOS_UINT32                          ulStateTblIndex,
@@ -2898,18 +2461,7 @@ VOS_VOID  NAS_ESM_DediBearActMsgManualProc
 
 
 
-/*****************************************************************************
- Function Name   : NAS_ESM_DediBearActMsgAutoAccept
- Description     : 自动接受专有承载激活的处理
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2009-12-3  Draft Enact
-    2.lihong00150010      2010-02-10 Modify
-
-*****************************************************************************/
 VOS_VOID NAS_ESM_DediBearActMsgAutoAccept
 (
     VOS_UINT32                          ulStateTblIndex,
@@ -3023,17 +2575,7 @@ VOS_VOID NAS_ESM_DediBearActMsgAutoAccept
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ESM_BearModMsgManualProc
- Description     : 承载修改手动处理
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.liuwenyu00143951      2009-12-3  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_BearModMsgManualProc
 (
     VOS_UINT32                          ulStateTblIndex,
@@ -3113,18 +2655,7 @@ VOS_VOID  NAS_ESM_BearModMsgManualProc
     pstStateAddr->ucIsWaitForUserAnswer = PS_TRUE;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_BearModMsgAutoAccept
- Description     : 自动接受承载修改的处理
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.liuwenyu00143951      2009-12-3  Draft Enact
-    2.lihong00150010        2010-02-10 Modify
-
-*****************************************************************************/
 VOS_VOID NAS_ESM_BearModMsgAutoAccept
 (
     VOS_UINT32                          ulStateTblIndex,
@@ -3241,18 +2772,7 @@ VOS_VOID NAS_ESM_BearModMsgAutoAccept
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_ActDediBearFailProc
- Description     : 专有承载激活失败处理
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2009-12-4  Draft Enact
-    2.lihong00150010      2010-02-10 Modify
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_ActDediBearFailProc
 (
     const NAS_ESM_ENCODE_INFO_STRU     *pstEncodeInfo,
@@ -3313,17 +2833,7 @@ VOS_VOID  NAS_ESM_ActDediBearFailProc
     NAS_ESM_RelStateTblResource(ulStateTblIndex);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_BearModFailProc
- Description     : 承载修改失败处理
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2009-12-4  Draft Enact
-    2.lihong00150010      2010-02-10 Modify
-*****************************************************************************/
 VOS_VOID  NAS_ESM_BearModFailProc
 (
     const NAS_ESM_ENCODE_INFO_STRU     *pstEncodeInfo,
@@ -3376,17 +2886,7 @@ VOS_VOID  NAS_ESM_BearModFailProc
     NAS_ESM_RelStateTblResource(ulStateTblIndex);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SaveNwModEpsbNoTft
- Description     : 保存承载修改激活的上下文信息(NO TFT)
- Input           : pstMsgIE         -- 译码后的网络消息
-                   ulStateTblIndex  -- 动态表索引
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2011-06-20  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_SaveNwModEpsbNoTft
 (
     const  NAS_ESM_NW_MSG_STRU          *pstMsgIE,
@@ -3414,17 +2914,7 @@ VOS_VOID  NAS_ESM_SaveNwModEpsbNoTft
     NAS_ESM_UpdateEpsQosInfo(pstMsgIE, pstEpsbCntxtInfo, pstSdfCntxtInfo);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SaveNwModDeftEpsbAddPf
- Description     : 保存缺省承载修改激活的上下文信息(ADD PF)
- Input           : pstMsgIE         -- 译码后的网络消息
-                   ulStateTblIndex  -- 动态表索引
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2011-06-20  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_SaveNwModDeftEpsbAddPf
 (
     const  NAS_ESM_NW_MSG_STRU          *pstMsgIE,
@@ -3458,17 +2948,7 @@ VOS_VOID  NAS_ESM_SaveNwModDeftEpsbAddPf
     NAS_ESM_UpdateEpsQosInfo(pstMsgIE, pstEpsbCntxtInfo, pstSdfCntxtInfo);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SaveNwModDeftEpsbReplacePf
- Description     : 保存缺省承载修改激活的上下文信息(REPLACE PF)
- Input           : pstMsgIE         -- 译码后的网络消息
-                   ulStateTblIndex  -- 动态表索引
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2011-06-20  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_SaveNwModDeftEpsbReplacePf
 (
     const  NAS_ESM_NW_MSG_STRU          *pstMsgIE,
@@ -3502,17 +2982,7 @@ VOS_VOID  NAS_ESM_SaveNwModDeftEpsbReplacePf
     NAS_ESM_UpdateEpsQosInfo(pstMsgIE, pstEpsbCntxtInfo, pstSdfCntxtInfo);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SaveNwModDeftEpsbDeletePf
- Description     : 保存缺省承载修改激活的上下文信息(DELETE PF)
- Input           : pstMsgIE         -- 译码后的网络消息
-                   ulStateTblIndex  -- 动态表索引
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2011-06-20  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_SaveNwModDeftEpsbDeletePf
 (
     const  NAS_ESM_NW_MSG_STRU          *pstMsgIE,
@@ -3548,17 +3018,7 @@ VOS_VOID  NAS_ESM_SaveNwModDeftEpsbDeletePf
     NAS_ESM_UpdateEpsQosInfo(pstMsgIE, pstEpsbCntxtInfo, pstSdfCntxtInfo);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SaveNwModDeftEpsbNoOperation
- Description     : 保存缺省承载修改激活的上下文信息(NO OPERATION)
- Input           : pstMsgIE         -- 译码后的网络消息
-                   ulStateTblIndex  -- 动态表索引
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2011-06-20  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_SaveNwModDeftEpsbNoOperation
 (
     const  NAS_ESM_NW_MSG_STRU          *pstMsgIE,
@@ -3586,17 +3046,7 @@ VOS_VOID  NAS_ESM_SaveNwModDeftEpsbNoOperation
     NAS_ESM_UpdateEpsQosInfo(pstMsgIE, pstEpsbCntxtInfo, pstSdfCntxtInfo);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SaveNwModDeftEpsbCreateTft
- Description     : 保存缺省承载修改激活的上下文信息(CREATE TFT)
- Input           : pstMsgIE         -- 译码后的网络消息
-                   ulStateTblIndex  -- 动态表索引
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2011-06-20  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_SaveNwModDeftEpsbCreateTft
 (
     const  NAS_ESM_NW_MSG_STRU          *pstMsgIE,
@@ -3618,17 +3068,7 @@ VOS_VOID  NAS_ESM_SaveNwModDeftEpsbCreateTft
     NAS_ESM_UpdateEpsQosInfo(pstMsgIE, pstEpsbCntxtInfo, pstSdfCntxtInfo);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SaveNwModDeftEpsbDeleteTft
- Description     : 保存缺省承载修改激活的上下文信息(DELETE TFT)
- Input           : pstMsgIE         -- 译码后的网络消息
-                   ulStateTblIndex  -- 动态表索引
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2011-06-20  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_SaveNwModDeftEpsbDeleteTft
 (
     const  NAS_ESM_NW_MSG_STRU          *pstMsgIE,
@@ -3653,18 +3093,7 @@ VOS_VOID  NAS_ESM_SaveNwModDeftEpsbDeleteTft
     NAS_ESM_UpdateEpsQosInfo(pstMsgIE, pstEpsbCntxtInfo, pstSdfCntxtInfo);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SetAppPfId
- Description     : 根据网侧的PfId设置App PF ID
- Input           :
 
- Output          : None
- Return          : VOS_VOID
-
- History         :
-    1.y00159566        2011-7-1       Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ESM_SetAppPfId
 (
     NAS_ESM_SDF_PARA_STRU              *pstSdfPara
@@ -3692,17 +3121,7 @@ VOS_VOID NAS_ESM_SetAppPfId
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ESM_IsExistlinkedPfInSdfCntxt
- Description     : 在动态信息的Pf是否存在对应的静态Pf
- Input           :
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.y00159566      2011-7-3  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_ESM_IsExistlinkedPfInSdfCntxt( VOS_UINT32 ulCid,VOS_UINT32 ulSdfParaPfId )
 {
     NAS_ESM_SDF_CNTXT_INFO_STRU        *pstSdfCntxtInfo     = VOS_NULL_PTR;
@@ -3721,17 +3140,7 @@ VOS_UINT32 NAS_ESM_IsExistlinkedPfInSdfCntxt( VOS_UINT32 ulCid,VOS_UINT32 ulSdfP
     return PS_FALSE;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_GetAppPfId
- Description     : 获得AppPfId
- Input           :
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.y00159566      2011-7-3  Draft Enact
-
-*****************************************************************************/
 VOS_UINT8 NAS_ESM_GetAppPfId( VOS_UINT32 ulCid )
 {
     NAS_ESM_SDF_CNTXT_INFO_STRU        *pstSdfCntxtInfo     = VOS_NULL_PTR;
@@ -3874,17 +3283,7 @@ VOS_VOID NAS_ESM_ModulateSdfQos
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SaveNwModDediEpsbAddPf
- Description     : 保存专有承载修改激活的上下文信息(ADD PF)
- Input           : pstMsgIE         -- 译码后的网络消息
-                   ulStateTblIndex  -- 动态表索引
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2011-06-20  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_SaveNwModDediEpsbAddPf
 (
     const  NAS_ESM_NW_MSG_STRU          *pstMsgIE,
@@ -3988,17 +3387,7 @@ VOS_VOID  NAS_ESM_SaveNwModDediEpsbAddPf
     NAS_ESM_ModulateSdfQos(ulStateTblIndex);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SaveNwModDediEpsbReplacePf
- Description     : 保存专有承载修改激活的上下文信息(Replace PF)
- Input           : pstMsgIE         -- 译码后的网络消息
-                   ulStateTblIndex  -- 动态表索引
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2011-06-20  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_SaveNwModDediEpsbReplacePf
 (
     const  NAS_ESM_NW_MSG_STRU          *pstMsgIE,
@@ -4037,17 +3426,7 @@ VOS_VOID  NAS_ESM_SaveNwModDediEpsbReplacePf
     NAS_ESM_ModulateSdfQos(ulStateTblIndex);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SaveNwModDediEpsbCreatPf
- Description     : 保存专有承载修改激活的上下文信息(Creat PF)
- Input           : pstMsgIE         -- 译码后的网络消息
-                   ulStateTblIndex  -- 动态表索引
- Return          : VOS_UINT32
 
- History         :
-    1.w00209181     2014-11-04  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_SaveNwModDediEpsbCreatPf
 (
     const  NAS_ESM_NW_MSG_STRU          *pstMsgIE,
@@ -4159,17 +3538,7 @@ VOS_VOID  NAS_ESM_SaveNwModDediEpsbCreatPf
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SaveNwModDediEpsbDeletePf
- Description     : 保存专有承载修改激活的上下文信息(DELETE PF)
- Input           : pstMsgIE         -- 译码后的网络消息
-                   ulStateTblIndex  -- 动态表索引
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2011-06-20  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_SaveNwModDediEpsbDeletePf
 (
     const  NAS_ESM_NW_MSG_STRU          *pstMsgIE,
@@ -4240,17 +3609,7 @@ VOS_VOID  NAS_ESM_SaveNwModDediEpsbDeletePf
 }
 /*lint +e961*/
 /*lint +e960*/
-/*****************************************************************************
- Function Name   : NAS_ESM_SaveNwModDediEpsbNoOperation
- Description     : 保存专有承载修改激活的上下文信息(NO OPERATION)
- Input           : pstMsgIE         -- 译码后的网络消息
-                   ulStateTblIndex  -- 动态表索引
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2011-06-20  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_SaveNwModDediEpsbNoOperation
 (
     const  NAS_ESM_NW_MSG_STRU          *pstMsgIE,
@@ -4281,17 +3640,7 @@ VOS_VOID  NAS_ESM_SaveNwModDediEpsbNoOperation
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SaveNwModDeftEpsbReqInfo
- Description     : 保存缺省承载修改激活的上下文信息
- Input           : pstMsgIE         -- 译码后的网络消息
-                   ulStateTblIndex  -- 动态表索引
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2011-06-20  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_SaveNwModDeftEpsbReqInfo
 (
     const  NAS_ESM_NW_MSG_STRU          *pstMsgIE,
@@ -4353,17 +3702,7 @@ VOS_VOID  NAS_ESM_SaveNwModDeftEpsbReqInfo
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SaveNwModDediEpsbReqInfo
- Description     : 保存专有承载修改激活的上下文信息
- Input           : pstMsgIE         -- 译码后的网络消息
-                   ulStateTblIndex  -- 动态表索引
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2011-06-20  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_SaveNwModDediEpsbReqInfo
 (
     const  NAS_ESM_NW_MSG_STRU          *pstMsgIE,

@@ -1206,10 +1206,16 @@ const struct file_operations proc_pagemap_operations = {
 #endif /* CONFIG_PROC_PAGE_MONITOR */
 
 #ifdef CONFIG_PROCESS_RECLAIM
+struct reclaim_walk_data {
+	struct vm_area_struct *vma;
+	bool inactive_lru;
+};
+
 static int reclaim_pte_range(pmd_t *pmd, unsigned long addr,
 				unsigned long end, struct mm_walk *walk)
 {
-	struct vm_area_struct *vma = walk->private;
+	struct reclaim_walk_data *walk_data = walk->private;
+	struct vm_area_struct *vma = walk_data->vma;
 	pte_t *pte, ptent;
 	spinlock_t *ptl;
 	struct page *page;
@@ -1229,6 +1235,11 @@ cont:
 
 		page = vm_normal_page(vma, addr, ptent);
 		if (!page)
+			continue;
+
+		//we don't reclaim page in active lru list
+		if (walk_data->inactive_lru && (PageActive(page) ||
+		    PageUnevictable(page)))
 			continue;
 
 		if (isolate_lru_page(page))
@@ -1255,6 +1266,8 @@ enum reclaim_type {
 	RECLAIM_ANON,
 	RECLAIM_ALL,
 	RECLAIM_RANGE,
+	RECLAIM_SOFT,
+	RECLAIM_INACTIVE,
 };
 
 static ssize_t reclaim_write(struct file *file, const char __user *buf,
@@ -1267,6 +1280,7 @@ static ssize_t reclaim_write(struct file *file, const char __user *buf,
 	enum reclaim_type type;
 	char *type_buf;
 	struct mm_walk reclaim_walk = {};
+	struct reclaim_walk_data walk_data= {NULL, false};
 	unsigned long start = 0;
 	unsigned long end = 0;
 
@@ -1278,7 +1292,11 @@ static ssize_t reclaim_write(struct file *file, const char __user *buf,
 		return -EFAULT;
 
 	type_buf = strstrip(buffer);
-	if (!strcmp(type_buf, "file"))
+	if (!strcmp(type_buf, "soft"))
+		type = RECLAIM_SOFT;
+	else if (!strcmp(type_buf, "inactive"))
+		type = RECLAIM_INACTIVE;
+	else if (!strcmp(type_buf, "file"))
 		type = RECLAIM_FILE;
 	else if (!strcmp(type_buf, "anon"))
 		type = RECLAIM_ANON;
@@ -1327,6 +1345,16 @@ static ssize_t reclaim_write(struct file *file, const char __user *buf,
 	if (!mm)
 		goto out;
 
+	//here we add a soft shrinker for reclaim
+	if (type == RECLAIM_SOFT) {
+		smart_soft_shrink(mm);
+		mmput(mm);
+		goto out;
+	}
+
+	if (type == RECLAIM_INACTIVE)
+		walk_data.inactive_lru = true;
+
 	reclaim_walk.mm = mm;
 	reclaim_walk.pmd_entry = reclaim_pte_range;
 
@@ -1339,7 +1367,8 @@ static ssize_t reclaim_write(struct file *file, const char __user *buf,
 			if (is_vm_hugetlb_page(vma))
 				continue;
 
-			reclaim_walk.private = vma;
+			walk_data.vma = vma;
+			reclaim_walk.private = &walk_data;
 			walk_page_range(max(vma->vm_start, start),
 					min(vma->vm_end, end),
 					&reclaim_walk);
@@ -1356,7 +1385,8 @@ static ssize_t reclaim_write(struct file *file, const char __user *buf,
 			if (type == RECLAIM_FILE && !vma->vm_file)
 				continue;
 
-			reclaim_walk.private = vma;
+			walk_data.vma = vma;
+			reclaim_walk.private = &walk_data;
 			walk_page_range(vma->vm_start, vma->vm_end,
 				&reclaim_walk);
 		}

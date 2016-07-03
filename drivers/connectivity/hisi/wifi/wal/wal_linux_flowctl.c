@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : wal_linux_flowctl.c
-  版 本 号   : 初稿
-  作    者   : x00189397
-  生成日期   : 2014年3月3日
-  最近修改   :
-  功能描述   : WAL flow ctrl文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年3月3日
-    作    者   : x00189397
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -57,21 +40,7 @@ wal_macaddr_subq_stru g_ast_macaddr_map_subq[WLAN_VAP_MAX_NUM_PER_DEVICE_LIMIT][
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : wal_netdev_select_queue
- 功能描述  : kernel给skb选择合适的tx subqueue;
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月4日
-    作    者   : xiechunhui
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint16  wal_netdev_select_queue(oal_net_device_stru *pst_dev, oal_netbuf_stru *pst_buf)
 {
     oal_ether_header_stru   *pst_ether_header   = OAL_PTR_NULL;
@@ -115,21 +84,7 @@ oal_uint16  wal_netdev_select_queue(oal_net_device_stru *pst_dev, oal_netbuf_str
     return us_subq;
 }
 
-/*****************************************************************************
- 函 数 名  : wal_flowctl_backp_event_handler
- 功能描述  : stop或者wake某个用户的某个subqueue
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月4日
-    作    者   : xiechunhui
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 wal_flowctl_backp_event_handler(frw_event_mem_stru *pst_event_mem)
 {
     frw_event_stru              *pst_hmac_to_wal_event;  /* 指向申请事件的payload指针 */
@@ -238,21 +193,7 @@ oal_uint32 wal_flowctl_backp_event_handler(frw_event_mem_stru *pst_event_mem)
 /*lint +e830*//*lint +e550*/
 
 #ifdef _PRE_WLAN_FEATURE_OFFLOAD_FLOWCTL
-/*****************************************************************************
- 函 数 名  : wal_netdev_select_queue
- 功能描述  : kernel给skb选择合适的tx subqueue;
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月17日
-    作    者   : xiechunhui
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint16  wal_netdev_select_queue(oal_net_device_stru *pst_dev, oal_netbuf_stru *pst_buf)
 {
     return oal_netbuf_select_queue(pst_buf);

@@ -27,28 +27,7 @@ extern "C" {
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : At_SetSIMSlotPara
- 功能描述  : ^SIMSLOT, 设置modem连接的SIM卡槽，用于切换SIM卡槽
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月4日
-    作    者   : s00190137
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年6月11日
-    作    者   : l00198894
-    修改内容   : TSTS
-
-  3.日    期   : 2015年11月25日
-    作    者   : l00198894
-    修改内容   : DTS2015112506652: Dallas双卡形态切卡失败
-*****************************************************************************/
 VOS_UINT32 At_SetSIMSlotPara(VOS_UINT8 ucIndex)
 {
     TAF_NV_SCI_CFG_STRU                 stSCICfg;
@@ -148,24 +127,7 @@ VOS_UINT32 At_SetSIMSlotPara(VOS_UINT8 ucIndex)
     return AT_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : At_QrySIMSlotPara
- 功能描述  : 查询SIM卡卡槽设置
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月4日
-    作    者   : s00190137
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年6月11日
-    作    者   : l00198894
-    修改内容   : TSTS
-*****************************************************************************/
 VOS_UINT32 At_QrySIMSlotPara(VOS_UINT8 ucIndex)
 {
     TAF_NV_SCI_CFG_STRU                 stSCICfg;
@@ -256,26 +218,7 @@ VOS_UINT32 At_Base16Decode(VOS_CHAR *pcData, VOS_UINT32 ulDataLen, VOS_UINT8* pu
     return (ulDataLen/2);
 }
 
-/*****************************************************************************
- 函 数 名  : At_SetHvsstPara
- 功能描述  : (AT^HVSST)激活/去激活(U)SIM卡
- 输入参数  : ucIndex - 用户索引
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年03月18日
-    作    者   : zhuli
-    修改内容   : vSIM卡项目新增函数
-  2.日    期   : 2014年10月9日
-    作    者   : zhuli
-    修改内容   : 根据青松产品要求，该接口不受宏控制
-  3.日    期   : 2015年6月10日
-    作    者   : l00198894
-    修改内容   : TSTS
-*****************************************************************************/
 VOS_UINT32 At_SetHvsstPara(
     VOS_UINT8                           ucIndex
 )
@@ -323,26 +266,7 @@ VOS_UINT32 At_SetHvsstPara(
     return AT_WAIT_ASYNC_RETURN;
 }
 
-/*****************************************************************************
- 函 数 名  : At_QryHvsstPara
- 功能描述  : ^HVSST查询命令处理函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年03月18日
-    作    者   : zhuli
-    修改内容   : vSIM卡项目新增函数
-  2.日    期   : 2014年10月9日
-    作    者   : zhuli
-    修改内容   : 根据青松产品要求，该接口不受宏控制
-  3.日    期   : 2015年6月11日
-    作    者   : l00198894
-    修改内容   : TSTS
-*****************************************************************************/
 VOS_UINT32 At_QryHvsstPara(
     VOS_UINT8                           ucIndex
 )
@@ -364,24 +288,7 @@ VOS_UINT32 At_QryHvsstPara(
     return AT_WAIT_ASYNC_RETURN;
 }
 
-/*****************************************************************************
- 函 数 名  : At_HvsstQueryCnf
- 功能描述  : ^HVSST查询结果打印
- 输入参数  : SI_PIH_EVENT_INFO_STRU *pstEvent
- 输出参数  : 无
- 返 回 值  : VOS_UINT16
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年3月18日
-    作    者   : z00100318
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年6月10日
-    作    者   : l00198894
-    修改内容   : TSTS
-*****************************************************************************/
 VOS_UINT16 At_HvsstQueryCnf(
     VOS_UINT8                           ucIndex,
     SI_PIH_EVENT_INFO_STRU             *pstEvent)
@@ -448,24 +355,7 @@ VOS_UINT16 At_HvsstQueryCnf(
     return usLength;
 }
 
-/*****************************************************************************
- 函 数 名  : At_SetSciChgPara
- 功能描述  : ^SCICHG设置函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期  : 2014年10月9日
-    作    者  : zhuli
-    修改内容  : 青松产品天际通功能增加
-
-  2.日    期   : 2015年6月10日
-    作    者   : l00198894
-    修改内容   : TSTS
-*****************************************************************************/
 VOS_UINT32 At_SetSciChgPara(
     VOS_UINT8                           ucIndex
 )
@@ -527,24 +417,7 @@ VOS_UINT32 At_SetSciChgPara(
     return AT_WAIT_ASYNC_RETURN;
 }
 
-/*****************************************************************************
- 函 数 名  : At_QryHvsstPara
- 功能描述  : ^SCICHG查询命令处理函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期  : 2014年10月9日
-    作    者  : zhuli
-    修改内容  : 青松产品天际通功能增加
-
-  2.日    期   : 2015年6月10日
-    作    者   : l00198894
-    修改内容   : TSTS
-*****************************************************************************/
 VOS_UINT32 At_QrySciChgPara(
     VOS_UINT8                           ucIndex
 )
@@ -566,22 +439,7 @@ VOS_UINT32 At_QrySciChgPara(
     return AT_WAIT_ASYNC_RETURN;
 }
 
-/*****************************************************************************
- 函 数 名  : At_SciCfgQueryCnf
- 功能描述  : TSTS
- 输入参数  : VOS_UINT8                           ucIndex
-             SI_PIH_EVENT_INFO_STRU             *pstEvent
- 输出参数  : 无
- 返 回 值  : VOS_UINT16
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月11日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT16 At_SciCfgQueryCnf(
     VOS_UINT8                           ucIndex,
     SI_PIH_EVENT_INFO_STRU             *pstEvent)
@@ -797,20 +655,7 @@ VOS_UINT32 At_QryHvsContPara(VOS_UINT8 ucIndex)
     return AT_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : At_DealRSFWVsim
- 功能描述  : (AT^RSFW)更新vSIM 文件
- 输入参数  : ucIndex - 用户索引
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年03月18日
-    作    者   : zhukai
-    修改内容   : vSIM卡项目新增函数
-*****************************************************************************/
 VOS_UINT32 At_DealRSFWVsim(VOS_UINT8 ucIndex)
 {
     VOS_UINT32                          ulRet;
@@ -885,21 +730,7 @@ VOS_UINT32 At_DealRSFWVsim(VOS_UINT8 ucIndex)
     return AT_SUCCESS;
 }
 
-/*****************************************************************************
- 函 数 名  : At_SetHvpDHPara
- 功能描述  : AT^HVPDH设置命令处理函数
- 输入参数  : ucIndex
- 输出参数  : AT返回码
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月27日
-    作    者   : L47619
-    修改内容   : V9R1 vSIM项目修改
-
-*****************************************************************************/
 VOS_UINT32 At_SetHvpDHPara(VOS_UINT8 ucIndex)
 {
     DRV_AGENT_HVPDH_REQ_STRU            stHvpdhReq;
@@ -986,20 +817,7 @@ VOS_UINT32 At_SetHvpDHPara(VOS_UINT8 ucIndex)
 }
 
 
-/*****************************************************************************
- 函 数 名  : At_TestHvpDHPara
- 功能描述  : ^HVPDH测试函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月27日
-    作    者   : L47619
-    修改内容   : V9R1 vSIM项目修改
-*****************************************************************************/
 VOS_UINT32 At_TestHvpDHPara(VOS_UINT8 ucIndex)
 {
     gstAtSendData.usBufLen = (VOS_UINT16)At_sprintf(AT_CMD_MAX_LEN,
@@ -1177,20 +995,7 @@ VOS_UINT16 AT_HvsDHQueryCnf(SI_PIH_EVENT_INFO_STRU *pstEvent)
     return usLength;
 }
 
-/*****************************************************************************
- 函 数 名  : At_SetHvteePara
- 功能描述  : ^HVTEE设置函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期  : 2014年10月9日
-    作    者  : zhuli
-    修改内容  : 青松产品天际通功能增加
-*****************************************************************************/
 VOS_UINT32 At_SetHvteePara(
     VOS_UINT8                               ucIndex
 )
@@ -1234,20 +1039,7 @@ VOS_UINT32 At_SetHvteePara(
     return AT_WAIT_ASYNC_RETURN;
 }
 
-/*****************************************************************************
- 函 数 名  : At_TestHvteePara
- 功能描述  : ^HVTEE测试函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期  : 2014年10月9日
-    作    者  : zhuli
-    修改内容  : 青松产品天际通功能增加
-*****************************************************************************/
 VOS_UINT32 At_TestHvteePara(
     VOS_UINT8                           ucIndex
 )
@@ -1259,20 +1051,7 @@ VOS_UINT32 At_TestHvteePara(
     return AT_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : At_QryHvCheckCardPara
- 功能描述  : ^HVCHECKCARD 查询函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期  : 2014年10月9日
-    作    者  : zhuli
-    修改内容  : 青松产品天际通功能增加
-*****************************************************************************/
 VOS_UINT32 At_QryHvCheckCardPara(
     VOS_UINT8                           ucIndex
 )
@@ -1702,18 +1481,7 @@ TAF_UINT32 At_CrlaParaReadRecordCheck(
     return At_CrlaFilePathParse(pstCommand);
 }
 
-/********************************************************************
-  Function:       At_CrlaParaGetRspCheck
-  Description:    执行CRLA命令的Get Response命令参数检查
-  Input:
-  Output:         *pstCommand：CRLA命令的数据结构?
-  Return:         AT_SUCCESS：成功，其他为失败
-  Others:
-  History        : ---
-   1.Date        : 2015-04-08
-     Author      : g00256031
-     Modification: Created function
-********************************************************************/
+
 VOS_UINT32 At_CrlaParaGetRspCheck(
     SI_PIH_CRLA_STRU                   *pstCommand
 )
@@ -1737,18 +1505,7 @@ VOS_UINT32 At_CrlaParaGetRspCheck(
     return At_CrlaFilePathParse(pstCommand);
 }
 
-/********************************************************************
-  Function:       At_CrlaParaUpdateBinaryCheck
-  Description:    执行CRLA命令的Update Binary参数检查
-  Input:          无
-  Output:         *pstCommand：CRSM命令的数据结构
-  Return:         AT_SUCCESS：成功，其他为失败
-  Others:
-  History        : ---
-   1.Date        : 2015-04-08
-     Author      : g00256031
-     Modification: Created function
-********************************************************************/
+
 VOS_UINT32 At_CrlaParaUpdateBinaryCheck(
     SI_PIH_CRLA_STRU                       *pstCommand
 )
@@ -1799,18 +1556,7 @@ VOS_UINT32 At_CrlaParaUpdateBinaryCheck(
     return At_CrlaFilePathParse(pstCommand);
 }
 
-/********************************************************************
-  Function:       At_CrlaParaUpdateRecordCheck
-  Description:    执行CRSM命令的参数检查
-  Input:          无
-  Output:         *pstCommand：CRSM命令的数据结构
-  Return:         AT_SUCCESS：成功，其他为失败
-  Others:
-  History        : ---
-   1.Date        : 2015-04-08
-     Author      : g00256031
-     Modification: Created function
-********************************************************************/
+
 VOS_UINT32 At_CrlaParaUpdateRecordCheck (
     SI_PIH_CRLA_STRU                   *pstCommand
 )
@@ -1855,20 +1601,7 @@ VOS_UINT32 At_CrlaParaUpdateRecordCheck (
     return At_CrlaFilePathParse(pstCommand);
 }
 
-/*****************************************************************************
- Prototype      : At_SetCrlaPara
- Description    : +CRLA=<sessionid>,<command>[,<fileid>[,<P1>,<P2>,<P3>[,<data>,<pathid>]]]
- Input          : ucIndex --- 用户索引
- Output         :
- Return Value   : AT_XXX  --- ATC返回码
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2015-04-08
-    Author      : g00256031
-    Modification: Created function
-*****************************************************************************/
 TAF_UINT32 At_SetCrlaPara(TAF_UINT8 ucIndex)
 {
     SI_PIH_CRLA_STRU                    stCommand;
@@ -1939,20 +1672,7 @@ TAF_UINT32 At_SetCrlaPara(TAF_UINT8 ucIndex)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : At_QryCardSession
- 功能描述  : ^CARD_SESSION=<enable>[,<interval>]
- 输入参数  : ucIndex --- 端口索引
- 输出参数  : 无
- 返 回 值  : AT_XXX  --- ATC返回码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月2日
-    作    者   : g00256031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 At_QryCardSession(VOS_UINT8 ucIndex)
 {
     if (TAF_SUCCESS == SI_PIH_CardSessionQuery(gastAtClientTab[ucIndex].usClientId, gastAtClientTab[ucIndex].opId))
@@ -1968,20 +1688,7 @@ VOS_UINT32 At_QryCardSession(VOS_UINT8 ucIndex)
     return AT_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SetPrfApp
- 功能描述  : 设置CDMA或者GUTL应用优先级
- 输入参数  : enCardApp 设置谁优先 GUTL/CDMA
- 输出参数  : enCardAPP NV设置应用类型
- 返 回 值  : enModemId 当前通道模式
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月20日
-    作    者   : d00212987
-    修改内容   : 新生成函数
-*****************************************************************************/
 TAF_UINT32 AT_SetPrfApp(
     AT_CARDAPP_ENUM_UINT32              enCardApp,
     USIMM_NV_CARDAPP_ENUM_UINT32        enCardAPP,
@@ -2065,20 +1772,7 @@ TAF_UINT32 AT_SetPrfApp(
     return AT_OK;
 }
 
-/*****************************************************************************
- Prototype      : At_SetPrfAppPara
- Description    : ^PRFAPP=<N>
- Input          : ucIndex --- 用户索引
- Output         :
- Return Value   : AT_XXX  --- ATC返回码
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2015-06-13
-    Author      : H00300778
-    Modification: Created function
-*****************************************************************************/
 TAF_UINT32 At_SetPrfAppPara(TAF_UINT8 ucIndex)
 {
     MODEM_ID_ENUM_UINT16                enModemId;
@@ -2112,17 +1806,7 @@ TAF_UINT32 At_SetPrfAppPara(TAF_UINT8 ucIndex)
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : At_QryPrfAppPara
- 功能描述  : ^PRFAPP查询命令处理函数
- 输入参数  : ucIndex - 用户索引
- 输出参数  : 无
- 返 回 值  : TAF_UINT32
- 修改历史      :
-  1.日    期   : 2015年06月13日
-    作    者   : H00300778
-    修改内容   : 新增函数
-*****************************************************************************/
+
 TAF_UINT32 At_QryPrfAppPara(TAF_UINT8 ucIndex)
 {
     TAF_UINT32                          i;
@@ -2198,17 +1882,7 @@ TAF_UINT32 At_QryPrfAppPara(TAF_UINT8 ucIndex)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : At_TestPrfAppPara
- 功能描述  : ^PRFAPP测试命令处理函数
- 输入参数  : ucIndex - 用户索引
- 输出参数  : 无
- 返 回 值  : TAF_UINT32
- 修改历史      :
-  1.日    期   : 2015年06月13日
-    作    者   : H00300778
-    修改内容   : 新增函数
-*****************************************************************************/
+
 TAF_UINT32 At_TestPrfAppPara(TAF_UINT8 ucIndex)
 {
     VOS_UINT16      usLength;
@@ -2226,20 +1900,7 @@ TAF_UINT32 At_TestPrfAppPara(TAF_UINT8 ucIndex)
     return AT_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : At_SetCCimiPara
- 功能描述  : ^CCIMI
- 输入参数  : TAF_UINT8 ucIndex 用户索引
- 输出参数  : 无
- 返 回 值  : TAF_UINT32        ATC返回码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月17日
-    作    者   :
-    修改内容   : 新生成函数
-*****************************************************************************/
 TAF_UINT32 At_SetCCimiPara(TAF_UINT8 ucIndex)
 {
     /* 参数检查 */

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2004-2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMntn.h
-  版 本 号   : 初稿
-  作    者   : 范晶/00179208
-  生成日期   : 2014年10月07日
-  最近修改   : 2014年10月07日
-  功能描述   : NAS可维可测公共处理的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年10月07日
-    作    者   : 范晶/00179208
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __NAS_MNTN_H__
 #define __NAS_MNTN_H__
@@ -28,9 +11,7 @@
 #include "NasOmInterface.h"
 #include "NasOmTrans.h"
 #include "NasErrorLog.h"
-/* Added by wx270776 for OM融合, 2015-7-24, begin */
 #include "msp_diag_comm.h"
-/* Added by wx270776 for OM融合, 2015-7-24, end */
 
 #if (FEATURE_ON == FEATURE_PTM)
 #include "omerrorlog.h"
@@ -82,7 +63,6 @@ extern "C" {
 #define    NAS_ERROR_LOG4(Mod, String,Para1,Para2,Para3,Para4)          PS_NAS_LOG4 ( (Mod), SUBMOD_NULL, PS_LOG_LEVEL_ERROR, (String), (VOS_INT32)(Para1), (VOS_INT32)(Para2), (VOS_INT32)(Para3), (VOS_INT32)(Para4) )
 
 
-/* Added by wx270776 for OM融合, 2015-7-24, begin */
 #define   PS_NAS_LOG(Mod, SubMod, Level, String) \
           (VOS_VOID)DIAG_LogReport( DIAG_GEN_LOG_MODULE(VOS_GetModemIDFromPid(Mod), DIAG_MODE_UMTS, (Level)), \
                           (Mod), __FILE__, __LINE__, "%s \r\n", (String) )
@@ -102,7 +82,6 @@ extern "C" {
 #define   PS_NAS_LOG4(Mod, SubMod, Level, String, Para1, Para2, Para3, Para4) \
           (VOS_VOID)DIAG_LogReport( DIAG_GEN_LOG_MODULE(VOS_GetModemIDFromPid(Mod), DIAG_MODE_UMTS, (Level)), \
                           (Mod), __FILE__, __LINE__, "%s, %d, %d, %d, %d \r\n", (String), (VOS_INT32)(Para1), (VOS_INT32)(Para2), (VOS_INT32)(Para3), (VOS_INT32)(Para4) )
-/* Added by wx270776 for OM融合, 2015-7-24, end */
 
 
 #define NAS_COMM_BULID_ERRLOG_HEADER_INFO(pstHeader, ModemId, AlmId, AlmLevel, ulSlice, ulLength) \
@@ -209,30 +188,16 @@ extern VOS_UINT32 g_ulNasTraceLevle;
 /*****************************************************************************
   7 STRUCT定义
 *****************************************************************************/
-/*****************************************************************************
- 结构名    : NAS_TIMER_EVENT_STRU
- 结构说明  : 描述一个定时器信息保护PID和定时器名称
- 1.日    期   : 2013年06月20日
-   作    者   : l00167671
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usPid;
     VOS_UINT16                          usTimerName;
 }NAS_TIMER_EVENT_STRU;
 
-/* Deleted by wx270776 for OM融合, 2015-7-23, begin */
 
-/* Deleted by wx270776 for OM融合, 2015-7-23, end */
 
-/*****************************************************************************
- 结构名    : OAM_MMA_TIMER_REPORT_CFG_IND_STRU
- 结构说明  : OAM发给MMA的TIMER OTA上报事件 配置信息
- 1.日    期   : 2013年06月20日
-   作    者   : l00167671
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafXCallProcEccSrv.h
-  版 本 号   : 初稿
-  作    者   : y00245242
-  生成日期   : 2015年10月21日
-  最近修改   :
-  功能描述   : TafXCallProcEccSrv.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年10月21日
-    作    者   : y00245242
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __TAF_X_CALL_PROC_ECC_SRV_H__
 #define __TAF_X_CALL_PROC_ECC_SRV_H__
@@ -66,13 +49,7 @@ extern "C" {
 /*****************************************************************************
   3 枚举定义
 *****************************************************************************/
-/*****************************************************************************
-结构名      : TAF_XCALL_VOICE_ENC_MSG_EVENT_TYPE_ENUM_UINT32
-结构说明    : 语音加密流程消息事件类型
-  1.日    期   : 2015年10月26日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 enum TAF_XCALL_VOICE_ENC_MSG_EVENT_TYPE_ENUM
 {
     /* APP消息事件类型 */
@@ -109,13 +86,7 @@ enum TAF_XCALL_VOICE_ENC_MSG_EVENT_TYPE_ENUM
 };
 typedef VOS_UINT32 TAF_XCALL_VOICE_ENC_MSG_EVENT_TYPE_ENUM_UINT32;
 
-/*****************************************************************************
-结构名      : TAF_XCALL_PUB_KEY_UPDATE_MSG_EVENT_TYPE_ENUM_UINT32
-结构说明    : 公钥更新消息事件类型
-  1.日    期   : 2015年10月26日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 enum TAF_XCALL_PUB_KEY_UPDATE_MSG_EVENT_TYPE_ENUM
 {
     /* KMC消息事件 */
@@ -132,13 +103,7 @@ enum TAF_XCALL_PUB_KEY_UPDATE_MSG_EVENT_TYPE_ENUM
 };
 typedef VOS_UINT32 TAF_XCALL_PUB_KEY_UPDATE_MSG_EVENT_TYPE_ENUM_UINT32;
 
-/*****************************************************************************
-结构名      : TAF_XCALL_REMOTE_CTRL_MSG_EVENT_TYPE_ENUM_UINT32
-结构说明    : KMC远程控制操作消息事件类型
-  1.日    期   : 2015年10月26日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 enum TAF_XCALL_REMOTE_CTRL_MSG_EVENT_TYPE_ENUM
 {
     /* APP消息事件类型 */
@@ -158,13 +123,7 @@ enum TAF_XCALL_REMOTE_CTRL_MSG_EVENT_TYPE_ENUM
 typedef VOS_UINT32 TAF_XCALL_REMOTE_CTRL_MSG_EVENT_TYPE_ENUM_UINT32;
 
 
-/*****************************************************************************
-结构名      : TAF_XCALL_ECC_SRV_STATE_MACHINE_ID_ENUM_UINT32
-结构说明    : ECC状态机ID
-  1.日    期   : 2015年10月26日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 enum TAF_XCALL_ECC_SRV_STATE_MACHINE_ID_ENUM
 {
     TAF_XCALL_ECC_SRV_STATE_MACHINE_VOICE_ENC,
@@ -177,13 +136,7 @@ enum TAF_XCALL_ECC_SRV_STATE_MACHINE_ID_ENUM
 };
 typedef VOS_UINT32 TAF_XCALL_ECC_SRV_STATE_MACHINE_ID_ENUM_UINT32;
 
-/*****************************************************************************
-结构名      : TAF_XCALL_HARDWARE_ID_TYPE_ENUM_UINT8
-结构说明    : Hard Ware Id对应的存储类型
-  1.日    期   : 2015年10月26日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-*****************************************************************************/
+
 enum TAF_XCALL_HARDWARE_ID_TYPE_ENUM
 {
     TAF_XCALL_HARDWARE_ID_TYPE_ESN      = 0x01,
@@ -216,41 +169,16 @@ typedef VOS_UINT8 TAF_XCALL_HARDWARE_ID_TYPE_ENUM_UINT8;
 /* 动作处理函数的类型定义 */
 typedef VOS_VOID (*TAF_XCALL_ECC_EVENT_PROC_FUNC)(VOS_VOID *pMsg, VOS_VOID *pKmcDecMsg);
 
-/*****************************************************************************
- 结构名    : TAF_XCALL_ECC_EVENT_PROC_STRU
- 结构说明  : ECC事件处理函数处理结构
 
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : y00245242
-    修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          ulEventType;                            /* 事件类型 */
     TAF_XCALL_ECC_EVENT_PROC_FUNC       pfEventProcFun;                         /* 事件处理函数 */
 }TAF_XCALL_ECC_EVENT_PROC_STRU;
-/*****************************************************************************
- 结构名    : TAF_XCALL_MKTIME_TM_STRU
- 结构说明  : TimeZone类型的时间结构
 
- 修改记录  :
-  1.日    期   : 2015年10月24日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-*****************************************************************************/
 typedef struct tm TAF_XCALL_MKTIME_TM_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XCALL_STD_TIME_ZONE_STRU
- 结构说明  : TimeZone类型的时间结构
 
- 修改记录  :
-  1.日    期   : 2015年10月24日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          ulSecond;   /* 秒[0,59] */
@@ -264,15 +192,7 @@ typedef struct
     VOS_UINT32                          ulIsdst;    /* 夏令时 */
 } TAF_XCALL_STD_TIME_ZONE_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XCALL_HARDWARE_ID_INFO_STRU
- 结构说明  : HARDWARE ID信息结构体
 
- 修改历史      :
-  1.日    期   : 2015年10月27日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                               ucHardWareIdLen;
@@ -281,15 +201,7 @@ typedef struct
     VOS_UINT8                               aucReserved[3];
 } TAF_XCALL_HARDWARE_ID_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XCALL_PLAIN_TEXT_INFO_STRU
- 结构说明  : ID信息明文信息组合结构体
 
- 修改历史      :
-  1.日    期   : 2015年10月27日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucNumLen;

@@ -118,17 +118,7 @@ VOS_UINT32  NAS_EMMC_MsgDistr( MsgBlock *pMsg )
     return ulRet;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_ProcTimerMsgWaitPlmnSrchcnfTIMERExp
- Description     : 等待PlmnSrchcnf超时的处理
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1. wangchen 00209181     2012-05-28
-
-*****************************************************************************/
 VOS_UINT32 NAS_EMMC_ProcTimerMsgWaitPlmnSrchcnfTimerExp(MsgBlock *pMsg)
 {
     /*打印进入该函数*/
@@ -162,7 +152,6 @@ VOS_VOID  NAS_EMMC_Init(VOS_VOID )
                         0,
                         sizeof(NAS_EMMC_GLOBAL_STRU));
 
-    /* s00265702  为RRC增加保存GU系统消息  begin */
     /*初始化保存GU消息的全局变量，并设置PLMN信息为无效值 */
     
     NAS_LMM_MEM_SET_S(  NAS_EMMC_GetGuSysInfoAddr(),
@@ -173,7 +162,6 @@ VOS_VOID  NAS_EMMC_Init(VOS_VOID )
     NAS_EMMC_GetGuSysInfoPlmnAddr()->aucPlmnId[0] = 0xFF;
     NAS_EMMC_GetGuSysInfoPlmnAddr()->aucPlmnId[1] = 0xFF;
     NAS_EMMC_GetGuSysInfoPlmnAddr()->aucPlmnId[2] = 0xFF;
-    /* s00265702  为RRC增加保存GU系统消息  end */
 
     return;
 }

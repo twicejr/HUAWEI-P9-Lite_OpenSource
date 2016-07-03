@@ -700,21 +700,7 @@ VOS_UINT32 VOS_FixedQueueRead( VOS_UINT32 ulQueueID,
     }
 }
 
-/*****************************************************************************
- 函 数 名  : VOS_FixedQueueReadMsg
- 功能描述  : 通过FID获取该FID消息队列中首条消息地址
- 输入参数  : VOS_UINT32 ulFidID
- 输出参数  : 无
- 返 回 值  : VOS_VOID*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月29日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID* VOS_FixedQueueReadMsg( VOS_UINT32 ulFidID )
 {
     VOS_INT                             i;

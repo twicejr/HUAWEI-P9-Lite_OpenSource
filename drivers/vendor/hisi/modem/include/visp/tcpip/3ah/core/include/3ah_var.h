@@ -62,7 +62,6 @@ extern GET_PHY_ERROR_FRAME_HOOK_FUNC g_pfGetPhyErrFrm;
 /* 下发周期事件参数的函数指针 */
 extern SET_LINK_EVENT_WINTHRSH_HOOK_FUNC g_pfSetLinkEvtParam;
 
-/* Modified by z00208058/w00207740, 3AH链路事件窗口和门限规格扩展, 2012/5/12 */
 /* 支持64位下发周期事件参数的函数指针 */
 extern SET_LINK_EVENT_WINTHRSH_EX_HOOK_FUNC g_pfSetLinkEvtParamEx;
 
@@ -105,10 +104,8 @@ extern ULONG g_ulOam3ahNegTimerId;
 /* 用户配置的协商告警时间必须是5s的倍数 */
 extern ULONG g_ulOam3ahNegPhyTimer;
 
-/*Added by wangtong207740, DTS2012102202389 ,设置是否处理带VLAN的OAMPUD, 2012/10/22 */
 extern ULONG g_ulOam3ahPktVlanSwitch;
 
-/*Added by wangtong207740, MBSC要求3AH主备标记不影响接口物理状态, 2012/11/14 */
 extern ULONG g_ulOam3ahBoardStateSwitch;
 
 extern ULONG g_ulOam3ahWarnTraceFlag;

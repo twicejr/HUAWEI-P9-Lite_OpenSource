@@ -350,29 +350,13 @@ VOID DHCPS_DelLinkNode(DHCPS_TIMER_LINKLIST_S** ppstHead, DHCPS_TIMER_LINKLIST_S
 
 }
 
-/*****************************************************************************
- 函 数 名      : DHCPS_TIMER_StartTimer
- 功能描述   : 启动DHCPS的定时器
- 输入参数   : 无
- 输出参数   : 无
- 返 回 值      : 无
- 调用函数   :
- 被调函数   :
 
- 修改历史   :
-  1.日    期      : 2008年12月1日
-    作    者       : dongmingzhou 42828
-    修改内容: 新生成函数
-
-*****************************************************************************/
 ULONG DHCPS_TIMER_StartTimer(DHCPS_LEASE_S *pstLease, DHCPS_TIMER_TYPE_E enTimerType, ULONG ulTimerLen)
 {
     ULONG ulPdpIndex = 0;
     ULONG ulTimer = 0;
     ULONG ulTmpTime = 0;
-    /* Added start by dongmingzhou 42828 at 2009-04-14 UGWV9R1C1 for 备份 */
     ULONG ulBoardStatus = 0;
-    /* Added end by dongmingzhou 42828 at 2009-04-14 UGWV9R1C1 for 备份 */
     UCHAR ucLogicSlot = 0;
     if (NULL == pstLease)
     {
@@ -392,11 +376,9 @@ ULONG DHCPS_TIMER_StartTimer(DHCPS_LEASE_S *pstLease, DHCPS_TIMER_TYPE_E enTimer
         DHCPS_InternalBranchCounter(DHCPS_INTERNAL_BRANCH_200);
         return VOS_ERR;
     }
-    /* Added start by dongmingzhou 42828 at 2009-04-14 UGWV9R1C1 for 备份 */
     /*取得本板主备状态*/
     ucLogicSlot = (UCHAR)CRM_GetSelfLogicSlotID();
     ulBoardStatus  = CRM_GetSlotPrimaryInfoOfSelfGroup(ucLogicSlot);
-    /* Added end by dongmingzhou 42828 at 2009-04-14 UGWV9R1C1 for 备份 */
 
     ulPdpIndex = pstLease->ulIndex;
     switch (enTimerType)
@@ -461,10 +443,7 @@ ULONG DHCPS_TIMER_StartTimer(DHCPS_LEASE_S *pstLease, DHCPS_TIMER_TYPE_E enTimer
                     g_pstLeaseTimer[ulPdpIndex].ulNodeTimerCount = ulTimer;
                     DHCPS_AddLinkNode(&g_ppstLeaseTimerList[ulTimer], &g_pstLeaseTimer[ulPdpIndex]);
                     g_pstLeaseTimer[ulPdpIndex].ucState = 1;
-                    /* Added start by dongmingzhou 42828 at 2009-04-15 UGWV9R1C1 for 备份 */
                     pstLease->ucLeaseTimerOP = DHCPS_HA_LEASETIME_START;
-                    /* Added end by dongmingzhou 42828 at 2009-04-15 UGWV9R1C1 for 备份 */
-                    /* Added start by dongmingzhou 42828 at 2009-04-14 UGWV9R1C1 for 备份 */
                     if(E_CRM_ACTIVE == ulBoardStatus)
                     {
                         if (VOS_OK != AM_USM_NotifyBackupByIndex(ulPdpIndex, SDB_UPDATEVERNOTCHANGE_BACKUP))
@@ -475,7 +454,6 @@ ULONG DHCPS_TIMER_StartTimer(DHCPS_LEASE_S *pstLease, DHCPS_TIMER_TYPE_E enTimer
                                 ulPdpIndex);
                         }
                     }
-                    /* Added end by dongmingzhou 42828 at 2009-04-14 UGWV9R1C1 for 备份 */
                 }
                 break;
             }
@@ -487,28 +465,12 @@ ULONG DHCPS_TIMER_StartTimer(DHCPS_LEASE_S *pstLease, DHCPS_TIMER_TYPE_E enTimer
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名      : DHCPS_TIMER_StopTimer
- 功能描述   : 停止DHCPS的定时器
- 输入参数   : 无
- 输出参数   : 无
- 返 回 值      : 无
- 调用函数   :
- 被调函数   :
 
- 修改历史   :
-  1.日    期      : 2008年12月1日
-    作    者       : dongmingzhou 42828
-    修改内容: 新生成函数
-
-*****************************************************************************/
 ULONG DHCPS_TIMER_StopTimer(DHCPS_LEASE_S *pstLease, DHCPS_TIMER_TYPE_E enTimerType)
 {
     ULONG ulNodeTimerCount = 0;
     ULONG ulPdpIndex = 0;
-    /* Added start by dongmingzhou 42828 at 2009-04-14 UGWV9R1C1 for 备份 */
     ULONG ulBoardStatus = 0;
-    /* Added end by dongmingzhou 42828 at 2009-04-14 UGWV9R1C1 for 备份 */
     UCHAR ucLogicSlot = 0;
 
     if (NULL == pstLease)
@@ -532,11 +494,9 @@ ULONG DHCPS_TIMER_StopTimer(DHCPS_LEASE_S *pstLease, DHCPS_TIMER_TYPE_E enTimerT
         DHCPS_InternalBranchCounter(DHCPS_INTERNAL_BRANCH_196);
         return VOS_ERR;
     }
-    /* Added start by dongmingzhou 42828 at 2009-04-14 UGWV9R1C1 for 备份 */
     /*取得本板主备状态*/
     ucLogicSlot = (UCHAR)CRM_GetSelfLogicSlotID();
     ulBoardStatus  = CRM_GetSlotPrimaryInfoOfSelfGroup(ucLogicSlot);
-    /* Added end by dongmingzhou 42828 at 2009-04-14 UGWV9R1C1 for 备份 */
 
     ulPdpIndex = pstLease->ulIndex;
     switch (enTimerType)
@@ -570,10 +530,7 @@ ULONG DHCPS_TIMER_StopTimer(DHCPS_LEASE_S *pstLease, DHCPS_TIMER_TYPE_E enTimerT
                     ulNodeTimerCount = g_pstLeaseTimer[ulPdpIndex].ulNodeTimerCount;
 
                     DHCPS_DelLinkNode(&g_ppstLeaseTimerList[ulNodeTimerCount], &g_pstLeaseTimer[ulPdpIndex]);
-                    /* Added start by dongmingzhou 42828 at 2009-04-15 UGWV9R1C1 for 备份 */
                     pstLease->ucLeaseTimerOP = DHCPS_HA_LEASETIME_STOP;
-                    /* Added end by dongmingzhou 42828 at 2009-04-15 UGWV9R1C1 for 备份 */
-                    /* Added start by dongmingzhou 42828 at 2009-04-14 UGWV9R1C1 for 备份 */
                     if(E_CRM_ACTIVE == ulBoardStatus)
                     {
                         if (VOS_OK != AM_USM_NotifyBackupByIndex(ulPdpIndex, SDB_UPDATEVERNOTCHANGE_BACKUP))
@@ -585,7 +542,6 @@ ULONG DHCPS_TIMER_StopTimer(DHCPS_LEASE_S *pstLease, DHCPS_TIMER_TYPE_E enTimerT
                                 ulPdpIndex);
                         }
                     }
-                    /* Added end by dongmingzhou 42828 at 2009-04-14 UGWV9R1C1 for 备份 */
                 }
 
                 break;
@@ -603,22 +559,7 @@ ULONG DHCPS_TIMER_StopTimer(DHCPS_LEASE_S *pstLease, DHCPS_TIMER_TYPE_E enTimerT
 
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPS_ChangeTimerNode
- 功能描述  : 2次 上下文升主，对应的DHCPS控制块涉及到得定时器节点也需要改变
- 输入参数  : ULONG ulOldIndex
-             ULONG ulNewIndex
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月14日
-    作    者   : mengyuanhui 00221593
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPS_ChangeTimerNode(ULONG ulOldIndex, ULONG ulNewIndex)
 {
     DHCPS_TIMER_LINKLIST_S *pstTmpOldTimerNode = NULL;

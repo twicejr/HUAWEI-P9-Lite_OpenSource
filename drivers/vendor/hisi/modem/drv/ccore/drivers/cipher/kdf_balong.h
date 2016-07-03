@@ -1,14 +1,4 @@
-/*************************************************************************
-*   版权所有(C) 2008-2013, 深圳华为技术有限公司.
-*
-*   文 件 名 :  kdf_balong.h
-*
-*   作    者 :  wangxiandong
-*
-*   描    述 :  kdf功能实现头文件
-*
-*   修改记录 :  2013年03月12日  v1.00  wangxiandong 创建
-*************************************************************************/
+
 #ifndef	_KDF_BALONG_H_
 #define	_KDF_BALONG_H_
 
@@ -32,6 +22,7 @@ extern "C" {
 
 #define	TIME_RATIO	(32768)	/*one second*/
 #define	TEN_MS		(TIME_RATIO/100)
+#define ONE_MS		(TIME_RATIO/1000)
 
 #define KDF_RPTR_OFFSET		16
 #define KDF_IDX_MASK		0x3FF

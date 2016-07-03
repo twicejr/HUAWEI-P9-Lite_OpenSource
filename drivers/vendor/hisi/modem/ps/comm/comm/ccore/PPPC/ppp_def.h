@@ -1,24 +1,4 @@
-/************************************************************************
-*                                                                      *
-*                             ppp_def.h                                *
-*                                                                      *
-*  Project Code:       VRP3.0                                          *
-*  Create Date:        2000/03/27                                      *
-*  Author:             Deng Yi Ou                                      *
-*  Modify Date:                                                        *
-*  Document:                                                           *
-*  Function:           PPP模块私有宏定义                               *
-*  Others:                                                             *
-*----------------------------------------------------------------------*
-*                                                                      *
-*  Copyright 2000-2002 VRP3.0 Team Beijing Institute HuaWei Tech, Inc. *
-*                      ALL RIGHTS RESERVED                             *
-*                                                                      *
-*----------------------------------------------------------------------*
-*                                                                      *
-*   这个文件包含了PPP模块所有的私有宏定义                              *
-*                                                                      *
-************************************************************************/
+
 
 #ifndef      _PPP_DEF_H_
 #define      _PPP_DEF_H_
@@ -92,9 +72,7 @@ extern "C" {
 #ifdef    __PRODUCT_TYPE_PDSN80
 #define PPP_MAX_CCP_USER_NUM g_ulPppCcpMaxUserNum
 
-/* Modified start by liutao 38563 at 2004-09-29 V800R002 for PPP压缩移植 */
 #define PPP_MAX_VJ_USER_NUM 5000   /*g_ulPppVjMaxUserNum*/
-/* Modified end by liutao 38563 at 2004-09-29 V800R002 for PPP压缩移植 */
 
 
 #endif
@@ -298,7 +276,7 @@ enum enumTrace
 #define PPP_AAA_EVENTBIT 0x0002
 #define PPP_DHCP_EVENTBIT 0x0004
 #define PPP_CCP_EVENTBIT 0x0008 /*WGGSN_B03_L2TP_PPPC_COMP*/
-#define PPP_GSPC_MSG_EVENTBIT 0x0010 /* Added by liutao 38563 at 2004-09-21 V800R002 for 移植 */
+#define PPP_GSPC_MSG_EVENTBIT 0x0010
 
 #define PPP_COMPRESS_MSG_EVENTBIT 0x0200
 
@@ -383,15 +361,12 @@ enum enumTrace
 
 #define PPP_MAXCALLBACKDIALERSTRINGLEN 64
 
-/* Added start by liutao 38563 at 2004-09-24 V800R002 for PPP压缩移植 */
 #define PPPCOMP_PKTID_NOT_INC 0x01   /* 不增加id值 */
 #define PPPCOMP_PKTID_INC 0x02  /* 增加id值 */
 #define PPPCOMP_MPPC 1
 #define PPPCOMP_LZS0 2
 #define PPPCOMP_LZS1 3
-/* Added end by liutao 38563 at 2004-09-24 V800R002 for PPP压缩移植 */
 #define PPP_DEFAULT_ACCM 0x0  /* 缺省同异步转换字符集，所有控制字都转换 */
-/* Added start by liujianhui 61463 at 2008-03-31 PDSN V9R7 Demo for 移植 */
 
 #define CALL_FROMID_LENTH  20
 
@@ -405,17 +380,15 @@ typedef enum
     LICE_LIMIT_ITEM_TRACK  = 4,
     LICE_LIMIT_ITEM_LISTEN = 5,
 
-    /* LICE_LIMIT_ITEM_BSN					= 6,*//*license控制BSN资源 Added by liuxiaojie 60004253 at 2006-05-16 V800R005C01B010 for License */
     LICE_LIMIT_ITEM_EVDO_NUM = 6,
     LICE_LIMIT_ITEM_EVDO_A10_NUM = 7,
-    LICE_LIMIT_ITEM_MIPAGENT = 8,               /*license控制MIP Agent功能 Added by liuxiaojie 60004253 at 2006-05-16 V800R005C01B010 for License */
+    LICE_LIMIT_ITEM_MIPAGENT = 8,
 
     LICE_LIMIT_ITEM_IPSec = 9,
     LICE_LIMIT_ITEM_LMT = 10,
     /*LICE_LIMIT_ITEM_BUTT*/ /* <=M_LIC_MAX_LIMIT_ITEM_NUM */
 } E_LIC_LIMIT_ITEM_TYPE;
 #endif
-/* Added end by liujianhui 61463 at 2008-03-31 PDSN V9R7 Demo for 移植 */
 /************************* 与规格有关的宏 *****************************/
 
 /************************* 事件枚举变量 *****************************/
@@ -632,11 +605,9 @@ enum enumPppPhase
  #define PPP_MPLS_MCAST 0x0282
 #endif
 #endif
-/* BEGIN: Added for PN:ppp残留 by wangyong 00138171, 2012/6/20 */
 #define PPP_LCP_DEACTIVE 0xFFFF      /* 特殊定义，为了区分其他协议 */
 #define PPP_IPCP_DEACTIVE 0xFFFE     /* 特殊定义，为了区分其他协议 */
 #define PPP_IPV6CP_DEACTIVE 0xFFFD   /* 特殊定义，为了区分其他协议 */
-/* END:   Added for PN:ppp残留 by wangyong 00138171, 2012/6/20 */
 #define PPP_VJ_COMP 0x002d
 #define PPP_VJ_UNCOMP 0x002f
 #define PPP_VJ_COMP_OLD 0x0037
@@ -766,7 +737,6 @@ enum enumPppPhase
     VOS_MemCpy((void *)cp, (void *)&l, sizeof(VOS_UINT32));\
     cp += 4 ; \
 }
-/* end add by luofang 切平台 */
 
 
 
@@ -1257,7 +1227,6 @@ enum ePppCmdInfo
 #define PPP_TRACE_IN 0
 #define PPP_TRACE_OUT 1
 
-/* BEGIN: Added by longsirui 41291, 2008/4/8   问题单号:AX4D01982 */
 #define PPP_TRACE_LNS_IN 2
 #define PPP_TRACE_LNS_OUT 3
 
@@ -1314,7 +1283,6 @@ enum ePppCmdInfo
 #define SECTION_NAME_LEN 80 /*此宏定义应该删除，现在不知道到底用那个宏定义*/
 
 
-/* Added start by zhudaoming 62333 at 2007-12-06 GGSN9811V9R7C01B02 for L2TP/PPP V9移植 */
 /*lap头文件和GTPC头文件有冲突，所以重新定义了，需要确认一下，删除下列的宏定义*/
 #define LAP2_EV_IPC_MSG 0X00020000  /* "00000000 00000010 00000000 00000000" */
 #define LAP2_EV_TIMER 0X00010000  /* "00000000 00000001 00000000 00000000" */
@@ -1323,10 +1291,7 @@ enum ePppCmdInfo
 #define DHCP_ADDR_MSG 0x00100000  /* "00000000 00010000 00000000 00000000" */
 /*AM-USM和AM-LAP2之间交互消息的消息具体类型*/
 /*AM-USM和AM-LAP2之间交互消息的消息具体类型*/
-/* Deleted start by zhudaoming 62333 at 2008-01-28 V9R7C01B02 for L2TP/PPP V9R7移植 */
-/* Deleted end by zhudaoming 62333 at 2008-01-28 V9R7C01B02 for L2TP/PPP V9R7移植 */
 
-/* Modified start by zhudaoming 62333 at 2007-12-05 GGSN9811V9R7C01B02 for L2TP/PPP V9移植 */
 /*::PPP moudle*/
 #define SID_PPP_PACKET_S 0x235
 #define SID_PPP_CB_S 0x236
@@ -1347,16 +1312,13 @@ enum ePppCmdInfo
 #define SID_PPP_RENEGO_S 0x251
 #define SID_PPP_CCP_S 0x252
 #define SID_PPP_MSID_S 0x253
-/* Modified end by zhudaoming 62333 at 2007-12-05 GGSN9811V9R7C01B02 for L2TP/PPP V9移植 */
 
 #define LAP_IPV4 0
 #define LAP_IPV6 1
-/* Added end by zhudaoming 62333 at 2007-12-06 GGSN9811V9R7C01B02 for L2TP/PPP V9移植 */
 #define  AM_PPP_RADIUS_PRI 1
 #define PPP_USR_NUMBER_INCR 1
 #define PPP_USR_NUMBER_DECR 2
 
-/* BEGIN: Added by longsirui 41291, 2008/1/24   问题单号:GGSN9811V9R7C02 for L2TP/PPP V9移植 */
 #define FSU_TID_PPPC MID_PPPC
 #define FSU_DBGMSG_LEN 1800
 #define PPP_MAX_STATISC 600   /*500-599分配给PCC使用*/

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : BST_SRV_AsCtrl.cpp
-  版 本 号   : 初稿
-  作    者   : d00173029
-  生成日期   : 2014年07月01日
-  最近修改   :
-  功能描述   : 接入层控制相关处理处理类成员函数
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年07月01日
-    作    者   : d00173029
-    修改内容   : 建立文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -32,19 +15,7 @@
   3 函数实现
 ******************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : GetInstance
- 功能描述  : 获取BST_SRV_CAsCtrl实例
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : BST_SRV_CAsCtrl *
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_SRV_CAsCtrl *BST_SRV_CAsCtrl::GetInstance( BST_VOID )
 {
     static BST_SRV_CAsCtrl *pcAsCtrlPtr = BST_NULL_PTR;
@@ -55,20 +26,7 @@ BST_SRV_CAsCtrl *BST_SRV_CAsCtrl::GetInstance( BST_VOID )
     return pcAsCtrlPtr;
 }
 
-/*****************************************************************************
- 函 数 名  : Control
- 功能描述  : 处理接入层控制消息
- 输入参数  : enCmd: RRC控制消息
-             pvData:RRC参数
- 输出参数  : 无
- 返 回 值  : BST_BOOL
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_BOOL BST_SRV_CAsCtrl::Control( BST_PRTC_TYPE_ENUM_UINT32 enCmd, BST_VOID *pvData )
 {
     BST_DRV_STRU                       *pAsDrvHandle;
@@ -85,19 +43,7 @@ BST_BOOL BST_SRV_CAsCtrl::Control( BST_PRTC_TYPE_ENUM_UINT32 enCmd, BST_VOID *pv
     return BST_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : UsingRrcVote
- 功能描述  : 使用RRC投票，记名投票
- 输入参数  : ulVid: Vid
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 /*lint -e429*/
 BST_VOID BST_SRV_CAsCtrl::UsingRrcVote( BST_UINT32 ulVid )
 {
@@ -144,19 +90,7 @@ BST_VOID BST_SRV_CAsCtrl::UsingRrcVote( BST_UINT32 ulVid )
                  lstCount( &m_stVoteList ) );
 }
 /*lint +e429*/
-/*****************************************************************************
- 函 数 名  : UsingRrcDeVote
- 功能描述  : 退出RRC投票
- 输入参数  : ulVid: Vid
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 /*lint -e438*/
 BST_VOID BST_SRV_CAsCtrl::UsingRrcDeVote( BST_UINT32 ulVid )
 {
@@ -206,20 +140,7 @@ BST_VOID BST_SRV_CAsCtrl::UsingRrcDeVote( BST_UINT32 ulVid )
     }
 }
 /*lint +e438*/
-/*****************************************************************************
- 函 数 名  : ProcRrcEvent
- 功能描述  : 处理RRC状态变化事件
- 输入参数  :  BST_UINT32 ulLength,  参数长度
-              BST_VOID *pvData      参数（RRC状态）内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_SRV_CAsCtrl::ProcRrcEvent( BST_UINT32 ulLength, BST_VOID *pvData )
 {
     BST_BOOL                            bReportAllowedFlag;
@@ -300,19 +221,7 @@ BST_VOID BST_SRV_CAsCtrl::ProcRrcEvent( BST_UINT32 ulLength, BST_VOID *pvData )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ProcDataTrs
- 功能描述  : 处理数据收发指示事件
- 输入参数  : ucTrsType  接收数据或者发送数据
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_SRV_CAsCtrl::ProcDataTrs( BST_VOID )
 {
     BST_DRV_STRU               *pAsDriver;
@@ -343,21 +252,7 @@ BST_VOID BST_SRV_CAsCtrl::ProcDataTrs( BST_VOID )
      */
     ( BST_VOID )pAsDriver->pfIoCtrl( BST_DRV_CMD_SET_REPORT_FLAG,&bReportAllowedFlag );
 }
-/*****************************************************************************
- 函 数 名  : AsEventCallback
- 功能描述  : 接入层事件处理回调函数
- 输入参数  : enEvent: 事件
-             ulLength: 参数长度
-             pvData:事件内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_SRV_CAsCtrl::AsEventCallback(
     BST_AS_EVT_ENUM_UINT32  enEvent,
     BST_UINT32              ulLength,
@@ -382,20 +277,7 @@ BST_VOID BST_SRV_CAsCtrl::AsEventCallback(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TimerExpired
- 功能描述  : 定时器超时处理函数
- 输入参数  : lId:定时器ID
-             pvPara: 定时器相关的参数
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_SRV_CAsCtrl::TimerExpired( BST_OS_TIMERID_T lId, BST_VOID* pvPara )
 {
     BST_DRV_STRU                       *pAsDrvHandle;
@@ -439,19 +321,7 @@ BST_VOID BST_SRV_CAsCtrl::TimerExpired( BST_OS_TIMERID_T lId, BST_VOID* pvPara )
     }
 }
 
-/*****************************************************************************
- 函 数 名  : BST_SRV_CAsCtrl
- 功能描述  : 构造函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_SRV_CAsCtrl::BST_SRV_CAsCtrl( BST_VOID )
     : BST_SRV_CAsRcver( BST_SRV_GetSysMsgHandle() ),
       m_ulFdTimerId( BST_OS_INVALID_TIMER_ID ),
@@ -471,19 +341,7 @@ BST_SRV_CAsCtrl::BST_SRV_CAsCtrl( BST_VOID )
     lstInit( &m_stVoteList );
 }
 
-/*****************************************************************************
- 函 数 名  : ~BST_SRV_CAsCtrl
- 功能描述  : 析构函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_SRV_CAsCtrl::~BST_SRV_CAsCtrl( BST_VOID )
 {
     BST_RLS_LOG("BST_SRV_CAsCtrl destructor exception!");

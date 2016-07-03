@@ -908,13 +908,7 @@ close_file:
 }
 
 
-/*
-* Function   : nv_revertEx
-* Discription: 恢复nv
-* Parameter  : path 文件路径
-* Output     : read result
-* History    : yuyangyang  00228784  create
-*/
+
 u32 nv_revertEx(const s8* path)
 {
     u32 ret = NV_ERROR;
@@ -1877,13 +1871,7 @@ out:
     return ret;
 #endif
 }
-/*****************************************************************************
- 函 数 名  : nv_resume_ddr_from_img
- 功能描述  : 从工作或者备份分区出厂分区恢复NV数据
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : 无
-*****************************************************************************/
+
 u32 nv_resume_ddr_from_img(void)
 {
     struct nv_global_ddr_info_stru* ddr_info = (struct nv_global_ddr_info_stru*)NV_GLOBAL_INFO_ADDR;
@@ -2575,14 +2563,7 @@ void nv_help(u32 type)
     nv_mntn_record("reseved4             : 0x%x\n",g_nv_debug[i].reseved4);
     nv_mntn_record("***************************************\n");
 }
-/*
-* Function   : nv_show_ref_info
-* Discription: 打印nv id 为itemid的nv相关的信息
-* Parameter  : itemid: 需要查询的nv项的id
-* Output     : 0     : 查询成功
-               -1    : 查询失败不存在该nv项
-* History    : yuyangyang  00228784  create
-*/
+
 
 u32 nv_show_ref_info(u16 itemid)
 {

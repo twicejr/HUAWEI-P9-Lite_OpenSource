@@ -1,14 +1,4 @@
-/******************************************************************************
 
-    Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : NasLmmPublic.h
-  Description     : NasMmPublic.c header file
-  History           :
-     1.luojian 00107747      2008-10-9  Draft Enact
-     2.zhengjunyan 00148421  2011-05-28 文件名由 NasMmPublic.h修改为NasLmmPublic.h
-******************************************************************************/
 
 #ifndef __NASLMMPUBLIC_H__
 #define __NASLMMPUBLIC_H__

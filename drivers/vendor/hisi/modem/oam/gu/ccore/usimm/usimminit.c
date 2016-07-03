@@ -1,13 +1,4 @@
-/************************************************************************
-  Copyright    : 2015-2017, Huawei Tech. Co., Ltd.
-  File name    : UsimmInit.c
-  Author       : zhuli 00100318
-  Version      : V800R001
-  Date         : 2015-3-7
-  Description  : 该C文件给出了---卡初始化模块实现
-  Function List:
-  History      :
- ************************************************************************/
+
 
 #include "vos_Id.h"
 #include "usimminit.h"
@@ -196,19 +187,7 @@ USIMM_COMM_CARD_INIT_FUNC g_aICCCommInitProcFuncTbl[] =
 /* 控制应用初始化结构 */
 USIMM_INITAPPSCTRL_STRU                 g_astUSIMMInitAppCtrl[USIMM_CARDAPP_BUTT];
 
-/*****************************************************************************
-函 数 名  :USIMM_COMM_ClearInitCtrlGlobal
-功能描述  :完成卡初始化的全局变量的初始化
-输入参数  :pMsg ->消息指针
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2015年2月26日
-   作    者   : zhuli
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_COMM_ClearInitCtrlGlobal(VOS_VOID)
 {
     VOS_UINT32                  i;
@@ -228,18 +207,7 @@ VOS_VOID USIMM_COMM_ClearInitCtrlGlobal(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_COMM_ResetInitGlobal
-功能描述  :完成初始化的全局变量在重启的时候需要清空的变量
-输入参数  :pMsg ->消息指针
-输出参数  :无
-返 回 值  :无
-修订记录  :
-1. 日    期   : 2015年2月26日
-   作    者   : zhuli
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_COMM_ResetInitGlobal(VOS_VOID)
 {
     VOS_UINT32                  i;
@@ -256,18 +224,7 @@ VOS_VOID USIMM_COMM_ResetInitGlobal(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_COMM_ClearAppInfoGlobal
-功能描述  :完成卡初始化的APP Info全局变量的初始化
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-修订记录  :
-1. 日    期   : 2015年2月26日
-   作    者   : zhuli
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_COMM_ClearAppInfoGlobal(VOS_VOID)
 {
     VOS_UINT32                          i;
@@ -287,18 +244,7 @@ VOS_VOID USIMM_COMM_ClearAppInfoGlobal(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_COMM_ResetInitListStatus
-功能描述  :完成卡初始化的全局变量的初始化
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-修订记录  :
-1. 日    期   : 2015年2月26日
-   作    者   : g00256031
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_COMM_ResetInitListStatus(VOS_VOID)
 {
     USIMM_PHYCARD_TYPE_ENUM_UINT32          enCardType;
@@ -337,18 +283,7 @@ VOS_VOID USIMM_COMM_ResetInitListStatus(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_InitCommFuncTble
-功能描述  :完成卡初始化的全局变量列表的上电初始化
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-修订记录  :
-1. 日    期   : 2015年2月26日
-   作    者   : zhuli
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_COMM_InitCommFuncTble(VOS_VOID)
 {
 
@@ -384,18 +319,7 @@ VOS_VOID USIMM_COMM_InitCommFuncTble(VOS_VOID)
 
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_COMM_ResetPIN1Global
-功能描述  :完成卡PIN初始化的全局变量的初始化
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-修订记录  :
-1. 日    期   : 2015年2月26日
-   作    者   : zhuli
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_COMM_ResetPIN1Global(VOS_VOID)
 {
     VOS_UINT32          i;
@@ -414,19 +338,7 @@ VOS_VOID USIMM_COMM_ResetPIN1Global(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_COMM_GetAppInitList
-功能描述  :获取多应用卡的函数列表
-输入参数  :enCardType
-           enAppType
-输出参数  :无
-返 回 值  :USIMM_INITAPPLIST_FUNC*
-修订记录  :
-1. 日    期   : 2015年2月26日
-   作    者   : g00256031
-   修改内容   : Creat
 
-*****************************************************************************/
 USIMM_INITAPPLIST_FUNC* USIMM_COMM_GetAppInitList(
     USIMM_PHYCARD_TYPE_ENUM_UINT32          enCardType,
     USIMM_CARDAPP_ENUM_UINT32               enAppType
@@ -445,19 +357,7 @@ USIMM_INITAPPLIST_FUNC* USIMM_COMM_GetAppInitList(
     return VOS_NULL_PTR;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_COMM_GetAppInitNum
-功能描述  :获取多应用卡初始化函数个数
-输入参数  :enCardType
-           enAppType
-输出参数  :无
-返 回 值  :list num
-修订记录  :
-1. 日    期   : 2015年2月26日
-   作    者   : g00256031
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_COMM_GetAppInitNum(
     USIMM_PHYCARD_TYPE_ENUM_UINT32          enCardType,
     USIMM_CARDAPP_ENUM_UINT32               enAppType
@@ -476,20 +376,7 @@ VOS_UINT32 USIMM_COMM_GetAppInitNum(
     return 0;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_COMM_IsGcfSim
-功能描述  :通过ATR数据判断当前是否为GCF卡
-输入参数  :pucATR   ATR输入数据指针
-           ulATRLen ATR输入数据长度
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2015年2月26日
-   作    者   : g00256031
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_COMM_IsGcfSim(
     VOS_UINT8                          *pucATR,
     VOS_UINT32                          ulATRLen
@@ -526,19 +413,7 @@ VOS_UINT32 USIMM_COMM_IsGcfSim(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_COMM_DecodeATR
-功能描述  :解析ATR数据
-输入参数  :无
-输出参数  :无
-返 回 值  :USIMM_COMMINIT_RST_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月13日
-    作    者   : zhuli
-    修改内容   : Creat
-
-*****************************************************************************/
 USIMM_COMMINIT_RST_ENUM_UINT32 USIMM_COMM_DecodeATR(VOS_VOID)
 {
     VOS_INT32                           lSCIResult;
@@ -583,18 +458,7 @@ USIMM_COMMINIT_RST_ENUM_UINT32 USIMM_COMM_DecodeATR(VOS_VOID)
     return USIMM_COMM_INIT_SUCC;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_COMM_GetMainAppType
-功能描述  :完成卡初始化的主APP
-输入参数  :无
-输出参数  :无
-返 回 值  :主通道index
-修订记录  :
-1. 日    期   : 2015年2月26日
-   作    者   : g00256031
-   修改内容   : Creat
 
-*****************************************************************************/
 USIMM_CARDAPP_ENUM_UINT32 USIMM_COMM_GetMainAppType(VOS_VOID)
 {
     VOS_UINT32                          i;
@@ -613,19 +477,7 @@ USIMM_CARDAPP_ENUM_UINT32 USIMM_COMM_GetMainAppType(VOS_VOID)
     return USIMM_CARDAPP_BUTT;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_COMM_GetTerminalProfile
-功能描述  :读取nv项当前终端参数设置
-输入参数  :pstProfileContent
-输出参数  :无
-返 回 值  :无
 
-修订记录  :
-1. 日    期   : 2015年3月13日
-   作    者   : g00256031
-   修改内容   : Creat
-
-*****************************************************************************/
 VOS_VOID USIMM_COMM_GetTerminalProfile(
     USIMM_STK_CFG_STRU                 *pstProfileContent
 )
@@ -668,19 +520,7 @@ VOS_VOID USIMM_COMM_GetTerminalProfile(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_COMM_InitPINApp
-功能描述  :完成卡PIN初始化的主控函数
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2015年2月26日
-   作    者   : g00256031
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_COMM_InitPINApp(VOS_VOID)
 {
     USIMM_COMMINIT_RST_ENUM_UINT32      enInitRlst;
@@ -713,19 +553,7 @@ VOS_UINT32 USIMM_COMM_InitPINApp(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_COMM_InitCard
-功能描述  :完成卡初始化的主控函数
-输入参数  :pstMsg ->消息指针
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2015年2月26日
-   作    者   : g00256031
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_COMM_InitCard(
     USIMM_MsgBlock                     *pstMsg
 )
@@ -765,6 +593,8 @@ VOS_UINT32 USIMM_COMM_InitCard(
         return VOS_OK;
     }
 
+    USIMM_ResetGlobalVar();
+
     USIMM_CCB_SetCardType(USIMM_PHYCARD_TYPE_NOCARD);
 
     USIMM_WARNING_LOG("USIMM_COMM_InitCard: Init card fail during ICC procedure.");
@@ -772,17 +602,7 @@ VOS_UINT32 USIMM_COMM_InitCard(
     return VOS_ERR;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_COMM_InitCardApps
-功能描述  : 初始化当前卡的应用列表
-输入参数  : 无
-输出参数  : 无
-返 回 值  : USIMM_COMMINIT_RST_ENUM_UINT32
-修订记录  :
-1. 日    期   : 2015-3-10
-   作    者   : zhuli
-   修改内容   : Creat
-*****************************************************************************/
+
 USIMM_COMMINIT_RST_ENUM_UINT32 USIMM_COMM_InitCardApps(VOS_VOID)
 {
     VOS_UINT32                          ulAppNum;
@@ -879,17 +699,7 @@ USIMM_COMMINIT_RST_ENUM_UINT32 USIMM_COMM_InitCardApps(VOS_VOID)
     return USIMM_COMM_INIT_SUCC;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_COMM_GetAppInitFuncs
-功能描述  : 获取当前App初始化的函数
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-修订记录  :
-1. 日    期   : 2015-3-10
-   作    者   : zhuli
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_COMM_GetAppInitFuncs(VOS_VOID)
 {
     VOS_UINT32                          i;
@@ -906,17 +716,7 @@ VOS_UINT32 USIMM_COMM_GetAppInitFuncs(VOS_VOID)
     return i;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_InitAppList
-功能描述  : 执行当前需要初始化应用的某一个列表的具体内容
-输入参数  : pstInitList: 当前应用的初始化列表内容
-输出参数  : 无
-返 回 值  : USIMM_INITSTEPS_RST_ENUM_UINT32
-修订记录  :
-1. 日    期   : 2015-3-10
-   作    者   : zhuli
-   修改内容   : Creat
-*****************************************************************************/
+
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_COMM_InitAppList(
     USIMM_INITAPPSCTRL_STRU            *pstInitList
 )
@@ -966,18 +766,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_COMM_InitAppList(
     return enResult;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_CheckInitStepResult
-功能描述  : 检查应用返回的结果
-输入参数  : enResult: 输入初始化的过程的结果
-            pstInitList: 应用初始化的控制信息
-输出参数  : 无
-返 回 值  : USIMM_INITAPPS_RST_ENUM_UINT32
-修订记录  :
-1. 日    期   : 2015-3-15
-   作    者   : zhuli
-   修改内容   : Creat
-*****************************************************************************/
+
 USIMM_INITAPPS_RST_ENUM_UINT32 USIMM_COMM_CheckInitStepResult(
     USIMM_INITSTEPS_RST_ENUM_UINT32         enResult,
     USIMM_INITAPPSCTRL_STRU                *pstInitList
@@ -1012,18 +801,7 @@ USIMM_INITAPPS_RST_ENUM_UINT32 USIMM_COMM_CheckInitStepResult(
     }
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_COMM_AutoVerifyPIN
-功能描述  :自动验证PIN
-输入参数  :pstPIN1Info -- 当前PIN Info
-输出参数  :pstPIN1Info -- 当前PIN Info
-返 回 值  : VOS_OK/VOS_ERR
-修订记录  :
-1. 日    期    : 2015-3-10
-    作    者   : zhuli
-    修改内容   : Creat
 
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_COMM_AutoVerifyPIN(
     VOS_UINT8                           ucChannelNo
 )
@@ -1085,19 +863,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_COMM_AutoVerifyPIN(
     return USIMM_INITSTEPS_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_COMM_InitAppState
-功能描述  : 判断当前的应用状态
-输入参数  : ucChannelNo 逻辑通道号
-输出参数  : 无
-返 回 值  : USIMM_INITSTEPS_RST_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015-3-10
-   作    者   : zhuli
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_COMM_InitAppState(
     VOS_UINT8                           ucChannelNo
 )
@@ -1193,19 +959,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_COMM_InitAppState(
     return enResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_COMM_InitPINState
-功能描述  :初始应用当前的PIN变量
-输入参数  :pstPINInfo -- PIN信息
-输出参数  :pstPINInfo -- PIN信息
-返 回 值  :无
 
-修订记录  :
-1. 日    期   : 2015-3-10
-   作    者   : zhuli
-   修改内容   : Creat
-
-*****************************************************************************/
 VOS_VOID USIMM_COMM_InitPINState(
     USIMM_APP_PIN_INFO_STRU            *pstPINInfo
 )
@@ -1239,19 +993,7 @@ VOS_VOID USIMM_COMM_InitPINState(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_COMM_SaveDFPinInfo
-功能描述  :保存应用ADF PIN码信息
-输入参数  :enAppType 应用类型
-输出参数  :无
-返 回 值  :无
 
-修订记录  :
-1. 日    期   : 2015-3-10
-   作    者   : ganlan
-   修改内容   : Creat
-
-*****************************************************************************/
 VOS_VOID USIMM_COMM_SaveDFPinInfo(
     USIMM_CARDAPP_ENUM_UINT32               enAppType
 )
@@ -1307,19 +1049,7 @@ VOS_VOID USIMM_COMM_SaveDFPinInfo(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_COMM_StoreAppSN
-功能描述  : 链路层判断当前处理命令类型
-输入参数  : enAppType 应用类型
-输出参数  : 无
-返 回 值  : 无
-调用函数  : 无
-被调函数  :
-修订记录  :
-1. 日    期   : 2015-3-10
-   作    者   : ganlan
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID USIMM_COMM_StoreAppSN(
     USIMM_CARDAPP_ENUM_UINT32               enAppType
 )
@@ -1373,19 +1103,7 @@ VOS_VOID USIMM_COMM_StoreAppSN(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_COMM_IsAndroidPhone
-功能描述  :初始USIM卡全局变量
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_OK
 
-修订记录  :
-1. 日    期   : 2015-3-10
-   作    者   : ganlan
-   修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 USIMM_COMM_IsAndroidPhone(VOS_VOID)
 {
     NAS_NVIM_SYSTEM_APP_CONFIG_STRU stSysAppCfg;
@@ -1406,19 +1124,7 @@ VOS_UINT32 USIMM_COMM_IsAndroidPhone(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_COMM_GetMecrpValue
-功能描述  :获取NV中的定制值
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_OK
 
-修订记录  :
-1. 日    期   : 2015-3-10
-   作    者   : 祝锂
-   修改内容   : Creat
-
-*****************************************************************************/
 
 VOS_UINT32 USIMM_COMM_GetMecrpValue(
     VOS_UINT8                           *pucSCM,
@@ -1445,19 +1151,7 @@ VOS_UINT32 USIMM_COMM_GetMecrpValue(
 }
 
 
-/*****************************************************************************
-函 数 名  :USIMM_COMM_InitOPFile
-功能描述  :初始USIM卡全局变量
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_OK
 
-修订记录  :
-1. 日    期   : 2015-3-10
-   作    者   : zhuli
-   修改内容   : Creat
-
-*****************************************************************************/
 VOS_VOID USIMM_COMM_InitOPFile(VOS_VOID)
 {
     if (USIMM_PHYCARD_TYPE_UICC == USIMM_CCB_GetCardType())
@@ -1476,18 +1170,7 @@ VOS_VOID USIMM_COMM_InitOPFile(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UICC_InitStoreEsnMeid
-功能描述  :初始CSIM卡过程中MANAGE ESN MEID
-输入参数  :ucChannelNo:Channel Number
-输出参数  :无
-返 回 值  :USIMM_INITSTEPS_SUCCESS/USIMM_INITSTEPS_REMOVE
 
-修订记录  :
-1. 日    期   : 2015年3月10日
-   作    者   : H00300778
-   修改内容   : Creat
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitStoreEsnMeid(
     VOS_UINT8                           ucChannelNo
 )
@@ -1580,21 +1263,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitStoreEsnMeid(
     return USIMM_INITSTEPS_REMOVE;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UICC_DecodeAppAid
-功能描述  :根据文件内容解析出应用AID
-输入参数  :pucdata
-     　    usFileLen
-           ucRecordLen
-输出参数  :无
-返 回 值  :USIMM_COMMINIT_RST_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015-3-10
-   作    者   : zhuli
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_COMMINIT_RST_ENUM_UINT32 USIMM_UICC_DecodeAppAid(
     VOS_UINT8                          *pucdata,
     VOS_UINT16                          usFileLen,
@@ -1664,19 +1333,7 @@ USIMM_COMMINIT_RST_ENUM_UINT32 USIMM_UICC_DecodeAppAid(
     return enResult;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_UICC_DecodeEFDIR
-功能描述  : 解析EFDIR内容
-输入参数  : 无
-输出参数  : 无
-返 回 值  :USIMM_COMMINIT_RST_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月3日
-    作    者   : g00256031
-    修改内容   : Creat
-
-*****************************************************************************/
 USIMM_COMMINIT_RST_ENUM_UINT32 USIMM_UICC_DecodeEFDIR(VOS_VOID)
 {
     VOS_UINT32                          ulResult;
@@ -1751,18 +1408,7 @@ USIMM_COMMINIT_RST_ENUM_UINT32 USIMM_UICC_DecodeEFDIR(VOS_VOID)
     return USIMM_UICC_CUIMCheck();
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_UICC_CUIMCheck
-功能描述  : 中电信或全网通版本检查函数
-输入参数  : 无
-输出参数  : 无
-返 回 值  : USIMM_COMMINIT_RST_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年6月6日
-    作    者   : h00300778
-    修改内容   : Creat
-*****************************************************************************/
 USIMM_COMMINIT_RST_ENUM_UINT32 USIMM_UICC_CUIMCheck(VOS_VOID)
 {
     USIMM_AID_INFO_STRU                *pstAidInfo;
@@ -1786,18 +1432,7 @@ USIMM_COMMINIT_RST_ENUM_UINT32 USIMM_UICC_CUIMCheck(VOS_VOID)
     return USIMM_COMM_INIT_SUCC;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UICC_DecodeATRStep2
-功能描述  :ATR解析第二步　
-输入参数  :无
-输出参数  :无
-返 回 值  :USIMM_COMMINIT_RST_ENUM_UINT32
-修订记录  :
 
-1. 日    期   : 2015年3月13日
-    作    者   : g00256031
-    修改内容   : Creat
-*****************************************************************************/
 USIMM_COMMINIT_RST_ENUM_UINT32 USIMM_UICC_DecodeATRStep2(VOS_VOID)
 {
     VOS_UINT32                          ulATRLen                  = 0;
@@ -1880,17 +1515,7 @@ USIMM_COMMINIT_RST_ENUM_UINT32 USIMM_UICC_DecodeATRStep2(VOS_VOID)
     return USIMM_COMM_INIT_SUCC;
 }
 
-/********************************************************************
-函 数 名  :USIMM_UICC_InitGlobalVar
-功能描述  :UICC卡全局变量初始化
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-修订记录  :
-1. 日    期   : 2015年03月13日
-   作    者   : g00256031
-   修改内容   : Creat
-********************************************************************/
+
 USIMM_COMMINIT_RST_ENUM_UINT32 USIMM_UICC_InitGlobalVar(VOS_VOID)
 {
     USIMM_COMM_ResetPIN1Global();
@@ -1902,19 +1527,7 @@ USIMM_COMMINIT_RST_ENUM_UINT32 USIMM_UICC_InitGlobalVar(VOS_VOID)
     return USIMM_COMM_INIT_SUCC;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UICC_InitCardTypeByATR
-功能描述  :复位卡初始化ATR
-输入参数  :无
-输出参数  :无
-返 回 值  :USIMM_COMMINIT_RST_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年03月13日
-   作    者   : g00256031
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_COMMINIT_RST_ENUM_UINT32 USIMM_UICC_InitCardTypeByATR(VOS_VOID)
 {
     VOS_UINT32                          ulErrlogNumber;
@@ -1952,17 +1565,7 @@ USIMM_COMMINIT_RST_ENUM_UINT32 USIMM_UICC_InitCardTypeByATR(VOS_VOID)
     return enInitRslt;                  /*初始化第一步完成*/
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UICC_InsertCommFileToPool
-功能描述  :将公共文件放入缓冲池
-输入参数  :无
-输出参数  :无
-返 回 值  :USIMM_COMMINIT_RST_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月13日
-   作    者   : g0256031
-*****************************************************************************/
 USIMM_COMMINIT_RST_ENUM_UINT32 USIMM_UICC_InsertCommFileToPool(VOS_VOID)
 {
     VOS_UINT32                          ulResult;
@@ -2009,19 +1612,7 @@ USIMM_COMMINIT_RST_ENUM_UINT32 USIMM_UICC_InsertCommFileToPool(VOS_VOID)
     return USIMM_COMM_INIT_SUCC;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UICC_ProfileDownload
-功能描述  :UICC卡终端能力参数下发
-输入参数  :无
-输出参数  :无
-返 回 值  :USIMM_COMMINIT_RST_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015-3-10
-   作    者   : zhuli
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_COMMINIT_RST_ENUM_UINT32 USIMM_UICC_ProfileDownload(VOS_VOID)
 {
     USIMM_STK_CFG_STRU                  stProfileContent;
@@ -2039,18 +1630,7 @@ USIMM_COMMINIT_RST_ENUM_UINT32 USIMM_UICC_ProfileDownload(VOS_VOID)
     return USIMM_COMM_INIT_SUCC;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UICC_InitCard
-功能描述  :完成UICC卡初始化的主控函数
-输入参数  :无
-输出参数  :无
-返 回 值  :USIMM_COMMINIT_RST_ENUM_UINT32
-修订记录  :
-1. 日    期   : 2015年2月26日
-   作    者   : g00256031
-   修改内容   : Creat
 
-*****************************************************************************/
 USIMM_COMMINIT_RST_ENUM_UINT32 USIMM_UICC_InitCard(VOS_VOID)
 {
     VOS_UINT32                          ulStep;
@@ -2102,19 +1682,7 @@ USIMM_COMMINIT_RST_ENUM_UINT32 USIMM_UICC_InitCard(VOS_VOID)
     return enInitRslt;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_UICC_SortAppSN
-功能描述  : 将应用的初始化序列排序
-输入参数  : 无
-输出参数  : 无
-返 回 值  : USIMM_COMMINIT_RST_ENUM_UINT32
-调用函数  : 无
 
-修订记录  :
-1. 日    期   : 2015年3月13日
-   作    者   : g00256031
-   修改内容   : Creat
-*****************************************************************************/
 USIMM_COMMINIT_RST_ENUM_UINT32 USIMM_UICC_SortAppSN(VOS_VOID)
 {
     VOS_UINT8                           i;
@@ -2154,19 +1722,7 @@ USIMM_COMMINIT_RST_ENUM_UINT32 USIMM_UICC_SortAppSN(VOS_VOID)
     return USIMM_COMM_INIT_SUCC;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UICC_CheckCSIM
-功能描述  :检查CSIM的状态
-输入参数  :无
-输出参数  :无
-返 回 值  :USIMM_COMMINIT_RST_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年10月18日
-    作    者   : zhuli
-    修改内容   : Creat
-
-*****************************************************************************/
 USIMM_COMMINIT_RST_ENUM_UINT32 USIMM_UICC_CheckCSIM(VOS_VOID)
 {
     USIMM_CARD_SERVIC_ENUM_UINT32                enCsimStatus;
@@ -2182,19 +1738,7 @@ USIMM_COMMINIT_RST_ENUM_UINT32 USIMM_UICC_CheckCSIM(VOS_VOID)
     return USIMM_COMM_INIT_SUCC;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UICC_ActiveADFAll
-功能描述  :初始化之后根据NV控制打开所有逻辑通道并激活AID,失败返回错误
-输入参数  :无
-输出参数  :无
-返 回 值  :USIMM_COMMINIT_RST_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年10月18日
-    作    者   : zhuli
-    修改内容   : Creat
-
-*****************************************************************************/
 USIMM_COMMINIT_RST_ENUM_UINT32 USIMM_UICC_ActiveADFAll(VOS_VOID)
 {
     VOS_UINT32                          i;
@@ -2277,19 +1821,7 @@ USIMM_COMMINIT_RST_ENUM_UINT32 USIMM_UICC_ActiveADFAll(VOS_VOID)
     }
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UICC_InitADFInfo
-功能描述  :初始化之后UICC的选择ADF的通用函数
-输入参数  :无
-输出参数  :无
-返 回 值  :USIMM_COMMINIT_RST_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年10月18日
-    作    者   : zhuli
-    修改内容   : Creat
-
-*****************************************************************************/
 
 VOS_UINT32 USIMM_UICC_InitADFInfo(
     VOS_UINT8                           ucChannelNo,
@@ -2373,19 +1905,7 @@ VOS_UINT32 USIMM_UICC_InitADFInfo(
     }
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UICC_InitIsimSimuState
-功能描述  :初始ISIM的模拟状态
-输入参数  :无
-输出参数  :无
-返 回 值  :USIMM_COMMINIT_RST_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-    作    者   : g00256031
-    修改内容   : Creat
-
-*****************************************************************************/
 USIMM_COMMINIT_RST_ENUM_UINT32 USIMM_UICC_InitIsimSimuState(VOS_VOID)
 {
     VOS_UINT32                          ulResult;
@@ -2410,17 +1930,7 @@ USIMM_COMMINIT_RST_ENUM_UINT32 USIMM_UICC_InitIsimSimuState(VOS_VOID)
     return USIMM_COMM_INIT_SUCC;
 }
 
-/*****************************************************************************
-函 数 名  : UISMM_UICC_InitCardOpenChannel
-功能描述  : 打开逻辑通道，并且在初始化的变量中记录结果
-输入参数  : pstInitList:应用初始化控制参数
-输出参数  : 无
-返 回 值  : USIMM_INITAPPS_RST_ENUM_UINT32
-修订记录  :
-1. 日    期   : 2015-3-18
-   作    者   : zhuli
-   修改内容   : Creat
-*****************************************************************************/
+
 USIMM_INITSTEPS_RST_ENUM_UINT32 UISMM_UICC_InitCardOpenChannel(
     USIMM_INITAPPSCTRL_STRU            *pstInitList
 )
@@ -2450,20 +1960,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 UISMM_UICC_InitCardOpenChannel(
     return USIMM_INITSTEPS_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UICC_InitPINRemainTime
-功能描述  :获取当前的PIN剩余次数
-输入参数  :ucPINNo   :当前PIN的索引号
-输出参数  :pucPINTime:PIN剩余次数
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_VerifyPIN_APDU
-修订记录  :
-1. 日    期   : 2015年3月18日
-    作    者   : zhuli
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_UICC_InitPINRemainTime(
     VOS_UINT8                           ucChannelID,
     VOS_UINT8                           ucPINNo,
@@ -2501,19 +1998,7 @@ VOS_UINT32 USIMM_UICC_InitPINRemainTime(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UICC_InitPUKRemainTime
-功能描述  :获取当前的PUK的剩余次数
-输入参数  :ucPINNo :PUK对应的PIN的索引号
-输出参数  :pucPUKTime: PUK剩余次数
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2015年3月18日
-    作    者   : zhuli
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_UICC_InitPUKRemainTime(
     VOS_UINT8                           ucChannelID,
     VOS_UINT8                           ucPINNo,
@@ -2551,19 +2036,7 @@ VOS_UINT32 USIMM_UICC_InitPUKRemainTime(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UICC_InitUsimGlobal
-功能描述  :初始USIM卡全局变量
-输入参数  :ucChannelNo
-输出参数  :无
-返 回 值  :USIMM_INITSTEPS_SUCCESS
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-    作    者   : zhuli
-    修改内容   : Creat
-
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitUsimGlobal(
     VOS_UINT8                           ucChannelNo
 )
@@ -2573,19 +2046,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitUsimGlobal(
     return USIMM_INITSTEPS_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UICC_InitUsimADF
-功能描述  :初始USIM卡ADF
-输入参数  :ucChannelNo
-输出参数  :无
-返 回 值  :USIMM_INITSTEPS_RST_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-    作    者   : zhuli
-    修改内容   : Creat
-
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitUsimADF(
     VOS_UINT8                           ucChannelNo
 )
@@ -2614,19 +2075,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitUsimADF(
     }
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UICC_InitPINTime
-功能描述  :初始USIM卡PIN的剩余次数
-输入参数  :ucChannelNo:通道号
-输出参数  :无
-返 回 值  :VOS_OK
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-    作    者   : zhuli
-    修改内容   : Creat
-
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitPINTime(
     VOS_UINT8                           ucChannelNo
 )
@@ -2730,19 +2179,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitPINTime(
     return USIMM_INITSTEPS_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UICC_InitUsimECC
-功能描述  :初始USIM卡ECC信息
-输入参数  :ucChannelNo 逻辑通道号
-输出参数  :无
-返 回 值  :USIMM_INITSTEPS_RST_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitUsimECC(
     VOS_UINT8                           ucChannelNo
 )
@@ -2765,19 +2202,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitUsimECC(
     return USIMM_INITSTEPS_REMOVE;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UICC_InitUsimEFLI
-功能描述  :初始USIM卡文件
-输入参数  :ucChannelNo  逻辑通道号
-输出参数  :无
-返 回 值  :VOS_OK
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitUsimEFLI(
     VOS_UINT8                           ucChannelNo
 )
@@ -2806,19 +2231,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitUsimEFLI(
     }
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UICC_InitUsimATT
-功能描述  :初始USIM卡ATT定制步骤
-输入参数  :ucChannelNo   逻辑通道号
-输出参数  :无
-返 回 值  :USIMM_INITSTEPS_RST_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitUsimATT(
     VOS_UINT8                           ucChannelNo
 )
@@ -2849,18 +2262,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitUsimATT(
     return USIMM_INITSTEPS_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UICC_InitUsimFBDNStatus
-功能描述  :初始化USIM卡当前的FDN/BDN状态　
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_UICC_InitUsimFBDNStatus(VOS_VOID)
 {
     VOS_UINT32                          ulResult;
@@ -2915,19 +2317,7 @@ VOS_VOID USIMM_UICC_InitUsimFBDNStatus(VOS_VOID)
     return ;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_UICC_InitUsimMFile
-功能描述  : 初始USIM卡必选文件，失败会引起应用不可用
-输入参数  : ucChannelNO  逻辑通道号
-输出参数  : 无
-返 回 值  : USIMM_INITSTEPS_RST_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitUsimMFile(
     VOS_UINT8                           ucChannelNo
 )
@@ -2967,19 +2357,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitUsimMFile(
     return USIMM_INITSTEPS_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UICC_InitUsimMFile2
-功能描述  :初始USIM卡其他必选文件，失败可以跳过
-输入参数  :ucChannelNo   逻辑通道号
-输出参数  :无
-返 回 值  :USIMM_INITSTEPS_SUCCESS
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitUsimMFile2(
     VOS_UINT8                           ucChannelNo
 )
@@ -3013,19 +2391,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitUsimMFile2(
     return USIMM_INITSTEPS_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UICC_InitUsimFinish
-功能描述  :初始USIM卡结束
-输入参数  : ucChannelNo
-输出参数  :无
-返 回 值  :USIMM_INITSTEPS_SUCCESS
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitUsimFinish(
     VOS_UINT8                           ucChannelNo
 )
@@ -3049,19 +2415,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitUsimFinish(
     return USIMM_INITSTEPS_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UICC_ReadUsimOPFile
-功能描述  :初始USIM卡可选文件
-输入参数  :无
-输出参数  :无
-返 回 值  :无
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-
-*****************************************************************************/
 VOS_VOID USIMM_UICC_ReadUsimOPFile(VOS_VOID)
 {
     VOS_UINT32                          i;
@@ -3089,19 +2443,7 @@ VOS_VOID USIMM_UICC_ReadUsimOPFile(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UICC_InitUsimOPFile
-功能描述  :初始USIM卡可选文件
-输入参数  :ucChannelNo    逻辑通道号
-输出参数  :无
-返 回 值  :USIMM_INITSTEPS_RST_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitUsimOPFile(
     VOS_UINT8                           ucChannelNo
 )
@@ -3124,19 +2466,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitUsimOPFile(
     return USIMM_INITSTEPS_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UICC_InitCsimGlobal
-功能描述  :初始CSIM卡全局变量
-输入参数  :ucChannelNo  逻辑通道号
-输出参数  :无
-返 回 值  :USIMM_INITSTEPS_RST_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitCsimGlobal(
     VOS_UINT8                           ucChannelNo
 )
@@ -3146,19 +2476,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitCsimGlobal(
     return USIMM_INITSTEPS_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UICC_InitCsimADF
-功能描述  :初始CSIM卡应用信息
-输入参数  :ucChannelNo  逻辑通道号
-输出参数  :无
-返 回 值  :USIMM_INITSTEPS_RST_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitCsimADF(
     VOS_UINT8                           ucChannelNo
 )
@@ -3191,19 +2509,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitCsimADF(
     }
 }
 
-/*****************************************************************************
-函 数 名  :UICC_InitCUIMEccFile
-功能描述  :完成卡初始化类型判断函数
-输入参数  :pMsg ->消息指针
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2014年7月1日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_UICC_InitCUIMEccFile(VOS_VOID)
 {
     VOS_UINT16              usDataLen;
@@ -3229,19 +2535,7 @@ VOS_VOID USIMM_UICC_InitCUIMEccFile(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UICC_InitCsimECC
-功能描述  :初始CSIM卡紧急呼叫号码
-输入参数  :ucChannelNo  逻辑通道号
-输出参数  :无
-返 回 值  :USIMM_INITSTEPS_RST_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitCsimECC(
     VOS_UINT8                           ucChannelNo
 )
@@ -3255,19 +2549,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitCsimECC(
     return USIMM_INITSTEPS_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :UICC_InitCSIMEstFile
-功能描述  :完成卡初始化类型判断函数
-输入参数  :pMsg ->消息指针
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2014年7月1日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_UICC_InitCSIMEstFile(VOS_VOID)
 {
     VOS_UINT32                          ulResult;
@@ -3314,19 +2596,7 @@ VOS_VOID USIMM_UICC_InitCSIMEstFile(VOS_VOID)
     return ;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UICC_InitCsimFDNStatus
-功能描述  :初始化CSIM卡当前的FDN/BDN状态　
-输入参数  :ucChannelNo  逻辑通道号
-输出参数  :无
-返 回 值  :无
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-
-*****************************************************************************/
 VOS_VOID USIMM_UICC_InitCsimFDNStatus(VOS_VOID)
 {
     VOS_UINT16                          ausCsimFdnFile[] = {USIMM_CSIM_EFIMSIM_ID,
@@ -3356,19 +2626,7 @@ VOS_VOID USIMM_UICC_InitCsimFDNStatus(VOS_VOID)
     return ;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UICC_InitCsimMFile
-功能描述  :初始USIM卡必选文件
-输入参数  :ucChannelNo  逻辑通道号
-输出参数  :无
-返 回 值  :USIMM_INITSTEPS_RST_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitCsimMFile(
     VOS_UINT8                           ucChannelNo
 )
@@ -3396,19 +2654,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitCsimMFile(
     return USIMM_INITSTEPS_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UICC_InitCsimMFile2
-功能描述  :初始CSIM卡其他必选文件
-输入参数  :ucChannelNo  逻辑通道号
-输出参数  :无
-返 回 值  :USIMM_INITSTEPS_RST_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitCsimMFile2(
     VOS_UINT8                           ucChannelNo
 )
@@ -3438,18 +2684,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitCsimMFile2(
     return USIMM_INITSTEPS_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UICC_InitCsimEFMecrp
-功能描述  :初始UIM卡过程中个更新文件EF MECRP
-输入参数  :ucChannelNo:Channel Number
-输出参数  :无
-返 回 值  :USIMM_INITSTEPS_SUCCESS/USIMM_INITSTEPS_REMOVE
 
-修订记录  :
-1. 日    期   : 2015年3月10日
-   作    者   : zhuli
-   修改内容   : Creat
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitCsimEFMecrp(
     VOS_UINT8                           ucChannelNo
 )
@@ -3489,18 +2724,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitCsimEFMecrp(
     return USIMM_INITSTEPS_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UICC_InitCsimEF3gpd
-功能描述  :初始CSIM卡过程中个更新文件EF ME3GPDOOPC
-输入参数  :ucChannelNo:Channel Number
-输出参数  :无
-返 回 值  :USIMM_INITSTEPS_SUCCESS/USIMM_INITSTEPS_REMOVE
 
-修订记录  :
-1. 日    期   : 2015年3月10日
-   作    者   : zhuli
-   修改内容   : Creat
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitCsimEF3gpd(
     VOS_UINT8                           ucChannelNo
 )
@@ -3547,19 +2771,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitCsimEF3gpd(
     return USIMM_INITSTEPS_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UICC_InitCsimFinish
-功能描述  :初始USIM卡初始化完成
-输入参数  :ucChannelNo  逻辑通道号
-输出参数  :无
-返 回 值  :USIMM_INITSTEPS_RST_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitCsimFinish(
     VOS_UINT8                           ucChannelNo
 )
@@ -3579,19 +2791,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitCsimFinish(
     return USIMM_INITSTEPS_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UICC_InitVIACsimFinish
-功能描述  :初始拼片CSIM卡初始化完成
-输入参数  :ucChannelNo  逻辑通道号
-输出参数  :无
-返 回 值  :USIMM_INITSTEPS_RST_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitVIACsimFinish(
     VOS_UINT8                           ucChannelNo
 )
@@ -3603,19 +2803,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitVIACsimFinish(
     return USIMM_INITSTEPS_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UICC_InitCsimOPFile
-功能描述  :初始USIM卡可选文件
-输入参数  :ucChannelNo  逻辑通道号
-输出参数  :无
-返 回 值  :USIMM_INITSTEPS_RST_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitCsimOPFile(
     VOS_UINT8                           ucChannelNo
 )
@@ -3623,19 +2811,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitCsimOPFile(
     return USIMM_INITSTEPS_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UICC_InitIsimGlobal
-功能描述  :初始ISIM卡全局变量
-输入参数  :ucChannelNo  逻辑通道号
-输出参数  :无
-返 回 值  :USIMM_INITSTEPS_RST_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月27日
-   作    者   : g00256031
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitIsimGlobal(
     VOS_UINT8                           ucChannelNo
 )
@@ -3645,19 +2821,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitIsimGlobal(
     return USIMM_INITSTEPS_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UICC_InitIsimADF
-功能描述  :初始CSIM卡应用信息
-输入参数  :ucChannelNo  逻辑通道号
-输出参数  :无
-返 回 值  :USIMM_INITSTEPS_RST_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月27日
-   作    者   : g00256031
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitIsimADF(
     VOS_UINT8                           ucChannelNo
 )
@@ -3690,19 +2854,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitIsimADF(
     }
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UICC_InitIsimMFile
-功能描述  :初始ISIM卡必选文件
-输入参数  :ucChannelNo  逻辑通道号
-输出参数  :无
-返 回 值  :USIMM_INITSTEPS_RST_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月27日
-   作    者   : g00256031
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitIsimMFile(
     VOS_UINT8                           ucChannelNo
 )
@@ -3732,19 +2884,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitIsimMFile(
     return USIMM_INITSTEPS_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UICC_InitIsimFinish
-功能描述  :初始ISIM卡初始化完成
-输入参数  :ucChannelNo  逻辑通道号
-输出参数  :无
-返 回 值  :USIMM_INITSTEPS_RST_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月27日
-   作    者   : g00256031
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitIsimFinish(
     VOS_UINT8                           ucChannelNo
 )
@@ -3764,19 +2904,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitIsimFinish(
     return USIMM_INITSTEPS_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UICC_InitIsimOPFile
-功能描述  :初始ISIM卡可选文件
-输入参数  :ucChannelNo  逻辑通道号
-输出参数  :无
-返 回 值  :USIMM_INITSTEPS_RST_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月27日
-   作    者   : g00256031
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitIsimOPFile(
     VOS_UINT8                           ucChannelNo
 )
@@ -3850,17 +2978,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_UICC_InitIsimOPFile(
     return USIMM_INITSTEPS_SUCCESS;
 }
 
-/********************************************************************
-函 数 名  :USIMM_ICC_InitGlobalVar
-功能描述  :初始化ICC全局变量
-输入参数  :无
-输出参数  :无
-返 回 值  :USIMM_COMM_INIT_SUCC
-修订记录  :
-1. 日    期   : 2015年03月13日
-   作    者   : g00256031
-   修改内容   : Creat
-********************************************************************/
+
 USIMM_COMMINIT_RST_ENUM_UINT32 USIMM_ICC_InitGlobalVar(VOS_VOID)
 {
     USIMM_COMM_ResetPIN1Global();
@@ -3875,19 +2993,7 @@ USIMM_COMMINIT_RST_ENUM_UINT32 USIMM_ICC_InitGlobalVar(VOS_VOID)
     return USIMM_COMM_INIT_SUCC;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ICC_InitCardTypeByATR
-功能描述  :复位卡，并解析ATR数据
-输入参数  :无
-输出参数  :无
-返 回 值  :USIMM_COMMINIT_RST_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月13日
-   作    者   : g00256031
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_COMMINIT_RST_ENUM_UINT32 USIMM_ICC_InitCardTypeByATR(VOS_VOID)
 {
     VOS_UINT32                          ulResult          = VOS_ERR;
@@ -3941,20 +3047,7 @@ USIMM_COMMINIT_RST_ENUM_UINT32 USIMM_ICC_InitCardTypeByATR(VOS_VOID)
     return ulResult;                                 /*初始化第一步完成*/
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ICC_CheckCLStep
-功能描述  :C+L选择检查2G卡是否可用
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
 
-修订记录  :
-1. 日    期   : 2015年3月13日
-   作    者   : g00256031
-   修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 USIMM_ICC_CheckCLStep(
     USIMM_CARDAPP_ENUM_UINT32          *penCardApp
 )
@@ -4018,19 +3111,7 @@ VOS_UINT32 USIMM_ICC_CheckCLStep(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ICC_InitAppOrder
-功能描述  :确定ICC卡应用初始化类型
-输入参数  :无
-输出参数  :无
-返 回 值  :USIMM_COMMINIT_RST_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月13日
-   作    者   : g00256031
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_COMMINIT_RST_ENUM_UINT32 USIMM_ICC_InitAppOrder(VOS_VOID)
 {
     USIMM_CARDAPP_ENUM_UINT32           enCardApp;
@@ -4067,20 +3148,7 @@ USIMM_COMMINIT_RST_ENUM_UINT32 USIMM_ICC_InitAppOrder(VOS_VOID)
     return USIMM_COMM_INIT_FATAL_FAIL;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ICC_InsertCommFileToPool
-功能描述  :将公共文件放到POOL中
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
 
-修订记录  :
-1. 日    期   : 2015年3月13日
-   作    者   : g00256031
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InsertCommFileToPool(
     VOS_UINT8                           ucChannelNo
 )
@@ -4124,19 +3192,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InsertCommFileToPool(
     return USIMM_INITSTEPS_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ICC_InitCard
-功能描述  :完成卡初始化的主控函数
-输入参数  :pMsg ->消息指针
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2015年2月26日
-   作    者   : g00256031
-   修改内容   : Creat
 
-*****************************************************************************/
 USIMM_COMMINIT_RST_ENUM_UINT32 USIMM_ICC_InitCard(VOS_VOID)
 {
     VOS_UINT32                          ulStep;
@@ -4180,19 +3236,7 @@ USIMM_COMMINIT_RST_ENUM_UINT32 USIMM_ICC_InitCard(VOS_VOID)
     return enInitRslt;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ICC_InitSimGlobal
-功能描述  :初始USIM卡全局变量
-输入参数  :ucChannelNo  逻辑通道号
-输出参数  :无
-返 回 值  :USIMM_INITSTEPS_RST_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitSimGlobal(
     VOS_UINT8                           ucChannelNo
 )
@@ -4202,19 +3246,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitSimGlobal(
     return USIMM_INITSTEPS_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ICC_InitSimADF
-功能描述  :初始USIM卡的DFGAM
-输入参数  :ucChannelNo  逻辑通道号
-输出参数  :无
-返 回 值  :USIMM_INITSTEPS_RST_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitSimADF(
     VOS_UINT8                           ucChannelNo
 )
@@ -4275,19 +3307,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitSimADF(
     return USIMM_INITSTEPS_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ICC_InitPINInfo
-功能描述  :初始USIM卡PIN信息
-输入参数  :ucChannelNo  逻辑通道号
-输出参数  :无
-返 回 值  :USIMM_INITSTEPS_RST_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitPINInfo(
     VOS_UINT8                           ucChannelNo
 )
@@ -4334,19 +3354,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitPINInfo(
     return USIMM_INITSTEPS_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ICC_InitSimECC
-功能描述  :初始SIM卡ECC
-输入参数  :ucChannelNo  逻辑通道号
-输出参数  :无
-返 回 值  :USIMM_INITSTEPS_RST_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitSimECC(
     VOS_UINT8                           ucChannelNo
 )
@@ -4371,19 +3379,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitSimECC(
     }
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ICC_InitSimEFLP
-功能描述  :初始USIM卡文件
-输入参数  :ucChannelNo  逻辑通道号
-输出参数  :无
-返 回 值  :USIMM_INITSTEPS_RST_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitSimEFLP(
     VOS_UINT8                           ucChannelNo
 )
@@ -4410,19 +3406,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitSimEFLP(
     }
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ICC_InitSimATT
-功能描述  :初始SIM卡ATT定制步骤
-输入参数  :ucChannelNo  逻辑通道号
-输出参数  :无
-返 回 值  :USIMM_INITSTEPS_RST_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitSimATT(
     VOS_UINT8                           ucChannelNo
 )
@@ -4449,19 +3433,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitSimATT(
     return USIMM_INITSTEPS_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ICC_InitPhase
-功能描述  :初始USIM卡Phase信息
-输入参数  :ucChannelNo  逻辑通道号
-输出参数  :无
-返 回 值  :USIMM_INITSTEPS_RST_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitPhase(
     VOS_UINT8                           ucChannelNo
 )
@@ -4499,19 +3471,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitPhase(
     return USIMM_INITSTEPS_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ICC_InitSimSST
-功能描述  :初始SIM卡SST
-输入参数  :ucChannelNo  逻辑通道号
-输出参数  :无
-返 回 值  :USIMM_INITSTEPS_RST_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitSimSST(
     VOS_UINT8                           ucChannelNo
 )
@@ -4530,19 +3490,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitSimSST(
     return USIMM_INITSTEPS_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ICC_InitTerminalProfile
-功能描述  :初始USIM卡TerminalProfile
-输入参数  :ucChannelNo  逻辑通道号
-输出参数  :无
-返 回 值  :USIMM_INITSTEPS_RST_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitTerminalProfile(
     VOS_UINT8                           ucChannelNo
 )
@@ -4590,19 +3538,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitTerminalProfile(
     return USIMM_INITSTEPS_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ICC_InitSimFBDN
-功能描述  :初始SIM卡FDN/BDN状态
-输入参数  :ucChannelNo  逻辑通道号
-输出参数  :无
-返 回 值  :USIMM_INITSTEPS_RST_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitSimFBDN(
     VOS_UINT8                           ucChannelNo
 )
@@ -4671,19 +3607,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitSimFBDN(
     return USIMM_INITSTEPS_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ICC_InitSimMFile
-功能描述  :初始SIM卡必选文件
-输入参数  :ucChannelNo  逻辑通道号
-输出参数  :无
-返 回 值  :USIMM_INITSTEPS_RST_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitSimMFile(
     VOS_UINT8                           ucChannelNo
 )
@@ -4710,19 +3634,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitSimMFile(
     return USIMM_INITSTEPS_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ICC_InitSimMFile2
-功能描述  :初始SIM卡必选文件
-输入参数  :ucChannelNo  逻辑通道号
-输出参数  :无
-返 回 值  :USIMM_INITSTEPS_RST_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitSimMFile2(
     VOS_UINT8                           ucChannelNo
 )
@@ -4752,19 +3664,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitSimMFile2(
     return USIMM_INITSTEPS_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ICC_InitSimFinish
-功能描述  :初始SIM卡完成
-输入参数  :ucChannelNo  逻辑通道号
-输出参数  :无
-返 回 值  :USIMM_INITSTEPS_RST_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitSimFinish(
     VOS_UINT8                           ucChannelNo
 )
@@ -4780,19 +3680,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitSimFinish(
     return USIMM_INITSTEPS_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ICC_ReadSimOPFile
-功能描述  :初始USIM卡可选文件
-输入参数  :ucChannelNo  逻辑通道号
-输出参数  :无
-返 回 值  :无
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-
-*****************************************************************************/
 VOS_VOID USIMM_ICC_ReadSimOPFile(VOS_VOID)
 {
     VOS_UINT32                      i;
@@ -4816,19 +3704,7 @@ VOS_VOID USIMM_ICC_ReadSimOPFile(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ICC_InitSimOPFile
-功能描述  :初始SIM卡可选文件
-输入参数  :ucChannelNo  逻辑通道号
-输出参数  :无
-返 回 值  :USIMM_INITSTEPS_RST_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitSimOPFile(
     VOS_UINT8                           ucChannelNo
 )
@@ -4851,18 +3727,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitSimOPFile(
     return USIMM_INITSTEPS_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ICC_InitUimGlobal
-功能描述  :初始UIM卡全局变量
-输入参数  :ucChannelNo:Channel Number
-输出参数  :无
-返 回 值  :USIMM_INITSTEPS_SUCCESS
 
-修订记录  :
-1. 日    期   : 2015年3月10日
-   作    者   : H00300778
-   修改内容   : Creat
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitUimGlobal(
     VOS_UINT8                           ucChannelNo
 )
@@ -4873,18 +3738,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitUimGlobal(
 }
 
 
-/*****************************************************************************
-函 数 名  :USIMM_ICC_InitUimADF
-功能描述  :初始UIM卡的ADF
-输入参数  :ucChannelNo:Channel Number
-输出参数  :无
-返 回 值  :USIMM_INITSTEPS_FAIL/USIMM_INITSTEPS_SUCCESS
 
-修订记录  :
-1. 日    期   : 2015年3月10日
-   作    者   : H00300778
-   修改内容   : Creat
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitUimADF(
     VOS_UINT8                           ucChannelNo
 )
@@ -4944,18 +3798,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitUimADF(
 }
 
 
-/*****************************************************************************
-函 数 名  :USIMM_ICC_InitUimRuimId
-功能描述  :UIM卡初始化RUIMID
-输入参数  :无
-输出参数  :无
-返 回 值  :USIMM_INITSTEPS_RST_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月10日
-   作    者   : H00300778
-   修改内容   : Creat
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitUimRuimId(
     VOS_UINT8                           ucChannelNo
 )
@@ -4975,18 +3818,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitUimRuimId(
     return USIMM_INITSTEPS_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ICC_InitUimECC
-功能描述  :UIM卡初始化紧急呼叫号码
-输入参数  :无
-输出参数  :ucChannelNo:Channel Number
-返 回 值  :USIMM_INITSTEPS_REMOVE/USIMM_INITSTEPS_SUCCESS
 
-修订记录  :
-1. 日    期   : 2015年3月10日
-   作    者   : H00300778
-   修改内容   : Creat
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitUimECC(
     VOS_UINT8                           ucChannelNo
 )
@@ -5074,18 +3906,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitUimECC(
     return USIMM_INITSTEPS_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ICC_InitCST
-功能描述  :初始化UIM卡Cdma Service Table
-输入参数  :ucChannelNo:Channel Number
-输出参数  :无
-返 回 值  :USIMM_INITSTEPS_SUCCESS
 
-修订记录  :
-1. 日    期   : 2015年3月10日
-   作    者   : H00300778
-   修改内容   : Creat
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitCST(
     VOS_UINT8                           ucChannelNo
 )
@@ -5108,18 +3929,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitCST(
 }
 
 
-/*****************************************************************************
-函 数 名  :USIMM_ICC_InitTerminalProfile
-功能描述  :初始USIM卡的FdnBdn
-输入参数  :ucChannelNo:Channel Number
-输出参数  :无
-返 回 值  :USIMM_INITSTEPS_SUCCESS
 
-修订记录  :
-1. 日    期   : 2015年3月10日
-   作    者   : H00300778
-   修改内容   : Creat
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitUimFdnBdn(
     VOS_UINT8                           ucChannelNo
 )
@@ -5136,18 +3946,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitUimFdnBdn(
     return USIMM_INITSTEPS_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_InitUimFDNBDNStatus
-功能描述  :初始化UIM卡当前的FDN/BDN状态　
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_OK/VOS_ERR
 
-修订记录  :
-1. 日    期   : 2015年3月10日
-   作    者   : H00300778
-   修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_ICC_InitUimFdnStatus(VOS_VOID)
 {
     VOS_UINT32                          ulResult;
@@ -5224,18 +4023,7 @@ VOS_UINT32 USIMM_ICC_InitUimFdnStatus(VOS_VOID)
     return USIMM_ICC_UimFdnProcess();
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ICC_FdnCapabilityRequest
-功能描述  :初始化UIM卡FDN能力请求　
-输入参数  :无
-输出参数  :USIMM_FDNSTATUS_ENUM_UINT32 *pulFdnStatus
-返 回 值  :无
 
-修订记录  :
-1. 日    期   : 2015年3月10日
-   作    者   : H00300778
-   修改内容   : Creat
-*****************************************************************************/
 VOS_VOID USIMM_ICC_FdnCapabilityRequest(
     USIMM_FDNSTATUS_ENUM_UINT32        *pulFdnStatus
 )
@@ -5292,18 +4080,7 @@ VOS_VOID USIMM_ICC_FdnCapabilityRequest(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ICC_UimFdnProcess
-功能描述  :完成UIM卡的FDN功能开启后的初始化中相关文件有效的过程　
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_ERR/VOS_OK
 
-修订记录  :
-1. 日    期   : 2015年3月10日
-   作    者   : H00300778
-   修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_ICC_UimFdnProcess(VOS_VOID)
 {
 
@@ -5355,18 +4132,7 @@ VOS_UINT32 USIMM_ICC_UimFdnProcess(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ICC_InitUimMFile
-功能描述  :初始UIM卡M类型的文件
-输入参数  :ucChannelNo:Channel Number
-输出参数  :无
-返 回 值  :USIMM_INITSTEPS_SUCCESS
 
-修订记录  :
-1. 日    期   : 2015年3月10日
-   作    者   : H00300778
-   修改内容   : Creat
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitUimMFile(
     VOS_UINT8                           ucChannelNo
 )
@@ -5386,18 +4152,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitUimMFile(
     return USIMM_INITSTEPS_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ICC_InitUimMFile2
-功能描述  :初始UIM卡M2类型的文件
-输入参数  :ucChannelNo:Channel Number
-输出参数  :无
-返 回 值  :USIMM_INITSTEPS_SUCCESS
 
-修订记录  :
-1. 日    期   : 2015年3月10日
-   作    者   : H00300778
-   修改内容   : Creat
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitUimMFile2(
     VOS_UINT8                           ucChannelNo
 )
@@ -5427,18 +4182,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitUimMFile2(
     return USIMM_INITSTEPS_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ICC_InitUimEFMecrp
-功能描述  :初始UIM卡过程中个更新文件EF MECRP
-输入参数  :ucChannelNo:Channel Number
-输出参数  :无
-返 回 值  :USIMM_INITSTEPS_SUCCESS/USIMM_INITSTEPS_REMOVE
 
-修订记录  :
-1. 日    期   : 2015年3月10日
-   作    者   : zhuli
-   修改内容   : Creat
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitUimEFMecrp(
     VOS_UINT8                           ucChannelNo
 )
@@ -5478,18 +4222,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitUimEFMecrp(
     return USIMM_INITSTEPS_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ICC_InitUimEF3gpd
-功能描述  :初始UIM卡过程中个更新文件EF ME3GPDOOPC
-输入参数  :ucChannelNo:Channel Number
-输出参数  :无
-返 回 值  :USIMM_INITSTEPS_SUCCESS/USIMM_INITSTEPS_REMOVE
 
-修订记录  :
-1. 日    期   : 2015年3月10日
-   作    者   : zhuli
-   修改内容   : Creat
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitUimEF3gpd(
     VOS_UINT8                           ucChannelNo
 )
@@ -5536,18 +4269,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitUimEF3gpd(
     return USIMM_INITSTEPS_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ICC_InitUimFinish
-功能描述  :初始UIM卡过程结束
-输入参数  :ucChannelNo:Channel Number
-输出参数  :无
-返 回 值  :USIMM_INITSTEPS_SUCCESS/USIMM_INITSTEPS_REMOVE
 
-修订记录  :
-1. 日    期   : 2015年3月10日
-   作    者   : H00300778
-   修改内容   : Creat
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitUimFinish(
     VOS_UINT8                           ucChannelNo
 )
@@ -5557,18 +4279,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitUimFinish(
     return USIMM_INITSTEPS_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ICC_InitStoreEsnMeid
-功能描述  :初始UIM卡过程中MANAGE ESN MEID
-输入参数  :ucChannelNo:Channel Number
-输出参数  :无
-返 回 值  :USIMM_INITSTEPS_SUCCESS/USIMM_INITSTEPS_REMOVE
 
-修订记录  :
-1. 日    期   : 2015年8月28日
-   作    者   : H00300778
-   修改内容   : Creat
-*****************************************************************************/
 USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitStoreEsnMeid(
     VOS_UINT8                           ucChannelNo
 )
@@ -5668,18 +4379,7 @@ USIMM_INITSTEPS_RST_ENUM_UINT32 USIMM_ICC_InitStoreEsnMeid(
     return USIMM_INITSTEPS_REMOVE;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_GetAppInitList
-功能描述  : 实现了卡重启相关操作
-输入参数  : API层下发消息内容
-输出参数  : 无
-返 回 值  : VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : zhuli
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_GetAppInitList(
     USIMM_CARDAPP_ENUM_UINT32           enAppType,
     USIMM_INITAPPLIST_FUNC            **ppstFuncList,
@@ -5733,55 +4433,19 @@ VOS_UINT32 USIMM_GetAppInitList(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_INIT_GetUiccCommInitFuncNum
-功能描述  :获取Comm 初始化的函数个数
-输入参数  :
-输出参数  :无
-返 回 值  :函数个数
-调用函数  :
 
-修订记录  :
-1. 日    期   : 2015年4月10日
-   作    者   : C00299064
-   修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_INIT_GetUiccCommInitFuncNum(VOS_VOID)
 {
     return ARRAYSIZE(g_aUICCCommInitProcFuncTbl);
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_INIT_GetUiccCommInitFunc
-功能描述  :获取Comm 初始化的函数个数
-输入参数  :
-输出参数  :无
-返 回 值  :函数个数
-调用函数  :
 
-修订记录  :
-1. 日    期   : 2015年4月10日
-   作    者   : C00299064
-   修改内容   : Creat
-*****************************************************************************/
 USIMM_COMM_CARD_INIT_FUNC* USIMM_INIT_GetUiccCommInitFunc(VOS_VOID)
 {
     return g_aUICCCommInitProcFuncTbl;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_INIT_GetFuncStatus
-功能描述  :获取初始化函数的执行结果
-输入参数  :
-输出参数  :无
-返 回 值  :函数的执行结果
-调用函数  :
 
-修订记录  :
-1. 日    期   : 2015年4月16日
-   作    者   : C00299064
-   修改内容   : Creat
-*****************************************************************************/
 USIMM_INITAPPLIST_FUNC*  USIMM_GetInitFunsByAppType(
     USIMM_CARDAPP_ENUM_UINT32           enAppType,
     PFAPPSETPINITPROC                   pInitFunc

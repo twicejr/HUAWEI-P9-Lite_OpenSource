@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasUtranCtrCommFunc.c
-  版 本 号   : 初稿
-  作    者   : w00167002
-  生成日期   : 2012年7月12日
-  最近修改   :
-  功能描述   : NasUtranCtrCommFunc.C文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年7月12日
-    作    者   : w00167002
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -85,30 +68,7 @@ extern "C" {
 /*****************************************************************************
   6 函数定义
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_ConvertNasUtranModeToRrcUtranMode
- 功能描述  : 将NAS内部的UTRAN MODE类型转换为和GU接入层间的UTRAN MODE类型
- 输入参数  : enNasUtranMode:NAS内部的UTRAN MODE类型
- 输出参数  : 无
- 返 回 值  : RRC_NAS_UTRAN_MODE_ENUM_UINT8: 和GU接入层间的UTRAN MODE类型
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年7月21日
-   作    者   : L00171473
-   修改内容   : 新生成函数
- 2.日    期   : 2012年7月21日
-   作    者   : w00167002
-   修改内容   : V7R1C50_GUTL_PhaseII:通知接入层模式为BUTT时异常，进行打印，并转
-                 换为FDD模式。
- 3.日    期   : 2013年1月11日
-   作    者   : s00217060
-   修改内容   : for DSDA GUNAS C CORE:平台不支持GU时，默认给接入层发送的UtranMode为TDD
- 4.日    期   : 2015年8月24日
-   作    者   : w00242748
-   修改内容   : 动态加载项目
-*****************************************************************************/
 RRC_NAS_UTRAN_MODE_ENUM_UINT8 NAS_UTRANCTRL_ConvertNasUtranModeToGuRrcUtranMode(
     NAS_UTRANCTRL_UTRAN_MODE_ENUM_UINT8 enNasUtranMode
 )
@@ -143,30 +103,7 @@ RRC_NAS_UTRAN_MODE_ENUM_UINT8 NAS_UTRANCTRL_ConvertNasUtranModeToGuRrcUtranMode(
 
 #if (FEATURE_ON == FEATURE_LTE)
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_ConvertNasUtranModeToLmmUtranMode
- 功能描述  : 将NAS内部的UTRAN MODE类型转换为和LMM间的UTRAN MODE类型
- 输入参数  : enNasUtranMode:NAS内部的UTRAN MODE类型
- 输出参数  : 无
- 返 回 值  : MMC_LMM_UTRAN_MODE_ENUM_UINT8: 和LMM间的UTRAN MODE类型
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年7月21日
-   作    者   : L00171473
-   修改内容   : 新生成函数
- 2.日    期   : 2012年7月21日
-   作    者   : w00167002
-   修改内容   : V7R1C50_GUTL_PhaseII:通知接入层模式为BUTT时异常，进行打印，并转
-                 换为FDD模式。
- 3.日    期   : 2013年1月11日
-   作    者   : s00217060
-   修改内容   : for DSDA GUNAS C CORE:平台不支持GU时，默认给接入层发送的UtranMode为TDD
- 4.日    期   : 2015年8月24日
-   作    者   : w00242748
-   修改内容   : 动态加载项目
-*****************************************************************************/
 MMC_LMM_UTRAN_MODE_ENUM_UINT8 NAS_UTRANCTRL_ConvertNasUtranModeToLmmUtranMode(
     NAS_UTRANCTRL_UTRAN_MODE_ENUM_UINT8 enNasUtranMode
 )
@@ -199,24 +136,7 @@ MMC_LMM_UTRAN_MODE_ENUM_UINT8 NAS_UTRANCTRL_ConvertNasUtranModeToLmmUtranMode(
 
 #endif  /* (FEATURE_ON == FEATURE_LTE) */
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RABM_AdaptPdcpDataReq
- 功能描述  : 适配TDS,根据不同的模式调用不同模的PDCP接口函数，发送数据
- 输入参数  :  ucRbId: Rb ID
-              pstData: 数据地址
-              ulDataBitLen: 数据长度
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2012年7月13日
-   作    者   : w00167002
-   修改内容   : V7R1C50_GUTL_PhaseI:新增函数
-
-*****************************************************************************/
 VOS_VOID NAS_UTRANCTRL_RABM_AdaptPdcpDataReq(
     VOS_UINT8                           ucRbId,
     TTF_MEM_ST                         *pstData,
@@ -260,23 +180,7 @@ VOS_VOID NAS_UTRANCTRL_RABM_AdaptPdcpDataReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RABM_GetRbSuitableUlPduSize
- 功能描述  : 适配TDS,根据不同的模式调用不同模的获取PDU大小接口函数，发送数据
- 输入参数  : ucRbId: Rb ID
-              pstData: 数据地址
-              ulDataBitLen: 数据长度
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2012年7月13日
-   作    者   : w00167002
-   修改内容   : V7R1C50_GUTL_PhaseI:新增函数
-*****************************************************************************/
 VOS_VOID NAS_UTRANCTRL_RABM_GetRbSuitableUlPduSize(
     VOS_UINT8                          ucRbId,
     VOS_UINT32                         ulPduSize,
@@ -324,23 +228,7 @@ VOS_VOID NAS_UTRANCTRL_RABM_GetRbSuitableUlPduSize(
     return;
 }
 
-/*******************************************************************************
-  Module:   NAS_UTRANCTRL_RABM_SendTcDataNotify
-  Function: PDCP向RABM发送下行环回数据消息 ID_PDCP_RABM_TC_DATA_IND_NOTIFY
-  Input:    VOS_VOID
-  Output:   VOS_VOID
-  NOTE:
-  Return:   PS_SUCC   --- 成功
-            PS_FAIL   --- 失败
-  History:
-  1.日    期   : 2012年7月14日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseI: 确认当前UTRAN模式，进而确认当前的发送
-                  PID和接收PID.
-  2.日    期   : 2012年7月19日
-    作    者   : l00171473
-    修改内容   : V7R1C50_GUTL_PhaseI: 从Rabm文件中移到UTRANCTRL文件中
-*******************************************************************************/
+
 VOS_UINT32 NAS_UTRANCTRL_RABM_SendTcDataNotify(VOS_VOID)
 {
     PDCP_RABM_TC_DATA_IND_NOTIFY_STRU  *pstMsg;
@@ -398,23 +286,7 @@ VOS_UINT32 NAS_UTRANCTRL_RABM_SendTcDataNotify(VOS_VOID)
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RABM_SetFinIpInRdFlag
- 功能描述  : 设置CDS读取一次RD后处理最后一个IP包标识
- 输入参数  : ulFlag
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年3月20日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-  2.日    期   : 2013年4月23日
-    作    者   : z60575
-    修改内容   : GU/TD组包优化合入
-*****************************************************************************/
 VOS_VOID NAS_UTRANCTRL_RABM_SetFinIpInRdFlag(VOS_UINT32 ulFlag)
 {
     NAS_UTRANCTRL_UTRAN_MODE_ENUM_UINT8  enCurrentUtranMode;
@@ -446,37 +318,7 @@ VOS_VOID NAS_UTRANCTRL_RABM_SetFinIpInRdFlag(VOS_UINT32 ulFlag)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_SndAsMsg
- 功能描述  : UTRAN控制模块发送WRR或TD消息
- 输入参数  : ulSndPid -- 发送PID
-             pstMsg  -- 发送消息
- 输出参数  : 无
- 返 回 值  : VOS_OK:发送成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年07月14日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月8日
-    作    者   : w00176964
-    修改内容   : 发送搜网请求时缓存发送给W的搜网请求消息
-  3.日    期   : 2012年8月21日
-    作    者   : w00167002
-    修改内容   : 当前消息除了通知当前UTRAN模外，还需要判断是否需要通知另一模
-  4.日    期   : 2012年12月25日
-    作    者   : s00217060
-    修改内容   : for DSDA GUNAS C CORE:平台接入技术能力只支持W/TD中的一个时，不需要给另一个模发消息，
-                  不进预处理的函数
-  5.日    期   : 2014年3月3日
-    作    者   : z00234330
-    修改内容   : dts2014022806114,没有释放内存
-  6.日    期   : 2015年6月6日
-    作    者   : s00217060
-    修改内容   : 漫游搜网优化2.0
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_SndAsMsg(
     VOS_UINT32                          ulSndPid,
     struct MsgCB                       **ppstMsg
@@ -622,25 +464,7 @@ VOS_UINT32 NAS_UTRANCTRL_SndAsMsg(
 
 #if (FEATURE_ON == FEATURE_UE_MODE_TDS)
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_BuildEventType
- 功能描述  : 根据usSndPid和usMsgName来构造当前的事件类型
- 输入参数  : usSndPid:  发送PID信息
-              usMsgName: 发送消息名称信息
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:事件类型
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年7月13日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-
-  2.日    期   : 2015年6月6日
-    作    者   : l00198894
-    修改内容   : Modem PID扩展
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_BuildEventType (
     VOS_UINT32                          ulSndPid,
     VOS_UINT32                          ulMsgName
@@ -661,26 +485,7 @@ VOS_UINT32 NAS_UTRANCTRL_BuildEventType (
     return ulEventType;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_GetMsgEventType
- 功能描述  : 获取消息的事件类型
- 输入参数  : pstMsg       :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: ulEventType消息事件类型
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月14日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月20日
-    作    者   : w00176964
-    修改内容   : 定时器超时停止UTRANCTRL模块的定时器
-  3.日    期   : 2015年6月6日
-    作    者   : l00198894
-    修改内容   : Modem PID 扩展
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_GetMsgEventType(
     struct MsgCB                       *pstMsg
 )
@@ -710,21 +515,7 @@ VOS_UINT32 NAS_UTRANCTRL_GetMsgEventType(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_ConvertSimPlmnToNasPlmn
- 功能描述  : 将SIM卡中的3字节格式PLMN转换为MCC和MNC分开的格式
- 输入参数  : pstSimPlmn -- SIM卡结构的PLMN
- 输出参数  : pstNasPlmn -- NAS内部结构的PLMN
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年8月19日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  NAS_UTRANCTRL_ConvertSimPlmnToNasPlmn(
     NAS_MML_SIM_FORMAT_PLMN_ID          *pstSimPlmn,
     NAS_MML_PLMN_ID_STRU                *pstNasPlmn
@@ -736,21 +527,7 @@ VOS_VOID  NAS_UTRANCTRL_ConvertSimPlmnToNasPlmn(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_StartTimer
- 功能描述  : 启动指定的MMC定时器
- 输入参数  : enTimerId - 需要启动的定时器ID
-             ulLen-定时器时长
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年8月9日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  NAS_UTRANCTRL_StartTimer(
     NAS_MMC_TIMER_ID_ENUM_UINT16        enTimerId,
     VOS_UINT32                          ulLen
@@ -759,20 +536,7 @@ VOS_VOID  NAS_UTRANCTRL_StartTimer(
     (VOS_VOID)NAS_MMC_StartTimer(enTimerId, ulLen);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_GetTimerStatus
- 功能描述  : 查询指定的MMC定时器的状态
- 输入参数  : enTimerId  - 需要查询的定时器ID
- 输出参数  : 无
- 返 回 值  : NAS_MMC_TIMER_STATUS_ENUM_U8:定时器状态
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月22日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-*****************************************************************************/
 NAS_MMC_TIMER_STATUS_ENUM_U8  NAS_UTRANCTRL_GetTimerStatus(
     NAS_MMC_TIMER_ID_ENUM_UINT16        enTimerId
 )
@@ -784,20 +548,7 @@ NAS_MMC_TIMER_STATUS_ENUM_U8  NAS_UTRANCTRL_GetTimerStatus(
     return enTimerStatus;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_StopTimer
- 功能描述  : 停止指定的MMC定时器
- 输入参数  : enTimerId - 需要停止的定时器ID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月9日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  NAS_UTRANCTRL_StopTimer(
     NAS_MMC_TIMER_ID_ENUM_UINT16        enTimerId
 )
@@ -805,28 +556,7 @@ VOS_VOID  NAS_UTRANCTRL_StopTimer(
    NAS_MMC_StopTimer(enTimerId);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_SndGuAsUtranModeReq
- 功能描述  : UTRAN控制模块发送GU接入层当前的UTRAN工作模式消息
- 输入参数  : ulRcvPid:接受PID
-             enMode:当前UTRAN工作模式
- 输出参数  : 无
- 返 回 值  : VOS_OK:发送成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年07月14日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年8月8日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:接口消息调整为RRMM_UTRAN_MODE_REQ，调整函数名
-  3.日    期   : 2012年8月16日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII: 添加pc回放
-*****************************************************************************/
 VOS_VOID NAS_UTRANCTRL_SndGuAsUtranModeReq(
     VOS_UINT32                          ulRcvPid,
     NAS_UTRANCTRL_UTRAN_MODE_ENUM_UINT8 enMode
@@ -880,33 +610,7 @@ VOS_VOID NAS_UTRANCTRL_SndGuAsUtranModeReq(
 }
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_SndLmmUtranModeReq
- 功能描述  : UTRAN控制模块发送LMM当前的UTRAN工作模式消息
- 输入参数  : enMode:发送给LMM的UTRAN工作模式
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年07月14日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年8月8日
-    作    者   : w00167002
-    修改内容   : 接口调整ID_MMC_LMM_UTRAN_MODE_REQ，函数命名调整
-
-  3.日    期   : 2012年8月16日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII: 添加pc回放
-
-  4.日    期   : 2012年8月16日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII: 给LMM发送模式通知时候不能走MMC模块的
-                  内部队列，否则MODE CHANGE消息一直得不到处理，直至超时。
-*****************************************************************************/
 VOS_VOID NAS_UTRANCTRL_SndLmmUtranModeReq(
     NAS_UTRANCTRL_UTRAN_MODE_ENUM_UINT8  enMode
 )
@@ -958,23 +662,7 @@ VOS_VOID NAS_UTRANCTRL_SndLmmUtranModeReq(
 
 #endif  /* end of #if (FEATURE_ON == FEATURE_LTE) */
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_SndGuAsSuspendReq
- 功能描述  : UTRAN控制模块发送GU接入层挂起请求
- 输入参数  : ulRcvPid:接受PID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年08月8日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月16日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII: 添加pc回放
-*****************************************************************************/
 VOS_VOID NAS_UTRANCTRL_SndGuAsSuspendReq(
     VOS_UINT32                          ulRcvPid
 )
@@ -1022,25 +710,7 @@ VOS_VOID NAS_UTRANCTRL_SndGuAsSuspendReq(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndAsSuspendRsp
- 功能描述  : 向GU as发送挂起回复结果消息
- 输入参数  : RRC_NAS_SUSPEND_RESULT_ENUM_UINT8   enSuspendRslt,挂起回复结果
-              VOS_UINT32                          ulReceiverPid,接受接入层的PID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月10日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年8月16日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII: 添加pc回放
-*****************************************************************************/
 VOS_VOID  NAS_UTRANCTRL_SndAsSuspendRsp(
     RRC_NAS_SUSPEND_RESULT_ENUM_UINT8   enSuspendRslt,
     VOS_UINT32                          ulReceiverPid
@@ -1085,23 +755,7 @@ VOS_VOID  NAS_UTRANCTRL_SndAsSuspendRsp(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_SndGuAsPlmnStopReq
- 功能描述  : UTRAN控制模块发送GU接入层停止搜网请求
- 输入参数  : ulRcvPid:接受PID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年08月8日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月16日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII: 添加pc回放
-*****************************************************************************/
 VOS_VOID NAS_UTRANCTRL_SndGuAsPlmnStopReq(
     VOS_UINT32                          ulRcvPid
 )
@@ -1149,23 +803,7 @@ VOS_VOID NAS_UTRANCTRL_SndGuAsPlmnStopReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_SndGuAsSpecPlmnSearchReq
- 功能描述  : UTRAN控制模块发送GU接入层指定搜网请求
- 输入参数  : ulRcvPid:接受PID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年08月8日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月16日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII: 添加pc回放
-*****************************************************************************/
 VOS_VOID NAS_UTRANCTRL_SndGuAsSpecPlmnSearchReq(
     VOS_UINT32                          ulRcvPid
 )
@@ -1214,23 +852,7 @@ VOS_VOID NAS_UTRANCTRL_SndGuAsSpecPlmnSearchReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_SndGuAsSyscfgReq
- 功能描述  : UTRAN控制模块发送GU接入层SYSCFG设置请求
- 输入参数  : ulRcvPid:接受PID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年08月8日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月16日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII: 添加pc回放
-*****************************************************************************/
 VOS_VOID NAS_UTRANCTRL_SndGuAsSyscfgReq(
     VOS_UINT32                          ulRcvPid
 )
@@ -1277,23 +899,7 @@ VOS_VOID NAS_UTRANCTRL_SndGuAsSyscfgReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_SndGuAsPowerOffReq
- 功能描述  : UTRAN控制模块发送GU接入层关机请求
- 输入参数  : ulRcvPid:接受PID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年08月8日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月16日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII: 添加pc回放
-*****************************************************************************/
 VOS_VOID NAS_UTRANCTRL_SndGuAsPowerOffReq(
     VOS_UINT32                          ulReceiverPid
 )
@@ -1336,23 +942,7 @@ VOS_VOID NAS_UTRANCTRL_SndGuAsPowerOffReq(
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_SndGuAsStartReq
- 功能描述  : UTRAN控制模块发送GU接入层开机机请求
- 输入参数  : ulRcvPid:接受PID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年08月8日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月16日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII: 添加pc回放
-*****************************************************************************/
 VOS_VOID NAS_UTRANCTRL_SndGuAsStartReq(
     VOS_UINT32                          ulRcvPid
 )
@@ -1431,23 +1021,7 @@ VOS_VOID NAS_UTRANCTRL_SndGuAsStartReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_BuildRrMmStartCnfMsg
- 功能描述  : 构造开机回复消息
- 输入参数  : ulSndPid -- 发送消息PID
-              ulRcvPid -- 接收消息PID
-              ulResult -- 开机结果消息
- 输出参数  : pstMsg  返回构造消息体指针
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
-  1.日    期   : 2012年08月21日
-    作    者   : W00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新增函数
-
-*****************************************************************************/
 VOS_VOID NAS_UTRANCTRL_BuildRrMmStartCnfMsg(
     VOS_UINT32                          ulSndPid,
     VOS_UINT32                          ulRcvPid,
@@ -1466,22 +1040,7 @@ VOS_VOID NAS_UTRANCTRL_BuildRrMmStartCnfMsg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_BuildRrMmPowerOffCnfMsg
- 功能描述  : 构造关机回复消息
- 输入参数  : ulSndPid -- 发送消息PID
-              ulRcvPid -- 接收消息PID
- 输出参数  : pstMsg  返回构造消息体指针
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
-  1.日    期   : 2012年08月21日
-    作    者   : W00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新增函数
-
-*****************************************************************************/
 VOS_VOID NAS_UTRANCTRL_BuildRrMmPowerOffCnfMsg(
     VOS_UINT32                          ulSndPid,
     VOS_UINT32                          ulRcvPid,
@@ -1501,23 +1060,7 @@ VOS_VOID NAS_UTRANCTRL_BuildRrMmPowerOffCnfMsg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_BuildRrMmSysCfgCnfMsg
- 功能描述  : 构造SYSCFG设置回复消息
- 输入参数  : ulSndPid -- 发送消息PID
-              ulRcvPid -- 接收消息PID
-              ulResult -- 开机结果消息
- 输出参数  : pstMsg  返回构造消息体指针
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
-  1.日    期   : 2012年08月21日
-    作    者   : W00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新增函数
-
-*****************************************************************************/
 VOS_VOID NAS_UTRANCTRL_BuildRrMmSysCfgCnfMsg(
     VOS_UINT32                          ulSndPid,
     VOS_UINT32                          ulRcvPid,
@@ -1536,28 +1079,7 @@ VOS_VOID NAS_UTRANCTRL_BuildRrMmSysCfgCnfMsg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_BuildRrMmPlmnSearchCnfFailMsg
- 功能描述  : 构造指定搜网回复失败消息
- 输入参数  : ulSndPid -- 发送消息PID
-              ulRcvPid -- 接收消息PID
- 输出参数  : pstMsg  返回构造消息体指针
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
-  1.日    期   : 2012年08月21日
-    作    者   : W00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新增函数
-  2.日    期   : 2015年5月26日
-    作    者   : s00217060
-    修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_2.0:根据不同的搜网类型构造对应的搜网失败结果
-  3.日    期   : 2015年10月12日
-    作    者   : s00217060
-    修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_3.0修改
-
-*****************************************************************************/
 VOS_VOID NAS_UTRANCTRL_BuildRrMmPlmnSearchCnfFailMsg(
     VOS_UINT32                          ulSndPid,
     VOS_UINT32                          ulRcvPid,
@@ -1597,21 +1119,7 @@ VOS_VOID NAS_UTRANCTRL_BuildRrMmPlmnSearchCnfFailMsg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_BuildInterUtranCtrlPlmnSelectionAbortFinishIndMsg
- 功能描述  : 构造UTRANCTRL搜网被MMC打断完成消息
- 输入参数  : ulSndPid -- 发送消息PID
-              ulRcvPid -- 接收消息PID
- 输出参数  : pstMsg  返回构造消息体指针
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
-  1.日    期   : 2015年12月17日
-    作    者   : W00167002
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_VOID NAS_UTRANCTRL_BuildInterUtranCtrlPlmnSelectionAbortFinishIndMsg(
     NAS_MMCMMC_INTER_UTRAN_CTRL_PLMN_SELECTION_ABORT_FINISH_IND_STRU            *pstMsg
 )
@@ -1628,21 +1136,7 @@ VOS_VOID NAS_UTRANCTRL_BuildInterUtranCtrlPlmnSelectionAbortFinishIndMsg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_BuildRrMmPlmnSearchFailRslt
- 功能描述  : 根据搜网类型构造搜网失败结果
- 输入参数  : RRC_PLMN_SEARCH_TYPE_ENUM_UINT32    enPlmnSearchType
- 输出参数  : 无
- 返 回 值  : RRC_PLMN_SEARCH_RLT_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月12日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 RRC_PLMN_SEARCH_RLT_ENUM_UINT32 NAS_UTRANCTRL_BuildRrMmPlmnSearchFailRslt(
     RRC_PLMN_SEARCH_TYPE_ENUM_UINT32    enPlmnSearchType
 )
@@ -1682,31 +1176,7 @@ RRC_PLMN_SEARCH_RLT_ENUM_UINT32 NAS_UTRANCTRL_BuildRrMmPlmnSearchFailRslt(
     return enPlmnSrchRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_UpdateCurUtranSwitchMode
- 功能描述  : 根据NV en_NV_Item_Utran_Mode_Auto_Switch中获取内容来更新当前的UTRAN的切换模式
- 输入参数  : pucImsi -- 当前IMSI信息
-              ucCardStatus -- 当前SIM卡状态
-              pstUtranModeAutoSwitch -- NV en_NV_Item_Utran_Mode_Auto_Switch中的内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月8日
-    作    者   : w00167002
-    修改内容   : 新建
-  2.日    期   : 2012年8月10日
-    作    者   : w00176964
-    修改内容   : 修改函数名
-  3.日    期   : 2012年10月13日
-    作    者   : w00167002
-    修改内容   : DTS2012101300714:开机读取HOME PLMN时候，在没有读取指示网络号
-                 长度文件时6FAD时，默认按照网络号长度为3位，导致在网络号长度
-                 为2时出错.
-                 第二个参数修改为当前sim卡是否存在。
-*****************************************************************************/
 VOS_VOID NAS_UTRANCTRL_UpdateCurUtranSwitchMode(
     VOS_UINT8                                              *pucImsi,
     VOS_UINT8                                               ucSimPresentStatus,
@@ -1771,20 +1241,7 @@ VOS_VOID NAS_UTRANCTRL_UpdateCurUtranSwitchMode(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_IsSndOmPcRecurMsgValid
- 功能描述  : 判断当前向SDT发送PC 回放消息是否有效
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年08月16日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_IsSndOmPcRecurMsgValid(VOS_VOID)
 {
     VOS_UINT32                          ulRslt;
@@ -1795,24 +1252,7 @@ VOS_UINT32 NAS_UTRANCTRL_IsSndOmPcRecurMsgValid(VOS_VOID)
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_IsNeedUtranCtrlFsmProcMsg
- 功能描述  : 判断是否需要进UTRANCTRL FSM处理消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:需要进UTRANCTRL FSM处理消息
-             VOS_FALSE:不进UTRANCTRL FSM处理消息
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月29日
-    作    者   : w00167002
-    修改内容   : 新建
-  2.日    期   : 2014年11月25日
-    作    者   : z00161729
-    修改内容   : 开机搜网优化项目修改
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_IsNeedUtranCtrlFsmProcMsg(
     struct MsgCB                       *pstMsg
 )
@@ -1855,27 +1295,7 @@ VOS_UINT32 NAS_UTRANCTRL_IsNeedUtranCtrlFsmProcMsg(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_IsNeedSndAnotherUtranModeMsg
- 功能描述  : 给当前UTRAN模发消息时，需要判断是否需要通知另一UTRAN模
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:需要通知另一模
-             VOS_FALSE:不需要通知另一模
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月21日
-    作    者   : w00167002
-    修改内容   : 新建
-  2.日    期   : 2014年6月13日
-    作    者   : w00242748
-    修改内容   : DSDS 新特性
-  3.日    期   : 2015年9月16日
-    作    者   : wx270776
-    修改内容   : AS上报优化
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_IsNeedSndAnotherUtranModeMsg(
     struct MsgCB                       *pstMsg
 )
@@ -1931,21 +1351,7 @@ VOS_UINT32 NAS_UTRANCTRL_IsNeedSndAnotherUtranModeMsg(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_IsNeedSkipSearchUtranFddMode
- 功能描述  : 给当前UTRAN模发消息时，需要判断是否需要他跳过搜索W
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:需要跳过搜网W
-             VOS_FALSE:不需要跳过搜网W
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月11日
-    作    者   : w00167002
-    修改内容   : 新建
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_IsNeedSkipSearchUtranFddMode(
     struct MsgCB                       *pstMsg
 )
@@ -1991,24 +1397,7 @@ VOS_UINT32 NAS_UTRANCTRL_IsNeedSkipSearchUtranFddMode(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_IsNeedSkipSearchUtranTddMode
- 功能描述  : 给当前UTRAN模发消息时，需要判断是否需要跳过搜索TDS
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:需要跳过搜网TDS
-             VOS_FALSE:不需要跳过搜网TDS
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月1日
-    作    者   : z00161729
-    修改内容   : 新建
-  2.日    期   : 2015年5月26日
-    作    者   : w00167002
-    修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_2.0项目修改
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_IsNeedSkipSearchUtranTddMode(
     struct MsgCB                       *pstMsg
 )
@@ -2095,21 +1484,7 @@ VOS_UINT32 NAS_UTRANCTRL_IsNeedSkipSearchUtranTddMode(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_SaveBufferedSndUtranReqMsg_SndUtranAsMsgPreProcessMsg
- 功能描述  : UTRANCTRL模块对发送消息的保存预处理
- 输入参数  : ulSndPid -- 发送PID
-             pstMsg  -- 发送消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月21日
-    作    者   : w00167002
-    修改内容   : 新建
-*****************************************************************************/
 VOS_VOID NAS_UTRANCTRL_SaveBufferedSndUtranReqMsg_SndUtranAsMsgPreProcessMsg(
     VOS_UINT32                          ulSndPid,
     struct MsgCB                       *pstMsg
@@ -2148,23 +1523,7 @@ VOS_VOID NAS_UTRANCTRL_SaveBufferedSndUtranReqMsg_SndUtranAsMsgPreProcessMsg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_SndAnotherUtranModeMsg_SndUtranAsMsgPreProcessMsg
- 功能描述  : UTRANCTRL模块对通知另一模消息的预处理
- 输入参数  : ulSndPid -- 发送PID
-             pstMsg  -- 发送消息
- 输出参数  : 无
- 返 回 值  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月21日
-    作    者   : w00167002
-    修改内容   : 新建
-*****************************************************************************/
 VOS_VOID NAS_UTRANCTRL_SndAnotherUtranModeMsg_SndUtranAsMsgPreProcessMsg(
     VOS_UINT32                          ulSndPid,
     struct MsgCB                       *pstMsg
@@ -2233,27 +1592,7 @@ VOS_VOID NAS_UTRANCTRL_SndAnotherUtranModeMsg_SndUtranAsMsgPreProcessMsg(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_StartUtranTddModeMsgTimer
- 功能描述  : UTRANCTRL模块对通知TDD模时候启动保护定时器
- 输入参数  : ulSndPid -- 发送PID
-             pstMsg  -- 发送消息
- 输出参数  : 无
- 返 回 值  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月21日
-    作    者   : w00167002
-    修改内容   : 新建
-
-  2.日    期   : 2015年6月17日
-    作    者   : w00167002
-    修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_2.0:增加HISTORY搜网定时器的启动保护
-*****************************************************************************/
 VOS_VOID NAS_UTRANCTRL_StartUtranTddModeMsgTimer(
     VOS_UINT32                          ulSndPid,
     struct MsgCB                       *pstMsg
@@ -2301,26 +1640,7 @@ VOS_VOID NAS_UTRANCTRL_StartUtranTddModeMsgTimer(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_StartUtranFddModeMsgTimer
- 功能描述  : UTRANCTRL模块对通知FDD模时候启动保护定时器
- 输入参数  : ulSndPid -- 发送PID
-              pstMsg  -- 发送消息
- 输出参数  : 无
- 返 回 值  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月21日
-    作    者   : w00167002
-    修改内容   : 新建
-  2.日    期   : 2015年6月17日
-    作    者   : w00167002
-    修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_2.0:增加HISTORY搜网定时器的启动保护
-*****************************************************************************/
 VOS_VOID NAS_UTRANCTRL_StartUtranFddModeMsgTimer(
     VOS_UINT32                          ulSndPid,
     struct MsgCB                       *pstMsg
@@ -2369,23 +1689,7 @@ VOS_VOID NAS_UTRANCTRL_StartUtranFddModeMsgTimer(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_StopUtranTddModeMsgTimer
- 功能描述  : UTRANCTRL模块对通知TDD模时候停止保护定时器
- 输入参数  : ulSndPid -- 发送PID
-             pstMsg  -- 发送消息
- 输出参数  : 无
- 返 回 值  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月21日
-    作    者   : w00167002
-    修改内容   : 新建
-*****************************************************************************/
 VOS_VOID NAS_UTRANCTRL_StopUtranTddModeMsgTimer(
     VOS_UINT32                          ulMsgName
 )
@@ -2410,23 +1714,7 @@ VOS_VOID NAS_UTRANCTRL_StopUtranTddModeMsgTimer(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_StopUtranFddModeMsgTimer
- 功能描述  : UTRANCTRL模块对通知FDD模时候停止保护定时器
- 输入参数  : ulSndPid -- 发送PID
-             pstMsg  -- 发送消息
- 输出参数  : 无
- 返 回 值  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月21日
-    作    者   : w00167002
-    修改内容   : 新建
-*****************************************************************************/
 VOS_VOID NAS_UTRANCTRL_StopUtranFddModeMsgTimer(
     VOS_UINT32                          ulMsgName
 )
@@ -2451,24 +1739,7 @@ VOS_VOID NAS_UTRANCTRL_StopUtranFddModeMsgTimer(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_StartUtranModeMsgTimer_SndUtranAsMsgPreProcessMsg
- 功能描述  : UTRANCTRL模块对通知UTRAN模时候启动保护定时器
- 输入参数  : ulSndPid -- 发送PID
-             pstMsg  -- 发送消息
- 输出参数  : 无
- 返 回 值  : VOS_OK: 消息处理成功
-              VOS_ERR: 消息处理异常
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月21日
-    作    者   : w00167002
-    修改内容   : 新建
-*****************************************************************************/
 VOS_VOID NAS_UTRANCTRL_StartUtranModeMsgTimer_SndUtranAsMsgPreProcessMsg(
     VOS_UINT32                          ulSndPid,
     struct MsgCB                       *pstMsg
@@ -2498,23 +1769,7 @@ VOS_VOID NAS_UTRANCTRL_StartUtranModeMsgTimer_SndUtranAsMsgPreProcessMsg(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_StartUtranModeMsgTimer_SndUtranAsMsgPreProcessMsg
- 功能描述  : UTRANCTRL模块对通知UTRAN模时候启动保护定时器
- 输入参数  : ulSndPid -- 发送PID
-             pstMsg  -- 发送消息
- 输出参数  : 无
- 返 回 值  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月21日
-    作    者   : w00167002
-    修改内容   : 新建
-*****************************************************************************/
 VOS_VOID NAS_UTRANCTRL_StopUtranModeMsgTimer_SndUtranAsMsgPreProcessMsg(
     VOS_UINT32                          ulSndPid,
     struct MsgCB                       *pstMsg
@@ -2549,20 +1804,7 @@ VOS_VOID NAS_UTRANCTRL_StopUtranModeMsgTimer_SndUtranAsMsgPreProcessMsg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_SndUtranAsMsgPreProcessMsg
- 功能描述  : UTRANCTRL模块对发送消息的预处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月21日
-    作    者   : w00167002
-    修改内容   : 新建
-*****************************************************************************/
 VOS_VOID NAS_UTRANCTRL_SndUtranAsMsgPreProcessMsg(
     VOS_UINT32                          ulSndPid,
     struct MsgCB                       *pstMsg
@@ -2599,22 +1841,7 @@ VOS_VOID NAS_UTRANCTRL_SndUtranAsMsgPreProcessMsg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_IsSpecPlmnMccInGuRrcPlmnIdList
- 功能描述  : 根据GU RRC的PLMN ID列表判断是否指定mcc的网络
- 输入参数  : ulSpecPlmnMcc   - 指定mcc的网络
-             pstGuPlmnIdList - GU RRC的PLMN ID列表
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月15日
-    作    者   : z00161729
-    修改内容   : 开机搜网优化项目修改
-
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_IsSpecPlmnMccInGuRrcPlmnIdList(
     VOS_UINT32                          ulSpecPlmnMcc,
     RRC_PLMN_ID_LIST_STRU              *pstGuPlmnIdList
@@ -2649,27 +1876,7 @@ VOS_UINT32 NAS_UTRANCTRL_IsSpecPlmnMccInGuRrcPlmnIdList(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_UpdateSearchedSpecTdMccFLg
- 功能描述  : 根据GU RRC的PLMN ID列表更新搜索过的指定TD MCC标记
- 输入参数  : ulTdMccNum ---- 指定TD国家码个数
-             pulTdMccList -- 指定TD国家码列表
-             pstGuPlmnIdList --GU RRC的PLMN ID列表
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月23日
-    作    者   : w00176964
-    修改内容   : 新建
-
-  2.日    期   : 2012年9月25日
-    作    者   : w00167002
-    修改内容   : DTS2012092405740:开机W下搜网失败，携带23002，46001网络，此时，
-                  没有更新当前为中国网络标记。
-*****************************************************************************/
 VOS_VOID NAS_UTRANCTRL_UpdateSearchedSpecTdMccFLg(
     VOS_UINT32                          ulTdMccNum,
     VOS_UINT32                         *pulTdMccList,
@@ -2711,23 +1918,7 @@ VOS_VOID NAS_UTRANCTRL_UpdateSearchedSpecTdMccFLg(
     PS_MEM_FREE(WUEPS_PID_MMC, pulRrcMccList);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_IsNeedProcGuPlmnSearchCnf
- 功能描述  : UTRANCTRL是否需要处理搜网结果
- 输入参数  : RRMM_PLMN_SEARCH_CNF_STRU          *pstPlmnSrchCnf
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2015年10月12日
-    作    者   : s00217060
-    修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_3.0修改:增加对pref band搜的处理
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_IsNeedProcGuPlmnSearchCnf(
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enRat,
     RRMM_PLMN_SEARCH_CNF_STRU          *pstPlmnSrchCnf
@@ -2774,24 +1965,7 @@ VOS_UINT32 NAS_UTRANCTRL_IsNeedProcGuPlmnSearchCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_IsNeedProcLmmPlmnSearchCnf
- 功能描述  : UTRANCTRL是否需要处理搜网结果
- 输入参数  : LMM_MMC_PLMN_SRCH_CNF_STRU          *pstPlmnSrchCnf
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2015年10月13日
-    作    者   : s00217060
-    修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_3.0修改：增加pref band的处理
-
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_IsNeedProcLmmPlmnSearchCnf(
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enRat,
     LMM_MMC_PLMN_SRCH_CNF_STRU         *pstPlmnSrchCnf
@@ -2834,22 +2008,7 @@ VOS_UINT32 NAS_UTRANCTRL_IsNeedProcLmmPlmnSearchCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_ProcPlmnSearchReq_GetGeo
- 功能描述  : UTRANCTRL对GET_GEO类型的搜网的处理
- 输入参数  : VOS_UINT32                          ulSndPid
-             RRMM_PLMN_SEARCH_REQ_STRU          *pstPlmnSrchReq
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月27日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_UTRANCTRL_ProcPlmnSearchReq_GetGeo(
     VOS_UINT32                          ulSndPid,
     RRMM_PLMN_SEARCH_REQ_STRU          *pstPlmnSrchReq

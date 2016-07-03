@@ -1,20 +1,4 @@
-/******************************************************************************
 
-    Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : LUPAppItf.h
-  Description     : L2AppItf.c header file
-  History         :
-     1.h42180       2009-3-31     Draft Enact
-     2.Date         : 2010/8/5
-       Author       : l62099
-       Modification : 将IDLE态数据缓存大小从12改为256
-     3.Date         : 2010/8/19
-       Author       : y00151394
-       Modification : 将APP接收队列大小从512改为1024
-
-******************************************************************************/
 
 #ifndef __LUPAPPITF_H__
 #define __LUPAPPITF_H__
@@ -237,7 +221,6 @@ typedef struct
     L2_DRB_THROUGHPUT_ULDL_STAT_STRU                stDrbThoughputInfo[PS_OM_MAX_DRB_NUM];/*DRB上下行收到的流量统计信息*/
 } L2_OM_THROUGHPUT_STAT_IND_STRU;
 
-/*V7R2-DT增加CA L2 吞吐量上报结构体定义的代码 q00208938 2014/03/24，begin*/
 typedef struct
 {
     CA_CELL_STATUS_STRU stCaCellStatus;
@@ -263,7 +246,6 @@ typedef struct
     L2_DRB_THROUGHPUT_ULDL_STAT_STRU astDrbThroughputInfo[PS_OM_MAX_DRB_NUM];/*DRB上下行收到的流量统计信息*/
     MAC_CA_THROUGHPUT_STRU astMacCaThroughput[CA_MAX_CELL_NUM]; /*长度为8，数组下标代表CellIndex，0:PCell，1~7:SCell*/
 } CA_L2_OM_THROUGHPUT_STAT_IND_STRU;
-/*V7R2-DT增加CA L2吞吐量上报结构体定义的代码 q00208938 2014/03/24，end*/
 
 /*****************************************************************************
  结构名    : L2_LAYER_SDU_COUNT_STAT_STRU
@@ -439,9 +421,7 @@ typedef struct
     L2_THROUGHPUT_PROC_INFO_STRU                     stMacThoughputInfo;    /*MAC动态统计信息*/
     L2_DRB_THROUGHPUT_PROC_INFO_STRU                 stL2DrbThoughputInfo;  /*各个DRB动态统计信息*/
 
-    /*V7R2-DT增加CA SCell MAC下行吞吐量结构体的代码 q00208938 2014/03/24，begin*/
     L2_THROUGHPUT_PROC_INFO_STRU astMacCaThroughputInfo[CA_MAX_CELL_NUM];  /*CA MAC动态统计信息*/
-    /*V7R2-DT增加CA SCell MAC下行吞吐量结构体的代码 q00208938 2014/03/24，end*/
 } L2_THROUGHPUT_PROC_STAT_INFO_STRU;
 /*****************************************************************************
  结构名    : L2_DRB_LOCAL_SDU_COUNT_STAT_STRU

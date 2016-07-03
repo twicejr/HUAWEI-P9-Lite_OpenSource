@@ -1,15 +1,4 @@
-/******************************************************************************
 
-        @(#)Copyright(C)2008,Hisilicon Co. LTD.
-
-******************************************************************************
-    File name   : NasLmmPubMNvim.c
-    Description :
-    History     :
-      1.  hanlufeng 41410 2008-10-25 Draft Enact
-      2.  zhengjunyan 00148421   2011-05-28 ÎÄ¼þÃûÓÉ NasMmPubMNvim.cÐÞ¸ÄÎª
-                                           NasLmmPubMNvim.c
-******************************************************************************/
 
 /*****************************************************************************
   1 Include HeadFile
@@ -72,19 +61,7 @@ VOS_UINT8  g_aucUsimSecuContext[NAS_NVIM_SECU_CONTEXT_MAX_LEN] = {0}; /* ±£´æÉÏ´
   3 Function
 *****************************************************************************/
 
-/*****************************************************************************
- Function Name  : NAS_LMM_SndUsimReadFileReq()
- Description    : ¸øUSIM·¢ËÍ¶ÁÈ¡ÎÄ¼þÇëÇó
- Input          : ulAppType         Ó¦ÓÃÀàÐÍ
-                  ucRecordNum
-                  ulOpId
-                  stGetFilePath     ÎÄ¼þÂ·¾¶
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-          1.zhaochen 00308719  2015-02-10   Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_LMM_SndUsimReadFileReq
 (
     USIMM_CARDAPP_ENUM_UINT32       ulAppType,
@@ -131,19 +108,7 @@ VOS_VOID NAS_LMM_SndUsimReadFileReq
 
 }
 
-/*****************************************************************************
- Function Name  : NAS_LMM_SndUsimReadFileReq()
- Description    : ¸øUSIM·¢ËÍÐ´ÈëÎÄ¼þÇëÇó
- Input          : ulAppType         Ó¦ÓÃÀàÐÍ
-                  ucRecordNum
-                  ulOpId
-                  stGetFilePath     ÎÄ¼þÂ·¾¶
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-          1.zhaochen 00308719  2015-02-15   Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_LMM_SndUsimWriteFileReq
 (
     USIMM_CARDAPP_ENUM_UINT32       ulAppType,
@@ -198,20 +163,7 @@ VOS_VOID NAS_LMM_SndUsimWriteFileReq
 
 }
 /* 2015-03-15: ×¢Òâ±¾´ÎÊÇ´ËÎÄ¼þ´óÃæ»ýÐÞ¸Ä */
-/*****************************************************************************
- Function Name  : NAS_LMM_NvimWrite
- Discription    : ÆäËûÄ£¿éµ÷ÓÃ±¾º¯ÊýÐ´Ò»¸öÖ¸¶¨µÄNV_Item
- Input          : ulNVItemType: NV_ItemÀàÐÍ
-                  *pData£º      NVµÄÊý¾ÝÖ¸Õë
-                  usDataLen£º   ÒªÐ´ÈëÊý¾Ý³¤¶È
- Output         : None
- Return         : 0£ºÊý¾Ý³É¹¦Ð´Èë£¬º¯ÊýÕý³£·µ»Ø
-                  2£ºÒªÐ´µÄNVÀàÐÍ³¬¹ý×î´óÖµ³ö´í
-                  4£ºÏµÍ³Òì³££¬Êý¾ÝÎÞ·¨Ð´Èë
- History:
-     1.sunbing   49683      2010-7-22  modify
-     2.sunjitan 00193151    2015-03-15 Modify
-*****************************************************************************/
+
 /*lint -e960*/
 /*lint -e961*/
 VOS_UINT32  NAS_LMM_NvimWrite
@@ -295,22 +247,7 @@ VOS_UINT32  NAS_LMM_NvimWrite
 
 }
 
-/*****************************************************************************
- Function Name  : NAS_LMM_NvimRead
- Discription    : ÆäËûÄ£¿éµ÷ÓÃ±¾º¯Êý¶ÁÒ»¸öÖ¸¶¨µÄNV_Item
- Input          : ulNVItemType: NV_ItemÀàÐÍ
-                  *pData £º     Êý¾Ý»º´æÖ¸Õë
-                  *pusDataLen£º ·µ»ØÊý¾Ý³¤¶È
- Output         : pusDataLen £º ·µ»ØÊý¾Ý³¤¶È
- Return         : 0£ºÊý¾Ý³É¹¦¶ÁÈ¡£¬º¯ÊýÕý³£·µ»Ø
-                  1£ºÎ´ÕÒµ½Òª¶ÁÈ¡µÄNVÏî
-                  3£º´«ÈëµÄ»º´æ²»¹»³ö´í
-                  4£ºÏµÍ³Òì³££¬¶ÁÈ¡³ö´í
- History:
-      1.sunbing   49683      2010-7-22  modify
-      2.zhaochen  00308719   2015-2-10  modify for USIM interface
-      3.sunjitan  00193151   2015-03-15 Modify
-*****************************************************************************/
+
 NAS_LMM_USIM_NV_RESULT  NAS_LMM_NvimRead
 (
     NAS_LMM_ITEM_TYPE_ENUM_UINT32       ulNVItemType,
@@ -391,15 +328,7 @@ NAS_LMM_USIM_NV_RESULT  NAS_LMM_NvimRead
 }
 
 
-/*****************************************************************************
- Function Name  : NAS_LMM_UsimFileWrite
- Discription    : ÆäËûÄ£¿éµ÷ÓÃ±¾º¯ÊýÐ´Ò»¸öÖ¸¶¨µÄUSIMÎÄ¼þ
- Input          : USIMM_DEF_FILEID_ENUM_UINT32: USIMÎÄ¼þID
- Output         : VOS_VOID
- Return         : VOS_VOID
- History:
-      1.sunjitan 00193151     2015-03-15   Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_LMM_UsimFileWrite
 (
     USIMM_DEF_FILEID_ENUM_UINT32        ulUsimFileId,
@@ -501,15 +430,7 @@ VOS_VOID NAS_LMM_UsimFileWrite
 }
 
 
-/*****************************************************************************
- Function Name  : NAS_LMM_UsimFileRead
- Discription    : ÆäËûÄ£¿éµ÷ÓÃ±¾º¯Êý¶ÁÒ»¸öÖ¸¶¨µÄUSIMÎÄ¼þ
- Input          : USIMM_DEF_FILEID_ENUM_UINT32: USIMÎÄ¼þID
- Output         : VOS_VOID
- Return         : VOS_VOID
- History:
-      1.sunjitan 00193151     2015-03-15   Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_LMM_UsimFileRead
 (
     USIMM_DEF_FILEID_ENUM_UINT32        ulUsimFileId
@@ -694,18 +615,7 @@ VOS_VOID  NAS_LMM_DoAfterReadOptFileOver( VOS_VOID )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_LMM_ProcessNvData
- Description     :
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.    leili  00132387      2010-1-14  Draft Enact
-    2.    yangfan 00159566     2010-5-11  É¾³ýRplmn
-
-*****************************************************************************/
 VOS_VOID  NAS_LMM_ProcessNvData( VOS_VOID )
 {
     /* ´òÓ¡½øÈë¸Ãº¯Êý£¬ INFO_LEVEL */
@@ -789,16 +699,7 @@ VOS_UINT32  NAS_LMM_ProcessHardUsimCnf(USIMM_READFILE_CNF_STRU* pstUsimFileCnf)
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_ReadUsimFileImsi
- Description     : ¶ÁIMSI
- Input           : None
- Output          : None
- Return          : NAS_LMM_USIM_READ_RST_ENUM_UINT32
- History         :
-    1. HanLufeng 41410      2011-02-23     Draft Enact
-    2. sunjitan 00193151    2015-03-15    Modify
-*****************************************************************************/
+
 NAS_LMM_USIM_READ_RST_ENUM_UINT32  NAS_LMM_ReadUsimFileImsi(VOS_VOID)
 {
     VOS_UINT32                          ulRst;
@@ -864,22 +765,7 @@ NAS_LMM_USIM_READ_RST_ENUM_UINT32  NAS_LMM_ReadUsimFileImsi(VOS_VOID)
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_LMM_ReadLteUsimFile
- Description     : ¶ÁÈ¡LTE×Ô¼ºµÄ¸öÎÄ¼þ:
-                    6F78    USIMM_USIM_EFACC_ID
-                    6FE3    USIMM_USIM_EFEPSLOCI_ID
-                    6FE4    USIMM_USIM_EFEPSNSC_ID
-                    °²È«ÉÏÏÂÎÄÎÄ¼þºÍGUTIÓ¦¸ÃÊÇÍ¬Ê±´æÔÚµÄ£¬ÓÐGUTI¾ÍÓ¦¸ÃÓÐ°²È«£¬ÓÐ
-                    °²È«£¬¾ÍÓ¦¸ÃÓÐGUTI;
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.HanLufeng 41410      2011-2-23  Draft Enact
-    2.sunjitan 00193151    2015-03-15 Modify
-*****************************************************************************/
 VOS_VOID  NAS_LMM_ReadLteUsimFile(VOS_VOID)
 {
     /*6F78 */

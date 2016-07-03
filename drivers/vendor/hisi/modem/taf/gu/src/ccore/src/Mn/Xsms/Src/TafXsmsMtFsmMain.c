@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafXsmsMtFsmMain.c
-  版 本 号   : 初稿
-  作    者   : h00300778
-  生成日期   : 2014年10月31日
-  功能描述   : 1X SMS(Short Message Service)MT短信状态机处理函数
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年10月31日
-    作    者   : h00300778
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -53,24 +38,7 @@ extern "C"{
   3 函数定义
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_MtFsmMainProc
- 功能描述  : MT状态机对外主接口
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_ERR/VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月1日
-    作    者   : C00299064
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年6月6日
-    作    者   : l00198894
-    修改内容   : Modem PID扩展
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_MtFsmMainProc(MsgBlock *pstMsg)
 {
     VOS_UINT32                          ulEventType;
@@ -124,20 +92,7 @@ VOS_UINT32 TAF_XSMS_MtFsmMainProc(MsgBlock *pstMsg)
     return VOS_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_MtDealTlAck
- 功能描述  : 处理是否发送TL ACK
- 输入参数  : enCauseCode，enErrorClass
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月3日
-    作    者   : l00208516
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XSMS_MtDealTlAck
 (
     TAF_XSMS_TL_CAUSE_CODE_ENUM8        enCauseCode,
@@ -213,20 +168,7 @@ VOS_VOID TAF_XSMS_MtDealTlAck
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_MtDealPrl
- 功能描述  : 处理PRL短信
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月3日
-    作    者   : l00208516
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XSMS_MtDealPrl(VOS_VOID)
 {
     VOS_UINT8                           ucIndex;
@@ -292,20 +234,7 @@ VOS_VOID TAF_XSMS_MtDealPrl(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_MtDealDataInd
- 功能描述  : 接入层数据上报的处理函数
- 输入参数  : pstDataInd:上报的数据
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月3日
-    作    者   : l00208516
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XSMS_MtDealDataInd(TAF_XSMS_CAS_DATA_IND_MSG_STRU *pstDataInd)
 {
     VOS_UINT32                          ulDecodedResult;
@@ -418,20 +347,7 @@ VOS_VOID TAF_XSMS_MtDealDataInd(TAF_XSMS_CAS_DATA_IND_MSG_STRU *pstDataInd)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_MtDealSndCasDataReq
- 功能描述  : 发送data req
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月3日
-    作    者   : l00208516
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_MtDealSndCasDataReq(VOS_VOID)
 {
     VOS_UINT32                          ulRst;
@@ -467,20 +383,7 @@ VOS_UINT32 TAF_XSMS_MtDealSndCasDataReq(VOS_VOID)
     return ulRst;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_MtSendCasTlAck
- 功能描述  : 发送TL ACK
- 输入参数  : enCauseCode enErrorClass
- 输出参数  : 无
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月3日
-    作    者   : l00208516
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_MtSendCasTlAck
 (
     TAF_XSMS_TL_CAUSE_CODE_ENUM8        enCauseCode,
@@ -525,21 +428,7 @@ VOS_UINT32 TAF_XSMS_MtSendCasTlAck
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_Resend
- 功能描述  : 重发TL ACK
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月3日
-    作    者   : l00208516
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_MtResend
 (
     VOS_UINT32                          ulEventType,
@@ -587,21 +476,7 @@ VOS_UINT32 TAF_XSMS_MtResend
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_RcvIncomingCall_MtIdle
- 功能描述  : 在MT_IDLE状态下处理XCC发来的INCOMING_CALL_INCOMING_CALL_IND
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月31日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_RcvIncomingCall_MtIdle
 (
     VOS_UINT32                          ulEventType,
@@ -653,21 +528,7 @@ VOS_UINT32 TAF_XSMS_RcvIncomingCall_MtIdle
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_RcvDataInd_MtIdle
- 功能描述  : 在MT_IDLE 处理CAS发送的CSCH_DATA_IND或者DSCH_DATA_IND
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月31日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_RcvDataInd_MtIdle
 (
     VOS_UINT32                          ulEventType,
@@ -684,21 +545,7 @@ VOS_UINT32 TAF_XSMS_RcvDataInd_MtIdle
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_RcvCallConnCnf_MtWaitXccCallConnCnf
- 功能描述  : WAITING_XCC_CALL_CONN_STATE状态下处理XCC的XCC_CSMS_CALL_CONN_IND
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_ERR/VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月31日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_RcvCallConnCnf_MtWaitXccCallConnCnf
 (
     VOS_UINT32                          ulEventType,
@@ -735,21 +582,7 @@ VOS_UINT32 TAF_XSMS_RcvCallConnCnf_MtWaitXccCallConnCnf
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_RcvCallConnTimeout_MtWaitXccCallConnCnfs
- 功能描述  : TI_TAF_XSMS_TIMER_MT_WAIT_XCC_SO_IND定时器超时处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月31日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_RcvCallConnTimeout_MtWaitXccCallConnCnf
 (
     VOS_UINT32                          ulEventType,
@@ -762,21 +595,7 @@ VOS_UINT32 TAF_XSMS_RcvCallConnTimeout_MtWaitXccCallConnCnf
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_RcvSoInd_MtWaitXccSoInd
- 功能描述  : 在TAF_XSMS_MT_WAITING_XCC_SO_IND_STATE状态处理ID_XCC_CSMS_SERVICE_CONNECT_IND
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月31日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_RcvSoInd_MtWaitXccSoInd
 (
     VOS_UINT32                          ulEventType,
@@ -812,21 +631,7 @@ VOS_UINT32 TAF_XSMS_RcvSoInd_MtWaitXccSoInd
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_RcvSoIndTimeout_MtWaitXccSoInd
- 功能描述  : TI_TAF_XSMS_TIMER_MT_WAIT_XCC_SO_IND定时器超时处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月31日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_RcvSoIndTimeout_MtWaitXccSoInd
 (
     VOS_UINT32                          ulEventType,
@@ -839,21 +644,7 @@ VOS_UINT32 TAF_XSMS_RcvSoIndTimeout_MtWaitXccSoInd
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_RcvAnsCallCnf_MtWaitXccAnsCallCnf
- 功能描述  : TAF_XSMS_MT_WAITING_XCC_CALL_CNF_STATE状态下处理XCC_CSMS_ANSWER_CALL_CNF
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月31日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_RcvAnsCallCnf_MtWaitXccAnsCallCnf
 (
     VOS_UINT32                          ulEventType,
@@ -911,21 +702,7 @@ VOS_UINT32 TAF_XSMS_RcvAnsCallCnf_MtWaitXccAnsCallCnf
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_RcvAnsCallCnfTimeout_MtWaitXccAnsCallCnf
- 功能描述  : TI_TAF_XSMS_TIMER_MT_WAIT_XCC_CNF定时器超时处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月31日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_RcvAnsCallCnfTimeout_MtWaitXccAnsCallCnf
 (
     VOS_UINT32                          ulEventType,
@@ -938,21 +715,7 @@ VOS_UINT32 TAF_XSMS_RcvAnsCallCnfTimeout_MtWaitXccAnsCallCnf
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_RcvDschDataInd_MtWaitCasDschDataInd
- 功能描述  : 在TAF_XSMS_MT_WAITING_DSCH_DATA_IND_STATE状态下处理CAS发送的DSCH_DATA_IND
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月31日
-    作    者   : l00208516
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_RcvDschDataInd_MtWaitCasDschDataInd
 (
     VOS_UINT32                          ulEventType,
@@ -975,21 +738,7 @@ VOS_UINT32 TAF_XSMS_RcvDschDataInd_MtWaitCasDschDataInd
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_RcvDschDataIndTimeout_MtWaitCasDschDataInd
- 功能描述  : TI_TAF_XSMS_TIMER_MT_WAIT_DATA_IND超时处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月31日
-    作    者   : l00208516
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_RcvDschDataIndTimeout_MtWaitCasDschDataInd
 (
     VOS_UINT32                          ulEventType,
@@ -1002,21 +751,7 @@ VOS_UINT32 TAF_XSMS_RcvDschDataIndTimeout_MtWaitCasDschDataInd
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_RcvWriteUimCnf_MtWaitWriteUimCnf
- 功能描述  : PRL更新短信写卡结果处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_ERR/VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月31日
-    作    者   : l00208516
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_RcvWriteUimCnf_MtWaitWriteUimCnf
 (
     VOS_UINT32                          ulEventType,
@@ -1055,21 +790,7 @@ VOS_UINT32 TAF_XSMS_RcvWriteUimCnf_MtWaitWriteUimCnf
     return VOS_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_RcvWriteUimCnfTimeout_MtWaitWriteUimCnf
- 功能描述  : PRL更新短信写卡超时处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月1日
-    作    者   : l00208516
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_RcvWriteUimCnfTimeout_MtWaitWriteUimCnf
 (
     VOS_UINT32                          ulEventType,
@@ -1082,21 +803,7 @@ VOS_UINT32 TAF_XSMS_RcvWriteUimCnfTimeout_MtWaitWriteUimCnf
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_RcvReadUimCnf_MtWaitReadUimCnf
- 功能描述  : 读取PRL更新短信结果处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_OK/VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月1日
-    作    者   : l00208516
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_RcvReadUimCnf_MtWaitReadUimCnf
 (
     VOS_UINT32                          ulEventType,
@@ -1147,22 +854,7 @@ VOS_UINT32 TAF_XSMS_RcvReadUimCnf_MtWaitReadUimCnf
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_RcvReadUimCnfTimeout_MtWaitReadUimCnf
- 功能描述  : 读取PRL更新短信结果超时处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月1日
-    作    者   : l00208516
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_RcvReadUimCnfTimeout_MtWaitReadUimCnf
 (
     VOS_UINT32                          ulEventType,
@@ -1175,21 +867,7 @@ VOS_UINT32 TAF_XSMS_RcvReadUimCnfTimeout_MtWaitReadUimCnf
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_RcvDschDataCnf_MtWaitCasDataCnf
- 功能描述  : traffic channel接收到CAS的L2 ACK处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月1日
-    作    者   : l00208516
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_RcvDschDataCnf_MtWaitCasDataCnf
 (
     VOS_UINT32                          ulEventType,
@@ -1228,22 +906,7 @@ VOS_UINT32 TAF_XSMS_RcvDschDataCnf_MtWaitCasDataCnf
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_RcvCschDataCnf_MtWaitCasDataCnf
- 功能描述  : Access channel接收到CAS的L2 ACK处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月31日
-    作    者   : l00208516
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_RcvCschDataCnf_MtWaitCasDataCnf
 (
     VOS_UINT32                          ulEventType,
@@ -1280,22 +943,7 @@ VOS_UINT32 TAF_XSMS_RcvCschDataCnf_MtWaitCasDataCnf
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_RcvCasCnfTimeout_MtWaitCasDataCnf
- 功能描述  : 等待CAS的L2 ACK超时
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月31日
-    作    者   : l00208516
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_RcvCasCnfTimeout_MtWaitCasDataCnf
 (
     VOS_UINT32                          ulEventType,
@@ -1318,22 +966,7 @@ VOS_UINT32 TAF_XSMS_RcvCasCnfTimeout_MtWaitCasDataCnf
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_RcvEndCallCnf_MtWaitEndCallCnf
- 功能描述  : 等待拆信道的结果
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月31日
-    作    者   : l00208516
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_RcvEndCallCnf_MtWaitEndCallCnf
 (
     VOS_UINT32                          ulEventType,
@@ -1349,22 +982,7 @@ VOS_UINT32 TAF_XSMS_RcvEndCallCnf_MtWaitEndCallCnf
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_RcvEndCallCnfTimeout_MtWaitEndCallCnf
- 功能描述  : 等待拆信道的结果超时
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月31日
-    作    者   : l00208516
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_RcvEndCallCnfTimeout_MtWaitEndCallCnf
 (
     VOS_UINT32                          ulEventType,
@@ -1377,20 +995,7 @@ VOS_UINT32 TAF_XSMS_RcvEndCallCnfTimeout_MtWaitEndCallCnf
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_MtEndcallReq
- 功能描述  : 拆信道
- 输入参数  : enEndReason:呼叫挂断原因
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月3日
-    作    者   : l00208516
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XSMS_MtEndcallReq(VOS_UINT8 enEndReason)
 {
     TAF_XSMS_MSG_MT_REC_STRU           *pstMtRec;
@@ -1419,21 +1024,7 @@ VOS_VOID TAF_XSMS_MtEndcallReq(VOS_UINT8 enEndReason)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_RcvMtLinkAbort
- 功能描述  : 收到接入层链路ABORT的消息的处理函数
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月3日
-    作    者   : l00208516
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_RcvMtLinkAbort
 (
     VOS_UINT32                          ulEventType,
@@ -1447,20 +1038,7 @@ VOS_UINT32 TAF_XSMS_RcvMtLinkAbort
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_MtAgpsSmsHandle
- 功能描述  : 收到网侧发给AGPS消息的处理函数
- 输入参数  : pstMessage: 短信的结构体
- 输出参数  : 无
- 返 回 值  : VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月16日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_MtAgpsSmsHandle(
     TAF_XSMS_MESSAGE_STRU              *pstMessage
 )
@@ -1495,20 +1073,7 @@ VOS_UINT32 TAF_XSMS_MtAgpsSmsHandle(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_MtDealCatptMsgProc
- 功能描述  : 接入层数据上报的处理函数
- 输入参数  : pstDataInd:上报的数据
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月3日
-    作    者   : l00208516
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XSMS_MtDealCatptMsgProc(TAF_XSMS_CAS_DATA_IND_MSG_STRU *pstDataInd)
 {
     TAF_XSMS_MSG_MT_REC_STRU           *pstMtRec;
@@ -1559,21 +1124,7 @@ VOS_VOID TAF_XSMS_MtDealCatptMsgProc(TAF_XSMS_CAS_DATA_IND_MSG_STRU *pstDataInd)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_RcvMtLinkAbort_MtWaitCasCnf
- 功能描述  : 收到接入层链路ABORT的消息的处理函数
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月3日
-    作    者   : l00208516
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_RcvMtLinkAbort_MtWaitCasCnf
 (
     VOS_UINT32                          ulEventType,
@@ -1591,20 +1142,7 @@ VOS_UINT32 TAF_XSMS_RcvMtLinkAbort_MtWaitCasCnf
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_EncodeTlAckInMtRec
- 功能描述  : 将TL_ACK放在MT_REC中
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月3日
-    作    者   : l00208516
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_EncodeTlAckInMtRec
 (
     TAF_XSMS_TL_CAUSE_CODE_ENUM8        enCauseCode,
@@ -1644,20 +1182,7 @@ VOS_UINT32 TAF_XSMS_EncodeTlAckInMtRec
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_EncodeTlAckInMtRec
- 功能描述  : 将TL_ACK放在MT_REC中
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月3日
-    作    者   : l00208516
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_SndCasTlAckAccordingCurUeState
 (
     VOS_VOID
@@ -1725,20 +1250,7 @@ VOS_UINT32 TAF_XSMS_SndCasTlAckAccordingCurUeState
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_MtXcallKmcSmsHandle
- 功能描述  : 收到网侧发给XCALL KMC消息的处理函数
- 输入参数  : pstMessage: 短信的结构体
- 输出参数  : 无
- 返 回 值  : VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月16日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_MtXcallKmcSmsHandle(
     TAF_XSMS_MESSAGE_STRU              *pstMessage
 )

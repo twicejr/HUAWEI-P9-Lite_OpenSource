@@ -1,23 +1,4 @@
-/*************************************************************************
-*   版权所有(C) 1987-2009, 深圳华为技术有限公司.
-*
-*   文 件 名 :  BSP_CLK.c
-*
-*   作    者 :  liumengcun
-*
-*   描    述 :  本文件命名为"CLK_UsrTimer.c", 实现用户时钟初始化,挂接,开启,关闭等功能
-*
-*   修改记录 :  2009年3月5日  v1.00  liumengcun  创建
-*               2009年5月19日 v1.00  liumengcun  修改
-*   BJ9D00787:【ST BSP CLOCK】用户单次TIMER启动后依次去使能、使能TIMER，启动周期TIMER
-*              的处理不符合预期，并且处理的驱动代码中发生了除零运算
-*   BJ9D00699: 用户时钟BSP_USRCLK_TimerMilliSecStart()设置定时器超时的毫秒值小于系统
-*              最小值没有返回错误
-*   BJ9D00652: 设置单次TIMER为允许的最小值，发现偶尔会有系统挂死的现象
-*				2009年5月19日 v1.00  liumengcun  修改
-*	BJ9D00953:启动一个周期timer，然后调用BSP_USRCLK_TimerStop（该接口只为one shot
-*             timer提供），发现周期timer被停掉了
-*************************************************************************/
+
 #include "copyright_wrs.h"
 #include "vxWorks.h"
 #include "logLib.h"

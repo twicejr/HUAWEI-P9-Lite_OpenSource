@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafApsProcNvim.c
-  版 本 号   : 初稿
-  作    者   : o00132663
-  生成日期   : 2011年12月15日
-  最近修改   :
-  功能描述   : 处理NVIM读取相关函数
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年12月15日
-    作    者   : o00132663
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -49,29 +32,7 @@ extern "C" {
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ReadDsFlowInfoFromNv
- 功能描述  : 从NV中读取流量统计相关信息
- 输入参数  : pstApsDsFlowCtx  - APS流量统计上下文指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月15日
-    作    者   : 欧阳飞 00132663
-    修改内容   : 新生成函数
-  2.日    期   : 2012年5月30日
-    作    者   : z60575
-    修改内容   : DTS2012052907939,流量写NV时间间隔根据NV配置
-  3.日    期   : 2012年11月09日
-    作    者   : l00198894
-    修改内容   : Probe路测工具对接项目修改AT端口流量上报标志位
-  4.日    期   : 2013年4月7日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核及mma和mmc接口调整
-*****************************************************************************/
 VOS_VOID  TAF_APS_ReadDsFlowInfoFromNv(
     TAF_APS_DSFLOW_STATS_CTX_STRU      *pstApsDsFlowCtx
 )
@@ -90,7 +51,6 @@ VOS_VOID  TAF_APS_ReadDsFlowInfoFromNv(
         TAF_ERROR_LOG(WUEPS_PID_TAF, "TAF_APS_ReadDsFlowCfgFromNv(): NV_Read en_NV_Item_DSFLOW_STATS_CTRL Error");
 
         /* 流量上报和保存NV控制均置为FALSE */
-        /* Modified by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-7, begin */
         pstApsDsFlowCtx->ucDsFlowSave2NvFlg     = VOS_FALSE;
         pstApsDsFlowCtx->ucDsFlowSavePeriod     = TI_TAF_APS_DEFAULT_DSFLOW_WRITE_NV_LEN;
         pstApsDsFlowCtx->ucDsFlowATRptPeriod    = TAF_APS_DSFLOW_AT_REPORT_PERIOD;
@@ -107,7 +67,6 @@ VOS_VOID  TAF_APS_ReadDsFlowInfoFromNv(
 
     /* 更新到SDC全局变量中 */
     TAF_SDC_UpdateRptCmdStatus(TAF_SDC_RPT_CMD_DSFLOWRPT, (VOS_UINT32)stApsDsflowCtrlNv.ucDsFlowStatsRptCtrl);
-	/* Modified by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-7, end */
 
 
     /* 保存历史流量特性使能 */
@@ -146,20 +105,7 @@ VOS_VOID  TAF_APS_ReadDsFlowInfoFromNv(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ClearDsFlowInfoInNv
- 功能描述  : 清空NV项中的历史流量信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : 欧阳飞 00132663
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  TAF_APS_ClearDsFlowInfoInNv( VOS_VOID )
 {
     TAF_APS_DSFLOW_NV_STRU              stApsDsflowNv;
@@ -176,25 +122,7 @@ VOS_VOID  TAF_APS_ClearDsFlowInfoInNv( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SaveDsFlowInfoToNv
- 功能描述  : 保存历史流量信息到NV中
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : 欧阳飞 00132663
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年5月15日
-    作    者   : A00165503
-    修改内容   : DTS2012051402688: G模下清空流量信息后拨号数传, 时间小于10分
-                 钟, 重启单板时没有将流量信息写入NV
-*****************************************************************************/
 VOS_VOID  TAF_APS_SaveDsFlowInfoToNv( VOS_VOID )
 {
     TAF_APS_DSFLOW_STATS_CTX_STRU      *pstApsDsFlowCtx;
@@ -234,24 +162,7 @@ VOS_VOID  TAF_APS_SaveDsFlowInfoToNv( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ReadPdpActLimitFlgFromNv
- 功能描述  : 从en_NV_Item_PDP_Actving_Limit中读取PDP激活受限标志
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月15日
-    作    者   : M00217266
-    修改内容   : 新生成函数
-
-  2.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-*****************************************************************************/
 VOS_VOID TAF_APS_ReadPdpActLimitFlgFromNv(VOS_VOID)
 {
     TAF_APS_NVIM_PDP_ACT_LIMIT_STRU     stNvPdpActLimit;
@@ -293,23 +204,7 @@ VOS_VOID TAF_APS_ReadPdpActLimitFlgFromNv(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ReadDsflowRateConfigFromNv
- 功能描述  : 从en_NV_Item_Dsflow_Rate_Config中流速配置
- 输入参数  : pstSwitchDdrInfo
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月13日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-  2.日    期   : 2014年05月28日
-    作    者   : m00217266
-    修改内容   : modify for adapt k3 aps profile
-*****************************************************************************/
 VOS_VOID TAF_APS_ReadDsflowRateConfigFromNv(TAF_APS_SWITCH_DDR_RATE_INFO_STRU *pstSwitchDdrInfo)
 {
     TAF_NV_DFS_DSFLOW_RATE_CONFIG_STRU          stRateConfig;
@@ -365,21 +260,7 @@ VOS_VOID TAF_APS_ReadDsflowRateConfigFromNv(TAF_APS_SWITCH_DDR_RATE_INFO_STRU *p
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_Recorrect_ProfileNum
- 功能描述  : 纠正profile中的异常num数量
- 输入参数  : TAF_NV_DFS_DSFLOW_RATE_CONFIG_STRU *pstDfsProfile
-             VOS_UINT32 ulProfileNum
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年05月28日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_APS_Recorrect_ProfileNum(
     TAF_NV_DFS_DSFLOW_RATE_CONFIG_STRU     *pstDfsProfile,
     VOS_UINT32                              ulProfileNum)
@@ -402,20 +283,7 @@ VOS_VOID TAF_APS_Recorrect_ProfileNum(
 
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- 函 数 名  : TAF_APS_ReadPktCdataInactivityTimeLenFromNv
- 功能描述  : 从NV中获取MaxNoDataTimeLen
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年4月21日
-   作    者   : c00299063
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_APS_ReadPktCdataInactivityTimeLenFromNv(VOS_VOID)
 {
     TAF_NVIM_CDATA_GENERIC_CONFIG_STRU   stCdataGenericConfig;
@@ -440,20 +308,7 @@ VOS_VOID TAF_APS_ReadPktCdataInactivityTimeLenFromNv(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_Read1xDataSoCfg
- 功能描述  : 从NV中获取 1x 数传业务中 SO 初始值
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年8月10日
-   作    者   : c00299063
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_APS_Read1xDataSoCfgNvim(VOS_VOID)
 {
     TAF_NVIM_1X_DATA_SO_CFG             st1xDataSoCfg;
@@ -480,21 +335,7 @@ VOS_VOID TAF_APS_Read1xDataSoCfgNvim(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ReadCdataDiscingParaCfgFromNv
- 功能描述  : 从NV中读取断链流程中的参数控制信息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月4日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_ReadCdataDiscingParaCfgFromNv(VOS_VOID)
 {
     NAS_NVIM_CDATA_DISCING_PARA_INFO_STRU   stCdataDiscingPara;
@@ -515,21 +356,7 @@ VOS_VOID TAF_APS_ReadCdataDiscingParaCfgFromNv(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ReadPppAuthInfoFromCardNv
- 功能描述  : 读取PPP鉴权过程中用户名密码的数据是否来自ap的nv项
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月26日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_ReadPppAuthInfoFromCardNv( VOS_VOID )
 {
     NAS_NVIM_PPP_AUTH_INFO_FROM_CARD_STRU                   stIsPppAuthGetFromCard;
@@ -553,21 +380,7 @@ VOS_VOID TAF_APS_ReadPppAuthInfoFromCardNv( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ReadCdataEhrpdAutoAttachFlagFromNv
- 功能描述  : 从NV中读取Ehrpd Auto Attach Flag
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月29日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_ReadCdataEhrpdAutoAttachFlagFromNv(VOS_VOID)
 {
     NAS_NVIM_EHRPD_AUTO_ATTACH_CTRL_CFG_STRU      stAutoAttachFlag;
@@ -586,21 +399,7 @@ VOS_VOID TAF_APS_ReadCdataEhrpdAutoAttachFlagFromNv(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ReadCdataUlNdisFilterVaildFlagFromNv
- 功能描述  : CDMA宏打开的时候，从NV读取NDIS Filte过滤配置
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月26日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_ReadCdataUlNdisFilterVaildFlagFromNv(VOS_VOID)
 {
     TAF_NVIM_NDIS_FILTER_ENABLE_FLAG_CFG_STRU               stFilterEnableFlag;
@@ -632,20 +431,7 @@ VOS_VOID TAF_APS_ReadCdataUlNdisFilterVaildFlagFromNv(VOS_VOID)
 #endif
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : TAF_APS_ReadPdnTeardownPolicyNV
- 功能描述  : 读取PDN连接断开策略配置信息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月1日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_APS_ReadPdnTeardownPolicyNV(VOS_VOID)
 {
     TAF_NV_PDN_TEARDOWN_POLICY_STRU     stNvPdnPolicy;

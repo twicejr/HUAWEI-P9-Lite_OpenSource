@@ -1,27 +1,4 @@
-/*******************************************************************************
-*
-*
-*                Copyright 2006, Huawei Technologies Co. Ltd.
-*                            ALL RIGHTS RESERVED
-*
-*-------------------------------------------------------------------------------
-*
-*                              sock_var.h
-*
-*  Project Code: VISP1.5
-*   Module Name: socket4
-*  Date Created: 2000.4.3
-*        Author: chenbin
-*   Description: the macro,struct,function used by application
-*
-*-------------------------------------------------------------------------------
-*  Modification History
-*  DATE        NAME             DESCRIPTION
-*  -----------------------------------------------------------------------------
-*  2000-04-03   chenbin         created
-*  2006-04-27   l(48769)        根据编程规范，对文件进行规范化整理
-*  2007-11-29   w(60786)        Modify for SWID00275 根据检视意见删除bSOCK_DBG相关的冗余代码
-*******************************************************************************/
+
 #ifndef        _SOCK_VAR_H
 #define        _SOCK_VAR_H
 
@@ -118,9 +95,7 @@ extern struct IIF_IP6_TCP6_ComIntFunVtbl        *g_pstSock4TCP6Vtbl;
 
 extern struct IIF_IP4_TCP4_ComIntFunVtbl *g_pstSOCKTCP4FunVtbl; /* Added for SOCKET HA */
 
-/* Modified by likaikun213099, tcp异步消息socket应该默认保持前向兼容, 2014/12/13   问题单号:DTS2014121109801 */
 extern ULONG g_ulSockTcpAsyncComplSwitch;
-/*End of Modified by likaikun213099, 2014/12/13   问题单号:DTS2014121109801 */
 
 #ifdef    __cplusplus
 }

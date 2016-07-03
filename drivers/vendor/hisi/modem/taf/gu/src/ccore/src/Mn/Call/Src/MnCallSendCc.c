@@ -1,27 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : MnCallSendCc.c
-  版 本 号   : 初稿
-  作    者   : 丁庆 49431
-  生成日期   : 2007年9月20日
-  最近修改   : 2007年9月20日
-  功能描述   : 向CC发送MNCC原语
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 创建文件
-  2.日    期   : 2008年6月12日
-    作    者   : h44270
-    修改内容   : modified for AT2D03670
-
-  3.日    期   : 2010年3月2日
-    作    者   : zhoujun /z40661
-    修改内容   : NAS R7协议升级
-******************************************************************************/
 
 
 /*****************************************************************************
@@ -42,13 +19,9 @@
 
 #include "MnCallCtx.h"
 
-/* Added by y00245242 for V3R3C60_eCall项目, 2014-4-21, begin */
 #include "MnCallSendApp.h"
-/* Added by y00245242 for V3R3C60_eCall项目, 2014-4-21, end */
 
-/* Added by wx270776 for OM融合, 2015-6-27, begin */
 #include "TafLog.h"
-/* Added by wx270776 for OM融合, 2015-6-27, end */
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -65,21 +38,7 @@ extern "C" {
 /*****************************************************************************
    2 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : MN_CALL_FillIeBc
- 功能描述  :
- 输入参数  : enCauseVal - 原因值
- 输出参数  : pstCauseIe - 填好的Cause IE
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月14日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL VOS_VOID  MN_CALL_FillIeCause(
     NAS_CC_CAUSE_VALUE_ENUM_U32          enCauseVal,
     NAS_CC_IE_CAUSE_STRU                *pstCauseIe
@@ -100,21 +59,7 @@ LOCAL VOS_VOID  MN_CALL_FillIeCause(
     NAS_IE_SET_LAST_OCTET_OFFSET(pstCauseIe, Octet4);
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_FillIeRepeatInd
- 功能描述  :
- 输入参数  : enCauseVal - 原因值
- 输出参数  : pstRepeatInd - 填好的Cause IE
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月14日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL VOS_VOID  MN_CALL_FillIeRepeatInd(
     MN_CALL_REP_IND_ENUM_U8             enRepeatInd,
     NAS_CC_IE_REPEAT_INDICATOR_STRU     *pstRepeatInd
@@ -135,24 +80,7 @@ LOCAL VOS_VOID  MN_CALL_FillIeRepeatInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_FillIeSupCodecList
- 功能描述  : 填写支持的codec list列表
- 输入参数  : 无
- 输出参数  : pstCodecList - 支持的codec list
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年6月12日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年2月9日
-    作    者   : z40661
-    修改内容   : 从NVIM中获取支持的语音能力
-*****************************************************************************/
 LOCAL VOS_VOID  MN_CALL_FillIeSupCodecList(
     NAS_CC_IE_SUPPORTED_CODEC_LIST_STRU *pstCodecList
 )
@@ -184,21 +112,7 @@ LOCAL VOS_VOID  MN_CALL_FillIeSupCodecList(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_FillIeLlc
- 功能描述  :
- 输入参数  : pstLLC1 - IE项LLC
- 输出参数  : pstLLC1 - LLC的值
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月14日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL VOS_VOID  MN_CALL_FillIeLlc(
     NAS_CC_IE_LLC_STRU                  *pstLLC1
 )
@@ -214,24 +128,7 @@ LOCAL VOS_VOID  MN_CALL_FillIeLlc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_FillIeCcCap
- 功能描述  :
- 输入参数  : pstCcCap - call control capability
- 输出参数  : pstCcCap - call control capability赋值
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月14日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2013年04月17日
-    作    者   : l65478
-    修改内容   : DTS2013022007252:SETUP消息中没有包含CC capability
-
-*****************************************************************************/
 LOCAL VOS_VOID  MN_CALL_FillIeCcCap(
     NAS_CC_IE_CC_CAP_STRU               *pstCcCap
 )
@@ -248,21 +145,7 @@ LOCAL VOS_VOID  MN_CALL_FillIeCcCap(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_AllocMnccPrimitive
- 功能描述  : 分配一条MNCC原语消息
- 输入参数  : callId    - 原语中的CallId值
-             enPrimName  - 原语名称
- 输出参数  : ppunParam - 原语内容的存放位置(调用者用来填写原语内容)
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 MsgBlock* MN_CALL_AllocMnccPrimitive(
     VOS_UINT8                           callId,
     MNCC_PRIM_NAME_ENUM_U16             enPrimName,
@@ -324,20 +207,7 @@ MsgBlock* MN_CALL_AllocMnccPrimitive(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_SendMnccPrimitive
- 功能描述  : 发送一条MNCC原语消息
- 输入参数  : pMsg - 指项消息的首地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  MN_CALL_SendMnccPrimitive(MsgBlock * pMsg)
 {
     /*
@@ -346,42 +216,7 @@ VOS_UINT32  MN_CALL_SendMnccPrimitive(MsgBlock * pMsg)
     return PS_SEND_MSG(WUEPS_PID_TAF, pMsg);
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_SendCcSetupReq
- 功能描述  : 发送MNCC_SETUP_REQ原语
- 输入参数  : ucRepeatInd   - Repeat Indicator, 如果pstBc2为空该参数将被忽略
-             pstBc1        - Bear capability 1
-             pstBc2        - Bear capability 2 (可选)
-             pstCallInfo   - 呼叫实体消息
- 输出参数  : 无
- 返 回 值  : VOS_OK - 发送成功, VOS_ERR - 发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年09月18日
-    作    者   : y00213812
-    修改内容   : STK&DCM 项目增加带子地址的呼叫,重构该函数，以MN_CALL_MGMT_STRU
-                 替代原有入参。
-  3.日    期   : 2012年10月29日
-    作    者   : l00198894
-    修改内容   : DTS2012100901666: 修改被叫号码、被叫子地址
-  4.日    期   : 2012年10月29日
-    作    者   : z00161729
-    修改内容   : DTS2012083102536:支持cc呼叫重建
-  5.日    期   : 2013年04月17日
-    作    者   : l65478
-    修改内容   : DTS2013022007252:SETUP消息中没有包含CC capability
-  6.日    期   : 2014年4月22日
-    作    者   : y00245242
-    修改内容   : 为eCall feature增加
-  7.日    期   : 2015年8月13日
-    作    者   : s00217060
-    修改内容   : User_Exp_Improve：增加redial标志
-*****************************************************************************/
 VOS_UINT32  MN_CALL_SendCcSetupReq(
     MN_CALL_REP_IND_ENUM_U8             enRepeatInd,
     const NAS_CC_IE_BC_STRU            *pstBc1,
@@ -510,10 +345,8 @@ VOS_UINT32  MN_CALL_SendCcSetupReq(
         MN_CALL_FillIeCcCap(&pstSetup->stCCCap);
     }
 
-    /* Modified by y00245242 for V3R3C60_eCall项目, 2014-5-15, begin */
     /* 如果支持呼叫重建功能，则缓存setup的消息 */
     if (VOS_TRUE == TAF_CALL_GetRedialSupportFlg(pstCallInfo->stCallInfo.callId))
-    /* Modified by y00245242 for V3R3C60_eCall项目, 2014-5-15, end */
     {
         pstBufferdSetupMsg                        = MN_CALL_GetBufferedMsg();
         pstBufferdSetupMsg->bitOpBufferedSetupMsg = VOS_TRUE;
@@ -534,41 +367,7 @@ VOS_UINT32  MN_CALL_SendCcSetupReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_SendCcEmergSetupReq
- 功能描述  : 发送MNCC_EMERG_SETUP_REQ原语
- 输入参数  : CallId        - 呼叫的ID
-             ucCategory    - 紧急呼叫种类
- 输出参数  : 无
- 返 回 值  : VOS_OK - 发送成功, VOS_ERR - 发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-
-  2.日    期   : 2010年5月22日
-    作    者   : o00132663
-    修改内容   : AT2D19371,紧急呼过程中G->W切换掉话。
-  3.日    期   : 2012年02月24日
-    作    者   : 傅映君/f62575
-    修改内容   : C50_IPC Project    为适配FDN业务删除了输入参数const NAS_CC_IE_BC_STRU             *pstBc
-
-  4.日    期   : 2012年9月25日
-    作    者   : A00165503
-    修改内容   : STK&DCM项目: CS域错误码上报
-  5.日    期   : 2012年10月29日
-    作    者   : z00161729
-    修改内容   : DTS2012083102536:支持cc呼叫重建
-  6.日    期   : 2012年12月13日
-    作    者   : l65478
-    修改内容   : DTS2012120706360:没有包含supported codec，GCF测试失败
-  7.日    期   : 2015年8月15日
-    作    者   : s00217060
-    修改内容   : User_Exp_Improve修改：新增redial标志
-*****************************************************************************/
 VOS_UINT32  MN_CALL_SendCcEmergSetupReq(
     MN_CALL_ID_T                        callId,
     VOS_UINT8                          *pucCategory
@@ -638,9 +437,7 @@ VOS_UINT32  MN_CALL_SendCcEmergSetupReq(
     MN_CALL_FillIeSupCodecList(&pstEmerg->stCodecList);
 
     /* 如果支持呼叫重建功能，则缓存setup的消息 */
-    /* Modified by y00245242 for V3R3C60_eCall项目, 2014-5-15, begin */
     if (VOS_TRUE == TAF_CALL_GetRedialSupportFlg(callId))
-    /* Modified by y00245242 for V3R3C60_eCall项目, 2014-5-15, end */
     {
         pstBufferdSetupMsg                        = MN_CALL_GetBufferedMsg();
         pstBufferdSetupMsg->bitOpBufferedSetupMsg = VOS_TRUE;
@@ -662,27 +459,7 @@ VOS_UINT32  MN_CALL_SendCcEmergSetupReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_SendCcCallConfReq
- 功能描述  : 发送MNCC_CALL_CONF_REQ原语
- 输入参数  : CallId        - 呼叫的ID
-             ucRepeatInd   - Repeat Indicator, 如果pstBc2为空该参数将被忽略
-             pstBc1        - Bear capability 1 (可选)
-             pstBc2        - Bear capability 2 (可选), 如果pstBc1为空该参数将被忽略
-             Cause         - 原因值
- 输出参数  : 无
- 返 回 值  : VOS_OK - 发送成功, VOS_ERR - 发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2008年6月12日
-    作    者   : h44270
-    修改内容   : modified for AT2D03670
-*****************************************************************************/
 VOS_UINT32  MN_CALL_SendCcCallConfReq(
     MN_CALL_ID_T                        callId,
     MN_CALL_REP_IND_ENUM_U8             enRepeatInd,
@@ -753,24 +530,7 @@ VOS_UINT32  MN_CALL_SendCcCallConfReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_SendCcDiscReq
- 功能描述  : 发送MNCC_DISC_REQ原语(不携带Facility)
- 输入参数  : CallId        - 呼叫的ID
-             Cause         - 挂断的原因
- 输出参数  : 无
- 返 回 值  : VOS_OK - 发送成功, VOS_ERR - 发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年09月20日
-    作    者   : f62575
-    修改内容   : STK&DCM 项目新增函数
-*****************************************************************************/
 VOS_UINT32  MN_CALL_SendCcDiscReq(
     MN_CALL_ID_T                        callId,
     MN_CALL_CC_CAUSE_ENUM_U8            enCause
@@ -825,27 +585,7 @@ VOS_UINT32  MN_CALL_SendCcDiscReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_SendCcRelReq
- 功能描述  : 发送MNCC_REL_REQ原语(不携带Facility)
- 输入参数  : CallId        - 呼叫的ID
-             Cause         - 挂断的原因
- 输出参数  : 无
- 返 回 值  : VOS_OK - 发送成功, VOS_ERR - 发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年09月20日
-    作    者   : f62575
-    修改内容   : STK&DCM 项目新增函数
-  3.日    期   : 2013年01月29日
-    作    者   : Y00213812
-    修改内容   : DTS2013012909872,记录CALL挂断的方向
-*****************************************************************************/
 VOS_UINT32  MN_CALL_SendCcRelReq(
     MN_CALL_ID_T                        callId,
     MN_CALL_CC_CAUSE_ENUM_U8            enCause
@@ -902,27 +642,7 @@ VOS_UINT32  MN_CALL_SendCcRelReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_SendCcRejReq
- 功能描述  : 发送MNCC_REJ_REQ原语
- 输入参数  : CallId        - 呼叫的ID
-             Cause         - 拒绝的原因
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年09月20日
-    作    者   : f62575
-    修改内容   : STK&DCM 项目新增函数
-  3.日    期   : 2013年01月29日
-    作    者   : Y00213812
-    修改内容   : DTS2013012909872,记录CALL挂断的方向
-*****************************************************************************/
 VOS_VOID  MN_CALL_SendCcRejReq(
     MN_CALL_ID_T                        callId,
     MN_CALL_CC_CAUSE_ENUM_U8            enCause
@@ -980,29 +700,7 @@ VOS_VOID  MN_CALL_SendCcRejReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_SendCcSetupRsp
- 功能描述  : 发送MNCC_SETUP_RES原语
- 输入参数  : CallId - 呼叫的ID
- 输出参数  : 无
- 返 回 值  : VOS_OK - 发送成功, VOS_ERR - 发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2010年5月8日
-    作    者   : z00161729
-    修改内容   : 修改问题单AT2D19265:增加清除f_stWaitSendAlert.bWaitSendAlertStatus
-  3.日    期   : 2010年7月21日
-    作    者   : h44270
-    修改内容   : 修改问题单DTS2010062601120
-  4.日    期   : 2012年09月20日
-    作    者   : f62575
-    修改内容   : STK&DCM 项目
-*****************************************************************************/
 VOS_UINT32  MN_CALL_SendCcSetupRsp(
     MN_CALL_ID_T                        callId
 )
@@ -1049,20 +747,7 @@ VOS_UINT32  MN_CALL_SendCcSetupRsp(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_SendCcHoldReq
- 功能描述  : 发送MNCC_HOLD_REQ原语
- 输入参数  : CallId - 呼叫的ID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID MN_CALL_SendCcHoldReq(
     MN_CALL_ID_T                        callId
 )
@@ -1103,20 +788,7 @@ VOS_VOID MN_CALL_SendCcHoldReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_SendCcRetrieveReq
- 功能描述  : 发送MNCC_RETRIEVE_REQ原语
- 输入参数  : CallId - 呼叫的ID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  MN_CALL_SendCcRetrieveReq(
     MN_CALL_ID_T                        callId
 )
@@ -1157,25 +829,7 @@ VOS_VOID  MN_CALL_SendCcRetrieveReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_SendCcSimpleFacility
- 功能描述  : 发送简单的MNCC_FACILITY_REQ原语(除Operation Code之外没有其它参数)
- 输入参数  : CallId - 呼叫的ID
-             OpCode - Operation Code
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2014年8月7日
-    作    者   : w00242748
-    修改内容   : DTS2014080700610:不带版本号的话，兼容性差的网络会直接将ECT发送的
-                 facility直接给拒绝
-*****************************************************************************/
 VOS_VOID  MN_CALL_SendCcSimpleFacility(
     MN_CALL_ID_T                        callId,
     MN_CALL_SS_OPERATION_CODE_T         opCode
@@ -1263,21 +917,7 @@ VOS_VOID  MN_CALL_SendCcSimpleFacility(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_SendCcStartDtmfReq
- 功能描述  : 发送MNCC_START_DTMF_REQ原语
- 输入参数  : CallId - 呼叫的ID
-             ucKey  - 要发送的DTMF按键
- 输出参数  : 无
- 返 回 值  : VOS_OK - 发送成功, VOS_ERR - 发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  MN_CALL_SendCcStartDtmfReq(
     MN_CALL_ID_T                        callId,
     VOS_INT8                            cKey
@@ -1327,20 +967,7 @@ VOS_UINT32  MN_CALL_SendCcStartDtmfReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_SendCcStopDtmfReq
- 功能描述  : 发送MNCC_STOP_DTMF_REQ原语
- 输入参数  : CallId - 呼叫的ID
- 输出参数  : 无
- 返 回 值  : VOS_OK - 发送成功, VOS_ERR - 发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  MN_CALL_SendCcStopDtmfReq(
     MN_CALL_ID_T                        callId
 )
@@ -1367,20 +994,7 @@ VOS_UINT32  MN_CALL_SendCcStopDtmfReq(
 
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_SendCcAlertReq
- 功能描述  : 发送MNCC_ALERT_REQ原语
- 输入参数  : CallId        - 呼叫的ID
- 输出参数  : 无
- 返 回 值  : VOS_OK - 发送成功, VOS_ERR - 发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  MN_CALL_SendCcAlertReq(
     MN_CALL_ID_T                        callId
 )
@@ -1409,20 +1023,7 @@ VOS_UINT32  MN_CALL_SendCcAlertReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_SendCcActCcbsReq
- 功能描述  : 发送MNCC_REL_REQ原语, 其中携带激活CCBS业务的Facility IE
- 输入参数  : CallId - 呼叫的ID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009-12-25
-    作    者   : z00161729
-    修改内容   :新生成函数
-*****************************************************************************/
 VOS_VOID  MN_CALL_SendCcActCcbsReq(
     MN_CALL_ID_T                        callId
 )
@@ -1485,24 +1086,7 @@ VOS_VOID  MN_CALL_SendCcActCcbsReq(
        return;
 
 }
-/*****************************************************************************
- 函 数 名  : MN_CALL_SendCcEstCnfReq
- 功能描述  : 发送MNCC_CC_EST_CNF_REQ原语
- 输入参数  : CallId        - 呼叫的ID
-             ucRepeatInd   - Repeat Indicator, 如果pstBc2为空该参数将被忽略
-             pstBc1        - Bear capability 1 (可选)
-             pstBc2        - Bear capability 2 (可选), 如果pstBc1为空该参数将被忽略
-             Cause         - 原因值
- 输出参数  : 无
- 返 回 值  : VOS_OK - 发送成功, VOS_ERR - 发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009-12-25
-    作    者   : z00161729
-    修改内容   :新生成函数
-*****************************************************************************/
 VOS_UINT32  MN_CALL_SendCcEstCnfReq(
     MN_CALL_ID_T                        callId,
     MN_CALL_REP_IND_ENUM_U8             enRepeatInd,
@@ -1553,21 +1137,7 @@ VOS_UINT32  MN_CALL_SendCcEstCnfReq(
 
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_SendCcbsSetupReq
- 功能描述  : 发送MNCC_SETUP_REQ原语
- 输入参数  : CallId        - 呼叫的ID
- 输出参数  : 无
- 返 回 值  : VOS_OK - 发送成功
-             VOS_ERR - 发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009-12-25
-    作    者   : z00161729
-    修改内容   :新生成函数
-*****************************************************************************/
 VOS_UINT32  MN_CALL_SendCcbsSetupReq(
     MN_CALL_ID_T                        callId
 )
@@ -1596,21 +1166,7 @@ VOS_UINT32  MN_CALL_SendCcbsSetupReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_SendCcDeflectFacility
- 功能描述  : 发送MNCC_DISC_REQ原语, 其中携带激活呼叫偏转业务的Facility IE
- 输入参数  : CallId      - 呼叫的ID
-             pstRedirNum - 偏转号码
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID MN_CALL_SendCcDeflectFacility(
     MN_CALL_ID_T                        callId,
     const MN_CALL_BCD_NUM_STRU          *pstRedirNum
@@ -1674,25 +1230,7 @@ VOS_VOID MN_CALL_SendCcDeflectFacility(
 
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_SendCcBufferedSetupReq
- 功能描述  : 呼叫重建发送缓存的setup消息
- 输入参数  : pstBufferdSetupMsg - 缓存的setup消息
- 输出参数  : 无
- 返 回 值  : VOS_OK - 发送成功
-             VOS_ERR - 发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月29日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2015年8月13日
-    作    者   : s00217060
-    修改内容   : User_Exp_Improve修改：增加redial标志
-
-*****************************************************************************/
 VOS_UINT32  MN_CALL_SendCcBufferedSetupReq(
     MNCC_REQ_PRIM_MSG_STRU             *pstBufferdSetupMsg
 )
@@ -1724,25 +1262,7 @@ VOS_UINT32  MN_CALL_SendCcBufferedSetupReq(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_SendCcBufferedEmgSetupReq
- 功能描述  : 呼叫重建发送缓存的紧急呼叫的setup消息
- 输入参数  : pstBufferdSetupMsg - 缓存的紧急呼叫的setup消息
- 输出参数  : 无
- 返 回 值  : VOS_OK - 发送成功
-             VOS_ERR - 发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月29日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2015年8月15日
-    作    者   : s00217060
-    修改内容   : User_Exp_Improve修改：新增redial标志
-
-*****************************************************************************/
 VOS_UINT32  MN_CALL_SendCcBufferedEmgSetupReq(
     MNCC_REQ_PRIM_MSG_STRU             *pstBufferdEmgSetupMsg
 )
@@ -1777,22 +1297,7 @@ VOS_UINT32  MN_CALL_SendCcBufferedEmgSetupReq(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_ProcCallStatusFail
- 功能描述  : 电话挂断时通知底层呼叫建立失败
- 输入参数  : VOS_UINT8                           ucCallId
-             MN_CALL_STATE_ENUM_U8               enCallState
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月21日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_CALL_ProcCallStatusFail(
     VOS_UINT8                           ucCallId,
     MN_CALL_STATE_ENUM_U8               enCallState
@@ -1810,22 +1315,7 @@ VOS_VOID TAF_CALL_ProcCallStatusFail(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_SendCcCallStatusNty
- 功能描述  : 通知CC呼叫建立状态
- 输入参数  : VOS_UINT8                           ucCallId,
-             MNCC_CALL_STATUS_ENUM_UINT8         enCallStatus
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月14日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_CALL_SendCcCallStatusNty(
     VOS_UINT8                           ucCallId,
     MNCC_CALL_STATUS_ENUM_UINT8         enCallStatus
@@ -1859,24 +1349,8 @@ VOS_VOID TAF_CALL_SendCcCallStatusNty(
     return;
 }
 
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-10, begin */
 #if (FEATURE_ON == FEATURE_IMS)
-/*****************************************************************************
- 函 数 名  : TAF_CALL_SendCcSrvccCallInfoNtf
- 功能描述  : 向CC模块发送MNCC_SRVCC_CALL_INFO_NOTIFY消息
- 输入参数  : pstEntitySta - 呼叫实体信息
-             ucCallNum    - 呼叫实体个数
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月10日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  TAF_CALL_SendCcSrvccCallInfoNtf(
     VOS_UINT8                           ucCallNum,
     MNCC_ENTITY_STATUS_STRU            *pstEntitySta
@@ -1920,7 +1394,6 @@ VOS_VOID  TAF_CALL_SendCcSrvccCallInfoNtf(
     return;
 }
 #endif
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-10, end */
 
 /*lint -restore */
 

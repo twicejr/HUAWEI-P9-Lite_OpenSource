@@ -1,24 +1,4 @@
-/************************************************************************
-*                                                                      *
-*                             Vsncp_encode.c                           *
-*                                                                      *
-*  Project Code:       VRP3.0                                          *
-*  Create Date:        2012/12/15                                      *
-*  Author:             WANGYONG                                        *
-*  Modify Date:                                                        *
-*  Document:                                                           *
-*  Function:           PPP的VSNCP模块属性编码                          *
-*  Others:                                                             *
-*----------------------------------------------------------------------*
-*                                                                      *
-* Copyright 2000-2010 VRP3.0 Team Beijing Institute HuaWei Tech, Inc.  *
-*                     ALL RIGHTS RESERVED                              *
-*                                                                      *
-*----------------------------------------------------------------------*
-*                                                                      *
-*   这个文件定义了VSNCP协议模块的全部接口函数和内部处理函数            *
-*                                                                      *
-************************************************************************/
+
 
 
 
@@ -50,21 +30,7 @@ extern "C" {
 *****************************************************************************/
 /*lint -save -e958 */
 
-/*****************************************************************************
- 函 数 名  : PPP_VSNCP_StrToAPNLabel
- 功能描述  : 将APN字符串转换为label
- 输入参数  : UCHAR *pApnLabel, UCHAR *pApnStr
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月31日
-    作    者   : wangyong 00138171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_VSNCP_StrToAPNLabel(UCHAR *pApnLabel, UCHAR *pApnStr)
 {
     UCHAR ucApnStrLen = 0;
@@ -98,24 +64,7 @@ VOS_UINT32 PPP_VSNCP_StrToAPNLabel(UCHAR *pApnLabel, UCHAR *pApnStr)
 }
 
 
-/*****************************************************************************
- 函 数 名  : PPP_VSNCP_PDNIDEncode
- 功能描述  : PDN ID处理
- 输入参数  : UCHAR *pucPacket,
-             PDN_CONTEXT_S *pstPDNContext
-             VOS_UINT32 *pulLen
-             PDN_PPP_VSNCP_REQ_S *pstVsncpInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月31日
-    作    者   : wangyong 00138171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_VSNCP_PDNIDEncode(UCHAR *pucPacket,
                             PDN_CONTEXT_S *pstPDNContext,
                             VOS_UINT32 *pulLen,
@@ -140,24 +89,7 @@ VOS_UINT32 PPP_VSNCP_PDNIDEncode(UCHAR *pucPacket,
 }
 
 
-/*****************************************************************************
- 函 数 名  : PPP_VSNCP_APNEncode
- 功能描述  : APN处理
- 输入参数  : UCHAR *pucPacket,
-             PDN_CONTEXT_S *pstPDNContext
-             VOS_UINT32 *pulLen
-             PDN_PPP_VSNCP_REQ_S *pstVsncpInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月31日
-    作    者   : wangyong 00138171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_VSNCP_APNEncode(UCHAR *pucPacket,
                           PDN_CONTEXT_S *pstPDNContext,
                           VOS_UINT32 *pulLen,
@@ -202,24 +134,7 @@ VOS_UINT32 PPP_VSNCP_APNEncode(UCHAR *pucPacket,
 
 
 
-/*****************************************************************************
- 函 数 名  : PPP_VSNCP_PDNTypeEncode
- 功能描述  : PDNType处理
- 输入参数  : UCHAR *pucPacket,
-             PDN_CONTEXT_S *pstPDNContext
-             VOS_UINT32 *pulLen
-             PDN_PPP_VSNCP_REQ_S *pstVsncpInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月31日
-    作    者   : wangyong 00138171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_VSNCP_PDNTypeEncode(UCHAR *pucPacket,
                               PDN_CONTEXT_S *pstPDNContext,
                               VOS_UINT32 *pulLen,
@@ -251,24 +166,7 @@ VOS_UINT32 PPP_VSNCP_PDNTypeEncode(UCHAR *pucPacket,
 
 
 
-/*****************************************************************************
- 函 数 名  : PPP_VSNCP_AttachTypeEncode
- 功能描述  : AttachType处理
- 输入参数  : UCHAR *pucPacket,
-             PDN_CONTEXT_S *pstPDNContext
-             VOS_UINT32 *pulLen
-             PDN_PPP_VSNCP_REQ_S *pstVsncpInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月31日
-    作    者   : wangyong 00138171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_VSNCP_AttachTypeEncode(UCHAR *pucPacket,
                                  PDN_CONTEXT_S *pstPDNContext,
                                  VOS_UINT32 *pulLen,
@@ -293,24 +191,7 @@ VOS_UINT32 PPP_VSNCP_AttachTypeEncode(UCHAR *pucPacket,
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_VSNCP_PDNAddressEncode
- 功能描述  : PDNAddress处理
- 输入参数  : UCHAR *pucPacket,
-             PDN_CONTEXT_S *pstPDNContext
-             VOS_UINT32 *pulLen
-             PDN_PPP_VSNCP_REQ_S *pstVsncpInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月31日
-    作    者   : wangyong 00138171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_VSNCP_PDNAddressEncode(UCHAR *pucPacket,
                                  PDN_CONTEXT_S *pstPDNContext,
                                  VOS_UINT32 *pulLen,
@@ -367,24 +248,7 @@ VOS_UINT32 PPP_VSNCP_PDNAddressEncode(UCHAR *pucPacket,
 }
 
 
-/*****************************************************************************
- 函 数 名  : PPP_VSNCP_AddressAllocCauseEncode
- 功能描述  : AddressAllocCause处理
- 输入参数  : UCHAR *pucPacket,
-             PDN_CONTEXT_S *pstPDNContext
-             VOS_UINT32 *pulLen
-             PDN_PPP_VSNCP_REQ_S *pstVsncpInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月31日
-    作    者   : wangyong 00138171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_VSNCP_AddressAllocCauseEncode(UCHAR *pucPacket,
                                         PDN_CONTEXT_S *pstPDNContext,
                                         VOS_UINT32 *pulLen,
@@ -414,24 +278,7 @@ VOS_UINT32 PPP_VSNCP_AddressAllocCauseEncode(UCHAR *pucPacket,
 
 
 
-/*****************************************************************************
- 函 数 名  : PPP_VSNCP_PCOEncode
- 功能描述  : PCO处理
- 输入参数  : UCHAR *pucPacket,
-             PDN_CONTEXT_S *pstPDNContext
-             VOS_UINT32 *pulLen
-             PDN_PPP_VSNCP_REQ_S *pstVsncpInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月31日
-    作    者   : wangyong 00138171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_VSNCP_PCOEncode(UCHAR *pucPacket,
                           PDN_CONTEXT_S *pstPDNContext,
                           VOS_UINT32 *pulLen,
@@ -475,24 +322,7 @@ VOS_UINT32 PPP_VSNCP_PCOEncode(UCHAR *pucPacket,
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_VSNCP_IPV4DefRouterEncode
- 功能描述  : IPV4DefRouter处理
- 输入参数  : UCHAR *pucPacket,
-             PDN_CONTEXT_S *pstPDNContext
-             VOS_UINT32 *pulLen
-             PDN_PPP_VSNCP_REQ_S *pstVsncpInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月31日
-    作    者   : wangyong 00138171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_VSNCP_IPV4DefRouterEncode(UCHAR *pucPacket,
                                     PDN_CONTEXT_S *pstPDNContext,
                                     VOS_UINT32 *pulLen,
@@ -519,24 +349,7 @@ VOS_UINT32 PPP_VSNCP_IPV4DefRouterEncode(UCHAR *pucPacket,
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_VSNCP_IPV6LinkLocalEncode
- 功能描述  : IPV6LinkLocal处理
- 输入参数  : UCHAR *pucPacket,
-             PDN_CONTEXT_S *pstPDNContext
-             VOS_UINT32 *pulLen
-             PDN_PPP_VSNCP_REQ_S *pstVsncpInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月31日
-    作    者   : wangyong 00138171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_VSNCP_IPV6LinkLocalEncode(UCHAR *pucPacket,
                                     PDN_CONTEXT_S *pstPDNContext,
                                     VOS_UINT32 *pulLen,
@@ -562,21 +375,7 @@ VOS_UINT32 PPP_VSNCP_IPV6LinkLocalEncode(UCHAR *pucPacket,
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_VSNCP_GetAMBRLength
- 功能描述  : 获取APMBR长度
- 输入参数  : VOS_UINT32 ulAMBR
- 输出参数  : 无
- 返 回 值  : UCHAR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月7日
-    作    者   : wangyong 00138171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 UCHAR PPP_VSNCP_GetAMBRLength(VOS_UINT32 ulAMBR)
 {
     VOS_UINT32 ulAmbrKbps = 0;
@@ -617,21 +416,7 @@ UCHAR PPP_VSNCP_GetAMBRLength(VOS_UINT32 ulAMBR)
     return (UCHAR)((UCHAR)(ucAMBRLen * 2) + VSNCP_CODE_ID_LEN);
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_VSNCP_TransAMBR
- 功能描述  : AMBR 转换为 3字节
- 输入参数  : VOS_UINT32 ulAMBR, UCHAR pucAMBR
- 输出参数  : 无
- 返 回 值  : UCHAR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月7日
-    作    者   : wangyong 00138171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 UCHAR PPP_VSNCP_TransAMBR(VOS_UINT32 ulAMBR, UCHAR *pucAMBR)
 {
     UCHAR ucOffset = 0;
@@ -724,24 +509,7 @@ UCHAR PPP_VSNCP_TransAMBR(VOS_UINT32 ulAMBR, UCHAR *pucAMBR)
     return ucAMBRLen;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_VSNCP_AmbrEncode
- 功能描述  : Ambr处理
- 输入参数  : UCHAR *pucPacket,
-             PDN_CONTEXT_S *pstPDNContext
-             VOS_UINT32 *pulLen
-             PDN_PPP_VSNCP_REQ_S *pstVsncpInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月01日
-    作    者   : t00265288
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_VSNCP_AmbrEncode(UCHAR *pucPacket,
                           PDN_CONTEXT_S *pstPDNContext,
                           VOS_UINT32 *pulLen,
@@ -773,24 +541,7 @@ VOS_UINT32 PPP_VSNCP_AmbrEncode(UCHAR *pucPacket,
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_VSNCP_DefAPNIndEncode
- 功能描述  : DefAPNInd处理
- 输入参数  : UCHAR *pucPacket,
-             PDN_CONTEXT_S *pstPDNContext
-             VOS_UINT32 *pulLen
-             PDN_PPP_VSNCP_REQ_S *pstVsncpInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月31日
-    作    者   : wangyong 00138171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_VSNCP_DefAPNIndEncode(UCHAR *pucPacket,
                                 PDN_CONTEXT_S *pstPDNContext,
                                 VOS_UINT32 *pulLen,
@@ -826,21 +577,7 @@ VOS_UINT32 PPP_VSNCP_DefAPNIndEncode(UCHAR *pucPacket,
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_VSNCP_OptionEncodeReg
- 功能描述  : vsncp属性编码函数注册
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月31日
-    作    者   : wangyong 00138171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_VSNCP_OptionEncodeReg(VOS_VOID)
 {
     /* vsncp option编码函数注册 */

@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafXsmsSndAt.c
-  版 本 号   : 初稿
-  作    者   : h00300778
-  生成日期   : 2014年10月31日
-  功能描述   : 1X SMS(Short Message Service) 给AT的回复处理函数
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年10月31日
-    作    者   : h00300778
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -47,21 +32,7 @@ extern "C"{
 *****************************************************************************/
 /*lint -save -e958*/
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_MsgInitInd
- 功能描述  : 1XSMS给AT的短信初始化完成指示上报函数
- 输入参数  : ulTotalNum:短信的总记录数
- 输出参数  : 无
- 返 回 值  : VOS_OK -- 发送成功
-             VOS_ERR -- 发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月1日
-    作    者   : h00300778
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_MsgInitInd(VOS_UINT32 ulTotalNum)
 {
     TAF_XSMS_APP_AT_EVENT_INFO_STRU     stEvent;
@@ -76,23 +47,7 @@ VOS_UINT32 TAF_XSMS_MsgInitInd(VOS_UINT32 ulTotalNum)
     return TAF_XSMS_SmsEventCallBack(TAF_XSMS_APP_MSG_TYPE_INIT_IND, &stEvent);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_MsgSubmitCnf
- 功能描述  : 1XSMS给AT的短信发送结果回复函数
- 输入参数  : usClientId:Client ID
-             ucOpId:Op Id
-             ulRslt:短信的发送结果
- 输出参数  : 无
- 返 回 值  : VOS_OK -- 发送成功
-             VOS_ERR -- 发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月1日
-    作    者   : h00300778
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_MsgSubmitCnf(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucOpId,
@@ -109,23 +64,7 @@ VOS_UINT32 TAF_XSMS_MsgSubmitCnf(
     return TAF_XSMS_SmsEventCallBack(TAF_XSMS_APP_MSG_TYPE_SEND_CNF, &stEvent);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_SetAPFullCnf
- 功能描述  : at 设置当前的AP 存储满回复函数
- 输入参数  : usClientId:Client ID
-             ucOpId:Op Id
-             ulRslt:设置结果
- 输出参数  : 无
- 返 回 值  : VOS_OK -- 发送成功
-             VOS_ERR -- 发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月02日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_SetAPFullCnf(VOS_UINT16 usClientId, VOS_UINT8 ucOpId, VOS_UINT32 ulRslt)
 {
     TAF_XSMS_APP_AT_EVENT_INFO_STRU     stEvent;
@@ -141,24 +80,7 @@ VOS_UINT32 TAF_XSMS_SetAPFullCnf(VOS_UINT16 usClientId, VOS_UINT8 ucOpId, VOS_UI
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_MsgWriteCnf
- 功能描述  : 1XSMS给AT的短信写入结果回复函数
- 输入参数  : usClientId:Client ID
-             ucOpId:Op Id
-             ulRslt:写入操作的结果
-             ulIndex:写入的记录索引号
- 输出参数  : 无
- 返 回 值  : VOS_OK -- 发送成功
-             VOS_ERR -- 发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月1日
-    作    者   : h00300778
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_MsgWriteCnf(VOS_UINT16 usClientId,  VOS_UINT8 ucOpId, VOS_UINT32 ulRslt, VOS_UINT32 ulIndex)
 {
     TAF_XSMS_APP_AT_EVENT_INFO_STRU     stEvent;
@@ -179,23 +101,7 @@ VOS_UINT32 TAF_XSMS_MsgWriteCnf(VOS_UINT16 usClientId,  VOS_UINT8 ucOpId, VOS_UI
     return TAF_XSMS_SmsEventCallBack(TAF_XSMS_APP_MSG_TYPE_WRITE_CNF, &stEvent);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_MsgDeleteCnf
- 功能描述  : 1XSMS给AT的短信删除结果回复函数
- 输入参数  : usClientId:Client ID
-             ucOpId:Op Id
-             ulRslt:删除操作的结果
- 输出参数  : 无
- 返 回 值  : VOS_OK -- 发送成功
-             VOS_ERR -- 发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月1日
-    作    者   : h00300778
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_MsgDeleteCnf(VOS_UINT16 usClientId, VOS_UINT8 ucOpId, VOS_UINT32 ulRslt)
 {
     TAF_XSMS_APP_AT_EVENT_INFO_STRU     stEvent;
@@ -214,21 +120,7 @@ VOS_UINT32 TAF_XSMS_MsgDeleteCnf(VOS_UINT16 usClientId, VOS_UINT8 ucOpId, VOS_UI
     return TAF_XSMS_SmsEventCallBack(TAF_XSMS_APP_MSG_TYPE_DELETE_CNF, &stEvent);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_MsgSubmitFailInd
- 功能描述  : 1XSMS给AT的短信发送成功指示上报函数
- 输入参数  : ulMr:MESSAGE ID
- 输出参数  : 无
- 返 回 值  : VOS_OK -- 发送成功
-             VOS_ERR -- 发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月1日
-    作    者   : h00300778
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_MsgSubmitSuccInd(VOS_UINT32 ulMr)
 {
     TAF_XSMS_APP_AT_EVENT_INFO_STRU     stEvent;
@@ -268,21 +160,7 @@ VOS_UINT32 TAF_XSMS_MsgSubmitSuccInd(VOS_UINT32 ulMr)
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_MsgSubmitFailInd
- 功能描述  : 1XSMS给AT的短信发送失败指示上报函数
- 输入参数  : ulCourceCode:错误原因值
- 输出参数  : 无
- 返 回 值  : VOS_OK -- 发送成功
-             VOS_ERR -- 发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月1日
-    作    者   : h00300778
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_MsgSubmitFailInd(VOS_UINT32 ulCourceCode)
 {
     TAF_XSMS_APP_AT_EVENT_INFO_STRU     stEvent;
@@ -327,21 +205,7 @@ VOS_UINT32 TAF_XSMS_MsgSubmitFailInd(VOS_UINT32 ulCourceCode)
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_MsgUimFullInd
- 功能描述  : 1XSMS给AT的UIM卡满指示上报函数
- 输入参数  : pstDeliveryMsg:收到的短信或短信状态上报
- 输出参数  : 无
- 返 回 值  : VOS_OK -- 发送成功
-             VOS_ERR -- 发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月1日
-    作    者   : h00300778
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_MsgDeliveryInd(TAF_XSMS_MESSAGE_STRU *pstDeliveryMsg)
 {
     TAF_XSMS_APP_AT_EVENT_INFO_STRU     stEvent;
@@ -358,21 +222,7 @@ VOS_UINT32 TAF_XSMS_MsgDeliveryInd(TAF_XSMS_MESSAGE_STRU *pstDeliveryMsg)
     return TAF_XSMS_SmsEventCallBack(TAF_XSMS_APP_MSG_TYPE_RCV_IND, &stEvent);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_MsgUimFullInd
- 功能描述  : 1XSMS给AT的UIM卡满指示上报函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_OK -- 发送成功
-             VOS_ERR -- 发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月1日
-    作    者   : h00300778
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_MsgUimFullInd(VOS_VOID)
 {
     TAF_XSMS_APP_AT_EVENT_INFO_STRU     stEvent;
@@ -386,21 +236,7 @@ VOS_UINT32 TAF_XSMS_MsgUimFullInd(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_MsgEventCallBack
- 功能描述  : 1XSMS给AT的消息发送函数
- 输入参数  : enEventType:事件类型
- 输出参数  : pstEvent:事件内容
- 返 回 值  : VOS_OK -- 发送成功
-             VOS_ERR -- 发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月1日
-    作    者   : h00300778
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_SmsEventCallBack(
     TAF_XSMS_APP_MSG_TYPE_ENUM_UINT32   enEventType,
     TAF_XSMS_APP_AT_EVENT_INFO_STRU    *pstEvent)
@@ -426,22 +262,7 @@ VOS_UINT32 TAF_XSMS_SmsEventCallBack(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_SendStkRsltInd
- 功能描述  : 1XSMS给AT的消息发送函数
- 输入参数  : ulSendRslt:
-             ulCauseCode
- 输出参数  :
- 返 回 值  : VOS_OK -- 发送成功
-             VOS_ERR -- 发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月15日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_SendStkRsltInd(
     VOS_UINT32                          ulSendRslt,
     VOS_UINT32                          ulCauseCode
@@ -468,22 +289,7 @@ VOS_UINT32 TAF_XSMS_SendStkRsltInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_StkMsgSubmitCnf
- 功能描述  : 1XSMS给AT的消息发送函数
- 输入参数  : ulSendRslt:
-             ulCauseCode
- 输出参数  :
- 返 回 值  : VOS_OK -- 发送成功
-             VOS_ERR -- 发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月15日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XSMS_StkMsgSubmitCnf(VOS_UINT32 ulRet)
 {
     XSMS_STK_SEND_SMS_CNF_STRU    *pstSendCnf;
@@ -507,22 +313,7 @@ VOS_VOID TAF_XSMS_StkMsgSubmitCnf(VOS_UINT32 ulRet)
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_SendStkCATPTMsg
- 功能描述  : 1XSMS给AT的消息发送函数
- 输入参数  : ulSendRslt:
-             ulCauseCode
- 输出参数  :
- 返 回 值  : VOS_OK -- 发送成功
-             VOS_ERR -- 发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月15日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XSMS_SendStkCATPTMsg(
     VOS_UINT32                          ulLen,
     VOS_UINT8                          *pucTpdu,
@@ -552,21 +343,7 @@ VOS_VOID TAF_XSMS_SendStkCATPTMsg(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_SendXpdsGpsSms
- 功能描述  : 1XSMS给xpds的消息发送函数
- 输入参数  : ulLen: 数据长度
-             pucData: 数据首指针
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月15日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XSMS_SendXpdsGpsSms(
     TAF_XSMS_ADDR_STRU                 *pstXsmsAddr,
     VOS_UINT32                          ulLen,

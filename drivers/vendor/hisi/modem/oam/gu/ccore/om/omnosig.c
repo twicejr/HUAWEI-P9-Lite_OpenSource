@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : omnosig.c
-  版 本 号   : 初稿
-  作    者   : 甘兰 47350
-  生成日期   : 2011年9月27日
-  最近修改   :
-  功能描述   :
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年9月27日
-    作    者   : 甘兰 47350
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -364,17 +347,7 @@ VOS_UINT32  g_ulCttfCsdr1xRequireAddr = MAIL_BOX_PROTECTWORD_FST;
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : CBT_WCellSearchFunc
- 功能描述  : W小区搜索数据转换
- 输入参数  : 无
- 输出参数  : 无
 
-  修改历史      :
-  1.日    期   : 2015-05-28
-    作    者   : x00263027
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CBT_WCellSearchFunc(VOS_UINT8 *pucData, VOS_UINT16 usDataLen)
 {
     CELL_SEARCHING_REQ_STRU            *pstCellSearchingReq;
@@ -391,17 +364,7 @@ VOS_UINT32 CBT_WCellSearchFunc(VOS_UINT8 *pucData, VOS_UINT16 usDataLen)
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : CBT_WCampedMainCellFunc
- 功能描述  : W小区驻留数据转换
- 输入参数  : 无
- 输出参数  : 无
 
-  修改历史      :
-  1.日    期   : 2015-05-28
-    作    者   : x00263027
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CBT_WCampedMainCellFunc(VOS_UINT8 *pucData, VOS_UINT16 usDataLen)
 {
     RRC_PHY_CAMPED_MAINCELL_REQ_STRU   *pCampedMaincellReq;
@@ -420,17 +383,7 @@ VOS_UINT32 CBT_WCampedMainCellFunc(VOS_UINT8 *pucData, VOS_UINT16 usDataLen)
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : CBT_WRlSetUpDldpchFunc
- 功能描述  : W dldpch数据转换
- 输入参数  : 无
- 输出参数  : 无
 
-  修改历史      :
-  1.日    期   : 2015-05-28
-    作    者   : x00263027
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CBT_WRlSetUpDldpchFunc(VOS_UINT8 *pucData, VOS_UINT16 usDataLen)
 {
     RL_SETUP_DL_REQ_STRU               *pstRlSetupReq;
@@ -454,17 +407,7 @@ VOS_UINT32 CBT_WRlSetUpDldpchFunc(VOS_UINT8 *pucData, VOS_UINT16 usDataLen)
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : CBT_GeRxLevReqFunc
- 功能描述  : Gsm/edge RxLev数据转换
- 输入参数  : 无
- 输出参数  : 无
 
-  修改历史      :
-  1.日    期   : 2015-05-28
-    作    者   : x00263027
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CBT_GeRxLevReqFunc(VOS_UINT8 *pucData, VOS_UINT16 usDataLen)
 {
     EVT_MPH_RXLEV_REQ_STRU             *pEvtRxLevReq;
@@ -480,17 +423,7 @@ VOS_UINT32 CBT_GeRxLevReqFunc(VOS_UINT8 *pucData, VOS_UINT16 usDataLen)
                             | (0xFFF & g_stListmodeCtrl.usRxChan);
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : CBT_GeStartBcchReadingFunc
- 功能描述  : Gsm/edge StartBcchReading数据转换
- 输入参数  : 无
- 输出参数  : 无
 
-  修改历史      :
-  1.日    期   : 2015-05-28
-    作    者   : x00263027
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CBT_GeStartBcchReadingFunc(VOS_UINT8 *pucData, VOS_UINT16 usDataLen)
 {
     MPH_START_BCCH_READING_STRU * pStartBcchReading;
@@ -504,17 +437,7 @@ VOS_UINT32 CBT_GeStartBcchReadingFunc(VOS_UINT8 *pucData, VOS_UINT16 usDataLen)
                                     | (0xFFF & g_stListmodeCtrl.usRxChan);
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : CBT_GeStopBcchReadingFunc
- 功能描述  : Gsm/edge StopBcchReading数据转换
- 输入参数  : 无
- 输出参数  : 无
 
-  修改历史      :
-  1.日    期   : 2015-05-28
-    作    者   : x00263027
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CBT_GeStopBcchReadingFunc(VOS_UINT8 *pucData, VOS_UINT16 usDataLen)
 {
     MPH_STOP_BCCH_READING_STRU * pstStopBcchReading;
@@ -529,17 +452,7 @@ VOS_UINT32 CBT_GeStopBcchReadingFunc(VOS_UINT8 *pucData, VOS_UINT16 usDataLen)
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : CBT_GeImmedAssignReqFunc
- 功能描述  : Gsm/edge ImmedAssign数据转换
- 输入参数  : 无
- 输出参数  : 无
 
-  修改历史      :
-  1.日    期   : 2015-05-28
-    作    者   : x00263027
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CBT_GeImmedAssignReqFunc(VOS_UINT8 *pucData, VOS_UINT16 usDataLen)
 {
     MPH_IMMED_ASSIGN_REQ_STRU *pstImmedAssign;
@@ -553,17 +466,7 @@ VOS_UINT32 CBT_GeImmedAssignReqFunc(VOS_UINT8 *pucData, VOS_UINT16 usDataLen)
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : CBT_GeImmedAssignReqFunc
- 功能描述  : Gsm/edge ChannelAssign数据转换
- 输入参数  : 无
- 输出参数  : 无
 
-  修改历史      :
-  1.日    期   : 2015-05-28
-    作    者   : x00263027
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CBT_GeChannelAssignReqFunc(VOS_UINT8 *pucData, VOS_UINT16 usDataLen)
 {
     MPH_CHANNEL_ASSIGN_REQ_STRU        *pstChannelAssignReq;
@@ -581,17 +484,7 @@ VOS_UINT32 CBT_GeChannelAssignReqFunc(VOS_UINT8 *pucData, VOS_UINT16 usDataLen)
                                                 | (0xFFF & g_stListmodeCtrl.usRxChan);
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : CBT_GeStopDedicatedReqFunc
- 功能描述  : Gsm/edge StopDedicated数据转换
- 输入参数  : 无
- 输出参数  : 无
 
-  修改历史      :
-  1.日    期   : 2015-05-28
-    作    者   : x00263027
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CBT_GeStopDedicatedReqFunc(VOS_UINT8 *pucData, VOS_UINT16 usDataLen)
 {
     MPH_STOP_DEDICATED_REQ_STRU        *pstStopDedicatedReq;
@@ -604,17 +497,7 @@ VOS_UINT32 CBT_GeStopDedicatedReqFunc(VOS_UINT8 *pucData, VOS_UINT16 usDataLen)
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : CBT_GeStopDedicatedReqFunc
- 功能描述  : Gsm/edge SiUpdate数据转换
- 输入参数  : 无
- 输出参数  : 无
 
-  修改历史      :
-  1.日    期   : 2015-05-28
-    作    者   : x00263027
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CBT_GeSiUpdateReqFunc(VOS_UINT8 *pucData, VOS_UINT16 usDataLen)
 {
     MPH_SI_UPDATE_REQ_STRU             *pReq;
@@ -637,17 +520,7 @@ VOS_UINT32 CBT_GeSiUpdateReqFunc(VOS_UINT8 *pucData, VOS_UINT16 usDataLen)
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : CBT_GeDlSetupReqFunc
- 功能描述  : Gsm/edge DlSetup数据转换
- 输入参数  : 无
- 输出参数  : 无
 
-  修改历史      :
-  1.日    期   : 2015-05-28
-    作    者   : x00263027
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CBT_GeDlSetupReqFunc(VOS_UINT8 *pucData, VOS_UINT16 usDataLen)
 {
     VOS_UINT16                          usGammaPcl;
@@ -680,17 +553,7 @@ VOS_UINT32 CBT_GeDlSetupReqFunc(VOS_UINT8 *pucData, VOS_UINT16 usDataLen)
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : CBT_GeDlSetupReqFunc
- 功能描述  : Gsm/edge UlSetup数据转换
- 输入参数  : 无
- 输出参数  : 无
 
-  修改历史      :
-  1.日    期   : 2015-05-28
-    作    者   : x00263027
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CBT_GeUlSetupReqFunc(VOS_UINT8 *pucData, VOS_UINT16 usDataLen)
 {
     VOS_UINT16                          usGammaPcl;
@@ -724,17 +587,7 @@ VOS_UINT32 CBT_GeUlSetupReqFunc(VOS_UINT8 *pucData, VOS_UINT16 usDataLen)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CBT_GetMsgList
- 功能描述  : 通过mode找到需要的消息列表
- 输入参数  : 无
- 输出参数  : 无
 
-  修改历史      :
-  1.日    期   : 2015-05-28
-    作    者   : x00263027
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CBT_GetMsgList(VOS_UINT16 usMode, VOS_UINT32 *pulMsgCount, VOS_UINT32 *pulTraceMsg)
 {
     /*找到对应mode下的消息内容指针*/
@@ -756,17 +609,7 @@ VOS_VOID CBT_GetMsgList(VOS_UINT16 usMode, VOS_UINT32 *pulMsgCount, VOS_UINT32 *
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : CBT_GetActionMsg
- 功能描述  : 通过mode和action找到合适的消息功能列表
- 输入参数  : 无
- 输出参数  : 无
 
-  修改历史      :
-  1.日    期   : 2015-05-28
-    作    者   : x00263027
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CBT_GetActionMsg(VOS_UINT16 usMode, CBT_ACTION_ENUM enAction,
                         VOS_UINT32 *pulMsgCount, VOS_UINT32 *pulFuncMsg)
 {
@@ -889,17 +732,7 @@ VOS_UINT32 CBT_GetListModeMsgID(CBT_UNIFORM_MSG_STRU * pstPcToCbtMsg, VOS_UINT16
     /*lint +e534*/
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : CBT_UpdateMsgListPos
- 功能描述  : 将消息的len 和 pos更新到消息列表中
- 输入参数  : 无
- 输出参数  : 无
 
-  修改历史      :
-  1.日    期   : 2015-05-28
-    作    者   : x00263027
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CBT_UpdateMsgListPos(VOS_UINT16 usMode, VOS_UINT32 ulMsgId, VOS_UINT32 ulLen, VOS_UINT32 ulPos)
 {
     VOS_UINT16                          usIndex;
@@ -994,17 +827,7 @@ VOS_UINT32 CBT_ListModeMsgContext(CBT_UNIFORM_MSG_STRU * pstPcToCbtMsg, VOS_UINT
     CBT_SendResultChannel(pstPcToCbtMsg->stMsgHeader.stModemSsid, pstPcToCbtMsg->stCompMode, usReturnPrimId, VOS_OK);
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : CBT_FindPosInMsgList
- 功能描述  : 通过msgid 在msglist中找到msgid的索引
- 输入参数  : 无
- 输出参数  : 无
 
-  修改历史      :
-  1.日    期   : 2015-05-28
-    作    者   : x00263027
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CBT_FindPosInMsgList(CBT_LIST_MODE_MSG_STRU *pstMsgList, VOS_UINT32 ulMsgCount, VOS_UINT32 ulMsgId)
 {
     VOS_UINT32                          ulMsgIndex = CBT_INDEXNOEXIT;
@@ -1018,17 +841,7 @@ VOS_UINT32 CBT_FindPosInMsgList(CBT_LIST_MODE_MSG_STRU *pstMsgList, VOS_UINT32 u
     }
     return ulMsgIndex;
 }
-/*****************************************************************************
- 函 数 名  : CBT_SendListModeMsg
- 功能描述  : listmode测试，本模块与PHY层测试指令的自动交互
- 输入参数  : 无
- 输出参数  : 无
 
-  修改历史      :
-  1.日    期   : 2015-05-28
-    作    者   : x00263027
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CBT_SendListModeMsg(VOS_UINT16 usMode, CBT_ACTION_ENUM enAction)
 {
     VOS_UINT32                          ulMsgIndex;
@@ -1132,20 +945,7 @@ VOS_UINT32 CBT_SendListModeMsg(VOS_UINT16 usMode, CBT_ACTION_ENUM enAction)
     (VOS_VOID)VOS_TaskUnlock();
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : CBT_WcdmaIlpcCtrl
- 功能描述  : 设置UE的目标功率
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
-  修改历史      :
-  1.日    期   : 2015-05-28
-    作    者   : x00263027
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CBT_WcdmaIlpcCtrl(VOS_UINT32 ulMask, VOS_INT16 sInitTxPower)
 {
     /*CBT_WPHY_PWR_PARA_SET_REQ_STRU      stCbtToWphySetPwr;*/
@@ -1290,17 +1090,7 @@ VOS_UINT32 CBT_QuerySyncStatus(VOS_UINT16 usMode)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CBT_Call
- 功能描述  : 呼叫过程
- 输入参数  : 无
- 输出参数  : 无
 
-  修改历史      :
-  1.日    期   : 2015-05-28
-    作    者   : x00263027
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CBT_Call(VOS_UINT16 usMode)
 {
     if (VOS_OK != CBT_SendListModeMsg(usMode, CBT_ACTION_CALL))
@@ -1317,17 +1107,7 @@ VOS_UINT32 CBT_Call(VOS_UINT16 usMode)
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : CBT_HandOver
- 功能描述  : 信道切换过程
- 输入参数  : 无
- 输出参数  : 无
 
-  修改历史      :
-  1.日    期   : 2015-05-28
-    作    者   : x00263027
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CBT_HandOver(VOS_UINT16 usMode)
 {
     if (CBT_SendListModeMsg(usMode, CBT_ACTION_HANDOVER))
@@ -1344,17 +1124,7 @@ VOS_UINT32 CBT_HandOver(VOS_UINT16 usMode)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CBT_Release
- 功能描述  : 信道释放过程
- 输入参数  : 无
- 输出参数  : 无
 
-  修改历史      :
-  1.日    期   : 2015-05-28
-    作    者   : x00263027
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CBT_Release(VOS_UINT16 usMode)
 {
     /*控制Release，方便定于问题*/
@@ -1374,20 +1144,7 @@ VOS_UINT32 CBT_Release(VOS_UINT16 usMode)
 
     return CBT_SendListModeMsg(usMode, CBT_ACTION_RELEASE);
 }
-/*****************************************************************************
- 函 数 名  : CBT_SetPower
- 功能描述  : 设置UE的目标功率
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
-  修改历史      :
-  1.日    期   : 2015-05-28
-    作    者   : x00263027
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CBT_SetPower(VOS_UINT16 usMode, CBT_LIST_MODE_SEGMENT_STRU *pstSegment)
 {
     if (CBT_DATA_UMTS == usMode)
@@ -1424,20 +1181,7 @@ VOS_UINT32 CBT_SetPower(VOS_UINT16 usMode, CBT_LIST_MODE_SEGMENT_STRU *pstSegmen
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CBT_ListModeOneChan
- 功能描述  : listmode测试，测试一个channel下所有segment的过程
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
-  修改历史      :
-  1.日    期   : 2015-05-28
-    作    者   : x00263027
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CBT_ListModeOneChan(VOS_UINT16 usMode, CBT_LIST_MODE_CHAN_STRU *pstOneChan)
 {
     VOS_UINT32                          ulSegIndex;
@@ -2012,20 +1756,7 @@ VOS_VOID OM_NoSigMsgProc(MsgBlock *pMsg)
 /*lint +e550*/
 /*lint +e830*/
 
-/*****************************************************************************
- 函 数 名  : OM_R99Mailbox_ResetMutexFlag
- 功能描述  : 重新设置Mailbox 互斥标识
- 输入参数  : ulMailboxBufIndex-R99 Mailbox 索引
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011-10-09
-    作    者   : w00184431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID OM_R99MailboxResetMutexFlag(VOS_UINT32  ulMailboxBufIndex)
 {
 
@@ -2063,24 +1794,7 @@ VOS_VOID OM_R99MailboxResetMutexFlag(VOS_UINT32  ulMailboxBufIndex)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : OM_GetR99MailboxIndex
- 功能描述  : 把译码数据邮箱分成0、1两组，每组都包含VITERBI和TURBO译码数据，
-              DSP每次收到译码中断,会先看0号BUFF是否可读，如可读，则获取BUFF index
-              否则，再看1号BUFF是否可读，如可读，则获取BUFF index ;
-              如两块BUFF均不可读，则返回0。
-              同一邮箱中VTB数据的序号与Turbo数据的序号一样, 所以取任1个即可。
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 0:无Buf可读;1,2存在相应的Buf Index可读
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   :
-    作    者   :
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 OM_GetR99MailboxIndex(VOS_VOID)
 {
 
@@ -2159,22 +1873,7 @@ VOS_UINT32 OM_GetR99MailboxIndex(VOS_VOID)
     return ulMailboxIndex;
 }
 
-/*****************************************************************************
- 函 数 名  : HPA_R99Mailbox_Read
- 功能描述  : 将 R99 Mailbox 数据读入到指定缓存
- 输入参数  :  pucDataIndBuf,-保存邮箱数据指针
-              ulMailboxBufIndex-邮箱索引
-              pucDataIndBuf：保存邮箱数据指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011-10-09
-    作    者   : w00184431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 OM_R99MailboxRead(VOS_UINT8 *pucDataIndBuf,
                                         VOS_UINT16 *pusDataLen,
                                         VOS_UINT32  ulMailboxBufIndex)
@@ -2210,17 +1909,7 @@ VOS_UINT32 OM_R99MailboxRead(VOS_UINT8 *pucDataIndBuf,
 
     return  VOS_FALSE;
 }
-/*****************************************************************************
- 函 数 名  : CBT_WcdmaReportFrames
- 功能描述  : 读取wcdma ber数据，并上报
- 输入参数  : 无
- 输出参数  : 无
 
-  修改历史      :
-  1.日    期   : 2015-05-28
-    作    者   : x00263027
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CBT_WcdmaReportFrames()
 {
     VOS_UINT32                              ulMailboxBufIndex;
@@ -2315,20 +2004,7 @@ VOS_VOID CBT_WcdmaReportFrames()
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : CBT_TotalFrameStatic
- 功能描述  : 帧中断函数，用于listmode测试统计total帧数。
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
-  修改历史      :
-  1.日    期   : 2015-06-08
-    作    者   : x00263027
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CBT_TotalFrameStatics()
 {
     if (g_stListmodeCtrl.usCurFrameNum + 1 < g_stListmodeCtrl.usTotalFrameNum)
@@ -2368,20 +2044,7 @@ VOS_VOID CBT_TotalFrameStatics()
     {
     }
 }
-/*****************************************************************************
- 函 数 名  : CBT_TxFrameStatics
- 功能描述  : 帧中断函数，用于listmode测试统计Tx segment帧数。
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
-  修改历史      :
-  1.日    期   : 2015-06-08
-    作    者   : x00263027
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CBT_TxFrameStatics()
 {
     /*统计tx segment 帧数*/
@@ -2416,20 +2079,7 @@ VOS_VOID CBT_TxFrameStatics()
     {
     }
 }
-/*****************************************************************************
- 函 数 名  : CBT_FramesStatistics
- 功能描述  : 帧中断函数，用于listmode测试统计帧数。
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
-  修改历史      :
-  1.日    期   : 2015-05-28
-    作    者   : x00263027
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CBT_FramesStatistics(VOS_VOID)
 {
     CBT_TotalFrameStatics();
@@ -2437,20 +2087,7 @@ VOS_VOID CBT_FramesStatistics(VOS_VOID)
 }
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- 函 数 名  : CBT_CLoopTestProc
- 功能描述  : 通过此接口模拟CTTF实现数据LoopBack功能。
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
-  修改历史      :
-  1.日    期   : 2015-08-06
-    作    者   : x00263027
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CBT_CLoopTestProc(VOS_VOID)
 {
     /*下行译码数据结构*/
@@ -2565,20 +2202,7 @@ VOS_VOID CBT_CLoopTestProc(VOS_VOID)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : HPA_LoopTestProc
- 功能描述  : 通过此接口实现信道环回，读取译码数据并配置WDSP数据。
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
-  修改历史      :
-  1.日    期   : 2011-10-09
-    作    者   : w00184431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID OM_LoopTestProc(VOS_VOID)
 {
     VOS_UINT32                              ulMailboxBufIndex;

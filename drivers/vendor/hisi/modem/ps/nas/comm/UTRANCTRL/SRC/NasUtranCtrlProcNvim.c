@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NASUTRANCTRLProcNvim.c
-  版 本 号   : 初稿
-  作    者   : w00167002
-  生成日期   : 2012年7月12日
-  最近修改   :
-  功能描述   : NASUTRANCTRLProcNvim.C文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年7月12日
-    作    者   : w00167002
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -32,10 +15,8 @@
 #include "NasUtranCtrlMntn.h"
 #include "NasUtranCtrlCommFunc.h"
 
-/* Added by l00167671 for NV拆分项目 , 2013-05-17, begin */
 #include "NasNvInterface.h"
 #include "TafNvInterface.h"
-/* Added by l00167671 for NV拆分项目 , 2013-05-17, end*/
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -74,27 +55,7 @@ extern "C" {
 #if (FEATURE_ON == FEATURE_UE_MODE_TDS)
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_ReadUtranModeAutoSwitchNvim
- 功能描述  : 从NV中获取en_NV_Item_Utran_Mode_Auto_Switch NV项内容
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月8日
-    作    者   : w00167002
-    修改内容   : 新建
-  2.日    期   : 2012年8月14日
-    作    者   : w00176964
-    修改内容   : 增加当前UTRAN的切换模式控制变量
-  3.日    期   : 2012年10月20日
-    作    者   : w00167002
-    修改内容   : DTS2012102001400:多模CDRX何如V7R1C50BUGFIX,NAS删除关于低功耗桩
-                 处理。
-*****************************************************************************/
 VOS_VOID NAS_UTRANCTRL_ReadUtranModeAutoSwitchNvim( VOS_VOID )
 {
     NAS_UTRANCTRL_NVIM_UTRAN_MODE_AUTO_SWITCH_STRU         *pstNvimUtranModeAutoSwitch;
@@ -194,29 +155,7 @@ VOS_VOID NAS_UTRANCTRL_ReadUtranModeAutoSwitchNvim( VOS_VOID )
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_ReadUtranModeNvim
- 功能描述  : 从NV中获取en_NV_Item_Current_Utran_Mode NV项内容
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月12日
-    作    者   : w00167002
-    修改内容   : 新建
-  2.日    期   : 2012年7月12日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:删除FEATURE_UE_MODE_TDS宏判断
-  3.日    期   : 2012年12月13日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-  4.日    期   : 2013年5月30日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-*****************************************************************************/
 VOS_VOID NAS_UTRANCTRL_ReadUtranModeNvim( VOS_VOID )
 {
     NAS_UTRANCTRL_NVIM_UTRAN_MODE_STRU  stUtranMode;
@@ -247,21 +186,7 @@ VOS_VOID NAS_UTRANCTRL_ReadUtranModeNvim( VOS_VOID )
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_ReadSmcCtrlFlgNvim
- 功能描述  : 从NV中获取en_NV_Item_SMC_Ctrl_Flg NV项内容
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月19日
-    作    者   : w00167002
-    修改内容   : 新建
-
-*****************************************************************************/
 VOS_VOID NAS_UTRANCTRL_ReadSmcCtrlFlgNvim( VOS_VOID )
 {
     NAS_UTRANCTRL_NVIM_SMC_CTRL_FLAG_STRU                   stSmcCtrlFlg;
@@ -295,27 +220,7 @@ VOS_VOID NAS_UTRANCTRL_ReadSmcCtrlFlgNvim( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_WriteUtranModeNvim
- 功能描述  : 将UTRAN模式写入NV:en_NV_Item_Current_Utran_Mode
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月12日
-    作    者   : w00167002
-    修改内容   : 新建
-
-  2.日    期   : 2012年7月12日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:删除FEATURE_UE_MODE_TDS宏判断
-  3.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-*****************************************************************************/
 VOS_VOID NAS_UTRANCTRL_WriteUtranModeNvim(
     NAS_UTRANCTRL_UTRAN_MODE_ENUM_UINT8  enCurrentUtranMode
 )

@@ -1,14 +1,4 @@
-/******************************************************************************
 
-   Copyright(C)2013,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : ImsaDsDsPublic.c
-  Description     : 该C文件实现公共的函数，如NV读写，USIM等
-  History           :
-     1.wangchen 00209181    2015-11-26  Draft Enact
-
-******************************************************************************/
 
 /*****************************************************************************
   1 Include HeadFile
@@ -87,21 +77,7 @@ IMSA_DSDS_TASKTYPE_INFO_STRU g_stImsaDsdsTaskTypeInfo[] =
 /*****************************************************************************
   3 Function
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : IMSA_DsdsGetTaskStatusByTaskType
- 功能描述  : TaskType维护表处理，通过enTaskType查找到对应的维护表Index
-             内部调用函数
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月18日
-    作    者   : w00209181
-    修改内容   : 新生成函数
-*****************************************************************************/
 IMSA_TASKTYPE_STATUS_ENUM_UINT8 IMSA_DsdsGetTaskStatusByTaskType
 (
     RRM_PS_TASK_TYPE_ENUM_UINT16 enTaskType
@@ -122,20 +98,7 @@ IMSA_TASKTYPE_STATUS_ENUM_UINT8 IMSA_DsdsGetTaskStatusByTaskType
 
     return IMSA_TASKTYPE_STATUS_BUTT;
 }
-/*****************************************************************************
- 函 数 名  : IMSA_DsdsIsHasActiveResource
- 功能描述  : 是否有处于ACTIVE状态的任务
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年11月23日
-   作    者   : w00209181
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  IMSA_DsdsIsHasActiveResource
 (
     VOS_VOID
@@ -156,20 +119,7 @@ VOS_UINT32  IMSA_DsdsIsHasActiveResource
     return IMSA_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : IMSA_Dsds_RRM_RfResourceIsShared
- 功能描述  : 封装RRM查询RF资源是否共享接口(DSDS功能是否打开)
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月18日
-    作    者   : W00209181
-    修改内容   : 新生成函数
-*****************************************************************************/
 PS_RRM_RF_SHARED_ENUM_UINT8 IMSA_Dsds_RRM_RfResourceIsShared(VOS_VOID)
 {
     PS_RRM_RF_SHARED_ENUM_UINT8 enRet = PS_RRM_RF_NOT_SHARED;
@@ -196,19 +146,7 @@ PS_RRM_RF_SHARED_ENUM_UINT8 IMSA_Dsds_RRM_RfResourceIsShared(VOS_VOID)
 
     return enRet;
 }
-/*****************************************************************************
- Function Name   : IMSA_DsdsIsResourceStatusReady
- Description     : 供其他模块调用，发送资源申请，启动定时器
- Input           : None
- Output          : None
- Return          : VOS_UINT32
-                   IMSA_TRUE:可以直接发起流程
-                   IMSA_FALSE:等RRM响应
 
- History         :
-    1.wangchen 00209181     2015-11-24  Draft Enact
-
-*****************************************************************************/
 IMSA_RESOURCE_STATUS_ENUM_UINT8  IMSA_DsdsGetResourceStatus
 (
     RRM_PS_TASK_TYPE_ENUM_UINT16            enTaskType
@@ -244,21 +182,7 @@ IMSA_RESOURCE_STATUS_ENUM_UINT8  IMSA_DsdsGetResourceStatus
 
 }
 #if (FEATURE_ON == FEATURE_DSDS)
-/*****************************************************************************
- 函 数 名  : IMSA_DsdsGetIndexByTaskType
- 功能描述  : TaskType维护表处理，通过enTaskType查找到对应的维护表Index
-             内部调用函数
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月18日
-    作    者   : w00209181
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 IMSA_DsdsGetIndexByTaskType (RRM_PS_TASK_TYPE_ENUM_UINT16 enTaskType)
 {
     VOS_UINT32                          ulIndex = IMSA_DSDS_ABNORMAL_IDX;
@@ -277,21 +201,7 @@ VOS_UINT32 IMSA_DsdsGetIndexByTaskType (RRM_PS_TASK_TYPE_ENUM_UINT16 enTaskType)
     return ulIndex;
 }
 
-/*****************************************************************************
- 函 数 名  : IMSA_DsdsGetTaskStatusByTaskType
- 功能描述  : TaskType维护表处理，通过enTaskType查找到对应的维护表Index
-             内部调用函数
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月18日
-    作    者   : w00209181
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID IMSA_DsdsSetTaskStatusByTaskType
 (
     RRM_PS_TASK_TYPE_ENUM_UINT16            enTaskType,
@@ -320,21 +230,7 @@ VOS_VOID IMSA_DsdsSetTaskStatusByTaskType
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IMSA_DsdsGetTaskSrcByTaskType
- 功能描述  : TaskType维护表处理，通过enTaskType查找到对应的维护表Index
-             内部调用函数
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月18日
-    作    者   : w00209181
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID IMSA_DsdsModifyTaskSrcByTaskType
 (
     IMSA_RF_RES_APPLY_TRIGER_SRC_ENUM_UINT8 enTrigerSrc,
@@ -372,21 +268,7 @@ VOS_VOID IMSA_DsdsModifyTaskSrcByTaskType
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : IMSA_DsdsGetTaskSrcByTaskType
- 功能描述  : TaskType维护表处理，通过enTaskType查找到对应的维护表Index
-             内部调用函数
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月18日
-    作    者   : w00209181
-    修改内容   : 新生成函数
-*****************************************************************************/
 IMSA_RF_RES_APPLY_TRIGER_SRC_ENUM_UINT8 IMSA_DsdsGetTaskSrcByTaskType
 (
     RRM_PS_TASK_TYPE_ENUM_UINT16 enTaskType
@@ -408,21 +290,7 @@ IMSA_RF_RES_APPLY_TRIGER_SRC_ENUM_UINT8 IMSA_DsdsGetTaskSrcByTaskType
     return IMSA_RF_RES_APPLY_TRIGER_SRC_BUTT;
 }
 
-/*****************************************************************************
- 函 数 名  : IMSA_DsdsGetTaskSrcByTaskType
- 功能描述  : TaskType维护表处理，通过enTaskType查找到对应的维护表Index
-             内部调用函数
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月18日
-    作    者   : w00209181
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 IMSA_DsdsGetTaskParaByTaskType
 (
     RRM_PS_TASK_TYPE_ENUM_UINT16 enTaskType
@@ -444,20 +312,7 @@ VOS_UINT32 IMSA_DsdsGetTaskParaByTaskType
     return IMSA_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : IMSA_DsdsTaskTypeProcTaskApply
- 功能描述  : 发起PS_RRM_RADIO_RESOURCE_APPLY_REQ时，对TaskType维护表的处理
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月18日
-    作    者   : w00209181
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID IMSA_DsdsTaskTypeProcByTaskApplyType
 (
     RRM_PS_TASK_TYPE_ENUM_UINT16            enTaskType,
@@ -490,20 +345,7 @@ VOS_VOID IMSA_DsdsTaskTypeProcByTaskApplyType
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IMSA_ITFDSDS_SndSingleApplyReq
- 功能描述  : 向DSDS RRM发送单条申请资源的请求消息，内部使用，不对外
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月18日
-    作    者   : W00209181
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 IMSA_DsdsSndSingleApplyReq(RRM_PS_TASK_TYPE_ENUM_UINT16  enTaskType)
 {
     PS_RRM_RADIO_RESOURCE_APPLY_REQ_STRU  *pstApplyReq         = VOS_NULL_PTR;
@@ -536,20 +378,7 @@ VOS_UINT32 IMSA_DsdsSndSingleApplyReq(RRM_PS_TASK_TYPE_ENUM_UINT16  enTaskType)
     return IMSA_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : IMSA_DsdsTaskTypeProcApplyCnf
- 功能描述  : 收到RRM_PS_RADIO_RESOURCE_APPLY_CNF，对TaskType维护表的处理
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月18日
-    作    者   : W00209181
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID IMSA_DsdsTaskTypeProcByApplyCnf(RRM_PS_TASK_TYPE_ENUM_UINT16 enTaskType)
 {
     IMSA_DSDS_TASKTYPE_INFO_STRU          *pstImsaTskTypeInfo = VOS_NULL_PTR;
@@ -574,16 +403,7 @@ VOS_VOID IMSA_DsdsTaskTypeProcByApplyCnf(RRM_PS_TASK_TYPE_ENUM_UINT16 enTaskType
 
     return;
 }
-/*****************************************************************************
- Function Name  : IMSA_ProcMsgRegResourceApplyCnf
- Discription    : 收到ID_RRM_PS_RADIO_RESOURCE_APPLY_CNF消息的处理
- Input          :
- Output         : None
- Return         : None
- History:
-      1. wangchen 00209181  2015-11-19  Draft Enact
 
-*****************************************************************************/
 VOS_VOID IMSA_ProcMsgRegResourceApplyCnf
 (
     VOS_VOID
@@ -660,16 +480,7 @@ VOS_VOID IMSA_ProcMsgRegResourceApplyCnf
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_ProcMsgDeRegResourceApplyCnf
- Discription    : 收到ID_RRM_PS_RADIO_RESOURCE_APPLY_CNF消息的处理
- Input          :
- Output         : None
- Return         : None
- History:
-      1. wangchen 00209181  2015-11-19  Draft Enact
 
-*****************************************************************************/
 VOS_VOID IMSA_ProcMsgDeRegResourceApplyCnf
 (
     VOS_VOID
@@ -706,16 +517,7 @@ VOS_VOID IMSA_ProcMsgDeRegResourceApplyCnf
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_ProcMsgMoCallResourceApplyCnf
- Discription    : 收到ID_RRM_PS_RADIO_RESOURCE_APPLY_CNF消息的处理
- Input          :
- Output         : None
- Return         : None
- History:
-      1. wangchen 00209181  2015-11-19  Draft Enact
 
-*****************************************************************************/
 VOS_VOID IMSA_ProcMsgMoCallResourceApplyCnf
 (
     VOS_UINT32              ulIndex
@@ -745,16 +547,7 @@ VOS_VOID IMSA_ProcMsgMoCallResourceApplyCnf
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_ProcMsgMoEmcCallResourceApplyCnf
- Discription    : 收到ID_RRM_PS_RADIO_RESOURCE_APPLY_CNF消息的处理
- Input          :
- Output         : None
- Return         : None
- History:
-      1. wangchen 00209181  2015-11-19  Draft Enact
 
-*****************************************************************************/
 VOS_VOID IMSA_ProcMsgMoEmcCallResourceApplyCnf
 (
     VOS_UINT32              ulIndex
@@ -779,16 +572,7 @@ VOS_VOID IMSA_ProcMsgMoEmcCallResourceApplyCnf
     IMSA_CallProcEmcResourceApplyCnf(&g_stDsdsPubilcInfo.stBufferInfo.stEmcCall);
 }
 
-/*****************************************************************************
- Function Name  : IMSA_ProcMsgMoEmcCallResourceApplyCnf
- Discription    : 收到ID_RRM_PS_RADIO_RESOURCE_APPLY_CNF消息的处理
- Input          :
- Output         : None
- Return         : None
- History:
-      1. wangchen 00209181  2015-11-19  Draft Enact
 
-*****************************************************************************/
 VOS_VOID IMSA_ProcMsgMtCallResourceApplyCnf
 (
     VOS_VOID
@@ -815,16 +599,7 @@ VOS_VOID IMSA_ProcMsgMtCallResourceApplyCnf
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_ProcMsgMoEmcCallResourceApplyCnf
- Discription    : 收到ID_RRM_PS_RADIO_RESOURCE_APPLY_CNF消息的处理
- Input          :
- Output         : None
- Return         : None
- History:
-      1. wangchen 00209181  2015-11-19  Draft Enact
 
-*****************************************************************************/
 VOS_VOID IMSA_ProcMsgMoSmsResourceApplyCnf
 (
     VOS_UINT32      ulIndex
@@ -851,16 +626,7 @@ VOS_VOID IMSA_ProcMsgMoSmsResourceApplyCnf
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_ProcMsgMtSmsResourceApplyCnf
- Discription    : 收到ID_RRM_PS_RADIO_RESOURCE_APPLY_CNF消息的处理
- Input          :
- Output         : None
- Return         : None
- History:
-      1. wangchen 00209181  2015-11-19  Draft Enact
 
-*****************************************************************************/
 VOS_VOID IMSA_ProcMsgMtSmsResourceApplyCnf
 (
     VOS_UINT32      ulIndex
@@ -885,16 +651,7 @@ VOS_VOID IMSA_ProcMsgMtSmsResourceApplyCnf
     IMSA_SMSProcMtResourceApplyCnf(&g_stDsdsPubilcInfo.stBufferInfo.stMtSms);
 }
 
-/*****************************************************************************
- Function Name  : IMSA_ProcMsgResourceApplyCnf
- Discription    : 收到ID_RRM_PS_RADIO_RESOURCE_APPLY_CNF消息的处理
- Input          :
- Output         : None
- Return         : None
- History:
-      1. wangchen 00209181  2015-11-19  Draft Enact
 
-*****************************************************************************/
 VOS_VOID IMSA_ProcMsgResourceApplyCnf
 (
     const RRM_PS_RADIO_RESOURCE_APPLY_CNF_STRU *pstApplyCnf
@@ -970,20 +727,7 @@ VOS_VOID IMSA_ProcMsgResourceApplyCnf
     }
     return;
 }
-/*****************************************************************************
- 函 数 名  : IMSA_DsdsSndRrmReleaseInd
- 功能描述  : 构造发送rrm的release ind消息
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月18日
-    作    者   : W00209181
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID IMSA_DsdsSndRrmReleaseInd
 (
     RRM_PS_TASK_TYPE_ENUM_UINT16    enTaskType,
@@ -1023,20 +767,7 @@ VOS_VOID IMSA_DsdsSndRrmReleaseInd
     IMSA_SND_MSG(pstRelReq);
 }
 
-/*****************************************************************************
- 函 数 名  : IMSA_DsdsSndRrmRegisterInd
- 功能描述  : 向RRM发送ID_PS_RRM_REGISTER_IND消息
- 输入参数  : enTaskType         :注册任务类型
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月21日
-    作    者   : w00209181
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID IMSA_DsdsSndRrmRegisterInd
 (
     RRM_PS_TASK_TYPE_ENUM_UINT16       enTaskType
@@ -1071,20 +802,7 @@ VOS_VOID IMSA_DsdsSndRrmRegisterInd
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IMSA_DsdsSndRrmDeRegisterInd
- 功能描述  : 向RRM发送ID_PS_RRM_DEREGISTER_IND消息
- 输入参数  : enTaskType         :注册任务类型
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月21日
-    作    者   : w00209181
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID IMSA_DsdsSndRrmDeRegisterInd
 (
     RRM_PS_TASK_TYPE_ENUM_UINT16       enTaskType
@@ -1119,20 +837,7 @@ VOS_VOID IMSA_DsdsSndRrmDeRegisterInd
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IMSA_DsdsProcRrmPsStatusInd
- 功能描述  : 收到RRM的PS STATUS IND消息，通知RRM进行去注册,同时申请资源
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年11月23日
-   作    者   : w00209181
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  IMSA_DsdsProcRrmPsStatusInd
 (
     RRM_PS_STATUS_IND_STRU *pRcvMsg
@@ -1158,20 +863,7 @@ VOS_VOID  IMSA_DsdsProcRrmPsStatusInd
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : IMSA_DsdsSndRrmOccupyCnf
- 功能描述  : 针对被抢消息ID_RRM_PS_RADIO_RESOURCE_OCCUPY_REQ，回复CNF
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月24日
-    作    者   : w00209181
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID IMSA_DsdsSndRrmOccupyCnf(VOS_VOID)
 {
     PS_RRM_RADIO_RESOURCE_OCCUPY_CNF_STRU  *pstOccCnf = VOS_NULL_PTR;
@@ -1203,17 +895,7 @@ VOS_VOID IMSA_DsdsSndRrmOccupyCnf(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Function Name   : IMSA_DsdsProcOccupyReq
- Description     :   处理抢占
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.wangchen 00209181     2015-11-24  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  IMSA_DsdsProcResourceOccupyCnf
 (
     RRM_PS_TASK_TYPE_ENUM_UINT16            enTaskType
@@ -1231,17 +913,7 @@ VOS_VOID  IMSA_DsdsProcResourceOccupyCnf
                                      IMSA_RF_RES_APPLY_TRIGER_SRC_BUTT,
                                      0);
 }
-/*****************************************************************************
- Function Name   : IMSA_DsdsProcOccupyReq
- Description     :   处理抢占
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.wangchen 00209181     2015-11-24  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  IMSA_DsdsProcResourceOccupyReq
 (
     RRM_PS_RADIO_RESOURCE_OCCUPY_REQ_STRU *pstOccupyReq
@@ -1286,17 +958,7 @@ VOS_VOID  IMSA_DsdsProcResourceOccupyReq
     }
     return;
 }
-/*****************************************************************************
- Function Name   : IMSA_DsdsStartApplyReqTimer
- Description     : 根据任务类型，启动定时器
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.wangchen 00209181     2015-11-24  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  IMSA_DsdsStartApplyReqTimer
 (
     RRM_PS_TASK_TYPE_ENUM_UINT16            enTaskType,
@@ -1345,17 +1007,7 @@ VOS_VOID  IMSA_DsdsStartApplyReqTimer
     return;
 }
 
-/*****************************************************************************
- Function Name   : IMSA_DsdsStopApplyReqTimer
- Description     : 根据任务类型，启动定时器
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.wangchen 00209181     2015-11-24  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  IMSA_DsdsStopApplyReqTimer
 (
     RRM_PS_TASK_TYPE_ENUM_UINT16            enTaskType,
@@ -1403,19 +1055,7 @@ VOS_VOID  IMSA_DsdsStopApplyReqTimer
     }
     return;
 }
-/*****************************************************************************
- Function Name   : IMSA_DsdsProcRegResourceApplyReq
- Description     : 供其他模块调用，发送资源申请，启动定时器
- Input           : None
- Output          : None
- Return          : VOS_UINT32
-                   IMSA_TRUE:可以直接发起流程
-                   IMSA_FALSE:等RRM响应
 
- History         :
-    1.wangchen 00209181     2015-11-24  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  IMSA_DsdsProcResourceApplyReq
 (
     RRM_PS_TASK_TYPE_ENUM_UINT16            enTaskType,
@@ -1438,19 +1078,7 @@ VOS_VOID  IMSA_DsdsProcResourceApplyReq
     return;
 }
 
-/*****************************************************************************
- Function Name   : IMSA_DsdsProcResourceApplyReq
- Description     : 供其他模块调用，发送资源申请，启动定时器
- Input           : None
- Output          : None
- Return          : VOS_UINT32
-                   IMSA_TRUE:可以直接发起流程
-                   IMSA_FALSE:等RRM响应
 
- History         :
-    1.wangchen 00209181     2015-11-24  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  IMSA_DsdsProcResourceRegisterInd
 (
     RRM_PS_TASK_TYPE_ENUM_UINT16            enTaskType,
@@ -1485,19 +1113,7 @@ VOS_UINT32  IMSA_DsdsProcResourceRegisterInd
     return IMSA_FALSE;
 }
 
-/*****************************************************************************
- Function Name   : IMSA_DsdsProcRegResourceTimerExp
- Description     : 申请注册资源定时器超时
- Input           : None
- Output          : None
- Return          : VOS_UINT32
-                   IMSA_TRUE:可以直接发起流程
-                   IMSA_FALSE:等RRM响应
 
- History         :
-    1.wangchen 00209181     2015-11-24  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  IMSA_DsdsProcRegResourceTimerExp
 (
     const VOS_VOID                     *pMsg
@@ -1595,19 +1211,7 @@ VOS_VOID  IMSA_DsdsProcRegResourceTimerExp
     return;
 }
 
-/*****************************************************************************
- Function Name   : IMSA_DsdsProcMoCallResourceTimerExp
- Description     : 申请注册资源定时器超时
- Input           : None
- Output          : None
- Return          : VOS_UINT32
-                   IMSA_TRUE:可以直接发起流程
-                   IMSA_FALSE:等RRM响应
 
- History         :
-    1.wangchen 00209181     2015-11-24  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  IMSA_DsdsProcMoCallResourceTimerExp
 (
     const VOS_VOID                     *pMsg
@@ -1627,19 +1231,7 @@ VOS_VOID  IMSA_DsdsProcMoCallResourceTimerExp
     return;
 }
 
-/*****************************************************************************
- Function Name   : IMSA_DsdsProcEmcCallResourceTimerExp
- Description     : 申请注册资源定时器超时
- Input           : None
- Output          : None
- Return          : VOS_UINT32
-                   IMSA_TRUE:可以直接发起流程
-                   IMSA_FALSE:等RRM响应
 
- History         :
-    1.wangchen 00209181     2015-11-24  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  IMSA_DsdsProcEmcCallResourceTimerExp
 (
     const VOS_VOID                     *pMsg
@@ -1659,19 +1251,7 @@ VOS_VOID  IMSA_DsdsProcEmcCallResourceTimerExp
     return;
 }
 
-/*****************************************************************************
- Function Name   : IMSA_DsdsProcEmcCallResourceTimerExp
- Description     : 申请注册资源定时器超时
- Input           : None
- Output          : None
- Return          : VOS_UINT32
-                   IMSA_TRUE:可以直接发起流程
-                   IMSA_FALSE:等RRM响应
 
- History         :
-    1.wangchen 00209181     2015-11-24  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  IMSA_DsdsProcMtCallResourceTimerExp
 (
     const VOS_VOID                     *pMsg
@@ -1690,19 +1270,7 @@ VOS_VOID  IMSA_DsdsProcMtCallResourceTimerExp
     return;
 }
 
-/*****************************************************************************
- Function Name   : IMSA_DsdsProcEmcCallResourceTimerExp
- Description     : 申请注册资源定时器超时
- Input           : None
- Output          : None
- Return          : VOS_UINT32
-                   IMSA_TRUE:可以直接发起流程
-                   IMSA_FALSE:等RRM响应
 
- History         :
-    1.wangchen 00209181     2015-11-24  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  IMSA_DsdsProcMoSmsResourceTimerExp
 (
     const VOS_VOID                     *pMsg
@@ -1734,19 +1302,7 @@ VOS_VOID  IMSA_DsdsProcMoSmsResourceTimerExp
     return;
 }
 
-/*****************************************************************************
- Function Name   : IMSA_DsdsProcEmcCallResourceTimerExp
- Description     : 申请注册资源定时器超时
- Input           : None
- Output          : None
- Return          : VOS_UINT32
-                   IMSA_TRUE:可以直接发起流程
-                   IMSA_FALSE:等RRM响应
 
- History         :
-    1.wangchen 00209181     2015-11-24  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  IMSA_DsdsProcMtSmsResourceTimerExp
 (
     const VOS_VOID                     *pMsg
@@ -1764,19 +1320,7 @@ VOS_VOID  IMSA_DsdsProcMtSmsResourceTimerExp
     return;
 }
 
-/*****************************************************************************
- Function Name   : IMSA_DsdsProcEmcCallResourceTimerExp
- Description     : 申请注册资源定时器超时
- Input           : None
- Output          : None
- Return          : VOS_UINT32
-                   IMSA_TRUE:可以直接发起流程
-                   IMSA_FALSE:等RRM响应
 
- History         :
-    1.wangchen 00209181     2015-11-24  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  IMSA_DsdsProcOccupyDelayTimerExp
 (
     const VOS_VOID                     *pMsg
@@ -1810,16 +1354,7 @@ VOS_VOID  IMSA_DsdsProcOccupyDelayTimerExp
     return;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_DsdsClearResource()
- Description    : DSDS模块资源清理函数
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181  2015-11-26  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_DsdsClearResource(VOS_VOID)
 {
      VOS_UINT32                          ulIndex = IMSA_DSDS_ABNORMAL_IDX;
@@ -1958,16 +1493,7 @@ VOS_VOID IMSA_DsdsProcResourceRelease
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_DsdsInit
- Description    : IMSA CONN模块的初始化
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181  2015-11-26  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_DsdsInit( VOS_VOID )
 {
     IMSA_DSDS_PUBLIC_INFO_STRU          *pstPublicInfo = &g_stDsdsPubilcInfo;
@@ -2022,16 +1548,7 @@ VOS_VOID IMSA_DsdsInit( VOS_VOID )
     return ;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_RrmMsgDistr()
- Description    : RRM消息处理函数
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-11-26  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_RrmMsgDistr(const VOS_VOID *pRcvMsg)
 {
     /* 定义消息头指针*/

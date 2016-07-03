@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafCbaProcAs.c
-  版 本 号   : 初稿
-  作    者   : l00171473
-  生成日期   : 2012年3月19日
-  最近修改   :
-  功能描述   : CBA模块对接入层的消息处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年3月19日
-    作    者   : l00171473
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -58,21 +41,7 @@ extern "C" {
 *****************************************************************************/
 
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_ProcGasMsg
- 功能描述  : 处理来自GAS模块的消息
- 输入参数  : pstMsg: 来自GAS模块的VOS 消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月19日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_CBA_ProcGasMsg(
     struct MsgCB                       *pstMsg
 )
@@ -101,21 +70,7 @@ VOS_VOID TAF_CBA_ProcGasMsg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_ProcWrrMsg
- 功能描述  : 处理来自WRR的消息
- 输入参数  : pstMsg: 来自WRR模块的VOS消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月19日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_CBA_ProcWrrMsg(
     struct MsgCB                       *pstMsg
 )
@@ -140,21 +95,7 @@ VOS_VOID TAF_CBA_ProcWrrMsg(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_ProcBmcMsg
- 功能描述  : 处理来自BMC的消息
- 输入参数  : pstMsg: 来自BMC模块的VOS消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月19日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_CBA_ProcBmcMsg(
     struct MsgCB                       *pstMsg
 )
@@ -179,25 +120,7 @@ VOS_VOID TAF_CBA_ProcBmcMsg(
 }
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : TAF_CBA_ProcLrrcMsg
- 功能描述  : 处理来自LRRC的消息
- 输入参数  : pstMsg: 来自LRRC模块的VOS消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月19日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-  2.日    期   : 2014年8月27日
-    作    者   : w00242748
-    修改内容   : DTS2014082004813:L下ERRC给TAF报CBS消息，优先于MMC给TAF报系统消息，
-                 当先收到CBS消息时，由于会判断当前是否驻留在LTE下，如果不在，则会直接丢弃。
-
-*****************************************************************************/
 VOS_VOID TAF_CBA_ProcLrrcMsg(
     struct MsgCB                       *pstMsg
 )
@@ -231,24 +154,7 @@ VOS_VOID TAF_CBA_ProcLrrcMsg(
 
 #endif  /* (FEATURE_ON == FEATURE_LTE) */
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_RcvAsCbsCfgCnf
- 功能描述  : 处理接入层发送过来的激活CBS的CNF消息
- 输入参数  : pstActiveCnf: As发送的激活CBS的CNF消息
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月19日
-    作    者   : l00171473
-    修改内容   : 新生成函数, for V7R1C50 CSFB&PPAC&ETWS&ISR
-  2.日    期   : 2012年12月11日
-    作    者   : l00167671
-    修改内容   : DTS2012121802573, TQE清理
-
-*****************************************************************************/
 VOS_VOID TAF_CBA_RcvAsCbsCfgCnf(
     BMC_CBS_CFG_CNF_STRU             *pstCfgCnf
 )
@@ -261,26 +167,7 @@ VOS_VOID TAF_CBA_RcvAsCbsCfgCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_RcvGasCbsDataInd
- 功能描述  : 处理G模下收到的CBS消息
- 输入参数  : pstGasDataInd  - GAS发送过来的CBS消息
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月19日
-    作    者   : l00171473
-    修改内容   : 新生成函数, for V7R1C50 CSFB&PPAC&ETWS&ISR
-  2.日    期   : 2012年12月10日
-    作    者   : l00171473
-    修改内容   : for DTS2012120609682,终端要求CBS统一上报88个字节
-  3.日    期   : 2013年8月13日
-    作    者   : w00242748
-    修改内容   : for DTS2013080904352,错误页筛选过滤
-*****************************************************************************/
 VOS_VOID TAF_CBA_RcvGasCbsDataInd(
     GAS_CBS_DATA_IND_STRU              *pstGasDataInd
 )
@@ -388,22 +275,7 @@ VOS_VOID TAF_CBA_RcvGasCbsDataInd(
     PS_MEM_FREE(WUEPS_PID_TAF, pstCbRawData);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_ConverBmcCbsToGsmCbsFormat
- 功能描述  : BMC发送过来的消息模拟为从GAS发送的CBS消息
- 输入参数  : pstDataPdu:BMC发送过来的CBS消息内容
- 输出参数  : pucPageNum:CBS消息页数
-             pstPageDataInd:CBS消息内容
- 返 回 值  : VOS_UINT32:VOS_OK,处理成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年5月10日
-    作    者   : zhoujun /z40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_CBA_ConvertBmcCbsToGsmCbsFormat(
     BMC_CBS_DATA_IND_STRU              *pstDataPdu,
     VOS_UINT8                          *pucPageNum,
@@ -535,24 +407,7 @@ VOS_UINT32 TAF_CBA_ConvertBmcCbsToGsmCbsFormat(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_RcvBmcCbsDataInd
- 功能描述  : 处理BMC发送过来的DATA_IND 消息
-             LRRC发送CBS消息时采用的与BMC相同的数据结构, 故LRRC的CBS消息处理也调用此处理
- 输入参数  : pstBmcDataInd  - BMC发送过来的CBS消息
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月19日
-    作    者   : l00171473
-    修改内容   : 新生成函数, for V7R1C50 CSFB&PPAC&ETWS&ISR
-  2.日    期   : 2012年12月10日
-    作    者   : l00171473
-    修改内容   : for DTS2012120609682,终端要求CBS统一上报88个字节
-*****************************************************************************/
 VOS_VOID TAF_CBA_RcvBmcCbsDataInd(
     BMC_CBS_DATA_IND_STRU              *pstBmcDataInd
 )
@@ -610,21 +465,7 @@ VOS_VOID TAF_CBA_RcvBmcCbsDataInd(
     PS_MEM_FREE(WUEPS_PID_TAF, pstCbRawData);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_RcvLrrcCbsDataInd
- 功能描述  : 处理LRRC发送过来的DATA_IND消息
- 输入参数  : pstBmcDataInd  - LRRC发送过来的CBS消息
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月19日
-    作    者   : l00171473
-    修改内容   : 新生成函数, for V7R1C50 CSFB&PPAC&ETWS&ISR
-
-*****************************************************************************/
 VOS_VOID TAF_CBA_RcvLrrcCbsDataInd(
     LRRC_CBS_DATA_IND_STRU             *pstBmcDataInd
 )
@@ -633,24 +474,7 @@ VOS_VOID TAF_CBA_RcvLrrcCbsDataInd(
     TAF_CBA_RcvBmcCbsDataInd((BMC_CBS_DATA_IND_STRU*)pstBmcDataInd);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_RcvAsGsStatusChangeInd
- 功能描述  : 处理接入层发送的GS变化消息
- 输入参数  : pstGsChangeInd  - AS发送过来的GS CHANGE消息
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月19日
-    作    者   : l00171473
-    修改内容   : 新生成函数, for V7R1C50 CSFB&PPAC&ETWS&ISR
-  2.日    期   : 2013年8月15日
-    作    者   : w00242748
-    修改内容   : DTS2013080608981 删除NAS修正CHG IND类型的代码
-
-*****************************************************************************/
 VOS_VOID TAF_CBA_RcvAsGsStatusChangeInd(
     RR_CBS_GS_STATUS_CHANGE_IND_STRU   *pstGsChangeInd
 )
@@ -728,21 +552,7 @@ VOS_VOID TAF_CBA_RcvAsGsStatusChangeInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_GetRatTypeBySenderPid
- 功能描述  : 根据AS的SenderPid 获取接入模式类型
- 输入参数  : ulSenderPid:  AS的SenderPid
- 输出参数  : 无
- 返 回 值  : TAF_CBA_NET_RAT_TYPE_ENUM_UINT8: 接入模式
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月19日
-    作    者   : l00171473
-    修改内容   : 新生成函数, for V7R1C50 CSFB&PPAC&ETWS&ISR
-
-*****************************************************************************/
 TAF_CBA_NET_RAT_TYPE_ENUM_UINT8 TAF_CBA_GetRatTypeBySenderPid(
     VOS_UINT32                          ulSenderPid
 )
@@ -780,22 +590,7 @@ TAF_CBA_NET_RAT_TYPE_ENUM_UINT8 TAF_CBA_GetRatTypeBySenderPid(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_IsCbsEnable
- 功能描述  : 根据NV项中的设置判断CBS功能是否使能
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE: CBS功能使能
-             VOS_FALSE: 未使能
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月2日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_CBA_IsCbsEnable(VOS_VOID)
 {
     TAF_CBA_CBSTATUS_ENUM_UINT8         enCbsStatus;
@@ -834,22 +629,7 @@ VOS_UINT32  TAF_CBA_IsCbsEnable(VOS_VOID)
 }
 
 #if (FEATURE_ETWS == FEATURE_ON)
-/*****************************************************************************
- 函 数 名  : TAF_CBA_IsCbsMsgIdValid_ETWS
- 功能描述  : ETWS FEATURE ON的情况下判断CBS或从通知是否是有效的MSG ID
- 输入参数  : usMsgId: 从通知/CBS消息的MSG ID
- 输出参数  : 无
- 返 回 值  : VOS_TRUE : 是有效的
-             VOS_FALSE: 不是有效的
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月28日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_CBA_IsCbsMsgIdValid_ETWS(
     VOS_UINT16                          usMsgId
 )
@@ -889,22 +669,7 @@ VOS_UINT32 TAF_CBA_IsCbsMsgIdValid_ETWS(
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_IsCbsMsgIdValid
- 功能描述  : 判断CBS或从通知是否是有效的MSG ID
- 输入参数  : usMsgId: 主从通知/CBS消息的MSG ID
- 输出参数  : 无
- 返 回 值  : VOS_TRUE : 是有效的
-             VOS_FALSE: 不是有效的
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月28日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_CBA_IsCbsMsgIdValid(
     VOS_UINT16                          usMsgId
 )
@@ -920,21 +685,7 @@ VOS_UINT32  TAF_CBA_IsCbsMsgIdValid(
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_GetGsmCbsPageLen
- 功能描述  : 获取GAS下广播短消息一页的实际长度
- 输入参数  : pstCbTpduData - 按GSM格式存放的广播短消息页
- 输出参数  : 无
- 返 回 值  : 广播短消息一页的实际长度
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2006年12月20日
-    作    者   : 傅映君 62575
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 TAF_CBA_GetGsmCbsPageLen(
     GAS_CBS_PAGE_DATA_STRU             *pstCbPageData
 )
@@ -968,21 +719,7 @@ VOS_UINT8 TAF_CBA_GetGsmCbsPageLen(
     return ucPageLen;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_BuildGsmCbsRecord
- 功能描述  : 从G的CBS消息中构造新的记录项
- 输入参数  : pstGsmPage:   指向G的CBS消息页数据
- 输出参数  : pstNewRecord: 指向新消息记录项
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月9日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_CBA_BuildGsmCbsRecord(
     MN_MSG_CBGSMPAGE_STRU              *pstGsmPage,
     TAF_CBS_NETWORK_INFO_STRU          *pstCampPlmnInfo,
@@ -1023,32 +760,7 @@ VOS_VOID TAF_CBA_BuildGsmCbsRecord(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_IsDupGsmCbsRecord
- 功能描述  : 判断CBS历史记录表中是否存在重复的记录项
- 输入参数  : pstRecord: 指向新消息记录
- 输出参数  :
- 返 回 值  : VOS_TRUE : 历史记录表中存在相同的记录项
-             VOS_FALSE: 不存在相同的记录项
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月9日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月04日
-    作    者   : l00171473
-    修改内容   : for DTS2012120600056, 增加判断是否需要做重复过滤
-  3.日    期   : 2013年8月13日
-    作    者   : w00242748
-    修改内容   : for DTS2013081300926, 参照0341 9.3.2.1 Update Number那一节，
-                 除了UPDATE NUMBER外，其他都相同的话，需对UPDATE NUMBER做特殊处理
-  4.日    期   : 2013年8月22日
-    作    者   : w00242748
-    修改内容   : for DTS2013082106860, 根据update number判断原则，先收到update number
-    		1,再收到update number 0但页数不同时，处理存在错误
-*****************************************************************************/
 VOS_UINT32 TAF_CBA_IsDupGsmCbsRecord(
     TAF_CBA_RECORD_STRU                *pstNewRecord
 )
@@ -1136,21 +848,7 @@ VOS_UINT32 TAF_CBA_IsDupGsmCbsRecord(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_AppendCbsRecord
- 功能描述  : 在CBS历史记录表中追加一个记录项
- 输入参数  : pstNewRecord: 新的记录项
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月28日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_CBA_AppendCbsRecord(
     TAF_CBA_RECORD_STRU                *pstAppendRecord
 )
@@ -1203,21 +901,7 @@ VOS_VOID TAF_CBA_AppendCbsRecord(
                                  usRcvCbsNum);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_SaveGsmCbsRecord
- 功能描述  : 保存新的GAS的CBS消息记录到CBS历史记录表
- 输入参数  : pstNewRecord: 新的记录项
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月28日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_CBA_SaveGsmCbsRecord(
     TAF_CBA_RECORD_STRU                *pstNewRecord
 )
@@ -1268,22 +952,7 @@ VOS_VOID TAF_CBA_SaveGsmCbsRecord(
                                  TAF_CBA_GetRcvCbsNum());
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_GetCbsRecordInxByMsgIdCode
- 功能描述  : 从CBS的历史记录表中获取与指定记录的MSG ID和MSG CODE相同项的Index
- 输入参数  : pstRecord: 指向新消息记录
- 输出参数  : pstIndex:  相同项的index
- 返 回 值  : VOS_TRUE : 获取成功
-             VOS_FALSE: 获取失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月9日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_CBA_GetCbsRecordInxByMsgIdCode(
     TAF_CBA_RECORD_STRU                *pstRecord,
     VOS_UINT32                         *pulIndex
@@ -1323,21 +992,7 @@ VOS_UINT32 TAF_CBA_GetCbsRecordInxByMsgIdCode(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_GetEarliestCbsRecordInx
- 功能描述  : 从CBS历史记录表中获取最早的CBS记录的index
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 最早的CBS记录的index
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月10日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT16  TAF_CBA_GetEarliestCbsRecordInx(VOS_VOID)
 {
     TAF_CBA_RECORD_STRU                *pstRecordList;
@@ -1363,21 +1018,7 @@ VOS_UINT16  TAF_CBA_GetEarliestCbsRecordInx(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_BuildBmcCbsRecord
- 功能描述  : 从BMC的CBS消息中构造新的CBS记录项
- 输入参数  : pstBmcDataInd: 指向BMC的CBS消息
- 输出参数  : pstNewRecord:  指向新CBS记录
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月9日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_CBA_BuildBmcCbsRecord(
     BMC_CBS_DATA_IND_STRU              *pstBmcDataInd,
     TAF_CBA_RECORD_STRU                *pstNewRecord
@@ -1407,23 +1048,7 @@ VOS_VOID TAF_CBA_BuildBmcCbsRecord(
 }
 
 #if (FEATURE_ON == FEATURE_ETWS)
-/*****************************************************************************
- 函 数 名  : TAF_CBA_IsCbsRecordSamePlmn
- 功能描述  : 判断两个CBS记录项的PLMN是否相同
- 输入参数  : pstSrcRecord: 指向一个CBS记录
-             pstDstRecord: 指向另一个CBS记录
- 输出参数  :
- 返 回 值  : VOS_TRUE : PLMN相同
-             VOS_FALSE: PLMN不同
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月9日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_CBA_IsCbsRecordSamePlmn(
     TAF_CBA_RECORD_STRU                *pstSrcRecord,
     TAF_CBA_RECORD_STRU                *pstDstRecord
@@ -1440,27 +1065,7 @@ VOS_UINT32 TAF_CBA_IsCbsRecordSamePlmn(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_IsDupBmcCbsRecord
- 功能描述  : 判断CBS历史记录表中是否存在重复的CBS记录项
- 输入参数  : pstRecord: 指向新CBS记录
- 输出参数  :
- 返 回 值  : VOS_TRUE : 历史记录表中存在相同的记录项
-             VOS_FALSE: 不存在相同的记录项
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月9日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月04日
-    作    者   : l00171473
-    修改内容   : for DTS2012120600056, 增加判断是否需要做重复过滤
-  3.日    期   : 2013年8月13日
-    作    者   : w00242748
-    修改内容   : for DTS2013081300926, 根据协议规则对update number进行判断
-*****************************************************************************/
 VOS_UINT32 TAF_CBA_IsDupBmcCbsRecord(
     TAF_CBA_RECORD_STRU                *pstRecord
 )
@@ -1527,21 +1132,7 @@ VOS_UINT32 TAF_CBA_IsDupBmcCbsRecord(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_SaveBmcCbsRecord
- 功能描述  : 保存新的CBS记录到CBS历史记录表
- 输入参数  : pstRecord: 新CBS记录
- 输出参数  :
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月9日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_CBA_SaveBmcCbsRecord (
     TAF_CBA_RECORD_STRU                *pstNewRecord
 )
@@ -1575,24 +1166,7 @@ VOS_VOID TAF_CBA_SaveBmcCbsRecord (
 
 /*lint -e429 -e830*/
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_ReportRcvCbsData
- 功能描述  : 处理收到的CBS消息
- 输入参数  : ucPageNum    :CBS消息个数
-             pstPageData  :CBS页数内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年5月10日
-    作    者   : zhoujun /z40661
-    修改内容   : 新生成函数
-  2.日    期  : 2012年12月26日
-    作    者  : 张鹏 id:00214637
-    修改内容  : USIM对外接口函数变更的处理 ，Client ID 到 PID的转换处理 ，  
-*****************************************************************************/
 VOS_VOID TAF_CBA_ReportRcvCbsData(
     VOS_UINT8                           ucPageNum,
     MN_MSG_CBRAW_TS_DATA_STRU          *pstPageData
@@ -1629,21 +1203,7 @@ VOS_VOID TAF_CBA_ReportRcvCbsData(
 }
 /*lint +e429 +e830*/
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_IsNeedDownloadToUsim
- 功能描述  : 该CB是否需要Download给USIM
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年5月11日
-    作    者   : zhoujun /z40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_CBA_IsNeedDownloadToUsim(
     VOS_UINT16                                              usMsgId
 )
@@ -1668,22 +1228,7 @@ VOS_UINT32 TAF_CBA_IsNeedDownloadToUsim(
     return ulIsDownLoad;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_IsMsgIdInCbmid
- 功能描述  : 检查消息ID是否为DOWNLOAD的消息ID
- 输入参数  : usMsgId        - 用户消息ID
-             pstCbmidList   - USIM指定的DOWNLOAD的消息ID列表
- 输出参数  : 无
- 返 回 值  : VOS_TRUE 消息ID在DOWNLOAD的消息ID列表中,否则,不在DOWNLOAD的消息ID列表中
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月17日
-    作    者   : 傅映君 62575
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_CBA_IsMsgIdInCbmid(
     VOS_UINT16                          usMsgId,
     TAF_CBA_CBMI_DOWNLOAD_LIST_STRU    *pstCbmidList
@@ -1703,22 +1248,7 @@ VOS_UINT32 TAF_CBA_IsMsgIdInCbmid(
 }
 
 #if (FEATURE_ON == FEATURE_ETWS)
-/*****************************************************************************
- 函 数 名  : TAF_CBA_GetCbsDupDetcTimeLen
- 功能描述  : 获取CBS消息的重复检测时长
- 输入参数  : pstPlmn: Plmn信息
-             usMsgId: CBS消息的MSG ID
- 输出参数  : 无
- 返 回 值  : CBS消息的重复检测时长 Duplication Detection Time
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月25日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_CBA_GetCbsDupDetcTimeLen(
     TAF_CBA_PLMN_ID_STRU                                   *pstPlmn,
     VOS_UINT16                                              usMsgId
@@ -1760,22 +1290,7 @@ VOS_UINT32 TAF_CBA_GetCbsDupDetcTimeLen(
 #endif
 
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_IsNeedDupDetectCbs
- 功能描述  : 判断CBS消息是否需要做重复过滤
- 输入参数  : usMsgID: CBS 消息ID
- 输出参数  : 无
- 返 回 值  : VOS_TRUE : 需要做重复检测
-             VOS_FALSE: 不需要做重复检测
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月04日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_CBA_IsNeedDupDetectCbs(
     VOS_UINT16                          usMsgID
 )

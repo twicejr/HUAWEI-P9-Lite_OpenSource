@@ -1,22 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : oam_trace.c
-  版 本 号   : 初稿
-  作    者   : huxiaotong
-  生成日期   : 2012年12月18日
-  最近修改   :
-  功能描述   : (1)用于测试流程或者函数运行时间的接口函数的源文件
-               (2)trace相关操作的源文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年12月18日
-    作    者   : huxiaotong
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -73,22 +55,7 @@ oam_profiling_statistic_debug_stru g_oam_profiling_statistic_debug;
 *****************************************************************************/
 
 #ifdef _PRE_PROFILING_MODE
-/*****************************************************************************
- 函 数 名  : oam_profiling_switch_test_process
- 功能描述  : proc指令调用的入口函数
- 输入参数  : (1)配置类型
-             (2)配置值
- 输出参数  : 无
- 返 回 值  : 成功或者失败原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月19日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  oam_profiling_switch_test_process(oal_uint8  uc_config_type, oal_uint8 uc_config_value)
 {
     switch (uc_config_type)
@@ -134,22 +101,7 @@ oal_void  oam_profiling_switch_test_process(oal_uint8  uc_config_type, oal_uint8
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : oam_profiling_compute_time_offset
- 功能描述  : 计算两个时间之间的偏移差
- 输入参数  : (1)时间值一
-             (2)时间值二
- 输出参数  : 两次时间的时间差
- 返 回 值  : 成功或者失败原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月19日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  oam_profiling_compute_time_offset(
                 oal_time_us_stru    st_time_first,
                 oal_time_us_stru    st_time_second,
@@ -171,21 +123,7 @@ oal_uint32  oam_profiling_compute_time_offset(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : oam_profiling_rx_init
- 功能描述  : 初始化接收流程的全局测试变量
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回成功或者失败原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月19日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  oam_profiling_rx_init(oal_void)
 {
     oal_uint32 ul_packet_idx;
@@ -210,21 +148,7 @@ oal_uint32  oam_profiling_rx_init(oal_void)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : oam_profiling_rx_save_data
- 功能描述  : 接收时根据skb id将时间差,基准时间,经过函数次数保存到skb_run_time_offset
- 输入参数  : 函数索引
- 输出参数  : 无
- 返 回 值  : 返回成功或者失败原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月19日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void oam_profiling_rx_save_data(oam_profiling_rx_func_enum_uint8 en_func_index)
 {
     /* 开关判断 */
@@ -239,21 +163,7 @@ oal_void oam_profiling_rx_save_data(oam_profiling_rx_func_enum_uint8 en_func_ind
     }
 }
 
-/*****************************************************************************
- 函 数 名  : oam_profiling_rx_show_offset
- 功能描述  : 打印接收函数运行时间和运行次数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回成功或者失败原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月19日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  oam_profiling_rx_show_offset(oal_void)
 {
     oal_uint32      ul_packet_idx;
@@ -290,21 +200,7 @@ oal_uint32  oam_profiling_rx_show_offset(oal_void)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : oam_profiling_tx_init
- 功能描述  : 初始化发送流程的全局测试变量
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回成功或者失败原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月19日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  oam_profiling_tx_init(oal_void)
 {
     oal_uint32 ul_packet_idx;
@@ -329,22 +225,7 @@ oal_uint32  oam_profiling_tx_init(oal_void)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : oam_profiling_tx_save_data
- 功能描述  : 发送时根据skb id将时间差,基准时间,经过函数次数保存到skb_run_time_offset
- 输入参数  : (1)指向要操作的netbuf
-             (2)函数索引
- 输出参数  : 无
- 返 回 值  : 返回成功或者失败原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月19日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void oam_profiling_tx_save_data(
                 oal_void                    *pst_netbuf,
                 oam_profiling_tx_func_enum_uint8    en_func_index)
@@ -364,21 +245,7 @@ oal_void oam_profiling_tx_save_data(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : oam_profiling_tx_show_offset
- 功能描述  : 打印发送函数运行时间和运行次数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回成功或者失败原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月19日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  oam_profiling_tx_show_offset(oal_void)
 {
     oal_uint32      ul_packet_idx;
@@ -459,21 +326,7 @@ oal_uint32  oam_profiling_tx_show_offset(oal_void)
 }
 
 
-/*****************************************************************************
- 函 数 名  : oam_profiling_alg_init
- 功能描述  : 初始化发送流程的全局测试变量
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回成功或者失败原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月29日
-    作    者   : liwendong 291193
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  oam_profiling_alg_init(oal_void)
 {
     oal_uint32 ul_packet_idx;
@@ -498,22 +351,7 @@ oal_uint32  oam_profiling_alg_init(oal_void)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : oam_profiling_alg_save_data
- 功能描述  : 发送时根据skb id将时间差,基准时间,经过函数次数保存到skb_run_time_offset
- 输入参数  : (1)指向要操作的netbuf
-             (2)函数索引
- 输出参数  : 无
- 返 回 值  : 返回成功或者失败原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月29日
-    作    者   : liwendong 291193
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void oam_profiling_alg_save_data(oam_profiling_alg_func_enum_uint8    en_func_index)
 {
     /* 开关判断 */
@@ -531,21 +369,7 @@ oal_void oam_profiling_alg_save_data(oam_profiling_alg_func_enum_uint8    en_fun
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : oam_profiling_alg_show_offset
- 功能描述  : 打印发送函数运行时间和运行次数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回成功或者失败原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月29日
-    作    者   : liwendong 291193
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  oam_profiling_alg_show_offset(oal_void)
 {
     oal_uint32      ul_packet_idx;
@@ -590,21 +414,7 @@ oal_uint32  oam_profiling_alg_show_offset(oal_void)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : oam_profiling_statistic_init
- 功能描述  : 初始化芯片启动时间统计全局变量
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月22日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  oam_profiling_statistic_init(oal_void)
 {
     OAL_MEMZERO(&g_oam_profiling_statistic_starttime, OAL_SIZEOF(g_oam_profiling_statistic_starttime));
@@ -614,21 +424,7 @@ oal_uint32  oam_profiling_statistic_init(oal_void)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : oam_profiling_starttime_save_timestamp
- 功能描述  : 芯片启动流程打时间戳函数
- 输入参数  : en_func_idx: 打时间戳的索引号
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月22日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  oam_profiling_starttime_save_timestamp(oam_profiling_starttime_func_enum_uint8 en_func_idx)
 {
     g_oam_profiling_statistic_starttime.aul_timestamp[en_func_idx] = oal_5115timer_get_10ns();
@@ -636,21 +432,7 @@ oal_void  oam_profiling_starttime_save_timestamp(oam_profiling_starttime_func_en
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : oam_profiling_starttime_show_offset
- 功能描述  : 打印芯片各模块启动时间
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月22日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  oam_profiling_starttime_show_offset(oal_void)
 {
     oal_uint32 ul_idx;
@@ -672,21 +454,7 @@ oal_void  oam_profiling_starttime_show_offset(oal_void)
 }
 
 
-/*****************************************************************************
- 函 数 名  : oam_profiling_chswitch_save_timestamp
- 功能描述  : 芯片启动流程打时间戳函数
- 输入参数  : en_func_idx: 打时间戳的索引号
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月22日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  oam_profiling_chswitch_save_timestamp(oam_profiling_chswitch_func_enum_uint8 en_func_idx)
 {
     g_oam_profiling_statistic_chswitch.aul_timestamp[en_func_idx] = oal_5115timer_get_10ns();
@@ -694,21 +462,7 @@ oal_void  oam_profiling_chswitch_save_timestamp(oam_profiling_chswitch_func_enum
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : oam_profiling_chswitch_show_offset
- 功能描述  : 打印信道切换时间
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月22日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  oam_profiling_chswitch_show_offset(oal_void)
 {
     oal_uint32 ul_idx;
@@ -730,21 +484,7 @@ oal_void  oam_profiling_chswitch_show_offset(oal_void)
 }
 
 
-/*****************************************************************************
- 函 数 名  : oam_profiling_set_switch
- 功能描述  : 设置profiling的控制开关
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月25日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  oam_profiling_set_switch(oam_profiling_enum_uint8 en_profiling_type, oam_profiling_swith_enum_uint8 en_profiling_switch)
 {
 
@@ -781,21 +521,7 @@ oal_uint32  oam_profiling_set_switch(oam_profiling_enum_uint8 en_profiling_type,
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : oam_profiling_init
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月20日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  oam_profiling_init(oal_void)
 {
     /* 初始化定时器 */

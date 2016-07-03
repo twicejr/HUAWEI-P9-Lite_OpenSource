@@ -1,16 +1,4 @@
-/******************************************************************************
 
-        @(#)Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : NasEsmNwMsgBearerResModProc.h
-    Description :
-    History     :
-     1.¶¡Àö 00128736      2008-09-01  Draft Enact
-     2.Ëï±ø 49683         2009-01-06  BA8D00870
-     3.ÑîÜç»Ý 00135146    2009-03-06  Modify  BA8D01127
-     4.Àîºé00150010       2009-08-03  Modify  BJ9D01608
-******************************************************************************/
 
 #ifndef _NASESMNWMSGBEARERRESMODPROC_H
 #define _NASESMNWMSGBEARERRESMODPROC_H

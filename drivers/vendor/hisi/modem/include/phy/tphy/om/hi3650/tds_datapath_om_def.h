@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : tds_datapath_om_def.h
-  版 本 号   : 初稿
-  作    者   : mah
-  生成日期   : 2012年10月8日
-  最近修改   :
-  功能描述   : TDS  数据通道OM接口定义
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年10月8日
-    作    者   : mah
-    修改内容   : 创建文件
-
-******************************************************************************/
 #ifndef __TDS_DATAPATH_OM_DEF_H__
 #define __TDS_DATAPATH_OM_DEF_H__
 
@@ -200,7 +183,7 @@ typedef enum
     TDS_UPLINK_REQ_ID = 0x8,
     TDS_MODU_REQ_ID = 0x10,
     TDS_TIMING_REQ_ID = 0x20,
-    TDS_INTERIRATMEAS_REQ_ID = 0x40,      /* ACC异频测量 y00194530 */
+    TDS_INTERIRATMEAS_REQ_ID = 0x40,
 }TDS_DATA_PATH_LOG_IN_ID;
 typedef UINT32 TDS_DATA_PATH_LOG_IN_ID_UINT32;
 

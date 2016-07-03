@@ -40,14 +40,12 @@ typedef enum tagPTP_PPI_CMD_E
         PTP_PPI_UNSET,          /* 下发停止修正时间命令 */
         PTP_PPI_DEL,            /* 下发删除SYNC报文发送链路命令 */
         PTP_PPI_SETUTC,         /* 更新UTC标志位及偏移量*/
-        /*Add By t00110672 For BC3D03060,2010-5-5,选源优化补充实现*/
         PTP_PPI_SET_BESTCLASS,
         PTP_PPI_SETIP,          /* 下发IP相关信息*/
         PTP_PPI_SETMAC,         /* 下发MAC相关信息*/
         PTP_PPI_BMC_PARA_CHANGED,/*IPCLK 需求:选源的参数发生变化，
                                    PPI 下发只携带本端、对端地址、对端PortId信息
                                   其他信息需要产品调PTP_GetParentDS来获取*/
-        /*Add by heyijun 00218462 for DTS2014091108767 on 2014-9-11 增加timeScale变化后的PPI上报*/
         PTP_PPI_PARA_UPDATE,    /*ANN报文中timescale参数变化后下发更新*/
         PTP_PPI_MAX
 } PTP_PPI_CMD_E;
@@ -55,9 +53,7 @@ typedef enum tagPTP_PPI_CMD_E
 /*PPI 参数结构定义*/
 typedef struct tagPTP_PPI_S
 {
-        /*ST问题，远端时钟ID，我们不知道， 20080717， l00128792*/
         PTP_PORT_ID_S  stDstPortIdentity;        /*源端口标识*/
-        /*Add By t00110672 For BC3D02767,2010-3-4,【TD产品需求】【PTP】实现1588无线选源方案优化；*/
         UCHAR  ucBestClass; /*是否为优选源，是否为优选源的字段，
                                     时钟等级是否满足6、7、13、14的时钟源为优选源
                                     BOOL_FALSE:非优选源
@@ -79,18 +75,14 @@ typedef struct tagPTP_PPI_S
         UCHAR ucPadding;
         BOOL_T bTimeScale;
 
-        /*Add By t00110672/z00146309  10-1-11,支持路由器关于实现最新草案的需求 */
         BOOL_T bTwoStep;/*TRUE:TwoStep;FALSE:OneStep,默认为OneStep;*/
         USHORT  usReserved1;
         ULONG ulSyncDurationField;/*下发Sync报文的发送时长*/
         ULONG ulDelayReqDurationField;/*下发DelayReq报文的发送时长*/
         ULONG ulPDelayReqDurationField;/*下发PDelayReq报文的发送时长*/
-        /*Add By t00110672 For BC3D02586,IPCLK 产品实现双IP的需求*/
         PTP_PORT_ADDR_S stRemoteExtIP;              /*远端扩展地址*/
-        /*Add By t00110672 For BC3D02987,IEEE1588V2 支持UTC时间实现方案*/
         BOOL_T bOffsetValid;
         SHORT sUtcOffset;
-        /*Added by zhangbo146309, 物理端口对应, 2010/4/14 */
         ULONG ulIfIndex;/*下发本地接口索引*/
 } PTP_PPI_S;
 
@@ -340,7 +332,6 @@ extern ULONG PTP_Shell_UnInit(VOID);
 extern ULONG PTP_Shell_Profile(USHORT usPortNumber,ULONG ulProfileType,ULONG ulFsmMode);
 
 
-/*Added by limin00188004, PTP6_Shell_Init 和 PTP6_Shell_UnInit 的声明需要放到ptp_api.h中，方便产品调用, 2011/11/16   问题单号:DTS2011111600282 */
 /******************************************************************************
 *Func Name   : PTP6_Shell_Init
 *Description : PTP6 Shell 初始化
@@ -373,7 +364,6 @@ extern ULONG PTP6_Shell_Init (ULONG ulFlag);
 *******************************************************************************/
 extern ULONG PTP6_Shell_UnInit(VOID);
 
-/* End of Added by limin00188004, 2011/11/16   问题单号:DTS2011111600282 */
 
 
 extern ULONG PTP_GetVrfIndexByName(CHAR *pcVrfName, ULONG *pulVrfIndex);

@@ -1,46 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
-******************************************************************************
-  文 件 名   : MnComm.c
-  版 本 号   : 初稿
-  作    者   : 丁庆 49431
-  生成日期   : 2008年1月10日
-  最近修改   : 2008年1月10日
-  功能描述   : 定义TAF子系统的共用数据和函数
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2008年1月10日
-    作    者   : 丁庆 49431
-    修改内容   : 创建文件
-  2.日    期   : 2008年8月25日
-    作    者   : 傅映君 62575
-    修改内容   : 问题单号 AT2D04608,增加协议栈对号码编码类型限制(不支持 TON==5的号码类型)
-  3.日    期   : 2008年08月25日
-    作    者   : f62575
-    修改内容   : 问题单号：AT2D05096,
-  4.日    期   : 2008年10月20日
-    作    者   : h44270
-    修改内容   : 问题单号:A32D14153,来电时，用户尚未接听电话就打开了声码器,，AMR速率变换没有上报
-  5.日    期   : 2009年7月8日
-    作    者   : F62575
-    修改内容   : 问题单号:AT2D12837,sms-msg-type:cp-data消息中，ms-to-network-rp-cause-value:protocol-error-unspecified
-  6.日    期   : 2010年2月21日
-    作    者   : f62575
-    修改内容   : 问题单号：AT2D16979，UE侧不再检查地址的TON和NPI类型
-  7.日    期   : 2010年03月25日
-    作    者   : s46746
-    修改内容   : 问题单号AT2D17931
-                 合入新增Control口和激活SMS特性
-  8.日    期   : 2010年04月10日
-    作    者   : f62575
-    修改内容   : 问题单号AT2D18035
-                 写PDU短信到SIM卡,BALONG对TP-SCTS的检查与标杆不一致；
-  9.日    期   : 2011年10月5日
-    作    者   : 鲁琳/l60609
-    修改内容   : AT Project: 将各模块的回调函数改为C核的函数
-******************************************************************************/
 
 /*****************************************************************************
    1 头文件包含
@@ -50,39 +8,29 @@
 #include "Taf_Tafm_Remote.h"
 #include "MnComm.h"
 #include "MnErrorCode.h"
-/* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, begin */
 #include "TafClientApi.h"
-/* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, end */
 
 #include "mdrv.h"
 #include "NasComm.h"
-/* Modified by z00161729 for V9R1 STK升级, 2013-7-24, begin */
 #include "NasStkInterface.h"
 #include "NasUsimmApi.h"
-/* Modified by z00161729 for V9R1 STK升级, 2013-7-24, end */
 
 #include "TafAppMma.h"
-/* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, begin */
 #include "TafApsApi.h"
-/* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, end */
 #include "MnCall.h"
 
 #include "MmaAppLocal.h"
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, begin */
 #include "TafSdcCtx.h"
 #include "TafAppMma.h"
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, end */
 
 #include "TafMtaPhy.h"
 #include "MtaPhyInterface.h"
 #include "MnCallApi.h"
 #include "Taf_MmiStrParse.h"
 
-/* Added by j00174725 for V9R1 干扰控制, 2013/08/13, begin */
 #if (FEATURE_MULTI_MODEM == FEATURE_ON)
 #include "TafMtcInterface.h"
 #endif
-/* Added by j00174725 for V9R1 干扰控制, 2013/08/13, end */
 
 #if (FEATURE_ON == FEATURE_PTM)
 #include "NasErrorLog.h"
@@ -113,7 +61,6 @@ LOCAL VOS_BOOL f_bMnUsimPresent = VOS_FALSE;
 
 NAS_MNTN_MSG_INFO_STRU                  g_stMnMntnErrorLogMsg = {0};
 
-/* Added by L60609 for AT Project，2011-10-05,  Begin*/
 LOCAL MN_QRYMSGPARA_ATTR                f_astMnQryMsgParaAttr[] = {
 
 
@@ -135,10 +82,7 @@ LOCAL MN_QRYMSGPARA_ATTR                f_astMnQryMsgParaAttr[] = {
 
 };
 
-/* Deleted by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
-/* Deleted by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
-/* Added by L60609 for AT Project，2011-10-05,  End*/
 TAF_CS_ERR_CODE_MAP_STRU g_astMnCallErrCodeMapTbl[] =
 {
     {TAF_CS_CAUSE_CC_NW_PROTOCOL_ERROR_UNSPECIFIED                  ,   MN_CALL_INVALID_CAUSE                                   },
@@ -221,25 +165,7 @@ VOS_UINT16 f_ausMnAsciiSfxDefAlpha[MN_MAX_GSM7BITDEFALPHA_NUM] =
 /*****************************************************************************
    3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : MN_GetRealClientId
- 功能描述  : 获取对应Modem的CilentId
- 输入参数  : MN_CLIENT_ID_T                      usClientId
-             VOS_UINT32                          ulPid
- 输出参数  : 无
- 返 回 值  : MN_CLIENT_ID_T
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月22日
-    作    者   : z00220246
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年5月28日
-    作    者   : l00198894
-    修改内容   : TSTS
-*****************************************************************************/
 MN_CLIENT_ID_T MN_GetRealClientId(
     MN_CLIENT_ID_T                      usClientId,
     VOS_UINT32                          ulPid
@@ -270,60 +196,19 @@ MN_CLIENT_ID_T MN_GetRealClientId(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : MN_IsUsimPresent
- 功能描述  : 检查USIM是否可用
- 输入参数  : 略
- 返 回 值  : VOS_TRUE - USIM可用，VOS_FALSE - USIM不可用
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月10日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_BOOL  MN_IsUsimPresent(VOS_VOID)
 {
     return f_bMnUsimPresent;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_SetUsimPresent
- 功能描述  : 设置USIM的可用状态
- 输入参数  : bPresent - 设置为可用或不可用
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月10日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  MN_SetUsimPresent(VOS_BOOL bPresent)
 {
     f_bMnUsimPresent = bPresent;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_SendClientResponse
- 功能描述  : 向指定的Client发送异步请求的响应
- 输入参数  : clientId    - 发起该请求的Client的ID或广播客户ID
-             opId        - Operation ID, 标识本次操作
-             ulErrorCode - 错误原因值
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月10日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2011年10月19日
-    作    者   : f00179208
-    修改内容   : AT移植项目,CallBack的清理
-*****************************************************************************/
 VOS_VOID  MN_SendClientResponse(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId,
@@ -337,31 +222,7 @@ VOS_VOID  MN_SendClientResponse(
 
 }
 
-/*****************************************************************************
- 函 数 名  : MN_SendClientEvent
- 功能描述  : 向指定的或所有的Client上报事件
- 输入参数  : usClientId     - 发起该请求的Client的ID或广播客户ID
-             ucCallbackType - 回调类型，用于索引当前需要的回调函数
-             ulEventType    - 上报事件类型
-             pEventContent  - 上报内容
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月10日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2010年6月28日
-    作    者   : z00161729
-    修改内容   : 降函数圈复杂度修改
-  3.日    期   : 2011年10月15日
-    作    者   : f00179208
-    修改内容   : AT移植项目, CALLBACK的清理
-  4.日    期   : 2012年03月03日
-    作    者   : s62952
-    修改内容   : BalongV300R002 Build优化项目
-*****************************************************************************/
 VOS_VOID  MN_SendClientEvent(
     MN_CLIENT_ID_T                      usClientId,
     MN_CALLBACK_TYPE_T                  ucCallbackType,
@@ -387,13 +248,11 @@ VOS_VOID  MN_SendClientEvent(
             MN_SS_SendMsg(usClientId, ulEventType, (TAF_SS_CALL_INDEPENDENT_EVENT_STRU *)pEventContent);
             break;
 
-        /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
         case MN_CALLBACK_VOICE_CONTROL:
 
             /*voice control事件上报处理*/
             MN_VC_SendMsg(usClientId, ulEventType, (APP_VC_EVENT_INFO_STRU *)pEventContent);
             break;
-        /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
 
         default:
             break;
@@ -402,26 +261,7 @@ VOS_VOID  MN_SendClientEvent(
 
 }
 
-/*****************************************************************************
- 函 数 名  : MN_SetBitMap
- 功能描述  : 设置指定索引节点的位图
- 输入参数  : pulBitMap  - 位图指针
-             ulIndex    - 节点的索引
-             bReset     - VOS_TRUE 置忙，VOS_FALSE 置闲
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月17日
-    作    者   : 傅映君 62575
-    修改内容   : 新生成函数
-  2.日    期   : 2010年04月10日
-    作    者   : f62575
-    修改内容   : 问题单号AT2D18035
-                 写PDU短信到SIM卡,BALONG对TP-SCTS的检查与标杆不一致；
-*****************************************************************************/
 VOS_VOID MN_SetBitMap(
     VOS_UINT32                          *pulBitMap,
     VOS_UINT32                          ulIndex,
@@ -444,25 +284,7 @@ VOS_VOID MN_SetBitMap(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_GetBitMap
- 功能描述  : 获取指定索引节点位图的忙闲标志
- 输入参数  : pulBitMap  - 位图指针
-             ulIndex    - 节点的索引
- 输出参数  : 无
- 返 回 值  : VOS_TRUE 忙，VOS_FALSE 闲
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月17日
-    作    者   : 傅映君 62575
-    修改内容   : 新生成函数
-  2.日    期   : 2010年04月10日
-    作    者   : f62575
-    修改内容   : 问题单号AT2D18035
-                 写PDU短信到SIM卡,BALONG对TP-SCTS的检查与标杆不一致；
-*****************************************************************************/
 VOS_UINT32 MN_GetBitMap(
     VOS_UINT32                          *pulBitMap,
     VOS_UINT32                          ulIndex
@@ -486,26 +308,7 @@ VOS_UINT32 MN_GetBitMap(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CmpAsciiStrAndUcs2StrCaseInsensitive
- 功能描述  : 比较ASCII字符串和UCS2字符串,比较结果作为输出参数输出
-             此函数仅作UCS2高位为0情况的比较: 比较UCS2的低位和ASCII码
- 输入参数  : VOS_UINT8 *pucUcs2Str UCS2字符串首地址
-             VOS_UINT32 ulUcs2Strlen UCS2字符串长度,以字节数为单位的字符串长度
-             VOS_UINT8 *pucAsciiStr ASCII字符串首地址
- 输出参数  : VOS_BOOL                            *pbEqualFlag
-                         VOS_TRUE    UCS2的低位和ASCII码流相同；
-                         VOS_FALSE   UCS2的低位和ASCII码流不同；
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年3月16日
-    作    者   : f62575
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MN_CmpAsciiStrAndUcs2StrCaseInsensitive(
     VOS_UINT8                           *pucUcs2Str,
     VOS_UINT32                          ulUcs2Strlen,
@@ -550,22 +353,7 @@ VOS_VOID MN_CmpAsciiStrAndUcs2StrCaseInsensitive(
 
 }
 
-/*****************************************************************************
- 函 数 名  : MN_DeciDigit2Ascii
- 功能描述  : 将十进制数字字符串转换成ASCII码表示的数字字符串
- 输入参数  : VOS_UINT8  aucDeciDigit[]十进制数字字符串首地址
-             VOS_UINT32 ulLength      十进制数字字符串长度
- 输出参数  : VOS_UINT8  aucAscii[]    ASCII码表示的数字字符串首地址
- 返 回 值  : VOS_UINT32 转换结果: VOS_OK转换成功，VOS_ERR转换失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年8月2日
-    作    者   : 傅映君/f62575
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MN_DeciDigit2Ascii(
     VOS_UINT8                           aucDeciDigit[],
     VOS_UINT32                          ulLength,
@@ -587,26 +375,7 @@ VOS_UINT32 MN_DeciDigit2Ascii(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MNTN_RecordSmsMoFailure
- 功能描述  : 记录短信发送失败事件
- 输入参数  : TAF_MSG_ERROR_ENUM_UINT32 enErrorCode短信发送失败原因值
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年9月19日
-    作    者   : 傅映君/f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2013年6月29日
-    作    者   : z60575
-    修改内容   : DTS2013062500138,ERROR_LOG修改
-  3.日    期   : 2013年6月26日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级
-*****************************************************************************/
 VOS_VOID MN_MNTN_RecordSmsMoFailure(TAF_MSG_ERROR_ENUM_UINT32 enErrorCode)
 {
     VOS_UINT32                          ulRet;
@@ -626,9 +395,7 @@ VOS_VOID MN_MNTN_RecordSmsMoFailure(TAF_MSG_ERROR_ENUM_UINT32 enErrorCode)
 
     NAS_MNTN_OutputPositionInfo(&stSmsMoFailEvent.stPositionInfo);
 
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     MN_MSG_OutputSmsMoFailureInfo(enErrorCode, &stSmsMoFailEvent.stMoFail);
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
     MN_MSG_GetCurSendDomain(MN_MSG_SEND_DOMAIN_PS, &enAvailableSendDomain);
     if (MN_MSG_SEND_DOMAIN_PS == enAvailableSendDomain)
@@ -665,21 +432,7 @@ VOS_VOID MN_MNTN_RecordSmsMoFailure(TAF_MSG_ERROR_ENUM_UINT32 enErrorCode)
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : MN_GetFileSize
- 功能描述  : 获取文件大小
- 输入参数  : VOS_UINT32   ulIndex 索引值
- 输出参数  : VOS_UINT8    *pucSmContent 要写入短信的Buffer
 
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2011年01月24日
-    作    者   : 王毛/W00166186
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 MN_GetFileSize(
     FILE                                *fp,
     VOS_UINT32                          *pulFileSize
@@ -703,24 +456,7 @@ VOS_UINT32 MN_GetFileSize(
     return MN_ERR_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MNTN_RecordSmsMeError
- 功能描述  : 记录短信ME文件操作失败事件
- 输入参数  : MNTN_ME_OPERATION_ENUM_UINT32 enOperation 文件操作方式
-             VOS_UINT32 ulErrorNo                      短信ME文件操作失败错误码
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年2月9日
-    作    者   : 傅映君/f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2013年6月29日
-    作    者   : z60575
-    修改内容   : DTS2013062500138,ERROR_LOG修改
-*****************************************************************************/
 VOS_VOID MN_MNTN_RecordSmsMeError (
     MNTN_ME_OPERATION_ENUM_UINT32       enOperation,
     VOS_UINT32                          ulErrorNo
@@ -762,24 +498,7 @@ VOS_VOID MN_MNTN_RecordSmsMeError (
 
 }
 
-/* Added by L60609 for AT Project，2011-10-03,  Begin*/
-/*****************************************************************************
- 函 数 名  : MN_SendReportMsg
- 功能描述  : MN_SendReportMsg
- 输入参数  : TAF_UINT8 ucType
-             TAF_UINT8* pData
-             TAF_UINT16 usLen
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月3日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  MN_SendReportMsg(TAF_UINT8 ucType,TAF_UINT8* pData,TAF_UINT16 usLen)
 {
     MN_AT_IND_EVT_STRU                  *pstEvent;
@@ -811,21 +530,7 @@ VOS_VOID  MN_SendReportMsg(TAF_UINT8 ucType,TAF_UINT8* pData,TAF_UINT16 usLen)
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_GetClientIdType
- 功能描述  : 通过CLIENT ID获得CLIENT类型
- 输入参数  : MN_CLIENT_ID_T usClientId
- 输出参数  : 无
- 返 回 值  : MN_CLIENT_ID_TYPE_UINT16
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月15日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 MN_CLIENT_ID_TYPE_UINT16 MN_GetClientIdType(MN_CLIENT_ID_T usClientId)
 {
     /*AT的CLIENT*/
@@ -845,42 +550,20 @@ MN_CLIENT_ID_TYPE_UINT16 MN_GetClientIdType(MN_CLIENT_ID_T usClientId)
     return MN_CLIENT_ID_TYPE_BUTT;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_GetPidFromClientId
- 功能描述  : 通过clientid 获取对应的pid
- 输入参数  : MN_CLIENT_ID_T usClientId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月22日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月23日
-    作    者   : wx270776
-    修改内容   : OM的PID: WUEPS_PID_OM_CALLBACK 和 WUEPS_PID_DIAG 已删除
-
-*****************************************************************************/
 VOS_UINT32 MN_GetPidFromClientId(MN_CLIENT_ID_T usClientId)
 {
     VOS_UINT32                          ulRcvPid;
 
     switch(usClientId)
     {
-    /* Deleted by wx270776 for OM融合, 2015-7-17, begin */
 
-    /* Deleted by wx270776 for OM融合, 2015-7-17, end */
 
         case OAM_CLIENT_ID_SPY:
             ulRcvPid = WUEPS_PID_SPY;
             break;
 
-    /* Deleted by wx270776 for OM融合, 2015-7-17, begin */
 
-    /* Deleted by wx270776 for OM融合, 2015-7-17, end */
 
         case OAM_CLIENT_ID_STK:
             ulRcvPid = MAPS_STK_PID;
@@ -906,28 +589,7 @@ VOS_UINT32 MN_GetPidFromClientId(MN_CLIENT_ID_T usClientId)
     return ulRcvPid;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CS_SendMsgToAt
- 功能描述  : 电路域呼叫事件上报给AT
- 输入参数  : MN_CLIENT_ID_T                      clientId
-             MN_CALL_EVENT_ENUM_U32              enEventType
-             MN_CALL_INFO_STRU                   *pstEvent
- 输出参数  : 无
- 返 回 值  : TAF_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月3日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月22日
-    作    者   : z00220246
-    修改内容   : DSDA Phase II,根据SenderPid获得上报的ClientId
-  3.日    期   :2014年9月29日
-    作    者   :s00217060
-    修改内容   :for cs_err_log
-*****************************************************************************/
 VOS_VOID MN_CS_SendMsgToAt(
     MN_CLIENT_ID_T                      clientId,
     MN_CALL_EVENT_ENUM_U32              enEventType,
@@ -986,28 +648,7 @@ VOS_VOID MN_CS_SendMsgToAt(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CS_SendMsgToOam
- 功能描述  : 电路域呼叫事件上报给OAM
- 输入参数  : MN_CLIENT_ID_T                      clientId
-             MN_CALL_EVENT_ENUM_U32              enEventType
-             MN_CALL_INFO_STRU                   *pstEvent
- 输出参数  : 无
- 返 回 值  : TAF_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月3日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2013年01月29日
-    作    者   : Y00213812
-    修改内容   : DTS2013012909872,copy消息数据长度
-  3.日    期   : 2013年6月4日
-    作    者   : z00161729
-    修改内容  : SVLTE 和usim接口调整修改
-*****************************************************************************/
 VOS_VOID MN_CS_SendMsgToOam(
     MN_CLIENT_ID_T                      clientId,
     MN_CALL_EVENT_ENUM_U32              enEventType,
@@ -1052,28 +693,7 @@ VOS_VOID MN_CS_SendMsgToOam(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CS_SendMsg
- 功能描述  : 电路域呼叫事件上报函数
- 输入参数  : MN_CLIENT_ID_T                      clientId
-             MN_CALL_EVENT_ENUM_U32              enEventType
-             MN_CALL_INFO_STRU                   *pstEvent
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月15日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2013年4月3日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核
-  3.日    期   : 2013年7月2日
-    作    者   : z00234330
-    修改内容   : DTS2013070203832,呼叫相关的AT命令无条件上报到A核
-*****************************************************************************/
 VOS_VOID MN_CS_SendMsg(
     MN_CLIENT_ID_T                      usClientId,
     MN_CALL_EVENT_ENUM_U32              enEventType,
@@ -1082,7 +702,6 @@ VOS_VOID MN_CS_SendMsg(
 {
     MN_CLIENT_ID_TYPE_UINT16            enClientIdType;
     VOS_UINT32                          ulOamRcvPid;
-    /* Modified by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, begin */
 
     enClientIdType  = MN_GetClientIdType(usClientId);
 
@@ -1098,7 +717,6 @@ VOS_VOID MN_CS_SendMsg(
         MN_CS_SendMsgToAt(usClientId, enEventType, pstEvent);
 
 
-        /* Modified by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, end */
 
         MN_CS_ProcEmergencyCallEvent(enEventType, pstEvent);
         return;
@@ -1127,26 +745,7 @@ VOS_VOID MN_CS_SendMsg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_SendMsgToOam
- 功能描述  : 发送短信事件给OAM的指定PID
- 输入参数  : MN_CLIENT_ID_T                      clientId
-             MN_MSG_EVENT_ENUM_U32               enEventType
-             VOS_UINT32                          ulOamRcvPid
-             MN_MSG_EVENT_INFO_STRU             *pstEvent
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月19日
-    作    者   : f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2013年6月5日
-    作    者   : z00161729
-    修改内容   : SVLTE 和usim接口调整修改
-*****************************************************************************/
 VOS_VOID MN_MSG_SendMsgToOam(
     MN_CLIENT_ID_T                      clientId,
     MN_MSG_EVENT_ENUM_U32               enEventType,
@@ -1190,28 +789,7 @@ VOS_VOID MN_MSG_SendMsgToOam(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_SendMsgToAt
- 功能描述  : 短消息事件上报给AT
- 输入参数  : MN_CLIENT_ID_T                      clientId
-             MN_MSG_EVENT_ENUM_U32               enEventType
-             MN_MSG_EVENT_INFO_STRU              *pstEvent
- 输出参数  : 无
- 返 回 值  : TAF_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月3日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月22日
-    作    者   : z00220246
-    修改内容   : DSDA Phase II,根据SenderPid获得上报的ClientId
-  3.日    期   :2014年9月29日
-    作    者   :s00217060
-    修改内容   :for cs_err_log
-*****************************************************************************/
 VOS_VOID MN_MSG_SendMsgToAt(
     MN_CLIENT_ID_T                      clientId,
     MN_MSG_EVENT_ENUM_U32               enEventType,
@@ -1266,32 +844,7 @@ VOS_VOID MN_MSG_SendMsgToAt(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_SendMsg
- 功能描述  : 短消息事件上报函数
- 输入参数  : MN_CLIENT_ID_T                      clientId
-             MN_MSG_EVENT_ENUM_U32               enEventType
-             MN_MSG_EVENT_INFO_STRU              *pstEvent
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月15日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2013年4月3日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核
-  3.日    期   : 2013年9月13日
-    作    者   : z60575
-    修改内容   : DTS2013090908636,V9不做taskdelay
-  4.日    期   : 2013年9月27日
-    作    者   : w00167002
-    修改内容   : DTS2013092100149:删除C核TASKDELAY处理，在V9低功耗时，会导致
-                   TASKDELAY后未被唤醒，导致AT消息没有回复。
-*****************************************************************************/
 VOS_VOID MN_MSG_SendMsg(
     MN_CLIENT_ID_T                      usClientId,
     MN_MSG_EVENT_ENUM_U32               enEventType,
@@ -1343,26 +896,7 @@ VOS_VOID MN_MSG_SendMsg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_SS_SendMsgToOam
- 功能描述  : SSA所有事件上报给AT
- 输入参数  : MN_CLIENT_ID_T                      clientId
-             MN_CALL_EVENT_ENUM_U32              enEventType
-             TAF_SS_CALL_INDEPENDENT_EVENT_STRU *pstEvent
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月3日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2013年6月5日
-    作    者   : z00161729
-    修改内容   : SVLTE 和usim接口调整修改
-
-*****************************************************************************/
 VOS_VOID MN_SS_SendMsgToOam(
     MN_CLIENT_ID_T                      clientId,
     VOS_UINT32                          ulEventType,
@@ -1408,25 +942,7 @@ VOS_VOID MN_SS_SendMsgToOam(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_SS_SendMsgToAt
- 功能描述  : SSA所有事件上报给AT
- 输入参数  : MN_CLIENT_ID_T                      clientId
-             VOS_UINT32                          ulEventType,
-             TAF_SS_CALL_INDEPENDENT_EVENT_STRU *pstEvent
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月3日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月22日
-    作    者   : z00220246
-    修改内容   : DSDA Phase II,根据SenderPid获得上报的ClientId
-*****************************************************************************/
 VOS_VOID MN_SS_SendMsgToAt(
     MN_CLIENT_ID_T                      clientId,
     VOS_UINT32                          ulEventType,
@@ -1444,29 +960,7 @@ VOS_VOID MN_SS_SendMsgToAt(
     MN_SendReportMsg(MN_CALLBACK_SS,(TAF_UINT8*)pstEvent,sizeof(TAF_SS_CALL_INDEPENDENT_EVENT_STRU));
 }
 
-/*****************************************************************************
- 函 数 名  : MN_SS_SendMsg
- 功能描述  : SS事件上报函数
- 输入参数  : MN_CLIENT_ID_T                      clientId
-             VOS_UINT32                          ulEventType,
-             TAF_SS_CALL_INDEPENDENT_EVENT_STRU *pstEvent
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月15日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2013年4月3日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核
-  3.日    期   : 2014年5月7日
-    作    者   : w00242748
-    修改内容   : DTS2014050602822:STK拨打电话，卡中BCD号码有误，导致电话没打起来；
-                 STK发送的USSD请求，网络需要用户确认时，未给AT上报需确认。
-*****************************************************************************/
 VOS_VOID MN_SS_SendMsg(
     MN_CLIENT_ID_T                      usClientId,
     VOS_UINT32                          ulEventType,
@@ -1485,12 +979,10 @@ VOS_VOID MN_SS_SendMsg(
         MN_SS_SendMsgToOam(usClientId, ulEventType, MAPS_STK_PID, pstEvent);
 
         /*只需要发给AT*/
-        /* Modified by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, begin */
         if (VOS_TRUE == TAF_SS_IsEventNeedRpt((TAF_SS_EVENT)ulEventType))
         {
             MN_SS_SendMsgToAt(usClientId, ulEventType, pstEvent);
         }
-        /* Modified by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, end */
 
         return;
     }
@@ -1498,12 +990,10 @@ VOS_VOID MN_SS_SendMsg(
     /*AT CLIENT*/
     if (MN_CLIENT_ID_TYPE_AT == enClientIdType)
     {
-        /* Modified by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, begin */
         if (VOS_TRUE == TAF_SS_IsEventNeedRpt((TAF_SS_EVENT)ulEventType))
         {
             MN_SS_SendMsgToAt(usClientId, ulEventType, pstEvent);
         }
-        /* Modified by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, end */
     }
     else
     {
@@ -1524,27 +1014,7 @@ VOS_VOID MN_SS_SendMsg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CMDCNF_SendMsgToOam
- 功能描述  : 本地操作结果处理给AT
- 输入参数  : MN_CLIENT_ID_T                      clientId
-             MN_OPERATION_ID_T                   opId
-             VOS_UINT32                          ulOamRcvPid
-             VOS_UINT32                          ulErrorCode
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月19日
-    作    者   : f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2013年6月5日
-    作    者   : z00161729
-    修改内容   : SVLTE 和usim接口调整修改
-
-*****************************************************************************/
 VOS_VOID MN_CMDCNF_SendMsgToOam(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId,
@@ -1585,26 +1055,7 @@ VOS_VOID MN_CMDCNF_SendMsgToOam(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CMDCNF_SendMsgToAt
- 功能描述  : 本地操作结果处理给AT
- 输入参数  : MN_CLIENT_ID_T                      clientId
-             MN_OPERATION_ID_T                   opId
-             TAF_UINT32                          ulErrorCode
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月3日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月22日
-    作    者   : z00220246
-    修改内容   : DSDA Phase II,根据SenderPid获得上报的ClientId
-
-*****************************************************************************/
 VOS_VOID MN_CMDCNF_SendMsgToAt(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId,
@@ -1622,23 +1073,7 @@ VOS_VOID MN_CMDCNF_SendMsgToAt(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CMDCNF_SendMsg
- 功能描述  : 本地操作上报函数
- 输入参数  : MN_CLIENT_ID_T                      usClientId
-             MN_OPERATION_ID_T                   ucOpId,
-             TAF_UINT32                          ulErrorCode
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月15日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MN_CMDCNF_SendMsg(
     MN_CLIENT_ID_T                      usClientId,
     MN_OPERATION_ID_T                   ucOpId,
@@ -1682,21 +1117,7 @@ VOS_VOID MN_CMDCNF_SendMsg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_PH_SendMsgToOam
- 功能描述  : 电话管理事件上报给OAM
- 输入参数  : TAF_PHONE_EVENT_INFO_STRU          *pstEvent
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月19日
-    作    者   : f62575
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MN_PH_SendMsgToOam(
     VOS_UINT32                          ulOamRcvPid,
     TAF_PHONE_EVENT_INFO_STRU          *pstEvent
@@ -1736,24 +1157,7 @@ VOS_VOID MN_PH_SendMsgToOam(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : MN_PH_SendMsgToAt
- 功能描述  : 电话管理事件上报给AT
- 输入参数  : TAF_PHONE_EVENT_INFO_STRU  *pEvent
- 输出参数  : 无
- 返 回 值  : TAF_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月3日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月22日
-    作    者   : z00220246
-    修改内容   : DSDA Phase II,根据SenderPid获得上报的ClientId
-
-*****************************************************************************/
 VOS_VOID MN_PH_SendMsgToAt(VOS_UINT8  *pEvent,VOS_UINT32 ulLen)
 {
     TAF_PHONE_EVENT_INFO_STRU          *pstPhoneEvent;
@@ -1771,23 +1175,7 @@ VOS_VOID MN_PH_SendMsgToAt(VOS_UINT8  *pEvent,VOS_UINT32 ulLen)
     MN_SendReportMsg(MN_CALLBACK_PHONE,(TAF_UINT8*)pEvent,(VOS_UINT16)ulLen);
 }
 
-/*****************************************************************************
- 函 数 名  : MN_PH_SendMsg
- 功能描述  : 电话管理事件上报函数
- 输入参数  : TAF_PHONE_EVENT_INFO_STRU  *pEvent
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月15日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2013年4月7日
-    作    者   : s00217060
-    修改内容  : 主动上报AT命令控制下移至C核及mma和mmc接口调整
-*****************************************************************************/
 VOS_VOID MN_PH_SendMsg(MN_CLIENT_ID_T usClientId,VOS_UINT8 *pEvent,VOS_UINT32 ulLen)
 {
     MN_CLIENT_ID_TYPE_UINT16            enClientIdType;
@@ -1801,12 +1189,10 @@ VOS_VOID MN_PH_SendMsg(MN_CLIENT_ID_T usClientId,VOS_UINT8 *pEvent,VOS_UINT32 ul
     if (MN_CLIENT_ID_BROADCAST ==  usClientId)
     {
         /*只需要发给AT*/
-        /* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-7, begin */
         if (VOS_TRUE == TAF_MMA_IsEventNeedRpt(pstPhoneEvent))
         {
             MN_PH_SendMsgToAt(pEvent,ulLen);
         }
-        /* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-7, end */
 
         return;
     }
@@ -1841,27 +1227,7 @@ VOS_VOID MN_PH_SendMsg(MN_CLIENT_ID_T usClientId,VOS_UINT8 *pEvent,VOS_UINT32 ul
 
 /*lint -e438 -e830*/
 
-/*****************************************************************************
- 函 数 名  : MN_DATASTATUS_SendMsgToAt
- 功能描述  : 数传状态上报给AT
- 输入参数  : TAF_UINT16                          ClientId
-             TAF_UINT8                           ucDomain
-             TAF_UINT8                           ucRabId
-             TAF_UINT8                           ucStatus
-             TAF_UINT8                           ucCause
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月15日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月22日
-    作    者   : z00220246
-    修改内容   : DSDA Phase II,根据SenderPid获得上报的ClientId
-*****************************************************************************/
 VOS_VOID MN_DATASTATUS_SendMsgToAt(
     TAF_UINT16                          ClientId,
     TAF_UINT8                           ucDomain,
@@ -1900,25 +1266,7 @@ VOS_VOID MN_DATASTATUS_SendMsgToAt(
 }
 /*lint +e438 +e830*/
 
-/*****************************************************************************
- 函 数 名  : MN_DATASTATUS_SendMsg
- 功能描述  : 数传状态上报函数
- 输入参数  : TAF_UINT16                          usClientId
-             TAF_UINT8                           ucDomain
-             TAF_UINT8                           ucRabId
-             TAF_UINT8                           ucStatus
-             TAF_UINT8                           ucCause
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月15日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MN_DATASTATUS_SendMsg(
     TAF_UINT16                          usClientId,
     TAF_UINT8                           ucDomain,
@@ -1964,26 +1312,7 @@ VOS_VOID MN_DATASTATUS_SendMsg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_SETPARA_SendMsgToOam
- 功能描述  : 参数设置事件上报给AT
- 输入参数  : TAF_UINT16                              ClientId
-             TAF_UINT8                               OpId
-             VOS_UINT32                              ulOamRcvPid
-             TAF_PARA_SET_RESULT                     Result
-             TAF_PARA_TYPE                           ParaType
-             TAF_VOID                               *pPara
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月15日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MN_SETPARA_SendMsgToOam(
     TAF_UINT16                          ClientId,
     TAF_UINT8                           OpId,
@@ -2024,28 +1353,7 @@ VOS_VOID MN_SETPARA_SendMsgToOam(
 
 /*lint -e438 -e830*/
 
-/*****************************************************************************
- 函 数 名  : MN_SETPARA_SendMsgToAt
- 功能描述  : 参数设置事件上报给AT
- 输入参数  : TAF_UINT16                              ClientId
-             TAF_UINT8                               OpId
-             TAF_PARA_SET_RESULT                     Result
-             TAF_PARA_TYPE                           ParaType
-             TAF_VOID                               *pPara
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月15日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月22日
-    作    者   : z00220246
-    修改内容   : DSDA Phase II,根据SenderPid获得上报的ClientId
-
-*****************************************************************************/
 VOS_VOID MN_SETPARA_SendMsgToAt(
     TAF_UINT16                          ClientId,
     TAF_UINT8                           OpId,
@@ -2090,25 +1398,7 @@ VOS_VOID MN_SETPARA_SendMsgToAt(
 }
 /*lint +e438 +e830*/
 
-/*****************************************************************************
- 函 数 名  : MN_SETPARA_SendMsg
- 功能描述  : 参数设置事件上报函数
- 输入参数  : TAF_UINT16                              usClientId
-             TAF_UINT8                               ucOpId
-             TAF_PARA_SET_RESULT                     ucResult
-             TAF_PARA_TYPE                           ucParaType
-             TAF_VOID                               *pPara
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月15日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MN_SETPARA_SendMsg(
     TAF_UINT16                          usClientId,
     TAF_UINT8                           ucOpId,
@@ -2155,23 +1445,7 @@ VOS_VOID MN_SETPARA_SendMsg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_GetQryMsgParaLen
- 功能描述  : 获取查询消息内容长度
- 输入参数  : TAF_PARA_TYPE                       QueryType
-             TAF_VOID                            *pPara
-             TAF_UINT16                          *pusParaLen
- 输出参数  : 无
- 返 回 值  : LOCAL VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月3日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL VOS_UINT32 MN_GetQryMsgParaLen(
     TAF_PARA_TYPE                       QueryType,
     TAF_VOID                           *pPara,
@@ -2233,31 +1507,7 @@ LOCAL VOS_UINT32 MN_GetQryMsgParaLen(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_QRYPARA_SendMsgToAt
- 功能描述  : 参数查询结果上报给AT
- 输入参数  : TAF_UINT16                          usClientId
-             TAF_UINT8                           OpId
-             TAF_PARA_TYPE                       QueryType
-             TAF_UINT16                          usErrorCode
-             TAF_VOID                           *pPara
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月15日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月22日
-    作    者   : z00220246
-    修改内容   : DSDA Phase II,根据SenderPid获得上报的ClientId
-  3.日    期   : 2013年11月04日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseII项目
-
-*****************************************************************************/
 VOS_VOID MN_QRYPARA_SendMsgToAt  (
     TAF_UINT16                          usClientId,
     TAF_UINT8                           OpId,
@@ -2307,37 +1557,17 @@ VOS_VOID MN_QRYPARA_SendMsgToAt  (
     PS_MEM_CPY(pParaBuf+usAddr,&usParaLen,sizeof(usParaLen));
     /* usParaLen */
     usAddr += sizeof(usParaLen);
-    /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, begin */
     /* pPara */
     if(TAF_NULL_PTR != pPara)
     {
         PS_MEM_CPY(pParaBuf+usAddr,pPara,usParaLen);
     }
-    /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, end */
     MN_SendReportMsg(ucType,pParaBuf,usLength);
 
     PS_MEM_FREE(WUEPS_PID_TAF,pParaBuf);
 }
 
-/*****************************************************************************
- 函 数 名  : MN_QRYPARA_SendMsg
- 功能描述  : 参数设置事件上报函数
- 输入参数  : TAF_UINT16                          usClientId
-             TAF_UINT8                           ucOpId
-             TAF_PARA_TYPE                       ucQueryType
-             TAF_UINT16                          usErrorCode
-             TAF_VOID                           *pPara
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月15日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MN_QRYPARA_SendMsg(
     TAF_UINT16                          usClientId,
     TAF_UINT8                           ucOpId,
@@ -2382,29 +1612,7 @@ VOS_VOID MN_QRYPARA_SendMsg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_VC_SendMsgToAt
- 功能描述  : VC事件上报函数给AT
- 输入参数  : MN_CLIENT_ID_T                      clientId
-             VOS_UINT32                          ulEventType,
-             APP_VC_EVENT_INFO_STRU              *pstEvent
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月3日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月22日
-    作    者   : z00220246
-    修改内容   : DSDA Phase II,根据SenderPid获得上报的ClientId
-  3.日    期   :2014年9月29日
-    作    者   :s00217060
-    修改内容   :for cs_err_log
-
-*****************************************************************************/
 VOS_VOID MN_VC_SendMsgToAt(
     MN_CLIENT_ID_T                      clientId,
     VOS_UINT32                          ulEventType,
@@ -2459,23 +1667,7 @@ VOS_VOID MN_VC_SendMsgToAt(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : MN_VC_SendMsg
- 功能描述  : VC事件上报函数
- 输入参数  : MN_CLIENT_ID_T                      usClientId
-             VOS_UINT32                          ulEventType,
-             APP_VC_EVENT_INFO_STRU              *pstEvent
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月15日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MN_VC_SendMsg(
     MN_CLIENT_ID_T                      usClientId,
     VOS_UINT32                          ulEventType,
@@ -2518,26 +1710,8 @@ VOS_VOID MN_VC_SendMsg(
     return;
 }
 
-/* Added by L60609 for AT Project，2011-10-03,  End*/
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_MapCcCauseToCsCause
- 功能描述  : 网侧上报原因值与CS域原因值转换处理函数
- 输入参数  : MN_CALL_CC_CAUSE_ENUM_U8            enCcCause
- 输出参数  : 无
- 返 回 值  : TAF_CS_CAUSE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年09月18日
-    作    者   : y00213812
-    修改内容   : STK&DCM 项目新增函数
-  2.日    期   : 2013年07月20日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseI项目,函数名改变
-
-*****************************************************************************/
 TAF_CS_CAUSE_ENUM_UINT32 TAF_CALL_MapCcCauseToCsCause(
     MN_CALL_CC_CAUSE_ENUM_U8            enCcCause
 )
@@ -2563,21 +1737,7 @@ TAF_CS_CAUSE_ENUM_UINT32 TAF_CALL_MapCcCauseToCsCause(
 
 /* Delete MN_GetLaiForMoCtrl */
 
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, begin */
-/*****************************************************************************
- 函 数 名  : TAF_CALL_IsEventNeedRpt
- 功能描述  : 呼叫过程中的事件是否需要上报
- 输入参数  : enEventType - 事件类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:不需要上报；VOS_TRUE:需要上报
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月3日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核新增函数
-*****************************************************************************/
 VOS_UINT32 TAF_CALL_IsEventNeedRpt(
     MN_CALL_EVENT_ENUM_U32              enEventType
 )
@@ -2661,20 +1821,7 @@ VOS_UINT32 TAF_CALL_IsEventNeedRpt(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MSG_IsEventNeedReport
- 功能描述  : 短信过程中的事件是否需要上报
- 输入参数  : enEventType - 事件类型
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:不需要上报；VOS_TRUE:需要上报
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月3日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核新增函数
-*****************************************************************************/
 VOS_UINT32 TAF_MSG_IsEventNeedRpt(
     MN_MSG_EVENT_ENUM_U32              enEventType
 )
@@ -2706,20 +1853,7 @@ VOS_UINT32 TAF_MSG_IsEventNeedRpt(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SS_IsEventNeedRpt
- 功能描述  : SS事件是否需要上报AT
- 输入参数  : TAF_SS_CALL_INDEPENDENT_EVENT_STRU  *pEvent
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月3日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核
-*****************************************************************************/
 VOS_UINT32 TAF_SS_IsEventNeedRpt (
     TAF_SS_EVENT  ulEvent
 )
@@ -2761,24 +1895,8 @@ VOS_UINT32 TAF_SS_IsEventNeedRpt (
     return ulResult;
 
 }
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, end */
 
-/*****************************************************************************
- 函 数 名  : MN_CS_ProcEmergencyCallEvent
- 功能描述  : 紧急呼开启、结束事件上报给Oam
- 输入参数  : MN_CLIENT_ID_T                      clientId
-             MN_CALL_EVENT_ENUM_U32              enEventType
-             MN_CALL_INFO_STRU                   *pstEvent
- 输出参数  : 无
- 返 回 值  : TAF_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年04月17日
-    作    者   : 张鹏/z00214637
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID MN_CS_ProcEmergencyCallEvent(
     MN_CALL_EVENT_ENUM_U32              enEventType,
     MN_CALL_INFO_STRU                  *pstEvent
@@ -2822,20 +1940,7 @@ VOS_VOID MN_CS_ProcEmergencyCallEvent(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_SendEmergencyCallStatusToOam
- 功能描述  : 紧急呼开启、结束事件发送Oam
- 输入参数  : TAF_OAM_EMERGENCY_CALL_STATUS_ENUM_UINT8  enEventType
- 输出参数  : 无
- 返 回 值  : TAF_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年04月17日
-    作    者   : 张鹏/z00214637
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID MN_SendEmergencyCallStatusToOam(
     TAF_OAM_EMERGENCY_CALL_STATUS_ENUM_UINT8                enEventType
 )
@@ -2870,24 +1975,7 @@ VOS_VOID MN_SendEmergencyCallStatusToOam(
     }
 }
 
-/* Added by l00198894 for V9R1 STK升级, 2013/07/11, begin */
-/*****************************************************************************
- 函 数 名  : TAF_CALL_SendMsgToStk
- 功能描述  : CALL模块发送消息给OAM函数
- 输入参数  : ulOamPid       -- OAM模块接收的PID
-             enEventType    -- 事件类型
-             pData          -- 事件内容
-             ulLength       -- 事件内容长度
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月12日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目新增
-*****************************************************************************/
 VOS_VOID TAF_CALL_SendMsgToStk(
     MN_CALL_EVENT_ENUM_U32              enEventType,
     VOS_VOID                           *pData,
@@ -2938,26 +2026,7 @@ VOS_VOID TAF_CALL_SendMsgToStk(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_SendMsgToAt
- 功能描述  : CALL模块发送消息给AT函数
- 输入参数  : usClientId     -- AT的ClientId
-             enEventType    -- 事件类型
-             pData          -- 事件内容
-             ulLength       -- 事件内容长度
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月12日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目新增
-  2.日    期   :2014年9月29日
-    作    者   :s00217060
-    修改内容   :for cs_err_log
-*****************************************************************************/
 VOS_VOID TAF_CALL_SendMsgToAt(
     MN_CLIENT_ID_T                      usClientId,
     MN_CALL_EVENT_ENUM_U32              enEventType,
@@ -3005,23 +2074,7 @@ VOS_VOID TAF_CALL_SendMsgToAt(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_SendMsg
- 功能描述  : CALL模块发送消息函数
- 输入参数  : usClientId     -- ClientID
-             enEventType    -- 消息事件类型
-             pData          -- 消息接口内容
-             ulLength       -- 消息内容长度
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月12日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目新增
-*****************************************************************************/
 VOS_VOID TAF_CALL_SendMsg(
     MN_CLIENT_ID_T                      usClientId,
     MN_CALL_EVENT_ENUM_U32              enEventType,
@@ -3070,28 +2123,8 @@ VOS_VOID TAF_CALL_SendMsg(
 
     return;
 }
-/* Added by l00198894 for V9R1 STK升级, 2013/07/11, end */
 
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
-/*****************************************************************************
- 函 数 名  : TAF_GetSpecificFileListRefreshFileInfo
- 功能描述  : 获取指定文件在指定文件列表的REFRESH文件信息
- 输入参数  : pstRefreshInd  指定文件列表的REFRESH事件
-             usFileId       需要REFRESH的文件
- 输出参数  : penAppType     需要REFRESH的文件的SIM卡应用类型
- 返 回 值  : VOS_FALSE  usFileId指示的文件不在REFRESH事件的文件列表中
-             VOS_TRUE   usFileId指示的文件在REFRESH事件的文件列表中
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月19日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级项目新增
-  2.日    期   : 2015年02月06日
-    作    者   : h00313353
-    修改内容   : USIMM卡接口调整
-*****************************************************************************/
 VOS_UINT32 TAF_GetSpecificFileListRefreshFileInfo(
     VOS_UINT16                          usFileId,
     USIMM_STKREFRESH_IND_STRU          *pstRefreshInd,
@@ -3116,27 +2149,9 @@ VOS_UINT32 TAF_GetSpecificFileListRefreshFileInfo(
 
     return VOS_FALSE;
 }
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 
-/* Added by l00198894 for V9R1 干扰控制, 2013/08/19, begin */
 #if (FEATURE_MULTI_MODEM == FEATURE_ON)
-/*****************************************************************************
- 函 数 名  : TAF_SendMtcCsSrvInfoInd
- 功能描述  : TAF给MTC模块发送CS域业务状态
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年08月19日
-    作    者   : l00198894
-    修改内容   : V9R1 干扰控制项目
-  2.日    期   : 2013年11月04日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseII项目
-*****************************************************************************/
 VOS_VOID TAF_SendMtcCsSrvInfoInd(VOS_VOID)
 {
     TAF_MTC_CS_SERVICE_INFO_IND_STRU   *pstCsSrvInfo = VOS_NULL_PTR;
@@ -3159,9 +2174,7 @@ VOS_VOID TAF_SendMtcCsSrvInfoInd(VOS_VOID)
     pstCsSrvInfo->stMsgHeader.ulReceiverPid   = UEPS_PID_MTC;
     pstCsSrvInfo->stMsgHeader.ulMsgName       = ID_MTC_CS_SERVICE_INFO_IND;
 
-    /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, begin */
     pstCsSrvInfo->ucCallSrvExistFlg = TAF_SDC_GetCsCallExistFlg();
-    /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, end */
     pstCsSrvInfo->ucSmsSrvExistFlg  = TAF_SDC_GetCsSmsSrvExistFlg();
     pstCsSrvInfo->ucSsSrvExistFlg   = TAF_SDC_GetCsSsSrvExistFlg();
 
@@ -3174,25 +2187,9 @@ VOS_VOID TAF_SendMtcCsSrvInfoInd(VOS_VOID)
     return;
 }
 #endif
-/* Added by l00198894 for V9R1 干扰控制, 2013/08/19, end */
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-16, begin */
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_GetDataCfgInfoFromBc
- 功能描述  : 从BC中获取数据业务配置参数，由于API下发的speed参数和上报的不同，
-             需要对speed进行转换
- 输入参数  : pstDataCfgInfo - 来自网络的Facility IE中的SS component
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID MN_CALL_GetDataCfgInfoFromBc(
     const NAS_CC_IE_BC_STRU             *pstBc,
     MN_CALL_CS_DATA_CFG_INFO_STRU       *pstDataCfgInfo
@@ -3322,34 +2319,9 @@ VOS_VOID MN_CALL_GetDataCfgInfoFromBc(
     }
 }
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-16, end */
 
 
-/* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-16, begin */
-/*****************************************************************************
- 函 数 名  : MN_CALL_JudgeMtCallType
- 功能描述  : 判定来电的呼叫类型，该函数认为BC必然存在，因此不再对BC是否存在
-             进行判定，后续如果需要增加单号码方案的支持，再扩展
- 输入参数  : pstOctet3      - MT的SETUP消息中的Octect3
-              pstOctet5a    - MT的SETUP消息中的Octect5a
- 输出参数  : penCallType    - 呼叫类型
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-
-  2.日    期   : 2010年3月1日
-    作    者   : zhoujun /z40661
-    修改内容   : 增加ALS多线路支持
-  3.日    期   : 2012年09月20日
-    作    者   : f62575
-    修改内容   : STK&DCM 项目，删除 LOCAL
-
-*****************************************************************************/
 VOS_UINT32  MN_CALL_JudgeMtCallType(
     const NAS_CC_IE_BC_OCTET3_STRU      *pstOctet3,
     const NAS_CC_IE_BC_OCTET5A_STRU     *pstOctet5a,
@@ -3392,28 +2364,10 @@ VOS_UINT32  MN_CALL_JudgeMtCallType(
 
     return VOS_OK;
 }
-/* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-16, end */
 
 
 #if (FEATURE_ON == FEATURE_PTM)
-/*****************************************************************************
- 函 数 名  : TAF_SndAcpuOmFaultErrLogInd
- 功能描述  : 将ID_OM_FAULT_ERR_LOG_IND指示发送给ACPU OM模块
- 输入参数  : pData
-             ulDataLen
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年09月22日
-   作    者   : f00179208
-   修改内容   : 新生成函数
- 2.日    期   : 2015年07月06日
-   作    者   : n00269697
-   修改内容   : ERR LOG上报类型分为故障上报和告警上报
-*****************************************************************************/
 VOS_VOID TAF_SndAcpuOmFaultErrLogInd(
     VOS_VOID                           *pData,
     VOS_UINT32                          ulDataLen,
@@ -3475,21 +2429,7 @@ VOS_VOID TAF_SndAcpuOmFaultErrLogInd(
 #endif
 
 #if (FEATURE_ON == FEATURE_IMS)
-/*****************************************************************************
- 函 数 名  : TAF_SndMmaImsSrvInfoNotify
- 功能描述  : SPM向MMA发送IMS业务信息
- 输入参数  : ucImsCallFlg---IMS语音业务是否存在标志
- 输出参数  : 无
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年11月06日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_SndMmaImsSrvInfoNotify(
     VOS_UINT8                           ucImsCallFlg
 )
@@ -3524,21 +2464,7 @@ VOS_VOID TAF_SndMmaImsSrvInfoNotify(
 #endif
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- 函 数 名  : TAF_SndMmaCdmaMoCallStartNtf
- 功能描述  : 发送ID_TAF_MMA_CDMA_MO_CALL_START_NTF消息
- 输入参数  : TAF_MMA_CDMA_CALL_TYPE_ENUM_UINT8                enCallType
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月18日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_SndMmaCdmaMoCallStartNtf(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -3572,21 +2498,7 @@ VOS_VOID TAF_SndMmaCdmaMoCallStartNtf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SndMmaCdmaMoCallEndNtf
- 功能描述  : 发送ID_TAF_MMA_CDMA_MO_CALL_END_NTF消息
- 输入参数  : TAF_MMA_CDMA_CALL_TYPE_ENUM_UINT8                enCallType
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月18日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_SndMmaCdmaMoCallEndNtf(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -3621,21 +2533,7 @@ VOS_VOID TAF_SndMmaCdmaMoCallEndNtf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SndMmaCdmaMoCallSuccessNtf
- 功能描述  : 发送ID_TAF_MMA_CDMA_MO_CALL_SUCCESS_NTF消息
- 输入参数  : TAF_MMA_CDMA_CALL_TYPE_ENUM_UINT8                enCallType
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月18日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_SndMmaCdmaMoCallSuccessNtf(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -3670,22 +2568,7 @@ VOS_VOID TAF_SndMmaCdmaMoCallSuccessNtf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SndMmaCdmaCallRedialSystemAcquireNtf
- 功能描述  : 发送ID_TAF_MMA_CDMA_MO_CALL_REDIAL_NTF消息
- 输入参数  : TAF_MMA_CDMA_CALL_TYPE_ENUM_UINT8     enCallType
-             VOS_UINT32                            ulCause
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月18日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_SndMmaCdmaCallRedialSystemAcquireNtf(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -3721,21 +2604,7 @@ VOS_VOID TAF_SndMmaCdmaCallRedialSystemAcquireNtf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SndMmaRatTypeChangeNtf
- 功能描述  : 发送ID_TAF_MMA_RAT_TYPE_CHANGE_NTF消息
- 输入参数  : TAF_MMA_RAT_TYPE_ENUM_UINT32        enRatType
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月15日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_SndMmaPsRatTypeNotify(
     TAF_MMA_PS_RAT_TYPE_ENUM_UINT32     enRatType
 )

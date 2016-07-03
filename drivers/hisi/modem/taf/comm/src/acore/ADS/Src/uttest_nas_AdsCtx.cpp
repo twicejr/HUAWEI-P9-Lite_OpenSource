@@ -45,14 +45,7 @@ VOS_VOID TEST_ADS_Set_QueuePriNv(VOS_UINT8 ucIndex)
 }
 
 
-/*****************************************************************************
-类名     : Test_ADS_UL_CreateQueue
-功能描述 : ADS_UL_CreateQueue UT工程类
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ADS_UL_CreateQueue: public ::testing::Test
 {
 public:
@@ -151,15 +144,7 @@ protected:
     ADS_PDP_STATUS_IND_STRU             stPdpStatusInd5;
 };
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_CreateQueue_001
-测试用例标题      : Modem0，创建RabId为5的上行缓存队列（预置条件：上行上下文被初始化）
-预期结果          : 队列创建成功，RabId和队列指针保存到g_stAdsCtx.astAdsSpecCtx[ADS_INSTANCE_INDEX_0].stAdsUlCtx.astAdsUlQueue[0]中
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_CreateQueue,Test_ADS_UL_CreateQueue_001)
 {
     ADS_UL_CTX_STRU                    *pAdsUlCtx;
@@ -192,15 +177,7 @@ TEST_F(Test_ADS_UL_CreateQueue,Test_ADS_UL_CreateQueue_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_CreateQueue_002
-测试用例标题      : Modem0，创建RabId为5的上行缓存队列（预置条件：RabId为5的队列已创建, 但优先级比之前创建的要低）
-预期结果          : 不能重复创建，g_stAdsCtx.astAdsSpecCtx[ADS_INSTANCE_INDEX_0].stAdsUlCtx.astAdsUlQueue[5].enPrio的值不变
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_CreateQueue,Test_ADS_UL_CreateQueue_002)
 {
     ADS_UL_CTX_STRU                    *pAdsUlCtx;
@@ -229,15 +206,7 @@ TEST_F(Test_ADS_UL_CreateQueue,Test_ADS_UL_CreateQueue_002)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_CreateQueue_003
-测试用例标题      : Modem0，创建RabId为5的上行缓存队列（预置条件：RabId为5的队列已创建, 但优先级比之前创建的要高）
-预期结果          : 不能重复创建，g_stAdsCtx.astAdsSpecCtx[ADS_INSTANCE_INDEX_0].stAdsUlCtx.astAdsUlQueue[5].enPrio的值修改为优先级高的
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_CreateQueue,Test_ADS_UL_CreateQueue_003)
 {
     ADS_UL_CTX_STRU                    *pAdsUlCtx;
@@ -266,15 +235,7 @@ TEST_F(Test_ADS_UL_CreateQueue,Test_ADS_UL_CreateQueue_003)
 
 }
 #if 0
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_CreateQueue_004
-测试用例标题      : Modem0，创建RabId为8的上行缓存队列（预置条件：RabId为5的队列已创建,RABID8队列的优先级比较高）
-预期结果          : g_stAdsCtx.astAdsSpecCtx[ADS_INSTANCE_INDEX_0].stAdsUlCtx.aucPrioIndex[0]存的是后注册的RABID为8的值，g_stAdsCtx.astAdsSpecCtx[ADS_INSTANCE_INDEX_0].stAdsUlCtx.aucPrioIndex[1]值为5
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_CreateQueue,Test_ADS_UL_CreateQueue_004)
 {
     ADS_UL_CTX_STRU                    *pAdsUlCtx;
@@ -300,15 +261,7 @@ TEST_F(Test_ADS_UL_CreateQueue,Test_ADS_UL_CreateQueue_004)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_CreateQueue_005
-测试用例标题      : Modem0，创建RabId为9的上行缓存队列（预置条件：无空闲队列, 该次的优先级比之前的要高）
-预期结果          : 优先级修改成功
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_CreateQueue,Test_ADS_UL_CreateQueue_005)
 {
     ADS_UL_CTX_STRU                    *pAdsUlCtx;
@@ -375,15 +328,7 @@ TEST_F(Test_ADS_UL_CreateQueue,Test_ADS_UL_CreateQueue_005)
 }
 #endif
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_CreateQueue_006
-测试用例标题      : Modem0，创建RabId为6的上行缓存队列（预置条件：内存申请失败）
-预期结果          : 创建队列失败
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_CreateQueue,Test_ADS_UL_CreateQueue_006)
 {
     ADS_UL_CTX_STRU                    *pAdsUlCtx;
@@ -414,15 +359,7 @@ TEST_F(Test_ADS_UL_CreateQueue,Test_ADS_UL_CreateQueue_006)
 
 #if(FEATURE_ON == FEATURE_MULTI_MODEM)
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_CreateQueue_011
-测试用例标题      : Modem1，创建RabId为5的上行缓存队列（预置条件：上行上下文被初始化）
-预期结果          : 队列创建成功，RabId和队列指针保存到g_stAdsCtx.astAdsSpecCtx[ADS_INSTANCE_INDEX_1].stAdsUlCtx.astAdsUlQueue[0]中
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_CreateQueue,Test_ADS_UL_CreateQueue_011)
 {
     ADS_UL_CTX_STRU                    *pAdsUlCtx;
@@ -459,15 +396,7 @@ TEST_F(Test_ADS_UL_CreateQueue,Test_ADS_UL_CreateQueue_011)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_CreateQueue_012
-测试用例标题      : Modem1，创建RabId为5的上行缓存队列（预置条件：RabId为5的队列已创建, 但优先级比之前创建的要低）
-预期结果          : 不能重复创建，g_stAdsCtx.astAdsSpecCtx[ADS_INSTANCE_INDEX_1].stAdsUlCtx.astAdsUlQueue[5].enPrio的值不变
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_CreateQueue,Test_ADS_UL_CreateQueue_012)
 {
     ADS_UL_CTX_STRU                    *pAdsUlCtx;
@@ -500,15 +429,7 @@ TEST_F(Test_ADS_UL_CreateQueue,Test_ADS_UL_CreateQueue_012)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_CreateQueue_013
-测试用例标题      : Modem1，创建RabId为5的上行缓存队列（预置条件：RabId为5的队列已创建, 但优先级比之前创建的要高）
-预期结果          : 不能重复创建，g_stAdsCtx.astAdsSpecCtx[ADS_INSTANCE_INDEX_1].stAdsUlCtx.astAdsUlQueue[5].enPrio的值修改为优先级高的
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_CreateQueue,Test_ADS_UL_CreateQueue_013)
 {
     ADS_UL_CTX_STRU                    *pAdsUlCtx;
@@ -541,15 +462,7 @@ TEST_F(Test_ADS_UL_CreateQueue,Test_ADS_UL_CreateQueue_013)
 
 }
 #if 0
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_CreateQueue_014
-测试用例标题      : Modem1，创建RabId为8的上行缓存队列（预置条件：RabId为5的队列已创建,RABID8队列的优先级比较高）
-预期结果          : g_stAdsCtx.astAdsSpecCtx[ADS_INSTANCE_INDEX_1].stAdsUlCtx.aucPrioIndex[0]存的是后注册的RABID为8的值，g_stAdsCtx.astAdsSpecCtx[ADS_INSTANCE_INDEX_1].stAdsUlCtx.aucPrioIndex[1]值为5
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_CreateQueue,Test_ADS_UL_CreateQueue_014)
 {
     ADS_UL_CTX_STRU                    *pAdsUlCtx;
@@ -580,15 +493,7 @@ TEST_F(Test_ADS_UL_CreateQueue,Test_ADS_UL_CreateQueue_014)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_CreateQueue_015
-测试用例标题      : Modem1，创建RabId为9的上行缓存队列（预置条件：无空闲队列, 该次的优先级比之前的要高）
-预期结果          : 优先级修改成功
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_CreateQueue,Test_ADS_UL_CreateQueue_015)
 {
     ADS_UL_CTX_STRU                    *pAdsUlCtx;
@@ -659,15 +564,7 @@ TEST_F(Test_ADS_UL_CreateQueue,Test_ADS_UL_CreateQueue_015)
 }
 #endif
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_CreateQueue_016
-测试用例标题      : Modem1，创建RabId为6的上行缓存队列（预置条件：内存申请失败）
-预期结果          : 创建队列失败
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_CreateQueue,Test_ADS_UL_CreateQueue_016)
 {
     ADS_UL_CTX_STRU                    *pAdsUlCtx;
@@ -704,14 +601,7 @@ TEST_F(Test_ADS_UL_CreateQueue,Test_ADS_UL_CreateQueue_016)
 
 #endif
 
-/*****************************************************************************
-类名     : Test_ADS_UL_DestroyQueue
-功能描述 : ADS_UL_DestroyQueue UT工程类
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ADS_UL_DestroyQueue: public ::testing::Test
 {
 public:
@@ -773,15 +663,7 @@ protected:
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
 };
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_DestroyQueue_001
-测试用例标题      : Modem0，销毁RabId为6的队列（预置条件：只有RabId为5的队列已创建）
-预期结果          : RabId为6的队列不存在，g_stAdsCtx.astAdsSpecCtx[ADS_INSTANCE_INDEX_0].stAdsUlCtx.astAdsUlQueue的值不变
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_DestroyQueue,Test_ADS_UL_DestroyQueue_001)
 {
     /* 输入码流配置 */
@@ -814,15 +696,7 @@ TEST_F(Test_ADS_UL_DestroyQueue,Test_ADS_UL_DestroyQueue_001)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_DestroyQueue_002
-测试用例标题      : Modem0，销毁RabId为5的队列（预置条件：RabId为5的队列已创建，在上下文中的index为5，队列中没有数据）
-预期结果          : RabId为5的队列被销毁，g_stAdsCtx.astAdsSpecCtx[ADS_INSTANCE_INDEX_0].stAdsUlCtx.astAdsUlQueue[0]置为无效值
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_DestroyQueue,Test_ADS_UL_DestroyQueue_002)
 {
     ADS_TIMER_STATUS_ENUM_UINT8         enTimerStatus;
@@ -859,15 +733,7 @@ TEST_F(Test_ADS_UL_DestroyQueue,Test_ADS_UL_DestroyQueue_002)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_DestroyQueue_003
-测试用例标题      : Modem0，销毁RabId为5的队列（预置条件：RabId为5的队列已创建，在上下文中的index为5，队列中有5个数据）
-预期结果          : RabId为5的队列中数据被释放，队列被销毁，g_stAdsCtx.astAdsSpecCtx[ADS_INSTANCE_INDEX_0].stAdsUlCtx.astAdsUlQueue[5]置为无效值
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_DestroyQueue,Test_ADS_UL_DestroyQueue_003)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -925,15 +791,7 @@ TEST_F(Test_ADS_UL_DestroyQueue,Test_ADS_UL_DestroyQueue_003)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_DestroyQueue_004
-测试用例标题      : Modem0，销毁RabId为6的队列（预置条件：RabId为5，6，7的队列已创建，销毁6，再创建8）
-预期结果          : RabId8存入g_stAdsCtx.astAdsSpecCtx[ADS_INSTANCE_INDEX_0].stAdsUlCtx.astAdsUlQueue[1]
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_DestroyQueue,Test_ADS_UL_DestroyQueue_004)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -1026,15 +884,7 @@ TEST_F(Test_ADS_UL_DestroyQueue,Test_ADS_UL_DestroyQueue_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_DestroyQueue_005
-测试用例标题      : Modem0，销毁RabId为5的队列（预置条件：RabId为5的结点存在，但是队列为空）
-预期结果          : RabId为5的队列被销毁，g_stAdsCtx.astAdsSpecCtx[ADS_INSTANCE_INDEX_0].stAdsUlCtx.astAdsUlQueue[0]置为无效值
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_DestroyQueue,Test_ADS_UL_DestroyQueue_005)
 {
     ADS_UL_CTX_STRU                    *pAdsUlCtx;
@@ -1060,15 +910,7 @@ TEST_F(Test_ADS_UL_DestroyQueue,Test_ADS_UL_DestroyQueue_005)
 }
 #if(FEATURE_ON == FEATURE_MULTI_MODEM)
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_DestroyQueue_011
-测试用例标题      : Modem1，销毁RabId为6的队列（预置条件：只有RabId为5的队列已创建）
-预期结果          : RabId为6的队列不存在，g_stAdsCtx.astAdsSpecCtx[ADS_INSTANCE_INDEX_1].stAdsUlCtx.astAdsUlQueue的值不变
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_DestroyQueue,Test_ADS_UL_DestroyQueue_011)
 {
     /* 输入码流配置 */
@@ -1105,15 +947,7 @@ TEST_F(Test_ADS_UL_DestroyQueue,Test_ADS_UL_DestroyQueue_011)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_DestroyQueue_012
-测试用例标题      : Modem1，销毁RabId为5的队列（预置条件：RabId为5的队列已创建，在上下文中的index为5，队列中没有数据）
-预期结果          : RabId为5的队列被销毁，g_stAdsCtx.astAdsSpecCtx[ADS_INSTANCE_INDEX_1].stAdsUlCtx.astAdsUlQueue[0]置为无效值
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_DestroyQueue,Test_ADS_UL_DestroyQueue_012)
 {
     ADS_TIMER_STATUS_ENUM_UINT8         enTimerStatus;
@@ -1153,15 +987,7 @@ TEST_F(Test_ADS_UL_DestroyQueue,Test_ADS_UL_DestroyQueue_012)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_DestroyQueue_013
-测试用例标题      : Modem1，销毁RabId为5的队列（预置条件：RabId为5的队列已创建，在上下文中的index为5，队列中有5个数据）
-预期结果          : RabId为5的队列中数据被释放，队列被销毁，g_stAdsCtx.astAdsSpecCtx[ADS_INSTANCE_INDEX_1].stAdsUlCtx.astAdsUlQueue[5]置为无效值
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_DestroyQueue,Test_ADS_UL_DestroyQueue_013)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -1222,15 +1048,7 @@ TEST_F(Test_ADS_UL_DestroyQueue,Test_ADS_UL_DestroyQueue_013)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_DestroyQueue_014
-测试用例标题      : Modem1，销毁RabId为6的队列（预置条件：RabId为5，6，7的队列已创建，销毁6，再创建8）
-预期结果          : RabId8存入g_stAdsCtx.astAdsSpecCtx[ADS_INSTANCE_INDEX_1].stAdsUlCtx.astAdsUlQueue[1]
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_DestroyQueue,Test_ADS_UL_DestroyQueue_014)
 {
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -1320,15 +1138,7 @@ TEST_F(Test_ADS_UL_DestroyQueue,Test_ADS_UL_DestroyQueue_014)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_DestroyQueue_015
-测试用例标题      : Modem1，销毁RabId为5的队列（预置条件：RabId为5的结点存在，但是队列为空）
-预期结果          : RabId为5的队列被销毁，g_stAdsCtx.astAdsSpecCtx[ADS_INSTANCE_INDEX_1].stAdsUlCtx.astAdsUlQueue[0]置为无效值
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_DestroyQueue,Test_ADS_UL_DestroyQueue_015)
 {
     ADS_UL_CTX_STRU                    *pAdsUlCtx;
@@ -1357,14 +1167,7 @@ TEST_F(Test_ADS_UL_DestroyQueue,Test_ADS_UL_DestroyQueue_015)
 }
 #endif
 
-/*****************************************************************************
-类名     : Test_ADS_UL_SetProtectTmrLen
-功能描述 : ADS_UL_SetProtectTmrLen UT工程类
-修改历史     :
-1.日   期  : 2013-1-4
-作   者  :   l60609
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ADS_UL_SetProtectTmrLen: public ::testing::Test
 {
 public:
@@ -1380,15 +1183,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_SetProtectTmrLen_001
-测试用例标题      : ADS任务初始化
-预期结果          : ADS上下行PID、下行自处理任务注册成功，返回VOS_OK
-修改历史     :
-1.日   期  : 2013-1-4
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_SetProtectTmrLen,Test_ADS_UL_SetProtectTmrLen_001)
 {
     ADS_IPF_CTX_STRU                    *pAdsIpfCtx;

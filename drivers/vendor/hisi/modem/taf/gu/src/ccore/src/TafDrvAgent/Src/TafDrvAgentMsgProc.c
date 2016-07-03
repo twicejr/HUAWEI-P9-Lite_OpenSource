@@ -1,24 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : DRVAGENTMsgProc.c
-  版 本 号   : 初稿
-  作    者   : o00132663
-  生成日期   : 2011年10月4日
-  最近修改   :
-  功能描述   : AT AGENT消息处理文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年10月4日
-    作    者   : o00132663
-    修改内容   : 创建文件
-  2.日    期   : 2011年12月31日
-    作    者   : s46746
-    修改内容   : 删除^HWNATQRY命令
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -74,34 +54,11 @@ VOS_UINT8 g_ucGcfInd = VOS_FALSE;       /* 指示当前是否为GCF测试 */
 extern void       TTF_SetGcfTestFlag(VOS_UINT32 ulGctTestFlag);
 #endif
 
-/* Added by m00217266 for 底软接口归一, 2014-9-5, begin */
 /* 这两个接口由第三方提供*.o文件，此处声明下 */
 extern int GetAuthVer(void);
 extern int VerifySL(char* UnlockCode, char* Key);
-/* Added by m00217266 for 底软接口归一, 2014-9-5, end */
 
-/*****************************************************************************
- 数组名    : gausDevCmdBandToWDspBandTbl
- 数组说明  :将FChan格式的频段转换为WDSP识别的频段,W_FREQ_BAND_BUTT 代表当前不支持该Band
-     AT_BAND_2100M----- W_FREQ_BAND1                  2100M
-     AT_BAND_1900M----- W_FREQ_BAND2                  1900M
-     AT_BAND_1800M----- W_FREQ_BAND3                  1800M
-     AT_BAND_1700M----- W_FREQ_BAND9 /W_FREQ_BAND4    1700M
-     AT_BAND_1600M----- W_FREQ_BAND7                  1600M
-     AT_BAND_1500M----- W_FREQ_BAND_BUTT              1500M
-     AT_BAND_900M ----- W_FREQ_BAND8                  900M
-     AT_BAND_850M ----- W_FREQ_BAND5                  850M
-     AT_BAND_800M ----- W_FREQ_BAND6                  800M
-     AT_BAND_450M ----- W_FREQ_BAND_BUTT              450M
-     AT_BAND_2600M----- W_FREQ_BAND_BUTT              2600M
 
-1. 日    期   : 2011年10月22日
-   作    者   : w00181244
-   修改内容   : 从 AtSetParaCmd.c中移植过来
-2.日    期   : 2012年06月13日
-  作    者   : f62575
-  修改内容   : DTS2012061303100，解决^FCHAN命令不支持UMTS BAND11问题
-*****************************************************************************/
 VOS_UINT16 gausDevCmdBandToWDspBandTbl[] =
 {
     W_FREQ_BAND1,
@@ -117,18 +74,7 @@ VOS_UINT16 gausDevCmdBandToWDspBandTbl[] =
     W_FREQ_BAND_BUTT
 };
 
-/*****************************************************************************
- 数组名    : gaStWDSPBandUlAfrcn
- 数组说明  :WCDMA 各频段对应的上行Arfcn的范围 参考协议 25.101 ch5.4.3
-            NU = 5 * (FUL - FUL_Offset),
 
-1. 日    期   : 2011年10月22日
-   作    者   : w00181244
-   修改内容   : 从 AtSetParaCmd.c中移植过来
-2.日    期   : 2012年06月13日
-  作    者   : f62575
-  修改内容   : DTS2012061303100，解决^FCHAN命令不支持UMTS BAND11问题
-*****************************************************************************/
 AT_ARFCN_RANGE_STRU gaStWDSPBandUlAfrcn[W_FREQ_BAND_BUTT] =
 {
     {0,0},     /*无效值*/
@@ -145,18 +91,7 @@ AT_ARFCN_RANGE_STRU gaStWDSPBandUlAfrcn[W_FREQ_BAND_BUTT] =
     {3487,3562}
 };
 
-/*****************************************************************************
- 数组名    : gaStWDSPBandDlAfrcn
- 数组说明  :WCDMA 各频段对应的下行Arfcn的范围 参考协议 25.101 ch5.4.3
-            ND = 5 * (FDL - FDL_Offset)
 
-1. 日    期   : 2011年10月22日
-   作    者   : w00181244
-   修改内容   : 从 AtSetParaCmd.c中移植过来
-2.日    期   : 2012年06月13日
-  作    者   : f62575
-  修改内容   : DTS2012061303100，解决^FCHAN命令不支持UMTS BAND11问题
-*****************************************************************************/
 AT_ARFCN_RANGE_STRU gaStWDSPBandDlAfrcn[W_FREQ_BAND_BUTT] =
 {
     {0,0},                                                                      /*无效值*/
@@ -173,17 +108,7 @@ AT_ARFCN_RANGE_STRU gaStWDSPBandDlAfrcn[W_FREQ_BAND_BUTT] =
     {3712,3787}                                                                 /*Band1 dl Arfcn范围 */
 };
 
-/*****************************************************************************
- 数组名    : gausFULOffset
- 数组说明  :WCDMA UARFCN formula offset FUL_Offset [MHz] 参考协议 25.101 ch5.4.3
 
-1. 日    期   : 2011年10月22日
-   作    者   : w00181244
-   修改内容   : 从 AtSetParaCmd.c中移植过来
-2.日    期   : 2012年06月13日
-  作    者   : f62575
-  修改内容   : DTS2012061303100，解决^FCHAN命令不支持UMTS BAND11问题
-*****************************************************************************/
 TAF_UINT16 gausFULOffset[W_FREQ_BAND_BUTT]=
 {
     0, /*无效值*/
@@ -200,14 +125,7 @@ TAF_UINT16 gausFULOffset[W_FREQ_BAND_BUTT]=
     0
 };
 
-/*****************************************************************************
- 数组名    : gausBandSepBtwnUlDl
- 数组说明  :WCDMA TX-RX frequency separation 上下行频偏   参考协议 25.101 ch5.33
 
-1. 日    期   : 2011年10月22日
-   作    者   : w00181244
-   修改内容   : 从 AtSetParaCmd.c中移植过来
-*****************************************************************************/
 TAF_UINT16 gausBandSepBtwnUlDl[W_FREQ_BAND_BUTT] =
 {
     0,     /*无效值*/
@@ -224,17 +142,7 @@ TAF_UINT16 gausBandSepBtwnUlDl[W_FREQ_BAND_BUTT] =
     45     /*XI */
 };
 
-/*****************************************************************************
- 数组名    : gausFDLOffset
- 数组说明  :WCDMA UARFCN formula offset FDL_Offset [MHz] 参考协议 25.101 ch5.4.3
 
-1. 日    期   : 2011年10月22日
-   作    者   : w00181244
-   修改内容   : 从 AtSetParaCmd.c中移植过来
-2.日    期   : 2012年06月13日
-  作    者   : f62575
-  修改内容   : DTS2012061303100，解决^FCHAN命令不支持UMTS BAND11问题
-*****************************************************************************/
 TAF_UINT16 gausFDLOffset[W_FREQ_BAND_BUTT]=
 {
     0,                                                                          /*无效值*/
@@ -251,25 +159,7 @@ TAF_UINT16 gausFDLOffset[W_FREQ_BAND_BUTT]=
     0
 };
 
-/*****************************************************************************
- 数组名    : gausDevCmdBandToGDspBandTbl
- 数组说明  :将FChan格式的频段转换为GDSP识别的频段,G_FREQ_BAND_BUTT 代表当前不支持该Band
-             AT_BAND_2100M----- G_FREQ_BAND_BUTT,        2100M
-             AT_BAND_1900M----- G_FREQ_BAND_PCS1900,     1900M
-             AT_BAND_1800M----- G_FREQ_BAND_DCS1800,     1800M
-             AT_BAND_1700M----- G_FREQ_BAND_BUTT,        1700M
-             AT_BAND_1600M----- G_FREQ_BAND_BUTT,        1600M
-             AT_BAND_1500M----- G_FREQ_BAND_BUTT,        1500M
-             AT_BAND_900M ----- G_FREQ_BAND_GSM900,      900M
-             AT_BAND_850M ----- G_FREQ_BAND_GSM850,      850M
-             AT_BAND_800M ----- G_FREQ_BAND_BUTT,        800M
-             AT_BAND_450M ----- G_FREQ_BAND_BUTT,        450M
-             AT_BAND_2600M----- G_FREQ_BAND_BUTT         2600M
 
-1. 日    期   : 2011年10月22日
-   作    者   : w00181244
-   修改内容   : 从 AtSetParaCmd.c中移植过来
-*****************************************************************************/
 VOS_UINT16 gausDevCmdBandToGDspBandTbl[] =
 {
     G_FREQ_BAND_BUTT,
@@ -285,14 +175,7 @@ VOS_UINT16 gausDevCmdBandToGDspBandTbl[] =
     G_FREQ_BAND_BUTT
 };
 
-/*****************************************************************************
- 数组名    : gausFDLOffset
- 数组说明  : GSM 各频段对应的Arfcn的范围 参考协议 45.005
 
-1. 日    期   : 2011年10月22日
-   作    者   : w00181244
-   修改内容   : 从 AtSetParaCmd.c中移植过来
-*****************************************************************************/
 AT_ARFCN_RANGE_STRU gaStGDSPBandAfrcn[G_FREQ_BAND_BUTT] =
 {
     {128,251},  /* GSM 850：     128 <= n <= 251*/
@@ -312,23 +195,7 @@ VOS_UINT8                               gucSimLockErrTimes = 0;
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_AsciiNum2DecNum
- 功能描述  : DRV AGENT模块数字字符串转换为十进制数字串
- 输入参数  : VOS_UINT8     *pucAsciiNum -- 待转换字符数组
-             VOS_UINT32     ulLen       -- 字符数组长度
- 输出参数  : VOS_UINT8     *pucDecNum   -- 转转换后的十进制数字串
- 返 回 值  : VOS_OK         -- 转换成功
-             VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年04月09日
-    作    者   : l00198894
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_AsciiNum2DecNum(
     VOS_UINT8                          *pucAsciiNum,
     VOS_UINT8                          *pucDecNum,
@@ -355,23 +222,7 @@ VOS_UINT32 DRVAGENT_AsciiNum2DecNum(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_DecNum2AsciiNum
- 功能描述  : DRV AGENT模块十进制数字串转换为数字字符串
- 输入参数  : VOS_UINT8     *pucDecNum   -- 十进制数字串
-             VOS_UINT32     ulLen       -- 字符数组长度
- 输出参数  : VOS_UINT8     *pucAsciiNum -- 转转换后的数字字符串
- 返 回 值  : VOS_OK         -- 转换成功
-             VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年04月09日
-    作    者   : l00198894
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_DecNum2AsciiNum(
     VOS_UINT8                          *pucDecNum,
     VOS_UINT8                          *pucAsciiNum,
@@ -398,23 +249,7 @@ VOS_UINT32 DRVAGENT_DecNum2AsciiNum(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_CheckNumCharString
- 功能描述  : DRV AGENT模块检查字符串是否为数字或英文字符串
- 输入参数  : VOS_UINT8     *pucStr      -- 待检查字符数组
-             VOS_UINT32     ulLen       -- 字符数组长度
- 输出参数  : 无
- 返 回 值  : VOS_OK         -- 检查成功, 该字符数组为十进制数字串
-             VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年04月09日
-    作    者   : l00198894
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_CheckNumCharString(
     VOS_UINT8                          *pucStr,
     VOS_UINT32                          ulLen
@@ -445,21 +280,7 @@ VOS_UINT32 DRVAGENT_CheckNumCharString(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentMsidQryReq
- 功能描述  : DRV Agent DRV_AGENT_MSID_QRY_REQ消息处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月3日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentMsidQryReq(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU                *pstMnAppReqMsg;                         /* 接收消息指针 */
@@ -512,21 +333,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentMsidQryReq(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentGcfInd
- 功能描述  : DRV Agent DRV_AGENT_GCF_IND消息处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月3日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentGcfInd(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU                *pstMnAppReqMsg;                         /* 接收消息指针 */
@@ -540,26 +347,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentGcfInd(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentGasMntnCmd
- 功能描述  : AT Agent DRV_AGENT_GAS_MNTN_CMD消息处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月3日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月19日
-    作    者   : 黎客来/00130025
-    修改内容   : 问题单DTS2011122400984，CGAS命令返回格式错误
-  3.日    期   : 2012年12月28日
-    作    者   : s46746
-    修改内容   : DSDA GUNAS C CORE项目，增加平台是否支持GSM判断
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentGasMntnCmd(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU                *pstMnAppReqMsg;                         /* 接收消息指针 */
@@ -598,22 +386,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentGasMntnCmd(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/* Added by f62575 for AT Project，2011-10-03,  Begin*/
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentAppdmverReq
- 功能描述  : DRV Agent DRV_AGENT_APPDMVER_QRY_REQ消息处理函数
- 输入参数  : VOS_VOID *pMsg DRV_AGENT_APPDMVER_QRY_REQ消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : VOS_OK 设置或查询操作成功
-             VOS_ERR 设置或查询操作失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月4日
-    作    者   : f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentAppdmverReq(VOS_VOID *pMsg)
 {
     VOS_UINT32                          ulRet;                                  /* 函数返回值 */
@@ -651,22 +424,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentAppdmverReq(VOS_VOID *pMsg)
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentDloadInfoReq
- 功能描述  : AT Agent DRV_AGENT_DLOADINFO_QRY_REQ消息处理函数
- 输入参数  : VOS_VOID *pMsg DRV_AGENT_DLOADINFO_QRY_REQ消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : VOS_ERR 获取信息操作失败
-             VOS_OK  获取信息操作成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月4日
-    作    者   : f62575
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentDloadInfoReq(VOS_VOID *pMsg)
 {
     VOS_UINT32                          ulRet;                                  /* 函数返回值 */
@@ -719,22 +477,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentDloadInfoReq(VOS_VOID *pMsg)
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentFlashInfoQry
- 功能描述  : AT Agent DRV_AGENT_FLASHINFO_QRY_REQ消息处理函数
- 输入参数  : VOS_VOID *pMsg DRV_AGENT_FLASHINFO_QRY_REQ消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : VOS_OK 设置或查询操作成功
-             VOS_ERR 设置或查询操作失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月4日
-    作    者   : f62575
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentFlashInfoQry(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU                *pstMnAppReqMsg;                        /* 接收消息指针 */
@@ -749,7 +492,6 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentFlashInfoQry(VOS_VOID *pMsg)
 
     /* 获取FLASH信息 DRV_GET_DLOAD_FLASHINFO */
 
-    /* Modified by l00171473 for V7R1B080 Debug,暂不确定V7是否需要查询flashinfo，V7无此接口，暂直接返回ERROR, 2011-12-26, begin */
     ulRet = (VOS_UINT32)DRV_GET_DLOAD_FLASHINFO((DLOAD_FLASH_STRU *)&stEvent.stFlashInfo);
     if ( VOS_OK != ulRet )
     {
@@ -772,22 +514,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentFlashInfoQry(VOS_VOID *pMsg)
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentAuthorityVerQry
- 功能描述  : AT Agent DRV_AGENT_AUTHORITYVER_QRY_REQ消息处理函数
- 输入参数  : VOS_VOID *pMsg DRV_AGENT_AUTHORITYVER_QRY_REQ消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : VOS_OK 设置或查询操作成功
-             VOS_ERR 设置或查询操作失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月4日
-    作    者   : f62575
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentAuthorityVerQry(VOS_VOID *pMsg)
 {
     VOS_UINT32                           ulRet;
@@ -823,22 +550,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentAuthorityVerQry(VOS_VOID *pMsg)
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentAuthorityIdQry
- 功能描述  : AT Agent DRV_AGENT_AUTHORITYID_QRY_REQ消息处理函数
- 输入参数  : VOS_VOID *pMsg DRV_AGENT_AUTHORITYID_QRY_REQ消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : VOS_OK 设置或查询操作成功
-             VOS_ERR 设置或查询操作失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月4日
-    作    者   : f62575
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentAuthorityIdQry(VOS_VOID *pMsg)
 {
     VOS_UINT32                           ulRet;
@@ -874,27 +586,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentAuthorityIdQry(VOS_VOID *pMsg)
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentAuthVerQry
- 功能描述  : AT Agent DRV_AGENT_AUTHVER_QRY_REQ消息处理函数
- 输入参数  : VOS_VOID *pMsg DRV_AGENT_AUTHVER_QRY_REQ消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : VOS_OK 设置或查询操作成功
-             VOS_ERR 设置或查询操作失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月4日
-    作    者   : f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2013年5月7日
-    作    者   : z60575
-    修改内容   : DTS2013042802045，SIMLOCK升级到2.1版本
-  3.日    期   : 2014年09月05日
-    作    者   : m00217266
-    修改内容   : 底软接口归一项目，GetAuthVer该接口由第三方提供，在文件头部声明，此处直接调用
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentAuthVerQry(VOS_VOID *pMsg)
 {
     VOS_UINT32                          ulRet;
@@ -931,22 +623,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentAuthVerQry(VOS_VOID *pMsg)
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentGodloadSet
- 功能描述  : AT Agent DRV_AGENT_GODLOAD_SET_REQ消息处理函数
- 输入参数  : VOS_VOID *pMsg DRV_AGENT_GODLOAD_SET_REQ消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : VOS_OK 设置或查询操作成功
-             VOS_ERR 设置或查询操作失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月4日
-    作    者   : f62575
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentGodloadSet(VOS_VOID *pMsg)
 {
     DRV_AGENT_GODLOAD_SET_CNF_STRU       stEvent;
@@ -977,27 +654,9 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentGodloadSet(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentPfverQry
- 功能描述  : AT Agent DRV_AGENT_PFVER_QRY_REQ消息处理函数
- 输入参数  : VOS_VOID *pMsg DRV_AGENT_PFVER_QRY_REQ消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : VOS_OK 设置或查询操作成功
-             VOS_ERR 设置或查询操作失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月4日
-    作    者   : f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2014年09月02日
-    作    者   : m00217266
-    修改内容   : 底软接口统一项目
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentPfverQry(VOS_VOID *pMsg)
 {
-    /* Modified by m00217266 for 底软接口归一, 2014-9-2, begin */
     MN_APP_REQ_MSG_STRU                *pstMnAppReqMsg;                        /* 接收消息指针 */
     const MODEM_VER_INFO_S             *pstModemVerInfo;
     DRV_AGENT_PFVER_QRY_CNF_STRU        stEvent;
@@ -1080,53 +739,17 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentPfverQry(VOS_VOID *pMsg)
                      (VOS_UINT8 *)&stEvent);
 
     return VOS_OK;
-    /* Modified by m00217266 for 底软接口归一, 2014-9-2, end */
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentSdRebootReq
- 功能描述  : AT Agent DRV_AGENT_SDREBOOT_REQ消息处理函数
- 输入参数  : VOS_VOID *pMsg DRV_AGENT_SDREBOOT_REQ消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : VOS_OK 设置或查询操作成功
-             VOS_ERR 设置或查询操作失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月4日
-    作    者   : f62575
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年5月7日
-    作    者   : A00165503
-    修改内容   : DTS2012050405948: 底软提供关机接口, 实现^SDREBOOT命令
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentSdRebootReq(VOS_VOID *pMsg)
 {
-    /* Modified by A00165503 for DTS2012050405948，2012-05-07, Beging */
     mdrv_sysboot_shutdown(DRV_SHUTDOWN_RESET);
-    /* Modified by A00165503 for DTS2012050405948，2012-05-07, End */
 
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentDloadVerQryReq
- 功能描述  : 获取下载协议版本， 用于区分升级使用的协议以便后续兼容
- 输入参数  : VOS_VOID *pMsg  DRV_AGENT_DLOADVER_QRY_REQ消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : VOS_OK 设置或查询操作成功
-             VOS_ERR 设置或查询操作失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月22日
-    作    者   : f62575
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentDloadVerQryReq(VOS_VOID *pMsg)
 {
     VOS_UINT32                          ulRet;
@@ -1160,22 +783,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentDloadVerQryReq(VOS_VOID *pMsg)
 
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentSdloadSet
- 功能描述  : AT Agent DRV_AGENT_SDLOAD_SET_REQ消息处理函数
- 输入参数  : VOS_VOID *pMsg DRV_AGENT_SDLOAD_SET_REQ消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : VOS_OK 设置或查询操作成功
-             VOS_ERR 设置或查询操作失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月4日
-    作    者   : f62575
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentSdloadSet(VOS_VOID *pMsg)
 {
     DRV_AGENT_SDLOAD_SET_CNF_STRU       stEvent;
@@ -1200,24 +808,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentSdloadSet(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/* Added by 傅映君/f62575 for CPULOAD&MFREELOCKSIZE处理过程移至C核, 2011/11/15, begin */
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentCpuloadQry
- 功能描述  : 获取CPU负载信息
-             AT Agent DRV_AGENT_CPULOAD_SET_REQ消息处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_OK 设置或查询操作成功
-             VOS_ERR 设置或查询操作失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年11月12日
-    作    者   : 傅映君/f62575
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentCpuloadQry(VOS_VOID *pMsg)
 {
     DRV_AGENT_CPULOAD_QRY_CNF_STRU      stEvent;
@@ -1230,9 +821,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentCpuloadQry(VOS_VOID *pMsg)
     stEvent.stAtAppCtrl.usClientId      = pstMnAppReqMsg->clientId;
     stEvent.stAtAppCtrl.ucOpId          = pstMnAppReqMsg->opId;
 
-    /* Modified by m00217266 for 底软接口归一, 2014-9-6, begin */
     ulRet = (VOS_UINT32)mdrv_pm_get_ccpuload(&stEvent.ulCurCCpuLoad);
-    /* Modified by m00217266 for 底软接口归一, 2014-9-6, end */
 
     if (VOS_OK != ulRet)
     {
@@ -1254,21 +843,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentCpuloadQry(VOS_VOID *pMsg)
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentMfreelocksizeQry
- 功能描述  : DRV_AGENT_MFREELOCKSIZE_QRY_REQ消息处理函数
- 输入参数  : VOS_VOID *pMsg
- 返 回 值  : VOS_OK 设置或查询操作成功
-             VOS_ERR 设置或查询操作失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年11月12日
-    作    者   : 傅映君/f62575
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentMfreelocksizeQry(VOS_VOID *pMsg)
 {
     DRV_AGENT_MFREELOCKSIZE_QRY_CNF_STRU      stEvent;
@@ -1292,29 +867,10 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentMfreelocksizeQry(VOS_VOID *pMsg)
 
     return VOS_OK;
 }
-/* Added by 傅映君/f62575 for CPULOAD&MFREELOCKSIZE处理过程移至C核, 2011/11/15, end */
-/* Added by f62575 for AT Project，2011-10-03,  End*/
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentVertimeQry
- 功能描述  : DRV Agent DRV_AGENT_VERTIME_QRY_REQ消息处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月5日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-  2.日    期   : 2014年09月02日
-    作    者   : m00217266
-    修改内容   : 底软接口统一项目
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentVertimeQry(VOS_VOID *pMsg)
 {
-    /* Modified by m00217266 for 底软接口归一, 2014-9-2, begin */
     MN_APP_REQ_MSG_STRU                    *pstMnAppReqMsg;
     const MODEM_VER_INFO_S                       *pstModemVerInfo;
     DRV_AGENT_VERSION_TIME_STRU             stDrvAgentVersionTime;
@@ -1359,24 +915,9 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentVertimeQry(VOS_VOID *pMsg)
                      (VOS_UINT8 *)&stDrvAgentVersionTime);
 
     return VOS_OK;
-    /* Modified by m00217266 for 底软接口归一, 2014-9-2, end */
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentYjcxSet
- 功能描述  : DRV Agent DRV_AGENT_YJCX_SET_REQ消息处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月5日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentYjcxSet(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU                *pstMnAppReqMsg;                         /* 接收消息指针 */
@@ -1405,21 +946,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentYjcxSet(VOS_VOID *pMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentYjcxQry
- 功能描述  : DRV Agent DRV_AGENT_YJCX_QRY_REQ消息处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月5日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentYjcxQry(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU                *pstMnAppReqMsg;                         /* 接收消息指针 */
@@ -1446,19 +973,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentYjcxQry(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentHardwareQry
- 功能描述  : AT Agent DRV_AGENT_HARDWARE_QRY消息处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2011年10月5日
-    作    者   : c00173809
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_UINT32 DRVAGENT_RcvDrvAgentHardwareQry(VOS_VOID *pMsg)
 {
     VOS_INT32                                   lRslt;
@@ -1493,25 +1008,9 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentHardwareQry(VOS_VOID *pMsg)
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentFullHardwareQry
- 功能描述  : AT Agent DRV_AGENT_FULL_HARDWARE_QRY消息处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2011年10月5日
-    作    者   : c00173809
-    修改内容   : 新生成函数
-  2.日    期   : 2014年09月2日
-    作    者   : m00217266
-    修改内容   : 底软接口归一项目
-*****************************************************************************/
+
 VOS_UINT32 DRVAGENT_RcvDrvAgentFullHardwareQry(VOS_VOID *pMsg)
 {
-    /* Modified by m00217266 for 底软接口归一, 2014-9-2, begin */
     MN_APP_REQ_MSG_STRU                             *pstMnAppReqMsg;
     const MODEM_VER_INFO_S                                *pstModemVerInfo;
     DRV_AGENT_FULL_HARDWARE_QRY_CNF_STRU             stFullHardwareQryCnf;
@@ -1580,24 +1079,10 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentFullHardwareQry(VOS_VOID *pMsg)
                      (VOS_UINT8 *)&stFullHardwareQryCnf);
 
     return VOS_OK;
-    /* Modified by m00217266 for 底软接口归一, 2014-9-2, end */
 }
 
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_String2Hex
- 功能描述  : 完成字符串转16进制数功能
- 输入参数  : nptr --- 字符串
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : c00173809
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_String2Hex(TAF_UINT8 *nptr,TAF_UINT16 usLen,TAF_UINT32 *pRtn)
 {
     TAF_UINT32 c     = 0;         /* current Char */
@@ -1645,23 +1130,7 @@ VOS_UINT32 DRVAGENT_String2Hex(TAF_UINT8 *nptr,TAF_UINT16 usLen,TAF_UINT32 *pRtn
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_UpdateSimlockStatusToUnlock
- 功能描述  : 将en_NV_Item_CardlockStatus更新为永久解锁, 剩余此数修改为最大值
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_ERR写NV失败，VOS_OK写NV成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月20日
-    作    者   : l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月11日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_UpdateSimlockStatusToUnlock(VOS_VOID)
 {
     VOS_UINT32                          ulResult;
@@ -1717,23 +1186,7 @@ VOS_UINT32 DRVAGENT_UpdateSimlockStatusToUnlock(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_UpdataSimLockRemainUnlockTimes
- 功能描述  : 将en_NV_Item_CardlockStatus剩余此数减1
- 输入参数  : VOS_VOID                          ulRemainUnlockTimes
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月20日
-    作    者   : l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月11日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_UpdataSimLockRemainUnlockTimes(VOS_VOID)
 {
     VOS_UINT32                          ulResult;
@@ -1797,21 +1250,7 @@ VOS_UINT32 DRVAGENT_UpdataSimLockRemainUnlockTimes(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_GetSimLockRemainUnlockTimes
- 功能描述  : 获取SIMLOCK最大解锁次数
- 输入参数  : TAF_CUSTOM_CARDLOCK_STATUS_STRU *pstCardLockStatus
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月27日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_GetSimLockRemainUnlockTimes(TAF_CUSTOM_CARDLOCK_STATUS_STRU *pstCardLockStatus)
 {
     VOS_UINT32                          ulResult;
@@ -1829,21 +1268,7 @@ VOS_UINT32 DRVAGENT_GetSimLockRemainUnlockTimes(TAF_CUSTOM_CARDLOCK_STATUS_STRU 
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_VerifySimlockPwdFail
- 功能描述  : SIMLOCK密码校验失败的处理
- 输入参数  : MN_APP_REQ_MSG_STRU *pstMnAppReqMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月27日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_VerifySimlockPwdFail(MN_APP_REQ_MSG_STRU *pstMnAppReqMsg)
 {
     DRV_AGENT_SET_SIMLOCK_CNF_STRU      stSetSimlockCnf;
@@ -1883,20 +1308,7 @@ VOS_UINT32 DRVAGENT_VerifySimlockPwdFail(MN_APP_REQ_MSG_STRU *pstMnAppReqMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_VerifySimlockPwdSucc
- 功能描述  : SIMLOCK密码校验成功的处理
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月27日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_VerifySimlockPwdSucc()
 {
     VOS_UINT32                          ulRslt;
@@ -1919,32 +1331,7 @@ VOS_UINT32 DRVAGENT_VerifySimlockPwdSucc()
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentSetSimlock
- 功能描述  : DRV Agent DRV_AGENT_SIMLOCK_SET_REQ 消息处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年11月3日
-    作    者   : c00173809
-    修改内容   : 新生成函数
-  2.日    期   : 2012年02月3日
-    作    者   : f62575
-    修改内容   : B050 SIMLOCK命令的硬加密改制功能: 增加密码保存功能，
-  3.日    期   : 2012年2月23日
-    作    者   : l60609
-    修改内容   : B060 Prj: 需要将en_NV_Item_CardlockStatus写入备份区
-  4.日    期   : 2012年3月27日
-    作    者   : l60609
-    修改内容   : DTS2012022403009:增加永久锁定功能
-  5.日    期   : 2012年12月11日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentSetSimlock(VOS_VOID *pMsg)
 {
     DRV_AGENT_SET_SIMLOCK_CNF_STRU                     stSetSimlockCnf;
@@ -2029,46 +1416,16 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentSetSimlock(VOS_VOID *pMsg)
 
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentQryRxdiv
- 功能描述  : DRV Agent DRV_AGENT_RXDIV_QRY_REQ 消息处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月22日
-    作    者   : c00173809
-    修改内容   : 新生成函数
-  2.日    期   : 2012年1月16日
-    作    者   : f62575
-    修改内容   : SMALL IMAGE特性合入: V3R1规格变更同步
-                 DRV_GET_SUPPORT_DIVBANDS->读取en_NV_Item_W_RF_DIV_BAND
-  3.日    期   : 2012年6月19日
-    作    者   : l00171473
-    修改内容   : DTS2012061808626, BAND的NV已修改为W和G都为UINT32了,
-                临时修改避免越界
-  4.日    期   : 2012年12月11日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-  5.日    期   : 2012年12月25日
-    作    者   : l00227485
-    修改内容   : DSDA PhaseII
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentQryRxdiv(VOS_VOID *pMsg)
 {
     DRV_AGENT_QRY_RXDIV_CNF_STRU        stQryRxdivCnf;
     VOS_UINT32                          ulDataLen;
     VOS_UINT32                          aulSptBand[3];
     MN_APP_REQ_MSG_STRU                *pstMnAppReqMsg;
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     VOS_UINT8                         *pucSystemAppConfig;
 
     pucSystemAppConfig                  = DRVAGENT_GetSystemAppConfigAddr();
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
     pstMnAppReqMsg      = (MN_APP_REQ_MSG_STRU *)pMsg;
 
@@ -2081,7 +1438,6 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentQryRxdiv(VOS_VOID *pMsg)
     ulDataLen = 0;
     PS_MEM_SET(aulSptBand, 0x00, sizeof(aulSptBand));
 
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     if (SYSTEM_APP_WEBUI == *pucSystemAppConfig)
     {
         /* 该NV已修改为W和G都为UINT32了, 临时修改避免越界 */
@@ -2127,7 +1483,6 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentQryRxdiv(VOS_VOID *pMsg)
     }
 
     stQryRxdivCnf.ulResult = DRV_AGENT_NO_ERROR;
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
     /* 获取曾经设置的RX分集，并转换成用户需要的格式 */
     if (NV_OK != NV_Read(en_NV_Item_W_RF_DIV_BAND, &stQryRxdivCnf.usCurBandSwitch,
@@ -2146,27 +1501,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentQryRxdiv(VOS_VOID *pMsg)
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : DrvAgent_RcvDRVAGENTSetRxdiv
- 功能描述  : DRV Agent DRV_AGENT_RXDIV_SET_REQ 消息处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : c00173809
-    修改内容   : 新生成函数
-  2.日    期   : 2012年1月16日
-    作    者   : f62575
-    修改内容   : SMALL IMAGE特性合入: V3R1规格变更同步
-                 DRV_GET_SUPPORT_DIVBANDS->读取en_NV_Item_W_RF_DIV_BAND
-  3.日    期   : 2012年12月11日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentSetRxdiv(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU                             *pstMnAppReqMsg;
@@ -2244,21 +1579,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentSetRxdiv(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentSetNvRestore
- 功能描述  : DRV Agent DRV_AGENT_NVRESTORE_SET_REQ 消息处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年11月03日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentSetNvRestore(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU                             *pstMnAppReqMsg;
@@ -2284,23 +1605,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentSetNvRestore(VOS_VOID *pMsg)
 
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentQryNvRestoreRst
- 功能描述  : DRV Agent DRV_AGENT_NVRSTSTTS_QRY_REQ 消息处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年11月03日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-  2.日    期   : 2012年7月28日
-    作    者   : z60575
-    修改内容   : DTS2012071704644,调用NV新提供的借口函数获取恢复NV的结果
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentQryNvRestoreRst(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU                             *pstMnAppReqMsg;
@@ -2346,23 +1651,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentQryNvRestoreRst(VOS_VOID *pMsg)
 
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentNvRestoreManuDefault
- 功能描述  : DRV Agent DRV_AGENT_NVRESTORE_MANU_DEFAULT_REQ 消息处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年11月04日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-  2.日    期   : 2012年5月12日
-    作    者   : z60575
-    修改内容   : DTS2012051005199, AT&F命令根据产品线要求需要将流量NV项强制清0
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentNvRestoreManuDefault(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU                             *pstMnAppReqMsg;
@@ -2376,10 +1665,8 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentNvRestoreManuDefault(VOS_VOID *pMsg)
     stNvRestoreRst.stAtAppCtrl.ucOpId     = pstMnAppReqMsg->opId;
 
     /* 调用OAM的接口恢复所有NV项为出厂设置,将结果返回给AT */
-    /*DTS2012041102190 : h00135900 start in 2011-04-11 AT代码融合*/
 
     stNvRestoreRst.ulResult               = NV_RestoreManufactureDefault();
-    /*DTS2012041102190 : h00135900 end in 2011-04-11 AT代码融合*/
 
     TAF_APS_ClearAllRabDsFlowStats();
     TAF_APS_ClearDsFlowInfoInNv();
@@ -2394,20 +1681,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentNvRestoreManuDefault(VOS_VOID *pMsg)
 
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentDeviceGpioplSet
- 功能描述  : 调用底软接口设置GPIO电平
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月15日
-    作    者   : w00181244
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentDeviceGpioplSet(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU                *pstMnAppReqMsg;
@@ -2442,20 +1716,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentDeviceGpioplSet(VOS_VOID *pMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentDeviceGpioplQry
- 功能描述  : 查询GPIO管脚电平的处理
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月15日
-    作    者   : w00181244
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentDeviceGpioplQry(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU                *pstMnAppReqMsg;
@@ -2490,21 +1751,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentDeviceGpioplQry(VOS_VOID *pMsg)
 
 
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentDeviceDatalockSet
- 功能描述  : datalock的校验
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月15日
-    作    者   : w00181244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentDeviceDatalockSet(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU                *pstMnAppReqMsg;                         /* 接收消息指针 */
@@ -2539,21 +1786,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentDeviceDatalockSet(VOS_VOID *pMsg)
 
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentDeviceTbatvoltQry
- 功能描述  : 电池电压查询
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月15日
-    作    者   : w00181244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentDeviceTbatvoltQry(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU                *pstMnAppReqMsg;
@@ -2584,21 +1817,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentDeviceTbatvoltQry(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentDeviceTmodeSet
- 功能描述  : 设置升级标志函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月6日
-    作    者   : w00181244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentDeviceTmodeSet(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU                *pstMnAppReqMsg;
@@ -2623,29 +1842,9 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentDeviceTmodeSet(VOS_VOID *pMsg)
 
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentDeviceVersionQry
- 功能描述  : version查询函数的处理
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月15日
-    作    者   : w00181244
-    修改内容   : 新生成函数
-  2.日    期   : 2012年08月16日
-    作    者   : f62575
-    修改内容   : DTS2012081607917,解决C50 PC LINT问题
-  3.日    期   : 2014年09月02日
-    作    者   : m00217266
-    修改内容   : 底软接口统一项目
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentDeviceVersionQry(VOS_VOID *pMsg)
 {
-    /* Modified by m00217266 for 底软接口归一, 2014-9-2, begin */
     MN_APP_REQ_MSG_STRU                *pstMnAppReqMsg;
     const MODEM_VER_INFO_S                   *pstModemVerInfo;
     DRV_AGENT_VERSION_QRY_CNF_STRU      stVersionQryCnfInfo;
@@ -2758,24 +1957,9 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentDeviceVersionQry(VOS_VOID *pMsg)
                      sizeof(stVersionQryCnfInfo),
                      (VOS_UINT8 *)&stVersionQryCnfInfo);
     return VOS_OK;
-    /* Modified by m00217266 for 底软接口归一, 2014-9-2, end */
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentDeviceSecuBootQry
- 功能描述  : 查询SECUBOOT的处理
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月17日
-    作    者   : w00181244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentDeviceSecuBootQry(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU                *pstMnAppReqMsg;
@@ -2806,25 +1990,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentDeviceSecuBootQry(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentSetSecuBoot
- 功能描述  : 使能Secure Boot 功能
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年02月06日
-    作    者   : f62575
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年08月08日
-    作    者   : y00213812
-    修改内容   : 根据DTS2012082100431修改，由DRVAGENT模块读取NV项后
-                 再调用DRV接口烧写
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentSetSecuBoot(VOS_VOID *pMsg)
 {
 
@@ -2876,28 +2042,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentSetSecuBoot(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_GetWDLArfcnWithUlPara
- 功能描述  : 输入某Band的上行Arcfn,通过频偏和Ul_OFFSET,DL_OFFSET，计算下行信
-             道值
-     Uplink:     NU = 5 * (FUL - FUL_Offset),
-     Downlink:   ND = 5 * (FDL - FDL_Offset),
-                 FDL = FUL + BandSep(频偏)        ===>
-     ND = NU+ 5 *FUL_Offset+ 5*BandSep -5*FDL_Offset;
-     NU = ND+ 5 *FDL_Offset - 5*BandSep -5*FUL_Offset;
- 输入参数  : VOS_UINT16                          usBandNo
-             VOS_UINT16                          usUlArfcn
-             AT_AGENT_FCHAN_SET_REQ_STRU        *pstDspBandArfcn
- 输出参数  : 无
- 返 回 值  : VOS_UINT16
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月13日
-    作    者   : w00181244
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT16 DRVAGENT_GetWDLArfcnWithUlPara(
     VOS_UINT16                          usBandNo,
     VOS_UINT16                          usUlArfcn,
@@ -2913,27 +2058,7 @@ VOS_UINT16 DRVAGENT_GetWDLArfcnWithUlPara(
     return usDlArfcn;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_GetWULArfcnWithDlPara
- 功能描述  : 输入某Band的上行Arcfn,通过频偏和Ul_OFFSET,DL_OFFSET，计算下行信
-             道值
-     Uplink:     NU = 5 * (FUL - FUL_Offset),
-     Downlink:   ND = 5 * (FDL - FDL_Offset),
-                 FDL = FUL + BandSep(频偏)        ===>
-     ND = NU+ 5 *FUL_Offset+ 5*BandSep -5*FDL_Offset;
-     NU = ND+ 5 *FDL_Offset - 5*BandSep -5*FUL_Offset;
- 输入参数  : VOS_UINT16                          usBandNo
-             VOS_UINT16                          usDlArfcn
- 输出参数  : 无
- 返 回 值  : VOS_UINT16
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月13日
-    作    者   : w00181244
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT16 DRVAGENT_GetWULArfcnWithDlPara(
     VOS_UINT16                          usBandNo,
     VOS_UINT16                          usDlArfcn,
@@ -2950,20 +2075,7 @@ VOS_UINT16 DRVAGENT_GetWULArfcnWithDlPara(
 }
 
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_CheckWBandChannelRange
- 功能描述  : 检查W频段和信道的对应关系,调用函数需要保证频段号小于11
- 输入参数  : AT_AGENT_FCHAN_SET_REQ_STRU* pstDspBandArfcn
- 输出参数  : 无
- 返 回 值  : TAF_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月13日
-    作    者   : w00181244
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_CheckWBandChannelRange(DRV_AGENT_FCHAN_SET_REQ_STRU* pstDspBandArfcn)
 {
     VOS_UINT16                          usChannelNo;
@@ -3024,20 +2136,7 @@ VOS_UINT32 DRVAGENT_CheckWBandChannelRange(DRV_AGENT_FCHAN_SET_REQ_STRU* pstDspB
 }
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- 函 数 名  : DRVAGENT_Check1XBandChannelRange
- 功能描述  : 检查1X频段频段目前仅支持bc0，频点受限
- 输入参数  : AT_AGENT_FCHAN_SET_REQ_STRU* pstDspBandArfcn
- 输出参数  : 无
- 返 回 值  : TAF_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月18日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_Check1XBandChannelRange(DRV_AGENT_FCHAN_SET_REQ_STRU* pstDspBandArfcn)
 {
     VOS_UINT16                          usChannelNo;
@@ -3075,20 +2174,7 @@ VOS_UINT32 DRVAGENT_Check1XBandChannelRange(DRV_AGENT_FCHAN_SET_REQ_STRU* pstDsp
 #endif
 
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_CheckGBandChannelRange
- 功能描述  : 检查G频段和信道的对应关系,调用函数需要保证频段号小于11
- 输入参数  : AT_DSP_BAND_ARFCN_STRU* pstDspBandArfcn
- 输出参数  : 无
- 返 回 值  : TAF_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月13日
-    作    者   : w00181244
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_CheckGBandChannelRange(DRV_AGENT_FCHAN_SET_REQ_STRU* pstDspBandArfcn)
 {
     VOS_UINT16                          usChannelNo;
@@ -3137,20 +2223,7 @@ VOS_UINT32 DRVAGENT_CheckGBandChannelRange(DRV_AGENT_FCHAN_SET_REQ_STRU* pstDspB
 
 
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_CheckFChanPara
- 功能描述  : 检查^FCHAN命令设置的参数是否符合取值要求
- 输入参数  : DRV_AGENT_FCHAN_SET_REQ_STRU* pstDspBandArfcn
- 输出参数  : 无
- 返 回 值  : TAF_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月17日
-    作    者   : w00181244
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  DRVAGENT_CheckFChanPara(DRV_AGENT_FCHAN_SET_REQ_STRU* pstDspBandArfcn)
 {
     if ((AT_RAT_MODE_WCDMA == pstDspBandArfcn->ucDeviceRatMode)
@@ -3171,29 +2244,7 @@ VOS_UINT32  DRVAGENT_CheckFChanPara(DRV_AGENT_FCHAN_SET_REQ_STRU* pstDspBandArfc
 
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentDeviceFchanSet
- 功能描述  : Fchan设置函数的处理
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月10日
-    作    者   : w00181244
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月26日
-    作    者   : m00217266
-    修改内容   : DSDA C核项目OM接口修改
-  3.日    期   : 2013年5月10日
-    作    者   : z60575
-    修改内容   : DTS2013041200990,非信令模式传入参数不正确
-  4.日    期   : 2014年6月16日
-    作    者   : z60575
-    修改内容   : Gslave项目合入
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentDeviceFchanSet(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU                *pstMnAppReqMsg;
@@ -3342,22 +2393,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentDeviceFchanSet(VOS_VOID *pMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_CovertUserSetRxDivOrRxPriParaToMsInternal
- 功能描述  : 把用户设置的分集信息转换成本地格式
- 输入参数  : VOS_UINT32 ulSetDivLowBands
-             VOS_UINT32 ulSetDivHighBands
-             VOS_UINT16 *pusSetDivBands
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : w00181244
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_CovertUserSetRxDivOrRxPriParaToMsInternal(
     VOS_UINT32                          ulSetDivLowBands,
     VOS_UINT32                          ulSetDivHighBands,
@@ -3425,20 +2461,7 @@ VOS_UINT32 DRVAGENT_CovertUserSetRxDivOrRxPriParaToMsInternal(
     return DRV_AGENT_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : DrvAgent_CheckRxdivOrRxpriParaIfSupported
- 功能描述  : 对参数进行格式转换,判断输入主集或分集底软是否支持
- 输入参数  : usBands - 底软支持的主集或分集
- 输出参数  : pusSetBands - 格式转换后的分集或主集
- 返 回 值  : 执行结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : c00173809
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_CheckRxdivOrRxpriParaIfSupported(
     VOS_UINT16                         *pusSetBands,
     VOS_UINT16                          usBands,
@@ -3484,20 +2507,7 @@ VOS_UINT32 DRVAGENT_CheckRxdivOrRxpriParaIfSupported(
 }
 
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentDeviceSfeatureQry
- 功能描述  : 单板 W 和 G 频段支持特性的查询
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月17日
-    作    者   : w00181244
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentDeviceSfeatureQry(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU                *pstMnAppReqMsg;
@@ -3526,20 +2536,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentDeviceSfeatureQry(VOS_VOID *pMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentDeviceProdtypeQry
- 功能描述  : ^PRODTYPE查询产品类型
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月17日
-    作    者   : w00181244
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentDeviceProdtypeQry(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU                *pstMnAppReqMsg;
@@ -3564,21 +2561,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentDeviceProdtypeQry(VOS_VOID *pMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentImsiChgQry
- 功能描述  : 查询IMSICHG
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年11月3日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentImsiChgQry(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU                *pstMnAppReqMsg;
@@ -3604,21 +2587,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentImsiChgQry(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentInfoRbuSet
- 功能描述  : inforbu设置请求
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年11月3日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentInfoRbuSet(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU                *pstMnAppReqMsg;
@@ -3634,7 +2603,6 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentInfoRbuSet(VOS_VOID *pMsg)
 
     stInfoRbuCnf.stAtAppCtrl.usClientId = pstMnAppReqMsg->clientId;
     stInfoRbuCnf.stAtAppCtrl.ucOpId     = pstMnAppReqMsg->opId;
-    /*DTS2012041102190 : h00135900 start in 2011-04-11 AT代码融合*/
     /*NV恢复*/
     #if ( FEATURE_ON == FEATURE_LTE )
     ulNVBackupRslt = NVM_BackUpFNV();
@@ -3645,7 +2613,6 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentInfoRbuSet(VOS_VOID *pMsg)
     #else
     stInfoRbuCnf.ulRslt = NV_Backup();
     #endif
-    /*DTS2012041102190 : h00135900 end in 2011-04-11 AT代码融合*/
     /*调用接口将查询结果传回A核 */
     DRVAGENT_SendMsg(WUEPS_PID_AT,
                      DRV_AGENT_INFORBU_SET_CNF,
@@ -3654,7 +2621,6 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentInfoRbuSet(VOS_VOID *pMsg)
 
     return VOS_OK;
 }
-/*DTS2012041102190 : h00135900 start in 2011-04-11 AT代码融合*/
 #if ( FEATURE_ON == FEATURE_LTE )
 /*****************************************************************************
  函 数 名  : DRVAGENT_RcvDrvAgentInfoRrsSet
@@ -3690,30 +2656,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentInfoRrsSet(VOS_VOID *pMsg)
     return VOS_OK;
 }
 #endif
-/*DTS2012041102190 : h00135900 end in 2011-04-11 AT代码融合*/
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentTseLrfSet
- 功能描述  : 处理^TSELRF命令触发的LOAD DSP操作
- 输入参数  : VOS_VOID *pMsg DRV_AGENT_PFVER_QRY_REQ消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : VOS_OK LOAD DSP 本地操作成功，否则，失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月10日
-    作    者   : f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月26日
-    作    者   : m00217266
-    修改内容   : DSDA C核项目OM接口修改(SHPA_LoadPhy接口修改)
-  3.日    期   : 2013年5月10日
-    作    者   : z60575
-    修改内容   : DTS2013041200990,非信令模式传入参数不正确
-  4.日    期   : 2014年6月16日
-    作    者   : z60575
-    修改内容   : Gslave项目合入
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentTseLrfSet(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU                *pstMnAppReqMsg;
@@ -3809,24 +2752,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentTseLrfSet(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentCpnnQry
- 功能描述  : CPNN查询命令请求
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年11月4日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2013年09月22日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseII项目
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentCpnnQry(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU                *pstMnAppReqMsg;
@@ -3851,30 +2777,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentCpnnQry(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentCpnnTest
- 功能描述  : CPNN测试命令请求
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年11月3日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2013年6月5日
-    作    者   : w00242748
-    修改内容   : svlte和usim接口调整
-  3.日    期   : 2013年7月29日
-    作    者   : y00245242
-    修改内容   : 适配新的USIM接口
-  4.日    期   : 2013年09月22日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseII项目
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentCpnnTest(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU                *pstMnAppReqMsg;
@@ -3888,10 +2791,8 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentCpnnTest(VOS_VOID *pMsg)
     stCpnnCnf.stAtAppCtrl.ucOpId     = pstMnAppReqMsg->opId;
 
     /*获取当前IMSI对应的符号*/
-    /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-29, begin */
     stCpnnCnf.ulOplExistFlg    = NAS_USIMMAPI_IsServiceAvailable(NAS_USIM_SVR_OPLMN_LIST);
     stCpnnCnf.ulPnnExistFlg    = NAS_USIMMAPI_IsServiceAvailable(NAS_USIM_SVR_PLMN_NTWRK_NAME);
-    /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-29, end */
 
     stCpnnCnf.bNormalSrvStatus = TAF_IsNormalSrvStatus();
 
@@ -3904,21 +2805,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentCpnnTest(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentNvBackupSet
- 功能描述  : ^NVBACKUP设置请求
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年11月4日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentNvBackupSet(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU                *pstMnAppReqMsg;
@@ -3941,21 +2828,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentNvBackupSet(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentADCSet
- 功能描述  : 调用接口设置门限值
 
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2011年11月5日
-    作    者   : w00181244
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentAdcSet(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU                *pstMnAppReqMsg;
@@ -3986,23 +2859,8 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentAdcSet(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/* Added by l00171473 for 内存监控AT命令, 2011-11-29,  begin */
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentMemInfoQry
- 功能描述  : DRV_AGENT_VOSMEMINFO_QRY_REQ消息处理函数
- 输入参数  : VOS_VOID *pMsg
- 返 回 值  : VOS_OK 设置或查询操作成功
-             VOS_ERR 设置或查询操作失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年11月29日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentMemInfoQry(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU                *pstMnAppReqMsg   = VOS_NULL_PTR;
@@ -4079,26 +2937,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentMemInfoQry(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/* Added by l00171473 for 内存监控AT命令, 2011-11-29,  end */
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentTbatQry
- 功能描述  :  调用底软接口获取电池安装方式:
-                            <mount type> 电池安装方式
-                            0 无电池
-                            1 可更换电池
-                            2 内置一体化电池
 
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年1月13日
-    作    者   : w00181244
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentTbatQry(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU                 *pstMnAppReqMsg;
@@ -4123,21 +2962,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentTbatQry(VOS_VOID *pMsg)
 
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentHkAdcGet
- 功能描述  : 调用接口获取电池的HKADC电压
 
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年01月16日
-    作    者   : f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentHkAdcGet(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU                *pstMnAppReqMsg;
@@ -4175,21 +3000,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentHkAdcGet(VOS_VOID *pMsg)
 
 
 #if (FEATURE_ON == FEATURE_SECURITY_SHELL)
-/*****************************************************************************
- 函 数 名  : DRVAGENT_GetIMEIReverse
- 功能描述  : 获取IMEI号字符串并进行逆序处理
- 输入参数  : VOS_CHAR *aucImei
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月21日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_GetIMEIReverse (VOS_CHAR *aucImei)
 {
     MODEM_ID_ENUM_UINT16                enModemId;
@@ -4224,26 +3035,7 @@ VOS_UINT32 DRVAGENT_GetIMEIReverse (VOS_CHAR *aucImei)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvAtSpwordSet
- 功能描述  : 处理DRV_AGENT_SPWORD_SET_REQ消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月21日
-    作    者   : l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2013年5月7日
-    作    者   : z60575
-    修改内容   : DTS2013042802045，SIMLOCK升级到2.1版本
-  3.日    期   : 2014年09月05日
-    作    者   : m00217266
-    修改内容   : 底软接口归一项目，VerifySIMLock该接口由第三方提供，在文件头部声明，此处直接调用
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvAtSpwordSet(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU                *pstMnAppReqMsg;
@@ -4291,23 +3083,7 @@ VOS_UINT32 DRVAGENT_RcvAtSpwordSet(VOS_VOID *pMsg)
     return VOS_OK;
 }
 #endif
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentSetSimlockNv
- 功能描述  : 处理收到设置simlock NV的消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月21日
-    作    者   : w00199382
-    修改内容   : 新生成函数
-  2.日    期   : 2015年4月2日
-    作    者   : w00316404
-    修改内容   : clean pc-lint
-*****************************************************************************/
 /*lint -e438 -e550*/
 VOS_UINT32 DRVAGENT_RcvDrvAgentSetSimlockNv(VOS_VOID *pMsg)
 {
@@ -4333,27 +3109,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentSetSimlockNv(VOS_VOID *pMsg)
 }
 /*lint +e438 +e550*/
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentSetStandby
- 功能描述  : 处理AT发送下来的at^standby命令
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月21日
-    作    者   : w00199382
-    修改内容   : 新生成函数
-  2.日    期   : 2012年04月13日
-    作    者   : f62575
-    修改内容   : V7代码同步: 删除对DRV_PWRCTRL_DEEPSLEEP_FOREVER的调用，
-    					替换为DRV_PWRCTRL_STANDBYSTATECCPU (BSP_PWRCTRL_StandbyStateCcpu)
-  3.日    期   : 2012年05月18日
-    作    者   : f62575
-    修改内容   : DTS2012052103200, 解决PSTANDBY命令过程被打断，系统异常问题
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentSetStandby(VOS_VOID *pMsg)
 {
     DRV_AGENT_PSTANDBY_REQ_STRU         *pstPstandbyInfo;
@@ -4362,30 +3118,13 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentSetStandby(VOS_VOID *pMsg)
     pstMnAppReqMsg                      = (MN_APP_REQ_MSG_STRU *)pMsg;
     pstPstandbyInfo                     = (DRV_AGENT_PSTANDBY_REQ_STRU *)pstMnAppReqMsg->aucContent;
 
-    /* Modify by w00199382 for V7代码同步, 2012-04-07, Begin   */
     /* 调用底软提供接口C核进入低功耗模式  */
     (VOS_VOID)DRV_PWRCTRL_STANDBYSTATECCPU(pstPstandbyInfo->ulStandbyTime, pstPstandbyInfo->ulSwitchTime);
-    /* Modify by w00199382 for V7代码同步, 2012-04-07, End   */
 
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentNvBackupStatReq
- 功能描述  : AT Agent DRV_AGENT_NVBACKUPSTAT_QRY_REQ消息处理函数
- 输入参数  : VOS_VOID *pMsg  --REQ消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : VOS_OK  设置或查询操作成功
-             VOS_ERR 设置或查询操作失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年02月18日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentNvBackupStatReq(VOS_VOID *pMsg)
 {
     DRV_AGENT_NVBACKUPSTAT_QRY_CNF_STRU stEvent;
@@ -4410,22 +3149,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentNvBackupStatReq(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentNandBadBlockReq
- 功能描述  : AT Agent DRV_AGENT_NANDBBC_QRY_REQ消息处理函数
- 输入参数  : VOS_VOID *pMsg  --REQ消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : VOS_OK  设置或查询操作成功
-             VOS_ERR 设置或查询操作失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年02月18日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentNandBadBlockReq(VOS_VOID *pMsg)
 {
     DRV_AGENT_NANDBBC_QRY_CNF_STRU     *pstEvent;
@@ -4507,22 +3231,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentNandBadBlockReq(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentNandDevInfoReq
- 功能描述  : AT Agent DRV_AGENT_NANDVER_QRY_REQ消息处理函数
- 输入参数  : VOS_VOID *pMsg  --REQ消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : VOS_OK  设置或查询操作成功
-             VOS_ERR 设置或查询操作失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年02月18日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentNandDevInfoReq(VOS_VOID *pMsg)
 {
     DRV_AGENT_NANDVER_QRY_CNF_STRU      stEvent;
@@ -4558,25 +3267,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentNandDevInfoReq(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentChipTempReq
- 功能描述  : AT Agent DRV_AGENT_CHIPTEMP_QRY_REQ消息处理函数
- 输入参数  : VOS_VOID *pMsg  --REQ消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : VOS_OK  设置或查询操作成功
-             VOS_ERR 设置或查询操作失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年02月18日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-  2.日    期   : 2013年04月22日
-    作    者   : z00214637
-    修改内容   : Temp Protect项目
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentChipTempReq(VOS_VOID *pMsg)
 {
     DRV_AGENT_CHIPTEMP_QRY_CNF_STRU     stEvent;
@@ -4622,29 +3313,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentChipTempReq(VOS_VOID *pMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentAntStateInd
- 功能描述  :天线状态变更后主动上报
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 修改历史      :
-  1.日    期   : 2012年02月25日
-    作    者   : w00184875
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月11日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-  3.日    期   : 2012年12月25日
-    作    者   : l00227485
-    修改内容   : DSDA PhaseII
-  4.日    期   : 2012年12月25日
-    作    者   : l00227485
-    修改内容   : DSDA PhaseII
-  5.日    期   : 2013年5月30日
-    作    者   : z60575
-    修改内容   : DTS2013060307614,DSDA_SAR修改
-*****************************************************************************/
+
 VOS_VOID DRVAGENT_RcvDrvAgentAntStateInd(VOS_VOID *pMsg)
 {
     DRV_AGENT_ANT_STATE_IND_STRU        stAntState;
@@ -4666,23 +3335,7 @@ VOS_VOID DRVAGENT_RcvDrvAgentAntStateInd(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentSARReductionSet
- 功能描述  : 降SAR功能，功率等级回退通知
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 修改历史      :
-  1.日    期   : 2012年02月25日
-    作    者   : w00184875
-    修改内容   : 新生成函数
-  2.日    期   : 2013年5月30日
-    作    者   : z60575
-    修改内容   : DTS2013060307614,DSDA_SAR修改
-  3.日    期   : 2014年11月09日
-    作    者   : l00198894
-    修改内容   : Sar Reduction for TAS
-*****************************************************************************/
+
 VOS_UINT32 DRVAGENT_RcvDrvAgentSARReductionSet(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU                *pstMnAppReqMsg;                         /* 接收消息指针 */
@@ -4715,21 +3368,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentSARReductionSet(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentSetSimlockNv
- 功能描述  : 处理收到设置simlock NV的消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月19日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentSetMaxLockTms(VOS_VOID *pMsg)
 {
     TAF_CUSTOM_CARDLOCK_STATUS_STRU                     stCardLockStatus;
@@ -4822,26 +3461,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentSetMaxLockTms(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentSetApSimSt
- 功能描述  : 处理收到去激活SIM卡的消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年06月18日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月26日
-    作    者   : 张鹏 id:00214637
-    修改内容   : USIM对外接口函数变更的处理 ，Client ID 到 PID的转换处理 .
-  3.日    期   : 2013年6月7日
-    作    者   : z00161729
-    修改内容   : SVLTE 和usim接口调整修改
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentSetApSimSt(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU                    *pstMnAppReqMsg;
@@ -4879,21 +3499,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentSetApSimSt(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_ConvertScErr
- 功能描述  : 转换SC模块返回的错误码
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年04月07日
-    作    者   : l00198894
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 DRV_AGENT_PERSONALIZATION_ERR_ENUM_UINT32 DRVAGENT_ConvertScErr(
     SC_ERROR_CODE_ENUM_UINT32           enErrCode
 )
@@ -4945,22 +3551,7 @@ DRV_AGENT_PERSONALIZATION_ERR_ENUM_UINT32 DRVAGENT_ConvertScErr(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentHukSetReq
- 功能描述  : AT与DRVAGENT的DRV_AGENT_HUK_SET_REQ消息处理函数
- 输入参数  : VOS_VOID *pMsg  --REQ消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : VOS_OK  设置或查询操作成功
-             VOS_ERR 设置或查询操作失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年04月09日
-    作    者   : l00198894
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentHukSetReq(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU                *pstMnAppReqMsg;                         /* 接收消息指针 */
@@ -4992,22 +3583,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentHukSetReq(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentFacAuthPubkeySetReq
- 功能描述  : AT与DRVAGENT的DRV_AGENT_FACAUTHPUBKEY_SET_REQ消息处理函数
- 输入参数  : VOS_VOID *pMsg  --REQ消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : VOS_OK  设置或查询操作成功
-             VOS_ERR 设置或查询操作失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年04月09日
-    作    者   : l00198894
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentFacAuthPubkeySetReq(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU                    *pstMnAppReqMsg;                         /* 接收消息指针 */
@@ -5039,22 +3615,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentFacAuthPubkeySetReq(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentIdentifyStartSetReq
- 功能描述  : AT与DRVAGENT的DRV_AGENT_IDENTIFYSTART_SET_REQ消息处理函数
- 输入参数  : VOS_VOID *pMsg  --REQ消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : VOS_OK  设置或查询操作成功
-             VOS_ERR 设置或查询操作失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年04月09日
-    作    者   : l00198894
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentIdentifyStartSetReq(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU                    *pstMnAppReqMsg;                         /* 接收消息指针 */
@@ -5094,22 +3655,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentIdentifyStartSetReq(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentIdentifyEndSetReq
- 功能描述  : AT与DRVAGENT的DRV_AGENT_IDENTIFYEND_SET_REQ消息处理函数
- 输入参数  : VOS_VOID *pMsg  --REQ消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : VOS_OK  设置或查询操作成功
-             VOS_ERR 设置或查询操作失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年04月09日
-    作    者   : l00198894
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentIdentifyEndSetReq(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU                *pstMnAppReqMsg;                         /* 接收消息指针 */
@@ -5141,22 +3687,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentIdentifyEndSetReq(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentSimlockDataWriteSetReq
- 功能描述  : AT与DRVAGENT的DRV_AGENT_SIMLOCKDATAWRITE_SET_REQ消息处理函数
- 输入参数  : VOS_VOID *pMsg  --REQ消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : VOS_OK  设置或查询操作成功
-             VOS_ERR 设置或查询操作失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年04月09日
-    作    者   : l00198894
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentSimlockDataWriteSetReq(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU                        *pstMnAppReqMsg;                 /* 接收消息指针 */
@@ -5191,22 +3722,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentSimlockDataWriteSetReq(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentPhoneSimlockInfoQryReq
- 功能描述  : AT与DRVAGENT的DRV_AGENT_PHONESIMLOCKINFO_QRY_REQ消息处理函数
- 输入参数  : VOS_VOID *pMsg  --REQ消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : VOS_OK  设置或查询操作成功
-             VOS_ERR 设置或查询操作失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年04月09日
-    作    者   : l00198894
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentPhoneSimlockInfoQryReq(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU                    *pstMnAppReqMsg;                         /* 接收消息指针 */
@@ -5258,22 +3774,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentPhoneSimlockInfoQryReq(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentSimlockDataReadQryReq
- 功能描述  : AT与DRVAGENT的DRV_AGENT_SIMLOCKDATAREAD_QRY_REQ消息处理函数
- 输入参数  : VOS_VOID *pMsg  --REQ消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : VOS_OK  设置或查询操作成功
-             VOS_ERR 设置或查询操作失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年04月09日
-    作    者   : l00198894
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentSimlockDataReadQryReq(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU                    *pstMnAppReqMsg;                         /* 接收消息指针 */
@@ -5321,22 +3822,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentSimlockDataReadQryReq(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_UpdateImei
- 功能描述  : DRV AGENT模块写入IMEI号到NV项
- 输入参数  : VOS_UINT8      aucImei[]   -- IMEI数字串
-             VOS_UINT32     ulLen       -- 数字串长度
- 输出参数  : 无
- 返 回 值  : DRV_AGENT_PERSONALIZATION_ERR_ENUM_UINT32 -- 操作错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年04月09日
-    作    者   : l00198894
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 DRV_AGENT_PERSONALIZATION_ERR_ENUM_UINT32 DRVAGENT_UpdateImei(
     VOS_UINT8                           aucImei[],
     VOS_UINT32                          ulLen
@@ -5384,22 +3870,7 @@ DRV_AGENT_PERSONALIZATION_ERR_ENUM_UINT32 DRVAGENT_UpdateImei(
     return DRV_AGENT_PERSONALIZATION_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_UpdateSn
- 功能描述  : DRV AGENT模块写入SN号到NV项
- 输入参数  : VOS_UINT8      aucSn[]     -- SN数字串
-             VOS_UINT32     ulLen       -- 数字串长度
- 输出参数  : 无
- 返 回 值  : DRV_AGENT_PERSONALIZATION_ERR_ENUM_UINT32 -- 操作错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年04月09日
-    作    者   : l00198894
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 DRV_AGENT_PERSONALIZATION_ERR_ENUM_UINT32 DRVAGENT_UpdateSn(
     VOS_UINT8                           aucSn[],
     VOS_UINT32                          ulLen
@@ -5436,26 +3907,7 @@ DRV_AGENT_PERSONALIZATION_ERR_ENUM_UINT32 DRVAGENT_UpdateSn(
     return DRV_AGENT_PERSONALIZATION_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentPhonePhynumSetReq
- 功能描述  : AT与DRVAGENT的DRV_AGENT_PHONEPHYNUM_SET_REQ消息处理函数
- 输入参数  : VOS_VOID *pMsg  --REQ消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : VOS_OK  设置或查询操作成功
-             VOS_ERR 设置或查询操作失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年04月09日
-    作    者   : l00198894
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-  2.日    期   : 2013年05月20日
-    作    者   : Y00213812
-    修改内容   : IMEI VERIFY项目，增加IMEI密文写入FLASH
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentPhonePhynumSetReq(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU                *pstMnAppReqMsg;                         /* 接收消息指针 */
@@ -5534,22 +3986,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentPhonePhynumSetReq(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentPhonePhynumQryReq
- 功能描述  : AT与DRVAGENT的DRV_AGENT_PHONEPHYNUM_QRY_REQ消息处理函数
- 输入参数  : VOS_VOID *pMsg  --REQ消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : VOS_OK  设置或查询操作成功
-             VOS_ERR 设置或查询操作失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年04月09日
-    作    者   : l00198894
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentPhonePhynumQryReq(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU                *pstMnAppReqMsg;                         /* 接收消息指针 */
@@ -5646,22 +4083,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentPhonePhynumQryReq(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentPortctrlTmpSetReq
- 功能描述  : AT与DRVAGENT的DRV_AGENT_PORTCTRLTMP_SET_REQ消息处理函数
- 输入参数  : VOS_VOID *pMsg  --REQ消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : VOS_OK  设置或查询操作成功
-             VOS_ERR 设置或查询操作失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年04月18日
-    作    者   : y00213812
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentPortctrlTmpSetReq(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU                *pstMnAppReqMsg;                         /* 接收消息指针 */
@@ -5692,22 +4114,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentPortctrlTmpSetReq(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentPortAttribSetReq
- 功能描述  : AT与DRVAGENT的DRV_AGENT_PORTATTRIBSET_SET_REQ消息处理函数
- 输入参数  : VOS_VOID *pMsg  --REQ消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : VOS_OK  设置或查询操作成功
-             VOS_ERR 设置或查询操作失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年04月18日
-    作    者   : y00213812
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentPortAttribSetReq(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU                    *pstMnAppReqMsg;                         /* 接收消息指针 */
@@ -5750,24 +4157,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentPortAttribSetReq(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentPortAttribQryReq
- 功能描述  : AT与DRVAGENT的DRV_AGENT_PORTATTRIBSET_QRY_REQ消息处理函数
- 输入参数  : VOS_VOID *pMsg  --REQ消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : VOS_OK  设置或查询操作成功
-             VOS_ERR 设置或查询操作失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年04月18日
-    作    者   : y00213812
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-  2.日    期   : 2012年12月11日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentPortAttribQryReq(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU                    *pstMnAppReqMsg;                         /* 接收消息指针 */
@@ -5810,22 +4200,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentPortAttribQryReq(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentOpwordSetReq
- 功能描述  : AT与DRVAGENT的DRV_AGENT_OPWORD_SET_REQ消息处理函数
- 输入参数  : VOS_VOID *pMsg  --REQ消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : VOS_OK  设置或查询操作成功
-             VOS_ERR 设置或查询操作失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年04月18日
-    作    者   : y00213812
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentOpwordSetReq(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU                    *pstMnAppReqMsg;                         /* 接收消息指针 */
@@ -5856,27 +4231,9 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentOpwordSetReq(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentSwverSetReq
- 功能描述  : AT Agent DRV_AGENT_SWVER_SET_REQ消息处理函数
- 输入参数  : VOS_VOID *pMsg DRV_AGENT_SWVER_SET_REQ消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : VOS_OK 设置或查询操作成功
-             VOS_ERR 设置或查询操作失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月24日
-    作    者   : s00190137
-    修改内容   : 新生成函数
-  2.日    期   : 2014年09月02日
-    作    者   : m00217266
-    修改内容   : 底软接口统一项目
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentSwverSetReq(VOS_VOID *pMsg)
 {
-    /* Modified by m00217266 for 底软接口归一, 2014-9-2, begin */
     MN_APP_REQ_MSG_STRU                *pstMnAppReqMsg;                        /* 接收消息指针 */
     const MODEM_VER_INFO_S             *pstModemVerInfo;
     DRV_AGENT_SWVER_SET_CNF_STRU        stEvent;
@@ -5942,23 +4299,8 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentSwverSetReq(VOS_VOID *pMsg)
                      (VOS_UINT8 *)&stEvent);
 
     return VOS_OK;
-    /* Modified by m00217266 for 底软接口归一, 2014-9-2, end */
 }
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentCcpuMemQryReq
- 功能描述  : 处理DRV_AGENT_QRY_CCPU_MEM_INFO_REQ消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月28日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentCcpuMemQryReq(VOS_VOID *pMsg)
 {
     TTF_MemCcpuCheckPoolLeak();
@@ -5969,22 +4311,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentCcpuMemQryReq(VOS_VOID *pMsg)
 
 
 #if (FEATURE_ON == FEATURE_VSIM)
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentHvpdhSetReq
- 功能描述  : DRV_AGENT_HVPDH_REQ消息处理函数
- 输入参数  : VOS_VOID *pMsg DRV_AGENT_HVPDH_REQ消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : VOS_OK 设置或查询操作成功
-             VOS_ERR 设置或查询操作失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月27日
-    作    者   : L47619
-    修改内容   : V9R1 vSIM项目修改
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentHvpdhSetReq(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU                *pstMnAppReqMsg;                        /* 接收消息指针 */
@@ -6049,22 +4376,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentHvpdhSetReq(VOS_VOID *pMsg)
 }
 #endif
 
-/* Added by d00212987 for BalongV9R1 NV备份数据丢失容错&恢复 项目 2013-10-24, begin */
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentNvManufactureExtSet
- 功能描述  : ^NVMANUFACTUREEXT设置请求
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月24日
-    作    者   : d00212987
-    修改内容   : BalongV9R1 NV备份数据丢失容错&恢复
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentNvManufactureExtSet(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU                          *pstMnAppReqMsg;
@@ -6086,23 +4398,8 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentNvManufactureExtSet(VOS_VOID *pMsg)
 
     return VOS_OK;
 }
-/* Added by d00212987 for BalongV9R1 NV备份数据丢失容错&恢复 项目 2013-10-24, end */
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentSetAntSwitchReq
- 功能描述  : ^ANTSWITCH设置请求
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月1日
-    作    者   : y00258578
-    修改内容   : 新加函数
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentSetAntSwitchReq(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU               *pstMnAppReqMsg;                         /* 接收消息指针 */
@@ -6140,22 +4437,7 @@ VOS_UINT32 DRVAGENT_RcvDrvAgentSetAntSwitchReq(VOS_VOID *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DRVAGENT_RcvDrvAgentQryAntSwitchReq
- 功能描述  : ^ANTSWITCH设置查询
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月1日
-    作    者   : y00258578
-    修改内容   : 新加函数
-
-
-*****************************************************************************/
 VOS_UINT32 DRVAGENT_RcvDrvAgentQryAntSwitchReq(VOS_VOID *pMsg)
 {
     MN_APP_REQ_MSG_STRU                *pstMnAppReqMsg;                         /* 接收消息指针 */

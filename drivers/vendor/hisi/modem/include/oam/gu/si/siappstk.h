@@ -1,18 +1,6 @@
 
 
-/************************************************************************
-Copyright   : 2005-2008, Huawei Tech. Co., Ltd.
-File name   : SiAppSTK.h
-Author      : H59254
-Version     : V200R001
-Date        : 2008-10-13
-Description : SIM卡事件的头文件
-History     :
-History     :
-1.日    期  : 2008年10月13日
-  作    者  : H59254
-  修改内容  : Create
-************************************************************************/
+
 /*****************************************************************************
   1 其他头文件包含
 *****************************************************************************/
@@ -69,10 +57,8 @@ extern "C"{
 #define STK_AS_NMR_INFO_REQ             (0x08)
 #define STK_AS_NMR_INFO_CNF             (0x11)
 
-/* Modified by w00184875 for V7R1C51 STK与AP对接, 2012-05-07, begin */
 #define STK_AS_TA_INFO_REQ              (0x09)
 #define STK_AS_TA_INFO_CNF              (0x12)
-/* Modified by w00184875 for V7R1C51 STK与AP对接, 2012-05-07, end */
 
 #define SI_STK_DEFAULT_TA_VALUE         (0)
 #define SI_STK_MAX_TA_VALUE             (0X3F)
@@ -264,13 +250,7 @@ enum
 };
 typedef VOS_UINT8 SI_STK_RESULT;
 
-/*****************************************************************************
- 枚举名    : SI_STK_ADD_INFO_TERMINAL_PROBLEM_ENUM8
- 结构说明  : STK回复TERMINAL RESPONSE时RESULT为TERMINAL PROBLEM时附带的ADDITIONAL RESULT值
- 1.日    期: 2013年7月12日
-   作    者: H59254
-   修改内容: 新增
-*****************************************************************************/
+
 enum SI_STK_ADD_INFO_TERMINAL_PROBLEM
 {
     NO_SPECIFIC_CAUSE_CAN_BE_GIVEN_BY_TERMINAL                      = 0x00,
@@ -288,13 +268,7 @@ enum SI_STK_ADD_INFO_TERMINAL_PROBLEM
 };
 typedef VOS_UINT8 SI_STK_ADD_INFO_TERMINAL_PROBLEM_ENUM8;
 
-/*****************************************************************************
- 枚举名    : SI_STK_ADD_INFO_WITH_CALL_CONTROL_ENUM8
- 结构说明  : STK回复TERMINAL RESPONSE时CALL CONTROL时附带的ADDITIONAL RESULT值
- 1.日    期: 2013年7月12日
-   作    者: H59254
-   修改内容: 新增
-*****************************************************************************/
+
 enum SI_STK_ADD_INFO_WITH_CALL_CONTROL
 {
     NO_SPECIFIC_CAUSE_CAN_BE_GIVEN_BY_CALL_CONTROL                  = 0x00,
@@ -304,13 +278,7 @@ enum SI_STK_ADD_INFO_WITH_CALL_CONTROL
 };
 typedef VOS_UINT8 SI_STK_ADD_INFO_WITH_CALL_CONTROL_ENUM8;
 
-/*****************************************************************************
- 枚举名    : SI_STK_ADD_INFO_WITH_NETWORK_PROBLEM_ENUM8
- 结构说明  : STK回复TERMINAL RESPONSE时NETWORK PROBLEM时附带的ADDITIONAL RESULT值
- 1.日    期: 2013年7月12日
-   作    者: H59254
-   修改内容: 新增
-*****************************************************************************/
+
 enum SI_STK_ADD_INFO_WITH_NETWORK_PROBLEM
 {
     NO_SPECIFIC_CAUSE_CAN_BE_GIVEN_BY_NETWORK                       = 0x00,
@@ -319,13 +287,7 @@ enum SI_STK_ADD_INFO_WITH_NETWORK_PROBLEM
 };
 typedef VOS_UINT8 SI_STK_ADD_INFO_WITH_NETWORK_PROBLEM_ENUM8;
 
-/*****************************************************************************
- 枚举名    : SI_STK_ADD_INFO_FOR_SS_USSD_SMS_PROBLEM_ENUM8
- 结构说明  : STK回复TERMINAL RESPONSE时SEND SMS/SEND SS/SEND USSD ERROR时附带的ADDITIONAL RESULT值
- 1.日    期: 2013年7月12日
-   作    者: H59254
-   修改内容: 新增
-*****************************************************************************/
+
 enum SI_STK_ADD_INFO_FOR_SS_USSD_SMS_PROBLEM
 {
     NO_SPECIFIC_CAUSE_CAN_BE_GIVEN                                  = 0x00,
@@ -359,7 +321,6 @@ enum
 };
 typedef VOS_UINT32   SI_STK_CTRL_RESULT;
 
-/* Modified by w00184875 for V7R1C51 STK与AP对接, 2012-05-07, begin */
 /* ME 状态 */
 enum
 {
@@ -391,13 +352,7 @@ enum SI_CC_SPECI_TAG_ENUM
 
 typedef VOS_UINT8 SI_CC_SPECI_TAG_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : SI_STK_UPDATE_ATTACH_TYPE_ENUM_UINT8
- 结构说明  : NETWORK REJECTION中UPDATE和ATTACH的值
- 1.日    期: 2013年7月12日
-   作    者: H59254
-   修改内容: 新增
-*****************************************************************************/
+
 enum SI_STK_UPDATE_ATTACH_TYPE_ENUM
 {
     SI_STK_NETWORK_REJ_TYPE_NORMAL_LOCATION_UPDATING                            = 0x00,
@@ -419,13 +374,7 @@ enum SI_STK_UPDATE_ATTACH_TYPE_ENUM
 };
 typedef VOS_UINT8 SI_STK_UPDATE_ATTACH_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : SI_STK_SERVICE_STATUS_ENUM_UINT32
- 结构说明  : CS域服务状态
- 1.日    期: 2013年7月12日
-   作    者: H59254
-   修改内容: 新增
-*****************************************************************************/
+
 enum SI_STK_SERVICE_STATUS_ENUM
 {
     SI_STK_NORMAL_SERVICE           = 0x00,
@@ -436,13 +385,7 @@ enum SI_STK_SERVICE_STATUS_ENUM
 
 typedef VOS_UINT32 SI_STK_SERVICE_STATUS_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : SI_STK_ACCESS_TECH_ENUM_UINT8
- 结构说明  : 接入技术
- 1.日    期: 2013年7月12日
-   作    者: H59254
-   修改内容: 新增
-*****************************************************************************/
+
 enum SI_STK_ACCESS_TECH_ENUM
 {
     STK_ACCESS_TECH_GSM             = 0x00,
@@ -459,13 +402,7 @@ enum SI_STK_ACCESS_TECH_ENUM
 
 typedef VOS_UINT8 SI_STK_ACCESS_TECH_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : SI_STK_SEARCH_MODE_ENUM_UINT8
- 结构说明  : 搜网模式
- 1.日    期: 2013年7月12日
-   作    者: H59254
-   修改内容: 新增
-*****************************************************************************/
+
 enum SI_STK_SEARCH_MODE_ENUM
 {
     SI_STK_SEARCH_MODE_AUTO         = TAF_PH_PLMN_SEL_MODE_AUTO,
@@ -1964,13 +1901,7 @@ typedef struct
     SI_STK_FRAMES_INFORMATION_STRU      FrameInfo;
 }SI_STK_FRAMES_INFORMATION_EVENT_STRU;
 
-/*****************************************************************************
- 结构名    : SI_STK_NETWORK_REJ_EVENT_STRU
- 结构说明  : NETWORK REJECTION事件数据结构
- 1.日    期: 2013年7月12日
-   作    者: H59254
-   修改内容: 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          OP_LocaInfo:1;
@@ -2414,7 +2345,6 @@ typedef struct
     VOS_UINT32                          ulQueryType;
 }STK_AS_NMR_INFO_REQ_STRU;
 
-/* Modified by w00184875 for V7R1C51 STK与AP对接, 2012-05-07, begin */
 typedef struct
 {
     VOS_MSG_HEADER
@@ -2430,7 +2360,6 @@ typedef struct
     VOS_UINT8                           ucTAValue;
     VOS_UINT8                           ucReserved[2];
 }STK_AS_TA_INFO_CNF_STRU;
-/* Modified by w00184875 for V7R1C51 STK与AP对接, 2012-05-07, end */
 
 /*****************************************************************************
  结构名    : STK_LAS_CELL_FREQ_INFO_STRU
@@ -2655,62 +2584,17 @@ extern VOS_UINT32 SI_STK_CLSndTrMsg(VOS_UINT32 ulDataLen, VOS_UINT8 *pucData);
 
 extern VOS_VOID SI_STK_CbpSetupEventListCmdSnd(VOS_VOID);
 
-/*****************************************************************************
-函 数 名  : SI_STK_SetUpCallConfirm
-功能描述  : 用户回复是否允许发起呼叫
-输入参数  : ulAction -- 用户回复结果
-输出参数  : 无
-返 回 值  : 执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2012年9月14日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
+
 extern VOS_UINT32 SI_STK_SetUpCallConfirm(MN_CLIENT_ID_T ClientId, SI_STK_SETUPCALLCONFIRM_ENUM_UINT32 enAction);
 
-/*****************************************************************************
-函 数 名  : SI_STK_CCResultInd
-功能描述  : 将MO CALL CONTROL的结果广播上报给AT
-输入参数  : pstRspData--指向CALL CONTROL的解码后码流
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2012年09月14日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
+
 extern VOS_VOID SI_STK_CCResultInd(SI_STK_ENVELOPE_RSP_STRU *pstRspData);
 
-/*****************************************************************************
-函 数 名  : SI_STK_SMSCtrlResultInd
-功能描述  : 将MO SMS CONTROL的结果广播上报给AT
-输入参数  : pstRspData--指向SMS CONTROL的解码后码流
-输出参数  : 无
-返 回 值  : 执行结果
-History     :
-1.日    期  : 2012年09月14日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
+
 extern VOS_VOID SI_STK_SMSCtrlResultInd(SI_STK_ENVELOPE_RSP_STRU *pstRspData);
 
 /*单编译接口声明*/
-/*****************************************************************************
-函 数 名  : SI_STK_EnvelopeRsp_Decode
-功能描述  : STK功能ENVELOP回复数据解码
-输入参数  : enModemID:Modem ID
-            enDataType: 解码的信封命令数据类型
-            ulDataLen:  需要解码的数据长度
-            pucData:    需要解码的数据内容
-输出参数  : pstRspData: 解码后的数据内容
-返 回 值  : VOS_UINT32 函数执行结果
-修订记录  :
-1. 日    期   : 2013年5月27日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 extern VOS_UINT32 SI_STK_EnvelopeRsp_Decode_Instance(
     MODEM_ID_ENUM_UINT16                enModemID,
     SI_STK_ENVELOPE_TYPE_UINT32         enDataType,
@@ -2718,49 +2602,17 @@ extern VOS_UINT32 SI_STK_EnvelopeRsp_Decode_Instance(
     VOS_UINT8                          *pucCmdData,
     SI_STK_ENVELOPE_RSP_STRU           *pstRspData);
 
-/*****************************************************************************
-函 数 名  : SI_STK_EnvelopeRspDataFree_Instance
-功能描述  : STK功能ENVELOP回复数据解码数据内存释放函数
-输入参数  : enModemID:Modem ID
-输出参数  : pstRspData: 解码后的数据内容
-返 回 值  : 无
-修订记录  :
-1. 日    期   : 2013年5月27日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 extern VOS_VOID SI_STK_EnvelopeRspDataFree_Instance(
     MODEM_ID_ENUM_UINT16                enModemID,
     SI_STK_ENVELOPE_RSP_STRU           *pstData);
 
-/*****************************************************************************
-函 数 名  : SI_STK_CCResultInd_Instance
-功能描述  : 将MO CALL CONTROL的结果广播上报给AT
-输入参数  : enModemID --Modem ID
-            pstRspData--指向CALL CONTROL的解码后码流
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2013年06月14日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
+
 extern VOS_VOID SI_STK_CCResultInd_Instance(
     MODEM_ID_ENUM_UINT16                enModemID,
     SI_STK_ENVELOPE_RSP_STRU           *pstRspData);
 
-/*****************************************************************************
-函 数 名  : SI_STK_SMSCtrlResultInd_Instance
-功能描述  : 将MO SMS CONTROL的结果广播上报给AT
-输入参数  : enModemID --Modem ID
-            pstRspData--指向SMS CONTROL的解码后码流
-输出参数  : 无
-返 回 值  : 执行结果
-History     :
-1.日    期  : 2013年06月14日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
+
 extern VOS_VOID SI_STK_SMSCtrlResultInd_Instance(
     MODEM_ID_ENUM_UINT16                enModemID,
     SI_STK_ENVELOPE_RSP_STRU           *pstRspData);

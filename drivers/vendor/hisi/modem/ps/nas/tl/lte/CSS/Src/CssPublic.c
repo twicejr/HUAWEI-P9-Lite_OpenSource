@@ -1,14 +1,4 @@
-/******************************************************************************
 
-   Copyright(C)2013,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : CssPublic.c
-  Description     : 该C文件实现公共的函数，如消息打印等
-  History           :
-     1.wangchen 00209181    2015-05-14  Draft Enact
-
-******************************************************************************/
 
 
 
@@ -39,7 +29,6 @@ CSS_LPHY_FREQ_RANGE_INFO_STRU    g_ausCssLteBandFreq[] =
  {24960,26900}, {34000,36000}, {36000,38000}, {7030,8030}                       /* Band41~Band44 */
 };
 
-/* c00285307 add for 多制式和重叠频段BAND优化 Begin */
 
 CSS_OVERLAP_BAND_STRU            g_aucOverLapBand[] =
 {
@@ -54,7 +43,6 @@ CSS_OVERLAP_BAND_STRU            g_aucOverLapBand[] =
 };
 const VOS_UINT32 g_aucOverLapBandSize = (sizeof(g_aucOverLapBand)/sizeof(CSS_OVERLAP_BAND_STRU));
 
-/* c00285307 add for 多制式和重叠频段BAND优化 End */
 
 CSS_LPHY_FREQ_RANGE_INFO_STRU    g_ausCssWcdmaBandFreq[] =
 {{21124,21676}, {19324,19876}, {18074,18776}, {21124,21526}, {8714,8916},            /* Band1 ~Band5  */
@@ -165,15 +153,7 @@ VOS_CHAR g_acCssCloudFreqMemory[CSS_CLOUD_MEM_TOTAL_LEN];
 *****************************************************************************/
 
 
-/*****************************************************************************
- Function Name   : CSS_SendOmOnePlmnPrefFreqInd
- Description     : 将接入层调用预置频点结果中的一条pLMN勾出来
- Input           : None
- Output          : None
- Return          : VOS_VOID
- History         :
-    1.    chengmin 00285307 2015-11-5  Draft Enact
-*****************************************************************************/
+
 VOS_VOID  CSS_SendOmGetOnePlmnPrefFreqRslt
 (
     CSS_RAT_TYPE_ENUM_UINT8                       enRat,
@@ -224,15 +204,7 @@ VOS_VOID  CSS_SendOmGetOnePlmnPrefFreqRslt
     return;
 }
 
-/*****************************************************************************
- Function Name   : CSS_SendOmGetPrefBandRslt
- Description     : 将接入层调用预置BAND结果勾出来
- Input           : None
- Output          : None
- Return          : VOS_VOID
- History         :
-    1.    chengmin 00285307 2015-11-5  Draft Enact
-*****************************************************************************/
+
 VOS_VOID  CSS_SendOmGetPrefBandRslt
 (
     CSS_RAT_TYPE_ENUM_UINT8                       enRat,
@@ -290,15 +262,7 @@ VOS_VOID  CSS_SendOmGetPrefBandRslt
 }
 
 
-/*****************************************************************************
- Function Name   : CSS_PrintLocalPrefFreqInfo
- Description     : 将本地存的预置频点信息打印出来
- Input           : None
- Output          : None
- Return          : VOS_VOID
- History         :
-    1.    chengmin 00285307 2015-11-5  Draft Enact
-*****************************************************************************/
+
 VOS_VOID CSS_PrintLocalPrefFreqInfo(VOS_VOID)
 {
     CSS_PUB_PREF_MCC_STRU              *pMccNode;
@@ -354,15 +318,7 @@ VOS_VOID CSS_PrintLocalPrefFreqInfo(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- Function Name   : CSS_SndOmPubCloudCtrlInd
- Description     : 将本地存的全局变量打印出来
- Input           : None
- Output          : None
- Return          : VOS_VOID
- History         :
-    1.    chengmin 00285307 2015-11-5  Draft Enact
-*****************************************************************************/
+
 VOS_VOID CSS_SndOmPubCloudCtrlInd(VOS_VOID)
 {
     CSS_OM_PUB_CLOUD_CONTROL_IND_STRU            *pstMsg;
@@ -407,16 +363,7 @@ VOS_VOID CSS_SndOmPubCloudCtrlInd(VOS_VOID)
 
 
 
-/*****************************************************************************
- Function Name  : CSS_SndOmTimerStatus()
- Description    : 将定时器状态钩到HIDS上
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-05-25  Draft Enact
-*****************************************************************************/
 VOS_VOID  CSS_SndOmTimerStatus(
     CSS_TIMER_RUN_STA_ENUM_UINT32          enTimerStatus,
     VOS_UINT16                          enTimerId,
@@ -446,16 +393,7 @@ VOS_VOID  CSS_SndOmTimerStatus(
 
 }
 
-/*****************************************************************************
- Function Name  : CSS_SndOmBandScanAbnormalInfo()
- Description    : 将异常信息钩到HIDS上
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-05-25  Draft Enact
-*****************************************************************************/
 VOS_VOID  CSS_SndOmBandScanAbnormalInfo
 (
     VOS_UINT32 ulFileName,
@@ -489,15 +427,7 @@ VOS_VOID  CSS_SndOmBandScanAbnormalInfo
 }
 
 
-/*****************************************************************************
- Function Name   : CSS_SendOmStateChangeInd
- Description     : 将状态变化钩到HIDS上
- Input           : None
- Output          : None
- Return          : VOS_UINT32
- History         :
-    1.    wangchen 00209181 2015-05-25  Draft Enact
-*****************************************************************************/
+
 VOS_VOID  CSS_SendOmStateChangeInd
 (
     CSS_MAIN_STATE_ENUM_UINT16                      enPreMainState,
@@ -549,15 +479,7 @@ VOS_VOID  CSS_SendOmStateChangeInd
 
     return;
 }
-/*****************************************************************************
- Function Name   : CSS_SendOmCommBandInfoInd
- Description     : 将COMM BAND的配置钩到HIDS上
- Input           : None
- Output          : None
- Return          : VOS_UINT32
- History         :
-    1.    wangchen 00209181 2015-05-25  Draft Enact
-*****************************************************************************/
+
 VOS_VOID  CSS_SendOmCommBandInfoInd
 (
     CSS_COMM_BAND_INFO_STRU  *pstCssCommBandConfig
@@ -607,15 +529,7 @@ VOS_VOID  CSS_SendOmCommBandInfoInd
     return;
 }
 
-/*****************************************************************************
- Function Name   : CSS_SendOmRatThresholdInfoInd
- Description     : 将预置的配置钩到HIDS上
- Input           : None
- Output          : None
- Return          : VOS_UINT32
- History         :
-    1.    wangchen 00209181 2015-05-25  Draft Enact
-*****************************************************************************/
+
 VOS_VOID  CSS_SendOmRatThresholdInfoInd
 (
     CSS_RSSI_THRESHOLD_STRU  *pstCssRatThresholdConfig
@@ -665,16 +579,7 @@ VOS_VOID  CSS_SendOmRatThresholdInfoInd
     return;
 }
 
-/*****************************************************************************
- Function Name   : CSS_SendOmBandScanResultInfoInd
- Description     : 将存储的扫频结果钩到HIDS上
- Input           : None
- Output          : None
- Return          : VOS_UINT32
- History         :
-    1.    wangchen 00209181 2015-05-25  Draft Enact
-    2.    chengmin 00285307 2015-12-14  mod for TDS plmn search
-*****************************************************************************/
+
 VOS_VOID  CSS_SendOmBandScanResultInfoInd
 (
     CSS_COMM_SCAN_BAND_NODE_STRU       *pBandNode,
@@ -755,15 +660,7 @@ VOS_VOID  CSS_SendOmBandScanResultInfoInd
 }
 
 
-/*****************************************************************************
- Function Name   : CSS_SendOmBandApiInfoInd
- Description     : 将API信息钩到HIDS上
- Input           : None
- Output          : None
- Return          : VOS_UINT32
- History         :
-    1.    wangchen 00209181 2015-05-25  Draft Enact
-*****************************************************************************/
+
 VOS_VOID  CSS_SendOmBandApiInfoInd
 (
     CSS_RAT_COVERAGE_STRU                           *pstRatCoverage,
@@ -818,15 +715,7 @@ VOS_VOID  CSS_SendOmBandApiInfoInd
     return;
 }
 
-/*****************************************************************************
- Function Name   : CSS_SendOmMmlUeSupportBandInfoInd
- Description     : 将从MML获取的BAND信息钩到HIDS上
- Input           : None
- Output          : None
- Return          : VOS_UINT32
- History         :
-    1.    wangchen 00209181 2015-05-25  Draft Enact
-*****************************************************************************/
+
 VOS_VOID  CSS_SendOmMmlUeSupportBandInfoInd
 (
     NAS_MML_MS_BAND_INFO_STRU   *pstUeSupportBand
@@ -877,15 +766,7 @@ VOS_VOID  CSS_SendOmMmlUeSupportBandInfoInd
 }
 
 
-/*****************************************************************************
- Function Name   : CSS_ReadNvCommBandPara
- Description     : 读取黄金BAND的BAND NV项
- Input           : None
- Output          : None
- Return          : VOS_UINT32
- History         :
-    1.    chengmin 00285307      2015-05-15  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  CSS_ReadNvCommBandConfig
 (
     CSS_NV_COMM_BAND_CONFIG_STRU  *pstCssCommBandConfig
@@ -911,15 +792,7 @@ VOS_UINT32  CSS_ReadNvCommBandConfig
     return CSS_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : CSS_ReadNvRssiThreshold
- Description     : 读取各模下的高能量和可驻留能量门限值
- Input           : None
- Output          : None
- Return          : VOS_UINT32
- History         :
-    1.    chengmin 00285307      2015-05-15  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  CSS_ReadNvRssiThreshold
 (
     CSS_NV_RAT_RSSI_THRESHOLD_STRU  *pstCssRssiTH
@@ -942,7 +815,6 @@ VOS_UINT32  CSS_ReadNvRssiThreshold
         return CSS_FAIL;
     }
 
-    /* zhaochen 00308719 PCLINT认为乘以64后可能导致精度丢失，实际上阈值不会那么大，故屏蔽 begin 2015-06-29 */
     /*lint -e734*/
     pstCssRssiTH->sGHighRssiThresHold = pstCssRssiTH->sGHighRssiThresHold * CSS_RSSI_64DB;
     pstCssRssiTH->sGLowRssiThresHold = pstCssRssiTH->sGLowRssiThresHold * CSS_RSSI_64DB;
@@ -979,16 +851,7 @@ VOS_VOID   CSS_FSMTranState
     return;
 }
 
-/*****************************************************************************
- Function Name  : CSS_GetTimerLen
- Description    : 获取定时器时长
- Input          : enTimerId--------------定时器类型
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-05-16  Draft Enact
-*****************************************************************************/
 VOS_UINT32 CSS_GetTimerLen
 (
     CSS_TIMER_ID_ENUM_UINT16           enTimerId
@@ -1020,16 +883,7 @@ VOS_UINT32 CSS_GetTimerLen
     return 0;
 }
 
-/*****************************************************************************
- Function Name  : CSS_StartTimer()
- Description    : 启动定时器函数
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-05-16  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_StartTimer(CSS_TIMER_STRU *pstTimer)
 {
 
@@ -1079,16 +933,7 @@ VOS_VOID CSS_StartTimer(CSS_TIMER_STRU *pstTimer)
 
 }
 
-/*****************************************************************************
- Function Name  : CSS_StopTimer()
- Description    : 停止定时器函数
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-05-16  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_StopTimer(CSS_TIMER_STRU *pstTimer)
 {
     VOS_UINT32                          ulTimerRemainLen    =    0;
@@ -1125,15 +970,7 @@ VOS_VOID CSS_StopTimer(CSS_TIMER_STRU *pstTimer)
     CSS_SndOmTimerStatus(CSS_TIMER_STOPED, pstTimer->usName, ulTimerRemainLen);
 
 }
-/*****************************************************************************
- Function Name   : CSS_FreeScanRsltMemory
- Description     : 收到COmm 扫频请求时，清空上一次扫频的存储结果；或者在关机时清除
- Input           : None
- Output          : None
- Return          : VOS_UINT32
- History         :
-    1.    chengmin 00285307      2015-05-15  Draft Enact
-*****************************************************************************/
+
 VOS_VOID CSS_FreeCommScanRsltMemory(VOS_VOID)
 {
     CSS_COMM_SCAN_BAND_LIST_STRU         *pRsltList     = CSS_GetCommScanBandListAddr();
@@ -1173,15 +1010,7 @@ VOS_VOID CSS_FreeCommScanRsltMemory(VOS_VOID)
 }
 
 
-/*****************************************************************************
- Function Name   : CSS_FreeAsScanRsltMemory
- Description     : 收到as 扫频请求时，清空上一次扫频的存储结果；或者在关机时清除
- Input           : None
- Output          : None
- Return          : VOS_UINT32
- History         :
-    1.    chengmin 00285307      2015-12-10  Draft Enact
-*****************************************************************************/
+
 VOS_VOID CSS_FreeAsScanRsltMemory(VOS_VOID)
 {
     CSS_COMM_SCAN_BAND_LIST_STRU         *pRsltList     = CSS_GetAsScanBandListAddr();
@@ -1690,17 +1519,7 @@ VOS_VOID CSS_Send_Msg(VOS_VOID* pMsg)
 
 }
 
-/*****************************************************************************
- Function Name   : CSS_SecuMemCpy
- Description     : 安全memcpy
- Input           : VOS_VOID* pDst, VOS_UINT32 ulMaxBuffer, const VOS_VOID* pSrc,
-                   VOS_UINT32  ulLength, VOS_UINT32 ulLineNO, VOS_UINT32 ulFileID
- Output          : None
- Return          : VOS_INT32
 
- History         :
-    1.z00297373    2015-12-28  Draft Enact
-*****************************************************************************/
 VOS_INT32 CSS_SecuMemCpy
 (
     VOS_VOID           *pDst,

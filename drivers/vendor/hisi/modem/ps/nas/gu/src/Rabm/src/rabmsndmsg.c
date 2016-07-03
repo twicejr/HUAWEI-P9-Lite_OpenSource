@@ -1,40 +1,4 @@
-/*******************************************************************************
-  Copyright    : 2005-2007, Huawei Tech. Co., Ltd.
-  File name    : RabmSndMsg.c
-  Description  : Rabm的发送函数
-  Function List:
-                 1.  RABM_SndRabReestReq
-                 2.  RABM_SndPdcpDataReq
-                 3.  RABM_SndRrcQosUpdReq
-                 4.  RABM_SndTafPsDataInd
-                 5.  RABM_SndRrcRabRsp
-                 6.  RABM_SndSmDeactReq
-                 7.  RABM_SndCcSyncInd
-                 8.  RABM_SndTafCsDataInd
-                 9.  RABM_SndTcTestCnf
-                 10. RABM_SndTcTestLoopCnf
-                 11. RABM_SndTcPsData
-                 12. RABM_SndTcCsData
-                 13. RABM_SndTcRabInd
-                 14. RABM_SndTafStatusInd
-                 15. RABM_SndTafInActNsapiInd
-                 16. RABM_SndTafInActSiInd
-  History:
-      1.   张志勇   2003.12.08   新规作成
-      2.   张志勇   2005.01.07   移植修改
-      3.   L47619   2005.12.12   A32D01107问题单
-      4.   L47619   2006.01.11   A32D01547问题单
-      5.   L47619   2006.02.23   A32D02155问题单
-      6.   L47619   2006.04.13   A32D03129问题单
-      7.   L47619   2006.06.12   A32D04258问题单
-      8.   L47619   2006.09.14   A32D06158问题单
-      9.   L47619   2006.10.18   A32D06802问题单
-      10. 日    期   : 2006年10月21日
-          作    者   : luojian id:60022475
-          修改内容   : 所有函数调用PS_ALLOC_MSG申请消息包时传入的长度应减去VOS
-          消息头的长度，问题单号:A32D06583
-      11.  L47619   2007.05.16   A32D09774/A32D10792问题单
-*******************************************************************************/
+
 #include "rabminclude.h"
 #include "AtRabmInterface.h"
 #include "NasRabmMain.h"
@@ -65,30 +29,7 @@ extern MN_CLIENT_ID_T MN_GetRealClientId(
     VOS_UINT32                          ulPid
 );
 
-/*******************************************************************************
-  Module:   RABM_SndRabReestReq
-  Function: 通知GMM，进行RAB的重建
-  Input:    VOS_VOID
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.   张志勇      2003.12.10   新规作成
-  2.  日    期   : 2006年10月21日
-      作    者   : luojian id:60022475
-      修改内容   : 调用PS_ALLOC_MSG申请消息包时传入的长度应减去VOS
-      消息头的长度，问题单号:A32D06583
 
-  3.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : RABM保存的QOS由动态内存改为静态数组
-  4.日    期   : 2012年12月11日
-    作    者   : l00167671
-    修改内容   : DTS2012121802573, TQE清理
-  5.日    期   : 2013年05月30日
-    作    者   : l65478
-    修改内容   : DTS2013052405902, 上网和MMS同时进行的时候,MMS失败
-*******************************************************************************/
 VOS_VOID RABM_SndRabReestReq()
 {
     GMMRABM_REESTABLISH_REQ_STRU *pSndMsg;
@@ -152,31 +93,7 @@ VOS_VOID RABM_SndRabReestReq()
     return;
 }
 
-/*******************************************************************************
-  Module:   RABM_SndPdcpDataReq
-  Function: 形成PDCP数据消息并发送数据
-  Input:    VOS_UINT8                       ucEntId
-            TAFRABM_PS_DATA_REQ_STRU    *pData
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.   张志勇      2003.12.10   新规作成
-      2.   L47619      2006.09.14   根据问题单修改:A32D06158
-      3.   L47619      2006.10.18   根据问题单修改:A32D06802
-      4.   L47619      2006.11.06   根据问题单修改:A32D07917
-      5.  日    期   : 2010年04月15日
-          作    者   : S62952
-          修改内容   : AT2D18388
 
-      4.日    期   : 2012年2月18日
-        作    者   : z40661
-        修改内容   : GTL分支时，不能直接调用WAS的接口
-
-      5.日    期   : 2012年7月13日
-        作    者   : w00167002
-        修改内容   : V7R1C50_GUTL_PhaseI:增加对各版本支持的处理
-*******************************************************************************/
 VOS_VOID RABM_SndPdcpDataReq(
                          VOS_UINT8  ucEntId,
                          TAFRABM_PS_DATA_REQ_STRU  *pData
@@ -198,20 +115,7 @@ VOS_VOID RABM_SndPdcpDataReq(
     return;
 }
 
-/*******************************************************************************
-  Module:      RABM_SndRrcQosUpdReq
-  Function:    通知RRC Qos参数发生改变
-  Input:       VOS_UINT8           ucEntId        RABM实体ID
-  Output:      VOS_VOID
-  NOTE:
-  Return:      VOS_VOID
-  History:
-      1.  张志勇      2003.12.11   新规作成
 
-  2.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : RABM保存的QOS由动态内存改为静态数组
-*******************************************************************************/
 VOS_VOID RABM_SndRrcQosUpdReq(
     VOS_UINT8                           ucEntId                                 /* RABM实体ID                               */
 )
@@ -270,21 +174,7 @@ VOS_VOID RABM_SndTafPsDataInd(
 }
 
 
-/*******************************************************************************
-  Module:   RABM_SndRrcRabRsp
-  Function: 向RRC回响应,通知相应的RAB参数
-  Input:    VOS_UINT8               ucRabNum    应答消息中包含的RB个数
-            RRRABM_RAB_IND_STRU *pMsg       目前处理的消息
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1. 张志勇      2003.12.11   新规作成
 
-  2.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : RABM保存的QOS由动态内存改为静态数组
-*******************************************************************************/
 VOS_VOID RABM_SndRrcRabRsp(
                        VOS_UINT8  ucRabNum,                                         /* 应答消息中包含的RB个数                   */
                        RRRABM_RAB_IND_STRU  *pMsg                               /* 目前处理的消息                           */
@@ -360,20 +250,7 @@ VOS_VOID RABM_SndRrcRabRsp(
     return;
 }
 
-/*******************************************************************************
-  Module:   RABM_SndSmDeactReq
-  Function: 通知SM相应的NSAPI的RAB已经释放
-  Input:    VOS_UINT8   ucNsapi           Network service access point identifier
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1. 张志勇      2003.12.11   新规作成
-      2.  日    期   : 2006年10月21日
-          作    者   : luojian id:60022475
-          修改内容   : 调用PS_ALLOC_MSG申请消息包时传入的长度应减去VOS
-          消息头的长度，问题单号:A32D06583
-*******************************************************************************/
+
 VOS_VOID RABM_SndSmDeactReq(
                         VOS_UINT8  ucNsapi                                          /* Network service access point identifier  */
                         )
@@ -401,21 +278,7 @@ VOS_VOID RABM_SndSmDeactReq(
     return;
 }
 
-/*******************************************************************************
-  Module:   RABM_SndCcSyncInd
-  Function: 通知CC RAB已经建立或释放
-  Input:    VOS_UINT8   ucResult           结果:建立或释放
-            VOS_UINT32   ulSi               建立或释放rab的stream id
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1. 张志勇      2003.12.11   新规作成
-      2. 日    期   : 2006年10月21日
-         作    者   : luojian id:60022475
-         修改内容   : 调用PS_ALLOC_MSG申请消息包时传入的长度应减去VOS
-         消息头的长度，问题单号:A32D06583
-*******************************************************************************/
+
 VOS_VOID RABM_SndCcSyncInd(
                        VOS_UINT8  ucResult,                                         /* 结果:建立或释放                          */
                        VOS_UINT32  ulSi                                              /* 建立或释放rab的stream id                 */
@@ -503,20 +366,7 @@ VOS_VOID RABM_SndCallSyncInd(
 }
 
 
-/*******************************************************************************
-  Module:   RABM_SndTafCsDataInd
-  Function: 把RLC的数据提交给高层
-  Input:    RABMRLC_CS_DATA_IND_STRU *pRcvMsg       数据指针
-            VOS_UINT8                    ucEntId        CS域RABM实体索引
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.   张志勇   2005.01.07   新规作成
-  2.日    期   : 2012年12月11日
-    作    者   : l00167671
-    修改内容   : DTS2012121802573, TQE清理
-*******************************************************************************/
+
 VOS_VOID RABM_SndTafCsDataInd(
                           RLC_RABM_CS_DATA_IND_STRU      *pRcvMsg,                   /* 数据指针                                 */
                           VOS_UINT8                     ucEntId                     /* CS域RABM实体索引                         */
@@ -560,23 +410,7 @@ VOS_VOID RABM_SndTcTestCnf(
     return;
 }
 
-/*******************************************************************************
-  Module:   RABM_SndTcTestLoopCnf
-  Function: 通知tc已经收到关闭/开启测试环请求
-  Input:    VOS_VOID
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.   张志勇      2004.05.09   新规作成
-      2.  日    期   : 2006年10月21日
-          作    者   : luojian id:60022475
-          修改内容   : 调用PS_ALLOC_MSG申请消息包时传入的长度应减去VOS
-          消息头的长度，问题单号:A32D06583
-	  3.日    期   : 2012年12月11日
-	    作    者   : l00167671
-	    修改内容   : DTS2012121802573, TQE清理
-*******************************************************************************/
+
 VOS_VOID RABM_SndTcTestLoopCnf()
 {
     TCRABM_TEST_LOOP_CNF_STRU  *pSndMsg;
@@ -602,45 +436,7 @@ VOS_VOID RABM_SndTcTestLoopCnf()
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : RABM_SndTcPsData_Mode_I_Handling_Test
- 功能描述  : RABM_SndTcPsData 降复杂度: TC_MODE_1处理
- 输入参数  : VOS_UINT8                           ucEntId
-             PDCP_RABM_TC_DATA_STRU             *pstRabmTcData
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年6月15日
-    作    者   : 欧阳飞
-    修改内容   : 新生成函数
-
-  2.日    期   : 2010年12月5日
-    作    者   : A00165503
-    修改内容   : 问题单号: DTS2010111102810，RMC HSUPA和HSDPA互切，单板复位
-
-  3.日    期   : 2011年01月13日
-    作    者   : A00165503
-    修改内容   : 问题单号: DTS2011011302080，环回数据处理优化
-
-  4.日    期   : 2012年2月18日
-    作    者   : z40661
-    修改内容   : GTL分支时，不能直接调用WAS的接口
-
-  5.日    期   : 2012年7月13日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseI:增加对各版本支持的处理
-
-  6.日    期   : 2014年1月2日
-    作    者   : A00165503
-    修改内容   : DTS2014010207026: 解决TDS测试仪器兼容性问题
-
-  7.日    期   : 2014年1月17日
-    作    者   : A00165503
-    修改内容   : DTS2014011704104: 限定规避TDS测试仪器兼容性的场景
-*****************************************************************************/
 VOS_VOID RABM_SndTcPsData_Mode_I_Handling(
     VOS_UINT8                           ucEntId,
     PDCP_RABM_TC_DATA_STRU             *pData
@@ -810,40 +606,7 @@ VOS_VOID RABM_SndTcPsData_Mode_I_Handling(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : RABM_SndTcPsData_Mode_II_Handling
- 功能描述  : RABM_SndTcPsData 降复杂度: TC_MODE_II处理
- 输入参数  : VOS_UINT8                  ucEntId
-             PDCP_RABM_TC_DATA_STRU    *pData
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年6月15日
-    作    者   : 欧阳飞
-    修改内容   : 新生成函数
-
-  2.日    期   : 2010年12月5日
-    作    者   : A00165503
-    修改内容   : 问题单号: DTS2010111102810，RMC HSUPA和HSDPA互切，单板复位
-
-  3.日    期   : 2011年01月13日
-    作    者   : A00165503
-    修改内容   : 问题单号: DTS2011011302080，环回数据处理优化
-
-  4.日    期   : 2012年2月18日
-    作    者   : z40661
-    修改内容   : GTL分支时，不能直接调用WAS的接口
-
-  5.日    期   : 2012年7月14日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseI:增加对各版本支持的处理
-  6.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_VOID RABM_SndTcPsData_Mode_II_Handling(
     VOS_UINT8                           ucEntId,
     PDCP_RABM_TC_DATA_STRU             *pData
@@ -1425,27 +1188,7 @@ VOS_VOID RABM_SndTcCsData_Mode_I_Handling(
     return;
 }
 
-/*******************************************************************************
-  Module:   RABM_SndTcCsData_Mode_II_Handling
-  Function: RABM_SndTcCsData 将复杂度: TC_MODE_II处理
-  Input:    VOS_UINT8                       ucEntId
-            RABMRLC_CS_DATA_IND_STRU    *pData
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.   欧阳飞      2009.06.15   新规作成
 
-
-      2.日    期   : 2012年2月18日
-        作    者   : z40661
-        修改内容   : GTL分支时，不能直接调用WAS的接口
-
-      3.日    期   : 2012年7月14日
-        作    者   : w00167002
-        修改内容   : V7R1C50_GUTL_PhaseI: 确认当前UTRAN模式为WCDMA/TDSCDMA，
-                     进而调用不同的API处理函数.
-*******************************************************************************/
 VOS_VOID RABM_SndTcCsData_Mode_II_Handling(
                       VOS_UINT8                  ucEntId,
                       RLC_RABM_CS_DATA_IND_STRU *pData
@@ -1698,24 +1441,7 @@ VOS_VOID RABM_SndTcCsData(
     return;
 }
 
-/*******************************************************************************
-  Module:   RABM_SndTcRabInd
-  Function: 形成Cs域的tc数据
-  Input:    VOS_UINT8                   ucEndId
-            VOS_UINT8                   ucSetUpFlg
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.   张志勇      2004.05.09   新规作成
-      2.  日    期   : 2006年10月21日
-          作    者   : luojian id:60022475
-          修改内容   : 调用PS_ALLOC_MSG申请消息包时传入的长度应减去VOS
-          消息头的长度，问题单号:A32D06583
-	  3.日    期   : 2012年12月11日
-	    作    者   : l00167671
-	    修改内容   : DTS2012121802573, TQE清理
-*******************************************************************************/
+
 VOS_VOID RABM_SndTcRabInd(
                       VOS_UINT8  ucEndId,
                       VOS_UINT8  ucSetUpFlg
@@ -1853,20 +1579,7 @@ VOS_VOID RABM_SndGmmRabRelInd( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_SndGmmRbSetupInd
- 功能描述  : 向GMM发送rab set up ind消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年7月14日
-   作    者   : A00165503
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_RABM_SndGmmRbSetupInd(VOS_VOID)
 {
     GMMRABM_RAB_SETUP_IND_STRU         *pstMsg = VOS_NULL_PTR;
@@ -1895,21 +1608,7 @@ VOS_VOID NAS_RABM_SndGmmRbSetupInd(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_SendApsSysChgInd
- 功能描述  : 向APS发送SYS切换指示
- 输入参数  : ulMsgId                    - 消息ID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月24日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_RABM_SendApsSysChgInd(
     VOS_UINT32                          ulMsgId
 )
@@ -1942,23 +1641,7 @@ VOS_VOID NAS_RABM_SendApsSysChgInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_SndCdsFreeBuffDataInd
- 功能描述  : 发送RABM_CDS_FREE_BUFF_DATA_IND消息给CDS模块
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年12月19日
-   作    者   : o00132663
-   修改内容   : 新生成函数
- 2.日    期   : 2013年04月12日
-   作    者   : l65478
-   修改内容   : DTS2013031901654:彩信并发发送失败
-*****************************************************************************/
 VOS_VOID  NAS_RABM_SndCdsFreeBuffDataInd(VOS_UINT8 ucRabId)
 {
     CDS_RABM_FREE_BUFF_DATA_IND_STRU    *pstMsg;
@@ -1987,23 +1670,7 @@ VOS_VOID  NAS_RABM_SndCdsFreeBuffDataInd(VOS_UINT8 ucRabId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_SndCdsSendBuffDataInd
- 功能描述  : 发送ID_RABM_CDS_SEND_BUFF_DATA_IND消息给CDS模块
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年12月19日
-   作    者   : o00132663
-   修改内容   : 新生成函数
- 2.日    期   : 2013年04月12日
-   作    者   : l65478
-   修改内容   : DTS2013031901654:彩信并发发送失败
-*****************************************************************************/
 VOS_VOID  NAS_RABM_SndCdsSendBuffDataInd(
     VOS_UINT8                                               ucRabId,
     CDS_RABM_SEND_BUFF_DATA_ALLOWED_TYPE_ENUM_UINT32        enSndBuffDataAllowedType
@@ -2037,20 +1704,7 @@ VOS_VOID  NAS_RABM_SndCdsSendBuffDataInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_SndCdsQosFcRabCreateInd
- 功能描述  : 发送ID_QOS_FC_RAB_CREATE_IND消息给CDS模块
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年12月19日
-   作    者   : o00132663
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  NAS_RABM_SndCdsQosFcRabCreateInd(
     VOS_UINT8                           ucRabId,
     QCI_TYPE_ENUM_UINT8                 enQci
@@ -2085,20 +1739,7 @@ VOS_VOID  NAS_RABM_SndCdsQosFcRabCreateInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_SndCdsQosFcRabReleaseInd
- 功能描述  : 发送ID_QOS_FC_RAB_RELEASE_IND消息给CDS模块
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年12月19日
-   作    者   : o00132663
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  NAS_RABM_SndCdsQosFcRabReleaseInd(
     VOS_UINT8                           ucRabId
 )
@@ -2129,21 +1770,7 @@ VOS_VOID  NAS_RABM_SndCdsQosFcRabReleaseInd(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_SndAtReleaseRrcCnf
- 功能描述  : rabm回复at快速拆除rrc连接结果
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月11日
-    作    者   : M00217266
-    修改内容  : Optimize RIL:
-
-*****************************************************************************/
 VOS_VOID NAS_RABM_SndAtReleaseRrcCnf(
     VOS_UINT16                          usClientId,                             /* AT发消息给RABM所带的ClientId */
     VOS_UINT8                           ucOpId,                                 /* AT发消息给RABM所带的OpId */
@@ -2187,22 +1814,7 @@ VOS_VOID NAS_RABM_SndAtReleaseRrcCnf(
 }
 
 #if (FEATURE_ON == FEATURE_HUAWEI_VP)
-/*****************************************************************************
- 函 数 名  : NAS_RABM_SndAtSetVoicePreferParaCnf
- 功能描述  : 向AT发送ID_RABM_AT_SET_VOICEPREFER_PARA_CNF
- 输入参数  : MN_CLIENT_ID_T                      usClientId
-             MN_OPERATION_ID_T                   ucOpId
-             VOS_UINT32                          ulRslt
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月26日
-    作    者   : s00273135
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_RABM_SndAtSetVoicePreferParaCnf(
     MN_CLIENT_ID_T                      usClientId,                             /* AT发消息给RABM所带的ClientId */
     MN_OPERATION_ID_T                   ucOpId,                                 /* AT发消息给RABM所带的OpId */
@@ -2243,22 +1855,7 @@ VOS_VOID NAS_RABM_SndAtSetVoicePreferParaCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_SndAtQryVoicePreferParaCnf
- 功能描述  : 向AT发送ID_RABM_AT_QRY_VPENABLE_PARA_CNF
- 输入参数  : MN_CLIENT_ID_T                      usClientId
-             MN_OPERATION_ID_T                   ucOpId
-             VOS_UINT32                          ulRslt
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月26日
-    作    者   : s00273135
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_RABM_SndAtQryVoicePreferParaCnf(
     MN_CLIENT_ID_T                      usClientId,
     MN_OPERATION_ID_T                   ucOpId,
@@ -2301,22 +1898,7 @@ VOS_VOID NAS_RABM_SndAtQryVoicePreferParaCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_SndAtVoicePreferActStatus
- 功能描述  : 向AT发送ID_RABM_AT_VOICEPREFER_STATUS_REPORT
- 输入参数  : MN_CLIENT_ID_T                      usClientId
-             MN_OPERATION_ID_T                   ucOpId
-             VOS_UINT32                          ulRslt
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月26日
-    作    者   : s00273135
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_RABM_SndAtVoicePreferActStatus(VOS_UINT32 ulVpStatus)
 {
     /* 向AT发送查询结果 */
@@ -2357,20 +1939,7 @@ VOS_VOID NAS_RABM_SndAtVoicePreferActStatus(VOS_UINT32 ulVpStatus)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_SndCdsVoicePreferActInd
- 功能描述  : 向CDS发送VP是否激活指示
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年12月26日
-   作    者   : s00273135
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  NAS_RABM_SndCdsVoicePreferActInd(VOS_UINT32 ulVpInd)
 {
     RABM_CDS_VOICEPREFER_ACT_IND_STRU   *pstMsg = VOS_NULL_PTR;
@@ -2397,20 +1966,7 @@ VOS_VOID  NAS_RABM_SndCdsVoicePreferActInd(VOS_UINT32 ulVpInd)
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : NAS_RABM_SndWasVoicePreferStartReq
- 功能描述  : 向WAS发送VP激活请求
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年12月26日
-   作    者   : s00273135
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_RABM_SndWasVoicePreferStartReq(VOS_VOID)
 {
     VOS_UINT32                          ulRet;                              /* 定义调用VOS发送函数的返回值 */
@@ -2445,20 +2001,7 @@ VOS_VOID NAS_RABM_SndWasVoicePreferStartReq(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_SndWasVoicePreferStopReq
- 功能描述  : 向WAS发送VP去激活请求
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年12月26日
-   作    者   : s00273135
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_RABM_SndWasVoicePreferStopReq(VOS_VOID)
 {
     VOS_UINT32                          ulRet;                              /* 定义调用VOS发送函数的返回值 */
@@ -2492,20 +2035,7 @@ VOS_VOID NAS_RABM_SndWasVoicePreferStopReq(VOS_VOID)
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : NAS_RABM_SendVpActIndToOtherModule
- 功能描述  : 向AP,CDS,WAS发送VP激活 状态
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年12月26日
-   作    者   : s00273135
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_RABM_SendVpActIndToOtherModule(VOS_UINT32 ulVpActInd)
 {
     /* 上报给AT */

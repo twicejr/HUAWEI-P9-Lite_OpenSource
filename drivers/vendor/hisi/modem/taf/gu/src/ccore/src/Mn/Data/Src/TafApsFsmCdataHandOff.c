@@ -1,22 +1,4 @@
-/******************************************************************************
 
-                   版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafApsFsmCdataHandOff.c　
-  版 本 号   : 初稿
-  作    者   : y00314741
-  生成日期   : 2015年04月07日
-  最近修改   :
-  功能描述   :
-  函数列表   :
-
-  修改历史   :
-  1.日    期   : 2015年04月07日
-    作    者   : y00314741
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -86,22 +68,7 @@
 /******************************************************************************
    5 函数实现
 ******************************************************************************/
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPsInter1XHrpdHandOff_CdataHandOff_Init
- 功能描述  : CDATA HANDOFF INIT子状态下收到ID_MSG_TAF_PS_INTER_1X_TO_HRPD_HANDOFF_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年04月01日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPsInter1XToHrpdHandOff_CdataHandOff_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -132,23 +99,7 @@ VOS_UINT32 TAF_APS_RcvPsInter1XToHrpdHandOff_CdataHandOff_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvHsmHandOffCnf_CdataHandOff_WaitHsmHandOffCnf
- 功能描述  : TAF_APS_CDATA_HANDOFF_SUBSTA_WAIT_HSM_HANDOFF_CNF子状态下
-             收到ID_HSM_APS_1X_TO_HRPD_HANDOFF_CNF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年03月24日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvHsmHandOffCnf_CdataHandOff_WaitHsmHandOffCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -183,23 +134,7 @@ VOS_UINT32 TAF_APS_RcvHsmHandOffCnf_CdataHandOff_WaitHsmHandOffCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTi1XToHrpdHandOffExpired_CdataHandOff_WaitHsmHandOffCnf
- 功能描述  : TAF_APS_CDATA_HANDOFF_SUBSTA_WAIT_HSM_HANDOFF_CNF子状态下
-             收到TI_TAF_APS_1X_TO_HRPD_HANDOFF_TIMER消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年03月24日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTi1XToHrpdHandOffExpired_CdataHandOff_WaitHsmHandOffCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -215,23 +150,7 @@ VOS_UINT32 TAF_APS_RcvTi1XToHrpdHandOffExpired_CdataHandOff_WaitHsmHandOffCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPsCallEndReq_CdataEHandOff_WaitHsmHandOffCnf
- 功能描述  : TAF_APS_CDATA_HANDOFF_SUBSTA_WAIT_HSM_HANDOFF_CNF子状态下
-             收到ID_MSG_TAF_PS_CALL_END_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年03月27日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPsCallEndReq_CdataHandOff_WaitHsmHandOffCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -282,23 +201,7 @@ VOS_UINT32 TAF_APS_RcvPsCallEndReq_CdataHandOff_WaitHsmHandOffCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvXccIncomingCallInd_CdataEHandOff_WaitHsmHandOffCnf
- 功能描述  : TAF_APS_RcvXccIncomingCallInd_CdataEHandOff_WaitHsmHandOffCnf子状态下
-             收到ID_XCC_APS_INCOMING_CALL_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月21日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvXccIncomingCallInd_CdataHandOff_WaitHsmHandOffCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -328,22 +231,7 @@ VOS_UINT32 TAF_APS_RcvXccIncomingCallInd_CdataHandOff_WaitHsmHandOffCnf(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_Proc1xToHrpdHandOff
- 功能描述  : TAF Aps Proc 1X to Hrpd Hand Off
- 输入参数  : VOS_UINT8                           ucPdpId
-             VOS_UINT8                           ucIsNewSession
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月26日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_Proc1xToHrpdHandOff(
     VOS_UINT8                           ucPdpId,
     VOS_UINT8                           ucIsNewSession

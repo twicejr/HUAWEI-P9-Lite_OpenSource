@@ -125,9 +125,7 @@ extern "C"{
 
 /*adding vrf6_api.h for VRF6 related symbols*/
 #include "tcpip/vrf6/include/vrf6_api.h"
-/*Added by yanlei00216869, 检视意见, 2014/9/25   问题单号:DTS2014092507384 */
 #include "tcpip/vlan/include/ethvln_api.h"
-/* End of Added by yanlei00216869, 2014/9/25   问题单号:DTS2014092507384 */
 #ifdef __cplusplus
 }
 #endif

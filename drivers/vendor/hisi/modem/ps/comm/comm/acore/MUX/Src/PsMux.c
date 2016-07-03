@@ -69,25 +69,7 @@ const VOS_UINT8 gaucMuxcrctable[256] = {
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
-函 数 名  : MUX_PrintLog
-功能描述  : 目前临时使用MUX打印函数，后续等A核打印可用后切换为TTF_LOG，打印没有参数的打印
-输入参数  : VOS_UINT32  ulModuleId      打印模块名
-            VOS_UINT32  ulSubMod        打印子模块名
-            VOS_UINT32  ulLevel         打印级别
-            VOS_CHAR   *pcString        打印内容
-            VOS_INT32   lPara1          打印参数
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2012年8月10日
-   作    者   : h00163499
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MUX_PrintLog
 (
     VOS_UINT32      ulModuleId,
@@ -105,25 +87,7 @@ VOS_VOID MUX_PrintLog
 }
 
 
-/*****************************************************************************
-函 数 名  : MUX_PrintLog1
-功能描述  : 目前临时使用MUX打印函数，后续等A核打印可用后切换为TTF_LOG，打印有1个参数的打印
-输入参数  : VOS_UINT32  ulModuleId      打印模块名
-            VOS_UINT32  ulSubMod        打印子模块名
-            VOS_UINT32  ulLevel         打印级别
-            VOS_CHAR   *pcString        打印内容
-            VOS_INT32   lPara1          打印参数
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2012年8月10日
-   作    者   : h00163499
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MUX_PrintLog1
 (
     VOS_UINT32      ulModuleId,
@@ -142,25 +106,7 @@ VOS_VOID MUX_PrintLog1
 }
 
 
-/*****************************************************************************
-函 数 名  : MUX_PrintLog2
-功能描述  : 目前临时使用MUX打印函数，后续等A核打印可用后切换为TTF_LOG，打印有2个参数的打印
-输入参数  : VOS_UINT32  ulModuleId      打印模块名
-            VOS_UINT32  ulSubMod        打印子模块名
-            VOS_UINT32  ulLevel         打印级别
-            VOS_CHAR   *pcString        打印内容
-            VOS_INT32   lPara1          打印参数
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2012年8月10日
-   作    者   : h00163499
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MUX_PrintLog2
 (
     VOS_UINT32      ulModuleId,
@@ -180,22 +126,7 @@ VOS_VOID MUX_PrintLog2
 }
 
 
-/*****************************************************************************
- 函 数 名  : MUX_DlciCheckFcs
- 功能描述  : 对Fcs进行校验
- 输入参数  : pData 进行校验的数据指针
-             usLen 进行校验的数据长度
-             ucFcs 产生的校验字节
- 输出参数  : 无
- 返 回 值  : VOS_OK,VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月10日
-    作    者   : h00163499
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 MUX_DlciCheckFcs(VOS_UINT8* pData, VOS_UINT16 usLen, VOS_UINT8 ucFcs)
 {
     /*Init*/
@@ -226,21 +157,7 @@ VOS_UINT32 MUX_DlciCheckFcs(VOS_UINT8* pData, VOS_UINT16 usLen, VOS_UINT8 ucFcs)
 }
 
 
-/*****************************************************************************
- 函 数 名  : MUX_DlciGetFcs
- 功能描述  : 提取出一个帧 的FCS
- 输入参数  : pData 进行校验的数据指针
-             usDataLen 进行校验的数据长度
- 输出参数  : 无
- 返 回 值  : FCS   产生的FCS字节
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月10日
-    作    者   : h00163499
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 MUX_DlciGetFcs(VOS_UINT8* pData, VOS_UINT16 usLen)
 {
     /*初始化*/
@@ -261,21 +178,7 @@ VOS_UINT8 MUX_DlciGetFcs(VOS_UINT8* pData, VOS_UINT16 usLen)
 }
 
 
-/*****************************************************************************
- 函 数 名  : MUX_DlciIsValid
- 功能描述  : 检查Dlci的是否为有效值
- 输入参数  : AT_MUX_DLCI_TYPE_ENUM_UINT8 ucDlci 链路号
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月10日
-    作    者   : h00163499
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MUX_DlciIsValid(AT_MUX_DLCI_TYPE_ENUM_UINT8 enDlci)
 {
     /* Dlci的有效值为{1,64} */
@@ -293,23 +196,7 @@ VOS_UINT32 MUX_DlciIsValid(AT_MUX_DLCI_TYPE_ENUM_UINT8 enDlci)
 }
 
 
-/*****************************************************************************
- 函 数 名  : MUX_DlciUlDataToAt
- 功能描述  : 上行数据按照basic帧头部处理后交给AT处理
- 输入参数  : VOS_UINT8                      *pData      上行数据
- 输出参数  : 无
- 返 回 值  : VOS_OK    数据处理成功
-             VOS_ERR   数据处理失败
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年8月10日
-    作    者   : h00163499
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MUX_DlciUlDataToAt(VOS_UINT8* pData)
 {
     MUX_FRAME_HEAD                     *pFrame       = (MUX_FRAME_HEAD*)pData;
@@ -386,23 +273,7 @@ VOS_UINT32 MUX_DlciUlDataToAt(VOS_UINT8* pData)
 }
 
 
-/*****************************************************************************
- 函 数 名  : MUX_DlciUlQueProc
- 功能描述  : 接收缓冲队列处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_OK    数据处理成功
-             VOS_ERR   数据处理失败
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年8月10日
-    作    者   : h00163499
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MUX_DlciUlQueProc(VOS_VOID)
 {
     TTF_Q_ST                           *pRxDataQ;
@@ -439,23 +310,7 @@ VOS_UINT32 MUX_DlciUlQueProc(VOS_VOID)
 
 
 
-/*****************************************************************************
- 函 数 名  : MUX_DlciUlDataEnque
- 功能描述  : 将组好的帧送入接收缓冲队列，并统计丢弃的数据
- 输入参数  : pMem          发送的数据结构
- 输出参数  : 无
- 返 回 值  : VOS_OK    数据处理成功
-             VOS_ERR   数据处理失败
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年8月10日
-    作    者   : h00163499
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MUX_DlciUlDataEnque(TTF_MBUF_ST *pMem)
 {
     TTF_Q_ST                           *pRxDataQ;
@@ -483,24 +338,7 @@ VOS_UINT32 MUX_DlciUlDataEnque(TTF_MBUF_ST *pMem)
 
 
 
-/*****************************************************************************
- 函 数 名  : MUX_DlciUlDataProc
- 功能描述  : 底软上报数据的上行数据处理函数
- 输入参数  : VOS_UINT8                      *pData      上行数据
-             VOS_UINT16                      usDataLen  下行数据长度
- 输出参数  : 无
- 返 回 值  : VOS_OK    数据处理成功
-             VOS_ERR   数据处理失败
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年8月10日
-    作    者   : h00163499
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MUX_DlciUlDataProc(VOS_UINT8* pData, VOS_UINT16 usDataLen)
 {
     TTF_MBUF_ST                        *pMbuf           = VOS_NULL_PTR;
@@ -731,24 +569,7 @@ VOS_UINT32 MUX_DlciUlDataProc(VOS_UINT8* pData, VOS_UINT16 usDataLen)
 }
 
 
-/*****************************************************************************
- 函 数 名  : MUX_AcmGetUlDataBuf
- 功能描述  : 封装从HSIC ACM设备读数据的接口
- 输入参数  : UDI_HANDLE     slUdiHsicAcmHdl ACM设备的句柄
-             VOS_UINT8      **ppucBuf      用来指向输出的上行数据Buf指针
 
- 输出参数  : VOS_UINT8      **ppucBuf      用来指向输出的上行数据Buf指针中指向的内容
-
- 返 回 值  : VOS_OK:成功
-             VOS_ERR:失败
- 调用函数  :
- 被调函数  : Mux_UsbAcmReadData
-
- 修改历史      :
-  1.日    期   : 2012年2月15日
-    作    者   : h00163499
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 MUX_DlciUlAcmGetDataBuf(UDI_HANDLE slUdiHsicAcmHdl, VOS_UINT8 **ppucBuf, VOS_UINT16 *usDataLen)
 {
     ACM_WR_ASYNC_INFO                   stCtlParam;
@@ -782,23 +603,7 @@ VOS_UINT32 MUX_DlciUlAcmGetDataBuf(UDI_HANDLE slUdiHsicAcmHdl, VOS_UINT8 **ppucB
 }
 
 
-/*****************************************************************************
- 函 数 名  : MUX_UsbAcmReadUlData
- 功能描述  : 底软上报数据的上行数据接收函数
- 输入参数  : MUX_DEV_ACM_ID_ENUM_UINT32 enDeviceId  通知有上行数据的设备id,使用的为内部ID
- 输出参数  : 无
- 返 回 值  : VOS_OK    数据成功接收和转发
-             VOS_ERR    数据接收或者转发失败
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年8月10日
-    作    者   : h00163499
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MUX_DlciUlUsbAcmReadData(VOS_UINT32 ulDeviceId)
 {
     UDI_HANDLE                          slUdiHandle;
@@ -847,23 +652,7 @@ VOS_UINT32 MUX_DlciUlUsbAcmReadData(VOS_UINT32 ulDeviceId)
 }
 
 
-/*****************************************************************************
- 函 数 名  : MUX_DlciUlUsbAcmDataRecv
- 功能描述  : ACM14设备上上报的上行数据回调函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_OK    数据成功接收和转发
-             VOS_ERR    数据接收或者转发失败
- 调用函数  : Mux_UsbAcmReadData
 
- 被调函数  : Mux_Init
-
- 修改历史      :
-  1.日    期   : 2012年2月15日
-    作    者   : h00163499
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MUX_DlciUlUsbAcmDataRecv( VOS_VOID)
 {
     MUX_DlciUlUsbAcmReadData(UDI_ACM_HSIC_ACM14_ID);
@@ -873,24 +662,7 @@ VOS_UINT32 MUX_DlciUlUsbAcmDataRecv( VOS_VOID)
 }
 
 
-/*****************************************************************************
-函 数 名  : MUX_DlciUlHsicFreeDataBuf
-功能描述  : 释放上行数据缓存
-输入参数  : ulUdiHdl   ----       HSIC AT通道的句柄
-            pucBuf     ----      上行数据指针
-            usLen      ----       数据长度
-输出参数  : 无
-返 回 值  : VOS_OK ----      成功；
-            VOS_ERR ----      失败
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2012年8月10日
-   作    者   : h00163499
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MUX_DlciUlHsicFreeDataBuf(
     UDI_HANDLE                          ulUdiHdl,
     VOS_UINT8                          *pucBuf,
@@ -923,21 +695,7 @@ VOS_UINT32 MUX_DlciUlHsicFreeDataBuf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MUX_DlciDlUsbAcmFreeDataCB
- 功能描述  : 向底软注册HSIC用户面通道下行数据释放回调函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  : 无
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月10日
-    作    者   : h00163499
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MUX_DlciDlUsbAcmFreeDataCB(VOS_UINT8 *pucBuf)
 {
     BSP_FREE(pucBuf);
@@ -951,22 +709,7 @@ VOS_UINT32 MUX_DlciDlUsbAcmFreeDataCB(VOS_UINT8 *pucBuf)
 }
 
 
-/*****************************************************************************
- 函 数 名  : MUX_UsbAcmWriteData
- 功能描述  : 通过HSIC对应的ACM口将数据发送给底软
- 输入参数  : UDI_HANDLE slUdiHandle 待写数据所在设备的句柄
-             VOS_UINT8  *pucBuf    待写数据的指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月10日
-    作    者   : h00163499
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MUX_DlciDlUsbAcmWriteData(UDI_HANDLE slUdiHandle, VOS_UINT8 *pucBuf, VOS_UINT16 usDataLen)
 {
     ACM_WR_ASYNC_INFO                   stCtlParam;
@@ -995,21 +738,7 @@ VOS_UINT32 MUX_DlciDlUsbAcmWriteData(UDI_HANDLE slUdiHandle, VOS_UINT8 *pucBuf, 
 }
 
 
-/*****************************************************************************
- 函 数 名  : MUX_DlciAllocPayloadMem
- 功能描述  : MUX下行发送数据前分配缓冲空间
- 输入参数  : ulDataLen         要发送的数据长度
- 输出参数  :
- 返 回 值  :
- 调用函数  :pMem          对应的缓冲空间
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月10日
-    作    者   : h00163499
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8  *MUX_DlciAllocPayloadMem(VOS_UINT16 usDataLen)
 {
     VOS_UINT8                          *pucMuxDlSendBuf;
@@ -1037,24 +766,7 @@ VOS_UINT8  *MUX_DlciAllocPayloadMem(VOS_UINT16 usDataLen)
 }
 
 
-/*****************************************************************************
- 函 数 名  : MUX_DlciDlDataProc
- 功能描述  : MUX的下行数据处理函数
- 输入参数  : VOS_UINT8                     *pData      输入数据指针
-             VOS_UINT32                     ulDataLen  输入数据长度
- 输出参数  : 无
- 返 回 值  : 无
 
- 调用函数  :
-
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年8月10日
-    作    者   : h00163499
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MUX_DlciDlDataProc (AT_MUX_DLCI_TYPE_ENUM_UINT8 enDlci, VOS_UINT8* pucSendBuf,
     VOS_UINT16 *pusSendDataLen, VOS_UINT8* pucBuf, VOS_UINT16 usDataLen)
 {
@@ -1103,25 +815,7 @@ VOS_UINT32 MUX_DlciDlDataProc (AT_MUX_DLCI_TYPE_ENUM_UINT8 enDlci, VOS_UINT8* pu
 }
 
 
-/*****************************************************************************
- 函 数 名  : MUX_DlciDlDataSend
- 功能描述  : MUX的下行数据接收函数API
- 输入参数  : AT_MUX_DLCI_TYPE_ENUM_UINT8   enDlci      链路号
-             VOS_UINT8                     *pData      输入数据指针
-             VOS_UINT32                     ulDataLen  输入数据长度
- 输出参数  : 无
- 返 回 值  : 无
 
- 调用函数  :
-
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年8月10日
-    作    者   : h00163499
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MUX_DlciDlDataSend (AT_MUX_DLCI_TYPE_ENUM_UINT8 enDlci, VOS_UINT8* pData, VOS_UINT16 usDataLen)
 {
     UDI_HANDLE                          slUdiHandle;
@@ -1189,24 +883,7 @@ VOS_UINT32 MUX_DlciDlDataSend (AT_MUX_DLCI_TYPE_ENUM_UINT8 enDlci, VOS_UINT8* pD
 }
 
 
-/*****************************************************************************
- 函 数 名  : MUX_AtRgstUlPortCallBack
- 功能描述  : AT模块向MUX模块注册的上行回调函数
- 输入参数  : AT_MUX_DLCI_TYPE_ENUM_UINT8   enDlci      链路号
-             RCV_UL_DLCI_DATA_FUNC         pFunc       上行数据处理函数指针
- 输出参数  : 无
- 返 回 值  : 无
 
- 调用函数  :
-
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年8月10日
-    作    者   : h00163499
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MUX_AtRgstUlPortCallBack (AT_MUX_DLCI_TYPE_ENUM_UINT8 enDlci, RCV_UL_DLCI_DATA_FUNC pFunc)
 {
     MUX_AT_UL_DLCI_INFO_STRU               *pstMuxAtUlDlciInfo;
@@ -1228,46 +905,14 @@ VOS_UINT32 MUX_AtRgstUlPortCallBack (AT_MUX_DLCI_TYPE_ENUM_UINT8 enDlci, RCV_UL_
 }
 
 
-/*****************************************************************************
- 函 数 名  : MUX_AtMsgProc
- 功能描述  : MUX接收来自AT模块的消息处理函数
- 输入参数  : MsgBlock *pMsgBlock    从AT发来的消息
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  : 模块初始化函数，在NDIS任务中
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年8月10日
-    作    者   : h00163499
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MUX_AtMsgProc( const MsgBlock *pMsgBlock )
 {
     return VOS_OK;
 }
 
 
-/*****************************************************************************
- 函 数 名  : MUX_OpenDevice
- 功能描述  : MUX使用的HSIC用户面数据设备初始化
- 输入参数  : DEV_INFO_STRU *pstDevInfo  设备相关结构
 
- 输出参数  : 无
-
- 返 回 值  : VOS_OK:成功；
-             VOS_ERR:失败
- 调用函数  :
- 被调函数  : Mux_Init
-
- 修改历史      :
-  1.日    期   : 2012年8月10日
-    作    者   : h00163499
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MUX_OpenDevice(MUX_DEV_INFO_STRU *pstDevInfo)
 {
     UDI_OPEN_PARAM_S                      stParam;
@@ -1306,22 +951,7 @@ VOS_UINT32 MUX_OpenDevice(MUX_DEV_INFO_STRU *pstDevInfo)
 }
 
 
-/*****************************************************************************
- 函 数 名  : MUX_PortInit
- 功能描述  : APP核 MUX功能端口初始化函数
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_OK  初始化成功
-             VOS_ERR 初始化失败
- 调用函数  :
- 被调函数  : Mux_Pid_Init
 
- 修改历史      :
-  1.日    期   : 2012年8月10日
-    作    者   : h00163499
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MUX_PortInit( VOS_VOID )
 {
     BSP_MODULE_SUPPORT_E    enSupport;
@@ -1354,22 +984,7 @@ VOS_UINT32 MUX_PortInit( VOS_VOID )
 }
 
 
-/*****************************************************************************
- 函 数 名  : MUX_Init
- 功能描述  : APP核 MUX功能的初始化函数
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_OK  初始化成功
-             VOS_ERR 初始化失败
- 调用函数  :
- 被调函数  : Mux_Pid_InitFunc
 
- 修改历史      :
-  1.日    期   : 2012年8月10日
-    作    者   : h00163499
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MUX_Init( VOS_VOID )
 {
     VOS_UINT8                           ucMuxSupportFlg;
@@ -1429,20 +1044,7 @@ VOS_UINT32 MUX_Init( VOS_VOID )
 }
 
 
-/*****************************************************************************
- 函 数 名  : MUX_Pid_InitFunc
- 功能描述  : MUX模块 PID初始化
- 输入参数  : VOS_INIT_PHASE_DEFINE ip   初始化类型
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  : 模块初始化函数
 
- 修改历史      :
-  1.日    期   : 2012年8月10日
-    作    者   : h00163499
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 MUX_Pid_InitFunc( enum VOS_INIT_PHASE_DEFINE ip )
 {
     switch( ip )
@@ -1470,22 +1072,7 @@ VOS_UINT32 MUX_Pid_InitFunc( enum VOS_INIT_PHASE_DEFINE ip )
 }
 
 
-/*****************************************************************************
- 函 数 名  : MUX_TraceUlData
- 功能描述  : MUX模块对于底软上报的数据进行勾包，是否输出使用全局变量控制
- 输入参数  : VOS_UINT32 ulDeviceId  通知有上行数据的设备id,使用的为内部ID
-             VOS_UINT8 *pucBuf   上行数据地址
-             VOS_UINT16 usLen    上行数据长度
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012年8月10日
-    作    者   : h00163499
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID MUX_TraceUlData(VOS_UINT32 ulDeviceId, VOS_UINT8 *pucBuf, VOS_UINT16 usLen)
 {
     VOS_UINT16                          usLoop  = 0;
@@ -1508,23 +1095,7 @@ VOS_VOID MUX_TraceUlData(VOS_UINT32 ulDeviceId, VOS_UINT8 *pucBuf, VOS_UINT16 us
 }
 
 
-/*****************************************************************************
- 函 数 名  : MUX_TraceDlData
- 功能描述  : MUX模块对于下行的数据进行勾包，是否输出使用全局变量控制
- 输入参数  : AT_MUX_DLCI_TYPE_ENUM_UINT8 enDlci     链路号
-             VOS_UINT8                  *pData      下行数据指针
-             VOS_UINT32                  ulDataLen  下行数据长度
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月10日
-    作    者   : h00163499
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MUX_TraceDlData(AT_MUX_DLCI_TYPE_ENUM_UINT8 enDlci, VOS_UINT8 *pData, VOS_UINT16 usDataLen)
 {
     VOS_UINT16                          usLoop  = 0;
@@ -1547,21 +1118,7 @@ VOS_VOID MUX_TraceDlData(AT_MUX_DLCI_TYPE_ENUM_UINT8 enDlci, VOS_UINT8 *pData, V
 }
 
 
-/*****************************************************************************
- 函 数 名  : MUX_StaticInfoInit
- 功能描述  : A核 MUX功能统计信息初始化
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  : 无
- 被调函数  : 手动在串口输入调用
 
- 修改历史      :
-  1.日    期   : 2012年8月10日
-    作    者   : h00163499
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MUX_StaticInfoInit( VOS_VOID )
 {
     PS_MEM_SET(&g_stMuxStaticInfo, 0, sizeof(MUX_DEV_STATIC_INFO_STRU));
@@ -1571,21 +1128,7 @@ VOS_VOID MUX_StaticInfoInit( VOS_VOID )
 }
 
 
-/*****************************************************************************
- 函 数 名  : MUX_ShowStat
- 功能描述  : A核 MUX统计信息打印
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月10日
-    作    者   : h00163499
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MUX_ShowStat( VOS_VOID )
 {
 
@@ -1608,21 +1151,7 @@ VOS_VOID MUX_ShowStat( VOS_VOID )
 }
 
 
-/*****************************************************************************
- 函 数 名  : MUX_SetTraceFlag
- 功能描述  : MUX Trace开关打开
- 输入参数  : VOS_UINT32  ulFlag 输入参数修改标识
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月24日
-    作    者   : h00163499
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MUX_SetTraceFlag( VOS_UINT32  ulFlag )
 {
     g_ulMuxTraceFlag   = ulFlag;
@@ -1631,21 +1160,7 @@ VOS_VOID MUX_SetTraceFlag( VOS_UINT32  ulFlag )
 }
 
 
-/*****************************************************************************
- 函 数 名  : MUX_SetLogFlag
- 功能描述  : MUX Log开关打开
- 输入参数  : VOS_UINT32  ulFlag 输入参数修改标识
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月24日
-    作    者   : h00163499
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MUX_SetLogFlag( VOS_UINT32  ulFlag )
 {
     g_ulMuxPrintFlag   = ulFlag;
@@ -1663,88 +1178,25 @@ VOS_VOID MUX_SetLogFlag( VOS_UINT32  ulFlag )
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : MUX_DlciDlDataSend
- 功能描述  : MUX的下行数据接收函数API(STUB!!!)
- 输入参数  : AT_MUX_DLCI_TYPE_ENUM_UINT8   enDlci      链路号
-             VOS_UINT8                     *pData      输入数据指针
-             VOS_UINT32                     ulDataLen  输入数据长度
- 输出参数  : 无
- 返 回 值  : 无
 
- 调用函数  :
-
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年8月10日
-    作    者   : h00163499
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MUX_DlciDlDataSend (AT_MUX_DLCI_TYPE_ENUM_UINT8 enDlci, VOS_UINT8* pData, VOS_UINT16 usDataLen)
 {
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : MUX_AtRgstUlPortCallBack
- 功能描述  : AT模块向MUX模块注册的上行回调函数 (STUB)
- 输入参数  : AT_MUX_DLCI_TYPE_ENUM_UINT8   enDlci      链路号
-             RCV_UL_DLCI_DATA_FUNC         pFunc       上行数据处理函数指针
- 输出参数  : 无
- 返 回 值  : 无
 
- 调用函数  :
-
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年8月10日
-    作    者   : h00163499
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MUX_AtRgstUlPortCallBack (AT_MUX_DLCI_TYPE_ENUM_UINT8 enDlci, RCV_UL_DLCI_DATA_FUNC pFunc)
 {
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : MUX_Pid_InitFunc
- 功能描述  : MUX模块 PID初始化
- 输入参数  : VOS_INIT_PHASE_DEFINE ip   初始化类型
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  : 模块初始化函数
 
- 修改历史      :
-  1.日    期   : 2012年8月10日
-    作    者   : h00163499
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 MUX_Pid_InitFunc( enum VOS_INIT_PHASE_DEFINE ip )
 {
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : MUX_AtMsgProc
- 功能描述  : MUX接收来自AT模块的消息处理函数
- 输入参数  : MsgBlock *pMsgBlock    从AT发来的消息
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  : 模块初始化函数，在NDIS任务中
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年8月10日
-    作    者   : h00163499
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MUX_AtMsgProc( const MsgBlock *pMsgBlock )
 {
     return VOS_OK;

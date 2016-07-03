@@ -49,7 +49,6 @@ extern "C" {
 /*TCPIP DEBUG*/
 #include "tcpip/public/tcpip_debug.h"
 #include "tcpip/public/entry/tcpip_entry.h"
-/* Added by y00176567, at 2011-05-26. 修改原因: 消除VC三级告警 */
 #include "tcpip/public/tcpip_basefun.h"
 
 /* use VISP's new developed IFNET's headerfile */
@@ -92,14 +91,12 @@ extern "C" {
 
 extern VOS_UINT32 VOS_QueueGetMsgNum( VOS_UINT32 ulQueueId );
 
-/*Add By t00110672  10-1-8支持路由器关于实现最新草案的需求 */
 extern UCHAR g_ucKeepAliveMode;
 
 /*Add by dutianyi 14-7-14 支持以G8275.1标准接收处理报文*/
 extern ULONG g_ulG82751Mode;
 /*End of adding*/
 
-/* Added by y00176567, at 2011-05-26. 修改原因: 消除VC三级告警 */
 extern ULONG PTP6_CheckIfIPV6Enable(VOID);
 
 #ifdef __cplusplus

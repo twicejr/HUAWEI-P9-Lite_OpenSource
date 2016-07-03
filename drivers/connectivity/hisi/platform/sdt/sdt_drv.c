@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : Sdt_drv.c
-  版 本 号   : 初稿
-  作    者   : z00237171
-  生成日期   : 2014年1月23日
-  最近修改   :
-  功能描述   : SDT驱动侧代码
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年1月23日
-    作    者   : z00237171
-    修改内容   : 创建文件
-
-******************************************************************************/
 #ifdef __cplusplus
 #if __cplusplus
 extern "C" {
@@ -53,21 +36,7 @@ oal_nlmsghdr_stru          *g_pst_nlhdr = NULL;
 *****************************************************************************/
 OAL_STATIC oal_uint32  sdt_drv_netlink_send(oal_netbuf_stru *pst_netbuf, oal_uint32  ul_len);
 
-/*****************************************************************************
- 函 数 名  : sdt_drv_set_mng_entry_usepid
- 功能描述  : 设置sdt drv侧对端netlink进程的pid号
- 输入参数  : oal_uint32  ulpid
- 输出参数  : 无
- 返 回 值  : OAL_STATIC OAL_INLINE oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月19日,星期三
-    作    者   : y00201072
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void sdt_drv_set_mng_entry_usepid(oal_uint32  ulpid)
 {
     oal_uint    ui_irq_save;
@@ -79,21 +48,7 @@ oal_void sdt_drv_set_mng_entry_usepid(oal_uint32  ulpid)
     oal_spin_unlock_irq_restore(&g_st_sdt_drv_mng_entry.st_spin_lock, &ui_irq_save);
 }
 
-/*****************************************************************************
- 函 数 名  : sdt_drv_netbuf_add_to_list_tail
- 功能描述  : sdt收发消息入队
- 输入参数  : oal_netbuf_stru *pst_netbuf
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月19日,星期三
-    作    者   : y00201072
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  sdt_drv_netbuf_add_to_list(oal_netbuf_stru *pst_netbuf)
 {
     oal_uint    ui_irq_save;
@@ -105,20 +60,7 @@ OAL_STATIC OAL_INLINE oal_void  sdt_drv_netbuf_add_to_list(oal_netbuf_stru *pst_
     oal_spin_unlock_irq_restore(&g_st_sdt_drv_mng_entry.st_spin_lock, &ui_irq_save);
 }
 
-/*****************************************************************************
- 函 数 名  : sdt_drv_netbuf_delist
- 功能描述  : sdt消息队列出队
- 输出参数  : 无
- 返 回 值  : oal_netbuf_stru*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月19日,星期三
-    作    者   : y00201072
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_netbuf_stru* sdt_drv_netbuf_delist(oal_void)
 {
     oal_uint                ui_irq_save;
@@ -132,21 +74,7 @@ oal_netbuf_stru* sdt_drv_netbuf_delist(oal_void)
 
     return pst_netbuf;
 }
-/*****************************************************************************
- 函 数 名  : sdt_drv_check_isdevlog
- 功能描述  : 检测上报日志是否为device log
- 输入参数  : oal_net
- 输出参数  : 无
- 返 回 值  : int32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月26日
-    作    者   : jwx222439
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_int32 sdt_drv_check_isdevlog(oal_netbuf_stru *pst_netbuf)
 {
     oal_uint8               *puc_pkt_tail;
@@ -165,21 +93,7 @@ OAL_STATIC OAL_INLINE oal_int32 sdt_drv_check_isdevlog(oal_netbuf_stru *pst_netb
 }
 
 
-/*****************************************************************************
- 函 数 名  : sdt_drv_add_pkt_head
- 功能描述  : 从驱动侧接收到数据，前后加上类型等信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月28日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  sdt_drv_add_pkt_head(
                                       oal_netbuf_stru  *pst_netbuf,
                                       oam_data_type_enum_uint8  en_type,
@@ -233,23 +147,7 @@ OAL_STATIC OAL_INLINE oal_void  sdt_drv_add_pkt_head(
 }
 
 
-/*****************************************************************************
- 函 数 名  : sdt_drv_report_data2app
- 功能描述  : 上报内核侧的消息
- 输入参数  : oal_netbuf_stru *pst_netbuf
-             oam_data_type_enum_uint8 uc_type
-             oam_primid_type_enum_uint8 uc_prim_id
- 输出参数  : 无
- 返 回 值  : oal_int32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月11日,星期二
-    作    者   : y00201072
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_int32  sdt_drv_report_data2app(oal_netbuf_stru *pst_netbuf, oam_data_type_enum_uint8 en_type, oam_primid_type_enum_uint8 en_prim)
 {
     /* 由上层调用接口判断指针非空 */
@@ -268,42 +166,13 @@ OAL_STATIC OAL_INLINE oal_int32  sdt_drv_report_data2app(oal_netbuf_stru *pst_ne
     return l_ret;
 }
 
-/*****************************************************************************
- 函 数 名  : sdt_drv_get_wq_len
- 功能描述  : 返回sdt侧接收消息的队列长度
- 输入参数  : oal_void
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月11日,星期二
-    作    者   : y00201072
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_int32 sdt_drv_get_wq_len(oal_void)
 {
     return (oal_int32)oal_netbuf_list_len(&g_st_sdt_drv_mng_entry.rx_wifi_dbg_seq);
 }
 
-/*****************************************************************************
- 函 数 名  : sdt_drv_send_data_to_wifi
- 功能描述  : 从app侧接收到数据，解析该数据的头部信息，确定是数据的去向，然后
-             调用相应的51驱动侧接口
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月27日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_int32  sdt_drv_send_data_to_wifi(oal_uint8  *puc_param, oal_int32  l_len)
 {
     oal_netbuf_stru         *pst_netbuf;
@@ -377,22 +246,7 @@ oal_int32  sdt_drv_send_data_to_wifi(oal_uint8  *puc_param, oal_int32  l_len)
     return l_ret;
 }
 
-/*****************************************************************************
- 函 数 名  : sdt_drv_netlink_send
- 功能描述  : SDT驱动侧通过netlink向SDT APP发送数据
-             记录待发送的数据与发送失败的数据；通过序列号记录
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月27日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  sdt_drv_netlink_send(oal_netbuf_stru *pst_netbuf, oal_uint32  ul_len)
 {
 #if (_PRE_OS_VERSION_RAW != _PRE_OS_VERSION)
@@ -513,37 +367,20 @@ oal_uint32  sdt_drv_netlink_send(oal_netbuf_stru *pst_netbuf, oal_uint32  ul_len
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : sdt_drv_netlink_recv
- 功能描述  : 从SDT APP侧接收到数据
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月28日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  sdt_drv_netlink_recv(oal_netbuf_stru  *pst_netbuf)
 {
     oal_netbuf_stru                *pst_net_buf = OAL_PTR_NULL;
     oal_nlmsghdr_stru              *pst_nlhdr = OAL_PTR_NULL;
     sdt_drv_netlink_msg_hdr_stru    st_msg_hdr;
     oal_int32                       l_len;
-
     if (OAL_PTR_NULL == pst_netbuf)
     {
         OAL_IO_PRINT("sdt_drv_netlink_recv::pst_netbuf is null!\n");
         return;
     }
-
-    OAL_MEMZERO(g_st_sdt_drv_mng_entry.puc_data, DATA_BUF_LEN);
-
     pst_net_buf = oal_netbuf_get(pst_netbuf);
+    OAL_MEMZERO(g_st_sdt_drv_mng_entry.puc_data, DATA_BUF_LEN);
     if (OAL_NETBUF_LEN(pst_net_buf) >= OAL_NLMSG_SPACE(0))
     {
         pst_nlhdr = oal_nlmsg_hdr((OAL_CONST oal_netbuf_stru *)pst_net_buf);
@@ -572,31 +409,21 @@ oal_void  sdt_drv_netlink_recv(oal_netbuf_stru  *pst_netbuf)
             g_st_sdt_drv_mng_entry.ul_usepid = pst_nlhdr->nlmsg_pid;   /*pid of sending process */
             OAL_IO_PRINT("%s pid is-->%d \n", OAL_FUNC_NAME, g_st_sdt_drv_mng_entry.ul_usepid);
         }
+#if defined(PLATFORM_DEBUG_ENABLE) || (_PRE_PRODUCT_ID == _PRE_PRODUCT_ID_HI1151)
         else
         {
             sdt_drv_send_data_to_wifi(&g_st_sdt_drv_mng_entry.puc_data[OAL_SIZEOF(st_msg_hdr)], l_len - (oal_int32)OAL_SIZEOF(st_msg_hdr));
         }
+#else
+        OAL_IO_PRINT("user mode not accept msg except hello from sdt!\n");
+#endif
     }
 
 	oal_mem_sdt_netbuf_free(pst_net_buf, OAL_TRUE);
     //oal_netbuf_free(pst_net_buf);
 }
 
-/*****************************************************************************
- 函 数 名  : sdt_drv_netlink_create
- 功能描述  : 创建netlink
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月28日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_int32  sdt_drv_netlink_create(oal_void)
 {
     g_st_sdt_drv_mng_entry.pst_nlsk = oal_netlink_kernel_create(&OAL_INIT_NET, NETLINK_TEST,
@@ -611,21 +438,7 @@ oal_int32  sdt_drv_netlink_create(oal_void)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : sdt_drv_push_wifi_log_work
- 功能描述  : oam rx wifi skb log data
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月28日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  sdt_drv_push_wifi_log_work(oal_work_stru *work)
 {
     oal_netbuf_stru  *pst_netbuf;
@@ -641,41 +454,14 @@ oal_void  sdt_drv_push_wifi_log_work(oal_work_stru *work)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : sdt_drv_func_hook_init
- 功能描述  : sdt对外模块钩子函数初始化
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月12日,星期三
-    作    者   : y00201072
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void sdt_drv_func_hook_init(oal_void)
 {
     g_st_sdt_drv_func_hook.p_sdt_report_data_func = sdt_drv_report_data2app;
     g_st_sdt_drv_func_hook.p_sdt_get_wq_len_func  = sdt_drv_get_wq_len;
 }
 
-/*****************************************************************************
- 函 数 名  : sdt_drv_main_init
- 功能描述  : sdt_drv初始化函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 成功或者失败原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月23日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_int32  sdt_drv_main_init(oal_void)
 {
     oal_int32   l_nl_return_val;
@@ -719,21 +505,7 @@ oal_int32  sdt_drv_main_init(oal_void)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : sdt_drv_main_exit
- 功能描述  : sdt_drv卸载
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 成功或者失败原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月23日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  sdt_drv_main_exit(oal_void)
 {
    	oam_sdt_func_fook_unregister();

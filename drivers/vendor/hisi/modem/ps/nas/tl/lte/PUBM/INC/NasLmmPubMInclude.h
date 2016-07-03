@@ -1,14 +1,4 @@
-/******************************************************************************
 
-  Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : NasLmmPubMInclude.h
-  Description     : NasMmPubMEntry.c header file
-  History         :
-      1.h41410       2008-10-27   Draft Enact
-      2.z00148421    2011-05-28   文件名由 NasMmPubMInclude.h修改为NasLmmPubMInclude.h
-******************************************************************************/
 
 #ifndef __NASLMMPUBMINCLUDE_H__
 #define __NASLMMPUBMINCLUDE_H__

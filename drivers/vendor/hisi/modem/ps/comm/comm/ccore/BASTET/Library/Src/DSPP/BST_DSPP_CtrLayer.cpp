@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : BST_DSPP_CtrLayer.c
-  版 本 号   : 初稿
-  作    者   : d00173029
-  生成日期   : 2014年4月16日
-  最近修改   :
-  功能描述   : DSPP协议控制层相关类实现
-  函数列表   :
-
-  修改历史   :
-  1.日    期 : 2014年04月16日
-    作    者 : d00173029
-    修改内容 : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -35,20 +18,7 @@
   3 函数实现
 ******************************************************************************/
 
-/*****************************************************************************
- 函 数 名   : BST_DSPP_CCtrDlVa::GetInstance
- 功能描述   : BST_DSPP_CCtrDlVa类单例模式获取入库
- 输入参数   : BST_VOID
- 输出参数   : 无
- 返 回 值   : BST_VOID
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2015年05月04日
-   作    者 : d00173029
-   修改内容 : 创建文件
-*****************************************************************************/
 BST_DSPP_CCtrDlVa *BST_DSPP_CCtrDlVa::GetInstance( BST_VOID )
 {
     static BST_DSPP_CCtrDlVa   *s_pInstance = BST_NULL_PTR;
@@ -60,57 +30,16 @@ BST_DSPP_CCtrDlVa *BST_DSPP_CCtrDlVa::GetInstance( BST_VOID )
     return s_pInstance;
 }
 
-/*****************************************************************************
- 函 数 名   : BST_DSPP_CCtrDlVa
- 功能描述   : BST_DSPP_CCtrDlVa类的构造函数
- 输入参数   : BST_VOID
- 输出参数   : 无
- 返 回 值   : BST_VOID
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2014年06月04日
-   作    者 : d00173029
-   修改内容 : 创建文件
-*****************************************************************************/
 BST_DSPP_CCtrDlVa::BST_DSPP_CCtrDlVa ( BST_VOID )
     : BST_DSPP_CDlLayerBase( BST_DSPP_LAYER_CTR, BST_DSPP_VER_A )
 {
 }
-/*****************************************************************************
- 函 数 名   : ~BST_DSPP_CCtrDlVa
- 功能描述   : BST_DSPP_CCtrDlVa类的析构函数
- 输入参数   : BST_VOID
- 输出参数   : 无
- 返 回 值   : BST_VOID
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2014年06月04日
-   作    者 : d00173029
-   修改内容 : 创建文件
-*****************************************************************************/
 BST_DSPP_CCtrDlVa::~BST_DSPP_CCtrDlVa ( BST_VOID )
 {
 }
-/*****************************************************************************
- 函 数 名   : ParseHeadInfo
- 功能描述   : 解析控制层包头
- 输入参数   : pstHead: 包头结构体指针
-              pucData: 数据段头指针
-              usLength: 数据段长度
- 输出参数   : 无
- 返 回 值   : BST_ERR_ENUM_UINT8
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2014年06月04日
-   作    者 : d00173029
-   修改内容 : 创建文件
-*****************************************************************************/
 BST_ERR_ENUM_UINT8  BST_DSPP_CCtrDlVa::ParseHeadInfo(
     BST_DSPP_HEAD_STRU           *const pstHead,
     BST_UINT8 const              *pucData,
@@ -138,21 +67,7 @@ BST_ERR_ENUM_UINT8  BST_DSPP_CCtrDlVa::ParseHeadInfo(
     pstHead->enApVer                = ( BST_DSPP_VERION_ENUM_UINT8 )pucData[BST_DSPP_CP_APL_VER];
     return BST_NO_ERROR_MSG;
 }
-/*****************************************************************************
- 函 数 名   : UnpackInternal
- 功能描述   : 解析数据包
- 输入参数   : pstRxHeadInfo: 包头结构体指针
-              penNextVer: 下一个协议版本
- 输出参数   : 无
- 返 回 值   : BST_ERR_ENUM_UINT8
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2014年06月04日
-   作    者 : d00173029
-   修改内容 : 创建文件
-*****************************************************************************/
 BST_ERR_ENUM_UINT8  BST_DSPP_CCtrDlVa::UnpackInternal (
     BST_DSPP_HEAD_STRU          *const pstRxHeadInfo,
     BST_DSPP_VERION_ENUM_UINT8  *const penNextVer )
@@ -192,20 +107,7 @@ BST_ERR_ENUM_UINT8  BST_DSPP_CCtrDlVa::UnpackInternal (
    *penNextVer                      = BST_DSPP_VER_A;
     return BST_NO_ERROR_MSG;
 }
-/*****************************************************************************
- 函 数 名   : GetNextStrategy
- 功能描述   : 获取下一层解析策略
- 输入参数   : enNextVer: 下一个协议版本
- 输出参数   : 无
- 返 回 值   : BST_DSPP_CDlLayerBase类指针
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2014年06月04日
-   作    者 : d00173029
-   修改内容 : 创建文件
-*****************************************************************************/
 BST_DSPP_CDlLayerBase *BST_DSPP_CCtrDlVa::GetNextStrategy(
     BST_DSPP_VERION_ENUM_UINT8 enNextVer )
 {
@@ -222,20 +124,7 @@ BST_DSPP_CDlLayerBase *BST_DSPP_CCtrDlVa::GetNextStrategy(
 }
 
 
-/*****************************************************************************
- 函 数 名   : BST_DSPP_CCtrUlVa::GetInstance
- 功能描述   : BST_DSPP_CCtrUlVa类单例模式获取入库
- 输入参数   : BST_VOID
- 输出参数   : 无
- 返 回 值   : BST_VOID
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2014年05月11日
-   作    者 : d00173029
-   修改内容 : 创建文件
-*****************************************************************************/
 BST_DSPP_CCtrUlVa *BST_DSPP_CCtrUlVa::GetInstance( BST_VOID )
 {
     static BST_DSPP_CCtrUlVa   *s_pInstance = BST_NULL_PTR;
@@ -246,55 +135,16 @@ BST_DSPP_CCtrUlVa *BST_DSPP_CCtrUlVa::GetInstance( BST_VOID )
     }
     return s_pInstance;
 }
-/*****************************************************************************
- 函 数 名   : BST_DSPP_CCtrUlVa
- 功能描述   : BST_DSPP_CCtrUlVa类的构造函数
- 输入参数   : BST_VOID
- 输出参数   : 无
- 返 回 值   : BST_VOID
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2014年06月04日
-   作    者 : d00173029
-   修改内容 : 创建文件
-*****************************************************************************/
 BST_DSPP_CCtrUlVa::BST_DSPP_CCtrUlVa ( BST_VOID )
     : BST_DSPP_CUlLayerBase ( BST_DSPP_LAYER_CTR, BST_DSPP_VER_A )
 {
 }
-/*****************************************************************************
- 函 数 名   : ~BST_DSPP_CCtrUlVa
- 功能描述   : BST_DSPP_CCtrUlVa类的析构函数
- 输入参数   : BST_VOID
- 输出参数   : 无
- 返 回 值   : BST_VOID
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2014年06月04日
-   作    者 : d00173029
-   修改内容 : 创建文件
-*****************************************************************************/
 BST_DSPP_CCtrUlVa::~BST_DSPP_CCtrUlVa ( BST_VOID )
 {
 }
-/*****************************************************************************
- 函 数 名   : CheckObjtAdd
- 功能描述   : 校验代理类型(Email/HeartBeat/MainTask)是否合法
- 输入参数   : usObjtAddr: 代理类型(Email/HeartBeat/MainTask)
- 输出参数   : 无
- 返 回 值   : BST_ERR_ENUM_UINT8
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2014年06月04日
-   作    者 : d00173029
-   修改内容 : 创建文件
-*****************************************************************************/
 BST_ERR_ENUM_UINT8  BST_DSPP_CCtrUlVa::CheckObjtAdd(
     BST_DSPP_OBJTADDR_T  usObjtAddr )
 {
@@ -307,20 +157,7 @@ BST_ERR_ENUM_UINT8  BST_DSPP_CCtrUlVa::CheckObjtAdd(
         return BST_ERR_UNREACHABLE;
     }
 }
-/*****************************************************************************
- 函 数 名   : CheckOfstAdd
- 功能描述   : 校验task ID是否合法
- 输入参数   : usOfstAddr: task ID, modem具体任务
- 输出参数   : 无
- 返 回 值   : BST_ERR_ENUM_UINT8
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2014年06月04日
-   作    者 : d00173029
-   修改内容 : 创建文件
-*****************************************************************************/
 BST_ERR_ENUM_UINT8  BST_DSPP_CCtrUlVa::CheckOfstAdd (
     BST_DSPP_OFSTADDR_T  usOfstAddr )
 {
@@ -334,20 +171,7 @@ BST_ERR_ENUM_UINT8  BST_DSPP_CCtrUlVa::CheckOfstAdd (
         return BST_ERR_UNREACHABLE;
     }
 }
-/*****************************************************************************
- 函 数 名   : PackInternal
- 功能描述   : 打包数据包
- 输入参数   : pstTxHeadInfo: 包头结构体指针
- 输出参数   : penNextVer: 下一个协议版本
- 返 回 值   : BST_ERR_ENUM_UINT8
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2014年06月04日
-   作    者 : d00173029
-   修改内容 : 创建文件
-*****************************************************************************/
 BST_ERR_ENUM_UINT8  BST_DSPP_CCtrUlVa::PackInternal (
     BST_DSPP_HEAD_STRU         *const pstTxHeadInfo,
     BST_DSPP_VERION_ENUM_UINT8 *const pstNextVer )
@@ -413,20 +237,7 @@ err_drop:
     }
     return enRtnVal;
 }
-/*****************************************************************************
- 函 数 名   : GetNextStrategy
- 功能描述   : 获取下一层解析策略
- 输入参数   : enNextVer: 下一个协议版本
- 输出参数   : 无
- 返 回 值   : BST_DSPP_CUlLayerBase类指针
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2014年06月04日
-   作    者 : d00173029
-   修改内容 : 创建文件
-*****************************************************************************/
 BST_DSPP_CUlLayerBase *BST_DSPP_CCtrUlVa::GetNextStrategy(
     BST_DSPP_VERION_ENUM_UINT8 enNextVer )
 {
@@ -446,20 +257,7 @@ BST_DSPP_CUlLayerBase *BST_DSPP_CCtrUlVa::GetNextStrategy(
     return pcNextStrategy;
 }
 
-/*****************************************************************************
- 函 数 名   : BST_DSPP_CCtrDlVc::GetInstance
- 功能描述   : BST_DSPP_CCtrDlVc类单例模式获取入库
- 输入参数   : BST_VOID
- 输出参数   : 无
- 返 回 值   : BST_VOID
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2015年05月04日
-   作    者 : d00173029
-   修改内容 : 创建文件
-*****************************************************************************/
 BST_DSPP_CCtrDlVc *BST_DSPP_CCtrDlVc::GetInstance( BST_VOID )
 {
     static BST_DSPP_CCtrDlVc   *s_pInstance = BST_NULL_PTR;
@@ -470,57 +268,16 @@ BST_DSPP_CCtrDlVc *BST_DSPP_CCtrDlVc::GetInstance( BST_VOID )
     }
     return s_pInstance;
 }
-/*****************************************************************************
- 函 数 名   : BST_DSPP_CCtrDlVc
- 功能描述   : BST_DSPP_CCtrDlVc类的构造函数
- 输入参数   : BST_VOID
- 输出参数   : 无
- 返 回 值   : BST_VOID
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2015年05月04日
-   作    者 : d00173029
-   修改内容 : 创建文件
-*****************************************************************************/
 BST_DSPP_CCtrDlVc::BST_DSPP_CCtrDlVc ( BST_VOID )
     : BST_DSPP_CDlLayerBase( BST_DSPP_LAYER_CTR, BST_DSPP_VER_C )
 {
 }
-/*****************************************************************************
- 函 数 名   : ~BST_DSPP_CCtrDlVc
- 功能描述   : BST_DSPP_CCtrDlVc类的析构函数
- 输入参数   : BST_VOID
- 输出参数   : 无
- 返 回 值   : BST_VOID
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2015年05月04日
-   作    者 : d00173029
-   修改内容 : 创建文件
-*****************************************************************************/
 BST_DSPP_CCtrDlVc::~BST_DSPP_CCtrDlVc ( BST_VOID )
 {
 }
-/*****************************************************************************
- 函 数 名   : ParseHeadInfo
- 功能描述   : 解析控制层包头
- 输入参数   : pstHead: 包头结构体指针
-              pucData: 数据段头指针
-              usLength: 数据段长度
- 输出参数   : 无
- 返 回 值   : BST_ERR_ENUM_UINT8
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2015年05月04日
-   作    者 : d00173029
-   修改内容 : 创建文件
-*****************************************************************************/
 BST_ERR_ENUM_UINT8  BST_DSPP_CCtrDlVc::ParseHeadInfo(
     BST_DSPP_HEAD_STRU             *const pstHead,
     BST_UINT8 const                *pucData,
@@ -554,21 +311,7 @@ BST_ERR_ENUM_UINT8  BST_DSPP_CCtrDlVc::ParseHeadInfo(
     pstHead->stCpVerC.ucPktAddr     = BST_DSPP_CPC_GET_PKTADDR( usFlags );
     return BST_NO_ERROR_MSG;
 }
-/*****************************************************************************
- 函 数 名   : UnpackInternal
- 功能描述   : 解析数据包
- 输入参数   : pstRxHeadInfo: 包头结构体指针
-              penNextVer: 下一个协议版本
- 输出参数   : 无
- 返 回 值   : BST_ERR_ENUM_UINT8
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2015年05月04日
-   作    者 : d00173029
-   修改内容 : 创建文件
-*****************************************************************************/
 BST_ERR_ENUM_UINT8  BST_DSPP_CCtrDlVc::UnpackInternal (
     BST_DSPP_HEAD_STRU          *const pstRxHeadInfo,
     BST_DSPP_VERION_ENUM_UINT8  *const penNextVer )
@@ -606,20 +349,7 @@ BST_ERR_ENUM_UINT8  BST_DSPP_CCtrDlVc::UnpackInternal (
    *penNextVer                      = BST_DSPP_VER_C;
     return BST_NO_ERROR_MSG;
 }
-/*****************************************************************************
- 函 数 名   : GetNextStrategy
- 功能描述   : 获取下一层解析策略
- 输入参数   : enNextVer: 下一个协议版本
- 输出参数   : 无
- 返 回 值   : BST_DSPP_CDlLayerBase类指针
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2015年05月04日
-   作    者 : d00173029
-   修改内容 : 创建文件
-*****************************************************************************/
 BST_DSPP_CDlLayerBase *BST_DSPP_CCtrDlVc::GetNextStrategy(
     BST_DSPP_VERION_ENUM_UINT8 enNextVer )
 {
@@ -634,20 +364,7 @@ BST_DSPP_CDlLayerBase *BST_DSPP_CCtrDlVc::GetNextStrategy(
 }
 
 
-/*****************************************************************************
- 函 数 名   : BST_DSPP_CCtrUlVc::GetInstance
- 功能描述   : BST_DSPP_CCtrUlVc类单例模式获取入库
- 输入参数   : BST_VOID
- 输出参数   : 无
- 返 回 值   : BST_VOID
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2014年05月11日
-   作    者 : d00173029
-   修改内容 : 创建文件
-*****************************************************************************/
 BST_DSPP_CCtrUlVc *BST_DSPP_CCtrUlVc::GetInstance( BST_VOID )
 {
     static BST_DSPP_CCtrUlVc   *s_pInstance = BST_NULL_PTR;
@@ -658,56 +375,17 @@ BST_DSPP_CCtrUlVc *BST_DSPP_CCtrUlVc::GetInstance( BST_VOID )
     }
     return s_pInstance;
 }
-/*****************************************************************************
- 函 数 名   : BST_DSPP_CCtrUlVc
- 功能描述   : BST_DSPP_CCtrUlVc类的构造函数
- 输入参数   : BST_VOID
- 输出参数   : 无
- 返 回 值   : BST_VOID
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2014年05月11日
-   作    者 : d00173029
-   修改内容 : 创建文件
-*****************************************************************************/
 BST_DSPP_CCtrUlVc::BST_DSPP_CCtrUlVc ( BST_VOID )
     : BST_DSPP_CUlLayerBase ( BST_DSPP_LAYER_CTR, BST_DSPP_VER_C )
 {
 }
-/*****************************************************************************
- 函 数 名   : ~BST_DSPP_CCtrUlVc
- 功能描述   : BST_DSPP_CCtrUlVc类的析构函数
- 输入参数   : BST_VOID
- 输出参数   : 无
- 返 回 值   : BST_VOID
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2014年05月11日
-   作    者 : d00173029
-   修改内容 : 创建文件
-*****************************************************************************/
 BST_DSPP_CCtrUlVc::~BST_DSPP_CCtrUlVc ( BST_VOID )
 {
 }
 
-/*****************************************************************************
- 函 数 名   : PackInternal
- 功能描述   : 打包数据包
- 输入参数   : pstTxHeadInfo: 包头结构体指针
- 输出参数   : penNextVer: 下一个协议版本
- 返 回 值   : BST_ERR_ENUM_UINT8
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2014年05月11日
-   作    者 : d00173029
-   修改内容 : 创建文件
-*****************************************************************************/
 BST_ERR_ENUM_UINT8  BST_DSPP_CCtrUlVc::PackInternal (
     BST_DSPP_HEAD_STRU         *const pstTxHeadInfo,
     BST_DSPP_VERION_ENUM_UINT8 *const pstNextVer )
@@ -774,20 +452,7 @@ BST_ERR_ENUM_UINT8  BST_DSPP_CCtrUlVc::PackInternal (
 
     return enRtnVal;
 }
-/*****************************************************************************
- 函 数 名   : GetNextStrategy
- 功能描述   : 获取下一层解析策略
- 输入参数   : enNextVer: 下一个协议版本
- 输出参数   : 无
- 返 回 值   : BST_DSPP_CUlLayerBase类指针
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2014年05月11日
-   作    者 : d00173029
-   修改内容 : 创建文件
-*****************************************************************************/
 BST_DSPP_CUlLayerBase *BST_DSPP_CCtrUlVc::GetNextStrategy(
     BST_DSPP_VERION_ENUM_UINT8 enNextVer )
 {

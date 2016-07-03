@@ -66,7 +66,6 @@ typedef enum
     A11_STOP_ECHO
 }A11_ECHO_E;
 
-/* BEGIN: Added for PN:解决ppp协商定时器资源挂死问题 by wangyong 00138171, 2013/12/21 */
 typedef enum
 {
     PPP_NEGO_LIST_NODE_LCP_START = 1,
@@ -76,7 +75,6 @@ typedef enum
     PPP_NEGO_LIST_NODE_TYPE_BUTT
 } PPP_NEGO_LIST_NODE_TYPE_E;
 
-/* END:   Added for PN:解决ppp协商定时器资源挂死问题 by wangyong 00138171, 2013/12/21 */
 
 
 /*VSNCP Configure Reject错误码*/
@@ -159,13 +157,11 @@ enum enumPPPFailedFlag
     PPPUSERDOWN,
     PPPL2TPDOWN,
     LAPRECYCLE,
-    /* Added start by c00127007 at 2010-03-30 PDSNV9R7C05 for 整改优化 */
     PPPA11DOWN,
     PPPFADOWN,
     PPPPCRFCFAIL, /*pcrfc处理失败*/
     PPPLICESEERROR,
     PPPA11DOWNNOLCPTER, /*不需要发送lcp termination*/
-    /* Added end by c00127007 at 2010-03-30 PDSNV9R7C05 for 整改优化 */
 };
 
 

@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasCcb.c
-  版 本 号   : 初稿
-  作    者   : y00245242
-  生成日期   : 2014年06月27日
-  功能描述   : NAS 1x&evdo的全局变量管理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年06月27日
-    作    者   : y00245242
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -56,42 +41,14 @@ CNAS_CCB_CTX_STRU                       g_stCnasCcbCtx;
   3 函数定义
 *****************************************************************************/
 /*lint -save -e958 */
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_GetCcbCtx
- 功能描述  : 获取当前CCb的CTX
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 当前CCB的CTX
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年7月15日
-   作    者   : h00246512
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_CCB_CTX_STRU*  CNAS_CCB_GetCcbCtxAddr( VOS_VOID )
 {
     return &(g_stCnasCcbCtx);
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_InitUIMID
- 功能描述  : 初始化UIMID相关参数
- 输入参数  : CNAS_CCB_UIMID_STRU                *pstUIMID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年05月30日
-   作    者   : y00346957
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_CCB_InitUIMID(VOS_VOID)
 {
     CNAS_CCB_UIMID_STRU                 *pstUIMID = VOS_NULL_PTR;
@@ -111,21 +68,7 @@ VOS_VOID CNAS_CCB_InitUIMID(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_InitEsnMeidMeInfo
- 功能描述  : 初始化ESNMEIDME相关参数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年09月30日
-   作    者   : y00307564
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_CCB_InitEsnMeidMeInfo(VOS_VOID)
 {
     CNAS_CCB_ESNMEIDME_INFO_STRU       *pstEsnMeidMeInfo = VOS_NULL_PTR;
@@ -148,21 +91,7 @@ VOS_VOID CNAS_CCB_InitEsnMeidMeInfo(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_InitHrpdAccessAuthInfo
- 功能描述  : 初始化HrpdUppid相关参数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年09月30日
-   作    者   : y00307564
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_CCB_InitHrpdAccessAuthInfo(VOS_VOID)
 {
     CNAS_CCB_HRPD_ACCESS_AUTH_INFO_STRU                    *pstHrpdAccessAuthInfo = VOS_NULL_PTR;
@@ -183,24 +112,7 @@ VOS_VOID CNAS_CCB_InitHrpdAccessAuthInfo(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_InitCcbCtx
- 功能描述  : 初始化CCB上下文
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年7月15日
-   作    者   : y00245242
-   修改内容   : 新生成函数
- 2.日    期   : 2015年5月30日
-   作    者   : y00346957
-   修改内容   : 增加对卡信息中的UIMID的初始化
-
-*****************************************************************************/
 VOS_VOID CNAS_CCB_InitCcbCtx(VOS_VOID)
 {
     CNAS_CCB_CTX_STRU                   *pstCcbCtx = VOS_NULL_PTR;
@@ -252,24 +164,7 @@ VOS_VOID CNAS_CCB_InitCcbCtx(VOS_VOID)
     CNAS_CCB_SetCur1XSrvStatus(CNAS_CCB_SERVICE_STATUS_NO_SERVICE);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_SetCsimCardStatus
- 功能描述  : 设置CCB中保存的卡状态信息
- 输入参数  : enCardStatus - 卡状态信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年7月14日
-   作    者   : h00246512
-   修改内容   : 新生成函数
- 2.日    期   : 2015年06月04日
-   作    者   : z00316370
-   修改内容   : 更改变量名
-
-*****************************************************************************/
 VOS_VOID CNAS_CCB_SetCsimCardStatus(
     CNAS_CCB_CARD_STATUS_ENUM_UINT8     enCsimCardStatus
 )
@@ -277,44 +172,13 @@ VOS_VOID CNAS_CCB_SetCsimCardStatus(
     CNAS_CCB_GetCcbCtxAddr()->stCardInfo.enCsimCardStatus = enCsimCardStatus;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_GetCardStatus
- 功能描述  : 获取CCB中保存的卡状态信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : MML中保存的卡状态信息
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年7月14日
-   作    者   : h00246512
-   修改内容   : 新生成函数
- 2.日    期   : 2015年06月04日
-   作    者   : z00316370
-   修改内容   : 更改变量名
-
-*****************************************************************************/
 CNAS_CCB_CARD_STATUS_ENUM_UINT8 CNAS_CCB_GetCsimCardStatus( VOS_VOID )
 {
     return CNAS_CCB_GetCcbCtxAddr()->stCardInfo.enCsimCardStatus;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_GetCasCardStatus
- 功能描述  : 获取发给当前CAS的卡状态
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : rrc格式的SIM卡状态
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月15日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT16  CNAS_CCB_GetCasCardStatus(VOS_VOID)
 {
     CNASITF_CARD_STATUS_ENUM_UINT16      enCardStatus;
@@ -337,64 +201,20 @@ VOS_UINT16  CNAS_CCB_GetCasCardStatus(VOS_VOID)
     return enCardStatus;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_GetCcbNwInfoAddr
- 功能描述  : 获取网络信息地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 当前网络信息的首地址
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年9月15日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_CCB_NW_INFO_STRU* CNAS_CCB_GetCcbNwInfoAddr(VOS_VOID)
 {
     return &(CNAS_CCB_GetCcbCtxAddr()->stNwInfo);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_GetConcurrentSupportedFlag
- 功能描述  : 获取并发业务支持标志
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  --支持
-             VOS_FALSE --不支持
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年09月09日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 CNAS_CCB_GetConcurrentSupportedFlag(VOS_VOID)
 {
     /* 获取并发业务支持标志 */
     return (CNAS_CCB_GetCcbNwInfoAddr()->ucConcurrentSupported);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_SetConcurrentSupportedFlag
- 功能描述  : 保存基站并发业务支持标志
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  --支持
-             VOS_FALSE --不支持
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年09月09日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_CCB_SetConcurrentSupportedFlag(
     VOS_UINT8                           ucConcurrentSupported
 )
@@ -403,44 +223,14 @@ VOS_VOID CNAS_CCB_SetConcurrentSupportedFlag(
     CNAS_CCB_GetCcbNwInfoAddr()->ucConcurrentSupported = ucConcurrentSupported;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_GetPRevInUse
- 功能描述  : 获取当前使用的协议版本
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : ucPRevInUse -- 返回当前的协议使用版本
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年09月09日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 CNAS_CCB_GetPRevInUse(VOS_VOID)
 {
     /* 获取协议使用版本 */
     return (CNAS_CCB_GetCcbNwInfoAddr()->ucPRevInUse);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_SetPRevInUse
- 功能描述  : 保存当前使用的协议版本号
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : ucPRevInUse -- 返回当前的协议使用版本
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年09月09日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_CCB_SetPRevInUse(
     VOS_UINT8                           ucPRevInUse
 )
@@ -449,44 +239,14 @@ VOS_VOID CNAS_CCB_SetPRevInUse(
     CNAS_CCB_GetCcbNwInfoAddr()->ucPRevInUse = ucPRevInUse;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_GetCasState
- 功能描述  : 获取当前CAS的状态
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : enCasSta -- 返回当前CAS的状态
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年10月18日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_CCB_1X_CAS_STATE_ENUM_UINT8 CNAS_CCB_GetCasState(VOS_VOID)
 {
     /* 获取协议使用版本 */
     return (CNAS_CCB_GetCcbNwInfoAddr()->enCasSta);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_SetCasState
- 功能描述  : 保存当前CAS上报的状态
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : enSta -- CAS上报的状态
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年10月18日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_CCB_SetCasState(
     CNAS_CCB_1X_CAS_STATE_ENUM_UINT8    enSta
 )
@@ -496,21 +256,7 @@ VOS_VOID CNAS_CCB_SetCasState(
 
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_SetMtCallInRoamingAccFlg
- 功能描述  : 设置CCB中保存的MtCallInRoamingAcc信息
- 输入参数  : ucIsMtCallInRoamingAcc - VOS_UINT8
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年9月15日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_CCB_SetMtCallInRoamingAccFlg(
     VOS_UINT8                           ucIsMtCallInRoamingAcc
 )
@@ -518,42 +264,14 @@ VOS_VOID CNAS_CCB_SetMtCallInRoamingAccFlg(
     CNAS_CCB_GetCcbCtxAddr()->stCallInfoCfg.ucIsMtCallInRoamingAcc = ucIsMtCallInRoamingAcc;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_GetMtCallInRoamingAccFlg
- 功能描述  : 获取CCB中保存的MtCallInRoamingAcc信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : CCB中保存的MtCallInRoamingAcc信息
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年7月14日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 CNAS_CCB_GetMtCallInRoamingAccFlg( VOS_VOID )
 {
     return CNAS_CCB_GetCcbCtxAddr()->stCallInfoCfg.ucIsMtCallInRoamingAcc;
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_SetPowerOffCampOnCtrlFlg
- 功能描述  : 设置关机驻留控制标记
- 输入参数  : 关机驻留标记
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年10月23日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_CCB_SetPowerOffCampOnCtrlFlg(
     VOS_UINT8                           ucPowerOffCampOnFlg
 )
@@ -561,42 +279,14 @@ VOS_VOID CNAS_CCB_SetPowerOffCampOnCtrlFlg(
     CNAS_CCB_GetCcbCtxAddr()->stCustomCfg.ucPowerOffCampOnCtrlFlg = ucPowerOffCampOnFlg;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_GetPowerOffCampOnCtrlFlg
- 功能描述  : 获取关机驻留控制标记
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 关机驻留控制标记
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年10月23日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 CNAS_CCB_GetPowerOffCampOnCtrlFlg( VOS_VOID )
 {
     return CNAS_CCB_GetCcbCtxAddr()->stCustomCfg.ucPowerOffCampOnCtrlFlg;
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_InitHomeSidNidList
- 功能描述  : 初始化Home SID/NID list
- 输入参数  : pstHomeSidNidList -- home sid/nid list指针
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年1月3日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_CCB_InitHomeSidNidList(
     CNAS_CCB_1X_HOME_SID_NID_LIST_STRU *pstHomeSidNidList
 )
@@ -609,64 +299,20 @@ VOS_VOID CNAS_CCB_InitHomeSidNidList(
                   CNAS_CCB_MAX_HOME_SID_NID_LIST * sizeof(CNAS_CCB_1X_HOME_SID_NID_STRU));
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_GetHomeSidNidList
- 功能描述  : 获取HomeSidNid table首地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回HomeSidNid table首地址
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年12月31日
-   作    者   : h00313353
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_CCB_1X_HOME_SID_NID_LIST_STRU* CNAS_CCB_GetHomeSidNidList(VOS_VOID)
 {
     return &(CNAS_CCB_GetCcbCtxAddr()->stHomeSidNidList);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_GetCasSubState
- 功能描述  : 获取当前CAS的子状态
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : enCasSta -- 返回当前CAS的子状态
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年05月16日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_CCB_1X_CAS_SUB_STATE_ENUM_UINT8 CNAS_CCB_GetCasSubState(VOS_VOID)
 {
     /* 获取CAS子状态 */
     return (CNAS_CCB_GetCcbNwInfoAddr()->enCasSubSta);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_SetCasState
- 功能描述  : 保存当前CAS上报的子状态
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : enSta -- CAS上报的状态
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年05月16日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_CCB_SetCasSubState(
     CNAS_CCB_1X_CAS_SUB_STATE_ENUM_UINT8                    enSubSta
 )
@@ -674,44 +320,14 @@ VOS_VOID CNAS_CCB_SetCasSubState(
     CNAS_CCB_GetCcbNwInfoAddr()->enCasSubSta = enSubSta;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_GetHighProRev
- 功能描述  : 获取当前手机支持的最高协议版本
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : enProtocolRev -- 返回当前支持的协议版本
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年05月16日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_CCB_1X_CAS_P_REV_ENUM_UINT8 CNAS_CCB_GetHighProRev(VOS_VOID)
 {
     /* 获取CAS子状态 */
     return (CNAS_CCB_GetCcbNwInfoAddr()->enProtocolRev);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_SetHighProRev
- 功能描述  : 保存当前手机支持的最高协议版本
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : enProtocolRev -- CAS上报的协议版本
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年05月16日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_CCB_SetHighProRev(
     CNAS_CCB_1X_CAS_P_REV_ENUM_UINT8    enProtocolRev
 )
@@ -719,41 +335,13 @@ VOS_VOID CNAS_CCB_SetHighProRev(
     CNAS_CCB_GetCcbNwInfoAddr()->enProtocolRev = enProtocolRev;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_Get1xReturnCause
- 功能描述  : 获取CCB中保存的1x的returnCause值
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : CNAS_CCB_1X_RETURN_CAUSE_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月13日
-    作    者   : m00312079
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_CCB_1X_RETURN_CAUSE_ENUM_UINT8 CNAS_CCB_Get1xReturnCause(VOS_VOID)
 {
     return CNAS_CCB_GetCcbCtxAddr()->en1xReturnCause;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_Set1xReturnCause
- 功能描述  : 更新CCB中保存的returnCause值
- 输入参数  : CNAS_CCB_1X_RETURN_CAUSE_ENUM_UINT8   en1xReturnCause
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月13日
-    作    者   : m00312079
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_CCB_Set1xReturnCause(
     CNAS_CCB_1X_RETURN_CAUSE_ENUM_UINT8                     en1xReturnCause
 )
@@ -762,24 +350,7 @@ VOS_VOID CNAS_CCB_Set1xReturnCause(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_Get1xVoiceCallState
- 功能描述  : 获取CCB中保存的1X呼叫状态
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : CNAS_CCB_1X_CALL_STATE_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年7月21日
-    作    者   : y00322978
-    修改内容   : 获取语音callstate信息
-*****************************************************************************/
 CNAS_CCB_1X_CALL_STATE_ENUM_UINT8 CNAS_CCB_Get1xVoiceCallState(VOS_VOID)
 {
     VOS_UINT32                          ulIndex;
@@ -793,21 +364,7 @@ CNAS_CCB_1X_CALL_STATE_ENUM_UINT8 CNAS_CCB_Get1xVoiceCallState(VOS_VOID)
     }
     return CNAS_CCB_1X_CALL_STATE_IDLE;
 }
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_Get1xPsCallState
- 功能描述  : 获取ps业务callstate信息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : CNAS_CCB_1X_CALL_STATE_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月21日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_CCB_1X_CALL_STATE_ENUM_UINT8 CNAS_CCB_Get1xPsCallState(
     VOS_VOID
 )
@@ -823,21 +380,7 @@ CNAS_CCB_1X_CALL_STATE_ENUM_UINT8 CNAS_CCB_Get1xPsCallState(
     }
     return CNAS_CCB_1X_CALL_STATE_IDLE;
 }
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_Get1xPsCallState
- 功能描述  : 获取SMS业务callstate信息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : CNAS_CCB_1X_CALL_STATE_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月21日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_CCB_1X_CALL_STATE_ENUM_UINT8 CNAS_CCB_Get1xSmsCallState(
     VOS_VOID
 )
@@ -853,24 +396,7 @@ CNAS_CCB_1X_CALL_STATE_ENUM_UINT8 CNAS_CCB_Get1xSmsCallState(
     }
     return CNAS_CCB_1X_CALL_STATE_IDLE;
 }
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_Set1xCallState
- 功能描述  : 更新CCB中保存的1X呼叫状态
- 输入参数  : CNAS_CCB_1X_CALL_STATE_ENUM_UINT8   en1xCallState
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年7月21日
-    作    者   : y00322978
-    修改内容   : 记录不同so的call state状态
-*****************************************************************************/
 VOS_VOID CNAS_CCB_Set1xCallState(
     CNAS_CCB_1X_CALL_STATE_ENUM_UINT8                       en1xCallState,
     CNAS_CCB_1X_SO_TYPE_ENUM_UINT8                          en1xSoType
@@ -905,23 +431,7 @@ VOS_VOID CNAS_CCB_Set1xCallState(
 
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_Set1XRfAvailFlg
- 功能描述  : 设置当前X模射频资源可用标志
- 输入参数  : uc1XRfAvail: RF资源可用标志
-             VOS_TRUE   : 可用
-             VOS_FALSE  : 不可用
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月20日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_CCB_Set1XRfAvailFlg(
     VOS_UINT8                           uc1XRfAvailFlg
 )
@@ -931,104 +441,32 @@ VOS_VOID CNAS_CCB_Set1XRfAvailFlg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_Get1XRfAvailFlg
- 功能描述  : 获取当前X模射频资源可用标志
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
-             VOS_TRUE   : 可用
-             VOS_FALSE  : 不可用
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月20日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 CNAS_CCB_Get1XRfAvailFlg( VOS_VOID )
 {
     return CNAS_CCB_GetCcbCtxAddr()->stNwInfo.uc1XRfAvailFlg;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_GetUIMID
- 功能描述  : 获取CcbCtx中card info的UIMID
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : UIMID结构体
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年05月30日
-   作    者   : y00346957
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_CCB_UIMID_STRU* CNAS_CCB_GetUIMID(VOS_VOID)
 {
     return &(CNAS_CCB_GetCcbCtxAddr()->stCardInfo.stUIMID);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_GetEsnMeidMeInfoAddr
- 功能描述  : 获取CcbCtx中card info的esn meid me
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : esn meid me结构体
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年09月30日
-   作    者   : y00307564
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_CCB_ESNMEIDME_INFO_STRU* CNAS_CCB_GetEsnMeidMeInfoAddr(VOS_VOID)
 {
     return &(CNAS_CCB_GetCcbCtxAddr()->stCardInfo.stEsnMeidMe);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_GetHrpdAccesAuthInfoAddr
- 功能描述  : 获取CcbCtx中hrpd接入鉴权用户名
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : hrpd upp id结构体
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年09月30日
-   作    者   : y00307564
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_CCB_HRPD_ACCESS_AUTH_INFO_STRU* CNAS_CCB_GetHrpdAccesAuthInfoAddr(VOS_VOID)
 {
     return &(CNAS_CCB_GetCcbCtxAddr()->stCardInfo.stHrpdAccessAuthInfo);
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_SetModemId
- 功能描述  : 设置与C模对接的modemId
- 输入参数  : enModemId              : modemId
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月21日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_CCB_SetCdmaModeModemId(
     MODEM_ID_ENUM_UINT16                enModemId
 )
@@ -1038,43 +476,13 @@ VOS_VOID CNAS_CCB_SetCdmaModeModemId(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_GetCdmaModeModemId
- 功能描述  : 获取与C模对接的modemIds
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : MODEM_ID_0:modem0
-             MODEM_ID_1:modem1
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月21日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 MODEM_ID_ENUM_UINT16 CNAS_CCB_GetCdmaModeModemId( VOS_VOID )
 {
     return CNAS_CCB_GetCcbCtxAddr()->stModemInfo.enCdmaModeModemId;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_GetPidFromModemId
- 功能描述  : 获取实际发送的PID
- 输入参数  : MODEM_ID_ENUM_UINT16                enModemId,
-             VOS_UINT32                          ulRcvPid
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_CCB_ConvertPidBasedOnModemId(
     MODEM_ID_ENUM_UINT16                enModemId,
     VOS_UINT32                          ulRcvPid
@@ -1101,22 +509,7 @@ VOS_UINT32 CNAS_CCB_ConvertPidBasedOnModemId(
     return ulRcvPid;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_GetModem0Pid
- 功能描述  : 获取modem0相应的PID
- 输入参数  : MODEM_ID_ENUM_UINT16                enModemId,
-             VOS_UINT32                          ulRcvPid
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_CCB_GetModem0Pid(
     MODEM_ID_ENUM_UINT16                enModemId,
     VOS_UINT32                          ulSenderPid
@@ -1143,23 +536,7 @@ VOS_UINT32 CNAS_CCB_GetModem0Pid(
     return ulSenderPid;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_GetCardIccIdAddr
- 功能描述  : 获取CcbCtx中的卡中保存的IccId
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : CcbCtx中的IccId地址
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年06月03日
-   作    者   : y00307564
-   修改内容   : 新生成函数
- 2.日    期   : 2015年10月19日
-   作    者   : y00307564
-   修改内容   : DTS2015082403731修改
-*****************************************************************************/
 VOS_UINT8* CNAS_CCB_GetCardIccIdAddr(VOS_VOID)
 {
     return CNAS_CCB_GetCcbCtxAddr()->stCardInfo.aucCardIccId;
@@ -1167,23 +544,7 @@ VOS_UINT8* CNAS_CCB_GetCardIccIdAddr(VOS_VOID)
 
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_InitIccId
- 功能描述  : 初始化ICCID相关参数
- 输入参数  : CNAS_CCB_UIMID_STRU                *pstUIMID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年06月08日
-   作    者   : y00307564
-   修改内容   : 新生成函数
- 2.日    期   : 2015年10月19日
-   作    者   : y00307564
-   修改内容   : DTS2015082403731修改
-*****************************************************************************/
 VOS_VOID CNAS_CCB_InitIccId(VOS_VOID)
 {
     VOS_UINT8                           *pucCardIccId    = VOS_NULL_PTR;
@@ -1199,21 +560,7 @@ VOS_VOID CNAS_CCB_InitIccId(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_SetUsimCardStatus
- 功能描述  : 设置CCB中保存的卡状态信息
- 输入参数  : enCardStatus - 卡状态信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年06月04日
-   作    者   : z00316370
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_CCB_SetUsimCardStatus(
     CNAS_CCB_CARD_STATUS_ENUM_UINT8     enUsimCardStatus
 )
@@ -1221,65 +568,20 @@ VOS_VOID CNAS_CCB_SetUsimCardStatus(
     CNAS_CCB_GetCcbCtxAddr()->stCardInfo.enUsimCardStatus = enUsimCardStatus;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_GetUsimCardStatus
- 功能描述  : 获取CCB中保存的卡状态信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : MML中保存的卡状态信息
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年06月04日
-   作    者   : z00316370
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_CCB_CARD_STATUS_ENUM_UINT8 CNAS_CCB_GetUsimCardStatus( VOS_VOID )
 {
     return CNAS_CCB_GetCcbCtxAddr()->stCardInfo.enUsimCardStatus;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_GetCurrPsRatType
- 功能描述  : 获取当前使用的ps rat type
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : enPRevInUse -- 返回当前的ps rat type
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年5月21日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-*****************************************************************************/
 CNAS_CCB_PS_RATTYPE_ENUM_UINT32 CNAS_CCB_GetCurrPsRatType(VOS_VOID)
 {
     /* 获取PS rat type */
     return (CNAS_CCB_GetCcbCtxAddr()->enCurrPsRatType);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_SetCurrPsRatType
- 功能描述  : 保存当前使用的ps rat type
-             (only ehsm can call this function when receiving ID_APS_EHSM_PS_RAT_TYPE_NOTIFY )
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年5月21日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_CCB_SetCurrPsRatType(
     CNAS_CCB_PS_RATTYPE_ENUM_UINT32    enPsRatType
 )
@@ -1287,44 +589,14 @@ VOS_VOID CNAS_CCB_SetCurrPsRatType(
     /* 更新当前使用的ps rat type */
     CNAS_CCB_GetCcbCtxAddr()->enCurrPsRatType = enPsRatType;
 }
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_GetPrevPsRatType
- 功能描述  : get previous ps rat type
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : enPRevInUse -- 返回当前的ps rat type
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年5月21日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-*****************************************************************************/
 CNAS_CCB_PS_RATTYPE_ENUM_UINT32 CNAS_CCB_GetPrevPsRatType(VOS_VOID)
 {
     /* 获取PS rat type */
     return (CNAS_CCB_GetCcbCtxAddr()->enPrevPsRatType);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_SetPrevRatType
- 功能描述  : set previous ps rat type
-            (only ehsm can call this function when receiving ID_APS_EHSM_PS_RAT_TYPE_NOTIFY )
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年5月21日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_CCB_SetPrevRatType(
     CNAS_CCB_PS_RATTYPE_ENUM_UINT32     enPsRatType
 )
@@ -1333,22 +605,7 @@ VOS_VOID CNAS_CCB_SetPrevRatType(
     CNAS_CCB_GetCcbCtxAddr()->enPrevPsRatType = enPsRatType;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_CovertReturnCause
- 功能描述  : 将CNAS的returnCause枚举CNAS_CCB_1X_RETURN_CAUSE_ENUM_UINT8转换为
-             CNAS_CAS_1X_RETURN_CAUSE_ENUM_UINT8
- 输入参数  : CNAS_CCB_1X_RETURN_CAUSE_ENUM_UINT8   en1xReturnCause
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月13日
-    作    者   : m00312079
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_CAS_1X_RETURN_CAUSE_ENUM_UINT8 CNAS_CCB_CovertReturnCause(
     CNAS_CCB_1X_RETURN_CAUSE_ENUM_UINT8   enCnas1xReturnCause
 )
@@ -1389,23 +646,7 @@ CNAS_CAS_1X_RETURN_CAUSE_ENUM_UINT8 CNAS_CCB_CovertReturnCause(
     return enCasReturnCause;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_Set1XMtCallExistFlg
- 功能描述  : 设置当前是否处于被叫状态的标识
- 输入参数  : uc1XCallExistCount: 是否存在被叫的标识
-             VOS_TRUE   : 被叫存在
-             VOS_FALSE  : 被叫不存在
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月02日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_CCB_Set1XCallExistCount(
     VOS_UINT8                           uc1XCallExistCount
 )
@@ -1415,64 +656,20 @@ VOS_VOID CNAS_CCB_Set1XCallExistCount(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_Get1XMtCallExistFlg
- 功能描述  : 获取当前是否处于被叫状态的标识
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
-             VOS_TRUE   : 存在被叫
-             VOS_FALSE  : 不存在被叫
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月02日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 CNAS_CCB_Get1XCallExistCount( VOS_VOID )
 {
     return (CNAS_CCB_GetCcbCtxAddr()->uc1XCallExistCount);
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_GetHomeSidNidMostPriFlg
- 功能描述  : 获取CCB中保存的home sid/nid最优选标记
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月3日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 CNAS_CCB_GetHomeSidNidDependOnPrlFlg(VOS_VOID)
 {
     return CNAS_CCB_GetCcbCtxAddr()->ucHomeSidNidDependOnPrlFlg;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_SetHomeSidNidMostPriFlg
- 功能描述  : 更新CCB中HOME SID/NID是不是最优选的标记
- 输入参数  : VOS_UINT8                           ucFlg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月3日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_CCB_SetHomeSidNidDependOnPrlFlg(
     VOS_UINT8                           ucFlg
 )
@@ -1481,62 +678,20 @@ VOS_VOID CNAS_CCB_SetHomeSidNidDependOnPrlFlg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_GetOperLockWhiteSidList
- 功能描述  : 获取CCB中保存的白名单列表
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : CNAS_CCB_OPER_LOCK_WHITE_SID_LIST_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月3日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_CCB_OPER_LOCK_SYS_WHITE_LIST_STRU* CNAS_CCB_GetOperLockSysWhiteList(VOS_VOID)
 {
     return &(CNAS_CCB_GetCcbCtxAddr()->stOperLockSysWhiteList);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_GetCTCCCustomizeFreqList
- 功能描述  : 获取CCB中中国电信自定义频点列表
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : CNAS_CCB_CTCC_CUSTOMIZE_FREQ_LIST_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月3日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_CCB_CTCC_CUSTOMIZE_FREQ_LIST_STRU* CNAS_CCB_GetCTCCCustomizeFreqList(VOS_VOID)
 {
     return &(CNAS_CCB_GetCcbCtxAddr()->stCTCCCustInfo.stCustFreqList);
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_InitMntnInfo
- 功能描述  : 初始化CCB全局变量
- 输入参数  : pstMntnInfo
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月2日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_CCB_InitMntnInfo(
     CNAS_CCB_MNTN_CTX_STRU             *pstMntnInfo
 )
@@ -1545,41 +700,13 @@ VOS_VOID CNAS_CCB_InitMntnInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_GetCdmaStandardChannels
- 功能描述  : 获取CCB中cdma标准频段
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : CNAS_CCB_CDMA_STANDARD_CHANNELS_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月14日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_CCB_CDMA_STANDARD_CHANNELS_STRU* CNAS_CCB_GetCdmaStandardChannels(VOS_VOID)
 {
     return &(CNAS_CCB_GetCcbCtxAddr()->stCdmaStandardChan);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_InitCdmaStandardChannels
- 功能描述  : 初始化CCB中cdma标准频段
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月14日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_CCB_InitCdmaStandardChannels(
     CNAS_CCB_CDMA_STANDARD_CHANNELS_STRU                   *pstCdmaStandardChan
 )
@@ -1595,21 +722,7 @@ VOS_VOID CNAS_CCB_InitCdmaStandardChannels(
     pstCdmaStandardChan->usSecondaryB = 777;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_Judge1XSoType
- 功能描述  : SO转成相应的服务类型
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : CNAS_CCB_1X_SO_TYPE_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月21日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_CCB_1X_SO_TYPE_ENUM_UINT8 CNAS_CCB_ConvertSoToServiceType(
     CAS_CNAS_1X_SERVICE_OPTION_ENUM_UINT16                  en1xSo
 )
@@ -1656,41 +769,13 @@ CNAS_CCB_1X_SO_TYPE_ENUM_UINT8 CNAS_CCB_ConvertSoToServiceType(
     return en1xSoType;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_GetCdmaOhmFreq
- 功能描述  : 获取overheader频点
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : CNAS_PRL_FREQENCY_CHANNEL_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月12日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_PRL_FREQENCY_CHANNEL_STRU* CNAS_CCB_GetCdmaOhmFreq(VOS_VOID)
 {
     return &(CNAS_CCB_GetCcbCtxAddr()->stOhmFreq);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_SetCdmaOhmFreq
- 功能描述  : 设置overheader频点
- 输入参数  : CNAS_PRL_FREQENCY_CHANNEL_STRU*
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月12日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_CCB_SetCdmaOhmFreq(
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstOhmFreq
 )
@@ -1698,21 +783,7 @@ VOS_VOID CNAS_CCB_SetCdmaOhmFreq(
     CNAS_CCB_GetCcbCtxAddr()->stOhmFreq = *pstOhmFreq;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_ClearCdmaOhmFreq
- 功能描述  : 清除cdma overheader消息中的频点
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月12日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_CCB_ClearCdmaOhmFreq(VOS_VOID)
 {
     CNAS_CCB_GetCcbCtxAddr()->stOhmFreq.enBandClass = 0;
@@ -1720,24 +791,7 @@ VOS_VOID CNAS_CCB_ClearCdmaOhmFreq(VOS_VOID)
     CNAS_CCB_GetCcbCtxAddr()->stOhmFreq.usChannel   = 0;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_Set1xSysInfo
- 功能描述  : CCB模块更新1x系统消息，包括Sid/nid/band/freq信息
- 输入参数  : VOS_UINT16                          usSid
-             VOS_UINT16                          usNid
-             VOS_UINT16                          usBandClass
-             VOS_UINT16                          usChannel
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月27日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_CCB_Set1xSysInfo(
     VOS_UINT16                          usSid,
     VOS_UINT16                          usNid,
@@ -1753,42 +807,14 @@ VOS_VOID CNAS_CCB_Set1xSysInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_Get1xSysInfo
- 功能描述  : CCB提供1X系统消息的查询接口
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : CNAS_CCB_1X_SYS_INFO_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月27日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_CCB_1X_SYS_INFO_STRU* CNAS_CCB_Get1xSysInfo(VOS_VOID)
 {
     return &(CNAS_CCB_GetCcbNwInfoAddr()->st1xSysInfo);
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_IsCurCallStateIdle
- 功能描述  : 判断CCB中保存的1X呼叫状态是否为空闲态,仅当数组中所有成员的呼叫状态均为Idle时，
-             返回TRUE,其余情况返回FALSE
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32: 返回TRUE表示当前没有呼叫业务，返回FALSE表示当前存在呼叫业务
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月30日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_CCB_IsCurCallStateIdle( VOS_VOID )
 {
     VOS_UINT32                          ulIndex;
@@ -1806,41 +832,13 @@ VOS_UINT32 CNAS_CCB_IsCurCallStateIdle( VOS_VOID )
 
     return VOS_TRUE;
 }
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_GetCur1XSrvInfo
- 功能描述  : 获取当前1X服务信息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : CNAS_CCB_1X_SRV_INFO_STRU* 当前1X服务状态信息结构体指针
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年01月26日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_CCB_1X_SRV_INFO_STRU* CNAS_CCB_GetCur1XSrvInfo(VOS_VOID)
 {
     return &(CNAS_CCB_GetCcbCtxAddr()->st1XSrvInfo);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_GetCur1XSrvStatus
- 功能描述  : 获取当前1X服务状态
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : CNAS_CCB_SERVICE_STATUS_ENUM_UINT32 当前1X服务状态
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年01月26日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_CCB_SERVICE_STATUS_ENUM_UINT32 CNAS_CCB_GetCur1XSrvStatus(VOS_VOID)
 {
     CNAS_CCB_1X_SRV_INFO_STRU          *pst1XSrvInfo = VOS_NULL_PTR;
@@ -1850,21 +848,7 @@ CNAS_CCB_SERVICE_STATUS_ENUM_UINT32 CNAS_CCB_GetCur1XSrvStatus(VOS_VOID)
     return pst1XSrvInfo->enCurSrvStatus;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_CCB_SetCur1XSrvStatus
- 功能描述  : 设置当前1X服务状态
- 输入参数  : enSrvStatus -- 服务状态
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年01月26日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_CCB_SetCur1XSrvStatus(
     CNAS_CCB_SERVICE_STATUS_ENUM_UINT32 enSrvStatus
 )

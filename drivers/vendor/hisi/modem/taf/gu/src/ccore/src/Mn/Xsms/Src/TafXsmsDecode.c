@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasXsmsDecode.c
-  版 本 号   : 初稿
-  作    者   : j00304117
-  生成日期   : 2014年10月31日
-  功能描述   : 1X SMS(Short Message Service)解码
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年10月31日
-    作    者   : j00304117
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -54,22 +39,7 @@ TAF_XSMS_PARM_DECODE_FUNC_STRU   g_astTLParmDecodeFuncList[] =
   3 函数定义
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_TL_UnpackByteToBit
- 功能描述  : 从指定的VOS_UINT8类型的数组中的取出指定位置的指定bit数。
- 输入参数  : pucBuffer         VOS_UINT8类型的数组指针
-             usBitPos          需要取出的BIT在数组中的bit 的位置
-             ucBitNum          需要取出的bit数
- 输出参数  : *pucValue         读取到的值
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月31日
-    作    者   :j00304117
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XSMS_TL_UnpackByteToBit (
     VOS_UINT8                          *pucBuffer,
     VOS_UINT8                          *pucValue,
@@ -110,22 +80,7 @@ VOS_VOID TAF_XSMS_TL_UnpackByteToBit (
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_TL_FillCauseCode
- 功能描述  : 把错误代码参数填写到TL层结构体的Cause Code字段
- 输入参数  : enErrorClass       发生的错误类型
-             enCauseCode        发生错误的原因
-             ucReplySeq         回复时需要的Reply SEQ
- 输出参数  : pstTLStru          TL层结构体
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-  1.日    期   : 2014年10月31日
-    作    者   :j00304117
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XSMS_TL_FillCauseCode(
     TAF_XSMS_TL_ERROR_CLASS_ENUM8       enErrorClass,
     TAF_XSMS_TL_CAUSE_CODE_ENUM8        enCauseCode,
@@ -159,21 +114,7 @@ VOS_VOID TAF_XSMS_TL_FillCauseCode(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_TL_FillCauseCodeSeq
- 功能描述  : 由于解码时可能发生Bearer Reply Option字段的ReplySEQ还没解出来就出错
-             的情况，之前填写的值可能是错误的，需重新填一次
- 输入参数  : pstTLStru         TL层结构体
- 输出参数  : pstTLStru         TL层结构体
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月31日
-    作    者   : j00304117
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XSMS_TL_FillCauseCodeSeq(
     TAF_XSMS_TRANSPORT_MESSAGE_STRU    *pstTLStru
 
@@ -190,30 +131,7 @@ VOS_VOID TAF_XSMS_TL_FillCauseCodeSeq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_TL_DecodeTeleSrvId
- 功能描述  : 找到tpdu 中的Teleservice ID并写入TL层结构体中
- 输入参数  : pucData        TL层码流
-             pucBytePos     本参数在码流中的位置
- 输出参数  : pstTLStru      TL层结构体
- 返 回 值  : VOS_OK -- 解码成功
-             VOS_ERR -- 解码失败
- 调用函数  :
- 被调函数  :
- 其    他  :
-                    结构
-      -----------------------------------------------
-     |       Field       |   Length (bits)          |
-     |   PARAMETER_ID    |       8                  |
-     |   PARAMETER_LEN   |       8                  |
-     |   IDENTIFIER      |       16                 |
-      ----------------------------------------------
 
- 修改历史      :
-  1.日    期   : 2014年10月31日
-    作    者   :j00304117
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_TL_DecodeTeleSrvId(
     VOS_UINT8                          *pucData,
     VOS_UINT8                          *pucBytePos,
@@ -273,29 +191,7 @@ VOS_UINT32 TAF_XSMS_TL_DecodeTeleSrvId(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_TL_DecodeSrvCategory
- 功能描述  : 将tpdu 转化成内部应用的传输层数据SrvCategory
- 输入参数  : pucData        TL层码流
-             pucBytePos     本参数在码流中的位置
- 输出参数  : pstTLStru      TL层结构体
- 返 回 值  : VOS_OK -- 解码成功
-             VOS_ERR -- 解码失败
- 调用函数  :
- 被调函数  :
- 其    他  :
-                    结构
-      ----------------------------------------------
-     |       Field       |   Length (bits)          |
-     |   PARAMETER_ID    |       8                  |
-     |   PARAMETER_LEN   |       8                  |
-     |   IDENTIFIER      |       16                 |
-      ----------------------------------------------
- 修改历史      :
-  1.日    期   : 2014年10月31日
-    作    者   :j00304117
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_UINT32 TAF_XSMS_TL_DecodeSrvCategory(
     VOS_UINT8                          *pucData,
     VOS_UINT8                          *pucBytePos,
@@ -357,41 +253,7 @@ VOS_UINT32 TAF_XSMS_TL_DecodeSrvCategory(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_TL_DecodeAddr
- 功能描述  : 将tpdu转化成内部应用的传输层数据的地址信息
- 输入参数  : pucData        TL层码流
-             pucBytePos     本参数在码流中的位置
- 输出参数  : pstTLStru      TL层结构体
- 返 回 值  : VOS_OK -- 解码成功
-             VOS_ERR -- 解码失败
- 调用函数  :
- 被调函数  :
- 其    他  :
-                    地址参数的结构
-     -------------------------------------------
-    |    Field          |   Length (bits)       |
-    |    PARAMETER_ID   |       8               |
-    |    PARAMETER_LEN  |       8               |
-    |    DIGIT_MODE     |       1               |
-    |    NUMBER_MODE    |       1               |
-    |    NUMBER_TYPE    |     0 or 3            |
-    |    NUMBER_PLAN    |     0 or 4            |
-    |    NUM_FIELDS     |       8               |
-     -------------------------------------------
-        NUM_FIELDS occurrences of the following field:
-     ------------------------------------------
-    |    CHARi          |     4 or 8            |
-     ------------------------------------------
-        The parameter ends with the following field:
-     -------------------------------------------
-    |    RESERVED       |     0-7               |
-     -------------------------------------------
- 修改历史      :
-  1.日    期   : 2014年11月05日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_UINT32 TAF_XSMS_TL_DecodeAddr(
     VOS_UINT8                          *pucData,
     VOS_UINT8                          *pucBytePos,
@@ -483,39 +345,7 @@ VOS_UINT32 TAF_XSMS_TL_DecodeAddr(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_TL_DecodeSubAddr
- 功能描述  : 将TPDU 转化成内部应用的传输层数据的子地址信息
- 输入参数  : pucData        TL层码流
-             pucBytePos     本参数在码流中的位置
- 输出参数  : pstTLStru      TL层结构体
- 返 回 值  : VOS_OK -- 解码成功
-             VOS_ERR -- 解码失败
- 调用函数  :
- 被调函数  :
- 其    他  :
-                    子地址参数的结构
-      -----------------------------------------------
-     |       Field       |   Length (bits)          |
-     |   PARAMETER_ID    |       8                  |
-     |   PARAMETER_LEN   |       8                  |
-     |   TYPE            |       3                  |
-     |   ODD             |       1                  |
-     |   NUM_FIELDS      |       8                  |
-      -----------------------------------------------
-        NUM_FIELDS instances of the following field:
-      ----------------------------------------------
-     |   CHARi           |       8                  |
-      ----------------------------------------------
-         The parameter ends with the following field:
-      ----------------------------------------------
-     |   RESERVED        |       4                  |
-      ----------------------------------------------
- 修改历史      :
-  1.日    期   : 2014年11月05日
-    作    者   : j00304117
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_UINT32 TAF_XSMS_TL_DecodeSubAddr(
     VOS_UINT8                          *pucData,
     VOS_UINT8                          *pucBytePos,
@@ -595,31 +425,7 @@ VOS_UINT32 TAF_XSMS_TL_DecodeSubAddr(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_TL_DecodeBearReplyOption
- 功能描述  : 将tpdu 转化成内部应用的传输层数据BearReplyOption
- 输入参数  : pucData        TL层码流
-             pucBytePos     本参数在码流中的位置
- 输出参数  : pstTLStru      TL层结构体
- 返 回 值  : VOS_OK -- 解码成功
-             VOS_ERR -- 解码失败
- 调用函数  :
- 被调函数  :
- 其    他  :
-               Bearer Reply Option 结构
-         ---------------------------------------
-        |   Field           |    Length (bits)  |
-        |   PARAMETER_ID    |       8           |
-        |   PARAMETER_LEN   |       8           |
-        |   REPLY_SEQ       |       6           |
-        |   RESERVED        |       2           |
-         ---------------------------------------
 
- 修改历史      :
-  1.日    期   : 2014年11月05日
-    作    者   : j00304117
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_TL_DecodeBearReplyOption(
     VOS_UINT8                          *pucData,
     VOS_UINT8                          *pucBytePos,
@@ -667,32 +473,7 @@ VOS_UINT32 TAF_XSMS_TL_DecodeBearReplyOption(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_TL_DecodeCauseCode
- 功能描述  : 将TPDU 中数据转化成内部应用的传输层数据的CauseCode
- 输入参数  : pucData        TL层码流
-             pucBytePos     本参数在码流中的位置
- 输出参数  : pstTLStru      TL层结构体
- 返 回 值  : VOS_OK -- 解码成功
-             VOS_ERR -- 解码失败
- 调用函数  :
- 被调函数  :
- 其    他  :
-               Cause Code 结构
-         ---------------------------------------
-        |   Field           |    Length (bits)  |
-        |   PARAMETER_ID    |       8           |
-        |   PARAMETER_LEN   |       8           |
-        |   REPLY_SEQ       |       6           |
-        |   ERROR_CLASS     |       2           |
-        |   CAUSE_CODE      |     0 or 8        |
-         ---------------------------------------
 
- 修改历史      :
-  1.日    期   : 2014年11月05日
-    作    者   : j00304117
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_TL_DecodeCauseCode(
     VOS_UINT8                          *pucData,
     VOS_UINT8                          *pucBytePos,
@@ -755,34 +536,7 @@ VOS_UINT32 TAF_XSMS_TL_DecodeCauseCode(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_TL_DecodeBearData
- 功能描述  : 将TPDU 中数据转化成内部应用的传输层数据BearData
- 输入参数  : pucData
 
- 输出参数  : 无
- 返 回 值  :Error_type
- 调用函数  :
- 被调函数  :
- 其    他  :
-                Bearer  Data 结构
-         ---------------------------------------
-        |   Field           |    Length (bits)  |
-        |   PARAMETER_ID    |       8           |
-        |   PARAMETER_LEN   |       8           |
-         ---------------------------------------
-         One or more occurrences of the following subparameter record:
-         ---------------------------------------
-        |   SUBPARAMETER_ID |       8           |
-        |   SUBPARAM_LEN    |       8           |
-        | Subparameter Data |  8*SUBPARAM_LEN   |
-         ---------------------------------------
-
- 修改历史      :
-  1.日    期   : 2014年11月05日
-    作    者   : j00304117
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_TL_DecodeBearData(
     VOS_UINT8                          *pucData,
     VOS_UINT8                          *pucBytePos,
@@ -835,24 +589,7 @@ VOS_UINT32 TAF_XSMS_TL_DecodeBearData(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_DecodeTLRawToTLStru
- 功能描述  : Transport Layer码流转换成TL层结构体，如果是PRL短信，调整Bear Data参数
-             数据位置
- 输入参数  : ucTLRawLen           TL层码流长度
-            *pucTLRaw             TL层码流
- 输出参数  : *pstTLMsg             TL层结构体
- 返 回 值  : VOS_OK -- 解码成功
-             VOS_ERR -- 解码失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月31日
-    作    者   : j00304117
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_DecodeTLRawToTLStru(
     VOS_UINT8                           ucTLRawLen,
     VOS_UINT8                          *pucTLRaw,
@@ -933,22 +670,7 @@ VOS_UINT32 TAF_XSMS_DecodeTLRawToTLStru(
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_CheckFields
- 功能描述  : 判断必要参数是否缺失
- 输入参数  : pstTLMsg:TL层结构体
- 输出参数  : 无
- 返 回 值  : VOS_ERR:缺失必要参数，返回错误
-             VOS_OK:不缺失必要参数，返回正确
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月05日
-    作    者   : j00304117
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_XSMS_CheckFields(TAF_XSMS_TRANSPORT_MESSAGE_STRU    *pstTLMsg)
 {
     /* 根据协议检查必要参数是否缺失，缺失则解码失败 */
@@ -1008,22 +730,7 @@ VOS_UINT32  TAF_XSMS_CheckFields(TAF_XSMS_TRANSPORT_MESSAGE_STRU    *pstTLMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_FillBDShortStru
- 功能描述  : 把BearerDate里的子参数填写到自定结构体中
- 输入参数  : pucBuffer              Bearer Data层码流
-             pucBytePos             Bearer Data层某一个子参数起始位置
- 输出参数  : pstBDParamStru         临时结构体
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月05日
-    作    者   : j00304117
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 VOS_VOID TAF_XSMS_FillBDShortStru(
     VOS_UINT8                                              *pucBuffer,
@@ -1043,21 +750,7 @@ VOS_VOID TAF_XSMS_FillBDShortStru(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_IsPRL
- 功能描述  : 判断是否为PRL更新短信，如果是，解释调整Bear Data参数中子参数的位置
- 输入参数  : ucBDRawLen            TL层码流长度
-             *pstTLMsg             TL层结构体
- 输出参数  : *pstTLMsg             TL层结构体
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月31日
-    作    者   : j00304117
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XSMS_IsPRL(TAF_XSMS_TRANSPORT_MESSAGE_STRU *pstTLMsg)
 {
     VOS_UINT32                                              ulPresentFlag;
@@ -1157,23 +850,7 @@ VOS_VOID TAF_XSMS_IsPRL(TAF_XSMS_TRANSPORT_MESSAGE_STRU *pstTLMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_DecodeUserDataInBearerData
- 功能描述  : 解析BEARER DATA里面的USER DATA
- 输入参数  : ulBearDataLen                  BEARER DATA 长度
-             *pucBearerData                 BEARER DATA 数据
- 输出参数  : *pusUserDataStartByte          USER DATA  在BEARER DATA的开始位置
-             *pusUserDataLen                USER DATA TLV长度
-             *pstUserData                   TL层结构体
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月18日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XSMS_DecodeUserDataInBearerData(
     VOS_UINT32                          ulBearDataLen,  /* in */
     VOS_UINT8                          *pucBearerData,  /* in */
@@ -1270,20 +947,7 @@ VOS_VOID TAF_XSMS_DecodeUserDataInBearerData(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_GetUserDataCodeBitsByMsgCode
- 功能描述  : 得到每种编码方式的bit个数
- 输入参数  : enMsgCodeType  编码格式
- 输出参数  : *pucBitNum  bit个数
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月18日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_GetUserDataCodeBitsByMsgCode(
     TAF_XSMS_USER_DATA_MSG_ENCODE_ENUM8 enMsgCodeType,
     VOS_UINT8                          *pucBitNum
@@ -1317,20 +981,7 @@ VOS_UINT32 TAF_XSMS_GetUserDataCodeBitsByMsgCode(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_PressUserData
- 功能描述  : 压缩USER DATA
- 输入参数  : pstUserData  USER_DATA
- 输出参数  : pstUserData  USER_DATA
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月18日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XSMS_PressUserData(
     TAF_XSMS_BD_MSG_USER_DATA_STRU     *pstUserData
 )
@@ -1400,21 +1051,7 @@ VOS_UINT8 TAF_XSMS_GetLowBits(VOS_UINT8 ucOffset)
     return ucOutPut;
 
 }
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_EncodeUserData
- 功能描述  : ENCODE USER DATA
- 输入参数  : pstUserData  USER_DATA STRU
- 输出参数  : pucUserDataLen 数组长度
-             paucUserData   数组内容
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月18日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XSMS_EncodeUserData(
     TAF_XSMS_BD_MSG_USER_DATA_STRU     *pstUserData,    /* in */
     VOS_UINT8                          *pucUserDataLen, /* out */
@@ -1516,24 +1153,7 @@ VOS_VOID TAF_XSMS_EncodeUserData(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_ReplaceUserData
- 功能描述  : 替换短信中老的 USER DATA
- 输入参数  :    pstMessage,
-                paucPressedUserData,
-                ulPressedUserDataLen,
-                usOldUserDataStartByte,
-                usOldUserDataLen
- 输出参数  :
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月18日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XSMS_ReplaceUserData(
     TAF_XSMS_MESSAGE_STRU              *pstMessage,
     VOS_UINT8                          *paucPressedUserData,
@@ -1569,24 +1189,7 @@ VOS_VOID TAF_XSMS_ReplaceUserData(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_DevideLongCdmaSms
- 功能描述  : 将长短信分成2条短信
- 输入参数  :
-            *pstUserData,        USER DATA
-             usUserDataStartByte,在原来的BEARER DATA 中开始位置
- 输出参数  :
-            pstFirstMessage
-            pstSecondMessage
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月18日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XSMS_DevideLongCdmaSms(
     TAF_XSMS_BD_MSG_USER_DATA_STRU     *pstUserData,         /* USER DATA */
     VOS_UINT16                          usUserDataStartByte, /* in 在原来的BEARER DATA 中开始位置 */
@@ -1631,23 +1234,7 @@ VOS_VOID TAF_XSMS_DevideLongCdmaSms(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_DevideUserData
- 功能描述  : 将长短信分成2条短信
- 输入参数  :
-            *pstFirstUserData,        USER DATA
- 输出参数  :
-            pstFirstUserData
-            pstSecondUserData
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月18日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XSMS_DevideUserData(
     TAF_XSMS_BD_MSG_USER_DATA_STRU     *pstFirstUserData,         /* USER DATA in and out */
     TAF_XSMS_BD_MSG_USER_DATA_STRU     *pstSecondUserData        /* USER DATA out*/
@@ -1703,23 +1290,7 @@ VOS_VOID TAF_XSMS_DevideUserData(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_GetXsmsLimitLen
- 功能描述  : 得到不同编码方式的USER DATA上限
- 输入参数  :
-            enMsgCodeType
- 输出参数  :
-            pusLenLimit
 
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年06月18日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XSMS_GetXsmsLimitLen(
     TAF_XSMS_USER_DATA_MSG_ENCODE_ENUM8 enMsgCodeType,
     VOS_UINT16                         *pusLenLimit
@@ -1752,24 +1323,7 @@ VOS_VOID TAF_XSMS_GetXsmsLimitLen(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_EncodeMsgID
- 功能描述  : encode MSG ID
- 输入参数  :
-            pstMsgId    : MSG_ID STRU
- 输出参数  :
-            pucMsgIdLen : 生成数据长度
-            paucMsfIdData  : 生成数据内容
 
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年06月18日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XSMS_EncodeMsgID(
     TAF_XSMS_MSG_ID_STRU               *pstMsgId,           /* in */
     VOS_UINT8                          *pucMsgIdLen,        /* out */
@@ -1813,24 +1367,7 @@ VOS_VOID TAF_XSMS_EncodeMsgID(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_EncodeUserRspCode
- 功能描述  : encode user response code
- 输入参数  :
-            ucUserResponseCode    : 失败原因值
- 输出参数  :
-            pucMsgIdLen : 生成数据长度
-            paucMsfIdData  : 生成数据内容
 
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年06月18日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XSMS_EncodeUserRspCode(
     VOS_UINT8                           ucUserResponseCode, /* in */
     VOS_UINT8                          *pucRepCodeLen,      /* out */
@@ -1846,23 +1383,7 @@ VOS_VOID TAF_XSMS_EncodeUserRspCode(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_DecodeMsgId
- 功能描述  : decode msg id
- 输入参数  :
 
- 输出参数  :
-
-
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年10月4日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XSMS_DecodeMsgId(
     VOS_UINT32                          ulBearDataLen,
     VOS_UINT8                          *pucBearData,

@@ -124,16 +124,7 @@ VOS_VOID IMSA_ImsMsgDistr(const VOS_VOID *pRcvMsg )
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_ProcHifiMsgTxDataInd()
- Description    : 获取来自HIFI的语音数据，调用IMS协议栈接口，把数据包发给IMS协议栈
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-12-16  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_ProcHifiMsgTxDataInd
 (
     const VOICE_IMSA_TX_DATA_IND_STRU  *pstTxDataInd
@@ -150,16 +141,7 @@ VOS_VOID IMSA_ProcHifiMsgTxDataInd
     IMSA_Send2ImsTxVoiceData(&stTxPara,pstTxDataInd->ausData);
 }
 
-/*****************************************************************************
- Function Name  : IMSA_ProcHifiMsgRxDataAck()
- Description    : 处理HIFI回复ack的函数
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.zhaochen 00308719      2015-11-25  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_ProcHifiMsgRxDataAck
 (
     const VOICE_IMSA_RX_DATA_ACK_STRU  *pstRxDataAck
@@ -225,17 +207,7 @@ VOS_VOID IMSA_ProcHifiMsgRxDataAck
     return;
 }
 
-/*****************************************************************************
- Function Name  : IMSVA_ProcHifiMsg()
- Description    : IMSVA处理HIFI的语音包处理函数
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.sunbing 49683      2013-07-15  Draft Enact
-      2.lihong 00150010    2013-12-16  Modify:JitterBuffer移到HIFI
-*****************************************************************************/
 VOS_VOID IMSVA_ProcHifiMsg(const VOS_VOID *pRcvMsg )
 {
     /* 定义消息头指针*/
@@ -259,16 +231,7 @@ VOS_VOID IMSVA_ProcHifiMsg(const VOS_VOID *pRcvMsg )
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSVA_ProcHifiRtMsg()
- Description    : IMSVA处理VOICE_RT发送的消息的处理函数
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.zhaochen 00308719      2015-11-25  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSVA_ProcHifiRtMsg(const VOS_VOID *pRcvMsg )
 {
     /* 定义消息头指针*/
@@ -306,16 +269,7 @@ VOS_VOID IMSVA_ProcHifiRtMsg(const VOS_VOID *pRcvMsg )
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSVA_TimerMsgDistr()
- Description    : TIMER消息分发函数
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.zhaochen 00308719      2015-11-13  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSVA_TimerMsgDistr(const REL_TIMER_MSG *pRcvMsg )
 {
     IMSA_TIMER_ID_ENUM_UINT16           enTimerName;
@@ -342,17 +296,7 @@ VOS_VOID IMSVA_TimerMsgDistr(const REL_TIMER_MSG *pRcvMsg )
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_Snd2ImsaCallMsg()
- Description    : 给IMSA发送call消息
- Input          : pstHicsmOutputCall
- Output         : VOS_VOID
- Return Value   : unsigned int 返回结果 0成功，1失败
 
- History        :
-      1.sunbing 49683      2013-07-16  Draft Enact
-      2.lihong 00150010    2013-10-09  Modify
-*****************************************************************************/
 VOS_VOID IMSA_Snd2ImsaCallMsg
 (
     const IMSA_IMS_OUTPUT_CALL_EVENT_STRU      *pstOutputCallEvent
@@ -474,16 +418,7 @@ VOS_VOID IMSA_Snd2ImsaServiceMsg(const IMSA_IMS_OUTPUT_SERVICE_EVENT_STRU *pstOu
 
 }
 
-/*****************************************************************************
- Function Name  : IMSA_Snd2ImsaParaMsg()
- Description    : 给IMSA发送PARA消息
- Input          : pstHicsmOutputService
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2013-10-11   Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_Snd2ImsaParaMsg(const IMSA_IMS_OUTPUT_PARA_EVENT_STRU *pstOutputService)
 {
     IMS_IMSA_OUTPUT_PARA_MSG_STRU      *pstMsgOutputPara;
@@ -517,16 +452,7 @@ VOS_VOID IMSA_Snd2ImsaParaMsg(const IMSA_IMS_OUTPUT_PARA_EVENT_STRU *pstOutputSe
 
 }
 
-/*****************************************************************************
- Function Name  : IMSA_Snd2ImsaSystemMsg()
- Description    : 给IMSA发送PARA消息
- Input          : pstHicsmOutputService
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2013-10-11   Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_Snd2ImsaSystemMsg(const IMSA_IMS_OUTPUT_SYSTEM_EVENT_STRU *pstOutputSystem)
 {
     IMS_IMSA_OUTPUT_SYSTEM_MSG_STRU      *pstMsgOutputSystem;
@@ -563,17 +489,7 @@ VOS_VOID IMSA_Snd2ImsaSystemMsg(const IMSA_IMS_OUTPUT_SYSTEM_EVENT_STRU *pstOutp
 
 
 
-/*****************************************************************************
- Function Name  : IMSA_Send2ImsaMsg()
- Description    : 实现IMS给IMSA发送消息功能，该函数提供给IMS使用
- Input          : VOS_UINT8  *pstOutEvent
- Output         : VOS_VOID
- Return Value   : unsigned int 返回结果 0成功，1失败
 
- History        :
-      1.sunbing 49683      2013-06-25  Draft Enact
-      2.wangchen 00209181  2013-10-11  Modify
-*****************************************************************************/
 unsigned int IMSA_Send2ImsaMsg(void *pstOutputEvent)
 {
     IMSA_IMS_OUTPUT_EVENT_STRU  *pstImsaImsOutputEvent = pstOutputEvent;
@@ -614,16 +530,7 @@ unsigned int IMSA_Send2ImsaMsg(void *pstOutputEvent)
 
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SndHifiCfgReq()
- Description    : 给HIFI发配置参数请求，目前只会配置HIFI上行的交互周期
- Input          : ulTransTime 交互周期
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-12-16  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SndHifiCfgReq( unsigned long ulTransTime, unsigned long ulSendBitrate )
 {
     IMSA_VOICE_CFG_REQ_STRU                 *pstImsaCfgReq = VOS_NULL_PTR;
@@ -871,7 +778,6 @@ VOS_VOID IMSA_SndSpmOpenCodecChannel(IMSA_VOICE_CODEC_ENUM_UINT16 enCodecType)
 
     }
 
-    /* lihong00150010 降全复杂度 2014-04-21 begin */
     /*pstSpmChannelInfoMsg->enChannelEvent                      = MN_CALL_EVT_CHANNEL_OPEN;
     pstSpmChannelInfoMsg->stChannelInfo.bChannelEnable        = VOS_TRUE;
     pstSpmChannelInfoMsg->stChannelInfo.stChannelParam.enMode = MN_CALL_RADIO_MODE_IMS_EUTRAN;
@@ -911,7 +817,6 @@ VOS_VOID IMSA_SndSpmOpenCodecChannel(IMSA_VOICE_CODEC_ENUM_UINT16 enCodecType)
             pstSpmChannelInfoMsg->stChannelInfo.stChannelParam.enCodecType = IMSA_VC_CODEC_TYPE_AMR;
             break;
     }*/
-    /* lihong00150010 降全复杂度 2014-04-21 end */
 
     /* 调用消息发送函数 */
     IMSA_SND_MSG(pstSpmChannelInfoMsg);
@@ -932,16 +837,7 @@ VOS_VOID IMSA_SndSpmCloseCodecChannel(VOS_VOID)
 
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SndLRrcHifiSyncSwtichInd()
- Description    : 给LRRC发送HIFI同步开关指示消息
- Input          : enCodecType
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2014-11-17  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SndLRrcHifiSyncSwtichInd
 (
     VOS_UINT8                           ucHifiSyncEnalbed
@@ -983,21 +879,7 @@ VOS_VOID IMSA_SndLRrcHifiSyncSwtichInd
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IMSA_SndHifiDataInfo
- 功能描述  : 将IMSA的控制的HIFI消息的丢包和缓存情况 信息勾到HIDS
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月13日
-    作    者   : z00308719
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IMSA_SndHifiDataInfo(VOS_VOID)
 {
     IMSA_HIFI_DATA_INFO_IND_STRU       *pstMsg = VOS_NULL_PTR;
@@ -1044,19 +926,7 @@ VOS_VOID IMSA_SndHifiDataInfo(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_StartVoiceDsp()
- Description    : 海思提供给D2 tech的API，用于D2 IMS协议栈打电话启动HIFI或者语音编码格式改变时调用，
-                  在该API中，IMSA会通知HIFI启动编解码，并且设置codec类型
- Input          : enCodecType
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.sunbing 49683      2013-07-15  Draft Enact
-      2.lihong 00150010    2013-12-16  Modify:JitterBuffer移到HIFI
-      3.zhaochen 00308719  2015-11-10  Modify:规避HIFI邮箱满复位
-*****************************************************************************/
 unsigned int IMSA_StartVoiceDsp
 (
     IMSA_VOICE_CODEC_ENUM_UINT16    enCodecType,
@@ -1346,16 +1216,7 @@ VOS_VOID IMSA_SndImsMsgStartReq(VOS_VOID  )
 
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SndD2ImsMsgSystemEvent()
- Description    : 给IMS发送System事件
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2013-10-09  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SndImsMsgSystemEvent(IMSA_IMS_INPUT_EVENT_STRU *pstImsaImsInputEvent)
 {
     IMSA_IMS_INPUT_SYSTEM_MSG_STRU              *pstMsgInputSystem;
@@ -1406,16 +1267,7 @@ VOS_VOID IMSA_SndImsMsgSystemEvent(IMSA_IMS_INPUT_EVENT_STRU *pstImsaImsInputEve
 
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SndImsMsgParaEvent()
- Description    : 给IMS发送Para事件
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2013-10-09  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SndImsMsgParaEvent(IMSA_IMS_INPUT_EVENT_STRU *pstImsaImsInputEvent)
 {
     IMSA_IMS_INPUT_PARA_MSG_STRU              *pstMsgInputPara;
@@ -1466,16 +1318,7 @@ VOS_VOID IMSA_SndImsMsgParaEvent(IMSA_IMS_INPUT_EVENT_STRU *pstImsaImsInputEvent
 
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SndImsMsgParaEvent()
- Description    : 给IMS发送Para事件
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2013-10-09  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SndImsMsgNvInfoEvent
 (
     IMSA_IMS_INPUT_EVENT_STRU   *pstImsaImsInputEvent,
@@ -1720,16 +1563,7 @@ VOS_VOID IMSA_SndImsMsgSmsEvent(IMSA_IMS_INPUT_EVENT_STRU *pstImsaImsInputEvent)
 
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SndImsMsgUssdEvent()
- Description    : 给IMS发送USSD事件
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.leili 00132387      2013-12-23  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SndImsMsgUssdEvent(IMSA_IMS_INPUT_EVENT_STRU *pstImsaImsInputEvent)
 {
     IMSA_IMS_INPUT_USSD_MSG_STRU                  *pstMsgInputUssd;
@@ -1778,16 +1612,7 @@ VOS_VOID IMSA_SndImsMsgUssdEvent(IMSA_IMS_INPUT_EVENT_STRU *pstImsaImsInputEvent
 
 
 
-/*****************************************************************************
- Function Name  : IMSA_ImsQryParaMsgSave
- Description    : 保存正在执行的IMS命令及参数。目前只保存opid和正在执行的命令类型
- Input          : pstCallEvt    正在执行的IMS消息
- Output         : VOS_VOID
- Return Value   : 保存结果
 
- History        :
-      1.wangchen 00209181   2013-12-30  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_ImsInputParaMsgSave(const IMSA_IMS_INPUT_PARA_EVENT_STRU *pstParaEvt)
 {
     IMSA_ENTITY_STRU *pstImsaEntity = IMSA_CtxGet();
@@ -1801,16 +1626,7 @@ VOS_UINT32 IMSA_ImsInputParaMsgSave(const IMSA_IMS_INPUT_PARA_EVENT_STRU *pstPar
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_ImsQryParaMsgSave
- Description    : 保存正在执行的IMS命令及参数。目前只保存opid和正在执行的命令类型
- Input          : pstCallEvt    正在执行的IMS消息
- Output         : VOS_VOID
- Return Value   : 保存结果
 
- History        :
-      1.wangchen 00209181   2013-12-30  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_ImsInputParaMsgClear(VOS_VOID)
 {
     IMSA_ENTITY_STRU *pstImsaEntity = IMSA_CtxGet();
@@ -1823,16 +1639,7 @@ VOS_VOID IMSA_ImsInputParaMsgClear(VOS_VOID)
     pstImsaEntity->stImsaControlManager.stImsMsg.ulCsmReason = 0xffffffff;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SendImsVolteImpuQryReq()
- Description    : 给IMS发送IMPU查询事件
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181       2013-12-19  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SendImsVolteImpuQryReq(VOS_VOID)
 {
     IMSA_IMS_INPUT_EVENT_STRU          *pstImsaImsInputEvent = VOS_NULL_PTR;
@@ -1871,66 +1678,9 @@ VOS_VOID IMSA_SendImsVolteImpuQryReq(VOS_VOID)
 
     return;
 }
-/*****************************************************************************
- Function Name  : IMSA_SendImsCcwaiSetReq()
- Description    : 给IMS发送IMPU查询事件
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181       2013-12-19  Draft Enact
-*****************************************************************************/
-VOS_VOID IMSA_SendImsCcwaiSetReq(VOS_UINT8 ucCallWaiting)
-{
-    IMSA_IMS_INPUT_EVENT_STRU          *pstImsaImsInputEvent = VOS_NULL_PTR;
 
-    IMSA_INFO_LOG("IMSA_SendImsCcwaiSetReq is entered!");
-    TLPS_PRINT2LAYER_INFO(IMSA_SendImsCcwaiSetReq_ENUM, LNAS_ENTRY);
 
-    /*分配空间并检验分配是否成功*/
-    pstImsaImsInputEvent = IMSA_MEM_ALLOC(sizeof(IMSA_IMS_INPUT_EVENT_STRU));
-
-    if ( VOS_NULL_PTR == pstImsaImsInputEvent )
-    {
-        /*打印异常信息*/
-        IMSA_ERR_LOG("IMSA_SendImsCcwaiSetReq:ERROR:Alloc Mem fail!");
-        TLPS_PRINT2LAYER_ERROR(IMSA_SendImsCcwaiSetReq_ENUM, LNAS_NULL_PTR);
-        return ;
-    }
-
-    /*清空*/
-    IMSA_MEM_SET_S( pstImsaImsInputEvent,
-                    sizeof(IMSA_IMS_INPUT_EVENT_STRU),
-                    0,
-                    sizeof(IMSA_IMS_INPUT_EVENT_STRU));
-
-    pstImsaImsInputEvent->enEventType = IMSA_IMS_EVENT_TYPE_PARA;
-    pstImsaImsInputEvent->evt.stInputParaEvent.enInputParaReason = IMAS_IMS_INPUT_PARA_REASON_SET_CALL_WAITING;
-    pstImsaImsInputEvent->evt.stInputParaEvent.ulOpId = IMSA_AllocImsOpId();
-    pstImsaImsInputEvent->evt.stInputParaEvent.u.stUeCapability.ucCallWaiting = ucCallWaiting;
-
-    IMSA_SndImsMsgParaEvent(pstImsaImsInputEvent);
-
-    /* 保存设置CCWAI的消息 */
-    (VOS_VOID)IMSA_ImsInputParaMsgSave(&pstImsaImsInputEvent->evt.stInputParaEvent);
-
-    /*释放消息空间*/
-    IMSA_MEM_FREE(pstImsaImsInputEvent);
-
-    return;
-}
-
-/*****************************************************************************
- Function Name  : IMSA_ProcImsMsgQryVolteImpuCnf()
- Description    : IMS发送IMPU查询回复事件处理
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
-
- History        :
-      1.wangchen 00209181       2013-12-19  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_ProcImsMsgQryVolteImpuCnf(const IMSA_IMS_OUTPUT_PARA_EVENT_STRU *pstOutPara)
 {
     VOS_UINT32                          ulResult = VOS_ERR;
@@ -1958,43 +1708,6 @@ VOS_VOID IMSA_ProcImsMsgQryVolteImpuCnf(const IMSA_IMS_OUTPUT_PARA_EVENT_STRU *p
     IMSA_SndMsgAtQryVolteImpuCnf(ulResult, ulImpuLen, aucImpu);
 
 }
-
-/*****************************************************************************
- Function Name  : IMSA_ProcImsMsgCcwaiSetCnf()
- Description    : IMS发送IMPU查询回复事件处理
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
-
- History        :
-      1.wangchen 00209181       2013-12-19  Draft Enact
-      2.jiaguocai 00355737      2015-9-07   amend for ccwa
-*****************************************************************************/
-VOS_VOID IMSA_ProcImsMsgCcwaiSetCnf(const IMSA_IMS_OUTPUT_PARA_EVENT_STRU *pstOutPara)
-{
-    VOS_UINT32                          ulResult = VOS_ERR;
-    IMSA_AT_CONTROL_STRU                *pstImsaAtControl;
-
-    pstImsaAtControl = IMSA_GetAtControlAddress();
-
-    IMSA_INFO_LOG("IMSA_ProcImsMsgCcwaiSetCnf is entered!");
-    TLPS_PRINT2LAYER_INFO(IMSA_ProcImsMsgCcwaiSetCnf_ENUM, LNAS_ENTRY);
-
-    if (IMSA_IMS_OUTPUT_PARA_REASON_SET_OK == pstOutPara->enOutputParaReason)
-    {
-        ulResult = VOS_OK;
-
-        /*向TAF发送ccwa配置信息*/
-        IMSA_CallSendCcwaCapInfo(pstImsaAtControl->enMode);
-    }
-
-    IMSA_SndMsgAtCcwaiSetCnf(ulResult);
-}
-
-
-
-
-
 /*****************************************************************************
  Function Name  : IMSA_ImsStartTimer()
  Description    : IMS协议栈调用，用于启动定时器
@@ -2100,16 +1813,7 @@ unsigned int IMSA_ImsStopTimer(unsigned int  ulTimerName)
 
 }
 
-/*****************************************************************************
- Function Name  : IMSVA_StartTimer()
- Description    : IMSVA调用，用于启动定时器
- Input          : pstTimerPara 定时器参数存放地址(内存由调用者释放)
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.zhaochen 00308719      2015-11-16  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSVA_StartTimer(IMSA_TIMER_STRU *pstTimer)
 {
     if(pstTimer == VOS_NULL_PTR)
@@ -2156,16 +1860,7 @@ VOS_VOID IMSVA_StartTimer(IMSA_TIMER_STRU *pstTimer)
 
 }
 
-/*****************************************************************************
- Function Name  : IMSVA_StopTimer()
- Description    : IMSVA调用，用于停止定时器
- Input          : pstTimerPara 定时器参数存放地址(内存由调用者释放)
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.zhaochen 00308719      2015-11-16  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSVA_StopTimer(IMSA_TIMER_STRU *pstTimer)
 {
     if(pstTimer == VOS_NULL_PTR)
@@ -2194,16 +1889,7 @@ VOS_VOID IMSVA_StopTimer(IMSA_TIMER_STRU *pstTimer)
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_ImsAdaption_Init()
- Description    : 初始化接口相关的函数
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.zhaochen 00308719      2015-11-09  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_ImsAdaption_Init(VOS_VOID)
 {
     IMSA_HIFI_DATA_MANAGER_STRU        *pstHifiDataManager;
@@ -2218,16 +1904,7 @@ VOS_VOID IMSA_ImsAdaption_Init(VOS_VOID)
     pstHifiDataManager->ulTotalDataBufferNum             = 0;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_ClearHifiData()
- Description    : 清除HIFI控制函数
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.zhaochen 00308719      2015-11-09  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_ClearHifiData(VOS_VOID)
 {
     /* IMSA需要控制给HIFI发消息的速度，防止复位。 */
@@ -2260,16 +1937,7 @@ VOS_VOID IMSA_ClearHifiData(VOS_VOID)
 
 }
 
-/*****************************************************************************
- Function Name  : IMSA_ImsAdaption_Init()
- Description    : 初始化接口相关的函数
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.zhaochen 00308719      2015-11-09  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_ImsAdaption_ClearResource(VOS_VOID)
 {
     /* 清除缓存数据 */
@@ -2279,16 +1947,7 @@ VOS_VOID IMSA_ImsAdaption_ClearResource(VOS_VOID)
     IMSVA_StopTimer(&IMSA_GetHifiDataAckProtectTimer());
 }
 
-/*****************************************************************************
- Function Name  : IMSA_AddDataToBuffer()
- Description    : 将消息添加到缓存链表中
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.zhaochen 00308719      2015-11-09  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_AddDataToBuffer(IMSA_VOICE_RX_DATA_IND_STRU *pstRxDataInd)
 {
     IMSA_HIFI_DATA_BUFFER_NODE_STRU    *pstTempNode;
@@ -2375,16 +2034,7 @@ VOS_VOID IMSA_AddDataToBuffer(IMSA_VOICE_RX_DATA_IND_STRU *pstRxDataInd)
     return;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SendOneBufferData()
- Description    : 从缓存链表中取出一条发送出去
- Input          : ucNeedAckFlag 需要HIFI回复的标志
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.zhaochen 00308719      2015-11-09  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SendOneBufferData(VOS_UINT8 ulNeedAckFlag)
 {
     IMSA_HIFI_DATA_BUFFER_NODE_STRU    *pstTempNode;
@@ -2413,16 +2063,7 @@ VOS_VOID IMSA_SendOneBufferData(VOS_UINT8 ulNeedAckFlag)
     return;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_ProcTimerMsgHifiAckProtect()
- Description    : 处理HIFI回执保护定时器超时的函数
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.zhaochen 00308719      2015-11-09  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_ProcTimerMsgHifiAckProtect(const VOS_VOID *pRcvMsg)
 {
     VOS_INT32                           intLockLevel;

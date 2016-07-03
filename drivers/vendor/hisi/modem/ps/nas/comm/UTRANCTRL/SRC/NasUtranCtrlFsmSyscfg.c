@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasUtranCtrlFsmSyscfg.c
-  版 本 号   : 初稿
-  作    者   : w00167002
-  生成日期   : 2012年08月07日
-  最近修改   :
-  功能描述   : SYSCFG状态机处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年08月07日
-    作    者   : w00167002
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -57,22 +40,7 @@ extern "C" {
 /*****************************************************************************
   6 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvWasSysCfgCnf_SysCfg_Init
- 功能描述  : 收到WAS的SYSCFG设置回复消息
- 输入参数  : ulEventType:消息类型
-              pstMsg:RRMM_SYS_CFG_CNF消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月7日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvWasSysCfgCnf_SysCfg_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -94,22 +62,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvWasSysCfgCnf_SysCfg_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvTdSysCfgCnf_SysCfg_Init
- 功能描述  : 收到Td的SYSCFG设置回复消息
- 输入参数  : ulEventType:消息类型
-              pstMsg:RRMM_SYS_CFG_CNF消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月7日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvTdSysCfgCnf_SysCfg_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -131,22 +84,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvTdSysCfgCnf_SysCfg_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvWasSysCfgCnf_SysCfg_WaitWasSysCfgCnf
- 功能描述  : 收到WAS的SYSCFG设置回复消息
- 输入参数  : ulEventType:消息类型
-              pstMsg:RRMM_SYS_CFG_CNF消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月7日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvWasSysCfgCnf_SysCfg_WaitWasSysCfgCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -162,22 +100,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvWasSysCfgCnf_SysCfg_WaitWasSysCfgCnf(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvWasSuspendInd_SysCfg_WaitWasSysCfgCnf
- 功能描述  : 收到WAS的SUSPEND消息
- 输入参数  : ulEventType:消息类型
-              pstMsg:RRMM_SUSPEND_IND消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月7日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvWasSuspendInd_SysCfg_WaitWasSysCfgCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -189,22 +112,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvWasSuspendInd_SysCfg_WaitWasSysCfgCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvTdSysCfgCnf_SysCfg_WaitWasSysCfgCnf
- 功能描述  : 等TD模时候收到w接入层SYSCFG回复消息的处理
- 输入参数  : ulEventType: 消息类型,
-              pstMsg: RRMM_SYS_CFG_CNF消息的结构体首址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月7日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新生成函数
-*****************************************************************************/
 VOS_UINT32  NAS_UTRANCTRL_RcvTdSysCfgCnf_SysCfg_WaitWasSysCfgCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -218,22 +126,7 @@ VOS_UINT32  NAS_UTRANCTRL_RcvTdSysCfgCnf_SysCfg_WaitWasSysCfgCnf(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvTiWasSysCfgCnfExpired_SysCfg_WaitWasSysCfgCnf
- 功能描述  : 收到WAS的SYSCFG设置回复超时消息
- 输入参数  : ulEventType:消息类型
-              pstMsg:RRMM_SUSPEND_IND消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月7日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvTiWasSysCfgCnfExpired_SysCfg_WaitWasSysCfgCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -264,22 +157,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvTiWasSysCfgCnfExpired_SysCfg_WaitWasSysCfgCnf(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvTdSysCfgCnf_SysCfg_WaitTdSysCfgCnf
- 功能描述  : 收到Td的SYSCFG设置回复消息
- 输入参数  : ulEventType:消息类型
-              pstMsg:RRMM_SYS_CFG_CNF消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月7日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvTdSysCfgCnf_SysCfg_WaitTdSysCfgCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -295,22 +173,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvTdSysCfgCnf_SysCfg_WaitTdSysCfgCnf(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvTdSuspendInd_SysCfg_WaitTdSysCfgCnf
- 功能描述  : 收到Td的SUSPEND消息
- 输入参数  : ulEventType:消息类型
-              pstMsg:RRMM_SUSPEND_IND消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月7日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvTdSuspendInd_SysCfg_WaitTdSysCfgCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -322,22 +185,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvTdSuspendInd_SysCfg_WaitTdSysCfgCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvWasSysCfgCnf_SysCfg_WaitTdSysCfgCnf
- 功能描述  : 等W模时候收到TD接入层SYSCFG回复消息的处理
- 输入参数  : ulEventType: 消息类型,
-              pstMsg: RRMM_SYS_CFG_CNF消息的结构体首址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月7日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新生成函数
-*****************************************************************************/
 VOS_UINT32  NAS_UTRANCTRL_RcvWasSysCfgCnf_SysCfg_WaitTdSysCfgCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -350,22 +198,7 @@ VOS_UINT32  NAS_UTRANCTRL_RcvWasSysCfgCnf_SysCfg_WaitTdSysCfgCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvTiTdSysCfgCnfExpired_SysCfg_WaitTdSysCfgCnf
- 功能描述  : 收到TD的SYSCFG设置回复超时消息
- 输入参数  : ulEventType:消息类型
-              pstMsg:TI_NAS_MMC_WAIT_TD_SYSCFG_CNF消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月7日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvTiTdSysCfgCnfExpired_SysCfg_WaitTdSysCfgCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg

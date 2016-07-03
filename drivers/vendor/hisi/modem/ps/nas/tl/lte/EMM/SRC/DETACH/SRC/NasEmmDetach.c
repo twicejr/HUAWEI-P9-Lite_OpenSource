@@ -33,20 +33,7 @@ NAS_EMM_DETACH_CTRL_STRU                g_stEmmDetCtrl;
   3 Function
 *****************************************************************************/
 
-/*****************************************************************************
- Function Name   : NAS_EMM_DetachInit
- Description     :
 
- Input           :
-
- Return          :
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-    2.zhengjunyan 00148421   2010-12-24  Mod:为了支持开机不自动ATTACH功能,DETACH
-                                         模块全局变量g_stEmmDetCtrl.ucAutoAttSta
-                                         移到PUBU模块g_ulAutoAttFlag。
-*****************************************************************************/
 /*lint -e960*/
 /*lint -e961*/
 VOS_VOID  NAS_EMM_DetachInit()
@@ -72,19 +59,7 @@ VOS_VOID  NAS_EMM_FreeDetDyn( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   :  NAS_EMM_Detach_ClearResourse
- Description     :
- Input           :
 
- Return          :
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-    2.zhengjunyan 00148421   2010-12-24  Mod:为了支持开机不自动ATTACH功能,DETACH
-                                         模块全局变量g_stEmmDetCtrl.ucAutoAttSta
-                                         移到PUBU模块g_ulAutoAttFlag。
-*****************************************************************************/
 VOS_VOID NAS_EMM_Detach_ClearResourse(VOS_VOID)
 {
 
@@ -142,25 +117,7 @@ VOS_VOID  NAS_EMM_SendDetRslt(MMC_LMM_DETACH_RSLT_ENUM_UINT32 ulAppRslt  )
         #endif
     }
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_GetDetachType
- Description     : 编码DETACH REQ消息时，获取DETACH TYPE
 
-         用户DetachType                   UE MODE
-                                PS                      CS+PS
-         EPS detach             EPS DETACH              EPS DETACH
-         IMSI detach            在预处理里已处理        IMSI DETACH
-         EPS/IMSI detach        EPS DETACH              EPS DETACH(当注册域为PS);
-                                                        EPS/IMSI DETACH(当注册域为其他)
-
- Input           : 无
- Output          : 无
- Return          : MMC_LMM_MO_DETACH_TYPE_ENUM_UINT32
-
- History         :
-    1.lihong00150010      2011-09-29  Draft Enact
-
-*****************************************************************************/
 MMC_LMM_MO_DETACH_TYPE_ENUM_UINT32 NAS_EMM_GetDetachType( VOS_VOID )
 {
     MMC_LMM_MO_DETACH_TYPE_ENUM_UINT32  enDetachType = MMC_LMM_MO_DETACH_TYPE_BUTT;
@@ -193,18 +150,7 @@ MMC_LMM_MO_DETACH_TYPE_ENUM_UINT32 NAS_EMM_GetDetachType( VOS_VOID )
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_GetSwitchOffDetachType
- Description     : 当为关机类型的DETACH时，获取DETACH TYPE
 
- Input           : 无
- Output          : 无
- Return          : MMC_LMM_MO_DETACH_TYPE_ENUM_UINT32
-
- History         :
-    1.lihong00150010      2012-02-02  Draft Enact
-
-*****************************************************************************/
 MMC_LMM_MO_DETACH_TYPE_ENUM_UINT32 NAS_EMM_GetSwitchOffDetachType( VOS_VOID )
 {
     VOS_UINT32                          ulCurEmmStat;
@@ -249,19 +195,7 @@ MMC_LMM_MO_DETACH_TYPE_ENUM_UINT32 NAS_EMM_GetSwitchOffDetachType( VOS_VOID )
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_CompCnDetachReqMoNasMsg
- Description     : 为规避PC-LINT检查数组越界的问题，独立出来一个打包CN消息的函数
- Input           : pulIndex
- Output          : pucCnMsg
-                   pulIndex
- Return          : VOS_UINT32
 
- History         :
-    1.h41410      2009-2-2  Draft Enact
-    1.z00148421   2009-12-09  09Q1-CR40:DETACH REQ消息
-    3.l00150010   2012-12-13  Modify:Emergency
-*****************************************************************************/
 VOS_VOID    NAS_EMM_CompCnDetachReqMoNasMsg(    VOS_UINT8      *pucCnMsg,
                                                 VOS_UINT32     *pulIndex)
 {
@@ -347,17 +281,7 @@ VOS_VOID    NAS_EMM_CompCnDetachReqMoNasMsg(    VOS_UINT8      *pucCnMsg,
 
 
 
-/*****************************************************************************
- Function Name  : Nas_Emm_CompCnDetachReqMo
- Discription    : 构造CN消息(Compose the msg of): DETACH_REQUEST
- Input          :
- Output         : None
- Return         : None
- History:
-    1.leili 00132387         2008-09-09  Draft Enact
-    2.zhuyiqiang 00138739    2009-08-11  MODIFY    BJ9D01672,上行编码优化
 
-*****************************************************************************/
 VOS_VOID    NAS_EMM_CompCnDetachReqMo(  NAS_EMM_MRRC_DATA_REQ_STRU *pDetReqMoMsg)
 {
     VOS_UINT32                          ulIndex;
@@ -407,19 +331,7 @@ VOS_VOID    NAS_EMM_CompCnDetachReqMo(  NAS_EMM_MRRC_DATA_REQ_STRU *pDetReqMoMsg
 
 
 
-/*****************************************************************************
- Function Name   :  NAS_EMM_MrrcSendDetReqMo
- Description     :  向MRRC发送NAS_EMM_MRRC_DATA_REQ(DETACH REQUEST)消息
 
- Input           :
- Output          :
- Return          : None
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-    2.zhuyiqiang 00138739    2009-08-11  MODIFY    BJ9D01672,上行编码优化
-
-*****************************************************************************/
 VOS_VOID    NAS_EMM_MrrcSendDetReqMo()
 {
     NAS_EMM_MRRC_DATA_REQ_STRU          *pIntraMsg;
@@ -468,17 +380,7 @@ VOS_VOID    NAS_EMM_MrrcSendDetReqMo()
     return;
 
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_SendImsiDetachReqMo
- Description     : 发起IMSI DETACH流程
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong 00150010       2011-09-29  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_EMM_SendImsiDetachReqMo( VOS_VOID )
 {
     NAS_LMM_FSM_STATE_STRU               stEmmState;
@@ -525,19 +427,7 @@ VOS_VOID  NAS_EMM_SendDetachReqMo(VOS_VOID)
     NAS_EMM_MrrcSendDetReqMo();
     return;
 }
-/*****************************************************************************
- Function Name   :  NAS_EMM_RrcRelCauseCnDetachSrcClrAttemptToAtt
- Description     : Cn的detach请求，连接释放，没有原因值和原因为Others的处理
 
- Input           :
- Output          :
- Return          : None
-
- History         :
-    1.zhengjunyan 00148421 2009.05.08 New Draft
-    2.zhengjunyan 00148421 2009.10.20 Mod:stDestState.enStaTId不能赋值PTL定时器，
-                                      会导致打印状态转换错误。
-*****************************************************************************/
 VOS_VOID NAS_EMM_RrcRelCauseCnDetachSrcClrAttemptToAtt(VOS_VOID)
 {
     NAS_EMM_DETACH_LOG_INFO("NAS_EMM_RrcRelCauseCnDetachSrcClrAttemptToAtt is entered!");
@@ -559,17 +449,7 @@ VOS_VOID NAS_EMM_RrcRelCauseCnDetachSrcClrAttemptToAtt(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SendDetachForPowerOffReq
- Description     : DETACH模块提供给其他模块的关机DETACH接口
- Input           : VOS_VOID
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.luojian 00107747      2009-2-20  Draft Enact
-
-*****************************************************************************/
 VOS_VOID    NAS_EMM_SendDetachForPowerOffReq(VOS_VOID)
 {
     /* 设置DETACH类型为关机DETACH */
@@ -579,19 +459,7 @@ VOS_VOID    NAS_EMM_SendDetachForPowerOffReq(VOS_VOID)
     NAS_EMM_MrrcSendDetReqMo();
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_DetProcEnterForbTA
- Description     : DeregInit.WtDetCnf状态下收到SYS_INFO，且携带禁止信息，终止DETACH
-                   流程，释放连接
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421     2010-10-25  Draft Enact
-    2.lihong 00150010          2012-12-17  Modify:Emergency
-
-*****************************************************************************/
 VOS_VOID    NAS_EMM_DetProcEnterForbTA(VOS_VOID)
 {
     /* 终止DETACH流程*/
@@ -626,19 +494,7 @@ VOS_VOID    NAS_EMM_DetProcEnterForbTA(VOS_VOID)
 
     return;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_ImsiDetProcEnterForbTA
- Description     : REG.IMSI_DETACH_INIT状态下收到SYS_INFO，且携带禁止信息，终止DETACH
-                   流程，释放链路
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010     2011-10-18  Draft Enact
-    2.lihong00150010     2012-12-19  Modify:Emergency
-
-*****************************************************************************/
 VOS_VOID    NAS_EMM_ImsiDetProcEnterForbTA( VOS_VOID )
 {
     /* 终止DETACH流程*/
@@ -667,21 +523,7 @@ VOS_VOID    NAS_EMM_ImsiDetProcEnterForbTA( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsDrgInitSsWtCnDetCnfProcMsgRrcRelInd
- Description     :
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.X00148705    2009-9-30  Draft Enact
-    2.Z00148421    2010-11-16 MOD:修改DATA_ABSENT的处理，直接本地DETACH
-    3.Z00148421    2010-12-23 DTS2010111701490:LOAD_BALANCE_REQ原因值
-                              不立即触发TAU，收到SYS_INFO_IND再触发。
-    4.Z00148421    2011-02-22 DTS2011022203339:不区分释放原因值，完成本地DETACH
-    5.l00150010    2012-12-17 Modify:Emergency
-*****************************************************************************/
 VOS_VOID  NAS_EMM_MsDrgInitSsWtCnDetCnfProcMsgRrcRelInd( VOS_UINT32 ulCause)
 {
     /*打印进入该函数*/
@@ -733,19 +575,7 @@ VOS_VOID  NAS_EMM_MsDrgInitSsWtCnDetCnfProcMsgRrcRelInd( VOS_UINT32 ulCause)
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsDrgInitSsWtCnDetCnfMsgRrcRelInd
- Description     : 主状态DEREG_INIT+子状态DETACH_WAIT_CN_DETACH_CNF下收到RRC_REL_IND
 
- Input           :
-
- Return          :
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-    2.X00148705              2009-09-30  重构
-
-*****************************************************************************/
 
 VOS_UINT32  NAS_EMM_MsDrgInitSsWtCnDetCnfMsgRrcRelInd(
                                                 VOS_UINT32  ulMsgId,
@@ -766,17 +596,7 @@ VOS_UINT32  NAS_EMM_MsDrgInitSsWtCnDetCnfMsgRrcRelInd(
 
     return   NAS_LMM_MSG_HANDLED;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegImsiDetachWtCnDetCnfMsgIntraConnectFailInd
- Description     : 主状态EMM_MS_REG+子状态EMM_SS_REG_IMSI_DETACH_WATI_CN_DETACH_CNF下收到MRRC的
-                   INTRA-CONNECT-FAIL-IND消息
- Input           : ulMsgId--------------------消息ID
-                   pMsgStru-------------------消息指针
- Return          : VOS_UINT32
 
- History         :
-    1.lihong  00150010  2011.09.27  New Draft
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_MsRegImsiDetachWtCnDetCnfMsgIntraConnectFailInd
 (
     VOS_UINT32                          ulMsgId,
@@ -844,17 +664,7 @@ VOS_UINT32 NAS_EMM_MsRegImsiDetachWtCnDetCnfMsgIntraConnectFailInd
 
     return   NAS_LMM_MSG_HANDLED;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_MsDrgInitSsWtCnDetCnfMsgIntraConnectFailInd
- Description     : 主状态DEREG_INIT+子状态DETACH_WAIT_CN_DETACH_CNF下收到MRRC的
-                   INTRA-CONNECT-FAIL-IND消息
- Input           :
- Return          :
- History         :
-    1.zhengjunyan  00148421 2009.03.17 New Draft
-    2.zhengjunyan  00148421 2010-11-16 添加:通知ESM DETACHED
-    3.lihong       00150010 2012-12-17 Modify:Emergency
-*****************************************************************************/
+
 VOS_UINT32  NAS_EMM_MsDrgInitSsWtCnDetCnfMsgIntraConnectFailInd(
                                                 VOS_UINT32  ulMsgId,
                                                 VOS_VOID   *pMsgStru)
@@ -937,19 +747,7 @@ VOS_UINT32  NAS_EMM_MsDrgInitSsWtCnDetCnfMsgIntraConnectFailInd(
    NAS_EMM_CommProcConn2Ilde();
    return   NAS_LMM_MSG_HANDLED;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegImsiDetachWtCnDetCnfMsgT3421Exp
- Description     : 主状态DEREG_INIT+子状态DETACH_WAIT_CN_DETACH_CNF下收到定时器
-                   T3421超时
 
- Input           : ulMsgId--------------------消息ID
-                   pMsgStru-------------------消息指针
- Return          : VOS_UINT32
-
- History         :
-    1.lihong 00150010         2011-09-27  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsRegImsiDetachWtCnDetCnfMsgT3421Exp
 (
     VOS_UINT32                          ulMsgId,
@@ -1027,20 +825,7 @@ VOS_UINT32  NAS_EMM_MsRegImsiDetachWtCnDetCnfMsgT3421Exp
     return  NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsDrgInitSsWtCnDetCnfMsgT3421Exp
- Description     : 主状态DEREG_INIT+子状态DETACH_WAIT_CN_DETACH_CNF下收到定时器
-                   T3421超时
 
- Input           :
-
- Return          :
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-    2.lihong00150010         2012-12-17  Modify:Emergency
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsDrgInitSsWtCnDetCnfMsgT3421Exp( VOS_UINT32  ulMsgId,
                                                       VOS_VOID   *pMsgStru )
 {
@@ -1104,18 +889,7 @@ VOS_UINT32  NAS_EMM_MsDrgInitSsWtCnDetCnfMsgT3421Exp( VOS_UINT32  ulMsgId,
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_DetachToTAU
- Description     : 提供给TAU调用的函数
 
- Input           :
-
- Return          :
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_DetachToTAU()
 {
     /*停止定时器T3421*/
@@ -1135,18 +909,7 @@ VOS_VOID  NAS_EMM_DetachToTAU()
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegSsRegNmlSrvMsgTauIntraMsgDetReq
- Description     : 收到TAU发送的内部消息DETACH REQUEST
 
- Input           :
-
- Return          :
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsRegSsRegNmlSrvMsgIntraDetReq(VOS_UINT32  ulMsgId,
                                                    VOS_VOID   *pMsgStru)
 {
@@ -1268,19 +1031,7 @@ VOS_VOID NAS_EMM_DetGuAttachRst( VOS_VOID * pMsg )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegImsiDetachWtCnDetCnfMsgEsmDataReq
- Description     : 主状态REG+子状态IMSI_DETACH_INIT下收到ESM
-                   EMM_ESM_DATA_REQ消息
 
- Input           : ulMsgId--------------------消息ID
-                   pMsgStru-------------------消息指针
- Return          : VOS_UINT32
-
- History         :
-    1.lihong 00150010         2011-09-27  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_MsRegImsiDetachWtCnDetCnfMsgEsmDataReq
 (
     VOS_UINT32                          ulMsgId,
@@ -1315,19 +1066,7 @@ VOS_UINT32 NAS_EMM_MsRegImsiDetachWtCnDetCnfMsgEsmDataReq
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegImsiDetachWtCnDetCnfMsgTcDataReq
- Description     : 主状态REG+子状态IMSI_DETACH_INIT下收到ETC
-                   EMM_ETC_DATA_REQ消息
 
- Input           : ulMsgId--------------------消息ID
-                   pMsgStru-------------------消息指针
- Return          : VOS_UINT32
-
- History         :
-    1.lihong 00150010         2011-09-27  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_MsRegImsiDetachWtCnDetCnfMsgTcDataReq
 (
     VOS_UINT32                          ulMsgId,
@@ -1355,19 +1094,7 @@ VOS_UINT32 NAS_EMM_MsRegImsiDetachWtCnDetCnfMsgTcDataReq
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegImsiDetachWtCnDetCnfMsgRabmRelReq
- Description     : 主状态REG+子状态IMSI_DETACH_INIT下收到RABM
-                   EMM_RABM_REL_REQ消息
 
- Input           : ulMsgId--------------------消息ID
-                   pMsgStru-------------------消息指针
- Return          : VOS_UINT32
-
- History         :
-    1.lihong 00150010         2011-09-27  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_MsRegImsiDetachWtCnDetCnfMsgRabmRelReq
 (
     VOS_UINT32                          ulMsgId,
@@ -1414,16 +1141,7 @@ VOS_UINT32 NAS_EMM_MsRegImsiDetachWtCnDetCnfMsgRabmRelReq
 
     return  NAS_LMM_MSG_HANDLED;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_SndDetachReqFailProc
- Description     : DETACH REQ发送失败时的处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         : wangchen  00209181   2013-03-30  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_SndDetachReqFailProc(VOS_VOID* pMsg,VOS_UINT32 *pulIsDelBuff)
 {
     LRRC_LMM_DATA_CNF_STRU              *pstRrcMmDataCnf = VOS_NULL_PTR;
@@ -1515,10 +1233,8 @@ VOS_UINT32 NAS_EMM_SndDetachReqFailProc(VOS_VOID* pMsg,VOS_UINT32 *pulIsDelBuff)
              }
              else if (EMM_MS_NULL == NAS_LMM_GetEmmCurFsmMS())
              {
-                 /*sunbing 00265702/yanglei 关机定时器没有停 begin for DTS2015092904078*/
                  /* 停止关机定时器 */
                  NAS_LMM_StopPtlTimer( TI_NAS_EMM_PTL_SWITCH_OFF_TIMER);
-                 /*sunbing 00265702/yanglei 关机定时器没有停 end for DTS2015092904078*/
 
                  /* 本地关机 */
                  NAS_EMM_ProcLocalStop();
@@ -1534,17 +1250,7 @@ VOS_UINT32 NAS_EMM_SndDetachReqFailProc(VOS_VOID* pMsg,VOS_UINT32 *pulIsDelBuff)
     return NAS_EMM_SUCC;
 }
 
-/* sunbing 00265702 begin for DTS2015100600547 关机不等网络释放*/
-/*****************************************************************************
- Function Name   : NAS_EMM_SndDetachReqSuccProc
- Description     : DETACH REQ发送成功时的处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         : sunbing 00265702   2015-10-07  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_SndDetachReqSuccProc(VOS_VOID* pMsg)
 {
     /*关机状态下，只要网络受到detach请求，则直接走关机流程，不用等网络的释放*/
@@ -1564,24 +1270,13 @@ VOS_UINT32 NAS_EMM_SndDetachReqSuccProc(VOS_VOID* pMsg)
 
     return NAS_EMM_SUCC;
 }
-/* sunbing 00265702 end for DTS2015100600547 关机不等网络释放*/
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SndMtDetachAccFailProc
- Description     : MT DETACH ACP发送失败时的处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         : wangchen  00209181   2013-03-30  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_SndMtDetachAccFailProc(VOS_VOID* pMsg,VOS_UINT32 *pulIsDelBuff)
 {
     LRRC_LMM_DATA_CNF_STRU              *pstRrcMmDataCnf = VOS_NULL_PTR;
     NAS_EMM_MRRC_DATA_REQ_STRU          *pMrrcDataMsg = VOS_NULL_PTR;
-    VOS_UINT32                          ulRrcMmDataReqMsgLen;
     NAS_EMM_MRRC_MGMT_DATA_STRU         *pEmmMrrcMgmtData = NAS_EMM_NULL_PTR;
 
     *pulIsDelBuff = VOS_TRUE;
@@ -1595,11 +1290,10 @@ VOS_UINT32 NAS_EMM_SndMtDetachAccFailProc(VOS_VOID* pMsg,VOS_UINT32 *pulIsDelBuf
         return NAS_EMM_FAIL;
     }
 
-    ulRrcMmDataReqMsgLen = sizeof(NAS_EMM_MRRC_DATA_REQ_STRU)+
-                           pEmmMrrcMgmtData->ulNasMsgLength -
-                           NAS_EMM_4BYTES_LEN;
     /* 申请消息内存*/
-    pMrrcDataMsg = (NAS_EMM_MRRC_DATA_REQ_STRU *)((VOS_VOID*)NAS_LMM_MEM_ALLOC(ulRrcMmDataReqMsgLen));
+    /* 空口消息编码内存直接申请1024字节而不是实际长度, 解决:当申请内存为实际长度,
+        在加密加保护后, 加上安全头出现, 内存越界6个字节问题 */
+    pMrrcDataMsg = (NAS_EMM_MRRC_DATA_REQ_STRU *)((VOS_VOID*)NAS_LMM_MEM_ALLOC(NAS_EMM_INTRA_MSG_MAX_SIZE));
 
     if(VOS_NULL_PTR == pMrrcDataMsg)
     {
@@ -1647,15 +1341,7 @@ VOS_UINT32 NAS_EMM_SndMtDetachAccFailProc(VOS_VOID* pMsg,VOS_UINT32 *pulIsDelBuf
     NAS_LMM_MEM_FREE(pMrrcDataMsg);
     return NAS_EMM_SUCC;
 }
-/*****************************************************************************
- Function Name  : NAS_EMM_SndRrcDetachInd
- Discription    : 给RRC模块发送DETACH IND
- Input          :
- Output         : None
- Return         : None
- History:
-      1.  wangchen 00209181 2014-11-14  Draft Enact
-*****************************************************************************/
+
 VOS_VOID    NAS_EMM_SndRrcDetachInd(VOS_VOID)
 {
     LRRC_LMM_DETACH_IND_STRU                *pDetachIndMsg;

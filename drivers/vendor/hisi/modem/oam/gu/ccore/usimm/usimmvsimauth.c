@@ -1,13 +1,4 @@
-/************************************************************************
-  Copyright    : 2005-2007, Huawei Tech. Co., Ltd.
-  File name    : UsimmvSIMAuth.c
-  Author       : zhuli 00100318
-  Version      : v00R002
-  Date         : 2008-5-15
-  Description  : 该C文件给出了---SIM/USIM鉴权算法实现
-  Function List:
-  History      :
-************************************************************************/
+
 #include "product_config.h"
 #include "usimmvsimauth.h"
 #include "v_lib.h"

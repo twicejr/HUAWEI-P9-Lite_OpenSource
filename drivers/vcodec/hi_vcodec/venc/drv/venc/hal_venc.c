@@ -776,7 +776,6 @@ HI_VOID VeduHal_CfgRegSimple( HI_HANDLE EncHandle  )
 
 
 
-	 /*-----------------------------------------  slice 寄存器额外配置l00214825  ---------------------------------------------*/
 
     /* Define the union U_CABAC_GLB_CFG */
     {
@@ -922,7 +921,6 @@ HI_VOID VeduHal_CfgRegSimple( HI_HANDLE EncHandle  )
 		pAllReg->VEDU_VLCST_REGS.VLCST_PARA_DATA46 = pEncPara_channel->VEDU_HEADER[46];
 		pAllReg->VEDU_VLCST_REGS.VLCST_PARA_DATA47 = pEncPara_channel->VEDU_HEADER[47];
 	}
-/*-----------------------------------------  slice 寄存器额外配置l00214825	 end---------------------------------------------*/
 #ifdef TEST_TIME
 
 	pEncPara_channel->stStat.EndCfgRegTime2 = HI_GetTS();
@@ -3358,7 +3356,6 @@ HI_VOID VeduHal_CfgReg( HI_HANDLE EncHandle  )
 
 
 
-	 /*-----------------------------------------  slice 寄存器额外配置l00214825  ---------------------------------------------*/
 
     /* Define the union U_CABAC_GLB_CFG */
     {
@@ -3504,7 +3501,6 @@ HI_VOID VeduHal_CfgReg( HI_HANDLE EncHandle  )
         pAllReg->VEDU_VLCST_REGS.VLCST_PARA_DATA46 = pEncPara_channel->VEDU_HEADER[46];
         pAllReg->VEDU_VLCST_REGS.VLCST_PARA_DATA47 = pEncPara_channel->VEDU_HEADER[47];
     }
-/*-----------------------------------------  slice 寄存器额外配置l00214825	 end---------------------------------------------*/
 #if 0
      int *tmp = pEncPara_channel->pstCfg_EncPara;
      int i = 0;

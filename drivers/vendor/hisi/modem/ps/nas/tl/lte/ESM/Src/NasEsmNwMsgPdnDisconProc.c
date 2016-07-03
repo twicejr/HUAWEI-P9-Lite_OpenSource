@@ -1,15 +1,4 @@
-/******************************************************************************
 
-        @(#)Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : NasEsmNwMsgPdnDisconProc.c
-    Description : 处理EMM发给SM的网侧消息
-    History     :
-     1.丁丽 00128736        2008-09-01  Draft Enact
-     2.祝义强 00138739      2008-12-03  Modify BA8D00656
-     3.杨茜惠 00135146      2009-03-06  Modify BA8D01127
-******************************************************************************/
 
 
 /*****************************************************************************
@@ -41,20 +30,7 @@ extern "C" {
   3 Function
 *****************************************************************************/
 
-/*****************************************************************************
- Function Name   : NAS_ESM_ProcNwMsgDeactEpsbReq
- Description     : 处理承载去激活这条空口消息
- Input           : ulStateTblIndex -- 动态表索引
-                   pRcvMsg         -- 收到的空口消息
- Output          : None
- Return          : None
 
- History         :
-    1.丁丽 00128736      2008-9-10   Draft Enact
-    2.sunbing 49683         2009-02-05  Modify
-    3.lihong00150010        2010-02-02  Modify
-    4.liuwenyu00143951      2010-11-11  Modify
-*****************************************************************************/
 /*lint -e960*/
 /*lint -e961*/
 VOS_VOID  NAS_ESM_ProcValidNwMsgDeactEpsbReq
@@ -114,20 +90,7 @@ VOS_VOID  NAS_ESM_ProcValidNwMsgDeactEpsbReq
     NAS_ESM_RelStateTblResource(ulStateTblIndex);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_ProcNwMsgPdnDisconRej
- Description     : 处理PDN Disconnect消息
- Input           : ulStateTblIndex -- 动态表索引
-                   pRcvMsg         -- 收到的空口消息
- Output          : None
- Return          : None
 
- History         :
-    1.丁丽 00128736      2008-9-10   Draft Enact
-    2.sunbing 49683        2009-02-05  Modify
-    3.lihong00150010       2010-2-02   Modify
-    4.liuwenyu00143951     2010-11-11  Modify
-*****************************************************************************/
 VOS_VOID  NAS_ESM_ProcValidNwMsgPdnDisconRej
 (
     VOS_UINT32                          ulStateTblIndex,
@@ -165,17 +128,7 @@ VOS_VOID  NAS_ESM_ProcValidNwMsgPdnDisconRej
     NAS_ESM_RelStateTblResource(ulStateTblIndex);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_InformAppBearerRel
- Description     : 通知APP某一承载释放(此承载已激活)
- Input           : VOS_UINT32 ulEpsbId
- Output          : None
- Return          : None
 
- History         :
-    1.丁丽 00128736      2008-10-22  Draft Enact
-    2.sunbing 49683      2009-02-05  Modify
-*****************************************************************************/
 VOS_VOID  NAS_ESM_InformAppBearerRel(VOS_UINT32 ulEpsbId)
 {
     VOS_UINT32                          ulStateTblIndex  = NAS_ESM_NULL;

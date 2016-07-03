@@ -1,26 +1,4 @@
-/******************************************************************************
 
-版权所有 (C), 2001-2012, 华为技术有限公司
-
-******************************************************************************
-文 件 名      : OamXmlComm.c
-版 本 号      : 初稿
-作    者      : 朱凯 00208519
-生成日期      : 2013年3月26日
-最近修改      : 移植XmlComm.c文件
-                1 删除不需要使用的接口和依赖taf的头文件，修改函数名和变量名
-                2 减小初始化分配内存大小 OAM_XML_BUFF_SIZE 16000减小为8000
-                3 增加相关接口
-                4 发现原代码存在的bug,OAM_XML_ProcXmlAttribStart()中增加
-                  stXmlCtxInner->pstXMLCurrentNode->pcNodeValue = pstXmlCtxInner->pcXMLStrCurChar + 1;
-功能描述      : 该头文件为XML相关操作c文件, 目前仅提供Vsim模块使用
-函数列表      :
-修改历史      :
-1.日    期    : 2013年3月26日
-  作    者    : 朱凯 00208519
-  修改内容    : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
 1 头文件包含
@@ -49,20 +27,7 @@ typedef VOS_UINT32 (*OAM_XML_ANALYSE_FUNC)(OAM_XML_CTX_INNER_STRU *pstXmlCtxInne
 3 函数定义
 *****************************************************************************/
 #if (FEATURE_VSIM == FEATURE_ON)
-/*****************************************************************************
-函 数 名  : OAM_XML_GetChildCount
-功能描述  : 取得某节点子节点数量
-输入参数  : pstNode 节点
-输出参数  : 无
-返 回 值  : VOS_ERROR 表示节点不存在, 其它值表示子节点数目
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2013年3月28日
-  作    者  : 朱凯 00208519
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_INT32 OAM_XML_GetChildCount(OAM_XML_NODE_STRU *pstNode)
 {
     OAM_XML_NODE_STRU                 *pstTmpNode;
@@ -88,21 +53,7 @@ VOS_INT32 OAM_XML_GetChildCount(OAM_XML_NODE_STRU *pstNode)
     return lCounter;
 }
 
-/*****************************************************************************
-函 数 名  : OAM_XML_GetChildNodeByIndex
-功能描述  : 按照索引取得某节点子节点,索引从0开始
-输入参数  : pstNode     节点
-            iChildIndex 索引值,范围从0开始
-输出参数  : 无
-返 回 值  : 子节点指针
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2013年3月28日
-  作    者  : 朱凯 00208519
-  修改内容  : 新生成函数
-*****************************************************************************/
 OAM_XML_NODE_STRU* OAM_XML_GetChildNodeByIndex(
     OAM_XML_NODE_STRU                 *pstNode,
     VOS_INT32                           lChildIndex)
@@ -134,21 +85,7 @@ OAM_XML_NODE_STRU* OAM_XML_GetChildNodeByIndex(
     return VOS_NULL_PTR;
 }
 
-/*****************************************************************************
-函 数 名  : OAM_XML_GetChildNodeByLabel
-功能描述  : 按照标签名字取得某节点子节点
-输入参数  : pstNode 节点
-            pcLabel 标签名字
-输出参数  : 无
-返 回 值  : 子节点指针
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2013年3月28日
-  作    者  : 朱凯 00208519
-  修改内容  : 新生成函数
-*****************************************************************************/
 OAM_XML_NODE_STRU* OAM_XML_GetChildNodeByLabel(
     OAM_XML_NODE_STRU                 *pstNode,
     VOS_CHAR                           *pcLabel)
@@ -181,21 +118,7 @@ OAM_XML_NODE_STRU* OAM_XML_GetChildNodeByLabel(
     return VOS_NULL_PTR;
 }
 
-/*****************************************************************************
-函 数 名  : OAM_XML_GetChildNodeByAttributeValue
-功能描述  : 根据属性值取得某节点子节点
-输入参数  : pstNode 父节点,当前是根节点
-            pcAttribValue 子节点属性值，子节点只有一个属性
-输出参数  : 无
-返 回 值  : 子节点指针
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2013年3月28日
-  作    者  : 朱凯 00208519
-  修改内容  : 新生成函数
-*****************************************************************************/
 OAM_XML_NODE_STRU* OAM_XML_GetChildNodeByAttributeValue(
     OAM_XML_NODE_STRU                 *pstNode,
     VOS_CHAR                           *pcAttribValue)
@@ -253,20 +176,7 @@ OAM_XML_NODE_STRU* OAM_XML_GetChildNodeByAttributeValue(
     return VOS_NULL_PTR;
 }
 
-/*****************************************************************************
-函 数 名  : OAM_XML_GetAttributeCount
-功能描述  : 取得某节点属性数量
-输入参数  : pstNode 节点指针
-输出参数  : 无
-返 回 值  : 该节点属性数量, VOS_ERROR表示非法节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2013年3月28日
-  作    者  : 朱凯 00208519
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_INT32 OAM_XML_GetAttributeCount(OAM_XML_NODE_STRU *pstNode)
 {
     OAM_XML_NODE_ATTRIBUTE_STRU       *pstTmpAttribute;
@@ -292,20 +202,7 @@ VOS_INT32 OAM_XML_GetAttributeCount(OAM_XML_NODE_STRU *pstNode)
     return lCounter;
 }
 
-/*****************************************************************************
-函 数 名  : OAM_XML_GetAttributeByIndex
-功能描述  : 按照索引取得某节点属性值,索引从0开始
-输入参数  : pstNode 节点指针
-输出参数  : 无
-返 回 值  : 属性指针
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2013年3月28日
-  作    者  : 朱凯 00208519
-  修改内容  : 新生成函数
-*****************************************************************************/
 OAM_XML_NODE_ATTRIBUTE_STRU* OAM_XML_GetAttributeByIndex(
     OAM_XML_NODE_STRU                 *pstNode,
     VOS_INT32                           lAttribIndex)
@@ -337,20 +234,7 @@ OAM_XML_NODE_ATTRIBUTE_STRU* OAM_XML_GetAttributeByIndex(
     return VOS_NULL_PTR;
 }
 
-/*****************************************************************************
-函 数 名  : OAM_XML_GetAttributeByAttributeName
-功能描述  : 按照属性名取得某节点属性
-输入参数  : pstNode 节点指针
-输出参数  : 无
-返 回 值  : 属性指针
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2013年3月28日
-  作    者  : 朱凯 00208519
-  修改内容  : 新生成函数
-*****************************************************************************/
 OAM_XML_NODE_ATTRIBUTE_STRU* OAM_XML_GetAttributeByAttributeName(
     OAM_XML_NODE_STRU                 *pstNode,
     VOS_CHAR                           *pcAttribName)
@@ -384,20 +268,7 @@ OAM_XML_NODE_ATTRIBUTE_STRU* OAM_XML_GetAttributeByAttributeName(
     return VOS_NULL_PTR;
 }
 
-/*****************************************************************************
-函 数 名  : OAM_XML_GetLastAttribute
-功能描述  : 内部函数, 获取节点最后一个属性
-输入参数  : pstNode 节点指针
-输出参数  : 无
-返 回 值  : 属性指针
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2013年3月28日
-  作    者  : 朱凯 00208519
-  修改内容  : 新生成函数
-*****************************************************************************/
 OAM_XML_NODE_ATTRIBUTE_STRU* OAM_XML_GetLastAttribute(
     OAM_XML_NODE_STRU                 *pstNode)
 {
@@ -420,20 +291,7 @@ OAM_XML_NODE_ATTRIBUTE_STRU* OAM_XML_GetLastAttribute(
     return pstTmpAttribute;
 }
 
-/*****************************************************************************
-函 数 名  : OAM_XML_InitMemory
-功能描述  : 内部函数, 初始化上下文中的内存
-输入参数  : pstXmlCtx     XML API上下文
-输出参数  : 无
-返 回 值  : OAM_XML_RESULT_SUCCEED成功, 其它失败码参见枚举定义
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2013年3月28日
-  作    者  : 朱凯 00208519
-  修改内容  : 新生成函数
-*****************************************************************************/
 OAM_XML_RESULT_ENUM_UINT32 OAM_XML_InitMemory(OAM_XML_CTX_STRU *pstXmlCtx)
 {
     /* 上下文中内存地址为空, 则分配内存并初始化 */
@@ -464,21 +322,7 @@ OAM_XML_RESULT_ENUM_UINT32 OAM_XML_InitMemory(OAM_XML_CTX_STRU *pstXmlCtx)
     return OAM_XML_RESULT_SUCCEED;
 }
 
-/*****************************************************************************
-函 数 名  : OAM_XML_Malloc
-功能描述  : 内部函数, 从内存中分配一片内存
-输入参数  : pstXmlCommCtx   XML上下文
-            ulSize          申请内存大小
-输出参数  : 无
-返 回 值  : VOS_VOID类型指针
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2013年3月28日
-  作    者  : 朱凯 00208519
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_VOID* OAM_XML_Malloc(
     OAM_XML_CTX_STRU                  *pstXmlCtx,
     VOS_UINT32                          ulSize)
@@ -516,20 +360,7 @@ VOS_VOID* OAM_XML_Malloc(
     return pReturn;
 }
 
-/*****************************************************************************
-函 数 名  : OAM_XML_CreateAnAttribute
-功能描述  : 在内存中创建一个属性并初始化
-输入参数  : pstXmlCtx   XML API上下文
-输出参数  : 无
-返 回 值  : 新OAM_XML_NODE_ATTRIBUTE_STRU结构的指针
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2013年3月28日
-  作    者  : 朱凯 00208519
-  修改内容  : 新生成函数
-*****************************************************************************/
 OAM_XML_NODE_ATTRIBUTE_STRU* OAM_XML_CreateAnAttribute(OAM_XML_CTX_STRU *pstXmlCtx)
 {
     OAM_XML_NODE_ATTRIBUTE_STRU       *pstAttribute;
@@ -552,20 +383,7 @@ OAM_XML_NODE_ATTRIBUTE_STRU* OAM_XML_CreateAnAttribute(OAM_XML_CTX_STRU *pstXmlC
 }
 
 
-/*****************************************************************************
-函 数 名  : OAM_XML_CreateANode
-功能描述  : 在内存中创建一个节点并初始化
-输入参数  : pstXmlCtx   XML API上下文
-输出参数  : 无
-返 回 值  : 新OAM_XML_NODE结构的指针
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2013年3月28日
-  作    者  : 朱凯 00208519
-  修改内容  : 新生成函数
-*****************************************************************************/
 OAM_XML_NODE_STRU* OAM_XML_CreateANode(OAM_XML_CTX_STRU *pstXmlCtx)
 {
     OAM_XML_NODE_STRU                 *pstNode;
@@ -589,23 +407,7 @@ OAM_XML_NODE_STRU* OAM_XML_CreateANode(OAM_XML_CTX_STRU *pstXmlCtx)
 
 
 
-/*****************************************************************************
-函 数 名  : OAM_XML_AddAChildNode
-功能描述  : 为一个节点增加子节点，把一个节点或一棵树，
-            挂到另一个树的某个节点下，放到第三个参数指定的节点之前
-输入参数  : pstFather       指定为该节点增加子节点
-            pstChild        子节点指针
-            pstYoungBrother 增加的子节点添加到该子节点之前
-输出参数  : 无
-返 回 值  : OAM_XML_RESULT_SUCCEED成功, 其它失败码参见枚举定义
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2013年3月28日
-  作    者  : 朱凯 00208519
-  修改内容  : 新生成函数
-*****************************************************************************/
 OAM_XML_RESULT_ENUM_UINT32 OAM_XML_AddAChildNode(
     OAM_XML_NODE_STRU                 *pstFather,
     OAM_XML_NODE_STRU                 *pstChild,
@@ -686,22 +488,7 @@ OAM_XML_RESULT_ENUM_UINT32 OAM_XML_AddAChildNode(
     return OAM_XML_RESULT_SUCCEED;
 }
 
-/*****************************************************************************
-函 数 名  : OAM_XML_AddAProperty
-功能描述  : 为一个节点增加属性
-输入参数  : pstNode         指定为该节点增加属性
-            pstProperty     属性指针
-            pstYoungBrother 增加的属性添加到该属性之前
-输出参数  : 无
-返 回 值  : OAM_XML_RESULT_SUCCEED成功, 其它失败码参见枚举定义
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2013年3月28日
-  作    者  : 朱凯 00208519
-  修改内容  : 新生成函数
-*****************************************************************************/
 OAM_XML_RESULT_ENUM_UINT32 OAM_XML_AddAnAttribute(
     OAM_XML_NODE_STRU                 *pstNode,
     OAM_XML_NODE_ATTRIBUTE_STRU       *pstAttribute,
@@ -759,21 +546,7 @@ OAM_XML_RESULT_ENUM_UINT32 OAM_XML_AddAnAttribute(
     return OAM_XML_RESULT_SUCCEED;
 }
 
-/*****************************************************************************
-函 数 名  : OAM_XML_IsSeparator
-功能描述  : 用于检查字符是否为XML文档中的分隔符
-输入参数  : cCharacter  传入待检查的字符
-输出参数  : 无
-返 回 值  : VOS_TRUE    该字符为分隔符
-            VOS_FALSE   该字符不为分隔符
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2013年3月28日
-  作    者  : 朱凯 00208519
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 OAM_XML_IsSeparator(VOS_CHAR cCharacter)
 {
     if ( ('\r' == cCharacter)       /* 分隔符包括回车   */
@@ -786,21 +559,7 @@ VOS_UINT32 OAM_XML_IsSeparator(VOS_CHAR cCharacter)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
-函 数 名  : OAM_XML_IsLetter
-功能描述  : 内部函数，用于检查字符是否为英文字母
-输入参数  : cCharacter  传入待检查的字符
-输出参数  : 无
-返 回 值  : VOS_TRUE    该字符为字母
-            VOS_FALSE   该字符不为字母
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2013年3月28日
-  作    者  : 朱凯 00208519
-  修改内容  : 新生成函数
-*****************************************************************************/
 static VOS_UINT32 OAM_XML_IsLetter(VOS_CHAR cCharacter)
 {
     /* 判断字符是否在a~z之间 */
@@ -826,21 +585,7 @@ static VOS_UINT32 OAM_XML_IsLetter(VOS_CHAR cCharacter)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
-函 数 名  : OAM_XML_IsKeySymbol
-功能描述  : 内部函数, 检查字符是否为关键符号
-输入参数  : cCharacter  传入待检查的字符
-输出参数  : 无
-返 回 值  : VOS_TRUE    该字符为标点符号
-            VOS_FALSE   该字符不为标点符号
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2013年3月28日
-  作    者  : 朱凯 00208519
-  修改内容  : 新生成函数
-*****************************************************************************/
 static VOS_UINT32 OAM_XML_IsKeySymbol(VOS_CHAR cCharacter)
 {
     /* XML标准约束的关键符号包括": . - _" */
@@ -855,21 +600,7 @@ static VOS_UINT32 OAM_XML_IsKeySymbol(VOS_CHAR cCharacter)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
-函 数 名  : OAM_XML_IsPunctuation
-功能描述  : 内部函数，用于检查字符是否为标点符号
-输入参数  : cCharacter  传入待检查的字符
-输出参数  : 无
-返 回 值  : VOS_TRUE    该字符为标点符号
-            VOS_FALSE   该字符不为标点符号
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2013年3月28日
-  作    者  : 朱凯 00208519
-  修改内容  : 新生成函数
-*****************************************************************************/
 static VOS_UINT32 OAM_XML_IsPunctuation(VOS_CHAR cCharacter)
 {
     /* 根据ASCII码表, 首先判断是否为以下标点符号
@@ -904,20 +635,7 @@ static VOS_UINT32 OAM_XML_IsPunctuation(VOS_CHAR cCharacter)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
-函 数 名  : OAM_XML_ProcXmlOriginal
-功能描述  : 内部函数，状态机处理函数，初始状态的处理函数
-输入参数  : pstXmlCtxInner    内部上下文
-输出参数  : 无
-返 回 值  : OAM_XML_RESULT_ENUM_UINT32
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2013年3月28日
-  作    者  : 朱凯 00208519
-  修改内容  : 新生成函数
-*****************************************************************************/
 static OAM_XML_RESULT_ENUM_UINT32 OAM_XML_ProcXmlOriginal(
     OAM_XML_CTX_INNER_STRU            *pstXmlCtxInner)
 {
@@ -951,20 +669,7 @@ static OAM_XML_RESULT_ENUM_UINT32 OAM_XML_ProcXmlOriginal(
     return OAM_XML_RESULT_SUCCEED;
 }
 
-/*****************************************************************************
-函 数 名  : OAM_XML_ProcXmlEnterLabel
-功能描述  : 内部函数，状态机处理函数，进入Label后的处理
-输入参数  : pstXmlCtxInner    内部上下文
-输出参数  : 无
-返 回 值  : OAM_XML_RESULT_ENUM_UINT32
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2013年3月28日
-  作    者  : 朱凯 00208519
-  修改内容  : 新生成函数
-*****************************************************************************/
 static OAM_XML_RESULT_ENUM_UINT32 OAM_XML_ProcXmlEnterLabel(
     OAM_XML_CTX_INNER_STRU            *pstXmlCtxInner)
 {
@@ -992,20 +697,7 @@ static OAM_XML_RESULT_ENUM_UINT32 OAM_XML_ProcXmlEnterLabel(
     return OAM_XML_RESULT_SUCCEED;
 }
 
-/*****************************************************************************
-函 数 名  : OAM_XML_ProcXmlDeclaration
-功能描述  : 内部函数，状态机处理函数，XML声明处理函数
-输入参数  : pstXmlCtxInner    内部上下文
-输出参数  : 无
-返 回 值  : OAM_XML_RESULT_ENUM_UINT32
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2013年3月28日
-  作    者  : 朱凯 00208519
-  修改内容  : 新生成函数
-*****************************************************************************/
 static OAM_XML_RESULT_ENUM_UINT32 OAM_XML_ProcXmlDeclaration(
     OAM_XML_CTX_INNER_STRU            *pstXmlCtxInner)
 {
@@ -1028,20 +720,7 @@ static OAM_XML_RESULT_ENUM_UINT32 OAM_XML_ProcXmlDeclaration(
     return OAM_XML_RESULT_FALIED_DECLARATION_NO_END;
 }
 
-/*****************************************************************************
-函 数 名  : OAM_XML_ProcXmlComment
-功能描述  : 内部函数，状态机处理函数，注释的处理函数
-输入参数  : pstXmlCtxInner    内部上下文
-输出参数  : 无
-返 回 值  : OAM_XML_RESULT_ENUM_UINT32
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2013年3月28日
-  作    者  : 朱凯 00208519
-  修改内容  : 新生成函数
-*****************************************************************************/
 static OAM_XML_RESULT_ENUM_UINT32 OAM_XML_ProcXmlComment(
     OAM_XML_CTX_INNER_STRU            *pstXmlCtxInner)
 {
@@ -1082,20 +761,7 @@ static OAM_XML_RESULT_ENUM_UINT32 OAM_XML_ProcXmlComment(
     return OAM_XML_RESULT_FALIED_COMMENT_SYNTAX_ERROR;
 }
 
-/*****************************************************************************
-函 数 名  : OAM_XML_ProcXmlSingleEndLabel
-功能描述  : 内部函数，状态机处理函数，进入独立的结尾标签的处理
-输入参数  : pstXmlCtxXML    上下文
-输出参数  : 无
-返 回 值  : OAM_XML_RESULT_ENUM_UINT32
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2013年3月28日
-  作    者  : 朱凯 00208519
-  修改内容  : 新生成函数
-*****************************************************************************/
 static OAM_XML_RESULT_ENUM_UINT32 OAM_XML_ProcXmlSingleEndLabel(
     OAM_XML_CTX_INNER_STRU            *pstXmlCtxInner)
 {
@@ -1180,23 +846,7 @@ static OAM_XML_RESULT_ENUM_UINT32 OAM_XML_ProcXmlSingleEndLabel(
     return OAM_XML_RESULT_SUCCEED;
 }
 
-/*****************************************************************************
-函 数 名  : OAM_XML_ProcXmlLabelStart
-功能描述  : 内部函数，状态机处理函数，节点标签名的处理
-输入参数  : pstXmlCtxInner    内部上下文
-输出参数  : 无
-返 回 值  : OAM_XML_RESULT_ENUM_UINT32
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2013年3月28日
-  作    者  : 朱凯 00208519
-  修改内容  : 新生成函数
-2.日    期   : 2012年12月11日
-  作    者   : l00167671
-  修改内容   : DTS2012121802573, TQE清理
-*****************************************************************************/
 static OAM_XML_RESULT_ENUM_UINT32 OAM_XML_ProcXmlLabelStart(
     OAM_XML_CTX_INNER_STRU            *pstXmlCtxInner)
 {
@@ -1285,20 +935,7 @@ static OAM_XML_RESULT_ENUM_UINT32 OAM_XML_ProcXmlLabelStart(
     return OAM_XML_RESULT_SUCCEED;
 }
 
-/*****************************************************************************
-函 数 名  : OAM_XML_ProcXmlEndMustBeRight
-功能描述  : 内部函数，状态机处理函数，进入Label/等待>
-输入参数  : pstXmlCtxInner    内部上下文
-输出参数  : 无
-返 回 值  : OAM_XML_RESULT_ENUM_UINT32
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2013年3月28日
-  作    者  : 朱凯 00208519
-  修改内容  : 新生成函数
-*****************************************************************************/
 static OAM_XML_RESULT_ENUM_UINT32 OAM_XML_ProcXmlEndMustBeRight(
     OAM_XML_CTX_INNER_STRU            *pstXmlCtxInner)
 {
@@ -1324,20 +961,7 @@ static OAM_XML_RESULT_ENUM_UINT32 OAM_XML_ProcXmlEndMustBeRight(
     return OAM_XML_RESULT_SUCCEED;
 }
 
-/*****************************************************************************
-函 数 名  : OAM_XML_ProcXmlAttribStart
-功能描述  : 内部函数，状态机处理函数，进入属性的解析
-输入参数  : pstXmlCtxInner    内部上下文
-输出参数  : 无
-返 回 值  : OAM_XML_RESULT_ENUM_UINT32
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2013年3月28日
-  作    者  : 朱凯 00208519
-  修改内容  : 新生成函数
-*****************************************************************************/
 static OAM_XML_RESULT_ENUM_UINT32 OAM_XML_ProcXmlAttribStart(
     OAM_XML_CTX_INNER_STRU            *pstXmlCtxInner)
 {
@@ -1373,20 +997,7 @@ static OAM_XML_RESULT_ENUM_UINT32 OAM_XML_ProcXmlAttribStart(
     return OAM_XML_RESULT_SUCCEED;
 }
 
-/*****************************************************************************
-函 数 名  : OAM_XML_ProcXmlAttribNameStart
-功能描述  : 内部函数，状态机处理函数，开始属性名字的解析
-输入参数  : pstXmlCtxInner    内部上下文
-输出参数  : 无
-返 回 值  : OAM_XML_RESULT_ENUM_UINT32
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2013年3月28日
-  作    者  : 朱凯 00208519
-  修改内容  : 新生成函数
-*****************************************************************************/
 static OAM_XML_RESULT_ENUM_UINT32 OAM_XML_ProcXmlAttribNameStart(
     OAM_XML_CTX_INNER_STRU            *pstXmlCtxInner)
 {
@@ -1442,20 +1053,7 @@ static OAM_XML_RESULT_ENUM_UINT32 OAM_XML_ProcXmlAttribNameStart(
     return OAM_XML_RESULT_SUCCEED;
 }
 
-/*****************************************************************************
-函 数 名  : OAM_XML_ProcXmlAttribNameEnd
-功能描述  : 内部函数，状态机处理函数，属性名字的解析完成处理
-输入参数  : pstXmlCtxInner    内部上下文
-输出参数  : 无
-返 回 值  : OAM_XML_RESULT_ENUM_UINT32
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2013年3月28日
-  作    者  : 朱凯 00208519
-  修改内容  : 新生成函数
-*****************************************************************************/
 static OAM_XML_RESULT_ENUM_UINT32 OAM_XML_ProcXmlAttribNameEnd(
     OAM_XML_CTX_INNER_STRU            *pstXmlCtxInner)
 {
@@ -1505,23 +1103,7 @@ static OAM_XML_RESULT_ENUM_UINT32 OAM_XML_ProcXmlAttribNameEnd(
     return OAM_XML_RESULT_SUCCEED;
 }
 
-/*****************************************************************************
-函 数 名  : OAM_XML_ProcXmlAttribValueSingle
-功能描述  : 内部函数，状态机处理函数，以单引号结束的属性值
-输入参数  : pstXmlCtxInner    内部上下文
-输出参数  : 无
-返 回 值  : OAM_XML_RESULT_ENUM_UINT32
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2013年3月28日
-  作    者  : 朱凯 00208519
-  修改内容  : 新生成函数
-4.日    期   : 2012年12月11日
-  作    者   : l00167671
-  修改内容   : DTS2012121802573, TQE清理
-*****************************************************************************/
 static OAM_XML_RESULT_ENUM_UINT32 OAM_XML_ProcXmlAttribValueSingle(
     OAM_XML_CTX_INNER_STRU            *pstXmlCtxInner)
 {
@@ -1562,20 +1144,7 @@ static OAM_XML_RESULT_ENUM_UINT32 OAM_XML_ProcXmlAttribValueSingle(
     return OAM_XML_RESULT_FALIED_NO_QUOTATION_MARK;
 }
 
-/*****************************************************************************
-函 数 名  : OAM_XML_ProcXmlAttribValueDouble
-功能描述  : 内部函数，状态机处理函数，以双引号结束的属性值
-输入参数  : pstXmlCtxInner    内部上下文
-输出参数  : 无
-返 回 值  : OAM_XML_RESULT_ENUM_UINT32
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2013年3月28日
-  作    者  : 朱凯 00208519
-  修改内容  : 新生成函数
-*****************************************************************************/
 static OAM_XML_RESULT_ENUM_UINT32 OAM_XML_ProcXmlAttribValueDouble(
     OAM_XML_CTX_INNER_STRU            *pstXmlCtxInner)
 {
@@ -1616,20 +1185,7 @@ static OAM_XML_RESULT_ENUM_UINT32 OAM_XML_ProcXmlAttribValueDouble(
     return OAM_XML_RESULT_FALIED_NO_QUOTATION_MARK;
 }
 
-/*****************************************************************************
-函 数 名  : OAM_XML_ProcXmlAfterRootNode
-功能描述  : 内部函数，状态机处理函数，根节点结束后的处理
-输入参数  : pstXmlCtxInner    内部上下文
-输出参数  : 无
-返 回 值  : OAM_XML_RESULT_ENUM_UINT32
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2013年3月28日
-  作    者  : 朱凯 00208519
-  修改内容  : 新生成函数
-*****************************************************************************/
 static OAM_XML_RESULT_ENUM_UINT32 OAM_XML_ProcXmlAfterRootNode(
     OAM_XML_CTX_INNER_STRU            *pstXmlCtxInner)
 {
@@ -1647,20 +1203,7 @@ static OAM_XML_RESULT_ENUM_UINT32 OAM_XML_ProcXmlAfterRootNode(
     return OAM_XML_RESULT_SUCCEED_ALL_ENDS;
 }
 
-/*****************************************************************************
-函 数 名  : OAM_XML_Analyse
-功能描述  : 内部函数，主状态机
-输入参数  : pstXmlCtxInner    内部上下文
-输出参数  : 无
-返 回 值  : OAM_XML_RESULT_ENUM_UINT32
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2013年3月28日
-  作    者  : 朱凯 00208519
-  修改内容  : 新生成函数
-*****************************************************************************/
 OAM_XML_RESULT_ENUM_UINT32 OAM_XML_Analyse(
     OAM_XML_CTX_INNER_STRU            *pstXmlCtxInner)
 {
@@ -1695,20 +1238,7 @@ OAM_XML_RESULT_ENUM_UINT32 OAM_XML_Analyse(
     return ulReturnVal;
 }
 
-/*****************************************************************************
-函 数 名  : OAM_XML_InitXMLCtx
-功能描述  : 初始化XML API上下文
-输入参数  : pcXmlStr    XML格式码流
-输出参数  : 无
-返 回 值  : OAM_XML_RESULT_SUCCEED成功, 其它失败码参见枚举定义
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2013年3月28日
-  作    者  : 朱凯 00208519
-  修改内容  : 新生成函数
-*****************************************************************************/
 OAM_XML_RESULT_ENUM_UINT32 OAM_XML_InitXMLCtx(OAM_XML_CTX_STRU *pstXmlCtx)
 {
     OAM_XML_RESULT_ENUM_UINT32         ulReturnVal;
@@ -1729,21 +1259,7 @@ OAM_XML_RESULT_ENUM_UINT32 OAM_XML_InitXMLCtx(OAM_XML_CTX_STRU *pstXmlCtx)
     return ulReturnVal;
 }
 
-/*****************************************************************************
-函 数 名  : OAM_XML_BuildXMLTree
-功能描述  : XML码流解析总入口函数, 根据XML格式码流建立一棵XML树
-输入参数  : pcXmlStr    XML格式码流
-            pstXmlCtx   XML API上下文
-输出参数  : 无
-返 回 值  : XML树的根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2013年3月28日
-  作    者  : 朱凯 00208519
-  修改内容  : 新生成函数
-*****************************************************************************/
 OAM_XML_NODE_STRU* OAM_XML_BuildXMLTree(
     VOS_CHAR                           *pcXmlStr,
     OAM_XML_CTX_STRU                  *pstXmlCtx)
@@ -1806,20 +1322,7 @@ OAM_XML_NODE_STRU* OAM_XML_BuildXMLTree(
     return VOS_NULL_PTR;
 }
 
-/*****************************************************************************
-函 数 名  : OAM_XML_ClearXMLCtx
-功能描述  : 清理XML上下文, 每次使用完XML API都要求调用此函数
-输入参数  : pstXmlCtx     XML API上下文
-输出参数  : 无
-返 回 值  : OAM_XML_RESULT_ENUM_UINT32
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2013年3月28日
-  作    者  : 朱凯 00208519
-  修改内容  : 新生成函数
-*****************************************************************************/
 OAM_XML_RESULT_ENUM_UINT32 OAM_XML_ClearXMLCtx(OAM_XML_CTX_STRU *pstXmlCtx)
 {
     /* 参数合法性检查 */
@@ -1842,22 +1345,7 @@ OAM_XML_RESULT_ENUM_UINT32 OAM_XML_ClearXMLCtx(OAM_XML_CTX_STRU *pstXmlCtx)
     return OAM_XML_RESULT_SUCCEED;
 }
 
-/*****************************************************************************
-函 数 名  : OAM_XML_GetStrContent
-功能描述  : 过滤字符串中的特殊字符，仅获取其中的字母、数字内容
-输入参数  : pcSrc    源字符串内容
-            ulSrcLen 源字符串长度
-输出参数  : pcDst    目的字符串内容
-            pulDstLen目的字符串长度
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2013年3月28日
-  作    者  : zhuli
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_VOID OAM_XML_GetStrContent(VOS_CHAR *pcSrc, VOS_UINT32 ulSrcLen, VOS_CHAR *pcDst, VOS_UINT32 *pulDstLen)
 {
     VOS_UINT32      i;
@@ -1892,22 +1380,7 @@ VOS_VOID OAM_XML_GetStrContent(VOS_CHAR *pcSrc, VOS_UINT32 ulSrcLen, VOS_CHAR *p
 }
 
 
-/*****************************************************************************
-函 数 名  : OAM_XML_FilterStrInvalidChar
-功能描述  : 过滤字符串中的特殊字符，仅获取其中的字母、数字内容(字母不改变其大小写)
-输入参数  : pcSrc    源字符串内容
-            ulSrcLen 源字符串长度
-输出参数  : pcDst    目的字符串内容
-            pulDstLen目的字符串长度
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2013年9月18日
-  作    者  : zhuli
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_VOID OAM_XML_FilterStrInvalidChar(VOS_CHAR *pcSrc, VOS_UINT32 ulSrcLen, VOS_CHAR *pcDst, VOS_UINT32 *pulDstLen)
 {
     VOS_UINT32      i;
@@ -1934,22 +1407,7 @@ VOS_VOID OAM_XML_FilterStrInvalidChar(VOS_CHAR *pcSrc, VOS_UINT32 ulSrcLen, VOS_
 }
 
 
-/*****************************************************************************
-函 数 名  : OAM_XML_GetIntArray
-功能描述  : 过滤字符串中的特殊字符，仅获取其中的字母、数字内容
-输入参数  : pcSrc    源字符串内容
-            ulSrcLen 源字符串长度
-输出参数  : pcDst    目的ASCII串内容
-            pulDstLen目的ASCII串长度
-返 回 值  : VOS_ERR VOS_OK
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2013年3月28日
-  作    者  : zhuli
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 OAM_XML_GetIntArray(VOS_CHAR *pcSrc, VOS_UINT32 ulSrcLen, VOS_UINT8 *pucDst, VOS_UINT32 *pulDstLen)
 {
     VOS_UINT32      i;
@@ -2010,21 +1468,7 @@ VOS_UINT32 OAM_XML_GetIntArray(VOS_CHAR *pcSrc, VOS_UINT32 ulSrcLen, VOS_UINT8 *
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : OAM_XML_SearchAttNodeByName
-功能描述  : 根据属性名称搜索节点属性位置
-输入参数  : pstFirstAttrNode 属性节点的起始指针
-            pcAttribName 属性节点名称
-输出参数  : 无
-返 回 值  : 节点指针
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2013年3月28日
-  作    者  : 朱凯 00208519
-  修改内容  : 新生成函数
-*****************************************************************************/
 OAM_XML_NODE_ATTRIBUTE_STRU* OAM_XML_SearchAttNodeByName(
                                     OAM_XML_NODE_ATTRIBUTE_STRU *pstFirstAttrNode,
                                     VOS_CHAR                    *pcAttribName)

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasMntn.h
-  版 本 号   : 初稿
-  作    者   : l60609
-  生成日期   : 2014年7月4日
-  最近修改   :
-  功能描述   : CnasMntn.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年7月4日
-    作    者   : l60609
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __CNAS_MNTN_H__
 #define __CNAS_MNTN_H__
@@ -328,13 +311,7 @@ extern "C" {
 /*****************************************************************************
   3 枚举定义
 *****************************************************************************/
-/*****************************************************************************
- 枚举名    : CNAS_MNTN_MSG_ID_BASE_ENUM
- 结构说明  : CNAS各模块发送给OM的可维可测消息
-  1.日    期   : 2014年07月04日
-    作    者   : l60609
-    修改内容   : CNAS各模块发送给OM的可维可测消息
-*****************************************************************************/
+
 enum CNAS_MNTN_MSG_ID_BASE_ENUM
 {
     /* 0x6000 ~ 0x6FFF为LOG保留 */
@@ -355,13 +332,7 @@ enum CNAS_MNTN_MSG_ID_BASE_ENUM
 typedef VOS_UINT32 CNAS_MNTN_MSG_ID_BASE_ENUM_UINT32;
 
 
-/*****************************************************************************
- 枚举名    : CNAS_MNTN_TIMER_ACTION_ENUM
- 结构说明  : timer动作
-  1.日    期   : 2014年07月11日
-    作    者   : y00245242
-    修改内容   : 新建
-*****************************************************************************/
+
 enum CNAS_MNTN_TIMER_ACTION_ENUM
 {
     CNAS_MNTN_TIMER_ACTION_START,
@@ -372,13 +343,7 @@ enum CNAS_MNTN_TIMER_ACTION_ENUM
 };
 typedef VOS_UINT32 CNAS_MNTN_TIMER_ACTION_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : CNAS_MNTN_MSG_ID_ENUM
- 结构说明  : CNAS各模块发送给OM的可维可测消息
-  1.日    期   : 2014年07月04日
-    作    者   : l60609
-    修改内容   : CNAS各模块发送给OM的可维可测消息
-*****************************************************************************/
+
 enum CNAS_MNTN_MSG_ID_ENUM
 {
     ID_CNAS_MNTN_LOG_FSM_INFO_IND   = ID_CNAS_MNTN_LOG_MSG_BASE,     /*_H2ASN_MsgChoice  CNAS_MNTN_LOG_FSM_INFO_STRU */
@@ -405,13 +370,7 @@ enum CNAS_MNTN_MSG_ID_ENUM
 };
 typedef VOS_UINT32 CNAS_MNTN_MSG_ID_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : CNAS_MNTN_PRINT_TYPE_ENUM
- 结构说明  : CNAS各模块打印类型:串口打印或者工具(eg:SDT)输出
-  1.日    期   : 2014年07月04日
-    作    者   : l60609
-    修改内容   : CNAS各模块打印类型
-*****************************************************************************/
+
 enum CNAS_MNTN_PRINT_TYPE_ENUM
 {
     CNAS_MNTN_PRINT_TYPE_SDT,                                                   /* 默认勾到SDT中 */
@@ -434,13 +393,7 @@ enum CNAS_REBOOT_SCENE_ENUM
 typedef VOS_UINT8 CNAS_REBOOT_SCENE_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名    : CNAS_HANDSET_INFO_TYPE_ENUM
- 枚举说明  : 手机信息类型
- 1.日    期   : 2015年5月18日
-   作    者   : z00316370
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CNAS_HANDSET_INFO_TYPE_ENUM
 {
     CNAS_HANDSET_INFO_TYPE_STATE,
@@ -476,13 +429,7 @@ typedef VOS_UINT8   CNAS_HRPD_OM_AIR_MSG_UP_DOWN_ENUM_UINT8;
 /*****************************************************************************
   7 STRUCT定义
 *****************************************************************************/
-/*****************************************************************************
- 结构名    : CNAS_MNTN_LOG_FSM_INFO_STRU
- 结构说明  : ID_CNAS_MNTN_LOG_FSM_INFO_IND的消息结构
- 1.日    期   : 2014年07月04日
-   作    者   : l60609
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* 消息头 */    /* _H2ASN_Skip */
@@ -494,13 +441,7 @@ typedef struct
     VOS_UINT8                           aucReserved[3];
 }CNAS_MNTN_LOG_FSM_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_MNTN_LOG_TIMER_INFO_STRU
- 结构说明  : ID_CNAS_MNTN_LOG_TIMER_INFO_IND的消息结构
- 1.日    期   : 2014年07月11日
-   作    者   : y00245242
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* 消息头 */    /* _H2ASN_Skip */
@@ -512,13 +453,7 @@ typedef struct
     CNAS_MNTN_TIMER_ACTION_ENUM_UINT32  enTimerAct;                             /* timer 状态: start or stop */
 }CNAS_MNTN_LOG_TIMER_INFO_IND_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_MNTN_PRINT_CTRL_INFO
- 结构说明  : 打印控制信息
- 1.日    期   : 2014年07月04日
-   作    者   : l60609
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     CNAS_MNTN_PRINT_TYPE_ENUM_UINT32    enPrintType;
@@ -528,13 +463,7 @@ typedef struct
     VOS_UINT32                          ulErrPrintFlg;                          /* VOS_TRUE: 打印 VOS_FALSE: 不打印 默认值VOS_TRUE */
 }CNAS_MNTN_PRINT_CTRL_INFO;
 
-/*****************************************************************************
- 结构名    : CNAS_MNTN_PRINT_RECORD_STRU
- 结构说明  : SDT打印一条打印消息内容
- 1.日    期   : 2014年07月04日
-   作    者   : l60609
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulTick;
@@ -544,26 +473,14 @@ typedef struct
     VOS_INT32                           alPara[4];
 }CNAS_MNTN_PRINT_RECORD_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_MNTN_PRINT_MSG_STRU
- 结构说明  : 打印消息
- 1.日    期   : 2014年07月04日
-   作    者   : l60609
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulCnt;
     CNAS_MNTN_PRINT_RECORD_STRU         astPrintRecord[CNAS_MNTN_PRINT_MSG_MAX_NUM];
 }CNAS_MNTN_PRINT_MSG_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_MNTN_LOG_SAVE_PARA_STRU
- 结构说明  : log save的参数
- 1.日    期   : 2014年07月11日
-   作    者   : l60609
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     PS_FILE_ID_DEFINE_ENUM_UINT32       enFile;
@@ -575,13 +492,7 @@ typedef struct
     VOS_INT32                           lPara4;
 }CNAS_MNTN_LOG_SAVE_PARA_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_MNTN_LOG_MSG_INFO_IND_STRU
- 结构说明  : 从OM输出消息结构
- 1.日    期   : 2014年07月07日
-   作    者   : y00245242
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* 消息头 */    /* _H2ASN_Skip */
@@ -589,16 +500,7 @@ typedef struct
     CNAS_MNTN_PRINT_MSG_STRU            stPrintMsg;
 }CNAS_MNTN_LOG_MSG_INFO_IND_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_MNTN_LOG_USIMM_API_GET_FILE_REQ_STRU
- 结构说明  : 调用USIMM_GetFileReq接口，勾消息
 
- 修改记录  :
- 1.日    期   : 2014年07月17日
-   作    者   : l60609
-   修改内容   : 新增
-
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* 消息头 */    /* _H2ASN_Skip */
@@ -610,16 +512,7 @@ typedef struct
     VOS_UINT8                           ucReserved;
 }CNAS_MNTN_LOG_USIMM_API_GET_FILE_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_MNTN_LOG_ENCODE_ABNORMAL_INFO_IND_STRU
- 结构说明  : 调用encodix编码API进行编码失败，上报可维可测消息
 
- 修改记录  :
- 1.日    期   : 2014年11月17日
-   作    者   : l00256032
-   修改内容   : 新增
-
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* 消息头 */    /* _H2ASN_Skip */
@@ -629,16 +522,7 @@ typedef struct
     VOS_UINT8                               aucReserved[3];
 }CNAS_MNTN_LOG_ENCODE_ABNORMAL_INFO_IND_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_MNTN_LOG_DECODE_ABNORMAL_INFO_IND_STRU
- 结构说明  : 调用encodix解码API进行解码失败，上报可维可测消息
 
- 修改记录  :
- 1.日    期   : 2014年11月17日
-   作    者   : l00256032
-   修改内容   : 新增
-
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* 消息头 */    /* _H2ASN_Skip */
@@ -648,19 +532,7 @@ typedef struct
     VOS_UINT8                               aucReserved[3];
 }CNAS_MNTN_LOG_DECODE_ABNORMAL_INFO_IND_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_DIAG_LOG_NV_INFO_IND_STRU
- 结构说明  : CNAS读取NV信息，上报可维可测消息
 
- 修改记录  :
- 1.日    期   : 2015年07月07日
-   作    者   : y00322978
-   修改内容   : 新增
- 2.日    期   : 2015年10月08日
-   作    者   : t00323010
-   修改内容   : DTS2015092201636修改接头体名字
-
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* 消息头 */    /* _H2ASN_Skip */
@@ -671,16 +543,7 @@ typedef struct
     VOS_UINT8                               aucNvInfo[4];/* NV内容 */
 }CNAS_DIAG_LOG_NV_INFO_IND_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_MNTN_LOG_COMMON_STATUS_INFO_IND_STRU
- 结构说明  : 可维可测公共状态信息
 
- 修改记录  :
- 1.日    期   : 2015年08月13日
-   作    者   : w00242748
-   修改内容   : 新增
-
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* 消息头 */    /* _H2ASN_Skip */
@@ -690,13 +553,7 @@ typedef struct
 }CNAS_MNTN_LOG_COMMON_STATUS_INFO_IND_STRU;
 
 
-/*****************************************************************************
- 结构名    : CNAS_MNTN_CTX_STRU
- 结构说明  : 可维可测总体上下文
- 1.日    期   : 2014年07月04日
-   作    者   : l60609
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     CNAS_MNTN_PRINT_CTRL_INFO           stPrintCtrlInfo;
@@ -704,14 +561,7 @@ typedef struct
     CNAS_MNTN_PRINT_MSG_STRU            stPrintMsg;
 }CNAS_MNTN_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_MNTN_TIMER_INFO_STRU
- 结构说明  : CNAS定时器信息结构
 
- 1.日    期   : 2014年07月03日
-   作    者   : y00245242
-   修改内容   : 新建
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          ulTimerId;          /* 定时器标识 */
@@ -720,14 +570,7 @@ typedef struct
     CNAS_MNTN_TIMER_ACTION_ENUM_UINT32  enTimerAct;         /* 定时器动作: 停止与启动 */
 }CNAS_MNTN_TIMER_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_USIMM_GETFILE_INFO_STRU
- 结构说明  : 获取文件
 
- 1.日    期   : 2015年02月03日
-   作    者   : h00313353
-   修改内容   : Create
-*****************************************************************************/
 typedef struct
 {
     USIMM_CARDAPP_ENUM_UINT32   enAppType;      /* 应用类型 */
@@ -749,14 +592,7 @@ typedef struct
 }CNAS_REBOOT_INFO_STRU;
 
 
-/*****************************************************************************
- Name    : CNAS_MNTN_LOG_1X_CSCH_DATA_IND_STRU
- Description  : 解析xcc 收到的 CSCH DATA IND 空口消息
- History     :
-  1.Date     : 2016-01-04
-    Author   : y00322978
-    Modify   : create
-*****************************************************************************/
+
 
 typedef struct
 {
@@ -830,8 +666,6 @@ VOS_VOID CNAS_MNTN_SetPrintType(
     CNAS_MNTN_PRINT_TYPE_ENUM_UINT32    enPrintType
 );
 
-/* Deleted by wx270776 for OM融合, 2015-08-21, begin */
-/* Deleted by wx270776 for OM融合, 2015-08-21, end */
 
 VOS_VOID CNAS_MNTN_LogUsimmApiGetFileReq(
     VOS_UINT32                          ulModuleId,

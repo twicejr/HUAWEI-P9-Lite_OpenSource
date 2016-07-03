@@ -9,9 +9,7 @@
 #include "vos.h"
 
 #include "PsCommonDef.h"
-/* Added by wx270776 for OMÈÚºÏ, 2015-6-27, begin */
 #include "AtMntn.h"
-/* Added by wx270776 for OMÈÚºÏ, 2015-6-27, end */
 
 
 #ifdef __cplusplus

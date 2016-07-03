@@ -1,24 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2006, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : BST_APP_EmailIMAP.c
-  版 本 号   : 初稿
-  作    者   : d00173029
-  生成日期   : 2013年10月9日
-  最近修改   :
-  功能描述   : IMAP邮箱的处理方法
-  函数列表   :
-
-  修改历史   :
-  1.日    期   : 2013年10月9日
-    作    者   : d00173029
-    修改内容   : 创建文件
-  2.日    期   : 2014年4月17日
-    作    者   : z00220931
-    修改内容   :
-******************************************************************************/
 /*****************************************************************************
   1 头文件包含
 *****************************************************************************/
@@ -48,19 +28,7 @@
 /******************************************************************************
    6 函数实现
 ******************************************************************************/
-/*****************************************************************************
-函 数 名  : BST_APP_CEmailIMAP
-功能描述  : 构造函数
-输入参数  : penInAccountInfo: 账号信息
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修改历史  :
-1.日期    : 2014年4月17日
-  作者    : z00220931
-  修改内容: 新函数
-*****************************************************************************/
+
 BST_APP_CEmailIMAP::BST_APP_CEmailIMAP( const EMAIL_ACCOUNT_STRU *penInAccountInfo )
     : BST_APP_CEmailPacketProc( penInAccountInfo )
 {
@@ -90,19 +58,7 @@ BST_APP_CEmailIMAP::BST_APP_CEmailIMAP( const EMAIL_ACCOUNT_STRU *penInAccountIn
     BST_OS_MEMSET( m_pcServerResponse2, 0, BST_IMAP_COLUMN_MAX );
 }
 
-/*****************************************************************************
-函 数 名  : ~CImapMbxProc
-功能描述  : 析构函数
-输入参数  : BST_VOID
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修改历史  :
-1.日期    : 2014年4月17日
-  作者    : z00220931
-  修改内容: 新函数
-*****************************************************************************/
+
 BST_APP_CEmailIMAP::~BST_APP_CEmailIMAP()
 {
     if ( BST_NULL_PTR != m_pcServerResponse0 )
@@ -123,20 +79,7 @@ BST_APP_CEmailIMAP::~BST_APP_CEmailIMAP()
     }
     BST_RLS_LOG("BST_APP_CEmailIMAP destructor");
 }
-/*****************************************************************************
-函 数 名  : InitEmailProc
-功能描述  : 判断邮箱的配置是否完成，通过调用父类EmailBox的配置判断函数进行判断
-输入参数  : BST_VOID
-输出参数  : 无
-返 回 值  : BST_TRUE  成功
-            BST_FALSE 失败
-调用函数  :
-被调函数  :
-修改历史  :
-1.日期    : 2014年4月17日
-  作者    : z00220931
-  修改内容: 新函数
-*****************************************************************************/
+
 BST_BOOL BST_APP_CEmailIMAP::InitEmailProc( BST_CORE_CNPTask *pTaskProp )
 {
     BST_CORE_CRegedit                  *pcRegedit;
@@ -224,20 +167,7 @@ BST_BOOL BST_APP_CEmailIMAP::InitEmailProc( BST_CORE_CNPTask *pTaskProp )
     }
     return BST_TRUE;
 }
-/*****************************************************************************
-函 数 名  : IsConfigOk
-功能描述  : 判断邮箱的配置是否完成，通过调用父类EmailBox的配置判断函数进行判断
-输入参数  : BST_VOID
-输出参数  : 无
-返 回 值  : BST_TRUE  成功
-            BST_FALSE 失败
-调用函数  :
-被调函数  :
-修改历史  :
-1.日期    : 2014年4月17日
-  作者    : z00220931
-  修改内容: 新函数
-*****************************************************************************/
+
 BST_BOOL BST_APP_CEmailIMAP::IsConfigOk( BST_VOID )
 {
     if ( BST_FALSE == IsBasicConfigOk() )
@@ -262,20 +192,7 @@ BST_BOOL BST_APP_CEmailIMAP::IsConfigOk( BST_VOID )
     return BST_TRUE;
 }
 
-/*****************************************************************************
-函 数 名   : SetEmailUID
-功能描述   : 设置最后一封邮件的UID
-输入参数   : pucUidInfo: 邮件的uid
-             usLen: 邮件uid的长度
-输出参数   : 无
-返 回 值   : 邮件UID存储的地址
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年6月9日
-   作者    : z00220931
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_UINT8 *BST_APP_CEmailIMAP::SetEmailUID(
     const BST_UINT8    *pucUidInfo,
     BST_UINT16          usLen )
@@ -316,20 +233,7 @@ BST_UINT8 *BST_APP_CEmailIMAP::SetEmailUID(
     BST_ASSERT_NORM_RTN( (BST_NO_ERROR_MSG != enRtnVal), BST_NULL_PTR );
     return (BST_UINT8 *)(m_pstLastUID);
 }
-/*****************************************************************************
-函 数 名   : SetImapIDCmd
-功能描述   : 设置Imap的ID命令
-输入参数   : pucImapIDCmd: ID命令
-             usLen: ID命令的长度
-输出参数   : 无
-返 回 值   : ID命令的存储地址
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年6月9日
-   作者    : z00220931
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_UINT8 *BST_APP_CEmailIMAP::SetImapIDCmd(
     const BST_UINT8 *pucImapIDCmd,
     BST_UINT16       usLen )
@@ -355,21 +259,7 @@ BST_UINT8 *BST_APP_CEmailIMAP::SetImapIDCmd(
     return ( BST_UINT8 *)(m_pstrImapIDCmd->pData);
 }
 
-/*****************************************************************************
-函 数 名   : ConfigOtherInfo
-功能描述   : 配置其他其他信息
-输入参数   : enParamId: 账号信息
-             usLen: 配置信息的长度
-             pData: 指向配置信息的指针
-输出参数   : 无
-返 回 值   : 配置信息的存储地址
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年4月17日
-   作者    : z00220931
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_UINT8 *BST_APP_CEmailIMAP::ConfigOtherInfo(
     BST_CORE_PID_ENUM_UINT16  enParamId,
     BST_UINT16                usLen,
@@ -396,21 +286,7 @@ BST_UINT8 *BST_APP_CEmailIMAP::ConfigOtherInfo(
     return rtn_ptr;
 }
 
-/*****************************************************************************
-函 数 名  : ParseRespose
-功能描述  : 解析服务器的回复，并将其存储到数组中
-输入参数  : pucData: 回复命令指针
-            usLength: 长度
-输出参数  : 无
-返 回 值  : BST_TRUE  成功
-            BST_FALSE 失败
-调用函数  :
-被调函数  :
-修改历史  :
-1.日期    : 2014年4月17日
-  作者    : z00220931
-  修改内容: 新函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8  BST_APP_CEmailIMAP::ParseResponse(
     BST_UINT8          *pucData,
     const BST_UINT16    usLength )
@@ -453,19 +329,7 @@ BST_ERR_ENUM_UINT8  BST_APP_CEmailIMAP::ParseResponse(
 
     return BST_NO_ERROR_MSG;
 }
-/*****************************************************************************
-函 数 名   : HandleWelcomResp
-功能描述   : 处理欢迎回复的数据
-输入参数   : BST_VOID
-输出参数   : 无
-返 回 值   : 无
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年4月17日
-   作者    : z00220931
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_APP_CEmailIMAP::HandleWelcomResp( BST_VOID )
 {
     BST_ERR_ENUM_UINT8      enErrMsg;
@@ -483,19 +347,7 @@ BST_ERR_ENUM_UINT8 BST_APP_CEmailIMAP::HandleWelcomResp( BST_VOID )
         return BST_ERR_UNREACHABLE;
     }
 }
-/*****************************************************************************
-函 数 名   : HandleImapIDResp
-功能描述   : 处理ID命令的回复
-输入参数   : BST_VOID
-输出参数   : 无
-返 回 值   : 无
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年4月17日
-   作者    : z00220931
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_APP_CEmailIMAP::HandleImapIDResp( BST_VOID )
 {
     BST_ERR_ENUM_UINT8      enErrMsg;
@@ -514,19 +366,7 @@ BST_ERR_ENUM_UINT8 BST_APP_CEmailIMAP::HandleImapIDResp( BST_VOID )
     }
 }
 
-/*****************************************************************************
-函 数 名   : HandleAuthResp
-功能描述   : 处理认证回复的数据
-输入参数   : BST_VOID
-输出参数   : 无
-返 回 值   : 无
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年4月17日
-   作者    : z00220931
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_APP_CEmailIMAP::HandleAuthResp( BST_VOID )
 {
     BST_ERR_ENUM_UINT8      enErrMsg;
@@ -544,19 +384,7 @@ BST_ERR_ENUM_UINT8 BST_APP_CEmailIMAP::HandleAuthResp( BST_VOID )
         return BST_ERR_UNREACHABLE;
     }
 }
-/*****************************************************************************
-函 数 名   : HandleSelectResp
-功能描述   : 处理select回复的数据
-输入参数   : BST_VOID
-输出参数   : 无
-返 回 值   : 无
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年4月17日
-   作者    : z00220931
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_APP_CEmailIMAP::HandleSelectResp( BST_VOID )
 {
     BST_ERR_ENUM_UINT8      enErrMsg;
@@ -575,19 +403,7 @@ BST_ERR_ENUM_UINT8 BST_APP_CEmailIMAP::HandleSelectResp( BST_VOID )
         return BST_ERR_UNREACHABLE;
     }
 }
-/*****************************************************************************
-函 数 名   : HandleQueryResp
-功能描述   : 处理查询回复的数据
-输入参数   : BST_VOID
-输出参数   : 无
-返 回 值   : 无
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年4月17日
-   作者    : z00220931
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_APP_CEmailIMAP::HandleQueryResp( BST_VOID )
 {
     BST_ERR_ENUM_UINT8      enRtnVal;
@@ -634,19 +450,7 @@ BST_ERR_ENUM_UINT8 BST_APP_CEmailIMAP::HandleQueryResp( BST_VOID )
         return  BST_ERR_UNREACHABLE;
     }
 }
-/*****************************************************************************
-函 数 名   : HandleQuitResp
-功能描述   : 处理退出回复的数据
-输入参数   : BST_VOID
-输出参数   : 无
-返 回 值   : 无
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年4月17日
-   作者    : z00220931
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_APP_CEmailIMAP::HandleQuitResp( BST_VOID )
 {
     if ( 0 == BST_OS_MEMCMP( m_pcServerResponse1, "BYE", BST_LIB_StrLen("BYE") ) )
@@ -661,19 +465,7 @@ BST_ERR_ENUM_UINT8 BST_APP_CEmailIMAP::HandleQuitResp( BST_VOID )
         return BST_ERR_UNREACHABLE;
     }
 }
-/*****************************************************************************
-函 数 名   : FirstTrsProc
-功能描述   : 连上服务器后的数据交互处理
-输入参数   : BST_VOID
-输出参数   : 无
-返 回 值   : 无
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年4月17日
-   作者    : z00220931
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_APP_CEmailIMAP::FirstTrsProc( BST_VOID )
 {
     /*Imap client donot do anything immediately after connected*/
@@ -685,36 +477,12 @@ BST_ERR_ENUM_UINT8 BST_APP_CEmailIMAP::FirstTrsProc( BST_VOID )
     BST_OS_TimerStart( m_ulTimerId, BST_APP_RX_TIME_OUT );
     return BST_NO_ERROR_MSG;
 }
-/*****************************************************************************
-函 数 名  : ResetMachine
-功能描述  : 复位状态机
-输入参数  : BST_VOID
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修改历史  :
-1.日期    : 2014年4月17日
-  作者    : d00173029
-  修改内容: 新函数
-*****************************************************************************/
+
 BST_VOID  BST_APP_CEmailIMAP::ResetMachine( BST_VOID )
 {
     m_lServerState          = BST_EMAIL_UNCONNECT;
 }
-/*****************************************************************************
-函 数 名  : RunStateMachine
-功能描述  : 运行状态机完成邮件的查询流程
-输入参数  : BST_VOID
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修改历史  :
-1.日期    : 2014年4月17日
-  作者    : z00220931
-  修改内容: 新函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8  BST_APP_CEmailIMAP::RunStateMachine( BST_VOID )
 {
     BST_ERR_ENUM_UINT8          enErrMsg;
@@ -759,19 +527,7 @@ BST_ERR_ENUM_UINT8  BST_APP_CEmailIMAP::RunStateMachine( BST_VOID )
     BST_OS_MEMSET( m_pcServerResponse2, 0, BST_IMAP_COLUMN_MAX );
     return enErrMsg;
 }
-/*****************************************************************************
-函 数 名  : MakeImapID
-功能描述  : 组Imap ID命令
-输入参数  : BST_VOID
-输出参数  : 无
-返 回 值  : BST_UINT16 组成命令的长度
-调用函数  :
-被调函数  :
-修改历史  :
-1.日期    : 2014年4月17日
-  作者    : z00220931
-  修改内容: 新函数
-*****************************************************************************/
+
 BST_UINT16 BST_APP_CEmailIMAP::MakeImapID( BST_VOID )
 {
     BST_ERR_ENUM_UINT8      enRtnVal;
@@ -785,19 +541,7 @@ BST_UINT16 BST_APP_CEmailIMAP::MakeImapID( BST_VOID )
     }
     return m_pstrImapIDCmd->usUsed;
 }
-/*****************************************************************************
-函 数 名  : SendID
-功能描述  : 发送ID命令
-输入参数  : BST_VOID
-输出参数  : 无
-返 回 值  : BST_UINT16 组成命令的长度
-调用函数  :
-被调函数  :
-修改历史  :
-1.日期    : 2014年4月17日
-  作者    : z00220931
-  修改内容: 新函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_APP_CEmailIMAP::SendID( BST_VOID )
 {
     BST_CHAR           *pucSendIDCmd;
@@ -827,20 +571,7 @@ BST_ERR_ENUM_UINT8 BST_APP_CEmailIMAP::SendID( BST_VOID )
     return enErrMsg;
 }
 
-/*****************************************************************************
-函 数 名  : LoginServer
-功能描述  : 登录邮箱
-输入参数  : 无
-输出参数  : 无
-返 回 值  : BST_TRUE  成功
-            BST_FALSE 失败
-调用函数  :
-被调函数  :
-修改历史  :
-1.日期    : 2014年4月17日
-  作者    : z00220931
-  修改内容: 新函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_APP_CEmailIMAP::LoginServer( BST_VOID )
 {
     BST_UINT8          *pucLoginCmd;
@@ -889,20 +620,7 @@ BST_ERR_ENUM_UINT8 BST_APP_CEmailIMAP::LoginServer( BST_VOID )
     return enErrMsg;
 }
 
-/*****************************************************************************
-函 数 名  : SelectInBox
-功能描述  : 选择收件箱
-输入参数  : BST_VOID
-输出参数  : 无
-返 回 值  : BST_TRUE  成功
-            BST_FALSE 失败
-调用函数  :
-被调函数  :
-修改历史  :
-1.日期    : 2014年4月17日
-  作者    : z00220931
-  修改内容: 新函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_APP_CEmailIMAP::SelectInBox( BST_VOID )
 {
     BST_CHAR               *pcSelectCmd;
@@ -926,21 +644,7 @@ BST_ERR_ENUM_UINT8 BST_APP_CEmailIMAP::SelectInBox( BST_VOID )
     return enErrMsg;
 }
 
-/*****************************************************************************
-函 数 名  : QueryServer
-功能描述  : 查询收件箱中最后一封邮件的UID
-输入参数  : pucLastNum: 最后一封邮件的UID
-            usLen: 长度
-输出参数  : 无
-返 回 值  : BST_TRUE  成功
-            BST_FALSE 失败
-调用函数  :
-被调函数  :
-修改历史  :
-1.日期    : 2014年4月17日
-  作者    : z00220931
-  修改内容: 新函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_APP_CEmailIMAP::QueryServer(
     const BST_UINT8 *pucLastNum,
     BST_UINT16       usLen )
@@ -977,20 +681,7 @@ BST_ERR_ENUM_UINT8 BST_APP_CEmailIMAP::QueryServer(
     return enErrMsg;
 }
 
-/*****************************************************************************
-函 数 名  : QuitServer
-功能描述  : 退出服务器
-输入参数  : BST_VOID
-输出参数  : 无
-返 回 值  : BST_TRUE  成功
-            BST_FALSE 失败
-调用函数  :
-被调函数  :
-修改历史  :
-1.日期    : 2014年4月17日
-  作者    : z00220931
-  修改内容: 新函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_APP_CEmailIMAP::QuitServer( BST_VOID )
 {
     BST_CHAR           *pucLogoutCmd;

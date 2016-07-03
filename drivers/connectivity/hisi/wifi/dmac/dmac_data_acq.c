@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  °æÈ¨ËùÓĞ (C), 2001-2011, »ªÎª¼¼ÊõÓĞÏŞ¹«Ë¾
-
- ******************************************************************************
-  ÎÄ ¼ş Ãû   : dmac_data_acq.c
-  °æ ±¾ ºÅ   : ³õ¸å
-  ×÷    Õß   : z00241943
-  Éú³ÉÈÕÆÚ   : 2014Äê4ÔÂ22ÈÕ
-  ×î½üĞŞ¸Ä   :
-  ¹¦ÄÜÃèÊö   : DMACÊı¾İ²É¼¯ÎÄ¼ş
-  º¯ÊıÁĞ±í   :
-  ĞŞ¸ÄÀúÊ·   :
-  1.ÈÕ    ÆÚ   : 2014Äê4ÔÂ22ÈÕ
-    ×÷    Õß   : z00241943
-    ĞŞ¸ÄÄÚÈİ   : ´´½¨ÎÄ¼ş
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -56,60 +39,19 @@ dmac_data_acq_stru           g_st_data_acq;         /* Êı¾İ²É¼¯È«¾Ö±äÁ¿£¬±£´æÊı²
 /*****************************************************************************
   3 º¯ÊıÊµÏÖ
 *****************************************************************************/
-/*****************************************************************************
- º¯ Êı Ãû  : dmac_data_acq_get_send_flag
- ¹¦ÄÜÃèÊö  : »ñÈ¡daq·¢ËÍ±êÊ¶£ºÓÃÓÚÅĞ¶ÏÇı¶¯²àÊÇ·ñ¿ÉÒÔ·¢ËÍÏÂÒ»ÅúÊı¾İ
- Êä³ö²ÎÊı  : ÎŞ
- ·µ »Ø Öµ  : OAL_STATIC oal_bool_enum_uint8
- µ÷ÓÃº¯Êı  :
- ±»µ÷º¯Êı  :
 
- ĞŞ¸ÄÀúÊ·      :
-  1.ÈÕ    ÆÚ   : 2014Äê5ÔÂ14ÈÕ
-    ×÷    Õß   : z00241943
-    ĞŞ¸ÄÄÚÈİ   : ĞÂÉú³Éº¯Êı
-
-*****************************************************************************/
 OAL_STATIC oal_bool_enum_uint8 dmac_data_acq_get_send_flag(oal_void)
 {
     return g_st_data_acq.en_daq_apprecv_ready;
 }
 
-/*****************************************************************************
- º¯ Êı Ãû  : dmac_data_acq_set_send_flag
- ¹¦ÄÜÃèÊö  : ÉèÖÃdaqµÄ·¢ËÍ±êÊ¶
- ÊäÈë²ÎÊı  : oal_bool_enum  en_bool
- Êä³ö²ÎÊı  : ÎŞ
- ·µ »Ø Öµ  : OAL_STATIC oal_void
- µ÷ÓÃº¯Êı  :
- ±»µ÷º¯Êı  :
 
- ĞŞ¸ÄÀúÊ·      :
-  1.ÈÕ    ÆÚ   : 2014Äê5ÔÂ14ÈÕ
-    ×÷    Õß   : z00241943
-    ĞŞ¸ÄÄÚÈİ   : ĞÂÉú³Éº¯Êı
-
-*****************************************************************************/
 OAL_STATIC oal_void dmac_data_acq_set_send_flag(oal_bool_enum_uint8  en_bool)
 {
     g_st_data_acq.en_daq_apprecv_ready = en_bool;
 }
 
-/*****************************************************************************
- º¯ Êı Ãû  : dmac_data_acq_mem_alloc
- ¹¦ÄÜÃèÊö  : Êı¾İ²É¼¯Ä£¿éÄÚ´æÊÍ·Å
- ÊäÈë²ÎÊı  : ÎŞ
- Êä³ö²ÎÊı  : ÎŞ
- ·µ »Ø Öµ  : OAL_SUCC
- µ÷ÓÃº¯Êı  :
- ±»µ÷º¯Êı  :
 
- ĞŞ¸ÄÀúÊ·      :
-  1.ÈÕ    ÆÚ   : 2014Äê4ÔÂ18ÈÕ
-    ×÷    Õß   : z00241943
-    ĞŞ¸ÄÄÚÈİ   : ĞÂÉú³Éº¯Êı
-
-*****************************************************************************/
 oal_uint32  dmac_data_acq_mem_free(oal_void)
 {
     if (OAL_PTR_NULL != g_st_data_acq.st_daq_prep_info.puc_start_addr)
@@ -121,21 +63,7 @@ oal_uint32  dmac_data_acq_mem_free(oal_void)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- º¯ Êı Ãû  : dmac_data_acq_mem_alloc
- ¹¦ÄÜÃèÊö  : Êı¾İ²É¼¯Ä£¿éÄÚ´æÉêÇë
- ÊäÈë²ÎÊı  : ÎŞ
- Êä³ö²ÎÊı  : ÎŞ
- ·µ »Ø Öµ  : OAL_SUCC
- µ÷ÓÃº¯Êı  :
- ±»µ÷º¯Êı  :
 
- ĞŞ¸ÄÀúÊ·      :
-  1.ÈÕ    ÆÚ   : 2014Äê4ÔÂ18ÈÕ
-    ×÷    Õß   : z00241943
-    ĞŞ¸ÄÄÚÈİ   : ĞÂÉú³Éº¯Êı
-
-*****************************************************************************/
 oal_uint32 dmac_data_acq_mem_alloc(oal_void)
 {
     /*  ÏÈÊÍ·ÅÄÚ´æ */
@@ -156,21 +84,7 @@ oal_uint32 dmac_data_acq_mem_alloc(oal_void)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- º¯ Êı Ãû  : dmac_data_acq_prepare
- ¹¦ÄÜÃèÊö  : ÅäÖÃÊı¾İ²É¼¯MAC¼Ä´æÆ÷
- ÊäÈë²ÎÊı  : pst_mac_vap --- vapÖ¸Õë,  puc_param --ÃüÁîÄÚÈİ, pst_device--deviceÖ¸Õë
- Êä³ö²ÎÊı  : ÎŞ
- ·µ »Ø Öµ  :
- µ÷ÓÃº¯Êı  :
- ±»µ÷º¯Êı  :
 
- ĞŞ¸ÄÀúÊ·      :
-  1.ÈÕ    ÆÚ   : 2014Äê4ÔÂ22ÈÕ
-    ×÷    Õß   : zhangyu
-    ĞŞ¸ÄÄÚÈİ   : ĞÂÉú³Éº¯Êı
-
-*****************************************************************************/
 oal_uint32  dmac_data_acq_prepare(mac_vap_stru *pst_mac_vap,oal_uint8 *puc_param, mac_device_stru *pst_device)
 {
     oal_uint32                  ul_offset = 0;
@@ -263,21 +177,7 @@ oal_uint32  dmac_data_acq_prepare(mac_vap_stru *pst_mac_vap,oal_uint8 *puc_param
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- º¯ Êı Ãû  : dmac_data_acq_condition
- ¹¦ÄÜÃèÊö  : ÅäÖÃÊı¾İ²É¼¯PHY¼Ä´æÆ÷
- ÊäÈë²ÎÊı  : pst_mac_vap --- vapÖ¸Õë,  puc_param --ÃüÁîÄÚÈİ, pst_device--deviceÖ¸Õë
- Êä³ö²ÎÊı  : ÎŞ
- ·µ »Ø Öµ  :
- µ÷ÓÃº¯Êı  :
- ±»µ÷º¯Êı  :
 
- ĞŞ¸ÄÀúÊ·      :
-  1.ÈÕ    ÆÚ   : 2014Äê4ÔÂ22ÈÕ
-    ×÷    Õß   : zhangyu
-    ĞŞ¸ÄÄÚÈİ   : ĞÂÉú³Éº¯Êı
-
-*****************************************************************************/
 oal_uint32  dmac_data_acq_condition(mac_vap_stru *pst_mac_vap,oal_uint8 *puc_param, mac_device_stru *pst_device)
 {
     oal_uint32                  ul_offset = 0;
@@ -374,21 +274,7 @@ oal_uint32  dmac_data_acq_condition(mac_vap_stru *pst_mac_vap,oal_uint8 *puc_par
 
     return OAL_SUCC;
 }
-/*****************************************************************************
- º¯ Êı Ãû  : dmac_data_acq_enable
- ¹¦ÄÜÃèÊö  : ÅäÖÃÊı¾İ²É¼¯MAC¼Ä´æÆ÷
- ÊäÈë²ÎÊı  : pst_mac_vap --- vapÖ¸Õë,  puc_param --ÃüÁîÄÚÈİ, pst_device--deviceÖ¸Õë
- Êä³ö²ÎÊı  : ÎŞ
- ·µ »Ø Öµ  :
- µ÷ÓÃº¯Êı  :
- ±»µ÷º¯Êı  :
 
- ĞŞ¸ÄÀúÊ·      :
-  1.ÈÕ    ÆÚ   : 2014Äê4ÔÂ22ÈÕ
-    ×÷    Õß   : zhangyu
-    ĞŞ¸ÄÄÚÈİ   : ĞÂÉú³Éº¯Êı
-
-*****************************************************************************/
 oal_uint32  dmac_data_acq_enable(mac_vap_stru *pst_mac_vap,oal_uint8 *puc_param, mac_device_stru *pst_device)
 {
     if ((DMAC_DATA_ACQ_STATUS_PHY_REG != g_st_data_acq.en_daq_status) && (DMAC_DATA_ACQ_STATUS_COMPLETE != g_st_data_acq.en_daq_status))
@@ -411,21 +297,7 @@ oal_uint32  dmac_data_acq_enable(mac_vap_stru *pst_mac_vap,oal_uint8 *puc_param,
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- º¯ Êı Ãû  : dmac_data_acq_get_status
- ¹¦ÄÜÃèÊö  : »ñÈ¡Êı¾İ²É¼¯Íê³É×´Ì¬
- ÊäÈë²ÎÊı  : pst_mac_vap --- vapÖ¸Õë,  puc_param --ÃüÁîÄÚÈİ, pst_device--deviceÖ¸Õë
- Êä³ö²ÎÊı  : ÎŞ
- ·µ »Ø Öµ  :
- µ÷ÓÃº¯Êı  :
- ±»µ÷º¯Êı  :
 
- ĞŞ¸ÄÀúÊ·      :
-  1.ÈÕ    ÆÚ   : 2014Äê4ÔÂ22ÈÕ
-    ×÷    Õß   : zhangyu
-    ĞŞ¸ÄÄÚÈİ   : ĞÂÉú³Éº¯Êı
-
-*****************************************************************************/
 oal_uint32  dmac_data_acq_get_status(mac_vap_stru *pst_mac_vap,oal_uint8 *puc_param, mac_device_stru *pst_device)
 {
     oal_uint32                  ul_reg_value = 0;
@@ -443,23 +315,7 @@ oal_uint32  dmac_data_acq_get_status(mac_vap_stru *pst_mac_vap,oal_uint8 *puc_pa
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- º¯ Êı Ãû  : dmac_data_acq_report_data_info
- ¹¦ÄÜÃèÊö  : ÉÏ±¨Êı²ÉÊı¾İĞÅÏ¢½Ó¿Ú
- ÊäÈë²ÎÊı  : oal_uint8 *puc_daq_addr      Êı²ÉÊı¾İµÄÆ«ÒÆµØÖ·
-             oal_uint32 ul_len            Êı²ÉÊı¾İµÄ³¤¶È
-             oal_netbuf_stru *pst_netbuf  ÉÏ´«ÏûÏ¢µÄÄÚ´æµØÖ·
- Êä³ö²ÎÊı  : ÎŞ
- ·µ »Ø Öµ  : oal_uint32
- µ÷ÓÃº¯Êı  :
- ±»µ÷º¯Êı  :
 
- ĞŞ¸ÄÀúÊ·      :
-  1.ÈÕ    ÆÚ   : 2014Äê5ÔÂ14ÈÕ
-    ×÷    Õß   : z00241943
-    ĞŞ¸ÄÄÚÈİ   : ĞÂÉú³Éº¯Êı
-
-*****************************************************************************/
 oal_uint32 dmac_data_acq_report_data_info(oal_uint8 *puc_daq_addr, oal_uint32 ul_len, oal_netbuf_stru *pst_netbuf)
 {
     dmac_data_acq_info_stru        *pst_daq_data_info           = OAL_PTR_NULL;
@@ -512,23 +368,7 @@ oal_uint32 dmac_data_acq_report_data_info(oal_uint8 *puc_daq_addr, oal_uint32 ul
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- º¯ Êı Ãû  : dmac_data_acq_report_data_unit
- ¹¦ÄÜÃèÊö  : ÉÏ±¨Êı²ÉÊı¾İµ¥Ôª½Ó¿Ú
- ÊäÈë²ÎÊı  : oal_uint8 *puc_daq_addr      Êı²ÉÊı¾İµÄÆ«ÒÆµØÖ·
-             oal_uint32 ul_len            Êı²Éµ¥ÔªµÄ´¿Êı¾İ³¤¶È
-             oal_netbuf_stru *pst_netbuf  ÉÏ´«ÏûÏ¢µÄÄÚ´æµØÖ·
- Êä³ö²ÎÊı  : ÎŞ
- ·µ »Ø Öµ  : oal_uint32
- µ÷ÓÃº¯Êı  :
- ±»µ÷º¯Êı  :
 
- ĞŞ¸ÄÀúÊ·      :
-  1.ÈÕ    ÆÚ   : 2014Äê5ÔÂ14ÈÕ
-    ×÷    Õß   : z00241943
-    ĞŞ¸ÄÄÚÈİ   : ĞÂÉú³Éº¯Êı
-
-*****************************************************************************/
 oal_uint32 dmac_data_acq_report_data_unit(oal_uint8 *puc_daq_addr, oal_uint32 ul_len, oal_netbuf_stru *pst_netbuf)
 {
     dmac_data_acq_data_head_stru   *pst_daq_data_head;
@@ -563,21 +403,7 @@ oal_uint32 dmac_data_acq_report_data_unit(oal_uint8 *puc_daq_addr, oal_uint32 ul
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- º¯ Êı Ãû  : dmac_data_acq_report_data
- ¹¦ÄÜÃèÊö  : ÉÏ±¨Êı¾İ²É¼¯½á¹û
- ÊäÈë²ÎÊı  : oal_uint8 *puc_daq_addr    Êı²ÉÊı¾İµÄÆ«ÒÆµØÖ·
-             oal_uint32 ul_len          Êı²ÉÊı¾İµÄ³¤¶È
- Êä³ö²ÎÊı  : ÎŞ
- ·µ »Ø Öµ  : oal_uint32
- µ÷ÓÃº¯Êı  :
- ±»µ÷º¯Êı  :
 
- ĞŞ¸ÄÀúÊ·      :
-  1.ÈÕ    ÆÚ   : 2014Äê5ÔÂ14ÈÕ
-    ×÷    Õß   : z00241943
-    ĞŞ¸ÄÄÚÈİ   : ĞÂÉú³Éº¯Êı
-*****************************************************************************/
 oal_uint32 dmac_data_acq_report_data(oal_uint8 *puc_daq_addr, oal_uint32 ul_len, oal_netbuf_stru *pst_netbuf)
 {
     oal_uint8                      *puc_data_offset             = OAL_PTR_NULL;
@@ -668,20 +494,7 @@ oal_uint32 dmac_data_acq_report_data(oal_uint8 *puc_daq_addr, oal_uint32 ul_len,
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- º¯ Êı Ãû  : dmac_data_acq_workqueue
- ¹¦ÄÜÃèÊö  : ÉÏ±¨Êı¾İ²É¼¯½á¹û
- ÊäÈë²ÎÊı  : oal_work_stru *pst_work    ¹¤×÷¶ÓÁĞ
- Êä³ö²ÎÊı  : ÎŞ
- ·µ »Ø Öµ  : oal_uint32
- µ÷ÓÃº¯Êı  :
- ±»µ÷º¯Êı  :
 
- ĞŞ¸ÄÀúÊ·      :
-  1.ÈÕ    ÆÚ   : 2014Äê5ÔÂ14ÈÕ
-    ×÷    Õß   : z00241943
-    ĞŞ¸ÄÄÚÈİ   : ĞÂÉú³Éº¯Êı
-*****************************************************************************/
 oal_void dmac_data_acq_workqueue(oal_work_stru *pst_work)
 {
     oal_uint32                      ul_ret;
@@ -712,21 +525,7 @@ oal_void dmac_data_acq_workqueue(oal_work_stru *pst_work)
     }
 }
 
-/*****************************************************************************
- º¯ Êı Ãû  : dmac_data_acq_get_record
- ¹¦ÄÜÃèÊö  : »ñÈ¡²É¼¯µÄÊı¾İ
- ÊäÈë²ÎÊı  : pst_mac_vap --- vapÖ¸Õë,  puc_param --ÃüÁîÄÚÈİ
- Êä³ö²ÎÊı  : ÎŞ
- ·µ »Ø Öµ  :
- µ÷ÓÃº¯Êı  :
- ±»µ÷º¯Êı  :
 
- ĞŞ¸ÄÀúÊ·      :
-  1.ÈÕ    ÆÚ   : 2014Äê4ÔÂ22ÈÕ
-    ×÷    Õß   : zhangyu
-    ĞŞ¸ÄÄÚÈİ   : ĞÂÉú³Éº¯Êı
-
-*****************************************************************************/
 oal_uint32  dmac_data_acq_get_record(oal_void)
 {
     oal_netbuf_stru                *pst_queue_netbuf;
@@ -770,21 +569,7 @@ oal_uint32  dmac_data_acq_get_record(oal_void)
 }
 
 
-/*****************************************************************************
- º¯ Êı Ãû  : dmac_config_data_acq
- ¹¦ÄÜÃèÊö  : Êı¾İ²É¼¯ÅäÖÃÃüÁîÈë¿Ú
- ÊäÈë²ÎÊı  : pst_mac_vap --- vapÖ¸Õë,  uc_len --ÃüÁî³¤¶È, puc_param--ÃüÁîÄÚÈİ
- Êä³ö²ÎÊı  : ÎŞ
- ·µ »Ø Öµ  :
- µ÷ÓÃº¯Êı  :
- ±»µ÷º¯Êı  :
 
- ĞŞ¸ÄÀúÊ·      :
-  1.ÈÕ    ÆÚ   : 2014Äê4ÔÂ22ÈÕ
-    ×÷    Õß   : zhangyu
-    ĞŞ¸ÄÄÚÈİ   : ĞÂÉú³Éº¯Êı
-
-*****************************************************************************/
 oal_uint32  dmac_config_data_acq(mac_vap_stru *pst_mac_vap, oal_uint8 uc_len, oal_uint8 *puc_param)
 {
     dmac_data_acq_enum_uint8    en_data_acq = 0;
@@ -843,21 +628,7 @@ oal_uint32  dmac_config_data_acq(mac_vap_stru *pst_mac_vap, oal_uint8 uc_len, oa
     return ul_ret;
 }
 
-/*****************************************************************************
- º¯ Êı Ãû  : dmac_data_acq_recv_msg
- ¹¦ÄÜÃèÊö  : dmac_data_acqÌØĞÔnetlink½ÓÊÕ´¦ÀíÈë¿Úº¯Êı
- ÊäÈë²ÎÊı  : puc_data: ÊäÈëÊı¾İ
-             ul_len  : Êı¾İ³¤¶È
- Êä³ö²ÎÊı  : ÎŞ
- ·µ »Ø Öµ  :
- µ÷ÓÃº¯Êı  :
- ±»µ÷º¯Êı  :
 
- ĞŞ¸ÄÀúÊ·      :
-  1.ÈÕ    ÆÚ   : 2014Äê5ÔÂ14ÈÕ
-    ×÷    Õß   : z00241943
-    ĞŞ¸ÄÄÚÈİ   : ĞÂÉú³Éº¯Êı
-*****************************************************************************/
 oal_uint32  dmac_data_acq_recv_msg(oal_uint8 *puc_data, oal_uint32 ul_len)
 {
     dmac_data_acq_data_head_stru   *pst_frag_hdr;
@@ -890,21 +661,7 @@ oal_uint32  dmac_data_acq_recv_msg(oal_uint8 *puc_data, oal_uint32 ul_len)
     return OAL_SUCC;
 
 }
-/*****************************************************************************
- º¯ Êı Ãû  : dmac_data_acq_init
- ¹¦ÄÜÃèÊö  : Êı¾İ²É¼¯¹¦ÄÜDmac³õÊ¼»¯
- ÊäÈë²ÎÊı  : ÎŞ
- Êä³ö²ÎÊı  : ÎŞ
- ·µ »Ø Öµ  : OAL_SUCC
- µ÷ÓÃº¯Êı  :
- ±»µ÷º¯Êı  :
 
- ĞŞ¸ÄÀúÊ·      :
-  1.ÈÕ    ÆÚ   : 2014Äê4ÔÂ18ÈÕ
-    ×÷    Õß   : z00241943
-    ĞŞ¸ÄÄÚÈİ   : ĞÂÉú³Éº¯Êı
-
-*****************************************************************************/
 oal_uint32  dmac_data_acq_init(oal_void)
 {
     /* ³õÊ¼»¯Êı¾İ²É¼¯½á¹¹Ìå */
@@ -924,21 +681,7 @@ oal_uint32  dmac_data_acq_init(oal_void)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- º¯ Êı Ãû  : dmac_data_acq_exit
- ¹¦ÄÜÃèÊö  : Êı¾İ²É¼¯¹¦ÄÜDmacÍË³ö
- ÊäÈë²ÎÊı  : ÎŞ
- Êä³ö²ÎÊı  : ÎŞ
- ·µ »Ø Öµ  : OAL_SUCC
- µ÷ÓÃº¯Êı  :
- ±»µ÷º¯Êı  :
 
- ĞŞ¸ÄÀúÊ·      :
-  1.ÈÕ    ÆÚ   : 2014Äê4ÔÂ18ÈÕ
-    ×÷    Õß   : z00241943
-    ĞŞ¸ÄÄÚÈİ   : ĞÂÉú³Éº¯Êı
-
-*****************************************************************************/
 oal_uint32  dmac_data_acq_exit(oal_void)
 {
     /* ÊÍ·ÅÄÚ´æ */

@@ -192,16 +192,7 @@ VOS_UINT32 NAS_EMM_GutiMrrcDataReq(VOS_VOID)
     return NAS_EMM_OK;
 }
 
-/*****************************************************************************
- Function Name  : NAS_EMM_AnyStateMsgGtReCmd
- Discription    : Reg.Normal_Service,SerInit.WtSerCnf,DeregInit.WtCnDetCnf,
-                  MrrcConnInit.WtRrcRelCnf状态下，收到GUTI_REALLOC_CMD
- Input          : 消息ID,消息
- Output         : None
- Return         : None
- History:
-      1.  zhengjunyan 00148421 2009-10-27  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32 NAS_EMM_AnyStateMsgGtReCmd(VOS_UINT32  ulMsgId,
                                       VOS_VOID  *pMsgStru)
 {

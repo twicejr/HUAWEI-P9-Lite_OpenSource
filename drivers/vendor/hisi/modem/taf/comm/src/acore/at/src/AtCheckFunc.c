@@ -14,20 +14,7 @@
 #define    THIS_FILE_ID        PS_FILE_ID_AT_CHECKFUNC_C
 /*lint +e960*/
 
-/******************************************************************************
- 函数名称: atCheckBasicCmdName
- 功能描述: 比较、匹配基本命令名
 
- 参数说明:
-   Char [in] 需检查的字符
-
- 返 回 值: AT_SUCCESS --- 成功
-           AT_FAILURE --- 失败
-
- 调用要求: TODO: ...
- 调用举例: TODO: ...
- 作    者: 崔军强/00064416 [2009-08-10]
-******************************************************************************/
 VOS_UINT32 atCheckBasicCmdName( VOS_UINT8 Char )
 {
     if(    ('e' == Char) || ('E' == Char) || ('v' == Char) || ('V' == Char)
@@ -122,20 +109,7 @@ VOS_UINT32 atNoQuotLetter(VOS_UINT8 Char)
 }
 
 
-/******************************************************************************
- 函数名称: atCheckblank
- 功能描述: 比较、匹配空格
 
- 参数说明:
-   Char [in] 需检查的字符
-
- 返 回 值: AT_SUCCESS --- 成功
-           AT_FAILURE --- 失败
-
- 调用要求: TODO: ...
- 调用举例: TODO: ...
- 作    者: 崔军强/00064416 [2010-06-12]
-******************************************************************************/
 VOS_UINT32 atCheckblank( VOS_UINT8 Char )
 {
     /* 添加-支持作为字符 */
@@ -150,20 +124,7 @@ VOS_UINT32 atCheckblank( VOS_UINT8 Char )
 }
 
 
-/******************************************************************************
- 函数名称: atCheckComma
- 功能描述: 比较、匹配逗号
 
- 参数说明:
-   Char [in] 需检查的字符
-
- 返 回 值: AT_SUCCESS --- 成功
-           AT_FAILURE --- 失败
-
- 调用要求: TODO: ...
- 调用举例: TODO: ...
- 作    者: 崔军强/00064416 [2009-08-10]
-******************************************************************************/
 VOS_UINT32 atCheckComma( VOS_UINT8 Char )
 {
     if( ',' == Char )
@@ -176,20 +137,7 @@ VOS_UINT32 atCheckComma( VOS_UINT8 Char )
     }
 }
 
-/******************************************************************************
- 函数名称: atCheckColon
- 功能描述: 比较、匹配冒号
 
- 参数说明:
-   Char [in] 需检查的字符
-
- 返 回 值: AT_SUCCESS --- 成功
-           AT_FAILURE --- 失败
-
- 调用要求: TODO: ...
- 调用举例: TODO: ...
- 作    者: 崔军强/00064416 [2009-08-10]
-******************************************************************************/
 VOS_UINT32 atCheckColon( VOS_UINT8 Char )
 {
     if( ':' == Char )
@@ -203,20 +151,7 @@ VOS_UINT32 atCheckColon( VOS_UINT8 Char )
 }
 
 
-/******************************************************************************
- 函数名称: atCheckChar0x2f
- 功能描述: 比较、匹配字符/
 
- 参数说明:
-   Char [in] 需检查的字符
-
- 返 回 值: AT_SUCCESS --- 成功
-           AT_FAILURE --- 失败
-
- 调用要求: TODO: ...
- 调用举例: TODO: ...
- 作    者: 崔军强/00064416 [2010-04-02]
-******************************************************************************/
 VOS_UINT32 atCheckChar0x2f( VOS_UINT8 Char )
 {
     if( '/' == Char)
@@ -379,21 +314,7 @@ VOS_UINT32 atCheckNumString( VOS_UINT8 *pData, VOS_UINT16 usLen)
 }
 
 
-/******************************************************************************
- 函数名称: atCheckRightArrowStr
- 功能描述: 判断字符串中是否有">"
 
- 参数说明:
-   pData [in] 需检查的字符串
-   usLen [in] 需检查的长度
-
- 返 回 值: AT_SUCCESS --- 字符串中有 ">"
-           AT_FAILURE --- 字符串中没有 ">"
-
- 调用要求: TODO: ...
- 调用举例: TODO: ...
- 作    者: 崔军强/00064416 [2009-08-10]
-******************************************************************************/
 VOS_UINT32 atCheckRightArrowStr( VOS_UINT8 *pData,VOS_UINT16 usLen )
 {
     VOS_UINT16 usLength = 0;
@@ -414,21 +335,7 @@ VOS_UINT32 atCheckRightArrowStr( VOS_UINT8 *pData,VOS_UINT16 usLen )
     return AT_FAILURE;
 }
 
-/******************************************************************************
- 函数名称: atCheckMmiString
- 功能描述: 判断字符串中是否有"*"和"#"
 
- 参数说明:
-   pData [in] 需检查的字符串
-   usLen [in] 需检查的长度
-
- 返 回 值: AT_SUCCESS --- 字符串中有 "*"或"#"
-           AT_FAILURE --- 字符串中没有 "*"和"#"
-
- 调用要求: TODO: ...
- 调用举例: TODO: ...
- 作    者: 崔军强/00064416 [2009-08-10]
-******************************************************************************/
 VOS_UINT32 atCheckMmiString( VOS_UINT8 *pData,VOS_UINT16 usLen )
 {
     VOS_UINT16 usLength = 0;
@@ -450,20 +357,7 @@ VOS_UINT32 atCheckMmiString( VOS_UINT8 *pData,VOS_UINT16 usLen )
 }
 
 
-/******************************************************************************
- 函数名称: At_CheckStringPara
- 功能描述: 比较、匹配字符串类型
 
- 参数说明:
-   pPara [in/out] 需检查的字符串
-
- 返 回 值: AT_SUCCESS --- 字符串的首尾都是 "
-           AT_FAILURE --- 字符串的首尾不全是 "
-
- 调用要求: TODO: ...
- 调用举例: TODO: ...
- 作    者: 崔军强/00064416 [2009-08-10]
-******************************************************************************/
 VOS_UINT32 At_CheckStringPara( AT_PARSE_PARA_TYPE_STRU *pPara)
 {
     VOS_UINT8 *pData = pPara->aucPara;
@@ -521,20 +415,7 @@ VOS_UINT32 atCheckNoQuotStringPara( AT_PARSE_PARA_TYPE_STRU *pPara)
 }
 
 
-/******************************************************************************
- 函数名称: atCheckNumPara
- 功能描述: 比较、匹配数值类型的参数
 
- 参数说明:
-   pPara [in/out] 需检查的参数
-
- 返 回 值: AT_SUCCESS --- 成功
-           AT_FAILURE --- 失败
-
- 调用要求: TODO: ...
- 调用举例: TODO: ...
- 作    者: 崔军强/00064416 [2009-08-10]
-******************************************************************************/
 VOS_UINT32 atCheckNumPara(AT_PARSE_PARA_TYPE_STRU *pPara)
 {
     VOS_UINT32 i  = 0;
@@ -561,20 +442,7 @@ VOS_UINT32 atCheckNumPara(AT_PARSE_PARA_TYPE_STRU *pPara)
     return AT_FAILURE;
 }
 
-/******************************************************************************
- 函数名称: atCheckCharPara
- 功能描述: 比较、匹配字符范围类型的参数
 
- 参数说明:
-   pPara [in/out] 需检查的参数
-
- 返 回 值: AT_SUCCESS --- 成功
-           AT_FAILURE --- 失败
-
- 调用要求: TODO: ...
- 调用举例: TODO: ...
- 作    者: 崔军强/00064416 [2009-08-10]
-******************************************************************************/
 VOS_UINT32 atCheckCharPara( AT_PARSE_PARA_TYPE_STRU *pPara)
 {
     VOS_UINT8 ucIndex  = 0;
@@ -626,27 +494,7 @@ TAF_UINT32 At_CheckSemicolon( TAF_UINT8 Char )
         return AT_FAILURE;
     }
 }
-/*****************************************************************************
- Prototype      : At_CheckDialNum
- Description    : 比较、匹配拨号字符
- Input          : Char---需检查的字符
- Output         : ---
- Return Value   : AT_SUCCESS --- 成功
-                  AT_FAILURE --- 失败
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-04-19
-    Author      : ---
-    Modification: Created function
- 2.日    期 : 2007-03-27
-    作    者 : h59254
-    修改内容 : 问题单号:A32D09820(PC-Lint修改)
-  3.日    期   : 2012年12月03日
-    作    者   : Y00213812
-    修改内容   : DTS2012120303885,支持BCD编码中的大写字母
-*****************************************************************************/
 TAF_UINT32 At_CheckDialNum( TAF_UINT8 Char )
 {
     if ((Char >= '0') && (Char <= '9'))
@@ -670,24 +518,7 @@ TAF_UINT32 At_CheckDialNum( TAF_UINT8 Char )
         return AT_FAILURE;
     }
 }
-/*****************************************************************************
- Prototype      : At_CheckDmChar
- Description    : 比较、匹配拨号字符
- Input          : Char---需检查的字符
- Output         : ---
- Return Value   : AT_SUCCESS --- 成功
-                  AT_FAILURE --- 失败
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-04-19
-    Author      : ---
-    Modification: Created function
- 2.日    期 : 2007-03-27
-    作    者 : h59254
-    修改内容 : 问题单号:A32D09820(PC-Lint修改)
-*****************************************************************************/
 TAF_UINT32 At_CheckDmChar( TAF_UINT8 Char )
 {
     if( ('*' != Char) && ('#' != Char) )
@@ -777,24 +608,7 @@ TAF_UINT32 At_CheckCharRightArrow( TAF_UINT8 Char )
         return AT_FAILURE;
     }
 }
-/*****************************************************************************
- Prototype      : At_CheckCharG
- Description    : 比较、匹配字符G
- Input          : Char---需检查的字符
- Output         : ---
- Return Value   : AT_SUCCESS --- 成功
-                  AT_FAILURE --- 失败
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-04-19
-    Author      : ---
-    Modification: Created function
- 2.日    期 : 2007-03-27
-    作    者 : h59254
-    修改内容 : 问题单号:A32D09820(PC-Lint修改)
-*****************************************************************************/
 TAF_UINT32 At_CheckCharG( TAF_UINT8 Char )
 {
     if( ('G' == Char) || ('g' == Char) )
@@ -806,24 +620,7 @@ TAF_UINT32 At_CheckCharG( TAF_UINT8 Char )
         return AT_FAILURE;
     }
 }
-/*****************************************************************************
- Prototype      : At_CheckCharI
- Description    : 比较、匹配字符I
- Input          : Char---需检查的字符
- Output         : ---
- Return Value   : AT_SUCCESS --- 成功
-                  AT_FAILURE --- 失败
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-04-19
-    Author      : ---
-    Modification: Created function
- 2.日    期 : 2007-03-27
-    作    者 : h59254
-    修改内容 : 问题单号:A32D09820(PC-Lint修改)
-*****************************************************************************/
 TAF_UINT32 At_CheckCharI( TAF_UINT8 Char )
 {
     if( ('I' == Char) || ('i' == Char) )
@@ -835,24 +632,7 @@ TAF_UINT32 At_CheckCharI( TAF_UINT8 Char )
         return AT_FAILURE;
     }
 }
-/*****************************************************************************
- Prototype      : At_CheckCharS
- Description    : 比较、匹配字符S
- Input          : Char---需检查的字符
- Output         : ---
- Return Value   : AT_SUCCESS --- 成功
-                  AT_FAILURE --- 失败
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-04-19
-    Author      : ---
-    Modification: Created function
- 2.日    期 : 2007-03-27
-    作    者 : h59254
-    修改内容 : 问题单号:A32D09820(PC-Lint修改)
-*****************************************************************************/
 TAF_UINT32 At_CheckCharS( TAF_UINT8 Char )
 {
     if( ('s' == Char) || ('S' == Char) )
@@ -864,24 +644,7 @@ TAF_UINT32 At_CheckCharS( TAF_UINT8 Char )
         return AT_FAILURE;
     }
 }
-/*****************************************************************************
- Prototype      : At_CheckCharD
- Description    : 比较、匹配字符D
- Input          : Char---需检查的字符
- Output         : ---
- Return Value   : AT_SUCCESS --- 成功
-                  AT_FAILURE --- 失败
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-04-19
-    Author      : ---
-    Modification: Created function
- 2.日    期 : 2007-03-27
-    作    者 : h59254
-    修改内容 : 问题单号:A32D09820(PC-Lint修改)
-*****************************************************************************/
 TAF_UINT32 At_CheckCharD( TAF_UINT8 Char )
 {
     if( ('d' == Char) || ('D' == Char) )
@@ -893,24 +656,7 @@ TAF_UINT32 At_CheckCharD( TAF_UINT8 Char )
         return AT_FAILURE;
     }
 }
-/*****************************************************************************
- Prototype      : At_CheckBasicCmdName
- Description    : 比较、匹配基本命令名
- Input          : Char---需检查的字符
- Output         : ---
- Return Value   : AT_SUCCESS --- 成功
-                  AT_FAILURE --- 失败
-                  Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-04-19
-    Author      : ---
-    Modification: Created function
- 2.日    期 : 2007-03-27
-    作    者 : h59254
-    修改内容 : 问题单号:A32D09820(PC-Lint修改)
-*****************************************************************************/
 TAF_UINT32 At_CheckBasicCmdName( TAF_UINT8 Char )
 {
     if( ('e' == Char) || ('E' == Char) || ('v' == Char) || ('V' == Char)
@@ -929,24 +675,7 @@ TAF_UINT32 At_CheckBasicCmdName( TAF_UINT8 Char )
         return AT_FAILURE;
     }
 }
-/*****************************************************************************
- Prototype      : At_CheckCharA
- Description    : 比较、匹配字符A
- Input          : Char---需检查的字符
- Output         : ---
- Return Value   : AT_SUCCESS --- 成功
-                  AT_FAILURE --- 失败
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-04-19
-    Author      : ---
-    Modification: Created function
- 2.日    期 : 2007-03-27
-    作    者 : h59254
-    修改内容 : 问题单号:A32D09820(PC-Lint修改)
-*****************************************************************************/
 TAF_UINT32 At_CheckCharA( TAF_UINT8 Char )
 {
     if( ('a' == Char) || ('A' == Char) )
@@ -958,24 +687,7 @@ TAF_UINT32 At_CheckCharA( TAF_UINT8 Char )
         return AT_FAILURE;
     }
 }
-/*****************************************************************************
- Prototype      : At_CheckCharT
- Description    : 比较、匹配字符T
- Input          : Char---需检查的字符
- Output         : ---
- Return Value   : AT_SUCCESS --- 成功
-                  AT_FAILURE --- 失败
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-04-19
-    Author      : ---
-    Modification: Created function
- 2.日    期 : 2007-03-27
-    作    者 : h59254
-    修改内容 : 问题单号:A32D09820(PC-Lint修改)
-*****************************************************************************/
 TAF_UINT32 At_CheckCharT( TAF_UINT8 Char )
 {
     if( ('t' == Char) || ('T' == Char) )
@@ -987,24 +699,7 @@ TAF_UINT32 At_CheckCharT( TAF_UINT8 Char )
         return AT_FAILURE;
     }
 }
-/*****************************************************************************
- Prototype      : At_CheckCharPlus
- Description    : 比较、匹配字符+
- Input          : Char---需检查的字符
- Output         : ---
- Return Value   : AT_SUCCESS --- 成功
-                  AT_FAILURE --- 失败
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-04-19
-    Author      : ---
-    Modification: Created function
- 2.日    期 : 2007-03-27
-    作    者 : h59254
-    修改内容 : 问题单号:A32D09820(PC-Lint修改)
-*****************************************************************************/
 TAF_UINT32 At_CheckCharPlus( TAF_UINT8 Char )
 {
     if( ('+' == Char) || ('^' == Char) || ('$' == Char))
@@ -1068,24 +763,7 @@ TAF_UINT32 At_CheckRightBracket( TAF_UINT8 Char )
         return AT_FAILURE;
     }
 }
-/*****************************************************************************
- Prototype      : At_CheckDigit
- Description    : 比较、匹配数字
- Input          : Char---需检查的字符
- Output         : ---
- Return Value   : AT_SUCCESS --- 成功
-                  AT_FAILURE --- 失败
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-04-19
-    Author      : ---
-    Modification: Created function
- 2.日    期 : 2007-03-27
-    作    者 : h59254
-    修改内容 : 问题单号:A32D09820(PC-Lint修改)
-*****************************************************************************/
 TAF_UINT32 At_CheckDigit( TAF_UINT8 Char )
 {
     if( (Char >= '0') && (Char <= '9') )
@@ -1097,24 +775,7 @@ TAF_UINT32 At_CheckDigit( TAF_UINT8 Char )
         return AT_FAILURE;
     }
 }
-/*****************************************************************************
- Prototype      : At_CheckLetter
- Description    : 比较、匹配字母
- Input          : Char---需检查的字符
- Output         : ---
- Return Value   : AT_SUCCESS --- 成功
-                  AT_FAILURE --- 失败
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-04-19
-    Author      : ---
-    Modification: Created function
- 2.日    期 : 2007-03-27
-    作    者 : h59254
-    修改内容 : 问题单号:A32D09820(PC-Lint修改)
-*****************************************************************************/
 TAF_UINT32 At_CheckLetter( TAF_UINT8 Char )
 {
     if( ((Char >= 'a') && (Char <= 'z')) || ((Char >= 'A') && (Char <= 'Z')) || ('_' == Char) || ('&' == Char))
@@ -1126,24 +787,7 @@ TAF_UINT32 At_CheckLetter( TAF_UINT8 Char )
         return AT_FAILURE;
     }
 }
-/*****************************************************************************
- Prototype      : At_CheckUpLetter
- Description    : 比较、匹配字母A-Z
- Input          : Char---需检查的字符
- Output         : ---
- Return Value   : AT_SUCCESS --- 成功
-                  AT_FAILURE --- 失败
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-04-19
-    Author      : ---
-    Modification: Created function
- 2.日    期 : 2007-03-27
-    作    者 : h59254
-    修改内容 : 问题单号:A32D09820(PC-Lint修改)
-*****************************************************************************/
 TAF_UINT32 At_CheckUpLetter( TAF_UINT8 Char )
 {
     if( (Char >= 'A') && (Char <= 'Z') )
@@ -1155,30 +799,7 @@ TAF_UINT32 At_CheckUpLetter( TAF_UINT8 Char )
         return AT_FAILURE;
     }
 }
-/*****************************************************************************
- Prototype      : At_CheckChar
- Description    : 比较、匹配字符
- Input          : Char---需检查的字符
- Output         : ---
- Return Value   : AT_SUCCESS --- 成功
-                  AT_FAILURE --- 失败
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-04-19
-    Author      : ---
-    Modification: Created function
- 2.日    期 : 2007-03-27
-    作    者 : h59254
-    修改内容 : 问题单号:A32D09820(PC-Lint修改)
- 3.日    期 : 2010-12-25
-   作    者 : w00166186
-   修改内容 : VDF后台对接项目，增加对^DNSP，^DNSS的处理
- 4.日    期 : 2011-10-9
-   作    者 : c64416
-   修改内容 : 增加对MDATE命令中的'-'的处理
-*****************************************************************************/
 TAF_UINT32 At_CheckChar( TAF_UINT8 Char )
 {
     if( ((Char >= 'a') && (Char <= 'z')) || ((Char >= 'A') && (Char <= 'Z')) || ((Char >= '0') && (Char <= '9')) || ('*' == Char) || ('#' == Char) || ('-' == Char) || ('.' == Char) )
@@ -1296,21 +917,7 @@ TAF_UINT32 At_CheckQuot( TAF_UINT8 Char )
         return AT_FAILURE;
     }
 }
-/*****************************************************************************
- 函 数 名  : At_CheckHorizontalLine
- 功能描述  :
- 输入参数  : TAF_UINT8 Char
- 输出参数  : 无
- 返 回 值  : TAF_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年9月2日
-    作    者   : luojian id:107747
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_UINT32 At_CheckHorizontalLine( TAF_UINT8 Char )
 {
     if( '-' == Char )
@@ -1401,24 +1008,7 @@ TAF_UINT32 At_CheckNoQuot( TAF_UINT8 Char )
         return AT_FAILURE;
     }
 }
-/*****************************************************************************
- Prototype      : At_CheckCharE
- Description    : 比较、匹配字符E
- Input          : Char---需检查的字符
- Output         : ---
- Return Value   : AT_SUCCESS --- 成功
-                  AT_FAILURE --- 失败
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-04-19
-    Author      : ---
-    Modification: Created function
- 2.日    期 : 2007-03-27
-    作    者 : h59254
-    修改内容 : 问题单号:A32D09820(PC-Lint修改)
-*****************************************************************************/
 TAF_UINT32 At_CheckCharE( TAF_UINT8 Char )
 {
     if( ('e' == Char) || ('E' == Char) )
@@ -1482,24 +1072,7 @@ TAF_UINT32 At_CheckChar0( TAF_UINT8 Char )
         return AT_FAILURE;
     }
 }
-/*****************************************************************************
- Prototype      : At_CheckCharV
- Description    : 比较、匹配字符E
- Input          : Char---需检查的字符
- Output         : ---
- Return Value   : AT_SUCCESS --- 成功
-                  AT_FAILURE --- 失败
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-04-19
-    Author      : ---
-    Modification: Created function
- 2.日    期 : 2007-03-27
-    作    者 : h59254
-    修改内容 : 问题单号:A32D09820(PC-Lint修改)
-*****************************************************************************/
 TAF_UINT32 At_CheckCharV( TAF_UINT8 Char )
 {
     if( ('v' == Char) || ('V' == Char) )
@@ -1511,24 +1084,7 @@ TAF_UINT32 At_CheckCharV( TAF_UINT8 Char )
         return AT_FAILURE;
     }
 }
-/*****************************************************************************
- Prototype      : At_CheckCharF
- Description    : 比较、匹配字符F
- Input          : Char---需检查的字符
- Output         : ---
- Return Value   : AT_SUCCESS --- 成功
-                  AT_FAILURE --- 失败
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-04-19
-    Author      : ---
-    Modification: Created function
- 2.日    期 : 2007-03-27
-    作    者 : h59254
-    修改内容 : 问题单号:A32D09820(PC-Lint修改)
-*****************************************************************************/
 TAF_UINT32 At_CheckCharF( TAF_UINT8 Char )
 {
     if( ('f' == Char) || ('F' == Char) )
@@ -1566,25 +1122,7 @@ TAF_UINT32 At_CheckChar0x26( TAF_UINT8 Char )
         return AT_FAILURE;
     }
 }
-/*****************************************************************************
- Prototype      : At_CheckNumString
- Description    : 比较、匹配数字
- Input          : pData --- 需检查的字符串
-                  usLen --- 需检查的长度
- Output         : ---
- Return Value   : AT_SUCCESS --- 成功
-                  AT_FAILURE --- 失败
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-04-19
-    Author      : ---
-    Modification: Created function
- 2.日    期 : 2007-03-27
-    作    者 : h59254
-    修改内容 : 问题单号:A32D09820(PC-Lint修改)
-*****************************************************************************/
 TAF_UINT32 At_CheckNumString( TAF_UINT8 *pData,TAF_UINT16 usLen )
 {
     TAF_UINT16 usLength = 0;
@@ -1612,22 +1150,7 @@ TAF_UINT32 At_CheckNumString( TAF_UINT8 *pData,TAF_UINT16 usLen )
     return AT_SUCCESS;
 }
 
-/*****************************************************************************
- Prototype      : At_CheckNumCharString
- Description    : 比较、匹配数字以及字符('a'~'z','A'~'Z')
- Input          : pData --- 需检查的字符串
-                  usLen --- 需检查的长度
- Output         : ---
- Return Value   : AT_SUCCESS --- 成功
-                  AT_FAILURE --- 失败
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2010-06-27
-    Author      : w00167002
-    Modification: Created function
-*****************************************************************************/
 TAF_UINT32 At_CheckNumCharString( TAF_UINT8 *pData,TAF_UINT16 usLen )
 {
     TAF_UINT16 usLength = 0;
@@ -1694,25 +1217,7 @@ TAF_UINT32 At_CheckRightArrowStr( TAF_UINT8 *pData,TAF_UINT16 usLen )
     }
     return AT_FAILURE;
 }
-/*****************************************************************************
- Prototype      : At_CheckMmiString
- Description    : 比较、匹配数字
- Input          : pData --- 需检查的字符串
-                  usLen --- 需检查的长度
- Output         : ---
- Return Value   : AT_SUCCESS --- 成功
-                  AT_FAILURE --- 失败
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-04-19
-    Author      : ---
-    Modification: Created function
- 2.日    期 : 2007-03-27
-    作    者 : h59254
-    修改内容 : 问题单号:A32D09820(PC-Lint修改)
-*****************************************************************************/
 TAF_UINT32 At_CheckMmiString( TAF_UINT8 *pData,TAF_UINT16 usLen )
 {
     TAF_UINT16 usLength = 0;
@@ -1787,29 +1292,7 @@ VOS_UINT32 At_CheckEnd( VOS_UINT8 Char )
     }
 }
 
-/*****************************************************************************
- 函 数 名  : AT_CheckDateFormat
- 功能描述  : 检查下述类型日期格式
-             日期格式2009-12-31 10:10:10
-             即第5个字节为'-'
-               第8个字节为'-'
-               第11个字节为' '
-               第14个字节为':'
-               第17个字节为':'
- 输入参数  : VOS_UINT8  *pucDateStr 日期字符串首地址
-             VOS_UINT32 ulDateStrLen日期字符串长度
- 输出参数  : 无
- 返 回 值  : AT_OK    日期格式符合检查要求；
-             AT_ERROR 日期格式不符合检查要求；
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月19日
-    作    者   : 傅映君/f62575
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_CheckDateFormat(
     VOS_UINT8                           *pucDateStr,
     VOS_UINT32                          ulDateStrLen
@@ -1857,22 +1340,7 @@ VOS_UINT32 AT_CheckDateFormat(
     return AT_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetDaysForEachMonth
- 功能描述  : 获得每个月的天数
- 输入参数  : ulYear    - 年份
-             ulMonth    - 月份
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 : 指定年月的天数
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月1日
-    作    者   : 傅映君/f62575
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_GetDaysForEachMonth(
     VOS_UINT32                          ulYear,
     VOS_UINT32                          ulMonth
@@ -1905,22 +1373,7 @@ VOS_UINT32 AT_GetDaysForEachMonth(
     }
 }
 
-/*****************************************************************************
- 函 数 名  :  AT_CheckDate
- 功能描述  : 日期有效性检查
- 输入参数  : MN_DATE_STRU                        *pstDate
- 输出参数  : 无
- 返 回 值  : AT_ERROR   日期有效性检查失败
-             AT_OK      日期有效性检查成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月19日
-    作    者   : 傅映君/f62575
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  AT_CheckDate(
     AT_DATE_STRU                        *pstDate
 )
@@ -1956,23 +1409,7 @@ VOS_UINT32  AT_CheckDate(
     return AT_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetDate
- 功能描述  : 获取日期格式类型1(2009-12-31 10:10:10)的日期
- 输入参数  : VOS_UINT8                           *pucDateStr
-             VOS_UINT32                          ulDateStrLen
- 输出参数  : AT_DATE_STRU                        *pstDate
- 返 回 值  : AT_ERROR   获取日期失败
-             AT_OK      获取日期成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月19日
-    作    者   : 傅映君/f62575
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  AT_GetDate(
     VOS_UINT8                           *pucDateStr,
     VOS_UINT32                          ulDateStrLen,
@@ -2032,23 +1469,7 @@ VOS_UINT32  AT_GetDate(
     return AT_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : At_CheckAndParsePara
- 功能描述  : 把有效字符串中的某一段拷贝到AT参数中,pstAtPara指示要存储的参数地址,
-             pucBegain指示开始地址,pEnd指示结束地址
- 输入参数  :  pucBegain --- 被转换字串的开始地址
-              pucEnd    --- 被转换字串的结束地址
- 输出参数  :  pstAtPara    --- 要存储的参数地址,
- 返 回 值  :  AT_OK: copy成功;AT_ERROR,长度错误或字符串为空
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年8月12日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 At_CheckAndParsePara(
     AT_PARSE_PARA_TYPE_STRU             *pstAtPara,
     VOS_UINT8                           *pucBegain,
@@ -2073,23 +1494,7 @@ VOS_UINT32 At_CheckAndParsePara(
 
 }
 
-/*****************************************************************************
- 函 数 名  : AT_CheckStrStartWith
- 功能描述  : 判断输入的字符串是否是以某个前缀开头
- 输入参数  : pLineStr -  输入字符串
-             pPefixStr - 前缀字符串
- 输出参数  : 无
- 返 回 值  : VOS_TRUE - 成功
-             VOS_FALSE - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年9月9日
-    作    者   : z00161729
-    修改内容   : 新生成函数,问题单:DTS2010111200726:CS呼叫不支持电话号码中存在*、＃字符
-
-*****************************************************************************/
 VOS_UINT32 AT_CheckStrStartWith(
     VOS_UINT8                          *pucLineStr,
     VOS_UINT8                          *pucPefixStr

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : oam_linux_netlink.c
-  版 本 号   : 初稿
-  作    者   : z00241943
-  生成日期   : 2014年5月15日
-  最近修改   :
-  功能描述   : netlink处理文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年5月15日
-    作    者   : z00241943
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -62,21 +45,7 @@ typedef struct
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : oam_netlink_ops_register
- 功能描述  : WAL模块向其它模块提供的注册netlink消息处理函数(接收方向)
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月17日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  oam_netlink_ops_register(oam_nl_cmd_enum_uint8 en_type, oal_uint32 (*p_func)(oal_uint8 *puc_data, oal_uint32 ul_len))
 {
     if (OAL_UNLIKELY(OAL_PTR_NULL == p_func))
@@ -117,21 +86,7 @@ oal_void  oam_netlink_ops_register(oam_nl_cmd_enum_uint8 en_type, oal_uint32 (*p
     }
 }
 
-/*****************************************************************************
- 函 数 名  : oam_netlink_ops_unregister
- 功能描述  : OAM模块向其它模块提供的卸载netlink消息处理函数(接收方向)
- 输入参数  : en_type: 模块类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月22日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  oam_netlink_ops_unregister(oam_nl_cmd_enum_uint8 en_type)
 {
     switch (en_type)
@@ -166,21 +121,7 @@ oal_void  oam_netlink_ops_unregister(oam_nl_cmd_enum_uint8 en_type)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : oam_netlink_kernel_recv
- 功能描述  : netlink消息接收函数(方向: host app -> 内核)
- 输入参数  : pst_buf: 输入数据
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月15日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  oam_netlink_kernel_recv(oal_netbuf_stru *pst_buf)
 {
     oal_netbuf_stru     *pst_netbuf;
@@ -251,24 +192,7 @@ oal_void  oam_netlink_kernel_recv(oal_netbuf_stru *pst_buf)
     oal_netbuf_free(pst_netbuf);
 }
 
-/*****************************************************************************
- 函 数 名  : oam_netlink_kernel_send
- 功能描述  : netlink消息发送函数(方向: 内核 -> host app)
- 输入参数  : puc_data   : 输入数据
-             ul_data_len: 数据长度
-             en_type    : netlink msg类型
- 输出参数  : 无
- 返 回 值  : 成功: 发送的字节数(netlink头 + payload + padding)
-             失败: 其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月16日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_int32  oam_netlink_kernel_send(oal_uint8 *puc_data, oal_uint32 ul_data_len, oam_nl_cmd_enum_uint8 en_type)
 {
 #if (_PRE_OS_VERSION_RAW == _PRE_OS_VERSION)
@@ -310,26 +234,7 @@ oal_int32  oam_netlink_kernel_send(oal_uint8 *puc_data, oal_uint32 ul_data_len, 
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : oam_netlink_kernel_send_ex
- 功能描述  : netlink消息发送函数(方向: 内核 -> host app)
- 输入参数  : puc_data_1st: 输入数据1
-             puc_data_2nd: 输入数据2
-             ul_len_1st  : 数据长度1
-             ul_len_2nd  : 数据长度2
-             en_type     : netlink msg类型
- 输出参数  : 无
- 返 回 值  : 成功: 发送的字节数(netlink头 + payload + padding)
-             失败: 其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月17日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_int32  oam_netlink_kernel_send_ex(oal_uint8 *puc_data_1st, oal_uint8 *puc_data_2nd,
                                       oal_uint32 ul_len_1st, oal_uint32 ul_len_2nd,
                                       oam_nl_cmd_enum_uint8 en_type)
@@ -369,22 +274,7 @@ oal_int32  oam_netlink_kernel_send_ex(oal_uint8 *puc_data_1st, oal_uint8 *puc_da
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : oam_kernel_netlink_create
- 功能描述  : 内核netlink创建函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 成功: OAL_SUCC
-             失败: 其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月15日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  oam_netlink_kernel_create(oal_void)
 {
     g_st_netlink.pst_nlsk = oal_netlink_kernel_create(&OAL_INIT_NET, OAM_NETLINK_ID, 0, oam_netlink_kernel_recv, OAL_PTR_NULL, OAL_THIS_MODULE);
@@ -400,21 +290,7 @@ oal_uint32  oam_netlink_kernel_create(oal_void)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : oam_netlink_kernel_destroy
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月8日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  oam_netlink_kernel_release(oal_void)
 {
     oal_netlink_kernel_release(g_st_netlink.pst_nlsk);

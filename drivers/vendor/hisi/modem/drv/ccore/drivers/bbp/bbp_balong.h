@@ -1,14 +1,4 @@
-/*************************************************************************
-*   版权所有(C) 2008-2013, 深圳华为技术有限公司.
-*
-*   文 件 名    :  bbp_balong.h
-*
-*   作    者    :  x00195228
-*
-*   描    述    :  本文件主要实现BBP模块头文件
-*
-*   修改记录    :  2013年2月20日 创建
-*************************************************************************/
+
 /*lint -save -e656 -e959*/
 #ifndef __BBP_BALONG_H__
 #define __BBP_BALONG_H__
@@ -16,6 +6,7 @@
 #include "osl_types.h"
 #include "osl_bio.h"
 #include <osl_spinlock.h>
+#include <osl_thread.h>
 
 #include "mdrv_public.h"
 #include "mdrv_pm.h"
@@ -23,6 +14,7 @@
 
 #include "bsp_memmap.h"
 #include "bsp_om.h"
+#include "bsp_ipc.h"
 #include "bsp_bbp.h"
 #include "bsp_clk.h"
 #include "bsp_rsracc.h"
@@ -31,6 +23,16 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+#define BBP_IPC_TIMEOUT 1000 /*1s*/
+
+#define bbp_ipc_spin_lock_irqsave(u32SignalNum,flags) \
+ do{\
+    if(bsp_ipc_spin_lock_timeout_irqsave(u32SignalNum,BBP_IPC_TIMEOUT,&flags))\
+       system_error(DRV_ERRNO_BBP_IPC_TIMEOUT, (osl_task_self()), 0, (char*)NULL, 0);\
+ }while(0)
+
+#define bbp_ipc_spin_unlock_irqrestore(u32SignalNum,flags) bsp_ipc_spin_unlock_irqrestore(u32SignalNum,flags)
 
 typedef enum{
     BBP_BASE_APB = 0,

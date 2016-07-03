@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafXpdsSndInternalMsg.h
-  版 本 号   : 初稿
-  作    者   : g00261581
-  生成日期   : 2015年8月21日
-  最近修改   :
-  功能描述   : TafXpdsSndInternalMsg.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年8月20日
-    作    者   : g00261581
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __TAF_XPDS_SND_INTERNAL_MSG_H__
 #define __TAF_XPDS_SND_INTERNAL_MSG_H__
@@ -42,13 +25,7 @@ extern "C" {
 /*****************************************************************************
   3 枚举定义
 *****************************************************************************/
-/*****************************************************************************
- 枚举名    : TAF_XPDS_XPDS_INTERNAL_MSG_ID_ENUM
- 枚举说明  : XPDS内部消息名枚举定义
- 1.日    期   : 2015年8月21日
-   作    者   : g00261581
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_XPDS_XPDS_INTERNAL_MSG_ID_ENUM
 {
     ID_TAF_XPDS_XPDS_UP_LINK_CTRL_REQ                       = 0x0000, /* _H2ASN_MsgChoice TAF_XPDS_XPDS_UP_LINK_CTRL_REQ_STRU */
@@ -78,13 +55,7 @@ enum TAF_XPDS_XPDS_INTERNAL_MSG_ID_ENUM
 };
 typedef VOS_UINT32 TAF_XPDS_XPDS_INTERNAL_MSG_ID_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : TAF_XPDS_BIND_SERVER_ERROR_CAUSE_ENUM
- 枚举说明  : 服务器bind/release 结果的错误原因值
- 1.日    期   : 2015年8月27日
-   作    者   : g00261581
-   修改内容   : 新增
-*****************************************************************************/
+
 enum TAF_XPDS_BIND_SERVER_ERROR_CAUSE_ENUM
 {
     TAF_XPDS_BIND_SERVER_NO_ERROR,
@@ -96,14 +67,7 @@ enum TAF_XPDS_BIND_SERVER_ERROR_CAUSE_ENUM
 };
 typedef VOS_UINT8 TAF_XPDS_BIND_SERVER_ERROR_CAUSE_ENUM_UINT8;
 
-/*****************************************************************************
-枚举名    : TAF_XPDS_SERVER_BIND_OPER_ENUM
-枚举说明  : MPC/PDE Server Bind/Release控制
 
-  1.日    期   : 2015年8月20日
-    作    者   : g00261581
-    修改内容   : 新增枚举
-*****************************************************************************/
 enum TAF_XPDS_SERVER_BIND_OPER_ENUM
 {
     TAF_XPDS_SERVER_BIND_OPER_CLOSE_SOCKET,
@@ -141,13 +105,7 @@ typedef VOS_UINT32 TAF_XPDS_MPC_OPER_TYPE_ENUM_UINT32;
 /*****************************************************************************
   7 STRUCT定义
 *****************************************************************************/
-/*****************************************************************************
- 结构名    : TAF_XPDS_XPDS_UP_LINK_CTRL_REQ_STRU
- 结构说明  : MPC/PDE Server Socket Bind Req
- 1.日    期   : 2015年08月22日
-   作    者   : g00261581
-   修改内容   : MPC/PDE Server的操作请求
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                                                  /* 消息头 */    /* _H2ASN_Skip */
@@ -157,13 +115,7 @@ typedef struct
     VOS_UINT8                                               aucReserved[2];
 } TAF_XPDS_XPDS_UP_LINK_CTRL_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XPDS_XPDS_UP_LINK_CTRL_CNF_STRU
- 结构说明  : MPC/PDE Server Socket Bind Req
- 1.日    期   : 2015年08月23日
-   作    者   : g00261581
-   修改内容   : MPC/PDE的操作回复
-*****************************************************************************/
+
 
 typedef struct
 {
@@ -172,13 +124,7 @@ typedef struct
     TAF_XPDS_POS_PROC_RSLT_ENUM_UINT32                      enRslt;
 }TAF_XPDS_XPDS_UP_LINK_CTRL_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XPDS_XPDS_PDE_PROC_START_REQ_STRU
- 结构说明  : XPDS PDE Proc Start Req内部消息结构体定义
- 1.日    期   : 2015年08月27日
-   作    者   : y00174758
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                                                  /* _H2ASN_Skip */
@@ -187,13 +133,7 @@ typedef struct
     VOS_UINT8                                               aucRsv[3];
 }TAF_XPDS_XPDS_PDE_PROC_START_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XPDS_XPDS_CP_PDE_PROC_START_REQ_STRU
- 结构说明  : XPDS PDE Proc Start Req内部消息结构体定义
- 1.日    期   : 2015年08月27日
-   作    者   : c00299064
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                                                  /* _H2ASN_Skip */
@@ -202,13 +142,7 @@ typedef struct
     VOS_UINT8                                               aucRsv[3];
 }TAF_XPDS_XPDS_CP_PDE_PROC_START_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XPDS_XPDS_CP_PDE_PROC_START_REQ_STRU
- 结构说明  : XPDS PDE Proc Start Req内部消息结构体定义
- 1.日    期   : 2015年08月27日
-   作    者   : c00299064
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                                                  /* _H2ASN_Skip */
@@ -222,13 +156,7 @@ typedef struct
     TAF_XPDS_POS_PROC_RSLT_ENUM_UINT32                      enRslt;
 }TAF_XPDS_XPDS_PDE_PROC_RSLT_IND_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XPDS_XPDS_FORWARD_PDE_DATA_IND_STRU
- 结构说明  : XPDS Forward Pde Data Ind内部消息结构体定义
- 1.日    期   : 2015年08月27日
-   作    者   : y00174758
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                                                  /* _H2ASN_Skip */
@@ -239,13 +167,7 @@ typedef struct
 }TAF_XPDS_XPDS_FORWARD_PDE_DATA_IND_STRU;
 
 
-/*****************************************************************************
- 结构名    : TAF_XPDS_XPDS_INT_MPC_PROC_START_REQ_STRU
- 结构说明  : XPDS MPC PROC START REQ内部消息结构体定义
- 1.日    期   : 2015年08月27日
-   作    者   : c00299064
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                                                  /* _H2ASN_Skip */
@@ -253,13 +175,7 @@ typedef struct
     TAF_XPDS_MPC_OPER_TYPE_ENUM_UINT32                      enMpcOperation;
 }TAF_XPDS_XPDS_INT_MPC_PROC_START_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XPDS_XPDS_INT_MPC_PROC_RSLT_IND_STRU
- 结构说明  : XPDS Receive MPC Data Ind内部消息结构体定义
- 1.日    期   : 2015年08月27日
-   作    者   : c00299064
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                                                  /* _H2ASN_Skip */
@@ -268,13 +184,7 @@ typedef struct
     TAF_XPDS_POS_PROC_RSLT_ENUM_UINT32                      enMpcOperRslt;
 }TAF_XPDS_XPDS_INT_MPC_PROC_RSLT_IND_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XPDS_XPDS_INT_RCV_MPC_START_POS_RESP_STRU
- 结构说明  : TAF_XPDS_XPDS_INT_RCV_MPC_START_POS_RESP_STRU 内部消息结构体定义
- 1.日    期   : 2015年08月27日
-   作    者   : c00299064
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                                                  /* _H2ASN_Skip */
@@ -282,13 +192,7 @@ typedef struct
     TAF_XPDS_MPC_START_POS_RSP_STRU                         stStartPosRsp;
 }TAF_XPDS_XPDS_INT_RCV_MPC_START_POS_RESP_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XPDS_XPDS_INT_RCV_MPC_POS_REPORT_RESP_STRU
- 结构说明  : TAF_XPDS_XPDS_INT_RCV_MPC_POS_REPORT_RESP_STRU 内部消息结构体定义
- 1.日    期   : 2015年08月27日
-   作    者   : c00299064
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                                                  /* _H2ASN_Skip */
@@ -296,39 +200,21 @@ typedef struct
     TAF_XPDS_MPC_POS_REPORT_RSP_STRU                        stPosReportRsp;
 }TAF_XPDS_XPDS_INT_RCV_MPC_POS_REPORT_RESP_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XPDS_XPDS_INT_XSMS_CANCEL_NI_TRACK_SESSION
- 结构说明  : TAF_XPDS_XPDS_INT_XSMS_CANCEL_NI_TRACK_SESSION 内部消息结构体定义
- 1.日    期   : 2015年08月27日
-   作    者   : c00299064
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                                                  /* _H2ASN_Skip */
     TAF_XPDS_XPDS_INTERNAL_MSG_ID_ENUM_UINT32               enMsgId;                                /* _H2ASN_Skip */
 }TAF_XPDS_XPDS_INT_XSMS_CANCEL_NI_TRACK_SESSION_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XPDS_XPDS_INT_XSMS_CANCEL_NI_TRACK_SESSION
- 结构说明  : TAF_XPDS_XPDS_INT_XSMS_CANCEL_NI_TRACK_SESSION 内部消息结构体定义
- 1.日    期   : 2015年08月27日
-   作    者   : c00299064
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                                                  /* _H2ASN_Skip */
     TAF_XPDS_XPDS_INTERNAL_MSG_ID_ENUM_UINT32   enMsgId;                                /* _H2ASN_Skip */
 }TAF_XPDS_XPDS_PPM_COMPLETE_MSG_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XPDS_XPDS_INT_ABNORMAL_ABORT_AGPS_SESSION_IND_STRU
- 结构说明  : TAF_XPDS_XPDS_INT_ABNORMAL_ABORT_AGPS_SESSION_IND_STRU 内部消息结构体定义
- 1.日    期   : 2015年09月10日
-   作    者   : g00261581
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                                                  /* _H2ASN_Skip */
@@ -336,13 +222,7 @@ typedef struct
     TAF_XPDS_POS_PROC_RSLT_ENUM_UINT32                      enAbortScene;
 }TAF_XPDS_XPDS_INT_ABNORMAL_ABORT_AGPS_SESSION_IND_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XPDS_XPDS_INT_XSMS_CANCEL_NI_TRACK_SESSION
- 结构说明  : TAF_XPDS_XPDS_INT_XSMS_CANCEL_NI_TRACK_SESSION 内部消息结构体定义
- 1.日    期   : 2015年08月27日
-   作    者   : c00299064
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                                                  /* _H2ASN_Skip */
@@ -355,13 +235,7 @@ typedef struct
 
 
 
-/*****************************************************************************
- 结构名    : TAF_XPDS_XPDS_CP_LINK_PROC_RSLT_IND_STRU
- 结构说明  : The message for cp link proc result
- 1.日    期   : 2015年09月22日
-   作    者   : a00903922
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                                                  /* _H2ASN_Skip */

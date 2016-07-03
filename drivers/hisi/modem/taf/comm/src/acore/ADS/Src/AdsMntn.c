@@ -30,23 +30,7 @@ extern "C" {
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : ADS_MTNN_TransReport
- 功能描述  : 可维可测透明消息输出
- 输入参数  : ulMsgId --- 消息ID
-             pData   --- 数据指针
-             ulLen   --- 数据长度
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月06日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ADS_MTNN_TransReport(
     VOS_UINT32                          ulMsgId,
     VOS_VOID                           *pData,
@@ -66,21 +50,7 @@ VOS_VOID ADS_MTNN_TransReport(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_MNTN_SndULIpfProcStatsInd
- 功能描述  : 上行IPF统计信息上报
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月06日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ADS_MNTN_SndULIpfProcStatsInd(VOS_VOID)
 {
     ADS_MNTN_UL_IPF_PROC_STATS_STRU     stStats;
@@ -126,21 +96,7 @@ VOS_VOID ADS_MNTN_SndULIpfProcStatsInd(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_MNTN_SndDLIpfProcStatsInd
- 功能描述  : 下行IPF统计信息上报
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月06日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ADS_MNTN_SndDLIpfProcStatsInd(VOS_VOID)
 {
     ADS_MNTN_DL_IPF_PROC_STATS_STRU     stStats;
@@ -191,21 +147,7 @@ VOS_VOID ADS_MNTN_SndDLIpfProcStatsInd(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_MNTN_SndULPktProcStatsInd
- 功能描述  : 上行数据统计信息上报
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月06日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ADS_MNTN_SndULPktProcStatsInd(VOS_VOID)
 {
     ADS_MNTN_UL_PKT_PROC_STATS_STRU     stStats;
@@ -230,21 +172,7 @@ VOS_VOID ADS_MNTN_SndULPktProcStatsInd(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_MNTN_SndDLPktProcStatsInd
- 功能描述  : 下行数据统计信息上报
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月06日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ADS_MNTN_SndDLPktProcStatsInd(VOS_VOID)
 {
     ADS_MNTN_DL_PKT_PROC_STATS_STRU     stStats;
@@ -265,21 +193,7 @@ VOS_VOID ADS_MNTN_SndDLPktProcStatsInd(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_MNTN_SndThroughputStatsInd
- 功能描述  : 下行数据统计信息上报
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月06日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ADS_MNTN_SndThroughputStatsInd(VOS_VOID)
 {
     ADS_MNTN_THROUGHPUT_STATS_STRU      stStats;
@@ -300,21 +214,7 @@ VOS_VOID ADS_MNTN_SndThroughputStatsInd(VOS_VOID)
 }
 
 #if (defined(CONFIG_BALONG_SPE))
-/*****************************************************************************
- 函 数 名  : SPE_MNTN_SndPortStatsInd
- 功能描述  : SPE端口统计信息上报
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月8日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID SPE_MNTN_SndPortStatsInd(VOS_VOID)
 {
     SPE_MNTN_PORT_PROC_STATS_STRU       stStats = {{0}};
@@ -363,26 +263,7 @@ VOS_VOID SPE_MNTN_SndPortStatsInd(VOS_VOID)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : ADS_MNTN_HookIpPkt
- 功能描述  : IP包信息勾包
- 输入参数  : pstImmZc  --- imm memory
-             usMsgType --- msg type
-             ulParam1
-             ulParam2
-             ulParam3
-             ulParam4
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月06日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ADS_MNTN_HookIpPkt(
     IMM_ZC_STRU                        *pstImmZc,
     VOS_UINT16                          usMsgType,
@@ -414,21 +295,7 @@ VOS_VOID ADS_MNTN_HookIpPkt(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ADS_MNTN_ReportAllStatsInfo
- 功能描述  : 上报ADS统计信息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月06日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID ADS_MNTN_ReportAllStatsInfo(VOS_VOID)
 {
     ADS_MNTN_SndULIpfProcStatsInd();
@@ -441,21 +308,7 @@ VOS_VOID ADS_MNTN_ReportAllStatsInfo(VOS_VOID)
 }
 
 #if (defined(CONFIG_BALONG_SPE))
-/*****************************************************************************
- 函 数 名  : SPE_MNTN_ReportAllStatsInfo
- 功能描述  : 上报SPE统计信息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月06日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID SPE_MNTN_ReportAllStatsInfo(VOS_VOID)
 {
     SPE_MNTN_SndPortStatsInd();

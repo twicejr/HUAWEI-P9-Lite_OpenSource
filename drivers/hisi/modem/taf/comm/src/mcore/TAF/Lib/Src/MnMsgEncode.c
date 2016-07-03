@@ -8,9 +8,7 @@
 #include  "MnErrorCode.h"
 #include  "MnMsgApi.h"
 #include  "MnMsgTs.h"
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
 #include "TafStdlib.h"
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 
 #ifdef  __cplusplus
   #if  __cplusplus
@@ -31,8 +29,6 @@ VOS_UINT32 MSG_EncodeUserData(
 /*lint -e767 修改人:罗建 107747;检视人:孙少华65952;原因:Log打印*/
 #define THIS_FILE_ID                                        PS_FILE_ID_MNMSG_ENCODE_C
 /*lint +e767 修改人:罗建 107747;检视人:sunshaohua*/
-/* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, begin */
-/* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, end */
 
 /*****************************************************************************
   3 宏定义
@@ -41,33 +37,14 @@ VOS_UINT32 MSG_EncodeUserData(
 /*****************************************************************************
   4 变量定义
 *****************************************************************************/
-/* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, begin */
-/* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, end */
 /*lint -save -e958 */
 
 /*****************************************************************************
   5 函数实现
 *****************************************************************************/
 
-/* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, begin */
-/* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, end */
 
-/*****************************************************************************
- 函 数 名  : MN_ChkNumType
- 功能描述  : 同步函数,号码类型检查,参考协议23040 9.1.2.5
- 输入参数  : enNumType      - 号码类型
- 输出参数  : 无
- 返 回 值  : MN_ERR_NO_ERROR号码类型检查通过 其他,号码类型检查失败
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2008年1月21日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-  2.日    期   : 2010年2月21日
-    作    者   : f62575
-    修改内容   : 问题单号：AT2D16979，UE侧不再检查地址的TON和NPI类型
-*****************************************************************************/
+
 TAF_UINT32 MN_ChkNumType(
     MN_MSG_TON_ENUM_U8                  enNumType
 )
@@ -75,23 +52,7 @@ TAF_UINT32 MN_ChkNumType(
     return MN_ERR_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_ChkNumPlan
- 功能描述  : 同步函数,拨号计划类型检查,参考协议23040 9.1.2.5
- 输入参数  : enNumPlan - 拨号计划类型
- 输出参数  : 无
- 返 回 值  : MN_ERR_NO_ERROR拨号计划类型检查通过 其他,拨号计划类型检查失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月13日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-  2.日    期   : 2010年2月21日
-    作    者   : f62575
-    修改内容   : 问题单号：AT2D16717，UE侧不再检查地址的TON和NPI类型
-*****************************************************************************/
 TAF_UINT32 MN_ChkNumPlan(
     MN_MSG_NPI_ENUM_U8                  enNumPlan
 )
@@ -99,31 +60,9 @@ TAF_UINT32 MN_ChkNumPlan(
     return MN_ERR_NO_ERROR;
 }
 
-/* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, begin */
-/* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, end */
 
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_ChkDate
- 功能描述  : 检查日期是否在有效范围内
- 输入参数  : pstTimeStamp   - 绝对有效时间数据结构,其中的年月日都是用BCD码顺序表示的;
- 输出参数  : pucInvalidType - 无效日期类型集合;
- 返 回 值  : VOS_UINT32:函数返回的结果,成功以及失败的原因值
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年3月1日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-  2.日    期   : 2010年04月10日
-    作    者   : f62575
-    修改内容   : 问题单号AT2D18035
-                 写PDU短信到SIM卡,BALONG对TP-SCTS的检查与标杆不一致；
-  3.日    期   : 2013年12月24日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseIII项目
-*****************************************************************************/
 VOS_UINT32 MN_MSG_ChkDate(
     const MN_MSG_TIMESTAMP_STRU         *pstTimeStamp,
     MN_MSG_DATE_INVALID_TYPE_ENUM_UINT8 *pucInvalidType
@@ -140,9 +79,7 @@ VOS_UINT32 MN_MSG_ChkDate(
 
     ucInvalidType = 0;
 
-    /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, begin */
     ulRet = TAF_STD_ConvertBcdToDeciDigit(pstTimeStamp->ucYear, VOS_FALSE, &ucYear);
-    /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, end */
     if (MN_ERR_NO_ERROR != ulRet)
     {
         MN_WARN_LOG("MN_MSG_ChkDate: Month is invalid.");
@@ -150,9 +87,7 @@ VOS_UINT32 MN_MSG_ChkDate(
     }
 
     /*将BCD码表示的月日小时分钟秒转换成十进制数进行有效性检查；*/
-    /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, begin */
     ulRet = TAF_STD_ConvertBcdToDeciDigit(pstTimeStamp->ucMonth, VOS_FALSE, &ucMonth);
-    /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, end */
     if ((MN_ERR_NO_ERROR != ulRet)
      || (ucMonth > MN_MSG_MONTHS_IN_A_YEAR))
     {
@@ -160,9 +95,7 @@ VOS_UINT32 MN_MSG_ChkDate(
         ucInvalidType |= MN_MSG_DATE_INVALID_MONTH;
     }
 
-    /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, begin */
     ulRet = TAF_STD_ConvertBcdToDeciDigit(pstTimeStamp->ucDay, VOS_FALSE, &ucDay);
-    /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, end */
     if ((MN_ERR_NO_ERROR != ulRet)
      || (ucDay > MN_MSG_MAX_DAYS_IN_A_MONTH))
     {
@@ -170,9 +103,7 @@ VOS_UINT32 MN_MSG_ChkDate(
         ucInvalidType |= MN_MSG_DATE_INVALID_DAY;
     }
 
-    /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, begin */
     ulRet = TAF_STD_ConvertBcdToDeciDigit(pstTimeStamp->ucHour, VOS_FALSE, &ucHour);
-    /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, end */
     if ((MN_ERR_NO_ERROR != ulRet)
      || (ucHour > (MN_MSG_HOURS_IN_A_DAY - 1)))
     {
@@ -180,9 +111,7 @@ VOS_UINT32 MN_MSG_ChkDate(
         ucInvalidType |= MN_MSG_DATE_INVALID_HOUR;
     }
 
-    /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, begin */
     ulRet = TAF_STD_ConvertBcdToDeciDigit(pstTimeStamp->ucMinute, VOS_FALSE, &ucMinute);
-    /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, end */
     if ((MN_ERR_NO_ERROR != ulRet)
      || (ucMinute > (MN_MSG_MINUTES_IN_AN_HOUR - 1)))
     {
@@ -190,9 +119,7 @@ VOS_UINT32 MN_MSG_ChkDate(
         ucInvalidType |= MN_MSG_DATE_INVALID_MINUTE;
     }
 
-    /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, begin */
     ulRet = TAF_STD_ConvertBcdToDeciDigit(pstTimeStamp->ucSecond, VOS_FALSE, &ucSecond);
-    /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, end */
     if ((MN_ERR_NO_ERROR != ulRet)
      || (ucSecond > (MN_MSG_SECONDS_IN_A_MINUTE - 1)))
     {
@@ -212,27 +139,7 @@ VOS_UINT32 MN_MSG_ChkDate(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MSG_EncodeTimeStamp
- 功能描述  : 同步函数,根据绝对有效时间数据结构构造TPDU格式的VP单元
- 输入参数  : pstTimeStamp   - 绝对有效时间数据结构,其中的年月日都是用BCD码顺序表示的;
- 输出参数  : pucValidPeriod - TPDU格式的绝对有效期VP单元
-             pulLen         - TPDU格式的VP单元长度
- 返 回 值  : VOS_UINT32:函数返回的结果,成功以及失败的原因值
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2008年1月7日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-  2.日    期   : 2010年04月10日
-    作    者   : f62575
-    修改内容   : 问题单号AT2D18035
-                 写PDU短信到SIM卡,BALONG对TP-SCTS的检查与标杆不一致；
-  3.日    期   : 2013年12月24日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseIII项目
-*****************************************************************************/
+
 LOCAL VOS_UINT32 MSG_EncodeTimeStamp(
     const MN_MSG_TIMESTAMP_STRU         *pstTimeStamp,
     VOS_UINT8                           *pucValidPeriod,
@@ -286,31 +193,13 @@ LOCAL VOS_UINT32 MSG_EncodeTimeStamp(
         ucAlgebraicSign = 0x00;
     }
     pucValidPeriod[6]  = ucAlgebraicSign;
-    /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, begin */
     pucValidPeriod[6] |= TAF_STD_ConvertDeciDigitToBcd(ucAbsTimeZone, VOS_TRUE);
-    /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, end */
 
     *pulLen = MN_MSG_ABSOLUTE_TIMESTAMP_LEN;
     return MN_ERR_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : MSG_EncodeValidPeriod
- 功能描述  : 同步函数,根据有效时间数据结构构造TPDU格式的VP单元，
-             参考协议23040 9.2.3.12
- 输入参数  : pstValidPeriod - 用户输入的有效时间数据结构
- 输出参数  : pucValidPeriod - TPDU的VP单元
-             pulLen         - TPDU的VP单元长度
- 返 回 值  : VOS_UINT32:函数返回的结果,成功以及失败的原因值
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月7日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL VOS_UINT32 MSG_EncodeValidPeriod(
     const MN_MSG_VALID_PERIOD_STRU      *pstValidPeriod,
     VOS_UINT8                           *pucValidPeriod,
@@ -349,21 +238,7 @@ LOCAL VOS_UINT32 MSG_EncodeValidPeriod(
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_EncodeRelatTime
- 功能描述  : 同步函数,根据绝对有效时间数据结构获得相对有效时间VP值，
-             参考协议23040 9.2.3.12.1
- 输入参数  : pstRelatTime      - 绝对有效时间数据结构
- 输出参数  : pucRelatTime      - 指向23040协议规定的相对有效时间VP值
- 返 回 值  : VOS_UINT32:函数返回的结果,成功以及失败的原因值
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年10月8日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  MN_MSG_EncodeRelatTime(
     const MN_MSG_TIMESTAMP_STRU         *pstRelatTime,
     VOS_UINT8                           *pucRelatTime
@@ -437,35 +312,7 @@ VOS_UINT32  MN_MSG_EncodeRelatTime(
     return MN_ERR_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_EncodeAddress
- 功能描述  : 同步函数,
-             根据MN_MSG_ASCII_ADDR_STRU地址数据结构生成TP层地址信息单元，
-             参考协议23040 9.1.2.5
-             或
-             根据MN_MSG_ASCII_ADDR_STRU地址数据结构生成RP层地址信息单元，
-             参考协议24011 8.2.5.1
- 输入参数  : pstAsciiAddr - MN_MSG_ASCII_ADDR_STRU结构表示的地址
-             bRpAddr      - 是否编码成RP层地址单元
- 输出参数  : pucAddr      - TP层的TPDU格式的地址/RP层地址信息单元
-             pulLen       - TPDU格式的地址长度/RP层地址信息单元长度
- 返 回 值  : VOS_UINT32:函数返回的结果,成功以及失败的原因值
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月21日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-  2.日    期   : 2012年6月26日
-    作    者   : 傅映君 62575
-    修改内容   : DTS2012062202118，RP层地址的所有编码类型都按BCD编码，仅TP层地址
-                 支持7BIT编码地址；
-  3.日    期   : 2013年12月24日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseIII项目
-
-*****************************************************************************/
 VOS_UINT32 MN_MSG_EncodeAddress(
     const MN_MSG_ASCII_ADDR_STRU        *pstAsciiAddr,
     VOS_BOOL                            bRpAddr,
@@ -576,7 +423,6 @@ VOS_UINT32 MN_MSG_EncodeAddress(
     if ((VOS_TRUE != bRpAddr)
      && (MN_MSG_TON_ALPHANUMERIC == pstAsciiAddr->enNumType))
     {
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
         ulRet = TAF_STD_Pack7Bit(pstAsciiAddr->aucAsciiNum,
                                  pstAsciiAddr->ulLen,
                                  0,
@@ -586,16 +432,13 @@ VOS_UINT32 MN_MSG_EncodeAddress(
         {
             return MN_ERR_CLASS_INVALID_TP_ADDRESS;
         }
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
         ucAddrBcdLen = (VOS_UINT8)ulAlphaNumLen;
     }
     else
     {
-        /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, begin */
         ulRet = TAF_STD_ConvertAsciiNumberToBcd((VOS_CHAR *)pucNum,
                                     &(pucAddr[ulPos]),
                                     &ucAddrBcdLen);
-        /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, end */
         if (MN_ERR_NO_ERROR != ulRet)
         {
             return ulRet;
@@ -605,21 +448,7 @@ VOS_UINT32 MN_MSG_EncodeAddress(
     return MN_ERR_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : MSG_EncodeUdhConcat8
- 功能描述  : 编码参考编号为8BIT的连续短消息IEI，Refer to 23040 9.2.3.24.1
- 输入参数  : pstConcatenatedSms - 参考编号为8BIT的连续短消息IEI的数据结构
- 输出参数  : pucUdh             - 参考编号为8BIT的连续短消息IEI
- 返 回 值  : 参考编号为8BIT的连续短消息IEI长度
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月12日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL VOS_UINT8  MSG_EncodeUdhConcat8(
     const MN_MSG_UDH_CONCAT_8_STRU      *pstConcatenatedSms,
     VOS_UINT8                           *pucUdh
@@ -650,21 +479,7 @@ LOCAL VOS_UINT8  MSG_EncodeUdhConcat8(
     return ucLen;
 }
 
-/*****************************************************************************
- 函 数 名  : MSG_EncodeUdhConcat16
- 功能描述  : 编码参考编号为16BIT的连续短消息IEI，Refer to 23040 9.2.3.24.8
- 输入参数  : pstConcatenatedSms - 参考编号为16BIT的连续短消息UDH IEI数据结构
- 输出参数  : pucUdh             - 参考编号为16BIT的连续短消息UDH IEI
- 返 回 值  : 参考编号为16BIT的连续短消息UDH IEI长度
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月12日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL VOS_UINT8  MSG_EncodeUdhConcat16(
     const MN_MSG_UDH_CONCAT_16_STRU     *pstConcatenatedSms,
     VOS_UINT8                           *pucUdh
@@ -696,21 +511,7 @@ LOCAL VOS_UINT8  MSG_EncodeUdhConcat16(
     return ucLen;
 }
 
-/*****************************************************************************
- 函 数 名  : MSG_EncodeUdhSpecialSm
- 功能描述  : 编码特殊短消息指示IEI，Refer to 23040 9.2.3.24.2
- 输入参数  : pstSpecialSm - 特殊短消息指示IEI数据结构
- 输出参数  : pucUdh       - 特殊短消息指示IEI
- 返 回 值  : 特殊短消息指示IEI长度
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月12日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL VOS_UINT8 MSG_EncodeUdhSpecialSm(
     const MN_MSG_UDH_SPECIAL_SMS_STRU   *pstSpecialSm,
     VOS_UINT8                           *pucUdh
@@ -755,21 +556,7 @@ LOCAL VOS_UINT8 MSG_EncodeUdhSpecialSm(
     return ucLen;
 }
 
-/*****************************************************************************
- 函 数 名  : MSG_EncodeUdhAppPort_8
- 功能描述  : 编码8BIT应用端口IEI，Refer to 23040 9.2.3.24.3
- 输入参数  : pstAppPort - 8BIT应用端口IEI数据结构
- 输出参数  : pucUdh     - 8BIT应用端口IEI
- 返 回 值  : 8BIT应用端口IEI长度
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月12日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL VOS_UINT8 MSG_EncodeUdhAppPort_8(
     const MN_MSG_UDH_APPPORT_8_STRU     *pstAppPort,
     VOS_UINT8                           *pucUdh
@@ -794,21 +581,7 @@ LOCAL VOS_UINT8 MSG_EncodeUdhAppPort_8(
 
 }
 
-/*****************************************************************************
- 函 数 名  : MSG_EncodeUdhAppPort_16
- 功能描述  : 编码8BIT应用端口IEI，Refer to 23040 9.2.3.24.4
- 输入参数  : pstAppPort - 16BIT应用端口IEI数据结构
- 输出参数  : pucUdh     - 16BIT应用端口IEI
- 返 回 值  : 16BIT应用端口IEI长度
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月12日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL VOS_UINT8 MSG_EncodeUdhAppPort_16(
     const MN_MSG_UDH_APPPORT_16_STRU    *pstAppPort,
     VOS_UINT8                           *pucUdh
@@ -833,21 +606,7 @@ LOCAL VOS_UINT8 MSG_EncodeUdhAppPort_16(
     return ucLen;
 }
 
-/*****************************************************************************
- 函 数 名  : MSG_EncodeUdhSmscCtrl
- 功能描述  : 编码SMSC控制参数IEI, Refer to23040 9.2.3.24.5
- 输入参数  : pstSmscCtrl    - SMSC控制参数IEI数据结构
- 输出参数  : pucUdh         - SMSC控制参数IEI
- 返 回 值  : SMSC控制参数IEI长度
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月17日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL VOS_UINT8 MSG_EncodeUdhSmscCtrl(
     const MN_MSG_UDH_SMSC_CTRL_STRU     *pstSmscCtrl,
     VOS_UINT8                           *pucUdh
@@ -898,21 +657,7 @@ LOCAL VOS_UINT8 MSG_EncodeUdhSmscCtrl(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MSG_EncodeUdhSourceInd
- 功能描述  : 编码UDH源指示IEI,Refer to 23040 9.2.3.24.6
- 输入参数  : pstSrcInd UDH源指示IEI数据结构
- 输出参数  : pucUdh UDH源指示IEI
- 返 回 值  : UDH源指示IEI长度
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月12日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL VOS_UINT8 MSG_EncodeUdhSourceInd(
     const MN_MSG_UDH_SOURCE_IND_STRU    *pstSrcInd,
     VOS_UINT8                           *pucUdh
@@ -935,21 +680,7 @@ LOCAL VOS_UINT8 MSG_EncodeUdhSourceInd(
     return ucLen;
 }
 
-/*****************************************************************************
- 函 数 名  : MSG_EncodeUdhTextFormat
- 功能描述  : 编码增强短信服务EMS编码文本格式IEI
- 输入参数  : pstTextFormat  - 文本格式IEI数据结构
- 输出参数  : pucUdh         - 文本格式IEI
- 返 回 值  : 文本格式IEI长度
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月12日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL VOS_UINT8 MSG_EncodeUdhTextFormat(
     const MN_MSG_UDH_TEXT_FORMAT_STRU   *pstTextFormat,
     VOS_UINT8                           *pucUdh
@@ -1000,21 +731,7 @@ LOCAL VOS_UINT8 MSG_EncodeUdhTextFormat(
     return ucLen;
 }
 
-/*****************************************************************************
- 函 数 名  : MSG_EncodeUdhPreDefSound
- 功能描述  : Encode Predefined Sound IEI, Refer to 23040  9.2.3.24.10.1.2
- 输入参数  : pstPreDftSound     - Predefined Sound IEI parameter
- 输出参数  : pucUdh             - Predefined Sound IEI
- 返 回 值  : Predefined Sound IEI length
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月12日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL VOS_UINT8 MSG_EncodeUdhPreDefSound(
     const MN_MSG_UDH_PRE_DEF_SOUND_STRU *pstPreDefSound,
     VOS_UINT8                           *pucUdh
@@ -1039,21 +756,7 @@ LOCAL VOS_UINT8 MSG_EncodeUdhPreDefSound(
     return ucLen;
 }
 
-/*****************************************************************************
- 函 数 名  : MSG_EncodeUdhUserDefSound
- 功能描述  : Encode User Defined Sound IEI,Refer to 23040 9.2.3.24.10.1.3
- 输入参数  : pstUserDftSound    - User Defined Sound IEI parameter
- 输出参数  : pucUdh             - User Defined Sound IEI
- 返 回 值  : User Defined Sound IEI length
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月17日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL VOS_UINT8 MSG_EncodeUdhUserDefSound(
     const MN_MSG_UDH_USER_DEF_SOUND_STRU *pstUserDefSound,
     VOS_UINT8                            *pucUdh
@@ -1081,21 +784,7 @@ LOCAL VOS_UINT8 MSG_EncodeUdhUserDefSound(
     return ucLen;
 }
 
-/*****************************************************************************
- 函 数 名  : MSG_EncodeUdhPreDefAnim
- 功能描述  : Encode Predefined Animation IEI, Refer to 23040 9.2.3.24.10.1.4
- 输入参数  : pstPreDftAnim  - Encode Predefined Animation IEI parameter
- 输出参数  : pucUdh         - Encode Predefined Animation IEI
- 返 回 值  : Encode Predefined Animation IEI length
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月17日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL VOS_UINT8 MSG_EncodeUdhPreDefAnim(
     const MN_MSG_UDH_PRE_DEF_ANIM_STRU  *pstPreDefAnim,
     VOS_UINT8                           *pucUdh
@@ -1120,21 +809,7 @@ LOCAL VOS_UINT8 MSG_EncodeUdhPreDefAnim(
 
     return ucLen;
 }
-/*****************************************************************************
- 函 数 名  : MSG_EncodeUdhLargeAnim
- 功能描述  : Encode Large Animation IEI, Refer to 23040 9.2.3.24.10.1.5
- 输入参数  : pstLargeAnim   - Large Animation IEI parameter
- 输出参数  : pucUdh         - Large Animation IEI
- 返 回 值  : Large Animation IEI length
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月17日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL VOS_UINT8 MSG_EncodeUdhLargeAnim(
     const MN_MSG_UDH_LARGE_ANIM_STRU    *pstLargeAnim,
     VOS_UINT8                           *pucUdh
@@ -1161,21 +836,7 @@ LOCAL VOS_UINT8 MSG_EncodeUdhLargeAnim(
     ucLen += MN_MSG_UDH_LARGE_ANIM_SIZE;
     return ucLen;
 }
-/*****************************************************************************
- 函 数 名  : MSG_EncodeUdhSmallAnim
- 功能描述  : Encode Small Animation IEI, Refer to 23040 9.2.3.24.10.1.6
- 输入参数  : pstSmallAnim   - Small Animation IEI parameter
- 输出参数  : pucUdh         - Small Animation IEI
- 返 回 值  : Small Animation IEI length
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月17日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL VOS_UINT8 MSG_EncodeUdhSmallAnim(
     const MN_MSG_UDH_SMALL_ANIM_STRU    *pstSmallAnim,
     VOS_UINT8                           *pucUdh
@@ -1202,21 +863,7 @@ LOCAL VOS_UINT8 MSG_EncodeUdhSmallAnim(
     return ucLen;
 }
 
-/*****************************************************************************
- 函 数 名  : MSG_EncodeUdhLargePic
- 功能描述  : Encode Large Picture IEI, Refer to 23040 9.2.3.24.10.1.7
- 输入参数  : pstLargePic    - Large Picture IEI parameter
- 输出参数  : pucUdh         - Large Picture IEI
- 返 回 值  : Large Picture IEI parameter length
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月17日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL VOS_UINT8 MSG_EncodeUdhLargePic(
     const MN_MSG_UDH_LARGE_PIC_STRU     *pstLargePic,
     VOS_UINT8                           *pucUdh
@@ -1245,21 +892,7 @@ LOCAL VOS_UINT8 MSG_EncodeUdhLargePic(
     return ucLen;
 }
 
-/*****************************************************************************
- 函 数 名  : MSG_EncodeUdhSmallPic
- 功能描述  : Encode Small Picture IEI , Refer to 23040 9.2.3.24.10.1.8
- 输入参数  : pstSmallPic    - Small Picture IEI parameter
- 输出参数  : pucUdh         - Small Picture IEI
- 返 回 值  : Small Picture IEI length
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月17日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL VOS_UINT8 MSG_EncodeUdhSmallPic(
     const MN_MSG_UDH_SMALL_PIC_STRU     *pstSmallPic,
     VOS_UINT8                           *pucUdh
@@ -1287,21 +920,7 @@ LOCAL VOS_UINT8 MSG_EncodeUdhSmallPic(
     return ucLen;
 }
 
-/*****************************************************************************
- 函 数 名  : MSG_EncodeUdhVarPic
- 功能描述  : Encode Variable Picture IEI, Refer to 23040 9.2.3.24.10.1.9
- 输入参数  : pstVariablePic - Variable Picture IEI parameter
- 输出参数  : pucUdh         - Variable Picture IEI
- 返 回 值  : Variable Picture IEI length
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月17日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL VOS_UINT8 MSG_EncodeUdhVarPic(
     const MN_MSG_UDH_VAR_PIC_STRU       *pstVarPic,
     VOS_UINT8                           *pucUdh
@@ -1340,21 +959,7 @@ LOCAL VOS_UINT8 MSG_EncodeUdhVarPic(
     return ucLen;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_EncodeUdhUserPromt
- 功能描述  : Encode User Prompt Indicator IEI, Refer to 23040 9.2.3.24.10.1.10
- 输入参数  : pstUserPrompt  - User Prompt Indicator IEI parameter
- 输出参数  : pucUdh         - User Prompt Indicator IEI
- 返 回 值  : User Prompt Indicator IEI length
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月17日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL VOS_UINT8 MN_MSG_EncodeUdhUserPrompt(
     const MN_MSG_UDH_USER_PROMPT_STRU   *pstUserPrompt,
     VOS_UINT8                           *pucUdh
@@ -1379,21 +984,7 @@ LOCAL VOS_UINT8 MN_MSG_EncodeUdhUserPrompt(
     return ucLen;
 }
 
-/*****************************************************************************
- 函 数 名  : MSG_EncodeUdhRfc822
- 功能描述  : 编码User Prompt Indicator IEI , Refer to 23040 9.2.3.24.11
- 输入参数  : pstRfc822  - User Prompt Indicator IEI parameter
- 输出参数  : pucUdh     - User Prompt Indicator IEI
- 返 回 值  : User Prompt Indicator IEI length
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月17日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL VOS_UINT8 MSG_EncodeUdhRfc822(
     const MN_MSG_UDH_RFC822_STRU        *pstRfc822,
     VOS_UINT8                           *pucUdh
@@ -1416,21 +1007,7 @@ LOCAL VOS_UINT8 MSG_EncodeUdhRfc822(
     return ucLen;
 }
 
-/*****************************************************************************
- 函 数 名  : MSG_EncodeEo
- 功能描述  : 编码扩展对象IE
- 输入参数  : pstEo      - 扩展对象IE结构数据
- 输出参数  : pucUdh     - TPDU格式的扩展对象IE
- 返 回 值  : TPDU格式的扩展对象IE占用的字节数
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年3月11日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL VOS_UINT8 MSG_EncodeEo(
     const MN_MSG_UDH_EO_STRU            *pstEo,
     VOS_UINT8                           *pucUdh
@@ -1472,21 +1049,7 @@ LOCAL VOS_UINT8 MSG_EncodeEo(
     return ucLen;
 }
 
-/*****************************************************************************
- 函 数 名  : MSG_EncodeReo
- 功能描述  : 编码重用扩展对象IE
- 输入参数  : pstReo -   重用扩展对象IE数据结构
- 输出参数  : pucUdh -   TPDU格式的重用扩展对象IE
- 返 回 值  : TPDU格式的重用扩展对象IE占用的字节数
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年3月11日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL VOS_UINT8 MSG_EncodeReo(
     const MN_MSG_UDH_REO_STRU           *pstReo,
     VOS_UINT8                           *pucUdh
@@ -1512,21 +1075,7 @@ LOCAL VOS_UINT8 MSG_EncodeReo(
     return ucLen;
 }
 
-/*****************************************************************************
- 函 数 名  : MSG_EncodeCc
- 功能描述  : 编码压缩控制IE
- 输入参数  : pstCc  - 压缩控制IE数据结构
- 输出参数  : pucUdh - TPDU格式的压缩控制IE
- 返 回 值  : TPDU格式的压缩控制IE占用的字节数
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年3月11日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL VOS_UINT8 MSG_EncodeCc(
     const MN_MSG_UDH_CC_STRU            *pstCc,
     VOS_UINT8                           *pucUdh
@@ -1553,21 +1102,7 @@ LOCAL VOS_UINT8 MSG_EncodeCc(
     return ucLen;
 }
 
-/*****************************************************************************
- 函 数 名  : MSG_EncodeObjDistrInd
- 功能描述  : 编码对象分发指示IE
- 输入参数  : pstObjDistr    - 对象分发指示IE数据结构
- 输出参数  : pucUdh - TPDU格式的对象分发指示IE数据结构
- 返 回 值  : TPDU格式的对象分发指示IE数据结构占用的字节数
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年3月11日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL VOS_UINT8 MSG_EncodeObjDistrInd(
     const MN_MSG_UDH_OBJ_DISTR_STRU     *pstObjDistr,
     VOS_UINT8                           *pucUdh
@@ -1591,21 +1126,7 @@ LOCAL VOS_UINT8 MSG_EncodeObjDistrInd(
     return ucLen;
 }
 
-/*****************************************************************************
- 函 数 名  : MSG_EncodeHyperLinkFormat
- 功能描述  : 编码超级链接格式IE
- 输入参数  : pstHyperLinkFormat - 超级链接格式IE数据结构
- 输出参数  : pucUdh - TPDU格式的超级链接格式IE
- 返 回 值  : TPDU格式的超级链接格式IE占用的字节数
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年3月11日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL VOS_UINT8 MSG_EncodeHyperLinkFormat(
     const MN_MSG_HYPERLINK_FORMAT_STRU  *pstHyperLinkFormat,
     VOS_UINT8                           *pucUdh
@@ -1631,21 +1152,7 @@ LOCAL VOS_UINT8 MSG_EncodeHyperLinkFormat(
     return ucLen;
 }
 
-/*****************************************************************************
- 函 数 名  : MSG_EncodeReplyAddr
- 功能描述  : 编码回复地址IE
- 输入参数  : pstReplyAddr   - 回复地址IE数据结构
- 输出参数  : pucUdh - TPDU格式的回复地址IE
- 返 回 值  : TPDU格式的回复地址IE占用的字节数
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年3月11日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL VOS_UINT8 MSG_EncodeReplyAddr(
     const MN_MSG_UDH_REPLY_ADDR_STRU    *pstReplyAddr,
     VOS_UINT8                           *pucUdh
@@ -1676,22 +1183,7 @@ LOCAL VOS_UINT8 MSG_EncodeReplyAddr(
     return ucLen;
 }
 
-/*****************************************************************************
- 函 数 名  : MSG_EncodeWvgObj
- 功能描述  : 编码无线矢量图形IE
- 输入参数  : enHeaderId - 无线矢量图形IE名称，只能是标准无线矢量图形IE或字符尺寸的无线矢量图形IE
-             pstWvgObj  - 无线矢量图形IE数据结构
- 输出参数  : pucUdh - TPDU格式的无线矢量图形IE
- 返 回 值  : TPDU格式的无线矢量图形IE占用的字节数
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年3月11日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL VOS_UINT8 MSG_EncodeWvgObj(
     MN_MSG_UDH_TYPE_ENUM_U8             enHeaderId,
     const MN_MSG_UDH_WVG_OBJ_STRU       *pstWvgObj,
@@ -1724,21 +1216,7 @@ LOCAL VOS_UINT8 MSG_EncodeWvgObj(
     return ucLen;
 }
 
-/*****************************************************************************
- 函 数 名  : MSG_EncodeUdhOther
- 功能描述  : 编码用户自定义的消息头部
- 输入参数  : pstOther   - 用户自定义消息头部参数
- 输出参数  : pucUdh     - TPDU格式的消息头部
- 返 回 值  : TPDU格式的用户自定义消息头部长度
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月17日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL VOS_UINT8 MSG_EncodeUdhOther(
     MN_MSG_UDH_TYPE_ENUM_U8             enUdhType,
     const MN_MSG_UDH_OTHER_STRU         *pstOther,
@@ -1769,23 +1247,7 @@ LOCAL VOS_UINT8 MSG_EncodeUdhOther(
     return ucLen;
 }
 
-/*****************************************************************************
- 函 数 名  : MSG_EncodeUdh
- 功能描述  : 编码用户消息头部,输出UDHL和UDH
- 输入参数  : ucNumofHeaders     - 消息头部参数数组有效元素个数
-             pstUserDataHeader  - 消息头部参数数组
- 输出参数  : pucUdh             - TPDU格式的消息头部
-             pucUdhl            - TPDU格式的消息头部长度
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月12日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL VOS_UINT32  MSG_EncodeUdh(
     VOS_UINT8                           ucNumofHeaders,
     const MN_MSG_USER_HEADER_TYPE_STRU  *pstUserDataHeader,
@@ -1932,22 +1394,7 @@ LOCAL VOS_UINT32  MSG_EncodeUdh(
     return MN_ERR_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : MSG_GetUdhl
- 功能描述  : 计算UDH长度
- 输入参数  : ucNumofHeaders - 短消息中包含消息头部IEI的个数
-             pstUserHeader  - 短消息中包含消息头部IEI的数据结构数组首指针
- 输出参数  : pulUdhl        - 编码后短消息中包含消息头部的总长度，单位OCTET
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月17日
-    作    者   : fuyingjun 62575
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL VOS_VOID  MSG_GetUdhl(
     VOS_UINT8                           ucNumofHeaders,
     const MN_MSG_USER_HEADER_TYPE_STRU  *pstUserHeader,
@@ -2080,23 +1527,7 @@ LOCAL VOS_VOID  MSG_GetUdhl(
 
 }
 
-/*****************************************************************************
- 函 数 名  : MSG_EncodeUserData
- 功能描述  : 编码用户数据部分(包括UDL UDHL UDH FILLBIT SM)；
- 输入参数  : enMsgCoding - 填充位和短消息内容的编码类型
-             pstUserData - 用户数据结构
- 输出参数  : pucUserData - TPDU格式的用户数据
-             pucLen      - TPDU格式的用户数据占用OCTET长度,包括填充位，包括UDL位
- 返 回 值  : VOS_UINT32:函数返回的结果,成功以及失败的原因值
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月16日
-    作    者   : fuyingjun 62575
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MSG_EncodeUserData(
     MN_MSG_MSG_CODING_ENUM_U8           enMsgCoding,
     MN_MSG_USER_DATA_STRU               *pstUserData,
@@ -2158,7 +1589,6 @@ VOS_UINT32 MSG_EncodeUserData(
         }
 
         /*字符转换为GSM 7 bit default alphabet，填充UD中的FillBit SM数据区，并输出FillBit SM占用的字节数*/
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
         ulRet   = TAF_STD_Pack7Bit(pstUserData->aucOrgData,
                                    pstUserData->ulLen,
                                    ucFillBit,
@@ -2168,7 +1598,6 @@ VOS_UINT32 MSG_EncodeUserData(
         {
             return MN_ERR_CLASS_INVALID_TP_UD;
         }
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
         /*计算UDL UD总共占用的字节数*/
         *pucLen = 1 + (((pucUserData[0] * 7) + 7)/8);
@@ -2214,21 +1643,7 @@ VOS_UINT32 MSG_EncodeUserData(
 
 }
 
-/*****************************************************************************
- 函 数 名  : MSG_EncodeDeliver
- 功能描述  : 同步函数,将具体的Deliver短信数据编码为TPDU格式,
-             参考协议23040 9.2.2.1
- 输入参数  : pstSmsDeliverInfo  - Deliver短信的TEXT格式
- 输出参数  : pstSmsRawDataInfo  - 短信的TPDU格式
- 返 回 值  : VOS_UINT32:函数返回的结果,成功以及失败的原因值
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月27日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
 LOCAL VOS_UINT32   MSG_EncodeDeliver(
     const MN_MSG_DELIVER_STRU           *pstSmsDeliverInfo,
     MN_MSG_RAW_TS_DATA_STRU             *pstSmsRawDataInfo
@@ -2311,21 +1726,7 @@ LOCAL VOS_UINT32   MSG_EncodeDeliver(
     return MN_ERR_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : MSG_EncodeDeliverRptAck
- 功能描述  : 同步函数,将具体的Deliver Report Ack短信数据编码为TPDU格式,
-             参考协议 23040 9.2.2.1a
- 输入参数  : pstSmsDeliverReportAckInfo  - Deliver Report Ack短信的TEXT格式
- 输出参数  : pstSmsRawDataInfo           - 短信的TPDU格式
- 返 回 值  : VOS_UINT32:函数返回的结果,成功以及失败的原因值
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月27日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
 LOCAL VOS_UINT32   MSG_EncodeDeliverRptAck(
     const MN_MSG_DELIVER_RPT_ACK_STRU   *pstSmsDeliverReportAckInfo,
     MN_MSG_RAW_TS_DATA_STRU             *pstSmsRawDataInfo
@@ -2398,21 +1799,7 @@ LOCAL VOS_UINT32   MSG_EncodeDeliverRptAck(
     return MN_ERR_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : MSG_EncodeDeliverRptErr
- 功能描述  : 同步函数,将具体的Deliver Report Error短信数据编码为TPDU格式,
-             参考协议23040 9.2.2.1a
- 输入参数  : pstSmsDeliverReportErrorInfo  - Deliver Report Error短信的TEXT格式
- 输出参数  : pstSmsRawDataInfo             - 短信的TPDU格式
- 返 回 值  : VOS_UINT32:函数返回的结果,成功以及失败的原因值
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月27日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
 LOCAL VOS_UINT32   MSG_EncodeDeliverRptErr(
     const MN_MSG_DELIVER_RPT_ERR_STRU   *pstSmsDeliverReportErrorInfo,
     MN_MSG_RAW_TS_DATA_STRU             *pstSmsRawDataInfo
@@ -2487,21 +1874,7 @@ LOCAL VOS_UINT32   MSG_EncodeDeliverRptErr(
     return MN_ERR_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : MSG_EncodeStaRpt
- 功能描述  : 同步函数,将具体的Status Report短信数据编码为TPDU格式,
-             参考协议23040 9.2.2.3
- 输入参数  : pstSmsStatusReportInfo  - Status Report短信的TEXT格式
- 输出参数  : pstSmsRawDataInfo       - 短信的TPDU格式
- 返 回 值  : VOS_UINT32:函数返回的结果,成功以及失败的原因值
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月27日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
 LOCAL VOS_UINT32   MSG_EncodeStaRpt(
     const MN_MSG_STA_RPT_STRU           *pstSmsStatusReportInfo,
     MN_MSG_RAW_TS_DATA_STRU             *pstSmsRawDataInfo
@@ -2628,21 +2001,7 @@ LOCAL VOS_UINT32   MSG_EncodeStaRpt(
     return MN_ERR_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : MSG_EncodeCommand
- 功能描述  : 同步函数,将具体Command短信数据编码为TPDU格式，
-             参考协议23040 9.2.2.4
- 输入参数  : pstSmsCommandInfo  - Command短信的TEXT格式
- 输出参数  : pstSmsRawDataInfo  - 短信的TPDU格式
- 返 回 值  : VOS_UINT32:函数返回的结果,成功以及失败的原因值
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月27日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
 LOCAL VOS_UINT32   MSG_EncodeCommand(
     const MN_MSG_COMMAND_STRU           *pstSmsCommandInfo,
     MN_MSG_RAW_TS_DATA_STRU             *pstSmsRawDataInfo
@@ -2719,21 +2078,7 @@ LOCAL VOS_UINT32   MSG_EncodeCommand(
     return MN_ERR_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : MSG_EncodeSubmit
- 功能描述  : 同步函数,将具体Submit短信数据编码为TPDU格式
-             参考协议23040 9.2.2.2
- 输入参数  : pstSmsSubmitInfo        - Submit短信的TEXT格式
- 输出参数  : pstSmsRawDataInfo       - 短信的TPDU格式
- 返 回 值  : VOS_UINT32:函数返回的结果,成功以及失败的原因值
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月27日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
 LOCAL VOS_UINT32   MSG_EncodeSubmit(
     const MN_MSG_SUBMIT_STRU            *pstSmsSubmitInfo,
     MN_MSG_RAW_TS_DATA_STRU             *pstSmsRawDataInfo
@@ -2832,21 +2177,7 @@ LOCAL VOS_UINT32   MSG_EncodeSubmit(
     return MN_ERR_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : MSG_EncodeSubmitRptAck
- 功能描述  : 同步函数,将具体Submit Report Ack短信数据编码为TPDU格式，
-             参考协议23040 9.2.2.2a
- 输入参数  : pstSmsSubmitReportAckInfo   - Submit Report Ack短信的TEXT格式
- 输出参数  : pstSmsRawDataInfo           - 短信的TPDU格式
- 返 回 值  : VOS_UINT32:函数返回的结果,成功以及失败的原因值
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月27日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
 LOCAL VOS_UINT32   MSG_EncodeSubmitRptAck(
     const MN_MSG_SUBMIT_RPT_ACK_STRU    *pstSmsSubmitReportAckInfo,
     MN_MSG_RAW_TS_DATA_STRU             *pstSmsRawDataInfo
@@ -2930,20 +2261,7 @@ LOCAL VOS_UINT32   MSG_EncodeSubmitRptAck(
     return MN_ERR_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : MSG_EncodeSubmitRptErr
- 功能描述  : 同步函数,将具体Submit Report Error短信数据编码为TPDU格式
- 输入参数  : pstSmsSubmitReportErrorInfo - Submit Report Error短信的TEXT格式
- 输出参数  : pstSmsRawDataInfo           - 短信的TPDU格式
- 返 回 值  : VOS_UINT32:函数返回的结果,成功以及失败的原因值
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月27日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
 LOCAL VOS_UINT32   MSG_EncodeSubmitRptErr(
     const MN_MSG_SUBMIT_RPT_ERR_STRU    *pstSmsSubmitReportErrorInfo,
     MN_MSG_RAW_TS_DATA_STRU             *pstSmsRawDataInfo
@@ -3032,23 +2350,7 @@ LOCAL VOS_UINT32   MSG_EncodeSubmitRptErr(
     return MN_ERR_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_EncodeDcs
- 功能描述  : 同步函数,将23038协议规定的数据编码为Dcs原始数据
- 输入参数  : pstDcs                - 指向23038协议规定的数据
- 输出参数  : pucDcsData            - DCS的原始数据
- 返 回 值  : VOS_UINT32:函数返回的结果,成功以及失败的原因值
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年10月8日
-    作    者   : z40661
-    修改内容   : 新生成函数
- 2.日    期   : 2009-10-28
-    作    者   : F62575
-    修改内容   : 问题单号AT2D15641:DCS数据解码后再编码数据被修改；
-*****************************************************************************/
 VOS_UINT32  MN_MSG_EncodeDcs(
     const MN_MSG_DCS_CODE_STRU          *pstDcs,
     VOS_UINT8                           *pucDcsData
@@ -3140,23 +2442,7 @@ VOS_UINT32  MN_MSG_EncodeDcs(
     return MN_ERR_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_Encode
- 功能描述  : 同步函数,将具体短信数据编码为TPDU格式
- 输入参数  : pstTsDataInfo   - 短信的TEXT格式
- 输出参数  : pstRawData      - 短信的TPDU格式
- 返 回 值  : VOS_UINT32:函数返回的结果,成功以及失败的原因值
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月27日
-    作    者   : z40661
-    修改内容   : 新生成函数
- 2.日    期   : 2009年10月28日
-    作    者   : f62575
-    修改内容   : AT2D15641, STK短信发送需要支持长短信的分段发送功能
-*****************************************************************************/
 
 VOS_UINT32  MN_MSG_Encode(
     const MN_MSG_TS_DATA_INFO_STRU      *pstTsDataInfo,
@@ -3220,21 +2506,7 @@ VOS_UINT32  MN_MSG_Encode(
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : MSG_RequireSegment
- 功能描述  : 判断当前消息是否需要分段
- 输入参数  : pstLongSubmit    - 用户输入的超长短信
- 输出参数  : 无
- 返 回 值  : VOS_FALSE  -无需分段
-             VOS_TRUE   -需要分段
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年10月19日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32   MSG_RequireSegment(
     const MN_MSG_SUBMIT_LONG_STRU       *pstLongSubmit
 )
@@ -3280,24 +2552,7 @@ VOS_UINT32   MSG_RequireSegment(
     return bSegmentFlag;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_Segment
- 功能描述  : 同步函数,将一条超长短信分段为合适长度的短信
- 输入参数  : pstLongSubmit    - 用户输入的超长短信
- 输出参数  : pucNum       - 分段的个数
-             pstRawData   - 指向具体分段后的短信
- 返 回 值  : VOS_UINT32:函数返回的结果,成功以及失败的原因值
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年10月19日
-    作    者   : z40661
-    修改内容   : 新生成函数
- 2.日    期   : 2009年10月28日
-    作    者   : f62575
-    修改内容   : AT2D15641, STK短信发送需要支持长短信的分段发送功能
-*****************************************************************************/
 VOS_UINT32   MN_MSG_Segment(
     const MN_MSG_SUBMIT_LONG_STRU       *pstLongSubmit,
     VOS_UINT8                           *pucNum,
@@ -3425,23 +2680,8 @@ VOS_UINT32   MN_MSG_Segment(
     return MN_ERR_NO_ERROR;
 }
 
-/* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, begin */
-/* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, end */
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_BuildDefSubmitMsg
- 功能描述  : 同步函数,根据设置的短信服务参数和用户输入的内容编码为TPDU格式的短信
- 输入参数  : pstDefSubmit      - 输入短信相关内容
-             pstSrvPara       - 需要使用的短信参数
- 输出参数  : pstRawData        - 编码后TPDU格式的短信
- 返 回 值  : VOS_UINT32:函数返回的结果,成功以及失败的原因值
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2007年9月27日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_UINT32   MN_MSG_BuildDefSubmitMsg(
     const MN_MSG_SUBMIT_DEF_PARM_STRU   *pstDefSubmit,
     const MN_MSG_SRV_PARAM_STRU         *pstSrvPara,
@@ -3488,21 +2728,7 @@ VOS_UINT32   MN_MSG_BuildDefSubmitMsg(
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_EncodeTpRd
- 功能描述  : 编码TP-RD参数到TP-FO
- 输入参数  : VOS_BOOL                            bRejectDuplicates  TP-RD标志
- 输出参数  : VOS_UINT8                          *pucTpFo            TP-FO
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月8日
-    作    者   : f62575
-    修改内容   : DTS2012110604069 新生成函数
-
-*****************************************************************************/
 VOS_VOID MN_MSG_EncodeTpRd(
     VOS_BOOL                            bRejectDuplicates,
     VOS_UINT8                          *pucTpFo

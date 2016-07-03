@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2012, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafMmaSndMscc.c
-  版 本 号   : 初稿
-  作    者   : z00161729
-  生成日期   : 2013年3月26日
-  最近修改   :
-  功能描述   : mma给mscc发送消息的处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年3月26日
-    作    者   : z00161729
-    修改内容   : 创建文件
-
-****************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -114,24 +97,7 @@ TAF_MMA_CS_PS_ERR_CODE_MAP_STRU         g_astTafMmaPsErrCodeMapTbl[] =
 /*****************************************************************************
   6 函数定义
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : TAF_MMA_MapMmaRatToMsccRat
- 功能描述  : MMA格式的接入模式转换为VOS格式的RAT
- 输入参数  : ulCause: 原因值
- 输出参数  : 无
- 返 回 值  : NAS_MSCC_PIF_CDMA_CALL_CAUSE_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月4日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年4月10日
-    作    者   : h00313353
-    修改内容   : SysCfg重构
-*****************************************************************************/
 NAS_MSCC_PIF_NET_RAT_TYPE_ENUM_UINT8 TAF_MMA_MapMmaRatToMsccRat(
     TAF_MMA_RAT_TYPE_ENUM_UINT8      enRatType
 )
@@ -160,26 +126,7 @@ NAS_MSCC_PIF_NET_RAT_TYPE_ENUM_UINT8 TAF_MMA_MapMmaRatToMsccRat(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccStartReq
- 功能描述  : 向mscc发送开机请求
- 输入参数  : enCardStatus   - 卡状态
-             pstPlmnRatPrio - 接入技术优先级
- 输出参数  : 无
- 返 回 值  : VOS_OK : 消息发送成功
-             VOS_ERR: 消息发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年3月26日
-   作    者   : z00161729
-   修改内容   : 新生成函数
- 2.日    期   : 2014年1月27日
-   作    者   : s00261364
-   修改内容   : L-C互操作项目,开机请求新增支持CDMA技术接口
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_SndMsccStartReq(
     TAF_MMA_RAT_ORDER_STRU                  *pstRatPrioList,
     NAS_MSCC_PIF_CARD_STATUS_ENUM_UINT8      enUsimStatus,
@@ -219,13 +166,10 @@ VOS_UINT32 TAF_MMA_SndMsccStartReq(
         pstMsg->stRatPrio.aucRatPrio[i]   = TAF_MMA_MapMmaRatToMsccRat(pstRatPrioList->aenRatOrder[i]);
     }
 
-    /* Added by s00261364 for V3R360_eCall项目, 2014-4-14, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
     pstMsg->enCallMode                 = (NAS_MSCC_PIF_CALL_MODE_ENUM_UINT8)(TAF_SDC_GetCurCallMode());
 #endif
-    /* Added by s00261364 for V3R360_eCall项目, 2014-4-14, end */
 
-    /* Added by s00261364 for L-C互操作项目, 2014-1-27, begin */
 
     /* 开机请求适配新的接口，支持CDMA技术接口 */
     if (VOS_TRUE == TAF_MMA_IsPowerOnCLInterWork())/* C+L模式 */
@@ -242,7 +186,6 @@ VOS_UINT32 TAF_MMA_SndMsccStartReq(
     {
         pstMsg->enRegCtrl                   = NAS_MSCC_PIF_REG_CONTROL_BY_3GPP_MMC;
     }
-    /* Added by s00261364 for L-C互操作项目, 2014-1-27, end */
 
 
     if (NAS_MSCC_PIF_CARD_STATUS_ABSENT != enUsimStatus)
@@ -261,25 +204,7 @@ VOS_UINT32 TAF_MMA_SndMsccStartReq(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccSignalReportReq
- 功能描述  : 向mscc发送信号上报配置消息
- 输入参数  : ucActionType    - action type
-             ucRrcMsgType    - msg type
-             ucSignThreshold - 信号质量改变门限
-             ucMinRptTimerInterval -时间间隔
- 输出参数  : 无
- 返 回 值  : VOS_OK : 消息发送成功
-             VOS_ERR: 消息发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年3月26日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_SndMsccSignalReportReq(
     VOS_UINT8                           ucActionType,
     VOS_UINT8                           ucRrcMsgType,
@@ -320,22 +245,7 @@ VOS_UINT32 TAF_MMA_SndMsccSignalReportReq(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccModeChangeReq
- 功能描述  : 向mscc发送模式变更消息
- 输入参数  : enMsMode - ms模式
- 输出参数  : 无
- 返 回 值  : VOS_OK : 消息发送成功
-             VOS_ERR: 消息发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年3月26日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndMsccModeChangeReq(
     NAS_MSCC_PIF_MS_MODE_ENUM_UINT32         enMsMode
 )
@@ -369,26 +279,7 @@ VOS_VOID TAF_MMA_SndMsccModeChangeReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccAttachReq
- 功能描述  : 向mscc发送attach请求消息
- 输入参数  : ulOpID       - operation id
-             enAttachType - attach 类型
- 输出参数  : 无
- 返 回 值  : VOS_OK : 消息发送成功
-             VOS_ERR: 消息发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年3月26日
-   作    者   : z00161729
-   修改内容   : 新生成函数
- 2.日    期   : 2014年2月17日
-   作    者   : b00269685
-   修改内容   : L-C互操作项目:增加获取和注册请求的处理
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_SndMsccAttachReq(
     VOS_UINT32                                              ulOpID,
     NAS_MSCC_PIF_ATTACH_TYPE_ENUM_UINT32                    enAttachType,
@@ -418,9 +309,7 @@ VOS_UINT32 TAF_MMA_SndMsccAttachReq(
     pstMsg->MsgHeader.ulMsgName        = ID_MMA_MSCC_ATTACH_REQ;
     pstMsg->ulOpID                     = ulOpID;
     pstMsg->enAttachType               = enAttachType;
-    /* Added by b00269685 for L-C互操作项目, 2014-2-17, begin */
     pstMsg->enEpsAttachReason          = enAttachReason;
-    /* Added by b00269685 for L-C互操作项目, 2014-2-17, end */
 
     /* 调用VOS发送原语 */
     PS_SEND_MSG( WUEPS_PID_MMA, pstMsg );
@@ -428,28 +317,7 @@ VOS_UINT32 TAF_MMA_SndMsccAttachReq(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccDetachReq
- 功能描述  : 向mscc发送detach请求消息
- 输入参数  : ulOpID       - operation id
-             enDetachType - detach 类型
- 输出参数  : 无
- 返 回 值  : VOS_TRUE : 消息发送成功
-             VOS_FALSE: 消息发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年3月26日
-   作    者   : z00161729
-   修改内容   : 新生成函数
- 2.日    期   : 2014年2月14日
-   作    者   : s00246516
-   修改内容   : L-C互操作项目:增加获取和注册请求的处理
- 3.日    期   : 2015年4月13日
-   作    者   : h00313353
-   修改内容   : SysCfg重构
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_SndMsccDetachReq(
     VOS_UINT8                                  ucOpID,
     NAS_MSCC_PIF_DETACH_TYPE_ENUM_UINT32       enDetachType,
@@ -480,9 +348,7 @@ VOS_UINT32 TAF_MMA_SndMsccDetachReq(
     pstMsg->ulOpID                     = ucOpID;
     pstMsg->enDetachType               = enDetachType;
 
-    /* Added by s00246516 for L-C互操作项目, 2014-02-14, Begin */
     pstMsg->enDetachReason             = enDetachCause;
-    /* Added by s00246516 for L-C互操作项目, 2014-02-14, End */
 
     /* 调用VOS发送原语 */
     PS_SEND_MSG( WUEPS_PID_MMA, pstMsg );
@@ -491,22 +357,7 @@ VOS_UINT32 TAF_MMA_SndMsccDetachReq(
 }
 
 #if (FEATURE_ON == FEATURE_CSG)
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccCsgListSearchReq
- 功能描述  : 向mscc发送csg list搜网请求消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_OK : 消息发送成功
-             VOS_ERR: 消息发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年9月30日
-   作    者   : z00161729
-   修改内容   : 支持LTE CSG功能新增
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_SndMsccCsgListSearchReq(VOS_VOID)
 {
     MMA_MSCC_CSG_LIST_SEARCH_REQ_STRU  *pstMsg = VOS_NULL_PTR;
@@ -537,22 +388,7 @@ VOS_UINT32 TAF_MMA_SndMsccCsgListSearchReq(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccCsgListAbortReq
- 功能描述  : 向mscc发送csg list abort消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_OK : 消息发送成功
-             VOS_ERR: 消息发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年9月30日
-   作    者   : z00161729
-   修改内容   : 支持LTE CSG功能新增
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_SndMsccCsgListAbortReq(VOS_VOID)
 {
     MMA_MSCC_CSG_LIST_ABORT_REQ_STRU   *pstMsg = VOS_NULL_PTR;
@@ -585,22 +421,7 @@ VOS_UINT32 TAF_MMA_SndMsccCsgListAbortReq(VOS_VOID)
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccPlmnListReq
- 功能描述  : 向mscc发送list搜网请求消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_OK : 消息发送成功
-             VOS_ERR: 消息发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年3月26日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_SndMsccPlmnListReq(VOS_VOID)
 {
     MMA_MSCC_PLMN_LIST_REQ_STRU         *pstMsg = VOS_NULL_PTR;
@@ -631,22 +452,7 @@ VOS_UINT32 TAF_MMA_SndMsccPlmnListReq(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccPlmnListAbortReq
- 功能描述  : 向mscc发送list搜网中止请求消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_OK : 消息发送成功
-             VOS_ERR: 消息发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年3月26日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_SndMsccPlmnListAbortReq(VOS_VOID)
 {
     MMA_MSCC_PLMN_LIST_ABORT_REQ_STRU   *pstMsg = VOS_NULL_PTR;
@@ -677,22 +483,7 @@ VOS_UINT32 TAF_MMA_SndMsccPlmnListAbortReq(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccPlmnUserReselReq
- 功能描述  : 向mscc发送重选请求消息
- 输入参数  : enPlmnSelMode - 选网模式
- 输出参数  : 无
- 返 回 值  : VOS_OK : 消息发送成功
-             VOS_ERR: 消息发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年3月26日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_SndMsccPlmnUserReselReq(NAS_MSCC_PIF_PLMN_SEL_MODE_ENUM_UINT32 enPlmnSelMode)
 {
     MMA_MSCC_PLMN_USER_RESEL_REQ_STRU   *pstMsg = VOS_NULL_PTR;
@@ -724,23 +515,7 @@ VOS_UINT32 TAF_MMA_SndMsccPlmnUserReselReq(NAS_MSCC_PIF_PLMN_SEL_MODE_ENUM_UINT3
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccPlmnSpecialReq
- 功能描述  : 向mscc发送指定搜网请求
- 输入参数  : pstPlmnId    - 指定搜plmn id
-             enAccessMode - 接入技术
- 输出参数  : 无
- 返 回 值  : VOS_OK : 消息发送成功
-             VOS_ERR: 消息发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年3月26日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_SndMsccPlmnSpecialReq(
     MMA_MSCC_PLMN_ID_STRU               *pstPlmnId,
     NAS_MSCC_PIF_NET_RAT_TYPE_ENUM_UINT8     enAccessMode
@@ -775,22 +550,7 @@ VOS_UINT32 TAF_MMA_SndMsccPlmnSpecialReq(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccPowerOffReq
- 功能描述  : 向mscc发送关机请求消息
- 输入参数  : enCause - 关机原因值
- 输出参数  : 无
- 返 回 值  : VOS_OK : 消息发送成功
-             VOS_ERR: 消息发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年3月26日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndMsccPowerOffReq(
     NAS_MSCC_PIF_POWER_OFF_CAUSE_ENUM_UINT32 enCause
 )
@@ -827,56 +587,14 @@ VOS_VOID TAF_MMA_SndMsccPowerOffReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccSysCfgReq
- 功能描述  : 发送syscfg请求消息
- 输入参数  : TAF_MMA_SYS_CFG_PARA_STRU          *pSysCfgReq,
-             VOS_UINT8                           ucOnlyRoamParaChanged,
-             VOS_UINT8                           ucIsNeedAttachPs
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-   1.日    期   : 2008年4月15日
-     作    者   : luojian id:107747
-     修改内容   : 新生成函数
-   2.日    期   : 2009年4月9日
-     作    者   : l00130025
-     修改内容   : 问题单号：AT2D10825/AT2D10887,Efust的定制需求，Efust禁掉GSM/SMS后相关服务被禁止
-   3.日    期   : 2010年11月24日
-     作    者   : z00161729
-     修改内容   : 问题单号DTS2010112204212:syscfg设置双模但只支持W频段或只支持G频段,MMA应给MSCC报接入模式为W或G单模
-   4.日    期   : 2011年6月29日
-     作    者   : z00161729
-     修改内容   : V7R1 phase II支持syscfgex命令修改
-   5.日    期   : 2011年11月15日
-     作    者   : zhoujun /40661
-     修改内容   : GSM被禁止时syscfg设置需要删除G模相关信息
-   6.日    期   : 2013年3月26日
-     作    者   : z00161729
-     修改内容   : 主动上报AT命令控制下移至C核及mma和mscc接口调整
-   7.日    期   : 2013年07月222日
-     作    者   : j00177245
-     修改内容   : 清理Coverity
-   8.日    期   : 2014年2月13日
-     作    者   : w00167002
-     修改内容   : L-C互操作项目:调整SYSCFG的设置查询接口
-  9.日    期   : 2015年4月10日
-    作    者   : h00313353
-    修改内容   : SysCfg重构
-*****************************************************************************/
 
-/* Modified by w00167002 for L-C互操作项目, 2014-2-13, begin */
 VOS_VOID  TAF_MMA_SndMsccSysCfgReq(
     TAF_MMA_SYS_CFG_PARA_STRU          *pSysCfgReq,
     VOS_UINT8                           ucOnlyRoamParaChanged,
     VOS_UINT8                           ucIsNeedAttachPs
 )
-/* Modified by w00167002 for L-C互操作项目, 2014-2-13, end */
 {
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-1, begin */
     MMA_MSCC_SYS_CFG_SET_REQ_STRU      *pMsg = VOS_NULL_PTR;
     TAF_MMA_USER_BAND_SET_UN            uUserSetBand;
     TAF_MMA_UE_SUPPORT_FREQ_BAND_STRU   stUeBand;   /* UE支持的用户设置的频段 */
@@ -969,27 +687,12 @@ VOS_VOID  TAF_MMA_SndMsccSysCfgReq(
     /*消息发送*/
     PS_SEND_MSG( WUEPS_PID_MMA, pMsg);
 
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-1, end */
     return;
 }
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccNetScanMsgReq
- 功能描述  : MMA模块通知MSCC模块NetScanReq消息
- 输入参数  : TAF_MMA_NET_SCAN_REQ_STRU          *pstNetScanReq
- 输出参数  : 无
- 返 回 值  : 发送成功返回VOS_OK
-             发送失败返回VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月15日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndMsccNetScanMsgReq(
     TAF_MMA_NET_SCAN_REQ_STRU          *pstNetScanReq
 )
@@ -1039,21 +742,7 @@ VOS_VOID TAF_MMA_SndMsccNetScanMsgReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccAbortNetScanMsgReq
- 功能描述  : MMA模块通知MSCC模块打断NetScanReq消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 发送成功返回VOS_OK
-             发送失败返回VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月15日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndMsccAbortNetScanMsgReq(VOS_VOID)
 {
     MMA_MSCC_ABORT_NET_SCAN_REQ_STRU    *pstMsg              = VOS_NULL_PTR;
@@ -1085,24 +774,7 @@ VOS_VOID TAF_MMA_SndMsccAbortNetScanMsgReq(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccSystemAcquireReq
- 功能描述  : 向mscc发送开机搜网请求消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_OK : 消息发送成功
-             VOS_ERR: 消息发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年3月26日
-   作    者   : z00161729
-   修改内容   : 新生成函数
- 2.日    期   : 2015年12月10日
-   作    者   : l00324781
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndMsccSystemAcquireReq(VOS_VOID)
 {
     MMA_MSCC_SYSTEM_ACQUIRE_REQ_STRU   *pstMsg = VOS_NULL_PTR;
@@ -1173,22 +845,7 @@ VOS_VOID TAF_MMA_SndMsccSystemAcquireReq(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccSpecPlmnSearchAbortReq
- 功能描述  : 向mscc发送指定搜网中止请求消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_OK : 消息发送成功
-             VOS_ERR: 消息发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年3月26日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_SndMsccSpecPlmnSearchAbortReq(VOS_VOID)
 {
     MMA_MSCC_SPEC_PLMN_SEARCH_ABORT_REQ_STRU                 *pstMsg = VOS_NULL_PTR;
@@ -1219,23 +876,7 @@ VOS_UINT32 TAF_MMA_SndMsccSpecPlmnSearchAbortReq(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccOmMaintainInfoInd
- 功能描述  : 处理OAM发来的TRACE 配置请求
- 输入参数  : ucOmConnectFlg       - om连接标识
-             ucOmPcRecurEnableFlg - 回放使能标识
- 输出参数  : 无
- 返 回 值  : VOS_OK : 消息发送成功
-             VOS_ERR: 消息发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年4月16日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndMsccOmMaintainInfoInd(
     VOS_UINT8                           ucOmConnectFlg,
     VOS_UINT8                           ucOmPcRecurEnableFlg
@@ -1272,22 +913,7 @@ VOS_VOID TAF_MMA_SndMsccOmMaintainInfoInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccUpdateUplmnNtf
- 功能描述  : mma给mscc发送UPLMN更新通知
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_OK : 消息发送成功
-              VOS_ERR: 消息发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年7月31日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_SndMsccUpdateUplmnNtf( VOS_VOID )
 {
     MMA_MSCC_UPDATE_UPLMN_NTF_STRU      *pstMsg = VOS_NULL_PTR;
@@ -1320,24 +946,7 @@ VOS_UINT32 TAF_MMA_SndMsccUpdateUplmnNtf( VOS_VOID )
 
 
 #if (FEATURE_MULTI_MODEM == FEATURE_ON)
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccOtherModemInfoNotify
- 功能描述  : 向mscc发送ID_MMA_MSCC_OTHER_MODEM_INFO_NOTIFY请求消息
- 输入参数  : pstMsg - 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_OK : 消息发送成功
-             VOS_ERR: 消息发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年3月26日
-   作    者   : z00161729
-   修改内容   : 新生成函数
- 2.日    期   : 2013年12月24日
-   作    者   : z00161729
-   修改内容   : SVLTE支持NCELL搜网
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_SndMsccOtherModemInfoNotify(
     struct MsgCB                       *pstMsg
 )
@@ -1382,25 +991,7 @@ VOS_UINT32 TAF_MMA_SndMsccOtherModemInfoNotify(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccOtherModemDplmnNplmnInfoNotify
- 功能描述  : 向mscc发送dplmn和nplmn信息
- 输入参数  : pstMsg - 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_OK : 消息发送成功
-             VOS_ERR: 消息发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年11月3日
-   作    者   : z00161729
-   修改内容   : 开机漫游搜网项目修改
-
- 2.日    期   : 2015年10月22日
-   作    者   : l00289540
-   修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_3.0 修改
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_SndMsccOtherModemDplmnNplmnInfoNotify(
     struct MsgCB                       *pstMsg
 )
@@ -1445,22 +1036,7 @@ VOS_UINT32 TAF_MMA_SndMsccOtherModemDplmnNplmnInfoNotify(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccNcellInfoInd
- 功能描述  : 向mscc发送ID_MMA_MSCC_TDS_LTE_NCELL_INFO_IND请求消息
- 输入参数  : pstMsg - 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_OK : 消息发送成功
-             VOS_ERR: 消息发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年12月24日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_SndMsccNcellInfoInd(
     struct MsgCB                       *pstMsg
 )
@@ -1503,24 +1079,7 @@ VOS_UINT32 TAF_MMA_SndMsccNcellInfoInd(
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccPsTransferInd
- 功能描述  : 向mscc发送ID_MMA_MSCC_PS_TRANSFER_IND请求消息
- 输入参数  : pstMsg - 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_OK : 消息发送成功
-             VOS_ERR: 消息发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年3月26日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-  2.日    期   : 2014年01月17日
-    作    者   : l00198894
-    修改内容   : V9R1C53 C+L 离网重选项目
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_SndMsccPsTransferNotify(
     struct MsgCB                       *pstMsg
 )
@@ -1560,23 +1119,7 @@ VOS_UINT32 TAF_MMA_SndMsccPsTransferNotify(
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccEOPlmnSetReq
- 功能描述  : MMA模块通知MSCC模块ID_MMA_MSCC_EOPLMN_SET_REQ消息
- 输入参数  : TAF_MMA_SET_EOPLMN_LIST_STRU       *pstEOPlmnSetPara
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月15日
-    作    者   : s00190137
-    修改内容   : 新生成函数
-  2.日    期   : 2013年11月26日
-    作    者   : s00190137
-    修改内容   : 添加分组机制，单组允许最大设置50个OPLMN
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndMsccEOPlmnSetReq(
     TAF_MMA_SET_EOPLMN_LIST_STRU       *pstEOPlmnSetPara
 )
@@ -1623,22 +1166,7 @@ VOS_VOID TAF_MMA_SndMsccEOPlmnSetReq(
 }
 
 
-/* Added by b00269685 for L-C互操作项目, 2014-2-13, begin */
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccAcqReq
- 功能描述  : 向MSCC发送开机搜网请求消息
- 输入参数  : stMmaAcqPara
- 输出参数  : 无
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年2月13日
-   作    者   : b00269685
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_SndMsccAcqReq(
     TAF_MMA_ACQ_PARA_STRU              *pstMmaAcqPara
 )
@@ -1684,21 +1212,7 @@ VOS_UINT32 TAF_MMA_SndMsccAcqReq(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccRegReq
- 功能描述  : 向MSCC发送开机注册请求消息
- 输入参数  : stMmaRegPara
- 输出参数  : 无
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年2月14日
-   作    者   : b00269685
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_SndMsccRegReq(
     TAF_MMA_REG_PARA_STRU              *pstMmaRegPara
 )
@@ -1754,21 +1268,7 @@ VOS_UINT32 TAF_MMA_SndMsccRegReq(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccPowerSaveReq
- 功能描述  : 向MSCC发送开机搜网请求消息
- 输入参数  : stMmaPowerSavePara
- 输出参数  : 无
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年2月13日
-   作    者   : b00269685
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_SndMsccPowerSaveReq(
     TAF_MMA_POWER_SAVE_PARA_STRU       *pstMmaPowerSavePara
 )
@@ -1803,26 +1303,9 @@ VOS_UINT32 TAF_MMA_SndMsccPowerSaveReq(
     return VOS_OK;
 }
 
-/* Added by b00269685 for L-C互操作项目, 2014-2-14, end */
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccSrvAcqReq
- 功能描述  : 向MSCC发送因服务触发的搜网指示请求消息
- 输入参数  : enSrvType:服务类型
-            pstRatList:需要触发搜网的网络模式列表
- 输出参数  : 无
- 返 回 值  : VOS_OK:发送成功
-             VOS_ERR:发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年6月17日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndMsccSrvAcqReq(
     NAS_MSCC_PIF_SRV_TYPE_ENUM_UINT8    enSrvType,
     NAS_MSCC_PIF_SRV_ACQ_RAT_LIST_STRU *pstRatList
@@ -1859,23 +1342,7 @@ VOS_VOID TAF_MMA_SndMsccSrvAcqReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccBeginSessionNotify
- 功能描述  : 向MSCC发送申请资源消息
- 输入参数  : enSessionType:Session类型
-            pstRatList: Rat列表
- 输出参数  : 无
- 返 回 值  : VOS_OK:发送成功
-             VOS_ERR:发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年6月17日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndMsccBeginSessionNotify(
     NAS_MSCC_PIF_SRV_TYPE_ENUM_UINT8         enSrvType,
     NAS_MSCC_PIF_SRV_ACQ_RAT_LIST_STRU      *pstRatList
@@ -1913,22 +1380,7 @@ VOS_VOID TAF_MMA_SndMsccBeginSessionNotify(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccEndSessionNotify
- 功能描述  : 向MSCC发送释放资源消息
- 输入参数  : stMmaAcqPara
- 输出参数  : 无
- 返 回 值  : VOS_OK:发送成功
-             VOS_ERR:发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年6月17日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndMsccEndSessionNotify(
     NAS_MSCC_PIF_SRV_TYPE_ENUM_UINT8         enSrvType,
     NAS_MSCC_PIF_SRV_ACQ_RAT_LIST_STRU      *pstRatList
@@ -1968,20 +1420,7 @@ VOS_VOID TAF_MMA_SndMsccEndSessionNotify(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccImsSrvInfoNotify
- 功能描述  : 向mscc发送ID_MMA_MSCC_IMS_SRV_INFO_NOTIFY
- 输入参数  : ucImsCallFlg---IMS call是否存在
- 输出参数  : 无
- 返 回 值  : 无
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年11月06日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndMsccImsSrvInfoNotify(
     VOS_UINT8                           ucImsCallFlg
 )
@@ -2017,21 +1456,7 @@ VOS_VOID TAF_MMA_SndMsccImsSrvInfoNotify(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_MapMmaCallTypeToMsccFormat
- 功能描述  : MMA格式的呼叫类型转换为MSCC格式的
- 输入参数  : TAF_MMA_1X_CALL_TYPE_ENUM_UINT8   enMmaCallType
- 输出参数  : 无
- 返 回 值  : NAS_MSCC_PIF_CDMA_CALL_TYPE_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月4日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_MSCC_PIF_CDMA_CALL_TYPE_ENUM_UINT8 TAF_MMA_MapMmaCallTypeToMsccFormat(
     TAF_MMA_CDMA_CALL_TYPE_ENUM_UINT8   enMmaCallType
 )
@@ -2065,21 +1490,7 @@ NAS_MSCC_PIF_CDMA_CALL_TYPE_ENUM_UINT8 TAF_MMA_MapMmaCallTypeToMsccFormat(
 }
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- 函 数 名  : TAF_MMA_MapCsCauseToMsccFormat
- 功能描述  : MMA格式的呼叫原因值转换为MSCC格式的(CS)
- 输入参数  : ulCause: 原因值
- 输出参数  : 无
- 返 回 值  : NAS_MSCC_PIF_CDMA_CALL_CAUSE_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月4日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_MSCC_PIF_CDMA_CALL_CAUSE_ENUM_UINT8 TAF_MMA_MapCsCauseToMsccFormat(
     VOS_UINT32                          ulCause
 )
@@ -2097,21 +1508,7 @@ NAS_MSCC_PIF_CDMA_CALL_CAUSE_ENUM_UINT8 TAF_MMA_MapCsCauseToMsccFormat(
     return NAS_MSCC_PIF_CDMA_CALL_CAUSE_BUTT;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_MapPsCauseToMsccFormat
- 功能描述  : MMA格式的PS原因类型转换为MSCC格式的(PS)
- 输入参数  : ulCause : 原因值
- 输出参数  : 无
- 返 回 值  : NAS_MSCC_PIF_CDMA_CALL_CAUSE_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月4日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_MSCC_PIF_CDMA_CALL_CAUSE_ENUM_UINT8 TAF_MMA_MapPsCauseToMsccFormat(
     VOS_UINT32                          ulCause
 )
@@ -2129,21 +1526,7 @@ NAS_MSCC_PIF_CDMA_CALL_CAUSE_ENUM_UINT8 TAF_MMA_MapPsCauseToMsccFormat(
     return NAS_MSCC_PIF_CDMA_CALL_CAUSE_BUTT;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccCdmaMoCallStartNtf
- 功能描述  : 向MSCC发送呼叫开始指示
- 输入参数  : enCallType --  呼叫类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年11月27日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndMsccCdmaMoCallStartNtf(
     TAF_MMA_CDMA_CALL_TYPE_ENUM_UINT8   enCallType
 )
@@ -2176,21 +1559,7 @@ VOS_VOID TAF_MMA_SndMsccCdmaMoCallStartNtf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccQuitCallBackNtf
- 功能描述  : 向MSCC发送退出CallBack指示
- 输入参数  : enCallType --  呼叫类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年07月21日
-   作    者   : h00313353
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndMsccQuitCallBackNtf( VOS_VOID )
 {
     MMA_MSCC_QUIT_CALL_BACK_NTF_STRU   *pstSndMsg = VOS_NULL_PTR;
@@ -2222,21 +1591,7 @@ VOS_VOID TAF_MMA_SndMsccQuitCallBackNtf( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccCdmaMoCallEndNtf
- 功能描述  : 向MSCC发送呼叫结束指示
- 输入参数  : enCallType --  呼叫类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年11月27日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndMsccCdmaMoCallEndNtf(
     TAF_MMA_CDMA_CALL_TYPE_ENUM_UINT8   enCallType
 )
@@ -2270,21 +1625,7 @@ VOS_VOID TAF_MMA_SndMsccCdmaMoCallEndNtf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccCdmaMoCallSuccessNtf
- 功能描述  : 向MSCC发送呼叫成功指示
- 输入参数  : enCallType --  呼叫类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年11月27日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndMsccCdmaMoCallSuccessNtf(
     TAF_MMA_CDMA_CALL_TYPE_ENUM_UINT8   enCallType
 )
@@ -2319,22 +1660,7 @@ VOS_VOID TAF_MMA_SndMsccCdmaMoCallSuccessNtf(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccCdmaMoCallRedialSysAcqNtf
- 功能描述  : 向MSCC发送呼叫重拨指示
- 输入参数  : enCallType --  呼叫类型
-             enCause --- 呼叫失败原因值
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年11月27日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndMsccCdmaMoCallRedialSysAcqNtf(
     TAF_MMA_CDMA_CALL_TYPE_ENUM_UINT8   enCallType,
     VOS_UINT32                          ulCause
@@ -2379,21 +1705,7 @@ VOS_VOID TAF_MMA_SndMsccCdmaMoCallRedialSysAcqNtf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccCFreqLockNtf
- 功能描述  : MMA发送锁频信息给MSCC
- 输入参数  : TAF_MMA_CFREQ_LOCK_SET_PARA_STRU *pstCFreqLockSetReq
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月29日
-    作    者   : y00307564
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndMsccCFreqLockNtf(
     TAF_MMA_CFREQ_LOCK_SET_PARA_STRU *pstCFreqLockSetPara
 )
@@ -2437,21 +1749,7 @@ VOS_VOID TAF_MMA_SndMsccCFreqLockNtf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccCdmaCsqSetReq
- 功能描述  : 向MSCC发送设置CDMACSQ上报参数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年12月25日
-   作    者   : m00312079
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_SndMsccCdmaCsqSetReq(
     NAS_MSCC_PIF_CDMACSQ_SET_PARA_STRU     stCdmaCsqSetPara
 )
@@ -2487,21 +1785,7 @@ VOS_UINT32 TAF_MMA_SndMsccCdmaCsqSetReq(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccHandsetInfoQryReq
- 功能描述  : 向MSCC发送获取手机信息请求
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年12月25日
-   作    者   : m00312079
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_SndMsccHandsetInfoQryReq(
      MMA_MSCC_HANDSET_INFO_TYPE_ENUM_UINT32  enInfoType
 )
@@ -2540,21 +1824,7 @@ VOS_UINT32 TAF_MMA_SndMsccHandsetInfoQryReq(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccHdrCsqSetReq
- 功能描述  : 向MSCC发送设置HDRCSQ上报参数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年10月20日
-   作    者   : c00299064
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_SndMsccHdrCsqSetReq(
     NAS_MSCC_PIF_HDR_CSQ_SET_PARA_STRU     stHdrCsqSetPara
 )
@@ -2593,23 +1863,7 @@ VOS_UINT32 TAF_MMA_SndMsccHdrCsqSetReq(
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccCFPlmnReq
- 功能描述  : 向mscc发送指定或所有plmn请求
- 输入参数  : pstPlmnId    - plmn id
 
- 输出参数  : 无
- 返 回 值  : VOS_OK : 消息发送成功
-             VOS_ERR: 消息发送失败
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年2月7日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndMsccCFPlmnSetReq(
     TAF_PH_FPLMN_OPERATE_STRU          *pstFPlmnOperInfo
 )
@@ -2663,23 +1917,7 @@ VOS_VOID TAF_MMA_SndMsccCFPlmnSetReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccCFPlmnQueryReq
- 功能描述  : 向mscc发送查询请求
- 输入参数  :
 
- 输出参数  : 无
- 返 回 值  :
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年2月7日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndMsccCFPlmnQueryReq(VOS_VOID)
 {
     MMA_MSCC_CFPLMN_QUERY_REQ_STRU     *pstMsg = VOS_NULL_PTR;
@@ -2707,22 +1945,7 @@ VOS_VOID TAF_MMA_SndMsccCFPlmnQueryReq(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccDplmnSetReq
- 功能描述  : mma给mscc发送ID_MMA_MSCC_DPLMN_SET_REQ 消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月12日
-    作    者   : n00355355
-    修改内容   : 新生成函数
-  2.日    期   : 2015年11月2日
-    作    者   : l00289540
-    修改内容   : 在消息中新增更新Dplmn的场景
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndMsccDplmnSetReq(
     TAF_MMA_DPLMN_SET_REQ_STRU         *pstMsg
 )
@@ -2767,22 +1990,7 @@ VOS_VOID TAF_MMA_SndMsccDplmnSetReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccPrefPlmnSetReq
- 功能描述  : MMA发送设置prefplmn信息给MSCC
- 输入参数  : TAF_MMA_CTRL_STRU                  *pstCtrl,
-             TAF_PH_PREF_PLMN_OPERATE_STRU      *pstPrefPlmnOpt
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月06日
-    作    者   : y00307564
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndMsccPrefPlmnSetReq(
     TAF_MMA_CTRL_STRU                  *pstCtrl,
     TAF_PH_PREF_PLMN_OPERATE_STRU      *pstPrefPlmnOpt
@@ -2830,21 +2038,7 @@ VOS_VOID TAF_MMA_SndMsccPrefPlmnSetReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccPrefPlmnQueryReq
- 功能描述  : MMA发送查询prefplmn信息给MSCC
- 输入参数  : TAF_MMA_PREF_PLMN_QUERY_REQ_STRU    *pstRcvMsg
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月06日
-    作    者   : y00307564
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndMsccPrefPlmnQueryReq(
     TAF_MMA_PREF_PLMN_QUERY_REQ_STRU   *pstRcvMsg
 )
@@ -2889,21 +2083,7 @@ VOS_VOID TAF_MMA_SndMsccPrefPlmnQueryReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccPrefPlmnTestReq
- 功能描述  : MMA发送查询prefplmn信息给MSCC
- 输入参数  : TAF_MMA_PREF_PLMN_TEST_REQ_STRU    *pstRcvMsg
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月06日
-    作    者   : y00307564
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndMsccPrefPlmnTestReq(
     TAF_MMA_PREF_PLMN_TEST_REQ_STRU    *pstRcvMsg
 )
@@ -2943,21 +2123,7 @@ VOS_VOID TAF_MMA_SndMsccPrefPlmnTestReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccPsRatTypeNtf
- 功能描述  : MMA发送查询prefplmn信息给MSCC
- 输入参数  : TAF_MMA_PREF_PLMN_TEST_REQ_STRU    *pstRcvMsg
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月01日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndMsccPsRatTypeNtf(
     TAF_MMA_PS_RAT_TYPE_ENUM_UINT32     enCurrCdataServiceMode
 )
@@ -3020,21 +2186,7 @@ VOS_VOID TAF_MMA_SndMsccPsRatTypeNtf(
 
 
 #if (FEATURE_ON == FEATURE_IMS)
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccVoiceDomainChangeInd
- 功能描述  : MMA发送voice domain变化消息给MSCC
- 输入参数  : voice domain:E-UTRAN的语音优先域
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年4月15日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndMsccVoiceDomainChangeInd(
     NAS_MSCC_PIF_VOICE_DOMAIN_ENUM_UINT32                   enVoiceDomain
 )
@@ -3069,21 +2221,7 @@ VOS_VOID TAF_MMA_SndMsccVoiceDomainChangeInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccImsStartReq
- 功能描述  : 给MSCC发送IMS开启请求消息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年4月15日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndMsccImsStartReq(VOS_VOID)
 {
     MMA_MSCC_IMS_START_REQ_STRU        *pstMsg = VOS_NULL_PTR;
@@ -3117,21 +2255,7 @@ VOS_VOID TAF_MMA_SndMsccImsStartReq(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccImsStopReq
- 功能描述  : 给MSCC发送IMS关闭请求消息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年4月15日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndMsccImsStopReq(VOS_VOID)
 {
     MMA_MSCC_IMS_STOP_REQ_STRU         *pstMsg = VOS_NULL_PTR;
@@ -3166,21 +2290,7 @@ VOS_VOID TAF_MMA_SndMsccImsStopReq(VOS_VOID)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccAutoReselSetReq
- 功能描述  : 给MSCC发送auto resel
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年6月3日
-   作    者   : b00269685
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndMsccAutoReselSetReq(VOS_UINT8 ucActiveFlg)
 {
     MMA_MSCC_AUTO_RESEL_SET_STRU       *pstMsg = VOS_NULL_PTR;
@@ -3216,21 +2326,7 @@ VOS_VOID TAF_MMA_SndMsccAutoReselSetReq(VOS_UINT8 ucActiveFlg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccGetGeoReq
- 功能描述  : 获取地理位置信息请求
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月25日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndMsccGetGeoReq(VOS_VOID)
 {
     MMA_MSCC_GET_GEO_REQ_STRU          *pstMsg = VOS_NULL_PTR;
@@ -3260,21 +2356,7 @@ VOS_VOID TAF_MMA_SndMsccGetGeoReq(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMsccStopGetGeoReq
- 功能描述  : 停止获取地理位置信息请求
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月25日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndMsccStopGetGeoReq(VOS_VOID)
 {
     MMA_MSCC_STOP_GET_GEO_REQ_STRU     *pstMsg = VOS_NULL_PTR;

@@ -24,21 +24,7 @@ ULONG ulDhcpcPerfInitFinish = VOS_FALSE;
 
 
 #define __DHCPC_COMP_INIT__
-/*****************************************************************************
- 函 数 名  : DHCPC_OmInitial
- 功能描述  : DHCPC性能统计初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月15日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_OmInitial()
 {
 #if 0
@@ -132,21 +118,7 @@ ULONG DHCPC_OmInitial()
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_GlobalValInit
- 功能描述  : dhcpc全局变量初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_OK,VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月14日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_GlobalValInit()
 {
     ULONG ulRet = VOS_OK;
@@ -193,21 +165,7 @@ ULONG DHCPC_GlobalValInit()
 }
 
 
-/*****************************************************************************
- 函 数 名  : DHCPC_DftInit
- 功能描述  : DFT初始化函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :  VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年05月17日
-    作    者   : 郭丽鲜
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_DftInit()
 {
     /* DFT上报发送控制块数目 */
@@ -221,19 +179,7 @@ ULONG DHCPC_DftInit()
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_RegisterDFTInfo
- 功能描述  : 向平台注册DHCP发送控制块上报资源
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史     :
- 1.日    期   : 2011-05-16
-   作    者   : 郭丽鲜
-   修改内容   : 新建函数
-*****************************************************************************/
+
 VOID DHCPC_RegisterDFTInfo()
 {
 #if 0
@@ -244,21 +190,7 @@ VOID DHCPC_RegisterDFTInfo()
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_LocalMemInit
- 功能描述  : dhcpc本地内存初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月14日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_LocalMemInit()
 {
     ULONG i = 0;
@@ -300,7 +232,6 @@ ULONG DHCPC_LocalMemInit()
     }
     PGP_MemZero(g_pucDhcpPktBuf, sizeof(UCHAR) * DHCP_PKT_ASSUME_MAX_LEN);
 
-    /* BEGIN: Added for PN:DHCPv6特性 by tianyang 00144555, 2012/7/9 */
     g_pstDhcpcIpv6CtrlBlkRec = ( DHCPC_CTRLBLK** )DHCP_Malloc( DHCPC_HANDLE, sizeof( DHCPC_CTRLBLK* )*DHCPC_CTRLBLK_HASH_TABLE_SIZE );
     if ( NULL == g_pstDhcpcIpv6CtrlBlkRec )
     {
@@ -312,9 +243,7 @@ ULONG DHCPC_LocalMemInit()
     }
     /* 初始化DHCP控制块指针数组 */
     DHCP_MemZero( g_pstDhcpcIpv6CtrlBlkRec, sizeof( DHCPC_CTRLBLK * )*DHCPC_CTRLBLK_HASH_TABLE_SIZE );
-    /* END:   Added for PN:DHCPv6特性 by tianyang 00144555, 2012/7/9 */
 
-    /* Added start by y00170683 at 2012-07-10 UGW10.0 for DHCPV6特性 */
     /* 申请发消息缓存 */
     g_pucDhcpv6cSendBuff = (UCHAR*)DHCP_Malloc(DHCPC_HANDLE, sizeof(UCHAR) * DHCPV6C_SEND_MSG_MAXLEN);
     if (NULL == g_pucDhcpv6cSendBuff)
@@ -337,16 +266,13 @@ ULONG DHCPC_LocalMemInit()
     {
         return VOS_ERR;
     }
-    /* Added end by y00170683 at 2012-07-10 UGW10.0 for DHCPV6特性 */
 
-    /* zhangjinquan 00175135 DHCPv6特性 2012-07-23 start */
     /* 初始化时间链表表头 */
     ulRet = DHCPC_InitTimerList();
     if (VOS_OK != ulRet)
     {
         return VOS_ERR;
     }
-    /* zhangjinquan 00175135 DHCPv6特性 2012-07-23 end   */
 
     /*初时化debug记数器*/
     VOS_MemSet((VOID *)g_aulDHCPDbgCnt,0,(sizeof(ULONG) * DHCP_MAX_FAILURE_COUNTER));
@@ -354,21 +280,7 @@ ULONG DHCPC_LocalMemInit()
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_CommInit1
- 功能描述  : 第二阶段公共初始化
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月14日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_CommInit1(  )
 {
     ULONG ulReturn = VOS_OK;
@@ -452,41 +364,13 @@ ULONG DHCPC_CommInit1(  )
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_CommInit2
- 功能描述  : 第二阶段公共初始化
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月14日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_CommInit2(  )
 {
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_CommInit3
- 功能描述  : 第三阶段公共初始化
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月14日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_CommInit3( )
 {
     ULONG ulReturn = 0;
@@ -529,21 +413,7 @@ ULONG DHCPC_StartWorkProc( )
 
 #define __DHCPC_COMP_MSG_PROC___________
 
-/*****************************************************************************
- 函 数 名  : DHCPC_GetSelfCompInfo
- 功能描述  : 获取本组件相关信息
- 输入参数  : DMS_COMMID_T myCSI
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月14日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_GetSelfCompInfo(DMS_COMMID_T myCSI )
 {
     g_stDhcpcComInfo.ullSelfCsi = PSM_Inf_GetSelfCSI(E_COMP_TYPE_DHCPC);
@@ -606,21 +476,7 @@ VOID DHCPC_ScheduleInit( DMS_COMMID_T ullCpi )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_CompMsgDistribute
- 功能描述  : 组件消息分发函数
- 输入参数  : VOID* pMsg
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月14日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_CompMsgDistribute(ULONG ulMsgType, VOID* pMsg )
 {
     switch(ulMsgType)
@@ -665,21 +521,7 @@ ULONG DHCPC_CompMsgDistribute(ULONG ulMsgType, VOID* pMsg )
 }
 
 
-/*****************************************************************************
- 函 数 名  : DHCPC_CompInitPhase1
- 功能描述  : 组件第一阶段初始化
- 输入参数  : DMS_COMMID_T myCSI
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月14日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_CompInitPhase1(DMS_COMMID_T myCSI)
 {
     ULONG ulRet = VOS_OK;
@@ -702,41 +544,13 @@ ULONG DHCPC_CompInitPhase1(DMS_COMMID_T myCSI)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_CompInitPhase2
- 功能描述  : 组件第二阶段初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月14日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_CompInitPhase2()
 {
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_CompInitPhase3
- 功能描述  : 组件第三阶段初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月14日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_CompInitPhase3(DMS_COMMID_T myCPI)
 {
     ULONG ulRet = VOS_OK;
@@ -753,24 +567,7 @@ ULONG DHCPC_CompInitPhase3(DMS_COMMID_T myCPI)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_CompConstruct
- 功能描述  : DHCPC组件构造函数
- 输入参数  : RTF_COMP_CONSTRUCT_STAGE_E eConstructStage
-             DMS_COMMID_T myCSI
-             DMS_COMMID_T myCPI
-             VOID* pThis
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月14日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_CompConstruct( RTF_COMP_CONSTRUCT_STAGE_E eConstructStage,
                             DMS_COMMID_T myCSI, DMS_COMMID_T myCPI, VOID* pThis )
 {
@@ -821,44 +618,14 @@ ULONG DHCPC_CompConstruct( RTF_COMP_CONSTRUCT_STAGE_E eConstructStage,
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_CompDestruct
- 功能描述  : DHCPC组件析构函数
- 输入参数  : DMS_COMMID_T myPid
-             VOID* pThis
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月14日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_CompDestruct( DMS_COMMID_T myPid, VOID* pThis )
 {
     DHCPC_DebugPrint(PTM_LOG_INFO, "entry");
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_CompMsgProc
- 功能描述  : DHCPC组件消息处理函数
- 输入参数  : VOID* pMsg
-             VOID* pThis
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月14日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_CompMsgProc(VOID* pMsg, VOID* pThis)
 {
     DMS_IID_T recvIId;

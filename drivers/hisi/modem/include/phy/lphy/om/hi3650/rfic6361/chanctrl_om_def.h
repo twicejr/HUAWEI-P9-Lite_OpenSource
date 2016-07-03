@@ -1,25 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : chanctrl_om_def.h
-  版 本 号   : 初稿
-  作    者   : w00159358
-  生成日期   : 2011年3月7日
-  最近修改   :
-  功能描述   : 定义信道控制模块OM需要上报的结构体
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年3月7日
-    作    者   : w00159358
-    修改内容   : 创建文件
-  ------------------------------------------------------------------------------
-  2.日    期   : 2012年4月18日
-     作    者   : sunyanjie
-     修改内容   : [DTS2012041802974]OM优化修改
-
-******************************************************************************/
 
 /************************************************************
                      包含其它模块的头文件
@@ -209,14 +188,12 @@ typedef enum
     LPHY_TRACE_CHACNTRL_PDSCH_PCH_SETUP,
     LPHY_TRACE_CHANCTRL_PDSCH_RACH_SETUP,
     LPHY_TRACE_CHANCTRL_PDSCH_DSCH_SETUP,
-    /* BEGIN: Added by l00131321, 2012/12/19   问题单号:V7R2_MODIFY*/
     LPHY_TRACE_CHANCTRL_SCELL_PDSCH_DSCH_SETUP,
     LPHY_TRACE_CHANCTRL_PBCH_RELEASE,
     LPHY_TRACE_CHANCTRL_PDSCH_BCCH_RELEASE,
     LPHY_TRACE_CHANCTRL_PDSCH_PCH_RELEASE,
     LPHY_TRACE_CHANCTRL_PDSCH_RACH_RELEASE,
     LPHY_TRACE_CHANCTRL_PDSCH_DSCH_RELEASE,
-    /* BEGIN: Added by l00131321, 2012/12/19   问题单号:V7R2_MODIFY*/
     LPHY_TRACE_CHANCTRL_SCELL_PDSCH_DSCH_RELEASE,
     LPHY_TRACE_CHACNTRL_CAMPED_ON_MAIN_CELL,
     LPHY_TRACE_CHANCTRL_HANDOVER,

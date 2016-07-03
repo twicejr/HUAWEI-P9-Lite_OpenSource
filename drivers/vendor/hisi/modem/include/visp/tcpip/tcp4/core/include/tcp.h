@@ -83,7 +83,6 @@ extern  "C"{
 
 #define TCP_MAXWIN                      65535L  /* largest value for (unscaled) window */
 
-/*Added by zhoushisong202096, 修改支持MCCP信令面设置MSS, 2013/11/30 */
 /* the max ethernet mtu is 1500,
 *  decrease IP head(20),TCP head(20)
 */

@@ -30,7 +30,6 @@ extern "C" {
 #endif
 
 /*定义PTP模块MID/SID*/
-/*Mod By t00110672 For BC3D01181,2009.2.17,使用统一分配的MID*/
 #define PTP_MID  MID_COMP_PTP
 
 #define SID_PTP_UNICAST_SLAVE_S       1  /*存放单播SLAVE及其列表*/
@@ -108,14 +107,12 @@ extern "C" {
 /*单播长度*/
 #define PTP_ONE_SIANGLING_TLV_PKTLEN    128
 
-/*ST问题: REQ 协商消息TLV 静核的长度应该为6， 20080723, l00128792*/
 /* 普通TLV长度 */
 #define PTP_GENERAL_TLV_LEN             6
 
 /* 扩展TLV长度 */
 #define PTP_EXTEND_TLV_LEN              14
 
-/*Mod By t00110672  10-1-8,支持路由器关于实现最新草案的需求 */
 /* announce log interval最大最小值宏定义 */
 #define PTP_MAX_ANNOUNCE_LOGINTERVAL       4
 
@@ -145,26 +142,19 @@ extern "C" {
 #define VLANTYPE_DOT1Q   0x8100         /* VLAN 802.1q格式*/
 #define DOT1Q_TAG_SIZE   4
 #define PTP_IEEE8023_ETHTYPE 0x88f7     /*1588 OVER MAC 以太类型*/
-/* Modified by jijianhua00169178, 事件id需要使用高16位, 2012/1/13   问题单号:DTS2012011304845 */
 #define PTP_EVT_IEEE8023MSG_Q 0x00020000         /*MAC报文写入到PTP队列使用该消息*/
-/*End of Modified by jijianhua00169178, 2012/1/13   问题单号:DTS2012011304845 */
 #define PTP_IEEE8023MSGT 0x00001000     /*MAC报文写入到PTP队列MSG[0]使用该标识*/
 #define PTP_ADDRLEN_IEEE8023 6          /* PTP MAC 地址长度 */
 
 /* 定义dscp默认值宏 */
-/*Added by zhangliangzhi00187023, 【检视发现问题】关于修改dscp默认值为56。, 2012/3/29   问题单号:DTS2012032903015 */
 #define PTP_DEFAULT_DSCP     0x38
-/* End of Added by zhangliangzhi00187023, 2012/3/29   问题单号:DTS2012032903015 */
 
 
 /*PTP IPV6 MSG*/
 #define PTP_IPV6MSGT 0x00002000     /*IPV6报文写入到PTP队列MSG[0]使用该标识*/
 
-/* Modified by jijianhua00169178, 事件id需要使用高16位，且只能使用1位, 2012/1/13   问题单号:DTS2012011304845 */
 #define PTP_EVT_IPV6MSG_Q 0x00040000         /*IPV6报文写入到PTP队列使用该消息*/
-/*End of Modified by jijianhua00169178, 2012/1/13   问题单号:DTS2012011304845 */
 
-/*Add By t00110672/z00146309  10-1-11,支持路由器关于实现最新草案的需求 */
 #define PTP_KEEP_ALIVE_MODE_OLD  0
 #define PTP_KEEP_ALIVE_MODE_NEW  1
 
@@ -180,7 +170,6 @@ extern "C" {
 /*Ann 报文发送定时器基数*/
 #define PTP_ANN_SEND_TIMER_BASE 125
 
-/*Add By t00110672 For BC3D02818,【TD产品需求】【PTP】实现1588无线选源方案优化*/
 /*优选源类型*/
 #define PTP_CLOCK_CLASS_6      6
 #define PTP_CLOCK_CLASS_7      7
@@ -194,7 +183,6 @@ extern "C" {
     || (g_pstPtpClock->ucClass2 == clkclass)\
     || (g_pstPtpClock->ucClass3 == clkclass))\
 
-/*Add By t00110672 For BC3D03289,在单播IP模式下，仍可以添加单播master physical地址列表，应该增加此限制*/
 #define IP_ADDR_VALID( stAddr )\
     (((PTP_PROTOCAL_UDP_IPV4 == (stAddr).usNetworkProtocol)&&(PTP_ADDRLEN_UDP_IPV4 == (stAddr).usAddressLength))\
    ||((PTP_PROTOCAL_UDP_IPV6 == (stAddr).usNetworkProtocol)&&( PTP_ADDRLEN_UDP_IPV6 == (stAddr).usAddressLength)))
@@ -279,8 +267,6 @@ extern "C" {
     }\
 }
 
-/*Begin Add by heyijun KF37287 for DTS2011062105058 支持clock id授权方案*/
-/* Modified by weishanfengwKF61331, 产品授权是否拒绝请求, 2011/11/26   问题单号:S.PTP.ANNCHOOK.01  */
 #define PTP_GRANT_ACQUIRED_BY_ID(pstPortId, bGrantR, ulPtpMsgType, ulAnnInterval, cSlaveFlag)\
 {\
     if (NULL != g_pfPtpGrantAcquiredById)\
@@ -293,13 +279,12 @@ extern "C" {
         stMsgPara.cSlaveFlag = (cSlaveFlag);\
         (VOID)g_pfPtpGrantAcquiredById(&stMsgPara, &(bGrantR));\
     }\
-/*End of Modified by weishanfengwKF61331, 2011/11/26   问题单号:S.PTP.ANNCHOOK.01 */\
+\
     else\
     {\
         (bGrantR) = BOOL_TRUE;\
     }\
 }
-/*End Add by heyijun KF37287 for DTS2011062105058 支持clock id授权方案*/
 
 /*打印输出宏*/
 #define PTP_DEBUGINFO_OUTPUT(ulDebugType,szBuffer)\
@@ -515,9 +500,7 @@ extern "C" {
 
 /* 地址比较失败或者不相等的时候输出值 */
 
-/*Added by guo00178934, 清除PTP模块"宏定义宏值定义为负数，但未加括号"导致的PC Lint告警, 2011/8/30   问题单号:DTS2011083000609 */
 #define PTP_ADDRCMP_ERR         (-1)
-/* End of Added by guo00178934, 2011/8/30   问题单号:DTS2011083000609 */
 
 
 
@@ -544,22 +527,17 @@ extern "C" {
     ((PTP_STATE_UNICAST_NEGO_ACK == flag)         \
     || (PTP_STATE_UNICAST_NEGO_REFUSE == flag))
 
-/*Added by guo00178934, two-way模式，是否允许sync和delay序号相同, 2012/1/5   问题单号:20120105_2 */
 #define PTP_TWOWAY_SEQID_CHECK_DIFF 1 /*two way 应答 sync 、delay序列不能相同 默认值此情况，即默认和TP5000 对接不成功*/ 
 #define PTP_TWOWAY_SEQID_CHECK_SAME 2 /*two way 应答 sync 、delay序列必须相同*/ 
 #define PTP_TWOWAY_SEQID_CHECK_ALL  (PTP_TWOWAY_SEQID_CHECK_DIFF|PTP_TWOWAY_SEQID_CHECK_SAME) /*兼容上述两种情况 */
-/* End of Added by guo00178934, 2012/1/5   问题单号:20120105_2 */
 
-/*Added by guo00178934, Duration重协商时间用户可配, 2012/1/7   问题单号:20120107_1 */
 #define PTP_DURATION_TIMEOUT_PERCENT_MIN  50
 #define PTP_DURATION_TIMEOUT_PERCENT_MAX  99
 
 /*计算Duration重协商的时间*/
 #define PTP_DURATION_TIMEOUT_PERIOD(ulDuration, ulPrecent) \
   ((ulDuration) * 1000 * (ulPrecent) / 100)
-/* End of Added by guo00178934, 2012/1/7   问题单号:20120107_1 */
 
-/*Added by guo00178934, 拷贝单播Master告警信息, 2012/1/13   问题单号:20120112_1 */
 #define PTP_CPY_WARNING_INFO(pstWarnParam, pstUniMaster, pstPtpPort)  \
 {\
     if(((pstUniMaster) != NULL) && \
@@ -578,11 +556,8 @@ extern "C" {
         (pstWarnParam)->usPtpPortNum = (pstPtpPort)->stPortId.usPortNumber; \
     }\
 }
-/* End of Added by guo00178934, 2012/1/13   问题单号:20120112_1 */
 
-/*Added by limin00188004, 1588 PTP支持多TLV处理和协商链路单独删除, 2012/9/21   问题单号:S.PTP.02.01 */
 #define PTP_MASTER_DURATION_SWITCH() (PTP_YES == g_ulPtpMasterDurationSwitch)
-/* End of Added by limin00188004, 2012/9/21   问题单号:S.PTP.02.01 */
 
 #define PTP_UNI_SLAVE_TBL_HASH_SIZE 64
 #define PTP_UNI_SLAVE_TBL_HASH(pstPortAddr) \

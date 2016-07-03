@@ -1701,7 +1701,7 @@ SINT32 SM_Config (SINT32 SmID, SM_CFG_S *pSmCfg)
 
         if  ( (pSmCfg->BufSize - ByteOffsetInWord) > SmMaxSegBufSize)
         {
-            pBufAddrCfg->SegBufSize =  (SmMaxSegBufSize - s32ScdBlankSegLen - 1024); // y00226912  (SM_MAX_SEG_BUF_SIZE - SCD_SEG_BLANK_LEN - 1024);    // 顶部留白xk,底部留白1K
+            pBufAddrCfg->SegBufSize =  (SmMaxSegBufSize - s32ScdBlankSegLen - 1024);
         }
         else
         {
@@ -3120,10 +3120,7 @@ SINT32 ProcessScdReturn(SM_INSTANCE_S *pScdInstance)
 
     ScdSegNum = SmStateReg.ScdNum;  // zhl.
     ReadScdSegNum = ScdSegNum;
-    /* l00232354: 如果 SCD 切出来的起始码超过了 MAX_STREAM_SEG_NUM*10 多个，则认为这是个错误码流，先强行丢
-      一个RAW 包试试。修改背景，一条H264 4K码流，中间某些错帧有的码流全是（00 00 01 xx），多达百万个，如果
-      放到后语法解析去丢的话，会卡住多达几分钟的时间，这是不可接受。          
-     */
+    
     if((ReadScdSegNum > MAX_STREAM_SEG_ALLOW) && (VFMW_H264 == pScdInstance->Config.VidStd))
     {
         dprint(PRN_FATAL,"line:%d ReadScdSegNum = %d, FilterScdSegNum = 0 release raw packet anyway!\n", __LINE__, ReadScdSegNum);
@@ -3527,7 +3524,6 @@ VOID FillRawData(SINT32 InstID)
     {
         if (1 == pSmInstArray->Config.IsOmxPath) // For Omx Low Frequency Get Stream
         {
-            /* OMX通路仅在seg报不足的情况下才取码流继续解 y00226912 */
             if (1 == VCTRL_IsChanSegEnough(InstID))
             {
                 break;

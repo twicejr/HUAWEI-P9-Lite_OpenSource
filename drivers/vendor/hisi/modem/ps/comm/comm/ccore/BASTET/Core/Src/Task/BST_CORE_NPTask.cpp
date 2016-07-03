@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : BST_CORE_NPTask.cpp
-  版 本 号   : 初稿
-  作    者   : d00173029
-  生成日期   : 2014年05月04日
-  最近修改   :
-  功能描述   : 实现带网络参数的循环型任务类BST_CORE_PTask相关处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年05月13日
-    作    者   : d00173029
-    修改内容   : 建立文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -48,20 +31,7 @@
    6 函数实现
 ******************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : BST_CORE_CNPTask
- 功能描述  : BST_CORE_CNPTask类构造函数，初始化相关变量
- 输入参数  : in_usProcId:  代理类型(Email/HeartBeat)
-             in_usTaskId:  任务ID号
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_CORE_CNPTask::BST_CORE_CNPTask(
     BST_PROCID_T      in_usProcId,
     BST_TASKID_T      in_usTaskId ) :BST_CORE_CPTask ( in_usProcId, in_usTaskId )
@@ -101,19 +71,7 @@ BST_CORE_CNPTask::BST_CORE_CNPTask(
         pcMainTask->Attach( this );
     }
 }
-/*****************************************************************************
- 函 数 名  : ~BST_CORE_CNPTask
- 功能描述  : BST_CORE_CNPTask类析构函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_CORE_CNPTask::~BST_CORE_CNPTask ( BST_VOID )
 {
     BST_CORE_CRegedit                  *pcRegedit;
@@ -154,22 +112,7 @@ BST_CORE_CNPTask::~BST_CORE_CNPTask ( BST_VOID )
         delete m_pSocket;
     }
 }
-/*****************************************************************************
-函 数 名   : ReportException
-功能描述   : ReportNoneHb
-输入参数   : BST_VOID       非心跳数据异常上报
-输出参数   : 无
-返 回 值   : BST_VOID
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年4月17日
-   作者    : l00242755
-   修改内容: 新函数
- 2.日期    :
-   作者    :
-   修改内容:
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8  BST_CORE_CNPTask::ReportSocketProperty( BST_VOID )
 {
     BST_ERR_ENUM_UINT8          enRtnVal;
@@ -194,22 +137,7 @@ BST_ERR_ENUM_UINT8  BST_CORE_CNPTask::ReportSocketProperty( BST_VOID )
     return BST_ERR_UNREACHABLE;
     
 }
-/*****************************************************************************
-函 数 名   : ReportTrafficFlow
-功能描述   : 流量值上报
-输入参数   : BST_VOID
-输出参数   : 无
-返 回 值   : BST_VOID
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年4月17日
-   作者    : l00242755
-   修改内容: 新函数
- 2.日期    :
-   作者    :
-   修改内容:
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8  BST_CORE_CNPTask::ReportTrafficFlow( BST_VOID )
 {
     BST_ERR_ENUM_UINT8          enRtnVal;
@@ -238,22 +166,7 @@ BST_ERR_ENUM_UINT8  BST_CORE_CNPTask::ReportTrafficFlow( BST_VOID )
                    enIpErr, enRtnVal );
     return BST_ERR_UNREACHABLE;
 }
-/*****************************************************************************
-函 数 名   : Report
-功能描述   : 异常上报
-输入参数   : enErrVal       上报异常类型
-输出参数   : 无
-返 回 值   : BST_VOID
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年4月17日
-   作者    : l00242755
-   修改内容: 新函数
- 2.日期    :
-   作者    :
-   修改内容:
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8  BST_CORE_CNPTask::Report ( BST_ERR_ENUM_UINT8  enErrVal )
 {
     if ( BST_NULL_PTR == m_pExptReport )
@@ -287,21 +200,7 @@ BST_ERR_ENUM_UINT8  BST_CORE_CNPTask::Report ( BST_ERR_ENUM_UINT8  enErrVal )
     }
 }
 
-/*****************************************************************************
- 函 数 名  : InquiredSocketProperty
- 功能描述  : 查询应用端口Socket属性（seq,ackno,timestamp），该操作会挂起端口
- 输入参数  :
-     BST_UINT16  usDataSize,    输出缓冲区长度
-     BST_VOID   *const pData    输出缓冲
- 输出参数  : 无
- 返 回 值  : 成功返回查询PID的值,异常返回相应错误值
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_UINT16 BST_CORE_CNPTask::InquiredSocketProperty(
     BST_UINT16  usDataSize,
     BST_VOID   *const pData )
@@ -331,21 +230,7 @@ BST_UINT16 BST_CORE_CNPTask::InquiredSocketProperty(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : InquiredTrafficFlow
- 功能描述  : 查询对应任务流量值
- 输入参数  :
-     BST_UINT16  usDataSize,    输出缓冲区长度
-     BST_VOID   *const pData    输出缓冲
- 输出参数  : 无
- 返 回 值  : 成功返回查询PID的值,异常返回相应错误值
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_UINT16 BST_CORE_CNPTask::InquiredTrafficFlow(
     BST_UINT16  usDataSize,
     BST_VOID   *const pData )
@@ -371,22 +256,7 @@ BST_UINT16 BST_CORE_CNPTask::InquiredTrafficFlow(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : Inquired
- 功能描述  : 查询对应PID的值
- 输入参数  :
-    BST_CORE_PID_ENUM_UINT16 enParamId,     查询PID值
-    BST_UINT16  usDataSize,                 输出缓冲区长度
-    BST_VOID   *const pData                 输出缓冲
- 输出参数  : 无
- 返 回 值  : 成功返回查询PID的值,异常返回相应错误值
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_UINT16 BST_CORE_CNPTask::Inquired(
     BST_CORE_PID_ENUM_UINT16 enParamId,
     BST_UINT16               usDataSize,
@@ -425,22 +295,7 @@ BST_UINT16 BST_CORE_CNPTask::Inquired(
             return PidInquired ( enParamId, usDataSize, pData );
     }
 }
-/*****************************************************************************
- 函 数 名  : ConfigedPriodic
- 功能描述  : 配置周期值
- 输入参数  :
-    BST_UINT16                  usLen,          输入pData对应缓冲长度
-    const BST_VOID             *const pData,    输入数据缓冲
-    BST_UINT8                 **pucNewAddr      如果数据remalloc，新的首地址
- 输出参数  : 无
- 返 回 值  : 成功返回BST_NO_ERROR_MSG,异常返回相应错误值
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_CORE_CNPTask::ConfigedPriodic(
     BST_UINT16                  usLen,
     const BST_VOID             *const pData,
@@ -469,22 +324,7 @@ BST_ERR_ENUM_UINT8 BST_CORE_CNPTask::ConfigedPriodic(
     return ucRtnVal;
 }
 
-/*****************************************************************************
- 函 数 名  : ConfigedSockeInfo
- 功能描述  : 配置Socket连接属性，IP_ADDR, PORT NUMBER等
- 输入参数  :
-    BST_UINT16                  usLen,          输入pData对应缓冲长度
-    const BST_VOID             *const pData,    输入数据缓冲
-    BST_UINT8                 **pucNewAddr      如果数据remalloc，新的首地址
- 输出参数  : 无
- 返 回 值  : 成功返回BST_NO_ERROR_MSG,异常返回相应错误值
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_CORE_CNPTask::ConfigedSockeInfo(
     BST_UINT16                  usLen,
     const BST_VOID             *const pData,
@@ -540,22 +380,7 @@ BST_ERR_ENUM_UINT8 BST_CORE_CNPTask::ConfigedSockeInfo(
     return ucRtnVal;
 }
 
-/*****************************************************************************
- 函 数 名  : ConfigedSockeProperty
- 功能描述  : 配置Socket属性（seqno, arckno等）
- 输入参数  :
-    BST_UINT16                  usLen,          输入pData对应缓冲长度
-    const BST_VOID             *const pData,    输入数据缓冲
-    BST_UINT8                 **pucNewAddr      如果数据remalloc，新的首地址
- 输出参数  : 无
- 返 回 值  : 成功返回BST_NO_ERROR_MSG,异常返回相应错误值
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_CORE_CNPTask::ConfigedSockeProperty(
     BST_UINT16                  usLen,
     const BST_VOID             *const pData,
@@ -593,22 +418,7 @@ BST_ERR_ENUM_UINT8 BST_CORE_CNPTask::ConfigedSockeProperty(
     return ucRtnVal;
 }
 
-/*****************************************************************************
- 函 数 名  : Configed
- 功能描述  : 配置对应PID的值
- 输入参数  :
-    BST_UINT16                  usLen,          输入pData对应缓冲长度
-    const BST_VOID             *const pData,    输入数据缓冲
-    BST_UINT8                 **pucNewAddr      如果数据remalloc，新的首地址
- 输出参数  : 无
- 返 回 值  : 成功返回BST_NO_ERROR_MSG,异常返回相应错误值
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_CORE_CNPTask::Configed(
     BST_CORE_PID_ENUM_UINT16    enParamId,
     BST_UINT16                  usLen,
@@ -683,19 +493,7 @@ BST_ERR_ENUM_UINT8 BST_CORE_CNPTask::Configed(
     return ucRtnVal;
 }
 
-/*****************************************************************************
- 函 数 名  : PidInquired
- 功能描述  : 查询虚接口,供子类实现
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_UINT16 BST_CORE_CNPTask::PidInquired (
     BST_CORE_PID_ENUM_UINT16  enParamId,
     BST_UINT16                usDataSize,
@@ -703,19 +501,7 @@ BST_UINT16 BST_CORE_CNPTask::PidInquired (
 {
     return 0;
 }
-/*****************************************************************************
- 函 数 名  : PidConfiged
- 功能描述  : 配置虚接口,供子类实现
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_CORE_CNPTask::PidConfiged(
     BST_CORE_PID_ENUM_UINT16  enParamId,
     BST_UINT16                usLen,

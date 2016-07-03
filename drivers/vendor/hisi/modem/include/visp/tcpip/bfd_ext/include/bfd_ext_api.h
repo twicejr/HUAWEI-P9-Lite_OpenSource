@@ -1,31 +1,4 @@
-/*******************************************************************************
-*
-*
-*                Copyright 2006, Huawei Technologies Co. Ltd.
-*                            ALL RIGHTS RESERVED
-*
-*-------------------------------------------------------------------------------
-*
-*                              bfd_ext_api.h
-*
-*  Project Code: VISPV100R007C02
-*   Module Name: BFD EXTERN
-*  Date Created: 
-*        Author: 
-*   Description: BFD EXTERN API 函数声明以及宏定义头文件
-*
-*-------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME         DESCRIPTION    
-*  -----------------------------------------------------------------------------
-*  2008-11-03   Q62011       Add for BC3D00658, BFD_MAX_INTF_NAME_LEN,
-*                            BFD_MAX_DESC_NAME_LEN,BFD_MAX_SESS_NAME_LEN改为
-*                            BFD_EXT_MAX_INTF_NAME_LEN,BFD_EXT_MAX_DESC_NAME_LEN
-*                            消除对bfd_def.h 的依赖
-*                            BFD_OSPF_RULE_TYPE_INTF,BFD_OSPF_RULE_TYPE_PROC
-*                            转移到api头文件中供用户使用
-*  2009-09-30   l00147446    BC3D02152【BFDEXT】模块无用API，需清理。
-*******************************************************************************/
+
 #ifndef _BFD_EXT_API_H_
 #define _BFD_EXT_API_H_
 
@@ -61,13 +34,11 @@ extern "C" {
 #define  BFD_EXT_TYPE_STATIC 0  /*BFD 联动 类型：STATIC*/
 #define  BFD_EXT_TYPE_OSPF   1  /*BFD 联动 类型：OSPF*/
 
-/*Added by guojianjun178934, 配置BFD6 和OSPFv3联动，需要指定实例 Id, 2014/8/8   问题单号:S-IP-C20-002-BFD6.002 */
 /*BFD OSPF过滤类型定义*/
 #define BFD_OSPF_FILTER_NONE           0x00   /*无过滤*/
 #define BFD_OSPF_FILTER_BY_PROC        0x01   /*按照OSPF进程过滤*/
 #define BFD_OSPF_FILTER_BY_IF          0x02   /*按照接口过滤*/
 #define BFD_OSPF_FILTER_BY_INSTANCE   0x04   /*按照接口实例过滤(当前只支持按照指定接口实例过滤)*/
-/* End of Added by guojianjun178934, 2014/8/8   问题单号:S-IP-C20-002-BFD6.002 */
 
 /*BFD EXT调试开关类型*/
 typedef enum tagBFD_RM_DEBUG_E
@@ -112,9 +83,7 @@ typedef enum tagBFD_EXT_ERR_E
     BFD_EXT_ERR_GET_VRFINDEX,           /* 27 获取VRF索引失败 */
     BFD_EXT_ERR_GET_RTMINDEX,           /* 28 获取RTM实例号失败 */
     
-    /*Begin BC3D01505 关闭句柄出现断错误l00147446 09-04-29*/
     BFD_EXT_ERR_MEM_RELEASE,                    /*29 BFD释放内存出错*/
-    /*End BC3D01505 关闭句柄出现断错误l00147446 09-04-29*/
     BFD_EXT_ERR_IF_PROC_NOT_MATCH,      /* 30 OSPF进程和接口所在的VRF不一致 */
     BFD_EXT_ERR_BOTH_PID_IFNAME,        /*31 <进程号和接口名不能同时指定>*/
     BFD_EXT_ERR_BOTHNOT_PID_IFNAME,     /*32 <进程号和接口名不能都不指定>*/   
@@ -266,7 +235,6 @@ typedef struct tagBfdApiForStaticFilter
                               BFD_EXT_FILTER_VRF                  0x04*/
     ULONG ulDestIp;
     ULONG ulPrefixLen;
-    /*Begin BC3D02529 查询BFD与静态路由绑定关系，必须输入出接口不合理【重新修改】 l00147446 10-02-08*/
     UCHAR szVrfName[BFD_EXT_MAX_VRF_NAME_LEN + 1];
     /* End for BC3D02529 */
 }BFD_API_FOR_STATIC_FILTER_S;

@@ -154,11 +154,9 @@ typedef struct tagFIB4_FILTER_KEY
     ULONG ulFilterType;                                /*过滤类型*/
 }FIB4_FILTER_KEY_S;
 
-/*Added by zhangliangzhi 00187023, SRM-RIB6查询, 2011/8/12   问题单号:C06新需求 */
 ULONG IP4_RIB_OpenRib4Table (UINTPTR *pulHandle, CHAR * pszVrfName);
 ULONG IP4_RIB_CloseObject_RIB (UINTPTR ulHandle);
 ULONG IP4_RIB_GetRib4Entry (UINTPTR ulHandle, SFIB_RT_ENTRY_S *pstRIBData);
-/*End of Added by zhangliangzhi 00187023, 2011/8/12   问题单号:C06新需求 */
 
 ULONG IP4_RIB_GetRib4EntryByFilter (UINTPTR ulHandle, SFIB_RT_ENTRY_S *pstRIBData);
 
@@ -229,9 +227,7 @@ extern ULONG SFIB_SetWarningRouteNumByVrf(ULONG ulType,ULONG ulRouteNum,CHAR *ps
 ULONG SFIB_RM_RtTblInit(ULONG ulZoneId);
 VOID SFIB_RM_RtTblClr(ULONG ulZoneId);
 
-/*Added by guojianjun178934, 判断是否存在相同路由, 2014/11/8   问题单号:DTS2014101507445 */
 BOOL_T SFIB_RM_ExistSameRoute(ULONG ulZoneId,ULONG ulDstAddr, ULONG ulMaskLen, ULONG ulIfIndex);
-/* End of Added by guojianjun178934, 2014/11/8   问题单号:DTS2014101507445 */
 
 #endif  /* #ifndef _SFIB_RM_H */
 

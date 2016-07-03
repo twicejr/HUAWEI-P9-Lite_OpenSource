@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasXccSndCas.c
-  版 本 号   : 初稿
-  作    者   : h00246512
-  生成日期   : 2014年09月15日
-  功能描述   : 1X CC发给CAS的消息处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年9月15日
-    作    者   : h00246512
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -50,25 +35,7 @@ extern "C"{
   3 函数定义
 *****************************************************************************/
 /*lint -save -e958*/
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndCasCallRelReq
- 功能描述  : 给CAS模块发送ID_CNAS_CAS_1X_CALL_REL_REQ消息
- 输入参数  : pstCallInfo -- 呼叫信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月15日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndCasCallRelReq(
     VOS_UINT8                           ucConnectId,
     VOS_UINT8                           ucConRef,
@@ -110,28 +77,7 @@ VOS_VOID CNAS_XCC_SndCasCallRelReq(
 
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndCasEstReq
- 功能描述  : 给CAS模块发送ID_CNAS_CAS_1X_EST_REQ消息
- 输入参数  : enEstType : CAS_CNAS_1X_EST_TYPE_ENUM_UINT8
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月15日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-  2.日    期   : 2014年11月26日
-    作    者   : w00176964
-    修改内容   : CDMA 1X Iteration 5 Modified
-
-  3.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndCasEstReq(
     CAS_CNAS_1X_EST_TYPE_ENUM_UINT8     enEstType,
     CNAS_XCC_CALL_INFO_CTX_STRU        *pstCallInfo
@@ -343,25 +289,7 @@ VOS_VOID CNAS_XCC_SndCasEstReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndCasDschDataReq
- 功能描述  : 给CAS模块发送ID_CNAS_CAS_1X_DSCH_DATA_REQ消息
- 输入参数  : pstCallInfo -- 呼叫信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月15日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndCasDschDataReq(
     CAS_CNAS_1X_TX_TCH_MSG_TYPE_ENUM_UINT8                  enTxcDschMsgType,
     CNAS_XCC_TX_ORDER_TYPE_ENUM_UINT8                       enOrderType,
@@ -428,25 +356,7 @@ VOS_VOID CNAS_XCC_SndCasDschDataReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_NotifyCasEnterTchSubstate
- 功能描述  : 通知CAS模块进入Tch substate
- 输入参数  : pstCallInfo -- 呼叫信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月15日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_NotifyCasEnterTchSubstate(VOS_VOID)
 {
     CNAS_CAS_1X_ENTER_TCH_SUBSTATE_NOTIFY_STRU             *pstDataReq = VOS_NULL_PTR;
@@ -473,29 +383,7 @@ VOS_VOID CNAS_XCC_NotifyCasEnterTchSubstate(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndCasCschDataReq
- 功能描述  : 给CAS模块发送ID_CNAS_CAS_1X_CSCH_DATA_REQ消息
- 输入参数  : enTxCschMsgType -- 消息类型
-             enAckReqFlag    -- 确认标志
-             pucAckPara      -- 确认包的内容
-             usMsgDataLen    -- 编码的长度
-             pucMsgData      -- 编码的内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月4日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndCasCschDataReq(
     CAS_CNAS_1X_TX_COMMON_MSG_TYPE_ENUM_UINT8               enTxCschMsgType,
     PS_BOOL_ENUM_UINT8                                      enAckReqFlag,
@@ -557,26 +445,7 @@ VOS_VOID CNAS_XCC_SndCasCschDataReq(
 }
 
 /*lint -restore*/
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndCasBeginSessionNotify
- 功能描述  : XCC向CAS申请Session保护
- 输入参数  : CNAS_CAS_1X_SESSION_TYPE_ENUM_UINT16
-             enSessionType : Session类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月20日
-    作    者   : h00133353
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndCasBeginSessionNotify(
     CNAS_CAS_1X_SESSION_TYPE_ENUM_UINT16                        enSessionType
 )
@@ -611,26 +480,7 @@ VOS_VOID CNAS_XCC_SndCasBeginSessionNotify(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndCasEndSessionNotify
- 功能描述  : XCC向CAS申请Session释放
- 输入参数  : CNAS_CAS_1X_SESSION_TYPE_ENUM_UINT16
-             enSessionType : Session类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月20日
-    作    者   : h00133353
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndCasEndSessionNotify(
     CNAS_CAS_1X_SESSION_TYPE_ENUM_UINT16                    enSessionType
 )
@@ -665,22 +515,7 @@ VOS_VOID CNAS_XCC_SndCasEndSessionNotify(
     return;
 }
 #if (FEATURE_ON == FEATURE_CHINA_TELECOM_VOICE_ENCRYPT)
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndCasEccServiceReq
- 功能描述  : XCC向CAS发送密话SO协商请求消息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : l00359089
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndCasEccServiceReq(VOS_VOID)
 {
     CNAS_CAS_1X_ECC_SERVICE_REQ_STRU                       *pstEccSrvReq = VOS_NULL_PTR;
@@ -714,23 +549,7 @@ VOS_VOID CNAS_XCC_SndCasEccServiceReq(VOS_VOID)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndCasLongCodeTransitionNtf
- 功能描述  : XCC向CAS发送privacy mode请求设置
 
- 输入参数  : ucUsePrivateLongCodeFlag -- privacy mode参数
- 输出参数  : 无
- 返 回 值  : VOS_VOID
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年12月24日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndCasLongCodeTransitionNtf(VOS_UINT8 ucUsePrivateLongCodeFlag)
 {
     CNAS_CAS_1X_LONG_CODE_TRANSITION_NTF_STRU              *pstLongCodeNtf = VOS_NULL_PTR;

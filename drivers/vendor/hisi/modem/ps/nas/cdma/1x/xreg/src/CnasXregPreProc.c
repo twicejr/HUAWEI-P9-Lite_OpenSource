@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasXregPreProc.c
-  版 本 号   : 初稿
-  作    者   : g00256031
-  生成日期   : 2014年06月27日
-  功能描述   : 1X 注册模块预处理文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年08月20日
-    作    者   : g00256031
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -52,22 +37,7 @@ extern "C"{
 *****************************************************************************/
 /*lint -save -e958*/
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_RcvSysInfo_PreProc
- 功能描述  : 接收XSD模块发送的系统消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月14日
-    作    者   : 甘兰
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XREG_RcvSysInfo_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -187,22 +157,7 @@ VOS_UINT32 CNAS_XREG_RcvSysInfo_PreProc(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_RcvPowerOffReq_PreProc
- 功能描述  : 接收到XSD模块发送的关机请求消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月14日
-    作    者   : 甘兰
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XREG_RcvPowerOffReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -226,22 +181,7 @@ VOS_UINT32 CNAS_XREG_RcvPowerOffReq_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_RcvXsdDeregisterInd_PreProc
- 功能描述  : 接收到XSD模块发送的关机去注册消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月18日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XREG_RcvXsdDeregisterInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -260,22 +200,7 @@ VOS_UINT32 CNAS_XREG_RcvXsdDeregisterInd_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_RcvXsdRedirInd_PreProc
- 功能描述  : 接收到XSD模块发送的重定向消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年01月05日
-    作    者   : g00256031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XREG_RcvXsdRedirInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -286,22 +211,7 @@ VOS_UINT32 CNAS_XREG_RcvXsdRedirInd_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_RcvNotCurrInd_PreProc
- 功能描述  : 接收到CAS发送的系统消息过期通知
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月14日
-    作    者   : 祝锂
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XREG_RcvNotCurrInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -312,25 +222,7 @@ VOS_UINT32 CNAS_XREG_RcvNotCurrInd_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_RcvXsdStateInd_PreProc
- 功能描述  : 接收到CAS上报的系统状态通知消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月14日
-    作    者   : 祝锂
-    修改内容   : 新生成函数
-  2.日    期   : 2015年09月11日
-    作    者   : c00299064
-    修改内容   : 修改消息来源
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XREG_RcvXsdStateInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -391,22 +283,7 @@ VOS_UINT32 CNAS_XREG_RcvXsdStateInd_PreProc(
     return VOS_TRUE;   /*其他状态*/
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_RcvOrderRegDataInd_PreProc
- 功能描述  : 接收CAS发送的CSCH通道数据上报消息处理,基站发起注册过程
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月14日
-    作    者   : 甘兰
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XREG_RcvOrderRegDataInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -431,22 +308,7 @@ VOS_UINT32 CNAS_XREG_RcvOrderRegDataInd_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_RcvT57TimeOut_PreProc
- 功能描述  : 开机的T57m定时器超时消息
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月14日
-    作    者   : zhuli
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XREG_RcvT57TimeOut_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -460,22 +322,7 @@ VOS_UINT32 CNAS_XREG_RcvT57TimeOut_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_RcvPrdRegTimeout_PreProc
- 功能描述  : 周期注册定时器超时消息
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月14日
-    作    者   : 祝锂
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XREG_RcvPrdRegTimeout_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -513,22 +360,7 @@ VOS_UINT32 CNAS_XREG_RcvPrdRegTimeout_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_RcvTMSITimeOut_PreProc
- 功能描述  : 接收到cAS发送的TMSI定时器超时消息
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月14日
-    作    者   :
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XREG_RcvTMSITimeOut_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -539,22 +371,7 @@ VOS_UINT32 CNAS_XREG_RcvTMSITimeOut_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_RcvZoneListTimeout_PreProc
- 功能描述  : ZONELIST保护定时器超时消息
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月16日
-    作    者   :
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XREG_RcvZoneListTimeout_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -565,22 +382,7 @@ VOS_UINT32 CNAS_XREG_RcvZoneListTimeout_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_RcvProVerInd_PreProc
- 功能描述  : 接收到CAS上报的最高的版本协议消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月21日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XREG_RcvProVerInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -595,22 +397,7 @@ VOS_UINT32 CNAS_XREG_RcvProVerInd_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_RcvStatusInd_L1Main
- 功能描述  : 接收到RRM发来的RF资源可用的消息
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月18日
-    作    者   : g00256031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XREG_RcvStatusInd_L1Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -629,22 +416,7 @@ VOS_UINT32 CNAS_XREG_RcvStatusInd_L1Main(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_RcvOmRegeorptReq_PreProc
- 功能描述  : 接收到工具可维可测请求上报消息
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : d00212987
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XREG_RcvOmRegReportReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -691,22 +463,7 @@ VOS_UINT32 CNAS_XREG_RcvOmRegReportReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_RcvUsimRefreshInd_PreProc
- 功能描述  : 收到Usim Refresh Ind消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : d00212987
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XREG_RcvUsimRefreshInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -773,22 +530,7 @@ VOS_UINT32 CNAS_XREG_RcvUsimRefreshInd_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_RcvUsimReadFileCnf_PreProc
- 功能描述  : 收到Usim Refresh Ind消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : d00212987
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XREG_RcvUsimReadFileCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg

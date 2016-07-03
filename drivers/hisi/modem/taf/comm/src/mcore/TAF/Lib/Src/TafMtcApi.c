@@ -39,23 +39,7 @@
 /*****************************************************************************
    3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : MTC_SndMsg
- 功能描述  : 发送MTC消息
- 输入参数  : VOS_UINT32                          ulTaskId
-             VOS_UINT32                          ulMsgId
-             VOS_VOID                           *pData
-             VOS_UINT32                          ulLen
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月16日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 MTC_SndMsg(
     VOS_UINT32                          ulTaskId,
     VOS_UINT32                          ulMsgId,
@@ -93,24 +77,7 @@ VOS_UINT32 MTC_SndMsg(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_SetCdmaServiceConnStateInfo
- 功能描述  : 设置外部CDMA Modem的连接状态(PS&CS)
- 输入参数  : ulModuleId                 - 模块ID(发送Pid)
-             usClientId                 - 客户端ID
-             ucOpId                     - 操作码ID
-             pstCdmsStatus              - 状态信息指针
- 输出参数  : 无
- 返 回 值  : VOS_OK                     - 发送消息成功
-             VOS_ERR                    - 发送消息失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月16日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 MTC_SetCdmaServiceConnStateInfo(
     TAF_CTRL_STRU                      *pstCtrl,
     TAF_MTC_CDMA_STATE_INFO_STRU       *pstCdmaState
@@ -138,21 +105,7 @@ VOS_UINT32 MTC_SetCdmaServiceConnStateInfo(
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_SetModemServiceConnState
- 功能描述  : 设置modem状态信息
- 输入参数  : pstCtrl         消息控制头
-             pstModemConnSt  状态消息指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月16日
-    作    者   : j00174725
-    修改内容   : K3V3 多模多天线特性
-*****************************************************************************/
 VOS_UINT32 MTC_SetModemServiceConnState(
     TAF_CTRL_STRU                      *pstCtrl,
     TAF_MTC_SRV_CONN_STATE_INFO_STRU   *pstModemConnSt
@@ -179,25 +132,7 @@ VOS_UINT32 MTC_SetModemServiceConnState(
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_SetModemUsimmState
- 功能描述  : 设置卡状态信息
- 输入参数  : pstCtrl         消息控制头
-             pstModemConnSt  状态消息指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月16日
-    作    者   : j00174725
-    修改内容   : K3V3 多模多天线特性
-
-  2.日    期   : 2015年10月21日
-    作    者   : h00313353
-    修改内容   : Iteration 19 TAS
-*****************************************************************************/
 VOS_UINT32 MTC_SetModemUsimmState(
     TAF_CTRL_STRU                           *pstCtrl,
     TAF_MTC_USIMM_CARD_SERVIC_ENUM_UINT16    enUsimState,
@@ -226,21 +161,7 @@ VOS_UINT32 MTC_SetModemUsimmState(
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_SetBeginSessionInfo
- 功能描述  : 对外提供API，外部模块调用这个函数通知MTC ID_MSG_MTC_BEGIN_SESSION_IND消息
- 输入参数  : pstCtrl         消息控制头
-             enSessionType   类型消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月04日
-    作    者   : j00174725
-    修改内容   : DTS2015082406288
-*****************************************************************************/
 VOS_VOID MTC_SetBeginSessionInfo(
     TAF_CTRL_STRU                      *pstCtrl,
     MTC_SESSION_TYPE_ENUM_UINT8         enSessionType
@@ -265,21 +186,7 @@ VOS_VOID MTC_SetBeginSessionInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_SetEndSessionInfo
- 功能描述  : 对外提供API，外部模块调用这个函数通知MTC ID_MSG_MTC_END_SESSION_IND消息
- 输入参数  : pstCtrl         消息控制头
-             enSessionType   类型消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月04日
-    作    者   : j00174725
-    修改内容   : DTS2015082406288
-*****************************************************************************/
 VOS_VOID MTC_SetEndSessionInfo(
     TAF_CTRL_STRU                      *pstCtrl,
     MTC_SESSION_TYPE_ENUM_UINT8         enSessionType

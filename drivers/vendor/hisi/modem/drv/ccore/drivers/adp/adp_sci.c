@@ -1,14 +1,4 @@
-/*************************************************************************
-*   版权所有(C) 1987-2009, 深圳华为技术有限公司.
-*
-*   文 件 名 : adp_sci.c
-*
-*   作    者 :  Y00171698
-*
-*   描    述 :  本文件命名为"adp_sci.c", 实现SIM/USIM卡驱动功能
-*
-*   修改记录 :  
-*************************************************************************/
+
 #include "product_config.h"
 #include "mdrv_sci.h"
 #include "bsp_om.h"
@@ -195,26 +185,7 @@ unsigned int mdrv_sci_recv_all(unsigned int *u32DataLength,unsigned char * pu8Da
 
 
 }
-/*****************************************************************************
-* 函 数 名  : DRV_USIMMSCI_GET_ATR
-*
-* 功能描述  : 本接口用于将Driver层缓存的ATR数据和数据个数返回给USIM Manager层
-*
-* 输入参数  : void  
-* 输出参数  : u8 *u8DataLength  Driver读取的ATR数据长度，返回给USIM Manager。
-*                                   取值范围0～32，单位是字节
-*           u8 *pu8ATR          USIM Manager指定的Buffer，SCI Driver将ATR
-*                                   数据拷贝到本Buffer。一般为操作系统函数动态分配
-*                                   或者静态分配的地址
-* 
-*
-* 返 回 值  : OK
-*          BSP_ERR_SCI_NOTINIT
-*          BSP_ERR_SCI_INVALIDPARA
-*
-* 修改记录  : Yangzhi create
-*
-*****************************************************************************/
+
 int mdrv_sci_get_atr(unsigned long * u32DataLength, unsigned char * pu8ATR,SCI_ATRINFO_S* stSCIATRInfo)
 {
     if(sci_api_mode == SCI_API_NORMAL)
@@ -235,23 +206,7 @@ int mdrv_sci_get_atr(unsigned long * u32DataLength, unsigned char * pu8ATR,SCI_A
 
 
 }
-/*****************************************************************************
-* 函 数 名  : DRV_USIMMSCI_CLASS_SWITCH
-*
-* 功能描述  : 本接口用于支持PS对卡的电压类型进行切换，从1.8V切换到3V
-*
-* 输入参数  : BSP_VOID  
-* 输出参数  : 无
-*
-* 返 回 值  :  OK    当前电压不是最高的，进行电压切换操作
-*           BSP_ERR_SCI_CURRENT_STATE_ERR 切换失败 current SCI driver state is ready/rx/tx 
-*           BSP_ERR_SCI_VLTG_HIGHEST   当前电压已经是最高电压，没有进行电压切换
-*           BSP_ERR_SCI_NOTINIT
-*           BSP_ERR_SCI_CURRENT_VLTG_ERR 当前电压值异常（非class B或者C）
-*
-* 修改记录  : Yangzhi create
-*
-*****************************************************************************/
+
 int  mdrv_sci_switch_class(void)
 {
     if(sci_api_mode == SCI_API_NORMAL)

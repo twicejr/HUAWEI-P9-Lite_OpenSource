@@ -48,24 +48,7 @@ AT_PAR_CMD_ELEMENT_STRU g_stCmdElement[AT_MAX_CLIENT_NUM];
 
 
 
-/*****************************************************************************
- 函 数 名  : At_ParseInit
- 功能描述  : 解析器初始化
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月21日
-    作    者   : c64416
-    修改内容   : 新生成函数
-  2.日    期   : 2013年07月222日
-    作    者   : j00177245
-    修改内容   : 清理编译warning
-
-*****************************************************************************/
 VOS_VOID At_ParseInit(VOS_VOID)
 {
     VOS_UINT32 i = 0;
@@ -88,16 +71,7 @@ VOS_VOID At_ParseInit(VOS_VOID)
     return;
 }
 
-/******************************************************************************
- 函数名称: AT_RegisterCmdTable
- 功能描述: 命令表注册
 
- 参数说明:
-   pstCmdTblEntry [in] 命令表指针
-   usCmdNum [in] 命令表中命令个数
-
- 作    者: 崔军强/00064416 [2011-09-30]
-******************************************************************************/
 VOS_UINT32 AT_RegisterCmdTable(const AT_PAR_CMD_ELEMENT_STRU* pstCmdTblEntry, VOS_UINT16 usCmdNum)
 {
     HI_LIST_S* pCmdTblHeader = NULL;
@@ -128,21 +102,7 @@ VOS_UINT32 AT_RegisterCmdTable(const AT_PAR_CMD_ELEMENT_STRU* pstCmdTblEntry, VO
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_ClacCmdProc
- 功能描述  : +CLAC 命令信息输出
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月8日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_ClacCmdProc(VOS_VOID)
 {
     VOS_UINT16 i = 0;
@@ -178,20 +138,7 @@ VOS_VOID AT_ClacCmdProc(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_BlockCmdCheck
- 功能描述  : 检查是否有阻塞的命令
- 输出参数  : 无
- 返 回 值  : PRIVATE VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月11日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 AT_BlockCmdCheck(VOS_VOID)
 {
     VOS_UINT8 i = 0;
@@ -216,21 +163,7 @@ VOS_UINT8 AT_BlockCmdCheck(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_ClearBlockCmdInfo
- 功能描述  : 清空被阻塞的命令信息
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月11日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_ClearBlockCmdInfo(VOS_UINT8 ucIndex)
 {
     if(NULL != g_stParseContext[ucIndex].pBlockCmd)
@@ -245,21 +178,7 @@ VOS_VOID AT_ClearBlockCmdInfo(VOS_UINT8 ucIndex)
 }
 
 #if 0
-/*****************************************************************************
- 函 数 名  : AT_BlockCmdProc
- 功能描述  : 阻塞命令的处理
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : PRIVATE AT_RRETURN_CODE_ENUM
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月11日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 PRIVATE AT_RRETURN_CODE_ENUM AT_BlockCmdProc(VOS_UINT8 ucIndex)
 {
     AT_RRETURN_CODE_ENUM ulResult = AT_WAIT_ASYNC_RETURN;
@@ -292,20 +211,7 @@ PRIVATE AT_RRETURN_CODE_ENUM AT_BlockCmdProc(VOS_UINT8 ucIndex)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : AT_CheckProcBlockCmd
- 功能描述  : 检查和处理阻塞命令
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月11日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_CheckProcBlockCmd(VOS_VOID)
 {
     VOS_UINT8 ucIndex;
@@ -328,21 +234,7 @@ VOS_VOID AT_CheckProcBlockCmd(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_ParseCmdOver
- 功能描述  : 本通道的当前命令处理结束（组合命令时只表示一条命令处理完毕）
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月5日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_ParseCmdOver(VOS_UINT8 ucIndex)
 {
     VOS_UINT32 ulRet = ERR_MSP_FAILURE;
@@ -385,21 +277,7 @@ VOS_VOID AT_ParseCmdOver(VOS_UINT8 ucIndex)
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_BlockCmdTimeOutProc
- 功能描述  : 缓存命令超时处理函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月11日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_BlockCmdTimeOutProc(VOS_UINT8 ucIndex)
 {
     gstAtSendData.usBufLen = 0;
@@ -412,29 +290,7 @@ VOS_VOID AT_BlockCmdTimeOutProc(VOS_UINT8 ucIndex)
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_PendClientProc
- 功能描述  : PEND客户端处理
- 输入参数  : ucIndex
-             VOS_UINT8 *pData
-             VOS_UINT16 usLen
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月11日
-    作    者   : c64416
-    修改内容   : 新生成函数
-  2.日    期   : 2012年9月18日
-    作    者   : l00171473
-    修改内容   : V7R1C50_At_Abort
-
-  3.日    期   : 2013年10月19日
-    作    者   : w00167002
-    修改内容   : NETSCAN:支持多通道AT打断
-*****************************************************************************/
 VOS_VOID AT_PendClientProc(VOS_UINT8 ucIndex, VOS_UINT8 *pData, VOS_UINT16 usLen)
 {
     if ((4 == usLen)
@@ -471,23 +327,7 @@ VOS_VOID AT_PendClientProc(VOS_UINT8 ucIndex, VOS_UINT8 *pData, VOS_UINT16 usLen
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_HoldBlockCmd
- 功能描述  : 保存阻塞命令字符串
- 输入参数  : VOS_UINT8 ucIndex
-             VOS_UINT8 *pData
-             VOS_UINT16 usLen
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月11日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_HoldBlockCmd(VOS_UINT8 ucIndex, VOS_UINT8 *pData, VOS_UINT16 usLen)
 {
     VOS_UINT32 ulTimerName = 0;
@@ -526,27 +366,7 @@ VOS_VOID AT_HoldBlockCmd(VOS_UINT8 ucIndex, VOS_UINT8 *pData, VOS_UINT16 usLen)
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_ParseCmdIsComb
- 功能描述  : 判断是否有通道组合命令没有处理结束（本通道有组合命令没有处理结
-             束则丢弃新输入的命令，其他通道则允许继续处理）
- 输入参数  : VOS_UINT8 ucIndex
-             VOS_UINT8 *pData
-             VOS_UINT16 usLen
- 输出参数  : 无
- 返 回 值  : PRIVATE VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月25日
-    作    者   : c64416
-    修改内容   : 新生成函数
-  2.日    期   : 2012年03月03日
-    作    者   : L47619
-    修改内容   : 修改AT通道并发处理逻辑，本函数仅做组合命令判断，不做并发逻辑判断
-
-*****************************************************************************/
 VOS_UINT32 AT_ParseCmdIsComb(VOS_UINT8 ucIndex, VOS_UINT8 *pData, VOS_UINT16 usLen)
 {
     AT_PARSE_CONTEXT_STRU* pstClientContext = NULL;
@@ -568,27 +388,7 @@ VOS_UINT32 AT_ParseCmdIsComb(VOS_UINT8 ucIndex, VOS_UINT8 *pData, VOS_UINT16 usL
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_ParseCmdIsPend
- 功能描述  : 判断是否有正在处理的通道，有的话丢弃或缓存
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : ERR_MSP_FAILURE : 有通道处于阻塞状态，不需要继续处理
-             ERR_MSP_SUCCESS : 无阻塞通道，命令可正常处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月5日
-    作    者   : c64416
-    修改内容   : 新生成函数
-  2.日    期   : 2012年02月20日
-    作    者   : f00179208
-    修改内容   : 增加AT命令RIL对应的HSIC AT通道的并发执行
-  3.日    期   : 2012年06月19日
-    作    者   : f62575
-    修改内容   : 问题单号:DTS2012061505515，GCF用例31.9.1.1 因为STOP命令失效失败
-*****************************************************************************/
 VOS_UINT32 AT_ParseCmdIsPend(VOS_UINT8 ucIndex, VOS_UINT8 *pData, VOS_UINT16 usLen)
 {
     VOS_UINT32 i = 0;
@@ -613,14 +413,12 @@ VOS_UINT32 AT_ParseCmdIsPend(VOS_UINT8 ucIndex, VOS_UINT8 *pData, VOS_UINT16 usL
         else if ((AT_FW_CLIENT_STATUS_PEND == pstClientContext->ucClientStatus)
               || (AT_SMS_MODE == pstClientContext->ucMode))
         {
-            /* Added by L60609 for MUX，2012-08-03,  Begin */
             /* 判断本通道以及遍历到的通道是否可以并发 */
             if (VOS_TRUE == AT_IsConcurrentPorts(ucIndex, (VOS_UINT8)i))
             {
                 /* 如果是，则继续遍历通道 */
                 continue;
             }
-            /* Added by L60609 for MUX，2012-08-03,  End */
             else
             {
                 /* 如果不是，则缓存该命令 */
@@ -637,22 +435,7 @@ VOS_UINT32 AT_ParseCmdIsPend(VOS_UINT8 ucIndex, VOS_UINT8 *pData, VOS_UINT16 usL
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_DiscardInvalidCharForSms
- 功能描述  : +CMGS,+CMGW,+CMGC命令的检查和特殊处理
- 输入参数  : TAF_UINT8* pData
-             TAF_UINT16 *pusLen
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月5日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_DiscardInvalidCharForSms(TAF_UINT8* pData, TAF_UINT16 *pusLen)
 {
     TAF_CHAR   aucCMGSCmd[] = "AT+CMGS=";
@@ -714,23 +497,7 @@ VOS_VOID AT_DiscardInvalidCharForSms(TAF_UINT8* pData, TAF_UINT16 *pusLen)
 
 
 
-/*****************************************************************************
- 函 数 名  : AT_ResetParseVariable
- 功能描述  : 重新初始化解析用全局变量
- 输出参数  : 无
- 返 回 值  : PRIVATE VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月4日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年10月28日
-    作    者   : o00132663
-    修改内容   : AT融合项目，AT参数列表未初始化导致解析失败
-*****************************************************************************/
 VOS_VOID AT_ResetParseVariable(VOS_VOID)
 {
     PS_MEM_SET(&g_stATParseCmd, 0 , sizeof(AT_PARSECMD_STRU));
@@ -745,22 +512,7 @@ VOS_VOID AT_ResetParseVariable(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_ParseCmdType
- 功能描述  : 根据命令类型解析命令字符串
- 输入参数  :  VOS_UINT8 * pData
-             VOS_UINT16 usLen
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月4日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_ParseCmdType( VOS_UINT8 * pData, VOS_UINT16 usLen)
 {
     VOS_UINT16 usDataTmpLen = usLen - 2;
@@ -837,29 +589,7 @@ VOS_UINT32 AT_ParseCmdType( VOS_UINT8 * pData, VOS_UINT16 usLen)
 }
 
 
-/*****************************************************************************
- 函 数 名  : At_MatchSmsCmdName
- 功能描述  : 在SMS命令表中匹配命令名
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : PRIVATE VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : c64416
-    修改内容   : 新生成函数
-  2.日    期   : 2012年9月19日
-    作    者   : l00171473
-    修改内容   : V7R1C50_At_Abort, 添加短信命令ABORT支持
-  3.日    期   : 2012年11月19日
-    作    者   : f62575
-    修改内容   : DTS2012112010227, 解决短信命令支持多通道并发命令名被覆盖问题；
-  4.日    期   : 2013年3月5日
-    作    者   : l60609
-    修改内容   : DSDA PHASE III
-*****************************************************************************/
 VOS_UINT32 At_MatchSmsCmdName(VOS_UINT8 ucIndex, VOS_CHAR *pszCmdName)
 {
     VOS_UINT32                          i = 0;
@@ -910,15 +640,7 @@ VOS_UINT32 At_MatchSmsCmdName(VOS_UINT8 ucIndex, VOS_CHAR *pszCmdName)
 }
 
 
-/******************************************************************************
- 函数名称: atMatchCmdName
- 功能描述: 匹配命令名称
 
- 参数说明:
-   CmdType [in] 命令类型
-
- 作    者: 崔军强/00064416 [2011-04-01]
-******************************************************************************/
 VOS_UINT32 atMatchCmdName (VOS_UINT8 ucClientId, VOS_UINT32 CmdType)
 {
     VOS_UINT32 i = 0;
@@ -973,12 +695,7 @@ VOS_UINT32 atMatchCmdName (VOS_UINT8 ucClientId, VOS_UINT32 CmdType)
 }
 
 
-/******************************************************************************
- 函数名称: ParseParam
- 功能描述: 解析参数
 
- 作    者: 崔军强/00064416 [2011-04-01]
-******************************************************************************/
 VOS_UINT32 ParseParam(AT_PAR_CMD_ELEMENT_STRU* pstCmdElement)
 {
     VOS_UINT32 ulParaLen = 0;
@@ -1039,15 +756,7 @@ AT_RRETURN_CODE_ENUM_UINT32 fwCmdTestProc(VOS_UINT8 ucIndex, AT_PAR_CMD_ELEMENT_
 }
 
 
-/******************************************************************************
- 函数名称: atCmdDispatch
- 功能描述: 命令分发
 
- 参数说明:
-   ucClientId [in] client id
-
- 作    者: 崔军强/00064416 [2011-04-01]
-******************************************************************************/
 AT_RRETURN_CODE_ENUM_UINT32 atCmdDispatch (VOS_UINT8 ucIndex)
 {
     AT_RRETURN_CODE_ENUM_UINT32         ulResult = AT_FAILURE;
@@ -1099,32 +808,7 @@ AT_RRETURN_CODE_ENUM_UINT32 atCmdDispatch (VOS_UINT8 ucIndex)
 }
 
 
-/*****************************************************************************
- 函 数 名  : LimitedCmdProc
- 功能描述  : 命令受限查询和处理
- 输入参数  : VOS_UINT8 ucClientId
-             VOS_UINT8 *pData
-             VOS_UINT16 usLen
-             AT_PAR_CMD_ELEMENT_STRU* pstCmdElement
- 输出参数  : 无
- 返 回 值  : AT_OK      : 表示受限条件不满足，需要继续处理
-             AT_ERROR   : 表示受限条件满足，需要返回ERROR
-             AT_SUCCESS : 表示DOCK命令转发到E5通道处理，不需要返回应答
-             其他       : 特定错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月10日
-    作    者   : c64416
-    修改内容   : 新生成函数
-  2.日    期   : 2012年03月03日
-    作    者   : s62952
-    修改内容   : BalongV300R002 Build优化项目
-  3.日    期   : 2012年04月07日
-    作    者   : f00179208
-    修改内容   : 问题单号:DTS2012032702424,打开对DOCK命令的支持
-*****************************************************************************/
 VOS_UINT32 LimitedCmdProc(VOS_UINT8 ucClientId, VOS_UINT8 *pData, VOS_UINT16 usLen, AT_PAR_CMD_ELEMENT_STRU* pstCmdElement)
 {
     VOS_BOOL bE5CheckRight = VOS_TRUE;
@@ -1136,7 +820,6 @@ VOS_UINT32 LimitedCmdProc(VOS_UINT8 ucClientId, VOS_UINT8 *pData, VOS_UINT16 usL
     }
 
 
-     /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
 
     /* 如果E5密码保护受限，则调用查询E5受限条件接口，受限的话返回AT_ERROR，否则返回AT_OK */
     if(0 == (pstCmdElement->ulChkFlag & CMD_TBL_E5_IS_LOCKED))
@@ -1161,7 +844,6 @@ VOS_UINT32 LimitedCmdProc(VOS_UINT8 ucClientId, VOS_UINT8 *pData, VOS_UINT16 usL
             }
         }
     }
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
     /* 如果是E5 DOCK命令，则直接调用DOCK命令转发接口，返回AT_SUCCESS */
     if(pstCmdElement->ulChkFlag & CMD_TBL_IS_E5_DOCK)
@@ -1198,23 +880,7 @@ VOS_UINT32 LimitedCmdProc(VOS_UINT8 ucClientId, VOS_UINT8 *pData, VOS_UINT16 usL
     return AT_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CmdParseProc
- 功能描述  : 命令解析处理
- 输入参数  : VOS_UINT8 ucClientId
-              VOS_UINT8 *pDataIn
-             VOS_UINT16 usLenIn
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月4日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CmdParseProc(VOS_UINT8 ucClientId, VOS_UINT8 *pData, VOS_UINT16 usLen)
 {
     AT_RRETURN_CODE_ENUM_UINT32         ulResult = AT_FAILURE;
@@ -1250,12 +916,10 @@ VOS_UINT32 CmdParseProc(VOS_UINT8 ucClientId, VOS_UINT8 *pData, VOS_UINT16 usLen
 
     if(ERR_MSP_SUCCESS != ulResult)
     {
-        /* Add by w00199382 for V7代码同步, 2012-04-07, Begin   */
         if(AT_CMD_SD == pstCmdElement->ulCmdIndex)
         {
             return AT_SDParamErrCode();
         }
-       /* Add by w00199382 for V7代码同步, 2012-04-07, End   */
 
         /* HAL_DIAG_SDM_FUN(EN_SDM_AT_FW_PARSE_FAILURE, 7, 0, 0); */
         if(AT_RRETURN_CODE_BUTT == pstCmdElement->ulParamErrCode)
@@ -1285,23 +949,7 @@ VOS_UINT32 CmdParseProc(VOS_UINT8 ucClientId, VOS_UINT8 *pData, VOS_UINT16 usLen
 }
 
 
-/*****************************************************************************
- 函 数 名  : RepeatCmdProc
- 功能描述  : A/命令的处理
- 输入参数  : VOS_UINT8 ucClientId
-             AT_FW_CLIENT_CONTEXT_STRU* pstClientContext
-             AT_FW_CLIENT_CMD_CTRL_STRU* pstCmdfmtCtrl
- 输出参数  : 无
- 返 回 值  : PRIVATE VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月4日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID RepeatCmdProc(AT_PARSE_CONTEXT_STRU* pstClientContext)
 {
     VOS_UINT8* pData = pstClientContext->aucDataBuff;
@@ -1340,23 +988,7 @@ VOS_VOID RepeatCmdProc(AT_PARSE_CONTEXT_STRU* pstClientContext)
 }
 
 
-/*****************************************************************************
- 函 数 名  : SaveRepeatCmd
- 功能描述  : 保存当前命令字符串
- 输入参数  : pstClientContext : 解析器上下文
-             pData            : AT命令字符串
-             usLen            : AT命令字符串长度
- 输出参数  : 无
- 返 回 值  : PRIVATE VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月6日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID SaveRepeatCmd(AT_PARSE_CONTEXT_STRU* pstClientContext, VOS_UINT8 *pData, VOS_UINT16 usLen)
 {
     /* 保存A/命令缓存 */
@@ -1378,17 +1010,7 @@ VOS_VOID SaveRepeatCmd(AT_PARSE_CONTEXT_STRU* pstClientContext, VOS_UINT8 *pData
 }
 
 
-/******************************************************************************
- 函数名称: ScanDelChar
- 功能描述: 扫描退格符
 
- 参数说明:
-   pData [in/out] 字符串内容
-   pLen [in/out] 字符串长度
-   AtS5 [in] 退格符
-
- 作    者: 崔军强/00064416 [2011-04-01]
-******************************************************************************/
 VOS_UINT32 ScanDelChar( VOS_UINT8 *pData, VOS_UINT16 *pLen, VOS_UINT8 AtS5)
 {
     VOS_UINT16 usChkLen  = 0;
@@ -1431,16 +1053,7 @@ VOS_UINT32 ScanDelChar( VOS_UINT8 *pData, VOS_UINT16 *pLen, VOS_UINT8 AtS5)
 }
 
 
-/******************************************************************************
- 函数名称: ScanCtlChar
- 功能描述: 扫描控制符(去除字符串中小于0x20的字符)
 
- 参数说明:
-   pData [in/out] 字符串内容
-   pLen [in/out] 字符串长度
-
- 作    者: 崔军强/00064416 [2011-04-01]
-******************************************************************************/
 VOS_UINT32 ScanCtlChar( VOS_UINT8 *pData, VOS_UINT16 *pLen)
 {
     VOS_UINT8  *pWrite    = pData;
@@ -1454,7 +1067,6 @@ VOS_UINT32 ScanCtlChar( VOS_UINT8 *pData, VOS_UINT16 *pLen)
         return AT_FAILURE;
     }
 
-    /* Added by c64416 for 引号中的控制字符不删除, DTS2011120903650 2011/12/21, begin */
     while( usChkLen++ < *pLen )
     {
         if( 0x20 <= *pRead )   /* 选择有效字符 */
@@ -1476,23 +1088,13 @@ VOS_UINT32 ScanCtlChar( VOS_UINT8 *pData, VOS_UINT16 *pLen)
         }
         pRead++;
     }
-    /* Added by c64416 for 引号中的控制字符不删除, DTS2011120903650 2011/12/21, end */
 
     *pLen  =  usLen;
     return AT_SUCCESS;
 }
 
 
-/******************************************************************************
- 函数名称: ScanBlankChar
- 功能描述: 扫描引号外空格符
 
- 参数说明:
-   pData [in/out] 字符串内容
-   pLen [in/out] 字符串长度
-
- 作    者: 崔军强/00064416 [2011-04-01]
-******************************************************************************/
 VOS_UINT32 ScanBlankChar( VOS_UINT8 *pData, VOS_UINT16 *pLen)
 {
     /* VOS_UINT8  *pCheck        = pData; */
@@ -1582,20 +1184,7 @@ VOS_UINT32 ScanBlankChar( VOS_UINT8 *pData, VOS_UINT16 *pLen)
 }
 
 
-/*****************************************************************************
- 函 数 名  : ScanBlankCharAfterEq
- 功能描述  : 删除紧挨着等号后面的空格,ScanBlankChar函数的补丁函数
- 输入参数  : IN OUT U8_T *pData
-             IN OUT U16_T *pLen
- 输出参数  : 无
- 返 回 值  : PRIVATE U32_T
 
- 修改历史      :
-  1.日    期   : 2012年10月15日
-    作    者   : c64416
-    修改内容   : DTS2012102905864, 新生成函数
-
-*****************************************************************************/
 PRIVATE VOS_UINT32 ScanBlankCharAfterEq(IN OUT VOS_UINT8 *pData,IN OUT VOS_UINT16 *pLen)
 {
     VOS_UINT8  *pWrite        = pData;
@@ -1647,24 +1236,7 @@ PRIVATE VOS_UINT32 ScanBlankCharAfterEq(IN OUT VOS_UINT8 *pData,IN OUT VOS_UINT1
     return AT_SUCCESS;
 }
 
-/*****************************************************************************
- Prototype      : At_FormatCmdStr
- Description    : 格式化命令字符串
- Input          : pData --- 字符串
-                  pLen  --- 长度地址
- Output         :
- Return Value   : AT_XXX  --- ATC返回码
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-04-19
-    Author      : ---
-    Modification: Created function
-  2.日    期   : 2008年12月8日
-    作    者   : o00132663
-    修改内容   : AT2D07342, AT命令增加对双字节ASCII编码的支持。
-*****************************************************************************/
 VOS_UINT32 FormatCmdStr (VOS_UINT8 *pData, VOS_UINT16 *pLen, VOS_UINT8 AtS3)
 {
     VOS_UINT8  *pCheck    = pData;
@@ -1698,37 +1270,17 @@ VOS_UINT32 FormatCmdStr (VOS_UINT8 *pData, VOS_UINT16 *pLen, VOS_UINT8 AtS3)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : AT_DiscardInvalidChar
- 功能描述  : 过滤出现在"AT"之前的误码
- 输入参数  : VOS_UINT8* pData
-             VOS_UINT16 *pusLen
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年12月2日
-   作    者   : L00171473
-   修改内容   : 新生成函数
- 2.日    期   : 2011年12月2日
-   作    者   : 崔军强/00064416
-   修改内容   : 程序效率优化
-
-*****************************************************************************/
 VOS_UINT32  AT_DiscardInvalidChar(VOS_UINT8* pucData, VOS_UINT16 *pusLen)
 {
     VOS_UINT16                          i;
     VOS_UINT16                          usLen;
 
-    /*DTS2011122400231 AT命令最大长度限制修改 : h00135900 start in 2011-12-24*/
     if ((*pusLen == 0) || (AT_CMD_MAX_LEN < *pusLen))
     {
         (VOS_VOID)vos_printf("AT_DiscardInvalidChar: usLen > AT_CMD_MAX_LEN or usLen = 0. usLen :%d", *pusLen);
         return ERR_MSP_FAILURE;
     }
-    /*DTS2011122400231 AT命令最大长度限制修改 : h00135900 end in 2011-12-24*/
     for(i = 0; i < (*pusLen); i++)
     {
         if(AT_SUCCESS != At_CheckCharA(pucData[i]))
@@ -1756,20 +1308,7 @@ VOS_UINT32  AT_DiscardInvalidChar(VOS_UINT8* pucData, VOS_UINT16 *pusLen)
 }
 
 
-/******************************************************************************
- 函数名称: CmdStringFormat
- 功能描述: 格式化命令字符串
 
- 参数说明:
-   ucClientId [in] client id
-   pData [in/out] 字符串内容
-   pusLen [in/out] 字符串长度
-
- 作    者: 崔军强/00064416 [2011-04-01]
-  2.日    期   : 2012年10月31日
-    作    者   : c64416
-    修改内容   : DTS2012102905864
-******************************************************************************/
 VOS_UINT32 CmdStringFormat(VOS_UINT8 ucClientId, VOS_UINT8 *pData,VOS_UINT16* pusLen)
 {
     VOS_UINT32 ulRet = ERR_MSP_FAILURE;
@@ -1810,24 +1349,7 @@ VOS_UINT32 CmdStringFormat(VOS_UINT8 ucClientId, VOS_UINT8 *pData,VOS_UINT16* pu
 
     return ERR_MSP_SUCCESS;
 }
-/*****************************************************************************
- 函 数 名  : CheckAnyCharCmdName
- 功能描述  : 匹配任意字符参数命令的名称
- 输入参数  : VOS_UINT8 *pData
-             VOS_UINT16* usLen
-             VOS_UINT8 *plName
-             VOS_UINT8 *pbName
- 输出参数  : 无
- 返 回 值  : VOS_BOOL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月31日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_BOOL CheckAnyCharCmdName(VOS_UINT8 *pData, VOS_UINT16* pusLen, VOS_UINT8 *plName, VOS_UINT8 *pbName)
 {
     VOS_UINT16 i;
@@ -1869,23 +1391,7 @@ VOS_BOOL CheckAnyCharCmdName(VOS_UINT8 *pData, VOS_UINT16* pusLen, VOS_UINT8 *pl
     return FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : AnyCharCmdParse
- 功能描述  : 任意字符参数命令解析
- 输入参数  : VOS_UINT8* pData
-             VOS_UINT16 usLen
-             VOS_UINT8* pName
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月31日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AnyCharCmdParse(VOS_UINT8* pData, VOS_UINT16 usLen, VOS_UINT8* pName)
 {
     VOS_UINT16 i,j;
@@ -1983,24 +1489,7 @@ VOS_UINT32 AnyCharCmdParse(VOS_UINT8* pData, VOS_UINT16 usLen, VOS_UINT8* pName)
 }
 
 
-/*****************************************************************************
- 函 数 名  : AnyCharCmdProc
- 功能描述  : 支持任意字符的字符串参数的命令的处理
-            (来自V3R1的需求，此类命令不支持组合命令)
- 输入参数  : VOS_UINT8 ucIndex
-             VOS_UINT8 *pData
-             VOS_UINT16 usLen
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月31日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AnyCharCmdProc(VOS_UINT8 *pData, VOS_UINT16* pusLen)
 {
     VOS_UINT16 i;
@@ -2027,25 +1516,7 @@ VOS_UINT32 AnyCharCmdProc(VOS_UINT8 *pData, VOS_UINT16* pusLen)
 
 
 
-/*****************************************************************************
- 函 数 名  : At_ReadyClientCmdProc
- 功能描述  : Ready状态的通道的命令处理
- 输入参数  : VOS_UINT8 ucIndex
-             VOS_UINT8 *pData
-             VOS_UINT16 usLen
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月17日
-    作    者   : c64416
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月2日
-    作    者   : L00171473
-    修改内容   : 过滤出现在"AT"之前的误码
-*****************************************************************************/
 VOS_VOID At_ReadyClientCmdProc(VOS_UINT8 ucIndex, VOS_UINT8 *pData, VOS_UINT16 usLen)
 {
     VOS_UINT32 ulRet                           = ERR_MSP_FAILURE;
@@ -2063,13 +1534,11 @@ VOS_VOID At_ReadyClientCmdProc(VOS_UINT8 ucIndex, VOS_UINT8 *pData, VOS_UINT16 u
 
     At_ResetCombinParseInfo(ucIndex);
 
-    /* Modified by l00171473 for DTS2011120801675 UART通道校准 , 2011-12-3, begin */
     ulRet = AT_DiscardInvalidChar(pData, &usLen);
     if (ERR_MSP_SUCCESS != ulRet)
     {
         return ;
     }
-    /* Modified by l00171473 for DTS2011120801675 UART通道校准 , 2011-12-3, end */
 
     ulRet = AnyCharCmdProc(pData, &usLen);
 
@@ -2123,12 +1592,10 @@ VOS_VOID At_ReadyClientCmdProc(VOS_UINT8 ucIndex, VOS_UINT8 *pData, VOS_UINT16 u
     }
 
     /* ^DOCK命令后面还有"^"和"="，特殊处理 */
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     if (AT_SUCCESS == AT_HandleDockSetCmd(ucIndex, pData, usLen))
     {
         return;
     }
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
     /* AP-Modem形态下，产线命令AT^FACAUTHPUBKEY和AT^SIMLOCKDATAWRITE的设置命令，参数已经超过了解析器中
        参数长度上限512，需要特殊处理*/
@@ -2154,34 +1621,7 @@ VOS_VOID At_ReadyClientCmdProc(VOS_UINT8 ucIndex, VOS_UINT8 *pData, VOS_UINT16 u
 }
 
 
-/*****************************************************************************
- 函 数 名  : atCmdMsgProc
- 功能描述  : 命令处理
- 输入参数  : VOS_UINT8 ucClientId
-              VOS_UINT8 *pDataIn
-             VOS_UINT16 usLenIn
- 输出参数  : 无
- 返 回 值  : PRIVATE VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月4日
-    作    者   : c64416
-    修改内容   : 新生成函数
-  2.日    期   : 2012年06月28日
-    作    者   : y00213812
-    修改内容   : V7R1C50 A-GPS项目，增加AT_XML_MODE子模式的处理
-  3.日    期   : 2012年8月10日
-    作    者   : y00213812
-    修改内容   : DTS2012082204471, TQE清理
-  4.日    期   : 2012年12月11日
-    作    者   : l00167671
-    修改内容   : DTS2012121802573, TQE清理
-  5.日    期   : 2013年2月20日
-    作    者   : l60609
-    修改内容   : DSDA PHASE III
-*****************************************************************************/
 VOS_VOID atCmdMsgProc(VOS_UINT8 ucIndex, VOS_UINT8 *pData, VOS_UINT16 usLen)
 {
     VOS_UINT32                          ulRet = ERR_MSP_FAILURE;
@@ -2217,12 +1657,10 @@ VOS_VOID atCmdMsgProc(VOS_UINT8 ucIndex, VOS_UINT8 *pData, VOS_UINT16 usLen)
         {
             if (NULL != pClientContext->pstCmdElement)
             {
-                /*modified by Y00213812 for DTS2012082204471 TQE清理, 2012-08-10, begin*/
                 if (AT_SUCCESS != At_StartTimer(pClientContext->pstCmdElement->ulSetTimeOut, ucIndex))
                 {
                     AT_ERR_LOG("atCmdMsgProc():ERROR:Start Timer Failed");
                 }
-                /*modified by Y00213812 for DTS2012082204471 TQE清理, 2012-08-10, end*/
 
                 pClientContext->ucClientStatus = AT_FW_CLIENT_STATUS_PEND;
             }
@@ -2292,23 +1730,7 @@ VOS_VOID atCmdMsgProc(VOS_UINT8 ucIndex, VOS_UINT8 *pData, VOS_UINT16 usLen)
 }
 
 
-/*****************************************************************************
- 函 数 名  : At_CmdStreamRcv
- 功能描述  : AT命令字符串的预处理
- 输入参数  : VOS_UINT8 ucIndex
-             VOS_UINT8* pData
-             VOS_UINT16 usLen
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月4日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 At_CmdStreamRcv(VOS_UINT8 ucIndex, VOS_UINT8* pData, VOS_UINT16 usLen)
 {
     VOS_UINT8* pHead = NULL;
@@ -2379,21 +1801,7 @@ VOS_UINT32 At_CmdStreamRcv(VOS_UINT8 ucIndex, VOS_UINT8* pData, VOS_UINT16 usLen
 }
 
 
-/*****************************************************************************
- 函 数 名  : At_CombineBlockCmdProc
- 功能描述  : 组合命令和缓存命令的处理
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月17日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID At_CombineBlockCmdProc(VOS_UINT8 ucIndex)
 {
     AT_RRETURN_CODE_ENUM_UINT32         ulResult = AT_WAIT_ASYNC_RETURN;
@@ -2464,40 +1872,7 @@ VOS_VOID At_CombineBlockCmdProc(VOS_UINT8 ucIndex)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : At_CmdMsgDistr
- 功能描述  : AT自处理消息分发
- 输入参数  : AT_MSG_STRU* pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月19日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-  2.日    期   : 2013年04月17日
-    作    者   : f00179208
-    修改内容   : C核单独复位项目
-
-  3.日    期   : 2013年9月23日
-    作    者   : A00165503
-    修改内容   : UART-MODEM: 增加模式切换命令处理
-
-  4.日    期   : 2013年12月28日
-    作    者   : j00174725
-    修改内容   : HSUART PHASE III
-
-  5.日    期   : 2015年3月12日
-    作    者   : A00165503
-    修改内容   : DTS2015032409785: 增加水线检测功能
-
-  6.日    期   : 2015年9月5日
-    作    者   : A00165503
-    修改内容   : DTS2015090105100: NDIS网卡禁用无法断开连接
-*****************************************************************************/
 VOS_VOID At_CmdMsgDistr(AT_MSG_STRU *pstMsg)
 {
     VOS_UINT16                          usLen = 0;
@@ -2583,20 +1958,7 @@ VOS_VOID At_CmdMsgDistr(AT_MSG_STRU *pstMsg)
 }
 
 
-/******************************************************************************
- 函数名称: atfwParseSaveParam
- 功能描述: 解析字符串并保存参数到全局变量
 
- 参数说明:
-   pStringBuf [in/out] 字符串内容
-   usLen [in] 字符串长度
-
- 作    者: 崔军强/00064416 [2011-04-01]
- 2.日    期   : 2013年03月11日
-   作    者   : l00198894
-   修改内容   : Body SAR项目
-
-******************************************************************************/
 VOS_UINT32 atfwParseSaveParam(VOS_UINT8* pStringBuf, VOS_UINT16 usLen)
 {
     if ((usLen > AT_PARA_MAX_LEN) || (gucAtParaIndex >= AT_MAX_PARA_NUMBER))
@@ -2623,22 +1985,7 @@ VOS_UINT32 atfwParseSaveParam(VOS_UINT8* pStringBuf, VOS_UINT16 usLen)
     return ERR_MSP_SUCCESS;
 }
 
-/******************************************************************************
- 函 数 名  : AT_SaveCdataDialParam
- 功能描述  : 保存拨号信息"#777"
- 输入参数  : VOS_UINT8                          *pStringBuf
-             VOS_UINT16                          usLen
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月27日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-******************************************************************************/
 VOS_UINT32 AT_SaveCdataDialParam(
     VOS_UINT8                          *pStringBuf,
     VOS_UINT16                          usLen
@@ -2688,60 +2035,21 @@ VOS_UINT32 AT_SaveCdataDialParam(
 }
 
 
-/*****************************************************************************
- 函 数 名  : At_CmdTestProcOK
- 功能描述  : 命令的测试模式下返回OK的处理函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 At_CmdTestProcOK(VOS_UINT8 ucIndex)
 {
     return AT_OK;
 }
 
 
-/*****************************************************************************
- 函 数 名  : At_CmdTestProcERROR
- 功能描述  : 命令的测试模式下返回ERROR的处理函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 At_CmdTestProcERROR(VOS_UINT8 ucIndex)
 {
     return AT_ERROR;
 }
 
 
-/******************************************************************************
- 函数名称: atFWSendMsg
- 功能描述: AT框架给其他模块发送消息
 
- 参数说明:
-   TaskId [in] 任务ID
-   MsgId [in] 消息ID
-   VOS_VOID * pData [in/out] 发送信息的内容
-   uLen [in] 发送信息的长度
-
- 作    者: 崔军强/00064416 [2011-04-01]
-******************************************************************************/
 VOS_UINT32 atFWSendMsg(VOS_UINT32 TaskId,  VOS_VOID* pData, VOS_UINT32 uLen)
 {
     VOS_UINT32 ulRet = ERR_MSP_SUCCESS;
@@ -2772,18 +2080,7 @@ VOS_UINT32 atFWSendMsg(VOS_UINT32 TaskId,  VOS_VOID* pData, VOS_UINT32 uLen)
 }
 
 
-/******************************************************************************
- 函数名称: AT_FwSendClientMsg
- 功能描述: 二进制消息回复处理接口
 
- 参数说明:
-   ucClientId [in] client id
-   ulMsgId [in] message id
-   usMsgParamSize [in] 消息体大小
-   VOS_VOID* pMsgParam [in] 消息体内容
-
- 作    者: 崔军强/00064416 [2011-04-01]
-******************************************************************************/
 VOS_UINT32 AT_FwSendClientMsg(VOS_UINT32 ulRcvPid, VOS_UINT32 ulMsgId, VOS_UINT16 usMsgParamSize, VOS_VOID* pMsgParam)
 {
     VOS_UINT32 ulRet = ERR_MSP_FAILURE;
@@ -2823,43 +2120,7 @@ VOS_UINT32 AT_FwSendClientMsg(VOS_UINT32 ulRcvPid, VOS_UINT32 ulMsgId, VOS_UINT1
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_IsAbortCmdStr
- 功能描述  : 判断输入字符串是否与NV中的打断命令一致, 即是否是打断命令.
-             与手机产品线确认Balong平台的打断机制需求，在AT端口输入一条AT命令后，如果该命令支持打断，
-             后续该端口接收到"AT"字符，表示需要打断命令的执行，打断完成后在该端口输出"ABORT"，
-             表示打断完成，可以接收下一条命令；如果该命令不支持打断，实现与目前保持一致，
-             即在命令执行完前，该端口接收到的所有字符都被丢弃。
 
- 输入参数  :ucIndex : 当前通道索引
-            pucData : AT命令字符串, 输入的字符已经去除了不可见字符(<0x20的ASCII字符),
-                       空格,回车等字符. 但没有字符串结束符
-             usLen   : AT命令字符串长度, 已去除了空格 回车等字符后的长度
- 输出参数  : 无
- 返 回 值  : VOS_TRUE : 是打断命令
-             VOS_FALSE: 不是打断命令
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年9月18日
-    作    者   : l00171473
-    修改内容   : 新生成函数, V7R1C50_At_Abort
-  2.日    期   : 2013年10月18日
-    作    者   : w00242748
-    修改内容   : NETSCAN打断命令修改
-
-  3.日    期   : 2013年10月19日
-    作    者   : w00167002
-    修改内容   : 修改当前函数，传入index,支持各通道下的命令打断；
-
-  4.日    期   : 2013年10月31日
-    作    者   : w00167002
-    修改内容   : NETSCAN:减少翻转考虑优化
-  5.日    期   : 2013年10月31日
-    作    者   : w00167002
-    修改内容   : NETSCAN:TICK不变时候也会打断
-*****************************************************************************/
 
 VOS_UINT32 AT_IsAbortCmdStr(
     VOS_UINT8                           ucIndex,
@@ -2934,21 +2195,7 @@ VOS_UINT32 AT_IsAbortCmdStr(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_AbortCmdProc
- 功能描述  : AT打断的统一处理入口
- 输入参数  :  VOS_UINT8 ucIndex : 索引号
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月18日
-    作    者   : l00171473
-    修改内容   : 新生成函数, V7R1C50_At_Abort
-
-*****************************************************************************/
 VOS_VOID AT_AbortCmdProc(
     VOS_UINT8                           ucIndex
 )
@@ -3009,22 +2256,7 @@ VOS_VOID AT_AbortCmdProc(
 
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetCmdElementInfo
- 功能描述  : 在各命令表中查找指定命令
- 输入参数  : pucCmdName : 命令名字符串
-             ulCmdType  : 命令类型
- 输出参数  : 无
- 返 回 值  : 命令表中该指定命令的指针
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月18日
-    作    者   : l00171473
-    修改内容   : 新生成函数, V7R1C50_At_Abort
-
-*****************************************************************************/
 AT_PAR_CMD_ELEMENT_STRU* AT_GetCmdElementInfo(
     VOS_UINT8                          *pucCmdName,
     VOS_UINT32                          ulCmdType
@@ -3069,23 +2301,7 @@ AT_PAR_CMD_ELEMENT_STRU* AT_GetCmdElementInfo(
     return VOS_NULL_PTR;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SaveCmdElementInfo
- 功能描述  : 在各命令表中匹配指定命令并保存该命令的命令描述表信息
- 输入参数  : ucIndex    : AT通道的index
-             pucCmdName : 命令名字符串
-             ulCmdType  : 命令类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月18日
-    作    者   : l00171473
-    修改内容   : 新生成函数, V7R1C50_At_Abort
-
-*****************************************************************************/
 VOS_VOID AT_SaveCmdElementInfo(
     VOS_UINT8                           ucIndex,
     VOS_UINT8                          *pucCmdName,
@@ -3114,21 +2330,7 @@ VOS_VOID AT_SaveCmdElementInfo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_IsAnyParseClientPend
- 功能描述  : 判断是否有端口处于PEND状态
- 输入参数  : VOS_VOID
- 输出参数  : VOS_VOID
- 返 回 值  : 若有一个通道处于PEND状态，则返回VOS_UINT32
-             若所有通道都处于READY状态，则返回VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月28日
-    作    者   : j00174725
-    修改内容   : HSUART PHASE III
-*****************************************************************************/
 VOS_UINT32 AT_IsAnyParseClientPend(VOS_VOID)
 {
     AT_PORT_BUFF_CFG_STRU              *pstPortBuffCfg = VOS_NULL_PTR;
@@ -3161,21 +2363,7 @@ VOS_UINT32 AT_IsAnyParseClientPend(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_IsAllClientDataMode
- 功能描述  : 判断是否所有端口都处于DADA模式
- 输入参数  : VOS_VOID
- 输出参数  : VOS_VOID
- 返 回 值  : 若当前所有使用的通道都处于数据模式，则返回AT_DATA_MODE
-             若当前所有使用的通道有一个不处于数据模式且不处于pend状态，则返回AT_CMD_MODE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月28日
-    作    者   : j00174725
-    修改内容   : HSUART PHASE III
-*****************************************************************************/
 VOS_UINT32 AT_IsAllClientDataMode(VOS_VOID)
 {
     AT_PORT_BUFF_CFG_STRU              *pstPortBuffCfg = VOS_NULL_PTR;
@@ -3217,26 +2405,7 @@ VOS_UINT32 AT_IsAllClientDataMode(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : atCmdIsSupportedByCLMode
- 功能描述  : 判断当前的at 命令在CLI模式下是否需要保护
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : VOS_UINT8
- 返 回 值  :
-            若下发的AT命令的cmdindex属于下列的在CL模式下待保护的AT命令的index，返回VOS_TRUE
-            若下发的AT命令的cmdindex不属于下列的在CL模式下待保护的AT命令的index，返回VOS_FALSE
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : f00279542
-    修改内容   : new add
-  2.修改历史   : 2015年12月22日
-    作    者   : c00299063
-    修改内容   : 修改AT_CMD_CCMGS AT_CMD_CCMGW AT_CMD_CCMGD
-*****************************************************************************/
 VOS_UINT8 atCmdIsSupportedByCLMode(VOS_UINT8 ucIndex)
 {
     AT_PAR_CMD_ELEMENT_STRU            *pstCmdElement = VOS_NULL_PTR;

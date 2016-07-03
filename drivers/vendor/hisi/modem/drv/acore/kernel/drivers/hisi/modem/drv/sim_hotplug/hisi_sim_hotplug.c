@@ -105,6 +105,7 @@ struct hisi_sim_hotplug_info
     u32     sim_id;
     u32     card_tray_style;
     u32     send_msg_to_cp;
+    u32     send_card_out_msg;
     u32     hpd_interrupt_to_close_ldo;
     u32     hpd_debounce_wait_time;
     u32     det_debounce_wait_time;
@@ -1095,6 +1096,7 @@ static int sim_hotplug_dts_init(struct hisi_sim_hotplug_info *info, struct devic
     u32 allocate_gpio           = 0;
     u32 shared_det_irq          = 0;
     u32 send_msg_to_cp          = 0;
+    u32 send_card_out_msg       = 0;
     u32 card_tray_style         = 0;
     u32 det_debounce_wait_time  = 0;
     const char *str_func_sel_state = NULL;
@@ -1217,6 +1219,14 @@ static int sim_hotplug_dts_init(struct hisi_sim_hotplug_info *info, struct devic
     }
     info->send_msg_to_cp = send_msg_to_cp;
 
+    ret = of_property_read_u32(np, "send_card_out_msg_when_init", &send_card_out_msg);
+    if (ret < 0)
+    {
+        LOGI("failed to read send_card_out_msg_when_init, so set it to 0.\n");
+        send_card_out_msg = 0;
+    }
+    info->send_card_out_msg = send_card_out_msg;
+
     ret = of_property_read_u32(np, "card_tray_style", &card_tray_style);
     if (ret < 0)
     {
@@ -1228,8 +1238,9 @@ static int sim_hotplug_dts_init(struct hisi_sim_hotplug_info *info, struct devic
     LOGI("%s: sim%d, func_sel_state: %s, det_gpio_number: %d, det_normal_direction: %s\n",
             __func__, sim_id, func_sel_state_to_string(info->func_sel_state), info->det_gpio,
             direction_to_string(info->det_normal_direction));
-    LOGI("%s: sim%d, allocate_gpio: %d, shared_det_irq: %d, send_msg_to_cp: %d, card_tray_style: %s\n",
-            __func__, sim_id, allocate_gpio, shared_det_irq, send_msg_to_cp,
+    LOGI("%s: sim%d, allocate_gpio: %d, shared_det_irq: %d, send_msg_to_cp: %d, send_card_out_msg: %d, card_tray_style: %s\n",
+            __func__, sim_id, allocate_gpio, shared_det_irq,
+            send_msg_to_cp, send_card_out_msg,
             card_tray_style_to_string(card_tray_style));
 
     /* create det workqueue */
@@ -1292,6 +1303,11 @@ static int sim_state_init(struct hisi_sim_hotplug_info *info, struct device *dev
             info->sim_pluged = SIM_CARD_OUT;
             sim_set_inactive(info);
             save_sim_status_log(info, info->sim_id, info->sim_pluged, 3);
+            if (1 == info->send_card_out_msg)
+            {
+                info->old_det_gpio_level = 1;
+                hisi_sim_det_msg_to_ccore(info, SIM_CARD_OUT);
+            }
         }
         else
         {
@@ -1314,6 +1330,11 @@ static int sim_state_init(struct hisi_sim_hotplug_info *info, struct device *dev
             info->sim_pluged = SIM_CARD_OUT;
             sim_set_inactive(info);
             save_sim_status_log(info, info->sim_id, info->sim_pluged, 3);
+            if (1 == info->send_card_out_msg)
+            {
+                info->old_det_gpio_level = 0;
+                hisi_sim_det_msg_to_ccore(info, SIM_CARD_OUT);
+            }
         }
     }
 

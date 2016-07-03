@@ -26,14 +26,7 @@ using namespace testing;
 //13、结构体类型比较ASSERT_SAME_DATA ASSERT_SAME_MEMORY
 
 #if 0
-/*****************************************************************************
-类名       : Test_RNIC_InitAllTimers
-功能描述   : RNIC_InitAllTimers UT工程类
-修改历史   :
-1.日   期  : 2011-12-13
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_InitAllTimers: public ::testing::Test
 {
 public:
@@ -56,15 +49,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_InitAllTimers_001
-测试用例标题      : 初始化RNIC定时器的CTX
-预期结果          : RNIC的所有定时器资源都初始化成功
-修改历史   :
-1.日   期  : 2011-12-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_RNIC_InitAllTimers, Test_RNIC_InitAllTimers_001)
 {
     RNIC_TIMER_CTX_STRU                 astTimerCtx[RNIC_MAX_TIMER_NUM];   /* RNIC当前正在运行的定时器资源 */
@@ -81,14 +66,7 @@ TEST_F(Test_RNIC_InitAllTimers, Test_RNIC_InitAllTimers_001)
     }
 }
 
-/*****************************************************************************
-类名       : Test_RNIC_StartTimer
-功能描述   : RNIC_StartTimer UT工程类
-修改历史   :
-1.日   期  : 2011-12-13
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_StartTimer: public ::testing::Test
 {
 public:
@@ -112,15 +90,7 @@ public:
 
 };
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_StartTimer_001
-测试用例标题      : 当前无可用的定时器资源时直接返回
-预期结果          : 直接返回,记录出错日志
-修改历史          :
-1.日   期  : 2011-12-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_RNIC_StartTimer, Test_RNIC_StartTimer_001)
 {
     VOS_UINT32                          i;
@@ -140,15 +110,7 @@ TEST_F(Test_RNIC_StartTimer, Test_RNIC_StartTimer_001)
     }
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_StartTimer_002
-测试用例标题      : 定时器长度VOS_TIMER_MAX_LENGTH时，启动VOS_TIMER_MAX_LENGTH的定时器时长
-预期结果          : 启动VOS_TIMER_MAX_LENGTH的定时器时长,启动定时器失败,不更新定时器状态
-修改历史   :
-1.日   期  : 2011-12-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_RNIC_StartTimer, Test_RNIC_StartTimer_002)
 {
     VOS_UINT32                          i;
@@ -178,16 +140,7 @@ TEST_F(Test_RNIC_StartTimer, Test_RNIC_StartTimer_002)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_StartTimer_003
-测试用例标题      : 有空闲资源时,启动TI_RNIC_DEMAND_DIAL_DISCONNECT定时器正常
-预期结果          : TI_RNIC_DEMAND_DIAL_DISCONNECT定时器正常启动
-修改历史   :
-1.日   期  : 2011-12-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_StartTimer, Test_RNIC_StartTimer_003)
 {
 
@@ -216,16 +169,7 @@ TEST_F(Test_RNIC_StartTimer, Test_RNIC_StartTimer_003)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_StartTimer_004
-测试用例标题      : TI_RNIC_DEMAND_DIAL_DISCONNECT定时器已经启动时,再次启动该定时器直接返回
-预期结果          : 再次启动该定时器直接返回
-修改历史   :
-1.日   期  : 2011-12-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_StartTimer, Test_RNIC_StartTimer_004)
 {
     VOS_UINT32                          i;
@@ -253,14 +197,7 @@ TEST_F(Test_RNIC_StartTimer, Test_RNIC_StartTimer_004)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名       : Test_RNIC_StopTimer
-功能描述   : Test_RNIC_StopTimer UT工程类
-修改历史   :
-1.日   期  : 2011-12-13
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_StopTimer: public ::testing::Test
 {
 public:
@@ -284,16 +221,7 @@ public:
 
 };
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_StopTimer_001
-测试用例标题      : TI_RNIC_DEMAND_DIAL_DISCONNECT该定时器未启动直接返回
-预期结果          : 直接返回
-修改历史   :
-1.日   期  : 2011-12-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_StopTimer, Test_RNIC_StopTimer_001)
 {
     VOS_UINT32                          i;
@@ -314,16 +242,7 @@ TEST_F(Test_RNIC_StopTimer, Test_RNIC_StopTimer_001)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_StopTimer_002
-测试用例标题      : TI_RNIC_DEMAND_DIAL_DISCONNECT定时器运行过程中停止TI_RNIC_DEMAND_DIAL_DISCONNECT定时器
-预期结果          : 停止TI_RNIC_DEMAND_DIAL_DISCONNECT定时器
-修改历史   :
-1.日   期  : 2011-12-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_StopTimer, Test_RNIC_StopTimer_002)
 {
     VOS_UINT32                          i;
@@ -350,14 +269,7 @@ TEST_F(Test_RNIC_StopTimer, Test_RNIC_StopTimer_002)
     }
 }
 
-/*****************************************************************************
-类名       : Test_RNIC_StopAllTimer
-功能描述   : RNIC_StopAllTimer UT工程类
-修改历史   :
-1.日   期  : 2011-12-13
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_StopAllTimer: public ::testing::Test
 {
 public:
@@ -382,16 +294,7 @@ public:
 };
 
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_StopAllTimer_001
-测试用例标题      : 停止所有定时器
-预期结果          : 直接返回
-修改历史   :
-1.日   期  : 2011-12-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_StopAllTimer, Test_RNIC_StopAllTimer_001)
 {
     VOS_UINT32                          i;
@@ -412,14 +315,7 @@ TEST_F(Test_RNIC_StopAllTimer, Test_RNIC_StopAllTimer_001)
 
 }
 
-/*****************************************************************************
-类名       : Test_RNIC_GetTimerStatus
-功能描述   : RNIC_GetTimerStatus UT工程类
-修改历史   :
-1.日   期  : 2011-12-13
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_GetTimerStatus: public ::testing::Test
 {
 public:
@@ -443,15 +339,7 @@ public:
 
 };
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_GetTimerStatus_001
-测试用例标题      : 当前TI_RNIC_DEMAND_DIAL_DISCONNECT定时器停止时查询定时器状态返回停止
-预期结果          : 定时器状态返回停止
-修改历史   :
-1.日   期  : 2011-12-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_RNIC_GetTimerStatus, Test_RNIC_GetTimerStatus_001)
 {
     VOS_UINT32                          i;
@@ -467,15 +355,7 @@ TEST_F(Test_RNIC_GetTimerStatus, Test_RNIC_GetTimerStatus_001)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_GetTimerStatus_002
-测试用例标题      : 当前TI_RNIC_DEMAND_DIAL_DISCONNECT定时器运行时但获取剩余时间失败查询定时器状态返回停止
-预期结果          : 定时器状态返回停止
-修改历史   :
-1.日   期  : 2011-12-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_RNIC_GetTimerStatus, Test_RNIC_GetTimerStatus_002)
 {
     VOS_UINT32                          i;
@@ -501,15 +381,7 @@ TEST_F(Test_RNIC_GetTimerStatus, Test_RNIC_GetTimerStatus_002)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_GetTimerStatus_003
-测试用例标题      : 当前TI_RNIC_DEMAND_DIAL_DISCONNECT定时器运行时同时获取剩余时间成功查询定时器状态返回运行
-预期结果          : 定时器状态返回运行
-修改历史   :
-1.日   期  : 2011-12-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_RNIC_GetTimerStatus, Test_RNIC_GetTimerStatus_003)
 {
     VOS_UINT32                          i;

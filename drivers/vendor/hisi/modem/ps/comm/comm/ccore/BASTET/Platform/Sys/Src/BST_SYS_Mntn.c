@@ -1,22 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : BST_SYS_Mntn.c
-  版 本 号   : 初稿
-  作    者   : s00211350
-  生成日期   : 2014年09月16日
-  最近修改   :
-  功能描述   : Bastet可维可测公共处理部分
-  函数列表   :
-
-  修改历史   :
-  1.日    期   : 2014年09月16日
-    作    者   : s00211350
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -75,21 +57,7 @@ BST_STATIC  BST_SYS_MNTN_ENTITY_STRU        g_stBstMntnEntity;
    5 函数实现
 ******************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : BST_SYS_MntnInit
- 功能描述  : 初始化Maintain相关变量属性
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2014年09月16日
-      作    者   : s00211350
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 BST_VOID BST_SYS_MntnInit( BST_VOID )
 {
     BST_OS_LOCKCNT_T                    tThreadLockCnt;
@@ -110,21 +78,7 @@ BST_VOID BST_SYS_MntnInit( BST_VOID )
 }
 
 
-/*****************************************************************************
- 函 数 名  : BST_SYS_MntnInit
- 功能描述  : 初始化Maintain相关变量属性
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2014年09月16日
-      作    者   : s00211350
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 BST_VOID BST_SYS_MntnCofigLoacalIpAddress(
     BST_UINT8      *aucLocalIp,
     BST_UINT16      usBufLen )
@@ -144,21 +98,7 @@ BST_VOID BST_SYS_MntnCofigLoacalIpAddress(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_SYS_MntnChangedInd
- 功能描述  : 当外部接口操作发生过程中，提示变化，启动上报定时
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2014年09月16日
-      作    者   : s00211350
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 BST_VOID BST_SYS_MntnChangedInd( BST_VOID )
 {
     BST_SYS_MNTN_SetMntnMsgChgFlag();
@@ -171,23 +111,7 @@ BST_VOID BST_SYS_MntnChangedInd( BST_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_SYS_MntnAddTask
- 功能描述  : 把新增的APP信息添加到链表
- 输入参数  : BST_UINT16 usType
-             BST_UINT16 usTaskId
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2014年09月16日
-      作    者   : s00211350
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 BST_VOID BST_SYS_MntnAddTask(
     BST_UINT16  usType,
     BST_UINT16  usTaskId )
@@ -233,23 +157,7 @@ BST_VOID BST_SYS_MntnAddTask(
 /*lint -e429*/
 }
 /*lint +e429*/
-/*****************************************************************************
- 函 数 名  : BST_SYS_MntnUpdateState
- 功能描述  : 根据应用类型和Task Id更新任务状态信息
- 输入参数  : BST_UINT16 usType    应用类型
-             BST_UINT16 usTaskId  任务ID
-             BST_UINT16 usState   任务状态
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2014年11月14日
-      作    者   : l00220658
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 BST_VOID BST_SYS_MntnUpdateState(
     BST_UINT16  usType,
     BST_UINT16  usTaskId,
@@ -276,23 +184,7 @@ BST_VOID BST_SYS_MntnUpdateState(
     BST_OS_ThreadUnLock( tThreadLockCnt );
 }
 
-/*****************************************************************************
- 函 数 名  : BST_SYS_MntnUpdateIpInfo
- 功能描述  : 根据应用类型和Task Id更新IP地址信息
- 输入参数  : BST_UINT16 usType    应用类型
-             BST_UINT16 usTaskId  任务ID
-             BST_IP_SOCKET_ADD_T* pstIpInfo  IP地址信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2014年11月14日
-      作    者   : l00220658
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 BST_VOID BST_SYS_MntnUpdateIpInfo(
     BST_UINT16  usType,
     BST_UINT16  usTaskId,
@@ -343,23 +235,7 @@ BST_VOID BST_SYS_MntnUpdateIpInfo(
     BST_OS_ThreadUnLock( tThreadLockCnt );
 }
 
-/*****************************************************************************
- 函 数 名  : BST_SYS_MntnUpdateCycleLen
- 功能描述  : 根据应用类型和Task Id更新循环长度
- 输入参数  : BST_UINT16 usType      应用类型
-             BST_UINT16 usTaskId    任务ID
-             BST_UINT16 usCycleLen  循环长度
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2014年11月14日
-      作    者   : l00220658
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 BST_VOID BST_SYS_MntnUpdateCycleLen(
     BST_UINT16  usType,
     BST_UINT16  usTaskId,
@@ -387,23 +263,7 @@ BST_VOID BST_SYS_MntnUpdateCycleLen(
     BST_OS_ThreadUnLock( tThreadLockCnt );
 }
 
-/*****************************************************************************
- 函 数 名  : BST_SYS_MntnUpdateSuccNum
- 功能描述  : 根据应用类型和Task Id更新连接成功次数
- 输入参数  : BST_UINT16 usType      应用类型
-             BST_UINT16 usTaskId    任务ID
-             BST_UINT16 usSuccNum   连接成功次数
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2014年11月14日
-      作    者   : l00220658
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 BST_VOID BST_SYS_MntnUpdateSuccNum(
     BST_UINT16  usType,
     BST_UINT16  usTaskId )
@@ -430,23 +290,7 @@ BST_VOID BST_SYS_MntnUpdateSuccNum(
     BST_OS_ThreadUnLock( tThreadLockCnt );
 }
 
-/*****************************************************************************
- 函 数 名  : BST_SYS_MntnUpdateErrorNum
- 功能描述  : 根据应用类型和Task Id更新连接失败次数
- 输入参数  : BST_UINT16 usType      应用类型
-             BST_UINT16 usTaskId    任务ID
-             BST_UINT16 usErrorNum  连接失败次数
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2014年11月14日
-      作    者   : l00220658
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 BST_VOID BST_SYS_MntnUpdateErrorNum(
     BST_UINT16  usType,
     BST_UINT16  usTaskId )
@@ -473,23 +317,7 @@ BST_VOID BST_SYS_MntnUpdateErrorNum(
     BST_OS_ThreadUnLock( tThreadLockCnt );
 }
 
-/*****************************************************************************
- 函 数 名  : BST_SYS_MntnUpdateTxFlow
- 功能描述  : 根据本地IP端口更新发送流量信息
- 输入参数  : BST_UINT16 usType      应用类型
-             BST_UINT16 usTaskId    任务ID
-             BST_UINT32 ulTxFlow    发送流量信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2014年11月14日
-      作    者   : l00220658
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 BST_VOID BST_SYS_MntnUpdateTxFlow(
     BST_UINT16  usLocalPort,
     BST_UINT32  ulTxFlow )
@@ -516,23 +344,7 @@ BST_VOID BST_SYS_MntnUpdateTxFlow(
     BST_OS_ThreadUnLock( tThreadLockCnt );
 }
 
-/*****************************************************************************
- 函 数 名  : BST_SYS_MntnUpdateRxFlow
- 功能描述  : 根据本地IP端口更新接收流量信息
- 输入参数  : BST_UINT16 usType      应用类型
-             BST_UINT16 usTaskId    任务ID
-             BST_UINT32 ulRxFlow    接收流量信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2014年11月14日
-      作    者   : l00220658
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 BST_VOID BST_SYS_MntnUpdateRxFlow(
     BST_UINT16  usLocalPort,
     BST_UINT32  ulRxFlow )
@@ -559,23 +371,7 @@ BST_VOID BST_SYS_MntnUpdateRxFlow(
     BST_OS_ThreadUnLock( tThreadLockCnt );
 }
 
-/*****************************************************************************
- 函 数 名  : BST_SYS_MntnRemoveTask
- 功能描述  : 将指定的APP从链表中删除
- 输入参数  : BST_UINT16 usType
-             BST_UINT16 usTaskId
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2014年09月16日
-      作    者   : s00211350
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 BST_VOID BST_SYS_MntnRemoveTask(
     BST_UINT16  usType,
     BST_UINT16  usTaskId )
@@ -615,23 +411,7 @@ BST_VOID BST_SYS_MntnRemoveTask(
 /*lint -e438*/
 }
 /*lint +e438*/
-/*****************************************************************************
- 函 数 名  : BST_SYS_MntnBuildAgentInfoInd
- 功能描述  : 填写需要发送的代理消息
- 输入参数  : BST_SYS_MNTN_BUILD_TYPE_ENUM_UINT16 enType
-             BST_UINT16                      usIndex
 
- 输出参数  :
- 返 回 值  : BST_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2014年09月16日
-      作    者   : s00211350
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 BST_UINT32 BST_SYS_MntnBuildAgentInfoInd(
     OM_BST_APP_INFO_STRU   *pstAgentInfo,
     const BST_UINT16        usAppNumber )
@@ -670,22 +450,7 @@ BST_UINT32 BST_SYS_MntnBuildAgentInfoInd(
     return BST_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_SYS_MntnGetSendExternalMsgBuffAddr
- 功能描述  : 分配消息所需空间
- 输入参数  : BST_UINT32 ulBuffSize
 
- 输出参数  :
- 返 回 值  : (BST_UINT8 *)
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2014年09月16日
-      作    者   : s00211350
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 BST_UINT8* BST_SYS_MntnGetSendExternalMsgBuffAddr( BST_UINT32  ulPid,
                                                    BST_UINT32  ulBuffSize )
 {
@@ -703,22 +468,7 @@ BST_UINT8* BST_SYS_MntnGetSendExternalMsgBuffAddr( BST_UINT32  ulPid,
     return (BST_UINT8 *)pMsgBuff;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_SYS_MntnTrigReport
- 功能描述  : 向OM发送需要显示的代理信息
- 输入参数  : BST_VOID
 
- 输出参数  :
- 返 回 值  : BST_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2014年09月16日
-      作    者   : s00211350
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 BST_VOID BST_SYS_MntnTrigReport( BST_VOID )
 {
     OM_BST_MSG_STRU                    *pstBstOmIndMsg;
@@ -787,19 +537,7 @@ BST_VOID BST_SYS_MntnTrigReport( BST_VOID )
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : BST_SYS_MntnSrchAppByTask
- 功能描述  : 根据TaskId查找AppInfo指针头
- 输入参数  : BST_UINT16 usType, BST_UINT16 usTaskId 任务属性
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 OM_BST_APP_INFO_STRU *BST_SYS_MntnSrchAppByTask(
     BST_UINT16                      usType,
     BST_UINT16                      usTaskId )
@@ -819,19 +557,7 @@ OM_BST_APP_INFO_STRU *BST_SYS_MntnSrchAppByTask(
     }
     return BST_NULL_PTR;
 }
-/*****************************************************************************
- 函 数 名  : BST_SYS_MntnSrchAppByPort
- 功能描述  : 根据PortNumber查找AppInfo指针头
- 输入参数  : BST_UINT16 usLocalPortNumber 端口号
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 OM_BST_APP_INFO_STRU *BST_SYS_MntnSrchAppByPort( BST_UINT16 usLocalPortNumber )
 {
     BST_SYS_MNTN_APP_NODE_STRU             *pstAppNode;
@@ -848,20 +574,7 @@ OM_BST_APP_INFO_STRU *BST_SYS_MntnSrchAppByPort( BST_UINT16 usLocalPortNumber )
     return BST_NULL_PTR;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_SYS_MntnTimerExpired
- 功能描述  : 定时器超时回调函数
- 输入参数  : BST_OS_TIMERID_T ulTimerId
-             BST_VOID* pvArg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_SYS_MntnTimerExpired(
     BST_OS_TIMERID_T                ulTimerId,
     BST_VOID                       *pvArg )

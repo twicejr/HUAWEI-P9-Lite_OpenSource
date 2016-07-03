@@ -32,7 +32,6 @@ extern "C" {
 #define TCPIP_Sscanf                                            VOS_sscanf_s
 #define TCPIP_Scanf                                             VOS_scanf_s
 #else
-/*Added by yanlei00216869, 支持控制器安全函数适配, 2015/1/6   问题单号:DTS2015010508058 */
 #if (TCPIP_VOS_FUNC_TYPE == VOS_FUNC_TYPE_SAFE_MBSC)
 #define TCPIP_SNPRINTF0(STR, LEN, PAPAM)                        VOS_snprintf_S(STR, LEN, LEN-1, PAPAM)
 #define TCPIP_SNPRINTF(STR, LEN, PAPAM)                         (((LEN) > 0) ? VOS_snprintf_S(STR, LEN, LEN-1, PAPAM) : 0)
@@ -46,7 +45,6 @@ extern "C" {
 #define TCPIP_Sscanf                                            VOS_sscanf
 #define TCPIP_Scanf                                             scanf
 #endif
-/* End of Added by yanlei00216869, 2015/1/6   问题单号:DTS2015010508058 */
 #endif
 
 #ifdef __cplusplus

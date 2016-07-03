@@ -1,23 +1,4 @@
-/**********************************************************************
-*                                                                     *
-*                      addr_sh_cmo.h                                  *
-*                                                                     *
-*  Project Code  :     VRP3.1                                         *
-*  Create Date   :     2002-8-14                                      *
-*  Version       :     IPBIRV100R003.IPv6.E001                        *
-*  Author        :     luoli                                          *
-*  Modify Date   :                                                    *
-*  Document      :     IPv6地址模块所使用的信息                       *
-*  Function      :                                                    *
-*  Others        :
-*  DATE        NAME             DESCRIPTION                           *
-*
-*---------------------------------------------------------------------*
-*                                                                     *
-*      Copyright 2002 VRP3.0 Team Beijing Institute HuaWei Tech, Inc. *
-*                      ALL RIGHTS RESERVED                            *
-*                                                                     *
-**********************************************************************/
+
 #ifndef _ADDR_SH_CMO_H_
 #define _ADDR_SH_CMO_H_
 

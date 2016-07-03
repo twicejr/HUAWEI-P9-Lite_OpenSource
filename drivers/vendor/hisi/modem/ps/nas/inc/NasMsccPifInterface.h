@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2012, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMsccPifInterface.h
-  版 本 号   : 初稿
-  作    者   : z00161729
-  生成日期   : 2013年3月25日
-  最近修改   :
-  功能描述   : mma,mscc,mmc消息交互的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年3月25日
-    作    者   : z00161729
-    修改内容   : 创建文件
-
-******************************************************************************/
 #ifndef _NAS_MSCC_PIF_INTERFACE_H_
 #define _NAS_MSCC_PIF_INTERFACE_H_
 
@@ -153,11 +136,9 @@ enum MSCC_PIF_MSG_TYPE_ENUM
 
     ID_MMA_MSCC_PS_TRANSFER_NOTIFY                      = 0x0015,               /* _H2ASN_MsgChoice MMA_MSCC_PS_TRANSFER_NOTIFY_STRU */
 
-    /* Added by s00246516 for L-C互操作项目, 2014-01-26, Begin */
     ID_MMA_MSCC_ACQ_REQ                                 = 0x0016,               /* _H2ASN_MsgChoice MMA_MSCC_ACQ_REQ_STRU */
     ID_MMA_MSCC_REG_REQ                                 = 0x0017,               /* _H2ASN_MsgChoice MMA_MSCC_REG_REQ_STRU */
     ID_MMA_MSCC_POWER_SAVE_REQ                          = 0x0018,               /* _H2ASN_MsgChoice MMA_MSCC_POWER_SAVE_REQ_STRU */
-    /* Added by s00246516 for L-C互操作项目, 2014-01-26, End */
 
     ID_MMA_MSCC_SRV_ACQ_REQ                             = 0x0019,               /* _H2ASN_MsgChoice MMA_MSCC_SRV_ACQ_REQ_STRU */
     ID_MMA_MSCC_BEGIN_SESSION_NOTIFY                    = 0x001A,               /* _H2ASN_MsgChoice MMA_MSCC_BEGIN_SESSION_NOTIFY_STRU */
@@ -222,9 +203,7 @@ enum MSCC_PIF_MSG_TYPE_ENUM
     ID_MSCC_MMA_PLMN_SPECIAL_SEL_REJ                    = 0x1015,               /* _H2ASN_MsgChoice MSCC_MMA_PLMN_SPECIAL_SEL_REJ_STRU */
     ID_MSCC_MMA_AC_INFO_CHANGE_IND                      = 0x1016,               /* _H2ASN_MsgChoice MSCC_MMA_AC_INFO_CHANGE_IND_STRU */
     ID_MSCC_MMA_PLMN_RESEL_CNF                          = 0x1017,               /* _H2ASN_MsgChoice MSCC_MMA_PLMN_RESEL_CNF_STRU */
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, begin */
     ID_MSCC_MMA_REG_RESULT_IND                          = 0x1018,               /* _H2ASN_MsgChoice MSCC_MMA_REG_RESULT_IND_STRU */
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, end */
 
     ID_MSCC_MMA_SYSTEM_ACQUIRE_START_IND                = 0x1019,               /* _H2ASN_MsgChoice MSCC_MMA_SYSTEM_ACQUIRE_START_IND_STRU */
 
@@ -234,29 +213,21 @@ enum MSCC_PIF_MSG_TYPE_ENUM
     ID_MSCC_MMA_NET_SCAN_CNF                            = 0x101C,               /* _H2ASN_MsgChoice MSCC_MMA_NET_SCAN_CNF_STRU */
     ID_MSCC_MMA_ABORT_NET_SCAN_CNF                      = 0x101D,               /* _H2ASN_MsgChoice MSCC_MMA_ABORT_NET_SCAN_CNF_STRU */
 
-    /* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-9, begin */
     ID_MSCC_MMA_NETWORK_CAPABILITY_INFO_IND             = 0x101E,               /* _H2ASN_MsgChoice MSCC_MMA_NETWORK_CAPABILITY_INFO_IND_STRU */
-    /* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-9, end */
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, begin */
     ID_MSCC_MMA_CAMP_ON_IND                             = 0x101F,               /* _H2ASN_MsgChoice MSCC_MMA_CAMP_ON_IND_STRU_STRU */
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, end */
 
     ID_MSCC_MMA_EPLMN_INFO_IND                          = 0x1020,               /* _H2ASN_MsgChoice MSCC_MMA_EPLMN_INFO_IND_STRU */
 
     ID_MSCC_MMA_CS_SERVICE_CONN_STATUS_IND              = 0x1021,               /* _H2ASN_MsgChoice MSCC_MMA_CS_SERVICE_CONN_STATUS_IND_STRU */
 
     ID_MSCC_MMA_SRV_REJ_IND                             = 0x1022,               /* _H2ASN_MsgChoice MSCC_MMA_SERV_REJ_IND_STRU */
-    /* Added by s00246516 for L-C互操作项目, 2014-01-26, Begin */
     ID_MSCC_MMA_ACQ_CNF                                 = 0x1023,               /* _H2ASN_MsgChoice MSCC_MMA_ACQ_CNF_STRU */
     ID_MSCC_MMA_REG_CNF                                 = 0x1024,               /* _H2ASN_MsgChoice MSCC_MMA_REG_CNF_STRU */
     ID_MSCC_MMA_POWER_SAVE_CNF                          = 0x1025,               /* _H2ASN_MsgChoice MSCC_MMA_POWER_SAVE_CNF_STRU */
     ID_MSCC_MMA_ACQ_IND                                 = 0x1026,               /* _H2ASN_MsgChoice MSCC_MMA_ACQ_IND_STRU */
-    /* Added by s00246516 for L-C互操作项目, 2014-01-26, End */
 
 
-    /* Add by s00217060 for K3V3 多模多天线特性, 2014-06-27, Begin */
     ID_MSCC_MMA_PS_SERVICE_CONN_STATUS_IND              = 0x1027,               /* _H2ASN_MsgChoice MSCC_MMA_PS_SERVICE_CONN_STATUS_IND_STRU */
-    /* Add by s00217060 for K3V3 多模多天线特性, 2014-06-27, End */
     ID_MSCC_MMA_RF_AVAILABLE_IND                        = 0x1028,               /* _H2ASN_MsgChoice MSCC_MMA_RF_AVAILABLE_IND_STRU */
     ID_MSCC_MMA_SRV_ACQ_CNF                             = 0x1029,               /* _H2ASN_MsgChoice MSCC_MMA_SRV_ACQ_CNF_STRU */
     ID_MSCC_MMA_LMM_CELL_SIGN_INFO_REPORT_IND           = 0x102A,               /* _H2ASN_MsgChoice MSCC_MMA_LMM_CELL_SIGN_INFO_REPORT_IND_STRU */
@@ -450,15 +421,11 @@ enum MSCC_PIF_MSG_TYPE_ENUM
     ID_MSCC_MMC_NCELL_INFO_NOTIFY                       = ID_MSCC_MMC_MSG_BASE + 38,    /* _H2ASN_MsgChoice MSCC_MMC_NCELL_INFO_NOTIFY_STRU */
 
     ID_MSCC_MMC_PS_TRANSFER_NOTIFY                      = ID_MSCC_MMC_MSG_BASE + 40,    /* _H2ASN_MsgChoice MSCC_MMC_PS_TRANSFER_NOTIFY_STRU */
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-2, begin */
     ID_MSCC_MMC_IMS_VOICE_CAP_NOTIFY                    = ID_MSCC_MMC_MSG_BASE + 42,    /* _H2ASN_MsgChoice MSCC_MMC_IMS_VOICE_CAP_NOTIFY_STRU */
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-2, end */
 
-    /* Added by s00246516 for L-C互操作项目, 2014-01-26, Begin */
     ID_MSCC_MMC_ACQ_REQ                                 = ID_MSCC_MMC_MSG_BASE + 44,    /* _H2ASN_MsgChoice MSCC_MMC_ACQ_REQ_STRU */
     ID_MSCC_MMC_REG_REQ                                 = ID_MSCC_MMC_MSG_BASE + 46,    /* _H2ASN_MsgChoice MSCC_MMC_REG_REQ_STRU */
     ID_MSCC_MMC_POWER_SAVE_REQ                          = ID_MSCC_MMC_MSG_BASE + 48,    /* _H2ASN_MsgChoice MSCC_MMC_POWER_SAVE_REQ_STRU */
-    /* Added by s00246516 for L-C互操作项目, 2014-01-26, End */
 
     ID_MSCC_MMC_SRV_ACQ_REQ                             = ID_MSCC_MMC_MSG_BASE + 50,    /* _H2ASN_MsgChoice MSCC_MMC_SRV_ACQ_REQ_STRU */
     ID_MSCC_MMC_BEGIN_SESSION_NOTIFY                    = ID_MSCC_MMC_MSG_BASE + 52,    /* _H2ASN_MsgChoice MSCC_MMC_BEGIN_SESSION_NOTIFY_STRU */
@@ -519,9 +486,7 @@ enum MSCC_PIF_MSG_TYPE_ENUM
     ID_MMC_MSCC_PLMN_SPECIAL_SEL_REJ                    = ID_MSCC_MMC_MSG_BASE + 41,    /* _H2ASN_MsgChoice MMC_MSCC_PLMN_SPECIAL_SEL_REJ_STRU */
     ID_MMC_MSCC_AC_INFO_CHANGE_IND                      = ID_MSCC_MMC_MSG_BASE + 43,    /* _H2ASN_MsgChoice MMC_MSCC_AC_INFO_CHANGE_IND_STRU */
     ID_MMC_MSCC_PLMN_RESEL_CNF                          = ID_MSCC_MMC_MSG_BASE + 45,    /* _H2ASN_MsgChoice MMC_MSCC_PLMN_RESEL_CNF_STRU */
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, begin */
     ID_MMC_MSCC_REG_RESULT_IND                          = ID_MSCC_MMC_MSG_BASE + 47,    /* _H2ASN_MsgChoice  MMC_MSCC_REG_RESULT_IND_STRU */
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, end */
 
     ID_MMC_MSCC_PLMN_SELE_START_IND                     = ID_MSCC_MMC_MSG_BASE + 49,    /* _H2ASN_MsgChoice  MMC_MSCC_PLMN_SELECTION_START_IND_STRU */
 
@@ -531,29 +496,21 @@ enum MSCC_PIF_MSG_TYPE_ENUM
     ID_MMC_MSCC_NET_SCAN_CNF                            = ID_MSCC_MMC_MSG_BASE + 55,    /* _H2ASN_MsgChoice  MMC_MSCC_NET_SCAN_CNF_STRU */
     ID_MMC_MSCC_ABORT_NET_SCAN_CNF                      = ID_MSCC_MMC_MSG_BASE + 57,    /* _H2ASN_MsgChoice  MMC_MSCC_ABORT_NET_SCAN_CNF_STRU */
 
-    /* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-9, begin */
     ID_MMC_MSCC_NETWORK_CAPABILITY_INFO_IND             = ID_MSCC_MMC_MSG_BASE + 59,    /* _H2ASN_MsgChoice MMC_MSCC_NETWORK_CAPABILITY_INFO_IND_STRU */
-    /* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-9, end */
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, begin */
     ID_MMC_MSCC_CAMP_ON_IND                             = ID_MSCC_MMC_MSG_BASE + 61,    /* _H2ASN_MsgChoice MMC_MSCC_CAMP_ON_IND_STRU_STRU */
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, end */
 
     ID_MMC_MSCC_EPLMN_INFO_IND                          = ID_MSCC_MMC_MSG_BASE + 63,    /* _H2ASN_MsgChoice MMC_MSCC_EPLMN_INFO_IND_STRU */
 
     ID_MMC_MSCC_CS_SERVICE_CONN_STATUS_IND              = ID_MSCC_MMC_MSG_BASE + 65,    /* _H2ASN_MsgChoice MMC_MSCC_CS_SERVICE_CONN_STATUS_IND_STRU */
 
     ID_MMC_MSCC_SRV_REJ_IND                             = ID_MSCC_MMC_MSG_BASE + 67,    /* _H2ASN_MsgChoice MMC_MSCC_SERV_REJ_IND_STRU */
-    /* Added by s00246516 for L-C互操作项目, 2014-01-26, Begin */
     ID_MMC_MSCC_ACQ_CNF                                 = ID_MSCC_MMC_MSG_BASE + 69,    /* _H2ASN_MsgChoice MMC_MSCC_ACQ_CNF_STRU */
     ID_MMC_MSCC_REG_CNF                                 = ID_MSCC_MMC_MSG_BASE + 71,    /* _H2ASN_MsgChoice MMC_MSCC_REG_CNF_STRU */
     ID_MMC_MSCC_POWER_SAVE_CNF                          = ID_MSCC_MMC_MSG_BASE + 73,    /* _H2ASN_MsgChoice MMC_MSCC_POWER_SAVE_CNF_STRU */
     ID_MMC_MSCC_ACQ_IND                                 = ID_MSCC_MMC_MSG_BASE + 75,    /* _H2ASN_MsgChoice MMC_MSCC_ACQ_IND_STRU */
-    /* Added by s00246516 for L-C互操作项目, 2014-01-26, End */
 
 
-    /* Add by s00217060 for K3V3 多模多天线特性, 2014-06-27, Begin */
     ID_MMC_MSCC_PS_SERVICE_CONN_STATUS_IND              = ID_MSCC_MMC_MSG_BASE + 77,    /* _H2ASN_MsgChoice MMC_MSCC_PS_SERVICE_CONN_STATUS_IND_STRU */
-    /* Add by s00217060 for K3V3 多模多天线特性, 2014-06-27, End */
     ID_MMC_MSCC_RF_AVAILABLE_IND                        = ID_MSCC_MMC_MSG_BASE + 79,    /* _H2ASN_MsgChoice MMC_MSCC_RF_AVAILABLE_IND_STRU */
     ID_MMC_MSCC_SRV_ACQ_CNF                             = ID_MSCC_MMC_MSG_BASE + 81,    /* _H2ASN_MsgChoice MMC_MSCC_SRV_ACQ_CNF_STRU */
     ID_MMC_MSCC_LMM_CELL_SIGN_INFO_REPORT_IND           = ID_MSCC_MMC_MSG_BASE + 83,    /* _H2ASN_MsgChoice MMC_MSCC_LMM_CELL_SIGN_INFO_REPORT_IND_STRU */
@@ -586,13 +543,7 @@ enum MSCC_PIF_MSG_TYPE_ENUM
 
 typedef VOS_UINT32 MSCC_PIF_MSG_TYPE_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_CARD_STATUS_ENUM_UINT8
- 枚举说明  : NAS_MSCC_PIF_START_REQ_STRU消息中的 ulCardStatus
- 1.日    期   : 2013年3月25日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_CARD_STATUS_ENUM
 {
     NAS_MSCC_PIF_CARD_STATUS_SIM_PRESENT      = 0,                              /* sim present */
@@ -604,15 +555,7 @@ enum NAS_MSCC_PIF_CARD_STATUS_ENUM
 };
 typedef VOS_UINT8 NAS_MSCC_PIF_CARD_STATUS_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_BAND_CLASS_ENUM
- 结构说明  : List of Band Classes (参考3GPP2 C.S0057-E中Table 1.5-1: )
 
- 1.日    期   : 2015年05月16日
-   作    者   : W00176964
-   修改内容   : 新增
-
-*****************************************************************************/
 enum NAS_MSCC_PIF_BAND_CLASS_ENUM
 {
     NAS_MSCC_PIF_BAND_CLASS_TYPE_0                              = 0,    /* 800 MHz cellular band */
@@ -665,15 +608,7 @@ enum NAS_MSCC_PIF_BAND_CLASS_ENUM
 };
 typedef VOS_UINT16 NAS_MSCC_PIF_BAND_CLASS_ENUM_UINT16;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_PREF_NEG_SYS_ENUM
- 结构说明  : Preferred/negative system
 
- 1.日    期   : 2015年05月16日
-   作    者   : W00176964
-   修改内容   : 新增
-
-*****************************************************************************/
 enum NAS_MSCC_PIF_PREF_NEG_SYS_ENUM
 {
     NAS_MSCC_PIF_PREF_NEG_SYS_NEG                               = 0, /* This field is set to '0' if the mobile station is
@@ -687,13 +622,7 @@ enum NAS_MSCC_PIF_PREF_NEG_SYS_ENUM
 typedef VOS_UINT8 NAS_MSCC_PIF_PREF_NEG_SYS_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_PLMN_STATUS_ENUM
- 结构说明  : PLMN 状态 用于AT的上报网络状态
- 1.日    期   : 2012年4月7日
-   作    者   : z00161729
-   修改内容   : 新增
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_PLMN_STATUS_ENUM
 {
     NAS_MSCC_PIF_PLMN_STATUS_UNKNOW           = 0,                                    /* 当前网络状态未知 */
@@ -704,13 +633,7 @@ enum NAS_MSCC_PIF_PLMN_STATUS_ENUM
 };
 typedef VOS_UINT8 NAS_MSCC_PIF_PLMN_STATUS_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_NET_RAT_TYPE_ENUM_UINT8
- 结构说明  : 当前的接入技术
- 1.日    期   : 2013年3月25日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_NET_RAT_TYPE_ENUM
 {
     NAS_MSCC_PIF_NET_RAT_TYPE_GSM,           /* GSM接入技术 */
@@ -722,13 +645,7 @@ enum NAS_MSCC_PIF_NET_RAT_TYPE_ENUM
 };
 typedef VOS_UINT8 NAS_MSCC_PIF_NET_RAT_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_REG_STATE_ENUM_UINT8
- 结构说明  : 注册结果
- 1.日    期   : 2013年3月25日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_REG_STATE_ENUM
 {
     NAS_MSCC_PIF_REG_NOT_REGISTERED_NOT_SEARCH,      /* 未注册未搜索 */
@@ -741,13 +658,7 @@ enum NAS_MSCC_PIF_REG_STATE_ENUM
 };
 typedef VOS_UINT8 NAS_MSCC_PIF_REG_STATE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_POWER_OFF_CAUSE_ENUM_UINT32
- 结构说明  : 关机原因值
- 1.日    期   : 2013年3月25日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_POWER_OFF_CAUSE_ENUM
 {
     NAS_MSCC_PIF_POWER_OFF_CAUSE_SIM_REMOVE,
@@ -756,13 +667,7 @@ enum NAS_MSCC_PIF_POWER_OFF_CAUSE_ENUM
 };
 typedef VOS_UINT32 NAS_MSCC_PIF_POWER_OFF_CAUSE_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_ROAM_CAPABILITY_ENUM_UINT8
- 结构说明  : 漫游能力
- 1.日    期   : 2013年3月25日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_ROAM_CAPABILITY_ENUM
 {
     NAS_MSCC_PIF_ROAM_NATION_ON_INTERNATION_ON                 = 0,
@@ -774,13 +679,7 @@ enum NAS_MSCC_PIF_ROAM_CAPABILITY_ENUM
 };
 typedef VOS_UINT8 NAS_MSCC_PIF_ROAM_CAPABILITY_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_ROAM_FEATURE_ENUM_U8
- 结构说明  : 漫游能力
- 1.日    期   : 2014年4月7日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_ROAM_FEATURE_ENUM
 {
     NAS_MSCC_PIF_ROAM_FEATURE_OFF                = 0,
@@ -789,16 +688,7 @@ enum NAS_MSCC_PIF_ROAM_FEATURE_ENUM
 };
 typedef VOS_UINT8 NAS_MSCC_PIF_ROAM_FEATURE_ENUM_U8;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_PLMN_SELECTION_RESULT_ENUM
- 结构说明  : 搜网结果
- 1.日    期   : 2013年3月25日
-   作    者   : z00161729
-   修改内容   : 新增
- 2.日    期   : 2015年08月25日
-   作    者   : m00312079
-   修改内容   : DTS2015082004682:增加L2C原因值
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_PLMN_SELECTION_RESULT_ENUM
 {
     NAS_MSCC_PIF_PLMN_SELECTION_RESULT_NORMAL_SERVICE    = 0,                        /* 正常服务 */
@@ -811,13 +701,7 @@ enum NAS_MSCC_PIF_PLMN_SELECTION_RESULT_ENUM
 };
 typedef VOS_UINT32 NAS_MSCC_PIF_PLMN_SELECTION_RESULT_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_PLMN_SELECTION_START_FLAG_ENUM
- 结构说明  : 搜网开始或搜网结束标示
- 1.日    期   : 2013年10月09日
-   作    者   : l00208543
-   修改内容   : 新增 DTS2013100904573
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_PLMN_SELECTION_START_FLAG_ENUM
 {
     NAS_MSCC_PIF_PLMN_SELECTION_START    = 0,                        /* 搜网开始 */
@@ -825,13 +709,7 @@ enum NAS_MSCC_PIF_PLMN_SELECTION_START_FLAG_ENUM
 };
 typedef VOS_UINT32 NAS_MSCC_PIF_PLMN_SELECTION_START_FLAG_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_SYS_CFG_SET_RESULT_ENUM_UINT32
- 结构说明  : syscfg设置结果信息
- 1.日    期: 2013年3月25日
-   作    者: z00161729
-   修改内容: 新增
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_SYS_CFG_SET_RESULT_ENUM
 {
     NAS_MSCC_PIF_SYS_CFG_SET_SUCCESS                  = 0,
@@ -841,13 +719,7 @@ enum NAS_MSCC_PIF_SYS_CFG_SET_RESULT_ENUM
 };
 typedef VOS_UINT32 NAS_MSCC_PIF_SYS_CFG_SET_RESULT_ENUM_UINT32;
 
-/******************************************************************************
-结构名    : NAS_MSCC_PIF_CELL_RESTRICTION_TYPE_ENUM_UINT8
-结构说明  : 小区接入禁止信息枚举类型
-1.日    期: 2013年3月25日
-  作    者: z00161729
-  修改内容: 新增
-******************************************************************************/
+
 enum  NAS_MSCC_PIF_CELL_RESTRICTION_TYPE_ENUM
 {
     NAS_MSCC_PIF_CELL_RESTRICTION_TYPE_NONE                   = 0,                   /* 当前小区不限制任何业务 */
@@ -858,13 +730,7 @@ enum  NAS_MSCC_PIF_CELL_RESTRICTION_TYPE_ENUM
 };
 typedef VOS_UINT8   NAS_MSCC_PIF_CELL_RESTRICTION_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_ATTACH_TYPE_ENUM_UINT32
- 结构说明  : attach类型
- 1.日    期: 2013年3月25日
-   作    者: z00161729
-   修改内容: 新增
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_ATTACH_TYPE_ENUM
 {
     NAS_MSCC_PIF_ATTACH_TYPE_GPRS          = 1,
@@ -874,13 +740,7 @@ enum NAS_MSCC_PIF_ATTACH_TYPE_ENUM
 };
 typedef VOS_UINT32 NAS_MSCC_PIF_ATTACH_TYPE_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_DETACH_TYPE_ENUM_UINT32
- 结构说明  : detach类型
- 1.日    期: 2013年3月25日
-   作    者: z00161729
-   修改内容: 新增
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_DETACH_TYPE_ENUM
 {
     NAS_MSCC_PIF_DETACH_NULL               = 0,
@@ -891,13 +751,7 @@ enum NAS_MSCC_PIF_DETACH_TYPE_ENUM
 };
 typedef VOS_UINT32 NAS_MSCC_PIF_DETACH_TYPE_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_PLMN_CFG_MODE_ENUM_UINT32
- 结构说明  : NAS_MSCC_PIF_PLMN_USER_SEL_REQ_STRU中ulMode取值
- 1.日    期: 2013年3月25日
-   作    者: z00161729
-   修改内容: 新增
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_PLMN_CFG_MODE_ENUM
 {
     NAS_MSCC_PIF_PLMN_CFG_MODE_USER_SEL           = 1,                               /* 通知用户选定的PLMN信息 */
@@ -906,13 +760,7 @@ enum NAS_MSCC_PIF_PLMN_CFG_MODE_ENUM
 };
 typedef VOS_UINT32 NAS_MSCC_PIF_PLMN_CFG_MODE_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_PLMN_SEL_MODE_ENUM_UINT32
- 结构说明  : 搜网模式
- 1.日    期: 2013年3月25日
-   作    者: z00161729
-   修改内容: 新增
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_PLMN_SEL_MODE_ENUM
 {
     NAS_MSCC_PIF_PLMN_SEL_MODE_AUTO           = 0,                                   /* 自动搜网模式 */
@@ -921,13 +769,7 @@ enum NAS_MSCC_PIF_PLMN_SEL_MODE_ENUM
 };
 typedef VOS_UINT32 NAS_MSCC_PIF_PLMN_SEL_MODE_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_COVERAGE_AREA_CHANGE_MODE_ENUM_UINT32
- 结构说明  : 覆盖区改变模式：丢失、进入
- 1.日    期: 2013年3月25日
-   作    者: z00161729
-   修改内容: 新增
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_COVERAGE_AREA_CHANGE_MODE_ENUM
 {
     NAS_MSCC_PIF_COVERAGE_AREA_CHANGE_MODE_LOST          = 0,                        /* 出覆盖区 */
@@ -936,13 +778,7 @@ enum NAS_MSCC_PIF_COVERAGE_AREA_CHANGE_MODE_ENUM
 };
 typedef VOS_UINT32 NAS_MSCC_PIF_COVERAGE_AREA_CHANGE_MODE_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_MS_MODE_ENUM_UINT32
- 结构说明  : 手机模式
- 1.日    期: 2013年3月25日
-   作    者: z00161729
-   修改内容: 新增
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_MS_MODE_ENUM
 {
     NAS_MSCC_PIF_MS_MODE_CC                  = 0,                                    /* cs mode */
@@ -954,13 +790,7 @@ enum NAS_MSCC_PIF_MS_MODE_ENUM
 };
 typedef VOS_UINT32 NAS_MSCC_PIF_MS_MODE_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_SERVICE_STATUS_ENUM_UINT32
- 结构说明  : 服务状态
- 1.日    期: 2013年3月25日
-   作    者: z00161729
-   修改内容: 新增
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_SERVICE_STATUS_ENUM
 {
     NAS_MSCC_PIF_SERVICE_STATUS_NORMAL_SERVICE           = 0,                        /* 正常服务 */
@@ -974,13 +804,7 @@ enum NAS_MSCC_PIF_SERVICE_STATUS_ENUM
 };
 typedef VOS_UINT32 NAS_MSCC_PIF_SERVICE_STATUS_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_OPERATION_STATUS_ENUM_UINT32
- 结构说明  : 操作是否允许
- 1.日    期: 2015年12月23日
-   作    者: j00174725
-   修改内容: 新增
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_OPER_RESULT_ENUM
 {
     NAS_MSCC_PIF_OPER_RESULT_SUCCESS               = 0,                         /* 操作成功 */
@@ -990,13 +814,7 @@ enum NAS_MSCC_PIF_OPER_RESULT_ENUM
 };
 typedef VOS_UINT32 NAS_MSCC_PIF_OPER_RESULT_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_SRVDOMAIN_ENUM_UINT32
- 结构说明  : 服务域
- 1.日    期: 2013年3月25日
-   作    者: z00161729
-   修改内容: 新增
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_SRVDOMAIN_ENUM
 {
     NAS_MSCC_PIF_SRVDOMAIN_NO_DOMAIN               = 0,
@@ -1010,13 +828,7 @@ enum NAS_MSCC_PIF_SRVDOMAIN_ENUM
 typedef VOS_UINT32 NAS_MSCC_PIF_SRVDOMAIN_ENUM_UINT32;
 
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_DATATRAN_ATTRI_ENUM_UINT8
- 结构说明  : pdp激活情况
- 1.日    期: 2013年3月25日
-   作    者: z00161729
-   修改内容: 新增
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_DATATRAN_ATTRI_ENUM
 {
     NAS_MSCC_PIF_DATATRAN_ATTRI_PDP_ACT          = 0,
@@ -1034,13 +846,7 @@ enum NAS_MSCC_PIF_DATATRAN_ATTRI_ENUM
 };
 typedef VOS_UINT8 NAS_MSCC_PIF_DATATRAN_ATTRI_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_ALLOWED_REG_DOMAIN_ENUM_UINT8
- 结构说明  : 开机请求中允许注册的服务域
- 1.日    期: 2013年3月25日
-   作    者: z00161729
-   修改内容: 新增
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_ALLOWED_REG_DOMAIN_ENUM
 {
     NAS_MSCC_PIF_ALLOWED_REG_DOMAIN_NULL     = 0,                                    /* 不注册cs和ps */
@@ -1051,13 +857,7 @@ enum NAS_MSCC_PIF_ALLOWED_REG_DOMAIN_ENUM
 };
 typedef VOS_UINT8 NAS_MSCC_PIF_ALLOWED_REG_DOMAIN_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_USER_PLMN_SEARCH_RESULT_ENUM_UINT8
- 结构说明  : 用户指定搜网结果
- 1.日    期: 2013年4月7日
-   作    者: z00161729
-   修改内容: 新增
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_USER_PLMN_SEARCH_RESULT_ENUM
 {
     NAS_MSCC_PIF_USER_PLMN_SEARCH_RESULT_SUCCESS = 0,                                /* 成功 */
@@ -1067,13 +867,7 @@ enum NAS_MSCC_PIF_USER_PLMN_SEARCH_RESULT_ENUM
 };
 typedef VOS_UINT8 NAS_MSCC_PIF_USER_PLMN_SEARCH_RESULT_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_PLMN_WITH_CSG_ID_TYPE_ENUM_UINT8
- 结构说明  : CSG ID类型
-1.日    期   : 2015年9月6日
-  作    者   : z00161729
-  修改内容   : 支持LTE CSG功能新增
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_PLMN_WITH_CSG_ID_TYPE_ENUM
 {
     NAS_MSCC_PIF_CSG_ID_TYPE_IN_ALLOWED_CSG_LIST                  = 1,  /* CSG ID在Allowed CSG List中*/
@@ -1084,13 +878,7 @@ enum NAS_MSCC_PIF_PLMN_WITH_CSG_ID_TYPE_ENUM
 };
 typedef VOS_UINT8 NAS_MSCC_PIF_PLMN_WITH_CSG_ID_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_NW_IMS_VOICE_CAP_ENUM
- 结构说明  : 网络的IMS voice支持能力
- 1.日    期: 2013年7月9日
-   作    者: y00245242
-   修改内容: 新增
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_NW_IMS_VOICE_CAP_ENUM
 {
     NAS_MSCC_PIF_NW_IMS_VOICE_NOT_SUPPORTED    = 0,
@@ -1100,13 +888,7 @@ enum NAS_MSCC_PIF_NW_IMS_VOICE_CAP_ENUM
 };
 typedef VOS_UINT8 NAS_MSCC_PIF_NW_IMS_VOICE_CAP_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_NW_EMC_BS_CAP_ENUM
- 结构说明  : 网络的EMC BS支持能力
- 1.日    期: 2013年7月9日
-   作    者: y00245242
-   修改内容: 新增
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_NW_EMC_BS_CAP_ENUM
 {
     NAS_MSCC_PIF_NW_EMC_BS_NOT_SUPPORTED       = 0,
@@ -1116,13 +898,7 @@ enum NAS_MSCC_PIF_NW_EMC_BS_CAP_ENUM
 };
 typedef VOS_UINT8 NAS_MSCC_PIF_NW_EMC_BS_CAP_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_LTE_CS_CAPBILITY_ENUM
- 结构说明  : LTE CS能力
- 1.日    期: 2013年7月9日
-   作    者: y00245242
-   修改内容: 新增
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_LTE_CS_CAPBILITY_ENUM
 {
     NAS_MSCC_PIF_LTE_CS_CAPBILITY_NO_ADDITION_INFO  = 0,
@@ -1134,13 +910,7 @@ enum NAS_MSCC_PIF_LTE_CS_CAPBILITY_ENUM
 };
 typedef VOS_UINT8 NAS_MSCC_PIF_LTE_CS_CAPBILITY_ENUM_UINT8;
 
-/*****************************************************************************
-    枚举名    : NAS_MSCC_PIF_IMS_NORMAL_REG_STATUS_ENUM
-    枚举说明  : ims的普通注册状态
-  1.日    期: 2013年12月16日
-    作    者: w00176964
-    修改内容: 新增
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_IMS_NORMAL_REG_STATUS_ENUM
 {
     NAS_MSCC_PIF_IMS_NORMAL_REG_STATUS_DEREG        = 0x00,
@@ -1152,13 +922,7 @@ enum NAS_MSCC_PIF_IMS_NORMAL_REG_STATUS_ENUM
 };
 typedef VOS_UINT8 NAS_MSCC_PIF_IMS_NORMAL_REG_STATUS_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_NET_RAT_TYPE_ENUM_U8
- 结构说明  : 当前的接入技术
- 1.日    期   : 2014年1月2日
-   作    者   : s00246516
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_REG_CONTROL_ENUM
 {
     NAS_MSCC_PIF_REG_CONTROL_BY_3GPP_MMC = 0,                 /* 搜索到网络后，是否注册按目前3GPP协议模块MMC控制 */
@@ -1167,13 +931,7 @@ enum NAS_MSCC_PIF_REG_CONTROL_ENUM
 };
 typedef VOS_UINT8 NAS_MSCC_PIF_REG_CONTROL_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_3GPP2_RAT_TYPE_ENUM_UINT8
- 结构说明  : 当前的接入技术
- 1.日    期   : 2014年1月2日
-   作    者   : s00246516
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_3GPP2_RAT_TYPE_ENUM
 {
     NAS_MSCC_PIF_3GPP2_RAT_TYPE_CDMA1X = 0,
@@ -1182,13 +940,7 @@ enum NAS_MSCC_PIF_3GPP2_RAT_TYPE_ENUM
 };
 typedef VOS_UINT8 NAS_MSCC_PIF_3GPP2_RAT_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_EPS_ATTACH_REASON_ENUM
- 结构说明  : 发起EPS注册的原因枚举
- 1.日    期   : 2014年1月2日
-   作    者   : s00246516
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_EPS_ATTACH_REASON_ENUM
 {
     NAS_MSCC_PIF_EPS_ATTACH_REASON_INITIAL          = 0,
@@ -1197,16 +949,7 @@ enum NAS_MSCC_PIF_EPS_ATTACH_REASON_ENUM
 };
 typedef VOS_UINT32 NAS_MSCC_PIF_EPS_ATTACH_REASON_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_DETACH_REASON_ENUM
- 结构说明  : 发起EPS去注册的原因枚举
- 1.日    期   : 2014年1月2日
-   作    者   : s00246516
-   修改内容   : 新建
- 2.日    期   : 2015年4月11日
-   作    者   : y00245242
-   修改内容   : iteration 13开发
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_DETACH_REASON_ENUM
 {
     NAS_MSCC_PIF_DETACH_REASON_USER_DETACH          = 0,/* 用户触发的detach操作 */
@@ -1217,13 +960,7 @@ enum NAS_MSCC_PIF_DETACH_REASON_ENUM
 };
 typedef VOS_UINT32 NAS_MSCC_PIF_DETACH_REASON_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_PLMN_PRIORITY_CLASS_ENUM
- 结构说明  : PLMN的优先级类别
- 1.日    期   : 2014年1月2日
-   作    者   : s00246516
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_PLMN_PRIORITY_CLASS_ENUM
 {
     NAS_MSCC_PIF_PLMN_PRIORITY_HOME               = 0,    /* home or ehome plmn */
@@ -1233,16 +970,7 @@ enum NAS_MSCC_PIF_PLMN_PRIORITY_CLASS_ENUM
 };
 typedef VOS_UINT8 NAS_MSCC_PIF_PLMN_PRIORITY_CLASS_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_ACQ_REASON_ENUM
- 结构说明  : 获取原因
- 1.日    期   : 2014年1月2日
-   作    者   : s00246516
-   修改内容   : 新建
- 2.日    期   : 2015年5月12日
-   作    者   : w00176964
-   修改内容   : CDMA 1X Iteration 10调整
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_ACQ_REASON_ENUM
 {
     NAS_MSCC_PIF_ACQ_REASON_POWER_UP        = 0,
@@ -1253,13 +981,7 @@ enum NAS_MSCC_PIF_ACQ_REASON_ENUM
 typedef VOS_UINT32 NAS_MSCC_PIF_ACQ_REASON_ENUM_UINT32;
 
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_ACQ_RESULT_ENUM
- 结构说明  : 获取结果枚举
- 1.日    期   : 2014年1月2日
-   作    者   : s00246516
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_ACQ_RESULT_ENUM
 {
     NAS_MSCC_PIF_ACQ_RESULT_SUCCESS          = 0,
@@ -1268,13 +990,7 @@ enum NAS_MSCC_PIF_ACQ_RESULT_ENUM
 };
 typedef VOS_UINT32 NAS_MSCC_PIF_ACQ_RESULT_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_REG_RESULT_ENUM
- 结构说明  : 注册结果枚举
- 1.日    期   : 2014年1月2日
-   作    者   : s00246516
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_REG_RESULT_ENUM
 {
     NAS_MSCC_PIF_REG_RESULT_SUCCESS          = 0,
@@ -1285,13 +1001,7 @@ enum NAS_MSCC_PIF_REG_RESULT_ENUM
 typedef VOS_UINT32 NAS_MSCC_PIF_REG_RESULT_ENUM_UINT32;
 
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_CALL_MODE_ENUM
- 结构说明  : 呼叫模式枚举
- 1.日    期   : 2014年4月1日
-   作    者   : s00261364
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_CALL_MODE_ENUM
 {
     NAS_MSCC_PIF_ECALL_ONLY            = 0,
@@ -1460,13 +1170,7 @@ enum NAS_MSCC_PIF_PREF_PLMN_OPER_RESULT_ENUM
 };
 typedef VOS_UINT32 NAS_MSCC_PIF_PREF_PLMN_OPER_RESULT_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_PREF_PLMN_CMD_TYPE_ENUM
- 结构说明  : PREFPLMN查询测试类型枚举
- 1.日    期   : 2015年02月06日
-   作    者   : y00307564
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_PREF_PLMN_CMD_TYPE_ENUM
 {
     NAS_MSCC_PIF_PREF_PLMN_QUERY      = 0,  /* PREFPLMN查询命令 */
@@ -1476,13 +1180,7 @@ enum NAS_MSCC_PIF_PREF_PLMN_CMD_TYPE_ENUM
 
 typedef VOS_UINT8 NAS_MSCC_PIF_PREF_PLMN_CMD_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_PARA_TYPE_ENUM
- 结构说明  : PREFPLMN查询测试类型枚举
- 1.日    期   : 2015年02月06日
-   作    者   : y00307564
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_PARA_TYPE_ENUM
 {
     NAS_MSCC_PLMN_LIST_INFO,           /*获取完整的PLMN列表*/
@@ -1501,13 +1199,7 @@ enum NAS_MSCC_PIF_PARA_TYPE_ENUM
 };
 typedef VOS_UINT8 NAS_MSCC_PIF_PARA_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_PREF_PLMN_ID_ENUM
- 结构说明  : PREFPLMN类型枚举
- 1.日    期   : 2015年02月06日
-   作    者   : y00307564
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_PREF_PLMN_TYPE_ENUM
 {
     NAS_MSCC_PREF_PLMN_UPLMN,
@@ -1517,13 +1209,7 @@ enum NAS_MSCC_PIF_PREF_PLMN_TYPE_ENUM
 };
 typedef VOS_UINT8 NAS_MSCC_PIF_PREF_PLMN_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_PREFPLMN_OPERATE_TYPE_ENUM
- 结构说明  : PREFPLMN增删改操作类型枚举
- 1.日    期   : 2015年02月06日
-   作    者   : y00307564
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_PREFPLMN_OPERATE_TYPE_ENUM
 {
     NAS_MSCC_PREF_PLMN_QUREY,
@@ -1551,13 +1237,7 @@ typedef enum
     MMC_MMA_PARA_TYPE_BUTT
 }MMC_MMA_PARA_TYPE_ENUM;
 
-/** ****************************************************************************
- 枚举名    : NAS_MSCC_PIF_ACQUIRED_RESULT_ENUM
- 结构说明  : 系统捕获结果
- 1.日    期   : 2015年02月06日
-   作    者   : y00307564
-   修改内容   : 新建
- *******************************************************************************/
+
 enum NAS_MSCC_PIF_ACQUIRED_RESULT_ENUM
 {
     NAS_MSCC_PIF_ACQUIRED_RESULT_SUCC        = 0x00000000,
@@ -1570,13 +1250,7 @@ typedef VOS_UINT32 NAS_MSCC_PIF_ACQUIRED_RESULT_ENUM_UINT32;
 
 typedef VOS_UINT16 NAS_MSCC_USIM_RAT;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_NETWORK_DETACH_TYPE_ENUM_UINT8
- 结构说明  : 网络detach ind里指示的detach类型
- 1.日    期: 2014年4月1日
-   作    者: z00161729
-   修改内容: 新增
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_NETWORK_DETACH_TYPE_ENUM
 {
     NAS_MSCC_PIF_NETWORK_DETACH_TYPE_REATTACH      = 1,
@@ -1611,13 +1285,7 @@ enum NAS_MSCC_PIF_NET_SCAN_RESULT_ENUM
 };
 typedef VOS_UINT8  NAS_MSCC_PIF_NET_SCAN_RESULT_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_NET_SCAN_CAUSE_ENUM
- 结构说明  : 扫描失败原因
- 1.日    期   : 2013年10月10日
-   作    者   : w00242748
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_NET_SCAN_CAUSE_ENUM
 {
     NAS_MSCC_PIF_NET_SCAN_CAUSE_SIGNAL_EXIST        = 0,                /* 存在信令连接 */
@@ -1632,13 +1300,7 @@ enum NAS_MSCC_PIF_NET_SCAN_CAUSE_ENUM
 };
 typedef VOS_UINT8 NAS_MSCC_PIF_NET_SCAN_CAUSE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_REJ_TYPE_ENUM
- 结构说明  : 拒绝类型
- 1.日    期   : 2014年4月1日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_REJ_TYPE_ENUM
 {
     NAS_MSCC_PIF_REJ_TYPE_REG        = 0,
@@ -1649,13 +1311,7 @@ enum NAS_MSCC_PIF_REJ_TYPE_ENUM
 };
 typedef VOS_UINT8 NAS_MSCC_PIF_REJ_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_SRV_TYPE_ENUM_UINT8
- 枚举说明  : CS域和PS域SESSION类型
- 1.日    期   : 2014年5月22日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_SRV_TYPE_ENUM
 {
     NAS_MSCC_PIF_SRV_TYPE_CS_MO_NORMAL_CALL,
@@ -1671,13 +1327,7 @@ enum NAS_MSCC_PIF_SRV_TYPE_ENUM
 };
 typedef VOS_UINT8 NAS_MSCC_PIF_SRV_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_SRV_ACQ_RESULT_ENUM_UINT8
- 枚举说明  : 业务触发搜网结果
- 1.日    期   : 2013年3月25日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_SRV_ACQ_RESULT_ENUM
 {
     NAS_MSCC_PIF_SRV_ACQ_RESULT_SUCCESS = 0,                                /* 成功 */
@@ -1686,13 +1336,7 @@ enum NAS_MSCC_PIF_SRV_ACQ_RESULT_ENUM
 };
 typedef VOS_UINT8 NAS_MSCC_PIF_SRV_ACQ_RESULT_ENUM_UINT8;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_VOICE_DOMAIN_ENUM_UINT32
- 结构说明  : VOIDE DOMAIN类型
-  1.日    期   : 2015年04月13日
-    作    者   : f00179208
-    修改内容   : 新建
- *****************************************************************************/
+
 enum NAS_MSCC_PIF_VOICE_DOMAIN_ENUM
 {
     NAS_MSCC_PIF_VOICE_DOMAIN_CS_ONLY            = 0,    /* CS voice only */
@@ -1704,13 +1348,7 @@ enum NAS_MSCC_PIF_VOICE_DOMAIN_ENUM
 };
 typedef VOS_UINT32  NAS_MSCC_PIF_VOICE_DOMAIN_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_IMS_SWITCH_STATE_ENUM_UINT8
- 结构说明  : IMS协议栈开关机状态枚举类型
- 1.日    期   : 2015年04月13日
-   作    者   : f00179208
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_IMS_SWITCH_STATE_ENUM
 {
     NAS_MSCC_PIF_IMS_SWITCH_STATE_OFF        = 0,
@@ -1719,13 +1357,7 @@ enum NAS_MSCC_PIF_IMS_SWITCH_STATE_ENUM
 };
 typedef VOS_UINT8 NAS_MSCC_PIF_IMS_SWITCH_STATE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_IMS_START_RESULT_ENUM_UINT32
- 结构说明  : IMS协议栈开机结果枚举类型
- 1.日    期   : 2015年04月13日
-   作    者   : f00179208
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_IMS_START_RESULT_ENUM
 {
     NAS_MSCC_PIF_IMS_START_RESULT_SUCC       = 0,
@@ -1735,13 +1367,7 @@ enum NAS_MSCC_PIF_IMS_START_RESULT_ENUM
 };
 typedef VOS_UINT32 NAS_MSCC_PIF_IMS_START_RESULT_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_IMS_STOP_RESULT_ENUM_UINT32
- 结构说明  : IMS协议栈关机结果枚举类型
- 1.日    期   : 2015年04月13日
-   作    者   : f00179208
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_IMS_STOP_RESULT_ENUM
 {
     NAS_MSCC_PIF_IMS_STOP_RESULT_SUCC       = 0,
@@ -1794,13 +1420,7 @@ enum NAS_MSCC_PIF_PRI_CLASS_ENUM
 };
 typedef VOS_UINT8 NAS_MSCC_PIF_PRI_CLASS_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_SRV_ACQ_RAT_TYPE_ENUM_UINT8
- 枚举说明  : 业务触发搜网的RAT类型
- 1.日    期   : 2014年5月15日
-   作    者   : l00301449
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_SRV_ACQ_RAT_TYPE_ENUM
 {
     NAS_MSCC_PIF_SRV_ACQ_RAT_TYPE_GUL,
@@ -1815,13 +1435,7 @@ typedef VOS_UINT8 NAS_MSCC_PIF_SRV_ACQ_RAT_TYPE_ENUM_UINT8;
 
 
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_RF_AVAILABLE_RAT_TYPE_ENUM_UINT8
- 枚举说明  : RF AVAILABLE的RAT类型
- 1.日    期   : 2014年5月15日
-   作    者   : l00301449
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_RF_AVAILABLE_RAT_TYPE_ENUM
 {
     NAS_MSCC_PIF_RF_AVAILABLE_RAT_TYPE_3GPP,
@@ -1833,13 +1447,7 @@ enum NAS_MSCC_PIF_RF_AVAILABLE_RAT_TYPE_ENUM
 typedef VOS_UINT8 NAS_MSCC_PIF_RF_AVAILABLE_RAT_TYPE_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_PS_RATTYPE_ENUM_UINT32
- 结构说明  : CDMA PS RATTYPE 枚举类型
- 1.日    期   : 2015年05月11日
-   作    者   : y00322978
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_PS_RAT_TYPE_ENUM
 {
     NAS_MSCC_PIF_PS_RATTYPE_NULL   = 0,
@@ -1851,13 +1459,7 @@ enum NAS_MSCC_PIF_PS_RAT_TYPE_ENUM
 };
 typedef VOS_UINT32 NAS_MSCC_PIF_PS_RAT_TYPE_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_EMC_CALLBACK_MODE_ENUM_UINT32
- 结构说明  : EMC_CALLBACK_MODE枚举类型
- 1.日    期   : 2015年07月16日
-   作    者   : h00313353
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_EMC_CALLBACK_MODE_ENUM
 {
     NAS_MSCC_PIF_EMC_CALLBACK_MODE_DISABLE  = 0,
@@ -1886,13 +1488,7 @@ enum MMC_MSCC_ATTACH_CL_REG_STATUS_ENUM
 };
 typedef VOS_UINT8 MMC_MSCC_ATTACH_CL_REG_STATUS_ENUM8;
 
-/*****************************************************************************
-枚举名    : MSCC_MMC_PS_SIGNALING_TYPE_ENUM_UINT8
-枚举说明  : PS信息类型
-1.日    期   : 2015年10月14日
-  作    者   : j00174725
-  修改内容   : DTS2015093005685
-*****************************************************************************/
+
 enum MSCC_MMC_PS_SIGNALING_TYPE_ENUM
 {
     MSCC_MMC_PS_SIGNALING_TYPE_GU           = 0,                                /* GU的PS信令 */
@@ -1902,13 +1498,7 @@ enum MSCC_MMC_PS_SIGNALING_TYPE_ENUM
 };
 typedef VOS_UINT8 MSCC_MMC_PS_SIGNALING_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_PLMN_SEARCH_TYPE_ENUM
- 结构说明  : PLMN搜索类型
- 1.日    期   : 2015年12月10日
-   作    者   : w00176964
-   修改内容   : CL_MUTIMODE_OPTIMIZE新增
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_PLMN_SEARCH_TYPE_ENUM
 {
     NAS_MSCC_PIF_PLMN_SEARCH_SPEC        = 0,       /* 指定搜索,默认安装全频段的方式搜索 */
@@ -1920,13 +1510,7 @@ enum NAS_MSCC_PIF_PLMN_SEARCH_TYPE_ENUM
 typedef VOS_UINT32 NAS_MSCC_PIF_PLMN_SEARCH_TYPE_ENUM_UINT32;
 
 
-/*****************************************************************************
-枚举名    : NAS_MSCC_PIF_POWER_SAVE_TYPE_ENUM_UINT8
-枚举说明  : MSCC下发POWER SAVE请求携带的原因值
-1.日    期   : 2016年02月02日
-  作    者   : h00313353
-  修改内容   : DTS2016013000558
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_POWER_SAVE_TYPE_ENUM
 {
     NAS_MSCC_PIF_POWER_SAVE_TYPE_UNKNOWN = 0,                                /* 导致POWERSAVE的原因值未知 */
@@ -1993,15 +1577,7 @@ typedef struct
     VOS_UINT32                          bitOpSpare:16;
 }NAS_MSCC_PIF_CDMA_BAND_STRU;
 
-/*******************************************************************************
- 结构名    : CDMA_BAND_SET_UN
- 协议表格  :
- ASN.1描述 :
- 结构说明  : CDMA频段union定义
-1.日    期 : 2015年4月15日
-  作    者 : y00245242
-  修改内容 : 修改WCDMA的频段为32位的,支持W下band19
-*******************************************************************************/
+
 typedef union
 {
     VOS_UINT32                          ulCdmaBand;
@@ -2010,31 +1586,29 @@ typedef union
 }NAS_MSCC_CDMA_BAND_SET_UN;
 
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_PLMN_ID_STRU
- 结构说明  : plmn id的信息
- 1.日    期   : 2015年2月25日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulMcc;                                  /* MCC,3 bytes */
     VOS_UINT32                          ulMnc;                                  /* MNC,2 or 3 bytes */
 }NAS_MSCC_PIF_PLMN_ID_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_FREQENCY_CHANNEL_STRU
- 结构说明  : 频段和频点信息
-   1.日    期   : 2015年5月16日
-    作    者   : W00176964
-    修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     NAS_MSCC_PIF_BAND_CLASS_ENUM_UINT16                     enBandClass;
     VOS_UINT16                                              usChannel;
 }NAS_MSCC_PIF_FREQENCY_CHANNEL_STRU;
+
+
+typedef struct
+{
+    NAS_MSCC_PIF_PLMN_ID_STRU                               stPlmnId;
+    VOS_UINT32                                              ulCellId;
+    VOS_UINT16                                              usLac;
+    VOS_UINT8                                               ucRac;
+    NAS_MSCC_PIF_NET_RAT_TYPE_ENUM_UINT8                    enNetRatType;
+}NAS_MSCC_PIF_CAMP_POSITION_STRU;
 
 
 typedef struct
@@ -2056,13 +1630,7 @@ typedef struct
 }NAS_MSCC_PIF_SEARCHED_PLMN_LIST_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_PLMN_PRI_CLASS_INFO_STRU
- 结构说明  : plmn id with pri class type的信息
- 1.日    期   : 2015年5月4日
-   作    者   : W00176964
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     NAS_MSCC_PIF_PLMN_ID_STRU                               stPlmnId;
@@ -2082,13 +1650,7 @@ typedef struct
     NAS_MSCC_PIF_PLMN_PRI_CLASS_INFO_STRU                   astLowPlmnPriClassInfo[NAS_MSCC_PIF_MAX_LOW_QUALITY_PLMN_NUM];
 }NAS_MSCC_PIF_PLMN_PRI_CLASS_LIST_INFO_STRU;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_PREF_PLMN_OPERATE_STRU
- 结构说明  : PREFPLMN操作类型
- 1.日    期   : 2015年02月06日
-   作    者   : y00307564
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     NAS_MSCC_PIF_PREF_PLMN_TYPE_ENUM_UINT8                  enPrefPLMNType;
@@ -2098,13 +1660,7 @@ typedef struct
     NAS_MSCC_PIF_PLMN_ID_STRU                               stPlmn;
 } NAS_MSCC_PIF_PREF_PLMN_OPERATE_STRU;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_PREF_PLMN_OPERATE_STRU
- 结构说明  : PREFPLMN操作类型
- 1.日    期   : 2015年02月06日
-   作    者   : y00307564
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usPlmnNum;
@@ -2113,19 +1669,7 @@ typedef struct
     NAS_MSCC_USIM_RAT                   ausPlmnRat[NAS_MSCC_PIF_MAX_PLMN_NUM];
 }NAS_MSCC_PIF_USER_PLMN_LIST_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_RAT_PRIO_STRU
- 结构说明  : MS band的能力
- 1.日    期   : 2011年6月28日
-   作    者   : zhoujun 40661
-   修改内容   : 新建
- 2.日    期   : 2014年5月22日
-   作    者   : W00176964
-   修改内容   : ECALL调整:LTE宏关闭时字节不对齐
- 3.日    期   : 2015年5月12日
-   作    者   : W00176964
-   修改内容   : CDMA iteration 10 modified
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                               ucRatNum;                                   /* 当前支持的接入技术个数  */
@@ -2135,28 +1679,15 @@ typedef struct
 #endif
 }NAS_MSCC_PIF_RAT_PRIO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_3GPP2_RAT_STRU
- 结构说明  : MS 3GPP2的接入技术能力
- 1.日    期   : 2014年1月26日
-   作    者   : s00246516
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                               ucRatNum;                                   /* 当前支持的接入技术个数  */
     NAS_MSCC_PIF_3GPP2_RAT_TYPE_ENUM_UINT8                  auc3GPP2Rat[NAS_MSCC_PIF_3GPP2_RAT_TYPE_BUTT];
     VOS_UINT8                                               aucReserve[1];
 }NAS_MSCC_PIF_3GPP2_RAT_STRU;
-/* Added by s00246516 for L-C互操作项目, 2014-01-26, End */
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_EPLMN_INFO_STRU
- 结构说明  : MSCC当前EQUPLMN信息
- 1.日    期   : 2013年12月24日
-   作    者   : z00161729
-   修改内容   : SVLTE支持NCELL搜网
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucEquPlmnNum;                           /* 当前EquPLMN的个数 */                                                                                /* EPLMN被删除或EPLMN个数为0时无效,其它情况都有效 */
@@ -2165,13 +1696,7 @@ typedef struct
 }NAS_MSCC_PIF_EPLMN_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_CAMP_CELL_INFO_STRU
- 结构说明  : 当前驻留小区的信息
- 1.日    期   : 2013年3月25日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucCellNum;
@@ -2179,13 +1704,7 @@ typedef struct
     VOS_UINT32                          aulCellId[NAS_MSCC_PIF_CELL_MAX_NUM];
 }NAS_MSCC_PIF_CAMP_CELL_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_OPERATOR_NAME_INFO_STRU
- 结构说明  : plmn id和运营商长短名信息
- 1.日    期: 2013年3月25日
-   作    者: z00161729
-   修改内容: 新增
-*****************************************************************************/
+
 typedef struct
 {
     NAS_MSCC_PIF_PLMN_ID_STRU           stOperatorPlmnId;
@@ -2193,16 +1712,7 @@ typedef struct
     VOS_UINT8                           aucOperatorNameLong[NAS_MSCC_PIF_MAX_OPER_LONG_NAME_LEN];  /* 当前驻留网络运营商的长名称 */
 }NAS_MSCC_PIF_OPERATOR_NAME_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_UE_SUPPORT_FREQ_BAND_STRU
- 结构说明  : ue 支持band能力
- 1.日    期: 2013年3月25日
-   作    者: z00161729
-   修改内容: 新增
- 2.日    期   : 2015年4月15日
-   作    者   : y00245242
-   修改内容   : iteration 13开发
-*****************************************************************************/
+
 typedef struct
 {
     WCDMA_BAND_SET_UN                   unWcdmaBand;                            /* wcdma当前设置支持的频段 */
@@ -2211,13 +1721,7 @@ typedef struct
     NAS_MSCC_CDMA_BAND_SET_UN           unCdmaBand;                             /* cdma当前设置支持的频段 */
 }NAS_MSCC_PIF_UE_SUPPORT_FREQ_BAND_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_RSSI_VALUE_STRU
- 结构说明  : rssi值
- 1.日    期: 2013年3月25日
-   作    者: z00161729
-   修改内容: 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_INT16                           sRssiValue;
@@ -2226,14 +1730,7 @@ typedef struct
     VOS_UINT8                           aucReserved[3];
 }NAS_MSCC_PIF_RSSI_VALUE_STRU;
 
-/*******************************************************************************
- 结构名    :NAS_MSCC_PIF_SCELL_MEAS_TYPE_STRU
- 结构说明  : union NAS_MSCC_PIF_SCELL_MEAS_TYPE_STRU成员stMeasReportType定义
-             bit位置1表示该类型有效
-1.日    期 : 2014年6月5日
-  作    者 : b00269685
-  修改内容 : 新建
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucMeasRxlevType          :1;             /* Rxlev改变触发的测量上报 */
@@ -2242,13 +1739,7 @@ typedef struct
     VOS_UINT8                           ucMeasTypeSpare5         :5;
 }NAS_MSCC_PIF_SCELL_MEAS_TYPE_STRU;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_SCELL_MEAS_REPORT_TYPE_UN
- 结构说明  : NAS_MSCC_PIF_SCELL_MEAS_REPORT_TYPE_UN unMeasType上报测量的类型
-1. 日    期: 2014年6月5日
-   作    者: b00269685
-   修改内容: 新建
-*****************************************************************************/
+
 typedef union
 {
     VOS_UINT8                           ucMeasReportType;
@@ -2257,16 +1748,7 @@ typedef union
     VOS_UINT8                           aucReserved1[4];
 }NAS_MSCC_PIF_SCELL_MEAS_REPORT_TYPE_UN;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_RSSI_INFO_STRU
- 结构说明  : rssi信息
- 1.日    期: 2013年3月25日
-   作    者: z00161729
-   修改内容: 新增
- 2.日    期: 2014年6月4日
-   作    者: b00269685
-   修改内容: 增加上报类型
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                                    MsgHeader;                              /* _H2ASN_Skip */
@@ -2281,13 +1763,7 @@ typedef struct
     VOS_UINT8                           aucReserved1[3];
 }NAS_MSCC_PIF_RSSI_IND_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_CQI_INFO_STRU
- 结构说明  : LTE下的信道质量,两个码字分别代表子带CQI和宽带CQI
- 1.日    期: 2014年11月28日
-   作    者: w00281933
-   修改内容: 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usRI;                                   /* RI */
@@ -2296,13 +1772,7 @@ typedef struct
 
 }NAS_MSCC_PIF_CQI_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : MMA_MMC_LMM_CELL_SIGN_INFO_STRU
- 结构说明  : LTE下的信道质量,包括LTE下的Rssi及Rsrp，Rsrq,SINR,CQI
- 1.日    期: 2014年11月28日
-   作    者: w00281933
-   修改内容: 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_INT16                           sRssi;                                  /* Rssi*/
@@ -2313,13 +1783,7 @@ typedef struct
     NAS_MSCC_PIF_CQI_INFO_STRU          stCQI;                                  /* Channle Quality Indicator*/
 }NAS_MSCC_PIF_LMM_CELL_SIGN_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : MMA_MMC_LMM_CELL_SIGN_INFO_STRU
- 结构说明  : ID_MMC_MMA_LMM_CELL_SIGN_INFO_REPORT_IND对应的结构体
- 1.日    期: 2014年11月28日
-   作    者: w00281933
-   修改内容: 新增
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                          MsgHeader;                    /* _H2ASN_Skip */
@@ -2328,13 +1792,7 @@ typedef struct
     NAS_MSCC_PIF_LMM_CELL_SIGN_INFO_STRU          stLteRssi;                    /* LTE cell Signal INFO */
 }NAS_MSCC_PIF_LMM_CELL_SIGN_INFO_REPORT_IND_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_START_CNF_STRU
- 结构说明  : mmc给mma发送开机结果的消息结构
- 1.日    期   : 2013年3月25日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                                    MsgHeader;          /* _H2ASN_Skip */
@@ -2342,34 +1800,7 @@ typedef struct
 }NAS_MSCC_PIF_START_CNF_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_3GPP_SYS_INFO_IND_STRU
- 结构说明  : mmc给mma发送系统消息的消息结构
- 1.日    期   : 2013年3月25日
-   作    者   : z00161729
-   修改内容   : 新建
- 2.日    期   : 2013年11月25日
-   作    者   : z00161729
-   修改内容   : SVLTE优化G-TL ps切换性能修改
- 3.日    期   : 2013年10月16日
-   作    者   : w00176964
-   修改内容   : VoLTE_PhaseII 项目:增加漫游信息参数
- 4.日    期   : 2014年01月17日
-   作    者   : l00198894
-   修改内容   : V9R1C53 C+L 离网重选项目
- 5.日    期   : 2014年2月20日
-   作    者   : z00161729
-   修改内容   : DTS2014022100125:单待驻留g的网络，切双待后tl无网络限制驻留g的网络，
-               available超时做list搜网构造搜网列表把last rplmn rat排在最前面导致g排在第一个
-               无法回l或tds的网络
- 6.日    期   : 2014年2月8日
-   作    者   : s00246516
-   修改内容   : L-C互操作项目:增加异系统到HRPD的处理
- 7.日    期   : 2015年7月20日
-   作    者   : w000316404
-   修改内容   : R11协议升级(LTE频点配置值扩展)
 
-*****************************************************************************/
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                                    MsgHeader;                              /* _H2ASN_Skip */
@@ -2390,16 +1821,7 @@ typedef struct
 }NAS_MSCC_PIF_3GPP_SYS_INFO_IND_STRU;
 
 typedef VOS_UINT16 NAS_MSCC_PIF_REG_FAIL_CAUSE_UINT16;
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_REG_RESULT_IND_STRU
- 结构说明  : mmc给mma发送拒绝原因值消息的消息结构
- 1.日    期   : 2013年8月15日
-   作    者   : l00208543
-   修改内容   : 新建
- 2.日    期   : 2013年12月13日
-   作    者   : w00176964
-   修改内容   : Volte_PhaseIII 项目:修改结构名
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                     MsgHeader;                              /*_H2ASN_Skip*/
@@ -2409,34 +1831,21 @@ typedef struct
     NAS_MSCC_PIF_REG_FAIL_CAUSE_UINT16       enRejCause;
     VOS_UINT8                                ucOriginalRejCause;
     VOS_UINT8                                aucReserve[3];
+    NAS_MSCC_PIF_CAMP_POSITION_STRU          stCampPostion;
 }NAS_MSCC_PIF_REG_RESULT_IND_STRU;
 
 typedef VOS_UINT16 NAS_MSCC_PIF_SIM_AUTH_FAIL_UINT16;
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_USIM_AUTH_FAIL_IND_STRU
- 结构说明  : mmc给mma发送USIM鉴权失败原因值消息的消息结构
- 1.日    期   : 2013年11月15日
-   作    者   : m00217266
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                        MsgHeader;                      /* _H2ASN_Skip */
     NAS_MSCC_PIF_SRVDOMAIN_ENUM_UINT32          enCnDomainId;
     NAS_MSCC_PIF_SIM_AUTH_FAIL_UINT16           enRejCause;
     VOS_UINT8                                   aucReserve[2];
+    NAS_MSCC_PIF_CAMP_POSITION_STRU             stCampPostion;
 }NAS_MSCC_PIF_USIM_AUTH_FAIL_IND_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_SERVICE_STATUS_IND_STRU
- 结构说明  : mmc给mma发送注册状态和服务状态的消息结构
- 1.日    期   : 2013年3月25日
-   作    者   : z00161729
-   修改内容   : 新建
- 2.日    期   : 2013年11月20日
-   作    者   : w00176964
-   修改内容   : Volte PhaseII项目修改:增加CSPS的SIM卡状态
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                         MsgHeader;                     /* _H2ASN_Skip */
@@ -2454,13 +1863,7 @@ typedef struct
 }NAS_MSCC_PIF_SERVICE_STATUS_IND_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_MM_INFO_IND_STRU
- 结构说明  : mmc给mma发送MM INFORMATION的消息结构
- 1.日    期   : 2013年3月25日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                                    MsgHeader;          /* _H2ASN_Skip */
@@ -2473,13 +1876,7 @@ typedef struct
     NAS_MSCC_PIF_OPERATOR_NAME_INFO_STRU                    stName;
 }NAS_MSCC_PIF_MM_INFO_IND_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_SIGN_REPORT_REQ_STRU
- 结构说明  : mma给mmc发送信号上报配置的消息结构
- 1.日    期   : 2013年3月25日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                MsgHeader;                              /* _H2ASN_Skip */
@@ -2489,29 +1886,14 @@ typedef struct
     VOS_UINT8                           ucMinRptTimerInterval;                  /* 间隔上报的时间   */
 }NAS_MSCC_PIF_SIGN_REPORT_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_MODE_CHANGE_REQ_STRU
- 结构说明  : mma给mmc发送模式变更的消息结构
- 1.日    期   : 2013年3月25日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                MsgHeader;                              /* _H2ASN_Skip */
     NAS_MSCC_PIF_MS_MODE_ENUM_UINT32    enMsMode;
 }NAS_MSCC_PIF_MODE_CHANGE_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_ATTACH_REQ_STRU
- 结构说明  : mma给mmc发送attach 请求的消息结构
- 1.日    期   : 2013年3月25日
-   作    者   : z00161729
-   修改内容   : 新建
- 2.日    期   : 2014年2月8日
-   作    者   : s00246516
-   修改内容   : L-C互操作项目:增加异系统到HRPD的处理
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                                    MsgHeader;          /* _H2ASN_Skip */
@@ -2520,13 +1902,7 @@ typedef struct
     NAS_MSCC_PIF_EPS_ATTACH_REASON_ENUM_UINT32              enEpsAttachReason;
 }NAS_MSCC_PIF_ATTACH_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_ATTACH_CNF_STRU
- 结构说明  : mmc给mma发送attach 结果的消息结构
- 1.日    期   : 2013年3月25日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                                    MsgHeader;          /* _H2ASN_Skip */
@@ -2536,16 +1912,7 @@ typedef struct
     NAS_MSCC_PIF_PLMN_ID_STRU                               stPlmnId;
 }NAS_MSCC_PIF_ATTACH_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_DETACH_REQ_STRU
- 结构说明  : mma给mmc发送detach请求的消息结构
- 1.日    期   : 2013年3月25日
-   作    者   : z00161729
-   修改内容   : 新建
- 2.日    期   : 2014年2月8日
-   作    者   : s00246516
-   修改内容   : L-C互操作项目:增加异系统到HRPD的处理
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                                    MsgHeader;          /* _H2ASN_Skip */
@@ -2554,13 +1921,7 @@ typedef struct
     NAS_MSCC_PIF_DETACH_REASON_ENUM_UINT32                  enDetachReason;
 }NAS_MSCC_PIF_DETACH_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_DETACH_CNF_STRU
- 结构说明  : mmc给mma发送detach结果的消息结构
- 1.日    期   : 2013年3月25日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                                    MsgHeader;          /* _H2ASN_Skip */
@@ -2570,16 +1931,7 @@ typedef struct
     NAS_MSCC_PIF_OPER_RESULT_ENUM_UINT32                    enOperRslt;       /* 操作结果 */
 }NAS_MSCC_PIF_DETACH_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_DETACH_IND_STRU
- 结构说明  : mmc给mma发送网络detach结果的消息结构
- 1.日    期   : 2013年3月25日
-   作    者   : z00161729
-   修改内容   : 新建
- 2.日    期   : 2014年4月1日
-   作    者   : z00161729
-   修改内容   : DTS2014040300125:service 被拒和网络detach ind被拒需要上报^rejinfo
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                                    MsgHeader;          /* _H2ASN_Skip */
@@ -2589,29 +1941,17 @@ typedef struct
     NAS_MSCC_PIF_NETWORK_DETACH_TYPE_ENUM_UINT8             enNetworkDetachType;
     VOS_UINT8                                               ucOriginalDetachCause;
     VOS_UINT8                                               aucReserved[2];
-
+    NAS_MSCC_PIF_CAMP_POSITION_STRU                         stCampPostion;
 }NAS_MSCC_PIF_DETACH_IND_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_PLMN_LIST_REQ_STRU
- 结构说明  : mma给mmc发送list请求的消息结构
- 1.日    期   : 2013年3月25日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                MsgHeader;                              /* _H2ASN_Skip */
     VOS_UINT32                          ulReserved;
 }NAS_MSCC_PIF_PLMN_LIST_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_PLMN_LIST_CNF_STRU
- 结构说明  : mmc给mma发送list搜网结果的消息结构
- 1.日    期   : 2013年3月25日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                MsgHeader;                              /* _H2ASN_Skip */
@@ -2622,52 +1962,28 @@ typedef struct
     VOS_UINT8                           aucReserve[2];
 }NAS_MSCC_PIF_PLMN_LIST_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_PLMN_LIST_REJ_STRU
- 结构说明  : mmc给mma发送list搜网被接入层reject的消息结构
- 1.日    期   : 2013年3月25日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                MsgHeader;                              /* _H2ASN_Skip */
     VOS_UINT32                          ulReserved;
 }NAS_MSCC_PIF_PLMN_LIST_REJ_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_PLMN_LIST_ABORT_REQ_STRU
- 结构说明  : mma给mmc发送list搜网中止的消息结构
- 1.日    期   : 2013年3月25日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                MsgHeader;                              /* _H2ASN_Skip */
     VOS_UINT32                          ulReserved;
 }NAS_MSCC_PIF_PLMN_LIST_ABORT_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_PLMN_USER_RESEL_REQ_STRU
- 结构说明  : mma给mmc发送用户重选搜网请求的消息结构
- 1.日    期   : 2013年3月25日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                                    MsgHeader;          /* _H2ASN_Skip */
     NAS_MSCC_PIF_PLMN_SEL_MODE_ENUM_UINT32                  enPlmnSelMode;
 }NAS_MSCC_PIF_PLMN_USER_RESEL_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_PLMN_SPECIAL_REQ_STRU
- 结构说明  : mma给mmc发送用户指定搜网请求的消息结构
- 1.日    期   : 2013年3月25日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                                    MsgHeader;          /* _H2ASN_Skip */
@@ -2677,13 +1993,7 @@ typedef struct
 }NAS_MSCC_PIF_PLMN_SPECIAL_REQ_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_COVERAGE_AREA_IND_STRU
- 结构说明  : mmc给mma发送进覆盖区还是离开覆盖区指示的消息结构
- 1.日    期   : 2013年3月25日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                                    MsgHeader;          /* _H2ASN_Skip */
@@ -2694,26 +2004,14 @@ typedef struct
     VOS_UINT32                                              ulTimMaxFlg;
 }NAS_MSCC_PIF_COVERAGE_AREA_IND_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_POWER_OFF_REQ_STRU
- 结构说明  : mma给mmc发送关机请求的消息结构
- 1.日    期   : 2013年3月25日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                                    MsgHeader;          /* _H2ASN_Skip */
     NAS_MSCC_PIF_POWER_OFF_CAUSE_ENUM_UINT32                enCause;
 }NAS_MSCC_PIF_POWER_OFF_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_POWER_OFF_CNF_STRU
- 结构说明  : mmc给mma发送关机回复的消息结构
- 1.日    期   : 2013年3月25日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                MsgHeader;                              /* _H2ASN_Skip */
@@ -2727,13 +2025,7 @@ typedef struct
     MSCC_MMA_SYSTEM_ACQUIRE_RESULT_ENUM_UINT32              enResult;
 }NAS_MSCC_PIF_SYSTEM_ACQUIRE_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_PLMN_SPECIAL_SEL_CNF_STRU
- 结构说明  : mmc给mma发送用户指定搜网回复的消息结构
- 1.日    期   : 2013年3月25日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                            MsgHeader;                  /* _H2ASN_Skip */
@@ -2742,13 +2034,7 @@ typedef struct
 }NAS_MSCC_PIF_PLMN_SPECIAL_SEL_CNF_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_PLMN_RESEL_CNF_STRU
- 结构说明  : mmc给mma发送at+cops=0回复的消息结构
- 1.日    期   : 2013年3月25日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                                    MsgHeader;          /* _H2ASN_Skip */
@@ -2757,13 +2043,7 @@ typedef struct
 }NAS_MSCC_PIF_PLMN_RESEL_CNF_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_DATATRAN_ATTRI_IND_STRU
- 结构说明  : mmc给mma发送pdp激活情况的消息结构
- 1.日    期   : 2013年3月25日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                                    MsgHeader;          /* _H2ASN_Skip */
@@ -2771,13 +2051,7 @@ typedef struct
     VOS_UINT8                                               aucReserved[3];
 }NAS_MSCC_PIF_DATATRAN_ATTRI_IND_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_SYS_CFG_SET_REQ_STRU
- 结构说明  : mma给mmc发送syscfg设置请求的消息结构
- 1.日    期   : 2013年3月25日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                                    MsgHeader;          /* _H2ASN_Skip */
@@ -2789,13 +2063,7 @@ typedef struct
     VOS_UINT8                                               aucReserved[1];
 }NAS_MSCC_PIF_SYS_CFG_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_CL_ASSOCIATED_INFO_NTF_STRU
- 结构说明  : MSCC收到1x系统服务信息后给MMC发的CL_ASSOCIATED_INFO
- 1.日    期   : 2015年9月11日
-   作    者   : y00346957
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                                    stMsgHeader;          /* _H2ASN_Skip */
@@ -2804,13 +2072,7 @@ typedef struct
     VOS_UINT8                                               aucRsv[2];
 }NAS_MSCC_PIF_CL_ASSOCIATED_INFO_NTF_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_SYS_CFG_SET_CNF_STRU
- 结构说明  : mmc给mma发送syscfg设置结果的消息结构
- 1.日    期   : 2013年3月25日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                                    MsgHeader;          /* _H2ASN_Skip */
@@ -2819,38 +2081,14 @@ typedef struct
     VOS_UINT8                                               aucReserved[2];
 }NAS_MSCC_PIF_SYS_CFG_SET_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_CDMA_INIT_LOC_INFO_STRU
- 结构说明  : cdma的位置信息
- 1.日    期   : 2015年12月10日
-   作    者   : l00324781
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32      ulMcc;
     VOS_INT32       lSid;
     VOS_INT32       lNid;
 } NAS_MSCC_PIF_CDMA_INIT_LOC_INFO_STRU;
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_PLMN_SEARCH_REQ_STRU
- 结构说明  : mscc给mmc发送搜网请求的消息结构
- 1.日    期   : 2013年3月25日
-   作    者   : z00161729
-   修改内容   : 新建
- 2.日    期   : 2/4/2015
-   作    者   : w00176964
-   修改内容   : CDMA Iteraiton 10 Modified
- 3.日    期   : 30/5/2015
-   作    者   : w00176964
-   修改内容   : CDMA Iteration 12
- 4.日    期   : 10/12/2015
-   作    者   : l00324781
-   修改内容   : CL_MUTIMODE_OPTIMIZE 增加stCdmaInitLocInfo
- 5.日    期   : 2015/12/10
-   作    者   : w00176964
-   修改内容   : CL_MUTIMODE_OPTIMIZE新增搜索类型
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                                    MsgHeader;                              /* _H2ASN_Skip */
@@ -2865,16 +2103,7 @@ typedef struct
 
 typedef NAS_MSCC_PIF_PLMN_SEARCH_REQ_STRU MMA_MSCC_SYSTEM_ACQUIRE_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_PLMN_SELECTION_RLST_IND_STRU
- 结构说明  : mmc给mma发送搜网结果的消息结构
- 1.日    期   : 2013年3月25日
-   作    者   : z00161729
-   修改内容   : 新建
- 2.日    期   : 2015年4月14日
-   作    者   : w00176964
-   修改内容   : CDMA 1X Iteration Modified:add coverage flag
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                                    MsgHeader;          /* _H2ASN_Skip */
@@ -2883,26 +2112,14 @@ typedef struct
     VOS_UINT8                                               aucRsv[3];
 }NAS_MSCC_PIF_PLMN_SELECTION_RLST_IND_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_PLMN_SELECTION_START_IND_STRU
- 结构说明  : mmc给mma发送搜网开始标示的结构
- 1.日    期   : 2013年10月09日
-   作    者   : l00208543
-   修改内容   : 新建,DTS2013100904573
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                                    MsgHeader;          /* _H2ASN_Skip */
     NAS_MSCC_PIF_PLMN_SELECTION_START_FLAG_ENUM_UINT32      enPlmnSeleStartFlag;
 }NAS_MSCC_PIF_PLMN_SELECTION_START_IND_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_PLMN_LIST_ABORT_CNF_STRU
- 结构说明  : mmc给mma发送list搜网中止回复的消息结构
- 1.日    期   : 2013年3月25日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                MsgHeader;                              /* _H2ASN_Skip */
@@ -2914,39 +2131,21 @@ typedef struct
     VOS_UINT8                           aucReserved2[3];
 }NAS_MSCC_PIF_PLMN_LIST_ABORT_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_SPEC_PLMN_SEARCH_ABORT_REQ_STRU
- 结构说明  : mma给mmc发送指定搜网中止请求的消息结构
- 1.日    期   : 2013年3月25日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                MsgHeader;                              /* _H2ASN_Skip */
     VOS_UINT32                          ulReserved;
 }NAS_MSCC_PIF_SPEC_PLMN_SEARCH_ABORT_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_SPEC_PLMN_SEARCH_ABORT_CNF_STRU
- 结构说明  : mmc给mma发送中止指定搜网回复的消息结构
- 1.日    期   : 2013年3月25日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                MsgHeader;                              /* _H2ASN_Skip */
     VOS_UINT32                          ulReserved;
 }NAS_MSCC_PIF_SPEC_PLMN_SEARCH_ABORT_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_UMTS_CIPHER_INFO_IND_STRU
- 结构说明  : mmc给mma上报W的cipher信息的消息结构
- 1.日    期   : 2013年3月25日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                MsgHeader;                              /* _H2ASN_Skip */
@@ -2955,13 +2154,7 @@ typedef struct
     VOS_UINT8                           aucRcv[2];
 }NAS_MSCC_PIF_UMTS_CIPHER_INFO_IND_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_GPRS_CIPHER_INFO_IND_STRU
- 结构说明  : mmc给mma上报G的cipher信息的消息结构
- 1.日    期   : 2013年3月25日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                MsgHeader;                              /* _H2ASN_Skip */
@@ -2971,26 +2164,14 @@ typedef struct
 }NAS_MSCC_PIF_GPRS_CIPHER_INFO_IND_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_PLMN_SPECIAL_SEL_REJ_STRU
- 结构说明  : MMC给MMA发送用户指定搜拒绝结果的消息结构
- 1.日    期   : 2013年3月25日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                MsgHeader;                              /* _H2ASN_Skip */
     VOS_UINT32                          ulReserved;
 }NAS_MSCC_PIF_PLMN_SPECIAL_SEL_REJ_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_AC_INFO_CHANGE_IND_STRU
- 结构说明  : MMC给MMA发送小区接入信息变化指示的消息结构
- 1.日    期   : 2013年3月25日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                                    MsgHeader;          /* _H2ASN_Skip */
@@ -3002,13 +2183,7 @@ typedef struct
 }NAS_MSCC_PIF_AC_INFO_CHANGE_IND_STRU;
 
 
-/*******************************************************************************
- 结构名    : NAS_MSCC_PIF_OM_MAINTAIN_INFO_IND_STRU
- 结构说明  : NAS_MSCC_PIF_OM_MAINTAIN_INFO_IND_STRU消息结构
- 1.日    期  : 2013年04月16日
-   作    者  : z00161729
-   修改内容  : 新增结构
-*******************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                MsgHeader;                              /* _H2ASN_Skip */
@@ -3018,29 +2193,14 @@ typedef struct
     VOS_UINT8                           aucRsv2[2];                             /* 保留   */
 } NAS_MSCC_PIF_OM_MAINTAIN_INFO_IND_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_UPDATE_UPLMN_NTF_STRU
- 结构说明  : mma给mmc发送UPLMN更新通知的消息结构
- 1.日    期   : 2013年7月31日
-   作    者   : w00167002
-   修改内容   : 新建结构体
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                MsgHeader;                              /* _H2ASN_Skip */
     VOS_UINT8                           aucRsv4[4];                             /* 保留   */
 }NAS_MSCC_PIF_UPDATE_UPLMN_NTF_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_EOPLMN_SET_REQ_STRU
- 结构说明  : AT和MMA的EOPLMN设置接口
- 1.日    期  : 2013年10月15日
-   作    者  : s00190137
-   修改内容  : 新增结构
- 2.日    期  : 2013年11月26日
-   作    者  : s00190137
-   修改内容  : 添加分组机制，单组允许最大设置50个OPLMN
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                MsgHeader;                              /* _H2ASN_Skip */
@@ -3050,39 +2210,21 @@ typedef struct
     TAF_UINT8                           aucOPlmnWithRat[NAS_MSCC_PIF_MAX_GROUP_CFG_OPLMN_DATA_LEN];  /* OPLMN的PDU数据，和EFOplmn文件一致 */
 }NAS_MSCC_PIF_EOPLMN_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_EOPLMN_SET_CNF_STRU
- 结构说明  : mmc给mma发送AT^EOPLMN设置回复的消息结构
- 1.日    期   : 2013年10月15日
-   作    者   : x65241
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                MsgHeader;                              /* _H2ASN_Skip */
     VOS_UINT32                          ulResult;                               /* OPLMN的nv保存结果*/
 }NAS_MSCC_PIF_EOPLMN_SET_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_EOPLMN_SET_ABORT_STRU
- 结构说明  : AT^EOPLMN设置超时通知MMC中断消息处理的结构
- 1.日    期   : 2013年10月15日
-   作    者   : x65241
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;                              /* _H2ASN_Skip */
     VOS_UINT32                          ulReserved;
 }NAS_MSCC_PIF_EOPLMN_SET_ABORT_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_NET_SCAN_REQ_STRU
- 结构说明  : MMA和MMC的NETSCAN设置接口
- 1.日    期  : 2013年10月10日
-   作    者  : w00242748
-   修改内容  : 新增结构
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                                    MsgHeader;          /* _H2ASN_Skip */
@@ -3094,13 +2236,7 @@ typedef struct
     NAS_MSCC_PIF_UE_SUPPORT_FREQ_BAND_STRU                  stBand;             /* 记录GU频段*/
 }NAS_MSCC_PIF_NET_SCAN_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_NET_SCAN_INFO_STRU
- 结构说明  : 扫描某个频点的网络信息
- 1.日    期   : 2013年8月24日
-   作    者   : w00242748
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                                              usArfcn;                                /* 频点 */
@@ -3117,13 +2253,7 @@ typedef struct
     NAS_MSCC_PIF_UE_SUPPORT_FREQ_BAND_STRU                  stBand;                               /* 具体取值同接口RRMM_SYS_CFG_REQ_STRU中频段参数 */
 }NAS_MSCC_PIF_NET_SCAN_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_NET_SCAN_CNF_STRU
- 结构说明  : MMC上报给MMA的NETSCAN CNF接口
- 1.日    期  : 2013年10月10日
-   作    者  : w00242748
-   修改内容  : 新增结构
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                                    MsgHeader;          /* _H2ASN_Skip */
@@ -3135,13 +2265,7 @@ typedef struct
     NAS_MSCC_PIF_NET_SCAN_INFO_STRU                         astNetScanInfo[NAS_MSCC_PIF_NET_SCAN_MAX_FREQ_NUM];
 }NAS_MSCC_PIF_NET_SCAN_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_SERV_REJ_IND_STRU
- 结构说明  : mmc给mma发送服务被拒的消息结构
- 1.日    期   : 2014年4月1日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                MsgHeader;                              /* _H2ASN_Skip */
@@ -3149,28 +2273,17 @@ typedef struct
     VOS_UINT16                          usRejCause;
     VOS_UINT8                           ucOriginalRejCause;
     VOS_UINT8                           aucReserve[1];
+    NAS_MSCC_PIF_CAMP_POSITION_STRU     stCampPostion;
 }NAS_MSCC_PIF_SERV_REJ_IND_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_ABORT_NET_SCAN_REQ_STRU
- 结构说明  : MMA和MMC的NETSCAN设置接口
- 1.日    期  : 2013年10月10日
-   作    者  : w00242748
-   修改内容  : 新增结构
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                MsgHeader;                              /* _H2ASN_Skip */
     VOS_UINT32                          ulReserved;
 }NAS_MSCC_PIF_ABORT_NET_SCAN_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_ABORT_NET_SCAN_CNF_STRU
- 结构说明  : MMC上报给MMA的NETSCAN CNF接口
- 1.日    期  : 2013年10月10日
-   作    者  : w00242748
-   修改内容  : 新增结构
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                MsgHeader;                              /* _H2ASN_Skip */
@@ -3180,13 +2293,7 @@ typedef struct
     NAS_MSCC_PIF_NET_SCAN_INFO_STRU     astNetScanInfo[NAS_MSCC_PIF_NET_SCAN_MAX_FREQ_NUM];
 }NAS_MSCC_PIF_ABORT_NET_SCAN_CNF_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_MSCC_PIF_NETWORK_CAPABILITY_INFO_IND_STRU
- 结构说明  : 通知网络业务信息能力消息
- 1.日    期  : 2013年7月9日
-   作    者  : y00245242
-   修改内容  : 新增结构
-*******************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                                    MsgHeader;          /* _H2ASN_Skip */
@@ -3196,13 +2303,7 @@ typedef struct
     VOS_UINT8                                               aucReserve[1];
 }NAS_MSCC_PIF_NETWORK_CAPABILITY_INFO_IND_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_CAMP_ON_IND_STRU
- 结构说明  : MMC发给MMA的驻留消息结构
- 1.日    期   : 2013年10月12日
-   作    者   : w00176964
-   修改内容   : 新建结构体
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                MsgHeader;                              /* _H2ASN_Skip */
@@ -3210,16 +2311,7 @@ typedef struct
     VOS_UINT8                           aucRsv[3];                              /* 保留   */
 }NAS_MSCC_PIF_CAMP_ON_IND_STRU_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_OTHER_MODEM_INFO_NOTIFY_STRU
- 结构说明  : modem1的信息目前只有驻留信息
- 1.日    期   : 2013年11月23日
-   作    者   : z00161729
-   修改内容   : 新建
- 2.日    期   : 2013年12月24日
-   作    者   : z00161729
-   修改内容   : SVLTE支持NCELL搜网
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU         stMsgHeader;                                   /*_H2ASN_Skip*/
@@ -3232,14 +2324,7 @@ typedef struct
     NAS_MSCC_PIF_EPLMN_INFO_STRU stEplmnInfo;
 } NAS_MSCC_PIF_OTHER_MODEM_INFO_NOTIFY_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_OTHER_MODEM_DPLMN_NPLMN_INFO_NOTIFY_STRU
- 结构说明  : modem1的dplmn/nplmn信息
- 1.日    期   : 2014年11月3日
-   作    者   : z00161729
-   修改内容   : 开机漫游搜网项目修改
 
-*****************************************************************************/
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                                   stMsgHeader;         /*_H2ASN_Skip*/
@@ -3250,15 +2335,7 @@ typedef struct
     NAS_MMC_NVIM_CFG_DPLMN_NPLMN_INFO_STRU                  stSelfLearnDplmnNplmnInfo;
 } NAS_MSCC_PIF_OTHER_MODEM_DPLMN_NPLMN_INFO_NOTIFY_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_MSCC_PIF_TDS_NCELL_INFO_STRU
- 结构说明  : GSM下的TDS频点列表
 
- 1.日    期   : 2013年12月24日
-   作    者   : z00161729
-   修改内容   : SVLTE支持NCELL搜网
-
-*******************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucTdsArfcnNum;                          /* 0表示TDD频点不存在 */
@@ -3266,18 +2343,7 @@ typedef struct
     VOS_UINT16                          ausTdsArfcnList[NAS_MSCC_PIF_TDS_ARFCN_MAX_NUM];
 }NAS_MSCC_PIF_TDS_NCELL_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_MSCC_PIF_LTE_NCELL_INFO_STRU
- 结构说明  : GSM下的LTE频点列表
 
- 1.日    期   : 2013年12月24日
-   作    者   : z00161729
-   修改内容   : SVLTE支持NCELL搜网
- 2.日    期   : 2015年7月20日
-   作    者   : w000316404
-   修改内容   : R11协议升级(LTE频点配置值扩展)
-
-*******************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucLteArfcnNum;                          /* 0表示LTE频点不存在 */
@@ -3286,16 +2352,7 @@ typedef struct
 }NAS_MSCC_PIF_LTE_NCELL_INFO_STRU;
 
 
-/*******************************************************************************
- 结构名    : NAS_MSCC_PIF_NCELL_INFO_NOTIFY_STRU
- 结构说明  : ID_NAS_MSCC_PIF_NCELL_INFO_NOTIFY消息对应的结构，
-             包括GSM下的TDS/LTE邻区结构中的TDS/LTE的频点列表
 
- 1.日    期   : 2013年12月23日
-   作    者   : z00161729
-   修改内容   : 新生成结构
-
-*******************************************************************************/
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                stMsgHeader;                            /*_H2ASN_Skip*/
@@ -3305,13 +2362,7 @@ typedef struct
 
 
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_EPLMN_INFO_IND_STRU
- 结构说明  : 等效plmn信息
- 1.日    期   : 2013年12月23日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                stMsgHeader;                            /*_H2ASN_Skip*/
@@ -3319,13 +2370,7 @@ typedef struct
 }NAS_MSCC_PIF_EPLMN_INFO_IND_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_CS_SERVICE_CONN_STATUS_IND_STRU
- 结构说明  : mmc上报cs业务信令连接状态指示消息结构
- 1.日    期   : 2014年3月4日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                stMsgHeader;                            /*_H2ASN_Skip*/
@@ -3333,16 +2378,7 @@ typedef struct
     VOS_UINT8                           aucReserved[3];
 }NAS_MSCC_PIF_CS_SERVICE_CONN_STATUS_IND_STRU;
 
-/*******************************************************************************
-结构名    : NAS_MSCC_PIF_PS_TRANSFER_NOTIFY_STRU
-结构说明  : ID_NAS_MSCC_PIF_PS_TRANSFER_NOTIFY消息结构
-1.日    期   : 2014年1月5日
-  作    者   : z00161729
-  修改内容   : 新建
-2.日    期   : 2014年01月17日
-  作    者   : l00198894
-  修改内容   : V9R1C53 C+L 离网重选项目
-*******************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                stMsgHeader;                            /*_H2ASN_Skip*/
@@ -3351,16 +2387,7 @@ typedef struct
     VOS_UINT8                           aucReserved[2];                         /*保留位*/
 } NAS_MSCC_PIF_PS_TRANSFER_NOTIFY_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_IMS_VOICE_CAP_NOTIFY_STRU
- 结构说明  : MMA通知MMC当前IMS VOICE是否可用的消息
- 1.日    期   : 2013年12月10日
-   作    者   : w00176964
-   修改内容   : 新建
- 2.日    期   : 2015年4月24日
-   作    者   : z00161729
-   修改内容   : 24301 R11 CR升级项目修改
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                                    MsgHeader;          /* _H2ASN_Skip */
@@ -3371,16 +2398,7 @@ typedef struct
     VOS_UINT8                                               aucRsv[2];
 }NAS_MSCC_PIF_IMS_VOICE_CAP_NOTIFY_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_ACQ_REQ_STRU
- 结构说明  : 获取消息的结构体
- 1.日    期   : 2014年1月26日
-   作    者   : s00246516
-   修改内容   : 新建
- 2.日    期   : 2015年4月24日
-   作    者   : w00176964
-   修改内容   : CDMA 1x Iteration 10 Modified
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                stMsgHeader;                            /* _H2ASN_Skip */
@@ -3391,16 +2409,7 @@ typedef struct
     VOS_UINT8                           aucRsv[3];
 }NAS_MSCC_PIF_ACQ_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_ACQ_CNF_STRU
- 结构说明  : 获取结果的结构体
- 1.日    期   : 2014年1月26日
-   作    者   : s00246516
-   修改内容   : 新建
- 2.日    期   : 2015年7月20日
-   作    者   : w000316404
-   修改内容   : R11协议升级(LTE频点配置值扩展)
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                                    stMsgHeader;        /* _H2ASN_Skip */
@@ -3411,16 +2420,7 @@ typedef struct
     VOS_UINT8                                               aucReserve[3];
 }NAS_MSCC_PIF_ACQ_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_REG_CELL_INFO_STRU
- 结构说明  : 注册消息中Cell Info的结构体
- 1.日    期   : 2014年1月26日
-   作    者   : s00246516
-   修改内容   : 新建
- 2.日    期   : 2015年7月20日
-   作    者   : w000316404
-   修改内容   : R11协议升级(LTE频点配置值扩展)
-*****************************************************************************/
+
 typedef struct
 {
     NAS_MSCC_PIF_NET_RAT_TYPE_ENUM_UINT8       ucRat;
@@ -3432,13 +2432,7 @@ typedef struct
     VOS_UINT16                                 ausCellId[NAS_MSCC_PIF_REG_MAX_CELL_NUM];
 } NAS_MSCC_PIF_REG_CELL_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_REG_REQ_STRU
- 结构说明  : 注册消息的结构体
- 1.日    期   : 2014年1月26日
-   作    者   : s00246516
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                                    stMsgHeader;        /* _H2ASN_Skip */
@@ -3450,19 +2444,7 @@ typedef struct
     NAS_MSCC_PIF_REG_CELL_INFO_STRU                         stCellInfo;
 }NAS_MSCC_PIF_REG_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_REG_CNF_STRU
- 结构说明  : 注册结果的结构体
- 1.日    期   : 2014年1月26日
-   作    者   : s00246516
-   修改内容   : 新建
- 2.日    期   : 2015年7月20日
-   作    者   : w000316404
-   修改内容   : R11协议升级(LTE频点配置值扩展)
- 3.日    期   : 2015年8月20日
-   作    者   : wx270776
-   修改内容   : VIA CL DTS2015031602665
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                                    stMsgHeader;        /* _H2ASN_Skip */
@@ -3483,13 +2465,7 @@ enum NAS_MSCC_PIF_POWER_SAVE_RESULT_ENUM
 };
 typedef VOS_UINT8 NAS_MSCC_PIF_POWER_SAVE_RESULT_ENUM_UINT8;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_POWER_SAVE_REQ_STRU
- 结构说明  : Power save消息的结构体
- 1.日    期   : 2014年1月26日
-   作    者   : s00246516
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                       stMsgHeader;                     /* _H2ASN_Skip */
@@ -3497,16 +2473,7 @@ typedef struct
     VOS_UINT8                                  aucReserve[3];
 }NAS_MSCC_PIF_POWER_SAVE_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_POWER_SAVE_CNF_STRU
- 结构说明  : Power save结果的结构体
- 1.日    期   : 2014年1月26日
-   作    者   : s00246516
-   修改内容   : 新建
- 2.日    期   : 2015年4月07日
-   作    者   : m00270891
-   修改内容   : Added the result Enum.
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                                    stMsgHeader;                     /* _H2ASN_Skip */
@@ -3514,22 +2481,10 @@ typedef struct
     VOS_UINT8                                               aucReserve[3];
 }NAS_MSCC_PIF_POWER_SAVE_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_ACQ_IND_STRU
- 结构说明  : 获取指示的结构体
- 1.日    期   : 2014年1月26日
-   作    者   : s00246516
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef  NAS_MSCC_PIF_ACQ_CNF_STRU NAS_MSCC_PIF_ACQ_IND_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_PS_SERVICE_CONN_STATUS_IND_STRU
- 结构说明  : mmc上报ps业务信令连接状态指示消息结构
- 1.日    期   : 2014年6月27日
-   作    者   : s00217060
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                            stMsgHeader;                            /*_H2ASN_Skip*/
@@ -3538,13 +2493,7 @@ typedef struct
     VOS_UINT8                                       aucReserved[2];
 }NAS_MSCC_PIF_PS_SERVICE_CONN_STATUS_IND_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_RF_AVAILABLE_IND_STRU
- 结构说明  : MMC通知MMA当前是否有RF资源可用
- 1.日    期   : 2014年6月30日
-   作    者   : W00176964
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                                    stMsgHeader;        /*_H2ASN_Skip*/
@@ -3553,26 +2502,14 @@ typedef struct
     VOS_UINT8                                               aucReserved[2];
 }NAS_MSCC_PIF_RF_AVAILABLE_IND_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_SRV_ACQ_RAT_LIST_STRU
- 结构说明  : 业务触发搜网的网络模式列表
- 1.日    期   : 2015年5月15日
-   作    者   : L00301449
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                               ucRatNum;
     NAS_MSCC_PIF_SRV_ACQ_RAT_TYPE_ENUM_UINT8                aenRatType[NAS_MSCC_PIF_SRV_ACQ_RAT_NUM_MAX];
 }NAS_MSCC_PIF_SRV_ACQ_RAT_LIST_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_SRV_ACQ_REQ_STRU
- 结构说明  : 业务触发搜网指示
- 1.日    期   : 2014年5月28日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                stMsgHeader;                            /*_H2ASN_Skip*/
@@ -3582,13 +2519,7 @@ typedef struct
 } NAS_MSCC_PIF_SRV_ACQ_REQ_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_SRV_ACQ_CNF_STRU
- 结构说明  : 业务触发搜网结果
- 1.日    期   : 2014年5月28日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                            stMsgHeader;                /*_H2ASN_Skip*/
@@ -3598,13 +2529,7 @@ typedef struct
 
 
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_BEGIN_SESSION_NOTIFY_STRU
- 结构说明  : 业务触发搜网开始指示
- 1.日    期   : 2014年5月28日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                stMsgHeader;                            /*_H2ASN_Skip*/
@@ -3613,13 +2538,7 @@ typedef struct
     NAS_MSCC_PIF_SRV_ACQ_RAT_LIST_STRU  stRatList;
 }NAS_MSCC_PIF_BEGIN_SESSION_NOTIFY_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_END_SESSION_NOTIFY_STRU
- 结构说明  : 业务触发搜网结束指示
- 1.日    期   : 2014年5月28日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                stMsgHeader;                            /*_H2ASN_Skip*/
@@ -3628,13 +2547,7 @@ typedef struct
     NAS_MSCC_PIF_SRV_ACQ_RAT_LIST_STRU  stRatList;
 }NAS_MSCC_PIF_END_SESSION_NOTIFY_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_IMS_SRV_INFO_NOTIFY_STRU
- 结构说明  : ID_NAS_MSCC_PIF_IMS_SRV_INFO_NOTIFY的结构体
- 1.日    期   : 2014年11月06日
-   作    者   : s00217060
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                       stMsgHeader;                     /* _H2ASN_Skip */
@@ -3942,13 +2855,7 @@ typedef struct
     NAS_MSCC_PIF_1X_SYS_SRV_INFO_STRU       stSysSrvInfo;
 }NAS_MSCC_PIF_1X_SYSTEM_SERVICE_INFO_IND_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_CFPLMN_SET_REQ_STRU
- 结构说明  : MMA给MMC的SET CFPLMN REQ接口
- 1.日    期  : 2015年2月4日
-   作    者  : f00279542
-   修改内容  : 新增结构
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                                    stMsgHeader;        /* _H2ASN_Skip */
@@ -3957,26 +2864,14 @@ typedef struct
     NAS_MSCC_PIF_PLMN_ID_STRU                               stPlmnInfo;
 }NAS_MSCC_PIF_CFPLMN_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_CFPLMN_QUERY_REQ_STRU
- 结构说明  : MMA给MMC的SET CFPLMN QRY REQ接口
- 1.日    期  : 2015年2月4日
-   作    者  : f00279542
-   修改内容  : 新增结构
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                                    stMsgHeader;        /* _H2ASN_Skip */
     VOS_UINT8                                               aucReserve[4];
 }NAS_MSCC_PIF_CFPLMN_QUERY_REQ_STRU;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PIF_AP_PRESET_DPLMN_SCENE_ENUM_UINT8
- 结构说明  : Ap预置Dplmn的场景
- 1.日    期 : 2015年11月02日
-   作    者 : l00289540
-   修改内容 : 新增结构
-*****************************************************************************/
+
 enum NAS_MSCC_PIF_AP_PRESET_DPLMN_SCENE_ENUM
 {
     NAS_MSCC_PIF_AP_PRESET_DPLMN_SCENE_SWITCH_ON,                                     /* 上电开机预置DPLMN场景 */
@@ -3987,13 +2882,7 @@ enum NAS_MSCC_PIF_AP_PRESET_DPLMN_SCENE_ENUM
 
 typedef VOS_UINT8 NAS_MSCC_PIF_AP_PRESET_DPLMN_SCENE_ENUM_UINT8;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_DPLMN_QRY_REQ_STRU
- 结构说明  : MMA给MSCC的DPLMN QRY接口
-  1.日    期   : 2015年10月8日
-    作    者   : n00355355
-    修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                         stMsgHeader;        /* _H2ASN_Skip */
@@ -4001,13 +2890,7 @@ typedef struct
     VOS_UINT8                                               aucReserve[4];
 }NAS_MSCC_PIF_DPLMN_QRY_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_PLMN_WITH_RAT_STRU
- 结构说明  : MMA给MSCC的DPLMN SET REQ接口
-  1.日    期   : 2015年10月12日
-    作    者   : n00355355
-    修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     NAS_MSCC_PIF_PLMN_ID_STRU                               stPlmn;
@@ -4015,13 +2898,7 @@ typedef struct
     VOS_UINT8                                               aucReserve[2];
 }NAS_MSCC_PIF_PLMN_WITH_RAT_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_MMA_DPLMN_INFO_SET_STRU
- 结构说明  : set dplmnlist命令中dplmn列表信息、ehplmn列表信息结构体
-  1.日    期   : 2015年10月13日
-    作    者   : n00355355
-    修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usDplmnNum;                                     /* 预置DPLMN列表的个数 */
@@ -4031,13 +2908,7 @@ typedef struct
     NAS_MSCC_PIF_PLMN_WITH_RAT_STRU     astDplmnList[TAF_MMA_MAX_DPLMN_NUM];            /* DPLMN列表 */
 }NAS_MSCC_PIF_DPLMN_INFO_SET_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_DPLMN_SET_REQ_STRU
- 结构说明  : MMA给MSCC的DPLMN SET REQ接口
-  1.日    期   : 2015年10月12日
-    作    者   : n00355355
-    修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                                    stMsgHeader;        /* _H2ASN_Skip */
@@ -4049,13 +2920,7 @@ typedef struct
     NAS_MSCC_PIF_DPLMN_INFO_SET_STRU                        stDplmnInfo;
 }NAS_MSCC_PIF_DPLMN_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_CFPLMN_LIST_STRU
- 结构说明  : MMC给MSCC 上报的信息
- 1.日    期  : 2015年2月4日
-   作    者  : f00279542
-   修改内容  : 新增结构
-*****************************************************************************/
+
 typedef struct
 {
     NAS_MSCC_PIF_CFPLMN_OPERATE_TYPE_ENUM_UINT8             ulCmdType;
@@ -4064,26 +2929,14 @@ typedef struct
     NAS_MSCC_PIF_PLMN_ID_STRU                               astPlmn[NAS_MSCC_PIF_MAX_CFPLMN_NUM];
 }NAS_MSCC_PIF_CFPLMN_LIST_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_CFPLMN_SET_CNF_STRU
- 结构说明  : MMA给MMC的 CFPLMN CNF接口
- 1.日    期  : 2015年2月4日
-   作    者  : f00279542
-   修改内容  : 新增结构
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                                    stMsgHeader;        /* _H2ASN_Skip */
     NAS_MSCC_PIF_CFPLMN_OPER_RESULT_ENUM_UINT32             enResult;
 }NAS_MSCC_PIF_CFPLMN_SET_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_CFPLMN_QUERY_CNF_STRU
- 结构说明  : MMA给MMC的 CFPLMN CNF接口
- 1.日    期  : 2015年2月4日
-   作    者  : f00279542
-   修改内容  : 新增结构
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                                    stMsgHeader;        /* _H2ASN_Skip */
@@ -4093,15 +2946,7 @@ typedef struct
     NAS_MSCC_PIF_PLMN_ID_STRU                               astPlmn[NAS_MSCC_PIF_MAX_CFPLMN_NUM];
 }NAS_MSCC_PIF_CFPLMN_QUERY_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_CTRL_STRU
- 结构说明  : NAS_MSCC控制结构体
 
- 修改历史      :
-  1.日    期   : 2015年02月04日
-    作    者   : y00307564
-    修改内容   : Iteration 8 新建
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          ulModuleId;         /* 填入PID */
@@ -4110,15 +2955,7 @@ typedef struct
     VOS_UINT8                           aucReserved[1];
 }NAS_MSCC_CTRL_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_CTRL_STRU
- 结构说明  : NAS_MSCC_PLMN_NAME_LIST_STRU
 
- 修改历史      :
-  1.日    期   : 2015年02月04日
-    作    者   : y00307564
-    修改内容   : Iteration 8 新建
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                                              ulPlmnNum;
@@ -4128,15 +2965,7 @@ typedef struct
     VOS_UINT8                                               aucReserved[2];
 }NAS_MSCC_PLMN_NAME_LIST_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_CTRL_STRU
- 结构说明  : NAS_MSCC_PLMN_NAME_LIST_STRU
 
- 修改历史      :
-  1.日    期   : 2015年02月04日
-    作    者   : B00269685
-    修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                                              ulPlmnNum;
@@ -4145,15 +2974,7 @@ typedef struct
     VOS_UINT16                                              ausPlmnRat[NAS_MSCC_PIF_MAX_CPOL_PLMN_CNT];
 }NAS_MSCC_CPOL_PLMN_NAME_LIST_STRU;
 
-/*****************************************************************************
-结构名    : NAS_MSCC_CPOL_INFO_QUERY_REQ_STRU
-结构说明  : AT+CPOL查询请求结构
 
-修改历史      :
-  1.日    期   : 2015年02月04日
-    作    者   : y00307564
-    修改内容   : Iteration 8 新建
-*******************************************************************************/
 typedef struct
 {
     NAS_MSCC_PIF_PARA_TYPE_ENUM_UINT8                       enPrefPLMNType;                         /* 查询运营商名称的类型 */
@@ -4163,13 +2984,7 @@ typedef struct
     VOS_UINT32                                              ulValidPlmnNum;                         /* 有效输出的运营商名称个数 */
 }NAS_MSCC_CPOL_INFO_QUERY_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_PREF_PLMN_QUERY_REQ_STRU
- 结构说明  : 查询测试PREFPLMN请求接口
- 1.日    期   : 2015年02月03日
-   作    者   : y00307564
-   修改内容   : Iteration 8 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                                    stMsgHeader;        /* _H2ASN_Skip */
@@ -4179,13 +2994,7 @@ typedef struct
     NAS_MSCC_CPOL_INFO_QUERY_REQ_STRU                       stCpolInfo;
 }NAS_MSCC_PIF_PREF_PLMN_QUERY_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_PREF_PLMN_QUERY_CNF_STRU
- 结构说明  : 查询测试PREFPLMN请求回复接口
- 1.日    期   : 2015年02月03日
-   作    者   : y00307564
-   修改内容   : Iteration 8 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                                    stMsgHeader;        /* _H2ASN_Skip */
@@ -4198,13 +3007,7 @@ typedef struct
     NAS_MSCC_PIF_PREF_PLMN_OPER_RESULT_ENUM_UINT32          enRslt;
 }NAS_MSCC_PIF_PREF_PLMN_QUERY_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_PREF_PLMN_SET_REQ_STRU
- 结构说明  : 设置PREFPLMN请求接口
- 1.日    期   : 2015年2月3日
-   作    者   : y00307564
-   修改内容   : Iteration 8 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                                    stMsgHeader;        /* _H2ASN_Skip */
@@ -4214,13 +3017,7 @@ typedef struct
     VOS_UINT8                                               aucReserve[3];
 }NAS_MSCC_PIF_PREF_PLMN_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_PREF_PLMN_SET_CNF_STRU
- 结构说明  : 设置PREFPLMN请求回复接口
- 1.日    期   : 2015年2月3日
-   作    者   : y00307564
-   修改内容   : Iteration 8 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                                    stMsgHeader;        /* _H2ASN_Skip */
@@ -4228,16 +3025,7 @@ typedef struct
 }NAS_MSCC_PIF_PREF_PLMN_SET_CNF_STRU;
 
 
-/*****************************************************************************
- 结构名    : MMC_TAF_PLMN_INFO_ST
- 结构说明  : 记录PLMN信息
- 1.日    期   : 2011年7月20日
-   作    者   : z00161729
-   修改内容   : 原MMC_PLMN_ID_STRU删除替换为TAFMMC_PLMN_ID_STRU
- 2.日    期   : 2013年4月7日
-   作    者   : z00161729
-   修改内容   : 主动上报AT命令控制下移至C核及mma和mmc接口调整
-*****************************************************************************/
+
 typedef struct
 {
     NAS_MSCC_PIF_PLMN_ID_STRU           stPlmn;
@@ -4253,19 +3041,7 @@ typedef struct
     VOS_UINT8               aucReserve1[2];
 }MMC_TAF_PLMN_LIST_INFO_ST;
 
-/*****************************************************************************
- 结构名    : MMC_MMA_SHARE_PARA_ST
- 结构说明  : 记录MMA和MMC公用的全局变量
- 1.日    期   : 2011年7月20日
-   作    者   : z00161729
-   修改内容   : 原MMC_PLMN_ID_STRU删除替换为TAFMMC_PLMN_ID_STRU
- 2.日    期   : 2011年12月5日
-   作    者   : z00161729
-   修改内容   : 支持CEREG修改，将ucGmmRegStatus改为ucPsRegStatus
- 3.日    期   : 2013年4月7日
-   作    者   : z00161729
-   修改内容   : 主动上报AT命令控制下移至C核及mma和mmc接口调整
-*****************************************************************************/
+
 typedef struct
 {
     MMC_MMA_PARA_TYPE_ENUM    enMmaParaType;
@@ -4278,13 +3054,7 @@ typedef struct
     }u;
 }MMC_MMA_SHARE_PARA_ST;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_IMS_SWITCH_STATE_IND_STRU
- 结构说明  : 指示IMS关闭状态的接口
- 1.日    期   : 2015年04月13日
-   作    者   : f0017928
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                        stMsgHeader;
@@ -4292,78 +3062,42 @@ typedef struct
     VOS_UINT8                                   aucReserved[3];
 }NAS_MSCC_PIF_IMS_SWITCH_STATE_IND_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_VOICE_DOMAIN_CHANGE_IND_STRU
- 结构说明  : 指示VOICE DOMAIN变化的接口
- 1.日    期   : 2015年04月13日
-   作    者   : f0017928
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                        stMsgHeader;
     NAS_MSCC_PIF_VOICE_DOMAIN_ENUM_UINT32       enVoiceDomain;                  /* 语音优选域 */
 }NAS_MSCC_PIF_VOICE_DOMAIN_CHANGE_IND_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_IMS_START_REQ_STRU
- 结构说明  : 请求IMS开启的接口
- 1.日    期   : 2015年04月13日
-   作    者   : f0017928
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                stMsgHeader;
     VOS_UINT8                           aucReserve[4];
 }NAS_MSCC_PIF_IMS_START_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_IMS_START_CNF_STRU
- 结构说明  : IMS开启请求的回复接口
- 1.日    期   : 2015年04月13日
-   作    者   : f0017928
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                        stMsgHeader;
     NAS_MSCC_PIF_IMS_START_RESULT_ENUM_UINT32   enResult;
 }NAS_MSCC_PIF_IMS_START_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_IMS_STOP_REQ_STRU
- 结构说明  : 请求IMS关闭的接口
- 1.日    期   : 2015年04月13日
-   作    者   : f0017928
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                stMsgHeader;
     VOS_UINT8                           aucReserve[4];
 }NAS_MSCC_PIF_IMS_STOP_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_IMS_STOP_CNF_STRU
- 结构说明  : IMS关闭请求的回复接口
- 1.日    期   : 2015年04月13日
-   作    者   : f0017928
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                        stMsgHeader;
     NAS_MSCC_PIF_IMS_STOP_RESULT_ENUM_UINT32    enResult;
 }NAS_MSCC_PIF_IMS_STOP_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : MMC_MMA_LAI_STRU
- 结构说明  : ID_MMC_MMA_SRCHED_PLMN_INFO_IND消息中lai的结构体
- 1.日    期   : 2015年01月15日
-   作    者   : h00285180
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     NAS_MSCC_PIF_PLMN_ID_STRU                  stPlmnId;
@@ -4372,13 +3106,7 @@ typedef struct
     VOS_UINT8                                  aucReserve[2];
 }NAS_MSCC_PIF_LAI_STRU;
 
-/*****************************************************************************
- 结构名    : MMC_MMA_SRCHED_PLMN_INFO_IND_STRU
- 结构说明  : ID_MMC_MMA_SRCHED_PLMN_INFO_IND的结构体
- 1.日    期   : 2015年01月15日
-   作    者   : h00285180
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                       stMsgHeader;
@@ -4436,13 +3164,7 @@ typedef struct
     NAS_MSCC_PIF_SIM_PLMN_WITH_RAT_STRU astEhPlmnInfo[NAS_MSCC_PIF_MAX_EHPLMN_NUM];/* EHPLMN ID列表 */
 }NAS_MSCC_PIF_SIM_EHPLMN_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_SIM_USERPLMN_INFO_STRU
- 结构说明  : SIM卡中的当前USERPLMN信息
- 1.日    期   : 2015年4月14日
-   作    者   : w00176964
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucUserPlmnNum;                          /* UPLMN的个数*/
@@ -4451,13 +3173,7 @@ typedef struct
 }NAS_MSCC_PIF_SIM_USERPLMN_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_SIM_OPERPLMN_INFO_STRU
- 结构说明  : 保存当前OPERPLMN信息
- 1.日    期   : 2015年4月14日
-   作    者   : w00176964
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usOperPlmnNum;                          /* OPLMN的个数*/
@@ -4466,13 +3182,7 @@ typedef struct
 }NAS_MSCC_PIF_SIM_OPERPLMN_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_PS_RAT_TYPE_NTF_STRU
- 结构说明  :  PS RATTYPE
- 1.日    期   : 2015年04月13日
-   作    者   : f0017928
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                        stMsgHeader;
@@ -4480,13 +3190,7 @@ typedef struct
 }NAS_MSCC_PIF_PS_RAT_TYPE_NTF_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_AUTO_RESEL_SET_STRU
- 结构说明  : 设置auto resel
- 1.日    期   : 2015年6月3日
-   作    者   : b00269685
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                stMsgHeader;
@@ -4494,13 +3198,7 @@ typedef struct
     VOS_UINT8                           aucReserved[3];
 }NAS_MSCC_PIF_AUTO_RESEL_SET_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_DPLMN_QRY_CNF_STRU
- 结构说明  : DPLMN QRY CNF对应的结构体
-  1.日    期   : 2015年10月9日
-    作    者   : n00355355
-    修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                             stMsgHeader;
@@ -4510,13 +3208,7 @@ typedef struct
     VOS_UINT8                                   ucRererse;
 }NAS_MSCC_PIF_DPLMN_QRY_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_DPLMN_SET_CNF_STRU
- 结构说明  : DPLMN SET CNF对应的结构体
-  1.日    期   : 2015年10月12日
-    作    者   : n00355355
-    修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                        stMsgHeader;
@@ -4526,13 +3218,7 @@ typedef struct
 }NAS_MSCC_PIF_DPLMN_SET_CNF_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_PLMN_ID_WITH_RAT_STRU
- 结构说明  : 带接入技术plmn id信息
- 1.日    期   : 2015年9月10日
-   作    者   : z00161729
-   修改内容   : 支持LTE CSG功能新增
-*****************************************************************************/
+
 typedef struct
 {
     NAS_MSCC_PIF_PLMN_ID_STRU                               stPlmnId;
@@ -4540,39 +3226,21 @@ typedef struct
     VOS_UINT8                                               aucReserved[3];
 }NAS_MSCC_PIF_PLMN_ID_WITH_RAT_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_CSG_LIST_SEARCH_REQ_STRU
- 结构说明  : CSG 列表搜网请求结构
- 1.日    期   : 2015年9月6日
-   作    者   : z00161729
-   修改内容   : 支持LTE CSG功能新增
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                MsgHeader;
     VOS_UINT32                          ulReserved;
 }NAS_MSCC_PIF_CSG_LIST_SEARCH_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_CSG_LIST_REJ_STRU
- 结构说明  : mmc给mma发送CSG list搜网reject的消息结构
- 1.日    期   : 2015年9月6日
-   作    者   : z00161729
-   修改内容   : 支持LTE CSG功能新增
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                MsgHeader;                              /* _H2ASN_Skip */
     VOS_UINT32                          ulReserved;
 }NAS_MSCC_PIF_CSG_LIST_REJ_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_PLMN_WITH_CSG_ID_STRU
- 结构说明  : mscc给mma发送CSG list搜网结果信息
- 1.日    期   : 2015年9月6日
-   作    者   : z00161729
-   修改内容   : 支持LTE CSG功能新增
-*****************************************************************************/
+
 typedef struct
 {
     NAS_MSCC_PIF_PLMN_ID_STRU                               stPlmnId;
@@ -4587,13 +3255,7 @@ typedef struct
     VOS_UINT8                                               aucHomeNodeBName[NAS_MSCC_PIF_MAX_HOME_NODEB_NAME_LEN];
 }NAS_MSCC_PIF_PLMN_WITH_CSG_ID_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_PLMN_WITH_CSG_ID_INFO_STRU
- 结构说明  : mmc给mma发送CSG list搜网结果信息
- 1.日    期   : 2015年9月6日
-   作    者   : z00161729
-   修改内容   : 支持LTE CSG功能新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulPlmnWithCsgIdNum;
@@ -4601,26 +3263,14 @@ typedef struct
     NAS_MSCC_PIF_PLMN_WITH_CSG_ID_STRU  astPlmnWithCsgIdList[NAS_MSCC_PIF_MAX_PLMN_CSG_ID_NUM];
 }NAS_MSCC_PIF_PLMN_WITH_CSG_ID_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_CSG_LIST_SEARCH_CNF_STRU
- 结构说明  : mscc给mma发送CSG list搜网结果的消息结构
- 1.日    期   : 2015年9月6日
-   作    者   : z00161729
-   修改内容   : 支持LTE CSG功能新增
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                    MsgHeader;                              /* _H2ASN_Skip */
     NAS_MSCC_PIF_PLMN_WITH_CSG_ID_INFO_STRU stCsgIdInfo;
 }NAS_MSCC_PIF_CSG_LIST_SEARCH_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_CSG_LIST_ABORT_CNF_STRU
- 结构说明  : mmc给mma发送CSG list搜网中止回复的消息结构
- 1.日    期   : 2015年9月6日
-   作    者   : z00161729
-   修改内容   : 支持LTE CSG功能新增
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                    MsgHeader;                              /* _H2ASN_Skip */
@@ -4629,13 +3279,7 @@ typedef struct
 
 
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_CSG_LIST_ABORT_REQ_STRU
- 结构说明  : 发送CSG list搜网中止的消息结构
- 1.日    期   : 2015年9月6日
-   作    者   : z00161729
-   修改内容   : 支持LTE CSG功能新增
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                MsgHeader;                              /* _H2ASN_Skip */
@@ -4643,29 +3287,14 @@ typedef struct
 }NAS_MSCC_PIF_CSG_LIST_ABORT_REQ_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_GET_GEO_REQ_STRU
- 结构说明  : 获取地理信息请求对应的结构体
- 1.日    期   : 2015年05月13日
-   作    者   : s00217060
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                        stMsgHeader;
     VOS_UINT8                                   aucReserve[4];
 }NAS_MSCC_PIF_GET_GEO_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_GET_GEO_CNF_STRU
- 结构说明  : 获取地理信息回复对应的结构体
- 1.日    期   : 2015年05月13日
-   作    者   : s00217060
-   修改内容   : 新建
- 2.日    期   : 2015年12月10日
-   作    者   : l00324781
-   修改内容   : CL_MUTIMODE_OPTIMIZE 修改，增加sid和nid
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                        stMsgHeader;
@@ -4674,26 +3303,14 @@ typedef struct
     VOS_INT32                                   lNid; /* 携带X模初搜获得的Nid，如果初搜未能获取Nid,填写-1 */
 }NAS_MSCC_PIF_GET_GEO_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_STOP_GET_GEO_REQ_STRU
- 结构说明  : 停止获取地理信息请求对应的结构体
- 1.日    期   : 2015年06月01日
-   作    者   : f00179208
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                        stMsgHeader;
     VOS_UINT8                                   aucReserve[4];
 }NAS_MSCC_PIF_STOP_GET_GEO_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_STOP_GET_GEO_CNF_STRU
- 结构说明  : 停止获取地理信息回复对应的结构体
- 1.日    期   : 2015年06月01日
-   作    者   : f00179208
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                        stMsgHeader;
@@ -4701,16 +3318,7 @@ typedef struct
 }NAS_MSCC_PIF_STOP_GET_GEO_CNF_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_SID_NID_IND_STRU
- 结构说明  : SID指示
- 1.日    期   : 2015年7月2日
-   作    者   : y00245242
-   修改内容   : 新建
- 2.日    期   : 2015年12月15日
-   作    者   : l00324781
-   修改内容   : CL_MUTIMODE_OPTIMIZE 增加Nid，消息名字改为SID_NID
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                stMsgHeader;                            /*_H2ASN_Skip*//* 消息头    */
@@ -4718,37 +3326,18 @@ typedef struct
     VOS_UINT16                          usNid;                                  /* NID */
 }NAS_MSCC_PIF_SID_NID_IND_STRU;
 
-/*****************************************************************************
- 结构名    : XSD_MSCC_EMC_CALLBACK_IND_STRU
- 结构说明  : 紧急呼CALLBACK模式状态的消息结构
- 1.日    期   : 2015年07月02日
-   作    者   : h00313353
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                        stMsgHeader;        /*_H2ASN_Skip*//* 消息头    */
     NAS_MSCC_PIF_EMC_CALLBACK_MODE_ENUM_UINT32  enCallBackState;    /* 是否处于CallBack模式中 */
 } NAS_MSCC_PIF_EMC_CALLBACK_IND_STRU;
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_END_EMC_CALLBACK_IND_STRU
- 结构说明  : 回复退出紧急呼CallBack请求的消息结构
- 1.日    期   : 2015年07月02日
-   作    者   : y00322978
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                stMsgHeader;        /*_H2ASN_Skip*//* 消息头    */
 } NAS_MSCC_PIF_END_EMC_CALLBACK_IND_STRU;
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_SID_WHITE_LIST_STRU
- 结构说明  : 保存的SID和MCC信息
 
- 1.日    期   : 2015年7月2日
-   作    者   : y00322978
-   修改内容   : 新建
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16                          usStartSid;
@@ -4756,13 +3345,7 @@ typedef struct
     VOS_UINT32                          ulMcc;
 }NAS_MSCC_PIF_SID_WHITE_LIST_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_OPER_LOCK_WHITE_SID_STRU
- 结构说明  : 保存的SID白名单信息
-  1.日    期   : 2015年7月2日
-    作    者   : y00322978
-    修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucEnable;                          /* 白名单是否使能 */
@@ -4770,38 +3353,20 @@ typedef struct
     VOS_UINT16                          usWhiteSysNum;                     /* 支持白名单的个数,个数为0时表示不支持白名单 */
     NAS_MSCC_PIF_SID_WHITE_LIST_STRU    astSysInfo[NAS_MSCC_PIF_MAX_WHITE_LOCK_SID_NUM];
 }NAS_MSCC_PIF_OPER_LOCK_SYS_WHITE_STRU;
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_SET_CSIDLIST_REQ_STRU
- 结构说明  : sid white list 设置请求结构体
- 1.日    期   : 2015年07月02日
-   作    者   : y00322978
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                    stMsgHeader;        /*_H2ASN_Skip*//* 消息头    */
     NAS_MSCC_PIF_OPER_LOCK_SYS_WHITE_STRU   stSidWhiteList;
 }NAS_MSCC_PIF_SET_CSIDLIST_REQ_STRU;
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_SET_CSIDLIST_CNF_STRU
- 结构说明  : sid white list 设置回复结构体
- 1.日    期   : 2015年07月02日
-   作    者   : y00322978
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                stMsgHeader;        /*_H2ASN_Skip*//* 消息头    */
     VOS_UINT32                          ulRslt;
 }NAS_MSCC_PIF_SET_CSIDLIST_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_SERVICE_AVAILABLE_IND_STRU
- 结构说明  : 服务可用消息结构
- 1.日    期   : 2015年07月25日
-   作    者   : w00242748
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                                    stMsgHeader;        /*_H2ASN_Skip*//* 消息头    */
@@ -4815,14 +3380,7 @@ typedef struct
 }NAS_MSCC_PIF_SYNC_SERVICE_AVAILABLE_IND_STRU;
 
 
-/** ****************************************************************************
- * Name        : NAS_MSCC_PIF_DATA_CALL_REDIAL_SYS_ACQ_IND_STRU
- *
- * Description : 数据业务触发搜网结果
- 1.日    期   : 2015年12月16日
-   作    者   : y00314741
-   修改内容   : 新建
- *******************************************************************************/
+
 typedef struct
 {
     MSCC_MSG_HEADER_STRU                                    stMsgHeader;         /*_H2ASN_Skip*//* 消息头                                   */
@@ -4832,31 +3390,13 @@ typedef struct
 
 typedef NAS_MSCC_PIF_DATA_CALL_REDIAL_SYS_ACQ_IND_STRU    MSCC_MMA_DATA_CALL_REDIAL_SYS_ACQ_IND_STRU;
 
-/*****************************************************************************
- 结构名    : MSCC_MMA_HDR_CSQ_SET_REQ_STRU
- 结构说明  : ID_MMA_MSCC_HDR_CSQ_SET_REQ_STRU消息结构
- 1.日    期   : 2015年10月21日
-   作    者   : C00299064
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef NAS_MSCC_PIF_HDR_CSQ_SET_REQ_STRU    MMA_MSCC_HDR_CSQ_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : MMA_MSCC_HDR_CSQ_SET_CNF_STRU
- 结构说明  : ID_MMA_MSCC_HDR_CSQ_SET_CNF_STRU消息结构
- 1.日    期   : 2015年10月21日
-   作    者   : C00299064
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef NAS_MSCC_PIF_HDR_CSQ_SET_CNF_STRU    MSCC_MMA_HDR_CSQ_SET_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_PIF_HDR_CSQ_IND_STRU
- 结构说明  : ID_NAS_MSCC_PIF_HDR_CSQ_IND消息结构
- 1.日    期   : 2015年10月21日
-   作    者   : C00299064
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef NAS_MSCC_PIF_HDR_CSQ_IND_STRU       MSCC_MMA_HDR_CSQ_IND_STRU;
 
 /*****************************************************************************

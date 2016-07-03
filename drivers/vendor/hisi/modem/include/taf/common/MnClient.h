@@ -54,14 +54,7 @@ extern "C" {
   3 枚举定义
 *****************************************************************************/
 
-/*****************************************************************************
- 枚举名    : AT_CLIENT_ID_ENUM_UINT8
- 枚举说明  : Client Id
 
-  1.日    期   : 2011年10月15日
-    作    者   : 鲁琳/l60609
-    修改内容   : 定义AT的Clientid
-*****************************************************************************/
 enum AT_CLIENT_ID_ENUM
 {
     AT_CLIENT_ID_PCUI                 = 0,
@@ -124,14 +117,7 @@ enum AT_CLIENT_ID_ENUM
 };
 typedef VOS_UINT16 AT_CLIENT_ID_ENUM_UINT16;
 
-/*****************************************************************************
- 枚举名    : MN_OAM_CLIENT_ID_ENUM_UINT16
- 枚举说明  : OAM的client
 
-  1.日    期   : 2011年10月15日
-    作    者   : 鲁琳/l60609
-    修改内容   : 定义外部client id值
-*****************************************************************************/
 enum MN_OAM_CLIENT_ID_ENUM
 {
     OAM_CLIENT_ID_OM                 = AT_CLIENT_ID_BUTT,
@@ -145,35 +131,16 @@ enum MN_OAM_CLIENT_ID_ENUM
 };
 typedef VOS_UINT16 MN_OAM_CLIENT_ID_ENUM_UINT16;
 
-/*****************************************************************************
- 枚举名    : MN_INTERNAL_CLIENT_ID_ENUM_UINT16
- 枚举说明  : INTERNAL的client
 
-  1.日    期   : 2014年1月11日
-    作    者   : y00245242
-    修改内容   : 定义协议栈内部client ID
-  2.日    期   : 2014年4月3日
-    作    者   : S00261364
-    修改内容   : 增加spm内部client ID
-*****************************************************************************/
 enum MN_INTERNAL_CLIENT_ID_ENUM
 {
     INTERNAL_CLIENT_ID_SMMA             = OMA_CLIENT_ID_BUTT,
-    /* Added by s00261364 for V3R360_eCall项目, 2014-4-4, begin */
     INTERNAL_CLIENT_ID_SPM,
-    /* Added by s00261364 for V3R360_eCall项目, 2014-4-4, end */
     INTERNAL_CLIENT_ID_BUTT
 };
 typedef VOS_UINT16 MN_INTERNAL_CLIENT_ID_ENUM_UINT16;
 
-/*****************************************************************************
- 枚举名    : AT_CLIENT_TAB_INDEX_UINT8
- 枚举说明  : 每个client在gastAtClientTab中index值
 
-  1.日    期   : 2011年10月15日
-    作    者   : 鲁琳/l60609
-    修改内容   : 定义AT每个Client对应的index值
-*****************************************************************************/
 enum AT_CLIENT_TAB_INDEX_ENUM
 {
     AT_CLIENT_TAB_PCUI_INDEX              = 0,
@@ -237,17 +204,7 @@ enum AT_CLIENT_TAB_INDEX_ENUM
 typedef VOS_UINT8 AT_CLIENT_TAB_INDEX_UINT8;
 
 
-/*****************************************************************************
- 枚举名    : MN_CLIENT_ID_TYPE_UINT16
- 枚举说明  : CLIENT ID类型
 
-  1.日    期   : 2011年10月15日
-    作    者   : 鲁琳/l60609
-    修改内容   : 定义CLIENT ID类型
-  2.日    期   : 2014年1月11日
-    作    者   : y00245242
-    修改内容   : 增加CLIENT ID类型
-*****************************************************************************/
 enum MN_CLIENT_ID_TYPE
 {
     MN_CLIENT_ID_TYPE_AT,

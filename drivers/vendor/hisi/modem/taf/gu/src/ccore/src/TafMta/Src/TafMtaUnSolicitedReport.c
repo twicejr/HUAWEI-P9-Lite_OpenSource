@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2012, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafMtaUnsolicitedReport.c
-  版 本 号   : 初稿
-  作    者   : 赵学理
-  生成日期   : 2013年4月11日
-  最近修改   :
-  功能描述   : MTA模块与at模块交互主动上报相关命令的处理函数
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年4月11日
-    作    者   : z00161729
-    修改内容   : 主动上报AT命令控制下移至C核
-
-******************************************************************************/
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -26,9 +9,7 @@ extern "C" {
 /*****************************************************************************
   1 其他头文件包含
 *****************************************************************************/
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-2, begin */
 #include "TafMtaUnSolicitedReport.h"
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-2, end */
 
 /*lint -e958*/
 
@@ -46,22 +27,7 @@ extern "C" {
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-1, begin */
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvAtSetCurcNotify
- 功能描述  : mta收到ID_AT_MTA_SET_CURC_NOTIFY消息处理函数
- 输入参数  : VOS_VOID *pMsg  --消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月1日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核新增函数
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvAtSetCurcNotify(VOS_VOID *pMsg)
 {
     AT_MTA_MSG_STRU                            *pstAtMtaMsg             = VOS_NULL_PTR;
@@ -82,21 +48,7 @@ VOS_VOID TAF_MTA_RcvAtSetCurcNotify(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvAtQryCurcReq
- 功能描述  : mta收到ID_AT_MTA_QRY_CURC_REQ消息处理函数
- 输入参数  : VOS_VOID *pMsg  --消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月1日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核新增函数
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvAtQryCurcReq(VOS_VOID *pMsg)
 {
     AT_MTA_MSG_STRU                            *pstAtMtaMsg             = VOS_NULL_PTR;
@@ -124,31 +76,7 @@ VOS_VOID TAF_MTA_RcvAtQryCurcReq(VOS_VOID *pMsg)
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvAtSetUnsolicitedRptReq
- 功能描述  : mta收到ID_AT_MTA_SET_UNSOLICITED_RPT_REQ消息处理函数
- 输入参数  : VOS_VOID *pMsg  --消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月1日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核新增函数
-  2.日    期   : 2013年5月25日
-    作    者   : s00217060
-    修改内容   : for DTS2013052406352:
-                 DSFLOWRPT设置命令通过ID_MSG_TAF_PS_CONFIG_DSFLOW_RPT_REQ到APS更新
-  3.日    期   : 2014年8月18日
-    作    者   : w00242748
-    修改内容   : DTS2014082204531:CREG=1或CGREG=1设置之后，CREG主动上报和CGREG主动上报
-                 不断上报。
-  4.日    期   : 2015年11月19日
-    作    者   : h00360002
-    修改内容   : 为ctzr添加ctze上报方式
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvAtSetUnsolicitedRptReq(VOS_VOID *pMsg)
 {
     AT_MTA_MSG_STRU                            *pstAtMtaMsg             = VOS_NULL_PTR;
@@ -265,23 +193,7 @@ VOS_VOID TAF_MTA_RcvAtSetUnsolicitedRptReq(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvAtQryUnsolicitedRptReq
- 功能描述  : mta收到ID_AT_MTA_QRY_UNSOLICITED_RPT_REQ消息处理函数
- 输入参数  : VOS_VOID *pMsg  --消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月1日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核新增函数
-  2.日    期   : 2015年11月17日
-    作    者   : h00360002
-    修改内容   : CTZR中新增CTZE上报
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvAtQryUnsolicitedRptReq(VOS_VOID *pMsg)
 {
     AT_MTA_MSG_STRU                            *pstAtMtaMsg             = VOS_NULL_PTR;
@@ -359,21 +271,7 @@ VOS_VOID TAF_MTA_RcvAtQryUnsolicitedRptReq(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SysModeTransfer
- 功能描述  : 接入技术模式转换
- 输入参数  : TAF_SDC_SYS_MODE_ENUM_UINT8         enSysMode
- 输出参数  : 无
- 返 回 值  : TAF_SYS_MODE_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月17日
-    作    者   : zwx247453
-    修改内容   : 新增函数
-
-*****************************************************************************/
 TAF_SYS_MODE_ENUM_UINT8 TAF_MTA_SysModeTransfer(
     TAF_SDC_SYS_MODE_ENUM_UINT8         enSdcSysMode
 )
@@ -426,27 +324,7 @@ TAF_SYS_MODE_ENUM_UINT8 TAF_MTA_SysModeTransfer(
     return enSysMode;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvTafAgentGetSysModeReq
- 功能描述  : mta收到ID_TAFAGENT_MTA_GET_SYSMODE_REQ消息处理函数
- 输入参数  : VOS_VOID *pMsg  --消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月1日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核新增函数
-  2.日    期   : 2014年11月29日
-    作    者   : l00305157
-    修改内容   : Service_State_Optimize_PhaseI项目修改
-  3.日    期   : 2015年11月17日
-    作    者   : zwx247453
-    修改内容   : dallas gps参考时钟虚焊检测
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvTafAgentGetSysModeReq(VOS_VOID *pMsg)
 {
     TAFAGENT_MTA_GET_SYSMODE_CNF_STRU          *pstGetSysModeCnf    = VOS_NULL_PTR;
@@ -502,21 +380,7 @@ VOS_VOID TAF_MTA_RcvTafAgentGetSysModeReq(VOS_VOID *pMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SndStkCurcRptCfgInfoInd
- 功能描述  : mta给STK发送CURC设置消息函数
- 输入参数  : VOS_VOID *pMsg  --消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月1日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核新增函数
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_SndStkCurcRptCfgInfoInd(AT_MTA_CURC_SET_NOTIFY_STRU *pMsg)
 {
     TAF_STK_CURC_RPT_CFG_INFO_MSG_STRU          *pstStkCurcRptInfo  = VOS_NULL_PTR;
@@ -552,24 +416,8 @@ VOS_VOID TAF_MTA_SndStkCurcRptCfgInfoInd(AT_MTA_CURC_SET_NOTIFY_STRU *pMsg)
     return;
 }
 
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-1, end */
 #ifdef DMT
-/*****************************************************************************
- 函 数 名  : DMT_GetSysMode
- 功能描述  : DMT桩函数，用于A核获取接入模式
- 输入参数  : 无
- 输出参数  : TAF_AGENT_SYS_MODE_STRU *pstSysMode -- 系统当前接入模式
- 返 回 值  : VOS_OK  获取成功
-             VOS_ERR 获取失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年05月21日
-    作    者   : l00198894
-    修改内容   : TAF&SM接口优化项目新增函数
-
-*****************************************************************************/
 VOS_UINT32 DMT_GetSysMode(TAF_AGENT_SYS_MODE_STRU *pstSysMode)
 {
     TAF_SDC_SYS_INFO_STRU                 *pst3gppSysInfo     = VOS_NULL_PTR;

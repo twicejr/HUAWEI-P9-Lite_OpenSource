@@ -31,6 +31,7 @@ extern "C" {
 #define BUSY		(-2)
 #define NOMEM		(-3)
 #define INVAILD 	(-4)
+#define COPYFAIL	(-0xFFF)
 
 /* IOCTL入参和出参的SIZE限制 */
 #define SIZE_LIMIT_PARAM		(256)

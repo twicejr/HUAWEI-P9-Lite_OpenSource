@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmcInterSysCellResel.h
-  版 本 号   : 初稿
-  作    者   : W00167002
-  生成日期   : 2011年4月12日
-  最近修改   :
-  功能描述   : NasMmcInterSysCellResel.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年4月12日
-    作    者   : W00167002
-    修改内容   : 创建文件
-
-******************************************************************************/
 #ifndef __NAS_MMC_FSM_INTER_SYS_CELLRESEL_H__
 #define __NAS_MMC_FSM_INTER_SYS_CELLRESEL_H__
 
@@ -299,7 +282,6 @@ VOS_UINT32 NAS_MMC_RcvLmmSuspendInfoChangeNotify_InterSysCellResel_WaitAsResumeI
 
 #endif
 
-/* Added by s00246516 for L-C互操作项目, 2014-01-27, Begin */
 #if   (FEATURE_ON == FEATURE_CL_INTERWORK)
 VOS_UINT32 NAS_MMC_RcvCmmcaResumeInd_InterSysCellResel_WaitAsResumeInd(
     VOS_UINT32                          ulEventType,
@@ -311,7 +293,6 @@ VOS_UINT32 NAS_MMC_RcvTiWaitCmmcaResumeIndExpired_InterSysCellResel_WaitAsResume
     struct MsgCB                       *pstMsg
 );
 #endif
-/* Added by s00246516 for L-C互操作项目, 2014-01-27, End */
 
 #if ((FEATURE_ON == FEATURE_UE_MODE_CDMA) && (FEATURE_ON == FEATURE_LTE))
 

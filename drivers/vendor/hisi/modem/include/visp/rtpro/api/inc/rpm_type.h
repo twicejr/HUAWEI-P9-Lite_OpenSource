@@ -31,15 +31,9 @@
 #endif 
 
 
-/*DTS2010120804467  
-  g_ulNbaseProcCpuSwitchValue     CPU切换门限值
-  g_ulSckStubProcMsgSwitchValue
-  避免nbase任务占用CPU时间太长，主动释放CPU资源
-*/
-/*Modified by lKF35457, LACP DOWN问题, 2011/3/9   问题单号:DTS2011010702134 */
+
 #define NBASE_MSG_SWITCH_VALUE    10
 #define SCKSTUB_MSG_SWITCH_VALUE  10
-/*End of Modified by lKF35457, 2011/3/9   问题单号:DTS2011010702134 */
 #define DCL_TASK_SWITCH_INTERVAL  1/*切换CPU时间1ms*/
 /*在不调用GET FIRST情况下调用GET NEXT返回失败
 

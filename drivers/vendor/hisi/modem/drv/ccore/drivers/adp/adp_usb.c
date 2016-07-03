@@ -50,15 +50,7 @@ unsigned int BSP_USB_GetU2diagDefaultValue(void)
 typedef unsigned int (*MNTN_ERRLOGREGFUN)(char * cFileName,unsigned int ulFileId, unsigned int ulLine,
                 unsigned int ulErrNo, void * pBuf, unsigned int ulLen);
 
-/*****************************************************************************
- 函 数 名  : ErrlogRegFunc
- 功能描述  : USB MNTN注册异常日志接口，Porting项目中打桩
-             Added by c00204787 for errorlog,20120211
- 输入参数  : 无
- 输出参数  : 无
- 返回值    ：无
 
-*****************************************************************************/
 void MNTN_ERRLOG_REG_FUNC(MNTN_ERRLOGREGFUN pRegFunc)
 {
     return ;

@@ -1,14 +1,4 @@
-/******************************************************************************
 
-        @(#)Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : NasEmmTAUProc.h
-    Description :
-    History     :
-      1.  2008-09-17 周岩 00125190 FILE_CREAT
-      2.zhengjunyan 00148421 2009-12-09  CR39:TAU REQ
-******************************************************************************/
 
 #ifndef _NASEMMTAUPROC_H
 #define _NASEMMTAUPROC_H
@@ -635,7 +625,6 @@ extern VOS_VOID   NAS_EMM_TAU_TAUReqRejectCasue40
     NAS_EMM_CN_TAU_REJ_STRU      *pstTAURej
 
 );
-/* leixiantiao 00258641 降低圈复杂度 2014-7-20 begin */
 extern VOS_VOID NAS_EMM_TAU_TAUReqRejectCasue35
 (
     NAS_EMM_CN_CAUSE_ENUM_UINT8   ucTAUrejcause,
@@ -655,9 +644,7 @@ extern VOS_VOID NAS_EMM_TAU_TAUReqRejectCasue42
     NAS_EMM_CN_TAU_REJ_STRU      *pstTAURej
 
 );
-/* leixiantiao 00258641 降低圈复杂度 2014-7-20 end */
 
-/* s00193151 begin for 自适应网络拒绝原因值 */
 extern VOS_VOID   NAS_EMM_TAU_TAUReqRejectOtherCause
 (
     NAS_EMM_CN_CAUSE_ENUM_UINT8   ucTAUrejcause,
@@ -669,7 +656,6 @@ extern VOS_VOID    NAS_EMM_TAU_RcvTAURej
     const NAS_EMM_CN_CAUSE_ENUM_UINT8   ucTAUrejcause,
     NAS_EMM_CN_TAU_REJ_STRU            *pstTAURej
 );
-/* s00193151 end for 自适应网络拒绝原因值 */
 /* 新增入参TAU发起原因 */
 extern VOS_VOID   NAS_EMM_TAU_StartTAUREQ(NAS_LMM_OM_TAU_START_TYPE_ENUM_UINT32 enTauStartType);
 
@@ -726,9 +712,7 @@ extern VOS_UINT32  NAS_EMM_RegSomeStateMsgSysInfoCsgIdNotInCsgList( VOS_VOID );
 #endif
 /* 改到 TAUINTERFACE.H中声明 extern VOS_VOID   NAS_EMM_TAU_IsUplinkPending( VOS_VOID );*/
 extern VOS_VOID   NAS_EMM_RegSomeStateMsgSysInfoCommProc( VOS_VOID );
-/* leixiantiao 00258641 降低圈复杂度 2014-7-30 begin */
 extern VOS_VOID NAS_EMM_RegStateMmcOriResumeSysInfoWithTmsiProc(VOS_VOID);
-/* leixiantiao 00258641 降低圈复杂度 2014-7-30 end */
 
 
 extern VOS_VOID  NAS_EMM_RegStateMmcOriResumeSysInfoNeednotWaitTimerExpProc( VOS_VOID );

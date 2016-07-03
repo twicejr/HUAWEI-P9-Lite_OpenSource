@@ -166,8 +166,7 @@ typedef struct tagIN6PCBHASH
 #define  HASH_FIRSTLEVEL_MASK     127        /* 128 - 1 */
 #define  HASH_SECONDLEVEL_MASK    511        /* 512 - 1 */
 
-/* Modefied by wuling for DTS2014101506425 
-   性能优化，取16与替代原来的32位与，解决低16位变化对HASH索引值没影响的问题 */
+
 
 #define HASHFUNC6_ADDR6(pstAddr) \
     (((pstAddr)->s6_addr8[0])^((pstAddr)->s6_addr8[1])^((pstAddr)->s6_addr8[2])^((pstAddr)->s6_addr8[3])^ \
@@ -179,7 +178,6 @@ typedef struct tagIN6PCBHASH
 #define HASHFUNC6_SECOND(usFPort, pstFAddr) \
     ((HASHFUNC6_ADDR6(pstFAddr) + (usFPort))&(HASH_SECONDLEVEL_MASK))
 
-/*Added by zhoushisong202096, 针对SOCKET6做适配, 2014/1/26   问题单号:DTS2014010901642 */
 /* 通过IN6PCB获取UDP统计信息 */ 
 #define    INP6CB_TO_PERUDPSO_STAT(pIn6PCB, udpStatM, ulValue) \
         { \
@@ -200,7 +198,6 @@ typedef struct tagIN6PCBHASH
                             (((struct tagIN6PCB *)(pIn6PCB))->pstIn6p_socket)->unSocketStat.stPerRAWIP4Stat.rawIpStatM += ulValue; \
                         } \
                     }     
-/* End of Added by zhoushisong202096, 2014/1/26   问题单号:DTS2014010901642 */
 
 /*
  * functions declaration

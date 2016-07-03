@@ -1,23 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : hmac_tx_data.h
-  版 本 号   : 初稿
-  作    者   : c00178899
-  生成日期   : 2012年11月12日
-  最近修改   :
-  功能描述   : hmac_tx_bss_ap.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年11月12日
-    作    者   : c00178899
-    修改内容   : 创建文件
-  2.日    期   : 2013年1月8日
-    作    者   : z52447
-    修改内容   : 文件名修改
-******************************************************************************/
 
 #ifndef __HMAC_TX_DATA_H__
 #define __HMAC_TX_DATA_H__
@@ -121,21 +102,7 @@ extern  oal_uint8 hmac_tx_wmm_acm(oal_bool_enum_uint8  en_wmm, hmac_vap_stru *ps
   9 OTHERS定义
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : hmac_tx_get_next_mpdu
- 功能描述  : 获取下一个MPDU
- 输入参数  : pst_buf netbuf结构体;uc_netbuf_num netbuf个数
- 输出参数  :
- 返 回 值  :
- 调用函数  : hmac_tx_event_process_ap
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月14日
-    作    者   : c00178899
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_netbuf_stru *hmac_tx_get_next_mpdu(oal_netbuf_stru *pst_buf, oal_uint8 uc_netbuf_num)
 {
     oal_netbuf_stru       *pst_next_buf = OAL_PTR_NULL;
@@ -156,21 +123,7 @@ OAL_STATIC OAL_INLINE oal_netbuf_stru *hmac_tx_get_next_mpdu(oal_netbuf_stru *ps
     return pst_next_buf;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_tx_netbuf_list_enqueue
- 功能描述  : MPDU入队
- 输入参数  : pst_head 表头; pst_buf netbuf结构体;uc_netbuf_num netbuf个数
- 输出参数  :
- 返 回 值  :
- 调用函数  : hmac_tx_event_process_ap
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月14日
-    作    者   : c00178899
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void hmac_tx_netbuf_list_enqueue(oal_netbuf_head_stru *pst_head, oal_netbuf_stru *pst_buf, oal_uint8 uc_netbuf_num)
 {
     oal_uint32             ul_netbuf_index;
@@ -191,21 +144,7 @@ OAL_STATIC OAL_INLINE oal_void hmac_tx_netbuf_list_enqueue(oal_netbuf_head_stru 
 }
 
 
-/*****************************************************************************
- 函 数 名  : hmac_tx_get_addr
- 功能描述  : 获取原地址和目的地址
- 输入参数  : pst_hdr 802.11头结构体
- 输出参数  : puc_saddr 原地址 puc_daddr 目的地址
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月14日
-    作    者   : c00178899
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void hmac_tx_get_addr(mac_ieee80211_qos_htc_frame_addr4_stru *pst_hdr,
                                                 oal_uint8                               *puc_saddr,
                                                 oal_uint8                               *puc_daddr)
@@ -242,21 +181,7 @@ OAL_STATIC OAL_INLINE oal_void hmac_tx_get_addr(mac_ieee80211_qos_htc_frame_addr
     }
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_tx_set_frame_ctrl
- 功能描述  : 设置帧控制
- 输入参数  : ul_qos 是否是QOS站点 pst_tx_ctl CB字段 pst_hdr 802.11头
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月14日
-    作    者   : c00178899
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void hmac_tx_set_frame_ctrl(oal_uint32                               ul_qos,
                                                       mac_tx_ctl_stru                         *pst_tx_ctl,
                                                       mac_ieee80211_qos_htc_frame_addr4_stru  *pst_hdr_addr4)
@@ -319,21 +244,7 @@ OAL_STATIC OAL_INLINE oal_void hmac_tx_set_frame_ctrl(oal_uint32                
     }
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_tx_set_addresses
- 功能描述  : 设置帧地址控制
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月14日
-    作    者   : c00178899
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32 hmac_tx_set_addresses(
                 hmac_vap_stru                           *pst_vap,
                 hmac_user_stru                          *pst_user,
@@ -449,21 +360,7 @@ OAL_STATIC OAL_INLINE oal_uint32 hmac_tx_set_addresses(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_vap_ba_is_setup
- 功能描述  : 判断该用户对应的TID是否已经建立BA会话
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : OAL_TRUE代表已经创建了BA会话
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月11日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_bool_enum_uint8 hmac_vap_ba_is_setup(hmac_user_stru *pst_hmac_user, oal_uint8 uc_tidno)
 {
    if (OAL_UNLIKELY(OAL_PTR_NULL == pst_hmac_user) || uc_tidno >= WLAN_TID_MAX_NUM)
@@ -473,26 +370,7 @@ OAL_STATIC OAL_INLINE oal_bool_enum_uint8 hmac_vap_ba_is_setup(hmac_user_stru *p
    return (DMAC_BA_COMPLETE == pst_hmac_user->ast_tid_info[uc_tidno].st_ba_tx_info.en_ba_status) ? OAL_TRUE : OAL_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_tx_ba_check
- 功能描述  : 判断是否需要建立BA会话
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : OAL_TRUE代表需要建立BA会话
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月24日
-    作    者   : sunxiaolin
-    修改内容   : 新生成函数
-
-修改历史      :
-  2.日    期   : 2015年7月24日
-    作    者   : lixiaochuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_bool_enum_uint8 hmac_tid_need_ba_session(
                                     hmac_vap_stru   *pst_hmac_vap,
                                     hmac_user_stru  *pst_hmac_user,
@@ -590,7 +468,6 @@ OAL_STATIC OAL_INLINE oal_bool_enum_uint8 hmac_tid_need_ba_session(
         return OAL_FALSE;
     }
 
-    /* DTS2016012002852 虽然上面判断了状态不是COMPLETE,这里状态仍然可能是COMPLETE */
     if ((pst_hmac_tid_info->st_ba_tx_info.en_ba_status == DMAC_BA_INIT)
      && (pst_hmac_tid_info->st_ba_tx_info.uc_addba_attemps < HMAC_ADDBA_EXCHANGE_ATTEMPTS))
     {

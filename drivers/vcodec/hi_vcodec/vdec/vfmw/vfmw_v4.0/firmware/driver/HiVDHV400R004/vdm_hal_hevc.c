@@ -1,23 +1,5 @@
 
-/******************************************************************************
 
-  版权所有 (C), 2001-2011, 华为技术有限公司
-
-******************************************************************************
-    文 件 名   : vdmv300vplus_hal.c
-    版 本 号   : 初稿
-    作    者   :
-    生成日期   :
-    最近修改   :
-    功能描述   : VDMV300 硬件抽象
-
-
-  修改历史   :
-    1.日    期 : 2009-03-04
-    作    者   :
-    修改内容   :
-
-******************************************************************************/
 #include 	"basedef.h"
 #include 	"vfmw.h"
 #include 	"mem_manage.h"
@@ -487,7 +469,7 @@ SINT32 HEVCHAL_V400R004_SetPicMsg(HEVC_DEC_PIC_PARAM_S *pParam, VDMHAL_HWMEM_S *
     }
 
     //D43
-    tmp = pHwMem->pmv_left_phy_addr;  //保存pmv模块左相邻信息，计算BS用,h00216273,2014/4/19
+    tmp = pHwMem->pmv_left_phy_addr;
     WR_MSGWORD(pSlot + 43, tmp);
 
     //D54
@@ -546,7 +528,7 @@ SINT32 HEVCHAL_V400R004_SetPicMsg(HEVC_DEC_PIC_PARAM_S *pParam, VDMHAL_HWMEM_S *
     WR_MSGWORD(pSlot + 61, tmp);
 
     //D63
-    tmp = FstSlcMsgSlotPhy;//下一个下行消息也即第一个sliceMsg addr l00214825
+    tmp = FstSlcMsgSlotPhy;
     WR_MSGWORD(pSlot + 63, tmp);
 
     /*burst 1 ~ burst 4*/
@@ -883,7 +865,7 @@ SINT32 HEVCHAL_V400R004_CfgVdmReg(HEVC_DEC_PIC_PARAM_S *pPicParam, VDMHAL_HWMEM_
     WR_VREG( VREG_V400R004_STREAM_BASE_ADDR, D32, VdhId );
 
     //TIME_OUT
-    D32 = 0x00300C03; //这个值配置 l00214825
+    D32 = 0x00300C03;
     WR_VREG( VREG_V400R004_SED_TO,    D32, VdhId );
     WR_VREG( VREG_V400R004_ITRANS_TO, D32 , VdhId);
     WR_VREG( VREG_V400R004_PMV_TO,    D32, VdhId );
@@ -921,21 +903,20 @@ SINT32 HEVCHAL_V400R004_CfgVdmReg(HEVC_DEC_PIC_PARAM_S *pPicParam, VDMHAL_HWMEM_
 
     //HEAD_INF_OFFSET
     D32 = 0;
-    WR_VREG( VREG_V400R004_HEAD_INF_OFFSET, D32, VdhId ); //文档这里不匹配  l00214825
+    WR_VREG( VREG_V400R004_HEAD_INF_OFFSET, D32, VdhId );
 
     //PPFD_BUF_ADDR
     D32 = 0;
-    ((PPFD_V400R004_BUF_ADDR *)(&D32))->ppfd_buf_addr = 0;      //z00290437  20141016  PPFD模块删除
+    ((PPFD_V400R004_BUF_ADDR *)(&D32))->ppfd_buf_addr = 0;
     WR_VREG( VREG_V400R004_PPFD_BUF_ADDR, D32, VdhId );
 
     //PPFD_BUF_LEN
     D32 = 0;
     //((PPFD_V400R004_BUF_LEN*)(&D32))->ppfd_buf_len = pHwMem->ppfd_buf_len;
-    ((PPFD_V400R004_BUF_LEN *)(&D32))->ppfd_buf_len = 0;        //z00290437  20141016  PPFD模块删除
+    ((PPFD_V400R004_BUF_LEN *)(&D32))->ppfd_buf_len = 0;
     WR_VREG( VREG_V400R004_PPFD_BUF_LEN, D32, VdhId );
 
     //EMAR_ID
-    //width<=4096 配1 >4096 配0，h00216273
     if (pPicParam->pic_width_in_luma_samples <= 4096)
     {
         D32 = 0x10000;
@@ -1059,7 +1040,6 @@ SINT32 HEVCHAL_V400R004_StartDec(HEVC_DEC_PIC_PARAM_S *pParam, SINT32 VdhId)
         return VDMHAL_ERR;
     }
 
-    //如果 第一个 slice的起始宏块号不为0，则添加一个slice,长度置为1 ,防止逻辑挂死   l00214825
     if (pSlicePara->SliceSegmentTileAddress != 0)
     {
         slice_segment_tile_address = 0;
@@ -1068,7 +1048,7 @@ SINT32 HEVCHAL_V400R004_StartDec(HEVC_DEC_PIC_PARAM_S *pParam, SINT32 VdhId)
         if (pParam->tiles_enabled_flag)
         {
             slice_segment_address = 0;      //g_TsToRsMap[0]=0
-            end_ctb_in_slice_raster = pSlicePara->end_ctb_in_slice_raster;  //WriteSliceMsg()已经计算
+            end_ctb_in_slice_raster = pSlicePara->end_ctb_in_slice_raster;
         }
         else
         {
@@ -1174,7 +1154,7 @@ SINT32 HEVCHAL_V400R004_StartDec(HEVC_DEC_PIC_PARAM_S *pParam, SINT32 VdhId)
 
             if (pParam->tiles_enabled_flag)
             {
-                end_ctb_in_slice_raster = pTargetSlicePara->end_ctb_in_slice_raster;  //WriteSliceMsg()已经计算
+                end_ctb_in_slice_raster = pTargetSlicePara->end_ctb_in_slice_raster;
             }
             else
             {

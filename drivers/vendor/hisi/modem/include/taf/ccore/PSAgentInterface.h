@@ -1,18 +1,4 @@
-/******************************************************************************
-  Copyright (C), 1988-1999, Huawei Tech. Co., Ltd.
-  File name:      PSAgentInterface.h
-  Author:          liutao
-  Version:         V10
-  Date:             2004-12-25
-  Description:  the interface of Agent
-  History:
-  1. 日    期  : 2006年12月4日
-     作    者  : luojian id:60022475
-     修改内容  : 增加 #pragma pack(4)，问题单号:A32D07779
-  2. 日    期   : 2007年06月08日
-     作    者   : luojian 60022475
-     修改内容   : 根据问题单号A32D11576
-******************************************************************************/
+
 #ifndef    _PS_AGENT_INTERFACE_H
 #define    _PS_AGENT_INTERFACE_H
 

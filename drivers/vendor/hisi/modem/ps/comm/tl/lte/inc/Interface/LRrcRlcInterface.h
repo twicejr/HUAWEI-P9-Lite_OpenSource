@@ -1,17 +1,4 @@
-/******************************************************************************
 
-  Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : LRrcRlcInterface.h
-  Description     :
-  History           :
-      1.XiaoJun 58160       2009-08-25  Draft Enact
-      2.Xuruimei 49630      2009-01-19  Modify
-      3.Wang Yangcai 49178  2009-05-13  BJ9D00692:根据CP100平台修改消息ID
-      4.guojiyu 00149868    2010-09-6 DTS2010082501092:流控配置L2UE能力和带宽信息修改合入
-
-******************************************************************************/
 
 #ifndef __LRRCLRLCINTERFACE_H__
 #define __LRRCLRLCINTERFACE_H__

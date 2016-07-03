@@ -824,23 +824,7 @@ VOS_VOID Add_Timer_To_List( VOS_TIMER_CONTROL_BLOCK  *Timer)
     /*VOS_Splx(intLockLevel);*/
 }
 
-/*****************************************************************************
- 函 数 名  : VOS_CheckTimer
- 功能描述  : 检查TIMER是否正确
- 输入参数  : HTIMER  *phTm
-             VOS_UINT32 ulFileID
-             VOS_INT32 usLineNo
- 输出参数  : VOS_UINT32 *ulTimerID
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月5日
-    作    者   : s00207770
-    修改内容   : 规避TimerId被修改导致的检查错误发起主动复位
-
-*****************************************************************************/
 VOS_UINT32 VOS_CheckTimer( HTIMER  *phTm, VOS_UINT32 *ulTimerID,
                            VOS_UINT32 ulFileID, VOS_INT32 usLineNo )
 {

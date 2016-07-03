@@ -195,27 +195,7 @@ VOS_VOID NAS_MSCC_ProcessMsccIntMsg(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_ProcessBufferMsg
-Description     :
-                       1) Copy the message into local and process in preproc table
-                       2) Depending on return value of preproc: if return value is TRUE then continue to handle message
-                            from buffer.
-                       3) Otherwise process the message in current FSM and internal message.
 
-Input parameters:   Void
-Outout parameters:  None
-Return Value    :
-
-Modify History:
-    1)  Date    :   2015-02-03
-        Author  :   k902809
-        Modify content :    Create
-    2)  Date    :   2015-08-17
-        Author  :   wenlutao00176964
-        Modify content :DTS2015070802862:CL搜网状态机中SCAN超时后,用户设置SYSCFG，导致
-                        同时出现SCAN超时消息以及用户SYSCFG两条缓存同时出现的情况
-*****************************************************************************/
 VOS_VOID NAS_MSCC_ProcessBufferMsg( VOS_VOID )
 {
     NAS_MSCC_MSG_STRU                  *pstEntryMsg = VOS_NULL_PTR;

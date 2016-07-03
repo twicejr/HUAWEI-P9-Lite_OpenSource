@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : BST_OS_Sync.c
-  版 本 号   : 初稿
-  作    者   : d00173029
-  生成日期   : 2014年06月28日
-  最近修改   :
-  功能描述   : 实现操作系统线程通信邮箱、信号量
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年06月28日
-    作    者   : d00173029
-    修改内容   : 建立文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -46,20 +29,7 @@ BST_OS_SPINLOCK_T                       g_MboxLock;
    6 函数实现
 ******************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : BST_OS_CreateSem
- 功能描述  : 系统级起信号量
- 输入参数  : BST_VOID *pvArg
-             BST_UINT32 ulInitCnt
- 输出参数  : 无
- 返 回 值  : BST_OS_SEM_STRU
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_OS_SEM_STRU *BST_OS_CreateSem( BST_VOID *pvArg, BST_UINT32 ulInitCnt )
 {
     BST_OS_SEM_STRU                    *pstOsSem;
@@ -95,20 +65,7 @@ BST_OS_SEM_STRU *BST_OS_CreateSem( BST_VOID *pvArg, BST_UINT32 ulInitCnt )
     BST_OS_ThreadUnLock( tThreadLockCnt );
     return pstOsSem;
 }
-/*****************************************************************************
- 函 数 名  : BST_OS_RecvSem
- 功能描述  : 收到信号的信号量
- 输入参数  : BST_OS_SEM_STRU *pstSemHandle
-             BST_UINT32 ulTimeOut
- 输出参数  : 无
- 返 回 值  : BST_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_UINT32 BST_OS_RecvSem( BST_OS_SEM_STRU *pstSemHandle, BST_UINT32 ulTimeOut )
 {
     BST_UINT32                          ulStartTime;
@@ -163,19 +120,7 @@ BST_UINT32 BST_OS_RecvSem( BST_OS_SEM_STRU *pstSemHandle, BST_UINT32 ulTimeOut )
     }
 }
 
-/*****************************************************************************
- 函 数 名  : BST_OS_SendSem
- 功能描述  : 系统级发信号量
- 输入参数  : BST_OS_SEM_STRU *pstSemHandle
- 输出参数  : 无
- 返 回 值  : 返回发送成功或者失败
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_OS_SendSem( BST_OS_SEM_STRU *pstSemHandle )
 {
     if( BST_NULL_PTR == pstSemHandle )
@@ -188,19 +133,7 @@ BST_ERR_ENUM_UINT8 BST_OS_SendSem( BST_OS_SEM_STRU *pstSemHandle )
     return( BST_OS_PalSendSem( pstSemHandle->stHandle, pstSemHandle->pvArg ) );
 }
 
-/*****************************************************************************
- 函 数 名  : BST_OS_DeleteSem
- 功能描述  : 删除信号量
- 输入参数  : BST_OS_SEM_STRU *pstSemHandle
- 输出参数  : 无
- 返 回 值  : BST_ERR_ENUM_UINT8
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_OS_DeleteSem( BST_OS_SEM_STRU *pstSemHandle )
 {
     BST_ERR_ENUM_UINT8                  ucRtnVal;
@@ -220,20 +153,7 @@ BST_ERR_ENUM_UINT8 BST_OS_DeleteSem( BST_OS_SEM_STRU *pstSemHandle )
 /*lint +e438*/
 }
 
-/*****************************************************************************
- 函 数 名  : BST_OS_CreateMbx
- 功能描述  : 创建Mbx
- 输入参数  : BST_VOID *pvArg
-             BST_UINT32 ulSize
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_OS_MBX_T *BST_OS_CreateMbx( BST_VOID *pvArg, BST_UINT32 ulSize )
 {
     BST_OS_MBX_T                       *pstMbx;
@@ -262,19 +182,7 @@ BST_OS_MBX_T *BST_OS_CreateMbx( BST_VOID *pvArg, BST_UINT32 ulSize )
     return( pstMbx );
 }
 
-/*****************************************************************************
- 函 数 名  :
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 //lint -sem(lstAdd,custodial(2))
 BST_ERR_ENUM_UINT8 BST_OS_SendMail( BST_OS_MBX_T *pstMbx, BST_VOID *pMsg )
 {
@@ -304,19 +212,7 @@ BST_ERR_ENUM_UINT8 BST_OS_SendMail( BST_OS_MBX_T *pstMbx, BST_VOID *pMsg )
     return( BST_NO_ERROR_MSG );
 }
 
-/*****************************************************************************
- 函 数 名  :
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_UINT32 BST_OS_RecvMail(
     BST_OS_MBX_T   *pstMbx,
     BST_VOID      **pMsg,
@@ -372,19 +268,7 @@ BST_UINT32 BST_OS_RecvMail(
     return( ulPastTime );
     /*lint +e438*/
 }
-/*****************************************************************************
- 函 数 名  :
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_OS_DeleteMbx( BST_OS_MBX_T *pstMbx )
 {
     BST_OS_MAIL_T                     *pstContent;
@@ -416,19 +300,7 @@ BST_ERR_ENUM_UINT8 BST_OS_DeleteMbx( BST_OS_MBX_T *pstMbx )
 /*lint +e438*/
 }
 
-/*****************************************************************************
- 函 数 名  :
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_UINT32 BST_OS_GetMailAmount( BST_OS_MBX_T *pstMbx )
 {
     BST_ASSERT_NULL_RTN( pstMbx,        0U );
@@ -436,19 +308,7 @@ BST_UINT32 BST_OS_GetMailAmount( BST_OS_MBX_T *pstMbx )
     return( (BST_UINT32)lstCount( &pstMbx->hList ) );
 }
 
-/*****************************************************************************
- 函 数 名  :
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_UINT32 BST_OS_PeekMail( BST_OS_MBX_T *pstMbx, BST_VOID **pMsg )
 {
     BST_OS_MAIL_T                      *pstContent;

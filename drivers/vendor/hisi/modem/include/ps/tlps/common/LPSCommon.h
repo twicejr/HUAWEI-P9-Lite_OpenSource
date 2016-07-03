@@ -1,21 +1,4 @@
-/******************************************************************************
 
-  Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : LPSCommon.h
-  Description     : LPSCommon.h header file
-  History         :
-      1.XiaoJun 58160       2008-11-5   Draft Enact
-      2.xiaoJun 58160       2009-05-19  BJ9D00823 enum PS_MSG_ID_SECTION_ENUM中
-                   增加协议栈使用的空口消息的消息ID的起始值：PS_AIR_MSG_ID_BASE
-      3.xiaojun 58160       2009-05-19  BJ9D00828  AppMmInterface.h中关于路测
-                               的公共定义移植到OmCommon.h中，利于各个模块公共使
-                               用、维护
-      4.xiaojun 58160       2009-06-05  BJ9D01038  L2 OM透明命令特性合入, OM模块
-                               需要同步修改接口
-	  5.wangyue 00151278    2011-07-15 DTS2011062801783: KDF算法修改
-******************************************************************************/
 
 #ifndef __LPSCOMMON_H__
 #define __LPSCOMMON_H__
@@ -307,9 +290,7 @@ enum PS_MSG_ID_SECTION_ENUM
     PS_MSG_ID_ESM_TO_ESM_OM_BASE  = PS_MSG_ID_EMM_TO_EMM_OM_BASE + 0x60,
     PS_MSG_ID_ERABM_TO_ERABM_OM_BASE= PS_MSG_ID_ESM_TO_ESM_OM_BASE + 0x20,
 
-    /*DTS2013022506993 软调信息添加 BEGIN*/
     TRRC_DEBUG_MSG_BASE = PS_MSG_ID_ERABM_TO_ERABM_OM_BASE+0x20 ,   /*0x1d15*/
-    /*DTS2013022506993 软调信息添加 END*/
 
     PS_MSG_ID_LNAS_TO_OM_BASE       = TRRC_DEBUG_MSG_BASE + 0x20,
 
@@ -349,13 +330,7 @@ enum PS_MSG_ID_SECTION_ENUM
 
 
 };
-/*****************************************************************************
- 枚举名    : TL_KPI_MSG_ID_SECTION_ENUM
- 枚举说明  : KPI各模块消息段
- 1.日    期   : 2015年6月3日
-   作    者   : leixiantiao 00258641
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TL_KPI_MSG_ID_SECTION_ENUM
 {
     TL_KPI_MSG_ID_LTE_NAS_BASE = PS_MSG_ID_TL_KPI_BASE,
@@ -366,13 +341,7 @@ enum TL_KPI_MSG_ID_SECTION_ENUM
     TL_KPI_MSG_ID_BUTT
 };
 
-/*****************************************************************************
- 枚举名    : TL_DBG_MSG_ID_SECTION_ENUM
- 枚举说明  : 各模块DEBUG消息段
- 1.日    期   : 2015年8月28日
-   作    者   : leixiantiao 00258641
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TL_DBG_MSG_ID_SECTION_ENUM
 {
     TL_DBG_MSG_ID_LTE_NAS_BASE = PS_MSG_ID_TL_DBG_BASE,
@@ -383,13 +352,7 @@ enum TL_DBG_MSG_ID_SECTION_ENUM
     TL_DBG_MSG_ID_BUTT
 };
 
-/*****************************************************************************
- 枚举名    : TL_PTL_MSG_ID_SECTION_ENUM
- 枚举说明  : PTL各模块消息段
- 1.日    期   : 2015年7月20日
-   作    者   : y00151394
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TL_PTL_MSG_ID_SECTION_ENUM
 {
     TL_PTL_MSG_ID_LTE_NAS_BASE = PS_MSG_ID_TL_PTL_BASE,
@@ -400,13 +363,7 @@ enum TL_PTL_MSG_ID_SECTION_ENUM
     TL_PTL_MSG_ID_BUTT
 };
 
-/*****************************************************************************
- 枚举名    : TL_DT_MSG_ID_SECTION_ENUM
- 枚举说明  : DT各模块消息段
- 1.日    期   : 2015年7月20日
-   作    者   : y00151394
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TL_DT_MSG_ID_SECTION_ENUM
 {
     TL_DT_MSG_ID_LTE_NAS_BASE = PS_MSG_ID_TL_DT_BASE,

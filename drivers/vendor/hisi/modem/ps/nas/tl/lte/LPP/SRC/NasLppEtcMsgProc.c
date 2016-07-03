@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasLppEtcMsgProc.c
-  版 本 号   : 初稿
-  作    者   : LIFUXIN
-  生成日期   : 2015年7月30日
-  最近修改   :
-  功能描述   : LPP 模块的内部消息处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年9月1日
-    作    者   : LIFUXIN
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -47,16 +30,7 @@ extern "C" {
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- Function Name   : NAS_LPP_SndMtaResetGnssPositionInfo
- Description     : reset GNSS的辅助数据
- Input           : None
- Output          : None
- Return          : UINT32
 
- History         :
-    1.lifuxin 00253982      2015-10-21  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_LPP_SndMtaResetGnssPositionInfo(VOS_VOID)
 {
     LPP_MTA_RESET_GNSS_ASSIST_DATA_STRU    *pstResetGnssAssistData  = NAS_LPP_NULL_PTR;
@@ -79,17 +53,7 @@ VOS_VOID NAS_LPP_SndMtaResetGnssPositionInfo(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_RcvLppEtcResetPostitionInfoInd
- Description     : ETC模块给LPP发送的reset positioning info的处理
- Input           : None
- Output          : None
- Return          : UINT32
 
- History         :
-    1.lifuxin 00253982      2015-9-1  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_LPP_RcvLppEtcResetPostitionInfoInd( ETC_LPP_RESET_POSTION_INFO_STRU *pRcvMsg )
 {
     NAS_LPP_LOC_TECH_MAP_STRU              *pstLocTechmap = NAS_LPP_NULL_PTR;
@@ -139,16 +103,7 @@ VOS_VOID NAS_LPP_RcvLppEtcResetPostitionInfoInd( ETC_LPP_RESET_POSTION_INFO_STRU
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EtcMsgDistr
- Description     : ETC模块给LPP模块自己发的消息的处理入口函数
- Input           : None
- Output          : None
- Return          : UINT32
 
- History         :
-    1.lifuxin 00253982      2015-9-1  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_LPP_EtcMsgDistr( VOS_VOID *pRcvMsg )
 {
     PS_MSG_HEADER_STRU         *pEmmMsg  = VOS_NULL_PTR;

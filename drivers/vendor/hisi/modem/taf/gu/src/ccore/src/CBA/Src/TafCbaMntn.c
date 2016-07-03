@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafCbaMntn.c
-  版 本 号   : 初稿
-  作    者   : l00171473
-  生成日期   : 2012年3月19日
-  最近修改   :
-  功能描述   : CBA模块可维可测相关的处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年3月19日
-    作    者   : l00171473
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -47,20 +30,7 @@ extern "C" {
 
 
 
-/******************************************************************************
-函 数 名  : TAF_CBA_SndOmLogInfo
-功能描述  : 发送CB模块可维可测事件消息
-输入参数  : enEventType: 可维可测事件ID
-输出参数  : 无
-返 回 值  : VOS_VOID
-调用函数  :
-被调函数  :
 
-修改历史      :
-  1.日    期   : 2012年3月10日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-******************************************************************************/
 VOS_VOID TAF_CBA_SndOmLogInfo(
     TAF_CBA_OM_LOG_ID_ENUM_UINT32       enLogId
 )
@@ -85,22 +55,7 @@ VOS_VOID TAF_CBA_SndOmLogInfo(
 }
 
 
-/******************************************************************************
-函 数 名  : TAF_CBA_SndOmDeledRecordInfo
-功能描述  : 删除记录的可维可测信息
-输入参数  : enType:  可维可测事件ID
-            enDelReason: 删除记录的原因
-            pstDelRecord: 删除的记录项
-输出参数  : 无
-返 回 值  : VOS_VOID
-调用函数  :
-被调函数  :
 
-修改历史      :
-  1.日    期   : 2012年3月10日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-******************************************************************************/
 VOS_VOID TAF_CBA_SndOmDeledRecordInfo(
     TAF_CBA_OM_MSG_ID_ENUM_UINT32       enType,
     TAF_CBA_OM_DEL_REASON_ENUM_UINT8    enDelReason,
@@ -132,24 +87,7 @@ VOS_VOID TAF_CBA_SndOmDeledRecordInfo(
     DIAG_TraceReport(&stMsg);
 }
 
-/******************************************************************************
-函 数 名  : TAF_CBS_SndOmSavedRecordInfo
-功能描述  : 保存记录的可维可测信息
-输入参数  : enMsgType: 可维可测事件ID
-            enSaveType: 保存类型
-            pstNewRecord: 新的记录项
-            ulIndex: 新记录项索引
-            ulRecordNum:  最新记录个数
-输出参数  : 无
-返 回 值  : VOS_VOID
-调用函数  :
-被调函数  :
 
-修改历史      :
-  1.日    期   : 2012年3月10日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-******************************************************************************/
 VOS_VOID TAF_CBS_SndOmSavedRecordInfo(
     TAF_CBA_OM_MSG_ID_ENUM_UINT32       enMsgType,
     TAF_CBA_OM_SAVE_TYPE_ENUM_UINT8     enSaveType,
@@ -179,21 +117,7 @@ VOS_VOID TAF_CBS_SndOmSavedRecordInfo(
 }
 
 
-/******************************************************************************
-函 数 名  : TAF_CBA_SndOmDupRecordInfo
-功能描述  : 重复记录的可维可测信息
-输入参数  : enType: 可维可测事件ID
-            pstOldRecord: 原记录项
-输出参数  : 无
-返 回 值  : VOS_VOID
-调用函数  :
-被调函数  :
 
-修改历史      :
-  1.日    期   : 2012年3月10日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-******************************************************************************/
 VOS_VOID TAF_CBA_SndOmDupRecordInfo(
     TAF_CBA_OM_MSG_ID_ENUM_UINT32       enMsgType,
     TAF_CBA_RECORD_STRU                *pstOldRecord
@@ -220,20 +144,7 @@ VOS_VOID TAF_CBA_SndOmDupRecordInfo(
     DIAG_TraceReport(&stMsg);
 }
 
-/******************************************************************************
-函 数 名  : TAF_CBA_SndOmCbmiDownloadListInfo
-功能描述  : 当前CBS CBMID List的信息的可维可测信息
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_VOID
-调用函数  :
-被调函数  :
 
-修改历史      :
-  1.日    期   : 2012年3月28日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-******************************************************************************/
 VOS_VOID TAF_CBA_SndOmCbmiDownloadListInfo(VOS_VOID)
 {
     TAF_CBA_MNTN_INFO_STRU             *pstMsg;
@@ -274,20 +185,7 @@ VOS_VOID TAF_CBA_SndOmCbmiDownloadListInfo(VOS_VOID)
     PS_MEM_FREE(WUEPS_PID_TAF, pstMsg);
 }
 
-/******************************************************************************
-函 数 名  : TAF_CBA_SndOmCbmiRangeList
-功能描述  : 当前CBS CBMIR List的信息的可维可测信息
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_VOID
-调用函数  :
-被调函数  :
 
-修改历史      :
-  1.日    期   : 2012年3月28日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-******************************************************************************/
 VOS_VOID TAF_CBA_SndOmCbmiRangeList(VOS_VOID)
 {
     TAF_CBA_MNTN_INFO_STRU             *pstMsg;
@@ -338,20 +236,7 @@ VOS_VOID TAF_CBA_SndOmCbmiRangeList(VOS_VOID)
 }
 
 
-/******************************************************************************
-函 数 名  : TAF_CBA_SndOmNvimInfo
-功能描述  : 发送CBA模块的NV配置的可维可测消息
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_VOID
-调用函数  :
-被调函数  :
 
-修改历史      :
-  1.日    期   : 2012年3月28日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-******************************************************************************/
 VOS_VOID TAF_CBA_SndOmNvimInfo(VOS_VOID)
 {
     VOS_UINT8                          *pucMsgBuf = VOS_NULL_PTR;

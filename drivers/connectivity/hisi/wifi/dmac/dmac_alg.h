@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : dmac_alg.h
-  版 本 号   : 初稿
-  作    者   : 陈艳
-  生成日期   : 2013年3月21日
-  最近修改   :
-  功能描述   : dmac_alg.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年3月21日
-    作    者   : 陈艳
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __DMAC_ALG_H__
 #define __DMAC_ALG_H__
@@ -161,23 +144,7 @@ extern oal_uint8     guc_dmac_alg_pktno;
 /*****************************************************************************
   9 OTHERS定义
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : dmac_alg_tx_complete_notify
- 功能描述  : 调用挂接到TX COMPLETE流程上的算法钩子
- 输入参数  : pst_mac_vap: VAP结构体;
-            pst_user: 用户结构体;
-            pst_buf 数据BUF;
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月20日
-    作    者   : chenyan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32  dmac_alg_tx_complete_notify(
                 mac_user_stru                  *pst_user,
                 oal_netbuf_stru                *pst_buf,
@@ -229,21 +196,7 @@ OAL_STATIC OAL_INLINE oal_uint32  dmac_alg_tx_complete_notify(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_alg_tx_schedule_notify
- 功能描述  : 调用挂接到TX COMPLETE流程上的算法钩子
- 输入参数  : pst_device: 设备结构体
- 输出参数  : pst_sch_output
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月20日
-    作    者   : chenyan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32 dmac_alg_tx_schedule_notify(hal_to_dmac_device_stru *pst_hal_device, oal_uint8 uc_ac_num, mac_tid_schedule_output_stru *pst_sch_output)
 {
     mac_device_stru                 *pst_alg_device;
@@ -266,21 +219,7 @@ OAL_STATIC OAL_INLINE oal_uint32 dmac_alg_tx_schedule_notify(hal_to_dmac_device_
     return gst_alg_main.p_tx_schedule_func(pst_alg_device, uc_ac_num, pst_sch_output);
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_alg_tid_update_notify
- 功能描述  : 更新TID队列时回调算法
- 输入参数  : pst_tid: TID结构体
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月20日
-    作    者   : chenyan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32 dmac_alg_tid_update_notify(dmac_tid_stru *pst_tid)
 {
     if (OAL_UNLIKELY(OAL_PTR_NULL == gst_alg_main.p_tid_update_func))
@@ -291,23 +230,7 @@ OAL_STATIC OAL_INLINE oal_uint32 dmac_alg_tid_update_notify(dmac_tid_stru *pst_t
     return gst_alg_main.p_tid_update_func(pst_tid);
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_alg_update_bandwidth_mode
- 功能描述  : 更新发送描述符中的"freq bandwidth mode"
- 输入参数  : pst_mac_user: USER结构体指针
-             en_algexist : 是否存在auto rate算法
- 输出参数  : pst_txop_alg: 算法结构体指针，其中包含"freq bandwidth mode"，用于
-                           发送描述符的填写
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月6日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  dmac_alg_update_bandwidth_mode(
                 mac_user_stru        *pst_mac_user,
                 hal_tx_txop_alg_stru *pst_txop_alg,
@@ -338,23 +261,7 @@ OAL_STATIC OAL_INLINE oal_void  dmac_alg_update_bandwidth_mode(
     }
 }
 #ifdef _PRE_WLAN_FEATURE_SMPS
-/*****************************************************************************
- 函 数 名  : dmac_tx_check_mimo_rate
- 功能描述  : 更新发送描述符中的"phy tx mode 1"
- 输入参数  : pst_dmac_vap : VAP结构体指针
-             pst_dmac_user: USER结构体指针
- 输出参数  : pst_txop_alg : 算法结构体指针，其中包含"phy tx mode 1"，用于
-                            发送描述符的填写
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月10日
-    作    者   : zhangyu
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_bool_enum_uint8  dmac_tx_check_mimo_rate(oal_uint8 uc_smps, oal_uint8 uc_protocol_mode, hal_tx_txop_alg_stru *pst_txop_alg, oal_uint8 uc_data_idx)
 {
     oal_bool_enum_uint8  en_mimo_rate = OAL_FALSE;
@@ -384,23 +291,7 @@ OAL_STATIC OAL_INLINE oal_bool_enum_uint8  dmac_tx_check_mimo_rate(oal_uint8 uc_
     return en_mimo_rate;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_update_smps_txop_alg
- 功能描述  : 更新发送描述符中的"phy tx mode 1"
- 输入参数  : pst_dmac_vap : VAP结构体指针
-             pst_dmac_user: USER结构体指针
- 输出参数  : pst_txop_alg : 算法结构体指针，其中包含"phy tx mode 1"，用于
-                            发送描述符的填写
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月10日
-    作    者   : zhangyu
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  dmac_tx_update_smps_txop_alg(dmac_vap_stru *pst_dmac_vap, mac_user_stru *pst_mac_user, hal_tx_txop_alg_stru *pst_txop_alg)
 {
     oal_uint8                    uc_smps             =  0;
@@ -477,21 +368,7 @@ OAL_STATIC OAL_INLINE oal_void  dmac_tx_update_smps_txop_alg(dmac_vap_stru *pst_
     }
 }
 #endif
-/*****************************************************************************
- 函 数 名  : alg_data_tx_notify
- 功能描述  : 调用挂接到TX流程上的算法钩子
- 输入参数  : pst_mac_user: 用户结构体; pst_cb CB字段;
- 输出参数  : pst_txop_param 出参
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月20日
-    作    者   : chenyan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32  dmac_alg_tx_notify(
                 dmac_vap_stru           *pst_dmac_vap,
                 mac_user_stru           *pst_user,
@@ -556,21 +433,7 @@ OAL_STATIC OAL_INLINE oal_uint32  dmac_alg_tx_notify(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_alg_rx_notify
- 功能描述  : 调用挂接到RX流程上的算法钩子
- 输入参数  : pst_mac_vap: VAP结构体; pst_mac_user: 用户结构体; pst_buf 数据BUF;
- 输出参数  : ul_output 出参
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月20日
-    作    者   : chenyan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  dmac_alg_rx_notify(
                 mac_vap_stru                       *pst_mac_vap,
                 mac_user_stru                      *pst_mac_user,
@@ -609,23 +472,7 @@ OAL_STATIC OAL_INLINE oal_void  dmac_alg_rx_notify(
 }
 
 #ifdef _PRE_WLAN_FEATURE_DBAC
-/*****************************************************************************
- 函 数 名  : dmac_alg_enqueue_tid_notify
- 功能描述  : 调用挂接到报文入TID队列流程上的算法钩子
- 输入参数  : pst_mac_vap
-             pst_tid
-             uc_mpdu_num
- 输出参数  : ul_output 出参
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月28日
-    作    者   : liwenjun 68207
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32  dmac_alg_enqueue_tid_notify(
                                         mac_vap_stru   *pst_mac_vap,
                                         dmac_tid_stru  *pst_tid,
@@ -666,21 +513,7 @@ OAL_STATIC OAL_INLINE oal_uint32  dmac_alg_enqueue_tid_notify(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : dmac_alg_vap_up_notify
- 功能描述  : vap up时调用算法钩子
- 输入参数  : pst_mac_vap
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月28日
-    作    者   : liwenjun 68207
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32  dmac_alg_vap_up_notify(mac_vap_stru *pst_mac_vap)
 {
     dmac_alg_stru  *pst_alg_stru;
@@ -707,21 +540,7 @@ OAL_STATIC OAL_INLINE oal_uint32  dmac_alg_vap_up_notify(mac_vap_stru *pst_mac_v
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_alg_vap_down_notify
- 功能描述  : vap down时调用算法钩子
- 输入参数  : pst_mac_vap
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月28日
-    作    者   : liwenjun 68207
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32  dmac_alg_vap_down_notify(mac_vap_stru *pst_mac_vap)
 {
     dmac_alg_stru  *pst_alg_stru;
@@ -748,21 +567,7 @@ OAL_STATIC OAL_INLINE oal_uint32  dmac_alg_vap_down_notify(mac_vap_stru *pst_mac
     return OAL_SUCC;
 }
 #ifdef _PRE_WLAN_FEATURE_DBAC
-/*****************************************************************************
- 函 数 名  : dmac_alg_probe_req_rx_notify
- 功能描述  : 收到probe req时的钩子函数
- 输入参数  : pst_dmac_vap、pst_probe_req
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月28日
-    作    者   : liwenjun 68207
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32  dmac_alg_probe_req_rx_notify(dmac_vap_stru *pst_dmac_vap, oal_netbuf_stru *pst_net_buf)
 {
     dmac_alg_stru  *pst_alg_stru;
@@ -792,23 +597,7 @@ OAL_STATIC OAL_INLINE oal_uint32  dmac_alg_probe_req_rx_notify(dmac_vap_stru *ps
 
 #ifdef _PRE_WLAN_CHIP_TEST_ALG
 
-/*****************************************************************************
- 函 数 名  : dmac_alg_rx_event_notify
- 功能描述  : 调用接收报文事件通知的钩子
- 输入参数  : uc_vap_id
-             pst_netbuf
-             pst_cb_ctrl
- 输出参数  :
- 返 回 值  : 错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月19日
-    作    者   : liwenjun 68207
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void dmac_alg_rx_event_notify(oal_uint8 uc_vap_id,
                                     oal_netbuf_stru *pst_netbuf, dmac_rx_ctl_stru *pst_cb_ctrl)
 {
@@ -828,21 +617,7 @@ OAL_STATIC OAL_INLINE oal_void dmac_alg_rx_event_notify(oal_uint8 uc_vap_id,
 
 #ifdef _PRE_WLAN_FEATURE_FLOWCTL
 
-/*****************************************************************************
- 函 数 名  : dmac_alg_flowctl_backp_notify
- 功能描述  : flowctrl的反压机制
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月3日
-    作    者   : x00189397
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32 dmac_alg_flowctl_backp_notify(mac_vap_stru *pst_vap,
                                                                 oal_uint16 us_total_mpdu_num,
                                                                 oal_uint16 aus_ac_mpdu_num[])

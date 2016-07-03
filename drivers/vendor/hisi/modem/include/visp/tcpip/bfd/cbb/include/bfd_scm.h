@@ -32,7 +32,6 @@ extern "C" {
 ULONG BFD_Core_SessionCreate(ULONG *pulDstIP, ULONG *pulSrcIP, ULONG ulOutIfIndex, ULONG * pulSessionID, ULONG ulVrfIndex,ULONG ulIpVer,ULONG ulStartId);
 */
 
-/*SGSN需求DTS2010090200956: BFD 多会话和应用共用问题*/
 typedef struct tagBFD_CORE_SESSION_CREATE_S { 
     ULONG ulIpVer;
     ULONG ulDstIP[4];
@@ -41,9 +40,7 @@ typedef struct tagBFD_CORE_SESSION_CREATE_S {
     ULONG ulVrfIndex;
     ULONG ulStartId;
     ULONG ulBfdType;
-    /* Add for V2R3C05, by b0177000/y00176567, at 2011-06-03. 修改原因: V2R3C05  增加BFD创建的协议类型字段 */   
     ULONG ulBfdProtocol;
-    /*Added by zhongyu206043, 增加BFD中的TOS值设置 for S.BFD.1.1, 2012/10/11 */
     UCHAR ucTos;
     UCHAR ucRes[3]; /* 保证字节对齐 */
     ULONG ulRemoteDiscr;
@@ -53,11 +50,8 @@ typedef struct tagBFD_CORE_SESSION_CREATE_S {
 
 ULONG BFD_Core_SessionCreate(BFD_CORE_SESSION_CREATE_S *pstSession, ULONG * pulSessionID);
 
-/*Added by guojianjun178934, BFD问题单同步处理, 2013/11/18   问题单号:DTS2013111409068 */
-/*Modified by q62011 for DTS2013101602773 在批量操作的情况下，会出现BFD队列满导致
-        满规格的配置失败因此通过优化，减少一个消息,2013/10/17*/
+
 ULONG BFD_Core_SessionCreateByParam(BFD_CORE_SESSION_CREATE_S *pstSession, BFD_SESSION_PARA_S *pSessPara,ULONG * pulSessionID);
-/* End of Added by guojianjun178934, 2013/11/18   问题单号:DTS2013111409068 */
 
 ULONG BFD_SessionCreateBySlave(ULONG ulDstIP, ULONG ulSrcIP, ULONG ulOutIfIndex, ULONG ulSessionID,ULONG ulIpVer,ULONG ulVrfIndex);
 
@@ -230,7 +224,6 @@ ULONG BFD_Core_GetBfdSessionVersion(ULONG ulVrfIndex, ULONG ulSessionId, ULONG *
 *******************************************************************************/
 ULONG BFD_Core_CheckCapability(ULONG ulVrfIndex, ULONG ulSessionId);
 
-/*Added by guojianjun178934, S-IP-C20-001-BFD6.001 BFD6和OSPFv3联动，要做刷新动作, 2014/8/13   问题单号:DOPRA-15  */
 /*******************************************************************************
 *    Func Name: BFD4_Core_CheckSession
 * Date Created: 2014-08-13
@@ -287,7 +280,6 @@ ULONG BFD6_Core_CheckSession(ULONG ulVrfIndex, ULONG ulSessionId);
 *
 *******************************************************************************/
 ULONG BFD_Core_CheckSession(ULONG ulVrfIndex, ULONG ulSessionId);
-/* End of Added by guojianjun178934, 2014/8/13   问题单号:DOPRA-15  */
 
 
 

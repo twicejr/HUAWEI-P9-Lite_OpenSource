@@ -1,16 +1,4 @@
-/*******************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : NasComm.h
-  Description : NAS内部使用的头文件
-  History     :
-      1.  张志勇   2003.12.11   新版作成
 
-
-      2.日    期   : 2010年3月2日
-        作    者   : zhoujun /z40661
-        修改内容   : NAS R7协议升级
-
-*******************************************************************************/
 
 #ifndef _NAS_COMM_H_
 #define _NAS_COMM_H_
@@ -156,9 +144,7 @@ extern "C" {
 #define     GMM_TIMER_DELAY_RADIO_CAPA_TRIGED_RAU       (27)                    /* 在TC的GCF测试中，GMM延迟向MMC回复SUSPEND_RSP定时器 */
 
 
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, begin */
 #define    GMM_TIMER_WAIT_AS_MS_RADIO_CAPA_INFO         (28)                    /* 发rau或attach前判断当前L能力和g_GmmGlobalCtrl.ucMsRadioCapSupportLteFromAs中记录的不一致，启动定时器等接入层上报最新的MS Radio Access capability IE信息*/
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, end */
 
 #define     GMM_TIMER_DETACH_FOR_POWER_OFF              (29)                    /* GMM关机detach定时器 */
 
@@ -175,10 +161,9 @@ extern "C" {
 #define     GMM_REGSTER_AND_SHUTDOWN_TIMER               99                     /* 不支持GPRS时需要停止的定时器 */
 #define     GMM_TIMER_ALL                                100
 
-#define     GMM_TIMER_ALL_EXCEPT_T3312_T3323                (101)
+#define     GMM_TIMER_ALL_EXCEPT_T3312_T3323_T3302                (101)
 
 /* MM TIMER ID */
-/* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-9, begin */
 typedef enum NAS_MM_TIMER_ID
 {
     MM_TIMER_T3210                          = 0,
@@ -225,14 +210,10 @@ typedef enum NAS_MM_TIMER_ID
     MM_TIMER_PROTECT_CS_DETACH              = 22,
 
 
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-22, begin */
     MM_TIMER_WAIT_GET_HO_SECU_INFO_CNF      = 23,
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-22, end */
 
-/* Added by y00245242 for V3R3C60_eCall项目, 2014-4-1, begin */
     MM_TIMER_T3242                          = 24,
     MM_TIMER_T3243                          = 25,
-/* Added by y00245242 for V3R3C60_eCall项目, 2014-4-1, end */
 
     MM_TIMER_PROTECT_MT_CSFB_PAGING_PROCEDURE               = 26,
 
@@ -242,7 +223,6 @@ typedef enum NAS_MM_TIMER_ID
     MM_TIMER_MAX
 }NAS_MM_TIMER_ID_ENUM;
 typedef VOS_UINT8 NAS_MM_TIMER_ID_ENUM_UINT8;
-/* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-9, end */
 
 
 /* MMA TIMER ID List */
@@ -336,13 +316,7 @@ typedef struct
     VOS_UINT32    ulErrCode;
 }SM_PDP_ACT_ERR_CODE_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_CONVERT_MTC_SESSION_STRU
- 结构说明  : NAS与MTC的sesson type 转换结构体
- 1.日    期   : 2015年09月04日
-   作    者   : j00174725
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     RRC_NAS_SESSION_TYPE_ENUM_UINT8     enNasSessionType;

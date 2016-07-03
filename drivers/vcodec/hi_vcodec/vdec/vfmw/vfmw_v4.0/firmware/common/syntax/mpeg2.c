@@ -3512,7 +3512,6 @@ SINT32 MP2_InitMb(MP2_SLCINFO_S *pSlcInfo)
         }
 
         pSlcInfo->slicen_start_mb_num = SlcStartMbNum;
-		//mpeg2发现过大的宏块号(l00225186)
 
 //	   PicTotalMbNum = pSlcInfo->pic_height_in_mb*pSlcInfo->pic_width_in_mb-1;
 	   if(pSlcInfo->slicen_start_mb_num > (pSlcInfo->pic_total_mb_num - 1))

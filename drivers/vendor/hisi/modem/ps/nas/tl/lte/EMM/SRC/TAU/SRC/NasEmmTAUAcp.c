@@ -1,39 +1,4 @@
-/*******************************************************************************
-  Copyright     : 2005-2007, Huawei Tech. Co., Ltd.
-  File name     : EmmTAU.c
-  Description   : EMM TAU REQUEST功能相关处理用源文件
-  Function List :
-    01.   NAS_EMM_MsRegSsNormalMsgSysinfo
-    02.   NAS_EMM_MsRegSsNormalMsgT3411Exp
-    03.   NAS_EMM_MsRegSsNormalMsgT3412Exp
-    04.   NAS_EMM_MsRegSsNormalMsgT3402Exp
-    05.   NAS_EMM_MsRegSsNormalMsgMmIntraTAUReq
-    06.   NAS_EMM_MsRegSsAtpUpdataMsgSysinfo
-    07.   NAS_EMM_MsRegSsAtpUpdataMsgT3411Exp
-    08.   NAS_EMM_MsRegSsAtpUpdataMsgT3402Exp
-    09.   NAS_EMM_MsRegSsLimitSRMsgSysinfo
-    10.   NAS_EMM_MsRegSsPLMNSearchMsgSysinfo
-    11.   NAS_EMM_MsRegSsUpdataNeedMsgSysinfo
-    12.   NAS_EMM_MsRegSsNocellMsgSysinfo
-    13.   NAS_EMM_MsTAUInitSsWaitCNCnfMsgTAUAcp
-    14.   NAS_EMM_MsTAUInitSsWaitCNCnfMsgTAURej
-    15.   NAS_EMM_MsTAUInitSsWaitCNCnfMsgT3430Exp
-    16.   NAS_EMM_MsTAUInitSsWaitCNCnfMsgSysinfo
-    17.   NAS_EMM_MsTauInitSsWaitCNCnfMsgIntraConnectFailInd
-    18.   NAS_EMM_MsTAUInitSsWaitCNCnfMsgRrcRelInd
-    19.   NAS_EMM_MsTAUInitSsWaitMrrcRelMsgMrrcRelInd
-    20.   NAS_EMM_MsSERInitSsWaitCNCnfMsgSysinfo
-    21.   NAS_EMM_MsSERInitSsWaitCNCnfMsgT3411Exp
-    22.   NAS_EMM_MsSERInitSsWaitCNCnfMsgT3412Exp
-    23.   NAS_EMM_MsSERInitSsWaitCNCnfMsgT3402Exp
-    24.   NAS_EMM_MsSERInitSsWaitCNCnfMsgMmIntraTAUReq
 
-  History       :
-    1.  Zhouyan 00125190  2008.09.17  新规作成
-    2.  Zhengjunyan 00148421  2009.02.01 问题单号：BA8D00953
-        T3440定时器时长被修改
-    3.  leili       00132387    2009.06.25   BJ9001269 收到系统消息后处理优化
-*******************************************************************************/
 
 /*****************************************************************************
   1 Include HeadFile
@@ -65,17 +30,7 @@ extern "C" {
 /*****************************************************************************
   2 Declare the Global Variable
 *****************************************************************************/
-/*****************************************************************************
- Function Name   : NAS_EMM_TAU_SetLai
- Description     : 收到网侧的TAU ACP消息后设置LAI标识
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2011-12-26  Draft Enact
-
-*****************************************************************************/
 /*lint -e960*/
 /*lint -e961*/
 VOS_VOID  NAS_EMM_TAU_SetLai(VOS_VOID *pstRcvMsg )
@@ -114,17 +69,7 @@ VOS_VOID  NAS_EMM_TAU_SetLai(VOS_VOID *pstRcvMsg )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_TAU_SetMsId
- Description     : 收到网侧的TAU ACP消息后设置MS ID标识
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2011-12-26  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_TAU_SetMsId(VOS_VOID *pstRcvMsg )
 {
     NAS_EMM_CN_TAU_ACP_STRU             *pstTauAcp;
@@ -161,17 +106,7 @@ VOS_VOID  NAS_EMM_TAU_SetMsId(VOS_VOID *pstRcvMsg )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_TAU_SetCnCause
- Description     : 收到网侧的TAU ACP消息后设置cause值
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2011-12-26  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_TAU_SetCnCause(VOS_VOID *pstRcvMsg )
 {
     NAS_EMM_CN_TAU_ACP_STRU             *pstTauAcp;
@@ -201,17 +136,7 @@ VOS_VOID  NAS_EMM_TAU_SetCnCause(VOS_VOID *pstRcvMsg )
     }
     return;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_TAU_SetEplmnList
- Description     : 收到网侧的TAU ACP消息后设置EPLMN LIST值
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2011-12-26  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_TAU_SetEplmnList(VOS_VOID *pstRcvMsg )
 {
     NAS_EMM_CN_TAU_ACP_STRU             *pstTauAcp;
@@ -252,17 +177,7 @@ VOS_VOID  NAS_EMM_TAU_SetEplmnList(VOS_VOID *pstRcvMsg )
     return;
 }
 
-/*******************************************************************************
- Function Name   : NAS_EMM_TAU_TauAcpNormalCsfbSerCollisionProc
- Description     : 打断紧急CSFB的SER发起的TAU成功之后的冲突处理
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
-  History  :
-    1. sunjitan    00193151    2012-08-22   Draft Enact
-    2. leixiantiao 00258641    2015-07-09   fix DTS2015062509266
-*******************************************************************************/
 VOS_VOID NAS_EMM_TAU_TauAcpEmergencyCsfbSerCollisionProc(VOS_VOID)
 {
     NAS_LMM_ADDITIONAL_UPDATE_RSLT_ENUM_UINT32  enAddUpdateRslt;
@@ -302,17 +217,7 @@ VOS_VOID NAS_EMM_TAU_TauAcpEmergencyCsfbSerCollisionProc(VOS_VOID)
     return ;
 }
 
-/*******************************************************************************
- Function Name   : NAS_EMM_TAU_TauAcpNormalCsfbSerCollisionProc
- Description     : 打断普通CSFB的SER发起的TAU成功之后的冲突处理
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
-  History  :
-    1. sunjitan    00193151    2012-08-22   Draft Enact
-    2. leixiantiao 00258641    2015-07-09   fix DTS2015062509266
-*******************************************************************************/
 VOS_VOID NAS_EMM_TAU_TauAcpNormalCsfbSerCollisionProc(VOS_VOID)
 {
     NAS_LMM_ADDITIONAL_UPDATE_RSLT_ENUM_UINT32  enAddUpdateRslt;
@@ -375,17 +280,7 @@ VOS_VOID NAS_EMM_TAU_TauAcpNormalCsfbSerCollisionProc(VOS_VOID)
     return ;
 }
 
-/*******************************************************************************
- Function Name   : NAS_EMM_TAU_TauAcpSerCollisionProc
- Description     : 非EPS ONLY TAU打断service流程处理
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
-  History  :
-    1. lihong 00150010 & wangchen 00209181 2012-06-29 新规作成
-    2. sunjitan 00193151                   2012-09-22 modify for 紧急CSFB
-*******************************************************************************/
 VOS_VOID NAS_EMM_TAU_TauAcpSerCollisionProc(VOS_VOID)
 {
     /* 根据SERVICE发起原因的不同，进行相应处理 */
@@ -439,18 +334,7 @@ VOS_VOID NAS_EMM_TAU_TauAcpSerCollisionProc(VOS_VOID)
 
 }
 
-/*******************************************************************************
-  Module   :
-  Function : NAS_EMM_TAU_TauAcpCollisionProc
-  Input    :
-  Output   :
-  NOTE     :
-  Return   :
-  History  :
-    1.  Zhouyan 00125190  2008.09.17  新规作成
-    2.  X00148705         2010.03.11  修改名字，标志在函数内处理
-    3.  l00150010         2011-09-29  Modify combined detach
-*******************************************************************************/
+
 VOS_VOID NAS_EMM_TAU_TauAcpCollisionProc()
 {
 
@@ -483,17 +367,7 @@ VOS_VOID NAS_EMM_TAU_TauAcpCollisionProc()
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_TAU_TauAcpTaOnlySerCollisionProc
- Description     : EPS ONLY TAU打断service流程处理
- Input           : pMsgStru------------TAU ACCEPT消息指针
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010  & wangchen 00209181    2012-06-29  Draft Enact
-    2.leixiantiao 00258641                   2015-07-09  fix DTS2015062509266
-*****************************************************************************/
 VOS_VOID NAS_EMM_TAU_TauAcpTaOnlySerCollisionProc
 (
     VOS_VOID                           *pMsgStru
@@ -598,16 +472,7 @@ VOS_VOID NAS_EMM_TAU_TauAcpTaOnlySerCollisionProc
     return ;
 }
 
-/*******************************************************************************
-  Module   : TAU ACCPET ,TA ONLY时的冲突处理
-  Function : NAS_EMM_TAU_TauAcpTaOnlyCollisionProc
-  Input    : NONE
-  Output   : NONE
-  NOTE     :
-  Return   : VOS_VOID
-  History  :
-    1.  l00150010         2012.02.25  新规作成
-*******************************************************************************/
+
 VOS_VOID NAS_EMM_TAU_TauAcpTaOnlyCollisionProc
 (
     VOS_VOID                           *pMsgStru
@@ -642,19 +507,7 @@ VOS_VOID NAS_EMM_TAU_TauAcpTaOnlyCollisionProc
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_TAU_TauSuccProc
- Description     : TAU成功的处理
- Input           : pMsgStru------------TAU ACCEPT消息指针
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2011-08-23  Draft Enact
-    2.sunjitan 00193151   2012-05-24  增加清除Resume触发和类型记录信息
-    3.lihong 00150010     2012-12-18  Modify:Emergency
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_TAU_TauSuccProc
 (
     VOS_VOID                           *pMsgStru
@@ -759,18 +612,7 @@ VOS_VOID  NAS_EMM_TAU_TauSuccProc
 
 }
 
-/*******************************************************************************
-  Module   : TAU ACCEPT,TA UPDATED ONLY,原因值为2的处理
-  Function : NAS_EMM_TAU_ProcTauAcpCauseVal2
-  Input    : pstRcvMsg--------------------TAU ACCEPT消息指针
-  Output   : NONE
-  NOTE     :
-  Return   : NONE
-  History  :
-    1. lihong     00150010  2011.08.23  新规作成
-    2. lihong     00150010  2012.12.13  Modify:Emergency
 
-*******************************************************************************/
 VOS_VOID NAS_EMM_TAU_ProcTauAcpCauseVal2
 (
     VOS_VOID                           *pstRcvMsg
@@ -821,18 +663,7 @@ VOS_VOID NAS_EMM_TAU_ProcTauAcpCauseVal2
     }
 }
 
-/*******************************************************************************
-  Module   : TAU ACCEPT,TA UPDATED ONLY,原因值为18的处理
-  Function : NAS_EMM_TAU_ProcTauAcpCauseVal18
-  Input    : pstRcvMsg--------------------TAU ACCEPT消息指针
-  Output   : NONE
-  NOTE     :
-  Return   : NONE
-  History  :
-    1. lihong     00150010  2011.08.23  新规作成
-    2. lihong     00150010  2012.12.13  Modify:Emergency
 
-*******************************************************************************/
 VOS_VOID NAS_EMM_TAU_ProcTauAcpCauseVal18
 (
     VOS_VOID                           *pstRcvMsg
@@ -893,19 +724,7 @@ VOS_VOID NAS_EMM_TAU_ProcTauAcpCauseVal18
     }
 }
 
-/*******************************************************************************
-  Module   : TAU ACCEPT,TA UPDATED ONLY,原因值为16,17,22的处理
-  Function : NAS_EMM_TAU_ProcTauAcpCauseVal161722
-  Input    : pstRcvMsg--------------------TAU ACCEPT消息指针
-  Output   : NONE
-  NOTE     :
-  Return   : NONE
-  History  :
-    1. lihong     00150010  2011.08.23  新规作成
-    2.wangchen    00209181  2012.06.29  Modify:cs/ps1
-    3. lihong     00150010  2012.12.13  Modify:Emergency
 
-*******************************************************************************/
 VOS_VOID NAS_EMM_TAU_ProcTauAcpCauseVal1617
 (
     VOS_VOID                           *pstRcvMsg
@@ -986,16 +805,7 @@ VOS_VOID NAS_EMM_TAU_ProcTauAcpCauseVal1617
         /*NAS_EMM_RecogAndProc161722Disable(pstTAUAcp->ucEMMCause);*/
     }
 }
-/*******************************************************************************
-  Module   : TAU ACCEPT,TA UPDATED ONLY,原因值为22的处理
-  Function : NAS_EMM_TAU_ProcTauAcpCauseVal22
-  Input    : pstRcvMsg--------------------TAU ACCEPT消息指针
-  Output   : NONE
-  NOTE     :
-  Return   : NONE
-  History  :
-    1. wangchen 00209181    2014-09-03  新规作成
-*******************************************************************************/
+
 VOS_VOID NAS_EMM_TAU_ProcTauAcpCauseVal22
 (
     VOS_VOID                           *pstRcvMsg
@@ -1055,17 +865,7 @@ VOS_VOID NAS_EMM_TAU_ProcTauAcpCauseVal22
 
 
 
-/*******************************************************************************
-  Module   : 处理联合TAU 只有TA Updated且携带原因值的场景
-  Function : NAS_EMM_TAU_ProcTaUpdatedOnlyWithCause
-  Input    : pMsgStru---------------TAU ACCEPT译码后的存储结构指针
-  Output   : NONE
-  NOTE     :
-  Return   : NONE
-  History  :
-    1. lihong     00150010  2011.08.23  新规作成
 
-*******************************************************************************/
 VOS_VOID    NAS_EMM_TAU_ProcTaUpdatedOnlyWithCause
 (
     VOS_VOID                *pstRcvMsg
@@ -1106,35 +906,14 @@ VOS_VOID    NAS_EMM_TAU_ProcTaUpdatedOnlyWithCause
     return;
 }
 
-/*******************************************************************************
-  Module   : 处理联合TAU 只有TA Updated且不携带原因值的场景
-  Function : NAS_EMM_TAU_ProcTaUpdatedOnlyNoCause
-  Input    : pMsgStru---------------TAU ACCEPT译码后的存储结构指针
-  Output   : NONE
-  NOTE     :
-  Return   : NONE
-  History  :
-    1. lihong     00150010  2011.08.24  新规作成
-    2. lihong     00150010  2012.12.14  Modify:Emergency
 
-*******************************************************************************/
 VOS_VOID    NAS_EMM_TAU_ProcTaUpdatedOnlyNoCause( VOS_VOID *pstRcvMsg )
 {
     NAS_EMM_TAU_ProcTauAcpCauseVal1617(pstRcvMsg);
 
 }
 
-/*******************************************************************************
-  Module   : 处理TAU 专有TA Updated的场景
-  Function : NAS_EMM_TAU_ProcTaUpdatedOnlySucc
-  Input    : pMsgStru---------------TAU ACCEPT译码后的存储结构指针
-  Output   : NONE
-  NOTE     :
-  Return   : NONE
-  History  :
-    1. lihong     00150010  2011.08.23  新规作成
 
-*******************************************************************************/
 VOS_VOID    NAS_EMM_TAU_ProcTaUpdatedOnlySucc
 (
     VOS_VOID                *pstRcvMsg
@@ -1164,18 +943,7 @@ VOS_VOID    NAS_EMM_TAU_ProcTaUpdatedOnlySucc
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_TAU_IsCombinedTauTaUpdatedOnly
- Description     : 判断是否为联合TAU，结果值为TA UPDATE ONLY的场景
- Input           : enEmmTauType-------------------TAU 类型
-                   enEpsUpdateRslt----------------TAU结果值
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2011-08-23  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_TAU_IsCombinedTauTaUpdatedOnly
 (
     MMC_LMM_TAU_TYPE_ENUM_UINT32            enEmmTauType,
@@ -1199,17 +967,7 @@ VOS_UINT32  NAS_EMM_TAU_IsCombinedTauTaUpdatedOnly
     return  NAS_EMM_YES;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_TAU_SaveTauAcpIe
- Description     : 存储TAU ACCPET中携带的信元
- Input           : pMsgStru------------TAU ACCEPT消息指针
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2011-08-23  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_TAU_SaveTauAcpIe
 (
     VOS_VOID                           *pMsgStru
@@ -1341,17 +1099,7 @@ VOS_VOID  NAS_EMM_TAU_SaveTauAcpIe
 #endif
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_TAU_SetTauRegDomain
- Description     : 收到TAU ACCPET消息时设置注册域
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2011-08-23  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_TAU_SetTauRegDomain
 (
     NAS_EMM_EPS_UPDATE_RST_ENUM_UINT8   enEPSupdataRst
@@ -1375,17 +1123,7 @@ VOS_VOID  NAS_EMM_TAU_SetTauRegDomain
         NAS_LMM_SetEmmInfoRegDomain(NAS_LMM_REG_DOMAIN_CS_PS);
     }
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_GetUeSuppISR
- Description     : 获取UE支持ISR能力
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2011-7-6  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_GetUeSuppISR(VOS_VOID )
 {
     NAS_EMM_PUB_INFO_STRU               *pstPubInfo;
@@ -1408,23 +1146,7 @@ VOS_UINT32  NAS_EMM_GetUeSuppISR(VOS_VOID )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_IsAnnexP5BConditionSatisfied
- Description     : 判断是否满足24.008 annex P.5条件中a)
- P.5
- a)  the IMS voice over PS session indicators received for Iu mode and S1 mode have the values
- -   "IMS voice over PS session supported in Iu mode, but not supported in A/Gb mode" and
- -   "IMS voice over PS session in S1 mode not supported", and
-     the voice domain preference for UTRAN as defined in 3GPP TS 24.167 [134] is not "CS voice only";
 
- Input           : None
- Output          : None
- Return          : VOS_VOID
-
- History         :
-    1.leili 00132387      2013-12-13  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_IsAnnexP5AConditionSatisfied(VOS_VOID)
 {
     NAS_EMM_PUB_INFO_STRU              *pstPubInfo;
@@ -1450,23 +1172,7 @@ VOS_UINT32 NAS_EMM_IsAnnexP5AConditionSatisfied(VOS_VOID)
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_IsAnnexP5BConditionSatisfied
- Description     : 判断是否满足24.008 annex P.5条件中b)
- P.5
- b)  the IMS voice over PS session indicators received for Iu mode and S1 mode have the values
- -   "IMS voice over PS session in Iu mode and A/G mode not supported" and
- -   "IMS voice over PS session in S1 mode supported", and
-     the voice domain preference for E-UTRAN as defined in 3GPP TS 24.167 [134] is not "CS voice only"; or
 
- Input           : None
- Output          : None
- Return          : VOS_VOID
-
- History         :
-    1.leili 00132387      2013-12-13  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_IsAnnexP5BConditionSatisfied(VOS_VOID)
 {
     NAS_EMM_PUB_INFO_STRU              *pstPubInfo;
@@ -1490,37 +1196,7 @@ VOS_UINT32 NAS_EMM_IsAnnexP5BConditionSatisfied(VOS_VOID)
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_IsAnnexP5ConditionSatisfied
- Description     : 判断是否满足24.008 annex P.5条件
- P.3 Inter-system change between A/Gb mode and Iu mode
- An MS is required to perform routing area updating for IMS voice termination if:
- 1)  the upper layers have indicated that the MS is available for voice calls in the IMS (see 3GPP TS 24.301 [120], subclause 3.1);
- 2)  the MS is configured with "Mobility Management for IMS Voice Termination" enabled as defined in 3GPP TS 24.167 [134];
- P.5 Inter-system change between Iu mode and S1 mode
- An MS is required to perform routing area updating for IMS voice termination at inter-system change from S1 mode to Iu mode and tracking area updating for IMS voice termination at inter-system change from Iu mode to S1 mode if:
- 1)  conditions 1 and 2 of annex P.3 are fulfilled; and
- 2)  any of the following conditions a, b and c is fulfilled:
- a)  the IMS voice over PS session indicators received for Iu mode and S1 mode have the values
- -   "IMS voice over PS session supported in Iu mode, but not supported in A/Gb mode" and
- -   "IMS voice over PS session in S1 mode not supported", and
-     the voice domain preference for UTRAN as defined in 3GPP TS 24.167 [134] is not "CS voice only";
- b)  the IMS voice over PS session indicators received for Iu mode and S1 mode have the values
- -   "IMS voice over PS session in Iu mode and A/G mode not supported" and
- -   "IMS voice over PS session in S1 mode supported", and
-     the voice domain preference for E-UTRAN as defined in 3GPP TS 24.167 [134] is not "CS voice only"; or
- c)  the IMS voice over PS session indicators received for Iu mode and S1 mode have the values
- -       "IMS voice over PS session supported in Iu mode, but not supported in A/Gb mode" and
- -       "IMS voice over PS session in S1 mode supported", and
-         exactly one of the voice domain preferences for UTRAN and E-UTRAN as defined in 3GPP TS 24.167 [134] is "CS voice only"
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2013-12-13  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_IsAnnexP5ConditionSatisfied(VOS_VOID)
 {
     NAS_EMM_PUB_INFO_STRU              *pstPubInfo;
@@ -1542,17 +1218,7 @@ VOS_UINT32  NAS_EMM_IsAnnexP5ConditionSatisfied(VOS_VOID)
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_TAU_SetISRAct
- Description     : 收到TAU ACCPET消息时设置ISR激活
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2012-03-05  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_TAU_SetISRAct
 (
     NAS_EMM_EPS_UPDATE_RST_ENUM_UINT8   enEPSupdataRst
@@ -1632,21 +1298,7 @@ VOS_VOID  NAS_EMM_TAU_SetISRAct
 
     return;
 }
-/*******************************************************************************
-  Module   :
-  Function : Nas_Emm_TAU_RcvTAUAcp
-  Input    :
-  Output   :
-  NOTE     :
-  Return   :
-  History  :
-    1. Zhouyan     00125190  2008.09.17  新规作成
-    2. Zhengjunyan 00148421  2009.02.01  BA8D00953:T3440定时器时长被修改
-    3. zhengjunyan 00148421  2009-08-11  BJ9D01646:T3402定时器时长
-    4. zhengjunyan 00148421  2009-12-09  24301-CR39
-    5. lihong   00150010     2011-08-23  Combined Tau
-    6. lihong   00150010     2012-12-13  Modify:Emergency
-*******************************************************************************/
+
 VOS_VOID    NAS_EMM_TAU_RcvTAUAcp(VOS_VOID *pMsgStru)
 {
     NAS_EMM_CN_TAU_ACP_STRU            *pstTAUAcp      = NAS_EMM_NULL_PTR;
@@ -1757,17 +1409,7 @@ VOS_VOID    NAS_EMM_TAU_RcvTAUAcp(VOS_VOID *pMsgStru)
 
 
 
-/*******************************************************************************
-  Module   :
-  Function : NAS_EMM_MsTAUInitSsWaitCNCnfMsgTAUAcp
-  Input    :
-  Output   :
-  NOTE     :
-  Return   :
-  History  :
-    1.  Zhouyan 00125190  2008.09.10  新规作成
-    2.houzhiyuan 00285180 2014-10-20  add: 拒绝原因值优化 DTS2014110307415
-*******************************************************************************/
+
 VOS_UINT32 NAS_EMM_MsTauInitSsWaitCNCnfMsgTAUAcp(VOS_UINT32  ulMsgId,
                                                    VOS_VOID   *pMsgStru
                                )
@@ -1847,19 +1489,7 @@ VOS_VOID  NAS_EMM_TAU_CollisionDetachProc( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_TAU_CollisionServiceProc
- Description     :
- Input           : VOS_VOID*   指向发送TAU结果的函数的指针
-                   VOS_VOID*   指向发送TAU结果函数入参的指针
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.y00159566             2010-2-20  Draft Enact
-    2.sunbing 49683         2011-11-11 增加短消息的异常处理
-    3.leixiantiao 00258641  2015-07-09 fix DTS2015062509266
-*****************************************************************************/
 VOS_VOID  NAS_EMM_TAU_CollisionServiceProc
 (
     NAS_LMM_SEND_TAU_RESULT_ACT_FUN     pfTauRslt,
@@ -1967,17 +1597,7 @@ VOS_VOID  NAS_EMM_TAU_CollisionServiceProc
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_TAU_RelIndCollisionProc
- Description     : 底层失败后对冲突的处理
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2011-12-29  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_TAU_RelIndCollisionProc
 (
     NAS_LMM_SEND_TAU_RESULT_ACT_FUN     pfTauRslt,

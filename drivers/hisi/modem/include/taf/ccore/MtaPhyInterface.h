@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2013, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : MtaPhyInterface.h
-  版 本 号   : 初稿
-  作    者   : l00198894
-  生成日期   : 2013年02月26日
-  最近修改   :
-  功能描述   : MTA与物理层之间的接口头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年02月26日
-    作    者   : l00198894
-    修改内容   : 创建文件
-
- ******************************************************************************/
 
 #ifndef __MTAPHYINTERFACE_H__
 #define __MTAPHYINTERFACE_H__
@@ -44,13 +27,7 @@
 /*****************************************************************************
   3 枚举定义
 *****************************************************************************/
-/*****************************************************************************
- 枚举名    : MTA_PHY_GPS_RF_CLOCK_STATE_ENUM
- 结构说明  : RF芯片GPS时钟状态枚举
- 1.日    期   : 2012年06月25日
-   作    者   : h44270
-   修改内容   : Added for AGPS
-*****************************************************************************/
+
 enum MTA_PHY_GPS_RF_CLOCK_STATE_ENUM
 {
     MTA_PHY_GPS_RF_CLOCK_STATE_RUNNING          = 0,
@@ -59,13 +36,7 @@ enum MTA_PHY_GPS_RF_CLOCK_STATE_ENUM
 };
 typedef VOS_UINT16 MTA_PHY_GPS_RF_CLOCK_STATE_ENUM_UINT16;
 
-/*****************************************************************************
- 枚举名    : MTA_BODY_SAR_STATE_ENUM
- 结构说明  : Body SAR 状态枚举
- 1.日    期   : 2013年02月27日
-   作    者   : l00198894
-   修改内容   : 新增枚举
-*****************************************************************************/
+
 enum MTA_BODY_SAR_STATE_ENUM
 {
     MTA_BODY_SAR_OFF                    = 0,                                    /* Body SAR功能关闭 */
@@ -74,13 +45,7 @@ enum MTA_BODY_SAR_STATE_ENUM
 };
 typedef VOS_UINT16 MTA_BODY_SAR_STATE_ENUM_UINT16;
 
-/*****************************************************************************
- 枚举名    : MTA_PHY_RESULT_ENUM
- 结构说明  : MTA与物理层错误码枚举
- 1.日    期   : 2013年02月27日
-   作    者   : l00198894
-   修改内容   : 新增枚举
-*****************************************************************************/
+
 enum MTA_PHY_RESULT_ENUM
 {
     MTA_PHY_RESULT_NO_ERROR             = 0,
@@ -90,13 +55,7 @@ enum MTA_PHY_RESULT_ENUM
 };
 typedef VOS_UINT16 MTA_PHY_RESULT_ENUM_UINT16;
 
-/*****************************************************************************
- 结构名    : MTA_PHY_EMERGENCY_CALL_STATUS_ENUM
- 结构说明  : 紧急呼叫状态枚举
- 1.日    期   : 2013年04月09日
-   作    者   : z00214637
-   修改内容   : 新增
-*****************************************************************************/
+
 enum MTA_PHY_EMERGENCY_CALL_STATUS_ENUM
 {
     MTA_PHY_EMERGENCY_CALL_END  = 0,                                            /* 紧急呼叫结束 */
@@ -105,14 +64,7 @@ enum MTA_PHY_EMERGENCY_CALL_STATUS_ENUM
 };
 typedef VOS_UINT16 MTA_PHY_EMERGENCY_CALL_STATUS_ENUM_UINT16;
 
-/*****************************************************************************
- 枚举名    : PHY_MTA_REFCLOCK_STATUS_ENUM
- 枚举说明  : GPS参考时钟锁定状态枚举
 
-  1.日    期   : 2013年07月22日
-    作    者   : l00198894
-    修改内容   : V9R1 AGPS
-*****************************************************************************/
 enum PHY_MTA_REFCLOCK_STATUS_ENUM
 {
     PHY_MTA_REFCLOCK_UNLOCKED           = 0,                                    /* GPS参考时钟频率非锁定状态 */
@@ -121,14 +73,7 @@ enum PHY_MTA_REFCLOCK_STATUS_ENUM
 };
 typedef VOS_UINT16 PHY_MTA_REFCLOCK_STATUS_ENUM_UINT16;
 
-/*****************************************************************************
- 枚举名    : PHY_MTA_GPHY_XPASS_MODE_ENUM
- 枚举说明  : G XPASS模式
 
-  1.日    期   : 2014年12月18日
-    作    者   : w00286360
-    修改内容   : seattle
-*****************************************************************************/
 enum PHY_MTA_GPHY_XPASS_MODE_ENUM
 {
     PHY_MTA_GPHY_XPASS_MODE_DISABLE     = 0,                                    /* 非XPASS模式，类似高铁 */
@@ -137,14 +82,7 @@ enum PHY_MTA_GPHY_XPASS_MODE_ENUM
 };
 typedef VOS_UINT16 PHY_MTA_GPHY_XPASS_MODE_ENUM_UINT16;
 
-/*****************************************************************************
- 枚举名    : PHY_MTA_WPHY_HIGHWAY_MODE_ENUM
- 枚举说明  : W高铁模式
 
-  1.日    期   : 2014年12月18日
-    作    者   : w00286360
-    修改内容   : seattle
-*****************************************************************************/
 enum PHY_MTA_WPHY_HIGHWAY_MODE_ENUM
 {
     PHY_MTA_WPHY_HIGHWAY_MODE_DISABLE     = 0,                                  /* W非高铁模式 */
@@ -155,14 +93,7 @@ typedef VOS_UINT16 PHY_MTA_WPHY_HIGHWAY_MODE_ENUM_UINT16;
 
 #if 0
 #if(FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 枚举名    : MTA_LPHY_COEX_BW_TYPE_ENUM
- 枚举说明  : LTE&WIFI宽带类型枚举
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
-*****************************************************************************/
 enum MTA_LPHY_COEX_BW_TYPE_ENUM
 {
     MTA_LPHY_COEX_BAND_WIDTH_6RB        = 0,                                    /* 宽带1.4M */
@@ -175,14 +106,7 @@ enum MTA_LPHY_COEX_BW_TYPE_ENUM
 };
 typedef VOS_UINT16 MTA_LPHY_COEX_BW_TYPE_ENUM_UINT16;
 
-/*****************************************************************************
- 枚举名    : MTA_LPHY_COEX_CFG_ENUM
- 枚举说明  : LTE&WIFI共存方案配置枚举
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
-*****************************************************************************/
 enum MTA_LPHY_COEX_CFG_ENUM
 {
     MTA_LPHY_COEX_CFG_DISABLE           = 0,
@@ -193,14 +117,7 @@ typedef VOS_UINT16 MTA_LPHY_COEX_CFG_ENUM_UINT16;
 #endif
 #endif
 
-/*****************************************************************************
- 枚举名    : PHY_MTA_AFC_CLK_STATUS_ENUM
- 枚举说明  : AFC时钟锁定状态枚举
 
-  1.日    期   : 2015年9月7日
-    作    者   : l00198894
-    修改内容   : 新增枚举
-*****************************************************************************/
 enum PHY_MTA_AFC_CLK_STATUS_ENUM
 {
     PHY_MTA_AFC_CLK_UNLOCKED           = 0,                                     /* AFC时钟频率非锁定状态 */
@@ -224,13 +141,7 @@ typedef VOS_UINT16 PHY_MTA_AFC_CLK_STATUS_ENUM_UINT16;
 /*****************************************************************************
   6 消息定义
 *****************************************************************************/
-/*****************************************************************************
- 枚举名    : MTA_PHY_MSG_TYPE_ENUM
- 结构说明  : 原语的usMsgID
- 1.日    期   : 2013年02月27日
-   作    者   : l00198894
-   修改内容   : 新增枚举
-*****************************************************************************/
+
 enum MTA_PHY_MSG_TYPE_ENUM
 {
     /* 消息名称 */                              /* 消息ID */                    /* 备注 */
@@ -310,14 +221,7 @@ enum MTA_PHY_MSG_TYPE_ENUM
 typedef VOS_UINT16 MTA_PHY_MSG_TYPE_ENUM_UINT16;
 
 
-/*****************************************************************************
-枚举名    : MTA_UPHY_INIT_STATUS_ENUM
-结构说明  : UPHY初始化状态的枚举
 
-  1.日    期   : 2014年02月14日
-    作    者   : h00246512
-    修改内容   : DSDS项目新增接口
-*****************************************************************************/
 enum MTA_UPHY_INIT_STATUS_ENUM
 {
     MTA_UPHY_INIT_STATUS_SUCCESS,
@@ -329,13 +233,7 @@ typedef VOS_UINT16  MTA_UPHY_INIT_STATUS_ENUM_UINT16;
 /*****************************************************************************
   7 STRUCT定义
 *****************************************************************************/
-/*******************************************************************************
- 结构名    : MTA_PHY_MSG_HEADER_STRU
- 结构说明  : 消息头
- 1.日    期   : 2012年06月25日
-   作    者   : h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     MTA_PHY_MSG_HEADER                                              /*_H2ASN_Skip*/
@@ -343,13 +241,7 @@ typedef struct
 
 
 
-/*******************************************************************************
- 结构名    : NAS_PHY_COM_INIT_REQ_STRU
- 结构说明  : 请求物理层开启上电初始化
- 1.日    期   : 2012年06月25日
-   作    者   : h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     MTA_PHY_MSG_HEADER                                              /*_H2ASN_Skip*/
@@ -358,13 +250,7 @@ typedef struct
 }NAS_PHY_COM_INIT_REQ_STRU;
 
 
-/*******************************************************************************
- 结构名    : PHY_NAS_COM_INIT_CNF_STRU
- 结构说明  : 物理层上电初始化成功
- 1.日    期   : 2012年06月25日
-   作    者   : h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     MTA_PHY_MSG_HEADER                                              /*_H2ASN_Skip*/
@@ -372,13 +258,7 @@ typedef struct
 }PHY_NAS_COM_INIT_CNF_STRU;
 
 
-/*******************************************************************************
- 结构名    : MTA_PHY_SET_GPS_RF_CLOCK_REQ_STRU
- 结构说明  : 请求物理层开启或关闭RF芯片上的GPS时钟
- 1.日    期   : 2012年06月25日
-   作    者   : h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     MTA_PHY_MSG_HEADER                                              /*_H2ASN_Skip*/
@@ -387,13 +267,7 @@ typedef struct
     VOS_UINT16                                  ausReserved1[1];    /* 保留位 */
 }MTA_PHY_SET_GPS_RF_CLOCK_REQ_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_PHY_SET_GPS_RF_CLOCK_CNF_STRU
- 结构说明  : 物理层开启或关闭RF芯片上的GPS时钟结果回复
- 1.日    期   : 2012年06月25日
-   作    者   : h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     MTA_PHY_MSG_HEADER                                              /*_H2ASN_Skip*/
@@ -403,25 +277,13 @@ typedef struct
 
 }MTA_PHY_SET_GPS_RF_CLOCK_CNF_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_GPHY_GET_TX_PWR_REQ_STRU
- 结构说明  : 查询G物理层发射功率请求
- 1.日    期   : 2015年07月2日
-   作    者   : w00286360
-   修改内容   : Added
-*******************************************************************************/
+
 typedef struct
 {
     MTA_PHY_MSG_HEADER                                              /*_H2ASN_Skip*/
 }MTA_GPHY_GET_TX_PWR_REQ_STRU;
 
-/*******************************************************************************
- 结构名    : GPHY_MTA_GET_TX_PWR_CNF_STRU
- 结构说明  : 查询G物理层发射功率CNF
- 1.日    期   : 2015年07月2日
-   作    者   : w00286360
-   修改内容   : Added
-*******************************************************************************/
+
 typedef struct
 {
     MTA_PHY_MSG_HEADER                                              /*_H2ASN_Skip*/
@@ -429,25 +291,13 @@ typedef struct
     VOS_INT16                                   sTxPwr;             /* 发射功率，0.1dBm精度 */
 }GPHY_MTA_GET_TX_PWR_CNF_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_WPHY_GET_TX_PWR_REQ_STRU
- 结构说明  : 查询W物理层发射功率请求
- 1.日    期   : 2015年07月2日
-   作    者   : w00286360
-   修改内容   : Added
-*******************************************************************************/
+
 typedef struct
 {
     MTA_PHY_MSG_HEADER                                              /*_H2ASN_Skip*/
 }MTA_WPHY_GET_TX_PWR_REQ_STRU;
 
-/*******************************************************************************
- 结构名    : WPHY_MTA_GET_TX_PWR_CNF_STRU
- 结构说明  : 查询W物理层发射功率CNF
- 1.日    期   : 2015年07月2日
-   作    者   : w00286360
-   修改内容   : Added
-*******************************************************************************/
+
 typedef struct
 {
     MTA_PHY_MSG_HEADER                                              /*_H2ASN_Skip*/
@@ -456,13 +306,7 @@ typedef struct
 }WPHY_MTA_GET_TX_PWR_CNF_STRU;
 
 
-/*******************************************************************************
- 结构名    : MTA_APM_BODY_SAR_SET_REQ_STRU
- 结构说明  : 设置Body SAR开启关闭状态及功率门限参数结构体
- 1.日    期   : 2013年02月27日
-   作    者   : l00198894
-   修改内容   : 新增结构体
-*******************************************************************************/
+
 typedef struct
 {
     MTA_PHY_MSG_HEADER                                              /*_H2ASN_Skip*/
@@ -471,13 +315,7 @@ typedef struct
     MTA_BODY_SAR_PARA_STRU              stBodySARPara;              /* Body SAR功率门限参数 */
 }MTA_APM_BODY_SAR_SET_REQ_STRU;
 
-/*******************************************************************************
- 结构名    : APM_MTA_BODY_SAR_SET_CNF_STRU
- 结构说明  : 回复Body SAR设置操作结果结构体
- 1.日    期   : 2013年02月27日
-   作    者   : l00198894
-   修改内容   : 新增结构体
-*******************************************************************************/
+
 typedef struct
 {
     MTA_PHY_MSG_HEADER                                              /*_H2ASN_Skip*/
@@ -485,13 +323,7 @@ typedef struct
     VOS_UINT16                          ausReserved1[1];            /* 保留位 */
 }APM_MTA_BODY_SAR_SET_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : MTA_PHY_EMERGENCY_CALL_STATUS_NTF
- 结构说明  : 通知PHY紧急呼叫状态结构
- 1.日    期  : 2013年03月28日
-   作    者  : z00214637
-   修改内容  : 新建结构体
-*****************************************************************************/
+
 typedef struct
 {
     MTA_PHY_MSG_HEADER                                                              /*_H2ASN_Skip*/
@@ -499,13 +331,7 @@ typedef struct
     VOS_UINT16                                          ausReserved1[1];            /* 保留位 */
 }MTA_PHY_EMERGENCY_CALL_STATUS_NOTIFY_STRU;
 
-/*******************************************************************************
- 结构名    : APM_MTA_REFCLOCK_STATUS_IND_STRU
- 结构说明  : 物理层APM主动上报GPS参考时钟锁定状态结构体
- 1.日    期   : 2013年02月27日
-   作    者   : l00198894
-   修改内容   : 新增结构体
-*******************************************************************************/
+
 typedef struct
 {
     MTA_PHY_MSG_HEADER                                                          /*_H2ASN_Skip*/
@@ -513,26 +339,14 @@ typedef struct
     VOS_UINT16                          ausReserved1[1];                        /* 保留位 */
 } APM_MTA_REFCLOCK_STATUS_IND_STRU;
 
-/*******************************************************************************
- 结构名    : APM_MTA_RFICSSIRD_IND_STRU
- 结构说明  : 物理层APM上报rfic寄存器值结构体
- 1.日    期   : 2015年10月30日
-   作    者   : x00316382
-   修改内容   : 新增结构体
-*******************************************************************************/
+
 typedef struct
 {
     MTA_PHY_MSG_HEADER                                                          /*_H2ASN_Skip*/
     VOS_UINT32                          ulRegValue;                             /* 寄存器的值 */
 } APM_MTA_RFICSSIRD_IND_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_APM_HANDLE_DETECT_SET_REQ_STRU
- 结构说明  : 设置左右手操作的结构体
- 1.日    期   : 2013年08月06日
-   作    者   : f00179208
-   修改内容   : 新增结构体
-*******************************************************************************/
+
 typedef struct
 {
     MTA_PHY_MSG_HEADER                                                          /*_H2ASN_Skip*/
@@ -540,13 +354,7 @@ typedef struct
     VOS_UINT16                          ausReserved1[1];                        /* 保留位 */
 }MTA_APM_HANDLE_DETECT_SET_REQ_STRU;
 
-/*******************************************************************************
- 结构名    : APM_MTA_HANDLE_DETECT_SET_CNF_STRU
- 结构说明  : 回复左右手设置操作结果结构体
- 1.日    期   : 2013年08月06日
-   作    者   : f00179208
-   修改内容   : 新增结构体
-*******************************************************************************/
+
 typedef struct
 {
     MTA_PHY_MSG_HEADER                                                          /*_H2ASN_Skip*/
@@ -554,26 +362,14 @@ typedef struct
     VOS_UINT16                          ausReserved1[1];                        /* 保留位 */
 }APM_MTA_HANDLE_DETECT_SET_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : MTA_APM_HANDLE_DETECT_QRY_REQ_STRU
- 结构说明  : 左右手操作查询消息结构
- 1.日    期   : 2013年08月06日
-   作    者   : f00179208
-   修改内容   : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     MTA_PHY_MSG_HEADER                                                          /*_H2ASN_Skip*/
     VOS_UINT16                          ausReserved1[2];                        /* 保留位 */
 } MTA_APM_HANDLE_DETECT_QRY_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : APM_MTA_HANDLE_DETECT_QRY_CNF_STRU
- 结构说明  : 左右手操作查询回复消息结构
- 1.日    期   : 2013年08月06日
-   作    者   : f00179208
-   修改内容   : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     MTA_PHY_MSG_HEADER                                                          /*_H2ASN_Skip*/
@@ -582,26 +378,14 @@ typedef struct
 } APM_MTA_HANDLE_DETECT_QRY_CNF_STRU;
 
 
-/*******************************************************************************
-结构名    : MTA_UPHY_START_UPHY_REQ_STRU
-结构说明  : ID_MTA_UPHY_START_UPHY_REQ_的消息结构
-1.日    期   : 2014年1月5日
-  作    者   : z00161729
-  修改内容   : 新建
-*******************************************************************************/
+
 typedef struct
 {
     MTA_PHY_MSG_HEADER                                                          /*_H2ASN_Skip*/
     VOS_UINT16                          ausReserved1[2];                         /*保留位*/
 } MTA_UPHY_START_UPHY_REQ_STRU;
 
-/*******************************************************************************
-结构名    : MTA_UPHY_INIT_STATUS_IND_STRU
-结构说明  : ID_MTA_UPHY_INIT_STATUS_IND的消息结构
-1.日    期   : 2014年1月5日
-  作    者   : z00161729
-  修改内容   : 新建
-*******************************************************************************/
+
 typedef struct
 {
     MTA_PHY_MSG_HEADER                                                          /*_H2ASN_Skip*/
@@ -610,14 +394,7 @@ typedef struct
 } UPHY_MTA_START_UPHY_CNF_STRU;
 
 
-/*****************************************************************************
-结构名    : MTA_GUPHY_SET_DPDTTEST_FLAG_NTF_STRU
-结构说明  : 设置天线算法打开、关闭消息结构
 
-  1.日    期  : 2014年04月01日
-    作    者  : g00261581
-    创建内容  : 新建
-*****************************************************************************/
 typedef struct
 {
     MTA_PHY_MSG_HEADER                                                          /*_H2ASN_Skip*/
@@ -625,56 +402,28 @@ typedef struct
     VOS_UINT16                          ausReserved1[1];
 } MTA_GUPHY_SET_DPDTTEST_FLAG_NTF_STRU;
 
-/*****************************************************************************
-结构名    : MTA_GUPHY_SET_DPDT_VALUE_NTF_STRU
-结构说明  : 设置天线当前DPDT Value值的消息结构
 
-  1.日    期  : 2014年04月01日
-    作    者  : g00261581
-    创建内容  : 新建
-*****************************************************************************/
 typedef struct
 {
     MTA_PHY_MSG_HEADER                                                          /*_H2ASN_Skip*/
     VOS_UINT32                          ulDpdtValue;
 } MTA_GUPHY_SET_DPDT_VALUE_NTF_STRU;
 
-/*****************************************************************************
-结构名    : MTA_GUPHY_QRY_DPDT_VALUE_REQ_STRU
-结构说明  : 查询当前天线状态消息结构
 
-  1.日    期  : 2014年04月01日
-    作    者  : g00261581
-    创建内容  : 新建
-*****************************************************************************/
 typedef struct
 {
     MTA_PHY_MSG_HEADER                                                          /*_H2ASN_Skip*/
     VOS_UINT16                          ausReserved1[2];
 } MTA_GUPHY_QRY_DPDT_VALUE_REQ_STRU;
 
-/*****************************************************************************
-结构名    : GUPHY_MTA_QRY_DPDT_VALUE_CNF_STRU
-结构说明  : 查询响应结果，显示当前天线DPDT值
 
-  1.日    期  : 2014年04月01日
-    作    者  : g00261581
-    创建内容  : 新建
-*****************************************************************************/
 typedef struct
 {
     MTA_PHY_MSG_HEADER                                                          /*_H2ASN_Skip*/
     VOS_UINT32                          ulDpdtValue;
 } GUPHY_MTA_QRY_DPDT_VALUE_CNF_STRU;
 
-/*****************************************************************************
-结构名    : GPHY_MTA_XPASS_INFO_IND_STRU
-结构说明  : GPHY上报XPASS相关的信息
 
-  1.日    期  : 2014年12月19日
-    作    者  : w00286360
-    创建内容  : 新建
-*****************************************************************************/
 typedef struct
 {
     MTA_PHY_MSG_HEADER                                                          /*_H2ASN_Skip*/
@@ -682,14 +431,7 @@ typedef struct
     VOS_UINT16                          usReserved;
 } GPHY_MTA_XPASS_INFO_IND_STRU;
 
-/*****************************************************************************
-结构名    : WPHY_MTA_XPASS_INFO_IND_STRU
-结构说明  : WPHY上报XPASS相关的信息
 
-  1.日    期  : 2014年12月19日
-    作    者  : w00286360
-    创建内容  : 新建
-*****************************************************************************/
 typedef struct
 {
     MTA_PHY_MSG_HEADER                                                          /*_H2ASN_Skip*/
@@ -699,14 +441,7 @@ typedef struct
 
 #if 0
 #if(FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
-结构名    : MTA_LPHY_COEX_PARA_STRU
-结构说明  : LTE&WIFI共存参数结构体
 
-  1.日    期  : 2015年5月22日
-    作    者  : w00316404
-    创建内容  : 新建
-*****************************************************************************/
 typedef struct
 {
     MTA_LPHY_COEX_BW_TYPE_ENUM_UINT16       enCoexBWType;
@@ -719,14 +454,7 @@ typedef struct
     VOS_UINT16                              usReserved;                         /* 保留位 */
 } MTA_LPHY_COEX_PARA_STRU;
 
-/*****************************************************************************
-结构名    : MTA_LPHY_LTE_WIFI_COEX_SET_REQ_STRU
-结构说明  : MTA通知LPHY设置LTE&WIFI共存配置请求结构体
 
-  1.日    期  : 2015年5月22日
-    作    者  : w00316404
-    创建内容  : 新建
-*****************************************************************************/
 typedef struct
 {
     MTA_PHY_MSG_HEADER                                                          /*_H2ASN_Skip*/
@@ -735,14 +463,7 @@ typedef struct
     VOS_UINT8                               aucCoexPara[4];
 } MTA_LPHY_LTE_WIFI_COEX_SET_REQ_STRU;
 
-/*****************************************************************************
-结构名    : LPHY_MTA_LTE_WIFI_COEX_SET_CNF_STRU
-结构说明  : LPHY回复MTA LTE&WIFI共存配置设置结果结构体
 
-  1.日    期  : 2015年5月22日
-    作    者  : w00316404
-    创建内容  : 新建
-*****************************************************************************/
 typedef struct
 {
     MTA_PHY_MSG_HEADER                                                          /*_H2ASN_Skip*/
@@ -752,14 +473,7 @@ typedef struct
 #endif
 #endif
 
-/*****************************************************************************
-结构名    : TLPHY_MTA_AFCLOCK_AFCSTATUS_IND_STRU
-结构说明  : TLPHY_PID_RTTAGENT上报到UEPS_PID_MTA的锁定状态消息结构体
 
-  1.日    期  : 2015年06月17日
-    作    者  : zwx247453
-    创建内容  : 新建
-*****************************************************************************/
 typedef struct
 {
     MTA_PHY_MSG_HEADER                                                          /*_H2ASN_Skip*/
@@ -767,14 +481,7 @@ typedef struct
     VOS_UINT16                              ausReserved1[1];
 } TLPHY_MTA_AFCLOCK_AFCSTATUS_IND_STRU;
 
-/*****************************************************************************
-结构名    : MTA_AGENT_AFCLOCK_AFCSTATUS_NIF_STRU
-结构说明  : UEPS_PID_MTA发送到TLPHY_PID_RTTAGENT的AFC锁定状态NTF消息结构体
 
-  1.日    期  : 2015年06月17日
-    作    者  : zwx247453
-    创建内容  : 新建
-*****************************************************************************/
 typedef struct
 {
     MTA_PHY_MSG_HEADER                                                          /*_H2ASN_Skip*/
@@ -784,14 +491,7 @@ typedef struct
     VOS_UINT16                              ausReserved1[1];
 } MTA_AGENT_AFCLOCK_AFCSTATUS_NTF_STRU;
 
-/*****************************************************************************
-结构名    : MTA_AGENT_RFICSSIRD_REQ_STRU
-结构说明  : MTA发送到TLPHY_PID_RTTAGENT的RFICRD消息结构体
 
-  1.日    期  : 2015年10月29日
-    作    者  : x0016382
-    创建内容  : 新建
-*****************************************************************************/
 typedef struct
 {
     MTA_PHY_MSG_HEADER                                                          /*_H2ASN_Skip*/
@@ -799,14 +499,7 @@ typedef struct
     VOS_UINT16                              usRficReg;                          /* 寄存器地址 */
 } MTA_AGENT_RFICSSIRD_REQ_STRU;
 
-/*****************************************************************************
-结构名    : MTA_CTAS_SET_DPDTTEST_FLAG_NTF_STRU
-结构说明  : 设置天线算法打开、关闭消息结构
 
- 1.日    期  : 2015年11月18日
-   作    者  : h00313353
-   创建内容  : 新建
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/
@@ -815,14 +508,7 @@ typedef struct
     VOS_UINT16                          usReserved;
 } MTA_CTAS_SET_DPDTTEST_FLAG_NTF_STRU;
 
-/*****************************************************************************
-结构名    : MTA_CTAS_QRY_DPDT_VALUE_REQ_STRU
-结构说明  : 查询当前天线状态消息结构
 
-  1.日    期  : 2015年11月18日
-    作    者  : h00313353
-    创建内容  : 新建
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/
@@ -830,14 +516,7 @@ typedef struct
     VOS_UINT16                          ausReserved[2];
 } MTA_CTAS_QRY_DPDT_VALUE_REQ_STRU;
 
-/*****************************************************************************
-结构名    : MTA_CTAS_SET_DPDT_VALUE_NTF_STRU
-结构说明  : 设置天线当前DPDT Value值
 
-  1.日    期  : 2015年11月18日
-    作    者  : h00313353
-    创建内容  : 新建
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/
@@ -845,14 +524,7 @@ typedef struct
     VOS_UINT32                          ulDpdtValue;
 } MTA_CTAS_SET_DPDT_VALUE_NTF_STRU;
 
-/*****************************************************************************
-结构名    : CTAS_MTA_QRY_DPDT_VALUE_CNF_STRU
-结构说明  : 查询响应结果，显示当前天线DPDT值
 
-  1.日    期  : 2015年11月18日
-    作    者  : h00313353
-    创建内容  : 新建
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/
@@ -860,35 +532,14 @@ typedef struct
     VOS_UINT32                          ulDpdtValue;
 } CTAS_MTA_QRY_DPDT_VALUE_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : MTA_PHY_CHR_INFO_QRY_REQ_STRU
- 结构说明  : MTA发给PHY的TX Power查询请求
 
-  1.日    期   : 2015年10月20日
-    作    者   : 张义芳 z00328328
-    修改内容   : 创建, for 上行发射功率收集
-  2.日    期   : 2015年12月01日
-    作    者   : 高亮亮 g00322017
-    修改内容   : 修改, for 物理层信息收集
-*****************************************************************************/
 typedef struct
 {
     MTA_PHY_MSG_HEADER
     VOS_UINT16                              ausReserved1[2];                    /* 保留位 */
 } MTA_PHY_CHR_INFO_QRY_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : PHY_MTA_PHY_INFO_QRY_CNF_STRU
- 结构说明  : PHY发给MTA的TX Power查询结果
 
-  1.日    期   : 2015年10月20日
-    作    者   : 张义芳 z00328328
-    修改内容   : 创建, for 上行发射功率收集
-  2.日    期   : 2015年12月01日
-    作    者   : 高亮亮 g00322017
-    修改内容   : 修改, for 物理层信息收集
-
-*****************************************************************************/
 typedef struct
 {
     MTA_PHY_MSG_HEADER
@@ -903,24 +554,10 @@ typedef struct
 }PHY_MTA_PHY_CHR_INFO_QRY_CNF_STRU;
 
 
-/*****************************************************************************
-结构名    : MTA_RCM_AFC_CLK_INFO_QRY_REQ_STRU
-结构说明  : MTA向RCM查询AFC时钟频偏信息及XO温补系数请求结构体
 
-  1.日    期  : 2015年9月7日
-    作    者  : l00198894
-    创建内容  : 新建
-*****************************************************************************/
 typedef MTA_UPHY_START_UPHY_REQ_STRU    MTA_RCM_AFC_CLK_INFO_QRY_REQ_STRU;
 
-/*****************************************************************************
-结构名    : RCM_MTA_AFC_CLK_INFO_QRY_CNF_STRU
-结构说明  : RCM回复MTA查询AFC时钟频偏信息及XO温补系数结构体
 
-  1.日    期  : 2015年9月7日
-    作    者  : l00198894
-    创建内容  : 新建
-*****************************************************************************/
 typedef struct
 {
     MTA_PHY_MSG_HEADER                                                          /*_H2ASN_Skip*/

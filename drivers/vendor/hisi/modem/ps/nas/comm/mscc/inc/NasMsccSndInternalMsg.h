@@ -28,17 +28,7 @@ extern "C" {
 /*****************************************************************************
   3 枚举定义
 *****************************************************************************/
-/****************************************************************************
-Enum name       :   NAS_MSCC_INTERNAL_MSG_TYPE_ENUM_UINT16
-Description     :   Contains the Internal Message types used in MSCC.
-Modify History:
-    1)  Date    :   2015-01-31
-        Author  :   a00295761
-        Modify content :    Create
-    2)  Date    :   2015-11-05
-        Author  :   W00176964
-        Modify content : DTS2015070910837;新增CL intersys状态机退出结果
-****************************************************************************/
+
 enum NAS_MSCC_INTERNAL_MSG_TYPE_ENUM
 {
     ID_NAS_MSCC_MSCC_SWITCH_ON_RSLT_CNF = ID_NAS_MSCC_MNTN_INTERNAL_MSG_BASE,/* _H2ASN_MsgChoice NAS_MSCC_MSCC_SWITCH_ON_RSLT_CNF_STRU*/
@@ -69,16 +59,7 @@ enum NAS_MSCC_SWITCH_ON_RESULT_ENUM
 typedef VOS_UINT32 NAS_MSCC_SWITCH_ON_RESULT_ENUM_UINT32;
 
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_SYSTEM_ACQUIRED_RESULT_ENUM
- 枚举说明  : result of system acquire fsm
- 1.日    期   : 2015年04月03日
-   作    者   : m00312079
-   修改内容   : Create
- 2.日    期   : 2015年08月25日
-   作    者   : m00312079
-   修改内容   : DTS2015082004682:新增L2C结果
-*****************************************************************************/
+
 enum NAS_MSCC_SYSTEM_ACQUIRED_RESULT_ENUM
 {
     NAS_MSCC_SYSTEM_ACQUIRED_RESULT_SUCCESS                 = 0x00000000,
@@ -101,14 +82,7 @@ enum NAS_MSCC_BSR_RESULT_ENUM
 };
 typedef VOS_UINT16 NAS_MSCC_BSR_RESULT_ENUM_UINT16;
 
-/****************************************************************************
-Enum name       :   NAS_MSCC_BSR_ACQ_SYS_ENUM_UINT8
-Description     :   是否需要重新搜网
-Modify History:
-    1)  Date    :   2015-04-07
-        Author  :   y00307564
-        Modify content :    Create
-****************************************************************************/
+
 
 enum NAS_MSCC_BSR_ACQ_SYS_ENUM
 {
@@ -118,14 +92,7 @@ enum NAS_MSCC_BSR_ACQ_SYS_ENUM
 };
 typedef VOS_UINT8 NAS_MSCC_BSR_ACQ_SYS_ENUM_UINT8;
 
-/****************************************************************************
-Enum name       :   NAS_MSCC_BSR_RETRY_TIMER_ENUM_UINT8
-Description     :   是否需要重启retry定时器
-Modify History:
-    1)  Date    :   2015-04-07
-        Author  :   y00307564
-        Modify content :    Create
-****************************************************************************/
+
 
 enum NAS_MSCC_BSR_RETRY_TIMER_ENUM
 {
@@ -135,18 +102,7 @@ enum NAS_MSCC_BSR_RETRY_TIMER_ENUM
 };
 typedef VOS_UINT8 NAS_MSCC_BSR_RETRY_TIMER_ENUM_UINT8;
 
-/*****************************************************************************
- Name    : NAS_MSCC_POWEROFF_RSLT_ENUM
- Description  : Enum definition for Power Off result.
- History     :
-  1.Date     : 2015-04-14
-    Author   : w00176964
-    Modify   : create
- 2.日    期   : 2016年1月6日
-   作    者   : w00242748
-   修改内容   : DTS2015072705348:进入紧急呼回呼模式后，挂起HRPD和LTE；退出紧急呼
-                回呼模式后，再进行搜网，紧急呼回呼模式下，不进行其他任何形式搜网；
-*****************************************************************************/
+
 enum NAS_MSCC_POWEROFF_RSLT_ENUM
 {
     NAS_MSCC_POWEROFF_RSLT_POWER_OFF,
@@ -168,14 +124,7 @@ enum NAS_MSCC_SYS_CFG_RESULT_ENUM
 typedef VOS_UINT32 NAS_MSCC_SYS_CFG_RESULT_ENUM_UINT32;
 
 
-/****************************************************************************
-Enum name       :   NAS_MSCC_CL_INTERSYS_RESULT_ENUM_UINT32
-Description     :   CL异系统退出结果
-Modify History:
-    1)  Date    :   2015-11-05
-        Author  :   w00176964
-        Modify content :Create
-****************************************************************************/
+
 enum NAS_MSCC_CL_INTERSYS_RESULT_ENUM
 {
     /* L重选或者重定向到C成功时，；
@@ -244,17 +193,7 @@ typedef struct
 }NAS_MSCC_MSCC_ABORT_FSM_REQ_STRU;
 
 
-/****************************************************************************
-Structure name  :   NAS_MSCC_MSCC_SYS_ACQ_STRU
-Description     :   Contains the system acquire reqeust message structure.
-Modify History:
-    1)  Date    :   2015-04-03
-        Author  :   m00312079
-        Modify content :    Create
-    2)  Date    :   2015-12-30
-        Author  :   w00176964
-        Modify content :CL_MUTIMODE_OPTIMIZE新增搜索类型
-****************************************************************************/
+
 
 typedef struct
 {
@@ -302,14 +241,7 @@ typedef struct
 }NAS_MSCC_MSCC_SYS_CFG_RSLT_CNF_STRU;
 
 
-/****************************************************************************
-Structure name  :   NAS_MSCC_MSCC_CL_INTERSYS_RSLT_CNF_STRU
-Description     :   CL异系统状态机退出结果
-Modify History:
-    1)  Date    :   2015-11-05
-        Author  :   w00176964
-        Modify content :    Create
-****************************************************************************/
+
 
 typedef struct
 {

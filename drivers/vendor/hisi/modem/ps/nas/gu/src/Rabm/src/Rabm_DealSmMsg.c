@@ -51,38 +51,7 @@ extern RABM_FLUX_WRITE_NV_TIMER_SWITCH_ENUM_U32  g_stRabmWriteFluxToNvTimerSwitc
    3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- Prototype      : NAS_RabmSmPdpActivateIndMsg()
- Description    : 处理SM 发送的PDP 激活消息
- Input          : pMsg                 PDP 激活消息指针
- Output         :
- Return Value   : 无
- Calls          :
- Called By      :
- History        :
-  1.Date        : 2005-08-30
-    Author      : l47619
-    Modification: Created function
 
-  2.日    期   : 2010年12月13日
-    作    者   : lijun 00171473
-    修改内容   : DTS2010112903583, 起个Timer, 流量数据每10分钟保存一次NV
-                 PDP 激活时如果未起定时器则起定时器
-
-  3.日    期   : 2011年12月19日
-    作    者   : o00132663
-    修改内容   : PS融合项目，PDP激活成功后调用CDS提供的流控接口将QOS信息通知-
-                 CDS
-
-  4.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : RABM保存的QOS由动态内存改为静态数组
-
-  5.日    期   : 2014年7月29日
-    作    者   : m00217266
-    修改内容   : modify for DTS2014072803655,添加在等待第二条激活成功消息过来时，
-                 进入suspend状态，在suspend状态收到第二条激活成功消息的处理
-*****************************************************************************/
 VOS_VOID  NAS_RabmSmPdpActivateIndMsg( VOS_VOID *pMsg )
 {
     RABMSM_ACTIVATE_IND_STRU           *pstPdpActivateIndMsg;
@@ -203,29 +172,7 @@ VOS_VOID  NAS_RabmSmPdpActivateIndMsg( VOS_VOID *pMsg )
 }
 
 
-/*****************************************************************************
- Prototype      : NAS_RabmSmPdpDeactivateIndMsg()
- Description    : 处理SM发送的PDP去激活消息
- Input          : pMsg                 PDP 去激活消息 指针
- Output         :
- Return Value   : 无
- Called By      :
- History        :
-  1.Date        : 2005-08-30
-    Author      : l47619
-    Modification: Created function
-  2.Date        : 2006-05-18
-    Author      : l47619
-    Modification: 根据问题单修改:A32D03487
-  3.日    期   : 2010年12月13日
-    作    者   : lijun 00171473
-    修改内容   : DTS2010112903583, 起个Timer, 流量数据每10分钟保存一次NV
-                 PDP去激活后停定时器, 写流量到NV
 
-  4.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : RABM保存的QOS由动态内存改为静态数组
-*****************************************************************************/
 VOS_VOID  NAS_RabmSmPdpDeactivateIndMsg( VOS_VOID *pMsg )
 {
     VOS_UINT8                            ucLoop;
@@ -356,28 +303,7 @@ VOS_VOID  NAS_RabmSmPdpDeactivateIndMsg( VOS_VOID *pMsg )
 
 
 
-/*****************************************************************************
- Prototype      : NAS_RabmSmPdpModifyIndMsg()
- Description    : 处理SM发送的修改PDP消息
- Input          : pMsg                 修改PDP消息指针
- Output         :
- Return Value   : 无
- Calls          :
- Called By      :
- History        :
-  1.Date        : 2005-09-13
-    Author      : l47619
-    Modification: Created function
 
-  2.日    期   : 2011年12月19日
-    作    者   : o00132663
-    修改内容   : PS融合项目，PDP激活成功后调用CDS提供的流控接口将QOS信息通知-
-                 CDS
-
-  3.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : RABM保存的QOS由动态内存改为静态数组
-*****************************************************************************/
 VOS_VOID  NAS_RabmSmPdpModifyIndMsg( VOS_VOID *pMsg )
 {
     RABMSM_MODIFY_IND_STRU             *pstPdpModifyIndMsg;

@@ -1,15 +1,4 @@
-/****************************************************************************
-  文 件 名   : hi6xxx_mntn.h
-  版 本 号   : 初稿
-  作    者   : liuyi
-  生成日期   : 2014年11月1日
-  最近修改   :
-  功能描述   : 描述可维可测模块头文件
-  注意事项   ：！！！！！！！！！！！！
-               该文件为BSP.h 的备份
-			   修改该文件时注意同步修改
-			   ！！！！！！！！！！！！
-*****************************************************************************/
+
 
 /*修改此文件要同时修改 BSP.h*/
 
@@ -64,10 +53,10 @@ typedef enum tagBSP_MODULE_E
     BSP_MODU_SYNC,
     BSP_MODU_IPC,
     BSP_MODU_MNTN,
-    BSP_MODU_SSI,       /*增加SSI模块，added by z00187553*/
-    BSP_MODU_HKADC,     /*增加HKADC模块，added by zkf37782   */
-    BSP_MODU_PMU,       /*增加PMU模块，added by z00187553*/
-    BSP_MODU_HIFI,      /*0x29*//*增加HIFI模块，added by w00193956*/
+    BSP_MODU_SSI,
+    BSP_MODU_HKADC,
+    BSP_MODU_PMU,
+    BSP_MODU_HIFI,
     BSP_MODU_AUDIO,
     BSP_MODU_CHGC,
     BSP_MODU_MAILBOX,
@@ -76,12 +65,12 @@ typedef enum tagBSP_MODULE_E
     BSP_MODU_SKU,
     BSP_MODU_THERMAL,   /*温保模块*/
     BSP_MODU_MBX,
-    BSP_MODU_DORESET,   /*当处理C核或者hifi单独复位出现异常时，A核主动复位， added by l00212112*/
+    BSP_MODU_DORESET,
     BSP_MODU_EDMA,      /*0x33*/
 	BSP_MODU_WM8990,	/*wm8990模块*/
     BSP_MODU_LED,		/*LED模块*/
     BSP_MODU_ABB,		/*ABB模块*/
-	BSP_MODU_RFILE,     /*add rfile system，add by l00201187*/
+	BSP_MODU_RFILE,
 	BSP_MODU_SSDMA,     /*安全模块*/
 	BSP_MODU_OSAL,
 	BSP_MODU_TUNER,

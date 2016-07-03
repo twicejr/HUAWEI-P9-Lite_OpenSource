@@ -1,13 +1,4 @@
-/******************************************************************************
 
-@(#)Copyright(C)2008,Hisilicon Co. LTD.
-
-******************************************************************************
-File name   : NasLcsPublic.c
-Description : LCS的公共处理
-History     :
-1.lihong  00150010       2015-09-28  Draft Enact
-******************************************************************************/
 
 /*****************************************************************************
 1 Include HeadFile
@@ -59,15 +50,7 @@ NAS_LCS_PUB_INFO_STRU  *pg_stLcsInfo = &g_stLcsInfo;
 3 Function
 *****************************************************************************/
 
-/*****************************************************************************
-Function Name  : NAS_LCS_IsLteSupportEpcLcs
-Discription    : 判断LTE是否支持EPC-LCS
-Input          : None
-Output         : None
-Return         : VOS_UINT32
-History:
-1.lihong 00150010 2015-9-30 Draft Enact
-*****************************************************************************/
+
 VOS_UINT32 NAS_LCS_IsLteSupportEpcLcs( VOS_VOID )
 {
     NAS_LCS_NW_CAP_INFO_STRU           *pstNwLcsCap     = NAS_LCS_NULL_PTR;
@@ -99,15 +82,7 @@ VOS_UINT32 NAS_LCS_IsLteSupportEpcLcs( VOS_VOID )
     return PS_TRUE;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_IsMoLr
-Discription    : 判断是否是MO-LR
-Input          : None
-Output         : None
-Return         : VOS_UINT32
-History:
-1.lihong 00150010 2015-10-08 Draft Enact
-*****************************************************************************/
+
 VOS_UINT32 NAS_LCS_IsMoLr
 (
     VOS_UINT32                          ulIndex
@@ -122,15 +97,7 @@ VOS_UINT32 NAS_LCS_IsMoLr
     return PS_FALSE;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_IsClassmark2SupportLcs
-Discription    : 判断CLASSMARK2是否支持CS-LCS
-Input          : None
-Output         : None
-Return         : VOS_UINT32
-History:
-1.lihong 00150010 2015-10-13 Draft Enact
-*****************************************************************************/
+
 VOS_UINT32 NAS_LCS_IsClassmark2SupportLcs( VOS_VOID )
 {
     VOS_UINT8                           aucMsClassMark2[NAS_MML_CLASSMARK2_LEN] = {0};
@@ -154,15 +121,7 @@ VOS_UINT32 NAS_LCS_IsClassmark2SupportLcs( VOS_VOID )
 }
 
 
-/*****************************************************************************
-Function Name  : NAS_LCS_IsLteSupportCsLcs
-Discription    : 判断LTE是否支持CS-LCS
-Input          : None
-Output         : None
-Return         : VOS_UINT32
-History:
-1.lihong 00150010 2015-9-30 Draft Enact
-*****************************************************************************/
+
 VOS_UINT32 NAS_LCS_IsLteSupportCsLcs( VOS_VOID )
 {
     NAS_LCS_NW_CAP_INFO_STRU           *pstNwLcsCap     = NAS_LCS_NULL_PTR;
@@ -191,15 +150,7 @@ VOS_UINT32 NAS_LCS_IsLteSupportCsLcs( VOS_VOID )
     return PS_FALSE;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_SelectMolrDomain
-Discription    : MO-LR域选择
-Input          : None
-Output         : None
-Return         : NAS_LCS_DOMAIN_TYPE_ENUM_UINT8
-History:
-1.lihong 00150010 2015-9-29 Draft Enact
-*****************************************************************************/
+
 NAS_LCS_DOMAIN_TYPE_ENUM_UINT8 NAS_LCS_SelectMolrDomain( VOS_VOID )
 {
     VOS_UINT32                          i               = 0;
@@ -256,16 +207,7 @@ NAS_LCS_DOMAIN_TYPE_ENUM_UINT8 NAS_LCS_SelectMolrDomain( VOS_VOID )
     }
 }
 
-/*****************************************************************************
-Function Name   : NAS_LCS_IsCurrRatSupportLcs
-Description     : 判断当前接入技术是否支持LCS
-Input           : NONE
-Output          : None
-Return          : VOS_UINT32
 
-History         :
-1.leixiantiao 00258641 2015-9-29 Draft Enact
-*****************************************************************************/
 VOS_UINT32 NAS_LCS_IsCurrRatSupportLcs(VOS_VOID)
 {
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enCurrRat       = NAS_MML_NET_RAT_TYPE_BUTT;
@@ -298,17 +240,7 @@ VOS_UINT32 NAS_LCS_IsCurrRatSupportLcs(VOS_VOID)
     return PS_FALSE;
 }
 
-/*****************************************************************************
-Function Name   : NAS_LCS_IsTimerNameValid
-Description     : 判断定时器名是否合法
-Input           : ulIndex---------------------实体索引
-                  enLcsTimerType--------------定时器类型
-Output          : None
-Return          : VOS_UINT32
 
-History         :
-1.lihong 00150010 2015-9-29 Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LCS_IsTimerNameValid
 (
     VOS_UINT32                          ulIndex,
@@ -328,18 +260,7 @@ VOS_UINT32  NAS_LCS_IsTimerNameValid
     return PS_FALSE;
 }
 
-/*****************************************************************************
-Function Name   : NAS_LCS_GetTimer
-Description     : 获取定时器
-Input           : ulIndex---------------------实体索引
-                  enLcsTimerType--------------定时器类型
-Output          : None
-Return          : NAS_LCS_TIMER_INFO_STRU*
 
-History         :
-1.lihong00150010      2015-9-29  Draft Enact
-
-*****************************************************************************/
 NAS_LCS_TIMER_INFO_STRU*  NAS_LCS_GetTimer
 (
     VOS_UINT32                          ulIndex,
@@ -368,18 +289,7 @@ NAS_LCS_TIMER_INFO_STRU*  NAS_LCS_GetTimer
     return pstTimerInfo;
 }
 
-/*****************************************************************************
-Function Name   : NAS_LCS_GetTimerLen
-Description     : 获取定时器时长
-Input           : ulIndex---------------------实体索引
-                  enLcsTimerType--------------定时器类型
-Output          : None
-Return          : VOS_UINT32
 
-History         :
-1.lihong00150010      2015-9-29  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_LCS_GetTimerLen
 (
     VOS_UINT32                          ulIndex,
@@ -428,16 +338,7 @@ VOS_UINT32  NAS_LCS_GetTimerLen
 }
 
 
-/*****************************************************************************
-Function Name  : NAS_LCS_StartTimer
-Discription    : 启动定时器
-Input          : ulIndex---------------------实体索引
-                 enLcsTimerType--------------定时器类型
-Output         : None
-Return         : None
-History:
-1.lihong 00150010 2015-9-29 Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_LCS_StartTimer
 (
     VOS_UINT32                          ulIndex,
@@ -512,16 +413,7 @@ VOS_VOID NAS_LCS_StartTimer
     NAS_LCS_SndOmTimerStart(ulIndex, enLcsTimerType, ulTimerLen);
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_StopTimer
-Discription    : 停止某一承载定时器
-Input          : ulIndex---------------------实体索引
-                 enLcsTimerType--------------定时器类型
-Output         : VOS_VOID
-Return         : None
-History:
-1.lihong 00150010    2015-09-29  Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_LCS_StopTimer
 (
     VOS_UINT32                          ulIndex,
@@ -577,16 +469,7 @@ VOS_VOID NAS_LCS_StopTimer
     }
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_IsTimerRunning
-Discription    : 判断某一定时器是否运行
-Input          : ulIndex---------------------实体索引
-                 enLcsTimerType--------------定时器类型
-Output         : VOS_VOID
-Return         : NAS_LCS_TIMER_RUN_STA_ENUM_UINT32
-History:
-1.lihong 00150010    2015-10-10  Draft Enact
-*****************************************************************************/
+
 NAS_LCS_TIMER_RUN_STA_ENUM_UINT32  NAS_LCS_IsTimerRunning
 (
     VOS_UINT32                          ulIndex,
@@ -615,15 +498,7 @@ NAS_LCS_TIMER_RUN_STA_ENUM_UINT32  NAS_LCS_IsTimerRunning
     }
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_StopAllTimer
-Discription    : 停止所有定时器
-Input          : ulIndex---------------------实体索引
-Output         : VOS_VOID
-Return         : None
-History:
-1.lihong 00150010    2015-10-08  Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_LCS_StopAllTimer
 (
     VOS_UINT32                          ulIndex
@@ -638,15 +513,7 @@ VOS_VOID NAS_LCS_StopAllTimer
 }
 
 
-/*****************************************************************************
-Function Name  : NAS_LCS_CreateHandleId
-Discription    : 创建handlle id
-Input          : None
-Output         : None
-Return         : VOS_UINT8
-History:
-1.lihong 00150010 2015-9-29 Draft Enact
-*****************************************************************************/
+
 VOS_UINT8 NAS_LCS_CreateHandleId(VOS_VOID)
 {
     /* 如果达到最大值，则从0开始 */
@@ -660,15 +527,7 @@ VOS_UINT8 NAS_LCS_CreateHandleId(VOS_VOID)
     return NAS_LCS_GetCurHandleId();
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_CreateInvokeId
-Discription    : 创建invoke id
-Input          : None
-Output         : None
-Return         : VOS_UINT8
-History:
-1.lihong 00150010 2015-10-16 Draft Enact
-*****************************************************************************/
+
 VOS_UINT8 NAS_LCS_CreateInvokeId( VOS_VOID )
 {
     /* 如果达到最大值，则从0开始 */
@@ -682,19 +541,7 @@ VOS_UINT8 NAS_LCS_CreateInvokeId( VOS_VOID )
     return NAS_LCS_GetCurInvokeId();
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_CreateMoTi
-Discription    : 创建MO TI
-此函数创建的TI值比上行空口中传输的MO TI值大8，
-这样做的目的是为了适配MM，以区分网侧主动发送的下行消息的TI，
-同时网侧回复REGISTER时，网侧会在上行空口的TI基础上加8，这样到时通过
-收到网侧下发TI值进行查询时就不用转换了
-Input          : None
-Output         : None
-Return         : VOS_UINT8
-History:
-1.lihong 00150010 2015-10-16 Draft Enact
-*****************************************************************************/
+
 VOS_UINT8 NAS_LCS_CreateMoTi
 (
     VOS_UINT32                          ulIndex
@@ -711,15 +558,7 @@ VOS_UINT8 NAS_LCS_CreateMoTi
     }
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_CreateLcsEntity
-Discription    : 创建LCS实体
-Input          : enStartSource---------------启动源
-Output         : pulIndex--------------------实体索引
-Return         : VOS_UINT32
-History:
-1.lihong 00150010 2015-9-29 Draft Enact
-*****************************************************************************/
+
 VOS_UINT32 NAS_LCS_CreateLcsEntity
 (
     NAS_LCS_START_SOURCE_ENUM_UINT8     enStartSource,
@@ -800,16 +639,7 @@ VOS_UINT32 NAS_LCS_CreateLcsEntity
     return NAS_LCS_FAIL;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_ClearSingleLcsEntity
-Discription    : 释放单个LCS实体
-Input          : ulIndex---------------索引
-                 enCause---------------释放原因值
-Output         : None
-Return         : VOS_VOID
-History:
-1.lihong 00150010 2015-9-29 Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_LCS_ClearSingleLcsEntity
 (
     VOS_UINT32                          ulIndex,
@@ -846,15 +676,7 @@ VOS_VOID NAS_LCS_ClearSingleLcsEntity
     pstLcsEntity->enUsedFlag        = NAS_LCS_ENTITY_NOT_USED;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_SndFacility
-Discription    : 发送FACILITY给网侧
-Input          : ulIndex-----------------实体索引
-Output         : None
-Return         : None
-History:
-1.lihong 00150010 2015-10-17 Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_LCS_SndFacility
 (
     VOS_UINT32                          ulIndex
@@ -905,16 +727,7 @@ VOS_VOID NAS_LCS_SndFacility
     }
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_SndMtlrRspReleaseComplte
-Discription    : 通过RELEASE COMPLTE消息把MTLR用户回复带给网侧
-Input          : ulIndex-----------------实体索引
-               : enLocNtfRsp-------------用户回复MTLR结果
-Output         : None
-Return         : None
-History:
-1.leixiantiao 00258641 2015-10-24 Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_LCS_SndMtlrRspReleaseComplte
 (
     VOS_UINT32                          ulIndex,
@@ -973,15 +786,7 @@ VOS_VOID NAS_LCS_SndMtlrRspReleaseComplte
     }
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_SndReleaseComplte
-Discription    : 发送RELEASE COMPLTE给网侧
-Input          : ulIndex-----------------实体索引
-Output         : None
-Return         : None
-History:
-1.lihong 00150010 2015-10-16 Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_LCS_SndReleaseComplte
 (
     VOS_UINT32                          ulIndex
@@ -1037,17 +842,7 @@ VOS_VOID NAS_LCS_SndReleaseComplte
     }
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_SndMtlrFailReleaseComplte
-Discription    : 由于MT LR失败发送RELEASE COMPLTE给网侧
-Input          : ucDlAirTi---------------下行空口TI
-enLcsDomainType---------域
-enCause-----------------原因值
-Output         : None
-Return         : None
-History:
-1.lihong 00150010 2015-10-13 Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_LCS_SndMtlrFailReleaseComplte
 (
     VOS_UINT8                           ucDlAirTi,
@@ -1106,15 +901,7 @@ VOS_VOID NAS_LCS_SndMtlrFailReleaseComplte
 }
 
 
-/*****************************************************************************
-Function Name  : NAS_LCS_SndRegister
-Discription    : 发送REGISTER给网侧
-Input          : ulIndex-----------------实体索引
-Output         : None
-Return         : None
-History:
-1.lihong 00150010 2015-10-13 Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_LCS_SndRegister
 (
     VOS_UINT32                          ulIndex
@@ -1166,15 +953,7 @@ VOS_VOID NAS_LCS_SndRegister
 }
 
 
-/*****************************************************************************
-Function Name  : NAS_LCS_ClearAllEntity
-Discription    : 释放所有实体
-Input          : None
-Output         : None
-Return         : None
-History:
-1.lihong 00150010 2015-10-13 Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_LCS_ClearAllEntity ( VOS_VOID )
 {
     NAS_LCS_ENTITY_INFO_STRU           *pstLcsEntity    = NAS_LCS_NULL_PTR;
@@ -1200,15 +979,7 @@ VOS_VOID NAS_LCS_ClearAllEntity ( VOS_VOID )
     return ;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_ClearResource
-Discription    : 清除资源
-Input          : None
-Output         : None
-Return         : None
-History:
-1.lihong 00150010 2015-10-13 Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_LCS_ClearResource ( VOS_VOID )
 {
     NAS_LCS_ClearAllEntity();
@@ -1217,16 +988,7 @@ VOS_VOID NAS_LCS_ClearResource ( VOS_VOID )
 }
 
 
-/*****************************************************************************
-Function Name  : NAS_LCS_ClearLcsEntityAndNotify
-Discription    : 释放单个LCS实体并通知相关组件
-Input          : ulIndex---------------索引
-                 enCause---------------释放原因值
-Output         : None
-Return         : VOS_VOID
-History:
-1.lihong 00150010 2015-9-29 Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_LCS_ClearLcsEntityAndNotify
 (
     VOS_UINT32                          ulIndex,
@@ -1253,15 +1015,7 @@ VOS_VOID NAS_LCS_ClearLcsEntityAndNotify
     NAS_LCS_ClearSingleLcsEntity(ulIndex, enCause);
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_QueryMolrEntity
-Discription    : 通过TI查找MO-LR实体
-Input          : ulTi------------------TI
-Output         : pulIndex--------------实体索引指针
-Return         : VOS_UINT32
-History:
-1.lihong 00150010 2015-9-29 Draft Enact
-*****************************************************************************/
+
 VOS_UINT32 NAS_LCS_QueryMolrEntity
 (
     VOS_UINT32                          ulTi,
@@ -1287,15 +1041,7 @@ VOS_UINT32 NAS_LCS_QueryMolrEntity
     return NAS_LCS_FAIL;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_QueryMtLrEntity
-Discription    : 通过TI查找MT-LR实体
-Input          : ucHandleId------------Handle id
-Output         : pulIndex--------------实体索引指针
-Return         : VOS_UINT32
-History:
-1.lihong 00150010 2015-10-10 Draft Enact
-*****************************************************************************/
+
 VOS_UINT32 NAS_LCS_QueryMtLrEntity
 (
     VOS_UINT8                           ucHandleId,
@@ -1318,15 +1064,7 @@ VOS_UINT32 NAS_LCS_QueryMtLrEntity
     return NAS_LCS_FAIL;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_QueryLcsEntity
-Discription    : 通过TI查找LCS实体
-Input          : ulTi------------------TI
-Output         : pulIndex--------------实体索引指针
-Return         : VOS_UINT32
-History:
-1.lihong 00150010 2015-10-09 Draft Enact
-*****************************************************************************/
+
 VOS_UINT32 NAS_LCS_QueryLcsEntity
 (
     VOS_UINT32                          ulTi,
@@ -1363,15 +1101,7 @@ VOS_UINT32 NAS_LCS_QueryLcsEntity
     return NAS_LCS_FAIL;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_ReadLcsNvCommonConfig
-Discription    : 读取LCS公共NV配置
-Input          : None
-Output         : None
-Return         : None
-History:
-1.lihong 00150010 2015-10-12 Draft Enact
-*****************************************************************************/
+
 VOS_VOID  NAS_LCS_ReadLcsNvCommonConfig( VOS_VOID)
 {
     VOS_UINT32                          ulRslt              = 0;
@@ -1409,16 +1139,7 @@ VOS_VOID  NAS_LCS_ReadLcsNvCommonConfig( VOS_VOID)
 }
 
 
-/*****************************************************************************
-Function Name  : NAS_LCS_GetLcsEntityNum
-Description    : 获取LCS实体个数
-Input          : None
-Output         : None
-Return Value   : VOS_UINT32
 
-History        :
-lihong 00150010 2015-10-10  新开发
-*****************************************************************************/
 VOS_UINT32  NAS_LCS_GetLcsEntityNum( VOS_VOID )
 {
     NAS_LCS_ENTITY_INFO_STRU           *pstLcsEntity    = NAS_LCS_NULL_PTR;
@@ -1437,17 +1158,7 @@ VOS_UINT32  NAS_LCS_GetLcsEntityNum( VOS_VOID )
     return ulEntityNum;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_SetEntityState
-Description    : 设置实体状态
-Input          : ulIndex-------------实体索引
-                 enEntityState-------实体状态
-Output         : None
-Return Value   : VOS_UINT32
 
-History        :
-lihong 00150010 2015-10-10  新开发
-*****************************************************************************/
 VOS_VOID NAS_LCS_SetEntityState
 (
     VOS_UINT32                          ulIndex,
@@ -1459,17 +1170,7 @@ VOS_VOID NAS_LCS_SetEntityState
     NAS_LCS_GetEntityState(ulIndex) = enEntityState;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_SetEntityConnState
-Description    : 设置实体连接状态
-Input          : ulIndex-------------实体索引
-                 enEntityState-------实体状态
-Output         : None
-Return Value   : VOS_UINT32
 
-History        :
-lihong 00150010 2015-10-10  新开发
-*****************************************************************************/
 VOS_VOID NAS_LCS_SetEntityConnState
 (
     VOS_UINT32                          ulIndex,
@@ -1482,17 +1183,7 @@ VOS_VOID NAS_LCS_SetEntityConnState
 }
 
 
-/*****************************************************************************
-Function Name  : NAS_LCS_ProcMolrConnAbnormal
-Description    : 处理MOLR流程链路异常
-Input          : ulIndex-------------实体索引
-                 enTafLcsCause-------原因值
-Output         : None
-Return Value   : VOS_VOID
 
-History        :
-lihong 00150010 2015-10-10  新开发
-*****************************************************************************/
 VOS_VOID  NAS_LCS_ProcMolrConnAbnormal
 (
     VOS_UINT32                          ulIndex,
@@ -1531,16 +1222,7 @@ VOS_VOID  NAS_LCS_ProcMolrConnAbnormal
 }
 
 
-/*****************************************************************************
-Function Name  : NAS_LCS_GetPeriodicRptTimesSwtich
-Description    : 获取周期性上报次数特性开关
-Input          : pstCnMsgStru----------译码后内容结构指针
-Output         : None
-Return Value   : VOS_VOID
 
-History        :
-lihong 00150010 2015-10-08  新开发
-*****************************************************************************/
 VOS_UINT32  NAS_LCS_GetPeriodicRptTimesSwtich( VOS_VOID )
 {
     NAS_LCS_COMM_NV_PARA_STRU          *pstCommNvPara = NAS_LCS_NULL_PTR;
@@ -1554,16 +1236,7 @@ VOS_UINT32  NAS_LCS_GetPeriodicRptTimesSwtich( VOS_VOID )
     return PS_FALSE;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_ProcPeriodMolrOnceNormalEnd
-Description    : 处理周期性MOLR单次正常结束
-Input          : ulIndex-------------------------实体索引
-Output         : None
-Return Value   : VOS_VOID
 
-History        :
-lihong 00150010 2015-10-09  新开发
-*****************************************************************************/
 VOS_VOID  NAS_LCS_ProcPeriodMolrOnceNormalEnd
 (
     VOS_UINT32                          ulIndex
@@ -1606,17 +1279,7 @@ VOS_VOID  NAS_LCS_ProcPeriodMolrOnceNormalEnd
     NAS_LCS_ClearSingleLcsEntity(ulIndex, TAF_LCS_CAUSE_SUCCESS);
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_ProcPeriodMolrOnceAbnormalEnd
-Description    : 处理周期性MOLR单次异常结束
-Input          : ulIndex-------------------------实体索引
-                 enCause-------------------------异常原因
-Output         : None
-Return Value   : VOS_VOID
 
-History        :
-lihong 00150010 2015-10-09  新开发
-*****************************************************************************/
 VOS_VOID  NAS_LCS_ProcPeriodMolrOnceAbnormalEnd
 (
     VOS_UINT32                          ulIndex,
@@ -1667,16 +1330,7 @@ VOS_VOID  NAS_LCS_ProcPeriodMolrOnceAbnormalEnd
 }
 
 
-/*****************************************************************************
-Function Name  : NAS_LCS_ProcAirMsgFacility
-Description    : 处理空口消息FICILITY
-Input          : pstCnMsgStru----------译码后内容结构指针
-Output         : None
-Return Value   : VOS_VOID
 
-History        :
-lihong 00150010 2015-10-08  新开发
-*****************************************************************************/
 VOS_VOID  NAS_LCS_ProcAirMsgFacility
 (
     NAS_LCS_CN_MSG_STRU                *pstCnMsgStru
@@ -1770,16 +1424,7 @@ VOS_VOID  NAS_LCS_ProcAirMsgFacility
     }
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_ProcAirMsgReleaseComplete
-Description    : 处理空口消息RELEASE COMPLTE
-Input          : pstCnMsgStru----------译码后内容结构指针
-Output         : None
-Return Value   : VOS_VOID
 
-History        :
-lihong 00150010 2015-10-09  新开发
-*****************************************************************************/
 VOS_VOID  NAS_LCS_ProcAirMsgReleaseComplete
 (
     NAS_LCS_CN_MSG_STRU                *pstCnMsgStru
@@ -1812,16 +1457,7 @@ VOS_VOID  NAS_LCS_ProcAirMsgReleaseComplete
     }
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_ValidateAirMsgRegister
-Description    : 合法性检测空口消息GEGISTER
-Input          : pstCnMsgStru----------译码后内容结构指针
-Output         : None
-Return Value   : VOS_UINT32
 
-History        :
-lihong 00150010 2015-10-10  新开发
-*****************************************************************************/
 VOS_UINT32  NAS_LCS_ValidateAirMsgRegister
 (
     NAS_LCS_CN_MSG_STRU                *pstCnMsgStru
@@ -1868,17 +1504,7 @@ VOS_UINT32  NAS_LCS_ValidateAirMsgRegister
     return NAS_LCS_SUCC;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_ProcAirMsgRegister
-Description    : 处理空口消息GEGISTER
-Input          : pstCnMsgStru----------译码后内容结构指针
-                 enLcsDomainType-------LCS域
-Output         : None
-Return Value   : VOS_VOID
 
-History        :
-lihong 00150010 2015-10-10  新开发
-*****************************************************************************/
 VOS_VOID  NAS_LCS_ProcAirMsgRegister
 (
     NAS_LCS_CN_MSG_STRU                *pstCnMsgStru,
@@ -1951,16 +1577,7 @@ VOS_VOID  NAS_LCS_ProcAirMsgRegister
     NAS_LCS_SetEntityConnState(ulIndex, NAS_LCS_CONN_STATE_CONN);
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_SndDecodeFailRelComplete
-Description    : 空口译码失败,回复网侧RelComplete
-Input          : enCause---------------回复网络原因值
-Output         : pstCnMsgStru----------译码后内容结构指针
-Return Value   : VOS_VOID
 
-History        :
-leixiantiao 00258641 2015-10-08  新开发
-*****************************************************************************/
 VOS_VOID NAS_LCS_SndDecodeFailRelComplete
 (
     NAS_LCS_NW_CAUSE_ENUM_UINT32        enCause,
@@ -2022,16 +1639,7 @@ VOS_VOID NAS_LCS_SndDecodeFailRelComplete
     }
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_ProcNwMsgDecodeFail
-Description    : 处理空口译码失败
-Input          : enRslt----------------空口译码结果
-Output         : pstCnMsgStru----------译码后内容结构指针
-Return Value   : VOS_VOID
 
-History        :
-leixiantiao 00258641 2015-10-08  新开发
-*****************************************************************************/
 VOS_VOID NAS_LCS_ProcNwMsgDecodeFail
 (
     NAS_LCS_CAUSE_ENUM_UINT32           enRslt,
@@ -2093,18 +1701,7 @@ VOS_VOID NAS_LCS_ProcNwMsgDecodeFail
     return;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_SndDownAirMsgReportInd
-Description    : 勾LCS下行空口
-Input          : pucMsg----------------空口消息指针
-                 ulLen-----------------空口消息长度
-                 enCnMsgType-----------空口类型
-Output         : NONE
-Return Value   : VOS_VOID
 
-History        :
-lihong 00150010 2015-10-08  新开发
-*****************************************************************************/
 VOS_VOID NAS_LCS_SndDownAirMsgReportInd
 (
     VOS_UINT8                          *pucMsg,
@@ -2141,18 +1738,7 @@ VOS_VOID NAS_LCS_SndDownAirMsgReportInd
                                 NAS_LCS_AIR_MSG_DIR_ENUM_DOWN,
                                 enMsgId);
 }
-/*****************************************************************************
-Function Name  : NAS_LCS_ProcAirMsg
-Description    : 处理空口消息
-Input          : pucMsg----------------空口消息指针
-                 ulLen-----------------空口消息长度
-                 enLcsDomainType-------LCS域
-Output         : pstCnMsgStru----------译码后内容结构指针
-Return Value   : VOS_VOID
 
-History        :
-lihong 00150010 2015-10-08  新开发
-*****************************************************************************/
 VOS_VOID  NAS_LCS_ProcAirMsg
 (
     VOS_UINT8                          *pucMsg,
@@ -2208,16 +1794,7 @@ VOS_VOID  NAS_LCS_ProcAirMsg
     }
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_LmmEstCnfCauseMap
-Description    : 把LMM EST结果转换为TAF与LCS之间的原因值
-Input          : enCause----------------LMM EST原因值
-Output         : NULL
-Return Value   : TAF_LCS_CAUSE_ENUM_UINT32: 转换后原因值
 
-History        :
-leixiantiao 00258641 2015-10-08  新开发
-*****************************************************************************/
 TAF_LCS_CAUSE_ENUM_UINT32 NAS_LCS_LmmEstCnfCauseMap(const LMM_LCS_EST_RESULT_ENUM_UINT32 enCause)
 {
     TAF_LCS_CAUSE_ENUM_UINT32 enTafCause = TAF_LCS_CAUSE_SUCCESS;
@@ -2267,16 +1844,7 @@ TAF_LCS_CAUSE_ENUM_UINT32 NAS_LCS_LmmEstCnfCauseMap(const LMM_LCS_EST_RESULT_ENU
     return enTafCause;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_LmmDataCnfCauseMap
-Description    : 把LMM Data Cnf结果转换为TAF与LCS之间的原因值
-Input          : enCause----------------LMM Data Cnf原因值
-Output         : NULL
-Return Value   : TAF_LCS_CAUSE_ENUM_UINT32: 转换后原因值
 
-History        :
-leixiantiao 00258641 2015-10-08  新开发
-*****************************************************************************/
 TAF_LCS_CAUSE_ENUM_UINT32 NAS_LCS_LmmDataCnfCauseMap(const LMM_LCS_SEND_RSLT_ENUM_UINT32 enCause)
 {
     TAF_LCS_CAUSE_ENUM_UINT32 enTafCause = TAF_LCS_CAUSE_SUCCESS;
@@ -2326,16 +1894,7 @@ TAF_LCS_CAUSE_ENUM_UINT32 NAS_LCS_LmmDataCnfCauseMap(const LMM_LCS_SEND_RSLT_ENU
     return enTafCause;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_LmmRelCauseMap
-Description    : 把LMM Rel原因值转换为TAF与LCS之间的原因值
-Input          : enCause----------------LMM REl原因值
-Output         : NULL
-Return Value   : TAF_LCS_CAUSE_ENUM_UINT32: 转换后原因值
 
-History        :
-leixiantiao 00258641 2015-10-08  新开发
-*****************************************************************************/
 TAF_LCS_CAUSE_ENUM_UINT32 NAS_LCS_LmmRelCauseMap(const LMM_LCS_REL_CAUSE_ENUM_UINT32 enCause)
 {
     TAF_LCS_CAUSE_ENUM_UINT32 enTafCause;
@@ -2351,17 +1910,7 @@ TAF_LCS_CAUSE_ENUM_UINT32 NAS_LCS_LmmRelCauseMap(const LMM_LCS_REL_CAUSE_ENUM_UI
     return enTafCause;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_CheckLcsOperationCode
-Description    : 确认Operation是否是LCS的Operation
-Input          : enOperaCode----------------需确认的Operation
-Output         : NULL
-Return Value   : 结果,0:该Operation是LCS的Operation
-1:该Operation不是LCS的Operation
 
-History        :
-leixiantiao 00258641 2015-10-08  新开发
-*****************************************************************************/
 VOS_UINT32 NAS_LCS_CheckLcsOperationCode(NAS_LCS_OPERATION_TYPE_UINT32 enOperaCode)
 {
     VOS_UINT32                          ulRslt = NAS_LCS_FAIL;
@@ -2385,19 +1934,7 @@ VOS_UINT32 NAS_LCS_CheckLcsOperationCode(NAS_LCS_OPERATION_TYPE_UINT32 enOperaCo
     return ulRslt;
 }
 #endif
-/*****************************************************************************
-Function Name  : NAS_LCS_JudgeLcsNwMsg
-Description    : 判断空口消息是否为LCS空口,用于当MM模块收到空口消息为PD为0xB时
-                 判断是否该空口消息为LCS空口消息
-Input          : pucMsg----------------空口消息码流
-                 ulMsgLen--------------空口消息码流长度
-Output         : NULL
-Return Value   : 结果,LCS_MM_NOT_LCS_NW_MSG:该空口消息不是LCS空口消息
-LCS_MM_LCS_NW_MSG    :该空口消息时LCS空口消息
 
-History        :
-leixiantiao 00258641 2015-10-08  新开发
-*****************************************************************************/
 VOS_UINT32 NAS_LCS_IsLcsNwMsg(VOS_UINT8 *pucMsg, VOS_UINT32 ulMsgLen)
 {
     #if (FEATURE_LPP == FEATURE_ON)
@@ -2455,17 +1992,7 @@ VOS_UINT32 NAS_LCS_IsLcsNwMsg(VOS_UINT8 *pucMsg, VOS_UINT32 ulMsgLen)
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_SecuMemCpy
- Description     : 安全memcpy
- Input           : VOS_VOID* pDst, VOS_UINT32 ulMaxBuffer, const VOS_VOID* pSrc,
-                   VOS_UINT32  ulLength, VOS_UINT32 ulLineNO, VOS_UINT32 ulFileID
- Output          : None
- Return          : VOS_INT32
 
- History         :
-    1.z00297373    2015-12-28  Draft Enact
-*****************************************************************************/
 VOS_INT32 NAS_LCS_SecuMemCpy
 (
     VOS_VOID            * pDst,

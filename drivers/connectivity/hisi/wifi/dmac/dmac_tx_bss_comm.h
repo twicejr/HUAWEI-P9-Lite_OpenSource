@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : dmac_tx_bss_comm.h
-  版 本 号   : 初稿
-  作    者   : mayuan
-  生成日期   : 2012年11月15日
-  最近修改   :
-  功能描述   : dmac_tx_bss_comm.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年11月15日
-    作    者   : mayuan
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __DMAC_TX_BSS_COMM_H__
 #define __DMAC_TX_BSS_COMM_H__
@@ -130,21 +113,7 @@ extern oal_uint32  dmac_tx_force(dmac_vap_stru *pst_dmac_vap, oal_netbuf_stru *p
   9 OTHERS定义
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_set_htc_field
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月15日
-    作    者   : y00184180
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  dmac_tx_set_htc_field(
                                     hal_to_dmac_device_stru  *pst_hal_device,
                                     hal_tx_dscr_stru         *pst_tx_dscr,
@@ -181,21 +150,7 @@ OAL_STATIC OAL_INLINE oal_void  dmac_tx_set_htc_field(
 
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_free_tx_dscr
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月18日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  dmac_free_tx_dscr(hal_tx_dscr_stru *pst_tx_dscr)
 {
     oal_netbuf_stru   *pst_netbuf = OAL_PTR_NULL;
@@ -215,23 +170,7 @@ OAL_STATIC OAL_INLINE oal_void  dmac_free_tx_dscr(hal_tx_dscr_stru *pst_tx_dscr)
 }
 
 #ifdef _PRE_WLAN_FEATURE_WEB_CFG_FIXED_RATE
-/*****************************************************************************
- 函 数 名  : dmac_tx_get_spec_mode_ucast_data_params
- 功能描述  : 获取针对特定协议模式用户的单播数据帧发送参数
- 输入参数  : pst_dmac_vap
-             pst_dmac_user
-             pst_tx_ctl
- 输出参数  : ppst_txop_alg
- 返 回 值  : OAL_SUCC 或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月10日
-    作    者   : liwenjun 00330043
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32 dmac_tx_get_spec_mode_ucast_data_params(
                                                    dmac_vap_stru         *pst_dmac_vap,
                                                    dmac_user_stru        *pst_dmac_user,
@@ -280,21 +219,7 @@ OAL_STATIC OAL_INLINE oal_uint32 dmac_tx_get_spec_mode_ucast_data_params(
 #endif
 
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_get_txop_alg_params
- 功能描述  : 获取发送参数
- 输入参数  : 无
- 输出参数  : ppst_txop_alg
- 返 回 值  : OAL_SUCC 或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月19日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32  dmac_tx_get_txop_alg_params(
                                                    dmac_vap_stru         *pst_dmac_vap,
                                                    dmac_user_stru        *pst_dmac_user,
@@ -341,21 +266,7 @@ OAL_STATIC OAL_INLINE oal_uint32  dmac_tx_get_txop_alg_params(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_get_ppdu_feature
- 功能描述  : 填写ppdu feature 字段
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月1日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  dmac_tx_init_ppdu_feature(dmac_vap_stru *pst_dmac_vap, dmac_user_stru *pst_dmac_user, oal_uint8 uc_mpdu_num, hal_tx_ppdu_feature_stru *pst_ppdu_feature)
 {
 #if (_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC != _PRE_MULTI_CORE_MODE)
@@ -426,21 +337,7 @@ OAL_STATIC OAL_INLINE oal_void  dmac_tx_init_ppdu_feature(dmac_vap_stru *pst_dma
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_update_ppdu_feature
- 功能描述  : 更新ppdu结构体的内容
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月13日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  dmac_tx_update_ppdu_feature(oal_netbuf_stru *pst_netbuf, hal_tx_ppdu_feature_stru *pst_ppdu_feature)
 {
     mac_tx_ctl_stru            *pst_cb;
@@ -456,21 +353,7 @@ OAL_STATIC OAL_INLINE oal_void  dmac_tx_update_ppdu_feature(oal_netbuf_stru *pst
     }
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_get_mgmt_mpdu_param
- 功能描述  : 获取管理帧mpdu参数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月1日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  dmac_get_mgmt_mpdu_param(oal_netbuf_stru *pst_netbuf_mgmt, mac_tx_ctl_stru *pst_tx_ctl,  oal_uint16 us_len, hal_tx_mpdu_stru *pst_mpdu)
 {
     MAC_GET_CB_NETBUF_NUM(pst_tx_ctl) = 1;              /* 管理帧只有一个 */
@@ -511,21 +394,7 @@ OAL_STATIC OAL_INLINE oal_void  dmac_get_mgmt_mpdu_param(oal_netbuf_stru *pst_ne
     MAC_GET_CB_MPDU_LEN(pst_tx_ctl)             = us_len - MAC_GET_CB_FRAME_HEADER_LENGTH(pst_tx_ctl);
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_get_txop_feature_params
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月21日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32  dmac_tx_get_txop_feature_params(
                 dmac_vap_stru              *pst_dmac_vap,
                 dmac_user_stru             *pst_dmac_user,
@@ -537,25 +406,7 @@ OAL_STATIC OAL_INLINE oal_uint32  dmac_tx_get_txop_feature_params(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_get_mpdu_params
- 功能描述  : 获取MPDU发送控制参数
- 输入参数  : pst_hal_device:
-             pst_dmac_vap  :
-             pst_dmac_user :
-             pst_netbuf    :
-             pst_mpdu      :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月21日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32  dmac_tx_get_mpdu_params(
                 oal_netbuf_stru           *pst_netbuf,
                 mac_tx_ctl_stru           *pst_tx_ctl,

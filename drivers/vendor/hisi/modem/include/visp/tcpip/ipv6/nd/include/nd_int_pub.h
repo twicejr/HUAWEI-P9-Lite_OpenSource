@@ -107,13 +107,10 @@ extern "C"{
 #define ND_RATIMER                      1
 #define ND_NBTIMER                      2
 #define ND_NBFORCEDELTIMER              3
-/*Added by guojianjun178934, 接口状态变化或physical地址变化主动发送通告NA报文, 2014/1/27   问题单号:S-IP-005-PUBLIC-FUNC-003 */
 #define ND_NATIMER                      4
-/* End of Added by guojianjun178934, 2014/1/27   问题单号:S-IP-005-PUBLIC-FUNC-003 */
 /*【检视问题单---DAD告警优化】产品定期发送地址冲突检测的NS报文，如果收到了N
   A我们需要启动DAD探测。*/
 #define ND_DADEXTTIMER                  5
-/* End of Added by guojianjun178934, 2014/2/22   问题单号:DTS2014021206259  */
 
 
 #define ND_PAF_DEFAULT_VALUE            4096

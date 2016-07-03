@@ -1,27 +1,4 @@
-/*******************************************************************************
-*
-*
-*                Copyright 2006, Huawei Technologies Co. Ltd.
-*                            ALL RIGHTS RESERVED
-*
-*-------------------------------------------------------------------------------
-*
-*                              prod.h
-*
-*  Project Code: VISP1.5
-*   Module Name: socket4 
-*  Date Created: 2006-4-29
-*        Author: l(48769)
-*   Description: the declaration of socket functions used in protocol( such as tcp, udp ). 
-*                these functions are used to modified state of socket 
-*
-*-------------------------------------------------------------------------------
-*  Modification History
-*  DATE        NAME             DESCRIPTION    
-*  -----------------------------------------------------------------------------
-*  2006-04-27   l(48769)        根据编程规范，对文件进行规范化整理
-*
-*******************************************************************************/
+
 #ifndef        _PROD_H
 #define        _PROD_H
 

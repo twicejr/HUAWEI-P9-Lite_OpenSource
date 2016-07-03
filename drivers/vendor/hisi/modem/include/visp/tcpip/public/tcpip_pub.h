@@ -1,26 +1,4 @@
-/*******************************************************************************
-*
-*
-*                Copyright 2007, Huawei Technologies Co. Ltd.
-*                            ALL RIGHTS RESERVED
-*
-*-------------------------------------------------------------------------------
-*
-*                              tcpip_pub.h
-*
-*  Project Code: VISPV100R006C02
-*   Module Name:
-*  Date Created: 2007-07-28
-*        Author: zhanghuihui(55157)
-*   Description: VISP ¹«¹²Ä£¿é´¦ÀíÍ·ÎÄ¼þ
-*
-*-------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  -----------------------------------------------------------------------------
-*  2007-07-28   zhanghuihui(55157)      Create
-*  2007-09-19   y62007                  modify A82D20228
-*******************************************************************************/
+
 #ifndef _TCPIP_PUB_H_
 #define _TCPIP_PUB_H_
 
@@ -46,7 +24,6 @@ extern "C"{
 #define MEM_IPv4_MAX_MID    128    /*Ä£¿éÄÚ´æÍ³¼ÆÖÐIPV4ÔÊÐíµÄ×î´óÄ£¿éID¶ÔÓ¦µÄÊý×éË÷Òý*/
 #define MEM_MAX_MID         256    /*Ä£¿éÄÚ´æÍ³¼ÆÖÐÔÊÐíµÄ×î´óÄ£¿éID¶ÔÓ¦µÄÊý×éË÷Òý*/
 
-/* Add for DTS2011071902704, by zhaoyue00171897, at 2011-07-19. ÐÞ¸ÄÔ­Òò:·ÀÖ¹CPUÕ¼ÓÃÂÊ¹ý¸ß */
 #define  SOCK_POINT_MAX_RUN_TIME        800  /*SOCK µ¥´Îµ÷¶È×î´óÊ±¼ä ms*/
 #define  SOCK_POINT_DEFAULT_RUN_TIME    40   /*SOCK µ¥´Îµ÷¶ÈÄ¬ÈÏÊ±¼ä ms*/
 #define  SOCK_POINT_MAX_FREE_TIME       100  /*SOCK µ¥´ÎÊÍ·Å×î´óÊ±¼ä ms*/
@@ -118,7 +95,6 @@ typedef struct tagTCPIP_TIME
 #define PTPCOMP_VERSION_OLD  1 
 #define PTPCOMP_VERSION_NEW  2
 
-/* Added by qinyun62011, (Distribute socket)·Ö²¼Ê½socket²Ã¼ô, 2014/3/11 */
 typedef struct tagTCPIP_DESTINFO
 {
     UCHAR ucFamilyType;     /*Ð­ÒéÀàÐÍ:AF_INET/AF_INET6*/
@@ -168,7 +144,6 @@ extern ULONG g_ulSockScheduleSwitch;
 extern ULONG g_ulSockRunTime;
 extern ULONG g_ulSockScheduleDelay;
 
-/*Add by q62011 for DTS2013011509185 ´ó¹æ¸ñÅäÖÃÐÔÄÜÓÅ»¯*/
 extern ULONG g_ulCreateEthIfTimeTotal ;
 extern ULONG g_ulCreateEthIfCount ;
 extern ULONG g_ulCreateEthIfPPITimeTotal ;
@@ -203,16 +178,13 @@ extern ULONG TCPIP_IsVipInVrf(ULONG ulVrfIndex, ULONG ulIpAddr);
 extern ULONG TCPIP_ISVirtualMacToFillEthSourcMac(VOID *pfCompTbl, MBUF_S *pstMbuf);
 
 extern ULONG TCPIP_GetMemInfo(ULONG ulInfo);
-/*Add by q62011 for DTS2013011509185 ´ó¹æ¸ñÅäÖÃÐÔÄÜÓÅ»¯*/
 extern VOID TCPIP_AddrSpecoOptimizeFlag(VOID);
 extern VOID TCPIP_ShowPerfInfo(VOID);
 extern VOID TCPIP_ClearPerfInfo(ULONG ulFlag);
-/* Begin DTS2011010503133 liangjicheng 2010-08-12 RIPµÄ½Ó¿Ú´´½¨OSPFÒ»ÖÂ */
 /*ÈçÏÂºêÓÃÓÚÉ¾³ýVRFµÄI3Í¬²½*/
 #define I3_SYN_WAITING  0xAAAA
 #define I3_SYN_FINISHED 0xEEEE
 #define I3_SYN_INTERVAL 10
-/*Add by q62011 for DTS2013011509185 ´ó¹æ¸ñÅäÖÃÐÔÄÜÓÅ»¯*/
 #define I3_CFG_SEM_MAX_WAIT_TIME 20000
 #define I3_SYN_TRY_TIMES 500
 extern VOID I3_WaitI3Syn(VOID);
@@ -231,9 +203,7 @@ extern LINK_HOOK_NODE_S      *g_pstLinkInputHook;    /*Á´Â·²ã×¢²á¹³×Ó½ÓÊÕ·½ÏòÁ´±
 extern LINK_HOOK_NODE_S      *g_pstLinkOutputHook;   /*Á´Â·²ã×¢²á¹³×Ó·¢ËÍ·½ÏòÁ´±íÍ·½áµã*/
 
 extern gpfGetSockMaxNum g_pfGetSockMaxNum;
-/*Added by yanlei00216869, Ê¹ÒÔ.so·½Ê½Ìá¹©¸øbluestarµÄvisp£¬²»ÒÀÀµ²úÆ·´úÂë, 2014/11/26   ÎÊÌâµ¥ºÅ:DTS2014112500391 */
 extern gpfRegAllAppInfo g_pfRegAllAppInfo;
-/* End of Added by yanlei00216869, 2014/11/26   ÎÊÌâµ¥ºÅ:DTS2014112500391 */
 extern BFD_IF_DEL_HOOK_FUNC g_pfBfdIfDeleteNotify;
 
 extern TCPIP_VirtualIpAddrConflict_HOOKFUNC g_pfVirtualIpAddrConflict;
@@ -247,7 +217,6 @@ extern gpfTCPIP_GetTunnelMtu_HOOK_FUNC g_pfGetTunnelMtu_HOOK_FUNC;
 extern TCPIP_IsNeedWarning_HOOK_FUNC        g_pfIsNeedWarning;
 
 
-/* Add for DTS2011031702777, by zhukun00166124, at 2011-03-21. ÐÞ¸ÄÔ­Òò: VRRP»ñÈ¡ÓÃ»§ÅäÖÃµÄBFD¹æ¸ñ£¬±£Ö¤Ä£¿é¶ÀÁ¢ÐÔ */
 extern ULONG (*g_pfVrrpGetBfdMaxSessID)(VOID);
 
 /*LLDPÄ£¿éTrunk±¨ÎÄÊÕ·¢¹³×Ó*/
@@ -259,7 +228,6 @@ typedef ULONG  (*pfBfdMonitorHOOK_Func)(VOID); /*¶¨ÒåÏß³Ì¼àÊÓBFD ¹³×ÓÀàÐÍ*/
 
 typedef ULONG  (*pfTWAMPMonitorHOOK_Func)(VOID); /*TWAMP Monitor Hook function*/
 
-/* Added by qinyun62011, (Distribute socket)·Ö²¼Ê½socket²Ã¼ô, 2014/3/11 */
 extern TCPIP_GETSRCADDRHOOK_FUNC g_pfGetSrcAddrHookFunc;
 extern TCPIPGETMTU_HOOK_FUNC g_pfGetMtu_HookFunc;
 ULONG TCPIP_RegFuncGetSrcAddrHook( TCPIP_GETSRCADDRHOOK_FUNC pfFuncHook );

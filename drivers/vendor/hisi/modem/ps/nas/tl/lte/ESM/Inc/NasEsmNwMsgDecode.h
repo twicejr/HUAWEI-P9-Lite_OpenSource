@@ -1,18 +1,4 @@
-/******************************************************************************
 
-        @(#)Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : NasEsmNwMsgDecode.h
-    Description :
-    History     :
-     1.丁丽 00128736      2008-09-01  Draft Enact
-     2.杨茜惠 00135146    2008-12-24  BA8D00792
-     3.孙兵 49683         2009-01-06  BA8D00870
-     4.杨茜惠 00135146    2009-03-06  Modify  BA8D01127
-     5.李洪00150010       2009-08-03  Modify  BJ9D01608
-     6.李洪00150010       2009-08-05  Modify  BJ9D01627
-******************************************************************************/
 
 #ifndef _NASESMNWMSGDECODE_H
 #define _NASESMNWMSGDECODE_H
@@ -275,12 +261,7 @@ enum NAS_ESM_NOTIFICATION_INDICATOR_ENUM
 };
 typedef VOS_UINT8  NAS_ESM_NOTIFICATION_INDICATOR_ENUM_ENUM8;
 
-/*****************************************************************************
- Struct Name   : NAS_ESM_TFT_PF_COP_TYPE_ENUM
- Description   : PF的component类型枚举
- History       :
-    1.sunjitan 00193151      2015-04-25  Draft Enact
-*****************************************************************************/
+
 enum NAS_ESM_TFT_PF_COP_TYPE_ENUM
 {
     NAS_ESM_TFT_PF_COP_TYPE_IPV4_ADDR            = 0x10, /* IPv4 remote address type              */
@@ -420,12 +401,7 @@ typedef struct
 }NAS_ESM_DECODE_QOSRATE_TABLE_STRU;
 
 
-/*****************************************************************************
- Function type  : NAS_ESM_DECODE_TFT_PF_COP_FUN
- Description    : 解析TFT的PF component type id 的函数指针定义
- History        :
-      1. sunjitan 00193151  2015-04-25  Draft Enact
-*****************************************************************************/
+
 typedef VOS_VOID  (* NAS_ESM_DECODE_TFT_PF_COP_FUN)
 (
     NAS_ESM_CONTEXT_TFT_STRU           *pstTFTInfo,
@@ -433,12 +409,7 @@ typedef VOS_VOID  (* NAS_ESM_DECODE_TFT_PF_COP_FUN)
     VOS_UINT8                          *pucCnt
 );
 
-/*****************************************************************************
- Struct Name   : NAS_ESM_DECODE_ADD_FILTER_TFT_TABLE_STRU
- Description   : 译码增加FILTER TFT的操作表
- History       :
-    1.sunjitan 00193151      2015-04-25  Draft Enact
-*****************************************************************************/
+
 typedef struct
 {
     NAS_ESM_TFT_PF_COP_TYPE_ENUM_ENUM8    enTftPfCopType;

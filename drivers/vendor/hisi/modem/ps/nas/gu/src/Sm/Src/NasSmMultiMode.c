@@ -1,22 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasSmMultiMode.c
-  版 本 号   : 初稿
-  作    者   : anhuiqing / 00165503
-  生成日期   : 2011年03月30日
-  最近修改   :
-  功能描述   :
-  函数列表   :
-
-  修改历史   :
-  1.日    期   : 2011年03月30日
-    作    者   : anhuiqing / 00165503
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -48,29 +30,7 @@ extern "C" {
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_SndRabmBearerActivateInd
- 功能描述  : 发送ID_SM_RABM_BEARER_ACTIVATE_IND至RABM
- 输入参数  : ucNsapi        - 取值范围[5, 15]
-             pstPdpCtxInfo  - PDP实体信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月11日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : RABM/SM原语接口中的动态内存改为静态数组
-
-  3.日    期   : 2013年8月2日
-    作    者   : A00165503
-    修改内容   : DTS2013040906296: Secondary PDP下行数传无法找到关联的承载ID
-*****************************************************************************/
 VOS_VOID NAS_SM_SndRabmBearerActivateInd(
     VOS_UINT8                           ucNsapi,
     NAS_SM_PDP_CONTEXT_INFO_STRU       *pstPdpCtxInfo
@@ -122,25 +82,7 @@ VOS_VOID NAS_SM_SndRabmBearerActivateInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_SndRabmBearerModifyInd
- 功能描述  : 发送ID_SM_RABM_BEARER_MODIFY_IND至RABM
- 输入参数  : ucNsapi        - 取值范围[5, 15]
-             pstPdpCtxInfo  - PDP实体信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月11日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : RABM/SM原语接口中的动态内存改为静态数组
-*****************************************************************************/
 VOS_VOID NAS_SM_SndRabmBearerModifyInd(
     VOS_UINT8                           ucNsapi,
     NAS_SM_PDP_CONTEXT_INFO_STRU       *pstPdpCtxInfo
@@ -188,22 +130,7 @@ VOS_VOID NAS_SM_SndRabmBearerModifyInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_SndRabmBearerDeactivateInd
- 功能描述  : 发送ID_SM_RABM_BEARER_ACTIVATE_IND至RABM
- 输入参数  : ucNsapi        - 取值范围[5, 15]
-             pstPdpCtxInfo  - PDP实体信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月11日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_SM_SndRabmBearerDeactivateInd(
     VOS_UINT8                           ucNsapi,
     NAS_SM_PDP_CONTEXT_INFO_STRU       *pstPdpCtxInfo
@@ -247,40 +174,7 @@ VOS_VOID NAS_SM_SndRabmBearerDeactivateInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_RcvTafBearerActivateInd
- 功能描述  : 处理 ID_MN_SM_BEARER_ACTIVATE_IND 原语
- 输入参数  : pstBearerActivateInd - ID_MN_SM_BEARER_ACTIVATE_IND消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月1日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年6月8日
-    作    者   : A00165503
-    修改内容   : DTS2012060705112: GU模下PDP激活成功, U2L后L模DEATACH导致EPS
-                 承载去激活, GU模没有同步PDP状态
-
-  3.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : SM保存的QOS和APN由动态内存改为静态数组
-
-  4.日    期   : 2013年2月6日
-    作    者   : A00165503
-    修改内容   : DTS2013012502493: PDP状态处于ACTIVATE_PENDING时, 收到EPS承
-                 载同步消息, 未清楚PDP实体信息, 重新刷新, 导致T3380定时器未
-                 停止, 网侧发起PDP MODIFY请求, SM再次使用该定时器句柄时,
-                 单板复位
-
-  5.日    期   : 2014年12月06日
-    作    者   : A00165503
-    修改内容   : DTS2014120207400: 连续去激活多个PDP, 网侧不释放RRC连接
-*****************************************************************************/
 VOS_VOID NAS_SM_RcvTafBearerActivateInd(
     SMREG_BEARER_ACTIVATE_IND_STRU     *pstBearerActivateInd
 )
@@ -448,33 +342,7 @@ VOS_VOID NAS_SM_RcvTafBearerActivateInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_RcvTafBearerModifyInd
- 功能描述  : 处理 ID_MN_SM_BEARER_MODIFY_IND 原语
- 输入参数  : pstBearerModifyInd - ID_MN_SM_BEARER_MODIFY_IND消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月1日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年2月27日
-    作    者   : z00161729
-    修改内容   : V7R1 C50 支持ISR修改
-
-  3.日    期   : 2012年6月8日
-    作    者   : A00165503
-    修改内容   : DTS2012060705112: GU模下PDP激活成功, U2L后L模DEATACH导致EPS
-                 承载去激活, GU模没有同步PDP状态
-
-  4.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : SM保存的QOS和APN由动态内存改为静态数组
-*****************************************************************************/
 VOS_VOID NAS_SM_RcvTafBearerModifyInd(
     SMREG_BEARER_MODIFY_IND_STRU       *pstBearerModifyInd
 )
@@ -531,33 +399,7 @@ VOS_VOID NAS_SM_RcvTafBearerModifyInd(
     NAS_SM_SndRabmBearerModifyInd(ucNsapi, pstPdpCtxInfo);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_RcvTafBearerDeactivateInd
- 功能描述  : 处理 ID_MN_SM_BEARER_DEACTIVATE_IND 原语
- 输入参数  : pstBearerDeactivateInd - ID_MN_SM_BEARER_DEACTIVATE_IND消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月1日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年8月9日
-    作    者   : l00167671
-    修改内容   : 问题单号DTS2011080502405 PDP STATUS维护错误，导致做RAU时IE填写错误
-
-  3.日    期   : 2012年6月8日
-    作    者   : A00165503
-    修改内容   : DTS2012060705112: GU模下PDP激活成功, U2L后L模DEATACH导致EPS
-                 承载去激活, GU模没有同步PDP状态
-
-  4.日    期   : 2014年12月06日
-    作    者   : A00165503
-    修改内容   : DTS2014120207400: 连续去激活多个PDP, 网侧不释放RRC连接
-*****************************************************************************/
 VOS_VOID NAS_SM_RcvTafBearerDeactivateInd(
     SMREG_BEARER_DEACTIVATE_IND_STRU   *pstBearerDeactivateInd
 )

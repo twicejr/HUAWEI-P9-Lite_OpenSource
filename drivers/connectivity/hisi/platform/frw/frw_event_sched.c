@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : frw_event_sched.c
-  版 本 号   : 初稿
-  作    者   : mayuan m00212148
-  生成日期   : 2012年10月16日
-  最近修改   :
-  功能描述   :
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年10月16日
-    作    者   : mayuan m00212148
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -54,23 +37,7 @@ extern "C" {
 /*****************************************************************************
   5 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : frw_event_sched_deactivate_queue_no_lock
- 功能描述  : 从调度队列删除一个事件队列
- 输入参数  : pst_sched_queue: 调度队列指针
-             pst_event_queue: 事件队列指针
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或其它错误码
- 调用函数  :
- 被调函数  :
 
-
- 修改历史      :
-  1.日    期   : 2015年3月31日
-    作    者   : gaolin daihu
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  frw_event_sched_deactivate_queue_no_lock(
                 frw_event_sched_queue_stru         *pst_sched_queue,
                 frw_event_queue_stru               *pst_event_queue)
@@ -103,25 +70,7 @@ oal_uint32  frw_event_sched_deactivate_queue_no_lock(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : frw_event_sched_activate_queue_no_lock
- 功能描述  : 向调度队列添加一个新的事件队列
- 输入参数  : past_sched_queue: 调度队列指针
-                          pst_event_queue : 事件队列指针
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月5日
-    作    者   : mayuan m00212148
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年4月23日
-    作    者   : wangjianchang wWX278082
-    修改内容   : 封装为不加锁接口，保持接口对称性，供加锁接口调用
-*****************************************************************************/
 oal_uint32  frw_event_sched_activate_queue_no_lock(
                 frw_event_sched_queue_stru   *pst_sched_queue,
                 frw_event_queue_stru         *pst_event_queue)
@@ -148,22 +97,7 @@ oal_uint32  frw_event_sched_activate_queue_no_lock(
 }
 
 
-/*****************************************************************************
- 函 数 名  : frw_event_sched_pick_next_event_queue_wrr
- 功能描述  : 从调度类中挑选下一个待处理的事件
- 输入参数  : pst_sched_queue: 调度队列指针
- 输出参数  : pst_sched_queue: 调度队列指针
- 返 回 值  : 成功: 事件内存指针
-             异常或者调度队列为空: OAL_PTR_NULL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月17日
-    作    者   : mayuan m00212148
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 oal_void* frw_event_sched_pick_next_event_queue_wrr(frw_event_sched_queue_stru *pst_sched_queue)
 {
@@ -219,21 +153,7 @@ oal_void* frw_event_sched_pick_next_event_queue_wrr(frw_event_sched_queue_stru *
     return p_event;
 }
 
-/*****************************************************************************
- 函 数 名  : frw_event_sched_init
- 功能描述  : 调度器初始化
- 输入参数  : pst_sched_queue: 调度队列指针
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月5日
-    作    者   : mayuan m00212148
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  frw_event_sched_init(frw_event_sched_queue_stru *pst_sched_queue)
 {
     if (OAL_UNLIKELY(OAL_PTR_NULL == pst_sched_queue))
@@ -255,24 +175,7 @@ oal_uint32  frw_event_sched_init(frw_event_sched_queue_stru *pst_sched_queue)
 }
 
 
-/*****************************************************************************
- 函 数 名  : frw_event_queue_set
- 功能描述  : 设置事件队列参数
- 输入参数  : pst_prio_queue: 事件队列指针
-             us_weight     : 队列权重
-             en_policy     : 队列调度策略
-             en_state      : 事件队列状态
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月23日
-    作    者   : mayuan m00212148
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void frw_event_queue_set(
                 frw_event_queue_stru               *pst_event_queue,
                 oal_uint8                           uc_weight,
@@ -286,25 +189,7 @@ OAL_STATIC oal_void frw_event_queue_set(
     pst_event_queue->en_vap_state  = FRW_VAP_STATE_RESUME;
 }
 
-/*****************************************************************************
- 函 数 名  : frw_event_queue_init
- 功能描述  : 事件队列初始化
- 输入参数  : pst_event_queue: 事件队列指针
-             us_weight      : 队列权重
-             en_policy      : 队列调度策略
-             en_state       : 事件队列状态
-             us_max_events  : 最大事件个数
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月17日
-    作    者   : mayuan m00212148
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  frw_event_queue_init(
                 frw_event_queue_stru               *pst_event_queue,
                 oal_uint8                           uc_weight,
@@ -338,21 +223,7 @@ oal_uint32  frw_event_queue_init(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : frw_event_queue_destroy
- 功能描述  : 销毁事件队列
- 输入参数  : pst_event_queue: 事件队列指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月18日
-    作    者   : mayuan m00212148
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  frw_event_queue_destroy(frw_event_queue_stru *pst_event_queue)
 {
     if (OAL_UNLIKELY(OAL_PTR_NULL == pst_event_queue))
@@ -366,22 +237,7 @@ oal_void  frw_event_queue_destroy(frw_event_queue_stru *pst_event_queue)
     frw_event_queue_set(pst_event_queue, 0, FRW_SCHED_POLICY_BUTT, FRW_EVENT_QUEUE_STATE_INACTIVE);
 }
 
-/*****************************************************************************
- 函 数 名  : frw_event_sched_deactivate_queue
- 功能描述  : 从调度队列删除一个事件队列
- 输入参数  : pst_sched_queue: 调度队列指针
-             pst_event_queue: 事件队列指针
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月12日
-    作    者   : mayuan m00212148
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  frw_event_sched_deactivate_queue(
                 frw_event_sched_queue_stru         *pst_sched_queue,
                 frw_event_queue_stru               *pst_event_queue)
@@ -401,25 +257,7 @@ oal_uint32  frw_event_sched_deactivate_queue(
     return ul_ret;
 }
 
-/*****************************************************************************
- 函 数 名  : frw_event_sched_activate_queue
- 功能描述  : 向调度队列添加一个新的事件队列
- 输入参数  : past_sched_queue: 调度队列指针
-             pst_event_queue : 事件队列指针
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月5日
-    作    者   : mayuan m00212148
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年4月23日
-    作    者   : wangjianchang wWX278082
-    修改内容   : 封装调用不加锁实现，保持接口对称性
-*****************************************************************************/
 oal_uint32  frw_event_sched_activate_queue(
                 frw_event_sched_queue_stru   *pst_sched_queue,
                 frw_event_queue_stru         *pst_event_queue)
@@ -436,21 +274,7 @@ oal_uint32  frw_event_sched_activate_queue(
     return ul_ret;
 }
 
-/*****************************************************************************
- 函 数 名  : frw_event_sched_activate_queue
- 功能描述  : 暂停队列调度状态
- 输入参数  : past_sched_queue: 调度队列指针
-             pst_event_queue : 事件队列指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月23日
-    作    者   : wangjianchang wWX278082
-    修改内容   : 新生成函数
-*****************************************************************************/
 oal_void  frw_event_sched_pause_queue(
                 frw_event_sched_queue_stru   *pst_sched_queue,
                 frw_event_queue_stru         *pst_event_queue)
@@ -471,21 +295,7 @@ oal_void  frw_event_sched_pause_queue(
     oal_spin_unlock_irq_restore(&pst_sched_queue->st_lock, &ul_flag);
 }
 
-/*****************************************************************************
- 函 数 名  : frw_event_sched_resume_queue
- 功能描述  : 恢复队列调度状态
- 输入参数  : past_sched_queue: 调度队列指针
-             pst_event_queue : 事件队列指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月23日
-    作    者   : wangjianchang wWX278082
-    修改内容   : 新生成函数
-*****************************************************************************/
 oal_void  frw_event_sched_resume_queue(
                 frw_event_sched_queue_stru   *pst_sched_queue,
                 frw_event_queue_stru         *pst_event_queue)

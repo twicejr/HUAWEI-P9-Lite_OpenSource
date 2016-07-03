@@ -139,10 +139,8 @@ extern "C" {
 /* 获取下行上下文地址 */
 #define RNIC_GET_DL_CTX_ADDR(index)                 (&g_stRnicCtx.astSpecCtx[index].stDlCtx)
 
-/* Added by m00217266 for L-C互操作项目, 2014-2-18, begin */
 /* 获取指定网卡对应的modem type */
 #define RNIC_GET_SPEC_NET_MODEM_TYPE(index)         (g_stRnicCtx.astSpecCtx[index].enModemType)
-/* Added by m00217266 for L-C互操作项目, 2014-2-18, end */
 
 /* 获取指定Modem的RABID信息 */
 #define RNIC_GET_SPEC_MODEM_RABID_INFO(index)       (&g_stRnicCtx.astRabIdInfo[index])
@@ -164,13 +162,7 @@ extern "C" {
   3 枚举定义
 *****************************************************************************/
 
-/*********************************************
- 枚举名   :RNIC_NETCARD_STATUS_TYPE_ENUM
- 枚举说明 :RNIC网卡的状态
- 1.日    期   : 2011年12月12日
-   作    者   : f00179208
-   修改内容   : 新建
-*********************************************/
+
 enum RNIC_NETCARD_STATUS_TYPE_ENUM
 {
     RNIC_NETCARD_STATUS_CLOSED,                                                 /* RNIC为关闭状态 */
@@ -179,13 +171,7 @@ enum RNIC_NETCARD_STATUS_TYPE_ENUM
 };
 typedef VOS_UINT8 RNIC_NETCARD_STATUS_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : RNIC_PDP_REG_STATUS_ENUM
- 枚举说明  : 标识该PDP上下文是否注册
- 1.日    期   : 2011年12月12日
-   作    者   : f00179208
-   修改内容   : 创建
-*****************************************************************************/
+
 enum RNIC_PDP_REG_STATUS_ENUM
 {
     RNIC_PDP_REG_STATUS_DEACTIVE,                                               /* 未注册上 */
@@ -194,13 +180,7 @@ enum RNIC_PDP_REG_STATUS_ENUM
 };
 typedef VOS_UINT32 RNIC_PDP_REG_STATUS_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : RNIC_FLOW_CTRL_STATUS_ENUM
- 枚举说明  : 流控状态枚举
-  1.日    期   : 2012年6月1日
-    作    者   : A00165503
-    修改内容   : 创建
-*****************************************************************************/
+
 enum RNIC_FLOW_CTRL_STATUS_ENUM
 {
     RNIC_FLOW_CTRL_STATUS_STOP          = 0x00,                                 /* 流控停止 */
@@ -228,13 +208,7 @@ typedef VOS_UINT32 RNIC_FLOW_CTRL_STATUS_ENUM_UINT32;
   7 STRUCT定义
 *****************************************************************************/
 
-/*****************************************************************************
- 结构名    : RNIC_ETH_HEADER_STRU
- 结构说明  : 以太网头结构
- 1.日    期   : 2012年2月03日
-   作    者   : f00179208
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           aucEtherDhost[RNIC_MAC_ADDR_LEN];       /* destination ethernet address */
@@ -243,13 +217,7 @@ typedef struct
     VOS_UINT8                           aucReserved[2];
 }RNIC_ETH_HEADER_STRU;
 
-/*****************************************************************************
- 结构名    : RNIC_NETCARD_ELEMENT_TAB_STRU
- 结构说明  : RNIC模块每个网卡对应的信息
- 1.日    期   : 2012年12月07日
-   作    者   : f00179208
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     const VOS_CHAR                     *pucRnicNetCardName;                     /* 网卡名称 */
@@ -260,16 +228,7 @@ typedef struct
     VOS_UINT8                           aucReserved[5];
 }RNIC_NETCARD_ELEMENT_TAB_STRU;
 
-/*****************************************************************************
- 结构名    : RNIC_NETCARD_DEV_INFO_STRU
- 结构说明  : RNIC虚拟网卡设备私有结构
- 1.日    期   : 2011年12月06日
-   作    者   : f00179208
-   修改内容   : 新建
- 2.日    期   : 2012年12月10日
-   作    者   : f00179208
-   修改内容   : DSDA Phase I: RNIC多实例
-*****************************************************************************/
+
 typedef struct
 {
     struct net_device                  *pstDev;                                 /* 用于记录Linux内核分配的网卡虚地址 */
@@ -279,13 +238,7 @@ typedef struct
     VOS_UINT8                           aucRsv[6];                              /* 保留 */
 }RNIC_NETCARD_DEV_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : RNIC_FILTER_INFO_STRU
- 结构说明  : 发送过滤器的信息
- 1.日    期   : 2011年12月07日
-   作    者   : f00179208
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          OP_EnableDestAddr      : 1;             /* 使能目的IP地址作为过滤条件 */
@@ -303,13 +256,7 @@ typedef struct
     VOS_UINT16                          usSrcPortHigh;                          /* 源端口号上限 */
 }RNIC_FILTER_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : RNIC_FILTER_LST_ITEM_STRU
- 结构说明  : 发送过滤器列表
- 1.日    期   : 2011年12月07日
-   作    者   : f00179208
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct RNIC_FTI
 {
     VOS_INT32                           ulFilterId;                             /* 发送过滤器的ID */
@@ -317,74 +264,44 @@ typedef struct RNIC_FTI
     struct RNIC_FTI                    *pNextItem;                              /* 指向下一个列表项 */
 }RNIC_FILTER_LST_STRU;
 
-/*****************************************************************************
- 结构名    : RNIC_IPV4_PDP_INFO_STRU
- 结构说明  : RNIC模块IPV4的PDP信息
- 1.日    期   : 2011年12月15日
-   作    者   : f00179208
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     RNIC_PDP_REG_STATUS_ENUM_UINT32     enRegStatus;                            /* 标识该PDP上下文是否注册 */
 
     VOS_UINT8                           ucRabId;                                /* 承载标识 */
-    /* Added by l60609 for L-C互操作项目, 2014-01-06, Begin */
     VOS_UINT8                           ucPdnId;
-    /* Added by l60609 for L-C互操作项目, 2014-01-06, End */
 
     VOS_UINT8                           aucReserved[2];
     VOS_UINT32                          ulIpv4Addr;                             /* IP地址 */
 }RNIC_IPV4_PDP_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : RNIC_IPV6_PDP_INFO_STRU
- 结构说明  : RNIC模块IPV6的PDP信息
- 1.日    期   : 2011年12月15日
-   作    者   : f00179208
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     RNIC_PDP_REG_STATUS_ENUM_UINT32     enRegStatus;                            /* 标识该PDP上下文是否注册 */
 
-    /* Modified by l60609 for L-C互操作项目, 2014-01-06, Begin */
     VOS_UINT8                           ucRabId;                                /* 承载标识 */
     VOS_UINT8                           ucPdnId;
     VOS_UINT8                           aucReserved[2];
-    /* Modified by l60609 for L-C互操作项目, 2014-01-06, End */
 
     VOS_UINT8                           aucIpv6Addr[RNIC_MAX_IPV6_ADDR_LEN];    /* 从AT带来的IPV6地址长度，不包括":" */
 }RNIC_IPV6_PDP_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : RNIC_IPV4V6_PDP_INFO_STRU
- 结构说明  : RNIC模块IPV4V6的PDP信息
- 1.日    期   : 2011年12月17日
-   作    者   : f00179208
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     RNIC_PDP_REG_STATUS_ENUM_UINT32     enRegStatus;                            /* 标识该PDP上下文是否注册 */
 
-    /* Modified by l60609 for L-C互操作项目, 2014-01-06, Begin */
     VOS_UINT8                           ucRabId;                                /* 承载标识 */
     VOS_UINT8                           ucPdnId;
     VOS_UINT8                           aucReserved[2];
-    /* Modified by l60609 for L-C互操作项目, 2014-01-06, End */
 
     VOS_UINT32                          ulIpv4Addr;                             /* IP地址 */
     VOS_UINT8                           aucIpv6Addr[RNIC_MAX_IPV6_ADDR_LEN];    /* 从AT带来的IPV6地址长度，不包括":" */
 }RNIC_IPV4V6_PDP_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : RNIC_PDP_CTX_STRU
- 结构说明  : RNIC模块PDP上下文信息
- 1.日    期   : 2011年12月12日
-   作    者   : f00179208
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     RNIC_IPV4_PDP_INFO_STRU             stIpv4PdpInfo;                          /* IPV4的PDP信息 */
@@ -396,33 +313,19 @@ typedef struct
     VOS_UINT8                          *pucFragmBuf;                            /* 用于IP分片的缓存 */
 } RNIC_PDP_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : RNIC_RABID_INFO_STAU
- 结构说明  : RNIC模块根据RABID维护的网卡信息
- 1.日    期   : 2012年12月10日
-   作    者   : f00179208
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     RNIC_RMNET_ID_ENUM_UINT8            aucRmNetId[RNIC_RAB_ID_MAX_NUM];        /* RABID对应的网卡ID */
     VOS_UINT8                           aucReserved[5];
 }RNIC_RABID_INFO_STAU;
 
-/* Modified by l60609 for L-C互操作项目, 2014-01-06, Begin */
-/*****************************************************************************
- 结构名    : RNIC_PDNID_INFO_STAU
- 结构说明  : RNIC模块根据PDNID维护的网卡信息
- 1.日    期   : 2014年02月10日
-   作    者   : l60609
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     RNIC_RMNET_ID_ENUM_UINT8            aucRmNetId[RNIC_PDN_ID_MAX_NUM];        /* PDNID对应的网卡ID */
     VOS_UINT8                           aucReserved[4];
 }RNIC_PDNID_INFO_STAU;
-/* Modified by l60609 for L-C互操作项目, 2014-01-06, End */
 
 /*****************************************************************************
  结构名称  : RNIC_DSFLOW_STATS_STRU
@@ -442,13 +345,7 @@ typedef struct
 
 } RNIC_DSFLOW_STATS_STRU;
 
-/*****************************************************************************
- 结构名    : RNIC_CTX_STRU
- 结构说明  : RNIC模块每个网卡专有的上下文
- 1.日    期   : 2012年11月22日
-   作    者   : f00179208
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     RNIC_PDP_CTX_STRU                   stPdpCtx;                               /* RNIC的PDP上下文 */
@@ -464,16 +361,7 @@ typedef struct
     RNIC_NETCARD_DEV_INFO_STRU         *pstPriv;                                /* 网卡设备信息 */
 }RNIC_SPEC_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : RNIC_CTX_STRU
- 结构说明  : RNIC模块运行上下文
- 1.日    期   : 2011年12月07日
-   作    者   : f00179208
-   修改内容   : 新建
- 2.日    期   : 2012年11月22日
-   作    者   : f00179208
-   修改内容   : DSDA Phase I: RNIC多实例
-*****************************************************************************/
+
 typedef struct
 {
     /****** RNIC每个网卡专有的上下文 ******/
@@ -481,9 +369,7 @@ typedef struct
 
     RNIC_RABID_INFO_STAU                astRabIdInfo[RNIC_MODEM_ID_MAX_NUM];    /* RabId对应的网卡ID */
 
-    /* Modified by l60609 for L-C互操作项目, 2014-01-06, Begin */
     RNIC_PDNID_INFO_STAU                stPdnIdInfo;                            /* 记录sdio pdn id对应的网卡id*/
-    /* Modified by l60609 for L-C互操作项目, 2014-01-06, End */
 
     /****** RNIC定时器上下文 ******/
     RNIC_TIMER_CTX_STRU                 astTimerCtx[RNIC_MAX_TIMER_NUM];
@@ -559,11 +445,9 @@ VOS_VOID RNIC_InitRabidInfo(
     RNIC_RABID_INFO_STAU               *pstRabIdInfo
 );
 
-/* Added by m00217266 for L-C互操作项目, 2014-2-8, begin */
 VOS_VOID RNIC_InitPdnIdInfo(
     RNIC_PDNID_INFO_STAU               *pstPdnIdInfo
 );
-/* Added by m00217266 for L-C互操作项目, 2014-2-8, end */
 
 RNIC_SPEC_CTX_STRU *RNIC_GetSpecNetCardCtxAddr(VOS_UINT8 ucIndex);
 RNIC_RABID_INFO_STAU *RNIC_GetSpecModemRabIdInfoAddr(

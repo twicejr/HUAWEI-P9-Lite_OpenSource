@@ -63,23 +63,7 @@ extern "C"{
   4 The Function Define
 *****************************************************************************/
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_ConvertCasStatusToHsm_PreProc
-Description     :   Covert Cas status to local
-Input parameters:   CAS_CNAS_HRPD_CAS_STATUS_ENUM_UINT16 enPreHrpdOrigCasStatus  ---保存的上一次原始的cas状态
-                    CAS_CNAS_HRPD_CAS_STATUS_ENUM_UINT16 enCurHrpdCasStatus      ---现在上报的cas的状态
 
-Outout parameters:  None
-Return Value    :   CNAS_HSM_HRPD_CAS_STATUS_ENUM_UINT16;
-
-Modify History  :
-1)  Date           : 2015-10-28
-    Author         : m00312079
-    Modify content : DTS2015102803041 Create
-2)  Date           : 2015-12-28
-    Author         : y00307564
-    Modify content : DTS2015111903421 Create
-*****************************************************************************/
 CNAS_HSM_HRPD_CAS_STATUS_ENUM_UINT16 CNAS_HSM_ConvertCasStatusToHsm_PreProc(
     CAS_CNAS_HRPD_CAS_STATUS_ENUM_UINT16                    enPreHrpdOrigCasStatus,
     CAS_CNAS_HRPD_CAS_STATUS_ENUM_UINT16                    enCurHrpdCasStatus
@@ -162,24 +146,7 @@ HSM_HSD_HRPD_CAS_STATUS_ENUM_UINT16 CNAS_HSM_ConvertCasStatusToHsd_PreProc(
     return enCovertRlst;
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_RcvCasHrpdCasStatusInd_PreProc
-Description     :   Process the Cas status
-Input parameters:   VOS_UINT32                          ulEventType,
-                    struct MsgCB                       *pstMsg
-Outout parameters:  None
-Return Value    :   VOS_UINT32;
 
-Modify History  :
-1)  Date           : 2015-02-04
-    Author         : m00312079
-    Modify content : Create
-
-2)  Date           : 2015-10-28
-    Author         : m00312079
-    Modify content : DTS2015102803041，CAS上报的状态如果为CAS_CNAS_HRPD_CAS_STATUS_ENUM_IDLE(包含INIT->IDLE和CONN->IDLE),
-                     CNAS不能发建链和信令，只有等到OHM消息后才可发建链和信令。
-*****************************************************************************/
 VOS_UINT32 CNAS_HSM_RcvCasHrpdCasStatusInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -231,25 +198,7 @@ VOS_UINT32 CNAS_HSM_RcvCasHrpdSessionNegStartInd_PreProc(
     return CNAS_HSM_FSM_EVENT_HANDLED;
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_RcvCasHrpdSessionNegRsltInd_PreProc
-Description     :   Process ID_CAS_CNAS_HRPD_SESSION_NEG_RSLT_IND
-                    如果CAS主动发的协商结果中的结果为失败，先发内部消息ID_CNAS_HSM_HSM_SESSION_CLOSE_IND，
-                    给网络发SessionClose。然后处理内部消息ID_CNAS_HSM_HSM_SESSION_CLOSE_IND。
-                    如果在open vacant状态收到ID_CNAS_HSM_HSM_SESSION_CLOSE_IND，直接处理。
-                    如果在非open vacant状态收到ID_CNAS_HSM_HSM_SESSION_CLOSE_IND消息，先缓存，
-                    然后退状态机开始deactive流程，deactive流程完成之后，处理缓存的
-                    ID_CNAS_HSM_HSM_SESSION_CLOSE_IND消息。
-Input parameters:   VOS_UINT32                          ulEventType,
-                    struct MsgCB                       *pstMsg
-Outout parameters:  None
-Return Value    :   VOS_UINT32;
 
-Modify History  :
-1)  Date           : 2015-06-10
-    Author         : y00174758
-    Modify content : Create
-*****************************************************************************/
 VOS_UINT32 CNAS_HSM_RcvCasHrpdSessionNegRsltInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -906,26 +855,7 @@ VOS_UINT32 CNAS_HSM_RcvCasIdleHoInd_PreProc(
     return CNAS_HSM_FSM_EVENT_HANDLED;
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_RcvTiKeepAliveTimerExpired
-Description     :   Handles the Keep alive timer expired message.
-Input parameters:   VOS_UINT32                          ulEventType,
-                    struct MsgCB                       *pstMsg
-Output parameters:  None
-Return Value    :   VOS_UINT32
 
-Modify History  :
-1)  Date           : 2015-05-30
-    Author         : a00295761
-    Modify content : Create
-2)  日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-3)  Date           : 2015-10-08
-    Author         : w00351686
-    Modify content : DTS2015092201636: package fuction when no forward traffic
-                     channel data was received during the time ulKeepAliveTimerLen
-*****************************************************************************/
 
 VOS_UINT32 CNAS_HSM_RcvTiKeepAliveTimerExpired_PreProc(
     VOS_UINT32                          ulEventType,
@@ -1183,22 +1113,7 @@ VOS_UINT32 CNAS_HSM_RcvTiHardWareIdRspWaitSnpDataCnfExpired_PreProc(
     return CNAS_HSM_FSM_EVENT_HANDLED;
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_RcvTiSessionCloseRspWaitSnpDataCnfExpired_PreProc
-Description     :   Handles the session close timer expired message.
-Input parameters:   VOS_UINT32                          ulEventType,
-                    struct MsgCB                       *pstMsg
-Output parameters:  None
-Return Value    :   VOS_UINT32
 
-Modify History  :
-1)  Date           : 2015-06-08
-    Author         : y00307564
-    Modify content : Create
-2)  Date           : 2015-06-016
-    Author         : t00323010
-    Modify content : Iteration 12: session close wait snp data cnf子状态进状态机
-*****************************************************************************/
 
 VOS_UINT32 CNAS_HSM_RcvTiSessionCloseRspWaitSnpDataCnfExpired_PreProc(
     VOS_UINT32                          ulEventType,
@@ -1599,22 +1514,7 @@ VOS_UINT32 CNAS_HSM_RcvHsdPowerOffReq_PreProc(
     return CNAS_HSM_FSM_EVENT_NOT_HANDLED;
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_RcvTiAddressTimerExp_PreProc
-Description     :   Process the TI_CNAS_HSM_ADDRESS_TIMER
-Input parameters:   VOS_UINT32                          ulEventType,
-                    struct MsgCB                       *pstMsg
-Outout parameters:  None
-Return Value    :   None;
 
-Modify History  :
-1)  Date           : 2015-05-31
-    Author         : m00312079
-    Modify content : Create
-2)  Date           : 2015-09-07
-    Author         : m00312079
-    Modify content : DTS2015081801520:发送更新后的receive ATI List给cttf
-*****************************************************************************/
 VOS_UINT32 CNAS_HSM_RcvTiAddressTimerExp_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1705,25 +1605,7 @@ VOS_UINT32 CNAS_HSM_RcvCasSessionChangeInd_PreProc(
 
 
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_RcvHsdOhmInd_PreProc
-Description     :   process ID_HSD_HSM_OVERHEAD_MSG_IND msg in PreProc
-Input parameters:   ulEventType-----message ID +pid
-                    pstMsg     -----message content
-Outout parameters:  None
-Return Value    :   CNAS_HSM_FSM_EVENT_HANDLED-------the current event is processed finished
-                    CNAS_HSM_FSM_EVENT_NOT_HANDLED---the current event need to further process
 
-Modify History  :
-1)  Date           : 2015-06-10
-    Author         : m00312079
-    Modify content : Create
-
-2)  Date           : 2015-10-28
-    Author         : m00312079
-    Modify content : DTS2015102803041,收到OHM消息后 如果HSM存储的CAS状态为CNAS_HSM_HRPD_CAS_STATUS_ENUM_INIT，
-                     则将CAS的状态设置为CNAS_HSM_HRPD_CAS_STATUS_ENUM_IDLE
-*****************************************************************************/
 VOS_UINT32 CNAS_HSM_RcvHsdOhmInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1741,8 +1623,7 @@ VOS_UINT32 CNAS_HSM_RcvHsdOhmInd_PreProc(
     VOS_UINT8                                               ucIndex;
 
     pstOverHeadMsgInd    = (HSD_HSM_OVERHEAD_MSG_IND_STRU *)pstMsg;
-    /* DTS2015102803041,收到OHM消息后 如果HSM存储的CAS状态为CNAS_HSM_HRPD_CAS_STATUS_ENUM_INIT，
-       则将CAS的状态设置为CNAS_HSM_HRPD_CAS_STATUS_ENUM_IDLE */
+    
     if (CNAS_HSM_HRPD_CAS_STATUS_ENUM_INIT == CNAS_HSM_GetHrpdConvertedCasStatus())
     {
         CNAS_HSM_SaveHrpdConvertedCasStatus(CNAS_HSM_HRPD_CAS_STATUS_ENUM_IDLE);
@@ -2012,22 +1893,7 @@ VOS_UINT32 CNAS_HSM_IsCurCsimUimCardPresent(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_RcvPihUsimStatusInd_PreProc
-Description     :   Process the USIMM_CARDSTATUS_IND
-Input parameters:   VOS_UINT32                          ulEventType,
-                    struct MsgCB                       *pstMsg
-Outout parameters:  None
-Return Value    :   VOS_UINT32;
 
-Modify History  :
-1)  Date           : 2015-10-30
-    Author         : y00307564
-    Modify content : Create
-2)  Date           : 2015-11-09
-    Author         : y00307564
-    Modify content : 清理stCsimUimInfo未初始化TQE告警
-*****************************************************************************/
 VOS_UINT32 CNAS_HSM_RcvPihUsimStatusInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2180,19 +2046,7 @@ VOS_UINT32 CNAS_HSM_RcvCttfHprdPaAccAuthStatusInd_PreProc(
 }
 
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_ClearRelativeCtx_PreProc
-Description     :   异常场景下清除相关的上下文信息，比如停掉相关定时器，发送session_end_ntf,清理相关
-                    全局变量等
-Input parameters:   VOS_VOID
-Outout parameters:  None
-Return Value    :   VOS_VOID;
 
-Modify History  :
-1)  Date           : 2015-12-12
-    Author         : m00312079
-    Modify content : Create
-*****************************************************************************/
 VOS_VOID CNAS_HSM_ClearRelativeCtx_PreProc(VOS_VOID)
 {
     CNAS_HSM_SS_ID_ENUM_UINT32                              enCurrSubState;

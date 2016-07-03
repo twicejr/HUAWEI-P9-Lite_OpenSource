@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasPrlMntn.h
-  版 本 号   : 初稿
-  作    者   : y00245242
-  生成日期   : 2014年8月2日
-  最近修改   :
-  功能描述   : PRL参数定义
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年8月2日
-    作    者   : y00245242
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __CNAS_PRL_MNTN_H__
 #define __CNAS_PRL_MNTN_H__
@@ -48,13 +31,7 @@ extern "C" {
   3 枚举定义
 *****************************************************************************/
 
-/*****************************************************************************
- 枚举名    : CNAS_PRL_MNTN_MSG_ID_ENUM
- 结构说明  : CNAS PRL可维可测消息ID
-  1.日    期   : 2014年08月18日
-    作    者   : y00245242
-    修改内容   : 新增
-*****************************************************************************/
+
 enum CNAS_PRL_MNTN_MSG_ID_ENUM
 {
     ID_CNAS_PRL_MNTN_HEADER_INFO_IND    = ID_CNAS_MNTN_PRL_MSG_BASE, /*_H2ASN_MsgChoice  CNAS_PRL_MNTN_HEADER_INFO_IND_STRU */
@@ -89,15 +66,7 @@ typedef VOS_UINT32 CNAS_PRL_MNTN_MSG_ID_ENUM_UINT32;
 /*****************************************************************************
   7 STRUCT定义
 *****************************************************************************/
-/*****************************************************************************
- 结构名    : CNAS_PRL_CDMA_SYS_ACQ_CHANNEL_RECORD_STRU
- 结构说明  : PRL捕获记录channel数据结构
 
-  1.日    期   : 2014年08月18日
-    作    者   : y00245242
-    修改内容   : 新建
-
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucNumOfChans;   /* channel个数 */
@@ -106,16 +75,7 @@ typedef struct
     VOS_UINT16                          ausChan[CNAS_PRL_ACQ_CUSTOM_CHAN_RECORD_MAX_NUM];        /* 存放channel首地址 */
 }CNAS_PRL_CDMA_SYS_ACQ_CHANNEL_RECORD_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_PRL_PCS_CDMA_SYS_ACQ_BLOCKS_RECORD_TRACE_STRU
- 结构说明  : PCS CDMA System Acquisition (Using Blocks) Record数据结构
-             (见3GPP2 C.S0016-D 3.5.5.2.1.5)，用于TRACE使用
 
-  1.日    期   : 2014年08月18日
-    作    者   : y00245242
-    修改内容   : 新建
-
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                                               ucNumOfBlocks;   /* block数目 */
@@ -125,15 +85,7 @@ typedef struct
 
 }CNAS_PRL_PCS_CDMA_SYS_ACQ_BLOCKS_RECORD_TRACE_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_PRL_GENERIC_ACQ_FOR_1X_AND_IS95_TRACE_STRU
- 结构说明  : Generic Acquisition Record for cdma2000 1x and IS-95
-             Record数据结构(见3GPP2 C.S0016-D 3.5.5.2.2.10), 为trace使用
-  1.日    期   : 2014年08月18日
-    作    者   : y00245242
-    修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                                               ucNumOfChans;
@@ -143,15 +95,7 @@ typedef struct
 
 }CNAS_PRL_GENERIC_ACQ_FOR_1X_AND_IS95_TRACE_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_PRL_GENERIC_ACQ_FOR_HRPD_TRACE_STRU
- 结构说明  : Generic Acquisition Record for HRPD
 
-  1.日    期   : 2015年06月08日
-    作    者   : z00316370
-    修改内容   : 新建
-
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                                               ucNumOfChans;
@@ -160,14 +104,7 @@ typedef struct
 }CNAS_PRL_GENERIC_ACQ_FOR_HRPD_TRACE_STRU;
 
 
-/*****************************************************************************
- 结构名    : CNAS_PRL_ACQ_RECORD_TRACE_STRU
- 结构说明  : PRL捕获记录(acquire record)数据结构, 该结构用于trace捕获记录使用
-  1.日    期   : 2014年08月18日
-    作    者   : y00245242
-    修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     CNAS_PRL_ACQ_TYPE_ENUM_UINT8                                enAcqType;
@@ -192,14 +129,7 @@ typedef struct
 
 }CNAS_PRL_MNTN_ACQ_RECORD_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_PRL_MNTN_HEADER_INFO_IND_STRU
- 结构说明  : PRL可维可测头消息数据结构
-  1.日    期   : 2014年08月18日
-    作    者   : y00245242
-    修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* 消息头 */    /* _H2ASN_Skip */
@@ -208,14 +138,7 @@ typedef struct
     CNAS_PRL_HEADER_INFO_STRU           stHeaderInfo;
 }CNAS_PRL_MNTN_HEADER_INFO_IND_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_PRL_MNTN_ACQ_REC_INFO_IND_STRU
- 结构说明  : PRL可维可测捕获记录数据结构
-  1.日    期   : 2014年08月18日
-    作    者   : y00245242
-    修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                                   /* 消息头 */    /* _H2ASN_Skip */
@@ -226,14 +149,7 @@ typedef struct
     CNAS_PRL_MNTN_ACQ_RECORD_STRU       astAcqRec[CNAS_PRL_MNTN_MAX_ACQ_REC_NUM]; /* 捕获记录数据结构 */
 }CNAS_PRL_MNTN_ACQ_REC_INFO_IND_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_PRL_MNTN_SYS_REC_INFO_IND_STRU
- 结构说明  : PRL可维可测捕获记录数据结构
-  1.日    期   : 2014年08月18日
-    作    者   : y00245242
-    修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                                   /* 消息头 */    /* _H2ASN_Skip */
@@ -244,14 +160,7 @@ typedef struct
     CNAS_PRL_EXT_SYS_RECORD_STRU        astSysRec[CNAS_PRL_MNTN_MAX_SYS_REC_NUM]; /* 系统记录数据结构 */
 }CNAS_PRL_MNTN_SYS_REC_INFO_IND_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_PRL_MNTN_MULTI_MATCHED_GEO_INFO_STRU
- 结构说明  : 多匹配GEO信息结构
-  1.日    期   : 2015年12月7日
-    作    者   : w00242748
-    修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                                   /* 消息头 */    /* _H2ASN_Skip */
@@ -260,14 +169,7 @@ typedef struct
     CNAS_PRL_MULTI_MATCHED_GEO_INFO_STRU                    stMultiMatchedGeoInfo;
 }CNAS_PRL_MNTN_MULTI_MATCHED_GEO_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_PRL_MNTN_MULTI_MATCHED_GEO_LIST_INFO_STRU
- 结构说明  : 多匹配GEO列表信息接口
-  1.日    期   : 2015年12月7日
-    作    者   : w00242748
-    修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                                   /* 消息头 */    /* _H2ASN_Skip */

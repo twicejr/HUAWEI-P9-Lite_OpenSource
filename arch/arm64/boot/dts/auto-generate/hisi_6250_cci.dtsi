@@ -1,0 +1,36 @@
+
+
+/{
+	cci@e8100000 {
+		compatible = "arm,cci-500";
+		#address-cells = <2>;
+		#size-cells = <2>;
+		reg = <0x0 0xe8100000 0x0 0x1000>;
+	};
+
+	cci_extra@e8100000 {
+		compatible = "hisilicon,cci400-extra";
+		#address-cells = <2>;
+		#size-cells = <2>;
+		reg = <0x0 0xe8100000 0x0 0x1000>;
+
+		ranges = <0x0 0x1000 0x0 0xe8101000 0x0 0x1000>,
+			<0x0 0x2000 0x0 0xe8102000 0x0 0x1000>;
+
+		speculative-disable = <0x70001>;
+
+		cci_control3: slave-if@1000 {
+			compatible = "hisilicon,cci400-extra-if";
+			reg = <0x0 0x1000 0x0 0x1000>;
+			read-qos-override = <0x86030013>;
+			write-qos-override = <0x86040013>;
+		};
+
+		cci_control4: slave-if@2000 {
+			compatible = "hisilicon,cci400-extra-if";
+			reg = <0x0 0x2000 0x0 0x1000>;
+			read-qos-override = <0x86040013>;
+			write-qos-override = <0x86050013>;
+		};
+	};
+};

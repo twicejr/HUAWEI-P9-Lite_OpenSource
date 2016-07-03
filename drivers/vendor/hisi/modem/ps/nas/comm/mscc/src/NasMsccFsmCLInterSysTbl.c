@@ -1,19 +1,4 @@
-/******************************************************************************
 
-            Copyright 2014, Huawei Technologies Co. Ltd.
-
- ******************************************************************************
-File Name       :   NasMsccFsmInterSysTbl.c
-Author          :   w00176964
-Version         :
-Date            :   2015-11-05
-Description     :   CL异系统流程状态机消息处理表文件
-Function list   :
-History         :
-    1) Date :
-       Author:
-       Modification:
-******************************************************************************/
 
 /*****************************************************************************
   1. Including header files
@@ -108,38 +93,13 @@ NAS_STA_STRU        g_astNasMsccCLInterSysStaTbl[]   =
 
 };
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_GetCLInterSysStaTblSize
-Description     :   获取CL intersys状态机的状态处理表大小
 
-Input parameters:   VOS_VOID
-Output parameters:  None
-Return Value    :   VOS_UINT32
-
-Modify History:
-    1)  Date    :   2015-11-05
-        Author  :   w00176964
-        Modify content :    Create
-
-*****************************************************************************/
 VOS_UINT32 NAS_MSCC_GetCLInterSysStaTblSize(VOS_VOID)
 {
     return (sizeof(g_astNasMsccCLInterSysStaTbl)/sizeof(NAS_STA_STRU));
 }
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_GetCLInterSysFsmDescAddr
-Description     :   获取CL intersys状态机的状态描述表地址
-Input parameters:   VOS_VOID
-Outout parameters:  None
-Return Value    :   &NAS_FSM_DESC_STRU
 
-Modify History:
-    1)  Date    :   2015-11-05
-        Author  :   w00176964
-        Modify content :    Create
-
-*****************************************************************************/
 NAS_FSM_DESC_STRU * NAS_MSCC_GetCLInterSysFsmDescAddr(VOS_VOID)
 {
     return (&g_stNasMsccCLInterSysFsmDesc);

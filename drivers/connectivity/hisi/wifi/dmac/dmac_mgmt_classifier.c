@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : dmac_mgmt_classifier.c
-  版 本 号   : 初稿
-  作    者   : t00231215
-  生成日期   : 2012年12月18日
-  最近修改   :
-  功能描述   : dmac 管理帧处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年12月18日
-    作    者   : t00231215
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -86,21 +69,7 @@ extern "C" {
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : dmac_rx_process_control
- 功能描述  : 控制帧处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月3日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_rx_process_control(dmac_vap_stru *pst_dmac_vap, oal_netbuf_stru *pst_netbuf, oal_uint8 *pen_go_on)
 {
     dmac_rx_ctl_stru                 *pst_rx_ctl;
@@ -209,6 +178,14 @@ oal_uint32  dmac_rx_process_control(dmac_vap_stru *pst_dmac_vap, oal_netbuf_stru
         uc_tidno        = (puc_payload[1] & 0xF0) >> 4;
         //us_start_seqnum = mac_get_bar_start_seq_num(puc_payload);
 
+        /*drop bar frame when tid num nonsupport*/
+        if(uc_tidno >= WLAN_TID_MAX_NUM)
+        {
+            OAM_STAT_VAP_INCR(pst_dmac_vap->st_vap_base_info.uc_vap_id, rx_bar_process_dropped, 1);
+            OAM_WARNING_LOG1(pst_dmac_vap->st_vap_base_info.uc_vap_id, OAM_SF_RX, "{dmac_rx_process_control:: invaild tidno:%d.}", (oal_int32)uc_tidno);
+            return OAL_SUCC;
+        }
+
         pst_tid = &(pst_ta_user->ast_tx_tid_queue[uc_tidno]);
         if (OAL_PTR_NULL == pst_tid->pst_ba_rx_hdl)
         {
@@ -252,84 +229,6 @@ oal_uint32  dmac_rx_process_control(dmac_vap_stru *pst_dmac_vap, oal_netbuf_stru
 
     return OAL_SUCC;
 }
-/*****************************************************************************
- 函 数 名  : dmac_rx_filter_mgmt
- 功能描述  : dmac_rx_filter_mgmt
- 输入参数  : pst_dmac_vap
-             pst_netbuf
-             pst_event_mem
-             &en_go_on
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年11月30日
-    作    者   : z00185449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
-#define RELATIVE_VALUE_POS_H 10
-#define RELATIVE_VALUE_POS_M 6
-#define RELATIVE_VALUE_POS_L 2
-#define RELATIVE_VALUE_NEG_H -10
-#define RELATIVE_VALUE_NEG_M -6
-#define RELATIVE_VALUE_NEG_L -2
-#define FACTOR_H 5
-#define FACTOR_M 3
-#define FACTOR_L 2
-#define ABS(a,b)  ((a) >= 0 ? (b) : (-(b)))
-
-oal_int32 smooth_signal_rssi(oal_int32 pre_rssi, oal_int32 rssi)
-{
-    oal_int32 factor;
-    oal_int32 delta;
-
-    /*若上报的值超过了合法范围，则分别取极值*/
-    if(rssi < DMAC_RSSI_SIGNAL_MIN)
-    {
-        OAM_WARNING_LOG1(0, OAM_SF_ANY, "{smooth_signal_rssi::invalid rssi = %d}" , rssi);
-        rssi = DMAC_RSSI_SIGNAL_MIN;
-    }
-    if(rssi > DMAC_RSSI_SIGNAL_MAX)
-    {
-        OAM_WARNING_LOG1(0, OAM_SF_ANY, "{smooth_signal_rssi::invalid rssi = %d}" , rssi);
-        rssi = DMAC_RSSI_SIGNAL_MAX;
-    }
-    /* 判断为初始非法值直接返回芯片上报的rssi*/
-    if(pre_rssi > DMAC_RSSI_SIGNAL_MAX)
-    {
-        return rssi;
-    }
-    /*取当前值和历史值的差值，差值在-10~10范围外，取-10或10*/
-    delta = rssi - pre_rssi;
-    if( delta > RELATIVE_VALUE_POS_H)
-    {
-        delta = RELATIVE_VALUE_POS_H;
-    }
-    else if( delta < RELATIVE_VALUE_NEG_H)
-    {
-        delta = RELATIVE_VALUE_NEG_H;
-    }
-    /*获取差值比重因子，1/5,1/3或1/2*/
-    if( delta > RELATIVE_VALUE_POS_M || delta < RELATIVE_VALUE_NEG_M )
-    {
-        factor = FACTOR_H;
-    }
-    else if( delta > RELATIVE_VALUE_NEG_L && delta < RELATIVE_VALUE_POS_L)
-    {
-        factor = FACTOR_L;
-    }
-    else
-    {
-        factor = FACTOR_M;
-    }
-    /*计算平滑后的rssi*/
-    pre_rssi = pre_rssi + (delta*2 + ABS(delta,factor))/(factor*2);
-    return pre_rssi;
-
-}
 
 #ifdef _PRE_WLAN_FEATURE_BTCOEX
 OAL_STATIC oal_uint32 dmac_btcoex_wlan_occupied_timeout_callback(oal_void *p_arg)
@@ -350,21 +249,7 @@ OAL_STATIC oal_uint32 dmac_btcoex_wlan_occupied_timeout_callback(oal_void *p_arg
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : dmac_rx_mgmt_update_tsf
- 功能描述  : DMAC接收关联帧更新TSF
- 输入参数  : pst_dmac_vap
-             pst_frame_hdr
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月25日
-    作    者   : z00241943
-    修改内容   : 新生成函数
-*****************************************************************************/
 OAL_STATIC oal_void dmac_rx_mgmt_update_tsf(dmac_vap_stru *pst_dmac_vap,
                                             mac_ieee80211_frame_stru *pst_frame_hdr,
                                             mac_device_stru    *pst_mac_device,
@@ -384,17 +269,25 @@ OAL_STATIC oal_void dmac_rx_mgmt_update_tsf(dmac_vap_stru *pst_dmac_vap,
 #endif
           || (MAC_VAP_STATE_UP == pst_dmac_vap->st_vap_base_info.en_vap_state))))
     {
-        if ((WLAN_PROBE_RSP == pst_frame_hdr->st_frame_control.bit_sub_type)
-             || (WLAN_BEACON == pst_frame_hdr->st_frame_control.bit_sub_type))
+        if (!OAL_MEMCMP(pst_frame_hdr->auc_address3, pst_dmac_vap->st_vap_base_info.auc_bssid, WLAN_MAC_ADDR_LEN))
         {
-            if (!OAL_MEMCMP(pst_frame_hdr->auc_address3, pst_dmac_vap->st_vap_base_info.auc_bssid, WLAN_MAC_ADDR_LEN))
-            {
+             if (WLAN_BEACON == pst_frame_hdr->st_frame_control.bit_sub_type)
+             {
 #if (_PRE_PRODUCT_ID == _PRE_PRODUCT_ID_HI1102_DEV)
                 dmac_get_tsf_from_bcn(pst_dmac_vap, pst_netbuf);
 #endif
                 hal_sta_tsf_save(pst_dmac_vap->pst_hal_vap, OAL_TRUE);
-            }
-            else
+             }
+             else if (WLAN_PROBE_RSP == pst_frame_hdr->st_frame_control.bit_sub_type)
+             {
+                 /* 规避部分AP发送的beacon帧和probe rsp帧中携带的tsf值不一致的问题 */
+                 hal_sta_tsf_restore(pst_dmac_vap->pst_hal_vap);
+             }
+        }
+        else
+        {
+            if ((WLAN_PROBE_RSP == pst_frame_hdr->st_frame_control.bit_sub_type)
+            || (WLAN_BEACON == pst_frame_hdr->st_frame_control.bit_sub_type))
             {
                 hal_sta_tsf_restore(pst_dmac_vap->pst_hal_vap);
             }
@@ -402,25 +295,186 @@ OAL_STATIC oal_void dmac_rx_mgmt_update_tsf(dmac_vap_stru *pst_dmac_vap,
     }
 
 }
+#if (_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC == _PRE_MULTI_CORE_MODE)
 
-/*****************************************************************************
- 函 数 名  : dmac_rx_filter_mgmt
- 功能描述  : dmac_rx_filter_mgmt
- 输入参数  : pst_dmac_vap
-             pst_netbuf
-             pst_event_mem
-             &en_go_on
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+oal_uint8  dmac_rx_notify_channel_width(mac_vap_stru *pst_mac_vap,oal_uint8 *puc_data,dmac_user_stru *pst_dmac_user)
+{
+    wlan_bw_cap_enum_uint8   en_bwcap_vap;
 
- 修改历史      :
-  1.日    期   : 2013年7月3日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
+    en_bwcap_vap = puc_data[MAC_ACTION_OFFSET_ACTION + 1] & BIT0;
 
-*****************************************************************************/
+    /* 带宽模式未改变or HT40禁止 or需要抑制notify channel width 的action上报 */
+    if ((pst_dmac_user->st_user_base_info.en_avail_bandwidth == en_bwcap_vap) ||
+        (OAL_TRUE == pst_dmac_user->st_user_base_info.uc_drop_ncw) ||
+        (OAL_FALSE == mac_mib_get_FortyMHzOperationImplemented(pst_mac_vap)))
+    {
+        return OAL_FALSE;
+    }
+    return OAL_TRUE;
+}
+
+
+oal_uint8  dmac_ie_proc_ch_switch_ie(mac_vap_stru *pst_mac_vap, oal_uint8 *puc_payload, mac_eid_enum_uint8 en_eid_type)
+{
+    oal_uint8    uc_new_chan   = 0;
+    oal_uint8    uc_old_chan   = 0;
+
+    if (OAL_UNLIKELY((OAL_PTR_NULL == pst_mac_vap) || (OAL_PTR_NULL == puc_payload)))
+    {
+        OAM_ERROR_LOG0(0, OAM_SF_ANY, "{dmac_ie_proc_ch_switch_ie::param null.}");
+        return OAL_ERR_CODE_PTR_NULL;
+    }
+
+    if (MAC_EID_CHANSWITCHANN == en_eid_type)
+    {
+        /* Channel Switch Announcement element */
+        uc_new_chan   = puc_payload[MAC_IE_HDR_LEN + 1];
+        pst_mac_vap->st_ch_switch_info.uc_new_ch_swt_cnt = puc_payload[MAC_IE_HDR_LEN + 2];
+        if ((OAL_TRUE == pst_mac_vap->st_ch_switch_info.en_waiting_to_shift_channel)
+           && (pst_mac_vap->st_ch_switch_info.uc_ch_swt_cnt == pst_mac_vap->st_ch_switch_info.uc_new_ch_swt_cnt))
+        {
+            pst_mac_vap->st_ch_switch_info.uc_csa_rsv_cnt++;
+        }
+    }
+    else if (MAC_EID_EXTCHANSWITCHANN == en_eid_type)
+    {
+        /* Extended Channel Switch Announcement element */
+        uc_new_chan   = puc_payload[MAC_IE_HDR_LEN + 2];
+        pst_mac_vap->st_ch_switch_info.uc_new_ch_swt_cnt = puc_payload[MAC_IE_HDR_LEN + 3];
+        if ((OAL_TRUE == pst_mac_vap->st_ch_switch_info.en_waiting_to_shift_channel)
+           && (pst_mac_vap->st_ch_switch_info.uc_ch_swt_cnt == pst_mac_vap->st_ch_switch_info.uc_new_ch_swt_cnt))
+        {
+            pst_mac_vap->st_ch_switch_info.uc_csa_rsv_cnt++;
+        }
+    }
+    else
+    {
+        return OAL_FALSE;
+    }
+
+    uc_old_chan = pst_mac_vap->st_ch_switch_info.uc_new_channel;
+    if (uc_old_chan != uc_new_chan)
+    {
+        pst_mac_vap->st_ch_switch_info.uc_new_channel = uc_new_chan;
+        OAM_WARNING_LOG2(pst_mac_vap->uc_vap_id, OAM_SF_FRAME_FILTER,
+                        "dmac_ie_proc_ch_switch_ie::need switch channel from %d to %d", uc_old_chan, uc_new_chan);
+        return OAL_TRUE;
+    }
+
+    return OAL_FALSE;
+}
+
+
+
+oal_uint8  dmac_sta_up_rx_ch_switch(mac_vap_stru *pst_mac_vap, oal_netbuf_stru *pst_netbuf)
+{
+    dmac_rx_ctl_stru   *pst_rx_ctrl;
+    oal_uint16          us_index;
+    oal_uint8          *puc_data;
+    oal_uint16          us_framebody_len;
+    oal_uint8           uc_go_on = OAL_FALSE;
+
+    pst_rx_ctrl      = (dmac_rx_ctl_stru *)oal_netbuf_cb(pst_netbuf);
+    us_framebody_len = pst_rx_ctrl->st_rx_info.us_frame_len - pst_rx_ctrl->st_rx_info.bit_mac_header_len;
+
+    /* 获取帧体指针 */
+    puc_data = OAL_NETBUF_PAYLOAD(pst_netbuf);
+
+    us_index = MAC_ACTION_OFFSET_ACTION + 1;
+
+    while (us_index < us_framebody_len)
+    {
+        if (MAC_EID_CHANSWITCHANN == puc_data[us_index])
+        {
+            uc_go_on = dmac_ie_proc_ch_switch_ie(pst_mac_vap, &puc_data[us_index], MAC_EID_CHANSWITCHANN);
+            break;
+        }
+    }
+
+    return uc_go_on;
+}
+
+
+oal_uint8 dmac_sta_up_rx_action(dmac_vap_stru *pst_dmac_vap,oal_netbuf_stru *pst_netbuf,oal_uint16 us_user_idx)
+{
+    oal_uint8                      *puc_data;
+    oal_uint8                       uc_go_on = OAL_TRUE;   //action帧默认上报host
+    dmac_user_stru                 *pst_dmac_user;
+
+    pst_dmac_user = mac_res_get_dmac_user(us_user_idx);
+    if (OAL_PTR_NULL == pst_dmac_user)
+    {
+        OAM_ERROR_LOG1(pst_dmac_vap->st_vap_base_info.uc_vap_id, OAM_SF_RX,
+                       "{dmac_sta_up_rx_action::pst_dmac_user null.[%d]}",us_user_idx);
+        return OAL_FALSE;
+    }
+
+    /* 获取帧体指针 */
+    puc_data = OAL_NETBUF_PAYLOAD(pst_netbuf);
+
+    /* host睡眠才过滤action帧 */
+    if(OAL_FALSE == PM_WLAN_IsHostSleep())
+    {
+        return OAL_TRUE;
+    }
+
+    /* 目前先处理MAC_HT_ACTION_NOTIFY_CHANNEL_WIDTH后续有需求继续添加分支处理 */
+    switch (puc_data[MAC_ACTION_OFFSET_CATEGORY])
+    {
+        case MAC_ACTION_CATEGORY_HT:
+        {
+            /* Action */
+            switch (puc_data[MAC_ACTION_OFFSET_ACTION])
+            {
+#ifdef _PRE_WLAN_FEATURE_20_40_80_COEXIST
+                case MAC_HT_ACTION_NOTIFY_CHANNEL_WIDTH:
+                    uc_go_on = dmac_rx_notify_channel_width(&(pst_dmac_vap->st_vap_base_info),puc_data,pst_dmac_user);
+                    break;
+#endif
+
+                case MAC_HT_ACTION_BUTT:
+                default:
+                    break;
+            }
+        }
+        break;
+
+        case MAC_ACTION_CATEGORY_PUBLIC:
+        {
+            switch (puc_data[MAC_ACTION_OFFSET_ACTION])
+            {
+                case MAC_PUB_EX_CH_SWITCH_ANNOUNCE:
+                    uc_go_on = dmac_sta_up_rx_ch_switch(&(pst_dmac_vap->st_vap_base_info), pst_netbuf);
+                    break;
+
+                default:
+                    break;
+            }
+        }
+        break;
+
+        case MAC_ACTION_CATEGORY_SPECMGMT:
+        {
+            switch (puc_data[MAC_ACTION_OFFSET_ACTION])
+            {
+                case MAC_SPEC_CH_SWITCH_ANNOUNCE:
+                    uc_go_on = dmac_ie_proc_ch_switch_ie(&(pst_dmac_vap->st_vap_base_info), puc_data, MAC_EID_EXTCHANSWITCHANN);
+                    break;
+
+                default:
+                    break;
+            }
+        }
+        break;
+
+        default:
+        break;
+    }
+
+    return uc_go_on;
+}
+#endif
+
 oal_uint32  dmac_rx_filter_mgmt(dmac_vap_stru *pst_dmac_vap, oal_netbuf_stru *pst_netbuf, frw_event_mem_stru *pst_event_mem, oal_uint8 *pen_go_on)
 {
     mac_device_stru            *pst_mac_device;
@@ -438,8 +492,14 @@ oal_uint32  dmac_rx_filter_mgmt(dmac_vap_stru *pst_dmac_vap, oal_netbuf_stru *ps
     oal_uint32                  ul_ret;
     oal_bool_enum_uint8         en_report_bss = OAL_FALSE;      /* 是否上报了bss */
     //static oal_uint8 smooth_count = 0;
-    oal_int32                   delta;
     oal_uint16                  us_user_idx;
+    oal_bool_enum_uint8         en_is_tpc_registered = OAL_TRUE;
+
+#if (_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC == _PRE_MULTI_CORE_MODE)
+#ifdef _PRE_WLAN_FEATURE_P2P
+    oal_uint8                   *puc_p2p0_mac_addr;
+#endif
+#endif
 
     /* 获取mac device */
     pst_mac_device = mac_res_get_dev(pst_dmac_vap->st_vap_base_info.uc_device_id);
@@ -490,7 +550,6 @@ oal_uint32  dmac_rx_filter_mgmt(dmac_vap_stru *pst_dmac_vap, oal_netbuf_stru *ps
                 dmac_process_p2p_noa(pst_dmac_vap, pst_netbuf);
             }
 
-            /* DTS2015042506406 P2P WFA 7.1.3，OppPS 节能接收到beacon 帧后， 才使能发送 */
             if ((IS_P2P_CL(&pst_dmac_vap->st_vap_base_info))&&
                 (IS_P2P_OPPPS_ENABLED(pst_dmac_vap)))
             {
@@ -583,7 +642,6 @@ oal_uint32  dmac_rx_filter_mgmt(dmac_vap_stru *pst_dmac_vap, oal_netbuf_stru *ps
             /* 如果扫描动作关心bss信息，那么进行扫描管理帧过滤，进行对应的处理动作，其它do nothing  */
             if (pst_mac_device->st_scan_params.uc_scan_func & MAC_SCAN_FUNC_BSS)
             {
-                /*DTS2015102002093 扫描时也是会偶尔切回工作信道工作,不能过滤掉所有管理帧 */
 // *pen_go_on = OAL_FALSE;
 
                 /* 扫描状态的帧过滤处理 */
@@ -625,7 +683,6 @@ oal_uint32  dmac_rx_filter_mgmt(dmac_vap_stru *pst_dmac_vap, oal_netbuf_stru *ps
         else if(WLAN_ACTION == pst_frame_hdr->st_frame_control.bit_sub_type)
         {
 #ifdef _PRE_WLAN_FEATURE_P2P
-            /* DTS2015082401460  P2P GO接收到P2P action 管理帧处理 */
             if (IS_P2P_GO((&pst_dmac_vap->st_vap_base_info)))
             {
                 *pen_go_on = dmac_p2p_listen_rx_mgmt(pst_dmac_vap, pst_netbuf);
@@ -655,41 +712,53 @@ oal_uint32  dmac_rx_filter_mgmt(dmac_vap_stru *pst_dmac_vap, oal_netbuf_stru *ps
 
     }
 
-    /*RSSI更新的逻辑单独出来，不和beacon的处理混在一起*/
+#if (_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC == _PRE_MULTI_CORE_MODE)
     if ((MAC_VAP_STATE_UP == pst_dmac_vap->st_vap_base_info.en_vap_state) && (WLAN_VAP_MODE_BSS_STA == pst_dmac_vap->st_vap_base_info.en_vap_mode))
     {
-        if (WLAN_BEACON == pst_frame_hdr->st_frame_control.bit_sub_type)
+        if(WLAN_ACTION == pst_frame_hdr->st_frame_control.bit_sub_type)
         {
-            if(0 == oal_memcmp(auc_bssid,pst_dmac_vap->st_vap_base_info.auc_bssid,OAL_SIZEOF(auc_bssid)))
+        #ifdef _PRE_WLAN_FEATURE_P2P
+            /* P2P0设备所接收的action全部上报 */
+            puc_p2p0_mac_addr = pst_dmac_vap->st_vap_base_info.pst_mib_info->st_wlan_mib_sta_config.auc_p2p0_dot11StationID;
+            if (0 == oal_compare_mac_addr(pst_frame_hdr->auc_address1, puc_p2p0_mac_addr))
             {
-
-                //pst_dmac_vap->st_query_stats.ul_signal = pst_rx_ctl->st_rx_statistic.c_rssi_dbm;
-
-                delta = pst_dmac_vap->st_query_stats.ul_signal - pst_rx_ctl->st_rx_statistic.c_rssi_dbm;
-                if (DMAC_INVALID_SIGNAL_DELTA <= GET_ABS(delta))
-                {
-                    /*lint -e571*/
-                    OAM_WARNING_LOG2(pst_dmac_vap->st_vap_base_info.uc_vap_id, OAM_SF_RX, "{dmac_rx_filter_mgmt::rssi interval err! pre=%d, cur=%d.}",
-                                                                                            pst_dmac_vap->st_query_stats.ul_signal,
-                                                                                            pst_rx_ctl->st_rx_statistic.c_rssi_dbm);
-                    /*lint +e571*/
-                    #ifdef _PRE_WLAN_DFT_STAT
-                    dmac_dft_report_all_para(pst_dmac_vap,OAL_TRUE);
-                    #endif
-
-                }
-
-                pst_dmac_vap->st_query_stats.ul_signal = smooth_signal_rssi( pst_dmac_vap->st_query_stats.ul_signal,pst_rx_ctl->st_rx_statistic.c_rssi_dbm);
-
+                *pen_go_on = OAL_TRUE;
+                return OAL_SUCC;
             }
-
-
+        #endif
+            ul_ret = mac_vap_find_user_by_macaddr(&(pst_dmac_vap->st_vap_base_info), pst_frame_hdr->auc_address2, &us_user_idx);
+            if (OAL_SUCC != ul_ret)
+            {
+                *pen_go_on = OAL_FALSE;
+            }
+            else
+            {
+                *pen_go_on = dmac_sta_up_rx_action(pst_dmac_vap,pst_netbuf,us_user_idx);
+            }
         }
     }
-    else
+#endif
+
+    if ((WLAN_VAP_MODE_BSS_STA == pst_dmac_vap->st_vap_base_info.en_vap_mode)
+         && (0 == oal_memcmp(auc_bssid,pst_dmac_vap->st_vap_base_info.auc_bssid,OAL_SIZEOF(auc_bssid))))
     {
-        if ((WLAN_ASSOC_RSP == pst_frame_hdr->st_frame_control.bit_sub_type)
-            || (WLAN_REASSOC_RSP == pst_frame_hdr->st_frame_control.bit_sub_type))
+        if (WLAN_PROBE_RSP == pst_frame_hdr->st_frame_control.bit_sub_type)
+        {
+            dmac_vap_linkloss_clean(pst_dmac_vap);
+        }
+        else
+        {
+            if (((WLAN_ASSOC_RSP == pst_frame_hdr->st_frame_control.bit_sub_type)
+                || (WLAN_REASSOC_RSP == pst_frame_hdr->st_frame_control.bit_sub_type))
+                && (MAC_VAP_STATE_UP != pst_dmac_vap->st_vap_base_info.en_vap_state))
+            {
+                pst_dmac_vap->st_query_stats.ul_signal = pst_rx_ctl->st_rx_statistic.c_rssi_dbm;
+            }
+        }
+
+        /* 如果算法不可用，则用当前beacon帧RSSI更新 */
+        if (((OAL_SUCC != dmac_alg_is_registered(DMAC_ALG_ID_TPC, &en_is_tpc_registered)) || (OAL_FALSE == en_is_tpc_registered))
+        && ((WLAN_BEACON == pst_frame_hdr->st_frame_control.bit_sub_type) && (MAC_VAP_STATE_UP == pst_dmac_vap->st_vap_base_info.en_vap_state)))
         {
             pst_dmac_vap->st_query_stats.ul_signal = pst_rx_ctl->st_rx_statistic.c_rssi_dbm;
         }
@@ -711,21 +780,7 @@ oal_uint32  dmac_rx_filter_mgmt(dmac_vap_stru *pst_dmac_vap, oal_netbuf_stru *ps
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_rx_mgmt_classify
- 功能描述  : DMAC模块，接收流程管理帧处理入口，主要用于帧在DMAC或者HMAC的分发
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月8日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_rx_mgmt_classify(
                 frw_event_mem_stru             *pst_event_mem,
                 frw_event_hdr_stru             *pst_event_hdr,
@@ -808,37 +863,13 @@ oal_uint32  dmac_rx_mgmt_classify(
         pst_crx_event->pst_netbuf = pst_netbuf;
 
         /* 分发 */
-        /*DTS2015031608237 如果直接返回，netbuf会内存泄露*/
         return frw_event_dispatch_event(pst_event_mem);
     }
 
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_rx_multi_mgmt_pre_process
- 功能描述  : 预处理来自其他BSS的广播管理帧，根据本vap 状态和帧类型判断是否需要处理。
-            probe req 帧(广播)
-                （1）如果是go/ap ，接收到probe req 信道和本vap 工作信道不同，则不做复制和进一步处理。
-                （2）如果是sta， 接收到prob req ，不做复制和处理。
-                （3）如果是p2p device 或者p2p client ,接收dao probe req ，判断是否为监听状态，如果是监听状态，则复制，否则不复制。
-            beacon 帧
-                （1）ap/p2p go, 信道选择时的扫描接收到的beacon 帧需要处理
-                （2）sta/p2p gc/p2p dev 一直需要beacon 帧
-            action 帧(广播)
-                （1）广播action 帧，复制给其他vap
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月2日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_bool_enum_uint8 dmac_rx_multi_mgmt_pre_process(mac_device_stru    *pst_mac_device,
                                                                 mac_vap_stru     *pst_mac_vap,
                                                                 oal_uint8         uc_channel_number,
@@ -899,21 +930,7 @@ OAL_STATIC oal_bool_enum_uint8 dmac_rx_multi_mgmt_pre_process(mac_device_stru   
     return en_need_copy;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_rx_multi_mgmt_frame
- 功能描述  : 处理来自其他BSS的广播管理帧
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月2日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_rx_multi_mgmt_frame(
                 frw_event_mem_stru             *pst_event_mem,
                 frw_event_hdr_stru             *pst_event_hdr,
@@ -1029,21 +1046,7 @@ oal_uint32  dmac_rx_multi_mgmt_frame(
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_rx_process_mgmt
- 功能描述  : 管理帧总入口
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月2日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_rx_process_mgmt(
                 frw_event_mem_stru             *pst_event_mem,
                 frw_event_hdr_stru             *pst_event_hdr,
@@ -1195,21 +1198,7 @@ oal_uint32  dmac_rx_process_mgmt(
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_process_action_event
- 功能描述  : DMAC模块，ACTION发送处理接口，主要是进行信息同步和调用管理帧发送接口
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月10日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_tx_process_action_event(frw_event_mem_stru *pst_event_mem)
 {
     frw_event_stru             *pst_event;
@@ -1296,21 +1285,7 @@ oal_uint32  dmac_tx_process_action_event(frw_event_mem_stru *pst_event_mem)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_mgmt_tx_event_process
- 功能描述  : 通用的（那些不需要damc做任何业务处理的管理帧，认证关联）处理hmac抛来的发送管理帧事件，填写相应cb参数，发送管理帧
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月25日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_mgmt_tx_event_process(frw_event_mem_stru *pst_event_mem)
 {
     frw_event_stru          *pst_event;
@@ -1391,21 +1366,7 @@ oal_uint32  dmac_mgmt_tx_event_process(frw_event_mem_stru *pst_event_mem)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_rx_process_sync_event
- 功能描述  : 收到wlan的Delba和addba rsp用于到dmac的同步
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月18日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_rx_process_sync_event(frw_event_mem_stru *pst_event_mem)
 {
 
@@ -1468,21 +1429,7 @@ oal_uint32  dmac_rx_process_sync_event(frw_event_mem_stru *pst_event_mem)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_rx_process_priv_req_event
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月26日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_rx_process_priv_req_event(frw_event_mem_stru *pst_event_mem)
 {
     frw_event_stru             *pst_event;
@@ -1529,21 +1476,7 @@ oal_uint32  dmac_rx_process_priv_req_event(frw_event_mem_stru *pst_event_mem)
     return OAL_SUCC;
 }
 #ifdef _PRE_WLAN_FEATURE_BTCOEX
-/*****************************************************************************
- 函 数 名  : dmac_btcoex_tx_addba_rsp_check
- 功能描述  : 判断一个帧是否是addba_rsp
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月18日
-    作    者   : g00306640
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void dmac_btcoex_tx_addba_rsp_check(oal_netbuf_stru *pst_netbuf, hal_to_dmac_device_stru *pst_hal_device)
 {
     oal_uint8 *puc_mac_header  = oal_netbuf_header(pst_netbuf);
@@ -1567,23 +1500,7 @@ OAL_STATIC OAL_INLINE oal_void dmac_btcoex_tx_addba_rsp_check(oal_netbuf_stru *p
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_complete_mgmt_notify
- 功能描述  : 发送完成管理帧处理入口
- 输入参数  : pst_dscr: 描述符地址
-             pst_dmac_user: sta结构体指针
-             pst_dmac_vap: vap结构体指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月14日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_tx_complete_mgmt_notify(
                 hal_to_dmac_device_stru *pst_hal_device,
                 dmac_user_stru         *pst_dmac_user,
@@ -1614,23 +1531,7 @@ oal_uint32  dmac_tx_complete_mgmt_notify(
     return OAL_SUCC;
 }
 #if 0
-/*****************************************************************************
- 函 数 名  : dmac_tx_complete_security
- 功能描述  : 发送完成安全处理入口
- 输入参数  : pst_dscr: 描述符地址
-             pst_dmac_user: sta结构体指针
-             pst_dmac_vap: vap结构体指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月14日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_tx_complete_security_ap(
                 dmac_user_stru     *pst_dmac_user,
                 hal_tx_dscr_stru   *pst_dscr,
@@ -1641,21 +1542,7 @@ oal_uint32  dmac_tx_complete_security_ap(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : dmac_mgmt_connect_set_channel
- 功能描述  : STA入网设信道或者AP设置信道接口
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月8日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  dmac_mgmt_connect_set_channel(
                 mac_device_stru    *pst_mac_device,
                 mac_vap_stru       *pst_up_vap,
@@ -1689,7 +1576,6 @@ oal_void  dmac_mgmt_connect_set_channel(
     }
     else
     {
-        /* DTS2015073102639 同信道时需要切到更大带宽的信道 */
         if (pst_channel->en_bandwidth > pst_up_vap->st_channel.en_bandwidth)
         {
             OAM_WARNING_LOG2(pst_up_vap->uc_vap_id, OAM_SF_SCAN, "dmac_mgmt_connect_set_channel:  same chan_num[%d], switch to bw[%d].",
@@ -1702,21 +1588,7 @@ oal_void  dmac_mgmt_connect_set_channel(
 
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_join_set_reg_event_process
- 功能描述  : 更新jion req时，设置相应寄存器
- 输入参数  : 事件结构体
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月4日
-    作    者   : z00241943
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 dmac_join_set_reg_event_process(frw_event_mem_stru *pst_event_mem)
 {
     frw_event_stru                 *pst_event;
@@ -1861,21 +1733,7 @@ OAM_ERROR_LOG0(pst_event_hdr->uc_vap_id, OAM_SF_SCAN, "{call DPD Calibration Sta
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_join_set_dtim_reg_event_process
- 功能描述  : join时设置dtim相应寄存器
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月4日
-    作    者   : z00241943
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 dmac_join_set_dtim_reg_event_process(frw_event_mem_stru *pst_event_mem)
 {
     frw_event_stru                      *pst_event;
@@ -1934,21 +1792,7 @@ oal_uint32 dmac_join_set_dtim_reg_event_process(frw_event_mem_stru *pst_event_me
 }
 
 #ifdef _PRE_WLAN_FEATURE_SMPS
-/*****************************************************************************
- 函 数 名  : dmac_set_smps_process
- 功能描述  : DMAC设置SMPS模式处理函数(配置MAC寄存器，使能SMPS)
- 输入参数  : pst_event_mem--事件指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月17日
-    作    者   : zhangyu
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_set_smps_process(frw_event_mem_stru *pst_event_mem)
 {
     frw_event_stru                         *pst_event;
@@ -2021,21 +1865,7 @@ oal_uint32  dmac_set_smps_process(frw_event_mem_stru *pst_event_mem)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : dmac_asoc_set_reg_event_process
- 功能描述  : 关联时写寄存器
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月18日
-    作    者   : z00241943
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_asoc_set_reg_event_process(frw_event_mem_stru *pst_event_mem)
 {
     frw_event_stru                      *pst_event;
@@ -2083,21 +1913,7 @@ oal_uint32  dmac_asoc_set_reg_event_process(frw_event_mem_stru *pst_event_mem)
 
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_mgmt_conn_result_event
- 功能描述  : 处理hmac抛来的关联结果事件
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月15日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_mgmt_conn_result_event(frw_event_mem_stru *pst_event_mem)
 {
     frw_event_stru                      *pst_event;

@@ -38,16 +38,7 @@ VOS_UINT32             g_ulErabmRfRecoveryTimerLength = 60000;
 /*****************************************************************************
   3 Function
 *****************************************************************************/
-/*****************************************************************************
- Function Name   : NAS_ERABM_EmmMsgDistr()
- Description     : RABM模块EMM消息分发处理
- Input           : VOS_VOID *pRcvMsg-----------消息指针
- Output          : VOS_VOID
- Return          : VOS_VOID
- History         :
-     1.yangqianhui 00135146       2008-9-8   Draft Enact
 
-*****************************************************************************/
 
 VOS_VOID NAS_ERABM_EmmMsgDistr( VOS_VOID *pRcvMsg )
 {
@@ -91,19 +82,7 @@ VOS_VOID NAS_ERABM_EmmMsgDistr( VOS_VOID *pRcvMsg )
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_RcvRabmEmmReestInd()
- Description     : RABM模块EMM_ERABM_REEST_IND_STRU消息分发处理
- Input           : EMM_ERABM_REEST_IND_STRU *pRcvMsg-----------消息指针
- Output          : VOS_VOID
- Return          : VOS_VOID
 
-  History        :
-    1.yangqianhui 00135146       2008-9-8   Draft Enact
-    2.yangqianhui 00135146       2009-09-19   BN8D01065  Modify
-    3.yangfan     00159566       2011-03-28   Modify
-
-*****************************************************************************/
 /*lint -e960*/
 /*lint -e961*/
 VOS_VOID  NAS_ERABM_RcvRabmEmmReestInd(const EMM_ERABM_REEST_IND_STRU *pRcvMsg )
@@ -183,17 +162,7 @@ VOS_VOID  NAS_ERABM_RcvRabmEmmReestInd(const EMM_ERABM_REEST_IND_STRU *pRcvMsg )
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_RcvRabmEmmRelInd()
- Description     : RABM模块EMM_ERABM_REL_IND_STRU消息分发处理
- Input           : VOS_VOID
- Output          : VOS_VOID
- Return          : VOS_VOID
 
-  History        :
-      1.yangqianhui 00135146       2008-9-8   Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ERABM_RcvRabmEmmRelInd( VOS_VOID )
 {
     VOS_UINT32 ulLoop = NAS_ERABM_NULL;
@@ -237,18 +206,7 @@ VOS_VOID  NAS_ERABM_RcvRabmEmmRelInd( VOS_VOID )
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_RcvRabmEmmRrcConRelInd()
- Description     : RABM模块EMM_ERABM_RRC_CON_REL_IND_STRU消息分发处理
- Input           : VOS_VOID
- Output          : VOS_VOID
- Return          : VOS_VOID
 
-  History        :
-      1.lihong 00150010       2009-05-25   Draft Enact
-      2.yangfan 00159566      2011-03-28   Modify
-
-*****************************************************************************/
 VOS_VOID  NAS_ERABM_RcvRabmEmmRrcConRelInd( EMM_ERABM_RRC_CON_REL_IND_STRU *pRcvMsg )
 {
     VOS_UINT32                          ulEpsbId = NAS_ERABM_NULL;
@@ -324,17 +282,7 @@ VOS_VOID  NAS_ERABM_RcvRabmEmmRrcConRelInd( EMM_ERABM_RRC_CON_REL_IND_STRU *pRcv
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_SndRabmEmmReestReq()
- Description     : 构建和发送EMM_ERABM_REEST_REQ消息
- Input           : VOS_VOID
- Output          : None
- Return          : VOS_VOID
- History         :
-      1.yangqianhui 00135146       2008-9-8   Draft Enact
-      2.lihong 00150010            2012-12-14 Modify:Emergency
 
-*****************************************************************************/
 VOS_VOID NAS_ERABM_SndRabmEmmReestReq
 (
     VOS_UINT32                          ulIsEmcType
@@ -365,17 +313,7 @@ VOS_VOID NAS_ERABM_SndRabmEmmReestReq
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_SndRabmEmmDrbSetupInd()
- Description     : 构建和发送EMM_ERABM_DRB_SETUP_IND消息
- Input           : None
- Output          : None
- Return          : VOS_VOID
- History         :
-      1.yangqianhui 00135146       2008-9-8   Draft Enact
-      2.lihong 00150010            2009-06-23   Modify
 
-*****************************************************************************/
 VOS_VOID NAS_ERABM_SndRabmEmmDrbSetupInd( VOS_VOID )
 {
     EMM_ERABM_DRB_SETUP_IND_STRU    *pstDrbSetInd = VOS_NULL_PTR;
@@ -403,16 +341,7 @@ VOS_VOID NAS_ERABM_SndRabmEmmDrbSetupInd( VOS_VOID )
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_SndRabmEmmRelReq()
- Description     : 构建和发送EMM_ERABM_REL_REQ消息
- Input           : VOS_VOID
- Output          : None
- Return          : VOS_VOID
- History         :
-      1.yangqianhui 00135146       2008-9-8   Draft Enact
 
-*****************************************************************************/
 VOS_VOID NAS_ERABM_SndRabmEmmRelReq( VOS_VOID)
 {
     EMM_ERABM_REL_REQ_STRU    *pstRelReq  = VOS_NULL_PTR;
@@ -436,17 +365,7 @@ VOS_VOID NAS_ERABM_SndRabmEmmRelReq( VOS_VOID)
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_SndRabmEmmSuspendRsp
- Description     : ERABM模块回复ID_EMM_ERABM_SUSPEND_RSP消息
- Input           : EMM_ERABM_RSLT_TYPE_ENUM_UINT32       enRslt
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2011-05-03  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ERABM_SndRabmEmmSuspendRsp
 (
     EMM_ERABM_RSLT_TYPE_ENUM_UINT32      enRslt
@@ -478,17 +397,7 @@ VOS_VOID NAS_ERABM_SndRabmEmmSuspendRsp
     NAS_ERABM_SND_MSG(pstRabmEmmSuspendRsp);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_SndRabmEmmResumeRsp
- Description     : ESM模块回复ID_EMM_ERABM_RESUME_RSP消息
- Input           : EMM_ERABM_RSLT_TYPE_ENUM_UINT32       enRslt
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2011-05-03  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ERABM_SndRabmEmmResumeRsp
 (
     EMM_ERABM_RSLT_TYPE_ENUM_UINT32      enRslt
@@ -523,33 +432,14 @@ VOS_VOID NAS_ERABM_SndRabmEmmResumeRsp
     NAS_ERABM_SND_MSG(pstRabmEmmResumeRsp);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_IsDataPending
- Description     : 提供给MM调用，判断ESM是否有上行数据阻塞:直接返回标志g_enERabmUlDataPending
- Input           : VOS_VOID
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421   2011-2-12  Draft Enact
-
-*****************************************************************************/
 EMM_ERABM_UP_DATA_PENDING_ENUM_UINT32 NAS_ERABM_IsDataPending( VOS_VOID )
 {
     /* 根据CDS记录是否有上行缓存数据，以及RABM记录是否有上行数据PENDING共同决定 */
     return (EMM_ERABM_UP_DATA_PENDING_ENUM_UINT32)(CDS_IsPsDataAvail()||NAS_ERABM_GetUpDataPending());
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_RcvRabmEmmSuspendInd
- Description     : ERABM模块收到ID_EMM_ERABM_SUSPEND_IND处理函数
- Input           : EMM_ERABM_SUSPEND_IND_STRU *pRcvMsg
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010            2011-05-03      Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_ERABM_RcvRabmEmmSuspendInd(const EMM_ERABM_SUSPEND_IND_STRU *pRcvMsg )
 {
     VOS_UINT32                          ulEpsbId        = NAS_ERABM_NULL;
@@ -607,16 +497,7 @@ VOS_VOID  NAS_ERABM_RcvRabmEmmSuspendInd(const EMM_ERABM_SUSPEND_IND_STRU *pRcvM
     NAS_ERABM_SndRabmEmmSuspendRsp(EMM_ERABM_RSLT_TYPE_SUCC);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_RcvRabmEmmResumeInd
- Description     : SM模块收到ID_EMM_ERABM_RESUME_IND处理函数
- Input           : EMM_ERABM_RESUME_IND_STRU *pRcvMsg
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010            2011-05-03      Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_ERABM_RcvRabmEmmResumeInd(const EMM_ERABM_RESUME_IND_STRU *pRcvMsg )
 {
     (VOS_VOID)pRcvMsg;

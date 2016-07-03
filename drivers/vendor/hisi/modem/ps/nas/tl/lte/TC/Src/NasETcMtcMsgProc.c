@@ -1,14 +1,4 @@
-/******************************************************************************
 
-        @(#)Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : NasETcMtcMsgProc.c
-    Description : 处理TC发给MTC的消息
-    History     :
-     1.xiongxianghui00253310       2015-05-12  Draft Enact
-
-******************************************************************************/
 
 
 /*****************************************************************************
@@ -41,17 +31,7 @@ extern "C" {
   3 Function
 *****************************************************************************/
 
-/*****************************************************************************
- Function Name   : NAS_ETC_SndTcMtcStatusInfoMsg
- Description     : 向MTC发送ID_NAS_MTC_TC_STATUS_INFO_IND消息
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.xiongxianghui00253310      2015-05-12  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ETC_SndTcMtcStatusInfoMsg(MTC_NAS_TC_STATUS_ENUM_UINT16 enStatus)
 {
     NAS_MTC_TC_STATUS_INFO_IND_STRU     *pstTcStatusInfoInd = VOS_NULL_PTR;

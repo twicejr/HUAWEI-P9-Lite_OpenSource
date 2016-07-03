@@ -104,22 +104,7 @@ extern ULONG ICMP6_GenerateError(MBUF_S *pstMBuf, UCHAR ucType,
 /* ICMPv6 Flow Register Callback */
 extern ULONG ICMP6_Flow_RegisterCallback(ICMP6_EXT_CALLBACK_S *pstCallBack);
 
-/*******************************************************************************
-*    Func Name: ICMP6_GetIntfStatistics
-* Date Created: 2014-07-04
-*       Author: wling 00201943
-*  Description: 显示接口icmp6报文统计信息
-*        Input: ULONG ulIfIndex:接口索引
-*        Output: ICMP6STAT_S *psticmp6stat:icmp6报文统计信息
-*       Return: 
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE            NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-07-04   wuling 00201943     Create
-*
-*******************************************************************************/
+
 ULONG ICMP6_GetIntfStatistics(ULONG ulIfIndex, ICMP6STAT_S *psticmp6stat);
 
 #ifdef      __cplusplus

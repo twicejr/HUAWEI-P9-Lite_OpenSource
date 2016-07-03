@@ -1,23 +1,5 @@
 
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafApsFsmDeactivating.c
-  版 本 号   : 初稿
-  作    者   : S62952
-  生成日期   : 2011年12月14日
-  最近修改   :
-  功能描述   : Inactivating状态机处理函数
-  函数列表   :
-
-  修改历史   :
-  1.日    期   : 2011年12月14日
-    作    者   : S62952
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -86,36 +68,7 @@
 /******************************************************************************
    5 函数实现
 ******************************************************************************/
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtSetPdpContextStateReq_MsDeactivating_Init
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_INIT子状态下
-             收到ID_MSG_TAF_PS_SET_PDP_CONTEXT_STATE_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年5月23日
-    作    者   : A00165503
-    修改内容   : DTS2012052302198: 断开拨号请求在APS缓存后, 没有立刻上报请求
-                 处理结果, 导致AT未能及时上报OK, AT超时后上报ERROR
-
-  3.日    期   : 2014年6月28日
-    作    者   : A00165503
-    修改内容   : DSDS III 项目, 增加NO RF丢网场景时, 触发搜网流程
-
-  4.日    期   : 2014年11月1日
-    作    者   : A00165503
-    修改内容   : DTS2014122908593: CMCC VoLTE定制需求
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtSetPdpContextStateReq_MsDeactivating_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -192,36 +145,7 @@ VOS_UINT32 TAF_APS_RcvAtSetPdpContextStateReq_MsDeactivating_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallEndReq_MsDeactivating_Init
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_INIT子状态下
-             收到ID_MSG_TAF_PS_CALL_END_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年5月23日
-    作    者   : A00165503
-    修改内容   : DTS2012052302198: 断开拨号请求在APS缓存后, 没有立刻上报请求
-                 处理结果, 导致AT未能及时上报OK, AT超时后上报ERROR
-
-  3.日    期   : 2014年6月28日
-    作    者   : A00165503
-    修改内容   : DSDS III 项目, 增加NO RF丢网场景时, 触发搜网流程
-
-  4.日    期   : 2014年11月1日
-    作    者   : A00165503
-    修改内容   : DTS2014122908593: CMCC VoLTE定制需求
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallEndReq_MsDeactivating_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -299,27 +223,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallEndReq_MsDeactivating_Init(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvApsInternalPdpDeavtivateReq_MsDeactivating_Init
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_INIT子状态下
-             收到ID_APS_APS_INTERNAL_PDP_DEACTIVATE_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月29日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-  2.日    期   : 2014年11月1日
-    作    者   : A00165503
-    修改内容   : DTS2014122908593: CMCC VoLTE定制需求
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvApsInternalPdpDeavtivateReq_MsDeactivating_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -378,23 +282,7 @@ VOS_UINT32 TAF_APS_RcvApsInternalPdpDeavtivateReq_MsDeactivating_Init(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallHangupReq_MsDeactivating_Init
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_INIT子状态下
-             收到ID_MSG_TAF_PS_CALL_HANGUP_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : S62952
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallHangupReq_MsDeactivating_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -431,31 +319,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallHangupReq_MsDeactivating_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvInterServiceStatusChangeInd_MsDeactivating_Suspend
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_INTER_SERVICE_STATUS_CHANGE_IND消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2014年11月1日
-    作    者   : A00165503
-    修改内容   : DTS2014122908593: CMCC VoLTE定制需求
-
-  3.日    期   : 2015年5月25日
-    作    者   : g00261581
-    修改内容   : 入口消息修改
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvInterServiceStatusChangeInd_MsDeactivating_Suspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -464,6 +328,9 @@ VOS_UINT32 TAF_APS_RcvInterServiceStatusChangeInd_MsDeactivating_Suspend(
     TAF_APS_INTER_SERVICE_STATUS_CHANGE_IND_STRU           *pstServStaChangeInd = VOS_NULL_PTR;
     TAF_APS_ENTRY_MSG_STRU                                 *pstEntryMsg;
     TAF_APS_INTER_PDP_DEACTIVATE_REQ_STRU                  *pstInternalMsg;
+#if (FEATURE_ON == FEATURE_IPV6)
+    APS_PDP_CONTEXT_ENTITY_ST          *pstPdpEntity;
+#endif
 #if (FEATURE_ON == FEATURE_LTE)
     VOS_UINT8                               ucPdpId;
 #endif
@@ -474,6 +341,26 @@ VOS_UINT32 TAF_APS_RcvInterServiceStatusChangeInd_MsDeactivating_Suspend(
 #if (FEATURE_ON == FEATURE_LTE)
     ucPdpId             = TAF_APS_GetCurrFsmEntityPdpId();
 #endif
+
+#if (FEATURE_ON == FEATURE_IPV6)
+    /* 获取该PDPID的PDP实体内容地址 */
+    pstPdpEntity           = TAF_APS_GetPdpEntInfoAddr(ucPdpId);
+
+    /* 如果地址类型是IPv6, 需要同步给ND Client */
+    if ( (TAF_APS_RAT_TYPE_NULL != pstServStaChangeInd->enRatType)
+      && (TAF_APS_CheckPrimaryPdp(ucPdpId))
+      && (TAF_APS_CheckPdpAddrTypeIpv6(ucPdpId)) )
+    {
+        if (VOS_TRUE != pstPdpEntity->ulNdClientActiveFlg)
+        {
+            TAF_APS_SndNdPdpActInd(pstPdpEntity->ucNsapi,
+                                   pstPdpEntity->PdpAddr.aucIpV6Addr);
+
+            pstPdpEntity->ulNdClientActiveFlg = VOS_TRUE;
+        }
+    }
+#endif
+
 
     /* 正常流程下，不应该有这个场景，此处仍然尝试去激活操作 */
     if ( (TAF_APS_RAT_TYPE_GSM   == pstServStaChangeInd->enRatType)
@@ -580,23 +467,7 @@ VOS_UINT32 TAF_APS_RcvInterServiceStatusChangeInd_MsDeactivating_Suspend(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtSetPdpContextStateReq_MsDeactivating_Suspend
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_SET_PDP_CONTEXT_STATE_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月29日
-    作    者   : h44270
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtSetPdpContextStateReq_MsDeactivating_Suspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -617,23 +488,7 @@ VOS_UINT32 TAF_APS_RcvAtSetPdpContextStateReq_MsDeactivating_Suspend(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPppDailOrigReq_MsDeactivating_Suspend
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_PPP_DIAL_ORIG_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月29日
-    作    者   : h44270
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPppDailOrigReq_MsDeactivating_Suspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -653,23 +508,7 @@ VOS_UINT32 TAF_APS_RcvAtPppDailOrigReq_MsDeactivating_Suspend(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallOrigReq_MsDeactivating_Suspend
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_CALL_ORIG_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月29日
-    作    者   : h44270
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallOrigReq_MsDeactivating_Suspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -690,27 +529,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallOrigReq_MsDeactivating_Suspend(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallEndReq_MsDeactivating_Suspend
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_CALL_END_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月29日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-  2.日    期   : 2013年9月23日
-    作    者   : A00165503
-    修改内容   : UART-MODEM: 断开流程优化
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallEndReq_MsDeactivating_Suspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -731,24 +550,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallEndReq_MsDeactivating_Suspend(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallModifyReq_MsDeactivating_Suspend
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_CALL_MODIFY_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月29日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallModifyReq_MsDeactivating_Suspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -767,24 +569,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallModifyReq_MsDeactivating_Suspend(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallAnswerReq_MsDeactivating_Suspend
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_CALL_ANSWER_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月29日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallAnswerReq_MsDeactivating_Suspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -805,24 +590,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallAnswerReq_MsDeactivating_Suspend(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallHangupReq_MsDeactivating_Suspend
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_CALL_HANGUP_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月29日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallHangupReq_MsDeactivating_Suspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -841,23 +609,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallHangupReq_MsDeactivating_Suspend(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvSmPdpDeactivateInd_MsDeactivating_Suspend
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_SUSPEND子状态下
-             收到ID_SMREG_PDP_DEACTIVATE_IND消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年05月13日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvSmPdpDeactivateInd_MsDeactivating_Suspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -940,23 +692,7 @@ VOS_UINT32 TAF_APS_RcvSmPdpDeactivateInd_MsDeactivating_Suspend(
 }
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEsmSmEpsBearerInfoInd_MsDeactivating_Suspend
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_SUSPEND子状态下
-             收到ID_ESM_SM_EPS_BEARER_INFO_IND消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年05月13日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEsmSmEpsBearerInfoInd_MsDeactivating_Suspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -988,32 +724,7 @@ VOS_UINT32 TAF_APS_RcvEsmSmEpsBearerInfoInd_MsDeactivating_Suspend(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEsmPdpDeactivateInd_MsDeactivating_Suspend
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_SUSPEND子状态下
-             收到ID_APP_ESM_PDP_RELEASE_IND消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年05月13日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2014年8月21日
-    作    者   : A00165503
-    修改内容   : DTS2014081803666: 增加SNDCP激活状态判断, 如果SNDCP处于激活
-                 状态, 需将其去激活
-
-  3.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : Split L4A Project
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEsmPdpDeactivateInd_MsDeactivating_Suspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1071,43 +782,7 @@ VOS_UINT32 TAF_APS_RcvEsmPdpDeactivateInd_MsDeactivating_Suspend(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiMsDeactivatingExpired_MsDeactivating_Suspend
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_SUSPEND子状态下
-             收到TI_TAF_APS_MS_DEACTIVATING消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-  1.日    期   : 2011年12月29日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年03月13日
-    作    者   : f00179208
-    修改内容   : 在开机注册PDP激活，网侧PING单板，断开OM口后，调节小区信号
-                 重新打开另外个SDT，主动PD去激活仍进行流量上报
-
-  3.日   期    : 2013-01-08
-    作   者    : Y00213812
-    修改内容   : FOR DTS2013010906738,发起本地去激活前，如果已经激活SNDCP, 需要向
-                 SNDCP发送去激活指示, 并等待SNDCP的响应
-
-  4.日    期   : 2013年7月22日
-    作    者   : A00165503
-    修改内容   : DTS2013071905717: MODIFY流程导致的内部去激活需要上报承载去
-                 激活事件
-
-  4.日    期   : 2014年12月2日
-    作    者   : A00165503
-    修改内容   : DTS2014111805277: 缺省承载本地去激活时, 需要去激活与其关联
-                 的专用承载
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiMsDeactivatingExpired_MsDeactivating_Suspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1194,22 +869,7 @@ VOS_UINT32 TAF_APS_RcvTiMsDeactivatingExpired_MsDeactivating_Suspend(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtSetPdpContextStateReq_MsDeactivating_WaitSmDeactivateCnf
- 功能描述  : 收到ID_MSG_TAF_PS_SET_PDP_CONTEXT_STATE_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_SET_PDP_CONTEXT_STATE_REQ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : h44270
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtSetPdpContextStateReq_MsDeactivating_WaitSmDeactivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1229,23 +889,7 @@ VOS_UINT32 TAF_APS_RcvAtSetPdpContextStateReq_MsDeactivating_WaitSmDeactivateCnf
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPppDailOrigReq_MsDeactivating_WaitSmDeactivateCnf
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SM_DEACTIVATE_CNF子状态下
-             收到ID_MSG_TAF_PS_PPP_DIAL_ORIG_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPppDailOrigReq_MsDeactivating_WaitSmDeactivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1265,23 +909,7 @@ VOS_UINT32 TAF_APS_RcvAtPppDailOrigReq_MsDeactivating_WaitSmDeactivateCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallOrigReq_MsDeactivating_WaitSmDeactivateCnf
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SM_DEACTIVATE_CNF子状态下
-             收到ID_MSG_TAF_PS_CALL_ORIG_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallOrigReq_MsDeactivating_WaitSmDeactivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1302,27 +930,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallOrigReq_MsDeactivating_WaitSmDeactivateCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallEndReq_MsDeactivating_WaitSmDeactivateCnf
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SM_DEACTIVATE_CNF子状态下
-             收到ID_MSG_TAF_PS_CALL_END_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2013年9月23日
-    作    者   : A00165503
-    修改内容   : UART-MODEM: 断开流程优化
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallEndReq_MsDeactivating_WaitSmDeactivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1343,24 +951,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallEndReq_MsDeactivating_WaitSmDeactivateCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallModifyReq_MsDeactivating_WaitSmDeactivateCnf
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SM_DEACTIVATE_CNF子状态下
-             收到ID_MSG_TAF_PS_CALL_MODIFY_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallModifyReq_MsDeactivating_WaitSmDeactivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1379,24 +970,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallModifyReq_MsDeactivating_WaitSmDeactivateCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallAnswerReq_MsDeactivating_WaitSmDeactivateCnf
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SM_DEACTIVATE_CNF子状态下
-             收到ID_MSG_TAF_PS_CALL_ANSWER_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallAnswerReq_MsDeactivating_WaitSmDeactivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1417,24 +991,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallAnswerReq_MsDeactivating_WaitSmDeactivateCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallHangupReq_MsDeactivating_WaitSmDeactivateCnf
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SM_DEACTIVATE_CNF子状态下
-             收到ID_MSG_TAF_PS_CALL_HANGUP_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallHangupReq_MsDeactivating_WaitSmDeactivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1453,36 +1010,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallHangupReq_MsDeactivating_WaitSmDeactivateCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvSmPdpDeactivateCnf_MsDeactivating_WaitSmDeactivateCnf
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SM_DEACTIVATE_CNF子状态下
-             收到D_PMC_SMREG_PDP_DEACTIV_CNF消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年06月05日
-    作    者   : f00179208
-    修改内容   : DTS2012060200787, 去激活默认承载，挂接的专有承载也需要一起去激活
-
-  3.日    期   : 2012年06月29日
-    作    者   : f00179208
-    修改内容   : DTS2012062902425, IPV4V6拨号，IPV4成功IPV6失败，会内部去激活掉IPV4的PDP
-
-  4.日    期   : 2013年7月22日
-    作    者   : A00165503
-    修改内容   : DTS2013071905717: MODIFY流程导致的内部去激活需要上报承载去
-                 激活事件
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvSmPdpDeactivateCnf_MsDeactivating_WaitSmDeactivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1567,28 +1095,7 @@ VOS_UINT32 TAF_APS_RcvSmPdpDeactivateCnf_MsDeactivating_WaitSmDeactivateCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvSmPdpDeactivateInd_MsDeactivating_WaitSmDeactivateCnf
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SM_DEACTIVATE_CNF子状态下
-             收到D_PMC_SMREG_PDP_DEACTIV_IND消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2013年7月22日
-    作    者   : A00165503
-    修改内容   : DTS2013071905717: MODIFY流程导致的内部去激活需要上报承载去
-                 激活事件
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvSmPdpDeactivateInd_MsDeactivating_WaitSmDeactivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1671,28 +1178,7 @@ VOS_UINT32 TAF_APS_RcvSmPdpDeactivateInd_MsDeactivating_WaitSmDeactivateCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvApsLocalPdpDeactivateInd_MsDeactivating_WaitSmDeactivateCnf
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SM_DEACTIVATE_CNF子状态下
-             收到ID_APS_APS_LOCAL_PDP_DEACTIVATE_IND消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2013年7月22日
-    作    者   : A00165503
-    修改内容   : DTS2013071905717: MODIFY流程导致的内部去激活需要上报承载去
-                 激活事件
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvApsLocalPdpDeactivateInd_MsDeactivating_WaitSmDeactivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1776,27 +1262,7 @@ VOS_UINT32 TAF_APS_RcvApsLocalPdpDeactivateInd_MsDeactivating_WaitSmDeactivateCn
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvInterServiceStatusChangeInd_MsDeactivating_WaitSmDeactivateCnf
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SM_DEACTIVATE_CNF子状态下
-             收到ID_MSG_TAF_PS_INTER_SERVICE_STATUS_CHANGE_IND消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年5月25日
-    作    者   : g00261581
-    修改内容   : 入口消息修改
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvInterServiceStatusChangeInd_MsDeactivating_WaitSmDeactivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1821,43 +1287,7 @@ VOS_UINT32 TAF_APS_RcvInterServiceStatusChangeInd_MsDeactivating_WaitSmDeactivat
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiMsDeactivatingExpired_MsDeactivating_WaitSmDeactivateCnf
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SM_DEACTIVATE_CNF子状态下
-             收到TI_TAF_APS_MS_DEACTIVATING超时消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年03月13日
-    作    者   : f00179208
-    修改内容   : 问题单:DTS2012031306944,在开机注册PDP激活，网侧PING单板，断开OM口后，
-                 调节小区信号重新打开另外个SDT，主动PD去激活仍进行流量上报
-
-  3.日   期    : 2013-01-08
-    作   者    : Y00213812
-    修改内容   : FOR DTS2013010906738,发起本地去激活前，如果已经激活SNDCP, 需要向
-                 SNDCP发送去激活指示, 并等待SNDCP的响应
-
-  3.日    期   : 2013年7月22日
-    作    者   : A00165503
-    修改内容   : DTS2013071905717: MODIFY流程导致的内部去激活需要上报承载去
-                 激活事件
-
-  4.日    期   : 2014年12月2日
-    作    者   : A00165503
-    修改内容   : DTS2014111805277: 缺省承载本地去激活时, 需要去激活与其关联
-                 的专用承载
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiMsDeactivatingExpired_MsDeactivating_WaitSmDeactivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1938,22 +1368,7 @@ VOS_UINT32 TAF_APS_RcvTiMsDeactivatingExpired_MsDeactivating_WaitSmDeactivateCnf
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtSetPdpContextStateReq_MsDeactivating_WaitSmDeactivateCnfSuspend
- 功能描述  : 收到ID_MSG_TAF_PS_SET_PDP_CONTEXT_STATE_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_SET_PDP_CONTEXT_STATE_REQ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : h44270
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtSetPdpContextStateReq_MsDeactivating_WaitSmDeactivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1973,23 +1388,7 @@ VOS_UINT32 TAF_APS_RcvAtSetPdpContextStateReq_MsDeactivating_WaitSmDeactivateCnf
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPppDailOrigReq_MsDeactivating_WaitSmDeactivateCnfSuspend
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SM_DEACTIVATE_CNF_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_PPP_DIAL_ORIG_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPppDailOrigReq_MsDeactivating_WaitSmDeactivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2009,23 +1408,7 @@ VOS_UINT32 TAF_APS_RcvAtPppDailOrigReq_MsDeactivating_WaitSmDeactivateCnfSuspend
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallOrigReq_MsDeactivating_WaitSmDeactivateCnfSuspend
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SM_DEACTIVATE_CNF_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_CALL_ORIG_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallOrigReq_MsDeactivating_WaitSmDeactivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2046,27 +1429,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallOrigReq_MsDeactivating_WaitSmDeactivateCnfSuspend(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallEndReq_MsDeactivating_WaitSmDeactivateCnfSuspend
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SM_DEACTIVATE_CNF_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_CALL_END_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2013年9月23日
-    作    者   : A00165503
-    修改内容   : UART-MODEM: 断开流程优化
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallEndReq_MsDeactivating_WaitSmDeactivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2087,24 +1450,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallEndReq_MsDeactivating_WaitSmDeactivateCnfSuspend(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallModifyReq_MsDeactivating_WaitSmDeactivateCnfSuspend
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SM_DEACTIVATE_CNF_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_CALL_MODIFY_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallModifyReq_MsDeactivating_WaitSmDeactivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2123,24 +1469,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallModifyReq_MsDeactivating_WaitSmDeactivateCnfSuspen
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallAnswerReq_MsDeactivating_WaitSmDeactivateCnfSuspend
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SM_DEACTIVATE_CNF_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_CALL_ANSWER_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallAnswerReq_MsDeactivating_WaitSmDeactivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2161,24 +1490,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallAnswerReq_MsDeactivating_WaitSmDeactivateCnfSuspen
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallHangupReq_MsDeactivating_WaitSmDeactivateCnfSuspend
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SM_DEACTIVATE_CNF_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_CALL_HANGUP_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallHangupReq_MsDeactivating_WaitSmDeactivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2197,32 +1509,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallHangupReq_MsDeactivating_WaitSmDeactivateCnfSuspen
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvSmPdpDeactivateCnf_MsDeactivating_WaitSmDeactivateCnfSuspend
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SM_DEACTIVATE_CNF_SUSPEND子状态下
-             收到D_PMC_SMREG_PDP_DEACTIV_CNF消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年12月26日
-    作    者   : o00132663
-    修改内容   : PS融合项目，PDP去激活后，停止流量统计
-
-  3.日    期   : 2013年7月22日
-    作    者   : A00165503
-    修改内容   : DTS2013071905717: MODIFY流程导致的内部去激活需要上报承载去
-                 激活事件
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvSmPdpDeactivateCnf_MsDeactivating_WaitSmDeactivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2305,28 +1592,7 @@ VOS_UINT32 TAF_APS_RcvSmPdpDeactivateCnf_MsDeactivating_WaitSmDeactivateCnfSuspe
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvSmPdpDeactivateInd_MsDeactivating_WaitSmDeactivateCnfSuspend
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SM_DEACTIVATE_CNF_SUSPEND子状态下
-             收到D_PMC_SMREG_PDP_DEACTIV_IND消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2013年7月22日
-    作    者   : A00165503
-    修改内容   : DTS2013071905717: MODIFY流程导致的内部去激活需要上报承载去
-                 激活事件
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvSmPdpDeactivateInd_MsDeactivating_WaitSmDeactivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2410,28 +1676,7 @@ VOS_UINT32 TAF_APS_RcvSmPdpDeactivateInd_MsDeactivating_WaitSmDeactivateCnfSuspe
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvApsLocalPdpDeactivateInd_MsDeactivating_WaitSmDeactivateCnfSuspend
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SM_DEACTIVATE_CNF_SUSPEND子状态下
-             收到ID_APS_APS_LOCAL_PDP_DEACTIVATE_IND消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年06月07日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-  2.日    期   : 2013年7月22日
-    作    者   : A00165503
-    修改内容   : DTS2013071905717: MODIFY流程导致的内部去激活需要上报承载去
-                 激活事件
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvApsLocalPdpDeactivateInd_MsDeactivating_WaitSmDeactivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2516,24 +1761,7 @@ VOS_UINT32 TAF_APS_RcvApsLocalPdpDeactivateInd_MsDeactivating_WaitSmDeactivateCn
 }
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEsmSmEpsBearerInfoInd_MsDeactivating_WaitSmDeactivateCnfSuspend
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SM_DEACTIVATE_CNF_SUSPEND子状态下
-             收到ID_ESM_SM_EPS_BEARER_INFO_IND消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月5日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEsmSmEpsBearerInfoInd_MsDeactivating_WaitSmDeactivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2564,37 +1792,7 @@ VOS_UINT32 TAF_APS_RcvEsmSmEpsBearerInfoInd_MsDeactivating_WaitSmDeactivateCnfSu
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEsmPdpDeactivateInd_MsDeactivating_WaitSmDeactivateCnfSuspend
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SM_DEACTIVATE_CNF_SUSPEND子状态下
-             收到ID_APP_ESM_PDP_RELEASE_IND消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月5日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2013年7月22日
-    作    者   : A00165503
-    修改内容   : DTS2013071905717: MODIFY流程导致的内部去激活需要上报承载去
-                 激活事件
-
-  3.日    期   : 2014年8月21日
-    作    者   : A00165503
-    修改内容   : DTS2014081803666: 增加SNDCP激活状态判断, 如果SNDCP处于激活
-                 状态, 需将其去激活
-
-  4.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : Split L4A Project
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEsmPdpDeactivateInd_MsDeactivating_WaitSmDeactivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2652,31 +1850,7 @@ VOS_UINT32 TAF_APS_RcvEsmPdpDeactivateInd_MsDeactivating_WaitSmDeactivateCnfSusp
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvInterServiceStaChangeInd_MsDeactivating_WaitSmDeactivateCnfSuspend
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SM_DEACTIVATE_CNF_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_INTER_SERVICE_STATUS_CHANGE_IND消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2014年11月1日
-    作    者   : A00165503
-    修改内容   : DTS2014122908593: CMCC VoLTE定制需求
-
-  3.日    期   : 2015年5月25日
-    作    者   : g00261581
-    修改内容   : 入口消息修改
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvInterServiceStaChangeInd_MsDeactivating_WaitSmDeactivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2755,42 +1929,7 @@ VOS_UINT32 TAF_APS_RcvInterServiceStaChangeInd_MsDeactivating_WaitSmDeactivateCn
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiMsDeactivatingExpired_MsDeactivating_WaitSmDeactivateCnfSuspend
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SM_DEACTIVATE_CNF_SUSPEND子状态下
-             收到TI_TAF_APS_MS_DEACTIVATING超时消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年03月13日
-    作    者   : f00179208
-    修改内容   : 问题单:DTS2012031306944,在开机注册PDP激活，网侧PING单板，断开OM口后，
-                 调节小区信号重新打开另外个SDT，主动PD去激活仍进行流量上报
-
-  3.日    期   : 2013年04月24日
-    作    者   : z60575
-    修改内容   : 问题单:DTS2013042001439,需要本地去激活，同步SM状态
-
-  4.日    期   : 2013年7月22日
-    作    者   : A00165503
-    修改内容   : DTS2013071905717: MODIFY流程导致的内部去激活需要上报承载去
-                 激活事件
-
-  5.日    期   : 2014年12月2日
-    作    者   : A00165503
-    修改内容   : DTS2014111805277: 缺省承载本地去激活时, 需要去激活与其关联
-                 的专用承载
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiMsDeactivatingExpired_MsDeactivating_WaitSmDeactivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2863,22 +2002,7 @@ VOS_UINT32 TAF_APS_RcvTiMsDeactivatingExpired_MsDeactivating_WaitSmDeactivateCnf
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtSetPdpContextStateReq_MsDeactivating_WaitSndcpDeactivateRsp
- 功能描述  : 收到ID_MSG_TAF_PS_SET_PDP_CONTEXT_STATE_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_SET_PDP_CONTEXT_STATE_REQ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : h44270
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtSetPdpContextStateReq_MsDeactivating_WaitSndcpDeactivateRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2898,23 +2022,7 @@ VOS_UINT32 TAF_APS_RcvAtSetPdpContextStateReq_MsDeactivating_WaitSndcpDeactivate
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPppDailOrigReq_MsDeactivating_WaitSndcpDeactivateRsp
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SNDCP_DEACTIVATE_CNF子状态下
-             收到ID_MSG_TAF_PS_PPP_DIAL_ORIG_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPppDailOrigReq_MsDeactivating_WaitSndcpDeactivateRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2934,23 +2042,7 @@ VOS_UINT32 TAF_APS_RcvAtPppDailOrigReq_MsDeactivating_WaitSndcpDeactivateRsp(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallOrigReq_MsDeactivating_WaitSndcpDeactivateRsp
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SNDCP_DEACTIVATE_CNF子状态下
-             收到ID_MSG_TAF_PS_CALL_ORIG_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallOrigReq_MsDeactivating_WaitSndcpDeactivateRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2971,27 +2063,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallOrigReq_MsDeactivating_WaitSndcpDeactivateRsp(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallEndReq_MsDeactivating_WaitSndcpDeactivateRsp
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SNDCP_DEACTIVATE_CNF子状态下
-             收到ID_MSG_TAF_PS_CALL_END_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2013年9月23日
-    作    者   : A00165503
-    修改内容   : UART-MODEM: 断开流程优化
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallEndReq_MsDeactivating_WaitSndcpDeactivateRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3013,24 +2085,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallEndReq_MsDeactivating_WaitSndcpDeactivateRsp(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallModifyReq_MsDeactivating_WaitSndcpDeactivateRsp
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SNDCP_DEACTIVATE_CNF子状态下
-             收到ID_MSG_TAF_PS_CALL_MODIFY_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallModifyReq_MsDeactivating_WaitSndcpDeactivateRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3049,24 +2104,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallModifyReq_MsDeactivating_WaitSndcpDeactivateRsp(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallAnswerReq_MsDeactivating_WaitSndcpDeactivateRsp
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SNDCP_DEACTIVATE_CNF子状态下
-             收到ID_MSG_TAF_PS_CALL_ANSWER_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallAnswerReq_MsDeactivating_WaitSndcpDeactivateRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3087,24 +2125,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallAnswerReq_MsDeactivating_WaitSndcpDeactivateRsp(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallHangupReq_MsDeactivating_WaitSndcpDeactivateRsp
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SNDCP_DEACTIVATE_CNF子状态下
-             收到ID_MSG_TAF_PS_CALL_HANGUP_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallHangupReq_MsDeactivating_WaitSndcpDeactivateRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3123,33 +2144,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallHangupReq_MsDeactivating_WaitSndcpDeactivateRsp(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvSndcpDeactivateRsp_MsDeactivating_WaitSndcpDeactivateRsp
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SNDCP_DEACTIVATE_CNF子状态下
-             收到APS_SN_DEACT_RSP_MSG_TYPE消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年5月18日
-    作    者   : A00165503
-    修改内容   : DTS2012041107552: G模数传时正常断开拨号, 流量统计异常,
-                 PDP去激活未配置IPF
-
-  3.日    期   : 2013年7月22日
-    作    者   : A00165503
-    修改内容   : DTS2013071905717: MODIFY流程导致的内部去激活需要上报承载去
-                 激活事件
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvSndcpDeactivateRsp_MsDeactivating_WaitSndcpDeactivateRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3200,27 +2195,7 @@ VOS_UINT32 TAF_APS_RcvSndcpDeactivateRsp_MsDeactivating_WaitSndcpDeactivateRsp(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvInterServiceStatusChangeInd_MsDeactivating_WaitSndcpDeactivateRsp
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SNDCP_DEACTIVATE_CNF子状态下
-             收到ID_MSG_TAF_PS_INTER_SERVICE_STATUS_CHANGE_IND消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年5月25日
-    作    者   : g00261581
-    修改内容   : 修改入口消息
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvInterServiceStatusChangeInd_MsDeactivating_WaitSndcpDeactivateRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3247,37 +2222,7 @@ VOS_UINT32 TAF_APS_RcvInterServiceStatusChangeInd_MsDeactivating_WaitSndcpDeacti
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiMsDeactivatingExpired_MsDeactivating_WaitSndcpDeactivateRsp
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SNDCP_DEACTIVATE_CNF子状态下
-             收到TI_TAF_APS_MS_DEACTIVATING超时消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年03月13日
-    作    者   : f00179208
-    修改内容   : 问题单:DTS2012031306944,在开机注册PDP激活，网侧PING单板，断开OM口后，
-                 调节小区信号重新打开另外个SDT，主动PD去激活仍进行流量上报
-
-  3.日    期   : 2012年5月18日
-    作    者   : A00165503
-    修改内容   : DTS2012041107552: PDP去激活未配置IPF
-
-  4.日    期   : 2013年7月22日
-    作    者   : A00165503
-    修改内容   : DTS2013071905717: MODIFY流程导致的内部去激活需要上报承载去
-                 激活事件
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiMsDeactivatingExpired_MsDeactivating_WaitSndcpDeactivateRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3330,22 +2275,7 @@ VOS_UINT32 TAF_APS_RcvTiMsDeactivatingExpired_MsDeactivating_WaitSndcpDeactivate
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtSetPdpContextStateReq_MsDeactivating_WaitSndcpDeactivateRspSuspend
- 功能描述  : 收到ID_MSG_TAF_PS_SET_PDP_CONTEXT_STATE_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_SET_PDP_CONTEXT_STATE_REQ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : h44270
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtSetPdpContextStateReq_MsDeactivating_WaitSndcpDeactivateRspSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3365,23 +2295,7 @@ VOS_UINT32 TAF_APS_RcvAtSetPdpContextStateReq_MsDeactivating_WaitSndcpDeactivate
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPppDailOrigReq_MsDeactivating_WaitSndcpDeactivateRspSuspend
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SNDCP_DEACTIVATE_CNF_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_PPP_DIAL_ORIG_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPppDailOrigReq_MsDeactivating_WaitSndcpDeactivateRspSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3401,23 +2315,7 @@ VOS_UINT32 TAF_APS_RcvAtPppDailOrigReq_MsDeactivating_WaitSndcpDeactivateRspSusp
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallOrigReq_MsDeactivating_WaitSndcpDeactivateRspSuspend
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SNDCP_DEACTIVATE_CNF_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_CALL_ORIG_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallOrigReq_MsDeactivating_WaitSndcpDeactivateRspSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3438,27 +2336,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallOrigReq_MsDeactivating_WaitSndcpDeactivateRspSuspe
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallEndReq_MsDeactivating_WaitSndcpDeactivateRspSuspend
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SNDCP_DEACTIVATE_CNF_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_CALL_END_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2013年9月23日
-    作    者   : A00165503
-    修改内容   : UART-MODEM: 断开流程优化
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallEndReq_MsDeactivating_WaitSndcpDeactivateRspSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3480,24 +2358,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallEndReq_MsDeactivating_WaitSndcpDeactivateRspSuspen
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallModifyReq_MsDeactivating_WaitSndcpDeactivateRspSuspend
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SNDCP_DEACTIVATE_CNF_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_CALL_MODIFY_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallModifyReq_MsDeactivating_WaitSndcpDeactivateRspSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3516,24 +2377,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallModifyReq_MsDeactivating_WaitSndcpDeactivateRspSus
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallAnswerReq_MsDeactivating_WaitSndcpDeactivateRspSuspend
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SNDCP_DEACTIVATE_CNF_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_CALL_ANSWER_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallAnswerReq_MsDeactivating_WaitSndcpDeactivateRspSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3554,24 +2398,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallAnswerReq_MsDeactivating_WaitSndcpDeactivateRspSus
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallHangupReq_MsDeactivating_WaitSndcpDeactivateRspSuspend
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SNDCP_DEACTIVATE_CNF_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_CALL_HANGUP_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallHangupReq_MsDeactivating_WaitSndcpDeactivateRspSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3590,32 +2417,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallHangupReq_MsDeactivating_WaitSndcpDeactivateRspSus
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvSndcpDeactivateRsp_MsDeactivating_WaitSndcpDeactivateRspSuspend
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SNDCP_DEACTIVATE_CNF_SUSPEND子状态下
-             收到APS_SN_DEACT_RSP_MSG_TYPE消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年5月18日
-    作    者   : A00165503
-    修改内容   : DTS2012041107552: PDP去激活未配置IPF
-
-  3.日    期   : 2013年7月22日
-    作    者   : A00165503
-    修改内容   : DTS2013071905717: MODIFY流程导致的内部去激活需要上报承载去
-                 激活事件
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvSndcpDeactivateRsp_MsDeactivating_WaitSndcpDeactivateRspSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3666,36 +2468,7 @@ VOS_UINT32 TAF_APS_RcvSndcpDeactivateRsp_MsDeactivating_WaitSndcpDeactivateRspSu
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvInterServiceStaChgInd_MsDeactivating_WaitSndcpDeactivateRspSuspend
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SNDCP_DEACTIVATE_CNF_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_INTER_SERVICE_STATUS_CHANGE_IND消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年5月18日
-    作    者   : A00165503
-    修改内容   : DTS2012041107552: PDP去激活未配置IPF
-
-  3.日    期   : 2013年7月22日
-    作    者   : A00165503
-    修改内容   : DTS2013071905717: MODIFY流程导致的内部去激活需要上报承载去
-                 激活事件
-
-  4.日    期   : 2015年5月25日
-    作    者   : g00261581
-    修改内容   : 修改入口消息
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvInterServiceStaChgInd_MsDeactivating_WaitSndcpDeactivateRspSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3767,37 +2540,7 @@ VOS_UINT32 TAF_APS_RcvInterServiceStaChgInd_MsDeactivating_WaitSndcpDeactivateRs
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiMsDeactivatingExpired_MsDeactivating_WaitSndcpDeactivateRspSuspend
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SNDCP_DEACTIVATE_CNF_SUSPEND子状态下
-             收到TI_TAF_APS_MS_DEACTIVATING超时消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年03月13日
-    作    者   : f00179208
-    修改内容   : 问题单:DTS2012031306944,在开机注册PDP激活，网侧PING单板，断开OM口后，
-                 调节小区信号重新打开另外个SDT，主动PD去激活仍进行流量上报
-
-  3.日    期   : 2012年5月18日
-    作    者   : A00165503
-    修改内容   : DTS2012041107552: PDP去激活未配置IPF
-
-  4.日    期   : 2013年7月22日
-    作    者   : A00165503
-    修改内容   : DTS2013071905717: MODIFY流程导致的内部去激活需要上报承载去
-                 激活事件
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiMsDeactivatingExpired_MsDeactivating_WaitSndcpDeactivateRspSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3848,22 +2591,7 @@ VOS_UINT32 TAF_APS_RcvTiMsDeactivatingExpired_MsDeactivating_WaitSndcpDeactivate
 }
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtSetPdpContextStateReq_MsDeactivating_WaitEsmDeactivateCnf
- 功能描述  : 收到ID_MSG_TAF_PS_SET_PDP_CONTEXT_STATE_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_SET_PDP_CONTEXT_STATE_REQ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : h44270
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtSetPdpContextStateReq_MsDeactivating_WaitEsmDeactivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3882,23 +2610,7 @@ VOS_UINT32 TAF_APS_RcvAtSetPdpContextStateReq_MsDeactivating_WaitEsmDeactivateCn
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPppDailOrigReq_MsDeactivating_WaitEsmDeactivateCnf
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_ESM_DEACTIVATE_CNF子状态下
-             收到ID_MSG_TAF_PS_PPP_DIAL_ORIG_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPppDailOrigReq_MsDeactivating_WaitEsmDeactivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3917,23 +2629,7 @@ VOS_UINT32 TAF_APS_RcvAtPppDailOrigReq_MsDeactivating_WaitEsmDeactivateCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallOrigReq_MsDeactivating_WaitEsmDeactivateCnf
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_ESM_DEACTIVATE_CNF子状态下
-             收到ID_MSG_TAF_PS_CALL_ORIG_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallOrigReq_MsDeactivating_WaitEsmDeactivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3954,27 +2650,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallOrigReq_MsDeactivating_WaitEsmDeactivateCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallEndReq_MsDeactivating_WaitL4aDeactivateCnf
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_ESM_DEACTIVATE_CNF子状态下
-             收到ID_MSG_TAF_PS_CALL_END_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2013年9月23日
-    作    者   : A00165503
-    修改内容   : UART-MODEM: 断开流程优化
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallEndReq_MsDeactivating_WaitEsmDeactivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3995,24 +2671,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallEndReq_MsDeactivating_WaitEsmDeactivateCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallModifyReq_MsDeactivating_WaitEsmDeactivateCnf
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_ESM_DEACTIVATE_CNF子状态下
-             收到ID_MSG_TAF_PS_CALL_MODIFY_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallModifyReq_MsDeactivating_WaitEsmDeactivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4031,24 +2690,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallModifyReq_MsDeactivating_WaitEsmDeactivateCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallAnswerReq_MsDeactivating_WaitL4aDeactivateCnf
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_ESM_DEACTIVATE_CNF子状态下
-             收到ID_MSG_TAF_PS_CALL_ANSWER_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallAnswerReq_MsDeactivating_WaitEsmDeactivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4069,24 +2711,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallAnswerReq_MsDeactivating_WaitEsmDeactivateCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallHangupReq_MsDeactivating_WaitL4aDeactivateCnf
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_ESM_DEACTIVATE_CNF子状态下
-             收到ID_MSG_TAF_PS_CALL_HANGUP_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallHangupReq_MsDeactivating_WaitEsmDeactivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4105,24 +2730,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallHangupReq_MsDeactivating_WaitEsmDeactivateCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEsmPdpReleaseCnf_MsDeactivating_WaitEsmDeactivateCnf
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_ESM_DEACTIVATE_CNF子状态下
-             收到ID_APP_ESM_PDP_RELEASE_CNF消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEsmPdpReleaseCnf_MsDeactivating_WaitEsmDeactivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4143,36 +2751,7 @@ VOS_UINT32 TAF_APS_RcvEsmPdpReleaseCnf_MsDeactivating_WaitEsmDeactivateCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEsmPdpDeactivateCnf_MsDeactivating_WaitEsmDeactivateCnf
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_ESM_DEACTIVATE_CNF子状态下
-             收到ID_APP_ESM_PDP_RELEASE_CNF消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年12月26日
-    作    者   : o00132663
-    修改内容   : PS融合项目，PDP去激活后，停止流量统计
-
-  3.日    期   : 2013年7月22日
-    作    者   : A00165503
-    修改内容   : DTS2013071905717: MODIFY流程导致的内部去激活需要上报承载去
-                 激活事件
-
-  4.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : Split L4A Project
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEsmPdpDeactivateCnf_MsDeactivating_WaitEsmDeactivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4224,61 +2803,7 @@ VOS_UINT32 TAF_APS_RcvEsmPdpDeactivateCnf_MsDeactivating_WaitEsmDeactivateCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEsmPdpDeactivateRej_MsDeactivating_WaitEsmDeactivateCnf
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_ESM_DEACTIVATE_CNF子状态下
-             收到ID_APP_ESM_PDP_RELEASE_CNF消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年06月05日
-    作    者   : f00179208
-    修改内容   : DTS2012060200787, 收到L4A被拒后，需要将对应去激活PDP下的专有承载
-                 的信息同步给SM，因为这个时候SM已经将这些清除掉。
-
-  3.日    期   : 2012年7月13日
-    作    者   : A00165503
-    修改内容   : DTS2012071105614: 缺省承载为IPv4, 双栈拨号成功后断开拨号,
-                 再次双栈拨号只有IPv6拨号成功, 不再发起IPv4类型拨号
-
-  4.日    期   : 2012年7月19日
-    作    者   : A00165503
-    修改内容   : DTS2012071805127: APS处理EPS承载被拒原因值"LAST_PDN_DISCON-
-                 N_NOT_ALLOWED"时, 没有再次同步PDP信息给SM, 可能会导致SM维护
-                 的PDP信息和APS不一致
-
-  5.日    期   : 2012年8月10日
-    作    者   : z60575
-    修改内容   : DTS2012081006711: 添加IPV6编译宏
-
-  6.日    期   : 2012年8月13日
-    作    者   : z60575
-    修改内容   : DTS2012081300271: 给SM同步信息前判断是否存在TransId
-
-  7.日    期   : 2013年7月22日
-    作    者   : A00165503
-    修改内容   : DTS2013071905717: MODIFY流程导致的内部去激活需要上报承载去
-                 激活事件
-
-  8.日    期   : 2014年3月20日
-    作    者   : A00165503
-    修改内容   : DTS2014032005866: 最后一个PDN连接去激活被拒后, 修改为注册承
-                 载, 需要设置注册承载标注
-
-  9.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : Split L4A Project
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEsmPdpDeactivateRej_MsDeactivating_WaitEsmDeactivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4392,42 +2917,7 @@ VOS_UINT32 TAF_APS_RcvEsmPdpDeactivateRej_MsDeactivating_WaitEsmDeactivateCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiMsDeactivatingExpired_MsDeactivating_WaitEsmDeactivateCnf
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_ESM_DEACTIVATE_CNF子状态下
-             收到TI_TAF_APS_MS_DEACTIVATING超时消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年03月13日
-    作    者   : f00179208
-    修改内容   : 问题单:DTS2012031306944,在开机注册PDP激活，网侧PING单板，断开OM口后，
-                 调节小区信号重新打开另外个SDT，主动PD去激活仍进行流量上报
-
-  3.日    期   : 2013年04月24日
-    作    者   : z60575
-    修改内容   : 问题单:DTS2013042001439,需要本地去激活，同步SM状态
-
-  4.日    期   : 2013年7月22日
-    作    者   : A00165503
-    修改内容   : DTS2013071905717: MODIFY流程导致的内部去激活需要上报承载去
-                 激活事件
-
-  5.日    期   : 2014年12月2日
-    作    者   : A00165503
-    修改内容   : DTS2014111805277: 缺省承载本地去激活时, 需要去激活与其关联
-                 的专用承载
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiMsDeactivatingExpired_MsDeactivating_WaitEsmDeactivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4510,31 +3000,7 @@ VOS_UINT32 TAF_APS_RcvTiMsDeactivatingExpired_MsDeactivating_WaitEsmDeactivateCn
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvInterServiceStatusChangeInd_MsDeactivating_WaitEsmDeactivateCnf
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_ESM_DEACTIVATE_CNF子状态下
-             收到ID_MSG_TAF_PS_INTER_SERVICE_STATUS_CHANGE_IND消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年5月25日
-    作    者   : g00261581
-    修改内容   : 修改入口消息
-
-  3.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : Split L4A Project
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvInterServiceStatusChangeInd_MsDeactivating_WaitEsmDeactivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4560,23 +3026,7 @@ VOS_UINT32 TAF_APS_RcvInterServiceStatusChangeInd_MsDeactivating_WaitEsmDeactiva
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEsmSmEpsBearerInfoInd_MsDeactivating_WaitEsmDeactivateCnf(
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SM_DEACTIVATE_CNF主状态下收到ID_ESM_SM_EPS_BEARER_INFO_IND消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年01月07日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEsmSmEpsBearerInfoInd_MsDeactivating_WaitEsmDeactivateCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4607,22 +3057,7 @@ VOS_UINT32 TAF_APS_RcvEsmSmEpsBearerInfoInd_MsDeactivating_WaitEsmDeactivateCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtSetPdpContextStateReq_MsDeactivating_WaitEsmDeactivateCnfSuspend
- 功能描述  : 收到ID_MSG_TAF_PS_SET_PDP_CONTEXT_STATE_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_SET_PDP_CONTEXT_STATE_REQ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : S62952
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtSetPdpContextStateReq_MsDeactivating_WaitEsmDeactivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4641,23 +3076,7 @@ VOS_UINT32 TAF_APS_RcvAtSetPdpContextStateReq_MsDeactivating_WaitEsmDeactivateCn
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPppDailOrigReq_MsDeactivating_WaitEsmDeactivateCnfSuspend
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SM_DEACTIVATE_CNF_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_PPP_DIAL_ORIG_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPppDailOrigReq_MsDeactivating_WaitEsmDeactivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4676,23 +3095,7 @@ VOS_UINT32 TAF_APS_RcvAtPppDailOrigReq_MsDeactivating_WaitEsmDeactivateCnfSuspen
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallOrigReq_MsDeactivating_WaitEsmDeactivateCnfSuspend
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SM_DEACTIVATE_CNF_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_CALL_ORIG_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallOrigReq_MsDeactivating_WaitEsmDeactivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4713,27 +3116,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallOrigReq_MsDeactivating_WaitEsmDeactivateCnfSuspend
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallEndReq_MsDeactivating_WaitEsmDeactivateCnfSuspend
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SM_DEACTIVATE_CNF_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_CALL_END_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2013年9月23日
-    作    者   : A00165503
-    修改内容   : UART-MODEM: 断开流程优化
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallEndReq_MsDeactivating_WaitEsmDeactivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4754,24 +3137,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallEndReq_MsDeactivating_WaitEsmDeactivateCnfSuspend(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallModifyReq_MsDeactivating_WaitEsmDeactivateCnfSuspend
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SM_DEACTIVATE_CNF_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_CALL_MODIFY_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallModifyReq_MsDeactivating_WaitEsmDeactivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4790,24 +3156,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallModifyReq_MsDeactivating_WaitEsmDeactivateCnfSuspe
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallAnswerReq_MsDeactivating_WaitL4aDeactivateCnfSuspend
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SM_DEACTIVATE_CNF_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_CALL_ANSWER_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallAnswerReq_MsDeactivating_WaitL4aDeactivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4828,24 +3177,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallAnswerReq_MsDeactivating_WaitL4aDeactivateCnfSuspe
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallHangupReq_MsDeactivating_WaitL4aDeactivateCnfSuspend
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SM_DEACTIVATE_CNF_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_CALL_HANGUP_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallHangupReq_MsDeactivating_WaitL4aDeactivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4864,24 +3196,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallHangupReq_MsDeactivating_WaitL4aDeactivateCnfSuspe
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEsmPdpReleaseCnf_MsDeactivating_WaitEsmDeactivateCnfSuspend
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_ESM_DEACTIVATE_CNF_SUSPEND子状态下
-             收到ID_APP_ESM_PDP_RELEASE_CNF消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEsmPdpReleaseCnf_MsDeactivating_WaitEsmDeactivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4902,36 +3217,7 @@ VOS_UINT32 TAF_APS_RcvEsmPdpReleaseCnf_MsDeactivating_WaitEsmDeactivateCnfSuspen
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEsmPdpDeactivateCnf_MsDeactivating_WaitEsmDeactivateCnfSuspend
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_ESM_DEACTIVATE_CNF_SUSPEND子状态下
-             收到ID_APP_ESM_PDP_RELEASE_CNF消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年12月26日
-    作    者   : o00132663
-    修改内容   : PS融合项目，PDP去激活后，停止流量统计
-
-  3.日    期   : 2013年7月22日
-    作    者   : A00165503
-    修改内容   : DTS2013071905717: MODIFY流程导致的内部去激活需要上报承载去
-                 激活事件
-
-  4.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : Split L4A Project
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEsmPdpDeactivateCnf_MsDeactivating_WaitEsmDeactivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4984,61 +3270,7 @@ VOS_UINT32 TAF_APS_RcvEsmPdpDeactivateCnf_MsDeactivating_WaitEsmDeactivateCnfSus
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEsmPdpDeactivateRej_MsDeactivating_WaitEsmDeactivateCnfSuspend
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_ESM_DEACTIVATE_CNF子状态下
-             收到ID_APP_ESM_PDP_RELEASE_CNF消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年06月05日
-    作    者   : f00179208
-    修改内容   : DTS2012060200787, 收到L4A被拒后，需要将对应去激活PDP下的专有承载
-                 的信息同步给SM，因为这个时候SM已经将这些清除掉。
-
-  3.日    期   : 2012年7月13日
-    作    者   : A00165503
-    修改内容   : DTS2012071105614: 缺省承载为IPv4, 双栈拨号成功后断开拨号,
-                 再次双栈拨号只有IPv6拨号成功, 不再发起IPv4类型拨号
-
-  4.日    期   : 2012年7月19日
-    作    者   : A00165503
-    修改内容   : DTS2012071805127: APS处理EPS承载被拒原因值"LAST_PDN_DISCON-
-                 N_NOT_ALLOWED"时, 没有再次同步PDP信息给SM, 可能会导致SM维护
-                 的PDP信息和APS不一致
-
-  5.日    期   : 2012年8月10日
-    作    者   : z60575
-    修改内容   : DTS2012081006711: 添加IPV6编译宏
-
-  6.日    期   : 2012年8月13日
-    作    者   : z60575
-    修改内容   : DTS2012081300271: 给SM同步信息前判断是否存在TransId
-
-  7.日    期   : 2013年7月22日
-    作    者   : A00165503
-    修改内容   : DTS2013071905717: MODIFY流程导致的内部去激活需要上报承载去
-                 激活事件
-
-  8.日    期   : 2014年3月20日
-    作    者   : A00165503
-    修改内容   : DTS2014032005866: 最后一个PDN连接去激活被拒后, 修改为注册承
-                 载, 需要设置注册承载标注
-
-  9.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : Split L4A Project
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEsmPdpDeactivateRej_MsDeactivating_WaitEsmDeactivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -5168,33 +3400,7 @@ VOS_UINT32 TAF_APS_RcvEsmPdpDeactivateRej_MsDeactivating_WaitEsmDeactivateCnfSus
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEsmPdpDeactivateInd_MsDeactivating_WaitEsmDeactivateCnfSuspend
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SM_DEACTIVATE_CNF_SUSPEND子状态下
-             收到ID_APP_ESM_PDP_RELEASE_IND消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2013年7月22日
-    作    者   : A00165503
-    修改内容   : DTS2013071905717: MODIFY流程导致的内部去激活需要上报承载去
-                 激活事件
-
-  3.日    期   : 2014年8月21日
-    作    者   : A00165503
-    修改内容   : DTS2014081803666: 增加SNDCP激活状态判断, 如果SNDCP处于激活
-                 状态, 需将其去激活
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEsmPdpDeactivateInd_MsDeactivating_WaitEsmDeactivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -5251,31 +3457,7 @@ VOS_UINT32 TAF_APS_RcvEsmPdpDeactivateInd_MsDeactivating_WaitEsmDeactivateCnfSus
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvInterServiceStaChgInd_MsDeactivating_WaitEsmDeactivateCnfSuspend
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SM_DEACTIVATE_CNF_SUSPEND子状态下
-             收到ID_MSG_TAF_PS_INTER_SERVICE_STATUS_CHANGE_IND消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年5月25日
-    作    者   : g00261581
-    修改内容   : 修改入口消息
-
-  3.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : Split L4A Project
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvInterServiceStaChgInd_MsDeactivating_WaitEsmDeactivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -5338,23 +3520,7 @@ VOS_UINT32 TAF_APS_RcvInterServiceStaChgInd_MsDeactivating_WaitEsmDeactivateCnfS
 }
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEhsmLteHandoverToEhrpdInd_MsDeactivating_WaitEsmDeactivateCnfSuspend
- 功能描述  : Wait ESM Deactivate Cnf Suspend State, Rcv Pdn Irat Hrpd Ind
-             Msg
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月27日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEhsmLteHandoverToEhrpdInd_MsDeactivating_WaitEsmDeactivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -5400,22 +3566,7 @@ VOS_UINT32 TAF_APS_RcvEhsmLteHandoverToEhrpdInd_MsDeactivating_WaitEsmDeactivate
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEsmSmEpsBearerInfoInd_MsDeactivating_WaitEsmDeactivateCnfSuspend(
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_SM_DEACTIVATE_CNF_SUSPEND主状态下收到ID_ESM_SM_EPS_BEARER_INFO_IND消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年01月07日
-    作    者   : h44270
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEsmSmEpsBearerInfoInd_MsDeactivating_WaitEsmDeactivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -5446,42 +3597,7 @@ VOS_UINT32 TAF_APS_RcvEsmSmEpsBearerInfoInd_MsDeactivating_WaitEsmDeactivateCnfS
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiMsDeactivatingExpired_MsDeactivating_WaitEsmDeactivateCnfSuspend
- 功能描述  : TAF_APS_MS_DEACTIVATING_SUBSTA_WAIT_ESM_DEACTIVATE_CNF_SUSPEND子状态下
-             收到TI_TAF_APS_MS_DEACTIVATING超时消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月30日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年03月13日
-    作    者   : f00179208
-    修改内容   : 问题单:DTS2012031306944,在开机注册PDP激活，网侧PING单板，断开OM口后，
-                 调节小区信号重新打开另外个SDT，主动PD去激活仍进行流量上报
-
-  3.日    期   : 2013年04月24日
-    作    者   : z60575
-    修改内容   : 问题单:DTS2013042001439,需要本地去激活，同步SM状态
-
-  4.日    期   : 2013年7月22日
-    作    者   : A00165503
-    修改内容   : DTS2013071905717: MODIFY流程导致的内部去激活需要上报承载去
-                 激活事件
-
-  5.日    期   : 2014年12月2日
-    作    者   : A00165503
-    修改内容   : DTS2014111805277: 缺省承载本地去激活时, 需要去激活与其关联
-                 的专用承载
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiMsDeactivatingExpired_MsDeactivating_WaitEsmDeactivateCnfSuspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -5561,25 +3677,7 @@ VOS_UINT32 TAF_APS_RcvTiMsDeactivatingExpired_MsDeactivating_WaitEsmDeactivateCn
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtSetPdpContextStateReq_MsDeactivating_GuMode
- 功能描述  : DEACTIVATEING主状态下收到ID_MSG_TAF_PS_SET_PDP_CONTEXT_STATE_REQ消息的处理
- 输入参数  : SM_TAF_CAUSE_ENUM_UINT16            enCause                -原因值
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年5月23日
-    作    者   : A00165503
-    修改内容   : DTS2012052302198: 断开拨号请求在APS缓存后, 没有立刻上报请求
-                 处理结果, 导致AT未能及时上报OK, AT超时后上报ERROR
-*****************************************************************************/
 VOS_VOID TAF_APS_RcvAtSetPdpContextStateReq_MsDeactivating_GuMode(
     SM_TAF_CAUSE_ENUM_UINT16            enCause
 )
@@ -5622,25 +3720,7 @@ VOS_VOID TAF_APS_RcvAtSetPdpContextStateReq_MsDeactivating_GuMode(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtCallEndReq_MsActivating_GuMode
- 功能描述  : DEACTIVATEING主状态下收到ID_MSG_TAF_PS_CALL_END_REQ消息的处理
- 输入参数  : SM_TAF_CAUSE_ENUM_UINT16            enCause                -原因值
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年5月23日
-    作    者   : A00165503
-    修改内容   : DTS2012052302198: 断开拨号请求在APS缓存后, 没有立刻上报请求
-                 处理结果, 导致AT未能及时上报OK, AT超时后上报ERROR
-*****************************************************************************/
 VOS_VOID TAF_APS_RcvAtPsCallEndReq_MsDeactivating_GuMode(
     SM_TAF_CAUSE_ENUM_UINT16            enCause
 )
@@ -5683,20 +3763,7 @@ VOS_VOID TAF_APS_RcvAtPsCallEndReq_MsDeactivating_GuMode(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvApsInternalPdpDeavtivateReq_MsDeactivating_GuMode
- 功能描述  : DEACTIVATEING主状态下收到内部去激活消息的处理
- 输入参数  : SM_TAF_CAUSE_ENUM_UINT16            enCause                -原因值
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月29日
-    作    者   : h44270
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_APS_RcvApsInternalPdpDeavtivateReq_MsDeactivating_GuMode(
     SM_TAF_CAUSE_ENUM_UINT16            enCause
 )
@@ -5739,21 +3806,7 @@ VOS_VOID TAF_APS_RcvApsInternalPdpDeavtivateReq_MsDeactivating_GuMode(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallHangupReq_MsDeactivating_GuMode
- 功能描述  : DEACTIVATEING主状态下收到内部去激活消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月29日
-    作    者   : s62952
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_APS_RcvAtPsCallHangupReq_MsDeactivating_GuMode(VOS_VOID)
 {
     VOS_UINT8                           ucPdpId;
@@ -5804,30 +3857,7 @@ VOS_VOID TAF_APS_RcvAtPsCallHangupReq_MsDeactivating_GuMode(VOS_VOID)
 }
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtSetPdpContextStateReq_MsDeactivating_LteMode
- 功能描述  : DEACTIVATEING主状态下收到ID_MSG_TAF_PS_SET_PDP_CONTEXT_STATE_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年5月23日
-    作    者   : A00165503
-    修改内容   : DTS2012052302198: 断开拨号请求在APS缓存后, 没有立刻上报请求
-                 处理结果, 导致AT未能及时上报OK, AT超时后上报ERROR
-
-  3.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : Split L4A Project
-*****************************************************************************/
 VOS_VOID TAF_APS_RcvAtSetPdpContextStateReq_MsDeactivating_LteMode(VOS_VOID)
 {
     VOS_UINT8                           ucPdpId;
@@ -5864,30 +3894,7 @@ VOS_VOID TAF_APS_RcvAtSetPdpContextStateReq_MsDeactivating_LteMode(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtCallEndReq_MsActivating_LteMode
- 功能描述  : DEACTIVATEING主状态下收到ID_MSG_TAF_PS_CALL_END_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年5月23日
-    作    者   : A00165503
-    修改内容   : DTS2012052302198: 断开拨号请求在APS缓存后, 没有立刻上报请求
-                 处理结果, 导致AT未能及时上报OK, AT超时后上报ERROR
-
-  3.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : Split L4A Project
-*****************************************************************************/
 VOS_VOID TAF_APS_RcvAtPsCallEndReq_MsDeactivating_LteMode(VOS_VOID)
 {
     VOS_UINT8                           ucPdpId;
@@ -5924,25 +3931,7 @@ VOS_VOID TAF_APS_RcvAtPsCallEndReq_MsDeactivating_LteMode(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtCallEndReq_MsActivating_LteMode
- 功能描述  : DEACTIVATEING主状态下收到ID_MSG_TAF_PS_CALL_END_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : Split L4A Project
-*****************************************************************************/
 VOS_VOID TAF_APS_RcvApsInternalPdpDeavtivateReq_MsDeactivating_LteMode(VOS_VOID)
 {
     VOS_UINT8                           ucPdpId;
@@ -5978,25 +3967,7 @@ VOS_VOID TAF_APS_RcvApsInternalPdpDeavtivateReq_MsDeactivating_LteMode(VOS_VOID)
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallHangupReq_MsDeactivating_LteMode
- 功能描述  : DEACTIVATEING主状态下收到内部去激活消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月29日
-    作    者   : s62952
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : Split L4A Project
-*****************************************************************************/
 VOS_VOID TAF_APS_RcvAtPsCallHangupReq_MsDeactivating_LteMode( VOS_VOID )
 {
     VOS_UINT8                           ucPdpId;
@@ -6033,20 +4004,7 @@ VOS_VOID TAF_APS_RcvAtPsCallHangupReq_MsDeactivating_LteMode( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallEndReq_MsDeactivating_LteMode_ReserveDef
- 功能描述  : L模下不去激活默认承载，直接给用户上报去激活成功，同时清除流量统计等
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月12日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_APS_RcvAtPsCallEndReq_MsDeactivating_LteMode_ReserveDef(VOS_VOID)
 {
     VOS_UINT8                               ucPdpId;
@@ -6117,21 +4075,7 @@ VOS_VOID TAF_APS_RcvAtPsCallEndReq_MsDeactivating_LteMode_ReserveDef(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ProcLocDeactBear_MsDeactivating_LteMode
- 功能描述  : 在LTE模式下等待LNAS回复去激活过程中，本地去激活
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月27日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_ProcLocDeactBear_MsDeactivating_LteMode(VOS_VOID)
 {
     TAF_APS_ENTRY_MSG_STRU                                 *pstEntryMsg;

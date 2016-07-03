@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafXsmsSndCas.c
-  版 本 号   : 初稿
-  作    者   : l00208516
-  生成日期   : 2014年10月31日
-  功能描述   : 1X SMS(Short Message Service)给接入层发消息
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年10月31日
-    作    者   : h00300778
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -39,22 +24,7 @@ extern "C"{
   3 函数定义
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_SndCasCschDataReq
- 功能描述  : 从CSCH发送数据给CAS
- 输入参数  : ucMsgSeqNum 接入层消息序号
-             paucData:鉴权信息
-             pstDbm:DBM结构
- 输出参数  : 无
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月3日
-    作    者   : l00208516
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_SndCasCschDataReq(VOS_UINT8 ucMsgSeqNum, VOS_UINT8 *paucData, TAF_XSMS_DATA_BURST_MSG_STRU *pstDbm)
 {
     CNAS_CAS_1X_CSCH_DATA_REQ_STRU     *pstCschDataReq;
@@ -115,20 +85,7 @@ VOS_UINT32 TAF_XSMS_SndCasCschDataReq(VOS_UINT8 ucMsgSeqNum, VOS_UINT8 *paucData
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_SndCasCschOrderMsg
- 功能描述  : 从CSCH发送OrderMsg给CAS
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_ERR /VOS_OKS
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月3日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_SndCasCschOrderMsg
 (
     VOS_UINT8                           ucMsgSeqNum,
@@ -175,21 +132,7 @@ VOS_UINT32 TAF_XSMS_SndCasCschOrderMsg
 
     return VOS_SendMsg(UEPS_PID_XSMS, pstCschDataReq);
 }
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_SndCasDschDataReq
- 功能描述  : 从DSCH发送数据给CAS
- 输入参数  : ucMsgSeqNum:发给接入层消息序号
-             pstDbm:DBM结构
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月3日
-    作    者   : l00208516
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XSMS_SndCasDschDataReq(VOS_UINT8 ucMsgSeqNum, TAF_XSMS_DATA_BURST_MSG_STRU *pstDbm)
 {
     CNAS_CAS_1X_DSCH_DATA_REQ_STRU     *pstDschDataReq;
@@ -234,21 +177,7 @@ VOS_UINT32 TAF_XSMS_SndCasDschDataReq(VOS_UINT8 ucMsgSeqNum, TAF_XSMS_DATA_BURST
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_SndCasBeginSessionNotify
- 功能描述  : XSMS向CAS申请Session保护
- 输入参数  : CNAS_CAS_1X_SESSION_TYPE_ENUM_UINT16
-             enSessionType : Session类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月15日
-    作    者   : C00299061
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XSMS_SndCasBeginSessionNotify(
     CNAS_CAS_1X_SESSION_TYPE_ENUM_UINT16                        enSessionType
 )
@@ -281,22 +210,7 @@ VOS_VOID TAF_XSMS_SndCasBeginSessionNotify(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XSMS_SndCasEndSessionNotify
- 功能描述  : XCC向CAS申请Session释放
- 输入参数  : CNAS_CAS_1X_SESSION_TYPE_ENUM_UINT16
-             enSessionType : Session类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月15日
-    作    者   : C00299064
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XSMS_SndCasEndSessionNotify(
     CNAS_CAS_1X_SESSION_TYPE_ENUM_UINT16                    enSessionType
 )

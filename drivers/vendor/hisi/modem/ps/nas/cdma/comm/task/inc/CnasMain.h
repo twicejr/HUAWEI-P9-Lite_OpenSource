@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasMain.h
-  版 本 号   : 初稿
-  作    者   : y00245242
-  生成日期   : 2014年06月27日
-  功能描述   : CnasMain.c头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年06月27日
-    作    者   : y00245242
-    修改内容   : 创建文件
-******************************************************************************/
 #ifndef _CNAS_MAIN_H_
 #define _CNAS_MAIN_H_
 
@@ -69,21 +54,9 @@ extern "C" {
 /*****************************************************************************
   7 STRUCT定义
 *****************************************************************************/
-/* Deleted by w00176964 for CNAS内存裁剪, 2015-9-6, begin */
 
-/* Deleted by w00176964 for CNAS内存裁剪, 2015-9-6, end */
 
-/*****************************************************************************
- 结构名    : CNAS_INTERNAL_MSG_CTX_STRU
- 结构说明  : 内部消息队列的结构
 
- 1.日    期   : 2014年6月28日
-   作    者   : y00245242
-   修改内容   : 新建
- 2.日    期   : 2015年9月6日
-   作    者   : w00176964
-   修改内容   : CNAS内存裁剪
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucIntMsgNum;                                /* 缓存消息的个数 */
@@ -113,24 +86,18 @@ VOS_VOID CNAS_InitIntMsgBuf(
     CNAS_INTERNAL_MSG_CTX_STRU          *pstInternalMsgCtx
 );
 
-/* Modified by w00176964 for CNAS内存裁剪, 2015-9-6, begin */
 VOS_VOID *CNAS_GetIntMsgSendBuf(
     VOS_UINT32                          ulModuleId,
     VOS_UINT32                          ulBufLen
 );
-/* Modified by w00176964 for CNAS内存裁剪, 2015-9-6, end */
 
 VOS_UINT32  CNAS_SndInternalMsg(
     VOS_VOID                           *pSndMsg
 );
 
-/* Modified by w00176964 for CNAS内存裁剪, 2015-9-6, begin */
 VOS_UINT8 *CNAS_GetNextInternalMsg(VOS_VOID);
-/* Modified by w00176964 for CNAS内存裁剪, 2015-9-6, end */
 
-/* Deleted by w00176964 for CNAS内存裁剪, 2015-9-6, begin */
 
-/* Deleted by w00176964 for CNAS内存裁剪, 2015-9-6, end */
 
 VOS_VOID  CNAS_InitTask(VOS_VOID);
 

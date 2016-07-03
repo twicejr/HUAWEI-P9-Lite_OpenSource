@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : BST_DSPP_TrsLayer.c
-  版 本 号   : 初稿
-  作    者   : d00173029
-  生成日期   : 2014年4月16日
-  最近修改   :
-  功能描述   : DSPP协议传输层相关类实现
-  函数列表   :
-
-  修改历史   :
-  1.日    期 : 2014年04月16日
-    作    者 : d00173029
-    修改内容 : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -34,58 +17,19 @@
   2 函数实现
 ******************************************************************************/
 
-/*****************************************************************************
-函 数 名  : BST_DSPP_CTrsDlVa
-功能描述  : 类BST_DSPP_CTrsDlVa的构造函数
-输入参数  : BST_VOID
-输出参数  :
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史  :
-1.日   期 : 2014年04月16日
-  作   者 : d00173029
-  修改内容: 创建文件
-*****************************************************************************/
 BST_DSPP_CTrsDlVa::BST_DSPP_CTrsDlVa ( BST_VOID )
     : BST_DSPP_CDlLayerBase ( BST_DSPP_LAYER_TRS, BST_DSPP_VER_A )
 {
     lstInit( &m_stRcvPktList );
 }
-/*****************************************************************************
-函 数 名  : ~BST_DSPP_CTrsDlVa
-功能描述  : 类BST_DSPP_CTrsDlVa的析构函数
-输入参数  : BST_VOID
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史  :
-1.日   期 : 2014年04月16日
-  作   者 : d00173029
-  修改内容: 创建文件
-*****************************************************************************/
 BST_DSPP_CTrsDlVa::~BST_DSPP_CTrsDlVa ( BST_VOID )
 {
     BST_RLS_LOG("BST_DSPP_CTrsDlVa::~BST_DSPP_CTrsDlVa Error");
 }
 
-/*****************************************************************************
-函 数 名  : GetInstance
-功能描述  : BST_DSPP_CTrsDlVa类对象实例化，如果没有创建对象，则新建一个
-输入参数  : BST_VOID
-输出参数  :
-返 回 值  : (BST_DSPP_CTrsDlVa *)，指向对象的指针
-调用函数  :
-被调函数  :
 
-修改历史  :
-1.日   期 : 2014年04月16日
-  作   者 : d00173029
-  修改内容: 创建文件
-*****************************************************************************/
 BST_DSPP_CTrsDlVa *BST_DSPP_CTrsDlVa::GetInstance ( BST_VOID )
 {
     static BST_DSPP_CTrsDlVa           *s_pInstance = BST_NULL_PTR;
@@ -98,22 +42,7 @@ BST_DSPP_CTrsDlVa *BST_DSPP_CTrsDlVa::GetInstance ( BST_VOID )
     return s_pInstance;
 }
 
-/*****************************************************************************
-函 数 名  : CheckPicNumber
-功能描述  : 检查数据包中分片的数量
-输入参数  : BST_DSPP_TP_PACKET_STRU *pstRcvInfo
-            BST_DSPP_PKTPC_T         usPicNum
 
-输出参数  :
-返 回 值  : BST_ERR_ENUM_UINT8
-调用函数  :
-被调函数  :
-
-修改历史  :
-1.日   期 : 2014年04月16日
-  作   者 : d00173029
-  修改内容: 创建文件
-*****************************************************************************/
 BST_ERR_ENUM_UINT8  BST_DSPP_CTrsDlVa::CheckPicNumber(
     BST_DSPP_TP_PACKET_STRU *pstRcvInfo,
     BST_DSPP_PKTPC_T         usPicNum )
@@ -143,20 +72,7 @@ BST_ERR_ENUM_UINT8  BST_DSPP_CTrsDlVa::CheckPicNumber(
     return BST_NO_ERROR_MSG;
 }
 
-/*****************************************************************************
-函 数 名  : CheckValidLength
-功能描述  : 检查长度是否有效
-输入参数  : BST_UINT16 usLen
-输出参数  :
-返 回 值  : BST_BOOL
-调用函数  :
-被调函数  :
 
-修改历史  :
-1.日   期 : 2014年04月16日
-  作   者 : d00173029
-  修改内容: 创建文件
-*****************************************************************************/
 BST_BOOL BST_DSPP_CTrsDlVa::CheckValidLength( BST_UINT16 usLen )
 {
     if ( ( usLen >= ( BST_DSPP_TPA_FLAG_LEN + BST_DSPP_TPA_HEAD_LEN ) )
@@ -169,23 +85,7 @@ BST_BOOL BST_DSPP_CTrsDlVa::CheckValidLength( BST_UINT16 usLen )
         return BST_FALSE;
     }
 }
-/*****************************************************************************
-函 数 名  : ProcRequest
-功能描述  : 处理Request原语
-输入参数  : BST_DSPP_HEAD_STRU      *const pstDsppHead
-            BST_DSPP_TP_PKTMSG_STRU *stPktPicMsg
-            BST_UINT8               *pucSdu
-            BST_UINT16               usSduLen
-输出参数  :
-返 回 值  : BST_DSPP_VERION_ENUM_UINT8
-调用函数  :
-被调函数  :
 
-修改历史  :
-1.日   期 : 2014年04月16日
-  作   者 : d00173029
-  修改内容: 创建文件
-*****************************************************************************/
 BST_DSPP_VERION_ENUM_UINT8  BST_DSPP_CTrsDlVa::ProcRequest(
     BST_DSPP_HEAD_STRU      *const pstDsppHead,
     BST_DSPP_TP_PKTMSG_STRU *stPktPicMsg,
@@ -268,23 +168,7 @@ BST_DSPP_VERION_ENUM_UINT8  BST_DSPP_CTrsDlVa::ProcRequest(
     return ( pstDsppHead->enCpVer );
 }
 
-/*****************************************************************************
-函 数 名  : ParsePrimitive
-功能描述  : 源语解析
-输入参数  : BST_DSPP_HEAD_STRU      *const pstDsppHead
-            BST_DSPP_TP_PKTMSG_STRU *stPktPicMsg
-            BST_UINT8               *pucSdu
-            BST_UINT16               usSduLen
-输出参数  :
-返 回 值  : BST_DSPP_VERION_ENUM_UINT8
-调用函数  :
-被调函数  :
 
-修改历史  :
-1.日   期 : 2014年04月16日
-  作   者 : d00173029
-  修改内容: 创建文件
-*****************************************************************************/
 BST_DSPP_VERION_ENUM_UINT8  BST_DSPP_CTrsDlVa::ParsePrimitive(
     BST_DSPP_HEAD_STRU      *const pstDsppHead,
     BST_DSPP_TP_PKTMSG_STRU *stPktPicMsg,
@@ -333,21 +217,7 @@ BST_DSPP_VERION_ENUM_UINT8  BST_DSPP_CTrsDlVa::ParsePrimitive(
     }
 }
 
-/*****************************************************************************
-函 数 名  : UnpackInternal
-功能描述  : 内部解包
-输入参数  : BST_DSPP_HEAD_STRU         *const pstDsppHead
-            BST_DSPP_VERION_ENUM_UINT8 *const penNextVer
-输出参数  :
-返 回 值  : BST_ERR_ENUM_UINT8
-调用函数  :
-被调函数  :
 
-修改历史  :
-1.日   期 : 2014年04月16日
-  作   者 : d00173029
-  修改内容: 创建文件
-*****************************************************************************/
 BST_ERR_ENUM_UINT8  BST_DSPP_CTrsDlVa::UnpackInternal (
     BST_DSPP_HEAD_STRU         *const pstDsppHead,
     BST_DSPP_VERION_ENUM_UINT8 *const penNextVer )
@@ -407,20 +277,7 @@ BST_ERR_ENUM_UINT8  BST_DSPP_CTrsDlVa::UnpackInternal (
     }
 }
 
-/*****************************************************************************
-函 数 名  : CreatRcvManager
-功能描述  : 创建数据包接收管理器
-输入参数  : BST_DSPP_TP_PKTMSG_STRU *pstPacketInfo
-输出参数  :
-返 回 值  : (BST_DSPP_TP_PACKET_STRU *)
-调用函数  :
-被调函数  :
 
-修改历史  :
-1.日   期 : 2014年04月16日
-  作   者 : d00173029
-  修改内容: 创建文件
-*****************************************************************************/
 BST_DSPP_TP_PACKET_STRU *BST_DSPP_CTrsDlVa::CreatRcvManager(
     BST_DSPP_TP_PKTMSG_STRU *pstPacketInfo )
 {
@@ -449,20 +306,7 @@ BST_DSPP_TP_PACKET_STRU *BST_DSPP_CTrsDlVa::CreatRcvManager(
     return pstPktRcvBuf;
 }
 
-/*****************************************************************************
-函 数 名  : ClrRcvManager
-功能描述  : 清除数据包接收管理器
-输入参数  : BST_DSPP_PKTSN_T usPktNum
-输出参数  :
-返 回 值  : BST_VOID
-调用函数  :
-被调函数  :
 
-修改历史  :
-1.日   期 : 2014年04月16日
-  作   者 : d00173029
-  修改内容: 创建文件
-*****************************************************************************/
 BST_VOID BST_DSPP_CTrsDlVa::ClrRcvManager ( BST_DSPP_PKTSN_T usPktNum )
 {
     BST_DSPP_PIC_STRU          *pstPicNode;
@@ -499,20 +343,7 @@ BST_VOID BST_DSPP_CTrsDlVa::ClrRcvManager ( BST_DSPP_PKTSN_T usPktNum )
     }
 }
 
-/*****************************************************************************
-函 数 名  : FindRcvInfo
-功能描述  : 根据数据包号到接收包队列里面查找对应的数据包
-输入参数  : BST_DSPP_PKTSN_T usInPktNumber
-输出参数  :
-返 回 值  : (BST_DSPP_TP_PACKET_STRU *)，指定的数据包地址
-调用函数  :
-被调函数  :
 
-修改历史  :
-1.日   期 : 2014年04月16日
-  作   者 : d00173029
-  修改内容: 创建文件
-*****************************************************************************/
 BST_DSPP_TP_PACKET_STRU *BST_DSPP_CTrsDlVa::FindRcvInfo(
     BST_DSPP_PKTSN_T usInPktNumber )
 {
@@ -532,22 +363,7 @@ BST_DSPP_TP_PACKET_STRU *BST_DSPP_CTrsDlVa::FindRcvInfo(
     return BST_NULL_PTR;
 }
 
-/*****************************************************************************
-函 数 名  : BST_UINT16
-功能描述  : 获取数据包分片信息
-输入参数  : BST_DSPP_TP_PKTMSG_STRU *pstPacketInfo,
-            BST_UINT8 const         *pucData,
-            BST_UINT16               usLength
-输出参数  :
-返 回 值  : BST_ERR_ENUM_UINT8
-调用函数  :
-被调函数  :
 
-修改历史  :
-1.日   期 : 2014年04月16日
-  作   者 : d00173029
-  修改内容: 创建文件
-*****************************************************************************/
 BST_ERR_ENUM_UINT8  BST_DSPP_CTrsDlVa::GetPktPicInfo(
     BST_DSPP_TP_PKTMSG_STRU *pstPacketInfo,
     BST_UINT8 const         *pucData,
@@ -574,20 +390,7 @@ BST_ERR_ENUM_UINT8  BST_DSPP_CTrsDlVa::GetPktPicInfo(
     return BST_NO_ERROR_MSG;
 }
 
-/*****************************************************************************
-函 数 名  : GetNextStrategy
-功能描述  : 获取对象
-输入参数  : BST_DSPP_VERION_ENUM_UINT8 enNextVer
-输出参数  :
-返 回 值  : (BST_DSPP_CDlLayerBase *)，返回对象指针
-调用函数  :
-被调函数  :
 
-修改历史  :
-1.日   期 : 2014年04月16日
-  作   者 : d00173029
-  修改内容: 创建文件
-*****************************************************************************/
 BST_DSPP_CDlLayerBase *BST_DSPP_CTrsDlVa::GetNextStrategy(
     BST_DSPP_VERION_ENUM_UINT8 enNextVer )
 {
@@ -603,22 +406,7 @@ BST_DSPP_CDlLayerBase *BST_DSPP_CTrsDlVa::GetNextStrategy(
 
     return BST_NULL_PTR;
 }
-/*****************************************************************************
-函 数 名  : ParseHeadInfo
-功能描述  : 解析消息头信息
-输入参数  : BST_DSPP_HEAD_STRU   *const pstDsppHead
-            BST_UINT8 const      *pucData
-            BST_UINT16            usLength
-输出参数  :
-返 回 值  : BST_ERR_ENUM_UINT8
-调用函数  :
-被调函数  :
 
-修改历史  :
-1.日   期 : 2014年04月16日
-  作   者 : d00173029
-  修改内容: 创建文件
-*****************************************************************************/
 BST_ERR_ENUM_UINT8  BST_DSPP_CTrsDlVa::ParseHeadInfo(
     BST_DSPP_HEAD_STRU   *const pstDsppHead,
     BST_UINT8 const      *pucData,
@@ -644,22 +432,7 @@ BST_ERR_ENUM_UINT8  BST_DSPP_CTrsDlVa::ParseHeadInfo(
     return BST_NO_ERROR_MSG;
 }
 
-/*****************************************************************************
-函 数 名  : Joint
-功能描述  : 重组分片数据包
-输入参数  : BST_DSPP_TP_PKTMSG_STRU *pstPacketInfo
-            BST_UINT8 const         *pucData
-            BST_UINT16               usInLen
-输出参数  :
-返 回 值  : (BST_DSPP_TP_PACKET_STRU *)
-调用函数  :
-被调函数  :
 
-修改历史  :
-1.日   期 : 2014年04月16日
-  作   者 : d00173029
-  修改内容: 创建文件
-*****************************************************************************/
 /*lint -e438*/
 BST_DSPP_TP_PACKET_STRU *BST_DSPP_CTrsDlVa::Joint(
     BST_DSPP_TP_PKTMSG_STRU *pstPacketInfo,
@@ -764,21 +537,7 @@ BST_DSPP_TP_PACKET_STRU *BST_DSPP_CTrsDlVa::Joint(
     return BST_NULL_PTR;
 }
 /*lint +e438*/
-/*****************************************************************************
-函 数 名  : RxApi
-功能描述  : 接收API
-输入参数  : BST_UINT8 const *pucData
-            BST_UINT16       usLength
-输出参数  :
-返 回 值  : BST_VOID
-调用函数  :
-被调函数  :
 
-修改历史  :
-1.日   期 : 2014年04月16日
-  作   者 : d00173029
-  修改内容: 创建文件
-*****************************************************************************/
 BST_VOID BST_DSPP_CTrsDlVa::RxApi(
     BST_UINT8 const *pucData,
     BST_UINT16       usLength )
@@ -795,21 +554,7 @@ BST_VOID BST_DSPP_CTrsDlVa::RxApi(
     UnPack ( &stRxHeadInfo );
 }
 
-/*****************************************************************************
-函 数 名  : TimerExpired
-功能描述  : 定时器超时处理函数
-输入参数  : BST_OS_TIMERID_T ulId
-            BST_VOID* pvPara
-输出参数  :
-返 回 值  : BST_VOID
-调用函数  :
-被调函数  :
 
-修改历史  :
-1.日   期 : 2014年04月16日
-  作   者 : d00173029
-  修改内容: 创建文件
-*****************************************************************************/
 BST_VOID BST_DSPP_CTrsDlVa::TimerExpired( BST_OS_TIMERID_T ulId, BST_VOID* pvPara )
 {
     BST_DSPP_PIC_STRU          *pstPicNode;
@@ -847,59 +592,20 @@ BST_VOID BST_DSPP_CTrsDlVa::TimerExpired( BST_OS_TIMERID_T ulId, BST_VOID* pvPar
 }
 
 
-/*****************************************************************************
-函 数 名  : BST_DSPP_CTrsUlVa
-功能描述  : 类BST_DSPP_CTrsUlVa的构造函数
-输入参数  : BST_VOID
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史  :
-1.日   期 : 2014年04月16日
-  作   者 : d00173029
-  修改内容: 创建文件
-*****************************************************************************/
 BST_DSPP_CTrsUlVa::BST_DSPP_CTrsUlVa ( BST_VOID )
     : BST_DSPP_CUlLayerBase ( BST_DSPP_LAYER_TRS, BST_DSPP_VER_A )
 {
     m_ReportPktNumSeq   = BST_DSPP_TP_MIN_S2M_PKTNUM;
 }
 
-/*****************************************************************************
-函 数 名  : ~BST_DSPP_CTrsUlVa
-功能描述  : 类BST_DSPP_CTrsUlVa的析构函数
-输入参数  : BST_VOID
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史  :
-1.日   期 : 2014年04月16日
-  作   者 : d00173029
-  修改内容: 创建文件
-*****************************************************************************/
 BST_DSPP_CTrsUlVa::~BST_DSPP_CTrsUlVa ( BST_VOID )
 {
     return;
 }
 
-/*****************************************************************************
-函 数 名  : GetInstance
-功能描述  : BST_DSPP_CTrsUlVa类对象实例化，如果没有创建对象，则新建一个
-输入参数  : 无
-输出参数  : 无
-返 回 值  : (BST_DSPP_CTrsUlVa *)，指向对象的指针
-调用函数  :
-被调函数  :
 
-修改历史  :
-1.日   期 : 2014年04月16日
-  作   者 : d00173029
-  修改内容: 创建文件
-*****************************************************************************/
 BST_DSPP_CTrsUlVa *BST_DSPP_CTrsUlVa::GetInstance ()
 {
     static BST_DSPP_CTrsUlVa   *s_pInstance = BST_NULL_PTR;
@@ -912,24 +618,7 @@ BST_DSPP_CTrsUlVa *BST_DSPP_CTrsUlVa::GetInstance ()
     return s_pInstance;
 }
 
-/*****************************************************************************
-函 数 名  : BuildTpAHead
-功能描述  : 构建传输信息头
-输入参数  : BST_DSPP_TP_PKTMSG_STRU *pstPacketInfo
-            BST_UINT8               *const pucDst
-            BST_UINT8               *const pucSrc
-            BST_UINT16               usDstLen
-            BST_UINT16               usSrcLen
-输出参数  :
-返 回 值  : BST_UINT16
-调用函数  :
-被调函数  :
 
-修改历史  :
-1.日   期 : 2014年04月16日
-  作   者 : d00173029
-  修改内容: 创建文件
-*****************************************************************************/
 BST_UINT16 BST_DSPP_CTrsUlVa::BuildTpAHead(
     BST_DSPP_TP_PKTMSG_STRU *pstPacketInfo,
     BST_UINT8               *pucBuffer,
@@ -981,20 +670,7 @@ BST_UINT16 BST_DSPP_CTrsUlVa::BuildTpAHead(
     return usTotLen;
 }
 
-/*****************************************************************************
-函 数 名  : SendPacket
-功能描述  : 发送数据包(分包发送)
-输入参数  : BST_DSPP_HEAD_STRU *const       pstTxHeadInfo
-输出参数  :
-返 回 值  : BST_ERR_ENUM_UINT8
-调用函数  :
-被调函数  :
 
-修改历史  :
-1.日   期 : 2014年04月16日
-  作   者 : d00173029
-  修改内容: 创建文件
-*****************************************************************************/
 /*lint -e438*/
 BST_ERR_ENUM_UINT8  BST_DSPP_CTrsUlVa::SendMultiPacket (
     BST_DSPP_HEAD_STRU *const   pstTxHeadInfo )
@@ -1088,21 +764,7 @@ BST_ERR_ENUM_UINT8  BST_DSPP_CTrsUlVa::SendMultiPacket (
     return ucRtnVal;
 }
 /*lint +e438*/
-/*****************************************************************************
-函 数 名  : SendPacket
-功能描述  : 发送数据包
-输入参数  : BST_DSPP_HEAD_STRU *const       pstTxHeadInfo
-            BST_DSPP_PRIMITIVE_ENUM_UINT8   enPrm
-输出参数  :
-返 回 值  : BST_ERR_ENUM_UINT8
-调用函数  :
-被调函数  :
 
-修改历史  :
-1.日   期 : 2014年04月16日
-  作   者 : d00173029
-  修改内容: 创建文件
-*****************************************************************************/
 BST_ERR_ENUM_UINT8  BST_DSPP_CTrsUlVa::SendPacket(
     BST_DSPP_HEAD_STRU *const       pstTxHeadInfo,
     BST_DSPP_PRIMITIVE_ENUM_UINT8   enPrm )
@@ -1161,21 +823,7 @@ BST_ERR_ENUM_UINT8  BST_DSPP_CTrsUlVa::SendPacket(
     return ucRtnVal;
 }
 
-/*****************************************************************************
-函 数 名  : RxAck
-功能描述  : 接收ACK
-输入参数  : BST_DSPP_PKTSN_T usPktNum
-            BST_DSPP_PKTPC_T usPicNum
-输出参数  :
-返 回 值  : BST_VOID
-调用函数  :
-被调函数  :
 
-修改历史  :
-1.日   期 : 2014年04月16日
-  作   者 : d00173029
-  修改内容: 创建文件
-*****************************************************************************/
 BST_VOID  BST_DSPP_CTrsUlVa::RxAck(
     BST_DSPP_PKTSN_T usPktNum,
     BST_DSPP_PKTPC_T usPicNum )
@@ -1183,20 +831,7 @@ BST_VOID  BST_DSPP_CTrsUlVa::RxAck(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : TxAck
-功能描述  : 数据包发送ACK
-输入参数  : BST_DSPP_TP_PKTMSG_STRU *pstAckPktMsg
-输出参数  :
-返 回 值  : BST_ERR_ENUM_UINT8
-调用函数  :
-被调函数  :
 
-修改历史  :
-1.日   期 : 2014年04月16日
-  作   者 : d00173029
-  修改内容: 创建文件
-*****************************************************************************/
 /*lint -e438*/
 BST_ERR_ENUM_UINT8 BST_DSPP_CTrsUlVa::TxAck ( BST_DSPP_TP_PKTMSG_STRU *pstAckPktMsg )
 {
@@ -1233,21 +868,7 @@ BST_ERR_ENUM_UINT8 BST_DSPP_CTrsUlVa::TxAck ( BST_DSPP_TP_PKTMSG_STRU *pstAckPkt
     return BST_NO_ERROR_MSG;
 }
 /*lint +e438*/
-/*****************************************************************************
-函 数 名  : TxApi
-功能描述  : 数据包发送接口
-输入参数  : const BST_UINT8 *pucData
-            BST_UINT16 usLen
-输出参数  :
-返 回 值  : BST_UINT16
-调用函数  :
-被调函数  :
 
-修改历史  :
-1.日   期 : 2014年04月16日
-  作   者 : d00173029
-  修改内容: 创建文件
-*****************************************************************************/
 BST_UINT16 BST_DSPP_CTrsUlVa::TxApi ( const BST_UINT8 *pucData, BST_UINT16 usLen )
 {
     BST_ERR_ENUM_UINT8  ucRtnVal;
@@ -1267,21 +888,7 @@ BST_UINT16 BST_DSPP_CTrsUlVa::TxApi ( const BST_UINT8 *pucData, BST_UINT16 usLen
     return usLen;
 }
 
-/*****************************************************************************
-函 数 名  : PackInternal
-功能描述  : 内部组包
-输入参数  : BST_DSPP_HEAD_STRU         *const pstTxHeadInfo
-            BST_DSPP_VERION_ENUM_UINT8 *const pstNextVer
-输出参数  :
-返 回 值  : BST_ERR_ENUM_UINT8
-调用函数  :
-被调函数  :
 
-修改历史  :
-1.日   期 : 2014年04月16日
-  作   者 : d00173029
-  修改内容: 创建文件
-*****************************************************************************/
 BST_ERR_ENUM_UINT8 BST_DSPP_CTrsUlVa::PackInternal(
     BST_DSPP_HEAD_STRU         *const pstTxHeadInfo,
     BST_DSPP_VERION_ENUM_UINT8 *const pstNextVer )
@@ -1320,20 +927,7 @@ BST_ERR_ENUM_UINT8 BST_DSPP_CTrsUlVa::PackInternal(
     return ucRtnVal;
 }
 
-/*****************************************************************************
-函 数 名  : GetNextStrategy
-功能描述  : 对象获取
-输入参数  : BST_DSPP_VERION_ENUM_UINT8 ucNextVer
-输出参数  :
-返 回 值  : (BST_DSPP_CUlLayerBase *)，指向对象的指针
-调用函数  :
-被调函数  :
 
-修改历史  :
-1.日   期 : 2014年04月16日
-  作   者 : d00173029
-  修改内容: 创建文件
-*****************************************************************************/
 BST_DSPP_CUlLayerBase *BST_DSPP_CTrsUlVa::GetNextStrategy(
     BST_DSPP_VERION_ENUM_UINT8 ucNextVer )
 {

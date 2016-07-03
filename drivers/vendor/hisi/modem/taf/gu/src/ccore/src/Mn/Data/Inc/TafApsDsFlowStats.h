@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafApsDsFlowStats.h
-  版 本 号   : 初稿
-  作    者   : o00132663
-  生成日期   : 2011年12月14日
-  最近修改   :
-  功能描述   : TafApsDsFlowStats.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年12月14日
-    作    者   : o00132663
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __TAFAPSDSFLOWSTATS_H__
 #define __TAFAPSDSFLOWSTATS_H__
@@ -27,10 +10,8 @@
 #include "TafApsApi.h"
 #include "ApsCdsInterface.h"
 
-/* Added by l00167671 for NV拆分项目 , 2013-05-17, begin */
 #include "NasNvInterface.h"
 #include "TafNvInterface.h"
-/* Added by l00167671 for NV拆分项目 , 2013-05-17, end*/
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
 #include "cttf_1x_rlp_bo_pif.h"
@@ -167,7 +148,6 @@ VOS_VOID  TAF_APS_StartDsFlowStats(
 VOS_VOID  TAF_APS_StopDsFlowStats(
     VOS_UINT8                           ucRabId
 );
-/* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
 
 VOS_VOID  TAF_APS_QryDsFlowStats(
     TAF_DSFLOW_QUERY_INFO_STRU         *pstDsFlowQryInfo,
@@ -177,7 +157,6 @@ VOS_VOID  TAF_APS_QryDsFlowStats(
 VOS_VOID  TAF_APS_QryAllRabDsFlowStats(
     TAF_DSFLOW_QUERY_INFO_STRU         *pstTotalDsFlowQryInfo
 );
-/* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
 VOS_VOID  TAF_APS_ClearDsFlowStats(
     VOS_UINT8                           ucRabId
@@ -197,12 +176,10 @@ VOS_VOID TAF_APS_QryDsFlowReportInfo(
 VOS_VOID TAF_APS_QryAllRabDsFlowReportInfo(
     TAF_DSFLOW_REPORT_STRU             *pstTotalDsFlowRptInfo
 );
-/* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
 VOS_VOID  TAF_APS_GetCurrentFlowInfo(
     VOS_UINT8                           ucRabId,
     TAF_DSFLOW_INFO_STRU               *pstCurrentFlowInfo
 );
-/* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
 VOS_VOID  TAF_APS_UpdateAllRabCurrentFlowInfo( VOS_VOID );
 

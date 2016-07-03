@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : wal_linux_bridge.c
-  版 本 号   : 初稿
-  作    者   : c00178899
-  生成日期   : 2012年11月19日
-  最近修改   :
-  功能描述   : WAL linux桥接文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年11月19日
-    作    者   : c00178899
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -69,22 +52,7 @@ extern "C" {
 *****************************************************************************/
 #ifdef _PRE_WLAN_FEATURE_SMP_SUPPORT
 
-/*****************************************************************************
- 函 数 名  : wal_vap_start_xmit
- 功能描述  : 挂接到VAP对应net_device结构体下的发送函数
- 输入参数  : pst_buf: SKB结构体,其中data指针指向以太网头
-             pst_dev: net_device结构体
- 输出参数  : 无
- 返 回 值  : OAL_SUCC或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月6日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_net_dev_tx_enum  wal_vap_start_xmit(oal_netbuf_stru *pst_buf, oal_net_device_stru *pst_dev)
 {
 
@@ -176,22 +144,7 @@ oal_net_dev_tx_enum  wal_vap_start_xmit(oal_netbuf_stru *pst_buf, oal_net_device
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : wal_bridge_vap_xmit
- 功能描述  : 挂接到VAP对应net_device结构体下的发送函数
- 输入参数  : pst_buf: SKB结构体,其中data指针指向以太网头
-             pst_dev: net_device结构体
- 输出参数  : 无
- 返 回 值  : OAL_SUCC或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月6日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_net_dev_tx_enum  wal_bridge_vap_xmit(oal_netbuf_stru *pst_buf, oal_net_device_stru *pst_dev)
 {
     mac_vap_stru                *pst_vap;
@@ -240,6 +193,7 @@ oal_net_dev_tx_enum  wal_bridge_vap_xmit(oal_netbuf_stru *pst_buf, oal_net_devic
     if (OAL_PTR_NULL == pst_hmac_vap)
     {
         OAM_ERROR_LOG0(pst_vap->uc_vap_id, OAM_SF_CFG, "{hmac_config_add_vap::pst_hmac_vap null.}");
+        oal_netbuf_free(pst_buf);
         return OAL_NETDEV_TX_OK;
     }
 
@@ -281,43 +235,24 @@ oal_net_dev_tx_enum  wal_bridge_vap_xmit(oal_netbuf_stru *pst_buf, oal_net_devic
         return OAL_NETDEV_TX_OK;
     }
 
-    /* 关掉此打印，否则只要有上层应用发ARP-scan的话，就疯狂打印。DTS2015111204237 */
-    /* 维测，输出关键帧打印 */
-    //uc_data_type =  mac_get_eth_type((mac_ether_header_stru *)oal_netbuf_payload(pst_buf), &us_len);
-    //if((MAC_DATA_DHCP == uc_data_type) || (MAC_DATA_ARP == uc_data_type) ||(MAC_DATA_EAPOL == uc_data_type))
-    //{
-    //    OAM_WARNING_LOG2(pst_vap->uc_vap_id, OAM_SF_WPA, "{wal_bridge_vap_xmit::send datatype==%u len==%u}[0:dhcp 1:arp 2:eapol]", uc_data_type, us_len);
-    //}
-#if 0
-#ifdef _PRE_WLAN_DFT_STAT
-    if (OAL_TRUE == pst_vap->st_vap_dft.ul_flg && OAL_PTR_NULL != pst_vap->st_vap_dft.pst_vap_dft_stats)
-    {
-        MAC_VAP_STATS_PKT_INCR(pst_vap->st_vap_dft.pst_vap_dft_stats->ul_lan_tx_pkts, 1);
-        MAC_VAP_STATS_BYTE_INCR(pst_vap->st_vap_dft.pst_vap_dft_stats->ul_lan_tx_bytes,
-                                OAL_NETBUF_LEN(pst_buf) - ETHER_HDR_LEN);
-    }
-#endif
-#endif
     /* 考虑VAP状态与控制面互斥，需要加锁保护 */
     oal_spin_lock_bh(&pst_hmac_vap->st_lock_state);
 
     /* 判断VAP的状态，如果ROAM，则丢弃报文 MAC_DATA_DHCP/MAC_DATA_ARP */
-    #ifdef _PRE_WLAN_FEATURE_ROAM
+#ifdef _PRE_WLAN_FEATURE_ROAM
     if(MAC_VAP_STATE_ROAMING == pst_vap->en_vap_state)
     {
         uc_data_type =  mac_get_data_type_from_8023((oal_uint8 *)oal_netbuf_payload(pst_buf), MAC_NETBUFF_PAYLOAD_ETH);
-        //if((MAC_DATA_DHCP == uc_data_type) || (MAC_DATA_ARP == uc_data_type))
         if(MAC_DATA_EAPOL != uc_data_type)
         {
-            //OAM_WARNING_LOG2(pst_vap->uc_vap_id, OAM_SF_TX, "{wal_bridge_vap_xmit::vap state[%d] == MAC_VAP_STATE_{ROAMING}!, ABANDON DATA = [%d]}\r\n", pst_vap->en_vap_state, uc_data_type);
             oal_netbuf_free(pst_buf);
             oal_spin_unlock_bh(&pst_hmac_vap->st_lock_state);
-
             return OAL_NETDEV_TX_OK;
         }
     }
     else
-    #endif  //_PRE_WLAN_FEATURE_ROAM
+    {
+#endif  //_PRE_WLAN_FEATURE_ROAM
     /* 判断VAP的状态，如果没有UP/PAUSE，则丢弃报文 */
     if (OAL_UNLIKELY(!((MAC_VAP_STATE_UP == pst_vap->en_vap_state) || (MAC_VAP_STATE_PAUSE == pst_vap->en_vap_state))))
     {
@@ -335,11 +270,14 @@ oal_net_dev_tx_enum  wal_bridge_vap_xmit(oal_netbuf_stru *pst_buf, oal_net_devic
         OAM_WARNING_LOG1(pst_vap->uc_vap_id, OAM_SF_TX, "{wal_bridge_vap_xmit::vap state[%d] != MAC_VAP_STATE_{UP|PAUSE}!}\r\n", pst_vap->en_vap_state);
 #endif
         oal_netbuf_free(pst_buf);
-        oal_spin_unlock_bh(&pst_hmac_vap->st_lock_state);
         OAM_STAT_VAP_INCR(pst_vap->uc_vap_id, tx_abnormal_msdu_dropped, 1);
 
+        oal_spin_unlock_bh(&pst_hmac_vap->st_lock_state);
         return OAL_NETDEV_TX_OK;
     }
+#ifdef _PRE_WLAN_FEATURE_ROAM
+    }
+#endif
 
     OAL_NETBUF_NEXT(pst_buf) = OAL_PTR_NULL;
     OAL_NETBUF_PREV(pst_buf) = OAL_PTR_NULL;
@@ -353,7 +291,6 @@ oal_net_dev_tx_enum  wal_bridge_vap_xmit(oal_netbuf_stru *pst_buf, oal_net_devic
         OAM_ERROR_LOG0(pst_vap->uc_vap_id, OAM_SF_PROXYSTA, "{wal_bridge_vap_xmit::mac_res_get_dev is null!}");
         oal_netbuf_free(pst_buf);
         oal_spin_unlock_bh(&pst_hmac_vap->st_lock_state);
-
         return OAL_NETDEV_TX_OK;
     }
 
@@ -369,7 +306,6 @@ oal_net_dev_tx_enum  wal_bridge_vap_xmit(oal_netbuf_stru *pst_buf, oal_net_devic
                 OAM_ERROR_LOG0(pst_vap->uc_vap_id, OAM_SF_PROXYSTA, "{wal_bridge_vap_xmit::hmac_tx_proxysta_mat fail.}");
                 oal_netbuf_free(pst_buf);
                 oal_spin_unlock_bh(&pst_hmac_vap->st_lock_state);
-
                 return OAL_NETDEV_TX_OK;
             }
         }
@@ -379,13 +315,11 @@ oal_net_dev_tx_enum  wal_bridge_vap_xmit(oal_netbuf_stru *pst_buf, oal_net_devic
 
 #ifdef _PRE_WLAN_FEATURE_BTCOEX
     pst_hmac_device = hmac_res_get_mac_dev(pst_vap->uc_device_id);
-
     if (OAL_PTR_NULL == pst_hmac_device)
     {
         OAM_ERROR_LOG0(pst_vap->uc_vap_id, OAM_SF_PROXYSTA, "{wal_bridge_vap_xmit::mac_res_get_hmac_dev is null!}");
         oal_netbuf_free(pst_buf);
         oal_spin_unlock_bh(&pst_hmac_vap->st_lock_state);
-
         return OAL_NETDEV_TX_OK;
     }
 
@@ -398,11 +332,9 @@ oal_net_dev_tx_enum  wal_bridge_vap_xmit(oal_netbuf_stru *pst_buf, oal_net_devic
 
     OAL_MIPS_TX_STATISTIC(HMAC_PROFILING_FUNC_BRIDGE_VAP_XMIT);
     ul_ret = hmac_tx_lan_to_wlan(pst_vap, pst_buf);
-
-    /* 调用失败，要释放内核申请的netbuff内存池 */
     if (OAL_UNLIKELY(OAL_SUCC != ul_ret))
     {
-        //hmac_free_netbuf_list(pst_buf);
+        /* 调用失败，要释放内核申请的netbuff内存池 */
         oal_netbuf_free(pst_buf);
     }
 

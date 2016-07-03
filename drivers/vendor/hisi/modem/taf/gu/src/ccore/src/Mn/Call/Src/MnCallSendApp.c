@@ -1,20 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : MnCallSendApp.c
-  版 本 号   : 初稿
-  作    者   : y00245242
-  生成日期   : 2014年4月18日
-  最近修改   : 2014年4月18日
-  功能描述   : CALL模块发送消息给APP，即AT或STK
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年4月18日
-    作    者   : y00245242
-    修改内容   : 创建文件
-******************************************************************************/
 
 
 /*****************************************************************************
@@ -40,31 +24,7 @@ extern "C" {
 *****************************************************************************/
 
 /*lint -save -e958 */
-/*****************************************************************************
- 函 数 名  : TAF_CALL_SendCallOrigCnf
- 功能描述  : MN_CALL_EVT_CALL_ORIG_CNF事件发送给AT
- 输入参数  : usClientId     - 发起该请求的Client的ID或广播客户ID
-             opId           - Operation ID, 标识本次操作
-             callId         - 呼叫ID
-             enCause        - 错误码
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月09日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2014年01月23日
-    作    者   : f62575
-    修改内容   : DTS2014012106603: 临时响应MN_CALL_EVT_CALL_ORIG_CNF，
-                 MN_CALL_EVT_SUPS_CMD_CNF
-                 CLIENT id从广播ID修改为业务发起方 。
-  3.日    期   : 2014年04月18日
-    作    者   : y00245242
-    修改内容   : 为eCall feature修改
-*****************************************************************************/
 VOS_VOID TAF_CALL_SendCallOrigCnf(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId,
@@ -72,7 +32,6 @@ VOS_VOID TAF_CALL_SendCallOrigCnf(
     TAF_CS_CAUSE_ENUM_UINT32            enCause
 )
 {
-    /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-18, begin */   
     MN_CALL_MGMT_STRU                   stCallMgmt;                             /* 呼叫信息 */
     TAF_SDC_CURC_RPT_CTRL_STRU         *pstCurcRptCtrl        = VOS_NULL_PTR;
     TAF_SDC_UNSOLICITED_RPT_CTRL_STRU  *pstUnsolicitedRptCtrl = VOS_NULL_PTR;    
@@ -109,7 +68,6 @@ VOS_VOID TAF_CALL_SendCallOrigCnf(
 
         TAF_CALL_UpdateCallInfo(callId, &(stCallMgmt.stCallInfo));
     }
-    /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-18, end */
 
     /* 对所有注册了CS域呼叫事件回调函数的Client调用回调函数 */
     MN_SendClientEvent(clientId,
@@ -118,23 +76,7 @@ VOS_VOID TAF_CALL_SendCallOrigCnf(
                        &(stCallMgmt.stCallInfo));
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_UpdateCallInfoWhenSendSupsCmdCnf
- 功能描述  : 当TAF给AT发送MN_CALL_EVT_SUPS_CMD_CNF事件时，更新呼叫实体的CallInfo
- 输入参数  : usClientId     - 发起该请求的Client的ID或广播客户ID
-             opId           - Operation ID, 标识本次操作
-             callId         - 呼叫ID
-             ulErrorCode    - 错误码
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年03月16日
-    作    者   : n00269697
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_CALL_UpdateCallInfoWhenSendSupsCmdCnf(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId,
@@ -174,37 +116,7 @@ VOS_VOID TAF_CALL_UpdateCallInfoWhenSendSupsCmdCnf(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_SendSupsCmdCnf
- 功能描述  : MN_CALL_EVT_SUPS_CMD_CNF事件发送给AT
- 输入参数  : usClientId     - 发起该请求的Client的ID或广播客户ID
-             opId           - Operation ID, 标识本次操作
-             callId         - 呼叫ID
-             ulErrorCode    - 错误码
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月09日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2014年01月23日
-    作    者   : f62575
-    修改内容   : DTS2014012106603: 临时响应MN_CALL_EVT_CALL_ORIG_CNF，
-                 MN_CALL_EVT_SUPS_CMD_CNF
-                 CLIENT id从广播ID修改为业务发起方
-  3.日    期   : 2014年04月18日
-    作    者   : y00245242
-    修改内容   : 为eCall feature修改
-  4.日    期   : 2014年6月24日
-    作    者   : z00161729
-    修改内容   : DSDS III新增
-  5.日    期   : 2015年03月03日
-    作    者   : n00269697
-    修改内容   : DTS2015021501043
-*****************************************************************************/
 VOS_VOID TAF_CALL_SendSupsCmdCnf(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId,
@@ -212,7 +124,6 @@ VOS_VOID TAF_CALL_SendSupsCmdCnf(
     TAF_CS_CAUSE_ENUM_UINT32            enCause
 )
 {
-    /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-18, begin */
     MN_CALL_MGMT_STRU                   stCallMgmt;
     TAF_SDC_CURC_RPT_CTRL_STRU         *pstCurcRptCtrl        = VOS_NULL_PTR;
     TAF_SDC_UNSOLICITED_RPT_CTRL_STRU  *pstUnsolicitedRptCtrl = VOS_NULL_PTR;
@@ -255,37 +166,7 @@ VOS_VOID TAF_CALL_SendSupsCmdCnf(
                        &(stCallMgmt.stCallInfo));
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_SndStkCallDiscEvent
- 功能描述  : 输出事件Call disconnected event
- 输入参数  : VOS_VOID                          *pMsg      DISCONNECT, RELEASE, RELEASE COMPLETE消息
-             MNCC_PRIM_NAME_ENUM_U16            enMsgName 呼叫结束类型
-             VOS_BOOL                           bNetMsg   是否网络过来的释放消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月21日
-    作    者   : f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2013年01月29日
-    作    者   : Y00213812
-    修改内容   : DTS2013012909872,TQE告警
-  3.日    期   : 2013年04月12日
-    作    者   : f62575
-    修改内容   : DTS2013041503184,解决3G下RADIO LINK FAILURE没有按协议要求输出近端释放事件问题
-                 所有RR连接释放都按RADIO LINK FAILURE处理，即只有CC直传消息会触发
-                 远端释放事件
-                 仅在呼叫重建失败后上报给UICC，此处删除MNCC_RADIO_LINK_FAILURE分支
-  4.日    期   : 2013年6月3日
-    作    者   : z00161729
-    修改内容   : SVLTE 和usim接口调整修改
-  5.日    期   : 2013年7月12日
-    作    者   : l00208543
-    修改内容   : STK升级项目，发消息给STK
-*****************************************************************************/
 VOS_VOID MN_CALL_SndStkCallDiscEvent(
     const VOS_VOID                     *pMsg,
     MNCC_PRIM_NAME_ENUM_U16             enMsgName,
@@ -297,7 +178,6 @@ VOS_VOID MN_CALL_SndStkCallDiscEvent(
     VOS_UINT8                           ucCallId;
     VOS_BOOL                            bReleaseFlag;
 
-    /* Added by l00208543 for V9R1 STK升级, 2013-07-10, begin */
     VOS_UINT32                          ulMsgLength;
     NAS_STK_CALL_DISC_EVENT_STRU       *pstCallDiscEvent = VOS_NULL_PTR;
 
@@ -315,7 +195,6 @@ VOS_VOID MN_CALL_SndStkCallDiscEvent(
 
     pstCallDiscEvent->ulReceiverPid = NAS_GetOamReceivePid(MAPS_STK_PID);
     pstCallDiscEvent->ulMsgId       = ID_NAS_STK_CALL_DISC_EVENT;
-    /* Added by l00208543 for V9R1 STK升级, 2013-07-10, end */
 
 
     ucTi            = 0;
@@ -347,14 +226,12 @@ VOS_VOID MN_CALL_SndStkCallDiscEvent(
     if ((VOS_TRUE != bNetMsg)
      || (MNCC_REJ_IND == enMsgName))
     {
-    /* Modified by l00208543 for V9R1 STK升级, 2013-07-10, begin */
         pstCallDiscEvent->stCallDiscEventInfo.ucLocalDiscFlg = VOS_TRUE;
     }
     else
     {
         pstCallDiscEvent->stCallDiscEventInfo.ucLocalDiscFlg = VOS_FALSE;
     }
-    /* Modified by l00208543 for V9R1 STK升级, 2013-07-10, end */
 
 
 
@@ -363,9 +240,7 @@ VOS_VOID MN_CALL_SndStkCallDiscEvent(
     if (VOS_TRUE == bNetMsg)
     {
         ulRet = MN_CALL_GetNetDiscEventInfo((MNCC_IND_PRIM_MSG_STRU *)pMsg,
-            /* Modified by l00208543 for V9R1 STK升级, 2013-07-10, begin */
                                              &(pstCallDiscEvent->stCallDiscEventInfo.stCause),
-            /* Modified by l00208543 for V9R1 STK升级, 2013-07-10, end */
                                              &ucTi,
                                              &ucCallId);
         ucTi  = (VOS_UINT8)((ucTi ^ 0x08) << 4);
@@ -373,9 +248,7 @@ VOS_VOID MN_CALL_SndStkCallDiscEvent(
     else
     {
         ulRet = MN_CALL_GetUeDiscEventInfo((MNCC_REQ_PRIM_MSG_STRU *)pMsg,
-            /* Modified by l00208543 for V9R1 STK升级, 2013-07-10, begin */
                                             &(pstCallDiscEvent->stCallDiscEventInfo.stCause),
-            /* Modified by l00208543 for V9R1 STK升级, 2013-07-10, end */
                                             &ucTi,
                                             &ucCallId);
         ucTi  = (VOS_UINT8)(ucTi << 4);
@@ -386,8 +259,6 @@ VOS_VOID MN_CALL_SndStkCallDiscEvent(
         return;
     }
 
-    /* Deleted by l00208543 for V9R1 STK升级, 2013-7-13, begin */
-    /* Deleted by l00208543 for V9R1 STK升级, 2013-7-13, end */
 
     /* 一个呼叫仅记录一次呼叫释放事件的原因值，bReleaseFlag为VOS_TRUE标志已经有记录，退出 */
     MN_CALL_GetCallReleaseFlag(ucCallId, &bReleaseFlag);
@@ -398,7 +269,6 @@ VOS_VOID MN_CALL_SndStkCallDiscEvent(
         return;
     }
 
-    /* Modified by l00208543 for V9R1 STK升级, 2013-07-13, begin */
     pstCallDiscEvent->stCallDiscEventInfo.ucTi = ucTi;
 
     ulRet = PS_SEND_MSG(WUEPS_PID_TAF, pstCallDiscEvent);
@@ -407,7 +277,6 @@ VOS_VOID MN_CALL_SndStkCallDiscEvent(
         MN_ERR_LOG("MN_CALL_SndStkCallDiscEvent: Send Msg Fail!");
         return;
     }
-    /* Modified by l00208543 for V9R1 STK升级, 2013-07-13, end */
 
     /* 一个呼叫仅记录一次呼叫释放事件的原因值，此处更新标志为已记录 */
     MN_CALL_UpdateCallReleaseFlag(ucCallId, VOS_TRUE);
@@ -416,33 +285,12 @@ VOS_VOID MN_CALL_SndStkCallDiscEvent(
 
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_SndStkCallConnEvent
- 功能描述  : 输出事件Call connect event
- 输入参数  : ucTi           - CONNECT消息的TI
-             enCallDir      - 呼叫方向
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月21日
-    作    者   : f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2013年6月3日
-    作    者   : z00161729
-    修改内容   : SVLTE 和usim接口调整修改
-  3.日    期   : 2013年7月9日
-    作    者   : l00208543
-    修改内容   : STK升级项目,改变与STK消息交互模式,由STK调用TAF接口改为直接发送消息通知STK
-*****************************************************************************/
 VOS_VOID MN_CALL_SndStkCallConnEvent(
     VOS_UINT8                           ucTi,
     MN_CALL_DIR_ENUM_U8                 enCallDir
 )
 {
-    /* Added by l00208543 for V9R1 STK升级, 2013-07-13, begin */
     VOS_UINT32                          ulRet;
     VOS_UINT32                          ulMsgLength;
     NAS_STK_CALL_CONNECT_EVENT_STRU    *pstCallConnEvent = VOS_NULL_PTR;
@@ -460,11 +308,8 @@ VOS_VOID MN_CALL_SndStkCallConnEvent(
     PS_MEM_SET(&(pstCallConnEvent->stCallConnectEventInfo),
                 0,
                 sizeof(NAS_STK_CALL_CONNECT_EVENT_INFO_STRU));
-    /* Added by l00208543 for V9R1 STK升级, 2013-07-13, end */
 
 
-    /* Deleted by l00208543 for V9R1 STK升级, 2013-7-13, begin */
-    /* Deleted by l00208543 for V9R1 STK升级, 2013-7-13, end */
 
     /* 协议ETSI TS 102 223 V10.5.0 (2011-09) 7.5.2.2 Structure of ENVELOPE
         (EVENT DOWNLOAD - call connected)
@@ -480,14 +325,10 @@ VOS_VOID MN_CALL_SndStkCallConnEvent(
     */
     if (MN_CALL_DIR_MO == enCallDir)
     {
-        /* Deleted by l00208543 for V9R1 STK升级, 2013-7-13, begin */
-        /* Deleted by l00208543 for V9R1 STK升级, 2013-7-13, end */
         ucTi  = (VOS_UINT8)((ucTi ^ 0x08) << 4);
     }
     else
     {
-        /* Deleted by l00208543 for V9R1 STK升级, 2013-7-13, begin */
-        /* Deleted by l00208543 for V9R1 STK升级, 2013-7-13, end */
         ucTi  = (VOS_UINT8)(ucTi << 4);
     }
 
@@ -503,34 +344,12 @@ VOS_VOID MN_CALL_SndStkCallConnEvent(
         MN_ERR_LOG("MN_CALL_SndStkCallConnEvent: Send Msg Fail!");
     }
 
-    /* Deleted by l00208543 for V9R1 STK升级, 2013-7-13, begin */
-    /* Deleted by l00208543 for V9R1 STK升级, 2013-7-13, end */
 
     return;
 
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_SndStkMtCallEvent
- 功能描述  : 输出事件MT call event
- 输入参数  : callId         - 呼叫实体索引
-             ucTi           - 消息的TI
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月21日
-    作    者   : f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2013年6月3日
-    作    者   : z00161729
-    修改内容   : SVLTE 和usim接口调整修改
-  3.日    期   : 2013年6月26日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级
-*****************************************************************************/
 VOS_VOID MN_CALL_SndStkMtCallEvent(
     MN_CALL_ID_T                        callId,
     VOS_UINT8                           ucTi
@@ -553,9 +372,7 @@ VOS_VOID MN_CALL_SndStkMtCallEvent(
         return;
     }
 
-    /* Added by l00208543 for V9R1 STK升级, 2013-07-18, begin */
     PS_MEM_SET(&(pstMtCallEvent->stMtCallEventInfo), 0, sizeof(NAS_STK_MT_CALL_EVENT_INFO_STRU));
-    /* Added by l00208543 for V9R1 STK升级, 2013-07-18, end */
 
     /* 获取当前呼叫实体的呼叫信息 */
     MN_CALL_GetCallInfoByCallId(callId, &stCallInfo);
@@ -588,23 +405,7 @@ VOS_VOID MN_CALL_SndStkMtCallEvent(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_SendDtmfCnf
- 功能描述  : 回复DTMF请求
- 输入参数  : usClientId     -- ClientID
-             opId           -- 操作ID
-             enEventType    -- 回复的DTMF事件类型
-             enCause        -- 原因值
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-*****************************************************************************/
 VOS_VOID TAF_CALL_SendDtmfCnf(
     MN_CLIENT_ID_T                      usClientId,
     MN_OPERATION_ID_T                   opId,
@@ -626,24 +427,32 @@ VOS_VOID TAF_CALL_SendDtmfCnf(
     return;
 }
 
-/* Added by y00245242 for V3R3C60_eCall项目, 2014-4-18, begin */
-#if (FEATURE_ON == FEATURE_ECALL)
-/*****************************************************************************
- 函 数 名  : TAF_CALL_SendQueryEcallInfoCnf
- 功能描述  : MN_CALL_EVT_QRY_ECALL_INFO_CNF事件发送给AT
- 输入参数  : usClientId     - 发起该请求的Client的ID或广播客户ID
-             opId           - Operation ID, 标识本次操作
-             pstEcallInfo   - eCall呼叫信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年04月18日
-    作    者   : y00245242
-    修改内容   : 为eCall feature增加
-*****************************************************************************/
+VOS_VOID TAF_CALL_SendCcwaiCnf(
+    MN_CLIENT_ID_T                      usClientId,
+    MN_OPERATION_ID_T                   opId,
+    MN_CALL_EVENT_ENUM_U32              enEventType,
+    VOS_UINT32                          ulResult
+)
+{
+    TAF_CALL_EVT_CCWAI_CNF_STRU         stCcwaiCnf;
+
+    PS_MEM_SET(&stCcwaiCnf, 0, sizeof(stCcwaiCnf));
+
+    stCcwaiCnf.usClientId = usClientId;
+    stCcwaiCnf.opId       = opId;
+    stCcwaiCnf.ulResult   = ulResult;
+
+    TAF_CALL_SendMsg(usClientId,
+                     enEventType,
+                     (VOS_VOID *)&stCcwaiCnf,
+                     sizeof(stCcwaiCnf));
+
+    return;
+}
+
+#if (FEATURE_ON == FEATURE_ECALL)
+
 VOS_VOID TAF_CALL_SendQueryEcallInfoCnf(
     MN_CLIENT_ID_T                                          usClientId,
     MN_OPERATION_ID_T                                       ucOpId,
@@ -656,22 +465,7 @@ VOS_VOID TAF_CALL_SendQueryEcallInfoCnf(
                        pstEcallInfo);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_SendTafRelCallCnf
- 功能描述  : TAF_CALL_TAF_REL_CALL_CNF事件发送给TAF
- 输入参数  : usClientId     - 发起该请求的Client的ID或广播客户ID
-             opId           - Operation ID, 标识本次操作
-             enCause        - 释放结果
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年04月18日
-    作    者   : y00245242
-    修改内容   : 为eCall feature增加
-*****************************************************************************/
 VOS_VOID TAF_CALL_SendTafRelCallCnf(
     MN_CLIENT_ID_T                      usClientId,
     MN_OPERATION_ID_T                   ucOpId,
@@ -711,7 +505,6 @@ VOS_VOID TAF_CALL_SendTafRelCallCnf(
 }
 
 #endif
-/* Added by y00245242 for V3R3C60_eCall项目, 2014-4-18, end */
 /*lint -restore */
 
 

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmcFsmPlmnList.h
-  版 本 号   : 初稿
-  作    者   : w00176964
-  生成日期   : 2011年7月02日
-  最近修改   :
-  功能描述   : NasMmcFsmPlmnList.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年7月02日
-    作    者   : W00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 #ifndef __NAS_MMC_FSM_PLMN_LIST_H__
 #define __NAS_MMC_FSM_PLMN_LIST_H__
 
@@ -538,12 +521,10 @@ VOS_UINT32  NAS_MMC_RcvTiWaitEpsConnRelIndExpired_PlmnList_WaitEpsConnRelInd(
     struct MsgCB                       *pstMsg
 );
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-2-8, begin */
 VOS_UINT32 NAS_MMC_RcvMsccImsVoiceCapInd_PlmnList_WaitEpsConnRelInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 );
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-2-8, end */
 
 VOS_UINT32  NAS_MMC_RcvMmcAbortFsmMsg_PlmnList_WaitLmmPlmnSearchCnf(
     VOS_UINT32                          ulEventType,
@@ -680,12 +661,10 @@ VOS_UINT32  NAS_MMC_RcvTiWaitEpsRegIndExpired_PlmnList_WaitEpsRegInd(
     struct MsgCB                       *pstMsg
 );
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-2-8, begin */
 VOS_UINT32 NAS_MMC_RcvMsccImsVoiceCapInd_PlmnList_WaitEpsRegInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 );
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-2-8, end */
 
 #endif
 
@@ -1199,12 +1178,10 @@ VOS_UINT32  NAS_MMC_RcvRrmmLimitServiceCampInd_PlmnList_WaitCsPsRegRsltInd(
 );
 
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-2-8, begin */
 VOS_UINT32 NAS_MMC_RcvMsccImsVoiceCapInd_PlmnList_WaitCsPsRegRsltInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 );
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-2-8, end */
 
 VOS_VOID NAS_MMC_ProcNoRf_PlmnList(
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enCurRat

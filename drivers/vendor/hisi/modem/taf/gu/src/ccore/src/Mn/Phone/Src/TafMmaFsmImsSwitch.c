@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2005-2015, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafMmaFsmImsSwitch.c
-  版 本 号   : 初稿
-  作    者   : f00179208
-  生成日期   : 2015年02月04日
-  最近修改   :
-  功能描述   : TafMmaFsmImsSwitch.c文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年02月04日
-    作    者   : f00179208
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -65,22 +48,7 @@ extern "C" {
 *****************************************************************************/
 
 #if (FEATURE_IMS == FEATURE_ON)
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTafImsSwitchSet_ImsSwitch_Init
- 功能描述  : 收到TAF的IMS开关消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年02月04日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTafImsSwitchSet_ImsSwitch_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -120,27 +88,7 @@ VOS_UINT32 TAF_MMA_RcvTafImsSwitchSet_ImsSwitch_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccImsStartCnf_ImsSwitch_WaitMsccImsStartCnf
- 功能描述  : 收到MSCC模块的IMS开启请求的回复处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年02月04日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-
- 2.日    期   : 2015年03月13日
-   作    者   : l00198894
-   修改内容   : VOLTE Randk1方案项目
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccImsStartCnf_ImsSwitch_WaitMsccImsStartCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -204,27 +152,7 @@ VOS_UINT32 TAF_MMA_RcvMsccImsStartCnf_ImsSwitch_WaitMsccImsStartCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTiWaitMsccImsStartCnfExpired_ImsSwitch_WaitMsccImsStartCnf
- 功能描述  : 等待MSCC的IMS开启请求超时的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年02月04日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-
- 2.日    期   : 2015年03月13日
-   作    者   : l00198894
-   修改内容   : VOLTE Randk1方案项目
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTiWaitMsccImsStartCnfExpired_ImsSwitch_WaitMsccImsStartCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -265,27 +193,7 @@ VOS_UINT32 TAF_MMA_RcvTiWaitMsccImsStartCnfExpired_ImsSwitch_WaitMsccImsStartCnf
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccImsStopCnf_ImsSwitch_WaitMsccImsStopCnf
- 功能描述  : 收到MSCC的IMS关闭请求的回复处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年02月04日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-
- 2.日    期   : 2015年03月13日
-   作    者   : l00198894
-   修改内容   : VOLTE Randk1方案项目
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccImsStopCnf_ImsSwitch_WaitMsccImsStopCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -333,27 +241,7 @@ VOS_UINT32 TAF_MMA_RcvMsccImsStopCnf_ImsSwitch_WaitMsccImsStopCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTiWaitMsccImsStopCnfExpired_ImsSwitch_WaitMsccImsStopCnf
- 功能描述  : 等待IMSA的关机回复超时处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年02月04日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-
- 2.日    期   : 2015年03月13日
-   作    者   : l00198894
-   修改内容   : VOLTE Randk1方案项目
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTiWaitMsccImsStopCnfExpired_ImsSwitch_WaitMsccImsStopCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -387,20 +275,7 @@ VOS_UINT32 TAF_MMA_RcvTiWaitMsccImsStopCnfExpired_ImsSwitch_WaitMsccImsStopCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReportImsSwitchSetCnf_ImsSwitch
- 功能描述  : 上报开关设置结果给上层
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年02月04日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReportImsSwitchSetCnf_ImsSwitch(
     TAF_MMA_APP_OPER_RESULT_ENUM_UINT32 enResult,
     TAF_ERROR_CODE_ENUM_UINT32          enErrorCause

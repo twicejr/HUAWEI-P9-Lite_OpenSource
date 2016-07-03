@@ -1,19 +1,4 @@
-/******************************************************************************
 
-        @(#)Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : NasEmmPubUCnMsgDecode.h
-    Description : MM 的 CN 消息码流对应的结构体
-    History     :
-      1.  niezhouyu  00108792  Draft Enact
-      2.  hanlufeng   41410   BA8D00861
-      3.zhengjunyan 00148421 2009.03.03 问题单BA8D01054
-        IDEN REQ消息携带类型值为0，没有作为IMSI类型处理
-      4.yangqianhui 00135146   2009-10-19  Modify BN8D01126
-                               修改内容：NAS圈复杂度优化
-      5.shicongyong 00111599  2009-10-20  BN8D01116 NAS圈复杂度优化
-******************************************************************************/
 
 #ifndef _NASEMMPUBUCNMSGDECODE_H
 #define _NASEMMPUBUCNMSGDECODE_H

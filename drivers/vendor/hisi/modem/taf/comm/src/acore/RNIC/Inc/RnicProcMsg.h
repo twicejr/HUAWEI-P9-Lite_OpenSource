@@ -11,9 +11,7 @@
 #include "PsCommonDef.h"
 #include "RnicLinuxInterface.h"
 #include "RnicTimerMgmt.h"
-/* Added by m00217266 for L-C互操作项目, 2014-1-26, begin */
 #include "RnicConfigInterface.h"
-/* Added by m00217266 for L-C互操作项目, 2014-1-26, end */
 
 
 #ifdef __cplusplus
@@ -34,13 +32,7 @@ extern "C" {
   3 枚举定义
 *****************************************************************************/
 
-/*****************************************************************************
- 枚举名    : RNIC_DAIL_EVENT_TYPE_ENUM
- 枚举说明  : 上报拨号事件
- 1.日    期   : 2012年1月31日
-   作    者   : W00199382
-   修改内容   : 创建
-*****************************************************************************/
+
 enum RNIC_DAIL_EVENT_TYPE_ENUM
 {
     RNIC_DAIL_EVENT_UP                  = 0x0600,                               /*需要触发拨号*/
@@ -50,13 +42,7 @@ enum RNIC_DAIL_EVENT_TYPE_ENUM
 };
 typedef VOS_UINT32 RNIC_DAIL_EVENT_TYPE_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : RNIC_DIAL_MODE_ENUM
- 枚举说明  : 设置拨号模式
- 1.日    期   : 2011年12月06日
-   作    者   : f00179208
-   修改内容   : 创建
-*****************************************************************************/
+
 enum RNIC_DIAL_MODE_ENUM
 {
     RNIC_DIAL_MODE_MANUAL,                                                      /*Manual dial mode*/
@@ -66,13 +52,7 @@ enum RNIC_DIAL_MODE_ENUM
 };
 typedef VOS_UINT32 RNIC_DIAL_MODE_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : RNIC_DIAL_EVENT_REPORT_FLAG_ENUM
- 枚举说明  : 事件上报给应用的标识
- 1.日    期   : 2012年1月31日
-   作    者   : w00199382
-   修改内容   : 创建
-*****************************************************************************/
+
 enum RNIC_DIAL_EVENT_REPORT_FLAG_ENUM
 {
     RNIC_FORBID_EVENT_REPORT            = 0x0000,                               /*不给应用上报*/
@@ -82,13 +62,7 @@ enum RNIC_DIAL_EVENT_REPORT_FLAG_ENUM
 };
 typedef VOS_UINT32 RNIC_DIAL_EVENT_REPORT_FLAG_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : RNIC_MSG_ID_ENUM
- 枚举说明  : RNIC自发自收的消息
-  1.日    期   : 2014年01月06日
-    作    者   : m00217266
-    修改内容   : 创建
-*****************************************************************************/
+
 enum RNIC_MSG_ID_ENUM
 {
     ID_RNIC_RMNET_CONFIG_REQ            = 0x0000,                               /* _H2ASN_MsgChoice RNIC_RMNET_CONFIG_REQ_STRU */
@@ -142,17 +116,7 @@ typedef VOS_UINT32 (*RNIC_RCV_TI_EXPRIED_PROC_FUNC)(
 /*****************************************************************************
   7 STRUCT定义
 *****************************************************************************/
-/*****************************************************************************
- 结构名    : RNIC_DIAL_MODE_STRU
- 结构说明  : 拨号模式及按需拨号时间
- 1.日    期   : 2011年12月06日
-   作    者   : f00179208
-   修改内容   : 创建
- 2.日    期   : 2012年1月31日
-   作    者   : w00199382
-   修改内容   : 增加是否事件上报域
 
-*****************************************************************************/
 typedef struct
 {
     RNIC_DIAL_MODE_ENUM_UINT32                              enDialMode;         /* Dial模式 */
@@ -161,67 +125,31 @@ typedef struct
     VOS_UINT32                                              ulReserved;
 }RNIC_DIAL_MODE_STRU;
 
-/*****************************************************************************
- 结构名    : RNIC_NOTIFY_MSG_STRU
- 结构说明  : RNIC内部消息头部结构
- 1.日    期   : 2011年12月08日
-   作    者   : f00179208
-   修改内容   : 新建
- 1.日    期   : 2012年1月31日
-   作    者   : w00199382
-   修改内容   : 增加按需拨号结构
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* 消息头 */        /*_H2ASN_Skip*/
-    /* Modified by m00217266 for L-C互操作项目, 2014-2-11, begin */
     RNIC_MSG_ID_ENUM_UINT32             enMsgId;                                /*消息类型*/        /*_H2ASN_Skip*/
-    /* Modified by m00217266 for L-C互操作项目, 2014-2-11, end */
     RNIC_DIAL_MODE_STRU                 stDialInfo;                             /*按需拨号配置内容*/
 }RNIC_NOTIFY_MSG_STRU;
 
-/*****************************************************************************
- 结构名    : RNIC_MNTN_DIAL_EVT_STRU
- 协议表格  :
- 结构说明  : 按需拨号可维可测消息结构
-  1.日    期   : 2012年6月6日
-    作    者   : A00165503
-    修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* 消息头 */    /* _H2ASN_Skip */
-    /* Modified by m00217266 for L-C互操作项目, 2014-2-11, begin */
     RNIC_MSG_ID_ENUM_UINT32             enMsgId;                                /* 消息ID */    /* _H2ASN_Skip */
-    /* Modified by m00217266 for L-C互操作项目, 2014-2-11, end */
 } RNIC_MNTN_DIAL_CONN_EVT_STRU;
 
-/*****************************************************************************
- 结构名    : RNIC_MNTN_DIAL_EVT_STRU
- 协议表格  :
- 结构说明  : 按需拨号可维可测消息结构
-  1.日    期   : 2012年6月6日
-    作    者   : A00165503
-    修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* 消息头 */    /* _H2ASN_Skip */
-    /* Modified by m00217266 for L-C互操作项目, 2014-2-11, begin */
     RNIC_MSG_ID_ENUM_UINT32             enMsgId;                                /* 消息ID */    /* _H2ASN_Skip */
-    /* Modified by m00217266 for L-C互操作项目, 2014-2-11, end */
     VOS_UINT32                          ulPktNum;
     VOS_UINT32                          ulUsrExistFlg;
 } RNIC_MNTN_DIAL_DISCONN_EVT_STRU;
 
-/*****************************************************************************
- 结构名    : RNIC_RCV_TI_EXPRIED_PROC_STRU
- 结构说明  : 类型与对应处理函数的结构
 
-  1.日    期   : 2012年11月28日
-    作    者   : f00179208
-    修改内容   : Added for DSDA Phase I
-*****************************************************************************/
 /*lint -e958 修改人:l60609;原因:64bit*/
 typedef struct
 {
@@ -230,14 +158,7 @@ typedef struct
 }RNIC_RCV_TI_EXPRIED_PROC_STRU;
 /*lint +e958 修改人:l60609;原因:64bit*/
 
-/* Modified by l60609 for L-C互操作项目, 2014-01-06, Begin */
-/*****************************************************************************
- 结构名    : RNIC_RMNET_CONFIG_REQ_STRU
- 结构说明  : RNIC模块PDP状态变化消息结构
- 1.日    期   : 2014年01月14日
-   作    者   : m00217266
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* 消息头 */    /* _H2ASN_Skip */
@@ -252,20 +173,12 @@ typedef struct
     RNIC_IP_TYPE_ENUM_UINT8             enIpType;
 }RNIC_RMNET_CONFIG_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : RNIC_CCPU_RESET_IND_STRU
- 协议表格  :
- 结构说明  : C核复位后给RNIC的消息指示
-  1.日    期   : 2013年04月11日
-    作    者   : f00179208
-    修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* 消息头 */    /* _H2ASN_Skip */
     RNIC_MSG_ID_ENUM_UINT32             enMsgId;                                /* 消息ID */    /* _H2ASN_Skip */
 }RNIC_CCPU_RESET_IND_STRU;
-/* Modified by l60609 for L-C互操作项目, 2014-01-06, End */
 
 /*****************************************************************************
   8 UNION定义
@@ -342,7 +255,6 @@ VOS_UINT32 RNIC_RcvAtPdnInfoRelInd(
     MsgBlock                           *pstMsg
 );
 
-/* Added by m00217266 for L-C互操作项目, 2014-1-21, begin */
 VOS_VOID RNIC_ProcInsideModemIpv4ActInd(
     RNIC_RMNET_CONFIG_REQ_STRU           *pstPdpStatusInd
 );
@@ -390,7 +302,6 @@ VOS_VOID RNIC_MNTN_SndRmnetConfigInfoMsg(
     RNIC_RMNET_CONFIG_STRU             *pstConfigInfo
 );
 
-/* Added by m00217266 for L-C互操作项目, 2014-1-21, end */
 
 VOS_UINT32 RNIC_RcvRnicMsg(MsgBlock *pstMsg);
 #if (FEATURE_ON == FEATURE_IMS)

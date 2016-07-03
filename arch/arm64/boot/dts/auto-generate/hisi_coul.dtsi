@@ -1,13 +1,15 @@
  / {
     coul_core:coul_core{
         compatible = "hisi,coul_core";
-	    r_pcb = <26000>;	
-	    current_offset_a = <1000000>;						
-	    status = "disabled";
+        r_pcb = <26000>;
+        current_offset_a = <1000000>;
+       /*ntc_temp = <-273 -40  -36  -32  -28  -24  -20  -16  -12  -8   -4   0    4    8    12   16   20   24   28   32   36   40   44   48   52   56   60   64   74   84   125  0>*/
+        ntc_table = <4095 3823 3765 3698 3621 3535 3440 3335 3223 3104 2979 2851 2721 2591 2464 2339 2219 2106 1999 1899 1807 1722 1645 1575 1511 1454 1403 1357 1262 1190 1038 0>;
+        status = "disabled";
    };
    pmic: pmic@FFF34000 {  
-        hi6421v500_coul: hi6421v500_coul@1 {
-              compatible = "hisilicon,hi6421v500_coul";
+        hi6555v100_coul: hi6555v100_coul@1 {
+              compatible = "hisilicon,hi6555v100_coul";
 	          interrupt-parent = <&pmic>;
               interrupts = <9 0>;
               interrupt-names = "coulirq";						

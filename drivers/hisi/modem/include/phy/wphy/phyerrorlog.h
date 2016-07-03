@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2003-2013, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : phyerrorlog.h
-  版 本 号   : 初稿
-  作    者   : 罗青全/57356
-  生成日期   : 2013年9月21日
-  最近修改   :
-  功能描述   : 商用ERRORLOG及工程模式上报使用的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年09月21日
-    作    者   : 罗青全/57356
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __PHY_ERRORLOG_H__
 #define __PHY_ERRORLOG_H__
@@ -52,13 +35,7 @@ extern "C" {
   3 枚举定义
 *****************************************************************************/
 
-/*****************************************************************************
- 枚举名    : PHY_ERR_LOG_ALM_TYPE_ENUM
- 枚举说明  : 故障告警类型
- 1.日    期   : 2013年09月23日
-   作    者   : luoqingquan
-   修改内容   : 新建
-*****************************************************************************/
+
 enum PHY_ERR_LOG_ALM_TYPE_ENUM
 {
     PHY_ERR_LOG_ALM_TYPE_COMMUNICATION    = 0x00,                               /* 通信 */
@@ -71,13 +48,7 @@ enum PHY_ERR_LOG_ALM_TYPE_ENUM
 typedef VOS_UINT16 PHY_ERR_LOG_ALM_TYPE_ENUM_UINT16;
 
 
-/*****************************************************************************
- 枚举名    : PHY_ERR_LOG_ALM_ID_ENUM
- 枚举说明  : 故障告警ID
- 1.日    期   : 2013年09月23日
-   作    者   : luoqingquan
-   修改内容   : 新建
-*****************************************************************************/
+
 enum PHY_ERR_LOG_ALM_ID_ENUM
 {
     /* 缓存故障 */
@@ -110,13 +81,7 @@ enum PHY_ERR_LOG_ALM_ID_ENUM
 typedef VOS_UINT16 PHY_ERR_LOG_ALM_ID_ENUM_UINT16;
 
 
-/*****************************************************************************
- 枚举名    : PHY_FTM_LOG_ID_ENUM
- 枚举说明  : 工程模式上报的功能ID
- 1.日    期   : 2013年08月27日
-   作    者   : l57356
-   修改内容   : 新建
-*****************************************************************************/
+
 enum PHY_FTM_LOG_ID_ENUM
 {
     PHY_FTM_LOG_ID_WPHY,
@@ -127,13 +92,7 @@ enum PHY_FTM_LOG_ID_ENUM
 typedef PHY_UINT16 PHY_FTM_LOG_ID_ENUM_UINT16;
 
 
-/*****************************************************************************
- 枚举名    : PHY_WCDMA_RL_OUT_OF_SYNC_REASON_ENUM
- 枚举说明  : 注册的域信息
- 1.日    期   : 2013年09月21日
-   作    者   : l57356
-   修改内容   : 新建
-*****************************************************************************/
+
 enum PHY_WCDMA_RL_OUT_OF_SYNC_REASON_ENUM
 {
     PHY_WCDMA_RL_OUT_OF_SYNC_REASON_DEMOD        = 0x00,                        /* 上报原因为解调 */
@@ -144,13 +103,7 @@ typedef VOS_UINT16 PHY_WCDMA_RL_OUT_OF_SYNC_REASON_ENUM_UINT16;
 
 
 
-/*****************************************************************************
- 枚举名    : PHY_WCDMA_BCCH_FAIL_REASON_ENUM
- 枚举说明  : 注册的域信息
- 1.日    期   : 2013年09月21日
-   作    者   : l57356
-   修改内容   : 新建
-*****************************************************************************/
+
 enum PHY_WCDMA_BCCH_FAIL_REASON_ENUM
 {
     PHY_WCDMA_BCCH_FAIL_REASON_SFN_UPDATE_FAIL   = 0x00,                        /* 上报原因为SFN更新 */
@@ -162,13 +115,7 @@ enum PHY_WCDMA_BCCH_FAIL_REASON_ENUM
 typedef VOS_UINT16 PHY_WCDMA_BCCH_FAIL_REASON_ENUM_UINT16;
 
 
-/*****************************************************************************
- 枚举名    : PHY_GSM_RPT_REASON_ENUM
- 枚举说明  : 注册的域信息
- 1.日    期   : 2013年09月21日
-   作    者   : l57356
-   修改内容   : 新建
-*****************************************************************************/
+
 enum PHY_GSM_RPT_REASON_ENUM
 {
     PHY_GSM_RPT_REASON_DSC                      = 0x00,                         /* 上报原因为DSC错误 */
@@ -178,13 +125,7 @@ enum PHY_GSM_RPT_REASON_ENUM
 typedef VOS_UINT16 PHY_GSM_RPT_REASON_ENUM_UINT16;
 
 
-/*****************************************************************************
- 枚举名    : PHY_GSM_CS_ERROR_REASON_ENUM
- 枚举说明  : CS语音期间告警上报原因
- 1.日    期   : 2014年07月07日
-   作    者   : j00178524
-   修改内容   : 新建
-*****************************************************************************/
+
 enum PHY_GSM_CS_ERROR_REASON_ENUM
 {
     PHY_GSM_CS_ERROR_RLB            = 0,                         /* CS链路差 */
@@ -195,13 +136,7 @@ enum PHY_GSM_CS_ERROR_REASON_ENUM
 typedef VOS_UINT16 PHY_GSM_CS_ERROR_REASON_ENUM_UINT16;
 
 
-/*****************************************************************************
- 枚举名    : PHY_WCDMA_CS_ERROR_REASON_ENUM_UINT16
- 枚举说明  : CS语音期间告警上报原因
- 1.日    期   : 2014年10月10日
-   作    者   : l00184004
-   修改内容   : 新建
-*****************************************************************************/
+
 enum PHY_WCDMA_CS_ERROR_REASON_ENUM
 {
     PHY_WCDMA_CS_ERROR_RLB          = 0,                        /* CS链路差 */
@@ -231,13 +166,7 @@ typedef VOS_UINT16 PHY_WCDMA_CS_ERROR_REASON_ENUM_UINT16;
 
 
 
-/*******************************************************************************
- 结构名    : PHY_WCDMA_ERRLOG_FG_INFO_STRU
- 结构说明  : WCDMA生成和更新后上报的消息结构体
- 1.日    期   : 2013年09月21日
-   作    者   : l57356
-   修改内容   : 新建
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                  ulFgPos;
@@ -245,13 +174,7 @@ typedef struct
 }PHY_WCDMA_ERRLOG_FG_INFO_STRU;
 
 
-/*******************************************************************************
- 结构名    : PHY_ERRLOG_WCDMA_RL_OUT_OF_SYNC_EVENT_STRU
- 结构说明  : WCDMA生成和更新后上报的消息结构体
- 1.日    期   : 2013年09月21日
-   作    者   : l57356
-   修改内容   : 新建
-*******************************************************************************/
+
 typedef struct
 {
     OM_ERR_LOG_HEADER_STRU                      stHeader;
@@ -269,13 +192,7 @@ typedef struct
 
 
 
-/*******************************************************************************
- 结构名    : PHY_ERRLOG_WCDMA_RL_FAIL_EVENT_STRU
- 结构说明  : WCDMA生成和更新后上报的消息结构体
- 1.日    期   : 2013年09月21日
-   作    者   : l57356
-   修改内容   : 新建
-*******************************************************************************/
+
 
 typedef struct
 {
@@ -292,13 +209,7 @@ typedef struct
 
 
 
-/*******************************************************************************
- 结构名    : PHY_ERRLOG_WCDMA_RL_FAIL_EVENT_STRU
- 结构说明  : WCDMA生成和更新后上报的消息结构体
- 1.日    期   : 2013年09月21日
-   作    者   : l57356
-   修改内容   : 新建
-*******************************************************************************/
+
 
 typedef struct
 {
@@ -321,13 +232,7 @@ typedef struct
 
 
 
-/*******************************************************************************
- 结构名    : PHY_ERRLOG_GSM_DECODE_FAIL_EVENT_STRU
- 结构说明  : GSM生成和更新后上报的消息结构体
- 1.日    期   : 2013年09月21日
-   作    者   : l57356
-   修改内容   : 新建
-*******************************************************************************/
+
 typedef struct
 {
     OM_ERR_LOG_HEADER_STRU                  stHeader;
@@ -353,13 +258,7 @@ typedef struct
 
 
 
-/*******************************************************************************
- 结构名    : PHY_ERRLOG_GSM_DECODE_FAIL_EVENT_STRU
- 结构说明  : GSM生成和更新后上报的消息结构体
- 1.日    期   : 2013年09月21日
-   作    者   : l57356
-   修改内容   : 新建
-*******************************************************************************/
+
 typedef struct
 {
     OM_ERR_LOG_HEADER_STRU                  stHeader;
@@ -377,13 +276,7 @@ typedef struct
 
 
 
-/*******************************************************************************
- 结构名    : PHY_ERRLOG_GSM_FB_SB_EVENT_STRU
- 结构说明  : GSM生成和更新后上报的消息结构体
- 1.日    期   : 2013年09月21日
-   作    者   : l57356
-   修改内容   : 新建
-*******************************************************************************/
+
 typedef struct
 {
     OM_ERR_LOG_HEADER_STRU                  stHeader;
@@ -405,13 +298,7 @@ typedef struct
 
 
 
-/*******************************************************************************
- 结构名    : PHY_FTM_WCDMA_DCH_PARA_EVENT_STRU
- 结构说明  : WCDMA生成和更新后上报的消息结构体
- 1.日    期   : 2013年09月21日
-   作    者   : l57356
-   修改内容   : 新建
-*******************************************************************************/
+
 typedef struct
 {
     OM_FTM_HEADER_STRU                      stHeader;
@@ -422,13 +309,7 @@ typedef struct
 }PHY_FTM_WCDMA_DCH_PARA_EVENT_STRU;
 
 
-/*******************************************************************************
- 结构名    : PHY_FTM_GSM_DCH_PARA_EVENT_STRU
- 结构说明  : GSM生成和更新后上报的消息结构体
- 1.日    期   : 2013年09月21日
-   作    者   : l57356
-   修改内容   : 新建
-*******************************************************************************/
+
 typedef struct
 {
     OM_FTM_HEADER_STRU                      stHeader;
@@ -438,13 +319,7 @@ typedef struct
     VOS_UINT16                              usResv;
 }PHY_FTM_GSM_DCH_PARA_EVENT_STRU;
 
-/*******************************************************************************
- 结构名    : PHY_ERRLOG_GSM_CS_RLB_EVENT_STRU
- 结构说明  : CS 链路差事件
- 1.日    期   : 2014年07月05日
-   作    者   : j00178524
-   修改内容   : 新建
-*******************************************************************************/
+
 typedef struct
 {
     OM_ERR_LOG_HEADER_STRU                  stHeader;
@@ -459,13 +334,7 @@ typedef struct
 }PHY_ERRLOG_GSM_CS_RLB_EVENT_STRU;
 
 
-/*******************************************************************************
- 结构名    : PHY_ERRLOG_GSM_CS_NO_UL_DATA_EVENT_STRU
- 结构说明  : GSM无上行语音数据时上报的消息结构体
- 1.日    期   : 2014年7月5日
-   作    者   : lmx
-   修改内容   : 新建
-*******************************************************************************/
+
 typedef struct
 {
     OM_ERR_LOG_HEADER_STRU                  stHeader;
@@ -481,13 +350,7 @@ typedef struct
 }PHY_ERRLOG_GSM_CS_NO_UL_DATA_EVENT_STRU;
 
 
-/*******************************************************************************
- 结构名    : PHY_ERRLOG_GSM_CS_ERROR_DETECT_EVENT_STRU
- 结构说明  : 检测到异常error事件
- 1.日    期   : 2014年07月05日
-   作    者   : j00178524
-   修改内容   : 新建
-*******************************************************************************/
+
 typedef struct
 {
     OM_ERR_LOG_HEADER_STRU                  stHeader;
@@ -498,13 +361,7 @@ typedef struct
 }PHY_ERRLOG_GSM_CS_ERROR_DETECT_EVENT_STRU;
 
 
-/*******************************************************************************
- 结构名    : PHY_MNTN_GSM_DCXO_SAMPLE_ERR_EVENT_STRU
- 结构说明  : G DCXO样本点异常的CHR
- 1.日    期   : 2015年09月19日
-   作    者   : w00286360
-   修改内容   : 新建
-*******************************************************************************/
+
 typedef struct
 {
     OM_ERR_LOG_HEADER_STRU                  stHeader;
@@ -519,26 +376,14 @@ typedef struct
 }PHY_MNTN_GSM_DCXO_SAMPLE_ERR_EVENT_STRU;
 
 
-/*******************************************************************************
- 结构名    : PHY_ERRLOG_GSM_CS_RLB_EVENT_STRU
- 结构说明  : 环形buffer溢出计数结构
- 1.日    期   : 2014年07月05日
-   作    者   : j00178524
-   修改内容   : 新建
-*******************************************************************************/
+
 typedef struct
 {
     OM_ERR_LOG_HEADER_STRU                  stHeader;
     VOS_UINT32                              ulOverflowCnt;                      /* 环形buffer溢出次数 */
 }PHY_ERRLOG_RING_BUFFER_OVERFLOW_EVENT_STRU;
 
-/*******************************************************************************
- 结构名    : PHY_ERRLOG_WCDMA_CS_ERROR_RLB_EVENT_STRU
- 结构说明  : CS链路质量差事件
- 1.日    期   : 2014年10月10日
-   作    者   : l00184004
-   修改内容   : 新建
-*******************************************************************************/
+
 typedef struct
 {
     OM_ERR_LOG_HEADER_STRU                  stHeader;
@@ -554,13 +399,7 @@ typedef struct
     PHY_UINT16                              uhwDCHOutOfSyncInd;                 /* DCH out of sync 指示*/
 }PHY_ERRLOG_WCDMA_CS_ERROR_RLB_EVENT_STRU;
 
-/*******************************************************************************
- 结构名    : PHY_ERRLOG_WCDMA_CS_NO_UL_DATA_EVENT_STRU
- 结构说明  : 检测语音数据丢失
- 1.日    期   : 2014年07月05日
-   作    者   : l00184004
-   修改内容   : 新建
-*******************************************************************************/
+
 typedef struct
 {
     OM_ERR_LOG_HEADER_STRU                  stHeader;
@@ -572,13 +411,7 @@ typedef struct
     PHY_UINT16                              uhwReseved;
 }PHY_MNTN_WCDMA_CS_ERROR_NO_UL_DATA_EVENT_STRU;
 
-/*******************************************************************************
- 结构名    : PHY_MNTN_WCDMA_TX_POWER_DROP_EVENT_STRU
- 结构说明  : 检测发射功率太低
- 1.日    期   : 2015年01月17日
-   作    者   : w00286360
-   修改内容   : 新建
-*******************************************************************************/
+
 typedef struct
 {
     OM_ERR_LOG_HEADER_STRU                  stHeader;
@@ -586,13 +419,7 @@ typedef struct
     PHY_UINT16                              uhwReseved;
 }PHY_MNTN_WCDMA_TX_POWER_DROP_EVENT_STRU;
 
-/*******************************************************************************
- 结构名    : PHY_MNTN_WCDMA_PILOT_BER_RISE_EVENT_STRU
- 结构说明  : pilot ber抬升的事件
- 1.日    期   : 2015年01月17日
-   作    者   : w00286360
-   修改内容   : 新建
-*******************************************************************************/
+
 typedef struct
 {
     OM_ERR_LOG_HEADER_STRU                  stHeader;
@@ -601,13 +428,7 @@ typedef struct
 }PHY_MNTN_WCDMA_PILOT_BER_RISE_EVENT_STRU;
 
 
-/*******************************************************************************
- 结构名    : PHY_MNTN_WCDMA_FACH_RA_FAIL_EVENT_STRU
- 结构说明  : 随机接入的异常失败检测
- 1.日    期   : 2015年01月17日
-   作    者   : w00286360
-   修改内容   : 新建
-*******************************************************************************/
+
 typedef struct
 {
     OM_ERR_LOG_HEADER_STRU                  stHeader;
@@ -616,13 +437,7 @@ typedef struct
 }PHY_MNTN_WCDMA_FACH_RA_FAIL_EVENT_STRU;
 
 
-/*******************************************************************************
- 结构名    : PHY_MNTN_GOOD_SNR_NOACK_INFO_STRU
- 结构说明  : 随机接入的结果检测
- 1.日    期   : 2015年01月17日
-   作    者   : w00286360
-   修改内容   : 新建
-*******************************************************************************/
+
 typedef struct
 {
     UPHY_BOOL_ENUM_UINT16                   enGoodSnrNoAckFlag;                 /* 是否出现好信号随机接入失败的标记 */
@@ -632,13 +447,7 @@ typedef struct
 }PHY_MNTN_GOOD_SNR_NOACK_INFO_STRU;
 
 
-/*******************************************************************************
- 结构名    : PHY_MNTN_WCDMA_FACH_RA_INFO_EVENT_STRU
- 结构说明  : 随机接入的结果检测
- 1.日    期   : 2015年01月17日
-   作    者   : w00286360
-   修改内容   : 新建
-*******************************************************************************/
+
 typedef struct
 {
     OM_ERR_LOG_HEADER_STRU                  stHeader;
@@ -657,13 +466,7 @@ typedef struct
 
 
 
-/*******************************************************************************
- 结构名    : PHY_ERRLOG_WCDMA_TAS_INFO_STRU
- 结构说明  : 上报最近一次天线切换tas关键信息
- 1.日    期   : 2015年01月06日
-   作    者   : c00242732
-   修改内容   : 新建
-*******************************************************************************/
+
 typedef struct
 {
     OM_ERR_LOG_HEADER_STRU                  stHeader;
@@ -678,13 +481,7 @@ typedef struct
     PHY_UINT16                              uhwAgentSwitchFlag;                 /* 是否为代理切换 */
 }PHY_ERRLOG_WCDMA_TAS_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : PHY_ERRLOG_GSM_TAS_INFO_STRU
- 结构说明  : 上报最近一次天线切换tas关键信息
- 1.日    期   : 2015年01月07日
-   作    者   : m00251053
-   修改内容   : 新建
-*******************************************************************************/
+
 typedef struct
 {
     OM_ERR_LOG_HEADER_STRU                  stHeader;
@@ -726,13 +523,7 @@ typedef struct
 }PHY_ERRLOG_GSM_TAS_INFO_STRU;
 
 
-/*******************************************************************************
- 结构名    : PHY_ERRLOG_WCDMA_MAS_INFO_STRU
- 结构说明  : 上报最近一次天线切换tas关键信息
- 1.日    期   : 2015年11月4日
-   作    者   : w00181973
-   修改内容   : 新建
-*******************************************************************************/
+
 typedef struct
 {
     OM_ERR_LOG_HEADER_STRU                  stHeader;
@@ -777,13 +568,7 @@ typedef struct
     PHY_UINT16                              uhwRlfAuthorizeFlag;                /* RL FAIL时TAS授权信息 */
 }PHY_ERRLOG_WCDMA_MAS_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : PHY_ERRLOG_GSM_MEASUREMENT_REPORT_ERROR_STRU
- 结构说明  : 测量报告错误
- 1.日    期   : 2015年03月09日
-   作    者   : j00178524
-   修改内容   : 新建
-*******************************************************************************/
+
 typedef struct
 {
     OM_ERR_LOG_HEADER_STRU              stHeader;
@@ -791,13 +576,7 @@ typedef struct
     VOS_UINT16                          usStrongNcellRxlev;                     /* 未同步上的强邻区的测量值 */
 }PHY_ERRLOG_GSM_MEASUREMENT_REPORT_ERROR_STRU;
 
-/*******************************************************************************
- 结构名    : PHY_MNTN_WCDMA_DCXO_SAMPLE_ERR_EVENT_STRU
- 结构说明  : W DCXO样本点异常的CHR
- 1.日    期   : 2015年09月19日
-   作    者   : w00286360
-   修改内容   : 新建
-*******************************************************************************/
+
 typedef struct
 {
     OM_ERR_LOG_HEADER_STRU                  stHeader;
@@ -812,13 +591,7 @@ typedef struct
     PHY_UINT16                              uhwReserved;
 }PHY_MNTN_WCDMA_DCXO_SAMPLE_ERR_EVENT_STRU;
 
-/*******************************************************************************
- 结构名    : PHY_MNTN_WCDMA_PD_ABNORMAL_EVENT_STRU
- 结构说明  : 检测PD异常
- 1.日    期   : 2016年01月05日
-   作    者   : l00241951
-   修改内容   : 新建
-*******************************************************************************/
+
 typedef struct
 {
     OM_ERR_LOG_HEADER_STRU                  stHeader;

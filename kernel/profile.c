@@ -135,6 +135,10 @@ int __ref profile_init(void)
 /* Profile event notifications */
 
 static BLOCKING_NOTIFIER_HEAD(task_exit_notifier);
+#ifdef CONFIG_HUAWEI_UID_IO_STATS
+static BLOCKING_NOTIFIER_HEAD(task_end_fork_notifier);
+static BLOCKING_NOTIFIER_HEAD(end_setresuid_notifier);
+#endif
 static ATOMIC_NOTIFIER_HEAD(task_free_notifier);
 static BLOCKING_NOTIFIER_HEAD(munmap_notifier);
 
@@ -142,6 +146,18 @@ void profile_task_exit(struct task_struct *task)
 {
 	blocking_notifier_call_chain(&task_exit_notifier, 0, task);
 }
+
+#ifdef CONFIG_HUAWEI_UID_IO_STATS
+void profile_task_end_fork(struct task_struct *task)
+{
+	blocking_notifier_call_chain(&task_end_fork_notifier, 0, task);
+}
+
+void profile_end_setresuid(struct task_struct *task)
+{
+	blocking_notifier_call_chain(&end_setresuid_notifier, 0, task);
+}
+#endif
 
 int profile_handoff_task(struct task_struct *task)
 {
@@ -180,6 +196,16 @@ int profile_event_register(enum profile_type type, struct notifier_block *n)
 		err = blocking_notifier_chain_register(
 				&munmap_notifier, n);
 		break;
+#ifdef CONFIG_HUAWEI_UID_IO_STATS
+	case PROFILE_TASK_END_FORK:
+		err = blocking_notifier_chain_register(
+				&task_end_fork_notifier, n);
+		break;
+	case PROFILE_END_SETRESUID:
+		err = blocking_notifier_chain_register(
+				&end_setresuid_notifier, n);
+		break;
+#endif
 	}
 
 	return err;
@@ -199,6 +225,16 @@ int profile_event_unregister(enum profile_type type, struct notifier_block *n)
 		err = blocking_notifier_chain_unregister(
 				&munmap_notifier, n);
 		break;
+#ifdef CONFIG_HUAWEI_UID_IO_STATS
+	case PROFILE_TASK_END_FORK:
+		err = blocking_notifier_chain_unregister(
+				&task_end_fork_notifier, n);
+		break;
+	case PROFILE_END_SETRESUID:
+		err = blocking_notifier_chain_unregister(
+				&end_setresuid_notifier, n);
+		break;
+#endif
 	}
 
 	return err;

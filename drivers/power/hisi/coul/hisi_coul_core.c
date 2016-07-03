@@ -2826,6 +2826,8 @@ static void battery_plug_out(struct smartstar_coul_device *di)
 
     // clear saved ocv
     di->coul_dev_ops->clear_ocv();
+    /*clear saved last soc*/
+    di->coul_dev_ops->clear_last_soc_flag();
 
     hwlog_info("%s: Exit\n",__FUNCTION__);
 
@@ -3488,6 +3490,34 @@ int coul_battery_charger_event_rcv (unsigned int evt)
     return 0;
 }
 
+/*******************************************************
+  Function:        coul_smooth_startup_soc
+  Description:     smooth first soc to avoid soc jump in startup step
+  Input:           struct smartstar_coul_device *di   ---- coul device
+  Output:          NULL
+  Return:          NULL
+********************************************************/
+static void coul_smooth_startup_soc(struct smartstar_coul_device *di)
+{
+    bool  flag_soc_valid = FALSE;
+    short soc_temp = 0;
+
+    if(NULL == di) {
+        hwlog_err("NULL point in [%s]\n", __func__);
+        return;
+    }
+
+    if (di->last_soc_enable) {
+        di->coul_dev_ops->get_last_soc_flag(&flag_soc_valid);
+        di->coul_dev_ops->get_last_soc(&soc_temp);
+        if ((flag_soc_valid) && abs(di->batt_soc - soc_temp) < di->startup_delta_soc) {
+            di->batt_soc = soc_temp;
+            hwlog_info("battery last soc= %d,flag = %d\n", soc_temp , flag_soc_valid);
+        }
+    }
+    di->coul_dev_ops->clear_last_soc_flag();
+    return;
+}
 
 #ifdef CONFIG_SYSFS
 
@@ -3899,7 +3929,8 @@ static void coul_core_get_dts(struct smartstar_coul_device *di)
 	struct device_node *batt_node;
     struct device_node* np;
     unsigned int r_pcb = DEFAULT_RPCB;
-
+    unsigned int last_soc_enable = 0;
+    unsigned int startup_delta_soc = 0;
     np = di->dev->of_node;
     if(NULL == np){
         hwlog_err("%s np is null!\n",__FUNCTION__);
@@ -3943,6 +3974,18 @@ static void coul_core_get_dts(struct smartstar_coul_device *di)
     } else{
         hwlog_err("Use ntc_table from dts!\n");
     }
+
+    if (of_property_read_u32(np, "last_soc_enable",&last_soc_enable)){
+        hwlog_err("dts:can not get last_soc_enable,use default : %d!\n",last_soc_enable);
+    }
+    di->last_soc_enable = last_soc_enable;
+    hwlog_info("dts:get last_soc_enable = %d! \n",last_soc_enable);
+
+    if (of_property_read_u32(np, "startup_delta_soc",&startup_delta_soc)){
+        hwlog_err("dts:can not get delta_soc,use default : %d!\n",startup_delta_soc);
+    }
+    di->startup_delta_soc = startup_delta_soc;
+    hwlog_info("dts:get delta_soc = %d! \n",startup_delta_soc);
 }
 
 static int coul_shutdown_prepare(struct notifier_block *nb, unsigned long event, void *_data)
@@ -4008,8 +4051,9 @@ static int  hisi_coul_probe(struct platform_device *pdev)
         ||(di->coul_dev_ops->get_fifo_depth    == NULL) ||(di->coul_dev_ops->get_battery_cur_ua_from_fifo == NULL)
         ||(di->coul_dev_ops->save_ocv_temp     == NULL) ||(di->coul_dev_ops->get_ocv_temp                 == NULL)
         ||(di->coul_dev_ops->clear_ocv_temp    == NULL) ||(di->coul_dev_ops->get_use_saved_ocv_flag       == NULL)
-        ||(di->coul_dev_ops->irq_enable        == NULL) ||(di->coul_dev_ops->set_battery_moved_magic_num  == NULL))   
-
+        ||(di->coul_dev_ops->irq_enable        == NULL) ||(di->coul_dev_ops->set_battery_moved_magic_num  == NULL)
+        ||(di->coul_dev_ops->get_last_soc      == NULL) ||(di->coul_dev_ops->save_last_soc                == NULL)
+        ||(di->coul_dev_ops->get_last_soc_flag == NULL) ||(di->coul_dev_ops->clear_last_soc_flag          == NULL))
     {
         hwlog_err("coul device ops is NULL!\n");
         retval = -EINVAL;
@@ -4090,6 +4134,7 @@ static int  hisi_coul_probe(struct platform_device *pdev)
         di->adjusted_fcc_temp_lut = NULL; /* enable it when test ok */
         di->is_nv_need_save = 1; 
         di->coul_dev_ops->set_nv_save_flag(NV_SAVE_FAIL);         
+        di->coul_dev_ops->clear_last_soc_flag();
         hwlog_info("battery changed, reset chargecycles!\n");
     } else {
         hwlog_info("battery not changed, chargecycles = %d%%\n", di->batt_chargecycles);
@@ -4099,6 +4144,7 @@ static int  hisi_coul_probe(struct platform_device *pdev)
     DI_LOCK();
     di->soc_limit_flag = 0;
     di->batt_soc = calculate_state_of_charge(di);
+    coul_smooth_startup_soc(di);
     di->soc_limit_flag = 1;
     DI_UNLOCK();
 
@@ -4497,7 +4543,7 @@ static void hisi_coul_shutdown(struct platform_device *pdev)
         hwlog_err("[coul_shutdown]:di is NULL\n");
         return;
     }
-
+    di->coul_dev_ops->save_last_soc(di->batt_soc);
     cancel_delayed_work(&di->calculate_soc_delayed_work);
     cancel_delayed_work(&di->read_temperature_delayed_work);
     if (battery_is_removable)

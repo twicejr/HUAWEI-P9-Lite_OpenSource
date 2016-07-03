@@ -1,14 +1,4 @@
-/******************************************************************************
 
-        @(#)Copyright(C)2008,Hisilicon Co. LTD.
- ******************************************************************************
-    File name   : NasEmmIden.c
-    Description :
-    History     :
-      1. zangyalan   57968   2008-09-09  Draft Enact
-      2. zhengjunyan 00148421 2009.03.03 问题单BA8D01054
-        IDEN REQ消息携带类型值为0，没有作为IMSI类型处理
-******************************************************************************/
 
 /*****************************************************************************
   1 Include HeadFile
@@ -60,15 +50,7 @@ VOS_VOID  NAS_EMM_FreeIdenDyn( VOS_VOID )
 }
 
 
-/*****************************************************************************
- Function Name  : NAS_EMM_AnyStateMsgIdenReq
- Discription    : IDEN_REQ消息的动作函数
- Input          : 消息ID,消息
- Output         : None
- Return         : None
- History:
-     1.   zhengjunyan 00148421 2009-10-27  Draft Enact
-*****************************************************************************/
+
 /*lint -e960*/
 VOS_UINT32 NAS_EMM_AnyStateMsgIdenReq(VOS_UINT32  ulMsgId,
                                       VOS_VOID   *pMsgStru)
@@ -158,17 +140,7 @@ VOS_VOID NAS_EMM_CompCnIdenRsp( LRRC_LNAS_MSG_STRU *pNasMsg)
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_EMM_CompCnIdenRsp
- Discription    : 从GU获取TMSI状态
- Input          : VOS_UINT8*
- Output         : None
- Return         : VOS_UINT32
-                     NAS_EMM_SUCC  获取成功
-                     NAS_EMM_FAIL  获取失败
- History:
-     1.   sunjitan 00193151  2012-04-12  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  NAS_EMM_GetTmsiStatus(VOS_VOID)
 {
     NAS_GUMM_INFO_STRU                  stGuInfo;
@@ -193,16 +165,7 @@ VOS_UINT32  NAS_EMM_GetTmsiStatus(VOS_VOID)
 
 }
 
-/*****************************************************************************
- Function Name  : NAS_EMM_IdenImsi
- Discription    : 获取Imsi
- Input          : 消息
- Output         : None
- Return         : None
- History:
-     1. zangyalan 57968     2008-09-09  Draft Enact
-     2. lihong 00150010     2013-01-10  Modify:Emergency
-*****************************************************************************/
+
 VOS_VOID NAS_EMM_IdenImsi
 (
     LRRC_LNAS_MSG_STRU                     *pNasMsg,
@@ -269,17 +232,7 @@ VOS_VOID NAS_EMM_IdenImeisv(LRRC_LNAS_MSG_STRU *pNasMsg)
 
     return;
 }
-/*****************************************************************************
- Function Name  : NAS_EMM_IdenTmsi
- Discription    : 编码Tmsi
- Input          : LRRC_LNAS_MSG_STRU*
-                        VOS_UINT32*
- Output         : None
- Return         : VOS_VOID
- History:
-     1.   zangyalan 57968    2008-09-27  Draft Enact
-     2.   sunjitan 00193151  2012-04-13  Modify
-*****************************************************************************/
+
 VOS_VOID  NAS_EMM_EncodeTmsi
 (
     LRRC_LNAS_MSG_STRU  *pNasMsg,
@@ -336,19 +289,7 @@ VOS_VOID  NAS_EMM_EncodeTmsi
 
 }
 /*lint +e960*/
-/*****************************************************************************
- Function Name  : NAS_EMM_IdenTypeGet
- Discription    : 获取网侧请求的身份识别参数
- Input          : 参数类型, Nas消息
- Output         : None
- Return         : None
- History:
-     1. zangyalan 57968         2008-10-06  Draft Enact
-     2. zhengjunyan 00148421    2009.03.03  问题单BA8D01054
-     3. zhuyiqiang 00138739     2009-08-11  MODIFY    BJ9D01672,上行编码优化
-     4. lihong 00150010         2012-12-17  Modify:Emergency
 
-*****************************************************************************/
 VOS_VOID NAS_EMM_IdenTypeGet(VOS_UINT8 ucIdenType, LRRC_LNAS_MSG_STRU *pNasMsg)
 {
     VOS_UINT32              ulIndex         = 0;

@@ -176,7 +176,6 @@ typedef struct tagIFNET
     ULONG if_ulKeepAlive;   /* 链路层协商用和链路层探测链路状态用 */
     USHORT if_usLinkUpDownTrapEnable; /* 接口UP/DOWN时发送trap报文的开关 */
     
-    /* Add by zhaoyue00171897/shuxieliu00176784, at 2011-06-04. 修改原因: 支持VLAN配置不一致的告警 */
     USHORT usVlanWarningFlag;         /* Vlan 一致性告警开关,计数值,0表示没有使能该功能,非0表示主接口下使能该功能的子接口数 */
 
     ULONG if_ulPassive ;              /* 接口的PASSIVE属性,以防止路由泄漏 */
@@ -378,7 +377,7 @@ typedef struct tagIFNET
 
     /* 为了与其它模块兼容，请在以下添加字段。 */
 
-    ULONG if_ulType;          /* 接口类型 for VISP add by luohanjun 2004/03/24 */
+    ULONG if_ulType;
 
     /* IFNET通知路由管理模块接口UP/DOWN的函数 */
     ULONG (*if_pfNotifyRouter6)(struct tagIFNET *, ULONG, UINTPTR);
@@ -443,10 +442,8 @@ typedef struct tagIFNET
     /* VISP1.8.1 支持1AG标准协议开发*/
     UCHAR if_uc1agVersion; /* 0:Draft7版本;1:标准版本 */
     UCHAR if_uc1agNpVersion; /* 0:Draft7版本;1:标准版本 */
-    /* Added for 支持接收不带VLAN头的1AG报文2009-05-14 */
     USHORT if_us1agRcvDefaultVlan;
 
-    /* Edit by L00105073 at 2009-12-24 for 1agOverTrunkPort 下发组播地址计数 */
     ULONG if_ul1agMultiCount;
     ULONG ulHost6RtReserved;  /*IPV6保留主机路由标记 ，IPV4已经在IP
                              控制块中，但IPV6控制块由IR管理*/

@@ -1,23 +1,6 @@
 
 
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CbtPpm.c
-  版 本 号   : 初稿
-  作    者   :
-  生成日期   :
-  最近修改   :
-  功能描述   : CBT的物理端口管理模块
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年5月31日
-    作    者   : L00256032
-    修改内容   : V8R1 OM_Optimize项目新增
-
-***************************************************************************** */
 
 /*****************************************************************************
   1 头文件包含
@@ -63,19 +46,7 @@ extern VOS_UINT32 CBTSCM_SoftDecodeDataRcv(VOS_UINT8 *pucBuffer, VOS_UINT32 ulLe
   4 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : CBTPPM_OamCbtPortDataSnd
- 功能描述  : 发送CBT数据
- 输入参数  : pucVirAddr:   数据虚地址
-             pucPhyAddr:   数据实地址
-             ulDataLen:    数据长度
- 输出参数  : 无
- 返 回 值  : VOS_ERR/VOS_OK
- 修改历史  :
-   1.日    期  : 2014年5月26日
-     作    者  : h59254
-     修改内容  : Creat Function
-*****************************************************************************/
+
 VOS_UINT32 CBTPPM_OamCbtPortDataSnd(VOS_UINT8 *pucVirAddr, VOS_UINT8 *pucPhyAddr, VOS_UINT32 ulDataLen)
 {
     CBTCPM_SEND_FUNC                    pFunc;
@@ -90,21 +61,7 @@ VOS_UINT32 CBTPPM_OamCbtPortDataSnd(VOS_UINT8 *pucVirAddr, VOS_UINT8 *pucPhyAddr
     return pFunc(pucVirAddr, pucPhyAddr, ulDataLen);
 }
 
-/*****************************************************************************
- 函 数 名  : CBTPPM_OamUsbCbtSendData
- 功能描述  : 将输入的数据通过USB(APP口)发送给PC侧
- 输入参数  : pucVirAddr:   数据虚地址
-             pucPhyAddr:   数据实地址
-             ulDataLen:    数据长度
- 输出参数  : 无
- 返 回 值  : VOS_ERR/VOS_OK
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2011年10月8日
-     作    者  : g47350
-     修改内容  : Creat Function
-*****************************************************************************/
+
 VOS_UINT32 CBTPPM_OamUsbCbtSendData(VOS_UINT8 *pucVirAddr, VOS_UINT8 *pucPhyAddr, VOS_UINT32 ulDataLen)
 {
     VOS_INT32                           lRet;
@@ -195,17 +152,7 @@ VOS_UINT32 CBTPPM_OamUsbCbtSendData(VOS_UINT8 *pucVirAddr, VOS_UINT8 *pucPhyAddr
 
 }
 
-/*****************************************************************************
- 函 数 名  : CBTPPM_OamUsbCbtPortClose
- 功能描述  : 用于关闭USB校准端口的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 修改历史  :
-   1.日    期  : 2014年5月24日
-     作    者  : h59254
-     修改内容  : Creat Function
-*****************************************************************************/
+
 VOS_VOID CBTPPM_OamUsbCbtPortClose(VOS_VOID)
 {
     if (VOS_ERROR == g_ulCbtPortUDIHandle)
@@ -232,18 +179,7 @@ VOS_VOID CBTPPM_OamUsbCbtPortClose(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CBTPPM_OamUsbCbtWriteDataCB
- 功能描述  : USB承载的CBT端口异步发送数据的回调
- 输入参数  : pucData:   发送的数据内容
-             ulDataLen: 实际发送数据长度
- 输出参数  : 无
- 返 回 值  : 无
- 修改历史  :
-   1.日    期  : 2014年5月24日
-     作    者  : h59254
-     修改内容  : V8R1 OM_Optimize项目新增
-*****************************************************************************/
+
 VOS_VOID CBTPPM_OamUsbCbtWriteDataCB(VOS_UINT8* pucVirData, VOS_UINT8* pucPhyData, VOS_INT lLen)
 {
     if (lLen < 0)
@@ -261,17 +197,7 @@ VOS_VOID CBTPPM_OamUsbCbtWriteDataCB(VOS_UINT8* pucVirData, VOS_UINT8* pucPhyDat
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CBTPPM_OamUsbCbtStatusCB
- 功能描述  : 用于ACPU上面处理USB物理端口断开后的校准断开
- 输入参数  : enPortState:   端口状态
- 输出参数  : 无
- 返 回 值  : 无
- 修改历史  :
-   1.日    期  : 2014年5月24日
-     作    者  : h59254
-     修改内容  : Creat Function
-*****************************************************************************/
+
 VOS_VOID CBTPPM_OamUsbCbtStatusCB(ACM_EVT_E enPortState)
 {
     /* CBT端口从USB或VCOM切换到UART时接收函数指针为空，收到USB状态变更时不做断开处理 */
@@ -288,17 +214,7 @@ VOS_VOID CBTPPM_OamUsbCbtStatusCB(ACM_EVT_E enPortState)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CBTPPM_OamUsbCbtPortOpen
- 功能描述  : 用于初始化USB承载的CBT使用的端口
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 修改历史  :
-   1.日    期  : 2014年5月24日
-     作    者  : h59254
-     修改内容  : Creat Function
-*****************************************************************************/
+
 VOS_VOID CBTPPM_OamUsbCbtPortOpen(VOS_VOID)
 {
     CBTPPM_OamCbtPortDataInit(OM_USB_CBT_PORT_HANDLE,
@@ -309,17 +225,7 @@ VOS_VOID CBTPPM_OamUsbCbtPortOpen(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CBTPPM_OamUsbCbtReadDataCB
- 功能描述  : 用于ACPU上面底软把USB承载的CBT口数据通过ICC发送给OM模块
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_ERR/VOS_OK
- 修改历史  :
-   1.日    期  : 2014年5月24日
-     作    者  : h59254
-     修改内容  : Creat Function
-*****************************************************************************/
+
 VOS_INT32 CBTPPM_OamUsbCbtReadDataCB(VOS_VOID)
 {
     ACM_WR_ASYNC_INFO                   stInfo;
@@ -375,20 +281,7 @@ VOS_INT32 CBTPPM_OamUsbCbtReadDataCB(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CBTPPM_OamCbtPortDataInit
- 功能描述  : 用于初始化CBT使用的端口设备
- 输入参数  : enHandle: 端口的句柄
-             pReadCB: 该端口上面的读取回调函数
-             pWriteCB: 该端口上面的异步写回调函数
-             pStateCB: 该端口上面的状态回调函数
- 输出参数  : 无
- 返 回 值  : VOS_OK/VOS_ERR
- 修改历史  :
-   1.日    期  : 2014年5月24日
-     作    者  : h59254
-     修改内容  : Creat Function
-*****************************************************************************/
+
 VOS_VOID CBTPPM_OamCbtPortDataInit(OM_PROT_HANDLE_ENUM_UINT32          enHandle,
                                         VOS_VOID                            *pReadCB,
                                         VOS_VOID                            *pWriteCB,
@@ -486,17 +379,7 @@ VOS_VOID CBTPPM_OamCbtPortDataInit(OM_PROT_HANDLE_ENUM_UINT32          enHandle,
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : GU_OamUsbCbtPortInit
- 功能描述  : 用于USB 上CBT端口通道的初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_OK/VOS_ERR
- 修改历史  :
-   1.日    期  : 2014年5月25日
-     作    者  : h59254
-     修改内容  : Creat Function
-*****************************************************************************/
+
 VOS_UINT32 CBTPPM_OamUsbCbtPortInit(VOS_VOID)
 {
     /* CBT端口与PCVOICE复用，动态注册数据接收函数 */
@@ -528,20 +411,7 @@ VOS_UINT32 CBTPPM_OamUsbCbtPortInit(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CBTPPM_OamVComCbtReadData
- 功能描述  : 从VCOM端口读取CBT的数据
- 输入参数  :  ucDevIndex: 物理端口
-              pData    : 收到数据
-              ullength : 数据长度
 
- 输出参数  : 无
- 返 回 值  : VOS_ERR/VOS_OK
- 修改历史  :
-   1.日    期  : 2014年5月26日
-     作    者  : h59254
-     修改内容  : Creat Function
-*****************************************************************************/
 VOS_INT CBTPPM_OamVComCbtReadData(VOS_UINT8 ucDevIndex, VOS_UINT8 *pData, VOS_UINT32 ullength)
 {
     CBTCPM_RCV_FUNC                     pFunc;
@@ -594,19 +464,7 @@ VOS_INT CBTPPM_OamVComCbtReadData(VOS_UINT8 ucDevIndex, VOS_UINT8 *pData, VOS_UI
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CBTPPM_OamVComCbtSendData
- 功能描述  : 从VCOM端口发送CBT数据
- 输入参数  : pucVirAddr:   数据虚地址
-             pucPhyAddr:   数据实地址
-             ulDataLen:    数据长度
- 输出参数  : 无
- 返 回 值  : CPM_SEND_ERR/CPM_SEND_OK
- 修改历史  :
-   1.日    期  : 2014年5月26日
-     作    者  : h59254
-     修改内容  : Creat Function
-*****************************************************************************/
+
 VOS_UINT32 CBTPPM_OamVComCbtSendData(VOS_UINT8 *pucVirAddr, VOS_UINT8 *pucPhyAddr, VOS_UINT32 ulDataLen)
 {
     g_stCbtVComAcpuDebugInfo.ulVCOMSendNum++;
@@ -623,17 +481,7 @@ VOS_UINT32 CBTPPM_OamVComCbtSendData(VOS_UINT8 *pucVirAddr, VOS_UINT8 *pucPhyAdd
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CBTPPM_OamVComCbtPortInit
- 功能描述  : 用于 Vcom CBT端口的初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 修改历史  :
-   1.日    期  : 2014年5月24日
-     作    者  : h59254
-     修改内容  : Creat Function
-*****************************************************************************/
+
 VOS_VOID CBTPPM_OamVComCbtPortInit(VOS_VOID)
 {
     /* CBT端口与PCVOICE复用，动态注册数据接收函数 */
@@ -649,17 +497,7 @@ VOS_VOID CBTPPM_OamVComCbtPortInit(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CBTPPM_OamCbtPortInit
- 功能描述  : CBT端口初始化
- 输入参数  : enCbtPort:CBT物理端口类型
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 修改历史  :
-  1.日    期   : 2014年5月25日
-    作    者   : h59254
-    修改内容   : V8R1 OM_Optimize项目新增
-*****************************************************************************/
+
 VOS_VOID CBTPPM_OamCbtPortInit(VOS_VOID)
 {
     OM_CHANNLE_PORT_CFG_STRU            stPortCfg;
@@ -706,17 +544,7 @@ CBTPPM_SOCKET_CTRL_INFO_STRU    g_stCbtPpmSocketCtrlInfo;
 
 CBTPPM_SOCKET_DEBUG_INFO_STRU   g_stCbtPpmSocketDebugInfo;
 
-/*****************************************************************************
- 函 数 名  : CBTPPM_SockBindListen
- 功能描述  :  socket服务器绑定监听
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :   无
- 修改历史  :
-   1.日    期  : 2015年12月21日
-     作    者  : x51137
-     修改内容  : Creat Function
-*****************************************************************************/
+
 VOS_VOID CBTPPM_SockBindListen(VOS_VOID)
 {
     struct sockaddr_in  sAddr;
@@ -769,17 +597,7 @@ VOS_VOID CBTPPM_SockBindListen(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- 函 数 名     : CBTPPM_SockAcceptRecv
- 功能描述  :  用于处理客户端的请求，接收数据提交给上层处理。
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :   无
- 修改历史  :
-   1.日    期  : 2015年12月21日
-     作    者  : x51137
-     修改内容  : Creat Function
-*****************************************************************************/
+
 VOS_VOID CBTPPM_SockAcceptRecv(VOS_VOID)
 {
     CBT_Ip_fd_set                           listen1;
@@ -881,17 +699,7 @@ VOS_VOID CBTPPM_SockAcceptRecv(VOS_VOID)
     
 }
 
-/*****************************************************************************
- 函 数 名  : CBTPPM_SocketServerTask
- 功能描述  :  socket服务器线程，用来处理服务器端和客户端的所有请求。
-  输入参数  : 无
-  输出参数  : 无
- 返 回 值  :   无
- 修改历史  :
-   1.日    期  : 2015年12月21日
-     作    者  : x51137
-     修改内容  : Creat Function
-*****************************************************************************/
+
 
 VOS_VOID CBTPPM_SocketServerTask(VOS_VOID)
 {
@@ -904,17 +712,7 @@ VOS_VOID CBTPPM_SocketServerTask(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CBTPPM_SockIsEnable
- 功能描述  :  socket功能是否支持
-  输入参数  : 无
-  输出参数  : 无
- 返 回 值  :  VOS_TRUE/VOS_FALSE
- 修改历史  :
-   1.日    期  : 2015年12月21日
-     作    者  : x51137
-     修改内容  : Creat Function
-*****************************************************************************/
+
 
 VOS_BOOL CBTPPM_SockIsEnable(VOS_VOID)
 {
@@ -934,17 +732,7 @@ VOS_BOOL CBTPPM_SockIsEnable(VOS_VOID)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CBTPPM_SocketTaskInit
- 功能描述  :  初始化socket服务器端
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :   VOS_OK/VOS_ERR
- 修改历史  :
-   1.日    期  : 2015年12月21日
-     作    者  : x51137
-     修改内容  : Creat Function
-*****************************************************************************/
+
 VOS_UINT32 CBTPPM_SocketTaskInit(VOS_VOID)
 {
     VOS_UINT32 ulRelVal;
@@ -979,19 +767,7 @@ VOS_UINT32 CBTPPM_SocketTaskInit(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CBTPPM_SocketSendData
- 功能描述  : 从socket发送CBT数据
- 输入参数  : pucVirAddr 数据虚地址
-                           pucPhyAddr 数据实地址
-                           ulDataLen 数据长度
- 输出参数  : 
- 返 回 值  :   VOS_OK/VOS_ERR
- 修改历史  :
-   1.日    期  : 2015年12月21日
-     作    者  : x51137
-     修改内容  : Creat Function
-*****************************************************************************/
+
 
 VOS_UINT32 CBTPPM_SocketSendData(VOS_UINT8 *pucVirAddr, VOS_UINT8 *pucPhyAddr, VOS_UINT32 ulDataLen)
 {
@@ -1030,17 +806,7 @@ VOS_UINT32 CBTPPM_SocketSendData(VOS_UINT8 *pucVirAddr, VOS_UINT8 *pucPhyAddr, V
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CBTPPM_SocketPortInit
- 功能描述  :  用于socket上CBT端口通道的初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :  无
- 修改历史  :
-   1.日    期  : 2015年12月21日
-     作    者  : x51137
-     修改内容  : Creat Function
-*****************************************************************************/
+
 
 VOS_VOID CBTPPM_SocketPortInit(VOS_VOID)
 {
@@ -1052,17 +818,7 @@ VOS_VOID CBTPPM_SocketPortInit(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CBTPPM_SocketCtrlInfoShow
- 功能描述  :  打印控制信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :  无
- 修改历史  :
-   1.日    期  : 2015年12月21日
-     作    者  : x51137
-     修改内容  : Creat Function
-*****************************************************************************/
+
 VOS_VOID CBTPPM_SocketCtrlInfoShow(VOS_VOID)
 {
     /*lint -e534*/
@@ -1074,17 +830,7 @@ VOS_VOID CBTPPM_SocketCtrlInfoShow(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CBTPPM_SocketDebugInfoShow
- 功能描述  :  打印调试信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :  无
- 修改历史  :
-   1.日    期  : 2015年12月21日
-     作    者  : x51137
-     修改内容  : Creat Function
-*****************************************************************************/
+
 VOS_VOID CBTPPM_SocketDebugInfoShow(VOS_VOID)
 {
     /*lint -e534*/
@@ -1107,17 +853,7 @@ VOS_VOID CBTPPM_SocketDebugInfoShow(VOS_VOID)
 
 #else
 
-/*****************************************************************************
- 函 数 名  : CBTPPM_SocketTaskInit
- 功能描述  : CBT端口初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_OK/VOS_ERR
- 修改历史  :
-  1.日    期   : 2015年12月21日
-    作    者   : x51137
-    修改内容   :  Creat Function
-*****************************************************************************/
+
 VOS_UINT32 CBTPPM_SocketTaskInit(VOS_VOID)
 {
     return VOS_OK;

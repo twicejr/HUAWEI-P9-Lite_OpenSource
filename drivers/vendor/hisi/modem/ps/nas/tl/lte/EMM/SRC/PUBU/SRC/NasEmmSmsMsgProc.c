@@ -284,18 +284,7 @@ VOS_VOID    NAS_EMM_SMS_SendMrrcDataReq_SmsData( MsgBlock * pMsg)
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_IsSmsNotRetransmitConditionSatisfied
- Description     : 判断是否满足不允许SMS重发短消息的条件
-                   不允许重发返回YES，否则返回NO
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.sunjitan 00193151      2012-08-03  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_IsSmsNotRetransmitConditionSatisfied
 (
     LMM_SMS_ERR_CAUSE_ENUM_UINT32    *penErrCause
@@ -348,19 +337,7 @@ VOS_UINT32  NAS_EMM_IsSmsNotRetransmitConditionSatisfied
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SomeStateRcvSmsMsgCommProc
- Description     : 在除
-                   REG.NORMAL_SERVICE
-                   REG.ACCESS_GRAND_IND
-                   之外的其它状态下收到SMS的建链请求或者数据请求时相同的处理部分
- Input           : VOS_VOID
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.sunjitan 00193151      2012-08-03  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_SomeStateRcvSmsMsgCommProc(VOS_VOID)
 {
     VOS_UINT32                          ulCurEmmStat;
@@ -422,16 +399,7 @@ VOS_UINT32  NAS_EMM_SomeStateRcvSmsMsgCommProc(VOS_VOID)
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_RcvSmsEstReqMsgProc
- Description     : 在收到SMS的建链请求时根据当前状态做出的处理
- Input           : VOS_VOID
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.sunjitan 00193151      2012-08-03  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_RcvSmsEstReqMsgProc(VOS_VOID)
 {
     VOS_UINT32                          ulCurEmmStat;
@@ -458,16 +426,7 @@ VOS_UINT32  NAS_EMM_RcvSmsEstReqMsgProc(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_RcvSmsDataReqMsgProc
- Description     : 在收到SMS的数据请求时根据当前状态做出的处理
- Input           : MsgBlock*
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.sunjitan 00193151      2012-08-03  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_RcvSmsDataReqMsgProc(MsgBlock * pMsg)
 {
     VOS_UINT32                          ulCurEmmStat;
@@ -499,17 +458,7 @@ VOS_UINT32  NAS_EMM_RcvSmsDataReqMsgProc(MsgBlock * pMsg)
 
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_PreProcMsgSmsDataReq
- Description     : 处理SMS的透传消息
- Input           : MsgBlock *
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.sunbing 49683      2011-11-3  Draft Enact
-    2.sunjitan 00193151 2012-08-03  Mod for: ERR_IND消息cause
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_PreProcMsgSmsDataReq( MsgBlock * pMsg )
 {
     LMM_SMS_ERR_CAUSE_ENUM_UINT32       enErrCause = LMM_SMS_ERR_CAUSE_BUTT;
@@ -532,16 +481,7 @@ VOS_UINT32  NAS_EMM_PreProcMsgSmsDataReq( MsgBlock * pMsg )
     return NAS_EMM_RcvSmsDataReqMsgProc(pMsg);
 
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_SndSmsdataFailProc
- Description     : 短信发送失败时的处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         : wangchen 00209181   2012-11-22  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_SndSmsdataFailProc(VOS_VOID* pMsg,VOS_UINT32 *pulIsDelBuff)
 {
     (VOS_VOID)pMsg;
@@ -553,17 +493,7 @@ VOS_UINT32 NAS_EMM_SndSmsdataFailProc(VOS_VOID* pMsg,VOS_UINT32 *pulIsDelBuff)
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_PreProcMsgSmsEstReq
- Description     : 预处理SMS的建链消息
- Input           : MsgBlock *
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.sunbing 49683      2011-11-3  Draft Enact
-    2.sunjitan 00193151 2012-08-03  Mod for: ERR_IND消息cause
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_PreProcMsgSmsEstReq(MsgBlock * pMsg )
 {
     LMM_SMS_ERR_CAUSE_ENUM_UINT32       enErrCause = LMM_SMS_ERR_CAUSE_BUTT;

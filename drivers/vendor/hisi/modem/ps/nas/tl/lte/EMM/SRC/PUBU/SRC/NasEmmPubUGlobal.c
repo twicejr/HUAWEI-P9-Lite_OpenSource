@@ -1,15 +1,4 @@
-/******************************************************************************
 
-        @(#)Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : NasEmmPubUGlobal.c
-    Description :
-    History     :
-      1.  hanlufeng 41410  Draft Enact
-      2.  hanlufeng 41410  2009-03-11  BA8D01164 增加对EMM INFO处理的接口
-      3.  leili 00132387   2010-08-04  DTS2010072301741
-******************************************************************************/
 
 /*****************************************************************************
   1 Include HeadFile
@@ -138,17 +127,7 @@ VOS_UINT32                              g_ulGradualForbTaTimerPara    = 0;
 *****************************************************************************/
 /*lint -e960*/
 /*lint -e961*/
-/*****************************************************************************
- Function Name   : NAS_LMM_EmmStateInit
- Description     : 初始化EMM的状态机的NULL状态
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2009-4-14  Draft Enact
-
-*****************************************************************************/
 
 VOS_VOID    NAS_LMM_EmmStateInit( VOS_VOID )
 {
@@ -203,17 +182,7 @@ VOS_VOID    NAS_EMM_FsmInit(            VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_PubmInfoUeIdInit
- Description     : EMM 全局信息初始化中的stMmUeId初始化
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.h41410      2008-10-27  Draft Enact
-    2.z00148421   2009.04.17  Modify
-*****************************************************************************/
 VOS_VOID    NAS_EMM_PubmInfoUeIdInit(   VOS_VOID )
 {
     /*IMSI,IMEI必须有，所以初始化UeId有效*/
@@ -341,19 +310,7 @@ VOS_VOID  NAS_EMM_UpdateLteContainDrxFlag( VOS_VOID )
 
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ReadNvUeNetCap
- Description     : 从NVIM中读取 UE network capability
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.h41410      2009-1-7  Draft Enact
-    2.zhengjunyan 00148421 2011-06-03 MOD:缺省值修改为0xE0 0xE0 0x40 0x40,
-                                     支持从NVIM中读取，暂未实现与接入技术对应的验证
-    3.sunjitan 00193151  2012-05-05  DTS2012041105089  增加将UeNetCap写入MML
-*****************************************************************************/
 VOS_VOID    NAS_EMM_ReadNvUeNetCap(VOS_VOID)
 {
     LNAS_LMM_NV_UE_NET_CAP_STRU         stNvUeNetCap;
@@ -494,16 +451,7 @@ VOS_VOID    NAS_EMM_ReadNvUeNetCap(VOS_VOID)
 
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ReadNvVoiceDomain
- Description     : 从NV项读取voice domain for E-UTRAN
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2011-6-29  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ReadNvVoiceDomain(VOS_VOID )
 {
     NAS_EMM_PUB_INFO_STRU              *pstPubInfo;
@@ -565,16 +513,7 @@ VOS_VOID  NAS_EMM_ReadNvVoiceDomain(VOS_VOID )
 #endif
     return;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_ReadNvNasRelease
- Description     : 从NV项读取NAS支持的版本
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-2-6  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ReadNvNasRelease(VOS_VOID )
 {
     LNAS_LMM_NV_NAS_RELEASE_STRU        stNvNasRelease;
@@ -852,16 +791,7 @@ VOS_VOID  NAS_EMM_ReadNvCodecSupportList(VOS_VOID )
 }
 /*sunbing 49683 2013-10-21 VoLTE end*/
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ReadNvNasRelease
- Description     : 从NV项读取用户配置的网侧原因
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2013-2-6  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ReadNvConfigNwCause(VOS_VOID )
 {
     LNAS_LMM_NV_CONFIG_NWCAUSE_STRU    stNvConfigCause;
@@ -917,16 +847,7 @@ VOS_VOID  NAS_EMM_ReadNvConfigNwCause(VOS_VOID )
 
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SetLteUeUsageSetting2Mml
- Description     : 将UE's setting设置到MML中
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong 00150010      2012-07-16  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SetLteUeUsageSetting2Mml
 (
     NAS_EMM_USAGE_SETTING_UINT32        enUeUsageSetting
@@ -940,17 +861,7 @@ VOS_VOID  NAS_EMM_SetLteUeUsageSetting2Mml
     NAS_MML_SetLteUeUsageSetting((VOS_UINT8)enUeUsageSetting);
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ReadNvUeSetting
- Description     : 从NV项中读取UE's setting，并设置到MML中
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong 00150010      2012-02-28  Draft Enact
-    2.wangchen 00209181    2012-06-29  Modify:cs/ps1
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ReadNvUeSetting( VOS_VOID )
 {
     VOS_VOID                           *pData           = VOS_NULL_PTR;
@@ -998,18 +909,7 @@ VOS_VOID  NAS_EMM_ReadNvUeSetting( VOS_VOID )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_PubmInfoSupCodecListInit
- Description     : EMM 全局信息初始化中的SupCodecList初始化
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.h41410      2009-1-5  Draft Enact
-    2.l00132387   2011-7-5  Modify
-    3.sunbing 49683 2013-10-21  Modify
-*****************************************************************************/
 VOS_VOID    NAS_EMM_PubmInfoSupCodecListInit( VOS_VOID )
 {
     NAS_LMM_PUB_INFO_STRU               *pstPubInfo;
@@ -1039,16 +939,7 @@ VOS_VOID    NAS_EMM_PubmInfoSupCodecListInit( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   :  NAS_EMM_PubmInfoBearerContextInit()
- Description     : EMM 全局信息初始化中的承载上下文初始化
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421 2009.03.26 New Draft
-*****************************************************************************/
 VOS_VOID     NAS_EMM_PubmInfoBearerContextInit(VOS_VOID)
 {
     NAS_MML_PS_BEARER_CONTEXT_STRU      *pstPsBearerCtx = NAS_EMM_NULL_PTR;
@@ -1200,17 +1091,7 @@ VOS_VOID    NAS_EMM_FSM_ClearState(VOS_VOID)
 
 
 
-/*****************************************************************************
- Function Name   : NAS_LMM_MatchNvImsi
- Description     : 取ME的NV中IMSI与内存中的IMSI比较
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.    leili  00132387      2010-1-12  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_LMM_MatchNvImsi( VOS_VOID )
 {
     VOS_VOID                           *pData;
@@ -1286,17 +1167,7 @@ VOS_VOID  NAS_LMM_UpdateNvImsi(const VOS_UINT8  *pucImsi )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_LMM_ReadNvimImei
- Description     : 读取IMSI
- Input           : VOS_VOID
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2009-02-27  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_LMM_ReadNvimImei(VOS_VOID)
 {
     VOS_UINT8                           aucDefImei[NAS_MM_MAX_UEID_BUF_SIZE] = {0};
@@ -1417,16 +1288,7 @@ VOS_VOID  NAS_LMM_ReadNvEpsSecContext(VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_ReadNvATTDamParaCServiceAndPlmnList
- Description     : 读取AT&T定制需求参数NV项
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.    sunjitan 00193151      2015-01-04  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_LMM_ReadNvDamParaCServiceAndPlmnList(VOS_VOID )
 {
     PS_NV_DAM_CONFIG_PARA_STRU            stNvDamPara = {0};
@@ -1499,31 +1361,14 @@ VOS_VOID  NAS_LMM_ReadNvDamParaCServiceAndPlmnList(VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_ReadRej19AtmptCnt
- Description     : 读取NV项EN_NV_ID_LNAS_COMM_CONFIG_PARA中设置的ucRej19AtmptCntFlag
- Input           : None
- Output          : None
- Return          : VOS_VOID
- History         :
-    1.    sunjitan 00193151      2015-01-04  Draft Enact
-*****************************************************************************/
+
 VOS_VOID  NAS_LMM_ReadRej19AtmptCntFlag(VOS_UINT8 ucRej19AtmptCntFlag)
 {
     NAS_EMM_GetEmmInfoRej19AtmptCntFlag() = ucRej19AtmptCntFlag;
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_ReadTmoImsiHplmnListAndSetTmoUsimCardFlag
- Description     : 读取NV项EN_NV_ID_LNAS_COMM_CONFIG_PARA中设置的TmoImsiHplmnList，
-                   然后设置是否是TMO卡的标识
- Input           : None
- Output          : None
- Return          : VOS_VOID
- History         :
-    1.    sunjitan 00193151      2015-03-15  Draft Enact
-*****************************************************************************/
+
 VOS_VOID  NAS_LMM_ReadTmoImsiHplmnListAndSetTmoUsimCardFlag
 (
     NAS_TMO_IMSI_HPLMN_LIST *pstTmoImsiHplmnList
@@ -1585,17 +1430,7 @@ VOS_VOID  NAS_LMM_ReadTmoImsiHplmnListAndSetTmoUsimCardFlag
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_LteNoSubscribeInit
- Description     : 4G未开户问题全局变量初始化
- Input           : None
- Output          : None
- Return          : VOS_VOID
- History         :
-    1.    lifuxin  00253982      2015-02-26  4G未开户问题修改
-    2.    sunbing  00265702      2015-10-15  为通过移动入网测试，
-                                             增加NV控制，可以定制关闭协议规定的4G未开户功能功能
-*****************************************************************************/
+
 VOS_VOID  NAS_EMM_LteNoSubscribeInit(
             LNAS_LMM_NV_LTE_NO_SUBSCRIBE_CONFIG_STRU stLteNoSubscribeNvConfig)
 {
@@ -1658,16 +1493,7 @@ VOS_VOID  NAS_EMM_LteNoSubscribeInit(
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_ReadNvLmmCommConfigPara
- Description     : 读取LMM公共定制需求参数NV项
- Input           : None
- Output          : None
- Return          : VOS_VOID
- History         :
-    1.    sunjitan 00193151      2015-01-04  Draft Enact
-    2.    lifuxin  00253982      2015-4-3    4G未开户特性NV
-*****************************************************************************/
+
 VOS_VOID  NAS_LMM_ReadNvLmmCommConfigPara(VOS_VOID )
 {
     LNAS_LMM_NV_COMM_CONFIG_PARA_STRU     stNvCommPara;
@@ -1711,17 +1537,7 @@ VOS_VOID  NAS_LMM_ReadNvLmmCommConfigPara(VOS_VOID )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_LMM_ReadSimEpsSecContext
- Description     : 从USIM中读取安全参数
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1. leili    00132387      2010-01-18  Draft Enact
-    2. sunjitan 00193151      2015-03-15  Modify
-*****************************************************************************/
 VOS_VOID  NAS_LMM_ReadSimEpsSecContext( VOS_VOID )
 {
     NAS_LMM_PUBM_LOG_INFO("NAS_LMM_ReadSimEpsSecContext is entered!");
@@ -1843,16 +1659,7 @@ VOS_VOID  NAS_LMM_ReadSimPsLoc( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_ReadSimMncLen
- Description     : 读取USIM卡中的MNC长度
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1. sunjitan 00193151      2015-01-04  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_LMM_ReadSimMncLen(VOS_VOID)
 {
     NAS_LMM_PUBM_LOG_INFO("NAS_LMM_ReadSimMncLen is entered!");
@@ -2185,17 +1992,7 @@ VOS_VOID  NAS_LMM_WriteSimPsLoc( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_WriteEpsSecuContext
- Description     : 保存安全上下文到USIM或者NVIM中
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-2-26  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_LMM_WriteEpsSecuContext( NAS_NV_ITEM_OP_TYPE_ENUM_UINT32 enOpType )
 {
     VOS_UINT32                          ulRslt;
@@ -2225,17 +2022,7 @@ VOS_VOID  NAS_LMM_WriteEpsSecuContext( NAS_NV_ITEM_OP_TYPE_ENUM_UINT32 enOpType 
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_WritePsLoc
- Description     : 保存PS LOC信息到USIM或者NVIM中
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-2-26  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_LMM_WritePsLoc
 (
     NAS_NV_ITEM_OP_TYPE_ENUM_UINT32     enOpType
@@ -2270,17 +2057,7 @@ VOS_VOID  NAS_LMM_WritePsLoc
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SetTinType
- Description     : 保存TIN信息到NVIM中
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.    leili     00132387    2012-3-2        Draft  Enact
-    2.    yanglei   00307272    2015-07-28      可维可测，上报紧急呼列表
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SetTinType(MMC_LMM_TIN_TYPE_ENUM_UINT32 ulTinType)
 {
     NAS_NVIM_TIN_INFO_STRU         stNvTinType;
@@ -2363,17 +2140,7 @@ VOS_VOID  NAS_EMM_SetTinType(MMC_LMM_TIN_TYPE_ENUM_UINT32 ulTinType)
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_WriteNvMmInfo
- Description     : 写入EMM NV相关信息
- Input           : VOS_VOID
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.luojian 00107747      2009-4-17  Draft Enact
-    2.leili 00132387        2010-01-18 modify
-*****************************************************************************/
 VOS_VOID NAS_EMM_WriteNvMmInfo(VOS_VOID)
 {
     if (NAS_LMM_SIM_STATUS_AVAILABLE == NAS_LMM_GetSimState())
@@ -2399,16 +2166,7 @@ VOS_VOID NAS_EMM_WriteNvMmInfo(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_GetImeisvFromImei
- Description     : 开机，根据IMEI计算IMEISV
- Input           :
- Return          :
- History         :
-    1.zhengjunyan 2009.05.11 New Draft
-    2.yangfan 00159566    2010-03-24  固定了IMEI,IMEISV的长度
 
-*****************************************************************************/
 VOS_VOID NAS_LMM_GetImeisvFromImei(VOS_VOID)
 {
 
@@ -2516,17 +2274,7 @@ VOS_UINT32  * NAS_EMM_GetEmmGlobleAddr(NAS_LMM_GLOBLE_PARA_ENUM_UINT32 ulGlobleP
     return pucGlobleAddr;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SendIntraConn2IdleReq
- Description     : 发送内部消息INTRA_CONN2IDLE_REQ
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2009-9-29  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SendIntraConn2IdleReq( VOS_VOID )
 {
     NAS_EMM_INTRA_CONN2IDLE_REQ_STRU   *pIntraConn2IdleReq = NAS_LMM_NULL_PTR;
@@ -2557,23 +2305,15 @@ VOS_VOID  NAS_EMM_SendIntraConn2IdleReq( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_CommProcConn2Ilde
- Description     : 函数执行两个动作:
-                   1.发送内部消息INTRA_CONN2IDLE_REQ
-                   2.更新连接状态
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2009-11-9  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_CommProcConn2Ilde( VOS_VOID )
 {
     NAS_EMM_PUBU_LOG_INFO("NAS_EMM_CommProcConn2Ilde enter!");
     TLPS_PRINT2LAYER_INFO(NAS_EMM_CommProcConn2Ilde_ENUM,LNAS_ENTRY);
+
+    /* 由于该变量用于防止出现NAS处于连接态而RRC处于IDLE态的情况, 所以EMM转为IDLE时清除计数,
+       该变量在Reg Update_MM、Limit Service和Normal Service下非IDLE态的情况下收到ERABM的DRBRESET_REQ时会累加 */
+    g_ucConnStateRcvDrbReestTimes = 0;
 
     /*如果当前连接状态不是IDLE，则向 MMC上报*/
     if((NAS_EMM_CONN_IDLE != NAS_EMM_GetConnState())
@@ -2618,17 +2358,7 @@ VOS_VOID  NAS_EMM_CommProcConn2Ilde( VOS_VOID )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SaveAppMsgPara
- Description     : 设置App消息信息
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.y00159566      2010-3-15  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_EMM_SaveAppMsgPara( VOS_UINT32 ulMsgId, VOS_UINT32 ulOpId)
 {
     g_stEmmInfo.bitOpAppPara         = NAS_EMM_BIT_SLCT;
@@ -2671,17 +2401,7 @@ VOS_UINT32  NAS_EMM_GetAppMsgOpId( VOS_VOID )
     return                      g_stEmmInfo.stAppPara.ulOpId;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_CountSysInfo
- Description     : 用于记录等待RRC EstCnf/RelCnf/RelInd 时收到SysInfo次数
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.y00159566     2010-1-13  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_LMM_CountSysInfo( VOS_UINT16 usSubState )
 {
     NAS_LMM_SYSINFO_COUNT_STRU           *pstSysInfoCnt;
@@ -2716,18 +2436,7 @@ VOS_VOID  NAS_LMM_CountSysInfo( VOS_UINT16 usSubState )
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_EmmInfoInit
- Description     :
- Input           : VOS_VOID
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.y00159566      2010-3-2  Draft Enact
-    2.z00148421      2010-3-24 安全重构:删除NAS_EMM_PubmInfoSecuParaInit
-    3.y00159566      2010-5-31 Modify
-*****************************************************************************/
 VOS_VOID  NAS_LMM_EmmInfoInit( VOS_VOID )
 {
     NAS_EMM_PubmInfoUeIdInit();
@@ -2831,17 +2540,7 @@ VOS_VOID  NAS_EMM_ReadNvimNoImsi( VOS_VOID )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_NoUsimInit
- Description     : 无卡、或读必读文件失败、超时后，认为无卡，则使用此函数。
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.y00159566      2010-3-3  Draft Enact
-    2.z00148421      2010-3-24 安全模块重构
-*****************************************************************************/
 VOS_VOID  NAS_EMM_NoUsimInit( VOS_VOID )
 {
     /* 删除不用变量 */
@@ -2930,18 +2629,7 @@ VOS_VOID  NAS_EMM_ClearLVRTai( VOS_VOID )
 
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SetLVRTacInvalid
- Description     : 拒绝后删除L.V.R TAI时,TAC设置为0xfffe,PLMN设置:如果当前L.V.R
-                    有效,
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2012-5-9  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SetLVRTacInvalid( VOS_VOID )
 {
     NAS_LMM_UndefTac(NAS_LMM_GetEmmInfoLastRegTacAddr());
@@ -3025,18 +2713,7 @@ VOS_VOID  NAS_EMM_SetGuti
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_UpdatePresentPlmnInfo
- Description     : 根据GUTI中的PLMN，决定是否更新当前PLMN，
-                   如果二者不相同，将当前PLMN更新为GUTI中的PLMN
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.sunjitan 00193151      2012-08-13  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_UpdatePresentPlmnInfo(VOS_VOID)
 {
     VOS_UINT32                          ulCount          = 0;
@@ -3067,17 +2744,7 @@ VOS_UINT32  NAS_EMM_UpdatePresentPlmnInfo(VOS_VOID)
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_GetMmlFormatMcc
- Description     : 获取MML格式的MCC
- Input           : pstPlmnId
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong 00150010     2012-03-14     Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_GetMmlFormatMcc
 (
     const NAS_MM_PLMN_ID_STRU             *pstPlmnId
@@ -3101,17 +2768,7 @@ VOS_UINT32 NAS_EMM_GetMmlFormatMcc
     return ulMcc;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_IsMccChanged
- Description     : 判断MCC是否发生变更
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong 00150010     2012-03-14     Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_IsMccChanged( VOS_VOID )
 {
     NAS_MML_EMERGENCY_NUM_LIST_STRU    *pstMmlEmerNumLIst   = VOS_NULL_PTR;
@@ -3129,17 +2786,7 @@ VOS_UINT32 NAS_EMM_IsMccChanged( VOS_VOID )
     }
     return VOS_TRUE;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_IsUSAMcc
- Description     : 判断MCC是否代表美国,MCC310-MCC316都代表美国
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.wangchen 00209181     2014-09-04     Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_IsUSAMcc(VOS_UINT32 ulMcc)
 {
     if ((ulMcc & NAS_EMM_FIRST_BYTE_F) == 0x03)
@@ -3154,17 +2801,7 @@ VOS_UINT32 NAS_EMM_IsUSAMcc(VOS_UINT32 ulMcc)
     }
     return VOS_FALSE;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_IsIndiaMcc
- Description     : 判断MCC是否是印度MCC，MCC404-MCC406都代表印度
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.wangchen 00209181 2014-09-04     Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_IsIndiaMcc(VOS_UINT32 ulMcc)
 {
     if ((ulMcc & NAS_EMM_FIRST_BYTE_F) == 0x04)
@@ -3180,16 +2817,7 @@ VOS_UINT32 NAS_EMM_IsIndiaMcc(VOS_UINT32 ulMcc)
     }
     return VOS_FALSE;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_IsCountryChanged
- Description     : 判断国家是否发生变化
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.wangchen 00209181 2014-09-04     Draft Enact
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_IsCountryChanged()
 {
     NAS_MML_EMERGENCY_NUM_LIST_STRU    *pstMmlEmerNumLIst   = VOS_NULL_PTR;
@@ -3221,17 +2849,7 @@ VOS_UINT32 NAS_EMM_IsCountryChanged()
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_PrintEmergencyList
- Description     : 打印紧急呼号码列表信息
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong 00150010     2012-03-15     Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_PrintEmergencyList
 (
     NAS_MML_EMERGENCY_NUM_LIST_STRU    *pstMmlEmerNumList
@@ -3285,17 +2903,7 @@ VOS_VOID  NAS_EMM_PrintEmergencyList
         }
     }
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_GetEmergencyListFromMml
- Description     : 从MML中读取紧急呼号码列表信息
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong 00150010     2012-03-15     Draft Enact
-
-*****************************************************************************/
 NAS_MML_EMERGENCY_NUM_LIST_STRU*  NAS_EMM_GetEmergencyListFromMml( VOS_VOID )
 {
     NAS_MML_EMERGENCY_NUM_LIST_STRU    *pstMmlEmerNumList = VOS_NULL_PTR;
@@ -3312,18 +2920,7 @@ NAS_MML_EMERGENCY_NUM_LIST_STRU*  NAS_EMM_GetEmergencyListFromMml( VOS_VOID )
     #endif
     return pstMmlEmerNumList;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_SetEmergencyList2Mml
- Description     : 将紧急呼号码列表设置到MML
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong    00150010    2012-03-14      Draft Enact
-    2.yanglei   00307272    2015-07-28      可维可测，上报紧急呼列表
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SetEmergencyList2Mml
 (
     const NAS_MM_PLMN_ID_STRU             *pstCurPlmnId,
@@ -3351,17 +2948,7 @@ VOS_VOID  NAS_EMM_SetEmergencyList2Mml
     NAS_LMM_LogEmergencyNumListInfo(&stMmlEmerNumList,PS_PID_MM,PS_PID_MM);
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ClearEmergencyList
- Description     : 清除紧急呼号码列表
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong 00150010     2012-03-14     Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_EMM_ClearEmergencyList( VOS_VOID )
 {
     NAS_LMM_EMERGENCY_NUM_LIST_STRU      stEmerNumListTmp   = {NAS_EMM_NULL};
@@ -3372,18 +2959,7 @@ VOS_VOID NAS_EMM_ClearEmergencyList( VOS_VOID )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SetEmergencyList
- Description     : 设置Emergency number list
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2011-7-4      Draft Enact
-    2.lihong 00150010     2012-02-28    Modify
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SetEmergencyList
 (
     VOS_UINT32                             ulOpEmerList,
@@ -3423,18 +2999,7 @@ VOS_VOID  NAS_EMM_SetEmergencyList
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SetEpsNetFeature
- Description     : 设置EPS network feature support
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2011-7-5      Draft Enact
-    2.lihong 00150010     2012-02-27    Modify
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SetEpsNetFeature
 (
     VOS_UINT32                          ulOpNetFeature,
@@ -3461,18 +3026,7 @@ VOS_VOID  NAS_EMM_SetEpsNetFeature
 
     return;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_SetAddUpdateRslt
- Description     : 设置Additional update result
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2011-7-5      Draft Enact
-    2.lihong 00150010     2012-02-27    Modify
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SetAddUpdateRslt
 (
     VOS_UINT32                                  ulOpAddUpdateRslt,
@@ -3523,16 +3077,7 @@ VOS_VOID  NAS_EMM_SetAddUpdateRslt
 
     return;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_GetAddUpdateRslt
- Description     : 获取Additional update result
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2012-3-23      Draft Enact
-*****************************************************************************/
 NAS_LMM_ADDITIONAL_UPDATE_RSLT_ENUM_UINT32  NAS_EMM_GetAddUpdateRslt
 (
    VOS_VOID
@@ -3559,17 +3104,7 @@ NAS_LMM_ADDITIONAL_UPDATE_RSLT_ENUM_UINT32  NAS_EMM_GetAddUpdateRslt
 
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_GetCurrentTa
- Description     : 获取当前TAs
- Input           : NAS_MM_PLMN_ID_STRU stPlmnId
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.luojian 00107747      2008-10-15  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_EMM_GetCurrentTa( NAS_MM_TA_STRU *pstTa )
 {
     NAS_EMM_NETWORK_ID_STRU             *pstAreaInfo;
@@ -3584,17 +3119,7 @@ VOS_VOID NAS_EMM_GetCurrentTa( NAS_MM_TA_STRU *pstTa )
 
     return;
 }
-/*****************************************************************************
- Function Name   : NAS_EMMC_AddForbTa
- Description     : 添加一个禁止TA
- Input           : NAS_MM_PLMN_ID_STRU stPlmnId
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.luojian 00107747      2008-10-15  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_EMM_AddForbTa
 (
     const NAS_MM_TA_STRU               *pstTa,
@@ -3614,17 +3139,7 @@ VOS_VOID NAS_EMM_AddForbTa
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_IsNeedAddForbTa
- Description     : 判断是否需要更新被禁列表
- Input           : NAS_MM_PLMN_ID_STRU stPlmnId
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.wangchen 00209181     2014-09-26  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_IsNeedAddForbTa
 (
     VOS_VOID
@@ -3641,16 +3156,7 @@ VOS_UINT32 NAS_EMM_IsNeedAddForbTa
     return NAS_EMM_YES;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_IsLastAttemptRegTaInTaiList
- Description     : 判断上次尝试发起注册或者TAU的TA是否在TAI列表中
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.    sunjitan 00193151      2012-7-6  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LMM_IsLastAttemptRegTaInTaiList(VOS_VOID)
 {
     NAS_MM_TA_STRU                     *pstLastAttmpRegTa = NAS_EMM_NULL_PTR;
@@ -3679,16 +3185,7 @@ VOS_UINT32  NAS_LMM_IsLastAttemptRegTaInTaiList(VOS_VOID)
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_GetImsiHplmn
- Description     : 获取USIM的IMSI的HPLMN信息
- Input           : None
- Output          : None
- Return          : VOS_UINT8
 
- History         :
-    1.sunjitan 00193151    2015-01-04  Draft Enact
-*****************************************************************************/
 VOS_UINT8  NAS_EMM_GetImsiHplmn
 (
     VOS_UINT8             *pucImsi,
@@ -3740,16 +3237,7 @@ VOS_UINT8  NAS_EMM_GetImsiHplmn
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_IsDamUsimCard
- Description     : 判断当前是否是满足DAM使用条件的USIM卡
- Input           : None
- Output          : None
- Return          : VOS_UINT8
 
- History         :
-    1. sunjitan 00193151    2015-01-04  Draft Enact
-*****************************************************************************/
 VOS_UINT8  NAS_EMM_IsDamUsimCard(VOS_VOID)
 {
     VOS_UINT8                *pucImsi;
@@ -3793,16 +3281,7 @@ VOS_UINT8  NAS_EMM_IsDamUsimCard(VOS_VOID)
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_IsTmoUsimCard
- Description     : 判断当前是否是TMO的USIM卡
- Input           : None
- Output          : None
- Return          : VOS_UINT8
 
- History         :
-    1. sunjitan 00193151    2015-03-15  Draft Enact
-*****************************************************************************/
 VOS_UINT8  NAS_EMM_IsTmoUsimCard(VOS_VOID)
 {
     NAS_LMM_PUBM_LOG1_INFO("NAS_EMM_IsTmoUsimCard: TmoUsimCardFlag is ", NAS_EMM_GetEmmInfoTmoUsimCardFlag());
@@ -3817,16 +3296,7 @@ VOS_UINT8  NAS_EMM_IsTmoUsimCard(VOS_VOID)
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_IsPtmsiTauActiveFlagSatified
- Description     : 判断当前P-TMSI设置active flag标识的定制需求条件是否满足
- Input           : None
- Output          : None
- Return          : VOS_UINT8
 
- History         :
-    1. lihong 00150010    2015-07-10  Draft Enact
-*****************************************************************************/
 VOS_UINT8  NAS_EMM_IsPtmsiTauActiveFlagSatified(VOS_VOID)
 {
     /* 如果NV项打开，且不为测试卡，且TIN为P-TMSI，则条件满足，否则条件不满足 */
@@ -3840,16 +3310,7 @@ VOS_UINT8  NAS_EMM_IsPtmsiTauActiveFlagSatified(VOS_VOID)
     return NAS_EMM_NO;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_IsCampOnDamPlmn
- Description     : 判断当前是否驻留在AT&T的PLMN上
- Input           : None
- Output          : None
- Return          : VOS_UINT8
 
- History         :
-    1. sunjitan 00193151    2015-01-04  Draft Enact
-*****************************************************************************/
 VOS_UINT8  NAS_EMM_IsCampOnDamPlmn(VOS_VOID)
 {
     VOS_UINT32                          ulIndex;
@@ -3885,16 +3346,7 @@ VOS_UINT8  NAS_EMM_IsCampOnDamPlmn(VOS_VOID)
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_IsDamConfitionSatisfied
- Description     : 判断当前是否需要使用DAM
- Input           : None
- Output          : None
- Return          : VOS_UINT8
 
- History         :
-    1. sunjitan 00193151    2015-01-04  Draft Enact
-*****************************************************************************/
 VOS_UINT8  NAS_EMM_IsDamConfitionSatisfied(VOS_VOID)
 {
     if((NAS_EMM_YES == NAS_EMM_IsDamUsimCard())
@@ -3906,16 +3358,7 @@ VOS_UINT8  NAS_EMM_IsDamConfitionSatisfied(VOS_VOID)
     return NAS_EMM_NO;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SendMMCT3402LenNotify
- Description     : 给MMC发送ID_LMM_MMC_T3402_LEN_NOTIFY消息
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.sunjitan 00193151      2015-01-04  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SendMMCT3402LenNotify(VOS_UINT32 ulT3402Len)
 {
     LMM_MMC_T3402_LEN_NOTIFY_STRU           *pstT3402LenMsg;
@@ -3958,17 +3401,7 @@ VOS_VOID  NAS_EMM_SendMMCT3402LenNotify(VOS_UINT32 ulT3402Len)
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_IsRegStatusEmcRegingOrContainEmcBear
- Description     : 判断是否是紧急注册、紧急注册过程中或者正常注册包含紧急承载
-                   是: NAS_EMM_YES
-                   否: NAS_EMM_NO
- Input           : None
- Output          : None
- Return          : VOS_UINT32
- History         :
-    1.    sunjitan 00193151      2013-01-08  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  NAS_EMM_IsRegStatusEmcRegingOrContainEmcBear(VOS_VOID)
 {
     /* 处于紧急注册过程中 */
@@ -3989,15 +3422,7 @@ VOS_UINT32  NAS_EMM_IsRegStatusEmcRegingOrContainEmcBear(VOS_VOID)
 }
 
 
-/*****************************************************************************
- Function Name  : Nas_Emm_GutiDelete
- Discription    : 删除GUTI信息
- Input          : None
- Output         : None
- Return         : None
- History:
-      1.  yangfan  00159566  2010-03-30  Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_EMM_ClearGuti(VOS_VOID)
 {
     NAS_LMM_GetEmmInfoUeidAddr()->bitOpGuti      = NAS_EMM_BIT_NO_SLCT;
@@ -4008,17 +3433,7 @@ VOS_VOID NAS_EMM_ClearGuti(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ClearRegInfo
- Description     : 删除GUTI,LVR TAI,TAI list,KSIasme
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.y00159566      2010-4-1  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_EMM_ClearRegInfo(VOS_UINT32 ulDeleteRplmn )
 {
     /*删除GUTI*/
@@ -4048,16 +3463,7 @@ VOS_VOID NAS_EMM_ClearRegInfo(VOS_UINT32 ulDeleteRplmn )
     NAS_LMM_WritePsLoc(NAS_NV_ITEM_UPDATE);
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ClearResumeInfo
- Description     : 清除异系统变换的触发和类型信息
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.sunjitan 00193151     2012-5-24  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_EMM_ClearResumeInfo( VOS_VOID )
 {
     NAS_EMM_FSM_STATE_STRU             *pstStateBeforeResume;
@@ -4079,16 +3485,7 @@ VOS_VOID NAS_EMM_ClearResumeInfo( VOS_VOID )
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_ClearEmmInfoMmcAttachReason
- Description     : 清除attach 原因值
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leixianitao 00258641     2014-2-14  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_LMM_ClearEmmInfoMmcAttachReason( VOS_VOID )
 {
     NAS_LMM_PUBM_LOG_NORM( "NAS_LMM_ClearEmmInfoMmcAttachReason is  enter!");
@@ -4099,21 +3496,7 @@ VOS_VOID NAS_LMM_ClearEmmInfoMmcAttachReason( VOS_VOID )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_LocalDetachProc
- Description     :
-            1）停Emm定时器
-            2）清理缓存
-            3）清理栈空间
-            4）通知ESM,RABM清理资源
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.y00159566      2010-6-18  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_LocalDetachProc( VOS_VOID )
 {
     /* 关闭当前EMM的除Del Forb Ta Proid之外的状态定时器, Del Forb Ta Proid只能在关机时停止*/
@@ -4135,18 +3518,7 @@ VOS_VOID  NAS_EMM_LocalDetachProc( VOS_VOID )
     NAS_LMM_SendRabmRrcConRelInd(EMM_ERABM_REL_CAUSE_NULL);
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_TransferUeSpecDrxCycleLen
- Description     : 将Drx Param中的 DRX value for S1 mode转换为DRX cycle
-                   参考:24008-930 10.5.5.6
- Input           : None
- Output          : UE_Specific_Drx_Cycle
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-9-9  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_TransferUeSpecDrxCycleLen( VOS_VOID )
 {
     VOS_UINT32                  ulUeSpecDrxCycle = 0;
@@ -4190,17 +3562,7 @@ VOS_UINT32  NAS_EMM_TransferUeSpecDrxCycleLen( VOS_VOID )
     return ulUeSpecDrxCycle;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SendUeSpecDrxCycleLenToRrc
- Description     : 发送RRC_MM_INFO_CHANGE_REQ给RRC,携带UE指定的 DRX_Cycle_Len
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-9-9  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SendUeSpecDrxCycleLenToRrc( VOS_VOID )
 {
     LRRC_LNAS_INFO_STRU                   stNasInfo;
@@ -4226,20 +3588,7 @@ VOS_VOID  NAS_EMM_SendUeSpecDrxCycleLenToRrc( VOS_VOID )
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SendInfoChangeReqMsg
- Description     : 发送RRC_MM_NAS_INFO_CHANGE_REQ消息给RRC，目前实现需要通知RRC
-                   的信息有两类:
-                   1)安全参数:Kasme + Ul_NasCount
-                   2)UeSpecDrxCycleLen
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-9-9  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SendInfoChangeReqMsg( CONST LRRC_LNAS_INFO_STRU *pstNasInfo )
 {
     LRRC_LMM_NAS_INFO_CHANGE_REQ_STRU    *pstInfoChgReqMsg = VOS_NULL_PTR;
@@ -4541,17 +3890,7 @@ VOS_VOID    NAS_EMM_SendMmcStatusInd(
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SendMmcUsimStatusCnf
- Description     : 向MMC发送LMM_MMC_USIM_STATUS_CNF消息
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2011-7-2  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_EMM_SendMmcUsimStatusCnf( VOS_VOID )
 {
     LMM_MMC_USIM_STATUS_CNF_STRU       *pstMmcUsimStatusCnf = VOS_NULL_PTR;
@@ -4588,17 +3927,7 @@ VOS_VOID NAS_EMM_SendMmcUsimStatusCnf( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_CheckSupportMode
- Description     : 判断是否支持Iu mode或A/Gb mode
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2011-5-13  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_CheckSupportGUMode( VOS_VOID)
 {
     if ( ((NAS_LMM_RAT_PRIO_NULL < NAS_LMM_GetCurGsmPrio())
@@ -4612,17 +3941,7 @@ VOS_UINT32  NAS_EMM_CheckSupportGUMode( VOS_VOID)
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_CheckMutiModeSupport
- Description     : 判断是否支持Iu mode或A/Gb mode
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2011-5-9  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_CheckMutiModeSupport(VOS_VOID  )
 {
     VOS_UINT32                          ulRslt = NAS_EMM_FAIL;
@@ -4644,17 +3963,7 @@ VOS_UINT32  NAS_EMM_CheckMutiModeSupport(VOS_VOID  )
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_CheckPtmsiAndRaiValidity
- Description     : 判断P-TMSI和RAI是否有效
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2011-5-9  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_CheckPtmsiAndRaiValidity( VOS_VOID )
 {
     NAS_GUMM_INFO_STRU                  stGuInfo;
@@ -4676,18 +3985,7 @@ VOS_UINT32  NAS_EMM_CheckPtmsiAndRaiValidity( VOS_VOID )
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_GetPtmsiAndRai
- Description     : 获取P-TMSI和RAI的值
- Input           : None
- Output          : pstPtmsi------P-TMSI的值
-                   pstRai--------RAI的值
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2011-5-9  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_GetPtmsiAndRai
 (
     NAS_GUMM_PTMSI_STRU     *pstPtmsi,
@@ -4723,18 +4021,7 @@ VOS_VOID  NAS_EMM_GetPtmsiAndRai
     }
     return;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_DeriveMappedGuti
- Description     : 获取P-TMSI和RAI的值,计算Mapped GUTI
- Input           : None
- Output          :
 
- Return          : VOS_VOID
-
- History         :
-    1.zhengjunyan 00148421      2011-5-19  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_DeriveMappedGuti
 (
     NAS_LMM_GUTI_STRU                   *pstMappedGuti
@@ -4781,17 +4068,7 @@ VOS_VOID  NAS_EMM_DeriveMappedGuti
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_GetTinType
- Description     : 获取TIN的值
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2011-5-9  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_GetTinType(VOS_VOID )
 {
     MMC_LMM_TIN_TYPE_ENUM_UINT32        ulTinType;
@@ -4811,17 +4088,7 @@ VOS_UINT32  NAS_EMM_GetTinType(VOS_VOID )
     return ulTinType;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SendTimerStateNotify
- Description     : 给MMC发送LMM_MMC_TIMER_STATE_NOTIFY消息
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2012-2-28  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SendTimerStateNotify
 (
     NAS_LMM_PTL_TI_ENUM_UINT16      ulTimerId,
@@ -4890,18 +4157,7 @@ VOS_VOID  NAS_EMM_SendTimerStateNotify
 }
 
 
-/*****************************************************************************
- Function Name  : LNAS_LPSOM_GetCampedCellInfo()
- Description    : 提供给PS OM的API，用于获取TA LIST、GUTI、IMSI等信息
- Input          : LPS_NAS_MM_TA_LIST_STRU *pstRegPlmnTaList,
-                  LPS_NAS_IMSI_STRU *pstImsiInfo,LPS_NAS_MM_GUTI_STRU *pstGutiInfo
- Output         : LPS_NAS_MM_TA_LIST_STRU *pstRegPlmnTaList,
-                  LPS_NAS_IMSI_STRU *pstImsiInfo,LPS_NAS_MM_GUTI_STRU *pstGutiInfo
- Return Value   : VOS_VOID
 
- History        :
-      1.zhangwei 00103912      2011-05-25  Draft Enact
-*****************************************************************************/
 VOS_VOID LNAS_LPSOM_GetCampedCellInfo(LPS_NAS_MM_TA_LIST_STRU *pstRegPlmnTaList,
     LPS_NAS_IMSI_STRU *pstImsiInfo,LPS_NAS_MM_GUTI_STRU *pstGutiInfo)
 {
@@ -4923,16 +4179,7 @@ VOS_VOID LNAS_LPSOM_GetCampedCellInfo(LPS_NAS_MM_TA_LIST_STRU *pstRegPlmnTaList,
 
     return;
 }
-/*****************************************************************************
- Function Name  : NAS_EMM_IsCsPsUeMode
- Description    : 判断是否为CP/PS1或者CS/PS2
- Input          : None
- Output         : None
- Return Value   : VOS_UINT32
 
- History        :
-      1.lihong00150010      2011-08-27  Draft Enact
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_IsCsPsUeMode( VOS_VOID )
 {
     NAS_LMM_UE_OPERATION_MODE_ENUM_UINT32                   ulLteUeMode;
@@ -5257,17 +4504,7 @@ VOS_VOID NAS_LMM_SetGuUeMode
 
     return;
 }
-/*****************************************************************************
- Function Name   : NAS_LMM_GetEmmInfoGuUeMode
- Description     : 返回GU的operation mode
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhangcaxia 00179470      2011-11-28  Draft Enact
-
-*****************************************************************************/
 NAS_LMM_GU_UE_MODE_ENUM_UINT32  NAS_LMM_GetEmmInfoGuUeMode(VOS_VOID)
 {
     /* 返回GU OPERATION MODE，MML开放后用MML函数代替 */
@@ -5276,17 +4513,7 @@ NAS_LMM_GU_UE_MODE_ENUM_UINT32  NAS_LMM_GetEmmInfoGuUeMode(VOS_VOID)
     ulGuOperationMode       = NAS_LMM_GetEmmInfoAddr()->ulGuUeMode;
     return ulGuOperationMode;
 }
-/*****************************************************************************
- Function Name   : NAS_LMM_GetEmmInfoUeOperationMode
- Description     : 返回LTE的operation mode
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhangcaxia 00179470      2011-11-28  Draft Enact
-
-*****************************************************************************/
 NAS_LMM_UE_OPERATION_MODE_ENUM_UINT32  NAS_LMM_GetEmmInfoUeOperationMode(VOS_VOID)
 {
     /* 返回lte OPERATION MODE，
@@ -5320,16 +4547,7 @@ VOS_VOID  NAS_LMM_LteModeChange(
 }
 
 
-/*****************************************************************************
- Function Name   :NAS_LMM_ComputeLteUeMode
- Description     :从GU的UE MODE和UE CENTER生成LTE UE MODE，
- Input           :
- Output          :
- Return          :
- History         :
-    1.Hanlufeng 41410      2011-10-13  Draft Enact
-    2.zhangcaixia 00179470 2011-12-1   mml打桩获取GU MODE
-*****************************************************************************/
+
 NAS_LMM_UE_OPERATION_MODE_ENUM_UINT32   NAS_LMM_ComputeLteUeMode
 (
     NAS_MML_MS_MODE_ENUM_UINT8          ulGuUeMode,
@@ -5403,17 +4621,7 @@ VOS_UINT32  NAS_EMM_lteRatIsExist(VOS_VOID)
     return NAS_LMM_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_IsLteDisabled
- Description     : 判断LTE是否被DISABLE,是返回NAS_LMM_SUCC，反之返回NAS_LMM_FAIL
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-11-10  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_IsLteDisabled( VOS_VOID )
 {
     if(NAS_LMM_LTE_DISABLED == NAS_EMM_GetLteEnableSta())
@@ -5425,17 +4633,7 @@ VOS_UINT32  NAS_EMM_IsLteDisabled( VOS_VOID )
 
     return NAS_LMM_FAIL;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_SendMmCombinedStartNotifyReq
- Description     : 向MM发送LMM_MM_COMBINED_START_NOTIFY_REQ消息
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2011-11-15  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_EMM_SendMmCombinedStartNotifyReq
 (
     MM_LMM_COMBINED_TYPE_ENUM_UINT32    enCombinedType
@@ -5478,17 +4676,7 @@ VOS_VOID NAS_EMM_SendMmCombinedStartNotifyReq
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SetTauTypeNoProcedure
- Description     : 未发起TAU流程时UE当前是否有能力发起联合TAU来填写TAU类型
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2011-11-15  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_EMM_SetTauTypeNoProcedure( VOS_VOID )
 {
     /* LMM会根据当前注册域来填写TAU请求类型，如果当前注册域为CS+PS，则TAU请求类
@@ -5510,18 +4698,7 @@ VOS_VOID NAS_EMM_SetTauTypeNoProcedure( VOS_VOID )
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_SetEmmInfoUeRadioCapChg
- Description     : UE无线能力设置
- Input           : NAS_LMM_UE_RADIO_CAP_CHANGE_ENUM_UINT32 当前更新类型和上次
-                   更新类型
- Output          : UE能力更新类型是否刷新
- Return          : VOS_UINT32
 
- History         :
-    1.lifuxin   00253982      2014-03-24  UE cap change
-
-*****************************************************************************/
 VOS_UINT32 NAS_LMM_SetEmmInfoUeRadioCapChg(
            NAS_LMM_UE_RADIO_CAP_CHANGE_ENUM_UINT32   enCurrentUeCapChg,
            NAS_LMM_UE_RADIO_CAP_CHANGE_ENUM_UINT32   enLastUeCapChg)
@@ -5548,18 +4725,7 @@ VOS_UINT32 NAS_LMM_SetEmmInfoUeRadioCapChg(
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_RecordUeRadioAccCapChg
- Description     : 记录UE无线能力的变化
- Input           : VOS_UINT8     RRC上报的UE能力变化标识
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.sunjitan  00193151      2012-01-13  Draft Enact
-    2.lifuxin   00253982      2014-03-24  UE cap change
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_RecordUeRadioAccCapChg(
     VOS_UINT8                           ucRadioAccCapChgInd )
 {
@@ -5619,17 +4785,7 @@ VOS_UINT32  NAS_EMM_RecordUeRadioAccCapChg(
     return enResult;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ClearUeRadioAccCapChgFlag
- Description     : 清除UE无线能力的变化的记录
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.sunjitan  00193151      2012-01-16  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ClearUeRadioAccCapChgFlag(VOS_VOID)
 {
     NAS_EMM_PUBU_LOG_INFO("NAS_EMM_ClearUeRadioAccCapChgFlag: UeRadioCapChgFlag is cleared !");
@@ -5642,15 +4798,7 @@ VOS_VOID  NAS_EMM_ClearUeRadioAccCapChgFlag(VOS_VOID)
 
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SomeStateRcvMsgSysInfoUeLteRadioCapChgProc
- Description     : 已记录LTE能力发生变化时收到RRC系统消息进行的公共处理。
- Input           : None
- Output          : None
- Return          : VOS_VOID
- History         :
-    1.sunjitan  00193151      2012-01-16  Draft Enact
-*****************************************************************************/
+
 VOS_VOID  NAS_EMM_SomeStateRcvMsgSysInfoLteRadioCapChgCommProc(VOS_VOID)
 {
         VOS_UINT32                      ulRst = NAS_EMM_FAIL;
@@ -5684,17 +4832,7 @@ VOS_VOID  NAS_EMM_SomeStateRcvMsgSysInfoLteRadioCapChgCommProc(VOS_VOID)
 
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SendMmcInfoChangeNotify
- Description     : 通知MMC紧急呼号码列表，网侧是否支持IMS VOICE和紧急呼，以及
-                   LTE的CS域能力
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.x00253310      2014-05-29  Draft Enact
-*****************************************************************************/
 VOS_VOID    NAS_EMM_SendMmcInfoChangeNotify( VOS_VOID )
 {
     LMM_MMC_INFO_CHANGE_NOTIFY_STRU    *pstMmcInfoChangeNotify  = VOS_NULL_PTR;
@@ -5779,16 +4917,7 @@ VOS_VOID    NAS_EMM_SendMmcInfoChangeNotify( VOS_VOID )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SaveLastAttemptRegTa
- Description     : 将当前TA信息记录到LAST attempt TA中
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.sunjitan 00193151      2012-07-10  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_EMM_SaveLastAttemptRegTa(VOS_VOID)
 {
     NAS_MM_NETWORK_ID_STRU             *pstPresentNetInfo       = NAS_EMM_NULL_PTR;
@@ -5825,16 +4954,7 @@ VOS_VOID NAS_EMM_SaveLastAttemptRegTa(VOS_VOID)
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_IsT3411orT3402Running
- Description     : 判断是否有定时器3411或3402在运行
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.sunjitan 00193151      2012-07-10  Draft Enact
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_IsT3411orT3402Running
 (
     NAS_LMM_PTL_TI_ENUM_UINT16  *pPtlTimerId
@@ -5860,16 +4980,7 @@ VOS_UINT32 NAS_EMM_IsT3411orT3402Running
     return ulCheckRslt;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_IsRrcConnectStatusIdle
- Description     : 判断对当前RRC连接状态是否为IDLE
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.    sunjitan 00193151      2012-10-15  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LMM_IsRrcConnectStatusIdle(VOS_VOID)
 {
     /* IDLE态和释放过程中对于MMC和RRC来讲都认为是IDLE, 仅LMM内部进行区分 */
@@ -5885,17 +4996,7 @@ VOS_UINT32  NAS_LMM_IsRrcConnectStatusIdle(VOS_VOID)
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_DisableLteCommonProc
- Description     : DISABL LTE的公共处理
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.wangchen 00209181      2012-11-07  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_DisableLteCommonProc( VOS_VOID )
 {
    if(NAS_EMM_TAU_COMPLETE_VALID == NAS_EMM_TAU_GetEmmTauCompleteFlag())
@@ -5909,17 +5010,7 @@ VOS_VOID  NAS_EMM_DisableLteCommonProc( VOS_VOID )
    NAS_EMM_RelReq(NAS_LMM_NOT_BARRED);
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SendIntraEia0ActNotify
- Description     : 发送内部消息,通知EMM EIA0算法启用
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong 00150010      2012-10-19  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SendIntraEia0ActNotify( VOS_VOID )
 {
     NAS_LMM_INTRA_EIA0_ACT_NOTIFY_STRU         *pstEia0ActNotify    = NAS_LMM_NULL_PTR;
@@ -5949,16 +5040,7 @@ VOS_VOID  NAS_EMM_SendIntraEia0ActNotify( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_IsSmsOnlyCsfbNotPrefDisableNeeded
- Description     : 识别是否满足SMS only或者CS fallback not preferred disable L模的场景
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong 00150010 & wangchen 00209181      2012-06-28  Draft Enact
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_IsSmsOnlyCsfbNotPrefDisableNeeded( VOS_VOID )
 {
     NAS_LMM_ADDITIONAL_UPDATE_RSLT_ENUM_UINT32  enAddUpdateRslt;
@@ -5997,17 +5079,7 @@ VOS_UINT32 NAS_EMM_IsSmsOnlyCsfbNotPrefDisableNeeded( VOS_VOID )
     return NAS_EMM_NO;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_RecogAndProcSmsOnlyCsfbNotPrefDisable
- Description     : 识别SMS only或者CS fallback not preferred disable L模的场景，
-                   释放链路
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong 00150010 & wangchen 00209181      2012-06-28  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_EMM_RecogAndProcSmsOnlyCsfbNotPrefDisable( VOS_VOID )
 {
     if (NAS_EMM_YES == NAS_EMM_IsSmsOnlyCsfbNotPrefDisableNeeded())
@@ -6018,16 +5090,7 @@ VOS_VOID NAS_EMM_RecogAndProcSmsOnlyCsfbNotPrefDisable( VOS_VOID )
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ClearEmcEsmMsg
- Description     : 清除紧急类型的ESM消息
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2012-10-31  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ClearEmcEsmMsg( VOS_VOID )
 {
     VOS_UINT8                          *pucEsmMsg   = NAS_EMM_NULL_PTR;
@@ -6055,16 +5118,7 @@ VOS_VOID  NAS_EMM_ClearEmcEsmMsg( VOS_VOID )
     return ;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SndEmcEsmMsg
- Description     : 发送紧急类型的ESM消息
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2012-12-13  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SndEmcEsmMsg( VOS_VOID )
 {
     NAS_EMM_ESM_MSG_BUFF_STRU          *pstEsmMsg   = NAS_EMM_NULL_PTR;
@@ -6093,16 +5147,7 @@ VOS_VOID  NAS_EMM_SndEmcEsmMsg( VOS_VOID )
     return ;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SaveEmcEsmMsg
- Description     : 保存紧急类型的ESM消息
- Input           : pstMsgStru
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2012-10-31  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SaveEmcEsmMsg
 (
     VOS_VOID                           *pMsgStru
@@ -6155,16 +5200,7 @@ VOS_VOID  NAS_EMM_SaveEmcEsmMsg
     return ;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_IsDeregState
- Description     : 判断是否是DEREG态
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2012-10-31  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_IsDeregState( VOS_VOID )
 {
 
@@ -6223,17 +5259,7 @@ VOS_UINT32  NAS_EMM_IsDeregState( VOS_VOID )
     return NAS_EMM_NO;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SendUsimStatusToRrc
- Description     : 发送RRC_MM_INFO_CHANGE_REQ给RRC,携带USI卡状态
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2013-1-6  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SendUsimStatusToRrc( LRRC_LNAS_SIM_STATUS_ENUM_UINT32  enSimStatus)
 {
     LRRC_LNAS_INFO_STRU                   stNasInfo;
@@ -6298,17 +5324,7 @@ VOS_VOID  NAS_LMM_ChangeRegRejCauseAvoidInvalidSim
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_AdaptRegRejCau
- Description     : 判断是否为GCF等仪器测试模式(非装备模式的)，
-                   如果是，不修改原因值；如果不是，根据自适应网络拒绝原因值开关
-                   是否打开以及当前原因值来确定是否进行修改
- Input           : 原因值
- Output          : None
- Return          : VOS_VOID
- History         :
-    1.sunjitan 00193151     2013-10-31  Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_LMM_AdaptRegRejCau(VOS_UINT8 *pucCause)
 {
     NAS_EMM_PUB_INFO_STRU              *pstPubInfo;
@@ -6341,20 +5357,9 @@ VOS_VOID NAS_LMM_AdaptRegRejCau(VOS_UINT8 *pucCause)
 }
 
 
-/* s00193151 end for 自适应网络拒绝原因值 */
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_GetGulPubInfo
- Description     : 获取MMC的PUB INFO
- Input           : None
- Output          : None
- Return          : MMC_LMM_RESULT_ID_ENUM_UINT32
 
- History         :
-    1.leili 00132387    2013-4-10  Draft Enact
-
-*****************************************************************************/
 MMC_LMM_RESULT_ID_ENUM_UINT32 NAS_EMM_GetGulPubInfo
 (
     MMC_LMM_INFO_TYPE_ENUM_UINT32    ulInfoType,
@@ -6379,17 +5384,7 @@ MMC_LMM_RESULT_ID_ENUM_UINT32 NAS_EMM_GetGulPubInfo
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_GetGuInfo
- Description     : 获取MMC的GU INFO
- Input           : None
- Output          : None
- Return          : MMC_LMM_RESULT_ID_ENUM_UINT32
 
- History         :
-    1.leili 00132387    2013-4-10  Draft Enact
-
-*****************************************************************************/
 MMC_LMM_RESULT_ID_ENUM_UINT32 NAS_EMM_GetGuInfo
 (
     NAS_GUMM_INFO_TYPE_ENUM_UINT32  ulInfoType,
@@ -6413,17 +5408,7 @@ MMC_LMM_RESULT_ID_ENUM_UINT32 NAS_EMM_GetGuInfo
     return ulRslt;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_GetMsNetworkCapability
- Description     : 获取MMC的MS NET CAP
- Input           : None
- Output          : None
- Return          : MMC_LMM_RESULT_ID_ENUM_UINT32
 
- History         :
-    1.leili 00132387    2013-4-10  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_EMM_GetMsNetworkCapability
 (
     NAS_MML_MS_NETWORK_CAPACILITY_STRU  *pstMsNetworkCapbility
@@ -6446,17 +5431,7 @@ VOS_VOID NAS_EMM_GetMsNetworkCapability
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_GetUeIdTmsi
- Description     : 获取MML的TMSI信息
- Input           : None
- Output          : None
- Return          : MMC_LMM_RESULT_ID_ENUM_UINT32
 
- History         :
-    1.leili 00132387    2013-4-10  Draft Enact
-
-*****************************************************************************/
 VOS_UINT8* NAS_EMM_GetUeIdTmsi(VOS_VOID)
 {
 
@@ -6472,17 +5447,7 @@ VOS_UINT8* NAS_EMM_GetUeIdTmsi(VOS_VOID)
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_GetLteCsServiceCfg
- Description     : 获取MML的lte cs service config信息
- Input           : None
- Output          : None
- Return          : MMC_LMM_RESULT_ID_ENUM_UINT32
 
- History         :
-    1.leili 00132387    2013-4-11  Draft Enact
-
-*****************************************************************************/
 NAS_MML_LTE_CS_SERVICE_CFG_ENUM_UINT8  NAS_EMM_GetLteCsServiceCfg(  VOS_VOID  )
 {
     NAS_MML_LTE_CS_SERVICE_CFG_ENUM_UINT8   ucRslt;
@@ -6498,17 +5463,7 @@ NAS_MML_LTE_CS_SERVICE_CFG_ENUM_UINT8  NAS_EMM_GetLteCsServiceCfg(  VOS_VOID  )
     return ucRslt;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_GetPsBearerCtx
- Description     : 获取MML的PS BEARER CONTEXT信息
- Input           : None
- Output          : None
- Return          : NAS_MML_PS_BEARER_CONTEXT_STRU
 
- History         :
-    1.leili 00132387    2013-4-11  Draft Enact
-
-*****************************************************************************/
 NAS_MML_PS_BEARER_CONTEXT_STRU* NAS_EMM_GetPsBearerCtx(VOS_VOID)
 {
     NAS_MML_PS_BEARER_CONTEXT_STRU *pstPsBearerCtx;
@@ -6525,17 +5480,7 @@ NAS_MML_PS_BEARER_CONTEXT_STRU* NAS_EMM_GetPsBearerCtx(VOS_VOID)
     return pstPsBearerCtx;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_GetUeEutranPsDrxLen
- Description     : 获取MML的UE EUTRAN PS DRX LEN信息
- Input           : None
- Output          : None
- Return          : VOS_UINT8
 
- History         :
-    1.leili 00132387    2013-5-7  Draft Enact
-
-*****************************************************************************/
 VOS_UINT8  NAS_EMM_GetUeEutranPsDrxLen(  VOS_VOID  )
 {
     VOS_UINT8                 ucRslt;
@@ -6552,17 +5497,7 @@ VOS_UINT8  NAS_EMM_GetUeEutranPsDrxLen(  VOS_VOID  )
     return ucRslt;
 
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_GetNonDrxTimer
- Description     : 获取MML的NON DRX TIMER信息
- Input           : None
- Output          : None
- Return          : VOS_UINT8
 
- History         :
-    1.leili 00132387    2013-5-7  Draft Enact
-
-*****************************************************************************/
 VOS_UINT8  NAS_EMM_GetNonDrxTimer(  VOS_VOID  )
 {
     VOS_UINT8                 ucRslt;
@@ -6576,17 +5511,7 @@ VOS_UINT8  NAS_EMM_GetNonDrxTimer(  VOS_VOID  )
     return ucRslt;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_GetSplitPgCycleCode
- Description     : 获取MML的SPLIT PG CYCLE CODE信息
- Input           : None
- Output          : None
- Return          : VOS_UINT8
 
- History         :
-    1.leili 00132387    2013-5-7  Draft Enact
-
-*****************************************************************************/
 VOS_UINT8  NAS_EMM_GetSplitPgCycleCode(  VOS_VOID  )
 {
     VOS_UINT8                 ucRslt;
@@ -6599,17 +5524,7 @@ VOS_UINT8  NAS_EMM_GetSplitPgCycleCode(  VOS_VOID  )
     #endif
     return ucRslt;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_GetSplitOnCcch
- Description     : 获取MML的SPLIT ON CCCH信息
- Input           : None
- Output          : None
- Return          : VOS_UINT8
 
- History         :
-    1.leili 00132387    2013-5-7  Draft Enact
-
-*****************************************************************************/
 VOS_UINT8  NAS_EMM_GetSplitOnCcch(  VOS_VOID  )
 {
     VOS_UINT8                 ucRslt;
@@ -6627,17 +5542,7 @@ VOS_UINT8  NAS_EMM_GetSplitOnCcch(  VOS_VOID  )
     return ucRslt;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_FillIEClassMark2
- Description     : 获取MML的CLASS MARK 2信息
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387    2013-5-7  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_EMM_FillIEClassMark2(VOS_UINT8  *pClassMark2)
 {
 
@@ -6652,17 +5557,7 @@ VOS_VOID NAS_EMM_FillIEClassMark2(VOS_UINT8  *pClassMark2)
     #endif
     return;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_GetCsAttachAllowFlg
- Description     : 获取MML的CS ATTACH ALLOW FLAG信息
- Input           : None
- Output          : None
- Return          : VOS_UINT8
 
- History         :
-    1.leili 00132387    2013-5-8  Draft Enact
-
-*****************************************************************************/
 VOS_UINT8  NAS_EMM_GetCsAttachAllowFlg(  VOS_VOID  )
 {
     VOS_UINT8                 ucRslt;
@@ -6676,17 +5571,7 @@ VOS_UINT8  NAS_EMM_GetCsAttachAllowFlg(  VOS_VOID  )
     #endif
     return ucRslt;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_GetPsAttachAllowFlg
- Description     : 获取MML的PS ATTACH ALLOW FLAG信息
- Input           : None
- Output          : None
- Return          : VOS_UINT8
 
- History         :
-    1.leili 00132387    2013-5-8  Draft Enact
-
-*****************************************************************************/
 VOS_UINT8  NAS_EMM_GetPsAttachAllowFlg(  VOS_VOID  )
 {
     VOS_UINT8                 ucRslt;
@@ -6701,17 +5586,7 @@ VOS_UINT8  NAS_EMM_GetPsAttachAllowFlg(  VOS_VOID  )
     return ucRslt;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_GetMsMode
- Description     : 获取MML的MS MODE信息
- Input           : None
- Output          : None
- Return          : VOS_UINT8
 
- History         :
-    1.leili 00132387    2013-5-8  Draft Enact
-
-*****************************************************************************/
 NAS_MML_MS_MODE_ENUM_UINT8  NAS_EMM_GetMsMode(  VOS_VOID  )
 {
     NAS_MML_MS_MODE_ENUM_UINT8         ucMsMode;
@@ -6727,17 +5602,7 @@ NAS_MML_MS_MODE_ENUM_UINT8  NAS_EMM_GetMsMode(  VOS_VOID  )
     return ucMsMode;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_PlmnIdIsForbid
- Description     : 获取MML的PLMN IS FORBID信息
- Input           : None
- Output          : None
- Return          : VOS_UINT8
 
- History         :
-    1.leili 00132387    2013-5-8  Draft Enact
-
-*****************************************************************************/
 MMC_LMM_PLMN_CTRL_ENUM_UINT32  NAS_EMM_PlmnIdIsForbid(MMC_LMM_PLMN_ID_STRU *pstPlmn )
 {
     MMC_LMM_PLMN_CTRL_ENUM_UINT32      ulRslt;
@@ -6752,17 +5617,7 @@ MMC_LMM_PLMN_CTRL_ENUM_UINT32  NAS_EMM_PlmnIdIsForbid(MMC_LMM_PLMN_ID_STRU *pstP
     return ulRslt;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_GetPsRegStatus
- Description     : 获取MML的PS REG STATUS信息
- Input           : None
- Output          : None
- Return          : VOS_UINT8
 
- History         :
-    1.leili 00132387    2013-5-8  Draft Enact
-
-*****************************************************************************/
 NAS_MML_REG_STATUS_ENUM_UINT8  NAS_EMM_GetPsRegStatus( VOS_VOID)
 {
     NAS_MML_REG_STATUS_ENUM_UINT8      ucPsRegStatus;
@@ -6777,17 +5632,7 @@ NAS_MML_REG_STATUS_ENUM_UINT8  NAS_EMM_GetPsRegStatus( VOS_VOID)
     return ucPsRegStatus;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_GetSimType
- Description     : 获取MML的SIM TYPE信息
- Input           : None
- Output          : None
- Return          : VOS_UINT8
 
- History         :
-    1.leili 00132387    2013-5-8  Draft Enact
-
-*****************************************************************************/
 NAS_MML_REG_STATUS_ENUM_UINT8  NAS_EMM_GetSimType( VOS_VOID)
 {
     NAS_MML_SIM_TYPE_ENUM_UINT8      ucSimType;
@@ -6802,17 +5647,7 @@ NAS_MML_REG_STATUS_ENUM_UINT8  NAS_EMM_GetSimType( VOS_VOID)
     return ucSimType;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_GetCardIMSI
- Description     : 获取USIM的IMSI信息
- Input           : None
- Output          : None
- Return          : VOS_UINT8
 
- History         :
-    1.leili 00132387    2013-5-9  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_GetCardIMSI
 (
     VOS_UINT8      *pucImsi
@@ -6830,17 +5665,7 @@ VOS_UINT32  NAS_EMM_GetCardIMSI
     return ulRslt;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_IsServiceAvailable
- Description     : 获取USIM的service table中EMM MOBILE信息
- Input           : None
- Output          : None
- Return          : VOS_UINT8
 
- History         :
-    1.leili 00132387    2013-5-9  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_IsServiceAvailable
 (
     UICC_SERVICES_TYPE_ENUM_UINT32  enService
@@ -6861,27 +5686,7 @@ VOS_UINT32  NAS_EMM_IsServiceAvailable
     return ulRslt;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_IsAnnexP2ConditionSatisfied
- Description     : 判断是否满足24.008 annex P.2条件
- P.2 Activation of mobility management for IMS voice termination
- An MS activates mobility management for IMS voice termination when:
- 1)  the MS's availability for voice calls in the IMS (see 3GPP TS 24.301 [120], subclause 3.1) changes from "not available" to "available";
- 2)  the MS is configured with "Mobility Management for IMS Voice Termination" enabled as defined in 3GPP TS 24.167 [134];
- 3)  the IMS voice over PS session indicator received for Iu mode has the value
- -   "IMS voice over PS session supported in Iu mode, but not supported in A/Gb mode", or
-     the IMS voice over PS session indicator received for S1 mode has the value
- -   "IMS voice over PS session in S1 mode supported"; and
- 4)  at least one of the two parameters voice domain preference for UTRAN and voice domain preference for E UTRAN as defined in 3GPP TS 24.167 [134] is not "CS voice only".
- The MS deactivates mobility management for IMS voice termination when the MS's availability for voice calls in the IMS (see 3GPP TS 24.301 [120], subclause 3.1) changes from "available" to "not available"
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2013-12-16  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_IsAnnexP2ConditionSatisfied(VOS_VOID)
 {
     NAS_EMM_PUB_INFO_STRU              *pstPubInfo;
@@ -6910,25 +5715,7 @@ VOS_UINT32  NAS_EMM_IsAnnexP2ConditionSatisfied(VOS_VOID)
     return NAS_EMM_NO;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_IsAnnexP4ConditionSatisfied
- Description     : 判断是否满足24.008 annex P.4条件
- P.3 Inter-system change between A/Gb mode and Iu mode
- 1)  the upper layers have indicated that the MS is available for voice calls in the IMS (see 3GPP TS 24.301 [120], subclause 3.1);
- 2)  the MS is configured with "Mobility Management for IMS Voice Termination" enabled as defined in 3GPP TS 24.167 [134];
- P.4 Inter-system change between A/Gb mode and S1 mode
- An MS is required to perform routing area updating for IMS voice termination at inter-system change from S1 mode to A/Gb mode and tracking area updating for IMS voice termination at inter-system change from A/Gb mode to S1 mode if:
- 1)  conditions 1 and 2 of annex P.3 are fulfilled;
- 2)  the "IMS voice over PS session indicator" received for S1 mode has the value "IMS voice over PS session in S1 mode supported"; and
- 3)  the voice domain preference for E UTRAN as defined in 3GPP TS 24.167 [134] is not "CS voice only"
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2013-12-16  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_IsAnnexP4ConditionSatisfied(VOS_VOID)
 {
     NAS_EMM_PUB_INFO_STRU              *pstPubInfo;
@@ -6956,16 +5743,7 @@ VOS_UINT32  NAS_EMM_IsAnnexP4ConditionSatisfied(VOS_VOID)
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_IsEnterRegLimitService
- Description     : 判断是否进入REG+LIMIT_SERVICE态
- Input           : pstMsgStru
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2012-10-31  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_IsEnterRegLimitService( VOS_VOID )
 {
     NAS_MM_NETWORK_ID_STRU             *pstPresentNwInfo = NAS_EMM_NULL_PTR;
@@ -7015,16 +5793,7 @@ VOS_UINT32  NAS_EMM_IsEnterRegLimitService( VOS_VOID )
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_TranStateRegNormalServiceOrRegLimitService
- Description     : 转到REG+NORMAL_SERVICE态或者REG+LIMIT_SERVICE态
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong 00150010    2012-12-18  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_EMM_TranStateRegNormalServiceOrRegLimitService(VOS_VOID)
 {
     if (VOS_TRUE == NAS_EMM_IsEnterRegLimitService())
@@ -7116,16 +5885,7 @@ VOS_VOID NAS_LMM_SndOmDsdsSessionMsgInfo
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_LMM_SendRrcDsdsBeginNotify
- Description     : 组装消息ID_LRRC_LMM_BEGIN_SESSION_NOTIFY发送给MRRC模块进行处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.c00134407    2014-7-9  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_LMM_SendRrcDsdsBeginNotify(LRRC_LNAS_SESSION_TYPE_ENUM_UINT8  ucSessionType)
 {
     LRRC_LMM_BEGIN_SESSION_NOTIFY_STRU   *pstRrcBeginNotifyMsg;
@@ -7184,16 +5944,7 @@ VOS_VOID  NAS_LMM_SendRrcDsdsBeginNotify(LRRC_LNAS_SESSION_TYPE_ENUM_UINT8  ucSe
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_SendRrcDsdsEndNotify
- Description     : 组装消息ID_LRRC_LMM_END_SESSION_NOTIFY发送给MRRC模块进行处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.c00134407    2014-7-9  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_LMM_SendRrcDsdsEndNotify(LRRC_LNAS_SESSION_TYPE_ENUM_UINT8  ucSessionType)
 {
     LRRC_LMM_END_SESSION_NOTIFY_STRU   *pstRrcEndNotifyMsg;
@@ -7266,16 +6017,7 @@ VOS_VOID  NAS_LMM_SendRrcDsdsEndNotify(LRRC_LNAS_SESSION_TYPE_ENUM_UINT8  ucSess
 }
 #endif
 
-/*****************************************************************************
-Function Name   : NAS_EMM_HandleHplmnRejCauseChange
-Description     : 如果NV配置的PS域HPLMN拒绝原因值为#17，则判断是否需要替换
-Input           : VOS_UINT8    *pucRcvMsg, 当前处理的消息
-Output          : None
-Return          : None
 
-History         :
-    1.houzhiyuan 00285180    2014-10-20  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_EMM_HandleHplmnRejCauseChange(
     VOS_UINT8                          *pucRcvMsg,
     VOS_UINT8                           ucConfigCauseNvim
@@ -7297,16 +6039,7 @@ VOS_VOID NAS_EMM_HandleHplmnRejCauseChange(
     *pucRcvMsg = ucConfigCauseNvim;
 }
 
-/*****************************************************************************
-Function Name   : NAS_EMM_HandleVplmnRejCauseChange
-Description     : 如果NV配置的PS域VPLMN拒绝原因值为#17，则判断是否需要替换
-Input           : VOS_UINT8    *pucRcvMsg, 当前处理的消息
-Output          : None
-Return          : None
 
-History         :
-    1.houzhiyuan 00285180    2014-10-20  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_EMM_HandleVplmnRejCauseChange(
     VOS_UINT8                          *pucRcvMsg,
     VOS_UINT8                           ucConfigCauseNvim
@@ -7328,33 +6061,14 @@ VOS_VOID NAS_EMM_HandleVplmnRejCauseChange(
     *pucRcvMsg = ucConfigCauseNvim;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ResetRejCauseChangedCounter
- Description     : 收到attach、tau Accept消息时reset计数器
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.houzhiyuan 00285180    2014-10-20  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_EMM_ResetRejCauseChangedCounter(VOS_VOID)
 {
     NAS_MML_ResetHplmnPsRejCauseChangedCounter();
     NAS_MML_ResetVplmnPsRejCauseChangedCounter();
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_IsNeedIgnoreHplmnAuthRej
- Description     : 获取是否需要忽略HPLMN下auth rej标识
- Input           : None
- Output          : None
- Return          : NAS_EMM_YES表示标识有效，需要忽略auth rej消息
-                   NAS_EMM_NO表示标识无效，不需要忽略auth rej消息
- History         :
-    1.h00285180      2014-12-17  Draft Enact
 
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_IsNeedIgnoreHplmnAuthRej(VOS_VOID)
 {
     NAS_MML_IGNORE_AUTH_REJ_INFO_STRU  *pstAuthRejInfo = NAS_EMM_NULL_PTR;
@@ -7378,16 +6092,7 @@ VOS_UINT32 NAS_EMM_IsNeedIgnoreHplmnAuthRej(VOS_VOID)
     return NAS_EMM_NO;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ResetHplmnAuthRejCout
- Description     : 复位PS域auth rej被忽略次数计数器，在attach/tau成功时调用
- Input           : None
- Output          : None
- Return          : None
- History         :
-    1.h00285180      2014-12-17  Draft Enact
 
-*****************************************************************************/
 VOS_VOID NAS_EMM_ResetHplmnAuthRejCout(VOS_VOID)
 {
     NAS_MML_IGNORE_AUTH_REJ_INFO_STRU  *pstAuthRejInfo = NAS_EMM_NULL_PTR;
@@ -7400,17 +6105,7 @@ VOS_VOID NAS_EMM_ResetHplmnAuthRejCout(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_GetCurrentCampInfo
- Description     : 获取当前驻留的PLMN
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.wangchen 00209181 2014-09-05  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_EMM_GetCurrentCampInfo
 (
     ESM_EMM_PLMN_ID_STRU *pstCurrentCampInfo
@@ -7430,17 +6125,7 @@ VOS_VOID NAS_EMM_GetCurrentCampInfo
 
     return;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_GetEplmnList
- Description     : 获取等效PLMN列表
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.wangchen 00209181 2014-09-05  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_EMM_GetEplmnList
 (
     NAS_ESM_PLMN_LIST_STRU *pstEplmnList
@@ -7457,17 +6142,7 @@ VOS_VOID NAS_EMM_GetEplmnList
 
     return ;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_GetEplmnList
- Description     : 获取等效PLMN列表
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.wangchen 00209181 2014-09-05  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_GetNasRelease(VOS_VOID)
 {
 
@@ -7477,17 +6152,7 @@ VOS_UINT32 NAS_EMM_GetNasRelease(VOS_VOID)
     return NAS_LMM_GetNasRelease();
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SndOmLogUeIdInfo
- Description     : 勾出UE ID信息
- Input           : None
- Output          : None
- Return          : NONE
 
- History         :
-    1.leixiantiao 00258641 2015-03-19  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_EMM_SndOmLogUeIdInfo(VOS_VOID)
 {
     NAS_LMM_OM_LOG_UE_ID_INFO_STRU      *pstMsg = VOS_NULL_PTR;
@@ -7515,17 +6180,7 @@ VOS_VOID NAS_EMM_SndOmLogUeIdInfo(VOS_VOID)
     (VOS_VOID)LTE_MsgHook((VOS_VOID*)pstMsg);
     NAS_LMM_MEM_FREE(pstMsg);
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_SndOmLogNvEpsLocInfo
- Description     : NV 中EPS LOC可维可测
- Input           : None
- Output          : None
- Return          : NONE
 
- History         :
-    1.leixiantiao 00258641 2015-03-19  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_EMM_SndOmLogEpsLocInfo(VOS_VOID)
 {
     NAS_LMM_OM_LOG_EPS_LOC_INFO_STRU          *pstMsg = VOS_NULL_PTR;
@@ -7578,17 +6233,7 @@ VOS_VOID NAS_EMM_SndOmLogEpsLocInfo(VOS_VOID)
     (VOS_VOID)LTE_MsgHook((VOS_VOID*)pstMsg);
     NAS_LMM_MEM_FREE(pstMsg);
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_SndOmLogEpsSecContextInfo
- Description     : SecContext可维可测
- Input           : None
- Output          : None
- Return          : NONE
 
- History         :
-    1.leixiantiao 00258641 2015-03-19  Draft Enact
-    2.yanglei     00307272 2015-08-13 for KEY_INFO_REPORT2 新增7个参数
-*****************************************************************************/
 VOS_VOID NAS_EMM_SndOmLogEpsSecContextInfo(VOS_VOID)
 {
     NAS_LMM_OM_LOG_EPS_SEC_CONTEXT_INFO_STRU                *pstMsg = VOS_NULL_PTR;
@@ -7645,17 +6290,7 @@ VOS_VOID NAS_EMM_SndOmLogEpsSecContextInfo(VOS_VOID)
     (VOS_VOID)LTE_MsgHook((VOS_VOID*)pstMsg);
     NAS_LMM_MEM_FREE(pstMsg);
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_SndOmLogUeImportantCapabilityInfo
- Description     : UE能力
- Input           : None
- Output          : None
- Return          : NONE
 
- History         :
-    1.leixiantiao 00258641 2015-03-19  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_EMM_SndOmLogUeImportantCapabilityInfo(VOS_VOID)
 {
     NAS_LMM_OM_LOG_UE_IMPORTANT_CAPABILITY_INFO_STRU      *pstMsg          = VOS_NULL_PTR;
@@ -7692,19 +6327,7 @@ VOS_VOID NAS_EMM_SndOmLogUeImportantCapabilityInfo(VOS_VOID)
     (VOS_VOID)LTE_MsgHook((VOS_VOID*)pstMsg);
     NAS_LMM_MEM_FREE(pstMsg);
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_SndOmLogConfigNwCauseInfo
- Description     : 网侧原因值转化信息上报
- Input           : VOS_UINT8                           ucCnCause,
-                   VOS_UINT8                           ucModifiedCnCause
- Output          : None
- Return          : NONE
 
- History         :
-    1.leixiantiao 00258641 2015-03-19  Draft Enact
-    2.yanglei     00307272 2015-08-18  for KEY_INFO_REPORT3,新增信元上报
-
-*****************************************************************************/
 VOS_VOID NAS_EMM_SndOmLogConfigNwCauseInfo
 (
     VOS_UINT8                           ucCnCause,
@@ -7752,15 +6375,7 @@ VOS_VOID NAS_EMM_SndOmLogConfigNwCauseInfo
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_LMM_LteNoSubscribeIsRegisteredInHplmn
- Description     : 判断GU上面驻留的PLMN是否在HPLMN上
- Input           : None
- Output          : None
- Return          : VOS_UINT32
- History         :
-    1.lifuxin 00253982      2015-04-02  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  NAS_LMM_LteNoSubscribeIsRegisteredInHplmn(NAS_EMM_PLMN_ID_STRU  *pstPlmn)
 {
     NAS_MM_PLMN_LIST_STRU               stEHplmnList    = {0};
@@ -7812,16 +6427,7 @@ VOS_UINT32  NAS_LMM_LteNoSubscribeIsRegisteredInHplmn(NAS_EMM_PLMN_ID_STRU  *pst
     return NAS_EMM_NO;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_LteNoSubscribeAtLeastHaveOneHplmn
- Description     : 判断PLMN列表中至少有一个在EHPLMN或者HPLMN中
- Input           : None
- Output          : None
- Return          : NAS_EMM_YES 至少有一个
-                   NAS_EMM_NO 都没有
- History         :
-    1.lifuxin 00253982      2015-04-02  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  NAS_LMM_LteNoSubscribeAtLeastHaveOneHplmn(
                     MMC_LMM_LTE_NO_SUBSCRIBE_PLMN_LIST_STRU  *pstLteNoSubsPLmnList)
 {
@@ -7841,15 +6447,7 @@ VOS_UINT32  NAS_LMM_LteNoSubscribeAtLeastHaveOneHplmn(
     return NAS_EMM_NO;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_SendMmcEutranNotAllowNotify
- Description     : 向MMC通知LTE NO subscribe
- Input           : None
- Output          : None
- Return          : NAS_EMM_SEND_MMC_OK  -- 发送成功
- History         :
-    1.lifuxin 00253982      2015-4-16  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  NAS_LMM_SendMmcEutranNotAllowNotify(
                                             VOS_UINT8  ucNetWorkTriggerFlag,
                                             VOS_UINT32 ulTimerLen,
@@ -7902,15 +6500,7 @@ VOS_UINT32  NAS_LMM_SendMmcEutranNotAllowNotify(
     return ulSendResult;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_LteNoSubscribeWithExtCauseHandle
- Description     : 4G未开户被网络侧拒绝携带了扩展原因值的处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
- History         :
-    1.lifuxin 00253982      2015-04-02  Draft Enact
-*****************************************************************************/
+
 VOS_VOID  NAS_LMM_LteNoSubscribeWithExtCauseHandle(
                                MMC_LMM_LTE_NO_SUBSCRIBE_PLMN_LIST_STRU  *pstLteNoSubsPLmnList)
 {
@@ -7941,15 +6531,7 @@ VOS_VOID  NAS_LMM_LteNoSubscribeWithExtCauseHandle(
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_LteNoSubscribeWithOutExtCauseHandle
- Description     : 4G未开户被网络侧拒绝携带了扩展原因值的处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
- History         :
-    1.lifuxin 00253982      2015-04-02  Draft Enact
-*****************************************************************************/
+
 VOS_VOID  NAS_LMM_LteNoSubscribeWithOutExtCauseHandle(
                         MMC_LMM_LTE_NO_SUBSCRIBE_PLMN_LIST_STRU  *pstLteNoSubsPLmnList)
 {
@@ -8001,15 +6583,7 @@ VOS_VOID  NAS_LMM_LteNoSubscribeWithOutExtCauseHandle(
 
     return;
 }
-/*****************************************************************************
- Function Name   : NAS_LMM_ReadNvLmmSwitchPara
- Description     : 读取LMM开关控制NV,LNAS所有开关NV都将放入此NV中
- Input           : None
- Output          : None
- Return          : VOS_VOID
- History         :
-    1.    leixiantiao 00258641      2015-06-18  Draft Enact
-*****************************************************************************/
+
 VOS_VOID  NAS_LMM_ReadNvLmmSwitchPara(VOS_VOID )
 {
     LNAS_NV_SWITCH_PARA_STRU              stNvSwitchPara;
@@ -8063,19 +6637,14 @@ VOS_VOID  NAS_LMM_ReadNvLmmSwitchPara(VOS_VOID )
     g_ulNasAustraliaFlag             = LNAS_NV_GET_NAS_FUN_FLAG(0, LNAS_NV_GET_AUSTRALIA_OPTIMIZE_BIT);
     g_ulNasAustraliaFlag             = (0 != g_ulNasAustraliaFlag) ? NAS_EMM_YES : NAS_EMM_NO;
 
+    g_ulImsiAttachWithInvalidTinFlag    = LNAS_NV_GET_NAS_FUN_FLAG(0, LNAS_NV_GET_IMSI_ATTACH_FLAG_BIT);
+    g_ulImsiAttachWithInvalidTinFlag    = (0 != g_ulImsiAttachWithInvalidTinFlag) ? NAS_EMM_YES : NAS_EMM_NO;
+
     /* Gradual Forb参数初始化 */
     NAS_LMM_GradualForbParaInit(stNvSwitchPara.stGradualForbPara);
     return;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_SndEsmClearAllClBearerNotify
- Description     : 向ESM发送清除所有CL承载指示
- Input           : None
- Output          : None
- Return          : VOS_VOID
- History         :
-    1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
+
 VOS_VOID  NAS_EMM_SndEsmClearAllClBearerNotify(VOS_VOID)
 {
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
@@ -8107,15 +6676,7 @@ VOS_VOID  NAS_EMM_SndEsmClearAllClBearerNotify(VOS_VOID)
 #endif
     return;
 }
-/*****************************************************************************
- Function Name   : NAS_LMM_SetVoiceDomain
- Description     : 设置VOICE DOMAIN，并上报UE能力
- Input           : MMC_LMM_VOICE_DOMAIN_ENUM_UINT32     enVoiceDomain
- Output          : None
- Return          : VOS_VOID
- History         :
-    1.    yanglei 00307272      2015-07-28  Draft Enact
-*****************************************************************************/
+
 VOS_VOID  NAS_LMM_SetVoiceDomain(MMC_LMM_VOICE_DOMAIN_ENUM_UINT32     enVoiceDomain )
 {
     NAS_LMM_SetEmmInfoVoiceDomain(enVoiceDomain);
@@ -8124,15 +6685,7 @@ VOS_VOID  NAS_LMM_SetVoiceDomain(MMC_LMM_VOICE_DOMAIN_ENUM_UINT32     enVoiceDom
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_GetImsVoiceMMEnableFlg
- Description     : 获取Ims Voice 移动性管理是否打开标志并上报
- Input           : None
- Output          : None
- Return          : VOS_UINT8
- History         :
-    1.    yanglei 00307272      2015-07-28  Draft Enact
-*****************************************************************************/
+
 VOS_UINT8  NAS_LMM_GetImsVoiceMMEnableFlg( VOS_VOID )
 {
     VOS_UINT8                           ucRslt;
@@ -8143,15 +6696,7 @@ VOS_UINT8  NAS_LMM_GetImsVoiceMMEnableFlg( VOS_VOID )
     return ucRslt;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_SndOmLogImsVoiceMMEnableFlgInfo
- Description     : 上报Ims Voice 移动性管理是否打开标志
- Input           : None
- Output          : None
- Return          : VOS_VOID
- History         :
-    1.    yanglei 00307272      2015-07-28  Draft Enact
-*****************************************************************************/
+
 VOS_VOID  NAS_LMM_SndOmLogImsVoiceMMEnableFlgInfo( VOS_VOID )
 {
     NAS_LMM_OM_LOG_IMS_VOICE_MM_ENABLE_FLAG_INFO_STRU       *pstMsg          = VOS_NULL_PTR;
@@ -8178,15 +6723,7 @@ VOS_VOID  NAS_LMM_SndOmLogImsVoiceMMEnableFlgInfo( VOS_VOID )
     NAS_LMM_MEM_FREE(pstMsg);
     return;
 }
-/*****************************************************************************
- Function Name   : NAS_LMM_GetLteNwImsVoiceSupportFlag
- Description     : 获取EPS网络对IMS Voice 支持信息并上报
- Input           : None
- Output          : None
- Return          : NAS_MML_NW_IMS_VOICE_CAP_ENUM_UINT8
- History         :
-    1.    yanglei 00307272      2015-07-28  Draft Enact
-*****************************************************************************/
+
 NAS_MML_NW_IMS_VOICE_CAP_ENUM_UINT8  NAS_LMM_GetLteNwImsVoiceSupportFlag( VOS_VOID )
 {
     NAS_MML_NW_IMS_VOICE_CAP_ENUM_UINT8 ucRslt;
@@ -8196,15 +6733,7 @@ NAS_MML_NW_IMS_VOICE_CAP_ENUM_UINT8  NAS_LMM_GetLteNwImsVoiceSupportFlag( VOS_VO
 
     return ucRslt;
 }
-/*****************************************************************************
- Function Name   : NAS_LMM_SndOmLogLteNwImsVoiceSupportFlagInfo
- Description     : 上报EPS网络对IMS Voice 支持信息
- Input           : None
- Output          : None
- Return          : VOS_VOID
- History         :
-    1.    yanglei 00307272      2015-07-28  Draft Enact
-*****************************************************************************/
+
 VOS_VOID  NAS_LMM_SndOmLogLteNwImsVoiceSupportFlagInfo( VOS_VOID )
 {
     NAS_LMM_OM_LOG_NW_IMS_VOICE_CAP_STRU                    *pstMsg          = VOS_NULL_PTR;
@@ -8231,15 +6760,7 @@ VOS_VOID  NAS_LMM_SndOmLogLteNwImsVoiceSupportFlagInfo( VOS_VOID )
     NAS_LMM_MEM_FREE(pstMsg);
     return;
 }
-/*****************************************************************************
- Function Name   : NAS_LMM_GeGUNwImsVoiceSupportFlg
- Description     : 获取PS网络下Ims Voice 支持能力并上报
- Input           : None
- Output          : None
- Return          : NAS_MML_NW_IMS_VOICE_CAP_ENUM_UINT8
- History         :
-    1.    yanglei 00307272      2015-07-28  Draft Enact
-*****************************************************************************/
+
 NAS_MML_NW_IMS_VOICE_CAP_ENUM_UINT8  NAS_LMM_GetGUNwImsVoiceSupportFlg( VOS_VOID )
 {
     NAS_MML_NW_IMS_VOICE_CAP_ENUM_UINT8 ucRslt;
@@ -8249,15 +6770,7 @@ NAS_MML_NW_IMS_VOICE_CAP_ENUM_UINT8  NAS_LMM_GetGUNwImsVoiceSupportFlg( VOS_VOID
 
     return ucRslt;
 }
-/*****************************************************************************
- Function Name   : NAS_LMM_SndOmLogGUNwImsVoiceSupportFlagInfo
- Description     : 上报PS网络对IMS Voice 支持信息
- Input           : None
- Output          : None
- Return          : VOS_VOID
- History         :
-    1.    yanglei 00307272      2015-07-28  Draft Enact
-*****************************************************************************/
+
 VOS_VOID  NAS_LMM_SndOmLogGUNwImsVoiceSupportFlagInfo( VOS_VOID )
 {
     NAS_LMM_OM_LOG_NW_IMS_VOICE_CAP_STRU                    *pstMsg          = VOS_NULL_PTR;
@@ -8284,15 +6797,7 @@ VOS_VOID  NAS_LMM_SndOmLogGUNwImsVoiceSupportFlagInfo( VOS_VOID )
     NAS_LMM_MEM_FREE(pstMsg);
     return;
 }
-/*****************************************************************************
- Function Name   : NAS_LMM_GetRoamingRejectNoRetryFlg
- Description     : 获取是否打开了reject #17的定制的标识并上报
- Input           : VOS_UINT8 ucCause
- Output          : None
- Return          : VOS_UINT8
- History         :
-    1.    yanglei 00307272      2015-07-28  Draft Enact
-*****************************************************************************/
+
 VOS_UINT8  NAS_LMM_GetRoamingRejectNoRetryFlg( VOS_UINT8 ucCause )
 {
     VOS_UINT8                           ucRslt;
@@ -8302,15 +6807,7 @@ VOS_UINT8  NAS_LMM_GetRoamingRejectNoRetryFlg( VOS_UINT8 ucCause )
 
     return ucRslt;
 }
-/*****************************************************************************
- Function Name   : NAS_LMM_SndOmLogRoamingRejectNoRetryFlgInfo
- Description     : 上报是否打开了reject #17的定制的标识信息
- Input           : VOS_UINT8 ucCause
- Output          : None
- Return          : VOS_VOID
- History         :
-    1.    yanglei 00307272      2015-07-28  Draft Enact
-*****************************************************************************/
+
 VOS_VOID  NAS_LMM_SndOmLogRoamingRejectNoRetryFlgInfo( VOS_UINT8 ucCause )
 {
     NAS_LMM_OM_LOG_ROAMING_REJECT_NO_RETRY_FLG_STRU         *pstMsg          = VOS_NULL_PTR;
@@ -8338,16 +6835,7 @@ VOS_VOID  NAS_LMM_SndOmLogRoamingRejectNoRetryFlgInfo( VOS_UINT8 ucCause )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_GetGradualForbTaTimerPara
- Description     : 获取OPID, 用于唯一确定定时器超时时对应的TA
- Input           : None
- Output          : None
- Return          : Opid
- History         :
-    1.leixiantiao 00258641      2015-07-31  Draft Enact
 
-*****************************************************************************/
 VOS_UINT32 NAS_LMM_GetGradualForbTaTimerPara(VOS_VOID)
 {
     /* Timer Para从1开始, 用于初始启动Forb惩罚定时器当入参参入, 当定时器超时用于判断对应TA */
@@ -8355,16 +6843,7 @@ VOS_UINT32 NAS_LMM_GetGradualForbTaTimerPara(VOS_VOID)
 
     return g_ulGradualForbTaTimerPara;
 }
-/*****************************************************************************
- Function Name   : NAS_LMM_IsGradualForbidenOptimizationOpened
- Description     : 判断渐进Forb优化是否打开
- Input           : None
- Output          : None
- Return          : NAS_EMM_YES:打开 NAS_EMM_NO:关闭
- History         :
-    1.leixiantiao 00258641      2015-07-31  Draft Enact
 
-*****************************************************************************/
 VOS_UINT32 NAS_LMM_IsGradualForbidenOptimizationOpened(VOS_VOID)
 {
     /* 判断NV是否打开 */
@@ -8383,16 +6862,7 @@ VOS_UINT32 NAS_LMM_IsGradualForbidenOptimizationOpened(VOS_VOID)
     /* 优化打开 */
     return NAS_EMM_YES;
 }
-/*****************************************************************************
- Function Name   : NAS_LMM_TaMatchTempTaList
- Description     : 判断TA是否在临时Forb列表中
- Input           : pstTa   : 需要判断的TA信息
- Output          : pulIndex: TA所在列表的索引,此索引只在匹配成功时生效
- Return          : 匹配结果
- History         :
-    1.leixiantiao 00258641      2015-07-31  Draft Enact
 
-*****************************************************************************/
 NAS_LMM_MATCH_RESULT_ENUM_UINT32 NAS_LMM_TaMatchGradualForbTaList(const NAS_MM_TA_STRU  *pstTa, VOS_UINT32 *pulIndex)
 {
     VOS_UINT8                               i;
@@ -8436,16 +6906,7 @@ NAS_LMM_MATCH_RESULT_ENUM_UINT32 NAS_LMM_TaMatchGradualForbTaList(const NAS_MM_T
     *pulIndex = ulIndex;
     return ulMatchResult;
 }
-/*****************************************************************************
- Function Name   : NAS_LMM_DelTaFromTempForbList
- Description     : 从临时列表中删除TA
- Input           : ulIndex: 列表索引
- Output          : None
- Return          : NONE
- History         :
-    1.leixiantiao 00258641      2015-07-31  Draft Enact
 
-*****************************************************************************/
 VOS_VOID NAS_LMM_DelTaFromTempForbList(VOS_UINT32 ulIndex)
 {
     NAS_LMM_GRADUAL_FORB_TEMP_FORB_TA_LIST   *pstTaList;
@@ -8478,16 +6939,7 @@ VOS_VOID NAS_LMM_DelTaFromTempForbList(VOS_UINT32 ulIndex)
     /* 维护临时列表TA计数 */
     pstTaList->ulTaNum--;
 }
-/*****************************************************************************
- Function Name   : NAS_LMM_AddNewTaWithTempTaListNotFull
- Description     : 临时列表没有满时新加TA
- Input           : pstTa: TA信息
- Output          : None
- Return          : NONE
- History         :
-    1.leixiantiao 00258641      2015-07-31  Draft Enact
 
-*****************************************************************************/
 VOS_VOID NAS_LMM_AddNewTaWithTempTaListNotFull(NAS_MM_TA_STRU   *pstTa)
 {
     NAS_LMM_GRADUAL_FORB_TEMP_FORB_TA_LIST      *pstTaList    = VOS_NULL_PTR;
@@ -8542,16 +6994,7 @@ VOS_VOID NAS_LMM_AddNewTaWithTempTaListNotFull(NAS_MM_TA_STRU   *pstTa)
     /* TA个数加 1 */
     pstTaList->ulTaNum++;
 }
-/*****************************************************************************
- Function Name   : NAS_LMM_AddNewTaInGradualForbTempTaList
- Description     : 把一个新的TA加入到临时列表中
- Input           : pstTa :TA信息
- Output          : None
- Return          :
- History         :
-    1.leixiantiao 00258641      2015-07-31  Draft Enact
 
-*****************************************************************************/
 VOS_VOID NAS_LMM_AddNewTaInGradualForbTempTaList(NAS_MM_TA_STRU   *pstTa)
 {
     NAS_LMM_GRADUAL_FORB_TEMP_FORB_TA_LIST      *pstTaList = VOS_NULL_PTR;
@@ -8592,16 +7035,7 @@ VOS_VOID NAS_LMM_AddNewTaInGradualForbTempTaList(NAS_MM_TA_STRU   *pstTa)
         NAS_LMM_AddNewTaWithTempTaListNotFull(pstTa);
     }
 }
-/*****************************************************************************
- Function Name   : NAS_LMM_IsGradualForbidenOptimizationOpened
- Description     : 判断渐进Forb优化是否打开
- Input           : None
- Output          : None
- Return          : NAS_EMM_YES:打开 NAS_EMM_NO:关闭
- History         :
-    1.leixiantiao 00258641      2015-07-31  Draft Enact
 
-*****************************************************************************/
 NAS_EMM_GRADUAL_FORBIDDEN_RESULT_ENUM_UINT32 NAS_LMM_AddTaInGradualForbTempTaList(NAS_MM_TA_STRU   *pstTa)
 {
     NAS_MMC_TA_LIST_STRU                         *pstForbTaForRoming;
@@ -8667,16 +7101,7 @@ NAS_EMM_GRADUAL_FORBIDDEN_RESULT_ENUM_UINT32 NAS_LMM_AddTaInGradualForbTempTaLis
     }
     return enResult;
 }
-/*****************************************************************************
- Function Name   : NAS_LMM_FillTempTaInRrcNasForbTaList
- Description     : 把临时列表填充到给LRRC的Forb列表中
- Input           : pstRrcNasForbTaList: 给LRRC的Forb列表
- Output          : None
- Return          : None
- History         :
-    1.leixiantiao 00258641      2015-07-31  Draft Enact
 
-*****************************************************************************/
 VOS_VOID NAS_LMM_FillTempTaInRrcNasForbTaList(LRRC_LNAS_FORB_TA_LIST_STRU *pstRrcNasForbTaList)
 {
     VOS_UINT32                                  ulIndex;
@@ -8742,17 +7167,7 @@ VOS_VOID NAS_LMM_FillTempTaInRrcNasForbTaList(LRRC_LNAS_FORB_TA_LIST_STRU *pstRr
         }
     }
 }
-/*****************************************************************************
- Function Name   : NAS_LMM_FillUserSpecRrcNasForbTaListWithTempTa
- Description     : 用户指定搜,把临时列表带给LRRC
- Input           : pstPlmnId    : 用户指定搜PLMN
-                   pstRrcTaList : 带给LRRC的Forb列表
- Output          : None
- Return          : None
- History         :
-    1.leixiantiao 00258641      2015-07-31  Draft Enact
 
-*****************************************************************************/
 VOS_VOID NAS_LMM_FillUserSpecRrcNasForbTaListWithTempTa
 (
     const NAS_MM_PLMN_ID_STRU  *pstPlmnId,
@@ -8803,16 +7218,7 @@ VOS_VOID NAS_LMM_FillUserSpecRrcNasForbTaListWithTempTa
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_UpdateGradualForbTempTaList
- Description     : TAU等流程成功后, 更新临时列表
- Input           : pstRrcNasForbTaList: 给LRRC的Forb列表
- Output          : None
- Return          : None
- History         :
-    1.leixiantiao 00258641      2015-07-31  Draft Enact
 
-*****************************************************************************/
 NAS_EMM_GRADUAL_FORBIDDEN_RESULT_ENUM_UINT32 NAS_LMM_UpdateGradualForbTempTaList(VOS_VOID)
 {
     VOS_UINT32                                   ulIndex        = 0;
@@ -8852,16 +7258,7 @@ NAS_EMM_GRADUAL_FORBIDDEN_RESULT_ENUM_UINT32 NAS_LMM_UpdateGradualForbTempTaList
     }
     return enUpdateResult;
 }
-/*****************************************************************************
- Function Name   : NAS_LMM_CheckNvGradualForbiddenTimerLenVaild
- Description     : 判断Gradual Forb优化NV设置的定时器长度是否有消息
- Input           : ulTimerLen: 定时器时长
- Output          : None
- Return          : VOS_UINT32: 0: 无效; 1: 有效
- History         :
-    1.leixiantiao 00258641      2015-07-31  Draft Enact
 
-*****************************************************************************/
 VOS_UINT32 NAS_LMM_CheckNvGradualForbiddenTimerLenVaild(VOS_UINT32 ulTimerLen)
 {
     /* 定时器长度为0时无效 */
@@ -8877,16 +7274,7 @@ VOS_UINT32 NAS_LMM_CheckNvGradualForbiddenTimerLenVaild(VOS_UINT32 ulTimerLen)
 
     return NAS_EMM_YES;
 }
-/*****************************************************************************
- Function Name   : NAS_LMM_ReadNvGradualForbPara
- Description     : Gradual Forb优化NV读取函数
- Input           : None
- Output          : None
- Return          : None
- History         :
-    1.leixiantiao 00258641      2015-07-31  Draft Enact
 
-*****************************************************************************/
 VOS_VOID NAS_LMM_GradualForbParaInit(LNAS_LMM_NV_GRADUAL_FORBIDDEN_PARA_STRU stNvGradualForbPara)
 {
     VOS_UINT32                                ulTimerLen;
@@ -8926,16 +7314,7 @@ VOS_VOID NAS_LMM_GradualForbParaInit(LNAS_LMM_NV_GRADUAL_FORBIDDEN_PARA_STRU stN
     NAS_EMM_SndOmGradualForbParaLog(stNvGradualForbPara);
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_GradualForbTaListInit
- Description     : Gradual Forb优化本地维护临时列表初始化, 开机时调用
- Input           : None
- Output          : None
- Return          : None
- History         :
-    1.leixiantiao 00258641      2015-07-31  Draft Enact
 
-*****************************************************************************/
 VOS_VOID NAS_LMM_GradualForbTaListInit(VOS_VOID)
 {
     NAS_LMM_GRADUAL_FORB_TEMP_FORB_TA_LIST       *pstTempTaList = VOS_NULL_PTR;
@@ -8958,16 +7337,7 @@ VOS_VOID NAS_LMM_GradualForbTaListInit(VOS_VOID)
     g_ulGradualForbTaTimerPara= 0;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_StopAllGradualForbiddenTimer
- Description     : 停止所有Gradual Forb优化定时器, 关机时调用
- Input           : None
- Output          : None
- Return          : None
- History         :
-    1.leixiantiao 00258641      2015-07-31  Draft Enact
 
-*****************************************************************************/
 VOS_VOID NAS_LMM_StopAllGradualForbiddenTimer(VOS_VOID)
 {
     NAS_LMM_GRADUAL_FORB_TEMP_FORB_TA_LIST       *pstTempTaList = VOS_NULL_PTR;
@@ -8993,16 +7363,7 @@ VOS_VOID NAS_LMM_StopAllGradualForbiddenTimer(VOS_VOID)
     }
     return;
 }
-/*****************************************************************************
- Function Name   : NAS_LMM_StopAllGradualForbiddenTimer
- Description     : 清空所有Gradual Forb TA列表本地维护信息, 关机时调用
- Input           : None
- Output          : None
- Return          : None
- History         :
-    1.leixiantiao 00258641      2015-07-31  Draft Enact
 
-*****************************************************************************/
 VOS_VOID NAS_LMM_ClearAllGradualForbTaList(VOS_VOID)
 {
     NAS_LMM_GRADUAL_FORB_TEMP_FORB_TA_LIST       *pstTempTaList = VOS_NULL_PTR;
@@ -9021,17 +7382,7 @@ VOS_VOID NAS_LMM_ClearAllGradualForbTaList(VOS_VOID)
     /* 把TimerPara全局变量清除 */
     g_ulGradualForbTaTimerPara= 0;
 }
-/*****************************************************************************
- Function Name   : NAS_LMM_OpidMatchGradualForbTaList
- Description     : 根据Opid查找Gradual Forb列表中对应的TA, 用于定时器超时时区分
-                   对应TA
- Input           : ulOpid  :opid信息
- Output          : pulIndex:对应TA索引, 该值只在函数返回SUCC生效
- Return          : 查找结果, 1: 为成功; 其他都为失败
- History         :
-    1.leixiantiao 00258641      2015-07-31  Draft Enact
 
-*****************************************************************************/
 NAS_LMM_MATCH_RESULT_ENUM_UINT32 NAS_LMM_TimerParaMatchGradualForbTaList(VOS_UINT32 ulTimerPara, VOS_UINT32 *pulIndex)
 {
     VOS_UINT8                               i;
@@ -9065,16 +7416,7 @@ NAS_LMM_MATCH_RESULT_ENUM_UINT32 NAS_LMM_TimerParaMatchGradualForbTaList(VOS_UIN
     *pulIndex = ulIndex;
     return ulMatchResult;
 }
-/*****************************************************************************
- Function Name   : NAS_LMM_GetGradualForbTaWithIndex
- Description     : 获取索引对应TA信息
- Input           : ulIndex: 索引
- Output          : pstTa  : 对应TA信息
- Return          :
- History         :
-    1.leixiantiao 00258641      2015-07-31  Draft Enact
 
-*****************************************************************************/
 VOS_VOID NAS_LMM_GetGradualForbTaWithIndex(VOS_UINT32 ulIndex, NAS_MM_TA_STRU *pstTa)
 {
     NAS_LMM_GRADUAL_FORB_TEMP_FORB_TA_LIST  *pstTaList     = VOS_NULL_PTR;
@@ -9086,16 +7428,7 @@ VOS_VOID NAS_LMM_GetGradualForbTaWithIndex(VOS_UINT32 ulIndex, NAS_MM_TA_STRU *p
     NAS_LMM_MEM_CPY_S(pstTa, sizeof(NAS_MM_TA_STRU), &pstTaList->astGradualForbTa[ulIndex].stTa, sizeof(NAS_MM_TA_STRU));
     return;
 }
-/*****************************************************************************
- Function Name   : NAS_LMM_AddTaInForbListWithTauRejCauseVal15
- Description     : TAU REJ 15时, Forb列表维护
- Input           : ulIsEutranNotAllowed :网侧是否携带扩展原因值指示4G为开户
- Output          : None
- Return          : 是否要走4G未开户流程, 加入临时列表的情况下不走4G未开户流程
- History         :
-    1.leixiantiao 00258641      2015-07-31  Draft Enact
 
-*****************************************************************************/
 VOS_VOID  NAS_LMM_AddTaInForbListWithTauRejCauseVal15(VOS_UINT32 ulIsWithExtCause,
                                                                         VOS_UINT32 *pulIsNeedExecLteNotAllow)
 {
@@ -9178,16 +7511,7 @@ VOS_VOID  NAS_LMM_AddTaInForbListWithTauRejCauseVal15(VOS_UINT32 ulIsWithExtCaus
     }
     return;
 }
-/*****************************************************************************
- Function Name   : NAS_LMM_AddTaInForbListWithAttRejCauseVal15
- Description     : Attach REJ 15时, Forb列表维护
- Input           : ulIsEutranNotAllowed :网侧是否携带扩展原因值指示4G为开户
- Output          : None
- Return          : 是否要走4G未开户流程, 加入临时列表的情况下不走4G未开户流程
- History         :
-    1.leixiantiao 00258641      2015-07-31  Draft Enact
 
-*****************************************************************************/
 VOS_VOID  NAS_LMM_AddTaInForbListWithAttRejCauseVal15(VOS_UINT32 ulIsWithExtCause,
                                                                          VOS_UINT32 *pulIsNeedExecLteNotAllow)
 {
@@ -9237,16 +7561,7 @@ VOS_VOID  NAS_LMM_AddTaInForbListWithAttRejCauseVal15(VOS_UINT32 ulIsWithExtCaus
     }
     return;
 }
-/*****************************************************************************
- Function Name   : NAS_LMM_DelCurrTaFromGradualForbTaList
- Description     : 从Gradual Forb列表中删除TA
- Input           : pstCurrTa :需要删除的TA
- Output          : None
- Return          : None
- History         :
-    1.leixiantiao 00258641      2015-07-31  Draft Enact
 
-*****************************************************************************/
 VOS_VOID NAS_LMM_DelCurrTaFromGradualForbTaList(NAS_MM_TA_STRU   *pstCurrTa)
 {
     VOS_UINT32                          ulIndex = 0;
@@ -9264,16 +7579,7 @@ VOS_VOID NAS_LMM_DelCurrTaFromGradualForbTaList(NAS_MM_TA_STRU   *pstCurrTa)
     }
     return;
 }
-/*****************************************************************************
- Function Name   : NAS_LMM_DelCurrTaFromGradualForbTaList
- Description     : 从Gradual Forb列表中删除TA
- Input           : pstCurrTa :需要删除的TA
- Output          : None
- Return          : None
- History         :
-    1.leixiantiao 00258641      2015-07-31  Draft Enact
 
-*****************************************************************************/
 VOS_VOID NAS_LMM_UpdateGradualForbListWithTauRejCause13(NAS_MM_TA_STRU   *pstCurrTa)
 {
     if (NAS_RELEASE_R11)
@@ -9289,17 +7595,7 @@ VOS_VOID NAS_LMM_UpdateGradualForbListWithTauRejCause13(NAS_MM_TA_STRU   *pstCur
         NAS_LMM_DelCurrTaFromGradualForbTaList(pstCurrTa);
     }
 }
-/*****************************************************************************
- Function Name   : NAS_LMM_ExistTaInTempTaListWithForbTimerRunning
- Description     : 判断Gradual Forb临时列表中是否存在TA惩罚定时器启动着
- Input           : None
- Output          : None
- Return          : 0: Gradual列表中不存在惩罚定时器启动着的TA
-                   1: Gradual列表中存在惩罚定时器启动着的TA
- History         :
-    1.leixiantiao 00258641      2015-07-31  Draft Enact
 
-*****************************************************************************/
 VOS_UINT32 NAS_LMM_ExistTaInTempTaListWithForbTimerRunning(VOS_VOID)
 {
     NAS_LMM_GRADUAL_FORB_TEMP_FORB_TA_LIST  *pstTaList     = VOS_NULL_PTR;
@@ -9329,16 +7625,7 @@ VOS_UINT32 NAS_LMM_ExistTaInTempTaListWithForbTimerRunning(VOS_VOID)
     }
     return ulIsExistTa;
 }
-/*****************************************************************************
- Function Name   : NAS_LMM_TaMatchTempTaListWithForbTimerRunning
- Description     : 判断TA是否在Gradual Forb临时列表中且惩罚定时器启动着
- Input           : None
- Output          : None
- Return          : 1: 在临时列表中且惩罚定时器启动着
- History         :
-    1.leixiantiao 00258641      2015-07-31  Draft Enact
 
-*****************************************************************************/
 NAS_LMM_MATCH_RESULT_ENUM_UINT32 NAS_LMM_TaMatchTempTaListWithForbTimerRunning
 (
     const NAS_MMC_TA_STRU                    *pstTa
@@ -9356,16 +7643,7 @@ NAS_LMM_MATCH_RESULT_ENUM_UINT32 NAS_LMM_TaMatchTempTaListWithForbTimerRunning
     return NAS_LMM_MATCH_FAIL;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_GetEmmInfoRegDomain
- Description     : 获取当前注册域
- Input           : None
- Output          : None
- Return          : 当前注册域
- History         :
-    1.leixiantiao 00258641      2015-08-28  Draft Enact
 
-*****************************************************************************/
 NAS_LMM_REG_DOMAIN_ENUM_UINT32 NAS_LMM_GetEmmInfoRegDomain(VOS_VOID)
 {
     NAS_EMM_PUB_INFO_STRU                   *pstEmmInfo;
@@ -9378,16 +7656,7 @@ NAS_LMM_REG_DOMAIN_ENUM_UINT32 NAS_LMM_GetEmmInfoRegDomain(VOS_VOID)
 
     return enRegDomainCur;
 }
-/*****************************************************************************
- Function Name   : NAS_LMM_SetEmmInfoRegDomain
- Description     : 设置注册域
- Input           : enRegDomainDst : 目标注册域
- Output          : None
- Return          : None
- History         :
-    1.leixiantiao 00258641      2015-08-28  Draft Enact
 
-*****************************************************************************/
 VOS_VOID NAS_LMM_SetEmmInfoRegDomain(NAS_LMM_REG_DOMAIN_ENUM_UINT32 enRegDomainDst)
 {
     NAS_EMM_PUB_INFO_STRU                   *pstEmmInfo;
@@ -9407,15 +7676,7 @@ VOS_VOID NAS_LMM_SetEmmInfoRegDomain(NAS_LMM_REG_DOMAIN_ENUM_UINT32 enRegDomainD
     #endif
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_IsMsgContainsSMS
- Description     : 判断空口消息是否含有未加密的短信内容
- Input           : None
- Output          : None
- Return          : VOS_UINT8
- History         :
-    1.zhaochen 00308719      2015-04-02  Draft Enact
-*****************************************************************************/
+
 VOS_UINT8  NAS_LMM_IsMsgContainsSMS(VOS_UINT32 ulMsgSize, VOS_UINT8 *pstMsg)
 {
     /* 如果屏蔽短信消息的NV没有打开，则直接返回不包含 */
@@ -9454,16 +7715,7 @@ VOS_UINT8  NAS_LMM_IsMsgContainsSMS(VOS_UINT32 ulMsgSize, VOS_UINT8 *pstMsg)
     }
     return NAS_EMM_NO;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_IsNotIdle
- Description     : 非IDLE态
- Input           :
- Output          :
- Return          :
- History         :
-    1.yanglei  00307272      2015-11-03  Draft Enact
 
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_IsNotIdle(VOS_VOID)
 {
     if ((NAS_EMM_CONN_IDLE != NAS_EMM_GetConnState())
@@ -9476,16 +7728,7 @@ VOS_UINT32  NAS_EMM_IsNotIdle(VOS_VOID)
     return NAS_EMM_NO;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_IsEhrpdOr1XRatExist
- Description     : 判断是否存在EHRPD接入技术
- Input           : VOS_VOID
- Output          : VOS_VOID
- Return          : NAS_LMM_FAIL:接入技术中无EHRPD
-                   NAS_LMM_SUCC:接入技术中有EHRPD
- History         :
-    1.sunjitan 00193151    2016-01-14  Mofify for CL多模互操作
-*****************************************************************************/
+
 VOS_UINT32  NAS_EMM_IsEhrpdOr1XRatExist(VOS_VOID)
 {
     if (((NAS_LMM_RAT_PRIO_NULL ==  NAS_LMM_GetCurHrpdPrio())

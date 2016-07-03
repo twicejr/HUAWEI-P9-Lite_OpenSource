@@ -23,14 +23,7 @@ using namespace testing;
 //11、获取测试用例名字 test_case_name()
 //12、比较异常 EXPECT_THROW
 //13、结构体类型比较ASSERT_SAME_DATA ASSERT_SAME_MEMORY
-/*****************************************************************************
-类名     : Test_At_TestCpolPara
-功能描述 : CPOL测试命令的UT测试类
-修改历史 :
-1.日   期  : 2011-10-27
-作   者  : c00173809
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_TestCpolPara: public ::testing::Test
 {
 public:
@@ -70,15 +63,7 @@ public:
         AT_GetModemNetCtxAddrFromClientId(ucIndex)->ucRoamFeature              = AT_ROAM_FEATURE_OFF;
     }
 };
-/*******************************************************************
-测试用例编号      : Test_At_TestCpolPara_001
-测试用例标题      : 发送消息失败
-预期结果          : 返回AT_ERROR
-修改历史     :
-1.日   期  : 2011-10-13
-作   者  :   c00173809
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_TestCpolPara,Test_At_TestCpolPara_001)
 {
     MOCKER(AT_FillAndSndAppReqMsg)
@@ -89,15 +74,7 @@ TEST_F(Test_At_TestCpolPara,Test_At_TestCpolPara_001)
 
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号      : Test_At_TestCpolPara_002
-测试用例标题      : 发送消息成功
-预期结果          : 返回等待异步消息
-修改历史     :
-1.日   期  : 2011-10-13
-作   者  :   c00173809
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_TestCpolPara,Test_At_TestCpolPara_002)
 {
     MOCKER(MN_FillAndSndAppReqMsg)
@@ -109,14 +86,7 @@ TEST_F(Test_At_TestCpolPara,Test_At_TestCpolPara_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_At_TestCgeqnegPara
-功能描述 : At_TestCgeqnegPara UT工程类
-修改历史     :
-1.日   期  : 2011-12-17
-作   者  :   l00130025
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_TestCgeqnegPara: public ::testing::Test
 {
 public:
@@ -131,15 +101,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_TestCgeqnegPara_001
-测试用例标题      : 发送获取PDP状态成功和启动定时器成功，返回
-预期结果          : AT_WAIT_ASYNC_RETURN
-修改历史          :
-1.日   期         : 2011-12-17
-  作   者         : l00130025
-  修改内容        : DTS2011120604361,CGEQNEG错误
-*******************************************************************/
+
 TEST_F(Test_At_TestCgeqnegPara,Test_At_TestCgeqnegPara_001)
 {
     // 变量声明

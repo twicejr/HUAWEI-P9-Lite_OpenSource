@@ -1,20 +1,5 @@
 
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafXCallKmcCommType.h
-  版 本 号   : 初稿
-  作    者   : l00359089
-  生成日期   : 2015年10月20日
-  功能描述   : TAF X CALL 定义KMC 消息中USER DATA的结构
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年10月20日
-    作    者   : l00359089
-    修改内容   : 创建文件 for CDMA 1X Iteration 19
-******************************************************************************/
 /*****************************************************************************
   1 其他头文件包含
 *****************************************************************************/
@@ -89,13 +74,7 @@ extern "C" {
 /*****************************************************************************
   3 枚举定义
 *****************************************************************************/
-/*************************************
- 枚举名：  TAF_XCALL_KMC_MSG_TRIGGER_MODE_ENUM
- 枚举说明：触发密话模式
- 1.日期:      20151021
-   作者:      l00359089
-   修改内容：新建
-*************************************/
+
 enum TAF_XCALL_KMC_MSG_TRIGGER_MODE_ENUM
 {
     TAF_XCALL_KMC_MSG_TRIGGER_MODE_MANUAL                   = 0x00,             /*手动触发密话*/
@@ -104,13 +83,7 @@ enum TAF_XCALL_KMC_MSG_TRIGGER_MODE_ENUM
 };
 typedef VOS_UINT8   TAF_XCALL_KMC_MSG_TRIGGER_MODE_ENUM_UINT8;
 
-/*************************************
- 枚举名：  TAF_XCALL_KMC_MSG_ERR_IND_CAUSE_ENUM
- 枚举说明：错误通知 消息 原因值
- 1.日期:      20151021
-   作者:      l00359089
-   修改内容：新建
-*************************************/
+
 enum TAF_XCALL_KMC_MSG_ERR_IND_CAUSE_ENUM
 {
     TAF_XCALL_KMC_MSG_ERR_IND_CAUSE_LOCAL_NO_PERMISSION     = 0x00,             /*本端用户无加密权限*/
@@ -123,13 +96,7 @@ enum TAF_XCALL_KMC_MSG_ERR_IND_CAUSE_ENUM
 };
 typedef VOS_UINT8   TAF_XCALL_KMC_MSG_ERR_IND_CAUSE_ENUM_UINT8;
 
-/*************************************
- 枚举名：  TAF_XCALL_KMC_MSG_ROMOTE_CTRL_CMD_TYPE_ENUM
- 枚举说明：远程控制指令类型值
- 1.日期:      20151021
-   作者:      l00359089
-   修改内容：新建
-*************************************/
+
 enum TAF_XCALL_KMC_MSG_ROMOTE_CTRL_CMD_TYPE_ENUM
 {
     TAF_XCALL_KMC_MSG_ROMOTE_CTRL_CMD_TYPE_SECURE_INFO_ERASE                    =0x00,              /*安全信息擦除*/
@@ -138,13 +105,7 @@ enum TAF_XCALL_KMC_MSG_ROMOTE_CTRL_CMD_TYPE_ENUM
 };
 typedef VOS_UINT8   TAF_XCALL_KMC_MSG_ROMOTE_CTRL_CMD_TYPE_ENUM_UINT8;
 
-/*************************************
- 枚举名：  TAF_XCALL_KMC_MSG_ROMOTE_CTRL_CMD_EXECUTE_RSLT_ENUM
- 枚举说明：远程控制指令执行结果
- 1.日期:      20151021
-   作者:      l00359089
-   修改内容：新建
-*************************************/
+
 enum TAF_XCALL_KMC_MSG_ROMOTE_CTRL_CMD_RSLT_ENUM
 {
     TAF_XCALL_KMC_MSG_ROMOTE_CTRL_CMD_RSLT_SUCCESS                              = 0x00,  /* 成功 */
@@ -155,13 +116,7 @@ enum TAF_XCALL_KMC_MSG_ROMOTE_CTRL_CMD_RSLT_ENUM
 };
 typedef VOS_UINT8   TAF_XCALL_KMC_MSG_ROMOTE_CTRL_CMD_RSLT_ENUM_UINT8;
 
-/*************************************
- 枚举名：  TAF_XCALL_KMC_MSG_TYPE_ENUM
- 枚举说明：消息类型标志
- 1.日期:      20151021
-   作者:      l00359089
-   修改内容：新建
-*************************************/
+
 enum TAF_XCALL_KMC_MSG_TYPE_ENUM
 {
     TAF_XCALL_KMC_MSG_TYPE_MO_KEY_REQ                       =0x00,              /*主叫密钥请求*/
@@ -180,13 +135,7 @@ enum TAF_XCALL_KMC_MSG_TYPE_ENUM
 };
 typedef VOS_UINT8   TAF_XCALL_KMC_MSG_TYPE_ENUM_UINT8;
 
-/*************************************
- 枚举名：  TAF_XCALL_KMC_MSG_PROCESS_RSLT_ENUM
- 枚举说明：KMC MSG 编解码处理结果
- 1.日期:      20151023
-   作者:      l00359089
-   修改内容：新建
-*************************************/
+
 enum TAF_XCALL_KMC_MSG_PROCESS_RSLT_ENUM
 {
     TAF_XCALL_KMC_MSG_PROCESS_RSLT_SUCCESS                  =0,
@@ -222,13 +171,7 @@ typedef VOS_UINT32   TAF_XCALL_KMC_MSG_PROCESS_RSLT_ENUM_UINT32;
 /*****************************************************************************
   7 STRUCT定义
 *****************************************************************************/
-/*************************************
- 结构名：  TAF_XCALL_KMC_MSG_ADDITIONAL_INFO_STRU
- 结构说明：辅助信息字段
- 1.日期:      20151021
-   作者:      l00359089
-   修改内容：新建
-*************************************/
+
 typedef struct
 {
     VOS_UINT16                          usSid;
@@ -237,13 +180,7 @@ typedef struct
     VOS_UINT8                           aucReserved[2];
 }TAF_XCALL_KMC_MSG_ADDITIONAL_INFO_STRU;
 
-/*************************************
- 结构名：  TAF_XCALL_KMC_MSG_SIGN_INFO_STRU
- 结构说明：签名信息字段
- 1.日期:      20151023
-   作者:      l00359089
-   修改内容：新建
-*************************************/
+
 typedef struct
 {
     /*KMC签名信息长度*/
@@ -254,13 +191,7 @@ typedef struct
     VOS_UINT8                           aucSignInfo[TAF_XCALL_KMC_MSG_MAX_SIGN_INFO_LEN];
 }TAF_XCALL_KMC_MSG_SIGN_INFO_STRU;
 
-/*************************************
- 结构名：  TAF_XCALL_KMC_PUB_KEY_STRU
- 结构说明：公钥字段
- 1.日期:      20151023
-   作者:      l00359089
-   修改内容：新建
-*************************************/
+
 typedef struct
 {
     /*KMC公钥长度*/
@@ -271,13 +202,7 @@ typedef struct
     VOS_UINT8                           aucKey[TAF_XCALL_KMC_MSG_MAX_KMC_PUB_KEY_LEN];
 }TAF_XCALL_KMC_PUB_KEY_STRU;
 
-/*************************************
- 结构名：  TAF_XCALL_KMC_PRIV_KEY_STRU
- 结构说明：私钥字段
- 1.日期:      20151026
-   作者:      y00245242
-   修改内容：新建
-*************************************/
+
 typedef struct
 {
     /*KMC私钥长度*/
@@ -288,13 +213,7 @@ typedef struct
     VOS_UINT8                           aucKey[TAF_XCALL_KMC_MSG_MAX_KMC_PRIV_KEY_LEN];
 }TAF_XCALL_KMC_PRIV_KEY_STRU;
 
-/*************************************
- 结构名：  TAF_XCALL_KMC_PRIV_KEY_STRU
- 结构说明：密文字段
- 1.日期:      20151102
-   作者:      l00359089
-   修改内容：新建
-*************************************/
+
 typedef struct
 {
     VOS_UINT16                          usCipherLen;        /*密文长度，2bytes*/
@@ -302,13 +221,7 @@ typedef struct
     VOS_UINT8                           aucCipher[TAF_XCALL_KMC_MSG_MAX_CIPHER_LEN]; /*密文*/
 }TAF_XCALL_KMC_MSG_CIPHER_STRU;
 
-/*************************************
- 结构名：  TAF_XCALL_KMC_MSG_KEY_REQ_STRU
- 结构说明：密钥请求消息
- 1.日期:      20151021
-   作者:      l00359089
-   修改内容：新建
-*************************************/
+
 typedef struct
 {
     TAF_XCALL_KMC_MSG_TRIGGER_MODE_ENUM_UINT8               enTriggerMode;      /*触发密话模式*/
@@ -319,26 +232,14 @@ typedef struct
     TAF_XCALL_KMC_MSG_ADDITIONAL_INFO_STRU                  stAdditionalInfo;   /*辅助信息字段*/
 }TAF_XCALL_KMC_MSG_KEY_REQ_STRU;
 
-/*************************************
- 结构名：  TAF_XCALL_KMC_MSG_KEY_RSP_STRU
- 结构说明：密钥响应消息
- 1.日期:      20151021
-   作者:      l00359089
-   修改内容：新建
-*************************************/
+
 typedef struct
 {
     TAF_XCALL_KMC_MSG_CIPHER_STRU                           stCipher;           /*密文字段*/
     TAF_XCALL_KMC_MSG_SIGN_INFO_STRU                        stSignInfo;         /*签名信息*/
 }TAF_XCALL_KMC_MSG_KEY_RSP_STRU;
 
-/*************************************
- 结构名：  TAF_XCALL_KMC_MSG_MT_ENCRYPT_IND_STRU
- 结构说明：被叫加密通知消息
- 1.日期:      20151021
-   作者:      l00359089
-   修改内容：新建
-*************************************/
+
 typedef struct
 {
     /*主叫号码长度*/
@@ -350,13 +251,7 @@ typedef struct
     VOS_UINT8                           aucRemoteNumber[TAF_XCALL_KMC_MSG_MAX_REMOTE_NUMBER_LEN];
 }TAF_XCALL_KMC_MSG_MT_ENCRYPT_IND_STRU;
 
-/*************************************
- 结构名：  TAF_XCALL_KMC_MSG_ERR_IND_STRU
- 结构说明：错误通知 消息
- 1.日期:      20151021
-   作者:      l00359089
-   修改内容：新建
-*************************************/
+
 
 typedef struct
 {
@@ -364,13 +259,7 @@ typedef struct
     VOS_UINT8                                               aucReserved[3];     /*保留字段*/
 }TAF_XCALL_KMC_MSG_ERR_IND_STRU;
 
-/*************************************
- 结构名：  TAF_XCALL_KMC_MSG_PUB_KEY_UPDATE_IND_STRU
- 结构说明：KMC公钥更新 消息
- 1.日期:      20151021
-   作者:      l00359089
-   修改内容：新建
-*************************************/
+
 typedef struct
 {
 
@@ -380,39 +269,21 @@ typedef struct
     TAF_XCALL_KMC_MSG_SIGN_INFO_STRU                        stSignInfo;         /*KMC签名信息*/
 }TAF_XCALL_KMC_MSG_PUB_KEY_UPDATE_IND_STRU;
 
-/*************************************
- 结构名：  TAF_XCALL_KMC_MSG_PUB_KEY_UPDATE_RSP_STRU
- 结构说明：KMC公钥更新响应消息
- 1.日期:      20151021
-   作者:      l00359089
-   修改内容：新建
-*************************************/
+
 typedef struct
 {
     /*随机数*/
     VOS_UINT8                           aucRandomData[TAF_XCALL_KMC_MSG_RANDOM_DATA_LEN];
 }TAF_XCALL_KMC_MSG_PUB_KEY_UPDATE_RSP_STRU;
 
-/*************************************
- 结构名：  TAF_XCALL_KMC_MSG_PUB_KEY_UPDATE_ACK_STRU
- 结构说明：KMC公钥更新确认 消息
- 1.日期:      20151021
-   作者:      l00359089
-   修改内容：新建
-*************************************/
+
 typedef struct
 {
     /*随机数*/
     VOS_UINT8                           aucRandomData[TAF_XCALL_KMC_MSG_RANDOM_DATA_LEN];
 } TAF_XCALL_KMC_MSG_PUB_KEY_UPDATE_ACK_STRU;
 
-/*************************************
- 结构名：  TAF_XCALL_KMC_MSG_ROMOTE_CTRL_CMD_IND_STRU
- 结构说明：远程控制指令
- 1.日期:      20151021
-   作者:      l00359089
-   修改内容：新建
-*************************************/
+
 typedef struct
 {
     /*KMC公钥版本*/
@@ -430,13 +301,7 @@ typedef struct
 
 }TAF_XCALL_KMC_MSG_ROMOTE_CTRL_CMD_IND_STRU;
 
-/*************************************
- 结构名：  TAF_XCALL_KMC_MSG_ROMOTE_CTRL_CMD_RSP_STRU
- 结构说明：远程控制指令响应
- 1.日期:      20151021
-   作者:      l00359089
-   修改内容：新建
-*************************************/
+
 typedef struct
 {
     TAF_XCALL_KMC_MSG_ROMOTE_CTRL_CMD_TYPE_ENUM_UINT8       enRomoteCtrlCmdType;                            /*远程控制指令类型*/
@@ -445,13 +310,7 @@ typedef struct
     VOS_UINT8                                               ucReserved;                                    /*保留字段*/
 }TAF_XCALL_KMC_MSG_ROMOTE_CTRL_CMD_RSP_STRU;
 
-/*************************************
- 结构名：  TAF_XCALL_KMC_MSG_INFO_STRU
- 结构说明：终端与KMC交互消息
- 1.日期:      20151021
-   作者:      l00359089
-   修改内容：新建
-*************************************/
+
 typedef struct
 {
     VOS_UINT8                                               ucSpecSmsID;        /*特殊短信标识*/

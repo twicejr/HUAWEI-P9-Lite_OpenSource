@@ -47,7 +47,6 @@ VOID   PPP_OSICP_starting(PPPFSM_S *) ;
 
 /* 内部函数 */
 ULONG PPP_OSICP_UpResetCi(PPPINFO_S *) ;
-/* Add for DTS2011042101452, by z00166124, at 2011-04-21. 修改原因: 定时器传入接口索引指针 */
 VOID PPP_OSICP_FSM_TimeOut(VOID *pIfIndex);
 VOID PPP_OSICP_Ncp_Reset(VOID *pIfIndex);
 

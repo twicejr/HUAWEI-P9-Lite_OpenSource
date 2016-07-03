@@ -1,16 +1,4 @@
-/******************************************************************************
 
-
-        @(#)Copyright(C)2013,Hisilicon Co. LTD.
-
-******************************************************************************
-    File name   : ImsaLrrcInterface.h
-    Description : Imsa与Lrrc 头文件
-    History     :
-      1.leili 00132387   2013-10-11  Draft Enact
-
-
-******************************************************************************/
 
 #ifndef __IMSALRRCINTERFACE_H__
 #define __IMSALRRCINTERFACE_H__
@@ -53,15 +41,7 @@ extern "C" {
 /*****************************************************************************
   3 Massage Declare
 *****************************************************************************/
-/*****************************************************************************
- 枚举名    : IMSA_LRRC_MSG_ID_ENUM
- 协议表格  :
- ASN.1描述 :
- 枚举说明  : IMSA和LRRC之间的消息接口
- 1.日    期   : 2014年7月26日
-   作    者   : c00134407
-   修改内容   : 新建
-*****************************************************************************/
+
 enum    IMSA_LRRC_MSG_ID_ENUM
 {
     ID_IMSA_LRRC_BEGIN_SESSION_NOTIFY     = (IMSA_LRRC_MSG_HDR + 0x00),     /* _H2ASN_MsgChoice IMSA_LRRC_BEGIN_SESSION_NOTIFY_STRU */
@@ -80,13 +60,7 @@ typedef VOS_UINT32   IMSA_LRRC_MSG_ID_ENUM_UINT32;
 /*****************************************************************************
   4 Enum
 *****************************************************************************/
-/*****************************************************************************
- 枚举名    : IMSA_LRRC_SESSION_TYPE_ENUM_UINT8
- 枚举说明  : SESSION类型
- 1.日    期   : 2014年5月22日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 enum IMSA_LRRC_SESSION_TYPE_ENUM
 {
     IMSA_LRRC_SESSION_TYPE_MO_NORMAL_CALL,
@@ -101,13 +75,7 @@ enum IMSA_LRRC_SESSION_TYPE_ENUM
 };
 typedef VOS_UINT8 IMSA_LRRC_SESSION_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名   : IMSA_LRRC_VOLTE_STATUS_ENUM_UINT8
- 枚举说明  : LMM通知LRRC VOLTE操作的类型
- 1.日    期   : 2015年11月30日
-   作    者   : l00195322
-   修改内容   : 新建
-*****************************************************************************/
+
 enum IMSA_LRRC_VOLTE_STATUS_ENUM
 {
     IMSA_LRRC_VOLTE_STATUS_INIT,
@@ -122,13 +90,7 @@ typedef VOS_UINT8  IMSA_LRRC_VOLTE_STATUS_ENUM_UINT8;
 /*****************************************************************************
   5 STRUCT
 *****************************************************************************/
-/*****************************************************************************
-结构名    : IMSA_LRRC_BEGIN_SESSION_NOTIFY_STRU
-结构说明  : SESSION开始指示
-1.日    期   : 2014年5月22日
-  作    者   : h00246512
-  修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stMsgHeader;          /* 消息头    */   /*_H2ASN_Skip*/
@@ -136,13 +98,7 @@ typedef struct
     VOS_UINT8                                       aucReserved[3];
 }IMSA_LRRC_BEGIN_SESSION_NOTIFY_STRU;
 
-/*****************************************************************************
- 结构名    : IMSA_LRRC_END_SESSION_NOTIFY_STRU
- 结构说明  : SESSION终止指示
- 1.日    期   : 2014年5月22日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stMsgHeader;          /* 消息头    */   /*_H2ASN_Skip*/
@@ -150,13 +106,7 @@ typedef struct
     VOS_UINT8                                       aucReserved[3];
 }IMSA_LRRC_END_SESSION_NOTIFY_STRU;
 
-/*****************************************************************************
- 结构名    : IMSA_LRRC_HIFI_SYNC_SWITCH_IND_STRU
- 结构说明  : 通知LRRC HIFI同步开关指示
- 1.日    期   : 2014年11月14日
-   作    者   : l00150010
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stMsgHeader;          /* 消息头    */   /*_H2ASN_Skip*/
@@ -203,18 +153,7 @@ extern VOS_UINT32  IMSA_LRRC_GetSSACInfo
     IMSA_LRRC_SSAC_INFO_STRU *pstSsacInfo
 );
 
-/*****************************************************************************
- Function Name   : IMSA_LRRC_JudgeCurrCellSingalQuality
- Description     : LRRC提供给IMSA接口，用于评估当前信号质量
- Input           : None
- Output          : None
- Return          : 0,信号质量好，LTE上能发起VOLTE电话
-                   1,信号质量不好，信号质量差，直接去GU打CS电话
 
- History         :
-
-    1.l00195322     2015-12-3
-*****************************************************************************/
 
 extern VOS_UINT32 IMSA_LRRC_JudgeCurrCellSingalQuality(VOS_VOID);
 /*****************************************************************************

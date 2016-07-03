@@ -537,31 +537,7 @@ extern UINT32 SRE_SemCountGet(SEM_HANDLE_T usSemHandle, UINT32 *puwSemCnt);
  */
 extern UINT32 SRE_SemPend(SEM_HANDLE_T usSemHandle, UINT32 uwTimeout);
 
-/**
- * @ingroup SRE_sem
- * @brief 发布指定的信号量。
- *
- * @par 描述:
- * 发布指定的信号量，若没有任务等待该信号量，则直接将计数器加1返回。
- * 否则根据唤醒方式唤醒相应的阻塞任务，FIFO方式唤醒最早阻塞的任务，优先级方式唤醒阻塞在此信号量的最高优先级任务。
- * @attention
- * <ul>
- * <li>在osStart之前不能调用该接口。</li>
- * <li>在未锁任务的情况下，如果唤醒的任务优先级高于当前任务，则会立刻发生任务切换。</li>
- * <li>发生任务切换时，如果支持优先级唤醒方式，且创建信号量时指定唤醒方式为优先级，则唤醒阻塞在该信号量上的最高优先级任务。</li>
- * </ul>
- * @param usSemHandle [IN] 类型为#SEM_HANDLE_T，信号量句柄，来源于信号量创建成功的输出值。
- *
- * @retval #OS_ERRNO_SEM_INVALID              0x02000f01，信号量句柄为非法值，或已被删除。
- * @retval #OS_ERRNO_SEM_OVERFLOW             0x02000f08，信号量加操作后溢出。
- * @retval #OS_ERRNO_SEM_MUTEX_POST_INTERR    0x02000f0a，中断中释放互斥型信号量。
- * @retval #OS_ERRNO_SEM_MUTEX_NOT_OWNER_POST 0x02000f0b，非互斥信号量的持有者在释放此互斥信号量。
- * @retval #SRE_OK                            0x00000000，操作成功。
- * @par 依赖:
- * <ul><li>sre_sem.h：该接口声明所在的头文件。</li></ul>
- * @since RTOSck V100R001C01
- * @see SRE_SemPend
- */
+
 extern UINT32 SRE_SemPost(SEM_HANDLE_T usSemHandle);
 
 /**

@@ -1,18 +1,4 @@
-/************************************************************************
-Copyright   : 2005-2008, Huawei Tech. Co., Ltd.
-File name   : SimProc.c
-Author      : z00100318
-Version     : V200R001
-Date        : 2008-10-18
-Description : 该文件定义了SIM卡事件实现
 
-Description : SIM卡事件的处理和实现
-History     :
-
-1.日    期  : 2008年10月28日
-  作    者  : H59254
-  修改内容  : Create
-************************************************************************/
 
 #include "si_stk.h"
 #include "csimagent.h"
@@ -163,22 +149,7 @@ SI_STK_DATADECODE_STRU gSTKDataDecode[] =
     {SI_STK_TAG_BUTT                ,0,0,0}
 };
 
-/*****************************************************************************
-函 数 名  :SI_STK_BcdByteToAscii
-功能描述  :BCD码转换成Ascii码
-输入参数  :ucBcdNumLen:转换的号码长度
-           pucBcdNum:转换的号码内容
-           enChangeMode:转换的大小写
-输出参数  :pucAsciiNum:转换的结果
-返 回 值  :无
-调用函数  :无
-被调函数  :
-修订记录  :
-1. 日    期   : 2009年8月4日
-    作    者   : z00100318
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID SI_STK_BcdByteToAscii(VOS_UINT8 ucBcdByte,
                                         VOS_UINT8*pucAsciiByte,
                                         SI_STK_STR_CHANGEMODE_ENUM_UINT32 enChangeMode)
@@ -218,22 +189,7 @@ VOS_VOID SI_STK_BcdByteToAscii(VOS_UINT8 ucBcdByte,
     return;
 }
 
-/*****************************************************************************
-函 数 名  :SI_STK_BcdStrToAscii
-功能描述  :BCD码转换成Ascii码
-输入参数  :ucBcdNumLen:转换的号码长度
-           pucBcdNum:转换的号码内容
-           enChangeMode:转换模式
-输出参数  :pucAsciiNum:转换的结果
-返 回 值  :无
-调用函数  :无
-被调函数  :
-修订记录  :
-1. 日    期   : 2009年8月4日
-    作    者   : z00100318
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID SI_STK_BcdStrToAscii(VOS_UINT8 ucBcdNumLen,
                                         VOS_UINT8 *pucBcdNum,
                                         VOS_UINT8 *pucAsciiNum,
@@ -279,19 +235,7 @@ VOS_VOID SI_STK_BcdStrToAscii(VOS_UINT8 ucBcdNumLen,
     return;
 }
 
-/*****************************************************************************
-函 数 名  :SI_STKSetBit32
-功能描述  :32bit设置函数
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2009年07月03日
-  作    者  : z00100318
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_STKSetBit32(VOS_UINT32 ulValue, VOS_UINT32 ulBitNo)
 {
     VOS_UINT32 ulTemp = 0;
@@ -319,19 +263,7 @@ VOS_UINT32 SI_STKSetBit32(VOS_UINT32 ulValue, VOS_UINT32 ulBitNo)
     return ulValue;
 }
 
-/*****************************************************************************
-函 数 名  :SI_STKGetBit32
-功能描述  :32bit获取函数
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2009年07月03日
-  作    者  : z00100318
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_STKGetBit32(VOS_UINT32 ulValue, VOS_UINT32 ulBitNo)
 {
     VOS_UINT32 ulTemp = 0;
@@ -358,22 +290,7 @@ VOS_UINT32 SI_STKGetBit32(VOS_UINT32 ulValue, VOS_UINT32 ulBitNo)
     return ulValue;
 }
 
-/*****************************************************************************
-函 数 名  :SI_STKGetBitFromBuf
-功能描述  :从数据中获取指定Bit位的值　
-输入参数  :ucDataBuf:   数据内容
-           ulBitNo:     Bit号从0开始
-           ulBufLen:    数据总长度
-输出参数  :无
-返 回 值  :USIMM_BITNOFOUNE
-           Bit值
-调用函数  :无
-修订记录  :
-1. 日    期   : 2007年7月10日
-    作    者   : z00100318
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 SI_STKGetBitFromBuf(VOS_UINT8 *pucDataBuf, VOS_UINT32 ulBitNo,VOS_UINT32 ulBufLen)
 {
     VOS_UINT32  ulOffset;
@@ -391,19 +308,7 @@ VOS_UINT32 SI_STKGetBitFromBuf(VOS_UINT8 *pucDataBuf, VOS_UINT32 ulBitNo,VOS_UIN
     return ((pucDataBuf[ulOffset]>>ucBit)&0x00000001);/*返回bit值是0还是1*/
 }
 
-/*****************************************************************************
-函 数 名  :SI_STKFindTag
-功能描述  :在码流中找到指定的TAG
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2009年07月03日
-  作    者  : z00100318
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_STKFindTag(VOS_UINT8 ucTag, VOS_UINT8* pucData, VOS_UINT32 ulDataLen,VOS_UINT32 ulFindNum)
 {
     VOS_UINT32 i;
@@ -443,19 +348,7 @@ VOS_UINT32 SI_STKFindTag(VOS_UINT8 ucTag, VOS_UINT8* pucData, VOS_UINT32 ulDataL
     return SI_TAGNOTFOUND;
 }
 
-/*****************************************************************************
-函 数 名  :SI_STKDecodeTagData
-功能描述  :根据TAG类型对TLV格式进行解码
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2009年07月03日
-  作    者  : z00100318
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_STKDecodeTagData(VOS_UINT8 *pucCmdData, VOS_UINT8 ucTag, VOS_VOID *pDec)
 {
     VOS_UINT32      ulDataLen = 0;
@@ -539,19 +432,7 @@ VOS_UINT32 SI_STKDecodeTagData(VOS_UINT8 *pucCmdData, VOS_UINT8 ucTag, VOS_VOID 
     return ulDataLen;
 }
 
-/*****************************************************************************
-函 数 名  :SI_STKTagDataFree
-功能描述  :TAG数据释放内存
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2009年07月03日
-  作    者  : z00100318
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_STKTagDataFree(VOS_UINT8 ucTag, VOS_VOID *pData)
 {
     VOS_UINT32      ulDataLen = 0;
@@ -603,19 +484,7 @@ VOS_UINT32 SI_STKTagDataFree(VOS_UINT8 ucTag, VOS_VOID *pData)
 }
 
 
-/*****************************************************************************
-函 数 名  :
-功能描述  :
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2009年07月03日
-  作    者  : z00100318
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STKDecodeTagList(VOS_UINT8 *pucCmdData,VOS_UINT8 *pucTagList,VOS_UINT32 ulListLen, SI_SAT_COMMDATA_STRU *pstDec)
 {
     VOS_UINT32 i;
@@ -647,19 +516,7 @@ VOS_VOID SI_STKDecodeTagList(VOS_UINT8 *pucCmdData,VOS_UINT8 *pucTagList,VOS_UIN
     return;
 }
 
-/*****************************************************************************
-函 数 名  :SI_STKSendTRWithData
-功能描述  :主动命令直接回复TERMINAL RESPONSE 和数据
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2009年07月03日
-  作    者  : z00100318
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STKSendTRWithData(SI_STK_COMMAND_DETAILS_STRU *pstCMDInfo, VOS_UINT32 ulResultLen, VOS_UINT8 *pucResult, VOS_UINT32 ulDataLen, VOS_UINT8 *pucData)
 {
     VOS_UINT8   aucTemp[255] = {0x81,0x03,0x00,0x00,0x00,0x82,0x02,0x82,0x81,0x03,0x00};
@@ -729,19 +586,7 @@ VOS_VOID SI_STKSendTRWithData(SI_STK_COMMAND_DETAILS_STRU *pstCMDInfo, VOS_UINT3
     return;
 }
 
-/*****************************************************************************
-函 数 名  :SI_STKSimpleResponseData
-功能描述  :主动命令直接回复TERMINAL RESPONSE
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2009年07月03日
-  作    者  : z00100318
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STKSimpleResponseData(SI_STK_COMMAND_DETAILS_STRU *pstCMDInfo, VOS_UINT32 ulDataLen, VOS_UINT8 *pucData)
 {
     VOS_UINT8  aucTemp[] = {0x81,0x03,0x00,0x00,0x00,0x02,0x02,0x82,0x81,0x83,0x00};
@@ -803,19 +648,7 @@ VOS_VOID SI_STKSimpleResponseData(SI_STK_COMMAND_DETAILS_STRU *pstCMDInfo, VOS_U
     return;
 }
 
-/*****************************************************************************
-函 数 名  :SI_STKSimpleResponse
-功能描述  :主动命令直接回复TERMINAL RESPONSE
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2009年07月03日
-  作    者  : z00100318
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STKSimpleResponse(SI_STK_COMMAND_DETAILS_STRU *pstCMDInfo, VOS_UINT8 ucResult)
 {
     SI_STKSimpleResponseData(pstCMDInfo, sizeof(VOS_UINT8), &ucResult);
@@ -823,19 +656,7 @@ VOS_VOID SI_STKSimpleResponse(SI_STK_COMMAND_DETAILS_STRU *pstCMDInfo, VOS_UINT8
     return;
 }
 
-/*****************************************************************************
-函 数 名  :SI_STK_InitTResponse
-功能描述  :ENVELOPE命令初始处理函数
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2009年07月03日
-  作    者  : z00100318
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STK_InitTResponse(VOS_UINT8 *pTRdata, SI_STK_COMMAND_DETAILS_STRU *pstCMDInfo, SI_STK_RESULT_STRU *pstResult)
 {
     VOS_UINT8  aucTemp[] = {0x81,0x03,0x00,0x00,0x00,0x82,0x02,0x82,0x81,0x83,0x01,0x00};
@@ -863,19 +684,7 @@ VOS_VOID SI_STK_InitTResponse(VOS_UINT8 *pTRdata, SI_STK_COMMAND_DETAILS_STRU *p
     return;
 }
 
-/*****************************************************************************
-函 数 名  :SI_STK_InitEnvelope
-功能描述  :ENVELOPE命令初始处理函数
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2009年07月03日
-  作    者  : z00100318
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STK_InitEnvelope(VOS_UINT8 *pCmdData, SI_STK_DEVICE_IDENTITIES_STRU *pstDiInfo, VOS_UINT8 ucCmdType)
 {
     VOS_UINT8 aucTemp[] = {0xFF, 0xFF, 0x04, 0x82,0x02,0xFF,0x81};
@@ -893,19 +702,7 @@ VOS_VOID SI_STK_InitEnvelope(VOS_UINT8 *pCmdData, SI_STK_DEVICE_IDENTITIES_STRU 
     return;
 }
 
-/*****************************************************************************
-函 数 名  :
-功能描述  :
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2009年07月03日
-  作    者  : z00100318
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STK_InitEventDown(VOS_UINT8 *pCmdData, SI_STK_DEVICE_IDENTITIES_STRU *pstDiInfo, VOS_UINT8 ucEventType)
 {
     VOS_UINT8 aucTemp[] = {0xD6, 0xD6, 0x07, 0x19, 0x01, 0xFF, 0x82, 0x02, 0xFF, 0x81};
@@ -919,19 +716,7 @@ VOS_VOID SI_STK_InitEventDown(VOS_UINT8 *pCmdData, SI_STK_DEVICE_IDENTITIES_STRU
     /*lint +e534*/
 }
 
-/*****************************************************************************
-函 数 名  :
-功能描述  :
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2009年07月03日
-  作    者  : z00100318
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_STKAddTLV(VOS_UINT8* pucTLV_AIM,VOS_UINT8* pucTLV_OBJECT)
 {
     VOS_UINT8   ucNum;
@@ -974,19 +759,7 @@ VOS_UINT32 SI_STKAddTLV(VOS_UINT8* pucTLV_AIM,VOS_UINT8* pucTLV_OBJECT)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :
-功能描述  :
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2009年07月03日
-  作    者  : z00100318
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_STKAddValue(VOS_UINT8* pucLV_AIM,VOS_UINT8* pucLV_OBJECT)
 {
     VOS_UINT8  ucNum;
@@ -1018,19 +791,7 @@ VOS_UINT32 SI_STKAddValue(VOS_UINT8* pucLV_AIM,VOS_UINT8* pucLV_OBJECT)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :
-功能描述  :
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2009年07月03日
-  作    者  : z00100318
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_STKCodeTLVData(VOS_UINT8 *pucAIM, VOS_UINT8 ucTag, VOS_VOID *pucData)
 {
     VOS_UINT32      ulDataLen = 0;
@@ -1102,19 +863,7 @@ VOS_UINT32 SI_STKCodeTLVData(VOS_UINT8 *pucAIM, VOS_UINT8 ucTag, VOS_VOID *pucDa
     return ulDataLen;
 }
 
-/*****************************************************************************
-函 数 名  :
-功能描述  :
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2009年07月03日
-  作    者  : z00100318
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_STKCodeLVData(VOS_UINT8 *pucAIM, VOS_UINT8 ucTag, VOS_VOID *pucData)
 {
     VOS_UINT32      ulDataLen = 0;
@@ -1199,19 +948,7 @@ VOS_UINT32 SI_STKCodeLVData(VOS_UINT8 *pucAIM, VOS_UINT8 ucTag, VOS_VOID *pucDat
     return ulDataLen;
 }
 
-/*****************************************************************************
-函 数 名  :
-功能描述  :
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2009年07月03日
-  作    者  : z00100318
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STKCodeTagList(VOS_UINT8 *pucCmdData,VOS_UINT8 *pucTagList,
                                     VOS_UINT32 ulListLen, VOS_UINT32 ulCodeType,
                                     SI_SAT_COMMDATA_STRU* pstSrc)
@@ -1248,19 +985,7 @@ VOS_VOID SI_STKCodeTagList(VOS_UINT8 *pucCmdData,VOS_UINT8 *pucTagList,
 }
 
 
-/*****************************************************************************
-函 数 名  :
-功能描述  :
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2009年07月03日
-  作    者  : z00100318
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_STKCommDecodeData(VOS_UINT8 *pucCmdData, VOS_UINT32 ulCmdType,SI_SAT_COMMDATA_STRU *pstDec)
 {
     VOS_UINT32 i;
@@ -1285,19 +1010,7 @@ VOS_UINT32 SI_STKCommDecodeData(VOS_UINT8 *pucCmdData, VOS_UINT32 ulCmdType,SI_S
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :
-功能描述  :
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2009年07月03日
-  作    者  : z00100318
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_STKCommCodeData(VOS_UINT8 *pucCmdData,SI_CODEDATA_TYPE_UINT32 enDataType, VOS_UINT32 ulCmdType, SI_SAT_COMMDATA_STRU *pstSrc)
 {
     SI_STK_TAGLIST_STRU     *pstCodeList;
@@ -1343,19 +1056,7 @@ VOS_UINT32 SI_STKCommCodeData(VOS_UINT8 *pucCmdData,SI_CODEDATA_TYPE_UINT32 enDa
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STKAppendentTagFree
-功能描述  :
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2010年02月07日
-  作    者  : m00128685
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STKAppendentTagFree(VOS_UINT32 ulCmdType,
                                             VOS_UINT8  *pucData)
 {
@@ -1452,19 +1153,7 @@ VOS_VOID SI_STKAppendentTagFree(VOS_UINT32 ulCmdType,
     return;
 }
 
-/*****************************************************************************
-函 数 名  :
-功能描述  :
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2009年07月03日
-  作    者  : z00100318
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STKCommDataFree(VOS_UINT32 ulCmdType, SI_SAT_COMMDATA_STRU *pstData)
 {
     VOS_UINT32 i;
@@ -1500,20 +1189,7 @@ VOS_VOID SI_STKCommDataFree(VOS_UINT32 ulCmdType, SI_SAT_COMMDATA_STRU *pstData)
     return ;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STKErrorProc
-功能描述  :
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2010年08月22日
-    作    者   : zhuli
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 SI_STKCheckCardState(VOS_VOID)
 {
     if((USIMM_CARD_SERVIC_UNAVAILABLE == g_stStkCardInfo.enSvcStatus)
@@ -1541,20 +1217,7 @@ VOS_UINT32 SI_STKCheckCardState(VOS_VOID)
     }
 }
 
-/*****************************************************************************
-函 数 名  : SI_STKErrorProc
-功能描述  :
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年03月12日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 SI_STKErrorProc(VOS_VOID)
 {
     if( SI_STK_PROLOCK == gstSTKCtrlStru.enSTKLock )
@@ -1567,18 +1230,7 @@ VOS_UINT32 SI_STKErrorProc(VOS_VOID)
     return SI_STKCheckCardState();
 }
 
-/*****************************************************************************
- Function   : DIAG_Num2BCD
- Description: DIAG Num transfer to BCD
- Input      : const VOS_CHAR *pucSrc
-              VOS_CHAR *pucDest
-              VOS_UINT32 ulLength
- Return     : VOID
- History    :
-1.日    期  : 2009年07月15日
-  作    者  : H59254
-  修改内容  : Create
- *****************************************************************************/
+
 VOS_VOID SI_STK_Num2BCD(const VOS_UINT8 *pucSrc, VOS_UINT8 *pucDest, VOS_UINT32 ulLength)
 {
     VOS_UINT8   i;
@@ -1603,18 +1255,7 @@ VOS_VOID SI_STK_Num2BCD(const VOS_UINT8 *pucSrc, VOS_UINT8 *pucDest, VOS_UINT32 
     return;
 }
 
-/*****************************************************************************
- Function   : SI_STK_SsStr2ASCII
- Description: SS String transfer to ASCII
- Input      : const VOS_CHAR *pucSrc
-              VOS_CHAR *pucDest
-              VOS_UINT32 ulLength
- Return     : VOID
- History    :
-1.日    期  : 2009年12月24日
-  作    者  : m00128685
-  修改内容  : Create
- *****************************************************************************/
+
 VOS_VOID SI_STK_SsStr2ASCII(const VOS_UINT8 *pucSrc, VOS_UINT8 *pucDest, VOS_UINT32 ulLength)
 {
     VOS_UINT8   i;
@@ -1653,17 +1294,7 @@ VOS_VOID SI_STK_SsStr2ASCII(const VOS_UINT8 *pucSrc, VOS_UINT8 *pucDest, VOS_UIN
     return;
 }
 
-/*****************************************************************************
- Function   : SI_STK_StrStr
- Description: 在码流1中查找码流2
- Input      :
- Return     : VOS_FALSE 匹配失败
-              VOS_TRUE  匹配成功
- History    :
-1.日    期  : 2010年02月10日
-  作    者  : m00128685
-  修改内容  : Create
- *****************************************************************************/
+
 VOS_UINT32 SI_STK_StrStr(VOS_UINT8 *pucStr1, VOS_UINT8 *pucStr2 , VOS_UINT32 ulStrlen1, VOS_UINT32 ulStrlen2)
 {
     VOS_UINT32 ulLen1;
@@ -1697,16 +1328,7 @@ VOS_UINT32 SI_STK_StrStr(VOS_UINT8 *pucStr1, VOS_UINT8 *pucStr2 , VOS_UINT32 ulS
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- Function   : SI_STK_SaveEnvelopeCmd
- Description: 缓存Envelope命令
- Input      :
- Return     : VOID
- History    :
-1.日    期  : 2010年06月09日
-  作    者  : m00128685
-  修改内容  : Create
- *****************************************************************************/
+
 VOS_VOID SI_STK_SaveEnvelopeCmd(VOS_UINT32 ulCmdLen, VOS_UINT8 *pucCmdData)
 {
     (VOS_VOID)VOS_SmP(gulSTKApiSmId,500);
@@ -1723,16 +1345,7 @@ VOS_VOID SI_STK_SaveEnvelopeCmd(VOS_UINT32 ulCmdLen, VOS_UINT8 *pucCmdData)
     return;
 }
 
-/*****************************************************************************
- Function   : SI_STK_ClearEnvelopeCmd
- Description: 清除缓存的Envelope命令
- Input      :
- Return     : VOID
- History    :
-1.日    期  : 2010年06月09日
-  作    者  : m00128685
-  修改内容  : Create
- *****************************************************************************/
+
 VOS_VOID SI_STK_ClearEnvelopeCmd(VOS_VOID)
 {
     (VOS_VOID)VOS_SmP(gulSTKApiSmId,500);
@@ -1746,16 +1359,7 @@ VOS_VOID SI_STK_ClearEnvelopeCmd(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Function   : SI_STK_CheckProfileCfg
- Description: 获取当前事件或主动命令在Profile中的配置信息
- Input      :
- Return     : VOS_UINT32
- History    :
-1.日    期  : 2013年07月18日
-  作    者  : H59254
-  修改内容  : Create
- *****************************************************************************/
+
 VOS_UINT32 SI_STK_CheckProfileCfg(VOS_UINT32 ulCmdType, SI_STK_CMD_PROFILE_CFG_STRU *pstCfgTbl, VOS_UINT32 ulTblSize)
 {
     VOS_UINT32                          i;
@@ -1798,22 +1402,7 @@ VOS_BOOL SI_STK_IsGULRATMode(VOS_VOID)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_EventDownload
-功能描述  : STK功能事件下载函数
-输入参数  : pEventData:下发数的数据结构
-            ulEventLen: 下发数据的长度
-            ulEventDownTag: 下发数据类型
-            ulSDId:         下发数据的来源类型，高字节用于扩展透传参数，此为C+L项目扩展
-输出参数  : 无
-返 回 值  : SI_UINT32 函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2008年10月18日
-  作    者  : z00100318
-  修改内容  : Create
-*****************************************************************************/
+
 SI_VOID SI_STK_EventDownload(
     VOS_VOID                           *pEventData,
     VOS_UINT32                          ulEventLen,
@@ -1904,18 +1493,7 @@ SI_VOID SI_STK_EventDownload(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_SndProactiveCmd2CBP
-功能描述  : STK主动命令发送到CPB处理
-输入参数  : ulCmdLen:主动命令长度
-            pucCmd:主动命令内容
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2013年12月19日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STK_SndProactiveCmd2CBP(VOS_UINT32 ulCmdLen, VOS_UINT8 *pucCmd)
 {
     CSIMA_STK_PROACTIVE_CMD_MSG_STRU   *pstMsg;
@@ -1941,19 +1519,7 @@ VOS_VOID SI_STK_SndProactiveCmd2CBP(VOS_UINT32 ulCmdLen, VOS_UINT8 *pucCmd)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_SendTerminalResponseReqMsg
-功能描述  : STK模块发送TERMINAL RESPONSE数据
-输入参数  : ucLen:TERMINAL RESPONSE数据长度
-            pucRsp:TERMINAL RESPONSE数据内容
-            ulPara:透传参数
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2015年01月30日
-  作    者  : h00300778
-  修改内容  : Create
-*****************************************************************************/
+
 /*lint -e669*/
 VOS_UINT32 SI_STK_SendTerminalResponseReqMsg(VOS_UINT8 ucLen,VOS_UINT8 *pucRsp, USIMM_TR_PARA_ENUM_32 ulPara)
 {
@@ -1982,19 +1548,7 @@ VOS_UINT32 SI_STK_SendTerminalResponseReqMsg(VOS_UINT8 ucLen,VOS_UINT8 *pucRsp, 
     return VOS_SendMsg(MAPS_STK_PID, pstMsg);
 }
 /*lint +e669*/
-/*****************************************************************************
-函 数 名  : SI_STK_SendResetReqMsg
-功能描述  : STK模块发送REFRESH的请求
-输入参数  : pstCMDDetail:REFRESH命令的参数
-            pstRstInfo:REFRESH命令中的FILE LIST和AID信息
-            ulPara:透传参数
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2015年02月02日
-  作    者  : h00300778
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_STK_SendResetReqMsg(
     USIMM_STK_COMMAND_DETAILS_STRU     *pstCMDDetail,
     USIMM_RESET_INFO_STRU              *pstRstInfo)
@@ -2046,22 +1600,7 @@ VOS_UINT32 SI_STK_SendResetReqMsg(
     return VOS_SendMsg(MAPS_STK_PID, pstMsg);
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_SendEnvelopeReqMsg
-功能描述  : STK模块发送ENVELOPE数据
-输入参数  : ucLen:TERMINAL RESPONSE数据长度
-            pucRsp:TERMINAL RESPONSE数据内容
-            ulPara:透传参数
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2015年01月30日
-  作    者  : h00300778
-  修改内容  : Create
-2.日    期  : 2015年06月18日
-  作    者  : c00299064
-  修改内容  : add apptype
-*****************************************************************************/
+
 VOS_UINT32 SI_STK_SendEnvelopeReqMsg(
     VOS_UINT32                          ulSendPara,
     USIMM_CARDAPP_ENUM_UINT32           enAppType,

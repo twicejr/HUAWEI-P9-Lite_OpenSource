@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafMtaAgpsMsgConvertXml.c
-  版 本 号   : 初稿
-  作    者   : 罗小烽 L47619
-  生成日期   : 2012年7月11日
-  最近修改   :
-  功能描述   : 提供将接入层发来的消息结构转换成XML树结构的功能
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年7月11日
-    作    者   : 李紫剑 l00198894
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -45,21 +28,7 @@
 *****************************************************************************/
 #if (FEATURE_ON == FEATURE_AGPS)
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_CreateANodeAndSetLabel
-功能描述  : 创建一个节点并设置标签
-输入参数  : pstXmlCtx         XML上下文
-            *pcNodeLabel      标签
-输出参数  : 无
-返 回 值  :
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月29日
-  作    者  : L47619/D00212987
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_CreateANodeAndSetLabel(
     XML_COMM_CTX_STRU                  *pstXmlCtx,
     VOS_CHAR                           *pcNodeLabel
@@ -87,24 +56,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_CreateANodeAndSetLabel(
     return pstNode;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_AddNewUnsignedIntLeafNode
-功能描述  : 增加一个无符号整型叶子节点到当前的XML树上
-输入参数  : pstXmlCommCtx     XML上下文
-            pstParentNode     父节点
-            pcLeafNodeLabel   叶子节点标签
-            pulLeafNodeValue  叶子节点值
-输出参数  : 无
-返 回 值  : VOS_ERR      增加叶子节点失败
-            VOS_OK       增加叶子节点成功
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年7月10日
-  作    者  : h44270
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_AddNewUnsignedIntLeafNode(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     XML_COMM_NODE_STRU                 *pstParentNode,
@@ -142,24 +94,7 @@ VOS_UINT32 TAF_MTA_AGPS_AddNewUnsignedIntLeafNode(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_AddNewSignedIntLeafNode
-功能描述  : 增加一个有符号整型叶子节点到当前的XML树上
-输入参数  : pstXmlCommCtx     XML上下文
-            pstParentNode     父节点
-            pcLeafNodeLabel   叶子节点标签
-            plLeafNodeValue   叶子节点值
-输出参数  : 无
-返 回 值  : VOS_ERR      增加叶子节点失败
-            VOS_OK       增加叶子节点成功
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月29日
-  作    者  : l00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_AddNewSignedIntLeafNode(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     XML_COMM_NODE_STRU                 *pstParentNode,
@@ -197,22 +132,7 @@ VOS_UINT32 TAF_MTA_AGPS_AddNewSignedIntLeafNode(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertAssistData
-功能描述  : 将AGPS_ASSIST_DATA_STRU结构体转换为树结构
-输入参数  : pstXmlCommCtx   XML上下文
-            pstAssistData   待转换结构体
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月29日
-  作    者  : l00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertAssistData(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_ASSIST_DATA_STRU              *pstAssistData
@@ -255,25 +175,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertAssistData(
     return pstNodeAssistData;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_AddGpsAssistChildNodesPartOne
-功能描述  : 将AGPS_GPS_ASSIST_STRU结构体属性转换为树的子节点，
-            包括<status_health>、<BTS_clock_drift>、<ref_time>、
-            <location_parameters>子节点
-输入参数  : pstXmlCommCtx               XML上下文
-            pstNodeGpsAssist            属性转换后挂载的父节点
-            pstGpsAssist                待转换属性结构体
-输出参数  : 无
-返 回 值  : VOS_ERR     转换失败
-            VOS_OK      转换成功
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年7月09日
-  作    者  : l00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_AddGpsAssistChildNodesPartOne(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     XML_COMM_NODE_STRU                 *pstNodeGpsAssist,
@@ -337,24 +239,7 @@ VOS_UINT32 TAF_MTA_AGPS_AddGpsAssistChildNodesPartOne(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_AddGpsAssistChildNodesPartTwo
-功能描述  : 将AGPS_GPS_ASSIST_STRU结构体属性转换为树的子节点
-            包括<DGPS_corrections>、<nav_model_elem>子节点
-输入参数  : pstXmlCommCtx               XML上下文
-            pstNodeGpsAssist            属性转换后挂载的父节点
-            pstGpsAssist                待转换属性结构体
-输出参数  : 无
-返 回 值  : VOS_ERR     转换失败
-            VOS_OK      转换成功
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年7月09日
-  作    者  : l00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_AddGpsAssistChildNodesPartTwo(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     XML_COMM_NODE_STRU                 *pstNodeGpsAssist,
@@ -405,24 +290,7 @@ VOS_UINT32 TAF_MTA_AGPS_AddGpsAssistChildNodesPartTwo(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_AddGpsAssistChildNodesPartThree
-功能描述  : 将AGPS_GPS_ASSIST_STRU结构体属性转换为树的子节点
-            包括<ionospheric_model>、<UTC_model>子节点
-输入参数  : pstXmlCommCtx               XML上下文
-            pstNodeGpsAssist            属性转换后挂载的父节点
-            pstGpsAssist                待转换属性结构体
-输出参数  : 无
-返 回 值  : VOS_ERR     转换失败
-            VOS_OK      转换成功
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年7月09日
-  作    者  : l00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_AddGpsAssistChildNodesPartThree(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     XML_COMM_NODE_STRU                 *pstNodeGpsAssist,
@@ -491,24 +359,7 @@ VOS_UINT32 TAF_MTA_AGPS_AddGpsAssistChildNodesPartThree(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_AddGpsAssistChildNodesPartFour
-功能描述  : 将AGPS_GPS_ASSIST_STRU结构体属性转换为树的子节点
-            包括<almanac>、<acqu_assist>、<GPS_rt_integrity>子节点
-输入参数  : pstXmlCommCtx               XML上下文
-            pstNodeGpsAssist            属性转换后挂载的父节点
-            pstGpsAssist                待转换属性结构体
-输出参数  : 无
-返 回 值  : VOS_ERR     转换失败
-            VOS_OK      转换成功
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年7月09日
-  作    者  : l00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_AddGpsAssistChildNodesPartFour(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     XML_COMM_NODE_STRU                 *pstNodeGpsAssist,
@@ -558,22 +409,7 @@ VOS_UINT32 TAF_MTA_AGPS_AddGpsAssistChildNodesPartFour(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertGpsAssist
-功能描述  : 将AGPS_GPS_ASSIST_STRU结构体转换为树结构
-输入参数  : pstXmlCommCtx   XML上下文
-            pstGpsAssist    待转换结构体
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月29日
-  作    者  : l00198894/d00212987
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertGpsAssist(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_GPS_ASSIST_STRU               *pstGpsAssist
@@ -632,22 +468,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertGpsAssist(
     return pstNodeGpsAssist;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertRefTime
-功能描述  : 将AGPS_REFERENCE_TIME_STRU结构体转换为树结构
-输入参数  : pstXmlCommCtx   XML上下文
-            pstRefTime    待转换结构体
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月29日
-  作    者  : l00198894/d00212987
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertRefTime(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_REFERENCE_TIME_STRU           *pstRefTime
@@ -712,22 +533,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertRefTime(
     return pstNodeRefTime;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertGpsTime
-功能描述  : 将AGPS_GPS_TIME_STRU结构体转换为树结构
-输入参数  : pstXmlCommCtx   XML上下文
-            pstGpsTime      待转换结构体
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月29日
-  作    者  : l00198894/d00212987
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertGpsTime(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_GPS_TIME_STRU                 *pstGpsTime
@@ -773,22 +579,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertGpsTime(
     return pstNodeGpsTime;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertGsmTime
-功能描述  : 将AGPS_GSM_TIME_STRU结构体转换为树结构
-输入参数  : pstXmlCommCtx   XML上下文
-            pstGpsTime      待转换结构体
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月29日
-  作    者  : l00198894/d00212987
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertGsmTime(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_GSM_TIME_STRU                 *pstGsmTime
@@ -875,22 +666,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertGsmTime(
     return pstNodeGsmTime;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertGpsTowAssist
-功能描述  : 将AGPS_GPS_TOW_ASSIST_STRU结构体转换为树结构
-输入参数  : pstXmlCommCtx       XML上下文
-            pstTowAssist        待转换结构体
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月29日
-  作    者  : l00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertGpsTowAssist(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_GPS_TOW_ASSIST_STRU           *pstTowAssist
@@ -971,22 +747,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertGpsTowAssist(
     return pstNodeTowAssist;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertLocationPara
-功能描述  : 将AGPS_LOCATION_PARA_STRU结构体转换为树结构
-输入参数  : pstXmlCommCtx   XML上下文
-            pstLocationPara 待转换结构体
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月29日
-  作    者  : l00198894/d00212987
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertLocationPara(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_LOCATION_PARA_STRU            *pstLocationPara
@@ -1049,22 +810,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertLocationPara(
     return pstNodeLocationPara;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertShapeData
-功能描述  : 将AGPS_SHAPE_DATA_STRU结构体转换为树结构
-输入参数  : pstXmlCommCtx   XML上下文
-            pstShapeData    待转换结构体
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月29日
-  作    者  : l00198894/d00212987
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertShapeData(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_SHAPE_DATA_STRU               *pstShapeData
@@ -1126,22 +872,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertShapeData(
     return pstNodeShapeData;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertEllipPoint
-功能描述  : 将AGPS_ELLIP_POINT_STRU结构体转换为树结构
-输入参数  : pstXmlCommCtx   XML上下文
-            pstShapeData    待转换结构体
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月29日
-  作    者  : l00198894/d00212987
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertEllipPoint(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_ELLIP_POINT_STRU              *pstEllipPoint
@@ -1179,22 +910,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertEllipPoint(
     return pstNodeEllipPoint;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertCoordinate
-功能描述  : 将AGPS_COORDINATE_STRU结构体转换为树结构
-输入参数  : pstXmlCommCtx   XML上下文
-            pstCoordinate   待转换结构体
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月29日
-  作    者  : l00198894/d00212987
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertCoordinate(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_COORDINATE_STRU               *pstCoordinate
@@ -1242,22 +958,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertCoordinate(
     return pstNodeCoordinate;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertLatitude
-功能描述  : 将AGPS_LATITUDE_STRU结构体转换为树结构
-输入参数  : pstXmlCommCtx   XML上下文
-            pstLatitude     待转换结构体
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月29日
-  作    者  : l00198894/d00212987
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertLatitude(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_LATITUDE_STRU                 *pstLatitude
@@ -1302,22 +1003,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertLatitude(
     return pstNodeLatitude;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertEllipPointUncertCircle
-功能描述  : 将AGPS_ELLIP_POINT_UNCERT_CIRCLE_STRU结构体转换为树结构
-输入参数  : pstXmlCommCtx               XML上下文
-            pstEllipPointUncertCircle   待转换结构体
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月29日
-  作    者  : l00198894/d00212987
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertEllipPointUncertCircle(
     XML_COMM_CTX_STRU                      *pstXmlCommCtx,
     AGPS_ELLIP_POINT_UNCERT_CIRCLE_STRU    *pstEllipPointUncertCircle
@@ -1363,22 +1049,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertEllipPointUncertCircle(
     return pstNodeEllipPointUncertCircle;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertEllipPointUncertEllip
-功能描述  : 将AGPS_ELLIP_POINT_UNCERT_ELLIP_STRU结构体转换为树结构
-输入参数  : pstXmlCommCtx               XML上下文
-            pstEllipPointUncertCircle   待转换结构体
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月29日
-  作    者  : l00198894/d00212987
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertEllipPointUncertEllip(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_ELLIP_POINT_UNCERT_ELLIP_STRU *pstEllipPointUncertEllip
@@ -1423,22 +1094,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertEllipPointUncertEllip(
     return pstNodeEllipPointUncertEllip;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertUncertEllipse
-功能描述  : 将AGPS_UNCERT_ELLIPSE_STRU结构体转换为树结构
-输入参数  : pstXmlCommCtx       XML上下文
-            pstUncertEllipse    待转换结构体
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月29日
-  作    者  : l00198894/d00212987
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertUncertEllipse(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_UNCERT_ELLIPSE_STRU           *pstUncertEllipse
@@ -1510,22 +1166,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertUncertEllipse(
     return pstNodeUncertEllipse;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertEllipPointAlti
-功能描述  : 将AGPS_ELLIP_POINT_ALTI_STRU结构体转换为树结构
-输入参数  : pstXmlCommCtx       XML上下文
-            pstEllipPointAlti   待转换结构体
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月29日
-  作    者  : l00198894/d00212987
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertEllipPointAlti(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_ELLIP_POINT_ALTI_STRU         *pstEllipPointAlti
@@ -1570,22 +1211,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertEllipPointAlti(
     return pstNodeEllipPointAlti;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertAltitude
-功能描述  : 将AGPS_ALTITUDE_STRU结构体转换为树结构
-输入参数  : pstXmlCommCtx   XML上下文
-            pstAltitude     待转换结构体
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月29日
-  作    者  : l00198894/d00212987
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertAltitude(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_ALTITUDE_STRU                 *pstAltitude
@@ -1630,22 +1256,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertAltitude(
     return pstNodeAltitude;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertEllipPointAltiEllip
-功能描述  : 将AGPS_ELLIP_POINT_ALTI_ELLIP_STRU结构体转换为树结构
-输入参数  : pstXmlCommCtx           XML上下文
-            pstEllipPointAltiEllip  待转换结构体
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月29日
-  作    者  : l00198894/d00212987
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertEllipPointAltiEllip(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_ELLIP_POINT_ALTI_ELLIP_STRU   *pstEllipPointAltiEllip
@@ -1748,22 +1359,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertEllipPointAltiEllip(
     return pstNodeEllipPointAltiEllip;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertEllipArc
-功能描述  : 将AGPS_ELLIP_ARC_STRU结构体转换为树结构
-输入参数  : pstXmlCommCtx   XML上下文
-            pstEllipArc     待转换结构体
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月29日
-  作    者  : l00198894/d00212987
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertEllipArc(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_ELLIP_ARC_STRU                *pstEllipArc
@@ -1855,22 +1451,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertEllipArc(
     return pstNodeEllipArc;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertUpDgpsCorrection
-功能描述  : 将AGPS_UP_DGPS_CORRECTION_STRU结构体转换为树结构
-输入参数  : pstXmlCommCtx         XML上下文
-            pstUpDgpsCorrection   待转换结构体
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月29日
-  作    者  : l00198894/d00212987
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertUpDgpsCorrection(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_UP_DGPS_CORRECTION_STRU       *pstUpDgpsCorrection
@@ -1974,23 +1555,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertUpDgpsCorrection(
     return pstNodeUpDgpsCorrection;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertSatStatusOfNavModelElem
-功能描述  : 将AGPS_NAV_MODEL_ELEM_STRU结构体中的enSatSta元素转换为树结构
-输入参数  : pstXmlCommCtx         XML上下文
-            pstNavModelElem       待转换结构体
-            pstNodeNavModelElem   父节点
-输出参数  : 无
-返 回 值  : VOS_OK      转换成功
-            VOS_ERR     转换失败
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年7月13日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_ConvertSatStatusOfNavModelElem(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_NAV_MODEL_ELEM_STRU           *pstNavModelElem,
@@ -2050,22 +1615,7 @@ VOS_UINT32 TAF_MTA_AGPS_ConvertSatStatusOfNavModelElem(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertNavModelElem
-功能描述  : 将AGPS_NAV_MODEL_ELEM_STRU结构体转换为树结构
-输入参数  : pstXmlCommCtx         XML上下文
-            pstNavModelElem      待转换结构体
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月29日
-  作    者  : l00198894/d00212987
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertNavModelElem(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_NAV_MODEL_ELEM_STRU           *pstNavModelElem
@@ -2167,25 +1717,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertNavModelElem(
     return pstNodeNavModelElem;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_AddRrlpEphemClockParamChildNodesPartOne
-功能描述  : 将AGPS_RRLP_EPHEM_CLOCK_PARAM_STRU结构体属性转换为树的子节点
-            包括<l2_code>、<ura>、<sv_health>、<iodc>、<l2p_flag>、<esr1>、
-            <esr2>、<esr3>、<esr4>子节点
-输入参数  : pstXmlCommCtx               XML上下文
-            pstNodeRrlpEphemClockParam  属性转换后挂载的父节点
-            pstRrlpEphemClockParam      待转换属性结构体
-输出参数  : 无
-返 回 值  : VOS_ERR     转换失败
-            VOS_OK      转换成功
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年7月09日
-  作    者  : l00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_AddRrlpEphemClockParamChildNodesPartOne(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     XML_COMM_NODE_STRU                 *pstNodeRrlpEphemClockParam,
@@ -2305,24 +1837,7 @@ VOS_UINT32 TAF_MTA_AGPS_AddRrlpEphemClockParamChildNodesPartOne(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_AddRrlpEphemClockParamChildNodesPartTwo
-功能描述  : 将AGPS_RRLP_EPHEM_CLOCK_PARAM_STRU结构体属性转换为树的子节点
-            包括<tgd>、<toc>、<af2>、<af1>、<af0>、<crs>、<delta_n>、<m0>子节点
-输入参数  : pstXmlCommCtx               XML上下文
-            pstNodeRrlpEphemClockParam  属性转换后挂载的父节点
-            pstRrlpEphemClockParam      待转换属性结构体
-输出参数  : 无
-返 回 值  : VOS_ERR     转换失败
-            VOS_OK      转换成功
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年7月09日
-  作    者  : l00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_AddRrlpEphemClockParamChildNodesPartTwo(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     XML_COMM_NODE_STRU                 *pstNodeRrlpEphemClockParam,
@@ -2430,25 +1945,7 @@ VOS_UINT32 TAF_MTA_AGPS_AddRrlpEphemClockParamChildNodesPartTwo(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_AddRrlpEphemClockParamChildNodesPartThree
-功能描述  : 将AGPS_RRLP_EPHEM_CLOCK_PARAM_STRU结构体属性转换为树的子节点
-            包括<cuc>、<ecc>、<cus>、<power_half>、<toe>、<fit_flag>、<aoda>、
-            <cic>子节点
-输入参数  : pstXmlCommCtx               XML上下文
-            pstNodeRrlpEphemClockParam  属性转换后挂载的父节点
-            pstRrlpEphemClockParam      待转换属性结构体
-输出参数  : 无
-返 回 值  : VOS_ERR     转换失败
-            VOS_OK      转换成功
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年7月09日
-  作    者  : l00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_AddRrlpEphemClockParamChildNodesPartThree(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     XML_COMM_NODE_STRU                 *pstNodeRrlpEphemClockParam,
@@ -2556,24 +2053,7 @@ VOS_UINT32 TAF_MTA_AGPS_AddRrlpEphemClockParamChildNodesPartThree(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_AddRrlpEphemClockParamChildNodesPartFour
-功能描述  : 将AGPS_RRLP_EPHEM_CLOCK_PARAM_STRU结构体属性转换为树的子节点
-            包括<omega0>、<cis>、<i0>、<crc>、<omega>、<omega_dot>、<idot>子节点
-输入参数  : pstXmlCommCtx               XML上下文
-            pstNodeRrlpEphemClockParam  属性转换后挂载的父节点
-            pstRrlpEphemClockParam      待转换属性结构体
-输出参数  : 无
-返 回 值  : VOS_ERR     转换失败
-            VOS_OK      转换成功
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年7月09日
-  作    者  : l00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_AddRrlpEphemClockParamChildNodesPartFour(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     XML_COMM_NODE_STRU                 *pstNodeRrlpEphemClockParam,
@@ -2669,22 +2149,7 @@ VOS_UINT32 TAF_MTA_AGPS_AddRrlpEphemClockParamChildNodesPartFour(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertRrlpEphemClockParam
-功能描述  : 将AGPS_RRLP_EPHEM_CLOCK_PARAM_STRU结构体转换为树结构
-输入参数  : pstXmlCommCtx             XML上下文
-            pstRrlpEphemClockParam    待转换结构体
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年7月09日
-  作    者  : L47619/d00212987
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertRrlpEphemClockParam(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_RRLP_EPHEM_CLOCK_PARAM_STRU   *pstRrlpEphemClockParam
@@ -2774,25 +2239,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertRrlpEphemClockParam(
     return pstNodeRrlpEphemClockParam;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_AddRrcEphemClockParamChildNodesPartOne
-功能描述  : 将AGPS_RRC_EPHEM_CLOCK_PARAM_STRU结构体属性转换为树的子节点
-            包括<l2_code>、<ura>、<sv_health>、<iodc>、<l2p_flag>、<esr1>、
-            <esr2>、<esr3>、<esr4>子节点
-输入参数  : pstXmlCommCtx               XML上下文
-            pstNodeRrcEphemClockParam   属性转换后挂载的父节点
-            pstRrcEphemClockParam      待转换属性结构体
-输出参数  : 无
-返 回 值  : VOS_ERR     转换失败
-            VOS_OK      转换成功
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年7月09日
-  作    者  : l00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_AddRrcEphemClockParamChildNodesPartOne(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     XML_COMM_NODE_STRU                 *pstNodeRrcEphemClockParam,
@@ -2912,25 +2359,7 @@ VOS_UINT32 TAF_MTA_AGPS_AddRrcEphemClockParamChildNodesPartOne(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_AddRrcEphemClockParamChildNodesPartTwo
-功能描述  : 将AGPS_RRC_EPHEM_CLOCK_PARAM_STRU结构体属性转换为树的子节点
-            包括<tgd>、<toc>、<af2>、<af1>、<af0>、<crs>、
-            <delta_n>、<m0>子节点
-输入参数  : pstXmlCommCtx               XML上下文
-            pstNodeRrcEphemClockParam   属性转换后挂载的父节点
-            pstRrcEphemClockParam      待转换属性结构体
-输出参数  : 无
-返 回 值  : VOS_ERR     转换失败
-            VOS_OK      转换成功
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年7月09日
-  作    者  : l00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_AddRrcEphemClockParamChildNodesPartTwo(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     XML_COMM_NODE_STRU                 *pstNodeRrcEphemClockParam,
@@ -3038,25 +2467,7 @@ VOS_UINT32 TAF_MTA_AGPS_AddRrcEphemClockParamChildNodesPartTwo(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_AddRrcEphemClockParamChildNodesPartThree
-功能描述  : 将AGPS_RRC_EPHEM_CLOCK_PARAM_STRU结构体属性转换为树的子节点
-            包括<cuc>、<ecc>、<cus>、<power_half>、<toe>、<fit_flag>、
-            <aoda>、<cic>子节点
-输入参数  : pstXmlCommCtx               XML上下文
-            pstNodeRrcEphemClockParam   属性转换后挂载的父节点
-            pstRrcEphemClockParam      待转换属性结构体
-输出参数  : 无
-返 回 值  : VOS_ERR     转换失败
-            VOS_OK      转换成功
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年7月09日
-  作    者  : l00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_AddRrcEphemClockParamChildNodesPartThree(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     XML_COMM_NODE_STRU                 *pstNodeRrcEphemClockParam,
@@ -3164,24 +2575,7 @@ VOS_UINT32 TAF_MTA_AGPS_AddRrcEphemClockParamChildNodesPartThree(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_AddRrcEphemClockParamChildNodesPartFour
-功能描述  : 将AGPS_RRC_EPHEM_CLOCK_PARAM_STRU结构体属性转换为树的子节点
-            包括<omega0>、<cis>、<i0>、<crc>、<omega>、<omega_dot>、<idot>子节点
-输入参数  : pstXmlCommCtx               XML上下文
-            pstNodeRrcEphemClockParam   属性转换后挂载的父节点
-            pstRrcEphemClockParam      待转换属性结构体
-输出参数  : 无
-返 回 值  : VOS_ERR     转换失败
-            VOS_OK      转换成功
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年7月09日
-  作    者  : l00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_AddRrcEphemClockParamChildNodesPartFour(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     XML_COMM_NODE_STRU                 *pstNodeRrcEphemClockParam,
@@ -3277,22 +2671,7 @@ VOS_UINT32 TAF_MTA_AGPS_AddRrcEphemClockParamChildNodesPartFour(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertRrcEphemClockParam
-功能描述  : 将AGPS_RRC_EPHEM_CLOCK_PARAM_STRU结构体转换为树结构
-输入参数  : pstXmlCommCtx            XML上下文
-            pstRrcEphemClockParam    待转换结构体
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年7月09日
-  作    者  : L47619/d00212987
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertRrcEphemClockParam(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_RRC_EPHEM_CLOCK_PARAM_STRU    *pstRrcEphemClockParam
@@ -3382,22 +2761,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertRrcEphemClockParam(
     return pstNodeRrcEphemClockParam;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertRrlpIonosphericModel
-功能描述  : 将AGPS_RRLP_IONOSPHERIC_MODEL_STRU结构体转换为树结构
-输入参数  : pstXmlCommCtx             XML上下文
-            pstRrlpIonosphericModel   待转换结构体
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年7月09日
-  作    者  : L47619/d00212987
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertRrlpIonosphericModel(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_RRLP_IONOSPHERIC_MODEL_STRU   *pstRrlpIonosphericModel
@@ -3515,22 +2879,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertRrlpIonosphericModel(
     return pstNodeRrlpIonosphericModel;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertRrcIonosphericModel
-功能描述  : 将AGPS_RRC_IONOSPHERIC_MODEL_STRU结构体转换为树结构
-输入参数  : pstXmlCommCtx             XML上下文
-            pstRrcIonosphericModel    待转换结构体
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年7月09日
-  作    者  : L47619/d00212987
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertRrcIonosphericModel(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_RRC_IONOSPHERIC_MODEL_STRU    *pstRrcIonosphericModel
@@ -3648,22 +2997,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertRrcIonosphericModel(
 
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertRrlpUtcModel
-功能描述  : 将AGPS_RRLP_UTC_MODEL_STRU结构体转换为树结构
-输入参数  : pstXmlCommCtx         XML上下文
-            pstRrlpUtcModel       待转换结构体
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年7月09日
-  作    者  : L47619/d00212987
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertRrlpUtcModel(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_RRLP_UTC_MODEL_STRU           *pstRrlpUtcModel
@@ -3782,22 +3116,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertRrlpUtcModel(
     return pstNodeRrlpUtcModel;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertRrcUtcModel
-功能描述  : 将AGPS_RRC_UTC_MODEL_STRU结构体转换为树结构
-输入参数  : pstXmlCommCtx         XML上下文
-            pstRrcUtcModel        待转换结构体
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年7月09日
-  作    者  : L47619/d00212987
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertRrcUtcModel(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_RRC_UTC_MODEL_STRU            *pstRrcUtcModel
@@ -3917,22 +3236,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertRrcUtcModel(
 
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertAlmanac
-功能描述  : 将AGPS_ALMANAC_STRU结构体转换为树结构
-输入参数  : pstXmlCommCtx         XML上下文
-            pstAlmanac            待转换结构体
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年7月09日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertAlmanac(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_ALMANAC_STRU                  *pstAlmanac
@@ -4019,23 +3323,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertAlmanac(
     return pstNodeAlmanac;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertDataIdOfRrlpAlmanacSatInfo
-功能描述  : 将AGPS_RRLP_ALMANAC_SAT_INFO_STRU结构体中的ucDataId转换为树结构
-输入参数  : pstXmlCommCtx               XML上下文
-            pstRrlpAlmanacSatInfo       待转换结构体
-            pstNodeRrlpAlmanacSatInfo   父节点
-输出参数  : 无
-返 回 值  : VOS_ERR      增加data_id节点失败
-            VOS_OK       增加data_id节点成功
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年7月09日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_ConvertDataIdOfRrlpAlmanacSatInfo(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_RRLP_ALMANAC_SAT_INFO_STRU    *pstRrlpAlmanacSatInfo,
@@ -4057,22 +3345,7 @@ VOS_UINT32 TAF_MTA_AGPS_ConvertDataIdOfRrlpAlmanacSatInfo(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertRrlpAlmanacSatInfo
-功能描述  : 将AGPS_RRLP_ALMANAC_SAT_INFO_STRU结构体转换为树结构
-输入参数  : pstXmlCommCtx           XML上下文
-            pstRrlpAlmanacSatInfo   待转换结构体
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年7月09日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertRrlpAlmanacSatInfo(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_RRLP_ALMANAC_SAT_INFO_STRU    *pstRrlpAlmanacSatInfo
@@ -4237,23 +3510,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertRrlpAlmanacSatInfo(
     return pstNodeRrlpAlmanacSatInfo;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertDataIdOfRrcAlmanacSatInfo
-功能描述  : 将AGPS_RRC_ALMANAC_SAT_INFO_STRU结构体中的ucDataId转换为树结构
-输入参数  : pstXmlCommCtx               XML上下文
-            pstRrcAlmanacSatInfo       待转换结构体
-            pstNodeRrcAlmanacSatInfo   父节点
-输出参数  : 无
-返 回 值  : VOS_ERR      增加data_id节点失败
-            VOS_OK       增加data_id节点成功
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年7月09日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_ConvertDataIdOfRrcAlmanacSatInfo(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_RRC_ALMANAC_SAT_INFO_STRU     *pstRrcAlmanacSatInfo,
@@ -4276,22 +3533,7 @@ VOS_UINT32 TAF_MTA_AGPS_ConvertDataIdOfRrcAlmanacSatInfo(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertRrcAlmanacSatInfo
-功能描述  : 将AGPS_RRC_ALMANAC_SAT_INFO_STRU结构体转换为树结构
-输入参数  : pstXmlCommCtx           XML上下文
-            pstRrcAlmanacSatInfo    待转换结构体
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年7月09日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertRrcAlmanacSatInfo(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_RRC_ALMANAC_SAT_INFO_STRU     *pstRrcAlmanacSatInfo
@@ -4458,22 +3700,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertRrcAlmanacSatInfo(
 }
 
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertAcquAssist
-功能描述  : 将AGPS_ACQU_ASSIST_STRU结构体转换为树结构
-输入参数  : pstXmlCommCtx           XML上下文
-            pstAcquAssist           待转换结构体
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年7月09日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertAcquAssist(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_ACQU_ASSIST_STRU              *pstAcquAssist
@@ -4544,22 +3771,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertAcquAssist(
     return pstNodeAcquAssist;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertAcquSatInfo
-功能描述  : 将AGPS_ACQU_SAT_INFO_STRU结构体转换为树结构
-输入参数  : pstXmlCommCtx           XML上下文
-            pstAcquSatInfo         待转换结构体
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年7月09日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertAcquSatInfo(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_ACQU_SAT_INFO_STRU            *pstAcquSatInfo
@@ -4685,22 +3897,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertAcquSatInfo(
     return pstNodeAcquSatInfo;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertExtraDopplerInfo
-功能描述  : 将AGPS_EXTRA_DOPPLER_INFO_STRU结构体转换为树结构
-输入参数  : pstXmlCommCtx           XML上下文
-            pstExtraDopplerInfo     待转换结构体
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年7月09日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertExtraDopplerInfo(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_EXTRA_DOPPLER_INFO_STRU       *pstExtraDopplerInfo
@@ -4803,22 +4000,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertExtraDopplerInfo(
     return pstNodeExtraDopplerInfo;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertAzimuthAndEleva
-功能描述  : 将AGPS_AZIMUTH_AND_ELEVA_STRU结构体转换为树结构
-输入参数  : pstXmlCommCtx           XML上下文
-            pstAzimuthAndEleva      待转换结构体
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年7月09日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertAzimuthAndEleva(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_AZIMUTH_AND_ELEVA_STRU        *pstAzimuthAndEleva
@@ -4861,22 +4043,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertAzimuthAndEleva(
     return pstNodeAzimuthAndEleva;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertGpsRealTimeIntegrity
-功能描述  : 将AGPS_BAD_SAT_LIST_STRU结构体转换为树结构
-输入参数  : pstXmlCommCtx           XML上下文
-            pstBadSatList           待转换结构体
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年7月09日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertGpsRealTimeIntegrity(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_BAD_SAT_LIST_STRU             *pstBadSatList
@@ -4915,22 +4082,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertGpsRealTimeIntegrity(
     return pstNodeBadSatList;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertMeasureReq
-功能描述  : 将AGPS_MEASURE_REQ_STRU结构体转换为树结构
-输入参数  : pstXmlCommCtx   XML上下文
-            pstMeasureReq 待转换结构体
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年07月07日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertMeasureReq(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_MEASURE_REQ_STRU              *pstMeasureReq
@@ -4985,22 +4137,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertMeasureReq(
     return pstNodeMeasureReq;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertRrlpMeasReq
-功能描述  : 将AGPS_RRLP_MEAS_REQ_STRU结构体转换为树结构
-输入参数  : pstXmlCommCtx   XML上下文
-            pstRrlpMeasReq 待转换结构体
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年07月07日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertRrlpMeasReq(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_RRLP_MEAS_REQ_STRU            *pstRrlpMeasReq
@@ -5047,22 +4184,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertRrlpMeasReq(
     return pstNodeRrlpMeasReq;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertRrlpMethodOfPositionInstruct
-功能描述  : 构造RRLP_method节点
-输入参数  : pstXmlCommCtx           XML上下文
-            pstNodePositionInstruct 父节点
-输出参数  : 无
-返 回 值  : VOS_OK  转换成功
-            VOS_ERR 转换失败
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年07月13日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_ConvertRrlpMethodOfPositionInstruct(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     XML_COMM_NODE_STRU                 *pstNodePositionInstruct
@@ -5116,23 +4238,7 @@ VOS_UINT32 TAF_MTA_AGPS_ConvertRrlpMethodOfPositionInstruct(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertMultSetsOfPositionInstruct
-功能描述  : 构造mult_sets节点
-输入参数  : pstXmlCommCtx           XML上下文
-            pstNodePositionInstruct 父节点
-            enUseMultipleSets       Mult sets的值
-输出参数  : 无
-返 回 值  : VOS_OK  转换成功
-            VOS_ERR 转换失败
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年07月13日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_ConvertMultSetsOfPositionInstruct(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     XML_COMM_NODE_STRU                 *pstNodePositionInstruct,
@@ -5215,22 +4321,7 @@ VOS_UINT32 TAF_MTA_AGPS_ConvertMultSetsOfPositionInstruct(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertPositionInstruct
-功能描述  : 将AGPS_POSITION_INSTRUCT_STRU结构体转换为树结构
-输入参数  : pstXmlCommCtx   XML上下文
-            pstPositionInstruct 待转换结构体
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年07月07日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertPositionInstruct(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_POSITION_INSTRUCT_STRU        *pstPositionInstruct
@@ -5300,22 +4391,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertPositionInstruct(
     return pstNodePositionInstruct;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertRrlpMethodType
-功能描述  : 将AGPS_RRLP_METHOD_TYPE_STRU结构体转换为树结构
-输入参数  : pstXmlCommCtx   XML上下文
-            pstRrlpMethodType 待转换结构体
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年07月07日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertRrlpMethodType(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_RRLP_METHOD_TYPE_STRU         *pstRrlpMethodType
@@ -5384,22 +4460,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertRrlpMethodType(
     return pstNodeRrlpMethodType;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertMsAssisted
-功能描述  : 将pucAccuracy转换为树结构
-输入参数  : pstXmlCommCtx   XML上下文
-            pucAccuracy    待转换数据
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年07月07日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertMsAssisted(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     VOS_UINT8                          *pucAccuracy
@@ -5433,22 +4494,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertMsAssisted(
     return pstNodeMsAssisted;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertMsBased
-功能描述  : 将pucAccuracy转换为树结构
-输入参数  : pstXmlCommCtx   XML上下文
-            pucAccuracy    待转换数据
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年07月07日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertMsBased(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     VOS_UINT8                          *pucAccuracy
@@ -5479,22 +4525,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertMsBased(
     return pstNodeMsBased;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertMsBasedPref
-功能描述  : 将pucAccuracy转换为树结构
-输入参数  : pstXmlCommCtx   XML上下文
-            pucAccuracy    待转换数据
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年07月07日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertMsBasedPref(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     VOS_UINT8                          *pucAccuracy
@@ -5525,22 +4556,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertMsBasedPref(
     return pstNodeMsBasedPref;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertMsAssistedPref
-功能描述  : 将pucAccuracy转换为树结构
-输入参数  : pstXmlCommCtx   XML上下文
-            pucAccuracy    待转换数据
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年07月07日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertMsAssistedPref(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     VOS_UINT8                          *pucAccuracy
@@ -5571,22 +4587,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertMsAssistedPref(
     return pstNodeMsAssistedPref;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertRrcMeasReq
-功能描述  : 将AGPS_RRC_MEAS_REQ_STRU结构体转换为树结构
-输入参数  : pstXmlCommCtx   XML上下文
-            pstRrcMeaseReq 待转换结构体
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年07月07日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertRrcMeasReq(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_RRC_MEAS_REQ_STRU             *pstRrcMeaseReq
@@ -5658,23 +4659,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertRrcMeasReq(
     return pstNodeRrcMeaseReq;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_AddRepQuantAttribs
-功能描述  : 将AGPS_RRC_EPHEM_CLOCK_PARAM_STRU结构体属性转换为树的属性节点
-输入参数  : pstXmlCommCtx               XML上下文
-            pstNodeRepQuant             属性转换后挂载的父节点
-            pstRepQuant                 待转换属性结构体
-输出参数  : 无
-返 回 值  : VOS_ERR     转换失败
-            VOS_OK      转换成功
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年7月09日
-  作    者  : l00198894
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_AddRepQuantAttribs(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     XML_COMM_NODE_STRU                 *pstNodeRepQuant,
@@ -5758,22 +4743,7 @@ VOS_UINT32 TAF_MTA_AGPS_AddRepQuantAttribs(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertRepQuant
-功能描述  : 将AGPS_REP_QUANT_STRU结构体转换为树结构
-输入参数  : pstXmlCommCtx   XML上下文
-            pstRepQuant    待转换结构体
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年07月07日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertRepQuant(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_REP_QUANT_STRU                *pstRepQuant
@@ -5860,22 +4830,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertRepQuant(
     return pstNodeRepQuant;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertRrcMethodType
-功能描述  : 将penMethodType转换为树结构
-输入参数  : pstXmlCommCtx   XML上下文
-            penMethodType   待转换数据
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年07月07日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertRrcMethodType(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_POSITION_TYPE_ENUM_UINT8      *penMethodType
@@ -5943,22 +4898,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertRrcMethodType(
     return pstRrcMethodType;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertRrcMethod
-功能描述  : 将penMethodType转换为树结构
-输入参数  : pstXmlCommCtx   XML上下文
-            penMethodType   待转换数据
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年07月07日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertRrcMethod(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_POS_METHOD_ENUM_UINT8         *penPosMethod
@@ -6026,22 +4966,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertRrcMethod(
     return pstNodeRrcMethod;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertRepCrit
-功能描述  : 将AGPS_REP_CRIT_STRU结构体转换为树结构
-输入参数  : pstXmlCommCtx   XML上下文
-            pstRepCrit     待转换结构体
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年07月07日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertRepCrit(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_REP_CRIT_STRU                 *pstRepCrit
@@ -6120,22 +5045,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertRepCrit(
     return pstNodeRepCrit;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertEventRepCrit
-功能描述  : 将AGPS_UE_POS_EVT_PARAM_LIST_STRU结构体转换为树结构
-输入参数  : pstXmlCommCtx            XML上下文
-            pstUePosEvtParamList     待转换结构体
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年07月07日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertEventRepCrit(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_UE_POS_EVT_PARAM_LIST_STRU    *pstUePosEvtParamList
@@ -6195,22 +5105,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertEventRepCrit(
     return pstNodeUePosEvtParamList;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertEventPar
-功能描述  : 将AGPS_UE_POS_EVT_PARAM_STRU结构体转换为树结构
-输入参数  : pstXmlCommCtx        XML上下文
-            pstUePosEvtParam     待转换结构体
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年07月07日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertEventPar(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_UE_POS_EVT_PARAM_STRU         *pstUePosEvtParam
@@ -6300,22 +5195,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertEventPar(
     return pstNodeUePosEvtParam;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertRepAmount
-功能描述  : 将penReportAmount转换为树结构
-输入参数  : pstXmlCommCtx     XML上下文
-            penReportAmount   待转换数据
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年07月07日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertRepAmount(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_UE_POS_RPT_MOUNT_ENUM_UINT8   *penReportAmount
@@ -6378,22 +5258,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertRepAmount(
     return pstNodeRepAmount;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertMeasInterval
-功能描述  : 将penMeasInterval转换为树结构
-输入参数  : pstXmlCommCtx     XML上下文
-            penMeasInterval   待转换数据
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年07月07日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertMeasInterval(
     XML_COMM_CTX_STRU                      *pstXmlCommCtx,
     AGPS_UE_POS_EVT_INTERVAL_ENUM_UINT8    *penMeasInterval
@@ -6456,22 +5321,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertMeasInterval(
     return pstNodeMeasInterval;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertEventSpecificInfo
-功能描述  : 将AGPS_UE_POS_EVT_SPEC_INFO_STRU结构体转换为树结构
-输入参数  : pstXmlCommCtx        XML上下文
-            pstUePosEvtSpecInfo  待转换结构体
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年07月07日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertEventSpecificInfo(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_UE_POS_EVT_SPEC_INFO_STRU     *pstUePosEvtSpecInfo
@@ -6519,22 +5369,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertEventSpecificInfo(
     return pstNodeUePosEvtSpecInfo;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertTrPosChg
-功能描述  : 将penE7a转换为树结构
-输入参数  : pstXmlCommCtx     XML上下文
-            penE7a            待转换数据
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年07月07日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertTrPosChg(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_THRESHOLD_POSITION_ENUM_UINT8 *penE7a
@@ -6606,22 +5441,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertTrPosChg(
     return pstNodeTrPosChg;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertTrSfnSfnChg
-功能描述  : 将penE7b转换为树结构
-输入参数  : pstXmlCommCtx     XML上下文
-            penE7b            待转换数据
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年07月07日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertTrSfnSfnChg(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_THRESHOLD_SFN_SFN_ENUM_UINT8  *penE7b
@@ -6692,22 +5512,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertTrSfnSfnChg(
     return pstNodeTrSfnSfnChg;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertTrSfnGpsTow
-功能描述  : 将penE7c转换为树结构
-输入参数  : pstXmlCommCtx     XML上下文
-            penE7c            待转换数据
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年07月07日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertTrSfnGpsTow(
     XML_COMM_CTX_STRU                      *pstXmlCommCtx,
     AGPS_THRESHOLD_SFN_GPS_TOW_ENUM_UINT8  *penE7c
@@ -6770,22 +5575,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertTrSfnGpsTow(
     return pstNodeTrSfnGpsTow;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertPeriodRepCrit
-功能描述  : 将AGPS_PERIOD_RPTNG_CRTR_STRU结构体转换为树结构
-输入参数  : pstXmlCommCtx        XML上下文
-            pstPeriodRptngCrtr   待转换结构体
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年07月07日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertPeriodRepCrit(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx,
     AGPS_PERIOD_RPTNG_CRTR_STRU        *pstPeriodRptngCrtr
@@ -6907,22 +5697,7 @@ XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertPeriodRepCrit(
     return pstNodePeriodRptngCrtr;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_ConvertPos
-功能描述  : 将pos结构体转换为树结构
-输入参数  : pstXmlCommCtx   XML上下文
-            pstMeasureReq 待转换结构体
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR    转换失败
-            成功返回转换后的树根节点
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期   : 2012年06月27日
-  作    者   : y00213812
-  修改内容   : V7R1C50 A-GPS项目新增函数
-*****************************************************************************/
 XML_COMM_NODE_STRU* TAF_MTA_AGPS_ConvertPos(
     XML_COMM_CTX_STRU                  *pstXmlCommCtx
 )

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : oal_aes.c
-  版 本 号   : 初稿
-  作    者   : z00237171
-  生成日期   : 2014年4月18日
-  最近修改   :
-  功能描述   : AES加解密相关实现
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年4月18日
-    作    者   : z00237171
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -1248,21 +1231,7 @@ OAL_STATIC OAL_CONST oal_uint32 crypto_il_tab[4][256] = {
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : oal_aes_expand_key
- 功能描述  : AES算法展开密钥
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月18日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  oal_aes_expand_key(oal_aes_key_stru    *pst_aes_key,
                                     OAL_CONST oal_uint8 *puc_key,
 		                            oal_uint32           ul_key_len)
@@ -1316,21 +1285,7 @@ oal_uint32  oal_aes_expand_key(oal_aes_key_stru    *pst_aes_key,
 	return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_aes_encrypt
- 功能描述  : AES加密
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月18日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  oal_aes_encrypt(oal_aes_key_stru    *pst_aes_key,
                                oal_uint8            *puc_ciphertext,
                                OAL_CONST oal_uint8  *puc_plaintext)
@@ -1388,21 +1343,7 @@ oal_uint32  oal_aes_encrypt(oal_aes_key_stru    *pst_aes_key,
 	return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_aes_decrypt
- 功能描述  : AES解密
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月18日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  oal_aes_decrypt(oal_aes_key_stru    *pst_aes_key,
                                 oal_uint8            *puc_plaintext,
                                 OAL_CONST oal_uint8  *puc_ciphertext)
@@ -1460,24 +1401,7 @@ oal_uint32  oal_aes_decrypt(oal_aes_key_stru    *pst_aes_key,
 	return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_aes_key_setup_encrypt
- 功能描述  : 将AES密钥进行展开
- 输入参数  : aes_key : CMAC算法秘钥相关的存储结构
-             in_key  : 秘钥指针
-             key_len : 秘钥长度
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  : oal_crypto_bip_enmic
-             oal_crypto_bip_demic
- 修改历史      :
-  1.日    期   : 2014年4月17日
-    作    者   : z00273164
-    修改内容   : 新生成函数
 
-
-*****************************************************************************/
 OAL_STATIC oal_int32  oal_aes_key_setup_encrypt(oal_uint8* in_key, oal_uint32 key_len, oal_aes_key_stru *pst_aes_key)
 {
     oal_uint32 *key = (oal_uint32 *)in_key;
@@ -1554,21 +1478,7 @@ OAL_STATIC oal_int32  oal_aes_key_setup_encrypt(oal_uint8* in_key, oal_uint32 ke
 
     return OAL_SUCC;
 }
-/*****************************************************************************
- 函 数 名  : oal_bip_ipn_swap
- 功能描述  :
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月17日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void oal_bip_ipn_swap(oal_uint8 *d, OAL_CONST oal_uint8 *s)
 {
     *d++ = s[5];
@@ -1578,22 +1488,7 @@ OAL_STATIC OAL_INLINE oal_void oal_bip_ipn_swap(oal_uint8 *d, OAL_CONST oal_uint
     *d++ = s[1];
     *d = s[0];
 }
-/*****************************************************************************
- 函 数 名  : oal_bip_aad
- 功能描述  : 组织AAD结构体
- 输入参数  : pst_netbuf : 存储加802.11头的帧的netbuf
-             aad        : 待组合的AAD结构指针
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月17日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void oal_bip_aad(oal_netbuf_stru *pst_netbuf, oal_uint8 *aad)
 {
     /* BIP AAD: FC(masked) || A1 || A2 || A3 */
@@ -1605,22 +1500,7 @@ OAL_STATIC oal_void oal_bip_aad(oal_netbuf_stru *pst_netbuf, oal_uint8 *aad)
     /* A1 || A2 || A3 */
     oal_memcopy(aad + 2, pst_netbuf->data + 4, 3 * OAL_ETH_ALEN);
 }
-/*****************************************************************************
- 函 数 名  : oal_gf_mulx
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史   :
- 1.日    期   : 2014年04月24日
-   作    者   : z00273164
-   修改内容   : 新生成函数
-
-
-*****************************************************************************/
 OAL_STATIC oal_void oal_gf_mulx(oal_uint8 *pad)
 {
     oal_int32 i;
@@ -1637,22 +1517,7 @@ OAL_STATIC oal_void oal_gf_mulx(oal_uint8 *pad)
         pad[OAL_AES_BLOCK_SIZE - 1] ^= 0x87;
     }
 }
-/*****************************************************************************
- 函 数 名  : oal_crypto_cipher_encrypt_one
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史   :
- 1.日    期   : 2014年04月24日
-   作    者   : z00273164
-   修改内容   : 新生成函数
-
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32 oal_crypto_cipher_encrypt_one(oal_aes_key_stru *aes_key, oal_uint8 *dst, OAL_CONST oal_uint8 *src)
 {
     oal_uint alignmask = 3;
@@ -1666,22 +1531,7 @@ OAL_STATIC OAL_INLINE oal_uint32 oal_crypto_cipher_encrypt_one(oal_aes_key_stru 
     return oal_aes_encrypt(aes_key, dst, src);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_aes_128_cmac_vector
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史   :
- 1.日    期   : 2014年04月24日
-   作    者   : z00273164
-   修改内容   : 新生成函数
-
-
-*****************************************************************************/
 OAL_STATIC oal_uint32 oal_aes_128_cmac_vector(oal_aes_key_stru *aes_key,
                                                    oal_uint8 *scratch,
                                                    oal_uint32 num_elem,
@@ -1767,22 +1617,7 @@ OAL_STATIC oal_uint32 oal_aes_128_cmac_vector(oal_aes_key_stru *aes_key,
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_ieee80211_aes_cmac
- 功能描述  : 运用AES-128-CMAC算法计算mic值
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史   :
- 1.日    期   : 2014年04月24日
-   作    者   : z00273164
-   修改内容   : 新生成函数
-
-
-*****************************************************************************/
 OAL_STATIC oal_void oal_aes_cmac(oal_aes_key_stru *aes_key, oal_uint8 *scratch, OAL_CONST oal_uint8*aad,
                         OAL_CONST oal_uint8 *data, oal_uint32 data_len, oal_uint8 *mic)
 {
@@ -1801,23 +1636,7 @@ OAL_STATIC oal_void oal_aes_cmac(oal_aes_key_stru *aes_key, oal_uint8 *scratch, 
     oal_aes_128_cmac_vector(aes_key, scratch, 3, addr, len, mic);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_ieee80211_crypto_aes_cmac_encrypt
- 功能描述  : 为一段输入数据进行AES-128-CMAC加密
- 输入参数  : aes_ctx    : CMAC算法秘钥相关的存储结构
-             pst_netbuf : 存储加802.11头的帧的netbuf
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史   :
- 1.日    期   : 2014年04月24日
-   作    者   : z00273164
-   修改内容   : 新生成函数
-
-
-*****************************************************************************/
 oal_uint32 oal_crypto_aes_cmac_encrypt(oal_aes_ctx_stru *aes_ctx, oal_netbuf_stru *pst_netbuf)
 {
     oal_mmie_stru      *mmie;
@@ -1859,25 +1678,7 @@ oal_uint32 oal_crypto_aes_cmac_encrypt(oal_aes_ctx_stru *aes_ctx, oal_netbuf_str
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_ieee80211_crypto_aes_cmac_decrypt
- 功能描述  : 为一段带MMIE(包含mic值)输入数据进行AES-128-CMAC解密
- 输入参数  : aes_ctx    : CMAC算法秘钥相关的存储结构
-             pst_netbuf : 存储加802.11头的帧的netbuf
-             pul_dot11RSNAStatsCMACReplays   : bip 组播管理帧重放计数器
-             pul_dot11RSNAStatsCMACICVErrors : bip 组播管理帧完整性验证失败计数器
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史   :
- 1.日    期   : 2014年04月24日
-   作    者   : z00273164
-   修改内容   : 新生成函数
-
-
-*****************************************************************************/
 OAL_STATIC oal_uint32 oal_crypto_aes_cmac_decrypt(oal_aes_ctx_stru *aes_ctx,
                                                   oal_netbuf_stru *pst_netbuf,
                                                   oal_uint32 *pul_dot11RSNAStatsCMACReplays,
@@ -1931,26 +1732,7 @@ OAL_STATIC oal_uint32 oal_crypto_aes_cmac_decrypt(oal_aes_ctx_stru *aes_ctx,
 /*If you want use this function in 1102'host,
   should't change skb tail pointer!*/
 #if (_PRE_PRODUCT_ID != _PRE_PRODUCT_ID_HI1102_HOST)
-/*****************************************************************************
- 函 数 名  : oal_crypto_bip_enmic
- 功能描述  : bip加密接口函数，为管理帧body尾增加MMIE,并计算MIC值
- 输入参数  : uc_igtk_keyid       : user的igtk id
-             pst_igtk_key        : user协商后的igtk
-             pst_igtk_seq        : igtk的pn序列号
-             pst_netbuf    :存储加802.11头的帧的netbuf
-             pst_frame_len :帧长度
- 输出参数  : pst_frame_len
- 返 回 值  : 无
- 调用函数  : 无
- 被调函数  : 无
 
- 修改历史   :
- 1.日    期   : 2014年04月24日
-   作    者   : z00273164
-   修改内容   : 新生成函数
-
-
-*****************************************************************************/
 oal_uint32 oal_crypto_bip_enmic(oal_uint8 uc_igtk_keyid,
                                 oal_uint8 *pst_igtk_key,
                                 oal_uint8 *pst_igtk_seq,
@@ -1990,27 +1772,7 @@ oal_uint32 oal_crypto_bip_enmic(oal_uint8 uc_igtk_keyid,
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : oal_crypto_bip_demic
- 功能描述  : 为组播管理帧进行重放判断,并验证MIC值
- 输入参数  : uc_igtk_keyid       : user的igtk id
-             pst_igtk_key        : user协商后的igtk
-             pst_igtk_seq        : igtk的pn序列号
-             pst_netbuf          : 存储加802.11头的帧的netbuf
-             pul_dot11RSNAStatsCMACReplays   : bip 组播管理帧重放计数器
-             pul_dot11RSNAStatsCMACICVErrors : bip 组播管理帧完整性验证失败计数器
- 输出参数  : 无
- 返 回 值  : OAL_SUCC:解密成功 &&重放检测没问题
- 调用函数  : 无
- 被调函数  : 无
 
- 修改历史   :
- 1.日    期   : 2014年04月24日
-   作    者   : z00273164
-   修改内容   : 新生成函数
-
-
-*****************************************************************************/
 oal_uint32 oal_crypto_bip_demic(oal_uint8 uc_igtk_keyid,
                                 oal_uint8 *pst_igtk_key,
                                 oal_uint8 *pst_igtk_seq,

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : dmac_tx_bss_comm.c
-  版 本 号   : 初稿
-  作    者   : mayuan
-  生成日期   : 2012年11月15日
-  最近修改   :
-  功能描述   :
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年11月15日
-    作    者   : mayuan
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -123,25 +106,7 @@ oal_uint8 g_auc_default_mac_to_phy_protocol_mapping[WLAN_PROTOCOL_BUTT] =
   4 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_dump_get_switch
- 功能描述  : 获取管理帧或者数据帧的打印开关
- 输入参数  : en_frame_type     :帧是管理帧还是数据帧
-             pen_frame_switch  :帧内容开关
-             pen_cb_switch     :帧CB字段开关
-             pen_dscr_switch   :帧的发送描述符开关
-             pst_tx_cb         :skb的发送控制字段
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月22日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_tx_dump_get_switch(
                                     oam_user_track_frame_type_enum_uint8     en_frame_type,
                                     oal_uint8                               *pen_frame_switch,
@@ -258,21 +223,7 @@ oal_uint32  dmac_tx_dump_get_switch(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_get_user_macaddr
- 功能描述  : 获取目的用户的mac地址，用于SDT过滤
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月21日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_tx_get_user_macaddr(mac_tx_ctl_stru *pst_tx_cb,
                                                         oal_uint8 auc_user_macaddr[])
 {
@@ -297,21 +248,7 @@ OAL_STATIC oal_uint32  dmac_tx_get_user_macaddr(mac_tx_ctl_stru *pst_tx_cb,
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_dump_get_user_macaddr
- 功能描述  : 发送流程打印帧获取用户mac地址，用于sdt过滤
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月28日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_tx_dump_get_user_macaddr(mac_tx_ctl_stru *pst_tx_cb,
                                                      oal_uint8 auc_user_macaddr[])
 {
@@ -340,21 +277,7 @@ oal_uint32  dmac_tx_dump_get_user_macaddr(mac_tx_ctl_stru *pst_tx_cb,
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_dump
- 功能描述  : tx流程打印帧，帧cb字段，发送描述符
- 输入参数  : pst_tx_dump_param:tx流程打印参数结构
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月28日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void  dmac_tx_dump(dmac_tx_dump_param_stru *pst_tx_dump_param)
 {
     oal_uint32               ul_dscr_one_size = 0;
@@ -413,21 +336,7 @@ OAL_STATIC oal_void  dmac_tx_dump(dmac_tx_dump_param_stru *pst_tx_dump_param)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_dump_data
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年3月20日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void dmac_tx_dump_data(
                             hal_to_dmac_device_stru     *pst_hal_device,
                             mac_tx_ctl_stru             *pst_tx_ctl,
@@ -504,21 +413,7 @@ OAL_STATIC oal_void dmac_tx_dump_data(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_dump_mgmt
- 功能描述  : 打印管理帧以及对应的发送描述符
- 输入参数  : us_frame_len:帧长度(帧头+帧体)
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月20日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void  dmac_tx_dump_mgmt(
                                         hal_to_dmac_device_stru *pst_hal_device,
                                         oal_netbuf_stru *pst_netbuf_mgmt,
@@ -585,22 +480,30 @@ OAL_STATIC oal_void  dmac_tx_dump_mgmt(
 
     dmac_tx_dump(&st_tx_dump_param);
 }
+#ifdef _PRE_WLAN_FEATURE_STA_PM
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_pause_info
- 功能描述  : 用于定位发送过程TID发送挂起问题，主要是移窗卡死以及pause队列暂停
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+oal_void dmac_mac_key_statis_info(dmac_vap_stru *pst_dmac_vap, mac_device_stru  *pst_device)
+{
+    hal_mac_key_statis_info_stru      st_mac_key_statis_info;
 
- 修改历史      :
-  1.日    期   : 2015年9月10日
-    作    者   : t00190962
-    修改内容   : 新生成函数
+    if ((WLAN_VAP_MODE_BSS_AP == pst_dmac_vap->st_vap_base_info.en_vap_mode) || (IS_P2P_DEV(&pst_dmac_vap->st_vap_base_info)))
+    {
+        return;
+    }
 
-*****************************************************************************/
+    hal_get_mac_statistics_data(pst_device->pst_device_stru, &st_mac_key_statis_info);
+    st_mac_key_statis_info.ul_tkipccmp_rep_fail_cnt += pst_device->st_mac_key_statis_info.ul_tkipccmp_rep_fail_cnt;
+    st_mac_key_statis_info.ul_tx_mpdu_cnt += pst_device->st_mac_key_statis_info.ul_tx_mpdu_cnt;
+    st_mac_key_statis_info.ul_rx_passed_mpdu_cnt += pst_device->st_mac_key_statis_info.ul_rx_passed_mpdu_cnt;
+    st_mac_key_statis_info.ul_rx_failed_mpdu_cnt += pst_device->st_mac_key_statis_info.ul_rx_failed_mpdu_cnt;
+    st_mac_key_statis_info.ul_rx_tkipccmp_mic_fail_cnt += pst_device->st_mac_key_statis_info.ul_rx_tkipccmp_mic_fail_cnt;
+    st_mac_key_statis_info.ul_key_search_fail_cnt += pst_device->st_mac_key_statis_info.ul_key_search_fail_cnt;
+
+    OAM_WARNING_LOG_ALTER(pst_dmac_vap->st_vap_base_info.uc_vap_id, OAM_SF_ANY, "{dmac_mac_key_statis_info::tx_mpdu_cnt:[%d],rx_passed_mpdu_cnt[%d],rx_failed_mpdu_cnt[%d],tkipccmp_rep_fail_cnt:[%d],rx_mic_fail_cnt[%d],key_search_fail_cnt[%d].}",6,
+                st_mac_key_statis_info.ul_tx_mpdu_cnt,st_mac_key_statis_info.ul_rx_passed_mpdu_cnt,st_mac_key_statis_info.ul_rx_failed_mpdu_cnt,st_mac_key_statis_info.ul_tkipccmp_rep_fail_cnt,st_mac_key_statis_info.ul_rx_tkipccmp_mic_fail_cnt,st_mac_key_statis_info.ul_key_search_fail_cnt);
+}
+#endif
+
 oal_void  dmac_tx_pause_info(hal_to_dmac_device_stru *pst_hal_device, dmac_vap_stru *pst_dmac_vap, oal_netbuf_stru *pst_netbuf)
 {
     mac_tx_ctl_stru            *pst_tx_ctl_first;
@@ -688,8 +591,20 @@ oal_void  dmac_tx_pause_info(hal_to_dmac_device_stru *pst_hal_device, dmac_vap_s
     pst_query_stats = &pst_dmac_user->st_query_stats;
 
     /* 定时打印统计，信息上报字段st_query_stats，1102专用 */
-    OAM_WARNING_LOG_ALTER(pst_dmac_vap->st_vap_base_info.uc_vap_id, OAM_SF_TX, "{dmac_tx_pause_info: stat info rssi = %d, tx succ pkt = %u, tx fail pkt = %u, tx retry cnt = %u, rx pkt = %u, rx dropped misc= %u.}", 6,
-        pst_dmac_vap->st_query_stats.ul_signal, pst_query_stats->ul_hw_tx_pkts, pst_query_stats->ul_tx_failed, pst_query_stats->ul_tx_retries, pst_query_stats->ul_drv_rx_pkts, pst_query_stats->ul_rx_dropped_misc);
+    /*
+    ul_drv_rx_pkts：    接收数据(硬件上报，包含rx描述符不成功的帧)数目，仅仅统计数据帧
+    ul_rx_dropped_misc：接收失败(决定丢弃的帧)次数
+
+    tx_total：          发送数据帧总数，不包括软件重传
+    ul_hw_tx_pkts：     发送成功帧数，(针对AMPDU需要根据BA MAP) ，仅仅统计数据帧
+    ul_tx_failed：      发送失败最终丢弃的次数，仅仅统计数据帧
+    ul_hw_tx_failed:    发送完成中断上报发送失败的个数，仅仅统计数据帧
+    tx_retry_cnt：      硬件重传总次数+软件重传总次数，硬件重传针对AMPDU= pkt_cnt×retry_cnt
+    */
+    OAM_WARNING_LOG_ALTER(pst_dmac_vap->st_vap_base_info.uc_vap_id, OAM_SF_TX, "{dmac_tx_pause_info:TX_pkts: total = %u, tx_dropped = %u, tx_succ = %u, total_retry = %u, hw_tx_fail = %u.}", 5,
+        pst_query_stats->ul_tx_total, pst_query_stats->ul_tx_failed, pst_query_stats->ul_hw_tx_pkts, pst_query_stats->ul_tx_retries, pst_query_stats->ul_hw_tx_failed);
+    OAM_WARNING_LOG3(pst_dmac_vap->st_vap_base_info.uc_vap_id, OAM_SF_TX, "{dmac_tx_pause_info:RSSI = %d ; RX_pkts: total = %u, drv_dropped = %u.}",
+        pst_dmac_vap->st_query_stats.ul_signal, pst_query_stats->ul_drv_rx_pkts, pst_query_stats->ul_rx_dropped_misc);
 
     dmac_config_get_tx_rate_info(&(pst_dmac_vap->st_tx_alg), &(pst_mac_device->st_mac_rates_11g[0]), &st_txrate);
     OAM_WARNING_LOG_ALTER(pst_dmac_vap->st_vap_base_info.uc_vap_id, OAM_SF_TX, "{dmac_tx_pause_info: tx rate info legacy = %d, mcs = %d, flags = %d, nss = %d, rx rate(kbps) = %d}", 5,
@@ -702,6 +617,10 @@ oal_void  dmac_tx_pause_info(hal_to_dmac_device_stru *pst_hal_device, dmac_vap_s
         pst_hal_device->ast_tx_dscr_queue[WLAN_WME_AC_MGMT].uc_ppdu_cnt,
         g_st_netbuf_pool.ast_subpool_table[2].us_free_cnt);
 
+#ifdef _PRE_WLAN_FEATURE_STA_PM
+    /* mac发送接收关键信息打印 */
+    dmac_mac_key_statis_info(pst_dmac_vap,pst_mac_device);
+#endif
     dmac_rx_compatibility_show_stat(pst_dmac_user);
     /* 异常发送完成时间的统计信息 */
     if (pst_hal_device->st_tx_excp_info.us_tx_excp_cnt)
@@ -741,21 +660,7 @@ oal_void  dmac_tx_pause_info(hal_to_dmac_device_stru *pst_hal_device, dmac_vap_s
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_excp_free_dscr
- 功能描述  : 异常释放描述符
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年3月20日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  dmac_tx_excp_free_dscr(oal_dlist_head_stru *pst_tx_dscr_list_hdr, hal_to_dmac_device_stru *pst_hal_device)
 {
     oal_netbuf_stru     *pst_netbuf = OAL_PTR_NULL;
@@ -783,21 +688,7 @@ oal_void  dmac_tx_excp_free_dscr(oal_dlist_head_stru *pst_tx_dscr_list_hdr, hal_
 #if (_PRE_OS_VERSION_RAW == _PRE_OS_VERSION)
 #pragma arm section rwdata = "BTCM", code ="ATCM", zidata = "BTCM", rodata = "ATCM"
 #endif
-/*****************************************************************************
- 函 数 名  : dmac_tx_excp_free_netbuf
- 功能描述  : 因错误返回释放netbuf内存空间
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年3月20日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_tx_excp_free_netbuf(oal_netbuf_stru *pst_netbuf)
 {
     oal_netbuf_stru             *pst_buf_next = OAL_PTR_NULL;
@@ -863,21 +754,7 @@ oal_uint32  dmac_tx_excp_free_netbuf(oal_netbuf_stru *pst_netbuf)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_save_frag_seq
- 功能描述  : 记录分片报文的seq num
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年3月20日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void dmac_save_frag_seq(dmac_user_stru     *pst_dmac_user,
                                                          mac_tx_ctl_stru    *pst_tx_ctl)
 {
@@ -894,21 +771,7 @@ OAL_STATIC OAL_INLINE oal_void dmac_save_frag_seq(dmac_user_stru     *pst_dmac_u
     }
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_seqnum_set
- 功能描述  : 填写seq num
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年3月20日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void dmac_tx_seqnum_set(dmac_user_stru *pst_dmac_user, mac_tx_ctl_stru *pst_tx_ctl)
 {
     oal_uint8                   uc_tid = 0;
@@ -934,21 +797,7 @@ OAL_STATIC OAL_INLINE oal_void dmac_tx_seqnum_set(dmac_user_stru *pst_dmac_user,
     }
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_seqnum_set_ampdu
- 功能描述  : 填写seq num
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年3月20日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void dmac_tx_seqnum_set_ampdu(dmac_user_stru *pst_dmac_user, mac_tx_ctl_stru *pst_tx_ctl)
 {
 #if (_PRE_PRODUCT_ID == _PRE_PRODUCT_ID_HI1151)
@@ -969,21 +818,7 @@ OAL_STATIC OAL_INLINE oal_void dmac_tx_seqnum_set_ampdu(dmac_user_stru *pst_dmac
 #endif
 
 #if (_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC != _PRE_MULTI_CORE_MODE)
-/*****************************************************************************
- 函 数 名  : dmac_tx_get_amsdu_params
- 功能描述  : 填写发送参数，amsdu中子msdu的地址和长度
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 成功或者错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月19日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_tx_get_amsdu_params(
                                         oal_netbuf_stru  *pst_netbuf,
                                         mac_tx_ctl_stru  *pst_tx_ctl,
@@ -1040,24 +875,7 @@ oal_uint32  dmac_tx_get_amsdu_params(
     return OAL_SUCC;
 }
 #endif
-/*****************************************************************************
- 函 数 名  : dmac_dequeue_first_mpdu
- 功能描述  : 从队列中取出第一个mpdu,将它从队列删除并返回，一个mpdu中可能有多个skb
- 输入参数  : st_queue_head: 队列头
- 输出参数  : 无
- 返 回 值  : oal_netbuf_stru*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月2日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-  2.日    期   : 2013年9月22日
-    作    者   : z52447
-    修改内容   : 从PSM模块提取出来作为公共函数
-
-*****************************************************************************/
 oal_netbuf_stru* dmac_tx_dequeue_first_mpdu(oal_netbuf_head_stru  *pst_netbuf_head)
 {
     oal_netbuf_stru        *pst_first_net_buf;
@@ -1121,22 +939,7 @@ oal_netbuf_stru* dmac_tx_dequeue_first_mpdu(oal_netbuf_head_stru  *pst_netbuf_he
 }
 
 #ifdef _PRE_WLAN_FEATURE_TX_DSCR_OPT
-/*****************************************************************************
- 函 数 名  : dmac_tx_queue_mpdu
- 功能描述  : 将mpdu下所有netbuf加入skb链表中的尾部,需要考虑一个mpdu有多个netbuf
- 输入参数  : pst_new: 要插入的新skb指针
-             pst_head: skb链表头指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月14日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  dmac_tx_queue_mpdu(oal_netbuf_stru *pst_netbuf, oal_netbuf_head_stru *pst_head)
 {
     oal_netbuf_stru    *pst_netbuf_tmp;
@@ -1175,22 +978,7 @@ OAL_STATIC OAL_INLINE oal_void  dmac_tx_queue_mpdu(oal_netbuf_stru *pst_netbuf, 
     }
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_queue_mpdu_head
- 功能描述  : 将mpdu下所有netbuf加入skb链表中的头部,51需要考虑一个mpdu有多个netbuf;02amsdu只占单buf,不需考虑
- 输入参数  : pst_new: 要插入的新skb指针
-             pst_head: skb链表头指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月31日
-    作    者   : s00304087
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  dmac_tx_queue_mpdu_head(oal_netbuf_stru *pst_netbuf, oal_netbuf_head_stru *pst_head)
 {
 #if (_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC == _PRE_MULTI_CORE_MODE)
@@ -1202,22 +990,7 @@ OAL_STATIC OAL_INLINE oal_void  dmac_tx_queue_mpdu_head(oal_netbuf_stru *pst_net
 }
 #endif /* _PRE_WLAN_FEATURE_TX_DSCR_OPT */
 
-/*****************************************************************************
- 函 数 名  : mac_check_cb_tid
- 功能描述  : 更新所有txop alg结构体中与保护模式相关的参数
- 输入参数  : mac_vap_stru *pst_mac_vap
-             oal_uint8 *puc_param
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月18日
-    作    者   : c00260463
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void mac_check_cb_tid(mac_tx_ctl_stru *pst_tx_ctrl)
 {
     if(mac_get_cb_tid(pst_tx_ctrl) > (WLAN_WME_MAX_TID_NUM -1))
@@ -1230,24 +1003,7 @@ OAL_STATIC OAL_INLINE oal_void mac_check_cb_tid(mac_tx_ctl_stru *pst_tx_ctrl)
 #if (_PRE_OS_VERSION_RAW == _PRE_OS_VERSION)
 #pragma arm section rwdata = "BTCM", code ="ATCM", zidata = "BTCM", rodata = "ATCM"
 #endif
-/*****************************************************************************
- 函 数 名  : dmac_tx_set_txopps_param
- 功能描述  : 把txop ps相关的量填到txop_feature中，后续填到描述符里面
- 输入参数  : pst_dmac_vap :     DMAC模块vap指针
-             pst_dmac_user:     DMAC模块用户指针
-             pst_txop_feature:  txop指针
-             en_ismcast      :  是否是组播帧
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月18日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  dmac_tx_set_txopps_param(dmac_vap_stru  *pst_dmac_vap,
                                                       dmac_user_stru *pst_dmac_user,
                                                       hal_tx_txop_feature_stru *pst_txop_feature,
@@ -1287,24 +1043,7 @@ OAL_STATIC OAL_INLINE oal_void  dmac_tx_set_txopps_param(dmac_vap_stru  *pst_dma
     }
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_get_txop
- 功能描述  : 根据dmac信息，填写txop的参数
- 输入参数  : pst_dmac_vap :     DMAC模块vap指针
-             pst_dmac_user:     DMAC模块用户指针
-             pst_txop_feature:  txop指针
-             en_ismcast      :  是否是组播帧
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月22日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void dmac_tx_get_txop(dmac_vap_stru  *pst_dmac_vap,
                                           dmac_user_stru *pst_dmac_user,
                                           hal_tx_txop_feature_stru *pst_txop_feature,
@@ -1318,23 +1057,7 @@ OAL_STATIC OAL_INLINE oal_void dmac_tx_get_txop(dmac_vap_stru  *pst_dmac_vap,
     dmac_tx_set_txopps_param(pst_dmac_vap, pst_dmac_user, pst_txop_feature, en_ismcast);
 }
 #if 0
-/*****************************************************************************
- 函 数 名  : dmac_tx_update_bandwidth_mode_ap
- 功能描述  : AP更新发送描述符中的"freq bandwidth mode"
- 输入参数  : pst_dmac_vap : 指向AP
-             pst_dmac_user: 指向STA
- 输出参数  : pst_txop_alg : 算法结构体指针，其中包含"freq bandwidth mode"，用于
-                            发送描述符的填写
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月27日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  dmac_tx_update_bandwidth_mode_ap(dmac_vap_stru *pst_dmac_vap, dmac_user_stru *pst_dmac_user, hal_tx_txop_alg_stru *pst_txop_alg)
 {
     oal_uint8   uc_channel_bandwidth = 0;    /* BW20 */
@@ -1369,23 +1092,7 @@ OAL_STATIC OAL_INLINE oal_void  dmac_tx_update_bandwidth_mode_ap(dmac_vap_stru *
     pst_txop_alg->st_rate.uc_channel_bandwidth = OAL_MIN(pst_txop_alg->st_rate.uc_channel_bandwidth, uc_channel_bandwidth);
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_update_bandwidth_mode_sta
- 功能描述  : STA更新发送描述符中的"freq bandwidth mode"
- 输入参数  : pst_dmac_vap : 指向STA
-             pst_dmac_user: 指向AP
- 输出参数  : pst_txop_alg : 算法结构体指针，其中包含"freq bandwidth mode"，用于
-                            发送描述符的填写
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月27日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  dmac_tx_update_bandwidth_mode_sta(dmac_vap_stru *pst_dmac_vap, dmac_user_stru *pst_dmac_user, hal_tx_txop_alg_stru *pst_txop_alg)
 {
     pst_txop_alg->st_rate.uc_channel_bandwidth = 0;             /* BW20 */
@@ -1417,23 +1124,7 @@ OAL_STATIC OAL_INLINE oal_void  dmac_tx_update_bandwidth_mode_sta(dmac_vap_stru 
     }
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_update_bandwidth_mode
- 功能描述  : 更新发送描述符中的"freq bandwidth mode"
- 输入参数  : pst_dmac_vap : VAP结构体指针
-             pst_dmac_user: USER结构体指针
- 输出参数  : pst_txop_alg : 算法结构体指针，其中包含"freq bandwidth mode"，用于
-                            发送描述符的填写
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月27日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  dmac_tx_update_bandwidth_mode(dmac_vap_stru *pst_dmac_vap, dmac_user_stru *pst_dmac_user, hal_tx_txop_alg_stru *pst_txop_alg)
 {
     if (WLAN_VAP_MODE_BSS_AP == pst_dmac_vap->st_vap_base_info.en_vap_mode)
@@ -1447,22 +1138,7 @@ OAL_STATIC OAL_INLINE oal_void  dmac_tx_update_bandwidth_mode(dmac_vap_stru *pst
 }
 #endif
 #ifdef  _PRE_WLAN_FEATURE_TSF_SYNC
-/*****************************************************************************
- 函 数 名  : dmac_tx_get_timestamp
- 功能描述  : tsf sync
- 输入参数  :
-             pst_hal_vap:     vap hal指针
- 输出参数  : pus_tsf:         当前时间戳
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月12日
-    作    者   : liuzhengqi
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint16 dmac_sync_tx_dscr_tsf(hal_to_dmac_vap_stru *pst_hal_vap, oal_uint16 us_tsf)
 {
     oal_uint16      us_tmp_tsf_lo = 0;
@@ -1484,22 +1160,7 @@ oal_uint16 dmac_sync_tx_dscr_tsf(hal_to_dmac_vap_stru *pst_hal_vap, oal_uint16 u
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_get_timestamp
- 功能描述  : 获取时间戳
- 输入参数  :
-             pst_hal_vap:     vap hal指针
- 输出参数  : pus_tsf:         当前时间戳
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月22日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void dmac_tx_get_timestamp(hal_to_dmac_vap_stru *pst_hal_vap, oal_uint16 *pus_tsf)
 {
     oal_uint32                   ul_tsf = 0;
@@ -1532,7 +1193,6 @@ OAL_STATIC oal_void dmac_tx_get_timestamp(hal_to_dmac_vap_stru *pst_hal_vap, oal
         OAM_ERROR_LOG0(pst_hal_vap->uc_vap_id,OAM_SF_TX, "{dmac_tx_get_timestamp::Read TSF When ext tsf is working}");
     }
 #endif
-     /* DTS2014102201798 规避芯片lifetime问题，获取硬件tsf值时减去1ms，再写入描述符 */
 #if (_PRE_PRODUCT_ID == _PRE_PRODUCT_ID_HI1151)
     *pus_tsf = ((ul_tsf >> 10) & 0xffff) - 1; /* 将微妙换算成毫秒，取16位 */
 #else
@@ -1545,21 +1205,7 @@ OAL_STATIC oal_void dmac_tx_get_timestamp(hal_to_dmac_vap_stru *pst_hal_vap, oal
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_bf_add_ht_control_field
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月15日
-    作    者   : y00184180
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_tx_bf_add_ht_control_field(
                                     hal_to_dmac_device_stru  *pst_hal_device,
                                     mac_tx_ctl_stru          *pst_tx_ctl,
@@ -1581,23 +1227,7 @@ OAL_STATIC oal_uint32  dmac_tx_bf_add_ht_control_field(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_dscr_queue_add_dscr_list
- 功能描述  : 将一个发送描述符链表加入发送描述符队列
- 输入参数  : past_tx_dscr_queue  : 发送描述符队列头
-             uc_qid              : 发送描述符队列ID
-             pst_tx_dscr_list_hdr: 发送描述符链表头指针
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或者其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月20日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32 dmac_tx_dscr_queue_add_dscr_list(
                 hal_to_dmac_device_stru *       pst_hal_device,
                 oal_uint8                       uc_qid,
@@ -1656,24 +1286,7 @@ oal_void dmac_post_soft_tx_complete_event(hal_to_dmac_device_stru *pst_hal_devic
     FRW_EVENT_FREE(pst_event_mem);
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_data
- 功能描述  : 数据帧发送处理函数
- 输入参数  : pst_dmac_vap : DMAC模块VAP指针
-             pst_dmac_user: DMAC模块用户指针
-             pst_netbuf   : netbuf缓存
-             uc_mpdu_num  : 需要发送的MPDU的个数
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月19日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 oal_uint32  dmac_tx_data(
                 dmac_vap_stru            *pst_dmac_vap,
@@ -1734,12 +1347,10 @@ oal_uint32  dmac_tx_data(
 
     dmac_tx_get_txop(pst_dmac_vap, pst_dmac_user, &st_txop_feature, pst_tx_ctl->en_ismcast);
 
-    /* DTS2015080507103 发送4 次握手eapol key 帧设置为不加密 */
     if (pst_tx_ctl->bit_is_eapol_key_ptk == OAL_TRUE)
     {
         st_txop_feature.pst_security->en_cipher_protocol_type = WLAN_80211_CIPHER_SUITE_NO_ENCRYP;
     }
-    /* DTS2015080507103 发送4 次握手eapol key 帧设置为不加密 */
 
     /*如果用户处于节能状态，则需要考虑设置当前帧的more data*/
     if (OAL_TRUE == pst_dmac_user->bit_ps_mode)
@@ -1782,7 +1393,6 @@ oal_uint32  dmac_tx_data(
     {
         dmac_tx_get_timestamp(pst_dmac_vap->pst_hal_vap, &pst_ppdu_feature->us_tsf);
     }
-    /* g00260350 1102需要增加该维测*/
     dmac_tx_get_timestamp(pst_dmac_vap->pst_hal_vap, &pst_ppdu_feature->us_tsf);
 #endif
 
@@ -1833,6 +1443,7 @@ oal_uint32  dmac_tx_data(
         {
             OAM_ERROR_LOG1(0, OAM_SF_TX, "{dmac_tx_data::tid %d, uc_dscr_num is zero.}", mac_get_cb_tid(pst_cb));
         }
+
     }
 
 #ifdef _PRE_WLAN_FEATURE_BTCOEX
@@ -1966,14 +1577,12 @@ oal_uint32  dmac_tx_data(
     if ((pst_hal_device->uc_current_chan_number != pst_dmac_vap->st_vap_base_info.st_channel.uc_chan_number) &&
          (MAC_VAP_STATE_INIT != pst_dmac_vap->st_vap_base_info.en_vap_state))
     {
-        oal_uint8                       auc_user_macaddr[WLAN_MAC_ADDR_LEN] = {0xff,0xff,0xff,0xff,0xff,0xff};
-
         OAM_ERROR_LOG3(pst_dmac_vap->st_vap_base_info.uc_vap_id, OAM_SF_DBAC, "put tx_dscr in wrong channel. vap chan:%d, hal chan:%d. vap state:%d",
                                 pst_dmac_vap->st_vap_base_info.st_channel.uc_chan_number,
                                 pst_hal_device->uc_current_chan_number,
                                 pst_dmac_vap->st_vap_base_info.en_vap_state);
 
-        oam_report_80211_frame(auc_user_macaddr,
+        oam_report_80211_frame(BROADCAST_MACADDR,
                             (oal_uint8*)mac_get_cb_frame_hdr(pst_tx_ctl),
                             MAC_GET_CB_FRAME_HEADER_LENGTH(pst_tx_ctl),
                             (oal_uint8*)oal_netbuf_payload(pst_tx_dscr->pst_skb_start_addr),
@@ -1982,7 +1591,6 @@ oal_uint32  dmac_tx_data(
     }
 #endif
 
-    /* DTS2015052706839:为防止管理帧进入数据帧处理流程后，高优先级队列Overrun */
     uc_q_num = HAL_AC_TO_Q_NUM(uc_ac);
 
     if (OAL_GET_THRUPUT_BYPASS_ENABLE(OAL_TX_HAL_HARDWARE_BYPASS))
@@ -2023,24 +1631,7 @@ oal_uint32  dmac_tx_data(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_need_enqueue_tid
- 功能描述  : 判断数据帧是否需要入发送TID缓存队列
- 输入参数  : pst_hal_device: HAL向DMAC提供的device指针
-             pst_tid_queue : TID缓存队列指针
-             uc_ac         : 接入类别(Access Category)
- 输出参数  : 无
- 返 回 值  : OAL_TRUE : 需要入队
-             OAL_FALSE: 无需入队
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月21日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_bool_enum_uint8  dmac_tx_need_enqueue_tid(
                 hal_to_dmac_device_stru *pst_hal_device,
 #ifdef _PRE_WLAN_FEATURE_DBAC
@@ -2093,22 +1684,7 @@ OAL_STATIC OAL_INLINE oal_bool_enum_uint8  dmac_tx_need_enqueue_tid(
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_tid_tx_queue_enqueue
- 功能描述  : 将一个MPDU或多个MPDU加入用户的TID缓存队列
- 输入参数  : pst_tid_queue: 发送tid缓存队列指针
-             pst_netbuf   : netbuf指针
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月15日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 #ifdef _PRE_WLAN_FEATURE_TX_DSCR_OPT
 OAL_STATIC OAL_INLINE oal_uint32  dmac_tid_tx_queue_enqueue(
                 mac_device_stru    *pst_device,
@@ -2207,21 +1783,7 @@ OAL_STATIC OAL_INLINE oal_uint32  dmac_tid_tx_queue_enqueue(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_al_tx_set_mpdu_param
- 功能描述  : 为了解决02常发发送大数据的问题，重新设置一下mpdu参数
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月18日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_INLINE oal_void  dmac_al_tx_set_mpdu_param (mac_vap_stru *pst_mac_vap, oal_uint16 us_payload_len, hal_tx_mpdu_stru *pst_mpdu)
 {
 #if (_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC == _PRE_MULTI_CORE_MODE)
@@ -2234,21 +1796,7 @@ OAL_INLINE oal_void  dmac_al_tx_set_mpdu_param (mac_vap_stru *pst_mac_vap, oal_u
 #endif
 
 }
-/*****************************************************************************
- 函 数 名  : dmac_is_al_tx
- 功能描述  : 判断是否常发模式
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月6日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_INLINE oal_bool_enum_uint8  dmac_is_al_tx (dmac_vap_stru *pst_dmac_vap)
 {
 #if (_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC == _PRE_MULTI_CORE_MODE)
@@ -2265,25 +1813,10 @@ OAL_INLINE oal_bool_enum_uint8  dmac_is_al_tx (dmac_vap_stru *pst_dmac_vap)
         return OAL_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_is_vap_state_ok
- 功能描述  : 判断vap状态是否正常，决定是否需要中止发送
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月6日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_INLINE oal_bool_enum_uint8  dmac_is_vap_state_ok (dmac_vap_stru *pst_dmac_vap)
 {
 #if (_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC == _PRE_MULTI_CORE_MODE)
-    /* 针对上下状态不同步的问题，增加对damc状态的异常检查 问题单: DTS2015030907649 */
     if (OAL_UNLIKELY(!((MAC_VAP_STATE_UP == pst_dmac_vap->st_vap_base_info.en_vap_state) ||
     (MAC_VAP_STATE_PAUSE == pst_dmac_vap->st_vap_base_info.en_vap_state))))
     {
@@ -2297,21 +1830,7 @@ OAL_INLINE oal_bool_enum_uint8  dmac_is_vap_state_ok (dmac_vap_stru *pst_dmac_va
 
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_is_user_state_ok
- 功能描述  : 判断user状态是否正常，决定是否需要中止发送
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月6日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_INLINE oal_bool_enum_uint8  dmac_is_user_state_ok (dmac_user_stru *pst_dmac_user)
 {
 #if (_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC == _PRE_MULTI_CORE_MODE)
@@ -2437,22 +1956,7 @@ hal_tx_dscr_stru* dmac_tx_dscr_alloc(hal_to_dmac_device_stru   *pst_hal_device,
 
 #endif /* _PRE_WLAN_FEATURE_TX_DSCR_OPT */
 
-/*****************************************************************************
- 函 数 名  : dmac_judge_forbid_rts
- 功能描述  : 判断若需要强制关闭RTS, 则将描述符相应的RTS字段置为FALSE
- 输入参数  : pst_dmac_user  : DMAC USER指针
-             pst_txop_alg   : 描述符参数指针
- 输出参数  : pst_txop_alg
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月30日
-    作    者   : liwenjun 00330043
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void dmac_judge_forbid_rts(dmac_user_stru *pst_dmac_user, hal_tx_txop_alg_stru *pst_txop_alg)
 {
     oal_uint8   uc_rate_rank;
@@ -2468,20 +1972,7 @@ OAL_STATIC OAL_INLINE oal_void dmac_judge_forbid_rts(dmac_user_stru *pst_dmac_us
 }
 
 #ifdef _PRE_WLAN_FEATURE_TX_DSCR_OPT
-/*****************************************************************************
- 函 数 名  : dmac_frame_is_null_data
- 功能描述  : 该帧是否为NULL DATA帧
- 输入参数  : pst_net_buf: 帧指针
- 输出参数  : 无
- 返 回 值  : OAL_TRUE 或 OAL_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月14日
-    作    者   : zhangyu
-    修改内容   : 新生成函数
-*****************************************************************************/
 OAL_STATIC oal_bool_enum_uint8 dmac_frame_is_null_data(oal_netbuf_stru *pst_net_buf)
 {
     mac_ieee80211_frame_stru       *pst_mac_header;
@@ -2502,24 +1993,7 @@ OAL_STATIC oal_bool_enum_uint8 dmac_frame_is_null_data(oal_netbuf_stru *pst_net_
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_process_data
- 功能描述  : 接收从HMAC传过来的数据帧，并进行发送前的处理(传过来的MPDU属于
-             同一个用户，并且TID相同)
- 输入参数  : pst_hal_device: HAL向DMAC提供的device指针
-             pst_dmac_vap  : DMAC VAP指针
-             pst_netbuf    : netbuf链表指针(其中保存的MPDU属于同一个用户下的同一个TID)
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月21日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_INLINE oal_uint32  dmac_tx_process_data(hal_to_dmac_device_stru *pst_hal_device, dmac_vap_stru *pst_dmac_vap, oal_netbuf_stru *pst_netbuf)
 {
     mac_tx_ctl_stru             *pst_tx_ctl_first;
@@ -2574,7 +2048,6 @@ OAL_INLINE oal_uint32  dmac_tx_process_data(hal_to_dmac_device_stru *pst_hal_dev
 
     /* 非活跃用户处理 */
 #if (_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC == _PRE_MULTI_CORE_MODE)
-    /* DTS2015030700626 判断用户是否存在，异常情况下用户可能已经被删除了*/
     if(0 != MAC_GET_CB_TX_USER_IDX(pst_tx_ctl_first))
     {
         if(0 != g_st_mac_res.st_hash_res.puc_user_cnt[MAC_GET_CB_TX_USER_IDX(pst_tx_ctl_first) - 1])
@@ -2890,18 +2363,20 @@ OAL_INLINE oal_uint32  dmac_tx_process_data(hal_to_dmac_device_stru *pst_hal_dev
     dmac_save_frag_seq(pst_dmac_user, pst_tx_ctl_first);
     dmac_tx_seqnum_set(pst_dmac_user, pst_tx_ctl_first);
 
-#ifdef _PRE_WLAN_DFT_STAT
 
     /* 不是以太网来的不统计 */
     if (FRW_EVENT_TYPE_HOST_DRX == MAC_GET_CB_EVENT_TYPE(pst_tx_ctl_first))
     {
+#ifdef _PRE_WLAN_DFT_STAT
         DMAC_VAP_DFT_STATS_PKT_INCR(pst_dmac_vap->st_query_stats.ul_drv_tx_pkts,
                                     MAC_GET_CB_NETBUF_NUM(pst_tx_ctl_first));
         DMAC_VAP_DFT_STATS_PKT_INCR(pst_dmac_vap->st_query_stats.ul_drv_tx_bytes,
                                     MAC_GET_CB_MPDU_BYTES(pst_tx_ctl_first));
+#endif
+        DMAC_USER_STATS_PKT_INCR(pst_dmac_user->st_query_stats.ul_tx_total, MAC_GET_CB_NETBUF_NUM(pst_tx_ctl_first));
     }
 
-#endif
+
 
     /* 正常发送流程 */
     dmac_tx_data(pst_dmac_vap, pst_dmac_user, pst_tx_ctl_first, &st_tx_dscr_list_hdr, &st_ppdu_feature, pst_txop_alg);
@@ -2909,22 +2384,7 @@ OAL_INLINE oal_uint32  dmac_tx_process_data(hal_to_dmac_device_stru *pst_hal_dev
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_process_data_event
- 功能描述  : DMAC模块处理HOST_DRX、WLAN_DTX事件入口函数,从hmac抛过来的事件内容有
-             两种情况:(1)一个MPDU包含一个MSDU(2)一个MPDU包含一个AMSDU
- 输入参数  : pst_event_mem: 事件结构体内存指针
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月16日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_tx_process_data_event(frw_event_mem_stru *pst_event_mem)
 {
     frw_event_stru            *pst_event;
@@ -3047,21 +2507,7 @@ oal_uint32  dmac_tx_process_data_event(frw_event_mem_stru *pst_event_mem)
 #endif
 
 #ifdef _PRE_WLAN_FEATURE_SMARTANT
-/*****************************************************************************
- 函 数 名  : dmac_tx_training_data
- 功能描述  : 发送训练报文
- 输入参数  : pst_user, pst_netbuf
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月16日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 dmac_tx_training_data(mac_user_stru *pst_user, oal_uint8 uc_tid_num, oal_netbuf_stru *pst_netbuf, oal_uint16 us_msdu_len)
 {
     hal_to_dmac_device_stru *pst_hal_device;
@@ -3116,21 +2562,7 @@ oal_uint32 dmac_tx_training_data(mac_user_stru *pst_user, oal_uint8 uc_tid_num, 
 }
 #endif
 #ifdef _PRE_WLAN_FEATURE_DBAC
-/*****************************************************************************
- 函 数 名  : dmac_is_need_enqueue_fake_for_dbac
- 功能描述  : dbac是否缓存帧到FAKE队列
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月14日
-    作    者   : zhangyu 00241943
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_bool_enum_uint8 dmac_is_need_enqueue_fake_for_dbac(mac_device_stru *pst_mac_device, mac_vap_stru *pst_mac_vap, oal_netbuf_stru *pst_netbuf)
 {
 #ifdef _PRE_WLAN_FEATURE_P2P
@@ -3164,21 +2596,7 @@ oal_bool_enum_uint8 dmac_is_need_enqueue_fake_for_dbac(mac_device_stru *pst_mac_
     return OAL_FALSE;
 }
 #endif
-/*****************************************************************************
- 函 数 名  : dmac_proc_restore_tx_queue
- 功能描述  : 从目标 虚假队列 中恢复发送队列信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月3日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  dmac_proc_restore_tx_queue(hal_to_dmac_device_stru     *pst_hal_device,
                                                 hal_tx_dscr_queue_header_stru *pst_fake_queue)
 {
@@ -3192,7 +2610,6 @@ oal_void  dmac_proc_restore_tx_queue(hal_to_dmac_device_stru     *pst_hal_device
     hal_tx_dscr_stru                *pst_tail_dscr;
 
 
-    /* DTS2015031608823，0在02是BE，在51是BK队列 */
     for (uc_q_idx = 0; uc_q_idx < HAL_TX_QUEUE_BUTT; uc_q_idx++)
     {
         /* 将虚假队列里的帧恢复到硬件队列中去 */
@@ -3213,7 +2630,6 @@ oal_void  dmac_proc_restore_tx_queue(hal_to_dmac_device_stru     *pst_hal_device
             pst_tx_dscr = OAL_DLIST_GET_ENTRY(pst_dscr_entry, hal_tx_dscr_stru, st_entry);
             if (OAL_FALSE == en_mpdu_skip)
             {
-                /* DTS2015061804889 不仅对高优先级队列，对普通数据队列也要做检查*/
                 hal_get_tx_q_status(pst_hal_device, &ul_tx_q_full, uc_q_idx);
 
                 if (ul_tx_q_full)
@@ -3255,21 +2671,7 @@ oal_void  dmac_proc_restore_tx_queue(hal_to_dmac_device_stru     *pst_hal_device
 
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_restore_tx_queue
- 功能描述  : 将发送队列中的描述符地址告知硬件
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月28日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_tx_restore_tx_queue(hal_to_dmac_device_stru *pst_hal_device, oal_uint8 uc_fake_q_id)
 {
     hal_tx_dscr_queue_header_stru   *pst_fake_queue;
@@ -3287,21 +2689,7 @@ oal_uint32  dmac_tx_restore_tx_queue(hal_to_dmac_device_stru *pst_hal_device, oa
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_hw_send
- 功能描述  : 将描述符挂入发送队列并将描述符地址告知硬件
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月28日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_tx_mgmt_hw_send(hal_to_dmac_device_stru *pst_hal_device, dmac_vap_stru *pst_dmac_vap, hal_tx_dscr_stru *pst_mgmt_dscr, mac_tx_ctl_stru *pst_tx_ctl)
 {
     hal_tx_dscr_stru    *pst_last_dscr;
@@ -3344,7 +2732,6 @@ OAL_STATIC oal_uint32  dmac_tx_mgmt_hw_send(hal_to_dmac_device_stru *pst_hal_dev
         OAM_WARNING_LOG3(0, OAM_SF_TX, "dmac_tx_mgmt_hw_send::uc_q_num = [%d], ul_tx_q_status = [%d], ppdu_cnt[%d]",
                          uc_q_num, ul_tx_q_status, pst_hal_device->ast_tx_dscr_queue[uc_q_num].uc_ppdu_cnt);
 #ifdef _PRE_WLAN_FEATURE_BTCOEX
-        /* DTS2015112502032 硬件数据发送不出去，导致描述符耗尽、netbuf耗尽等维测代码，定位后删除 start */
         if ((pst_hal_device->ast_tx_dscr_queue[uc_q_num].uc_ppdu_cnt % 10) == 0)
         {
             hal_dft_print_rfhw_stat(pst_hal_device);
@@ -3355,7 +2742,6 @@ OAL_STATIC oal_uint32  dmac_tx_mgmt_hw_send(hal_to_dmac_device_stru *pst_hal_dev
         {
             hal_dft_report_all_reg_state(pst_hal_device);
         }
-        /* DTS2015112502032 硬件数据发送不出去，导致描述符耗尽、netbuf耗尽等维测代码，定位后删除 end */
 #endif
     }
     else
@@ -3370,21 +2756,7 @@ OAL_STATIC oal_uint32  dmac_tx_mgmt_hw_send(hal_to_dmac_device_stru *pst_hal_dev
 }
 
 #ifdef _PRE_WLAN_FEATURE_ROAM
-/*****************************************************************************
- 函 数 名  : dmac_tx_force
- 功能描述  : 强制发送接口
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月9日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_tx_force(dmac_vap_stru *pst_dmac_vap, oal_netbuf_stru *pst_netbuf, oal_uint16 us_len, oal_uint8 uc_mgmt)
 {
     hal_to_dmac_device_stru            *pst_hal_device;
@@ -3570,21 +2942,7 @@ oal_uint32  dmac_tx_force(dmac_vap_stru *pst_dmac_vap, oal_netbuf_stru *pst_netb
 
 #define PROBE_REQ_THREHOD_MS 100
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_mgmt_buffer_proc
- 功能描述  : 发送管理帧缓存处理，DBAC或背景扫描时管理帧需要缓存
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月10日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_bool_enum_uint8 dmac_tx_mgmt_buffer_proc(
                 mac_device_stru     *pst_mac_device,
                 dmac_vap_stru       *pst_dmac_vap,
@@ -3624,8 +2982,6 @@ OAL_STATIC oal_bool_enum_uint8 dmac_tx_mgmt_buffer_proc(
     uc_mgmt_subtype = mac_frame_get_subtype_value((oal_uint8 *)pst_mac_header);
 
     /* 是否需要背景扫描缓存 */
-    /* DTS2015081404830,增加是否是前景扫描的判断，防止前景扫描时管理帧会入虚拟队列但是扫描完成后不会发出 */
-    /* DTS2015112300401,删除管理帧判断，防止控制帧及nulldata在背景扫描时的发送 */
     if (MAC_SCAN_STATE_RUNNING == pst_mac_device->en_curr_scan_state &&
         MAC_SCAN_FUNC_P2P_LISTEN != pst_mac_device->st_scan_params.uc_scan_func &&
         WLAN_SCAN_MODE_FOREGROUND != pst_mac_device->st_scan_params.en_scan_mode &&
@@ -3654,21 +3010,7 @@ OAL_STATIC oal_bool_enum_uint8 dmac_tx_mgmt_buffer_proc(
     return OAL_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_mgmt
- 功能描述  : 发送管理帧接口
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月10日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_tx_mgmt(dmac_vap_stru *pst_dmac_vap, oal_netbuf_stru *pst_netbuf_mgmt, oal_uint16 us_len)
 {
     hal_tx_mpdu_stru                st_mpdu;
@@ -4006,12 +3348,10 @@ oal_uint32  dmac_tx_mgmt(dmac_vap_stru *pst_dmac_vap, oal_netbuf_stru *pst_netbu
 
             if (OAL_TRUE == en_need_buffer)
             {
-                oal_uint8                       auc_user_macaddr[WLAN_MAC_ADDR_LEN] = {0xff,0xff,0xff,0xff,0xff,0xff};
-
                 OAL_MEM_TRACE(pst_mgmt_dscr, OAL_FALSE);
 
                 /* 将缓存帧直接通过OTA上报，方便问题定位 */
-                oam_report_80211_frame(auc_user_macaddr,
+                oam_report_80211_frame(BROADCAST_MACADDR,
                                         (oal_uint8*)mac_get_cb_frame_hdr(pst_tx_ctl),
                                         MAC_GET_CB_FRAME_HEADER_LENGTH(pst_tx_ctl),
                                         (oal_uint8*)oal_netbuf_payload(pst_netbuf_mgmt),
@@ -4066,21 +3406,7 @@ oal_uint32  dmac_tx_mgmt(dmac_vap_stru *pst_dmac_vap, oal_netbuf_stru *pst_netbu
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_rifs_process
- 功能描述  : rifs发送处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月15日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_tx_rifs_process(hal_to_dmac_device_stru *pst_hal_dev,
                                       dmac_vap_stru *pst_dmac_vap,
                                       dmac_tid_stru *pst_tid_queue,
@@ -4211,21 +3537,7 @@ oal_uint32 g_ul_tx_ampdu_num = 0;
 #pragma arm section rwdata = "BTCM", code ="ATCM", zidata = "BTCM", rodata = "ATCM"
 #endif
 
-/*****************************************************************************
- 函 数 名  : dmac_tid_tx_queue_remove_ampdu
- 功能描述  : 将一串MPDU从TID缓存队列中删除，组成ampdu并作ba窗口的处理，并发送
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月22日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_tid_tx_queue_remove_ampdu(
                 hal_to_dmac_device_stru   *pst_hal_device,
                 dmac_vap_stru             *pst_dmac_vap,
@@ -4455,7 +3767,6 @@ oal_uint32  dmac_tid_tx_queue_remove_ampdu(
         if ((st_ppdu_feature.ul_ampdu_length + us_mpdu_len + us_pad_len + us_null_len) > ul_max_ampdu_length)
         {
             /* 对于重传包，retry_num在之前先减，此时超出长度后直接break而不挂到硬件队列，重传数异常*/
-            /* DTS2015061905630，若retry_num 减为零，且BA窗口满，下一次无法调度，BA窗卡死 */
     #ifdef _PRE_WLAN_FEATURE_TX_DSCR_OPT
             if (OAL_TRUE == pst_tx_dscr->bit_is_retried)
             {
@@ -4650,19 +3961,19 @@ oal_uint32  dmac_tid_tx_queue_remove_ampdu(
             dmac_ba_addto_baw(pst_tx_ba_handle);
         }
 
-#ifdef _PRE_WLAN_DFT_STAT
         /* 不是以太网来的不统计 */
         if ((FRW_EVENT_TYPE_HOST_DRX == MAC_GET_CB_EVENT_TYPE(pst_cb))
             && (OAL_TRUE != pst_tx_dscr->bit_is_retried))
         {
+#ifdef _PRE_WLAN_DFT_STAT
             DMAC_VAP_DFT_STATS_PKT_INCR(pst_dmac_vap->st_query_stats.ul_drv_tx_pkts,
                                         MAC_GET_CB_NETBUF_NUM(pst_cb));
             DMAC_VAP_DFT_STATS_PKT_INCR(pst_dmac_vap->st_query_stats.ul_drv_tx_bytes,
                                         MAC_GET_CB_MPDU_BYTES(pst_cb));
+#endif
+            DMAC_USER_STATS_PKT_INCR(pst_user->st_query_stats.ul_tx_total, MAC_GET_CB_NETBUF_NUM(pst_cb));
         }
 
-
-#endif
     }
 
     OAL_MIPS_TX_STATISTIC(DMAC_PROFILING_FUNC_AMPDU_LINK_MPDUS);
@@ -4870,18 +4181,19 @@ oal_uint32  dmac_tid_tx_dequeue(hal_to_dmac_device_stru    *pst_hal_device,
 
     MAC_GET_CB_TX_USER_IDX(pst_cb)  = (oal_uint8)pst_user->st_user_base_info.us_assoc_id;
 
-#ifdef _PRE_WLAN_DFT_STAT
     /* 不是以太网来的不统计 */
     if ((FRW_EVENT_TYPE_HOST_DRX == MAC_GET_CB_EVENT_TYPE(pst_cb))
         && (OAL_TRUE != pst_tx_dscr->bit_is_retried))
     {
+#ifdef _PRE_WLAN_DFT_STAT
         DMAC_VAP_DFT_STATS_PKT_INCR(pst_dmac_vap->st_query_stats.ul_drv_tx_pkts,
                                MAC_GET_CB_NETBUF_NUM(pst_cb));
         DMAC_VAP_DFT_STATS_PKT_INCR(pst_dmac_vap->st_query_stats.ul_drv_tx_bytes,
                                 MAC_GET_CB_MPDU_BYTES(pst_cb));
+#endif
+        DMAC_USER_STATS_PKT_INCR(pst_user->st_query_stats.ul_tx_total, MAC_GET_CB_NETBUF_NUM(pst_cb));
     }
 
-#endif
 
     /*非重传的qos帧需要软件维护seqnum*/
     if ((OAL_FALSE == pst_tx_dscr->bit_is_retried) && (OAL_TRUE == mac_get_cb_is_qosdata(pst_cb)))
@@ -4893,22 +4205,7 @@ oal_uint32  dmac_tid_tx_dequeue(hal_to_dmac_device_stru    *pst_hal_device,
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_tid_tx_queue_remove
- 功能描述  : 将一个MPDU从TID缓存队列中删除，并发送
- 输入参数  : pst_tid_queue: TID缓存队列
-             uc_mpdu_num  : 需从tid缓存队列中删除的MPDU个数
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月22日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 oal_uint32  dmac_tid_tx_queue_remove(hal_to_dmac_device_stru   *pst_hal_device,
                                      dmac_vap_stru             *pst_dmac_vap,
@@ -5105,24 +4402,7 @@ oal_uint32  dmac_tid_tx_queue_remove(hal_to_dmac_device_stru   *pst_hal_device,
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_update_protection_lsig_txop
- 功能描述  : 更新txop alg中与保护模式相关的lsig txop参数
- 输入参数  : mac_vap_stru *pst_mac_vap
-             oal_uint8 *puc_param
-             uc_do_default_cfg: 1: 表示需要恢复配置到默认值，用于在保护模式发送变化时候更改dmac vap结构体下发送参数变量
-                                0: 表示不恢复配置到默认值, 仅用于处理算法提供的发送参数
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月18日
-    作    者   : c00260463
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32 dmac_tx_update_protection_lsig_txop(dmac_vap_stru *pst_dmac_vap, hal_tx_txop_alg_stru *pst_txop_alg, oal_uint8 uc_do_default_cfg)
 {
     mac_protection_stru          *pst_protection;
@@ -5153,27 +4433,9 @@ OAL_STATIC OAL_INLINE oal_uint32 dmac_tx_update_protection_lsig_txop(dmac_vap_st
     return OAL_SUCC;
 }
 
-/* DTS2015101910770、DTS2015102804770: 由于启用HT和ERP保护模式时, 强制开启RTS导致性能下降,
-   因此CCB决策禁用"HT和ERP保护模式强制开RTS功能" */
+
 #if 0
-/*****************************************************************************
- 函 数 名  : dmac_tx_update_protection_rtscts_enable
- 功能描述  : 更新txop alg中与保护模式相关的rts cts enable参数
- 输入参数  : mac_vap_stru *pst_mac_vap
-             oal_uint8 *puc_param
-             uc_do_default_cfg: 1: 表示需要恢复配置到默认值，用于在保护模式发送变化时候更改dmac vap结构体下发送参数变量
-                                0: 表示不恢复配置到默认值, 仅用于处理算法提供的发送参数
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月18日
-    作    者   : c00260463
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32 dmac_tx_update_protection_rtscts_enable(dmac_vap_stru *pst_dmac_vap, hal_tx_txop_alg_stru *pst_txop_alg, oal_uint8 uc_do_default_cfg, oal_bool_enum_uint8 en_mcast)
 {
     mac_protection_stru          *pst_protection;
@@ -5233,24 +4495,7 @@ OAL_STATIC OAL_INLINE oal_uint32 dmac_tx_update_protection_rtscts_enable(dmac_va
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_update_protection_preamble_mode
- 功能描述  : 更新txop alg中与保护模式相关的preamble_mode参数
- 输入参数  : mac_vap_stru *pst_mac_vap
-             oal_uint8 *puc_param
-             uc_do_default_cfg: 1: 表示需要恢复配置到默认值，用于在保护模式发送变化时候更改dmac vap结构体下发送参数变量
-                                0: 表示不恢复配置到默认值, 仅用于处理算法提供的发送参数
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月18日
-    作    者   : c00260463
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32 dmac_tx_update_protection_preamble_mode(dmac_vap_stru *pst_dmac_vap, hal_tx_txop_alg_stru *pst_txop_alg, oal_uint8 uc_do_default_cfg)
 {
     dmac_user_stru               *pst_dmac_user;
@@ -5368,25 +4613,7 @@ OAL_STATIC OAL_INLINE oal_uint32 dmac_tx_update_protection_preamble_mode(dmac_va
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_update_protection_txop_alg
- 功能描述  : 更新txop alg中与保护模式相关的参数
- 输入参数  : mac_vap_stru *pst_mac_vap
-             oal_uint8 *puc_param
-             uc_do_default_cfg: 1: 表示需要恢复配置到默认值，用于在保护模式发送变化时候更改dmac vap结构体下发送参数变量
-                                0: 表示不恢复配置到默认值, 仅用于处理算法提供的发送参数
 
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年1月18日
-    作    者   : c00260463
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_tx_update_protection_txop_alg(dmac_vap_stru *pst_dmac_vap, hal_tx_txop_alg_stru *pst_txop_alg, oal_uint8 uc_do_default_cfg, oal_bool_enum_uint8 en_mcast)
 {
     oal_uint32 ul_ret = OAL_SUCC;
@@ -5394,8 +4621,7 @@ OAL_STATIC oal_uint32  dmac_tx_update_protection_txop_alg(dmac_vap_stru *pst_dma
     /*更新lsig txop参数*/
     dmac_tx_update_protection_lsig_txop(pst_dmac_vap, pst_txop_alg, uc_do_default_cfg);
 
-    /* DTS2015101910770、DTS2015102804770: 由于启用HT和ERP保护模式时, 强制开启RTS导致性能下降,
-       因此CCB决策禁用"HT和ERP保护模式强制开RTS功能" */
+    
 #if 0
     /*更新rts cts enable参数*/
     dmac_tx_update_protection_rtscts_enable(pst_dmac_vap, pst_txop_alg, uc_do_default_cfg, en_mcast);
@@ -5410,21 +4636,7 @@ OAL_STATIC oal_uint32  dmac_tx_update_protection_txop_alg(dmac_vap_stru *pst_dma
 #pragma arm section rodata, code, rwdata, zidata  // return to default placement
 #endif
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_clear_tx_queue
- 功能描述  : 删除tx队列中的所有帧，同时清空硬件FIFO
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月29日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_tx_clear_tx_queue(hal_to_dmac_device_stru *pst_hal_device)
 {
     oal_uint8            uc_q_id            = 0;
@@ -5463,21 +4675,7 @@ oal_uint32  dmac_tx_clear_tx_queue(hal_to_dmac_device_stru *pst_hal_device)
 
     return OAL_SUCC;
 }
-/*****************************************************************************
- 函 数 名  : dmac_proc_save_tx_queue
- 功能描述  : 操作将发送队列中的缓存至目标虚假队列中
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月3日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_proc_save_tx_queue(hal_to_dmac_device_stru       *pst_hal_device,
                                             hal_tx_dscr_queue_header_stru *pst_fake_queue)
 {
@@ -5500,7 +4698,6 @@ oal_void dmac_proc_save_tx_queue(hal_to_dmac_device_stru       *pst_hal_device,
      *  2、save过程中，发现发送失败的AMPDU，强调irq loss，产生BAR，该BAR直接入硬件队列，
      *     而后被本函数最后的交换操作save，因此必须最后处理管理帧队列。
      */
-    /* DTS2015031608823，0在02是BE，在51是BK队列 */
     for (uc_q_id = 0; uc_q_id <= HAL_TX_QUEUE_HI; uc_q_id++)
     {
         while(!oal_dlist_is_empty(&pst_hal_device->ast_tx_dscr_queue[uc_q_id].st_header))
@@ -5558,7 +4755,6 @@ oal_void dmac_proc_save_tx_queue(hal_to_dmac_device_stru       *pst_hal_device,
         }
     }
 
-    /* DTS2015031608823，0在02是BE，在51是BK队列 */
     for (uc_q_id = 0; uc_q_id <= HAL_TX_QUEUE_HI; uc_q_id++)
     {
         /* 将硬件队列里的内容放到虚假队列中去 */
@@ -5572,21 +4768,7 @@ oal_void dmac_proc_save_tx_queue(hal_to_dmac_device_stru       *pst_hal_device,
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_save_tx_queue
- 功能描述  : 将发送队列中的缓存至虚假发送队列
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月3日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_tx_save_tx_queue(hal_to_dmac_device_stru *pst_hal_device, oal_uint8 uc_fake_q_id)
 {
     if(OAL_UNLIKELY(OAL_PTR_NULL == pst_hal_device))
@@ -5608,21 +4790,7 @@ oal_uint32  dmac_tx_save_tx_queue(hal_to_dmac_device_stru *pst_hal_device, oal_u
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_clear_fake_queue
- 功能描述  : 清除虚假缓存队列
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月21日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_tx_clear_fake_queue(hal_to_dmac_device_stru *pst_hal_device, oal_uint8 uc_fake_q_id)
 {
     hal_tx_dscr_queue_header_stru  *pst_fake_queue;
@@ -5665,21 +4833,7 @@ oal_uint32  dmac_tx_clear_fake_queue(hal_to_dmac_device_stru *pst_hal_device, oa
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_fake_queue_empty_assert
- 功能描述  : 虚假队列不为空时打印error
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月18日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_tx_fake_queue_empty_assert(
                 hal_to_dmac_device_stru *pst_hal_device,
                 oal_uint8                uc_fake_q,
@@ -5690,7 +4844,6 @@ oal_uint32  dmac_tx_fake_queue_empty_assert(
     oal_dlist_head_stru            *pst_dlist_entry;
     hal_tx_dscr_stru               *pst_tx_dscr;
     oal_netbuf_stru                *pst_netbuf;
-    oal_uint8                       auc_user_macaddr[WLAN_MAC_ADDR_LEN] = {0xff,0xff,0xff,0xff,0xff,0xff};
     mac_tx_ctl_stru                *pst_tx_ctl;
     oal_uint32                      ul_ret = OAL_TRUE;
 
@@ -5704,13 +4857,13 @@ oal_uint32  dmac_tx_fake_queue_empty_assert(
 
             pst_dlist_entry = pst_fake_queue[uc_q_idx].st_header.pst_next;
             pst_tx_dscr     = (hal_tx_dscr_stru *)OAL_DLIST_GET_ENTRY(pst_dlist_entry, hal_tx_dscr_stru, st_entry);
-            oam_report_dscr(auc_user_macaddr, (oal_uint8 *)pst_tx_dscr, WLAN_MEM_SHARED_TX_DSCR_SIZE1, OAM_OTA_TYPE_TX_DSCR);
+            oam_report_dscr(BROADCAST_MACADDR, (oal_uint8 *)pst_tx_dscr, WLAN_MEM_SHARED_TX_DSCR_SIZE1, OAM_OTA_TYPE_TX_DSCR);
 
             pst_netbuf = pst_tx_dscr->pst_skb_start_addr;
 
             pst_tx_ctl = (mac_tx_ctl_stru *)oal_netbuf_cb(pst_netbuf);
 
-            oam_report_80211_frame(auc_user_macaddr,
+            oam_report_80211_frame(BROADCAST_MACADDR,
                                     (oal_uint8*)mac_get_cb_frame_hdr(pst_tx_ctl),
                                     MAC_GET_CB_FRAME_HEADER_LENGTH(pst_tx_ctl),
                                     (oal_uint8*)oal_netbuf_payload(pst_netbuf),
@@ -5726,21 +4879,7 @@ oal_uint32  dmac_tx_fake_queue_empty_assert(
     return ul_ret;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_switch_tx_queue
- 功能描述  : 交换两个虚假队列里的帧
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月7日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_tx_switch_tx_queue(hal_to_dmac_device_stru *pst_hal_device, oal_uint8 uc_fake_q_id1, oal_uint8 uc_fake_q_id2)
 {
     oal_uint8                       uc_q_idx;
@@ -5773,21 +4912,7 @@ oal_uint32  dmac_tx_switch_tx_queue(hal_to_dmac_device_stru *pst_hal_device, oal
 
 
 #if 0
-/*****************************************************************************
- 函 数 名  : dmac_flush_txq_to_tid
- 功能描述  : 将发送队列中的报文放回tid队列
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月3日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_flush_txq_to_tid(hal_to_dmac_device_stru *pst_hal_device)
 {
     oal_uint8            uc_q_idx           = 0;
@@ -5871,21 +4996,7 @@ oal_uint32  dmac_flush_txq_to_tid(hal_to_dmac_device_stru *pst_hal_device)
     return OAL_SUCC;
 }
 #endif
-/*****************************************************************************
- 函 数 名  : dmac_flush_txq_to_tid_of_vo
- 功能描述  : 回收bk,be,vi,vo队列的数据回tid为6的队列
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月3日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_flush_txq_to_tid_of_vo(hal_to_dmac_device_stru *pst_hal_device)
 {
     oal_uint8            uc_q_idx           = 0;
@@ -5965,25 +5076,7 @@ oal_uint32  dmac_flush_txq_to_tid_of_vo(hal_to_dmac_device_stru *pst_hal_device)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_tx_update_protection_all_txop_alg
- 功能描述  : 更新所有txop alg结构体中与保护模式相关的参数
- 输入参数  : mac_vap_stru *pst_mac_vap
-             oal_uint8 *puc_param
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-    1.日    期   : 2014年1月18日
-      作    者   : c00260463
-      修改内容   : 新生成函数
-    2.日    期   : 2015年4月6日
-      作    者   : l00311403
-      修改内容   : 当为组播/广播时，dmac_tx_update_protection_txop_alg
-                   的参数en_mcast由OAL_FALSE变成OAL_TRUE
-*****************************************************************************/
 oal_uint32  dmac_tx_update_protection_all_txop_alg(dmac_vap_stru *pst_dmac_vap)
 {
     if(OAL_PTR_NULL == pst_dmac_vap)
@@ -6015,21 +5108,7 @@ oal_uint32  dmac_tx_update_protection_all_txop_alg(dmac_vap_stru *pst_dmac_vap)
 }
 
 #if defined (_PRE_WLAN_FEATURE_UAPSD) || defined (_PRE_WLAN_FEATURE_STA_PM)
-/*****************************************************************************
- 函 数 名  : dmac_send_qosnull
- 功能描述  : 组帧并发送Qos null帧
- 输入参数  : pst_dmac_vap :dmac vap结构体指针
-             pst_dmac_user :dmac user结构体指针
-             en_ps :节能位是否设置
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2014年7月3日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 oal_uint32 dmac_send_qosnull(dmac_vap_stru *pst_dmac_vap, dmac_user_stru *pst_dmac_user, oal_uint8 uc_ac, oal_bool_enum_uint8 en_ps)
 {
     oal_netbuf_stru                 *pst_net_buf;
@@ -6113,21 +5192,7 @@ oal_uint32 dmac_send_qosnull(dmac_vap_stru *pst_dmac_vap, dmac_user_stru *pst_dm
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : dmac_alg_tid_update_notify
- 功能描述  : 更新TID队列时回调算法
- 输入参数  : pst_tid: TID结构体
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月20日
-    作    者   : chenyan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 dmac_alg_downlink_flowctl_notify(mac_vap_stru *pst_vap,
                                                                 mac_user_stru *pst_user,
                                                                 oal_netbuf_stru *pst_buf)

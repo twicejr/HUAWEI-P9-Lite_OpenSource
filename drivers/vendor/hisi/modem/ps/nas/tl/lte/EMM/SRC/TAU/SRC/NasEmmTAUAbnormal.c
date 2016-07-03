@@ -1,37 +1,4 @@
-/*******************************************************************************
-  Copyright     : 2005-2007, Huawei Tech. Co., Ltd.
-  File name     : EmmTAU.c
-  Description   : EMM TAU REQUEST功能相关处理用源文件
-  Function List :
-    01.   NAS_EMM_MsRegSsNormalMsgSysinfo
-    02.   NAS_EMM_MsRegSsNormalMsgT3411Exp
-    03.   NAS_EMM_MsRegSsNormalMsgT3412Exp
-    04.   NAS_EMM_MsRegSsNormalMsgT3402Exp
-    05.   NAS_EMM_MsRegSsNormalMsgMmIntraTAUReq
-    06.   NAS_EMM_MsRegSsAtpUpdataMsgSysinfo
-    07.   NAS_EMM_MsRegSsAtpUpdataMsgT3411Exp
-    08.   NAS_EMM_MsRegSsAtpUpdataMsgT3402Exp
-    09.   NAS_EMM_MsRegSsLimitSRMsgSysinfo
-    10.   NAS_EMM_MsRegSsPLMNSearchMsgSysinfo
-    11.   NAS_EMM_MsRegSsUpdataNeedMsgSysinfo
-    12.   NAS_EMM_MsRegSsNocellMsgSysinfo
-    13.   NAS_EMM_MsTAUInitSsWaitCNCnfMsgTAUAcp
-    14.   NAS_EMM_MsTAUInitSsWaitCNCnfMsgTAURej
-    15.   NAS_EMM_MsTAUInitSsWaitCNCnfMsgT3430Exp
-    16.   NAS_EMM_MsTAUInitSsWaitCNCnfMsgSysinfo
-    17.   NAS_EMM_MsTauInitSsWaitCNCnfMsgIntraConnectFailInd
-    18.   NAS_EMM_MsTAUInitSsWaitCNCnfMsgRrcRelInd
-    19.   NAS_EMM_MsTAUInitSsWaitMrrcRelMsgMrrcRelInd
-    20.   NAS_EMM_MsSERInitSsWaitCNCnfMsgSysinfo
-    21.   NAS_EMM_MsSERInitSsWaitCNCnfMsgT3411Exp
-    22.   NAS_EMM_MsSERInitSsWaitCNCnfMsgT3412Exp
-    23.   NAS_EMM_MsSERInitSsWaitCNCnfMsgT3402Exp
-    24.   NAS_EMM_MsSERInitSsWaitCNCnfMsgMmIntraTAUReq
 
-  History       :
-    1.  Zhouyan 00125190  2008.09.17  新规作成
-    2.  leili       00132387    2009.06.25   BJ9001269 收到系统消息后处理优化
-*******************************************************************************/
 
 /*****************************************************************************
   1 Include HeadFile
@@ -88,17 +55,7 @@ static NAS_EMM_GRANT_ACT_STRU g_astGrantActTable[] =
 VOS_UINT32 ulGrantTypeNum = sizeof(g_astGrantActTable) / sizeof(NAS_EMM_GRANT_ACT_STRU);
 
 
-/*******************************************************************************
-  Module   :
-  Function : NAS_EMM_CheckTinEnterRegNormal
-  Input    :ulTARslt---------TAI is in TAI LIST??
-  Output   :
-  NOTE     :在TAU失败时，判断能否进入REG+NORMAL_SERVICE 状态
-  Return   :
-  History  :
-    1.  wangchen 00209181        2012-04-16
-    2.  leixiantiao 00258641     2015-06-24 DTS2015061001947不处理CS PAGING问题
-*******************************************************************************/
+
 /*lint -e960*/
 /*lint -e961*/
 VOS_UINT32  NAS_EMM_CheckEnterRegNormal(VOS_VOID)
@@ -152,16 +109,7 @@ VOS_UINT32  NAS_EMM_CheckEnterRegNormal(VOS_VOID)
 
 }
 
-/*******************************************************************************
-  Module   :
-  Function : Nas_Emm_TAU_RcvT3440Exp
-  Input    :
-  Output   :
-  NOTE     :
-  Return   :
-  History  :
-    1.  Zhouyan 00125190  2008.09.17  新规作成
-*******************************************************************************/
+
 VOS_VOID    NAS_EMM_TAU_RcvT3440Exp()
 {
 
@@ -175,17 +123,7 @@ VOS_VOID    NAS_EMM_TAU_RcvT3440Exp()
     return;
 }
 
-/*******************************************************************************
-  Module   :
-  Function : Nas_Emm_TAU_RcvT3430Exp
-  Input    :
-  Output   :
-  NOTE     :
-  Return   :
-  History  :
-    1.  Zhouyan 00125190  2008.09.17  新规作成
-    2.  lihong  00150010  2012.12.14  Modify:Emergency
-*******************************************************************************/
+
 VOS_VOID    NAS_EMM_TAU_RcvT3430Exp()
 {
     /* 打印进入该函数， INFO_LEVEL */
@@ -222,16 +160,7 @@ VOS_VOID    NAS_EMM_TAU_RcvT3430Exp()
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_TAU_ProcAbnormal
- Description     : 根据TAU异常类型进行的异常处理
- Input           : None
- Output          : None
- Return          : VOS_VOID
- History         :
-    1.sunjitan 00193151    2012-07-17  Draft Enact
-    2.lihong 00150010      2012-12-18  Modify:Emergency
-*****************************************************************************/
+
 VOS_VOID  NAS_EMM_TAU_ProcAbnormal(VOS_VOID)
 {
     /* 打印进入该函数， INFO_LEVEL */
@@ -314,20 +243,7 @@ VOS_VOID  NAS_EMM_TAU_ProcAbnormal(VOS_VOID)
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_TAU_ProcCause161722TauAttemptCont
- Description     : TAU成功，EPS ONLY，原因值为16,17,22时，或者
-                   TAU成功，TA UPDATED ONLY，原因值为16,17,22时，
-                   根据TAU ATTEMPTIMG UPDATE COUNTER值进行处理
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2011-7-12  Draft Enact
-    2.lihong00150010      2012-12-19 Modify:Emergency
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_TAU_ProcCause161722TauAttemptCont(VOS_VOID )
 {
     NAS_LMM_UE_OPERATION_MODE_ENUM_UINT32                   ulLteUeMode;
@@ -391,19 +307,7 @@ VOS_VOID  NAS_EMM_TAU_ProcCause161722TauAttemptCont(VOS_VOID )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_TAU_ProcCause161722TauAttemptCont
- Description     : attach成功，EPS ONLY，原因值为22时，或者
-                   TAU成功，TA UPDATED ONLY，原因值为22时，
-                   根据TAU ATTEMPTIMG UPDATE COUNTER值进行处理(R11版本)
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.chengmin 00285307      2015-06-03  Draft Enact for DTS2015052506967
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_TAU_ProcCause22TauAttemptContR11(VOS_VOID )
 {
     NAS_EMM_ATTACH_LOG_INFO("NAS_EMM_TAU_ProcCause22TauAttemptContR11 is entered");
@@ -434,19 +338,7 @@ VOS_VOID  NAS_EMM_TAU_ProcCause22TauAttemptContR11(VOS_VOID )
 
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_TAU_ProcEnterForbTA
- Description     : TauInit.WtTauCnf状态下收到SYS_INFO，且携带禁止信息，终止TAU流程，
-                   释放连接后，处理 Collision标志
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-10-25  Draft Enact
-    2.lihong 00150010           2011-09-29  Modify combined detach
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_TAU_ProcEnterForbTA
 (
     EMMC_EMM_FORBIDDEN_INFO_ENUM_UINT32 ulForbInfo
@@ -515,18 +407,7 @@ VOS_VOID  NAS_EMM_TAU_ProcEnterForbTA
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_TAU_MsRegMsgRelInd
- Description     : 稳定的注册状态下，收到RRC REL IND，根据原因，可能触发TAU
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.h41410              2009-5-14  Draft Enact
-    2.X00148705           2009-11-13 修改和重构
-    3leixiantiao 00258641 2015-07-23 关键信息上报
-*****************************************************************************/
 VOS_VOID    NAS_EMM_TAU_MsRegMsgRelInd( LRRC_LNAS_REL_CAUSE_ENUM_UINT32   enRelCause )
 {
     NAS_LMM_OM_TAU_START_TYPE_ENUM_UINT32   enTauStartType = NAS_LMM_OM_TAU_START_TYPE_OTHERS;
@@ -567,16 +448,7 @@ VOS_VOID    NAS_EMM_TAU_MsRegMsgRelInd( LRRC_LNAS_REL_CAUSE_ENUM_UINT32   enRelC
     return;
 }
 
-/*******************************************************************************
-  Module   :
-  Function : NAS_EMM_MsTAUInitSsWaitCNCnfMsgT3430Exp
-  Input    :
-  Output   :
-  NOTE     :
-  Return   :
-  History  :
-    1.  Zhouyan 00125190  2008.09.10  新规作成
-*******************************************************************************/
+
 VOS_UINT32 NAS_EMM_MsTauInitSsWaitCNCnfMsgT3430Exp(VOS_UINT32  ulMsgId,
                                                    VOS_VOID   *pMsgStru
                                )
@@ -619,25 +491,7 @@ VOS_UINT32 NAS_EMM_MsTauInitSsWaitCNCnfMsgT3430Exp(VOS_UINT32  ulMsgId,
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsTauInitSsWaitCNCnfProcMsgRrcRelInd
- Description     : 处理RRC_REL_IND 消息
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.X00148705    2009-9-30  Draft Enact
-    2.X00148705    2009-11-13 修改和重构
-    3.Z00148421    2010-12-22 DTS2010111701490:CONN_FAIL和 LOAD_BALANCE_REQ原因值
-                              不立即触发TAU，收到SYS_INFO_IND再触发。
-    4.Z00148421    2011-02-15 DTS2011021401149
-    5.Z00148421    2011-02-22 DTS2011022203339:存在DETACH_COLLISION,则不区分释放
-                              原因值，完成本地DETACH
-    6.l00150010    2011-09-29 combined detach
-    7.l00212067    2013-03-05 Load Balance和Conn Fail两个原因值按照正常TAU失败处理
-    8.l00150010    2012-12-14 Modify:Emergency
-*****************************************************************************/
 VOS_VOID  NAS_EMM_MsTauInitSsWaitCNCnfProcMsgRrcRelInd( VOS_UINT32 ulCause )
 {
 
@@ -731,17 +585,7 @@ VOS_VOID  NAS_EMM_MsTauInitSsWaitCNCnfProcMsgRrcRelInd( VOS_UINT32 ulCause )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsTauInitSsWaitCnCnfMsgAuthRej
- Description     : TauInit.WtCnTauCnf状态下收到AUTH REJ消息
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2009-10-31  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_MsTauInitSsWaitCnCnfMsgAuthRej(
                                         VOS_UINT32  ulMsgId,
                                         VOS_VOID   *pMsgStru)
@@ -763,18 +607,7 @@ VOS_UINT32 NAS_EMM_MsTauInitSsWaitCnCnfMsgAuthRej(
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*******************************************************************************
-  Module   :
-  Function : NAS_EMM_MsTauInitSsWaitCnCnfMsgRrcRelInd
-             处理RRC_REL_IND消息
-  Input    :
-  Output   :
-  NOTE     :
-  Return   :
-  History  :
-    1.  Zhouyan 00125190  2008.09.10  新规作成
-    2.  X00148705         2009.09.30  重构
-*******************************************************************************/
+
 VOS_UINT32 NAS_EMM_MsTauInitSsWaitCnCnfMsgRrcRelInd(
                                                   VOS_UINT32  ulMsgId,
                                                   VOS_VOID   *pMsgStru)
@@ -850,17 +683,7 @@ VOS_UINT32  NAS_EMM_MsTauInitSsWaitCnCnfMsgDrbSetupInd(
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SetBarInfo
- Description     : 设置相应的BAR流程和BAR类型
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.    leili  00132387      2010-8-23  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SetBarInfo(NAS_EMM_BAR_PROCEDURE_ENUM_UINT32 enBarProc,
                             LRRC_LNAS_EST_RESULT_ENUM_UINT32 enBarType)
 {
@@ -920,18 +743,7 @@ VOS_VOID  NAS_EMM_SetBarInfo(NAS_EMM_BAR_PROCEDURE_ENUM_UINT32 enBarProc,
     }
     return;
 }
-/* leixiantiao 00258641 重构函数降低圈复杂度 2014-7-30 begin */
-/*****************************************************************************
- Function Name   : NAS_EMM_IsBarTypeMoSingal
- Description     : 根据bit位判断BAR类型是否为MO SIGNAL
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.    leixiantiao  00258641      2014-7-30  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_IsBarTypeMoSingal(VOS_VOID)
 {
     /*bit1 为1，标识MO SIGNAL类型被bar*/
@@ -945,17 +757,7 @@ VOS_UINT32 NAS_EMM_IsBarTypeMoSingal(VOS_VOID)
     }
 
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_IsBarTypeMoCall
- Description     : 根据bit位判断BAR类型是否为MO CALL
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.    leixiantiao  00258641      2014-7-30  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_IsBarTypeMoCall(VOS_VOID)
 {
     /*bit2 为1，标识MO CALL类型被bar*/
@@ -969,17 +771,7 @@ VOS_UINT32 NAS_EMM_IsBarTypeMoCall(VOS_VOID)
     }
 
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_IsBarTypeMt
- Description     : 根据bit位判断BAR类型是否为MT CALL
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.    leixiantiao  00258641      2014-7-30  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_IsBarTypeMt(VOS_VOID)
 {
     /*bit3 为1，标识MT CALL类型被bar*/
@@ -993,17 +785,7 @@ VOS_UINT32 NAS_EMM_IsBarTypeMt(VOS_VOID)
     }
 
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_IsBarTypeMoCsfb
- Description     : 根据bit位判断BAR类型是否为MO CSFB
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.    leixiantiao  00258641      2014-7-30  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_IsBarTypeMoCsfb(VOS_VOID)
 {
     /*bit4 为1，标识MO CSFB类型被bar*/
@@ -1017,17 +799,7 @@ VOS_UINT32 NAS_EMM_IsBarTypeMoCsfb(VOS_VOID)
     }
 
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_IsBarTypeMoCallAndCsfb
- Description     : 根据bit位判断BAR类型是否为MO CALL& MO CSFB
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.    leixiantiao  00258641      2014-7-30  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_IsBarTypeMoCallAndCsfb(VOS_VOID)
 {
     /*bit4&bit2 为1，标识MO CALL& MO CSFB类型被bar*/
@@ -1041,7 +813,6 @@ VOS_UINT32 NAS_EMM_IsBarTypeMoCallAndCsfb(VOS_VOID)
         return NAS_EMM_FAIL;
     }
 }
-/* leixiantiao 00258641 重构函数降低圈复杂度 2014-7-30 end */
 
 /*****************************************************************************
  Function Name   : NAS_EMM_JudgeBarType
@@ -1057,7 +828,6 @@ VOS_UINT32 NAS_EMM_IsBarTypeMoCallAndCsfb(VOS_VOID)
 VOS_UINT32  NAS_EMM_JudgeBarType( NAS_EMM_BAR_TYPE_ENUM_UINT32 enBarType )
 {
     VOS_UINT32 ulRslt;
-    /* leixiantiao 00258641 重构函数降低圈复杂度 2014-7-30 begin */
     if( NAS_EMM_BAR_TYPE_MO_SIGNAL == enBarType)
     {
         ulRslt = NAS_EMM_IsBarTypeMoSingal();
@@ -1085,20 +855,9 @@ VOS_UINT32  NAS_EMM_JudgeBarType( NAS_EMM_BAR_TYPE_ENUM_UINT32 enBarType )
         ulRslt = NAS_EMM_FAIL;
     }
     return ulRslt;
-    /* leixiantiao 00258641 重构函数降低圈复杂度 2014-7-30 end */
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_GetBarType
- Description     : 获取当前的被bar类型:MO-SIGNAL、MO-CALL或BARRED_ALL
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.    leili  00132387      2010-8-23  Draft Enact
-
-*****************************************************************************/
 /*VOS_UINT32  NAS_EMM_GetBarType (VOS_VOID )
 {
     NAS_EMM_BAR_TYPE_ENUM_UINT32 enBarType = NAS_EMM_BAR_TYPE_BUTT;
@@ -1154,17 +913,7 @@ VOS_UINT32  NAS_EMM_JudgeBarType( NAS_EMM_BAR_TYPE_ENUM_UINT32 enBarType )
     return enBarType;
 }*/
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ClearBarType
- Description     : 根据不同的解bar类型清除相应的标识位
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.    leili  00132387      2010-8-23  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ClearBarType( LRRC_LNAS_ACCESS_GRANT_ENUM_UINT32 enBarType)
 {
     VOS_UINT32                          i = 0;
@@ -1207,18 +956,7 @@ VOS_UINT32  NAS_EMM_GetBarProcedure(VOS_VOID )
 }
 
 
-/*******************************************************************************
-  Module   :
-  Function : NAS_EMM_MsTauInitSsWaitCNCnfMsgIntraConnectFailInd
-  Input    :
-  Output   :
-  NOTE     :
-  Return   :
-  History  :
-    1.  Zhouyan 00125190  2008.09.10  新规作成
-    2.  Z00148421         2010-12-22  DTS2010111701490:添加建链失败原因值CELL_SEATCHING的处理
-    3.  l00150010         2012-12-14  Modify:Emergency
-*******************************************************************************/
+
 
 VOS_UINT32 NAS_EMM_MsTauInitSsWaitCNCnfMsgIntraConnectFailInd(VOS_UINT32  ulMsgId,
                                                    VOS_VOID   *pMsgStru)
@@ -1369,21 +1107,11 @@ VOS_UINT32 NAS_EMM_MsTauInitSsWaitCNCnfMsgIntraConnectFailInd(VOS_UINT32  ulMsgI
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SndTauCompleteFailProc
- Description     : TAU CMP发送失败时的处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         : wangchen  00209181   2013-03-30  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_SndTauCompleteFailProc(VOS_VOID* pMsg,VOS_UINT32 *pulIsDelBuff)
 {
     LRRC_LMM_DATA_CNF_STRU              *pstRrcMmDataCnf = VOS_NULL_PTR;
     NAS_EMM_MRRC_DATA_REQ_STRU          *pMrrcDataMsg = VOS_NULL_PTR;
-    VOS_UINT32                            ulRrcMmDataReqMsgLen;
 
     NAS_EMM_MRRC_MGMT_DATA_STRU         *pEmmMrrcMgmtData = NAS_EMM_NULL_PTR;
 
@@ -1397,11 +1125,11 @@ VOS_UINT32 NAS_EMM_SndTauCompleteFailProc(VOS_VOID* pMsg,VOS_UINT32 *pulIsDelBuf
     {
         return NAS_EMM_FAIL;
     }
-    ulRrcMmDataReqMsgLen = (sizeof(NAS_EMM_MRRC_DATA_REQ_STRU)+
-                           pEmmMrrcMgmtData->ulNasMsgLength) -
-                           NAS_EMM_4BYTES_LEN;
+
     /* 申请消息内存*/
-    pMrrcDataMsg = (NAS_EMM_MRRC_DATA_REQ_STRU *)(VOS_VOID*)NAS_LMM_MEM_ALLOC(ulRrcMmDataReqMsgLen);
+    /* 空口消息编码内存直接申请1024字节而不是实际长度, 解决:当申请内存为实际长度,
+        在加密加保护后, 加上安全头出现, 内存越界6个字节问题 */
+    pMrrcDataMsg = (NAS_EMM_MRRC_DATA_REQ_STRU *)(VOS_VOID*)NAS_LMM_MEM_ALLOC(NAS_EMM_INTRA_MSG_MAX_SIZE);
 
     if(VOS_NULL_PTR == pMrrcDataMsg)
     {
@@ -1413,8 +1141,7 @@ VOS_UINT32 NAS_EMM_SndTauCompleteFailProc(VOS_VOID* pMsg,VOS_UINT32 *pulIsDelBuf
     /*如果不需要重传TAU CMP消息，则结束TAU流程保护*/
     #if (FEATURE_ON == FEATURE_DSDS)
     if((LRRC_LMM_SEND_RSLT_FAILURE_TXN != pstRrcMmDataCnf->enSendRslt)
-        && (LRRC_LMM_SEND_RSLT_FAILURE_RLF != pstRrcMmDataCnf->enSendRslt)
-        && (LRRC_LMM_SEND_RSLT_NO_RF != pstRrcMmDataCnf->enSendRslt))
+        && (LRRC_LMM_SEND_RSLT_FAILURE_RLF != pstRrcMmDataCnf->enSendRslt))
     {
         /*发送end notify消息给RRC，通知RRC释放资源*/
         NAS_EMM_TAU_SendRrcDsdsEndNotify();
@@ -1478,16 +1205,7 @@ VOS_UINT32 NAS_EMM_SndTauCompleteFailProc(VOS_VOID* pMsg,VOS_UINT32 *pulIsDelBuf
 }
 /*lint +e961*/
 /*lint +e960*/
-/*****************************************************************************
- Function Name   : NAS_EMM_SndTauReqFailProc
- Description     : TAU REQ发送失败时的处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         : wangchen  00209181   2013-03-30  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_SndTauReqFailProc(VOS_VOID* pMsg,VOS_UINT32 *pulIsDelBuff)
 {
     LRRC_LMM_DATA_CNF_STRU              *pstRrcMmDataCnf = VOS_NULL_PTR;
@@ -1524,10 +1242,7 @@ VOS_UINT32 NAS_EMM_SndTauReqFailProc(VOS_VOID* pMsg,VOS_UINT32 *pulIsDelBuff)
         case LRRC_LMM_SEND_RSLT_FAILURE_HO:
         case LRRC_LMM_SEND_RSLT_FAILURE_TXN:
         case LRRC_LMM_SEND_RSLT_FAILURE_RLF:
-        #if (FEATURE_ON == FEATURE_DSDS)
-        case LRRC_LMM_SEND_RSLT_NO_RF:
-        #endif
-
+        /* NORF情况若重发可能造成短时间内不断重发的现象，因此该场景则直接丢弃，等待tau定时器超时 */
             /*设置EPS状态为EU2*/
             NAS_EMM_TAUSER_SaveAuxFsmUpStat(EMM_US_NOT_UPDATED_EU2);
 
@@ -1567,16 +1282,7 @@ VOS_UINT32 NAS_EMM_SndTauReqFailProc(VOS_VOID* pMsg,VOS_UINT32 *pulIsDelBuff)
     return NAS_EMM_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SndTauCmpSuccProc
- Description     : TAU CMP发送成功时的处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         : 1.wangchen 00209181  2012-11-01  Draft Enact
-                   2.sunjitan 00193151  2014-09-06  Mod: DTS2014090904779 规避GU重选到L后SMC CMP发送不成功导致的后续异常
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_SndTauCmpSuccProc(VOS_VOID* pMsg)
 {
 
@@ -1595,9 +1301,7 @@ VOS_UINT32 NAS_EMM_SndTauCmpSuccProc(VOS_VOID* pMsg)
     NAS_EMM_SendMtcTAUEndType();
 #endif
 
-    /* s00193151 add DTS2014090904779 2014-09-06:
-       SMC成功之后不会立即删除NEW MAPPED安全上下文，为避免因异常重做TAU时网侧又激活NEW MAPPED,
-       但在TAU成功之后可以删除，避免影响到其他场景 */
+    
     NAS_EMM_ClearNewMappedSecuCntxt();
     /* 大数据:更新TAU成功次数 */
     NAS_LMM_AddTauCounter(NAS_LMM_OM_PCE_TIMES_TYPE_SUCC);

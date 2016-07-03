@@ -1,22 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2015, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasSndUsimm.c
-  版 本 号   : 初稿
-  作    者   : h00313353
-  生成日期   : 2015年01月26日
-  最近修改   :
-  功能描述   : 由于USIMM接口调整，原调用USIMM接口发送消息
-               改为直接向USIMM模块发送消息
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年01月26日
-    作    者   : h00313353
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   头文件包含
@@ -46,20 +28,7 @@ NAS_USIMM_SVLTE_TYPE_ENUM_UINT8         g_enSvlteSupportFlg = NAS_USIMM_SVLTE_TY
 /*****************************************************************************
   函数定义
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  :NAS_SNDUSIMM_SetSvlteSupportFlag
- 功能描述  :设置svlte是否支持标识
- 输入参数  :enSvlteSupportFlag - svlte是否支持的值
- 输出参数  :无
- 返 回 值  :无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1. 日    期   : 2015年01月26日
-    作    者   : h00313353
-    修改内容   : Create
-*****************************************************************************/
 VOS_VOID NAS_SNDUSIMM_SetSvlteSupportFlag(
     NAS_USIMM_SVLTE_TYPE_ENUM_UINT8     enSvlteSupportFlag
 )
@@ -69,19 +38,7 @@ VOS_VOID NAS_SNDUSIMM_SetSvlteSupportFlag(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  :NAS_SNDUSIMM_ReadSvlteSupportFlagNvim
- 功能描述  :读取svlte是否支持nv
- 输入参数  :无
- 输出参数  :无
- 返 回 值  :无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1. 日    期   : 2015年01月26日
-     作    者   : h00313353
-     修改内容   : Create
-*****************************************************************************/
+
 VOS_VOID NAS_SNDUSIMM_ReadSvlteSupportFlagNvim(
     VOS_VOID
 )
@@ -114,20 +71,7 @@ VOS_VOID NAS_SNDUSIMM_ReadSvlteSupportFlagNvim(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  :NAS_SNDUSIMM_GetSvlteSupportFlag
- 功能描述  :获取svlte是否支持标识
- 输入参数  :无
- 输出参数  :无
- 返 回 值  :svlte特性是否支持的取值
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1. 日    期   : 2015年01月26日
-    作    者   : h00313353
-    修改内容   : Create
-*****************************************************************************/
 NAS_USIMM_SVLTE_TYPE_ENUM_UINT8 NAS_SNDUSIMM_GetSvlteSupportFlag(
     VOS_VOID
 )
@@ -135,20 +79,7 @@ NAS_USIMM_SVLTE_TYPE_ENUM_UINT8 NAS_SNDUSIMM_GetSvlteSupportFlag(
     return g_enSvlteSupportFlg;
 }
 
-/*****************************************************************************
- 函 数 名  :NAS_SNDUSIMM_IsSvlteSupported
- 功能描述  :获取是否支持svlte特性
- 输入参数  :无
- 输出参数  :无
- 返 回 值  :VOS_TRUE:支持svlte
-            VOS_FALSE:不支持svlte
- 调用函数  :
- 被调函数  :
- 修改历史       :
-  1. 日    期   : 2015年01月26日
-     作    者   : h00313353
-     修改内容   : Create
-*****************************************************************************/
+
 VOS_UINT32 NAS_SNDUSIMM_IsSvlteSupported(
     VOS_VOID
 )
@@ -167,20 +98,7 @@ VOS_UINT32 NAS_SNDUSIMM_IsSvlteSupported(
 }
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- 函 数 名  :NAS_SNDUSIMM_IsCdmaPid
- 功能描述  :获取是否是CDMA的pid
- 输入参数  :无
- 输出参数  :无
- 返 回 值  :VOS_TRUE:是
-            VOS_FALSE:不是
- 调用函数  :
- 被调函数  :
- 修改历史       :
-  1. 日    期   : 2015年06月4日
-     作    者   : w00242748
-     修改内容   : Create
-*****************************************************************************/
+
 VOS_UINT32 NAS_SNDUSIMM_IsCdmaPid(
     VOS_UINT32                          ulSenderPid
 )
@@ -224,21 +142,7 @@ VOS_UINT32 NAS_SNDUSIMM_IsCdmaPid(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_SNDUSIMM_IsModem0SupportC
- 功能描述  : 判断modem0是否支持CDMA
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月4日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_SNDUSIMM_IsModem0SupportC(VOS_VOID)
 {
     PLATAFORM_RAT_CAPABILITY_STRU       stModem0PlatRat;
@@ -268,29 +172,7 @@ VOS_UINT32 NAS_SNDUSIMM_IsModem0SupportC(VOS_VOID)
 }
 #endif
 
-/*****************************************************************************
-函 数 名  :NAS_SNDUSIMM_GetReceiverPid
-功能描述  :根据Pid获取ReceiverId
-输入参数  :ulSenderPid:发送方Pid
-           ulModem0ReceiverID:Modem 0 对应的ReceiverID
-           ulModem1ReceiverID:Modem 1 对应的ReceiverID
-           ulModem1ReceiverID:Modem 2 对应的ReceiverID
-输出参数  :无
-返 回 值  :ulModem0ReceiverID:Modem 0的ReceiverPid
-           ulModem1ReceiverID:Modem 1的ReceiverPid
-           ulModem2ReceiverID:Modem 2的ReceiverPid
-           RECEIVERID_NOT_FOUND:无法获取ReceiverPid
-调用函数  :
-被调函数  :
-修订记录  :
-  1.日    期   : 2015年01月26日
-    作    者   : h00313353
-    修改内容   : Create
 
-  2.日    期   : 2015年6月25日
-    作    者   : l00198894
-    修改内容   : TSTS
-*****************************************************************************/
 VOS_UINT32 NAS_SNDUSIMM_GetReceiverPid(
     VOS_UINT32                          ulSenderPid,
     VOS_UINT32                          ulModem0ReceiverID,
@@ -347,24 +229,7 @@ VOS_UINT32 NAS_SNDUSIMM_GetReceiverPid(
     return RECEIVERID_NOT_FOUND;
 }
 
-/*****************************************************************************
-函 数 名  :NAS_SndUsimmSetFileReq
-功能描述  :更新文件操作　
-输入参数  :ulSenderPid:发送方Pid
-           ulSendPara:透传参数
-           pstSetFileInfo:文档更新信息
-输出参数  :无
-返 回 值  :USIMM_API_SUCCESS
-           USIMM_API_WRONG_PARA
-           USIMM_API_ALLOCMEM_FAILED
-           USIMM_API_SENDMSG_FAILED
-调用函数  :
-被调函数  :
-修订记录  :
-1. 日    期   : 2015年01月26日
-   作    者   : h00313353
-   修改内容   : Create
-*****************************************************************************/
+
 VOS_UINT32 NAS_SndUsimmUpdateFileReq(
     VOS_UINT32                          ulSenderPid,
     VOS_UINT32                          ulSendPara,
@@ -462,24 +327,7 @@ VOS_UINT32 NAS_SndUsimmUpdateFileReq(
     return USIMM_API_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :NAS_SndUsimmGetFileReq
-功能描述  :读取文件操作　
-输入参数  :ulSenderPid:发送方Pid
-           ulSendPara:透传参数
-           pstSetFileInfo:需要读取的文档信息
-输出参数  :无
-返 回 值  :USIMM_API_SUCCESS
-           USIMM_API_WRONG_PARA
-           USIMM_API_ALLOCMEM_FAILED
-           USIMM_API_SENDMSG_FAILED
-调用函数  :
-被调函数  :
-修订记录  :
-1. 日    期   : 2015年01月26日
-   作    者   : h00313353
-   修改内容   : Create
-*****************************************************************************/
+
 VOS_UINT32 NAS_SndUsimmReadFileReq(
     VOS_UINT32                          ulSenderPid,
     VOS_UINT32                          ulSendPara,
@@ -566,24 +414,7 @@ VOS_UINT32 NAS_SndUsimmReadFileReq(
     return USIMM_API_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :NAS_SndUsimmAuthReq
-功能描述  :鉴权操作　
-输入参数  :ulSenderPid:发送方Pid
-           enAppType:应用类型
-           pucAutn:鉴权数据
-输出参数  :无
-返 回 值  :USIMM_API_SUCCESS
-           USIMM_API_WRONG_PARA
-           USIMM_API_ALLOCMEM_FAILED
-           USIMM_API_SENDMSG_FAILED
-调用函数  :
-被调函数  :
-修订记录  :
-1. 日    期   : 2015年01月26日
-   作    者   : h00313353
-   修改内容   : Create
-*****************************************************************************/
+
 VOS_UINT32 NAS_SndUsimmAuthReq(
     VOS_UINT32                          ulSenderPid,
     USIMM_CARDAPP_ENUM_UINT32           enAppType,
@@ -653,26 +484,7 @@ VOS_UINT32 NAS_SndUsimmAuthReq(
     return USIMM_API_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :NAS_SndUsimmPinReq
-功能描述  :PIN操作　
-输入参数  :ulSenderPid:调用者ID
-           ucCmdType:操作类型
-           ucPINType:PIN类型
-           pucOldPIN:PIN码内容
-           pucNewPIN:新PIN码内容
-输出参数  :无
-返 回 值  :USIMM_API_SUCCESS
-           USIMM_API_WRONG_PARA
-           USIMM_API_ALLOCMEM_FAILED
-           USIMM_API_SENDMSG_FAILED
-调用函数  :
-被调函数  :
-修订记录  :
-1. 日    期   : 2015年01月26日
-   作    者   : h00313353
-   修改内容   : Create
-*****************************************************************************/
+
 VOS_UINT32 NAS_SndUsimmPinReq(
     VOS_UINT32                          ulSenderPid,
     VOS_UINT8                           ucCmdType,
@@ -750,18 +562,7 @@ VOS_UINT32 NAS_SndUsimmPinReq(
     return USIMM_API_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :NAS_SndUsimmFdnNumCheckReq
-功能描述  :提供给NAS进行FDN号码检查的API
-输入参数  :ulPid：发送FDN号码检查请求的Pid
-           ulClientId:用于识别TAF Pid下的各业务模块
-输出参数  :无
-返 回 值  : 0:有效、1:无效
-修订记录  :
-1. 日    期   : 2015年01月26日
-   作    者   : h00313353
-   修改内容   : Create
-*****************************************************************************/
+
 VOS_UINT32 NAS_SndUsimmFdnNumCheckReq(
     VOS_UINT32                          ulSenderPid,
     VOS_UINT32                          ulContextIndex,
@@ -829,23 +630,7 @@ VOS_UINT32 NAS_SndUsimmFdnNumCheckReq(
     return USIMM_API_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :NAS_SndUsimmQueryFileReq
-功能描述  :获取文件最大记录数　
-输入参数  :ulSenderPid:调用者Pid
-           usEfId:文件ID
-输出参数  :无
-返 回 值  :USIMM_API_SUCCESS
-           USIMM_API_WRONG_PARA
-           USIMM_API_ALLOCMEM_FAILED
-           USIMM_API_SENDMSG_FAILED
-调用函数  :
-被调函数  :
-修订记录  :
-1. 日    期   : 2015年01月26日
-   作    者   : h00313353
-   修改内容   : Create
-*****************************************************************************/
+
 VOS_UINT32 NAS_SndUsimmQueryFileReq(
     VOS_UINT32                          ulSenderPid,
     USIMM_CARDAPP_ENUM_UINT32           enAppType,
@@ -923,20 +708,7 @@ VOS_UINT32 NAS_SndUsimmQueryFileReq(
     return USIMM_API_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :NAS_SndUsimmDeactiveCardReq
-功能描述  :SIM卡去激活请求
-输入参数  :ulSenderPid:调用者Pid
-输出参数  :无
-返 回 值  :VOS_TRUE
-           VOS_FALSE
-调用函数  :
-被调函数  :
-修订记录  :
-1. 日    期   : 2015年01月26日
-   作    者   : h00313353
-   修改内容   : Create
-*****************************************************************************/
+
 VOS_UINT32 NAS_SndUsimmDeactiveCardReq(
     VOS_UINT32                          ulSenderPid
 )
@@ -976,22 +748,7 @@ VOS_UINT32 NAS_SndUsimmDeactiveCardReq(
     return USIMM_API_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :NAS_SndUsimmEcallNumberQry
-功能描述  :提供给NAS获取ECALL(FDN/SDN)号码检查的API
-输入参数  :ulSenderPid：发送FDN号码检查请求的Pid
-           enStorage:存储器类型
-           ucListLen:NAS要读取的号码列表
-           pucList:列表内容
-输出参数  :无
-返 回 值  : 0:有效、1:无效
-调用函数  :
-被调函数  :
-修订记录  :
-1. 日    期   : 2015年01月26日
-   作    者   : h00313353
-   修改内容   : Create
-*****************************************************************************/
+
 VOS_UINT32 NAS_SndUsimmEcallNumberQry(
     VOS_UINT32                          ulSenderPid,
     SI_PB_STORAGE_ENUM_UINT32           enStorage,
@@ -1046,21 +803,7 @@ VOS_UINT32 NAS_SndUsimmEcallNumberQry(
     return USIMM_API_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :NAS_SndUsimmEnvelopeDownloadReq
-功能描述  :STK功能ENVELOP下载函数,协议栈TAF使用
-输入参数  :ulSenderPid:调用者Pid
-           ulSendPara:透传参数
-           pstENStru:Envelope数据
-输出参数  :无
-返 回 值  :SI_UINT32 函数执行结果
-调用函数  :
-被调函数  :
-修订记录  :
-1. 日    期   : 2015年01月26日
-   作    者   : h00313353
-   修改内容   : Create
-*****************************************************************************/
+
 VOS_UINT32 NAS_SndUsimmEnvelopeDownloadReq(
     VOS_UINT32                          ulSenderPid,
     VOS_UINT32                          ulSendPara,
@@ -1171,21 +914,7 @@ VOS_UINT32 NAS_SndUsimmEnvelopeDownloadReq(
     return USIMM_API_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :NAS_SndUsimmRestrictedAccessReq
-功能描述  :
-输入参数  :ulSenderPid:调用者Pid
-           ulSendPara:透传参数
-           pstENStru:Envelope数据
-输出参数  :无
-返 回 值  :SI_UINT32 函数执行结果
-调用函数  :
-被调函数  :
-修订记录  :
-1. 日    期   : 2015年01月26日
-   作    者   : h00313353
-   修改内容   : Create
-*****************************************************************************/
+
 VOS_UINT32 NAS_SndUsimmRestrictedAccessReq(
     VOS_UINT32                          ulSenderPid,
     VOS_UINT32                          ulSendPara,
@@ -1252,21 +981,7 @@ VOS_UINT32 NAS_SndUsimmRestrictedAccessReq(
     return USIMM_API_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  :NAS_SndUsimmRestrictedAccessReq
-功能描述  :
-输入参数  :ulSenderPid:调用者Pid
-           ulSendPara:透传参数
-           pstENStru:Envelope数据
-输出参数  :无
-返 回 值  :SI_UINT32 函数执行结果
-调用函数  :
-被调函数  :
-修订记录  :
-1. 日    期   : 2015年01月26日
-   作    者   : h00313353
-   修改内容   : Create
-*****************************************************************************/
+
 VOS_UINT32 NAS_SndUsimmRefreshReq(
     VOS_UINT32                          ulSenderPid,
     USIMM_STK_COMMAND_DETAILS_STRU     *pstCMDDetail,

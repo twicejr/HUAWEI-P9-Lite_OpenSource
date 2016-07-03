@@ -157,28 +157,7 @@ typedef UINT32 TASK_PID_T;
  */
 extern UINT32 SRE_FsemSet(TASK_PID_T uwTaskPID, INT32 swFsemVal);
 
-/**
- *@ingroup SRE_fsem
- *@brief 获取快速信号量计数器数值。
- *
- *@par 描述:
- *查询指定任务的快速信号量计数值，如果为负表示当前该任务阻塞于快速信号量。
- *@attention
- *<ul>
- *<li>多核环境下，只能对本核任务进行此操作。</li>
- *<li>快速信号量默认初始值为0。</li>
- *</ul>
- *
- *@param uwTaskPID [IN] 类型#TASK_PID_T，任务PID，来源于Hunt模块获取到的任务的PID。
- *
- *@retval #OS_FSEM_COUNT_ERR 0x80000000，获取失败，原因是快速信号量计数获取时，任务PID非法或者任务为IDLE任务。
- *@retval #OS_FSEM_TASK_NO_CREATE 0x80000001，获取失败，原因是快速信号量计数获取时，任务未创建。
- *@retval 其他值             (0x80000001~0x07FFFFFFF]，快速信号量计数器值。
- *@par 依赖:
- *<ul><li>sre_fsem.h：该接口声明所在的头文件。</li></ul>
- *@since UniDSP V100R001C02
- *@see SRE_FsemSet
- */
+
 extern INT32 SRE_FsemGet(TASK_PID_T uwTaskPID);
 
 /**

@@ -1,13 +1,4 @@
-/******************************************************************************
 
-        @(#)Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : NasLcsTafMsgProc.c
-    Description : 处理TAF发给LCS的消息
-    History     :
-            1.lihong  00150010       2015-09-28  Draft Enact
-******************************************************************************/
 
 
 /*****************************************************************************
@@ -47,18 +38,7 @@ extern "C" {
   3 Function
 *****************************************************************************/
 
-/*****************************************************************************
-Function Name  : NAS_LCS_SndTafEndInd
-Description    : 给TAF发送LCS_TAF_END_IND消息
-Input          : enLcsType-----------------LCS实体类型
-                 enCause-------------------原因值
-                 ucHandleId----------------HANDLE ID
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  lihong 00150010 2015-9-29  新开发
-*****************************************************************************/
 VOS_VOID  NAS_LCS_SndTafEndInd
 (
     TAF_LCS_LR_TYPE_EUNM_UINT8          enLcsType,
@@ -89,19 +69,7 @@ VOS_VOID  NAS_LCS_SndTafEndInd
     NAS_LCS_SND_MSG(pstTafEndInd);
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_SndTafFacilityInd
-Description    : 给TAF发送LCS_TAF_FACILITY_IND消息
-Input          : pstLocationEstimate---------地理位置信息指针
-                 pstVelocityEstimate---------速度信息指针
-                 enCause--------------------------原因值
-                 ucHandleId----------------HANDLE ID
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  lihong 00150010 2015-9-29  新开发
-*****************************************************************************/
 VOS_VOID  NAS_LCS_SndTafFacilityInd
 (
     LOC_COM_COORDINATE_STRU            *pstLocationEstimate,
@@ -164,16 +132,7 @@ VOS_VOID  NAS_LCS_SndTafFacilityInd
     NAS_LCS_SND_MSG(pstTafEndFacilityInd);
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_LocationTypeTransform
-Description    : 将空口LOCATION TYPE转为AT命令格式
-Input          : enLocType----------------空口location type
-Output         : VOS_VOID
-Return Value   : LCS_LOCATION_TYPE_ENUM_UINT8
 
-History        :
-  lihong 00150010 2015-10-12  新开发
-*****************************************************************************/
 LCS_LOCATION_TYPE_ENUM_UINT8  NAS_LCS_LocationTypeTransform
 (
     NAS_LCS_LOCATION_EST_TYPE_ENUM_UINT8    enLocType
@@ -187,17 +146,7 @@ LCS_LOCATION_TYPE_ENUM_UINT8  NAS_LCS_LocationTypeTransform
     return enLocType;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_SndTafBeginInd
-Description    : 给TAF发送LCS_TAF_BEGIN_IND消息
-Input          : pstCnMsgStru-----------------空口消息译码后的内容指针
-                 ucHandleId----------------HANDLE ID
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  lihong 00150010 2015-9-29  新开发
-*****************************************************************************/
 VOS_VOID  NAS_LCS_SndTafBeginInd
 (
     const NAS_LCS_LOC_NOTFICATION_STRU *pstLocNotication,
@@ -244,16 +193,7 @@ VOS_VOID  NAS_LCS_SndTafBeginInd
     NAS_LCS_SND_MSG(pstTafBeginInd);
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_ValidateMoLrRecord
-Description    : 参数合法性检测
-Input          : None
-Output         : None
-Return Value   : None
 
-History        :
-  lihong 00150010 2015-9-29  新开发
-*****************************************************************************/
 VOS_VOID  NAS_LCS_ValidateMoLrRecord( VOS_VOID )
 {
     LCS_MOLR_PARA_STRU                 *pstMolrPara = NAS_LCS_NULL_PTR;
@@ -276,16 +216,7 @@ VOS_VOID  NAS_LCS_ValidateMoLrRecord( VOS_VOID )
     }
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_RcvTafBeginReq
-Description    : TAF_LCS_BEGIN_REQ消息处理函数
-Input          : VOS_VOID *pstEstCnf
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  lihong 00150010 2015-9-29  新开发
-*****************************************************************************/
 VOS_VOID  NAS_LCS_RcvTafBeginReq
 (
     const TAF_LCS_BEGIN_REQ_STRU       *pstBeginReq
@@ -355,16 +286,7 @@ VOS_VOID  NAS_LCS_RcvTafBeginReq
     NAS_LCS_SetEntityConnState(ulIndex, NAS_LCS_CONN_STATE_ESTING);
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_RcvTafEndReq
-Description    : TAF_LCS_END_REQ消息处理函数
-Input          : VOS_VOID *pstEstCnf
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  lihong 00150010 2015-10-10  新开发
-*****************************************************************************/
 VOS_VOID  NAS_LCS_RcvTafEndReq
 (
     const TAF_LCS_END_REQ_STRU         *pstEndReq
@@ -423,16 +345,7 @@ VOS_VOID  NAS_LCS_RcvTafEndReq
     NAS_LCS_ClearSingleLcsEntity(ulIndex, TAF_LCS_CAUSE_SUCCESS);
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_RcvTafPowerStatusNtf
-Description    : TAF_LCS_POWER_STATUS_NTF消息处理函数
-Input          : VOS_VOID *pstPowerStatusNtf
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  lihong 00150010 2015-10-11  新开发
-*****************************************************************************/
 VOS_VOID  NAS_LCS_RcvTafPowerStatusNtf
 (
     const TAF_LCS_POWER_STATUS_NTF_STRU    *pstPowerStatusNtf
@@ -456,16 +369,7 @@ VOS_VOID  NAS_LCS_RcvTafPowerStatusNtf
     }
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_TafMsgDistr
-Description    : LCS模块TAF消息处理函数
-Input          : VOS_VOID *pRcvMsg
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  lihong 00150010 2015-9-28  新开发
-*****************************************************************************/
 VOS_VOID NAS_LCS_TafMsgDistr( VOS_VOID *pRcvMsg )
 {
     PS_MSG_HEADER_STRU         *pTafMsg  = VOS_NULL_PTR;

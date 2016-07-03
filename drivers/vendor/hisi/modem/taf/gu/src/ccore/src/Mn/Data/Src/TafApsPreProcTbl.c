@@ -1,23 +1,5 @@
 
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafApsPreProcTbl.c
-  版 本 号   : 初稿
-  作    者   : S62952
-  生成日期   : 2011年12月14日
-  最近修改   :
-  功能描述   : 不进流程处理的相关函数表
-  函数列表   :
-
-  修改历史   :
-  1.日    期   : 2011年12月14日
-    作    者   : S62952
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -200,7 +182,6 @@ TAF_ACT_STRU        g_astTafApsPreProcessActTbl[]   =
                       ID_MSG_TAF_PS_GET_DYNAMIC_EPS_QOS_INFO_REQ,
                       TAF_APS_RcvAtGetDynamicEpsQosInfoReq_PreProc),
 
-/* Add by w00199382 for V7代码同步, 2012-04-07, Begin   */
       /* ^LTECS*/
      TAF_ACT_TBL_ITEM( WUEPS_PID_TAF,
                       ID_MSG_TAF_PS_GET_LTE_CS_REQ,
@@ -214,7 +195,6 @@ TAF_ACT_STRU        g_astTafApsPreProcessActTbl[]   =
     TAF_ACT_TBL_ITEM( WUEPS_PID_TAF,
                       ID_MSG_TAF_PS_SET_PDPROFMOD_INFO_REQ,
                       TAF_APS_RcvAtSetPdprofInfoReq_PreProc),
-/* Add by w00199382 for V7代码同步, 2012-04-07, End   */
 
 #endif
 
@@ -274,8 +254,6 @@ TAF_ACT_STRU        g_astTafApsPreProcessActTbl[]   =
                       ID_MSG_TAF_PS_GET_CID_SDF_REQ,
                       TAF_APS_RcvPsGetCidSdfReq_PreProc),
 
-    /* Deleted by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
-    /* Deleted by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
 
 #if ( FEATURE_ON == FEATURE_LTE )
@@ -347,7 +325,6 @@ TAF_ACT_STRU        g_astTafApsPreProcessActTbl[]   =
     TAF_ACT_TBL_ITEM( MSP_L4_L4A_PID,
                       ID_L4A_APS_SET_CGEQOSRDP_CNF,
                       TAF_APS_RcvL4aSetCgeqosrdpCnf_PreProc),
-     /* Add by w00199382 for V7代码同步, 2012-04-07, Begin   */
      /*^LTECS*/
       TAF_ACT_TBL_ITEM( MSP_L4_L4A_PID,
                       ID_L4A_APS_GET_LTE_CS_CNF,
@@ -361,7 +338,6 @@ TAF_ACT_STRU        g_astTafApsPreProcessActTbl[]   =
     TAF_ACT_TBL_ITEM( MSP_L4_L4A_PID,
                       ID_L4A_APS_SET_PDPROFMOD_CNF,
                       TAF_APS_RcvL4aSetPdprofInfoCnf_PreProc),
-    /* Add by w00199382 for V7代码同步, 2012-04-07, End   */
 
 
     /* L4A定时器超时处理 */
@@ -384,7 +360,6 @@ TAF_ACT_STRU        g_astTafApsPreProcessActTbl[]   =
                       TI_TAF_APS_WAIT_SET_AUTHDATA_CNF,
                       TAF_APS_RcvTiSetAuthdataCnfExpired_PreProc),
 
-     /* Add by w00199382 for V7代码同步, 2012-04-07, Begin   */
 
     /*+CEMODE*/
     TAF_ACT_TBL_ITEM( VOS_PID_TIMER,
@@ -399,7 +374,6 @@ TAF_ACT_STRU        g_astTafApsPreProcessActTbl[]   =
                       TI_TAF_APS_WAIT_SET_PDPROF_CNF,
                       TAF_APS_RcvTiSetPdprofInfoExpired_PreProc),
 
-    /* Add by w00199382 for V7代码同步, 2012-04-07, End   */
 
     TAF_ACT_TBL_ITEM( VOS_PID_TIMER,
                       TI_TAF_APS_WAIT_SET_CGCONTRDP_CNF,
@@ -842,40 +816,12 @@ TAF_STA_STRU        g_astTafApsPreProcessFsmTbl[]   =
 /******************************************************************************
    5 函数实现
 ******************************************************************************/
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPreProcessStaTblSize
- 功能描述  : 获取预处理状态机的大小
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:预处理状态机的大小
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月16日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_GetPreProcessStaTblSize( VOS_VOID  )
 {
     return (sizeof(g_astTafApsPreProcessFsmTbl)/sizeof(TAF_STA_STRU));
 }
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetPreFsmDescAddr
- 功能描述  : 获取预处理状态机的描述表
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : TAF_FSM_DESC_STRU:指向预处理状态机的描述表
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月16日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_FSM_DESC_STRU * TAF_APS_GetPreFsmDescAddr(VOS_VOID)
 {
     return (&g_stTafApsPreFsmDesc);

@@ -535,17 +535,7 @@ VOS_VOID NAS_MSCC_MNTN_LogMlplMsplCrcChkRslt(
 
 }
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_MNTN_LogDiscardServStaInfo
-Description     :   勾包在BSR流程中状态上报屏蔽消息
-Input parameters:
-Outout parameters:
-Return Value    :
-Modify History:
-    1)  Date    :   2014-04-16
-        Author  :   y00307564
-        Modify content :    Create
-*****************************************************************************/
+
 VOS_VOID NAS_MSCC_MNTN_LogDiscardServStaInfo(
     NAS_MSCC_DISCARD_SERV_STA_ENUM_UINT8                    enDiscardServSta
 )
@@ -685,24 +675,7 @@ VOS_VOID NAS_MSCC_MNTN_LogNvimMmssLastLocInfo(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_LogReadNVInfo
- 功能描述  : 勾取读取的NV信息上报 可维可测
- 输入参数  : VOS_UINT16                          enNvItem,
-             VOS_UINT16                          usNvDataLength,
-             VOS_UINT32                          ulPid,
-             VOS_UINT32                         *pData
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月7日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_LogReadNVInfo(
     VOS_UINT16                          enNvItem,
     VOS_UINT16                          usNvDataLength,
@@ -738,20 +711,7 @@ VOS_VOID NAS_MSCC_LogReadNVInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_MNTN_LogFsmL1MainCtxRelatedInfo
- 功能描述  : 将l1 main状态机相关信息勾包
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月15日
-    作    者   : w00176964
-    修改内容   : CL_MUTIMODE_OPTIMIZE新增
-*****************************************************************************/
 VOS_VOID NAS_MSCC_MNTN_LogFsmL1MainCtxRelatedInfo(VOS_VOID)
 {
     NAS_MSCC_LOG_FSM_L1_MAIN_CTX_RELATED_INFO_STRU         *pstMsg;
@@ -789,20 +749,7 @@ VOS_VOID NAS_MSCC_MNTN_LogFsmL1MainCtxRelatedInfo(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_MNTN_LogClSystemAcquireStrategyRelatedInfo
- 功能描述  : 增加对CL系统捕获策略相关信息勾包
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月15日
-    作    者   : W00176964
-    修改内容   : CL_MUTIMODE_OPTIMIZE新增
-*****************************************************************************/
 VOS_VOID NAS_MSCC_MNTN_LogClSystemAcquireStrategyRelatedInfo(VOS_VOID)
 {
     NAS_MSCC_LOG_CL_SYSTEM_ACQUIRE_STRATEGY_RELATED_INFO_STRU                  *pstMsg = VOS_NULL_PTR;
@@ -1042,21 +989,7 @@ NAS_MSCC_MNTN_DISCARD_MSG_STRU g_stNasMsccMntnDiscardMsgToMmcTbl[]=
     {UEPS_PID_MSCC,                     WUEPS_PID_MMC,                           ID_MSCC_MMC_CSG_LIST_ABORT_REQ}
 };
 
-/*****************************************************************************
-函 数 名  : NAS_MSCC_MNTN_IsNeedDiscardForRcvMsg
-功能描述  : 对MSCC模块收到的消息判断是否在忽略列表中,如果在，不勾包该消息
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_TRUE  : 消息在忽略列表中
-            VOS_FALSE : 消息不在忽略列表中
-调用函数  :
-被调函数  :
 
-修改历史  :
-1.日    期  : 2016年01月23日
-  作    者  : l00324781
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MSCC_MNTN_IsNeedDiscardForRcvMsg(
     VOS_UINT32                          ulSenderPid,
     VOS_UINT32                          ulReceiverPid,
@@ -1115,21 +1048,7 @@ VOS_UINT32 NAS_MSCC_MNTN_IsNeedDiscardForRcvMsg(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
-函 数 名  : NAS_MSCC_MNTN_IsNeedDiscardForSndMsg
-功能描述  : 对MSCC模块发送的消息判断是否在忽略列表中,如果在，不勾包该消息
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_TRUE  : 消息在忽略列表中
-            VOS_FALSE : 消息不在忽略列表中
-调用函数  :
-被调函数  :
 
-修改历史  :
-1.日    期  : 2016年01月23日
-  作    者  : l00324781
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MSCC_MNTN_IsNeedDiscardForSndMsg(
     VOS_UINT32                          ulSenderPid,
     VOS_UINT32                          ulReceiverPid,
@@ -1188,21 +1107,7 @@ VOS_UINT32 NAS_MSCC_MNTN_IsNeedDiscardForSndMsg(
 
 
 #if 0
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SetImsVoiceCapability
- 功能描述  : IMSA发送IMS语音能力的桩函数
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年8月14日
-   作    者   : n00269697
-   修改内容   : DTS2015072803051
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_MNTN_ImsaSendImsVoiceCap(
     VOS_UINT8                           ucAvail
 )

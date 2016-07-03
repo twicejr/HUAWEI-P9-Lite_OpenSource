@@ -498,7 +498,6 @@ CFG_FEATURE_SMALL_MAILBOX                       = FEATURE_OFF
 CFG_FEATURE_TEMP_DSP_CORE_POWER_DOWN            = FEATURE_OFF
 CFG_FEATURE_RECONFIG                            = FEATURE_ON
 
-# 硬加密版本改制特性宏，E5 上打开，stick 等版本关闭。参见 matao00151948 的邮件  
 CFG_FEATURE_HWENCRY_REWORK                      = FEATURE_OFF
 
 # 内存池管理单元  
@@ -512,7 +511,6 @@ CFG_FEATURE_TTFMEM_CACHE                        = FEATURE_OFF
 
 CFG_FEATURE_SDUPDATE                            = FEATURE_OFF
 
-# x00195127 add for SHELL LOCK特性  
 CFG_FEATURE_SECURITY_SHELL                      = FEATURE_ON
 
 CFG_FEATURE_EPAD                                = FEATURE_OFF
@@ -806,11 +804,9 @@ CFG_FEATURE_DFS_SYNC                            =FEATURE_OFF
 CFG_FEATURE_GU_DSP_SPLIT                = FEATURE_ON
 #####################################################################
 #####################################################################
-#2014.9.15 add by w00161397 移植多通道的特性宏用于711 one track
 CFG_FEATURE_MULTI_CHANNEL		        = FEATURE_ON
 CFG_FEATURE_CIPHER_OPTIMIZE                     =FEATURE_ON
 
-#2014.9.16 add by z00100616 同步V8代码到V711 one track
 CFG_FEATURE_DCX0_TLHPA_WRITE_PHY_NV             = FEATURE_ON
 CFG_FEATURE_VERSION_V8                          = FEATURE_ON
 #####################################################################

@@ -1,26 +1,4 @@
-/*******************************************************************************
-*
-*
-*                Copyright 2008, Huawei Technologies Co. Ltd.
-*                            ALL RIGHTS RESERVED
-*
-*-------------------------------------------------------------------------------
-*
-*                              ospf_api_stru01.h
-*
-*  Project Code: VISPV1R7C02
-*   Module Name: OSPF  
-*   Description: 
-*   01 OSPF API 结构定义(基本开发)
-*
-*-------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  -----------------------------------------------------------------------------
-*  2008-11-25   liangjicheng             Create    
-*  2009-01-20   l00147446                BC3D01126【OSPF】查询函数写越界  
-*
-*******************************************************************************/
+
 #ifndef _OSPF_API_STRU01_H
 #define _OSPF_API_STRU01_H
 #ifdef __cplusplus
@@ -32,7 +10,6 @@ extern "C"{
 typedef struct tagOSPF_CFG_ASBR
 {
     USHORT usProcessId;                   /*进程ID*/
-    /*Modify for BC3D00579：描述错误 liangjicheng 2008-10-29 */
     USHORT usAsbrFlg;                    /*是否为ASBR的标志,1表示路由器为ASBR,
                                            0表示路由器不为ASBR，默认为1*/
     
@@ -125,12 +102,10 @@ typedef struct tagOSPF_CFGPROC_WITHRID
     ULONG  ulRouterId;                /*路由器ID,用户指定*/
     USHORT usProcessId;               /*进程ID*/
     USHORT bNoFlag;                   /*创建或删除标志*/
-    /* Modified by zhangliangzhi00187023, 【检视发现问题】在OSPF_CFG_CmdRouterOspfProc支持配置OSPF路由表中的平衡路由数目, 2012/8/7   问题单号:DTS2012080703017  */
     ULONG ulMaxEqCostPaths;           /* OSPF路由表中的等价路由条数，
                                         取值范围：0~32
                                         当设置为0时，表示不设置
                                         系统启动时默认为5条 */   
-    /*End of Modified by zhangliangzhi00187023, 2012/8/7   问题单号:DTS2012080703017  */
                                         
     /* Begin:VISP1.7C03 VRF qinyun , 2009-01-20 */
     CHAR szVrfName[OSPF_MAX_VRF_NAME_LENGTH + 1];
@@ -141,12 +116,10 @@ typedef struct tagOSPF_CFGPROC
 {
     USHORT usProcessId;               /*进程ID*/
     USHORT bNoFlag;                   /*创建或删除标志*/
-    /*Added by zhangliangzhi00187023, 【检视发现问题】支持配置OSPF路由表中的平衡路由数目, 2012/8/1   问题单号:DTS2012080105986 */
     ULONG ulMaxEqCostPaths;           /* OSPF路由表中的等价路由条数，
                                         取值范围：0~32
                                         当设置为0时，表示不设置
                                         系统启动时默认为5条 */
-    /* End of Added by zhangliangzhi00187023, 2012/8/1   问题单号:DTS2012080105986 */
 
     /* Begin:VISP1.7C03 VRF qinyun , 2009-01-20 */
     CHAR szVrfName[OSPF_MAX_VRF_NAME_LENGTH + 1];
@@ -195,12 +168,10 @@ typedef struct tagOSPF_CFGIF_POLL
 
 typedef struct tagOSPF_CFG_MAXMTU
 {
-    /*Modified by liangjicheng 00103192, 接口修改，这里不做MTU设置, 2010/11/18   问题单号:DTS2010110104080  */
     /*ULONG ulProcessId;*/
     UCHAR szIfName[OSPF_MAX_IF_NAME_LENGTH+1];
     /*ULONG ulMtuLen;*/  /*MTU 46-1560 Default 576 the same to VRP*/
     ULONG ulMtuIgnore;
-    /*End of Modified by liangjicheng 00103192, 2010/11/18   问题单号:DTS2010110104080  */
 }OSPF_CFG_MAXMTU_S;
 
 typedef struct OSPF_CFGAREA_RFSHITVL
@@ -358,7 +329,6 @@ typedef struct tagOSPF_AREA_INFO
     LONG  lAuthType;
     ULONG ulAuthKeyLen;
     UCHAR ucAuthKeyValue[256]; 
-    /*Begin for BC3D02736 接口认证（或区域认证）Keyid值用户可配 l00147446 10-02-27*/
     UCHAR ucAuthKeyId;
     UCHAR ucPad[3];
     /*End for BC3D02736*/
@@ -390,17 +360,11 @@ typedef struct tagOSPF_ENTITY_SHOW
     ULONG ulRestart_Reason;        /*Restart Reason*/
     ULONG ulCalc_Thrsh_Inc_Spf_Upd;/*区域内重计算门限值*/
     ULONG ulOper_Status;           /*操作状态*/
-    /*Begin BC3D01346 l00147446 OSPF、RIP获取和显示接口缺少VRF信息 09-03-28*/
     ULONG ulVrfIndex;
-    /*End BC3D01346 l00147446 OSPF、RIP获取和显示接口缺少VRF信息 09-03-28*/
-    /*Added by guo00178934, 【Story】ROUTE_DR_023_S_001 进程查询添加默认值显示, 2011/5/20   问题单号:OSPF_20110519_02 */
     ULONG ulCalc_Max_Delay;         /*路由计算时延*/
     ULONG ulOpaque_Lsa_Support;    /*是否支持Opaque LSA*/
     ULONG ulTraffic_Eng_Support;   /*是否支持TE*/
-    /* End of Added by guo00178934, 2011/5/20   问题单号:OSPF_20110519_02 */
-    /*Added by guo00178934, SPC200需求：配置Router_ID, 2012/10/17   问题单号:20121013_1 */
     UCHAR ucCFGRouterId[4];       /*配置的Router id */
-    /* End of Added by guo00178934, 2012/10/17   问题单号:20121013_1 */
 }OSPF_ENTITY_SHOW_S;
 
 /*此数据结构包括ospf if metric mib中用户所关心的字段*/
@@ -425,10 +389,9 @@ typedef struct tagOSPF_SHOW_AREA
     /*BC3D00574 liangjicheng 2008-10-29 */
     ULONG ulSummary;          /*1-SEND_AREA_SUMMARY  0-NO_AREA_SUMMARY*/
     
-    /*ADD for BC3D02758 增加默认路由控制 l00147446 10-03-02*/  
     ULONG ulDefaultlsa;       /*1-DEFAULT_AREA_LSA  0-NO_DEFAULT_AREA_LSA*/    
     /*End for BC3D02758*/
-    ULONG ulNssaNoImport; /*Add by q62011 for DTS2010090302774:【OSPF】增加实现 路由器的 no-import-route 选项的功能*/
+    ULONG ulNssaNoImport;
     
     /* Description: Indicates an NSSA Border router's ability to perform NSSA  */
     /*              translation of type-7 LSAs into type-5 LSAs.               */
@@ -455,11 +418,9 @@ typedef struct tagOSPF_SHOW_AREA
     ULONG ulAdmin_Status;
     ULONG ulLsa_Rfsh_Intvl;
     ULONG ulAuthType;                           /*区域认证类型*/ 
-    /*Begin for BC3D02824 显示OSPF 区域信息时，MD5 KEYID需要能显示出来 l00147446 10-02-27*/
     UCHAR ucAuthKeyId;                          /*区域认证Key ID*/  
     UCHAR ucPad[3];
     /*End for BC3D02824*/
-    /*Modified by qinyun62011, DTS2010102700720维测增强 for VISP1.8C01, 2010/10/27 */
     /* Description: The number of LSAs with LS type-1 in this area's Link State Database. */
     ULONG ulRtrLsaCount;
     /* Description: The number of LSAs with LS type-2 in this area's Link State Database.*/
@@ -502,7 +463,6 @@ typedef struct tagOSPF_SHOW_AREA_AGG
 
 /* #endif */
 
-/*Added by guojianjun178934, 【DOPRA IP V3R2C10-同步问题单-DTS2014040401470】【SGSN产品：OSPF】linux x86 系统函数times存在bug，需要VISP提供规避方案 , 2014/6/3   问题单号:DTS2014052908271 */
 /*定时器切换信息*/
 typedef struct tagOSPF_SHOW_TIMER_SWITCH
 {
@@ -518,7 +478,6 @@ typedef struct tagOSPF_SHOW_TIMER_SWITCH
   BOOL_T bNeedCalcOffset;
   UCHAR pad[2];
 }OSPF_SHOW_TIMER_SWITCH_S;
-/* End of Added by guojianjun178934, 2014/6/3   问题单号:DTS2014052908271 */
 
 #ifdef __cplusplus
 }

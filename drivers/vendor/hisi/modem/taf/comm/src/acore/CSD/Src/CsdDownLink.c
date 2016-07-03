@@ -34,21 +34,7 @@ extern VOS_UINT32 AT_SendCsdZcDataToModem(
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : CSD_DL_ProcIsr
- 功能描述  : DICC下行中断响应函数，在DICC_Init时注册
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月14日
-    作    者   : w00199382
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CSD_DL_ProcIsr(VOS_VOID)
 {
     VOS_SEM                             hDLDataSem = VOS_NULL_PTR;
@@ -63,29 +49,7 @@ VOS_VOID CSD_DL_ProcIsr(VOS_VOID)
     VOS_SmV(hDLDataSem);
 }
 
-/*****************************************************************************
- 函 数 名  : CSD_DL_SendData
- 功能描述  : 从通道中获取数据并发送
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月7日
-    作    者   : w00199382
-    修改内容   : 新生成函数
-  2.日    期   : 2012年05月21日
-    作    者   : f00179208
-    修改内容   : 问题单号:DTS2012052101051,C核过来的数据需要进行虚实地址转换
-  3.日    期   : 2012年8月31日
-    作    者   : l60609
-    修改内容   : AP适配项目：修改IMM接口
-  4.日    期   : 2013年05月28日
-    作    者   : f00179208
-    修改内容   : V3R3 PPP PROJECT
-*****************************************************************************/
 VOS_VOID CSD_DL_SendData(VOS_VOID)
 {
     IMM_ZC_STRU                        *pstCsdDLMem;
@@ -153,9 +117,7 @@ VOS_VOID CSD_DL_SendData(VOS_VOID)
             }
 
             /*此步骤不能少用来偏移数据尾指针*/
-            /* Modified by l60609 for AP适配项目 ，2012-08-31 Begin */
             ImmZcData = (VOS_CHAR *)IMM_ZcPut(pstCsdDLMem, stDLData.usLen);
-            /* Modified by l60609 for AP适配项目 ，2012-08-31 End */
 
             PS_MEM_CPY(ImmZcData, (VOS_UINT8 *)TTF_PHY_TO_VIRT((VOS_VOID *)(stDLData.pucData)), stDLData.usLen);
 
@@ -200,21 +162,7 @@ VOS_VOID CSD_DL_SendData(VOS_VOID)
     }
 
 }
-/*****************************************************************************
- 函 数 名  : CSD_DL_ClearData
- 功能描述  : 清除未拨通电话时DICC发送来的数据
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月14日
-    作    者   : w00199382
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CSD_DL_ClearData(VOS_VOID)
 {
     VOS_UINT32                          ulDICCNodeCnt;
@@ -259,23 +207,7 @@ VOS_VOID CSD_DL_ClearData(VOS_VOID)
 
     CSD_NORMAL_LOG(ACPU_PID_CSD,"CSD_DL_ClearData Done");
 }
-/*****************************************************************************
- 函 数 名  : CSD_DL_ProcData
- 功能描述  : 下行数据自处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月7日
-    作    者   : w00199382
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月13日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-*****************************************************************************/
 VOS_VOID CSD_DL_ProcDataTask(VOS_VOID)
 {
     VOS_SEM                             hDownLinkSem;

@@ -5736,15 +5736,7 @@ typedef struct
     UCOM_NV_GSM_TAS_SEARCHING_PARA_STRU     stGsmDualAntSearchingPara;          /* 双天线切换SEARCHING参数(TAS MAS共用) */
 }UCOM_NV_GSM_TAS_MAS_SCHL_PARA_STRU;
 
-/*****************************************************************************
-结构名    : UCOM_NV_W_CS_ANT2_CTRL_STRU
-结构说明  :
-对应NVID:
 
-  1.日    期   : 2014年12月30日
-    作    者   : z68255
-    修改内容   : 初始生成
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16                          uhwCsAnt2AutoSwitch;                    /* 语音动态分集开关 */
@@ -7108,15 +7100,7 @@ typedef struct
 }UCOM_NV_TRI_MODE_FEM_PROFILE_ID_STRU;
 
 
-/*****************************************************************************
-结构名    : UCOM_NV_MODE_BASIC_PARA_STRU
-结构说明  :
-对应NVID:
 
-  1.日    期   : 2014年12月30日
-    作    者   : z68255
-    修改内容   : 初始生成
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16                              uhwABBSwitch;                       /* 用于ABB PLL开关的控制。0:ABB CH0 1:ABB CH1 2:ABB CH0&CH1都打开 */
@@ -7154,15 +7138,7 @@ typedef struct
 }UCOM_NV_TRI_MODE_FEM_CHAN_PROFILE_STRU;
 
 
-/*****************************************************************************
-结构名    : UCOM_NV_MODE_BASIC_EXT_PARA_STRU
-结构说明  :
-对应NVID:
 
-  1.日    期   : 2014年12月30日
-    作    者   : z68255
-    修改内容   : 初始生成
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16                              uhwABBSwitch;                       /* 用于ABB PLL开关的控制。0:ABB CH0 1:ABB CH1 2:ABB CH0&CH1都打开 */

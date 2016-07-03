@@ -1,48 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasCcMmccProc.c
-  版 本 号   : 初稿
-  作    者   : 丁庆 49431
-  生成日期   : 2007年8月31日
-  最近修改   : 2007年8月31日
-  功能描述   : 接收和处理来自MM的MMCC原语
-  函数列表   : NAS_CC_ProcMmccDataInd
-                NAS_CC_ProcMmccErrInd
-                NAS_CC_ProcMmccEstCnf
-                NAS_CC_ProcMmccEstInd
-                NAS_CC_ProcMmccPrimitive
-                NAS_CC_ProcMmccPromptInd
-                NAS_CC_ProcMmccReestCnf
-                NAS_CC_ProcMmccRelInd
-                NAS_CC_ProcMmccSyncInd
-  修改历史   :
-  1.日    期   : 2007年8月31日
-    作    者   : 丁庆 49431
-    修改内容   : 创建文件
-  2.日    期   : 2008年6月25日
-    作    者   :  l00130025
-    修改内容   : 问题单号：AT2D03940
-  3.日    期   : 2008年7月12日
-    作    者   : 黎客来 00130025
-    修改内容   : 问题单号:AT2D04057
-  4.日    期   : 2008年9月10日
-    作    者   : 黎客来 00130025
-    修改内容   : 问题单号:AT2D05028,启动呼叫重建定时器T303
-  5.日    期   : 2008年10月20日
-    作    者   : h44270
-    修改内容   : 问题单号:A32D14153,来电时，用户尚未接听电话就打开了声码器,，AMR速率变换没有上报
-  6.日    期   : 2010年1月26日
-    作    者   : s46746
-    修改内容   : 问题单号:AT2D16340被叫未接听，可以听到对方语音，原因是传送到
-                 NAS_CC_SetTchStatus第二个参数填写不正确
-
-  7.日    期   : 2010年3月2日
-    作    者   : zhoujun /z40661
-    修改内容   : NAS R7协议升级
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -101,20 +57,7 @@ NAS_CC_OTA_MSG_ID_STRU    g_astNasOtaMsgIdN2M[] = {
 /*****************************************************************************
   2 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : CC_ReportN2MOtaMsg
- 功能描述  : 勾取CC的空口消息发给OM
- 输入参数  : pNasMsg   - CC空口消息内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月13日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_CC_ReportN2MOtaMsg(
     CC_MSG_STRU                         *pNasMsg
 )
@@ -153,21 +96,7 @@ VOS_VOID NAS_CC_ReportN2MOtaMsg(
                        NAS_OTA_DIRECTION_DOWN, pNasMsg->ulCcMsgSize + 4, (VOS_UINT8 *)pNasMsg);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcMmccEstCnf
- 功能描述  : 处理MMCC_EST_CNF原语
-             注意: 需要MM同步修改，只发一次MMCC_EST_CNF
- 输入参数  : pMsg - MM发给CC的消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月16日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  NAS_CC_ProcMmccEstCnf(
     const VOS_VOID                      *pMsg
 )
@@ -199,27 +128,7 @@ VOS_VOID  NAS_CC_ProcMmccEstCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcMmccEstInd
- 功能描述  : 处理MMCC_EST_IND原语
-             注意: 需要MM同步修改，只发一次MMCC_EST_CNF
- 输入参数  : pMsg - MM发给CC的消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月16日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2009年9月126日
-    作    者   : s62952
-    修改内容  : AT2D14145
-  3.日    期   : 2013年03月13日
-    作    者   : z00214637
-    修改内容   : Delete M2
-*****************************************************************************/
 VOS_VOID  NAS_CC_ProcMmccEstInd(
     const VOS_VOID                      *pMsg
 )
@@ -237,23 +146,7 @@ VOS_VOID  NAS_CC_ProcMmccEstInd(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_LocalAbortDtmf
- 功能描述  : 通知MN DTMF操作结果
- 输入参数  : pMsg - MM发给CC的消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年07月02日
-    作    者   : 梁金广 65478
-    修改内容   : 新生成函数，问题单号:AT2D04057
-  2.日    期   : 2013年2月18日
-    作    者   : z00161729
-    修改内容   : DTS2013021803962:start dtmf rej后如果收到stop dtmf请求无需跟网络交互直接回复stop dtmf cnf
-*****************************************************************************/
 VOS_VOID NAS_CC_LocalAbortDtmf(
     NAS_CC_ENTITY_ID_T                  entityId
 )
@@ -291,23 +184,7 @@ VOS_VOID NAS_CC_LocalAbortDtmf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ConvertMmccRelCauseToMnccCause
- 功能描述  : 将NAS_MMCM_REL_CAUSE_ENUM_UINT32转换为 NAS_CC_CAUSE_VALUE_ENUM_U8中对应原因值
- 输入参数  : enMmccRelCause - mmcc之间rel cause值
- 输出参数  : enCcCause      - mncc之间cause值
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月29日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   :2013年9月14日
-    作    者   :z00161729
-    修改内容   :DTS2013082903019:支持ss重发功能
-*****************************************************************************/
 VOS_VOID NAS_CC_ConvertMmccRelCauseToMnccCause(
     NAS_MMCM_REL_CAUSE_ENUM_UINT32      enMmccRelCause,
     NAS_CC_CAUSE_VALUE_ENUM_U32         *penCcCause
@@ -322,38 +199,7 @@ VOS_VOID NAS_CC_ConvertMmccRelCauseToMnccCause(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcMmccRelInd
- 功能描述  : 处理MMCC_REL_IND原语
- 输入参数  : pMsg - MM发给CC的消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月16日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2008年7月12日
-    作    者   : 黎客来 00130025
-    修改内容   : 问题单号:AT2D04057
-  3.日    期   : 2012年10月29日
-    作    者   : z00161729
-    修改内容   : DTS2012083102536:支持cc呼叫重建
-  4.日    期   : 2013年6月26日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级
-  5.日    期   :2013年9月12日
-    作    者   :z00161729
-    修改内容   :DTS2013082903019:支持ss重发功能
-  6.日    期   : 2014年5月31日
-    作    者   : z00161729
-    修改内容   : DTS2014060402388:一路active呼叫，一路hold的mpty呼叫，at+chld=1过程中丢网所有呼叫都被释放后call状态异常挂死，hold mpty呼叫无法恢复
-  7.日    期   :2014年9月24日
-    作    者   :s00217060
-    修改内容   :for cs_err_log
-*****************************************************************************/
 VOS_VOID  NAS_CC_ProcMmccRelInd(
     const VOS_VOID                      *pMsg
 )
@@ -396,9 +242,7 @@ VOS_VOID  NAS_CC_ProcMmccRelInd(
 
         NAS_CC_INFO_LOG("NAS_CC_ProcMmccRelInd: ChangeCallState to U0.");
 
-        /* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
         NAS_CC_ProcSsSwitchCallRelease(entityId);
-        /* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 
         NAS_CC_SendMnccMsg(entityId, MNCC_REJ_IND, &enCcCause, sizeof(enCcCause));
 
@@ -412,24 +256,7 @@ VOS_VOID  NAS_CC_ProcMmccRelInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcMmccDataInd
- 功能描述  : 处理MMCC_DATA_IND原语
- 输入参数  : pMsg - MM发给CC的消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月16日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2013年03月13日
-    作    者   : z00214637
-    修改内容   : Delete M2
-
-*****************************************************************************/
 VOS_VOID  NAS_CC_ProcMmccDataInd(
     const VOS_VOID                      *pMsg
 )
@@ -446,27 +273,7 @@ VOS_VOID  NAS_CC_ProcMmccDataInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcMmccSyncInd
- 功能描述  : 处理MMCC_SYNC_IND原语
- 输入参数  : pMsg - MM发给CC的消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月16日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2010年1月26日
-    作    者   : s46746
-    修改内容   : 被叫未接听，可以听到对方语音，原因是传送到NAS_CC_SetTchStatus第
-                 二个参数填写不正确
-  3.日    期   : 2014年12月22日
-    作    者   : b00269685
-    修改内容   : ultra flash新增缓存机制
-*****************************************************************************/
 VOS_VOID  NAS_CC_ProcMmccSyncInd(
     const VOS_VOID                      *pMsg
 )
@@ -510,23 +317,7 @@ VOS_VOID  NAS_CC_ProcMmccSyncInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcMmccReestCnf
- 功能描述  : 处理MMCC_REEST_CNF原语
- 输入参数  : pMsg - MM发给CC的消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月16日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2008年7月12日
-    作    者   : 黎客来 00130025
-    修改内容   : 问题单号:AT2D04057
-*****************************************************************************/
 VOS_VOID  NAS_CC_ProcMmccReestCnf(
     const VOS_VOID                      *pMsg
 )
@@ -564,42 +355,7 @@ VOS_VOID  NAS_CC_ProcMmccReestCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcMmccErrInd
- 功能描述  : 处理MMCC_ERR_IND原语
- 输入参数  : pMsg - MM发给CC的消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月16日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2008年6月25日
-    作    者   :  l00130025
-    修改内容   : 问题单号：AT2D03940
-  3.日    期   : 2008年7月12日
-    作    者   : 黎客来 00130025
-    修改内容   : 问题单号:AT2D04057
-  4.日    期   : 2008年9月10日
-    作    者   : 黎客来 00130025
-    修改内容   : 问题单号:AT2D05028,启动呼叫重建定时器T303
-  5.日    期   : 2012年09月20日
-    作    者   : f62575
-    修改内容   : STK&DCM 项目
-  6.日    期   : 2012年10月29日
-    作    者   : z00161729
-    修改内容   : DTS2012083102536:支持cc呼叫重建
-  7.日    期   : 2013年04月12日
-    作    者   : f62575
-    修改内容   : DTS2013041503184,解决3G下RADIO LINK FAILURE没有按协议要求输出近端释放事件问题
-                 仅在呼叫重建失败后上报给UICC，此处删除MNCC_RADIO_LINK_FAILURE消息上报
-  8.日    期   : 2014年9月24日
-    作    者   : s00217060
-    修改内容   : for cs_err_log
-*****************************************************************************/
 VOS_VOID  NAS_CC_ProcMmccErrInd(
     const VOS_VOID                      *pMsg
 )
@@ -663,23 +419,7 @@ VOS_VOID  NAS_CC_ProcMmccErrInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcMmccPromptInd
- 功能描述  : 处理MMCC_PROMPT_IND原语
- 输入参数  : pMsg - MM发给CC的消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月16日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2014年6月13日
-    作    者   : w00242748
-    修改内容   : DSDS 新特性
-*****************************************************************************/
 VOS_VOID  NAS_CC_ProcMmccPromptInd(
     const VOS_VOID                      *pMsg
 )
@@ -707,26 +447,7 @@ VOS_VOID  NAS_CC_ProcMmccPromptInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcMmccEmcNumInd
- 功能描述  : 处理MMCC_EMC_NUM_LST_IND原语，告知紧急呼号码
- 输入参数  : pMsg - MM发给CC的消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年5月15日
-    作    者   : h44270
-    修改内容   : 新生成函数
-  2.日    期   : 2012年06月11日
-    作    者   : w00166186
-    修改内容   : AT&T&DCM项目
-  3.日    期   : 2012年12月11日
-    作    者   : l00167671
-    修改内容   : DTS2012121802573, TQE清理
-*****************************************************************************/
 VOS_VOID  NAS_CC_ProcMmccEmcNumListInd(
     const VOS_VOID                     *pMsg
 )
@@ -793,21 +514,7 @@ VOS_VOID  NAS_CC_ProcMmccEmcNumListInd(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : Nas_CC_ProcMmccGetCallInfoReq
- 功能描述  : 处理MMCC_GET_CALL_INFO_REQ原语
- 输入参数  : const VOS_VOID                      *pMsg;
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月17日
-    作    者   : n00355355
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID Nas_CC_ProcMmccGetCallInfoReq(
     const VOS_VOID                      *pMsg
 )
@@ -838,22 +545,8 @@ VOS_VOID Nas_CC_ProcMmccGetCallInfoReq(
     return;
 }
 
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-25, begin */
 #if (FEATURE_ON == FEATURE_IMS)
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcSrvccSucc
- 功能描述  : SRVCC成功的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月25日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  NAS_CC_ProcSrvccSucc(VOS_VOID)
 {
     VOS_UINT32                          i;
@@ -878,20 +571,7 @@ VOS_VOID  NAS_CC_ProcSrvccSucc(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcMmccSrvccStatusInd
- 功能描述  : 处理MMCC_SRVCC_STATUS_IND原语，告知SRVCC的状态
- 输入参数  : pstSrvccStasNtfMsg - MM发给CC的消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月25日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  NAS_CC_ProcMmccSrvccStatusInd(
     MMCC_SRVCC_STATUS_IND_STRU         *pstSrvccStasInd
 )
@@ -936,40 +616,18 @@ VOS_VOID  NAS_CC_ProcMmccSrvccStatusInd(
     return;
 }
 #endif
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-25, end */
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcMmccPrimitive
- 功能描述  : 接收和处理来自MM的MMCC原语
- 输入参数  : pMsg - MM发给CC的消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月16日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年03月03日
-    作    者   : s62952
-    修改内容   : BalongV300R002 Build优化项目
-  3.日    期   : 2013年09月25日
-    作    者   : w00176964
-    修改内容   : VoLTE_PhaseII 项目修改:增加MM通知的SRVCC过程状态处理
-*****************************************************************************/
 VOS_VOID  NAS_CC_ProcMmccPrimitive(
     const VOS_VOID                      *pMsg
 )
 {
     MSG_HEADER_STRU                    *pMsgHeader = (MSG_HEADER_STRU *)pMsg;
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     NAS_CC_CUSTOM_CFG_INFO_STRU        *pstCustomCfgAddr;
 
     /* 获取特性控制NV地址 */
     pstCustomCfgAddr                    = NAS_CC_GetCustomCfgInfo();
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
 
     NAS_CC_INFO_LOG1("NAS_CC_ProcMmccPrimitive: primitive:",
@@ -1008,34 +666,28 @@ VOS_VOID  NAS_CC_ProcMmccPrimitive(
         NAS_CC_ProcMmccRelInd(pMsg);
         break;
 
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
      case MMCC_PROMPT_IND:
          if (NAS_CC_NV_ITEM_ACTIVE == pstCustomCfgAddr->ucCcbsSupportFlg)
          {
              NAS_CC_ProcMmccPromptInd(pMsg);
          }
          break;
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
 
 
     case MMCC_EMC_NUM_LST_IND:
         NAS_CC_ProcMmccEmcNumListInd(pMsg);
         break;
 
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-25, begin */
 #if (FEATURE_ON == FEATURE_IMS)
     case MMCC_SRVCC_STATUS_IND:
         NAS_CC_ProcMmccSrvccStatusInd((MMCC_SRVCC_STATUS_IND_STRU *)pMsg);
         break;
 #endif
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-25, end */
 
-    /* Added by n00355355 for 呼叫重建, 2015-9-17, begin */
     case MMCC_GET_CALL_INFO_REQ:
         Nas_CC_ProcMmccGetCallInfoReq((MMCC_GET_CALL_INFO_REQ_STRU *)pMsg);
         break;
 
-    /* Added by n00355355 for 呼叫重建, 2015-9-17, end */
 
     case MMCC_RRC_CONN_REL_IND:
         NAS_CC_ProcMmccRrcConnRelInd(pMsg);
@@ -1049,20 +701,7 @@ VOS_VOID  NAS_CC_ProcMmccPrimitive(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcGmmccPrimitive
- 功能描述  : 接收和处理来自GMM的原语
- 输入参数  : pMsg - MM发给CC的消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年5月15日
-    作    者   : h44270
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  NAS_CC_ProcGmmccPrimitive(
     const VOS_VOID                      *pMsg
 )
@@ -1080,20 +719,7 @@ VOS_VOID  NAS_CC_ProcGmmccPrimitive(
     }
 
 }
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcMmccRrcConnRelInd
- 功能描述  : 接收和处理来自MM的MMCC_RRC_CONN_REL_IND
- 输入参数  : pMsg - MM发给CC的消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月12日
-    作    者   : j00174725
-    修改内容   : DTS2015121001913
-*****************************************************************************/
 VOS_VOID  NAS_CC_ProcMmccRrcConnRelInd(
     const VOS_VOID                      *pMsg
 )

@@ -1,15 +1,4 @@
-/*************************************************************************
-*   版权所有(C) 1987-2020, 深圳华为技术有限公司.
-*
-*   文 件 名 :  rf_power.c
-*
-*   作    者 :  zuofenghua
-*
-*   描    述 :  用于管理射频器件供电
-*
-*   修改记录 :  2015年3月23日  v1.00  zuofenghua  创建
-*
-*************************************************************************/
+
 #include <securec.h>
 #include <osl_malloc.h>
 #include <osl_sem.h>
@@ -348,16 +337,7 @@ static int balong_rf_get_module_status(PWC_COMM_MODULE_E module, PWC_COMM_MODE_E
 
     return status;
 }
-/*****************************************************************************
-* 函 数    : balong_rf_regulator_get_status
-* 功 能    : 获取硬件的真实电源开关状态
-* 输 入    : 无
-* 输 出    : 无
-* 返 回    :
-* 作 者    : z00228752
-* 说 明    : 内部接口
 
-*****************************************************************************/
 static int balong_rf_regulator_get_status(u32 pwr_id, PWC_COMM_MODULE_E module, PWC_COMM_MODE_E mode, PWC_COMM_MODEM_E modem, PWC_COMM_CHANNEL_E chn)
 {
     if(!rfpwr_info[pwr_id].valid){
@@ -373,16 +353,7 @@ static int balong_rf_regulator_get_status(u32 pwr_id, PWC_COMM_MODULE_E module, 
     return regulator_is_enabled(rfpwr_info[pwr_id].regu);
 
 }
-/*****************************************************************************
-* 函 数    : balong_rf_regulator_disable_local
-* 功 能    : 关闭电源内部接口
-* 输 入    : 无
-* 输 出    : 无
-* 返 回    :
-* 作 者    : z00228752
-* 说 明    : 内部接口，与balong_rf_regulator_disable的区别是给int\suspend\resume流程调用
-                    不需要判断dts中disable选项
-*****************************************************************************/
+
 static int balong_rf_regulator_disable_local(u32 pwr_id)
 {
 
@@ -397,15 +368,7 @@ static int balong_rf_regulator_disable_local(u32 pwr_id)
     return regulator_disable(rfpwr_info[pwr_id].regu);
 }
 
-/*****************************************************************************
-* 函 数    : balong_rfpower_set_voltage
-* 功 能    : 前端器件设置电压
-* 输 入    : 无
-* 输 出    : 无
-* 返 回    :
-* 作 者    : z00228752
-* 说 明    : pa的编号根据chn号确定
-*****************************************************************************/
+
 int balong_rfpower_set_voltage( EX_RFFE_POWER_ID_E consumer_id, u32 voltage_mv, PWC_COMM_CHANNEL_E chn )
 {
     RFFE_POWER_ID_E pwr_id =  balong_get_rffe_powerid(consumer_id, chn);
@@ -423,15 +386,7 @@ int balong_rfpower_set_voltage( EX_RFFE_POWER_ID_E consumer_id, u32 voltage_mv, 
     return regulator_set_voltage(rfpwr_info[pwr_id].regu, (int)voltage_mv * 1000 , (int)voltage_mv * 1000);
 }
 
-/*****************************************************************************
-* 函 数    : balong_rfpower_set_voltage
-* 功 能    : 前端器件查询电压
-* 输 入    : 无
-* 输 出    : 无
-* 返 回    :
-* 作 者    :z00228752
-* 说 明    :pa的编号根所chn号确定
-*****************************************************************************/
+
 int balong_rfpower_get_voltage( EX_RFFE_POWER_ID_E consumer_id, PWC_COMM_CHANNEL_E chn)
 {
     RFFE_POWER_ID_E pwr_id =  balong_get_rffe_powerid(consumer_id, chn);
@@ -477,15 +432,7 @@ static void balong_rfpoweroff_debuginfo_add(PWR_DBG_E dbg_id, PWC_COMM_CHANNEL_E
 
 }
 
-/*****************************************************************************
-* 函 数    : balong_pa_power_on
-* 功 能    : PA上电
-* 输 入    : 无
-* 输 出    : 无
-* 返 回    : 0为上电成功
-* 作 者    :z00228752
-* 说 明    :pa的编号根所chn号确定
-*****************************************************************************/
+
 int balong_pa_power_on(PWC_COMM_MODE_E mode, PWC_COMM_MODEM_E modem, PWC_COMM_CHANNEL_E chn)
 {
     unsigned int  pwr_id1  = 0;
@@ -529,15 +476,7 @@ int balong_pa_power_on(PWC_COMM_MODE_E mode, PWC_COMM_MODEM_E modem, PWC_COMM_CH
 }
 
 
-/*****************************************************************************
-* 函 数    : balong_pa_power_off
-* 功 能    : PA上电
-* 输 入    : 无
-* 输 出    : 无
-* 返 回    : 0为下电成功
-* 作 者    :z00228752
-* 说 明    :pa的编号根所chn号确定
-*****************************************************************************/
+
 int balong_pa_power_off(PWC_COMM_MODE_E mode, PWC_COMM_MODEM_E modem, PWC_COMM_CHANNEL_E chn)
 {
     u32  pwr_id1   = 0;
@@ -586,15 +525,7 @@ int balong_pa_power_off(PWC_COMM_MODE_E mode, PWC_COMM_MODEM_E modem, PWC_COMM_C
 
 }
 
-/*****************************************************************************
-* 函 数    : balong_pa_power_status
-* 功 能    : PA供电各模投票状态查询接口
-* 输 入    : 无
-* 输 出    : 无
-* 返 回    : 0为下电，1为上电，-1为不确定
-* 作 者    :z00228752
-* 说 明    :pa的编号根所chn号确定
-*****************************************************************************/
+
 int balong_pa_power_status(PWC_COMM_MODE_E mode, PWC_COMM_MODEM_E modem, PWC_COMM_CHANNEL_E chn)
 {
     unsigned int  pwr_id1 = 0;
@@ -619,15 +550,7 @@ int balong_pa_power_status(PWC_COMM_MODE_E mode, PWC_COMM_MODEM_E modem, PWC_COM
     return status;
 }
 
-/*****************************************************************************
-* 函 数    : balong_pa_power_status
-* 功 能    : PA上电
-* 输 入    : 无
-* 输 出    : 无
-* 返 回    : 0为下电，1为上电，-1为不确定
-* 作 者    :z00228752
-* 说 明    :pa的编号根所chn号确定
-*****************************************************************************/
+
 int balong_pa_power_hw_status(PWC_COMM_MODE_E mode, PWC_COMM_MODEM_E modem, PWC_COMM_CHANNEL_E chn)
 {
     unsigned int  pwr_id1 = 0;
@@ -673,15 +596,7 @@ int balong_pa_power_hw_status(PWC_COMM_MODE_E mode, PWC_COMM_MODEM_E modem, PWC_
     return status ;
 }
 
-/*****************************************************************************
-* 函 数    : balong_rfic_power_on
-* 功 能    : rfic上电
-* 输 入    : 无
-* 输 出    : 无
-* 返 回    : 0为上电成功
-* 作 者    :z00228752
-* 说 明    :rfic的编号根所chn号确定
-*****************************************************************************/
+
 int balong_rfic_power_on(PWC_COMM_MODE_E mode, PWC_COMM_MODEM_E modem, PWC_COMM_CHANNEL_E chn)
 {
     unsigned int  pwr_id1  = 0;
@@ -723,15 +638,7 @@ int balong_rfic_power_on(PWC_COMM_MODE_E mode, PWC_COMM_MODEM_E modem, PWC_COMM_
     return ret;
 }
 
-/*****************************************************************************
-* 函 数    : balong_rfic_power_off
-* 功 能    : rfic下电
-* 输 入    : 无
-* 输 出    : 无
-* 返 回    : 0为下电成功
-* 作 者    :z00228752
-* 说 明    :rfic的编号根据chn号确定
-*****************************************************************************/
+
 int balong_rfic_power_off(PWC_COMM_MODE_E mode, PWC_COMM_MODEM_E modem, PWC_COMM_CHANNEL_E chn)
 {
     u32  pwr_id1   = 0;
@@ -778,15 +685,7 @@ int balong_rfic_power_off(PWC_COMM_MODE_E mode, PWC_COMM_MODEM_E modem, PWC_COMM
     return ret;
 }
 
-/*****************************************************************************
-* 函 数    : balong_rfic_power_status
-* 功 能    : rfic供电物理状态查询接口
-* 输 入    : 无
-* 输 出    : 无
-* 返 回    : 0为上电成功
-* 作 者    :z00228752
-* 说 明    :rfic的编号根所chn号确定
-*****************************************************************************/
+
 int balong_rfic_power_status(PWC_COMM_MODE_E mode, PWC_COMM_MODEM_E modem, PWC_COMM_CHANNEL_E chn)
 {
     unsigned int  pwr_id  = 0;
@@ -807,15 +706,7 @@ int balong_rfic_power_status(PWC_COMM_MODE_E mode, PWC_COMM_MODEM_E modem, PWC_C
     return status;
 }
 
-/*****************************************************************************
-* 函 数    : balong_rfic_power_hw_status
-* 功 能    : rfic电源开关状态查询
-* 输 入    : 无
-* 输 出    : 无
-* 返 回    : 1为上电,0为下电
-* 作 者    :z00228752
-* 说 明    :rfic的编号根所chn号确定
-*****************************************************************************/
+
 int balong_rfic_power_hw_status( PWC_COMM_MODE_E mode, PWC_COMM_MODEM_E modem, PWC_COMM_CHANNEL_E chn)
 {
     unsigned int  pwr_id1  = 0;
@@ -862,15 +753,7 @@ int balong_rfic_power_hw_status( PWC_COMM_MODE_E mode, PWC_COMM_MODEM_E modem, P
     return status;
 }
 
-/*****************************************************************************
-* 函 数    : balong_fem_power_on
-* 功 能    : fem上电
-* 输 入    : 无
-* 输 出    : 无
-* 返 回    : 0为上电成功
-* 作 者    :z00228752
-* 说 明    :fem 的编号根所modem号确定
-*****************************************************************************/
+
 int balong_fem_power_on(PWC_COMM_MODE_E mode, PWC_COMM_MODEM_E modem, PWC_COMM_CHANNEL_E chn)
 {
     unsigned int  pwr_id   = 0;
@@ -899,15 +782,7 @@ int balong_fem_power_on(PWC_COMM_MODE_E mode, PWC_COMM_MODEM_E modem, PWC_COMM_C
 }
 
 
-/*****************************************************************************
-* 函 数    : balong_fem_power_off
-* 功 能    : fem下电
-* 输 入    : 无
-* 输 出    : 无
-* 返 回    : 0为下电成功
-* 作 者    :z00228752
-* 说 明    :fem 的编号根所modem号确定
-*****************************************************************************/
+
 int balong_fem_power_off(PWC_COMM_MODE_E mode, PWC_COMM_MODEM_E modem, PWC_COMM_CHANNEL_E chn)
 {
     u32  pwr_id    = 0;
@@ -941,15 +816,7 @@ int balong_fem_power_off(PWC_COMM_MODE_E mode, PWC_COMM_MODEM_E modem, PWC_COMM_
     return ret;
 }
 
-/*****************************************************************************
-* 函 数    : balong_fem_power_status
-* 功 能    : fem下电
-* 输 入    : 无
-* 输 出    : 无
-* 返 回    : 0为下电，1为上电
-* 作 者    :z00228752
-* 说 明    :fem 的编号根所modem号确定
-*****************************************************************************/
+
 int balong_fem_power_status(PWC_COMM_MODE_E mode, PWC_COMM_MODEM_E modem, PWC_COMM_CHANNEL_E chn)
 {
     unsigned int  pwr_id  = 0;
@@ -966,15 +833,7 @@ int balong_fem_power_status(PWC_COMM_MODE_E mode, PWC_COMM_MODEM_E modem, PWC_CO
     return ret;
 }
 
-/*****************************************************************************
-* 函 数    : balong_fem_power_hw_status
-* 功 能    : fem电源状态查询
-* 输 入    : 无
-* 输 出    : 无
-* 返 回    : 1为上电,0为下电
-* 作 者    : z00228752
-* 说 明    : fem 的编号根所modem号确定
-*****************************************************************************/
+
 int balong_fem_power_hw_status(PWC_COMM_MODE_E mode, PWC_COMM_MODEM_E modem, PWC_COMM_CHANNEL_E chn)
 {
     unsigned int  pwr_id   = 0;
@@ -997,15 +856,7 @@ int balong_fem_power_hw_status(PWC_COMM_MODE_E mode, PWC_COMM_MODEM_E modem, PWC
     return !!status;
 }
 
-/*****************************************************************************
-* 函 数    : balong_rfclk_enable
-* 功 能    : 打开pmu给rfclk提供的时钟
-* 输 入    : 无
-* 输 出    : 无
-* 返 回    :
-* 作 者    : z00228752
-* 说 明    : clk的编号根chn号确定
-*****************************************************************************/
+
 int balong_rfclk_enable(PWC_COMM_MODE_E mode, PWC_COMM_MODEM_E modem, PWC_COMM_CHANNEL_E chn)
 {
     unsigned int  first_on = 0;
@@ -1039,15 +890,7 @@ int balong_rfclk_enable(PWC_COMM_MODE_E mode, PWC_COMM_MODEM_E modem, PWC_COMM_C
     return RFFE_OK;
 }
 
-/*****************************************************************************
-* 函 数    : balong_rfclk_disable
-* 功 能    : 关闭pmu给rfclk提供的时钟
-* 输 入    : 无
-* 输 出    : 无
-* 返 回    :
-* 作 者    :z00228752
-* 说 明    :clk的编号根chn号确定
-*****************************************************************************/
+
 int balong_rfclk_disable(PWC_COMM_MODE_E mode, PWC_COMM_MODEM_E modem, PWC_COMM_CHANNEL_E chn)
 {
     u64           cur_state = 0;
@@ -1085,15 +928,7 @@ int balong_rfclk_disable(PWC_COMM_MODE_E mode, PWC_COMM_MODEM_E modem, PWC_COMM_
     return RFFE_OK;
 }
 
-/*****************************************************************************
-* 函 数    : balong_rfclk_hw_status
-* 功 能    : 查询pmu给rfclk提供的时钟状态,查看逻辑状态
-* 输 入    : 无
-* 输 出    : 无
-* 返 回    :
-* 作 者    :z00228752
-* 说 明    :clk的编号根chn号确定
-*****************************************************************************/
+
 int balong_rfclk_status(PWC_COMM_MODE_E mode, PWC_COMM_MODEM_E modem, PWC_COMM_CHANNEL_E chn)
 {
     int           status  = 0;
@@ -1112,15 +947,7 @@ int balong_rfclk_status(PWC_COMM_MODE_E mode, PWC_COMM_MODEM_E modem, PWC_COMM_C
 
 }
 
-/*****************************************************************************
-* 函 数    : balong_rfclk_hw_status
-* 功 能    : 查询pmu给rfclk提供的时钟状态
-* 输 入    : 无
-* 输 出    : 无
-* 返 回    :
-* 作 者    : z00228752
-* 说 明    : clk的编号根chn号确定
-*****************************************************************************/
+
 int balong_rfclk_hw_status(PWC_COMM_MODE_E mode, PWC_COMM_MODEM_E modem, PWC_COMM_CHANNEL_E chn)
 {
     int status = 0;
@@ -1144,15 +971,7 @@ int balong_rfclk_hw_status(PWC_COMM_MODE_E mode, PWC_COMM_MODEM_E modem, PWC_COM
     return !!status;
 
 }
-/*****************************************************************************
-* 函 数    : balong_vio_power_off
-* 功 能    : 低功耗恢复时，把需要打开的电源上电
-* 输 入    : 无
-* 输 出    : 无
-* 返 回    : 0为下电成功
-* 作 者    :z00228752
-* 说 明    :
-*****************************************************************************/
+
 int balong_rf_power_resume(void)
 {
     int ret    = RFFE_OK;
@@ -1165,15 +984,7 @@ int balong_rf_power_resume(void)
     }
     return ret;
 }
-/*****************************************************************************
-* 函 数    : balong_vio_power_off
-* 功 能    : 低或耗睡眠前，把需要关闭的电源下电
-* 输 入    : 无
-* 输 出    : 无
-* 返 回    : 0为下电成功
-* 作 者    :z00228752
-* 说 明    :
-*****************************************************************************/
+
 int balong_rf_power_suspend(void)
 {
     int ret    = RFFE_OK;
@@ -1270,15 +1081,7 @@ int balong_rf_power_dts_init(void)
 
     return RFFE_OK;
 }
-/*****************************************************************************
-* 函 数    : balong_rf_power_init
-* 功 能    : 射频供电初始化
-* 输 入    : 无
-* 输 出    : 无
-* 返 回    :
-* 作 者    :z00228752
-* 说 明    :
-*****************************************************************************/
+
 int balong_rf_power_init(void)
 {
     int          ret = 0;
@@ -1478,16 +1281,7 @@ void balong_rfpower_debug_unit(PWR_DBG_E id)
         }
 }
 
-/*****************************************************************************
-* 函 数    : balong_rfpower_debug
-* 功 能    : 前端器件设置电压
-* 输 入    : 无
-* 输 出    : 无
-* 返 回    :
-* 作 者    : z00228752
-* 说 明    : 内部接口
-                    不需要判断disable接口
-*****************************************************************************/
+
 void balong_rfpower_debug_help(void)
 {
     rf_print_dbg("PWR_DBG_E id is RFIC--0,FEM--1,PA--2,RFCLK--3\n");

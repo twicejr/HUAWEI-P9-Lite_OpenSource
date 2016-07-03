@@ -1,15 +1,4 @@
-/******************************************************************************
 
-        @(#)Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : NasCommBuffer.c
-    Description : 缓存区相关处理
-    History     :
-     1.李洪 00150010        2010-01-28  Draft Enact
-     2.李洪 00150010        2010-04-29  Modify
-
-******************************************************************************/
 
 
 /*****************************************************************************
@@ -55,19 +44,7 @@ NAS_COMM_BUFFER_CTRL_BLOCK_STRU         g_astNasBuffCtrlBlockTable[NAS_COMM_BUFF
   3 Function
 *****************************************************************************/
 /*lint -e826*/
-/*****************************************************************************
- Function Name   : NAS_COMM_CheckBuff
- Description     : 判断用户请求释放的地址是否合法
- Input           : pucBuffItemAddr-----------缓存记录首地址
-                   ulMaxBuffItemLen----------缓存记录最大长度
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2010-1-28  Draft Enact
-    2.lihong00150010      2010-4-22  Modify
-
-*****************************************************************************/
 /*lint -e961*/
 VOS_UINT32  NAS_COMM_CheckBuff
 (
@@ -102,19 +79,7 @@ VOS_UINT32  NAS_COMM_CheckBuff
     return NAS_COMM_BUFF_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_COMM_InitBuffItem
- Description     : 初始化缓存记录
- Input           : pucBuffItemAddr-----------缓存记录首地址
-                   ulMaxBuffItemLen----------缓存记录最大长度
- Output          :
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2010-1-28  Draft Enact
-    2.lihong00150010      2010-4-24  Modify
-
-*****************************************************************************/
 VOS_VOID  NAS_COMM_InitBuffItem
 (
     VOS_UINT8                          *pucBuffItemAddr,
@@ -139,18 +104,7 @@ VOS_VOID  NAS_COMM_InitBuffItem
     *pulNasBuffItemTail = NAS_COMM_BUFF_PROT_CRC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_COMM_ClearBuffItem
- Description     : 清除缓存记录
- Input           : pucBuffItemAddr-----------缓存记录首地址
-                   ulMaxBuffItemLen----------缓存记录最大长度
- Output          :
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2010-4-22  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_COMM_ClearBuffItem
 (
     VOS_UINT8                          *pucBuffItemAddr,
@@ -172,18 +126,7 @@ VOS_VOID  NAS_COMM_ClearBuffItem
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_COMM_QueryBuffTypeTableItem
- Description     : 查找缓存类型表记录
- Input           : enNasBuffType----------------NAS缓存类型
-                   pulIndex---------------------缓存类型表记录索引号指针
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2010-4-21  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_COMM_QueryBuffTypeTableItem
 (
     NAS_COMM_BUFF_TYPE_ENUM_UINT8       enNasBuffType,
@@ -213,18 +156,7 @@ VOS_UINT32 NAS_COMM_QueryBuffTypeTableItem
     return NAS_COMM_BUFF_QUERY_TYPE_TABLE_FAIL;
 }
 
-/*****************************************************************************
- Function Name   : NAS_COMM_InitBuff
- Description     : 初始化缓存区
- Input           : enNasBuffType----------------NAS缓存类型
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2010-1-28  Draft Enact
-    2.lihong00150010      2010-4-22  Modify
-
-*****************************************************************************/
 VOS_VOID  NAS_COMM_InitBuff
 (
     NAS_COMM_BUFF_TYPE_ENUM_UINT8            enNasBuffType
@@ -292,18 +224,7 @@ VOS_VOID  NAS_COMM_InitBuff
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_COMM_AllocBuffItem
- Description     : 分配新的缓存记录
- Input           : enNasBuffType------------NAS缓存类型
-                   ulAllocLen---------------请求分配空间大小
- Return          : VOS_VOID*
 
- History         :
-    1.lihong00150010      2010-1-28  Draft Enact
-    2.lihong00150010      2010-4-22  Modify
-
-*****************************************************************************/
 VOS_VOID*  NAS_COMM_AllocBuffItem
 (
     NAS_COMM_BUFF_TYPE_ENUM_UINT8       enNasBuffType,
@@ -384,18 +305,7 @@ VOS_VOID*  NAS_COMM_AllocBuffItem
     return VOS_NULL_PTR;
 }
 
-/*****************************************************************************
- Function Name   : NAS_COMM_FreeBuffItem
- Description     : 释放缓存记录
- Input           : enNasBuffType----------------NAS缓存类型
-                   pBufferItemAddr--------------缓存记录地址
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2010-04-21  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_COMM_FreeBuffItem
 (
     NAS_COMM_BUFF_TYPE_ENUM_UINT8       enNasBuffType,
@@ -491,17 +401,7 @@ VOS_UINT32  NAS_COMM_FreeBuffItem
     return NAS_COMM_BUFF_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_COMM_ClearBuff
- Description     : 清空缓存区
- Input           : enNasBuffType----------------NAS缓存类型
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2010-4-24  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_COMM_ClearBuff
 (
     NAS_COMM_BUFF_TYPE_ENUM_UINT8       enNasBuffType

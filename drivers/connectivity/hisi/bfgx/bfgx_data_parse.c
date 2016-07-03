@@ -127,6 +127,8 @@ int32 ps_exe_sys_func(struct ps_core_s *ps_core_d, uint8 *buf_ptr)
     struct pm_drv_data *pm_data = NULL;
     struct st_exception_info *pst_exception_data = NULL;
     uint8 syschar;
+    uint64 flags;
+
     PS_PRINT_FUNCTION_NAME;
 
     if (NULL == ps_core_d)
@@ -232,8 +234,17 @@ int32 ps_exe_sys_func(struct ps_core_s *ps_core_d, uint8 *buf_ptr)
             }
             else
             {
-                pm_data->ps_pm_interface->operate_beat_timer(BEAT_TIMER_DELETE);
-                ps_core_d->ps_pm->bfg_wake_unlock();
+                spin_lock_irqsave(&pm_data->wakelock_protect_spinlock, flags);
+                if(BFGX_ACTIVE == pm_data->bfgx_dev_state)
+                {
+                    PS_PRINT_INFO("dev wkup isr occur during waiting for dev_ack\n");
+                }
+                else
+                {
+                    pm_data->ps_pm_interface->operate_beat_timer(BEAT_TIMER_DELETE);
+                    ps_core_d->ps_pm->bfg_wake_unlock();
+                }
+                spin_unlock_irqrestore(&pm_data->wakelock_protect_spinlock, flags);
             }
         }
         else
@@ -1435,6 +1446,7 @@ int32 ps_core_recv(void *disc_data, const uint8 *data, int32 count)
 
     ps_core_d = (struct ps_core_s *)disc_data;
 
+#ifdef PLATFORM_DEBUG_ENABLE
     if (g_uart_rx_dump)
     {
         if(NULL != ps_core_d->rx_data_fp)
@@ -1446,6 +1458,7 @@ int32 ps_core_recv(void *disc_data, const uint8 *data, int32 count)
             PS_PRINT_WARNING("uart rx dump dir not make or uart not translate data\n");
         }
     }
+#endif
 
     ps_core_d->rx_decode_tty_ptr = (uint8 *)data;
     while (count)
@@ -1789,22 +1802,7 @@ void ps_core_tx_work(struct work_struct *work)
     return;
 }
 
-/**
- * Prototype    : ps_add_packet_head
- * Description  : add packet head to recv buf from hal or bt driver.
- * input        : buf  -> ptr of buf
- *                type -> packet type£¬example bt,fm,or gnss
- *                lenth-> packet length
- * output       : not
- * Calls        :
- * Called By    :
- *
- *   History        :
- *   1.Date         : 2012/11/05
- *     Author       : wx144390
- *     Modification : Created function
- *
- */
+
 int32 ps_add_packet_head(uint8 *buf, uint8 type, uint16 lenth)
 {
     int8 *ptr;

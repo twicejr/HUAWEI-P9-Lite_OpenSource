@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : frw_event_main.c
-  版 本 号   : 初稿
-  作    者   : mayuan m00212148
-  生成日期   : 2012年10月12日
-  最近修改   :
-  功能描述   : 事件管理对外接口(对IPC接口、对业务接口)实现
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年10月12日
-    作    者   : mayuan m00212148
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -202,21 +185,7 @@ OAL_STATIC DECLARE_WIFI_PANIC_STRU(frw_panic_stat,frw_print_panic_stat);
 /*****************************************************************************
   4 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : frw_event_init_event_queue
- 功能描述  : 初始化事件队列
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月13日
-    作    者   : mayuan m00212148
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  frw_event_init_event_queue(oal_void)
 {
     oal_uint32    ul_core_id;
@@ -245,21 +214,7 @@ OAL_STATIC oal_uint32  frw_event_init_event_queue(oal_void)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : frw_event_lookup_process_entry
- 功能描述  : 根据事件类型，子类型以及分段号，找到相应事件处理函数
- 输入参数  : pst_event_mem: 指向事件内存块的指针
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月13日
-    作    者   : mayuan m00212148
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32  _frw_event_lookup_process_entry_(frw_event_mem_stru *pst_event_mem, frw_event_hdr_stru *pst_event_hrd)
 {
     oal_uint8                    uc_index;
@@ -448,21 +403,7 @@ oal_uint32  frw_event_lookup_process_entry(frw_event_mem_stru *pst_event_mem, fr
 }
 
 
-/*****************************************************************************
- 函 数 名  : frw_event_destroy_event_queue
- 功能描述  : 销毁事件队列
- 输入参数  : ul_core_id: 核号
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月13日
-    作    者   : mayuan m00212148
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void  frw_event_destroy_event_queue(oal_uint32 ul_core_id)
 {
     oal_uint16    us_qid;
@@ -474,21 +415,7 @@ OAL_STATIC oal_void  frw_event_destroy_event_queue(oal_uint32 ul_core_id)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : frw_event_init_sched
- 功能描述  : 初始化调度器
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月13日
-    作    者   : mayuan m00212148
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  frw_event_init_sched(oal_void)
 {
     oal_uint32    ul_core_id;
@@ -514,21 +441,7 @@ OAL_STATIC oal_uint32  frw_event_init_sched(oal_void)
 }
 
 #ifdef _PRE_FRW_EVENT_PROCESS_TRACE_DEBUG
-/*****************************************************************************
- 函 数 名  : frw_event_trace_init
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   :
-    作    者   :
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32 frw_event_trace_init(oal_void)
 {
     oal_uint32    ul_core_id;
@@ -548,21 +461,7 @@ OAL_STATIC oal_uint32 frw_event_trace_init(oal_void)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : frw_event_trace_exit
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   :
-    作    者   :
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void frw_event_trace_exit(oal_void)
 {
     oal_uint32    ul_core_id;
@@ -577,21 +476,7 @@ OAL_STATIC oal_void frw_event_trace_exit(oal_void)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : frw_event_dispatch_event
- 功能描述  : 事件分发接口(分发事件至核间通讯、事件队列、或者查表寻找相应事件处理函数)
- 输入参数  : pst_event_mem: 指向事件内存块的指针
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月12日
-    作    者   : mayuan m00212148
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  frw_event_dispatch_event(frw_event_mem_stru *pst_event_mem)
 {
 #if (_PRE_MULTI_CORE_MODE_PIPELINE_AMP == _PRE_MULTI_CORE_MODE)
@@ -707,21 +592,7 @@ OAL_STATIC oal_int32 frw_sysfs_entry_exit(oal_void)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : frw_event_init
- 功能描述  : 事件管理模块初始化总入口
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月12日
-    作    者   : mayuan m00212148
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 frw_event_init(oal_void)
 {
     oal_uint32    ul_ret;
@@ -774,21 +645,7 @@ oal_uint32 frw_event_init(oal_void)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : frw_event_exit
- 功能描述  : 事件管理模块卸载接口
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月12日
-    作    者   : mayuan m00212148
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  frw_event_exit(oal_void)
 {
     oal_uint32    ul_core_id;
@@ -823,21 +680,7 @@ oal_void frw_event_sub_rx_adapt_table_init(frw_event_sub_table_item_stru *pst_su
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : frw_event_queue_enqueue
- 功能描述  : 将事件内存放入相应的事件队列
- 输入参数  : pst_event_mem: 指向事件内存块的指针
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月23日
-    作    者   : wangjianchang wWX278082
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  frw_event_queue_enqueue(frw_event_queue_stru *pst_event_queue, frw_event_mem_stru *pst_event_mem)
 {
     oal_uint32                  ul_ret;
@@ -849,21 +692,7 @@ oal_uint32  frw_event_queue_enqueue(frw_event_queue_stru *pst_event_queue, frw_e
     return ul_ret;
 }
 
-/*****************************************************************************
- 函 数 名  : frw_event_queue_dequeue
- 功能描述  : 事件内存出队
- 输入参数  : pst_event_queue: 事件队列
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月23日
-    作    者   : wangjianchang wWX278082
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 frw_event_mem_stru *frw_event_queue_dequeue(frw_event_queue_stru *pst_event_queue)
 {
     frw_event_mem_stru *pst_event_mem;
@@ -875,21 +704,7 @@ frw_event_mem_stru *frw_event_queue_dequeue(frw_event_queue_stru *pst_event_queu
     return pst_event_mem;
 }
 
-/*****************************************************************************
- 函 数 名  : frw_event_post_event
- 功能描述  : 将事件内存放入相应的事件队列
- 输入参数  : pst_event_mem: 指向事件内存块的指针
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月5日
-    作    者   : mayuan m00212148
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  frw_event_post_event(frw_event_mem_stru *pst_event_mem,oal_uint32 ul_core_id)
 {
     oal_uint16                   us_qid;
@@ -1012,23 +827,7 @@ oal_uint32  frw_event_post_event(frw_event_mem_stru *pst_event_mem,oal_uint32 ul
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : frw_event_table_register
- 功能描述  : 注册相应事件对应的事件处理函数
- 输入参数  : en_type:       事件类型
-             en_pipeline:   事件分段号
-             pst_sub_table: 事件子表指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月12日
-    作    者   : mayuan m00212148
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  frw_event_table_register(
                 frw_event_type_enum_uint8      en_type,
                 frw_event_pipeline_enum        en_pipeline,
@@ -1054,82 +853,26 @@ oal_void  frw_event_table_register(
     g_ast_event_table[uc_index].pst_sub_table = pst_sub_table;
 }
 
-/*****************************************************************************
- 函 数 名  : frw_event_deploy_register
- 功能描述  : 供event deploy模块注册事件部署接口
- 输入参数  : p_func: 事件部署接口
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月13日
-    作    者   : mayuan m00212148
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  frw_event_deploy_register(oal_uint32 (*p_func)(frw_event_mem_stru *pst_event_mem, frw_event_deploy_enum_uint8 *pen_deploy_result))
 {
     g_st_ipc_register.p_frw_event_deploy_pipeline_func = p_func;
 }
 
-/*****************************************************************************
- 函 数 名  : frw_event_ipc_event_queue_full_register
- 功能描述  : 供IPC模块注册核间中断频度管理接口
- 输入参数  : p_func: 核间中断频度管理接口
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月13日
-    作    者   : mayuan m00212148
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  frw_event_ipc_event_queue_full_register(oal_uint32 (*p_func)(oal_void))
 {
     g_st_ipc_register.p_frw_ipc_event_queue_full_func = p_func;
 }
 
-/*****************************************************************************
- 函 数 名  : frw_event_ipc_event_queue_empty_register
- 功能描述  : 供IPC模块注册核间中断频度管理接口
- 输入参数  : p_func: 核间中断频度管理接口
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月13日
-    作    者   : mayuan m00212148
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  frw_event_ipc_event_queue_empty_register(oal_uint32 (*p_func)(oal_void))
 {
     g_st_ipc_register.p_frw_ipc_event_queue_empty_func = p_func;
 }
 
 
-/*****************************************************************************
- 函 数 名  : frw_event_process_all_event
- 功能描述  : 处理事件队列中的所有事件
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月22日
-    作    者   : mayuan m00212148
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  frw_event_process_all_event(oal_uint ui_data)
 {
     oal_uint32                     ul_core_id;
@@ -1263,21 +1006,7 @@ oal_void  frw_event_process_all_event(oal_uint ui_data)
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : frw_event_flush_event_queue
- 功能描述  : 清空某个事件队列中的所有事件
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月21日
-    作    者   : zourong 52447
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  frw_event_flush_event_queue(frw_event_type_enum_uint8 uc_event_type)
 {
     oal_uint32              ul_core_id;
@@ -1329,21 +1058,7 @@ oal_uint32  frw_event_flush_event_queue(frw_event_type_enum_uint8 uc_event_type)
     return ul_event_succ;
 }
 
-/*****************************************************************************
- 函 数 名  : frw_dump_event
- 功能描述  : 打印事件
- 输入参数  : puc_event: 事件结构体首地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年1月5日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  frw_event_dump_event(oal_uint8 *puc_event)
 {
     frw_event_stru       *pst_event = (frw_event_stru *)puc_event;
@@ -1370,21 +1085,7 @@ oal_void  frw_event_dump_event(oal_uint8 *puc_event)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : frw_get_event_info_from_event_queue
- 功能描述  : 从事件队列中获取每一个事件的事件头信息
- 输入参数  : pst_event_queue: 事件队列
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月28日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void  frw_event_get_info_from_event_queue(frw_event_queue_stru *pst_event_queue)
 {
     frw_event_stru              *pst_event;
@@ -1450,23 +1151,7 @@ OAL_STATIC oal_void  frw_event_get_info_from_event_queue(frw_event_queue_stru *p
 }
 
 
-/*****************************************************************************
- 函 数 名  : frw_event_queue_info
- 功能描述  : 将事件队列中的事件个数以及每个事件的事件头信息上报.
-             从调度队列找到每一个存在事件的事件队列，然后获取事件个数并得到每一个
-             事件的事件头信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 成功或者失败码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月28日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  frw_event_queue_info(oal_void)
 {
     oal_uint32                      ul_core_id;
@@ -1527,21 +1212,7 @@ oal_uint32  frw_event_queue_info(oal_void)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : frw_event_vap_pause_event
- 功能描述  : 设置特定VAP的所有事件队列的VAP状态为暂停，停止调度，允许继续入队
- 输入参数  : uc_vap_id: VAP ID值
- 输出参数  : 无
- 返 回 值  : OAL_SUCC或者OAL_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月23日
-    作    者   : daihu 00262548
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void frw_event_vap_pause_event(oal_uint8 uc_vap_id)
 {
     oal_uint32                    ul_core_id;
@@ -1580,21 +1251,7 @@ oal_void frw_event_vap_pause_event(oal_uint8 uc_vap_id)
 }
 
 
-/*****************************************************************************
- 函 数 名  : frw_event_vap_resume_event
- 功能描述  : 设置特定VAP的所有事件队列的VAP状态为恢复，可调度
- 输入参数  : uc_vap_id: VAP ID值
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月23日
-    作    者   : daihu 00262548
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void frw_event_vap_resume_event(oal_uint8 uc_vap_id)
 {
     oal_uint32                    ul_core_id;
@@ -1637,23 +1294,7 @@ oal_void frw_event_vap_resume_event(oal_uint8 uc_vap_id)
 }
 
 
-/*****************************************************************************
- 函 数 名  : frw_event_vap_flush_event
- 功能描述  : 冲刷指定VAP、指定事件类型的所有事件，同时可以指定是丢弃这些事件还是全部处理
- 输入参数  : uc_vap_id:     VAP ID值
-             en_event_type: 事件类型
-             en_drop:       事件丢弃(1)或者处理(0)
- 输出参数  : 无
- 返 回 值  : OAL_SUCC、OAL_FAIL或其他错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月23日
-    作    者   : daihu 00262548
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  frw_event_vap_flush_event(oal_uint8           uc_vap_id,
                                       frw_event_type_enum_uint8 en_event_type,
                                       oal_bool_enum_uint8       en_drop)
@@ -1723,22 +1364,7 @@ oal_uint32  frw_event_vap_flush_event(oal_uint8           uc_vap_id,
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : frw_event_get_sched_queue
- 功能描述  : 用于VAP暂停、恢复和冲刷函数进行IT测试，获取frw_event_main.c中定义的全局事件的调度队列
- 输入参数  : ul_core_id: 核号
-             en_policy:  调度策略
- 输出参数  : 无
- 返 回 值  : 调度队列指针
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月28日
-    作    者   : daihu 00262548
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 frw_event_sched_queue_stru* frw_event_get_sched_queue(oal_uint32 ul_core_id, frw_sched_policy_enum_uint8 en_policy)
 {
     if (OAL_UNLIKELY((ul_core_id >= WLAN_FRW_MAX_NUM_CORES) || (en_policy >= FRW_SCHED_POLICY_BUTT)))
@@ -1749,22 +1375,7 @@ frw_event_sched_queue_stru* frw_event_get_sched_queue(oal_uint32 ul_core_id, frw
     return &(g_ast_event_manager[ul_core_id].st_sched_queue[en_policy]);
 }
 
-/*****************************************************************************
- 函 数 名  : frw_is_event_queue_empty
- 功能描述  : 判断所有VAP对应的事件队列是否为空
- 输入参数  : uc_event_type: 事件类型
- 输出参数  : 无
- 返 回 值  : OAL_TRUE:  空
-             OAL_FALSE: 不空
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月19日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_bool_enum_uint8  frw_is_event_queue_empty(frw_event_type_enum_uint8 uc_event_type)
 {
     oal_uint32              ul_core_id;
@@ -1801,21 +1412,7 @@ oal_bool_enum_uint8  frw_is_event_queue_empty(frw_event_type_enum_uint8 uc_event
     return OAL_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : frw_is_vap_event_queue_empty
- 功能描述  : 根据核id和事件类型，判断vap事件队列是否空
- 输入参数  : ul_core_id: 核id; event_type:  事件ID;
- 输出参数  :
- 返 回 值  : OAL_TRUE 或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月25日
-    作    者   : lingxuemeng 00324381
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_bool_enum_uint8  frw_is_vap_event_queue_empty(oal_uint32 ul_core_id, oal_uint8 uc_vap_id, oal_uint8 event_type)
 {
     frw_event_mgmt_stru         *pst_event_mgmt;
@@ -1841,21 +1438,7 @@ oal_bool_enum_uint8  frw_is_vap_event_queue_empty(oal_uint32 ul_core_id, oal_uin
     return OAL_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : frw_sched_queue_is_empty
- 功能描述  : 判断是否有事件需要调度
- 输入参数  : 核id
- 输出参数  : 无
- 返 回 值  : OAL_TRUE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月9日
-    作    者   : lingxuemeng 00324381
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint8 frw_task_thread_condition_check(oal_uint32 ul_core_id)
 {
     /* 返回OAL_TRUE

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2012, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasDynLoadMntn.c
-  版 本 号   : 初稿
-  作    者   : w00242748
-  生成日期   : 2015年8月27日
-  最近修改   :
-  功能描述   : 动态加载的可维可测相关处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年8月27日
-    作    者   : w00242748
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -40,23 +23,7 @@ extern "C" {
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : NAS_DYNLOAD_LogRegisterInfo
- 功能描述  : 打印注册信息
- 输入参数  : enRatType:接入技术
-             ulPid    :PID
-             ulInit   :初始化函数地址
-             ulUnload :卸载函数地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2015年08月27日
-    作    者   : w00242748
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID  NAS_DYNLOAD_LogRegisterInfo(
     VOS_RATMODE_ENUM_UINT32             enRatType,
     VOS_UINT32                          ulPid,
@@ -96,21 +63,7 @@ VOS_VOID  NAS_DYNLOAD_LogRegisterInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_DYNLOAD_LogDeregisterInfo
- 功能描述  : 打印去注册信息
- 输入参数  : enRatType:接入技术
-             ulPid    :PID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2015年08月27日
-    作    者   : w00242748
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID  NAS_DYNLOAD_LogDeregisterInfo(
     VOS_RATMODE_ENUM_UINT32             enRatType,
     VOS_UINT32                          ulPid
@@ -146,23 +99,7 @@ VOS_VOID  NAS_DYNLOAD_LogDeregisterInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_DYNLOAD_LogExcuteInitInfo
- 功能描述  : 打印加载模块的初始化信息
- 输入参数  : pstDynloadCbRatInfo :保存的所有接入技术的初始化与卸载函数信息
-             enRatType           :接入技术
-             ulPid               :PID
-             ulInit              :初始化函数
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2015年08月27日
-    作    者   : w00242748
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID  NAS_DYNLOAD_LogExcuteInitInfo(
     NAS_DYNLOAD_CB_RAT_INFO_STRU       *pstDynloadCbRatInfo,
     VOS_RATMODE_ENUM_UINT32             enRatType,
@@ -203,23 +140,7 @@ VOS_VOID  NAS_DYNLOAD_LogExcuteInitInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_DYNLOAD_LogExcuteUnloadInfo
- 功能描述  : 打印加载模块的卸载信息
- 输入参数  : pstDynloadCbRatInfo :保存的所有接入技术的初始化与卸载函数信息
-             enRatType           :接入技术
-             ulPid               :PID
-             ulUnload            :卸载函数
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2015年08月27日
-    作    者   : w00242748
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID  NAS_DYNLOAD_LogExcuteUnloadInfo(
     NAS_DYNLOAD_CB_RAT_INFO_STRU       *pstDynloadCbRatInfo,
     VOS_RATMODE_ENUM_UINT32             enRatType,
@@ -260,24 +181,7 @@ VOS_VOID  NAS_DYNLOAD_LogExcuteUnloadInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_DYNLOAD_LogStartDrvLoadInfo
- 功能描述  : 调用底软函数前进行勾包操作，以防挂死
- 输入参数  : NAS_DYNLOAD_CB_RAT_INFO_STRU       *pstDynloadCbRatInfo
-             VOS_RATMODE_ENUM_UINT32             enRatType
-             VOS_UINT32                          ulPid
-             VOS_UINT32                          ulUnload
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月31日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  NAS_DYNLOAD_LogStartDrvLoadInfo(
     VOS_RATMODE_ENUM_UINT32             enRatType
 )
@@ -311,21 +215,7 @@ VOS_VOID  NAS_DYNLOAD_LogStartDrvLoadInfo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_DYNLOAD_LogFinishDrvLoadInfo
- 功能描述  : 调用底软函数后进行勾包操作，以防挂死
- 输入参数  : NAS_DYNLOAD_CB_RAT_INFO_STRU       *pstDynloadCbRatInfo
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月31日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  NAS_DYNLOAD_LogFinishDrvLoadInfo(
     NAS_DYNLOAD_CB_RAT_INFO_STRU       *pstDynloadCbRatInfo,
     VOS_INT32                           lLoadResult
@@ -361,23 +251,7 @@ VOS_VOID  NAS_DYNLOAD_LogFinishDrvLoadInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_Dynload_SoftReBoot_WithLineNoAndFileID
- 功能描述  : 动态加载模块主动条用复位函数
- 输入参数  : ulLineNO,
-             ulFileID,
-             stCnasRebootInfo
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2015年08月27日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_Dynload_SoftReBoot_WithLineNoAndFileID(
     VOS_UINT32                          ulLineNO,
     VOS_UINT32                          ulFileID,

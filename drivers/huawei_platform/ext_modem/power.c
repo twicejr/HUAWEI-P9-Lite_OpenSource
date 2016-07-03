@@ -915,7 +915,7 @@ static DEVICE_ATTR(modem_state, S_IRUGO | S_IWUSR, modem_state_show, modem_state
 static DEVICE_ATTR(sim_switch, S_IRUGO | S_IWUSR, modem_sim_switch_show, modem_sim_switch_store);
 static DEVICE_ATTR(via_backup, S_IRUGO | S_IWUSR, modem_via_backup_show, modem_via_backup_store);
 static DEVICE_ATTR(via_rst_mdm, S_IRUGO | S_IWUSR, modem_via_rst_mdm_show, modem_via_rst_mdm_store);
-static DEVICE_ATTR(via_resetinfo, S_IRUGO | S_IWUGO, modem_via_resetinfo_show, modem_via_resetinfo_store);
+static DEVICE_ATTR(via_resetinfo, S_IRUGO | S_IWUSR, modem_via_resetinfo_show, modem_via_resetinfo_store);
 
 static struct attribute *viacbp82d_3rd_modem_attributes[] = {
     &dev_attr_modem_state.attr,

@@ -30,6 +30,11 @@ enum {
     HANDSET_PLUG_OUT,
 };
 
+enum {
+    ANC_HS_MIC_GND_DISCONNECT        = 0,
+    ANC_HS_MIC_GND_CONNECT           = 1,
+};
+
 /* codec operate used by anc_hs driver*/
 struct anc_hs_codec_ops {
     bool (*check_headset_in)(void *);
@@ -54,6 +59,8 @@ struct anc_hs_ops {
     bool (*check_anc_hs_support)(void);
     void (*anc_hs_5v_control)(int enable);
     bool (*anc_hs_plug_enable)(void);
+    void (*anc_hs_invert_hs_control)(int);
+    void (*anc_hs_refresh_headset_type)(int);
 };
 
 int anc_hs_interface_dev_register(struct anc_hs_dev *dev, void * codec_data);
@@ -75,5 +82,9 @@ int anc_hs_ops_register(struct anc_hs_ops *ops);
 void anc_hs_interface_5v_control(int enable);
 
 bool anc_hs_interface_plug_enable(void);
+
+void anc_hs_interface_invert_hs_control(int connect);
+
+void anc_hs_interface_refresh_headset_type(int headset_type);
 
 #endif

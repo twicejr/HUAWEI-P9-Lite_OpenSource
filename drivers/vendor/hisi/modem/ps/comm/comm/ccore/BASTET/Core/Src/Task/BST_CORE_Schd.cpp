@@ -1,22 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : BST_CORE_Schd.cpp
-  版 本 号   : V1.1
-  作    者   : d00173029
-  生成日期   : 2014年6月10日
-  最近修改   :
-  功能描述   : 实现周期性任务调度器
-  函数列表   :
-
-  修改历史   :
-  1.日    期   : 2014年06月10日
-    作    者   : d00173029
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -50,19 +32,7 @@ BST_UINT8   g_aucCycErrCnt[ BST_SRV_DTC_MAX_LEN ];
    6 函数实现
 ******************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : Attach
- 功能描述  : 将任务附着到任务链表中并开启基础定时器
- 输入参数  : pC_PTask : 任务指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 /*lint -e429*/
 BST_VOID BST_CTaskSchdler::Attach ( BST_CORE_CPTask *pC_PTask )
 {
@@ -123,19 +93,7 @@ BST_VOID BST_CTaskSchdler::Attach ( BST_CORE_CPTask *pC_PTask )
     }
 }
 /*lint +e429*/
-/*****************************************************************************
- 函 数 名  : Detach
- 功能描述  : 将任务从任务链表中删除，并检查任务链表，链表为空时，停止基础定时器
- 输入参数  : pC_PTask : 任务指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 /*lint -e438*/
 BST_VOID BST_CTaskSchdler::Detach ( BST_CORE_CPTask *pC_PTask )
 {
@@ -182,19 +140,7 @@ BST_VOID BST_CTaskSchdler::Detach ( BST_CORE_CPTask *pC_PTask )
     }
 }
 /*lint +e438*/
-/*****************************************************************************
- 函 数 名  : Suspend
- 功能描述  : 将任务挂起
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_CTaskSchdler::Suspend ( BST_VOID )
 {
     BST_CORE_PTASK_NODE_STRU   *pstPtaskNode;
@@ -222,19 +168,7 @@ BST_VOID BST_CTaskSchdler::Suspend ( BST_VOID )
     }
 }
 
-/*****************************************************************************
- 函 数 名  : GetInstance
- 功能描述  : 获取任务调度器的实例
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回任务调度器实例指针
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_CTaskSchdler* BST_CTaskSchdler::GetInstance ( BST_VOID )
 {
     static BST_CTaskSchdler    *pTaskScheduler = BST_NULL_PTR;
@@ -246,19 +180,7 @@ BST_CTaskSchdler* BST_CTaskSchdler::GetInstance ( BST_VOID )
     return pTaskScheduler;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_CTaskSchdler
- 功能描述  : BST_CTaskSchdler类构造函数,创建基础定时器和应用线程以及初始化相关变量
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_CTaskSchdler::BST_CTaskSchdler ( BST_VOID ) 
     : BST_SRV_CAsRcver( BST_SRV_GetSysMsgHandle() )
 {
@@ -311,19 +233,7 @@ BST_CTaskSchdler::BST_CTaskSchdler ( BST_VOID )
     RegAsNotice( BST_AS_EVT_L3_NET_RANK );
 }
 
-/*****************************************************************************
- 函 数 名  : ~BST_CTaskSchdler
- 功能描述  : BST_CTaskSchdler类的析构函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_CTaskSchdler::~BST_CTaskSchdler ( BST_VOID )
 {
     if ( BST_OS_IsTimerValid( m_ulTimerId ) )
@@ -338,19 +248,7 @@ BST_CTaskSchdler::~BST_CTaskSchdler ( BST_VOID )
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TimerExpired
- 功能描述  : 基础定时器超时回调函数
- 输入参数  : ulId: 定时器ID类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_CTaskSchdler::TimerExpired(
     BST_OS_TIMERID_T    ulId,
     BST_VOID           *pvPara)
@@ -431,20 +329,7 @@ BST_VOID BST_CTaskSchdler::TimerExpired(
     BST_OS_TimerStart ( m_ulTimerId, ulSysTickMs );
 }
 
-/*****************************************************************************
- 函 数 名  : SelectPtaskIns
- 功能描述  : 获取任务对象
- 输入参数  : BST_UINT16 usProcId,   任务类型ID
-             BST_UINT16 usTaskId,   任务编号ID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_CORE_CPTask* BST_CTaskSchdler::GetPtaskIns( BST_UINT16 usProcId, BST_UINT16 usTaskId )
 {
     BST_CORE_CPTask            *pC_PTask;
@@ -477,19 +362,7 @@ BST_CORE_CPTask* BST_CTaskSchdler::GetPtaskIns( BST_UINT16 usProcId, BST_UINT16 
     return pC_PTask;
 }
 
-/*****************************************************************************
- 函 数 名  : ScheduleTask
- 功能描述  : 任务调度函数
- 输入参数  : pC_PTask : 任务指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID    BST_CTaskSchdler::ScheduleTask( BST_CORE_PTASK_NODE_STRU *pTaskItem )
 {
     BST_SRV_CTaskMng                   *pcTaskManager;
@@ -592,19 +465,7 @@ BST_VOID    BST_CTaskSchdler::ScheduleTask( BST_CORE_PTASK_NODE_STRU *pTaskItem 
     }
 }
 
-/*****************************************************************************
- 函 数 名  : ProcServiceStateChange
- 功能描述  : 接入系统服务状态变化处理
- 输入参数  : BST_SRV_UTRAN_SRV_STATE_STRU 实际句柄
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_CTaskSchdler::LinkStateChgProc( BST_AS_NET_RANK_ENUM_UINT32 enNetRank )
 {
     BST_DBG_LOG2( "BST_CTaskSchdler::LinkStateChgProc RANK_Old=u%, RANK_NEW=u%",
@@ -636,21 +497,7 @@ BST_VOID BST_CTaskSchdler::LinkStateChgProc( BST_AS_NET_RANK_ENUM_UINT32 enNetRa
 
 }
 
-/*****************************************************************************
- 函 数 名  : AsEventCallback
- 功能描述  : AS事件回调函数
- 输入参数  : enEvent  :AS事件类型
-             ulLength :长度
-             pvData   :传入参数,RRC状态类型
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_CTaskSchdler::AsEventCallback(
     BST_AS_EVT_ENUM_UINT32    enEvent,
     BST_UINT32                ulLength,
@@ -706,20 +553,7 @@ BST_VOID BST_CTaskSchdler::AsEventCallback(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NearRrcTrig
- 功能描述  : 如果任务起来的时间在靠近已经建立RRC连接的时间点，则随着刚才的RRC连接进行查询，
-             否则还是按原有时间点进行查询
- 输入参数  : ulSysTimerRemainMs : 系统定时器剩余时长
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_UINT32 BST_CTaskSchdler::NearRrcTrig ( BST_UINT32 const ulSysTimerRemainMs )
 {
     BST_CORE_PTASK_NODE_STRU   *pstPtaskNode;
@@ -787,19 +621,7 @@ BST_UINT32 BST_CTaskSchdler::NearRrcTrig ( BST_UINT32 const ulSysTimerRemainMs )
     }
 }
 
-/*****************************************************************************
- 函 数 名  : AckSendResult
- 功能描述  : 收到任务发送结果知会
- 输入参数  : pC_PTask : 任务指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年05月25日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_CTaskSchdler::AckSendResult(
     BST_CORE_CPTask *pcPTask, BST_UINT16 ucResult )
 {
@@ -835,19 +657,7 @@ BST_VOID BST_CTaskSchdler::AckSendResult(
 
 }
 
-/*****************************************************************************
- 函 数 名  : ProcAckSuc
- 功能描述  : 处理接收成功事件
- 输入参数  : pC_PTask : 任务指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年05月25日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_CTaskSchdler::ProcAckSuc( BST_CORE_PTASK_NODE_STRU *pstTaskItem )
 {
     BST_UINT16                  usUsingCycle;
@@ -883,19 +693,7 @@ BST_VOID BST_CTaskSchdler::ProcAckSuc( BST_CORE_PTASK_NODE_STRU *pstTaskItem )
     }
 }
 
-/*****************************************************************************
- 函 数 名  : ProcAckErr
- 功能描述  : 处理接收失败事件
- 输入参数  : pC_PTask : 任务指针
- 输出参数  : BOOL 处理结果是否计入
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年05月25日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_CTaskSchdler::ProcAckErr( BST_CORE_PTASK_NODE_STRU *pstTaskItem )
 {
     pstTaskItem->ulLastSendTime    = 0;
@@ -933,19 +731,7 @@ BST_VOID BST_CTaskSchdler::ProcAckErr( BST_CORE_PTASK_NODE_STRU *pstTaskItem )
     pstTaskItem->enLastErrType = BST_CORE_SCHD_ACK_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : ProcFinish
- 功能描述  : 本来发送都相应完毕，处理结果
- 输入参数  : pC_PTask : 任务指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年05月25日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_CTaskSchdler::ProcFinish( BST_VOID )
 {
     BST_UINT16                      usCounter;
@@ -990,19 +776,7 @@ BST_VOID BST_CTaskSchdler::ProcFinish( BST_VOID )
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TaskStarted
- 功能描述  : 处理任务开始事件通知消息
- 输入参数  : pC_PTask : 任务指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年05月25日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_CTaskSchdler::TaskStarted( BST_CORE_CPTask *pcPTask )
 {
     BST_CORE_PTASK_NODE_STRU       *pTaskItem;
@@ -1022,19 +796,7 @@ BST_VOID BST_CTaskSchdler::TaskStarted( BST_CORE_CPTask *pcPTask )
         pTaskItem->ulLastSendTime   = 0;
     }
 }
-/*****************************************************************************
- 函 数 名  : TaskStoped
- 功能描述  : 处理任务结束事件通知消息
- 输入参数  : pC_PTask : 任务指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年05月25日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_CTaskSchdler::TaskStoped( BST_CORE_CPTask *pcPTask )
 {
     if( BST_TRUE == BST_SRV_CHbDetector::GetInstance()->IsTask( pcPTask ) )
@@ -1042,19 +804,7 @@ BST_VOID BST_CTaskSchdler::TaskStoped( BST_CORE_CPTask *pcPTask )
         BST_SRV_CHbDetector::GetInstance()->Pause();
     }
 }
-/*****************************************************************************
- 函 数 名  : DefineDetector
- 功能描述  : 任务指明自己身份为探测器知会通知
- 输入参数  : pC_PTask : 任务指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年05月25日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_CTaskSchdler::DefineDetector( BST_CORE_CPTask *pcPTask )
 {
     BST_CORE_PTASK_NODE_STRU   *pstPtaskNode;
@@ -1068,19 +818,7 @@ BST_VOID BST_CTaskSchdler::DefineDetector( BST_CORE_CPTask *pcPTask )
     BST_SRV_CHbDetector::GetInstance()->DefTask( pstPtaskNode );
 }
 
-/*****************************************************************************
- 函 数 名  : GetTaskItem
- 功能描述  : 根据任务查找任务记录条目
- 输入参数  : pC_PTask : 任务指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年05月25日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_CORE_PTASK_NODE_STRU* BST_CTaskSchdler::GetTaskItem( BST_CORE_CPTask *pcPTask )
 {
     BST_CORE_PTASK_NODE_STRU   *pstPtaskNode;
@@ -1108,19 +846,7 @@ BST_CORE_PTASK_NODE_STRU* BST_CTaskSchdler::GetTaskItem( BST_CORE_CPTask *pcPTas
     return BST_NULL_PTR;
 }
 
-/*****************************************************************************
- 函 数 名  : GetTaskCycle
- 功能描述  : 获取任务实际使用周期数
- 输入参数  : BST_CORE_PTASK_NODE_STRU pstTaskItem : 任务记录指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年05月25日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_UINT16 BST_CTaskSchdler::GetTaskCycle( BST_CORE_PTASK_NODE_STRU *pstTaskItem )
 {
     BST_UINT16              usTaskCycle;
@@ -1142,19 +868,7 @@ BST_UINT16 BST_CTaskSchdler::GetTaskCycle( BST_CORE_PTASK_NODE_STRU *pstTaskItem
     return usTaskCycle;
 }
 
-/*****************************************************************************
- 函 数 名  : onDetFinished
- 功能描述  : 回调Det完成，可以通知应用修改周期
- 输入参数  : ( BST_UINT8 ucLongestCyc )系统探明的最高周期
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年05月25日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_CTaskSchdler::onDetFinished( BST_UINT8 ucLongestCyc )
 {
     BST_CORE_PTASK_NODE_STRU   *pstPtaskNode;
@@ -1181,19 +895,7 @@ BST_VOID BST_CTaskSchdler::onDetFinished( BST_UINT8 ucLongestCyc )
     }
 }
 
-/*****************************************************************************
- 函 数 名  : GetErrorBitAdd
- 功能描述  : 获取出错的最低周期位
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年05月25日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_UINT16 BST_CTaskSchdler::GetErrorCycle( const BST_UINT16 usErrorMsg )
 {
     BST_UINT16  usCnt;
@@ -1209,19 +911,7 @@ BST_UINT16 BST_CTaskSchdler::GetErrorCycle( const BST_UINT16 usErrorMsg )
 }
 
 
-/*****************************************************************************
- 函 数 名  : ScheduleBlockedTask
- 功能描述  : 调度所有前面被blocked task执行一次
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年08月21日
-      作    者   : z00128442
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_CTaskSchdler::ScheduleBlockedTask(BST_VOID )
 {
     BST_CORE_PTASK_NODE_STRU   *pstPtaskNode;

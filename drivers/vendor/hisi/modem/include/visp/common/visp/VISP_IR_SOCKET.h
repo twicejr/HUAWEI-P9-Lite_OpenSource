@@ -93,8 +93,7 @@ extern "C"{
 #define IPV6_NEXTHOP            24 /* sockaddr, next hop address */
 #define IPV6_TCLASS             28 /* int;  发送TS值           int; send traffic class value */
 
-/* Modefied by wuling for DTS2014101506425 
-   性能优化，取16与替代原来的32位与，解决低16位变化对HASH索引值没影响的问题 */
+
 
 #define HASHFUNC6_ADDR6(pstAddr) \
     (((pstAddr)->s6_addr8[0])^((pstAddr)->s6_addr8[1])^((pstAddr)->s6_addr8[2])^((pstAddr)->s6_addr8[3])^ \
@@ -387,7 +386,6 @@ typedef struct tagPMTU_CALLBACKUP_SET_S
 
 #ifndef FD_SET
 
-/*Modify by z62474 2007-10-08 for A82D20452 ,同步问题单A82D20312 */
 #define FD_SET(n, p)    {\
             if ((n) > 0 ){\
             ((p)->fds_bits[(n)/NFDBITS] |= \
@@ -944,7 +942,6 @@ struct hostent *vrp_gethostbyaddr6(CHAR *pAddr,LONG iLen,LONG iType);
 #define SB_LOCKWAIT          0x100
 #define SB_BLOCKING          0x1000   /* there has been a task blocking on this sb */
 
-/* Added by fengjing209023 DTS2014032706863 本段调用了CLOSE后不需要再上报ASYN_CLOSE事件 */
 /* user close  state */
 #define    SS_USERCLOSECALLED     0x01  /* 用户已经调用过CLOSE */
 #define    SS_PEERCLOSENOTIFIED   0x02  /* SOCKET已经上报过PEERCLOSE */
@@ -1081,7 +1078,6 @@ typedef struct tagSOCKET
     SHORT               so_sQLimit;         /* max number queued connections */
     SHORT               so_sTimeO;          /* connection timeout */
     SHORT               so_sError;          /* error affecting connection */
-    /* Added by fengjing209023 DTS2014032706863 本段调用了CLOSE后不需要再上报ASYN_CLOSE事件 */
     UCHAR               ucUsrCloseFlag;     /* 1、用来标记用户是否调了CLOSE,2、用来标记是否上报过PEERCLOSE */
     /* Addend end */    
     UCHAR               ucPadding_1[1];
@@ -1217,8 +1213,7 @@ typedef struct tagSOCKBUF     SOCKBUF_S;
 
 extern SOCK_MOD_INFO_S g_stSOCK4ModInfo;
 #define     FILENUM         g_stSOCK4ModInfo.ulSKT_MAX_SOCK_N
-/* Modify for DTS2011031503749, by yuehaitao171195, at 2011-03-17. 修改原因: TSleep
-   阻塞时并没有持有信号量，此时如果其他任务创建了多个socket，则socket可能扩充文件描述符，导致TSleep返回后访问野内存 */
+
 #define     EXPANDNUM       FILENUM
 
 /******************** from asynsock.h  ***********************/

@@ -1,34 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : lphy_version.h
-  版 本 号   : 初稿
-  作    者   : tuzhiguo(52067)
-  生成日期   : 2011年11月08日
-  最近修改   :
-  功能描述   :
-
-        一. 目前存在的芯片有, 如下:
-            1) HI6920_ES: 对应MPW版本
-                1.1> HI6920ES_FPGA_P500: MPW FPGA验证平台
-                1.2> HI6920ES_ASIC:      MPW ASIC芯片
-            2) HI6920_CS: 对应PILOT版本
-                2.1> HI6920CS_FPGA_P500: PILOT FPGA验证平台
-                2.2> HI6920CS_ASIC:      PILOT ASIC芯片
-
-        二. 针对当前的平台特性, 分别加上LPHY作为物理层的版本特性, 如下:
-            1) HI6920_ES: 对应MPW版本
-                1.1> LPHY_HI6920ES_FPGA_P500: MPW FPGA验证平台
-                1.2> LPHY_HI6920ES_ASIC:      MPW ASIC芯片
-            2) HI6920_CS: 对应PILOT版本
-                2.1> LPHY_HI6930CS_FPGA_P500: PILOT FPGA验证平台
-                2.2> LPHY_HI6930CS_ASIC:      PILOT ASIC芯片
-
-        三. 该文件先包含外部产品头文件, 根据产品宏决定当前的版本号
-
-******************************************************************************/
 
 #ifndef __LPHY_VERSION_H__
 #define __LPHY_VERSION_H__
@@ -40,35 +10,7 @@ extern "C"{
 #endif /* __cplusplus */
 
 #include "TLPhyInterface.h"
-/***********************************************************
 
-一. 产品版本宏定义, 目前存在的芯片有, 如下:
-    1.1) HI6920_ES: 对应MPW版本
-        1.1.1> HI6920ES_FPGA_P500: MPW FPGA验证平台
-        1.1.2> HI6920ES_ASIC:      MPW ASIC芯片
-    1.2) HI6920_CS: 对应PILOT版本
-        1.2.1> HI6920CS_FPGA_P500: PILOT FPGA验证平台
-        1.2.2> HI6920CS_ASIC:      PILOT ASIC芯片
-
-二). 针对当前的产品版本, 分别加上LPHY作为物理层的版本特性, 如下:
-    1) HI6920_ES: 对应MPW版本
-        1.1> LPHY_HI6920ES_FPGA_P500: MPW FPGA验证平台
-        1.2> LPHY_HI6920ES_ASIC:      MPW ASIC芯片
-    2) HI6920_CS: 对应PILOT版本
-        2.1> LPHY_HI6930CS_FPGA_P500: PILOT FPGA验证平台
-        2.2> LPHY_HI6930CS_ASIC:      PILOT ASIC芯片
-
-三). 物理层版本版本宏定义
-    有的代码只区分ES/CS, 或者只区分FPGA_P500/ASIC 也定义这些相关的宏供引用
-
-    1) 芯片型号: ES or CS
-        1.1> LPHY_HI6920ES           "HI6920ES"      //mpw
-        1.2> LPHY_HI6930CS           "HI6930CS"      //pilot
-    2) 芯片平台
-        2.1> LPHY_FPGA_P500          "FPGA_P500"     //FPGA P500验证平台
-        2.2> LPHY_ASIC               "ASIC"          //ASIC样片平台
-
-****************************************************************/
 
 
 #define PHY_ON		(0x1)
@@ -552,7 +494,6 @@ extern "C"{
 	#define LPHY_FEM_CHAN_COMB_DISABLE
 #endif
 
-/* BEGIN: Added by m00128895, 2015/9/22   PN:Vramp 开发，meiaihong*/
 #if (PHY_ON == LPHY_FEATURE_VRAMP_PA_SWITCH)
 	#define LPHY_FEATURE_VRAMP_PA_ENABLE
 #else
@@ -567,7 +508,6 @@ extern "C"{
     #define LPHY_LPC_REGISTER_READY_DISABLE
 #endif
 
-/* BEGIN: Added by m00128895, 2015/9/24   PN:HP 降SAR特性开发*/
 #if (PHY_ON == LPHY_FEATURE_LOWER_SAR_SWITCH)
 	#define LPHY_FEATURE_LOWER_SAR_ENABLE
 #else

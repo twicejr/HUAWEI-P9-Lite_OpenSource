@@ -115,7 +115,6 @@ DECLARE_INTERFACE (IIF_COMP_TRUNK_ComIntCFG)
 
     METHOD_(ULONG, pfTRUNK_GetTrunkPortOriginalMac)(ULONG ulIfIndex, UCHAR *pucMac);
     METHOD_(ULONG, pfTRUNK_SetTrunkProductProcPolicy)(ULONG ulTrunkId, ULONG ulPolicy); 
-    /* Add for V2R3C07, by z00208058/w00207740, at 2012-4-16. 修改原因: TRUNK LACP下移需求开发 */
     METHOD_(ULONG, pfTRUNK_LacpExpiredNotify)(TRUNK_LACP_NOTIFY_S *pstData);
     METHOD_(VOID,  pfTrunk_Lacp_DealMsg)(UINTPTR aulMsg[4]);
 };

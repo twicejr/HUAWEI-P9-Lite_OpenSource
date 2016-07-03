@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasHsdMntn.c
-  版 本 号   : 初稿
-  作    者   : d00212987
-  生成日期   : 2014年12月16日
-  功能描述   : CNAS的可维可测
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年12月16日
-    作    者   : d00212987
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -40,23 +25,7 @@ extern "C"{
   3 函数定义
 *****************************************************************************/
 /*lint -save -e545 -e413 */
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_LogScanFreqList
- 功能描述  : 将频点扫描列表导出到SDT LOG中
- 输入参数  : pstScanFreqList - 待导出Scan list
-             enMsgLogType    - Scan list产生场景
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年12月16日
-    作    者   : d00212987
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_LogScanFreqList(
     CNAS_HSD_HRPD_SCAN_FREQ_LIST_STRU           *pstScanFreqList,
     CNAS_HSD_SYS_ACQ_SCENE_ENUM_UINT32           enMsgLogType
@@ -106,23 +75,7 @@ VOS_VOID CNAS_HSD_LogScanFreqList(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_LogSysRecList
- 功能描述  : 将系统捕获列表导出到SDT LOG中
- 输入参数  : pstSysRecList - SYS RECORD 列表
-             enMsgLogType  - SYS RECORD产生场景
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年12月16日
-    作    者   : d00212987
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_LogSysRecList(
     CNAS_HSD_HRPD_SYS_LIST_STRU                  *pstSysRecList,
     CNAS_HSD_SYS_ACQ_SCENE_ENUM_UINT32            enMsgLogType
@@ -172,23 +125,7 @@ VOS_VOID CNAS_HSD_LogSysRecList(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_LogMruList
- 功能描述  : 将MRU列表导出到SDT LOG中
- 输入参数  : pstMruList   - 待导出MRU列表
-             enMruLogType - MRU 列表更新场景
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年12月16日
-    作    者   : d00212987
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_LogMruList(
     CNAS_HSD_HRPD_MRU_LIST_STRU                  *pstMruList,
     CNAS_HSD_MNTN_MRU_LOG_TYPE_ENUM_UINT8         enMruLogType
@@ -234,21 +171,7 @@ VOS_VOID CNAS_HSD_LogMruList(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_LogOocScheduleInfo
- 功能描述  : 将OOC timer调度信息导出到SDT LOG中
- 输入参数  : pstOocTimerScheduleInfo
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年01月13日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_LogOocScheduleInfo(
     CNAS_NVIM_HRPD_OOC_TIMER_SCHEDULE_INFO_STRU            *pstOocTimerScheduleInfo
 )
@@ -290,21 +213,7 @@ VOS_VOID CNAS_HSD_LogOocScheduleInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_LogOocCtxInfo
- 功能描述  : log OOC上下文信息
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月05日
-    作    者   : Z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_LogOocCtxInfo(
     CNAS_HSD_OOC_CTX_INFO_STRU         *pstOocCtxInfo
 )
@@ -344,21 +253,7 @@ VOS_VOID CNAS_HSD_LogOocCtxInfo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_LogAvoidFreqList
- 功能描述  : 将avoid 频点列表导出到SDT LOG中
- 输入参数  : pstAvoidFreqList
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年01月07日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_LogAvoidFreqList(
     CNAS_HSD_AVOID_FREQ_LIST_STRU      *pstAvoidFreqList
 )
@@ -406,22 +301,7 @@ VOS_VOID CNAS_HSD_LogAvoidFreqList(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_LogRedirectionFreqList
- 功能描述  : 将收到的重定向频点法向LOG工具中
- 输入参数  : pstRedirection   - 收到的重定向列表频点
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年1月20日
-    作    者   : d00212987
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_LogRedirectionFreqList(
     CNAS_HSD_REDIRECTION_STRU           *pstRedirection
 )
@@ -463,21 +343,7 @@ VOS_VOID CNAS_HSD_LogRedirectionFreqList(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_LogOperLockWhiteSidList
- 功能描述  : 勾取OPER LOCK WHITE SID列表
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月1日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_LogOperLockSysWhiteList(
     CNAS_CCB_OPER_LOCK_SYS_WHITE_LIST_STRU                 *pstMsg
 )
@@ -523,21 +389,7 @@ VOS_VOID CNAS_HSD_LogOperLockSysWhiteList(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_LogCTCCCustomizeFreqList
- 功能描述  : 勾取中国电信自定义频点列表
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月1日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_LogCTCCCustomizeFreqList(
     CNAS_CCB_CTCC_CUSTOMIZE_FREQ_LIST_STRU                 *pstMsg
 )
@@ -580,21 +432,7 @@ VOS_VOID CNAS_HSD_LogCTCCCustomizeFreqList(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_LogPrlSourceType
- 功能描述  : 将avoid 频点列表导出到SDT LOG中
- 输入参数  : enPrlSrcType -- PRL源类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月18日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_LogPrlSourceType(
     CNAS_HSD_PRL_SOURCE_TYPE_ENUM_UINT8 enPrlSrcType
 )

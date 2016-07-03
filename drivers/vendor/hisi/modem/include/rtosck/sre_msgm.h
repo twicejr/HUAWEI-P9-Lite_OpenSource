@@ -1259,36 +1259,7 @@ extern UINT32 SRE_MsgmQportReset(UINT32 uwCoreID);
  */
 extern UINT32 SRE_QueDepthSet(UINT32 uwQportID, UINT32 uwQueIdx, UINT32 uwQueDepth);
 
-/**
- * @ingroup SRE_msgm
- * @brief 主控核重新配置MSGM普通队列缓冲区范围函数。
- *
- * @par 描述:
- * 主控核重新配置MSGM普通队列缓冲区范围。
- * @attention
- * <ul>
- * <li>适用于SD6182、SD6157平台。</li>
- * <li>用户保证实例间MSGM缓冲区没有重叠。</li>
- * <li>该接口会对本核的MSGQ和MSGM队列做重新初始化。</li>
- * <li>用户保证队列深度的重配置在本接口被调用完毕后再执行。</li>
- * <li>该接口内部对MSGM的硬件配置没有核间锁保护，对于可能出现多核同时配置的场景，用户保证串行操作。</li>
- * </ul>
- *
- * @param uwGMsgmBufStart    [IN] 类型#UINT32，全局MSGM普通队列缓冲区起始地址。
- * @param uwGMsgmBufLen      [IN] 类型#UINT32，全局MSGM普通队列缓冲区长度。
- *
- * @retval #OS_ERRNO_MSGM_CFG_ADDR_OR_LEN_NOT_ALIGN  0x02002b3f，重新配置MSGM普通队列缓冲区范围时传入的MSGM队列起始地址或长度非4字节对齐。
- * @retval #OS_ERRNO_MSGM_CFG_START_ADDR_INVALID     0x02002b40，重新配置MSGM普通队列缓冲区范围时传入的MSGM队列起始地址非法。
- * @retval #OS_ERRNO_MSGM_CFG_QUEUE_LEN_INVALID      0x02002b41，重新配置MSGM普通队列缓冲区范围时传入的MSGM队列长度非法。
- * @retval #OS_ERRNO_MSGM_CFG_QUEUE_REGION_INVALID   0x02002b42，重新配置MSGM普通队列缓冲区范围时传入的MSGM队列起始地址和长度决定的区间非法。
- * @retval #OS_ERRNO_MSGM_INIT_MSGQ_NORESP           0x02002b01，多核消息驱动初始化过程中，MSGM通道无响应，或者核接收状态为完成，需判断下是否是总线挂死。
- * @retval #SRE_OK                                   0x00000000，配置成功。
- *
- * @par 依赖:
- * <ul><li>sre_msgm.h：该接口声明所在的头文件。</li></ul>
- * @since RTOSck V100R002C00
- * @see 无
- */
+
 extern UINT32 SRE_MsgmBufRecfg(UINT32 uwGMsgmBufStart, UINT32 uwGMsgmBufLen);
 
 #endif
@@ -1325,35 +1296,7 @@ extern UINT32 SRE_MsgmBufRecfg(UINT32 uwGMsgmBufStart, UINT32 uwGMsgmBufLen);
  */
 extern UINT32 SRE_MsgmSynRevHookReg(QUE_HANDLE_T hQueue, UINT32 uwIntNum, HWI_MODE_T usMode, SRE_MSGM_SYN_REV_HOOK pfnHook);
 
-/**
- * @ingroup SRE_msgm
- * @brief 普通消息溢出缓冲区配置接口。
- *
- * @par 描述:
- * 根据用户传入的参数，配置指定的MSGM普通消息溢出缓存区，并使能溢出缓存功能。
- * @attention
- * <ul>
- * <li>适用于SD6182、SD6157平台。</li>
- * <li>如果重复配置，以最后一次为准。 之前的溢出数据，在新的配置生效后，将被清除。</li>
- * <li>该接口内部对MSGM的硬件配置没有核间锁保护，对于可能出现多核同时配置的场景，用户保证串行操作。</li>
- * <li>OS对LMSGM和溢出缓存区内存是否被低功耗关断不做判断，用户请自行保证。</li>
- * </ul>
- *
- * @param uwMsgmID      [IN] UINT32，MSGM ID，有效值为SRE_GLOBAL_MSGM或SRE_LOCAL_MSGM(SRE_LOCAL_MSGM只对SD6182)。
- * @param pBufAddr      [IN] VOID *，缓存区首地址，要求为GLOBAL可写地址，并且首地址16字节对齐。
- * @param uwBufSize     [IN] UINT32，以字节为单位的缓存区长度。长度要求16字节对齐。
- *
- * @retval #OS_ERRNO_MSGM_NOR_OV_BUFFER_ADDR_ILLEGAL       0x02002b48，缓存区首地址为NULL, 或者不是Global地址。
- * @retval #OS_ERRNO_MSGM_NOR_OV_BUFFER_SIZE_ILLEGAL       0x02002b49，缓存区大小无效。
- * @retval #OS_ERRNO_MSGM_NOR_OV_BUFFER_ADDR_NOT_ALIGN     0x02002b4a，缓存区首地址或长度没有16字节对齐。
- * @retval #OS_ERRNO_MSGM_NOR_OV_MSGM_ID_ILLEGAL           0x02002b4b，MSGM ID无效。
- * @retval #SRE_OK                                         0x00000000，配置成功。
- *
- * @par 依赖:
- * <ul><li>sre_msgm.h：该接口声明所在的头文件。</li></ul>
- * @since RTOSck V100R002C00
- * @see 无
- */
+
 extern UINT32 SRE_NorQueOvBufAddrCfg(UINT32 uwMsgmID, VOID * pBufAddr, UINT32 uwBufSize);
 
 #else

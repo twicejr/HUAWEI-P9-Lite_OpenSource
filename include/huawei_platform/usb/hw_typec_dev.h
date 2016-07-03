@@ -105,6 +105,7 @@ struct typec_device_info{
 #define REVERSE_COMPLETE    2
 #define TRYSNK_TIMEOUT_MS    500
 #define DUAL_ROLE_SET_MODE_WAIT_MS    1500
+#define WAIT_VBUS_OFF_MS    50
 #endif
 
 /* for chip layer to register ops functions and interrupt status*/

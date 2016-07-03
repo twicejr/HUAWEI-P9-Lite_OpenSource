@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasXregCtx.h
-  版 本 号   : 初稿
-  作    者   : l60609
-  生成日期   : 2014年7月3日
-  最近修改   :
-  功能描述   : CnasXregCtx.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年7月3日
-    作    者   : l60609
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __CNAS_XREG_CTX_H__
 #define __CNAS_XREG_CTX_H__
@@ -54,13 +37,7 @@ extern "C" {
   3 枚举定义
 *****************************************************************************/
 
-/*****************************************************************************
- 枚举名    : CNAS_XREG_FSM_ID_ENUM
- 枚举说明  : 状态机ID枚举定义
- 1.日    期   : 2014年07月07日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CNAS_XREG_FSM_ID_ENUM
 {
     /***********************************************************************
@@ -82,14 +59,7 @@ enum CNAS_XREG_FSM_ID_ENUM
 };
 typedef VOS_UINT32 CNAS_XREG_FSM_ID_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : CNAS_XREG_READ_CARD_FILES_CNF_ENUM
- 结构说明  : 用于标记读取卡文件的回复消息
- 1.日    期   : 2015年01月05日
-   作    者   : g00256031
-   修改内容   : 新增
 
-*****************************************************************************/
 enum   CNAS_XREG_READ_CARD_FILES_CNF_ENUM
 {
     CNAS_XREG_READ_CARD_FILE_FLG_NULL                       = 0x00,             /* 初始值 */
@@ -103,14 +73,7 @@ enum   CNAS_XREG_READ_CARD_FILES_CNF_ENUM
 
 typedef VOS_UINT32 CNAS_XREG_READ_CARD_FILES_CNF_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : CNAS_XREG_REFRESH_CARD_FILES_IND_ENUM
- 结构说明  : 用于标记卡文件改变
- 1.日    期   : 2015年10月25日
-   作    者   : d00212987
-   修改内容   : 新增
 
-*****************************************************************************/
 enum   CNAS_XREG_REFRESH_CARD_FILES_IND_ENUM
 {
     CNAS_XREG_REFRESH_CARD_FILE_FLG_NULL                       = 0x00,             /* 初始值 */
@@ -126,14 +89,7 @@ enum   CNAS_XREG_REFRESH_CARD_FILES_IND_ENUM
 
 typedef VOS_UINT32 CNAS_XREG_REFRESH_CARD_FILES_IND_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : CNAS_XREG_REFRESH_CARD_FILES_IND_ENUM
- 结构说明  : 用于标记卡文件改变
- 1.日    期   : 2015年10月25日
-   作    者   : d00212987
-   修改内容   : 新增
 
-*****************************************************************************/
 enum   CNAS_XREG_CARD_FILES_CHANGE_ENUM
 {
     CNAS_XREG_CARD_FILE_CHANGE_FLG_NULL                       = 0x00,             /* 初始值 */
@@ -148,14 +104,7 @@ enum   CNAS_XREG_CARD_FILES_CHANGE_ENUM
 };
 
 typedef VOS_UINT32 CNAS_XREG_CARD_FILES_CHANGE_ENUM_UINT32;
-/*****************************************************************************
- 结构名    : CNAS_XREG_CACHE_MSG_QUEUE_STRU
- 结构说明  : 缓存的消息队列
- 1.日    期   : 2014年07月07日
-   作    者   : h00246512
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     CNAS_XREG_REFRESH_CARD_FILES_IND_ENUM_UINT32        enRefreshReadCard;               /* Refresh Card Ind 读卡消息回复 */
@@ -181,29 +130,14 @@ typedef struct
 /*****************************************************************************
   7 STRUCT定义
 *****************************************************************************/
-/*****************************************************************************
- 结构名    : CNAS_XREG_MSG_STRU
- 结构说明  : XREG消息结构，状态机保存的入口消息和CACHE消息都使用此结构
- 1.日    期   : 2014年07月04日
-   作    者   : h00246512
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          ulEventType;
     VOS_UINT8                           aucMsgBuffer[CNAS_XREG_MAX_MSG_BUFFER_LEN];
 }CNAS_XREG_MSG_STRU;
 
- /* Modified by d00212987 for CNAS内存裁剪, 2015-09-18, begin */
-/*****************************************************************************
- 结构名    : CNAS_XREG_CACHE_MSG_QUEUE_STRU
- 结构说明  : 缓存的消息队列
- 1.日    期   : 2014年07月07日
-   作    者   : h00246512
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          ulCurrIndex;                            /* 记录当前处理缓存的index */
@@ -211,70 +145,35 @@ typedef struct
     VOS_UINT8                           aucReserve[3];
     VOS_UINT8                          *pastCacheMsg[CNAS_XREG_MAX_CACHE_MSG_QUEUE_NUM]; /* XREG的消息队列数组指针，存储的是带通用消息头的消息 */
 }CNAS_XREG_CACHE_MSG_QUEUE_STRU;
- /* Modified by d00212987 for CNAS内存裁剪, 2015-09-18, end */
 
-/*****************************************************************************
- 结构名    : CNAS_XREG_FSM_REGISTER_CTX_STRU
- 结构说明  : 存放注册状态机的上下文信息
-  1.日    期   : 2014年07月07日
-    作    者   : h00246512
-    修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     CNAS_XREG_REFRESH_CARD_FILES_STATUS_STRU            stXregRefreshCardFileStatus;
 }CNAS_XREG_PREPROC_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XREG_FSM_REGISTER_CTX_STRU
- 结构说明  : 存放注册状态机的上下文信息
-  1.日    期   : 2014年07月07日
-    作    者   : h00246512
-    修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     /* 本次迭代不涉及 */
     VOS_UINT8                           aucRsved[4];
 }CNAS_XREG_FSM_REGISTER_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XREG_FSM_L1_MAIN_CTX_STRU
- 结构说明  : 存放L1状态机的上下文信息
-  1.日    期   : 2014年07月04日
-    作    者   : y00245242
-    修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     /* 本次迭代不涉及 */
     VOS_UINT8                           aucRsved[4];
 }CNAS_XREG_FSM_L1_MAIN_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XREG_FSM_SWITCH_ON_CTX_STRU
- 结构说明  : 存放开机状态机的上下文信息
-  1.日    期   : 2015年01月05日
-    作    者   : g00256031
-    修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          ulXregReadCardFileFlg;                  /* 标记卡文件是否读取完成 */
     VOS_UINT8                           aucReserved[4];
 }CNAS_XREG_FSM_SWITCH_ON_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XREG_FSM_EXTRA_CTX_UNION
- 结构说明  : 状态机状态描述结构,状态机上下文信息
- 1.日    期   : 2014年07月07日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef union
 {
     CNAS_XREG_FSM_REGISTER_CTX_STRU     stRegisterCtx;
@@ -284,14 +183,7 @@ typedef union
     CNAS_XREG_FSM_SWITCH_ON_CTX_STRU    stSwitchOnCtx;
 }CNAS_XREG_FSM_EXTRA_CTX_UNION;
 
-/*****************************************************************************
- 结构名    : CNAS_XREG_FSM_CTX_STRU
- 结构说明  : 状态机状态描述结构
- 1.日    期   : 2014年07月07日
-   作    者   : h00246512
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     /* 状态机描述指针,指针为NULL表示当前状态机无效  */
@@ -316,13 +208,7 @@ typedef struct
     CNAS_XREG_FSM_EXTRA_CTX_UNION       unFsmCtx;
 }CNAS_XREG_FSM_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XREG_FSM_STACK_STRU
- 结构说明  : 状态机栈描述结构
- 1.日    期   : 2014年07月04日
-   作    者   : y00245242
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usStackDepth;                           /* 当前压栈的状态机数 */
@@ -331,13 +217,7 @@ typedef struct
 }CNAS_XREG_FSM_STACK_STRU;
 
 
-/*****************************************************************************
- 结构名    : CNAS_XREG_CTX_STRU
- 结构说明  : XREG的上下文
- 1.日    期   : 2014年07月03日
-   作    者   : l60609
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     /* 预处理 */
@@ -411,12 +291,10 @@ VOS_VOID CNAS_XREG_SaveCurEntryMsg(
     struct MsgCB                       *pstMsg
 );
 
- /* Modified by d00212987 for CNAS内存裁剪, 2015-09-18, begin */
 VOS_VOID  CNAS_XREG_SaveMsgToCache(
     VOS_UINT32                          ulEventType,
     VOS_UINT8                           *pucMsg
 );
- /* Modified by d00212987 for CNAS内存裁剪, 2015-09-18, end */
  
 VOS_VOID  CNAS_XREG_LoadSubFsm(
     CNAS_XREG_FSM_ID_ENUM_UINT32         enFsmId,

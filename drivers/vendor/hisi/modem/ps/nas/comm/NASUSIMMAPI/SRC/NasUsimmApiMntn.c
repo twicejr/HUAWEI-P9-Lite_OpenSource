@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2012, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasUsimmApiMntn.c
-  版 本 号   : 初稿
-  作    者   : s00217060
-  生成日期   : 2013年6月5日
-  最近修改   :
-  功能描述   : nas调用usimm模块api的可维可测相关处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年5月8日
-    作    者   : w00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -41,22 +24,7 @@ extern "C" {
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : NAS_LogUsimmApiSetFileReq
- 功能描述  : 调用API接口NAS_USIMMAPI_SetFileReq时，以消息形式在SDT中进行显示，方便可维可测
- 输入参数  : ulRslt:调用API的返回值
-             enApiType:API类型，分为带INSTANCE的和不带INSTANCE两种
-             pstSetFileInfo:设置的文件信息；
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年06月05日
-    作    者   : s00217060
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID  NAS_LogUsimmApiSetFileReq(
     VOS_UINT32                          ulRslt,
     NAS_USIMM_API_TYPE_ENUM_UINT8       enApiType,
@@ -109,22 +77,7 @@ VOS_VOID  NAS_LogUsimmApiSetFileReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_LogUsimmApiGetFileReq
- 功能描述  : 调用API接口NAS_USIMMAPI_GetFileReq时，以消息形式在SDT中进行显示，方便可维可测
- 输入参数  : ulRslt:调用API的返回值
-             enApiType:API类型，分为带INSTANCE的和不带INSTANCE两种
-             pstGetFileInfo:获取的文件信息；
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年06月05日
-    作    者   : s00217060
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID  NAS_LogUsimmApiGetFileReq(
     VOS_UINT32                          ulRslt,
     NAS_USIMM_API_TYPE_ENUM_UINT8       enApiType,
@@ -169,24 +122,7 @@ VOS_VOID  NAS_LogUsimmApiGetFileReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_LogUsimmApiAuthReq
- 功能描述  : 调用API接口NAS_USIMMAPI_AuthReq时，以消息形式在SDT中进行显示，方便可维可测
- 输入参数  : ulRslt:调用API的返回值
-             enApiType:API类型，分为带INSTANCE的和不带INSTANCE两种
-             ucChallengeType:鉴权类型
-             pucRand:鉴权随机数
-             pucAutn:鉴权数据
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年06月05日
-    作    者   : s00217060
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID  NAS_LogUsimmApiAuthReq(
     VOS_UINT32                          ulRslt,
     NAS_USIMM_API_TYPE_ENUM_UINT8       enApiType,
@@ -239,22 +175,7 @@ VOS_VOID  NAS_LogUsimmApiAuthReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_LogUsimmApiPinReq
- 功能描述  : 调用API接口NAS_USIMMAPI_PinReq时，以消息形式在SDT中进行显示，方便可维可测
- 输入参数  : ulRslt:调用API的返回值
-             enApiType:API类型，分为带INSTANCE的和不带INSTANCE两种
-             stPinInfo:pin信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年06月05日
-    作    者   : s00217060
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID  NAS_LogUsimmApiPinReq(
     VOS_UINT32                          ulRslt,
     NAS_USIMM_API_TYPE_ENUM_UINT8       enApiType,
@@ -300,23 +221,7 @@ VOS_VOID  NAS_LogUsimmApiPinReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_LogUsimmApiMaxEFRecordNumReq
- 功能描述  : 调用API接口NAS_USIMMAPI_MaxEFRecordNumReq时，以消息形式在SDT中进行显示，方便可维可测
- 输入参数  : ulRslt:调用API的返回值
-             enApiType:API类型，分为带INSTANCE的和不带INSTANCE两种
-             enAppType  :usimm应用类型
-             usEFid     :文件id
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年06月05日
-    作    者   : s00217060
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID  NAS_LogUsimmApiMaxEFRecordNumReq(
     VOS_UINT32                          ulRslt,
     NAS_USIMM_API_TYPE_ENUM_UINT8       enApiType,
@@ -356,21 +261,7 @@ VOS_VOID  NAS_LogUsimmApiMaxEFRecordNumReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_LogUsimmApiIsTestCard
- 功能描述  : 调用API接口NAS_USIMMAPI_IsTestCard时，以消息形式在SDT中进行显示，方便可维可测
- 输入参数  : ulRslt:调用API的返回值
-             enApiType:API类型，分为带INSTANCE的和不带INSTANCE两种
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年06月05日
-    作    者   : s00217060
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID  NAS_LogUsimmApiIsTestCard(
     VOS_UINT32                          ulRslt,
     NAS_USIMM_API_TYPE_ENUM_UINT8       enApiType
@@ -406,21 +297,7 @@ VOS_VOID  NAS_LogUsimmApiIsTestCard(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_LogUsimmApiGetPinStatus
- 功能描述  : 调用API接口NAS_USIMMAPI_GetPinStatus时，以消息形式在SDT中进行显示，方便可维可测
- 输入参数  : ulRslt:调用API的返回值
-             enApiType:API类型，分为带INSTANCE的和不带INSTANCE两种
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年06月05日
-    作    者   : s00217060
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID  NAS_LogUsimmApiGetPinStatus(
     VOS_UINT32                          ulRslt,
     NAS_USIMM_API_TYPE_ENUM_UINT8       enApiType,
@@ -463,21 +340,7 @@ VOS_VOID  NAS_LogUsimmApiGetPinStatus(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_LogUsimmApiGetCardType
- 功能描述  : 调用API接口NAS_USIMMAPI_GetCardType时，以消息形式在SDT中进行显示，方便可维可测
- 输入参数  : ulRslt:调用API的返回值
-             enApiType:API类型，分为带INSTANCE的和不带INSTANCE两种
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年06月05日
-    作    者   : s00217060
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID  NAS_LogUsimmApiGetCardType(
     VOS_UINT32                          ulRslt,
     NAS_USIMM_API_TYPE_ENUM_UINT8       enApiType,
@@ -517,24 +380,7 @@ VOS_VOID  NAS_LogUsimmApiGetCardType(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_LogUsimmApiIsServiceAvailable
- 功能描述  : 调用API接口NAS_USIMMAPI_IsServiceAvailable时，以消息形式在SDT中进行显示，方便可维可测
- 输入参数  : ulRslt:调用API的返回值
-             enApiType:API类型，分为带INSTANCE的和不带INSTANCE两种
-             enService:usim服务类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年06月05日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2013年07月29日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_VOID  NAS_LogUsimmApiIsServiceAvailable(
     VOS_UINT32                          ulRslt,
     NAS_USIMM_API_TYPE_ENUM_UINT8       enApiType,
@@ -574,21 +420,7 @@ VOS_VOID  NAS_LogUsimmApiIsServiceAvailable(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_LogUsimmApiGetCachedFile
- 功能描述  : 调用API接口NAS_USIMMAPI_GetCachedFile时，以消息形式在SDT中进行显示，方便可维可测
- 输入参数  : ulRslt:调用API的返回值
-             enApiType:API类型，分为带INSTANCE的和不带INSTANCE两种
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年06月05日
-    作    者   : s00217060
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID  NAS_LogUsimmApiGetCachedFile(
     VOS_UINT32                          ulRslt,
     NAS_USIMM_API_TYPE_ENUM_UINT8       enApiType,
@@ -639,21 +471,7 @@ VOS_VOID  NAS_LogUsimmApiGetCachedFile(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_LogUsimmApiGetCardIMSI
- 功能描述  : 调用API接口NAS_USIMMAPI_GetCardIMSI时，以消息形式在SDT中进行显示，方便可维可测
- 输入参数  : ulRslt:调用API的返回值
-             enApiType:API类型，分为带INSTANCE的和不带INSTANCE两种
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年06月05日
-    作    者   : s00217060
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID  NAS_LogUsimmApiGetCardIMSI(
     VOS_UINT32                          ulRslt,
     NAS_USIMM_API_TYPE_ENUM_UINT8       enApiType,
@@ -696,21 +514,7 @@ VOS_VOID  NAS_LogUsimmApiGetCardIMSI(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_LogUsimmApiBdnQuery
- 功能描述  : 调用API接口NAS_USIMMAPI_BdnQuery时，以消息形式在SDT中进行显示，方便可维可测
- 输入参数  : ulRslt:调用API的返回值
-             enApiType:API类型，分为带INSTANCE的和不带INSTANCE两种
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年06月05日
-    作    者   : s00217060
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID  NAS_LogUsimmApiBdnQuery(
     VOS_UINT32                          ulState,
     NAS_USIMM_API_TYPE_ENUM_UINT8       enApiType
@@ -747,21 +551,7 @@ VOS_VOID  NAS_LogUsimmApiBdnQuery(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_LogUsimmApiFdnQuery
- 功能描述  : 调用API接口NAS_USIMMAPI_FdnQuery时，以消息形式在SDT中进行显示，方便可维可测
- 输入参数  : ulRslt:调用API的返回值
-             enApiType:API类型，分为带INSTANCE的和不带INSTANCE两种
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年06月05日
-    作    者   : s00217060
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID  NAS_LogUsimmApiFdnQuery(
     VOS_UINT32                          ulUsimState,
     VOS_UINT32                          ulCsimState,
@@ -800,21 +590,7 @@ VOS_VOID  NAS_LogUsimmApiFdnQuery(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_LogUsimmApiGetPinRemainTime
- 功能描述  : 调用API接口NAS_USIMMAPI_GetPinRemainTime时，以消息形式在SDT中进行显示，方便可维可测
- 输入参数  : ulRslt:调用API的返回值
-             enApiType:API类型，分为带INSTANCE的和不带INSTANCE两种
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年06月05日
-    作    者   : s00217060
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID  NAS_LogUsimmApiGetPinRemainTime(
     VOS_UINT32                          ulRslt,
     NAS_USIMM_API_TYPE_ENUM_UINT8       enApiType,
@@ -857,21 +633,7 @@ VOS_VOID  NAS_LogUsimmApiGetPinRemainTime(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_LogPihApiRegUsimCardStatusInd
- 功能描述  : 调用API接口NAS_USIMMAPI_RegUsimCardStatusIndMsg时，以消息形式在SDT中进行显示，方便可维可测
- 输入参数  : ulRslt:调用API的返回值
-             enApiType:API类型，分为带INSTANCE的和不带INSTANCE两种
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年06月05日
-    作    者   : s00217060
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID  NAS_LogPihApiRegUsimCardStatusInd(
     VOS_UINT32                          ulRslt,
     NAS_USIMM_API_TYPE_ENUM_UINT8       enApiType,
@@ -909,21 +671,7 @@ VOS_VOID  NAS_LogPihApiRegUsimCardStatusInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_LogPihApiDeregUsimCardStatusInd
- 功能描述  : 调用API接口NAS_USIMMAPI_DeregUsimCardStatusIndMsg时，以消息形式在SDT中进行显示，方便可维可测
- 输入参数  : ulRslt:调用API的返回值
-             enApiType:API类型，分为带INSTANCE的和不带INSTANCE两种
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年06月05日
-    作    者   : s00217060
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID  NAS_LogPihApiDeregUsimCardStatusInd(
     VOS_UINT32                          ulRslt,
     NAS_USIMM_API_TYPE_ENUM_UINT8       enApiType,
@@ -961,21 +709,7 @@ VOS_VOID  NAS_LogPihApiDeregUsimCardStatusInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_LogPihApiRegCardRefreshInd
- 功能描述  : 调用API接口NAS_USIMMAPI_RegCardRefreshIndMsg时，以消息形式在SDT中进行显示，方便可维可测
- 输入参数  : ulRslt:调用API的返回值
-             enApiType:API类型，分为带INSTANCE的和不带INSTANCE两种
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年06月05日
-    作    者   : s00217060
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID  NAS_LogPihApiRegCardRefreshInd(
     VOS_UINT32                          ulRslt,
     NAS_USIMM_API_TYPE_ENUM_UINT8       enApiType,
@@ -1013,21 +747,7 @@ VOS_VOID  NAS_LogPihApiRegCardRefreshInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_LogPihApiDeregCardRefreshInd
- 功能描述  : 调用API接口NAS_USIMMAPI_DeregCardRefreshIndMsg时，以消息形式在SDT中进行显示，方便可维可测
- 输入参数  : ulRslt:调用API的返回值
-             enApiType:API类型，分为带INSTANCE的和不带INSTANCE两种
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年06月05日
-    作    者   : s00217060
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID  NAS_LogPihApiDeregCardRefreshInd(
     VOS_UINT32                          ulRslt,
     NAS_USIMM_API_TYPE_ENUM_UINT8       enApiType,
@@ -1065,21 +785,7 @@ VOS_VOID  NAS_LogPihApiDeregCardRefreshInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_LogPbApiGetEccNumber
- 功能描述  : 调用API接口NAS_PBAPI_GetEccNumber时，以消息形式在SDT中进行显示，方便可维可测
- 输入参数  : ulRslt:调用API的返回值
-             enApiType:API类型，分为带INSTANCE的和不带INSTANCE两种
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年06月05日
-    作    者   : s00217060
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID  NAS_LogPbApiGetEccNumber(
     VOS_UINT32                          ulRslt,
     NAS_USIMM_API_TYPE_ENUM_UINT8       enApiType,
@@ -1122,21 +828,7 @@ VOS_VOID  NAS_LogPbApiGetEccNumber(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_LogPbApiGetXeccNumber
- 功能描述  : 调用API接口NAS_PBAPI_GetXeccNumber时，以消息形式在SDT中进行显示，方便可维可测
- 输入参数  : ulRslt:调用API的返回值
-             enApiType:API类型，分为带INSTANCE的和不带INSTANCE两种
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2015年07月28日
-    作    者   : h00313353
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID  NAS_LogPbApiGetXeccNumber(
     VOS_UINT32                          ulRslt,
     NAS_USIMM_API_TYPE_ENUM_UINT8       enApiType,
@@ -1180,26 +872,9 @@ VOS_VOID  NAS_LogPbApiGetXeccNumber(
 }
 
 
-/* Deleted by l00208543 for V9R1 STK升级, 2013-7-13, begin */
-/* Deleted by l00208543 for V9R1 STK升级, 2013-7-13, end */
 
 
-/*****************************************************************************
- 函 数 名  : NAS_LogPbApiFdnNumCheck
- 功能描述  : 调用API接口NAS_PBAPI_FdnNumCheck时，以消息形式在SDT中进行显示，方便可维可测
- 输入参数  : ulRslt:调用API的返回值
-             enApiType:API类型，分为带INSTANCE的和不带INSTANCE两种
-             pstFdnNum:Fdn num
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年06月05日
-    作    者   : z00161729
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID  NAS_LogPbApiFdnNumCheck(
     VOS_UINT32                          ulRslt,
     NAS_USIMM_API_TYPE_ENUM_UINT8       enApiType,
@@ -1245,22 +920,7 @@ VOS_VOID  NAS_LogPbApiFdnNumCheck(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_LogStkApiEnvelopRspDecode
- 功能描述  : 调用API接口NAS_STKAPI_NetSearchChgEvent时，以消息形式在SDT中进行显示，方便可维可测
- 输入参数  : ulRslt:调用API的返回值
-             enApiType:API类型，分为带INSTANCE的和不带INSTANCE两种
-             pstEnvelopeRsp:envelop rsp结果信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年06月05日
-    作    者   : z00161729
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID  NAS_LogStkApiEnvelopRspDecode(
     VOS_UINT32                          ulRslt,
     NAS_USIMM_API_TYPE_ENUM_UINT8       enApiType,
@@ -1317,21 +977,7 @@ VOS_VOID  NAS_LogStkApiEnvelopRspDecode(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_LogStkApiEnvelopReqCode
- 功能描述  : 调用API接口SI_STK_EnvelopeData_Code时，以消息形式在SDT中进行显示，方便可维可测
- 输入参数  : ulRslt:调用API的返回值
-             enApiType:API类型，分为带INSTANCE的和不带INSTANCE两种
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2015年02月17日
-    作    者   : h00313353
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID  NAS_LogStkApiEnvelopReqCode(
     VOS_UINT32                          ulRslt,
     NAS_USIMM_API_TYPE_ENUM_UINT8       enApiType,
@@ -1373,21 +1019,7 @@ VOS_VOID  NAS_LogStkApiEnvelopReqCode(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_LogStkApiEnvelopRspDataFree
- 功能描述  : 调用API接口NAS_STKAPI_EnvelopeRspDataFree时，以消息形式在SDT中进行显示，方便可维可测
- 输入参数  : enApiType:API类型，分为带INSTANCE的和不带INSTANCE两种
-             pstEnvelopeRsp:envelop rsp结果信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年06月05日
-    作    者   : z00161729
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID  NAS_LogStkApiEnvelopRspDataFree(
     NAS_USIMM_API_TYPE_ENUM_UINT8       enApiType,
     SI_STK_ENVELOPE_RSP_STRU           *pstEnvelopeRsp
@@ -1429,22 +1061,7 @@ VOS_VOID  NAS_LogStkApiEnvelopRspDataFree(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_LogStkApiEnvelopDownload
- 功能描述  : 调用API接口NAS_STKAPI_EnvelopeDownload时，以消息形式在SDT中进行显示，方便可维可测
- 输入参数  : ulRslt:调用API的返回值
-             enApiType:API类型，分为带INSTANCE的和不带INSTANCE两种
-             pstENStru:envelop 信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年06月05日
-    作    者   : z00161729
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID  NAS_LogStkApiEnvelopDownload(
     VOS_UINT32                          ulRslt,
     NAS_USIMM_API_TYPE_ENUM_UINT8       enApiType,
@@ -1515,21 +1132,7 @@ VOS_VOID  NAS_LogStkApiEnvelopDownload(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_LogUsimmApiDeactiveCardReq
- 功能描述  : 调用API接口NAS_USIMMAPI_DeactiveCardReq时，以消息形式在SDT中进行显示，方便可维可测
- 输入参数  : ulRslt:调用API的返回值
-             enApiType:API类型，分为带INSTANCE的和不带INSTANCE两种
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年06月08日
-    作    者   : z00161729
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID  NAS_LogUsimmApiDeactiveCardReq(
     VOS_UINT32                          ulRslt,
     NAS_USIMM_API_TYPE_ENUM_UINT8       enApiType
@@ -1566,21 +1169,7 @@ VOS_VOID  NAS_LogUsimmApiDeactiveCardReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_LogSTKApiCCResultInd
- 功能描述  : 调用API接口SI_STK_CCResultInd时，以消息形式在SDT中进行显示，方便可维可测
- 输入参数  : enApiType:API类型，分为带INSTANCE的和不带INSTANCE两种
-             pstRspData - 指向CALL CONTROL的解码后码流
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年06月13日
-    作    者   : w00242748
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID  NAS_LogSTKApiCCResultInd(
     NAS_USIMM_API_TYPE_ENUM_UINT8       enApiType,
     SI_STK_ENVELOPE_RSP_STRU           *pstRspData
@@ -1622,21 +1211,7 @@ VOS_VOID  NAS_LogSTKApiCCResultInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_LogSTKApiSMSCtrlResultInd
- 功能描述  : 调用API接口SI_STK_SMSCtrlResultInd时，以消息形式在SDT中进行显示，方便可维可测
- 输入参数  : enApiType:API类型，分为带INSTANCE的和不带INSTANCE两种
-             pstRspData - 指向SMS CONTROL的解码后码流
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年06月13日
-    作    者   : w00242748
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID  NAS_LogSTKApiSMSCtrlResultInd(
     NAS_USIMM_API_TYPE_ENUM_UINT8       enApiType,
     SI_STK_ENVELOPE_RSP_STRU           *pstRspData
@@ -1678,22 +1253,7 @@ VOS_VOID  NAS_LogSTKApiSMSCtrlResultInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_LogVsimIsRequireVsimCtrl
- 功能描述  : 获取VSIM控制流程启用标志，
- 输入参数  : VOS_UINT32                          ulVsimModem,
-             VOS_UINT8                           ucVsimCtrlFlg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月29日
-    作    者   : f62575
-    修改内容   : VSIM FEATURE
-
-*****************************************************************************/
 VOS_VOID NAS_LogVsimIsRequireVsimCtrl(
     VOS_UINT32                          ulVsimModem,
     VOS_UINT8                           ucVsimCtrlFlg
@@ -1719,23 +1279,7 @@ VOS_VOID NAS_LogVsimIsRequireVsimCtrl(
 }
 
 
-/* Added by w00176964 for V3R3C60_eCall项目, 2014-5-12, begin */
-/*****************************************************************************
- 函 数 名  : NAS_LogPbApiQryEcallNumber
- 功能描述  : 调用API接口NAS_PBAPI_QryECallNumber时，以消息形式在SDT中进行显示，方便可维可测
- 输入参数  : ulRslt:调用API的返回值
-             enApiType:API类型，分为带INSTANCE的和不带INSTANCE两种
-             pstFdnNum:Fdn num
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2014年05月12日
-    作    者   : w00176964
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID  NAS_LogPbApiQryEcallNumber(
     VOS_UINT32                          ulRslt,
     NAS_USIMM_API_TYPE_ENUM_UINT8       enApiType,
@@ -1784,7 +1328,6 @@ VOS_VOID  NAS_LogPbApiQryEcallNumber(
     return;
 }
 
-/* Added by w00176964 for V3R3C60_eCall项目, 2014-5-12, end */
 /*lint -restore */
 
 

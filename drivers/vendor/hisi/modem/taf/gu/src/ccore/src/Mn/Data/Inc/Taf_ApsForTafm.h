@@ -1,18 +1,4 @@
-/************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : TAf_ApsForTafm.h
-  Author      : 韩鲁峰
-  Version     : V200R001
-  Date        : 2005-0
-  Description : 该头文件定义了---
-  History     :
-  1. Date:2005-0 -
-     Author: ---
-     Modification:Create
-  2. 2006-02-23 modify by 韩鲁峰 FOR A32D02144
-  3. 2006-02-28 delete by 韩鲁峰 FOR A32D02268
-  4. 2006-08-09 modify by J60010247 for A32D03479
-************************************************************************/
+
 
 #ifndef _TAF_APSFORTAFM_H_
 #define _TAF_APSFORTAFM_H_

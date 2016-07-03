@@ -1,77 +1,4 @@
-/************************************************************************
-  Copyright    : 2005-2007, Huawei Tech. Co., Ltd.
-  File name    : MmGsmDifMsg.c
-  Author       : s46746
-  Version      : V200R001
-  Date         : 2005-08-19
-  Description  : 该C文件给出了MM模块GSM有差异消息的实现
-  Function List:
-        1) MM_AnalyNtModeofSysInfo
-        2) MM_AnalyRacofSysInfo
-        3) MM_ChangeRegState
-        4) MM_GasAttachReq
-        5) MM_GasDelKeyReq
-        6) MM_GasRrAbortReq
-        7) MM_GasRrDataReq
-        8) MM_GasRrEstReq
-        9) MM_GasRrRelReq
-       10) MM_GasSecurityKeyChgReq
-       11) MM_GasTmsiLaiChgReq
-       12) MM_GasUsimStatusReq
-       13) MM_GetSecurityInfo
-       14) MM_NasSendGasMsg
-       15) MM_RcvGsmRrcPagingInd
-       16) MM_RcvGsmRrcSyncInd
-       17) MM_RcvMmcGsmSysInfoInd
 
-  History      :
-  1. Date:
-     Author: ---
-     Modification:Create
-  2. Date:
-     Author: ---
-     Modification:Add function ... 问题单号:
-  3. s46746 2006-03-14 根据问题单A32D02479修改
-  4. s46746 2006-03-29  根据问题单A32D02486修改
-  5. s46746 2006-03-31  根据问题单A32D02790修改
-  6. x51137  2006/4/14 A32D02955
-  7. l40632  2006-07-07  根据问题单A32D04776修改
-  8. s46746  2006-07-27 根据问题单A32D03975修改
-  9. x51137  2006/11/2  A32D06628
- 10. 日    期   : 2006年11月22日
-     作    者   : s46746
-     修改内容   : 问题单号:A32D07372
- 11.日    期   : 2007年03月30日
-    作    者   : luojian 60022475
-    修改内容   : Maps3000接口修改
- 12.日    期   : 2007年9月21日
-    作    者   : luojian id:107747
-    修改内容   : 问题单号：AT2D01703,MMCMM_COMBINED_RAU_ACCEPTED消息增加
-                 RealFlag标志
- 13.日    期   : 2007年9月27日
-    作    者   : s46746
-    修改内容   : 将卡无效信息从RRMM_NAS_INFO_CHANGE消息中拿掉
- 14.日    期   : 2008年05月13日
-    作    者   : luojian id:107747
-    修改内容   : 根据问题单号：AT2D03371,MM IDLE ATTEMPTING TO UPDATE状态下
-                 LAI改变立刻发起LAU.
- 15.日    期   : 2008年05月13日
-    作    者   : luojian id:107747
-    修改内容   : 根据问题单号：AT2D03612,MM_GasRrEstReq IDDN参数没有初始值
- 16.日    期   : 2008年7月25日
-    作    者   : luojian 00107747
-    修改内容   : 根据问题单号AT2D04142/AT2D04677,修改RAU ATTEMPT次数等于5次的处理
- 17.日    期   : 2008年12月02日
-    作    者   : x00115505
-    修改内容   : AT2D07170:CREG,CGREG主动上报错误
- 18.日    期   : 2009年07月17日
-   作    者   : z40661
-   修改内容   : AT2D12971,从支持EDGE的网络模式I的小区重选到支持EDGE的网络模式II的小区失败
- 19.日    期   : 2009年8月14日
-    作    者   : f62575
-    修改内容   : AT2D13631, CS短信接收失败的问题，CS短信自发自收时，发送成功，但是接收时回复CP error，原因是msg not compatible with protocl state
-
-************************************************************************/
 
 /*****************************************************************************
    1 头文件包含
@@ -104,9 +31,7 @@
    3 函数实现
 *****************************************************************************/
 
-/* Deleted by w00176964 for V3R3C60_eCall项目, 2014-4-4, begin */
 
-/* Deleted by w00176964 for V3R3C60_eCall项目, 2014-4-4, end */
 
 /*lint -save -e958 */
 
@@ -269,23 +194,7 @@ VOS_UINT8 MM_RcvGsmRrcSyncInd(VOS_VOID *pRcvMsg)
 }
 
 
-/*****************************************************************************
- Prototype      : MM_SupplementNsdInfo
- Description    : 在MM、CC和SS消息类型中增加 NSD 信息
- Input          : pData 信令数据指针
- Output         : ---
- Return Value   : 无
- Calls          : ---
- Called By      : NAS 层 MM
 
- History        : ---
-  1.Date        : 2006-03-27
-    Author      : s46746
-    Modification: Creation
-  2.日    期   : 2006年11月22日
-    作    者   : s46746
-    修改内容   : 问题单号:A32D07372
-*****************************************************************************/
 VOS_UINT32 MM_SupplementNsdInfo(VOS_UINT8 *pData)
 {
     VOS_UINT8 ucPd;
@@ -301,28 +210,7 @@ VOS_UINT32 MM_SupplementNsdInfo(VOS_UINT8 *pData)
     return MM_FALSE;
 }
 
-/*****************************************************************************
- Prototype      : MM_WasRrDataReq
- Description    : NAS向AS请求发送信令数据
-                  发送消息原语RRMM_DATA_REQ的API函数
- Input          : ucCnDomain CN DOMAIN
-                  ucPriority 信令数据优先级
-                  ulSize 信令数据长度
-                  pData 信令数据指针
- Output         : ---
- Return Value   : MM_TRUE 成功
-                  MM_FALSE 失败
- Calls          : ---
- Called By      : NAS 层 MM
 
- History        : ---
-  1.Date        : 2006-03-27
-    Author      : s46746
-    Modification: Creation
-  2.日    期   : 2006年11月22日
-    作    者   : s46746
-    修改内容   : 问题单号:A32D07372
-*****************************************************************************/
 VOS_INT32 MM_WasRrDataReq(VOS_UINT8 ucCnDomain, VOS_UINT8 ucPriority,
                           VOS_UINT32 ulSize, VOS_INT8 *pData)
 {
@@ -347,28 +235,7 @@ VOS_INT32 MM_WasRrDataReq(VOS_UINT8 ucCnDomain, VOS_UINT8 ucPriority,
 }
 
 
-/*****************************************************************************
- Prototype      : MM_GasRrDataReq
- Description    : NAS向AS请求发送信令数据
-                  发送消息原语RRMM_DATA_REQ的API函数
- Input          : ucCnDomain CN DOMAIN
-                  ucPriority 信令数据优先级
-                  ulSize 信令数据长度
-                  pData 信令数据指针
- Output         : ---
- Return Value   : MM_TRUE 成功
-                  MM_FALSE 失败
- Calls          : ---
- Called By      : NAS 层 MM
 
- History        : ---
-  1.Date        : 2005-09-09
-    Author      : s46746
-    Modification: Creation
-  2.日    期   : 2006年11月22日
-    作    者   : s46746
-    修改内容   : 问题单号:A32D07372
-*****************************************************************************/
 VOS_INT32 MM_GasRrDataReq(VOS_UINT8 ucCnDomain, VOS_UINT8 ucPriority,
                           VOS_UINT32 ulSize, VOS_INT8 *pData)
 {
@@ -459,42 +326,7 @@ VOS_INT32 MM_GasRrDataReq(VOS_UINT8 ucCnDomain, VOS_UINT8 ucPriority,
     return MM_TRUE;
 }
 
-/*****************************************************************************
- Prototype      : MM_WasRrEstReq
- Description    : NAS 层请求建立某个 CN 域的信令连接
-                  消息原语 RRMM_EST_REQ 的 API 函数
- Input          : ulOpId 操作标识
-                  ucCnDomain CN 域标识
-                  ulEstCause 建立原因
-                  pIdnnsInfo 保留未使用
-                  ulSize NAS消息长度
-                  pFisrstMsg 该 CN Domain 的第一个 NAS 消息
- Output         : ---
- Return Value   : MM_TRUE 成功
-                  MM_FALSE 失败
- Calls          : ---
- Called By      : NAS 层 MM
 
- History        : ---
-  1.Date        : 2006-03-27
-    Author      : s46746
-    Modification: Created
-  2.日    期   : 2006年11月22日
-    作    者   : s46746
-    修改内容   : 问题单号:A32D07372
-
-  3.日    期   : 2010年3月2日
-    作    者   : zhoujun /z40661
-    修改内容   : NAS R7协议升级
-
-  4.日    期   : 2010年8月26日
-    作    者   : 欧阳飞
-    修改内容   : DTS2010082600921，MM发起注册/去注册的建链请求，call type更
-                 新为other.
-  5.日    期   : 2012年10月22日
-    作    者   : t00212959
-    修改内容   : DTS2012101907218:NAS向接入层发送建链请求时，Establishment cause按照协议写为Registration
-*****************************************************************************/
 VOS_INT32 MM_WasRrEstReq(VOS_UINT32 ulOpId, VOS_UINT8 ucCnDomain,
                          VOS_UINT32 ulEstCause, IDNNS_STRU *pIdnnsInfo, RRC_PLMN_ID_STRU *pstPlmnId,
                          VOS_UINT32 ulSize, VOS_INT8 *pFisrstMsg)
@@ -537,30 +369,7 @@ VOS_INT32 MM_WasRrEstReq(VOS_UINT32 ulOpId, VOS_UINT8 ucCnDomain,
 }
 
 
-/*****************************************************************************
- Prototype      : MM_GasRrEstReq
- Description    : NAS 层请求建立某个 CN 域的信令连接
-                  消息原语 RRMM_EST_REQ 的 API 函数
- Input          : ulOpId 操作标识
-                  ucCnDomain CN 域标识
-                  ulEstCause 建立原因
-                  pIdnnsInfo 保留未使用
-                  ulSize NAS消息长度
-                  pFisrstMsg 该 CN Domain 的第一个 NAS 消息
- Output         : ---
- Return Value   : MM_TRUE 成功
-                  MM_FALSE 失败
- Calls          : ---
- Called By      : NAS 层 MM
 
- History        : ---
-  1.Date        : 2005-09-09
-    Author      : s46746
-    Modification: Created
-  2.日    期   : 2008年05月13日
-    作    者   : luojian id:107747
-    修改内容   : 根据问题单号：AT2D03612
-*****************************************************************************/
 VOS_INT32 MM_GasRrEstReq(VOS_UINT32 ulOpId, VOS_UINT8 ucCnDomain,
                          VOS_UINT32 ulEstCause, IDNNS_STRU *pIdnnsInfo, RRC_PLMN_ID_STRU *pstPlmnId,
                          VOS_UINT32 ulSize, VOS_INT8 *pFisrstMsg)
@@ -659,25 +468,7 @@ VOS_INT32 MM_GasRrEstReq(VOS_UINT32 ulOpId, VOS_UINT8 ucCnDomain,
     return MM_TRUE;
 }
 
-/*****************************************************************************
- Prototype      : MM_GasRrRelReq
- Description    : NAS 请求 GAS 释放指定域的信令连接
-                  消息原语 RRMM_REL_REQ 的 API 函数
- Input          : ucCnDomain CN 域
- Output         : ---
- Return Value   : MM_TRUE 成功
-                  MM_FALSE 失败
- Calls          : ---
- Called By      : NAS 层 MM
 
- History        : ---
-  1.Date        : 2005-09-09
-    Author      : s46746
-    Modification: Created
-  2.日    期   : 2007年03月30日
-    作    者   : luojian 60022475
-    修改内容   : Maps3000接口修改
-*****************************************************************************/
 VOS_INT32 MM_GasRrRelReq(VOS_UINT8 ucCnDomain,RRC_CELL_BAR_ENUM_UINT32 enBarValidFlg)
 {
     /* 定义调用VOS发送函数的返回值               */
@@ -737,24 +528,7 @@ VOS_INT32 MM_GasRrRelReq(VOS_UINT8 ucCnDomain,RRC_CELL_BAR_ENUM_UINT32 enBarVali
 
 
 /* 6.MM 实体提供给 GAS 获取安全信息的API函数 */
-/*****************************************************************************
- Prototype      : MM_GetSecurityInfo
- Description    : AS 通过此接口函数获取 CS 域安全信息和 IMSI
 
- Input          : pCsInfo AS 层提供的信息结构指针
- Output         : pCsInfo MM 填充结构中各成员,包含安全信息和 IMSI
- Return Value   : 无
- Calls          : ---
- Called By      : WAS/GAS
-
- History        : ---
-  1.Date        : 2005-09-09
-    Author      : s46746
-    Modification: Creation
- 2.日    期   : 2011年7月25日
-   作    者   : h44270
-   修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-*****************************************************************************/
 
 VOS_VOID MM_GetSecurityInfo(MM_CSPS_INFO_ST *pCsInfo)
 {

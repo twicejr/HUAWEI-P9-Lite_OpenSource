@@ -38,7 +38,7 @@ const AT_IMSA_MSG_PRO_FUNC_STRU g_astAtImsaMsgTab[]=
     {ID_IMSA_AT_CIREGU_IND,                 AT_RcvImsaCireguInd},
     {ID_IMSA_AT_CIREPH_IND,                 AT_RcvImsaCirephInd},
     {ID_IMSA_AT_CIREPI_IND,                 AT_RcvImsaCirepiInd},
-    {ID_IMSA_AT_CCWAI_SET_CNF,              AT_RcvImsaCcwaiSetCnf},
+
     {ID_IMSA_AT_VT_PDP_ACTIVATE_IND,        AT_RcvImsaVtPdpActInd},
     {ID_IMSA_AT_VT_PDP_DEACTIVATE_IND,      AT_RcvImsaVtPdpDeactInd},
     {ID_IMSA_AT_MT_STATES_IND,              AT_RcvImsaMtStateInd},
@@ -49,21 +49,7 @@ const AT_IMSA_MSG_PRO_FUNC_STRU g_astAtImsaMsgTab[]=
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : AT_ProcImsaMsg
- 功能描述  : 处理来自IMSA模块的消息
- 输入参数  : AT_IMSA_MSG_STRU *pMsg
- 输出参数  : 无
- 返 回 值  : TAF_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年09月18日
-    作    者   : Y00213812
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_VOID AT_ProcImsaMsg(AT_IMSA_MSG_STRU *pstMsg)
 {
     VOS_UINT32                          i;
@@ -102,21 +88,7 @@ VOS_VOID AT_ProcImsaMsg(AT_IMSA_MSG_STRU *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvImsaCiregSetCnf
- 功能描述  : +CIREG设置命令回复处理函数
- 输入参数  : *pMsg        回复消息
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年09月18日
-    作    者   : Y00213812
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvImsaCiregSetCnf(VOS_VOID * pMsg)
 {
     /* 定义局部变量 */
@@ -169,21 +141,7 @@ VOS_UINT32 AT_RcvImsaCiregSetCnf(VOS_VOID * pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvImsaCiregQryCnf
- 功能描述  : +CIREG查询命令回复处理函数
- 输入参数  : *pMsg        回复消息
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年09月18日
-    作    者   : Y00213812
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvImsaCiregQryCnf(VOS_VOID * pMsg)
 {
     /* 定义局部变量 */
@@ -262,21 +220,7 @@ VOS_UINT32 AT_RcvImsaCiregQryCnf(VOS_VOID * pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvImsaCirepSetCnf
- 功能描述  : +CIREP设置命令回复处理函数
- 输入参数  : *pMsg        回复消息
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年09月18日
-    作    者   : Y00213812
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvImsaCirepSetCnf(VOS_VOID * pMsg)
 {
     /* 定义局部变量 */
@@ -329,21 +273,7 @@ VOS_UINT32 AT_RcvImsaCirepSetCnf(VOS_VOID * pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvImsaCirepQryCnf
- 功能描述  : +CIREP查询命令回复处理函数
- 输入参数  : *pMsg        回复消息
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年09月18日
-    作    者   : Y00213812
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvImsaCirepQryCnf(VOS_VOID * pMsg)
 {
     /* 定义局部变量 */
@@ -405,21 +335,7 @@ VOS_UINT32 AT_RcvImsaCirepQryCnf(VOS_VOID * pMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_RcvImsaImpuSetCnf
- 功能描述  : +CIREP查询命令回复处理函数
- 输入参数  : *pMsg        回复消息
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月17日
-    作    者   : c64416
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvImsaImpuSetCnf(VOS_VOID * pMsg)
 {
     /* 定义局部变量 */
@@ -490,21 +406,7 @@ VOS_UINT32 AT_RcvImsaImpuSetCnf(VOS_VOID * pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvImsaCirephInd
- 功能描述  : +CIREPH主动上报命令处理函数
- 输入参数  : *pMsg        回复消息
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年09月18日
-    作    者   : Y00213812
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvImsaCirephInd(VOS_VOID * pMsg)
 {
     /* 定义局部变量 */
@@ -537,21 +439,7 @@ VOS_UINT32 AT_RcvImsaCirephInd(VOS_VOID * pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvImsaCirepiInd
- 功能描述  : +CIREPI主动上报命令处理函数
- 输入参数  : *pMsg        回复消息
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年09月18日
-    作    者   : Y00213812
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvImsaCirepiInd(VOS_VOID * pMsg)
 {
     /* 定义局部变量 */
@@ -584,21 +472,7 @@ VOS_UINT32 AT_RcvImsaCirepiInd(VOS_VOID * pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvImsaCireguInd
- 功能描述  : +CIREGU主动上报命令处理函数
- 输入参数  : *pMsg        回复消息
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年09月18日
-    作    者   : Y00213812
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvImsaCireguInd(VOS_VOID * pMsg)
 {
     /* 定义局部变量 */
@@ -649,88 +523,9 @@ VOS_UINT32 AT_RcvImsaCireguInd(VOS_VOID * pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvImsaCcwaiSetCnf
- 功能描述  : ^CCWAI设置命令回复处理函数
- 输入参数  : *pMsg        回复消息
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月13日
-    作    者   : z00212940
-    修改内容   : 新增函数
 
-*****************************************************************************/
-VOS_UINT32 AT_RcvImsaCcwaiSetCnf(VOS_VOID * pMsg)
-{
-    /* 定义局部变量 */
-    IMSA_AT_CCWAI_SET_CNF_STRU          *pstCcwaiCnf;
-    VOS_UINT8                           ucIndex;
-    VOS_UINT32                          ulResult;
 
-    /* 初始化消息变量 */
-    ucIndex     = 0;
-    pstCcwaiCnf = (IMSA_AT_CCWAI_SET_CNF_STRU *)pMsg;
-
-    /* 通过ClientId获取ucIndex */
-    if ( AT_FAILURE == At_ClientIdToUserId(pstCcwaiCnf->usClientId, &ucIndex) )
-    {
-        AT_WARN_LOG("AT_RcvImsaCcwaiSetCnf: WARNING:AT INDEX NOT FOUND!");
-        return VOS_ERR;
-    }
-
-    if (AT_IS_BROADCAST_CLIENT_INDEX(ucIndex))
-    {
-        AT_WARN_LOG("AT_RcvImsaImpuSetCnf: WARNING:AT_BROADCAST_INDEX!");
-        return VOS_ERR;
-    }
-
-    /* 判断当前操作类型是否为AT_CMD_CCWAI_SET */
-    if ( AT_CMD_CCWAI_SET != gastAtClientTab[ucIndex].CmdCurrentOpt )
-    {
-        AT_WARN_LOG("AT_RcvImsaCcwaiSetCnf: WARNING:Not AT_CMD_CCWAI_SET!");
-        return VOS_ERR;
-    }
-
-    /* 复位AT状态 */
-    AT_STOP_TIMER_CMD_READY(ucIndex);
-
-    /* 判断设置操作是否成功 */
-    if (VOS_OK == pstCcwaiCnf->ulResult)
-    {
-        ulResult = AT_OK;
-    }
-    else
-    {
-        ulResult = AT_ERROR;
-    }
-
-    gstAtSendData.usBufLen = 0;
-
-    /* 调用At_FormatResultData发送命令结果 */
-    At_FormatResultData(ucIndex, ulResult);
-
-    return VOS_OK;
-}
-
-/*****************************************************************************
- 函 数 名  : AT_RcvImsaVtIpv4PdpActInd
- 功能描述  : VT IPV4承载激活指示处理函数
- 输入参数  : *pMsg        回复消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年07月31日
-    作    者   : f00179208
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_VOID AT_RcvImsaVtIpv4PdpActInd(
     VOS_UINT8                           ucIndex,
     IMSA_AT_VT_PDP_ACTIVATE_IND_STRU   *pstPdpActInd
@@ -774,21 +569,7 @@ VOS_VOID AT_RcvImsaVtIpv4PdpActInd(
     At_SendResultData(ucIndex, pgucAtSndCodeAddr, gstAtSendData.usBufLen);
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvImsaVtIpv6PdpActInd
- 功能描述  : VT IPV6承载激活指示处理函数
- 输入参数  : *pMsg        回复消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年07月31日
-    作    者   : f00179208
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_VOID AT_RcvImsaVtIpv6PdpActInd(
     VOS_UINT8                           ucIndex,
     IMSA_AT_VT_PDP_ACTIVATE_IND_STRU   *pstPdpActInd
@@ -859,21 +640,7 @@ VOS_VOID AT_RcvImsaVtIpv6PdpActInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvImsaVtIpv4v6PdpActInd
- 功能描述  : VT IPV4V6承载激活指示处理函数
- 输入参数  : *pMsg        回复消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年07月31日
-    作    者   : f00179208
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_VOID AT_RcvImsaVtIpv4v6PdpActInd(
     VOS_UINT8                           ucIndex,
     IMSA_AT_VT_PDP_ACTIVATE_IND_STRU   *pstPdpActInd
@@ -883,21 +650,7 @@ VOS_VOID AT_RcvImsaVtIpv4v6PdpActInd(
     AT_RcvImsaVtIpv6PdpActInd(ucIndex, pstPdpActInd);
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvImsaVtPdpActInd
- 功能描述  : VT承载激活指示处理函数
- 输入参数  : *pMsg        回复消息
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年07月31日
-    作    者   : f00179208
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvImsaVtPdpActInd(VOS_VOID * pMsg)
 {
     /* 定义局部变量 */
@@ -933,21 +686,7 @@ VOS_UINT32 AT_RcvImsaVtPdpActInd(VOS_VOID * pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvImsaVtPdpDeactInd
- 功能描述  : VT承载去激活指示处理函数
- 输入参数  : *pMsg        回复消息
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年07月31日
-    作    者   : f00179208
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvImsaVtPdpDeactInd(VOS_VOID * pMsg)
 {
     /* 定义局部变量 */
@@ -1013,21 +752,7 @@ VOS_UINT32 AT_RcvImsaVtPdpDeactInd(VOS_VOID * pMsg)
 
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvImsaMtStateInd
- 功能描述  : 被叫状态指示处理函数
- 输入参数  : *pMsg        IMSA上报消息
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年03月18日
-    作    者   : m00277840
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvImsaMtStateInd(VOS_VOID * pMsg)
 {
     /* 定义局部变量 */

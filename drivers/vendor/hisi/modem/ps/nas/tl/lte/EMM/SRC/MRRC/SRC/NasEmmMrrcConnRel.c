@@ -1,13 +1,4 @@
-/******************************************************************************
 
-        @(#)Copyright(C)2008,Hisilicon Co. LTD.
- ******************************************************************************
-    File name   : NasEmmMrrcRel.c
-    Description :
-    History     :
-      1.  zangyalan 57968  2008-09-10  Draft Enact
-      2.  qilili 00145085  20090117    增加对SM和RABM异常的处理函数
-******************************************************************************/
 
 
 /*****************************************************************************
@@ -60,17 +51,7 @@ VOS_VOID NAS_EMM_MrrcRelInit(VOS_VOID)
 
     return;
 }
-/*****************************************************************************
- Function Name  : NAS_EMM_SndRrcRelReq
- Discription    : 给RRC模块发送NAS_EMM_SndRrcRelReq
- Input          :
- Output         : None
- Return         : None
- History:
-      1.  zangyalan 57968  2008-09-24  Draft Enact
-      2.  X00148705        2009-10-20  直接调用NAS_EMM_SEND_MSG发送消息
-      3.  sunbing 49683    2009-03-09  修改函数名
-*****************************************************************************/
+
 /*lint -e960*/
 /*lint -e961*/
 VOS_VOID    NAS_EMM_SndRrcRelReq(NAS_LMM_BARRED_IND_ENUM_UINT32 enBarStatus)
@@ -102,19 +83,7 @@ VOS_VOID    NAS_EMM_SndRrcRelReq(NAS_LMM_BARRED_IND_ENUM_UINT32 enBarStatus)
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_WaitNetworkRelInd
- Description     : 状态压栈，启3440定时器，等待网侧释放
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.wangchen 00209181       2012-8-1  Draft Enact
-    2.lifuxin  00253982       2014-12-08 释放逻辑重构
-    以前的逻辑在等待网络侧释放启动3440，需要将状态转成REL_INIT+WAIT_RRC_REL_CNF
-    现在逻辑不再压栈，直接在原有状态启动3440，等待网络侧释放链路
-*****************************************************************************/
 VOS_VOID NAS_EMM_WaitNetworkRelInd(VOS_VOID)
 {
     /* 察看RRC连接是否已经释放 */
@@ -137,17 +106,7 @@ VOS_VOID NAS_EMM_WaitNetworkRelInd(VOS_VOID)
     return ;
 }
 
-/*****************************************************************************
- Function Name  : NAS_EMM_IntraRelReq
- Discription    : 处理Public给RRC发送的mrrc_rel_req
- Input          :
- Output         : None
- Return         : None
- History:
-      1.  zangyalan 57968  2008-09-10  Draft Enact
-      2.  X00148705        2009-09-21  判断RRC链路是否已经释放
-      3.  lifuxin 00253982  2014.11.18 释放流程重构
-*****************************************************************************/
+
 VOS_VOID NAS_EMM_RelReq(NAS_LMM_BARRED_IND_ENUM_UINT32 enBarStatus)
 {
     /* 察看RRC连接是否已经释放 */
@@ -178,21 +137,13 @@ VOS_VOID NAS_EMM_RelReq(NAS_LMM_BARRED_IND_ENUM_UINT32 enBarStatus)
 }
 
 
-/*****************************************************************************
- Function Name  : NAS_EMM_PreProcMsgRrcMmRelCnf
- Discription    : 处理RRC_MM_REL_CNF消息
- Input          :
- Output         : None
- Return         : None
- History:
-      1. zangyalan   57968  2008-09-10  Draft Enact
-      2. zhengjunyan 148421 2009.01.23  MOD BA8D00936
-      3. lifuxin     00253982   2014.11.18 释放重构
 
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_PreProcMsgRrcMmRelCnf(MsgBlock * pMsg)
 {
     VOS_UINT32                          ulCurEmmStat;
+    #if (VOS_OS_VER != VOS_WIN32)
+    VOS_INT                             iCipherStat;
+    #endif
 
     /* 打印进入该函数，INFO_LEVEL */
     NAS_EMM_GIM_NORMAL_LOG("NAS_EMM_PreProcMsgRrcMmRelCnf is entered.");
@@ -215,7 +166,11 @@ VOS_UINT32  NAS_EMM_PreProcMsgRrcMmRelCnf(MsgBlock * pMsg)
     #if (VOS_OS_VER != VOS_WIN32)
     /*低功耗方案为了省功耗，在LTE模LNAS收到LRRC释放的时候调底软接口关掉 cipher 时钟以及投票是否关pll，
      协议栈只看到这一个接口，版本共分支由底软在此接口内部进行封装*/
-    (VOS_VOID)LDRV_CIPHER_DISABLE();
+    iCipherStat = LDRV_CIPHER_DISABLE(10);
+    if ( 0 != iCipherStat )
+    {
+        TLPS_PRINT2LAYER_INFO1(NAS_EMM_PreProcMsgRrcMmRelCnf_ENUM,LNAS_FUNCTION_LABEL1,iCipherStat);
+    }
     #endif
     /*停止定时器*/
     NAS_LMM_StopStateTimer(TI_NAS_EMM_MRRC_WAIT_RRC_REL_CNF);
@@ -327,17 +282,7 @@ VOS_VOID  NAS_EMM_MsAuthInitEnterIdleProc(VOS_UINT32 ulCause)
 
 
 
-/*****************************************************************************
- Function Name  : NAS_EMM_PreProcMsgTiWaitRrcRelTO
- Discription    : 定时器TI_NAS_EMM_WAIT_RRC_REL超时的处理函数
- Input          :
- Output         : None
- Return         : None
- History:
-      1.  zangyalan 57968    2008-09-10  Draft Enact
-      2.  zhengjunyan 148421 2009.01.23  MOD BA8D00936
-      3.  lifuxin   00253982 2014.11.18  释放流程重构
-*****************************************************************************/
+
 VOS_UINT32  NAS_EMM_PreProcMsgTiWaitRrcRelTO(MsgBlock * pMsg)
 {
     /* 打印进入该函数，INFO_LEVEL */
@@ -372,17 +317,7 @@ VOS_UINT32  NAS_EMM_PreProcMsgTiWaitRrcRelTO(MsgBlock * pMsg)
     }
     return NAS_LMM_MSG_HANDLED;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_PreProcMsgWaitRrcRel3440TO
- Description     : 定时器3440超时的处理函数
- Input           : ulMsgId；pMsgStru
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.wangchen 00209181       2012-8-1  Draft Enact
-    2.lifuxin  00253982       2014.11.18    释放重构
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_PreProcMsgWaitRrcRel3440TO(MsgBlock * pMsg)
 {
     /* 打印进入该函数，INFO_LEVEL */
@@ -409,17 +344,7 @@ VOS_UINT32  NAS_EMM_PreProcMsgWaitRrcRel3440TO(MsgBlock * pMsg)
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_PreProcMsgWaitRrcRelReAttachDelayTO
- Description     : 定时器延时发送reattach定时器超时的处理函数
- Input           : pMsg
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.niuxiufan 00181501       2013-5-4  Draft Enact
-    2.lifuxin   00253982       2014-12-09  链路释放重构
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_PreProcMsgReAttachDelayTO(MsgBlock * pMsg)
 {
     (VOS_VOID)pMsg;
@@ -437,18 +362,7 @@ VOS_UINT32  NAS_EMM_PreProcMsgReAttachDelayTO(MsgBlock * pMsg)
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRrcConnRelInitSsWaitRrcRelMsgTcDataReq
- Description     : 在REL_init+WAIT_REL_CNF状态下收到ETC
-                   EMM_ETC_DATA_REQ消息
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
-  History             :
-     1.wangchen 00209181    2012-08-30  Draft Enact
-     2.wangchen 00209181    2014-09-04  Modify:R11
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsRrcConnRelInitSsWaitRrcRelMsgTcDataReq
 (
     VOS_UINT32                          ulMsgId,
@@ -602,18 +516,7 @@ VOS_VOID  NAS_EMM_MrrcChangeRrcStatusToIdle( VOS_VOID )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcDeregMmcRelReq
- Description     : 在ATTACH过程中收到MMC_LMM_REL_REQ消息后，状态迁移到
-                    DEREG+PLMN_SEARCH,上报attach结果
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2011-6-2  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ProcDeregMmcRelReq(VOS_VOID )
 {
     NAS_EMM_FSM_STATE_STRU              EmmState;
@@ -649,19 +552,7 @@ VOS_VOID  NAS_EMM_ProcDeregMmcRelReq(VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcDetachMmcRelReq
- Description     : 在DETACH过程中收到MMC_LMM_REL_REQ消息后，状态迁移到
-                    DEREG+PLMN_SEARCH,上报detach结果
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2012-11-22  Draft Enact
-    2.lihong00150010      2012-12-17  Modify:Emergency
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ProcDetachMmcRelReq(VOS_VOID )
 {
     NAS_EMM_FSM_STATE_STRU              EmmState;
@@ -719,18 +610,7 @@ VOS_VOID  NAS_EMM_ProcDetachMmcRelReq(VOS_VOID )
 
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcRegMmcRelReq
- Description     : 在TAU或SERVICE过程中收到MMC_LMM_REL_REQ消息后，状态迁移到
-                    REG+WAIT_MRRC_REL_CNF
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2011-6-2  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ProcRegMmcRelReq(VOS_VOID )
 {
     NAS_EMM_GIM_NORMAL_LOG("NAS_EMM_ProcRegMmcRelReq is enter");
@@ -762,17 +642,7 @@ VOS_VOID  NAS_EMM_ProcRegMmcRelReq(VOS_VOID )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcRegMmcRelReqWhileTauInit
- Description     : 在TauInit状态收到MMC释放连接请求的处理
- Input           : None
- Output          : None
- Return          : None
 
- History         :
-    1.liuhua 00212067      2013-03-05  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_EMM_ProcRegMmcRelReqWhileTauInit(VOS_VOID)
 {
     NAS_LMM_PUBM_LOG_NORM("NAS_EMM_ProcRegMmcRelReqWhileTauInit");
@@ -798,17 +668,7 @@ VOS_VOID NAS_EMM_ProcRegMmcRelReqWhileTauInit(VOS_VOID)
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcRegMmcRelReqWhileSerInit
- Description     : 在SerInit状态收到MMC释放连接请求的处理
- Input           : None
- Output          : None
- Return          : None
 
- History         :
-    1.liuhua 00212067      2013-03-05  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_EMM_ProcRegMmcRelReqWhileSerInit(VOS_VOID)
 {
     NAS_LMM_PUBM_LOG_NORM("NAS_EMM_ProcRegMmcRelReqWhileSerInit");
@@ -824,17 +684,7 @@ VOS_VOID NAS_EMM_ProcRegMmcRelReqWhileSerInit(VOS_VOID)
     NAS_EMM_RelReq(NAS_LMM_NOT_BARRED);
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcRegMmcRelReqWhileImsiDetach
- Description     : 在ImsiDetach状态收到MMC释放连接请求的处理
- Input           : None
- Output          : None
- Return          : None
 
- History         :
-    1.liuhua 00212067      2013-03-05  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_EMM_ProcRegMmcRelReqWhileImsiDetach(VOS_VOID)
 {
     NAS_LMM_PUBM_LOG_NORM("NAS_EMM_ProcRegMmcRelReqWhileImsiDetach");

@@ -52,7 +52,6 @@ extern BOOL_T ACL6_Sh_ClassifyMBufByItem(MBUF_S* pstMBuf, ACL6_Item *pstFlow, UL
 extern BOOL_T ACL6_Compare_MBufWithItem(IP6PACKETINFO_S *pstMatchInfo, ACL6_Item *pstFlow);
 extern BOOL_T ACL6_Compare_InMBufWithItem(IP6PACKETINFO_S *pstMatchInfo, ACL6_Item *pstFlow);
 
-/* Added by y00176567, at 2011-05-26. 修改原因: 消除VC三级告警 */
 extern ULONG ACL6_ClassifyMBufByNumber (MBUF_S *pstMBuf,ULONG ulAclNum);
 extern ULONG ACL6_IsACLNodeExistByNumber (ULONG ulNumber, ULONG ulSubitem);
 

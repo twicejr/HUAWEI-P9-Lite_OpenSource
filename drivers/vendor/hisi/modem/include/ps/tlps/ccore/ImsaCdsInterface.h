@@ -1,16 +1,4 @@
-/******************************************************************************
 
-
-        @(#)Copyright(C)2013,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : ImsaCdsInterface.h
-    Description : 内部模块间接口头文件
-    History     :
-      1.lihong 00150010    2013-07-02  Draft Enact
-
-
-******************************************************************************/
 
 #ifndef __IMSACDSINTERFACE_H__
 #define __IMSACDSINTERFACE_H__
@@ -107,7 +95,6 @@ typedef struct
     VOS_UINT8                           aucReserved[2];
 } IMSA_CDS_IMS_BEARER_STRU;
 
-/* Add by lihong 2013-12-23 Ut和ims共用APN begin */
 /*****************************************************************************
  结构名    : IMSA_CDS_IMS_PORT_INFO_STRU
  结构说明  : IMS使用的端口信息
@@ -117,7 +104,6 @@ typedef struct
     VOS_UINT16                          usMinImsPort;       /* 小端 */
     VOS_UINT16                          usMaxImsPort;       /* 小端 */
 } IMSA_CDS_IMS_PORT_INFO_STRU;
-/* Add by lihong 2013-12-23 Ut和ims共用APN end */
 
 /*****************************************************************************
  结构名    : IMSA_CDS_SET_IMS_BEARER_REQ_STRU
@@ -130,9 +116,7 @@ typedef struct
     VOS_UINT32                          ulImsBearerNum;
     IMSA_CDS_IMS_BEARER_STRU            astImsBearerArray[IMSA_CDS_MAX_IMS_BEARER_NUM];
 
-    /* Add by lihong 2013-12-23 Ut和ims共用APN begin */
     IMSA_CDS_IMS_PORT_INFO_STRU         stImsPortInfo;
-    /* Add by lihong 2013-12-23 Ut和ims共用APN end */
 } IMSA_CDS_SET_IMS_BEARER_REQ_STRU;
 
 /*****************************************************************************

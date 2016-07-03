@@ -159,6 +159,7 @@ struct anc_max14744_priv {
 
     struct mutex btn_mutex;
     struct mutex charge_lock;/* charge status protect lock */
+    struct mutex invert_hs_lock;
     struct wake_lock wake_lock;
     spinlock_t    irq_lock;
 
@@ -179,6 +180,8 @@ struct anc_max14744_priv {
     struct workqueue_struct* anc_hs_btn_delay_wq;
     struct delayed_work anc_hs_btn_delay_work;
 
+    struct workqueue_struct* anc_hs_invert_ctl_delay_wq;
+    struct delayed_work anc_hs_invert_ctl_delay_work;
 };
 
 struct anc_max14744_priv *g_anc_max14744_priv = NULL;
@@ -194,7 +197,7 @@ static struct reg_default anc_max14744_reg[] = {
     { 0x07, 0x00 }, /* Mask */
     { 0x08, 0x00 }, /* pins control1 */
     { 0x09, 0x00 }, /* pins control2 */
-    { 0x0A, 0x02 }, /* adc control */
+    { 0x0A, 0x00 }, /* adc control */
     { 0x0B, 0x10 }, /* acc control1 */
     { 0x0C, 0x00 }, /* acc control2 */
 };
@@ -359,11 +362,6 @@ static void max14744_mask_eoc_irq()
     anc_max14744_regmap_update_bits(ANC_MAX14744_R007_MASK, ANC_MAX14744_EOC_IRQ_BIT, 0x00);
 }
 
-static void mic_switch(int mode)
-{
-    return;
-}
-
 static void mic_bias_mode(int mode0)
 {
     hwlog_info("max14744 go into mic_bias_mode.");
@@ -433,6 +431,59 @@ static void normal_mode(void)
     }
 
     return;
+}
+
+void anc_max14744_refresh_headset_type(int headset_type)
+{
+    if (NULL != g_anc_max14744_priv) {
+        g_anc_max14744_priv->headset_type =  headset_type;
+        hwlog_info("max14744: refresh headset_type %d.", g_anc_max14744_priv->headset_type);
+    }
+}
+
+static void anc_hs_invert_ctl_work(struct work_struct* work)
+{
+    wake_lock(&g_anc_max14744_priv->wake_lock);
+    mutex_lock(&g_anc_max14744_priv->invert_hs_lock);
+
+    if (g_anc_max14744_priv->headset_type == ANC_HS_REVERT_4POLE) {
+        anc_max14744_regmap_update_bits(ANC_MAX14744_R008_PINS_CONTROL1,
+                ANC_MAX14744_MANUL_CNTL_MASK, ANC_MAX14744_MANUL_CNTL_MASK);
+        anc_max14744_regmap_update_bits(ANC_MAX14744_R008_PINS_CONTROL1,
+                ANC_MAX14744_FORCE_CNTL_MASK, 0x00);
+        hwlog_info("max14744: invert headset plugin, connect MIC and GND.");
+    }
+
+    mutex_unlock(&g_anc_max14744_priv->invert_hs_lock);
+    wake_unlock(&g_anc_max14744_priv->wake_lock);
+}
+
+void anc_max14744_invert_headset_control(int connect)
+{
+    switch(connect) {
+        case ANC_HS_MIC_GND_DISCONNECT:
+            cancel_delayed_work(&g_anc_max14744_priv->anc_hs_invert_ctl_delay_work);
+            flush_workqueue(g_anc_max14744_priv->anc_hs_invert_ctl_delay_wq);
+
+            mutex_lock(&g_anc_max14744_priv->invert_hs_lock);
+            anc_max14744_regmap_update_bits(ANC_MAX14744_R008_PINS_CONTROL1,
+                    ANC_MAX14744_MANUL_CNTL_MASK, 0x00);
+            anc_max14744_regmap_update_bits(ANC_MAX14744_R008_PINS_CONTROL1,
+                    ANC_MAX14744_FORCE_CNTL_MASK, 0x00);
+            mutex_unlock(&g_anc_max14744_priv->invert_hs_lock);
+
+            hwlog_info("max14744: headset plugout, disconnect MIC and GND.");
+            break;
+        case ANC_HS_MIC_GND_CONNECT:
+            queue_delayed_work(g_anc_max14744_priv->anc_hs_invert_ctl_delay_wq,
+                    &g_anc_max14744_priv->anc_hs_invert_ctl_delay_work,
+                    msecs_to_jiffies(3000));
+            hwlog_info("anc_max14744_invert_headset_control: queue delay work.");
+            break;
+        default:
+            hwlog_info("anc_max14744_invert_headset_control: unknown connect type.");
+            break;
+    }
 }
 
 /**
@@ -608,6 +659,7 @@ static int anc_hs_send_hifi_msg(int anc_status)
     {
         hwlog_err("%s: kzalloc failed\n", __FUNCTION__);
         ret = ERROR_RET;// error return;
+        return ret;
     }
 
     pMLIBSetParaInfo->msgID = ID_AP_AUDIO_MLIB_SET_PARA_IND;
@@ -624,10 +676,7 @@ static int anc_hs_send_hifi_msg(int anc_status)
                         pMLIBSetParaInfo,
                         sizeof(struct MLIBSetParaInfo) + MLIB_PARA_LENGTH_MAX);
 
-    kfree(pPara_ANC_HS);
     kfree(pMLIBSetParaInfo);
-    pPara_ANC_HS = NULL;
-    pMLIBSetParaInfo = NULL;
 
     return ret;
 }
@@ -748,7 +797,6 @@ static void  anc_max14744_charge_judge(void)
 
     mutex_lock(&g_anc_max14744_priv->charge_lock);
     /* connect 5vboost with hs_mic pin*/
-    mic_switch(SWITCH_CHIP_5VBOOST);
     power_mode();
     mutex_unlock(&g_anc_max14744_priv->charge_lock);
 
@@ -777,7 +825,6 @@ static void  anc_max14744_charge_judge(void)
         }
         /* stop charge and change status to CHARGE_OFF*/
         max14744_mask_btn_irq();
-        mic_switch(SWITCH_CHIP_HSBIAS);
         mic_bias_mode(LDO1_CALL_MODE);
         udelay(500);
         g_anc_max14744_priv->anc_hs_mode = ANC_HS_CHARGE_OFF;
@@ -811,7 +858,6 @@ static void update_charge_status(void)
 
         if (g_anc_max14744_priv->anc_hs_mode == ANC_HS_CHARGE_ON) {
             max14744_mask_btn_irq();
-            mic_switch(SWITCH_CHIP_HSBIAS);
             mic_bias_mode(LDO1_CALL_MODE);
             udelay(500);
 
@@ -833,7 +879,6 @@ static void update_charge_status(void)
                 mutex_lock(&g_anc_max14744_priv->charge_lock);
                 if(g_anc_max14744_priv->anc_hs_mode == ANC_HS_CHARGE_OFF){
                     g_anc_max14744_priv->anc_hs_mode = ANC_HS_CHARGE_ON;
-                    mic_switch(SWITCH_CHIP_5VBOOST);
                     power_mode();
                     udelay(500);
                     max14744_unmask_btn_irq();
@@ -866,7 +911,6 @@ void anc_max14744_start_charge(void)
     hwlog_info("%s(%u) :enable 5vboost\n", __FUNCTION__, __LINE__);
 
     /* default let hsbias connect to hs-mic pin*/
-    mic_switch(SWITCH_CHIP_HSBIAS);
     mic_bias_mode(LDO1_CALL_MODE);
     anc_max14744_gpio_set_value(g_anc_max14744_priv->anc_pwr_en_gpio, 1);
     g_anc_max14744_priv->anc_hs_mode = ANC_HS_CHARGE_OFF;
@@ -950,7 +994,6 @@ void anc_max14744_stop_charge(void)
     hwlog_info("%s : stop anc hs charge\n", __FUNCTION__);
 
     max14744_mask_btn_irq();
-    mic_switch(SWITCH_CHIP_HSBIAS);
     normal_mode();
     anc_max14744_gpio_set_value(g_anc_max14744_priv->anc_pwr_en_gpio, 0);
     g_anc_max14744_priv->anc_hs_mode = ANC_HS_CHARGE_OFF;
@@ -1549,6 +1592,8 @@ struct anc_hs_ops anc_max14744_ops = {
     .check_anc_hs_support = check_anc_max14744_support,
     .anc_hs_plug_enable = anc_max14744_plug_enable,
     .anc_hs_5v_control = NULL,
+    .anc_hs_invert_hs_control = anc_max14744_invert_headset_control,
+    .anc_hs_refresh_headset_type = anc_max14744_refresh_headset_type,
 };
 
 /**********************************************************
@@ -1584,6 +1629,7 @@ static int anc_max14744_probe(struct i2c_client *client,const struct i2c_device_
 
     mutex_init(&di->charge_lock);
     mutex_init(&di->btn_mutex);
+    mutex_init(&di->invert_hs_lock);
     spin_lock_init(&di->irq_lock);
     wake_lock_init(&di->wake_lock, WAKE_LOCK_SUSPEND, "anc_max14744");
 
@@ -1653,6 +1699,15 @@ static int anc_max14744_probe(struct i2c_client *client,const struct i2c_device_
         goto err_plugout_delay_wq;
     }
     INIT_DELAYED_WORK(&di->anc_hs_btn_delay_work, anc_hs_btn_work);
+
+    di->anc_hs_invert_ctl_delay_wq =
+        create_singlethread_workqueue("anc_hs_invert_ctl_delay_wq");
+    if (!(di->anc_hs_invert_ctl_delay_wq)) {
+        hwlog_err("%s : invert_ctl wq create failed\n", __FUNCTION__);
+        ret = -ENOMEM;
+        goto err_invert_ctl_delay_wq;
+    }
+    INIT_DELAYED_WORK(&di->anc_hs_invert_ctl_delay_work, anc_hs_invert_ctl_work);
 
     di->anc_pwr_en_gpio = of_get_named_gpio(np,"gpio_pwr_en",0);
     if (di->anc_pwr_en_gpio < 0) {
@@ -1725,6 +1780,12 @@ err_out_gpio:
 err_gpio_pwr_en:
     gpio_free(di->anc_pwr_en_gpio);
 err_btn_delay_wq:
+    if (di->anc_hs_invert_ctl_delay_wq) {
+        cancel_delayed_work(&di->anc_hs_invert_ctl_delay_work);
+        flush_workqueue(di->anc_hs_invert_ctl_delay_wq);
+        destroy_workqueue(di->anc_hs_invert_ctl_delay_wq);
+    }
+err_invert_ctl_delay_wq:
     if (di->anc_hs_btn_delay_wq) {
         cancel_delayed_work(&di->anc_hs_btn_delay_work);
         flush_workqueue(di->anc_hs_btn_delay_wq);
@@ -1789,6 +1850,12 @@ err_out:
         cancel_delayed_work(&di->anc_hs_plugin_delay_work);
         flush_workqueue(di->anc_hs_plugin_delay_wq);
         destroy_workqueue(di->anc_hs_plugin_delay_wq);
+    }
+
+    if (di->anc_hs_invert_ctl_delay_wq) {
+        cancel_delayed_work(&di->anc_hs_invert_ctl_delay_work);
+        flush_workqueue(di->anc_hs_invert_ctl_delay_wq);
+        destroy_workqueue(di->anc_hs_invert_ctl_delay_wq);
     }
 
     kfree(di);

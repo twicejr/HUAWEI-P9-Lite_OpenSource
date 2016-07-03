@@ -304,7 +304,6 @@ VOID VDMDRV_ActivateVDH(SINT32 VdhId)
         
 		if (VCTRL_OK != VCTRL_IsChanActive(*pChanId))
 		{
-            //dprint(PRN_ERROR, "%s The channel %d is not active\n", __func__, *pChanId); // 这个打印太多，且对定位问题没有太大帮助，注释掉。 y00226912
 		    continue;
 		}
 

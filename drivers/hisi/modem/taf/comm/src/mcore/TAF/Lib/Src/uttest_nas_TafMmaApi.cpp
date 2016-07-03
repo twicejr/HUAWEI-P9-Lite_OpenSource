@@ -39,14 +39,7 @@ extern "C" {
 #endif
 #endif
 
-/*****************************************************************************
-类名     : TAF_MMA_PlmnPlmnUserSelSetReq
-功能描述 : 用户指定搜网
-修改历史 :
-1.日   期  : 2011-10-13
-作   者  : c00173809
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_TAF_MMA_PlmnPlmnUserSelSetReq: public ::testing::Test
 {
 public:
@@ -59,22 +52,9 @@ public:
     {
     }
 };
-/*******************************************************************
-测试用例编号      : Test_TAF_MMA_PlmnPlmnUserSelSetReq_001
-测试用例标题      : 运营商名字长度为0
-预期结果          : 返回参数错误
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  :   c00173809
-  修改内容 : 新建CASE
 
-2.日   期  : 2015-3-24
-  作   者  : f00279542
-  修改内容 : TAF_MMA_PlmnPlmnUserSelSetReq替换TAF_PhonePlmnUserSel
-*******************************************************************/
 TEST_F(Test_TAF_MMA_PlmnPlmnUserSelSetReq,Test_TAF_MMA_PlmnPlmnUserSelSetReq_001)
 {
-    /* Modified by w00167002 for L-C互操作项目, 2014-2-17, begin */
     MN_CLIENT_ID_T                      ClientId;
     MN_OPERATION_ID_T                   OpId;
     TAF_PLMN_USER_SEL_STRU              stPlmnUserSel;
@@ -89,27 +69,13 @@ TEST_F(Test_TAF_MMA_PlmnPlmnUserSelSetReq,Test_TAF_MMA_PlmnPlmnUserSelSetReq_001
     ulReslut = TAF_MMA_PlmnSpecialSelReq(ClientId, OpId, &stPlmnUserSel);
     EXPECT_EQ(VOS_TRUE, ulReslut);
 
-    /* Modified by w00167002 for L-C互操作项目, 2014-2-17, end */
 
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_TAF_MMA_PlmnPlmnUserSelSetReq_002
-测试用例标题      : 运营商名字长度为0，发送APP_REQ_MSG失败
-预期结果          : 返回参数错误
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  :   c00173809
-  修改内容 : 新建CASE
 
-2.日   期  : 2015-3-24
-  作   者  : f00279542
-  修改内容 : TAF_MMA_PlmnPlmnUserSelSetReq替换TAF_PhonePlmnUserSel
-*******************************************************************/
 TEST_F(Test_TAF_MMA_PlmnPlmnUserSelSetReq,Test_TAF_MMA_PlmnPlmnUserSelSetReq_002)
 {
-    /* Modified by w00167002 for L-C互操作项目, 2014-2-17, begin */
     MN_CLIENT_ID_T                      ClientId;
     MN_OPERATION_ID_T                   OpId;
     TAF_PLMN_USER_SEL_STRU              stPlmnUserSel;
@@ -127,20 +93,11 @@ TEST_F(Test_TAF_MMA_PlmnPlmnUserSelSetReq,Test_TAF_MMA_PlmnPlmnUserSelSetReq_002
 
     EXPECT_EQ(VOS_FALSE, TAF_MMA_PlmnSpecialSelReq(ClientId, OpId, &stPlmnUserSel));
 
-    /* Modified by w00167002 for L-C互操作项目, 2014-2-17, end */
 
     GlobalMockObject::verify();
 }
 
-/* Added by s00246516 for L-C互操作项目, 2014-02-07, Begin */
-/*****************************************************************************
-类名     : Test_TAF_MMA_PhoneModeSetReq
-功能描述 : 手机模式设置接口
-修改历史 :
-1.日   期  : 2014-02-07
-作   者  : s00246516
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_TAF_MMA_PhoneModeSetReq: public ::testing::Test
 {
     public:
@@ -154,15 +111,7 @@ class Test_TAF_MMA_PhoneModeSetReq: public ::testing::Test
         }
 };
 
-/*******************************************************************
-测试用例编号      : Test_TAF_MMA_PhoneModeSetReq_001
-测试用例标题      : 模式设置参数为空
-预期结果          : 返回VOS_FALSE
-修改历史     :
-1.日   期  : 2014-02-25
-  作   者  : s00261364
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_TAF_MMA_PhoneModeSetReq,Test_TAF_MMA_PhoneModeSetReq_001)
 {
 
@@ -174,15 +123,7 @@ TEST_F(Test_TAF_MMA_PhoneModeSetReq,Test_TAF_MMA_PhoneModeSetReq_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_TAF_MMA_PhoneModeSetReq_002
-测试用例标题      : 申请模式设置请求消息内存失败
-预期结果          : 返回VOS_FALSE
-修改历史     :
-1.日   期  : 2014-02-25
-  作   者  : s00261364
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_TAF_MMA_PhoneModeSetReq,Test_TAF_MMA_PhoneModeSetReq_002)
 {
 
@@ -208,14 +149,7 @@ TEST_F(Test_TAF_MMA_PhoneModeSetReq,Test_TAF_MMA_PhoneModeSetReq_002)
 }
 
 
-/*****************************************************************************
-类名     : Test_TAF_MMA_SysCfgReq
-功能描述 : 手机系统配置接口
-修改历史 :
-1.日   期  : 2014-02-07
-作   者  : s00246516
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_TAF_MMA_SetSysCfgReq: public ::testing::Test
 {
     public:
@@ -231,15 +165,7 @@ class Test_TAF_MMA_SetSysCfgReq: public ::testing::Test
         }
 };
 
-/*******************************************************************
-测试用例编号      : Test_TAF_MMA_SysCfgReq_001
-测试用例标题      : 参数pstSysCfgPara为空
-预期结果          : 返回VOS_FALSE
-修改历史     :
-1.日   期  : 2014-02-25
-  作   者  : s00261364
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_TAF_MMA_SetSysCfgReq,Test_TAF_MMA_SetSysCfgReq_001)
 {
 
@@ -251,15 +177,7 @@ TEST_F(Test_TAF_MMA_SetSysCfgReq,Test_TAF_MMA_SetSysCfgReq_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_TAF_MMA_SysCfgReq_002
-测试用例标题      : 申请SetSysCfgReq消息内存失败
-预期结果          : 返回VOS_FALSE
-修改历史     :
-1.日   期  : 2014-02-25
-  作   者  : s00261364
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_TAF_MMA_SetSysCfgReq,Test_TAF_MMA_SetSysCfgReq_002)
 {
     // 变量声明
@@ -288,14 +206,7 @@ TEST_F(Test_TAF_MMA_SetSysCfgReq,Test_TAF_MMA_SetSysCfgReq_002)
 }
 
 
-/*****************************************************************************
-类名     : Test_TAF_MMA_AcqBestNetworkReq
-功能描述 : 获取网络接口
-修改历史 :
-1.日   期  : 2014-02-07
-作   者  : s00246516
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_TAF_MMA_AcqBestNetworkReq: public ::testing::Test
 {
     public:
@@ -309,15 +220,7 @@ class Test_TAF_MMA_AcqBestNetworkReq: public ::testing::Test
         }
 };
 
-/*******************************************************************
-测试用例编号      : Test_TAF_MMA_AcqBestNetworkReq_001
-测试用例标题      : 参数pstAcqPara为空
-预期结果          : 返回VOS_FALSE
-修改历史     :
-1.日   期  : 2014-02-25
-  作   者  : s00261364
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_TAF_MMA_AcqBestNetworkReq,Test_TAF_MMA_AcqBestNetworkReq_001)
 {
 
@@ -329,15 +232,7 @@ TEST_F(Test_TAF_MMA_AcqBestNetworkReq,Test_TAF_MMA_AcqBestNetworkReq_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_TAF_MMA_AcqBestNetworkReq_002
-测试用例标题      : 申请AcqBestNetworkReq消息内存失败
-预期结果          : 返回VOS_TRUE
-修改历史     :
-1.日   期  : 2014-02-25
-  作   者  : s00261364
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_TAF_MMA_AcqBestNetworkReq,Test_TAF_MMA_AcqBestNetworkReq_002)
 {
 
@@ -361,14 +256,7 @@ TEST_F(Test_TAF_MMA_AcqBestNetworkReq,Test_TAF_MMA_AcqBestNetworkReq_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_TAF_MMA_RegReq
-功能描述 : 注册网络接口
-修改历史 :
-1.日   期  : 2014-02-07
-作   者  : s00246516
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_TAF_MMA_RegReq: public ::testing::Test
 {
     public:
@@ -382,15 +270,7 @@ class Test_TAF_MMA_RegReq: public ::testing::Test
         }
 };
 
-/*******************************************************************
-测试用例编号      : Test_TAF_MMA_RegReq_001
-测试用例标题      : 注册参数为空
-预期结果          : 返回VOS_FALSE
-修改历史     :
-1.日   期  : 2014-02-25
-  作   者  : s00261364
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_TAF_MMA_RegReq,Test_TAF_MMA_RegReq_001)
 {
 
@@ -403,15 +283,7 @@ TEST_F(Test_TAF_MMA_RegReq,Test_TAF_MMA_RegReq_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_TAF_MMA_RegReq_002
-测试用例标题      : 申请注册消息内存失败
-预期结果          : 返回VOS_FALSE
-修改历史     :
-1.日   期  : 2014-02-25
-  作   者  : s00261364
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_TAF_MMA_RegReq,Test_TAF_MMA_RegReq_002)
 {
 
@@ -434,14 +306,7 @@ TEST_F(Test_TAF_MMA_RegReq,Test_TAF_MMA_RegReq_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_TAF_MMA_PowerSaveReq
-功能描述 : Power Save接口
-修改历史 :
-1.日   期  : 2014-02-07
-作   者  : s00246516
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_TAF_MMA_PowerSaveReq: public ::testing::Test
 {
     public:
@@ -455,16 +320,7 @@ class Test_TAF_MMA_PowerSaveReq: public ::testing::Test
         }
 };
 
-/* Added by b00269685 for L-C互操作项目, 2014-2-25, begin */
-/*******************************************************************
-测试用例编号      : Test_TAF_MMA_PowerSaveReq_001
-测试用例标题      : 参数非法
-预期结果          : 不发送消息，返回VOS_FALSE
-修改历史     :
-1.日   期  : 2014-02-25
-作   者  :   b00269685
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_TAF_MMA_PowerSaveReq, Test_TAF_MMA_PowerSaveReq_001)
 {
 
@@ -478,15 +334,7 @@ TEST_F(Test_TAF_MMA_PowerSaveReq, Test_TAF_MMA_PowerSaveReq_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_TAF_MMA_PowerSaveReq_002
-测试用例标题      : 申请PowerSaveReq内存失败
-预期结果          : 不发送消息，返回VOS_FALSE
-修改历史     :
-1.日   期  : 2014-02-25
-作   者  :   b00269685
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_TAF_MMA_PowerSaveReq, Test_TAF_MMA_PowerSaveReq_002)
 {
     TAF_MMA_POWER_SAVE_PARA_STRU        stPowerSavePara;
@@ -506,15 +354,7 @@ TEST_F(Test_TAF_MMA_PowerSaveReq, Test_TAF_MMA_PowerSaveReq_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_TAF_MMA_PowerSaveReq_003
-测试用例标题      : 发送powersavereq消息失败
-预期结果          : 返回VOS_FALSE
-修改历史     :
-1.日   期  : 2014-02-25
-  作   者  : s00261364
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_TAF_MMA_PowerSaveReq, Test_TAF_MMA_PowerSaveReq_003)
 {
     TAF_MMA_POWER_SAVE_PARA_STRU        stPowerSavePara;
@@ -532,16 +372,8 @@ TEST_F(Test_TAF_MMA_PowerSaveReq, Test_TAF_MMA_PowerSaveReq_003)
     GlobalMockObject::verify();
 }
 
-/* Added by b00269685 for L-C互操作项目, 2014-2-25, end */
 
-/*****************************************************************************
-类名     : Test_TAF_MMA_DetachReq
-功能描述 : Detach接口
-修改历史 :
-1.日   期  : 2014-02-07
-  作   者  : s00246516
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_TAF_MMA_DetachReq: public ::testing::Test
 {
     public:
@@ -555,15 +387,7 @@ class Test_TAF_MMA_DetachReq: public ::testing::Test
         }
 };
 
-/*******************************************************************
-测试用例编号      : Test_TAF_MMA_DetachReq_001
-测试用例标题      : Detach参数为空
-预期结果          : 返回VOS_FALSE
-修改历史     :
-1.日   期  : 2014-02-07
-  作   者  :   s00246516
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_TAF_MMA_DetachReq,Test_TAF_MMA_DetachReq_001)
 {
 
@@ -578,15 +402,7 @@ TEST_F(Test_TAF_MMA_DetachReq,Test_TAF_MMA_DetachReq_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_TAF_MMA_DetachReq_002
-测试用例标题      : 申请DetachReq内存失败
-预期结果          : 返回VOS_FALSE
-修改历史     :
-1.日   期  : 2014-02-07
-  作   者  :   s00246516
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_TAF_MMA_DetachReq,Test_TAF_MMA_DetachReq_002)
 {
 
@@ -608,15 +424,7 @@ TEST_F(Test_TAF_MMA_DetachReq,Test_TAF_MMA_DetachReq_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_TAF_MMA_DetachReq_003
-测试用例标题      : 发送powersavereq消息失败
-预期结果          : 返回VOS_TRUE
-修改历史     :
-1.日   期  : 2014-02-07
-  作   者  :   s00246516
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_TAF_MMA_DetachReq,Test_TAF_MMA_DetachReq_003)
 {
 
@@ -638,4 +446,3 @@ TEST_F(Test_TAF_MMA_DetachReq,Test_TAF_MMA_DetachReq_003)
 
 
 
-/* Added by s00246516 for L-C互操作项目, 2014-02-07, End */

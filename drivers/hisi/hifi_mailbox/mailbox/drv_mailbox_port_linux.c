@@ -1,22 +1,4 @@
-/******************************************************************************
 
-			  版权所有 (C), 2001-2011, 华为技术有限公司
-
-******************************************************************************
-文 件 名   : drv_mailbox_vxworks.c
-版 本 号   : 初稿
-作	  者   : 莫南 00176101
-生成日期   : 2012年9月24日
-最近修改   :
-功能描述   : mailbox C核  linux平台系统适配文件
-函数列表   :
-
-修改历史   :
-1.日	期	 : 2012年10月24日
-作	  者   : 陈易超 00209607
-修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
 1 头文件包含
@@ -233,23 +215,7 @@ process_exit:
 #endif
     wake_unlock(&mb_lpwr_lock);
 }
-/*****************************************************************************
- 函 数 名  : mailbox_receive_task
- 函数类型  : 对内接口
- 功能描述  : 数据接收任务函数调度
- 输入参数  :struct mb_local_proc *pProcCfg - 邮箱任务处理配置句柄
 
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年6月19日
-    作    者   : 莫南 00176101
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 MAILBOX_LOCAL int mailbox_receive_task(void * data)
 {
     struct mb_local_proc *proc = (struct mb_local_proc *)data;
@@ -273,23 +239,7 @@ MAILBOX_LOCAL int mailbox_receive_task(void * data)
 }
 
 /*本邮箱核的对外提供接口*/
-/*****************************************************************************
- 函 数 名  : mailbox_init_platform
- 接口类型  : 对外接口
- 功能描述  : 邮箱模块平台适配部分初始化,初始化邮箱并初始化与平台相关的差异化部分，在邮箱初始化的时候调用。
- 输入参数  :
 
- 输出参数  : 无
- 返 回 值  : 线程操作句柄
- 调用函数  :
- 被调函数  : mailbox_init_platform()
-
- 修改历史      :
-  1.日    期   : 2012年9月24日
-    作    者   : 莫南 00176101
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 MAILBOX_EXTERN int mailbox_init_platform(void)
 {
     struct mb_local_proc     *local_proc    = &g_mailbox_local_proc_tbl[0];
@@ -328,25 +278,7 @@ MAILBOX_EXTERN int mailbox_init_platform(void)
     return MAILBOX_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : mailbox_ipc_process
- 接口类型  : 对内接口
- 功能描述  : 设置根据邮件号设置对应的邮件工作队列标志位，并发送消息通知邮箱任务。
- 输入参数  :  struct mb_local_work *pQueueList   --  邮箱工作队列
-              struct mb_local_proc    *pMailBoxTask --  邮箱处理句柄
-              unsigned long ChannelId -- 邮箱通道号
-              unsigned long ProcId    -- 邮箱通道处理方式ID
- 输出参数  : 无
- 返 回 值  : 成功或者失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月24日
-    作    者   : 莫南 00176101
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 MAILBOX_LOCAL int mailbox_ipc_process(
                 struct mb_local_work  *local_work,
                 struct mb_local_proc  *local_proc,
@@ -397,24 +329,7 @@ MAILBOX_LOCAL int mailbox_ipc_process(
 	return is_find;
 }
 
-/*****************************************************************************
- 函 数 名  : mailbox_ipc_int_handle
- 接口类型  : 对内接口
- 功能描述  : 设置根据邮件号设置对应的邮件工作队列标志位，并发送消息通知邮箱任务。
- 输入参数  :  unsigned long    MailBoxID  --邮箱内部的邮箱号，邮箱内部定义的全系统唯一的序列号，
 
-
- 输出参数  : 无
- 返 回 值  : 成功或者失败
- 调用函数  :
- 被调函数  :
-
- 修改历史	   :
-  1.日	  期   : 2012年9月24日
-	作	  者   : 莫南 00176101
-	修改内容   : 新生成函数
-
-*****************************************************************************/
 MAILBOX_LOCAL int mailbox_ipc_int_handle(unsigned int int_num)
 {
     struct mb_local_cfg         *local_cfg    =  &g_mb_local_cfg_tbl[0];
@@ -465,28 +380,7 @@ MAILBOX_LOCAL int mailbox_ipc_int_handle(unsigned int int_num)
 	return ret_val;
 }
 
-/*****************************************************************************
- 函 数 名  : mailbox_process_register
- 接口类型  : 对外接口
- 功能描述  : 建立MailBoxID和pProcessCallBack相关一套机制，根据MailBoxID注册本系统的对应核间邮件通知中断，
-				在收到邮件通知以后，调用对应的pProcessCallBack回调函数
- 输入参数  :  unsigned long 			   MailBoxID  --邮箱内部的邮箱号，邮箱内
-											部定义的全系统唯一的序列号，
-											   --此ID的内部结构由DRV_MAILBOX_ID_STRU定义。
-			 MAILBOX_PROCSS_FUNCPTR pMainThreadCallBack --邮箱收到邮件后的处理回调函数,
-												此函数的入口参数是上面的参数MailBoxID的值
 
- 输出参数  : 无
- 返 回 值  : 成功或者失败
- 调用函数  :
- 被调函数  :
-
- 修改历史	   :
-  1.日	  期   : 2012年9月24日
-	作	  者   : 莫南 00176101
-	修改内容   : 新生成函数
-
-*****************************************************************************/
 MAILBOX_EXTERN int mailbox_process_register(
                 unsigned int channel_id, 
                  int (*cb)(unsigned int channel_id),
@@ -552,25 +446,7 @@ MAILBOX_EXTERN int mailbox_process_register(
 
 }
 
-/*****************************************************************************
- 函 数 名  : mailbox_channel_register
- 接口类型  : 对外接口
- 功能描述  : 把邮箱通道配置注册到具体操作系统平台
- 输入参数  :  unsigned long ChannelID -- 邮箱通道号
-			  unsigned long IntNum	  -- 中断号
-			  unsigned long Direct	  -- 发送方向
-			  void	 **mutex		  -- 此通道的资源保护锁
- 输出参数  : 无
- 返 回 值  : 成功或者失败
- 调用函数  :
- 被调函数  :
 
- 修改历史	   :
-  1.日	  期   : 2012年9月24日
-	作	  者   : 莫南 00176101
-	修改内容   : 新生成函数
-
-*****************************************************************************/
 MAILBOX_EXTERN int mailbox_channel_register(
                 unsigned int channel_id,
                 unsigned int int_src,
@@ -611,24 +487,7 @@ MAILBOX_EXTERN int mailbox_channel_register(
 	return MAILBOX_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : mailbox_delivery
- 接口类型  : 对外接口
- 功能描述  : 通知对方核接收邮件。
- 输入参数  : unsigned long MailBoxID	-	全系统唯一的邮箱通道ID号
 
- 输出参数  : 无
- 返 回 值  : 成功或者失败
- 调用函数  :
- 被调函数  :
-
- 修改历史	   :
-  1.日	  期   : 2012年9月24日
-	作	  者   : 莫南 00176101
-	修改内容   : 新生成函数
-
- 详细描述: 在写完新邮件后，发送核间通知，通知对方核接收邮件。
-*****************************************************************************/
 MAILBOX_EXTERN int mailbox_delivery(unsigned int channel_id)
 {
 	struct mb_local_cfg 	*local_cfg	  =  &g_mb_local_cfg_tbl[0];
@@ -653,21 +512,7 @@ MAILBOX_EXTERN int mailbox_delivery(unsigned int channel_id)
 }
 
 
-/*****************************************************************************
- 函 数 名  : mailbox_mutex_create
- 功能描述  : 创建邮箱资源多线程互斥信号量
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : 成功返回句柄或者失败返回空
- 调用函数  :
- 被调函数  :
 
- 修改历史	   :
-  1.日	  期   : 2012年9月24日
-	作	  者   : 莫南 00176101
-	修改内容   : 新生成函数
-
-*****************************************************************************/
 MAILBOX_LOCAL void *mailbox_mutex_create(struct mb_local_cfg *local_cfg)
 {
     unsigned int channel_id = local_cfg->channel_id;
@@ -724,23 +569,7 @@ error_exit:
 	return (void *)0;
 }
 
-/*****************************************************************************
- 函 数 名  : mailbox_mutex_lock
- 功能描述  : 邮箱通道资源互斥进入
- 输入参数  : void **mutexId  指向互斥操作句柄的指针
- 输出参数  : 无
- 返 回 值  : 成功或者失败
- 调用函数  :
- 被调函数  :
 
- 修改历史	   :
-  1.日	  期   : 2012年9月24日
-	作	  者   : 莫南 00176101
-	修改内容   : 新生成函数
-
- 详细描述: 使用等信号量或者锁中断方式实现,对多任务访问的较大段代码或资源进行保护。
-
-*****************************************************************************/
 MAILBOX_EXTERN int mailbox_mutex_lock(void **mutexId)
 {
 	struct mb_mutex *mtx = (struct mb_mutex *)*mutexId;
@@ -754,23 +583,7 @@ MAILBOX_EXTERN int mailbox_mutex_lock(void **mutexId)
 	return MAILBOX_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : mailbox_mutex_lock
- 功能描述  : 邮箱通道资源互斥退出
- 输入参数  : void **mutexId  指向互斥操作句柄的指针
- 输出参数  : 无
- 返 回 值  : 成功或者失败
- 调用函数  :
- 被调函数  :
 
- 修改历史	   :
-  1.日	  期   : 2012年9月24日
-	作	  者   : 莫南 00176101
-	修改内容   : 新生成函数
-
- 详细描述: 使用释放信号量或者解锁中断方式实现
-
-*****************************************************************************/
 MAILBOX_EXTERN void mailbox_mutex_unlock(void **mutexId)
 {
 	struct mb_mutex *mtx = (struct mb_mutex *)*mutexId;
@@ -814,70 +627,21 @@ MAILBOX_EXTERN void mailbox_del_completion(void **wait)
 	kfree(*wait);
 }
 
-/*****************************************************************************
- 函 数 名  : mailbox_memcpy
- 功能描述  : 内存拷贝函数
- 输入参数  : void		*Destination  -- 目的地址
-			 const void *Source 	  -- 源地址
-			 long		 Size		   -- 长度
- 输出参数  : 无
- 返 回 值  : 成功或者失败
- 调用函数  :
- 被调函数  :
 
- 修改历史	   :
-  1.日	  期   : 2012年11月07日
-	作	  者   : 莫南 00176101
-	修改内容   : 新生成函数
-
- 详细描述: 实现memcpy功能
-
-*****************************************************************************/
 MAILBOX_EXTERN void *mailbox_memcpy(void *Destination, const void *Source, unsigned int Size)
 {
 
 	return (void *)memcpy(Destination, Source, Size);
 }
 
-/*****************************************************************************
- 函 数 名  : mailbox_memset
- 功能描述  : 内存拷贝函数
- 输入参数  : void		*Destination  -- 目的地址
-			 const void *Source 	  -- 源地址
-			 long		 Size		   -- 长度
- 输出参数  : 无
- 返 回 值  : 成功或者失败
- 调用函数  :
- 被调函数  :
 
- 修改历史	   :
-  1.日	  期   : 2012年11月07日
-	作	  者   : 莫南 00176101
-	修改内容   : 新生成函数
-
- 详细描述: 实现memset功能
-
-*****************************************************************************/
 MAILBOX_EXTERN void *mailbox_memset(void * m, int c, unsigned int size)
 {
 
 	return memset(m, c, size);
 }
 
-/*****************************************************************************
- 函 数 名  : mailbox_assert
- 功能描述  : 异常断言，用于调试。
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 成功或者失败
- 调用函数  :
- 被调函数  :
 
- 修改历史	   :
-  1.日	  期   : 2012年9月24日
-	作	  者   : 莫南 00176101
-	修改内容   : 新生成函数
-*****************************************************************************/
 MAILBOX_EXTERN void mailbox_assert(unsigned int ErroNo)
 {
 #ifndef _DRV_LLT_
@@ -885,20 +649,7 @@ MAILBOX_EXTERN void mailbox_assert(unsigned int ErroNo)
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : mailbox_int_context
- 功能描述  : 检查是不是在中断上下文中
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 成功或者失败
- 调用函数  :
- 被调函数  :
 
- 修改历史	   :
-  1.日	  期   : 2012年10月25日
-	作	  者   : 莫南 00176101
-	修改内容   : 新生成函数
-*****************************************************************************/
 MAILBOX_EXTERN int mailbox_int_context(void)
 {
 #ifdef _DRV_LLT_
@@ -909,21 +660,7 @@ MAILBOX_EXTERN int mailbox_int_context(void)
 }
 
 
-/*****************************************************************************
- 函 数 名  : mailbox_scene_delay
- 功能描述  : 根据传入的场景号，进行延迟并返回新状态
- 输入参数  : unsigned long SceneID		--	延时场景号
-			 unsigned long TryTimes 	--	此场景第几次等待
- 输出参数  : 无
- 返 回 值  : 是否继续等待
- 调用函数  :
- 被调函数  :
 
- 修改历史	   :
-  1.日	  期   : 2012年11月29日
-	作	  者   : 莫南 00176101
-	修改内容   : 新生成函数
-*****************************************************************************/
 MAILBOX_EXTERN int mailbox_scene_delay(unsigned int scene_id, int *try_times)
 {
     unsigned int go_on = MAILBOX_FALSE;
@@ -953,22 +690,7 @@ MAILBOX_EXTERN int mailbox_scene_delay(unsigned int scene_id, int *try_times)
 	return go_on;
 }
 
-/*****************************************************************************
- 函 数 名  : mailbox_get_timestamp
- 功能描述  : 获得时间戳
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 系统时间戳，单位(us)
- 调用函数  :
- 被调函数  :
 
- 修改历史	   :
-  1.日	  期   : 2012年10月16日
-	作	  者   : 莫南 00176101
-	修改内容   : 新生成函数
-
-函数描述: 整个系统的时间戳，各个CPU共用，作为消息滞留时间或者处理时间的参照。
-*****************************************************************************/
 extern void * g_slice_reg;
 MAILBOX_EXTERN int mailbox_get_timestamp(void)
 {

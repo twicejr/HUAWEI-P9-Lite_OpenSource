@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafCbaComFunc.c
-  版 本 号   : 初稿
-  作    者   : l00171473
-  生成日期   : 2012年3月19日
-  最近修改   :
-  功能描述   : CBS相关的公共处理函数,如Record的共用处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年3月19日
-    作    者   : l00171473
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -51,22 +34,7 @@ extern "C" {
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : TAF_CBA_IsMsgIdInCBMIDList
- 功能描述  : 判断指定的MSG ID是否在CBMID列表中
- 输入参数  : usMsgId: 主从通知/CBS消息的MSG ID
- 输出参数  : 无
- 返 回 值  : VOS_TRUE :在CBMID列表中
-             VOS_FALSE:不在CBMID列表中
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月30日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_CBA_IsMsgIdInCBMIDList(
     VOS_UINT16                          usMsgId
 )
@@ -88,25 +56,7 @@ VOS_UINT32 TAF_CBA_IsMsgIdInCBMIDList(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_IsMsgIdInCBMIRList
- 功能描述  : 判断指定的MSG ID是否在CBMIR列表中
- 输入参数  : usMsgId: 主从通知/CBS消息的MSG ID
- 输出参数  : 无
- 返 回 值  : VOS_TRUE :在CBMIR列表中
-             VOS_FALSE:不在CBMIR列表中
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月30日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2013年07月222日
-    作    者   : j00177245
-    修改内容   : 清理Coverity
-
-*****************************************************************************/
 VOS_UINT32 TAF_CBA_IsMsgIdInCBMIRList(
     VOS_UINT16                          usMsgId
 )
@@ -148,22 +98,7 @@ VOS_UINT32 TAF_CBA_IsMsgIdInCBMIRList(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_IsMsgIdInCbsActiveList
- 功能描述  : 判断指定的MSG ID是否在USIM和用户设置的激活列表中
- 输入参数  : usMsgId: 主从通知/CBS消息的MSG ID
- 输出参数  : 无
- 返 回 值  : VOS_TRUE :在激活列表中
-             VOS_FALSE:不在激活列表中
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月25日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_CBA_IsMsgIdInCbsActiveList(
     VOS_UINT16                          usMsgId
 )
@@ -184,22 +119,7 @@ VOS_UINT32 TAF_CBA_IsMsgIdInCbsActiveList(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_IsRecordExpired
- 功能描述  : 判断记录项是否超时
- 输入参数  : pstRecord: 历史记录项
- 输出参数  : 无
- 返 回 值  : VOS_TRUE : 指定记录项超时
-             VOS_FASLE: 未超时
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月7日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_CBA_IsRecordExpired(
     TAF_CBA_RECORD_STRU                *pstRecord
 )
@@ -233,22 +153,7 @@ VOS_UINT32 TAF_CBA_IsRecordExpired(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_IsSameMsgCode
- 功能描述  : 比较当前的两个记录是否具有相同的MSG CODE
- 输入参数  : usNewSn
-             usOldSn
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:当前操作成功或失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月27日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_CBA_IsSameMsgCode(
     VOS_UINT16                          usNewSn,
     VOS_UINT16                          usOldSn
@@ -269,22 +174,7 @@ VOS_UINT32 TAF_CBA_IsSameMsgCode(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_IsSameGsCode
- 功能描述  : 比较当前的两个记录是否具有相同的GS CODE
- 输入参数  : usNewSn
-             usOldSn
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:当前操作成功或失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月27日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_CBA_IsSameGsCode(
     VOS_UINT16                          usNewSn,
     VOS_UINT16                          usOldSn
@@ -305,24 +195,7 @@ VOS_UINT32 TAF_CBA_IsSameGsCode(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_IsSameUpdateNum
- 功能描述  : 比较当前的两个记录是否具有相同的Update Num
- 输入参数  : usNewSn
-             usOldSn
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:当前操作成功或失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月27日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2013年8月13日
-    作    者   : w00242748
-    修改内容   : DTS2013081300926 参照协议0341 9.3.2.1 Update Number一节修改
-*****************************************************************************/
 VOS_UINT32 TAF_CBA_IsSameUpdateNum(
     VOS_UINT16                          usNewSn,
     VOS_UINT16                          usOldSn
@@ -359,21 +232,7 @@ VOS_UINT32 TAF_CBA_IsSameUpdateNum(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_DelRecordByActiveList
- 功能描述  : 将MN格式的netmode转换为CBA格式的网络类型
- 输入参数  : ucMnNtMode:mn格式的网络模式
- 输出参数  : penNetType:CBA格式的网络类型
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月30日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_CBA_ConvertMnNetModeToCbaFormat(
     VOS_UINT8                           ucMnNtMode,
     TAF_CBA_NET_RAT_TYPE_ENUM_UINT8    *penNetType
@@ -406,23 +265,7 @@ VOS_VOID TAF_CBA_ConvertMnNetModeToCbaFormat(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_IsDupMidsInActiveList
- 功能描述  : 检查添加消息中是否有与现有的激活列表重复的消息范围，如果存在一个，则立即返回出错
 
- 输入参数  : pstAddbMids:
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:MN_ERR_NO_ERROR:无重复的MID
-                        MN_ERR_CLASS_CBS_CROSS_MID_ERROR:有重复的MID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年3月26日
-    作    者   : t00212959
-    修改内容   : 新生成函数 for V7R1C50 CSFB&PPAC&ETWS&ISR
-
-*****************************************************************************/
 VOS_UINT32 TAF_CBA_IsDupMidsInActiveList(
     TAF_CBA_CBMI_RANGE_LIST_STRU       *pstAddbMids
 )
@@ -461,24 +304,7 @@ VOS_UINT32 TAF_CBA_IsDupMidsInActiveList(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_AddCbMiRangeListToActiveList
- 功能描述  : 添加内存中CBMIR列表,如果CBMID_Range列表中空闲不够时,已经加入的CBMID Range不清除,
-             直接返回出错。
- 输入参数  : pstOrgCbMirList:需更新的CBMIR列表
-             ulCbCount:列表中CBMIR的个数
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 :VOS_OK  - 加入成功
-                         VOS_ERR - 加入失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月26日
-    作    者   : t00212959
-    修改内容   : 新生成函数 for V7R1C50 CSFB&PPAC&ETWS&ISR
-
-*****************************************************************************/
 VOS_UINT32 TAF_CBA_AddCbMiRangeListToActiveList(
     TAF_CBA_CBMI_RANGE_LIST_STRU       *pstOrgCbMirList
 )
@@ -527,23 +353,7 @@ VOS_UINT32 TAF_CBA_AddCbMiRangeListToActiveList(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_IsCbmirExist
- 功能描述  : 检查CBMIR是否存在列表中
- 输入参数  : pstMsgRange        - 需检查的MID
-             pstCbmirList       - MIDR LIST
- 输出参数  : pulCbmirIdx        - 当前找到的CBMID的Index
- 返 回 值  : VOS_UINT32  VOS_TRUE  - MIDR在LIST列表中
-                         VOS_FALSE - MIDR不在LIST列表中
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月26日
-    作    者   : t00212959
-    修改内容   : 新生成函数 for V7R1C50 CSFB&PPAC&ETWS&ISR
-
-*****************************************************************************/
 VOS_UINT32 TAF_CBA_IsCbmirExist(
     TAF_CBA_CBMI_RANGE_STRU            *pstMsgRange,
     TAF_CBA_CBMI_RANGE_LIST_STRU       *pstCbmirList,
@@ -566,22 +376,7 @@ VOS_UINT32 TAF_CBA_IsCbmirExist(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_IsCbmiRangeListEmpty
- 功能描述  : CBMI RANGE 列表是否为空
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 列表已经为空
-             VOS_FALSE - 列表不为空
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月26日
-    作    者   : t00212959
-    修改内容   : 新生成函数 for V7R1C50 CSFB&PPAC&ETWS&ISR
-
-*****************************************************************************/
 VOS_UINT32 TAF_CBA_IsCbmiRangeListEmpty(VOS_VOID)
 {
     /* 如果当前已经清空了 */
@@ -593,22 +388,7 @@ VOS_UINT32 TAF_CBA_IsCbmiRangeListEmpty(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_IsCbsActiveListEmpty
- 功能描述  : 判断USIM和用户设置的激活列表是否为空
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE: 激活列表为空
-             VOS_FALSE:激活列表不为空
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月26日
-    作    者   : t00212959
-    修改内容   : 新生成函数 for V7R1C50 CSFB&PPAC&ETWS&ISR
-
-*****************************************************************************/
 VOS_UINT32 TAF_CBA_IsCbsActiveListEmpty(VOS_VOID)
 {
     VOS_INT32                           ulInx;
@@ -638,20 +418,7 @@ VOS_UINT32 TAF_CBA_IsCbsActiveListEmpty(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_IsNeedActAsCbs
- 功能描述  : 判断是否需要激活AS的CBS功能
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月20日
-    作    者   : l00171473
-    修改内容   : for V7R1C50 CSFB&PPAC&ETWS&ISR
-*****************************************************************************/
 VOS_UINT32 TAF_CBA_IsNeedActAsCbs(VOS_VOID)
 {
     TAF_CBA_CBSTATUS_ENUM_UINT8         enCbsStatus;
@@ -696,23 +463,7 @@ VOS_UINT32 TAF_CBA_IsNeedActAsCbs(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_IsRecordValidByGsChgType
- 功能描述  : 判断GS 变化后，记录项是否仍有效
- 输入参数  : usSerialNum: 记录项的SN
-             enGsChgType: GS变化类型
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  记录项仍有效
-             VOS_FALSE: 记录项无效
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月29日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_CBA_IsRecordValidByGsChgType(
     VOS_UINT16                          usSerialNum,
     TAF_CBS_GS_CHG_TYPE_ENUM_UINT8      enGsChgType
@@ -769,21 +520,7 @@ VOS_UINT32 TAF_CBA_IsRecordValidByGsChgType(
     return ulIsValid;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_SndAsActiveCbsReq
- 功能描述  : 给接入层发送激活请求
- 输入参数  : enActiveFlg : 激活或去激活CBS功能
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月20日
-    作    者   : l00171473
-    修改内容   : for V7R1C50 CSFB&PPAC&ETWS&ISR
-
-*****************************************************************************/
 VOS_VOID TAF_CBA_SndAsActiveCbsReq(
     TAF_CBS_CFG_ENUM_UINT32             enCfgFlg
 )
@@ -847,22 +584,7 @@ VOS_VOID TAF_CBA_SndAsActiveCbsReq(
 }
 
 #if (FEATURE_ETWS == FEATURE_ON)
-/*****************************************************************************
- 函 数 名  : TAF_CBA_DelEtwsPrimNtfRecord
- 功能描述  : 删除一个主通知历史记录项
- 输入参数  : usDelIndex : 需要删除的记录项的index
-             enDelReason: 删除的原因, 可维可测
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月9日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_CBA_DelEtwsPrimNtfRecord(
     VOS_UINT32                          ulDelInx,
     TAF_CBA_OM_DEL_REASON_ENUM_UINT8    enDelReason
@@ -918,22 +640,7 @@ VOS_VOID TAF_CBA_DelEtwsPrimNtfRecord(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_DelCbsRecord
- 功能描述  : 从CBS历史记录表中根据index删除一个CBS历史记录项
- 输入参数  : usDelIndex:  需要删除的记录项的index
-             enDelReason: 删除的原因, 可维可测
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月9日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_CBA_DelCbsRecord(
     VOS_UINT32                          ulDelInx,
     TAF_CBA_OM_DEL_REASON_ENUM_UINT8    enDelReason
@@ -990,21 +697,7 @@ VOS_VOID TAF_CBA_DelCbsRecord(
 }
 
 #if (FEATURE_ETWS == FEATURE_ON)
-/*****************************************************************************
- 函 数 名  : TAF_CBA_DelEtwsPrimNtfExpiredRecord
- 功能描述  : 删除重复检测时长超时的ETWS主通知记录
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月9日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_CBA_DelEtwsPrimNtfExpiredRecord(VOS_VOID)
 {
     TAF_CBA_RECORD_STRU                *pstRcvPrimNtfList;
@@ -1028,21 +721,7 @@ VOS_VOID TAF_CBA_DelEtwsPrimNtfExpiredRecord(VOS_VOID)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_DelCbmiRangeListItemByInx
- 功能描述  : 根据Index 删除CBMI RANG LIST中的指定项
- 输入参数  : usDelItemInx:需删除的CB MID Range的 index
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月26日
-      作    者   : l00171473
-      修改内容   : 新生成函数 for V7R1C50 CSFB&PPAC&ETWS&ISR
-
-*****************************************************************************/
 VOS_VOID TAF_CBA_DelCbmiRangeListItemByInx(
     VOS_UINT16                          usDelItemInx
 )
@@ -1090,22 +769,7 @@ VOS_VOID TAF_CBA_DelCbmiRangeListItemByInx(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_DelCbMiRangeListFromActiveList
- 功能描述  : 删除内存中的CBMI Range
- 输入参数  : pstOrgCbMirList:需删除的CB MID Range列表
- 输出参数  : 无
- 返 回 值  : VOS_TRUE : 删除成功
-             VOS_FALSE: 删除失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月26日
-      作    者   : t00212959
-      修改内容   : 新生成函数 for V7R1C50 CSFB&PPAC&ETWS&ISR
-
-*****************************************************************************/
 VOS_UINT32 TAF_CBA_DelCbMiRangeListFromActiveList(
     TAF_CBA_CBMI_RANGE_LIST_STRU       *pstOrgCbMirList
 )
@@ -1150,22 +814,7 @@ VOS_UINT32 TAF_CBA_DelCbMiRangeListFromActiveList(
 }
 
 #if (FEATURE_ETWS == FEATURE_ON)
-/*****************************************************************************
- 函 数 名  : TAF_CBA_DelInvalidEtwsPrimNtfRecordByGsChgType
- 功能描述  : 从ETWS主通知历史记录表中删除GS失效的ETWS主通知记录
- 输入参数  : enGsChgType   : GS变化类型
-             ucGsChgNetMode: 网络模式
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月12日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_CBA_DelInvalidEtwsPrimNtfRecordByGsChgType(
     TAF_CBS_GS_CHG_TYPE_ENUM_UINT8      enGsChgType,
     TAF_CBA_NET_RAT_TYPE_ENUM_UINT8     enGsChgNetMode
@@ -1203,21 +852,7 @@ VOS_VOID TAF_CBA_DelInvalidEtwsPrimNtfRecordByGsChgType(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_DelCbsExpiredRecord
- 功能描述  : 删除CBS历史记录表中重复检测时长超时的CBS记录项
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月10日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_CBA_DelCbsExpiredRecord(VOS_VOID)
 {
     TAF_CBA_RECORD_STRU                *pstRcvCbsList;
@@ -1240,21 +875,7 @@ VOS_VOID TAF_CBA_DelCbsExpiredRecord(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_DelInvalidCbsRecordByActiveList
- 功能描述  : 删除不在激活列表中的CBS记录
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月12日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_CBA_DelInvalidCbsRecordByActiveList(VOS_VOID)
 {
     TAF_CBA_RECORD_STRU                *pstRcvCbsList;
@@ -1280,22 +901,7 @@ VOS_VOID TAF_CBA_DelInvalidCbsRecordByActiveList(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_DelInvalidCbsRecordByGsChgType
- 功能描述  : 删除GS失效的CBS记录
- 输入参数  : enGsChgType: GS变化类型
-             ucGsChgNetMode: 网络模式
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月12日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_CBA_DelInvalidCbsRecordByGsChgType(
     TAF_CBS_GS_CHG_TYPE_ENUM_UINT8      enGsChgType,
     TAF_CBA_NET_RAT_TYPE_ENUM_UINT8     enGsChgNetMode
@@ -1332,21 +938,7 @@ VOS_VOID TAF_CBA_DelInvalidCbsRecordByGsChgType(
 }
 
 #if (FEATURE_ETWS == FEATURE_ON)
-/*****************************************************************************
- 函 数 名  : TAF_CBA_DelInvalidEtwsPrimNtfRecordByActiveList
- 功能描述  : 删除不在激活列表中的ETWS主通知记录
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月12日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_CBA_DelInvalidEtwsPrimNtfRecordByActiveList(VOS_VOID)
 {
     TAF_CBA_RECORD_STRU                *pstRcvList;
@@ -1372,21 +964,7 @@ VOS_VOID TAF_CBA_DelInvalidEtwsPrimNtfRecordByActiveList(VOS_VOID)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_DelRecordByActiveList
- 功能描述  : 用户设置激活列表后, 删除不在激活列表中的历史记录项
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月27日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_CBA_DelRecordByActiveList(VOS_VOID)
 {
 #if (FEATURE_ON == FEATURE_ETWS)
@@ -1396,21 +974,7 @@ VOS_VOID TAF_CBA_DelRecordByActiveList(VOS_VOID)
     TAF_CBA_DelInvalidCbsRecordByActiveList();
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_SortCbmiRangeList
- 功能描述  : 将RANGE LIST的MSG ID从小到大排序
- 输入参数  : pstRangeList:需要排序的range list
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月1日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_CBA_SortCbmiRangeList(
     TAF_CBA_CBMI_RANGE_LIST_STRU       *pstRangeList
 )
@@ -1432,22 +996,7 @@ VOS_VOID TAF_CBA_SortCbmiRangeList(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_SortEtwsRangList
- 功能描述  : 将ETWS的RANGE LIST的MSG ID从小到大排序
- 输入参数  : pstEtwsRangeList:需要排序的range list
-             ulMaxNum        :元素的个数
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月4日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_CBA_SortEtwsRangList(
     TAF_CBA_ETWS_MSGID_RANGE_STRU      *pstEtwsRangeList,
     VOS_UINT32                          ulMaxNum
@@ -1468,22 +1017,7 @@ VOS_VOID TAF_CBA_SortEtwsRangList(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_GetGsChgTypeByNetworkInfo
- 功能描述  : 通过当前的网络信息和上次的网络信息比较获取GS 变化类型
- 输入参数  : pstCurrNetworkInfo    : 当前的网络信息
-             pstOldGsChgNetworkInfo: 上次的网络信息
- 输出参数  : 无
- 返 回 值  : GS 变化类型
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月4日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_CBS_GS_CHG_TYPE_ENUM_UINT8 TAF_CBA_GetGsChgTypeByNetworkInfo(
     TAF_CBA_NETWORK_INFO_STRU          *pstCurrNetworkInfo,
     TAF_CBA_NETWORK_INFO_STRU          *pstOldGsChgNetworkInfo

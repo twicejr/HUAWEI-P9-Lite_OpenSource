@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : hmac_rx_filter.c
-  版 本 号   : 初稿
-  作    者   : z00241943
-  生成日期   : 2014年7月14日
-  最近修改   :
-  功能描述   : 帧过滤处理文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年7月14日
-    作    者   : z00241943
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -53,21 +36,7 @@ oal_uint32 g_ast_multi_apup_sta_rx_filter[MAC_VAP_STA_STATE_BUTT];
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : hmac_find_is_sta_up
- 功能描述  : 查找是否有已经UP的STA
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月31日
-    作    者   : zhangyu
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_bool_enum_uint8 hmac_find_is_sta_up(mac_device_stru *pst_mac_device)
 {
     mac_vap_stru                  *pst_vap;
@@ -92,21 +61,7 @@ oal_bool_enum_uint8 hmac_find_is_sta_up(mac_device_stru *pst_mac_device)
     return OAL_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_find_is_ap_up
- 功能描述  : 查找是否有已经UP的AP
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月31日
-    作    者   : zhangyu
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_bool_enum_uint8 hmac_find_is_ap_up(mac_device_stru *pst_mac_device)
 {
     mac_vap_stru                  *pst_vap;
@@ -131,21 +86,7 @@ oal_bool_enum_uint8 hmac_find_is_ap_up(mac_device_stru *pst_mac_device)
     return OAL_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_calc_up_ap_num
- 功能描述  : 计算不处于inti状态的VAP个数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月14日
-    作    者   : zhangyu
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_calc_up_ap_num(mac_device_stru *pst_mac_device)
 {
     mac_vap_stru                  *pst_vap;
@@ -175,21 +116,7 @@ oal_uint32 hmac_calc_up_ap_num(mac_device_stru *pst_mac_device)
     return ul_up_ap_num;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_find_up_vap
- 功能描述  : 找到up vap (优先级:AP > STA)
- 输入参数  : pst_mac_device
- 输出参数  : ppst_mac_vap
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月15日
-    作    者   : xiaoyuren
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_find_up_vap(mac_device_stru *pst_mac_device, mac_vap_stru **ppst_mac_vap)
 {
     oal_uint32                     ul_ret;
@@ -217,22 +144,7 @@ oal_uint32 hmac_find_up_vap(mac_device_stru *pst_mac_device, mac_vap_stru **ppst
 }
 
 #if 0
-/*****************************************************************************
- 函 数 名  : hmac_set_rx_filter_value
- 功能描述  : AP侧接收到对应STA的关联请求消息
-             待修订为dmac_set_rx_filter_value
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月16日
-    作    者   : zhangyu
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_set_rx_filter_value(mac_vap_stru *pst_mac_vap)
 {
 
@@ -299,8 +211,6 @@ oal_uint32 hmac_set_rx_filter_value(mac_vap_stru *pst_mac_vap)
     /* 多STA情况下配置 */
     else if ((1 < pst_mac_device->uc_vap_num) && (pst_mac_device->uc_vap_num == pst_mac_device->uc_sta_num))
     {
-        /* DTS2015032507646 如果此时有STA不处于Down的状态，不需要配置任何值，直接返回 */
-        /* DTS2015033003804 解决多VAP情况下，其中一个被down，导致其他STA beacon miss问题 */
         if ((0 != hmac_calc_up_ap_num(pst_mac_device))
             && ((MAC_VAP_STATE_INIT == pst_mac_vap->en_vap_state)
                 || (MAC_VAP_STATE_STA_FAKE_UP == pst_mac_vap->en_vap_state)
@@ -329,8 +239,6 @@ oal_uint32 hmac_set_rx_filter_value(mac_vap_stru *pst_mac_vap)
     else if ((1 < pst_mac_device->uc_vap_num) && (0 != pst_mac_device->uc_sta_num)
               && (pst_mac_device->uc_vap_num > pst_mac_device->uc_sta_num))
     {
-        /* DTS2015032507646 如果此时有STA不处于Down的状态，不需要配置任何值，直接返回 */
-        /* DTS2015033003804 解决多VAP情况下，其中一个被down，导致其他STA beacon miss问题 */
         if ((0 != hmac_calc_up_ap_num(pst_mac_device))
             && ((MAC_VAP_STATE_INIT == pst_mac_vap->en_vap_state)
                 || (MAC_VAP_STATE_STA_FAKE_UP == pst_mac_vap->en_vap_state)
@@ -415,22 +323,7 @@ oal_uint32 hmac_set_rx_filter_value(mac_vap_stru *pst_mac_vap)
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : hmac_set_rx_filter_value
- 功能描述  : AP侧接收到对应STA的关联请求消息
-             待修订为dmac_set_rx_filter_value
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月16日
-    作    者   : zhangyu
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_set_rx_filter_value(mac_vap_stru *pst_mac_vap)
 {
 #ifndef _PRE_WLAN_PHY_PERFORMANCE
@@ -562,27 +455,12 @@ oal_uint32 hmac_set_rx_filter_value(mac_vap_stru *pst_mac_vap)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_rx_filter_init_normal
- 功能描述  : 帧过滤各状态值初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月14日
-    作    者   : zhangyu
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  hmac_rx_filter_init_single_vap(oal_void)
 {
     oal_uint32  ul_state;
     oal_uint32  ul_vap_mode;
 
-    /*       DTS2015102202934    开启 FCS ERROR 过滤            */
     for (ul_vap_mode = WLAN_VAP_MODE_CONFIG; ul_vap_mode < WLAN_VAP_MODE_BUTT; ul_vap_mode++)
     {
         for (ul_state = MAC_VAP_STATE_INIT; ul_state < MAC_VAP_STATE_BUTT; ul_state++)
@@ -636,7 +514,7 @@ oal_void  hmac_rx_filter_init_single_vap(oal_void)
         g_ast_single_vap_rx_filter[WLAN_VAP_MODE_BSS_STA][ul_state] = 0x73B9EADA;
     }
 
-    g_ast_single_vap_rx_filter[WLAN_VAP_MODE_BSS_STA][MAC_VAP_STATE_STA_WAIT_SCAN]    = 0x37B9CEEA;
+    g_ast_single_vap_rx_filter[WLAN_VAP_MODE_BSS_STA][MAC_VAP_STATE_STA_WAIT_SCAN]    = 0x37B9CECA;
     g_ast_single_vap_rx_filter[WLAN_VAP_MODE_BSS_STA][MAC_VAP_STATE_STA_OBSS_SCAN]    = 0x37B9CEEA;
     g_ast_single_vap_rx_filter[WLAN_VAP_MODE_BSS_STA][MAC_VAP_STATE_STA_BG_SCAN]      = 0x37B9CEEA;
     g_ast_single_vap_rx_filter[WLAN_VAP_MODE_BSS_STA][MAC_VAP_STATE_STA_LISTEN]       = 0x33A9EECA;
@@ -676,26 +554,11 @@ oal_void  hmac_rx_filter_init_single_vap(oal_void)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_rx_filter_init_normal
- 功能描述  : 帧过滤各状态值初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月14日
-    作    者   : zhangyu
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  hmac_rx_filter_init_multi_vap(oal_void)
 {
     oal_uint32  ul_state;
 
-    /*       DTS2015102202934    开启 FCS ERROR 过滤            */
     for (ul_state = MAC_VAP_STATE_INIT; ul_state < MAC_VAP_STA_STATE_BUTT; ul_state++)
     {
         g_ast_multi_staup_sta_rx_filter[ul_state] = (1<<21);
@@ -819,21 +682,7 @@ oal_void  hmac_rx_filter_init_multi_vap(oal_void)
 }
 
 #if 0
-/*****************************************************************************
- 函 数 名  : hmac_rx_filter_init_repeater
- 功能描述  : 帧过滤各状态值初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月14日
-    作    者   : zhangyu
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  hmac_rx_filter_init_repeater(oal_void)
 {
     oal_uint32  ul_state;
@@ -885,21 +734,7 @@ oal_void  hmac_rx_filter_init_repeater(oal_void)
 }
 
 #ifdef _PRE_WLAN_FEATURE_P2P
-/*****************************************************************************
- 函 数 名  : hmac_rx_filter_init_p2p
- 功能描述  : 帧过滤各状态值初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月29日
-    作    者   : duankaiyong 00194999
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  hmac_rx_filter_init_p2p(oal_void)
 {
     oal_uint32  ul_state;
@@ -979,21 +814,7 @@ oal_void  hmac_rx_filter_init_p2p(oal_void)
 }
 #endif
 #endif
-/*****************************************************************************
- 函 数 名  : hmac_rx_filter_init
- 功能描述  : 帧过滤各状态值初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月14日
-    作    者   : zhangyu
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  hmac_rx_filter_init(oal_void)
 {
     g_en_rx_filter_enable = OAL_TRUE;
@@ -1013,62 +834,20 @@ oal_void  hmac_rx_filter_init(oal_void)
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_rx_filter_exit
- 功能描述  : 帧过滤退出函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月14日
-    作    者   : zhangyu
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  hmac_rx_filter_exit(oal_void)
 {
     g_en_rx_filter_enable = OAL_FALSE;
 }
 
 #ifdef _PRE_DEBUG_MODE
-/*****************************************************************************
- 函 数 名  : hmac_set_rx_filter_en
- 功能描述  : hmac设置帧过滤使能开关
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月31日
-    作    者   : zhangyu
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  hmac_set_rx_filter_en(oal_uint8 uc_rx_filter_en)
 {
     g_en_rx_filter_enable = uc_rx_filter_en;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_get_rx_filter_en
- 功能描述  : hmac获取帧过滤使能开关状态
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月31日
-    作    者   : zhangyu
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  hmac_get_rx_filter_en(oal_void)
 {
     oal_int8      ac_tmp_buff[200];
@@ -1078,21 +857,7 @@ oal_void  hmac_get_rx_filter_en(oal_void)
     oam_print(ac_tmp_buff);
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_set_status_rx_filter_val
- 功能描述  : 设置指定状态的帧过滤值
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月31日
-    作    者   : zhangyu
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_set_status_rx_filter_val(oal_uint uc_dev_mode, oal_uint uc_vap_mode, oal_uint uc_vap_status, oal_uint32 uc_val)
 {
     switch(uc_dev_mode)
@@ -1113,21 +878,7 @@ oal_uint32  hmac_set_status_rx_filter_val(oal_uint uc_dev_mode, oal_uint uc_vap_
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_get_status_rx_filter_val
- 功能描述  : 获取指定状态的帧过滤值
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月31日
-    作    者   : zhangyu
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_get_status_rx_filter_val(oal_uint uc_dev_mode, oal_uint uc_vap_mode, oal_uint uc_vap_status)
 {
     oal_uint32    uc_val = 0;

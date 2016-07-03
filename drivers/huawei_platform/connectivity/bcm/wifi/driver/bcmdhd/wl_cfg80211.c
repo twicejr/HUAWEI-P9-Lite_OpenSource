@@ -1269,9 +1269,9 @@ wl_validate_wps_ie(char *wps_ie, s32 wps_ie_len, bool *pbc)
 		} else if (subelt_id == WPS_ID_DEVICE_NAME) {
 			char devname[100];
 #ifdef BCM_PATCH_CVE_2016_0801
-			size_t namelen = MIN(subelt_len, sizeof(devname));
+			size_t namelen = MIN(subelt_len, sizeof(devname) - 1);
 			memcpy(devname, subel, namelen);
-			devname[namelen-1] = '\0';
+			devname[namelen] = '\0';
 #else
 			memcpy(devname, subel, subelt_len);
 			devname[subelt_len] = '\0';
@@ -11068,7 +11068,11 @@ static s32 wl_notify_escan_complete(struct bcm_cfg80211 *cfg,
 	if (timer_pending(&cfg->scan_timeout))
 		del_timer_sync(&cfg->scan_timeout);
 #if defined(ESCAN_RESULT_PATCH)
-	if (likely(cfg->scan_request)) {
+	if (likely(cfg->scan_request)
+#ifdef BCM_PATCH_ESCAN_ABORTED_WLINFORMBSS
+		&& (!aborted)
+#endif /* BCM_PATCH_ESCAN_ABORTED_WLINFORMBSS */
+	) {
 		cfg->bss_list = wl_escan_get_buf(cfg, aborted);
 		wl_inform_bss(cfg);
 	}

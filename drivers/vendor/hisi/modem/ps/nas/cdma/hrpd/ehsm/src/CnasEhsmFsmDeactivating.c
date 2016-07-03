@@ -220,23 +220,7 @@ VOS_UINT32 CNAS_EHSM_RcvCttfEhrpdPdnDiscInd_Deactivating_WaitPdnDiscCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_RcvCttfEhrpdReconnInd_Deactivating_WaitPdnDiscCnf
- 功能描述  : CNAS_EHSM_DEACTIVATING_STA_WAIT_PDN_DISC_CNF子状态下收到消
-             息ID_CTTF_CNAS_EHRPD_RECONN_IND的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月30日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_RcvCttfEhrpdReconnInd_Deactivating_WaitPdnDiscCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -273,23 +257,7 @@ VOS_UINT32 CNAS_EHSM_RcvCttfEhrpdDetachCnf_Deactivating_WaitDetachCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_RcvCttfEhrpdReconnInd_Deactivating_WaitDetachCnf
- 功能描述  : 子状态CNAS_EHSM_DEACTIVATING_STA_WAIT_DETACH_CNF下收到消息
-             ID_CTTF_CNAS_EHRPD_RECONN_IND的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月3日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_RcvCttfEhrpdReconnInd_Deactivating_WaitDetachCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -429,22 +397,7 @@ VOS_UINT32 CNAS_EHSM_RcvHsmConnEstCnf_Deactivating_WaitHsmConnEstCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_RcvTiWaitHsmConnEstCnf_Deactivating_WaitHsmConnEstCnf
- 功能描述  : timer of wait conn est cnf time out process
- 输入参数  : VOS_UINT32                          ulEventType,
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT 32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月25日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_RcvTiWaitHsmConnEstCnf_Deactivating_WaitHsmConnEstCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -484,23 +437,7 @@ VOS_UINT32 CNAS_EHSM_RcvTiWaitConnRetryEst_Deativating_WaitConnEstRetry(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_RcvHsmSessionInfoInd_Deativating_WaitConnEstRetry
- 功能描述  : 去激活流程中，链路重建Retry定时器运行期间收到HSM发送的Session
-             Info Ind消息
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月28日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_RcvHsmSessionInfoInd_Deativating_WaitConnEstRetry(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -535,22 +472,7 @@ VOS_UINT32 CNAS_EHSM_RcvHsmSessionInfoInd_Deativating_WaitConnEstRetry(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_RcvTiWaitCttfPdnDiscCnf_Deactivating_WaitPdnDiscCnf
- 功能描述  : process when rcv time out msg about the timer of wait ppp pdn disc cnf
- 输入参数  : VOS_UINT32                          ulEventType,
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月25日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  CNAS_EHSM_RcvTiWaitCttfPdnDiscCnf_Deactivating_WaitPdnDiscCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -580,22 +502,7 @@ VOS_UINT32  CNAS_EHSM_RcvTiWaitCttfPdnDiscCnf_Deactivating_WaitPdnDiscCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_RcvTiCttfEhrpdDetachCnf_Deactivating_WaitDetachCnf
- 功能描述  : procedure after rcv the timer of wait detach cnf time out msg
- 输入参数  : VOS_UINT32                          ulEventType,
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月25日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_RcvTiCttfEhrpdDetachCnf_Deactivating_WaitDetachCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -606,22 +513,7 @@ VOS_UINT32 CNAS_EHSM_RcvTiCttfEhrpdDetachCnf_Deactivating_WaitDetachCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_RcvTiProtectingPowerOff_Deactivating_WaitDetachCnf
- 功能描述  : procedure after rcv the timeout message for the timer of protecting the whole power off process
- 输入参数  : VOS_UINT32                          ulEventType,
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月25日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_RcvTiProtectingPowerOff_Deactivating_WaitDetachCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -636,22 +528,7 @@ VOS_UINT32 CNAS_EHSM_RcvTiProtectingPowerOff_Deactivating_WaitDetachCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_RcvHsmDiscInd_Deactivating_WaitPdnDiscCnf
- 功能描述  : 等待PDN DISC CNF过程中收到空口断开消息处理
- 输入参数  : VOS_UINT32                          ulEventType,
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月27日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_RcvHsmDiscInd_Deactivating_WaitPdnDiscCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -670,22 +547,7 @@ VOS_UINT32 CNAS_EHSM_RcvHsmDiscInd_Deactivating_WaitPdnDiscCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_RcvHsmDiscInd_Deactivating_WaitDetachCnf
- 功能描述  : 等待detach CNF 消息的过程中收到空口断链通知
- 输入参数  : VOS_UINT32                          ulEventType,
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月27日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_RcvHsmDiscInd_Deactivating_WaitDetachCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -703,22 +565,7 @@ VOS_UINT32 CNAS_EHSM_RcvHsmDiscInd_Deactivating_WaitDetachCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_RcvEhsmAbortReq_Deactivating_WaitPdnDiscCnf
- 功能描述  : 打断消息处理 在等待pdn disc cnf的时候
- 输入参数  : VOS_UINT32                          ulEventType,
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月27日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_RcvEhsmAbortReq_Deactivating_WaitPdnDiscCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -758,22 +605,7 @@ VOS_UINT32 CNAS_EHSM_RcvEhsmAbortReq_Deactivating_WaitPdnDiscCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_RcvEhsmAbortReq_Deactivating_WaitHsmConnEstCnf
- 功能描述  : 打断消息处理 在等待deactivating 的 conn est cnf的时候
- 输入参数  : VOS_UINT32                          ulEventType,
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月27日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_RcvEhsmAbortReq_Deactivating_WaitHsmConnEstCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -800,22 +632,7 @@ VOS_UINT32 CNAS_EHSM_RcvEhsmAbortReq_Deactivating_WaitHsmConnEstCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_RcvTiProtectingPowerOff_Deactivating_WaitHsmConnEstCnf
- 功能描述  : power off 保护超时
- 输入参数  : VOS_UINT32                          ulEventType,
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月27日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_RcvTiProtectingPowerOff_Deactivating_WaitHsmConnEstCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -861,23 +678,7 @@ VOS_UINT32 CNAS_EHSM_RcvTiProtectingPowerOff_Deactivating_WaitHsmConnEstCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_RcvCttfEhrpdPdnDiscCnf_Deactivating_WaitHsmConnEstCnf
- 功能描述  : CNAS_EHSM_DEACTIVATING_STA_WAIT_HSM_CONN_EST_CNF子状态下收到消
-             息ID_CTTF_CNAS_EHRPD_PDN_DISC_CNF的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月30日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_RcvCttfEhrpdPdnDiscCnf_Deactivating_WaitHsmConnEstCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -926,23 +727,7 @@ VOS_UINT32 CNAS_EHSM_RcvCttfEhrpdPdnDiscCnf_Deactivating_WaitHsmConnEstCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_RcvCttfEhrpdPdnDiscInd_Deactivating_WaitHsmConnEstCnf
- 功能描述  : 子状态CNAS_EHSM_DEACTIVATING_STA_WAIT_HSM_CONN_EST_CNF下收到消
-             息ID_CTTF_CNAS_EHRPD_PDN_DISC_IND的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月30日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_RcvCttfEhrpdPdnDiscInd_Deactivating_WaitHsmConnEstCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -986,23 +771,7 @@ VOS_UINT32 CNAS_EHSM_RcvCttfEhrpdPdnDiscInd_Deactivating_WaitHsmConnEstCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_RcvCttfEhrpdDetachCnf_Deactivating_WaitHsmConnEstCnf
- 功能描述  : 子状态CNAS_EHSM_DEACTIVATING_STA_WAIT_HSM_CONN_EST_CNF下收
-             到消息ID_CTTF_CNAS_EHRPD_DETACH_CNF的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月1日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_RcvCttfEhrpdDetachCnf_Deactivating_WaitHsmConnEstCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1031,23 +800,7 @@ VOS_UINT32 CNAS_EHSM_RcvCttfEhrpdDetachCnf_Deactivating_WaitHsmConnEstCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_RcvTiWaitCttfPdnDiscCnfExpired_Deactivating_WaitHsmConnEstCnf
- 功能描述  : 子状态CNAS_EHSM_DEACTIVATING_STA_WAIT_HSM_CONN_EST_CNF下收到定时器
-             TI_CNAS_EHSM_WAIT_CTTF_PDN_DISC_CNF超时的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月30日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_RcvTiWaitCttfPdnDiscCnfExpired_Deactivating_WaitHsmConnEstCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1083,23 +836,7 @@ VOS_UINT32 CNAS_EHSM_RcvTiWaitCttfPdnDiscCnfExpired_Deactivating_WaitHsmConnEstC
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_RcvTiCttfEhrpdDetachCnf_Deactivating_WaitHsmConnEstCnf
- 功能描述  : 子状态CNAS_EHSM_DEACTIVATING_STA_WAIT_HSM_CONN_EST_CNF下收到
-             定时器TI_CNAS_EHSM_WAIT_DETACH_CNF超时消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月1日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_RcvTiCttfEhrpdDetachCnf_Deactivating_WaitHsmConnEstCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1118,22 +855,7 @@ VOS_UINT32 CNAS_EHSM_RcvTiCttfEhrpdDetachCnf_Deactivating_WaitHsmConnEstCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_RcvEhsmAbortReq_Deactivating_WaitConnEstRetry
- 功能描述  : 打断消息处理 在等待retry timeout 的时候
- 输入参数  : VOS_UINT32                          ulEventType,
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月27日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_RcvEhsmAbortReq_Deactivating_WaitConnEstRetry(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1182,23 +904,7 @@ VOS_UINT32 CNAS_EHSM_RcvEhsmAbortReq_Deactivating_WaitConnEstRetry(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_RcvCttfEhrpdPdnDiscCnf_Deactivating_WaitConnEstRetry
- 功能描述  : 子状态CNAS_EHSM_DEACTIVATING_STA_WAIT_CONN_EST_RETRY_TIME_OUT下
-             收到消息ID_CTTF_CNAS_EHRPD_PDN_DISC_CNF的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月4日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_RcvCttfEhrpdPdnDiscCnf_Deactivating_WaitConnEstRetry(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1241,23 +947,7 @@ VOS_UINT32 CNAS_EHSM_RcvCttfEhrpdPdnDiscCnf_Deactivating_WaitConnEstRetry(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_RcvCttfEhrpdPdnDiscInd_Deactivating_WaitConnEstRetry
- 功能描述  : 子状态CNAS_EHSM_DEACTIVATING_STA_WAIT_CONN_EST_RETRY_TIME_OUT下
-             收到消息ID_CTTF_CNAS_EHRPD_PDN_DISC_IND的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月4日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_RcvCttfEhrpdPdnDiscInd_Deactivating_WaitConnEstRetry(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1295,23 +985,7 @@ VOS_UINT32 CNAS_EHSM_RcvCttfEhrpdPdnDiscInd_Deactivating_WaitConnEstRetry(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_RcvTiWaitCttfPdnDiscCnfExpired_Deactivating_WaitConnEstRetry
- 功能描述  : 子状态CNAS_EHSM_DEACTIVATING_STA_WAIT_CONN_EST_RETRY_TIME_OUT下
-             收到定时器TI_CNAS_EHSM_WAIT_CTTF_PDN_DISC_CNF超时的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月4日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_RcvTiWaitCttfPdnDiscCnfExpired_Deactivating_WaitConnEstRetry(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1350,21 +1024,7 @@ VOS_UINT32 CNAS_EHSM_RcvTiWaitCttfPdnDiscCnfExpired_Deactivating_WaitConnEstRetr
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_ProcTimeOut_Deactivating
- 功能描述  : 建联失败或者建联超时时处理函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月26日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  CNAS_EHSM_ProcConnEstFail_Deactivating(
     EHSM_HSM_RSLT_ENUM_UINT32           enHsmEhsmRslt,
     VOS_UINT32                          ulIsTimeOutReason
@@ -1481,21 +1141,7 @@ VOS_VOID CNAS_EHSM_IncreConntRetryTimes_Deactivating(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_ResetConntRetryTimes_Deactivating
- 功能描述  : 将链路重建次数重新置为0
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月1日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_ResetConntRetryTimes_Deactivating(VOS_VOID)
 {
     CNAS_EHSM_DEACTIVATING_RETRY_INFO_STRU     *pstRetryInfo = VOS_NULL_PTR;
@@ -1507,21 +1153,7 @@ VOS_VOID CNAS_EHSM_ResetConntRetryTimes_Deactivating(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_ProcAbortMsg_Deactivating
- 功能描述  : 在等待DETACH CNF的时候处理打断消息函数公共逻辑
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月3日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_ProcAbortMsg_Deactivating(
     VOS_UINT32                          enCause
 )

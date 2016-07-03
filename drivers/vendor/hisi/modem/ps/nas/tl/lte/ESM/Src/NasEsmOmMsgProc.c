@@ -1,15 +1,4 @@
-/******************************************************************************
 
-   Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : NasEsmOmMsgProc.c
-  Description     :
-  History         :
-     1.sunbing       2008-12-30   Draft Enact
-     2.杨茜惠 00135146    2009-03-06  Modify  BA8D01127
-
-******************************************************************************/
 
 /*****************************************************************************
   1 Include HeadFile
@@ -156,18 +145,7 @@ VOS_VOID NAS_ESM_SndEsmOmTpCmdCnfMsg(const VOS_UINT8 *pucData,
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SndAirMsgReportInd
- Description     : 发送空口消息
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.sunbing49683      2008-12-30  Draft Enact
-    2.  z00138739        2009-5-22  Modify, BJ9D00871
-
-*****************************************************************************/
 VOS_VOID NAS_ESM_SndAirMsgReportInd
 (
     const VOS_UINT8                    *pucData,
@@ -177,9 +155,7 @@ VOS_VOID NAS_ESM_SndAirMsgReportInd
 )
 {
 #ifndef PS_ITT_PC_TEST
-    /*z00282933, 多模OM融合添加 - BEGIN*/
     DIAG_AIR_IND_STRU       stAirMsg;
-    /*z00282933, 多模OM融合添加 - END*/
     VOS_UINT8                  *pucTmpData = VOS_NULL_PTR;
 
     /*分配空口消息空间*/
@@ -196,7 +172,6 @@ VOS_VOID NAS_ESM_SndAirMsgReportInd
 
     NAS_ESM_MEM_CPY_S(pucTmpData, ulLength, pucData, ulLength);
 
-    /*z00282933, 多模OM融合添加 - BEGIN*/
     /*设置空口消息方向*/
     if(NAS_ESM_AIR_MSG_DIR_ENUM_UP == enMsgDir)
     {
@@ -220,7 +195,6 @@ VOS_VOID NAS_ESM_SndAirMsgReportInd
         NAS_ESM_WARN_LOG("NAS_ESM_SndAirMsgReportInd: Send Msg Fail!");
         TLPS_PRINT2LAYER_WARNING(NAS_ESM_SndAirMsgReportInd_ENUM, LNAS_FAIL);
     }
-    /*z00282933, 多模OM融合添加 - END*/
 
     /*释放空口消息空间*/
     NAS_ESM_MEM_FREE(pucTmpData);
@@ -233,21 +207,9 @@ VOS_VOID NAS_ESM_SndAirMsgReportInd
 
 }
 
-/*****************************************************************************
- Function Name  : NAS_ESM_SndKeyEventReportInd()
- Description    : 作成和发送OM_PS_KEY_EVENT_REPORT_IND消息
- Input          : VOS_UINT8 ucKeyEvent 关键事件
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-    1.sunbing49683      2008-12-30  Draft Enact
-    2.  z00138739        2009-5-22  Modify, BJ9D00871
-
-*****************************************************************************/
 VOS_VOID NAS_ESM_SndKeyEventReportInd(OM_PS_KEY_EVENT_ENUM_UINT8 enKeyEvent)
 {
-    /*z00282933, 多模OM融合添加 - BEGIN*/
 #if (VOS_WIN32 != VOS_OS_VER)
     DIAG_EVENT_IND_STRU stDiagEventInd;
 
@@ -274,22 +236,11 @@ VOS_VOID NAS_ESM_SndKeyEventReportInd(OM_PS_KEY_EVENT_ENUM_UINT8 enKeyEvent)
 #endif
 
 #endif
-    /*z00282933, 多模OM融合添加 - END*/
 
     NAS_ESM_NORM_LOG("ESM->OMT: PS_OMT_KEY_EVT_REPORT_IND\r");
     TLPS_PRINT2LAYER_INFO(NAS_ESM_SndKeyEventReportInd_ENUM, 1);
 }
-/*****************************************************************************
- Function Name  : NAS_ESM_OmMsgDistr
- Description    : ESM模块OM消息分发函数
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2013-08-06  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ESM_OmMsgDistr
 (
     VOS_VOID                           *pRcvMsg
@@ -330,17 +281,7 @@ VOS_VOID NAS_ESM_OmMsgDistr
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_OmInfoIndMsgProc
- Description     : 上报ESM信息的控制消息处理
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.wangchen 00209181     2013-06-21  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ESM_OmInfoIndMsgProc(VOS_VOID *pRcvMsg)
 {
     OM_ESM_INFO_REPORT_REQ_STRU        *pEsmOmInfoReqMsg;
@@ -446,17 +387,7 @@ VOS_VOID NAS_ESM_FtmInfoInit(VOS_VOID)
     return;
 }
 
- /*****************************************************************************
-  Function Name   : NAS_ESM_RevOmFtmCtrlMsg
-  Description     : 收到OM工程模式控制消息
-  Input           : 1.MsgBlock   *pMsgStru
-  Output          : None
-  Return          : VOS_UINT32
-
-  History         :
-     1. lifuxin 00253982 2013-11-01 新建
-
- *****************************************************************************/
+ 
 VOS_UINT32   NAS_ESM_RevOmFtmCtrlMsg(MsgBlock   *pMsgStru)
 {
     OM_FTM_CTRL_IND_STRU  *pstOmFtmCtrlInfo;
@@ -516,17 +447,7 @@ VOS_VOID NAS_ESM_UpdateEsmDatabaseInfo(VOS_VOID)
     NAS_ESM_GetEsmInfoAddr()->ucEsmCause = NAS_ESM_GetFtmInfoEsmCause();
 }
 
- /*****************************************************************************
-  Function Name   : NAS_ESM_RevOmFtmCtrlMsg
-  Description     : 发送状态变化消息给OM
-  Input           : None
-  Output          : None
-  Return          : None
-
-  History         :
-     1. lifuxin 00253982 2013-11-01 新建
-
- *****************************************************************************/
+ 
 VOS_VOID     NAS_ESM_SendOmFtmMsg(VOS_VOID)
 {
     LNAS_OM_FTM_REPROT_IND_STRU *pFtmMsg;
@@ -584,16 +505,7 @@ VOS_VOID     NAS_ESM_SendOmFtmMsg(VOS_VOID)
 
 /*lint +e961*/
 /*lint +e960*/
-/*****************************************************************************
- Function Name   : NAS_ESM_ReportActPdpInfo
- Description     : 主动上报动态PDP信息的消息
- Input           : VOS_VOID *pRcvMsg
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.niuxiufan 00181501      2012-09-07  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ESM_ReportActPdpInfo( VOS_VOID)
 {
     APP_ESM_INQ_PDP_INFO_IND_STRU    *pAppIndMsg;
@@ -665,16 +577,7 @@ VOS_VOID NAS_ESM_ReportActPdpInfo( VOS_VOID)
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SndOmRegCidInfo
- Description     : 可维可测，向OM发送注册时选择的CID
- Input           : VOS_VOID
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.yanglei 00307272    2015-08-18   Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ESM_SndOmRegCidInfo(VOS_UINT32  ulRegCid)
 {
     NAS_ESM_OM_LOG_REG_CID_INFO_STRU             *pstRegCidInfo      = VOS_NULL_PTR;

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafMmaProcNvim.c
-  版 本 号   : 初稿
-  作    者   : w00176964
-  生成日期   : 2013年7月9日
-  最近修改   :
-  功能描述   : MMa处理NV项的读写文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年07月9日
-    作    者   : w00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 /*****************************************************************************
   1 头文件包含
 *****************************************************************************/
@@ -73,9 +56,7 @@ extern VOS_UINT32                                       g_ucUsimHotOutFlag;
 extern VOS_UINT32                                       g_ucUsimHotInFlag;
 extern MMA_UE_FORB_BAND_ST                              gstMmaForbBand;
 extern ENUM_SYSTEM_APP_CONFIG_TYPE_U16                  g_usMmaAppConfigSupportType;
-/* Added by y00245242 for VoLTE_PhaseII 项目, 2013-10-12, begin */
 extern VOS_UINT8                                        g_aucMmaImei[TAF_PH_IMEI_LEN-1];
-/* Added by y00245242 for VoLTE_PhaseII 项目, 2013-10-12, end */
 
 
 /*****************************************************************************
@@ -84,26 +65,7 @@ extern VOS_UINT8                                        g_aucMmaImei[TAF_PH_IMEI
 
 /*lint -save -e958 */
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadUeSupporttedGuBandNvim
- 功能描述  : 从NV项中获取当前UE支持的GU的频段值
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年4月23日
-    作    者   : likelai
-    修改内容   : 新生成函数
-  2.日    期   : 2012年3月5日
-    作    者   : w00176964
-    修改内容   : DTS2012121802573:band6,BAND19支持
-  3.日    期   : 2012年12月11日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReadUeSupporttedGuBandNvim(VOS_VOID)
 {
     /* 修改硬件频段的读取为32位格式 */
@@ -153,29 +115,7 @@ VOS_VOID TAF_MMA_ReadUeSupporttedGuBandNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadForbBandNvim
- 功能描述  : 从NV项中获取ForbBand的值
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年4月23日
-    作    者   : likelai
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  3.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-  4.日    期   : 2015年4月11日
-    作    者   : y00245242
-    修改内容   : iteration 13开发
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReadForbBandNvim(VOS_VOID)
 {
     VOS_UINT32                          ulLen;
@@ -252,43 +192,7 @@ VOS_VOID TAF_MMA_ReadForbBandNvim(VOS_VOID)
 
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadNvimUeSupporttedLteBand
- 功能描述  : 读单板支持的LTE Band范围
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月11日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年11月21日
-   作    者   : w00167002
-   修改内容   : DTS2011112102720:从NV en_NV_Item_EUTRA_CAPA_COMM_INFO中获取的结构体
-                为类型NVIM_UE_EUTRA_SUPPORT_FREQ_BAND_LIST_STRU，而不是
-                TAF_USER_SET_PREF_BAND64类型。
-                修改内容:从en_NV_Item_EUTRA_CAPA_COMM_INFO中读取内容后，转换为NAS
-                格式，即ulBandLow的最低bit对应band1，最高bit对应band32
-                ulBandHigh的最低bit对应band33，最高bit对应band64。
-
- 3.日    期   : 2011年12月3日
-   作    者   : w00167002
-   修改内容   : DTS2011120300373:DTS2011112102720修改时，对于获取NV中的频段信息
-                 通过指数算法来实现，效率低下，现修改为通过移位来实现。
- 4.日    期   : 2012年12月11日
-   作    者   : L00171473
-   修改内容   : DTS2012121802573, TQE清理
- 5.日    期   : 2013年8月9日
-   作    者   : w00176964
-   修改内容   : VoLTE_PhaseI项目:修改函数名
- 6.日    期   : 2013年11月25日
-   作    者   : w00242748
-   修改内容   : DTS2013112602236,废弃NVID 9005后，读取LNVID 53804修改
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReadNvimUeSupporttedLteBand(VOS_VOID)
 {
     TAF_USER_SET_PREF_BAND64                   *pstUeSupportLteBand = VOS_NULL_PTR;
@@ -371,20 +275,7 @@ VOS_VOID TAF_MMA_ReadNvimUeSupporttedLteBand(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadUserSetLteBands
- 功能描述  : 读用户设置的LTE Band范围
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年8月8日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReadUserSetLteBands(VOS_VOID)
 {
     TAF_MMA_SYSCFG_USER_SET_BAND_STRU  *pstUserSetBand = VOS_NULL_PTR;
@@ -406,27 +297,9 @@ VOS_VOID TAF_MMA_ReadUserSetLteBands(VOS_VOID)
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadFreqBandNvim
- 功能描述  : 从NV项en_NV_Item_Support_Freqbands中获取当前系统设置的频段值
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年4月23日
-    作    者   : likelai
-    修改内容   : 新生成函数
-  2.日    期   : 2014年8月1日
-    作    者   : b00269685
-    修改内容   : DTS2014071803206:拆分nv8229
-
-*****************************************************************************/
 VOS_VOID  TAF_MMA_ReadFreqBandNvim(VOS_VOID)
 {
-    /* Modified by w00176964 for VoLTE_PhaseI项目, 2013-8-14, begin */
     TAF_MMA_SYSCFG_USER_SET_BAND_STRU  *pstUserSetBand = VOS_NULL_PTR;
     NVIM_UE_SUPPORT_FREQ_BAND_STRU      stUserSetFreqBand;
 
@@ -452,29 +325,11 @@ VOS_VOID  TAF_MMA_ReadFreqBandNvim(VOS_VOID)
     PS_MEM_SET(pstUserSetBand->uUserSetUeFormatGuBand.aucReserved2,
                0,
                sizeof(pstUserSetBand->uUserSetUeFormatGuBand.aucReserved2));
-    /* Modified by w00176964 for VoLTE_PhaseI项目, 2013-8-14, end */
 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadUserSettedBandNvim
- 功能描述  : 从NV中读取用户设置的G/W/L频段
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月11日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年4月11日
-    作    者   : y00245242
-    修改内容   : iteration 13开发
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReadUserSettedBandNvim(VOS_VOID)
 {
     TAF_MMA_SYSCFG_USER_SET_BAND_STRU  *pstUserSetBand = VOS_NULL_PTR;
@@ -516,21 +371,7 @@ VOS_VOID TAF_MMA_ReadUserSettedBandNvim(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_UpdateBandCapa
- 功能描述  : 读取ForbBand的NV项之后，更新gstMmaBandCapa
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月8日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  TAF_MMA_UpdateBandCapa(VOS_VOID)
 {
     TAF_MMA_GetUeSupportBandAddr()->ulUeWSptBand &= ~(gstMmaForbBand.ulForbBand);
@@ -542,21 +383,7 @@ VOS_VOID  TAF_MMA_UpdateBandCapa(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_UpdateUserSetFreqBand
- 功能描述  : 读取ForbBand的NV项之后，更新gstMmaBandCapa
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月8日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  TAF_MMA_UpdateUserSetFreqBand(VOS_VOID)
 {
     TAF_USER_SET_PREF_BAND64            stUserSetBandAny;  /*64位原始频带*/
@@ -582,21 +409,7 @@ VOS_VOID  TAF_MMA_UpdateUserSetFreqBand(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_UpdateSupportFreqBand
- 功能描述  : 读取ForbBand的NV项之后，更新gstMmaBandCapa
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月8日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  TAF_MMA_UpdateSupportFreqBand(
     TAF_MMA_UE_SUPPORT_FREQ_BAND_STRU  *pstOrigFreqBand
 )
@@ -620,32 +433,9 @@ VOS_VOID  TAF_MMA_UpdateSupportFreqBand(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MMA_UpdateFreqBandRefForbBand
- 功能描述  : 根据禁止频段的信息更新FreqBandNV和UsersetBandNV
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年4月23日
-    作    者   : likelai
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  3.日    期   : 2012年12月11日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-  4.日    期   : 2013年7月16日
-    作    者   : w00176964
-    修改内容   : VoLTE_PhaseI项目修改
-*****************************************************************************/
 VOS_VOID MMA_UpdateBandNvRefForbBand(VOS_VOID)
 {
-    /* Modified by w00176964 for VoLTE_PhaseI项目, 2013-7-16, begin */
     TAF_MMA_UE_SUPPORT_FREQ_BAND_STRU    stOrigFreqBand;
     TAF_MMA_USER_BAND_SET_UN             uOrigFreqBand;
     TAF_MMA_SYSCFG_USER_SET_BAND_STRU   *pstUserSetBand = VOS_NULL_PTR;
@@ -661,7 +451,6 @@ VOS_VOID MMA_UpdateBandNvRefForbBand(VOS_VOID)
 
     /*将当前系统设置的频段转换为用户设置的格式*/
     MMA_SwitchUESupportBand2UserSetBand(stOrigFreqBand,&uOrigFreqBand);
-    /* Modified by w00176964 for VoLTE_PhaseI项目, 2013-7-16, end */
 
     /* 当前系统设置的频段与ulForbBand是否有交集 */
     if (0 != (uOrigFreqBand.ulPrefBand & gstMmaForbBand.ulForbBand))
@@ -679,21 +468,7 @@ VOS_VOID MMA_UpdateBandNvRefForbBand(VOS_VOID)
     }
 
 }
-/*****************************************************************************
- 函 数 名  : MMA_UpdateForbBandStatusToNV
- 功能描述  : 将ForbBand的NV的状态更新为VOS_TRUE
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年4月23日
-    作    者   : likelai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MMA_UpdateForbBandStatusToNV(VOS_VOID)
 {
     VOS_UINT32                           ulRslt;
@@ -712,23 +487,7 @@ VOS_VOID MMA_UpdateForbBandStatusToNV(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_UpdateUeAllowedBandRange
- 功能描述  : 获取UE当前能够设置的频段范围
- 输入参数  : VOS_VOIS
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年4月23日
-    作    者   : likelai
-    修改内容   : 新生成函数
-  2.日    期   : 2010年7月20日
-    作    者   : z00161729
-    修改内容   : V7R1 phase II 支持syscfgex修改
-*****************************************************************************/
 VOS_VOID TAF_MMA_UpdateUeAllowedBandRange(VOS_VOID)
 {
     /* 频段相关的NV操作:
@@ -779,32 +538,9 @@ VOS_VOID TAF_MMA_UpdateUeAllowedBandRange(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadPlmnSelectionModeNvim
- 功能描述  : 从NV项en_NV_Item_SelPlmn_Mode中获取搜网模式
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月13日
-    作    者   : l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月11日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-  3.日    期   : 2013年4月7日
-    作    者   : z00161729
-    修改内容   : 主动上报AT命令控制下移至C核及mma和mscc接口调整
-  4.日    期   : 2013年05月20日
-    作    者   : m00217266
-    修改内容   : nv项拆分
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReadPlmnSelectionModeNvim(VOS_VOID)
 {
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-7, begin */
     NAS_NVIM_SELPLMN_MODE_STRU          stPlmnSelMode;
     VOS_UINT32                          ulLength;
 
@@ -832,30 +568,13 @@ VOS_VOID TAF_MMA_ReadPlmnSelectionModeNvim(VOS_VOID)
         return;
     }
 
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-7, end */
 
     TAF_MMA_SetPlmnSelectionMode((VOS_UINT8)stPlmnSelMode.usSelPlmnMode);
 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadRatPrioListNvim
- 功能描述  : 初始化接入技术
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月15日
-    作    者   : l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月26日
-    作    者   : s46746
-    修改内容   : DSDA GUNAS C CORE项目，读取用户设置接入技术NV进行平台能力检查
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReadRatPrioListNvim(VOS_VOID)
 {
     TAF_MMA_RAT_ORDER_STRU             *pstRatPrioList = VOS_NULL_PTR;
@@ -869,9 +588,7 @@ VOS_VOID TAF_MMA_ReadRatPrioListNvim(VOS_VOID)
         PS_MEM_CPY(&(gstMmaValue.pg_StatusContext->stRatPrioList),
                    pstRatPrioList, sizeof(TAF_MMA_RAT_ORDER_STRU));
 
-        /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-20, begin */
         TAF_SDC_SetMsPrioRatList((TAF_SDC_RAT_PRIO_STRU *)pstRatPrioList);
-        /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-20, end */
     }
     /* 接入技术平衡特性使能，收到卡状态并且卡在位时，再从4F36文件中取 */
     else
@@ -882,23 +599,7 @@ VOS_VOID TAF_MMA_ReadRatPrioListNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadMsClassNvim
- 功能描述  : 读取手机模式NV
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月13日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2015年4月9日
-    作    者   : h00313353
-    修改内容   : SysCfg宏定义转为枚举
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReadMsClassNvim(VOS_VOID)
 {
     NAS_NVIM_MS_CLASS_STRU              stMsClass;
@@ -929,20 +630,7 @@ VOS_VOID TAF_MMA_ReadMsClassNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadRoamCapaNvim
- 功能描述  : 读取漫游能力NV
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月13日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReadRoamCapaNvim(VOS_VOID)
 {
     VOS_UINT32                          ulLength;
@@ -980,23 +668,7 @@ VOS_VOID TAF_MMA_ReadRoamCapaNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MMA_ReadRoamingBrokerInfoNvim
- 功能描述  : 从NV中读取RoamingBroker的使能标志
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月27日
-   作    者   : L00171473
-   修改内容   : 新生成函数
-  2.日    期   : 2013年05月20日
-    作    者   : m00217266
-    修改内容   : nv项拆分
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReadRoamingBrokerInfoNvim(VOS_VOID)
 {
     NAS_MMA_NVIM_ROAMING_BROKER_STRU    stRoamingBroker;
@@ -1026,26 +698,7 @@ VOS_VOID TAF_MMA_ReadRoamingBrokerInfoNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadReportPlmnSupportFlgNvim
- 功能描述  : 从NV中读取en_NV_Item_REPORT_PLMN_SUPPORT_FLAG
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年6月11日
-   作    者   : w00166186
-   修改内容   : 新生成函数
-  2.日    期   : 2012年12月11日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-  3.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReadReportPlmnSupportFlgNvim(VOS_VOID)
 {
     TAF_MMA_NVIM_REPORT_PLMN_SUPPORT_FLG_STRU   stReportPlmn;
@@ -1084,20 +737,7 @@ VOS_VOID TAF_MMA_ReadReportPlmnSupportFlgNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadAccessModeNvim
- 功能描述  : 读取接入模式NV
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月13日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReadAccessModeNvim(VOS_VOID)
 {
     VOS_UINT32                          ulLength;
@@ -1126,20 +766,7 @@ VOS_VOID TAF_MMA_ReadAccessModeNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadFollowonOpenSpeedFlagNvim
- 功能描述  : 从NV中读取快速开机标志
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月13日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReadFollowonOpenSpeedFlagNvim(VOS_VOID)
 {
     VOS_UINT32                              ulLength;
@@ -1161,20 +788,7 @@ VOS_VOID TAF_MMA_ReadFollowonOpenSpeedFlagNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadRfAutoTestFlagNvim
- 功能描述  : 从NV中读取上电自动开机标志
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月13日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReadRfAutoTestFlagNvim(VOS_VOID)
 {
     VOS_UINT32                          ulDataLen;
@@ -1203,20 +817,7 @@ VOS_VOID TAF_MMA_ReadRfAutoTestFlagNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadEFustServiceCfgNvim
- 功能描述  : 从en_NV_Item_EFust_Service_Cfg NV中获取GSM是否禁止接入信息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月13日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReadEFustServiceCfgNvim(VOS_VOID)
 {
     VOS_UINT32                          ulDataLen;
@@ -1243,20 +844,7 @@ VOS_VOID TAF_MMA_ReadEFustServiceCfgNvim(VOS_VOID)
 /* TAF_MMA_ReadDisplaySpnFlagNvim*/
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadNotDisplayLocalNetworkNameNvim
- 功能描述  : 从NV中获取用户配置的是否显示本地的全球运营商信息标志
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月13日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReadNotDisplayLocalNetworkNameNvim(VOS_VOID)
 {
     VOS_UINT32                                              ulLength;
@@ -1279,20 +867,7 @@ VOS_VOID TAF_MMA_ReadNotDisplayLocalNetworkNameNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadSystemAppCofigNvim
- 功能描述  : 读取en_NV_Item_System_APP_Config，获取对接的上层应用
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月13日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReadSystemAppCofigNvim(VOS_VOID)
 {
     VOS_UINT32                          ulLength;
@@ -1326,20 +901,7 @@ VOS_VOID TAF_MMA_ReadSystemAppCofigNvim(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadImeiNvim
- 功能描述  : 从NV中获取IMEI
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月13日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReadImeiNvim(VOS_VOID)
 {
     TAF_PH_MEINFO_STRU                 *pstMeInfo = VOS_NULL_PTR;
@@ -1376,27 +938,12 @@ VOS_VOID TAF_MMA_ReadImeiNvim(VOS_VOID)
 
     PS_MEM_CPY(g_MmaNewValue.aucImeiBcd, aucBuf, ulDataLen);
 
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-18, begin */
     PS_MEM_CPY(g_aucMmaImei, pstMeInfo->ImeisV.aucImei, TAF_PH_IMEI_LEN - 1);
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-18, end */
 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadFmridNvim
- 功能描述  : 从NV中获取厂商名字
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月13日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReadFmridNvim(VOS_VOID)
 {
     VOS_UINT32                          ulDataLen;
@@ -1419,20 +966,7 @@ VOS_VOID TAF_MMA_ReadFmridNvim(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadProductNameNvim
- 功能描述  : 从NV中获取产品名字
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月13日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReadProductNameNvim(VOS_VOID)
 {
     VOS_UINT32                          ulDataLen;
@@ -1454,23 +988,7 @@ VOS_VOID TAF_MMA_ReadProductNameNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadAttEnsCustomNvim
- 功能描述  : 从NV项en_NV_Item_Att_Ens_Ctrl_Para中读取是否支持网络技术平衡控制和接入技术平衡控制
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月14日
-    作    者   : l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月11日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReadAttEnsCustomNvim(VOS_VOID)
 {
     NVIM_ATT_ENS_CTRL_STRU              stNvAttEns;
@@ -1504,20 +1022,7 @@ VOS_VOID TAF_MMA_ReadAttEnsCustomNvim(VOS_VOID)
 
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadLastTinInfoNvim
- 功能描述  : 从NV中获取上一次的TIN信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月13日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  TAF_MMA_ReadLastTinInfoNvim(
     NAS_NVIM_TIN_INFO_STRU             *pstTinInfo
 )
@@ -1541,21 +1046,7 @@ VOS_UINT32  TAF_MMA_ReadLastTinInfoNvim(
 
 /*VOS_VOID TAF_MMA_ReadUeSupporttedCPHSFlagNvim(VOS_VOID)*/
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadDeactUsimWhenPoweroffNvim
- 功能描述  : 开机上电读取en_NV_Item_DEACT_USIM_WHEN_POWEROFF项
- 输入参数  : VOS_VOID
- 输出参数  : VOS_VOID
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月3日
-    作    者   : L47619
-    修改内容   : V3R3 Share-PDP项目修改
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReadDeactUsimWhenPoweroffNvim(VOS_VOID)
 {
     TAF_NVIM_DEACT_SIM_WHEN_POWEROFF_STRU                   stNvDeactSimWhenPoweroff;
@@ -1588,26 +1079,7 @@ VOS_VOID TAF_MMA_ReadDeactUsimWhenPoweroffNvim(VOS_VOID)
 /* TAF_MMA_ReadAlphanumericNameByPlmnIdNvim*/
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadPsStartNvim
- 功能描述  : 从NV中获取是否自动开机的消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月24日
-    作    者   : luokaihui / l00167671
-    修改内容   : 新生成函数
-  2.日    期   : 2012年03月15日
-    作    者   : l00130025
-    修改内容   : DTS2012030105247,开机时NV项RfAutoTestCtrl不生效
-  3.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-*****************************************************************************/
 VOS_VOID  TAF_MMA_ReadPsStartNvim( VOS_VOID )
 {
     NAS_MMA_NVIM_AUTO_START_STRU        stNvAutoStart;
@@ -1639,20 +1111,7 @@ VOS_VOID  TAF_MMA_ReadPsStartNvim( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadCardLockStatusNvim
- 功能描述  : 从NV中获取是否锁卡的消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月13日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  TAF_MMA_ReadCardLockStatusNvim( VOS_VOID )
 {
     TAF_CUSTOM_CARDLOCK_STATUS_STRU     stCardLockStatus;
@@ -1674,20 +1133,7 @@ VOS_VOID  TAF_MMA_ReadCardLockStatusNvim( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadSimLockMaxTimesNvim
- 功能描述  : 从NV中获取SIM卡被锁的最大次数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月13日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  TAF_MMA_ReadSimLockMaxTimesNvim( VOS_VOID )
 {
     TAF_CUSTOM_SIM_LOCK_MAX_TIMES_STRU  stSimLockMaxTimes;
@@ -1732,20 +1178,7 @@ VOS_VOID  TAF_MMA_ReadSimLockMaxTimesNvim( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadSimLockPlmnNvim
- 功能描述  : 从NV中获取SIM卡锁网信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月13日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  TAF_MMA_ReadSimLockPlmnNvim( VOS_VOID )
 {
     TAF_CUSTOM_SIM_LOCK_PLMN_INFO_STRU          stSimLockPlmnInfo;
@@ -1770,20 +1203,7 @@ VOS_VOID  TAF_MMA_ReadSimLockPlmnNvim( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadLastImsiNvim
- 功能描述  : 从NV中获取上一次的IMSI信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月13日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  TAF_MMA_ReadLastImsiNvim(
     NAS_MMC_NVIM_LAST_IMSI_STRU        *pstLastImsi
 )
@@ -1805,20 +1225,7 @@ VOS_UINT32  TAF_MMA_ReadLastImsiNvim(
     return MMA_SUCCESS;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadSimPersonalisationPwdNvim
- 功能描述  : 从NV中获取SIM中PWD信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月13日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReadSimPersonalisationPwdNvim( VOS_VOID )
 {
     VOS_UINT8                           aucPwd[TAF_PH_ME_PERSONALISATION_PWD_LEN_MAX +1];
@@ -1846,21 +1253,7 @@ VOS_VOID TAF_MMA_ReadSimPersonalisationPwdNvim( VOS_VOID )
 
 
 
-/* Added by w00167002 for L-C互操作项目, 2014-2-14, begin */
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadLcCtrlNvim
- 功能描述  : 从NV中获取LC互操作配置信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月15日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReadLcCtrlNvim( VOS_VOID )
 {
     TAF_SDC_LC_CONFIG_PARA_STRU        *pstLcConfigInfo = VOS_NULL_PTR;
@@ -1912,22 +1305,8 @@ VOS_VOID TAF_MMA_ReadLcCtrlNvim( VOS_VOID )
     return;
 }
 
-/* Added by w00167002 for L-C互操作项目, 2014-2-14, end */
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_WritePlmnSelectionModeNvim
- 功能描述  : 写NV项: en_NV_Item_SelPlmn_Mode
- 输入参数  : ucReselMode - 选网模式自动或手动
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年11月1日
-    作    者   : z00161729
-    修改内容   : DTS2013111103301:svlte需要关机状态支持cops设置，更新nv项搜网模式
 
-*****************************************************************************/
 VOS_VOID TAF_MMA_WritePlmnSelectionModeNvim(VOS_UINT8 ucReselMode)
 {
     NAS_NVIM_SELPLMN_MODE_STRU          stPlmnSelMode;
@@ -1949,24 +1328,7 @@ VOS_VOID TAF_MMA_WritePlmnSelectionModeNvim(VOS_UINT8 ucReselMode)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMA_UpdateUESupportBandNvim
- 功能描述  : 将写NV操作迁移到PID初始化之后
-             更新NV 8229，PID初始化时将8229与10000取交集，写到8229中
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月16日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-  2.日    期   : 2014年8月1日
-    作    者   : b00269685
-    修改内容   : nv拆分
-*****************************************************************************/
 VOS_VOID TAF_MMA_UpdateUeBandNvim()
 {
     TAF_USER_SET_PREF_BAND64            stOrigUserSetGuBand;
@@ -2029,21 +1391,7 @@ VOS_VOID TAF_MMA_UpdateUeBandNvim()
 
 #if (FEATURE_ON == FEATURE_LTE)
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_UpdateUserSetLteBands
- 功能描述  : 将写NV操作迁移到PID初始化之后
-             更新NV 9017，PID初始化时将9017与D22C取交集，写到9017中
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月6日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_UpdateUserSetLteBands()
 {
     TAF_USER_SET_PREF_BAND64           *pstUeSupportLteBand = VOS_NULL_PTR;
@@ -2064,20 +1412,7 @@ VOS_VOID TAF_MMA_UpdateUserSetLteBands()
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadCFreqLockNvim
- 功能描述  : 读取1X/EVDO的锁频信息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月27日
-    作    者   : y00307564
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReadCFreqLockNvim(VOS_VOID)
 {
     VOS_UINT32                          ulResult;
@@ -2104,21 +1439,7 @@ VOS_VOID TAF_MMA_ReadCFreqLockNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadCcpuResetRecordNvim
- 功能描述  : 读取C核单独复位标记的NV项(en_NV_Item_Ccpu_Reset_Record)
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月25日
-    作    者   : n00269697
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReadCcpuResetRecordNvim(VOS_VOID)
 {
     VOS_UINT32                          ulLength;
@@ -2166,21 +1487,7 @@ VOS_VOID TAF_MMA_ReadCcpuResetRecordNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadGetGeoCfgInfoNvim
- 功能描述  : 读取获取国家码的配置信息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月30日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReadGetGeoCfgInfoNvim(VOS_VOID)
 {
     TAF_MMA_GET_GEO_CTX_STRU                               *pstGetGeoCtx = VOS_NULL_PTR;
@@ -2242,21 +1549,7 @@ VOS_VOID TAF_MMA_ReadGetGeoCfgInfoNvim(VOS_VOID)
 
 
 #if (FEATURE_IMS == FEATURE_ON)
-/*****************************************************************************
- 函 数 名  : TAF_MMA_UpdataVoiceDomainNv
- 功能描述  : 更新语音优选域的NV
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_TRUE
-             VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月04日
-    作    者   : f00179208
-    修改内容   : IMS动态开关配置项目
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_UpdataVoiceDomainNv(
     VOS_UINT32                          ulVoiceDomain
 )
@@ -2291,21 +1584,7 @@ VOS_UINT32 TAF_MMA_UpdataVoiceDomainNv(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_UpdateLteImsSupportNv
- 功能描述  : 更新LTE IMS使能NV
- 输入参数  : ucFlag 标识
- 输出参数  : 无
- 返 回 值  : VOS_TRUE
-             VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年02月04日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_UpdateLteImsSupportNv(
     VOS_UINT8                           ucFlag
 )
@@ -2343,20 +1622,7 @@ VOS_UINT32 TAF_MMA_UpdateLteImsSupportNv(
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadPlatformRatCap
- 功能描述  : 初始化平台接入技术能力
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年4月23日
-   作    者   : y00245242
-   修改内容   : iteration 13开发
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReadPlatformRatCap(VOS_VOID)
 {
     TAF_SDC_PLATFORM_RAT_CAP_STRU                          *pstPlatformRatCap = VOS_NULL_PTR;
@@ -2431,20 +1697,7 @@ VOS_VOID TAF_MMA_ReadPlatformRatCap(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadDelayReportServiceStatusCfgNvim
- 功能描述  : 从NV中获取短暂掉网显示优化的配置信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月11日
-    作    者   : l00305157
-    修改内容   : Service_State_Optimize_PhaseII 项目修改
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReadDelayReportServiceStatusCfgNvim(VOS_VOID)
 {
     TAF_MMA_NVIM_DELAY_REPORT_SERVICE_STATUS_STRU                 stDelayReportServiceStatusCfg;
@@ -2472,21 +1725,7 @@ VOS_VOID TAF_MMA_ReadDelayReportServiceStatusCfgNvim(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadUserCfgExtEhplmnInfoNvim
- 功能描述  : 读取NV en_NV_Item_User_Cfg_Ehplmn_Info
- 输入参数  : NAS_MMC_NVIM_USER_CFG_EXT_EHPLMN_INFO_STRU             *pstNvimCfgExtEhplmnInfo
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReadUserCfgExtEhplmnInfoNvim(
     NAS_MMC_NVIM_USER_CFG_EXT_EHPLMN_INFO_STRU             *pstNvimCfgExtEhplmnInfo
 )
@@ -2577,24 +1816,7 @@ VOS_VOID TAF_MMA_ReadUserCfgExtEhplmnInfoNvim(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadDplmnNplmnCfgNvim
- 功能描述  : 读en_NV_Item_Dplmn_Nplmn_Cfg
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : l00289540
-    修改内容   : 新生成函数
-  2.日    期   : 2015年12月2日
-    作    者   : s00217060
-    修改内容   : DTS2015070103821修改:coverity
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReadDplmnNplmnCfgNvim(
     NAS_MMC_NVIM_DPLMN_NPLMN_CFG_STRU                      *pstNvimDPlmnNPlmnCfg
 )
@@ -2626,21 +1848,7 @@ VOS_VOID TAF_MMA_ReadDplmnNplmnCfgNvim(
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadEsnFromNvim
- 功能描述  : 可维可测读取nv上报 esn信息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月22日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReadEsnFromNvim( VOS_VOID )
 {
     VOS_INT32                           lIndex;
@@ -2676,21 +1884,7 @@ VOS_VOID TAF_MMA_ReadEsnFromNvim( VOS_VOID )
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadMeidFromNvim
- 功能描述  : 可维可测读取nv上报 meid信息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月22日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReadMeidFromNvim( VOS_VOID )
 {
     NV_MEID_STRU                        stMeid;
@@ -2717,21 +1911,7 @@ VOS_VOID TAF_MMA_ReadMeidFromNvim( VOS_VOID )
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadNonnormalRegStatusMergeCfgNvim
- 功能描述  : 从NV读取非正常服务上报注册状态改变配置
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月28日
-    作    者   : z00359541
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReadNonnormalRegStatusMergeCfgNvim( VOS_VOID )
 {
     TAF_SDC_NONNORMAL_REG_STATUS_MERGE_CFG_STRU            *pstNonnormalRegStatusMergeCfg = VOS_NULL_PTR;
@@ -2773,20 +1953,7 @@ VOS_VOID TAF_MMA_ReadNonnormalRegStatusMergeCfgNvim( VOS_VOID )
     return;
 }
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadDelaySndCLServiceStatusTimeLenNvim
- 功能描述  : 从NV中获取CL服务状态延迟上报时长
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月6日
-    作    者   : h00313353
-    修改内容   : DTS2016010508602
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReadDelaySndCLServiceStatusTimeLenNvim(
     VOS_VOID
 )
@@ -2823,21 +1990,7 @@ VOS_VOID TAF_MMA_ReadDelaySndCLServiceStatusTimeLenNvim(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadCLDelayReportSrvCfgNvim
- 功能描述  : 读取CL延迟上报定时器NV项
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月30日
-    作    者   : j00354216
-    修改内容   : CDMA Iteration_18新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReadCLDelayReportSrvCfgNvim(VOS_VOID)
 {
     TAF_MMA_NVIM_CL_DELAY_REPORT_SERVICE_STATUS_STRU        stCLDealyReptSrvCfg;

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : dhcpc_func.h
-  版 本 号   : 初稿
-  作    者   : c57548
-  生成日期   : 2007年11月3日
-  最近修改   :
-  功能描述   : dhcpc模块的函数声明
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2007年11月3日
-    作    者   : c57548
-    修改内容   : 创建文件
-
-******************************************************************************/
 #ifndef __DHCPC_FUNC_H__
 #define __DHCPC_FUNC_H__
 
@@ -220,15 +203,12 @@ VOID DHCPC_OutString(CHAR *fmt,...);
 VOID DHCPC_DFT_Init(VOID);
 VOID DHCPC_RegisterDFTInfo(VOID);
 
-/* z00175135 DTS2012012003193 全文件pclint 2012-02-09 start */
 extern SDB_GSPU_CONTEXT_S *DHCPC_GetOneContextByteidc(ULONG ulTeidc);
 extern VOID OutString( CHAR * szString );
 extern ULONG PGP_SetTaskRunConfirm(VOID);
 extern ULONG DHCPC_ReleaseDhcpCtrlBlock(DHCPC_CTRLBLK *pstDhcpcCtlBlk);
 extern ULONG DHCPC_NotifyBKUpdate(ULONG ulTeidc);
 extern VOS_UINT32 DHCPC_SendAddrMsgToLAP(VOS_VOID *pMsg, VOS_UINT32 ulMsgLegth, ULONG ulUserIpAddr, VOS_UINT8 ucLapNo);
-/* z00175135 DTS2012012003193 全文件pclint 2012-02-09 end   */
-/* z00175135 DTS2011120504839 全pclint修改 2012-02-18 start */
 extern VOID DHCPC_OmVIfMsgTrc(ULONG  ulDhcpMsgType,
                                     ULONG ulDirection,
                                     UCHAR  *pMsg,
@@ -237,9 +217,7 @@ extern VOID DHCPC_OmVIfMsgTrc(ULONG  ulDhcpMsgType,
                                     ULONG  *pulPeerIp);
 extern VOID DHCPCv6_OmMsgTrc(UCHAR *pucDhcpv6Msg,DHCPC_CTRLBLK *pstDhcpcContext, UCHAR ucMsgType,ULONG ulMsgLen, UCHAR MsgDirection);
 extern ULONG INST_GetSelfInstanceId(VOID);
-/* z00175135 DTS2011120504839 全pclint修改 2012-02-18 end   */
 
-/* BEGIN: Added for PN:DHCPv6特性 by tianyang 00144555, 2012/7/9 */
 extern ULONG DHCPC_CreateDhcpcContext(DHCPC_CTRLBLK **ppstDhcpcContext);
 extern ULONG DHCPC_QueryDhcpcContext(UCHAR ucIpType, ULONG ulTeidc, DHCPC_CTRLBLK **ppstDhcpcContext);
 extern ULONG DHCPC_AddDhcpcContextToPool(DHCPC_CTRLBLK *pstDhcpcContext);
@@ -271,9 +249,7 @@ extern ULONG DHCPV6C_T2TimerRestoreProc(ULONG ulDiffTime, DHCPC_CTRLBLK *pstDhcp
 extern ULONG DHCPV6C_LeaseExpireTimerRestoreProc(ULONG ulDiffTime, DHCPC_CTRLBLK *pstDhcpcCtlBlk);
 extern ULONG DHCPC_TimerCallBack(UCHAR ucIpType, ULONG ulTeidc, UCHAR ucEvent);
 extern VOID DHCPC_StateOfBoardChgCallback( CRM_SPUSTATE_CHG_ENUM enEvent, UCHAR ucGroupID, UCHAR ucSlotID, UCHAR ucCpuID, UCHAR ucSGIndex);
-/* END:   Added for PN:DHCPv6特性 by tianyang 00144555, 2012/7/9 */
 
-/* zhangjinquan 00175135 DHCPv6特性 2012-07-23 start */
 ULONG DHCPC_StartTimer(UCHAR ucIpType, ULONG ulTeidc, UCHAR ucEvent, ULONG ulTimerInterval, DHCPC_TIMER_CALLBACK pCallBackFun);
 ULONG DHCPC_StopTimer(UCHAR ucIpType, ULONG ulTeidc, UCHAR ucEvent);
 VOID DHCPC_HourListTimerOut(VOID *pvArg);
@@ -281,12 +257,10 @@ VOID DHCPC_SecondListTimerOut(VOID *pvArg);
 ULONG DHCPC_getCurTimerSecondPos(VOID);
 ULONG DHCPC_getCurTimerHourPos(VOID);
 ULONG DHCPC_getCurTimerHourSec(VOID);
-/* zhangjinquan 00175135 DHCPv6特性 2012-07-23 end   */
 
 /* DS.UGWV9R10C0.DHCPv6.DHCP.0024支持TID使用情况的维护 ---SEQNUM老化处理 */
 extern VOID DHCPV6C_AgeingSeqNum(VOID);
 
-/*m00221573 全文件pclint 2012-10-15 start*/
 extern ULONG CRM_GetSelfLogicSlotID(VOID);
 extern ULONG DHCPC_SendRtMsg(VOS_UINT64 ullDstCsi, ULONG ulMsgType, ULONG ulMsgCode, UCHAR *pucMsg, ULONG ulMsgLen );
 extern ULONG DHCPC_SendURTMsg(VOS_UINT64 ullSrcCsi, VOS_UINT64 ullDstCsi, ULONG ulMsgType,
@@ -312,5 +286,4 @@ extern ULONG DHCPC_SendMsgToLAP2ByContext(DHCPC_CTRLBLK *pstDhcpcContext, UCHAR 
 extern VOID DHCPC_EmsReportAndCleanCause(DHCPC_CTRLBLK *pstDhcpcContext);
 extern ULONG DHCPC_NotifyLapFail(DHCPC_CTRLBLK *pstDhcpcContext);
 extern ULONG DHCPC_RegLogCnt(VOID);
-/*m00221573 全文件pclint 2012-10-15 start*/
 #endif

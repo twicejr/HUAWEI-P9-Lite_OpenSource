@@ -581,17 +581,7 @@ VOS_VOID NAS_ETC_PrintTcSendMsg
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_ETC_SecuMemCpy
- Description     : °²È«memcpy
- Input           : VOS_VOID* pDst, VOS_UINT32 ulMaxBuffer, const VOS_VOID* pSrc,
-                   VOS_UINT32  ulLength, VOS_UINT32 ulLineNO, VOS_UINT32 ulFileID
- Output          : None
- Return          : VOS_INT32
 
- History         :
-    1.z00297373    2015-12-28  Draft Enact
-*****************************************************************************/
 VOS_INT32 NAS_ETC_SecuMemCpy
 (
     VOS_VOID           *pDst,

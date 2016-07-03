@@ -63,7 +63,6 @@ extern struct IIF_IFNET_ComIntFUNVtbl       *g_pstMpCoreIfnetComFunTable;
 extern struct IIF_COMP_PPP_ComIntFUNVtbl    *g_pstMpCorePppComFunTable;
 extern struct IIF_PPPMUX_ComIntFUNVtbl      *g_pstMpCorePppMuxFunTable;
 
-/* Added by z43740 for A82D20089:MP重组窗口扩大系数,2007-09-13 */
 extern ULONG g_ulMpReorderWindowTimes;
 
 extern MPQOSQueInit_HOOK_FUNC g_pfMpGroupQueInit;

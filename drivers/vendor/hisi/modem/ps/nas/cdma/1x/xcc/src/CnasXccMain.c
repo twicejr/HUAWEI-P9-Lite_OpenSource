@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasXccMain.c
-  版 本 号   : 初稿
-  作    者   : Y00213812
-  生成日期   : 2014年06月27日
-  功能描述   : 1X CC(call control)模块任务初始化，任务入口函数处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年06月27日
-    作    者   : Y00213812
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -53,21 +38,7 @@ extern "C"{
   3 函数定义
 *****************************************************************************/
 /*lint -save -e958*/
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RegMainL1Fsm
- 功能描述  : XCC L1 main状态机注册
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE -- 注册成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年07月04日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RegMainL1Fsm(VOS_VOID)
 {
     /* main状态机注册 */
@@ -82,21 +53,7 @@ VOS_UINT32 CNAS_XCC_RegMainL1Fsm(VOS_VOID)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RegL2Fsm
- 功能描述  : XCC L1 main状态机注册
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE -- 注册成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年07月04日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RegL2Fsm(VOS_VOID)
 {
     /* L2状态机注册 */
@@ -119,21 +76,7 @@ VOS_UINT32 CNAS_XCC_RegL2Fsm(VOS_VOID)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RegFsm
- 功能描述  : XCC注册状态机
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月04日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  CNAS_XCC_RegFsm(VOS_VOID)
 {
     /* 注册L1状态机 */
@@ -143,22 +86,7 @@ VOS_VOID  CNAS_XCC_RegFsm(VOS_VOID)
     CNAS_XCC_RegL2Fsm();
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_LoadSpecifiedCallInstEntity
- 功能描述  : 加载指定的call instance实体
- 输入参数  : pstFsmEntity -- call instance实体地址
 
- 输出参数  : 无
- 返 回 值  : 无
-
- 调用函数  :
- 被调函数  :
-
- 修改历史     :
- 1.日    期   : 2014年09月09日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XCC_LoadSpecifiedCallInstEntity(
     CNAS_XCC_FSM_ENTITY_STRU           *pstFsmEntity
 )
@@ -169,25 +97,7 @@ VOS_VOID CNAS_XCC_LoadSpecifiedCallInstEntity(
     pstFsmEntity->stCurFsm.ucConnectId = pstFsmEntity->stCallInfoCtx.ucConnectId;
 }
 
-/*****************************************************************************
- 函 数 名    : CNAS_XCC_FSM_ProcessEvent
- 功能描述    : 状态机的事件处理函数
- 输入参数    :
-               ulCurState  -- 当前状态
-               ulEventType -- 处理事件
-               pRcvMsg     -- 消息指针
- 输出参数    :
- 返回值      : VOS_FALSE -- 消息处理未完成
-               VOS_TRUE  -- 消息处理已完成
- 调用函数  :
- 被调函数  :
 
-  修改历史      :
-   1.日    期   : 2014年7月04日
-     作    者   : Y00213812
-     修改内容   : 新生成函数
-
- *****************************************************************************/
 VOS_UINT32 CNAS_XCC_FSM_ProcessEvent(
     VOS_UINT32                          ulCurState,
     VOS_UINT32                          ulEventType,
@@ -222,34 +132,15 @@ VOS_UINT32 CNAS_XCC_FSM_ProcessEvent(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcBufferReqMsg
- 功能描述  : 处理缓存的请求消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史     :
- 1.日    期   : 2014年09月10日
-   作    者   : y00245242
-   修改内容   : 新生成函数
- 2.日    期   : 2015年09月10日
-   作    者   : w00176964
-   修改内容   : CNAS内存裁剪调整
-*****************************************************************************/
 VOS_VOID CNAS_XCC_ProcBufferReqMsg(VOS_VOID)
 {
     VOS_UINT8                           i;
     VOS_UINT8                           ucMsgNum;
     VOS_UINT8                           ucActInstNum;
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-9, begin */
     MSG_HEADER_STRU                    *pstBufferMsgHdr;
     VOS_UINT32                          ulBufferMsgEventType;
     REL_TIMER_MSG                      *pstTimerMsg;
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-9, end */
 
     /* 获取当前激活的call instance数目 */
     ucActInstNum = CNAS_XCC_GetActivedCallInstanceNum();
@@ -264,7 +155,6 @@ VOS_VOID CNAS_XCC_ProcBufferReqMsg(VOS_VOID)
 
     for (i = 0; i < ucMsgNum; i++)
     {
-        /* Modified by w00176964 for CNAS内存裁剪, 2015-9-9, begin */
         pstBufferMsgHdr = (MSG_HEADER_STRU *)CNAS_XCC_GetNextBufferMsg();
 
         if (VOS_NULL_PTR == pstBufferMsgHdr)
@@ -299,7 +189,6 @@ VOS_VOID CNAS_XCC_ProcBufferReqMsg(VOS_VOID)
                                      (struct MsgCB *)pstBufferMsgHdr);
 
         }
-        /* Modified by w00176964 for CNAS内存裁剪, 2015-9-9, end */
 
         /* 处理内部消息队列 */
         CNAS_XCC_ProcXccIntMsg();
@@ -309,23 +198,7 @@ VOS_VOID CNAS_XCC_ProcBufferReqMsg(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessMsgInFsm
- 功能描述  : 消息状态机处理
- 输入参数  : ulEventType -- 消息类型+PID
-             pMsg        -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  -- 消息处理完成
-             VOS_FALSE -- 消息处理未完成
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年7月04日
-   作    者   : Y00213812
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ProcessMsgInFsm(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -389,21 +262,7 @@ VOS_UINT32 CNAS_XCC_ProcessMsgInFsm(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcXccIntMsg
- 功能描述  : 处理XCC模块内部消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史     :
- 1.日    期   : 2014年09月15日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XCC_ProcXccIntMsg(VOS_VOID)
 {
     MSG_HEADER_STRU                    *pstIntMsg = VOS_NULL_PTR;
@@ -435,25 +294,7 @@ VOS_VOID CNAS_XCC_ProcXccIntMsg(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_MsgProc
- 功能描述  : 1X CC模块消息处理入口函数
- 输入参数  : pstMsg -- 消息指针
- 输出参数  : 无
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史     :
- 1.日    期   : 2014年06月28日
-   作    者   : Y00213812
-   修改内容   : 新生成函数
- 2.日    期   : 2015年5月22日
-   作    者   : w00242748
-   修改内容   : CDMA Iteration 15 modified
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_MsgProc (struct MsgCB* pstMsg)
 {
     MSG_HEADER_STRU                    *pstMsgHeader = VOS_NULL_PTR;
@@ -513,21 +354,7 @@ VOS_VOID CNAS_XCC_MsgProc (struct MsgCB* pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_InitTask
- 功能描述  : 1X CC模块任务初始化函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE
-             VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年06月27日
-   作    者   : Y00213812
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  CNAS_XCC_InitTask(VOS_VOID)
 {
     /* 初始化XCC全局变量 */
@@ -539,20 +366,7 @@ VOS_UINT32  CNAS_XCC_InitTask(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_InitPid
- 功能描述  : 1X CC模块PID初始化函数
- 输入参数  : enInitPhase -- 初始化阶段
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月27日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_InitPid(
     enum VOS_INIT_PHASE_DEFINE         enInitPhase
 )

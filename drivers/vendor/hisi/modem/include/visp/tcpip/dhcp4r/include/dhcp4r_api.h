@@ -146,36 +146,7 @@ typedef struct tagDHCP4R_GET_SRCADDR
 */
 typedef ULONG (*DHCP4R_GET_SRCADDR_BY_SVRIP_HOOK)(DHCP4R_GET_SRCADDR_S *pstInfo);
 
-/*******************************************************************************
-*    Func Name: DHCP4R_PROC_REQUEST_HOOK
-* Date Created: 2011-07-06
-*       Author: y00176567/z00171897
-*      Purpose: 
-*  Description: 注册DHCP Relay模块报文预处理钩子,由产品完成所收到的DHCP Request报文的预处理过程,
-*               根据报文内容，填写或者修改Giaddr字段;
-*        Input: ULONG ulIfIndex: 收到的DHCP报文入接口
-*               UCHAR* pPacket:  收到的DHCP报文，剥掉IP和UDP首部，仅剩下DHCP首部（原始报文）。
-*               ULONG ulDhcpServerIp: Server IP 主机序
-*       Output: UCHAR* pPacket:  修改Giaddr后的DHCP报文，剥掉IP和UDP首部，仅剩下DHCP首部（原始报文）。
-*       Return: VOS_OK          成功
-*               其它             失败
-*      Caution: 1.在协议栈启动之前注册,不支持解注册
-*               2.钩子函数对Giaddr字段的处理规则如下：
-*                 如果ulIfIndex是VI接口，且Giaddr为0，则替换报文Giaddr为OMIP；
-*                 如果ulIfIndex是VI接口，且Giaddr非0，则记录原始Giaddr，并替换报文Giaddr为OMIP；
-*                 如果ulIfIndex不是VI接口，且Giaddr为0，则返回成功，由VISP处理；
-*                 如果ulIfIndex不是VI接口，且Giaddr非0，则记录原始Giaddr，并替换报文Giaddr为OMIP；
-*               3.Giaddr要求为网络序
-*               4.DHCP-Relay自动选源需求,产品会根据Server IP查找路由,返回对应的Giaddr
-*        Since: V2R3C05 UTRP自启动需求
-*    Reference: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-07-06   y00176567      Create the first version.
-*
-*******************************************************************************/
+
 typedef ULONG (*DHCP4R_PROC_REQUEST_HOOK)(ULONG ulIfIndex, UCHAR* pPacket, ULONG ulDhcpServerIp);
 
 typedef struct tagDHCP4R_GET_GIADDR
@@ -189,69 +160,10 @@ typedef struct tagDHCP4R_GET_GIADDR
     ULONG  ulGiaddr[DHCP4R_AGENT_MAX_NUM]; /*Giaddr列表，主机序，为0表示无效，不需要保证有效地都放在前面*/
 }DHCP4R_GET_GIADDR_S;
 
-/*******************************************************************************
-*    Func Name: DHCP4R_GET_GIADDR_HOOK
-* Date Created: 2013-09-27
-*       Author: l00213099
-*      Purpose: 
-*  Description: 注册DHCP Relay模块获取Giaddr处理钩子,由产品完成由报文信息获取Giaddr列表处理过程,
-*               根据DHCP请求报文信息获取需要Relay的Giaddr列表。
-*        Input: DHCP4R_GET_GIAADR_S *pInfo  DHCP报文和服务器信息
-*       Output: pInfo->ulGiaddr  Giaddr列表
-*       Return: VOS_OK          成功
-*               其它            失败
-*      Caution: a)	如果Giaddr为0，即为一级Relay：
-*                   a)	入接口为VI接口，则为背板级联场景，需要返回OMIP作为Giaddr；
-*                   b)	非VI接口，且VLAN ID为0或不带VLAN（函数入参的VID均为0），则由产品查找
-*                       符合要求的地址，并返回对应的Giaddr列表，如果找不到地址，则产品使用
-*                       TCPIP_GetMainIpAddr获取接口第一个地址作为Giaddr输出，函数返回成功；
-*                   c)	非VI接口， VLAN ID非0，且DHCP服务器是OMIP，则根据Request报文的VLAN ID和
-*                       入接口索引选择一个对应的源地址作为Giaddr输出，函数返回成功；如果找不到地址，则函数返回错误码；
-*                   d)	非VI接口， VLAN ID非0，且DHCP服务器非OMIP，则根据Request报文的VLAN ID和入接口
-*                       索引选择一组对应的源地址作为Giaddr输出，并且需要剔除OMIP（考虑到共IP场景），
-*                       最大支持8个地址作为Giaddr，函数返回成功；
-*               b)	如果Giaddr非0，即为二级Relay：（此处不能判断接口类型，因为可能是Loopback也可能是
-*                   面板接口）
-*                   a)	记录原始Giaddr，将Giaddr替换成OMIP进行Relay处理；
-*
-*        Since: 
-*    Reference: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2013-09-27   l00213099      Create the first version.
-*
-*******************************************************************************/
+
 typedef ULONG (*DHCP4R_GET_GIADDR_HOOK)(DHCP4R_GET_GIADDR_S *pInfo);
 
-/*******************************************************************************
-*    Func Name: DHCP4R_PROC_REPLY_HOOK
-* Date Created: 2011-07-06
-*       Author: y00176567/z00171897
-*      Purpose: 
-*  Description: 注册DHCP Relay模块报文预处理钩子,由产品完成所收到的DHCP Reply报文的预处理过程。,
-*               根据XID，修改Giaddr字段;
-*        Input: ULONG ulIfIndex: 收到的DHCP报文入接口
-*               UCHAR * pPacket: 收到的DHCP报文，剥掉IP和UDP首部，仅剩下DHCP首部（原始报文）。
-*       Output: UCHAR * pPacket: 修改Giaddr后的DHCP报文，剥掉IP和UDP首部，仅剩下DHCP首部（原始报文）。
-*               ULONG * pulRecLen: 添加选项后的报文长度
-*       Return: VOS_OK          成功
-*               其它             失败
-*      Caution: 1.在协议栈启动之前注册,不支持解注册;
-*               2.钩子函数对Giaddr字段的处理规则如下：
-*                 解析DHCP报文，根据XID，获取之前记录的原始Giaddr，并替换报文中的Giaddr字段;
-*               3.Giaddr要求为网络序;
-*               4.产品保证返回的pulRecLen为添加选项后的报文长度(从DHCP首部算起的报文长度),且长度不能越界
-*        Since: V2R3C05 UTRP自启动需求
-*    Reference: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-07-06   y00176567      Create the first version.
-*
-*******************************************************************************/
+
 typedef ULONG (*DHCP4R_PROC_REPLY_HOOK)(ULONG ulIfIndex, UCHAR *pPacket, ULONG *pulRecLen);
 
 typedef struct tagDHCP4R_GET_CLIENTIF
@@ -269,54 +181,10 @@ typedef struct tagDHCP4R_GET_CLIENTIF_BYVRF
     ULONG ulVrfIndex;
 }DHCP4R_GET_CLIENTIF_BYVRF_S;
 
-/*******************************************************************************
-*    Func Name: DHCP4R_GET_CLIENTIF_HOOK
-* Date Created: 2011-07-06
-*       Author: y00176567/z00171897
-*      Purpose: 
-*  Description: 注册DHCP Relay模块报文钩子,根据收到的Server报文获取转发的广播接口索引以及源地址。
-*        Input: DHCP4R_GET_CLIENTIF_S *pstInfo: 收到的DHCP报文信息结构体
-*       Output: 
-*       Return: VOS_OK          成功
-*               其它            失败
-*      Caution: 1.在协议栈启动之前注册,不支持解注册
-*               2.钩子函数对Giaddr字段的处理规则如下：
-*                 判断Giaddr如果是OMIP，则需要返回pulOutIfIndex为背板接口索引及源IP(OMIP)；
-*                 如果Giaddr不是OMIP，则返回pulOutIfIndex为0，由VISP通过Giaddr进行查找，查找则进行转发
-*        Since: V2R3C05 UTRP自启动需求
-*    Reference: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-07-06   y00176567      Create the first version.
-*
-*******************************************************************************/
+
 typedef ULONG (*DHCP4R_GET_CLIENTIF_HOOK)(DHCP4R_GET_CLIENTIF_S *pstInfo);
 
-/*******************************************************************************
-*    Func Name: DHCP4R_GET_CLIENTIF_HOOK
-* Date Created: 2013-05-23
-*       Author: w00217009
-*      Purpose: 
-*  Description: 注册DHCP Relay模块报文钩子,根据收到的Server报文中giaddr(request报文时就改为VRRP IP了)以及
-*               VrfIndex获取转发的广播接口索引以及源地址。
-*        Input: DHCP4R_GET_CLIENTIF_BYVRF_S *pstInfo: 收到的DHCP报文信息结构体
-*       Output: 
-*       Return: VOS_OK          成功
-*               其它            失败
-*      Caution: 1.在协议栈启动之前注册,不支持解注册
-*               2.钩子函数对Giaddr字段的处理规则如下：
-*                 PTN产品根据Giaddr字段和VrfIndex查找出接口，并返回出接口索引和源地址。
-*                 一级Relay,Giaddr为VRRP IP,VISP不能找到出接口,如果产品返回的出接口索引为0将丢弃报文
-*    Reference: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2013-05-23   w00217009      Create the first version.
-*
-*******************************************************************************/
+
 typedef ULONG (*DHCP4R_GET_CLIENTIF_BYVRF_HOOK)(DHCP4R_GET_CLIENTIF_BYVRF_S *pstInfo);
 
 /* 注册DHCP Relay模块报文预处理钩子，由产品根据报文内容，给出Option82的选项 */
@@ -327,26 +195,7 @@ typedef struct tagDHCP4R_FORM_OPTION82
     DHCP4R_SUBOPTION82_S astSubOption82[2]; /*出参，Option82内容（Option82有2个子选项，不需要配置的子选项的ulSubLen字段必须设置为0）*/
 }DHCP4R_FORM_OPTION82_S;
 
-/*******************************************************************************
-*    Func Name: DHCP4R_OPTION82_HOOK
-* Date Created: 2011-07-06
-*       Author: y00176567/z00171897
-*      Purpose: 
-*  Description: 注册DHCP Relay模块报文预处理钩子，由产品根据报文内容，给出Option82的选项
-*        Input: DHCP4R_FORM_OPTION82_S *pstInfo: Option82结构体
-*       Output: 
-*       Return: VOS_OK          成功
-*               其它            失败
-*      Caution: 1.在协议栈启动之前注册,不支持解注册
-*        Since: V2R3C05 UTRP自启动需求
-*    Reference: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-07-06   y00176567      Create the first version.
-*
-*******************************************************************************/
+
 typedef ULONG (*DHCP4R_OPTION82_HOOK)(DHCP4R_FORM_OPTION82_S *pstInfo);
 
 
@@ -1013,93 +862,16 @@ extern ULONG TCPIP_SetDhcprDebugByVrf(ULONG ulVrfIndex, ULONG ulOperate, ULONG u
 *******************************************************************************/
 extern ULONG TCPIP_GetDhcprDebugByVrf(ULONG ulVrfIndex, ULONG ulIfIndex, ULONG *pulDbgLevel);
 
-/*******************************************************************************
-*    Func Name: TCPIP_RegFuncDHCP4RProcRequestHook
-* Date Created: 2011-06-28
-*       Author: y00176567/z00171897
-*      Purpose: 
-*  Description: 注册DHCP Relay模块报文预处理钩子,由产品完成所收到的DHCP Request报文的预处理过程
-*        Input: DHCP4R_PROC_REQUEST_HOOK pfHook:回调函数指针
-*       Output: 
-*       Return: VOS_OK          注册成功
-*               其它            失败
-*      Caution: 在协议栈启动之前注册,不支持解注册
-*        Since: V2R3C05
-*    Reference: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-06-28   y00176567      Create the first version.
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_RegFuncDHCP4RProcRequestHook(DHCP4R_PROC_REQUEST_HOOK pfHook);
 
-/*******************************************************************************
-*    Func Name: TCPIP_RegFuncDHCP4RGetGiaddrListHook
-* Date Created: 2013-09-27
-*       Author: l00213099
-*      Purpose: 
-*  Description: 注册DHCP Relay模块获取Giaddr处理钩子,由产品完成由报文信息获取Giaddr列表处理过程
-*        Input: DHCP4R_GET_GIADDR_HOOK pfHook:回调函数指针
-*       Output: 
-*       Return: DHCP4R_OK       注册成功
-*               其它            失败
-*      Caution: 在协议栈启动之前注册,不支持解注册
-*        Since: 
-*    Reference: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2013-09-27   l00213099      Create the first version.
-*
-*******************************************************************************/
+
 ULONG TCPIP_RegFuncDHCP4RGetGiaddrListHook(DHCP4R_GET_GIADDR_HOOK pfHook);
 
-/*******************************************************************************
-*    Func Name: TCPIP_RegFuncDHCP4RProcReplyHook
-* Date Created: 2011-06-28
-*       Author: y00176567/z00171897
-*      Purpose: 
-*  Description: 注册DHCP Relay模块报文预处理钩子,由产品完成所收到的DHCP Reply报文的预处理过程
-*        Input: DHCP4R_PROC_REPLY_HOOK pfHook:回调函数指针
-*       Output: 
-*       Return: VOS_OK          注册成功
-*               其它            失败
-*      Caution: 在协议栈启动之前注册,不支持解注册
-*        Since: V2R3C05
-*    Reference: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-06-28   y00176567/z00171897     Create the first version.
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_RegFuncDHCP4RProcReplyHook(DHCP4R_PROC_REPLY_HOOK pfHook);
 
-/*******************************************************************************
-*    Func Name: TCPIP_RegFuncDHCP4RGetClientIfHook
-* Date Created: 2011-06-28
-*       Author: y00176567/z00171897
-*      Purpose: 
-*  Description: 注册DHCP Relay模块报文处理钩子,
-                根据收到的Server报文的Giaddr获取转发的广播接口索引以及源地址
-*        Input: DHCP4R_GET_CLIENTIF_HOOK  pfHook: 回调函数指针
-*       Output: 
-*       Return: VOS_OK          注册成功
-*               其它            失败
-*      Caution: 在协议栈启动之前注册,不支持解注册
-*        Since: V2R3C05
-*    Reference: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-06-28   y00176567/z00171897      Create the first version.
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_RegFuncDHCP4RGetClientIfHook(DHCP4R_GET_CLIENTIF_HOOK  pfHook);
 
 /*******************************************************************************
@@ -1123,42 +895,10 @@ extern ULONG TCPIP_RegFuncDHCP4RGetClientIfHook(DHCP4R_GET_CLIENTIF_HOOK  pfHook
 *
 *******************************************************************************/
 extern ULONG TCPIP_RegFuncDHCP4ROption82Hook(DHCP4R_OPTION82_HOOK pfHook);
-/*******************************************************************************
-*    Func Name: TCPIP_SetDHCP4RMultiRelaySwitch
-* Date Created: 2011-07-03
-*       Author: zhaoyue00171897/yangheng00176567
-*  Description: 设置多级Relay开关,以进入产品定制的二级Relay处理流程
-*        Input: ULONG ulSwitch:开关状态 0 关闭  其他 打开
-*       Output: 
-*       Return: DHCP4R_OK   成功
-*               其他        失败
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-07-03   z171897/y176567         Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_SetDHCP4RMultiRelaySwitch(ULONG ulSwitch);
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetDHCP4RMultiRelaySwitch
-* Date Created: 2011-07-03
-*       Author: zhaoyue00171897/yangheng00176567
-*  Description: 获取在DHCP Relay上多级Relay开关的状态
-*        Input: 
-*       Output: ULONG *pulSwitch:开关状态
-*       Return: DHCP4R_OK   成功
-*               其他        失败
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-07-03   z171897/y176567         Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_GetDHCP4RMultiRelaySwitch(ULONG *pulSwitch);
 
 /*******************************************************************************
@@ -1212,28 +952,7 @@ extern ULONG TCPIP_SetDhcp4rOpt82ModeByVrf(ULONG ulVrfIndex, ULONG ulIfIndex,
 extern ULONG TCPIP_GetDhcp4rOpt82ModeByVrf(ULONG ulVrfIndex, ULONG ulIfIndex, 
                                                 ULONG   *pulMode);
 
-/*******************************************************************************
-*    Func Name: TCPIP_RegFuncDHCP4RGetClientIfByVrfHook
-* Date Created: 2013-05-23
-*       Author: w00217009
-*      Purpose: 
-*  Description: 注册DHCP Relay模块报文处理钩子,
-*               根据收到的Server报文的Giaddr和VrfIndex获取转发的广播接口索引以及源地址
-*               针对报文中Giaddr已经是VRRP IP，即不是本接口的地址的场景
-*        Input: DHCP4R_GET_CLIENTIF_BYVRF_HOOK  pfHook: 回调函数指针
-*       Output: 
-*       Return: DHCP4R_OK       注册成功
-*               其它            失败
-*      Caution: 在协议栈启动之前注册,不支持解注册
-*        Since: V3R1C00
-*    Reference: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2013-05-23   w00217009      Create the first version.
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_RegFuncDHCP4RGetClientIfByVrfHook(DHCP4R_GET_CLIENTIF_BYVRF_HOOK  pfHook);
 
 /*******************************************************************************

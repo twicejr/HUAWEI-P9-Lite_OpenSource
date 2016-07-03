@@ -1,24 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2006, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : BST_APP_EmailPOP3.c
-  版 本 号   : 初稿
-  作    者   : d00173029
-  生成日期   : 2013年10月9日
-  最近修改   :
-  功能描述   : POP3类型邮件的处理方式
-  函数列表   :
-
-  修改历史   :
-  1.日    期   : 2013年10月9日
-    作    者   : d00173029
-    修改内容   : 创建文件
-  2.日    期   : 2014年4月17日
-    作    者   : z00220931
-    修改内容   :
-******************************************************************************/
 /*****************************************************************************
   1 头文件包含
 *****************************************************************************/
@@ -46,19 +26,7 @@
 /******************************************************************************
    6 函数实现
 ******************************************************************************/
-/*****************************************************************************
-函 数 名  : BST_APP_CEmailPOP3
-功能描述  : 构造函数
-输入参数  : BST_VOID
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修改历史  :
-1.日期    : 2014年4月17日
-  作者    : z00220931
-  修改内容: 新函数
-*****************************************************************************/
+
 BST_APP_CEmailPOP3::BST_APP_CEmailPOP3( const EMAIL_ACCOUNT_STRU *penInAccountInfo )
     : BST_APP_CEmailPacketProc( penInAccountInfo )
 {
@@ -85,19 +53,7 @@ BST_APP_CEmailPOP3::BST_APP_CEmailPOP3( const EMAIL_ACCOUNT_STRU *penInAccountIn
     BST_OS_MEMSET( m_pcServerResponse1, 0, BST_POP3_COLUMN_MAX );
     BST_OS_MEMSET( m_pcServerResponse2, 0, BST_POP3_COLUMN_MAX );
 }
-/*****************************************************************************
-函 数 名  : ~CPop3MbxProc
-功能描述  : 析构函数
-输入参数  : BST_VOID
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修改历史  :
-1.日期    : 2014年4月17日
-  作者    : z00220931
-  修改内容: 新函数
-*****************************************************************************/
+
 BST_APP_CEmailPOP3::~BST_APP_CEmailPOP3( BST_VOID )
 {
     if ( BST_NULL_PTR != m_pcServerResponse0 )
@@ -114,21 +70,7 @@ BST_APP_CEmailPOP3::~BST_APP_CEmailPOP3( BST_VOID )
     }
     BST_RLS_LOG("BST_APP_CEmailPOP3 destructor");/*remove时关键log*/
 }
-/*****************************************************************************
-函 数 名  : ParseRespose
-功能描述  : 判断邮箱的配置是否完成，通过调用父类EmailBox的配置判断函数进行判断
-输入参数  : BST_UINT8 *pucData  数据指针
-            BST_UINT16 usLength 数据长度
-输出参数  : 无
-返 回 值  : BST_TRUE  成功
-            BST_FALSE 失败
-调用函数  :
-被调函数  :
-修改历史  :
-1.日期    : 2014年4月17日
-  作者    : z00220931
-  修改内容: 新函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_APP_CEmailPOP3::ParseResponse(
     BST_UINT8  *pucData,
     BST_UINT16  usLength )
@@ -171,19 +113,7 @@ BST_ERR_ENUM_UINT8 BST_APP_CEmailPOP3::ParseResponse(
 
     return BST_NO_ERROR_MSG;
 }
-/*****************************************************************************
-函 数 名   : FirstTrsProc
-功能描述   : 连上服务器后的数据交互处理
-输入参数   : BST_VOID
-输出参数   : 无
-返 回 值   : 无
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年4月17日
-   作者    : z00220931
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_APP_CEmailPOP3::FirstTrsProc( BST_VOID )
 {
     /*Pop3 client donot do anything immediately after connected*/
@@ -195,21 +125,7 @@ BST_ERR_ENUM_UINT8 BST_APP_CEmailPOP3::FirstTrsProc( BST_VOID )
     BST_OS_TimerStart( m_ulTimerId, BST_APP_RX_TIME_OUT );/*连接上之后等待服务器的回复*/
     return BST_NO_ERROR_MSG;
 }
-/*****************************************************************************
-函 数 名  : IsConfigOk
-功能描述  : 判断邮箱的配置是否完成
-输入参数  : BST_VOID
-输出参数  : 无
-返 回 值  : BST_TRUE  配置完成
-            BST_FALSE 配置未完成
-调用函数  : 调用父类EmailBox的IsBasicConfigOk函数
-调用函数  :
-被调函数  :
-修改历史  :
-1.日期    : 2014年4月17日
-  作者    : z00220931
-  修改内容: 新函数
-*****************************************************************************/
+
 BST_BOOL BST_APP_CEmailPOP3::IsConfigOk( BST_VOID )
 {
     if ( BST_FALSE == IsBasicConfigOk() )
@@ -230,20 +146,7 @@ BST_BOOL BST_APP_CEmailPOP3::IsConfigOk( BST_VOID )
     return BST_TRUE;
 }
 
-/*****************************************************************************
-函 数 名   : SetEmailUID
-功能描述   : 设置最后一封邮件的UID
-输入参数   : pucUid 邮件的uid
-             usLen 邮件uid的长度
-输出参数   : 无
-返 回 值   : 邮件UID存储的地址
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年6月9日
-   作者    : z00220931
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_UINT8 *BST_APP_CEmailPOP3::SetEmailUID(
     const BST_UINT8    *pucUidInfo,
     BST_UINT16          usLen )
@@ -284,21 +187,7 @@ BST_UINT8 *BST_APP_CEmailPOP3::SetEmailUID(
     BST_ASSERT_NORM_RTN( (BST_NO_ERROR_MSG != enRtnVal), BST_NULL_PTR );
     return (BST_UINT8 *)m_pstLastUID;
 }
-/*****************************************************************************
-函 数 名   : ConfigOtherInfo
-功能描述   : 配置其他其他信息
-输入参数   : enParamId 账号信息
-             usLen配置信息的长度
-             pData指向配置信息的指针
-输出参数   : 无
-返 回 值   : 配置信息的存储地址
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年4月17日
-   作者    : z00220931
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_UINT8 *BST_APP_CEmailPOP3::ConfigOtherInfo(
     BST_CORE_PID_ENUM_UINT16    enParamId,
     BST_UINT16                  usLen,
@@ -322,19 +211,7 @@ BST_UINT8 *BST_APP_CEmailPOP3::ConfigOtherInfo(
     }
     return rtn_ptr;
 }
-/*****************************************************************************
-函 数 名  : HandleWelcomResp
-功能描述  : 解析服务器欢迎字符
-输入参数  : BST_VOID
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修改历史  :
-1.日期    : 2014年4月17日
-  作者    : z00220931
-  修改内容: 新函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_APP_CEmailPOP3::HandleWelcomResp( BST_VOID )
 {
     BST_ERR_ENUM_UINT8      enErrMsg;
@@ -350,19 +227,7 @@ BST_ERR_ENUM_UINT8 BST_APP_CEmailPOP3::HandleWelcomResp( BST_VOID )
     }
     return BST_NO_ERROR_MSG;
 }
-/*****************************************************************************
-函 数 名  : HandleUserResp
-功能描述  : 解析USER命令的回复
-输入参数  : BST_VOID
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修改历史  :
-1.日期    : 2014年4月17日
-  作者    : z00220931
-  修改内容: 新函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_APP_CEmailPOP3::HandleUserResp( BST_VOID )
 {
     BST_ERR_ENUM_UINT8      enErrMsg;
@@ -378,19 +243,7 @@ BST_ERR_ENUM_UINT8 BST_APP_CEmailPOP3::HandleUserResp( BST_VOID )
     }
     return BST_NO_ERROR_MSG;
 }
-/*****************************************************************************
-函 数 名  : HandlePassResp
-功能描述  : 解析PASS命令的回复
-输入参数  : BST_VOID
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修改历史  :
-1.日期    : 2014年4月17日
-  作者    : z00220931
-  修改内容: 新函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_APP_CEmailPOP3::HandlePassResp( BST_VOID )
 {
     BST_ERR_ENUM_UINT8      enErrMsg;
@@ -407,19 +260,7 @@ BST_ERR_ENUM_UINT8 BST_APP_CEmailPOP3::HandlePassResp( BST_VOID )
     return BST_NO_ERROR_MSG;
 }
 
-/*****************************************************************************
-函 数 名  : HandlePassResp
-功能描述  : 解析查询邮件数量的回复
-输入参数  : BST_VOID
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修改历史  :
-1.日期    : 2014年4月17日
-  作者    : z00220931
-  修改内容: 新函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_APP_CEmailPOP3::HandleNumResp()
 {
     BST_ERR_ENUM_UINT8      enErrMsg;
@@ -453,19 +294,7 @@ BST_ERR_ENUM_UINT8 BST_APP_CEmailPOP3::HandleNumResp()
         return BST_NO_ERROR_MSG;
     }
 }
-/*****************************************************************************
-函 数 名  : HandleQueryResp
-功能描述  : 解析查询UID的回复
-输入参数  : BST_VOID
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修改历史  :
-1.日期    : 2014年4月17日
-  作者    : z00220931
-  修改内容: 新函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_APP_CEmailPOP3::HandleQueryResp()
 {
     BST_ERR_ENUM_UINT8      enErrMsg;
@@ -506,36 +335,12 @@ BST_ERR_ENUM_UINT8 BST_APP_CEmailPOP3::HandleQueryResp()
         return  BST_ERR_UNREACHABLE;
     }
 }
-/*****************************************************************************
-函 数 名  : ResetMachine
-功能描述  : 复位状态机
-输入参数  : BST_VOID
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修改历史  :
-1.日期    : 2014年4月17日
-  作者    : d00173029
-  修改内容: 新函数
-*****************************************************************************/
+
 BST_VOID  BST_APP_CEmailPOP3::ResetMachine( BST_VOID )
 {
     m_lServerState          = BST_EMAIL_UNCONNECT;
 }
-/*****************************************************************************
-函 数 名  : RunStateMachine
-功能描述  : 运行状态机完成邮件的查询流程
-输入参数  : BST_VOID
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修改历史  :
-1.日期    : 2014年4月17日
-  作者    : z00220931
-  修改内容: 新函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_APP_CEmailPOP3::RunStateMachine( BST_VOID )
 {
     BST_ERR_ENUM_UINT8  enErrMsg;
@@ -588,20 +393,7 @@ BST_ERR_ENUM_UINT8 BST_APP_CEmailPOP3::RunStateMachine( BST_VOID )
     BST_OS_MEMSET( m_pcServerResponse2, 0, BST_POP3_COLUMN_MAX );
     return enErrMsg;
 }
-/*****************************************************************************
-函 数 名  : LoginServer
-功能描述  : 登录邮箱账户名
-输入参数  : 无
-输出参数  : 无
-返 回 值  : BST_TRUE  成功
-            BST_FALSE 失败
-调用函数  :
-被调函数  :
-修改历史  :
-1.日期    : 2014年4月17日
-  作者    : z00220931
-  修改内容: 新函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_APP_CEmailPOP3::LoginServer( BST_VOID )
 {
     BST_UINT8                  *pucUserName;
@@ -628,20 +420,7 @@ BST_ERR_ENUM_UINT8 BST_APP_CEmailPOP3::LoginServer( BST_VOID )
     BST_OS_FREE( pucUserCmd );
     return enErrMsg;
 }
-/*****************************************************************************
-函 数 名  : LoginAuth
-功能描述  : 登录邮箱的密码
-输入参数  : 无
-输出参数  : 无
-返 回 值  : BST_TRUE  成功
-            BST_FALSE 失败
-调用函数  :
-被调函数  :
-修改历史  :
-1.日期    : 2014年4月17日
-  作者    : z00220931
-  修改内容: 新函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_APP_CEmailPOP3::LoginAuth( BST_VOID )
 {
     BST_UINT8                  *pucPassWord;
@@ -669,20 +448,7 @@ BST_ERR_ENUM_UINT8 BST_APP_CEmailPOP3::LoginAuth( BST_VOID )
     BST_OS_FREE( pucPassWordCmd );
     return enErrMsg;
 }
-/*****************************************************************************
-函 数 名  : QueryNumOfEmail
-功能描述  : 查询邮箱的邮件个数
-输入参数  : BST_VOID
-输出参数  : 无
-返 回 值  : BST_TRUE  成功
-            BST_FALSE 失败
-调用函数  :
-被调函数  :
-修改历史  :
-1.日期    : 2014年4月17日
-  作者    : z00220931
-  修改内容: 新函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_APP_CEmailPOP3::QueryNumOfEmail( BST_VOID )
 {
     BST_UINT8                  *pucStatCmd;
@@ -700,21 +466,7 @@ BST_ERR_ENUM_UINT8 BST_APP_CEmailPOP3::QueryNumOfEmail( BST_VOID )
     BST_OS_FREE( pucStatCmd );
     return enErrMsg;
 }
-/*****************************************************************************
-函 数 名  : QueryUidOfLast
-功能描述  : 查询邮箱最后一个邮件的UID
-输入参数  : pucLastSeq 指向最后邮件UID的数据指针
-            usLen     数据长度
-输出参数  : 无
-返 回 值  : BST_TRUE  成功
-            BST_FALSE 失败
-调用函数  :
-被调函数  :
-修改历史  :
-1.日期    : 2014年4月17日
-  作者    : z00220931
-  修改内容: 新函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_APP_CEmailPOP3::QueryUidOfLast(
     const BST_UINT8 *pucLastSeq,
     BST_UINT16       usLen )
@@ -735,20 +487,7 @@ BST_ERR_ENUM_UINT8 BST_APP_CEmailPOP3::QueryUidOfLast(
     BST_OS_FREE( pucSearchCmd );
     return enErrMsg;
 }
-/*****************************************************************************
-函 数 名  : QuitServer
-功能描述  : 退出服务器
-输入参数  : BST_VOID
-输出参数  : 无
-返 回 值  : BST_TRUE  成功
-            BST_FALSE 失败
-调用函数  :
-被调函数  :
-修改历史  :
-1.日期    : 2014年4月17日
-  作者    : z00220931
-  修改内容: 新函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_APP_CEmailPOP3::QuitServer( BST_VOID )
 {
     const BST_CHAR             *pucQuitCmd = "QUIT\r\n";

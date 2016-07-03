@@ -1,27 +1,4 @@
-/*************************************************************************
- *
- *              Copyright 2005, Huawei Technologies Co. Ltd.
- *                          ALL RIGHTS RESERVED
- * 
- *-----------------------------------------------------------------------*
- *
- *                              ppp_vj_func.h
- *
- *  Project Code: VISP1.5
- *   Module Name: PPP
- *  Date Created: 2002-10-24
- *        Author: LiuKai
- *   Description: VJ压缩功能模块数据结构定义及宏声明
- *
- *-----------------------------------------------------------------------*
- *  Modification History
- *  DATE            NAME            DESCRIPTION
- *  2002-10-24      LiuKai          Create
- *  2004-07-01      YiAn            Modified for VISP
- *  2006-03-31      ZhuKun          Adjust for D00661
- *  2006-04-21      ZhuKun          Adjust for D00875
- *
- *************************************************************************/
+
 
 #ifndef _VJ_FUNC_H_
 #define _VJ_FUNC_H_

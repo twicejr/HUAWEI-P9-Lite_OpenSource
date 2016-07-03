@@ -1,22 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : BST_IP_RcverMng.cpp
-  版 本 号   : V1.1
-  作    者   : d00173029
-  生成日期   : 2014年6月10日
-  最近修改   :
-  功能描述   : 定义RAW-API回调函数
-  函数列表   :
-
-  修改历史   :
-  1.日    期   : 2014年06月10日
-    作    者   : d00173029
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -52,19 +34,7 @@ extern "C" BST_UINT16               g_BST_IP_usRtxPara;
    6 函数实现
 ******************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : BST_IP_CheckSocketSupport
- 功能描述  : 检查接口是否支持
- 输入参数  : BST_SCKT_TYPE_ENUM_UINT32 enSocketType
- 输出参数  : 无
- 返 回 值  : BST_IP_ERR_T
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_IP_ERR_T BST_IP_CheckSocketSupport( BST_SCKT_TYPE_ENUM_UINT32 enSocketType )
 {
     BST_UINT16                          usTblLen, i;
@@ -83,19 +53,7 @@ BST_IP_ERR_T BST_IP_CheckSocketSupport( BST_SCKT_TYPE_ENUM_UINT32 enSocketType )
     return BST_IP_ERR_ARG;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_IP_TcpOverFlowCB
- 功能描述  : TCP溢出回调处理
- 输入参数  : BST_UINT32 ulRealFlowValue
- 输出参数  : 无
- 返 回 值  : err_t
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_IP_ERR_T BST_IP_TcpOverFlowCB( BST_UINT32 ulRealFlowValue )
 {
     BST_APP_CMainTask                  *pMainTask;
@@ -115,21 +73,7 @@ BST_IP_ERR_T BST_IP_TcpOverFlowCB( BST_UINT32 ulRealFlowValue )
     return BST_IP_ERR_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_IP_TcpConnectedCB
- 功能描述  : TCP连接回调处理函数
- 输入参数  : BST_VOID *arg
-             struct tcp_pcb *tpcb
-             err_t err
- 输出参数  : 无
- 返 回 值  : err_t
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_IP_ERR_T BST_IP_TcpConnectedCB( BST_INT32 lFd )
 {
     err_t                               lErrType;
@@ -147,21 +91,7 @@ BST_IP_ERR_T BST_IP_TcpConnectedCB( BST_INT32 lFd )
 }
 
 
-/*****************************************************************************
- 函 数 名  : BST_IP_TcpErrorCB
- 功能描述  : TCP连接被SERVER端主动Close掉
- 输入参数  : BST_VOID *arg
-             struct tcp_pcb *tpcb
-             err_t err
- 输出参数  : 无
- 返 回 值  : err_t
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_IP_TcpErrorCB( BST_INT32 lFd, BST_IP_ERR_T InIpErrMsg )
 {
     BST_IP_CRcverMng                   *pcRcverMnger;
@@ -175,22 +105,7 @@ BST_VOID BST_IP_TcpErrorCB( BST_INT32 lFd, BST_IP_ERR_T InIpErrMsg )
     }
     pcRcverMnger->ErrorRcver( lFd, InIpErrMsg );
 }
-/*****************************************************************************
- 函 数 名  : BST_IP_ReceivedCB
- 功能描述  : TCP接收回调函数
- 输入参数  : BST_VOID *arg
-             struct tcp_pcb * tpcb
-             struct pbuf *p
-             BST_IP_ERR_T err
- 输出参数  : 无
- 返 回 值  : err_t
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 /*lint -e438*/
 BST_IP_ERR_T BST_IP_ReceivedCB( BST_INT32 lFd )
 {
@@ -216,22 +131,7 @@ BST_IP_ERR_T BST_IP_ReceivedCB( BST_INT32 lFd )
     return ERR_OK;
 
 }
-/*****************************************************************************
- 函 数 名  : BST_IP_TcpAckedCB
- 功能描述  : TCP确认回调函数
- 输入参数  : BST_VOID *arg
-             struct tcp_pcb * tpcb
-             struct pbuf *p
-             BST_IP_ERR_T err
- 输出参数  : 无
- 返 回 值  : err_t
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年05月18日
-      作    者   : z00220931
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_IP_TcpAckedCB(
     BST_INT32           lFd,
     const BST_UINT32    ulMinNumber,
@@ -248,20 +148,7 @@ BST_VOID BST_IP_TcpAckedCB(
     }
     pcRcverMnger->AckedRcver( lFd, ulMinNumber, ulMaxNumber );
 }
-/*****************************************************************************
- 函 数 名  : BST_IP_CRcverMng::Attach
- 功能描述  : 绑定原始接收器
- 输入参数  : BST_FD_T *pstFd
-             BST_IP_CNetRcver *pcRawRcver
- 输出参数  : 无
- 返 回 值  : (BST_IP_RCVER_BINDER_STRU *)
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月12日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID  *BST_IP_CRcverMng::Attach(
     BST_IP_CNetRcver   *pcRawRcver,
     BST_IP_CSocket     *pcSocket )
@@ -287,19 +174,7 @@ BST_VOID  *BST_IP_CRcverMng::Attach(
     lstAdd( &m_stRcverList, (NODE *)pstRcvBinder );
     return pstRcvBinder;
 }
-/*****************************************************************************
- 函 数 名  : BST_IP_CRcverMng::Detach
- 功能描述  : 根据描述符查找需要释放的接口，如果找到，则释放绑定的接口
- 输入参数  : BST_FD_T *pstFd
- 输出参数  : 无
- 返 回 值  : BST_VOID
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月12日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_IP_CRcverMng::Detach( BST_IP_CSocket *pcSocket )
 {
     BST_IP_RCVER_BINDER_STRU   *pstRcverIdx;
@@ -325,19 +200,7 @@ BST_VOID BST_IP_CRcverMng::Detach( BST_IP_CSocket *pcSocket )
     }
     return;
 }
-/*****************************************************************************
- 函 数 名  : BST_IP_CRcverMng::GetInstance
- 功能描述  : 获取对象
- 输入参数  : BST_VOID
- 输出参数  : 无
- 返 回 值  : (BST_IP_CRcverMng*)，指向对象的指针
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月12日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_IP_CRcverMng* BST_IP_CRcverMng::GetInstance( BST_VOID )
 {
     static BST_IP_CRcverMng            *pcNetRcverMng = BST_NULL_PTR;
@@ -348,20 +211,7 @@ BST_IP_CRcverMng* BST_IP_CRcverMng::GetInstance( BST_VOID )
     }
     return pcNetRcverMng;
 }
-/*****************************************************************************
- 函 数 名  : BST_IP_CRcverMng::CnctedRcver
- 功能描述  : 连接后触发的回调处理函数
- 输入参数  : BST_FD_T fd
-             BST_IP_ERR_T InIpErrMsg
- 输出参数  : 无
- 返 回 值  : BST_IP_ERR_T
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月12日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_IP_ERR_T BST_IP_CRcverMng::CnctedRcver( BST_INT32 fd  )
 {
     BST_IP_RCVER_BINDER_STRU            *pRcvItem;
@@ -386,19 +236,7 @@ BST_IP_ERR_T BST_IP_CRcverMng::CnctedRcver( BST_INT32 fd  )
     }
 }
 
-/*****************************************************************************
- 函 数 名  : BST_IP_CRcverMng::ClosedRcver
- 功能描述  : 处理远程关闭的pcb
- 输入参数  : BST_FD_T fd
- 输出参数  : 无
- 返 回 值  : BST_VOID
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月12日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID  BST_IP_CRcverMng::ErrorRcver ( BST_INT32 lFd, BST_IP_ERR_T InIpErrMsg )
 {
     BST_IP_RCVER_BINDER_STRU            *pRcvItem;
@@ -415,20 +253,7 @@ BST_VOID  BST_IP_CRcverMng::ErrorRcver ( BST_INT32 lFd, BST_IP_ERR_T InIpErrMsg 
     }
     pRcvItem->pcRcver->IpErr( pRcvItem->pcSocket, InIpErrMsg );
 }
-/*****************************************************************************
- 函 数 名  : BST_IP_CRcverMng::AckedRcver
- 功能描述  : 收到ACK后触发的回调处理函数
- 输入参数  : BST_FD_T fd
-             BST_IP_ERR_T InIpErrMsg
- 输出参数  : 无
- 返 回 值  : BST_IP_ERR_T
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年05月12日
-      作    者   : z00220931
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_IP_CRcverMng::AckedRcver(
     BST_INT32           fd,
     const BST_UINT32    ulMinNumber,
@@ -447,21 +272,7 @@ BST_VOID BST_IP_CRcverMng::AckedRcver(
     }
     pRcvItem->pcRcver->Acked( pRcvItem->pcSocket,ulMinNumber, ulMaxNumber );
 }
-/*****************************************************************************
- 函 数 名  : BST_IP_CRcverMng::PacketRcver
- 功能描述  : 接收到数据后触发的回调函数
- 输入参数  : BST_FD_T            fd
-             const BST_UINT8    *const pdata
-             const BST_UINT16    length
- 输出参数  : 无
- 返 回 值  : BST_IP_PKTPROC_MODE_ENUM
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月12日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_IP_PKTPROC_MODE_ENUM BST_IP_CRcverMng::PacketRcver(
         BST_INT32           fd )
 {
@@ -521,55 +332,19 @@ BST_IP_PKTPROC_MODE_ENUM BST_IP_CRcverMng::PacketRcver(
     BST_OS_FREE( pucData );
     return BST_IP_PKT_NO_PROC;
 }
-/*****************************************************************************
- 函 数 名  : BST_IP_CRcverMng
- 功能描述  : 类BST_IP_CRcverMng的构造函数
- 输入参数  : BST_VOID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月12日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_IP_CRcverMng::BST_IP_CRcverMng( BST_VOID )
 {
     lstInit( &m_stRcverList );
     return;
 }
-/*****************************************************************************
- 函 数 名  : ~BST_IP_CRcverMng
- 功能描述  : 类BST_IP_CRcverMng的析构函数
- 输入参数  : BST_VOID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月12日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_IP_CRcverMng::~BST_IP_CRcverMng( BST_VOID )
 {
     BST_RLS_LOG("BST_IP_CRcverMng: m_pstRcverTable Error");
 }
 
-/*****************************************************************************
- 函 数 名  : BST_IP_CRcverMng::FindRcver
- 功能描述  : 根据描述符查找对应的接收器
- 输入参数  : BST_FD_T fd
- 输出参数  : 无
- 返 回 值  : (BST_IP_CNetRcver* )
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月12日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_IP_RCVER_BINDER_STRU* BST_IP_CRcverMng::FindRcver( BST_INT32 fd )
 {
     BST_IP_RCVER_BINDER_STRU    *pstRcverIdx;
@@ -597,19 +372,7 @@ BST_IP_RCVER_BINDER_STRU* BST_IP_CRcverMng::FindRcver( BST_INT32 fd )
     }
     return BST_NULL_PTR;
 }
-/*****************************************************************************
- 函 数 名  : BST_IP_CAsRcver::BST_IP_CAsRcver
- 功能描述  : 构造函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年06月12日
-      作    者   : z00220931
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_IP_CAsRcver::BST_IP_CAsRcver( BST_VOID )
     :BST_SRV_CAsRcver( BST_SRV_GetSysMsgHandle() )
 {
@@ -618,37 +381,13 @@ BST_IP_CAsRcver::BST_IP_CAsRcver( BST_VOID )
     RegAsNotice( BST_AS_EVT_L3_RAT_STATE );
     RegAsNotice( BST_AS_EVT_L3_RRC_STATE );
 }
-/*****************************************************************************
- 函 数 名  : BST_IP_CAsRcver::~BST_IP_CAsRcver
- 功能描述  : 析构函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年06月12日
-      作    者   : z00220931
-      修改内容   : 新生成函数
-*****************************************************************************/    
+
 BST_IP_CAsRcver::~BST_IP_CAsRcver( BST_VOID )
 {
     DelEvent( BST_AS_EVT_L3_RAT_STATE );
     DelEvent( BST_AS_EVT_L3_RRC_STATE );
 }
-/*****************************************************************************
- 函 数 名  : GetInstance
- 功能描述  : 单例模式，获取实例的接口
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年06月12日
-      作    者   : z00220931
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 
 BST_IP_CAsRcver* BST_IP_CAsRcver::GetInstance( BST_VOID )
 {
@@ -661,19 +400,7 @@ BST_IP_CAsRcver* BST_IP_CAsRcver::GetInstance( BST_VOID )
     return pcIPAsRcver;
 }
 
-/*****************************************************************************
- 函 数 名  : AsEventCallback
- 功能描述  : As事件的回调函数
- 输入参数  : 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年06月12日
-      作    者   : z00220931
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 
 BST_VOID BST_IP_CAsRcver::AsEventCallback(
     BST_AS_EVT_ENUM_UINT32  enEvent,

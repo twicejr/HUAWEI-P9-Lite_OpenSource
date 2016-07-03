@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafMmaProcUsim.c
-  版 本 号   : 初稿
-  作    者   : s00261364
-  生成日期   : 2014年4月17日
-  最近修改   :
-  功能描述   : MMa处理usim读写文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年4月17日
-    作    者   : s00261364
-    修改内容   : 创建文件
-
-******************************************************************************/
 /*****************************************************************************
   1 头文件包含
 *****************************************************************************/
@@ -55,20 +38,7 @@ extern MMA_ME_PERSONALISATION_STATUS_STRU      g_stMmaMePersonalisationStatus;
 *****************************************************************************/
 /*lint -save -e958 */
 #if (FEATURE_ON == FEATURE_ECALL)
-/*****************************************************************************
- 函 数 名  : TAF_MMA_UpdateCallMode
- 功能描述  : 更新call mode
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年04月3日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_UpdateCallMode( VOS_VOID )
 {
     VOS_UINT32                          ulFdnExistFlag;
@@ -112,37 +82,13 @@ VOS_VOID TAF_MMA_UpdateCallMode( VOS_VOID )
 }
 
 #endif
-/*****************************************************************************
- 函 数 名  : TAF_MMA_GetWaitSimFilesCnfFlg
- 功能描述  : 开机过程中获取读取SIM卡文件回复标记
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 读取SIM卡文件回复标记
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2015-03-13
-    作    者   : z00161729
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 TAF_MMA_READ_SIM_FILES_CNF_ENUM_UINT32  TAF_MMA_GetWaitSimFilesCnfFlg(VOS_VOID)
 {
     return g_ulMmaReadSimFileFlg;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SetWaitSimFilesCnfFlg
- 功能描述  : 开机过程中设置SIM卡文件回复标记
- 输入参数  : enSimFileCnfFlg - SIM卡文件回复标记
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2015-03-13
-    作    者   : z00161729
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_VOID    TAF_MMA_SetWaitSimFilesCnfFlg(
     TAF_MMA_READ_SIM_FILES_CNF_ENUM_UINT32                  enSimFileCnfFlg
 )
@@ -151,24 +97,7 @@ VOS_VOID    TAF_MMA_SetWaitSimFilesCnfFlg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ClearWaitSimFilesCnfFlg
- 功能描述  : 开机过程中清除读取SIM卡文件回复标记
- 输入参数  : enSimFileCnfFlg - SIM卡文件回复标记
-             ulAppType       - APP类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2015-03-13
-    作    者   : z00161729
-    修改内容   : 新生成函数
 
-  2.日    期   : 2015年11月2日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-*****************************************************************************/
 VOS_VOID  TAF_MMA_ClearWaitSimFilesCnfFlg(
     USIMM_DEF_FILEID_ENUM_UINT32        usEfId
 )
@@ -243,42 +172,14 @@ VOS_VOID  TAF_MMA_ClearWaitSimFilesCnfFlg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ClearAllWaitSimFilesFlg_SwitchOn
- 功能描述  : 开机过程中清除所有读取SIM卡文件回复标记
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2015-03-13
-    作    者   : z00161729
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_VOID  TAF_MMA_ClearAllWaitSimFilesCnfFlg(VOS_VOID)
 {
     g_ulMmaReadSimFileFlg = TAF_MMA_READ_USIM_FILE_FLG_NULL;
 }
 
 /*lint -e438 -e830*/
-/*****************************************************************************
- 函 数 名  : TAF_MMA_UsimGetFileRspPreProc
- 功能描述  : MMA读取文件回复处理
- 输入参数  : USIMM_READFILE_CNF_STRU* pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-   1.日    期   : 2015年3月13日
-     作    者   : z00161729
-     修改内容   : at&t phaseII修改
-   2.日    期   : 2015年9月14日
-     作    者   : z00359541
-     修改内容   : DTS2015090605112
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_UsimGetFileRspPreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -404,24 +305,11 @@ VOS_UINT32 TAF_MMA_UsimGetFileRspPreProc(
         TAF_MMA_StopTimer(TI_TAF_MMA_WAIT_READ_SIM_FILES);
     }
 
-    /* Added by w00176964 for VoLTE_PhaseI项目, 2013-7-15, begin */
     return VOS_TRUE;
-    /* Added by w00176964 for VoLTE_PhaseI项目, 2013-7-15, end */
 }
 /*lint +e438 +e830*/
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadSimCphsOperNameFile
- 功能描述  : 用于开机读取CPHS类型的 SIM卡的 6F14文件,调用函数保证卡存在
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2015年2月28日
-    作    者   : b00269685
-    修改内容   : at&t修改
-*****************************************************************************/
+
 VOS_VOID  TAF_MMA_ReadSimCphsOperNameFile(VOS_VOID)
 {
     VOS_UINT8    ucSimType;
@@ -454,29 +342,14 @@ VOS_VOID  TAF_MMA_ReadSimCphsOperNameFile(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadSpnFile
- 功能描述  : 开机读取SPN文件相关信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年2月28日
-   作    者   : b00269685
-   修改内容   : at&t修改
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReadSpnFile(VOS_VOID)
 {
     VOS_UINT32                          ulSpnExistFlag;
     VOS_UINT8                           ucSimType;
 
     /* 从USIM中获取SPN文件,文件ID:0x6F46 */
-    /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-29, begin */
     ulSpnExistFlag = NAS_USIMMAPI_IsServiceAvailable(NAS_USIM_SVR_SPN);
-    /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-29, end */
 
     ucSimType = 0;
 
@@ -497,20 +370,7 @@ VOS_VOID TAF_MMA_ReadSpnFile(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadOplFile
- 功能描述  : 开机读取OPL文件相关信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年2月9日
-   作    者   : b00269685
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReadOplFile(VOS_VOID)
 {
     VOS_UINT8                           ucSimType;
@@ -539,20 +399,7 @@ VOS_VOID TAF_MMA_ReadOplFile(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadPnnFile
- 功能描述  : 开机读取PNN文件相关信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年2月9日
-   作    者   : b00269685
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReadPnnFile(VOS_VOID)
 {
     VOS_UINT8                           ucSimType;
@@ -581,20 +428,7 @@ VOS_VOID TAF_MMA_ReadPnnFile(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadSpdiFile
- 功能描述  : 开机读取SPDI文件相关信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年3月3日
-   作    者   : c00318887
-   修改内容   : at&t phaseII新增
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReadSpdiFile(VOS_VOID)
 {
     VOS_UINT32                          ulSpdiExistFlag;
@@ -626,27 +460,7 @@ VOS_VOID TAF_MMA_ReadSpdiFile(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadCustomerServiceProfileFile_SwitchOn
- 功能描述  : 开机读6F15文件
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月13日
-    作    者   : l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月26日
-    作    者   : 张鹏 id:00214637
-    修改内容   : USIM对外接口函数变更的处理 ，
-                 Client ID 到 PID的转换处理 ，入参封装成结构体。
-  3.日    期   : 2013年6月3日
-    作    者   : z00161729
-    修改内容   : SVLTE 和usim接口调整修改
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReadCustomerServiceProfileFile_SwitchOn(VOS_VOID)
 {
     NAS_USIMM_GETFILE_INFO_STRU         stGetFileInfo;
@@ -683,27 +497,7 @@ VOS_VOID TAF_MMA_ReadCustomerServiceProfileFile_SwitchOn(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SendUsimFileReq
- 功能描述  : 发送请求消息去读取USIM卡文件
- 输入参数  : USIMM_APP_TYPE_ENUM_UINT32          enAppType
-             VOS_UINT16                          usEfId
- 输出参数  : 无
- 返 回 值  : USIMM_API_SUCCESS
-             USIMM_API_FAILED
-             USIMM_API_WRONG_PARA
-             USIMM_API_NOTAVAILABLE
-             USIMM_API_NOCARD
-             USIMM_API_ALLOCMEM_FAILED
-             USIMM_API_SENDMSG_FAILED
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年3月3日
-   作    者   : c00318887
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_SendUsimFileReq(
     USIMM_CARDAPP_ENUM_UINT32           enAppType,
     VOS_UINT16                          usEfId
@@ -723,23 +517,7 @@ VOS_UINT32 TAF_MMA_SendUsimFileReq(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadCphsFileCnf
- 功能描述  : CPHS SIM上报6f14 OperNameStr文件处理函数
- 输入参数  : USIMM_READFILE_CNF_STRU *pUsimTafMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年01月09日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2015年2月26日
-    作    者   : b00269685
-    修改内容   : at&t修改
-*****************************************************************************/
 VOS_VOID   TAF_MMA_ReadCphsFileCnf(
     USIMM_READFILE_CNF_STRU            *pUsimTafMsg
 )
@@ -809,31 +587,7 @@ VOS_VOID   TAF_MMA_ReadCphsFileCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_USIMRefreshFileProc
- 功能描述  : MMA接收卡文件更新指示消息后读对应文件成功后的处理
- 输入参数  : VOS_UINT16 usEfId
-             VOS_UINT16 usEfLen
-             VOS_UINT8 *pucEf
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年09月18日
-    作    者   : l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2011年05月7日
-    作    者   : z00161729
-    修改内容   : V7R1C50 GUL BG搜网修改
-  3.日    期   : 2012年6月13日
-    作    者   : l60609
-    修改内容   : AT&T&DCM:增加6F15文件的处理
-  4.日    期   : 2012年12月26日
-    作    者   : 张鹏 /z00214637
-    修改内容   : PS_USIM_GET_FILE_RLT_SUCCESS替换为VOS_OK
-*****************************************************************************/
 VOS_VOID TAF_MMA_USIMRefreshFileProc(
     VOS_UINT16                          usEfId,
     VOS_UINT16                          usEfLen,
@@ -929,38 +683,7 @@ VOS_VOID TAF_MMA_USIMRefreshFileProc(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_UsimRefreshIndFileListChangedMsgProc
- 功能描述  : MMA接收卡文件refresh消息指示特定文件发生更新的处理
- 输入参数  : PS_USIM_REFRESH_IND_STRU* pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年12月17日
-    作    者   : x00115505
-    修改内容   : 新生成函数
-  2.日    期   : 2012年6月29日
-    作    者   : l60609
-    修改内容   : AT&T&DCM：增加ATT文件的处理
-  3.日    期   : 2012年12月11日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-  4.日    期   : 2013年6月4日
-    作    者   : z00161729
-    修改内容   : SVLTE 和usim接口调整修改
-  6.日    期   : 2014年04月9日
-    作    者   : s00261364
-    修改内容   : V3R360_eCall项目:增加ust/est/fdn/sdn文件刷新指示处理
-  7.日    期   : 2015年02月06日
-    作    者   : h00313353
-    修改内容   : USIMM卡接口调
-  8.日    期   : 2015年2月15日
-    作    者   : c00318887
-    修改内容   : AT&T phaseII 增加AT^FILECHANGE上报和0x6FCD,0x6FC5,0x6FC6文件更新的处理
-*****************************************************************************/
 VOS_VOID TAF_MMA_UsimRefreshIndFileListChangedMsgProc(USIMM_STKREFRESH_IND_STRU *pUsimTafMsg)
 {
     VOS_UINT16                          usEfId;
@@ -1107,25 +830,7 @@ VOS_VOID TAF_MMA_UsimRefreshIndFileListChangedMsgProc(USIMM_STKREFRESH_IND_STRU 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadIccIdFileCnf
- 功能描述  : 收到USIM回复上报消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2006年8月23日
-    作    者   : liuyang id:48197
-    修改内容   : 新生成函数
-  2.日    期   : 2007年9月26日
-    作    者   : luojian id:107747
-    修改内容   : 问题单号：A32D12931,查询API接口增加错误码上报
-  3.日    期   : 2015年2月27日
-    作    者   : z00161729
-    修改内容   : AT&T 支持EONS特性修改
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReadIccIdFileCnf(VOS_VOID)
 {
     MMA_GET_ICC_ID_ST                  *pstIccId = VOS_NULL_PTR;
@@ -1146,22 +851,7 @@ VOS_VOID TAF_MMA_ReadIccIdFileCnf(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadSpdiFileCnf
- 功能描述  : MMA读取SPDI文件回复处理
- 输入参数  : pUsimTafMsg  - 消息内容
-             enUpdateType - usim app类型
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月3日
-    作    者   : c00318887
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReadSpdiFileCnf(
     USIMM_READFILE_CNF_STRU            *pUsimTafMsg,
     USIMM_DEF_FILEID_ENUM_UINT32        enFileID
@@ -1232,22 +922,7 @@ VOS_VOID TAF_MMA_ReadSpdiFileCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadPnnFileCnf
- 功能描述  : MMA读取Pnn文件回复处理
- 输入参数  : pUsimTafMsg  - 消息内容
-             enUpdateType - usim app类型
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月15日
-    作    者   : b00269685
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReadPnnFileCnf(
     USIMM_READFILE_CNF_STRU            *pUsimTafMsg,
     USIMM_DEF_FILEID_ENUM_UINT32        enFileID
@@ -1370,22 +1045,7 @@ VOS_VOID TAF_MMA_ReadPnnFileCnf(
 }
 
 /*lint -e661 -e662*/
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadOplFileCnf
- 功能描述  : MMA读取Pnn文件回复处理
- 输入参数  : pUsimTafMsg  - 消息内容
-             enUpdateType - usim app类型
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月15日
-    作    者   : b00269685
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReadOplFileCnf(
     USIMM_READFILE_CNF_STRU            *pUsimTafMsg,
     USIMM_DEF_FILEID_ENUM_UINT32        enFileID
@@ -1442,38 +1102,7 @@ VOS_VOID TAF_MMA_ReadOplFileCnf(
 }
 /*lint +e661 +e662*/
 
-/*****************************************************************************
- 函 数 名  : MMA_ReadSPNFileCnf
- 功能描述  : USIM上报SPN文件处理函数
- 输入参数  : TAF_PH_USIM_SPN_CNF_STRU *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2005年9月15日
-    作    者   : liuyang
-    修改内容   : 新生成函数
-  2.日    期   : 2008年11月20日
-    作    者   : ouyang fei 00132663
-    修改内容   : 问题单AT2D06705，增加 AT^SPN 命令支持
-  3.日    期   : 2008年12月29日
-    作    者   : ouyang fei 00132663
-    修改内容   : 问题单AT2D07646，AT^SPN命令disp_rplmn参数上报b1b2两位。
-  4.日    期   : 2009年8月23日
-    作    者   : l0013025
-    修改内容   : 问题单AT2D13562，AT^SPN命令disp_rplmn参数修改为上报b1位,与标杆保持一致。
-  5.日    期   : 2009年10月12日
-    作    者   : l0013025
-    修改内容   : 问题单AT2D15082，AT^SPN命令disp_rplmn参数修改为上报b1位,但DispCode保存两位，供Cops显示判断用
-  6.日    期   : 2010年02月02日
-    作    者   : l00130025
-    修改内容   : 问题单号: AT2D16519,SPN以0x00截断错误，UCCII编码需要完整显示
-  7.日    期   : 2015年2月27日
-    作    者   : b00269685
-    修改内容   : at&t修改
-*****************************************************************************/
 VOS_VOID MMA_ReadSpnFileCnf(
     TAF_PH_USIM_SPN_CNF_STRU           *pMsg,
     USIMM_DEF_FILEID_ENUM_UINT32        enFileID
@@ -1526,25 +1155,7 @@ VOS_VOID MMA_ReadSpnFileCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvCustomerServiceProfileFile
- 功能描述  : 处理6F15文件
- 输入参数  : VOS_UINT32                          ulRslt,
-             VOS_UINT16                          usEfLen,
-             VOS_UINT8                          *pucEf
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月13日
-    作    者   : l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月26日
-    作    者   : 张鹏 /z00214637
-    修改内容   : PS_USIM_GET_FILE_RLT_SUCCESS替换为VOS_OK
-*****************************************************************************/
 VOS_VOID TAF_MMA_RcvCustomerServiceProfileFile(
     VOS_UINT32                          ulRslt,
     VOS_UINT16                          usEfLen,
@@ -1570,20 +1181,7 @@ VOS_VOID TAF_MMA_RcvCustomerServiceProfileFile(
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReadRuimidFile
- 功能描述  : 开机读取uimid文件相关信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月14日
-    作    者   : y00322978
-    修改内容   :
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReadRuimidFile( VOS_VOID )
 {
     TAF_SDC_SIM_TYPE_ENUM_UINT8         enCsimType;
@@ -1615,21 +1213,7 @@ VOS_VOID TAF_MMA_ReadRuimidFile( VOS_VOID )
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvUsimmReadRuimidFile
- 功能描述  : 读取ruimid卡文件
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月14日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_RcvUsimmReadRuimidFile(
     USIMM_READFILE_CNF_STRU            *pstUsimmReadCnfMsg
 )

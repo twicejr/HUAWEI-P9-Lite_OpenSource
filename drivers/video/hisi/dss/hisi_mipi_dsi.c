@@ -1022,8 +1022,10 @@ static void mipi_init(struct hisi_fb_data_type *hisifd, char __iomem *mipi_dsi_b
 	// video mode: low power mode
 	set_reg(mipi_dsi_base + MIPIDSI_VID_MODE_CFG_OFFSET, 0x3f, 6, 8);
 	/* set_reg(mipi_dsi_base + MIPIDSI_VID_MODE_CFG_OFFSET, 0x0, 1, 14); */
-	// video mode: send read cmd by lp mode
-	//set_reg(mipi_dsi_base + MIPIDSI_VID_MODE_CFG_OFFSET, 0x1, 1, 15);
+	if (is_mipi_video_panel(hisifd)) {
+		// video mode: send read cmd by lp mode
+		set_reg(mipi_dsi_base + MIPIDSI_VID_MODE_CFG_OFFSET, 0x1, 1, 15);
+	}
 	// burst mode
 	set_reg(mipi_dsi_base + MIPIDSI_VID_MODE_CFG_OFFSET, pinfo->mipi.burst_mode, 2, 0);
 	set_reg(mipi_dsi_base + MIPIDSI_VID_PKT_SIZE_OFFSET, rect.w, 14, 0);
@@ -2339,6 +2341,96 @@ static ssize_t mipi_dsi_lcd_bist_check(struct platform_device *pdev,
 	return ret;
 }
 
+static ssize_t mipi_dsi_lcd_amoled_vr_mode_show(struct platform_device *pdev, char *buf)
+{
+	ssize_t ret = 0;
+	struct hisi_fb_data_type *hisifd = NULL;
+
+	if (NULL == pdev) {
+		HISI_FB_ERR("NULL Pointer");
+		return -EINVAL;
+	}
+	hisifd = platform_get_drvdata(pdev);
+	if (NULL == hisifd) {
+		HISI_FB_ERR("NULL Pointer");
+		return -EINVAL;
+	}
+
+	HISI_FB_DEBUG("fb%d, +.\n", hisifd->index);
+	ret = panel_next_lcd_amoled_vr_mode_show(pdev, buf);
+	HISI_FB_DEBUG("fb%d, -.\n", hisifd->index);
+
+	return ret;
+}
+
+static ssize_t mipi_dsi_lcd_amoled_vr_mode_store(struct platform_device *pdev,
+	const char *buf, size_t count)
+{
+	ssize_t ret = 0;
+	struct hisi_fb_data_type *hisifd = NULL;
+
+	if (NULL == pdev) {
+		HISI_FB_ERR("NULL Pointer");
+		return -EINVAL;
+	}
+	hisifd = platform_get_drvdata(pdev);
+	if (NULL == hisifd) {
+		HISI_FB_ERR("NULL Pointer");
+		return -EINVAL;
+	}
+
+	HISI_FB_DEBUG("fb%d, +.\n", hisifd->index);
+	ret = panel_next_lcd_amoled_vr_mode_store(pdev, buf, count);
+	HISI_FB_DEBUG("fb%d, -.\n", hisifd->index);
+
+	return ret;
+}
+static ssize_t mipi_dsi_lcd_acl_ctrl_show(struct platform_device *pdev, char *buf)
+{
+	ssize_t ret = 0;
+	struct hisi_fb_data_type *hisifd = NULL;
+
+	if (NULL == pdev) {
+		HISI_FB_ERR("NULL Pointer");
+		return 0;
+	}
+	hisifd = platform_get_drvdata(pdev);
+	if (NULL == hisifd) {
+		HISI_FB_ERR("NULL Pointer");
+		return 0;
+	}
+
+	HISI_FB_DEBUG("fb%d, +.\n", hisifd->index);
+	ret = panel_next_lcd_acl_ctrl_show(pdev, buf);
+	HISI_FB_DEBUG("fb%d, -.\n", hisifd->index);
+
+	return ret;
+}
+
+static ssize_t mipi_dsi_lcd_acl_ctrl_store(struct platform_device *pdev,
+	const char *buf, size_t count)
+{
+	ssize_t ret = 0;
+	struct hisi_fb_data_type *hisifd = NULL;
+
+	if (NULL == pdev) {
+		HISI_FB_ERR("NULL Pointer");
+		return 0;
+	}
+	hisifd = platform_get_drvdata(pdev);
+	if (NULL == hisifd) {
+		HISI_FB_ERR("NULL Pointer");
+		return 0;
+	}
+
+	HISI_FB_DEBUG("fb%d, +.\n", hisifd->index);
+	ret = panel_next_lcd_acl_ctrl_store(pdev, buf, count);
+	HISI_FB_DEBUG("fb%d, -.\n", hisifd->index);
+
+	return ret;
+}
+
+
 static ssize_t mipi_dsi_lcd_sleep_ctrl_show(struct platform_device *pdev, char *buf)
 {
 	ssize_t ret = 0;
@@ -2492,6 +2584,51 @@ static ssize_t mipi_dsi_amoled_pcd_errflag_check(struct platform_device *pdev,
 {
 	ssize_t ret = 0;
 	ret = panel_next_amoled_pcd_errflag_check(pdev, buf);
+	return ret;
+}
+
+static ssize_t mipi_dsi_lcd_ic_color_enhancement_mode_store(struct platform_device *pdev,
+	const char *buf, size_t count)
+{
+	ssize_t ret = 0;
+	struct hisi_fb_data_type *hisifd = NULL;
+
+	if (NULL == pdev) {
+		HISI_FB_ERR("NULL Pointer");
+		return 0;
+	}
+	hisifd = platform_get_drvdata(pdev);
+	if (NULL == hisifd) {
+		HISI_FB_ERR("NULL Pointer");
+		return 0;
+	}
+
+	HISI_FB_DEBUG("fb%d, +.\n", hisifd->index);
+	ret = panel_next_lcd_ic_color_enhancement_mode_store(pdev, buf, count);
+	HISI_FB_DEBUG("fb%d, -.\n", hisifd->index);
+
+	return ret;
+}
+
+static ssize_t mipi_dsi_lcd_ic_color_enhancement_mode_show(struct platform_device *pdev, char *buf)
+{
+	ssize_t ret = 0;
+	struct hisi_fb_data_type *hisifd = NULL;
+
+	if (NULL == pdev) {
+		HISI_FB_ERR("NULL Pointer");
+		return 0;
+	}
+	hisifd = platform_get_drvdata(pdev);
+	if (NULL == hisifd) {
+		HISI_FB_ERR("NULL Pointer");
+		return 0;
+	}
+
+	HISI_FB_DEBUG("fb%d, +.\n", hisifd->index);
+	ret = panel_next_lcd_ic_color_enhancement_mode_show(pdev, buf);
+	HISI_FB_DEBUG("fb%d, -.\n", hisifd->index);
+
 	return ret;
 }
 
@@ -3139,6 +3276,10 @@ static int mipi_dsi_probe(struct platform_device *pdev)
 	pdata->lcd_bist_check = mipi_dsi_lcd_bist_check;
 	pdata->lcd_sleep_ctrl_show = mipi_dsi_lcd_sleep_ctrl_show;
 	pdata->lcd_sleep_ctrl_store = mipi_dsi_lcd_sleep_ctrl_store;
+	pdata->lcd_acl_ctrl_show = mipi_dsi_lcd_acl_ctrl_show;
+	pdata->lcd_acl_ctrl_store = mipi_dsi_lcd_acl_ctrl_store;
+	pdata->lcd_amoled_vr_mode_show = mipi_dsi_lcd_amoled_vr_mode_show;
+	pdata->lcd_amoled_vr_mode_store = mipi_dsi_lcd_amoled_vr_mode_store;
 	pdata->lcd_test_config_show = mipi_dsi_lcd_test_config_show;
 	pdata->lcd_test_config_store = mipi_dsi_lcd_test_config_store;
 	pdata->lcd_support_mode_show = mipi_dsi_lcd_support_mode_show;
@@ -3147,6 +3288,8 @@ static int mipi_dsi_probe(struct platform_device *pdev)
 	pdata->lcd_lp2hs_mipi_check_show = mipi_dsi_lcd_lp2hs_mipi_check_show;
 	pdata->lcd_lp2hs_mipi_check_store = mipi_dsi_lcd_lp2hs_mipi_check_store;
 	pdata->amoled_pcd_errflag_check = mipi_dsi_amoled_pcd_errflag_check;
+	pdata->lcd_ic_color_enhancement_mode_show = mipi_dsi_lcd_ic_color_enhancement_mode_show;
+	pdata->lcd_ic_color_enhancement_mode_store = mipi_dsi_lcd_ic_color_enhancement_mode_store;
 	pdata->sharpness2d_table_store = mipi_dsi_sharpness2d_table_store;
 	pdata->sharpness2d_table_show = mipi_dsi_sharpness2d_table_show;
 	pdata->panel_info_show = mipi_dsi_panel_info_show;

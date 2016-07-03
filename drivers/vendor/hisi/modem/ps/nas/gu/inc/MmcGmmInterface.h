@@ -1,25 +1,4 @@
-/*******************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : MmcGmmInterface.h
-  Description : MMC与GMM接口头文件
-  History     :
-      1. 张志勇  2003.12.05  文件头作成
-      2. 日    期  : 2006年12月4日
-         作    者  : luojian id:60022475
-         修改内容  : 增加 #pragma pack(4)，问题单号:A32D07779
-      3.日    期   : 2008年08月08日
-        作    者   : luojian id:00107747
-        修改内容   : 根据问题单AT2D04880/AT2D05000,等效PLMN列表清除排查
-      4.日    期   : 2009年01月15日
-        作    者   : l00130025
-        修改内容   : 问题单号:AT2D07018,LAU或RAU过程中搜网和SYSCFG设置,发起底层释放链接的操作
-      5.日    期   : 2012年01月11日
-        作    者   : w00176964
-        修改内容   : asn 解析统一调整接口头文件
-      6.日    期   : 2012年02月02日
-        作    者   : w00176964
-        修改内容   : V7R1 PhaseIV 合入
-*******************************************************************************/
+
 #ifndef _MMC_GMM_INTERFACE_H_
 #define _MMC_GMM_INTERFACE_H_
 
@@ -100,13 +79,7 @@
 /*****************************************************************************
   3 枚举定义
 *****************************************************************************/
-/*****************************************************************************
- 枚举名    : MMC_GMM_MSG_TYPE_ENUM
- 结构说明  : MMC和GMM之间的原语ulMsgName
- 1.日    期   : 2012年1月11日
-   作    者   : w00176964
-   修改内容   : ASN解析统一调整
-*****************************************************************************/
+
 enum MMC_GMM_MSG_TYPE_ENUM
 {
     /* 消息名称 */                      /*消息ID*/  /* 备注 */
@@ -163,9 +136,7 @@ enum MMC_GMM_MSG_TYPE_ENUM
     MMCGMM_SUSPEND_RSP                          = 19,   /* _H2ASN_MsgChoice MMCGMM_SUSPEND_RSP_ST */
     MMCGMM_RESUME_RSP                           = 21,   /* _H2ASN_MsgChoice MMCGMM_RESUME_RSP_ST */
     MMCGMM_REGISTER_STATE_CHANGE_IND            = 23,   /* _H2ASN_MsgChoice MMCGMM_REGISTER_STATE_CHANGE_IND_ST */
-    /* Deleted by s00261364 for V3R360_eCall项目, 2014-4-15, begin */
 
-    /* Deleted by s00261364 for V3R360_eCall项目, 2014-4-15, end */
     MMCGMM_TBF_REL_IND                          = 27,   /* _H2ASN_MsgChoice MMCGMM_TBF_REL_IND_STRU */
 
     MMCGMM_TIN_TYPE_IND                         = 29,   /* _H2ASN_MsgChoice MMCGMM_TIN_TYPE_IND_STRU */
@@ -177,9 +148,7 @@ enum MMC_GMM_MSG_TYPE_ENUM
     GMMMMC_CIPHER_INFO_IND                      = 39,   /* _H2ASN_MsgChoice MMC_GMM_CIPHER_INFO_IND_STRU */
     MMCGMM_SIM_AUTH_FAIL_IND                    = 41,  /* _H2ASN_MsgChoice MMCGMM_SIM_AUTH_FAIL_IND_STRU */
 
-    /* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-9, begin */
     GMMMMC_NETWORK_CAPABILITY_INFO_IND          = 43,   /* _H2ASN_MsgChoice GMMMMC_NETWORK_CAPABILITY_INFO_IND */
-    /* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-9, end */
 
     /* GMM发给MMC的消息ID用奇数 */
 
@@ -197,19 +166,7 @@ enum NAS_MMC_GMM_NT_DETACH_ENUM
 };
 typedef VOS_UINT32 NAS_MMC_GMM_NT_DETACH_ENUM_U32;
 
-/*****************************************************************************
- 枚举名    : GMM_MMC_ACTION_TYPE_ENUM
- 结构说明  : GMMMMC_REG_RESULT_IND消息中GMM操作类型
- 1.日    期   : 2011年7月11日
-   作    者   : w00166186
-   修改内容   : 新建
- 2.日    期   : 2012年3月1日
-   作    者   : w00176964
-   修改内容   : DTS2012022407450:增加联合RAU/ATTACH的类型通知给MMC
- 3.日    期   : 2013年3月30日
-   作    者   : w00176964
-   修改内容   : DTS2013030802929,周期性RAU需要通知LMM
-*****************************************************************************/
+
 enum GMM_MMC_ACTION_TYPE_ENUM
 {
     GMM_MMC_ACTION_RAU                  = 0,
@@ -221,13 +178,7 @@ enum GMM_MMC_ACTION_TYPE_ENUM
 };
 typedef VOS_UINT32 GMM_MMC_ACTION_TYPE_ENUM_U32;
 
-/*****************************************************************************
- 枚举名    : GMM_MMC_ACTION_RESULT_ENUM
- 结构说明  : GMMMMC_REG_RESULT_IND_STRU消息中操作的结果
- 1.日    期   : 2011年7月11日
-   作    者   : w00166186
-   修改内容   : 新建
-*****************************************************************************/
+
 enum GMM_MMC_ACTION_RESULT_ENUM
 {
     GMM_MMC_ACTION_RESULT_SUCCESS    = 0,    /*ACTION成功*/
@@ -236,13 +187,7 @@ enum GMM_MMC_ACTION_RESULT_ENUM
 };
 typedef VOS_UINT32 GMM_MMC_ACTION_RESULT_ENUM_U32;
 
-/*****************************************************************************
- 枚举名    : GMM_MMC_REG_DOMAIN_ENUM_UINT32
- 枚举说明  : 注册的域信息
- 1.日    期   : 2012年3月30日
-   作    者   : l00130025
-   修改内容   : 问题单
-*****************************************************************************/
+
 enum GMM_MMC_REG_DOMAIN_ENUM
 {
     GMM_MMC_REG_DOMAIN_PS    = 0x00,                                            /* 注册结果域为PS域 */
@@ -251,13 +196,7 @@ enum GMM_MMC_REG_DOMAIN_ENUM
 };
 typedef VOS_UINT32 GMM_MMC_REG_DOMAIN_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : GMM_MMC_ACTION_PROC_ENUM
- 结构说明  : GMMMMC_REG_RESULT_IND_STRU消息中操作过程类型
- 1.日    期   : 2011年7月11日
-   作    者   : w00166186
-   修改内容   : 新建
-*****************************************************************************/
+
 enum GMM_MMC_ACTION_PROC_ENUM
 {
     GMM_MMC_ACTION_PROC_TRUE     = 0,    /*真正发起流程*/
@@ -266,13 +205,7 @@ enum GMM_MMC_ACTION_PROC_ENUM
 };
 typedef VOS_UINT32 GMM_MMC_ACTION_PROC_ENUM_U32;
 
-/*****************************************************************************
- 枚举名: MMC_GMM_ATTACH_TYPE_ENUM
- 枚举说明:ATTACH类型
- 1.日    期   : 2011年7月01日
-   作    者   : w00166186
-   修改内容   : 新建
-*****************************************************************************/
+
 enum MMC_GMM_DETACH_TYPE_ENUM
 {
     MMC_GMM_PS_DETACH        = 1,
@@ -282,13 +215,7 @@ enum MMC_GMM_DETACH_TYPE_ENUM
 };
 typedef VOS_UINT32 MMC_GMM_DETACH_TYPE_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : MMC_GMM_DETACH_REASON_ENUM
- 结构说明  : detach原因
- 1.日    期   : 2015年4月11日
-   作    者   : y00245242
-   修改内容   : iteration 13开发
-*****************************************************************************/
+
 enum MMC_GMM_DETACH_REASON_ENUM
 {
     MMC_GMM_DETACH_CAUSE_USER_DETACH          = 0,/* 用户触发的detach操作 */
@@ -299,13 +226,7 @@ enum MMC_GMM_DETACH_REASON_ENUM
 };
 typedef VOS_UINT32 MMC_GMM_DETACH_REASON_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名: MMC_GMM_ATTACH_TYPE_ENUM
- 枚举说明:
- 1.日    期   : 2011年7月01日
-   作    者   : w00166186
-   修改内容   : 新建
-*****************************************************************************/
+
 enum MMC_GMM_ATTACH_TYPE_ENUM
 {
     MMC_GMM_ATTACH_TYPE_NULL          = 0,
@@ -324,14 +245,7 @@ enum MMCGMM_SGSN_REL_VER_ENUM
 };
 typedef VOS_UINT8   MMCGMM_SGSN_REL_VER_ENUM_U8;
 
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, begin */
-/*****************************************************************************
- 枚举名: NAS_MMC_GMM_GPRS_SERVICE_TYPE_ENUM
- 枚举说明: GMM指示给MMC的服务类型
- 1.日    期   : 2012年8月04日
-   作    者   : s46746
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MMC_GMM_GPRS_SERVICE_TYPE_ENUM
 {
     NAS_MMC_GMM_GPRS_SERVICE_ATTACH               = 0,
@@ -341,20 +255,10 @@ enum NAS_MMC_GMM_GPRS_SERVICE_TYPE_ENUM
     NAS_MMC_GMM_GPRS_SERVICE_BUTT
 };
 typedef VOS_UINT32   NAS_MMC_GMM_GPRS_SERVICE_TYPE_ENUM_UINT32;
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, end */
 
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-9, begin */
-/* Deleted by w00176964 for VoLTE_PhaseIII 项目, 2013-12-24, begin */
 
-/* Deleted by w00176964 for VoLTE_PhaseIII 项目, 2013-12-24, end */
 
-/*****************************************************************************
- 枚举名: GMM_MMC_NW_EMC_BS_CAP_ENUM
- 枚举说明: 网络的EMC BS支持能力
- 1.日    期   : 2013年7月9日
-   作    者   : y00245242
-   修改内容   : 新建
-*****************************************************************************/
+
 enum GMM_MMC_NW_EMC_BS_CAP_ENUM
 {
     GMM_MMC_NW_EMC_BS_NOT_SUPPORTED       = 0,
@@ -364,13 +268,7 @@ enum GMM_MMC_NW_EMC_BS_CAP_ENUM
 };
 typedef VOS_UINT8 GMM_MMC_NW_EMC_BS_CAP_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名: GMM_MMC_LTE_CS_CAPBILITY_ENUM
- 枚举说明: LTE CS能力
- 1.日    期   : 2013年7月9日
-   作    者   : y00245242
-   修改内容   : 新建
-*****************************************************************************/
+
 enum GMM_MMC_LTE_CS_CAPBILITY_ENUM
 {
     GMM_MMC_LTE_CS_CAPBILITY_NO_ADDITION_INFO  = 0,
@@ -381,7 +279,6 @@ enum GMM_MMC_LTE_CS_CAPBILITY_ENUM
     GMM_MMC_LTE_CS_CAPBILITY_BUTT
 };
 typedef VOS_UINT8 GMM_MMC_LTE_CS_CAPBILITY_ENUM_UINT8;
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-9, end */
 
 /*****************************************************************************
   4 全局变量声明
@@ -448,13 +345,7 @@ typedef struct
 
 /* MMCGMM_SUSPEND_IND的消息结构 */
 /* 参数宏值请参见RRMM_SUSPEND_IND_ST中的说明 */
-/*****************************************************************************
- 结构名    : MMCGMM_SUSPEND_IND_ST
- 结构说明  : MMCGMM_SUSPEND_IND的数据结构
- 1.日    期: 2011年10月27日
-   作    者: w00176964
-   修改内容: V7R1 PhaseIII阶段调整:新增挂起目的方
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;                              /* 消息头    */ /*_H2ASN_Skip*/
@@ -534,26 +425,7 @@ typedef struct
 }MMCGMM_NETWORK_DETACH_IND_STRU;
 
 
-/*******************************************************************************
- 结构名    : GMMMMC_PS_REG_RESULT_IND_STRU
- 协议表格  :
- ASN.1描述 :
- 结构说明  : GMM向MMC发送Attach/RAU结果消息的结构体
- 1.日    期   : 2011年7月11日
-   作    者   : w00166186
-   修改内容   : 新建
- 2.日    期   : 2011年10月8日
-   作    者   : s46746
-   修改内容   : V7R1 phase II,将EPLMN、RPLMN移到MM/GMM维护
 
- 3.日    期   : 2012年2月9日
-   作    者   : w00167002
-   修改内容   : 删除真假流程的判断字段
-
- 4.日    期   : 2012年03月30日
-   作    者   : l00130025
-   修改内容   : DTS2012032307791,发给LMM注册结果,CombineReg时需要区分结果域
- *******************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                           MsgHeader;                        /* 消息头    */ /*_H2ASN_Skip*/
@@ -572,15 +444,7 @@ typedef struct
     VOS_UINT32                                ulServiceStatus;                  /* 服务状态                                 */
 }GMMMMC_PS_REG_RESULT_IND_STRU;
 
-/*******************************************************************************
- 结构名    : GMMMMC_SERVICE_REQUEST_RESULT_IND_STRU
- 协议表格  :
- ASN.1描述 :
- 结构说明  : GMM向MMC发送SR结果消息的结构体
- 1.日    期   : 2011年7月11日
-   作    者   : w00166186
-   修改内容   : 新建
-*******************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                           MsgHeader;                        /* 消息头    */ /*_H2ASN_Skip*/
@@ -590,16 +454,7 @@ typedef struct
 }GMMMMC_SERVICE_REQUEST_RESULT_IND_STRU;
 
 
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-9, begin */
-/*******************************************************************************
- 结构名    : GMMMMC_NETWORK_CAPABILITY_INFO_IND_STRU
- 协议表格  :
- ASN.1描述 :
- 结构说明  : GMM向MMC发送网络能力信息提示
- 1.日    期   : 2013年7月9日
-   作    者   : y00245242
-   修改内容   : 新建
-*******************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                        MsgHeader;          /* _H2ASN_Skip */
@@ -608,18 +463,8 @@ typedef struct
     GMM_MMC_LTE_CS_CAPBILITY_ENUM_UINT8    enLteCsCap;
     VOS_UINT8                              aucReserve[1];
 }GMMMMC_NETWORK_CAPABILITY_INFO_IND_STRU;
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-9, end */
 
-/*****************************************************************************
- 结构名    : MMCGMM_DETACH_REQ_STRU
- 结构说明  : MMCGMM_DETACH_REQ消息的数据结构
- 1.日    期   : 2011年7月01日
-   作    者   : w00166186
-   修改内容   : 增加Opid
- 2.日    期   : 2015年4月11日
-   作    者   : y00245242
-   修改内容   : iteration 13开发
-*****************************************************************************/
+
 typedef struct
 {
 
@@ -630,16 +475,7 @@ typedef struct
     MMC_GMM_DETACH_REASON_ENUM_UINT32   enDetachReason;
 } MMCGMM_DETACH_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : MMCGMM_DETACH_CNF_STRU
- 结构说明  : MMCGMM_DETACH_CNF消息的数据结构
- 1.日    期   : 2011年7月01日
-   作    者   : w00166186
-   修改内容   : 增加Opid
- 2.日    期   : 2011年12月01日
-   作    者   : w00176964
-   修改内容   : phaseIV调整:增加detach类型IE项，disable场景需要判断
-*****************************************************************************/
+
 typedef struct
 {
 
@@ -758,13 +594,7 @@ typedef struct
     VOS_UINT32                   ulSignalingSts;                                     /* PS域信令连接状态                          */
 } MMCGMM_SIGNALING_STATUS_IND_STRU;
 
-/*****************************************************************************
- 结构名    : MMCGMM_ATTACH_REQ_STRU
- 结构说明  : MMCGMM_ATTACH_REQ消息的数据结构
- 1.日    期   : 2011年7月01日
-   作    者   : w00166186
-   修改内容   : 增加Opid
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;                              /* 消息头                                   */ /*_H2ASN_Skip*/
@@ -772,13 +602,7 @@ typedef struct
     MMC_GMM_ATTACH_TYPE_ENUM_UINT32     enAttachType;                           /* 注册请求类型                                */
 } MMCGMM_ATTACH_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : MMCGMM_ATTACH_CNF_STRU
- 结构说明  : MMCGMM_ATTACH_CNF消息的数据结构
- 1.日    期   : 2011年7月01日
-   作    者   : w00166186
-   修改内容   :增加Opid
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;                            /* 消息头                                   */ /*_H2ASN_Skip*/
@@ -786,13 +610,7 @@ typedef struct
     VOS_UINT32                          ulServiceStatus ;                       /* PS域服务状态 */
 }MMCGMM_ATTACH_CNF_STRU;
 
- /*****************************************************************************
- 结构名    : MMCGMM_W_AC_INFO_CHANGE_IND_STRU
- 结构说明  : MMCGMM_W_AC_INFO_CHANGE_IND消息的数据结构
- 1.日    期   : 2012年2月15日
-   作    者   : w00166186
-   修改内容   : 新增结构
-*****************************************************************************/
+ 
 typedef struct
 {
     MSG_HEADER_STRU                         MsgHeader;                              /* 消息头                                   */ /*_H2ASN_Skip*/
@@ -800,13 +618,7 @@ typedef struct
     NAS_MML_RESTRICTION_CHANGE_ENUM_UINT8   enPsRestrictRegisterChange;         /* PS注册受限改变情况 */
 }MMCGMM_W_AC_INFO_CHANGE_IND_STRU;
 
-/*****************************************************************************
- 结构名    : MMCGMM_MODE_CHANGE_REQ_STRU
- 结构说明  : MMCGMM_MODE_CHANGE_REQ_STRU消息的数据结构
- 1.日    期   : 2011年7月01日
-   作    者   : zhoujun \40661
-   修改内容   : 手机模式修改
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;                                          /* 消息头                                    */ /*_H2ASN_Skip*/
@@ -815,13 +627,7 @@ typedef struct
 } MMCGMM_MODE_CHANGE_REQ_STRU;
 
 
-/*****************************************************************************
- 结构名    : MMCGMM_VOICE_DOMAIN_CHANGE_NOTIFY_STRU
- 结构说明  : MMCGMM_VOICE_DOMAIN_CHANGE_NOTIFY消息的数据结构
-  2.日    期   : 2015年2月2日
-    作    者   : s00217060
-    修改内容   : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                             MsgHeader;                      /* 消息头                                    */ /*_H2ASN_Skip*/
@@ -853,9 +659,7 @@ typedef struct
 
     MMCGMM_SGSN_REL_VER_ENUM_U8    ucSgsnRelease;       /* [0-1] 0 SGSN is Release '98 or older
                                                               1 SGSN is Release '99 onwards */
-    /* Modified by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, begin */
     RRC_NAS_RESTRICTION_UN              unAcInfo;
-    /* Modified by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, end */
     VOS_UINT32                      ulUserSrchFlg;
 
 
@@ -878,22 +682,11 @@ typedef struct
 typedef struct
 {
     MSG_HEADER_STRU         MsgHeader;                                          /* 消息头                                   */ /*_H2ASN_Skip*/
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, begin */
 	NAS_MMC_GMM_GPRS_SERVICE_TYPE_ENUM_UINT32     enGprsServiceType;
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, end */
 }MMCGMM_GPRS_SERVICE_IND_STRU;
 
 
-/*****************************************************************************
- 结构名称: MMCGMM_TIN_TYPE_IND_STRU
- 协议表格:
- ASN.1 描述:
- 结构说明:
 
- 1.日    期   : 2011年10月28日
-   作    者   : w00167002
-   修改内容   : 字节对齐
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;                              /* 消息头    */ /*_H2ASN_Skip*/
@@ -902,13 +695,7 @@ typedef struct
     VOS_UINT8                           aucReservel[3];
 } MMCGMM_TIN_TYPE_IND_STRU;
 
-/*****************************************************************************
- 结构名    : MMCGMM_SIM_AUTH_FAIL_IND_STRU
- 结构说明  : MMCGMM_SIM_AUTH_FAIL_IND_STRU的数据结构
- 1.日    期: 2013年11月16日
-   作    者: m00217266
-   修改内容:
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                         MsgHeader;                              /* 消息头  */ /*_H2ASN_Skip*/
@@ -919,105 +706,39 @@ typedef struct
 
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 结构名    : MMCGMM_LMM_ATTACH_IND_STRU
- 结构说明  : MMCGMM_LMM_ATTACH_IND的数据结构
- 1.日    期: 2011年10月26日
-   作    者: w00176964
-   修改内容: V7R1 PhaseIII阶段调整:新增MMC通知GMM关于LMM的attach结果的数据结构
-*****************************************************************************/
+
 typedef  LMM_MMC_ATTACH_IND_STRU MMCGMM_LMM_ATTACH_IND_STRU;
 
-/*****************************************************************************
- 结构名    : MMCGMM_LMM_TAU_RESULT_IND_STRU
- 结构说明  : MMCGMM_LMM_TAU_RESULT_IND的数据结构
- 1.日    期: 2011年10月26日
-   作    者: w00176964
-   修改内容: V7R1 PhaseIII阶段调整:新增MMC通知GMM关于LMM的TAU结果的数据结构
-*****************************************************************************/
+
 typedef  LMM_MMC_TAU_RESULT_IND_STRU MMCGMM_LMM_TAU_RESULT_IND_STRU;
 
 
-/*****************************************************************************
- 结构名    : MMCGMM_LMM_MT_DETACH_IND_STRU
- 结构说明  : MMCGMM_LMM_MT_DETACH_IND的数据结构
- 1.日    期: 2011年10月26日
-   作    者: w00176964
-   修改内容: V7R1 PhaseIII阶段调整:新增MMC通知GMM关于LMM的detach结果的数据结构
-*****************************************************************************/
+
 typedef  LMM_MMC_DETACH_IND_STRU MMCGMM_LMM_MT_DETACH_IND_STRU;
 
-/*****************************************************************************
- 结构名    : MMCGMM_LMM_SERVICE_RESULT_IND_STRU
- 结构说明  : MMCGMM_LMM_SERVICE_RESULT_IND的数据结构
- 1.日    期: 2011年10月26日
-   作    者: w00176964
-   修改内容: V7R1 PhaseIII阶段调整:新增MMC通知GMM关于LMM的service结果的数据结构
-*****************************************************************************/
+
 typedef  LMM_MMC_SERVICE_RESULT_IND_STRU MMCGMM_LMM_SERVICE_RESULT_IND_STRU;
 
-/*****************************************************************************
- 结构名    : MMCGMM_LMM_MO_DETACH_IND_STRU
- 结构说明  : MMCGMM_LMM_MO_DETACH_IND的数据结构
- 1.日    期: 2011年11月28日
-   作    者: w00176964
-   修改内容: V7R1 PhaseIV阶段调整:新增MMC通知GMM关于LMM的UE detach结果的数据结构
-*****************************************************************************/
+
 typedef  LMM_MMC_DETACH_CNF_STRU MMCGMM_LMM_MO_DETACH_IND_STRU;
 
-/*****************************************************************************
- 结构名    : MMCGMM_LMM_LOCAL_DETACH_IND_STRU
- 结构说明  : MMCGMM_LMM_LOCAL_DETACH_IND_STRU的数据结构
- 1.日    期: 2011年12月6日
-   作    者: w00176964
-   修改内容: V7R1 PhaseIV阶段调整:新增MMC通知GMM关于LMM的LOCAL detach结果的数据结构
-*****************************************************************************/
+
 typedef  LMM_MMC_DETACH_IND_STRU MMCGMM_LMM_LOCAL_DETACH_IND_STRU;
 
-/*****************************************************************************
- 结构名    : MMCGMM_LMM_STATUS_IND_STRU
- 结构说明  : MMCGMM_LMM_STATUS_IND的数据结构
- 1.日    期: 2012年03月02日
-   作    者: l00130025
-   修改内容: DTS2012022102014:新增MMC通知GMM关于LMM的STATUS_IND的数据结构
-*****************************************************************************/
+
 typedef  LMM_MMC_STATUS_IND_STRU MMCGMM_LMM_STATUS_IND_STRU;
 
 
-/*****************************************************************************
- 结构名    : MMC_GMM_LTE_SYS_INFO_IND_STRU
- 结构说明  : MMC_GMM_LTE_SYS_INFO_IND的数据结构
- 1.日    期: 2012年04月26日
-   作    者: w00166186
-   修改内容: 新增结构
-*****************************************************************************/
+
 typedef  LMM_MMC_SYS_INFO_IND_STRU MMC_GMM_LTE_SYS_INFO_IND_STRU;
 
-/*****************************************************************************
- 结构名    : MMCGMM_LMM_TIMER_STATE_NOTIFY_STRU
- 结构说明  : MMCGMM_LMM_TIMER_STATE_NOTIFY_STRU的数据结构
- 1.日    期: 2012年2月27日
-   作    者: z00161729
-   修改内容: V7R1 C50 支持ISR功能调整:新增MMC通知GMM关于LMM定时器状态的数据结构
-*****************************************************************************/
+
 typedef  LMM_MMC_TIMER_STATE_NOTIFY_STRU MMCGMM_LMM_TIMER_STATE_NOTIFY_STRU;
 
-/*****************************************************************************
- 结构名    : MMC_GMM_EMERGENCY_NUM_STRU
- 结构说明  : 用于发送的MMCGMM_EMERGENCY_NUM_LIST_IND数据结构
- 1.日    期: 2014年5月21日
-   作    者: b00269685
-   修改内容: DTS2014050604659新增
-*****************************************************************************/
+
 typedef  LMM_MMC_EMERGENCY_NUM_STRU MMC_GMM_EMERGENCY_NUM_STRU;
 
-/*****************************************************************************
- 结构名    : MMCGMM_EMERGENCY_NUM_LIST_IND_STRU
- 结构说明  : MMCGMM_EMERGENCY_NUM_LIST_IND的数据结构
- 1.日    期: 2014年5月22日
-   作    者: B00269685
-   修改内容: DTS2014050604659新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                              /*_H2ASN_Skip*/

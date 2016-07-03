@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMsccCtx.h
-  版 本 号   : 初稿
-  作    者   : y00245242
-  生成日期   : 2015年1月26日
-  最近修改   :
-  功能描述   : NasMsccCtx.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年1月26日
-    作    者   : y00245242
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __NAS_MSCC_CTX_H__
 #define __NAS_MSCC_CTX_H__
@@ -142,13 +125,7 @@ extern "C" {
 /*****************************************************************************
   3 枚举定义
 *****************************************************************************/
-/*****************************************************************************
- 枚举名    : NAS_MSCC_NW_IMS_VOICE_CAP_ENUM_UINT8
- 结构说明  : IMS voice capability
- 1.日    期   : 2015年1月26日
-   作    者   : y0024524
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MSCC_NW_IMS_VOICE_CAP_ENUM
 {
     NAS_MSCC_NW_IMS_VOICE_NOT_SUPPORTED    = 0,
@@ -158,13 +135,7 @@ enum NAS_MSCC_NW_IMS_VOICE_CAP_ENUM
 };
 typedef VOS_UINT8 NAS_MSCC_NW_IMS_VOICE_CAP_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_NW_EMC_BS_CAP_ENUM_UINT8
- 结构说明  : network EMC BS capability
- 1.日    期   : 2015年1月26日
-   作    者   : y00245242
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MSCC_NW_EMC_BS_CAP_ENUM
 {
     NAS_MSCC_NW_EMC_BS_NOT_SUPPORTED       = 0,
@@ -174,13 +145,7 @@ enum NAS_MSCC_NW_EMC_BS_CAP_ENUM
 };
 typedef VOS_UINT8 NAS_MSCC_NW_EMC_BS_CAP_ENUM_UINT8;
 
-/*****************************************************************************
-枚举名    : NAS_MSCC_PERSISTENT_BEARER_STATE_ENUM_UINT8
-枚举说明  : persistent bearer是否存在状态枚举
-1.日    期   : 2015年5月12日
-  作    者   : z00161729
-  修改内容   : 24301 R11 CR升级项目修改
-*****************************************************************************/
+
 enum NAS_MSCC_PERSISTENT_BEARER_STATE_ENUM
 {
     NAS_MSCC_PERSISTENT_BEARER_STATE_NOT_EXIST = 0,
@@ -190,13 +155,7 @@ enum NAS_MSCC_PERSISTENT_BEARER_STATE_ENUM
 typedef VOS_UINT8 NAS_MSCC_PERSISTENT_BEARER_STATE_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_NW_EMC_BS_CAP_ENUM_UINT8
- 结构说明  : network EMC BS capability
- 1.日    期   : 2015年1月26日
-   作    者   : y00245242
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MSCC_LTE_CS_CAPBILITY_ENUM
 {
     NAS_MSCC_LTE_CS_CAPBILITY_NO_ADDITION_INFO  = 0,
@@ -208,13 +167,7 @@ enum NAS_MSCC_LTE_CS_CAPBILITY_ENUM
 };
 typedef VOS_UINT8 NAS_MSCC_LTE_CS_CAPBILITY_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_SYS_MODE_ENUM_UINT8
- 结构说明  : 驻留网络的系统模式枚举
- 1.日    期   : 2015年1月26日
-   作    者   : y00245242
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MSCC_SYS_MODE_ENUM
 {
     NAS_MSCC_SYS_MODE_GSM,
@@ -226,13 +179,7 @@ enum NAS_MSCC_SYS_MODE_ENUM
 typedef VOS_UINT8  NAS_MSCC_SYS_MODE_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_SYS_SUBMODE_ENUM_UINT8
- 结构说明  : 驻留网络的系统子模式枚举
- 1.日    期   : 2015年1月26日
-   作    者   : y00245242
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MSCC_SYS_SUBMODE_ENUM
 {
     NAS_MSCC_SYS_SUBMODE_NONE                = 0,                                /* 无服务 */
@@ -254,13 +201,7 @@ enum NAS_MSCC_SYS_SUBMODE_ENUM
 };
 typedef VOS_UINT8  NAS_MSCC_SYS_SUBMODE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_LMM_ACCESS_TYPE_ENUM
- 结构说明  : LTE的接入模式EUTRAN_TDD/FDD
- 1.日    期   : 2015年1月26日
-   作    者   : y00245242
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MSCC_LMM_ACCESS_TYPE_ENUM
 {
     NAS_MSCC_LMM_ACCESS_TYPE_EUTRAN_TDD      = 0,
@@ -270,13 +211,7 @@ enum NAS_MSCC_LMM_ACCESS_TYPE_ENUM
 };
 typedef VOS_UINT8 NAS_MSCC_LMM_ACCESS_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_SERVICE_STATUS_ENUM_UINT8
- 结构说明  : cs/ps域服务状态
- 1.日    期: 2015年1月26日
-   作    者: y00245242
-   修改内容: 新增
-*****************************************************************************/
+
 enum NAS_MSCC_SERVICE_STATUS_ENUM
 {
     NAS_MSCC_SERVICE_STATUS_NORMAL_SERVICE           = 0,                        /* 正常服务 */
@@ -287,13 +222,7 @@ enum NAS_MSCC_SERVICE_STATUS_ENUM
 };
 typedef VOS_UINT8 NAS_MSCC_SERVICE_STATUS_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_VOICE_DOMAIN_ENUM_UINT32
- 结构说明  : VOICE优选域
- 1.日    期   : 2015年01月27日
-   作    者   : y00245242
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MSCC_VOICE_DOMAIN_ENUM
 {
     NAS_MSCC_VOICE_DOMAIN_CS_ONLY            = 0,                                /**< CS voice only */
@@ -305,16 +234,7 @@ enum NAS_MSCC_VOICE_DOMAIN_ENUM
 };
 typedef VOS_UINT32 NAS_MSCC_VOICE_DOMAIN_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_SYS_ACQ_SCENE_ENUM
- 枚举说明  : 各种系统捕获场景的定义
- 1.日    期   : 2015年04月03日
-   作    者   : m00312079
-   修改内容   : 新建
- 2.日    期   : 2015年12月10日
-   作    者   : w00176964
-   修改内容   : CL_MUTIMODE_OPTIMIZE新增捕获场景
-*****************************************************************************/
+
 enum NAS_MSCC_SYS_ACQ_SCENE_ENUM
 {
     NAS_MSCC_SYS_ACQ_SCENE_SWITCH_ON                 = 0,/* 开机 */
@@ -333,13 +253,7 @@ enum NAS_MSCC_SYS_ACQ_SCENE_ENUM
 };
 typedef VOS_UINT32 NAS_MSCC_SYS_ACQ_SCENE_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_PRIOR_SYS_ENUM
- 枚举说明  : CL模式下系统优先级
- 1.日    期   : 2015年04月03日
-   作    者   : m00312079
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MSCC_PRIOR_SYS_ENUM
 {
     NAS_MSCC_LTE_PRIOR                      = 0,  /* LTE最优 */
@@ -349,20 +263,7 @@ enum NAS_MSCC_PRIOR_SYS_ENUM
 };
 typedef VOS_UINT8 NAS_MSCC_PRIOR_SYS_ENUM_UINT8;
 
-/****************************************************************************
-enum name  :   NAS_MSCC_FSM_ID_ENUM_UINT32
-Description     :   Contains the FSM IDs of the MSCC Module
-Modify History:
-    1)  Date    :   2015-01-31
-        Author  :   a00295761
-        Modify content :    Create
-    2)  Date    :   2015-04-02
-        Author  :   y00307564
-        Modify content :    Modify for CDMA Iteration 10
-    3)  Date    :   2015-11-05
-        Author  :   w00176964
-        Modify content :新增CL intersys状态机
-****************************************************************************/
+
 enum NAS_MSCC_FSM_ID_ENUM
 {
     /* L1 Main FSM. This is the default FSM of the MSCC module */
@@ -455,13 +356,7 @@ enum NAS_MSCC_SYS_ACQ_STATUS_ENUM
 typedef VOS_UINT8 NAS_MSCC_SYS_ACQ_STATUS_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_INIT_CTX_TYPE_ENUM
- 结构说明  : 初始化MSCC CTX类型
- 1.日    期   : 2015年4月27日
-   作    者   : y00174758
-   修改内容   : 新增
-*****************************************************************************/
+
 enum NAS_MSCC_INIT_CTX_TYPE_ENUM
 {
     NAS_MSCC_INIT_CTX_STARTUP                               = 0,
@@ -470,13 +365,7 @@ enum NAS_MSCC_INIT_CTX_TYPE_ENUM
 };
 typedef VOS_UINT8 NAS_MSCC_INIT_CTX_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_RAT_MODE_TYPE_ENUM_UINT8
- 枚举说明  : 定义RAT变化类型
- 1.日    期   : 2015年08月21日
-   作    者   : w00242748
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MSCC_RAT_MODE_CHG_TYPE_ENUM
 {
     NAS_MSCC_RAT_MODE_CHG_GUL_TO_GUL,
@@ -489,13 +378,7 @@ enum NAS_MSCC_RAT_MODE_CHG_TYPE_ENUM
 typedef VOS_UINT8 NAS_MSCC_RAT_MODE_CHG_TYPE_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_AVAILABLE_TIMER_TYPE_ENUM_UINT32
- 结构说明  : available定时器启动时类型
- 1.日    期   : 2015年12月10日
-   作    者   : w00176964
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MSCC_AVAILABLE_TIMER_TYPE_ENUM
 {
     NAS_MSCC_AVAILABLE_TIMER_TYPE_OOS_SRCH                      = 1,                /* available定时器启动时类型为OOS场景搜网 */
@@ -505,13 +388,7 @@ enum NAS_MSCC_AVAILABLE_TIMER_TYPE_ENUM
 };
 typedef VOS_UINT32 NAS_MSCC_AVAILABLE_TIMER_TYPE_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_1X_SERVICE_CL_SYSTEM_ACQUIRE_PHASE_ENUM
- 枚举说明  : 1X有服务时CL的系统捕获阶段枚举定义,当前只支持两个阶段,后续可以扩展更多阶段
- 1.日    期   : 2015年12月10日
-   作    者   : w00176964
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MSCC_1X_SERVICE_CL_SYSTEM_ACQUIRE_PHASE_ENUM
 {
     NAS_MSCC_1X_SERVICE_CL_SYSTEM_ACQUIRE_PHASE_ONE               = 1,
@@ -520,13 +397,7 @@ enum NAS_MSCC_1X_SERVICE_CL_SYSTEM_ACQUIRE_PHASE_ENUM
 };
 typedef VOS_UINT8 NAS_MSCC_1X_SERVICE_CL_SYSTEM_ACQUIRE_PHASE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MSCC_NO_CARD_INIT_SEARCH_WAIT_TYPE_ENUM
- 枚举说明  : 发起初搜的时候，当前是在等GUL的位置信息，还是在等C的位置信息
- 1.日    期   : 2015年12月10日
-   作    者   : j00354216
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MSCC_NO_CARD_INIT_SEARCH_WAIT_TYPE_ENUM
 {
     NAS_MSCC_NO_CARD_INIT_SEARCH_WAIT_TYPE_GUL = 0,
@@ -553,13 +424,7 @@ typedef VOS_UINT32 NAS_MSCC_NO_CARD_INIT_SEARCH_WAIT_TYPE_ENUM_UINT32;
 /*****************************************************************************
   7 STRUCT定义
 *****************************************************************************/
-/*****************************************************************************
- 结构名    : NAS_MSCC_IMS_RAT_SUPPORT_STRU
- 结构说明  : IMS支持信息
- 1.日    期   : 2015年1月26日
-   作    者   : y00245242
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucGsmImsSupportFlag;    /**< GSM IMS使能项,VOS_TRUE :支持，VOS_FALSE :不支持 */
@@ -571,14 +436,7 @@ typedef struct
     VOS_UINT8                           aucReserved[2];
 }NAS_MSCC_IMS_RAT_SUPPORT_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_IMS_CONFIG_PARA_STRU
- 结构说明  : IMS配置信息
- 1.日    期   : 2015年1月27日
-   作    者   : y00245242
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     NAS_MSCC_IMS_RAT_SUPPORT_STRU       stImsRatSupport;                        /* different RAT IMS support */
@@ -586,13 +444,7 @@ typedef struct
     VOS_UINT32                          ulWaitImsVoiceAvailTimerLen;            /* 等待IMS VOICE 可用的定时器时长 */
 }NAS_MSCC_IMS_CONFIG_PARA_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_NETWORK_CAP_INFO_STRU
- 结构说明  : 当前驻留的网络的能力信息
- 1.日    期   : 2015年1月26日
-   作    者   : y00245242
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     NAS_MSCC_NW_IMS_VOICE_CAP_ENUM_UINT8                    enNwImsVoCap;
@@ -602,19 +454,7 @@ typedef struct
 }NAS_MSCC_NETWORK_CAP_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_3GPP_SYS_INFO_STRU
- 结构说明  : 服务小区信息
- 1.日    期   : 2015年1月26日
-   作    者   : y00245242
-   修改内容   : 新建
- 2.日    期   : 2015年4月11日
-   作    者   : w00176964
-   修改内容   : CDMA Iteraiton 11 Modified
- 3.日    期   : 2015年9月21日
-   作    者   : y00346957
-   修改内容   : DTS2015070910885 Modified
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucCampOnFlg;
@@ -661,16 +501,7 @@ typedef struct
     NAS_MSCC_HRPD_SYS_INFO_STRU         stHrpdSysInfo;
 }NAS_MSCC_3GPP2_SYS_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_SYS_INFO_STRU
- 结构说明  : 当前驻留的网络信息
- 1.日    期   : 2015年1月26日
-   作    者   : y00245242
-   修改内容   : 新建
- 2.日    期   : 2015年4月11日
-   作    者   : w00176964
-   修改内容   : CDMA Iteration 10 Modified
-*****************************************************************************/
+
 typedef struct
 {
     NAS_MSCC_3GPP_SYS_INFO_STRU         st3gppSysInfo;      /* 3gpp当前驻留PLMN信息 */
@@ -724,14 +555,7 @@ typedef struct
     VOS_UINT32      aulModuleID[NAS_MSCC_SYSCFG_MAX_MODULE_NUM];                /* List of Module IDs  */
 }NAS_MSCC_PREF_ORDER_MODULE_LIST;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_NO_CARD_INIT_SEARCH_CDMA_LOC_STRU
- 结构说明  : 无卡初搜C模获得的位置信息
 
-  1.日    期   : 2015年12月10日
-    作    者   : j00354216
-    修改内容   : 新生成
-*****************************************************************************/
 typedef struct
 {
     VOS_INT32                           lSid;               /* 无卡初搜，X模初搜获取到的SID */
@@ -740,14 +564,7 @@ typedef struct
 }NAS_MSCC_NO_CARD_INIT_SEARCH_CDMA_LOC_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_NO_CARD_INIT_SEARCH_LOC_STRU
- 结构说明  : 无卡初搜获得的位置信息
 
-  1.日    期   : 2015年12月10日
-    作    者   : j00354216
-    修改内容   : 新生成
-*****************************************************************************/
 typedef struct
 {
     NAS_MSCC_PIF_PLMN_ID_STRU                               stInitSearchGulLoc;            /*  无卡初搜，GUL初搜获取到的位置信息  */
@@ -757,26 +574,7 @@ typedef struct
     VOS_UINT8                                               aucRsv[3];
 }NAS_MSCC_NO_CARD_INIT_SEARCH_LOC_STRU;
 
-/****************************************************************************
-Structure name  :   NAS_MSCC_SYS_ACQ_CTRL_CTX_STRU
-Description     :   Structure definition the System Acquire CTRL context info.
-Modify History:
-    1)  Date    :   2015-04-28
-        Author  :   t00323010
-        Modify content :    Create
-    2)  Date    :   2015-06-04
-        Author  :   w00176964
-        Modify content :CDMA Iteration 15 Modified:add data service on 1x flag
-    3)  Date    :   2015-09-19
-        Author  :   y00346957
-        Modify content :DTS2015070910885 modify
-    4)  Date    :   2015-12-10
-        Author  :   w00176964
-        Modify content :CL_MUTIMODE_OPTIMIZE调整:增加1x有服务时系统捕获阶段
-    5)  Date    :   2015-12-10
-        Author  :   j00354216
-        Modify content :CL_MUTIMODE_OPTIMIZE调整:增加无卡初搜位置信息
-****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                              ulCurrBsrTimerLen;            /* 记录正在运行的BSR Timer长度 */
@@ -850,13 +648,7 @@ typedef struct
     NAS_MSCC_1X_LOC_INFO_STRU           st1xLocationInfo;
     NAS_MSCC_LTE_LOC_INFO_STRU          stLteLocationInfo;
 }NAS_MSCC_MMSS_LOCATION_INFO_STRU;
-/*****************************************************************************
- 结构名    : NAS_MSCC_IMS_DOMAIN_INFO_STRU
- 结构说明  : IMS域信息
- 1.日    期   : 2015年5月12日
-   作    者   : z00161729
-   修改内容   : 24301 R11 CR升级项目修改
-*****************************************************************************/
+
 typedef struct
 {
     NAS_MSCC_PERSISTENT_BEARER_STATE_ENUM_UINT8             enPersistentBearerState;
@@ -864,14 +656,7 @@ typedef struct
     VOS_UINT8                                               ucReserved[2];
 }NAS_MSCC_IMS_DOMAIN_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_SEND_TO_IMSA_INFO_STRU
- 结构说明  : MSCC已经发送给IMSA的信息
 
-  1.日    期   : 2015年11月23日
-    作    者   : c00318887
-    修改内容   : 新建
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucRoamFlg;
@@ -879,21 +664,7 @@ typedef struct
 }NAS_MSCC_SEND_TO_IMSA_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_NW_INFO_STRU
- 结构说明  : 与网络相关信息
- 1.日    期   : 2015年01月26日
-   作    者   : y00245242
-   修改内容   : 新建
-   修改内容   : 新建
- 2.日    期   : 4/4/2015
-   作    者   : w00176964
-   修改内容   : CDMA Iteration 10 Modified
- 3.日    期   : 2015年5月12日
-   作    者   : z00161729
-   修改内容   : 24301 R11 CR升级项目修改
 
-*****************************************************************************/
 typedef struct
 {
     NAS_MSCC_NETWORK_CAP_INFO_STRU                          stLteNwCapInfo;
@@ -986,14 +757,7 @@ typedef struct
     NAS_MSCC_SYS_ACQ_SYS_LIST_INFO_STRU                     stSysAcqListInfo;
 }NAS_MSCC_FSM_SYS_ACQ_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_1X_SERVICE_CL_SYSTEM_ACQUIRE_PATTERN_CFG_STRU
- 结构说明  : 1X有服务时CL搜网各阶段配置结构体
- 修改历史      :
-  1.日    期   : 2015-12-10
-    作    者   : w00176964
-    修改内容   : CL_MUTIMODE_OPTIMIZE新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usTotalTimeLen;         /* 该阶段整体搜索时长,单位为秒 */
@@ -1003,26 +767,14 @@ typedef struct
     VOS_UINT8                           aucRsv[2];
  } NAS_MSCC_1X_SERVICE_CL_SYSTEM_ACQUIRE_PATTERN_CFG_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_1X_SERVICE_CL_SYSTEM_ACQUIRE_STRATEGY_STRU
- 结构说明  : 1x有服务时CL系统捕获策略结构体
- 1.日    期   : 2015年1月27日
-   作    者   : w00176964
-   修改内容   : CL_MUTIMODE_OPTIMIZE新增
-*****************************************************************************/
+
 typedef struct
 {
     NAS_MSCC_1X_SERVICE_CL_SYSTEM_ACQUIRE_PATTERN_CFG_STRU  stPhaseOnePatternCfg;
     NAS_MSCC_1X_SERVICE_CL_SYSTEM_ACQUIRE_PATTERN_CFG_STRU  stPhaseTwoPatternCfg;
 }NAS_MSCC_1X_SERVICE_CL_SYSTEM_ACQUIRE_STRATEGY_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_1X_SERVICE_AVAILABLE_TIMER_CTX_STRU
- 结构说明  : 1X有服务时available定时器上下文结构
- 1.日    期   : 2015年12月10日
-   作    者   : w00176964
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucCurLteHistorySrchCount;          /* 当前历史频点已搜索的次数 */
@@ -1030,30 +782,14 @@ typedef struct
     VOS_UINT8                           aucRsv[2];
 }NAS_MSCC_1X_SERVICE_AVAILABLE_TIMER_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_OOS_AVAILABLE_TIMER_CTX_STRU
- 结构说明  : OOS时available定时器上下文结构
- 1.日    期   : 2015年12月10日
-   作    者   : w00176964
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulAvailableTimerCount;                  /* current Available Timer start count */
 }NAS_MSCC_OOS_AVAILABLE_TIMER_CTX_STRU;
 
 
-/****************************************************************************
-Structure name  :   NAS_MSCC_FSM_L1_MAIN_CTX_STRU
-Description     :   Structure definition L1 MAIN fsm ctx info
-Modify History:
-    1)  Date    :   2015-04-03
-        Author  :   w00176964
-        Modify content :    Create
-    2)  Date    :   2015-12-10
-        Author  :   w00176964
-        Modify content :CL_MUTIMODE_OPTIMIZE修改
-****************************************************************************/
+
 typedef struct
 {
     NAS_MSCC_OOS_AVAILABLE_TIMER_CTX_STRU                   stOosAvailableTimerCtx;                 /* OOS场景available定时器信息 */
@@ -1068,13 +804,7 @@ typedef struct
     MSCC_MMC_HRPD_SYS_STRU              astHrpdSysList[MSCC_MMC_BG_HRPD_MAX_SYS_NUM];
 }NAS_MSCC_BG_SEARCH_HRPD_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_HRPD_SYS_REC_ITEM_STRU
- 结构说明  : 系统表中HRPD项信息
- 1.日    期   : 2015年04月07日
-   作    者   : y00307564
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                                              usAcqIndex;         /* 此系统记录指向的ACQ表的Index */
@@ -1084,14 +814,7 @@ typedef struct
     VOS_UINT8                                               aucRcv[2];
 }NAS_MSCC_HRPD_SYS_REC_ITEM_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_SYSTEM_ACQUIRE_FREQ_INFO_STRU
- 结构说明  : 高优先级搜网频点信息
- 1.日    期   : 2015年04月07日
-   作    者   : y00307564
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     NAS_MSCC_PIF_FREQENCY_CHANNEL_STRU  stFreq;              /* 存放HRPD的频点信息 */
@@ -1214,33 +937,14 @@ typedef struct
     VOS_RATMODE_ENUM_UINT32                       aenRatList[NAS_MSCC_PLATFORM_MAX_RAT_NUM];
 }NAS_MSCC_PLATFORM_RAT_CAP_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_DYNLOAD_CTRL_STRU
- 结构说明  : 动态加载控制信息
- 1.日    期   : 2015年8月27日
-   作    者   : w00242748
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucEnableDynloadTW;      /* 是否激活TW动态加载 */
     VOS_UINT8                           aucReserved[3];
 }NAS_MSCC_DYNLOAD_CTRL_STRU;
 
-/****************************************************************************
-Structure name  :   NAS_MSCC_CUSTOM_CONFIG_STRU
-Description     :   Structure definition containing the Containing the NV Values
-Modify History:
-    1)  Date    :   2015-04-04
-        Author  :   a00295761
-        Modify content :    Create
-    2)  Date    :   2015-08-27
-        Author  :   w00242748
-        Modify content :动态加载项目，新增结构stDynloadCtrl
-    3)  Date    :   2015-12-10
-        Author  :   w00176964
-        Modify content: CL_MUTIMODE_OPTIMIZE调整:增加1x有服务时CL捕获策略控制NV
-****************************************************************************/
+
 typedef struct
 {
     NAS_MSCC_PLATFORM_RAT_CAP_STRU                          stPlatformRatCap;
@@ -1307,27 +1011,13 @@ typedef struct
     NAS_MSCC_CUSTOM_CONFIG_STRU         stCustomCfgInfo;
     NAS_MSCC_MS_SYS_CFG_INFO_STRU       stMsSysCfgInfo;                         /* syscfgex setting info */
 }NAS_MSCC_MS_CFG_INFO_STRU;
-/*****************************************************************************
- 结构名    : NAS_MSCC_MODEM_PID_TAB_STRU
- 结构说明  : DSDA 两个modem接收AT发送消息的PID映射表
 
-  1.日    期   : 2015年5月21日
-    作    者   : w00242748
-    修改内容   : 新生成
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                           ulModem0Pid;
     VOS_UINT32                           ulModem1Pid;
 }NAS_MSCC_MODEM_PID_TAB_STRU;
-/*****************************************************************************
- 结构名    : NAS_MSCC_MSG_STATE_STRU
- 结构说明  : 消息上报结构体
 
-  1.日    期   : 2015年7月12日
-    作    者   : y00322978
-    修改内容   : 新生成
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          ulReceiveTime;  /* 接收时间 */
@@ -1338,45 +1028,21 @@ typedef struct
     VOS_UINT8                           ucMsccFsmId;    /* MSCC状态机ID  */
     VOS_UINT8                           ucMsccState;    /* MSCC当前状态  */
 }NAS_MSCC_MSG_STATE_STRU;
-/*****************************************************************************
- 结构名    : NAS_MSCC_LOG_EVENT_STATUS_STRU
- 结构说明  :  mscc 可维可测勾取发送接收消息
 
-  1.日    期   : 2015年7月12日
-    作    者   : y00322978
-    修改内容   : 新生成
-*****************************************************************************/
 typedef struct
 {
     NAS_MSCC_MSG_STATE_STRU             stMsgState[NAS_MSCC_MAX_LOG_MSG_STATE_NUM];
     VOS_UINT8                           ucLatestIndex;
     VOS_UINT8                           ucReserve[3];
 }NAS_MSCC_LOG_MSG_STATUS_STRU;
-/*****************************************************************************
- 结构名    : NAS_MSCC_MNTN_CTX_STRU
- 结构说明  : mscc 可维可测勾取发送接收消息
 
-  1.日    期   : 2015年7月12日
-    作    者   : y00322978
-    修改内容   : 新生成
-*****************************************************************************/
 typedef struct
 {
     NAS_MSCC_LOG_MSG_STATUS_STRU        stLogMsgState;
 }NAS_MSCC_MNTN_CTX_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_CTX_STRU
- 结构说明  : NAS MSCC 模块运行上下文
- 1.日    期   : 2015年01月26日
-   作    者   : y00245242
-   修改内容   : 新建
- 2.日    期   : 2015年04月11日
-   作    者   : y00245242
-   修改内容   : CDMA Iteration 10 Modified:add mspl info
 
-*****************************************************************************/
 typedef struct
 {
     NAS_MSCC_FSM_CTX_STRU                                   stCurFsm;                               /* 状态机当前的状态机数组 */
@@ -1394,14 +1060,7 @@ typedef struct
 
 }NAS_MSCC_CTX_STRU;
 
-/****************************************************************************
-Structure name  :   NAS_MSCC_SYS_ACQ_SCENE_MAP_LTE_SRCH_TYPE_STRU
-Description     :   系统捕获场景映射LTE搜索类型表结构
-Modify History:
-    1)  Date    :   2015-12-31
-        Author  :   w00176964
-        Modify content :Create
-****************************************************************************/
+
 
 typedef struct
 {
@@ -1852,11 +1511,6 @@ VOS_VOID NAS_MSCC_SetCurr3gppPsServiceStatus(
 );
 
 NAS_MSCC_SERVICE_STATUS_ENUM_UINT8 NAS_MSCC_GetCurr3gppPsServiceStatus(VOS_VOID);
-
-VOS_UINT8 NAS_MSCC_GetLastSendToImsaRoamFlg(VOS_VOID);
-VOS_VOID NAS_MSCC_SetLastSendToImsaRoamFlg(
-    VOS_UINT8  ucRoamStatus
-);
 
 VOS_VOID NAS_MSCC_SetCurr1xServiceStatus(
     NAS_MSCC_SERVICE_STATUS_ENUM_UINT8  enSrvSt

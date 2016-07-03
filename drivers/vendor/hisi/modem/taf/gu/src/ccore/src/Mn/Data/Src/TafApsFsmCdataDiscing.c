@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafApsFsmCdataDiscing.c
-  版 本 号   : 初稿
-  作    者   : h00246512
-  生成日期   : 2014年10月14日
-  最近修改   :
-  功能描述   : CdataDiscing状态机处理函数，APS模块处理断开data call操作
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年10月14日
-    作    者   : h00246512
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -68,21 +51,7 @@ extern "C" {
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : TAF_APS_ProcCdataDisc_CdataDiscing_Init
- 功能描述  : CDMA相应模下去断空口链路
- 输入参数  : TAF_XCC_END_REASON_ENUM_UINT8       enEndReason
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月17日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_ProcCdataDisc_CdataDiscing_Init(
     TAF_XCC_END_REASON_ENUM_UINT8       enEndReason
 )
@@ -159,22 +128,7 @@ VOS_UINT32  TAF_APS_ProcCdataDisc_CdataDiscing_Init(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPsCallEnterDormantInd_CdataDiscing_Init
- 功能描述  : TAF_APS_CDATA_DISCING_SUBSTA_INIT状态下
-             收到ID_MSG_TAF_PS_CALL_ENTER_DORMANT_IND消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
 
- 修改历史      :
-  1.日    期   : 2014年10月17日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_RcvPsCallEnterDormantInd_CdataDiscing_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -189,22 +143,7 @@ VOS_UINT32  TAF_APS_RcvPsCallEnterDormantInd_CdataDiscing_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvApsInternEndCdmaCallReq_CdataDiscing_Init
- 功能描述  : TAF_APS_CDATA_DISCING_SUBSTA_INIT状态下
-             收到ID_MSG_TAF_PS_INTER_END_CDMA_CALL_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
 
- 修改历史      :
-  1.日    期   : 2014年10月17日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_RcvApsInternEndCdmaCallReq_CdataDiscing_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -257,26 +196,7 @@ VOS_UINT32  TAF_APS_RcvApsInternEndCdmaCallReq_CdataDiscing_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPsCallEndReq_CdataDiscing_Init
- 功能描述  : TAF_APS_CDATA_DISCING_SUBSTA_INIT状态下
-             收到ID_MSG_TAF_PS_CALL_END_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
 
-
- 修改历史      :
-  1.日    期   : 2014年10月21日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年11月10日
-    作    者   : g00261581
-    修改内容   : 修改用户去激活的入口消息处理逻辑
-*****************************************************************************/
 VOS_UINT32  TAF_APS_RcvPsCallEndReq_CdataDiscing_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -372,23 +292,7 @@ VOS_UINT32  TAF_APS_RcvPsCallEndReq_CdataDiscing_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPppDeactNtf_CdataDiscing_Init
- 功能描述  : TAF_APS_CDATA_DISCING_SUBSTA_INIT状态下
-             收到ID_PPP_APS_DEACT_NOTIFY消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
 
-
- 修改历史      :
-  1.日    期   : 2014年10月21日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_RcvPppDeactNtf_CdataDiscing_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -413,22 +317,7 @@ VOS_UINT32  TAF_APS_RcvPppDeactNtf_CdataDiscing_Init(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvXccHangUpDataCnf_CdataDiscing_WaitXccHangUpDataCallCnf
- 功能描述  : TAF_APS_CDATA_DISCING_SUBSTA_WAIT_XCC_HANGUP_DATA_CALL_CNF状态下
-             收到ID_XCC_APS_HANGUP_DATA_CALL_CNF消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
 
- 修改历史      :
-  1.日    期   : 2014年10月17日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_RcvXccHangUpDataCnf_CdataDiscing_WaitXccHangUpDataCallCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -449,22 +338,7 @@ VOS_UINT32  TAF_APS_RcvXccHangUpDataCnf_CdataDiscing_WaitXccHangUpDataCallCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvXccDataCallDiscInd_CdataDiscing_WaitXccHangUpDataCallCnf
- 功能描述  : TAF_APS_CDATA_DISCING_SUBSTA_WAIT_XCC_HANGUP_DATA_CALL_CNF状态下
-             收到ID_XCC_APS_DATA_CALL_DISC_IND消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
 
- 修改历史      :
-  1.日    期   : 2014年10月17日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_RcvXccDataCallDiscInd_CdataDiscing_WaitXccHangUpDataCallCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -497,22 +371,7 @@ VOS_UINT32  TAF_APS_RcvXccDataCallDiscInd_CdataDiscing_WaitXccHangUpDataCallCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPsCallEndReq_CdataDiscing_WaitXccHangUpDataCallCnf
- 功能描述  : TAF_APS_CDATA_DISCING_SUBSTA_WAIT_XCC_HANGUP_DATA_CALL_CNF状态下
-             收到ID_MSG_TAF_PS_CALL_END_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
 
- 修改历史      :
-  1.日    期   : 2014年10月21日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_RcvPsCallEndReq_CdataDiscing_WaitXccHangUpDataCallCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -547,22 +406,7 @@ VOS_UINT32  TAF_APS_RcvPsCallEndReq_CdataDiscing_WaitXccHangUpDataCallCnf(
 
     return VOS_TRUE;
 }
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiCdataDiscingExpired_CdataDiscing_WaitXccHangUpDataCallCnf
- 功能描述  : TAF_APS_CDATA_DISCING_SUBSTA_WAIT_XCC_HANGUP_DATA_CALL_CNF状态下
-             收到TI_TAF_APS_CDATA_DISCING消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
 
- 修改历史      :
-  1.日    期   : 2014年10月17日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_RcvTiCdataDiscingExpired_CdataDiscing_WaitXccHangUpDataCallCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -575,23 +419,7 @@ VOS_UINT32  TAF_APS_RcvTiCdataDiscingExpired_CdataDiscing_WaitXccHangUpDataCallC
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPsInterEpdszidReOrigReq_CdataDiscing_WaitXccHangUpDataCallCnf
- 功能描述  : In TAF_APS_CDATA_DISCING_SUBSTA_WAIT_XCC_HANGUP_DATA_CALL_CNF
-             state, Rcv msg ID_MSG_TAF_PS_EPDSZID_REORIG_REQ
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月6日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPsInterEpdszidReOrigReq_CdataDiscing_WaitXccHangUpDataCallCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -612,21 +440,7 @@ VOS_UINT32 TAF_APS_RcvPsInterEpdszidReOrigReq_CdataDiscing_WaitXccHangUpDataCall
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ProcCdataDisc_CdataDiscing
- 功能描述  : CDATA数据服务断开的处理
- 输入参数  : TAF_PS_CAUSE_ENUM_UINT32                enCause
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月30日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_ProcCdataDisc_CdataDiscing(
     TAF_PS_CAUSE_ENUM_UINT32                enCause
 )
@@ -732,22 +546,7 @@ VOS_UINT32  TAF_APS_ProcCdataDisc_CdataDiscing(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvHsmDiscCnf_CdataDiscing_WaitHsmDiscCnf
- 功能描述  : TAF_APS_CDATA_DISCING_SUBSTA_WAIT_HSM_DISC_CNF状态下
-             收到ID_HSM_APS_DISC_CNF消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
 
- 修改历史      :
-  1.日    期   : 2015年02月04日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_RcvHsmDiscCnf_CdataDiscing_WaitHsmDiscCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -775,23 +574,7 @@ VOS_UINT32  TAF_APS_RcvHsmDiscCnf_CdataDiscing_WaitHsmDiscCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallEndReq_CdataDiscing_WaitHsmDiscCnf
- 功能描述  : TAF_APS_CDATA_DISCING_SUBSTA_WAIT_HSM_DISC_CNF状态下
-             收到ID_MSG_TAF_PS_CALL_END_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月6日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_RcvPsCallEndReq_CdataDiscing_WaitHsmDiscCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -827,23 +610,7 @@ VOS_UINT32  TAF_APS_RcvPsCallEndReq_CdataDiscing_WaitHsmDiscCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvHsmDiscInd_CdataDiscing_WaitHsmDiscCnf
- 功能描述  : TAF_APS_CDATA_DISCING_SUBSTA_WAIT_HSM_DISC_CNF状态下
-             收到ID_HSM_APS_DISC_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月6日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_RcvHsmDiscInd_CdataDiscing_WaitHsmDiscCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -872,22 +639,7 @@ VOS_UINT32  TAF_APS_RcvHsmDiscInd_CdataDiscing_WaitHsmDiscCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiCdataDiscingExpired_CdataDiscing_WaitHsmDiscCnf
- 功能描述  : TAF_APS_CDATA_DISCING_SUBSTA_WAIT_HSM_DISC_CNF状态下
-             收到TI_TAF_APS_CDATA_DISCING消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
 
- 修改历史      :
-  1.日    期   : 2015年02月04日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiCdataDiscingExpired_CdataDiscing_WaitHsmDiscCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -900,22 +652,7 @@ VOS_UINT32 TAF_APS_RcvTiCdataDiscingExpired_CdataDiscing_WaitHsmDiscCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEhsmPdnDeactCnf_CdataDiscing_WaitEhsmPdnDeactCnf
- 功能描述  : TAF_APS_CDATA_DISCING_SUBSTA_WAIT_EHSM_PDN_DEACTIVATE_CNF状态下
-             收到ID_EHSM_APS_PDN_DEACTIVATE_CNF消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
 
- 修改历史      :
-  1.日    期   : 2015年05月15日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_RcvEhsmPdnDeactCnf_CdataDiscing_WaitEhsmPdnDeactCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -977,22 +714,7 @@ VOS_UINT32  TAF_APS_RcvEhsmPdnDeactCnf_CdataDiscing_WaitEhsmPdnDeactCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEhsmDeactInd_CdataDiscing_WaitEhsmPdnDeactCnf
- 功能描述  : TAF_APS_CDATA_DISCING_SUBSTA_WAIT_EHSM_PDN_DEACTIVATE_CNF状态下
-             收到ID_EHSM_APS_PDN_DEACTIVATE_IND消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
 
- 修改历史      :
-  1.日    期   : 2015年05月15日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_RcvEhsmPdnDeactInd_CdataDiscing_WaitEhsmPdnDeactCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1011,22 +733,7 @@ VOS_UINT32  TAF_APS_RcvEhsmPdnDeactInd_CdataDiscing_WaitEhsmPdnDeactCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiCdataDiscingExpired_CdataDiscing_WaitEhsmPdnDeactCnf
- 功能描述  : TAF_APS_CDATA_DISCING_SUBSTA_WAIT_EHSM_PDN_DEACTIVATE_CNF状态下
-             收到TI_TAF_APS_CDATA_DISCING消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
 
- 修改历史      :
-  1.日    期   : 2015年05月15日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_RcvTiCdataDiscingExpired_CdataDiscing_WaitEhsmPdnDeactCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1046,22 +753,7 @@ VOS_UINT32  TAF_APS_RcvTiCdataDiscingExpired_CdataDiscing_WaitEhsmPdnDeactCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEsmSmEpsBearerInfoInd_CdataDiscing_WaitEhsmPdnDeactCnf
- 功能描述  : TAF_APS_CDATA_DISCING_SUBSTA_WAIT_EHSM_PDN_DEACTIVATE_CNF状态下
-             收到ID_ESM_SM_EPS_BEARER_INFO_IND消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
 
- 修改历史      :
-  1.日    期   : 2015年6月6日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_RcvEsmSmEpsBearerInfoInd_CdataDiscing_Suspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1114,22 +806,7 @@ VOS_UINT32  TAF_APS_RcvEsmSmEpsBearerInfoInd_CdataDiscing_Suspend(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEhsmApsLteHandoverToEhrpdInd_CdataDiscing_Suspend
- 功能描述  : 收到ID_EHSM_APS_LTE_HANDOVER_TO_EHRPD_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月16日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_RcvEhsmApsLteHandoverToEhrpdInd_CdataDiscing_Suspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1162,22 +839,7 @@ VOS_UINT32  TAF_APS_RcvEhsmApsLteHandoverToEhrpdInd_CdataDiscing_Suspend(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiCdataDiscingExpired_CdataDiscing_WaitEhsmPdnDeactCnf
- 功能描述  : TAF_APS_CDATA_DISCING_SUBSTA_SUSPEND状态下
-             收到TI_TAF_APS_CDATA_DISCING消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
 
- 修改历史      :
-  1.日    期   : 2015年6月6日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_RcvTiCdataDiscingExpired_CdataDiscing_Suspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1199,22 +861,7 @@ VOS_UINT32  TAF_APS_RcvTiCdataDiscingExpired_CdataDiscing_Suspend(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPsInterSrvStaChangeInd_CdataDiscing_Suspend
- 功能描述  : TAF_APS_CDATA_DISCING_SUBSTA_SUSPEND状态下
-             收到ID_MSG_TAF_PS_INTER_SERVICE_STATUS_CHANGE_IND消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
 
- 修改历史      :
-  1.日    期   : 2015年06月08日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_RcvPsInterSrvStaChangeInd_CdataDiscing_Suspend(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1301,22 +948,7 @@ VOS_UINT32  TAF_APS_RcvPsInterSrvStaChangeInd_CdataDiscing_Suspend(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ProcPppDeactInd_CdataDiscing
- 功能描述  : 建链过程中或者等待PPP去激活协商时收到PPP发送来的PPP Deact Ind消
-             息
- 输入参数  : VOS_UINT8                           ucPdpId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_ProcPppDeactInd_CdataDiscing(
     VOS_UINT8                           ucPdpId
 )
@@ -1333,23 +965,7 @@ VOS_VOID TAF_APS_ProcPppDeactInd_CdataDiscing(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPppDeactCnf_CdataDiscing_WaitPppDeactCnf
- 功能描述  : TAF_APS_CDATA_DISCING_SUBSTA_WAIT_PPP_DEACT_CNF状态下收到消息ID_PPP_APS_DEACT_CNF
-             的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月9日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_RcvPppDeactCnf_CdataDiscing_WaitPppDeactCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1388,23 +1004,7 @@ VOS_UINT32  TAF_APS_RcvPppDeactCnf_CdataDiscing_WaitPppDeactCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPppDeactInd_CdataDiscing_WaitPppDeactCnf
- 功能描述  : 子状态TAF_APS_CDATA_DISCING_SUBSTA_WAIT_PPP_DEACT_CNF下收到消息ID_PPP_APS_DEACT_NTF
-             的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_RcvPppDeactInd_CdataDiscing_WaitPppDeactCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1435,22 +1035,7 @@ VOS_UINT32  TAF_APS_RcvPppDeactInd_CdataDiscing_WaitPppDeactCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ProcHrpdOrigDataCall_CdataDiscing_HybridMode
- 功能描述  : 去激活流程中需要先在HRPD网络上建链成功，链路存在才能做PPP去激活协商
- 输入参数  : VOS_UINT8                           ucPdpId
-             VOS_UINT32                          ulNeedSearchSys
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月10日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_ProcHrpdOrigDataCall_CdataDiscing_HybridMode(
     VOS_UINT8                           ucPdpId,
     VOS_UINT32                          ulDoQuickAcq
@@ -1512,23 +1097,7 @@ VOS_VOID TAF_APS_ProcHrpdOrigDataCall_CdataDiscing_HybridMode(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_Proc1xOrigDataCall_CdataDiscing_1XMode
- 功能描述  : 去激活流程中需要先在1X网络上建链成功，链路存在才能做PPP去激活协商
- 输入参数  : VOS_UINT8                           ucIsDormDataCall
-             VOS_UINT8                           ucDrsFlg
-             VOS_UINT8                           ucHrpdHandOff1xFlg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月10日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_Proc1xOrigDataCall_CdataDiscing_1XMode(
     VOS_UINT8                           ucIsDormDataCall,
     VOS_UINT8                           ucDrsFlg,
@@ -1580,22 +1149,7 @@ VOS_UINT32 TAF_APS_Proc1xOrigDataCall_CdataDiscing_1XMode(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ProcCdataRedialReOrig_CdataDiscing_1XMode
- 功能描述  : 1X网络下发起重拨
- 输入参数  : VOS_UINT8                           ucIsDormDataCall
-             VOS_UINT8                           ucDrsFlg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_ProcCdataRedialReOrig_CdataDiscing_1XMode(
     VOS_UINT8                           ucIsDormDataCall,
     VOS_UINT8                           ucDrsFlg
@@ -1630,23 +1184,7 @@ VOS_UINT32 TAF_APS_ProcCdataRedialReOrig_CdataDiscing_1XMode(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPppReConnInd_CdataDiscing_WaitPppDeactCnf
- 功能描述  : TAF_APS_CDATA_DISCING_SUBSTA_WAIT_PPP_DEACT_CNF状态下收到PPP通
-             知建链的消息
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月9日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_RcvPppReConnInd_CdataDiscing_WaitPppDeactCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1705,23 +1243,7 @@ VOS_UINT32  TAF_APS_RcvPppReConnInd_CdataDiscing_WaitPppDeactCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvXccDataCallDiscInd_CdataDiscing_WaitPppDeactCnf
- 功能描述  : TAF_APS_CDATA_DISCING_SUBSTA_WAIT_PPP_DEACT_CNF状态下收到消息ID_XCC_APS_DATA_CALL_DISC_IND
-             的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月9日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvXccDataCallDiscInd_CdataDiscing_WaitPppDeactCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1778,23 +1300,7 @@ VOS_UINT32 TAF_APS_RcvXccDataCallDiscInd_CdataDiscing_WaitPppDeactCnf(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvHsmDiscInd_CdataDiscing_WaitPppDeactCnf
- 功能描述  : TAF_APS_CDATA_DISCING_SUBSTA_WAIT_PPP_DEACT_CNF状态下收到消息ID_HSM_APS_DISC_IND的
-             处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月9日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvHsmDiscInd_CdataDiscing_WaitPppDeactCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1821,23 +1327,7 @@ VOS_UINT32 TAF_APS_RcvHsmDiscInd_CdataDiscing_WaitPppDeactCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiPppDeactCnfExpired_CdataDiscing_WaitPppDeactCnf
- 功能描述  : TAF_APS_CDATA_DISCING_SUBSTA_WAIT_PPP_DEACT_CNF状态下收到消息TI_TAF_APS_CDATA_DISCING_WAIT_PPP_DEACT_CNF超时
-             的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月9日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiPppDeactCnfExpired_CdataDiscing_WaitPppDeactCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1869,23 +1359,7 @@ VOS_UINT32 TAF_APS_RcvTiPppDeactCnfExpired_CdataDiscing_WaitPppDeactCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvXccOrigDataCallCnf_CdataDiscing_WaitXccOrigCnf
- 功能描述  : 子状态TAF_APS_CDATA_DISCING_SUBSTA_WAIT_XCC_ORIG_CNF下收到消息ID_XCC_APS_ORIG_DATA_CALL_CNF
-             的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月10日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvXccOrigDataCallCnf_CdataDiscing_WaitXccOrigCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1986,23 +1460,7 @@ VOS_UINT32 TAF_APS_RcvXccOrigDataCallCnf_CdataDiscing_WaitXccOrigCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPppDeactCnf_CdataDiscing_WaitXccOrigCnf
- 功能描述  : TAF_APS_CDATA_DISCING_SUBSTA_WAIT_XCC_ORIG_CNF子状态下收到消息ID_PPP_APS_DEACT_CNF
-             的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月10日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPppDeactCnf_CdataDiscing_WaitXccOrigCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2045,23 +1503,7 @@ VOS_UINT32 TAF_APS_RcvPppDeactCnf_CdataDiscing_WaitXccOrigCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPppDeactInd_CdataDiscing_WaitXccOrigCnf
- 功能描述  : TAF_APS_CDATA_DISCING_SUBSTA_WAIT_XCC_ORIG_CNF子状态下收到消息
-             ID_PPP_APS_DEACT_NTF的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_RcvPppDeactInd_CdataDiscing_WaitXccOrigCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2084,23 +1526,7 @@ VOS_UINT32  TAF_APS_RcvPppDeactInd_CdataDiscing_WaitXccOrigCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiPppDeactCnfExpired_CdataDiscing_WaitXccOrigCnf
- 功能描述  : TAF_APS_CDATA_DISCING_SUBSTA_WAIT_XCC_ORIG_CNF子状态下收到定时器消息TI_TAF_APS_CDATA_DISCING_WAIT_PPP_DEACT_CNF超时
-             的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月10日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiPppDeactCnfExpired_CdataDiscing_WaitXccOrigCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2136,23 +1562,7 @@ VOS_UINT32 TAF_APS_RcvTiPppDeactCnfExpired_CdataDiscing_WaitXccOrigCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvHsmOrigCnf_CdataDiscing_WaitHsmOrigCnf
- 功能描述  : TAF_APS_CDATA_DISCING_SUBSTA_WAIT_HSM_ORIG_CNF子状态下收到消息ID_HSM_APS_ORIG_CNF
-             的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月10日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvHsmOrigCnf_CdataDiscing_WaitHsmOrigCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2256,23 +1666,7 @@ VOS_UINT32 TAF_APS_RcvHsmOrigCnf_CdataDiscing_WaitHsmOrigCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPppDeactCnf_CdataDiscing_WaitHsmOrigCnf
- 功能描述  : TAF_APS_CDATA_DISCING_SUBSTA_WAIT_HSM_ORIG_CNF子状态下收到消息ID_PPP_APS_DEACT_CNF
-             的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月10日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPppDeactCnf_CdataDiscing_WaitHsmOrigCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2315,23 +1709,7 @@ VOS_UINT32 TAF_APS_RcvPppDeactCnf_CdataDiscing_WaitHsmOrigCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPppDeactInd_CdataDiscing_WaitHsmOrigCnf
- 功能描述  : TAF_APS_CDATA_DISCING_SUBSTA_WAIT_HSM_ORIG_CNF子状态下收到消息-
-             ID_PPP_APS_DEACT_NTF的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_APS_RcvPppDeactInd_CdataDiscing_WaitHsmOrigCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2354,23 +1732,7 @@ VOS_UINT32  TAF_APS_RcvPppDeactInd_CdataDiscing_WaitHsmOrigCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiPppDeactCnfExpired_CdataDiscing_WaitHsmOrigCnf
- 功能描述  : TAF_APS_CDATA_DISCING_SUBSTA_WAIT_HSM_ORIG_CNF子状态下收到定时器TI_TAF_APS_CDATA_DISCING_WAIT_PPP_DEACT_CNF超时消息
-             的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月10日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiPppDeactCnfExpired_CdataDiscing_WaitHsmOrigCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2406,23 +1768,7 @@ VOS_UINT32 TAF_APS_RcvTiPppDeactCnfExpired_CdataDiscing_WaitHsmOrigCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvXccDataServiceConnInd_CdataDiscing_WaitXccSoConnected
- 功能描述  : 子状态TAF_APS_CDATA_DISCING_SUBSTA_WAIT_XCC_SO_CONNECTED下收到
-             消息ID_XCC_APS_DATA_SERVICE_CONNECT_IND的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月10日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvXccDataServiceConnInd_CdataDiscing_WaitXccSoConnected(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2470,23 +1816,7 @@ VOS_UINT32 TAF_APS_RcvXccDataServiceConnInd_CdataDiscing_WaitXccSoConnected(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvXccDataCallDiscInd_CdataDiscing_WaitXccSoConnected
- 功能描述  : TAF_APS_CDATA_DISCING_SUBSTA_WAIT_XCC_SO_CONNECTED子状态收到消
-             息ID_XCC_APS_DATA_CALL_DISC_IND的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月10日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvXccDataCallDiscInd_CdataDiscing_WaitXccSoConnected(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2530,23 +1860,7 @@ VOS_UINT32 TAF_APS_RcvXccDataCallDiscInd_CdataDiscing_WaitXccSoConnected(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPppDeactCnf_CdataDiscing_WaitXccSoConnected
- 功能描述  : TAF_APS_CDATA_DISCING_SUBSTA_WAIT_XCC_SO_CONNECTED子状态收到消
-             息ID_PPP_APS_DEACT_CNF的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月10日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPppDeactCnf_CdataDiscing_WaitXccSoConnected(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2582,23 +1896,7 @@ VOS_UINT32 TAF_APS_RcvPppDeactCnf_CdataDiscing_WaitXccSoConnected(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPppDeactInd_CdataDiscing_WaitXccSoConnected
- 功能描述  : TAF_APS_CDATA_DISCING_SUBSTA_WAIT_XCC_SO_CONNECTED子状态收到消
-             息ID_PPP_APS_DEACT_NTF的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPppDeactInd_CdataDiscing_WaitXccSoConnected(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2614,23 +1912,7 @@ VOS_UINT32 TAF_APS_RcvPppDeactInd_CdataDiscing_WaitXccSoConnected(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiPppDeactCnfExpired_CdataDiscing_WaitXccSoConnected
- 功能描述  : TAF_APS_CDATA_DISCING_SUBSTA_WAIT_XCC_SO_CONNECTED子状态收到TI_TAF_APS_CDATA_DISCING_WAIT_PPP_DEACT_CNF超时消
-             息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月10日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiPppDeactCnfExpired_CdataDiscing_WaitXccSoConnected(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2659,23 +1941,7 @@ VOS_UINT32 TAF_APS_RcvTiPppDeactCnfExpired_CdataDiscing_WaitXccSoConnected(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiRedialIntervalExpired_CdataDiscing_WaitRedial
- 功能描述  : 子状态TAF_APS_CDATA_DISCING_SUBSTA_WAIT_INTERVAL_REDIAL下收到
-             TI_TAF_APS_CDATA_WAIT_CALL_REDIAL_INTERVAL超时消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiRedialIntervalExpired_CdataDiscing_WaitRedial(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2785,23 +2051,7 @@ VOS_UINT32 TAF_APS_RcvTiRedialIntervalExpired_CdataDiscing_WaitRedial(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPppDeactCnf_CdataDiscing_WaitRedial
- 功能描述  : 子状态TAF_APS_CDATA_DISCING_SUBSTA_WAIT_INTERVAL_REDIAL下收到消息ID_PPP_APS_DEACT_CNF的处
-             理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPppDeactCnf_CdataDiscing_WaitRedial(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2865,23 +2115,7 @@ VOS_UINT32 TAF_APS_RcvPppDeactCnf_CdataDiscing_WaitRedial(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPppDeactCnf_CdataDiscing_WaitRedial
- 功能描述  : 子状态TAF_APS_CDATA_DISCING_SUBSTA_WAIT_INTERVAL_REDIAL下收到消息ID_PPP_APS_DEACT_NTF的处
-             理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPppDeactInd_CdataDiscing_WaitRedial(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2932,23 +2166,7 @@ VOS_UINT32 TAF_APS_RcvPppDeactInd_CdataDiscing_WaitRedial(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiPppDeactCnfExpired_CdataDiscing_WaitRedial
- 功能描述  : 子状态TAF_APS_CDATA_DISCING_SUBSTA_WAIT_INTERVAL_REDIAL下收到
-             TI_TAF_APS_CDATA_DISCING_WAIT_PPP_DEACT_CNF超时消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiPppDeactCnfExpired_CdataDiscing_WaitRedial(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3006,23 +2224,7 @@ VOS_UINT32 TAF_APS_RcvTiPppDeactCnfExpired_CdataDiscing_WaitRedial(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPsInterSrvStaChangeInd_CdataDiscing_WaitRedial
- 功能描述  : 子状态TAF_APS_CDATA_DISCING_SUBSTA_WAIT_INTERVAL_REDIAL下收到
-             ID_MSG_TAF_PS_INTER_SERVICE_STATUS_CHANGE_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月17日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPsInterSrvStaChangeInd_CdataDiscing_WaitRedial(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg

@@ -1,20 +1,4 @@
-/******************************************************************************
 
-   Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : NasLmmTest.c
-  Description     :
-  History         :
-     1.luojian 00107747       2009-2-19   Draft Enact
-     2.yangqianhui 00135146   2009-07-01  Modify      BN8D00400
-     3.yangqianhui 00135146   2009-08-05  Modify      BN8D00778
-     4.niezhouyu   00108792   2009-08-11  Modify      BN8D00833
-     5.yangqianhui 00135146   2009-08-15  Modify      BN8D00856
-     6.yangqianhui 00135146   2009-09-10  Modify      BN8D01030 修改UE IP地址软调
-     7.zhengjunyan 00148421   2011-05-28  文件名由 NasMmTest.c修改为
-                                          NasLmmTest.c
-******************************************************************************/
 
 
 
@@ -53,17 +37,7 @@ static VOS_UINT32 NAS_PUBM_HELP_IE_PRESENT = 1;
   3 Function
 *****************************************************************************/
 
-/*****************************************************************************
- Function Name   : NAS_Help
- Description     : NAS帮助命令
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.yangqianhui 00135146      2009-6-17  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_LMM_CmdHelp( VOS_VOID )
 {
     (VOS_VOID)vos_printf("\r\n");
@@ -78,16 +52,7 @@ VOS_VOID  NAS_LMM_CmdHelp( VOS_VOID )
     (VOS_VOID)vos_printf("\r\n");
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_DebugInit
- Description     : MM软调初始化
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2010-03-10  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_LMM_DebugInit(VOS_VOID)
 {
     /*初始化DSDS发送消息个数*/
@@ -107,31 +72,12 @@ VOS_VOID NAS_LMM_DebugInit(VOS_VOID)
     return ;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_ShowImsi
- Description     : 读取IMSI
- Input           :VOS_UINT8 *pucImsi
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.luojian 00107747      2009-6-27  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_LMM_ShowImsi(VOS_VOID)
 {
 
 }
-/*****************************************************************************
- Function Name   : NAS_LMM_ShowImsi
- Description     : 打印imei
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.y00135146      2009-8-13  Draft Enact
-
-*****************************************************************************/
 /*lint -e960*/
 /*lint -e961*/
 VOS_VOID NAS_LMM_ShowImei( VOS_VOID )
@@ -178,16 +124,7 @@ VOS_VOID NAS_LMM_ShowImei( VOS_VOID )
     (VOS_VOID)vos_printf("%-30s : %s\r\n","IMEI",aucImeiStr);
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_ShowImeisv
- Description     : 打印imeisv
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.y00135146      2009-8-13  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_LMM_ShowImeisv(VOS_VOID)
 {
     VOS_UINT8                           ucLoop;
@@ -312,18 +249,7 @@ VOS_VOID NAS_LMM_ShowEmmFsmInfo(VOS_VOID)
     NAS_LMM_ShowAuxFsm();
 }
 /* 注册/服务状态上报上移MMC，删除NAS_LMM_ShowServStateInfo函数 */
-/*****************************************************************************
 
- Function Name   : NAS_LMM_ShowPlmn
- Description     : PLMNID转换
- Input           : None
- Output          : None
- Return          : VOS_VOID
-
- History         :
-    1.yangqianhui 00135146      2009-6-25  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_LMM_ShowPlmn(VOS_UINT8 const *pucPlmnId)
 {
     VOS_UINT8               ucMcc1;
@@ -396,17 +322,7 @@ VOS_VOID  NAS_LMM_ShowTmsiInfo( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_ShowGutiInfo
- Description     : 打印GUTI信息
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.yangqianhui 00135146      2009-6-23  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_LMM_ShowGutiInfo( APP_GUTI_STRU const *pstGutiInfo )
 {
     VOS_UINT32                          ulData;
@@ -440,17 +356,7 @@ VOS_VOID NAS_LMM_ShowGutiInfo( APP_GUTI_STRU const *pstGutiInfo )
                                             pstGutiInfo->stMTmsi.ucMTmsiCnt3,\
                                             ulData);
 }
-/*****************************************************************************
- Function Name   : NAS_LMM_ShowTailistInfo
- Description     : 打印TALIST信息
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.yangqianhui 00135146      2009-6-23  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_LMM_ShowTailistInfo( APP_TA_LIST_STRU const *pstTaiList )
 {
     VOS_UINT32                           ulLoop;
@@ -479,18 +385,7 @@ VOS_VOID NAS_LMM_ShowTailistInfo( APP_TA_LIST_STRU const *pstTaiList )
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_ShowTac
- Description     : 打印TAC
- Input           :VOS_UINT8 ucTac
-                  VOS_UINT8 ucTacCnt
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.yangqianhui 00135146      2009-6-27  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_LMM_ShowTac(VOS_UINT8 ucTac,VOS_UINT8 ucTacCnt)
 {
     (VOS_VOID)vos_printf( "%-30s : %02x %02x(%d)\r\n","TAC",
@@ -499,17 +394,7 @@ VOS_VOID NAS_LMM_ShowTac(VOS_UINT8 ucTac,VOS_UINT8 ucTacCnt)
                 ((ucTac<<8) | ucTacCnt) );
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_ShowLastTaInfo
- Description     : 打印lastta信息
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.yangqianhui 00135146      2009-6-23  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_LMM_ShowLastTaInfo( APP_TA_STRU const *pstLastTa )
 {
     (VOS_VOID)vos_printf("********************LAST TA信息如下************************\r\n");
@@ -517,17 +402,7 @@ VOS_VOID NAS_LMM_ShowLastTaInfo( APP_TA_STRU const *pstLastTa )
     NAS_LMM_ShowTac(pstLastTa->stTac.ucTac,\
               pstLastTa->stTac.ucTacCnt);
 }
-/*****************************************************************************
- Function Name   : NAS_LMM_ShowForbidTalistInfo
- Description     : 打印禁止TA的信息
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.yangqianhui 00135146      2009-6-23  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_LMM_ShowForbidTalistInfo( APP_TA_LIST_STRU const *pstFtalist )
 {
     VOS_UINT32                           ulLoop;
@@ -554,17 +429,7 @@ VOS_VOID NAS_LMM_ShowForbidTalistInfo( APP_TA_LIST_STRU const *pstFtalist )
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_ShowMobilityInfo
- Description     : 显示ue的移动信息
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.yangqianhui 00135146      2009-6-23  Draft Enact
-
-*****************************************************************************/
 /*lint -e438*/
 VOS_VOID NAS_LMM_ShowMobilityInfo(VOS_VOID )
 {
@@ -601,17 +466,7 @@ VOS_VOID NAS_LMM_ShowMobilityInfo(VOS_VOID )
 }
 /*lint +e438*/
 
-/*****************************************************************************
- Function Name   : NAS_LMM_ShowConnInfo
- Description     : 打印连接状态信息
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.yangqianhui 00135146      2009-6-27  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_LMM_ShowConnInfo( VOS_VOID )
 {
     NAS_LMM_AUXILIARY_FSM_STRU           *pstAuxFsm = VOS_NULL_PTR;
@@ -629,18 +484,7 @@ VOS_VOID NAS_LMM_ShowConnInfo( VOS_VOID )
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_ShowCommInfo
- Description     : 显示NAS模块的公共信息
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.yangqianhui 00135146      2009-6-17  Draft Enact
-    2.yangqianhui 00135146      2009-9-10  Modify BN8D01030 修改UE IP地址软调
-
-*****************************************************************************/
 /*lint -e438*/
 VOS_VOID  NAS_LMM_ShowCommInfo(VOS_VOID)
 {

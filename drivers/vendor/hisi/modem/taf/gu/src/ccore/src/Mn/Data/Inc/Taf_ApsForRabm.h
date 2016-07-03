@@ -1,18 +1,4 @@
-/************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : TAf_ApsForRabm.h
-  Author      : 韩鲁峰
-  Version     : V200R001
-  Date        : 2005-0
-  Description : 该头文件定义了---
-  History     :
-  1. Date:2005-0 -
-     Author: ---
-     Modification:Create
-  2. 2006-03-03 MODIFY BY H41410 FOR A32D02344
-  3. 2006-08-09 modify by J60010247 for A32D03479
-  4. 2006-03-03 modify by L47619 for A32D05709
-************************************************************************/
+
 
 #ifndef _TAF_APSFORRABM_H_
 #define _TAF_APSFORRABM_H_

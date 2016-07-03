@@ -1003,7 +1003,7 @@ VOID DecodeStream( STREAM_SEG_PACKET_S *pSegMan, SINT32 VideoStandard, VOID *pst
             {
                 if((1 != s_pstVfmwChan[ChanID]->stSynExtraData.stChanOption.u32DynamicFrameStoreAllocEn) || \
                   ((1 == s_pstVfmwChan[ChanID]->stSynExtraData.stChanOption.u32DynamicFrameStoreAllocEn) && \
-                  (0 == s_pstVfmwChan[ChanID]->stSynExtraData.s32WaitFsFlag)))//l00273086 区分动态帧存中的重送数据和正常解码过程中的重送数据
+                  (0 == s_pstVfmwChan[ChanID]->stSynExtraData.s32WaitFsFlag)))
                 {
                     VC1DEC_Decode((VC1_CTX_S*)pstCtx, &((VC1_CTX_S*)pstCtx)->LastPacket);
                 }
@@ -1070,7 +1070,7 @@ VOID DecodeStream( STREAM_SEG_PACKET_S *pSegMan, SINT32 VideoStandard, VOID *pst
         {
             if((1 != s_pstVfmwChan[ChanID]->stSynExtraData.stChanOption.u32DynamicFrameStoreAllocEn) || \
               ((1 == s_pstVfmwChan[ChanID]->stSynExtraData.stChanOption.u32DynamicFrameStoreAllocEn) && \
-              (0 == s_pstVfmwChan[ChanID]->stSynExtraData.s32WaitFsFlag)))//l00273086 区分动态帧存中的重送数据和正常解码过程中的重送数据
+              (0 == s_pstVfmwChan[ChanID]->stSynExtraData.s32WaitFsFlag)))
             {
                 MPEG2DEC_Decode((MP2_CTX_S*)pstCtx ,&(((MP2_CTX_S*)pstCtx)->stCurPacket));
             }
@@ -1108,7 +1108,7 @@ VOID DecodeStream( STREAM_SEG_PACKET_S *pSegMan, SINT32 VideoStandard, VOID *pst
         {
             if((1 != s_pstVfmwChan[ChanID]->stSynExtraData.stChanOption.u32DynamicFrameStoreAllocEn) || \
               ((1 == s_pstVfmwChan[ChanID]->stSynExtraData.stChanOption.u32DynamicFrameStoreAllocEn) && \
-              (0 == s_pstVfmwChan[ChanID]->stSynExtraData.s32WaitFsFlag)))//l00273086 区分动态帧存中的重送数据和正常解码过程中的重送数据
+              (0 == s_pstVfmwChan[ChanID]->stSynExtraData.s32WaitFsFlag)))
             {
                 MPEG4DEC_Decode((MP4_CTX_S*)pstCtx ,&(((MP4_CTX_S*)pstCtx)->stCurPacket));
             }
@@ -1135,7 +1135,7 @@ VOID DecodeStream( STREAM_SEG_PACKET_S *pSegMan, SINT32 VideoStandard, VOID *pst
         {
             if((1 != s_pstVfmwChan[ChanID]->stSynExtraData.stChanOption.u32DynamicFrameStoreAllocEn) || \
               ((1 == s_pstVfmwChan[ChanID]->stSynExtraData.stChanOption.u32DynamicFrameStoreAllocEn) && \
-              (0 == s_pstVfmwChan[ChanID]->stSynExtraData.s32WaitFsFlag)))//l00273086 区分动态帧存中的重送数据和正常解码过程中的重送数据
+              (0 == s_pstVfmwChan[ChanID]->stSynExtraData.s32WaitFsFlag)))
             {
                 AVSDEC_Decode((AVS_CTX_S*)pstCtx ,&(((AVS_CTX_S*)pstCtx)->LastPacket));
             }

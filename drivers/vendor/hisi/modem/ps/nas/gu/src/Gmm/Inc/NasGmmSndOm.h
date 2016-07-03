@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasGmmSndOm.h
-  版 本 号   : 初稿
-  作    者   : l00171473
-  生成日期   : 2012年8月21日
-  最近修改   :
-  功能描述   : 定义GMM发送给OM的消息处理头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年8月21日
-    作    者   : l00171473
-    修改内容   : 创建文件
-
-******************************************************************************/
 #ifndef _NAS_GMM_SND_OM_H
 #define _NAS_GMM_SND_OM_H_
 
@@ -45,16 +28,7 @@ extern "C" {
   3 枚举定义
 *****************************************************************************/
 
-/*****************************************************************************
- 枚举名    : NAS_GMM_OM_MSG_ID_ENUM_U32
- 结构说明  : MM发送给OM的可维可测消息
-  1.日    期   : 2012年8月21日
-    作    者   : l00171473
-    修改内容   : MM发送给OM的可维可测消息ID枚举
-  2.日    期   : 2014年2月27日
-    作    者   : w00242748
-    修改内容   : 调用GAS接口获取UE能力
-*****************************************************************************/
+
 enum NAS_GMM_OM_MSG_ID_ENUM
 {
     /* MM发送给OM的消息 */
@@ -67,16 +41,7 @@ enum NAS_GMM_OM_MSG_ID_ENUM
 };
 typedef VOS_UINT32 NAS_GMM_OM_MSG_ID_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : NAS_GMM_STATE_ID_ENUM_UINT32
- 枚举说明  : MM状态ID枚举定义
- 1.日    期   : 2012年8月21日
-   作    者   : L00171473
-   修改内容   : 新建
- 2.日    期   : 2012年8月21日
-   作    者   : L00171473
-   修改内容   : V7R1C50_At_Abort, ASN解析调整
-*****************************************************************************/
+
 enum NAS_GMM_STATE_ID_ENUM
 {
     STATE_GMM_ID_NULL                                     =  0x00,              /* GMM_NULL状态                             */
@@ -132,16 +97,7 @@ typedef VOS_UINT8 NAS_GMM_STATE_ID_ENUM_UINT8;
   7 STRUCT定义
 *****************************************************************************/
 
-/*****************************************************************************
- 结构名    : NAS_GMM_LOG_STATE_INFO_STRU
- 结构说明  : 勾GMM的状态的结构
 
- 修改记录  :
- 1.日    期   : 2012年08月21日
-   作    者   : l00171473
-   修改内容   : 新增
-
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;/* 消息头 */ /*_H2ASN_Skip*/
@@ -150,16 +106,7 @@ typedef struct
     VOS_UINT8                           aucRsv3[3];
 }NAS_GMM_LOG_STATE_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : GMMOM_LOG_GMM_RAU_CTRL_INFO_STRU
- 结构说明  : 勾GMM g_GmmRauCtrl全局变量相关信息
 
- 修改记录  :
- 1.日    期   : 2014年10月8日
-   作    者   : z00161729
-   修改内容   : 新增
-
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucT3312ExpiredFlg; /* 记录g_GmmRauCtrl.ucT3312ExpiredFlg T3312定时器是否超时标识 */
@@ -168,16 +115,7 @@ typedef struct
 }GMMOM_LOG_GMM_RAU_CTRL_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : GMMOM_LOG_GMM_REQ_CNF_MNG_INFO_STRU
- 结构说明  : 勾GMM g_GmmReqCnfMng全局变量相关信息
 
- 修改记录  :
- 1.日    期   : 2014年10月8日
-   作    者   : z00161729
-   修改内容   : 新增
-
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                               ucCnfMask;     /* 记录g_GmmReqCnfMng.ucCnfMask*/
@@ -185,16 +123,7 @@ typedef struct
 }GMMOM_LOG_GMM_REQ_CNF_MNG_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : GMMOM_LOG_GMM_SERVICE_CTRL_INFO_STRU
- 结构说明  : 勾GMM g_GmmServiceCtrl全局变量相关信息
 
- 修改记录  :
- 1.日    期   : 2014年10月8日
-   作    者   : z00161729
-   修改内容   : 新增
-
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                               ucRetrySrForRelCtrlFlg;     /* 记录g_GmmServiceCtrl.ucRetrySrForRelCtrlFlg*/
@@ -203,32 +132,14 @@ typedef struct
 
 
 
-/*****************************************************************************
- 结构名    : GMMOM_LOG_GMM_TIMER_MNG_INFO_STRU
- 结构说明  : 勾GMM g_GmmTimerMng全局变量相关信息
 
- 修改记录  :
- 1.日    期   : 2014年10月8日
-   作    者   : z00161729
-   修改内容   : 新增
-
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                               ulTimerRunMask;     /* 记录g_GmmTimerMng.ulTimerRunMask*/
 }GMMOM_LOG_GMM_TIMER_MNG_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : GMMOM_LOG_GMM_SUSPEND_CTRL_INFO_STRU
- 结构说明  : 勾GMM gstGmmSuspendCtrl相关全局变量信息
 
- 修改记录  :
- 1.日    期   : 2014年10月8日
-   作    者   : z00161729
-   修改内容   : 新增
-
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucPreRat;     /* 记录gstGmmSuspendCtrl.ucPreRat切换时接入技术 */
@@ -237,21 +148,7 @@ typedef struct
     VOS_UINT8                           ucPreSrvState;   /* 记录gstGmmSuspendCtrl.ucPreSrvState*/
 }GMMOM_LOG_GMM_SUSPEND_CTRL_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : GMMOM_LOG_GMM_GLOBAL_CTRL_INFO_STRU
- 结构说明  : 勾GMM g_GmmGlobalCtrl相关全局变量信息
 
- 修改记录  :
- 1.日    期   : 2014年10月8日
-   作    者   : z00161729
-   修改内容   : 新增
- 2.日    期   : 2015年2月7日
-   作    者   : b00269685
-   修改内容   : at&t dam修改
- 3.日    期   : 2015年6月15日
-   作    者   : z00161729
-   修改内容   : 24008 23122 R11 CR升级项目修改
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                                   ucPlmnSrchPreSta;        /* 记录搜网前的状态 */
@@ -276,16 +173,7 @@ typedef struct
     NAS_MML_PLMN_WITH_RAT_STRU                  stAllocT3302ValuePlmnWithRat; /* g_GmmGlobalCtrl.stAllocT3302ValuePlmnWithRat*/
 }GMMOM_LOG_GMM_GLOBAL_CTRL_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : GMMOM_LOG_GMM_ATTACH_CTRL_INFO_STRU
- 结构说明  : 勾GMM GmmAttachCtrl相关全局变量信息
 
- 修改记录  :
- 1.日    期   : 2014年10月8日
-   作    者   : z00161729
-   修改内容   : 新增
-
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucRetryAttachForRelCtrlFlg;     /* 记录GmmAttachCtrl.ucRetryAttachForRelCtrlFlg Attach流程被异常释放，需要在收到系统消息后重新发起 */
@@ -294,16 +182,7 @@ typedef struct
     VOS_UINT8                           ucReserved;
 }GMMOM_LOG_GMM_ATTACH_CTRL_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : GMMOM_LOG_GMM_CAS_GLOBAL_CTRL_INFO_STRU
- 结构说明  : 勾GMM gstGmmCasGlobalCtrl相关全局变量信息
 
- 修改记录  :
- 1.日    期   : 2014年10月8日
-   作    者   : z00161729
-   修改内容   : 新增
-
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8               ucLastDataSender;            /*记录gstGmmCasGlobalCtrl.ucLastDataSender*/
@@ -312,16 +191,7 @@ typedef struct
     VOS_UINT8               ucReserved;
 }GMMOM_LOG_GMM_CAS_GLOBAL_CTRL_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : GMMOM_LOG_MML_CTX_INFO_STRU
- 结构说明  : 勾mml相关全局变量信息
 
- 修改记录  :
- 1.日    期   : 2014年10月8日
-   作    者   : z00161729
-   修改内容   : 新增
-
-*****************************************************************************/
 typedef struct
 {
     NAS_MML_TIN_TYPE_ENUM_UINT8              enTinType;     /* 记录NAS_MML_GetTinType TIN类型 */
@@ -338,32 +208,14 @@ typedef struct
     VOS_UINT8                                aucReserved[3];
 }GMMOM_LOG_MML_CTX_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : GMMOM_LOG_MM_SUBLYR_SHARE_GMM_SHARE_INFO_STRU
- 结构说明  : 勾g_MmSubLyrShare.GmmShare相关全局变量信息
 
- 修改记录  :
- 1.日    期   : 2014年10月8日
-   作    者   : z00161729
-   修改内容   : 新增
-
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8               GmmShare_ucGsAssociationFlg;            /*记录g_MmSubLyrShare.GmmShare.ucGsAssociationFlg*/
     VOS_UINT8               aucReserved[3];
 }GMMOM_LOG_MM_SUB_LYR_SHARE_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : GMMOM_LOG_CTX_INFO_STRU
- 结构说明  : 勾GMM的全局变量的结构
 
- 修改记录  :
- 1.日    期   : 2014年10月8日
-   作    者   : z00161729
-   修改内容   : 新增
-
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                          stMsgHeader;/* 消息头 */ /*_H2ASN_Skip*/
@@ -382,16 +234,7 @@ typedef struct
 
 
 
-/*****************************************************************************
- 结构名    : NAS_GMM_LOG_GAS_RADIO_ACCESS_CAP_STRU
- 结构说明  : 勾GMM调用GAS接口获取的数据值
 
- 修改记录  :
- 1.日    期   : 2014年2月27日
-   作    者   : w0024274
-   修改内容   : 新增
-
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;/* 消息头 */ /*_H2ASN_Skip*/

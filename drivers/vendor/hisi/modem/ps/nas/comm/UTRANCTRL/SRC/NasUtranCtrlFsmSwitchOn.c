@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2012, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasUtranCtrlFsmSwitchOn.c
-  版 本 号   : 初稿
-  作    者   : w00167002
-  生成日期   : 2012年08月9日
-  最近修改   :
-  功能描述   : UTRANCTRL模块开机状态机消息的处理函数
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年08月9日
-    作    者   : w00167002
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -39,22 +22,7 @@ extern "C" {
 #define    THIS_FILE_ID        PS_FILE_ID_NAS_UTRANCTRL_FSM_SWITCHON_C
 
 #if (FEATURE_ON == FEATURE_UE_MODE_TDS)
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvWasStartCnf_SwitchOn_Init
- 功能描述  : 开机状态机启动函数
- 输入参数  : ulEventType:消息类型
-             pstMsg:TAFUtranCtrl_START_REQ消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月7日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvWasStartCnf_SwitchOn_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -76,22 +44,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvWasStartCnf_SwitchOn_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvTdStartCnf_SwitchOn_Init
- 功能描述  : 开机状态机启动函数
- 输入参数  : ulEventType:消息类型
-             pstMsg:TAFUtranCtrl_START_REQ消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月7日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvTdStartCnf_SwitchOn_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -114,22 +67,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvTdStartCnf_SwitchOn_Init(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvWasStartCnf_SwitchOn_WaitWasStartCnf
- 功能描述  : W模接入层开机回复消息的处理
- 输入参数  : ulEventType: 消息类型,
-              pstMsg: RRMM_START_CNF消息的结构体首址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月7日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新生成函数
-*****************************************************************************/
 VOS_UINT32  NAS_UTRANCTRL_RcvWasStartCnf_SwitchOn_WaitWasStartCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -145,22 +83,7 @@ VOS_UINT32  NAS_UTRANCTRL_RcvWasStartCnf_SwitchOn_WaitWasStartCnf(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvTdStartCnf_SwitchOn_WaitWasStartCnf
- 功能描述  : 等W模时候收到TD接入层开机回复消息的处理
- 输入参数  : ulEventType: 消息类型,
-              pstMsg: RRMM_START_CNF消息的结构体首址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月7日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新生成函数
-*****************************************************************************/
 VOS_UINT32  NAS_UTRANCTRL_RcvTdStartCnf_SwitchOn_WaitWasStartCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -172,22 +95,7 @@ VOS_UINT32  NAS_UTRANCTRL_RcvTdStartCnf_SwitchOn_WaitWasStartCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvTiWaitWasStartCnfExpired_SwitchOn_WaitWasStartCnf
- 功能描述  : W模接入层开机回复超时消息的处理
- 输入参数  : ulEventType: 消息类型,
-              pstMsg: RRMM_START_CNF消息的结构体首址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月7日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新生成函数
-*****************************************************************************/
 VOS_UINT32  NAS_UTRANCTRL_RcvTiWaitWasStartCnfExpired_SwitchOn_WaitWasStartCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -218,22 +126,7 @@ VOS_UINT32  NAS_UTRANCTRL_RcvTiWaitWasStartCnfExpired_SwitchOn_WaitWasStartCnf(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvTdStartCnf_SwitchOn_WaitTdStartCnf
- 功能描述  : Td模接入层开机回复消息的处理
- 输入参数  : ulEventType: 消息类型,
-              pstMsg: RRMM_START_CNF消息的结构体首址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月7日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新生成函数
-*****************************************************************************/
 VOS_UINT32  NAS_UTRANCTRL_RcvTdStartCnf_SwitchOn_WaitTdStartCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -249,22 +142,7 @@ VOS_UINT32  NAS_UTRANCTRL_RcvTdStartCnf_SwitchOn_WaitTdStartCnf(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvWasStartCnf_SwitchOn_WaitTdStartCnf
- 功能描述  : 等TD模时候收到W接入层开机回复消息的处理
- 输入参数  : ulEventType: 消息类型,
-              pstMsg: RRMM_START_CNF消息的结构体首址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月7日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新生成函数
-*****************************************************************************/
 VOS_UINT32  NAS_UTRANCTRL_RcvWasStartCnf_SwitchOn_WaitTdStartCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -277,22 +155,7 @@ VOS_UINT32  NAS_UTRANCTRL_RcvWasStartCnf_SwitchOn_WaitTdStartCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvTiWaitTdStartCnfExpired_SwitchOn_WaitTdStartCnf
- 功能描述  : Td模接入层开机回复超时消息的处理
- 输入参数  : ulEventType: 消息类型,
-              pstMsg: RRMM_START_CNF消息的结构体首址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月7日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新生成函数
-*****************************************************************************/
 VOS_UINT32  NAS_UTRANCTRL_RcvTiWaitTdStartCnfExpired_SwitchOn_WaitTdStartCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg

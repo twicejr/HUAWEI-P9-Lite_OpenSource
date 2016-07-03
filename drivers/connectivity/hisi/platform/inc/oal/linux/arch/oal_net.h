@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : oal_net.h
-  版 本 号   : 初稿
-  作    者   : t00231215
-  生成日期   : 2012年11月7日
-  最近修改   :
-  功能描述   : oal_net.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年11月7日
-    作    者   : t00231215
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __OAL_LINUX_NET_H__
 #define __OAL_LINUX_NET_H__
@@ -606,62 +589,19 @@ OAL_STATIC OAL_INLINE oal_void oal_netbuf_copy_queue_mapping(oal_netbuf_stru  *t
     skb_copy_queue_mapping(to,from);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_put
- 功能描述  : 在缓冲区尾部增加数据
- 输入参数  : pst_netbuf: 缓冲区结构体指针
-             ul_len: 需要增加数据的长度
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月5日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint8* oal_netbuf_put(oal_netbuf_stru *pst_netbuf, oal_uint32 ul_len)
 {
 	return skb_put(pst_netbuf, ul_len);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_push
- 功能描述  : 在缓冲区开头增加数据
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月5日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint8  *oal_netbuf_push(oal_netbuf_stru *pst_netbuf, oal_uint32 ul_len)
 {
     return skb_push(pst_netbuf, ul_len);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_pull
- 功能描述  : 从skb头部取出数据
- 输入参数  : pst_netbuf: skb结构体指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月14日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint8* oal_netbuf_pull(oal_netbuf_stru *pst_netbuf, oal_uint32 ul_len)
 {
     if (ul_len > pst_netbuf->len)
@@ -673,22 +613,7 @@ OAL_STATIC OAL_INLINE oal_uint8* oal_netbuf_pull(oal_netbuf_stru *pst_netbuf, oa
 
     return (pst_netbuf->data += ul_len);
 }
-/*****************************************************************************
- 函 数 名  : oal_ieee80211_channel_to_frequency
- 功能描述  : 将信道转换成频率
- 输入参数  : oal_int32 l_channel      :信道号
-             enum ieee80211_band band :频段
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月5日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_int32 oal_ieee80211_channel_to_frequency(oal_int32 l_channel, enum ieee80211_band band)
 {
     /* see 802.11 17.3.8.3.2 and Annex J
@@ -732,24 +657,7 @@ OAL_STATIC OAL_INLINE oal_int32 oal_ieee80211_channel_to_frequency(oal_int32 l_c
     /* not supported */
     return 0;
 }
-/*****************************************************************************
- 函 数 名  : oal_ieee80211_frequency_to_channel
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月29日
-    作    者   : y00184180
-    修改内容   : 新生成函数
-  2.日    期   : 2013年11月1日
-    作    者   : duankaiyong 00194999
-    修改内容   : 修改函数，将4.9G 频段正常转换
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_int32  oal_ieee80211_frequency_to_channel(oal_int32 l_center_freq)
 {
     oal_int32 l_channel;
@@ -782,20 +690,7 @@ OAL_STATIC OAL_INLINE oal_int32  oal_ieee80211_frequency_to_channel(oal_int32 l_
     return l_channel;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_get_bitfield
- 功能描述  : 识别IP报文的大小端
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月9日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint8 oal_netbuf_get_bitfield(oal_void)
 {
     union bitfield
@@ -864,21 +759,7 @@ OAL_STATIC OAL_INLINE oal_void oal_set_single_netbuf_tail(oal_netbuf_stru *pst_n
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : oal_get_cpu_stat
- 功能描述  : get cpu stat
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月30日
-    作    者   : c00260463
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  oal_get_cpu_stat(oal_cpu_usage_stat_stru *pst_cpu_stat)
 {
 #if (defined(_PRE_BOARD_SD5610) || defined(_PRE_BOARD_SD5115))
@@ -889,61 +770,19 @@ OAL_STATIC OAL_INLINE oal_void  oal_get_cpu_stat(oal_cpu_usage_stat_stru *pst_cp
 #ifdef _PRE_WLAN_FEATURE_PROXYSTA
 #define oal_br_should_route_hook     br_should_route_hook
 
-/*****************************************************************************
- 函 数 名  : oal_nf_register_hooks
- 功能描述  : 注册钩子函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月24日
-    作    者   : y00184180
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_int32  oal_nf_register_hooks(oal_nf_hook_ops_stru *pst_nf_hook_ops, oal_uint32 ul_num)
 {
     return nf_register_hooks(pst_nf_hook_ops, ul_num);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_nf_unregister_hooks
- 功能描述  : 注销网桥钩子函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月25日
-    作    者   : y00184180
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  oal_nf_unregister_hooks(oal_nf_hook_ops_stru *pst_nf_hook_ops, oal_uint32 ul_num)
 {
     nf_unregister_hooks(pst_nf_hook_ops, ul_num);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_br_get_port_type
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月25日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32 oal_br_get_port_type(oal_net_bridge_port *pst_port)
 {
 #if (defined(_PRE_BOARD_SD5610) || defined(_PRE_BOARD_SD5115))
@@ -953,21 +792,7 @@ OAL_STATIC OAL_INLINE oal_uint32 oal_br_get_port_type(oal_net_bridge_port *pst_p
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : oal_eth_hdr
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月25日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE  oal_ethhdr *oal_eth_hdr(OAL_CONST oal_netbuf_stru *pst_netbuf)
 {
     return eth_hdr(pst_netbuf);
@@ -980,21 +805,7 @@ OAL_STATIC OAL_INLINE  oal_ethhdr *oal_eth_hdr(OAL_CONST oal_netbuf_stru *pst_ne
 #endif
 
 
-/*****************************************************************************
- 函 数 名  : oal_ieee80211_get_channel
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月29日
-    作    者   : y00184180
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_ieee80211_channel_stru *oal_ieee80211_get_channel(oal_wiphy_stru *pst_wiphy,oal_int32 ul_freq)
 {
     return ieee80211_get_channel(pst_wiphy,ul_freq);
@@ -1002,121 +813,36 @@ OAL_STATIC OAL_INLINE oal_ieee80211_channel_stru *oal_ieee80211_get_channel(oal_
 
 /* BEGIN : Linux wiphy 结构相关的处理函数 */
 
-/*****************************************************************************
- 函 数 名  : oal_wiphy_new
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月28日
-    作    者   : y00184180
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_wiphy_stru * oal_wiphy_new(oal_cfg80211_ops_stru *ops, oal_int32 sizeof_priv)
 {
     return wiphy_new(ops, sizeof_priv);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_wiphy_register
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月28日
-    作    者   : y00184180
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_int32 oal_wiphy_register(oal_wiphy_stru *pst_wiphy)
 {
     return wiphy_register(pst_wiphy);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_wiphy_unregister
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月5日
-    作    者   : y00184180
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  oal_wiphy_unregister(oal_wiphy_stru *pst_wiphy)
 {
     return wiphy_unregister(pst_wiphy);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_wiphy_free
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月28日
-    作    者   : y00184180
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE void oal_wiphy_free(oal_wiphy_stru *pst_wiphy)
 {
     wiphy_free(pst_wiphy);
 }
-/*****************************************************************************
- 函 数 名  : oal_wiphy_priv
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月28日
-    作    者   : y00184180
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE void *oal_wiphy_priv(oal_wiphy_stru *pst_wiphy)
 {
     return wiphy_priv(pst_wiphy);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_wiphy_apply_custom_regulatory
- 功能描述  :
- 输入参数  : oal_wiphy_stru *pst_wiphy
-             OAL_CONST oal_ieee80211_regdomain *regd
- 输出参数  : 无
- 返 回 值  : OAL_STATIC OAL_INLINE void *
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月13日
-    作    者   : duankaiyong 00194999
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE void oal_wiphy_apply_custom_regulatory(oal_wiphy_stru *pst_wiphy, OAL_CONST oal_ieee80211_regdomain_stru *regd)
 {
     wiphy_apply_custom_regulatory(pst_wiphy, regd);
@@ -1142,42 +868,13 @@ OAL_STATIC OAL_INLINE void oal_wiphy_set_frag(oal_wiphy_stru *pst_wiphy, oal_uin
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_eth_type_trans
- 功能描述  : 获取协议模式
- 输入参数  : pst_netbuf: skb指针
-             pst_device: net device结构体指针
- 输出参数  : 无
- 返 回 值  : 协议模式
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月12日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint16  oal_eth_type_trans(oal_netbuf_stru *pst_netbuf, oal_net_device_stru *pst_device)
 {
     return eth_type_trans(pst_netbuf, pst_device);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_ether_setup
- 功能描述  : 网络设备启动接口
- 输入参数  : oal_net_device_stru:网络设备引用
- 输出参数  : 无
- 返 回 值  : 错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月22日
-    作    者   : k53369
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 OAL_STATIC OAL_INLINE oal_void oal_ether_setup(oal_net_device_stru *p_net_device)
 {
@@ -1191,58 +888,16 @@ OAL_STATIC OAL_INLINE oal_void oal_ether_setup(oal_net_device_stru *p_net_device
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_dev_get_by_name
- 功能描述  : 根据名字寻找netdevice
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月12日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_net_device_stru* oal_dev_get_by_name(const oal_int8 *pc_name)
 {
     return dev_get_by_name(&init_net, pc_name);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_dev_put
- 功能描述  : 调用oal_dev_get_by_name后需要调用dev_put,是net_dev的引用计数减1
- 输入参数  : _pst_dev: 指向net_dev的指针
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月19日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 #define oal_dev_put(_pst_dev) dev_put(_pst_dev)
 
-/*****************************************************************************
- 函 数 名  : oal_net_close_dev
- 功能描述  : down调 netdev
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月4日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  oal_net_close_dev(oal_net_device_stru *pst_netdev)
 {
     rtnl_lock();
@@ -1250,23 +905,7 @@ OAL_STATIC OAL_INLINE oal_void  oal_net_close_dev(oal_net_device_stru *pst_netde
     rtnl_unlock();
 }
 
-/*****************************************************************************
- 函 数 名  : oal_net_alloc_netdev
- 功能描述  : 分配网络设备
- 输入参数  : ul_sizeof_priv: 私有结构空间长度
-           : puc_name 设备名称
-           : p_set_up:启动函数指针
- 输出参数  : 无
- 返 回 值  : 错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月22日
-    作    者   : k53369
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_net_device_stru * oal_net_alloc_netdev(oal_uint32 ul_sizeof_priv, oal_int8 *puc_name,
                                                   oal_void *p_set_up)
 {
@@ -1279,23 +918,7 @@ OAL_STATIC OAL_INLINE oal_net_device_stru * oal_net_alloc_netdev(oal_uint32 ul_s
 }
 
 //#ifdef _PRE_WLAN_FEATURE_FLOWCTL
-/*****************************************************************************
- 函 数 名  : oal_net_alloc_netdev_mqs
- 功能描述  : 分配网络设备,包含多个队列
- 输入参数  : ul_sizeof_priv: 私有结构空间长度
-           : puc_name 设备名称
-           : p_set_up:启动函数指针
- 输出参数  : 无
- 返 回 值  : 错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月4日
-    作    者   : x00189397
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_net_device_stru * oal_net_alloc_netdev_mqs(oal_uint32 ul_sizeof_priv, oal_int8 *puc_name,
                                                   oal_void *p_set_up, oal_uint32 ul_txqs, oal_uint32 ul_rxqs)
 {
@@ -1307,21 +930,7 @@ OAL_STATIC OAL_INLINE oal_net_device_stru * oal_net_alloc_netdev_mqs(oal_uint32 
     return alloc_netdev_mq(ul_sizeof_priv, puc_name, p_set_up, ul_txqs);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_net_tx_wake_all_queues
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月4日
-    作    者   : x00189397
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void oal_net_tx_wake_all_queues(oal_net_device_stru *pst_dev)
 {
     if (OAL_PTR_NULL == pst_dev)
@@ -1333,21 +942,7 @@ OAL_STATIC OAL_INLINE oal_void oal_net_tx_wake_all_queues(oal_net_device_stru *p
 }
 
 
-/*****************************************************************************
- 函 数 名  : oal_net_tx_stop_all_queues
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月4日
-    作    者   : x00189397
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void oal_net_tx_stop_all_queues(oal_net_device_stru *pst_dev)
 {
     if (OAL_PTR_NULL == pst_dev)
@@ -1358,21 +953,7 @@ OAL_STATIC OAL_INLINE oal_void oal_net_tx_stop_all_queues(oal_net_device_stru *p
     return netif_tx_stop_all_queues(pst_dev);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_net_wake_subqueue
- 功能描述  : wake网络设备的某个subqueue
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月3日
-    作    者   : x00189397
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void oal_net_wake_subqueue(oal_net_device_stru *pst_dev, oal_uint16 us_queue_idx)
 {
     if (OAL_PTR_NULL == pst_dev)
@@ -1384,21 +965,7 @@ OAL_STATIC OAL_INLINE oal_void oal_net_wake_subqueue(oal_net_device_stru *pst_de
 }
 
 
-/*****************************************************************************
- 函 数 名  : oal_net_stop_subqueue
- 功能描述  : 暂停网络设备的某个subqueue
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月3日
-    作    者   : x00189397
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void oal_net_stop_subqueue(oal_net_device_stru *pst_dev, oal_uint16 us_queue_idx)
 {
     if (OAL_PTR_NULL == pst_dev)
@@ -1412,23 +979,7 @@ OAL_STATIC OAL_INLINE oal_void oal_net_stop_subqueue(oal_net_device_stru *pst_de
 
 //#endif
 
-/*****************************************************************************
- 函 数 名  : oal_net_free_netdev
- 功能描述  : 释放网络设备
- 输入参数  : ul_sizeof_priv: 私有结构空间长度
-           : puc_name 设备名称
-           : p_set_up:启动函数指针
- 输出参数  : 无
- 返 回 值  : 错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月22日
-    作    者   : k53369
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void oal_net_free_netdev(oal_net_device_stru *pst_netdev)
 {
     if (OAL_PTR_NULL == pst_netdev)
@@ -1439,21 +990,7 @@ OAL_STATIC OAL_INLINE oal_void oal_net_free_netdev(oal_net_device_stru *pst_netd
     free_netdev(pst_netdev);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_net_register_netdev
- 功能描述  : 注册网络设备
- 输入参数  : p_net_device: net device 结构体指针
- 输出参数  : 无
- 返 回 值  : 错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月22日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_int32 oal_net_register_netdev(oal_net_device_stru *p_net_device)
 {
     if (OAL_PTR_NULL == p_net_device)
@@ -1472,21 +1009,7 @@ OAL_STATIC OAL_INLINE oal_int32 oal_net_register_netdev(oal_net_device_stru *p_n
 }
 
 
-/*****************************************************************************
- 函 数 名  : oal_net_unregister_netdev
- 功能描述  : 去注册网络设备
- 输入参数  : p_net_device: net device 结构体指针
- 输出参数  : 无
- 返 回 值  : 错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月22日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void oal_net_unregister_netdev(oal_net_device_stru *p_net_device)
 {
     if (OAL_PTR_NULL == p_net_device)
@@ -1497,42 +1020,14 @@ OAL_STATIC OAL_INLINE oal_void oal_net_unregister_netdev(oal_net_device_stru *p_
     unregister_netdev(p_net_device);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_net_device_priv
- 功能描述  : 返回netdev的私有成员
- 输入参数  : pst_net_dev: net device 结构体指针
- 输出参数  : 无
- 返 回 值  : priv成员
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月20日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void* oal_net_device_priv(oal_net_device_stru *pst_net_dev)
 {
     return netdev_priv(pst_net_dev);
 }
 
 
-/*****************************************************************************
- 函 数 名  : oal_net_device_open
- 功能描述  : net device的open函数
- 输入参数  : net device指针
- 输出参数  : 无
- 返 回 值  : 成功或者失败原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月25日
-    作    者   : kangguochang
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_int32  oal_net_device_open(oal_net_device_stru *pst_dev)
 {
     /* TBD netdevice相关接口函数后续统一优化 */
@@ -1541,21 +1036,7 @@ OAL_STATIC OAL_INLINE oal_int32  oal_net_device_open(oal_net_device_stru *pst_de
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_net_device_close
- 功能描述  : net device的close函数
- 输入参数  : net device指针
- 输出参数  : 无
- 返 回 值  : 成功或者失败原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月25日
-    作    者   : kangguochang
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_int32 oal_net_device_close(oal_net_device_stru *pst_dev)
 {
     /* TBD netdevice相关接口函数后续统一优化 */
@@ -1565,21 +1046,7 @@ OAL_STATIC OAL_INLINE oal_int32 oal_net_device_close(oal_net_device_stru *pst_de
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_net_device_set_macaddr
- 功能描述  : net device的设置mac地址函数
- 输入参数  : net device指针
- 输出参数  : 无
- 返 回 值  : 成功或者失败原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月25日
-    作    者   : kangguochang
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_int32 oal_net_device_set_macaddr(oal_net_device_stru *pst_dev, oal_void *pst_addr)
 {
     /* TBD netdevice相关接口函数后续统一优化 */
@@ -1593,21 +1060,7 @@ OAL_STATIC OAL_INLINE oal_int32 oal_net_device_set_macaddr(oal_net_device_stru *
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_net_device_init
- 功能描述  : net device的初始化函数
- 输入参数  : net device指针
- 输出参数  : 无
- 返 回 值  : 成功或者失败原因
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月25日
-    作    者   : kangguochang
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_int32 oal_net_device_init(oal_net_device_stru *pst_dev)
 {
     /* TBD netdevice相关接口函数后续统一优化 */
@@ -1615,21 +1068,7 @@ OAL_STATIC OAL_INLINE oal_int32 oal_net_device_init(oal_net_device_stru *pst_dev
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_net_device_get_stats
- 功能描述  : net device的统计函数
- 输入参数  : net device指针
- 输出参数  : 无
- 返 回 值  : 统计结果指针
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月25日
-    作    者   : kangguochang
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_net_device_stats_stru *oal_net_device_get_stats(oal_net_device_stru *pst_dev)
 {
     /* TBD netdevice相关接口函数后续统一优化 */
@@ -1649,42 +1088,14 @@ OAL_STATIC OAL_INLINE oal_net_device_stats_stru *oal_net_device_get_stats(oal_ne
     return pst_stats;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_net_device_ioctl
- 功能描述  : net device的ioctl函数
- 输入参数  : net device指针
- 输出参数  : 无
- 返 回 值  : 统计结果指针
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月25日
-    作    者   : kangguochang
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_int32 oal_net_device_ioctl(oal_net_device_stru *pst_dev, oal_ifreq_stru *pst_ifr, oal_int32 ul_cmd)
 {
     /* TBD netdevice相关接口函数后续统一优化 */
     return -OAL_EINVAL;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_net_device_multicast_list
- 功能描述  : net device的multicast函数
- 输入参数  : net device指针
- 输出参数  : 无
- 返 回 值  : 统计结果指针
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月25日
-    作    者   : kangguochang
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_int32 oal_net_device_multicast_list(oal_net_device_stru *pst_dev)
 {
     /* TBD netdevice相关接口函数后续统一优化 */
@@ -1692,21 +1103,7 @@ OAL_STATIC OAL_INLINE oal_int32 oal_net_device_multicast_list(oal_net_device_str
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_net_device_change_mtu
- 功能描述  : net device的change_mtu函数
- 输入参数  : net device指针
- 输出参数  : 无
- 返 回 值  : 统计结果指针
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月25日
-    作    者   : kangguochang
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_int32 oal_net_device_change_mtu(oal_net_device_stru *pst_dev, oal_int32 ul_mtu)
 {
     /* TBD 需要优化 */
@@ -1714,21 +1111,7 @@ OAL_STATIC OAL_INLINE oal_int32 oal_net_device_change_mtu(oal_net_device_stru *p
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_net_device_hardstart
- 功能描述  : net device的hardstart函数
-  输入参数  : net device指针
- 输出参数  : 无
- 返 回 值  : 统计结果指针
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月25日
-    作    者   : kangguochang
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 OAL_STATIC OAL_INLINE oal_int32 oal_net_device_hardstart(oal_netbuf_stru *pst_skb, oal_net_device_stru *pst_dev)
 {
@@ -1741,44 +1124,13 @@ OAL_STATIC OAL_INLINE oal_int32 oal_net_device_hardstart(oal_netbuf_stru *pst_sk
 /* 在dev.c中定义，用来在中断上下文或者非中断上下文中释放skb */
 extern void dev_kfree_skb_any(struct sk_buff *skb);
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_reserve
- 功能描述  : 将报文结构体的data指针和tail指针同时下移
- 输入参数  : pst_netbuf报文结构体指针
-             len: 预留长度
- 输出参数  : 无
- 返 回 值  : 成功返回OAL_SUCC；失败返回OAL_ERR_CODE_PTR_NULL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月1日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  oal_netbuf_reserve(oal_netbuf_stru *pst_netbuf, oal_int32 l_len)
 {
     skb_reserve(pst_netbuf, l_len);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_alloc
- 功能描述  : 为netbuf申请内存
- 输入参数  : ul_size: 分配内存的大小
-             l_reserve: data跟指针头之间要预留的长度
-             ul_align: 需要几字节对齐
- 输出参数  : 无
- 返 回 值  : 成功返回结构体指针；失败返回OAL_PTR_NULL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月1日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_netbuf_stru* oal_netbuf_alloc(oal_uint32 ul_size, oal_int32 l_reserve, oal_int32 l_align)
 {
     oal_netbuf_stru *pst_netbuf;
@@ -1813,21 +1165,7 @@ OAL_STATIC OAL_INLINE oal_netbuf_stru* oal_netbuf_alloc(oal_uint32 ul_size, oal_
     return pst_netbuf;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_free
- 功能描述  : 释放报文结构体内存空间, 非硬中断环境下使用
- 输入参数  : pst_netbuf: 报文结构体指针
- 输出参数  : 无
- 返 回 值  : 成功返回OAL_SUCC；失败返回OAL_ERR_CODE_PTR_NULL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月1日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32  oal_netbuf_free(oal_netbuf_stru *pst_netbuf)
 {
     dev_kfree_skb(pst_netbuf);
@@ -1835,226 +1173,69 @@ OAL_STATIC OAL_INLINE oal_uint32  oal_netbuf_free(oal_netbuf_stru *pst_netbuf)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_free_any
- 功能描述  : 释放报文结构体内存空间，可用于中断环境
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月28日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  oal_netbuf_free_any(oal_netbuf_stru *pst_netbuf)
 {
     dev_kfree_skb_any(pst_netbuf);
 }
 
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_unshare
- 功能描述  : 判断一个skb是否为克隆的，是则copy一份新的skb，否则直接返回传入的skb
- 输入参数  : pst_netbuf: skb结构体指针
-             en_pri: 内存分配的优先级
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月6日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_netbuf_stru* oal_netbuf_unshare(oal_netbuf_stru *pst_netbuf, oal_gfp_enum_uint8 en_pri)
 {
     return skb_unshare(pst_netbuf, en_pri);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_copy
- 功能描述  : 拷贝一份新的skb
- 输入参数  : pst_netbuf: skb结构体指针
-             en_pri: 内存分配的优先级
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月6日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_netbuf_stru* oal_netbuf_copy(oal_netbuf_stru *pst_netbuf, oal_gfp_enum_uint8 en_priority)
 {
     return skb_copy(pst_netbuf, en_priority);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_data
- 功能描述  : 获取skb数据头部
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月13日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint8* oal_netbuf_data(oal_netbuf_stru *pst_netbuf)
 {
     return pst_netbuf->data;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_data
- 功能描述  : 获取skb数据头部
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月13日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint8* oal_netbuf_header(oal_netbuf_stru *pst_netbuf)
 {
     return pst_netbuf->data;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_data
- 功能描述  : 获取skb数据头部
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月13日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint8* oal_netbuf_payload(oal_netbuf_stru *pst_netbuf)
 {
     return pst_netbuf->data;
 }
 
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_end
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月26日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint8 *oal_netbuf_end(oal_netbuf_stru *pst_netbuf)
 {
     return skb_end_pointer(pst_netbuf);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_get_len
- 功能描述  : 获取skb数据长度
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月13日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32  oal_netbuf_get_len(oal_netbuf_stru *pst_netbuf)
 {
     return pst_netbuf->len;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_headroom
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月13日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32  oal_netbuf_headroom(const oal_netbuf_stru *pst_netbuf)
 {
     return skb_headroom(pst_netbuf);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_tailroom
- 功能描述  : 获取尾部空间大小
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月13日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32  oal_netbuf_tailroom(const oal_netbuf_stru *pst_netbuf)
 {
     return skb_tailroom(pst_netbuf);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_realloc
- 功能描述  : skb头部内存空间扩充
- 输入参数  : pst_netbuf: skb结构体指针
-             ul_headroom: 想要扩展的头部空间大小
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月13日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_netbuf_stru* oal_netbuf_realloc_headroom(oal_netbuf_stru *pst_netbuf, oal_uint32 ul_headroom)
 {
     if(pskb_expand_head(pst_netbuf, ul_headroom, 0, GFP_ATOMIC))
@@ -2066,21 +1247,7 @@ OAL_STATIC OAL_INLINE oal_netbuf_stru* oal_netbuf_realloc_headroom(oal_netbuf_st
     return pst_netbuf;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_realloc_tailroom
- 功能描述  : skb尾部空间扩充
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月13日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_netbuf_stru* oal_netbuf_realloc_tailroom(oal_netbuf_stru *pst_netbuf, oal_uint32 ul_tailroom)
 {
     if(OAL_LIKELY(!pskb_expand_head(pst_netbuf, 0, ul_tailroom, GFP_ATOMIC)))
@@ -2094,44 +1261,13 @@ OAL_STATIC OAL_INLINE oal_netbuf_stru* oal_netbuf_realloc_tailroom(oal_netbuf_st
     return OAL_PTR_NULL;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_cb
- 功能描述  : 返回skb中的cb字段
- 输入参数  : pst_netbuf: skb结构体指针
- 输出参数  : 无
- 返 回 值  : cb
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月13日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint8* oal_netbuf_cb(oal_netbuf_stru *pst_netbuf)
 {
     return pst_netbuf->cb;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_add_to_list
- 功能描述  : 将skb加入skb链表中
- 输入参数  : pst_new: 要插入的新skb指针
-             pst_prev: 尾节点
-             pst_head: skb链表头指针
 
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年11月14日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  oal_netbuf_add_to_list(oal_netbuf_stru *pst_buf, oal_netbuf_stru *pst_prev, oal_netbuf_stru *pst_next)
 {
     pst_buf->next   = pst_next;
@@ -2141,63 +1277,20 @@ OAL_STATIC OAL_INLINE oal_void  oal_netbuf_add_to_list(oal_netbuf_stru *pst_buf,
 
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_msdu_add_to_amsdu_tail
- 功能描述  : 将skb加入skb链表中的尾部
- 输入参数  : pst_new: 要插入的新skb指针
-             pst_head: skb链表头指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月14日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  oal_netbuf_add_to_list_tail(oal_netbuf_stru *pst_buf, oal_netbuf_head_stru *pst_head)
 {
     skb_queue_tail(pst_head, pst_buf);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_list_len
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月27日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32  oal_netbuf_list_len(oal_netbuf_head_stru *pst_head)
 {
     return skb_queue_len(pst_head);
 }
 
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_delete
- 功能描述  : 删除链表中的skb
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月19日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  oal_netbuf_delete(oal_netbuf_stru *pst_buf, oal_netbuf_head_stru *pst_list_head)
 {
     skb_unlink(pst_buf, pst_list_head);
@@ -2215,41 +1308,13 @@ OAL_STATIC OAL_INLINE oal_void __netbuf_unlink(struct sk_buff *skb, struct sk_bu
     prev->next = next;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_delist
- 功能描述  : skb链表出队
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月16日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_netbuf_stru* oal_netbuf_delist(oal_netbuf_head_stru *pst_list_head)
 {
     return skb_dequeue(pst_list_head);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_addlist
- 功能描述  : skb链表从头部入队
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月26日
-    作    者   : z00262551
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void oal_netbuf_addlist(oal_netbuf_head_stru *pst_list_head,
                                                               oal_netbuf_stru* netbuf)
 {
@@ -2257,61 +1322,19 @@ OAL_STATIC OAL_INLINE oal_void oal_netbuf_addlist(oal_netbuf_head_stru *pst_list
 }
 
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_list_purge
- 功能描述  : skb链表清空
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月4日
-    作    者   : z00262551
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void oal_netbuf_list_purge(oal_netbuf_head_stru *pst_list_head)
 {
     skb_queue_purge(pst_list_head);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_list_empty
- 功能描述  : 判断skb list是否为空
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月16日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_int32  oal_netbuf_list_empty(const oal_netbuf_head_stru *pst_list_head)
 {
     return skb_queue_empty(pst_list_head);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_list_head_init
- 功能描述  : 初始化skb队列头
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月16日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  oal_netbuf_list_head_init(oal_netbuf_head_stru *pst_list_head)
 {
 #if 0
@@ -2322,123 +1345,36 @@ OAL_STATIC OAL_INLINE oal_void  oal_netbuf_list_head_init(oal_netbuf_head_stru *
     skb_queue_head_init(pst_list_head);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_list_next
- 功能描述  : 返回链表中指定节点的下一个节点
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月16日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_netbuf_stru* oal_netbuf_list_next(const oal_netbuf_stru *pst_buf)
 {
     return pst_buf->next;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_list_tail
- 功能描述  : add a netbuf to skb list
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月25日
-    作    者   : z00262551
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void oal_netbuf_list_tail(oal_netbuf_head_stru *list, oal_netbuf_stru *newsk)
 {
     skb_queue_tail(list, newsk);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_list_tail
- 功能描述  : join two skb lists and reinitialise the emptied list
- 输入参数  : @list: the new list to add
-             @head: the place to add it in the first list
- 输出参数  : The list at @list is reinitialised
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月25日
-    作    者   : z00262551
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void oal_netbuf_splice_init(oal_netbuf_head_stru *list, oal_netbuf_head_stru *head)
 {
     skb_queue_splice_init(list,head);
 }
-/*****************************************************************************
- 函 数 名  : oal_netbuf_queue_splice_tail_init
- 功能描述  :  join two skb lists and reinitialise the emptied list
- 输入参数  : @list: the new list to add
-             @head: the place to add it in the first list
- 输出参数  : The list at @list is reinitialised
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月25日
-    作    者   : z00262551
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void oal_netbuf_queue_splice_tail_init(oal_netbuf_head_stru *list, oal_netbuf_head_stru *head)
 {
     skb_queue_splice_tail_init(list,head);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_delist_tail
- 功能描述  : remove skb from list tail
- 输入参数  : @head: the place to add it in the first list
- 输出参数  : The list at @list is reinitialised
- 返 回 值  : the netbuf removed from the list
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月27日
-    作    者   : z00262551
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_netbuf_stru* oal_netbuf_delist_tail( oal_netbuf_head_stru *head)
 {
     return skb_dequeue_tail(head);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_splice_sync
- 功能描述  : move head buffs to list
- 输入参数  : @list: the new list to add
-             @head: the place to add it in the first list
- 输出参数  : The list at @list is reinitialised
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月27日
-    作    者   : z00262551
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void oal_netbuf_splice_sync(oal_netbuf_head_stru *list, oal_netbuf_head_stru *head)
 {
     oal_netbuf_stru* netbuf;
@@ -2453,82 +1389,25 @@ OAL_STATIC OAL_INLINE oal_void oal_netbuf_splice_sync(oal_netbuf_head_stru *list
     }
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_head_init
- 功能描述  : init netbuf list
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月25日
-    作    者   : z00262551
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void oal_netbuf_head_init(oal_netbuf_head_stru *list)
 {
     skb_queue_head_init(list);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_peek
- 输入参数  : pst_head: skb链表头指针
- 输出参数  : 无
- 返 回 值  : 链表中第一个元素
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月20日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_netbuf_stru* oal_netbuf_peek(oal_netbuf_head_stru *pst_head)
 {
     return skb_peek(pst_head);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_tail
- 功能描述  : 返回skb链表中的最后一个元素
- 输入参数  : pst_head: skb链表头指针
- 输出参数  : 无
- 返 回 值  : 链表中最后一个元素
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月20日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_netbuf_stru* oal_netbuf_tail(oal_netbuf_head_stru *pst_head)
 {
     return skb_peek_tail(pst_head);
 }
 #if 0
-/*****************************************************************************
- 函 数 名  : oal_netbuf_depad
- 功能描述  : 去掉尾部的pad
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月22日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-  2.接口废弃，请使用oal_netbuf_trim
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint8* oal_netbuf_depad(oal_netbuf_stru *pst_netbuf, oal_uint32 ul_len)
 {
     pst_netbuf->tail -= ul_len;
@@ -2539,21 +1418,7 @@ OAL_STATIC OAL_INLINE oal_uint8* oal_netbuf_depad(oal_netbuf_stru *pst_netbuf, o
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_free_list
- 功能描述  : 从链表中释放制定个数的skb
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月23日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32  oal_netbuf_free_list(oal_netbuf_head_stru *pst_head, oal_uint32 ul_num)
 {
     oal_uint32 ul_index;
@@ -2571,22 +1436,7 @@ OAL_STATIC OAL_INLINE oal_uint32  oal_netbuf_free_list(oal_netbuf_head_stru *pst
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_get_appointed_netbuf
- 功能描述  : 获取当前netbuf元素后的第n个元素
- 输入参数  : (1)起始查找节点
-             (2)向后查找的个数
- 输出参数  : 指向期望的netbuf的指针
- 返 回 值  : 期望的betbuf元素的指针或空指针
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月16日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32  oal_netbuf_get_appointed_netbuf(oal_netbuf_stru *pst_netbuf, oal_uint8 uc_num, oal_netbuf_stru **pst_expect_netbuf)
 {
     oal_uint8   uc_buf_num;
@@ -2613,21 +1463,7 @@ OAL_STATIC OAL_INLINE oal_uint32  oal_netbuf_get_appointed_netbuf(oal_netbuf_str
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_clone
- 功能描述  : skb克隆，复制头部 ，data指向同一块区域
- 输入参数  : pst_buf: skb指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月12日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_netbuf_stru* oal_netbuf_clone(oal_netbuf_stru *pst_buf)
 {
     oal_int32   l_flags = GFP_KERNEL;
@@ -2640,21 +1476,7 @@ OAL_STATIC OAL_INLINE oal_netbuf_stru* oal_netbuf_clone(oal_netbuf_stru *pst_buf
     return skb_clone(pst_buf, l_flags);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_decrease_user
- 功能描述  : 将skb的引用计数减一
- 输入参数  : pst_buf: skb指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月12日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32  oal_netbuf_decrease_user(oal_netbuf_stru *pst_buf)
 {
     if (OAL_UNLIKELY(OAL_PTR_NULL == pst_buf))
@@ -2667,21 +1489,7 @@ OAL_STATIC OAL_INLINE oal_uint32  oal_netbuf_decrease_user(oal_netbuf_stru *pst_
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_increase_user
- 功能描述  : 将skb的引用计数+1
- 输入参数  : pst_buf: skb指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32  oal_netbuf_increase_user(oal_netbuf_stru *pst_buf)
 {
     if (OAL_UNLIKELY(OAL_PTR_NULL == pst_buf))
@@ -2694,81 +1502,25 @@ OAL_STATIC OAL_INLINE oal_uint32  oal_netbuf_increase_user(oal_netbuf_stru *pst_
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_get_buf_num
- 功能描述  : 获取netbuf双向链表中buf的个数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年1月15日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32  oal_netbuf_get_buf_num(oal_netbuf_head_stru *pst_netbuf_head)
 {
     return pst_netbuf_head->qlen;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_get
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月17日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_netbuf_stru* oal_netbuf_get(oal_netbuf_stru *pst_netbuf)
 {
     return skb_get(pst_netbuf);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_queue_purge
- 功能描述  : 释放skb链中的所有skb
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月29日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  oal_netbuf_queue_purge(oal_netbuf_head_stru  *pst_netbuf_head)
 {
     skb_queue_purge(pst_netbuf_head);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_copy_expand
- 功能描述  : 复制skb以及数据，并扩充头部和尾部空间
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月29日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_netbuf_stru*  oal_netbuf_copy_expand(
                                                  oal_netbuf_stru    *pst_netbuf,
                                                  oal_int32           ul_headroom,
@@ -2792,41 +1544,13 @@ OAL_STATIC OAL_INLINE oal_int32  oal_netif_rx_hw(oal_netbuf_stru *pst_netbuf)
 
 
 
-/*****************************************************************************
- 函 数 名  : oal_netif_rx
- 功能描述  : 将skb发给桥
- 输入参数  : pst_netbuf: skb指针
- 输出参数  : 无
- 返 回 值  : 1，drop；0，succ
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月12日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_int32  oal_netif_rx(oal_netbuf_stru *pst_netbuf)
 {
     return netif_rx(pst_netbuf);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netif_rx_ni
- 功能描述  : 将skb发给桥  !in_interrupt()
- 输入参数  : pst_netbuf: skb指针
- 输出参数  : 无
- 返 回 值  : 1，drop；0，succ
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月12日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_int32  oal_netif_rx_ni(oal_netbuf_stru *pst_netbuf)
 {
     return netif_rx_ni(pst_netbuf);
@@ -2843,21 +1567,7 @@ OAL_STATIC OAL_INLINE oal_void  oal_local_bh_enable(oal_void)
     local_bh_enable();
 }
 
-/*****************************************************************************
- 函 数 名  : oal_cpu_clock
- 功能描述  : 获取时间戳
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 1，drop；0，succ
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月12日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint64  oal_cpu_clock(oal_void)
 {
     return cpu_clock(UINT_MAX);
@@ -2870,21 +1580,7 @@ OAL_STATIC OAL_INLINE oal_int32 oal_netbuf_expand_head(oal_netbuf_stru *netbuf,
     return pskb_expand_head(netbuf, nhead, ntail, gfp_mask);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netlink_kernel_create
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月15日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_sock_stru* oal_netlink_kernel_create(
                 oal_net_stru *pst_net, oal_int32 l_unit, oal_uint32 ul_groups,
                 oal_void (*input)(oal_netbuf_stru *pst_netbuf),
@@ -2903,21 +1599,7 @@ OAL_STATIC OAL_INLINE oal_sock_stru* oal_netlink_kernel_create(
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netlink_kernel_release
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月8日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  oal_netlink_kernel_release(oal_sock_stru *pst_sock)
 {
 #if (LINUX_VERSION_CODE >= KERNEL_VERSION(3,10,44))
@@ -2927,41 +1609,13 @@ OAL_STATIC OAL_INLINE oal_void  oal_netlink_kernel_release(oal_sock_stru *pst_so
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : oal_nlmsg_hdr
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月15日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_nlmsghdr_stru* oal_nlmsg_hdr(OAL_CONST oal_netbuf_stru *pst_netbuf)
 {
     return (oal_nlmsghdr_stru *)OAL_NETBUF_HEADER(pst_netbuf);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_nlmsg_put
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月16日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_nlmsghdr_stru* oal_nlmsg_put(
                 oal_netbuf_stru *pst_netbuf, oal_uint32 ul_pid,
                 oal_uint32 ul_seq, oal_int32 l_type, oal_int32 l_payload, oal_int32 l_flags)
@@ -2969,101 +1623,31 @@ OAL_STATIC OAL_INLINE oal_nlmsghdr_stru* oal_nlmsg_put(
     return nlmsg_put(pst_netbuf, ul_pid, ul_seq, l_type, l_payload, l_flags);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_nla_put_u32
- 功能描述  : 给netlink数据中添加32位的信息
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月23日
-    作    者   : daihu 00262548
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_int32 oal_nla_put_u32(oal_netbuf_stru *pst_skb, oal_int32 l_attrtype, oal_uint32 ul_value)
 {
     return nla_put_u32(pst_skb, l_attrtype, ul_value);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_nla_put
- 功能描述  : 给netlink消息中添加8位的信息
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月23日
-    作    者   : daihu 00262548
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_int32  oal_nla_put(oal_netbuf_stru *pst_skb, oal_int32 l_attrtype, oal_int32 l_attrlen, const oal_void *p_data)
 {
     return nla_put(pst_skb, l_attrtype, l_attrlen, p_data);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_nlmsg_new
- 功能描述  : 分配一个新的netlink消息
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月15日
-    作    者   : daihu 00262548
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE  oal_netbuf_stru *oal_nlmsg_new(oal_int32 payload, oal_gfp_enum_uint8 flags)
 {
     return nlmsg_new(payload, flags);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_nlmsg_free
- 功能描述  : 释放netlink消息
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月15日
-    作    者   : daihu 00262548
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void oal_nlmsg_free(oal_netbuf_stru *pst_skb)
 {
     return nlmsg_free(pst_skb);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_genlmsg_multicast
- 功能描述  : 调用netlink广播发送函数来发送netlink消息
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月15日
-    作    者   : daihu 00262548
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_int32  oal_genlmsg_multicast(
                     oal_netbuf_stru *pst_skb, oal_uint32 ul_pid,
 				    oal_uint32 ul_group, oal_gfp_enum_uint8 flags)
@@ -3071,21 +1655,7 @@ OAL_STATIC OAL_INLINE oal_int32  oal_genlmsg_multicast(
     return genlmsg_multicast(pst_skb, ul_pid, ul_group, flags);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_genlmsg_put
- 功能描述  : 给netlink消息中添加对应命令
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月15日
-    作    者   : daihu 00262548
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void *oal_genlmsg_put(
                 oal_netbuf_stru *pst_skb, oal_uint32 ul_pid, oal_uint32 ul_seq,
 				oal_genl_family_stru *pst_family, oal_int32 flags, oal_uint8 cmd)
@@ -3093,103 +1663,32 @@ OAL_STATIC OAL_INLINE oal_void *oal_genlmsg_put(
     return genlmsg_put(pst_skb, ul_pid, ul_seq, pst_family, flags, cmd);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_nla_nest_start
- 功能描述  : 开始处理netlink消息的起始位置
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月15日
-    作    者   : daihu 00262548
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_nlattr_stru *oal_nla_nest_start(oal_netbuf_stru *pst_skb, oal_int32 l_attrtype)
 {
     return nla_nest_start(pst_skb, l_attrtype);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_genlmsg_cancel
- 功能描述  : 取消netlink消息封装
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月15日
-    作    者   : daihu 00262548
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  oal_genlmsg_cancel(oal_netbuf_stru *pst_skb, oal_void *pst_hdr)
 {
     return genlmsg_cancel(pst_skb, pst_hdr);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_nla_nest_end
- 功能描述  : 完成netlink消息的所有填充
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月15日
-    作    者   : daihu 00262548
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_int32  oal_nla_nest_end(oal_netbuf_stru *pst_skb, oal_nlattr_stru *pst_start)
 {
     return nla_nest_end(pst_skb, pst_start);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_genlmsg_end
- 功能描述  : netlink消息结束
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月15日
-    作    者   : daihu 00262548
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 OAL_STATIC OAL_INLINE oal_int32  oal_genlmsg_end(oal_netbuf_stru *pst_skb, oal_void *pst_hdr)
 {
     return genlmsg_end(pst_skb, pst_hdr);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_reset
- 功能描述  : netbuf初始复位
- 输入参数  : pst_netbuf    : netbuf指针
-             ul_data_offset: data相对head的偏移
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月5日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void oal_netbuf_reset(oal_netbuf_stru *pst_netbuf, oal_uint32 ul_data_offset)
 {
 #if (defined(_PRE_BOARD_SD5610) || defined(_PRE_BOARD_SD5115))
@@ -3217,41 +1716,13 @@ OAL_STATIC OAL_INLINE oal_void oal_netbuf_reset(oal_netbuf_stru *pst_netbuf, oal
 
 }
 
-/*****************************************************************************
- 函 数 名  : oal_wiphy_to_dev
- 功能描述  :
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月23日
-    作    者   : daihu 00262548
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_cfg80211_registered_device_stru *oal_wiphy_to_dev(oal_wiphy_stru *pst_wiphy)
 {
     return wiphy_to_dev(pst_wiphy);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netlink_unicast
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月16日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_int32  oal_netlink_unicast(
                 oal_sock_stru *pst_sock, oal_netbuf_stru *pst_netbuf,
                 oal_uint32 ul_pid, oal_int32 l_nonblock)
@@ -3259,26 +1730,7 @@ OAL_STATIC OAL_INLINE oal_int32  oal_netlink_unicast(
     return netlink_unicast(pst_sock, pst_netbuf, ul_pid, l_nonblock);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netlink_broadcast
- 功能描述  : 封装内核netlink广播发送函数
- 输入参数  :
-             pst_sock:    Netlink接口的socket
-             pst_netbuf:  数据消息内存
-             ul_pid:      Pid值
-             ul_group:    组播组
-             en_gfp:      不可以睡眠的原子上下文分配内存
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月14日
-    作    者   : daihu 00262548
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_int32  oal_netlink_broadcast(
                 oal_sock_stru *pst_sock, oal_netbuf_stru *pst_netbuf,
                 oal_uint32 ul_pid, oal_int32 ul_group,oal_gfp_enum_uint8  en_gfp)
@@ -3286,61 +1738,19 @@ OAL_STATIC OAL_INLINE oal_int32  oal_netlink_broadcast(
     return netlink_broadcast(pst_sock, pst_netbuf, ul_pid, ul_group, en_gfp);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_copydata
- 功能描述  : 将skb中的内容先偏移ul_offset后 按指定长度拷贝到指定内从中
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月20日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32  oal_netbuf_copydata(oal_netbuf_stru *pst_netbuf_sc, oal_uint32 ul_offset, oal_void *p_dst, oal_uint32 ul_len)
 {
     return skb_copy_bits(pst_netbuf_sc, ul_offset, p_dst, ul_len);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_trim
- 功能描述  : 剥去skb中尾部的信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月20日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  oal_netbuf_trim(oal_netbuf_stru *pst_netbuf, oal_uint32 ul_len)
 {
     return skb_trim(pst_netbuf, pst_netbuf->len - ul_len);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_concat
- 功能描述  : 向netbu_head的尾部串接netbuf
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月20日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  oal_netbuf_concat(oal_netbuf_stru *pst_netbuf_head, oal_netbuf_stru *pst_netbuf)
 {
     if (skb_is_nonlinear(pst_netbuf_head))
@@ -3362,21 +1772,7 @@ OAL_STATIC OAL_INLINE oal_void  oal_netbuf_concat(oal_netbuf_stru *pst_netbuf_he
 
 
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_set_len
- 功能描述  : 将skb的数据内容长度设置为指定长度
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月20日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  oal_netbuf_set_len(oal_netbuf_stru *pst_netbuf, oal_uint32 ul_len)
 {
     if (pst_netbuf->len > ul_len)
@@ -3389,42 +1785,14 @@ OAL_STATIC OAL_INLINE oal_void  oal_netbuf_set_len(oal_netbuf_stru *pst_netbuf, 
     }
 }
 
-/*****************************************************************************
- 函 数 名  : oal_netbuf_init
- 功能描述  : 初始化netbuf
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月20日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  oal_netbuf_init(oal_netbuf_stru *pst_netbuf, oal_uint32 ul_len)
 {
     oal_netbuf_set_len(pst_netbuf, ul_len);
     pst_netbuf->protocol = ETH_P_CONTROL;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_hi_kernel_wdt_clear
- 功能描述  : 狗复位
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月18日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  oal_hi_kernel_wdt_clear(oal_void)
 {
 #if (LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,34))
@@ -3434,40 +1802,13 @@ OAL_STATIC OAL_INLINE oal_void  oal_hi_kernel_wdt_clear(oal_void)
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : oal_in_aton
- 功能描述  : IP 地址转换（字符串 -> 数值）
-  输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月28日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32 oal_in_aton(oal_uint8 *pul_str)
 {
     return (in_aton(pul_str));
 }
 
-/*****************************************************************************
- 函 数 名  : oal_ipv6_addr_copy
- 功能描述  : 拷贝ipv6地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月5日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  oal_ipv6_addr_copy(oal_in6_addr *pst_ipv6_dst, oal_in6_addr *pst_ipv6_src)
 {
 #if (LINUX_VERSION_CODE >= KERNEL_VERSION(3,10,44))
@@ -3476,21 +1817,7 @@ OAL_STATIC OAL_INLINE oal_void  oal_ipv6_addr_copy(oal_in6_addr *pst_ipv6_dst, o
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : oal_dev_hard_header
- 功能描述  : 构造以太头
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月5日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_int32  oal_dev_hard_header(oal_netbuf_stru *pst_nb,
                                                             oal_net_device_stru *pst_net_dev,
                                                             oal_uint16 us_type,
@@ -3501,21 +1828,7 @@ OAL_STATIC OAL_INLINE oal_int32  oal_dev_hard_header(oal_netbuf_stru *pst_nb,
     return dev_hard_header(pst_nb, pst_net_dev, us_type, puc_addr_d, puc_addr_s, ul_len);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_dev_hard_header
- 功能描述  : 生成ipv6的magic
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月5日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint16  oal_csum_ipv6_magic(oal_in6_addr *pst_ipv6_s,
                                                             oal_in6_addr *pst_ipv6_d,
                                                             oal_uint32 ul_len,
@@ -3525,21 +1838,7 @@ OAL_STATIC OAL_INLINE oal_uint16  oal_csum_ipv6_magic(oal_in6_addr *pst_ipv6_s,
     return csum_ipv6_magic(pst_ipv6_s, pst_ipv6_d, ul_len, us_proto, ul_sum);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_csum_partial
- 功能描述  : 计算check sum
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月5日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32  oal_csum_partial(const void *p_buff,
                                                             oal_int32  l_len,
                                                             oal_uint32 ul_sum)
@@ -3547,21 +1846,7 @@ OAL_STATIC OAL_INLINE oal_uint32  oal_csum_partial(const void *p_buff,
     return csum_partial(p_buff, l_len, ul_sum);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_ipv6_addr_type
- 功能描述  : 获取ipv6地址的类型
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月5日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_int32  oal_ipv6_addr_type(oal_in6_addr *pst_ipv6)
 {
 #ifdef _PRE_WLAN_FEATURE_SUPPORT_IPV6
@@ -3570,42 +1855,13 @@ OAL_STATIC OAL_INLINE oal_int32  oal_ipv6_addr_type(oal_in6_addr *pst_ipv6)
     return (oal_int32)IPV6_ADDR_RESERVED;
 #endif
 }
-/*****************************************************************************
- 函 数 名  : oal_pskb_may_pull
- 功能描述  : 保证skb->data包含ul_len指指示的空间，如果没有，则从 skb_shinfo(skb)->frags[]中
-             拷贝一份数据。
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月5日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_int32  oal_pskb_may_pull(oal_netbuf_stru *pst_nb, oal_uint32 ul_len)
 {
     return pskb_may_pull(pst_nb, ul_len);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_arp_create
- 功能描述  : 构造arp帧
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月5日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_netbuf_stru  *oal_arp_create(oal_int32 l_type, oal_int32 l_ptype, oal_uint32 ul_dest_ip,
                                     			    oal_net_device_stru *pst_dev, oal_uint32 ul_src_ip,
                                     			   oal_uint8 *puc_dest_hw,

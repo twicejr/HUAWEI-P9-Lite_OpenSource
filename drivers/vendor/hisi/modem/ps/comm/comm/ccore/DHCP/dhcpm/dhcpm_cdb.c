@@ -1,28 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : dhpcm_cdb.c
-  版 本 号   : 初稿
-  作    者   : y00138047
-  生成日期   : 2012年6月21日
-  最近修改   :
-  功能描述   : dhcpm cdb处理
-  函数列表   :
-*
-*       1.                DHCPM_AddDhcpServerGrpCallBack
-*       2.                DHCPM_CDBRegCallBack
-*       3.                DHCPM_ModDhcpServerGrpCallBack
-*       4.                DHCPM_RemoveDhcpServerGrpCallBack
-*
-
-  修改历史   :
-  1.日    期   : 2012年6月21日
-    作    者   : y00138047
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #include "dhcp_inc.h"
 #include "dhcpc_def.h"
@@ -33,23 +9,7 @@
 #include "dhcpm_comp.h"
 #include "dhcpm_dbg.h"
 
-/*****************************************************************************
- 函 数 名  : DHCPM_AddDhcpServerGrpCallBack
- 功能描述  : dhcp-server配置添加回调函数
- 输入参数  : CDB_TBLID nTblID
-             CDB_RECID nTupleID
-             UCHAR *pNewVal
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月20日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPM_AddDhcpServerGrpCallBack(CDB_TBLID nTblID, CDB_RECID nTupleID, UCHAR *pNewVal)
 {
     LAP_DHCP_CFG_S *pstDhcpServerGrpInfo = NULL;
@@ -85,23 +45,7 @@ VOID DHCPM_AddDhcpServerGrpCallBack(CDB_TBLID nTblID, CDB_RECID nTupleID, UCHAR 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPM_ModDhcpServerGrpCallBack
- 功能描述  : dhcp-server配置修改回调函数
- 输入参数  : CDB_TBLID nTblID
-             CDB_RECID nTupleID
-             UCHAR *pNewVal
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月20日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPM_ModDhcpServerGrpCallBack(CDB_TBLID nTblID, CDB_RECID nTupleID, UCHAR *pNewVal)
 {
     LONG lCmpRet = 0;
@@ -172,23 +116,7 @@ VOID DHCPM_ModDhcpServerGrpCallBack(CDB_TBLID nTblID, CDB_RECID nTupleID, UCHAR 
 }
 
 
-/*****************************************************************************
- 函 数 名  : DHCPM_RemoveDhcpServerGrpCallBack
- 功能描述  : dhcp-server配置删除回调函数
- 输入参数  : CDB_TBLID nTblID
-             CDB_RECID nTupleID
-             UCHAR *pNewVal
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月20日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPM_RemoveDhcpServerGrpCallBack(CDB_TBLID nTblID, CDB_RECID nTupleID, UCHAR *pNewVal)
 {
     LAP_DHCP_CFG_S *pstDhcpServerGrpInfo = NULL;
@@ -226,21 +154,7 @@ VOID DHCPM_RemoveDhcpServerGrpCallBack(CDB_TBLID nTblID, CDB_RECID nTupleID, UCH
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPM_CDBRegCallBack
- 功能描述  : dhcpm注册cdb 回调
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月20日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPM_CDBRegCallBack()
 {
     CDBRegCallBackCmd(M_LAP_DHCP_TBL_ID,

@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasXccMainCtrl.c
-  版 本 号   : 初稿
-  作    者   : y00245242
-  生成日期   : 2014年09月13日
-  功能描述   : 1X CC(call control)主控处理函数
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年09月13日
-    作    者   : y00245242
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -247,23 +232,7 @@ CNAS_XCC_MAIN_CTRL_PROC_STRU g_astCnasXccMainCtrlProcTab[] = {
   4 函数定义
 *****************************************************************************/
 /*lint -save -e958*/
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_IsSending1xCallRelReqAllowed
- 功能描述  : check当前call instance实体当前状态机ID及状态, 确认是否需要发送
-             1X call release请求
- 输入参数  : pstFsmCtx -- FSM上下文
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  -- 允许发送
-             VOS_FALSE -- 不允许发送
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年09月13日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 CNAS_XCC_IsSending1xCallRelReqAllowed(
     CNAS_XCC_FSM_CTX_STRU               *pstFsmCtx
 )
@@ -306,22 +275,7 @@ VOS_UINT8 CNAS_XCC_IsSending1xCallRelReqAllowed(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ReturnPaginMsgActionType
- 功能描述  : 检查寻呼消息是否允许处理
- 输入参数  : pstFsmCtx -- FSM上下文
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  -- 允许发送
-             VOS_FALSE -- 不允许发送
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年09月13日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 CNAS_XCC_IsPaginMsgAllowed(
     CAS_CNAS_1X_PAGING_IND_STRU        *pstMsg,
     VOS_UINT8                          *pucAbortIndex,
@@ -351,28 +305,7 @@ VOS_UINT8 CNAS_XCC_IsPaginMsgAllowed(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_IsXcallOrigCallReqAllowed
- 功能描述  : 检查呼叫请求消息是否允许，如果允许，通过pucAbortFlag返回是否终止
-             当前其他呼叫，还是无需终止其他呼叫
- 输入参数  : pstMsg -- XCALL ORIG CALL REQ消息地址
- 输出参数  : pucAbortIndex -- 返回终止其他呼叫call instance索引
-             pucAbortFlag  -- 返回是否需要终止其他呼叫
 
- 返 回 值  : VOS_TRUE  -- 允许发送
-             VOS_FALSE -- 不允许发送
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年09月13日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-  2.日    期   : 2014年11月17日
-    作    者   : w00176964
-    修改内容   : CDMA 1x项目迭代5修改
-*****************************************************************************/
 TAF_XCC_CAUSE_ENUM_UINT32 CNAS_XCC_IsXcallOrigCallReqAllowed(
     XCALL_XCC_ORIG_CALL_REQ_STRU       *pstMsg,
     VOS_UINT8                          *pucAbortIndex,
@@ -438,24 +371,7 @@ TAF_XCC_CAUSE_ENUM_UINT32 CNAS_XCC_IsXcallOrigCallReqAllowed(
     return TAF_XCC_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_IsApsOrigDataCallReqAllowed
- 功能描述  : 检查数据呼叫请求消息是否允许，如果允许，通过pucAbortFlag返回是否终止
-             当前其他呼叫，还是无需终止其他呼叫
- 输入参数  : pstMsg -- XCALL ORIG CALL REQ消息地址
- 输出参数  : pucAbortIndex -- 返回终止其他呼叫call instance索引
-             pucAbortFlag  -- 返回是否需要终止其他呼叫
 
- 返 回 值  : TAF_XCC_CAUSE_SUCCESS   -- 允许发送
-             非TAF_XCC_CAUSE_SUCCESS -- 不允许发送
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年10月13日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-*****************************************************************************/
 TAF_XCC_CAUSE_ENUM_UINT32 CNAS_XCC_IsApsOrigDataCallReqAllowed(VOS_VOID)
 {
     VOS_UINT8                           ucIndex;
@@ -501,25 +417,7 @@ TAF_XCC_CAUSE_ENUM_UINT32 CNAS_XCC_IsApsOrigDataCallReqAllowed(VOS_VOID)
     return TAF_XCC_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_IsCsmsOrigCallReqAllowed
- 功能描述  : 检查短信呼叫请求消息是否允许，如果允许，通过pucAbortFlag返回是否终止
-             当前其他呼叫，还是无需终止其他呼叫
- 输入参数  : pstMsg -- XCALL ORIG CALL REQ消息地址
- 输出参数  : pucAbortIndex -- 返回终止其他呼叫call instance索引
-             pucAbortFlag  -- 返回是否需要终止其他呼叫
 
- 返 回 值  : TAF_XCC_CAUSE_SUCCESS   -- 允许发送
-             非TAF_XCC_CAUSE_SUCCESS -- 不允许发送
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年10月13日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-*****************************************************************************/
 TAF_XCC_CAUSE_ENUM_UINT32 CNAS_XCC_IsCsmsOrigCallReqAllowed(
     CSMS_XCC_ORIG_SMS_CALL_REQ_STRU    *pstOrigDataCallReq,
     VOS_UINT8                          *pucAbortIndex,
@@ -592,26 +490,7 @@ TAF_XCC_CAUSE_ENUM_UINT32 CNAS_XCC_IsCsmsOrigCallReqAllowed(
     return enCause;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_IsXpdsOrigCallReqAllowed
- 功能描述  : 检查AGPS呼叫请求消息是否允许，如果允许，通过pucAbortFlag返回是否终止
-             当前其他呼叫，还是无需终止其他呼叫
- 输入参数  : pstMsg -- XPDS_XCC_ORIG_AGPS_CALL_REQ消息地址
- 输出参数  : pucAbortIndex -- 返回终止其他呼叫call instance索引
-             pucAbortFlag  -- 返回是否需要终止其他呼叫
 
- 返 回 值  : TAF_XCC_CAUSE_SUCCESS   -- 允许发送
-             非TAF_XCC_CAUSE_SUCCESS -- 不允许发送
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年09月02日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_XCC_CAUSE_ENUM_UINT32 CNAS_XCC_IsXpdsOrigCallReqAllowed(
     XPDS_XCC_ORIG_AGPS_CALL_REQ_STRU   *pstOrigDataCallReq,
     VOS_UINT8                          *pucAbortIndex,
@@ -673,24 +552,7 @@ TAF_XCC_CAUSE_ENUM_UINT32 CNAS_XCC_IsXpdsOrigCallReqAllowed(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_IsPrivacyModeAllowedToSend_MainCtrl
- 功能描述  : 是否允许发送privacy mode给CAS
 
- 输入参数  : enPrivacyMode -- 用户设置privacy mode
-
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  -- 允许发送
-             VOS_FALSE -- 不允许发送
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年12月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_IsPrivacyModeAllowedToSend_MainCtrl(
     XCALL_XCC_PRIVACY_MODE_ENUM_UINT8                       enPrivacyMode
 )
@@ -728,21 +590,7 @@ VOS_UINT32 CNAS_XCC_IsPrivacyModeAllowedToSend_MainCtrl(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessReleaseWhenWaitForL2AckDuringSndFlashReq
- 功能描述  : 在Send Flash Req流程中等待L2 ACK状态下，处理电话挂断(主动挂断或网络挂断)
- 输入参数  : ucIndex
- 输出参数  : VOS_VOID
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月12日
-    作    者   : L00256032
-    修改内容   : 1X SS Project修改
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_ProcessReleaseWhenWaitForL2AckDuringSndFlashReq(
     VOS_UINT8                           ucIndex
 )
@@ -769,21 +617,7 @@ VOS_VOID CNAS_XCC_ProcessReleaseWhenWaitForL2AckDuringSndFlashReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessReleaseWhenWaitForL2AckDuringSndBurstDtmfReq
- 功能描述  : 在Send Burst DTMF流程中等待L2 ACK状态下，处理电话挂断(主动挂断或网络挂断)
- 输入参数  : ucIndex
- 输出参数  : VOS_VOID
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月12日
-    作    者   : L00256032
-    修改内容   : 1X SS Project修改
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_ProcessReleaseWhenWaitForL2AckDuringSndBurstDtmfReq(
     VOS_UINT8                           ucIndex
 )
@@ -812,31 +646,12 @@ VOS_VOID CNAS_XCC_ProcessReleaseWhenWaitForL2AckDuringSndBurstDtmfReq(
 
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcBufferedMsgWithPowerDown
- 功能描述  : 清除缓存的用户请求
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年09月13日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-   2.日    期   : 2015年9月8日
-     作    者   : w00176964
-     修改内容   : CNAS内存裁剪调整
-*****************************************************************************/
 VOS_VOID CNAS_XCC_ProcBufferedMsgUponPowerDown(VOS_VOID)
 {
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-9, begin */
     MSG_HEADER_STRU                    *pstBufferMsgHdr;
     VOS_UINT32                          ulBufferMsgEventType;
     REL_TIMER_MSG                      *pstTimerMsg;
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-9, end */
     XCALL_XCC_ORIG_CALL_REQ_STRU       *pstXcallOrigReq = VOS_NULL_PTR;
     APS_XCC_ORIG_DATA_CALL_REQ_STRU    *pstApsOrigReq   = VOS_NULL_PTR;
     CSMS_XCC_ORIG_SMS_CALL_REQ_STRU    *pstCsmsOrigReq  = VOS_NULL_PTR;
@@ -848,7 +663,6 @@ VOS_VOID CNAS_XCC_ProcBufferedMsgUponPowerDown(VOS_VOID)
 
     for (i = 0; i < CNAS_MIN(ucMsgNum, CNAS_XCC_MAX_BUFFER_MSG_QUEUE_NUM); i++)
     {
-        /* Modified by w00176964 for CNAS内存裁剪, 2015-9-9, begin */
         pstBufferMsgHdr         = (MSG_HEADER_STRU *)CNAS_XCC_GetSpecifiedIndexBufferMsg(i);
 
         if (VOS_NULL_PTR == pstBufferMsgHdr)
@@ -898,7 +712,6 @@ VOS_VOID CNAS_XCC_ProcBufferedMsgUponPowerDown(VOS_VOID)
                                         TAF_XCC_FAIL_LAYER_L3,
                                         TAF_XCC_CAUSE_POWER_DOWN_IND);
         }
-        /* Modified by w00176964 for CNAS内存裁剪, 2015-9-9, end */
 
         if (CNAS_BuildEventType(UEPS_PID_XPDS, ID_XPDS_XCC_ORIG_AGPS_CALL_REQ) == ulBufferMsgEventType)
         {
@@ -915,23 +728,7 @@ VOS_VOID CNAS_XCC_ProcBufferedMsgUponPowerDown(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessXsdStartReq_MainCtrl
- 功能描述  : 处理Xsd start req
- 输入参数  : ulEventType -- 消息类型+PID
-             pMsg        -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  --  消息不需要进一步处理
-             VOS_FALSE --  消息需要后续进一步处理
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年09月13日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ProcessXsdStartReq_MainCtrl(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -945,27 +742,7 @@ VOS_UINT32 CNAS_XCC_ProcessXsdStartReq_MainCtrl(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessXsdPowerDownReq_MainCtrl
- 功能描述  : 处理power down request
- 输入参数  : ulEventType -- 消息类型+PID
-             pMsg        -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  --  消息不需要进一步处理
-             VOS_FALSE --  消息需要后续进一步处理
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年09月06日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年1月8日
-    作    者   : y00245242
-    修改内容   : 增加NDSS ORIG功能
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ProcessXsdPowerDownReq_MainCtrl(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1052,27 +829,7 @@ VOS_UINT32 CNAS_XCC_ProcessXsdPowerDownReq_MainCtrl(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessXcallOrigCallReq_MainCtrl
- 功能描述  : 处理ID_XCALL_XCC_ORIG_CALL_REQ
- 输入参数  : ulEventType -- 消息类型+PID
-             pMsg        -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  --  消息不需要进一步处理
-             VOS_FALSE --  消息需要后续进一步处理
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年09月06日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-  2.日    期   : 2014年11月17日
-    作    者   : w00176964
-    修改内容   : CDMA 1X项目迭代5修改
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ProcessXcallOrigCallReq_MainCtrl(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1156,23 +913,7 @@ VOS_UINT32 CNAS_XCC_ProcessXcallOrigCallReq_MainCtrl(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessXcallOrigCallReq_MainCtrl
- 功能描述  : 处理ID_APS_XCC_ORIG_DATA_CALL_REQ
- 输入参数  : ulEventType -- 消息类型+PID
-             pMsg        -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  --  消息不需要进一步处理
-             VOS_FALSE --  消息需要后续进一步处理
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年10月13日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ProcessApsOrigDataCallReq_MainCtrl(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1227,23 +968,7 @@ VOS_UINT32 CNAS_XCC_ProcessApsOrigDataCallReq_MainCtrl(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessSmsOrigCallReq_MainCtrl
- 功能描述  : 处理ID_CSMS_XCC_ORIG_SMS_CALL_REQ
- 输入参数  : ulEventType -- 消息类型+PID
-             pMsg        -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  --  消息不需要进一步处理
-             VOS_FALSE --  消息需要后续进一步处理
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年10月13日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ProcessSmsOrigCallReq_MainCtrl(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1298,23 +1023,7 @@ VOS_UINT32 CNAS_XCC_ProcessSmsOrigCallReq_MainCtrl(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessXpdsOrigCallReq_MainCtrl
- 功能描述  : 处理ID_XPDS_XCC_ORIG_AGPS_CALL_REQ
- 输入参数  : ulEventType -- 消息类型+PID
-             pMsg        -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  --  消息不需要进一步处理
-             VOS_FALSE --  消息需要后续进一步处理
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年08月31日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ProcessXpdsOrigCallReq_MainCtrl(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1373,23 +1082,7 @@ VOS_UINT32 CNAS_XCC_ProcessXpdsOrigCallReq_MainCtrl(
 
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessXcallAnswerCallReq_MainCtrl
- 功能描述  : 处理ID_XCALL_XCC_ANSWER_CALL_REQ
- 输入参数  : ulEventType -- 消息类型+PID
-             pMsg        -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  --  消息不需要进一步处理
-             VOS_FALSE --  消息需要后续进一步处理
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年09月06日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ProcessXcallAnswerCallReq_MainCtrl(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1414,23 +1107,7 @@ VOS_UINT32 CNAS_XCC_ProcessXcallAnswerCallReq_MainCtrl(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessApsAnswerDataCallReq_MainCtrl
- 功能描述  : 处理ID_APS_XCC_ANSWER_DATA_CALL_REQ
- 输入参数  : ulEventType -- 消息类型+PID
-             pMsg        -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  --  消息不需要进一步处理
-             VOS_FALSE --  消息需要后续进一步处理
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年10月13日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ProcessApsAnswerDataCallReq_MainCtrl(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1454,23 +1131,7 @@ VOS_UINT32 CNAS_XCC_ProcessApsAnswerDataCallReq_MainCtrl(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessSmsAnswerCallReq_MainCtrl
- 功能描述  : 处理ID_CSMS_XCC_ANSWER_CALL_REQ
- 输入参数  : ulEventType -- 消息类型+PID
-             pMsg        -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  --  消息不需要进一步处理
-             VOS_FALSE --  消息需要后续进一步处理
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年10月13日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ProcessSmsAnswerCallReq_MainCtrl(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1494,23 +1155,7 @@ VOS_UINT32 CNAS_XCC_ProcessSmsAnswerCallReq_MainCtrl(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessXpdsAnswerCallReq_MainCtrl
- 功能描述  : 处理ID_CSMS_XCC_ANSWER_CALL_REQ
- 输入参数  : ulEventType -- 消息类型+PID
-             pMsg        -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  --  消息不需要进一步处理
-             VOS_FALSE --  消息需要后续进一步处理
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年10月13日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ProcessXpdsAnswerCallReq_MainCtrl(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1534,31 +1179,7 @@ VOS_UINT32 CNAS_XCC_ProcessXpdsAnswerCallReq_MainCtrl(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessXcallHangupCallReq_MainCtrl
- 功能描述  : 处理ID_XCALL_XCC_HANGUP_CALL_REQ
- 输入参数  : ulEventType -- 消息类型+PID
-             pMsg        -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  --  消息不需要进一步处理
-             VOS_FALSE --  消息需要后续进一步处理
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年09月06日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-  2.日    期   : 2014年11月17日
-    作    者   : w00176964
-    修改内容   : CDMA 1X项目迭代5修改
-
-  3.日    期   : 2015年1月8日
-    作    者   : y00245242
-    修改内容   : 增加NDSS ORIG功能
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ProcessXcallHangupCallReq_MainCtrl(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1566,11 +1187,9 @@ VOS_UINT32 CNAS_XCC_ProcessXcallHangupCallReq_MainCtrl(
 {
     VOS_UINT8                           ucMsgNum;
     VOS_UINT8                           i;
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-9, begin */
     MSG_HEADER_STRU                    *pstBufferMsgHdr;
     VOS_UINT32                          ulBufferMsgEventType;
     REL_TIMER_MSG                      *pstTimerMsg;
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-9, end */
     XCALL_XCC_ORIG_CALL_REQ_STRU       *pstOrigReq   = VOS_NULL_PTR;
     XCALL_XCC_HANGUP_CALL_REQ_STRU     *pstHangupReq = VOS_NULL_PTR;
     VOS_UINT8                           ucIndex;
@@ -1581,7 +1200,6 @@ VOS_UINT32 CNAS_XCC_ProcessXcallHangupCallReq_MainCtrl(
 
     for (i = 0; i < CNAS_MIN(ucMsgNum, CNAS_XCC_MAX_BUFFER_MSG_QUEUE_NUM); i++)
     {
-        /* Modified by w00176964 for CNAS内存裁剪, 2015-9-9, begin */
         pstBufferMsgHdr         = (MSG_HEADER_STRU *)CNAS_XCC_GetSpecifiedIndexBufferMsg(i);
 
         if (VOS_NULL_PTR == pstBufferMsgHdr)
@@ -1612,7 +1230,6 @@ VOS_UINT32 CNAS_XCC_ProcessXcallHangupCallReq_MainCtrl(
                 return VOS_TRUE;
             }
         }
-        /* Modified by w00176964 for CNAS内存裁剪, 2015-9-9, end */
     }
 
     /* 如果无voice call instance激活，直接回复挂机确认 */
@@ -1666,37 +1283,15 @@ VOS_UINT32 CNAS_XCC_ProcessXcallHangupCallReq_MainCtrl(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessApsHangupDataCallReq_MainCtrl
- 功能描述  : 处理ID_APS_XCC_HANGUP_DATA_CALL_REQ
- 输入参数  : ulEventType -- 消息类型+PID
-             pMsg        -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  --  消息不需要进一步处理
-             VOS_FALSE --  消息需要后续进一步处理
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年10月13日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年1月8日
-    作    者   : y00245242
-    修改内容   : 增加NDSS ORIG功能
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ProcessApsHangupDataCallReq_MainCtrl(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 )
 {
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-9, begin */
     MSG_HEADER_STRU                    *pstBufferMsgHdr;
     VOS_UINT32                          ulBufferMsgEventType;
     REL_TIMER_MSG                      *pstTimerMsg;
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-9, end */
     APS_XCC_ORIG_DATA_CALL_REQ_STRU    *pstOrigReq   = VOS_NULL_PTR;
     APS_XCC_HANGUP_DATA_CALL_REQ_STRU  *pstHangupReq = VOS_NULL_PTR;
     VOS_UINT8                           ucMsgNum;
@@ -1709,7 +1304,6 @@ VOS_UINT32 CNAS_XCC_ProcessApsHangupDataCallReq_MainCtrl(
 
     for (i = 0; i < CNAS_MIN(ucMsgNum, CNAS_XCC_MAX_BUFFER_MSG_QUEUE_NUM); i++)
     {
-        /* Modified by w00176964 for CNAS内存裁剪, 2015-9-9, begin */
         pstBufferMsgHdr         = (MSG_HEADER_STRU *)CNAS_XCC_GetSpecifiedIndexBufferMsg(i);
 
         if (VOS_NULL_PTR == pstBufferMsgHdr)
@@ -1743,7 +1337,6 @@ VOS_UINT32 CNAS_XCC_ProcessApsHangupDataCallReq_MainCtrl(
                 return VOS_TRUE;
             }
         }
-        /* Modified by w00176964 for CNAS内存裁剪, 2015-9-9, end */
     }
 
     /* 如果无data call instance激活，直接回复挂机确认 */
@@ -1760,37 +1353,15 @@ VOS_UINT32 CNAS_XCC_ProcessApsHangupDataCallReq_MainCtrl(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessSmsHangupCallReq_MainCtrl
- 功能描述  : 处理ID_CSMS_XCC_END_SMS_CALL_REQ
- 输入参数  : ulEventType -- 消息类型+PID
-             pMsg        -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  --  消息不需要进一步处理
-             VOS_FALSE --  消息需要后续进一步处理
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年10月13日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年1月8日
-    作    者   : y00245242
-    修改内容   : 增加NDSS ORIG功能
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ProcessSmsHangupCallReq_MainCtrl(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 )
 {
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-9, begin */
     MSG_HEADER_STRU                    *pstBufferMsgHdr;
     VOS_UINT32                          ulBufferMsgEventType;
     REL_TIMER_MSG                      *pstTimerMsg;
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-9, end */
     CSMS_XCC_ORIG_SMS_CALL_REQ_STRU    *pstOrigReq   = VOS_NULL_PTR;
     CSMS_XCC_END_SMS_CALL_REQ_STRU     *pstHangupReq = VOS_NULL_PTR;
     VOS_UINT8                           ucMsgNum;
@@ -1803,7 +1374,6 @@ VOS_UINT32 CNAS_XCC_ProcessSmsHangupCallReq_MainCtrl(
 
     for (i = 0; i < CNAS_MIN(ucMsgNum, CNAS_XCC_MAX_BUFFER_MSG_QUEUE_NUM); i++)
     {
-        /* Modified by w00176964 for CNAS内存裁剪, 2015-9-9, begin */
         pstBufferMsgHdr         = (MSG_HEADER_STRU *)CNAS_XCC_GetSpecifiedIndexBufferMsg(i);
 
         if (VOS_NULL_PTR == pstBufferMsgHdr)
@@ -1837,7 +1407,6 @@ VOS_UINT32 CNAS_XCC_ProcessSmsHangupCallReq_MainCtrl(
                 return VOS_TRUE;
             }
         }
-        /* Modified by w00176964 for CNAS内存裁剪, 2015-9-9, end */
     }
 
     /* 如果无SMS call instance激活，直接回复挂机确认 */
@@ -1854,34 +1423,15 @@ VOS_UINT32 CNAS_XCC_ProcessSmsHangupCallReq_MainCtrl(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessXpdsHangupCallReq_MainCtrl
- 功能描述  : 处理ID_XPDS_XCC_END_AGPS_CALL_REQ
- 输入参数  : ulEventType -- 消息类型+PID
-             pMsg        -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  --  消息不需要进一步处理
-             VOS_FALSE --  消息需要后续进一步处理
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年08月31日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ProcessXpdsHangupCallReq_MainCtrl(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 )
 {
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-9, begin */
     MSG_HEADER_STRU                    *pstBufferMsgHdr;
     VOS_UINT32                          ulBufferMsgEventType;
     REL_TIMER_MSG                      *pstTimerMsg;
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-9, end */
     XPDS_XCC_ORIG_AGPS_CALL_REQ_STRU   *pstOrigReq   = VOS_NULL_PTR;
     XPDS_XCC_END_AGPS_CALL_REQ_STRU    *pstHangupReq = VOS_NULL_PTR;
     VOS_UINT8                           ucMsgNum;
@@ -1894,7 +1444,6 @@ VOS_UINT32 CNAS_XCC_ProcessXpdsHangupCallReq_MainCtrl(
 
     for (i = 0; i < CNAS_MIN(ucMsgNum, CNAS_XCC_MAX_BUFFER_MSG_QUEUE_NUM); i++)
     {
-        /* Modified by w00176964 for CNAS内存裁剪, 2015-9-9, begin */
         pstBufferMsgHdr         = (MSG_HEADER_STRU *)CNAS_XCC_GetSpecifiedIndexBufferMsg(i);
 
         if (VOS_NULL_PTR == pstBufferMsgHdr)
@@ -1928,7 +1477,6 @@ VOS_UINT32 CNAS_XCC_ProcessXpdsHangupCallReq_MainCtrl(
                 return VOS_TRUE;
             }
         }
-        /* Modified by w00176964 for CNAS内存裁剪, 2015-9-9, end */
     }
 
     /* 如果无AGPS call instance激活，直接回复挂机确认 */
@@ -1946,23 +1494,7 @@ VOS_UINT32 CNAS_XCC_ProcessXpdsHangupCallReq_MainCtrl(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessCas1xPagingInd_MainCtrl
- 功能描述  : 处理ID_CAS_CNAS_1X_PAGING_IND
- 输入参数  : ulEventType -- 消息类型+PID
-             pMsg        -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  --  消息不需要进一步处理
-             VOS_FALSE --  消息需要后续进一步处理
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年09月06日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ProcessCas1xPagingInd_MainCtrl(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2032,20 +1564,7 @@ VOS_UINT32 CNAS_XCC_ProcessCas1xPagingInd_MainCtrl(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessMsgWaitingWithinAWI_MainCtrl
- 功能描述  : 若AWI消息中存在MsgWaiting Info record，则向XSMS发送指示
- 输入参数  : pst1xDschDataInd --- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月02日
-    作    者   : L00256032
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XCC_ProcessMsgWaitingWithinAWI_MainCtrl(
     CAS_CNAS_1X_DSCH_DATA_IND_STRU     *pst1xDschDataInd
 )
@@ -2085,20 +1604,7 @@ VOS_VOID CNAS_XCC_ProcessMsgWaitingWithinAWI_MainCtrl(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessMsgWaitingWithinFWI_MainCtrl
- 功能描述  : 若FWI消息中存在MsgWaiting Info record，则向XSMS发送指示
- 输入参数  : pst1xDschDataInd --- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月02日
-    作    者   : L00256032
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XCC_ProcessMsgWaitingWithinFWI_MainCtrl(
     CAS_CNAS_1X_DSCH_DATA_IND_STRU     *pst1xDschDataInd
 )
@@ -2138,20 +1644,7 @@ VOS_VOID CNAS_XCC_ProcessMsgWaitingWithinFWI_MainCtrl(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessMsgWaitingWithinEAWI_MainCtrl
- 功能描述  : 若EAWI消息中存在MsgWaiting Info record，则向XSMS发送指示
- 输入参数  : pst1xDschDataInd --- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月02日
-    作    者   : L00256032
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XCC_ProcessMsgWaitingWithinEAWI_MainCtrl(
     CAS_CNAS_1X_DSCH_DATA_IND_STRU     *pst1xDschDataInd
 )
@@ -2191,20 +1684,7 @@ VOS_VOID CNAS_XCC_ProcessMsgWaitingWithinEAWI_MainCtrl(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessMsgWaitingWithinEFWI_MainCtrl
- 功能描述  : 若EFWI消息中存在MsgWaiting Info record，则向XSMS发送指示
- 输入参数  : pst1xDschDataInd --- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月02日
-    作    者   : L00256032
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XCC_ProcessMsgWaitingWithinEFWI_MainCtrl(
     CAS_CNAS_1X_DSCH_DATA_IND_STRU     *pst1xDschDataInd
 )
@@ -2329,21 +1809,7 @@ VOS_UINT32 CNAS_XCC_ProcessOrderMsg_MainCtrl(
 
     return VOS_TRUE;
 }
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessMsgWaitingWithinDschDataInd_MainCtrl
- 功能描述  : 处理ID_CAS_CNAS_1X_DSCH_DATA_IND，如果为FWI/EFWI/AWI/EAWI，若消息中存在
-             MsgWaiting Info record，则向XSMS发送指示
- 输入参数  : pst1xDschDataInd --- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月02日
-    作    者   : L00256032
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XCC_ProcessMsgWaitingWithinDschDataInd_MainCtrl(
     CAS_CNAS_1X_DSCH_DATA_IND_STRU     *pst1xDschDataInd
 )
@@ -2374,31 +1840,7 @@ VOS_VOID CNAS_XCC_ProcessMsgWaitingWithinDschDataInd_MainCtrl(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessCas1xDschDataInd_MainCtrl
- 功能描述  : 处理ID_CAS_CNAS_1X_DSCH_DATA_IND
- 输入参数  : ulEventType -- 消息类型+PID
-             pMsg        -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  --  消息不需要进一步处理
-             VOS_FALSE --  消息需要后续进一步处理
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年09月06日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015-07-24
-    作    者   : K00902809
-    修改内容   : Added process to handle receiving Continuous DTMF order.
-
-  3.日    期   : 2015-07-24
-    作    者   : a00295761
-    修改内容   : Added process to handle receiving Burst DTMF Message.
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ProcessCas1xDschDataInd_MainCtrl(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2476,23 +1918,7 @@ VOS_UINT32 CNAS_XCC_ProcessCas1xDschDataInd_MainCtrl(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessCas1xReleaseOrderInd_MainCtrl
- 功能描述  : 处理ID_CAS_CNAS_1X_RELEASE_ORDER_IND
- 输入参数  : ulEventType -- 消息类型+PID
-             pMsg        -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  --  消息不需要进一步处理
-             VOS_FALSE --  消息需要后续进一步处理
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年10月13日
-    作    者   : W00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ProcessCas1xReleaseOrderInd_MainCtrl(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2506,23 +1932,7 @@ VOS_UINT32 CNAS_XCC_ProcessCas1xReleaseOrderInd_MainCtrl(
 
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessMsgInMainCtrl
- 功能描述  : 主控模块中处理入口消息
- 输入参数  : ulEventType -- 消息类型+PID
-             pMsg        -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  --  消息不需要进一步处理
-             VOS_FALSE --  消息需要后续进一步处理
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年09月13日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ProcessMsgInMainCtrl(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2545,23 +1955,7 @@ VOS_UINT32 CNAS_XCC_ProcessMsgInMainCtrl(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessPagingCollision
- 功能描述  : 处理被叫冲突
- 输入参数  : enPagingService -- 被叫服务类型
- 输出参数  : pucAbortIndex -- 打断索引
-             pucAbortFlag -- 打断标记
- 返 回 值  : VOS_TRUE  -- 允许发送
-             VOS_FALSE -- 不允许发送
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年09月13日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 CNAS_XCC_ProcessPagingCollision(
     CNAS_XCC_SERVICE_TYPE_ENUM_UINT32   enPagingService,
     VOS_UINT8                          *pucAbortIndex,
@@ -2687,35 +2081,17 @@ VOS_UINT8 CNAS_XCC_ProcessPagingCollision(
     return ucRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_IsBufferedPowerDownMsgExist
- 功能描述  : 处理被叫冲突
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  -- 允许发送
-             VOS_FALSE -- 不允许发送
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年10月28日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_IsBufferedPowerDownMsgExist_MainCtrl(VOS_VOID)
 {
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-9, begin */
     MSG_HEADER_STRU                    *pstBufferMsgHdr;
     VOS_UINT32                          ulBufferMsgEventType;
     REL_TIMER_MSG                      *pstTimerMsg;
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-9, end */
 
     /* check是否有关机缓存 */
     if (0 != CNAS_XCC_GetBufferedMsgNum())
     {
         /* 关机请求是否存在 */
-        /* Modified by w00176964 for CNAS内存裁剪, 2015-9-9, begin */
         pstBufferMsgHdr         = (MSG_HEADER_STRU *)CNAS_XCC_GetSpecifiedIndexBufferMsg(0);
 
         if (VOS_NULL_PTR == pstBufferMsgHdr)
@@ -2735,7 +2111,6 @@ VOS_UINT32 CNAS_XCC_IsBufferedPowerDownMsgExist_MainCtrl(VOS_VOID)
         }
 
         if (CNAS_BuildEventType(UEPS_PID_XSD, ID_XSD_XCC_POWER_OFF_REQ) == ulBufferMsgEventType)
-        /* Modified by w00176964 for CNAS内存裁剪, 2015-9-9, end */
         {
             /* 存在缓存关机，则返回VOS_TRUE */
             return VOS_TRUE;
@@ -2745,26 +2120,7 @@ VOS_UINT32 CNAS_XCC_IsBufferedPowerDownMsgExist_MainCtrl(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndFWIorEFWIWithFlashReq_MainCtrl
- 功能描述  : XCC发送FWI或EFWI
- 输入参数  : ucIndex           -- voice call实例索引
-             *pstXcallFlashReq
- 输出参数  : 无
- 返 回 值  : VOS_OK    --  消息发送成功
-             VOS_ERR   --  消息发送失败
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年11月10日
-    作    者   : L00256032
-    修改内容   : 1X SS Project修改
-  2.日    期   : 2014年12月1日
-    作    者   : w00176964
-    修改内容   : CDMA 1X Iteration 5 Modified
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_SndFWIorEFWIWithFlashReq_MainCtrl(
     VOS_UINT8                           ucIndex,
     XCALL_XCC_SEND_FLASH_REQ_STRU      *pstXcallFlashReq
@@ -2842,23 +2198,7 @@ VOS_UINT32 CNAS_XCC_SndFWIorEFWIWithFlashReq_MainCtrl(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessXcallSendFlashReq_MainCtrl
- 功能描述  : 处理ID_XCALL_XCC_SEND_FLASH_REQ
- 输入参数  : ulEventType -- 消息类型+PID
-             pMsg        -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  --  消息不需要进一步处理
-             VOS_FALSE --  消息需要后续进一步处理
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年11月10日
-    作    者   : L00256032
-    修改内容   : 1X SS Project修改
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ProcessXcallSendFlashReq_MainCtrl(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2940,23 +2280,7 @@ VOS_UINT32 CNAS_XCC_ProcessXcallSendFlashReq_MainCtrl(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessFlashL2Ack_MainCtrl
- 功能描述  : 处理FLASH的L2 ACK
- 输入参数  : ucIndex           -- 消息类型+PID
-             pst1xDschDataCnf  -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  --  对应FLASH的L2 ACK
-             VOS_FALSE --  非FLASH的L2 ACK，或当前并不在等待FLASH L2 ACK的状态
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年11月11日
-    作    者   : L00256032
-    修改内容   : 1X SS Project修改
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ProcessFlashL2Ack_MainCtrl(
     VOS_UINT8                           ucIndex,
     CAS_CNAS_1X_DSCH_DATA_CNF_STRU     *pst1xDschDataCnf
@@ -3000,30 +2324,7 @@ VOS_UINT32 CNAS_XCC_ProcessFlashL2Ack_MainCtrl(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessCas1xDschDataCnf_MainCtrl
- 功能描述  : 处理ID_CAS_CNAS_1X_DSCH_DATA_CNF
- 输入参数  : ulEventType -- 消息类型+PID
-             pMsg        -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  --  消息不需要进一步处理
-             VOS_FALSE --  消息需要后续进一步处理
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年11月10日
-    作    者   : L00256032
-    修改内容   : 1X SS Project修改
-
-  2.日    期   : 2014年11月17日
-    作    者   : w00176964
-    修改内容   : CDMA 1X项目迭代5修改
-  3.日    期   : 2015年7月25日
-    作    者   : l00324781
-    修改内容   : 迭代16修改
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ProcessCas1xDschDataCnf_MainCtrl(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3070,22 +2371,7 @@ VOS_UINT32 CNAS_XCC_ProcessCas1xDschDataCnf_MainCtrl(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvTiProtectFlashCnfL2Ack_MainCtrl
- 功能描述  : 处理TI_CNAS_XCC_WAIT_FLASH_CNF_L2_ACK定时器超时
- 输入参数  : ulEventType -- 消息类型+PID
-             pMsg        -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE --  消息都不需要进状态机处理，故该函数返回值都为VOS_TRUE
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年11月10日
-    作    者   : L00256032
-    修改内容   : 1X SS Project修改
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvTiProtectFlashCnfL2Ack_MainCtrl(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3117,22 +2403,7 @@ VOS_UINT32 CNAS_XCC_RcvTiProtectFlashCnfL2Ack_MainCtrl(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvTiProtectBurstDTMFCnfL2Ack_MainCtrl
- 功能描述  : 处理TI_CNAS_XCC_WAIT_BURST_DTMF_CNF_L2_ACK定时器超时
- 输入参数  : ulEventType -- 消息类型+PID
-             pMsg        -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE --  消息都不需要进状态机处理，故该函数返回值都为VOS_TRUE
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年11月10日
-    作    者   : f279542
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvTiProtectBurstDTMFCnfL2Ack_MainCtrl(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3164,23 +2435,7 @@ VOS_UINT32 CNAS_XCC_RcvTiProtectBurstDTMFCnfL2Ack_MainCtrl(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessXcallSendBurstDTMFReq_MainCtrl
- 功能描述  : 处理ID_XCALL_XCC_BURST_DTMF_REQ
- 输入参数  : ulEventType -- 消息类型+PID
-             pMsg        -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  --  消息不需要进一步处理
-             VOS_FALSE --  消息需要后续进一步处理
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年11月10日
-    作    者   : f279542
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ProcessXcallSendBurstDTMFReq_MainCtrl(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3229,23 +2484,7 @@ VOS_UINT32 CNAS_XCC_ProcessXcallSendBurstDTMFReq_MainCtrl(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndBurstDTMF_MainCtrl
- 功能描述  : XCC发送Send Burst DTMF
- 输入参数  : ucIndex               -- voice call实例索引
-             pstXcallBurstDTMFReq  -- Burst DTMF请求消息指针
- 输出参数  : 无
- 返 回 值  : VOS_OK                --  消息发送成功
-             VOS_ERR               --  消息发送失败
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年11月10日
-    作    者   : f279542
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_SndBurstDTMF_MainCtrl(
     VOS_UINT8                           ucIndex,
     XCALL_XCC_BURST_DTMF_REQ_STRU      *pstXcallBurstDTMFReq
@@ -3282,23 +2521,7 @@ VOS_UINT32 CNAS_XCC_SndBurstDTMF_MainCtrl(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessBurstDTMFL2Ack_MainCtrl
- 功能描述  : 处理Send Burst DTMF的L2 ACK
- 输入参数  : ucIndex           -- 消息类型+PID
-             pst1xDschDataCnf  -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  --  对应Send Burst DTMF的L2 ACK
-             VOS_FALSE --  非Send Burst DTMF的L2 ACK，或当前并不在等待Send Burst DTMFL2 ACK的状态
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年11月10日
-    作    者   : f279542
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ProcessBurstDTMFL2Ack_MainCtrl(
     VOS_UINT8                           ucIndex,
     CAS_CNAS_1X_DSCH_DATA_CNF_STRU     *pst1xDschDataCnf
@@ -3341,31 +2564,7 @@ VOS_UINT32 CNAS_XCC_ProcessBurstDTMFL2Ack_MainCtrl(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessCas1xCallTerminateInd_MainCtrl
- 功能描述  : 处理ID_CAS_CNAS_1X_CALL_TERMINATE_IND
- 输入参数  : ulEventType -- 消息类型+PID
-             pMsg        -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  --  消息不需要进一步处理
-             VOS_FALSE --  消息需要后续进一步处理
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年11月13日
-    作    者   : L00256032
-    修改内容   : 1X SS Project修改
-
-  2.日    期   : 2014年11月17日
-    作    者   : w00176964
-    修改内容   : CDMA 1X项目迭代5修改
-
-  3.日    期   : 2015年1月8日
-    作    者   : y00245242
-    修改内容   : 增加NDSS ORIG功能
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ProcessCas1xCallTerminateInd_MainCtrl(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3397,31 +2596,7 @@ VOS_UINT32 CNAS_XCC_ProcessCas1xCallTerminateInd_MainCtrl(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessCas1xCallRelInd_MainCtrl
- 功能描述  : 处理ID_CAS_CNAS_1X_CALL_REL_IND
- 输入参数  : ulEventType -- 消息类型+PID
-             pMsg        -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  --  消息不需要进一步处理
-             VOS_FALSE --  消息需要后续进一步处理
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年11月13日
-    作    者   : L00256032
-    修改内容   : 1X SS Project修改
-
-  2.日    期   : 2014年11月17日
-    作    者   : w00176964
-    修改内容   : CDMA 1X项目迭代5修改
-
-  3.日    期   : 2015年1月8日
-    作    者   : y00245242
-    修改内容   : 增加NDSS ORIG功能
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ProcessCas1xCallRelInd_MainCtrl(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3453,27 +2628,7 @@ VOS_UINT32 CNAS_XCC_ProcessCas1xCallRelInd_MainCtrl(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessXccPowerDownInd_MainCtrl
- 功能描述  : 处理ID_CNAS_XCC_XCC_POWER_DOWN_IND
- 输入参数  : ulEventType -- 消息类型+PID
-             pMsg        -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  --  消息不需要进一步处理
-             VOS_FALSE --  消息需要后续进一步处理
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年11月13日
-    作    者   : L00256032
-    修改内容   : 1X SS Project修改
-
-  2.日    期   : 2014年11月17日
-    作    者   : w00176964
-    修改内容   : CDMA 1X项目迭代5修改
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ProcessXccPowerDownInd_MainCtrl(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3504,22 +2659,7 @@ VOS_UINT32 CNAS_XCC_ProcessXccPowerDownInd_MainCtrl(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessCas1xCschFeatureNotificationMsgInd_MainCtrl
- 功能描述  : 处理CAS_CNAS_1X_RX_COMMON_FEATURE_NOTIFICATION_MSG
- 输入参数  : pstCschDataInd -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  --  消息不需要进一步处理
-             VOS_FALSE --  消息需要后续进一步处理
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年11月18日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ProcessCas1xCschFeatureNotificationMsgInd_MainCtrl(
     CAS_CNAS_1X_CSCH_DATA_IND_STRU     *pstCschDataInd
 )
@@ -3590,23 +2730,7 @@ VOS_UINT32 CNAS_XCC_ProcessCas1xCschFeatureNotificationMsgInd_MainCtrl(
 
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessCas1xCschDataInd_L1Main_MainCtrl
- 功能描述  : 处理ID_CAS_CNAS_1X_CSCH_DATA_IND
- 输入参数  : ulEventType -- 消息类型+PID
-             pMsg        -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  --  消息不需要进一步处理
-             VOS_FALSE --  消息需要后续进一步处理
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年11月18日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ProcessCas1xCschDataInd_MainCtrl(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3638,23 +2762,7 @@ VOS_UINT32 CNAS_XCC_ProcessCas1xCschDataInd_MainCtrl(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessCas1xTchServiceOptionControlMsgInd_L1Main_MainCtrl
- 功能描述  : 处理CAS_CNAS_1X_RX_TCH_SERVICE_OPTION_CONTROL_MSG
- 输入参数  : ulEventType -- 消息类型+PID
-             pMsg        -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  --  消息不需要进一步处理
-             VOS_FALSE --  消息需要后续进一步处理
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年11月18日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ProcessCas1xTchServiceOptionControlMsgInd_MainCtrl(
     struct MsgCB                       *pstMsg
 )
@@ -3687,21 +2795,7 @@ VOS_UINT32 CNAS_XCC_ProcessCas1xTchServiceOptionControlMsgInd_MainCtrl(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessVoiceSoCtrlMsg_MainCtrl
- 功能描述  : 处理处理语音业务的Service Option Control消息
- 输入参数  : pstSOCM   -- 解码消息内容
- 输出参数  : 无
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年11月18日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XCC_ProcessVoiceSoCtrlMsg_MainCtrl(
     CNAS_XCC_SOCM_STRU                 *pstSOCM
 )
@@ -3746,21 +2840,7 @@ VOS_VOID CNAS_XCC_ProcessVoiceSoCtrlMsg_MainCtrl(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessDataSoCtrlMsg_MainCtrl
- 功能描述  : 处理处理数据业务的Service Option Control消息
- 输入参数  : pstSOCM   -- 解码消息内容
- 输出参数  : 无
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年11月18日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XCC_ProcessDataSoCtrlMsg_MainCtrl(
     CNAS_XCC_SOCM_STRU                 *pstSOCM
 )
@@ -3800,22 +2880,7 @@ VOS_VOID CNAS_XCC_ProcessDataSoCtrlMsg_MainCtrl(
 
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_IsSendingEmcFlashMsgAllowed_MainCtrl
- 功能描述  : check sending emergency call FWI/EFWI message allowed or not
- 输入参数  : ucCurInstanceIndex----current call instance index
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  -- need send flash msg
-             VOS_FALSE -- need not send flash msg
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年11月26日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_IsSendingEmcFlashMsgAllowed_MainCtrl(
     VOS_UINT8                           ucCurInstanceIndex
 )
@@ -3866,23 +2931,7 @@ VOS_UINT32 CNAS_XCC_IsSendingEmcFlashMsgAllowed_MainCtrl(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessXcallEmgencyCallReq_MainCtrl
- 功能描述  : process emergency call reqest message
- 输入参数  : ulEventType -- 消息类型+PID
-             pMsg        -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  --  消息不需要进一步处理
-             VOS_FALSE --  消息需要后续进一步处理
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年11月26日
-    作    者   : w00176964
-    修改内容   : CDMA 1X Iteration 5 Modified
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ProcessXcallEmergencyCallReq_MainCtrl(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3935,23 +2984,7 @@ VOS_UINT32 CNAS_XCC_ProcessXcallEmergencyCallReq_MainCtrl(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndFWIorEFWIWithEmergencyCallReq_MainCtrl
- 功能描述  : XCC send emergency call flash message
- 输入参数  : ucIndex           -- voice call实例索引
-             *pstXcallFlashReq
- 输出参数  : 无
- 返 回 值  : VOS_OK    --  消息发送成功
-             VOS_ERR   --  消息发送失败
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年11月26日
-    作    者   : w00176964
-    修改内容   : CDMA 1X Iteration 5 Modified
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_SndFWIorEFWIWithEmergencyCallReq_MainCtrl(
     VOS_UINT8                           ucIndex,
     VOS_UINT8                           ucMsgSeqNum,
@@ -4034,22 +3067,7 @@ VOS_UINT32 CNAS_XCC_SndFWIorEFWIWithEmergencyCallReq_MainCtrl(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessHangupCallReqWhenWaitEmcFlashMsgRsp
- 功能描述  : process the hang up call request when waiting for the respnose of the emc FWI/EFWI msg
- 输入参数  : ucIndex-------------------current call instance index
-             pstHangupReq -------------hangup call request message
- 输出参数  : VOS_VOID
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月26日
-    作    者   : w00176964
-    修改内容   : CDMA 1X Iteration 5 Modified
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ProcessHangupCallReqWhenWaitEmcFlashMsgRsp(
     VOS_UINT8                           ucIndex,
     XCALL_XCC_HANGUP_CALL_REQ_STRU     *pstHangupReq
@@ -4098,22 +3116,7 @@ VOS_UINT32 CNAS_XCC_ProcessHangupCallReqWhenWaitEmcFlashMsgRsp(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessEmergencyCallFlashMsgRsp_MainCtrl
- 功能描述  : process the respnose of the emc FWI/EFWI msg
- 输入参数  : ucIndex-------------------current call instance index
-             pst1xDschDataCnf ---------the response of the emc FWI/EFWI msg
- 输出参数  : VOS_VOID
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月26日
-    作    者   : w00176964
-    修改内容   : CDMA 1X Iteration 5 Modified
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ProcessEmergencyCallFlashMsgRsp_MainCtrl(
     VOS_UINT8                           ucIndex,
     CAS_CNAS_1X_DSCH_DATA_CNF_STRU     *pst1xDschDataCnf
@@ -4160,22 +3163,7 @@ VOS_UINT32 CNAS_XCC_ProcessEmergencyCallFlashMsgRsp_MainCtrl(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvTiWaitEmergencyCallFlashCnfL2Ack_MainCtrl
- 功能描述  : process the expired of the timer:TI_CNAS_XCC_WAIT_EMERGENCY_CALL_FLASH_CNF_L2_ACK
- 输入参数  : ulEventType -- 消息类型+PID
-             pMsg        -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE --  消息都不需要进状态机处理，故该函数返回值都为VOS_TRUE
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年11月26日
-    作    者   : w00176964
-    修改内容   : CDMA 1X Iteration Modifed
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvTiWaitEmergencyCallFlashCnfL2Ack_MainCtrl(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4205,21 +3193,7 @@ VOS_UINT32 CNAS_XCC_RcvTiWaitEmergencyCallFlashCnfL2Ack_MainCtrl(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessReleaseWhenWaitEmcFlashMsgRsp
- 功能描述  : process the release when waiting for the respnose of the emc FWI/EFWI msg
- 输入参数  : ucIndex-------------------current call instance index
- 输出参数  : VOS_VOID
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月26日
-    作    者   : w00176964
-    修改内容   : CDMA 1X Iteration 5 Modified
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_ProcessReleaseWhenWaitEmcFlashMsgRsp(
     VOS_UINT8                           ucIndex
 )
@@ -4254,24 +3228,7 @@ VOS_VOID CNAS_XCC_ProcessReleaseWhenWaitEmcFlashMsgRsp(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessCas1xNdssRecordDialedDigitsInd_MainCtrl
- 功能描述  : 处理在呼叫过程中，包括呼叫建立过程中或呼叫在TCH态下，发生业务重定向
-             呼叫处理
- 输入参数  : ulEventType -- 消息类型+PID
-             pMsg        -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  --  消息不需要进一步处理
-             VOS_FALSE --  消息需要后续进一步处理
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年09月06日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ProcessCas1xNdssRecordDialedDigitsInd_MainCtrl(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4323,23 +3280,7 @@ VOS_UINT32 CNAS_XCC_ProcessCas1xNdssRecordDialedDigitsInd_MainCtrl(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessXsdNdssResultInd_MainCtrl
- 功能描述  : 处理XSD呼叫过程中重定向结果。这里直接透传给TAF
- 输入参数  : ulEventType -- 消息类型+PID
-             pMsg        -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  --  消息不需要进一步处理
-             VOS_FALSE --  消息需要后续进一步处理
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年01月08日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ProcessXsdNdssResultInd_MainCtrl(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4354,23 +3295,7 @@ VOS_UINT32 CNAS_XCC_ProcessXsdNdssResultInd_MainCtrl(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessApsPzidInfoNtf_MainCtrl
- 功能描述  : 处理Aps的Pzid信息，发送给网络
- 输入参数  : ulEventType -- 消息类型+PID
-             pMsg        -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  --  消息不需要进一步处理
-             VOS_FALSE --  消息需要后续进一步处理
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年01月10日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ProcessApsPzidInfoNtf_MainCtrl(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4415,23 +3340,7 @@ VOS_UINT32 CNAS_XCC_ProcessApsPzidInfoNtf_MainCtrl(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessReserveSrIdNtf_MainCtrl
- 功能描述  : 处理APS通知刷新SR_ID
- 输入参数  : ulEventType -- 消息类型+PID
-             pMsg        -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  --  消息不需要进一步处理
-             VOS_FALSE --  消息需要后续进一步处理
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年01月15日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ProcessReserveSrIdNtf_MainCtrl(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4449,22 +3358,7 @@ VOS_UINT32 CNAS_XCC_ProcessReserveSrIdNtf_MainCtrl(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessXCallStateInd_MainCtrl
- 功能描述  : call state  状态信息改变时候上报
- 输入参数  : VOS_UINT32                          ulEventType,
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月22日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ProcessXCallStateInd_MainCtrl(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4576,23 +3470,7 @@ VOS_VOID CNAS_XCC_ProcessCas1xTchSndBurstDtmfMsgInd_MainCtrl(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessXcallSendContDTMFReq_MainCtrl
- 功能描述  : 处理ID_XCALL_XCC_SEND_CONT_DTMF_REQ消息，或返回失败，或向CAS发送消息
- 输入参数  : ulEventType -- 消息类型+PID
-             pMsg        -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  --  消息不需要进一步处理
-             VOS_FALSE --  消息需要后续进一步处理
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年7月25日
-    作    者   : l00324781
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ProcessXcallSendContDTMFReq_MainCtrl(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4643,23 +3521,7 @@ VOS_UINT32 CNAS_XCC_ProcessXcallSendContDTMFReq_MainCtrl(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndContDTMFToneOrder_MainCtrl
- 功能描述  : XCC发送Send Cont DTMF Tone Order
- 输入参数  : ucIndex               -- voice call实例索引
-             pstXcallContDTMFReq  --  Cont DTMF请求消息指针
- 输出参数  : 无
- 返 回 值  : VOS_OK                --  消息发送成功
-             VOS_ERR               --  消息发送失败
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年7月24日
-    作    者   : l00324781
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_SndContDTMFToneOrder_MainCtrl(
     VOS_UINT8                           ucIndex,
     XCALL_XCC_SEND_CONT_DTMF_REQ_STRU  *pstXcallContDTMFReq
@@ -4707,23 +3569,7 @@ VOS_UINT32 CNAS_XCC_SndContDTMFToneOrder_MainCtrl(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessContDTMFToneOrderL2Ack_MainCtrl
- 功能描述  : 处理Cont DTMF Tone Order的L2 ACK
- 输入参数  : ucIndex           -- 消息类型+PID
-             pst1xDschDataCnf  -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  --  对应Cont DTMF Tone Order的L2 ACK
-             VOS_FALSE --  非Cont DTMF Tone Order的L2 ACK，或当前并不在等待Cont DTMF Tone Order的状态
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年7月25日
-    作    者   : l00324781
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ProcessContDTMFToneOrderL2Ack_MainCtrl(
     VOS_UINT8                           ucIndex,
     CAS_CNAS_1X_DSCH_DATA_CNF_STRU     *pst1xDschDataCnf
@@ -4767,22 +3613,7 @@ VOS_UINT32 CNAS_XCC_ProcessContDTMFToneOrderL2Ack_MainCtrl(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RcvTiProtectContDTMFCnfL2Ack_MainCtrl
- 功能描述  : 处理TI_CNAS_XCC_WAIT_Cont_DTMF_CNF_L2_ACK定时器超时
- 输入参数  : ulEventType -- 消息类型+PID
-             pMsg        -- 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE --  消息都不需要进状态机处理，故该函数返回值都为VOS_TRUE
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年7月25日
-    作    者   : l00324781
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_RcvTiProtectContDTMFCnfL2Ack_MainCtrl(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4815,21 +3646,7 @@ VOS_UINT32 CNAS_XCC_RcvTiProtectContDTMFCnfL2Ack_MainCtrl(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessReleaseWhenWaitForL2AckDuringSndContDtmfToneOrder
- 功能描述  : 在Send Cont DTMF Tone Order流程中等待L2 ACK状态下，处理电话挂断(主动挂断或网络挂断)
- 输入参数  : ucIndex
- 输出参数  : VOS_VOID
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月27日
-    作    者   : L00324781
-    修改内容   : Iter 16 增加
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_ProcessReleaseWhenWaitForL2AckDuringSndContDtmfToneOrder(
     VOS_UINT8                           ucIndex
 )
@@ -4857,24 +3674,7 @@ VOS_VOID CNAS_XCC_ProcessReleaseWhenWaitForL2AckDuringSndContDtmfToneOrder(
 }
 
 #if (FEATURE_ON == FEATURE_CHINA_TELECOM_VOICE_ENCRYPT)
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessXcallEccServiceReq_MainCtrl
- 功能描述  : 预处理ID_XCALL_XCC_ECC_SERVICE_REQ
- 输入参数  : VOS_UINT32                          ulEventType,
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  --  消息不需要进一步处理
-             VOS_FALSE --  消息需要后续进一步处理
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : l00359089
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ProcessXcallEccServiceReq_MainCtrl(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4905,24 +3705,7 @@ VOS_UINT32 CNAS_XCC_ProcessXcallEccServiceReq_MainCtrl(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessCas1xEccServiceCnf_MainCtrl
- 功能描述  : 预处理ID_CAS_CNAS_1X_ECC_SERVICE_CNF
- 输入参数  : VOS_UINT32                          ulEventType,
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  --  消息不需要进一步处理
-             VOS_FALSE --  消息需要后续进一步处理
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : l00359089
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ProcessCas1xEccServiceCnf_MainCtrl(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4962,24 +3745,7 @@ VOS_UINT32 CNAS_XCC_ProcessCas1xEccServiceCnf_MainCtrl(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessCas1xTchAssignCmplInd_MainCtrl
- 功能描述  : 预处理ID_CAS_CNAS_1X_TCH_ASSIGN_CMPL_IND
- 输入参数  : VOS_UINT32                          ulEventType,
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  --  消息不需要进一步处理
-             VOS_FALSE --  消息需要后续进一步处理
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : l00359089
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ProcessCas1xTchAssignCmplInd_MainCtrl(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -5009,24 +3775,7 @@ VOS_UINT32 CNAS_XCC_ProcessCas1xTchAssignCmplInd_MainCtrl(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessXcallPrivacyModeQryReq_MainCtrl
- 功能描述  : 查询当前privacy mode设置
 
- 输入参数  : ulEventType -- 事件类型
-             pstMsg      -- 消息
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  -- 允许发送
-             VOS_FALSE -- 不允许发送
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年12月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ProcessXcallPrivacyModeSetReq_MainCtrl(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -5073,24 +3822,7 @@ VOS_UINT32 CNAS_XCC_ProcessXcallPrivacyModeSetReq_MainCtrl(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessXcallPrivacyModeQryReq_MainCtrl
- 功能描述  : 查询当前privacy mode设置
 
- 输入参数  : ulEventType -- 事件类型
-             pstMsg      -- 消息
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  -- 允许发送
-             VOS_FALSE -- 不允许发送
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年12月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ProcessXcallPrivacyModeQryReq_MainCtrl(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -5111,24 +3843,7 @@ VOS_UINT32 CNAS_XCC_ProcessXcallPrivacyModeQryReq_MainCtrl(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ProcessXcallLongCodeTransitionInd_MainCtrl
- 功能描述  : 收到CAS上报的privacy mode指示
 
- 输入参数  : ulEventType -- 事件类型
-             pstMsg      -- 消息
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  -- 允许发送
-             VOS_FALSE -- 不允许发送
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年12月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ProcessXcallLongCodeTransitionInd_MainCtrl(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg

@@ -32,7 +32,6 @@
 #include "plat_uart.h"
 #include "plat_firmware.h"
 #include "plat_pm.h"
-#include "plat_pm_user_ctrl.h"
 #include "bfgx_low_power.h"
 #include "plat_exception_rst.h"
 
@@ -170,6 +169,7 @@ int32 sdio_reinit(void)
     if (sdio_dev_init(pm_data->pst_wlan_pm_info->pst_sdio->func) != SUCCESS)
     {
         PS_PRINT_ERR("sdio dev reinit failed\n");
+        CHR_EXCEPTION(CHR_WIFI_DRV(CHR_WIFI_DRV_EVENT_PLAT, CHR_PLAT_DRV_ERROR_SDIO_INIT));
         return -FAILURE;
     }
 
@@ -574,6 +574,7 @@ int32 host_wkup_dev(void)
     {
         ps_uart_state_dump(ps_core_d->tty);
         PS_PRINT_ERR("wait wake up dev timeout\n");
+        CHR_EXCEPTION(CHR_GNSS_DRV(CHR_GNSS_DRV_EVENT_PLAT, CHR_PLAT_DRV_ERROR_WAKEUP_DEV));
         return -ETIMEDOUT;
     }
     PS_PRINT_DBG("wkup over\n");
@@ -669,6 +670,7 @@ int32 bfgx_dev_power_on(void)
         {
             PS_PRINT_ERR("wifi dereset bcpu fail!\n");
             error = BFGX_POWER_WIFI_DERESET_BCPU_FAIL;
+            CHR_EXCEPTION(CHR_GNSS_DRV(CHR_GNSS_DRV_EVENT_PLAT, CHR_PLAT_DRV_ERROR_OPEN_BCPU));
             goto bfgx_power_on_fail;
         }
     }
@@ -682,12 +684,14 @@ int32 bfgx_dev_power_on(void)
         {
             PS_PRINT_ERR("wifi off, wait bfgx boot up ok timeout\n");
             error = BFGX_POWER_WIFI_OFF_BOOT_UP_FAIL;
+            CHR_EXCEPTION(CHR_GNSS_DRV(CHR_GNSS_DRV_EVENT_PLAT, CHR_PLAT_DRV_ERROR_BCPU_BOOTUP));
             goto bfgx_power_on_fail;
         }
         else
         {
             PS_PRINT_ERR("wifi on, wait bfgx boot up ok timeout\n");
             error = BFGX_POWER_WIFI_ON_BOOT_UP_FAIL;
+            CHR_EXCEPTION(CHR_GNSS_DRV(CHR_GNSS_DRV_EVENT_PLAT, CHR_PLAT_DRV_ERROR_BCPU_BOOTUP));
             goto bfgx_power_on_fail;
         }
     }
@@ -748,6 +752,7 @@ int32 bfgx_dev_power_off(void)
          {
             /*bfgx self close fail 了，后面也要通过wifi shutdown bcpu*/
             PS_PRINT_ERR("bfgx self close fail\n");
+            CHR_EXCEPTION(CHR_GNSS_DRV(CHR_GNSS_DRV_EVENT_PLAT, CHR_PLAT_DRV_ERROR_CLOSE_BCPU));
          }
 
          if (SUCCESS != release_tty_drv(ps_core_d->pm_data))
@@ -761,6 +766,7 @@ int32 bfgx_dev_power_off(void)
          if(SUCCESS != wlan_pm_shutdown_bcpu_cmd())
          {
             PS_PRINT_ERR("wifi shutdown bcpu fail\n");
+            CHR_EXCEPTION(CHR_GNSS_DRV(CHR_GNSS_DRV_EVENT_PLAT, CHR_PLAT_DRV_ERROR_CLOSE_BCPU));
             error = -FAILURE;
          }
     }
@@ -864,6 +870,14 @@ int firmware_download_function(uint32 which_cfg)
         oal_sdio_release_host(pm_data->pst_wlan_pm_info->pst_sdio);
         PS_PRINT_ERR("firmware download fail!\n");
         DECLARE_DFT_TRACE_KEY_INFO("patch_download_fail",OAL_DFT_TRACE_FAIL);
+        if (BFGX_CFG == which_cfg)
+        {
+            CHR_EXCEPTION(CHR_GNSS_DRV(CHR_GNSS_DRV_EVENT_PLAT, CHR_PLAT_DRV_ERROR_FIRMWARE_DOWN));
+        }
+        else
+        {
+            CHR_EXCEPTION(CHR_WIFI_DRV(CHR_WIFI_DRV_EVENT_PLAT, CHR_PLAT_DRV_ERROR_FIRMWARE_DOWN));
+        }
         return -FAILURE;
     }
     DECLARE_DFT_TRACE_KEY_INFO("patch_download_ok",OAL_DFT_TRACE_SUCC);
@@ -1016,6 +1030,7 @@ int32 wlan_power_on(void)
             DECLARE_DFT_TRACE_KEY_INFO("wlan_poweron_dev_ready_by_gpio_fail", OAL_DFT_TRACE_FAIL);
             PS_PRINT_ERR("wlan_pm_wait_device_ready timeout %d !!!!!!\n", HOST_WAIT_BOTTOM_INIT_TIMEOUT);
             error = WIFI_POWER_BFGX_OFF_BOOT_UP_FAIL;
+            CHR_EXCEPTION(CHR_WIFI_DRV(CHR_WIFI_DRV_EVENT_PLAT, CHR_PLAT_DRV_ERROR_WCPU_BOOTUP));
             goto wifi_power_fail;
         }
     }
@@ -1025,6 +1040,7 @@ int32 wlan_power_on(void)
         {
             DECLARE_DFT_TRACE_KEY_INFO("wlan_poweron_by_uart_fail", OAL_DFT_TRACE_FAIL);
             error = WIFI_POWER_BFGX_DERESET_WCPU_FAIL;
+            CHR_EXCEPTION(CHR_WIFI_DRV(CHR_WIFI_DRV_EVENT_PLAT, CHR_PLAT_DRV_ERROR_OPEN_WCPU));
             goto wifi_power_fail;
         }
         else
@@ -1047,6 +1063,7 @@ int32 wlan_power_on(void)
                 DECLARE_DFT_TRACE_KEY_INFO("wlan_poweron_dev_ready_by_uart_fail",OAL_DFT_TRACE_FAIL);
                 PS_PRINT_ERR("wlan_pm_wait_device_ready timeout %d !!!!!!",HOST_WAIT_BOTTOM_INIT_TIMEOUT);
                 error = WIFI_POWER_BFGX_ON_BOOT_UP_FAIL;
+                CHR_EXCEPTION(CHR_WIFI_DRV(CHR_WIFI_DRV_EVENT_PLAT, CHR_PLAT_DRV_ERROR_WCPU_BOOTUP));
                 goto wifi_power_fail;
             }
         }
@@ -1095,7 +1112,7 @@ int32 wlan_power_off(void)
     }
     else
     {
-        /*先关闭SDIO TX通道*/       
+        /*先关闭SDIO TX通道*/
         oal_disable_sdio_state(oal_get_sdio_default_handler(), OAL_SDIO_TX);
 
         /*wakeup dev,send poweroff cmd to wifi*/
@@ -1103,8 +1120,10 @@ int32 wlan_power_off(void)
         {
             /*wifi self close 失败了也继续往下执行，uart关闭WCPU，异常恢复推迟到wifi下次open的时候执行*/
             DECLARE_DFT_TRACE_KEY_INFO("wlan_poweroff_by_sdio_fail",OAL_DFT_TRACE_FAIL);
+            CHR_EXCEPTION(CHR_WIFI_DRV(CHR_WIFI_DRV_EVENT_PLAT, CHR_PLAT_DRV_ERROR_CLOSE_WCPU));
+#ifdef PLATFORM_DEBUG_ENABLE
             return -FAILURE;
-
+#endif
         }
 
         oal_disable_sdio_state(oal_get_sdio_default_handler(), OAL_SDIO_ALL);
@@ -1114,12 +1133,13 @@ int32 wlan_power_off(void)
         {
             /*uart关闭WCPU失败也继续执行，DFR推迟到wifi下次open的时候执行*/
             DECLARE_DFT_TRACE_KEY_INFO("wlan_poweroff_uart_cmd_fail",OAL_DFT_TRACE_FAIL);
+            CHR_EXCEPTION(CHR_WIFI_DRV(CHR_WIFI_DRV_EVENT_PLAT, CHR_PLAT_DRV_ERROR_CLOSE_WCPU));
         }
         DECLARE_DFT_TRACE_KEY_INFO("wlan_poweroff_by_bcpu_ok",OAL_DFT_TRACE_SUCC);
     }
 
     oal_wlan_gpio_intr_enable(oal_get_sdio_default_handler(), OAL_FALSE);
-    
+
     pm_data->pst_wlan_pm_info->ul_wlan_power_state = POWER_STATE_SHUTDOWN;
 
     return SUCCESS;
@@ -1323,6 +1343,7 @@ EXPORT_SYMBOL_GPL(ps_pm_unregister);
 irqreturn_t bfg_wake_host_isr(int irq, void *dev_id)
 {
     struct ps_core_s *ps_core_d = NULL;
+    uint64 flags;
     struct pm_drv_data *pm_data = pm_get_drvdata();
 
     if (NULL == pm_data)
@@ -1342,8 +1363,10 @@ irqreturn_t bfg_wake_host_isr(int irq, void *dev_id)
         return IRQ_NONE;
     }
 
+    spin_lock_irqsave(&pm_data->wakelock_protect_spinlock, flags);
     ps_core_d->ps_pm->bfg_wake_lock();
     bfgx_state_set(BFGX_ACTIVE);
+    spin_unlock_irqrestore(&pm_data->wakelock_protect_spinlock, flags);
 
     queue_work(pm_data->wkup_dev_workqueue, &pm_data->send_disallow_msg_work);
 
@@ -1370,9 +1393,6 @@ STATIC int low_power_remove(void)
 
     wlan_pm_exit();
 
-    /*remove kobject*/
-    pm_user_ctrl_exit();
-
     /*delete timer*/
     del_timer_sync(&pm_data->bfg_timer);
     del_timer_sync(&pm_data->dev_ack_timer);
@@ -1392,6 +1412,7 @@ STATIC int low_power_remove(void)
 
 STATIC void devack_timer_expire(uint64 data)
 {
+    uint64 flags;
     struct pm_drv_data  *pm_data = (struct pm_drv_data*)data;
     if (unlikely(NULL == pm_data))
     {
@@ -1421,9 +1442,19 @@ STATIC void devack_timer_expire(uint64 data)
     }
     else
     {
-        PS_PRINT_INFO("device agree to sleep, but host did not get the ack\n");
-        pm_data->ps_pm_interface->operate_beat_timer(BEAT_TIMER_DELETE);
-        bfg_wake_unlock();
+        spin_lock_irqsave(&pm_data->wakelock_protect_spinlock, flags);
+        if (BFGX_ACTIVE == pm_data->bfgx_dev_state)
+        {
+            PS_PRINT_INFO("wkup isr occur during wait for dev allow ack\n");
+        }
+        else
+        {
+            PS_PRINT_INFO("device agree to sleep, but host did not get the ack\n");
+            pm_data->ps_pm_interface->operate_beat_timer(BEAT_TIMER_DELETE);
+            bfg_wake_unlock();
+        }
+        spin_unlock_irqrestore(&pm_data->wakelock_protect_spinlock, flags);
+
         complete(&pm_data->dev_ack_comp);
     }
 
@@ -1483,6 +1514,7 @@ STATIC int low_power_probe(void)
     mutex_init(&pm_data->host_mutex);
     /*init spinlock*/
     spin_lock_init(&pm_data->node_timer_spinlock);
+    spin_lock_init(&pm_data->wakelock_protect_spinlock);
 
     /* init timer */
     init_timer(&pm_data->dev_ack_timer);
@@ -1502,13 +1534,6 @@ STATIC int low_power_probe(void)
     /*set driver data*/
     pm_set_drvdata(pm_data);
 
-    ret = pm_user_ctrl_init();
-    if (ret)
-    {
-        PS_PRINT_ERR("failed to create power properties!\n");
-        goto PM_USER_CTL_FAIL;
-    }
-
     /* register host pm */
     ret = register_pm_notifier(&pf_suspend_notifier);
 	if (ret < 0)
@@ -1517,8 +1542,6 @@ STATIC int low_power_probe(void)
 	}
 
     return OAL_SUCC;
-
-PM_USER_CTL_FAIL:
 
 CREATE_WORKQ_FAIL:
 

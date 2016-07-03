@@ -374,7 +374,7 @@ SINT32 VC1HAL_V400R004_CfgReg( VC1_DEC_PARAM_S *pVc1DecParam, VDMHAL_HWMEM_S *pH
     ((BASIC_V400R004_CFG1*)(&D32))->mv_output_en       = 1;
     ((BASIC_V400R004_CFG1*)(&D32))->max_slcgrp_num     = 1;
     ((BASIC_V400R004_CFG1*)(&D32))->line_num_output_en = 0;
-    ((BASIC_V400R004_CFG1*)(&D32))->vdh_2d_en          = 1; // y00226912 K3Åä1 2D output
+    ((BASIC_V400R004_CFG1*)(&D32))->vdh_2d_en          = 1;
     ((BASIC_V400R004_CFG1*)(&D32))->compress_en        = pVc1DecParam->Compress_en;
     ((BASIC_V400R004_CFG1*)(&D32))->ppfd_en            = 0;
     pVc1DecParam->basic_cfg1 = D32;

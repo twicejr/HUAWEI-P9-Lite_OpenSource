@@ -25,25 +25,7 @@
 #define    THIS_FILE_ID        PS_FILE_ID_SM_RCVRABM_C
 /*lint +e767 修改人:罗建 107747;检视人:sunshaohua*/
 
-/*******************************************************************************
-  Module:   SM_RcvRabmDeActReq
-  Function: 接收RABMSM_DEACTIVATE_REQ消息的处理
-  Input:    RABMSM_DEACTIVATE_REQ_STRU    *pMsgIe
-  Output:   VOS_VOID
-  NOTE:     VOS_VOID
-  Return:   VOS_VOID
-  History:
-  1.   张志勇   2003.12.10   新规作成
-  2.   张志勇   2005.01.06   移植修改
-  3.   L47619   2006.08.30   根据问题单修改:A32D05864
 
-  4.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : SM保存的QOS和APN由动态内存改为静态数组
-  5.日    期   : 2012年12月11日
-    作    者   : l00167671
-    修改内容   : DTS2012121802573, TQE清理
-*******************************************************************************/
 VOS_VOID SM_RcvRabmDeActReq(
     RABMSM_DEACTIVATE_REQ_STRU         *pMsgIe                                  /* 接收到的消息                             */
 )

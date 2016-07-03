@@ -1,28 +1,4 @@
-/*************************************************************************
- *
- *              Copyright 2005, Huawei Technologies Co. Ltd.
- *                          ALL RIGHTS RESERVED
- * 
- *-----------------------------------------------------------------------*
- *
- *                               mp_sh_ext.h
- *
- *  Project Code: VISP1.5
- *   Module Name: MP
- *  Date Created: 2005-09-28
- *        Author: songrujie
- *   Description: MP模块引用其他模块的函数接口申明和
- *                外部变量申明私有全局变量的引用说明
- *
- *-----------------------------------------------------------------------*
- *  Modification History
- *  DATE            NAME            DESCRIPTION
- *  2005-09-28      songrujie       Create
- *  2006-03-31      ZhuKun          Adjust for D00663
- *  2006-04-21      ZhuKun          Adjust for D00876
- *  2006-05-13      l48923          Delete useless code
- *
- *************************************************************************/
+
 
 #ifndef _MP_SH_EXT_H_
 #define _MP_SH_EXT_H_

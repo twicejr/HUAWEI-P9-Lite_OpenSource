@@ -1,37 +1,4 @@
-/*******************************************************************************
-  File name:          AsApi.c
-  Description:        As提供给Nas的Api函数文件
-  Function List:
-      1.    U_NasSendAsMsg
-      2.    U_PsDomainDataReq
-      3.    U_CsDomainDataReq
-      4.    U_CsDomainSyncDataReq
-  History:
-  1.z49132   2003.07.25   The first version
-  2.日    期   : 2006年10月11日
-    作    者   : luojian id:60022475
-    修改内容   : 根据问题单号：A32D06583,函数As_RrPowerOffReq(VOS_VOID)
-                 消息头填写遗漏了ulReceiverCpuId
-  3.日    期   : 2006年12月5日
-    作    者   : luojian 60022475
-    修改内容   : Maps3000接口修改
-  4.日    期   : 2007年07月12日
-    作    者   : luojian id:60022475
-    修改内容   : 根据问题单号：A32D12374,modidied  for Hi4131
-  5.日    期   : 2007年9月27日
-    作    者   : s46746
-    修改内容   : 将卡无效信息从RRMM_NAS_INFO_CHANGE消息中拿掉
-  6.日    期   : 2007年11月16日
-    作    者   : l00107747
-    修改内容   : 根据问题单号A32D13483
-  7.Date         : 2008/4/23
-    Author       : luojian, id:107747
-    Modification : AT2D03148
 
-  8.日    期   : 2010年3月2日
-    作    者   : zhoujun /z40661
-    修改内容   : NAS R7协议升级
-*******************************************************************************/
 #include  "PsTypeDef.h"
 #include  "PsCommonDef.h"
 #include  "Nasrrcinterface.h"
@@ -60,34 +27,7 @@ extern VOS_UINT8  NAS_GetRbTxMode(VOS_UINT32 ulDomain, VOS_INT8    cRbId);
 
 /*lint -save -e958 */
 
-/*****************************************************************************
- 函 数 名  : NAS_PsDomainTcDataReq
- 功能描述  : PS域请求AS层发送环回数据
- 输入参数  : VOS_UINT8      ucRbId       - radio bear的标识, 5~32
-             VOS_UINT32     ulDataBitLen - 数据的长度，BIT
-             VOS_INT8      *pcData       - 数据的指针，指向发送的数据
- 输出参数  : 无
- 返 回 值  : VOS_INT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   :
-    作    者   : L47619/H62119
-    修改内容   : PS域环回修改
-
-  2.日    期   : 2010年4月22日
-    作    者   : o00132663
-    修改内容   : AT2D18350, GCF 14.2.4 环回测试失败
-
-  3.日    期   : 2010年4月22日
-    作    者   : A00165503
-    修改内容   : 问题单号: DTS2010111102810，RMC HSUPA和HSDPA互切，单板复位
-  4.日    期   : 2012年12月11日
-    作    者   : l00167671
-    修改内容   : DTS2012121802573, TQE清理
-
-*****************************************************************************/
 VOS_INT32 NAS_PsDomainTcDataReq(
     VOS_UINT8                           ucRbId,
     VOS_UINT32                          ulDataBitLen,
@@ -140,28 +80,7 @@ VOS_INT32 NAS_PsDomainTcDataReq(
     return AS_SUCCESS;
 }
 
-/*******************************************************************************
-  Module:   U_CsDomainDataReq
-  Function: CS域请求AS层发送数据
-  Input:    VOS_INT8  cRbId          radio bear的标识, 5~32
-            VOS_UINT32 ulDataLength   数据的长度,BIT
-            VOS_INT8  *pcData        数据的指针，指向发送的数据，
-                                 由高层申请，由AS层负责释放
-  Output:
-  NOTE:
-  Return:   VOS_INT32
-  History:
-  1.    z49132   2003.07.25  the first version
 
-  2.    hujianbo 42180 A32D08156 20070125
-
-  3.日    期   : 2010年4月22日
-    作    者   : o00132663
-    修改内容   : AT2D18350, GCF 14.2.4 环回测试失败
-  2.日    期   : 2012年8月8日
-    作    者   : l00171473
-    修改内容   : DTS2012080802390, TD的环回失败
-*******************************************************************************/
 VOS_INT32 NAS_CsDomainDataReq(
                        VOS_INT8   cRbId,
                        VOS_UINT32 ulDataLength,
@@ -337,25 +256,7 @@ VOS_INT32 NAS_CsDomainDataReq(
 
 
 
-/***********************************************************************
- *  MODULE   : As_RrDataReq
- *  FUNCTION : NAS向AS请求发送信令数据
- *  INPUT    : VOS_UINT8 ucCnDomain
- *             VOS_UINT8 ucPriority
- *             VOS_UINT32 ulSize
- *             VOS_INT8 *pData
- *  OUTPUT   :
- *  RETURN   : AS_SUCCESS
- *             AS_PARA_MISMATCH
- *             AS_VOS_ERR
- *             AS_GENERAL_ERR
- *  NOTE     : 本函数提供给NAS使用
- *  HISTORY  :
- *     1.  z49132  03-08-11  新版作成
-       2.日    期   : 2012年7月14日
-         作    者   : W00176964
-         修改内容   : V7R1 C50 GUTL PhaseI调整:发送给WRR的消息统一用适配层函数替换
- ************************************************************************/
+
 VOS_INT32 As_RrDataReq(
                VOS_UINT8    ucCnDomain,                                                    /* CN DOMAIN                                 */
                VOS_UINT8    ucPriority,                                                    /* 信令数据优先级                            */
@@ -415,35 +316,7 @@ VOS_INT32 As_RrDataReq(
 
     return AS_SUCCESS;
 }
-/***********************************************************************
- *  MODULE   : As_RrEstReq
- *  FUNCTION : 高层请求建立某个CN域的信令连接
- *  INPUT    : VOS_UINT32        ulOpId
- *             VOS_UINT8        ucCnDomain
- *             VOS_UINT32        ulEstCause
- *             IDNNS_STRU   *pIdnnsInfo
- *             VOS_UINT32        ulSize
- *             VOS_INT8         *pFisrstMsg
- *  OUTPUT   :
- *  RETURN   : AS_SUCCESS
- *             AS_PARA_MISMATCH
- *             AS_VOS_ERR
- *             AS_GENERAL_ERR
- *  NOTE     : 本函数提供给NAS使用
- *  HISTORY  :
- *     1.  z49132  03-08-11  新版作成
 
-  1.日    期   : 2010年3月2日
-    作    者   : zhoujun /z40661
-    修改内容   : NAS R7协议升级
-
-  2.日    期   : 2010年05月02日
-    作    者   : l65478
-    修改内容   : 根据问题单号：AT2D18877,拉美搜网失败，增加全频搜索过程
-  3.日    期   : 2012年7月14日
-    作    者   : W00176964
-    修改内容   : V7R1 C50 GUTL PhaseI调整:发送给WRR的消息统一用适配层函数替换
- ************************************************************************/
 VOS_INT32 As_RrEstReq(
     VOS_UINT32                          ulOpId,
     VOS_UINT8                           ucCnDomain,
@@ -522,25 +395,7 @@ VOS_INT32 As_RrEstReq(
 
     return AS_SUCCESS;
 }
-/***********************************************************************
- *  MODULE   : As_RrRelReq
- *  FUNCTION : NAS请求AS释放指定域的信令连接
- *  INPUT    : VOS_UINT8 ucCnDomain
- *  OUTPUT   :
- *  RETURN   : AS_SUCCESS
- *             AS_PARA_MISMATCH
- *             AS_VOS_ERR
- *             AS_GENERAL_ERR
- *  NOTE     : 本函数提供给NAS使用
- *  HISTORY  :
- *     1.  z49132  03-08-11  新版作成
-       2.日    期   : 2007年03月30日
-         作    者   : luojian 60022475
-         修改内容   : Maps3000接口修改
-       3.日    期   : 2012年7月14日
-         作    者   : W00176964
-         修改内容   : V7R1 C50 GUTL PhaseI调整:发送给WRR的消息统一用适配层函数替换
- ************************************************************************/
+
 VOS_INT32 As_RrRelReq(
                VOS_UINT8    ucCnDomain,
                RRC_CELL_BAR_ENUM_UINT32 enBarValidFlg
@@ -586,23 +441,7 @@ VOS_INT32 As_RrRelReq(
     return AS_SUCCESS;
 }
 
-/***********************************************************************
- *  MODULE   : As_RabInfoRsp
- *  FUNCTION : NAS向AS新建的RAB进行响应，提供AS必要的信息
- *  INPUT    : VOS_UINT32               ulResult
- *             RAB_RSP_INFO_STRU   *pRabInfo
- *  OUTPUT   :
- *  RETURN   : AS_SUCCESS
- *             AS_PARA_MISMATCH
- *             AS_VOS_ERR
- *             AS_GENERAL_ERR
- *  NOTE     : 本函数提供给NAS使用
- *  HISTORY  :
- *     1.  z49132  03-08-12  新版作成
-       2.日    期   : 2012年7月14日
-         作    者   : W00176964
-         修改内容   : V7R1 C50 GUTL PhaseI调整:发送给WRR的消息统一用适配层函数替换
- ************************************************************************/
+
 VOS_INT32 As_RabInfoRsp(
                 VOS_UINT32               ulResult,
                 RAB_RSP_INFO_STRU   *pRabInfo
@@ -646,22 +485,7 @@ VOS_INT32 As_RabInfoRsp(
     }
     return AS_SUCCESS;
 }
-/***********************************************************************
- *  MODULE   : As_RabQosUpdate
- *  FUNCTION : NAS在RAB的信息发生变化后通知AS
- *  INPUT    : QOS_INFO_STRU     *pQosInfo
- *  OUTPUT   :
- *  RETURN   : AS_SUCCESS
- *             AS_PARA_MISMATCH
- *             AS_VOS_ERR
- *             AS_GENERAL_ERR
- *  NOTE     : 本函数提供给NAS使用
- *  HISTORY  :
- *     1.  z49132  03-08-12  新版作成
-      2.日    期   : 2012年7月14日
-        作    者   : W00176964
-        修改内容   : V7R1 C50 GUTL PhaseI调整:发送给WRR的消息统一用适配层函数替换
- ************************************************************************/
+
 VOS_INT32 As_RabQosUpdate(
                   QOS_INFO_STRU     *pQosInfo
                   )

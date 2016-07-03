@@ -1,24 +1,4 @@
-/************************************************************************
-*                                                                      *
-*                             chap.c                                   *
-*                                                                      *
-*  Project Code:       VRP3.0                                          *
-*  Create Date:        2000/06/05                                      *
-*  Author:             Zhu Fengzhi                                     *
-*  Modify Date:                                                        *
-*  Document:                                                           *
-*  Function:           PPP的CHAP协议模块                               *
-*  Others:                                                             *
-*----------------------------------------------------------------------*
-*                                                                      *
-* Copyright 2000-2002 VRP3.0 Team Beijing Institute HuaWei Tech, Inc.  *
-*                     ALL RIGHTS RESERVED                              *
-*                                                                      *
-*----------------------------------------------------------------------*
-*                                                                      *
-*   这个文件定义了CHAP协议模块的全部接口函数和内部处理函数             *
-*                                                                      *
-************************************************************************/
+
 
 /*****************************************************************************
   1 头文件包含
@@ -50,16 +30,7 @@ PS_BOOL_ENUM_UINT8  g_enGetChapRespSelf = PS_TRUE;
   3 函数实现
 *****************************************************************************/
 /*lint -save -e958 */
-/****************************************************************************
-* CREATE DATE  ：2000/06/12                                                 *
-* CREATED BY   ：Zhu Feng Zhi                                               *
-* FUNCTION     ：CHAP初始化CHAP控制块                                        *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-* OUTPUT       ：                                                           *
-* RETURN       ：                                                            *
-* CALLED BY    ：PPP_Core_AuthenticatePhase                                    *
-****************************************************************************/
+
 VOID PPP_CHAP_Init(PPPINFO_S *pstPppInfo)
 {
     PPPCHAPINFO_S *pstChapInfo;
@@ -119,21 +90,7 @@ VOID PPP_CHAP_Init(PPPINFO_S *pstPppInfo)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/06/12                                                 *
-* CREATED BY   ：Zhu Feng Zhi                                               *
-* FUNCTION     ：CHAP接收外部事件.事件包括：ClientUp、ServerUp、Down            *                                           Open、Close            *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-*                ulCmd:命令字, 可以为如下值:                                *
-*                    CHAP_EVENT_CLIENTLOWERUP:本地下层UP                        *
-*                    CHAP_EVENT_SERVERLOWERUP:对端下层UP                        *
-*                    CHAP_EVENT_LOWERDOWN:下层DOWN                            *
-*                pPara:事件的参数, 为NULL                                   *
-* OUTPUT       ：                                                           *
-* RETURN       ：NULL                                                       *
-* CALLED BY    ：PPP_Core_ReceiveEventFromShell                                *
-****************************************************************************/
+
 VOID PPP_CHAP_ReceiveEventFromCore (PPPINFO_S *pstPppInfo, VOS_UINT32 ulCmd, CHAR *pPara)
 {
     if (pstPppInfo == 0)
@@ -166,17 +123,7 @@ VOID PPP_CHAP_ReceiveEventFromCore (PPPINFO_S *pstPppInfo, VOS_UINT32 ulCmd, CHA
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/06/12                                                 *
-* CREATED BY   ：Zhu Feng Zhi                                               *
-* FUNCTION     ：CHAP Client 端LowerUp,由对端验证我端                        *
-*                 进入CHAP_STATE_LISTEN_CHALLENGE状态, 等待对端送出CHALLENGE    *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-* OUTPUT       ：                                                           *
-* RETURN       ：                                                            *
-* CALLED BY    ：PPP_CHAP_ReceiveEventFromCore                                *
-****************************************************************************/
+
 VOID PPP_CHAP_ClientLowerUp(PPPINFO_S *pstPppInfo)
 {
     PPPCHAPINFO_S * pstChapInfo = pstPppInfo->pstChapInfo;
@@ -212,16 +159,7 @@ VOID PPP_CHAP_ClientLowerUp(PPPINFO_S *pstPppInfo)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/06/09                                                 *
-* CREATED BY   ：Zhu Feng Zhi                                               *
-* FUNCTION     ：CHAP Server 端LowerUp,由我端向对端发送Challenge             *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-* OUTPUT       ：                                                           *
-* RETURN       ：                                                            *
-* CALLED BY    ：PPP_CHAP_ReceiveEventFromCore                                *
-****************************************************************************/
+
 VOID PPP_CHAP_ServerLowerUp(PPPINFO_S *pstPppInfo)
 {
     PPPCHAPINFO_S * pstChapInfo = pstPppInfo->pstChapInfo;
@@ -252,18 +190,7 @@ VOID PPP_CHAP_ServerLowerUp(PPPINFO_S *pstPppInfo)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/06/12                                                 *
-* CREATED BY   ：Zhu Feng Zhi                                               *
-* FUNCTION     ：CHAPLowerDown                                                *
-*                 进入CHAP_STATE_SERVER_INITIAL ,CHAP_STATE_CLIENT_INITIAL状态        *
-*                 同时删除定时器                                                *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-* OUTPUT       ：                                                           *
-* RETURN       ：                                                            *
-* CALLED BY    ：PPP_CHAP_ReceiveEventFromCore                                *
-****************************************************************************/
+
 VOID PPP_CHAP_LowerDown(PPPINFO_S *pstPppInfo)
 {
     PPPCHAPINFO_S *pstChapInfo = pstPppInfo->pstChapInfo;
@@ -291,19 +218,7 @@ VOID PPP_CHAP_LowerDown(PPPINFO_S *pstPppInfo)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/06/12                                                 *
-* CREATED BY   ：Zhu Feng Zhi                                               *
-* FUNCTION     ：CHAP收到chap 数据包, 分析报文头并作相应处理                *
-*                pHead:存放报文内存的头指针包括协议号, 应负责释放这段内存   *
-*                pPacket:报文头位置                                         *
-*                ulLen:报文长度                                             *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-* OUTPUT       ：                                                           *
-* RETURN       ：                                                            *
-* CALLED BY    ：PPP_Core_ReceivePacketFromShell                            *
-****************************************************************************/
+
 VOID PPP_CHAP_ReceivePacket (PPPINFO_S *pstPppInfo, UCHAR* pHead, UCHAR* pPacket, VOS_UINT32 ulLen)
 {
     PPPCHAPINFO_S *pstChapInfo;
@@ -381,21 +296,7 @@ VOID PPP_CHAP_ReceivePacket (PPPINFO_S *pstPppInfo, UCHAR* pHead, UCHAR* pPacket
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_CHAP_GetHrpdResponse
- 功能描述  : PPPC模块通知SIM卡计算CHAP鉴权response值,并根据卡类型决定使用MD5或者CAVE算法
- 输入参数  : pstPppInfo    携带PPP信息
-             pstMsg        构造发送给卡计算response的消息
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-08-27
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 PPP_CHAP_GetHrpdResponse
 (
     PPPINFO_S                          *pstPppInfo,
@@ -442,19 +343,7 @@ VOS_UINT32 PPP_CHAP_GetHrpdResponse
     return VOS_ERR;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/06/12                                                 *
-* CREATED BY   ：Zhu Feng Zhi                                               *
-* FUNCTION     ：CHAP收到对端的Challenge包                                    *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-*                 pPacket:报文头位置                                            *
-*                 ucId:报文ID                                                *
-*                ulLen:报文数据长度                                            *
-* OUTPUT       ：                                                           *
-* RETURN       ：                                                            *
-* CALLED BY    ：PPP_CHAP_ReceivePacket                                        *
-****************************************************************************/
+
 VOID PPP_CHAP_ReceiveChallenge(PPPINFO_S *pstPppInfo, UCHAR *pPacket, UCHAR ucId, VOS_UINT32 ulLen)
 {
     PPPCHAPINFO_S                      *pstChapInfo;
@@ -590,19 +479,7 @@ VOID PPP_CHAP_ReceiveChallenge(PPPINFO_S *pstPppInfo, UCHAR *pPacket, UCHAR ucId
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/06/12                                                 *
-* CREATED BY   ：Zhu Feng Zhi                                               *
-* FUNCTION     ：CHAP收到对端的Response包, 向AAA请求验证                    *
-* MODIFY DATE  ：modified by gxf for GGSN80 20030220                        *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-*                 pPacket:报文头位置                                            *
-*                 ucId:报文ID                                                *
-*                ulLen:报文数据长度                                            *
-* OUTPUT       ：                                                           *
-* RETURN       ：                                                            *
-* CALLED BY    ：PPP_CHAP_ReceivePacket                                        *
-****************************************************************************/
+
 VOID PPP_CHAP_ReceiveResponse(PPPINFO_S *pstPppInfo, UCHAR *pPacket, UCHAR ucId, VOS_UINT32 ulLen)
 {
     PPPCHAPINFO_S *pstChapInfo = pstPppInfo->pstChapInfo;
@@ -642,8 +519,7 @@ VOID PPP_CHAP_ReceiveResponse(PPPINFO_S *pstPppInfo, UCHAR *pPacket, UCHAR ucId,
     /* 收到多次或假的Response依然要回送与第一次收到Response一样的answer(Success/Failure)*/
     if (pstChapInfo->ucServerState != CHAP_STATE_SEND_CHALLENGE)
     {
-         /*Modified by liushuang for DTS2011112802965. L2TP用户建立隧道时收到
-           终端的response消息，直接丢弃*/
+         
         if ( ( 0 == pstPppInfo->bReNego )
                 && (0 == pstPppInfo->bPppClient)
                  && (1 == pstPppInfo->bPppMode))
@@ -714,7 +590,6 @@ VOID PPP_CHAP_ReceiveResponse(PPPINFO_S *pstPppInfo, UCHAR *pPacket, UCHAR ucId,
     PPP_INCPTR(ucValueSize, pPacket);
     lLen -= (LONG)sizeof (UCHAR) + (LONG)ucValueSize;
 
-    /* Modified start by lvyanfang 00110869 at 2008-05-12 PDSN9660V800R005C02B018SP04 for 允许Chap Response消息中不带用户名属性 */
     if ((0 == (g_ulSoftPara567 & 0x01)) && (lLen <= 0))
     {
         HSGW_EmsTraceByRpIndex(pstPppInfo->ulRPIndex, HSGW_EMS_MODULE_PPP, EMS_PPP_20);
@@ -738,7 +613,6 @@ VOID PPP_CHAP_ReceiveResponse(PPPINFO_S *pstPppInfo, UCHAR *pPacket, UCHAR ucId,
             return;
         }
     }
-    /* Modified end by lvyanfang 00110869 at 2008-05-12 PDSN9660V800R005C02B018SP04 for 允许Chap Response消息中不带用户名属性 */
 
     if (lLen > A11_MAX_NAI_LENGTH)
     {
@@ -855,7 +729,6 @@ VOID PPP_CHAP_ReceiveResponse(PPPINFO_S *pstPppInfo, UCHAR *pPacket, UCHAR ucId,
     pstMsg->ucPktID = ucId;
     pstMsg->stIMSI = pstPppInfo->stIMSI;
 
-    /* Add by g00127633 for 预付费重协商*/
     pstMsg->ucRenegoFlag = pstPppInfo->bPpcAAAFlag;
     /* 输出状态转换调试信息 */
     CHAP_Debug_StateChange(pstPppInfo, CHAP_STATE_WAITING_AAA, CHAP_SERVER_STATE);
@@ -903,21 +776,7 @@ VOID PPP_CHAP_ReceiveResponse(PPPINFO_S *pstPppInfo, UCHAR *pPacket, UCHAR ucId,
 }
 
 #if 0
-/*****************************************************************************
- 函 数 名  : PPP_CHAP_ReceiveAAAResult
- 功能描述  : Chap模块收到AAA鉴权消息
- 输入参数  : AAA_AUTHRSP_S *pMsg
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月30日
-    作    者   : luofang
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID PPP_CHAP_ReceiveAAAResult(AAA_AUTHRSP_S *pMsg)
 {
     UCHAR ucResult;
@@ -1036,22 +895,7 @@ VOID PPP_CHAP_ReceiveAAAResult(AAA_AUTHRSP_S *pMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : PPP_CHAP_SendAAAAuthReq
- 功能描述  : 向AAA发送鉴权请求
- 输入参数  : PPPCHAPINFO_S *pstChapInfo
-             AAA_AUTHREQ_S *pstMsg
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2003年2月21日
-    作    者   : gxf
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID PPP_CHAP_SendAAAAuthReq(PPPCHAPINFO_S *pstChapInfo)
 {
     AAA_AUTHREQ_S *pstMsg = NULL;
@@ -1135,17 +979,7 @@ VOID PPP_CHAP_SendAAAAuthReq(PPPCHAPINFO_S *pstChapInfo)
 }
 #endif
 
-/****************************************************************************
-* CREATE DATE  ：2000/06/12                                                 *
-* CREATED BY   ：Zhu Feng Zhi                                               *
-* FUNCTION     ：CHAP收到对端验证成功回应, 进入新状态并报CHAP SUCCESS        *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-*                 ucId:报文ID                                                *
-* OUTPUT       ：                                                           *
-* RETURN       ：                                                            *
-* CALLED BY    ：PPP_CHAP_ReceivePacket                                        *
-****************************************************************************/
+
 VOID PPP_CHAP_ReceiveSuccess(PPPINFO_S *pstPppInfo)
 {
     PPPCHAPINFO_S                      *pstChapInfo = pstPppInfo->pstChapInfo;
@@ -1222,20 +1056,7 @@ VOID PPP_CHAP_ReceiveSuccess(PPPINFO_S *pstPppInfo)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/06/12                                                 *
-* CREATED BY   ：Zhu Feng Zhi                                               *
-* FUNCTION     ：CHAP收到对端验证失败回应, 进入新状态，                        *
-*                并向内核报CHAP Client 端验证失败                            *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-*                 pPacket:报文头位置                                            *
-*                 ucId:报文ID                                                *
-*                ulLen:报文数据长度                                            *
-* OUTPUT       ：                                                           *
-* RETURN       ：                                                            *
-* CALLED BY    ：PPP_CHAP_ReceivePacket                                        *
-****************************************************************************/
+
 VOID PPP_CHAP_ReceiveFailure(PPPINFO_S *pstPppInfo)
 {
     PPPCHAPINFO_S *pstChapInfo = pstPppInfo->pstChapInfo;
@@ -1318,17 +1139,7 @@ VOID PPP_CHAP_ReceiveFailure(PPPINFO_S *pstPppInfo)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/06/12                                                 *
-* CREATED BY   ：Zhu Feng Zhi                                               *
-* FUNCTION     ：CHAP向对端发出验证challenge                                *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-* OUTPUT       ：                                                           *
-* RETURN       ：                                                            *
-* CALLED BY    ：PPP_CHAP_ServerLowerUp,PPP_CHAP_ChallengeTimeout,            *
-*                 PPP_CHAP_ServerSuccess,PPP_CHAP_Rechallenge                *
-****************************************************************************/
+
 VOID PPP_CHAP_SendChallenge(PPPINFO_S *pstPppInfo)
 {
     PPPCHAPINFO_S *pstChapInfo = pstPppInfo->pstChapInfo;
@@ -1409,17 +1220,7 @@ VOID PPP_CHAP_SendChallenge(PPPINFO_S *pstPppInfo)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/06/12                                                 *
-* CREATED BY   ：Zhu Feng Zhi                                               *
-* FUNCTION     ：CHAP向对端送出验证成功/失败报文                            *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-*                 ucResult: 验证结果                                            *
-* OUTPUT       ：                                                           *
-* RETURN       ：                                                            *
-* CALLED BY    ：PPP_CHAP_ReceiveResponse,PPP_CHAP_ServerSuccess            *
-****************************************************************************/
+
 VOID PPP_CHAP_SendStatus(PPPINFO_S *pstPppInfo, UCHAR ucResult)
 {
     PPPCHAPINFO_S *pstChapInfo = pstPppInfo->pstChapInfo;
@@ -1489,17 +1290,7 @@ VOID PPP_CHAP_SendStatus(PPPINFO_S *pstPppInfo, UCHAR ucResult)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/06/12                                                 *
-* CREATED BY   ：Zhu Feng Zhi                                               *
-* FUNCTION     ：产生一个随机字符串, 同时 Challenge ID 加 1                    *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstChapInfo:CHAP控制块指针                                 *
-* OUTPUT       ：随机字符串放入pstChapInfo->szChallenge                        *
-*                 随机字符串长度放入pstChapInfo->len                            *
-* RETURN       ：                                                            *
-* CALLED BY    ：PPP_CHAP_ReceiveResponse,PPP_CHAP_ServerSuccess            *
-****************************************************************************/
+
 VOID PPP_CHAP_GenChallenge(PPPCHAPINFO_S *pstChapInfo)
 {
     UCHAR ucChalLen;
@@ -1516,7 +1307,6 @@ VOID PPP_CHAP_GenChallenge(PPPCHAPINFO_S *pstChapInfo)
     /*CHAP 控制块 Challenge Id 加 1 */
     pstChapInfo->ucChalId++;
 
-    /*add by y00125257 CR20110607034 DTS2012020303820: 打开软参则使用固定的chap challenge*/
     /* 产生随机字符串 */
 
     for (i = 0; i < ucChalLen; i++)
@@ -1529,16 +1319,7 @@ VOID PPP_CHAP_GenChallenge(PPPCHAPINFO_S *pstChapInfo)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/06/12                                                 *
-* CREATED BY   ：Zhu Feng Zhi                                               *
-* FUNCTION     ：CHAP向对端送出response报文, 并改变状态                        *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-* OUTPUT       ：                                                           *
-* RETURN       ：                                                            *
-* CALLED BY    ：PPP_CHAP_ReceiveResponse,PPP_CHAP_ServerSuccess            *
-****************************************************************************/
+
 VOID PPP_CHAP_SendResponse(PPPINFO_S *pstPppInfo)
 {
     PPPCHAPINFO_S *pstChapInfo = pstPppInfo->pstChapInfo;
@@ -1622,18 +1403,7 @@ VOID PPP_CHAP_SendResponse(PPPINFO_S *pstPppInfo)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/06/12                                                 *
-* CREATED BY   ：Zhu Feng Zhi                                               *
-* FUNCTION     ：CHAP发送Challenge 超时，进行相应处理                        *
-*                 超过最大重传次数，向内核报CHAP 验证失败                    *
-*                 否则再次发送Challenge                                        *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-* OUTPUT       ：                                                           *
-* RETURN       ：                                                            *
-* CALLED BY    ：CHAP 定时器ulChalTimeoutID触发                                *
-****************************************************************************/
+
 VOS_VOID PPP_CHAP_ChallengeTimeout(VOS_UINT32 ulPppId)
 {
     PPPINFO_S *pstPppInfo;
@@ -1709,17 +1479,7 @@ VOS_VOID PPP_CHAP_ChallengeTimeout(VOS_UINT32 ulPppId)
     PPP_CHAP_SendChallenge(pstPppInfo);        /*重传 challenge */
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/06/12                                                 *
-* CREATED BY   ：Zhu Feng Zhi                                               *
-* FUNCTION     ：CHAP发送Response 超时，进行相应处理                        *
-*                 再次发送Response                                            *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-* OUTPUT       ：                                                           *
-* RETURN       ：                                                            *
-* CALLED BY    ：CHAP 定时器ulRespTimeoutID触发                                *
-****************************************************************************/
+
 VOS_VOID PPP_CHAP_ResponseTimeout(VOS_UINT32 ulPppId)
 {
     PPPINFO_S *pstPppInfo;
@@ -1780,21 +1540,7 @@ VOS_VOID PPP_CHAP_ResponseTimeout(VOS_UINT32 ulPppId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_CHAP_AuthRspTimeout
- 功能描述  : CHAP等待AAA验证结果超时
- 输入参数  : VOID *pMsg
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2003年2月21日
-    作    者   : gxf
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID PPP_CHAP_AuthRspTimeout(VOID *ulIndex)
 {
 #if 0
@@ -1877,16 +1623,7 @@ VOID PPP_CHAP_AuthRspTimeout(VOID *ulIndex)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/06/12                                                 *
-* CREATED BY   ：Zhu Feng Zhi                                               *
-* FUNCTION     ：CHAP定时向对端发送challenge                                *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-* OUTPUT       ：                                                           *
-* RETURN       ：                                                            *
-* CALLED BY    ：CHAP 定时器ulChalTimeoutID触发                                *
-****************************************************************************/
+
 VOID PPP_CHAP_Rechallenge(VOID *ulIndex)
 {
     PPPINFO_S *pstPppInfo = NULL;
@@ -1926,16 +1663,7 @@ VOID PPP_CHAP_Rechallenge(VOID *ulIndex)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/06/12                                                 *
-* CREATED BY   ：Zhu Feng Zhi                                               *
-* FUNCTION     ：CHAP收到一非法协议, 通知底层DOWN                            *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-* OUTPUT       ：                                                           *
-* RETURN       ：                                                            *
-* CALLED BY    ：                                                            *
-****************************************************************************/
+
 VOID PPP_CHAP_ReceiveUnknownCode(PPPINFO_S *pstPppInfo)
 {
     /*输出调试信息*/
@@ -1944,16 +1672,7 @@ VOID PPP_CHAP_ReceiveUnknownCode(PPPINFO_S *pstPppInfo)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/06/09                                                 *
-* CREATED BY   ：Zhu Feng Zhi                                               *
-* FUNCTION     ：删除定时器                                                    *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-* OUTPUT       ：                                                           *
-* RETURN       ：                                                            *
-* CALLED BY    ：                                                            *
-****************************************************************************/
+
 VOID PPP_CHAP_DeleteTimer(PPPINFO_S *pstPppInfo)
 {
     PPPCHAPINFO_S *pstChapInfo = (PPPCHAPINFO_S *)pstPppInfo->pstChapInfo;

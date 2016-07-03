@@ -50,19 +50,7 @@ extern "C"{
 
 
 #if 0
-/*****************************************************************************
- Function Name   : CNAS_EHSM_EncodeIpcpContent
- Description     : IPCP码流编码
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-  1.日    期    : 2015年6月8日
-    作    者    : f00279542
-    修改内容    : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  CNAS_EHSM_EncodeIpcpContent
 (
     CNAS_CTTF_EHRPD_PDN_TYPE_ENUM_UINT8                     enPdnType,
@@ -149,18 +137,7 @@ VOS_VOID  CNAS_EHSM_EncodeIpcpContent
 
     *pulLength = ulSum;
 }
-/*****************************************************************************
- Function Name   : CNAS_EHSM_EncodeIpv4AllocMode
- Description     : 编码IPV4 获取方式
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-  1.日    期    : 2015年6月8日
-    作    者    : f00279542
-    修改内容    : 新生成函数
-*****************************************************************************/
 VOS_VOID  CNAS_EHSM_EncodeIpv4AllocMode
 (
     CNAS_CTTF_EHRPD_PDN_TYPE_ENUM_UINT8                     enPdnType,
@@ -199,18 +176,7 @@ VOS_VOID  CNAS_EHSM_EncodeIpv4AllocMode
 }
 
 
-/*****************************************************************************
- Function Name   : CNAS_EHSM_EncodeIpv4DnsReq
- Description     : 编码IPV4 DNS请求
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-  1.日    期    : 2015年6月8日
-    作    者    : f00279542
-    修改内容    : 新生成函数
-*****************************************************************************/
 VOS_VOID  CNAS_EHSM_EncodeIpv4DnsReq
 (
     CNAS_CTTF_EHRPD_PDN_TYPE_ENUM_UINT8                     enPdnType,
@@ -249,18 +215,7 @@ VOS_VOID  CNAS_EHSM_EncodeIpv4DnsReq
 }
 
 
-/*****************************************************************************
- Function Name   : CNAS_EHSM_EncodePcoBcm
- Description     : 编码BCM
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-  1.日    期    : 2015年6月8日
-    作    者    : f00279542
-    修改内容    : 新生成函数
-*****************************************************************************/
 VOS_VOID  CNAS_EHSM_EncodePcoBcm
 (
     VOS_UINT8                          *pucSendMsg,
@@ -288,18 +243,7 @@ VOS_VOID  CNAS_EHSM_EncodePcoBcm
     return;
 }
 
-/*****************************************************************************
- Function Name   : CNAS_EHSM_EncodeIpv6DnsReq
- Description     : 编码IPV6 DNS请求
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-  1.日    期    : 2015年6月8日
-    作    者    : f00279542
-    修改内容    : 新生成函数
-*****************************************************************************/
 VOS_VOID  CNAS_EHSM_EncodeIpv6DnsReq
 (
     CNAS_CTTF_EHRPD_PDN_TYPE_ENUM_UINT8                     enPdnType,
@@ -333,22 +277,7 @@ VOS_VOID  CNAS_EHSM_EncodeIpv6DnsReq
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_RandomBytes
- 功能描述  : 生成随机数
- 输入参数  : VOS_UINT8                           *pucBuf
-             VOS_UINT16                           usLen
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年01月06日
-    作    者   : y00314741
-    修改内容   : 移植MN_APS_RandomBytes函数, 修改函数名称
-
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_RandomBytes(
     VOS_UINT8                          *pucBuf,
     VOS_UINT8                           usLen
@@ -364,19 +293,7 @@ VOS_VOID CNAS_EHSM_RandomBytes(
     return;
 }
 
-/*****************************************************************************
- Function Name  : CNAS_EHSM_EncodePco()
- Description    : EHSM模块组装PCO消息函数
- Input          : VOS_UINT8 *pucSendMsg,
-                  VOS_UINT32 ulLength
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-  1.日    期    : 2015年6月8日
-    作    者    : f00279542
-    修改内容    : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_EncodePco
 (
     CNAS_CTTF_EHRPD_PDN_TYPE_ENUM_UINT8                     enPdnType,
@@ -643,19 +560,7 @@ VOS_UINT32 CNAS_EHSM_EncodePco
 
     return CNAS_EHSM_SUCCESS;
 }
-/*****************************************************************************
- Function Name  : CNAS_EHSM_EncodeNwPDNValue()
- Description    : EHSM模块组装pdn address 消息函数
- Input          : VOS_UINT8 *pucSendMsg,
 
- Output         : VOS_VOID
- Return Value   : VOS_VOID
-
- History        :
-  1.日    期    : 2015年6月8日
-    作    者    : f00279542
-    修改内容    : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_EncodeNwPDNValue
 (
     CNAS_EHSM_PDN_ADDR_STRU            *pstPdnAdrrInfo,
@@ -702,22 +607,7 @@ VOS_UINT32 CNAS_EHSM_EncodeNwPDNValue
     return CNAS_EHSM_SUCCESS;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_EncodeApn
- 功能描述  : APN编码
- 输入参数  : CONST CNAS_EHSM_APN_STRU            *pstApn
-             VOS_UINT8                           *pucApn
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月10日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_EncodeApn(
     CONST CNAS_EHSM_APN_STRU           *pstApn,
     VOS_UINT8                          *pucApn,

@@ -45,9 +45,7 @@ extern "C"{
 /*11 原开发配置接口原形*/
 extern OSPF_ERROR_E OSPF_CFG_CmdAreaRangeProc(OSPF_CFGAREARANGE_S *pstAreaRangeIn);
 extern OSPF_ERROR_E OSPF_CFG_CmdClearOspfproc(OSPF_CFGRESET_S *pstResetIn);
-/*Added by guo00178934, Story交付【S.OSPF.MD5.01】备份MD5序号, 2012/5/19   问题单号:S.OSPF.MD5.01 */
 extern OSPF_ERROR_E OSPF_CFG_CmdResetAllOspfproc(VOID);
-/* End of Added by guo00178934, 2012/5/19   问题单号:S.OSPF.MD5.01 */
 extern OSPF_ERROR_E OSPF_CFG_CmdNeighborProc(OSPF_CFGNEIGHBOR_S *pstPeerIn);
 extern OSPF_ERROR_E OSPF_CFG_CmdNetworkAreaProc(OSPF_CFGNETWORK_S *pstNetIn);
 
@@ -59,9 +57,7 @@ extern VOID OSPF_ShowAreaAuth_Info(ULONG ulOspfInstance,ULONG ulAreaID);
 extern OSPF_ERROR_E OSPF_CFG_CmdGrHelper(OSPF_CFGGRHELPER_S * pstGrHelper);
 extern OSPF_ERROR_E OSPF_CFG_CmdGrHelperByPro(OSPF_CFGGRHELPER_PRO_S * pstGrHelper);
 /*end for BC3D03437 at 2010-07-16*/
-/*Added by guo00178934, 问题单修改, 2011/3/2   问题单号:DTS2011022803652 */
 extern OSPF_ERROR_E OSPF_CFG_RouterId(USHORT usProcessId,ULONG ulRouterId);
-/* End of Added by guo00178934, 2011/3/2   问题单号:DTS2011022803652 */
 extern OSPF_ERROR_E OSPF_CFG_ASBRRouter(OSPF_CFG_ASBR_S *pstAsbr);
 extern OSPF_ERROR_E OSPF_CFG_CompRfc1583(OSPF_CFGCOMPRFC1583_S *pstComp);
 
@@ -210,40 +206,15 @@ ULONG OSPF_NBR_Event_Hook_Register(OSPF_NBR_EVENT_NOTIFY_FUNC pfNbrEventNotifyFu
 ULONG OSPF_NBR_Event_Hook_UnRegister(VOID);
 /* End   BC3D03438 */
 
-/*Modified by lKF35457, 新增接口状态通知注册注销接口, 2010/10/28   问题单号:DTS2010102700956  */
 ULONG OSPF_If_Event_Hook_Register(OSPF_IF_EVENT_NOTIFY_FUNC pfIfEventNotifyFunc);
 ULONG OSPF_If_Event_Hook_UnRegister(VOID);
-/*End of Modified by lKF35457, 2010/10/28   问题单号:DTS2010102700956  */
-/*add by lkf35460 问题单号：DTS2011040603509*/
 ULONG OSPF_Get_DR_Info(ULONG ulIfIndex, ULONG ulIpAddr, 
         OSPF_DR_INFO_S *pDrInfo);
-/*add end lkf35460 问题单号：DTS2011040603509*/
 
-/*Added by guo00178934, 全系统邻居、LSA个数统计, 2011/7/19   问题单号:DTS2011071901386 */
 ULONG OSPF_CMM_SysCount(OSPF_SYS_COUNT_S *pstSysCount);
-/* End of Added by guo00178934, 2011/7/19   问题单号:DTS2011071901386 */
 
-/*Modified by liangjicheng 00103192, , 2011/10/28   问题单号: REQ-201106295399-OSPF-PER */
-/*******************************************************************************
-*    Func Name: OSPF_CFG_CmdCalcDelay
-* Date Created: 2011-10-27
-*       Author: liangjicheng 00103192
-*  Description: 
-*        Input: OSPF_CFGCALCDELAY_S *pstCalcDelay
-*                USHORT usProcessId; 
-*                ULONG ulCaclDelay;  millsecond 1~10000
-*       Output: 
-*       Return: 成功返回 OSPF_OK；失败返回错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-10-27   liangjicheng 00103192   Create
-*
-*******************************************************************************/
+
 OSPF_ERROR_E OSPF_CFG_CmdCalcDelay(OSPF_CFGCALCDELAY_S *pstCalcDelay);
-/*End of Modified by liangjicheng 00103192, 2011/10/28   问题单号: REQ-201106295399-OSPF-PER */
 
 /*******************************************************************************
 *    Func Name: OSPF_Warning_Hook_Register
@@ -263,11 +234,9 @@ OSPF_ERROR_E OSPF_CFG_CmdCalcDelay(OSPF_CFGCALCDELAY_S *pstCalcDelay);
 *******************************************************************************/
 ULONG OSPF_Warning_Hook_Register(OSPF_WARNING_HOOK_FUNC pfOSPFWarningHookFun);
 
-/*Added by guojianjun178934, 【DOPRA IP V3R2C10-同步问题单-DTS2014040401470】【SGSN产品：OSPF】linux x86 系统函数times存在bug，需要VISP提供规避方案 , 2014/6/3   问题单号:DTS2014052908271 */
 OSPF_ERROR_E OSPF_CFG_TimerSwitch(ULONG ulTimerType);
 OSPF_ERROR_E OSPF_Get_TimerSwitch_Info(OSPF_SHOW_TIMER_SWITCH_S *pstTimerSwitchInfo);
 VOID OSPF_Show_TimerSwitch_Info(VOID);
-/* End of Added by guojianjun178934, 2014/6/3   问题单号:DTS2014052908271 */
 
 
 /*******************************************************************************

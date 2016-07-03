@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : Crc.c
-  版 本 号   : 初稿
-  作    者   : h00163499
-  生成日期   : 2013年9月10日
-  最近修改   :
-  功能描述   : 30-bit CRC, 16-bit CRC, 8-bit CRC, 32-bit FCS, 16-bit FCS计算
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年9月10日
-    作    者   : h00163499
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 
@@ -337,22 +320,7 @@ const VOS_UINT32              g_aulfcs32_table[] =
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : CRC_CalculateCRC30
- 功能描述  : 计算出长度为usLength byte的bit流的30-bit CRC，参考协议3GPP2 C.S0004-A-2 2.1.1.5.1.2（2-44）
- 输入参数  : const VOS_UINT8 *pucDataBuf -- 指向需要计算CRC的bit流的地址，且该bit流的第一个byte是高位
-             VOS_UINT16 usLengthBits -- bit流的长度，以bit为单位
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 -- 30-bit CRC校验码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月27日
-    作    者   : c00212970
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CRC_CalculateCRC30(const VOS_UINT8 *pucDataBuf, VOS_UINT16 usLengthBits)
 {
     VOS_UINT32                          ulLoop;
@@ -410,22 +378,7 @@ VOS_UINT32 CRC_CalculateCRC30(const VOS_UINT8 *pucDataBuf, VOS_UINT16 usLengthBi
 
 
 
-/*****************************************************************************
- 函 数 名  : CRC_CalculateCRC16
- 功能描述  : 计算出长度为usLength byte的bit流的16-bit CRC，参考协议3GPP2 C.S0004-A-2 2.2.1.3.2（2-80）
- 输入参数  : const VOS_UINT8 *pucDataBuf -- 指向需要计算CRC的bit流的地址，且该bit流的第一个byte是高位
-             VOS_UINT32 ulLengthBits -- bit流的长度，以bit为单位
- 输出参数  : 无
- 返 回 值  : VOS_UINT16 -- 16-bit CRC校验码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月27日
-    作    者   : c00212970
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT16 CRC_CalculateCRC16(const VOS_UINT8 *pucDataBuf, VOS_UINT32 ulLengthBits)
 {
     VOS_UINT32                          ulLoop;
@@ -480,22 +433,7 @@ VOS_UINT16 CRC_CalculateCRC16(const VOS_UINT8 *pucDataBuf, VOS_UINT32 ulLengthBi
 }
 
 
-/*****************************************************************************
- 函 数 名  : CRC_CalculateCRC8
- 功能描述  : 计算出长度为usLength byte的bit流的8-bit CRC，参考协议3GPP2 C.S0005 2.3.12.4.4
- 输入参数  : const VOS_UINT8 *pucDataBuf -- 指向需要计算CRC的bit流的地址，且该bit流的第一个byte是高位
-             VOS_UINT16 usLengthBits -- bit流的长度，以bit为单位
- 输出参数  : 无
- 返 回 值  : VOS_UINT8 -- 8-bit CRC校验码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月27日
-    作    者   : c00212970
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 CRC_CalculateCRC8(const VOS_UINT8 *pucDataBuf, VOS_UINT16 usLengthBits)
 {
     VOS_UINT32                          ulLoop;
@@ -547,22 +485,7 @@ VOS_UINT8 CRC_CalculateCRC8(const VOS_UINT8 *pucDataBuf, VOS_UINT16 usLengthBits
 
 
 
-/*****************************************************************************
- 函 数 名  : FCS_CalculateFCS32
- 功能描述  : 计算出长度为usLength bit流的32-bit FCS，
- 输入参数  : const VOS_UINT8 *pucDataBuf -- 指向需要计算FCS的bit流的地址
-             VOS_UINT16 ulBitLength -- bit流的长度，以bit为单位
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 -- 32-bit FCS校验码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月27日
-    作    者   : c00309867
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 FCS_CalculateFCS32
 (
     const VOS_UINT8                     *pucDataBuf,
@@ -609,22 +532,7 @@ VOS_UINT32 FCS_CalculateFCS32
 
 
 
-/*****************************************************************************
- 函 数 名  : FCS_CalculateFCS16
- 功能描述  : 计算出长度为usLength byte的bit流的16-bit FCS，参考rlc1662 Page 21
- 输入参数  : const VOS_UINT8 *pucDataBuf -- 指向需要计算FCS的bit流的地址，且该bit流的第一个byte是低位
-             VOS_UINT16 usLength -- bit流的长度，以byte为单位
- 输出参数  : 无
- 返 回 值  : VOS_UINT16 -- 16-bit FCS校验码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月27日
-    作    者   : c00212970
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT16 FCS_CalculateFCS16(const VOS_UINT8 *pucDataBuf, VOS_UINT16 usLength)
 {
     VOS_UINT32                          ulLoop;

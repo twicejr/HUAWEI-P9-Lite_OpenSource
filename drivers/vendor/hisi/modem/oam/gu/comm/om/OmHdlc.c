@@ -1,23 +1,6 @@
 
 
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : OM_Hdlc.c
-  版 本 号   : 初稿
-  作    者   : zengfei 57034
-  生成日期   : 2008年6月4日
-  最近修改   :
-  功能描述   :
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2008年6月4日
-    作    者   : zengfei 57034
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifdef  __cplusplus
   #if  __cplusplus
@@ -87,27 +70,7 @@ VOS_UINT16 const g_ausOmHdlcFcsTab[256] = {
    5 函数实现
 ******************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : Om_HdlcEncap
- 功能描述  : 将输入的原始数据封装成HDLC帧
- 输入参数  : VOS_UINT8 *pucSrc
-             VOS_UINT16 usSrcLen
-             VOS_UINT8 *pucDest
-             VOS_UINT16 usDestBuffLen
- 输出参数  : VOS_UINT16* pusDestLen
- 返 回 值  : VOS_UINT32
-             PS_SUCC: 成功
-             PS_FAIL: 失败
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2008年6月3日
-    作    者   : zengfei 57034
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 Om_HdlcEncap(
                 const VOS_UINT8  *pucSrc,
                 VOS_UINT16  usSrcLen,
@@ -226,22 +189,7 @@ VOS_UINT32 Om_HdlcEncap(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : Om_HdlcInit
- 功能描述  : 该接口初始化HDLC实体的内部变量, 每个应用在第一次使用解封装功能
-             Om_HdlcDecap前需要调用一次该函数
- 输入参数  : OM_HDLC_STRU *pstHdlc
- 输出参数  : OM_HDLC_STRU *pstHdlc
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年6月4日
-    作    者   : zengfei 57034
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID Om_HdlcInit( OM_HDLC_STRU *pstHdlc )
 {
     if (VOS_NULL_PTR == pstHdlc)
@@ -257,22 +205,7 @@ VOS_VOID Om_HdlcInit( OM_HDLC_STRU *pstHdlc )
     pstHdlc->ulMode     = OM_HDLC_MODE_HUNT;
 }
 
-/*****************************************************************************
- 函 数 名  : OM_HdlcFcs
- 功能描述  : 计算FCS. 见RFC 1662 Appendix C and CCITT X.25 section 2.27.
- 输入参数  : VOS_UINT8 *pucData
-             VOS_UINT32 ulDataLen
- 输出参数  : 无
- 返 回 值  : VOS_UINT16
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年6月3日
-    作    者   : zengfei 57034
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT16 OM_HdlcFcs( VOS_UINT8 *pucData, VOS_UINT32 ulDataLen )
 {
     VOS_UINT16 usFcs = OM_HDLC_INIT_FCS;
@@ -285,22 +218,7 @@ VOS_UINT16 OM_HdlcFcs( VOS_UINT8 *pucData, VOS_UINT32 ulDataLen )
     return usFcs;
 }
 
-/*****************************************************************************
- 函 数 名  : Om_HdlcDecap
- 功能描述  : 从输入的HDLC帧字符流中解析出数据内容
- 输入参数  : OM_HDLC_STRU *pstHdlc
-             VOS_UINT8 ucChar
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年6月3日
-    作    者   : zengfei 57034
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OM_HDLC_RESULT_ENUM_UINT32 Om_HdlcDecap( OM_HDLC_STRU *pstHdlc, VOS_UINT8 ucChar )
 {
     VOS_UINT16  usFcs;

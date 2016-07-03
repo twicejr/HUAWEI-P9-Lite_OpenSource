@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : phyCodecInterface.h
-  版 本 号   : 初稿
-  作    者   : 陈超群 00137131
-  生成日期   : 2011年5月6日
-  最近修改   :
-  功能描述   : PHY和CODEC模块间的接口文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年5月6日
-    作    者   : 陈超群 00137131
-    修改内容   : 创建文件
-
-******************************************************************************/
 #ifndef __PHYCODECINTERFACE_H__
 #define __PHYCODECINTERFACE_H__
 
@@ -90,7 +73,6 @@ enum DSP_VOICE_MSG_ID_ENUM
     ID_VOICE_VOICE_REMAP_IND                          = 0xDD0C,                   /* mmbuf搬运完成，通知voice remap */                       /* _H2ASN_Skip */
     ID_VOICE_VOICE_REQUEST_MMBUF_IND                  = 0xDD0D,                   /* voice remap完成，再次申请mmbuf */                       /* _H2ASN_Skip */
 
-    /*lwx26324 add @20140327 for external modem，begin*/
     ID_VOICEPP_VOICEPP_MICIN_IND                      = 0xDD10,                 /* micin loop dma start msg */  /* _H2ASN_Skip */
     ID_VOICEPP_VOICEPP_LINEIN_IND                     = 0xDD11,                 /* linein loop dma start msg */ /* _H2ASN_Skip */
     ID_VOICEPP_VOICEPP_SPKOUT_IND                     = 0xDD12,                 /* spkout loop dma start msg */  /* _H2ASN_Skip */
@@ -98,7 +80,6 @@ enum DSP_VOICE_MSG_ID_ENUM
     ID_VOICEPP_VOICEPP_PROC_IND                       = 0xDD14,                 /* 启动上行数据搬运 */ /* _H2ASN_Skip */
     ID_VOICEPP_VOICEPP_RXPROC_IND                     = 0xDD15,                 /* 下行数据算法处理 */ /* _H2ASN_Skip */
     ID_VOICEPP_VOICEPP_TXPROC_IND                     = 0xDD16,                 /* 上行数据算法处理 */ /* _H2ASN_Skip */
-    /*lwx26324 add @20140327 for external modem，end*/ 
 
     /*====== UCOM->CODEC ======*/
     ID_UCOM_VOICE_SUSPEND_CMD                         = 0xCD09,                 /* 语音软件暂停、恢复消息，在G/U进行异系统切换过程中发送 */ /* _H2ASN_MsgChoice GUPHY_VOICE_SUSPEND_CMD_STRU */

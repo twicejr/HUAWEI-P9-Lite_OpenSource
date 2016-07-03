@@ -344,21 +344,7 @@ VOS_UINT32 atSetNVWRExPara(VOS_UINT8 ucClientId)
     return AT_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_QryLwclashPara
- 功能描述  : ^LWCLASH命令查询处理
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月23日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_QryLwclashPara(VOS_UINT8 ucIndex)
 {
     VOS_UINT32 ulRet = ERR_MSP_SUCCESS;
@@ -378,21 +364,7 @@ VOS_UINT32 AT_QryLwclashPara(VOS_UINT8 ucIndex)
     return AT_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_QryLcacellPara
- 功能描述  : ^LCACELL命令查询处理
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月11日
-    作    者   : y00171698
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_QryLcacellPara(VOS_UINT8 ucIndex)
 {
     VOS_UINT32 ulRet = ERR_MSP_SUCCESS;

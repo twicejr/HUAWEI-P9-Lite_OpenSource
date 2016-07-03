@@ -393,6 +393,7 @@ static int hideep_get_3d_rawdata_diff(struct ts_rawdata_info *info, struct ts_cm
 	min = *ps;
 	max = *ps;
 	sum = 0;
+	fail_node = 0;
 	for(j = 0; j < tx; j++){
 		for(i = 0; i < rx; i++){
 			if((j==tx-1)&&(i==rx-1))

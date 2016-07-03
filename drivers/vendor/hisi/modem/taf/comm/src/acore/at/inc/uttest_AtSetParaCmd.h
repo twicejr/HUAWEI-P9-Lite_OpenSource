@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : Test_AtSetParaCmd.h
-  版 本 号   : 初稿
-  作    者   :
-  生成日期   : 2012年5月17日
-  最近修改   :
-  功能描述   : Test_AtSetParaCmd.cpp 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年5月17日
-    作    者   : l60609
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __TEST_ATSETPARACMD_H__
 #define __TEST_ATSETPARACMD_H__
@@ -251,11 +234,9 @@ extern  VOS_UINT32 At_CheckRxdivOrRxpriParaIfSupported(
             VOS_UINT16                         usBands
         );
 
-/* Modified by w00167002 for L-C互操作项目, 2014-2-17, begin */
 extern VOS_UINT32 AT_CheckSysCfgExPara(
            TAF_MMA_SYS_CFG_PARA_STRU         *pstSysCfgExSetPara
        );
-/* Modified by w00167002 for L-C互操作项目, 2014-2-17, end */
 extern VOS_UINT32 At_CheckSysCfgExRatTypeValid(
            VOS_UINT8                           ucRatOrder
        );

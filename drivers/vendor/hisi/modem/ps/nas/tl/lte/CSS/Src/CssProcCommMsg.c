@@ -1,14 +1,4 @@
-/******************************************************************************
 
-   Copyright(C)2013,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : CssProcCommMsg.c
-  Description     : 该C文件给出了IMSA模块初始化和消息处理入口的实现
-  History           :
-     1.wangchen 00209181    2015-05-14  Draft Enact
-
-******************************************************************************/
 
 
 /*****************************************************************************
@@ -32,15 +22,7 @@
 /*****************************************************************************
   3 Function
 *****************************************************************************/
-/*****************************************************************************
- Function Name   : CSS_JudgeIsExitFreq
- Description     : 判断是否存在某个接入技术下的高能量频点或者可驻留门限的频点
- Input           : None
- Output          : None
- Return          : VOS_UINT32
- History         :
-    1.    wangchen 00209181 2015-05-18   Draft Enact
-*****************************************************************************/
+
 VOS_VOID  CSS_JudgeLowTypeScanRssiExistType
 (
     VOS_UINT8                               *pucIsExistLLowFreq,
@@ -118,15 +100,7 @@ VOS_VOID  CSS_JudgeLowTypeScanRssiExistType
     }
 
 }
-/*****************************************************************************
- Function Name   : CSS_JudgeIsExitFreq
- Description     : 判断是否存在某个接入技术下的高能量频点或者可驻留门限的频点
- Input           : None
- Output          : None
- Return          : VOS_UINT32
- History         :
-    1.    wangchen 00209181 2015-05-18   Draft Enact
-*****************************************************************************/
+
 VOS_VOID  CSS_JudgeHighTypeScanRssiExistType
 (
     VOS_UINT8                               *pucIsExistLHigFreq,
@@ -183,15 +157,7 @@ VOS_VOID  CSS_JudgeHighTypeScanRssiExistType
     }
 }
 
-/*****************************************************************************
- Function Name   : CSS_JudgeRssiExistType
- Description     : 判断是否存在某个接入技术下的高能量频点或者可驻留门限的频点
- Input           : None
- Output          : None
- Return          : VOS_UINT32
- History         :
-    1.    wangchen 00209181 2015-05-18   Draft Enact
-*****************************************************************************/
+
 VOS_VOID  CSS_JudgeRssiExistType
 (
     CSS_COVERAGE_TYPE_ENUM_UINT8                    *penGsmCoverageType,
@@ -262,16 +228,7 @@ VOS_VOID  CSS_JudgeRssiExistType
     return;
 }
 
-/*****************************************************************************
- Function Name  : CSS_ProcCommMsgCurrGeoInd
- Description    : ID_CSS_CURR_GEO_IND消息处理函数
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-12  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_ProcCommMsgCurrGeoInd
 (
     const CSS_CURR_GEO_IND_STRU *pstCurrGeoInd
@@ -321,8 +278,13 @@ VOS_VOID CSS_ProcCommMsgCurrGeoInd
 
     /* 找出消息中的MCC列表 */
     CSS_GetMccFromPlmnArr(astMccID, &ulMccNum, pstCurrGeoInd->astPlmnId, pstCurrGeoInd->ulPlmnNum);
-
     TLPS_PRINT2LAYER_INFO1(CSS_ProcCommMsgCurrGeoInd_ENUM, LNAS_FUNCTION_LABEL4, ulMccNum);
+    if ( 0 == ulMccNum )
+    {
+        CSS_SndCurrGeoRsp(pstCurrGeoInd->ulSenderPid, CSS_RESULT_FAIL);
+        return;
+    }
+
     for (i = 0; i < ulMccNum; ++i)
     {
         TLPS_PRINT2LAYER_INFO2(CSS_ProcCommMsgCurrGeoInd_ENUM, LNAS_FUNCTION_LABEL4, astMccID[i].aucMccId[0], astMccID[i].aucMccId[1]);
@@ -681,16 +643,7 @@ VOS_VOID CSS_SndMsgAsBandScanInd
 
 
 
-/*****************************************************************************
- Function Name  : CSS_CommBandScanReqMsgSave
- Description    : 保存扫频请求消息
- Input          :
- Output         : VOS_VOID
- Return Value   : 保存结果
 
- History        :
-      1.wangchen 00209181   2015-05-16  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_CommBandScanReqMsgSave(const CSS_MULTI_BAND_SCAN_REQ_STRU *pstBandScanReq)
 {
     CSS_CONTROL_STRU                        *pstCssControl;
@@ -733,16 +686,7 @@ VOS_VOID CSS_CommBandScanReqMsgSave(const CSS_MULTI_BAND_SCAN_REQ_STRU *pstBandS
     return;
 }
 
-/*****************************************************************************
- Function Name  : CSS_AsBandScanReqMsgSave
- Description    : 保存AS扫频请求消息
- Input          :
- Output         : VOS_VOID
- Return Value   : 保存结果
 
- History        :
-      1.chengmin 00285307   2015-12-16  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_AsBandScanReqMsgSave(const CSS_AS_BAND_SCAN_REQ_STRU *pstBandScanReq)
 {
     CSS_CONTROL_STRU                        *pstCssControl;
@@ -768,16 +712,7 @@ VOS_VOID CSS_AsBandScanReqMsgSave(const CSS_AS_BAND_SCAN_REQ_STRU *pstBandScanRe
     CSS_MEM_CPY_S(&(pstCssControl->stAsMsg.stBandList), sizeof(CSS_BAND_LIST), &(pstBandScanReq->stBandList), sizeof(CSS_BAND_LIST));
 }
 
-/*****************************************************************************
- Function Name  : CSS_AsStopBandScanReqMsgSave
- Description    : 保存AS停止扫频请求消息
- Input          :
- Output         : VOS_VOID
- Return Value   : 保存结果
 
- History        :
-      1.chengmin 00285307   2015-12-18  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_AsStopBandScanReqMsgSave(const CSS_AS_STOP_BAND_SCAN_REQ_STRU *pstAsStopBandScanReq)
 {
     CSS_CONTROL_STRU                        *pstCssControl;
@@ -803,16 +738,7 @@ VOS_VOID CSS_AsStopBandScanReqMsgSave(const CSS_AS_STOP_BAND_SCAN_REQ_STRU *pstA
 
 
 
-/*****************************************************************************
- Function Name  : CSS_StopBandScanReqMsgSave
- Description    : 保存停止扫频请求消息
- Input          :
- Output         : VOS_VOID
- Return Value   : 保存结果
 
- History        :
-      1.wangchen 00209181   2015-05-16  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_StopBandScanReqMsgSave(const CSS_STOP_BAND_SCAN_REQ_STRU *pstStopBandScanReq)
 {
     CSS_CONTROL_STRU                        *pstCssControl;
@@ -843,16 +769,7 @@ VOS_VOID CSS_StopBandScanReqMsgSave(const CSS_STOP_BAND_SCAN_REQ_STRU *pstStopBa
     return;
 }
 
-/*****************************************************************************
- Function Name  : CSS_ProcMsgAsBandScanReq
- Description    : 处理接入层发过来的请求FFT扫频的消息
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-12-10  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_ProcMsgAsBandScanReq
 (
     const CSS_AS_BAND_SCAN_REQ_STRU  *pRcvMsg
@@ -925,16 +842,7 @@ VOS_VOID CSS_ProcMsgAsBandScanReq
 }
 
 
-/*****************************************************************************
- Function Name  : CSS_ProcMsgAsStopBandScanReq
- Description    : 处理接入层发过来的请求停止扫频的消息
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-12-10  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_ProcMsgAsStopBandScanReq(const CSS_AS_STOP_BAND_SCAN_REQ_STRU  *pRcvMsg)
 {
     CSS_MAIN_STATE_ENUM_UINT16          enMainState     = CSS_MAIN_STATE_BUTT;    /* 当前处于的主状态 */
@@ -1021,16 +929,7 @@ VOS_VOID CSS_ProcMsgAsStopBandScanReq(const CSS_AS_STOP_BAND_SCAN_REQ_STRU  *pRc
 }
 
 
-/*****************************************************************************
- Function Name  : CSS_ProcCommMsgBandScanReq()
- Description    : ID_CSS_MULTI_BAND_SCAN_REQ消息处理函数
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-05-14  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_ProcCommMsgBandScanReq
 (
     const CSS_MULTI_BAND_SCAN_REQ_STRU  *pRcvMsg
@@ -1116,16 +1015,7 @@ VOS_VOID CSS_ProcCommMsgBandScanReq
 
     return ;
 }
-/*****************************************************************************
- Function Name  : CSS_ProcCommMsgStopBandScanReq()
- Description    : ID_CSS_STOP_BAND_SCAN_REQ消息处理函数
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-05-14  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_ProcCommMsgStopBandScanReq
 (
     const CSS_STOP_BAND_SCAN_REQ_STRU *pstStopBandScanReq
@@ -1221,16 +1111,7 @@ VOS_VOID CSS_ProcCommMsgStopBandScanReq
     return ;
 }
 
-/*****************************************************************************
- Function Name  : CSS_ProcCommMsg()
- Description    : LPHY消息处理函数
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-05-14  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_ProcCommMsg(const VOS_VOID *pRcvMsg)
 {
 

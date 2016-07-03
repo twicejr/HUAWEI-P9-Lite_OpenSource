@@ -9,9 +9,7 @@
 #include "AtDeviceCmd.h"
 #include "AtCmdPacketProc.h"
 
-/* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, begin */
 #include "AtCmdCallProc.h"
-/* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, end */
 
 #include "AtTestParaCmd.h"
 #ifdef __cplusplus
@@ -42,7 +40,6 @@ extern "C" {
 */
 /* SMS命令表 */
 
-/* Modified by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-25, begin */
 /* 主动上报相关命令设置和查询时需要等待回复，添加等待设置回复时间和等待查询回复时间 */
 const AT_SMS_CMD_TAB_STRU gastAtSmsCmdTab[]=
 {
@@ -119,13 +116,11 @@ AT_PAR_CMD_ELEMENT_STRU g_astAtExtendCmdTbl[] =
     AT_CME_INCORRECT_PARAMETERS, CMD_TBL_LIMITED_NULL,
     (TAF_UINT8*)"+CNUM",    TAF_NULL_PTR},
 
-     /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     {AT_CMD_CPBF,
     At_SetCpbfPara,     AT_SET_PARA_TIME,   TAF_NULL_PTR,    AT_NOT_SET_TIME,   AT_TestCpbrPara, AT_SET_PARA_TIME,
     VOS_NULL_PTR,        AT_NOT_SET_TIME,
     AT_CME_INCORRECT_PARAMETERS, CMD_TBL_LIMITED_NULL,
     (TAF_UINT8*)"+CPBF",    (TAF_UINT8*)"(number),(text)"},
-     /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
     /* USIM */
     {AT_CMD_CSIM,
@@ -165,14 +160,12 @@ AT_PAR_CMD_ELEMENT_STRU g_astAtExtendCmdTbl[] =
     (TAF_UINT8*)"+CRSM",  (TAF_UINT8*)"(0-255),(1-65535),(0-255),(0-255),(0-255),(cmd),(pathid)"},
 
     /* SMS CONFIG */
-    /* Added by 傅映君/f62575 for AT Project, SIM卡保护标志确认, 2011/11/15, begin */
     {AT_CMD_CSCS,
     At_SetCscsPara,     AT_NOT_SET_TIME, At_QryCscsPara,    AT_NOT_SET_TIME,    VOS_NULL_PTR, AT_NOT_SET_TIME,
     VOS_NULL_PTR,        AT_NOT_SET_TIME,
     AT_CME_INCORRECT_PARAMETERS,       CMD_TBL_LIMITED_NULL,
     (TAF_UINT8*)"+CSCS",    (TAF_UINT8*)"(\"IRA\",\"UCS2\",\"GSM\")"},
 
-    /* Added by 傅映君/f62575 for AT Project, SIM卡保护标志确认, 2011/11/15, end */
     {AT_CMD_CMEE,
     At_SetCmeePara,     AT_NOT_SET_TIME, At_QryCmeePara,    AT_NOT_SET_TIME,    VOS_NULL_PTR, AT_NOT_SET_TIME,
     VOS_NULL_PTR,        AT_NOT_SET_TIME,
@@ -390,14 +383,12 @@ AT_PAR_CMD_ELEMENT_STRU g_astAtExtendCmdTbl[] =
     AT_CME_INCORRECT_PARAMETERS, CMD_TBL_PIN_IS_LOCKED,
     (VOS_UINT8*)"+GMI", VOS_NULL_PTR},
 
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     /* OTHER */
     {AT_CMD_CTFR,
     At_SetCtfrPara,     AT_SET_PARA_TIME, VOS_NULL_PTR,     AT_NOT_SET_TIME,    VOS_NULL_PTR, AT_NOT_SET_TIME,
     VOS_NULL_PTR,        AT_NOT_SET_TIME,
     AT_CME_INCORRECT_PARAMETERS, CMD_TBL_CLAC_IS_INVISIBLE,
     (VOS_UINT8*)"+CTFR", (VOS_UINT8*)"(number),(0-255),(subaddr),(0-255)"},
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
     {AT_CMD_CPWD,
     At_SetCpwdPara,     AT_SET_SS_PARA_TIME, VOS_NULL_PTR,     AT_NOT_SET_TIME,    At_TestCpwdPara, AT_NOT_SET_TIME,
@@ -754,7 +745,6 @@ AT_PAR_CMD_ELEMENT_STRU g_astAtExtendCmdTbl[] =
     (VOS_UINT8 *)"+IFC",    (VOS_UINT8 *)"(0,2),(0,2)"},
 #endif
 
-    /* Added by n00269697 for V3R3C60_eCall项目, 2014-3-29, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
     {AT_CMD_CECALL,
     AT_SetCecallPara,  AT_SET_PARA_TIME,   AT_QryCecallPara,   AT_QRY_PARA_TIME,    VOS_NULL_PTR, AT_NOT_SET_TIME,
@@ -762,7 +752,6 @@ AT_PAR_CMD_ELEMENT_STRU g_astAtExtendCmdTbl[] =
     AT_ERROR,    CMD_TBL_NO_LIMITED,
     (VOS_UINT8 *)"+CECALL",    (VOS_UINT8 *)"(0-3)"},
 #endif
-    /* Added by n00269697 for V3R3C60_eCall项目, 2014-3-29, end   */
 
     {AT_CMD_CCLK,
     AT_SetCclkPara,  AT_NOT_SET_TIME,   AT_QryCclkPara,   AT_NOT_SET_TIME,    VOS_NULL_PTR, AT_NOT_SET_TIME,
@@ -795,27 +784,12 @@ AT_PAR_CMD_ELEMENT_STRU g_astAtExtendCmdTbl[] =
     AT_CME_INCORRECT_PARAMETERS, CMD_TBL_NO_LIMITED,
     (VOS_UINT8*)"+CEUS",    (VOS_UINT8*)"(0,1)"},
 };
-/* Modified by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-25, end */
 
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : At_RegisterExCmdTable
- 功能描述  : 注册扩展命令表
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月21日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 At_RegisterExCmdTable(VOS_VOID)
 {
     return AT_RegisterCmdTable(g_astAtExtendCmdTbl, sizeof(g_astAtExtendCmdTbl)/sizeof(g_astAtExtendCmdTbl[0]));

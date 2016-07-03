@@ -42,14 +42,7 @@ extern "C" {
 #if(VOS_OS_VER == VOS_LINUX)
 DIAG_PTR_INFO_STRU g_stPtrInfo = {0};
 
-/*****************************************************************************
- Function Name   : diag_PTR
- Description     : DIAG打点信息记录接口
 
- History         :
-    1.c00326366    2015-06-21 Draft Enact
-
-*****************************************************************************/
 VOS_VOID diag_PTR(DIAG_PTR_ID_ENUM enType)
 {
     g_stPtrInfo.stPtr[g_stPtrInfo.ulCur].enStep = enType;
@@ -58,14 +51,7 @@ VOS_VOID diag_PTR(DIAG_PTR_ID_ENUM enType)
 }
 
 
-/*****************************************************************************
- Function Name   : DIAG_DebugPTR
- Description     : DIAG处理流程的打点信息
 
- History         :
-    1.c00326366    2015-06-21 Draft Enact
-
-*****************************************************************************/
 VOS_VOID DIAG_DebugPTR(VOS_VOID)
 {
     void *pFile;
@@ -191,14 +177,7 @@ extern OM_VCOM_DEBUG_INFO g_stVComDebugInfo[3];
 
 extern VOS_UINT32 g_ulDiagCfgInfo;
 
-/*****************************************************************************
- Function Name   : DIAG_DebugCommon
- Description     : DIAG通用的可维可测信息
 
- History         :
-    1.c00326366    2015-06-21 Draft Enact
-
-*****************************************************************************/
 VOS_VOID DIAG_DebugCommon(VOS_VOID)
 {
     void *pFile;
@@ -300,14 +279,7 @@ VOS_VOID DIAG_DebugCommon(VOS_VOID)
 #endif
 
 
-/*****************************************************************************
- Function Name   : DIAG_DebugFileHeader
- Description     : 给debug文件写上文件头
 
- History         :
-    1.c00326366    2015-06-21 Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 DIAG_DebugFileHeader(void *pFile)
 {
     VOS_UINT32 ret;
@@ -364,14 +336,7 @@ VOS_UINT32 DIAG_DebugFileHeader(void *pFile)
 }
 
 
-/*****************************************************************************
- Function Name   : DIAG_DebugFileTail
- Description     : 给debug文件写上文件尾
 
- History         :
-    1.c00326366    2015-06-21 Draft Enact
-
-*****************************************************************************/
 VOS_VOID DIAG_DebugFileTail(void *pFile, VOS_CHAR *FilePath)
 {
     VOS_UINT32 ret;
@@ -393,14 +358,7 @@ extern VOS_UINT8 g_EventModuleCfg[DIAG_CFG_PID_NUM];
 extern DIAG_CBT_INFO_TBL_STRU g_astCBTInfoTbl[EN_DIAG_DEBUG_INFO_MAX];
 
 
-/*****************************************************************************
- Function Name   : diag_numberinfo
- Description     : 保存DIAG统计次数信息
 
- History         :
-    1.c00326366    2015-06-21 Draft Enact
-
-*****************************************************************************/
 VOS_VOID diag_numberinfo(void *pFile)
 {
     VOS_UINT32 ret;
@@ -441,14 +399,7 @@ VOS_VOID diag_numberinfo(void *pFile)
     }
 }
 
-/*****************************************************************************
- Function Name   : DIAG_DebugNoIndLog
- Description     : LOG不上报的可维可测信息
 
- History         :
-    1.c00326366    2015-06-21 Draft Enact
-
-*****************************************************************************/
 VOS_VOID DIAG_DebugNoIndLog(VOS_VOID)
 {
     void *pFile;

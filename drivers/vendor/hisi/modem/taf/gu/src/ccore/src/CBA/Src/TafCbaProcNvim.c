@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafCbaProcNvim.c
-  版 本 号   : 初稿
-  作    者   : l00171473
-  生成日期   : 2012年3月19日
-  最近修改   :
-  功能描述   : CBA模块NV操作相关的处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年3月19日
-    作    者   : l00171473
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -25,10 +8,8 @@
 #include  "TafCbaComFunc.h"
 #include  "MnComm.h"
 #include  "TafLog.h"
-/* Added by l00167671 for NV拆分项目 , 2013-05-17, begin */
 #include "NasNvInterface.h"
 #include "TafNvInterface.h"
-/* Added by l00167671 for NV拆分项目 , 2013-05-17, end*/
 #ifdef __cplusplus
 #if __cplusplus
 extern "C" {
@@ -49,21 +30,7 @@ extern "C" {
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_ReadNvUserAcceptMsgIdList
- 功能描述  : 从NVIM中读取用户配置的CBS激活列表
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月12日
-    作    者   : f62575
-    修改内容   : 新生成函数, DTS2013081900835
-
-*****************************************************************************/
 VOS_VOID TAF_CBA_ReadNvUserAcceptMsgIdList(
     TAF_CBA_CBMI_RANGE_LIST_STRU       *pstCbmiRangeList
 )
@@ -129,24 +96,7 @@ VOS_VOID TAF_CBA_ReadNvUserAcceptMsgIdList(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_AppendNvUserAcceptMsgIdList
- 功能描述  : 追加NVIM中用户接受的CBS消息ID列表
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月23日
-    作    者   : t00212959
-    修改内容   : 新生成函数, for V7R1C50 CSFB&PPAC&ETWS&ISR
-  2.日    期   : 2013年8月12日
-    作    者   : f62575
-    修改内容   : DTS2013081900835，支持先更新USIM配置，后更新NV配置
-                 TAF_CBA_ReadCbmiRangeListNvim函数名变更TAF_CBA_AppendNvUserAcceptMsgIdList
-*****************************************************************************/
 VOS_VOID TAF_CBA_AppendNvUserAcceptMsgIdList(VOS_VOID)
 {
     TAF_CBA_CBMI_RANGE_LIST_STRU       *pstCbmiNvRangeList = VOS_NULL_PTR;
@@ -174,32 +124,7 @@ VOS_VOID TAF_CBA_AppendNvUserAcceptMsgIdList(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_ReadCbsServiceParamNvim
- 功能描述  : 从NVIM中读取CBS功能使能标志
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月23日
-    作    者   : t00212959
-    修改内容   : 新生成函数, for V7R1C50 CSFB&PPAC&ETWS&ISR
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  3.日    期   : 2012年12月04日
-    作    者   : L00171473
-    修改内容   : for DTS2012120600056, NV中添加重复过滤开关
-  4.日    期   : 2012年12月10日
-    作    者   : l00171473
-    修改内容   : for DTS2012120609682,终端要求CBS统一上报88个字节
-  5.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述	
-*****************************************************************************/
 VOS_VOID TAF_CBA_ReadCbsServiceParamNvim(VOS_VOID)
 {
     TAF_CBA_CBS_SERVICE_PARM_STRU       stSrvPara;
@@ -243,23 +168,7 @@ VOS_VOID TAF_CBA_ReadCbsServiceParamNvim(VOS_VOID)
 }
 
 #if (FEATURE_ETWS == FEATURE_ON)
-/*****************************************************************************
- 函 数 名  : TAF_CBA_ReadEtwsServieCfgNvim
- 功能描述  : 从NVIM中读取ETWS相关的配置NV项
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月23日
-    作    者   : t00212959
-    修改内容   : 新生成函数, for V7R1C50 CSFB&PPAC&ETWS&ISR
-  2.日    期   : 2012年12月13日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-*****************************************************************************/
 VOS_VOID TAF_CBA_ReadEtwsServieCfgNvim(VOS_VOID)
 {
     TAF_CBA_NVIM_ETWS_CFG_STRU          stNewNvinEtwsInfo;
@@ -325,26 +234,7 @@ VOS_VOID TAF_CBA_ReadEtwsServieCfgNvim(VOS_VOID)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_CBA_WriteCbmiRangeListNvim
- 功能描述  : 将用户设置的CBS激活列表保存到NVIM
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月23日
-    作    者   : t00212959
-    修改内容   : 新生成函数, for V7R1C50 CSFB&PPAC&ETWS&ISR
-  2.日    期   : 2012年3月28日
-    作    者   : w00176964
-    修改内容   : NV结构体调整
-  3.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-*****************************************************************************/
 VOS_VOID TAF_CBA_WriteCbmiRangeListNvim(VOS_VOID)
 {
     TAF_CBA_NVIM_CBMI_RANGE_LIST_STRU  *pstNvimCbmiRangeList;

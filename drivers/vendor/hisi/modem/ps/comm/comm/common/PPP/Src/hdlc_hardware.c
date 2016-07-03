@@ -147,20 +147,7 @@ VOS_VOID   PPPC_STUB_ProcDlData(PPPC_DATA_LINK_NODE_STRU *pstMem);
 VOS_UINT32 PPPC_STUB_ProcUlData(PPPC_DATA_LINK_NODE_STRU *pstData, VOS_UINT16 usDataLen);
 #endif
 
-/*****************************************************************************
- 函 数 名  : PPP_MemAlloc
- 功能描述  : 分配零拷贝内存
- 输入参数  : usLen      -- 数据块长度,单位为字节
- 输出参数  : 无
- 返 回 值  : 零拷贝内存指针
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-04-27
-    作    者   : c00184031
-    修改内容   : Created
-*****************************************************************************/
 PPPC_DATA_LINK_NODE_STRU * PPP_MemAlloc
 (
     VOS_UINT16                          usLen,
@@ -230,20 +217,7 @@ PPPC_DATA_LINK_NODE_STRU * PPP_MemAlloc
     return VOS_NULL_PTR;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_MemFree
- 功能描述  : 释放零拷贝内存
- 输入参数  : pstNode  --- TTF_MEM形式的数据
- 输出参数  :
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-04-027
-    作    者   : c00184031
-    修改内容   : Created
-*****************************************************************************/
 VOS_VOID PPP_MemFree(PPPC_DATA_LINK_NODE_STRU *pstNode)
 {
     if (VOS_NULL_PTR == pstNode)
@@ -271,20 +245,7 @@ VOS_VOID PPP_MemFree(PPPC_DATA_LINK_NODE_STRU *pstNode)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_MemSingleCopy
- 功能描述  : 获取给定内存单元实际使用的总字节数，包括整个数据链
- 输入参数  : pMemSrc  -- 要获取数据的TTF内存块头指针
- 输出参数  : 无
- 返 回 值  : 数据长度
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011-03-09
-    作    者   : l00164359
-    修改内容   : Created
-*****************************************************************************/
 VOS_VOID PPP_MemSingleCopy(VOS_UINT8 *pucDest, VOS_UINT8 *pucSrc, VOS_UINT32 ulLen)
 {
     /* 待修改为EDMA拷贝 */
@@ -294,21 +255,7 @@ VOS_VOID PPP_MemSingleCopy(VOS_UINT8 *pucDest, VOS_UINT8 *pucSrc, VOS_UINT32 ulL
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_PeriphClkOpen
- 功能描述  : 打开HDLC时钟
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月13日
-    作    者   : c00191211
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_HDLC_HARD_PeriphClkOpen(VOS_VOID)
 {
     VOS_UINT32      ulValue = 0;
@@ -319,21 +266,7 @@ VOS_VOID PPP_HDLC_HARD_PeriphClkOpen(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_PeriphClkClose
- 功能描述  : 关闭HDLC时钟
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月13日
-    作    者   : c00191211
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_HDLC_HARD_PeriphClkClose(VOS_VOID)
 {
     VOS_UINT32      ulValue = 0;
@@ -344,21 +277,7 @@ VOS_VOID PPP_HDLC_HARD_PeriphClkClose(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_MntnSetConfig
- 功能描述  : 设置可维可测等级
- 输入参数  : ulConfig - 可维可测等级
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_HDLC_HARD_MntnSetConfig(VOS_UINT32 ulConfig)
 {
     g_stHdlcConfigInfo.ulHdlcMntnTraceCfg = ulConfig;
@@ -366,21 +285,7 @@ VOS_UINT32 PPP_HDLC_HARD_MntnSetConfig(VOS_UINT32 ulConfig)
     return g_stHdlcConfigInfo.ulHdlcMntnTraceCfg;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_MntnSetDefIntLimit
- 功能描述  : 设置解封装中断水线
- 输入参数  : ulIntLimit - 中断水线
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_HDLC_HARD_MntnSetDefIntLimit(VOS_UINT32 ulIntLimit)
 {
     g_stHdlcConfigInfo.ulHdlcDefIntLimit = ulIntLimit;
@@ -388,21 +293,7 @@ VOS_UINT32 PPP_HDLC_HARD_MntnSetDefIntLimit(VOS_UINT32 ulIntLimit)
     return g_stHdlcConfigInfo.ulHdlcDefIntLimit;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_MntnSetFrmIntLimit
- 功能描述  : 设置封装中断水线
- 输入参数  : ulIntLimit - 中断水线
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_HDLC_HARD_MntnSetFrmIntLimit(VOS_UINT32 ulIntLimit)
 {
     g_stHdlcConfigInfo.ulHdlcFrmIntLimit = ulIntLimit;
@@ -410,23 +301,7 @@ VOS_UINT32 PPP_HDLC_HARD_MntnSetFrmIntLimit(VOS_UINT32 ulIntLimit)
     return g_stHdlcConfigInfo.ulHdlcFrmIntLimit;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_MntnTraceMsg
- 功能描述  : 基础勾包函数
- 输入参数  : pstHead    - 消息首地址
-             ulMsgname  - 消息ID
-             ulDataLen  - 消息长度
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_HDLC_HARD_MntnTraceMsg
 (
     HDLC_MNTN_TRACE_HEAD_STRU          *pstHead,
@@ -447,23 +322,7 @@ VOS_VOID PPP_HDLC_HARD_MntnTraceMsg
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_MntnDefTraceRegConfig
- 功能描述  : 勾取解封装寄存器配置数据
- 输入参数  : ulEnable   -   封装解封装使能前还是使能后，VOS_TRUE: 使能后,VOS_FALSE: 使能前
-             ulValue    -   使能寄存器配置的值
-             ulEnableInterrupt - 中断方式还是轮询方式，仅在使能后勾取寄存器时生效
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月20日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_HDLC_HARD_MntnDefTraceRegConfig
 (
     VOS_UINT32      ulEnable,
@@ -534,21 +393,7 @@ VOS_VOID PPP_HDLC_HARD_MntnDefTraceRegConfig
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_DefCfgGoOnReg
- 功能描述  : 根据HDLC暂停状态，配置GO_ON寄存器对应比特位
- 输入参数  : ulDefStatus  -   解封装状态
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_HDLC_HARD_DefCfgGoOnReg
 (
     VOS_UINT32          ulDefStatus
@@ -598,21 +443,7 @@ VOS_VOID PPP_HDLC_HARD_DefCfgGoOnReg
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_MntnDefTraceUncompleteInfo
- 功能描述  : 勾取解封装输出的非完整帧信息
- 输入参数  : pstUncompletedInfo -   非完整帧信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_HDLC_HARD_MntnDefTraceUncompleteInfo
 (
     HDLC_DEF_UNCOMPLETED_INFO_STRU     *pstUncompletedInfo
@@ -630,21 +461,7 @@ VOS_VOID PPP_HDLC_HARD_MntnDefTraceUncompleteInfo
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_MntnShowFrmReg
- 功能描述  : 打印封装寄存器当前数据
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年1月30日
-    作    者   : c00191211
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_HDLC_HARD_MntnShowFrmReg(VOS_VOID)
 {
     HDLC_MNTN_FRM_REG_CONFIG_STRU           stRegConfig;
@@ -703,21 +520,7 @@ VOS_VOID PPP_HDLC_HARD_MntnShowFrmReg(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_MntnShowDefReg
- 功能描述  : 打印解封装寄存器当前数据
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年1月30日
-    作    者   : c00191211
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_HDLC_HARD_MntnShowDefReg(VOS_VOID)
 {
     HDLC_MNTN_DEF_REG_CONFIG_STRU           stRegConfig;
@@ -793,22 +596,7 @@ VOS_VOID PPP_HDLC_HARD_MntnShowDefReg(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_FrmProcException
- 功能描述  : 异常处理
- 输入参数  : ulStatus           -   异常状态
-             ulEnableInterrupt  - 中断方式还是轮询方式
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月20日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 /*lint -e438*/
 /*lint -e550*/
 VOS_VOID PPP_HDLC_HARD_FrmProcException
@@ -850,23 +638,7 @@ VOS_VOID PPP_HDLC_HARD_FrmProcException
 /*lint +e438*/
 /*lint +e550*/
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_MntnFrmTraceRegConfig
- 功能描述  : 勾取寄存器配置数据
- 输入参数  : ulEnable   -   封装解封装使能前还是使能后，VOS_TRUE: 使能后,VOS_FALSE: 使能前
-             ulValue    -   使能寄存器配置的值
-             ulEnableInterrupt - 中断方式还是轮询方式，仅在使能后勾取寄存器时生效
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月20日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_HDLC_HARD_MntnFrmTraceRegConfig
 (
     VOS_UINT32      ulEnable,
@@ -928,22 +700,7 @@ VOS_VOID PPP_HDLC_HARD_MntnFrmTraceRegConfig
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_FrmCfgBufReg
- 功能描述  : 配置使能寄存器，并上报使能前寄存器可维可测
- 输入参数  : ulTotalLen --待封装数据包的总长度
- 输出参数  :
- 返 回 值  : VOS_TRUE   - 采用中断模式
-             VOS_FALSE  - 采用轮询模式
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月20日
-    作    者   : c00191211
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_HDLC_HARD_FrmCfgEnReg(VOS_UINT32   ulTotalLen)
 {
     /*
@@ -1016,21 +773,7 @@ VOS_UINT32 PPP_HDLC_HARD_FrmCfgEnReg(VOS_UINT32   ulTotalLen)
     return ulEnableInterrupt;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_FrmStartTimer
- 功能描述  : 申请封装目的空间失败开启定时器
- 输入参数  : pstBuildPara   -   构造链表所需的参数
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月20日
-    作    者   : c00191211
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_HDLC_HARD_FrmStartTimer
 (
     HDLC_PARA_LINK_BUILD_PARA_STRU      *pstBuildPara
@@ -1053,22 +796,7 @@ VOS_VOID PPP_HDLC_HARD_FrmStartTimer
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_DefProcException
- 功能描述  : 异常处理
- 输入参数  : ulStatus           -   异常状态
-             ulEnableInterrupt  - 中断方式还是轮询方式
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 /*lint -e438*/
 /*lint -e550*/
 VOS_VOID PPP_HDLC_HARD_DefProcException
@@ -1106,21 +834,7 @@ VOS_VOID PPP_HDLC_HARD_DefProcException
 }
 /*lint +e438*/
 /*lint +e550*/
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_CommWaitSem
- 功能描述  : 等待封装解封装暂停或完成
- 输入参数  : ulHdlcMasterSem  -
- 输出参数  :
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_HDLC_HARD_CommWaitSem
 (
     VOS_UINT32          ulHdlcMasterSem,
@@ -1146,21 +860,7 @@ VOS_UINT32 PPP_HDLC_HARD_CommWaitSem
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_DefIsr
- 功能描述  : HDLC解封装中断完成通知服务程序
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_HDLC_HARD_DefIsr(unsigned int ulPara)
 {
     g_stHdlcRegSaveInfo.ulHdlcDefRawInt = PPP_HDLC_READ_32REG(SOC_ARM_HDLC_DEF_RAW_INT_ADDR(HDLC_IP_BASE_ADDR));
@@ -1179,21 +879,7 @@ VOS_UINT32 PPP_HDLC_HARD_DefIsr(unsigned int ulPara)
     return 1; /* IRQ_HANDLED; */
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_FrmIsr
- 功能描述  : HDLC封装中断完成通知服务程序
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_HDLC_HARD_FrmIsr(unsigned int ulPara)
 {
     g_stHdlcRegSaveInfo.ulHdlcFrmRawInt = PPP_HDLC_READ_32REG(SOC_ARM_HDLC_FRM_RAW_INT_ADDR(HDLC_IP_BASE_ADDR));
@@ -1211,21 +897,7 @@ VOS_UINT32 PPP_HDLC_HARD_FrmIsr(unsigned int ulPara)
     return 1; /* IRQ_HANDLED; */
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_DefWaitStatusChange
- 功能描述  : 轮询状态寄存器
- 输入参数  : 无
- 输出参数  :
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_HDLC_HARD_DefWaitStatusChange(VOS_VOID)
 {
     /*
@@ -1286,21 +958,7 @@ VOS_UINT32 PPP_HDLC_HARD_DefWaitStatusChange(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_FrmWaitStatusChange
- 功能描述  : 轮询状态寄存器
- 输入参数  : 无
- 输出参数  :
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_HDLC_HARD_FrmWaitStatusChange(VOS_VOID)
 {
     VOS_UINT32              ulFrmRsltWaitNum;           /* 防止硬件异常的保护变量 */
@@ -1338,21 +996,7 @@ VOS_UINT32 PPP_HDLC_HARD_FrmWaitStatusChange(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_FrmWaitResult
- 功能描述  : 等待封装暂停或完成
- 输入参数  : ulEnableInterrupt  -   中断是否使能
- 输出参数  : 无
- 返 回 值  : 封装状态
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月20日
-    作    者   : c00191211
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_HDLC_HARD_FrmWaitResult
 (
     VOS_UINT32          ulEnableInterrupt
@@ -1394,21 +1038,7 @@ VOS_UINT32 PPP_HDLC_HARD_FrmWaitResult
     return ulFrmStatus;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_DefWaitResult
- 功能描述  : 等待解封装暂停或完成
- 输入参数  : ulEnableInterrupt  -   中断是否使能
- 输出参数  : 解封装状态
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_HDLC_HARD_DefWaitResult
 (
     VOS_UINT32          ulEnableInterrupt
@@ -1451,21 +1081,7 @@ VOS_UINT32 PPP_HDLC_HARD_DefWaitResult
     return ulStatus;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_DefCfgEnReg
- 功能描述  : 根据本次解封装数据量大小，决定使用何况方式等待HDLC的结果
- 输入参数  : ulLinkTotalSize     -   本次解封装参数链表内的总数据量(单位字节)
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_HDLC_HARD_DefCfgEnReg
 (
     VOS_UINT32                      ulTotalLen
@@ -1540,45 +1156,10 @@ VOS_UINT32 PPP_HDLC_HARD_DefCfgEnReg
     return ulEnableInterrupt;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_CommCfgReg
- 功能描述  : 配置通用寄存器
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_HDLC_HARD_CommCfgReg(VOS_VOID)
 {
-    /*
-    prior_timeout_ctrl(0x04)
-      31  24   23                16   15  9         8             7   2    1          0
-    |--------|----------------------|-------|-------------------|-------|---------------|
-    |   Rsv  | axireq_timeout_value |  Rsv  | axireq_timeout_en |  Rsv  |hdlc_prior_ctrl|
-
-    Reserved             [31:24] 8'b0   h/s R/W  保留位。读时返回0。写时无影响。
-    axireq_timeout_value [23:16] 8'b0   h/s R/W  软件配置AXI总线读写请求超时的判断值
-    Reserved             [15:9]  2'b0   h/s R/W  保留位。读时返回0。写时无影响。
-    axireq_timeout_en    [8]     1'b0   h/s R/W  是否允许硬件判断AXI总线读写请求超时，由软件配置：
-                                                   0不允许
-                                                   1允许
-    Reserved             [7:2]   1'b0   h/s R/W  保留位。读时返回0。写时无影响。
-    hdlc_prior_ctrl      [1:0]   1'b0   h/s R/W  HDLC封装、解封装优先级配置寄存器：
-                                                    00：一个在工作中，另一个也被使能情况下，先将已处于工作中的那个处理完，
-                                                        即谁先被使能则先将谁处理完；
-                                                    01：下行封装优先级高；
-                                                    10：上行解封装优先级高；
-                                                    11：无效。
-                                                    (HDLC内部控制被暂停者的继续开始工作：当解封装被暂停，封装整套链表被处理完后，
-                                                    解封装就开始继续工作；当封装被暂停，解封装整个数据包被处理完后，封装就开始继续工作。)
-    */
+    
 
     VOS_UINT32                          ulValue = 0x0;
 
@@ -1594,21 +1175,7 @@ VOS_VOID PPP_HDLC_HARD_CommCfgReg(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_MntnShowConfigInfo
- 功能描述  : 打印配置信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_HDLC_HARD_MntnShowConfigInfo(VOS_VOID)
 {
     /* 输出IP相关信息 */
@@ -1626,21 +1193,7 @@ VOS_VOID PPP_HDLC_HARD_MntnShowConfigInfo(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_MntnShowStatInfo
- 功能描述  : 打印统计信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_HDLC_HARD_MntnShowStatInfo(VOS_VOID)
 {
     vos_printf("\n================HDLC Hardware STAT INFO Begin==========================\n");
@@ -1691,24 +1244,7 @@ VOS_VOID PPP_HDLC_HARD_MntnShowStatInfo(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_MntnTraceSingleData
- 功能描述  : 勾取单个数据
- 输入参数  : usDataLen   -   单个数据长度
-             pucDataAddr -   数据首地址
-             ulEventType -   数据类型
-             ulNodeIndex -   数据所在链表结点的下标
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_HDLC_HARD_MntnTraceSingleData
 (
     VOS_UINT16                          usDataLen,
@@ -1750,24 +1286,7 @@ VOS_VOID PPP_HDLC_HARD_MntnTraceSingleData
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_MntnTraceInputParaLink
- 功能描述  : 勾取输入参数链表内容
- 输入参数  : ulEventType        - 数据类型,
-             ulLinkNodeCnt      - 输入参数结点个数,
-             ulLinkTotalSize    - 输入数据总长度,
-             pastLinkNodeBuf    - 输入参数链表首地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_HDLC_HARD_MntnTraceInputParaLink
 (
     HDLC_MNTN_EVENT_TYPE_ENUM_UINT32    ulEventType,
@@ -1798,22 +1317,7 @@ VOS_VOID PPP_HDLC_HARD_MntnTraceInputParaLink
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_DefIsEnabled
- 功能描述  : 查询当前解封装模块是否使能
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 已使能
-             VOS_FALSE - 未使能
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_HDLC_HARD_DefIsEnabled(VOS_VOID)
 {
     VOS_UINT32                          ulValue;
@@ -1832,22 +1336,7 @@ VOS_UINT32 PPP_HDLC_HARD_DefIsEnabled(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_FrmIsEnabled
- 功能描述  : 查询当前封装模块是否使能
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 已使能
-             VOS_FALSE - 未使能
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_HDLC_HARD_FrmIsEnabled(VOS_VOID)
 {
     VOS_UINT32                          ulValue;
@@ -1866,21 +1355,7 @@ VOS_UINT32 PPP_HDLC_HARD_FrmIsEnabled(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_SetUp
- 功能描述  : 初始化该路PPP链接，如清空非完整帧信息
- 输入参数  : usPppId - PPP ID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_HDLC_HARD_SetUp(PPP_ID usPppId)
 {
     HDLC_DEF_UNCOMPLETED_INFO_STRU      *pstUncompletedInfo;
@@ -1893,42 +1368,14 @@ VOS_VOID PPP_HDLC_HARD_SetUp(PPP_ID usPppId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_Disable
- 功能描述  : 对HDLC进行去使能
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_HDLC_HARD_Disable(VOS_VOID)
 {
     /* 暂无操作，因为HDLC优化后，一套链表封装或解封装完成时，由硬件自动对frm_en或def_en清零；
        封装或解封装过程出错时，硬件也会自动清零，使内部状态机返回IDLE状态；*/
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_Init
- 功能描述  : 对HDLC进行初始化: HDLC配置发生异常时, 对异常中断上报的控制
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_HDLC_HARD_Init(VOS_VOID)
 {
     VOS_UINT_PTR                          ulBaseAddr;
@@ -2029,21 +1476,7 @@ VOS_UINT32 PPP_HDLC_HARD_Init(VOS_VOID)
     return VOS_OK;
 }    /* link_HDLCInit */
 
-/*****************************************************************************
- 函 数 名  : PPP_Help
- 功能描述  : 帮助打印
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月25日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_Help(VOS_VOID)
 {
     vos_printf("********************PPP软调信息************************\n");
@@ -2066,21 +1499,7 @@ VOS_VOID PPP_Help(VOS_VOID)
 
 #if (VOS_RTOSCK == VOS_OS_VER)
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_InitBuf
- 功能描述  : 初始化HDLC需要的内存
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_HDLC_HARD_InitBuf(VOS_VOID)
 {
     /* 计算内存长度，实际使用长度为0x6140，申请按照0x8000(32K) */
@@ -2125,22 +1544,7 @@ VOS_UINT32 PPP_HDLC_HARD_InitBuf(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_HDLC_HARD_CommReleaseLink
- 功能描述  : 释放存储的PPP_ZC_STRU结构
- 输入参数  : ppstLinkNode   -- 存储PPP_ZC_STRU指针的数组
-             ulRelCnt       -- 待释放的个数
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_HDLC_HARD_CommReleaseLink
 (
     PPPC_DATA_LINK_NODE_STRU          **ppstLinkNode,
@@ -2160,21 +1564,7 @@ VOS_VOID PPPC_HDLC_HARD_CommReleaseLink
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_HDLC_HARD_DefProcErrorFrames
- 功能描述  : 处理错误帧
- 输入参数  : usPppId    -   PPP链路信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_HDLC_HARD_DefProcErrorFrames
 (
     VOS_UINT16                          usPppId
@@ -2281,21 +1671,7 @@ VOS_VOID PPPC_HDLC_HARD_DefProcErrorFrames
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_HDLC_HARD_DefSaveUncompletedInfo
- 功能描述  : 根据非完整帧指示，保存非完整帧信息
- 输入参数  : usPppId    -   PPP实体ID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_HDLC_HARD_DefSaveUncompletedInfo
 (
     PPP_ID          usPppId
@@ -2379,22 +1755,7 @@ VOS_VOID PPPC_HDLC_HARD_DefSaveUncompletedInfo
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_HDLC_HARD_MntnDefTraceOutput
- 功能描述  : 勾取解封装输出数据
- 输入参数  : pstBuildInfo    -   存放输入数据
-             usValidFrameNum -   有效帧个数
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_HDLC_HARD_MntnDefTraceOutput
 (
     VOS_UINT16                          usValidFrameNum,
@@ -2452,21 +1813,7 @@ VOS_VOID PPPC_HDLC_HARD_MntnDefTraceOutput
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_HDLC_HARD_DefProcRptNode
- 功能描述  : 根据上报信息地址和长度，申请零拷贝内存，并拷贝数据
- 输入参数  : pstRptNode   -   上报信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 PPPC_DATA_LINK_NODE_STRU * PPPC_HDLC_HARD_DefProcRptNode
 (
     HDLC_DEF_RPT_NODE_STRU             *pstRptNode
@@ -2542,23 +1889,7 @@ PPPC_DATA_LINK_NODE_STRU * PPPC_HDLC_HARD_DefProcRptNode
     return pstMem;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_HDLC_HARD_DefProcValidFrames
- 功能描述  : 处理有效帧
- 输入参数  : ucRatMode  -   速率模式1X/HRPD
-             usPppId    -   PPP实体ID
-             pstLink    -   PPP链路信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_HDLC_HARD_DefProcValidFrames
 (
     VOS_UINT8                           ucRatMode,
@@ -2616,22 +1947,7 @@ VOS_VOID PPPC_HDLC_HARD_DefProcValidFrames
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_DefCfgReg
- 功能描述  : 配置解封装配置寄存器
- 输入参数  : pstLink    -   PPP链路信息
-             pstDefUncompletedInfo  -   该路PPP链接上次解封装输出非完整帧信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_HDLC_HARD_DefCfgReg
 (
     VOS_UINT16                      usPppId,
@@ -2760,24 +2076,7 @@ VOS_UINT32 PPPC_HDLC_HARD_DefCfgReg
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_HDLC_HARD_DefWaitAndProc
- 功能描述  : 等待解封装暂停或完成，然后处理输出数据，可能会有多次停等的过程
- 输入参数  : ucRatMode  -   速率模式1X/HRPD
-             ulEnableInterrupt  -   中断是否使能
-             usPppId    -   PPP实体ID
-             pstLink    -   PPP链路信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_HDLC_HARD_DefWaitAndProc
 (
     VOS_UINT8                           ucRatMode,
@@ -2848,21 +2147,7 @@ VOS_VOID PPPC_HDLC_HARD_DefWaitAndProc
     return;
 }
 
-/************************************************************,*****************
- 函 数 名  : PPPC_HDLC_HARD_DefCfgBufReg
- 功能描述  : 配置解封装使用的内存至相关寄存器
- 输入参数  : pstDefBuffInfo    -   解封装使用的内存信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_HDLC_HARD_DefCfgBufReg(HDLC_DEF_BUFF_INFO_STRU *pstDefBuffInfo)
 {
     /* 将封装输入参数链表的起始地址配置给寄存器def_in_lli_addr(0x90) */
@@ -2888,22 +2173,7 @@ VOS_VOID PPPC_HDLC_HARD_DefCfgBufReg(HDLC_DEF_BUFF_INFO_STRU *pstDefBuffInfo)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_HDLC_HARD_MntnDefTraceInput
- 功能描述  : 勾取解封装输入参数链表和数据
- 输入参数  : pstFrmBuffInfo -   封装使用的内存
-             pstBuildInfo   -   存放输入数据
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_HDLC_HARD_MntnDefTraceInput
 (
     HDLC_DEF_BUFF_INFO_STRU         *pstDefBuffInfo,
@@ -2938,22 +2208,7 @@ VOS_VOID PPPC_HDLC_HARD_MntnDefTraceInput
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_HDLC_HARD_ForbiddenHdlcBug
- 功能描述  : 规避HDLC硬件Bug,具体参见问题单DTS2014060907737
- 输入参数  : ppstNode     -   待解封装数据包指针
 
- 输出参数  : ppstNode  规避之后数据
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年06月17日
-    作    者   : t00148005
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_HDLC_HARD_ForbiddenHdlcBug(PPPC_DATA_LINK_NODE_STRU **ppstNode)
 {
     PPPC_DATA_LINK_NODE_STRU           *pstDataNode;
@@ -3018,21 +2273,7 @@ VOS_UINT32 PPPC_HDLC_HARD_ForbiddenHdlcBug(PPPC_DATA_LINK_NODE_STRU **ppstNode)
 
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_HDLC_HARD_DefCheckPara
- 功能描述  : 检查构造输入参数链表相关参数是否合法
- 输入参数  : pstMem     -   待封装数据包
- 输出参数  : 无
- 返 回 值  : PPP_HDLC_PARA_CHECK_RESULT_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月20日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 PPP_HDLC_PARA_CHECK_RESULT_ENUM_UINT32 PPPC_HDLC_HARD_DefCheckPara
 (
     PPPC_DATA_LINK_NODE_STRU           *pstMem
@@ -3057,21 +2298,7 @@ PPP_HDLC_PARA_CHECK_RESULT_ENUM_UINT32 PPPC_HDLC_HARD_DefCheckPara
     return PPP_HDLC_PARA_CHECK_PASS;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_HDLC_HARD_DefBuildInputParaLink
- 功能描述  : 构造解封装输入参数链表
- 输入参数  : pstBuildPara   -   构造链表所需的参数
- 输出参数  : pstBuildInfo   -   构造链表的结果信息，保存输入链表长度、节点个数、零拷贝内存指针
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_HDLC_HARD_DefBuildInputParaLink
 (
     HDLC_PARA_LINK_BUILD_PARA_STRU  *pstBuildPara,
@@ -3214,22 +2441,7 @@ VOS_UINT32 PPPC_HDLC_HARD_DefBuildInputParaLink
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_HDLC_HARD_DefPacket
- 功能描述  : 硬件方式IP类型解封装
- 输入参数  : pstDataQ   -   PPP数据队列
-             ulDealCnt  -   本次处理数据包个数
- 输出参数  : 参见PPP_HDLC_RESULT_TYPE_ENUM_UINT32
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_HDLC_HARD_DefPacket
 (
     TTF_LINK_ST                        *pstDlDataQ,
@@ -3287,21 +2499,7 @@ VOS_UINT32 PPPC_HDLC_HARD_DefPacket
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_HDLC_HARD_FrmCfgBufReg
- 功能描述  : 配置封装使用的内存至相关寄存器
- 输入参数  : pstFrmBuffInfo -   封装使用的内存信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月20日
-    作    者   : c00191211
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_HDLC_HARD_FrmCfgBufReg(HDLC_FRM_BUFF_INFO_STRU *pstFrmBuffInfo)
 {
     /* 将封装输入参数链表的起始地址配置给寄存器frm_in_lli_addr */
@@ -3323,22 +2521,7 @@ VOS_VOID PPPC_HDLC_HARD_FrmCfgBufReg(HDLC_FRM_BUFF_INFO_STRU *pstFrmBuffInfo)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_FrmCfgReg
- 功能描述  : IP模式下配置封装相关寄存器
- 输入参数  : usPppId    - PPP链路信息
-             usProtocol - 待封装的协议值
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月20日
-    作    者   : c00191211
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_HDLC_HARD_FrmCfgReg
 (
     VOS_UINT16                          usPppId,
@@ -3408,24 +2591,7 @@ VOS_VOID PPPC_HDLC_HARD_FrmCfgReg
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_HDLC_HARD_MntnFrmTraceOutput
- 功能描述  : 勾取封装输出参数链表和数据
- 输入参数  : ucFrmValidNum  -   有效帧个数
-             usFrmOutSegNum -   有效帧分段个数
-             pstFrmBuffInfo -   封装相关内存地址
-             pstBuildInfo   -   存放输入数据
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_HDLC_HARD_MntnFrmTraceOutput
 (
     VOS_UINT8                           ucFrmValidNum,
@@ -3475,21 +2641,7 @@ VOS_VOID PPPC_HDLC_HARD_MntnFrmTraceOutput
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_HDLC_HARD_FrmProcValidFram
- 功能描述  : 处理有效帧，并释放剩余内存
- 输入参数  : usPppId        -   PPP实体ID
- 输出参数  : pstBuildInfo   -   构造链表的结果信息，保存输入链表长度、节点个数、零拷贝内存指针
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月20日
-    作    者   : c00191211
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_HDLC_HARD_FrmProcValidFrames
 (
     PPP_ID                               usPppId,
@@ -3688,23 +2840,7 @@ VOS_VOID PPPC_HDLC_HARD_FrmProcValidFrames
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_HDLC_HARD_FrmWaitAndProc
- 功能描述  : 等待封装完成，然后处理输出数据,释放多余的目的空间内存
- 输入参数  : ulEnableInterrupt  -   中断是否使能
-             usPppId    -   PPP实体ID
-             pstLink    -   PPP链路信息
- 输出参数  : pstBuildInfo   -   构造链表的结果信息，保存输入链表长度、节点个数、零拷贝内存指针
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月20日
-    作    者   : c00191211
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_HDLC_HARD_FrmWaitAndProc
 (
     VOS_UINT32                           ulEnableInterrupt,
@@ -3738,24 +2874,7 @@ VOS_VOID PPPC_HDLC_HARD_FrmWaitAndProc
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_HDLC_HARD_FrmUpdateLink
- 功能描述  : 申请一块内存后更新链表相关结构信息
- 输入参数  : ulAllocMemCnt      - 本次申请的内存块个数
-             aulAllocLen        - 记录本次申请的各个内存块的长度
-             papstAllocedMem    - 记录本次申请的各个内存块控制结构指针
-             pstBuildPara       -   构造链表所需的参数
- 输出参数  : pstBuildInfo       -   构造链表的结果信息，保存输入链表长度、节点个数、零拷贝内存指针
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月20日
-    作    者   : c00191211
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_HDLC_HARD_FrmUpdateLink
 (
     VOS_UINT32                      ulAllocMemCnt,
@@ -3812,22 +2931,7 @@ VOS_UINT32 PPPC_HDLC_HARD_FrmUpdateLink
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_HDLC_HARD_OutputMemAlloc
- 功能描述  : 封装输出目的空间申请
- 输入参数  : usLen          -   待申请的内存长度
-             pstBuildPara   -   构造链表所需的参数
- 输出参数  : pstBuildInfo   -   构造链表的结果信息，保存输入链表长度、节点个数、零拷贝内存指针
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月20日
-    作    者   : c00191211
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_HDLC_HARD_FrmOutputMemAlloc
 (
     VOS_UINT16                           usLen,
@@ -3887,22 +2991,7 @@ VOS_UINT32 PPPC_HDLC_HARD_FrmOutputMemAlloc
                                        pstBuildPara, pstBuildInfo);
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_HDLC_HARD_MntnFrmTraceInput
- 功能描述  : 勾取封装输入参数链表和数据
- 输入参数  : pstFrmBuffInfo -   封装使用的内存
-             pstBuildInfo   -   存放输入数据
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_HDLC_HARD_MntnFrmTraceInput
 (
     HDLC_FRM_BUFF_INFO_STRU         *pstFrmBuffInfo,
@@ -3936,24 +3025,7 @@ VOS_VOID PPPC_HDLC_HARD_MntnFrmTraceInput
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_HDLC_HARD_FrmBuildParaLink
- 功能描述  : 检查构造输入输出参数链表相关参数是否合法
- 输入参数  : pstMem     -   待封装数据包
-             ulDataLen  -   待封装数据包长度
-             ucDataType -   待封装数据包类型
-             usProtocol -   待封装数据包协议类型
- 输出参数  : 无
- 返 回 值  : PPP_HDLC_PARA_CHECK_RESULT_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月20日
-    作    者   : c00191211
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 PPP_HDLC_PARA_CHECK_RESULT_ENUM_UINT32 PPPC_HDLC_HARD_FrmCheckPara
 (
     PPPC_DATA_LINK_NODE_STRU           *pstMem,
@@ -3999,21 +3071,7 @@ PPP_HDLC_PARA_CHECK_RESULT_ENUM_UINT32 PPPC_HDLC_HARD_FrmCheckPara
     return PPP_HDLC_PARA_CHECK_PASS;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_HDLC_HARD_FrmBuildParaLink
- 功能描述  : 构造输入输出参数链表，并上报链表内存可维可测
- 输入参数  : pstBuildPara   -   构造链表所需的参数
- 输出参数  : pstBuildInfo   -   构造链表的结果信息，保存输入链表长度、节点个数、零拷贝内存指针
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月20日
-    作    者   : c00191211
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_HDLC_HARD_FrmBuildParaLink
 (
     HDLC_PARA_LINK_BUILD_PARA_STRU         *pstBuildPara,
@@ -4134,24 +3192,7 @@ VOS_UINT32 PPPC_HDLC_HARD_FrmBuildParaLink
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_HDLC_HARD_FrmPacket
- 功能描述  : IP模式下行封装处理流程
- 输入参数  : usPppId        -   PPP实体ID
-             usProtocol     -   待封装协议
-             pstLink        -   PPP链路信息
-             pstDataQ       -   PPP数据队列
- 输出参数  : *pulDealCurCnt  -  指向当前处理的PPP队列中的结点个数
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月20日
-    作    者   : c00191211
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_HDLC_HARD_FrmPacket
 (
     PPP_ID                              usPppId,
@@ -4212,23 +3253,7 @@ VOS_UINT32 PPPC_HDLC_HARD_FrmPacket
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_HDLC_HARD_SendAsFrmPacketMsg
- 功能描述  : 消息发送函数
- 输入参数  : usPppId        -- PPP实体ID
-             usProtocol     -- 待封装协议值
-             pstMem         -- 待封装数据包
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_HDLC_HARD_SendAsFrmPacketMsg
 (
     VOS_UINT16                          usPppId,
@@ -4275,23 +3300,7 @@ VOS_UINT32 PPPC_HDLC_HARD_SendAsFrmPacketMsg
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_HDLC_HARD_ProcAsFrmPacket
- 功能描述  : 当做下行封装处理
- 输入参数  : usPppId        -- PPP实体ID
-             usProtocol     -- 待封装协议值
-             pstMem         -- 待封装数据包
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPPC_HDLC_HARD_ProcAsFrmPacket
 (
     VOS_UINT16       usPppId,
@@ -4358,24 +3367,7 @@ VOS_VOID PPPC_HDLC_HARD_ProcAsFrmPacket
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPPC_HDLC_HARD_ProcProtocolPacket
- 功能描述  : 硬件封装PPP协议栈输出的协议包
- 输入参数  : pstLink    -   PPP链路信息
-             pstMbuf    -   PPP协议栈输出的协议包
-             ulPri      -   优先级,默认填0
-             usProto    -   数据包对应的协议
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPPC_HDLC_HARD_ProcProtocolPacket
 (
     VOS_UINT32                          ulPppId,
@@ -4424,21 +3416,7 @@ VOS_UINT32 PPPC_HDLC_HARD_ProcProtocolPacket
 
 extern PPP_DATA_Q_CTRL_ST     g_PppDataQCtrl;
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_InitBuf
- 功能描述  : 初始化HDLC需要的内存
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_HDLC_HARD_InitBuf(VOS_VOID)
 {
     /* 计算内存长度，实际使用长度为0x6140，申请按照0x8000(32K) */
@@ -4479,22 +3457,7 @@ VOS_UINT32 PPP_HDLC_HARD_InitBuf(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_MntnDefTraceInput
- 功能描述  : 勾取解封装输入参数链表和数据
- 输入参数  : pstFrmBuffInfo -   封装使用的内存
-             pstBuildInfo   -   存放输入数据
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_HDLC_HARD_MntnDefTraceInput
 (
     HDLC_DEF_BUFF_INFO_STRU         *pstDefBuffInfo,
@@ -4531,22 +3494,7 @@ VOS_VOID PPP_HDLC_HARD_MntnDefTraceInput
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_MntnDefTraceOutput
- 功能描述  : 勾取解封装输出数据
- 输入参数  : pstBuildInfo    -   存放输入数据
-             usValidFrameNum -   有效帧个数
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_HDLC_HARD_MntnDefTraceOutput
 (
     VOS_UINT16                          usValidFrameNum,
@@ -4604,22 +3552,7 @@ VOS_VOID PPP_HDLC_HARD_MntnDefTraceOutput
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_MntnFrmTraceInput
- 功能描述  : 勾取封装输入参数链表和数据
- 输入参数  : pstFrmBuffInfo -   封装使用的内存
-             pstBuildInfo   -   存放输入数据
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_HDLC_HARD_MntnFrmTraceInput
 (
     HDLC_FRM_BUFF_INFO_STRU         *pstFrmBuffInfo,
@@ -4656,24 +3589,7 @@ VOS_VOID PPP_HDLC_HARD_MntnFrmTraceInput
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_MntnFrmTraceOutput
- 功能描述  : 勾取封装输出参数链表和数据
- 输入参数  : ucFrmValidNum  -   有效帧个数
-             usFrmOutSegNum -   有效帧分段个数
-             pstFrmBuffInfo -   封装相关内存地址
-             pstBuildInfo   -   存放输入数据
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_HDLC_HARD_MntnFrmTraceOutput
 (
     VOS_UINT8                           ucFrmValidNum,
@@ -4723,22 +3639,7 @@ VOS_VOID PPP_HDLC_HARD_MntnFrmTraceOutput
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_CommReleaseInputData
- 功能描述  : 释放存储的PPP_ZC_STRU结构
- 输入参数  : ppstLinkNode   -- 存储PPP_ZC_STRU指针的数组
-             ulRelCnt       -- 待释放的个数
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_HDLC_HARD_CommReleaseLink
 (
     PPP_ZC_STRU     **ppstLinkNode,
@@ -4758,21 +3659,7 @@ VOS_VOID PPP_HDLC_HARD_CommReleaseLink
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_DefProcRptNode
- 功能描述  : 根据上报信息地址和长度，申请零拷贝内存，并拷贝数据
- 输入参数  : pstRptNode   -   上报信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 PPP_ZC_STRU * PPP_HDLC_HARD_DefProcRptNode
 (
     HDLC_DEF_RPT_NODE_STRU             *pstRptNode
@@ -4839,23 +3726,7 @@ PPP_ZC_STRU * PPP_HDLC_HARD_DefProcRptNode
     return pstMem;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_DefProcValidFrames
- 功能描述  : 处理有效帧
- 输入参数  : ulMode       -   模式，IP或PPP
-             usPppId    -   PPP实体ID
-             pstLink    -   PPP链路信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_HDLC_HARD_DefProcValidFrames
 (
     VOS_UINT32          ulMode,
@@ -4912,21 +3783,7 @@ VOS_VOID PPP_HDLC_HARD_DefProcValidFrames
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_DefProcErrorFrames
- 功能描述  : 处理错误帧
- 输入参数  : pstLink    -   PPP链路信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_HDLC_HARD_DefProcErrorFrames
 (
     struct link        *pstLink
@@ -5025,23 +3882,7 @@ VOS_VOID PPP_HDLC_HARD_DefProcErrorFrames
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_DefCfgReg
- 功能描述  : 配置解封装配置寄存器
- 输入参数  : ulMode     -   IP或PPP模式
-             pstLink    -   PPP链路信息
-             pstDefUncompletedInfo  -   该路PPP链接上次解封装输出非完整帧信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_HDLC_HARD_DefCfgReg
 (
     VOS_UINT32                      ulMode,
@@ -5171,21 +4012,7 @@ VOS_UINT32 PPP_HDLC_HARD_DefCfgReg
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_DefSaveUncompletedInfo
- 功能描述  : 根据非完整帧指示，保存非完整帧信息
- 输入参数  : usPppId    -   PPP实体ID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_HDLC_HARD_DefSaveUncompletedInfo
 (
     PPP_ID          usPppId
@@ -5269,24 +4096,7 @@ VOS_VOID PPP_HDLC_HARD_DefSaveUncompletedInfo
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_DefWaitAndProc
- 功能描述  : 等待解封装暂停或完成，然后处理输出数据，可能会有多次停等的过程
- 输入参数  : ulMode     -   模式，IP或PPP
-             ulEnableInterrupt  -   中断是否使能
-             usPppId    -   PPP实体ID
-             pstLink    -   PPP链路信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_HDLC_HARD_DefWaitAndProc
 (
     VOS_UINT32          ulMode,
@@ -5358,23 +4168,7 @@ VOS_VOID PPP_HDLC_HARD_DefWaitAndProc
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_DefCheckPara
- 功能描述  : 检查构造输入参数链表相关参数是否合法
- 输入参数  : pstMem     -   待封装数据包
-             ulDataLen  -   待封装数据包长度
-             ucDataType -   待封装数据包类型
- 输出参数  : 无
- 返 回 值  : PPP_HDLC_PARA_CHECK_RESULT_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月20日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 PPP_HDLC_PARA_CHECK_RESULT_ENUM_UINT32 PPP_HDLC_HARD_DefCheckPara
 (
     PPP_ZC_STRU                 *pstMem,
@@ -5406,22 +4200,7 @@ PPP_HDLC_PARA_CHECK_RESULT_ENUM_UINT32 PPP_HDLC_HARD_DefCheckPara
 }
 
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_ForbiddenHdlcBug
- 功能描述  : 规避HDLC硬件Bug,具体参见问题单DTS2014060907737
- 输入参数  : ppstMem     -   待解封装数据包指针
 
- 输出参数  : ppstMem  规避之后数据
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年06月17日
-    作    者   : t00148005
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_HDLC_HARD_ForbiddenHdlcBug(PPP_ZC_STRU **ppstMem)
 {
     PPP_ZC_STRU *pstMem;
@@ -5493,21 +4272,7 @@ VOS_VOID PPP_HDLC_HARD_ForbiddenHdlcBug(PPP_ZC_STRU **ppstMem)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_DefBuildInputParaLink
- 功能描述  : 构造解封装输入参数链表
- 输入参数  : pstBuildPara   -   构造链表所需的参数
- 输出参数  : pstBuildInfo   -   构造链表的结果信息，保存输入链表长度、节点个数、零拷贝内存指针
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_HDLC_HARD_DefBuildInputParaLink
 (
     HDLC_PARA_LINK_BUILD_PARA_STRU  *pstBuildPara,
@@ -5634,21 +4399,7 @@ VOS_UINT32 PPP_HDLC_HARD_DefBuildInputParaLink
     return VOS_OK;
 }
 
-/************************************************************,*****************
- 函 数 名  : PPP_HDLC_HARD_DefCfgBufReg
- 功能描述  : 配置解封装使用的内存至相关寄存器
- 输入参数  : pstDefBuffInfo    -   解封装使用的内存信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_HDLC_HARD_DefCfgBufReg(HDLC_DEF_BUFF_INFO_STRU *pstDefBuffInfo)
 {
     /* 将封装输入参数链表的起始地址配置给寄存器def_in_lli_addr(0x90) */
@@ -5674,24 +4425,7 @@ VOS_VOID PPP_HDLC_HARD_DefCfgBufReg(HDLC_DEF_BUFF_INFO_STRU *pstDefBuffInfo)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_DefPacket
- 功能描述  : 硬件方式IP类型解封装
- 输入参数  : usPppId    -   PPP实体ID
-             pstLink    -   PPP链路信息
-             pstDataQ   -   PPP数据队列
-             ulDealCnt  -   本次处理数据包个数
- 输出参数  : 参见PPP_HDLC_RESULT_TYPE_ENUM_UINT32
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_HDLC_HARD_DefPacket
 (
     PPP_ID              usPppId,
@@ -5747,24 +4481,7 @@ VOS_UINT32 PPP_HDLC_HARD_DefPacket
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_DefRawData
- 功能描述  : 硬件方式PPP类型解封装
- 输入参数  : usPppId    -   PPP实体ID
-             pstLink    -   PPP链路信息
-             pstDataQ   -   PPP数据队列
-             ulDealCnt  -   本次处理数据包个数
- 输出参数  : 参见PPP_HDLC_RESULT_TYPE_ENUM_UINT32
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_HDLC_HARD_DefRawData
 (
     PPP_ID              usPppId,
@@ -5822,24 +4539,7 @@ VOS_UINT32 PPP_HDLC_HARD_DefRawData
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_FrmUpdateLink
- 功能描述  : 申请一块内存后更新链表相关结构信息
- 输入参数  : ulAllocMemCnt      - 本次申请的内存块个数
-             aulAllocLen        - 记录本次申请的各个内存块的长度
-             papstAllocedMem    - 记录本次申请的各个内存块控制结构指针
-             pstBuildPara       -   构造链表所需的参数
- 输出参数  : pstBuildInfo       -   构造链表的结果信息，保存输入链表长度、节点个数、零拷贝内存指针
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月20日
-    作    者   : c00191211
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_HDLC_HARD_FrmUpdateLink
 (
     VOS_UINT32                      ulAllocMemCnt,
@@ -5898,22 +4598,7 @@ VOS_UINT32 PPP_HDLC_HARD_FrmUpdateLink
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_OutputMemAlloc
- 功能描述  : 封装输出目的空间申请
- 输入参数  : usLen          -   待申请的内存长度
-             pstBuildPara   -   构造链表所需的参数
- 输出参数  : pstBuildInfo   -   构造链表的结果信息，保存输入链表长度、节点个数、零拷贝内存指针
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月20日
-    作    者   : c00191211
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_HDLC_HARD_FrmOutputMemAlloc
 (
     VOS_UINT16                           usLen,
@@ -5972,21 +4657,7 @@ VOS_UINT32 PPP_HDLC_HARD_FrmOutputMemAlloc
 }
 
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_FrmGetProtocol
- 功能描述  : PPP模式下获取待封装数据包协议值
- 输入参数  : pstMem         -   待封装数据包
- 输出参数  : pusProtocol    -   待封装数据包协议值
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月20日
-    作    者   : c00191211
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_HDLC_HARD_FrmGetProtocol
 (
     PPP_ZC_STRU     *pstMem,
@@ -6024,24 +4695,7 @@ VOS_UINT32 PPP_HDLC_HARD_FrmGetProtocol
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_FrmBuildParaLink
- 功能描述  : 检查构造输入输出参数链表相关参数是否合法
- 输入参数  : pstMem     -   待封装数据包
-             ulDataLen  -   待封装数据包长度
-             ucDataType -   待封装数据包类型
-             usProtocol -   待封装数据包协议类型
- 输出参数  : 无
- 返 回 值  : PPP_HDLC_PARA_CHECK_RESULT_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月20日
-    作    者   : c00191211
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 PPP_HDLC_PARA_CHECK_RESULT_ENUM_UINT32 PPP_HDLC_HARD_FrmCheckPara
 (
     PPP_ZC_STRU                 *pstMem,
@@ -6094,21 +4748,7 @@ PPP_HDLC_PARA_CHECK_RESULT_ENUM_UINT32 PPP_HDLC_HARD_FrmCheckPara
     return PPP_HDLC_PARA_CHECK_PASS;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_FrmBuildParaLink
- 功能描述  : 构造输入输出参数链表，并上报链表内存可维可测
- 输入参数  : pstBuildPara   -   构造链表所需的参数
- 输出参数  : pstBuildInfo   -   构造链表的结果信息，保存输入链表长度、节点个数、零拷贝内存指针
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月20日
-    作    者   : c00191211
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_HDLC_HARD_FrmBuildParaLink
 (
  HDLC_PARA_LINK_BUILD_PARA_STRU      *pstBuildPara,
@@ -6225,21 +4865,7 @@ VOS_UINT32 PPP_HDLC_HARD_FrmBuildParaLink
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_FrmCfgBufReg
- 功能描述  : 配置封装使用的内存至相关寄存器
- 输入参数  : pstFrmBuffInfo -   封装使用的内存信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月20日
-    作    者   : c00191211
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_HDLC_HARD_FrmCfgBufReg(HDLC_FRM_BUFF_INFO_STRU *pstFrmBuffInfo)
 {
     /* 将封装输入参数链表的起始地址配置给寄存器frm_in_lli_addr */
@@ -6261,22 +4887,7 @@ VOS_VOID PPP_HDLC_HARD_FrmCfgBufReg(HDLC_FRM_BUFF_INFO_STRU *pstFrmBuffInfo)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_FrmCfgReg
- 功能描述  : IP模式下配置封装相关寄存器
- 输入参数  : pstLink    - PPP链路信息
-             usProtocol - 待封装的协议值
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月20日
-    作    者   : c00191211
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_HDLC_HARD_FrmCfgReg
 (
     struct link        *pstLink,
@@ -6339,22 +4950,7 @@ VOS_VOID PPP_HDLC_HARD_FrmCfgReg
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_FrmCfgReg
- 功能描述  : PPP模式下配置封装相关寄存器
- 输入参数  : pstLink    - PPP链路信息
-             usProtocol - 待封装的协议值
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月20日
-    作    者   : c00191211
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_HDLC_HARD_FrmRawCfgReg
 (
     struct link        *pstLink,
@@ -6438,21 +5034,7 @@ VOS_VOID PPP_HDLC_HARD_FrmRawCfgReg
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_FrmProcValidFram
- 功能描述  : 处理有效帧，并释放剩余内存
- 输入参数  : usPppId        -   PPP实体ID
- 输出参数  : pstBuildInfo   -   构造链表的结果信息，保存输入链表长度、节点个数、零拷贝内存指针
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月20日
-    作    者   : c00191211
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_HDLC_HARD_FrmProcValidFrames
 (
     PPP_ID                               usPppId,
@@ -6585,23 +5167,7 @@ VOS_VOID PPP_HDLC_HARD_FrmProcValidFrames
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_FrmWaitAndProc
- 功能描述  : 等待封装完成，然后处理输出数据,释放多余的目的空间内存
- 输入参数  : ulEnableInterrupt  -   中断是否使能
-             usPppId    -   PPP实体ID
-             pstLink    -   PPP链路信息
- 输出参数  : pstBuildInfo   -   构造链表的结果信息，保存输入链表长度、节点个数、零拷贝内存指针
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月20日
-    作    者   : c00191211
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_HDLC_HARD_FrmWaitAndProc
 (
     VOS_UINT32                           ulEnableInterrupt,
@@ -6636,24 +5202,7 @@ VOS_VOID PPP_HDLC_HARD_FrmWaitAndProc
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_FrmPacket
- 功能描述  : IP模式下行封装处理流程
- 输入参数  : usPppId        -   PPP实体ID
-             usProtocol     -   待封装协议
-             pstLink        -   PPP链路信息
-             pstDataQ       -   PPP数据队列
- 输出参数  : *pulDealCurCnt  -  指向当前处理的PPP队列中的结点个数
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月20日
-    作    者   : c00191211
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_HDLC_HARD_FrmPacket
 (
     PPP_ID              usPppId,
@@ -6715,24 +5264,7 @@ VOS_UINT32 PPP_HDLC_HARD_FrmPacket
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_FrmRawPacket
- 功能描述  : PPP模式下行封装处理流程
- 输入参数  : usPppId        -   PPP实体ID
-             usProtocol     -   待封装数据包协议
-             pstLink        -   PPP链路信息
-             pstDataQ       -   PPP数据队列
- 输出参数  : *pulDealCurCnt  -  指向当前处理的PPP队列中的结点个数
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月20日
-    作    者   : c00191211
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_HDLC_HARD_FrmRawData
 (
     PPP_ID              usPppId,
@@ -6794,24 +5326,7 @@ VOS_UINT32 PPP_HDLC_HARD_FrmRawData
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_PROC_FUNC
- 功能描述  : 硬件HDLC处理函数，在创建PPP实体的时候，根据需要可以灵活地将
-             软件或硬件的实现与该实体关联
- 输入参数  : usPppId    -   PPP实体ID
-             pstLink    -   PPP链路信息
-             pstDataQ   -   PPP数据队列
- 输出参数  :
- 返 回 值  : PPP_HDLC_RESULT_TYPE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 PPP_HDLC_RESULT_TYPE_ENUM_UINT32 PPP_HDLC_HARD_ProcData
 (
     PPP_ID              usPppId,
@@ -6915,23 +5430,7 @@ PPP_HDLC_RESULT_TYPE_ENUM_UINT32 PPP_HDLC_HARD_ProcData
     return PPP_HDLC_RESULT_COMM_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_SendAsFrmPacketMsg
- 功能描述  : 消息发送函数
- 输入参数  : usPppId        -- PPP实体ID
-             usProtocol     -- 待封装协议值
-             pstMem         -- 待封装数据包
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_HDLC_HARD_SendAsFrmPacketMsg
 (
     VOS_UINT16       usPppId,
@@ -6978,23 +5477,7 @@ VOS_UINT32 PPP_HDLC_HARD_SendAsFrmPacketMsg
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_ProcProtocolPacket
- 功能描述  : 当做下行封装处理
- 输入参数  : usPppId        -- PPP实体ID
-             usProtocol     -- 待封装协议值
-             pstMem         -- 待封装数据包
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_HDLC_HARD_ProcAsFrmPacket
 (
     VOS_UINT16       usPppId,
@@ -7040,24 +5523,7 @@ VOS_VOID PPP_HDLC_HARD_ProcAsFrmPacket
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_HARD_ProcProtocolPacket
- 功能描述  : 硬件封装PPP协议栈输出的协议包
- 输入参数  : pstLink    -   PPP链路信息
-             pstMbuf    -   PPP协议栈输出的协议包
-             ulPri      -   优先级
-             usProto    -   数据包对应的协议
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_HDLC_HARD_ProcProtocolPacket
 (
     struct link     *pstLink,
@@ -7108,63 +5574,19 @@ VOS_VOID PPP_HDLC_HARD_ProcProtocolPacket
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_PHY_TO_VIRT
- 功能描述  : 将PPP中的物理地址转换为虚地址
- 输入参数  : unsigned int ulPAddr   需要转换的物理地址
-             g_ulPppPhyAddr         PPP物理地址基地址
- 输出参数  : 无
- 返 回 值  : 对应的虚地址
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月25日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_PHY_TO_VIRT(unsigned int ulPAddr)
 {
     return (VOS_UINT32)phys_to_virt(ulPAddr);
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_VIRT_TO_PHY
- 功能描述  : 将PPP中的虚地址转换为物理地址
- 输入参数  : VOS_UINT_PTR ulVAddr   需要转换的虚地址
-             g_ulPppVirtAddr        PPP虚地址基地址
- 输出参数  : 无
- 返 回 值  : 对应的物理地址
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月25日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT_PTR PPP_VIRT_TO_PHY(VOS_UINT_PTR ulVAddr)
 {
     return virt_to_phys((void *)ulVAddr);
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_NODE_PHY_TO_VIRT
- 功能描述  : 将PPP中封装解封装的物理地址转换为虚地址
- 输入参数  : unsigned int ulPAddr   需要转换的物理地址
- 输出参数  : 无
- 返 回 值  : 对应的虚地址
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年08月14日
-    作    者   : g00178567
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_HDLC_NODE_PHY_TO_VIRT(unsigned int ulPAddr)
 {
     if ((ulPAddr >= g_ulPppPhyAddr) && (ulPAddr < (g_ulPppPhyAddr + TTF_HDLC_MASTER_LINK_TOTAL_LEN)))
@@ -7179,21 +5601,7 @@ VOS_UINT32 PPP_HDLC_NODE_PHY_TO_VIRT(unsigned int ulPAddr)
 }
 
 
-/*****************************************************************************
- 函 数 名  : PPP_HDLC_NODE_VIRT_TO_PHY
- 功能描述  : 将PPP中封装解封装的虚地址转换为物理地址
- 输入参数  : unsigned int ulVAddr   需要转换的虚地址
- 输出参数  : 无
- 返 回 值  : 对应的物理地址
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年08月14日
-    作    者   : g00178567
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_HDLC_NODE_VIRT_TO_PHY(unsigned int ulVAddr)
 {
     if ((ulVAddr >= g_ulPppVirtAddr) && (ulVAddr < (g_ulPppVirtAddr + TTF_HDLC_MASTER_LINK_TOTAL_LEN)))

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : BST_DSPP_AppLayer.cpp
-  版 本 号   : 初稿
-  作    者   : d00173029
-  生成日期   :
-  最近修改   :
-  功能描述   : DSPP 协议的APPLayer 类文件
-  函数列表   :
-
-  修改历史   :
-  1.日    期 : 2014年04月16日
-    作    者 : d00173029
-    修改内容 : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -38,61 +21,20 @@
   3 函数实现
 ******************************************************************************/
 
-/***************************************************************
- 函 数 名   : BST_DSPP_CAppDlVa
- 功能描述   : BST_DSPP_CAppDlVa类的构造函数
- 输入参数   : BST_VOID
- 输出参数   : 无
- 返 回 值   : BST_VOID
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2014年04月16日
-   作    者 : d00173029
-   修改内容 : 创建文件
-***************************************************************/
 BST_DSPP_CAppDlVa::BST_DSPP_CAppDlVa( BST_VOID )
     : BST_DSPP_CDlLayerBase( BST_DSPP_LAYER_APP, BST_DSPP_VER_A )
 {
     m_pcTaskManager = BST_SRV_CTaskMng::GetInstance ();
 }
 
-/***************************************************************
- 函 数 名   : ~BST_DSPP_CAppDlVa
- 功能描述   : BST_DSPP_CAppDlVa类的析构函数
- 输入参数   : BST_VOID
- 输出参数   : 无
- 返 回 值   : BST_VOID
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2014年04月16日
-   作    者 : d00173029
-   修改内容 : 创建文件
-***************************************************************/
 BST_DSPP_CAppDlVa::~BST_DSPP_CAppDlVa( BST_VOID )
 {
     m_pcTaskManager                     = BST_NULL_PTR;
 }
 
-/***************************************************************
- 函 数 名   : ParseHeadInfo
- 功能描述   : 解析包头信息
- 输入参数   : pstHead: 包头结构体指针
-              pucData: 数据段起始指针
-              usLength: 数据段长度
- 输出参数   : 无
- 返 回 值   : BST_ERR_ENUM_UINT8
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2014年04月16日
-   作    者 : d00173029
-   修改内容 : 创建文件
-***************************************************************/
 BST_ERR_ENUM_UINT8  BST_DSPP_CAppDlVa::ParseHeadInfo(
     BST_DSPP_HEAD_STRU   *const pstHead,
     BST_UINT8 const      *pucData,
@@ -101,27 +43,7 @@ BST_ERR_ENUM_UINT8  BST_DSPP_CAppDlVa::ParseHeadInfo(
     return BST_NO_ERROR_MSG;
 }
 
-/***************************************************************
- 函 数 名   : ReadOut
- 功能描述   : 从数据库或者应用程序读取参数值
- 输入参数   :
-    BST_DSPP_OBJTADDR_T     usObjtAddr,     操作对象类型
-    BST_DSPP_OFSTADDR_T     usOfstAddr,     操作对象偏移地址
-    BST_UINT8              *pucSrcBuff,     保存PID信息的源缓冲
-    BST_UINT8              *pucDstBuff,     读出信息的目标缓冲
-    BST_UINT16              usSrcLen        原缓冲区长度
-    BST_UINT16              usDstLen        目标缓冲区长度
 
- 输出参数   : 无
- 返 回 值   : 实际获取长度
- 被调函数   :
- 调用函数   : config
-
- 修改历史   :
- 1.日    期 : 2014年04月16日
-   作    者 : d00173029
-   修改内容 : 创建文件
-***************************************************************/
 BST_UINT16 BST_DSPP_CAppDlVa::ReadOut(
     BST_DSPP_OBJTADDR_T     usObjtAddr,
     BST_DSPP_OFSTADDR_T     usOfstAddr,
@@ -187,22 +109,7 @@ BST_UINT16 BST_DSPP_CAppDlVa::ReadOut(
     return usResBufCnt;
 }
 
-/***************************************************************
- 函 数 名   : Inquire
- 功能描述   : 从modem读取配置信息
- 输入参数   : usObjtAddr: 代理类型(Email/HeartBeat/MainTask)
-              usOfstAddr: task ID, modem具体任务
-              pstRxHeadInfo: 包头结构体指针
- 输出参数   : 无
- 返 回 值   : BST_ERR_ENUM_UINT8
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2014年04月16日
-   作    者 : d00173029
-   修改内容 : 创建文件
-***************************************************************/
 BST_ERR_ENUM_UINT8  BST_DSPP_CAppDlVa::Inquire(
     BST_DSPP_OBJTADDR_T    usObjtAddr,
     BST_DSPP_OFSTADDR_T    usOfstAddr,
@@ -306,22 +213,7 @@ BST_ERR_ENUM_UINT8  BST_DSPP_CAppDlVa::Inquire(
     return BST_NO_ERROR_MSG;
 }
 
-/***************************************************************
- 函 数 名   : Config
- 功能描述   : 配置DSPP下发的数据包到协议适配层
- 输入参数   : usObjtAddr: 代理类型(Email/HeartBeat/MainTask)
-              usOfstAddr: task ID, modem具体任务
-              pstRxHeadInfo: 包头结构体指针
- 输出参数   : 无
- 返 回 值   : BST_ERR_ENUM_UINT8
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2014年04月16日
-   作    者 : d00173029
-   修改内容 : 创建文件
-***************************************************************/
 BST_ERR_ENUM_UINT8  BST_DSPP_CAppDlVa::Config(
     BST_DSPP_OBJTADDR_T usObjtAddr,
     BST_DSPP_OFSTADDR_T usOfstAddr,
@@ -422,22 +314,7 @@ BST_ERR_ENUM_UINT8  BST_DSPP_CAppDlVa::Config(
     return ( ucRtnVal );
 }
 
-/***************************************************************
- 函 数 名   : Assign
- 功能描述   : 为新任务分配线程资源
- 输入参数   : pstRxHeadInfo:    包头结构体指针
-           **ppstMbox：          指向邮箱地址的指针
-              usObjtAddr: 代理类型(Email/HeartBeat/MainTask)
- 输出参数   : 无
- 返 回 值   : BST_ERR_ENUM_UINT8
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2014年04月16日
-   作    者 : d00173029
-   修改内容 : 创建文件
-***************************************************************/
  BST_ERR_ENUM_UINT8 BST_DSPP_CAppDlVa::Assign(
     BST_DSPP_HEAD_STRU     *const pstRxHeadInfo,
     BST_OS_MBX_T          **ppstMbox )
@@ -479,21 +356,7 @@ BST_ERR_ENUM_UINT8  BST_DSPP_CAppDlVa::Config(
     pstRxHeadInfo->enApVer              = BST_DSPP_VER_VOID;
     return ( BST_NO_ERROR_MSG );
 }
-/***************************************************************
- 函 数 名   : Remove
- 功能描述   : 删除代理
- 输入参数   : usObjtAddr: 代理类型(Email/HeartBeat/MainTask)
-              usOfstAddr: task ID, modem具体任务
- 输出参数   : 无
- 返 回 值   : BST_ERR_ENUM_UINT8
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2014年04月16日
-   作    者 : d00173029
-   修改内容 : 创建文件
-***************************************************************/
 BST_ERR_ENUM_UINT8  BST_DSPP_CAppDlVa::Remove(
     BST_DSPP_OBJTADDR_T usObjtAddr,
     BST_DSPP_OFSTADDR_T usOfstAddr )
@@ -510,24 +373,7 @@ BST_ERR_ENUM_UINT8  BST_DSPP_CAppDlVa::Remove(
     return ( m_pcTaskManager->Remove ( usObjtAddr, usOfstAddr ) );
 }
 
-/***************************************************************
- 函 数 名   : ProcAction
- 功能描述   : 根据解析的ACTION类型，分散调用各入口
- 输入参数   :
-    BST_DSPP_HEAD_STRU     *const pstRxHeadInfo,    DSPP格式接收头
-    BST_DSPP_OFSTADDR_T     usOfstAddr,            类型名称
-    BST_DSPP_OBJTADDR_T     usObjtAddr              编号名称
 
- 输出参数   : 无
- 返 回 值   : BST_ERR_ENUM_UINT8
- 被调函数   :
- 调用函数   :
-
- 修改历史   :
- 1.日    期 : 2014年04月16日
-   作    者 : d00173029
-   修改内容 : 创建文件
-***************************************************************/
 BST_ERR_ENUM_UINT8  BST_DSPP_CAppDlVa::ProcAction(
     BST_DSPP_HEAD_STRU             *const pstRxHeadInfo,
     BST_DSPP_OFSTADDR_T             usOfstAddr,
@@ -648,21 +494,7 @@ BST_ERR_ENUM_UINT8  BST_DSPP_CAppDlVa::ProcAction(
     enRtnVal                        = pcUlProc->Response( pstRxHeadInfo, enRtnVal );
     return enRtnVal;
 }
-/***************************************************************
- 函 数 名   : UnpackInternal
- 功能描述   : 解析数据包
- 输入参数   : pstRxHeadInfo: 包头结构体指针
-              penNextVer: 下一个协议版本
- 输出参数   : 无
- 返 回 值   : BST_ERR_ENUM_UINT8
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2014年06月04日
-   作    者 : d00173029
-   修改内容 : 创建文件
-***************************************************************/
 /*lint -e438*/
 BST_ERR_ENUM_UINT8  BST_DSPP_CAppDlVa::UnpackInternal(
     BST_DSPP_HEAD_STRU         *const pstRxHeadInfo,
@@ -733,40 +565,14 @@ BST_ERR_ENUM_UINT8  BST_DSPP_CAppDlVa::UnpackInternal(
     return enRtnVal;
 }
 /*lint +e438*/
-/***************************************************************
- 函 数 名   : GetNextStrategy
- 功能描述   : 获取下一层解析策略
- 输入参数   : enNextVer: 下一个协议版本
- 输出参数   : 无
- 返 回 值   : BST_DSPP_CDlLayerBase类指针
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2014年06月04日
-   作    者 : d00173029
-   修改内容 : 创建文件
-***************************************************************/
 BST_DSPP_CDlLayerBase *BST_DSPP_CAppDlVa::GetNextStrategy(
     BST_DSPP_VERION_ENUM_UINT8 enNextVer )
 {
     return BST_NULL_PTR;
 }
 
-/***************************************************************
- 函 数 名   : GetPointer
- 功能描述   : 获取BST_DSPP_CAppDlVa类指针
- 输入参数   : BST_VOID
- 输出参数   : 无
- 返 回 值   : BST_DSPP_CAppDlVa类指针
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2014年06月04日
-   作    者 : d00173029
-   修改内容 : 创建文件
-***************************************************************/
 BST_DSPP_CAppDlVa *BST_DSPP_CAppDlVa::GetInstance( BST_VOID )
 {
     static BST_DSPP_CAppDlVa   *s_pInstance = BST_NULL_PTR;
@@ -778,21 +584,7 @@ BST_DSPP_CAppDlVa *BST_DSPP_CAppDlVa::GetInstance( BST_VOID )
     return s_pInstance;
 }
 
-/***************************************************************
- 函 数 名   : Response
- 功能描述   : 应答
- 输入参数   : pstOrigHeadInfo: 包头结构体指针
-              enErrMsg: 需要应答返回的错误信息
- 输出参数   : 无
- 返 回 值   : BST_ERR_ENUM_UINT8
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2014年06月04日
-   作    者 : d00173029
-   修改内容 : 创建文件
-***************************************************************/
 BST_ERR_ENUM_UINT8  BST_DSPP_CAppUlVa::Response(
     BST_DSPP_HEAD_STRU   *const pstOrigHeadInfo,
     BST_ERR_ENUM_UINT8    enErrMsg )
@@ -878,24 +670,7 @@ BST_ERR_ENUM_UINT8  BST_DSPP_CAppUlVa::Response(
     return ( Pack ( pstOrigHeadInfo ) );
 }
 
-/***************************************************************
- 函 数 名   : Report
- 功能描述   : 报告命令消息
- 输入参数   : usObjtAdd: 代理类型(Email/HeartBeat/MainTask)
-              usOfstAdd: task ID, modem具体任务
-              usCmdLen: 命令长度
-              enCmdId: 命令ID
-              pucCmdData: 命令数据段头指针
- 输出参数   : 无
- 返 回 值   : BST_ERR_ENUM_UINT8
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2014年06月04日
-   作    者 : d00173029
-   修改内容 : 创建文件
-***************************************************************/
 BST_ERR_ENUM_UINT8  BST_DSPP_CAppUlVa::Report(
     BST_DSPP_OBJTADDR_T      usObjtAddr,
     BST_DSPP_OFSTADDR_T      usOfstAddr,
@@ -961,22 +736,7 @@ BST_ERR_ENUM_UINT8  BST_DSPP_CAppUlVa::Report(
 
     return ( Pack ( &stTxHeadInfo ) );
 }
-/***************************************************************
- 函 数 名   : Report
- 功能描述   : 报告错误消息
- 输入参数   : usObjtAddr: 代理类型(Email/HeartBeat/MainTask)
-              usOfstAddr: task ID, modem具体任务
-              enErr: 要报告的错误信息
- 输出参数   : 无
- 返 回 值   : BST_ERR_ENUM_UINT8
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2014年06月04日
-   作    者 : d00173029
-   修改内容 : 创建文件
-***************************************************************/
 BST_ERR_ENUM_UINT8  BST_DSPP_CAppUlVa::Report(
     BST_DSPP_OBJTADDR_T usObjtAddr,
     BST_DSPP_OFSTADDR_T usOfstAddr,
@@ -1014,20 +774,7 @@ BST_ERR_ENUM_UINT8  BST_DSPP_CAppUlVa::Report(
     return ( Pack ( &stTxHeadInfo ) );
 }
 
-/***************************************************************
- 函 数 名   : GetPointer
- 功能描述   : 获取BST_DSPP_CAppUlVa类指针
- 输入参数   : BST_VOID
- 输出参数   : 无
- 返 回 值   : BST_DSPP_CAppUlVa类指针
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2014年06月04日
-   作    者 : d00173029
-   修改内容 : 创建文件
-***************************************************************/
 BST_DSPP_CAppUlVa *BST_DSPP_CAppUlVa::GetInstance ( BST_VOID )
 {
     static BST_DSPP_CAppUlVa           *s_pInstance = BST_NULL_PTR;
@@ -1040,57 +787,18 @@ BST_DSPP_CAppUlVa *BST_DSPP_CAppUlVa::GetInstance ( BST_VOID )
     return s_pInstance;
 }
 
-/***************************************************************
- 函 数 名   : BST_DSPP_CAppUlVa
- 功能描述   : BST_DSPP_CAppUlVa类的构造函数
- 输入参数   : BST_VOID
- 输出参数   : 无
- 返 回 值   : BST_VOID
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2014年06月04日
-   作    者 : d00173029
-   修改内容 : 创建文件
-***************************************************************/
 BST_DSPP_CAppUlVa::BST_DSPP_CAppUlVa ( BST_VOID )
     : BST_DSPP_CUlLayerBase ( BST_DSPP_LAYER_APP, BST_DSPP_VER_A )
 {
 
 }
-/***************************************************************
- 函 数 名   : ~BST_DSPP_CAppUlVa
- 功能描述   : BST_DSPP_CAppUlVa类的析构函数
- 输入参数   : BST_VOID
- 输出参数   : 无
- 返 回 值   : BST_VOID
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2014年06月04日
-   作    者 : d00173029
-   修改内容 : 创建文件
-***************************************************************/
 BST_DSPP_CAppUlVa::~BST_DSPP_CAppUlVa ( BST_VOID )
 {
 
 }
-/***************************************************************
- 函 数 名   : PackInternal
- 功能描述   : 打包数据包
- 输入参数   : pstTxHeadInfo: 包头结构体指针
- 输出参数   : penNextVer: 下一个协议版本
- 返 回 值   : BST_ERR_ENUM_UINT8
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2014年06月04日
-   作    者 : d00173029
-   修改内容 : 创建文件
-***************************************************************/
 BST_ERR_ENUM_UINT8  BST_DSPP_CAppUlVa::PackInternal(
     BST_DSPP_HEAD_STRU         *const pstTxHeadInfo,
     BST_DSPP_VERION_ENUM_UINT8 *const penNextVer )
@@ -1106,20 +814,7 @@ BST_ERR_ENUM_UINT8  BST_DSPP_CAppUlVa::PackInternal(
     return BST_NO_ERROR_MSG;
 }
 
-/***************************************************************
- 函 数 名   : GetNextStrategy
- 功能描述   : 获取下一层解析策略
- 输入参数   : enNextVer: 下一个协议版本
- 输出参数   : 无
- 返 回 值   : BST_DSPP_CUlLayerBase类指针
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2014年06月04日
-   作    者 : d00173029
-   修改内容 : 创建文件
-***************************************************************/
 BST_DSPP_CUlLayerBase *BST_DSPP_CAppUlVa::GetNextStrategy(
     BST_DSPP_VERION_ENUM_UINT8 enNextVer )
 {
@@ -1135,78 +830,24 @@ BST_DSPP_CUlLayerBase *BST_DSPP_CAppUlVa::GetNextStrategy(
     }
     return BST_NULL_PTR;
 }
-/***************************************************************
- 函 数 名   : BST_PbufStatusCallBack
- 功能描述   : pbuf内存状态回调函数
- 输入参数   : usStatus   0   内存不足
-                        1....内存充足
- 输出参数   : 无
- 返 回 值   : 无
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2015年08月05日
-   作    者 : z00128442
-   修改内容 : 新增函数
-***************************************************************/
 BST_VOID BST_PbufStatusCallBack( BST_UINT16 usStatus )
 {
     BST_DSPP_CAppUlVc::GetInstance()->ReportBuffer( usStatus );
 }
 
-/***************************************************************
- 函 数 名   : BST_DSPP_CAppDlVc
- 功能描述   : BST_DSPP_CAppDlVc类的构造函数
- 输入参数   : BST_VOID
- 输出参数   : 无
- 返 回 值   : BST_VOID
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2014年04月16日
-   作    者 : d00173029
-   修改内容 : 创建文件
-***************************************************************/
 BST_DSPP_CAppDlVc::BST_DSPP_CAppDlVc( BST_VOID )
     : BST_DSPP_CDlLayerBase( BST_DSPP_LAYER_APP, BST_DSPP_VER_C )
 {
 }
 
-/***************************************************************
- 函 数 名   : ~BST_DSPP_CAppDlVc
- 功能描述   : BST_DSPP_CAppDlVc类的析构函数
- 输入参数   : BST_VOID
- 输出参数   : 无
- 返 回 值   : BST_VOID
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2014年04月16日
-   作    者 : d00173029
-   修改内容 : 创建文件
-***************************************************************/
 BST_DSPP_CAppDlVc::~BST_DSPP_CAppDlVc( BST_VOID )
 {
 }
 
-/***************************************************************
- 函 数 名   : UnpackInternal
- 功能描述   : 解析数据包
- 输入参数   : pstRxHeadInfo: 包头结构体指针
-              penNextVer: 下一个协议版本
- 输出参数   : 无
- 返 回 值   : BST_ERR_ENUM_UINT8
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2015年05月05日
-   作    者 : d00173029
-   修改内容 : 创建文件
-***************************************************************/
 /*lint -e438*/
 BST_ERR_ENUM_UINT8  BST_DSPP_CAppDlVc::UnpackInternal(
     BST_DSPP_HEAD_STRU         *const pstRxHeadInfo,
@@ -1274,21 +915,7 @@ err_out:
 /*lint +e438*/
 
 
-/***************************************************************
- 函 数 名   : ParseHeadInfo
- 功能描述   : 解析包头信息
- 输入参数   : BST_DSPP_HEAD_STRU     *const pstDsppHead, DSPP头
-              BST_SRV_CHNL_HEAD_STRU *pstChnHead    信道信息头
- 输出参数   : 无
- 返 回 值   : BST_ERR_ENUM_UINT8
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2015年04月16日
-   作    者 : d00173029
-   修改内容 : 创建文件
-***************************************************************/
 BST_OS_MBX_T  *BST_DSPP_CAppDlVc::ParseHeadInfo(
     BST_DSPP_HEAD_STRU     *const pstDsppHead,
     BST_SRV_CHNL_HEAD_STRU *pstChnHead )
@@ -1421,40 +1048,14 @@ BST_OS_MBX_T  *BST_DSPP_CAppDlVc::ParseHeadInfo(
     return pstRcver;
 }
 
-/***************************************************************
- 函 数 名   : GetNextStrategy
- 功能描述   : 获取下一层解析策略
- 输入参数   : enNextVer: 下一个协议版本
- 输出参数   : 无
- 返 回 值   : BST_DSPP_CDlLayerBase类指针
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2015年05月05日
-   作    者 : d00173029
-   修改内容 : 创建文件
-***************************************************************/
 BST_DSPP_CDlLayerBase *BST_DSPP_CAppDlVc::GetNextStrategy(
     BST_DSPP_VERION_ENUM_UINT8 enNextVer )
 {
     return BST_NULL_PTR;
 }
 
-/***************************************************************
- 函 数 名   : GetPointer
- 功能描述   : 获取BST_DSPP_CAppDlVc类指针
- 输入参数   : BST_VOID
- 输出参数   : 无
- 返 回 值   : BST_DSPP_CAppDlVc类指针
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2015年05月05日
-   作    者 : d00173029
-   修改内容 : 创建文件
-***************************************************************/
 BST_DSPP_CAppDlVc *BST_DSPP_CAppDlVc::GetInstance( BST_VOID )
 {
     static BST_DSPP_CAppDlVc   *s_pInstance = BST_NULL_PTR;
@@ -1466,23 +1067,7 @@ BST_DSPP_CAppDlVc *BST_DSPP_CAppDlVc::GetInstance( BST_VOID )
     return s_pInstance;
 }
 
-/***************************************************************
- 函 数 名   : ProcAction
- 功能描述   : 根据解析的ACTION类型，分散调用各入口
- 输入参数   :
-    BST_SRV_CHNL_HEAD_STRU *const pstChnHead,   链路分级数据入口
 
- 输出参数   : 无
- 返 回 值   : BST_ERR_ENUM_UINT8
- 被调函数   :
- 调用函数   :
-
- 修改历史   :
- 修改历史   :
- 1.日    期 : 2015年05月05日
-   作    者 : d00173029
-   修改内容 : 创建文件
-***************************************************************/
 BST_ERR_ENUM_UINT8 BST_DSPP_CAppDlVc::ProcAction(
     BST_SRV_CHNL_HEAD_STRU     *pstChnHead )
 {
@@ -1515,24 +1100,7 @@ BST_ERR_ENUM_UINT8 BST_DSPP_CAppDlVc::ProcAction(
     return enRtnVal;
 }
 
-/***************************************************************
- 函 数 名   : Report(以任务为对象)
- 功能描述   : 报告命令消息
- 输入参数   : enCmdId,      AP_C命令ID
-              ulLinkId0     LinkId Main部分
-              ulLinkId1     LinkId Aux部分
-              usObjtAddr    对应CP_A版本的ProcId
-              usOfstAddr    对应CP_A版本的TaskId
- 输出参数   : 无
- 返 回 值   : BST_ERR_ENUM_UINT8
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2014年05月11日
-   作    者 : d00173029
-   修改内容 : 创建文件
-***************************************************************/
 BST_ERR_ENUM_UINT8  BST_DSPP_CAppUlVc::Report(
     BST_DSPP_FLG_CMD_ENUM_UINT8 enCmdId,
     BST_DSPP_LINKID1_T          ulLinkId0,
@@ -1623,24 +1191,7 @@ BST_ERR_ENUM_UINT8  BST_DSPP_CAppUlVc::Report(
     return ( Pack ( &stTxHeadInfo ) );
 }
 
-/***************************************************************
- 函 数 名   : Report(以任务为对象)
- 功能描述   : 报告命令消息
- 输入参数   : enCmdId,      AP_C命令ID
-              ulLinkId0     LinkId Main部分
-              ulLinkId1     LinkId Aux部分
-              usObjtAddr    对应CP_A版本的ProcId
-              usOfstAddr    对应CP_A版本的TaskId
- 输出参数   : 无
- 返 回 值   : BST_ERR_ENUM_UINT8
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2014年05月11日
-   作    者 : d00173029
-   修改内容 : 创建文件
-***************************************************************/
 BST_ERR_ENUM_UINT8  BST_DSPP_CAppUlVc::Report(
     BST_DSPP_FLG_CMD_ENUM_UINT8 enCmdId,
     BST_DSPP_OBJTADDR_T         usObjtAddr,
@@ -1651,22 +1202,7 @@ BST_ERR_ENUM_UINT8  BST_DSPP_CAppUlVc::Report(
                    usObjtAddr, usOfstAddr );
 
 }
-/***************************************************************
- 函 数 名   : Report(以LinkId为对象)
- 功能描述   : 报告错误消息
- 输入参数   : enCmdId,      AP_C命令ID
-              ulLinkId0     LinkId Main部分
-              ulLinkId1     LinkId Aux部分
- 输出参数   : 无
- 返 回 值   : BST_ERR_ENUM_UINT8
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2014年05月11日
-   作    者 : d00173029
-   修改内容 : 创建文件
-***************************************************************/
 BST_ERR_ENUM_UINT8  BST_DSPP_CAppUlVc::Report(
     BST_DSPP_FLG_CMD_ENUM_UINT8 enCmdId,
     BST_DSPP_LINKID1_T          ulLinkId0,
@@ -1676,20 +1212,7 @@ BST_ERR_ENUM_UINT8  BST_DSPP_CAppUlVc::Report(
                    BST_DSPP_INVALID_ADDR,
                    BST_DSPP_INVALID_ADDR );
 }
-/*****************************************************************************
- 函 数 名   : ReportBuffer
- 功能描述   : 打包数据包
- 输入参数   : ulBufferNumber: 上报剩余buffer数量
- 输出参数   : 无
- 返 回 值   : 无
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2015年05月11日
-   作    者 : z00220931
-   修改内容 : 创建函数
-*****************************************************************************/
 BST_VOID BST_DSPP_CAppUlVc::ReportBuffer( BST_UINT16 ulBufferStatus )
 {
     BST_DSPP_HEAD_STRU                  stTxHeadInfo;
@@ -1735,22 +1258,7 @@ BST_VOID BST_DSPP_CAppUlVc::ReportBuffer( BST_UINT16 ulBufferStatus )
     stTxHeadInfo.stCpVerC.ucPktAddr     = BST_DSPP_FLG_PKTADDR_SINGLE;
     Pack( &stTxHeadInfo );
 }
-/*****************************************************************************
- 函 数 名   : ReportFlow
- 功能描述   : 上报IP型高优先级数据的流量
- 输入参数   : stFlowInfo: 上报流量的结构体
-             ulLinkId0 ： MainLinkID
-             ulLinkId1 ： AuxLinkID
- 输出参数   : 无
- 返 回 值   : 无
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2015年05月11日
-   作    者 : z00220931
-   修改内容 : 创建函数
-*****************************************************************************/
 BST_VOID BST_DSPP_CAppUlVc::ReportFlow(
     BST_IP_TRAFFIC_FLOW_STRU   *pstFlowInfo,
     BST_DSPP_LINKID1_T          ulLinkId0,
@@ -1805,20 +1313,7 @@ BST_VOID BST_DSPP_CAppUlVc::ReportFlow(
     Pack( &stTxHeadInfo );
 }
 
-/***************************************************************
- 函 数 名   : GetInstance
- 功能描述   : 获取BST_DSPP_CAppUlVc类指针
- 输入参数   : BST_VOID
- 输出参数   : 无
- 返 回 值   : BST_DSPP_CAppUlVc类指针
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2014年05月11日
-   作    者 : d00173029
-   修改内容 : 创建文件
-***************************************************************/
 BST_DSPP_CAppUlVc *BST_DSPP_CAppUlVc::GetInstance ( BST_VOID )
 {
     static BST_DSPP_CAppUlVc           *s_pInstance = BST_NULL_PTR;
@@ -1831,58 +1326,19 @@ BST_DSPP_CAppUlVc *BST_DSPP_CAppUlVc::GetInstance ( BST_VOID )
     return s_pInstance;
 }
 
-/***************************************************************
- 函 数 名   : BST_DSPP_CAppUlVc
- 功能描述   : BST_DSPP_CAppUlVc类的构造函数
- 输入参数   : BST_VOID
- 输出参数   : 无
- 返 回 值   : BST_VOID
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2014年05月11日
-   作    者 : d00173029
-   修改内容 : 创建文件
-***************************************************************/
 BST_DSPP_CAppUlVc::BST_DSPP_CAppUlVc ( BST_VOID )
     : BST_DSPP_CUlLayerBase ( BST_DSPP_LAYER_APP, BST_DSPP_VER_A )
 {
     /*注册pbuf类型内存状态回调函数*/
     BST_OS_RegisgerMemStatus(BST_MEM_TYPE_PBUF,BST_PbufStatusCallBack);
 }
-/***************************************************************
- 函 数 名   : ~BST_DSPP_CAppUlVc
- 功能描述   : BST_DSPP_CAppUlVc类的析构函数
- 输入参数   : BST_VOID
- 输出参数   : 无
- 返 回 值   : BST_VOID
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2014年05月11日
-   作    者 : d00173029
-   修改内容 : 创建文件
-***************************************************************/
 BST_DSPP_CAppUlVc::~BST_DSPP_CAppUlVc ( BST_VOID )
 {
 
 }
-/***************************************************************
- 函 数 名   : PackInternal
- 功能描述   : 打包数据包
- 输入参数   : pstTxHeadInfo: 包头结构体指针
- 输出参数   : penNextVer: 下一个协议版本
- 返 回 值   : BST_ERR_ENUM_UINT8
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2014年05月11日
-   作    者 : d00173029
-   修改内容 : 创建文件
-***************************************************************/
 BST_ERR_ENUM_UINT8  BST_DSPP_CAppUlVc::PackInternal(
     BST_DSPP_HEAD_STRU         *const pstTxHeadInfo,
     BST_DSPP_VERION_ENUM_UINT8 *const penNextVer )
@@ -1898,20 +1354,7 @@ BST_ERR_ENUM_UINT8  BST_DSPP_CAppUlVc::PackInternal(
     return BST_NO_ERROR_MSG;
 }
 
-/***************************************************************
- 函 数 名   : GetNextStrategy
- 功能描述   : 获取下一层解析策略
- 输入参数   : enNextVer: 下一个协议版本
- 输出参数   : 无
- 返 回 值   : BST_DSPP_CUlLayerBase类指针
- 被调函数   :
- 调用函数   :
 
- 修改历史   :
- 1.日    期 : 2014年05月11日
-   作    者 : d00173029
-   修改内容 : 创建文件
-***************************************************************/
 BST_DSPP_CUlLayerBase *BST_DSPP_CAppUlVc::GetNextStrategy(
     BST_DSPP_VERION_ENUM_UINT8 enNextVer )
 {

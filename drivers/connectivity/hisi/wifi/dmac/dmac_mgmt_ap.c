@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : dmac_mgmt_ap.c
-  版 本 号   : 初稿
-  作    者   : zhangheng
-  生成日期   : 2013年6月7日
-  最近修改   :
-  功能描述   : AP侧管理帧处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年6月7日
-    作    者   : zhangheng
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -51,23 +34,7 @@ extern "C" {
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : dmac_mgmt_encap_probe_response
- 功能描述  : 封装probe response帧
- 输入参数  : pst_dmac_vap: DMAC vap
-             puc_buffer  : probe response帧内存
-             puc_ra      : 接收地址
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月24日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint16  dmac_mgmt_encap_probe_response(dmac_vap_stru *pst_dmac_vap, oal_netbuf_stru *pst_netbuf, oal_uint8 *puc_ra, oal_bool_enum_uint8 en_is_p2p_req)
 {
     oal_uint8        uc_ie_len = 0;
@@ -278,22 +245,7 @@ oal_uint16  dmac_mgmt_encap_probe_response(dmac_vap_stru *pst_dmac_vap, oal_netb
     return (oal_uint16)(puc_payload_addr - puc_payload_addr_origin + MAC_80211_FRAME_LEN);
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_ap_check_ssid
- 功能描述  : 检查ssid正确性
- 输入参数  : pst_dmac_vap           : dmac vap
-             puc_probe_req_ssid     : 收到关联请求中所含ssid
- 输出参数  : 无
- 返 回 值  : 成功/失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月3日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32 dmac_ap_check_ssid(dmac_vap_stru *pst_dmac_vap, oal_uint8 *puc_probe_req_ssid)
 {
     oal_uint8           uc_prb_req_ssid_len;
@@ -319,12 +271,10 @@ OAL_STATIC oal_uint32 dmac_ap_check_ssid(dmac_vap_stru *pst_dmac_vap, oal_uint8 
         }
     }
 
-    /* begin: DTS2015071604582 GO 接收到probe req 携带ssid 内容为DIRECT- ， 需要回复probe rsp 帧 */
     if (IS_P2P_GO(&pst_dmac_vap->st_vap_base_info) && IS_P2P_WILDCARD_SSID(puc_prb_req_ssid, uc_prb_req_ssid_len))
     {
         return OAL_SUCC;
     }
-    /* end: DTS2015071604582 GO 接收到probe req 携带ssid 内容为DIRECT- ， 需要回复probe rsp 帧 */
 #endif
 
     puc_ssid = pst_dmac_vap->st_vap_base_info.pst_mib_info->st_wlan_mib_sta_config.auc_dot11DesiredSSID;
@@ -353,23 +303,7 @@ OAL_STATIC oal_uint32 dmac_ap_check_ssid(dmac_vap_stru *pst_dmac_vap, oal_uint8 
 
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_ap_check_probe_req
- 功能描述  : 检测probe request帧，判断是否要发probe response帧
- 输入参数  : pst_dmac_vap  : 指向DMAC VAP
-             puc_probe_req : probe request帧帧体
-             puc_bssid     : probe request帧帧头 地址3，bssid
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月24日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_bool_enum_uint8  dmac_ap_check_probe_req(dmac_vap_stru *pst_dmac_vap, oal_uint8 *puc_probe_req, oal_uint8 *puc_bssid)
 {
     if(OAL_SUCC != dmac_ap_check_ssid(pst_dmac_vap, puc_probe_req))
@@ -390,22 +324,7 @@ OAL_STATIC oal_bool_enum_uint8  dmac_ap_check_probe_req(dmac_vap_stru *pst_dmac_
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_ap_up_rx_probe_req
- 功能描述  : AP在UP状态下接收到probe req帧处理
- 输入参数  : pst_dmac_vap: dmac vap
-             pst_netbuf: 接收到的net buffer
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月24日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_ap_up_rx_probe_req(dmac_vap_stru *pst_dmac_vap, oal_netbuf_stru *pst_netbuf)
 {
     oal_netbuf_stru            *pst_mgmt_buf;
@@ -438,7 +357,6 @@ oal_uint32  dmac_ap_up_rx_probe_req(dmac_vap_stru *pst_dmac_vap, oal_netbuf_stru
     if (OAL_PTR_NULL == pst_mgmt_buf)
     {
         OAM_WARNING_LOG0(pst_dmac_vap->st_vap_base_info.uc_vap_id, OAM_SF_SCAN, "{dmac_ap_up_rx_probe_req::pst_mgmt_buf null.}");
-        /* device netbuf 申请不到维测，以后删除， l00324381 20150902 */
         OAL_MEM_INFO_PRINT(OAL_MEM_POOL_ID_NETBUF);
         return OAL_ERR_CODE_PTR_NULL;
     }
@@ -471,21 +389,7 @@ oal_uint32  dmac_ap_up_rx_probe_req(dmac_vap_stru *pst_dmac_vap, oal_netbuf_stru
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_ap_up_rx_generate_chtxt
- 功能描述  : 为接收到的seq = 1 的shared key认证帧弄一个challenge text
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月28日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_ap_up_rx_generate_chtxt(dmac_vap_stru                 *pst_dmac_vap,
                                                     oal_netbuf_stru                *pst_netbuf,
                                                     frw_event_mem_stru             *pst_event_mem)

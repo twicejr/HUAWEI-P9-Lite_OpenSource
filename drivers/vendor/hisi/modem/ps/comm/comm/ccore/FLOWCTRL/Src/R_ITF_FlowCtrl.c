@@ -70,23 +70,7 @@ VOS_UINT32      g_ulRItfFlowCtrlDiscardNum = 20;
    6 函数实现
 ******************************************************************************/
 /*lint -save -e958 */
-/******************************************************************************
- Prototype      : R_ITF_MntnFlowCtrlEvent
- Description    : 流控执行情况可维可测
- Input          : ulFlowCtrlType    -- 流控类型
-                  ulNewLev          -- 该流控类型的最新值
-                  ulFlowCtrlCmd     -- 流控指令，启动或停止
-                  ulResult          -- 流控执行结果
- Output         :
- Return Value   :
- Calls          :
- Called By      :
 
- History        : ---
-  1.Date        : 2011-04-14
-    Author      : l00164359
-    Modification: Created function
-******************************************************************************/
 VOS_VOID R_ITF_MntnFlowCtrlEvent
 (
     R_ITF_FLOW_CTRL_TYPE_ENUM_UINT32 ulFlowCtrlType,
@@ -158,21 +142,7 @@ VOS_VOID R_ITF_TtfMemFreeEvent(VOS_UINT32 ulMemUsedCnt, VOS_UINT32 ulMemUsedSize
 } /* R_ITF_TtfMemFreeEvent */
 
 
-/*****************************************************************************
- 函 数 名  : R_ITF_StartFlowCtrl
- 功能描述  : 启动流控
- 输入参数  : usMsgId - 消息ID
- 输出参数  : 无
- 返 回 值  : 操作成功与否, VOS_OK - 成功, 其它 - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : liukai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 R_ITF_StartFlowCtrl(VOS_RATMODE_ENUM_UINT32 enRateMode)
 {
     FC_SET_FLOWCTRL_IND_STRU           *pstFcSetInd;
@@ -201,21 +171,7 @@ VOS_UINT32 R_ITF_StartFlowCtrl(VOS_RATMODE_ENUM_UINT32 enRateMode)
 }    /* R_ITF_StartFlowCtrl */
 
 
-/*****************************************************************************
- 函 数 名  : R_ITF_FlowCtrlNotify
- 功能描述  : 发送G模和X模流控启停通知消息
- 输入参数  : usMsgId - 消息ID
- 输出参数  : 无
- 返 回 值  : 操作成功与否, VOS_OK - 成功, 其它 - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年02月10日
-    作    者   : t00148005
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 R_ITF_FlowCtrlNotify(VOS_RATMODE_ENUM_UINT32 enRateMode)
 {
     FC_FLOWCTRL_NOTIFY_STRU            *pstFcNotify;
@@ -245,88 +201,28 @@ VOS_UINT32 R_ITF_FlowCtrlNotify(VOS_RATMODE_ENUM_UINT32 enRateMode)
 
 }
 
-/******************************************************************************
- Prototype      : R_ITF_IPSCH_UpdateFlowCtrlCnt
- Description    : 流控统计计数更新
- Input          :
- Output         :
- Return Value   :
- Calls          :
- Called By      :
 
- History        : ---
-  1.Date        : 2011-09-26
-    Author      : g00178567 t00148005
-    Modification: Created function
-  2.Date        : 2012-12-19
-    Author      : c00217042
-    Modification: update function
-******************************************************************************/
 VOS_VOID R_ITF_UpdateFlowCtrlCnt(VOS_VOID)
 {
     g_ulRItfFlowCtrlCnt++;
     return;
 }
 
-/******************************************************************************
- Prototype      : R_ITF_UpdateClearFlowCtrlCnt
- Description    : 解流控统计计数更新
- Input          :
- Output         :
- Return Value   :
- Calls          :
- Called By      :
 
- History        : ---
-  1.Date        : 2016-01-20
-    Author      : c00184031
-    Modification: Created function
-  2.Date        : 2012-12-19
-    Author      : c00217042
-    Modification: update function
-******************************************************************************/
 VOS_VOID R_ITF_UpdateClearFlowCtrlCnt(VOS_VOID)
 {
     g_ulRItfClearCtrlCnt++;
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : R_Itf_FlowctrlGetStatCnt
- 功能描述  : 获取统计流控次数
- 输入参数  : *pulFcStatCnt
- 输出参数  : 无
- 返 回 值  : 操作成功与否, VOS_OK - 成功, 其它 - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月19日
-    作    者   : c00217042
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 R_Itf_FlowctrlGetStatCnt(VOS_UINT32 *pulFcStatCnt)
 {
     *pulFcStatCnt = g_ulRItfFlowCtrlCnt;
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : R_Itf_FlowctrlSetStatCnt
- 功能描述  : 设置统计流控次数
- 输入参数  : pulFcStatCnt
- 输出参数  : 无
- 返 回 值  : 操作成功与否, VOS_OK - 成功, 其它 - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月19日
-    作    者   : c00217042
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 R_Itf_FlowctrlSetStatCnt(VOS_UINT32 pulFcStatCnt)
 {
     g_ulRItfFlowCtrlCnt = pulFcStatCnt;
@@ -334,20 +230,7 @@ VOS_UINT32 R_Itf_FlowctrlSetStatCnt(VOS_UINT32 pulFcStatCnt)
 }
 
 
-/******************************************************************************
- Prototype      : R_ITF_IPSCH_FlowCtrlCntIsOverFlow
- Description    : 判断流控统计计数是否超过拥塞避免门限，超过则重置流控统计计数
- Input          :
- Output         :
- Return Value   :
- Calls          :
- Called By      :
 
- History        : ---
-  1.Date        : 2011-09-26
-    Author      : g00178567 t00148005
-    Modification: Created function
-******************************************************************************/
 VOS_UINT32 R_ITF_FlowCtrlCntIsOverFlow(VOS_VOID)
 {
     VOS_INT32               lLockKey;
@@ -366,21 +249,7 @@ VOS_UINT32 R_ITF_FlowCtrlCntIsOverFlow(VOS_VOID)
     return VOS_NO;
 }
 
-/*****************************************************************************
- 函 数 名  : R_ITF_StopFlowCtrl
- 功能描述  : 停止流控
- 输入参数  : usMsgId - 消息ID
- 输出参数  : 无
- 返 回 值  : 操作成功与否, VOS_OK - 成功, 其它 - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : liukai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 R_ITF_StopFlowCtrl(VOS_RATMODE_ENUM_UINT32 enRateMode)
 {
     FC_STOP_FLOWCTRL_IND_STRU          *pstFcStopInd;
@@ -411,22 +280,7 @@ VOS_UINT32 R_ITF_StopFlowCtrl(VOS_RATMODE_ENUM_UINT32 enRateMode)
 }   /* FC_StopFlowCtrl */
 
 #if 0
-/******************************************************************************
- Prototype      : R_ITF_ExcFlowCtrl
- Description    : 执行流控
- Input          : ulFlowCtrlType    -- 流控类型
-                  ulNewLev          -- 该流控类型的最新值
-                  ulFlowCtrlCmd     -- 流控指令，启动或停止
- Output         :
- Return Value   :
- Calls          :
- Called By      :
 
- History        : ---
-  1.Date        : 2011-04-14
-    Author      : l00164359
-    Modification: Created function
-******************************************************************************/
 VOS_UINT32 R_ITF_ExcFlowCtrl
 (
     R_ITF_FLOW_CTRL_CMD_ENUM_UINT32  ulFlowCtrlCmd,
@@ -468,24 +322,7 @@ VOS_UINT32 R_ITF_ExcFlowCtrl
 }
 #endif
 
-/******************************************************************************
- Prototype      : R_ITF_SetFlowCtrl
- Description    : 根据最新情况，判断是否需要进行流控
- Input          : ulFlowCtrlType    -- 流控类型
-                  ulNewLev          -- 该流控类型的最新值
- Output         :
- Return Value   :
- Calls          :
- Called By      :
 
- History        : ---
-  1.Date        : 2008-04-07
-    Author      : 高财(g45205)
-    Modification: Created function
-  2.Date        : 2011-04-15
-    Author      : l00164359
-    Modification: 重构流控执行函数，增加流控状态标志位设置保护
-******************************************************************************/
 VOS_UINT32 R_ITF_SetFlowCtrl
 (
     VOS_UINT32                                  ulFlowCtrlType,
@@ -646,20 +483,7 @@ VOS_UINT32 R_ITF_ClearFlowCtrl(VOS_UINT32 ulFlowCtrlType, VOS_UINT32 ulNewLev)
 } /* R_ITF_ClearFlowCtrl */
 
 
-/******************************************************************************
- Prototype      : R_ITF_SetLFlowLev
- Description    : 业务切换为LTE模时，更改流控门限
- Input          :
- Output         :
- Return Value   :
- Calls          :
- Called By      :
 
- History        : ---
-  1.Date        : 2011-04-01
-    Author      : l00164359
-    Modification: Created function
-******************************************************************************/
 VOS_VOID R_ITF_SetLFlowLev(VOS_RATMODE_ENUM_UINT32 enRateMode)
 {
     R_ITF_FLOW_LEV_STRU    *pFlowLev;
@@ -811,20 +635,7 @@ VOS_VOID R_ITF_SetGFlowLev(VOS_RATMODE_ENUM_UINT32 enRateMode)
     return;
 }
 
-/******************************************************************************
- Prototype      : R_ITF_Set1XFlowLev
- Description    : 业务切换为1X模时，更改流控门限
- Input          :
- Output         :
- Return Value   :
- Calls          :
- Called By      :
 
- History        : ---
-  1.Date        : 2015-08-04
-    Author      : c00184031
-    Modification: Created function
-******************************************************************************/
 VOS_VOID R_ITF_Set1XFlowLev(VOS_RATMODE_ENUM_UINT32 enRateMode)
 {
     R_ITF_FLOW_LEV_STRU    *pFlowLev;
@@ -865,20 +676,7 @@ VOS_VOID R_ITF_Set1XFlowLev(VOS_RATMODE_ENUM_UINT32 enRateMode)
     return;
 }
 
-/******************************************************************************
- Prototype      : R_ITF_SetHrpdFlowLev
- Description    : 业务切换为HRPD模时，更改流控门限
- Input          :
- Output         :
- Return Value   :
- Calls          :
- Called By      :
 
- History        : ---
-  1.Date        : 2015-08-04
-    Author      : c00184031
-    Modification: Created function
-******************************************************************************/
 VOS_VOID R_ITF_SetHrpdFlowLev(VOS_RATMODE_ENUM_UINT32 enRateMode)
 {
     R_ITF_FLOW_LEV_STRU    *pFlowLev;
@@ -920,20 +718,7 @@ VOS_VOID R_ITF_SetHrpdFlowLev(VOS_RATMODE_ENUM_UINT32 enRateMode)
     return;
 }
 
-/******************************************************************************
- Prototype      : R_ITF_SetFlowLev
- Description    : 更改流控阀值
- Input          :
- Output         :
- Return Value   :
- Calls          :
- Called By      :
 
- History        : ---
-  1.Date        : 2015-08-10
-    Author      : c00184031
-    Modification: Created function
-******************************************************************************/
 VOS_VOID R_ITF_SetFlowLev
 (
     VOS_RATMODE_ENUM_UINT32             enRateMode
@@ -1109,21 +894,7 @@ VOS_VOID R_ITF_ResetMaxLev(VOS_VOID)
     }
 } /* R_ITF_ResetMaxLev */
 
-/******************************************************************************
- Prototype      : R_ITF_ResetFlowCtrl
- Description    : 更新流控状态
- Input          : VOID
-                :
- Output         : VOID
- Return Value   : VOID
- Calls          :
- Called By      :
 
- History        : ---
-  1.Date        : 2011-03-07
-    Author      : s00164817
-    Modification: Created function
-***************************************************************************** */
 VOS_VOID R_ITF_ResetFlowCtrl(VOS_VOID)
 {
     VOS_UINT32  ulLoop;

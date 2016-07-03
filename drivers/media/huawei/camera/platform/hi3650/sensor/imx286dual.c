@@ -488,6 +488,11 @@ imx286dual_platform_probe(
 
     intf = (hwsensor_intf_t*)id->data;
     sensor = I2S(intf);
+    if (sensor == &s_imx286legacydual) {
+        cam_info("%s no longer support imx286legacy", __func__);
+        return 0;
+    }
+
     rc = hw_sensor_get_dt_data(pdev, sensor);
     if (rc < 0) {
         cam_err("%s no dt data", __func__);
@@ -527,6 +532,10 @@ imx286dual_platform_remove(
 
     intf = (hwsensor_intf_t*)id->data;
     sensor = I2S(intf);
+    if (sensor == &s_imx286legacydual) {
+        cam_info("%s no longer support imx286legacy", __func__);
+        return 0;
+    }
 
     rpmsg_sensor_unregister((void*)&sensor);
     hwsensor_unregister(intf);

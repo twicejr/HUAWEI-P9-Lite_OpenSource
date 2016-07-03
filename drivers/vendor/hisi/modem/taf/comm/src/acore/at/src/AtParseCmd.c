@@ -35,22 +35,7 @@
    4 函数实现
 *****************************************************************************/
 
-/******************************************************************************
- 函数名称: atFindNextSubState
- 功能描述: 根据输入字符,依次匹配指定子状态表的每一项的判断函数,如果成功,
-           则返回对应的子状态
 
- 参数说明:
-   pSubStateTab [in] 指示被匹配的子状态表
-   ucInputChar [in] 指示被匹配的字符
-
- 返 回 值:
-    返回匹配的子状态
-
- 调用要求: TODO: ...
- 调用举例: TODO: ...
- 作    者: 崔军强/00064416 [2009-08-11]
-******************************************************************************/
 AT_STATE_TYPE_ENUM atFindNextSubState( AT_SUB_STATE_STRU *pSubStateTab,VOS_UINT8 ucInputChar)
 {
     VOS_UINT16 usTabIndex = 0;                            /* 子状态表索引 */
@@ -67,24 +52,7 @@ AT_STATE_TYPE_ENUM atFindNextSubState( AT_SUB_STATE_STRU *pSubStateTab,VOS_UINT8
     return AT_BUTT_STATE;
 }
 
-/******************************************************************************
- 函数名称: atFindNextMainState
- 功能描述: 根据输入状态,依次匹配指定主状态表每一项的状态,如果成功,则返
-           回对应的子状态表,再根据输入字符和子状态表得出下一个主状态
 
- 参数说明:
-   pMainStateTab [in] 指示被匹配的主状态表
-   ucInputChar [in] 指示被匹配的字符
-   InputState [in] 输入状态
-
- 返 回 值:
-    如果匹配成功，返回atFindNextSubState函数结果
-    如果匹配失败，返回AT_BUTT_STATE
-
- 调用要求: TODO: ...
- 调用举例: TODO: ...
- 作    者: 崔军强/00064416 [2009-08-11]
-******************************************************************************/
 AT_STATE_TYPE_ENUM atFindNextMainState(AT_MAIN_STATE_STRU *pMainStateTab,
     VOS_UINT8 ucInputChar,  AT_STATE_TYPE_ENUM InputState)
 {
@@ -104,24 +72,7 @@ AT_STATE_TYPE_ENUM atFindNextMainState(AT_MAIN_STATE_STRU *pMainStateTab,
 }
 
 
-/*****************************************************************************
- Prototype      : At_Auc2ul
- Description    : 把字符串转成无符号整型值
- Input          : nptr ---指示被转换字串的开始地址
- Output         : ---
- Return Value   : AT_SUCCESS --- 成功
-                  AT_FAILURE --- 失败
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-04-19
-    Author      : ---
-    Modification: Created function
-  2.日    期 : 2007-03-27
-    作    者 : h59254
-    修改内容 : 问题单号:A32D09820(PC-Lint修改)
-*****************************************************************************/
 TAF_UINT32 At_Auc2ul(TAF_UINT8 *nptr,TAF_UINT16 usLen,TAF_UINT32 *pRtn)
 {
     TAF_UINT32 c     = 0;         /* current Char */
@@ -151,24 +102,7 @@ TAF_UINT32 At_Auc2ul(TAF_UINT8 *nptr,TAF_UINT16 usLen,TAF_UINT32 *pRtn)
     *pRtn = total;   /* return result, negated if necessary */
     return AT_SUCCESS;
 }
-/*****************************************************************************
- Prototype      : At_String2Hex
- Description    : 完成字符串转16进制数功能
- Input          : nptr --- 字符串
- Output         :
- Return Value   : AT_SUCCESS --- 成功
-                  AT_FAILURE --- 失败
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-04-19
-    Author      : ---
-    Modification: Created function
-  2.日    期 : 2007-03-27
-    作    者 : h59254
-    修改内容 : 问题单号:A32D09820(PC-Lint修改)
-*****************************************************************************/
 TAF_UINT32 At_String2Hex(TAF_UINT8 *nptr,TAF_UINT16 usLen,TAF_UINT32 *pRtn)
 {
     TAF_UINT32 c     = 0;         /* current Char */
@@ -210,26 +144,7 @@ TAF_UINT32 At_String2Hex(TAF_UINT8 *nptr,TAF_UINT16 usLen,TAF_UINT32 *pRtn)
     *pRtn = total;   /* return result, negated if necessary */
     return AT_SUCCESS;
 }
-/*****************************************************************************
- Prototype      : At_RangeToU32
- Description    : 把字符串中的某一段转成无符号整型值,pBegain指示开始地址,pucEnd
-                  示结束地址
- Input          : pucBegain --- 指示被转换字串的开始地址
-                  pucEnd    --- 指示被转换字串的开始地址
- Output         : ---
- Return Value   : AT_SUCCESS --- 成功
-                  AT_FAILURE --- 失败
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-04-19
-    Author      : ---
-    Modification: Created function
-  2.日    期 : 2007-03-27
-    作    者 : h59254
-    修改内容 : 问题单号:A32D09820(PC-Lint修改)
-*****************************************************************************/
 TAF_UINT32 At_RangeToU32(TAF_UINT8 * pucBegain, TAF_UINT8 * pucEnd)
 {
     TAF_UINT32 c;                                   /* current Char */
@@ -284,25 +199,7 @@ TAF_VOID At_RangeCopy(TAF_UINT8 *pucDst,TAF_UINT8 * pucBegain, TAF_UINT8 * pucEn
         *pucDst++ = *pucBegain++;
     }
 }
-/*****************************************************************************
- Prototype      : At_UpString
- Description    : 字符串大写转换
- Input          : pData --- 目的地址
-                  usLen --- 长度
- Output         : ---
- Return Value   : AT_SUCCESS --- 成功
-                  AT_FAILURE --- 失败
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-04-19
-    Author      : ---
-    Modification: Created function
-  2.日    期 : 2007-03-27
-    作    者 : h59254
-    修改内容 : 问题单号:A32D09820(PC-Lint修改)
-*****************************************************************************/
 TAF_UINT32 At_UpString(TAF_UINT8 *pData,TAF_UINT16 usLen)
 {
     TAF_UINT8  *pTmp  = pData;                 /* current Char */
@@ -325,19 +222,7 @@ TAF_UINT32 At_UpString(TAF_UINT8 *pData,TAF_UINT16 usLen)
 }
 
 
-/******************************************************************************
- 函数名称: atRangeToU32
- 功能描述: 把字符串中的某一段转成无符号整型值
 
- 参数说明:
-   pucBegain [in/out] 指示被转换字串的开始地址
-   pucEnd [in/out] 指示被转换字串的开始地址
-
- 返 回 值:
-    返回转换所得整型值
-
- 作    者: 崔军强/00064416 [2009-08-11]
-******************************************************************************/
 VOS_UINT32 atRangeToU32( VOS_UINT8 *pucBegain, VOS_UINT8 *pucEnd)
 {
     VOS_UINT32 total = 0;                           /* current total */
@@ -359,22 +244,7 @@ VOS_UINT32 atRangeToU32( VOS_UINT8 *pucBegain, VOS_UINT8 *pucEnd)
     return total;
 }
 
-/******************************************************************************
- 函数名称: atRangeCopy
- 功能描述: 把字符串中的某一段拷贝到指定地址
 
- 参数说明:
-   pucDst [in/out] 目的地址
-   pucBegain [in/out] 被转换字串的开始地址
-   pucEnd [in/out] 被转换字串的结束地址
-
- 返 回 值:
-    TODO: ...
-
- 调用要求: TODO: ...
- 调用举例: TODO: ...
- 作    者: 崔军强/00064416 [2009-08-11]
-******************************************************************************/
 VOS_VOID atRangeCopy( VOS_UINT8 *pucDst, VOS_UINT8 * pucBegain, VOS_UINT8 * pucEnd)
 {
     /* 依次拷贝到目的地址,直至结束 */
@@ -575,21 +445,7 @@ VOS_UINT32 atAuc2ul( VOS_UINT8 *nptr,VOS_UINT16 usLen, VOS_UINT32 *pRtn)
     return auc2ulDec(nptr, usLen, pRtn);
 }
 
-/*****************************************************************************
- Prototype      : At_ul2Auc
- Description    : 把无符号整型值转成字符串
- Input          : ulValue ---指示被转换无符号整型值
-                  usLen   ---指示转换完的字符串的长度
- Output         : pRtn    ---指示转换完的字符串(保证不是空指针)
- Return Value   : 
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2015-05-22
-    Author      : w00316404
-    Modification: Created function
-*****************************************************************************/
 VOS_VOID At_ul2Auc(VOS_UINT32 ulValue,TAF_UINT16 usLen,VOS_UINT8 *pRtn)
 {
     VOS_UINT32                          ulTempValue;
@@ -621,18 +477,7 @@ VOS_VOID At_ul2Auc(VOS_UINT32 ulValue,TAF_UINT16 usLen,VOS_UINT8 *pRtn)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : At_HeapAllocD
- 功能描述  : AT内存分配
- 输入参数  : VOS_UINT32 ulSize
- 输出参数  : 无
- 返 回 值  : VOS_VOID*
 
- 修改历史      :
-  1.日    期   : 2012年10月19日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID* At_HeapAllocD(VOS_UINT32 ulSize)
 {
     VOS_VOID* ret = NULL;
@@ -653,18 +498,7 @@ VOS_VOID* At_HeapAllocD(VOS_UINT32 ulSize)
     return ret;
 }
 
-/*****************************************************************************
- 函 数 名  : At_HeapFreeD
- 功能描述  : AT释放内存
- 输入参数  : VOS_VOID *pAddr
- 输出参数  : 无
- 返 回 值  : VOS_VOID
 
- 修改历史      :
-  1.日    期   : 2012年10月19日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID At_HeapFreeD(VOS_VOID *pAddr)
 {
     if(pAddr == NULL)

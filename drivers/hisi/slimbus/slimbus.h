@@ -176,5 +176,6 @@ extern int slimbus_param_set(
 				slimbus_track_type_t	track,
 				slimbus_track_param_t  *params);
 
+extern int slimbus_track_recover(void);
 
 #endif /* __SLIMBUS_H__ */

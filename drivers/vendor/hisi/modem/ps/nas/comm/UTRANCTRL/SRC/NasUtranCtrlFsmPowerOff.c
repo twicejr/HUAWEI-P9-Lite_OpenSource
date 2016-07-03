@@ -1,21 +1,5 @@
 
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasUtranCtrlFsmPowerOff.c
-  版 本 号   : 初稿
-  作    者   : w00167002
-  生成日期   : 2012年8月7日
-  最近修改   :
-  功能描述   : 关机状态机的处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年8月7日
-    作    者   : w00167002
-    修改内容   : 创建文件
-******************************************************************************/
 
 
 /*****************************************************************************
@@ -50,22 +34,7 @@ extern "C" {
   3 宏定义
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvWasPowerOffCnf_PowerOff_Init
- 功能描述  : 关机状态机启动函数
- 输入参数  : ulEventType:消息类型
-              pstMsg:RRMM_POWER_OFF_CNF消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月7日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvWasPowerOffCnf_PowerOff_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -87,22 +56,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvWasPowerOffCnf_PowerOff_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvTiWaitWasPowerOffCnfExpired_PowerOff_Init
- 功能描述  : 关机状态机启动函数
- 输入参数  : ulEventType:消息类型
-              pstMsg:RRMM_POWER_OFF_CNF超时消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月7日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvTiWaitWasPowerOffCnfExpired_PowerOff_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -124,22 +78,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvTiWaitWasPowerOffCnfExpired_PowerOff_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvTdPowerOffCnf_PowerOff_Init
- 功能描述  : 关机状态机启动函数
- 输入参数  : ulEventType:消息类型
-              pstMsg:RRMM_POWER_OFF_CNF消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月7日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvTdPowerOffCnf_PowerOff_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -161,22 +100,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvTdPowerOffCnf_PowerOff_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvTiWaitTdPowerOffCnfExpired_PowerOff_Init
- 功能描述  : 关机状态机启动函数
- 输入参数  : ulEventType:消息类型
-              pstMsg:RRMM_POWER_OFF_CNF超时消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月22日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvTiWaitTdPowerOffCnfExpired_PowerOff_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -199,22 +123,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvTiWaitTdPowerOffCnfExpired_PowerOff_Init(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvWasPowerOffCnf_PowerOff_WaitWasPowerOffCnf
- 功能描述  : 收到WAS的关机回复消息
- 输入参数  : ulEventType:消息类型
-             pstMsg:RRMM_POWER_OFF_CNF消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月7日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvWasPowerOffCnf_PowerOff_WaitWasPowerOffCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -230,22 +139,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvWasPowerOffCnf_PowerOff_WaitWasPowerOffCnf(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvTdPowerOffCnf_PowerOff_WaitWasPowerOffCnf
- 功能描述  : 等W模时候收到TD接入层关机回复消息的处理
- 输入参数  : ulEventType: 消息类型,
-              pstMsg: RRMM_POWER_OFF_CNF消息的结构体首址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月7日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新生成函数
-*****************************************************************************/
 VOS_UINT32  NAS_UTRANCTRL_RcvTdPowerOffCnf_PowerOff_WaitWasPowerOffCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -258,22 +152,7 @@ VOS_UINT32  NAS_UTRANCTRL_RcvTdPowerOffCnf_PowerOff_WaitWasPowerOffCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvTiWaitWasPowerOffCnfExpired_PowerOff_WaitWasPowerOffCnf
- 功能描述  : 收到WAS的关机回复超时消息
- 输入参数  : ulEventType:消息类型
-             pstMsg:RRMM_POWER_OFF_CNF消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月7日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvTiWaitWasPowerOffCnfExpired_PowerOff_WaitWasPowerOffCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -308,22 +187,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvTiWaitWasPowerOffCnfExpired_PowerOff_WaitWasPowerOff
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvTdPowerOffCnf_PowerOff_WaitTdPowerOffCnf
- 功能描述  : 收到TD的关机回复消息
- 输入参数  : ulEventType:消息类型
-             pstMsg:RRMM_POWER_OFF_CNF消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月7日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvTdPowerOffCnf_PowerOff_WaitTdPowerOffCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -339,22 +203,7 @@ VOS_UINT32 NAS_UTRANCTRL_RcvTdPowerOffCnf_PowerOff_WaitTdPowerOffCnf(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvWasPowerOffCnf_PowerOff_WaitTdPowerOffCnf
- 功能描述  : 等W模时候收到TD接入层关机回复消息的处理
- 输入参数  : ulEventType: 消息类型,
-              pstMsg: RRMM_POWER_OFF_CNF消息的结构体首址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月7日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新生成函数
-*****************************************************************************/
 VOS_UINT32  NAS_UTRANCTRL_RcvWasPowerOffCnf_PowerOff_WaitTdPowerOffCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -367,22 +216,7 @@ VOS_UINT32  NAS_UTRANCTRL_RcvWasPowerOffCnf_PowerOff_WaitTdPowerOffCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_UTRANCTRL_RcvTiWaitTdPowerOffCnfExpired_PowerOff_WaitTdPowerOffCnf
- 功能描述  : 收到TD的关机回复超时消息
- 输入参数  : ulEventType:消息类型
-             pstMsg:RRMM_POWER_OFF_CNF消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月7日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_UTRANCTRL_RcvTiWaitTdPowerOffCnfExpired_PowerOff_WaitTdPowerOffCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg

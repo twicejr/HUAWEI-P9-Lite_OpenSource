@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasXccSndAps.c
-  版 本 号   : 初稿
-  作    者   : w00242748
-  生成日期   : 2014年9月6日
-  最近修改   :
-  功能描述   : XCC发送给APS的消息处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年9月6日
-    作    者   : w00242748
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -48,28 +31,7 @@ extern "C" {
   3 函数实现
 *****************************************************************************/
 /*lint -save -e958*/
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndApsDataCallSuspendInd
- 功能描述  : XCC通知APS挂起
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月15日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-  2.日    期   : 2015年5月22日
-    作    者   : w00242748
-    修改内容   : CDMA Iteration 15 modified
-
-  3.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndApsDataCallSuspendInd(
     VOS_UINT8                                   ucConnectId,
     CNAS_XCC_SERVICE_TYPE_ENUM_UINT32           enServiceType
@@ -131,30 +93,7 @@ VOS_VOID CNAS_XCC_SndApsDataCallSuspendInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndApsDataCallResumeInd
- 功能描述  : XCC通知APS挂起
- 输入参数  : ucConnectId   -- 连接标识
-             enServiceType -- 业务类型
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年9月15日
-    作    者   : c00294324
-    修改内容   : 新生成函数
-  2.日    期   : 2015年5月22日
-    作    者   : w00242748
-    修改内容   : CDMA Iteration 15 modified
-
-  3.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndApsDataCallResumeInd(
     VOS_UINT8                                   ucConnectId,
     CNAS_XCC_SERVICE_TYPE_ENUM_UINT32           enServiceType
@@ -215,30 +154,7 @@ VOS_VOID CNAS_XCC_SndApsDataCallResumeInd(
     (VOS_VOID)PS_SEND_MSG(UEPS_PID_XCC, pstMsg);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndApsOrigDataCallCnf
- 功能描述  : 给APS发送ID_XCC_APS_ORIG_DATA_CALL_CNF
- 输入参数  : ucCallId    -- 呼叫实体
-             enFailLayer -- TAF_XCC_FAIL_LAYER_ENUM_UINT8
-             enCause     -- 原因值
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月14日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-  2.日    期   : 2015年5月22日
-    作    者   : w00242748
-    修改内容   : CDMA Iteration 15 modified
-
-  3.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndApsOrigDataCallCnf(
     VOS_UINT8                           ucCallId,
     TAF_XCC_FAIL_LAYER_ENUM_UINT8       enFailLayer,
@@ -286,28 +202,7 @@ VOS_VOID CNAS_XCC_SndApsOrigDataCallCnf(
     (VOS_VOID)PS_SEND_MSG(UEPS_PID_XCC, pstMsg);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndApsHangupDataCallCnf
- 功能描述  : 给APS发送ID_XCC_APS_HANGUP_DATA_CALL_CNF
- 输入参数  : ucCallId    -- 呼叫实体
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月14日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-  2.日    期   : 2015年5月22日
-    作    者   : w00242748
-    修改内容   : CDMA Iteration 15 modified
-
-  3.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndApsHangupDataCallCnf(
     VOS_UINT8                           ucCallId
 )
@@ -344,28 +239,7 @@ VOS_VOID CNAS_XCC_SndApsHangupDataCallCnf(
     (VOS_VOID)PS_SEND_MSG(UEPS_PID_XCC, pstMsg);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndApsAnswerDataCallCnf
- 功能描述  : 给APS发送ID_XCC_APS_ANSWER_DATA_CALL_CNF
- 输入参数  : ucCallId    -- 呼叫实体
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月14日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-  2.日    期   : 2015年5月22日
-    作    者   : w00242748
-    修改内容   : CDMA Iteration 15 modified
-
-  3.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndApsAnswerDataCallCnf(
     VOS_UINT8                           ucCallId,
     TAF_XCC_CAUSE_ENUM_UINT32           enRslt
@@ -404,28 +278,7 @@ VOS_VOID CNAS_XCC_SndApsAnswerDataCallCnf(
     (VOS_VOID)PS_SEND_MSG(UEPS_PID_XCC, pstMsg);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndApsIncomingCallInd
- 功能描述  : 给APS发送ID_XCC_APS_INCOMING_CALL_IND
- 输入参数  : pstCallInfo    -- 呼叫信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月14日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-  2.日    期   : 2015年5月22日
-    作    者   : w00242748
-    修改内容   : CDMA Iteration 15 modified
-
-  3.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndApsIncomingCallInd(
     CNAS_XCC_CALL_INFO_CTX_STRU        *pstCallInfo
 )
@@ -466,28 +319,7 @@ VOS_VOID CNAS_XCC_SndApsIncomingCallInd(
     (VOS_VOID)PS_SEND_MSG(UEPS_PID_XCC, pstMsg);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndApsDataCallConnectInd
- 功能描述  : 给APS发送ID_XCC_APS_DATA_CALL_CONN_IND
- 输入参数  : pstCallInfo    -- 呼叫信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月14日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-  2.日    期   : 2015年5月22日
-    作    者   : w00242748
-    修改内容   : CDMA Iteration 15 modified
-
-  3.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndApsDataCallConnectInd(
     CNAS_XCC_CALL_INFO_CTX_STRU        *pstCallInfo
 )
@@ -525,28 +357,7 @@ VOS_VOID CNAS_XCC_SndApsDataCallConnectInd(
     (VOS_VOID)PS_SEND_MSG(UEPS_PID_XCC, pstMsg);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndApsDataServiceConnectInd
- 功能描述  : 给APS发送ID_XCC_APS_DATA_SERVICE_CONNECT_IND
- 输入参数  : pstCallInfo    -- 呼叫信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月14日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-  2.日    期   : 2015年5月22日
-    作    者   : w00242748
-    修改内容   : CDMA Iteration 15 modified
-
-  3.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndApsDataServiceConnectInd(
     CNAS_XCC_CALL_INFO_CTX_STRU        *pstCallInfo
 )
@@ -588,28 +399,7 @@ VOS_VOID CNAS_XCC_SndApsDataServiceConnectInd(
     (VOS_VOID)PS_SEND_MSG(UEPS_PID_XCC, pstMsg);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndApsDataCallDiscInd
- 功能描述  : 给APS发送ID_XCC_APS_DATA_CALL_DISC_IND
- 输入参数  : pstCallInfo    -- 呼叫信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月14日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-  2.日    期   : 2015年5月22日
-    作    者   : w00242748
-    修改内容   : CDMA Iteration 15 modified
-
-  3.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndApsDataCallDiscInd(
     CNAS_XCC_CALL_INFO_CTX_STRU        *pstCallInfo,
     TAF_XCC_CAUSE_ENUM_UINT32           enCause
@@ -652,28 +442,7 @@ VOS_VOID CNAS_XCC_SndApsDataCallDiscInd(
 
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndApsSoCtrlMsgInd
- 功能描述  : 给APS发送ID_XCC_APS_SO_CTRL_MSG_IND
- 输入参数  : pstCallInfo    -- 呼叫信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月14日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-  2.日    期   : 2015年5月22日
-    作    者   : w00242748
-    修改内容   : CDMA Iteration 15 modified
-
-  3.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndApsSoCtrlMsgInd(
     CNAS_XCC_CALL_INFO_CTX_STRU        *pstCallInfo,
     CNAS_XCC_SOCM_STRU                 *pstSOCM
@@ -758,28 +527,7 @@ VOS_VOID CNAS_XCC_SndApsSoCtrlMsgInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndApsUpdateDataCallInfoInd
- 功能描述  : Send APS Message:ID_XCC_APS_UPDATE_DATA_CALL_INFO_IND
- 输入参数  : pstCallInfo    -- Call Related Information
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月4日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-  2.日    期   : 2015年5月22日
-    作    者   : w00242748
-    修改内容   : CDMA Iteration 15 modified
-
-  3.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndApsUpdateDataCallInfoInd(
     CNAS_XCC_CALL_INFO_CTX_STRU        *pstCallInfo
 )

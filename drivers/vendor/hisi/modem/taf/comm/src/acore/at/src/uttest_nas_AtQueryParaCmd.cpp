@@ -49,15 +49,7 @@ AT_PAR_CMD_ELEMENT_STRU             gstRsimCmdInfo = {AT_CMD_RSIM,
     AT_CME_INCORRECT_PARAMETERS,    CMD_TBL_PIN_IS_LOCKED,
     (VOS_UINT8*)"^RSIM",     VOS_NULL_PTR};
 
-/* Added by b00269685 for L-C互操作项目, 2014-2-25, begin */
-/*****************************************************************************
-类名 : Test_AT_QrySysCfgExPara
-功能描述 : AT_QrySysCfgExPara　UT工程类
-修改历史     :
-1.日   期  : 2014-02-25
-作   者  : b00269685
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QrySysCfgExPara: public ::testing::Test
 {
 public:
@@ -73,16 +65,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QrySysCfgExPara_001
-测试用例标题      : 查询syscfgex设置成功
-预期结果          : 返回AT_WAIT_ASYNC_RETURN
-修改历史     :
-1.日   期  : 2014-02-25
-作   者  : b00269685
-修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_AT_QrySysCfgExPara,Test_AT_QrySysCfgExPara_001)
 {
     // 变量声明
@@ -108,16 +91,7 @@ TEST_F(Test_AT_QrySysCfgExPara,Test_AT_QrySysCfgExPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QrySysCfgExPara_002
-测试用例标题      : 查询syscfgex设置失败
-预期结果          : 返回AT_ERROR
-修改历史     :
-1.日   期  : 2014-02-25
-作   者  : b00269685
-修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_AT_QrySysCfgExPara,Test_AT_QrySysCfgExPara_002)
 {
     // 变量声明
@@ -142,14 +116,7 @@ TEST_F(Test_AT_QrySysCfgExPara,Test_AT_QrySysCfgExPara_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名 : Test_At_QrySysCfgPara
-功能描述 : At_QrySysCfgPara　UT工程类
-修改历史     :
-1.日   期  : 2014-02-25
-作   者  : b00269685
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QrySysCfgPara: public ::testing::Test
 {
 public:
@@ -165,19 +132,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QrySysCfgPara_001
-测试用例标题      : 查询syscfgex设置成功
-预期结果          : 返回AT_WAIT_ASYNC_RETURN
-修改历史     :
-1.日   期  : 2014-02-25
-作   者  : b00269685
-修改内容 : 新建CASE
-2.日    期   : 2015年4月7日
-作    者   : y00322978
-修改内容   : 修改消息发送接口后更改测试用例
 
-*******************************************************************/
 TEST_F(Test_At_QrySysCfgPara,Test_At_QrySysCfgPara_001)
 {
     // 变量声明
@@ -215,18 +170,7 @@ TEST_F(Test_At_QrySysCfgPara,Test_At_QrySysCfgPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QrySysCfgPara_002
-测试用例标题      : 查询syscfgex设置失败
-预期结果          : 返回AT_ERROR
-修改历史     :
-1.日   期  : 2014-02-25
-作   者  : b00269685
-修改内容 : 新建CASE
-2.日    期   : 2015年4月7日
-作    者   : y00322978
-修改内容   : 修改消息发送接口后更改测试用例
-*******************************************************************/
+
 TEST_F(Test_At_QrySysCfgPara,Test_At_QrySysCfgPara_002)
 {
     // 变量声明
@@ -250,20 +194,8 @@ TEST_F(Test_At_QrySysCfgPara,Test_At_QrySysCfgPara_002)
     // 执行检查
     GlobalMockObject::verify();
 }
-/* Added by b00269685 for L-C互操作项目, 2014-2-25, end */
 
-/*****************************************************************************
-类名     : Test_AT_GetWifiNvValue
-功能描述 : Test_AT_GetWifiNvValue UT工程类
-修改历史     :
 
-1.日   期  : 2012-07-30
-  作   者  : f62575
-  修改内容 : 新生成类
-2.日   期  : 2012-09-18
-  作   者  : z60575
-  修改内容 : 支持多组SSID修改
-*****************************************************************************/
 class Test_AT_GetWifiNvValue: public ::testing::Test
 {
 public:
@@ -278,18 +210,7 @@ public:
 protected:
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_GetWifiNvValue_001
-测试用例标题      : 获取WIFI相关的NV项是否为默认值：所有数据均为0
-预期结果          : 返回VOS_OK，输出判断结果WIFI相关的NV项是默认值
 
-1.日   期  : 2012-07-30
-  作   者  : f62575
-  修改内容 : 新生成类
-2.日   期  : 2012-09-18
-  作   者  : z60575
-  修改内容 : 支持多组SSID修改
-*******************************************************************/
 TEST_F(Test_AT_GetWifiNvValue, Test_AT_GetWifiNvValue_001)
 {
     /*变量定义*/
@@ -330,18 +251,7 @@ TEST_F(Test_AT_GetWifiNvValue, Test_AT_GetWifiNvValue_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_GetWifiNvValue_002
-测试用例标题      : 获取WIFI相关的NV项是否为默认值：NV项en_NV_Item_MULTI_WIFI_KEY读取失败
-预期结果          : 返回VOS_ERR
 
-1.日   期  : 2012-07-30
-  作   者  : f62575
-  修改内容 : 新生成类
- 2.日   期  : 2012-09-18
-  作   者  : z60575
-  修改内容 : 支持多组SSID修改
-*******************************************************************/
 TEST_F(Test_AT_GetWifiNvValue, Test_AT_GetWifiNvValue_002)
 {
     /*变量定义*/
@@ -374,18 +284,7 @@ TEST_F(Test_AT_GetWifiNvValue, Test_AT_GetWifiNvValue_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_GetWifiNvValue_003
-测试用例标题      : 获取WIFI相关的NV项是否为默认值：NV项en_NV_Item_MULTI_WIFI_STATUS_SSID读取失败
-预期结果          : 返回VOS_ERR
 
-1.日   期  : 2012-07-30
-  作   者  : f62575
-  修改内容 : 新生成类
-2.日   期  : 2012-09-18
-  作   者  : z60575
-  修改内容 : 支持多组SSID修改
-*******************************************************************/
 TEST_F(Test_AT_GetWifiNvValue, Test_AT_GetWifiNvValue_003)
 {
     /*变量定义*/
@@ -425,18 +324,7 @@ TEST_F(Test_AT_GetWifiNvValue, Test_AT_GetWifiNvValue_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_GetWifiNvValue_004
-测试用例标题      : 获取WIFI相关的NV项是否为默认值：NV项en_NV_Item_MULTI_WIFI_STATUS_SSID的输出aucWifiSsid[0]字段非0
-预期结果          : 返回VOS_OK，输出判断结果WIFI相关的NV项不是默认值
 
-1.日   期  : 2012-07-30
-  作   者  : f62575
-  修改内容 : 新生成类
-2.日   期  : 2012-09-18
-  作   者  : z60575
-  修改内容 : 支持多组SSID修改
-*******************************************************************/
 TEST_F(Test_AT_GetWifiNvValue, Test_AT_GetWifiNvValue_004)
 {
     /*变量定义*/
@@ -479,18 +367,7 @@ TEST_F(Test_AT_GetWifiNvValue, Test_AT_GetWifiNvValue_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_GetWifiNvValue_005
-测试用例标题      : 获取WIFI相关的NV项是否为默认值：NV项en_NV_Item_MULTI_WIFI_KEY的输出aucWifiWpapsk[1]字段非0
-预期结果          : 返回VOS_OK，输出判断结果WIFI相关的NV项不是默认值
 
-1.日   期  : 2012-07-30
-  作   者  : f62575
-  修改内容 : 新生成类
-2.日   期  : 2012-09-18
-  作   者  : z60575
-  修改内容 : 支持多组SSID修改
-*******************************************************************/
 TEST_F(Test_AT_GetWifiNvValue, Test_AT_GetWifiNvValue_005)
 {
     /*变量定义*/
@@ -533,15 +410,7 @@ TEST_F(Test_AT_GetWifiNvValue, Test_AT_GetWifiNvValue_005)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_GetCsdValue
-功能描述 : AT_GetCsdValue UT工程类
-修改历史     :
 
-1.日   期  : 2012-07-30
-  作   者  : f62575
-  修改内容 : 新生成类
-*****************************************************************************/
 class Test_AT_GetCsdValue: public ::testing::Test
 {
 public:
@@ -556,15 +425,7 @@ public:
 protected:
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_GetCsdValue_001
-测试用例标题      : 获取定制值
-预期结果          : 返回VOS_OK，输出NV项为默认值
 
-1.日   期  : 2012-07-30
-  作   者  : f62575
-  修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_AT_GetCsdValue, Test_AT_GetCsdValue_001)
 {
     /*变量定义*/
@@ -601,15 +462,7 @@ TEST_F(Test_AT_GetCsdValue, Test_AT_GetCsdValue_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_QryDislogPara
-功能描述 : Test_AT_QryDislogPara UT工程类
-修改历史     :
 
-1.日   期  : 2012-02-08
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
 class Test_AT_QryDislogPara: public ::testing::Test
 {
 public:
@@ -628,16 +481,7 @@ protected:
 };
 
 #if (FEATURE_ON!=FEATURE_LTE)
-/*******************************************************************
-测试用例编号      : Test_AT_QryDislogPara_001
-测试用例标题      : DIAG端口已经打开
-预期结果          : 输出字符串
-修改历史   :
 
-1.日   期  : 2012-02-08
-  作   者  : l00198894
-  修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_AT_QryDislogPara, Test_AT_QryDislogPara_001)
 {
     /*变量定义*/
@@ -679,16 +523,7 @@ TEST_F(Test_AT_QryDislogPara, Test_AT_QryDislogPara_001)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryDislogPara_002
-测试用例标题      : DIAG端口未打开
-预期结果          : 输出字符串
-修改历史   :
 
-1.日   期  : 2012-02-08
-  作   者  : l00198894
-  修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_AT_QryDislogPara, Test_AT_QryDislogPara_002)
 {
     /*变量定义*/
@@ -731,15 +566,7 @@ TEST_F(Test_AT_QryDislogPara, Test_AT_QryDislogPara_002)
 }
 #endif
 
-/*****************************************************************************
-类名     : Test_At_QryPcscInfo
-功能描述 : Test_At_QryPcscInfo UT工程类
-修改历史     :
 
-1.日   期  : 2012-03-20
-  作   者  : L60609
-  修改内容 : 新生成类
-*****************************************************************************/
 class Test_At_QryPcscInfo: public ::testing::Test
 {
 public:
@@ -757,16 +584,7 @@ protected:
     VOS_UINT8                   ucIndex;
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QryPcscInfo_001
-测试用例标题      : PCSC端口已经打开
-预期结果          : 输出字符串
-修改历史   :
 
-1.日   期  : 2012-03-20
-  作   者  : L60609
-  修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_At_QryPcscInfo, Test_At_QryPcscInfo_001)
 {
     /*变量定义*/
@@ -808,16 +626,7 @@ TEST_F(Test_At_QryPcscInfo, Test_At_QryPcscInfo_001)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryPcscInfo_002
-测试用例标题      : PCSC端口未打开
-预期结果          : 输出字符串
-修改历史   :
 
-1.日   期  : 2012-03-20
-  作   者  : L60609
-  修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_At_QryPcscInfo, Test_At_QryPcscInfo_002)
 {
     /*变量定义*/
@@ -860,14 +669,7 @@ TEST_F(Test_At_QryPcscInfo, Test_At_QryPcscInfo_002)
 }
 
 
-/*****************************************************************************
-类名     : Test_At_QryCsdfltPara
-功能描述 : Test_At_QryCsdfltPara UT工程类
-修改历史     :
-1.日   期  : 2011-10-13
-作   者  :   f62575
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryCsdfltPara: public ::testing::Test
 {
 public:
@@ -881,15 +683,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QryCsdfltPara_001
-测试用例标题      : 查询查询定制项的默认值：消息发送失败
-预期结果          : 函数返回为AT_ERROR
-修改历史          :
-1.日   期         : 2012-02-29
-  作   者         : f62575
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCsdfltPara,Test_At_QryCsdfltPara_001)
 {
     // 变量声明
@@ -915,15 +709,7 @@ TEST_F(Test_At_QryCsdfltPara,Test_At_QryCsdfltPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryCsdfltPara_002
-测试用例标题      : 查询查询定制项的默认值：消息发送成功
-预期结果          : 函数返回为AT_WAIT_ASYNC_RETURN
-修改历史          :
-1.日   期         : 2012-02-29
-  作   者         : f62575
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCsdfltPara,Test_At_QryCsdfltPara_002)
 {
     // 变量声明
@@ -950,14 +736,7 @@ TEST_F(Test_At_QryCsdfltPara,Test_At_QryCsdfltPara_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_QryAppdmverPara
-功能描述 : AT_QryAppdmverPara UT工程类
-修改历史     :
-1.日   期  : 2011-10-13
-作   者  :   f62575
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryAppdmverPara: public ::testing::Test
 {
 public:
@@ -974,15 +753,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetCdurPara_001
-测试用例标题      : 查询当前PDM版本号：消息发送失败
-预期结果          : 函数返回均为AT_ERROR
-修改历史          :
-1.日   期         : 2011-10-14
-  作   者         : f62575
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryAppdmverPara,Test_AT_QryAppdmverPara_001)
 {
     // 变量声明
@@ -1008,15 +779,7 @@ TEST_F(Test_AT_QryAppdmverPara,Test_AT_QryAppdmverPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetCdurPara_002
-测试用例标题      : 查询当前PDM版本号：消息发送成功
-预期结果          : 函数返回均为AT_WAIT_ASYNC_RETURN
-修改历史          :
-1.日   期         : 2011-10-14
-  作   者         : f62575
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryAppdmverPara,Test_AT_QryAppdmverPara_002)
 {
     // 变量声明
@@ -1043,14 +806,7 @@ TEST_F(Test_AT_QryAppdmverPara,Test_AT_QryAppdmverPara_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_At_QryCscaPara
-功能描述 : At_QryCscaPara UT工程类
-修改历史     :
-1.日   期  : 2011-10-13
-作   者  :   f62575
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryCscaPara: public ::testing::Test
 {
 public:
@@ -1068,15 +824,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QryCscaPara_001
-测试用例标题      : CSCA查询命令调用MN_MSG_ReadSrvParam发送查询消息失败
-预期结果          : 函数返回均为AT_ERROR
-修改历史          :
-1.日   期         : 2011-10-14
-  作   者         : f62575
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCscaPara,Test_At_QryCscaPara_001)
 {
     // 变量声明
@@ -1101,15 +849,7 @@ TEST_F(Test_At_QryCscaPara,Test_At_QryCscaPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryCscaPara_002
-测试用例标题      : CSCA查询命令调用MN_MSG_ReadSrvParam发送查询消息成功
-预期结果          : 函数返回均为AT_WAIT_ASYNC_RETURN同时操作标志AT_CMD_CSCA_READ
-修改历史          :
-1.日   期         : 2011-10-14
-  作   者         : f62575
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCscaPara,Test_At_QryCscaPara_002)
 {
     // 变量声明
@@ -1136,14 +876,7 @@ TEST_F(Test_At_QryCscaPara,Test_At_QryCscaPara_002)
 }
 
 #if (NAS_FEATURE_CS_VC == FEATURE_ON)
-/*****************************************************************************
-类名     : Test_At_QryVMSETPara
-功能描述 : At_QryVMSETPara函数的UT测试类
-修改历史 :
-1.日   期  : 2011-10-13
-作   者  : f00179208
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryVMSETPara: public ::testing::Test
 {
 public:
@@ -1169,15 +902,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QryVMSETPara_001
-测试用例标题      : AT命令参数检查错误
-预期结果          : 返回AT_CME_INCORRECT_PARAMETERS
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryVMSETPara,Test_At_QryVMSETPara_001)
 {
     // 参数定义
@@ -1200,15 +925,7 @@ TEST_F(Test_At_QryVMSETPara,Test_At_QryVMSETPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryVMSETPara_002
-测试用例标题      : 获取语音模式成功
-预期结果          : 当前操作类型为AT_CMD_VMSET_READ，返回AT_WAIT_ASYNC_RETURN
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryVMSETPara,Test_At_QryVMSETPara_002)
 {
     // 参数定义
@@ -1235,15 +952,7 @@ TEST_F(Test_At_QryVMSETPara,Test_At_QryVMSETPara_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryVMSETPara_003
-测试用例标题      : 获取语音模式失败
-预期结果          : 返回AT_ERROR
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryVMSETPara,Test_At_QryVMSETPara_003)
 {
     // 参数定义
@@ -1269,14 +978,7 @@ TEST_F(Test_At_QryVMSETPara,Test_At_QryVMSETPara_003)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_At_QryCvoicePara
-功能描述 : At_QryCvoicePara函数的UT测试类
-修改历史 :
-1.日   期  : 2011-10-13
-作   者  : f00179208
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryCvoicePara: public ::testing::Test
 {
 public:
@@ -1302,15 +1004,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QryCvoicePara_001
-测试用例标题      : AT命令参数检查错误
-预期结果          : 返回AT_CME_INCORRECT_PARAMETERS
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCvoicePara,Test_At_QryCvoicePara_001)
 {
     // 参数定义
@@ -1333,15 +1027,7 @@ TEST_F(Test_At_QryCvoicePara,Test_At_QryCvoicePara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryCvoicePara_002
-测试用例标题      : 获取语音模式成功
-预期结果          : 当前操作类型为AT_CMD_CVOICE_READ，返回AT_WAIT_ASYNC_RETURN
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCvoicePara,Test_At_QryCvoicePara_002)
 {
     // 参数定义
@@ -1368,15 +1054,7 @@ TEST_F(Test_At_QryCvoicePara,Test_At_QryCvoicePara_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryCvoicePara_003
-测试用例标题      : 获取语音模式失败
-预期结果          : 返回AT_ERROR
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCvoicePara,Test_At_QryCvoicePara_003)
 {
     // 参数定义
@@ -1402,14 +1080,7 @@ TEST_F(Test_At_QryCvoicePara,Test_At_QryCvoicePara_003)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_At_QryDdsetexPara
-功能描述 : At_QryDdsetexPara函数的UT测试类
-修改历史 :
-1.日   期  : 2011-10-13
-作   者  : f00179208
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryDdsetexPara: public ::testing::Test
 {
 public:
@@ -1435,15 +1106,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QryDdsetexPara_001
-测试用例标题      : AT命令参数检查错误
-预期结果          : 返回AT_CME_INCORRECT_PARAMETERS
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryDdsetexPara,Test_At_QryDdsetexPara_001)
 {
     // 参数定义
@@ -1466,15 +1129,7 @@ TEST_F(Test_At_QryDdsetexPara,Test_At_QryDdsetexPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryDdsetexPara_002
-测试用例标题      : 获取语音模式成功
-预期结果          : 当前操作类型为AT_CMD_DDSETEX_READ，返回AT_WAIT_ASYNC_RETURN
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryDdsetexPara,Test_At_QryDdsetexPara_002)
 {
     // 参数定义
@@ -1501,15 +1156,7 @@ TEST_F(Test_At_QryDdsetexPara,Test_At_QryDdsetexPara_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryDdsetexPara_003
-测试用例标题      : 获取语音模式失败
-预期结果          : 返回AT_ERROR
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryDdsetexPara,Test_At_QryDdsetexPara_003)
 {
     // 参数定义
@@ -1537,14 +1184,7 @@ TEST_F(Test_At_QryDdsetexPara,Test_At_QryDdsetexPara_003)
 #endif
 
 
-/******************************************************************************
-类名     : Test_At_QryDialModePara
-功能描述 : At_QryDialModePara UT工程类
-修改历史 :
- 1.日   期  : 2014-05-28
-   作   者  : Y00213812
-   修改内容 : 64bit ut修改
-******************************************************************************/
+
 class Test_At_QryDialModePara: public ::testing::Test
 {
 public:
@@ -1559,15 +1199,7 @@ public:
     }
 
 };
-/*******************************************************************
-*测试项:              DIALMODE返回成功
-*被测函数功能描述:    AT命令，查询拨号方式
-*预期结果：
-************************* 修改记录 *************************
-#  1.日    期: 2010年6月29日
-#    作    者: o00132663
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryDialModePara,Test_At_QryDialModePara_01)
 {
     // 参数定义
@@ -1612,15 +1244,7 @@ TEST_F(Test_At_QryDialModePara,Test_At_QryDialModePara_01)
 
 
 
-/*******************************************************************
-*测试项:              DIALMODE调用失败
-*被测函数功能描述:    AT命令，查询拨号方式
-*预期结果：
-************************* 修改记录 *************************
-#  1.日    期: 2010年6月29日
-#    作    者: o00132663
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryDialModePara,Test_At_QryDialModePara_02)
 {
     // 参数定义
@@ -1653,14 +1277,7 @@ TEST_F(Test_At_QryDialModePara,Test_At_QryDialModePara_02)
 
 #if ((FEATURE_ON == FEATURE_GCBS) || (FEATURE_ON == FEATURE_WCBS))
 
-/******************************************************************************
-类名     : Test_At_QryCscbPara
-功能描述 : At_QryCscbPara UT工程类
-修改历史 :
- 1.日   期  : 2014-05-28
-   作   者  : Y00213812
-   修改内容 : 64bit ut修改
-******************************************************************************/
+
 class Test_At_QryCscbPara: public ::testing::Test
 {
 public:
@@ -1675,15 +1292,7 @@ public:
     }
 
 };
-/*******************************************************************
-*测试项:           调用CBS提供的API接口返回失败后直接返回查询失败
-*被测函数功能描述: 查询CSCB当前设置的值
-*预期结果：        返回查询失败
-************************* 修改记录 ********************************
-#  1.日    期: 2010年05月17日
-#    作    者: z40661
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCscbPara,Test_At_QryCscbPara_01)
 {
     MOCKER(MN_MSG_GetAllCbMids)
@@ -1697,15 +1306,7 @@ TEST_F(Test_At_QryCscbPara,Test_At_QryCscbPara_01)
 
 }
 
-/*******************************************************************
-*测试项:           调用CBS提供的API接口返回成功后直接返回AT_WAIT_ASYNC_RETURN等待MSG模块上报查询结果
-*被测函数功能描述: 查询CSCB当前设置的值
-*预期结果：        返回返回AT_WAIT_ASYNC_RETURN等待MSG模块上报查询结果
-************************* 修改记录 ********************************
-#  1.日    期: 2010年05月17日
-#    作    者: z40661
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCscbPara,Test_At_QryCscbPara_02)
 {
     MOCKER(MN_MSG_GetAllCbMids)
@@ -1721,14 +1322,7 @@ TEST_F(Test_At_QryCscbPara,Test_At_QryCscbPara_02)
 #endif
 
 
-/******************************************************************************
-类名     : Test_At_QryPort
-功能描述 : Test_At_QryPort UT工程类
-修改历史 :
- 1.日   期  : 2014-05-28
-   作   者  : Y00213812
-   修改内容 : 64bit ut修改
-******************************************************************************/
+
 class Test_At_QryPort: public ::testing::Test
 {
 public:
@@ -1744,15 +1338,7 @@ public:
     }
 
 };
-/*******************************************************************
-*测试项:           PID使能NV读取失败
-*被测函数功能描述: 查询当前端口形态
-*预期结果：
-************************* 修改记录 ********************************
-#  1.日    期: 2010年05月07日
-#    作    者: a00165503
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryPort,Test_At_QryPort_01)
 {
     // 参数定义
@@ -1781,15 +1367,7 @@ TEST_F(Test_At_QryPort,Test_At_QryPort_01)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试项:           PID未使能
-*被测函数功能描述: 查询当前端口形态
-*预期结果：
-************************* 修改记录 ********************************
-#  1.日    期: 2010年05月07日
-#    作    者: a00165503
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryPort,Test_At_QryPort_02)
 {
     // 参数定义
@@ -1819,15 +1397,7 @@ TEST_F(Test_At_QryPort,Test_At_QryPort_02)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试项:           获取当前的端口形态失败
-*被测函数功能描述: 查询当前端口形态
-*预期结果：
-************************* 修改记录 ********************************
-#  1.日    期: 2010年05月07日
-#    作    者: a00165503
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryPort,Test_At_QryPort_03)
 {
     // 参数定义
@@ -1857,15 +1427,7 @@ TEST_F(Test_At_QryPort,Test_At_QryPort_03)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试项:           获取当前的端口形态成功
-*被测函数功能描述: 查询当前端口形态
-*预期结果：
-************************* 修改记录 ********************************
-#  1.日    期: 2010年05月07日
-#    作    者: a00165503
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryPort,Test_At_QryPort_04)
 {
     // 参数定义
@@ -1916,14 +1478,7 @@ TEST_F(Test_At_QryPort,Test_At_QryPort_04)
 
 
 #if(FEATURE_ON == FEATURE_E5)
-/******************************************************************************
-类名     : Test_AT_QryWifiBlobalMacPara
-功能描述 : AT_QryWifiBlobalMacPara UT工程类
-修改历史 :
- 1.日   期  : 2014-05-28
-   作   者  : Y00213812
-   修改内容 : 64bit ut修改
-******************************************************************************/
+
 class Test_AT_QryWifiBlobalMacPara: public ::testing::Test
 {
 public:
@@ -1938,15 +1493,7 @@ public:
     }
 
 };
-/*******************************************************************
-*测试项:          查询网关MAC地址
-*被测函数功能描述:读NV成功，NV项激活
-*预期结果：       返回AT_OK
-************************* 修改记录 *************************
-#  1.日    期: 2010年9月13日
-#    作    者: s62952
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryWifiBlobalMacPara,Test_AT_QryWifiBlobalMacPara_01)
 {
     // 参数定义
@@ -1983,15 +1530,7 @@ TEST_F(Test_AT_QryWifiBlobalMacPara,Test_AT_QryWifiBlobalMacPara_01)
 }
 
 
-/*******************************************************************
-*测试项:          查询网关MAC地址
-*被测函数功能描述:读NV失败
-*预期结果：       返回AT_ERROR
-************************* 修改记录 *************************
-#  1.日    期: 2010年9月13日
-#    作    者: z00161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryWifiBlobalMacPara,Test_AT_QryWifiBlobalMacPara_02)
 {
     // 参数定义
@@ -2025,14 +1564,7 @@ TEST_F(Test_AT_QryWifiBlobalMacPara,Test_AT_QryWifiBlobalMacPara_02)
 
 #if(FEATURE_ON == FEATURE_E5)
 
-/******************************************************************************
-类名     : Test_At_QryApThroughputPara
-功能描述 : At_QryApThroughputPara UT工程类
-修改历史 :
- 1.日   期  : 2014-05-28
-   作   者  : Y00213812
-   修改内容 : 64bit ut修改
-******************************************************************************/
+
 class Test_At_QryApThroughputPara: public ::testing::Test
 {
 public:
@@ -2047,15 +1579,7 @@ public:
     }
 
 };
-/*******************************************************************
-*测试项:          1。未拨上号速率为0
-*被测函数功能描述:E5查询当前流量
-*预期结果：
-************************* 修改记录 *************************
-#  1.日    期: 2010年9月15日
-#    作    者: lijun 00171473
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryApThroughputPara,Test_At_QryApThroughputPara_01)
 {
     MOCKER(AT_E5GetState)
@@ -2073,15 +1597,7 @@ TEST_F(Test_At_QryApThroughputPara,Test_At_QryApThroughputPara_01)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试项:          2。已拨上号
-*被测函数功能描述:E5查询当前流量
-*预期结果：
-************************* 修改记录 *************************
-#  1.日    期: 2010年9月15日
-#    作    者: lijun 00171473
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryApThroughputPara,Test_At_QryApThroughputPara_02)
 {
     g_stAtE5CurrentRate.ulDLCurrentRate = 5;
@@ -2101,14 +1617,7 @@ TEST_F(Test_At_QryApThroughputPara,Test_At_QryApThroughputPara_02)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_At_QryApDialModePara
-功能描述 : Test_At_QryApDialModePara UT工程类
-修改历史 :
- 1.日   期  : 2014-05-28
-   作   者  : Y00213812
-   修改内容 : 64bit ut修改
-******************************************************************************/
+
 class Test_At_QryApDialModePara: public ::testing::Test
 {
 public:
@@ -2123,15 +1632,7 @@ public:
     }
 
 };
-/*******************************************************************
-*测试项:          查询拨号模式
-*被测函数功能描述:查询拨号模式
-*预期结果：
-************************* 修改记录 *************************
-#  1.日    期: 2010年9月15日
-#    作    者: lijun 00171473
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryApDialModePara,Test_At_QryApDialModePara_01)
 {
     g_stAtE5DialMode.ulDialMode = AT_E5_DEMAND_DIAL_MODE;
@@ -2145,14 +1646,7 @@ TEST_F(Test_At_QryApDialModePara,Test_At_QryApDialModePara_01)
 }
 
 
-/******************************************************************************
-类名     : Test_At_QryApConnStPara
-功能描述 : At_QryApConnStPara UT工程类
-修改历史 :
- 1.日   期  : 2014-05-28
-   作   者  : Y00213812
-   修改内容 : 64bit ut修改
-******************************************************************************/
+
 class Test_At_QryApConnStPara: public ::testing::Test
 {
 public:
@@ -2167,15 +1661,7 @@ public:
     }
 
 };
-/*******************************************************************
-*测试项:          1.DIALING状态
-*被测函数功能描述:查询E5拨号状态
-*预期结果：
-************************* 修改记录 *************************
-#  1.日    期: 2010年9月15日
-#    作    者: lijun 00171473
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryApConnStPara,Test_At_QryApConnStPara_01)
 {
     MOCKER(AT_E5GetState)
@@ -2189,15 +1675,7 @@ TEST_F(Test_At_QryApConnStPara,Test_At_QryApConnStPara_01)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试项:          2DIALED状态
-*被测函数功能描述:查询E5拨号状态
-*预期结果：
-************************* 修改记录 *************************
-#  1.日    期: 2010年9月15日
-#    作    者: lijun 00171473
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryApConnStPara,Test_At_QryApConnStPara_02)
 {
     MOCKER(AT_E5GetState)
@@ -2212,15 +1690,7 @@ TEST_F(Test_At_QryApConnStPara,Test_At_QryApConnStPara_02)
 }
 
 
-/*******************************************************************
-*测试项:          3UNDIALED状态
-*被测函数功能描述:查询E5拨号状态
-*预期结果：
-************************* 修改记录 *************************
-#  1.日    期: 2010年9月15日
-#    作    者: lijun 00171473
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryApConnStPara,Test_At_QryApConnStPara_03)
 {
     MOCKER(AT_E5GetState)
@@ -2234,14 +1704,7 @@ TEST_F(Test_At_QryApConnStPara,Test_At_QryApConnStPara_03)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_AT_QryDislogPara
-功能描述 : AT_QryDislogPara UT工程类
-修改历史 :
- 1.日   期  : 2014-05-28
-   作   者  : Y00213812
-   修改内容 : 64bit ut修改
-******************************************************************************/
+
 class Test_AT_QryDislogPara: public ::testing::Test
 {
 public:
@@ -2256,15 +1719,7 @@ public:
     }
 
 };
-/*******************************************************************
-*测试项:           Dislog值异常返回ERROR
-*被测函数功能描述: DISLOG的查询函数
-*预期结果：
-************************* 修改记录 *************************
-#  1.日    期: 2010年10月27日
-#    作    者: lijun 00171473
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryDislogPara, Test_AT_QryDislogPara_01)
 {
     g_stATDislogPwd.lValue = AT_DIAG_OPEN_FLAG_BUTT;
@@ -2275,15 +1730,7 @@ TEST_F(Test_AT_QryDislogPara, Test_AT_QryDislogPara_01)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试项:           Dislog值正常返回OK
-*被测函数功能描述: DISLOG的查询函数
-*预期结果：
-************************* 修改记录 *************************
-#  1.日    期: 2010年10月26日
-#    作    者: lijun 00171473
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryDislogPara, Test_AT_QryDislogPara_02)
 {
     g_stATDislogPwd.lValue = AT_DIAG_OPEN_FLAG_OPEN;
@@ -2303,14 +1750,7 @@ TEST_F(Test_AT_QryDislogPara, Test_AT_QryDislogPara_02)
 
 
 
-/******************************************************************************
-类名     : Test_At_QryClvlPara
-功能描述 : At_QryClvlPara UT工程类
-修改历史 :
- 1.日   期  : 2014-05-28
-   作   者  : Y00213812
-   修改内容 : 64bit ut修改
-******************************************************************************/
+
 class Test_At_QryClvlPara: public ::testing::Test
 {
 public:
@@ -2325,15 +1765,7 @@ public:
     }
 
 };
-/*******************************************************************
-*测试项:          查询音量等级
-*被测函数功能描述:查询音量等级
-*预期结果：       返回AT_OK
-************************* 修改记录 *************************
-#  1.日    期: 2010年10月13日
-#    作    者: z00161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryClvlPara,Test_At_QryClvlPara_01)
 {
     // 参数定义
@@ -2362,15 +1794,7 @@ TEST_F(Test_At_QryClvlPara,Test_At_QryClvlPara_01)
 
 }
 
-/*******************************************************************
-*测试项:          查询音量等级
-*被测函数功能描述:查询音量等级
-*预期结果：       返回AT_ERROR
-************************* 修改记录 *************************
-#  1.日    期: 2010年10月13日
-#    作    者: z00161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryClvlPara,Test_At_QryClvlPara_02)
 {
     // 参数定义
@@ -2402,14 +1826,7 @@ TEST_F(Test_At_QryClvlPara,Test_At_QryClvlPara_02)
 
 #ifdef FEATURE_SECURITY_SHELL
 
-/******************************************************************************
-类名     : Test_AT_QryShellPara
-功能描述 : AT_QryShellPara UT工程类
-修改历史 :
- 1.日   期  : 2014-05-28
-   作   者  : Y00213812
-   修改内容 : 64bit ut修改
-******************************************************************************/
+
 class Test_AT_QryShellPara: public ::testing::Test
 {
 public:
@@ -2425,15 +1842,7 @@ public:
 
 };
 
-/*******************************************************************
-*测试项:           SHELL值异常返回ERROR
-*被测函数功能描述: AT^SHELL?的查询函数
-*预期结果：
-************************* 修改记录 *************************
-#  1.日    期: 2010年10月26日
-#    作    者: lijun 00171473
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryShellPara, Test_AT_QryShellPara_01)
 {
     MOCKER(NV_ReadEx)
@@ -2446,15 +1855,7 @@ TEST_F(Test_AT_QryShellPara, Test_AT_QryShellPara_01)
 
 }
 
-/*******************************************************************
-*测试项:           SHELL值正常返回OK
-*被测函数功能描述: AT^SHELL?的查询函数
-*预期结果：
-************************* 修改记录 *************************
-#  1.日    期: 2010年10月26日
-#    作    者: lijun 00171473
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryShellPara, Test_AT_QryShellPara_02)
 {
 
@@ -2485,14 +1886,7 @@ TEST_F(Test_AT_QryShellPara, Test_AT_QryShellPara_02)
 }
 #endif
 
-/*****************************************************************************
-类名     : Test_At_QryCgattPara
-功能描述 : CGATT命令查询处理函数的UT测试类
-修改历史 :
-1.日   期  : 2011-10-13
-作   者  : c00173809
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryCgattPara: public ::testing::Test
 {
 public:
@@ -2514,15 +1908,7 @@ public:
         gastAtClientTab[ucIndex].CmdCurrentOpt  = AT_CMD_INVALID;
     }
 };
-/*******************************************************************
-测试用例编号      : Test_At_QryCgattPara_001
-测试用例标题      : 发送查询CSPS状态消息成功
-预期结果          : 返回AT_OK
-修改历史     :
-1.日   期  : 2011-10-13
-作   者  :   c00173809
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCgattPara,Test_At_QryCgattPara_001)
 {
 
@@ -2548,15 +1934,7 @@ TEST_F(Test_At_QryCgattPara,Test_At_QryCgattPara_001)
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号      : Test_At_QryCgattPara_002
-测试用例标题      : 发送查询CSPS状态消息失败
-预期结果          : 返回AT_ERROR
-修改历史     :
-1.日   期  : 2011-10-13
-作   者  :   c00173809
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCgattPara,Test_At_QryCgattPara_002)
 {
     /* 变量定义 */
@@ -2580,14 +1958,7 @@ TEST_F(Test_At_QryCgattPara,Test_At_QryCgattPara_002)
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*****************************************************************************
-类名     : Test_At_QryCgcattPara
-功能描述 : CGCATT命令查询处理函数的UT测试类
-修改历史 :
-1.日   期  : 2011-10-13
-作   者  : c00173809
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryCgcattPara: public ::testing::Test
 {
 public:
@@ -2609,15 +1980,7 @@ public:
         gastAtClientTab[ucIndex].CmdCurrentOpt  = AT_CMD_INVALID;
     }
 };
-/*******************************************************************
-测试用例编号      : Test_At_QryCgcattPara_001
-测试用例标题      : 发送查询CSPS状态消息成功
-预期结果          : 返回AT_OK
-修改历史     :
-1.日   期  : 2011-10-13
-作   者  :   c00173809
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCgcattPara,Test_At_QryCgcattPara_001)
 {
 
@@ -2643,15 +2006,7 @@ TEST_F(Test_At_QryCgcattPara,Test_At_QryCgcattPara_001)
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号      : Test_At_QryCgcattPara_002
-测试用例标题      : 发送查询CSPS状态消息失败
-预期结果          : 返回AT_ERROR
-修改历史     :
-1.日   期  : 2011-10-13
-作   者  :   c00173809
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCgcattPara,Test_At_QryCgcattPara_002)
 {
     /* 变量定义 */
@@ -2676,14 +2031,7 @@ TEST_F(Test_At_QryCgcattPara,Test_At_QryCgcattPara_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_At_QryRxDiv
-功能描述 : 查询接收分集的UT测试类
-修改历史 :
-1.日   期  : 2011-10-13
-作   者  : c00173809
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryRxDiv: public ::testing::Test
 {
 public:
@@ -2714,15 +2062,7 @@ public:
         g_stATParseCmd.ucCmdOptType   = AT_CMD_OPT_BUTT;
     }
 };
-/*******************************************************************
-测试用例编号      : Test_At_QryRxDiv_001
-测试用例标题      : 发送设置RXDIV消息失败
-预期结果          : 返回AT_ERROR
-修改历史     :
-1.日   期  : 2011-10-13
-作   者  :   c00173809
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryRxDiv,Test_At_QryRxDiv_001)
 {
     MOCKER(AT_FillAndSndAppReqMsg)
@@ -2734,15 +2074,7 @@ TEST_F(Test_At_QryRxDiv,Test_At_QryRxDiv_001)
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号      : Test_At_QryRxDiv002
-测试用例标题      : 发送设置RXDIV消息成功
-预期结果          : 返回等待异步消息
-修改历史     :
-1.日   期  : 2011-10-13
-作   者  :   c00173809
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryRxDiv,Test_At_QryRxDiv_002)
 {
     MOCKER(AT_FillAndSndAppReqMsg)
@@ -2756,14 +2088,7 @@ TEST_F(Test_At_QryRxDiv,Test_At_QryRxDiv_002)
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*****************************************************************************
-类名     : Test_At_QryCellSearch
-功能描述 : 查询cell search的UT测试类
-修改历史 :
-1.日   期  : 2011-10-13
-作   者  : c00173809
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryCellSearch: public ::testing::Test
 {
 public:
@@ -2794,15 +2119,7 @@ public:
         g_stATParseCmd.ucCmdOptType   = AT_CMD_OPT_BUTT;
     }
 };
-/*******************************************************************
-测试用例编号      : Test_At_QryCellSearch_001
-测试用例标题      : 发送设置消息失败
-预期结果          : 返回AT_ERROR
-修改历史     :
-1.日   期  : 2011-10-13
-作   者  :   c00173809
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCellSearch,Test_At_QryCellSearch_001)
 {
     MOCKER(AT_FillAndSndAppReqMsg)
@@ -2814,15 +2131,7 @@ TEST_F(Test_At_QryCellSearch,Test_At_QryCellSearch_001)
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号      : Test_At_QryCellSearch_002
-测试用例标题      : 发送设置消息成功
-预期结果          : 返回等待异步消息
-修改历史     :
-1.日   期  : 2011-10-13
-作   者  :   c00173809
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCellSearch,Test_At_QryCellSearch_002)
 {
     MOCKER(AT_FillAndSndAppReqMsg)
@@ -2837,14 +2146,7 @@ TEST_F(Test_At_QryCellSearch,Test_At_QryCellSearch_002)
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*****************************************************************************
-类名     : Test_At_QryCuus1Para
-功能描述 : 查询CUUS1函数的UT测试类
-修改历史 :
-1.日   期  : 2011-10-13
-作   者  : c00173809
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryCuus1Para: public ::testing::Test
 {
 public:
@@ -2875,15 +2177,7 @@ public:
         g_stATParseCmd.ucCmdOptType   = AT_CMD_OPT_BUTT;
     }
 };
-/*******************************************************************
-测试用例编号      : Test_At_QryCuus1Para_001
-测试用例标题      : 发送查询CUUS1消息成功
-预期结果          : 返回等待异步结果
-修改历史     :
-1.日   期  : 2011-10-13
-作   者  :   c00173809
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCuus1Para,Test_At_QryCuus1Para_001)
 {
     MOCKER(MN_CALL_SendAppRequest)
@@ -2896,15 +2190,7 @@ TEST_F(Test_At_QryCuus1Para,Test_At_QryCuus1Para_001)
 
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号      : Test_At_QryCuus1Para_002
-测试用例标题      : 发送查询CUUS1消息失败
-预期结果          : 返回AT_ERROR
-修改历史     :
-1.日   期  : 2011-10-13
-作   者  :   c00173809
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCuus1Para,Test_At_QryCuus1Para_002)
 {
     MOCKER(MN_CALL_SendAppRequest)
@@ -2917,14 +2203,7 @@ TEST_F(Test_At_QryCuus1Para,Test_At_QryCuus1Para_002)
 }
 
 
-/*****************************************************************************
-类名     : Test_At_QryAppWronReg
-功能描述 : Test_At_QryAppWronReg UT工程类
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  : o00132663
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryAppWronReg: public ::testing::Test
 {
 public:
@@ -2939,15 +2218,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QryAppWronReg_001
-测试用例标题      : 发送消息失败
-预期结果          : 函数给用户回复ERROR
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  : o00132663
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryAppWronReg, Test_At_QryAppWronReg_001)
 {
     /* 变量定义 */
@@ -2974,15 +2245,7 @@ TEST_F(Test_At_QryAppWronReg, Test_At_QryAppWronReg_001)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryAppWronReg_002
-测试用例标题      : 发送消息成功
-预期结果          : 函数给用户回复AT_WAIT_ASYNC_RETURN
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  : o00132663
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryAppWronReg, Test_At_QryAppWronReg_002)
 {
     /* 变量定义 */
@@ -3011,14 +2274,7 @@ TEST_F(Test_At_QryAppWronReg, Test_At_QryAppWronReg_002)
 
 
 
-/******************************************************************************
-类名     : Test_AT_CalculateAntennaLevel
-功能描述 : AT_CalculateAntennaLevel UT工程类
-修改历史 :
- 1.日   期  : 2014-05-28
-   作   者  : Y00213812
-   修改内容 : 64bit ut修改
-******************************************************************************/
+
 class Test_AT_CalculateAntennaLevel: public ::testing::Test
 {
 public:
@@ -3033,15 +2289,7 @@ public:
     }
 
 };
-/*******************************************************************
-*测试项:           level3
-*被测函数功能描述: 根据rscp, Ecio, rssi来计算信号格数:g_ucMNPHAntennaLevel
-*预期结果：   返回AT_ERROR
-************************* 修改记录 ********************************
-#  1.日    期: 2010年09月13日
-#    作    者: w00167002
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_CalculateAntennaLevel,Test_AT_CalculateAntennaLevel_01)
 {
     // 参数定义
@@ -3063,15 +2311,7 @@ TEST_F(Test_AT_CalculateAntennaLevel,Test_AT_CalculateAntennaLevel_01)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试项:           level2
-*被测函数功能描述: 根据rscp, Ecio, rssi来计算信号格数:g_ucMNPHAntennaLevel
-*预期结果：   返回AT_ERROR
-************************* 修改记录 ********************************
-#  1.日    期: 2010年09月13日
-#    作    者: w00167002
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_CalculateAntennaLevel,Test_AT_CalculateAntennaLevel_02)
 {
     // 参数定义
@@ -3094,15 +2334,7 @@ TEST_F(Test_AT_CalculateAntennaLevel,Test_AT_CalculateAntennaLevel_02)
 
 }
 
-/*******************************************************************
-*测试项:           level1
-*被测函数功能描述: 根据rscp, Ecio, rssi来计算信号格数:g_ucMNPHAntennaLevel
-*预期结果：   返回AT_ERROR
-************************* 修改记录 ********************************
-#  1.日    期: 2010年09月13日
-#    作    者: w00167002
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_CalculateAntennaLevel,Test_AT_CalculateAntennaLevel_03)
 {
 // 参数定义
@@ -3125,15 +2357,7 @@ TEST_F(Test_AT_CalculateAntennaLevel,Test_AT_CalculateAntennaLevel_03)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试项:           level0
-*被测函数功能描述: 根据rscp, Ecio, rssi来计算信号格数:g_ucMNPHAntennaLevel
-*预期结果：   返回AT_ERROR
-************************* 修改记录 ********************************
-#  1.日    期: 2010年09月13日
-#    作    者: w00167002
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_CalculateAntennaLevel,Test_AT_CalculateAntennaLevel_04)
 {
 // 参数定义
@@ -3155,14 +2379,7 @@ TEST_F(Test_AT_CalculateAntennaLevel,Test_AT_CalculateAntennaLevel_04)
 }
 
 
-/*****************************************************************************
- 类名       : Test_AT_GetSmoothAntennaLevel
- 功能描述   : AT_GetSmoothAntennaLevel UT工程类
- 修改历史   :
- 1.日   期  : 2013-03-08
-   作   者  : f00179208
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_GetSmoothAntennaLevel: public ::testing::Test
 {
 public:
@@ -3175,15 +2392,7 @@ public:
     }
 
 };
-/*******************************************************************
- 测试用例编号   : Test_AT_GetSmoothAntennaLevel_001
- 测试用例标题   : 丢网时立即更新
- 预期结果       : 返回
- 修改历史       :
- 1.日   期  : 2013-03-08
-   作   者  : f00179208
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_GetSmoothAntennaLevel,Test_AT_GetSmoothAntennaLevel_001)
 {
     AT_CMD_ANTENNA_LEVEL_ENUM_UINT8     enLevel;
@@ -3201,15 +2410,7 @@ TEST_F(Test_AT_GetSmoothAntennaLevel,Test_AT_GetSmoothAntennaLevel_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_AT_GetSmoothAntennaLevel_002
- 测试用例标题   : 丢网到有服务状态立即更新
- 预期结果       : 返回
- 修改历史       :
- 1.日   期  : 2013-03-08
-   作   者  : f00179208
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_GetSmoothAntennaLevel,Test_AT_GetSmoothAntennaLevel_002)
 {
     AT_CMD_ANTENNA_LEVEL_ENUM_UINT8     enLevel;
@@ -3228,15 +2429,7 @@ TEST_F(Test_AT_GetSmoothAntennaLevel,Test_AT_GetSmoothAntennaLevel_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_AT_GetSmoothAntennaLevel_003
- 测试用例标题   : 与上次的信号格数比变化大于1格
- 预期结果       : 返回
- 修改历史       :
- 1.日   期  : 2013-03-08
-   作   者  : f00179208
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_GetSmoothAntennaLevel,Test_AT_GetSmoothAntennaLevel_003)
 {
     AT_CMD_ANTENNA_LEVEL_ENUM_UINT8     enLevel;
@@ -3257,15 +2450,7 @@ TEST_F(Test_AT_GetSmoothAntennaLevel,Test_AT_GetSmoothAntennaLevel_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_AT_GetSmoothAntennaLevel_004
- 测试用例标题   : 与上次的信号格数比变化小过1格
- 预期结果       : 返回
- 修改历史       :
- 1.日   期  : 2013-03-08
-   作   者  : f00179208
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_GetSmoothAntennaLevel,Test_AT_GetSmoothAntennaLevel_004)
 {
     AT_CMD_ANTENNA_LEVEL_ENUM_UINT8     enLevel;
@@ -3286,15 +2471,7 @@ TEST_F(Test_AT_GetSmoothAntennaLevel,Test_AT_GetSmoothAntennaLevel_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_AT_GetSmoothAntennaLevel_005
- 测试用例标题   : 格数波动则不更新
- 预期结果       : 返回
- 修改历史       :
- 1.日   期  : 2013-03-08
-   作   者  : f00179208
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_GetSmoothAntennaLevel,Test_AT_GetSmoothAntennaLevel_005)
 {
     AT_CMD_ANTENNA_LEVEL_ENUM_UINT8     enLevel;
@@ -3316,15 +2493,7 @@ TEST_F(Test_AT_GetSmoothAntennaLevel,Test_AT_GetSmoothAntennaLevel_005)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_AT_GetSmoothAntennaLevel_006
- 测试用例标题   : 格数波动稳定了才更新
- 预期结果       : 返回
- 修改历史       :
- 1.日   期  : 2013-03-08
-   作   者  : f00179208
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_GetSmoothAntennaLevel,Test_AT_GetSmoothAntennaLevel_006)
 {
     AT_CMD_ANTENNA_LEVEL_ENUM_UINT8     enLevel;
@@ -3347,14 +2516,7 @@ TEST_F(Test_AT_GetSmoothAntennaLevel,Test_AT_GetSmoothAntennaLevel_006)
 }
 
 
-/*****************************************************************************
-类名     : Test_At_QryFreqLock
-功能描述 : Test_At_QryFreqLock UT工程类
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  : o00132663
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryFreqLock: public ::testing::Test
 {
 public:
@@ -3369,15 +2531,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QryFreqLock_001
-测试用例标题      : 发送消息失败
-预期结果          : 函数给用户回复ERROR
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  : o00132663
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryFreqLock, Test_At_QryFreqLock_001)
 {
     /* 变量定义 */
@@ -3403,15 +2557,7 @@ TEST_F(Test_At_QryFreqLock, Test_At_QryFreqLock_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryFreqLock_002
-测试用例标题      : 发送消息成功
-预期结果          : 函数给用户回复AT_WAIT_ASYNC_RETURN
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  : o00132663
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryFreqLock, Test_At_QryFreqLock_002)
 {
     /* 变量定义 */
@@ -3438,14 +2584,7 @@ TEST_F(Test_At_QryFreqLock, Test_At_QryFreqLock_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_At_QryRRCVersion
-功能描述 : Test_At_QryRRCVersion UT工程类
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  : o00132663
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryRRCVersion: public ::testing::Test
 {
 public:
@@ -3460,15 +2599,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QryRRCVersion_001
-测试用例标题      : 发送消息失败
-预期结果          : 函数给用户回复ERROR
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  : o00132663
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryRRCVersion, Test_At_QryRRCVersion_001)
 {
     /* 变量定义 */
@@ -3494,15 +2625,7 @@ TEST_F(Test_At_QryRRCVersion, Test_At_QryRRCVersion_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryRRCVersion_002
-测试用例标题      : 发送消息成功
-预期结果          : 函数给用户回复AT_WAIT_ASYNC_RETURN
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  : o00132663
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryRRCVersion, Test_At_QryRRCVersion_002)
 {
     /* 变量定义 */
@@ -3530,14 +2653,7 @@ TEST_F(Test_At_QryRRCVersion, Test_At_QryRRCVersion_002)
 }
 
 
-/*****************************************************************************
-类名     : Test_At_QryYjcxPara
-功能描述 : Test_At_QryYjcxPara UT工程类
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  : o00132663
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryYjcxPara: public ::testing::Test
 {
 public:
@@ -3552,15 +2668,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QryYjcxPara_001
-测试用例标题      : 发送消息失败
-预期结果          : 函数给用户回复ERROR
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  : o00132663
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryYjcxPara, Test_At_QryYjcxPara_001)
 {
     /* 变量定义 */
@@ -3586,15 +2694,7 @@ TEST_F(Test_At_QryYjcxPara, Test_At_QryYjcxPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryYjcxPara_002
-测试用例标题      : 发送消息成功
-预期结果          : 函数给用户回复AT_WAIT_ASYNC_RETURN
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  : o00132663
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryYjcxPara, Test_At_QryYjcxPara_002)
 {
     /* 变量定义 */
@@ -3625,14 +2725,7 @@ TEST_F(Test_At_QryYjcxPara, Test_At_QryYjcxPara_002)
 
 
 
-/*****************************************************************************
-类名     : Test_AT_QryDloadInfoPara
-功能描述 : Test_AT_QryDloadInfoPara UT工程类
-修改历史 :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryDloadInfoPara: public ::testing::Test
 {
 public:
@@ -3647,15 +2740,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryDloadInfoPara_001
-测试用例标题      : 发消息到C核失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryDloadInfoPara, Test_AT_QryDloadInfoPara_001)
 {
     // 变量声明
@@ -3686,15 +2771,7 @@ TEST_F(Test_AT_QryDloadInfoPara, Test_AT_QryDloadInfoPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryDloadInfoPara_002
-测试用例标题      : 发送消息到C核成功
-预期结果          : 返回AT_WAIT_ASYNC_RETURN
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryDloadInfoPara, Test_AT_QryDloadInfoPara_002)
 {
     // 变量声明
@@ -3723,14 +2800,7 @@ TEST_F(Test_AT_QryDloadInfoPara, Test_AT_QryDloadInfoPara_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_QryAuthorityVerPara
-功能描述 : Test_AT_QryAuthorityVerPara UT工程类
-修改历史 :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryAuthorityVerPara: public ::testing::Test
 {
 public:
@@ -3745,15 +2815,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryAuthorityVerPara_001
-测试用例标题      : 发消息到C核失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryAuthorityVerPara, Test_AT_QryAuthorityVerPara_001)
 {
     // 变量声明
@@ -3783,15 +2845,7 @@ TEST_F(Test_AT_QryAuthorityVerPara, Test_AT_QryAuthorityVerPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryAuthorityVerPara_002
-测试用例标题      : 发送消息到C核成功
-预期结果          : 返回AT_WAIT_ASYNC_RETURN
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryAuthorityVerPara, Test_AT_QryAuthorityVerPara_002)
 {
     // 变量声明
@@ -3820,14 +2874,7 @@ TEST_F(Test_AT_QryAuthorityVerPara, Test_AT_QryAuthorityVerPara_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_QryAuthorityIdPara
-功能描述 : Test_AT_QryAuthorityIdPara UT工程类
-修改历史 :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryAuthorityIdPara: public ::testing::Test
 {
 public:
@@ -3842,15 +2889,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryAuthorityIdPara_001
-测试用例标题      : 发消息到C核失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryAuthorityIdPara, Test_AT_QryAuthorityIdPara_001)
 {
     // 变量声明
@@ -3880,15 +2919,7 @@ TEST_F(Test_AT_QryAuthorityIdPara, Test_AT_QryAuthorityIdPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryAuthorityIdPara_002
-测试用例标题      : 发送消息到C核成功
-预期结果          : 操作类型为AT_CMD_AUTHORITYID_READ，返回AT_WAIT_ASYNC_RETURN
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryAuthorityIdPara, Test_AT_QryAuthorityIdPara_002)
 {
     // 变量声明
@@ -4016,14 +3047,7 @@ TEST_F(Test_AT_QryAuthorityIdPara, Test_AT_QryAuthorityIdPara_002)
 //    GlobalMockObject::verify();
 //}
 
-/*****************************************************************************
-类名     : Test_AT_QryFlashInfoPara
-功能描述 : Test_AT_QryFlashInfoPara UT工程类
-修改历史 :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryFlashInfoPara: public ::testing::Test
 {
 public:
@@ -4038,15 +3062,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryFlashInfoPara_001
-测试用例标题      : 发消息到C核失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryFlashInfoPara, Test_AT_QryFlashInfoPara_001)
 {
     // 变量声明
@@ -4076,15 +3092,7 @@ TEST_F(Test_AT_QryFlashInfoPara, Test_AT_QryFlashInfoPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryFlashInfoPara_002
-测试用例标题      : 发送消息到C核成功
-预期结果          : 返回AT_WAIT_ASYNC_RETURN
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryFlashInfoPara, Test_AT_QryFlashInfoPara_002)
 {
     // 变量声明
@@ -4114,14 +3122,7 @@ TEST_F(Test_AT_QryFlashInfoPara, Test_AT_QryFlashInfoPara_002)
 }
 
 
-/*****************************************************************************
-类名     : Test_AT_QryFeaturePara
-功能描述 : Test_AT_QryFeaturePara UT工程类
-修改历史 :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryFeaturePara: public ::testing::Test
 {
 public:
@@ -4136,15 +3137,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryFeaturePara_001
-测试用例标题      : 发消息到C核失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryFeaturePara, Test_AT_QryFeaturePara_001)
 {
     // 变量声明
@@ -4172,15 +3165,7 @@ TEST_F(Test_AT_QryFeaturePara, Test_AT_QryFeaturePara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryFeaturePara_002
-测试用例标题      : 发送消息到C核成功
-预期结果          : 返回AT_WAIT_ASYNC_RETURN
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryFeaturePara, Test_AT_QryFeaturePara_002)
 {
     // 变量声明
@@ -4209,14 +3194,7 @@ TEST_F(Test_AT_QryFeaturePara, Test_AT_QryFeaturePara_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_QryProdTypePara
-功能描述 : Test_AT_QryProdTypePara UT工程类
-修改历史 :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryProdTypePara: public ::testing::Test
 {
 public:
@@ -4231,15 +3209,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryProdTypePara_001
-测试用例标题      : 发消息到C核失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryProdTypePara, Test_AT_QryProdTypePara_001)
 {
     // 变量声明
@@ -4267,15 +3237,7 @@ TEST_F(Test_AT_QryProdTypePara, Test_AT_QryProdTypePara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryProdTypePara_002
-测试用例标题      : 发送消息到C核成功
-预期结果          : 返回AT_WAIT_ASYNC_RETURN
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryProdTypePara, Test_AT_QryProdTypePara_002)
 {
     // 变量声明
@@ -4307,18 +3269,7 @@ TEST_F(Test_AT_QryProdTypePara, Test_AT_QryProdTypePara_002)
 
 #if(FEATURE_ON == FEATURE_WIFI)
 
-/*******************************************************************
-测试用例编号      : Test_At_QrySecuBootFeaturePara_001
-测试用例标题      : 发消息到C核失败
-/*****************************************************************************
-类名     : Test_AT_QryWifiPaRangePara
-功能描述 : Test_AT_QryWifiPaRangePara UT工程类
-修改历史     :
 
-1.日   期  : 2012-02-08
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
 class Test_AT_QryWifiPaRangePara: public ::testing::Test
 {
 public:
@@ -4349,16 +3300,7 @@ protected:
     AT_PAR_CMD_ELEMENT_STRU     stCmdInfo;
 };
 #if 0
-/*******************************************************************
-测试用例编号      : Test_AT_QryWifiPaRangePara_001
-测试用例标题      : 查询成功，当前模式为PA模式
-预期结果          : 返回AT_OK
-修改历史   :
 
-1.日   期  : 2012-02-08
-  作   者  : l00198894
-  修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_AT_QryWifiPaRangePara, Test_AT_QryWifiPaRangePara_001)
 {
     /*变量定义*/
@@ -4387,16 +3329,7 @@ TEST_F(Test_AT_QryWifiPaRangePara, Test_AT_QryWifiPaRangePara_001)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryWifiPaRangePara_002
-测试用例标题      : 查询成功，当前模式为NOPA模式
-预期结果          : 返回AT_OK
-修改历史   :
 
-1.日   期  : 2012-02-08
-  作   者  : l00198894
-  修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_AT_QryWifiPaRangePara, Test_AT_QryWifiPaRangePara_002)
 {
     /*变量定义*/
@@ -4425,16 +3358,7 @@ TEST_F(Test_AT_QryWifiPaRangePara, Test_AT_QryWifiPaRangePara_002)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryWifiPaRangePara_003
-测试用例标题      : 获取当前模式失败
-预期结果          : 返回AT_ERROR
-修改历史   :
 
-1.日   期  : 2012-02-08
-  作   者  : l00198894
-  修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_AT_QryWifiPaRangePara, Test_AT_QryWifiPaRangePara_003)
 {
     /*变量定义*/
@@ -4461,15 +3385,7 @@ TEST_F(Test_AT_QryWifiPaRangePara, Test_AT_QryWifiPaRangePara_003)
 #endif
 
 
-/*****************************************************************************
-类名     : Test_AT_QryNvResumePara
-功能描述 : Test_AT_QryNvResumePara UT工程类
-修改历史     :
 
-1.日   期  : 2012-03-09
-  作   者  : L60609
-  修改内容 : 新生成类
-*****************************************************************************/
 class Test_AT_QryNvResumePara: public ::testing::Test
 {
 public:
@@ -4500,16 +3416,7 @@ protected:
     AT_PAR_CMD_ELEMENT_STRU     stCmdInfo;
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryNvResumePara_001
-测试用例标题      : 读NV失败
-预期结果          : 返回AT_ERROR
-修改历史   :
 
-1.日   期  : 2012-03-09
-  作   者  : L60609
-  修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_AT_QryNvResumePara, Test_AT_QryNvResumePara_001)
 {
      /*变量定义*/
@@ -4539,16 +3446,7 @@ TEST_F(Test_AT_QryNvResumePara, Test_AT_QryNvResumePara_001)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryNvResumePara_002
-测试用例标题      : 读NV成功，返回值为2
-预期结果          : 返回AT_ERROR
-修改历史   :
 
-1.日   期  : 2012-03-09
-  作   者  : L60609
-  修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_AT_QryNvResumePara, Test_AT_QryNvResumePara_002)
 {
      /*变量定义*/
@@ -4580,16 +3478,7 @@ TEST_F(Test_AT_QryNvResumePara, Test_AT_QryNvResumePara_002)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryNvResumePara_003
-测试用例标题      : 读NV成功，返回值为AT_NV_RESUME_SUCC
-预期结果          : 返回AT_ERROR
-修改历史   :
 
-1.日   期  : 2012-03-09
-  作   者  : L60609
-  修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_AT_QryNvResumePara, Test_AT_QryNvResumePara_003)
 {
      /*变量定义*/
@@ -4622,14 +3511,7 @@ TEST_F(Test_AT_QryNvResumePara, Test_AT_QryNvResumePara_003)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_At_QrySecuBootFeaturePara
-功能描述 : At_QrySecuBootFeaturePara UT工程类
-修改历史 :
-1.日   期  : 2012-04-12
-  作   者  : y00213812
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QrySecuBootFeaturePara: public ::testing::Test
 {
 public:
@@ -4655,18 +3537,7 @@ public:
     VOS_UINT8       ucIndex;
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QrySecuBootFeaturePara_001
-测试用例标题      : 读取NV项失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-2.日    期 : 2012年08月08日
-  作    者 : y00213812
-  修改内容 : 根据V7R1C50_AR_DRV_FLASHLESS_22修改，直接读取NV项
-*******************************************************************/
+
 TEST_F(Test_At_QrySecuBootFeaturePara, Test_At_QrySecuBootFeaturePara_001)
 {
     // 变量声明
@@ -4691,19 +3562,7 @@ TEST_F(Test_At_QrySecuBootFeaturePara, Test_At_QrySecuBootFeaturePara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QrySecuBootFeaturePara_002
-测试用例标题      : 读取NV项成功，打印输出
-预期结果          : 返回AT_OK
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-2.日    期 : 2012年08月08日
-  作    者 : y00213812
-  修改内容 : 根据V7R1C50_AR_DRV_FLASHLESS_22修改，直接读取NV项
 
-*******************************************************************/
 TEST_F(Test_At_QrySecuBootFeaturePara, Test_At_QrySecuBootFeaturePara_002)
 {
     // 变量声明
@@ -4732,14 +3591,7 @@ TEST_F(Test_At_QrySecuBootFeaturePara, Test_At_QrySecuBootFeaturePara_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_At_QrySecuBootPara
-功能描述 : Test_At_QrySecuBootPara UT工程类
-修改历史 :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QrySecuBootPara: public ::testing::Test
 {
 public:
@@ -4754,15 +3606,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QrySecuBootPara_001
-测试用例标题      : 发消息到C核失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QrySecuBootPara, Test_At_QrySecuBootPara_001)
 {
     // 变量声明
@@ -4790,15 +3634,7 @@ TEST_F(Test_At_QrySecuBootPara, Test_At_QrySecuBootPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QrySecuBootPara_002
-测试用例标题      : 发送消息到C核成功
-预期结果          : 返回AT_WAIT_ASYNC_RETURN
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QrySecuBootPara, Test_At_QrySecuBootPara_002)
 {
     // 变量声明
@@ -4827,14 +3663,7 @@ TEST_F(Test_At_QrySecuBootPara, Test_At_QrySecuBootPara_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_At_QryVersion
-功能描述 : Test_At_QryVersion UT工程类
-修改历史 :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryVersion: public ::testing::Test
 {
 public:
@@ -4849,15 +3678,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QryVersion_001
-测试用例标题      : 发消息到C核失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryVersion, Test_At_QryVersion_001)
 {
     // 变量声明
@@ -4885,15 +3706,7 @@ TEST_F(Test_At_QryVersion, Test_At_QryVersion_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryVersion_002
-测试用例标题      : 发送消息到C核成功
-预期结果          : 返回AT_WAIT_ASYNC_RETURN
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryVersion, Test_At_QryVersion_002)
 {
     // 变量声明
@@ -4922,14 +3735,7 @@ TEST_F(Test_At_QryVersion, Test_At_QryVersion_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_At_QryTModePara
-功能描述 : Test_At_QryTModePara UT工程类
-修改历史 :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryTModePara: public ::testing::Test
 {
 public:
@@ -4944,15 +3750,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QryTModePara_002
-测试用例标题      : 当前设备制式是GU模，查询当前TMODE的执行状态
-预期结果          : 返回AT_OK
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryTModePara, Test_At_QryTModePara_002)
 {
     // 变量声明
@@ -4989,14 +3787,7 @@ TEST_F(Test_At_QryTModePara, Test_At_QryTModePara_002)
 }
 
 #if (FEATURE_ON == FEATURE_E5)
-/*****************************************************************************
-类名     : Test_AT_QryBatVolPara
-功能描述 : Test_AT_QryBatVolPara UT工程类
-修改历史 :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryBatVolPara: public ::testing::Test
 {
 public:
@@ -5010,15 +3801,7 @@ public:
 
     }
 };
-/*******************************************************************
-测试用例编号      : Test_AT_QryBatVolPara_001
-测试用例标题      : 发消息到C核失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryBatVolPara, Test_AT_QryBatVolPara_001)
 {
     // 变量声明
@@ -5045,15 +3828,7 @@ TEST_F(Test_AT_QryBatVolPara, Test_AT_QryBatVolPara_001)
 
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号      : Test_AT_QryBatVolPara_002
-测试用例标题      : 发送消息到C核成功
-预期结果          : 返回AT_WAIT_ASYNC_RETURN
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryBatVolPara, Test_AT_QryBatVolPara_002)
 {
     // 变量声明
@@ -5082,14 +3857,7 @@ TEST_F(Test_AT_QryBatVolPara, Test_AT_QryBatVolPara_002)
     GlobalMockObject::verify();
 }
 #endif
-/*****************************************************************************
-类名     : Test_At_QryGPIOPL
-功能描述 : Test_At_QryGPIOPL UT工程类
-修改历史 :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryGPIOPL: public ::testing::Test
 {
 public:
@@ -5104,15 +3872,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QryGPIOPL_001
-测试用例标题      : 发消息到C核失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryGPIOPL, Test_At_QryGPIOPL_001)
 {
     // 变量声明
@@ -5140,15 +3900,7 @@ TEST_F(Test_At_QryGPIOPL, Test_At_QryGPIOPL_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryGPIOPL_002
-测试用例标题      : 发送消息到C核成功
-预期结果          : 返回AT_WAIT_ASYNC_RETURN
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryGPIOPL, Test_At_QryGPIOPL_002)
 {
     // 变量声明
@@ -5177,14 +3929,7 @@ TEST_F(Test_At_QryGPIOPL, Test_At_QryGPIOPL_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_At_QryFrssiPara
-功能描述 : Test_At_QryFrssiPara UT工程类
-修改历史 :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryFrssiPara: public ::testing::Test
 {
 public:
@@ -5199,15 +3944,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QryFrssiPara_001
-测试用例标题      : 当前设备制式为L模
-预期结果          : 调用L模对应的接口，返回接口的返回值
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryFrssiPara, Test_At_QryFrssiPara_001)
 {
     // 变量声明
@@ -5237,15 +3974,7 @@ TEST_F(Test_At_QryFrssiPara, Test_At_QryFrssiPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryFrssiPara_002
-测试用例标题      : lTE宏关闭，GSM模式下，发送到modem0的PID
-预期结果          : 返回接口的返回值
-修改历史          :
-1.日   期  : 2012-12-26
-  作   者  : l00227485
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryFrssiPara, Test_At_QryFrssiPara_002)
 {
     // 变量声明
@@ -5277,14 +4006,7 @@ TEST_F(Test_At_QryFrssiPara, Test_At_QryFrssiPara_002)
 
 }
 
-/*****************************************************************************
-类名     : Test_At_QryFlnaPara
-功能描述 : Test_At_QryFlnaPara UT工程类
-修改历史 :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryFlnaPara: public ::testing::Test
 {
 public:
@@ -5299,15 +4021,7 @@ public:
     }
 };
 #if(FEATURE_LTE == FEATURE_ON)
-/*******************************************************************
-测试用例编号      : Test_At_QryFlnaPara_001
-测试用例标题      : 当前设备制式为L模
-预期结果          : 调用L模对应的接口，返回接口的返回值
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryFlnaPara, Test_At_QryFlnaPara_001)
 {
     // 变量声明
@@ -5335,14 +4049,7 @@ TEST_F(Test_At_QryFlnaPara, Test_At_QryFlnaPara_001)
     GlobalMockObject::verify();
 }
 #endif
-/*****************************************************************************
-类名     : Test_AT_QryCgdcontPara
-功能描述 : Test_AT_QryCgdcontPara UT工程类
-修改历史 :
-1.日   期  : 2011-10-28
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryCgdcontPara: public ::testing::Test
 {
 public:
@@ -5357,15 +4064,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryCgdcontPara_001
-测试用例标题      : 成功执行命令操作
-预期结果          : 返回AT_WAIT_ASYNC_RETURN
-修改历史          :
-1.日   期  : 2011-10-28
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryCgdcontPara, Test_AT_QryCgdcontPara_001)
 {
     // 变量声明
@@ -5395,14 +4094,7 @@ TEST_F(Test_AT_QryCgdcontPara, Test_AT_QryCgdcontPara_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_QryCgactPara
-功能描述 : Test_AT_QryCgactPara UT工程类
-修改历史 :
-1.日   期  : 2011-10-28
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryCgactPara: public ::testing::Test
 {
 public:
@@ -5417,15 +4109,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryCgactPara_001
-测试用例标题      : 成功执行命令操作
-预期结果          : 返回AT_WAIT_ASYNC_RETURN
-修改历史          :
-1.日   期  : 2011-10-28
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryCgactPara, Test_AT_QryCgactPara_001)
 {
     // 变量声明
@@ -5455,14 +4139,7 @@ TEST_F(Test_AT_QryCgactPara, Test_AT_QryCgactPara_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_QryCgeqreqPara
-功能描述 : Test_AT_QryCgeqreqPara UT工程类
-修改历史 :
-1.日   期  : 2011-10-28
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryCgeqreqPara: public ::testing::Test
 {
 public:
@@ -5477,15 +4154,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryCgeqreqPara_001
-测试用例标题      : 成功执行命令操作
-预期结果          : 返回AT_WAIT_ASYNC_RETURN
-修改历史          :
-1.日   期  : 2011-10-28
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryCgeqreqPara, Test_AT_QryCgeqreqPara_001)
 {
     // 变量声明
@@ -5515,14 +4184,7 @@ TEST_F(Test_AT_QryCgeqreqPara, Test_AT_QryCgeqreqPara_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_At_QryCgeqminPara
-功能描述 : Test_At_QryCgeqminPara UT工程类
-修改历史 :
-1.日   期  : 2011-10-28
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryCgeqminPara: public ::testing::Test
 {
 public:
@@ -5537,15 +4199,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QryCgeqminPara_001
-测试用例标题      : 成功执行命令操作
-预期结果          : 返回AT_WAIT_ASYNC_RETURN
-修改历史          :
-1.日   期  : 2011-10-28
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCgeqminPara, Test_At_QryCgeqminPara_001)
 {
     // 变量声明
@@ -5575,14 +4229,7 @@ TEST_F(Test_At_QryCgeqminPara, Test_At_QryCgeqminPara_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_QryCgdscontPara
-功能描述 : Test_AT_QryCgdscontPara UT工程类
-修改历史 :
-1.日   期  : 2011-10-28
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryCgdscontPara: public ::testing::Test
 {
 public:
@@ -5597,15 +4244,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryCgdscontPara_001
-测试用例标题      : 成功执行命令操作
-预期结果          : 返回AT_WAIT_ASYNC_RETURN
-修改历史          :
-1.日   期  : 2011-10-28
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryCgdscontPara, Test_AT_QryCgdscontPara_001)
 {
     // 变量声明
@@ -5635,14 +4274,7 @@ TEST_F(Test_AT_QryCgdscontPara, Test_AT_QryCgdscontPara_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_QryCgdnsPara
-功能描述 : Test_AT_QryCgdnsPara UT工程类
-修改历史 :
-1.日   期  : 2011-10-28
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryCgdnsPara: public ::testing::Test
 {
 public:
@@ -5657,15 +4289,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryCgdnsPara_001
-测试用例标题      : 成功执行命令操作
-预期结果          : 返回AT_WAIT_ASYNC_RETURN
-修改历史          :
-1.日   期  : 2011-10-28
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryCgdnsPara, Test_AT_QryCgdnsPara_001)
 {
     // 变量声明
@@ -5695,14 +4319,7 @@ TEST_F(Test_AT_QryCgdnsPara, Test_AT_QryCgdnsPara_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_QryCgautoPara
-功能描述 : Test_AT_QryCgautoPara UT工程类
-修改历史 :
-1.日   期  : 2011-10-28
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryCgautoPara: public ::testing::Test
 {
 public:
@@ -5717,15 +4334,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryCgautoPara_001
-测试用例标题      : 成功执行命令操作
-预期结果          : 返回AT_WAIT_ASYNC_RETURN
-修改历史          :
-1.日   期  : 2011-10-28
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryCgautoPara, Test_AT_QryCgautoPara_001)
 {
     // 变量声明
@@ -5755,14 +4364,7 @@ TEST_F(Test_AT_QryCgautoPara, Test_AT_QryCgautoPara_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_QryCgauthPara
-功能描述 : Test_AT_QryCgauthPara UT工程类
-修改历史 :
-1.日   期  : 2011-10-28
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryCgauthPara: public ::testing::Test
 {
 public:
@@ -5777,15 +4379,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryCgauthPara_001
-测试用例标题      : 成功执行命令操作
-预期结果          : 返回AT_WAIT_ASYNC_RETURN
-修改历史          :
-1.日   期  : 2011-10-28
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryCgauthPara, Test_AT_QryCgauthPara_001)
 {
     // 变量声明
@@ -5815,14 +4409,7 @@ TEST_F(Test_AT_QryCgauthPara, Test_AT_QryCgauthPara_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_QryCgtftPara
-功能描述 : Test_AT_QryCgtftPara UT工程类
-修改历史 :
-1.日   期  : 2011-10-28
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryCgtftPara: public ::testing::Test
 {
 public:
@@ -5837,15 +4424,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryCgtftPara_001
-测试用例标题      : 成功执行命令操作
-预期结果          : 返回AT_WAIT_ASYNC_RETURN
-修改历史          :
-1.日   期  : 2011-10-28
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryCgtftPara, Test_AT_QryCgtftPara_001)
 {
     // 变量声明
@@ -5878,14 +4457,7 @@ TEST_F(Test_AT_QryCgtftPara, Test_AT_QryCgtftPara_001)
 
 
 
-/*****************************************************************************
-类名     : Test_AT_QryRsimPara
-功能描述 : Test_AT_QryRsimPara UT工程类
-修改历史 :
-1.日   期  : 2011-10-13
-作   者  : w00181244
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryRsimPara: public ::testing::Test
 {
 public:
@@ -5903,15 +4475,7 @@ protected:
     VOS_UINT8                   ucIndex;
 };
 
-/*******************************************************************
- 测试用例编号      : Test_AT_QryRsimPara_001
- 测试用例标题      : 通过ModemId失败，默认Modem0
- 预期结果          : 继续执行函数
- 修改历史     :
- 1.日   期  : 2013-01-10
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryRsimPara, Test_AT_QryRsimPara_001)
 {
     VOS_UINT8                           ucIndex;
@@ -5927,15 +4491,7 @@ TEST_F(Test_AT_QryRsimPara, Test_AT_QryRsimPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryRsimPara_002
-测试用例标题      : 卡类型为USIMM_CARD_USIM，卡状态为USIMM_CARD_SERVIC_AVAILABLE
-预期结果          : 返回1,AT_OK,符合格式
-修改历史          :
-1.日   期  : 2011-10-14
-作   者  : w00181244
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryRsimPara, Test_AT_QryRsimPara_002)
 {
     /*变量定义*/
@@ -5973,15 +4529,7 @@ TEST_F(Test_AT_QryRsimPara, Test_AT_QryRsimPara_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryRsimPara_003
-测试用例标题      : 卡类型为USIMM_CARD_ROM_SIM，卡状态为USIMM_CARD_SERVIC_ABSENT
-预期结果          : 返回0,AT_OK,符合格式
-修改历史          :
-1.日   期  : 2011-10-14
-作   者  : w00181244
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryRsimPara, Test_AT_QryRsimPara_003)
 {
     /*变量定义*/
@@ -6020,15 +4568,7 @@ TEST_F(Test_AT_QryRsimPara, Test_AT_QryRsimPara_003)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryRsimPara_004
-测试用例标题      : 卡类型为USIMM_CARD_TYPE_BUTT，卡状态为USIMM_CARD_SERVIC_BUTT
-预期结果          : 返回2,AT_OK,符合格式
-修改历史          :
-1.日   期  : 2012-05-05
-作   者  : f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryRsimPara, Test_AT_QryRsimPara_004)
 {
     /*变量定义*/
@@ -6067,14 +4607,7 @@ TEST_F(Test_AT_QryRsimPara, Test_AT_QryRsimPara_004)
 
 }
 
-/*****************************************************************************
-类名     : Test_AT_QryPhyNumPara
-功能描述 : Test_AT_QryPhyNumPara UT工程类
-修改历史 :
-1.日   期  : 2011-10-13
-作   者  : w00181244
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryPhyNumPara: public ::testing::Test
 {
 public:
@@ -6089,15 +4622,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryPhyNumPara_001
-测试用例标题      : 获取IMSI失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2011-10-14
-作   者  : w00181244
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryPhyNumPara, Test_AT_QryPhyNumPara_001)
 {
     /*变量定义*/
@@ -6124,15 +4649,7 @@ TEST_F(Test_AT_QryPhyNumPara, Test_AT_QryPhyNumPara_001)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_GetImeiValue_002
-测试用例标题      : 获取SVN值失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2011-10-14
-作   者  : w00181244
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryPhyNumPara, Test_AT_QryPhyNumPara_002)
 {
     /*变量定义*/
@@ -6163,15 +4680,7 @@ TEST_F(Test_AT_QryPhyNumPara, Test_AT_QryPhyNumPara_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_GetImeiValue_003
-测试用例标题      : 获取IMSI和SVN都成功
-预期结果          : 按格式返回输出
-修改历史          :
-1.日   期  : 2011-10-14
-作   者  : w00181244
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryPhyNumPara, Test_AT_QryPhyNumPara_003)
 {
     /*变量定义*/
@@ -6214,14 +4723,7 @@ TEST_F(Test_AT_QryPhyNumPara, Test_AT_QryPhyNumPara_003)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_At_QryFTxonPara
-功能描述 : Test_At_QryFTxonPara UT工程类
-修改历史 :
-1.日   期  : 2011-10-13
-作   者  : w00181244
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryFTxonPara: public ::testing::Test
 {
 public:
@@ -6237,15 +4739,7 @@ public:
 };
 
 #if(FEATURE_LTE == FEATURE_ON)
-/*******************************************************************
-测试用例编号      : Test_At_QryFTxonPara_001
-测试用例标题      : 当前接入模式为AT_RAT_MODE_FDD_LTE
-预期结果          : 返回LTE模的接口atQryFTXONPara的返回结果
-修改历史          :
-1.日   期  : 2011-10-14
-作   者  : w00181244
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryFTxonPara, Test_At_QryFTxonPara_001)
 {
     /*变量定义*/
@@ -6266,15 +4760,7 @@ TEST_F(Test_At_QryFTxonPara, Test_At_QryFTxonPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryFTxonPara_002
-测试用例标题      : 当前接入模式为AT_RAT_MODE_TDD_LTE
-预期结果          : 返回LTE模的接口atQryFTXONPara的返回结果
-修改历史          :
-1.日   期  : 2011-10-14
-作   者  : w00181244
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryFTxonPara, Test_At_QryFTxonPara_002)
 {
     /*变量定义*/
@@ -6297,15 +4783,7 @@ TEST_F(Test_At_QryFTxonPara, Test_At_QryFTxonPara_002)
 }
 #endif
 
-/*******************************************************************
-测试用例编号      : Test_At_QryFTxonPara_003
-测试用例标题      : 当前接入模式为AT_RAT_MODE_WCDMA
-预期结果          : 返回g_stAtDevCmdCtrl.ucTxOnOff的值
-修改历史          :
-1.日   期  : 2011-10-14
-作   者  : w00181244
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryFTxonPara, Test_At_QryFTxonPara_003)
 {
     /*变量定义*/
@@ -6335,14 +4813,7 @@ TEST_F(Test_At_QryFTxonPara, Test_At_QryFTxonPara_003)
 
 
 
-/*****************************************************************************
-类名     : Test_At_QryFRxonPara
-功能描述 : Test_At_QryFRxonPara UT工程类
-修改历史 :
-1.日   期  : 2011-10-13
-作   者  : w00181244
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryFRxonPara: public ::testing::Test
 {
 public:
@@ -6358,15 +4829,7 @@ public:
 };
 
 #if(FEATURE_LTE == FEATURE_ON)
-/*******************************************************************
-测试用例编号      : Test_At_QryFRxonPara_001
-测试用例标题      : 当前接入模式为AT_RAT_MODE_FDD_LTE
-预期结果          : 返回LTE模的接口atQryFRXONPara的返回结果
-修改历史          :
-1.日   期  : 2011-10-14
-作   者  : w00181244
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryFRxonPara, Test_At_QryFRxonPara_001)
 {
     /*变量定义*/
@@ -6388,15 +4851,7 @@ TEST_F(Test_At_QryFRxonPara, Test_At_QryFRxonPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryFRxonPara_002
-测试用例标题      : 当前接入模式为AT_RAT_MODE_TDD_LTE
-预期结果          : 返回LTE模的接口atQryFRXONPara的返回结果
-修改历史          :
-1.日   期  : 2011-10-14
-作   者  : w00181244
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryFRxonPara, Test_At_QryFRxonPara_002)
 {
     /*变量定义*/
@@ -6418,15 +4873,7 @@ TEST_F(Test_At_QryFRxonPara, Test_At_QryFRxonPara_002)
 }
 #endif
 
-/*******************************************************************
-测试用例编号      : Test_At_QryFRxonPara_003
-测试用例标题      : 当前接入模式为AT_RAT_MODE_WCDMA
-预期结果          : 返回g_stAtDevCmdCtrl.ucRxOnOff的值
-修改历史          :
-1.日   期  : 2011-10-14
-作   者  : w00181244
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryFRxonPara, Test_At_QryFRxonPara_003)
 {
     /*变量定义*/
@@ -6456,14 +4903,7 @@ TEST_F(Test_At_QryFRxonPara, Test_At_QryFRxonPara_003)
 
 
 
-/*****************************************************************************
-类名     : Test_At_QryFChanPara
-功能描述 : Test_At_QryFChanPara UT工程类
-修改历史 :
-1.日   期  : 2011-10-13
-作   者  : w00181244
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryFChanPara: public ::testing::Test
 {
 public:
@@ -6479,15 +4919,7 @@ public:
 };
 
 #if (FEATURE_LTE == FEATURE_ON)
-/*******************************************************************
-测试用例编号      : Test_At_QryFChanPara_001
-测试用例标题      : 当前接入模式为AT_RAT_MODE_FDD_LTE
-预期结果          : 返回LTE模的接口atQryFFCHANSPara的返回结果
-修改历史          :
-1.日   期  : 2011-10-14
-作   者  : w00181244
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryFChanPara, Test_At_QryFChanPara_001)
 {
     /*变量定义*/
@@ -6509,15 +4941,7 @@ TEST_F(Test_At_QryFChanPara, Test_At_QryFChanPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryFChanPara_002
-测试用例标题      : 当前接入模式为AT_RAT_MODE_TDD_LTE
-预期结果          : 返回LTE模的接口atQryFFCHANSPara的返回结果
-修改历史          :
-1.日   期  : 2011-10-14
-作   者  : w00181244
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryFChanPara, Test_At_QryFChanPara_002)
 {
     /*变量定义*/
@@ -6539,15 +4963,7 @@ TEST_F(Test_At_QryFChanPara, Test_At_QryFChanPara_002)
 }
 #endif
 
-/*******************************************************************
-测试用例编号      : Test_At_QryFChanPara_003
-测试用例标题      : 当前接入模式为AT_RAT_MODE_WCDMA
-预期结果          : 按格式返回
-修改历史          :
-1.日   期  : 2011-10-14
-作   者  : w00181244
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryFChanPara, Test_At_QryFChanPara_003)
 {
     /*变量定义*/
@@ -6580,14 +4996,7 @@ TEST_F(Test_At_QryFChanPara, Test_At_QryFChanPara_003)
 }
 
 #if 0
-/*****************************************************************************
-类名     : Test_At_QryCsdfltPara
-功能描述 : Test_At_QryCsdfltPara UT工程类
-修改历史 :
-1.日   期  : 2011-10-13
-作   者  : w00181244
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryCsdfltPara: public ::testing::Test
 {
 public:
@@ -6601,15 +5010,7 @@ public:
 
     }
 };
-/*******************************************************************
-测试用例编号      : Test_At_QryCsdfltPara_001
-测试用例标题      : 读NV失败
-预期结果          : 返回VOS_ERR
-修改历史          :
-1.日   期  : 2011-10-14
-作   者  : w00181244
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCsdfltPara, Test_At_QryCsdfltPara_001)
 {
     /*变量定义*/
@@ -6632,15 +5033,7 @@ TEST_F(Test_At_QryCsdfltPara, Test_At_QryCsdfltPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryCsdfltPara_002
-测试用例标题      : 读NV成功，但PLMN校验失败
-预期结果          : 返回VOS_OK
-修改历史          :
-1.日   期  : 2011-10-14
-作   者  : w00181244
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCsdfltPara, Test_At_QryCsdfltPara_002)
 {
     /*变量定义*/
@@ -6665,15 +5058,7 @@ TEST_F(Test_At_QryCsdfltPara, Test_At_QryCsdfltPara_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryCsdfltPara_003
-测试用例标题      : 获取simlock status失败
-预期结果          : 返回VOS_ERR
-修改历史          :
-1.日   期  : 2011-10-14
-作   者  : w00181244
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCsdfltPara, Test_At_QryCsdfltPara_003)
 {
     /*变量定义*/
@@ -6695,15 +5080,7 @@ TEST_F(Test_At_QryCsdfltPara, Test_At_QryCsdfltPara_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryCsdfltPara_004
-测试用例标题      : 获取simlock status成功，pusValueInfo = AT_CUSTOMIZE_ITEM_DEFAULT_VAL_CHANGED
-预期结果          : 返回VOS_OK
-修改历史          :
-1.日   期  : 2011-10-14
-作   者  : w00181244
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCsdfltPara, Test_At_QryCsdfltPara_004)
 {
     /*变量定义*/
@@ -6725,15 +5102,7 @@ TEST_F(Test_At_QryCsdfltPara, Test_At_QryCsdfltPara_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryCsdfltPara_005
-测试用例标题      : 获取SIM Lock Status定制项的值并检查是否为默认值失败
-预期结果          : 返回AT_DEVICE_OTHER_ERROR
-修改历史          :
-1.日   期  : 2011-10-14
-作   者  : w00181244
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCsdfltPara, Test_At_QryCsdfltPara_005)
 {
     /*变量定义*/
@@ -6762,14 +5131,7 @@ TEST_F(Test_At_QryCsdfltPara, Test_At_QryCsdfltPara_005)
 }
 #endif
 
-/*****************************************************************************
-类名     : Test_AT_QryNvBackupStatusPara
-功能描述 : AT_QryNvBackupStatusPara UT工程类
-修改历史 :
-1.日   期  : 2012-02-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryNvBackupStatusPara: public ::testing::Test
 {
 public:
@@ -6788,15 +5150,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryNvBackupStatusPara_001
-测试用例标题      : 查询NV备份状态命令下发成功
-预期结果          : 返回AT_WAIT_ASYNC_RETURN
-修改历史   :
-1.日   期  : 2012-02-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_QryNvBackupStatusPara, Test_AT_QryNvBackupStatusPara_001)
 {
     /*变量定义*/
@@ -6825,15 +5179,7 @@ TEST_F(Test_AT_QryNvBackupStatusPara, Test_AT_QryNvBackupStatusPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryNvBackupStatusPara_002
-测试用例标题      : 给DRV AGENT模块发消息失败
-预期结果          : 返回AT_ERROR
-修改历史   :
-1.日   期  : 2012-02-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_QryNvBackupStatusPara, Test_AT_QryNvBackupStatusPara_002)
 {
     /*变量定义*/
@@ -6861,14 +5207,7 @@ TEST_F(Test_AT_QryNvBackupStatusPara, Test_AT_QryNvBackupStatusPara_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_QryNandBadBlockPara
-功能描述 : AT_QryNandBadBlockPara UT工程类
-修改历史 :
-1.日   期  : 2012-02-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryNandBadBlockPara: public ::testing::Test
 {
 public:
@@ -6887,15 +5226,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryNandBadBlockPara_001
-测试用例标题      : 查询NAND FLASH的所有坏块索引列表命令下发成功
-预期结果          : 返回AT_WAIT_ASYNC_RETURN
-修改历史   :
-1.日   期  : 2012-02-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_QryNandBadBlockPara, Test_AT_QryNandBadBlockPara_001)
 {
     /*变量定义*/
@@ -6924,15 +5255,7 @@ TEST_F(Test_AT_QryNandBadBlockPara, Test_AT_QryNandBadBlockPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryNandBadBlockPara_002
-测试用例标题      : 给DRV AGENT模块发消息失败
-预期结果          : 返回AT_ERROR
-修改历史   :
-1.日   期  : 2012-02-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_QryNandBadBlockPara, Test_AT_QryNandBadBlockPara_002)
 {
     /*变量定义*/
@@ -6960,14 +5283,7 @@ TEST_F(Test_AT_QryNandBadBlockPara, Test_AT_QryNandBadBlockPara_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_QryNandDevInfoPara
-功能描述 : AT_QryNandDevInfoPara UT工程类
-修改历史 :
-1.日   期  : 2012-02-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryNandDevInfoPara: public ::testing::Test
 {
 public:
@@ -6986,15 +5302,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryNandDevInfoPara_001
-测试用例标题      : 查询NAND FLASH的型号信息命令下发成功
-预期结果          : 返回AT_WAIT_ASYNC_RETURN
-修改历史   :
-1.日   期  : 2012-02-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_QryNandDevInfoPara, Test_AT_QryNandDevInfoPara_001)
 {
     /*变量定义*/
@@ -7023,15 +5331,7 @@ TEST_F(Test_AT_QryNandDevInfoPara, Test_AT_QryNandDevInfoPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryNandDevInfoPara_002
-测试用例标题      : 给DRV AGENT模块发消息失败
-预期结果          : 返回AT_ERROR
-修改历史   :
-1.日   期  : 2012-02-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_QryNandDevInfoPara, Test_AT_QryNandDevInfoPara_002)
 {
     /*变量定义*/
@@ -7059,14 +5359,7 @@ TEST_F(Test_AT_QryNandDevInfoPara, Test_AT_QryNandDevInfoPara_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_QryChipTempPara
-功能描述 : AT_QryChipTempPara UT工程类
-修改历史 :
-1.日   期  : 2012-02-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryChipTempPara: public ::testing::Test
 {
 public:
@@ -7085,15 +5378,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryChipTempPara_001
-测试用例标题      : 查询PA、SIM卡和电池的温度信息命令下发成功
-预期结果          : 返回AT_WAIT_ASYNC_RETURN
-修改历史   :
-1.日   期  : 2012-02-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_QryChipTempPara, Test_AT_QryChipTempPara_001)
 {
     /*变量定义*/
@@ -7122,15 +5407,7 @@ TEST_F(Test_AT_QryChipTempPara, Test_AT_QryChipTempPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryChipTempPara_002
-测试用例标题      : 给DRV AGENT模块发消息失败
-预期结果          : 返回AT_ERROR
-修改历史   :
-1.日   期  : 2012-02-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_QryChipTempPara, Test_AT_QryChipTempPara_002)
 {
     /*变量定义*/
@@ -7158,14 +5435,7 @@ TEST_F(Test_AT_QryChipTempPara, Test_AT_QryChipTempPara_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_At_QryCpuLoadPara
-功能描述 : At_QryCpuLoadPara UT工程类
-修改历史 :
-1.日   期  : 2012-02-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryCpuLoadPara: public ::testing::Test
 {
 public:
@@ -7184,15 +5454,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QryCpuLoadPara_001
-测试用例标题      : 获取当前CPU占用率命令下发成功
-预期结果          : 返回AT_WAIT_ASYNC_RETURN
-修改历史   :
-1.日   期  : 2012-02-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_QryCpuLoadPara, Test_At_QryCpuLoadPara_001)
 {
     /*变量定义*/
@@ -7221,15 +5483,7 @@ TEST_F(Test_At_QryCpuLoadPara, Test_At_QryCpuLoadPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryCpuLoadPara_002
-测试用例标题      : 给DRV AGENT模块发消息失败
-预期结果          : 返回AT_ERROR
-修改历史   :
-1.日   期  : 2012-02-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_QryCpuLoadPara, Test_At_QryCpuLoadPara_002)
 {
     /*变量定义*/
@@ -7258,14 +5512,7 @@ TEST_F(Test_At_QryCpuLoadPara, Test_At_QryCpuLoadPara_002)
 }
 
 
-/*****************************************************************************
-类名     : Test_AT_QryApRptPortSelectPara
-功能描述 : AT_QryApRptPortSelectPara UT工程类
-修改历史 :
-1.日   期  : 2012-02-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryApRptPortSelectPara: public ::testing::Test
 {
 public:
@@ -7313,15 +5560,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryApRptPortSelectPara_001
-测试用例标题      : 查询已配置的主动上报的HSIC AT端口成功，并输出结果
-预期结果          : 返回AT_OK
-修改历史   :
-1.日   期  : 2012-02-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_QryApRptPortSelectPara, Test_AT_QryApRptPortSelectPara_001)
 {
     /*变量定义*/
@@ -7366,15 +5605,7 @@ TEST_F(Test_AT_QryApRptPortSelectPara, Test_AT_QryApRptPortSelectPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryApRptPortSelectPara_002
-测试用例标题      : 命令从非HSIC通道下发，直接回复失败
-预期结果          : 返回AT_ERROR
-修改历史   :
-1.日   期  : 2012-02-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_QryApRptPortSelectPara, Test_AT_QryApRptPortSelectPara_002)
 {
     /*变量定义*/
@@ -7407,14 +5638,7 @@ TEST_F(Test_AT_QryApRptPortSelectPara, Test_AT_QryApRptPortSelectPara_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_At_QryUsbSwitchPara
-功能描述 : At_QryUsbSwitchPara UT工程类
-修改历史     :
-1.日   期  : 2012-01-04
-  作   者  : h59254
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryUsbSwitchPara: public ::testing::Test
 {
 public:
@@ -7431,15 +5655,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QryUsbSwitchPara_001
-测试用例标题      : 调用低软接口失败
-预期结果          : 返回AT_ERROR
-修改历史     :
-1.日   期  : 2012-01-04
-  作   者  : h59254
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryUsbSwitchPara, Test_At_QryUsbSwitchPara_001)
 {
     /* 变量初始化 */
@@ -7456,15 +5672,7 @@ TEST_F(Test_At_QryUsbSwitchPara, Test_At_QryUsbSwitchPara_001)
     GlobalMockObject::verify();
 }
 #if 0
-/*******************************************************************
-测试用例编号      : Test_At_QryUsbSwitchPara_002
-测试用例标题      : 调用底软接口返回激活
-预期结果          : 返回AT_ERROR
-修改历史     :
-1.日   期  : 2012-01-04
-  作   者  :   h59254
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryUsbSwitchPara, Test_At_QryUsbSwitchPara_002)
 {
     /* 变量初始化 */
@@ -7487,15 +5695,7 @@ TEST_F(Test_At_QryUsbSwitchPara, Test_At_QryUsbSwitchPara_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryUsbSwitchPara_003
-测试用例标题      : 调用底软接口返回未激活
-预期结果          : 返回AT_ERROR
-修改历史     :
-1.日   期  : 2012-01-04
-  作   者  :   h59254
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryUsbSwitchPara, Test_At_QryUsbSwitchPara_003)
 {
     /* 变量初始化 */
@@ -7521,14 +5721,7 @@ TEST_F(Test_At_QryUsbSwitchPara, Test_At_QryUsbSwitchPara_003)
 #endif
 
 
-/*****************************************************************************
-类名     : Test_AT_QryAntState
-功能描述 : AT_QryAntState UT工程类
-修改历史     :
-1.日   期  : 2012-04-26
-  作   者  : h59254
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryAntState: public ::testing::Test
 {
 public:
@@ -7564,15 +5757,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryAntState_001
-测试用例标题      : 降SRS功能查询当前天线状态，TAF_AGENT_GetAntState失败
-预期结果          : 返回AT_ERROR
-修改历史     :
-1.日   期  : 2012-04-26
-  作   者  :   h59254
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryAntState, Test_AT_QryAntState_001)
 {
     /* 变量初始化 */
@@ -7593,15 +5778,7 @@ TEST_F(Test_AT_QryAntState, Test_AT_QryAntState_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryAntState_002
-测试用例标题      : 降SRS功能查询当前天线状态函数执行成功
-预期结果          : 返回AT_ERROR
-修改历史     :
-1.日   期  : 2012-04-26
-  作   者  :   h59254
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryAntState, Test_AT_QryAntState_002)
 {
     /* 变量初始化 */
@@ -7629,15 +5806,7 @@ TEST_F(Test_AT_QryAntState, Test_AT_QryAntState_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryAntState_003
-测试用例标题      : 输入的AT命令带有参数
-预期结果          : 返回AT_CME_INCORRECT_PARAMETERS
-修改历史     :
-1.日   期  : 2012-04-26
-  作   者  :   h59254
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryAntState, Test_AT_QryAntState_003)
 {
     /* 变量初始化 */
@@ -7657,14 +5826,7 @@ TEST_F(Test_AT_QryAntState, Test_AT_QryAntState_003)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_QrySARReduction
-功能描述 : AT_QrySARReduction UT工程类
-修改历史     :
-1.日   期  : 2012-04-26
-  作   者  : h59254
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QrySARReduction: public ::testing::Test
 {
 public:
@@ -7698,15 +5860,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QrySARReduction_001
-测试用例标题      : 降SRS查询功率回退等级读取NV项失败
-预期结果          : 返回AT_ERROR
-修改历史     :
-1.日   期  : 2012-04-26
-  作   者  :   h59254
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QrySARReduction, Test_AT_QrySARReduction_001)
 {
     /* 变量初始化 */
@@ -7727,15 +5881,7 @@ TEST_F(Test_AT_QrySARReduction, Test_AT_QrySARReduction_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QrySARReduction_002
-测试用例标题      : AT_GetModemIdFromClient失败
-预期结果          : 返回AT_ERROR
-修改历史     :
-1.日   期  : 2012-04-26
-  作   者  :   h59254
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QrySARReduction, Test_AT_QrySARReduction_002)
 {
     /* 变量初始化 */
@@ -7760,15 +5906,7 @@ TEST_F(Test_AT_QrySARReduction, Test_AT_QrySARReduction_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QrySARReduction_003
-测试用例标题      : 降SRS查询功率回退等级传导模式且非测试模式
-预期结果          : 返回AT_ERROR
-修改历史     :
-1.日   期  : 2012-04-26
-  作   者  :   h59254
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QrySARReduction, Test_AT_QrySARReduction_003)
 {
     /* 变量初始化 */
@@ -7797,15 +5935,7 @@ TEST_F(Test_AT_QrySARReduction, Test_AT_QrySARReduction_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QrySARReduction_004
-测试用例标题      : 降SRS查询功率回退等级函数正常输出
-预期结果          : 返回AT_ERROR
-修改历史     :
-1.日   期  : 2012-04-26
-  作   者  :   h59254
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QrySARReduction, Test_AT_QrySARReduction_004)
 {
     /* 变量初始化 */
@@ -7841,21 +5971,7 @@ TEST_F(Test_AT_QrySARReduction, Test_AT_QrySARReduction_004)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
- 函 数 名  : AT_InitQryCtx
- 功能描述  : AT命令处理函数UT测试套初始化AT上下文函数
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年04月10日
-    作    者   : l00198894
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 VOS_VOID AT_InitQryCtx(VOS_VOID)
 {
     VOS_UINT8                           ucIndex;
@@ -7910,14 +6026,7 @@ VOS_VOID AT_InitQryCtx(VOS_VOID)
 
 }
 
-/*****************************************************************************
-类名     : Test_AT_QryPhoneSimlockInfoPara
-功能描述 : AT_QryPhoneSimlockInfoPara UT工程类
-修改历史 :
-1.日   期  : 2012-04-12
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryPhoneSimlockInfoPara: public ::testing::Test
 {
 public:
@@ -7932,15 +6041,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryPhoneSimlockInfoPara_001
-测试用例标题      : 命令从非HSIC通道下发
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-04-12
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryPhoneSimlockInfoPara, Test_AT_QryPhoneSimlockInfoPara_001)
 {
     // 变量声明
@@ -7967,15 +6068,7 @@ TEST_F(Test_AT_QryPhoneSimlockInfoPara, Test_AT_QryPhoneSimlockInfoPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryPhoneSimlockInfoPara_002
-测试用例标题      : 命令从HSIC通道下发
-预期结果          : 返回AT_WAIT_ASYNC_RETURN, AT发送消息给DrvAgent, AT等待异步返回
-修改历史          :
-1.日   期  : 2012-04-12
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryPhoneSimlockInfoPara, Test_AT_QryPhoneSimlockInfoPara_002)
 {
     // 变量声明
@@ -8013,15 +6106,7 @@ TEST_F(Test_AT_QryPhoneSimlockInfoPara, Test_AT_QryPhoneSimlockInfoPara_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryPhoneSimlockInfoPara_003
-测试用例标题      : 命令从HSIC通道下发, 消息发送失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-04-12
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryPhoneSimlockInfoPara, Test_AT_QryPhoneSimlockInfoPara_003)
 {
     // 变量声明
@@ -8054,14 +6139,7 @@ TEST_F(Test_AT_QryPhoneSimlockInfoPara, Test_AT_QryPhoneSimlockInfoPara_003)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_QrySimlockDataReadPara
-功能描述 : AT_QrySimlockDataReadPara UT工程类
-修改历史 :
-1.日   期  : 2012-04-12
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QrySimlockDataReadPara: public ::testing::Test
 {
 public:
@@ -8076,15 +6154,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QrySimlockDataReadPara_001
-测试用例标题      : 命令从非HSIC通道下发
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-04-12
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QrySimlockDataReadPara, Test_AT_QrySimlockDataReadPara_001)
 {
     // 变量声明
@@ -8111,15 +6181,7 @@ TEST_F(Test_AT_QrySimlockDataReadPara, Test_AT_QrySimlockDataReadPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QrySimlockDataReadPara_002
-测试用例标题      : 命令从HSIC通道下发
-预期结果          : 返回AT_WAIT_ASYNC_RETURN, AT发送消息给DrvAgent, AT等待异步返回
-修改历史          :
-1.日   期  : 2012-04-12
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QrySimlockDataReadPara, Test_AT_QrySimlockDataReadPara_002)
 {
     // 变量声明
@@ -8157,15 +6219,7 @@ TEST_F(Test_AT_QrySimlockDataReadPara, Test_AT_QrySimlockDataReadPara_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QrySimlockDataReadPara_003
-测试用例标题      : 命令从HSIC通道下发, 消息发送失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-04-12
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QrySimlockDataReadPara, Test_AT_QrySimlockDataReadPara_003)
 {
     // 变量声明
@@ -8198,14 +6252,7 @@ TEST_F(Test_AT_QrySimlockDataReadPara, Test_AT_QrySimlockDataReadPara_003)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_QryPhonePhynumPara
-功能描述 : AT_QryPhonePhynumPara UT工程类
-修改历史 :
-1.日   期  : 2012-04-12
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryPhonePhynumPara: public ::testing::Test
 {
 public:
@@ -8220,15 +6267,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryPhonePhynumPara_001
-测试用例标题      : 命令从非HSIC通道下发
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-04-12
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryPhonePhynumPara, Test_AT_QryPhonePhynumPara_001)
 {
     // 变量声明
@@ -8255,15 +6294,7 @@ TEST_F(Test_AT_QryPhonePhynumPara, Test_AT_QryPhonePhynumPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryPhonePhynumPara_002
-测试用例标题      : 命令从HSIC通道下发
-预期结果          : 返回AT_WAIT_ASYNC_RETURN, AT发送消息给DrvAgent, AT等待异步返回
-修改历史          :
-1.日   期  : 2012-04-12
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryPhonePhynumPara, Test_AT_QryPhonePhynumPara_002)
 {
     // 变量声明
@@ -8301,15 +6332,7 @@ TEST_F(Test_AT_QryPhonePhynumPara, Test_AT_QryPhonePhynumPara_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryPhonePhynumPara_003
-测试用例标题      : 命令从HSIC通道下发, 消息发送失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-04-12
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryPhonePhynumPara, Test_AT_QryPhonePhynumPara_003)
 {
     // 变量声明
@@ -8341,14 +6364,7 @@ TEST_F(Test_AT_QryPhonePhynumPara, Test_AT_QryPhonePhynumPara_003)
 
     GlobalMockObject::verify();
 }
-/*****************************************************************************
-类名     : Test_AT_QryPortCtrlTmpPara
-功能描述 : AT_QryPortCtrlTmpPara UT工程类
-修改历史 :
-1.日   期  : 2012-04-12
-  作   者  : y00213812
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryPortCtrlTmpPara: public ::testing::Test
 {
 public:
@@ -8383,15 +6399,7 @@ public:
     VOS_UINT8       ucIndex;
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryPortCtrlTmpPara_001
-测试用例标题      : 命令从非HSIC通道下发
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-04-12
-  作   者  : y00213812
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryPortCtrlTmpPara, Test_AT_QryPortCtrlTmpPara_001)
 {
     // 变量声明
@@ -8416,15 +6424,7 @@ TEST_F(Test_AT_QryPortCtrlTmpPara, Test_AT_QryPortCtrlTmpPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryPortCtrlTmpPara_002
-测试用例标题      : 命令从HSIC通道下发,访问失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-04-12
-  作   者  : y00213812
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryPortCtrlTmpPara, Test_AT_QryPortCtrlTmpPara_002)
 {
     // 变量声明
@@ -8452,15 +6452,7 @@ TEST_F(Test_AT_QryPortCtrlTmpPara, Test_AT_QryPortCtrlTmpPara_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryPortCtrlTmpPara_003
-测试用例标题      : 命令从HSIC通道下发
-预期结果          : 返回AT_OK,打印输出结果
-修改历史          :
-1.日   期  : 2012-04-12
-  作   者  : y00213812
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryPortCtrlTmpPara, Test_AT_QryPortCtrlTmpPara_003)
 {
     // 变量声明
@@ -8500,14 +6492,7 @@ TEST_F(Test_AT_QryPortCtrlTmpPara, Test_AT_QryPortCtrlTmpPara_003)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_QryPortAttribSetPara
-功能描述 : AT_QryPortAttribSetPara UT工程类
-修改历史 :
-1.日   期  : 2012-04-12
-  作   者  : y00213812
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryPortAttribSetPara: public ::testing::Test
 {
 public:
@@ -8524,15 +6509,7 @@ public:
     VOS_UINT8       ucIndex;
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryPortAttribSetPara_001
-测试用例标题      : 命令从非HSIC通道下发
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-04-12
-  作   者  : y00213812
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryPortAttribSetPara, Test_AT_QryPortAttribSetPara_001)
 {
     // 变量声明
@@ -8559,15 +6536,7 @@ TEST_F(Test_AT_QryPortAttribSetPara, Test_AT_QryPortAttribSetPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryPortAttribSetPara_002
-测试用例标题      : 命令从HSIC通道下发
-预期结果          : 返回AT_WAIT_ASYNC_RETURN, AT发送消息给DrvAgent, AT等待异步返回
-修改历史          :
-1.日   期  : 2012-04-12
-  作   者  : y00213812
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryPortAttribSetPara, Test_AT_QryPortAttribSetPara_002)
 {
     // 变量声明
@@ -8605,15 +6574,7 @@ TEST_F(Test_AT_QryPortAttribSetPara, Test_AT_QryPortAttribSetPara_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryPortAttribSetPara_003
-测试用例标题      : 命令从HSIC通道下发, 消息发送失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-04-12
-  作   者  : y00213812
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryPortAttribSetPara, Test_AT_QryPortAttribSetPara_003)
 {
     // 变量声明
@@ -8651,14 +6612,7 @@ TEST_F(Test_AT_QryPortAttribSetPara, Test_AT_QryPortAttribSetPara_003)
 }
 
 
-/*****************************************************************************
-类名     : Test_At_QryU2DiagPara
-功能描述 : Test_At_QryU2DiagPara UT工程类
-修改历史     :
-1.日   期  : 2012-05-10
-  作   者  :   f62575
-  修改内容 :   新生成类
-*****************************************************************************/
+
 class Test_At_QryU2DiagPara: public ::testing::Test
 {
 public:
@@ -8677,15 +6631,7 @@ protected:
     VOS_UINT8 ucIndex;
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QryU2DiagPara_001
-测试用例标题      : 读取NV项en_NV_Item_PID_Enable_Type失败
-预期结果          : 函数返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-05-10
-  作   者  :   f62575
-  修改内容 :   新生成类
-*******************************************************************/
+
 TEST_F(Test_At_QryU2DiagPara, Test_At_QryU2DiagPara_001)
 {
     AT_PID_ENABLE_TYPE_STRU             stPidEnableType;
@@ -8707,15 +6653,7 @@ TEST_F(Test_At_QryU2DiagPara, Test_At_QryU2DiagPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryU2DiagPara_002
-测试用例标题      : 读取NV项en_NV_Item_PID_Enable_Type得到状态为已使能
-预期结果          : 函数返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-05-10
-  作   者  :   f62575
-  修改内容 :   新生成类
-*******************************************************************/
+
 TEST_F(Test_At_QryU2DiagPara, Test_At_QryU2DiagPara_002)
 {
     AT_PID_ENABLE_TYPE_STRU             stPidEnableType;
@@ -8737,15 +6675,7 @@ TEST_F(Test_At_QryU2DiagPara, Test_At_QryU2DiagPara_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryU2DiagPara_003
-测试用例标题      : 读取NV项en_NV_Item_PID_Enable_Type得到状态为未使能
-预期结果          : 函数返回AT_OK
-修改历史          :
-1.日   期  : 2012-05-10
-  作   者  :   f62575
-  修改内容 :   新生成类
-*******************************************************************/
+
 TEST_F(Test_At_QryU2DiagPara, Test_At_QryU2DiagPara_003)
 {
     AT_PID_ENABLE_TYPE_STRU             stPidEnableType;
@@ -8782,14 +6712,7 @@ TEST_F(Test_At_QryU2DiagPara, Test_At_QryU2DiagPara_003)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_GetWcdmaBandStr
-功能描述 : Test_AT_GetWcdmaBandStr UT工程类
-修改历史     :
-1.日   期  : 2012-05-10
-  作   者  :   f62575
-  修改内容 :   新生成类
-*****************************************************************************/
+
 class Test_AT_GetWcdmaBandStr: public ::testing::Test
 {
 public:
@@ -8803,15 +6726,7 @@ public:
 
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_GetWcdmaBandStr_001
-测试用例标题      : W全频带都支持
-预期结果          : 输出字符串为"BC1,BC2,BC3,BC4,BC5,BC6,BC7,BC8,BC9,BC11"
-修改历史          :
-1.日   期  : 2012-05-10
-  作   者  :   f62575
-  修改内容 :   新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_GetWcdmaBandStr, Test_AT_GetWcdmaBandStr_001)
 {
     AT_UE_BAND_CAPA_ST                 stBandCapa;
@@ -8842,15 +6757,7 @@ TEST_F(Test_AT_GetWcdmaBandStr, Test_AT_GetWcdmaBandStr_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_GetWcdmaBandStr_002
-测试用例标题      : W全频带都不支持
-预期结果          : 输出字符串为空
-修改历史          :
-1.日   期  : 2012-05-10
-  作   者  :   f62575
-  修改内容 :   新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_GetWcdmaBandStr, Test_AT_GetWcdmaBandStr_002)
 {
     AT_UE_BAND_CAPA_ST                 stBandCapa;
@@ -8872,14 +6779,7 @@ TEST_F(Test_AT_GetWcdmaBandStr, Test_AT_GetWcdmaBandStr_002)
 }
 //#if 0
 
-/*****************************************************************************
-类名     : Test_AT_QryCposrPara
-功能描述 : AT_QryCposrPara UT工程类
-修改历史 :
-1.日    期   : 2012年07月03日
-  作    者   : y00213812
-  修改内容   : V7R1C50 A-GPS项目新增函数
-*****************************************************************************/
+
 class Test_AT_QryCposrPara: public ::testing::Test
 {
 public:
@@ -8912,15 +6812,7 @@ public:
     AT_PAR_CMD_ELEMENT_STRU     stCmdInfo;
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryCposrPara_001
-测试用例标题      : 命令从HSIC4通道下发，
-预期结果          : 返回AT_OK
-修改历史          :
-1.日    期   : 2012年07月03日
-  作    者   : y00213812
-  修改内容   : V7R1C50 A-GPS项目新增函数
-*******************************************************************/
+
 TEST_F(Test_AT_QryCposrPara, Test_AT_QryCposrPara_001)
 {
     // 变量声明
@@ -8950,15 +6842,7 @@ TEST_F(Test_AT_QryCposrPara, Test_AT_QryCposrPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryCposrPara_002
-测试用例标题      : 命令从非HSIC通道下发，
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日    期   : 2012年07月03日
-  作    者   : y00213812
-  修改内容   : V7R1C50 A-GPS项目新增函数
-*******************************************************************/
+
 TEST_F(Test_AT_QryCposrPara, Test_AT_QryCposrPara_002)
 {
     // 变量声明
@@ -8984,14 +6868,7 @@ TEST_F(Test_AT_QryCposrPara, Test_AT_QryCposrPara_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_QryXcposrPara
-功能描述 : AT_QryXcposrPara UT工程类
-修改历史 :
-1.日    期   : 2012年07月03日
-  作    者   : y00213812
-  修改内容   : V7R1C50 A-GPS项目新增函数
-*****************************************************************************/
+
 class Test_AT_QryXcposrPara: public ::testing::Test
 {
 public:
@@ -9026,15 +6903,7 @@ public:
 
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryXcposrPara_001
-测试用例标题      : 命令从HSIC4通道下发，
-预期结果          : 返回AT_OK
-修改历史          :
-1.日    期   : 2012年07月03日
-  作    者   : y00213812
-  修改内容   : V7R1C50 A-GPS项目新增函数
-*******************************************************************/
+
 TEST_F(Test_AT_QryXcposrPara, Test_AT_QryXcposrPara_001)
 {
     // 变量声明
@@ -9064,15 +6933,7 @@ TEST_F(Test_AT_QryXcposrPara, Test_AT_QryXcposrPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryXcposrPara_002
-测试用例标题      : 命令从非HSIC通道下发，
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日    期   : 2012年07月03日
-  作    者   : y00213812
-  修改内容   : V7R1C50 A-GPS项目新增函数
-*******************************************************************/
+
 TEST_F(Test_AT_QryXcposrPara, Test_AT_QryXcposrPara_002)
 {
     // 变量声明
@@ -9099,14 +6960,7 @@ TEST_F(Test_AT_QryXcposrPara, Test_AT_QryXcposrPara_002)
 }
 
 
-/*****************************************************************************
- 类名       : Test_AT_QryCPsErrPara
- 功能描述   : Test_AT_QryCPsErrPara UT工程类
- 修改历史   :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryCPsErrPara: public ::testing::Test
 {
 public:
@@ -9123,15 +6977,7 @@ public:
 
 };
 
-/*******************************************************************
- 测试用例编号   : Test_AT_QryCPsErrPara_001
- 测试用例标题   : 查询PS域呼叫错误码
- 预期结果       : 输出符合^CPSERR命令格式要求
- 修改历史       :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryCPsErrPara, Test_AT_QryCPsErrPara_001)
 {
     //参数定义
@@ -9167,14 +7013,7 @@ TEST_F(Test_AT_QryCPsErrPara, Test_AT_QryCPsErrPara_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
- 类名       : Test_AT_QryCmutPara
- 功能描述   : Test_AT_QryCmutPara UT工程类
- 修改历史   :
- 1.日   期  : 2012-09-14
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryCmutPara: public ::testing::Test
 {
 public:
@@ -9191,15 +7030,7 @@ public:
 
 };
 
-/*******************************************************************
- 测试用例编号   : Test_AT_QryCmutPara_001
- 测试用例标题   : 查询静音状态, 发送消息失败
- 预期结果       : AT_ERROR
- 修改历史       :
- 1.日   期  : 2012-09-14
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryCmutPara, Test_AT_QryCmutPara_001)
 {
     //参数定义
@@ -9234,15 +7065,7 @@ TEST_F(Test_AT_QryCmutPara, Test_AT_QryCmutPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_AT_QryCmutPara_002
- 测试用例标题   : 查询静音状态, 发送消息成功
- 预期结果       : AT_ERROR
- 修改历史       :
- 1.日   期  : 2012-09-14
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryCmutPara, Test_AT_QryCmutPara_002)
 {
     //参数定义
@@ -9293,14 +7116,7 @@ AT_PAR_CMD_ELEMENT_STRU     gstWiLogCmdInfo = {AT_CMD_WILOG,
     AT_CME_INCORRECT_PARAMETERS, CMD_TBL_PIN_IS_LOCKED,
     (VOS_UINT8*)"^WILOG",  (VOS_UINT8*)"(0,1),(@content)"};
 
-/*****************************************************************************
-类名     : Test_AT_QryWiFiSsidPara
-功能描述 : Test_AT_QryWiFiSsidPara UT工程类
-修改历史     :
-1.日   期  : 2012-09-18
-  作   者  :   z60575
-  修改内容 :   新生成类
-*****************************************************************************/
+
 class Test_AT_QryWiFiSsidPara: public ::testing::Test
 {
 public:
@@ -9316,15 +7132,7 @@ public:
 
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryWiFiSsidPara_001
-测试用例标题      : 不支持WIFI
-预期结果          : 返回AT_OK
-修改历史          :
-1.日   期  : 2012-05-10
-  作   者  :   f62575
-  修改内容 :   新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_QryWiFiSsidPara, Test_AT_QryWiFiSsidPara_001)
 {
     VOS_UINT32                  ulResult;
@@ -9342,15 +7150,7 @@ TEST_F(Test_AT_QryWiFiSsidPara, Test_AT_QryWiFiSsidPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryWiFiSsidPara_002
-测试用例标题      : 查询成功
-预期结果          : 返回AT_OK
-修改历史          :
-1.日   期  : 2012-05-10
-  作   者  :   f62575
-  修改内容 :   新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_QryWiFiSsidPara, Test_AT_QryWiFiSsidPara_002)
 {
     TAF_AT_MULTI_WIFI_SSID_STRU             stWifiSsid;
@@ -9389,14 +7189,7 @@ TEST_F(Test_AT_QryWiFiSsidPara, Test_AT_QryWiFiSsidPara_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_QryWiFiLogPara
-功能描述 : Test_AT_QryWiFiLogPara UT工程类
-修改历史     :
-1.日   期  : 2012-09-18
-  作   者  :   z60575
-  修改内容 :   新生成类
-*****************************************************************************/
+
 class Test_AT_QryWiFiLogPara: public ::testing::Test
 {
 public:
@@ -9412,15 +7205,7 @@ public:
 
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryWiFiLogPara_001
-测试用例标题      : 不支持WIFI
-预期结果          : 返回AT_OK
-修改历史          :
-1.日   期  : 2012-09-19
-  作   者  :   f62575
-  修改内容 :   新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_QryWiFiLogPara, Test_AT_QryWiFiLogPara_001)
 {
     VOS_UINT32                  ulResult;
@@ -9438,15 +7223,7 @@ TEST_F(Test_AT_QryWiFiLogPara, Test_AT_QryWiFiLogPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryWiFiLogPara_002
-测试用例标题      : 查询成功
-预期结果          : 返回AT_OK
-修改历史          :
-1.日   期  : 2012-09-19
-  作   者  :   z60575
-  修改内容 :   新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_QryWiFiLogPara, Test_AT_QryWiFiLogPara_002)
 {
     TAF_AT_MULTI_WIFI_SSID_STRU             stWifiSsid;
@@ -9506,14 +7283,7 @@ TEST_F(Test_AT_QryWiFiLogPara, Test_AT_QryWiFiLogPara_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_QryWiFiKeyPara
-功能描述 : Test_AT_QryWiFiKeyPara UT工程类
-修改历史     :
-1.日   期  : 2012-09-18
-  作   者  :   z60575
-  修改内容 :   新生成类
-*****************************************************************************/
+
 class Test_AT_QryWiFiKeyPara: public ::testing::Test
 {
 public:
@@ -9529,15 +7299,7 @@ public:
 
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryWiFiKeyPara_001
-测试用例标题      : 不支持WIFI
-预期结果          : 返回AT_OK
-修改历史          :
-1.日   期  : 2012-09-19
-  作   者  :   f62575
-  修改内容 :   新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_QryWiFiKeyPara, Test_AT_QryWiFiKeyPara_001)
 {
     VOS_UINT32                  ulResult;
@@ -9555,15 +7317,7 @@ TEST_F(Test_AT_QryWiFiKeyPara, Test_AT_QryWiFiKeyPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryWiFiKeyPara_002
-测试用例标题      : 查询成功
-预期结果          : 返回AT_OK
-修改历史          :
-1.日   期  : 2012-09-19
-  作   者  :   z60575
-  修改内容 :   新生成类
-*********************** ********************************************/
+
 TEST_F(Test_AT_QryWiFiKeyPara, Test_AT_QryWiFiKeyPara_002)
 {
     TAF_AT_MULTI_WIFI_SEC_STRU              stWifiSec;
@@ -9604,14 +7358,7 @@ TEST_F(Test_AT_QryWiFiKeyPara, Test_AT_QryWiFiKeyPara_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_At_QryCurcPara
-功能描述 : At_QryCurcPara UT工程类
-修改历史 :
-1.日   期  : 2012-09-24
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryCurcPara: public ::testing::Test
 {
 public:
@@ -9644,15 +7391,7 @@ public:
 
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QryCurcPara_001
-测试用例标题      : 当前私有命令上报模式为自定义
-预期结果          : 返回AT_WAIT_ASYNC_RETURN
-修改历史          :
-1.日   期  : 2012-09-24
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCurcPara, Test_At_QryCurcPara_001)
 {
     // 变量声明
@@ -9694,15 +7433,7 @@ TEST_F(Test_At_QryCurcPara, Test_At_QryCurcPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryCurcPara_002
-测试用例标题      : 当前私有命令上报模式为自定义
-预期结果          : 返回AT_WAIT_ASYNC_RETURN
-修改历史          :
-1.日   期  : 2013-04-16
-  作   者  : s00217060
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCurcPara, Test_At_QryCurcPara_002)
 {
     // 变量声明
@@ -9744,14 +7475,7 @@ TEST_F(Test_At_QryCurcPara, Test_At_QryCurcPara_002)
 }
 
 
-/*****************************************************************************
- 类名       : Test_AT_QryCCsErrPara
- 功能描述   : Test_AT_QryCCsErrPara UT工程类
- 修改历史   :
- 1.日   期  : 2012-09-26
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryCCsErrPara: public ::testing::Test
 {
 public:
@@ -9770,15 +7494,7 @@ public:
 
 };
 
-/*******************************************************************
- 测试用例编号   : Test_AT_QryCCsErrPara_001
- 测试用例标题   : 查询CS域呼叫错误码
- 预期结果       : 输出符合^CCSERR命令格式要求
- 修改历史       :
- 1.日   期  : 2012-09-26
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryCCsErrPara, Test_AT_QryCCsErrPara_001)
 {
     //参数定义
@@ -9815,14 +7531,7 @@ TEST_F(Test_AT_QryCCsErrPara, Test_AT_QryCCsErrPara_001)
 }
 
 
-/*****************************************************************************
-类名     : Test_At_GetDspLoadMode
-功能描述 : Test_At_GetDspLoadMode函数的UT测试类
-修改历史 :
-1.日   期  : 2012-08-30
-  作   者  : f62575
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_GetDspLoadMode: public ::testing::Test
 {
 public:
@@ -9839,26 +7548,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_GetDspLoadMode_001
-测试用例标题      : 根据FCHAN的<MODE>参数获取到GU模的DSP加载模式
-预期结果          : 输入                            输出
-                    AT_RAT_MODE_WCDMA,              CPHY_DSP_LOAD_WCDMA
-                    AT_RAT_MODE_CDMA,               CPHY_DSP_LOAD_BUTT
-                    AT_RAT_MODE_TDSCDMA,            CPHY_DSP_LOAD_BUTT
-                    AT_RAT_MODE_GSM,                CPHY_DSP_LOAD_GSM
-                    AT_RAT_MODE_EDGE,               CPHY_DSP_LOAD_GSM
-                    AT_RAT_MODE_AWS,                CPHY_DSP_LOAD_WCDMA
-                    AT_RAT_MODE_FDD_LTE,            CPHY_DSP_LOAD_BUTT
-                    AT_RAT_MODE_TDD_LTE,            CPHY_DSP_LOAD_BUTT
-                    AT_RAT_MODE_WIFI,               CPHY_DSP_LOAD_BUTT
-                    AT_RAT_MODE_BUTT                CPHY_DSP_LOAD_BUTT
 
-修改历史          :
-1.日   期  : 2012-08-30
-  作   者  : f62575
-  修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_At_GetDspLoadMode, Test_At_GetDspLoadMode_001)
 {
     VOS_UINT32                      ulRatMode;
@@ -9908,14 +7598,7 @@ TEST_F(Test_At_GetDspLoadMode, Test_At_GetDspLoadMode_001)
 }
 
 
-/*****************************************************************************
-类名     : Test_At_QryCerssiPara
-功能描述 : At_QryCerssiPara UT工程类
-修改历史 :
-1.日   期  : 2012-11-28
-  作   者  : z00161729
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryCerssiPara: public ::testing::Test
 {
 public:
@@ -9938,18 +7621,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QryCerssiPara_001
-测试用例标题      : 参数个数大于1
-预期结果          : 返回AT_CME_INCORRECT_PARAMETERS
-修改历史          :
-1.日   期  : 2012-11-28
-  作   者  : z00161729
-  修改内容 : 新生成类
-2.日   期  : 2013-1-9
-  作   者  : t00212959
-  修改内容 : DTS2013010809978,增加时间间隔
-*******************************************************************/
+
 TEST_F(Test_At_QryCerssiPara, Test_At_QryCerssiPara_001)
 {
     // 变量声明
@@ -9984,15 +7656,7 @@ TEST_F(Test_At_QryCerssiPara, Test_At_QryCerssiPara_001)
 
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号      : Test_At_QryCerssiPara_002
-测试用例标题      : 参数个数大于2
-预期结果          : 返回AT_CME_INCORRECT_PARAMETERS
-修改历史          :
-1.日   期  : 2013-2-5
-  作   者  : t00212959
-  修改内容 : AT^CERSSI?增加参数
-*******************************************************************/
+
 TEST_F(Test_At_QryCerssiPara, Test_At_QryCerssiPara_002)
 {
     // 变量声明
@@ -10031,14 +7695,7 @@ TEST_F(Test_At_QryCerssiPara, Test_At_QryCerssiPara_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_QryCLteRoamAllowPara
-功能描述 : AT_QryCLteRoamAllowPara UT工程类
-修改历史 :
-1.日   期  : 2012-12-19
-  作   者  : l00171473
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryCLteRoamAllowPara: public ::testing::Test
 {
 public:
@@ -10059,15 +7716,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryCLteRoamAllowPara_001
-测试用例标题      : 读取NV失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-12-19
-  作   者  : l00171473
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_QryCLteRoamAllowPara, Test_AT_QryCLteRoamAllowPara_001)
 {
     MOCKER(NV_ReadEx)
@@ -10079,15 +7728,7 @@ TEST_F(Test_AT_QryCLteRoamAllowPara, Test_AT_QryCLteRoamAllowPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryCLteRoamAllowPara_002
-测试用例标题      : 读出的NV漫游禁止标志位为255
-预期结果          : 返回AT_OK,AT返回漫游允许
-修改历史          :
-1.日   期  : 2012-12-19
-  作   者  : l00171473
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_QryCLteRoamAllowPara, Test_AT_QryCLteRoamAllowPara_002)
 {
     NAS_MMC_NVIM_LTE_INTERNATIONAL_ROAM_CFG_STRU  stLteRoamAllowedFlg;
@@ -10115,15 +7756,7 @@ TEST_F(Test_AT_QryCLteRoamAllowPara, Test_AT_QryCLteRoamAllowPara_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryCLteRoamAllowPara_004
-测试用例标题      : 读出的NV漫游禁止标志位为0
-预期结果          : 返回AT_OK, AT返回漫游不允许
-修改历史          :
-1.日   期  : 2012-12-19
-  作   者  : l00171473
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_QryCLteRoamAllowPara, Test_AT_QryCLteRoamAllowPara_004)
 {
     NAS_MMC_NVIM_LTE_INTERNATIONAL_ROAM_CFG_STRU  stNvimLteRoamAllowedFlg;
@@ -10152,14 +7785,7 @@ TEST_F(Test_AT_QryCLteRoamAllowPara, Test_AT_QryCLteRoamAllowPara_004)
 }
 
 
-/******************************************************************************
-类名       : Test_AT_QryCbgPara
-功能描述  : AT_QryCbgPara UT工程类
-修改历史  :
- 1.日   期   : 2012-01-05
-   作   者   : z00214637
-   修改内容 : DSDA GUNAS C CORE Project 项目新增类
-******************************************************************************/
+
 class Test_AT_QryCbgPara: public ::testing::Test
 {
 public:
@@ -10177,15 +7803,7 @@ public:
     VOS_UINT8                           ucIndex;
 };
 
-/******************************************************************************
-测试用例编号: Test_AT_QryCbgPara_001
-测试用例标题: 申请内存失败
-预期结果    : 返回AT_ERROR
-修改历史    :
- 1.日   期  : 2012-01-05
-   作   者  : z00214637
-   修改内容 : DSDA GUNAS C CORE Project 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_QryCbgPara, Test_At_QryCbgPara_001)
 {
     // 变量声明
@@ -10211,15 +7829,7 @@ TEST_F(Test_AT_QryCbgPara, Test_At_QryCbgPara_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_At_QryCbgPara_002
-测试用例标题: 申请内存成功，发送消息失败
-预期结果    : 返回AT_ERROR
-修改历史    :
- 1.日   期  : 2012-01-05
-   作   者  : z00214637
-   修改内容 : DSDA GUNAS C CORE Project 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_QryCbgPara, Test_AT_QryCbgPara_002)
 {
     // 变量声明
@@ -10243,16 +7853,7 @@ TEST_F(Test_AT_QryCbgPara, Test_AT_QryCbgPara_002)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_At_QryCbgPara_003
-测试用例标题: 发送消息成功
-预期结果    : AT下发VC消息头为APP_VC_MSG_QRY_FOREGROUND_REQ的消息包
-        返回AT_WAIT_ASYNC_RETURN
-修改历史    :
- 1.日   期  : 2012-01-05
-   作   者  : z00214637
-   修改内容 : DSDA GUNAS C CORE Project 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_QryCbgPara, Test_AT_QryCbgPara_003)
 {
     // 变量声明
@@ -10282,14 +7883,7 @@ TEST_F(Test_AT_QryCbgPara, Test_AT_QryCbgPara_003)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_QryBodySarOnPara
-功能描述 : AT_QryBodySarOnPara UT工程类
-修改历史 :
-1.日   期  : 2013-03-13
-  作   者  : z00214637
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryBodySarOnPara: public ::testing::Test
 {
 public:
@@ -10322,15 +7916,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : AT_QryBodySarOnPara_001
-测试用例标题      :  查询BODYSAR状态成功
-预期结果          : 返回 AT_OK
-修改历史          :
-1.日   期  : 2013-03-13
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryBodySarOnPara, Test_AT_QryBodySarOnPara_001)
 {
     // 变量声明
@@ -10353,14 +7939,7 @@ TEST_F(Test_AT_QryBodySarOnPara, Test_AT_QryBodySarOnPara_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_QryBodySarWcdmaPara
-功能描述 : AT_QryBodySarWcdmaPara UT工程类
-修改历史 :
-1.日   期  : 2013-03-13
-  作   者  : z00214637
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryBodySarWcdmaPara: public ::testing::Test
 {
 public:
@@ -10393,15 +7972,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : AT_QryBodySarWcdmaPara_001
-测试用例标题      :  查询WCDMA功率门限，读取NV失败
-预期结果          : 返回 AT_ERROR
-修改历史          :
-1.日   期  : 2013-03-13
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryBodySarWcdmaPara, Test_AT_QryBodySarWcdmaPara_001)
 {
     // 变量声明
@@ -10421,15 +7992,7 @@ TEST_F(Test_AT_QryBodySarWcdmaPara, Test_AT_QryBodySarWcdmaPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : AT_QryBodySarWcdmaPara_002
-测试用例标题      : 查询WCDMA功率门限，填充^BODYSARWCDMA命令参数结构体失败
-预期结果          : 返回 AT_ERROR
-修改历史          :
-1.日   期  : 2013-03-13
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryBodySarWcdmaPara, Test_AT_QryBodySarWcdmaPara_002)
 {
     // 变量声明
@@ -10461,15 +8024,7 @@ TEST_F(Test_AT_QryBodySarWcdmaPara, Test_AT_QryBodySarWcdmaPara_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : AT_QryBodySarWcdmaPara_003
-测试用例标题      : 查询WCDMA功率门限成功
-预期结果          : 返回 AT_ERROR
-修改历史          :
-1.日   期  : 2013-03-13
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryBodySarWcdmaPara, Test_AT_QryBodySarWcdmaPara_003)
 {
     // 变量声明
@@ -10518,15 +8073,7 @@ TEST_F(Test_AT_QryBodySarWcdmaPara, Test_AT_QryBodySarWcdmaPara_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : AT_QryBodySarWcdmaPara_004
-测试用例标题      : 查询WCDMA功率门限成功，所有功率门限相同
-预期结果          : 返回 AT_ERROR
-修改历史          :
-1.日   期  : 2013-03-13
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryBodySarWcdmaPara, Test_AT_QryBodySarWcdmaPara_004)
 {
     // 变量声明
@@ -10573,14 +8120,7 @@ TEST_F(Test_AT_QryBodySarWcdmaPara, Test_AT_QryBodySarWcdmaPara_004)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_FillBodySarWcdmaQryPara
-功能描述 : AT_FillBodySarWcdmaQryPara UT工程类
-修改历史 :
-1.日   期  : 2013-03-13
-  作   者  : z00214637
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_FillBodySarWcdmaQryPara: public ::testing::Test
 {
 public:
@@ -10595,15 +8135,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : AT_FillBodySarWcdmaQryPara_001
-测试用例标题      : 填充Body SAR参数到查询命令参数结构体，获取WCDMA Band能力NV值失败
-预期结果          : 返回 VOS_ERR
-修改历史          :
-1.日   期  : 2013-03-13
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_FillBodySarWcdmaQryPara, Test_AT_FillBodySarWcdmaQryPara_001)
 {
     // 变量声明
@@ -10629,15 +8161,7 @@ TEST_F(Test_AT_FillBodySarWcdmaQryPara, Test_AT_FillBodySarWcdmaQryPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : AT_FillBodySarWcdmaQryPara_002
-测试用例标题      : 填充Body SAR参数到查询命令参数结构体成功
-预期结果          : 返回 VOS_OK
-修改历史          :
-1.日   期  : 2013-03-13
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_FillBodySarWcdmaQryPara, Test_AT_FillBodySarWcdmaQryPara_002)
 {
     // 变量声明
@@ -10689,14 +8213,7 @@ TEST_F(Test_AT_FillBodySarWcdmaQryPara, Test_AT_FillBodySarWcdmaQryPara_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_QryBodySarGsmPara
-功能描述 : AT_QryBodySarGsmPara UT工程类
-修改历史 :
-1.日   期  : 2013-03-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryBodySarGsmPara: public ::testing::Test
 {
 public:
@@ -10729,15 +8246,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryBodySarGsmPara_001
-测试用例标题      : NV项读取失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2013-03-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryBodySarGsmPara, Test_AT_QryBodySarGsmPara_001)
 {
     // 变量声明
@@ -10762,15 +8271,7 @@ TEST_F(Test_AT_QryBodySarGsmPara, Test_AT_QryBodySarGsmPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryBodySarGsmPara_002
-测试用例标题      : NV项读取成功，填充默认值失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2013-03-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryBodySarGsmPara, Test_AT_QryBodySarGsmPara_002)
 {
     // 变量声明
@@ -10799,15 +8300,7 @@ TEST_F(Test_AT_QryBodySarGsmPara, Test_AT_QryBodySarGsmPara_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryBodySarGsmPara_003
-测试用例标题      : NV项读取成功，填充默认值成功，所有频段功率门限不同
-预期结果          : 返回AT_OK
-修改历史          :
-1.日   期  : 2013-03-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryBodySarGsmPara, Test_AT_QryBodySarGsmPara_003)
 {
     // 变量声明
@@ -10853,15 +8346,7 @@ TEST_F(Test_AT_QryBodySarGsmPara, Test_AT_QryBodySarGsmPara_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryBodySarGsmPara_004
-测试用例标题      : NV项读取成功，填充默认值成功，部分频段功率门限相同
-预期结果          : 返回AT_OK
-修改历史          :
-1.日   期  : 2013-03-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryBodySarGsmPara, Test_AT_QryBodySarGsmPara_004)
 {
     // 变量声明
@@ -10908,15 +8393,7 @@ TEST_F(Test_AT_QryBodySarGsmPara, Test_AT_QryBodySarGsmPara_004)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryBodySarGsmPara_005
-测试用例标题      : NV项读取成功，填充默认值成功，所有频段功率门限相同
-预期结果          : 返回AT_OK
-修改历史          :
-1.日   期  : 2013-03-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryBodySarGsmPara, Test_AT_QryBodySarGsmPara_005)
 {
     // 变量声明
@@ -10962,15 +8439,7 @@ TEST_F(Test_AT_QryBodySarGsmPara, Test_AT_QryBodySarGsmPara_005)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryBodySarGsmPara_006
-测试用例标题      : 用户未设置过Body SAR功能GSM的功率门限值
-预期结果          : 返回AT_OK
-修改历史          :
-1.日   期  : 2013-03-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryBodySarGsmPara, Test_AT_QryBodySarGsmPara_006)
 {
     // 变量声明
@@ -11008,14 +8477,7 @@ TEST_F(Test_AT_QryBodySarGsmPara, Test_AT_QryBodySarGsmPara_006)
 }
 
 
-/*****************************************************************************
-类名     : Test_At_QryS0Para
-功能描述 : At_QryS0Para UT工程类
-修改历史     :
-1.日   期  : 2013-03-07
-作   者  :   z00220246
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryS0Para: public ::testing::Test
 {
 public:
@@ -11044,15 +8506,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QryS0Para_001
-测试用例标题      : modem0的S0自动应答时间为5
-预期结果          : pgucAtSndCodeAddr=5
-修改历史          :
-1.日   期         : 2013-03-07
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryS0Para, Test_At_QryS0Para_001)
 {
     VOS_UINT8                           ucIndex = 0;
@@ -11081,15 +8535,7 @@ TEST_F(Test_At_QryS0Para, Test_At_QryS0Para_001)
 }
 
 #if(FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_At_QryS0Para_002
-测试用例标题      : modem1的S0自动应答时间为6
-预期结果          : pgucAtSndCodeAddr=6
-修改历史          :
-1.日   期         : 2013-03-07
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryS0Para, Test_At_QryS0Para_002)
 {
     VOS_UINT8                           ucIndex = 0;
@@ -11118,14 +8564,7 @@ TEST_F(Test_At_QryS0Para, Test_At_QryS0Para_002)
 }
 #endif
 
-/*****************************************************************************
-类名     : Test_At_QryUssdModePara
-功能描述 : At_QryUssdModePara UT工程类
-修改历史     :
-1.日   期  : 2013-03-07
-作   者  :   z00220246
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryUssdModePara: public ::testing::Test
 {
 public:
@@ -11154,15 +8593,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QryUssdModePara_001
-测试用例标题      : Modem0的USSDMODE为0，查询命令AT^USSDMODE?
-预期结果          : ^USSDMODE：0
-修改历史          :
-1.日   期         : 2013-03-07
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryUssdModePara, Test_At_QryUssdModePara_001)
 {
     AT_MODEM_SS_CTX_STRU               *pstSsCtx = VOS_NULL_PTR;
@@ -11193,15 +8624,7 @@ TEST_F(Test_At_QryUssdModePara, Test_At_QryUssdModePara_001)
 }
 
 #if(FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_At_QryUssdModePara_002
-测试用例标题      : Modem1的USSDMODE为1，查询命令AT^USSDMODE?
-预期结果          : ^USSDMODE：1
-修改历史          :
-1.日   期         : 2013-03-07
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryUssdModePara, Test_At_QryUssdModePara_002)
 {
     AT_MODEM_SS_CTX_STRU               *pstSsCtx = VOS_NULL_PTR;
@@ -11233,14 +8656,7 @@ TEST_F(Test_At_QryUssdModePara, Test_At_QryUssdModePara_002)
 }
 #endif
 
-/*****************************************************************************
-类名     : Test_At_QryCusdPara
-功能描述 : At_QryCusdPara UT工程类
-修改历史     :
-1.日   期  : 2013-03-07
-作   者  :   z00220246
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryCusdPara: public ::testing::Test
 {
 public:
@@ -11269,15 +8685,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QryCusdPara_001
-测试用例标题      : 查询CUSD，给MTA发送查询消息成功
-预期结果          : 等待异步回复
-修改历史          :
-1.日   期         : 2013-03-07
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCusdPara, Test_At_QryCusdPara_001)
 {
     AT_MODEM_SS_CTX_STRU               *pstSsCtx = VOS_NULL_PTR;
@@ -11307,15 +8715,7 @@ TEST_F(Test_At_QryCusdPara, Test_At_QryCusdPara_001)
 }
 
 #if(FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_At_QryCusdPara_002
-测试用例标题      : Modem1的ucCusdType为1，查询命令AT+CUSD?
-预期结果          : +CUSD：1
-修改历史          :
-1.日   期         : 2013-03-07
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCusdPara, Test_At_QryCusdPara_002)
 {
     AT_MODEM_SS_CTX_STRU               *pstSsCtx = VOS_NULL_PTR;
@@ -11364,14 +8764,7 @@ TEST_F(Test_At_QryCusdPara, Test_At_QryCusdPara_002)
 }
 #endif
 
-/*****************************************************************************
-类名     : Test_At_QryCmodPara
-功能描述 : At_QryCmodPara UT工程类
-修改历史     :
-1.日   期  : 2013-03-07
-作   者  :   z00220246
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryCmodPara: public ::testing::Test
 {
 public:
@@ -11400,15 +8793,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QryCmodPara_001
-测试用例标题      : Modem0的呼叫模式为0
-预期结果          : 查询结果+CMOD:0
-修改历史          :
-1.日   期         : 2013-03-07
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCmodPara, Test_At_QryCmodPara_001)
 {
     AT_MODEM_SS_CTX_STRU               *pstSsCtx = VOS_NULL_PTR;
@@ -11441,15 +8826,7 @@ TEST_F(Test_At_QryCmodPara, Test_At_QryCmodPara_001)
 }
 
 #if(FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_At_QryCmodPara_002
-测试用例标题      : Modem1的呼叫模式为1
-预期结果          : 查询结果+CMOD:1
-修改历史          :
-1.日   期         : 2013-03-07
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCmodPara, Test_At_QryCmodPara_002)
 {
     AT_MODEM_SS_CTX_STRU               *pstSsCtx = VOS_NULL_PTR;
@@ -11480,14 +8857,7 @@ TEST_F(Test_At_QryCmodPara, Test_At_QryCmodPara_002)
     GlobalMockObject::verify();
 }
 #endif
-/*****************************************************************************
- 类名       : Test_At_QryTimePara
- 功能描述   : At_QryTimePara UT工程类
- 修改历史   :
- 1.日   期  : 2013-03-08
-   作   者  : f00179208
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryTimePara: public ::testing::Test
 {
 public:
@@ -11501,15 +8871,7 @@ public:
 
 };
 
-/*******************************************************************
- 测试用例编号   : Test_At_QryTimePara_001
- 测试用例标题   : 查询是否主动上报网络下发的时间信息,给MTA发送消息成功
- 预期结果       : 异步等待查询回复
- 修改历史       :
- 1.日   期  : 2013-03-08
-   作   者  : f00179208
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryTimePara,Test_At_QryTimePara_001)
 {
     VOS_UINT8                           ucIndex;
@@ -11556,15 +8918,7 @@ TEST_F(Test_At_QryTimePara,Test_At_QryTimePara_001)
 
 }
 
-/*******************************************************************
- 测试用例编号   : Test_At_QryTimePara_002
- 测试用例标题   : 查询是否主动上报网络下发的时间信息,给MTA发送消息失败
- 预期结果       : 返回AT_ERROR
- 修改历史       :
- 1.日   期  : 2013-04-15
-   作   者  : s00217060
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryTimePara,Test_At_QryTimePara_002)
 {
     VOS_UINT8                           ucIndex;
@@ -11610,14 +8964,7 @@ TEST_F(Test_At_QryTimePara,Test_At_QryTimePara_002)
 
 }
 
-/*****************************************************************************
- 类名       : Test_At_QryCtzrPara
- 功能描述   : At_QryCtzrPara UT工程类
- 修改历史   :
- 1.日   期  : 2013-03-08
-   作   者  : f00179208
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryCtzrPara: public ::testing::Test
 {
 public:
@@ -11631,15 +8978,7 @@ public:
 
 };
 
-/*******************************************************************
- 测试用例编号   : Test_At_QryCtzrPara_001
- 测试用例标题   : 查询是否主动上报网络下发的时区更新,给MTA发送消息成功
- 预期结果       : 异步等待查询回复
- 修改历史       :
- 1.日   期  : 2013-03-08
-   作   者  : f00179208
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCtzrPara,Test_At_QryCtzrPara_001)
 {
     VOS_UINT8                           ucIndex;
@@ -11686,15 +9025,7 @@ TEST_F(Test_At_QryCtzrPara,Test_At_QryCtzrPara_001)
 
 }
 
-/*******************************************************************
- 测试用例编号   : Test_At_QryCtzrPara_002
- 测试用例标题   : 查询是否主动上报网络下发的时区更新,给MTA发送消息失败
- 预期结果       : 返回AT_ERROR
- 修改历史       :
- 1.日   期  : 2013-04-18
-   作   者  : s00217060
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCtzrPara,Test_At_QryCtzrPara_002)
 {
     VOS_UINT8                           ucIndex;
@@ -11740,14 +9071,7 @@ TEST_F(Test_At_QryCtzrPara,Test_At_QryCtzrPara_002)
 
 }
 
-/*****************************************************************************
- 类名       : Test_At_QryCplsPara
- 功能描述   : At_QryCplsPara UT工程类
- 修改历史   :
- 1.日   期  : 2013-03-08
-   作   者  : f00179208
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryCplsPara: public ::testing::Test
 {
 public:
@@ -11761,15 +9085,7 @@ public:
 
 };
 
-/*******************************************************************
- 测试用例编号   : Test_At_QryCplsPara_001
- 测试用例标题   : 查询CPLS的设置情况
- 预期结果       : 输出查询结果
- 修改历史       :
- 1.日   期  : 2013-03-08
-   作   者  : f00179208
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCplsPara,Test_At_QryCplsPara_001)
 {
     VOS_UINT8                           ucIndex;
@@ -11793,14 +9109,7 @@ TEST_F(Test_At_QryCplsPara,Test_At_QryCplsPara_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
- 类名       : Test_At_QryCpolPara
- 功能描述   : At_QryCpolPara UT工程类
- 修改历史   :
- 1.日   期  : 2013-03-08
-   作   者  : f00179208
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryCpolPara: public ::testing::Test
 {
 public:
@@ -11814,18 +9123,7 @@ public:
 
 };
 
-/*******************************************************************
- 测试用例编号   : Test_At_QryCpolPara_001
- 测试用例标题   : 查询CPOL的设置情况成功
- 预期结果       : 输出查询结果
- 修改历史       :
- 1.日   期  : 2013-03-08
-   作   者  : f00179208
-   修改内容 : 新建CASE
- 2.日    期   : 2014年01月15日
-   作    者   : f62575
-   修改内容   : DTS2014011301359，+CPOL命令支持超过37个UPLMN
-*******************************************************************/
+
 TEST_F(Test_At_QryCpolPara,Test_At_QryCpolPara_001)
 {
     VOS_UINT8                           ucIndex;
@@ -11858,18 +9156,7 @@ TEST_F(Test_At_QryCpolPara,Test_At_QryCpolPara_001)
 
 }
 
-/*******************************************************************
- 测试用例编号   : Test_At_QryCpolPara_002
- 测试用例标题   : 查询CPOL的设置情况失败
- 预期结果       : 返回AT_ERROR
- 修改历史       :
- 1.日   期  : 2013-03-08
-   作   者  : f00179208
-   修改内容 : 新建CASE
- 2.日    期   : 2014年01月15日
-   作    者   : f62575
-   修改内容   : DTS2014011301359，查询函数调用失败返回值修改AT_CME_INCORRECT_PARAMETERS=》AT_ERROR
-*******************************************************************/
+
 TEST_F(Test_At_QryCpolPara,Test_At_QryCpolPara_002)
 {
     VOS_UINT8                           ucIndex;
@@ -11900,15 +9187,7 @@ TEST_F(Test_At_QryCpolPara,Test_At_QryCpolPara_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_At_QryCpolPara_003
- 测试用例标题   : 查询CPOL的操作类型不是查询
- 预期结果       : 返回AT_ERROR
- 修改历史       :
-1.日    期   : 2014年01月15日
-  作    者   : f62575
-  修改内容   : DTS2014011301359
-*******************************************************************/
+
 TEST_F(Test_At_QryCpolPara,Test_At_QryCpolPara_003)
 {
     VOS_UINT8                           ucIndex;
@@ -11939,14 +9218,7 @@ TEST_F(Test_At_QryCpolPara,Test_At_QryCpolPara_003)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_At_QryCrcPara
-功能描述 : At_QryCrcPara UT工程类
-修改历史     :
-1.日   期  : 2013-03-11
-作   者  :   z00220246
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryCrcPara: public ::testing::Test
 {
 public:
@@ -11975,15 +9247,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QryCrcPara_001
-测试用例标题      : 当前Modem0的CRC为1，查询CRC参数
-预期结果          : 结果为+CRC：1
-修改历史          :
-1.日   期  : 2013-03-11
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCrcPara, Test_At_QryCrcPara_001)
 {
     AT_MODEM_SS_CTX_STRU               *pstSsCtx = VOS_NULL_PTR;
@@ -12016,15 +9280,7 @@ TEST_F(Test_At_QryCrcPara, Test_At_QryCrcPara_001)
 }
 
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_At_QryCrcPara_002
-测试用例标题      : 当前Modem1的CRC为0，查询CRC参数
-预期结果          : 结果为+CRC：0
-修改历史          :
-1.日   期  : 2013-03-11
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCrcPara, Test_At_QryCrcPara_002)
 {
     AT_MODEM_SS_CTX_STRU               *pstSsCtx = VOS_NULL_PTR;
@@ -12057,14 +9313,7 @@ TEST_F(Test_At_QryCrcPara, Test_At_QryCrcPara_002)
 }
 #endif
 
-/*****************************************************************************
-类名     : Test_At_QryCcwaPara
-功能描述 : At_QryCcwaPara UT工程类
-修改历史     :
-1.日   期  : 2013-03-11
-作   者  :   z00220246
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryCcwaPara: public ::testing::Test
 {
 public:
@@ -12094,15 +9343,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QryCcwaPara_001
-测试用例标题      : 当前Modem0的ucCcwaType为1
-预期结果          : 结果为+CCWA：1
-修改历史          :
-1.日   期  : 2013-03-11
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCcwaPara, Test_At_QryCcwaPara_001)
 {
     AT_MODEM_SS_CTX_STRU               *pstSsCtx = VOS_NULL_PTR;
@@ -12135,15 +9376,7 @@ TEST_F(Test_At_QryCcwaPara, Test_At_QryCcwaPara_001)
 }
 
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_At_QryCcwaPara_002
-测试用例标题      : 当前Modem1的ucCcwaType为0
-预期结果          : 结果为+CCWA：0
-修改历史          :
-1.日   期  : 2013-03-11
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCcwaPara, Test_At_QryCcwaPara_002)
 {
     AT_MODEM_SS_CTX_STRU               *pstSsCtx = VOS_NULL_PTR;
@@ -12176,14 +9409,7 @@ TEST_F(Test_At_QryCcwaPara, Test_At_QryCcwaPara_002)
 }
 #endif
 
-/*****************************************************************************
-类名     : Test_At_QryCssnPara
-功能描述 : At_QryCssnPara UT工程类
-修改历史     :
-1.日   期  : 2013-03-11
-作   者  :   z00220246
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryCssnPara: public ::testing::Test
 {
 public:
@@ -12212,15 +9438,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QryCssnPara_001
-测试用例标题      : Modem0查询命令+CSSN
-预期结果          : 结果为+CSSN：0,1
-修改历史          :
-1.日   期  : 2013-03-11
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCssnPara, Test_At_QryCssnPara_001)
 {
     AT_MODEM_SS_CTX_STRU               *pstSsCtx = VOS_NULL_PTR;
@@ -12271,15 +9489,7 @@ TEST_F(Test_At_QryCssnPara, Test_At_QryCssnPara_001)
 }
 
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_At_QryCssnPara_002
-测试用例标题      : Modem1查询命令+CSSN
-预期结果          : 结果为+CSSN：1,1
-修改历史          :
-1.日   期  : 2013-03-11
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCssnPara, Test_At_QryCssnPara_002)
 {
     AT_MODEM_SS_CTX_STRU               *pstSsCtx = VOS_NULL_PTR;
@@ -12329,14 +9539,7 @@ TEST_F(Test_At_QryCssnPara, Test_At_QryCssnPara_002)
 }
 #endif
 
-/*****************************************************************************
-类名     : Test_At_QryCbstPara
-功能描述 : At_QryCbstPara UT工程类
-修改历史     :
-1.日   期  : 2013-03-11
-作   者  :   z00220246
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryCbstPara: public ::testing::Test
 {
 public:
@@ -12365,15 +9568,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QryCbstPara_001
-测试用例标题      : 查询Modem0的CBST参数
-预期结果          : 返回+CBST
-修改历史          :
-1.日   期  : 2013-03-11
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCbstPara,Test_At_QryCbstPara_001)
 {
     AT_MODEM_SS_CTX_STRU               *pstSsCtx = VOS_NULL_PTR;
@@ -12408,15 +9603,7 @@ TEST_F(Test_At_QryCbstPara,Test_At_QryCbstPara_001)
 }
 
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_At_QryCbstPara_002
-测试用例标题      : 查询Modem1的CBST参数
-预期结果          : 返回+CBST
-修改历史          :
-1.日   期  : 2013-03-11
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCbstPara,Test_At_QryCbstPara_002)
 {
     AT_MODEM_SS_CTX_STRU               *pstSsCtx = VOS_NULL_PTR;
@@ -12451,14 +9638,7 @@ TEST_F(Test_At_QryCbstPara,Test_At_QryCbstPara_002)
 }
 #endif
 
-/*****************************************************************************
-类名     : Test_At_QryCcugPara
-功能描述 : At_QryCcugPara UT工程类
-修改历史     :
-1.日   期  : 2013-03-11
-作   者  :   z00220246
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryCcugPara: public ::testing::Test
 {
 public:
@@ -12487,15 +9667,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QryCcugPara_001
-测试用例标题      : 查询Modem0的CCcug参数，当前bIndexPresent为0
-预期结果          : 返回+ccug
-修改历史          :
-1.日   期  : 2013-03-11
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCcugPara, Test_At_QryCcugPara_001)
 {
     AT_MODEM_SS_CTX_STRU               *pstSsCtx = VOS_NULL_PTR;
@@ -12529,15 +9701,7 @@ TEST_F(Test_At_QryCcugPara, Test_At_QryCcugPara_001)
 }
 
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_At_QryCcugPara_002
-测试用例标题      : 查询Modem1的CCcug参数，当前bIndexPresent不为0
-预期结果          : 返回+ccug
-修改历史          :
-1.日   期  : 2013-03-11
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCcugPara, Test_At_QryCcugPara_002)
 {
     AT_MODEM_SS_CTX_STRU               *pstSsCtx = VOS_NULL_PTR;
@@ -12572,14 +9736,7 @@ TEST_F(Test_At_QryCcugPara, Test_At_QryCcugPara_002)
 }
 #endif
 
-/*****************************************************************************
-类名     : Test_At_QryCmgfPara
-功能描述 : At_QryCmgfPara UT工程类
-修改历史     :
-1.日   期  : 2013-03-11
-  作   者  :   l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryCmgfPara: public ::testing::Test
 {
 public:
@@ -12594,15 +9751,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QryCmgfPara_001
-测试用例标题      : 查询Modem0 CMGF参数成功
-预期结果          : 返回AT_OK
-修改历史
-  1.日    期: 2013年3月11日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCmgfPara,Test_At_QryCmgfPara_001)
 {
     // 参数定义
@@ -12637,15 +9786,7 @@ TEST_F(Test_At_QryCmgfPara,Test_At_QryCmgfPara_001)
     GlobalMockObject::verify();
 }
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_At_QryCmgfPara_002
-测试用例标题      : 查询Modem1 CMGF参数成功
-预期结果          : 返回AT_OK
-修改历史
-  1.日    期: 2013年3月11日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCmgfPara,Test_At_QryCmgfPara_002)
 {
     // 参数定义
@@ -12681,14 +9822,7 @@ TEST_F(Test_At_QryCmgfPara,Test_At_QryCmgfPara_002)
 }
 #endif
 
-/*****************************************************************************
-类名     : Test_At_QryCsdhPara
-功能描述 : At_QryCsdhPara UT工程类
-修改历史     :
-1.日   期  : 2013-03-11
-  作   者  :   l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryCsdhPara: public ::testing::Test
 {
 public:
@@ -12703,15 +9837,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QryCsdhPara_001
-测试用例标题      : 查询Modem0 CNMI参数成功
-预期结果          : 返回AT_OK
-修改历史
-  1.日    期: 2013年3月11日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCsdhPara,Test_At_QryCsdhPara_001)
 {
     // 参数定义
@@ -12746,15 +9872,7 @@ TEST_F(Test_At_QryCsdhPara,Test_At_QryCsdhPara_001)
     GlobalMockObject::verify();
 }
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_At_QryCsdhPara_002
-测试用例标题      : 查询Modem1 CNMI参数成功
-预期结果          : 返回AT_OK
-修改历史
-  1.日    期: 2013年3月11日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCsdhPara,Test_At_QryCsdhPara_002)
 {
     // 参数定义
@@ -12790,14 +9908,7 @@ TEST_F(Test_At_QryCsdhPara,Test_At_QryCsdhPara_002)
 }
 #endif
 
-/*****************************************************************************
-类名     : Test_At_QryCmsrPara
-功能描述 : At_QryCmsrPara UT工程类
-修改历史     :
-1.日   期  : 2013-03-11
-  作   者  :   l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryCmsrPara: public ::testing::Test
 {
 public:
@@ -12812,15 +9923,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QryCmsrPara_001
-测试用例标题      : 查询Modem0 CMSR参数成功
-预期结果          : 返回AT_OK
-修改历史
-  1.日    期: 2013年3月11日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCmsrPara,Test_At_QryCmsrPara_001)
 {
     // 参数定义
@@ -12855,15 +9958,7 @@ TEST_F(Test_At_QryCmsrPara,Test_At_QryCmsrPara_001)
     GlobalMockObject::verify();
 }
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_At_QryCmsrPara_002
-测试用例标题      : 查询Modem1 CMSR参数成功
-预期结果          : 返回AT_OK
-修改历史
-  1.日    期: 2013年3月11日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCmsrPara,Test_At_QryCmsrPara_002)
 {
     // 参数定义
@@ -12899,14 +9994,7 @@ TEST_F(Test_At_QryCmsrPara,Test_At_QryCmsrPara_002)
 }
 #endif
 
-/*****************************************************************************
-类名     : Test_At_QryCsmsPara
-功能描述 : At_QryCsmsPara UT工程类
-修改历史     :
-1.日   期  : 2013-03-11
-  作   者  :   l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryCsmsPara: public ::testing::Test
 {
 public:
@@ -12921,15 +10009,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QryCsmsPara_001
-测试用例标题      : 查询Modem0 CSMS参数成功
-预期结果          : 返回AT_OK
-修改历史
-  1.日    期: 2013年3月11日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCsmsPara,Test_At_QryCsmsPara_001)
 {
     // 参数定义
@@ -12964,15 +10044,7 @@ TEST_F(Test_At_QryCsmsPara,Test_At_QryCsmsPara_001)
     GlobalMockObject::verify();
 }
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_At_QryCsmsPara_002
-测试用例标题      : 查询Modem1 CSMS参数成功
-预期结果          : 返回AT_OK
-修改历史
-  1.日    期: 2013年3月11日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCsmsPara,Test_At_QryCsmsPara_002)
 {
     // 参数定义
@@ -13008,14 +10080,7 @@ TEST_F(Test_At_QryCsmsPara,Test_At_QryCsmsPara_002)
 }
 #endif
 
-/*****************************************************************************
-类名     : Test_At_QryCgsmsPara
-功能描述 : At_QryCgsmsPara UT工程类
-修改历史     :
-1.日   期  : 2013-03-11
-  作   者  :   l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryCgsmsPara: public ::testing::Test
 {
 public:
@@ -13030,15 +10095,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QryCgsmsPara_001
-测试用例标题      : 查询Modem0 CGSMS参数成功
-预期结果          : 返回AT_OK
-修改历史
-  1.日    期: 2013年3月11日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCgsmsPara,Test_At_QryCgsmsPara_001)
 {
     // 参数定义
@@ -13073,15 +10130,7 @@ TEST_F(Test_At_QryCgsmsPara,Test_At_QryCgsmsPara_001)
     GlobalMockObject::verify();
 }
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_At_QryCgsmsPara_002
-测试用例标题      : 查询Modem1 CGSMS参数成功
-预期结果          : 返回AT_OK
-修改历史
-  1.日    期: 2013年3月11日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCgsmsPara,Test_At_QryCgsmsPara_002)
 {
     // 参数定义
@@ -13117,14 +10166,7 @@ TEST_F(Test_At_QryCgsmsPara,Test_At_QryCgsmsPara_002)
 }
 #endif
 
-/*****************************************************************************
-类名     : Test_At_QryCsmpPara
-功能描述 : At_QryCsmpPara UT工程类
-修改历史     :
-1.日   期  : 2013-03-11
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryCsmpPara: public ::testing::Test
 {
 public:
@@ -13139,15 +10181,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QryCsmpPara_001
-测试用例标题      : 查询Modem0 CSMP参数成功
-预期结果          : 返回AT_OK
-修改历史
-  1.日    期: 2013年3月11日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCsmpPara,Test_At_QryCsmpPara_001)
 {
     // 参数定义
@@ -13190,15 +10224,7 @@ TEST_F(Test_At_QryCsmpPara,Test_At_QryCsmpPara_001)
     GlobalMockObject::verify();
 }
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_At_QryCsmpPara_002
-测试用例标题      : 查询Modem1 CSMP参数成功
-预期结果          : 返回AT_OK
-修改历史
-  1.日    期: 2013年3月11日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCsmpPara,Test_At_QryCsmpPara_002)
 {
     // 参数定义
@@ -13239,15 +10265,7 @@ TEST_F(Test_At_QryCsmpPara,Test_At_QryCsmpPara_002)
 }
 #endif
 
-/*******************************************************************
-测试用例编号      : Test_At_QryCsmpPara_003
-测试用例标题      : 查询Modem0 CSMP参数成功
-预期结果          : 默认配置为+CSMP: ,,0,0
-修改历史
-  1.日    期   : 2014年03月04日
-    作    者   : f62575
-    修改内容   : DTS2014030801193, +CSMP初始值不生效
-*******************************************************************/
+
 TEST_F(Test_At_QryCsmpPara,Test_At_QryCsmpPara_003)
 {
     // 参数定义
@@ -13290,14 +10308,7 @@ TEST_F(Test_At_QryCsmpPara,Test_At_QryCsmpPara_003)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_At_QryCpmsPara
-功能描述 : At_QryCpmsPara UT工程类
-修改历史     :
-1.日   期  : 2013-03-11
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryCpmsPara: public ::testing::Test
 {
 public:
@@ -13312,15 +10323,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QryCpmsPara_001
-测试用例标题      : 查询Modem0 CPMS参数
-预期结果          : 返回AT_WAIT_ASYNC_RETURN
-修改历史
-  1.日    期: 2013年3月11日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCpmsPara,Test_At_QryCpmsPara_001)
 {
     // 参数定义
@@ -13346,15 +10349,7 @@ TEST_F(Test_At_QryCpmsPara,Test_At_QryCpmsPara_001)
     GlobalMockObject::verify();
 }
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_At_QryCpmsPara_002
-测试用例标题      : 查询Modem1 CPMS参数失败
-预期结果          : 返回AT_ERROR
-修改历史
-  1.日    期: 2013年3月11日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCpmsPara,Test_At_QryCpmsPara_002)
 {
     // 参数定义
@@ -13380,14 +10375,7 @@ TEST_F(Test_At_QryCpmsPara,Test_At_QryCpmsPara_002)
 }
 #endif
 
-/*****************************************************************************
-类名     : Test_At_QryCmgdPara
-功能描述 : At_QryCmgdPara UT工程类
-修改历史     :
-1.日   期  : 2013-03-11
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryCmgdPara: public ::testing::Test
 {
 public:
@@ -13402,15 +10390,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QryCmgdPara_001
-测试用例标题      : 查询Modem0 CMGD参数
-预期结果          : 返回AT_WAIT_ASYNC_RETURN
-修改历史
-  1.日    期: 2013年3月11日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCmgdPara,Test_At_QryCmgdPara_001)
 {
     // 参数定义
@@ -13436,15 +10416,7 @@ TEST_F(Test_At_QryCmgdPara,Test_At_QryCmgdPara_001)
     GlobalMockObject::verify();
 }
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_At_QryCmgdPara_002
-测试用例标题      : 查询Modem1 CMGD参数
-预期结果          : 返回AT_WAIT_ASYNC_RETURN
-修改历史
-  1.日    期: 2013年3月11日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCmgdPara,Test_At_QryCmgdPara_002)
 {
     // 参数定义
@@ -13471,14 +10443,7 @@ TEST_F(Test_At_QryCmgdPara,Test_At_QryCmgdPara_002)
 }
 #endif
 
-/*****************************************************************************
-类名    : Test_At_QryQosPara
-功能描述: At_QryQosPara  UT工程类
-修改历史    :
-1.日  期 : 2013-03-18
-  作  者 :   l60609
-  修改内容: 新生成类
-*****************************************************************************/
+
 class Test_At_QryQosPara: public ::testing::Test
 {
 public:
@@ -13492,15 +10457,7 @@ public:
 
     }
 };
-/*******************************************************************
-测试用例编号     : Test_At_QryQosPara_001
-测试用例标题     : MODEM 0 查询QOS命令
-预期结果         : 查询成功
-修改历史         :
-1.日  期         : 2013-03-11
-  作  者         : l60609
-  修改内容       : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryQosPara, Test_At_QryQosPara_001)
 {
     AT_TRAFFIC_CLASS_CUSTOMIZE_STRU     stATTrafficClass;
@@ -13543,15 +10500,7 @@ TEST_F(Test_At_QryQosPara, Test_At_QryQosPara_001)
 }
 
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号     : Test_At_QryQosPara_002
-测试用例标题     : MODEM 1 查询QOS命令
-预期结果         : 查询成功
-修改历史         :
-1.日  期         : 2013-03-11
-  作  者         : l60609
-  修改内容       : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryQosPara, Test_At_QryQosPara_002)
 {
     AT_TRAFFIC_CLASS_CUSTOMIZE_STRU     stATTrafficClass;
@@ -13594,14 +10543,7 @@ TEST_F(Test_At_QryQosPara, Test_At_QryQosPara_002)
 }
 #endif
 
-/*****************************************************************************
-类名    : Test_At_QrySDomainPara
-功能描述: At_QrySDomainPara  UT工程类
-修改历史    :
-1.日  期 : 2013-03-18
-  作  者 :   l60609
-  修改内容: 新生成类
-*****************************************************************************/
+
 class Test_At_QrySDomainPara: public ::testing::Test
 {
 public:
@@ -13618,15 +10560,7 @@ public:
 
     }
 };
-/*******************************************************************
-测试用例编号     : Test_At_QrySDomainPara_001
-测试用例标题     : MODEM 0 查询SDOMAIN命令
-预期结果         : 查询成功
-修改历史         :
-1.日  期         : 2013-03-11
-  作  者         : l60609
-  修改内容       : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QrySDomainPara, Test_At_QrySDomainPara_001)
 {
     NAS_NVIM_MS_CLASS_STRU              stMsClass;
@@ -13672,15 +10606,7 @@ TEST_F(Test_At_QrySDomainPara, Test_At_QrySDomainPara_001)
 }
 
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号     : Test_At_QrySDomainPara_002
-测试用例标题     : MODEM 1 查询SDOMAIN命令
-预期结果         : 查询成功
-修改历史         :
-1.日  期         : 2013-03-11
-  作  者         : l60609
-  修改内容       : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QrySDomainPara, Test_At_QrySDomainPara_002)
 {
     NAS_NVIM_MS_CLASS_STRU              stMsClass;
@@ -13727,14 +10653,7 @@ TEST_F(Test_At_QrySDomainPara, Test_At_QrySDomainPara_002)
 #endif
 
 
-/*****************************************************************************
-类名    : Test_AT_QryRstriggerPara
-功能描述: AT_QryRstriggerPara  UT工程类
-修改历史    :
-1.日  期 : 2013-03-18
-  作  者 :   l60609
-  修改内容: 新生成类
-*****************************************************************************/
+
 class Test_AT_QryRstriggerPara: public ::testing::Test
 {
 public:
@@ -13748,15 +10667,7 @@ public:
 
     }
 };
-/*******************************************************************
-测试用例编号     : Test_AT_QryRstriggerPara_001
-测试用例标题     : MODEM 0 查询RSTRIGGER命令
-预期结果         : 查询成功
-修改历史         :
-1.日  期         : 2013-03-11
-  作  者         : l60609
-  修改内容       : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryRstriggerPara, Test_AT_QryRstriggerPara_001)
 {
     VOS_UINT8                           aucActiveMessageInfo[MN_MSG_ACTIVE_MESSAGE_PARA_LEN];
@@ -13798,15 +10709,7 @@ TEST_F(Test_AT_QryRstriggerPara, Test_AT_QryRstriggerPara_001)
 }
 
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号     : Test_AT_QryRstriggerPara_002
-测试用例标题     : MODEM 1 查询SDOMAIN命令
-预期结果         : 查询成功
-修改历史         :
-1.日  期         : 2013-03-11
-  作  者         : l60609
-  修改内容       : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryRstriggerPara, Test_AT_QryRstriggerPara_002)
 {
     VOS_UINT8                           aucActiveMessageInfo[MN_MSG_ACTIVE_MESSAGE_PARA_LEN];
@@ -13847,14 +10750,7 @@ TEST_F(Test_AT_QryRstriggerPara, Test_AT_QryRstriggerPara_002)
     GlobalMockObject::verify();
 }
 #endif
-/*****************************************************************************
-类名    : Test_At_QryCnmiPara
-功能描述: At_QryCnmiPara  UT工程类
-修改历史    :
-1.日  期 : 2013-03-18
-  作  者 :  z00220246
-  修改内容: 新生成类
-*****************************************************************************/
+
 class Test_At_QryCnmiPara: public ::testing::Test
 {
 public:
@@ -13868,15 +10764,7 @@ public:
 
     }
 };
-/*******************************************************************
-测试用例编号     : Test_At_QryCnmiPara_001
-测试用例标题     : MODEM 0 查询CNMI命令
-预期结果         : 查询成功
-修改历史         :
-1.日  期         : 2013-03-11
-  作  者         : z00220246
-  修改内容       : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCnmiPara, Test_At_QryCnmiPara_001)
 {
     VOS_UINT32                          ulRst;
@@ -13912,15 +10800,7 @@ TEST_F(Test_At_QryCnmiPara, Test_At_QryCnmiPara_001)
     GlobalMockObject::verify();
 }
 #if(FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-试用例编号     : Test_At_QryCnmiPara_002
-测试用例标题     : MODEM 1 查询CNMI命令
-预期结果         : 查询成功
-修改历史         :
-1.日  期         : 2013-03-11
-  作  者         : z00220246
-  修改内容       : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCnmiPara, Test_At_QryCnmiPara_002)
 {
     VOS_UINT32                          ulRst;
@@ -13957,14 +10837,7 @@ TEST_F(Test_At_QryCnmiPara, Test_At_QryCnmiPara_002)
 }
 #endif
 
-/*****************************************************************************
-类名    : Test_At_QryBsn
-功能描述: At_QryBsn  UT工程类
-修改历史    :
-1.日  期 : 2013-03-18
-  作  者 :  z00220246
-  修改内容: 新生成类
-*****************************************************************************/
+
 class Test_At_QryBsn: public ::testing::Test
 {
 public:
@@ -13978,15 +10851,7 @@ public:
 
     }
 };
-/*******************************************************************
-测试用例编号     : Test_At_QryBsn_001
-测试用例标题     : MODEM 0 查询BSN命令，获取ModemId失败
-预期结果         : 查询失败
-修改历史         :
-1.日  期         : 2013-03-11
-  作  者         : z00220246
-  修改内容       : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryBsn, Test_At_QryBsn_001)
 {
     VOS_UINT32                          ulRst;
@@ -14013,15 +10878,7 @@ TEST_F(Test_At_QryBsn, Test_At_QryBsn_001)
 }
 
 #if(FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号     : Test_At_QryBsn_002
-测试用例标题     : MODEM 0 查询BSN命令，读取NV失败
-预期结果         : 查询失败
-修改历史         :
-1.日  期         : 2013-03-11
-  作  者         : z00220246
-  修改内容       : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryBsn, Test_At_QryBsn_002)
 {
     VOS_UINT32                          ulRst;
@@ -14052,15 +10909,7 @@ TEST_F(Test_At_QryBsn, Test_At_QryBsn_002)
 }
 #endif
 
-/*******************************************************************
-测试用例编号     : Test_At_QryBsn_003
-测试用例标题     : MODEM 0 查询BSN命令，读取NV成功
-预期结果         : 查询成功
-修改历史         :
-1.日  期         : 2013-03-11
-  作  者         : z00220246
-  修改内容       : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryBsn, Test_At_QryBsn_003)
 {
     VOS_UINT32                          ulRst;
@@ -14102,14 +10951,7 @@ TEST_F(Test_At_QryBsn, Test_At_QryBsn_003)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_At_QryMmPlmnInfoPara
-功能描述 : At_QryMmPlmnInfoPara UT工程类
-修改历史 :
-1.日   期  : 2013-04-17
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryMmPlmnInfoPara: public ::testing::Test
 {
 public:
@@ -14124,15 +10966,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QryMmPlmnInfoPara_001
-测试用例标题      : TAF参数查询成功
-预期结果          : AT通道进入阻塞状态
-修改历史          :
-1.日   期  : 2013-04-17
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryMmPlmnInfoPara, Test_At_QryMmPlmnInfoPara_001)
 {
     // 变量声明
@@ -14160,15 +10994,7 @@ TEST_F(Test_At_QryMmPlmnInfoPara, Test_At_QryMmPlmnInfoPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryMmPlmnInfoPara_002
-测试用例标题      : TAF参数查询失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2013-04-17
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryMmPlmnInfoPara, Test_At_QryMmPlmnInfoPara_002)
 {
     // 变量声明
@@ -14196,14 +11022,7 @@ TEST_F(Test_At_QryMmPlmnInfoPara, Test_At_QryMmPlmnInfoPara_002)
 }
 
 
-/*****************************************************************************
-类名     : Test_At_QryXlemaPara
-功能描述 : At_QryXlemaPara UT工程类
-修改历史 :
-1.日   期  : 2013-04-17
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryXlemaPara: public ::testing::Test
 {
 public:
@@ -14218,15 +11037,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QryXlemaPara_001
-测试用例标题      : 查询请求发送成功
-预期结果          : AT通道进入阻塞状态
-修改历史          :
-1.日   期  : 2013-04-17
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryXlemaPara, Test_At_QryXlemaPara_001)
 {
     // 变量声明
@@ -14254,15 +11065,7 @@ TEST_F(Test_At_QryXlemaPara, Test_At_QryXlemaPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryXlemaPara_002
-测试用例标题      : 查询请求发送失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2013-04-17
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryXlemaPara, Test_At_QryXlemaPara_002)
 {
     // 变量声明
@@ -14289,14 +11092,7 @@ TEST_F(Test_At_QryXlemaPara, Test_At_QryXlemaPara_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_At_QryIMEIVerifyPara
-功能描述 : At_QryIMEIVerifyPara UT工程类
-修改历史 :
-1.日   期  : 2013-05-22
-  作   者  : Y00213812
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryIMEIVerifyPara: public ::testing::Test
 {
 public:
@@ -14311,15 +11107,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QryIMEIVerifyPara_001
-测试用例标题      : TAF参数查询成功
-预期结果          : AT通道进入阻塞状态
-修改历史          :
-1.日   期  : 2013-05-22
-  作   者  : Y00213812
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryIMEIVerifyPara, Test_At_QryIMEIVerifyPara_001)
 {
     // 变量声明
@@ -14346,15 +11134,7 @@ TEST_F(Test_At_QryIMEIVerifyPara, Test_At_QryIMEIVerifyPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryIMEIVerifyPara_002
-测试用例标题      : TAF参数查询失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2013-05-22
-  作   者  : Y00213812
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryIMEIVerifyPara, Test_At_QryIMEIVerifyPara_002)
 {
     // 变量声明
@@ -14380,14 +11160,7 @@ TEST_F(Test_At_QryIMEIVerifyPara, Test_At_QryIMEIVerifyPara_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_QryUserSrvStatePara
-功能描述 : AT_QryUserSrvStatePara UT工程类
-修改历史 :
-1.日   期  : 2013-06-13
-  作   者  : s00217060
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryUserSrvStatePara: public ::testing::Test
 {
 public:
@@ -14402,15 +11175,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryUserSrvStatePara_001
-测试用例标题      : 查询请求发送成功
-预期结果          : AT通道进入阻塞状态
-修改历史          :
-1.日   期  : 2013-06-13
-  作   者  : s00217060
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryUserSrvStatePara, Test_AT_QryUserSrvStatePara_001)
 {
     // 变量声明
@@ -14439,15 +11204,7 @@ TEST_F(Test_AT_QryUserSrvStatePara, Test_AT_QryUserSrvStatePara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryUserSrvStatePara_002
-测试用例标题      : 查询请求发送失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2013-06-13
-  作   者  : s00217060
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryUserSrvStatePara, Test_AT_QryUserSrvStatePara_002)
 {
     // 变量声明
@@ -14476,14 +11233,7 @@ TEST_F(Test_AT_QryUserSrvStatePara, Test_AT_QryUserSrvStatePara_002)
 }
 
 
-/*****************************************************************************
-类名     : Test_AT_QryNCellMonitorPara
-功能描述 : AT_QryNCellMonitorPara UT工程类
-修改历史 :
-1.日   期  : 2013-06-13
-  作   者  : s00217060
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryNCellMonitorPara: public ::testing::Test
 {
 public:
@@ -14498,15 +11248,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryNCellMonitorPara_001
-测试用例标题      : 查询请求发送成功
-预期结果          : AT通道进入阻塞状态
-修改历史          :
-1.日   期  : 2013-06-13
-  作   者  : s00217060
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryNCellMonitorPara, Test_AT_QryNCellMonitorPara_001)
 {
     // 变量声明
@@ -14534,15 +11276,7 @@ TEST_F(Test_AT_QryNCellMonitorPara, Test_AT_QryNCellMonitorPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryNCellMonitorPara_002
-测试用例标题      : 查询请求发送失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2013-06-13
-  作   者  : s00217060
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryNCellMonitorPara, Test_AT_QryNCellMonitorPara_002)
 {
     // 变量声明
@@ -14569,14 +11303,7 @@ TEST_F(Test_AT_QryNCellMonitorPara, Test_AT_QryNCellMonitorPara_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_QryRefclkfreqPara
-功能描述 : AT_QryRefclkfreqPara UT工程类
-修改历史 :
-1.日   期  : 2013-07-24
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryRefclkfreqPara: public ::testing::Test
 {
 public:
@@ -14592,15 +11319,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryRefclkfreqPara_001
-测试用例标题      : 命令从非AP对接通道下发
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2013-07-24
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryRefclkfreqPara, Test_AT_QryRefclkfreqPara_001)
 {
 
@@ -14625,15 +11344,7 @@ TEST_F(Test_AT_QryRefclkfreqPara, Test_AT_QryRefclkfreqPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryRefclkfreqPara_002
-测试用例标题      : 命令从AP对接通道下发
-预期结果          : 返回AT_WAIT_ASYNC_RETURN, AT发送消息给MTA, AT等待异步返回
-修改历史          :
-1.日   期  : 2013-07-24
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryRefclkfreqPara, Test_AT_QryRefclkfreqPara_002)
 {
     // 变量声明
@@ -14667,15 +11378,7 @@ TEST_F(Test_AT_QryRefclkfreqPara, Test_AT_QryRefclkfreqPara_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryRefclkfreqPara_003
-测试用例标题      : 命令从AP对接通道下发，消息发送失败
-预期结果          : 返回AT_ERROR, 错误打印
-修改历史          :
-1.日   期  : 2013-07-24
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryRefclkfreqPara, Test_AT_QryRefclkfreqPara_003)
 {
     // 变量声明
@@ -14709,14 +11412,7 @@ TEST_F(Test_AT_QryRefclkfreqPara, Test_AT_QryRefclkfreqPara_003)
 }
 
 
-/*****************************************************************************
-类名     : Test_At_QryHandleDect
-功能描述 : Test_At_QryHandleDect UT工程类
-修改历史 :
-1.日   期  : 2013-08-08
-  作   者  : m00217266
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryHandleDect: public ::testing::Test
 {
 public:
@@ -14732,15 +11428,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QryHandleDect_001
-测试用例标题      : 系统平台为SYSTEM_APP_WEBUI
-预期结果          : 直接返回AT_CMD_NOT_SUPPORT
-修改历史          :
-1.日   期  : 2013-08-08
-  作   者  : m00217266
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryHandleDect, Test_At_QryHandleDect_001)
 {
     VOS_UINT8                           ucIndex;
@@ -14755,16 +11443,7 @@ TEST_F(Test_At_QryHandleDect, Test_At_QryHandleDect_001)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryHandleDect_002
-测试用例标题      : 操作类型为AT_CMD_OPT_TEST_CMD
-预期结果          : 直接返回AT_ERROR
-修改历史          :
-1.日   期  : 2013-08-08
-  作   者  : m00217266
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_At_QryHandleDect, Test_At_QryHandleDect_002)
 {
     VOS_UINT8                           ucIndex;
@@ -14782,16 +11461,7 @@ TEST_F(Test_At_QryHandleDect, Test_At_QryHandleDect_002)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryHandleDect_003
-测试用例标题      : 发送成功
-预期结果          : 直接返回AT_WAIT_ASYNC_RETURN
-修改历史          :
-1.日   期  : 2013-08-08
-  作   者  : m00217266
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_At_QryHandleDect, Test_At_QryHandleDect_003)
 {
     VOS_UINT8                           ucIndex;
@@ -14811,14 +11481,7 @@ TEST_F(Test_At_QryHandleDect, Test_At_QryHandleDect_003)
 }
 
 
-/*****************************************************************************
-类名     : Test_AT_QryUserCfgOPlmnPara
-功能描述 : AT_QryUserCfgOPlmnPara UT工程类
-修改历史 :
-1.日   期  : 2013-10-15
-  作   者  : s00190137
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryUserCfgOPlmnPara: public ::testing::Test
 {
 public:
@@ -14834,15 +11497,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryUserCfgOPlmnPara_001
-测试用例标题      : 发送成功
-预期结果          : 直接返回AT_WAIT_ASYNC_RETURN
-修改历史          :
-1.日   期  : 2013-10-15
-  作   者  : s00190137
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryUserCfgOPlmnPara, Test_AT_QryUserCfgOPlmnPara_001)
 {
     VOS_UINT8                           ucIndex;
@@ -14860,16 +11515,7 @@ TEST_F(Test_AT_QryUserCfgOPlmnPara, Test_AT_QryUserCfgOPlmnPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryUserCfgOPlmnPara_002
-测试用例标题      : 发送失败
-预期结果          : 直接返回AT_ERROR
-修改历史          :
-1.日   期  : 2013-10-15
-  作   者  : s00190137
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_AT_QryUserCfgOPlmnPara, Test_AT_QryUserCfgOPlmnPara_002)
 {
     VOS_UINT8                           ucIndex;
@@ -14888,14 +11534,7 @@ TEST_F(Test_AT_QryUserCfgOPlmnPara, Test_AT_QryUserCfgOPlmnPara_002)
 
 }
 
-/*****************************************************************************
-类名            : Test_AT_QryIprPara
-功能描述        : AT_QryIprPara UT工程类
-修改历史        :
-1.日    期   : 2013年10月14日
-  作    者   : z00189113
-  修改内容   : 新增测试用例
-*****************************************************************************/
+
 class Test_AT_QryIprPara: public ::testing::Test
 {
 public:
@@ -14945,15 +11584,7 @@ public:
 
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryIprPara_001
-测试用例标题      : 端口类型错误
-预期结果          : 返回AT_OK
-修改历史          :
-1.日    期   : 2013年10月14日
-  作    者   : z00189113
-  修改内容   : 新增测试用例
-*******************************************************************/
+
 TEST_F(Test_AT_QryIprPara, Test_AT_QryIprPara_001)
 {
     // 变量声明
@@ -14977,15 +11608,7 @@ TEST_F(Test_AT_QryIprPara, Test_AT_QryIprPara_001)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryIprPara_002
-测试用例标题      : 查询波特率成功
-预期结果          : 返回AT_OK
-修改历史          :
-1.日    期   : 2013年10月14日
-  作    者   : z00189113
-  修改内容   : 新增测试用例
-*******************************************************************/
+
 TEST_F(Test_AT_QryIprPara, Test_AT_QryIprPara_002)
 {
     // 变量声明
@@ -15008,14 +11631,7 @@ TEST_F(Test_AT_QryIprPara, Test_AT_QryIprPara_002)
 
 }
 
-/*****************************************************************************
-类名            : Test_AT_QryIcfPara
-功能描述        : AT_QryIcfPara UT工程类
-修改历史        :
-1.日    期   : 2013年10月14日
-  作    者   : z00189113
-  修改内容   : 新增测试用例
-*****************************************************************************/
+
 class Test_AT_QryIcfPara: public ::testing::Test
 {
 public:
@@ -15065,15 +11681,7 @@ public:
 
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryIcfPara_001
-测试用例标题      : 端口类型错误
-预期结果          : 返回AT_OK
-修改历史          :
-1.日    期   : 2013年10月14日
-  作    者   : z00189113
-  修改内容   : 新增测试用例
-*******************************************************************/
+
 TEST_F(Test_AT_QryIcfPara, Test_AT_QryIcfPara_001)
 {
     // 变量声明
@@ -15097,15 +11705,7 @@ TEST_F(Test_AT_QryIcfPara, Test_AT_QryIcfPara_001)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryIcfPara_002
-测试用例标题      : 查询帧格式成功
-预期结果          : 返回AT_OK
-修改历史          :
-1.日    期   : 2013年10月14日
-  作    者   : z00189113
-  修改内容   : 新增测试用例
-*******************************************************************/
+
 TEST_F(Test_AT_QryIcfPara, Test_AT_QryIcfPara_002)
 {
     // 变量声明
@@ -15129,14 +11729,7 @@ TEST_F(Test_AT_QryIcfPara, Test_AT_QryIcfPara_002)
 
 }
 
-/*****************************************************************************
-类名            : Test_AT_QryIfcPara
-功能描述        : AT_QryIfcPara UT工程类
-修改历史        :
-1.日    期   : 2013年10月14日
-  作    者   : z00189113
-  修改内容   : 新增测试用例
-*****************************************************************************/
+
 class Test_AT_QryIfcPara: public ::testing::Test
 {
 public:
@@ -15186,15 +11779,7 @@ public:
 
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryIfcPara_001
-测试用例标题      : 端口类型错误
-预期结果          : 返回AT_OK
-修改历史          :
-1.日    期   : 2013年10月14日
-  作    者   : z00189113
-  修改内容   : 新增测试用例
-*******************************************************************/
+
 TEST_F(Test_AT_QryIfcPara, Test_AT_QryIfcPara_001)
 {
     // 变量声明
@@ -15218,15 +11803,7 @@ TEST_F(Test_AT_QryIfcPara, Test_AT_QryIfcPara_001)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryIfcPara_002
-测试用例标题      : 查询流控方式成功
-预期结果          : 返回AT_OK
-修改历史          :
-1.日    期   : 2013年10月14日
-  作    者   : z00189113
-  修改内容   : 新增测试用例
-*******************************************************************/
+
 TEST_F(Test_AT_QryIfcPara, Test_AT_QryIfcPara_002)
 {
     // 变量声明
@@ -15253,14 +11830,7 @@ TEST_F(Test_AT_QryIfcPara, Test_AT_QryIfcPara_002)
 
 
 #if (FEATURE_ON == FEATURE_IMS)
-/******************************************************************************
-类名     : Test_AT_QryCiregPara
-功能描述 : AT_QryCiregPara UT工程类
-修改历史 :
- 1.日   期  : 2013-10-02
-   作   者  : Y00213812
-   修改内容 : 新增类
-******************************************************************************/
+
 class Test_AT_QryCiregPara: public ::testing::Test
 {
 public:
@@ -15274,15 +11844,7 @@ public:
         AT_InitCtx();
     }
 };
-/******************************************************************************
-测试用例编号: Test_AT_QryCiregPara_001
-测试用例标题: +CIREG发送消息失败
-预期结果    : 返回AT_ERROR
-修改历史    :
- 1.日   期  : 2013-10-02
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_QryCiregPara, Test_AT_QryCiregPara_001)
 {
     // 变量声明
@@ -15306,15 +11868,7 @@ TEST_F(Test_AT_QryCiregPara, Test_AT_QryCiregPara_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_QryCiregPara_002
-测试用例标题: +CIREP发送消息成功
-预期结果    : 返回AT_WAIT_ASYNC_RETURN
-修改历史    :
- 1.日   期  : 2013-10-02
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_QryCiregPara, Test_AT_QryCiregPara_002)
 {
     // 变量声明
@@ -15344,14 +11898,7 @@ TEST_F(Test_AT_QryCiregPara, Test_AT_QryCiregPara_002)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_AT_QryCirepPara
-功能描述 : AT_QryCirepPara UT工程类
-修改历史 :
- 1.日   期  : 2013-10-02
-   作   者  : Y00213812
-   修改内容 : 新增类
-******************************************************************************/
+
 class Test_AT_QryCirepPara: public ::testing::Test
 {
 public:
@@ -15365,15 +11912,7 @@ public:
         AT_InitCtx();
     }
 };
-/******************************************************************************
-测试用例编号: Test_AT_QryCirepPara_001
-测试用例标题: +CIREG发送消息失败
-预期结果    : 返回AT_ERROR
-修改历史    :
- 1.日   期  : 2013-10-02
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_QryCirepPara, Test_AT_QryCirepPara_001)
 {
     // 变量声明
@@ -15397,15 +11936,7 @@ TEST_F(Test_AT_QryCirepPara, Test_AT_QryCirepPara_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_QryCirepPara_002
-测试用例标题: +CIREP发送消息成功
-预期结果    : 返回AT_WAIT_ASYNC_RETURN
-修改历史    :
- 1.日   期  : 2013-10-02
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_QryCirepPara, Test_AT_QryCirepPara_002)
 {
     // 变量声明
@@ -15435,14 +11966,7 @@ TEST_F(Test_AT_QryCirepPara, Test_AT_QryCirepPara_002)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_AT_QryClccPara
-功能描述 : AT_QryClccPara UT工程类
-修改历史 :
- 1.日   期  : 2013-10-02
-   作   者  : Y00213812
-   修改内容 : 新增类
-******************************************************************************/
+
 class Test_AT_QryClccPara: public ::testing::Test
 {
 public:
@@ -15456,15 +11980,7 @@ public:
         AT_InitCtx();
     }
 };
-/******************************************************************************
-测试用例编号: Test_AT_QryClccPara_001
-测试用例标题: ^CLCC发送消息失败
-预期结果    : 返回AT_ERROR
-修改历史    :
- 1.日   期  : 2013-10-02
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_QryClccPara, Test_AT_QryClccPara_001)
 {
     // 变量声明
@@ -15488,15 +12004,7 @@ TEST_F(Test_AT_QryClccPara, Test_AT_QryClccPara_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_QryClccPara_002
-测试用例标题: ^CLCC发送消息成功
-预期结果    : 返回AT_WAIT_ASYNC_RETURN
-修改历史    :
- 1.日   期  : 2013-10-02
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_QryClccPara, Test_AT_QryClccPara_002)
 {
     // 变量声明
@@ -15519,14 +12027,7 @@ TEST_F(Test_AT_QryClccPara, Test_AT_QryClccPara_002)
 }
 
 #endif
-/*****************************************************************************
-类名     : Test_AT_QryAntSwitchPara
-功能描述 : AT_QryAntSwitchPara UT工程类
-修改历史 :
-1.日    期   : 2014年1月2日
-  作    者   : m00217266
-  修改内容   : 新增测试用例
-*****************************************************************************/
+
 class Test_AT_QryAntSwitchPara: public ::testing::Test
 {
 public:
@@ -15554,15 +12055,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryAntSwitchPara_001
-测试用例标题      : 命令操作类型类型错误
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日    期   : 2014年1月2日
-  作    者   : m00217266
-  修改内容   : 新增测试用例
-*******************************************************************/
+
 TEST_F(Test_AT_QryAntSwitchPara, Test_AT_QryAntSwitchPara_001)
 {
     // 变量声明
@@ -15586,15 +12079,7 @@ TEST_F(Test_AT_QryAntSwitchPara, Test_AT_QryAntSwitchPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryAntSwitchPara_002
-测试用例标题      : 消息发送失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日    期   : 2014年1月2日
-  作    者   : m00217266
-  修改内容   : 新增测试用例
-*******************************************************************/
+
 TEST_F(Test_AT_QryAntSwitchPara, Test_AT_QryAntSwitchPara_002)
 {
     // 变量声明
@@ -15621,15 +12106,7 @@ TEST_F(Test_AT_QryAntSwitchPara, Test_AT_QryAntSwitchPara_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryAntSwitchPara_003
-测试用例标题      : 消息发送成功
-预期结果          : 返回AT_WAIT_ASYNC_RETURN
-修改历史          :
-1.日    期   : 2014年1月2日
-  作    者   : m00217266
-  修改内容   : 新增测试用例
-*******************************************************************/
+
 TEST_F(Test_AT_QryAntSwitchPara, Test_AT_QryAntSwitchPara_003)
 {
     // 变量声明
@@ -15658,14 +12135,7 @@ TEST_F(Test_AT_QryAntSwitchPara, Test_AT_QryAntSwitchPara_003)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_QryModemStatusPara
-功能描述 : AT_QryModemStatusPara UT工程类
-修改历史 :
-1.日   期  : 2013-12-30
-  作   者  : d00212987
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryModemStatusPara: public ::testing::Test
 {
 public:
@@ -15680,15 +12150,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryModemStatusPara_001
-测试用例标题      : 查询命令返回成功
-预期结果          : 返回OK
-修改历史          :
-1.日   期  : 2013-12-30
-  作   者  : d00212987
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_QryModemStatusPara, Test_AT_QryModemStatusPara_001)
 {
     // 变量声明
@@ -15706,14 +12168,7 @@ TEST_F(Test_AT_QryModemStatusPara, Test_AT_QryModemStatusPara_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_QryRATCombinePara
-功能描述 : AT_QryRATCombinePara UT工程类
-修改历史 :
-1.日   期  : 2014-01-23
-作   者  : h59254
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryRATCombinePara: public ::testing::Test
 {
 public:
@@ -15762,15 +12217,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryRATCombinePara_001
-测试用例标题      : NV项读取失败
-预期结果          : 返回OK
-修改历史          :
-1.日   期  : 2014-01-23
-作   者  : h59254
-修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_QryRATCombinePara, Test_AT_QryRATCombinePara_001)
 {
     // 变量声明
@@ -15794,15 +12241,7 @@ TEST_F(Test_AT_QryRATCombinePara, Test_AT_QryRATCombinePara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryRATCombinePara_002
-测试用例标题      : NV项读取成功，但C+L未使能
-预期结果          : 返回OK
-修改历史          :
-1.日   期  : 2014-01-23
-作   者  : h59254
-修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_QryRATCombinePara, Test_AT_QryRATCombinePara_002)
 {
     // 变量声明
@@ -15827,15 +12266,7 @@ TEST_F(Test_AT_QryRATCombinePara, Test_AT_QryRATCombinePara_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryRATCombinePara_003
-测试用例标题      : NV项读取成功，C+L使能，主控值错误
-预期结果          : 返回OK
-修改历史          :
-1.日   期  : 2014-01-23
-作   者  : h59254
-修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_QryRATCombinePara, Test_AT_QryRATCombinePara_003)
 {
     // 变量声明
@@ -15861,15 +12292,7 @@ TEST_F(Test_AT_QryRATCombinePara, Test_AT_QryRATCombinePara_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryRATCombinePara_004
-测试用例标题      : NV项读取成功，C+L使能，主控值CL
-预期结果          : 返回OK
-修改历史          :
-1.日   期  : 2014-01-23
-作   者  : h59254
-修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_QryRATCombinePara, Test_AT_QryRATCombinePara_004)
 {
     // 变量声明
@@ -15900,15 +12323,7 @@ TEST_F(Test_AT_QryRATCombinePara, Test_AT_QryRATCombinePara_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryRATCombinePara_005
-测试用例标题      : NV项读取成功，C+L使能，主控值GUL
-预期结果          : 返回OK
-修改历史          :
-1.日   期  : 2014-01-23
-  作   者  : h59254
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_QryRATCombinePara, Test_AT_QryRATCombinePara_005)
 {
     // 变量声明
@@ -15939,14 +12354,7 @@ TEST_F(Test_AT_QryRATCombinePara, Test_AT_QryRATCombinePara_005)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_QryMipiClkValue
-功能描述 : AT_QryMipiClkValue UT工程类
-修改历史 :
-1.日   期  : 2014-01-23
-作   者  : h59254
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryMipiClkValue: public ::testing::Test
 {
 public:
@@ -15960,15 +12368,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryMipiClkValue_001
-测试用例标题      : 填写消息结构失败
-预期结果          : 消息没有发送
-修改历史          :
-1.日   期  : 2014-03-10
-  作   者  : j00174725
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_QryMipiClkValue, Test_AT_QryMipiClkValue_001)
 {
     // 变量声明
@@ -15989,15 +12389,7 @@ TEST_F(Test_AT_QryMipiClkValue, Test_AT_QryMipiClkValue_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryMipiClkValue_002
-测试用例标题      : 消息发送成功
-预期结果          : 消息发送成功
-修改历史          :
-1.日   期  : 2014-03-10
-  作   者  : j00174725
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_QryMipiClkValue, Test_AT_QryMipiClkValue_002)
 {
     // 变量声明

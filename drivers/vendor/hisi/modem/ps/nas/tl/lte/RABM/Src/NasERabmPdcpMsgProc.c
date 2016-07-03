@@ -44,16 +44,7 @@ VOS_VOID APP_ERABM_DATA_TRANS_FUNC( const VOS_UINT8 *pucData)
 }
 
 
-/*****************************************************************************
- Function Name   : LPDCP_ERABM_GetDefaultEpsbId
- Description     : 获取DRB对应的缺省承载号
- Input           : ucDrbId---------------------DRB ID
- Output          : pucDeftEpsbId---------------缺省承载号指针
- Return          : VOS_UINT32
- History         :
-      1.wangchen 00209181   2014-10-24  Draft Enact
 
-*****************************************************************************/
 VOS_UINT32 LPDCP_ERABM_GetDefaultEpsbId
 (
     VOS_UINT8                           ucDrbId,

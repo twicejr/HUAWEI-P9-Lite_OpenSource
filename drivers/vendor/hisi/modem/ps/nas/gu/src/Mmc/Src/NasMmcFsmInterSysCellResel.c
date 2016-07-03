@@ -1,24 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmcFsmInterSysCellResel.c
-  版 本 号   : 初稿
-  作    者   : zhoujun /40661
-  生成日期   : 2011年03月14日
-  最近修改   :
-  功能描述   : 接入层重选时动作表
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年03月14日
-    作    者   : zhoujun /40661
-    修改内容   : 创建文件
-  2.日    期   : 2011年07月13日
-    作    者   : w00176964
-    修改内容   : GUNAS V7R1 PhaseII 阶段调整
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -45,9 +25,7 @@
 #include "NasMmcFsmInterSysCellReselTbl.h"
 #include "NasMmcProcRegRslt.h"
 #include "NasMmcProcSuspend.h"
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-7, begin */
 /* 删除ExtAppMmcInterface.h*/
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-7, end */
 #include "NasMmcComFunc.h"
 #include "NasUtranCtrlInterface.h"
 
@@ -72,27 +50,7 @@ extern "C" {
 
 /*lint -save -e958 */
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvWasSuspendInd_InterSysCellResel_Init
- 功能描述  : 在SUSPEND的INIT状态,收到was异系统重选指示消息后的处理
- 输入参数  : ulEventType:消息类型
-             pstMsg:收到WAS的异系统重选指示消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月1日
-    作    者   : W00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2011年07月13日
-    作    者   : w00176964
-    修改内容   : GUNAS V7R1 PhaseII 阶段调整
-  3.日    期   : 2012年05月28日
-    作    者   : sunxibo /46746
-    修改内容   : Added for V7R1 C50 CS/PS mode 1
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvWasSuspendInd_InterSysCellResel_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -131,27 +89,7 @@ VOS_UINT32  NAS_MMC_RcvWasSuspendInd_InterSysCellResel_Init(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvGasSuspendInd_InterSysCellResel_Init
- 功能描述  : 在SUSPEND的INIT状态,收到Gas异系统重选指示消息后的处理
- 输入参数  : ulEventType:消息类型
-             pstMsg:收到GAS的异系统重选指示消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月1日
-    作    者   : W00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2011年07月13日
-    作    者   : w00176964
-    修改内容   : GUNAS V7R1 PhaseII 阶段调整
-  3.日    期   : 2012年06月01日
-    作    者   : sunxibo /46746
-    修改内容   : Added for V7R1 C50 CS/PS mode 1
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvGasSuspendInd_InterSysCellResel_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -190,40 +128,7 @@ VOS_UINT32  NAS_MMC_RcvGasSuspendInd_InterSysCellResel_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvGmmSuspendRsp_InterSysCellResel_WaitMmSuspendRsp
- 功能描述  : MMC在NAS_MMC_INTER_SYS_CELLRESEL_STA_WAIT_MM_InterSysCellResel_RSP状态
-             收到MMCGMM_Suspend_RSP消息的处理
- 输入参数  : ulEventType:消息类型
-             pstMsg:MMCMM_Suspend_RSP消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年3月14日
-    作    者   : W00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2011年07月13日
-    作    者   : w00176964
-    修改内容   : GUNAS V7R1 PhaseII 阶段调整
-  3.日    期   : 2012年11月17日
-    作    者   : s00217060
-    修改内容   : DTS2012082007133:如果有打断，并且挂起原因是重定向，给不同的接入层发送SUSPEND_REL_REQ
-
-  4.日    期   : 2014年2月26日
-    作    者   : w00167002
-    修改内容   : L-C互操作项目:UT修改
-
-  5.日    期   : 2015年04月24日
-    作    者   : j00174725
-    修改内容   : DSDS(接入层修改定时器长度) DTS2015042702414
-
-  6.日    期   : 2015年05月30日
-    作    者   : l00324781
-    修改内容   : CDMA Iteration 12: 增加 CL模式下，L2C重选或重定向功能。
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvGmmSuspendRsp_InterSysCellResel_WaitMmSuspendRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -293,34 +198,7 @@ VOS_UINT32 NAS_MMC_RcvGmmSuspendRsp_InterSysCellResel_WaitMmSuspendRsp(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmSuspendRsp_InterSysCellResel_WaitMmSuspendRsp
- 功能描述  : MMC在NAS_MMC_INTER_SYS_CELLRESEL_STA_WAIT_MM_InterSysCellResel_RSP状态
-             收到MMCMM_Suspend_RSP消息的处理
- 输入参数  : ulEventType:消息类型
-             pstMsg:MMCMM_Suspend_RSP消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年3月14日
-    作    者   : W00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2011年07月13日
-    作    者   : w00176964
-    修改内容   : GUNAS V7R1 PhaseII 阶段调整
-  3.日    期   : 2012年11月17日
-    作    者   : s00217060
-    修改内容   : DTS2012082007133:如果有打断，并且挂起原因是重定向，给不同的接入层发送SUSPEND_REL_REQ
-  4.日    期   : 2015年04月24日
-    作    者   : j00174725
-    修改内容   : DSDS(接入层修改定时器长度) DTS2015042702414
-  5.日    期   : 2015年05月30日
-    作    者   : l00324781
-    修改内容   : CDMA Iteration 12: 增加 CL模式下，L2C重选或重定向功能。
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMmSuspendRsp_InterSysCellResel_WaitMmSuspendRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -390,25 +268,7 @@ VOS_UINT32 NAS_MMC_RcvMmSuspendRsp_InterSysCellResel_WaitMmSuspendRsp(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiWaitMmSuspendRspExpired_InterSysCellResel_WaitMmSuspendRsp
- 功能描述  : MMC在NAS_MMC_INTER_SYS_CELLRESEL_STA_WAIT_MM_InterSysCellResel_RSP状态
-              收到TI_NAS_MMC_WAIT_MM_Suspend_RSP_TIMER消息的处理
- 输入参数  : ulEventType:消息类型
-             pstMsg:TI_NAS_MMC_WAIT_MM_Suspend_RSP_TIMER消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月12日
-    作    者   : W00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2011年07月13日
-    作    者   : w00176964
-    修改内容   : GUNAS V7R1 PhaseII 阶段调整
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvTiWaitMmSuspendRspExpired_InterSysCellResel_WaitMmSuspendRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -439,22 +299,7 @@ VOS_UINT32 NAS_MMC_RcvTiWaitMmSuspendRspExpired_InterSysCellResel_WaitMmSuspendR
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_InterSysCellResel_WaitMmSuspendRsp
- 功能描述  : MMC在NAS_MMC_INTER_SYS_CELLRESEL_STA_WAIT_MM_InterSysCellResel_RSP状态
-             收到MMCMMC_ABORT_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-             pstMsg:MMCMMC_ABORT_REQ消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月15日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_InterSysCellResel_WaitMmSuspendRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -470,35 +315,7 @@ VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_InterSysCellResel_WaitMmSuspendRsp(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvWasResumeInd_InterSysCellResel_WaitAsResumeInd
- 功能描述  : MMC在NAS_MMC_INTER_SYS_CELLRESEL_STA_WAIT_AS_RESUME_IND状态
-              收到WAS:RRMM_RESUME_IND消息的处理
- 输入参数  : ulEventType:消息类型
-             pstMsg:RRMM_RESUME_IND消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月12日
-    作    者   : W00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2011年07月13日
-    作    者   : w00176964
-    修改内容   : GUNAS V7R1 PhaseII 阶段调整
-  3.日    期   : 2011年12月1日
-    作    者   : w00176964
-    修改内容   : GUNAS V7R1 PhaseIV 阶段调整
-
-  4.日    期   : 2012年9月11日
-    作    者   : z40661
-    修改内容   : DTS2012090505066:异系统回退信号门限上报不正确
-  5.日    期   : 2012年10月22日
-    作    者   : t00212959
-    修改内容   : DTS2012101907218:限制服务的上报时机不正确
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvWasResumeInd_InterSysCellResel_WaitAsResumeInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -518,9 +335,7 @@ VOS_UINT32 NAS_MMC_RcvWasResumeInd_InterSysCellResel_WaitAsResumeInd(
 
     NAS_MML_SetCurrNetRatType(NAS_MML_NET_RAT_TYPE_WCDMA);
 
-    /* Added by s00246516 for L-C互操作项目, 2014-01-27, Begin */
     NAS_MMC_SetResumeOrign_InterSysCellResel(MMC_RESUME_ORIGEN_WCDMA);
-    /* Added by s00246516 for L-C互操作项目, 2014-01-27, End */
 
 
     /* 生成RESUME消息 */
@@ -543,32 +358,7 @@ VOS_UINT32 NAS_MMC_RcvWasResumeInd_InterSysCellResel_WaitAsResumeInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvGasResumeInd_InterSysCellResel_WaitAsResumeInd
- 功能描述  : MMC在NAS_MMC_INTER_SYS_CELLRESEL_STA_WAIT_AS_RESUME_IND状态
-              收到GAS:RRMM_RESUME_IND消息的处理
- 输入参数  : ulEventType:消息类型
-             pstMsg:RRMM_RESUME_IND消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月12日
-    作    者   : W00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2011年07月13日
-    作    者   : w00176964
-    修改内容   : GUNAS V7R1 PhaseII 阶段调整
-
- 3.日    期   : 2012年9月11日
-   作    者   : z40661
-   修改内容   : DTS2012090505066:异系统回退信号门限上报不正确
- 4.日    期   : 2012年10月22日
-   作    者   : t00212959
-   修改内容   : DTS2012101907218:限制服务的上报时机不正确
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvGasResumeInd_InterSysCellResel_WaitAsResumeInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -588,9 +378,7 @@ VOS_UINT32 NAS_MMC_RcvGasResumeInd_InterSysCellResel_WaitAsResumeInd(
 
     NAS_MML_SetCurrNetRatType(NAS_MML_NET_RAT_TYPE_GSM);
 
-    /* Added by s00246516 for L-C互操作项目, 2014-01-27, Begin */
     NAS_MMC_SetResumeOrign_InterSysCellResel(MMC_RESUME_ORIGEN_GSM);
-    /* Added by s00246516 for L-C互操作项目, 2014-01-27, End */
 
 
     /* 生成RESUME消息 */
@@ -613,37 +401,7 @@ VOS_UINT32 NAS_MMC_RcvGasResumeInd_InterSysCellResel_WaitAsResumeInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcWaitAsResumeIndTimerOutInSuspendWaitAsResumeInd
- 功能描述  : MMC在NAS_MMC_INTER_SYS_CELLRESEL_STA_WAIT_AS_RESUME_IND状态
-              收到TI_NAS_MMC_WAIT_AS_RESUME_IND_TIMER消息的处理
- 输入参数  : ulEventType:消息类型
-             pstMsg:TI_NAS_MMC_WAIT_AS_RESUME_IND_TIMER消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月12日
-    作    者   : W00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2011年07月13日
-    作    者   : w00176964
-    修改内容   : GUNAS V7R1 PhaseII 阶段调整
-
-  3.日    期   : 2011年12月15日
-    作    者   : w00167002
-    修改内容   : DTS2011120702166:MMC复位后无复位信息,在MML模块封装复位信息，
-                  以供MM层调用，进行软复位。
-  4.日    期   : 2014年2月18日
-    作    者  :  w00242748
-    修改内容  :  DTS2014021803515:复位时明确是收到哪个接入技术的异常消息导致的。
-
-  5.日    期   : 2015年3月11日
-    作    者   : wx270776
-    修改内容   : DTS2015011212939:增加复位场景
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvTiWaitAsResumeIndExpired_InterSysCellResel_WaitAsResumeInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -677,22 +435,7 @@ VOS_UINT32 NAS_MMC_RcvTiWaitAsResumeIndExpired_InterSysCellResel_WaitAsResumeInd
    return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_InterSysCellResel_WaitAsResumeInd
- 功能描述  : MMC在NAS_MMC_INTER_SYS_CELLRESEL_STA_WAIT_AS_RESUME_IND状态
-              收到MMCMMC_ABORT_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-             pstMsg:MMCMMC_ABORT_REQ消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月15日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_InterSysCellResel_WaitAsResumeInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -729,34 +472,7 @@ VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_InterSysCellResel_WaitAsResumeInd(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvRrMmRelInd_InterSysCellResel_WaitAsResumeInd
- 功能描述  : MMC在NAS_MMC_INTER_SYS_CELLRESEL_STA_WAIT_AS_RESUME_IND状态
-             收到RRMM_REL_IND消息的处理
- 输入参数  : ulEventType:消息类型
-             pstMsg:RRMM_REL_IND消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年11月28日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年03月23日
-    作    者   : l00130025
-    修改内容   : DTS2012031604090,收到WRR的Rel_ind时没有设置RAT，导致恢复ResumeRsp错误
-  3.日    期   : 2012年5月24日
-    作    者   : l00171473
-    修改内容   : DTS2012051104124, relind处理修改
-  4.日    期   : 2012年9月11日
-    作    者   : z40661
-    修改内容   : DTS2012090505066:异系统回退信号门限上报不正确
-  5.日    期   : 2012年11月15日
-    作    者   : s00217060
-    修改内容   : DTS2012082007133:有打断标志时，退出状态机，处理打断消息
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvRrMmRelInd_InterSysCellResel_WaitAsResumeInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -815,43 +531,7 @@ VOS_UINT32 NAS_MMC_RcvRrMmRelInd_InterSysCellResel_WaitAsResumeInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvGmmResumeRsp_InterSysCellResel_WaitMmResumeRsp
- 功能描述  : MMC在NAS_MMC_INTER_SYS_CELLRESEL_STA_WAIT_MM_RESUME_RSP状态
-              收到MMCGMM_RESUME_RSP消息的处理
- 输入参数  : ulEventType:消息类型
-             pstMsg:MMCGMM_RESUME_RSP消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月12日
-    作    者   : W00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2011年07月13日
-    作    者   : w00176964
-    修改内容   : GUNAS V7R1 PhaseII 阶段调整
-  3.日    期   : 2011年12月12日
-    作    者   : w00176964
-    修改内容   : GUNAS V7R1 PhaseIV 阶段调整:调整等待WAS系统消息时长
-  4.日    期   : 2012年6月1日
-    作    者   : l00130025
-    修改内容   : DTS2012053003593:FACH态出服务区，W重入服务区，数传不能恢复
-  5.日    期   : 2012年11月15日
-    作    者   : s00217060
-    修改内容   : DTS2012082007133:有打断标志时，退出状态机，处理打断消息
-  6.日    期   : 2012年11月21日
-    作    者   : z00161729
-    修改内容   : 支持cerssi和nmr
-  7.日    期   : 2014年1月27日
-    作    者   : s00246516
-    修改内容  : L-C互操作项目，增加重选到HRPD的处理
-  8.日    期   : 2015年05月30日
-    作    者   : l00324781
-    修改内容   : CDMA Iteration 12: 增加 CL模式下，L2C重选或重定向功能。
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvGmmResumeRsp_InterSysCellResel_WaitMmResumeRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -976,43 +656,7 @@ VOS_UINT32 NAS_MMC_RcvGmmResumeRsp_InterSysCellResel_WaitMmResumeRsp(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcMmResumeRspInSuspendWaitMmResumeRsp
- 功能描述  : MMC在NAS_MMC_INTER_SYS_CELLRESEL_STA_WAIT_MM_RESUME_RSP状态
-              收到MMCMM_RESUME_RSP消息的处理
- 输入参数  : ulEventType:消息类型
-             pstMsg:MMCMM_RESUME_RSP消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月12日
-    作    者   : W00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2011年07月13日
-    作    者   : w00176964
-    修改内容   : GUNAS V7R1 PhaseII 阶段调整
-  3.日    期   : 2011年12月12日
-    作    者   : w00176964
-    修改内容   : GUNAS V7R1 PhaseIV 阶段调整:调整等待WAS系统消息时长
-  4.日    期   : 2012年6月1日
-    作    者   : l00130025
-    修改内容   : DTS2012053003593:FACH态出服务区，W重入服务区，数传不能恢复
-  5.日    期   : 2012年11月15日
-    作    者   : s00217060
-    修改内容   : DTS2012082007133:有打断标志时，退出状态机，处理打断消息
-  6.日    期   : 2012年11月21日
-    作    者   : z00161729
-    修改内容  : 支持cerssi和nmr
-  7.日    期   : 2014年1月27日
-    作    者   : s00246516
-    修改内容  : L-C互操作项目，增加重选到HRPD的处理
-  8.日    期   : 2015年05月30日
-    作    者   : l00324781
-    修改内容   : CDMA Iteration 12: 增加 CL模式下，L2C重选或重定向功能。
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMmResumeRsp_InterSysCellResel_WaitMmResumeRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1135,37 +779,7 @@ VOS_UINT32 NAS_MMC_RcvMmResumeRsp_InterSysCellResel_WaitMmResumeRsp(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcWaitMmResumeRspTimerOutInSuspendWaitMmResumeRsp
- 功能描述  : MMC在NAS_MMC_INTER_SYS_CELLRESEL_STA_WAIT_MM_RESUME_RSP状态
-              收到TI_NAS_MMC_WAIT_MM_RESUME_RSP_TIMER消息的处理
- 输入参数  : ulEventType:消息类型
-             pstMsg:TI_NAS_MMC_WAIT_MM_RESUME_RSP_TIMER消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月12日
-    作    者   : W00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2011年07月13日
-    作    者   : w00176964
-    修改内容   : GUNAS V7R1 PhaseII 阶段调整
-  3.日    期   : 2011年12月12日
-    作    者   : w00176964
-    修改内容   : GUNAS V7R1 PhaseIV 阶段调整:调整等待WAS系统消息时长
-  4.日    期   : 2012年6月1日
-    作    者   : l00130025
-    修改内容   : DTS2012053003593:FACH态出服务区，W重入服务区，数传不能恢复
-  5.日    期   : 2012年11月15日
-    作    者   : s00217060
-    修改内容   : DTS2012082007133:有打断标志时，并且挂起原因是重选，退出状态机，处理打断消息
-  6.日    期   : 2012年11月21日
-    作    者   : z00161729
-    修改内容   : 支持cerssi和nmr
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvTiWaitMmResumeRspExpired_InterSysCellResel_WaitMmResumeRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1265,22 +879,7 @@ VOS_UINT32 NAS_MMC_RcvTiWaitMmResumeRspExpired_InterSysCellResel_WaitMmResumeRsp
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_InterSysCellResel_WaitMmResumeRsp
- 功能描述  : MMC在NAS_MMC_INTER_SYS_CELLRESEL_STA_WAIT_MM_RESUME_RSP状态
-              收到MMCMMC_ABORT_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-             pstMsg:MMCMMC_ABORT_REQ消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月15日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_InterSysCellResel_WaitMmResumeRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1292,22 +891,7 @@ VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_InterSysCellResel_WaitMmResumeRsp(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvWasSuspendRelCnf_InterSysCellResel_WaitWasSuspendRelCnf
- 功能描述  : MMC在NAS_MMC_INTER_SYS_CELLRESEL_STA_WAIT_WAS_SUSPEND_REL_CNF状态
-              收到WAS的SUSPEND_REL_CNF消息的处理
- 输入参数  : ulEventType:消息类型
-             pstMsg:RRMM_SUSPEND_REL_CNF消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月15日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvWasSuspendRelCnf_InterSysCellResel_WaitWasSuspendRelCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1344,22 +928,7 @@ VOS_UINT32 NAS_MMC_RcvWasSuspendRelCnf_InterSysCellResel_WaitWasSuspendRelCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvWasResumeInd_InterSysCellResel_WaitWasSuspendRelCnf
- 功能描述  : MMC在NAS_MMC_INTER_SYS_CELLRESEL_STA_WAIT_WAS_SUSPEND_REL_CNF状态
-              收到WAS的RESUME_IND消息的处理
- 输入参数  : ulEventType:消息类型
-             pstMsg:RRMM_RESUME_IND消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月15日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvWasResumeInd_InterSysCellResel_WaitAsSuspendRelCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1405,22 +974,7 @@ VOS_UINT32 NAS_MMC_RcvWasResumeInd_InterSysCellResel_WaitAsSuspendRelCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiWaitWasSuspendRelCnf_InterSysCellResel_WaitWasSuspendRelCnf
- 功能描述  : MMC在NAS_MMC_INTER_SYS_CELLRESEL_STA_WAIT_WAS_SUSPEND_REL_CNF状态
-              等待WAS的SUSPEND_REL_CNF消息超时的处理
- 输入参数  : ulEventType:消息类型
-             pstMsg:等待RRMM_SUSPEND_REL_CNF超时消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月15日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvTiWaitWasSuspendRelCnf_InterSysCellResel_WaitWasSuspendRelCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1455,22 +1009,7 @@ VOS_UINT32 NAS_MMC_RcvTiWaitWasSuspendRelCnf_InterSysCellResel_WaitWasSuspendRel
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvRrmmRelInd_InterSysCellResel_WaitWasSuspendRelCnf
- 功能描述  : MMC在NAS_MMC_INTER_SYS_CELLRESEL_STA_WAIT_WAS_SUSPEND_REL_CNF状态
-              收到WAS的RRMM_REL_IND消息的处理
- 输入参数  : ulEventType:消息类型
-             pstMsg:RRMM_REL_IND消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月15日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvRrmmRelInd_InterSysCellResel_WaitWasSuspendRelCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1508,22 +1047,7 @@ VOS_UINT32 NAS_MMC_RcvRrmmRelInd_InterSysCellResel_WaitWasSuspendRelCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvGasSuspendRelCnf_InterSysCellResel_WaitGasSuspendRelCnf
- 功能描述  : MMC在NAS_MMC_INTER_SYS_CELLRESEL_STA_WAIT_WAS_SUSPEND_REL_CNF状态
-              收到WAS的SUSPEND_REL_CNF消息的处理
- 输入参数  : ulEventType:消息类型
-             pstMsg:RRMM_SUSPEND_REL_CNF消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月15日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvGasSuspendRelCnf_InterSysCellResel_WaitGasSuspendRelCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1560,22 +1084,7 @@ VOS_UINT32 NAS_MMC_RcvGasSuspendRelCnf_InterSysCellResel_WaitGasSuspendRelCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvGasResumeInd_InterSysCellResel_WaitGasSuspendRelCnf
- 功能描述  : MMC在NAS_MMC_INTER_SYS_CELLRESEL_STA_WAIT_GAS_SUSPEND_REL_CNF状态
-              收到GAS的RESUME_IND消息的处理
- 输入参数  : ulEventType:消息类型
-             pstMsg:RRMM_RESUME_IND消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月15日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvGasResumeInd_InterSysCellResel_WaitAsSuspendRelCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1623,22 +1132,7 @@ VOS_UINT32 NAS_MMC_RcvGasResumeInd_InterSysCellResel_WaitAsSuspendRelCnf(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiWaitGasSuspendRelCnf_InterSysCellResel_WaitGasSuspendRelCnf
- 功能描述  : MMC在NAS_MMC_INTER_SYS_CELLRESEL_STA_WAIT_WAS_SUSPEND_REL_CNF状态
-              等待GAS的SUSPEND_REL_CNF消息超时的处理
- 输入参数  : ulEventType:消息类型
-             pstMsg:等待RRMM_SUSPEND_REL_CNF超时消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月15日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvTiWaitGasSuspendRelCnf_InterSysCellResel_WaitGasSuspendRelCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1676,62 +1170,7 @@ VOS_UINT32 NAS_MMC_RcvTiWaitGasSuspendRelCnf_InterSysCellResel_WaitGasSuspendRel
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvSysInfoInd_InterSysCellResel_WaitWasSysInfoInd
- 功能描述  : MMC在NAS_MMC_INTER_SYS_CELLRESEL_STA_WAIT_WAS_SYSINFO_IND状态
-              收到rrmm_sysinfo_ind消息的处理
- 输入参数  : ulEventType:消息类型
-             pstmsg:RRMM_SYS_INFO_IND消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月28日
-   作    者   : W00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2012年6月16日
-   作    者   : l00171473
-   修改内容   : DTS2012061409086, 收到W或G的系统消息时通知L模
- 3.日    期   : 2012年8月14日
-   作    者   : t00212959
-   修改内容   : DCM定制需求和遗留问题,禁止LTE漫游
- 4.日    期   : 2012年10月22日
-   作    者   : t00212959
-   修改内容   : DTS2012101907218:限制服务的上报时机不正确
- 4.日    期   : 2012年12月11日
-   作    者   : w00176964
-   修改内容   : 收到系统消息接入禁止信息变化则通知MMA
- 5.日    期   : 2013年4月10日
-   作    者   : w00176964
-   修改内容   : DTS2013032507710:增加NV控制,重选到GU下H3G时收到GU的系统消息场景,是否设置CS/PS的服务状态
- 6.日    期   : 2013年9月14日
-    作    者   : w00167002
-    修改内容   : DTS2013090908249:开机用户指定搜网24003，CS注册被拒15，MM在LIMIT
-                 状态，在选网状态机收到同一小区的SYSINFO后，通知MM当前没有FORB FLG,
-                 导致MM发起循环注册；
-                 在NAS_MMC_SndMmGsmSysInfoInd函数中，如果是用户指定搜网，则将FORBFLG设置为null，
-                 将此耦合去除；
-                 在选网状态机识别出是否是用户指定搜网，并配置正确的ulForbiddenFlg标志；
-
- 7.日    期   : 2014年1月18日
-   作    者   : z00234330
-   修改内容   : dts2014011801513,接入层上报的系统消息里面有可能没有携带plmnid,
-               此处判断并没有判断plmnid是否有效
- 8.日    期   : 2014年4月28日
-   作    者   : w00242748
-   修改内容   : DTS2014042808114:针对H3G漫游场景，L下同样需要增加NV控制。
- 9.日    期   : 2014年5月4日
-   作    者   : t00173447
-   修改内容   : DTS2014042105390,软银定制需求
- 10.日    期   : 2014年5月31日
-    作    者   : y00245242
-    修改内容   : 修改服务状态上报
- 11.日    期   : 2014年12月19日
-    作    者   : s00217060
-    修改内容   : Service_State_Optimize_PhaseI 服务状态上报调整到系统消息上报后面
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvSysInfoInd_InterSysCellResel_WaitWasSysInfoInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1741,25 +1180,21 @@ VOS_UINT32 NAS_MMC_RcvSysInfoInd_InterSysCellResel_WaitWasSysInfoInd(
     NAS_MML_CAMP_PLMN_INFO_STRU                             stOldCampInfo;
     NAS_MMC_FSM_ID_ENUM_UINT32                              enParentFsmId;
     VOS_UINT32                                              ulParentEventType;
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, begin */
     NAS_MML_ACCESS_RESTRICTION_STRU                         *pstCurCsRestrictInfo = VOS_NULL_PTR;
     NAS_MML_ACCESS_RESTRICTION_STRU                          stOldCsRestrictInfo;
     NAS_MML_ACCESS_RESTRICTION_STRU                         *pstCurPsRestrictInfo = VOS_NULL_PTR;
     NAS_MML_ACCESS_RESTRICTION_STRU                          stOldPsRestrictInfo;
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, end */
 
     VOS_UINT8                                               ucH3gCtrlFlg;
 
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8                         enOldNtType;
 
-    /* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-15, begin */
 #if (FEATURE_ON == FEATURE_LTE)
     NAS_MML_LTE_CAPABILITY_STATUS_ENUM_UINT32               enLCapabilityStatus;
 
     /* 获取LTE能力状态 */
     enLCapabilityStatus  = NAS_MML_GetLteCapabilityStatus();
 #endif
-    /* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-15, end */
 
     PS_MEM_SET(&stOldCampInfo, 0, sizeof(NAS_MML_CAMP_PLMN_INFO_STRU));
     PS_MEM_SET(&stOldCsRestrictInfo, 0, sizeof(NAS_MML_ACCESS_RESTRICTION_STRU));
@@ -1771,45 +1206,35 @@ VOS_UINT32 NAS_MMC_RcvSysInfoInd_InterSysCellResel_WaitWasSysInfoInd(
     /* 更新驻留状态 */
     NAS_MMC_SetAsCellCampOn(NAS_MMC_AS_CELL_CAMP_ON);
 
-    /* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-15, begin */
 #if (FEATURE_ON == FEATURE_LTE)
     NAS_MMC_RcvGuSysInfoIndSetLteAbility(pstMsg,enLCapabilityStatus);
 #endif
-    /* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-15, end */
 
     /* 保留老的驻留网络信息 */
     pstCurCampInfo  = NAS_MML_GetCurrCampPlmnInfo();
     PS_MEM_CPY(&stOldCampInfo, pstCurCampInfo, sizeof(NAS_MML_CAMP_PLMN_INFO_STRU));
 
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, begin */
     pstCurCsRestrictInfo    = NAS_MML_GetCsAcRestrictionInfo();
     pstCurPsRestrictInfo    = NAS_MML_GetPsAcRestrictionInfo();
 
     PS_MEM_CPY(&stOldCsRestrictInfo, pstCurCsRestrictInfo, sizeof(NAS_MML_ACCESS_RESTRICTION_STRU));
     PS_MEM_CPY(&stOldPsRestrictInfo, pstCurPsRestrictInfo, sizeof(NAS_MML_ACCESS_RESTRICTION_STRU));
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, end */
 
     /* 根据系统消息，更新MML的全部变量 */
     NAS_MMC_UpdateNetworkInfo_WasSysInfo(pstMsg);
 
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, begin */
     /* 驻留小区的接入受限信息变化时,通知MMA模块当前接入受限信息 */
     if (VOS_TRUE == NAS_MML_IsAcInfoChanged(&stOldCsRestrictInfo, pstCurCsRestrictInfo))
     {
-        /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
         NAS_MMC_SndMsccAcInfoChangeInd(NAS_MSCC_PIF_SRVDOMAIN_CS, pstCurCsRestrictInfo);
-        /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
     }
 
     if (VOS_TRUE == NAS_MML_IsAcInfoChanged(&stOldPsRestrictInfo, pstCurPsRestrictInfo))
     {
-        /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
         NAS_MMC_SndMsccAcInfoChangeInd(NAS_MSCC_PIF_SRVDOMAIN_PS, pstCurPsRestrictInfo);
-        /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
     }
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, end */
 
     /* 获取旧的网络类型 */
     enOldNtType     = NAS_MMC_GetSuspendOrigenRatType(NAS_MMC_GetCurrEntryMsg());
@@ -1823,9 +1248,7 @@ VOS_UINT32 NAS_MMC_RcvSysInfoInd_InterSysCellResel_WaitWasSysInfoInd(
     if (VOS_TRUE == NAS_MML_IsCampPlmnInfoChanged(&stOldCampInfo, pstCurCampInfo))
     {
         /* 主动上报 */
-        /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
         NAS_MMC_SndMsccSysInfo();
-        /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
     }
 
@@ -1834,9 +1257,7 @@ VOS_UINT32 NAS_MMC_RcvSysInfoInd_InterSysCellResel_WaitWasSysInfoInd(
     NAS_MMC_SndCbaMsgNetModInd(NAS_MML_NET_RAT_TYPE_WCDMA);
 #endif
 
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-18, begin */
     NAS_MMC_SndMsccCampOnInd(VOS_TRUE);
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-18, end */
 
     /* 服务状态和注册状态上报放在系统消息上报后面 */
     if ((VOS_TRUE != NAS_MML_ComparePlmnIdWithHplmn(&(stOldCampInfo.stLai.stPlmnId)))
@@ -1844,9 +1265,7 @@ VOS_UINT32 NAS_MMC_RcvSysInfoInd_InterSysCellResel_WaitWasSysInfoInd(
      && (VOS_TRUE == ucH3gCtrlFlg))
     {
         /* 小区重选后，在成功注册前，先上报limit service */
-        /* Modified by y00245242 for V3R3C60_eCall项目, 2014-5-31, begin */
         NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_CS_PS, NAS_MMC_LIMITED_SERVICE);
-        /* Modified by y00245242 for V3R3C60_eCall项目, 2014-5-31, end */
     }
 
 
@@ -1893,34 +1312,7 @@ VOS_UINT32 NAS_MMC_RcvSysInfoInd_InterSysCellResel_WaitWasSysInfoInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvAreaLostInd_InterSysCellResel_WaitWasSysInfoInd
- 功能描述  : MMC在NAS_MMC_INTER_SYS_CELLRESEL_STA_WAIT_WAS_SYSINFO_IND状态
-              收到RRMM_AREA_LOST_IND消息的处理
- 输入参数  : ulEventType:消息类型
-             pstmsg:RRMM_AREA_LOST_IND消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月28日
-   作    者   : W00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2012年04月07日
-   作    者   : l00130025
-   修改内容   : 问题单号:DTS2012040106098,调整CoverageLost和service的上报顺序，以更新MMA的状态到DeepSleep
- 3.日    期   : 2014年5月4日
-   作    者   : t00173447
-   修改内容   : DTS2014042105390,软银定制需求
- 4.日    期   : 2014年04月4日
-   作    者   : s00261364
-   修改内容   : V3R360_eCall项目:服务状态上报到mmc
- 5.日    期   : 2015年10月22日
-   作    者   : s00217060
-   修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_3.0:RRMM_AREA_LOST_IND消息接口变更
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvAreaLostInd_InterSysCellResel_WaitWasSysInfoInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1934,11 +1326,9 @@ VOS_UINT32 NAS_MMC_RcvAreaLostInd_InterSysCellResel_WaitWasSysInfoInd(
     /* 停止保护定时器  TI_NAS_MMC_WAIT_WAS_SYS_INFO*/
     NAS_MMC_StopTimer(TI_NAS_MMC_WAIT_WAS_SYS_INFO);
 
-    /* Modified by c00318887 for 预置频点搜网优化, 2015-9-9, begin */
     NAS_MMC_SaveLastCampedPlmnWithRat(NAS_MML_GetCurrCampPlmnInfo()->stLai.stPlmnId.ulMcc,
                            NAS_MML_GetCurrCampPlmnInfo()->stLai.stPlmnId.ulMnc,
                            NAS_MML_GetCurrCampPlmnInfo()->stLai.enCampPlmnNetRat);
-    /* Modified by c00318887 for 预置频点搜网优化, 2015-9-9, end */
 
     /* 清除驻留状态 */
     NAS_MMC_SetAsCellCampOn(NAS_MMC_AS_CELL_NOT_CAMP_ON);
@@ -1947,9 +1337,7 @@ VOS_UINT32 NAS_MMC_RcvAreaLostInd_InterSysCellResel_WaitWasSysInfoInd(
     /* 当前信号更新 */
     NAS_MML_InitRssiValue(NAS_MML_GetCampCellInfo());
 
-    /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-5-4, begin */
 
-    /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-5-4, end */
 
 
     /* 向MM/GMM/TAF报出服务区流程 */
@@ -1958,13 +1346,9 @@ VOS_UINT32 NAS_MMC_RcvAreaLostInd_InterSysCellResel_WaitWasSysInfoInd(
     NAS_MMC_SndGmmCoverageLostInd();
 
     /* 更新服务状态 */
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
 	NAS_MMC_SndMsccCoverageInd( NAS_MSCC_PIF_COVERAGE_AREA_CHANGE_MODE_LOST );
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
-    /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-5-4, begin */
 
-    /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-5-4, end */
 
 
     NAS_EventReport(WUEPS_PID_MMC, NAS_OM_EVENT_COVERAGE_LOST,
@@ -1981,28 +1365,7 @@ VOS_UINT32 NAS_MMC_RcvAreaLostInd_InterSysCellResel_WaitWasSysInfoInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiWaitSysInfoExpired_InterSysCellResel_WaitWasSysInfoInd
- 功能描述  : MMC在NAS_MMC_INTER_SYS_CELLRESEL_STA_WAIT_WAS_SYSINFO_IND状态
-              收到TI_NAS_MMC_WAIT_WAS_SYS_INFO消息的处理
- 输入参数  : ulEventType:消息类型
-             pstmsg:TI_NAS_MMC_WAIT_WAS_SYS_INFO消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月28日
-   作    者   : W00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2012年04月07日
-   作    者   : l00130025
-   修改内容   : 问题单号:DTS2012040106098,调整CoverageLost和service的上报顺序，以更新MMA的状态到DeepSleep
- 3.日    期   : 2014年04月4日
-   作    者   : s00261364
-   修改内容   : V3R360_eCall项目:服务状态上报到mmc
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvTiWaitSysInfoExpired_InterSysCellResel_WaitWasSysInfoInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2013,9 +1376,7 @@ VOS_UINT32 NAS_MMC_RcvTiWaitSysInfoExpired_InterSysCellResel_WaitWasSysInfoInd(
 
     NAS_MML_InitCampRai(NAS_MML_GetCurrCampPlmnInfo());
 
-    /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-5-4, begin */
 
-    /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-5-4, end */
 
 
     /* 向MM/GMM/TAF报出服务区流程 */
@@ -2024,13 +1385,9 @@ VOS_UINT32 NAS_MMC_RcvTiWaitSysInfoExpired_InterSysCellResel_WaitWasSysInfoInd(
     NAS_MMC_SndGmmCoverageLostInd();
 
     /* 更新服务状态 */
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
     NAS_MMC_SndMsccCoverageInd( NAS_MSCC_PIF_COVERAGE_AREA_CHANGE_MODE_LOST );
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
-    /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-5-4, begin */
 
-    /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-5-4, end */
 
 
     if (NAS_UTRANCTRL_UTRAN_MODE_FDD == NAS_UTRANCTRL_GetCurrUtranMode())
@@ -2057,22 +1414,7 @@ VOS_UINT32 NAS_MMC_RcvTiWaitSysInfoExpired_InterSysCellResel_WaitWasSysInfoInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_InterSysCellResel_WaitWasSysInfoInd
- 功能描述  : MMC在NAS_MMC_INTER_SYS_CELLRESEL_STA_WAIT_WAS_SYSINFO_IND状态
-              收到MMCMMC_ABORT_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-             pstMsg:MMCMMC_ABORT_REQ消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月15日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_InterSysCellResel_WaitWasSysInfoInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2089,50 +1431,7 @@ VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_InterSysCellResel_WaitWasSysInfoInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvSysInfoInd_InterSysCellResel_WaitGasSysInfoInd
- 功能描述  : MMC在NAS_MMC_INTER_SYS_CELLRESEL_STA_WAIT_GAS_SYSINFO_IND状态
-              收到GRRMM_SYS_INFO_IND消息的处理
- 输入参数  : ulEventType:消息类型
-             pstmsg:GRRMM_SYS_INFO_IND消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月28日
-   作    者   : W00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2012年6月16日
-   作    者   : l00171473
-   修改内容   : DTS2012061409086, 收到W或G的系统消息时通知L模
- 3.日    期   : 2012年8月14日
-   作    者   : t00212959
-   修改内容   : DCM定制需求和遗留问题,禁止LTE漫游
- 4.日    期   : 2012年10月22日
-   作    者   : t00212959
-   修改内容   : DTS2012101907218,限制服务的上报时机
- 5.日    期   : 2012年12月11日
-   作    者   : w00176964
-   修改内容   : 收到系统消息接入禁止信息变化则通知MMA
- 6.日    期   : 2013年4月10日
-   作    者   : w00176964
-   修改内容   : DTS2013032507710:增加NV控制,重选到GU下H3G时收到GU的系统消息场景,是否设置CS/PS的服务状态
- 7.日    期   : 2013年11月01日
-   作    者   : l00208543
-   修改内容   : 根据卡类型禁止网络制式
-
- 8.日    期   : 2014年5月4日
-   作    者   : t00173447
-   修改内容   : DTS2014042105390,软银定制需求
- 9.日    期   : 2014年5月31日
-   作    者   : y00245242
-   修改内容   : 修改服务状态上报
-10.日    期   : 2014年12月19日
-   作    者   : s00217060
-   修改内容   : Service_State_Optimize_PhaseI 服务状态上报调整到系统消息上报后面
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvSysInfoInd_InterSysCellResel_WaitGasSysInfoInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2142,17 +1441,14 @@ VOS_UINT32 NAS_MMC_RcvSysInfoInd_InterSysCellResel_WaitGasSysInfoInd(
     NAS_MML_CAMP_PLMN_INFO_STRU                             stOldCampInfo;
     NAS_MMC_FSM_ID_ENUM_UINT32                              enParentFsmId;
     VOS_UINT32                                              ulParentEventType;
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, begin */
     NAS_MML_ACCESS_RESTRICTION_STRU                         *pstCurCsRestrictInfo = VOS_NULL_PTR;
     NAS_MML_ACCESS_RESTRICTION_STRU                          stOldCsRestrictInfo;
     NAS_MML_ACCESS_RESTRICTION_STRU                         *pstCurPsRestrictInfo = VOS_NULL_PTR;
     NAS_MML_ACCESS_RESTRICTION_STRU                          stOldPsRestrictInfo;
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, end */
 
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8                         enOldNtType;
     VOS_UINT8                                               ucH3gCtrlFlg;
 
-    /* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-15, begin */
 #if (FEATURE_ON == FEATURE_LTE)
     NAS_MML_LTE_CAPABILITY_STATUS_ENUM_UINT32               enLCapabilityStatus;
 
@@ -2160,7 +1456,6 @@ VOS_UINT32 NAS_MMC_RcvSysInfoInd_InterSysCellResel_WaitGasSysInfoInd(
     /* 获取LTE能力状态 */
     enLCapabilityStatus  = NAS_MML_GetLteCapabilityStatus();
 #endif
-    /* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-15, end */
 
     PS_MEM_SET(&stOldCampInfo, 0, sizeof(NAS_MML_CAMP_PLMN_INFO_STRU));
     PS_MEM_SET(&stOldCsRestrictInfo, 0, sizeof(NAS_MML_ACCESS_RESTRICTION_STRU));
@@ -2172,11 +1467,9 @@ VOS_UINT32 NAS_MMC_RcvSysInfoInd_InterSysCellResel_WaitGasSysInfoInd(
     /* 更新驻留状态 */
     NAS_MMC_SetAsCellCampOn(NAS_MMC_AS_CELL_CAMP_ON);
 
-    /* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-15, begin */
 #if (FEATURE_ON == FEATURE_LTE)
     NAS_MMC_RcvGuSysInfoIndSetLteAbility(pstMsg, enLCapabilityStatus);
 #endif
-    /* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-15, end */
 
     /* 如果收到GAS的系统消息，且目前Utran被Enable，则重新Disable Utran */
     NAS_MMC_RcvGasSysInfoSetUtranCapabilityStatus();
@@ -2185,13 +1478,11 @@ VOS_UINT32 NAS_MMC_RcvSysInfoInd_InterSysCellResel_WaitGasSysInfoInd(
     pstCurCampInfo  = NAS_MML_GetCurrCampPlmnInfo();
     PS_MEM_CPY(&stOldCampInfo, pstCurCampInfo, sizeof(NAS_MML_CAMP_PLMN_INFO_STRU));
 
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, begin */
     pstCurCsRestrictInfo    = NAS_MML_GetCsAcRestrictionInfo();
     pstCurPsRestrictInfo    = NAS_MML_GetPsAcRestrictionInfo();
 
     PS_MEM_CPY(&stOldCsRestrictInfo, pstCurCsRestrictInfo, sizeof(NAS_MML_ACCESS_RESTRICTION_STRU));
     PS_MEM_CPY(&stOldPsRestrictInfo, pstCurPsRestrictInfo, sizeof(NAS_MML_ACCESS_RESTRICTION_STRU));
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, end */
 
     /* 根据系统消息，更新MML的全部变量 */
     NAS_MMC_UpdateNetworkInfo_GasSysInfo(pstMsg);
@@ -2209,37 +1500,27 @@ VOS_UINT32 NAS_MMC_RcvSysInfoInd_InterSysCellResel_WaitGasSysInfoInd(
     if (VOS_TRUE == NAS_MML_IsCampPlmnInfoChanged(&stOldCampInfo, pstCurCampInfo))
     {
         /* 主动上报 */
-        /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
         NAS_MMC_SndMsccSysInfo();
-        /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
     }
 
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, begin */
     /* 驻留小区的接入受限信息变化时,通知MMA模块当前接入受限信息 */
     if (VOS_TRUE == NAS_MML_IsAcInfoChanged(&stOldCsRestrictInfo, pstCurCsRestrictInfo))
     {
-        /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
         NAS_MMC_SndMsccAcInfoChangeInd(NAS_MSCC_PIF_SRVDOMAIN_CS, pstCurCsRestrictInfo);
-        /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
     }
 
     if (VOS_TRUE == NAS_MML_IsAcInfoChanged(&stOldPsRestrictInfo, pstCurPsRestrictInfo))
     {
-        /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
         NAS_MMC_SndMsccAcInfoChangeInd(NAS_MSCC_PIF_SRVDOMAIN_PS, pstCurPsRestrictInfo);
-        /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
     }
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, end */
 
 #if ((FEATURE_ON == FEATURE_GCBS) || (FEATURE_ON == FEATURE_WCBS))
     /* CBS上报*/
     NAS_MMC_SndCbaMsgNetModInd(NAS_MML_NET_RAT_TYPE_GSM);
 #endif
 
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-18, begin */
     NAS_MMC_SndMsccCampOnInd(VOS_TRUE);
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-18, end */
 
     /* 服务状态和注册状态上报放在系统消息上报后面 */
     if ((VOS_TRUE != NAS_MML_ComparePlmnIdWithHplmn(&(stOldCampInfo.stLai.stPlmnId)))
@@ -2247,9 +1528,7 @@ VOS_UINT32 NAS_MMC_RcvSysInfoInd_InterSysCellResel_WaitGasSysInfoInd(
      && (VOS_TRUE == ucH3gCtrlFlg))
     {
         /* 小区重选后，在成功注册前，先上报limit service */
-        /* Modified by y00245242 for V3R3C60_eCall项目, 2014-5-31, begin */
         NAS_MMC_ChangeServiceState(NAS_MSCC_PIF_SRVDOMAIN_CS_PS, NAS_MMC_LIMITED_SERVICE);
-        /* Modified by y00245242 for V3R3C60_eCall项目, 2014-5-31, end */
     }
 
     /*转发系统消息通知 给 MM/GMM */
@@ -2295,34 +1574,7 @@ VOS_UINT32 NAS_MMC_RcvSysInfoInd_InterSysCellResel_WaitGasSysInfoInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvAreaLostInd_InterSysCellResel_WaitGasSysInfoInd
- 功能描述  : MMC在NAS_MMC_INTER_SYS_CELLRESEL_STA_WAIT_GAS_SYSINFO_IND状态
-              收到RRMM_AREA_LOST_IND消息的处理
- 输入参数  : ulEventType:消息类型
-             pstmsg:RRMM_AREA_LOST_IND消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月28日
-   作    者   : W00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2012年04月07日
-   作    者   : l00130025
-   修改内容   : 问题单号:DTS2012040106098,调整CoverageLost和service的上报顺序，以更新MMA的状态到DeepSleep
- 3.日    期   : 2014年5月4日
-   作    者   : t00173447
-   修改内容   : DTS2014042105390,软银定制需求
- 4.日    期   : 2014年04月4日
-   作    者   : s00261364
-   修改内容   : V3R360_eCall项目:服务状态上报到mmc
- 5.日    期   : 2015年10月22日
-   作    者   : s00217060
-   修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_3.0:RRMM_AREA_LOST_IND消息接口变更
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvAreaLostInd_InterSysCellResel_WaitGasSysInfoInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2336,11 +1588,9 @@ VOS_UINT32 NAS_MMC_RcvAreaLostInd_InterSysCellResel_WaitGasSysInfoInd(
     /* 停止保护定时器  TI_NAS_MMC_WAIT_GAS_SYS_INFO*/
     NAS_MMC_StopTimer(TI_NAS_MMC_WAIT_GAS_SYS_INFO);
 
-    /* Modified by c00318887 for 预置频点搜网优化, 2015-9-9, begin */
     NAS_MMC_SaveLastCampedPlmnWithRat(NAS_MML_GetCurrCampPlmnInfo()->stLai.stPlmnId.ulMcc,
                            NAS_MML_GetCurrCampPlmnInfo()->stLai.stPlmnId.ulMnc,
                            NAS_MML_GetCurrCampPlmnInfo()->stLai.enCampPlmnNetRat);
-    /* Modified by c00318887 for 预置频点搜网优化, 2015-9-9, end */
 
     /* 清除驻留状态 */
     NAS_MMC_SetAsCellCampOn(NAS_MMC_AS_CELL_NOT_CAMP_ON);
@@ -2349,9 +1599,7 @@ VOS_UINT32 NAS_MMC_RcvAreaLostInd_InterSysCellResel_WaitGasSysInfoInd(
     /* 当前信号更新 */
     NAS_MML_InitRssiValue(NAS_MML_GetCampCellInfo());
 
-    /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-5-4, begin */
 
-    /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-5-4, end */
 
 
     /* 向MM/GMM/TAF报出服务区流程 */
@@ -2360,13 +1608,9 @@ VOS_UINT32 NAS_MMC_RcvAreaLostInd_InterSysCellResel_WaitGasSysInfoInd(
     NAS_MMC_SndGmmCoverageLostInd();
 
     /* 更新服务状态 */
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
 	NAS_MMC_SndMsccCoverageInd( NAS_MSCC_PIF_COVERAGE_AREA_CHANGE_MODE_LOST );
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
-    /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-5-4, begin */
 
-    /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-5-4, end */
 
 
     NAS_EventReport(WUEPS_PID_MMC, NAS_OM_EVENT_COVERAGE_LOST,
@@ -2383,28 +1627,7 @@ VOS_UINT32 NAS_MMC_RcvAreaLostInd_InterSysCellResel_WaitGasSysInfoInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiWaitSysInfoExpired_InterSysCellResel_WaitGasSysInfoInd
- 功能描述  : MMC在NAS_MMC_INTER_SYS_CELLRESEL_STA_WAIT_GAS_SYSINFO_IND状态
-              收到TI_NAS_MMC_WAIT_GAS_SYS_INFO消息的处理
- 输入参数  : ulEventType:消息类型
-             pstmsg:TI_NAS_MMC_WAIT_GAS_SYS_INFO消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月28日
-   作    者   : W00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2012年04月07日
-   作    者   : l00130025
-   修改内容   : 问题单号:DTS2012040106098,调整CoverageLost和service的上报顺序，以更新MMA的状态到DeepSleep
- 3.日    期   : 2014年04月4日
-   作    者   : s00261364
-   修改内容   : V3R360_eCall项目:服务状态上报到mmc
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvTiWaitSysInfoExpired_InterSysCellResel_WaitGasSysInfoInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2415,9 +1638,7 @@ VOS_UINT32 NAS_MMC_RcvTiWaitSysInfoExpired_InterSysCellResel_WaitGasSysInfoInd(
 
     NAS_MML_InitCampRai(NAS_MML_GetCurrCampPlmnInfo());
 
-    /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-5-4, begin */
 
-    /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-5-4, end */
 
 
     /* 向MM/GMM/TAF报出服务区流程 */
@@ -2426,13 +1647,9 @@ VOS_UINT32 NAS_MMC_RcvTiWaitSysInfoExpired_InterSysCellResel_WaitGasSysInfoInd(
     NAS_MMC_SndGmmCoverageLostInd();
 
     /* 更新服务状态 */
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
     NAS_MMC_SndMsccCoverageInd( NAS_MSCC_PIF_COVERAGE_AREA_CHANGE_MODE_LOST );
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
-    /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-5-4, begin */
 
-    /* Deleted by w00176964 for V3R3C60_eCall项目, 2014-5-4, end */
 
     NAS_MMC_RecordOosEvent(NAS_ERR_LOG_OOS_EVENT_INTER_SYS_CELL_RESEL_TI_WAIT_GAS_SYS_INFO_EXP);
 
@@ -2452,22 +1669,7 @@ VOS_UINT32 NAS_MMC_RcvTiWaitSysInfoExpired_InterSysCellResel_WaitGasSysInfoInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_InterSysCellResel_WaitGasSysInfoInd
- 功能描述  : MMC在NAS_MMC_INTER_SYS_CELLRESEL_STA_WAIT_GAS_SYSINFO_IND状态
-              收到MMCMMC_ABORT_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-             pstMsg:MMCMMC_ABORT_REQ消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月15日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_InterSysCellResel_WaitGasSysInfoInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2486,44 +1688,7 @@ VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_InterSysCellResel_WaitGasSysInfoInd(
 
 
 #if   (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvLSysInfoInd_InterSysCellResel_WaitLSysInfoInd
- 功能描述  : MMC在NAS_MMC_INTER_SYS_CELLRESEL_STA_WAIT_LMM_SYSINFO_IND状态
-              收到ID_LMM_MMC_SYS_INFO_IND消息的处理
- 输入参数  : ulEventType:消息类型
-             pstmsg:ID_LMM_MMC_SYS_INFO_IND消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月28日
-   作    者   : W00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月18日
-   作    者   : l00130025
-   修改内容   : DTS2012040200480,单独维护EPS注册状态,供L模下CEREG/CGREG查询和上报使用
- 3.日    期   : 2012年4月28日
-   作    者   : W00166186
-   修改内容   : DTS2012042602593,MM没有保存当前驻留的PLMN，导致后续判断出错
- 4.日    期   : 2012年11月20日
-   作    者   : s00217060
-   修改内容   : DTS2012082007133:收到L的系统消息或丢网消息时，判断是不是L重定向到GU失败，回退到L
-                如果是，等收到LMM的suspend_rel_cnf，再退出状态机，处理打断消息
- 5.日    期   : 2012年11月29日
-   作    者   : w00176964
-   修改内容   : DTS2012042804167:通知CBA模块当前接入模式为LTE
- 6.日    期   : 2012年12月20日
-   作    者   : w00176964
-   修改内容   : DTS2012121906946:收到L的系统消息转发给LMM
- 7.日    期   : 2013年1月19日
-    作    者   : t00212959
-    修改内容   : DTS2012122900189:EPS注册状态完全由L上报
- 8.日    期   : 2015年02月11日
-   作    者   : l00305157
-   修改内容   : Service_State_Optimize_PhaseII 项目修改
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvLSysInfoInd_InterSysCellResel_WaitLSysInfoInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2583,9 +1748,7 @@ VOS_UINT32 NAS_MMC_RcvLSysInfoInd_InterSysCellResel_WaitLSysInfoInd(
     /* CBS上报*/
     NAS_MMC_SndCbaMsgNetModInd(NAS_MML_NET_RAT_TYPE_LTE);
 
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-18, begin */
     NAS_MMC_SndMsccCampOnInd(VOS_TRUE);
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-18, end */
 
     /*方案优化后，LTE下的小区发生变化，LMM会通过系统消息通知MMC*/
     if (VOS_TRUE == NAS_MML_IsCampPlmnInfoChanged(&stOldCampInfo, pstCurCampInfo))
@@ -2623,36 +1786,7 @@ VOS_UINT32 NAS_MMC_RcvLSysInfoInd_InterSysCellResel_WaitLSysInfoInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvAreaLostInd_InterSysCellResel_WaitLSysInfoInd
- 功能描述  : MMC在NAS_MMC_INTER_SYS_CELLRESEL_STA_WAIT_LMM_SYSINFO_IND状态
-              收到ID_LMM_MMC_AREA_LOST_IND消息的处理
- 输入参数  : ulEventType:消息类型
-             pstmsg:ID_LMM_MMC_AREA_LOST_IND消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月28日
-   作    者   : W00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2012年04月07日
-   作    者   : l00130025
-   修改内容   : 问题单号:DTS2012040106098,调整CoverageLost和service的上报顺序，以更新MMA的状态到DeepSleep
- 3.日    期   : 2012年11月20日
-   作    者   : s00217060
-   修改内容   : DTS2012082007133:收到L的系统消息或丢网消息时，判断是不是L重定向到GU失败，回退到L
-               如果是，等收到LMM的suspend_rel_cnf，再退出状态机，处理打断消息
- 4.日    期   : 2014年5月5日
-   作    者   : w00242748
-   修改内容   : DTS2014043000311:注册状态服务状态不一致，将MMC中报服务状态的场景，都加
-                注册状态的上报。
- 5.日    期   : 2015年10月22日
-   作    者   : s00217060
-   修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_3.0:RRMM_AREA_LOST_IND消息接口变更
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvAreaLostInd_InterSysCellResel_WaitLSysInfoInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2676,9 +1810,7 @@ VOS_UINT32 NAS_MMC_RcvAreaLostInd_InterSysCellResel_WaitLSysInfoInd(
 
 
     /* 向TAF报出服务区 */
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
     NAS_MMC_SndMsccCoverageInd(NAS_MSCC_PIF_COVERAGE_AREA_CHANGE_MODE_LOST);
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
     /* 通知TAF当前的服务状态 */
 
@@ -2711,36 +1843,7 @@ VOS_UINT32 NAS_MMC_RcvAreaLostInd_InterSysCellResel_WaitLSysInfoInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiWaitLSysInfoExpired_InterSysCellResel_WaitLSysInfoInd
- 功能描述  : MMC在NAS_MMC_INTER_SYS_CELLRESEL_STA_WAIT_LMM_SYSINFO_IND状态
-              收到TI_NAS_MMC_WAIT_LMM_SYS_INFO消息的处理
- 输入参数  : ulEventType:消息类型
-             pstmsg:TI_NAS_MMC_WAIT_LMM_SYS_INFO消息首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月28日
-   作    者   : W00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2012年04月07日
-   作    者   : l00130025
-   修改内容   : 问题单号:DTS2012040106098,调整CoverageLost和service的上报顺序，以更新MMA的状态到DeepSleep
- 3.日    期   : 2012年11月20日
-   作    者   : s00217060
-   修改内容   : DTS2012082007133:收到L的系统消息或丢网消息时，判断是不是L重定向到GU失败，回退到L
-              如果是，等收到LMM的suspend_rel_cnf，再退出状态机，处理打断消息
- 4.日    期   : 2014年5月5日
-   作    者   : w00242748
-   修改内容   : DTS2014043000311:注册状态服务状态不一致，将MMC中报服务状态的场景，都加
-                注册状态的上报。
- 5.日    期   : 2015年11月16日
-   作    者   : l00324781
-   修改内容   : DTS2015111004607: 删除语句：当前接入结束设置为BUTT
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvTiWaitLSysInfoExpired_InterSysCellResel_WaitLSysInfoInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2761,9 +1864,7 @@ VOS_UINT32 NAS_MMC_RcvTiWaitLSysInfoExpired_InterSysCellResel_WaitLSysInfoInd(
 
 
     /* 向TAF报出服务区 */
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
     NAS_MMC_SndMsccCoverageInd(NAS_MSCC_PIF_COVERAGE_AREA_CHANGE_MODE_LOST);
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
     /* 通知TAF当前的服务状态 */
 
@@ -2795,27 +1896,7 @@ VOS_UINT32 NAS_MMC_RcvTiWaitLSysInfoExpired_InterSysCellResel_WaitLSysInfoInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvLmmSuspendInd_InterSysCellResel_Init
- 功能描述  : 在SUSPEND的INIT状态,收到LMM的异系统重选指示消息后的处理
- 输入参数  : ulEventType:消息类型
-             pstMsg:收到LTE的异系统重选指示消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月1日
-    作    者   : W00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2011年07月13日
-    作    者   : w00176964
-    修改内容   : GUNAS V7R1 PhaseII 阶段调整
-  3.日    期   : 2015年11月05日
-    作    者   : w00176964
-    修改内容   : DTS2015070910837:通知MSCC CL异系统开始指示
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvLmmSuspendInd_InterSysCellResel_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2858,43 +1939,7 @@ VOS_UINT32  NAS_MMC_RcvLmmSuspendInd_InterSysCellResel_Init(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvLmmResumeInd_InterSysCellResel_WaitAsResumeInd
- 功能描述  : MMC在NAS_MMC_INTER_SYS_CELLRESEL_STA_WAIT_AS_RESUME_IND状态
-              收到ID_LMM_MMC_RESUME_IND消息的处理
- 输入参数  : ulEventType:消息类型
-             pstMsg:ID_LMM_MMC_RESUME_IND消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月12日
-    作    者   : W00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2011年07月13日
-    作    者   : w00176964
-    修改内容   : GUNAS V7R1 PhaseII 阶段调整
-  3.日    期   : 2014年4月28日
-    作    者   : w00242748
-    修改内容   : DTS2014042808114:针对H3G漫游场景，L下同样需要增加NV控制。
-  4.日    期   : 2014年5月5日
-    作    者   : w00242748
-    修改内容   : DTS2014043000311:注册状态服务状态不一致，将MMC中报服务状态的场景，都加
-                 注册状态的上报。
-
-  5.日    期   : 2014年7月18日
-    作    者   : w00167002
-    修改内容   : DTS2014071701762:在L->C失败从L恢复时候，没有停止CMMCA RESUME IND
-                 的定时器，后续定时器超时导致复位。
-  5.日    期   : 2015年8月22日
-    作    者   : m00312079
-    修改内容   : DTS2015081908397:在L->C失败从L恢复时候，停止TI_NAS_MMC_WAIT_MSCC_INTERSYS_HRPD_NTF定时器
-  6.日    期   : 2015年11月05日
-    作    者   : w00176964
-    修改内容   : DTS2015070910837:通知MSCC异系统结束
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvLmmResumeInd_InterSysCellResel_WaitAsResumeInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2927,9 +1972,7 @@ VOS_UINT32 NAS_MMC_RcvLmmResumeInd_InterSysCellResel_WaitAsResumeInd(
 
     NAS_MML_SetCurrNetRatType(NAS_MML_NET_RAT_TYPE_LTE);
 
-    /* Added by s00246516 for L-C互操作项目, 2014-01-27, Begin */
     NAS_MMC_SetResumeOrign_InterSysCellResel(MMC_RESUME_ORIGEN_LTE);
-    /* Added by s00246516 for L-C互操作项目, 2014-01-27, End */
 
     /* 由于L的RESUME_IND消息不包含CS,PSresume结果，此时按照恢复成功生成RESUME消息 */
     NAS_MMC_BulidResumeMsg(NAS_MML_NET_RAT_TYPE_LTE ,&stResumeIndMsg);
@@ -2950,31 +1993,12 @@ VOS_UINT32 NAS_MMC_RcvLmmResumeInd_InterSysCellResel_WaitAsResumeInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvLmmSuspendRelCnf_InterSysCellResel_WaitLmmSuspendRelCnf
- 功能描述  : MMC在NAS_MMC_INTER_SYS_CELLRESEL_STA_WAIT_LMM_SUSPEND_REL_CNF状态
-              收到LMM的SUSPEND_REL_CNF消息的处理
- 输入参数  : ulEventType:消息类型
-             pstMsg:MMCLMM_SUSPEND_REL_CNF消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月15日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2014年3月14日
-    作    者   : s00246516
-    修改内容   : L-C互操作项目，需要通知MM/GMM恢复消息
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvLmmSuspendRelCnf_InterSysCellResel_WaitLmmSuspendRelCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 )
 {
-    /* Modified by s00246516 for L-C互操作项目, 2014-02-14, Begin */
     RRMM_RESUME_IND_ST                  stResumeIndMsg;
 
     /* 停等待LMM的SUSPEND_REL_CNF消息的定时器 */
@@ -2990,7 +2014,6 @@ VOS_UINT32 NAS_MMC_RcvLmmSuspendRelCnf_InterSysCellResel_WaitLmmSuspendRelCnf(
 
     /* 将resume 的结果包含在MM_MMC_RESUME_IND消息中，并向MM发送 */
     NAS_MMC_SndMmResumeInd(&stResumeIndMsg);
-    /* Modified by s00246516 for L-C互操作项目, 2014-02-14, End */
 
     /* 回复InterSysCellResel执行结果 */
     NAS_MMC_SndSuspendRsltMsg(MMC_SUSPEND_CAUSE_CELLRESELECT, NAS_MMC_SUSPEND_ABORTED, NAS_MMC_SUSPEND_FAIL_CAUSE_BUTT, VOS_NULL_PTR);
@@ -3001,29 +2024,7 @@ VOS_UINT32 NAS_MMC_RcvLmmSuspendRelCnf_InterSysCellResel_WaitLmmSuspendRelCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvLmmResumeInd_InterSysCellResel_WaitLmmSuspendRelCnf
- 功能描述  : MMC在NAS_MMC_INTER_SYS_CELLRESEL_STA_WAIT_Lmm_SUSPEND_REL_CNF状态
-              收到LMM的RESUME_IND消息的处理
- 输入参数  : ulEventType:消息类型
-             pstMsg:ID_LMM_MMC_RESUME_IND消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月15日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2014年4月28日
-    作    者   : w00242748
-    修改内容   : DTS2014042808114:针对H3G漫游场景，L下同样需要增加NV控制。
-  3.日    期   : 2014年5月5日
-    作    者   : w00242748
-    修改内容   : DTS2014043000311:注册状态服务状态不一致，将MMC中报服务状态的场景，都加
-                 注册状态的上报。
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvLmmResumeInd_InterSysCellResel_WaitAsSuspendRelCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3064,22 +2065,7 @@ VOS_UINT32 NAS_MMC_RcvLmmResumeInd_InterSysCellResel_WaitAsSuspendRelCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiWaitLmmSuspendRelCnf_InterSysCellResel_WaitLmmSuspendRelCnf
- 功能描述  : MMC在NAS_MMC_INTER_SYS_CELLRESEL_STA_WAIT_LMM_SUSPEND_REL_CNF状态
-              等待LMM的SUSPEND_REL_CNF消息超时的处理
- 输入参数  : ulEventType:消息类型
-             pstMsg:等待LMM_MMC_SUSPEND_REL_CNF超时消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月15日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvTiWaitLmmSuspendRelCnf_InterSysCellResel_WaitLmmSuspendRelCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3096,22 +2082,7 @@ VOS_UINT32 NAS_MMC_RcvTiWaitLmmSuspendRelCnf_InterSysCellResel_WaitLmmSuspendRel
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmcAbortFsmMsg_InterSysCellResel_WaitLSysInfoInd
- 功能描述  : MMC在NAS_MMC_INTER_SYS_CELLRESEL_STA_WAIT_LMM_SYSINFO_IND状态
-              收到MMCMMC_ABORT_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-             pstMsg:MMCMMC_ABORT_REQ消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月15日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_InterSysCellResel_WaitLSysInfoInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3129,25 +2100,7 @@ VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_InterSysCellResel_WaitLSysInfoInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvLmmSuspendInfoChangeNotify_InterSysCellResel_WaitAsResumeInd
- 功能描述  : MMC在NAS_MMC_INTER_SYS_CELLRESEL_STA_WAIT_AS_RESUME_IND状态
-              收到LMM发送的替换入口消息的接口
- 输入参数  : ulEventType:消息类型
-             pstMsg:ID_LMM_MMC_SUSPEND_INFO_CHANGE_NOTIFY消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月26日
-    作    者   : z00234330
-    修改内容   : 新生成函数
-  2.日    期   : 2013年3月31日
-    作    者   : y00176023
-    修改内容   : DSDS GUNAS II项目:发送RAT变化给MM
-*****************************************************************************/
 
 VOS_UINT32 NAS_MMC_RcvLmmSuspendInfoChangeNotify_InterSysCellResel_WaitAsResumeInd(
     VOS_UINT32                          ulEventType,
@@ -3194,24 +2147,8 @@ VOS_UINT32 NAS_MMC_RcvLmmSuspendInfoChangeNotify_InterSysCellResel_WaitAsResumeI
 
 #endif
 
-/* Added by s00246516 for L-C互操作项目, 2014-01-27, Begin */
 #if   (FEATURE_ON == FEATURE_CL_INTERWORK)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvCmmcaResumeInd_InterSysCellResel_WaitAsResumeInd
- 功能描述  : MMC在NAS_MMC_INTER_SYS_CELLRESEL_STA_WAIT_AS_RESUME_IND状态
-              收到CMMCA的RESUME_IND消息的处理
- 输入参数  : ulEventType:消息类型
-             pstMsg:ID_CMMCA_MMC_RESUME_IND消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月27日
-    作    者   : s00246516
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvCmmcaResumeInd_InterSysCellResel_WaitAsResumeInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3251,25 +2188,7 @@ VOS_UINT32 NAS_MMC_RcvCmmcaResumeInd_InterSysCellResel_WaitAsResumeInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiWaitCmmcaResumeIndExpired_InterSysCellResel_WaitAsResumeInd
- 功能描述  : MMC在NAS_MMC_INTER_SYS_CELLRESEL_STA_WAIT_AS_RESUME_IND状态
-              收到TI_NAS_MMC_WAIT_CMMCA_RESUME_IND消息的处理
- 输入参数  : ulEventType:消息类型
-             pstMsg:TI_NAS_MMC_WAIT_CMMCA_RESUME_IND消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月19日
-    作    者   : s00246516
-    修改内容   : 新生成函数
-  2.日    期   : 2015年3月11日
-    作    者   : wx270776
-    修改内容   : DTS2015011212939:增加复位场景
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvTiWaitCmmcaResumeIndExpired_InterSysCellResel_WaitAsResumeInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3283,27 +2202,9 @@ VOS_UINT32 NAS_MMC_RcvTiWaitCmmcaResumeIndExpired_InterSysCellResel_WaitAsResume
     return VOS_TRUE;
 }
 #endif
-/* Added by s00246516 for L-C互操作项目, 2014-01-27, End */
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndSuspendRelReq_InterSysCellResel
- 功能描述  : 根据不同的接入技术，给接入层或LMM发送SUSPEND_REL_REQ
- 输入参数  : enRat
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月21日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-  1.日    期   : 2014年3月13日
-    作    者   : s00261364
-    修改内容   : 异系统重选过程中收到detach req,通知LTE suspend时,状态迁移错误
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndSuspendRelReq_InterSysCellResel(
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enRat
 )
@@ -3341,13 +2242,11 @@ VOS_VOID NAS_MMC_SndSuspendRelReq_InterSysCellResel(
             /* 给LMM发送RRMM_SUSPEND_REL_REQ */
             NAS_MMC_SndLmmSuspendRelReq();
 
-            /* Modified by s00261364 for L-C互操作项目, 2014-3-13, begin */
             /* 迁移状态到等待LMM的SUSPEND_REL_CNF */
             NAS_MMC_FSM_SetCurrState(NAS_MMC_INTER_SYS_CELLRESEL_STA_WAIT_LMM_SUSPEND_REL_CNF);
 
             /* 启相应的保护定时器 */
             (VOS_VOID)NAS_MMC_StartTimer(TI_NAS_MMC_WAIT_LMM_SUSPEND_REL_CNF, TI_NAS_MMC_WAIT_LMM_SUSPEND_REL_CNF_LEN);
-            /* Modified by s00261364 for L-C互操作项目, 2014-3-13, end */
 
             break;
 #endif
@@ -3359,23 +2258,7 @@ VOS_VOID NAS_MMC_SndSuspendRelReq_InterSysCellResel(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_StopSuspendRelCnfTimer_InterSysCellResel
- 功能描述  : 根据不同的接入技术，给接入层或LMM发送SUSPEND_REL_REQ
- 输入参数  : enRat
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月21日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2014年5月20日
-    作    者   : z00161729
-    修改内容   : DTS201405090133:给lnas suspend rel req和gu resume ind消息对冲时mmc未处理缓存导致后续退状态机处理缓存主动复位
-*****************************************************************************/
 VOS_VOID NAS_MMC_StopSuspendRelCnfTimer_InterSysCellResel(
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enRat
 )
@@ -3468,22 +2351,7 @@ VOS_UINT32 NAS_MMC_RcvTiWaitMsccInterSysHrpdNtfExpired_InterSysCellResel_WaitAsR
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMsccInterSysHrpdNtf_InterSysCellResel_WaitAsSuspendRelCnf
- 功能描述  : MMC在NAS_MMC_INTER_SYS_CELLRESEL_STA_WAIT_LMM_SUSPEND_REL_CNF状态
-              收到MSCC的异系统变换到HRPD消息的处理
- 输入参数  : ulEventType:消息类型
-             pstMsg:ID_MSCC_MMC_INTERSYS_HRPD_NTF消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月5日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMsccInterSysHrpdNtf_InterSysCellResel_WaitAsSuspendRelCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3532,18 +2400,7 @@ VOS_UINT32 NAS_MMC_RcvMsccInterSysHrpdNtf_InterSysCellResel_WaitAsSuspendRelCnf(
 #endif
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
-Function Name   :   NAS_MMC_RcvLmmResumeInd_InterSysCellResel_Init
-Description     :   CL mode,HRPD Reselct LTE, MMC Recive LMM_MMC_RESUME_IND，wait LMM_MMC_SYSINFO_INF_IND
-Input parameters:   ulEventType: the Event type
-                :   pstMsg     : the LMM_MMC_RESUME_IND message
-Outout parameters:  None
-Return Value    :
-Modify History:
-    1)  Date    :   2015-06-06
-        Author  :   l00324781
-        Modify content :    Create
-*****************************************************************************/
+
 VOS_UINT32 NAS_MMC_RcvLmmResumeInd_InterSysCellResel_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg

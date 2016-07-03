@@ -139,7 +139,6 @@
 #define ID_MSG_FTM_RD_FAGC_CNF              (0x00010164)
 
 
-/*快速校准 c00173035  start in 2010-12-13*/
 
 #define ID_MSG_FTM_SET_BANDSW_REQ             (0x00010170)
 #define ID_MSG_FTM_SET_BANDSW_CNF             (0x00010171)
@@ -205,7 +204,6 @@
 
 #define ID_MSG_FTM_F_SET_FIPSTART_REQ         (0x000101a0)
 #define ID_MSG_FTM_F_SET_FIPSTART_CNF         (0x000101a1)
-/*快速校准 c00173035  end in 2010-12-13*/
 
 /*非信令综测start*/
 #define ID_MSG_FTM_SET_SSYNC_REQ               (0x000101a2)
@@ -305,7 +303,6 @@
 
 /*非信令综测end*/
 
-/*一键升级 先弄到FTM里面吧 lkf58113 @ 20111010*/
 #define ID_MSG_FTM_RD_DLOADVER_REQ              (0x000101eb)
 #define ID_MSG_FTM_RD_DLOADVER_CNF              (0x000101ec)
 
@@ -565,7 +562,6 @@ typedef struct
 }CLIP_SUPPORT_BANDS_STRU;
 
 /******************************************************************************/
-/*一键升级结构体 lkf58113 @20111011*/
 /*DLOADVER*/
 typedef struct
 {
@@ -1615,14 +1611,7 @@ typedef struct
 
 /**********************************************************************************/
 
-/*****************************************************************************
- 结构名    : DRV_AGENT_CBC_GET_CNF_STRU
- 结构说明  : The message struct get cbc state reponse.
 
-1. 日    期   : 2012年03月01日
-   作    者   : HanJiuping 00122021
-   修改内容   : 新增结构体
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8        ulbcs;

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : SysNvId.h
-  版 本 号   :
-  作    者   : 胡骏 59254
-  生成日期   : 2009年5月14日
-  最近修改   :
-  功能描述   : 定义了系统NV项ID枚举定义
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2009年5月14日
-    作    者   : 胡骏 59254
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __SYSNVID_H__
 #define __SYSNVID_H__
@@ -260,17 +243,13 @@ enum SYS_NV_ID_ENUM
 /* 2324 */      en_NV_Item_Protect_Mt_Csfb_Paging_Procedure_Len = 2324,         /* csmt 保护时长 */
 
 /*  2321 */     en_NV_Item_NVWR_SEC_CTRL            = 2321,                     /* NVWR命令安全控制 */
-/* Added by c00318887 for file refresh需要触发背景搜, 2015-4-28, begin */
 /* 2325 */      en_NV_Item_HIGH_PRIO_PLMN_REFRESH_TRIGGER_BG_SEARCH_CFG   = 2325,
-/* Added by c00318887 for file refresh需要触发背景搜, 2015-4-28, end */
 
 /*   2322*/     en_NV_Item_DELAY_REPORT_SERVICE_STATUS_CFG = 2322,
                 en_NV_Item_SMS_PS_CTRL              = 2326,
-/* Added by c00318887 for DPlmn扩容和优先接入HPLMN, 2015-5-18, begin */
 /* 2327  */      en_NV_Item_First_Preset_Dplmn_Nplmn_Cfg = 2327,
 /* 2328  */      en_NV_Item_Second_Preset_Dplmn_Nplmn_Cfg = 2328,
 /* 2329  */      en_NV_Item_Self_Learn_Dplmn_Nplmn_Cfg = 2329,
-/* Added by c00318887 for DPlmn扩容和优先接入HPLMN, 2015-5-18, begin */
 
 
 /*  2330 */     en_NV_Item_Non_Oos_Plmn_Search_Feature_Support_Cfg       = 2330,                     /* 周期性HISTORY搜网定时器时长配置 */
@@ -280,9 +259,7 @@ enum SYS_NV_ID_ENUM
 
 
 
-/* Added by c00318887 for 移植T3402 , 2015-6-17, begin */
 /* 2334 */      en_NV_Item_DISABLE_LTE_START_T3402_ENABLE_LTE_CFG   = 2334,
-/* Added by c00318887 for 移植T3402 , 2015-6-17, end */
 /*   2335*/     en_NV_Item_LTE_OOS_2G_PREF_PLMN_SEL_CFG = 2335,
 
 /*  2336 */     en_NV_Item_Ipv6_Address_Test_Mode_Cfg = 2336,                   /* IPV6地址测试模式配置，0x55AA55AA为测试模式，其他值为正常模式 */
@@ -305,13 +282,9 @@ enum SYS_NV_ID_ENUM
 
 /*  2340 */     en_NV_Item_Ccwa_Ctrl_Mode                   = 2340,
 
-/* Added by c00318887 for 预置频点搜网优化, 2015-8-26, begin */
 /*  2351 */     en_NV_Item_Plmn_Search_Phase_One_Total_Timer_CFG       = 2351,  /* 第一阶段搜网总时间配置 */
-/* Added by c00318887 for 预置频点搜网优化, 2015-8-26, end */
 /* 2352 */      en_NV_Item_Sms_Log_Filter_Cfg           = 2352,
-/* added by y00176023 for DTS2015091602371 澳电低优先级ANYCELL搜LTE定制, 2015-9-17, begin */
 /* 2353 */      en_NV_Item_Low_Prio_Anycell_Search_Lte_Cfg   = 2353,
-/* added by y00176023 for DTS2015091602371 澳电低优先级ANYCELL搜LTE定制, 2015-9-17, end */
 /*  2354 */     en_NV_Item_ADS_WAKE_LOCK_CFG = 2354,                            /* ADS WAKELOCK 配置 */
 /*  2355 */     en_NV_Item_CS_REG_FAIL_FORB_LA_TIME_CFG                = 2355,  /* cs注册失败将当前LA加入FORB LA时间配置 */
 
@@ -364,15 +337,11 @@ enum SYS_NV_ID_ENUM
 
 /* 3013 */     en_NV_Item_GAS_GSM_CELL_HISTORY_BCCH_SI_CFG    = 3013,
 
-/* Added by y00142674 for 漫游搜网优化, 2015-04-30, begin */
 /* 3014 */      en_NV_Item_GSM_SEARCH_CUSTOMIZE_CFG     = 3014,
-/* Added by y00142674 for 漫游搜网优化, 2015-04-30, end */
 
 /* 3015 */      en_NV_Item_GAS_FAST_AREA_LOST_CFG = 3015,
 
-/* Added by w00146666 for H_PRIO定制，2015-05-18, begin */
 /* 3016 */      en_NV_Item_Inter_Rat_Resel_H_PRIO_Customization      = 3016,
-/* Added by w00146666 for H_PRIO定制，2015-05-18, end */
 /* 3017 */     en_NV_Item_Was_Eutra_Cell_Resel_Ctr_Info = 3017,
 
 /* 3018 */      en_NV_Item_GAS_AUTO_FR_CFG      = 3018,
@@ -381,14 +350,10 @@ enum SYS_NV_ID_ENUM
 /* 3024 */      en_NV_Item_Was_Capbility_FddList_Ctr_Info    = 3024,
 /* 3020 */      en_NV_Item_Was_Radom_Acc_Ctr_Info            = 3020,
 /* 3022 */      en_NV_Item_Was_Noise_Optimize_Ctr_Info       = 3022,
-/* Added by x00220225 for 云端频点收集, 2015-07-17, begin */
 /* 3023 */      en_NV_Item_WCDMA_HISTORY_PLMN_FREQ_LIST      = 3023,
-/* Added by x00220225 for 云端频点收集, 2015-07-17, end */
 /* 3025 */     en_NV_Item_Was_Cell_Indi_Offset_Ctrl_Info = 3025,
 
-/* Added by p00166345 for DTS2015052601104(伪基站识别), 2015-08-02, begin */
 /* 3026 */      en_NV_Item_GAS_PSEUD_BTS_IDENT_CUST_CFG      = 3026,
-/* Added by p00166345 for DTS2015052601104(伪基站识别), 2015-08-02, end */
 
 /* 3027 */      en_NV_Item_GSM_PARALLEL_SEARCH_CUSTOMIZE_CFG    = 3027,
 
@@ -527,9 +492,7 @@ enum SYS_NV_ID_ENUM
 /* 9092 */       en_NV_Item_Utran_Mode                 = 9092,                  /* 指示当前UTRAN模式为WCDMA还是TD-SCDMA */
 /* 9094  */      en_NV_Item_CALL_CallNotSupportedCause = 9094,
 
-/* Added by L60609 for MUX，2012-08-08,  Begin */
 /* 9100 */       en_NV_Item_Mux_Support_Flg            = 9100,
-/* Added by L60609 for MUX，2012-08-08,  End */
 
 /* 9102 */       en_NV_Item_User_Cfg_Ehplmn_Info       = 9102,                  /* 用户配置的EHplmn NVIM ID */
 /* 9103 */       en_NV_Item_Utran_Mode_Auto_Switch     = 9103,                  /* 在当前的GUTL版本，支持配置出GUL版本,GTL版本，以及GUTL版本配置NVIM ID */
@@ -621,27 +584,17 @@ enum SYS_NV_ID_ENUM
 
 /* 9236  */      en_NV_Item_USER_CFG_OPLMN_EXTEND_LIST = 9236,  /*定制用户预制OPLMN列表(支持256个OPLMN)，与SIM卡互斥，优先级高于SIM卡 */
 
-/* Added by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, begin */
 /* 9237  */      en_NV_Item_SMS_DOMAIN                         = 9237,
-/* Added by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, end */
 
-/* Added by j00169676 for 三步法搜索项目, 2014-1-23, begin */
                en_NV_Item_3G_TO_2G_Config      = 9238,
-/* Added by j00169676 for 三步法搜索项目, 2014-1-23, begin */
 /* 9239 */       en_NV_Item_UART_SWITCH_CFG = 9239,
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-30, begin */
                 en_NV_Item_WAIT_IMS_VOICE_AVAIL_Timer_Len      = 9240,
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-30, end */
 
                  en_NV_Item_REDIAL_IMS_TO_CS_DOMAIN          = 9241,
                  en_NV_Item_IMS_ROAMING_SUPPORT_FLG          = 9242,
 
-/* Added by f00261443 for VoLTE_PhaseIII  项目, 2013-12-25, begin */
                 en_NV_Item_IMS_VOICE_MOBILE_MANAGEMENT       = 9243,
-/* Added by f00261443 for VoLTE_PhaseIII  项目, 2013-12-25, end */
-/* Added by h00163499 for SVLTE 共天线项目, 2014-1-21, begin */
 /* 9244 */       en_NV_MODEM_RF_SHARE_CFG          = 9244,
-/* Added by h00163499 for SVLTE 共天线项目, 2014-1-21, end */
 /* 9246  */      en_NV_Item_CS_ONLY_DATA_SERVICE_SUPPORT_FLG = 9246,            /* 用户定制NV: PS注册被禁止情况下，是否允许数据业务触发注册的标志 */
 /* 9247  */      en_NV_Item_Ignore_Auth_Rej_CFG = 9247,
 /* 9248 */       en_NV_Item_GSM_C1_CUSTOMIZE = 9248,
@@ -654,9 +607,7 @@ enum SYS_NV_ID_ENUM
 
 /* 9257 */       en_NV_Item_GSM_DSDS_PS_CONFIG               = 9257,
 /* 9258  */      en_NV_Item_PHY_MODE_DSDS_FLAG               = 9258,
-/* Added by y00245242 for V3R3C60_eCall项目, 2014-4-4, begin */
 /* 9259 */       en_NV_Item_ECALL_CFG_INFO                  = 9259,
-/* Added by y00245242 for V3R3C60_eCall项目, 2014-4-4, end */
 /* 9262 */       en_NV_Item_GSM_SSC_CONFIG_PARA              = 9262,      /* GSM SSC模块NV参数配置  */
 
 /* 9263 */       en_NV_Item_Multi_Dfs_Dsflow_Rate_CFG    = 9263,
@@ -698,9 +649,7 @@ enum SYS_NV_ID_ENUM
 
 /* 9289  */     en_NV_Item_GSM_HARQ_OUT_CONFIG      = 9289,
 
-/* Added by g00260269 for SVLTE 共天线项目, 2015-7-20, begin */
 /* 9290 */       en_NV_MODEM_RF_SHARE_EX_CFG        = 9290,
-/* Added by g00260269 for SVLTE 共天线项目, 2015-7-20, end */
 
 /* 16042  */     en_NV_Item_W_T313_BACK_CTRL  = 16042,
 

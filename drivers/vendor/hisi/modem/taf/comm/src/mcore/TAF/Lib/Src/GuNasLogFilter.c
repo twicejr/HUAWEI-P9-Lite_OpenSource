@@ -46,13 +46,7 @@ extern VOS_UINT8 AT_GetSmsFilterEnableFlg(
 );
 #endif
 
-/*******************************************************************************
- 结构名    : NAS_MNTN_SMS_MSG_FILTER_PROC_TBL_FUNC
- 结构说明  : 短信过滤消息处理函数结构体
- 1.日    期   : 2015年09月25日
-   作    者   : h00313353
-   修改内容   : 新建
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                  ulSenderPid;
@@ -143,21 +137,7 @@ VOS_CHAR*                                       g_apcATFileterTable[]=
   3 函数实现
 *****************************************************************************/
 #if (OSA_CPU_CCPU == VOS_OSA_CPU)
-/*****************************************************************************
- 函 数 名  : GUNAS_SMS_FilterImsaToTafMsg
- 功能描述  : 过滤Imsa到Taf短信层间消息的函数
- 输入参数  : pstMsg -- 消息内容
- 输出参数  : NONE
- 返 回 值  : VOS_TRUE :表示这个消息被过滤掉了，不需要上报给OM
-             VOS_FALSE:表示这个消息需要上报OM
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月17日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 GUNAS_SMS_FilterImsaToTafMsg(
     PS_MSG_HEADER_STRU                 *pstMsg
 )
@@ -171,21 +151,7 @@ VOS_UINT32 GUNAS_SMS_FilterImsaToTafMsg(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : GUNAS_SMS_FilterWrrToGmmMmMsg
- 功能描述  : 过滤Wrr到GMM或MM短信层间消息的函数
- 输入参数  : pstMsg    -- 消息指针
- 输出参数  : NONE
- 返 回 值  : VOS_TRUE :表示这个消息被过滤掉了，不需要上报给OM
-             VOS_FALSE:表示这个消息需要上报OM
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月17日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 GUNAS_SMS_FilterWrrToGmmMmMsg(
     PS_MSG_HEADER_STRU                 *pstMsg
 )
@@ -212,21 +178,7 @@ VOS_UINT32 GUNAS_SMS_FilterWrrToGmmMmMsg(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : GUNAS_SMS_FilterGasToMmMsg
- 功能描述  : 过滤Gas短信到MM的消息层间消息的函数
- 输入参数  : pstMsg -- 消息指针
- 输出参数  : NONE
- 返 回 值  : VOS_TRUE :表示这个消息被过滤掉了，不需要上报给OM
-             VOS_FALSE:表示这个消息需要上报OM
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月17日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 GUNAS_SMS_FilterGasToMmMsg(
     PS_MSG_HEADER_STRU                 *pstMsg
 )
@@ -255,22 +207,7 @@ VOS_UINT32 GUNAS_SMS_FilterGasToMmMsg(
 #endif
 
 #if (OSA_CPU_ACPU == VOS_OSA_CPU)
-/*****************************************************************************
- 函 数 名  : GUNAS_SMS_ATCmdFilter
- 功能描述  : 过滤At到At的USIM层间消息函数
- 输入参数  : pucATData     -- 消息中的数据
-             usLen         -- 数据长度
- 输出参数  : NONE
- 返 回 值  : VOS_TRUE :表示这个消息被过滤掉了，不需要上报给OM
-             VOS_FALSE:表示这个消息需要上报OM
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年01月31日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 
 VOS_UINT32 GUNAS_SMS_ATCmdFilter(
     VOS_UINT8                          *pucATData,
@@ -303,21 +240,7 @@ VOS_UINT32 GUNAS_SMS_ATCmdFilter(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : GUNAS_SMS_FilterAtToAtMsg
- 功能描述  : 过滤At到At短信层间消息的函数
- 输入参数  : pstMsg     -- 消息指针
- 输出参数  : NONE
- 返 回 值  : VOS_TRUE :表示这个消息被过滤掉了，不需要上报给OM
-             VOS_FALSE:表示这个消息需要上报OM
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月17日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 GUNAS_SMS_FilterAtToAtMsg(
     PS_MSG_HEADER_STRU                 *pstMsg
 )
@@ -372,21 +295,7 @@ VOS_UINT32 GUNAS_SMS_FilterAtToAtMsg(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : GUNAS_SMS_FilterAtToTafMsg
- 功能描述  : 过滤At到Taf短信层间消息的函数
- 输入参数  : pstMsg -- 消息内容
- 输出参数  : NONE
- 返 回 值  : VOS_TRUE :表示这个消息被过滤掉了，不需要上报给OM
-             VOS_FALSE:表示这个消息需要上报OM
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月17日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 GUNAS_SMS_FilterAtToTafMsg(
     PS_MSG_HEADER_STRU                 *pstMsg
 )
@@ -405,21 +314,7 @@ VOS_UINT32 GUNAS_SMS_FilterAtToTafMsg(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : GUNAS_SMS_FilterTafToAtMsg
- 功能描述  : 过滤Taf到At短信层间消息的函数
- 输入参数  : pstMsg     -- 消息指针
- 输出参数  : NONE
- 返 回 值  : VOS_TRUE :表示这个消息被过滤掉了，不需要上报给OM
-             VOS_FALSE:表示这个消息需要上报OM
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月17日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 GUNAS_SMS_FilterTafToAtMsg(
     PS_MSG_HEADER_STRU                 *pstMsg
 )
@@ -450,21 +345,7 @@ VOS_UINT32 GUNAS_SMS_FilterTafToAtMsg(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : GUNAS_SMS_FilterLayerMsg
- 功能描述  : 过滤短信层间消息的函数
- 输入参数  : pstMsg     -- 消息指针
- 输出参数  : NONE
- 返 回 值  : VOS_TRUE :表示这个消息被过滤掉了，不需要上报给OM
-             VOS_FALSE:表示这个消息需要上报OM
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月17日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 GUNAS_SMS_FilterLayerMsg(
     const VOS_VOID                     *pstMsg
 )
@@ -515,21 +396,7 @@ VOS_UINT32 GUNAS_SMS_FilterLayerMsg(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : GUNAS_OM_LayerMsgFilter
- 功能描述  : GUNAS用于过滤层间消息的函数
- 输入参数  : pstMsg     -- 消息指针
- 输出参数  : NONE
- 返 回 值  : VOS_TRUE :表示这个消息被过滤掉了，不需要上报给OM
-             VOS_FALSE:表示这个消息需要上报OM
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月17日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 GUNAS_OM_LayerMsgFilter(
     const VOS_VOID                     *pstMsg
 )

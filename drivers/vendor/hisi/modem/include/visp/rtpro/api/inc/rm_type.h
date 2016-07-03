@@ -25,9 +25,7 @@
 #define SID_RTM_STATIC_RT_ENTRY   12
 #define SID_RTM_LSDB_ENTRY        13
 
-/*Added by jijianhua00169178, 将RM_REDIST_CREATE定义一起放在RM_REDIST_S中, 2011/3/3   问题单号:DTS2011030203676 */
 /* #define RM_REDIST_CREATE             0 */
-/* End of Added by jijianhua00169178, 2011/3/3   问题单号:DTS2011030203676 */
 
 /* Begin BC3D03313 liangjicheng 2010-06-22 */
 #define RM_REDIST_OPTYPE_CREATE_IN              0
@@ -82,7 +80,6 @@
 #define RM_REDIST_DIRECT_FLAG_IMPORT     1
 #define RM_REDIST_DIRECT_FLAG_OUTPORT    0
 
-/*Add begin by t00110672 for BC3D01783,   质量活动，消除魔鬼数字*/
 #define RM_REDIST_FILTER_YES   1
 #define RM_REDIST_FILTER_NO   2
 
@@ -106,7 +103,6 @@ RM_PROTO_OSPF    */
                                ((address[0] == 0xFE) &&                 \
                                ((address[1] & 0xC0) == 0x80))
 
-/* Modified by lixs00177467, for rtm net route, VISPV2R3C03SPC010-G2 2011/1/22   问题单号:V2R3C03-ROTUE-MERGE  */
 #define GET_NETRT_STATE_BEGIN   1
 #define GET_NETRT_STATE_MORE    0
 
@@ -196,9 +192,7 @@ typedef struct tag_rtm_rib_key_index /*用于获取NEXT 对端信息的索引值*/
   UCHAR relay_next_hop[RM_IPV6_ADDRESS_WORD_LEN];
   LONG proto;   
   LONG rpm_index;
-  /*Added by wangchengyang/jijianhua,2011/5/19   问题单号:RTM-20110512-01 */
   ULONG ulIsStatic;
-  /* End of Added by wangchengyang/jijianhua, 2011/5/19   问题单号:RTM-20110512-01 */
   ULONG ulVrf;
 
   /* Begin:VISP1.7C03 VRF qinyun , 2009-01-20 */
@@ -381,7 +375,6 @@ typedef struct tagRM_CFG_REDIST_DESTACLFLT
     ULONG ulDestAcl;  /*目的地址过滤器 ACL*/
 }RM_CFG_REDIST_DESTACLFLT_S;
 
-/* Modified by lixs00177467, for redirect by nexthop acl, VISPV2R3C03SPC010-G2 2011/1/22   问题单号:V2R3C03-ROTUE-MERGE  */
 typedef struct tagRM_CFG_REDIST_FLTGROUP
 {
     LONG lDestAclFlt;  /*是否使用ACL过滤*/    
@@ -389,7 +382,6 @@ typedef struct tagRM_CFG_REDIST_FLTGROUP
     LONG lHopAclFlt;  /*是否使用ACL过滤*/    
     ULONG ulHopAcl;  /*目的地址过滤器 ACL*/
 }RM_CFG_REDIST_FLTGROUP_S;
-/*End of Modified by lixs00177467, 2011/1/22   问题单号:V2R3C03-ROTUE-MERGE  */
 
 typedef struct tagRM_CFG_REDIST_FLAG
 {
@@ -417,17 +409,13 @@ typedef struct tagRM_DSP_REDIST
     RM_CFG_REDIST_OSPFFLT_S  stRmRedistOspfFlt;   
     RM_CFG_REDIST_DESTACLFLT_S  stRmRedistDestAclFlt;
     RM_CFG_REDIST_FLAG_S  stRmRedistFlagFlt;  
-    /* Modified by lixs00177467, for redirect by nexthop acl, VISPV2R3C03SPC010-G2 2011/1/22   问题单号:V2R3C03-ROTUE-MERGE  */
     RM_CFG_REDIST_FLTGROUP_S  stRmRedistGroupFlt;
-    /*End of Modified by lixs00177467, 2011/1/22   问题单号:V2R3C03-ROTUE-MERGE  */
 }RM_DSP_REDIST_S;
 
 typedef enum enumRMRedist
 {
-/*Added by jijianhua00169178, 将RM_REDIST_CREATE定义一起放在RM_REDIST_S中, 2011/3/3   问题单号:DTS2011030203676 */
     RM_REDIST_CREATE = 0,
     RM_REDIST_SRCINST,
-/* End of Added by jijianhua00169178, 2011/3/3   问题单号:DTS2011030203676 */
     RM_REDIST_DESTINST,
     RM_REDIST_DESTADDR,
     RM_REDIST_HOPADDR,
@@ -436,9 +424,7 @@ typedef enum enumRMRedist
     RM_REDIST_OSPF,
     RM_REDIST_DESTACL,
     RM_REDIST_FLAG,
-    /* Modified by lixs00177467, for redirect by nexthop acl, VISPV2R3C03SPC010-G2 2011/1/22   问题单号:V2R3C03-ROTUE-MERGE  */
     RM_REDIST_FLTGROUP,
-    /*End of Modified by lixs00177467, 2011/1/22   问题单号:V2R3C03-ROTUE-MERGE  */
     RM_REDIST_MAXNUM
 }RM_REDIST_S;
 
@@ -459,9 +445,7 @@ typedef struct tagRMREDIST
     RM_CFG_REDIST_OSPFFLT_S  stRmRedistOspfFlt;   
     RM_CFG_REDIST_DESTACLFLT_S  stRmRedistDestAclFlt;
     RM_CFG_REDIST_FLAG_S  stRmRedistFlagFlt;   
-    /* Modified by lixs00177467, for redirect by nexthop acl, VISPV2R3C03SPC010-G2 2011/1/22   问题单号:V2R3C03-ROTUE-MERGE  */
     RM_CFG_REDIST_FLTGROUP_S  stRmRedistGroupFlt;
-    /*End of Modified by lixs00177467, 2011/1/22   问题单号:V2R3C03-ROTUE-MERGE  */
     struct tagRMREDIST  *ia_pNext;
 }RMREDIST_S;
 
@@ -485,7 +469,6 @@ typedef struct tagRM_STATIC_ROUTE4
 
 typedef struct tagRM_CHECK_USR4
 {
-    /*add forSGSN联调 增加默认路由功能-增加ulOper，ulIfIndex，aucDescription l00147446 2010-1-18*/
     ULONG ulOper; /*配置或删除；0-delete；1-create*/
     UCHAR szIfName[MAX_IF_NAME_LENGTH+1];/*出接口名字*/
     ULONG ulRtPri;/*路由优先级，默认为1，取值1-255*/
@@ -556,7 +539,6 @@ typedef struct tagRM_CHECK_USR6
     ULONG ulChkLocalIp;/*检查下一跳是否与本地Local IP*/
 }RM_CHECK_USR6_S;
 
-/* Modified by lixs00177467, for rtm net route, VISPV2R3C03SPC010-G2 2011/1/22   问题单号:V2R3C03-ROTUE-MERGE  */
 typedef struct tagMIB_RTM_NET_FILTER
 {
     ULONG ulIfIndex;/*根据接口索引值过滤*/
@@ -568,7 +550,6 @@ typedef struct tag_rtm_net_route_key_index /*用于获取NEXT 对端信息的索引值*/
   USHORT usGetState;
   RM_NETRT_FILTER_S stNetFilter;
 }RTM_NET_ROUTE_KEY_INDEX_S;
-/*End of Modified by lixs00177467, 2011/1/22   问题单号:V2R3C03-ROTUE-MERGE  */
 
 typedef ACCESSLISTGROUP_S * (*RTMACLGETGROUP_HOOK_FUNC )(ULONG);
 typedef ULONG(*RTMACLREFRESHREGISTER_HOOK_FUNC )(PF_ACLREFRESHCALLBACK, ULONG);
@@ -665,7 +646,7 @@ typedef struct tagRM_CFGDISTRIBUTE
     oid[2] = (inst);\
 \
     oid[AMB_QCR_STRT_DEST_ADDR_TYPE_IX] = AMB_INETWK_ADDR_TYPE_IPV4;\
-    /*Modified begin by t00110672 for BC3D01783,   质量活动，消除魔鬼数字*/\
+\
     oid[AMB_QCR_STRT_DEST_ADDR_INDEX] = ATS_INET_ADDR_TYPE_IPV4_LEN;\
 \
     dest_addr = VOS_HTONL(dest_addr);\
@@ -727,8 +708,6 @@ typedef struct tagRM_CFGDISTRIBUTE
 /****************************end *************************************/
 
 /***************************************************************************/
-/* Modified by jijianhua00169178, 消除coverity告警,   2011/8/12            */
-/* ucPrefixLen==128时，数组越界访问,    问题单号:DTS2011081606263     */
 /***************************************************************************/
 #define RM_SUBADDR_BUILD(ucAddrType,pAddr,pSubAddr,ucPrefixLen)\
 {\
@@ -755,9 +734,7 @@ typedef struct tagRM_CFGDISTRIBUTE
     *pDst = (NBB_BYTE)(*pSrc & szMask[i]);\
   }\
 }
-/*End of Modified by jijianhua00169178,2011/8/12问题单号:DTS2011081606263 */
 
-/* Modified by chenwurui00206030 & zhongyu206043, 存在写越界情况（len=128） 2012/4/1   问题单号:fortify_dcl */
 #define RM_SUBBCAST_BUILD(ucAddrType,pAddr,pSubAddr,ucPrefixLen)\
 {\
   NBB_BYTE szMask[AMB_MAX_IPV6_ADDR_LEN];\
@@ -776,12 +753,11 @@ typedef struct tagRM_CFGDISTRIBUTE
   {\
     pSrc = ((NBB_BYTE*)(pAddr)+i);\
     pDst = ((NBB_BYTE*)(pSubAddr)+i);\
-    /*李雪生修改，DTS2011040100048 */\
+\
     /**pDst = (NBB_BYTE)(*pSrc & szMask[i]);*/\
     *pDst = (NBB_BYTE)(*pSrc | szMask[i]);\
   }\
 }
-/*End of Modified by chenwurui00206030 & zhongyu206043, 2012/4/1   问题单号:fortify_dcl */
 
 
 extern VOID RM_ShowMajorJoinAll();
@@ -800,9 +776,7 @@ extern RM_ERROR_S RM_SetProtoPriority(ULONG ulInstance,ULONG ulProto,ULONG ulPri
 extern RM_ERROR_S RM_GetProtoPriority(ULONG ulInstance,RM_DSP_INST_S *pstInstance);
 
 
-/*Begin BC3D02811 默认路由功能修改有遗漏 l00147446 2010-03-10*/
 extern RM_ERROR_S IP_ActiveIpv4Route(RM_CHECK_USR4_S *pstRmCheckRoute);
-/*End BC3D02811 默认路由功能修改有遗漏 l00147446 2010-03-10*/
 extern RM_ERROR_S IP_ActiveIpv6Route(RM_MOD_USR6_S *pstUsrIpTable);
 extern RM_ERROR_S IP_CheckIpv4Route(RM_CHECK_USR4_S * pstUsrChkTable);
 extern RM_ERROR_S IP_CheckIpv6Route(RM_CHECK_USR6_S * pstUsrChkTable);
@@ -844,8 +818,6 @@ VOID RM_DelPlyWhenDestroy(USHORT usProcType, USHORT usProcId);
 
 /*快查内部接口*/
 
-/* Deleted by jijianhua00169178, netroute删除, 2011/7/8   问题单号:DTS2011070700898 */
-/* End of Deleted by jijianhua00169178, 2011/7/8   问题单号:DTS2011070700898*/
 
 extern RM_ERROR_S RM_EnableIpv6RouteExt(RM_ENABLE_USR6_S * pstUsrIpEnable, ULONG ulVrfIndex);
 

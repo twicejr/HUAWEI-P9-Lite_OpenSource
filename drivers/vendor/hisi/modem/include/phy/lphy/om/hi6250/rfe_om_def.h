@@ -1,29 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
-******************************************************************************
- 文 件 名   : rfe_om_def.h
- 版 本 号   : 初稿
- 作    者   : wangxu
- 生成日期   : 2011年4月25日
- 最近修改   :
- 功能描述   : RFE OM 的头文件
- 函数列表   :
- 修改历史   :
- 1.日    期   : 2011年4月25日
-   作    者   : wangxu
-   修改内容   : 创建文件
- --------------------------------------------------------------------------------
-2.日  期   : 2011年 10 月 14日
-   作  者   : shijiahong
-   修改内容 : DTS2011101403388 合Hi6360可维可测
---------------------------------------------------------------------------------
-3.日  期     : 2011年10月31日
-  作  者     : wangxu
-  修改内容   : DTS2011103100442 LCS PHASE I 代码合入
-
-******************************************************************************/
 
 
 #ifndef __RFE_OM_DEF_H__
@@ -1431,7 +1406,7 @@ typedef struct
     RFIN_CH_CFG_STAT_ENUM_UINT16              enRfCfgStat;    /* 通道配置状态 */
     RFIN_CH_ACT_STAT_ENUM_UINT16              enRfActStat;    /* 通道激活状态 */
 
-    RFE_WORK_MODE_ENUM_UINT16                 usWorkMode;    /*正常工作模式，或者装备模式*/
+    RFE_WORK_MODE_ENUM_UINT16                 usWorkMode;
     UINT8                                     ucCtuChIdx;      /*对应的下行的ChIdx*/
     UINT8                                     ucCAInd;         /*通道对应的CA是否是激活状态*/
 
@@ -1740,7 +1715,7 @@ typedef struct
     UINT16 usRfCIIP2;
     UINT16 usRfDIIP2;
     RFE_WORK_MODE_ENUM_UINT16 usWorkMode;
-    UINT16 usAgcDcocMode;//added liliuwei00279357,0:agc dcoc都配置，1: 配置agc 2:配置dcoc  其他值；非法  20150306
+    UINT16 usAgcDcocMode;
     //UINT16 usRsv;
 } LTE_RFD_RX_AGC_CFG_STRU;
 

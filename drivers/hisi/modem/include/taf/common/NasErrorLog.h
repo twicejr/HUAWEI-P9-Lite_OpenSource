@@ -67,13 +67,7 @@ extern "C" {
   3 枚举定义
 *****************************************************************************/
 
-/*****************************************************************************
- 枚举名    : NAS_ERR_LOG_NET_RAT_TYPE_ENUM
- 结构说明  : 当前的接入技术
- 1.日    期   : 2013年08月12日
-   作    者   : f00179208
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_ERR_LOG_NET_RAT_TYPE_ENUM
 {
     NAS_ERR_LOG_NET_RAT_TYPE_GSM,           /* GSM接入技术 */
@@ -83,13 +77,7 @@ enum NAS_ERR_LOG_NET_RAT_TYPE_ENUM
 };
 typedef VOS_UINT8 NAS_ERR_LOG_NET_RAT_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_ERR_LOG_PS_ACTION_TYPE_ENUM
- 结构说明  : NAS_ERR_LOG_PS_REG_RESULT_EVENT_STRU消息中GMM操作类型
- 1.日    期   : 2013年08月12日
-   作    者   : f00179208
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_ERR_LOG_PS_ACTION_TYPE_ENUM
 {
     NAS_ERR_LOG_GMM_ACTION_RAU                  = 0,
@@ -101,13 +89,7 @@ enum NAS_ERR_LOG_PS_ACTION_TYPE_ENUM
 };
 typedef VOS_UINT32 NAS_ERR_LOG_GMM_ACTION_TYPE_ENUM_U32;
 
-/*****************************************************************************
- 枚举名    : NAS_ERR_LOG_REG_DOMAIN_ENUM
- 枚举说明  : 注册的域信息
- 1.日    期   : 2013年08月12日
-   作    者   : f00179208
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_ERR_LOG_REG_DOMAIN_ENUM
 {
     NAS_ERR_LOG_REG_DOMAIN_PS    = 0x00,                                        /* 注册结果域为PS域 */
@@ -116,13 +98,7 @@ enum NAS_ERR_LOG_REG_DOMAIN_ENUM
 };
 typedef VOS_UINT32 NAS_ERR_LOG_REG_DOMAIN_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : NAS_ERR_LOG_CALL_EX_STATE_ENUM
- 枚举说明  : 呼叫状态
- 1.日    期   : 2013年08月12日
-   作    者   : f00179208
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_ERR_LOG_CALL_EX_STATE_ENUM
 {
     NAS_ERR_LOG_CALL_S_ACTIVE,                                                  /* active */
@@ -141,16 +117,7 @@ enum NAS_ERR_LOG_CALL_EX_STATE_ENUM
 };
 typedef VOS_UINT8  NAS_ERR_LOG_CALL_STATE_ENUM_U8;
 
-/*****************************************************************************
- 枚举名    : NAS_ERR_LOG_ALM_ID_ENUM
- 枚举说明  : 故障告警ID
- 1.日    期   : 2013年08月27日
-   作    者   : f00179208
-   修改内容   : 新建
- 2.日    期   : 2014年09月16日
-   作    者   : f00179208
-   修改内容   : CS ERRLOG项目新增告警ID
-*****************************************************************************/
+
 enum NAS_ERR_LOG_ALM_ID_ENUM
 {
     NAS_ERR_LOG_ALM_CS_REG_FAIL                             = 0x01,             /* CS域注册失败 */
@@ -186,13 +153,7 @@ enum NAS_ERR_LOG_ALM_ID_ENUM
 };
 typedef VOS_UINT16  NAS_ERR_LOG_ALM_ID_ENUM_U16;
 
-/*****************************************************************************
- 枚举名    : NAS_ERR_LOG_ALM_REPORT_TYPE_ENUM
- 枚举说明  : err log主动上报类型
- 1.日    期   : 2013年07月06日
-   作    者   : n00269697
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_ERR_LOG_UNSOLI_REPORT_TYPE_ENUM
 {
     NAS_ERR_LOG_FAULT_REPORT                                = 0x01,             /* 故障上报 */
@@ -202,13 +163,7 @@ enum NAS_ERR_LOG_UNSOLI_REPORT_TYPE_ENUM
 };
 typedef VOS_UINT16  NAS_ERR_LOG_UNSOLI_REPORT_TYPE_ENUM_U16;
 
-/*****************************************************************************
- 枚举名    : NAS_ERR_LOG_ALM_TYPE_ENUM
- 枚举说明  : 故障告警类型
- 1.日    期   : 2013年08月27日
-   作    者   : f00179208
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_ERR_LOG_ALM_TYPE_ENUM
 {
     NAS_ERR_LOG_ALM_TYPE_COMMUNICATION    = 0x00,                               /* 通信 */
@@ -220,13 +175,7 @@ enum NAS_ERR_LOG_ALM_TYPE_ENUM
 };
 typedef VOS_UINT16  NAS_ERR_LOG_ALM_TYPE_ENUM_U16;
 
-/*****************************************************************************
- 枚举名    : NAS_ERR_LOG_FTM_PROJECT_ID_ENUM
- 枚举说明  : 工程模式上报的功能ID
- 1.日    期   : 2013年08月27日
-   作    者   : f00179208
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_ERR_LOG_FTM_PROJECT_ID_ENUM
 {
     NAS_FTM_PROJECT_TMSI_RPT,
@@ -236,13 +185,7 @@ enum NAS_ERR_LOG_FTM_PROJECT_ID_ENUM
 };
 typedef VOS_UINT16  NAS_ERR_LOG_FTM_PROJECT_ID_ENUM_U8;
 
-/*****************************************************************************
- 枚举名    : NAS_ERR_LOG_CS_PAGING_CAUSE_ENUM
- 枚举说明  : cs paging故障主动上报的错误原因值
- 1.日    期   : 2014年09月16日
-   作    者   : f00179208
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_ERR_LOG_CS_PAGING_CAUSE_ENUM
 {
     NAS_ERR_LOG_CS_PAGING_CAUSE_MM_STATE_ERR       = 1,                         /* MM状态不正确 */
@@ -257,13 +200,7 @@ enum NAS_ERR_LOG_CS_PAGING_CAUSE_ENUM
 };
 typedef VOS_UINT32  NAS_ERR_LOG_CS_PAGING_CAUSE_ENUM_U32;
 
-/*****************************************************************************
- 枚举名    : NAS_ERR_LOG_CS_MT_CALL_CAUSE_ENUM
- 枚举说明  : cs mt call故障主动上报的错误原因值
- 1.日    期   : 2014年09月16日
-   作    者   : f00179208
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_ERR_LOG_CS_MT_CALL_CAUSE_ENUM
 {
     /* CC的异常原因值 */
@@ -285,13 +222,7 @@ enum NAS_ERR_LOG_CS_MT_CALL_CAUSE_ENUM
 };
 typedef VOS_UINT32  NAS_ERR_LOG_CS_MT_CALL_CAUSE_ENUM_U32;
 
-/*****************************************************************************
- 枚举名    : NAS_ERR_BASE_LOG_STATE_ENUM
- 枚举说明  : 基本状态枚举
- 1.日    期   : 2015年07月23日
-   作    者   : f00179208
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_ERR_BASE_LOG_STATE_ENUM
 {
     NAS_ERR_LOG_BASE_STATE_NULL                                = 0x00,          /* 无效值 */
@@ -322,13 +253,7 @@ enum NAS_ERR_BASE_LOG_STATE_ENUM
 };
 typedef VOS_UINT32  NAS_ERR_LOG_BASE_STATE_ENUM_U32;
 
-/*****************************************************************************
- 枚举名    : NAS_ERR_LOG_CSFB_MT_STATE_ENUM
- 枚举说明  : csfb mt的状态
- 1.日    期   : 2014年09月16日
-   作    者   : f00179208
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_ERR_LOG_CSFB_MT_STATE_ENUM
 {
     NAS_ERR_LOG_CSFB_MT_STATE_NULL                                = 0x00,       /* 无效值 */
@@ -359,13 +284,7 @@ enum NAS_ERR_LOG_CSFB_MT_STATE_ENUM
 };
 typedef VOS_UINT32  NAS_ERR_LOG_CSFB_MT_STATE_ENUM_U32;
 
-/*****************************************************************************
-枚举名    :  NAS_ERR_LOG_MO_DETACH_TYPE_ENUM
-结构说明  :  MO DETACH类型枚举
-1.日    期   : 2015年3月10日
-  作    者   : n00269697
-  修改内容   : 新增
-*****************************************************************************/
+
 enum NAS_ERR_LOG_MO_DETACH_TYPE_ENUM
 {
     NAS_ERR_LOG_MO_DETACH_NULL          = 0,
@@ -378,14 +297,7 @@ enum NAS_ERR_LOG_MO_DETACH_TYPE_ENUM
 
 typedef VOS_UINT32 NAS_ERR_LOG_MO_DETACH_TYPE_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : NAS_INFO_CLT_BAND_IND_ENUM
- 结构说明  : 频段枚举
 
- 1.日    期   : 2015年07月08日
-   作    者   : f00179208
-   修改内容   : 新增
-*****************************************************************************/
 enum NAS_INFO_CLT_BAND_IND_ENUM
 {
     NAS_INFO_CLT_BAND_IND_NONE               = 0,
@@ -438,13 +350,7 @@ enum NAS_INFO_CLT_BAND_IND_ENUM
 };
 typedef VOS_UINT16 NAS_INFO_CLT_BAND_IND_ENUM_UINT16;
 
-/*****************************************************************************
-枚举名    :  NAS_INFO_CLT_SCENE_TYPE_ENUM
-结构说明  :  信息收集的场景ID
-1.日    期   : 2015年07月08日
-  作    者   : f00179208
-  修改内容   : 新增
-*****************************************************************************/
+
 enum NAS_INFO_CLT_INFO_ID_ENUM
 {
     NAS_INFO_CLT_SCENE_TYPE_FREQ_BAND            = 1,                           /* 云端频点频点信息收集 */
@@ -452,13 +358,7 @@ enum NAS_INFO_CLT_INFO_ID_ENUM
 };
 typedef VOS_UINT32 NAS_INFO_CLT_SCENE_TYPE_ENUM_UINT32;
 
-/*****************************************************************************
-枚举名    :  NAS_INFO_CLT_RATMODE_ENUM
-结构说明  :  接入模式
-1.日    期   : 2015年07月08日
-  作    者   : f00179208
-  修改内容   : 新增
-*****************************************************************************/
+
 enum NAS_INFO_CLT_RATMODE_ENUM
 {
     NAS_INFO_CLT_RATMODE_GSM                         = 0,
@@ -469,13 +369,7 @@ enum NAS_INFO_CLT_RATMODE_ENUM
 };
 typedef VOS_UINT8 NAS_INFO_CLT_RATMODE_ENUM_UINT8;
 
-/*****************************************************************************
-枚举名    :  NAS_ERR_LOG_OOS_EVENT_ENUM
-结构说明  :  导致无服务的事件枚举
-1.日    期   : 2015年08月13日
-  作    者   : f00179208
-  修改内容   : 新增
-*****************************************************************************/
+
 enum NAS_ERR_LOG_OOS_EVENT_ENUM
 {
     NAS_ERR_LOG_OOS_EVENT_NULL                                           = 0x0,
@@ -545,13 +439,7 @@ enum NAS_ERR_LOG_OOS_EVENT_ENUM
 };
 typedef VOS_UINT32 NAS_ERR_LOG_OOS_EVENT_ENUM_UINT32;
 
-/*****************************************************************************
-枚举名    :  NAS_ERR_LOG_OOS_CAUSE_ENUM
-结构说明  :  导致无服务的原因值枚举
-1.日    期   : 2015年08月13日
-  作    者   : f00179208
-  修改内容   : 新增
-*****************************************************************************/
+
 enum NAS_ERR_LOG_OOS_CAUSE_ENUM
 {
     NAS_ERR_LOG_OOS_CAUSE_NULL                                           = 0x0,
@@ -621,13 +509,7 @@ enum NAS_ERR_LOG_OOS_CAUSE_ENUM
 };
 typedef VOS_UINT32 NAS_ERR_LOG_OOS_CAUSE_ENUM_UINT32;
 
-/*****************************************************************************
-枚举名    :  NAS_ERR_LOG_RATMODE_ENUM
-结构说明  :  接入模式
-1.日    期   : 2015年08月13日
-  作    者   : f00179208
-  修改内容   : 新增
-*****************************************************************************/
+
 enum NAS_ERR_LOG_RATMODE_ENUM
 {
     NAS_ERR_LOG_RATMODE_GSM                         = 0,
@@ -638,13 +520,7 @@ enum NAS_ERR_LOG_RATMODE_ENUM
 };
 typedef VOS_UINT8 NAS_ERR_LOG_RATMODE_ENUM_UINT8;
 
-/*****************************************************************************
-枚举名    :  NAS_ERR_LOG_OOS_DOMAIN_ENUM
-结构说明  :  无服务域
-1.日    期   : 2015年08月13日
-  作    者   : f00179208
-  修改内容   : 新增
-*****************************************************************************/
+
 enum NAS_ERR_LOG_OOS_DOMAIN_ENUM
 {
     NAS_ERR_LOG_OOS_NO_DOMAIN                       = 0,
@@ -683,26 +559,14 @@ typedef VOS_UINT32 NAS_ERR_LOG_PROCESS_INFO_TYPE_ENUM_UINT32;
 /*****************************************************************************
   7 STRUCT定义
 *****************************************************************************/
-/*******************************************************************************
- 结构名    : NAS_ERR_LOG_LAI_INFO_STRU
- 结构说明  : 位置区信息的结构体
- 1.日    期   : 2013年08月12日
-   作    者   : f00179208
-   修改内容   : 新建
-*******************************************************************************/
+
 typedef struct
 {
     MNTN_PLMN_ID_STRU                   stPlmn;
     VOS_UINT32                          ulLac;
 }NAS_ERR_LOG_LAI_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_ERR_LOG_CS_REG_RESULT_EVENT_STRU
- 结构说明  : MM的LAU结果消息结构体
- 1.日    期   : 2013年08月12日
-   作    者   : f00179208
-   修改内容   : 新建
-*******************************************************************************/
+
 typedef struct
 {
     OM_ERR_LOG_HEADER_STRU              stHeader;
@@ -719,13 +583,7 @@ typedef struct
     VOS_UINT8                           aucReserved[3];                         /* 保留域 */
 }NAS_ERR_LOG_CS_REG_RESULT_EVENT_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_ERR_LOG_PS_REG_RESULT_EVENT_STRU
- 结构说明  : GMM的Attach/RAU结果消息结构体
- 1.日    期   : 2013年08月12日
-   作    者   : f00179208
-   修改内容   : 新建
- *******************************************************************************/
+
 typedef struct
 {
     OM_ERR_LOG_HEADER_STRU                    stHeader;
@@ -741,13 +599,7 @@ typedef struct
     NAS_MNTN_POSITION_INFO_STRU               stPositionInfo;                   /* 位置信息 */
 }NAS_ERR_LOG_PS_REG_RESULT_EVENT_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_ERR_LOG_PS_SRV_REG_RESULT_EVENT_STRU
- 结构说明  : GMM的PS SERVICE 注册结果消息结构体
- 1.日    期   : 2014年10月28日
-   作    者   : n00269697
-   修改内容   : 新建
- *******************************************************************************/
+
 typedef struct
 {
     OM_ERR_LOG_HEADER_STRU                    stHeader;
@@ -760,13 +612,7 @@ typedef struct
 }NAS_ERR_LOG_PS_SRV_REG_RESULT_EVENT_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_ERR_LOG_MN_CALL_DISC_DIR_STRU
- 结构说明  : 被叫号码结构体
- 1.日    期   : 2013年08月12日
-   作    者   : f00179208
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucIsUser;
@@ -774,13 +620,15 @@ typedef struct
     VOS_UINT8                           aucReserved[2];
 }NAS_ERR_LOG_MN_CALL_DISC_DIR_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_ERR_LOG_CS_CALL_FAIL_EVENT_STRU
- 结构说明  : 呼叫掉话相关的消息结构体
- 1.日    期   : 2013年08月12日
-   作    者   : f00179208
-   修改内容   : 新建
-*******************************************************************************/
+
+typedef struct
+{
+    VOS_UINT8                           ucImsCallFailFlag;
+    VOS_UINT8                           aucReserved[3];
+    VOS_UINT32                          ulImsCallFailCause;
+}NAS_ERR_LOG_IMS_CALL_FAIL_INFO_STRU;
+
+
 typedef struct
 {
     OM_ERR_LOG_HEADER_STRU                                  stHeader;
@@ -794,28 +642,17 @@ typedef struct
     NAS_MNTN_POSITION_INFO_STRU                             stPositionInfo;     /* 位置信息 */
     VOS_UINT16                                              usCellDlFreq;       /*小区频点(下行)*/
     VOS_UINT16                                              usCellUlFreq;       /*当前频点(上行)*/
+    NAS_ERR_LOG_IMS_CALL_FAIL_INFO_STRU                     stImsCallFailInfo;  /* IMS CALL失败信息 */
 }NAS_ERR_LOG_CS_CALL_FAIL_EVENT_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_ERR_LOG_APS_FSM_CTX_STRU
- 结构说明  : 状态机状态描述结构
- 1.日    期   : 2013年08月12日
-   作    者   : f00179208
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulFsmId;                                /* 当前状态机标识 */
     VOS_UINT32                          ulState;                                /* 当前状态 */
 }NAS_ERR_LOG_APS_FSM_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MNTN_APS_FSM_INFO_STRU
- 结构说明  : APS状态机信息
- 1.日    期   : 2013年08月12日
-   作    者   : f00179208
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     NAS_ERR_LOG_APS_FSM_CTX_STRU        stMainFsm;                              /* 主状态机 */
@@ -824,13 +661,7 @@ typedef struct
     VOS_UINT8                           aucReserve[3];
 }NAS_ERR_LOG_APS_PDP_ENTITY_FSM_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_ERR_LOG_PS_CALL_FAIL_EVENT_STRU
- 结构说明  : PS域呼叫相关错误的消息结构体
- 1.日    期   : 2013年08月12日
-   作    者   : f00179208
-   修改内容   : 新建
-*******************************************************************************/
+
 typedef struct
 {
     OM_ERR_LOG_HEADER_STRU                      stHeader;
@@ -841,13 +672,7 @@ typedef struct
     VOS_UINT32                                  ulPsCause;                      /* 失败原因 */
 }NAS_ERR_LOG_PS_CALL_FAIL_EVENT_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_ERR_LOG_SMS_MO_FAIL_EVENT_STRU
- 结构说明  : 短信发送失败相关错误的消息结构体
- 1.日    期   : 2013年08月12日
-   作    者   : f00179208
-   修改内容   : 新建
-*******************************************************************************/
+
 typedef struct
 {
     OM_ERR_LOG_HEADER_STRU                                  stHeader;
@@ -858,13 +683,7 @@ typedef struct
     NAS_MNTN_SEND_DOMAIN_STATUS_ENUM_UINT32                 enPsStatus;
 }NAS_ERR_LOG_SMS_MO_FAIL_EVENT_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_ERR_LOG_VC_FAILURE_EVENT_STRU
- 结构说明  : VC模块相关错误的消息结构体
- 1.日    期   : 2013年08月12日
-   作    者   : f00179208
-   修改内容   : 新建
-*******************************************************************************/
+
 typedef struct
 {
     OM_ERR_LOG_HEADER_STRU                  stHeader;
@@ -873,13 +692,7 @@ typedef struct
     VOS_UINT32                              ulName;                             /* 消息名称 */
 }NAS_ERR_LOG_VC_FAILURE_EVENT_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_ERR_LOG_CS_PAGING_FAIL_EVENT_STRU
- 结构说明  : 收到paging时的相关错误的消息结构体
- 1.日    期   : 2014年09月16日
-   作    者   : f00179208
-   修改内容   : CS ERRLOG项目新增
-*******************************************************************************/
+
 typedef struct
 {
     OM_ERR_LOG_HEADER_STRU                  stHeader;
@@ -905,13 +718,7 @@ typedef struct
     VOS_UINT8                               ucLastPagingCause;                  /* 最近一次的paging原因值 */
 }NAS_ERR_LOG_CS_PAGING_FAIL_EVENT_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_ERR_LOG_CS_MT_CALL_FAIL_EVENT_STRU
- 结构说明  : CS MT时的相关错误的消息结构体
- 1.日    期   : 2014年09月16日
-   作    者   : f00179208
-   修改内容   : CS ERRLOG项目新增
-*******************************************************************************/
+
 typedef struct
 {
     OM_ERR_LOG_HEADER_STRU                  stHeader;
@@ -919,26 +726,14 @@ typedef struct
     NAS_ERR_LOG_CS_MT_CALL_CAUSE_ENUM_U32   enCause;
 }NAS_ERR_LOG_CS_MT_CALL_FAIL_EVENT_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_ERR_LOG_BAST_STATE_TO_CSFB_MT_STATE_STRU
- 结构说明  : 基本状态转换为CSFB MT的过程状态结构
- 1.日    期   : 2015年07月23日
-   作    者   : f00179208
-   修改内容   : 新建
-*******************************************************************************/
+
 typedef struct
 {
     NAS_ERR_LOG_BASE_STATE_ENUM_U32     enBaseState;                            /* 基本过程状态 */
     NAS_ERR_LOG_CSFB_MT_STATE_ENUM_U32  enCsfbMtState;                          /* CSFB MT的过程状态 */
 }NAS_ERR_LOG_BAST_STATE_TO_CSFB_MT_STATE_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_ERR_LOG_CSFB_MT_STATE_INFO_STRU
- 结构说明  : CSFB MT时的过程状态信息结构
- 1.日    期   : 2015年07月13日
-   作    者   : f00179208
-   修改内容   : 新增
-*******************************************************************************/
+
 typedef struct
 {
     NAS_ERR_LOG_CSFB_MT_STATE_ENUM_U32  enCsfbMtState;                          /* 过程状态 */
@@ -947,13 +742,7 @@ typedef struct
     VOS_UINT32                          ulTick;                                 /* 状态对应Tick */
 }NAS_ERR_LOG_CSFB_MT_STATE_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_ERR_LOG_CSFB_MT_CALL_FAIL_EVENT_STRU
- 结构说明  : CSFB MT时的相关错误的消息结构体
- 1.日    期   : 2014年09月16日
-   作    者   : f00179208
-   修改内容   : CS ERRLOG项目新增
-*******************************************************************************/
+
 typedef struct
 {
     OM_ERR_LOG_HEADER_STRU                  stHeader;
@@ -964,26 +753,14 @@ typedef struct
     NAS_ERR_LOG_CSFB_MT_STATE_INFO_STRU     astStateInfo[NAS_ERR_LOG_MAX_CSFB_MT_STATE_RECORD_NUM];
 }NAS_ERR_LOG_CSFB_MT_CALL_FAIL_EVENT_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_ERR_LOG_MNTN_EVENT_STRU
- 结构说明  : 故障告警的可维可测消息结构体
- 1.日    期   : 2014年09月16日
-   作    者   : f00179208
-   修改内容   : CS ERRLOG项目新增
-*******************************************************************************/
+
 typedef struct
 {
     OM_ERR_LOG_HEADER_STRU                  stHeader;
     VOS_UINT32                              ulCount;                            /* 缓存区溢出计数 */
 }NAS_ERR_LOG_MNTN_EVENT_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_ERR_LOG_NW_DETACH_IND_EVENT_STRU
- 结构说明  : 网络Detach指示的消息结构体
- 1.日    期   : 2014年09月16日
-   作    者   : f00179208
-   修改内容   : CS ERRLOG项目新增
-*******************************************************************************/
+
 typedef struct
 {
     OM_ERR_LOG_HEADER_STRU                  stHeader;
@@ -996,13 +773,7 @@ typedef struct
     VOS_UINT8                               aucReserved[3];
 }NAS_ERR_LOG_NW_DETACH_IND_EVENT_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_ERR_LOG_CM_SRV_REJ_IND_EVENT_STRU
- 结构说明  : CM SERVICE REJ的消息结构体
- 1.日    期   : 2015年03月10日
-   作    者   : f00179208
-   修改内容   : 新建
- *******************************************************************************/
+
 typedef struct
 {
     OM_ERR_LOG_HEADER_STRU              stHeader;
@@ -1013,13 +784,7 @@ typedef struct
     VOS_UINT8                           aucReserved[3];
 }NAS_ERR_LOG_CM_SRV_REJ_IND_EVENT_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_ERR_LOG_MO_DETACH_IND_EVENT_STRU
- 结构说明  : 主动detach的消息结构体
- 1.日    期   : 2015年03月10日
-   作    者   : f00179208
-   修改内容   : 新建
- *******************************************************************************/
+
 typedef struct
 {
     OM_ERR_LOG_HEADER_STRU                  stHeader;
@@ -1027,13 +792,7 @@ typedef struct
     NAS_ERR_LOG_MO_DETACH_TYPE_ENUM_UINT32  enDetachType;                       /* detach类型 */
 }NAS_ERR_LOG_MO_DETACH_IND_EVENT_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_ERR_LOG_RAT_SWITCH_RECORD_STRU
- 结构说明  : RAT切换时需要记录的信息
- 1.日    期   : 2015年03月13日
-   作    者   : zwx247453
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     NAS_MNTN_POSITION_INFO_STRU         stPositionInfo;
@@ -1042,13 +801,7 @@ typedef struct
     VOS_UINT32                          ulSystemTick;
 }NAS_ERR_LOG_RAT_SWITCH_RECORD_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_ERR_LOG_RAT_FREQUENTLY_SWITCH_EVENT_STRU
- 结构说明  : 2G/3G/4G间频繁切换的消息结构体
- 1.日    期   : 2015年03月10日
-   作    者   : f00179208
-   修改内容   : 新建
- *******************************************************************************/
+
 typedef struct
 {
     OM_ERR_LOG_HEADER_STRU              stHeader;
@@ -1057,29 +810,14 @@ typedef struct
     VOS_UINT32                          ulSwitchNum;                            /* 切换次数 */
 }NAS_ERR_LOG_RAT_FREQUENTLY_SWITCH_EVENT_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_ERR_LOG_OOS_EVENT_TO_OOS_CAUSE_STRU
- 结构说明  : 无服务事件转换为无服务原因值
- 1.日    期   : 2015年08月21日
-   作    者   : f00179208
-   修改内容   : 新建
-*******************************************************************************/
+
 typedef struct
 {
     NAS_ERR_LOG_OOS_EVENT_ENUM_UINT32   enOosEvent;                             /* 丢网事件 */
     NAS_ERR_LOG_OOS_CAUSE_ENUM_UINT32   enOosCause;                             /* 丢网原因 */
 }NAS_ERR_LOG_OOS_EVENT_TO_OOS_CAUSE_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_ERR_LOG_OOS_BEGIN_STRU
- 结构说明  : 丢网开始的信息结构
 
- 修改记录  :
- 1.日    期   : 2015年08月11日
-   作    者   : f00179208
-   修改内容   : 新增
-
-*****************************************************************************/
 typedef struct
 {
     OM_ERR_LOG_HEADER_STRU              stHeader;
@@ -1094,15 +832,7 @@ typedef struct
     VOS_UINT8                           aucReserved[3];                         /* 保留域 */
 }NAS_ERR_LOG_OOS_BEGIN_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_INFO_CLT_OOS_INFO_STRU
- 结构说明  : OOS状态下搜网信息结构
 
- 修改记录  :
- 1. 日    期   : 2015年12月1日
-    作    者   : n00355355
-    修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          ulCurHistoryTimerCount;                         /* 当前History Timer次数 */
@@ -1113,16 +843,7 @@ typedef struct
 }NAS_INFO_CLT_OOS_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_ERR_LOG_OOS_NW_SRCH_PROC_INFO_STRU
- 结构说明  : 丢网恢复过程记录信息
 
- 修改记录  :
- 1.日    期   : 2015年08月11日
-   作    者   : f00179208
-   修改内容   : 新增
-
-*****************************************************************************/
 typedef struct
 {
     OM_ERR_LOG_HEADER_STRU                  stHeader;
@@ -1139,16 +860,7 @@ typedef struct
     VOS_UINT8                               aucReserved[2];
 }NAS_ERR_LOG_OOS_NW_SRCH_PROC_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_ERR_LOG_OOS_END_STRU
- 结构说明  : 丢网结束的信息结构
 
- 修改记录  :
- 1.日    期   : 2015年08月11日
-   作    者   : f00179208
-   修改内容   : 新增
-
-*****************************************************************************/
 typedef struct
 {
     OM_ERR_LOG_HEADER_STRU              stHeader;
@@ -1162,16 +874,7 @@ typedef struct
     VOS_UINT8                           aucReserved[2];                         /* 保留域 */
 }NAS_ERR_LOG_OOS_END_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_ERR_LOG_SRVCC_FAIL_CAUSE_ENUM
- 结构说明  : SRVCC失败的原因枚举
 
- 修改记录  :
- 1.日    期   : 2015年12月5日
-   作    者   : n00269697
-   修改内容   : 新增
-
-*****************************************************************************/
 enum NAS_ERR_LOG_SRVCC_FAIL_CAUSE_ENUM
 {
     NAS_ERR_LOG_SRVCC_FAIL_NULL                             = 0,
@@ -1181,16 +884,7 @@ enum NAS_ERR_LOG_SRVCC_FAIL_CAUSE_ENUM
 };
 
 typedef VOS_UINT8 NAS_ERR_LOG_SRVCC_FAIL_CAUSE_ENUM_UINT8;
-/*****************************************************************************
- 结构名    : NAS_ERR_LOG_SRVCC_FAIL_STRU
- 结构说明  : SRVCC失败的信息结构
 
- 修改记录  :
- 1.日    期   : 2015年12月5日
-   作    者   : n00269697
-   修改内容   : 新增
-
-*****************************************************************************/
 typedef struct
 {
     OM_ERR_LOG_HEADER_STRU                                  stHeader;
@@ -1199,15 +893,7 @@ typedef struct
     VOS_UINT8                                               aucReserve[3];
 }NAS_ERR_LOG_SRVCC_FAIL_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_ERR_LOG_CS_CALL_DISC_INFO_STRU
- 结构说明  : 呼叫挂断的信息结构
 
- 修改记录  :
- 1.日    期   : 2015年09月17日
-   作    者   : f00179208
-   修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucCallId;                               /* call id */
@@ -1215,30 +901,14 @@ typedef struct
     VOS_UINT32                          ulCause;                                /* 失败原因值 */
 }NAS_ERR_LOG_CS_CALL_DISC_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_ERR_LOG_ID_RES_INFO_STRU
- 结构说明  : 身份识别响应信息结构
 
- 修改记录  :
- 1.日    期   : 2015年09月17日
-   作    者   : f00179208
-   修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucIDReqType;
     VOS_UINT8                           aucReserved[3];                         /* 保留域 */
 }NAS_ERR_LOG_ID_RES_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_ERR_LOG_PROCESS_INFO_IND_EVENT_STRU
- 结构说明  : 过程信息指示事件结构
 
- 修改记录  :
- 1.日    期   : 2015年09月17日
-   作    者   : f00179208
-   修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     OM_ERR_LOG_HEADER_STRU                      stHeader;
@@ -1247,15 +917,7 @@ typedef struct
     NAS_ERR_LOG_ID_RES_INFO_STRU                stIDResInfo;
 }NAS_ERR_LOG_PROCESS_INFO_IND_EVENT_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_ERR_LOG_MULTI_BAND_SCAN_PROC_INFO_STRU
- 结构说明  : CSS Multi-Band SCAN过程记录信息
 
- 修改记录  :
- 1.日    期   : 2015年10月30日
-   作    者   : h00279575
-   修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                   ulBandScanStartSlice;   /* CSS Multi-Band SCAN的开始时间 */
@@ -1266,15 +928,7 @@ typedef struct
     VOS_UINT8                    ucLteCoverageType;      /* 同上*/
 }NAS_ERR_LOG_MULTI_BAND_SCAN_PROC_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_ERR_LOG_FFT_SRCH_MCC_PROC_INFO_STRU
- 结构说明  : 丢网恢复过程记录信息
 
- 修改记录  :
- 1.日    期   : 2015年10月30日
-   作    者   : h00279575
-   修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     OM_ERR_LOG_HEADER_STRU                      stHeader;
@@ -1287,68 +941,35 @@ typedef struct
     NAS_ERR_LOG_MULTI_BAND_SCAN_PROC_INFO_STRU  stMultiBandScanInfo;
 }NAS_ERR_LOG_FFT_SRCH_MCC_PROC_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_FTM_TMSI_RPT_EVENT_STRU
- 结构说明  : TMSI生成和更新后上报的消息结构体
- 1.日    期   : 2013年08月12日
-   作    者   : f00179208
-   修改内容   : 新建
-*******************************************************************************/
+
 typedef struct
 {
     OM_FTM_HEADER_STRU                      stHeader;
     VOS_UINT8                               aucTmsi[NAS_FTM_MAX_TMSI_LEN];      /* tmsi的内容 */
 }NAS_FTM_TMSI_RPT_EVENT_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_FTM_PTMSI_RPT_EVENT_STRU
- 结构说明  : PTMSI生成和更新后上报的消息结构体
- 1.日    期   : 2013年08月12日
-   作    者   : f00179208
-   修改内容   : 新建
-*******************************************************************************/
+
 typedef struct
 {
     OM_FTM_HEADER_STRU                      stHeader;
     VOS_UINT8                               aucPtmsi[NAS_FTM_MAX_PTMSI_LEN];    /* ptmsi的内容 */
 }NAS_FTM_PTMSI_RPT_EVENT_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_ERR_LOG_ALM_LEVEL_STRU
- 结构说明  : Alm ID与log级别对应的结构体
- 1.日    期   : 2013年08月12日
-   作    者   : s00190137
-   修改内容   : 新建
-*******************************************************************************/
+
 typedef struct
 {
     NAS_ERR_LOG_ALM_ID_ENUM_U16             enAlmID;        /* 异常模块ID */
     VOS_UINT16                              usLogLevel;     /* 上报log等级 */
 }NAS_ERR_LOG_ALM_LEVEL_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_ERR_LOG_ALM_REPORT_TYPE_STRU
- 结构说明  : Alm ID与主动上报类型对应的结构体
- 1.日    期   : 2015年07月06日
-   作    者   : n00269697
-   修改内容   : 新建
-*******************************************************************************/
+
 typedef struct
 {
     NAS_ERR_LOG_ALM_ID_ENUM_U16                             enAlmID;            /* 异常模块ID */
     NAS_ERR_LOG_UNSOLI_REPORT_TYPE_ENUM_U16                 enReportType;       /* 上报log等级 */
 }NAS_ERR_LOG_ALM_REPORT_TYPE_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_ERR_LOG_MNTN_PUT_BUF_INFO_STRU
- 结构说明  : MM层ERRLOG故障告警发生时写环形缓存的勾包结构
 
- 修改记录  :
- 1.日    期   : 2013年09月10日
-   作    者   : f00179208
-   修改内容   : 新增
-
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER
@@ -1356,14 +977,7 @@ typedef struct
     VOS_UINT8                           aucContent[4];                          /* 消息内容 */
 }NAS_ERR_LOG_MNTN_PUT_BUF_INFO_STRU;
 
-/******************************************************************************
-结构名    : NAS_MNTN_SIM_STATUS_ENUM_UINT8
-结构说明  : 卡状态
-  1.日    期   : 2015年12月18日
-    作    者   : s00217060
-    修改内容   : 新建
 
-******************************************************************************/
 enum  NAS_MNTN_SIM_STATUS_ENUM
 {
     NAS_MNTN_SIM_STATUS_UNVALID         = 0,                                    /* 初始化卡状态 */
@@ -1384,13 +998,7 @@ enum  NAS_MNTN_SIM_STATUS_ENUM
 
 typedef VOS_UINT8  NAS_MNTN_SIM_STATUS_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MNTN_SIM_TYPE_ENUM_UINT8
- 枚举说明  : 卡的类型
-  1.日    期   : 2015年12月18日
-    作    者   : s00217060
-    修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MNTN_SIM_TYPE_ENUM
 {
     NAS_MNTN_SIM_TYPE_SIM                ,                   /* SIM卡 */
@@ -1402,13 +1010,7 @@ enum NAS_MNTN_SIM_TYPE_ENUM
 };
 typedef VOS_UINT8 NAS_MNTN_SIM_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_ERR_LOG_SIM_INFO
- 枚举说明  : 卡相关的信息
-  1.日    期   : 2015年12月18日
-    作    者   : s00217060
-    修改内容   : 新建
-*****************************************************************************/
+
 
 typedef struct
 {
@@ -1417,13 +1019,7 @@ typedef struct
     VOS_UINT8                           aucRsv[2];
 }NAS_ERR_LOG_SIM_INFO;
 
-/*******************************************************************************
- 结构名    : NAS_ERR_LOG_GET_CARD_IMSI_FAIL_STRU
- 结构说明  : 调用usim的API获取card imsi失败时的消息结构体
-  1.日    期   : 2015年12月18日
-    作    者   : s00217060
-    修改内容   : 新建
-*******************************************************************************/
+
 typedef struct
 {
     OM_ERR_LOG_HEADER_STRU              stHeader;
@@ -1434,28 +1030,14 @@ typedef struct
     NAS_ERR_LOG_SIM_INFO                stCsimInfo;
 }NAS_ERR_LOG_GET_CARD_IMSI_FAIL_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_INFO_CLT_GU_FREQ_INFO_STRU
- 结构说明  : GU频点信息
 
- 1.日    期   : 2015年07月08日
-   作    者   : f00179208
-   修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     NAS_INFO_CLT_BAND_IND_ENUM_UINT16   enBandInd;                              /* 频段指示 */
     VOS_UINT16                          usFreq;                                 /* 频点信息 */
 }NAS_INFO_CLT_GU_FREQ_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_INFO_CLT_LTE_FREQ_INFO_STRU
- 结构说明  : LTE频点信息
 
- 1.日    期   : 2015年07月08日
-   作    者   : f00179208
-   修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     NAS_INFO_CLT_BAND_IND_ENUM_UINT16   enBandInd;                              /* 频段指示 */
@@ -1463,16 +1045,7 @@ typedef struct
     VOS_UINT32                          ulFreq;                                 /* 频点信息 */
 }NAS_INFO_CLT_LTE_FREQ_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_INFO_CLT_GSM_FREQ_INFO_STRU
- 结构说明  : GSM下的频点频段信息结构
 
- 修改记录  :
- 1.日    期   : 2015年07月08日
-   作    者   : f00179208
-   修改内容   : 新增
-
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16                          usFreqNum;                              /* 频点数目 */
@@ -1481,16 +1054,7 @@ typedef struct
     NAS_INFO_CLT_GU_FREQ_INFO_STRU      astFreqInfo[NAS_INFO_CLT_MAX_GSM_FREQ_NUM];  /* 频点信息列表 */
 }NAS_INFO_CLT_GSM_FREQ_LIST_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_INFO_CLT_WCDMA_FREQ_INFO_STRU
- 结构说明  : WCDMA下的频点频段信息结构
 
- 修改记录  :
- 1.日    期   : 2015年07月08日
-   作    者   : f00179208
-   修改内容   : 新增
-
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16                          usFreqNum;                              /* 频点数目 */
@@ -1499,16 +1063,7 @@ typedef struct
     NAS_INFO_CLT_GU_FREQ_INFO_STRU      astFreqInfo[NAS_INFO_CLT_MAX_WCDMA_FREQ_NUM]; /* 频点信息列表 */
 }NAS_INFO_CLT_WCDMA_FREQ_LIST_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_INFO_CLT_LTE_FREQ_INFO_STRU
- 结构说明  : LTE下的频点频段信息结构
 
- 修改记录  :
- 1.日    期   : 2015年07月08日
-   作    者   : f00179208
-   修改内容   : 新增
-
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16                          usFreqNum;                              /* 频点数目 */
@@ -1517,16 +1072,7 @@ typedef struct
     NAS_INFO_CLT_LTE_FREQ_INFO_STRU     astFreqInfo[NAS_INFO_CLT_MAX_LTE_FREQ_NUM];  /* 频点信息列表 */
 }NAS_INFO_CLT_LTE_FREQ_LIST_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_ERR_LOG_CLOUD_BAND_INFO_STRU
- 结构说明  : 云端频段搜集的信息结构
 
- 修改记录  :
- 1.日    期   : 2015年07月08日
-   作    者   : f00179208
-   修改内容   : 新增
-
-*****************************************************************************/
 typedef struct
 {
     OM_INFO_CLT_HEADER_STRU             stHeader;
@@ -1541,14 +1087,7 @@ typedef struct
 }NAS_INFO_CLT_CLOUD_FREQ_BAND_EVENT_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_INFO_CLT_NETWORK_INFO_EVENT_STRU
- 结构说明  : 网络信息采集信息
 
-  1.日    期   : 2015年10月20日
-    作    者   : 张义芳 z00328328
-    修改内容   : 创建, for 上行发射功率收集
-*****************************************************************************/
 typedef struct
 {
     OM_INFO_CLT_HEADER_STRU             stHeader;

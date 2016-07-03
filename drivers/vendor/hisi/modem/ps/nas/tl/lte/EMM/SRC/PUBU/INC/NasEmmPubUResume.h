@@ -121,9 +121,7 @@ extern VOS_UINT32  NAS_EMM_MsResumeSsRrcOriWaitSysInfoIndMsgMmcDetachReq
     VOS_UINT32  ulMsgId,
     VOS_VOID   *pMsgStru
 );
-/* leixiantiao 00258641 重构函数降低圈复杂度 begin */
 extern VOS_VOID NAS_EMM_MsResumeSsRrcOriWaitSysInfoIndMsgWtSysInfoTimerExpHoProc(VOS_VOID);
-/* leixiantiao 00258641 重构函数降低圈复杂度 end */
 
 extern VOS_UINT32   NAS_EMM_MsResumeSsRrcOriWaitSysInfoIndMsgSysInfoInd(
                                         VOS_UINT32  ulMsgId,
@@ -156,11 +154,9 @@ extern VOS_UINT32   NAS_EMM_NoCellSuspendMsgMmcPlmnReq( VOS_VOID );
 extern VOS_VOID     NAS_EMM_NoImsiSuspendMsgMmcPlmnReq( VOS_VOID );
 extern VOS_VOID     NAS_EMM_SendLrcResumeRsp( VOS_VOID);
 extern VOS_VOID     NAS_EMM_MmcRsmGetSecuPara( VOS_VOID );
-/* leixiantiao 00258641 重构代码降低圈复杂度 2014-7-30 begin */
 extern VOS_UINT32 NAS_EMM_IsG2LAndGmmSuspendWithCsPsUeMode(VOS_VOID);
 extern VOS_UINT32  NAS_LMM_PreProcMmcCsConnStatusNotify(MsgBlock *    pMsg );
 extern VOS_UINT32 NAS_EMM_IsLauOrComRauOrSrvccHappenedWithCsPsUeMode(VOS_VOID);
-/* leixiantiao 00258641 重构代码降低圈复杂度 2014-7-30 end */
 
 extern VOS_UINT32 NAS_EMM_IsEmcCsfbHappenedAndLaiChangWithCsPsUeMode(VOS_VOID);
 extern VOS_UINT32 NAS_EMM_IsG2LIsrActAndP4ConditionSatisfied(NAS_LMM_RSM_SYS_CHNG_DIR_ENUM_UINT32    enRsmDir );

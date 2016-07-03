@@ -33,16 +33,7 @@
 /*****************************************************************************
   4 全局变量声明
 *****************************************************************************/
-/*****************************************************************************
- 变量名    : g_stTafSsaEncodeProcFunc
- 结构说明  : 消息与对应处理函数的映射表
-             usMsgType                       - 待编码的消息类型；
-             TAF_MmiEncodeRegisterMmiString  - 编码处理函数
 
-  1.日    期   : 2013年05月06日
-    作    者   : 傅映君/62575
-    修改内容   : SS FDN&Call Control
-*****************************************************************************/
 TAF_MMI_ENCODE_PROC_FUNC_STRU           g_astTafMmiEncodeSsProcFunc[] = {
     {TAF_MMI_BuildEventType(WUEPS_PID_AT, TAF_MSG_REGISTERSS_MSG),         TAF_MmiEncodeRegisterMmiString},
     {TAF_MMI_BuildEventType(WUEPS_PID_AT, TAF_MSG_ERASESS_MSG),            TAF_MmiEncodeActiveMmiString},
@@ -93,20 +84,7 @@ LOCAL VOS_UINT8 g_aucTafMmiDefAsciiToAlphaTbl[] =
   5 函数实现
 *****************************************************************************/
 
-/**********************************************************
- 函 数 名  : TAF_MmiGetEventOperationTypeTblSize
- 功能描述  : 获取用户事件与通用补充业务操作码映射表的容量
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 用户事件与通用补充业务操作码映射表的容量
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年05月06日
-    作    者   : f62575
-    修改内容   : SS FDN&Call Control项目，
-*************************************************************/
 
 VOS_UINT32 TAF_MmiGetEventOperationTypeTblSize(VOS_VOID)
 {
@@ -117,61 +95,19 @@ VOS_UINT32 TAF_MmiGetEventOperationTypeTblSize(VOS_VOID)
     return ulTblSize;
 }
 
-/**********************************************************
- 函 数 名  : MMI_GetSsOporationTblAddr
- 功能描述  : 获取用户事件与通用补充业务操作码映射表的的地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 用户事件与通用补充业务操作码映射表的的地址
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年05月06日
-    作    者   : f62575
-    修改内容   : SS FDN&Call Control项目，
-*************************************************************/
 TAF_MMI_OPERATION_TABLE_STRU *TAF_MmiGetEventOperationTypeTblAddr(VOS_VOID)
 {
     return g_astTafMmiEventOperationTypeTbl;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MmiGetCurrAsciiToAlphaTableAddr
- 功能描述  : 获取当前的Assic到Alpha的转换表指针
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 当前的Assic到Alpha的转换表指针
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2013年5月17日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8*   TAF_MmiGetCurrAsciiToAlphaTableAddr(VOS_VOID)
 {
     return g_aucTafMmiDefAsciiToAlphaTbl;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MmiEncodeOperationType
- 功能描述  : 根据用户事件编码业务操作码
- 输入参数  : VOS_UINT32                          ulEventType - 用户事件
- 输出参数  : MN_MMI_OPERATION_TYPE_ENUM_U8      *penSsOpType - 业务操作码字符串
- 返 回 值  : VOS_TRUE       - 获取操作成功
-             VOS_FALSE      - 获取操作失败
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年5月06日
-    作    者   : f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MmiGetOperationType(
     VOS_UINT32                          ulEventType,
     MN_MMI_OPERATION_TYPE_ENUM_U8      *penSsOpType
@@ -199,23 +135,7 @@ VOS_UINT32 TAF_MmiGetOperationType(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MmiEncodeOperationTypeString
- 功能描述  : 根据用户事件编码业务操作码字符串
- 输入参数  : VOS_UINT32                          ulEventType- 用户事件
- 输出参数  : VOS_CHAR                           *pOutMmiStr - 业务操作码字符串
-             VOS_UINT32                         *pulLength  - 业务操作码字符串长度
- 返 回 值  : VOS_TRUE       - 获取操作成功
-             VOS_FALSE      - 获取操作失败
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年5月06日
-    作    者   : f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MmiEncodeOperationTypeString(
     VOS_UINT32                          ulEventType,
     VOS_CHAR                           *pcOutMmiStr,
@@ -259,26 +179,7 @@ VOS_UINT32 TAF_MmiEncodeOperationTypeString(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MmiEncodeBS
- 功能描述  : 获取BS信息表的容量
- 输入参数  : TAF_SS_BASIC_SERVICE_STRU          *pstBsService   - 基本业务结构
- 输出参数  : VOS_CHAR                           *pcOutMmiStr    - 输出的BS字串
-             VOS_UINT32                         *pulBSLength    - BS字串长度
- 返 回 值  : VOS_TRUE       - 构造成功
-             VOS_FALSE      - 构造失败
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年5月06日
-    作    者   : f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2014年05月06日
-    作    者   : s00217060
-    修改内容   : DTS2014040203906:+CCFC=0,2,,,128查询命令返回ERROR，IMC和Qualcomm支持
-*****************************************************************************/
 VOS_UINT32 TAF_MmiEncodeBS(
     TAF_SS_BASIC_SERVICE_STRU          *pstBsService,
     VOS_CHAR                           *pcOutMmiStr,
@@ -313,23 +214,7 @@ VOS_UINT32 TAF_MmiEncodeBS(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MmiEncodeSC
- 功能描述  : 根据SS CODE，生成SC字段
- 输入参数  : TAF_SS_CODE                         ucSsCode       - SS CODE
- 输出参数  : VOS_CHAR                           *pcOutMmiStr    - 输出的SC字串
-             VOS_UINT32                         *pulScLength    - SC字串长度
- 返 回 值  : VOS_TRUE       - 构造成功
-             VOS_FALSE      - 构造失败
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年5月06日
-    作    者   : f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MmiEncodeSC(
     TAF_SS_CODE                         ucSsCode,
     VOS_CHAR                           *pcOutMmiStr,
@@ -359,22 +244,7 @@ VOS_UINT32 TAF_MmiEncodeSC(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MmiEncodeDN
- 功能描述  : 根据地址结构，生成DN字段
- 输入参数  : TAF_SS_REGISTERSS_REQ_STRU         *pstRegisterInfo- 注册消息参数地址
- 输出参数  : VOS_CHAR                           *pcOutMmiStr    - 输出的DN字串
-             VOS_UINT32                         *pulDNLength    - DN字串长度
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年5月06日
-    作    者   : f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MmiEncodeDN(
     TAF_SS_REGISTERSS_REQ_STRU         *pstRegisterInfo,
     VOS_CHAR                           *pcOutMmiStr,
@@ -397,23 +267,7 @@ VOS_VOID TAF_MmiEncodeDN(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MmiEncodePW
- 功能描述  : 根据密码结构，生成PW字段
- 输入参数  : VOS_UINT8                          *pucPassword     - 密码，长度为TAF_SS_MAX_PASSWORD_LEN
-             VOS_UINT32                          ulPasswordLength- 密码长度
- 输出参数  : VOS_CHAR                           *pcOutMmiStr    - 输出的PW字串
-             VOS_UINT32                         *pulPWLength    - PW字串长度
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年5月06日
-    作    者   : f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MmiEncodePW(
     VOS_UINT8                          *pucPassword,
     VOS_UINT32                          ulPasswordLength,
@@ -430,23 +284,7 @@ VOS_VOID TAF_MmiEncodePW(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MmiEncodeCfnrTimerLen
- 功能描述  : 根据十进制时间生成T字段
- 输入参数  : VOS_UINT8                           ucTime         - 十进制时间
- 输出参数  : VOS_CHAR                           *pcOutMmiStr    - 输出的T字串
-             VOS_UINT32                         *pulLength      - T字串长度
- 返 回 值  : VOS_TRUE       - 构造成功
-             VOS_FALSE      - 构造失败
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年5月06日
-    作    者   : f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MmiEncodeCfnrTimerLen(
     VOS_UINT8                           ucTime,
     VOS_CHAR                           *pcOutMmiStr,
@@ -456,23 +294,7 @@ VOS_UINT32 TAF_MmiEncodeCfnrTimerLen(
     return TAF_STD_Itoa(ucTime, pcOutMmiStr, pulLength);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MmiEncodeCcbsIndex
- 功能描述  : 根据十进制呼叫索引生成n字段
- 输入参数  : VOS_UINT8                           ucCallIndex    - 十进制呼叫索引
- 输出参数  : VOS_CHAR                           *pcOutMmiStr    - 输出的n字串
-             VOS_UINT32                         *pulLength      - n字串长度
- 返 回 值  : VOS_TRUE       - 构造成功
-             VOS_FALSE      - 构造失败
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年5月06日
-    作    者   : f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MmiEncodeCcbsIndex(
     VOS_UINT8                           ucCallIndex,
     VOS_CHAR                           *pcOutMmiStr,
@@ -483,23 +305,7 @@ VOS_UINT32 TAF_MmiEncodeCcbsIndex(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MmiEncodeRegisterMmiString
- 功能描述  : 根据用户注册消息结构，生成Mmi字串
- 输入参数  : VOS_UINT32                          ulEventType- 用户事件
-             VOS_VOID                           *pPara      - 操作类型对应的参数结构
- 输出参数  : VOS_CHAR                           *pcOutMmiStr- 输出的MMI字串
- 返 回 值  : VOS_TRUE       - 构造成功
-             VOS_FALSE      - 构造失败
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年5月06日
-    作    者   : f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MmiEncodeRegisterMmiString(
     VOS_UINT32                          ulEventType,
     VOS_VOID                           *pPara,
@@ -624,24 +430,7 @@ VOS_UINT32 TAF_MmiEncodeRegisterMmiString(
 
 /*lint -e438 -e830*/
 
-/*****************************************************************************
- 函 数 名  : TAF_MmiEncodeActiveMmiString
- 功能描述  : 根据用户激活消息结构，生成Mmi字串
-             因为删除，激活，去激活和查询输入结构相同，共用一个编码处理函数
- 输入参数  : VOS_UINT32                          ulEventType- 用户事件，用于区分删除，激活，去激活和查询操作
-             VOS_VOID                           *pPara      - 操作类型对应的参数结构
- 输出参数  : VOS_CHAR                           *pcOutMmiStr- 输出的MMI字串
- 返 回 值  : VOS_TRUE       - 构造成功
-             VOS_FALSE      - 构造失败
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年5月06日
-    作    者   : f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MmiEncodeActiveMmiString(
     VOS_UINT32                          ulEventType,
     VOS_VOID                           *pMsg,
@@ -772,23 +561,7 @@ VOS_UINT32 TAF_MmiEncodeActiveMmiString(
 }
 /*lint +e438 +e830*/
 
-/*****************************************************************************
- 函 数 名  : TAF_MmiEncodeDeactiveMmiString
- 功能描述  : 根据用户注册新密码消息结构，生成Mmi字串
- 输入参数  : VOS_UINT32                          ulEventType- 用户事件
-             VOS_VOID                           *pPara      - 操作类型对应的参数结构
- 输出参数  : VOS_CHAR                           *pcOutMmiStr- 输出的MMI字串
- 返 回 值  : VOS_TRUE       - 构造成功
-             VOS_FALSE      - 构造失败
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年5月06日
-    作    者   : f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MmiEncodeRegisterPwdMmiString(
     VOS_UINT32                          ulEventType,
     VOS_VOID                           *pMsg,
@@ -858,23 +631,7 @@ VOS_UINT32 TAF_MmiEncodeRegisterPwdMmiString(
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MmiEncodeEraseCcEntryMmiString
- 功能描述  : 根据用户删除CCBS消息结构，生成Mmi字串
- 输入参数  : VOS_UINT32                          ulEventType- 用户事件
-             VOS_VOID                           *pPara     - 操作类型对应的参数结构
- 输出参数  : VOS_CHAR                           *pcOutMmiStr- 输出的MMI字串
- 返 回 值  : VOS_TRUE       - 构造成功
-             VOS_FALSE      - 构造失败
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年5月06日
-    作    者   : f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MmiEncodeEraseCcEntryMmiString(
     VOS_UINT32                          ulEventType,
     VOS_VOID                           *pPara,
@@ -936,40 +693,13 @@ VOS_UINT32 TAF_MmiEncodeEraseCcEntryMmiString(
     return VOS_TRUE;
 }
 
-/**********************************************************
- 函 数 名  : TAF_MmiEncodeSsProcFuncTblAddr
- 功能描述  : 获取补充业务编码处理过程码映射表的地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 补充业务编码处理过程码映射表的地址
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年05月06日
-    作    者   : f62575
-    修改内容   : SS FDN&Call Control项目，
-*************************************************************/
 TAF_MMI_ENCODE_PROC_FUNC_STRU *TAF_MmiEncodeSsProcFuncTblAddr(VOS_VOID)
 {
     return g_astTafMmiEncodeSsProcFunc;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MmiEncodeSsProcFuncTblSize
- 功能描述  : 获取补充业务编码处理过程码映射表容量
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 补充业务编码处理过程码映射表容量
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年5月06日
-    作    者   : f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MmiEncodeSsProcFuncTblSize(VOS_VOID)
 {
     VOS_UINT32                          ulTblSize;
@@ -979,57 +709,7 @@ VOS_UINT32 TAF_MmiEncodeSsProcFuncTblSize(VOS_VOID)
     return ulTblSize;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MmiEncodeMmiString
- 功能描述  : 根据SS操作，以及操作参数，生成Mmi字串
-        参考协议:
-        22030 6.5.2 Structure of the MMI
-        Activation              *SC*SI#
-        Deactivation            #SC*SI#
-        Interrogation           #SC*SI#
-        Registration            *SC*SI# and **SC*SI#
-        Erasure                 ##SC*SI#
 
-        The UE shall determine from the context whether, an entry of a single *,
-        activation or registration was intended.
-        For example, a call forwarding request with a single * would be
-        interpreted as registration if containing a forwarded-to number,
-        or an activation if not.
-
-        22030 6.5.4 Registration of new password
-        Procedure:
-        * 03 * ZZ * OLD_PASSWORD * NEW_PASSWORD * NEW_PASSWORD #
-        The UE shall also support the alternative procedure:
-        ** 03 * ZZ * OLD_PASSWORD * NEW_PASSWORD * NEW_PASSWORD #
-
-        where, for Barring Services, ZZ = 330;
-        for a common password for all appropriate services, delete the ZZ, entering:
-        * 03 ** OLD_PASSWORD * NEW_PASSWORD * NEW_PASSWORD #
-        The UE shall also support the alternative procedure:
-        ** 03 ** OLD_PASSWORD * NEW_PASSWORD * NEW_PASSWORD #
-        The UE will then indicate to the user whether the new password request
-        has been successful or not. If the new password request is rejected
-        (e.g. due to entry of incorrect old password) the old password remains
-        unchanged, until it is successfully changed by correctly repeating the
-        procedure. Refer to 3GPP TS 22.004 [2] regarding repeated entry of
-        incorrect password.
-
-        22030 Annex B (normative):
-        Codes for defined Supplementary Services
-
- 输入参数  : VOS_VOID                           *pPara      - 业务请求消息
- 输出参数  : VOS_CHAR                           *pcOutMmiStr- 输出的MMI字串
- 返 回 值  : VOS_TRUE       - 编码成功
-             VOS_FALSE      - 编码失败
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年5月06日
-    作    者   : f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MmiEncodeMmiString(
     VOS_VOID                           *pPara,
     VOS_CHAR                           *pcOutMmiStr
@@ -1073,25 +753,7 @@ VOS_UINT32 TAF_MmiEncodeMmiString(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MmiEncodeUssdMessage
- 功能描述  : 根据USSD字串内容进行7bit编码
- 输入参数  : pstPara-----输入的USSD字符串的指针
- 输出参数  : pstPara-----指向编码转换后的USSD字符串的指针
- 返 回 值  : VOS_TRUE       - 编码成功
-             VOS_FALSE      - 编码失败
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年5月06日
-    作    者   : f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2013年6月26日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级
-*****************************************************************************/
 
 VOS_UINT32 TAF_MmiEncodeUssdMessage (
     TAF_SS_USSD_STRING_STRU            *pstPara
@@ -1123,12 +785,10 @@ VOS_UINT32 TAF_MmiEncodeUssdMessage (
     }
 
     /* 循环结构,转换成7bit编码方式 */
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     if (VOS_OK != TAF_STD_Pack7Bit(aucTemp_buffer, pstPara->usCnt, 0, aucTmp, &ulEncodeLen))
     {
         MN_WARN_LOG("TAF_MmiEncodeUssdMessage: TAF_STD_Pack7Bit Error");
     }
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
     /* 判断是否有7个位的空余,如果有多余的7个位则填充'0001101' */
     if (TAF_MMI_BITS_PER_SEPTET == (pstPara->usCnt % TAF_MMI_BITS_PER_OCTET))

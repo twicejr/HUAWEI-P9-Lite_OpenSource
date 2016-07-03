@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafMmaFsmPhoneModeTbl.c
-  版 本 号   : 初稿
-  作    者   : w00176964
-  生成日期   : 2013年7月8日
-  最近修改   :
-  功能描述   : MMA模块手机模式状态机状态转移表
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年7月8日
-    作    者   : w00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -75,11 +58,9 @@ TAF_ACT_STRU        g_astTafMmaPhoneModeInitActTbl[]   =
     TAF_ACT_TBL_ITEM( CCPU_PID_CBT,
                       OAM_MMA_PHONE_MODE_SET_REQ,
                       TAF_MMA_RcvOMPhoneModeSet_PhoneMode_Init ),
-    /* Modified by s00261364 for L-C互操作项目, 2014-1-26, begin */
     TAF_ACT_TBL_ITEM( WUEPS_PID_TAF,
                       ID_TAF_MMA_PHONE_MODE_SET_REQ,
                       TAF_MMA_RcvTafPhoneModeSet_PhoneMode_Init ),
-    /* Modified by s00261364 for L-C互操作项目, 2014-1-26, end */
 
 };
 /* TAF_MMA_PHONE_MODE_STA_WAIT_EXTERNAL_MODULE_INIT 动作表 */
@@ -260,41 +241,13 @@ TAF_STA_STRU        g_astTafMmaPhoneModeStaTbl[]   =
 
 };
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_GetPhoneModeStaTblSize
- 功能描述  : 获取MMA模块手机模式状态机的大小
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:MMA模块手机模式状态机的大小
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月8日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_GetPhoneModeStaTblSize(VOS_VOID)
 {
     return (sizeof(g_astTafMmaPhoneModeStaTbl)/sizeof(TAF_STA_STRU));
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_GetPhoneModeFsmDescAddr
- 功能描述  : 获取MMA模块手机模式状态机的描述表
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : TAF_FSM_DESC_STRU:指向MMA模块手机模式状态机的描述表
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月8日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_FSM_DESC_STRU * TAF_MMA_GetPhoneModeFsmDescAddr(VOS_VOID)
 {
     return (&g_stTafMmaPhoneModeFsmDesc);

@@ -196,7 +196,7 @@ typedef enum enumSfeTcpErrCode
     SFE_TCP_GET_MSL_TIME_PRECFG_FAIL,                       /* 150 TCP初始化时获取MSL老化超时时间的预配置,失败退出 */
     SFE_TCP_GET_DELAYED_ACK_SWITCH_PRECFG_FAIL,             /* 151 TCP初始化时获取延迟ACK开关的预配置,失败退出 */    
     SFE_TCP_REORDER_REDIRECTION_HAVE_BEEN_CALLED,           /* 152 TCP重排已做重定向 */
-    SFE_TCP_REASSRXMT_CNT_PRECFG_FAIL,                      /* 153 获取TCP重排乱序报文优化处理:复制乱序包转发的连续重传次数的预配置值失败DTS2012110907656 l00177467*/
+    SFE_TCP_REASSRXMT_CNT_PRECFG_FAIL,
     SFE_TCP_MALLOC_SOCKTRANS_HASH_EXACT_FAIL,               /* 154 获取HASH数组失败，用本端端口、本端IP、远端端口、远端IP、VRF来计算索引 */
     SFE_TCP_MALLOC_SOCKTRANS_HASH_LPORT_FAIL,               /* 155 获取HASH数组失败，用本端端口来计算索引 */
 }SFE_TCP_ERR_CODE_E;
@@ -399,75 +399,13 @@ typedef struct tagSFE_TCP_REORDER_SAMPLE_NOTIFY_DELAY_INFO
     UINT32  u32CurSysCpuRate;               /* 当前输出采样结果时的CPU占用率 */
 }SFE_TCP_REORDER_SAMPLE_NOTIFY_DELAY_INFO_S;
 
-/*******************************************************************************
-*    Func Name: SFE_SetTcpReorderSampleInfo
-* Date Created: 2011-02-22
-*       Author: z00166124
-*      Purpose: 
-*  Description: 设置数据面用户态TCP重排采样方式和采样参数
-*        Input: SFE_TCP_REORDER_SAMPLE_PARA_S* pstSamplePara:设置的采样参数指针
-*       Output: 
-*       Return: 成功返回 0
-*               失败返回 错误码
-*      Caution: 1.每次只能运行一个采样实例:建连速率和并发连接采样,或建连时延采样,或全部采样.
-*               2.当前运行的采样需要自行手动去使能后,才能执行下一次的采样
-*               3.设置采样操作必须在系统初始化完成后执行.
-*        Since: DOPRA VISP V2R3C03
-*    Reference: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-02-22   z00166124               Create
-*
-*******************************************************************************/
+
 UINT32 SFE_SetTcpReorderSampleInfo(SFE_TCP_REORDER_SAMPLE_PARA_S* pstSamplePara);
 
-/*******************************************************************************
-*    Func Name: g_pfSfeTcpReorderSampleOutputHook
-* Date Created: 2011-02-22
-*       Author: z00166124
-*      Purpose: 
-*  Description: 数据面用户态重排采样结果输出给产品的钩子
-*        Input: UINT32 u32Type:采样类型 <SFE_TCP_REORDER_SAMPLE_CONNINFO,SFE_TCP_REORDER_SAMPLE_CONNDELAY>
-*               VOID *pstSampleStatInfo:采样结果指针<非空>
-*       Output: N/A
-*       Return: 成功返回 0
-*               失败返回 错误码
-*      Caution: 1.用户需要根据采样类型解析输出结果
-*        Since: DOPRA VISP V2R3C03
-*    Reference: 
-*
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-02-22   z00166124               Create
-*
-*******************************************************************************/
+
 typedef UINT32 (*g_pfSfeTcpReorderSampleOutputHook)(UINT32 u32Type, VOID *pstSampleStatInfo);
 
-/*******************************************************************************
-*    Func Name: SFE_RegFuncTcpSampleOutputHook
-* Date Created: 2011-02-22
-*       Author: z00166124
-*      Purpose: 
-*  Description: 注册数据面用户态采样输出钩子
-*        Input: g_pfSfeTcpReorderSampleOutputHook pfRegFunc:待注册的钩子函数指针 <非空>
-*       Output: 
-*       Return: 成功返回 0
-*               失败返回 错误码
-*      Caution: 
-*        Since: DOPRA VISP V2R3C03
-*    Reference: 
-*
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-02-22   z00166124               Create
-*
-*******************************************************************************/
+
 UINT32 SFE_RegFuncTcpSampleOutputHook(g_pfSfeTcpReorderSampleOutputHook pfRegFunc);
 
 /*STRUCT< TCP重定向参数 >*/
@@ -559,35 +497,7 @@ UINT32 SFE_TCP_ReorderToProxy(INT32 i32UeFd, INT32 i32SpFd, UINT32 u32Connection
 *******************************************************************************/
 UINT32 SFE_TCP_ReorderDataTransferComplete(INT32 i32Fd);
 
-/*******************************************************************************
-*    Func Name: SFE_TCP_ReorderActiveSendPktAndCloseSocket
-* Date Created: 2010-06-04
-*       Author: w60786
-*      Purpose: TCP重排主动发送报文并关闭socket的特殊接口
-*  Description: TCP重排主动发送报文并关闭socket的特殊接口
-*        Input: INT32 i32Fd: TCP重排socket id <大于0>
-*               SFE_MBUF_S *pstMBuf: 产品构造的待发送的数据报文.TCPIP头协议栈构造.<非空>
-*       Output: 
-*       Return: 成功返回 SFE_OK
-*               失败返回 错误码
-*      Caution: 1.只支持在连接建立完成状态下让产品主动发送报文,不允许在建连过程和断链过程中调用该接口.
-*               2.只允许调用一次该接口,并且调用该接口时,VISP会先尝试发送数据,然后VISP内部直接发送RST到对端.
-*               3.产品使用了该接口后,不能再调用主动RST断连的接口,后续重传和老化由VISP实现,老化由保活定时器实现(产品保证开启保活定时器).
-*               4.该接口无论发送成功与否,报文都由VISP协议栈释放.
-*               5.产品传入的MBUF数据区头部至少要预留128字节供协议栈添加头部信息使用.
-*               6.产品传入的MBUF要保证已填入上下行方向,否则返回失败.
-*               7.该接口只做了重定向报文发送和RST另外一端,在MBUF资源池耗尽时这两个动作会失败.
-*        Since: V1R8C05
-*    Reference:
-*
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-06-04   w60786                  Create
-*  2011-08-09   z00166124               Fixed
-*
-*******************************************************************************/
+
 UINT32 SFE_TCP_ReorderActiveSendPktAndCloseSocket(INT32 i32Fd, SFE_MBUF_S *pstMBuf);
 
 /*******************************************************************************
@@ -700,118 +610,19 @@ typedef struct tagSFETCPSTAT
     UINT64    u64KeepAliveDrops;                                /* 保活定时器在用户设置了保活定时器的值超时 */
 }SFE_TCPSTAT_S;
 
-/*******************************************************************************
-*    Func Name: SFE_GetTCPStatist
-* Date Created: 2012-04-05
-*       Author: z00171897/h00177429
-*      Purpose: 获取TCP统计信息
-*  Description: 获取TCP统计信息
-*        Input: UINT32 u32VcpuId: 核号
-*               SFE_TCPSTAT_S *pstTCPStat: 保存TCP统计信息的内存
-*       Output: SFE_TCPSTAT_S *pstTCPStat: 保存获取的TCP统计信息
-*       Return: 成功:SFE_DEBUG_OK
-*               失败:错误码
-*      Caution: 仅在本核上使用该接口
-*        Since: DOPRA IP V200R003C06SPC100
-*    Reference:
-*
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE        NAME             DESCRIPTION    
-*  ----------------------------------------------------------------------------
-*  2012-04-05  z00171897/h00177429  Create the first version.
-*
-*******************************************************************************/
+
 UINT32 SFE_GetTCPStatist(UINT32 u32VcpuId, SFE_TCPSTAT_S *pstTCPStat);
 
-/*******************************************************************************
-*    Func Name: SFE_ClrTCPStatist
-* Date Created: 2012-04-05
-*       Author: z00171897/h00177429
-*      Purpose: 清除TCP统计信息
-*  Description: 清除TCP统计信息
-*        Input: UINT32 u32VcpuId: 核号
-*       Output: 
-*       Return: 成功:SFE_DEBUG_OK
-*               失败:错误码
-*      Caution: 入参必须为当前核号
-*        Since: DOPRA IP V200R003C06SPC100
-*    Reference:
-*
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE        NAME             DESCRIPTION    
-*  ----------------------------------------------------------------------------
-*  2012-04-05  z00171897/h00177429  Create the first version.
-*
-*******************************************************************************/
+
 UINT32 SFE_ClrTCPStatist(UINT32 u32VcpuId);
 
-/*******************************************************************************
-*    Func Name: SFE_ShowTCPStatist
-* Date Created: 2012-04-05
-*       Author: z00171897/h00177429
-*      Purpose: 显示TCP统计信息
-*  Description: 显示TCP统计信息
-*        Input: UINT32 u32VcpuId: 核号
-*       Output: 
-*       Return: 
-*      Caution: 仅在本核上使用该接口
-*        Since: DOPRA IP V200R003C06SPC100
-*    Reference:
-*
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE        NAME             DESCRIPTION    
-*  ----------------------------------------------------------------------------
-*  2012-04-05  z00171897/h00177429  Create the first version.
-*
-*******************************************************************************/
+
 VOID SFE_ShowTCPStatist(UINT32 u32VcpuId);
 
-/*******************************************************************************
-*    Func Name: SFE_ShowAllTCPStatist
-* Date Created: 2012-04-18
-*       Author: z00171897
-*      Purpose: 显示所有核的TCP统计信息
-*  Description: 显示所有核的TCP统计信息
-*        Input: 
-*       Output: 
-*       Return: 
-*      Caution: None
-*        Since: DOPRA IP V200R003C06SPC100
-*    Reference:
-*
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME             DESCRIPTION    
-*  ----------------------------------------------------------------------------
-*  2012-04-18   z00171897        Create the first version.
-*
-*******************************************************************************/
+
 VOID SFE_ShowAllTCPStatist(VOID);
 
-/*******************************************************************************
-*    Func Name: SFE_TCP_GetPoolTotalAndFreeUnitNum
-* Date Created: 2012-05-03
-*       Author: zhaoyue00171897
-*      Purpose: 获取TCP资源池总的和剩余的单元数
-*  Description: 获取TCP资源池总的和剩余的单元数
-*        Input: 
-*       Output: UINT32 *pu32TotalUnitNum:TCP资源池总的单元数
-*               UINT32 *pu32FreeUnitNum:TCP资源池剩余的单元数
-*       Return: 成功:SFE_TCP_OK
-*               失败:错误码
-*      Caution: 该接口要在系统启动完成后调用才能生效
-*        Since: DOPRA IP V200R003C06SPC100
-*    Reference: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2012-05-03   zhaoyue00171897         Create
-*
-*******************************************************************************/
+
 UINT32 SFE_TCP_GetPoolTotalAndFreeUnitNum(UINT32 *pu32TotalUnitNum, UINT32 *pu32FreeUnitNum);
 
 #ifdef  __cplusplus

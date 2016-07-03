@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafCbaMntn.h
-  版 本 号   : 初稿
-  作    者   : l00171473
-  生成日期   : 2012年3月19日
-  最近修改   :
-  功能描述   : TafCbaMntn.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年3月19日
-    作    者   : l00171473
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __TAFCBAMNTN_H__
 #define __TAFCBAMNTN_H__
@@ -52,22 +35,7 @@ extern "C" {
   3 枚举定义
 *****************************************************************************/
 
-/*****************************************************************************
- 枚举名    : TAF_CBA_OM_MSG_ID_ENUM
- 结构说明  : CBA模块可维可测消息ID枚举
- 1.日    期   : 2012年3月19日
-   作    者   : l00171473
-   修改内容   : 新增
- 2.日    期   : 2012年3月27日
-   作    者   : w00176964
-   修改内容   : 新增
- 3.日    期   : 2012年12月07日
-   作    者   : l00171473
-   修改内容   : For DTS2012120600056, 添加CBS相关NV项的可维可测
- 4.日    期   : 2013年8月29日
-   作    者   : f62575
-   修改内容   : VSIM FEATURE
-*****************************************************************************/
+
 enum TAF_CBA_OM_MSG_ID_ENUM
 {
     TAF_CBA_OM_MSG_LOG_INFO                                 = ID_TAF_MNTN_MSG_CBA_BASE,            /* _H2ASN_MsgChoice TAF_CBA_LOG_INFO_STRU */ /* CBA 模块LOG INFO */
@@ -90,13 +58,7 @@ enum TAF_CBA_OM_MSG_ID_ENUM
 };
 typedef VOS_UINT32  TAF_CBA_OM_MSG_ID_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : TAF_CBA_OM_LOG_ID_ENUM
- 结构说明  : CBA模块可维可测的LOG消息枚举
- 1.日    期   : 2012年3月19日
-   作    者   : l00171473
-   修改内容   : 新增
-*****************************************************************************/
+
 enum TAF_CBA_OM_LOG_ID_ENUM
 {
     TAF_CBA_OM_LOG_RCV_PRIM_NTF_WHEN_ETWS_DISABLE,                              /* 收到ETWS主通知时 ETWS 特性关闭 */
@@ -110,13 +72,7 @@ enum TAF_CBA_OM_LOG_ID_ENUM
 };
 typedef VOS_UINT32  TAF_CBA_OM_LOG_ID_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : TAF_CBA_OM_DEL_REASON_ENUM
- 结构说明  : CBA模块可维可测删除记录原因枚举
- 1.日    期   : 2012年3月19日
-   作    者   : l00171473
-   修改内容   : 新增
-*****************************************************************************/
+
 enum TAF_CBA_OM_DEL_REASON_ENUM
 {
     TAF_CBA_OM_DEL_REASON_LIST_FULL,                                            /* 记录表满删除记录 */
@@ -128,13 +84,7 @@ enum TAF_CBA_OM_DEL_REASON_ENUM
 };
 typedef VOS_UINT8  TAF_CBA_OM_DEL_REASON_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : TAF_CBA_OM_SAVE_TYPE_ENUM
- 结构说明  : CBA模块可维可测保存记录类型
- 1.日    期   : 2012年3月19日
-   作    者   : l00171473
-   修改内容   : 新增
-*****************************************************************************/
+
 enum TAF_CBA_OM_SAVE_TYPE_ENUM
 {
     TAF_CBA_OM_SAVE_TYPE_RECORD_FULL,                                           /* CBS记录表满 */
@@ -164,25 +114,13 @@ typedef VOS_UINT8  TAF_CBA_OM_SAVE_TYPE_ENUM_UINT8;
   7 STRUCT定义
 *****************************************************************************/
 
-/*****************************************************************************
- 结构名    : TAF_CBA_LOG_INFO_STRU
- 结构说明  : CBA可维可测LOG结构
- 1.日    期   : 2012年3月10日
-   作    者   : l00171473
-   修改内容   : 新建 for V7R1C50 CSFB&PPAC&ETWS&ISR
-*****************************************************************************/
+
 typedef struct
 {
     TAF_CBA_OM_LOG_ID_ENUM_UINT32       enLogId;
 }TAF_CBA_LOG_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_CBA_LOG_DUP_RECORD_STRU
- 结构说明  : 重复记录项的可维可测信息
- 1.日    期   : 2012年3月10日
-   作    者   : l00171473
-   修改内容   : 新建 for V7R1C50 CSFB&PPAC&ETWS&ISR
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usPageBitmap;                           /* 已接收页的BitMap(G的CBS消息包含此信息) */
@@ -191,13 +129,7 @@ typedef struct
     VOS_UINT8                           aucRsv[2];
 }TAF_CBA_LOG_DUP_RECORD_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_CBA_LOG_DEL_RECORD_STRU
- 结构说明  : 删除记录项的可维可测信息
- 1.日    期   : 2012年3月10日
-   作    者   : l00171473
-   修改内容   : 新建 for V7R1C50 CSFB&PPAC&ETWS&ISR
-*****************************************************************************/
+
 typedef struct
 {
     TAF_CBA_OM_DEL_REASON_ENUM_UINT8    enDelReason;
@@ -210,13 +142,7 @@ typedef struct
     VOS_UINT32                          ulCurrTick;
 }TAF_CBA_LOG_DEL_RECORD_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_CBA_LOG_SAVE_RECORD_STRU
- 结构说明  : 保存记录项的可维可测信息
- 1.日    期   : 2012年3月10日
-   作    者   : l00171473
-   修改内容   : 新建 for V7R1C50 CSFB&PPAC&ETWS&ISR
-*****************************************************************************/
+
 typedef struct
 {
     TAF_CBA_OM_SAVE_TYPE_ENUM_UINT8     enSaveType;                             /* 保存类型 */
@@ -226,13 +152,7 @@ typedef struct
     VOS_UINT32                          ulDupDetcTimeLen;                       /* 有效时长N,单位: 秒, 为0表示一直有效 */
 }TAF_CBA_LOG_SAVE_RECORD_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_CBA_LOG_CBMI_DOWNLOAD_LIST_STRU
- 结构说明  : 当前CBS CBMID List的可维可测信息
- 1.日    期   : 2012年3月10日
-   作    者   : l00171473
-   修改内容   : 新建 for V7R1C50 CSFB&PPAC&ETWS&ISR
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usCbmidNum;                             /* 所包含的广播id的总数量 */
@@ -240,26 +160,14 @@ typedef struct
     VOS_UINT16                          ausMsgId[TAF_CBA_MAX_CBMID_NUM];        /* 具体的广播消息id */
 }TAF_CBA_LOG_CBMI_DOWNLOAD_LIST_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_CBA_LOG_CBMI_RANGE_STRU
- 结构说明  : CBMID RANG 信息
- 1.日    期   : 2012年3月10日
-   作    者   : l00171473
-   修改内容   : 新建 for V7R1C50 CSFB&PPAC&ETWS&ISR
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usMsgIdFrom;                            /* 小区广播消息ID的开始序号  */
     VOS_UINT16                          usMsgIdTo;                              /* 小区广播消息ID的结束序号 */
 }TAF_CBA_LOG_CBMI_RANGE_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_CBA_LOG_CBMI_RANGE_LIST_STRU
- 结构说明  : 当前CBS CBMIR List的可维可测信息
- 1.日    期   : 2012年3月10日
-   作    者   : l00171473
-   修改内容   : 新建 for V7R1C50 CSFB&PPAC&ETWS&ISR
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usCbmirNum;                             /* 小区广播消息的ID个数 */
@@ -267,13 +175,7 @@ typedef struct
     TAF_CBA_LOG_CBMI_RANGE_STRU         astCbmiRange[TAF_CBA_MAX_CBMID_RANGE_NUM]; /* 小区广播消息的范围信息 */
 }TAF_CBA_LOG_CBMI_RANGE_LIST_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_CBA_LOG_NVIM_INFO_STRU
- 结构说明  : 当前CBS相关的NV项的可维可测信息
- 1.日    期   : 2012年12月04日
-   作    者   : l00171473
-   修改内容   : 新建 for DTS2012120600056
-*****************************************************************************/
+
 typedef struct
 {
     TAF_CBA_CBS_SERVICE_PARM_STRU       stCbsServiceParam;
@@ -281,16 +183,7 @@ typedef struct
 }TAF_CBA_LOG_NVIM_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : TAF_CBA_MNTN_INFO_STRU
- 结构说明  : CBA模块的可维可测信息
- 1.日    期   : 2012年3月10日
-   作    者   : l00171473
-   修改内容   : 新建 for V7R1C50 CSFB&PPAC&ETWS&ISR
- 2.日    期   : 2012年12月07日
-   作    者   : l00171473
-   修改内容   : For DTS2012120600056, 添加CBS相关NV项的可维可测
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -308,17 +201,7 @@ typedef struct
     }u;
 }TAF_CBA_MNTN_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_CBA_MNTN_DCS_DECODE_HOOK_STRU
- 协议表格  :
- ASN.1描述 :
-            ucDcs         输入的DCS
-            stDcsInfo     解码函数返回的结果，是否7bit编码
- 结构说明  : CBS的DCS解码结果勾包结构
- 1.日    期   : 2013年6月26日
-   作    者   : f62575
-   修改内容   : V9R1 STK升级
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -361,8 +244,6 @@ typedef struct
   10 函数声明
 *****************************************************************************/
 
-/* Deleted by wx270776 for OM融合, 2015-6-28, begin */
-/* Deleted by wx270776 for OM融合, 2015-6-28, end */
 
 VOS_VOID TAF_CBA_SndOmLogInfo(
     TAF_CBA_OM_LOG_ID_ENUM_UINT32       enLogId
@@ -396,9 +277,7 @@ VOS_VOID TAF_CBA_SndOmNvimInfo(VOS_VOID);
 
 #endif
 
-/* Deleted by f62575 for V9R1 STK升级, 2013-6-26, begin */
 /* Deleted TAF_CBA_SndOmDcsInfo */
-/* Deleted by f62575 for V9R1 STK升级, 2013-6-26, end */
 
 #if (VOS_OS_VER == VOS_WIN32)
 #pragma pack()

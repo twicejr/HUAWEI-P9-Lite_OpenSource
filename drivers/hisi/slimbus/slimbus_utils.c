@@ -100,7 +100,7 @@ uint32_t slimbus_asppower_state_get(void __iomem *asppower_base_addr, uint32_t o
 	if (asppower_base_addr) {
 		aspreg = readl(asppower_base_addr + offset);
 
-		pr_info("[%s:%d] asp power state virt addr:%p, val:%#x - \n",
+		pr_info("[%s:%d] asp_power_state(bit0) virt addr:%p, val:%#x - \n",
 			__FUNCTION__, __LINE__, asppower_base_addr + offset, aspreg);
 	}
 

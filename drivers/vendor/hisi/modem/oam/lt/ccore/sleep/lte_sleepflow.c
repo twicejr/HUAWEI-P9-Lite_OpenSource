@@ -1,17 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : SleepFlow.c
-  版 本 号   : 初稿
-  作    者   : fuxin 00221597
-  生成日期   : 2013年05月20日
-  最近修改   :
-  功能描述   : 实现 RTT SLEEP 睡眠/唤醒流程驱动
-  函数列表   :
-  修改历史   :
-******************************************************************************/
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -37,11 +24,7 @@ extern "C" {
 #define OPEN_MSP_SLEEP
 #endif
 
-#ifndef MSP_IN_V9R1
 #include <TLPhyInterface.h>
-#else
-#include <global_sram_map.h>
-#endif
 
 /*lint --e{1358, 40, 830, 539, 717, 746, 774, 534}*/
 
@@ -565,6 +548,23 @@ VOS_VOID TLSLEEP_CloseTCXO(VOS_VOID )
     }
 }
 
+VOS_VOID TLSLEEP_DfsQosUpdate(VOS_INT32 qos_id, VOS_INT32 req_id, VOS_UINT32 req_value)
+{
+    VOS_INT32 ret = 0;
+    
+    if(req_value != g_msp_pwrctrl.DspReqDdrFreq)
+    {
+        ret = mdrv_pm_dfs_qos_update(qos_id, req_id, req_value);
+        if(ret)
+        {
+            mspsleep_print_error("MSP vote TLSLEEP_DFS_DDR_FREQ : %d failed!\n",req_value);
+            return;
+        }
+        g_msp_pwrctrl.DspReqDdrFreq = req_value;
+    }
+
+    return;
+}
 
 #if (FEATURE_MULTI_CHANNEL == FEATURE_ON)
 
@@ -617,20 +617,12 @@ VOS_INT32 TLSLEEP_HwPowerUp(PWC_COMM_MODE_E modeId)
 {
     PWC_COMM_MODEM_E                enModem = PWC_COMM_MODEM_0;
     PWC_COMM_CHANNEL_E              enChannel = PWC_COMM_CHANNEL_0;
-    VOS_INT32                       ret = 0;
-    VOS_INT                         power_lock = 0;
 
     TLSLEEP_DbgTimeRecord(TLSEEP_HWPOWERUP_0);
     TLSLEEP_DelayMs(5, g_msp_drx_delay.msp_0);
 
     /* DDR和总线频率不需要调，只需要调CCPU频率 */
-    ret = TLSLEEP_DfsQosUpdate((VOS_INT32)DFS_QOS_ID_CCPU_MINFREQ_E, dfs_ccpu_req_id,TLSLEEP_DFS_CCPU_600M);
-    if(ret)
-    {
-        power_lock = VOS_SplIMP();/* [false alarm]:屏蔽Fortify */
-        set_power_status_bit(MSP_DFS_RUN_UPDATE_FAIL);
-        VOS_Splx(power_lock);
-    }
+    TLSLEEP_DfsQosUpdate((VOS_INT32)DFS_QOS_ID_CCPU_MINFREQ_E, dfs_ccpu_req_id,TLSLEEP_DFS_CCPU_600M);
 
     TLSLEEP_DelayMs(5, g_msp_drx_delay.msp_1);
     if(POWER_SAVING_DEEP_SLEEP == g_msp_pwrctrl.dsp_sleep_flag)
@@ -722,21 +714,13 @@ VOS_INT32 TLSLEEP_HwPowerDown(PWC_COMM_MODE_E modeId)
 {
     PWC_COMM_MODEM_E                enModem = PWC_COMM_MODEM_0;
     PWC_COMM_CHANNEL_E              enChannel = PWC_COMM_CHANNEL_0;
-    VOS_INT32                       ret = 0;
-    VOS_INT32                       flag = 0;
 
     enModem = PWC_COMM_MODEM_0;
 
     TLSLEEP_DbgTimeRecord(TLSLEEP_HWPOWERDOWN_0);
     mdrv_dsp_stop_bbe();
     /* DDR和总线频率不需要调，只需要调CCPU频率 */
-    ret = TLSLEEP_DfsQosUpdate((VOS_INT32)DFS_QOS_ID_CCPU_MINFREQ_E, dfs_ccpu_req_id, TLSLEEP_DFS_CCPU_150M);
-    if(ret)
-    {
-        flag = VOS_SplIMP();
-        set_power_status_bit(MSP_DFS_HALT_UPDATE_FAIL);
-        VOS_Splx(flag);
-    }
+    TLSLEEP_DfsQosUpdate((VOS_INT32)DFS_QOS_ID_CCPU_MINFREQ_E, dfs_ccpu_req_id, TLSLEEP_DFS_CCPU_150M);
 
     TLSLEEP_DbgTimeRecord(TLSLEEP_HWPOWERDOWN_1);
 
@@ -903,10 +887,6 @@ VOS_VOID TLSLEEP_PWRCTRL_PWRDOWN(PWC_COMM_MODE_E enCommMode, PWC_COMM_MODULE_E e
 VOS_INT32 TLSLEEP_HwPowerUp(PWC_COMM_MODE_E modeId)
 {
     PWC_COMM_MODEM_E       			enModem = PWC_COMM_MODEM_0;
-#ifdef CONFIG_DFS_DDR
-    VOS_INT32                       ret = 0;
-    VOS_INT                         power_lock = 0;
-#endif
     VOS_UINT32                          timestamp_begin = 0;
     VOS_UINT32                          timestamp_end = 0;
     TLSLEEP_DbgTimeRecord(TLSEEP_HWPOWERUP_0);
@@ -922,13 +902,7 @@ VOS_INT32 TLSLEEP_HwPowerUp(PWC_COMM_MODE_E modeId)
     if(POWER_SAVING_DEEP_SLEEP == g_msp_pwrctrl.dsp_sleep_flag)
     {
 #ifdef CONFIG_DFS_DDR
-        ret += TLSLEEP_DfsQosUpdate((VOS_INT32)DFS_QOS_ID_DDR_MINFREQ_E, dfs_ddr_req_id, TLSLEEP_DFS_DDR_240M);/* [false alarm]:屏蔽Fortify */
-        if(ret)
-        {
-            power_lock = VOS_SplIMP();/* [false alarm]:屏蔽Fortify */
-            set_power_status_bit(MSP_DFS_RUN_UPDATE_FAIL);
-            VOS_Splx(power_lock);
-        }
+        TLSLEEP_DfsQosUpdate((VOS_INT32)DFS_QOS_ID_DDR_MINFREQ_E, dfs_ddr_req_id, TLSLEEP_DFS_DDR_240M);/* [false alarm]:屏蔽Fortify */
 #endif
     	TLSLEEP_OpenTCXO();
         /* 先1后2表示深睡流程 */
@@ -946,13 +920,7 @@ VOS_INT32 TLSLEEP_HwPowerUp(PWC_COMM_MODE_E modeId)
     else if(POWER_SAVING_SNOOZE == g_msp_pwrctrl.dsp_sleep_flag)
     {
 #ifdef CONFIG_DFS_DDR
-        ret += TLSLEEP_DfsQosUpdate((VOS_INT32)DFS_QOS_ID_DDR_MINFREQ_E, dfs_ddr_req_id, TLSLEEP_DFS_DDR_120M);/* [false alarm]:屏蔽Fortify */
-        if(ret)
-        {
-            power_lock = VOS_SplIMP();/* [false alarm]:屏蔽Fortify */
-            set_power_status_bit(MSP_DFS_RUN_UPDATE_FAIL);
-            VOS_Splx(power_lock);
-        }
+        TLSLEEP_DfsQosUpdate((VOS_INT32)DFS_QOS_ID_DDR_MINFREQ_E, dfs_ddr_req_id, TLSLEEP_DFS_DDR_120M);/* [false alarm]:屏蔽Fortify */
 #endif
         /* V7R5/Austin新需求，DSP上下电过程中执行PLL切换(由DSP模块实现) */
         mdrv_pm_enable_pllclk(PWC_COMM_MODE_LTE, PWC_COMM_MODULE_BBE16, enModem, PWC_COMM_CHANNEL_0);
@@ -1031,9 +999,7 @@ VOS_INT32 TLSLEEP_HwPowerUp(PWC_COMM_MODE_E modeId)
 VOS_INT32 TLSLEEP_HwPowerDown(PWC_COMM_MODE_E modeId)
 {
     PWC_COMM_MODEM_E       			enModem = PWC_COMM_MODEM_0;
-#ifdef CONFIG_DFS_DDR
-    VOS_INT32                       ret = 0;
-#endif
+    
 	enModem = PWC_COMM_MODEM_0;
 
     TLSLEEP_DbgTimeRecord(TLSLEEP_HWPOWERDOWN_0);
@@ -1102,11 +1068,7 @@ VOS_INT32 TLSLEEP_HwPowerDown(PWC_COMM_MODE_E modeId)
     }
 
 #ifdef CONFIG_DFS_DDR
-    ret = TLSLEEP_DfsQosUpdate((VOS_INT32)DFS_QOS_ID_DDR_MINFREQ_E, dfs_ddr_req_id, 0);
-    if(ret)
-    {
-        mspsleep_print_error("MSP vote TLSLEEP_DFS_DDR_0M failed!\n");
-    }
+    TLSLEEP_DfsQosUpdate((VOS_INT32)DFS_QOS_ID_DDR_MINFREQ_E, dfs_ddr_req_id, TLSLEEP_DFS_DDR_0M);
 #endif
 
     TLSLEEP_DbgTimeRecord(TLSLEEP_HWPOWERDOWN_MAX);
@@ -1239,11 +1201,9 @@ VOS_VOID TLSLEEP_RttSleep_Inner(VOS_VOID)
         {
             TLSLEEP_DelayMs(g_msp_delay.delay_ms, 1);
         }
-#ifndef MSP_IN_V9R1
         if(((ENUM_YES_VOTE_SLEEP == (VOS_INT)g_msp_pwrctrl.SleepDrxResumeTime.ulVoteSwitch)
             &&(POWER_SAVING_SNOOZE == g_msp_pwrctrl.dsp_sleep_flag))
 			||(POWER_SAVING_DEEP_SLEEP == g_msp_pwrctrl.dsp_sleep_flag))
-#endif
         {
             mdrv_pm_wake_unlock(PWRCTRL_SLEEP_TLPS);
 	        TLSLEEP_StateRecord(SLEEP_VOTE_UNLOCK);
@@ -1445,19 +1405,12 @@ VOS_VOID TLSLEEP_DspHaltIsr(VOS_UINT param)
 VOS_VOID TLSLEEP_DspResumeIsr(VOS_UINT param)
 {
     VOS_INT status_lock = 0;
-#ifdef CONFIG_DFS_DDR
-    VOS_INT ret = 0;
-#endif
 
     status_lock = VOS_SplIMP();
     TLSLEEP_StateRecord(DRX_RESUME_INT);
     TLSLEEP_DbgTimeRecord(TLSLEEP_DSPRESUMERISR_0);
 #ifdef CONFIG_DFS_DDR
-    ret = TLSLEEP_DfsQosUpdate((VOS_INT32)DFS_QOS_ID_DDR_MINFREQ_E, dfs_ddr_req_id, TLSLEEP_DFS_DDR_120M);
-    if(ret)
-    {
-        mspsleep_print_error("MSP vote TLSLEEP_DFS_DDR_120M failed!\n");
-    }
+    TLSLEEP_DfsQosUpdate((VOS_INT32)DFS_QOS_ID_DDR_MINFREQ_E, dfs_ddr_req_id, TLSLEEP_DFS_DDR_120M);
 #endif
 
     /*判断当前接收到DSP Resume中断在唤醒流程中是否正常*/
@@ -1824,7 +1777,6 @@ VOS_UINT32 TLSLEEP_Init(VOS_VOID)
     VOS_UINT_PTR realAddr = 0;
     VOS_UINT32 ulSize;
 
-#ifndef MSP_IN_V9R1
     g_msp_pwrctrl.dump_len = 0x1000;
     g_msp_pwrctrl.dump_base = (VOS_VOID * )mdrv_om_register_field(OM_CP_MSP_SLEEP, "tl_sleep", (void*)0, (void*)0, 0x1000, 0);
 
@@ -1833,12 +1785,7 @@ VOS_UINT32 TLSLEEP_Init(VOS_VOID)
         mspsleep_print_error("get exc buffer error,module id = %d", OM_CP_MSP_SLEEP);
         g_msp_pwrctrl.dump_base = (VOS_VOID * )VOS_UnCacheMemAlloc(g_msp_pwrctrl.dump_len, &realAddr);
     }
-#else
-    {
-        g_msp_pwrctrl.dump_len = 0x1000;
-        g_msp_pwrctrl.dump_base = (VOS_VOID * )VOS_UnCacheMemAlloc(g_msp_pwrctrl.dump_len, &realAddr);
-    }
-#endif
+
     ret = TLSLEEP_GetSRDDRAddr();
     if(ret)
     {
@@ -1878,13 +1825,13 @@ VOS_UINT32 TLSLEEP_Init(VOS_VOID)
         mspsleep_print_error("SLEEP_Init: Create TCXO 1 Fail.");
         return ERR_MSP_INIT_FAILURE;
     }
-#ifndef MSP_IN_V9R1
+
     /* 读取delay nv */
     if(NVM_Read(NV_ID_DRV_DRX_DELAY, &g_msp_drx_delay, sizeof(DRV_DRX_DELAY_STRU)))
     {
         memset(&g_msp_drx_delay, 0x0, sizeof(DRV_DRX_DELAY_STRU));
     }
-#endif
+
     /* 读取NV器件稳定时间 */
     if(NVM_Read(NV_ID_MSP_TL_DRX_RESUME_TIME, &g_msp_pwrctrl.SleepDrxResumeTime, sizeof(NV_TL_DRX_RESUME_TIME_STRU)))
     {
@@ -1931,7 +1878,8 @@ VOS_UINT32 TLSLEEP_Init(VOS_VOID)
     BSP_MailBox_DspForceAwakeReg(TLSLEEP_RttForceAwake);
 #ifdef CONFIG_DFS_DDR
     /*为了提高dsp镜像恢复速度，austin版本增加对DDR的调频功能*/
-    ret  = TLSLEEP_DfsQosRequest((VOS_INT32)DFS_QOS_ID_DDR_MINFREQ_E, TLSLEEP_DFS_DDR_75M, &dfs_ddr_req_id);
+    ret  = TLSLEEP_DfsQosRequest((VOS_INT32)DFS_QOS_ID_DDR_MINFREQ_E, TLSLEEP_DFS_DDR_0M, &dfs_ddr_req_id);
+    g_msp_pwrctrl.DspReqDdrFreq = MSP_DSP_REQ_FREQ_INIT;
     if(ret)
     {
         set_power_status_bit(MSP_DFS_REQUEST_FAIL);/* [false alarm]:屏蔽Fortify */
@@ -1939,16 +1887,6 @@ VOS_UINT32 TLSLEEP_Init(VOS_VOID)
     }
 #endif
 
-#ifdef MSP_IN_V9R1
-    ret += TLSLEEP_DfsQosRequest((VOS_INT32)DFS_QOS_ID_BUS_MINFREQ_E, TLSLEEP_DFS_BUS_75M, &dfs_bus_req_id);
-    ret += TLSLEEP_DfsQosRequest((VOS_INT32)DFS_QOS_ID_DDR_MINFREQ_E, TLSLEEP_DFS_DDR_75M, &dfs_ddr_req_id);
-    ret += TLSLEEP_DfsQosRequest((VOS_INT32)DFS_QOS_ID_CCPU_MINFREQ_E, TLSLEEP_DFS_CCPU_150M, &dfs_ccpu_req_id);/* [false alarm]:屏蔽Fortify */
-    if(ret)
-    {
-        set_power_status_bit(MSP_DFS_REQUEST_FAIL);/* [false alarm]:屏蔽Fortify */
-        mspsleep_print_error("request dfs fai, ret = %d\n", ret);
-    }
-#endif
     mdrv_bbp_clear_wakeup_intr(PWC_COMM_MODE_LTE);
     mdrv_bbp_clear_wakeup_intr(PWC_COMM_MODE_TDS);
     mdrv_bbp_disable_wakeup_intr(PWC_COMM_MODE_LTE);
@@ -2042,11 +1980,7 @@ VOS_VOID TLSLEEP_ActivateHw(PWC_COMM_MODE_E modeId)
     g_msp_pwrctrl.DspLowPowerFlag = 0;
 #if (FEATURE_MULTI_CHANNEL == FEATURE_ON)
 
-    ret = TLSLEEP_DfsQosUpdate((VOS_INT32)DFS_QOS_ID_CCPU_MINFREQ_E, dfs_ccpu_req_id,TLSLEEP_DFS_CCPU_600M);/* [false alarm]:屏蔽Fortify */
-    if(ret)
-    {
-        set_power_status_bit(MSP_DFS_HW_UPDATE_FAIL);/* [false alarm]:屏蔽Fortify */
-    }
+    TLSLEEP_DfsQosUpdate((VOS_INT32)DFS_QOS_ID_CCPU_MINFREQ_E, dfs_ccpu_req_id,TLSLEEP_DFS_CCPU_600M);/* [false alarm]:屏蔽Fortify */
 
     TLSLEEP_PwrctrlUp(PWC_COMM_MODE_LTE, PWC_COMM_MODULE_ABB);
     /* 协议栈开机时，先使能PLL，再给BBP上电、开钟 */
@@ -2067,16 +2001,6 @@ VOS_VOID TLSLEEP_ActivateHw(PWC_COMM_MODE_E modeId)
 
 #else
 
-#ifdef MSP_IN_V9R1
-    /*DDR和总线频率最小值为150M,V9R1使用*/
-    ret += TLSLEEP_DfsQosUpdate((VOS_INT32)DFS_QOS_ID_BUS_MINFREQ_E, dfs_bus_req_id, TLSLEEP_DFS_BUS_150M);
-    ret += TLSLEEP_DfsQosUpdate((VOS_INT32)DFS_QOS_ID_DDR_MINFREQ_E, dfs_ddr_req_id, TLSLEEP_DFS_DDR_150M);
-    ret += TLSLEEP_DfsQosUpdate((VOS_INT32)DFS_QOS_ID_CCPU_MINFREQ_E, dfs_ccpu_req_id,TLSLEEP_DFS_CCPU_600M);
-    if(ret)
-    {
-        set_power_status_bit(MSP_DFS_HW_UPDATE_FAIL);
-    }
-#endif
 	/*RF电源上电要先于RFPLLenable，并且要间隔200us*/
     TLSLEEP_PwrctrlUp(PWC_COMM_MODE_LTE, PWC_COMM_MODULE_RF);
     timestamp_begin = mdrv_timer_get_normal_timestamp();

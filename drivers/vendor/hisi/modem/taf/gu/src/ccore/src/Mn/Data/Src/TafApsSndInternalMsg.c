@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafApsSndInternalMsg.c
-  版 本 号   : 初稿
-  作    者   : A00165503
-  生成日期   : 2010年5月9日
-  最近修改   :
-  功能描述   : APS发给APS的消息的处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年12月29日
-    作    者   : A00165503
-    修改内容   : 创建文件
-
-******************************************************************************/
 /*****************************************************************************
   1 头文件包含
 *****************************************************************************/
@@ -48,20 +31,7 @@ extern "C" {
   4 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndInterPdpDeactivateReq
- 功能描述  : 发送内部去激活PDP请求消息
- 输入参数  : enCause                    - 去激活原因
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月29日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_APS_SndInterPdpDeactivateReq(
     VOS_UINT8                           ucPdpId,
     SM_TAF_CAUSE_ENUM_UINT16            enCause
@@ -107,20 +77,7 @@ VOS_VOID TAF_APS_SndInterPdpDeactivateReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndLocalPdpDeactivateInd
- 功能描述  : 发送本地去激活PDP请求消息
- 输入参数  : ucSmCause                  - 去激活原因
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年06月05日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_APS_SndLocalPdpDeactivateInd(
     VOS_UINT8                           ucPdpId,
     SM_TAF_CAUSE_ENUM_UINT16            enCause
@@ -166,24 +123,7 @@ VOS_VOID TAF_APS_SndLocalPdpDeactivateInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndLocalAllSecPdpDeactivateInd
- 功能描述  : 发送本地所有从PDP去激活指示
- 输入参数  : VOS_UINT8 ucPdpId
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年06月29日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-*****************************************************************************/
 VOS_VOID TAF_APS_SndLocalAllSecPdpDeactivateInd(
     VOS_UINT8                           ucPdpId,
     SM_TAF_CAUSE_ENUM_UINT16            enCause
@@ -206,20 +146,7 @@ VOS_VOID TAF_APS_SndLocalAllSecPdpDeactivateInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndInterAttachBearerActivateInd
- 功能描述  : 发送注册承载激活指示消息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月20日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_APS_SndInterAttachBearerActivateInd(VOS_VOID)
 {
     TAF_APS_ATTACH_BEARER_ACTIVATE_IND_STRU    *pstInternalMsg = VOS_NULL_PTR;
@@ -250,20 +177,7 @@ VOS_VOID TAF_APS_SndInterAttachBearerActivateInd(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndInterFsmEntryMsg
- 功能描述  : 发送状态机入口消息至内部消息队列
- 输入参数  : pstEntryMsg --- 状态机入口消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月20日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_APS_SndInterFsmEntryMsg(TAF_APS_ENTRY_MSG_STRU *pstEntryMsg)
 {
     VOS_VOID                           *pstInternalMsg = VOS_NULL_PTR;
@@ -296,21 +210,7 @@ VOS_VOID TAF_APS_SndInterFsmEntryMsg(TAF_APS_ENTRY_MSG_STRU *pstEntryMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndEnterDormantInd
- 功能描述  : 发送内部ID_MSG_TAF_PS_DISC_SO_REQ消息
- 输入参数  : VOS_UINT8                           ucPdpId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月22日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_SndEnterDormantInd(
     VOS_UINT8                           ucPdpId
 )
@@ -348,24 +248,7 @@ VOS_UINT32 TAF_APS_SndEnterDormantInd(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndInterEndCdmaCallReq
- 功能描述  : DORMANT状态下用户去激活先重新建链完成，再发送内部去激活
- 输入参数  : TAF_APS_INTER_END_CALL_SCENE_ENUM_UINT8     enEndScene,
-             TAF_APS_INTER_END_CALL_REASON_ENUM_UINT8    enEndReason,
-             VOS_UINT8                                   ucPdpId,
-             VOS_UINT32                                  ulRemainTmrLen
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月24日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_SndInterEndCdmaCallReq(
     TAF_APS_INTER_END_CALL_SCENE_ENUM_UINT8     enEndScene,
     TAF_APS_INTER_END_CALL_REASON_ENUM_UINT8    enEndReason,
@@ -416,21 +299,7 @@ VOS_UINT32 TAF_APS_SndInterEndCdmaCallReq(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndInterEpdszidReOrigReq
- 功能描述  : Send ID_MSG_TAF_PS_EPDSZID_REORIG_REQ msg
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月30日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_SndInterEpdszidReOrigReq(VOS_VOID)
 {
     TAF_PS_CALL_INTER_EPDSZID_REORIG_REQ_STRU    *pstInternalMsg;
@@ -470,21 +339,7 @@ VOS_UINT32 TAF_APS_SndInterEpdszidReOrigReq(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndHtExpiredInd
- 功能描述  : 构造HT超时消息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月8日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_SndInterHtExpiredInd(VOS_VOID)
 {
     TAF_PS_CALL_INTER_HT_EXPIRED_IND_STRU  *pstInternalMsg;
@@ -525,21 +380,7 @@ VOS_UINT32 TAF_APS_SndInterHtExpiredInd(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndHaiChangeInd
- 功能描述  : Send Internal ID_MSG_TAF_PS_HAI_CHANGE_IND Msg
- 输入参数  : VOS_UINT8                           ucPdpId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月4日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_SndHaiChangeInd(
     VOS_UINT8                           ucPdpId
 )
@@ -578,21 +419,7 @@ VOS_UINT32 TAF_APS_SndHaiChangeInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndInter1XToHrpdHandOffReq
- 功能描述  :
- 输入参数  : VOS_UINT8                                   ucPdpId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年03月31日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_SndInter1XToHrpdHandOffReq(
     VOS_UINT8                           ucPdpId
 )
@@ -636,21 +463,7 @@ VOS_UINT32 TAF_APS_SndInter1XToHrpdHandOffReq(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndInterHrpdTo1XHandOffReq
- 功能描述  :
- 输入参数  : VOS_UINT8                                   ucPdpId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年03月31日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_SndInterHrpdTo1XHandOffReq(
     VOS_UINT8                           ucPdpId
 )
@@ -694,25 +507,7 @@ VOS_UINT32 TAF_APS_SndInterHrpdTo1XHandOffReq(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndInterServiceStatusChangeInd
- 功能描述  : 收到MMA或MMC的SERVICE_STATUS_IND消息，转发内部消息
- 输入参数  : TAF_APS_RAT_TYPE_ENUM_UINT32        enRatType,
-             TAF_APS_RAT_TYPE_ENUM_UINT32        enLastRatType,
-             VOS_UINT32                          ulPsSimRegStatus,
-             VOS_UINT8                           ucPdpId,
-             VOS_UINT8                           ucIsNewSession
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年04月08日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_SndInterServiceStatusChangeInd(
     VOS_UINT8                           ucPdpId,
     TAF_APS_RAT_TYPE_ENUM_UINT32        enRatType,
@@ -767,21 +562,7 @@ VOS_UINT32 TAF_APS_SndInterServiceStatusChangeInd(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndInterPsServiceModeModifyInd
- 功能描述  : 发送ID_MSG_TAF_PS_INTER_PS_SERVICE_MODE_MODIFY_IND
- 输入参数  : TAF_APS_INTER_PS_OPTION_TYPE_ENUM_UINT8 enPsOptionType
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月4日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_SndInterPsServiceModeModifyInd(
     TAF_APS_INTER_PS_OPTION_TYPE_ENUM_UINT8 enPsOptionType
 )
@@ -827,21 +608,7 @@ VOS_UINT32 TAF_APS_SndInterPsServiceModeModifyInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndInterEnd1xServiceInDormantInd
- 功能描述  : 在DORMANT状态，数据服务模式切换时，去激活1X
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月04日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_SndInterEnd1xServiceInDormantInd(
     VOS_UINT8                           ucPdpId
 )

@@ -77,13 +77,11 @@ typedef struct tagSyncEPduStat
     ULONG ulRcvEventPdu;                 /* 接口接收事件SSM报文        */
 }SYNCE_PDUSTAT_S;
 
-/* Add by heyijun 00218462 for DTS2012092803600 维测需求开发, 2012-9 */
 typedef struct tagSyncEPduStatList
 {
     ULONG ulIfIndex;
     SYNCE_PDUSTAT_S stSynceStat;
 }SYNCE_PDUSTAT_LIST_S;
-/* End of Add by heyijun 00218462 for DTS2012092803600 维测需求开发, 2012-9 */
 
 /*MACRO<SYNCE_Define> */
 #define SYNCE_SEND_MODE          1  /*接口收发模式:发送*/
@@ -204,40 +202,10 @@ extern ULONG TCPIP_SetLocalQL(USHORT usQLValue);
 *******************************************************************************/
 extern ULONG TCPIP_GetLocalQL(USHORT* pusQLValue);
 
-/*******************************************************************************
-*    Func Name: TCPIP_SetSsmTlvLength
-* Date Created: 2010-4-27
-*       Author: t00110672
-*  Description: 设置SSM帧TLV信息的Data and Padding长度
-*        Input: ULONG ulSsmTlvLen;
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-4-27   t00110672         Create for BC3D03060
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_SetSsmTlvLength(ULONG ulSsmTlvLen);
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetSsmTlvLength
-* Date Created: 2010-4-27
-*       Author: t00110672
-*  Description: 获取SSM帧TLV信息的Data and Padding长度
-*        Input: ULONG ulSsmTlvLen;
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-4-27   t00110672         Create for BC3D03060
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_GetSsmTlvLength(ULONG *pulSsmTlvLen);
 
 typedef ULONG (*SYNCE_QL_NOTIFY_FUNC)(ULONG ulFlag, ULONG ulNewQL);

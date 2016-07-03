@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : pwrctrl_multi_memcfg.h
-  版 本 号   : 初稿
-  作    者   : 刘永富 56193
-  生成日期   : 2012年12月18日
-  最近修改   :
-  功能描述   : pwrctrl_multi_def.h 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年12月18日
-    作    者   : 刘永富 56193
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 其他头文件包含
@@ -180,10 +163,8 @@ extern "C" {
 
 
 
-/**********z00241656 add for freqdump begin 请在MEMORY_FREQDUMP_ADDR后面开辟内存，谢谢***************/
 #define MEMORY_FREQDUMP_ADDR                (MEMORY_AXI_ACPU_FIQ_DEBUG_INFO_ADDR + MEMORY_AXI_ACPU_FIQ_DEBUG_INFO_SIZE)
 #define MEMORY_FREQDUMP_SIZE                (64)
-/**********z00241656 add for freqdump end 请在MEMORY_FREQDUMP_ADDR后面开辟内存，谢谢******************/
 
 /*for ccpu log addr;*/
 #define MEMORY_AXI_CCPU_LOG_ADDR            (MEMORY_FREQDUMP_ADDR + MEMORY_FREQDUMP_SIZE)

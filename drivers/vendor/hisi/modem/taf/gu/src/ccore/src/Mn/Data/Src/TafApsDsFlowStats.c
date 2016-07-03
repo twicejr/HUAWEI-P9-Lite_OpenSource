@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafApsDsFlowStats.c
-  版 本 号   : 初稿
-  作    者   : o00132663
-  生成日期   : 2011年12月14日
-  最近修改   :
-  功能描述   : APS流量统计处理文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年12月14日
-    作    者   : o00132663
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -66,32 +49,7 @@ extern "C" {
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_StartDsFlowStats
- 功能描述  : PDP激活时启动相关RAB承载流量统计
- 输入参数  : ucRabId - RAB承载ID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月15日
-    作    者   : 欧阳飞 00132663
-    修改内容   : 新生成函数
-  2.日    期   : 2012年5月30日
-    作    者   : zhangyizhan 60575
-    修改内容   : DTS2012052907939, 保存到NV的时间由NV 9036配置
-  3.日    期   : 2012年11月09日
-    作    者   : l00198894
-    修改内容   : Probe路测工具对接项目激活PDP后开启流量上报定时器
-  4.日    期   : 2012年12月26日
-    作    者   : m00217266
-    修改内容   : DSDA C核项目CDS接口修改
-  5.日    期   : 2013年11月21日
-    作    者   : j00174725
-    修改内容   : ROTS 修改
-*****************************************************************************/
 VOS_VOID  TAF_APS_StartDsFlowStats(
     VOS_UINT8                           ucRabId
 )
@@ -126,12 +84,10 @@ VOS_VOID  TAF_APS_StartDsFlowStats(
     CDS_ClearBearerDataFlowInfo(ucRabId, usModemid);
 
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     /* 初始化APS当前连接流量信息为0 */
     PS_MEM_SET(&pstApsDsFlowCtx->astApsDsFlowStats[ulIndex].stCurrentFlowInfo,
                 0,
                 sizeof(TAF_DSFLOW_INFO_STRU));
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
     /* 记录当前连接开始时间 */
     pstApsDsFlowCtx->astApsDsFlowStats[ulIndex].ulStartLinkTime = VOS_GetTick() / PRE_SECOND_TO_TICK;
 
@@ -149,42 +105,14 @@ VOS_VOID  TAF_APS_StartDsFlowStats(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_StopDsFlowStats
- 功能描述  : PDP去激活时停止相关RAB承载流量统计
- 输入参数  : ucRabId - RAB承载ID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月15日
-    作    者   : 欧阳飞 00132663
-    修改内容   : 新生成函数
-  2.日    期   : 2012年5月15日
-    作    者   : A00165503
-    修改内容   : DTS2012051402688: G模下清空流量信息后拨号数传, 时间小于10分
-                 钟, 重启单板时没有将流量信息写入NV
-  3.日    期   : 2012年5月18日
-    作    者   : A00165503
-    修改内容   : DTS2012041107552: G模数传时正常断开拨号, 流量统计异常
-  4.日    期   : 2012年6月15日
-    作    者   : f00179208
-    修改内容   : DTS2012061407364, 流量统计低位当超出范围需要进位
-  5.日    期   : 2012年12月26日
-    作    者   : m00217266
-    修改内容   : DSDA C核项目CDS接口修改
-*****************************************************************************/
 VOS_VOID  TAF_APS_StopDsFlowStats(
     VOS_UINT8                           ucRabId
 )
 {
     VOS_UINT32                          ulIndex;
     TAF_APS_DSFLOW_STATS_CTX_STRU      *pstApsDsFlowCtx;
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     TAF_DSFLOW_INFO_STRU                stCurrentFlowInfo;
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
     VOS_UINT16                          usModemid;
 
     /* 判断RAB ID是否有效 */
@@ -193,10 +121,8 @@ VOS_VOID  TAF_APS_StopDsFlowStats(
         return;
     }
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     /* 初始化 */
     PS_MEM_SET(&stCurrentFlowInfo, 0, sizeof(TAF_DSFLOW_INFO_STRU));
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
     pstApsDsFlowCtx = TAF_APS_GetDsFlowCtxAddr();
     ulIndex         = ucRabId - TAF_APS_RAB_ID_OFFSET;
 
@@ -255,26 +181,11 @@ VOS_VOID  TAF_APS_StopDsFlowStats(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_QryDsFlowStats
- 功能描述  : 查询指定RAB承载的流量信息
- 输入参数  : ucRabId          - RAB承载ID
- 输出参数  : pstDsFlowQryInfo - 流量查询信息指针
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月15日
-    作    者   : 欧阳飞 00132663
-    修改内容   : 新生成函数
-*****************************************************************************/
-/* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
 VOS_VOID  TAF_APS_QryDsFlowStats(
     TAF_DSFLOW_QUERY_INFO_STRU         *pstDsFlowQryInfo,
     VOS_UINT8                           ucRabId
 )
-/* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 {
     VOS_UINT32                          ulIndex;
     TAF_APS_DSFLOW_STATS_CTX_STRU      *pstApsDsFlowCtx;
@@ -323,39 +234,18 @@ VOS_VOID  TAF_APS_QryDsFlowStats(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_QryAllRabDsFlowStats
- 功能描述  : 查询所有RAB承载的流量信息
- 输入参数  : 无
- 输出参数  : pstDsFlowQryInfo - 流量查询信息结构指针
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月16日
-    作    者   : 欧阳飞 00132663
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年3月26日
-    作    者   : l60609
-    修改内容   : DTS2012032202846：IPV4V6的情况，连接时间为最大值而不是累加值
-*****************************************************************************/
-/* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
 VOS_VOID  TAF_APS_QryAllRabDsFlowStats(
     TAF_DSFLOW_QUERY_INFO_STRU          *pstTotalDsFlowQryInfo
 )
-/* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 {
     VOS_UINT8                           ucRabId;
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     TAF_DSFLOW_QUERY_INFO_STRU      stDsFlowQryInfo;
 
     /* 依次轮询所有RABID，获取流量信息并累加 */
     for ( ucRabId = TAF_APS_RAB_ID_MIN; ucRabId <=  TAF_APS_RAB_ID_MAX; ucRabId++ )
     {
         PS_MEM_SET(&stDsFlowQryInfo, 0, sizeof(TAF_DSFLOW_QUERY_INFO_STRU));
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
         TAF_APS_QryDsFlowStats(&stDsFlowQryInfo, ucRabId);
 
         /* 当前连接时间: 取各RAB中最大值 */
@@ -408,26 +298,7 @@ VOS_VOID  TAF_APS_QryAllRabDsFlowStats(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ClearDsFlowStats
- 功能描述  : 清除指定RAB承载的流量信息
- 输入参数  : ucRabId          - RAB承载ID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月15日
-    作    者   : 欧阳飞 00132663
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月26日
-    作    者   : m00217266
-    修改内容   : DSDA C核项目CDS接口修改
-  3.日    期   : 2013年11月21日
-    作    者   : j00174725
-    修改内容   : ROTS 修改
-*****************************************************************************/
 VOS_VOID  TAF_APS_ClearDsFlowStats(
     VOS_UINT8                           ucRabId
 )
@@ -467,20 +338,7 @@ VOS_VOID  TAF_APS_ClearDsFlowStats(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ClearAllRabDsFlowStats
- 功能描述  : 清除所有RAB承载的流量信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月15日
-    作    者   : 欧阳飞 00132663
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  TAF_APS_ClearAllRabDsFlowStats( VOS_VOID )
 {
     VOS_UINT8                           ucRabId;
@@ -494,24 +352,7 @@ VOS_VOID  TAF_APS_ClearAllRabDsFlowStats( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_StartDsFlowRpt
- 功能描述  : 启动APS流量上报
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月15日
-    作    者   : 欧阳飞 00132663
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年11月09日
-    作    者   : l00198894
-    修改内容   : Probe路测工具对接项目取消修改流量上报标志位
-*****************************************************************************/
 VOS_VOID  TAF_APS_StartDsFlowRpt( VOS_VOID )
 {
     TAF_APS_TIMER_STATUS_ENUM_U8        enTimerStatus;
@@ -540,24 +381,7 @@ VOS_VOID  TAF_APS_StartDsFlowRpt( VOS_VOID )
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_StopDsFlowRpt
- 功能描述  : 停止APS流量上报
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月15日
-    作    者   : 欧阳飞 00132663
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年11月09日
-    作    者   : l00198894
-    修改内容   : Probe路测工具对接项目取消修改流量上报标志位
-*****************************************************************************/
 VOS_VOID  TAF_APS_StopDsFlowRpt( VOS_VOID )
 {
     TAF_APS_TIMER_STATUS_ENUM_U8        enTimerStatus;
@@ -574,20 +398,7 @@ VOS_VOID  TAF_APS_StopDsFlowRpt( VOS_VOID )
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_QryDsFlowReportInfo
- 功能描述  : 查询指定RAB承载的流量上报信息
- 输入参数  : ucRabId            - RAB承载ID
- 输出参数  : pstDsFlowRptInfo   - 流量上报结构指针
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月15日
-    作    者   : 欧阳飞 00132663
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_APS_QryDsFlowReportInfo(
     VOS_UINT8                           ucRabId,
     TAF_DSFLOW_REPORT_STRU             *pstDsFlowRptInfo
@@ -595,9 +406,7 @@ VOS_VOID TAF_APS_QryDsFlowReportInfo(
 {
     VOS_UINT32                          ulIndex;
     TAF_APS_DSFLOW_STATS_CTX_STRU      *pstApsDsFlowCtx;
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     TAF_DSFLOW_INFO_STRU                stCurrentFlowInfo;
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     /* 判断RAB ID是否有效 */
     if ((ucRabId < TAF_APS_RAB_ID_MIN) || (ucRabId > TAF_APS_RAB_ID_MAX))
@@ -607,9 +416,7 @@ VOS_VOID TAF_APS_QryDsFlowReportInfo(
 
     /* 初始化 */
     ulIndex         = ucRabId - TAF_APS_RAB_ID_OFFSET;
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     PS_MEM_SET(&stCurrentFlowInfo, 0, sizeof(TAF_DSFLOW_INFO_STRU));
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     /* 获取流量统计上下文 */
     pstApsDsFlowCtx = TAF_APS_GetDsFlowCtxAddr();
@@ -638,20 +445,7 @@ VOS_VOID TAF_APS_QryDsFlowReportInfo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_QryAllRabDsFlowReportInfo
- 功能描述  : 查询所有RAB承载的流量上报信息
- 输入参数  : 无
- 输出参数  : pstTotalDsFlowRptInfo   - 流量上报结构指针
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月15日
-    作    者   : 欧阳飞 00132663
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_APS_QryAllRabDsFlowReportInfo(
     TAF_DSFLOW_REPORT_STRU             *pstTotalDsFlowRptInfo
 )
@@ -714,35 +508,11 @@ VOS_VOID TAF_APS_QryAllRabDsFlowReportInfo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetCurrentFlowInfo
- 功能描述  : 获取指定RABID的当前连接流量信息
- 输入参数  : ucRabId          - RAB承载ID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月15日
-    作    者   : 欧阳飞 00132663
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月26日
-    作    者   : m00217266
-    修改内容   : DSDA C核项目CDS接口修改(CDS_GetBearerDataFlowInfo添加modemid)
-  3.日    期   : 2013年07月222日
-    作    者   : j00177245
-    修改内容   : 清理Coverity
-  4.日    期   : 2013年11月21日
-    作    者   : j00174725
-    修改内容   : ROTS 修改
-*****************************************************************************/
-/* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
 VOS_VOID  TAF_APS_GetCurrentFlowInfo(
     VOS_UINT8                           ucRabId,
     TAF_DSFLOW_INFO_STRU               *pstCurrentFlowInfo
 )
-/* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 {
     CDS_BEARER_DATA_FLOW_STRU           stDataFlowInfo;
     TAF_APS_DSFLOW_STATS_CTX_STRU      *pstApsDsFlowCtx;
@@ -810,38 +580,21 @@ VOS_VOID  TAF_APS_GetCurrentFlowInfo(
     }
     else
     {
-        /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
         PS_MEM_CPY(pstCurrentFlowInfo,
                   &pstApsDsFlowCtx->astApsDsFlowStats[ulIndex].stCurrentFlowInfo,
                    sizeof(TAF_DSFLOW_INFO_STRU) );
-        /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
     }
 
     return;
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_UpdateAllRabCurrentFlowInfo
- 功能描述  : 刷新所有已激活的RABID的当前连接流量信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月15日
-    作    者   : 欧阳飞 00132663
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  TAF_APS_UpdateAllRabCurrentFlowInfo( VOS_VOID )
 {
     VOS_UINT8                           ucRabId;
     VOS_UINT32                          ulIndex;
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     TAF_DSFLOW_INFO_STRU                stCurrentFlowInfo;
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
     TAF_APS_DSFLOW_STATS_CTX_STRU      *pstApsDsFlowCtx;
 
     /* 获取流量统计上下文指针 */
@@ -850,10 +603,8 @@ VOS_VOID  TAF_APS_UpdateAllRabCurrentFlowInfo( VOS_VOID )
     /* 依次轮询所有RABID，刷新当前连接流量信息 */
     for ( ucRabId = TAF_APS_RAB_ID_MIN; ucRabId <=  TAF_APS_RAB_ID_MAX; ucRabId++ )
     {
-        /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
         /* 初始化 */
         PS_MEM_SET(&stCurrentFlowInfo, 0, sizeof(TAF_DSFLOW_INFO_STRU));
-        /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
         /* 获取当前连接流量信息 */
         TAF_APS_GetCurrentFlowInfo(ucRabId, &stCurrentFlowInfo);
@@ -868,20 +619,7 @@ VOS_VOID  TAF_APS_UpdateAllRabCurrentFlowInfo( VOS_VOID )
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_UpdateAllRabCurrentFlowInfo
- 功能描述  : 检查当前是否有RABID处于激活态
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月15日
-    作    者   : 欧阳飞 00132663
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  TAF_APS_CheckIfActiveRabIdExist( VOS_VOID )
 {
     VOS_UINT8                           ucRabId;
@@ -906,23 +644,7 @@ VOS_UINT32  TAF_APS_CheckIfActiveRabIdExist( VOS_VOID )
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_CalcDsflowRate
- 功能描述  : 计算数传速率实现函数
- 输入参数  : ulStartHigh - 流量计算起始值高字节
-             ulStartLow  - 流量计算起始值低字节
-             ulEndHigh   - 流量计算终止值高字节
-             ulEndLow    - 流量计算终止值低字节
- 输出参数  : pulRate     - 返回速率指针
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月15日
-    作    者   : 欧阳飞 00132663
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  TAF_APS_CalcDsflowRate(
     VOS_UINT32                          ulStartHigh,
     VOS_UINT32                          ulStartLow,
@@ -973,20 +695,7 @@ VOS_VOID  TAF_APS_CalcDsflowRate(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ClearApDsFlowStats
- 功能描述  : 清除流量阈值统计信息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月2日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_APS_ClearApDsFlowStats( VOS_VOID )
 {
     TAF_APS_DSFLOW_STATS_CTX_STRU      *pstDsFlowCtx = VOS_NULL_PTR;
@@ -999,23 +708,7 @@ VOS_VOID TAF_APS_ClearApDsFlowStats( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ProcApDsFlowRpt
- 功能描述  : 处理流量阈值上报
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月2日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-  2.日    期   : 2015年4月2日
-    作    者   : w00316404
-    修改内容   : clean coverity
-*****************************************************************************/
 VOS_VOID TAF_APS_ProcApDsFlowRpt(VOS_VOID)
 {
     TAF_APS_DSFLOW_STATS_CTX_STRU      *pstDsflowCtx = VOS_NULL_PTR;
@@ -1090,20 +783,7 @@ VOS_VOID TAF_APS_ProcApDsFlowRpt(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ShowDdrInfo
- 功能描述  : 打印DDR调频信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月05日
-    作    者   : 范晶 00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_APS_ShowDdrInfo(VOS_VOID)
 {
     VOS_UINT32                              i;
@@ -1137,20 +817,7 @@ VOS_VOID TAF_APS_ShowDdrInfo(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ReleaseDfs
- 功能描述  : 释放DDR调频的投票
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月05日
-    作    者   : 范晶 00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_APS_ReleaseDfs(VOS_VOID)
 {
 #if defined(INSTANCE_1) || defined(INSTANCE_2)
@@ -1184,20 +851,7 @@ VOS_VOID TAF_APS_ReleaseDfs(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetCurrRatMode
- 功能描述  : 获取当前的接入技术模式，区分td和w
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : TAF_APS_RAT_TYPE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年05月26日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-*****************************************************************************/
 TAF_APS_DFS_TYPE_ENUM_UINT32 TAF_APS_GetCurrDfsMode(VOS_VOID)
 {
     TAF_APS_RAT_TYPE_ENUM_UINT32        enMmcApsRat;
@@ -1240,21 +894,7 @@ TAF_APS_DFS_TYPE_ENUM_UINT32 TAF_APS_GetCurrDfsMode(VOS_VOID)
     return TAF_APS_DFS_TYPE_BASE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_FindDfsReqValueByRat
- 功能描述  : 根据接入技术查找DDR调频请求值
- 输入参数  : VOS_UINT32                          ulDLRate
-             VOS_UINT32                          ulULRate
- 输出参数  : VOS_UINT32                         *pulReqValue
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年05月26日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_FindDfsReqValueByRat(
     VOS_UINT32                         *pulReqValue,
     VOS_UINT32                          ulDLRate,
@@ -1316,21 +956,7 @@ VOS_UINT32 TAF_APS_FindDfsReqValueByRat(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_FindDfsReqValue
- 功能描述  : 查找DDR调频请求值
- 输入参数  : VOS_UINT32                          ulDLRate
-             VOS_UINT32                          ulULRate
- 输出参数  : VOS_UINT32                         *pulReqValue
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月05日
-    作    者   : 范晶 00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_FindDfsReqValue(
     VOS_UINT32                         *pulReqValue,
     VOS_UINT32                          ulDLRate,
@@ -1388,20 +1014,7 @@ VOS_UINT32 TAF_APS_FindDfsReqValue(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SwitchDdrRateByCurrentRate
- 功能描述  : 根据当前的数据速率来调节DDR的频率
- 输入参数  : VOS_UINT32 ulDlRate
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月05日
-    作    者   : 范晶 00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_APS_SwitchDdrRateByCurrentRate(
     VOS_UINT32                          ulDlRate,
     VOS_UINT32                          ulUlRate
@@ -1493,20 +1106,7 @@ VOS_VOID TAF_APS_SwitchDdrRateByCurrentRate(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SetDfsMax
- 功能描述  : 将DFS调到最大
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年01月17日
-    作    者   : 范晶 00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_APS_SetDfsMax(VOS_VOID)
 {
     TAF_APS_SWITCH_DDR_RATE_INFO_STRU  *pstSwitchDdrInfo;
@@ -1554,20 +1154,7 @@ VOS_VOID TAF_APS_SetDfsMax(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_CheckIfMinDdrBand
- 功能描述  : 确认当前的ddr频率是否为当前的接入技术对应ddr频率的最小值
- 输入参数  : VOS_UINT32 ulReqValue
- 输出参数  : 无
- 返 回 值  : VOS_TRUE、VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月18日
-    作    者   : 马仁坤 m00217266
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_CheckIfMinDdrBand(
     VOS_UINT32                          ulReqValue
 )
@@ -1596,21 +1183,7 @@ VOS_UINT32 TAF_APS_CheckIfMinDdrBand(
 
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- 函 数 名  : TAF_APS_ProcRlpDataStatus
- 功能描述  : APS提供给RLP的回调函数，RLP每20毫秒调用一次
- 输入参数  : pstRlpDataStat : RLP参数
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年10月27日
-   作    者   : h00246512
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_ProcRlpDataStatusCb(
     const RLPITF_1X_RLP_DATA_STAT_STRU *const pstRlpDataStat
 )
@@ -1693,21 +1266,7 @@ VOS_VOID TAF_APS_ProcRlpDataStatusCb(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ProcEvdoRlpDataStatusCb
- 功能描述  : APS提供给RLP的回调函数，RLP每80毫秒调用一次
- 输入参数  : enFlowActivity : RLP参数
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年07月02日
-   作    者   : y00314741
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 
 VOS_VOID TAF_APS_ProcEvdoRlpDataStatusCb(
     PS_BOOL_ENUM_UINT8                  enFlowActivity

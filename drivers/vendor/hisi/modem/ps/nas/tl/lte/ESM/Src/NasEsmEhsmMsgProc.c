@@ -1,14 +1,4 @@
-/******************************************************************************
 
-        @(#)Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : NasEsmEhsmMsgProc.c
-    Description : 处理EHSM发给ESM的承载处理类消息
-    History     :
-     1.sunjitan 00193151    2015-06-16   Draft Enact
-
-******************************************************************************/
 
 /*****************************************************************************
   1 Include HeadFile
@@ -43,16 +33,7 @@ extern "C" {
 NAS_ESM_EHRPD_ENTITY_STRU               g_stEsmEhrpdEntity;
 
 
-/*****************************************************************************
- Function Name  : NAS_ESM_EhsmMsgDistr
- Description    : ESM模块EHSM消息处理函数
- Input          : VOS_VOID*              EHSM发来的消息
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ESM_EhsmMsgDistr(
     VOS_VOID                           *pRcvMsg
 )
@@ -95,16 +76,7 @@ VOS_VOID NAS_ESM_EhsmMsgDistr(
 }
 
 
-/*****************************************************************************
- Function Name  : NAS_ESM_InitEhrpdEntity
- Description    : ESM模块初始化EHRPD实体的处理
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ESM_InitEhrpdEntity(VOS_VOID)
 {
     VOS_UINT32                          i;
@@ -155,16 +127,7 @@ VOS_VOID NAS_ESM_InitEhrpdEntity(VOS_VOID)
 }
 
 
-/*****************************************************************************
- Function Name  : NAS_ESM_EhsmSyncPdnInfoMsgProc
- Description    : ESM模块收到ID_EHSM_ESM_SYNC_PDN_INFO_IND消息的处理
- Input          : VOS_VOID*             EHSM发来的消息
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ESM_EhsmSyncPdnInfoMsgProc(
     VOS_VOID                           *pRcvMsg
 )
@@ -213,16 +176,7 @@ VOS_VOID NAS_ESM_EhsmSyncPdnInfoMsgProc(
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_ESM_EhsmClearAllBearerNotifyMsgProc
- Description    : ESM模块收到ID_EHSM_ESM_CLEAR_ALL_BEARER_NOTIFY消息的处理
- Input          : VOS_VOID*             EHSM发来的消息
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ESM_EhsmClearAllBearerNotifyMsgProc(
     VOS_VOID                           *pRcvMsg
 )
@@ -253,16 +207,7 @@ VOS_VOID NAS_ESM_EhsmClearAllBearerNotifyMsgProc(
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_ESM_EhsmSyncPdnInfoConnectedProc
- Description    : ESM收到EHSM发来的承载CONN指示时的处理
- Input          : EHSM_ESM_SYNC_PDN_INFO_IND_STRU*          EHSM发来的消息
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ESM_EhsmSyncPdnInfoConnectedProc(
     EHSM_ESM_SYNC_PDN_INFO_IND_STRU    *pEhsmMsg
 )
@@ -323,16 +268,7 @@ VOS_VOID NAS_ESM_EhsmSyncPdnInfoConnectedProc(
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_ESM_EhsmSyncPdnInfoModifiedProc
- Description    : ESM收到EHSM发来的承载MODIFY指示时的处理
- Input          : EHSM_ESM_SYNC_PDN_INFO_IND_STRU*          EHSM发来的消息
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ESM_EhsmSyncPdnInfoModifiedProc(
     EHSM_ESM_SYNC_PDN_INFO_IND_STRU    *pEhsmMsg
 )
@@ -361,16 +297,7 @@ VOS_VOID NAS_ESM_EhsmSyncPdnInfoModifiedProc(
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_ESM_EhsmSyncPdnInfoDisconnectedProc
- Description    : ESM收到EHSM发来的承载DISCONN指示时的处理
- Input          : EHSM_ESM_SYNC_PDN_INFO_IND_STRU*          EHSM发来的消息
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ESM_EhsmSyncPdnInfoDisconnectedProc(
     EHSM_ESM_SYNC_PDN_INFO_IND_STRU    *pEhsmMsg
 )
@@ -404,17 +331,7 @@ VOS_VOID NAS_ESM_EhsmSyncPdnInfoDisconnectedProc(
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_ESM_ClearAllLteDefaultBearerInfoNotInformApsProc
- Description    : ESM模块清除所有处于激活态的LTE承载，
-                  缺省承载不通知APS，专有承载通知APS
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ESM_ClearAllLteDefaultBearerInfoNotInformApsProc(VOS_VOID)
 {
     VOS_UINT32                          i;
@@ -507,16 +424,7 @@ VOS_VOID NAS_ESM_ClearAllLteDefaultBearerInfoNotInformApsProc(VOS_VOID)
 }
 
 
-/*****************************************************************************
- Function Name  : NAS_ESM_ClearAllEhrpdPdnInfoProc
- Description    : ESM模块清除所有EHRPD承载记录的处理
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ESM_ClearAllEhrpdPdnInfoProc(VOS_VOID)
 {
     VOS_UINT32                          i;
@@ -553,16 +461,7 @@ VOS_VOID NAS_ESM_ClearAllEhrpdPdnInfoProc(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_ESM_AllocPdnIndexInEhrpdEntity
- Description    : 在EHRPD实体中分配一个未使用的索引位置
- Input          :
- Output         : VOS_UINT32*           传出分配到的索引值
- Return Value   : VOS_UINT32            分配结果: 0成功；1失败
 
- History        :
-      1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_UINT32 NAS_ESM_AllocPdnIndexInEhrpdEntity(
     VOS_UINT32                         *pulIndex
 )
@@ -603,17 +502,7 @@ VOS_UINT32 NAS_ESM_AllocPdnIndexInEhrpdEntity(
     return NAS_ESM_FAILURE;
 }
 
-/*****************************************************************************
- Function Name  : NAS_ESM_SaveEhrpdPdnInfo
- Description    : 在EHRPD实体中保存EHRPD承载信息
- Input          : VOS_UINT32                                存入的索引位置
-                  EHSM_ESM_SYNC_PDN_INFO_IND_STRU*          EHSM发来的消息
- Output         : None
- Return Value   : VOS_VOID
 
- History        :
-      1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ESM_SaveEhrpdPdnInfo(
     VOS_UINT32                          ulIndex,
     EHSM_ESM_SYNC_PDN_INFO_IND_STRU    *pEhsmMsg
@@ -710,16 +599,7 @@ VOS_VOID NAS_ESM_SaveEhrpdPdnInfo(
 }
 
 
-/*****************************************************************************
- Function Name  : NAS_ESM_DeleteEhrpdPdnEntityInfo
- Description    : ESM模块清除某EHRPD承载实体信息记录的处理
- Input          : VOS_UINT32            实体索引
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ESM_DeleteEhrpdPdnEntityInfo(
     VOS_UINT32                          ulIndex
 )
@@ -763,16 +643,7 @@ VOS_VOID NAS_ESM_DeleteEhrpdPdnEntityInfo(
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_ESM_GetEhrpdPdnEntityIndexBasedEpsbId
- Description    : 根据EHRPD的承载ID信息在EHRPD实体中获取相应的PDN实体索引
- Input          : VOS_UINT32            EHRPD承载ID信息
- Output         : VOS_UINT32*           获取到的索引值地址
- Return Value   : VOS_UINT32            获取结果: 0成功；1失败
 
- History        :
-      1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_UINT32 NAS_ESM_GetEhrpdPdnEntityIndexBasedEpsbId(
     VOS_UINT32                          ulEpsbId,
     VOS_UINT32                         *pulIndex
@@ -811,16 +682,7 @@ VOS_UINT32 NAS_ESM_GetEhrpdPdnEntityIndexBasedEpsbId(
     return NAS_ESM_FAILURE;
 }
 
-/*****************************************************************************
- Function Name  : NAS_ESM_GetEhrpdPdnEntityIndexBasedCid
- Description    : 根据CID在EHRPD实体中获取相应的PDN实体索引
- Input          : VOS_UINT32            CID信息
- Output         : VOS_UINT32*           获取到的索引值地址
- Return Value   : VOS_UINT32            获取结果: 0成功；1失败
 
- History        :
-      1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_UINT32 NAS_ESM_GetEhrpdPdnEntityIndexBasedCid(
     VOS_UINT32                          ulCid,
     VOS_UINT32                         *pulIndex
@@ -864,16 +726,7 @@ VOS_UINT32 NAS_ESM_GetEhrpdPdnEntityIndexBasedCid(
 }
 
 
-/*****************************************************************************
- Function Name  : NAS_ESM_GetEhrpdPdnEntityIndexBasedApn
- Description    : 根据APN信息在EHRPD实体中获取相应的PDN实体索引
- Input          : APP_ESM_APN_INFO_STRU*          APN信息
- Output         : VOS_UINT32*                     获取到的索引值地址
- Return Value   : VOS_UINT32                      获取结果: 0成功；1失败
 
- History        :
-      1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_UINT32 NAS_ESM_GetEhrpdPdnEntityIndexBasedApn(
     const APP_ESM_APN_INFO_STRU        *pstApn,
     VOS_UINT32                         *pulIndex
@@ -927,16 +780,7 @@ VOS_UINT32 NAS_ESM_GetEhrpdPdnEntityIndexBasedApn(
     return NAS_ESM_FAILURE;
 }
 
-/*****************************************************************************
- Function Name  : NAS_ESM_GetEhrpdPdnEntityIndexBasedOpId
- Description    : 根据OPID在EHRPD实体中查找对应的PDN实体索引
- Input          : VOS_UINT32            OPID值
- Output         : VOS_UINT32*           获取到的索引值地址
- Return Value   : VOS_UINT32            获取结果: 0成功；1失败
 
- History        :
-      1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_UINT32 NAS_ESM_GetEhrpdPdnEntityIndexBasedOpId(
     VOS_UINT32                          ulOpId,
     VOS_UINT32                         *pulIndex
@@ -976,16 +820,7 @@ VOS_UINT32 NAS_ESM_GetEhrpdPdnEntityIndexBasedOpId(
 }
 
 
-/*****************************************************************************
- Function Name  : NAS_ESM_GetAttachPdnInEhrpdEntity
- Description    : 在EHRPD实体中查找注册PDN
- Input          : None
- Output         : VOS_UINT32*           传出对应的PDN实体索引
- Return Value   : VOS_UINT32            获取结果: 0成功；1失败
 
- History        :
-      1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_UINT32 NAS_ESM_GetAttachPdnInEhrpdEntity(
     VOS_UINT32                         *pulIndex
 )
@@ -1031,16 +866,7 @@ VOS_UINT32 NAS_ESM_GetAttachPdnInEhrpdEntity(
 }
 
 
-/*****************************************************************************
- Function Name  : NAS_ESM_GetAttachCidInEhrpdEntity
- Description    : 在EHRPD实体中查找注册PDN对应的CID
- Input          : None
- Output         : VOS_UINT32*           传出注册用的CID
- Return Value   : VOS_UINT32            获取结果: 0成功；1失败
 
- History        :
-      1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_UINT32 NAS_ESM_GetAttachCidInEhrpdEntity(
     VOS_UINT32                         *pulCid
 )
@@ -1079,16 +905,7 @@ VOS_UINT32 NAS_ESM_GetAttachCidInEhrpdEntity(
 }
 
 
-/*****************************************************************************
- Function Name  : NAS_ESM_GetNextReconnectEhrpdPdn
- Description    : 在EHRPD实体中查找下一个可以恢复的EHRPD PDN
- Input          : None
- Output         : VOS_UINT32*           下一个EHRPD实体索引
- Return Value   : VOS_UINT32            获取结果: 0成功；1失败
 
- History        :
-      1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_UINT32 NAS_ESM_GetNextReconnectEhrpdPdn(
     VOS_UINT32                         *pulIndex
 )
@@ -1148,16 +965,7 @@ VOS_UINT32 NAS_ESM_GetNextReconnectEhrpdPdn(
     return NAS_ESM_FAILURE;
 }
 
-/*****************************************************************************
- Function Name  : NAS_ESM_PerformEhrpdPdnReconnect
- Description    : 执行EHRPD PDN恢复流程
- Input          : None
- Output         : VOS_UINT32           EHRPD实体索引
- Return Value   : VOS_UINT32           0 执行成功； 1 执行失败
 
- History        :
-      1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_UINT32 NAS_ESM_PerformEhrpdPdnReconnect(
     VOS_UINT32                          ulIndex
 )
@@ -1280,17 +1088,7 @@ VOS_UINT32 NAS_ESM_PerformEhrpdPdnReconnect(
 }
 
 
-/*****************************************************************************
- Function Name  : NAS_ESM_SetEhrpdPdnInfoToSdf
- Description    : 将EHRPD的PDN实体中的信息设置到SDF中
- Input          : NAS_ESM_SDF_PARA_STRU*          SDF指针
-                  NAS_ESM_EHRPD_PDN_ENTITY_STRU*  PDN实体指针
- Output         : None
- Return Value   : VOS_VOID
 
- History        :
-      1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ESM_SetEhrpdPdnInfoToSdf(
     NAS_ESM_SDF_PARA_STRU              *pstSdfPara,
     NAS_ESM_EHRPD_PDN_ENTITY_STRU      *pstPdnEntity
@@ -1320,17 +1118,7 @@ VOS_VOID NAS_ESM_SetEhrpdPdnInfoToSdf(
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SetEhrpdPdnInfoToSyncPdnInfoMsg
- Description     : 赋值EHRPD承载信息到PDN同步消息中
- Input           : NAS_ESM_EPSB_CNTXT_INFO_STRU*            ESM承载信息指针
-                   ESM_EHSM_SYNC_PDN_INFO_IND_STRU*         ESM与EHSM接口中的承载信息指针
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ESM_SetEhrpdPdnInfoToSyncPdnInfoMsg
 (
     const NAS_ESM_EPSB_CNTXT_INFO_STRU *pstEpsbCntxtInfo,
@@ -1385,16 +1173,7 @@ VOS_VOID NAS_ESM_SetEhrpdPdnInfoToSyncPdnInfoMsg
 }
 
 
-/*****************************************************************************
- Function Name  : NAS_ESM_ConvertBitCidToCid
- Description    : 在只有一个CID的情况下ulBitCid到Cid的转换
- Input          : VOS_UINT32            ulBitCid
- Output         : None
- Return Value   : VOS_UINT32            获取CID结果
 
- History        :
-      1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_UINT32 NAS_ESM_ConvertBitCidToCid(
     VOS_UINT32                          ulBitCid
 )
@@ -1417,16 +1196,7 @@ VOS_UINT32 NAS_ESM_ConvertBitCidToCid(
     return NAS_ESM_ILL_CID;
 }
 
-/*****************************************************************************
- Function Name  : NAS_ESM_IsBackOffAllowedToReconn
- Description    : BACK OFF算法是否允许发起承载恢复空口流程判定
- Input          : NAS_ESM_EHRPD_PDN_ENTITY_STRU*  PDN实体指针
- Output         : None
- Return Value   : VOS_UINT32            判定结果: 0成功；1失败
 
- History        :
-      1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_UINT32 NAS_ESM_IsBackOffAllowedToReconn(
     NAS_ESM_EHRPD_PDN_ENTITY_STRU      *pstPdnEntity
 )
@@ -1463,16 +1233,7 @@ VOS_UINT32 NAS_ESM_IsBackOffAllowedToReconn(
 }
 
 
-/*****************************************************************************
- Function Name  : NAS_ESM_CheckAllowedPdnEntityToReconnect
- Description    : 检查是否允许当前PDN实体发起承载恢复流程
- Input          : NAS_ESM_EHRPD_PDN_ENTITY_STRU*  PDN实体指针
- Output         : None
- Return Value   : VOS_UINT32            检查结果: 0允许发起；1不允许发起
 
- History        :
-      1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_UINT32 NAS_ESM_CheckAllowedPdnEntityToReconnect(
     NAS_ESM_EHRPD_PDN_ENTITY_STRU      *pstPdnEntity
 )
@@ -1538,16 +1299,7 @@ VOS_UINT32 NAS_ESM_CheckAllowedPdnEntityToReconnect(
 }
 
 
-/*****************************************************************************
- Function Name  : NAS_ESM_EhrpdPdnConnectHandOverSuccProc
- Description    : EHRPD承载恢复成功的处理
- Input          : VOS_UINT32            PDN实体索引
- Output         : None
- Return Value   : VOS_VOID
 
- History        :
-      1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ESM_EhrpdPdnConnectHandOverSuccProc(
     VOS_UINT32                          ulIndex
 )
@@ -1583,16 +1335,7 @@ VOS_VOID NAS_ESM_EhrpdPdnConnectHandOverSuccProc(
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_ESM_EhrpdPdnConnectHandOverFailProc
- Description    : EHRPD承载恢复失败的处理
- Input          : VOS_UINT32            PDN实体索引
- Output         : None
- Return Value   : VOS_VOID
 
- History        :
-      1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ESM_EhrpdPdnConnectHandOverFailProc(
     VOS_UINT32                          ulIndex
 )
@@ -1623,16 +1366,7 @@ VOS_VOID NAS_ESM_EhrpdPdnConnectHandOverFailProc(
 }
 
 
-/*****************************************************************************
- Function Name  : NAS_ESM_EhrpdEntityProcEmmSendDataReqSucc
- Description    : EHRPD实体对EMM发送DATA REQ消息成功的处理
- Input          : VOS_UINT32            OPID
- Output         : None
- Return Value   : VOS_VOID
 
- History        :
-      1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ESM_EhrpdEntityProcEmmSendDataReqSucc(
     VOS_UINT32                          ulOpId
 )
@@ -1666,16 +1400,7 @@ VOS_VOID NAS_ESM_EhrpdEntityProcEmmSendDataReqSucc(
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_ESM_EhrpdEntityProcEmmSendDataReqFail
- Description    : EHRPD实体对EMM发送DATA REQ消息失败的处理
- Input          : const EMM_ESM_DATA_CNF_STRU*
- Output         : None
- Return Value   : VOS_VOID
 
- History        :
-      1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ESM_EhrpdEntityProcEmmSendDataReqFail(
     const EMM_ESM_DATA_CNF_STRU        *pEmmEsmDataCnfMsg
 )
@@ -1757,16 +1482,7 @@ VOS_VOID NAS_ESM_EhrpdEntityProcEmmSendDataReqFail(
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_ESM_PerformNextEhrpdPdnReconnectProc
- Description    : 执行下一条EHRPD PDN的恢复流程
- Input          : None
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.sunjitan 00193151      2016-01-14  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ESM_PerformNextEhrpdPdnReconnectProc(VOS_VOID)
 {
     VOS_UINT32                          ulIndex      = 0;
@@ -1822,17 +1538,7 @@ VOS_VOID NAS_ESM_PerformNextEhrpdPdnReconnectProc(VOS_VOID)
 }
 
 
-/*****************************************************************************
- Function Name  : NAS_ESM_WaitHandoverEhrpdPdnRcvApsPdpReleaseProc
- Description    : 等待恢复的EHRPD承载收到APS的PDP释放请求的处理
- Input          : const APP_ESM_PDP_RELEASE_REQ_STRU*  APS的释放消息
-                  VOS_UINT32                           待释放的PDN实体索引
- Output         : None
- Return Value   : VOS_UINT32
 
- History        :
-      1.sunjitan 00193151      2016-01-14  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ESM_WaitHandoverEhrpdPdnRcvApsPdpReleaseProc(
     const APP_ESM_PDP_RELEASE_REQ_STRU *pstAppEsmPdpRelReqMsg,
     VOS_UINT32                          ulIndex
@@ -1954,17 +1660,7 @@ VOS_VOID NAS_ESM_WaitHandoverEhrpdPdnRcvApsPdpReleaseProc(
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_ESM_EhrpdPdnHandoverSuccRcvApsPdpReleaseProc
- Description    : EHRPD承载恢复成功收到APS的PDP释放请求的处理
- Input          : const APP_ESM_PDP_RELEASE_REQ_STRU*  APS的释放消息
-                  VOS_UINT32                           待释放的PDN实体索引
- Output         : None
- Return Value   : VOS_UINT32
 
- History        :
-      1.sunjitan 00193151      2016-01-14  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ESM_EhrpdPdnHandoverSuccRcvApsPdpReleaseProc(
     const APP_ESM_PDP_RELEASE_REQ_STRU *pstAppEsmPdpRelReqMsg,
     VOS_UINT32                          ulIndex
@@ -2005,18 +1701,7 @@ VOS_VOID NAS_ESM_EhrpdPdnHandoverSuccRcvApsPdpReleaseProc(
 }
 
 /*lint -specific(-e433)*/
-/*****************************************************************************
- Function Name   : NAS_ESM_SndEhsmSyncPdnInfoIndMsg
- Description     : 向EHSM发送承载激活同步消息
- Input           : VOS_UINT32           承载号
-                   VOS_UINT32           AttachPdn标识
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.sunjitan 00193151    2015-06-16   Draft Enact
-    2.sunjitan 00193151    2016-01-14   Mofify for CL多模互操作二阶段
-*****************************************************************************/
 VOS_VOID NAS_ESM_SndEhsmSyncPdnInfoConnIndMsg(
     VOS_UINT32                          ulEpsbId
 )
@@ -2067,16 +1752,7 @@ VOS_VOID NAS_ESM_SndEhsmSyncPdnInfoConnIndMsg(
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SndEhsmSyncPdnInfoModIndMsg
- Description     : 向EHSM发送承载修改同步消息
- Input           : VOS_UINT32           承载号
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ESM_SndEhsmSyncPdnInfoModIndMsg(
     VOS_UINT32                          ulEpsbId
 )
@@ -2118,16 +1794,7 @@ VOS_VOID NAS_ESM_SndEhsmSyncPdnInfoModIndMsg(
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SndEhsmSyncPdnInfoDisconnIndMsg
- Description     : 向EHSM发送承载去激活同步消息
- Input           : VOS_UINT32           承载号
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ESM_SndEhsmSyncPdnInfoDisconnIndMsg(
     VOS_UINT32                          ulEpsbId
 )
@@ -2175,16 +1842,7 @@ VOS_VOID NAS_ESM_SndEhsmSyncPdnInfoDisconnIndMsg(
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SndEhsmClearAllBearerNotifyMsg
- Description     : 向EHSM发送清除所有承载指示
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ESM_SndEhsmClearAllBearerNotifyMsg(VOS_VOID)
 {
     ESM_EHSM_CLEAR_ALL_BEARER_NOTIFY_STRU        *pstClearNtfMsg = VOS_NULL_PTR;
@@ -2214,16 +1872,7 @@ VOS_VOID NAS_ESM_SndEhsmClearAllBearerNotifyMsg(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SndApsEhrpdPdnReconnSuccMsg
- Description     : 向APS发送EHRPD承载恢复成功消息
- Input           : VOS_UINT32           PDN实体索引值
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ESM_SndApsEhrpdPdnReconnSuccMsg(
     VOS_UINT32                          ulIndex
 )
@@ -2240,16 +1889,7 @@ VOS_VOID NAS_ESM_SndApsEhrpdPdnReconnSuccMsg(
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SndApsEhrpdPdnReconnFailMsg
- Description     : 向APS发送EHRPD承载恢复失败消息
- Input           : VOS_UINT32           PDN实体索引值
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ESM_SndApsEhrpdPdnReconnFailMsg(
     VOS_UINT32                          ulIndex
 )
@@ -2291,17 +1931,7 @@ VOS_VOID NAS_ESM_SndApsEhrpdPdnReconnFailMsg(
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SndApsEhrpdPdnReconnectResultMsg
- Description     : 向EHSM发送承载去激活同步消息
- Input           : VOS_UINT32                               EHRPD承载记录索引
-                   NAS_ESM_PDN_RECONNECT_RESULT_ENUM_UINT8  恢复结果
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ESM_SndApsEhrpdPdnReconnectResultMsg(
     VOS_UINT32                                    ulIndex,
     NAS_ESM_PDN_RECONNECT_RESULT_ENUM_UINT8       enResult
@@ -2322,16 +1952,7 @@ VOS_VOID NAS_ESM_SndApsEhrpdPdnReconnectResultMsg(
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SndEmmClLocalDetachNotifyMsg
- Description     : 向EMM发送local DETACH指示
- Input           : VOS_VOID
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ESM_SndEmmClLocalDetachNotifyMsg(VOS_VOID)
 {
     EMM_ESM_CL_LOCAL_DETACH_NOTIFY_STRU          *pstDetachMsg        = VOS_NULL_PTR;
@@ -2361,16 +1982,7 @@ VOS_VOID NAS_ESM_SndEmmClLocalDetachNotifyMsg(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SndOmEhrpdUsedPdnEntityNum
- Description     : 可维可测，向OM发送正在使用的PDN实体数量
- Input           : VOS_VOID
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ESM_SndOmEhrpdUsedPdnEntityNum(VOS_VOID)
 {
     NAS_ESM_OM_EHRPD_PDN_ENTITY_NUM_STRU         *pstEntityOmMsg      = VOS_NULL_PTR;
@@ -2411,16 +2023,7 @@ VOS_VOID NAS_ESM_SndOmEhrpdUsedPdnEntityNum(VOS_VOID)
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SndOmEhrpdUsedPdnEntityStateInfo
- Description     : 可维可测，向OM发送正在使用的PDN实体状态
- Input           : VOS_VOID
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ESM_SndOmEhrpdUsedPdnEntityStateInfo(VOS_VOID)
 {
     VOS_UINT32                          i;

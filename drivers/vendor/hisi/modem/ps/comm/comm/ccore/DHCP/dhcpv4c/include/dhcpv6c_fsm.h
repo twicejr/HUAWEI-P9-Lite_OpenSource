@@ -117,7 +117,6 @@ extern DHCPV6C_FSM_NODE g_stDhcpv6cStateMachine[DHCPV6C_STATE_BUTT];
 
 extern VOID DHCPV6C_RunFsm(DHCPV6C_PRE_RESULT_S *pstPreResult);
 extern ULONG DHCPC_TimerCallBack(UCHAR ucIpType, ULONG ulTeidc, UCHAR ucEvent);
-/*m00221573 全文件pclint 2012-10-15 start*/
 extern ULONG DHCPV6C_StopLeaseTimer(DHCPC_CTRLBLK *pstDhcpcContext);
 extern ULONG DHCPV6C_GetT1(DHCPC_CTRLBLK *pstDhcpcContext);
 extern ULONG DHCPV6C_GetT2(DHCPC_CTRLBLK *pstDhcpcContext);
@@ -127,7 +126,6 @@ extern inline ULONG  DHCPM_GetRetransmitTimeOutByIndex(ULONG ulDhcpIndex, UCHAR 
 extern ULONG DHCPC_SendMsgToLAP2ByContext(DHCPC_CTRLBLK *pstDhcpcContext, UCHAR MsgType);
 extern VOID DHCPC_EmsReportAndCleanCause(DHCPC_CTRLBLK *pstDhcpcContext);
 extern ULONG DHCPC_NotifyLapFail(DHCPC_CTRLBLK *pstDhcpcContext);
-/*m00221573 全文件pclint 2012-10-15 end*/
 extern VOID DHCPv4C_TimerCallBack(UCHAR ucIpType, ULONG ulTeidc, UCHAR ucEvent);
 
 #endif /* _DHCPV6C_FSM_H_ */

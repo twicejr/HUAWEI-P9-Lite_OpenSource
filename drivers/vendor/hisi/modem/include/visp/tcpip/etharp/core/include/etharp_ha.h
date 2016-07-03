@@ -186,7 +186,6 @@ typedef struct tag_ETH_SUB_HEAD_BAK
     ULONG    ulLength;   /* 备份报文的总长度*/
 } ETH_SUB_HEAD_BAK_S ;
 
-/* Add for DTS2011080805208 , by zhaoyue00171897, at 2011-08-09. 修改原因: 设置ARP队列长度支持HA */
 typedef struct tag_ETH_BAK_ARPCAPTURE_S
 {
     ULONG     ulMsgType;        /*消息类型*/

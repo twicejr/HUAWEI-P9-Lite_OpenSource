@@ -180,7 +180,6 @@ l61496 */
 /*OSPF 报文钩子处理函数:OSPF实例号、数据首地址、数据长度*/
 typedef ULONG (*OSPF_PACKET_HOOK_FUNC)(USHORT usProcId, ULONG ulIfIndex, CHAR *pcPacket, ULONG ulLen);
 
-/*Modified by liangjicheng 00103192, G3, 2011/1/25   问题单号:V2R3C03-ROTUE-MERGE */
 /*PRU新需求，邻居状态变化通知结构体*/
 /*此结构如果修改必须修改 I3_NBR_STATE_NOTIFY_S*/
 typedef struct tagOSPF_NBR_STATE_NOTIFY
@@ -200,7 +199,6 @@ typedef struct tagOSPF_NBR_STATE_NOTIFY
 /*commented by r62469 */
 /*PRU新需求，邻居状态变化通知接口*/
 typedef ULONG (*OSPF_NBR_STATE_NOTIFY_FUNC)(OSPF_NBR_STATE_NOTIFY_S *pstNotify);
-/*End of Modified by liangjicheng 00103192, 2011/1/25   问题单号:V2R3C03-ROTUE-MERGE */
 
 /* Begin BC3D03438 liangjicheng 2010-08-10*/
 typedef struct tagOSPF_NBR_EVNET_NOTIFY
@@ -212,7 +210,6 @@ typedef struct tagOSPF_NBR_EVNET_NOTIFY
     ULONG ulReason;            /*状态变化的原因值 具体参见原因值说明*/
     ULONG ulPrevState;        /*前一状态 具体参见状态值说明*/
     ULONG ulNewState;         /*新状态 具体参见状态值说明*/
-    /*Add by q62011 for DTS2010082701594:OSPF邻居告警字段增强*/
     ULONG ulLocalRouterID;   /*自己的route id*/
     ULONG ulAreaID;            /*区域ID*/
     ULONG ulIfIndex ;           /*接口索引*/
@@ -221,7 +218,6 @@ typedef struct tagOSPF_NBR_EVNET_NOTIFY
 typedef ULONG (*OSPF_NBR_EVENT_NOTIFY_FUNC)(OSPF_NBR_EVENT_NOTIFY_S *pstNotify);
 /* End   BC3D03438 */
 
-/*Modified by lKF35457, 添加接口状态转变告警 for v1r8c01, 2010/10/20 */
 typedef struct tagOSPF_IF_EVENT_NOTIFY
 {
   ULONG ulProcID; /*OSPF进程ID*/
@@ -238,7 +234,6 @@ typedef struct tagOSPF_IF_EVENT_NOTIFY
 typedef ULONG (*OSPF_IF_EVENT_NOTIFY_FUNC)(OSPF_IF_EVENT_NOTIFY_S *pstNotify);
 
 #endif
-/*add by lkf35460 问题单号：DTS2011040603509*/
 typedef struct tagOSPF_DR_INFO
 {
    ULONG ulDrRouteId;   /*DR Router id*/
@@ -246,9 +241,7 @@ typedef struct tagOSPF_DR_INFO
    UCHAR ucIfType;      /*OSPF接口类型 分别定义广播，NBMA，P2P，P2MP类型*/
    UCHAR ucRes[LEN_8-1];/*预留7字节空间*/
 }OSPF_DR_INFO_S;/*DR BDR信息结构*/
-/*end add by lkf35460 问题单号：DTS2011040603509*/
 
-/*Added by guo00178934, 全系统邻居、LSA个数统计, 2011/7/19   问题单号:DTS2011071901386 */
 typedef struct tagOSPF_SYS_COUNT_S
 {
   ULONG ulTotalNbrs;         /* 本系统所有邻居个数 */
@@ -256,10 +249,7 @@ typedef struct tagOSPF_SYS_COUNT_S
   ULONG ulDetailLSAs[10];    /* 本系统各类LSA个数(下标对应LSA类型:
                                1、2、3、4、5、7有效) */
 }OSPF_SYS_COUNT_S;
-/* End of Added by guo00178934, 2011/7/19   问题单号:DTS2011071901386 */
 
-/*Added by guojianjun178934, 【DOPRA IP V3R2C10-同步问题单-DTS2014081600138】【OSPF可靠性提升专项】同一区域内Router-ID数量过多触发路由计算上限，导致路由生成失败 , 2014/9/25   问题单号:DTS2014092408371  */
-/*Added by guojianjun178934, 【检视发现问题】OSPF的LSA冲突检测及告警需求 , 2013/10/14   问题单号:DTS2013101400241 */
 /*OSPF告警类型*/
 typedef enum tagOSPF_WARNING_TYPE
 {
@@ -267,8 +257,6 @@ typedef enum tagOSPF_WARNING_TYPE
     OSPF_WARNING_ROUTE_CALC_OVER_LIMIT = 2,   /*路由计算超过计算上限*/
     OSPF_WARNING_MAX = 100
 } OSPF_WARNING_TYPE_E;
-/* End of Added by guojianjun178934, 2013/10/14   问题单号:DTS2013101400241 */
-/* End of Added by guojianjun178934, 2014/9/25   问题单号:DTS2014092408371  */
 
 typedef ULONG (*OSPF_WARNING_HOOK_FUNC)(ULONG ulWarningType, VOID *pWarningInfo);
 

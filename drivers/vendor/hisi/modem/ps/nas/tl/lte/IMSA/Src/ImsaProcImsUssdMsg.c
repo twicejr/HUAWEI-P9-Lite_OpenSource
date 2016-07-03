@@ -1,14 +1,4 @@
-/******************************************************************************
 
-   Copyright(C)2013,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : ImsaProcImsUssdMsg.c
-  Description     : 该C文件实现收到IMS的USSD消息处理和给SPM消息发送
-  History           :
-     1.leili 00132387      2013-12-27  Draft Enact
-
-******************************************************************************/
 
 /*****************************************************************************
   1 Include HeadFile
@@ -41,15 +31,7 @@ extern "C" {
   3 Function
 *****************************************************************************/
 
-/*****************************************************************************
- Function Name  : IMSA_ImsMsgUssdEvent()
- Description    : IMS USSD 类型的事件处理函数
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
-History        :
-      1.l00132387   2013-12-23  Draft Enact
-*****************************************************************************/
+
 VOS_VOID IMSA_ImsMsgUssdEvent(VOS_VOID *pUssdEvent)
 {
     IMSA_IMS_OUTPUT_USSD_EVENT_STRU *pstOutUssd = VOS_NULL_PTR;
@@ -82,16 +64,7 @@ VOS_VOID IMSA_ImsMsgUssdEvent(VOS_VOID *pUssdEvent)
     }/*lint +e788*/
 }
 
-/*****************************************************************************
- Function Name  : IMSA_ProcImsMsgUssdReasonOk()
- Description    : 收到IMS USSD REASON OK的处理函数
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.l00132387   2013-12-24  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_ProcImsMsgUssdReasonOk(IMSA_IMS_OUTPUT_USSD_EVENT_STRU *pstOutUssdEvt)
 {
     IMSA_USSD_MANAGER_STRU              *pstUssdManager;
@@ -111,16 +84,7 @@ VOS_VOID IMSA_ProcImsMsgUssdReasonOk(IMSA_IMS_OUTPUT_USSD_EVENT_STRU *pstOutUssd
     return;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_ProcImsMsgUssdReasonNotify()
- Description    : 收到IMS USSD REASON NOTIFY的处理函数
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.l00132387   2013-12-24  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_ProcImsMsgUssdReasonNotify(const IMSA_IMS_OUTPUT_USSD_EVENT_STRU *pstOutUssdEvt)
 {
     IMSA_USSD_MANAGER_STRU              *pstUssdManager;
@@ -172,16 +136,7 @@ VOS_VOID IMSA_ProcImsMsgUssdReasonNotify(const IMSA_IMS_OUTPUT_USSD_EVENT_STRU *
     return;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_ProcImsMsgUssdReasonRequest()
- Description    : 收到IMS USSD REASON REQUEST的处理函数
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.l00132387   2013-12-24  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_ProcImsMsgUssdReasonRequest(const IMSA_IMS_OUTPUT_USSD_EVENT_STRU *pstOutUssdEvt)
 {
     IMSA_USSD_MANAGER_STRU              *pstUssdManager;
@@ -233,16 +188,7 @@ VOS_VOID IMSA_ProcImsMsgUssdReasonRequest(const IMSA_IMS_OUTPUT_USSD_EVENT_STRU 
     return;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_ProcImsMsgUssdReasonDisconnect()
- Description    : 收到IMS USSD REASON DISCONNECT的处理函数
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.l00132387   2013-12-24  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_ProcImsMsgUssdReasonDisconnect(IMSA_IMS_OUTPUT_USSD_EVENT_STRU *pstOutUssdEvt)
 {
     IMSA_USSD_MANAGER_STRU              *pstUssdManager;
@@ -284,16 +230,7 @@ VOS_VOID IMSA_ProcImsMsgUssdReasonDisconnect(IMSA_IMS_OUTPUT_USSD_EVENT_STRU *ps
     return;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_ProcImsMsgUssdReasonError()
- Description    : 收到IMS USSD REASON ERROR的处理函数
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.l00132387   2013-12-24  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_ProcImsMsgUssdReasonError(const IMSA_IMS_OUTPUT_USSD_EVENT_STRU *pstOutUssdEvt)
 {
     IMSA_USSD_MANAGER_STRU              *pstUssdManager;

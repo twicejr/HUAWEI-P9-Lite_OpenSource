@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasLppOm.c
-  版 本 号   : 初稿
-  作    者   : XiaoJun
-  生成日期   : 2015年8月14日
-  最近修改   :
-  功能描述   : LTE  LPP 的OM的功能接口
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年8月14日
-    作    者   : XiaoJun
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -166,20 +149,7 @@ NAS_COMM_PRINT_LIST_STRU g_astMmLppMsgArray[] =
 *****************************************************************************/
 
 
-/*****************************************************************************
- Function Name   : NAS_COMM_PrinMtaLppMsg
- Description     : 打印MTA消息
- Input           : pcBuff   -- Formatted buffer
-                   usOffset -- Offset
-                   enMsgId  -- EMM_LPP_MSG_TYPE_ENUM_UINT32
- Output          : None
- Return          : The number of bytes that have been stored in the output buffer pcBuff
-                   If the input parameter is erroneous, the return value will be 0.
 
- History         :
-    1.lifuxin 00253982      2015-10-29  Draft Enact
-
-*****************************************************************************/
 VOS_INT32   NAS_COMM_PrinMtaLppMsg
 (
     VOS_CHAR                                *pcBuff,
@@ -242,20 +212,7 @@ VOS_INT32   NAS_COMM_PrinMtaLppMsg
     return (usTotalLen - usOffset);
 }
 
-/*****************************************************************************
- Function Name   : NAS_COMM_PrinLrrcLppMsg
- Description     : 打印LRRC消息
- Input           : pcBuff   -- Formatted buffer
-                   usOffset -- Offset
-                   enMsgId  -- EMM_LPP_MSG_TYPE_ENUM_UINT32
- Output          : None
- Return          : The number of bytes that have been stored in the output buffer pcBuff
-                   If the input parameter is erroneous, the return value will be 0.
 
- History         :
-    1.lifuxin 00253982      2015-08-08  Draft Enact
-
-*****************************************************************************/
 VOS_INT32   NAS_COMM_PrinLrrcLppMsg
 (
     VOS_CHAR                                *pcBuff,
@@ -319,20 +276,7 @@ VOS_INT32   NAS_COMM_PrinLrrcLppMsg
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_COMM_PrintMnLppMsg
- Description     : 打印收到lpp消息(文件内部调用函数)
- Input           : pcBuff   -- Formatted buffer
-                   usOffset -- Offset
-                   enMsgId  -- EMM_LPP_MSG_TYPE_ENUM_UINT32
- Output          : None
- Return          : The number of bytes that have been stored in the output buffer pcBuff
-                   If the input parameter is erroneous, the return value will be 0.
 
- History         :
-    1.lifuxin 00253982      2015-08-08  Draft Enact
-
-*****************************************************************************/
 VOS_INT32   NAS_COMM_PrintMmLppMsg
 (
     VOS_CHAR                                *pcBuff,
@@ -1507,16 +1451,7 @@ VOS_VOID  NAS_LPP_OmMtaLocInfoReq
     (VOS_VOID)LTE_MsgHook( (VOS_VOID*)(&stOmMtaLocInfoReq) );
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_ASN_FAIL_Message
- Description     : LPP编解码可维可测消息
- Input           :
- Output          : None
- Return          : VOS_UINT32
-                   成功返回 NAS_LPP_DECODE_SUCC 失败 返回 NAS_LPP_DECODE_FAIL
- History         :
-    1.wangensheng 00324863  2015-05-04    Draft Enact
-*****************************************************************************/
+
 VOS_VOID    NAS_LPP_ASN_FAIL_Message(
                                     VOS_UINT32          ulIEType,
                                     VOS_UINT32          ulIEErrorType,

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMsccPreProcAct.h
-  版 本 号   : 初稿
-  作    者   : y00245242
-  生成日期   : 2015年01月27日
-  最近修改   :
-  功能描述   : NasMsccPreProcAct.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年01月27日
-    作    者   : y00245242
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __NAS_MSCC_PRE_PROC_ACT_H__
 #define __NAS_MSCC_PRE_PROC_ACT_H__
@@ -701,9 +684,7 @@ UINT32 NAS_MSCC_RcvHsdHdrcsqInd_PreProc(
 );
 
 
-/* Added by w00176964 for CL数传切换优化, 2015-12-11, begin */
 VOS_UINT32 NAS_MSCC_IsNeedSndHsdCdmaMoCallRedialSysAcqNtf_PreProc(VOS_VOID);
-/* Added by w00176964 for CL数传切换优化, 2015-12-11, end */
 
 VOS_VOID NAS_MSCC_ProcCLAssociatedInfoNtfWith1xLocInfo_PreProc(
     XSD_MSCC_1X_SYSTEM_SERVICE_INFO_IND_STRU               *pst1xSysSrvInfoInd

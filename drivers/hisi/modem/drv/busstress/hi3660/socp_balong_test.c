@@ -8356,7 +8356,6 @@ BSP_S32 SOCP_ST_SET_TIMEOUT(void)
 
     CHECK_RET(bsp_socp_start(pCaseDec0->SrcCh), BSP_OK);
 
-    /*2014-2-28 17:18:06 l00258701 新增 的代码*/
     bsp_socp_set_timeout(SOCP_TIMEOUT_TRF,0xFF);
 
     SOCP_REG_READ(SOCP_REG_INTTIMEOUT,time);

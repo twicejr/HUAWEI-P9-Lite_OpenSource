@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmcComFunc.c
-  版 本 号   : 初稿
-  作    者   : l00130025
-  生成日期   : 2011年8月7日
-  最近修改   :
-  功能描述   : MMC公共处理函数
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年8月7日
-    作    者   : l00130025
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -46,15 +29,11 @@
 #include "NasUtranCtrlInterface.h"
 #include "NasMmcProcRegRslt.h"
 
-/* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
 #include "MsccMmcInterface.h"
-/* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
 #include "NasUsimmApi.h"
 #include "NasMmcFsmMainTbl.h"
-/* added by wx270776 for OM融合, 2015-08-21, begin */
 #include "OmApi.h"
-/* added by wx270776 for OM融合, 2014-08-21, end */
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -75,41 +54,14 @@ extern "C" {
 
 /*lint -save -e958 */
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedSndEPlmn
- 功能描述  : 当前是否需要发送等效Plmn
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年8月6日
-   作    者   : l00130025
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年10月15日
-   作    者   : w00167002
-   修改内容   : 没有Eplmn时，也需要通知接入层
- 3.日    期   : 2013年12月13日
-   作    者   : w00242748
-   修改内容   : DTS2013121103237:G NMOII，成功驻留，数传业务，业务进行过程中，
-                指定搜其他网络，均搜网失败，紧急驻留后，数传业务恢复。此处修改
-                当处于手动搜网且当前限制驻留或未注册时，不给接入层发送等效PLMN
- 4.日    期   : 2014年1月28日
-   作    者   : s00246516
-   修改内容   : L-C互操作项目:增加获取和注册请求的处理
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedSndEplmn( VOS_VOID )
 {
     NAS_MML_EQUPLMN_INFO_STRU          *pstEplmnInfo  = VOS_NULL_PTR;
     VOS_UINT32                                              ulEplmnValidFlg;
     VOS_UINT32                                              ulRegFlag;
 
-    /* Added by s00246516 for L-C互操作项目, 2014-02-14, Begin */
     VOS_UINT8                                               ucAsAnyCampOn;
-    /* Added by s00246516 for L-C互操作项目, 2014-02-14, End */
 
     /* 无卡时，无须发送等效 Plmn */
     if (VOS_FALSE == NAS_MML_GetSimPresentStatus())
@@ -151,7 +103,6 @@ VOS_UINT32 NAS_MMC_IsNeedSndEplmn( VOS_VOID )
         }
     }
 
-    /* Added by s00246516 for L-C互操作项目, 2014-02-14, Begin */
     ucAsAnyCampOn = NAS_MMC_GetAsAnyCampOn();
 
     /* 如果是3GPP2控制注册，当前L为限制驻留，不允许发起注册 */
@@ -160,45 +111,12 @@ VOS_UINT32 NAS_MMC_IsNeedSndEplmn( VOS_VOID )
     {
         return VOS_FALSE;
     }
-    /* Added by s00246516 for L-C互操作项目, 2014-02-14, End */
 
 
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetLaiForbTypeManualSelMode
- 功能描述  : 获取手动模式下的禁止Plmn类型
- 输入参数  : pstLai
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月21日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2011年11月11日
-    作    者   : w00166186
-    修改内容   : DTS201111105194,手动搜网失败后ANYCELL搜不是指定网络发起了注册，导致成功后不再搜指定的网络
-  3.日    期   : 2011年11月24日
-    作    者   : w00167002
-    修改内容   : DTS2011112405567:原有的函数名NAS_MML_IsPlmnIdInDestPlmnList
-                 更改为NAS_MML_IsBcchPlmnIdInDestSimPlmnList,用于明确判断
-                 网络的类型，否则网络比较可能会出错
-  4.日    期   : 2012年3月17日
-    作    者   : w00176964
-    修改内容   : DTS2012031900095 V7R1 C30 SBM&EM定制需求:增加禁止LTE国际漫游定制
-  5.日    期   : 2012年11月09日
-    作    者   : l65478
-    修改内容   : DTS2012103005174, PS成功,在等效PLMN中不设置禁止标志
-  6.日    期  : 2012年11月09日
-    作    者  : z00161729
-    修改内容  : DTS2013012301312:禁止lte漫游，syscfgex设置lw，l优先，开机驻留w的网络46011，disable lte，
-                后指定搜46009失败，anycell驻留46011，available定时器超时搜46009过程指定搜46011不带接入技术，
-                pdp激活失败后系统消息认为是forbidden网络
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_GetLaiForbTypeManualSelMode(
     NAS_MML_LAI_STRU                   *pstLai
 )
@@ -262,28 +180,7 @@ VOS_UINT32 NAS_MMC_GetLaiForbTypeManualSelMode(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetLaiForbTypeAutoSelMode
- 功能描述  : 获取自动模式下的禁止Plmn类型
- 输入参数  : pstLai
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月21日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2011年11月24日
-    作    者   : w00167002
-    修改内容   : DTS2011112405567:原有的函数名NAS_MML_IsPlmnIdInDestPlmnList
-                 更改为NAS_MML_IsBcchPlmnIdInDestSimPlmnList,用于明确判断
-                 网络的类型，否则网络比较可能会出错
-  3.日    期   : 2012年5月10日
-    作    者   : l00130025
-    修改内容   : DTS2012050301244: 自动模式，MMC能否驻留不再需要判断ucWrrLimitServiceInd
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_GetLaiForbTypeAutoSelMode(
     NAS_MML_LAI_STRU                   *pstLai
 )
@@ -294,23 +191,7 @@ VOS_UINT32 NAS_MMC_GetLaiForbTypeAutoSelMode(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetCurrentLaiForbbidenType
- 功能描述  : 获取当前LA是否在禁止列表中，如果在禁止列表中，禁止列表的类型
- 输入参数  : VOS_UINT32                          *pulPlmnLaType
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年12月3日
-    作    者   : l65478
-    修改内容   : 新生成函数
-  2.日    期   : 2011年7月21日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_GetCurrentLaiForbbidenType(VOS_VOID)
 {
     NAS_MML_LAI_STRU                                       *pstCurrentLai = VOS_NULL_PTR;
@@ -356,26 +237,7 @@ VOS_UINT32 NAS_MMC_GetCurrentLaiForbbidenType(VOS_VOID)
     return ulPlmnLaType;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetHPlmnSpecDomainAccessCapa
- 功能描述  : 当前的Hplmn网络的指定域目前是否允许接入,(依据是否之前已注册被拒过)
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:允许接入；VOS_FALSE:不允许接入
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年3月24日
-    作    者   : likelai
-    修改内容   : 新生成函数
-  2.日    期   : 2011年7月29日
-    作    者   : lijun 00171473
-    修改内容   : V7R1 PhaseII 修改
-  3.日    期   : 2011年12月5日
-   作    者   : z00161729
-   修改内容   : V7R1 phaseIV修改合并原NAS_MMC_HPLMN_REG_REJ_STRU和NAS_MMC_PLMN_REG_INFO_STRU
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_GetHPlmnSpecDomainAccessCapa(
     NAS_MMC_REG_DOMAIN_ENUM_UINT8       enRegCnDomain
 )
@@ -458,25 +320,7 @@ VOS_UINT32 NAS_MMC_GetHPlmnSpecDomainAccessCapa(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetPlmnIndexInRegInfoList
- 功能描述  : 确定pstPlmnId在注册信息列表中的位置
- 输入参数  : pstPlmnId: 需要查找的PLMN ID
-             ulRegPlmnListNum: 列表中元素的个数
-             pstPlmnRegList: 列表的指针
- 输出参数  : 无
- 返 回 值  : 查找到的PLMN的Index
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年2月27日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2011年7月28日
-    作    者   : L00171473
-    修改内容   : V7R1 PhaseII 修改
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_GetPlmnIndexInRegInfoList(
     NAS_MML_PLMN_ID_STRU               *pstPlmnId,
     VOS_UINT32                          ulRegPlmnListNum,
@@ -504,21 +348,7 @@ VOS_UINT32  NAS_MMC_GetPlmnIndexInRegInfoList(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetOptMask_WasSysinfo
- 功能描述  : 获取转发给 MM/GMM 的W系统消息需要的Masl值
- 输入参数  : RRMM_SYS_INFO_IND_STRU             *pstRrMmSysInfoInd;
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年8月8日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_GetOptMask_WasSysinfo(
     RRMM_SYS_INFO_IND_STRU             *pstRrMmSysInfoInd
 )
@@ -552,29 +382,11 @@ VOS_UINT32  NAS_MMC_GetOptMask_WasSysinfo(
     return ulBitMask;
 }
 
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-16, begin */
 /* 删除NAS_MMC_ConvertUserSpecAccessMode2MmlRat函数*/
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-16, end */
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CovertMmlSysSubModeToMsccSysSubMode
- 功能描述  : 将MML定义的系统子模式转为MSCC中的系统子模式
- 输入参数  : enSysSubMode: MML定义的系统子模式
- 输出参数  : 无
- 返 回 值  : TAF_SYS_SUBMODE_ENUM_UINT8:  MSCC中的系统子模式
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年6月15日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2015年12月25日
-   作    者   : z00359541
-   修改内容   : DTS2015121007229:将subsysmode缺省值转换为无服务
-*****************************************************************************/
 TAF_SYS_SUBMODE_ENUM_UINT8 NAS_MMC_CovertMmlSysSubModeToMsccSysSubMode(
     NAS_MML_RRC_SYS_SUBMODE_ENUM_UINT8  enSysSubMode
 )
@@ -606,22 +418,7 @@ TAF_SYS_SUBMODE_ENUM_UINT8 NAS_MMC_CovertMmlSysSubModeToMsccSysSubMode(
     return TAF_SYS_SUBMODE_BUTT;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsHplmnTimerLenValid
- 功能描述  : HPLMN定时器时长是否生效
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:有效
-             VOS_FALSE:无效
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月13日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsHplmnTimerLenValid( VOS_VOID )
 {
     NAS_MML_BG_SEARCH_CFG_INFO_STRU    *pstBgSearchCfg = VOS_NULL_PTR;
@@ -654,25 +451,7 @@ VOS_UINT32 NAS_MMC_IsHplmnTimerLenValid( VOS_VOID )
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsHighPrioPlmnSearchVaild
- 功能描述  : 高优先级选网当前是否有效
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:有效
-             VOS_FALSE:无效
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月13日
-   作    者   : z00161729
-   修改内容   : 新生成函数
- 2.日    期   : 2012年6月22日
-   作    者   : w00176964
-   修改内容   : DTS2012062007370:PS ONLY,PS被拒#3卡无效,标杆在HPLMN超时不发起BG搜网
-                balong发起了BG搜网
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsHighPrioPlmnSearchVaild( VOS_VOID )
 {
     /* 手动模式下返回无效 */
@@ -703,22 +482,7 @@ VOS_UINT32 NAS_MMC_IsHighPrioPlmnSearchVaild( VOS_VOID )
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsCampOnHPlmn
- 功能描述  : 判断当前是否已经驻留在HPLMN的网络上
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  : 已经驻留在HPLMN的网络上
-             VOS_FALSE : 没有驻留在HPLMN的网络上
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月13日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsCampOnHPlmn(VOS_VOID)
 {
     NAS_MML_PLMN_ID_STRU               *pstCurrCampPlmnId = VOS_NULL_PTR;
@@ -767,41 +531,7 @@ VOS_UINT32 NAS_MMC_IsCampOnHPlmn(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsCampOnHighestPrioPlmn
- 功能描述  : 判断当前是否已经驻留在最高优先级的网上
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  : 已经驻留在最高优先级的网络上
-             VOS_FALSE : 没有驻留在最高优先级的网络上
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月13日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年10月21日
-   作    者   : W00167002
-   修改内容   :【高优先级ST发现，发现用例号:D03_HighPrioPlmnSearch_091
-                场景:在L下注册成功后，单模发生丢网后, 认为驻留在最高优先级的网络上，没有启动周期尝试搜网定时器】
-                增加当前驻留的网络是无效PLMNID的判断
-
- 3.日    期   : 2012年5月17日
-   作    者   : zhoujun 40661
-   修改内容   : 泰国AIS特性
-
- 4.日    期   : 2012年6月13日
-   作    者   : l00171473
-   修改内容   : DTS2012061302162, 当前驻留(E)HPLMN认为驻留最高优先级网络不起BG搜
- 5.日    期   : 2012年6月20日
-   作    者   : w00166186
-   修改内容   : AT&T&DCM项目
- 6.日    期   : 2014年5月28日
-   作    者   : z00234330
-   修改内容   : covertity修改
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsCampOnHighestPrioPlmn(VOS_VOID)
 {
     NAS_MML_BG_SEARCH_CFG_INFO_STRU                        *pstBgSearchCfg           = VOS_NULL_PTR;
@@ -820,9 +550,7 @@ VOS_UINT32 NAS_MMC_IsCampOnHighestPrioPlmn(VOS_VOID)
 
     pstBgSearchRegardlessMccCtx = NAS_MML_GetBgSearchRegardlessMccCtx();
 
-    /* modified by z00234330 for coverity修改 2014-05-28 begin */
     PS_MEM_SET(&stHighestPrioPlmnInfo,0x00, sizeof(stHighestPrioPlmnInfo));
-    /* modified by z00234330 for coverity修改 2014-05-28 end */
 
 
     /* 如果当前网络无效，则返回未驻留在最高优先级网络上，当单模丢网后，当前驻留的网络
@@ -832,7 +560,6 @@ VOS_UINT32 NAS_MMC_IsCampOnHighestPrioPlmn(VOS_VOID)
         return VOS_FALSE;
     }
 
-    /* Modified by z40661 for 泰国AIS特性 2012-05-17, begin */
     pstRoamingCfg  = NAS_MML_GetAisRoamingCfg();
     if ( VOS_TRUE == NAS_MMC_IsAisRoamingEffect())
     {
@@ -843,7 +570,6 @@ VOS_UINT32 NAS_MMC_IsCampOnHighestPrioPlmn(VOS_VOID)
             1, &(pstRoamingCfg->stHighPrioPlmnId));
     }
 
-    /* Modified by z40661 for 泰国AIS特性 2012-05-17, end */
 
 
     ulIsCampOnHPlmn = NAS_MMC_IsCampOnHPlmn();
@@ -889,29 +615,7 @@ VOS_UINT32 NAS_MMC_IsCampOnHighestPrioPlmn(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedStartHPlmnTimer
- 功能描述  : 判断是否需要启动HPLMN定时器
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:需要启动HPLMN定时器
-             VOS_FALSE:不需要启动HPLMN定时器
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月21日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-
- 2.日    期   : 2012年8月28日
-   作    者   : w00167002
-   修改内容   : 当前UTRAN工作模式为TDD，则不启动背景搜定时器
-
- 3.日    期   : 2013年12月20日
-   作    者   : w00167002
-   修改内容   : DTS2013112917981:guNAS删除在TD模式下不能进行bg搜的限制。
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedStartHPlmnTimer(VOS_VOID)
 {
     NAS_MML_BG_SEARCH_CFG_INFO_STRU    *pstBgSearchCfg           = VOS_NULL_PTR;
@@ -964,30 +668,7 @@ VOS_UINT32 NAS_MMC_IsNeedStartHPlmnTimer(VOS_VOID)
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConvertRrcPlmnList2SearchedPlmnListInfo
- 功能描述  : 根据搜网结果更新相应接入技术的信息
- 输入参数  : enRat
-             pstPlmnIdList
- 输出参数  : pstSearchedPlmnListInfo
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年7月11日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年9月26日
-   作    者   : w00167002
-   修改内容   : NAS_MMC_ConvertRrcPlmnList2SearchedPlmnListInfo_PlmnSelection函数
-                名称更改为NAS_MMC_ConvertRrcPlmnList2SearchedPlmnListInfo，并从
-                文件NasMmcFsmPlmnSelection.c文件迁移到NasMmcComFunc.c
- 3.日    期   : 2011年10月4日
-   作    者   : s46746
-   修改内容   : 修改变量名pstInterPlmnSearchInfo为pstSearchedPlmnListInfo,与结构体名称一致
-*****************************************************************************/
 VOS_VOID NAS_MMC_ConvertRrcPlmnList2SearchedPlmnListInfo(
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8                         enRat,
     RRC_PLMN_ID_LIST_STRU                                  *pstPlmnIdList,
@@ -1018,26 +699,7 @@ VOS_VOID NAS_MMC_ConvertRrcPlmnList2SearchedPlmnListInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConvertRrcBgPlmnSearchRslt2SearchedPlmnListInfo
- 功能描述  : 将GU下的BG搜网结果中的PLMN信息转为内部搜网消息结构中PLMN信息
- 输入参数  : enRat                  -- 当前进行BG搜的接入技术
-             pstBgSearchRslt        -- BG搜网结果消息
-             pstSearchedPlmnListInfo -- 内部搜网消息结构中PLMN信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月27日
-   作    者   : L00171473
-   修改内容   : 新生成函数
- 2.日    期   : 2012年5月7日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL 背景搜修改
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_ConvertRrcBgPlmnSearchRslt2SearchedPlmnListInfo(
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8                         enRat,
     RRMM_BG_PLMN_SEARCH_CNF_ST                             *pstBgSearchRslt,
@@ -1073,32 +735,7 @@ VOS_VOID NAS_MMC_ConvertRrcBgPlmnSearchRslt2SearchedPlmnListInfo(
 }
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConvertLmmPlmnList2SearchedPlmnListInfo
- 功能描述  : 将L模的搜网结果中的PLMN信息转为内部搜网消息结构中PLMN信息
- 输入参数  : pstPlmnIdList: 搜网结果中的PLMN信息
- 输出参数  : pstSearchedPlmnListInfo: 内部搜网消息结构中PLMN信息
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年7月11日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年9月26日
-   作    者   : w00167002
-   修改内容   : NAS_MMC_ConvertLmmPlmnList2SearchedPlmnListInfo_PlmnSelection函数
-                名称更改为NAS_MMC_ConvertLmmPlmnList2SearchedPlmnListInfo，并从
-                文件NasMmcFsmPlmnSelection.c文件迁移到NasMmcComFunc.c
- 3.日    期   : 2011年10月4日
-   作    者   : s46746
-   修改内容   : 修改变量名pstInterPlmnSearchInfo为pstSearchedPlmnListInfo,与结构体名称一致
- 4.日    期   : 2012年4月27日
-   作    者   : w00176964
-   修改内容   : GUL_BG项目调整:L的搜网列表结构体调整,携带接入技术
-*****************************************************************************/
 VOS_VOID NAS_MMC_ConvertLmmPlmnList2SearchedPlmnListInfo(
     MMC_LMM_PLMN_ID_LIST_STRU                              *pstLMMPlmnList,
     NAS_MMC_SEARCHED_PLMN_LIST_INFO_STRU                   *pstSearchedPlmnListInfo
@@ -1142,25 +779,7 @@ VOS_VOID NAS_MMC_ConvertLmmPlmnList2SearchedPlmnListInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConvertLmmBgPlmnSearchRslt2SearchedPlmnListInfo
- 功能描述  : 将L模的背景搜网结果中的PLMN信息转为内部搜网消息结构中PLMN信息
- 输入参数  : pstLmmPlmnList          - 搜网结果中的PLMN信息
- 输出参数  : pstSearchedPlmnListInfo - 内部搜网消息结构中PLMN信息
-             enRatType               - 接入技术
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2012年4月25日
-   作    者   : z00161729
-   修改内容   : 新生成函数
- 2.日    期   : 2012年6月19日
-   作    者   : z00161729
-   修改内容   : DTS2012061908820:L上报bg搜网失败没有带任何网络时未更新接入技术
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_ConvertLmmBgPlmnSearchRslt2SearchedPlmnListInfo(
     LMM_MMC_BG_PLMN_SEARCH_CNF_STRU                        *pstLmmPlmnList,
     NAS_MMC_SEARCHED_PLMN_LIST_INFO_STRU                   *pstSearchedPlmnListInfo,
@@ -1198,26 +817,7 @@ VOS_VOID NAS_MMC_ConvertLmmBgPlmnSearchRslt2SearchedPlmnListInfo(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_MML_IsPlmnWithRatInPlmnList
- 功能描述  : 检查PLMN是否在列表中
- 输入参数  : NAS_MML_PLMN_ID_STRU               *pstPlmnId
-             NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enRat
-             NAS_MML_PLMN_ID_STRU               *pstPlmnIdList
-             VOS_UINT32                          ulPlmnNum
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月4日
-    作    者   : 王毛/00166186
-    修改内容   : 新生成函数
-  2.日    期   : 2014年6月17日
-    作    者   : z00234330
-    修改内容   : PCINT清理
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsPlmnWithRatInPlmnList (
     NAS_MML_PLMN_ID_STRU                                   *pstPlmnId,
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8                         enRat,
@@ -1239,39 +839,19 @@ VOS_UINT32 NAS_MMC_IsPlmnWithRatInPlmnList (
     {
         for (j = 0; j < pstPlmnSelectionListInfo->astPlmnSelectionList[i].ucRatNum; j++)
         {
-            /* Modified by z00234330 for PCLINT清理, 2014-06-16, begin */
             if ((VOS_TRUE == NAS_MML_CompareBcchPlmnwithSimPlmn(pstPlmnId,
                                                                  &(pstPlmnSelectionListInfo->astPlmnSelectionList[i].stPlmnId)))
              && (enRat == pstPlmnSelectionListInfo->astPlmnSelectionList[i].astPlmnRatInfo[j].enRatType))
             {
                 return VOS_TRUE;
             }
-            /* Modified by z00234330 for PCLINT清理, 2014-06-16, end */
         }
     }
 
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConvertPlmnId2NasFormat
- 功能描述  : 将原PLMNid转化为NAS内部使用格式记录
-             例如:MCC为460,MNC为01时,
-             pstPlmnId->Mcc = 0x000604      pstPlmnId->Mcc = 0x00000460
-                                        <----
-             pstPlmnId->Mnc = 0x000100      pstPlmnId->Mnc = 0x00000001
- 输入参数  : pstPlmnId - 原plmn格式
- 输出参数  : pstPlmnId - nas内部plmn格式
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月28日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_ConvertPlmnId2NasFormat(
     NAS_MML_PLMN_ID_STRU               *pstPlmnId,
     VOS_UINT8                           ucPlmnMncNum
@@ -1328,20 +908,7 @@ VOS_VOID NAS_MMC_ConvertPlmnId2NasFormat(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RemoveSpecDplmnFromeNplmnList
- 功能描述  : 将指定DPLMN从在NPLMN List中删除
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : l00289540
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_RemoveSpecDplmnFromNplmnList(
     NAS_MMC_SIM_PLMN_WITH_REG_DOMAIN_STRU                  *pstSpecDplmn,
     NAS_MMC_DPLMN_NPLMN_CFG_INFO_STRU                      *pstDPlmnNPlmnCfgInfo
@@ -1370,29 +937,7 @@ VOS_VOID NAS_MMC_RemoveSpecDplmnFromNplmnList(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_UpdateDplmnNplmnInfo
- 功能描述  : 更新mmc DPLMN和NPLMN信息
- 输入参数  : pstNvimCfgDPlmnNPlmnInfo - nv项里dplmn和nplmn信息内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月3日
-    作    者   : z00161729
-    修改内容   : 开机漫游搜网项目修改
-  2.日    期   : 2015-5-18
-    作    者   : c00318887
-    修改内容   : DPlmn扩容和优先接入HPLMN
-  3.日    期   : 2015年10月21日
-    作    者   : l00289540
-    修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_3.0 修改
-  4.日    期   : 2015年12月15日
-    作    者   : s00217060
-    修改内容   : DTS2015120701561:防止数组越界
-*****************************************************************************/
 VOS_VOID NAS_MMC_UpdateDplmnNplmnInfo(
     NAS_MMC_NVIM_CFG_DPLMN_NPLMN_INFO_STRU                 *pstNvimCfgDPlmnNPlmnInfo,
     NAS_MMC_DPLMN_NPLMN_CFG_INFO_STRU                      *pstDPlmnNPlmnCfgInfo
@@ -1404,9 +949,7 @@ VOS_VOID NAS_MMC_UpdateDplmnNplmnInfo(
     VOS_UINT16                                              usSimRat;
     NAS_MMC_REG_DOMAIN_ENUM_UINT8                           enRegDomain;
 
-    /* Modified by c00318887 for DPlmn扩容和优先接入HPLMN, 2015-5-20, begin */
     NAS_MMC_DPLMN_NPLMN_SETTING_TYPE_ENUM_UINT8             enType;
-    /* Modified by c00318887 for DPlmn扩容和优先接入HPLMN, 2015-5-20, end */
 
     enRegDomain              = NAS_MMC_REG_DOMAIN_BUTT;
     PS_MEM_SET(&stTempPlmn, 0, sizeof(stTempPlmn));
@@ -1423,7 +966,6 @@ VOS_VOID NAS_MMC_UpdateDplmnNplmnInfo(
     /* 将NV中的DPLMN保存到内存中,需要防止数组越界 */
     for ( ulStep = 0; ulStep < pstNvimCfgDPlmnNPlmnInfo->usDplmnListNum; ulStep++ )
     {
-        /* Modified by c00318887 for DPlmn扩容和优先接入HPLMN, 2015-5-20, begin */
         PS_MEM_CPY(stNvimPlmn.aucSimPlmn,
             pstNvimCfgDPlmnNPlmnInfo->aucDPlmnList + (ulStep * (NAS_MMC_DPLMN_NPLMN_NV_INFO_LEN)), NAS_MML_SIM_PLMN_ID_LEN);
 
@@ -1438,7 +980,6 @@ VOS_VOID NAS_MMC_UpdateDplmnNplmnInfo(
         enRegDomain = (VOS_UINT8)(pstNvimCfgDPlmnNPlmnInfo->aucDPlmnList[(ulStep * NAS_MMC_DPLMN_NPLMN_NV_INFO_LEN) + NAS_MML_PLMN_WITH_RAT_UNIT_LEN]);
 
         enType      = (VOS_UINT8)(pstNvimCfgDPlmnNPlmnInfo->aucDPlmnList[(ulStep * NAS_MMC_DPLMN_NPLMN_NV_INFO_LEN) + NAS_MMC_DPLMN_NPLMN_NV_PRESETING_FLAG_INDEX]);
-        /* Modified by c00318887 for DPlmn扩容和优先接入HPLMN, 2015-5-20, end */
 
         /* 若是需要添加的DPLMN已经存在，不需要重复添加 */
         if (VOS_TRUE == NAS_MMC_IsPlmnIdWithSimRatInSimPlmnWithRegDomainList(&stTempPlmn, usSimRat, pstDPlmnNPlmnCfgInfo->usDplmnListNum, pstDPlmnNPlmnCfgInfo->astDPlmnList))
@@ -1453,9 +994,7 @@ VOS_VOID NAS_MMC_UpdateDplmnNplmnInfo(
             pstDPlmnNPlmnCfgInfo->astDPlmnList[pstDPlmnNPlmnCfgInfo->usDplmnListNum].stSimPlmnWithRat.usSimRat = usSimRat;
             pstDPlmnNPlmnCfgInfo->astDPlmnList[pstDPlmnNPlmnCfgInfo->usDplmnListNum].enRegDomain               = enRegDomain;
 
-            /* Modified by c00318887 for DPlmn扩容和优先接入HPLMN, 2015-5-20, begin */
             pstDPlmnNPlmnCfgInfo->astDPlmnList[pstDPlmnNPlmnCfgInfo->usDplmnListNum].enType                    = enType;
-            /* Modified by c00318887 for DPlmn扩容和优先接入HPLMN, 2015-5-20, end */
 
             pstDPlmnNPlmnCfgInfo->usDplmnListNum++;
 
@@ -1480,7 +1019,6 @@ VOS_VOID NAS_MMC_UpdateDplmnNplmnInfo(
 
     for ( ulStep = 0; ulStep < pstNvimCfgDPlmnNPlmnInfo->usNplmnListNum; ulStep++ )
     {
-        /* Modified by c00318887 for DPlmn扩容和优先接入HPLMN, 2015-5-20, begin */
         PS_MEM_CPY(stNvimPlmn.aucSimPlmn, pstNvimCfgDPlmnNPlmnInfo->aucNPlmnList + (ulStep * NAS_MMC_DPLMN_NPLMN_NV_INFO_LEN), NAS_MML_SIM_PLMN_ID_LEN);
 
         /* 转换PLMN ID为MMC内部的格式并存储 */
@@ -1494,7 +1032,6 @@ VOS_VOID NAS_MMC_UpdateDplmnNplmnInfo(
         enRegDomain = (VOS_UINT8)(pstNvimCfgDPlmnNPlmnInfo->aucNPlmnList[(ulStep * NAS_MMC_DPLMN_NPLMN_NV_INFO_LEN) + NAS_MML_PLMN_WITH_RAT_UNIT_LEN]);
 
         enType      = (VOS_UINT8)(pstNvimCfgDPlmnNPlmnInfo->aucNPlmnList[(ulStep * NAS_MMC_DPLMN_NPLMN_NV_INFO_LEN) + NAS_MMC_DPLMN_NPLMN_NV_PRESETING_FLAG_INDEX]);
-        /* Modified by c00318887 for DPlmn扩容和优先接入HPLMN, 2015-5-20, end */
 
         /* 若是需要添加的NPLMN已经存在，不需要重复添加 */
         if (VOS_TRUE == NAS_MMC_IsPlmnIdWithSimRatInSimPlmnWithRegDomainList(&stTempPlmn, usSimRat, pstDPlmnNPlmnCfgInfo->usNplmnListNum, pstDPlmnNPlmnCfgInfo->astNPlmnList))
@@ -1509,9 +1046,7 @@ VOS_VOID NAS_MMC_UpdateDplmnNplmnInfo(
             pstDPlmnNPlmnCfgInfo->astNPlmnList[pstDPlmnNPlmnCfgInfo->usNplmnListNum].stSimPlmnWithRat.usSimRat = usSimRat;
             pstDPlmnNPlmnCfgInfo->astNPlmnList[pstDPlmnNPlmnCfgInfo->usNplmnListNum].enRegDomain = enRegDomain;
 
-            /* Modified by c00318887 for DPlmn扩容和优先接入HPLMN, 2015-5-20, begin */
             pstDPlmnNPlmnCfgInfo->astNPlmnList[pstDPlmnNPlmnCfgInfo->usNplmnListNum].enType                    = enType;
-            /* Modified by c00318887 for DPlmn扩容和优先接入HPLMN, 2015-5-20, end */
 
             pstDPlmnNPlmnCfgInfo->usNplmnListNum++;
 
@@ -1528,23 +1063,7 @@ VOS_VOID NAS_MMC_UpdateDplmnNplmnInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_UpdateDPlmnNPlmnCfgHplmnInfo
- 功能描述  : 更新DPLMNNPLMN功能控制信息中HPLMN信息
- 输入参数  : pstNvimCfgDPlmnNPlmnFlagInfo - nv项里DPLMNNPLMN功能控制相关信息内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月8日
-    作    者   : c00188733
-    修改内容   : 开机漫游搜网项目修改
-  2.日    期   : 2015年12月15日
-    作    者   : s00217060
-    修改内容   : DTS2015120701561:重复的EHPLMN不添加
-*****************************************************************************/
 VOS_VOID NAS_MMC_UpdateDPlmnNPlmnCfgInfo(
     NAS_MMC_NVIM_DPLMN_NPLMN_CFG_STRU                      *pstNvimDPlmnNPlmnCfg,
     NAS_MMC_DPLMN_NPLMN_CFG_INFO_STRU                      *pstDPlmnNPlmnCfgInfo
@@ -1591,24 +1110,7 @@ VOS_VOID NAS_MMC_UpdateDPlmnNPlmnCfgInfo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MML_DelPlmnWithRatInPlmnList
- 功能描述  : 删除列表中重复PLMN
- 输入参数  : NAS_MMC_PLMN_SELECTION_LIST_INFO_STRU                   pstPlmnSelectionListInfo
- 输出参数  : pstPlmnSelectionListInfo
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月4日
-    作    者   : 王毛/00166186
-    修改内容   : 新生成函数
-  2.日    期   : 2014年5月28日
-    作    者   : z00234330
-    修改内容   : covertity修改
-
-*****************************************************************************/
 VOS_VOID  NAS_MMC_DelDuplicatedPlmnWithRatInPlmnList (
     NAS_MMC_PLMN_SELECTION_LIST_INFO_STRU                  *pstPlmnSelectionListInfo
 )
@@ -1616,7 +1118,6 @@ VOS_VOID  NAS_MMC_DelDuplicatedPlmnWithRatInPlmnList (
     VOS_UINT32                          i;
     VOS_UINT32                          j;
 
-    /* modified by z00234330 for coverity修改 2014-05-28 begin */
     /* 删除重复的PLMN */
     for (i = 0; i < NAS_MML_MIN(pstPlmnSelectionListInfo->usSearchPlmnNum, NAS_MMC_MAX_PLMN_NUM_IN_SELECTION_LIST); )
     {
@@ -1660,29 +1161,12 @@ VOS_VOID  NAS_MMC_DelDuplicatedPlmnWithRatInPlmnList (
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsUserSpecPlmnSrchType_PlmnSelection
- 功能描述  : 确定当前是否为用户指定搜网
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月22日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsUserSpecPlmnSrchType_PlmnSelection(
     NAS_MMC_FSM_ID_ENUM_UINT32          enFsmId,
     VOS_UINT32                          ulEventType
 )
 {
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
     if ( ( NAS_MMC_FSM_PLMN_SELECTION == enFsmId )
       && ( ulEventType == NAS_BuildEventType(UEPS_PID_MSCC, ID_MSCC_MMC_PLMN_SPECIAL_REQ )))
     {
@@ -1692,24 +1176,9 @@ VOS_UINT32 NAS_MMC_IsUserSpecPlmnSrchType_PlmnSelection(
     {
         return VOS_FALSE;
     }
-	/* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetCurrentLaiForbbidenTypeForUserSpecPlmnSrch
- 功能描述  : 在用户手动搜网时，判断当前LAI的禁止类型
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年09月13日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_GetCurrentLaiForbbidenTypeForUserSpecPlmnSrch(VOS_VOID)
 {
     NAS_MML_LAI_STRU                                       *pstCurrentLai     = VOS_NULL_PTR;
@@ -1768,23 +1237,7 @@ VOS_UINT32 NAS_MMC_GetCurrentLaiForbbidenTypeForUserSpecPlmnSrch(VOS_VOID)
     return ulPlmnLaType;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsSpecTypePlmnIdInDestPlmnList
- 功能描述  : 判断指定类型功能的PLMN ID是否在列表中
- 输入参数  : stSpecPlmnId:     需要判断的PLMN ID
-              enSpecPlmnType:   PLMN ID的类型
-              ucPlmnNum:        列表中plmn id的个数
-              pstPlmnIdList:    plmn列表
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  : PLMN ID在列表中
-              VOS_FALSE : PLMN ID不在列表中
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2011年11月24日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_UINT32 NAS_MMC_IsSpecTypePlmnIdInDestPlmnList (
     NAS_MML_PLMN_ID_STRU               *pstSpecPlmnId,
     NAS_MMC_PLMN_TYPE_ENUM_UINT8        enSpecPlmnType,
@@ -1823,26 +1276,7 @@ VOS_UINT32 NAS_MMC_IsSpecTypePlmnIdInDestPlmnList (
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_UpdateCsPsRestriction_WasInfo
- 功能描述  : 更新WAS下的AccessBar信息以及Bar状态变化信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月21日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2012年2月15日
-    作    者   : w00166186
-    修改内容   : CSFB&PPAC&ETWS&ISR 开发
-  3.日    期   : 2012年12月11日
-    作    者   : w00176964
-    修改内容   : 更新小区禁止正常业务标记
-*****************************************************************************/
 VOS_VOID NAS_MMC_UpdateCsPsRestriction_WasInfo(
     RRMM_SYS_INFO_IND_STRU             *pstWrrSysInfo,
     NAS_MML_NETWORK_INFO_STRU          *pstNetWorkInfo
@@ -1874,19 +1308,15 @@ VOS_VOID NAS_MMC_UpdateCsPsRestriction_WasInfo(
     /* 保存CS接入受限信息 */
     NAS_MML_SetCsRestrictRegisterFlg(pstWrrSysInfo->stCsRestriction.enRestrictRegister);
     NAS_MML_SetCsRestrictPagingFlg(pstWrrSysInfo->stCsRestriction.enRestrictPagingRsp);
-    /* Modified by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, begin */
     NAS_MML_SetCsRestrictNormalServiceFlg(pstWrrSysInfo->stCsRestriction.enRestrictNormalService);
     NAS_MML_SetCsRestrictEmergencyServiceFlg(pstWrrSysInfo->stCsRestriction.enRestrictEmergencyService);
-    /* Modified by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, end */
 
 
     /* 保存PS接入受限信息 */
     NAS_MML_SetPsRestrictRegisterFlg(pstWrrSysInfo->stPsRestriction.enRestrictRegister);
     NAS_MML_SetPsRestrictPagingFlg(pstWrrSysInfo->stPsRestriction.enRestrictPagingRsp);
-    /* Modified by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, begin */
     NAS_MML_SetPsRestrictNormalServiceFlg(pstWrrSysInfo->stPsRestriction.enRestrictNormalService);
     NAS_MML_SetPsRestrictEmergencyServiceFlg(pstWrrSysInfo->stPsRestriction.enRestrictEmergencyService);
-    /* Modified by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, end */
 
     return;
 }
@@ -1896,32 +1326,7 @@ VOS_VOID NAS_MMC_UpdateCsPsRestriction_WasInfo(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_UpdateCsPsRestriction_GasSysInfo
- 功能描述  : 更新GAS下的Restriction信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月21日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2012年2月15日
-    作    者   : w00166186
-    修改内容   : CSFB&PPAC&ETWS&ISR 开发
-  3.日    期   : 2012年12月11日
-    作    者   : w00176964
-    修改内容   : 更新小区禁止正常业务标记
-  4.日    期   : 2012年12月27日
-    作    者   : s00217060
-    修改内容   : for DSDA GUNAS C CORE:如果USIM卡GSM禁止接入，设置限制注册和正常呼叫接入
-  5.日    期   : 2013年1月8日
-    作    者   : w00176964
-    修改内容   : DTS2013010706340:G下无PS域紧急呼叫业务,G下接入禁止时该标记应该始终为FALSE
-*****************************************************************************/
 VOS_VOID NAS_MMC_UpdateCsPsRestriction_GasSysInfo(
     GRRMM_SYS_INFO_IND_ST              *pstGrrSysInfo,
     NAS_MML_NETWORK_INFO_STRU          *pstNetWorkInfo
@@ -2040,26 +1445,7 @@ VOS_VOID NAS_MMC_UpdateCsPsRestriction_GasSysInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_UpdateCsPsRestriction_WasInfo
- 功能描述  : 更新WAS下的AccessBar信息以及Bar状态变化信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月21日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2012年2月15日
-    作    者   : w00166186
-    修改内容   : CSFB&PPAC&ETWS&ISR 开发
-  3.日    期   : 2012年12月11日
-    作    者   : w00176964
-    修改内容   : 更新小区禁止正常业务标记
-*****************************************************************************/
 VOS_VOID NAS_MMC_UpdateCsPsRestriction_AcChangeInd(
     RRMM_W_AC_INFO_CHANGE_IND_STRU     *pstWAcChangeInd,
     NAS_MML_NETWORK_INFO_STRU          *pstNetWorkInfo
@@ -2093,37 +1479,19 @@ VOS_VOID NAS_MMC_UpdateCsPsRestriction_AcChangeInd(
     /* 保存CS接入受限信息 */
     NAS_MML_SetCsRestrictRegisterFlg(pstWAcChangeInd->stCsRestriction.enRestrictRegister);
     NAS_MML_SetCsRestrictPagingFlg(pstWAcChangeInd->stCsRestriction.enRestrictPagingRsp);
-    /* Modified by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, begin */
     NAS_MML_SetCsRestrictNormalServiceFlg(pstWAcChangeInd->stCsRestriction.enRestrictNormalService);
     NAS_MML_SetCsRestrictEmergencyServiceFlg(pstWAcChangeInd->stCsRestriction.enRestrictEmergencyService);
-    /* Modified by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, end */
 
     /* 保存PS接入受限信息 */
     NAS_MML_SetPsRestrictRegisterFlg(pstWAcChangeInd->stPsRestriction.enRestrictRegister);
     NAS_MML_SetPsRestrictPagingFlg(pstWAcChangeInd->stPsRestriction.enRestrictPagingRsp);
-    /* Modified by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, begin */
     NAS_MML_SetPsRestrictNormalServiceFlg(pstWAcChangeInd->stPsRestriction.enRestrictNormalService);
     NAS_MML_SetPsRestrictEmergencyServiceFlg(pstWAcChangeInd->stPsRestriction.enRestrictEmergencyService);
-    /* Modified by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, end */
 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConvertRrcRatToNasFormat
- 功能描述  : 将接入层带上的接入技术类型转换为NAS格式的接入技术类型
- 输入参数  : ulRrcRat 接入层带上来的接入技术类型
- 输出参数  : enRat NAS格式的接入技术类型
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月30日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_ConvertRrcRatToNasFormat(
     RRC_NAS_RAT_TYPE_ENUM_UINT32        ulRrcRat,
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8    *penRat
@@ -2157,24 +1525,7 @@ VOS_VOID NAS_MMC_ConvertRrcRatToNasFormat(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConvertNasRatToRrcFormat
- 功能描述  : 将NAS格式的接入技术类型转换为接入层带上的接入技术类型
- 输入参数  : enNasRat NAS格式的接入技术类型
- 输出参数  : penRrcRat 接入层带上来的接入技术类型
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年10月24日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-
- 2.日    期   : 2013年10月29日
-   作    者   : w00167002
-   修改内容   : BUTT-->转换为给接入层的BUTT
-*****************************************************************************/
 VOS_VOID NAS_MMC_ConvertNasRatToRrcFormat(
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enNasRat,
     RRC_NAS_RAT_TYPE_ENUM_UINT32       *penRrcRat
@@ -2209,21 +1560,7 @@ VOS_VOID NAS_MMC_ConvertNasRatToRrcFormat(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConvertRrcCoverTypeToNasFormat
- 功能描述  : 将接入层带上的网络覆盖类型转换为NAS格式的网络覆盖类型
- 输入参数  : enRrcCoverType 接入层带上来的网络覆盖类型
- 输出参数  : *penCoverType NAS格式的网络覆盖类型
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年11月5日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID   NAS_MMC_ConvertRrcCoverTypeToNasFormat(
     RRC_NAS_COVERAGE_TYPE_ENUM_UINT32   enRrcCoverType,
     NAS_MMC_COVERAGE_TYPE_ENUM_UINT8   *penCoverType
@@ -2258,21 +1595,7 @@ VOS_VOID   NAS_MMC_ConvertRrcCoverTypeToNasFormat(
 }
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConvertLmmCoverTypeToNasFormat
- 功能描述  : 将接入层带上的网络覆盖类型转换为NAS格式的网络覆盖类型
- 输入参数  : enLmmCoverType 接入层带上来的网络覆盖类型
- 输出参数  : *penCoverType NAS格式的网络覆盖类型
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年11月5日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID   NAS_MMC_ConvertLmmCoverTypeToNasFormat(
     MMC_LMM_COVERAGE_TYPE_ENUM_UINT32   enLmmCoverType,
     NAS_MMC_COVERAGE_TYPE_ENUM_UINT8   *penCoverType
@@ -2311,21 +1634,7 @@ VOS_VOID   NAS_MMC_ConvertLmmCoverTypeToNasFormat(
 
 #if (FEATURE_ON == FEATURE_LTE)
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConvertLmmRatToRrcFormat
- 功能描述  : 将LMM层带上的接入技术类型转换为RRC格式的接入技术类型
- 输入参数  : ulLmmRat 接入层带上来的接入技术类型
- 输出参数  : enRat RRC格式的接入技术类型
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年4月28日
-   作    者   : t00212959
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_ConvertLmmRatToRrcFormat(
     MMC_LMM_RAT_TYPE_ENUM_UINT8         ucLmmRat,
     RRC_NAS_RAT_TYPE_ENUM_UINT32       *penRat
@@ -2358,21 +1667,7 @@ VOS_VOID NAS_MMC_ConvertLmmRatToRrcFormat(
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConvertGasNetModeToMmlNetMode
- 功能描述  : 将GAS的系统消息中网络模式参数转为MML中的网络模式类型
- 输入参数  : enGasNetMode: GAS系统消息中的网络模式
- 输出参数  : 无
- 返 回 值  : MML中的网络模式类型
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年8月5日
-   作    者   : L00171473
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_MML_NET_MODE_ENUM_UINT8 NAS_MMC_ConvertGasNetModeToMmlNetMode(
     GRRMM_NW_OP_MODE_ENUM_UINT8         enGasNetMode
 )
@@ -2403,21 +1698,7 @@ NAS_MML_NET_MODE_ENUM_UINT8 NAS_MMC_ConvertGasNetModeToMmlNetMode(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsOptItemVaild_WasSysInfo
- 功能描述  : WAS 系统消息中携带的Opt项参数是否有效
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月21日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsOptItemVaild_WasSysInfo(
     RRMM_SYS_INFO_IND_STRU             *pstWrrSysInfo
 )
@@ -2442,19 +1723,7 @@ VOS_UINT32 NAS_MMC_IsOptItemVaild_WasSysInfo(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedEnableUtran_AnyCellSearch
- 功能描述  : 进入Anycell搜网状态机后，如果Utran被Disable,需要重新Enable Utran，UE能够在Utran上限制驻留
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2013年11月01日
-   作    者   : l00208543
-   修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_UINT32 NAS_MMC_IsNeedEnableUtran_AnyCellSearch (VOS_VOID)
 {
     /* 当处于Anycell搜网状态机时并且当前Utran被Disable了，则Re-Enable Utran */
@@ -2472,19 +1741,7 @@ VOS_UINT32 NAS_MMC_IsNeedEnableUtran_AnyCellSearch (VOS_VOID)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedDisableUtran_RcvGasSysInfo
- 功能描述  : 收到GAS系统消息的时候，如果这时UTRAN是Re-Enable状态，则将UTRAN重新Disable
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2013年11月01日
-   作    者   : l00208543
-   修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_UINT32 NAS_MMC_IsNeedDisableUtran_RcvGasSysInfo (VOS_VOID)
 {
     /* 如果Utran在禁止接入技术列表里且此时Utran为Enable状态，则收到Gas的系统消息后Disable Utran */
@@ -2501,19 +1758,7 @@ VOS_UINT32 NAS_MMC_IsNeedDisableUtran_RcvGasSysInfo (VOS_VOID)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_UpdateUtranCapabilityStatus_AnyCellSearch_Init
- 功能描述  : 开始Anycell搜网前，如果Utran被Disable,则需要重新Enable Utran
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2013年11月01日
-   作    者   : l00208543
-   修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_VOID NAS_MMC_UpdateUtranCapabilityStatus_AnyCellSearch_Init (VOS_VOID)
 {
     if (VOS_TRUE == NAS_MMC_IsNeedEnableUtran_AnyCellSearch())
@@ -2523,19 +1768,7 @@ VOS_VOID NAS_MMC_UpdateUtranCapabilityStatus_AnyCellSearch_Init (VOS_VOID)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvGasSysInfoSetUtranCapabilityStatus
- 功能描述  : 收到GAS系统消息的时候，如果这时UTRAN是Re-Enable状态，则将UTRAN重新Disable
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2013年11月01日
-   作    者   : l00208543
-   修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_VOID NAS_MMC_RcvGasSysInfoSetUtranCapabilityStatus (VOS_VOID)
 {
 
@@ -2548,21 +1781,7 @@ VOS_VOID NAS_MMC_RcvGasSysInfoSetUtranCapabilityStatus (VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_UpdateOperNameInfo
- 功能描述  : 更新Operate Name的信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年8月8日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_UpdateOperNameInfo(
     RRC_PLMN_ID_STRU                   *pstPlmnId
 )
@@ -2585,43 +1804,7 @@ VOS_VOID NAS_MMC_UpdateOperNameInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_UpdateNetworkInfo_GasSysInfo
- 功能描述  : 检查并保存GSM下的系统信息
- 输入参数  : struct MsgCB *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月21日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2011年11月15日
-    作    者   : w00166186
-    修改内容   : DTS2011111500751,LAC值高低位保存反了，导致发给接入层的禁止LAC值不正确
-  3.日    期   : 2012年6月9日
-    作    者   : z00161729
-    修改内容   : V7R1C50 GUL背景搜网修改
-  4.日    期   : 2012年11月13日
-    作    者   : z40661
-    修改内容   : V7R1C50 GUL背景搜网修改
-
-  5.日    期   : 2013年6月25日
-    作    者   : w00167002
-    修改内容   : V9R1_SVLTE ST测试:更新PS域的GPRS是否支持标志。
-
-  6.日    期   : 2013年10月29日
-    作    者   : z00234330
-    修改内容   : 低功耗接口合入dts2013102911530
-  7.日    期   : 2014年2月14日
-    作    者   : s00246516
-    修改内容   : L-C互操作项目:增加获取和注册请求的处理
-  8.日   期    : 2014-04-15
-    作   者    : w00176964
-    修改内容   : V3R3C60_eCall项目调整:上次驻留LAI信息保存到MML中
-*****************************************************************************/
 VOS_VOID NAS_MMC_UpdateNetworkInfo_GasSysInfo(
     struct MsgCB                       *pstMsg
 )
@@ -2630,9 +1813,7 @@ VOS_VOID NAS_MMC_UpdateNetworkInfo_GasSysInfo(
     NAS_MML_NETWORK_3GPP_REL_STRU      *pst3GPPRelVersion   = VOS_NULL_PTR;
     NAS_MML_CAMP_PLMN_INFO_STRU        *pstCurrCampPlmnInfo = VOS_NULL_PTR;
     NAS_MML_MS_BAND_INFO_STRU          *pstBandInfo         = VOS_NULL_PTR;
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-4-28, begin */
     NAS_MML_LAI_STRU                   *pstOldCampLai       = VOS_NULL_PTR;
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-4-28, end */
 
 
     NAS_MML_NETWORK_INFO_STRU          *pstNetWorkInfo      = VOS_NULL_PTR;
@@ -2647,7 +1828,6 @@ VOS_VOID NAS_MMC_UpdateNetworkInfo_GasSysInfo(
 
     pstCurrCampPlmnInfo = NAS_MML_GetCurrCampPlmnInfo();
 
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-4-28, begin */
     pstOldCampLai       = NAS_MML_GetOldCampLai();
 
     /* 保存上次驻留的LAI信息,然后下面步骤更新当前驻留LAI信息 */
@@ -2655,7 +1835,6 @@ VOS_VOID NAS_MMC_UpdateNetworkInfo_GasSysInfo(
     {
         PS_MEM_CPY(pstOldCampLai, &(pstCurrCampPlmnInfo->stLai), sizeof(NAS_MML_LAI_STRU));
     }
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-4-28, end */
 
     /* 当前ucGprsSupportInd为Gsm时，代表当前不支持GPRS，无法从PS域信息中获取网络模式 */
     if (NAS_MML_GAS_SUBMODE_GSM == pstGrrSysInfo->ucGprsSupportInd)
@@ -2701,9 +1880,7 @@ VOS_VOID NAS_MMC_UpdateNetworkInfo_GasSysInfo(
     pstCurrCampPlmnInfo->stCampCellInfo.ucCellNum = 1;
     pstCurrCampPlmnInfo->stCampCellInfo.astCellInfo[0].ulCellId = pstGrrSysInfo->usCellId;
 
-    /* Added by s00246516 for L-C互操作项目, 2014-02-14, Begin */
     NAS_MML_SetCurrCampArfcn(0x0);
-    /* Added by s00246516 for L-C互操作项目, 2014-02-14, End */
 
     /* 更新当前的系统GsmBand信息，W,L 驻留 Band为0 */
     pstBandInfo = NAS_MML_GetCurrBandInfo();
@@ -2721,44 +1898,14 @@ VOS_VOID NAS_MMC_UpdateNetworkInfo_GasSysInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_UpdateNetworkInfo_WasSysInfo
- 功能描述  : 收到WAS下系统消息的处理
- 输入参数  : RRMM_SYS_INFO_IND_STRU* pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月21日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2012年6月9日
-    作    者   : z00161729
-    修改内容   : V7R1C50 GUL背景搜网修改
-  3.日    期   : 2012年11月13日
-    作    者   : z40661
-    修改内容   : V7R1C50 GUL背景搜网修改
-  4.日    期   : 2014年2月14日
-    作    者   : s00246516
-    修改内容   : L-C互操作项目:增加获取和注册请求的处理
-  5.日   期    : 2014-04-15
-    作   者    : w00176964
-    修改内容   : V3R3C60_eCall项目调整:上次驻留LAI信息保存到MML中
-  6.日   期    : 2015-6-11
-    作   者    : b00269685
-    修改内容   : 区分ota 和 sys
-*****************************************************************************/
 VOS_VOID NAS_MMC_UpdateNetworkInfo_WasSysInfo(
     struct MsgCB                       *pstMsg
 )
 {
     RRMM_SYS_INFO_IND_STRU             *pstWrrSysInfo   = VOS_NULL_PTR;
     NAS_MML_NETWORK_INFO_STRU          *pstNetWorkInfo  = VOS_NULL_PTR;
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-4-28, begin */
     NAS_MML_LAI_STRU                   *pstOldCampLai   = VOS_NULL_PTR;
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-4-28, end */
 
     pstWrrSysInfo = (RRMM_SYS_INFO_IND_STRU*)pstMsg;
 
@@ -2769,7 +1916,6 @@ VOS_VOID NAS_MMC_UpdateNetworkInfo_WasSysInfo(
 
     pstNetWorkInfo  =  NAS_MML_GetNetworkInfo();
 
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-4-28, begin */
     pstOldCampLai       = NAS_MML_GetOldCampLai();
 
     /* 保存上次驻留的LAI信息,然后下面步骤更新当前驻留LAI信息 */
@@ -2777,7 +1923,6 @@ VOS_VOID NAS_MMC_UpdateNetworkInfo_WasSysInfo(
     {
         PS_MEM_CPY(pstOldCampLai, &(pstNetWorkInfo->stCampPlmnInfo.stLai), sizeof(NAS_MML_LAI_STRU));
     }
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-4-28, end */
 
     if (VOS_TRUE == pstWrrSysInfo->bitOpPlmnId)
     {
@@ -2836,9 +1981,7 @@ VOS_VOID NAS_MMC_UpdateNetworkInfo_WasSysInfo(
     /* 更新Sysinfo的子模式 */
     pstNetWorkInfo->stCampPlmnInfo.enSysSubMode = pstWrrSysInfo->enSysSubMode;
 
-    /* Added by s00246516 for L-C互操作项目, 2014-02-14, Begin */
     NAS_MML_SetCurrCampArfcn(0x0);
-    /* Added by s00246516 for L-C互操作项目, 2014-02-14, End */
 
     /* 更新当前的 W Band 系统信息，G和L驻留 Band为0 */
     pstNetWorkInfo->stBandInfo.unWcdmaBand.ulBand      = pstWrrSysInfo->unWcdmaBand.ulBand;
@@ -2859,20 +2002,7 @@ VOS_VOID NAS_MMC_UpdateNetworkInfo_WasSysInfo(
 
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_UpdateSuitPlmnList_LmmSysInfo
- 功能描述  : 收到l系统消息更新共享网络信息
- 输入参数  : pstLteSysInfo - 系统消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月19日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-*****************************************************************************/
 VOS_VOID NAS_MMC_UpdateSuitPlmnList_LmmSysInfo(
     MMC_LMM_SYS_INFO_STRU              *pstLteSysInfo
 )
@@ -2907,46 +2037,7 @@ VOS_VOID NAS_MMC_UpdateSuitPlmnList_LmmSysInfo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_UpdateNetworkInfo_LmmSysInfo
- 功能描述  : 检查并保存LTE下的系统信息
- 输入参数  : struct MsgCB *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年8月6日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年11月4日
-    作    者   : zhoujun 40661
-    修改内容   : LMM的系统消息保存更新
-  3.日    期   : 2012年2月15日
-    作    者   : w00166186
-    修改内容   : CSFB&PPAC&ETWS&ISR 开发
-  4.日    期   : 2012年6月9日
-    作    者   : z00161729
-    修改内容   : V7R1C50 GUL背景搜修改
-  5.日    期   : 2012年06月13日
-    作    者   : s46746
-    修改内容   : For CS/PS mode 1，修改LTE系统子模式
-
-  6.日    期   : 2012年11月9日
-    作    者   : z40661
-    修改内容   : DRX TImer修改
-  7.日    期   : 2014年2月14日
-    作    者   : s00246516
-    修改内容   : L-C互操作项目:增加获取和注册请求的处理
-  7.日    期   : 2014年8月14日
-    作    者   : s00217060
-    修改内容   : DTS2014080700822:更新LTE驻留的小区是FDD还是TDD
-  8.日    期   : 2015年4月19日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-*****************************************************************************/
 VOS_VOID NAS_MMC_UpdateNetworkInfo_LmmSysInfo(
     struct MsgCB                       *pstMsg
 )
@@ -2999,9 +2090,7 @@ VOS_VOID NAS_MMC_UpdateNetworkInfo_LmmSysInfo(
     pstCampCell->ucCellNum               = 1;
     pstCampCell->astCellInfo[0].ulCellId = pstLmmSysInfoMsg->stLteSysInfo.ulCellId;
 
-    /* Added by s00246516 for L-C互操作项目, 2014-02-14, Begin */
     NAS_MML_SetCurrCampArfcn(pstLmmSysInfoMsg->stLteSysInfo.ulArfcn);
-    /* Added by s00246516 for L-C互操作项目, 2014-02-14, End */
 
     /* 更新当前的系统GsmBand信息，W,L 驻留 Band为0 */
     pstBandInfo = NAS_MML_GetCurrBandInfo();
@@ -3024,9 +2113,7 @@ VOS_VOID NAS_MMC_UpdateNetworkInfo_LmmSysInfo(
 
     pstCurCampInfo->stLai.enCampPlmnNetRat = NAS_MML_NET_RAT_TYPE_LTE;
 
-    /* Modified by z00234330 for 低功耗接口 , 2013-10-29, begin */
     OM_DelDrxTimerWakeSrc(VOS_GetModemIDFromPid(WUEPS_PID_MMC));
-    /* Modified by z00234330 for 低功耗接口 , 2013-10-29, end */
     NAS_MMC_SndDrxTimerInfo(VOS_FALSE);
 
     NAS_MMC_UpdateSuitPlmnList_LmmSysInfo(&pstLmmSysInfoMsg->stLteSysInfo);
@@ -3035,22 +2122,7 @@ VOS_VOID NAS_MMC_UpdateNetworkInfo_LmmSysInfo(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetDomainRegStatusInRegInfoList
- 功能描述  : 从注册信息结果表中取得指定网络指定接入技术的CS/PS域的结果信息
- 输入参数  : pstPlmnId      : 需要查找的PLMN ID
-              enCurNetRatType: 指定网络的接入技术
- 输出参数  : penCsCause     : CS域的结果信息
-              penPsCause     : PS域的结果信息
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月21日
-    作    者   : w00167002
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_GetDomainRegStatusInRegInfoList(
     NAS_MML_PLMN_ID_STRU               *pstPlmnId,
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enCurNetRatType,
@@ -3108,21 +2180,7 @@ VOS_VOID NAS_MMC_GetDomainRegStatusInRegInfoList(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsPlmnRegInfoAllSucc
- 功能描述  : 检测PLMN是否有注册失败的域信息
- 输入参数  : pstPlmnRegList : PLMN的注册信息
- 输出参数  : 无
- 返 回 值  : VOS_TRUE       : PLMN有注册失败的域信息上
-             VOS_FALSE      : PLMN没有注册失败的域信息
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月15日
-    作    者   : w00167002
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_IsPlmnRegInfoAllSucc(
     NAS_MMC_PLMN_REG_INFO_STRU         *pstPlmnRegList
 )
@@ -3170,19 +2228,7 @@ VOS_UINT32  NAS_MMC_IsPlmnRegInfoAllSucc(
 	return VOS_TRUE;
 
 }
-/*****************************************************************************
- 函 数 名  : NAS_MMC_NotifyModeChange
- 功能描述  : 通知其他模块当前的网络模式发生变化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2012年01月04日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_VOID NAS_MMC_NotifyModeChange(
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8             enRatType,
     VOS_UINT8                                   ucSimPsRegStatus
@@ -3209,25 +2255,7 @@ VOS_VOID NAS_MMC_NotifyModeChange(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsPlmnAllowedInManualMode
- 功能描述  : 手动选网模式时，PlmnId是否允许
- 输入参数  : enPlmnSelectionMode : 选网模式
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:有效
-             VOS_FALSE:无效
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2012年7月7日
-   作    者   : s00217060
-   修改内容   : 新生成函数
- 2.日    期   : 2012年11月09日
-   作    者   : l65478
-   修改内容   : DTS2012103005174, PS成功,在等效PLMN中不设置禁止标志
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsPlmnAllowedInManualMode(
     NAS_MML_PLMN_ID_STRU                                   *pstPlmnId
 )
@@ -3265,41 +2293,7 @@ VOS_UINT32 NAS_MMC_IsPlmnAllowedInManualMode(
 }
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedDisableLte_SysCfg
- 功能描述  : SYSCFG设置完成后判断是否需要disable LTE
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:需要disable LTE
-             VOS_FALSE:不需要disable LTE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年06月12日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年09月12日
-   作    者   : z00161729
-   修改内容   : DTS2012082702662 disable或enable lte不再判断当前syscfg是否支持L
- 3.日    期   : 2012年11月10日
-   作    者   : s00217060
-   修改内容   : DTS2012102902559：SIM卡时，需要Disable Lte;
- 4.日    期   : 2012年12月28日
-   作    者   : s46746
-   修改内容   : DSDA GUNAS C CORE项目，增加平台是否支持LTE判断
- 5.日    期   : 2013年11月01日
-   作    者   : l00208543
-   修改内容   : 根据卡类型禁止网络制式
- 6.日    期   : 2013年2月28日
-   作    者   : w00176964
-   修改内容   : DTS2014030100833:调整SIM卡disable和enable lTE逻辑
- 7.日    期   : 2015年2月26日
-   作    者   : w00167002
-   修改内容   : DTS2015021604972:在SYSCFG设置完后，MMA进行ATTACH流程。MMC已经退出
-                 SYSCFG状态机，并触发搜网。在搜网时候，如果PS不准许ATTACH，则不搜索LTE.
-                 现修改为在SYSCFG后,如果需要搜网，则判别是否ATTACH PS需要先ENABLE LTE。
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedDisableLte_SysCfg(
     NAS_MMCMMC_SysCfg_RSLT_STRU        *pstSyscfgRsltMsg
 )
@@ -3373,26 +2367,7 @@ VOS_UINT32 NAS_MMC_IsNeedDisableLte_SysCfg(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedEnableLte_SysCfg
- 功能描述  : SYSCFG设置完成后判断是否需要enable LTE
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:需要enable LTE
-             VOS_FALSE:不需要enable LTE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年06月12日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2015年2月26日
-   作    者   : w00167002
-   修改内容   : DTS2015021604972:在SYSCFG设置完后，MMA进行ATTACH流程。MMC已经退出
-                 SYSCFG状态机，并触发搜网。在搜网时候，如果PS不准许ATTACH，则不搜索LTE.
-                 现修改为在SYSCFG后,如果需要搜网，则判别是否ATTACH PS需要先ENABLE LTE。
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedEnableLte_SysCfg(
     NAS_MMCMMC_SysCfg_RSLT_STRU        *pstSyscfgRsltMsg
 )
@@ -3433,33 +2408,7 @@ VOS_UINT32 NAS_MMC_IsNeedEnableLte_SysCfg(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedDisableLte_ModeChange
- 功能描述  : ModeChange设置完成后判断是否需要disable LTE
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:需要disable LTE
-             VOS_FALSE:不需要disable LTE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年06月12日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年09月12日
-   作    者   : z00161729
-   修改内容   : DTS2012082702662：disable或enable lte不再判断当前syscfg是否支持L
- 3.日    期   : 2012年11月10日
-   作    者   : s00217060
-   修改内容   : DTS2012102902559：SIM卡时，需要Disable Lte;
- 4.日    期   : 2012年12月28日
-   作    者   : s46746
-   修改内容   : DSDA GUNAS C CORE项目，增加平台是否支持LTE判断
- 5.日    期   : 2013年2月28日
-   作    者   : w00176964
-   修改内容   : DTS2014030100833:调整SIM卡disable和enable lTE逻辑
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedDisableLte_ModeChange(VOS_VOID)
 {
     VOS_UINT8                                               ucSimPsRegStatus;
@@ -3525,37 +2474,7 @@ VOS_UINT32 NAS_MMC_IsNeedDisableLte_ModeChange(VOS_VOID)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedEnableLte_ModeChange
- 功能描述  : ModeChange设置完成后判断是否需要enable LTE
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:需要enable LTE
-             VOS_FALSE:不需要enable LTE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年06月12日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年09月12日
-   作    者   : z00161729
-   修改内容   : DTS2012082702662：disable或enable lte不再判断当前syscfg是否支持L
- 3.日    期   : 2012年11月10日
-   作    者   : s00217060
-   修改内容   : DTS2012102902559：USIM卡时，才需要Enable Lte;SIM卡时不需要
-10.日    期   : 2012年12月15日
-   作    者   : l65478
-   修改内容   : DTS2012120508936:在发起紧急呼叫时需要disable LTE
-11.日    期   : 2013年11月01日
-   作    者   : l00208543
-   修改内容   : 根据卡类型禁止网络制式
-12.日    期   : 2013年2月28日
-   作    者   : w00176964
-   修改内容   : DTS2014030100833:调整SIM卡disable和enable lTE逻辑
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedEnableLte_ModeChange(VOS_VOID)
 {
     NAS_MML_LTE_CAPABILITY_STATUS_ENUM_UINT32               enLteCapabilityStatus;
@@ -3614,33 +2533,7 @@ VOS_UINT32 NAS_MMC_IsNeedEnableLte_ModeChange(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedDisableLte_DetachPs
- 功能描述  : Detach PS完成后判断是否需要disable LTE
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:需要disable LTE
-             VOS_FALSE:不需要disable LTE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年06月12日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年09月12日
-   作    者   : z00161729
-   修改内容   : DTS2012082702662：disable或enable lte不再判断当前syscfg是否支持L
- 3.日    期   : 2012年11月10日
-   作    者   : s00217060
-   修改内容   : DTS2012102902559：SIM卡时需要Disable Lte
- 4.日    期   : 2012年12月28日
-   作    者   : s46746
-   修改内容   : DSDA GUNAS C CORE项目，增加平台是否支持LTE判断
- 5.日    期   : 2013年2月28日
-   作    者   : w00176964
-   修改内容   : DTS2014030100833:调整SIM卡disable和enable lTE逻辑
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedDisableLte_DetachPs(VOS_VOID)
 {
     NAS_MMC_DETACH_REQ_CTX_STRU                            *pstDetachReqCtx = VOS_NULL_PTR;
@@ -3716,28 +2609,7 @@ VOS_UINT32 NAS_MMC_IsNeedDisableLte_DetachPs(VOS_VOID)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedEnableLte_DetachPs
- 功能描述  : Detach PS完成后判断是否需要enable LTE
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:需要enable LTE
-             VOS_FALSE:不需要enable LTE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年11月10日
-   作    者   : s00217060
-   修改内容   : 新生成函数
- 2.日    期   : 2013年11月01日
-   作    者   : l00208543
-   修改内容   : 根据卡类型禁止网络制式
- 3.日    期   : 2013年2月28日
-   作    者   : w00176964
-   修改内容   : DTS2014030100833:调整SIM卡disable和enable lTE逻辑
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedEnableLte_DetachPs(VOS_VOID)
 {
     NAS_MML_LTE_CAPABILITY_STATUS_ENUM_UINT32               enLteCapabilityStatus;
@@ -3786,39 +2658,7 @@ VOS_UINT32 NAS_MMC_IsNeedEnableLte_DetachPs(VOS_VOID)
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedEnableLte_AttachPs
- 功能描述  : Attach PS完成后判断是否需要enable LTE
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:需要enable LTE
-             VOS_FALSE:不需要enable LTE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年06月12日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年9月4日
-   作    者   : z00161729
-   修改内容   : DCM定制需求和遗留问题修改DTS2012090600196,支持GL,驻留G,syscfg设置G only,
-                先detach ps，disable lte，syscfg设置后，attach ps但判断当前不支持L未enable lte，
-                后续syscfg设置GL,也未enable lte，导致gmm收到ms radio capability消息未进行rau
- 3.日    期   : 2012年11月10日
-   作    者   : s00217060
-   修改内容   : DTS2012102902559：USIM卡时，才需要Enable Lte;SIM卡时不需要
- 4.日    期   : 2012年12月15日
-   作    者   : l65478
-   修改内容   : DTS2012120508936:在发起紧急呼叫时需要disable LTE
- 5.日    期   : 2013年11月01日
-   作    者   : l00208543
-   修改内容   : 根据卡类型禁止网络制式
- 6.日    期   : 2013年2月28日
-   作    者   : w00176964
-   修改内容   : DTS2014030100833:调整SIM卡disable和enable lTE逻辑
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedEnableLte_AttachPs(VOS_VOID)
 {
     NAS_MML_LTE_CAPABILITY_STATUS_ENUM_UINT32               enLteCapabilityStatus;
@@ -3868,33 +2708,7 @@ VOS_UINT32 NAS_MMC_IsNeedEnableLte_AttachPs(VOS_VOID)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedDisableLte_AttachCs
- 功能描述  : Attach CS完成后判断是否需要disable LTE
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:需要disable LTE
-             VOS_FALSE:不需要disable LTE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年06月12日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年09月12日
-   作    者   : z00161729
-   修改内容   : DTS2012082702662：disable或enable lte不再判断当前syscfg是否支持L
- 3.日    期   : 2012年11月10日
-   作    者   : s00217060
-   修改内容   : DTS2012102902559：SIM卡时，需要Disable Lte;
- 4.日    期   : 2012年12月28日
-   作    者   : s46746
-   修改内容   : DSDA GUNAS C CORE项目，增加平台是否支持LTE判断
- 5.日    期   : 2013年2月28日
-   作    者   : w00176964
-   修改内容   : DTS2014030100833:调整SIM卡disable和enable lTE逻辑
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedDisableLte_AttachCs(VOS_VOID)
 {
     VOS_UINT8                                               ucSimPsRegStatus;
@@ -3961,36 +2775,7 @@ VOS_UINT32 NAS_MMC_IsNeedDisableLte_AttachCs(VOS_VOID)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedEnableLte_DetachCs
- 功能描述  : Detach CS完成后判断是否需要enable LTE
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:需要enable LTE
-             VOS_FALSE:不需要enable LTE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年06月12日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年09月12日
-   作    者   : z00161729
-   修改内容   : DTS2012082702662：disable或enable lte不再判断当前syscfg是否支持L
- 3.日    期   : 2012年11月10日
-   作    者   : s00217060
-   修改内容   : DTS2012102902559：USIM卡需要Enable Lte;SIM卡时不需要
- 4.日    期   : 2012年12月15日
-   作    者   : l65478
-   修改内容   : DTS2012120508936:在发起紧急呼叫时需要disable LTE
- 5.日    期   : 2013年11月01日
-   作    者   : l00208543
-   修改内容   : 根据卡类型禁止网络制式
- 6.日    期   : 2013年2月28日
-   作    者   : w00176964
-   修改内容   : DTS2014030100833:调整SIM卡disable和enable lTE逻辑
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedEnableLte_DetachCs(VOS_VOID)
 {
     NAS_MML_LTE_CAPABILITY_STATUS_ENUM_UINT32               enLteCapabilityStatus;
@@ -4043,30 +2828,7 @@ VOS_UINT32 NAS_MMC_IsNeedEnableLte_DetachCs(VOS_VOID)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedDisableLte_AttachCsPs
- 功能描述  : Attach CSPS完成后判断是否需要disable LTE
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:需要disable LTE
-             VOS_FALSE:不需要disable LTE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年06月12日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年11月10日
-   作    者   : s00217060
-   修改内容   : DTS2012102902559：SIM卡时，需要Disable Lte;
- 3.日    期   : 2012年12月28日
-   作    者   : s46746
-   修改内容   : DSDA GUNAS C CORE项目，增加平台是否支持LTE判断
- 5.日    期   : 2013年2月28日
-   作    者   : w00176964
-   修改内容   : DTS2014030100833:调整SIM卡disable和enable lTE逻辑
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedDisableLte_AttachCsPs(VOS_VOID)
 {
     VOS_UINT8                                               ucSimPsRegStatus;
@@ -4127,34 +2889,7 @@ VOS_UINT32 NAS_MMC_IsNeedDisableLte_AttachCsPs(VOS_VOID)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedEnableLte_AttachCsPs
- 功能描述  : attach CSPS完成后判断是否需要enable LTE
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:需要enable LTE
-             VOS_FALSE:不需要enable LTE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年06月12日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年09月12日
-   作    者   : z00161729
-   修改内容   : DTS2012082702662：disable或enable lte不再判断当前syscfg是否支持L
- 3.日    期   : 2012年11月10日
-   作    者   : s00217060
-   修改内容   : DTS2012102902559：USIM卡时，才需要Enable Lte;SIM卡时不需要
- 4.日    期   : 2013年11月01日
-   作    者   : l00208543
-   修改内容   : 根据卡类型禁止网络制式
- 5.日    期   : 2013年2月28日
-   作    者   : w00176964
-   修改内容   : DTS2014030100833:调整SIM卡disable和enable lTE逻辑
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedEnableLte_AttachCsPs(VOS_VOID)
 {
     NAS_MML_LTE_CAPABILITY_STATUS_ENUM_UINT32               enLteCapabilityStatus;
@@ -4199,52 +2934,14 @@ VOS_UINT32 NAS_MMC_IsNeedEnableLte_AttachCsPs(VOS_VOID)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedDisableLte_DetachCsPs
- 功能描述  : Detach CSPS完成后判断是否需要disable LTE
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:需要disable LTE
-             VOS_FALSE:不需要disable LTE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年06月12日
-   作    者   : s46746
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedDisableLte_DetachCsPs(VOS_VOID)
 {
     /* 该场景不需要Disable lte, 函数预留后续扩展使用 */
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedEnableLte_DetachCsPs
- 功能描述  : Detach CSPS完成后判断是否需要enable LTE
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:需要enable LTE
-             VOS_FALSE:不需要enable LTE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年06月12日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年09月12日
-   作    者   : z00161729
-   修改内容   : DTS2012082702662：disable或enable lte不再判断当前syscfg是否支持L
- 3.日    期   : 2013年11月01日
-   作    者   : l00208543
-   修改内容   : 根据卡类型禁止网络制式
- 4.日    期   : 2013年2月28日
-   作    者   : w00176964
-   修改内容   : DTS2014030100833:调整SIM卡disable和enable lTE逻辑
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedEnableLte_DetachCsPs(VOS_VOID)
 {
     NAS_MML_LTE_CAPABILITY_STATUS_ENUM_UINT32               enLteCapabilityStatus;
@@ -4291,27 +2988,7 @@ VOS_UINT32 NAS_MMC_IsNeedEnableLte_DetachCsPs(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedDisableLteRoam
- 功能描述  : 判断是否需要disable LTE漫游
- 输入参数  : ulMcc:当前PLMN ID的国家码
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:需要disable LTE漫游
-             VOS_FALSE:不需要disable LTE漫游
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年3月14日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2012年12月28日
-   作    者   : s46746
-   修改内容   : DSDA GUNAS C CORE项目，增加平台是否支持LTE判断
- 3.日    期   : 2015年3月9日
-   作    者   : wx270776
-   修改内容   : DTS2015021601238:MCC无效时候，不需要DISABLE LTE
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedDisableLteRoam(
     VOS_UINT32                          ulMcc
 )
@@ -4346,27 +3023,7 @@ VOS_UINT32 NAS_MMC_IsNeedDisableLteRoam(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedEnableLteRoam
- 功能描述  : 判断是否需要enable LTE漫游
- 输入参数  : ulMcc:当前PLMN ID的国家码
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:需要enable LTE漫游
-             VOS_FALSE:不需要enable LTE漫游
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年3月14日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2013年11月01日
-   作    者   : l00208543
-   修改内容   : 根据卡类型禁止网络制式
- 3.日    期   : 2015年3月9日
-   作    者   : wx270776
-   修改内容   : DTS2015021601238:MCC无效时候，不需要DISABLE LTE
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedEnableLteRoam(
     VOS_UINT32                          ulMcc
 )
@@ -4407,22 +3064,7 @@ VOS_UINT32 NAS_MMC_IsNeedEnableLteRoam(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedEnableLte_ImsSwitchOn
- 功能描述  : 判断IMS功能打开时，是否需要Enable LTE
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:需要enable LTE
-             VOS_FALSE:不需要enable LTE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月4日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedEnableLte_ImsSwitchOnOrNotCsOnly(VOS_VOID)
 {
     NAS_MML_LTE_CAPABILITY_STATUS_ENUM_UINT32               enLteCapabilityStatus;
@@ -4499,22 +3141,7 @@ VOS_UINT32 NAS_MMC_IsNeedEnableLte_ImsSwitchOnOrNotCsOnly(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsCampLteNormalService
- 功能描述  : 判断是否已经驻留在L网络提供正常服务
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_FALSE: 不是已经驻留在L网络提供正常服务
-              VOS_TRUE: 已经驻留在L网络提供正常服务
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2012年06月02日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsCampLteNormalService(VOS_VOID)
 {
     /* 当前接入技术不是LTE */
@@ -4539,22 +3166,7 @@ VOS_UINT32 NAS_MMC_IsCampLteNormalService(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsReCampLteLimitedService
- 功能描述  : LTE需要disable时，判断是否仍然驻留在LTE的网络上
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:仍然驻留在LTE的网络上
-             VOS_FALES:disable Lte
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月20日
-    作    者   : z40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_IsReCampLteLimitedService( VOS_VOID )
 {
     /* 当前接入技术不是LTE */
@@ -4585,19 +3197,7 @@ VOS_UINT32  NAS_MMC_IsReCampLteLimitedService( VOS_VOID )
 }
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsCurrLtePlmnAllowSrchInCLMode
- 功能描述  : 判断当前搜索的lte PLMN是否允许搜索
- 输入参数  : pstPlmnId: plmnId值
- 输出参数  : 无
- 返 回 值  : vos_ture:当前plmn允许搜索
-             vos_false:当前plmn不允许搜索
 
- 修改历史      :
-  1.日    期   : 2015年9月11日
-    作    者   : y00346957
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsCurrLtePlmnAllowSrchInCLMode(NAS_MML_PLMN_ID_STRU *pstPlmnId)
 {
     NAS_MMC_CL_ASSOCIATED_INFO_NTF_STRU                    *psCLAssociatedInfo;
@@ -4680,31 +3280,7 @@ VOS_UINT32 NAS_MMC_IsCurrLtePlmnAllowSrchInCLMode(NAS_MML_PLMN_ID_STRU *pstPlmnI
 
 /* NAS_MMC_GetMmlCsTransactionStatu函数移到NAS MML LIB 中*/
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SortPlmnSearchListSpecRatPrioLowest
- 功能描述  : 对搜网列表进行排序，将指定接入技术剪切放到列表最后
- 输入参数  : pstPlmnSelectionListInfo
- 输出参数  : pstPlmnSelectionListInfo
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2012年2月16日
-   作    者   : h00202780
-   修改内容   : 新生成函数
- 2.日    期   : 2012年10月17日
-   作    者   : z00161729
-   修改内容   : DTS2012081604223:csfb失败需要搜网到gu，gu下搜网失败回lte，没有搜rplmn而是搜的eplmn，因为rplmn状态不对为butt
- 3.日    期   : 2013年8月26日
-   作    者   : w00242748
-   修改内容   : DTS2013071808373编译告警清理
-
- 4.日    期   : 2014年11月13日
-   作    者   : w00167002
-   修改内容   : DTS2014111201728:CSFB搜网时候，当前存在AVAILABLE网络，但是没有搜索GU的
-                PLMN，而是搜索了L得PLMN，导致回到L,
-*****************************************************************************/
 VOS_VOID NAS_MMC_SortPlmnSearchListSpecRatPrioLowest(
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8                         enSpecRatType,
     NAS_MMC_PLMN_SELECTION_LIST_INFO_STRU                  *pstPlmnSelectionListInfo
@@ -4801,22 +3377,7 @@ VOS_VOID NAS_MMC_SortPlmnSearchListSpecRatPrioLowest(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsRejectedBySpecCause
- 功能描述  : 判断UE本次开机是否被指定的原因值拒绝过
- 输入参数  : enDomain:指定域
-             enCause:指定的原因值
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:被拒绝过
-             VOS_FALSE:未被拒绝过
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年5月09日
-   作    者   : w00166186
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsRejectedBySpecCause(
     NAS_MMC_REG_DOMAIN_ENUM_UINT8       enDomain,
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16  enCause
@@ -4861,23 +3422,7 @@ VOS_UINT32 NAS_MMC_IsRejectedBySpecCause(
 }
 
 
-/* Modified by z40661 for 泰国AIS特性 2012-05-17, begin */
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsAisRoamingEffect
- 功能描述  : 判断AIS特殊漫游功能是否生效
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:生效
-             VOS_FALSE:不生效
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月17日
-    作    者   : zhoujun 40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_IsAisRoamingEffect( VOS_VOID )
 {
     /******************************************************************
@@ -4906,32 +3451,9 @@ VOS_UINT32  NAS_MMC_IsAisRoamingEffect( VOS_VOID )
     /* 其他情况返回VOS_FALSE */
     return VOS_FALSE;
 }
-/* Modified by z40661 for 泰国AIS特性 2012-05-17, end */
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_UpdateUserSpecPlmnRegisterStatusWhenRegFail
- 功能描述  : 注册失败原因值为11 12 13 15的时候清除用户手动指定网络的注册状态标志
-                PS注册成功, CS注册失败, 原因为11 12 13 15的情况, 需要清除该标志.
-                因为此时CS的RPLMN没有更新为用户指定的PLMN, 此后丢网等触发的搜网不能搜
-                RPLMN及其EPLMN, 故需要清除该标志.
-                CS注册成功, PS注册失败时, 虽然RPLMN和用户指定PLMN相同, 但为了处理对称,
-                也做清除标志的处理.
 
- 输入参数  : enRegFailCause: 注册失败的原因值
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年06月04日
-    作    者   : l00171473
-    修改内容   : 新生成函数, DTS2012053003921, 用户手动指定网络的注册状态标志清理
-  2.日    期   : 2012年11月09日
-    作    者   : l65478
-    修改内容   : DTS2012103005174, 在#12,#15时不需要清除注册状态标志
-*****************************************************************************/
 VOS_VOID NAS_MMC_UpdateUserSpecPlmnRegisterStatusWhenRegFail(
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16  enRegFailCause
 )
@@ -4949,22 +3471,7 @@ VOS_VOID NAS_MMC_UpdateUserSpecPlmnRegisterStatusWhenRegFail(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_UpdateUserSpecPlmnRegisterStatus
- 功能描述  : 在手动搜网模式下,注册成功时,需要更新用户指定搜网的状态
 
- 输入参数  : enCsCause: CS注册失败的原因值
-             enCsCause: PS注册失败的原因值
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年08月18日
-    作    者   : l65478
-    修改内容   : 新生成函数, DTS2012081703289
-*****************************************************************************/
 VOS_VOID NAS_MMC_UpdateUserSpecPlmnRegisterStatus(
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16  enCause
 )
@@ -4986,25 +3493,7 @@ VOS_VOID NAS_MMC_UpdateUserSpecPlmnRegisterStatus(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_UpdateEhplmnRat_WithNvPrioHplmnAct
- 功能描述  : stPlmnId,              需要更新HPLMN
-              usRatForOneEhplmnItem, 单个EHPLM对应的RAT
-              ulPlmnNum,             已经更新的EHPLMN的个数
- 输入参数  : pstPlmnWithRatInfo     更新后的EHPLMN
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月9日
-    作    者   : w00166186
-    修改内容   : AT&T & DCM项目
-  2.日    期   : 2012年12月28日
-    作    者   : s46746
-    修改内容   : DSDA GUNAS C CORE项目，增加平台是否支持LTE判断
-*****************************************************************************/
 VOS_VOID  NAS_MMC_UpdateEhplmnRat_WithEhplmnRatList(
     NAS_MML_PLMN_ID_STRU                stPlmnId,
     VOS_UINT16                         *pusRatForOneEhplmnItem,
@@ -5077,23 +3566,7 @@ VOS_VOID  NAS_MMC_UpdateEhplmnRat_WithEhplmnRatList(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_UpdateEhplmnRat_WithNvPrioHplmnAct
- 功能描述  : 根据定制的HPLMN接入次序和Sim卡中的HplmnACt文件更新EHPLMN的接入技术
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月9日
-    作    者   : l00130025
-    修改内容   : DTS2012060400029:添加对HPLMNAct优先接入技术的定制；目前USim卡中HPLMNACT很多不支持L
-  2.日    期   : 2012年12月28日
-    作    者   : s46746
-    修改内容   : DSDA GUNAS C CORE项目，增加平台是否支持LTE判断
-*****************************************************************************/
 VOS_VOID  NAS_MMC_UpdateEhplmnRat_WithNvPrioHplmnAct(VOS_VOID)
 {
     NAS_MML_PRIO_HPLMNACT_CFG_STRU              *pstNvPrioHPlmnActCfg;
@@ -5207,44 +3680,7 @@ VOS_VOID  NAS_MMC_UpdateEhplmnRat_WithNvPrioHplmnAct(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_UpdateEhplmnRat_WithOrigSimHplmnAct
- 功能描述  : 根据SIM卡中HplmnAct的原始信息，更新EHPLMN的接入技术
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年11月27日
-    作    者   : zhoujun /40661
-    修改内容   : 新生成函数
-  2.日    期   : 2011年2月28日
-    作    者   : z00161729
-    修改内容   : DTS2011021602201:正向质量hplmn的接入技术没有赋值是随机值,不影响功能只影响可维可测消息显示
-  3.日    期   : 2011年4月13日
-    作    者   : l00130025
-    修改内容   : 修改对GUL 3模的处理
-  4.日    期   : 2011年7月25日
-    作    者   : w00176964
-    修改内容   : V7R1 PhaseII 全局变量 状态名调整
-  5.日    期   : 2011年11月30日
-    作    者   : w00176964
-    修改内容   : 联合注册BBIT调整
-
-  6.日    期   : 2012年1月11日
-    作    者   : w00167002
-    修改内容   : DTS2012011208030:用例测试发现问题，若L下注册被拒#13后，在L下
-                  不搜HOME PLMN.(D03_DTS2011102200381_Combined_Registeration_FAIL_SCENE_13)
-  7.日    期   : 2012年6月9日
-    作    者   : l00130025
-    修改内容   : DTS2012060400029:添加对HPLMNAct优先接入技术的定制；
-                 函数重命名;6F62中存在Hplmn为0x0000的记录时，HPLMN在搜网时不会被添加
-  8.日    期   : 2012年12月28日
-    作    者   : s46746
-    修改内容   : DSDA GUNAS C CORE项目，增加平台是否支持LTE判断
-*****************************************************************************/
 VOS_VOID  NAS_MMC_UpdateEhplmnRat_WithOrigSimHplmnAct(VOS_VOID)
 {
     NAS_MML_SIM_EHPLMN_INFO_STRU                           *pstEHPlmnInfo = VOS_NULL_PTR;
@@ -5332,40 +3768,7 @@ VOS_VOID  NAS_MMC_UpdateEhplmnRat_WithOrigSimHplmnAct(VOS_VOID)
     PS_MEM_FREE(WUEPS_PID_MMC, pstTmpPlmnInfo);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_UpdateEhplmnRat
- 功能描述  : 更新EHPLMN的接入技术
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年11月27日
-    作    者   : zhoujun /40661
-    修改内容   : 新生成函数
-  2.日    期   : 2011年2月28日
-    作    者   : z00161729
-    修改内容   : DTS2011021602201:正向质量hplmn的接入技术没有赋值是随机值,不影响功能只影响可维可测消息显示
-  3.日    期   : 2011年4月13日
-    作    者   : l00130025
-    修改内容   : 修改对GUL 3模的处理
-  4.日    期   : 2011年7月25日
-    作    者   : w00176964
-    修改内容   : V7R1 PhaseII 全局变量 状态名调整
-  5.日    期   : 2011年11月30日
-    作    者   : w00176964
-    修改内容   : 联合注册BBIT调整
-
-  6.日    期   : 2012年1月11日
-    作    者   : w00167002
-    修改内容   : DTS2012011208030:用例测试发现问题，若L下注册被拒#13后，在L下
-                  不搜HOME PLMN.(D03_DTS2011102200381_Combined_Registeration_FAIL_SCENE_13)
-  7.日    期   : 2012年6月9日
-    作    者   : l00130025
-    修改内容   : DTS2012060400029:添加对HPLMNAct优先接入技术的定制；目前USim卡中HPLMNACT很多不支持L
-*****************************************************************************/
 VOS_VOID  NAS_MMC_UpdateEhplmnRat(VOS_VOID)
 {
 
@@ -5387,44 +3790,18 @@ VOS_VOID  NAS_MMC_UpdateEhplmnRat(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_UpdateHomePlmn
- 功能描述  : 将IMSI转变成协议栈中使用的形式存储，并
-              从IMSI中解析出HOME PLMN更新到全局变量中
- 输入参数  : aucIMSI:存储IMSI的数组
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年3月19日
-    作    者   : luokaihui / l00167671
-    修改内容   : 新生成函数
-  2.日    期   : 2011年07月13日
-    作    者   : w00176964
-    修改内容   : GUNAS V7R1 PhaseII 阶段调整
-  3.日    期   : 2012年8月14日
-    作    者   : t00212959
-    修改内容   : DCM定制需求和遗留问题,得到三位MNC
-  4.日    期   : 2011年07月13日
-    作    者   : w00176964
-    修改内容   : V7R1C50_GUTL_PhaseII:删除对46002/46007中国移动网络的特殊处理,
-                  将46002和46007转换为46000，夏苗方确认MP后台支持46002和46007的处理。
-*****************************************************************************/
 VOS_VOID  NAS_MMC_UpdateHomePlmn(
     VOS_UINT8                           *pucIMSI
 )
 {
     NAS_MML_SIM_EHPLMN_INFO_STRU       *pstEHPlmnInfo = VOS_NULL_PTR;
 
-    /* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-22, begin */
     VOS_UINT8                           ucUsimMncLenth;
     VOS_UINT8                           ucExactlyComparaFlag;
 
     ucUsimMncLenth       = NAS_MML_GetUsimMncLen();
     ucExactlyComparaFlag = NAS_MML_GetPlmnExactlyComparaFlg();
-    /* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-22, end */
 
     pstEHPlmnInfo   = NAS_MML_GetSimEhplmnList();
 
@@ -5437,7 +3814,6 @@ VOS_VOID  NAS_MMC_UpdateHomePlmn(
     pstEHPlmnInfo->astEhPlmnInfo[0].stPlmnId.ulMnc |= (pucIMSI[3] & NAS_MML_OCTET_LOW_FOUR_BITS);
     pstEHPlmnInfo->astEhPlmnInfo[0].stPlmnId.ulMnc |= (pucIMSI[3] & NAS_MML_OCTET_HIGH_FOUR_BITS) << NAS_MML_OCTET_MOVE_FOUR_BITS;
 
-    /* Modified by t00212959 for DCM定制需求和遗留问题, 2012-8-15, begin */
     if ((NAS_MMC_MNC_LENGTH_TWO_BYTES_IN_IMSI == ucUsimMncLenth)
      && (VOS_TRUE == ucExactlyComparaFlag))
     {
@@ -5447,7 +3823,6 @@ VOS_VOID  NAS_MMC_UpdateHomePlmn(
     {
         pstEHPlmnInfo->astEhPlmnInfo[0].stPlmnId.ulMnc |= (pucIMSI[4] & NAS_MML_OCTET_LOW_FOUR_BITS) << NAS_MML_OCTET_MOVE_SIXTEEN_BITS;
     }
-    /* Modified by t00212959 for DCM定制需求和遗留问题, 2012-8-15, end */
 
     /* 对于PLMN ID相同的比较，末位为0或者F的情况，已经在新的比较函数中
       处理:NAS_MMC_CompareBcchPlmnwithSimPlmn不需要添加两次PLMN ID，对于
@@ -5461,20 +3836,7 @@ VOS_VOID  NAS_MMC_UpdateHomePlmn(
         pstEHPlmnInfo->astEhPlmnInfo[0].stPlmnId.ulMnc &= 0xFF0000;
     }
 }
-/*****************************************************************************
- 函 数 名  : NAS_MMC_DelLowPrioEHPlmn
- 功能描述  : 从list搜索中仅保持EHPLMN的最高优先级的PLMN,删除其余的EHPLMN
- 输入参数  : pstReportList:上报的list搜网列表
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月23日
-    作    者   : t00212959
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_DelLowPrioEHPlmn(
     NAS_MMC_PLMN_SELECTION_LIST_INFO_STRU  *pstReportList
 )
@@ -5532,31 +3894,7 @@ VOS_VOID NAS_MMC_DelLowPrioEHPlmn(
 
 #if (FEATURE_ON == FEATURE_LTE)
 
-/* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-14, begin */
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvGuSysInfoIndSetLteRoamAbility
- 功能描述  : 收到GU接入层的系统消息后，进行disable L 或者 enable L
- 输入参数  : ulSysInfoMcc        - GU上报的系统消息所带上的国家码
-             enLCapabilityStatus - 现在的LTE能力状态
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月14日
-    作    者   : t00212959
-    修改内容   : 新生成函数
-  2.日    期   : 2013年01月23日
-    作    者   : s00217060
-    修改内容   : 问题单: DTS2013012106172,Enable Lte时停止定时器TI_NAS_MMC_WAIT_ENABLE_LTE_TIMER
-  3.日    期   : 2013年11月01日
-    作    者   : l00208543
-    修改内容   : 根据卡类型禁止网络制式
-  4.日    期   : 2015年1月5日
-    作    者   : z00161729
-    修改内容   : AT&T 支持DAM特性修改
-*****************************************************************************/
 VOS_VOID  NAS_MMC_RcvGuSysInfoIndSetLteRoamAbility(
     VOS_UINT32                                              ulSysInfoMcc,
     NAS_MML_LTE_CAPABILITY_STATUS_ENUM_UINT32               enLCapabilityStatus
@@ -5615,23 +3953,8 @@ VOS_VOID  NAS_MMC_RcvGuSysInfoIndSetLteRoamAbility(
     return;
 
 }
-/* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-14, end */
 #endif
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsInterNationalRoamingSearchRPLMN
- 功能描述  : 判断国际漫游时是否搜RPLMN
- 输入参数  : ulMcc:当前PLMN ID的国家码
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:漫游时要搜
-             VOS_FALSE:开关未开，或者在国内不搜
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年2月24日
-   作    者   : t00173447
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsInterNationalRoamingSearchRPLMN(
     VOS_UINT32                          ulMcc
 )
@@ -5656,21 +3979,7 @@ VOS_UINT32 NAS_MMC_IsInterNationalRoamingSearchRPLMN(
 
 #if (FEATURE_ON == FEATURE_LTE)
 
-/*****************************************************************************
- 函 数 名  : NAS_MCC_IsNeedDisableLteWBand
- 功能描述  : 根据频段禁用LTE
- 输入参数  : ulBand频段
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:需要disable LTE漫游
-             VOS_FALSE:不需要disable LTE漫游
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年2月24日
-   作    者   : t00173447
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MCC_IsNeedDisableLteWBand(
     VOS_UINT32                         ulBand
 )
@@ -5689,27 +3998,7 @@ VOS_UINT32 NAS_MCC_IsNeedDisableLteWBand(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvGuSysInfoIndSetLteAbility
- 功能描述  : 收到GU接入层的系统消息后，进行disable L 或者 enable L
- 输入参数  : SysInfo        - GU上报的系统消息
-             enLCapabilityStatus - 现在的LTE能力状态
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月18日
-    作    者   : t00173447
-    修改内容   : 新生成函数
-  2.日    期   : 2015年1月5日
-    作    者   : z00161729
-    修改内容   : AT&T 支持DAM特性修改
-  3.日    期   : 2015年3月9日
-    作    者   : wx270776
-    修改内容   : 3g系统消息处理时对was是否带mmc进行判断
-*****************************************************************************/
 VOS_VOID  NAS_MMC_RcvGuSysInfoIndSetLteAbility(
     struct MsgCB                       *pstMsg,
     NAS_MML_LTE_CAPABILITY_STATUS_ENUM_UINT32               enLCapabilityStatus
@@ -5801,27 +4090,7 @@ VOS_VOID  NAS_MMC_RcvGuSysInfoIndSetLteAbility(
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_DelHplmnInFplmn
- 功能描述  : 删除FPLMN中HPLMN
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年02月25日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2011年7月25日
-    作    者   : w00176964
-    修改内容   : V7R1 PhaseII 全局变量 状态名调整
-  3.日    期   : 2012年8月24日
-    作    者   : w00167002
-    修改内容   : 更改原函数NAS_MMC_DelHplmnInFplmn_SwitchOn的函数名字，并调整
-                  函数的文件位置，函数内容功能不涉及修改
-*****************************************************************************/
 VOS_VOID NAS_MMC_DelHplmnInFplmn(VOS_VOID)
 {
     VOS_INT8                            i;
@@ -5863,26 +4132,7 @@ VOS_VOID NAS_MMC_DelHplmnInFplmn(VOS_VOID)
 
 #if (FEATURE_ON == FEATURE_LTE)
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConvertPlmnIdListToGUFormat
- 功能描述  : 将L格式的PLMN ID列表转换成GU格式的PLMN ID列表
- 输入参数  : pstSrcPlmnIdList  需要转换的PLMN ID列表
- 输出参数  : pstDestPlmnIdList 转换后的PLMN ID列表
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年9月24日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2012年4月28日
-    作    者   : t00212959
-    修改内容   : GUL BG项目调整: L模接口改变
-  3.日    期   : 2015年10月21日
-    作    者   : s00217060
-    修改内容   : 修改函数名
-*****************************************************************************/
 VOS_VOID NAS_MMC_ConvertLmmPlmnIdListToGUFormat(
     MMC_LMM_PLMN_ID_LIST_STRU          *pstSrcPlmnIdList,
     RRC_PLMN_ID_LIST_STRU              *pstDestPlmnIdList
@@ -5956,22 +4206,7 @@ VOS_VOID NAS_MMC_ConvertLmmPlmnIdListToGUFormat(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedPsRelConnEnableLteTimerExpired
- 功能描述  : 判断enable lte定时器超时是否需要主动释放ps连接
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:不需要释放链接
-             VOS_TRUE: 需要释放链接
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年4月20日
-   作    者   : z00161729
-   修改内容   : 24301 R11 CR升级项目修改
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedRelPsConnEnableLteTimerExpired(VOS_VOID)
 {
     NAS_MML_CONN_STATUS_INFO_STRU      *pstConnStatus  = VOS_NULL_PTR;
@@ -6020,39 +4255,7 @@ VOS_UINT32 NAS_MMC_IsNeedRelPsConnEnableLteTimerExpired(VOS_VOID)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsDisableLteNeedLocalReleaseEpsConn
- 功能描述  : 判断是否需要释放EPS链接
- 输入参数  : 无
 
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:不需要释放EPS链接
-              VOS_TRUE: 需要释放EPS链接
- 调用函数  :
- 被调函数  :
-
- 修改历史     :
- 1.日    期   : 2012年11月22日
-   作    者   : t00212959
-   修改内容   : 新生成函数
- 2.日    期   : 2012年12月4日
-   作    者   : t00212959
-   修改内容   : DTS2012120302949 EPS only #16,#17,#22满5此种互动释放链接
- 3.日    期   : 2014年01月10日
-   作    者   : w00176964
-   修改内容   : VoLTE_PhaseIII项目
- 4.日    期   : 2014年5月19日
-   作    者   : w00242748
-   修改内容   : DTS2014051308442:L下注册成功支持IMS，但SMS ONLY，周期性TAU被16拒一次，直接disable
-                LTE。
- 5.日    期   : 2015年4月20日
-   作    者   : z00161729
-   修改内容   : 24301 R11 CR升级项目修改
- 6.日    期   : 2015年6月19日
-   作    者   : z00161729
-   修改内容   : 24008 23122 R11 CR升级项目修改
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsDisableLteNeedLocalReleaseEpsConn(VOS_VOID)
 {
     NAS_MML_ADDITION_UPDATE_RSLT_INFO_ENUM_UINT8            enAdditionUpdateRslt;
@@ -6073,11 +4276,9 @@ VOS_UINT32 NAS_MMC_IsDisableLteNeedLocalReleaseEpsConn(VOS_VOID)
     ulCsDomainUnAvailFlg = VOS_FALSE;
     enDisableLteReason   = NAS_MML_GetDisableLteReason();
 
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-18, begin */
     /* disable LTE，并且原因是IMS VOICE不可用需要通知L释放链接*/
     if ((NAS_MML_LTE_CAPABILITY_STATUS_DISABLE_UNNOTIFY_AS  != NAS_MML_GetLteCapabilityStatus())
      || (MMC_LMM_DISABLE_LTE_REASON_LTE_VOICE_NOT_AVAILABLE != enDisableLteReason))
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-18, end */
     {
         return VOS_FALSE;
     }
@@ -6141,20 +4342,7 @@ VOS_UINT32 NAS_MMC_IsDisableLteNeedLocalReleaseEpsConn(VOS_VOID)
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsPlmnMccSameWithRplmn
- 功能描述  : 判断MCC是否在和rplmn的mcc相同
- 输入参数  : ulMcc - 需要判断的MCC
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  : MCC与rplmn的mcc相同
-             VOS_FALSE : MCC与rplmn的mcc不同
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2014年10月30日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_UINT32 NAS_MMC_IsPlmnMccSameWithRplmn(
     VOS_UINT32                          ulMcc
 )
@@ -6207,20 +4395,7 @@ VOS_UINT32 NAS_MMC_IsPlmnMccSameWithRplmn(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsPlmnMccSameWithHplmn
- 功能描述  : 判断MCC是否在和hplmn的mcc相同
- 输入参数  : ulMcc - 需要判断的MCC
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  : MCC与hplmn的mcc相同
-             VOS_FALSE : MCC与hplmn的mcc不同
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2014年10月30日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_UINT32 NAS_MMC_IsPlmnMccSameWithHplmn(
     VOS_UINT32                          ulMcc
 )
@@ -6245,19 +4420,7 @@ VOS_UINT32 NAS_MMC_IsPlmnMccSameWithHplmn(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsPlmnSameWithRplmn
- 功能描述  : 判断PLMN是否是RPLMN
- 输入参数  : 待判断的PLMN
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  : 相同；VOS_FALSE : 不同
- 调用函数  :
- 被调函数  :
- 修改历史     :
- 1.日    期   : 2015年10月21日
-   作    者   : s00193151
-   修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_UINT32 NAS_MMC_IsPlmnSameWithRplmn(
     NAS_MML_PLMN_ID_STRU               *pstPlmnId
 )
@@ -6311,21 +4474,7 @@ VOS_UINT32 NAS_MMC_IsPlmnSameWithRplmn(
 }
 
 #if (FEATURE_ON == FEATURE_CSG)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetCsgIdIndexInDestCsgIdList
- 功能描述  : 获取csd id在指定csg id列表中的索引
- 输入参数  : ulCsgId        - 指定csg id
-             ucDestCsgIdNum - CSG ID个数
-             pstCsgIdlist   - CSG ID列表
- 输出参数  : 无
- 返 回 值  : 索引
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2015年9月15日
-   作    者   : z00161729
-   修改内容   : 支持LTE CSG功能新增
-*****************************************************************************/
+
 VOS_UINT32 NAS_MMC_GetCsgIdIndexInDestCsgIdList(
     NAS_MML_PLMN_WITH_CSG_ID_STRU      *pstPlmnWithCsgId,
     VOS_UINT32                          ulDestCsgIdNum,
@@ -6349,22 +4498,7 @@ VOS_UINT32 NAS_MMC_GetCsgIdIndexInDestCsgIdList(
     return i;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsPlmnWithCsgIdInDestCsgIdWithHomeNodeBNameList
- 功能描述  : 判断CSG ID是否在目标CSG List中
- 输入参数  : pstPlmnWithCsgId - 指定csg id
-             ulPlmnWithCsgIdListNum   - csg id列表个数
-             pstPlmnWithCsgIdList     - CSG ID列表
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  : 在目标CSG List中
-             VOS_FALSE : 不在目标CSG List中
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2015年9月15日
-   作    者   : z00161729
-   修改内容   : 支持LTE CSG功能新增
-*****************************************************************************/
+
 VOS_UINT32 NAS_MMC_IsPlmnWithCsgIdInDestCsgIdWithHomeNodeBNameList(
     NAS_MML_PLMN_WITH_CSG_ID_STRU      *pstPlmnWithCsgId,
     VOS_UINT32                          ulPlmnWithCsgIdListNum,
@@ -6385,19 +4519,7 @@ VOS_UINT32 NAS_MMC_IsPlmnWithCsgIdInDestCsgIdWithHomeNodeBNameList(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsPlmnCsgIdInForbidCsgList
- 功能描述  : 判断CSG ID是否在Forbbiden LIST中
- 输入参数  : pstPlmnCsgId - 指定CSG ID信息
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  : 在；VOS_FALSE : 不在
- 调用函数  :
- 被调函数  :
- 修改历史     :
- 1.日    期   : 2015年10月21日
-   作    者   : s00193151
-   修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_UINT32 NAS_MMC_IsPlmnCsgIdInForbiddenCsgList(
     NAS_MML_PLMN_WITH_CSG_ID_STRU      *pstPlmnCsgId
 )
@@ -6426,21 +4548,7 @@ VOS_UINT32 NAS_MMC_IsPlmnCsgIdInForbiddenCsgList(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsBcchPlmnInInDestLowPlmnInfoList
- 功能描述  : 判断PLMN是否在低质量网络列表中
- 输入参数  : pstBcchPlmnId  - plmn信息
-             ulPlmnNum      - 低质量网络列表个数
-             pstLowPlmnList - 低质量网络列表信息
- 输出参数  : 无
- 返 回 值  : VOS_TRUE - 存在；VOS_FALSE- 不存在
- 调用函数  :
- 被调函数  :
- 修改历史     :
- 1.日    期   : 2015年10月21日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_UINT32 NAS_MMC_IsBcchPlmnInInDestLowPlmnInfoList(
     NAS_MML_PLMN_ID_STRU               *pstBcchPlmnId,
     VOS_UINT32                          ulPlmnNum,
@@ -6462,20 +4570,7 @@ VOS_UINT32 NAS_MMC_IsBcchPlmnInInDestLowPlmnInfoList(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetMccListInRrcPlmnIdList
- 功能描述  : 从GU RRC的PLMN ID列表中获取MCC列表
- 输入参数  : pstRrcPlmnIdList:目的PLMN ID列表
- 输出参数  : *pulMccNum:MCC列表个数
-             pulMccList:MCC列表
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012-08-14
-    作    者   : W00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_VOID  NAS_MMC_GetMccListInRrcPlmnIdList(
     VOS_UINT32                         *pulMccNum,
     VOS_UINT32                         *pulMccList,
@@ -6514,28 +4609,7 @@ VOS_VOID  NAS_MMC_GetMccListInRrcPlmnIdList(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_DelPlmnSelectionRatInfoInPlmnWithRatList
- 功能描述  : 在列表中查找指定的PLMN的接入技术，若找到，则删除指定的PLMN的接入技术
- 输入参数  :
-             NAS_MMC_PLMN_SELECTION_PLMN_INFO_STRU *pstPlmn,
-             VOS_UINT8                              ucPlmnNum,
-             NAS_MML_PLMN_WITH_RAT_STRU            *pstPlmnIdList
- 输出参数  : pstPlmn
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月15日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年8月30日
-    作    者   : w00167002
-    修改内容   : 函数逻辑错误，如果当前有两个接入技术，第一个被禁止的话，
-                 第二个接入技术未被禁止，会导致错误。
-*****************************************************************************/
 VOS_VOID  NAS_MMC_DelPlmnSelectionRatInfoInPlmnWithRatList (
     NAS_MMC_PLMN_SELECTION_PLMN_INFO_STRU                  *pstPlmn,
     VOS_UINT32                                              ulPlmnNum,
@@ -6582,20 +4656,7 @@ VOS_VOID  NAS_MMC_DelPlmnSelectionRatInfoInPlmnWithRatList (
 
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndEnableLteNotify
- 功能描述  : enable lte后通知接入层
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月20日
-    作    者   : z00161729
-    修改内容   : AT&T 支持DAM特性修改
-*****************************************************************************/
 VOS_VOID  NAS_MMC_SndEnableLteNotify(VOS_VOID)
 {
     /* 向WAS/GAS发送enable LTE通知消息 */
@@ -6607,20 +4668,7 @@ VOS_VOID  NAS_MMC_SndEnableLteNotify(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndDisableLteNotify
- 功能描述  : disable lte后通知接入层
- 输入参数  : enDisableLteReason - disable lte原因值
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月20日
-    作    者   : z00161729
-    修改内容   : AT&T 支持DAM特性修改
-*****************************************************************************/
 VOS_VOID  NAS_MMC_SndDisableLteNotify(
     MMC_LMM_DISABLE_LTE_REASON_ENUM_UINT32                  enDisableLteReason
 )
@@ -6636,24 +4684,7 @@ VOS_VOID  NAS_MMC_SndDisableLteNotify(
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_DelPlmnSelectionRatInfoInDisabledPlmnWithForbiddenPeriodList
- 功能描述  : 在列表中查找指定的PLMN的接入技术，若找到，则删除指定的PLMN的接入技术
- 输入参数  : VOS_UINT8                                          ucPlmnNum,
-             NAS_MML_DISABLED_PLMN_WITH_FORBIDDEN_PERIOD_STRU   *pstPlmnIdList
- 输出参数  : pstPlmn
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月14日
-    作    者   : z00161729
-    修改内容   : AT&T 支持DAM特性修改
-  2.日    期   : 2015年4月29日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-*****************************************************************************/
 VOS_VOID  NAS_MMC_DelPlmnSelectionRatInfoInDisabledPlmnWithForbiddenPeriodList (
     NAS_MMC_PLMN_SELECTION_PLMN_INFO_STRU                  *pstPlmn,
     VOS_UINT32                                              ulPlmnNum,
@@ -6707,25 +4738,7 @@ VOS_VOID  NAS_MMC_DelPlmnSelectionRatInfoInDisabledPlmnWithForbiddenPeriodList (
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_DeleteForbiddenRatInPlmnSeleInfo
- 功能描述  : 判断SIM卡是否在禁止列表中，删除对应的禁止RAT
- 输入参数  :
-             NAS_MMC_PLMN_SELECTION_PLMN_INFO_STRU *pstPlmn,
- 输出参数  : pstPlmn
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月01日
-    作    者   : l00208543
-    修改内容   : 新生成函数
-  2.日    期   : 2014年1月3日
-    作    者   : s00261364
-    修改内容   : gmm模块Converity告警消除
-
-*****************************************************************************/
 VOS_VOID  NAS_MMC_DeleteForbiddenRatInPlmnSeleInfo (
     NAS_MMC_PLMN_SELECTION_PLMN_INFO_STRU *pstPlmn
 )
@@ -6773,22 +4786,7 @@ VOS_VOID  NAS_MMC_DeleteForbiddenRatInPlmnSeleInfo (
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MML_IsPlmnIdWithRatInDestPlmnWithRatList
- 功能描述  : 判断带接入技术的PLMN ID是否在带接入技术的PLMN ID列表中
- 输入参数  : pstSrcPlmnId:需要判断的PLMN ID
-             ulDestPlmnNum:列表中plmn id的个数
-             pstDestPlmnIdList:plmn列表
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  : PLMN ID在列表中
-             VOS_FALSE : PLMN ID不在列表中
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2012年08月20日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_VOID NAS_MMC_AddPlmnListIntoSimEhplmnInfo(
     VOS_UINT32                          ulPlmnListNum,
     NAS_MML_PLMN_ID_STRU               *pstPlmnList,
@@ -6836,22 +4834,7 @@ VOS_VOID NAS_MMC_AddPlmnListIntoSimEhplmnInfo(
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsCurrentWcdmaMode
- 功能描述  : 判断当前主模是否为WCDMA
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:当前主模为W
-             VOS_FALSE:当前主模不为W
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月06日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_IsCurrentWcdmaMode(VOS_VOID)
 {
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enRatType;
@@ -6868,22 +4851,7 @@ VOS_UINT32  NAS_MMC_IsCurrentWcdmaMode(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsCurrentTdscdmaMode
- 功能描述  : 判断当前主模是否为TDSCDMA
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:当前主模为TD
-             VOS_FALSE:当前主模不为TD
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_IsCurrentTdscdmaMode(VOS_VOID)
 {
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enRatType;
@@ -6900,22 +4868,7 @@ VOS_UINT32  NAS_MMC_IsCurrentTdscdmaMode(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNetRatSupportedTdscdma
- 功能描述  : 判断当前接入技术是否支持TDSCDMA
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:支持
-             VOS_FALSE:不支持
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月18日
-   作    者   : z40661
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNetRatSupportedTdscdma(VOS_VOID)
 {
     NAS_UTRANCTRL_UTRAN_MODE_ENUM_UINT8 enUtranMode;
@@ -6934,21 +4887,7 @@ VOS_UINT32 NAS_MMC_IsNetRatSupportedTdscdma(VOS_VOID)
 
 #if (FEATURE_ON == FEATURE_LTE)
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsEpsEmergencyAttachType
- 功能描述  : 根据attach结果中的ulReqType获取是否为紧急注册标识
- 输入参数  : ulReqType - l发起attach的类型
- 输出参数  : VOS_TRUE  - attach类型为紧急注册
-             VOS_FALSE - attach类型不为紧急注册
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月17日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_IsEpsEmergencyAttachType(
     MMC_LMM_ATTACH_TYPE_ENUM_UINT32     ulReqType
 )
@@ -6962,24 +4901,7 @@ VOS_UINT32  NAS_MMC_IsEpsEmergencyAttachType(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_DelForbInfo_LmmAttRsltSucc
- 功能描述  : L下注册成功时，删除对应的Forbidden信息
- 输入参数  : pstLmmLai                - lai信息
-             ulEpsEmergencyAttachFlag - 注册类型是否为紧急attach，VOS_TRUE:是紧急注册;VOS_FALSE:非紧急注册
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月6日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2015年4月14日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-*****************************************************************************/
 VOS_VOID  NAS_MMC_DelForbInfo_LmmAttRsltSucc(
     MMC_LMM_LAI_STRU                   *pstLmmLai,
     VOS_UINT32                          ulEpsEmergencyAttachFlag
@@ -6994,16 +4916,7 @@ VOS_VOID  NAS_MMC_DelForbInfo_LmmAttRsltSucc(
     pstPlmn             = NAS_MML_GetCurrCampPlmnId();
     PS_MEM_SET(&stForbLai, 0, sizeof(NAS_MML_LAI_STRU));
 
-    /* 24301_CR1189R2_(Rel-11)_C1-113741
-       1.If the attach procedure is not for emergency bearer services,
-         and if the PLMN identity of the registered PLMN is a member of the list
-         of "forbidden PLMNs" or the list of "forbidden PLMNs for GPRS service",
-         any such PLMN identity shall be deleted from the corresponding list(s).
-       2.If there is no established PDN connection for emergency bearer services
-         and if the PLMN identity of the registered PLMN is a member of the list
-         of "forbidden PLMNs" or the list of "forbidden PLMNs for GPRS service",
-         any such PLMN identity shall be deleted from the corresponding list(s).
-       该CR不受协议版本控制 */
+    
     /* 不存在紧急PDN连接，且不是为紧急承载的attach,注册成功直接删除禁止PLMN信息,不需要判断是否为指定搜网,如果之前PS域或CS域注册
        加到禁止列表,只有在指定搜网时才会发起CS/PS的注册,注册成功便可以直接删除禁止信息 */
     if ((VOS_FALSE == NAS_MML_GetEmcPdpStatusFlg())
@@ -7040,21 +4953,7 @@ VOS_VOID  NAS_MMC_DelForbInfo_LmmAttRsltSucc(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsLmmAttachCnfTriggerPlmnSrch
- 功能描述  : 收到LMM的ATTACH CNF时候是否需要尝试搜网
- 输入参数  : pstLmmAttachCnf
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月15日
-    作    者   : w00167002
-    修改内容   : 新生成函数: L->LWG后，会先DETACH CS/PS，MMA在收到SYSCFG CNF时候，
-                 再下发ATTACH CS/PS，ATTACH失败时需要进行搜网.
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsLmmAttachCnfTriggerPlmnSrch(
     LMM_MMC_ATTACH_CNF_STRU            *pstLmmAttachCnf
 )
@@ -7095,30 +4994,7 @@ VOS_UINT32 NAS_MMC_IsLmmAttachCnfTriggerPlmnSrch(
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_DelForbInfo_AttRsltSucc
- 功能描述  : GU下注册成功时，删除对应的Forbidden信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月6日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2013年06月03日
-    作    者   : s46746
-    修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-  3.日    期   : 2014年5月4日
-    作    者   : z00161729
-    修改内容   : DTS2014042816166:l csfb 到w，rau被12拒绝，lau成功没有清除forbidden信息，导致fast return到l后csfb到w相同小区电话失败
-  4.日    期   : 2014年5月19日
-    作    者   : w00242748
-    修改内容   : DTS2014051308442:L下注册成功支持IMS，但SMS ONLY，周期性TAU被16拒一次，直接disable
-                 LTE。
-*****************************************************************************/
 VOS_VOID  NAS_MMC_DelForbInfo_GuRegRsltSucc(
     NAS_MMC_REG_DOMAIN_ENUM_UINT8       enDomain
 )
@@ -7162,21 +5038,7 @@ VOS_VOID  NAS_MMC_DelForbInfo_GuRegRsltSucc(
 
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetLteInfo
- 功能描述  : 获取LTE信息公共接口函数
- 输入参数  : ulInfoType
- 输出参数  : pstLmmInfo
- 返 回 值  : VOS_TRUE:获取成功
-              VOS_FALSE:获取失败
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012年12月27日
-    作    者   : s46746
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_GetLteInfo(
     NAS_LMM_INFO_TYPE_ENUM_UINT32       ulInfoType,
     NAS_LMM_INFO_STRU                  *pstLmmInfo
@@ -7198,22 +5060,7 @@ VOS_UINT32  NAS_MMC_GetLteInfo(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ChangeCsRegState
- 功能描述  : 更改CS注册状态
- 输入参数  : ucCsRegState:目标注册状态
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : 新生成函数
- 2.日    期   : 2014年11月28日
-   作    者   : w00281933
-   修改内容   : 服务状态显示优化PhaseI。
-*****************************************************************************/
+
 VOS_VOID  NAS_MMC_ChangeCsRegState(
     NAS_MML_REG_STATUS_ENUM_UINT8       ucCsRegState
 )
@@ -7242,28 +5089,7 @@ VOS_VOID  NAS_MMC_ChangeCsRegState(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ChangePsRegState
- 功能描述  : 更改PS注册状态
- 输入参数  : ucPsRegState:目标注册状态
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : 新生成函数
 
- 2.日    期   : 2014年11月28日
-   作    者   : w00281933
-   修改内容   : 服务状态显示优化PhaseI。
-
- 3.日    期   : 2015年02月11日
-   作    者   : l00305157
-   修改内容   : Service_State_Optimize_PhaseII 项目修改
-
-*****************************************************************************/
 VOS_VOID  NAS_MMC_ChangePsRegState(
     NAS_MML_REG_STATUS_ENUM_UINT8       ucPsRegState
 )
@@ -7294,20 +5120,7 @@ VOS_VOID  NAS_MMC_ChangePsRegState(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_UpdateRegStateSpecPlmnSearch
- 功能描述  : 选网或AnyCell进行指定搜索时更新注册状态
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID  NAS_MMC_UpdateRegStateSpecPlmnSearch(VOS_VOID)
 {
     /* 如果无卡注册状态为NAS_MML_REG_NOT_REGISTERED_NOT_SEARCH */
@@ -7361,20 +5174,7 @@ VOS_VOID  NAS_MMC_UpdateRegStateSpecPlmnSearch(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_UpdateRegStateAnyCellSearchSucc
- 功能描述  : AnyCell搜网成功更新CSPS注册状态
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年06月03日
-    作    者   : s46746
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID  NAS_MMC_UpdateRegStateAnyCellSearchSucc(VOS_VOID)
 {
     NAS_MMC_PLMN_SELECTION_MODE_ENUM_UINT8                  enSelectionMode;
@@ -7474,23 +5274,7 @@ VOS_VOID  NAS_MMC_UpdateRegStateAnyCellSearchSucc(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_UpdateCsRegStateCsRegSucc
- 功能描述  : CS注册成功时更新CS注册状态
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : 新生成函数
-  2.日    期   : 2015年4月2日
-    作    者   : b00269685
-    修改内容   : 若EPLMN中包含HOME，则显示为非漫游
 
-*****************************************************************************/
 VOS_VOID  NAS_MMC_UpdateCsRegStateCsRegSucc(VOS_VOID)
 {
     VOS_UINT8                           ucHplmnInEplmnDisplayHomeFlg;
@@ -7514,23 +5298,7 @@ VOS_VOID  NAS_MMC_UpdateCsRegStateCsRegSucc(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_UpdatePsRegStatePsRegSucc
- 功能描述  : PS注册成功时更新PS注册状态
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年05月08日
-    作    者   : s46746
-    修改内容   : 新生成函数
-  2.日    期   : 2015年4月2日
-    作    者   : b00269685
-    修改内容   : 若EPLMN在HOME中，则显示为非漫游
 
-*****************************************************************************/
 VOS_VOID  NAS_MMC_UpdatePsRegStatePsRegSucc(VOS_VOID)
 {
     VOS_UINT8                           ucHplmnInEplmnDisplayHomeFlg;
@@ -7553,23 +5321,8 @@ VOS_VOID  NAS_MMC_UpdatePsRegStatePsRegSucc(VOS_VOID)
     return;
 }
 
-/* Added by s00261364 for V3R360_eCall项目, 2014-4-3, begin */
 /*lint -save -e958 */
-/*****************************************************************************
- 函 数 名  : NAS_MM_ConvertToLmmSrvccStatus
- 功能描述  : 把MSCC的服务状态转换为MMC的格式
- 输入参数  : penMmcServiceState--MMC的服务状态
- 输出参数  : enMsccServiceState---上报MSCC的服务状态
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月8日
-    作    者   : s00261364
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_ConvertToMsccSrvStatus(
     NAS_MMC_SERVICE_ENUM_UINT8          enMmcServiceState,
     NAS_MSCC_PIF_SERVICE_STATUS_ENUM_UINT32  *penMsccServiceState
@@ -7599,28 +5352,7 @@ VOS_VOID NAS_MMC_ConvertToMsccSrvStatus(
 /*lint -restore */
 
 /*lint -save -e958 */
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ChangeServiceState
- 功能描述  : 更改服务状态
- 输入参数  : enServiceState:目标服务状态
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2014年04月03日
-    作    者   : s00261364
-    修改内容   : 新生成函数
-  2.日    期   : 2014年5月31日
-    作    者   : y00245242
-    修改内容   : 修改服务状态上报
-  3.日    期   : 2014年11月25日
-    作    者   : s00217060
-    修改内容   : Service_State_Optimize_PhaseI项目修改
-  4.日    期   : 2015年02月11日
-    作    者   : l00305157
-    修改内容   : Service_State_Optimize_PhaseII 项目修改
-*****************************************************************************/
+
 VOS_VOID  NAS_MMC_ChangeServiceState(
     VOS_UINT32                          ulCnDomainId,
     NAS_MMC_SERVICE_ENUM_UINT8          enServiceState
@@ -7665,9 +5397,7 @@ VOS_VOID  NAS_MMC_ChangeServiceState(
             break;
 
         case NAS_MSCC_PIF_SRVDOMAIN_CS_PS:
-        /* Added by y00245242 for V3R3C60_eCall项目, 2014-5-31, begin */
         case NAS_MSCC_PIF_SRVDOMAIN_NOT_REG_PLMN_SEARCHING:
-        /* Added by y00245242 for V3R3C60_eCall项目, 2014-5-31, end */
 
             /* 正常服务时无条件通知MMA服务状态，MMA需要在正常服务时更新stAppNetworkInfo
                否则如果当前已经是需要更新的注册状态则不需要更新了 */
@@ -7699,20 +5429,7 @@ VOS_VOID  NAS_MMC_ChangeServiceState(
 }
 /*lint -restore */
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcCsRegStateAndCsServiceStateWhenReceiveDetachCnfSucc
- 功能描述  : 收到Detach Cnf Succ 消息时，CS域的注册状态和服务状态的处理
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月9日
-    作    者   : n00355355
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcCsRegStateAndCsServiceState_DetachCnfSucc(VOS_VOID)
 {
     VOS_UINT8                           ucSimCsRegStatus;
@@ -7740,20 +5457,7 @@ VOS_VOID NAS_MMC_ProcCsRegStateAndCsServiceState_DetachCnfSucc(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcPsRegStateAndPsServiceStateWhenReceiveDetachCnfSucc
- 功能描述  : 收到Detach Cnf Succ 消息时，PS域的注册状态和服务状态的处理
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月9日
-    作    者   : n00355355
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_ProcPsRegStateAndPsServiceState_DetachCnfSucc(VOS_VOID)
 {
     VOS_UINT8                           ucSimPsRegStatus;
@@ -7780,19 +5484,7 @@ VOS_VOID NAS_MMC_ProcPsRegStateAndPsServiceState_DetachCnfSucc(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ChangeServiceState
- 功能描述  : 更改服务状态
- 输入参数  : enServiceState:目标服务状态
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2015年10月14日
-    作    者   : c00318887
-    修改内容   : DTS2015082002854:  漫游标记不准
-*****************************************************************************/
+
 VOS_VOID  NAS_MMC_UpdateServiceState_RegSucc(
     NAS_MSCC_PIF_SRVDOMAIN_ENUM_UINT32  ulCnDomainId,
     NAS_MMC_SERVICE_ENUM_UINT8          enServiceState
@@ -7824,20 +5516,7 @@ VOS_VOID  NAS_MMC_UpdateServiceState_RegSucc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_UpdateServiceStateSpecPlmnSearch
- 功能描述  : 选网或AnyCell进行指定搜索时更新服务状态
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2014年04月08日
-    作    者   : s00261364
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID  NAS_MMC_UpdateServiceStateSpecPlmnSearch(VOS_VOID)
 {
     NAS_MMC_SERVICE_ENUM_UINT8          enPsServiceStatus;
@@ -7875,23 +5554,8 @@ VOS_VOID  NAS_MMC_UpdateServiceStateSpecPlmnSearch(VOS_VOID)
     return;
 }
 
-/* Added by s00261364 for V3R360_eCall项目, 2014-4-3, end */
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConvertMsccMsModeToMmlMsMode
- 功能描述  : 获取CS域能力变化类型
- 输入参数  : enMsMode:手机模式
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:CS域能力可用
-              VOS_FALSE:CS域能力不可用
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年6月3日
-    作    者   : s00217060
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 NAS_MML_MS_MODE_ENUM_UINT8  NAS_MMC_ConvertMsccMsModeToMmlMsMode(
     NAS_MSCC_PIF_MS_MODE_ENUM_UINT32    enMsccMsMode
 )
@@ -7927,21 +5591,7 @@ NAS_MML_MS_MODE_ENUM_UINT8  NAS_MMC_ConvertMsccMsModeToMmlMsMode(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetCsDomainCapaChangeType
- 功能描述  : 获取CS域能力变化类型
- 输入参数  : enMsMode:手机模式
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:CS域能力可用
-              VOS_FALSE:CS域能力不可用
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年6月3日
-    作    者   : s00217060
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 NAS_MMC_CS_DOMAIN_CAPA_CHANGE_TYPE_ENUM_UINT8  NAS_MMC_GetCsDomainCapaChangeType(
     NAS_MML_MS_MODE_ENUM_UINT8          enOldMsMode,
     NAS_MML_MS_MODE_ENUM_UINT8          enNewMsMode
@@ -7971,27 +5621,7 @@ NAS_MMC_CS_DOMAIN_CAPA_CHANGE_TYPE_ENUM_UINT8  NAS_MMC_GetCsDomainCapaChangeType
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_DelForbPlmnFromAsSrchedPlmnList
- 功能描述  : 从列表中删除禁止的PLMN
- 输入参数  : pstSrchedPlmn:待删除的PLMN信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年06月03日
-   作    者   : L65478
-   修改内容   : 新生成函数
- 2.日    期   : 2013年09月11日
-   作    者   : w00242748
-   修改内容   : 编译告警清理
- 3.日    期   : 2013年10月18日
-   作    者   : z00161729
-   修改内容   : DTS2013101705317:oos was上报limit service camp in存在多个低质量网络
-                且是forbidden plmn则mmc构造搜网列表错误存在不存在网络
-*****************************************************************************/
 VOS_VOID NAS_MMC_DelForbPlmnFromAsSrchedPlmnList(
     NAS_MMC_SEARCHED_PLMN_LIST_INFO_STRU                    *pstSrchedPlmn
 )
@@ -8037,28 +5667,7 @@ VOS_VOID NAS_MMC_DelForbPlmnFromAsSrchedPlmnList(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_DelNotUserSpecPlmnFromSrchedPlmnList
- 功能描述  : 从列表中删除非用户指定的PLMN
- 输入参数  : pstSrchedPlmn:待删除的PLMN信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年06月03日
-   作    者   : L65478
-   修改内容   : 新生成函数
- 2.日    期   : 2013年09月011日
-   作    者   : w00242748
-   修改内容   : 编译告警清理
- 3.日    期   : 2013年10月18日
-   作    者   : z00161729
-   修改内容   : DTS2013101705317:oos was上报limit service camp in存在多个低质量网络
-               且是forbidden plmn则mmc构造搜网列表错误存在不存在网络
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_DelNotUserSpecPlmnFromSrchedPlmnList(
     NAS_MMC_SEARCHED_PLMN_LIST_INFO_STRU                   *pstSrchedPlmn
 )
@@ -8129,22 +5738,7 @@ VOS_VOID NAS_MMC_DelNotUserSpecPlmnFromSrchedPlmnList(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_InitSearchedPlmnListInfo
- 功能描述  : 初始化搜索到的网络列表信息
- 输入参数  : pstListInfo - 需要初始化的网络列表信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年7月15日
-   作    者   : z00161729
-   修改内容   : DTS2013062406563:WAS连接态OOS,T305运行期间只会在本系统下搜等效plmn，
-                不会驻留到本系统其他网络，也不会异系统下进行搜网，导致无法很快在软银网络注册，nas配合修改
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_InitSearchedPlmnListInfo(
     NAS_MMC_SEARCHED_PLMN_LIST_INFO_STRU                   *pstListInfo
 )
@@ -8183,24 +5777,7 @@ VOS_VOID NAS_MMC_InitSearchedPlmnListInfo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_UpdateSearchedPlmnListInfo
- 功能描述  : 更新搜索到的网络列表信息
- 输入参数  : pstRrcList  WAS丢网时上报的网络列表信息
- 输出参数  : pstListInfo
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月29日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2015年10月21日
-   作    者   : s00217060
-   修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_3.0修改
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_UpdateSearchedPlmnListInfo(
     NAS_MMC_SEARCHED_TYPE_STRU                             *pstSearchedType,
     RRC_PLMN_ID_LIST_STRU                                  *pstRrcList,
@@ -8316,29 +5893,7 @@ VOS_VOID NAS_MMC_UpdateSearchedPlmnListInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_BuildEquPlmnInfo
- 功能描述  : 构造等效plmn信息
- 输入参数  : 无
- 输出参数  : pstEquPlmnInfo - 构造后的等效plmn列表,
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2013年12月24日
-   作    者   : z00161729
-   修改内容   : SVLTE支持NCELL搜网
- 2.日    期   : 2014年1月26日
-   作    者   : z00161729
-   修改内容   : DTS2014012305088：支持增强NCELL搜网，如果Modem1传递过来的邻区信息不存在的情况下，通过历史频点支持NCELL搜索。
- 3.日    期   : 2015年1月14日
-    作    者   : z00161729
-    修改内容   : AT&T 支持DAM特性修改
- 4.日    期   : 2015年4月23日
-   作    者   : z00161729
-   修改内容   : 24301 R11 CR升级项目修改
-*****************************************************************************/
 VOS_VOID NAS_MMC_BuildEquPlmnInfo(
      NAS_MML_EQUPLMN_INFO_STRU         *pstOutEplmnInfo
 )
@@ -8408,21 +5963,7 @@ VOS_VOID NAS_MMC_BuildEquPlmnInfo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsExistAvailPlmnInSearchedPlmnList
- 功能描述  : 判断搜网列表中是否有可用网络
- 输入参数  : pastIntraPlmnSrchInfo:PLMN信息
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:有可用网络
-             VOS_FALSE:无可用网络
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年06月03日
-   作    者   : L65478
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsExistAvailPlmnInSearchedPlmnList(
     NAS_MMC_SEARCHED_PLMN_LIST_INFO_STRU                   *pastIntraPlmnSrchInfo
 )
@@ -8451,21 +5992,7 @@ VOS_UINT32 NAS_MMC_IsExistAvailPlmnInSearchedPlmnList(
 #if (FEATURE_ON == FEATURE_PTM)
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CsRegErrRecord
- 功能描述  : 记录CS注册失败事件
- 输入参数  : MMMMC_CS_REG_RESULT_IND_STRU *pstCsRegRstInd
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月23日
-    作    者   : s00190137
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_CsRegErrRecord(MMMMC_CS_REG_RESULT_IND_STRU *pstCsRegRstInd)
 {
     NAS_ERR_LOG_CS_REG_RESULT_EVENT_STRU                    stCsRegRstEvent;
@@ -8532,21 +6059,7 @@ VOS_VOID NAS_MMC_CsRegErrRecord(MMMMC_CS_REG_RESULT_IND_STRU *pstCsRegRstInd)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_PsRegErrRecord
- 功能描述  : 记录PS注册异常事件
- 输入参数  : GMMMMC_PS_REG_RESULT_IND_STRU *pstPsRegRstInd
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月23日
-    作    者   : s00190137
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_PsRegErrRecord(GMMMMC_PS_REG_RESULT_IND_STRU *pstPsRegRstInd)
 {
     NAS_ERR_LOG_PS_REG_RESULT_EVENT_STRU                    stPsRegRstEvent;
@@ -8610,20 +6123,7 @@ VOS_VOID NAS_MMC_PsRegErrRecord(GMMMMC_PS_REG_RESULT_IND_STRU *pstPsRegRstInd)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_PsServiceRegErrRecord
- 功能描述  : 记录PS Service 被拒异常事件
- 输入参数  : GMMMMC_SERVICE_REQUEST_RESULT_IND_STRU  *pstServiceRsltInd
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月28日
-    作    者   : n00269697
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_PsServiceRegErrRecord(
     GMMMMC_SERVICE_REQUEST_RESULT_IND_STRU                 *pstServiceRsltInd
 )
@@ -8686,21 +6186,7 @@ VOS_VOID NAS_MMC_PsServiceRegErrRecord(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_CmServiceRejErrRecord
- 功能描述  : 记录Cm Service 被拒异常事件
- 输入参数  : VOS_UINT32                              ulCause,
-             VOS_UINT32                              ulServiceStatus
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年03月13日
-    作    者   : zwx247453
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_CmServiceRejErrRecord(
     VOS_UINT32                                              ulCause,
     VOS_UINT32                                              ulServiceStatus
@@ -8758,21 +6244,7 @@ VOS_VOID NAS_MMC_CmServiceRejErrRecord(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_MoDetachIndRecord
- 功能描述  : 记录MO Detach指示事件
- 功能描述  : 记录主动Detach指示事件
- 输入参数  : VOS_UINT32                              ulDetachType
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年03月13日
-    作    者   : zwx247453
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_MoDetachIndRecord(
     VOS_UINT32                              ulDetachType
 )
@@ -8829,21 +6301,7 @@ VOS_VOID NAS_MMC_MoDetachIndRecord(
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ErrLogRecordCsOosCause
- 功能描述  : 记录CS域出服务的原因值
- 输入参数  : enOldCsRegStatus -- 旧的CS域注册状态
-             enNewCsRegStatus -- 新的CS域注册状态
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月13日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_ErrLogRecordCsOosCause(
     NAS_MML_REG_STATUS_ENUM_UINT8        enOldCsRegStatus,
     NAS_MML_REG_STATUS_ENUM_UINT8        enNewCsRegStatus
@@ -8867,21 +6325,7 @@ VOS_VOID NAS_MMC_ErrLogRecordCsOosCause(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ErrLogRecordPsOosCause
- 功能描述  : 记录PS域出服务的原因值
- 输入参数  : enOldPsRegStatus -- 旧的PS域注册状态
-             enNewPsRegStatus -- 新的PS域注册状态
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月13日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_ErrLogRecordPsOosCause(
     NAS_MML_REG_STATUS_ENUM_UINT8        enOldPsRegStatus,
     NAS_MML_REG_STATUS_ENUM_UINT8        enNewPsRegStatus
@@ -8905,21 +6349,7 @@ VOS_VOID NAS_MMC_ErrLogRecordPsOosCause(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ErrLogClrNwSearchCount
- 功能描述  : 清除搜网记录次数
- 输入参数  : enOldRegStatus -- 旧的域注册状态
-             enNewRegStatus -- 新的域注册状态
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月13日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_ErrLogClrNwSearchCount(
     NAS_MML_REG_STATUS_ENUM_UINT8        enOldRegStatus,
     NAS_MML_REG_STATUS_ENUM_UINT8        enNewRegStatus
@@ -8938,20 +6368,7 @@ VOS_VOID NAS_MMC_ErrLogClrNwSearchCount(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RecordErrLogOosEvent
- 功能描述  : 记录出服务的事件
- 输入参数  : enOosEvent
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月13日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_RecordOosEvent(
     NAS_ERR_LOG_OOS_EVENT_ENUM_UINT32    enOosEvent
 )
@@ -8961,20 +6378,7 @@ VOS_VOID NAS_MMC_RecordOosEvent(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RecordOosEventForPlmnSearchScene
- 功能描述  : 根据搜网场景记录出服务的事件
- 输入参数  : enPlmnSearchScene
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月21日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_RecordOosEventForPlmnSearchScene(
     NAS_MMC_PLMN_SEARCH_SCENE_ENUM_UINT32    enPlmnSearchScene
 )
@@ -8996,20 +6400,7 @@ VOS_VOID NAS_MMC_RecordOosEventForPlmnSearchScene(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RecordOosEventForDetachReason
- 功能描述  : 根据DETACH原因记录出服务的事件
- 输入参数  : enDetachReason
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月31日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_RecordOosEventForDetachReason(
     NAS_MSCC_PIF_DETACH_REASON_ENUM_UINT32  enDetachReason
 )
@@ -9034,53 +6425,7 @@ VOS_VOID NAS_MMC_RecordOosEventForDetachReason(
 }
 
 /* 接入层获取NAS层相关信息函数 */
-/*****************************************************************************
- 函 数 名  : MM_GetNasInfo
- 功能描述  : WAS 获取通过调用此接口来获取NAS的相关信息。比如说PLMN的信息等
-             。
- 输入参数  : VOS_INT8 ucType -- 0 :  PLMN信息与卡状态信息获得 其余值未定义
-             VOS_VOID *pMmInfo
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2006年1月4日
-    作    者   : liuyang id:48197
-    修改内容   : 新生成函数,根据A32D01561问题单添加
-  2.日    期   : 2006年12月5日
-    作    者   : luojian 60022475
-    修改内容   : Maps3000接口修改
-  3.日    期   : 2010年08月14日
-    作    者   : s46746
-    修改内容   : DTS2010081400653,PLMN信息修改为直接给接入层指示EPLMN，与GAS组确认
-  4.日    期   : 2011年12月07日
-    作    者   : s46746
-    修改内容   : DTS2011112501364,当前没有EPLMN列表时需要将当前网络作为EPLMN返回,否则无法进行异系统重选
-  5.日    期   : 2012年2月2日
-    作    者   : l00130025
-    修改内容   : DTS2012011905274,MM_GetNasInfo中的Eplmn错误，导致L下无法重选到G下
-  6.日    期   : 2012年8月15日
-    作    者   : w00176964
-    修改内容   : V7R1C50_GUTL_PhaseII:在disabled RAT中的PLMN从等效PLMN列表中删除后发送给RRC
-  7.日    期   : 2012年12月4日
-    作    者   : w00176964
-    修改内容   : DTS201212905979:通知RRC当前EPLMN时,清除禁止PLMN
-  8.日    期   : 2013年10月15日
-    作    者   : z00161729
-    修改内容   : DTS2013082907281:UE在w进行紧急呼叫过程rrc rej重定向到g的消息，
-                呼叫结束后无法成功重定向到w原小区，因为接入层查询plmn时nas只带了g小区plmn
-  9.日    期   : 2013年11月18日
-    作    者   : z00161729
-    修改内容   : DTS2013111807881:接入层查询eplmn，当前驻留网络需要判断是否为禁止网络，如果是则不通知接入层
-  10.日    期   : 2015年1月15日
-    作    者   : z00161729
-    修改内容   : AT&T 支持DAM特性修改
-  11.日    期   : 2015年4月23日
-     作    者   : z00161729
-     修改内容   : 24301 R11 CR升级项目修改
-*****************************************************************************/
 VOS_VOID MM_GetNasInfo(MM_INFO_ST *pMmInfo)
 {
     NAS_MML_EQUPLMN_INFO_STRU                              *pstEquPlmn;
@@ -9240,21 +6585,7 @@ VOS_VOID MM_GetNasInfo(MM_INFO_ST *pMmInfo)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsCsPsBothRegSucc
- 功能描述  : 判断cs和ps是否都注册成功
- 输入参数  : enNetRatType - 接入技术
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:cs和ps注册均成功
-             VOS_FALSE:cs和ps不是都注册成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年4月22日
-   作    者   : z00161729
-   修改内容   : 24301 R11 CR升级项目修改
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsCsPsBothRegSucc(
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enNetRatType
 )
@@ -9291,50 +6622,8 @@ VOS_UINT32 NAS_MMC_IsCsPsBothRegSucc(
 }
 
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-10, begin */
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedDisableLte_ImsVoiceNotAvail
- 功能描述  : IMS不可用后判断是否需要disable LTE
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:需要disable LTE
-             VOS_FALSE:不需要disable LTE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年12月10日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2014年5月6日
-   作    者   : z00161729
-   修改内容   : DTS2014050602850:l下联合注册eps成功，cs注册被#18拒绝，disable lte到gu下搜网注册成功，后指定搜l cs注册被#18拒绝的网络，l发起eps单域注册成功，mmc没有disable lte
- 3.日    期   : 2014年5月8日
-   作    者   : z00161729
-   修改内容   : DTS2014050701865:volte修改cs ps mode1 l被16、17、22拒绝达5次disable lte后未启动enable lte定时器
- 4.日    期   : 2014年5月19日
-   作    者   : w00242748
-   修改内容   : DTS2014051402293:CSPS MODE1，指定搜24005 L，LTE下注册成功，指示SMS ONLY，
-                Disable LTE后，发起GU下搜网，GU下搜网失败，RECAMP LTE(真流程)后，启动available
-                定时器超时后，发起列表搜，带起来与24005等效PLMN的46002L、24005L、23002GU，指定
-                搜这两个L下PLMN失败，紧急驻留在GU23002下，并启动available定时器。available定时
-                器超时，搜网回24005 L(即需要disalbe lte的网络)，L下给NAS上报TAU假流程，此时NAS
-                未进行Disable LTE，也未启动available定时器。
- 5.日    期   : 2014年5月19日
-   作    者   : w00242748
-   修改内容   : DTS2014051308442:L下注册成功支持IMS，但SMS ONLY，周期性TAU被16拒一次，直接disable
-                LTE。
- 6.日    期   : 2014年5月20日
-   作    者   : s00217060
-   修改内容   : DTS2014051406792:L下TAU被拒#18，当作other cause处理，5次之后disable LTE。
- 7.日    期   : 2015年1月5日
-   作    者   : z00161729
-   修改内容   : AT&T 支持DAM特性修改
- 8.日    期   : 2015年4月22日
-   作    者   : z00161729
-   修改内容   : 24301 R11 CR升级项目修改
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedDisableLte_ImsVoiceNotAvail(VOS_VOID)
 {
     VOS_UINT32                                              ulIsNeedDisableL;
@@ -9453,23 +6742,8 @@ VOS_UINT32 NAS_MMC_IsNeedDisableLte_ImsVoiceNotAvail(VOS_VOID)
 }
 
 #endif
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-10, end */
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetWaitGasPlmnSearchCnfTimerLen
- 功能描述  : 获取GAS下搜网定时器时长
- 输入参数  : ulUserSpecSearchFlg:是否用户指定搜
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月11日
-    作    者   : w00167002
-    修改内容   : 新生成函数:当前在DSDS双卡中，GSM下搜网可能不回NAS 搜网NO RF,那么
-                 NAS搜网定时器超时，则上报无服务了。修改为延长NAS定时器时长。
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_GetWaitGasPlmnSearchCnfTimerLen(
     VOS_UINT32                          ulUserSpecSearchFlg
 )
@@ -9487,23 +6761,7 @@ VOS_UINT32 NAS_MMC_GetWaitGasPlmnSearchCnfTimerLen(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RegisterRrmResourceNtf
- 功能描述  : 处理向RRM发送注册信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月29日
-    作    者   : y00176023
-    修改内容   : 新生成函数
-  2.日    期   : 2014年7月26日
-    作    者   : b00269685
-    修改内容   : DSDS IV接口修改
-*****************************************************************************/
 VOS_VOID NAS_MMC_RegisterRrmResourceNtf(
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enNasRat,
     RRM_PS_TASK_TYPE_ENUM_UINT16        enRrmTaskType
@@ -9541,23 +6799,7 @@ VOS_VOID NAS_MMC_RegisterRrmResourceNtf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_DeregisterRrmResourceNtf
- 功能描述  : 处理向RRM发送去注册信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月29日
-    作    者   : y00176023
-    修改内容   : 新生成函数
-  2.日    期   : 2014年7月26日
-    作    者   : b00269685
-    修改内容   : DSDS IV接口修改
-*****************************************************************************/
 VOS_VOID NAS_MMC_DeregisterRrmResourceNtf(
     VOS_RATMODE_ENUM_UINT32             enRrmRat,
     RRM_PS_TASK_TYPE_ENUM_UINT16        enRrmTaskType
@@ -9590,23 +6832,7 @@ VOS_VOID NAS_MMC_DeregisterRrmResourceNtf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_DeregisterRrmResourceNtfAllRat
- 功能描述  : 处理向RRM发送平台支持所有RAT去注册信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月16日
-    作    者   : y00176023
-    修改内容   : 新生成函数
-  2.日    期   : 2014年7月26日
-    作    者   : b00269685
-    修改内容   : 接口修改
-*****************************************************************************/
 VOS_VOID NAS_MMC_DeregisterRrmResourceNtfAllRat(
     RRM_PS_TASK_TYPE_ENUM_UINT16        enRrmTaskType
 )
@@ -9652,23 +6878,7 @@ VOS_VOID NAS_MMC_DeregisterRrmResourceNtfAllRat(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConvertRatToRrmPsRat
- 功能描述  : 将传进来的RAT转换为RRM PS RAT
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月29日
-    作    者   : y00176023
-    修改内容   : 新生成函数
-  2.日    期   : 2014年7月26日
-    作    者   : b00269685
-    修改内容   : DSDS IV接口修改
-*****************************************************************************/
 VOS_RATMODE_ENUM_UINT32 NAS_MMC_ConvertRatToRrmPsRat(
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enMmcRat
 )
@@ -9708,21 +6918,7 @@ VOS_RATMODE_ENUM_UINT32 NAS_MMC_ConvertRatToRrmPsRat(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedStartHighPrioRatHPlmnTimer_CsfbEnd
- 功能描述  : CSFB END触发的搜网是否需要启高优先级RAT的HPLMN定时器
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月26日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedStartHighPrioRatHPlmnTimer_CsfbEnd( VOS_VOID )
 {
     VOS_UINT32                                              ulIsRrcConnExist;
@@ -9742,21 +6938,7 @@ VOS_UINT32 NAS_MMC_IsNeedStartHighPrioRatHPlmnTimer_CsfbEnd( VOS_VOID )
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedStartHighPrioRatHPlmnTimer
- 功能描述  : 判断是否需要启动高优先级RAT的HPLMN定时器
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:需要启动HPLMN定时器
-             VOS_FALSE:不需要启动HPLMN定时器
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年2月19日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedStartHighPrioRatHPlmnTimer(VOS_VOID)
 {
     NAS_MML_PLMN_RAT_PRIO_STRU         *pstPlmnRatList       = VOS_NULL_PTR;
@@ -9791,21 +6973,7 @@ VOS_UINT32 NAS_MMC_IsNeedStartHighPrioRatHPlmnTimer(VOS_VOID)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsHighPrioRatHplmnSearchVaild
- 功能描述  : 高优先级RAT的HPLMN选网当前是否有效
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:有效
-             VOS_FALSE:无效
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年2月21日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsHighPrioRatHplmnSearchVaild( VOS_VOID )
 {
     NAS_MML_HIGH_PRIO_RAT_HPLMN_TIMER_CFG_STRU       *pstHighRatHplmnTimerCfg = VOS_NULL_PTR;
@@ -9845,21 +7013,7 @@ VOS_UINT32 NAS_MMC_IsHighPrioRatHplmnSearchVaild( VOS_VOID )
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsCampOnHighestPrioRatHplmn
- 功能描述  : 判断当前是否已经驻留在最高RAT优先级的HPLMN上
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  : 已经驻留在最高RAT优先级的HPLMN上
-             VOS_FALSE : 没有驻留在最高RAT优先级的HPLMN上
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年2月22日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsCampOnHighestPrioRatHplmn(VOS_VOID)
 {
     NAS_MML_PLMN_RAT_PRIO_STRU         *pstPlmnRatList       = VOS_NULL_PTR;
@@ -9892,20 +7046,7 @@ VOS_UINT32 NAS_MMC_IsCampOnHighestPrioRatHplmn(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_UpdateHighPrioRatHPlmnTimerTdCount
- 功能描述  : 处理Td Count
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年10月27日
-   作    者   : b00269685
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_UpdateHighPrioRatHPlmnTimerTdCount(VOS_VOID)
 {
     VOS_UINT8                                               ucCurrHighRatHplmnTdCount;
@@ -9930,24 +7071,7 @@ VOS_VOID NAS_MMC_UpdateHighPrioRatHPlmnTimerTdCount(VOS_VOID)
 
 }
 
-/* Added by s00246516 for L-C互操作项目, 2014-02-12, Begin */
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetPlmnPrioClass
- 功能描述  : 获取指定网络的优先级类别
- 输入参数  : pstPlmnId
- 输出参数  : 无
- 返 回 值  : NAS_MSCC_PIF_PLMN_PRIORITY_CLASS_ENUM_UINT8:
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月12日
-    作    者   : s00246516
-    修改内容   : 新生成函数
-  2.日    期   : 2014年6月13日
-    作    者   : b00269685
-    修改内容   : 根据3gpp2,Pref网络不包含UPLMN
-*****************************************************************************/
 NAS_MSCC_PIF_PLMN_PRIORITY_CLASS_ENUM_UINT8 NAS_MMC_GetPlmnPrioClass(
     NAS_MML_PLMN_ID_STRU               *pstPlmnId
 )
@@ -9979,23 +7103,7 @@ NAS_MSCC_PIF_PLMN_PRIORITY_CLASS_ENUM_UINT8 NAS_MMC_GetPlmnPrioClass(
     return NAS_MSCC_PIF_PLMN_PRIORITY_ANY;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ComParePlmnPrioClass
- 功能描述  : 比较两个PLMN优先级级别的优先级
- 输入参数  : enSrcPrioClass
-             enDestPrioClass
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  --enSrcPrioClass优先级高于或等于enDestPrioClass
-             VOS_FALSE --enSrcPrioClass优先级低于enDestPrioClass
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月12日
-    作    者   : s00246516
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_ComParePlmnPrioClass(
     NAS_MSCC_PIF_PLMN_PRIORITY_CLASS_ENUM_UINT8                  enSrcPrioClass,
     NAS_MSCC_PIF_PLMN_PRIORITY_CLASS_ENUM_UINT8                  enDestPrioClass
@@ -10032,22 +7140,7 @@ VOS_UINT32 NAS_MMC_ComParePlmnPrioClass(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsSuccRegInSpecCellInfo
- 功能描述  : 是否已经在指定CellInfo的小区上注册成功
- 输入参数  : pstCellInfo
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  --已经在指定CellInfo的小区上注册成功
-             VOS_FALSE --没有在指定CellInfo的小区上注册成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月12日
-    作    者   : s00246516
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsSuccRegInSpecCellInfo(
     MSCC_MMC_REG_CELL_INFO_STRU         *pstCellInfo
 )
@@ -10099,21 +7192,7 @@ VOS_UINT32 NAS_MMC_IsSuccRegInSpecCellInfo(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetPlmnSearchSceneMsccRegReq
- 功能描述  : 从MSCC模块的REG请求消息中获得搜网场景
- 输入参数  : pstRegReq
- 输出参数  : 无
- 返 回 值  : NAS_MMC_PLMN_SEARCH_SCENE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月12日
-    作    者   : s00246516
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_MMC_PLMN_SEARCH_SCENE_ENUM_UINT32 NAS_MMC_GetPlmnSearchSceneMsccRegReq(
     MSCC_MMC_REG_REQ_STRU               *pstRegReq
 )
@@ -10148,23 +7227,8 @@ NAS_MMC_PLMN_SEARCH_SCENE_ENUM_UINT32 NAS_MMC_GetPlmnSearchSceneMsccRegReq(
     }
 }
 
-/* Added by s00246516 for L-C互操作项目, 2014-02-12, End */
 
-/* Added by w00167002 for L-C互操作项目, 2014-2-19, begin */
-/*****************************************************************************
- 函 数 名  : NAS_MMC_Convert3GPP2RatType
- 功能描述  : 将MSCC传过来的3GPP2类型转换为MML类型格式
- 输入参数  : enMSCC3GPP2RatType      MSCC传过来的3GPP2类型
- 输出参数  : *penMML3GPP2RatType    MML保存的3GPP2类型
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年2月19日
-   作    者   : w00167002
-   修改内容   : 新建函数
-*****************************************************************************/
 VOS_VOID   NAS_MMC_Convert3GPP2RatType(
     NAS_MSCC_PIF_3GPP2_RAT_TYPE_ENUM_UINT8   enMSCC3GPP2RatType,
     NAS_MML_3GPP2_RAT_TYPE_ENUM_UINT8  *penMML3GPP2RatType
@@ -10197,25 +7261,8 @@ VOS_VOID   NAS_MMC_Convert3GPP2RatType(
 }
 
 
-/* Added by w00167002 for L-C互操作项目, 2014-2-19, end */
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsSorTriggerSpecPlmnSrch_L1Main
- 功能描述  : 判断是否SOR触发指定搜网而不是列表搜网
- 输入参数  : VOS_UINT32
- 输出参数  : VOS_TRUE : 需要发起指定搜网
-             VOS_FALSE: 不需要发起指定搜网
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年05月16日
-   作    者   : w00167002
-   修改内容   : 新生成函数: DTS2014051602857:在SOR打开时候，如果CS注册失败达到4次，则等周期
-                搜网定时器超时发起LIST搜网，如果当前仅有原有网络，则发起LAU,否则
-                触发MM发起LAU;如果LIST搜后，发现有其他网络，则发起其他网络的搜网注册。
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_IsSorTriggerAdditionalLau(VOS_VOID)
 {
     NAS_MML_SOR_ADDITIONAL_LAU_STRU                        *pstAdditionalLau    = VOS_NULL_PTR;
@@ -10245,23 +7292,7 @@ VOS_UINT32  NAS_MMC_IsSorTriggerAdditionalLau(VOS_VOID)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndMsccCurrServiceRelatedInfo
- 功能描述  : 上报给MSCC当前的业务状态相关的信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年06月25日
-   作    者   : b00269685
-   修改内容   : 新生成函数
- 2.日    期   : 2014年07月24日
-   作    者   : b00269685
-   修改内容   : Coverify清理
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndMsccCurrServiceRelatedInfo(VOS_VOID)
 {
     MSCC_MMC_SCELL_MEAS_REPORT_TYPE_UN   unMeasReportType;
@@ -10275,7 +7306,6 @@ VOS_VOID NAS_MMC_SndMsccCurrServiceRelatedInfo(VOS_VOID)
     NAS_MMC_SndMsccSysInfo();
 
     /* 上报CAMP ON信息 */
-    /* Modified by b00269685 for Coverify清理, 2014-7-24, begin */
     if (NAS_MMC_AS_CELL_CAMP_ON == NAS_MMC_GetAsCellCampOn())
     {
         NAS_MMC_SndMsccCampOnInd(VOS_TRUE);
@@ -10284,7 +7314,6 @@ VOS_VOID NAS_MMC_SndMsccCurrServiceRelatedInfo(VOS_VOID)
     {
         NAS_MMC_SndMsccCampOnInd(VOS_FALSE);
     }
-    /* Modified by b00269685 for Coverify清理, 2014-7-24, end */
 
     /* 上报服务状态 */
     NAS_MMC_ConvertToMsccSrvStatus(NAS_MMC_GetCsServiceStatus(), &enMsccServiceState);
@@ -10304,28 +7333,9 @@ VOS_VOID NAS_MMC_SndMsccCurrServiceRelatedInfo(VOS_VOID)
 }
 
 
-/* Modified by c00318887 for DPlmn扩容和优先接入HPLMN, 2015-5-18, begin */
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetIndexOfFirstSelfLearningTypeElement
- 功能描述  : 获取 DplmnList 中最后一个类型是预置类型的plmn的下标
- 输入参数  :
-             pulDestPlmnNum    - DPLMN/NPLMN list个数
-             pstDestPlmnIdList - DPLMN/NPLMN list指针
- 输出参数  : 无
- 返 回 值  : ulIndex -- 数组下标
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年5月18日
-   作    者   : c00318887
-   修改内容   : for DPlmn扩容和优先接入HPLMN
- 2.日    期   : 2015年11月3日
-   作    者   : l00289540
-   修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_3.0 修改
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_GetIndexOfFirstSelfLearningTypeElement(
     VOS_UINT16                                             *pulFirstPosition,
     VOS_UINT16                                              ulMaxAllowPlmnNum,
@@ -10362,32 +7372,8 @@ VOS_UINT32  NAS_MMC_GetIndexOfFirstSelfLearningTypeElement(
 
     return VOS_FALSE;
 }
-/* Modified by c00318887 for DPlmn扩容和优先接入HPLMN, 2015-5-21, end */
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_UpdateDPlmnNPlmnList
- 功能描述  : 更新DPLMNNPLMN列表
- 输入参数  : pstCurrPlmnLai - 传入的当前注册网络的PLMN信息
-             enNetType      - 接入技术
-             enRegDomain    - 注册域
-             pulDestPlmnNum - 更新DPLMN/NPLMN list个数
-             pstDestPlmnIdList - 更新DPLMN/NPLMN list
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年11月11日
-   作    者   : c00188733
-   修改内容   : 新生成函数
- 2.日    期   : 2015年5月18日
-   作    者   : c00318887
-   修改内容   : for DPlmn扩容和优先接入HPLMN
- 3.日    期   : 2015年10月22日
-   作    者   : l00289540
-   修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_3.0 修改
-*****************************************************************************/
 VOS_VOID  NAS_MMC_UpdateDPlmnNPlmnList(
     NAS_MML_LAI_STRU                                       *pstCurrLai,
     NAS_MMC_REG_DOMAIN_ENUM_UINT8                           enRegDomain,
@@ -10400,9 +7386,7 @@ VOS_VOID  NAS_MMC_UpdateDPlmnNPlmnList(
     NAS_MMC_DPLMN_NPLMN_CFG_INFO_STRU                      *pstDPlmnNPlmnCfgInfo = VOS_NULL_PTR;
     VOS_UINT16                                              usSimRat;
 
-    /* Modified by c00318887 for DPlmn扩容和优先接入HPLMN, 2015-5-21, begin */
     VOS_UINT16                                              usIndex;
-    /* Modified by c00318887 for DPlmn扩容和优先接入HPLMN, 2015-5-21, end */
 
     pstDPlmnNPlmnCfgInfo  = NAS_MMC_GetDPlmnNPlmnCfgInfo();
     usSimRat              = NAS_MML_INVALID_SIM_RAT;
@@ -10422,18 +7406,15 @@ VOS_VOID  NAS_MMC_UpdateDPlmnNPlmnList(
             else
             {
                 /* 是自学习类型,则仅更新RAT */
-                /* Modified by c00318887 for DPlmn扩容和优先接入HPLMN, 2015-5-21, begin */
                 if (NAS_MMC_DPLMN_NPLMN_SELF_LEARING_TYPE == pstDestPlmnIdList[i].enType)
                 {
                     pstDestPlmnIdList[i].stSimPlmnWithRat.usSimRat = usSimRat | pstDestPlmnIdList[i].stSimPlmnWithRat.usSimRat;
                     return;
                 }
-                /* Modified by c00318887 for DPlmn扩容和优先接入HPLMN, 2015-5-21, end */
             }
         }
     }
 
-    /* Modified by c00318887 for DPlmn扩容和优先接入HPLMN, 2015-5-21, begin */
     if (VOS_FALSE == NAS_MMC_GetIndexOfFirstSelfLearningTypeElement(&usIndex, ulMaxAllowPlmnNum, *pulDestPlmnNum, pstDestPlmnIdList))
     {
         return;
@@ -10463,7 +7444,6 @@ VOS_VOID  NAS_MMC_UpdateDPlmnNPlmnList(
         pstDestPlmnIdList[usIndex].enRegDomain                        = enRegDomain;
         pstDestPlmnIdList[usIndex].enType                             = NAS_MMC_DPLMN_NPLMN_SELF_LEARING_TYPE;
     }
-    /* Modified by c00318887 for DPlmn扩容和优先接入HPLMN, 2015-5-21, end */
 
     /* AP没有预置DPLMN信息，自学习的DPLMN后，也需要将Ehplmn更新到全局变量和NV中，
      * 以供其他modem判断通知给他的DPLMN是否可以使用
@@ -10477,27 +7457,7 @@ VOS_VOID  NAS_MMC_UpdateDPlmnNPlmnList(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_UpdateDPlmnNPlmnList
- 功能描述  : 删除DPLMNNPLMN列表
- 输入参数  : pstCurrPlmnLai - 传入的当前注册网络的PLMN信息
-             enNetType      - 接入技术
-             enRegDomain    - 注册域
-             pulDestPlmnNum - 删除DPLMN/NPLMN list个数
-             pstDestPlmnIdList - 删除DPLMN/NPLMN list
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年11月11日
-   作    者   : c00188733
-   修改内容   : 新生成函数
-2.日    期   : 2015年5月18日
-  作    者   : c00318887
-  修改内容   : for DPlmn扩容和优先接入HPLMN
-*****************************************************************************/
 VOS_VOID  NAS_MMC_DeleteDPlmnNPlmnList(
     NAS_MML_LAI_STRU                                       *pstCurrLai,
     NAS_MMC_REG_DOMAIN_ENUM_UINT8                           enRegDomain,
@@ -10566,21 +7526,7 @@ VOS_VOID  NAS_MMC_DeleteDPlmnNPlmnList(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConvertApPresetRatToSimRat
- 功能描述  : 将Ap 预置的DPLMN Rat转换为Sim Rat格式
- 输入参数  : VOS_UINT16 usApPresetDplmnRat
- 输出参数  : 无
- 返 回 值  : VOS_UINT16 usSimRat 转换后的SIMRAT类型
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月26日
-    作    者   : l00289540
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT16  NAS_MMC_ConvertApPresetRatToSimRat(
     VOS_UINT16                          usApPresetDplmnRat
 )
@@ -10625,20 +7571,7 @@ VOS_UINT16  NAS_MMC_ConvertApPresetRatToSimRat(
     return usSimRat;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConvertNetRatToSimRat
- 功能描述  : 将网络RAT类型转换为SIM卡的RAT类型
- 输入参数  :NAS_MML_NET_RAT_TYPE_ENUM_UINT8   enPlmnNetRat 需要转换的NetRAT类型
- 输出参数  : 无
- 返 回 值  : VOS_UINT16 usSimRat 转换后的SIMRAT类型
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年7月14日
-   作    者   : c00188733
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT16  NAS_MMC_ConvertNetRatToSimRat(
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enPlmnNetRat
 )
@@ -10668,23 +7601,7 @@ VOS_UINT16  NAS_MMC_ConvertNetRatToSimRat(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsBcchPlmnIdWithRatInDestSimPlmnList
- 功能描述  : 判断带接入技术PLMN ID是否在列表中
- 输入参数  : pstBcchPlmnId:需要判断的PLMN ID
-             usSimPlmnWithRatNum:列表中plmn id的个数
-             pstSimPlmnWithRatList:plmn with rat列表
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  : PLMN ID在列表中
-             VOS_FALSE : PLMN ID不在列表中
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2014年11月8日
-   作    者   : z00161729
-   修改内容   : 开机搜网优化项目修改
 
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsBcchPlmnIdWithRatInDestSimPlmnList (
     NAS_MML_PLMN_WITH_RAT_STRU         *pstBcchPlmnIdWithRat,
     VOS_UINT16                          usSimPlmnWithRatNum,
@@ -10709,21 +7626,7 @@ VOS_UINT32 NAS_MMC_IsBcchPlmnIdWithRatInDestSimPlmnList (
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ComparePlmnIdWithRatWithUplmn
- 功能描述  : 判断PLMN带接入技术是否是UPLMN
- 输入参数  : pstPlmnIdWithRat:需要比较的PLMNID
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 与uplmn相同
-             VOS_FALSE - 与uplmn不同
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年11月8日
-   作    者   : z00161729
-   修改内容   : 开机搜网优化项目修改
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_ComparePlmnIdWithRatWithUplmn (
     NAS_MML_PLMN_WITH_RAT_STRU         *pstPlmnIdWithRat
 )
@@ -10762,21 +7665,7 @@ VOS_UINT32 NAS_MMC_ComparePlmnIdWithRatWithUplmn (
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ComparePlmnIdWithRatWithOplmn
- 功能描述  : 判断带接入技术的PLMN是否是OPLMN
- 输入参数  : pstPlmnId:需要比较的PLMNID
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年02月21日
-   作    者   : s00246516
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_ComparePlmnIdWithRatWithOplmn (
     NAS_MML_PLMN_WITH_RAT_STRU         *pstPlmnIdWithRat
 )
@@ -10816,23 +7705,7 @@ VOS_UINT32 NAS_MMC_ComparePlmnIdWithRatWithOplmn (
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsPlmnIdWithSimRatInSimPlmnWithRegDomainList
- 功能描述  : 判断PLMN ID是否在NAS_MMC_SIM_PLMN_WITH_REG_DOMAIN_STRU格式网络列表中
- 输入参数  : pstSrcPlmnId:需要判断的PLMN ID
-             usSimRat    :接入技术
-             ulDestPlmnNum:列表中plmn id的个数
-             pstDestPlmnIdList:plmn列表
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  : PLMN ID在列表中
-             VOS_FALSE : PLMN ID不在列表中
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2014年11月8日
-   作    者   : b00269685
-   修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_UINT32 NAS_MMC_IsPlmnIdWithSimRatInSimPlmnWithRegDomainList(
     NAS_MML_PLMN_ID_STRU                                   *pstPlmnId,
     VOS_UINT16                                              usSimRat,
@@ -10853,20 +7726,7 @@ VOS_UINT32 NAS_MMC_IsPlmnIdWithSimRatInSimPlmnWithRegDomainList(
 
     return VOS_FALSE;
 }
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConvertSimRatToNetRat
- 功能描述  : 将SIM卡的RAT类型转换为网络RAT类型，如果sim卡rat类型有多个按接入技术优先级返回第一个
- 输入参数  : usSimRat - sim 卡rat
- 输出参数  : 无
- 返 回 值  : enPlmnNetRat - 转换后net rat
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年11月8日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-*****************************************************************************/
 NAS_MML_NET_RAT_TYPE_ENUM_UINT8  NAS_MMC_ConvertSimRatToNetRat(
     VOS_UINT16                          usSimRat
 )
@@ -10889,21 +7749,7 @@ NAS_MML_NET_RAT_TYPE_ENUM_UINT8  NAS_MMC_ConvertSimRatToNetRat(
 
     return NAS_MML_NET_RAT_TYPE_BUTT;
 }
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNetRatContainedInSimRat
- 功能描述  : 判断SimRat是否包含当前SpecRat
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月30日
-    作    者   : l00289540
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNetRatContainedInSimRat(
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enRat,
     VOS_UINT16                          usSimRat
@@ -10921,22 +7767,7 @@ VOS_UINT32 NAS_MMC_IsNetRatContainedInSimRat(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsPlmnIdWithRatInSimPlmnWithRegDomainList
- 功能描述  : 判断带接入技术的PLMN ID是否在NAS_MMC_SIM_PLMN_WITH_REG_DOMAIN_STRU格式网络列表中
- 输入参数  : pstSrcPlmnId:需要判断的PLMN ID
-             ulDestPlmnNum:列表中plmn id的个数
-             pstDestPlmnIdList:plmn列表
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  : PLMN ID在列表中
-             VOS_FALSE : PLMN ID不在列表中
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2014年10月30日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_UINT32 NAS_MMC_IsPlmnIdWithRatInSimPlmnWithRegDomainList(
     NAS_MML_PLMN_WITH_RAT_STRU                             *pstSrcPlmnId,
     VOS_UINT32                                              ulDestPlmnNum,
@@ -10965,19 +7796,7 @@ VOS_UINT32 NAS_MMC_IsPlmnIdWithRatInSimPlmnWithRegDomainList(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsEnableLteTriggerPlmnSearch_ImsSwitchOnOrNotCsOnly
- 功能描述  : IMS开关打开时或voice domain设成非cs only时，Enable LTE是否需要触发搜网
- 输入参数  :
- 返 回 值  : VOS_TRUE  : 需要搜网
-             VOS_FALSE : 不需要搜网
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2015年02月12日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_UINT32 NAS_MMC_IsEnableLteTriggerPlmnSearch_ImsSwitchOnOrNotCsOnly(VOS_VOID)
 {
     NAS_MML_PLMN_RAT_PRIO_STRU         *pstPrioRatList = VOS_NULL_PTR;
@@ -11009,19 +7828,7 @@ VOS_UINT32 NAS_MMC_IsEnableLteTriggerPlmnSearch_ImsSwitchOnOrNotCsOnly(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsPlmnValid
- 功能描述  : 判断PLMN是否有效
- 输入参数  : NAS_MSCC_PIF_PLMN_ID_STRU          *pstPlmnId
- 输出参数  : 无
- 返 回 值  : VOS_FALSE/VOS_TRUE
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2015年03月03日
-   作    者   : y00307564
-   修改内容   : Iteration 8新增
-*****************************************************************************/
+
 VOS_BOOL NAS_MMC_IsPlmnValid(
     NAS_MSCC_PIF_PLMN_ID_STRU          *pstPlmnId
 )
@@ -11041,19 +7848,7 @@ VOS_BOOL NAS_MMC_IsPlmnValid(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_PlmnId2Bcd
- 功能描述  : 将PLMN转换为BCD码
- 输入参数  : NAS_MSCC_PIF_PLMN_ID_STRU          *pstPlmnId
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2015年03月03日
-   作    者   : y00307564
-   修改内容   : Iteration 8新增
-*****************************************************************************/
+
 VOS_VOID NAS_MMC_PlmnId2Bcd(
     NAS_MSCC_PIF_PLMN_ID_STRU          *pstPlmnId
 )
@@ -11096,19 +7891,7 @@ VOS_VOID NAS_MMC_PlmnId2Bcd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_PlmnId2Bcd
- 功能描述  : 将PLMN转换为NasStyle格式类型
- 输入参数  : NAS_MSCC_PIF_PLMN_ID_STRU          *pstPlmnId
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2015年03月03日
-   作    者   : y00307564
-   修改内容   : Iteration 8新增
-*****************************************************************************/
+
 VOS_VOID NAS_MMC_PlmnId2NasStyle(NAS_MSCC_PIF_PLMN_ID_STRU *pstPlmnId)
 {
     VOS_UINT8   ucI;
@@ -11150,19 +7933,7 @@ VOS_VOID NAS_MMC_PlmnId2NasStyle(NAS_MSCC_PIF_PLMN_ID_STRU *pstPlmnId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetUpdateFileForPrefPlmn
- 功能描述  : 根据Pref PLMN的操作,确定当前要更新的文件
- 输出参数  : 需要更新的USIM文件
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年03月03日
-   作    者   : y00307564
-   修改内容   : Iteration 8新增
-*****************************************************************************/
 VOS_UINT16 NAS_MMC_GetUpdateFileForPrefPlmn(
     NAS_MSCC_PIF_PARA_TYPE_ENUM_UINT8                       enPrefPLMNType
 )
@@ -11227,20 +7998,7 @@ VOS_UINT16 NAS_MMC_GetUpdateFileForPrefPlmn(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetWaitAsResumeIndTimerLen
- 功能描述  : 获取Resume ind 定时器时长
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年04月24日
-    作    者   : j00174725
-    修改内容   : 新生成函数:接入层修改了与物理层之间的定时器
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_GetWaitAsResumeIndTimerLen(VOS_VOID)
 {
     if (VOS_TRUE == NAS_MML_IsDsdsMultiModemMode())
@@ -11251,20 +8009,7 @@ VOS_UINT32 NAS_MMC_GetWaitAsResumeIndTimerLen(VOS_VOID)
     return TI_NAS_MMC_WAIT_AS_RESUME_IND_LEN;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetWaitGUTAsRedirResumeIndTimerLen
- 功能描述  : 获取GUT接入层重定向Resume ind 定时器时长
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年04月24日
-    作    者   : j00174725
-    修改内容   : 新生成函数:接入层修改了与物理层之间的定时器
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_GetWaitGUTAsRedirResumeIndTimerLen(VOS_VOID)
 {
     if (VOS_TRUE == NAS_MML_IsDsdsMultiModemMode())
@@ -11275,20 +8020,7 @@ VOS_UINT32 NAS_MMC_GetWaitGUTAsRedirResumeIndTimerLen(VOS_VOID)
     return TI_NAS_MMC_INTER_SYS_GU_REDIR_WAIT_AS_RESUME_IND_LEN;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetWaitAsOosResumeIndTimerLen
- 功能描述  : 获取接入层OOS后Resume ind 定时器时长
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年04月24日
-    作    者   : j00174725
-    修改内容   : 新生成函数:接入层修改了与物理层之间的定时器
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_GetWaitAsOosResumeIndTimerLen(VOS_VOID)
 {
     if (VOS_TRUE == NAS_MML_IsDsdsMultiModemMode())
@@ -11303,20 +8035,7 @@ VOS_UINT32 NAS_MMC_GetWaitAsOosResumeIndTimerLen(VOS_VOID)
 
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsDetachReqestDisableLte
- 功能描述  : check detach请求是否需要disable LTE
- 输出参数  : pstDetachReq -- detach请求
- 返 回 值  : VOS_TRUE  -- 需要disable LTE
-             VOS_FALSE -- 不需要disable LTE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年4月16日
-   作    者   : y00245242
-   修改内容   : iteration 13开发
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsDetachReqestDisableLte(
     NAS_MMC_DETACH_TYPE_ENUM_UINT32     enDetachType,
     NAS_MMC_DETACH_REASON_ENUM_UINT32   enDetachReason
@@ -11332,22 +8051,7 @@ VOS_UINT32 NAS_MMC_IsDetachReqestDisableLte(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_BuildPlmnListInfoFromLmmAreaLostInd
- 功能描述  : 根据GU的RRMM_AREA_LOST构造列表信息
- 输入参数  : RRMM_AREA_LOST_IND_STRU                                *pstAreaLostInd
-             NAS_MMC_SEARCHED_PLMN_LIST_INFO_STRU                   *pstPlmnListInfo
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_BuildPlmnListInfoFromLmmAreaLostInd(
     LMM_MMC_AREA_LOST_IND_STRU                             *pstAreaLostInd,
     NAS_MMC_SEARCHED_PLMN_LIST_INFO_STRU                   *pstPlmnListInfo
@@ -11387,22 +8091,7 @@ VOS_VOID NAS_MMC_BuildPlmnListInfoFromLmmAreaLostInd(
 #endif
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_BuildPlmnListInfoFromGuAreaLostInd
- 功能描述  : 根据GU的RRMM_AREA_LOST构造列表信息
- 输入参数  : RRMM_AREA_LOST_IND_STRU                                *pstAreaLostInd
-             NAS_MMC_SEARCHED_PLMN_LIST_INFO_STRU                   *pstPlmnListInfo
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_BuildPlmnListInfoFromGuAreaLostInd(
     RRMM_AREA_LOST_IND_STRU                                *pstAreaLostInd,
     NAS_MMC_SEARCHED_PLMN_LIST_INFO_STRU                   *pstPlmnListInfo
@@ -11424,21 +8113,7 @@ VOS_VOID NAS_MMC_BuildPlmnListInfoFromGuAreaLostInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsOosPlmnSearchScene
- 功能描述  : 是否为OOS搜网场景
- 输入参数  : NAS_MMC_PLMN_SEARCH_SCENE_ENUM_UINT32                   enPlmnSearchScene
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月30日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 NAS_MMC_IsOosPlmnSearchScene(
     NAS_MMC_PLMN_SEARCH_SCENE_ENUM_UINT32                   enPlmnSearchScene
 )
@@ -11463,21 +8138,7 @@ VOS_UINT8 NAS_MMC_IsOosPlmnSearchScene(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsHistorySearchSupportInCurrPhase
- 功能描述  : 当前阶段history是否支持
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月5日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 NAS_MMC_IsHistorySearchSupportInCurrPhase(VOS_VOID)
 {
     NAS_MMC_OOS_PLMN_SEARCH_STRATEGY_INFO_STRU             *pstOosPlmnSearchInfo    = VOS_NULL_PTR;
@@ -11512,26 +8173,7 @@ VOS_UINT8 NAS_MMC_IsHistorySearchSupportInCurrPhase(VOS_VOID)
     return ucRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConvertMsccHighPrioPlmnListToMmcPlmnListInfo
- 功能描述  : 将MSCCPLMN搜索列表转换为MMC格式的PLMN列表信息
- 输入参数  : ulMsccPlmnNum
-             enRat
-             pstMsccPlmnList
- 输出参数  : pstMmcPlmnListInfo
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年4月3日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2015年6月1日
-   作    者   : w00176964
-   修改内容   : CDMA Iteration 12:修改接口
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_ConvertMsccHighPrioPlmnListToMmcPlmnListInfo(
     NAS_MSCC_PIF_SEARCHED_PLMN_LIST_INFO_STRU              *pstHighPrioPlmnInfo,
     NAS_MMC_SEARCHED_PLMN_LIST_INFO_STRU                   *pstMmcPlmnListInfo
@@ -11576,21 +8218,7 @@ VOS_VOID NAS_MMC_ConvertMsccHighPrioPlmnListToMmcPlmnListInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetPlmnSearchSceneMsccPlmnSrchReq
- 功能描述  : 从MSCC模块的plmn search请求消息中获得搜网场景
- 输入参数  : pstRegReq
- 输出参数  : 无
- 返 回 值  : NAS_MMC_PLMN_SEARCH_SCENE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月14日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_MMC_PLMN_SEARCH_SCENE_ENUM_UINT32 NAS_MMC_GetPlmnSearchSceneMsccPlmnSrchReq(
     MSCC_MMC_PLMN_SEARCH_REQ_STRU      *pstPlmnSrchReq
 )
@@ -11615,20 +8243,7 @@ NAS_MMC_PLMN_SEARCH_SCENE_ENUM_UINT32 NAS_MMC_GetPlmnSearchSceneMsccPlmnSrchReq(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConvertMsccRatTypeToMml3GPP2RatType
- 功能描述  : 将MSCC传过来的RAT类型转换为MML中3GPP2的类型格式
- 输入参数  : enMsccRatType          MSCC传过来的RAT类型
- 输出参数  : *penMml3GPP2RatType    MML保存的3GPP2类型
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年6月9日
-   作    者   : w00176964
-   修改内容   : 新建函数
-*****************************************************************************/
 VOS_VOID   NAS_MMC_ConvertMsccRatTypeToMml3GPP2RatType(
     NAS_MSCC_PIF_NET_RAT_TYPE_ENUM_UINT8                    enMsccRatType,
     NAS_MML_3GPP2_RAT_TYPE_ENUM_UINT8                      *penMml3GPP2RatType
@@ -11657,27 +8272,7 @@ VOS_VOID   NAS_MMC_ConvertMsccRatTypeToMml3GPP2RatType(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsRatPrioChangeTriggerPlmnSrch
- 功能描述  : 判断接入技术优先级变化是否需要发起高优先级搜网
- 输入参数  : pstOldRatList --旧的接入技术列表
-             pstNewRatList --新的接入技术列表
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:需要高优先级搜网
-              VOS_FALSE:不需要高优先级搜网
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年7月15日
-   作    者   : w00242748
-   修改内容   : 新生成函数
- 2.日    期   : 2015年8月6日
-   作    者   : c00318887
-   修改内容   : DTS2015041401965，syscfg设置只在增加接入技术且新增接入技术优先级高于当前接入技术才触发搜网
-                例如: 4g -> 2g 4g(当前驻留4g，新增2g，2g接入技术优先级0 高于 4g 接入技术优先级 1，触发搜网)
-                例如: 4g -> 4g 2g(当前驻留4g，新增2g，2g接入技术优先级1 低于 4g 接入技术优先级 0，不触发搜网)
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_IsRatPrioChangeTriggerPlmnSrch(
     NAS_MSCC_PIF_RAT_PRIO_STRU         *pstOldRatList,
     NAS_MSCC_PIF_RAT_PRIO_STRU         *pstNewRatList
@@ -11755,25 +8350,7 @@ VOS_UINT32  NAS_MMC_IsRatPrioChangeTriggerPlmnSrch(
 }
 
 
-/* Added by c00318887 for 预置频点搜网优化, 2015-8-26, begin */
-/*****************************************************************************
- 函 数 名  : NAS_MMC_StartPlmnSearchPhaseOneTotalTimer
- 功能描述  : 根据条件启动第一阶段搜网总时间控制定时器
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_TRUE: TI_NAS_MMC_PLMN_SEARCH_PHASE_ONE_TOTAL_TIMER 启动成功
-             VOS_FALSE: TI_NAS_MMC_PLMN_SEARCH_PHASE_ONE_TOTAL_TIMER 启动失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月26日
-    作    者   : c00318887
-    修改内容   : 新建
-  2.日    期   : 2015年10月21日
-    作    者   : h00281185
-    修改内容   : 架构改用 pstPhaseOneOosPlmnSearchPatternInfo, 取代 pstAvailTimerCfg/pstHistoryinfo
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_StartPlmnSearchPhaseOneTotalTimer(VOS_VOID)
 {
     NAS_MMC_OOS_PLMN_SEARCH_PATTERN_INFO_STRU              *pstPhaseOneOosPlmnSearchPatternInfo  = VOS_NULL_PTR;
@@ -11827,22 +8404,8 @@ VOS_UINT32 NAS_MMC_StartPlmnSearchPhaseOneTotalTimer(VOS_VOID)
 
     return VOS_FALSE;
 }
-/* Added by c00318887 for 预置频点搜网优化, 2015-8-26, end */
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConvertRatTypeFromNasMsccToNasErr
- 功能描述  : 将NAS_MSCC定义的RatType转化为Nas_Err定义的RatType值,因为Nas_Err还未支持1X&HRPD
- 输入参数  : NAS_MSCC_PIF_NET_RAT_TYPE_ENUM_UINT8
- 输出参数  : 无
- 返 回 值  : NAS_ERR_LOG_RATMODE_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月30日
-    作    者   : h00279575
-    修改内容   : 新生成函数
-*****************************************************************************/
 NAS_ERR_LOG_RATMODE_ENUM_UINT8 NAS_MMC_ConvertRatTypeFromNasMsccToNasErr (
     NAS_MSCC_PIF_NET_RAT_TYPE_ENUM_UINT8 msccRatType
 )
@@ -11868,20 +8431,7 @@ NAS_ERR_LOG_RATMODE_ENUM_UINT8 NAS_MMC_ConvertRatTypeFromNasMsccToNasErr (
     return errRatType;
 }
 #if (FEATURE_ON == FEATURE_PTM)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RecordFftSrchMccInfo
- 功能描述  : 将FFT搜索MCC的结果写入CHR缓存
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月30日
-    作    者   : h00279575
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_RecordFftSrchMccInfo( VOS_VOID )
 {
     NAS_MML_ERRLOG_FFT_SRCH_INFO_STRU          *pstGeoSrchInfo = VOS_NULL_PTR;
@@ -11969,23 +8519,7 @@ VOS_VOID NAS_MMC_RecordFftSrchMccInfo( VOS_VOID )
     return;
 }
 #endif
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ModifyForbiddenFlg_HplmnRegisterRej
- 功能描述  : 在hplmn上注册被拒时，需要修改转发的系统消息中的forbidden flag.
- 输入参数  : ulInForbiddenFlg       -- 输入的 forbidden flag
-             ulUserSrchFlg          -- 是否手动模式
-             enRat                  -- 接入及时
-             enRegCnDomain          -- PS /cs 域
- 输出参数  : 无
- 返 回 值  : ulOutForbiddenFlg      -- 修改后的forbidden flag
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月16日
-    作    者   : c00318887
-    修改内容   : DTS2015061609864
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_ModifyForbiddenFlg_HplmnRegisterRej(
     VOS_UINT32                          ulInForbiddenFlg,
     VOS_UINT32                          ulUserSrchFlg,
@@ -12055,20 +8589,7 @@ VOS_UINT32  NAS_MMC_ModifyForbiddenFlg_HplmnRegisterRej(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetMmssLteUnavailableReasonByDetachReason
- 功能描述  : 通过detach原因获取LTE不可用的原因
- 输入参数  : enDetachReason---detach 原因值
- 输出参数  : 无
- 返 回 值  : MSCC_MMC_MMSS_LTE_UNAVIALBLE_REASON_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月20日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 MSCC_MMC_MMSS_LTE_UNAVIALBLE_REASON_ENUM_UINT8 NAS_MMC_GetMmssLteUnavailableReasonByDetachReason (
     NAS_MMC_DETACH_REASON_ENUM_UINT32   enDetachReason
 )
@@ -12097,21 +8618,7 @@ MSCC_MMC_MMSS_LTE_UNAVIALBLE_REASON_ENUM_UINT8 NAS_MMC_GetMmssLteUnavailableReas
     return enReason;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConvertToMmlSessionType
- 功能描述  : 把MMC的Session type 转换MML的类型
- 输入参数  :
- 输出参数  :
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月27日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_ConvertToMmlSessionType(
     RRC_NAS_SESSION_TYPE_ENUM_UINT8   enMmSessionType,
     NAS_MML_SESSION_TYPE_ENUM_UINT8  *penMmlSessionType

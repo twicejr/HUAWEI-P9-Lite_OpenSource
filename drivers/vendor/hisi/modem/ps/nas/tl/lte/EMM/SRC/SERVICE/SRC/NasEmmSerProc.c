@@ -1,33 +1,4 @@
-/*******************************************************************************
-  Copyright     : 2005-2007, Huawei Tech. Co., Ltd.
-  File name     : EmmService.c
-  Description   : EMM SERVICE REQUEST功能相关处理用源文件
-  Function List :
-    01.   Nas_Emm_RcvRabmReestReq
-    02.   Nas_Emm_RcvRabmReestStopReq
-    03.   Nas_Emm_RcvRrcPagingInd
-    04.   Nas_Emm_RcvRrcRelInd
-    05.   Nas_Emm_RcvMrrcRelInd
-    06.   Nas_Emm_RcvDetachReq
-    07.   Nas_Emm_RcvTAUReq
-    08.   Nas_Emm_RcvTimer****Exp
-    09.   Nas_Emm_RcvServiceRejectMsg
-    10.   Nas_Emm_ServiceReqRejectCasue3
-    11.   Nas_Emm_ServiceReqRejectCasue6
-    12.   Nas_Emm_ServiceReqRejectCasue7
-    13.   Nas_Emm_ServiceReqRejectCasue9
-    14.   Nas_Emm_ServiceReqRejectCasue10
-    15.   Nas_Emm_ServiceReqRejectCasue11
-    16.   Nas_Emm_ServiceReqRejectCasue12
-    17.   Nas_Emm_ServiceReqRejectCasue13
-    18.   Nas_Emm_ServiceReqRejectCasue14
-    19.   Nas_Emm_ServiceReqRejectCasue15
-    20.   Nas_Emm_ServiceReqRejectTheOtherCause
-    21.   Nas_Emm_ServiceReqAbnormal***
-  History       :
-    1.  Zhouyan 00125190  2008.09.09  新规作成
-    2.  leili       00132387    2009.06.25   BJ9001269 收到系统消息后处理优化
-*******************************************************************************/
+
 
 /*****************************************************************************
   1 Include HeadFile
@@ -67,15 +38,7 @@ NAS_EMM_SER_ESM_MSG_BUF_STRU            g_stEmmEsmMsgBuf;
 /* ESR流程发生切换,未发起TAU,重传ESR消息控制开关:规避小区切换后网侧不下发REL问题 */
 VOS_UINT32                              g_ulNasEmmHoRetransEsrFlag = PS_FALSE;
 
-/*******************************************************************************
-  Function : NAS_EMM_SER_Init
-  Input    :
-  Output   :
-  NOTE     :
-  Return   :
-  History  :
-    1.  Zhouyan 00125190  2008.09.17  新规作成
-*******************************************************************************/
+
 /*lint -e960*/
 /*lint -e961*/
 VOS_VOID NAS_EMM_SER_Init(VOS_VOID)
@@ -90,17 +53,7 @@ VOS_VOID NAS_EMM_SER_Init(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SER_ClearResource
- Description     : UE去注册，释放SER模块所有资源
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-10-15  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SER_ClearResource( VOS_VOID )
 {
     NAS_EMM_SER_LOG_NORM("NAS_EMM_SER_ClearResource entered.");
@@ -170,16 +123,7 @@ VOS_VOID NAS_EMM_SER_CompCnServiceReq(  LRRC_LNAS_MSG_STRU   *pNasMsg)
 }
 
 /*lint -e669*/
-/*******************************************************************************
-  Module   : Nas_Emm_SendMrrcDataReq_ServiceReq
-  Function : 收到EMM_ERABM_REEST_REQ原语后的处理
-  Input    : VOS_VOID *pMsg     原语首地址
-  Output   : 无
-  NOTE     : 无
-  Return   : VOS_UINT32
-  History  :
-    1.  Zhouyan 00125190  2008.09.09  新规作成
-*******************************************************************************/
+
 VOS_VOID    NAS_EMM_SER_SendMrrcDataReq_ServiceReq()
 {
     NAS_EMM_MRRC_DATA_REQ_STRU          *pMrrcDataReqMsg    = NAS_EMM_NULL_PTR;
@@ -384,16 +328,7 @@ VOS_VOID    NAS_EMM_CompCnExtendedSerReqMoNasMsg
 
 }
 
-/*******************************************************************************
-  Module   : NAS_EMM_SER_SendMrrcDataReq_ExtendedServiceReq
-  Function : 发送EXTENDED SERVICE REQ消息
-  Input    : VOS_VOID *pMsg     原语首地址
-  Output   : 无
-  NOTE     : 无
-  Return   : VOS_UINT32
-  History  :
-    1.  lihong 00150010  2012.02.23  新规作成
-*******************************************************************************/
+
 VOS_VOID    NAS_EMM_SER_SendMrrcDataReq_ExtendedServiceReq(VOS_VOID)
 {
     NAS_EMM_MRRC_DATA_REQ_STRU         *pMrrcDataReqMsg         = NAS_EMM_NULL_PTR;
@@ -479,18 +414,7 @@ VOS_VOID    NAS_EMM_SER_SendMrrcDataReq_ExtendedServiceReq(VOS_VOID)
     return;
 }
 
-/*******************************************************************************
-  Module   :
-  Function : Nas_Emm_SER_SendRrcDataReq_ESMdata
-  Input    :
-  Output   :
-  NOTE     :向RRC转发ESM_DATA消息
-  Return   :
-  History  :
-    1.  Zhouyan 00125190  2008.09.09  新规作成
-    2.  lihong00150010    2012-10-31  Modify:emgergency
-    3.  lifuxin 00253982  2014-07-02  DSDS修改
-*******************************************************************************/
+
 VOS_VOID    NAS_EMM_SER_SendMrrcDataReq_ESMdata
 (
     EMM_ESM_MSG_STRU                   *pstEsmMsg,
@@ -546,16 +470,7 @@ VOS_VOID    NAS_EMM_SER_SendMrrcDataReq_ESMdata
     return;
 }
 
-/*******************************************************************************
-  Module   :
-  Function : NAS_EMM_SER_SendMrrcDataReq_Tcdata
-  Input    : pMsg------------TC消息
-  Output   :
-  NOTE     : 向RRC转发TC_DATA_REQ消息
-  Return   : VOS_VOID
-  History  :
-      1.lihong00150010      2009-10-16  Draft Enact
-*******************************************************************************/
+
 VOS_VOID    NAS_EMM_SER_SendMrrcDataReq_Tcdata
 (
     EMM_ETC_DATA_REQ_STRU               *pMsg
@@ -607,16 +522,7 @@ VOS_VOID    NAS_EMM_SER_SendMrrcDataReq_Tcdata
 
     return;
 }
-/*******************************************************************************
-  Module   :
-  Function : NAS_EMM_SER_SendRabmReestInd
-  Input    :
-  Output   :
-  NOTE     :
-  Return   :
-  History  :
-    1.  Zhouyan 00125190  2008.09.09  新规作成
-*******************************************************************************/
+
 VOS_VOID    NAS_EMM_SER_SendRabmReestInd(EMM_ERABM_REEST_STATE_ENUM_UINT32
                                                                 enRabmReestState)
 {
@@ -650,18 +556,7 @@ VOS_VOID    NAS_EMM_SER_SendRabmReestInd(EMM_ERABM_REEST_STATE_ENUM_UINT32
 
 }
 
-/*******************************************************************************
-  Module   : SR
-  Function : NAS_EMM_SER_AbnormalOver
-  Input    :
-  Output   :
-  NOTE     : SR流程终止处理
-  Return   :
-  History  :
-    1.  sunbing     49683    2011.12.09  修改
-    2.  lihong      00150010 2012.02.24  修改
-    3.  leixiantiao 00258641 2015-07-09  fix DTS2015062509266
-*******************************************************************************/
+
 VOS_VOID NAS_EMM_SER_AbnormalOver(VOS_VOID)
 {
     NAS_EMM_SER_LOG_INFO( "NAS_EMM_SER_AbnormalOver is entered.");
@@ -873,17 +768,7 @@ VOS_VOID  NAS_EMM_MmcSendSerResultIndOtherType
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MmcSendSerResultIndT3417Exp
- Description     : 因AT&T定制需求新增发送SERVICE结果为定时器超时给MMC，
-                   CSFB或PS的SERVICE超时都调用这个
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.sunjitan 00193151      2015-01-04      Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_EMM_MmcSendSerResultIndT3417Exp(VOS_VOID)
 {
     LMM_MMC_SERVICE_RESULT_IND_STRU     *pstRsltInd = NAS_EMM_NULL_PTR;
@@ -939,36 +824,14 @@ VOS_VOID  NAS_EMM_MmcSendSerResultIndT3417Exp(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SER_GetSerStartCause
- Description     : 获取当前SER触发的原因，以函数的形式提供给SER之外的其他模
-                   块使用
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-02-17  Draft Enact
-
-*****************************************************************************/
 NAS_EMM_SER_START_CAUSE_ENUM_UINT8  NAS_EMM_SER_GetSerStartCause(
                                         VOS_VOID)
 {
     return NAS_EMM_SER_GetEmmSERStartCause();
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SER_IsCsfbProcedure
- Description     : 判断是否为CSFB流程
 
- Input           : None
- Output          : None
- Return          : VOS_UINT32
-
- History         :
-    1.lihong 00150010      2011-02-25  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_SER_IsCsfbProcedure( VOS_VOID )
 {
     if ((NAS_EMM_SER_START_CAUSE_MO_CSFB_REQ == NAS_EMM_SER_GetEmmSERStartCause())
@@ -981,18 +844,7 @@ VOS_UINT32 NAS_EMM_SER_IsCsfbProcedure( VOS_VOID )
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SER_IsCsfbProcedure
- Description     : 判断是否为MO CSFB流程
 
- Input           : None
- Output          : None
- Return          : VOS_UINT32
-
- History         :
-    1.lihong 00150010      2011-02-25  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_SER_IsMoCsfbProcedure( VOS_VOID )
 {
     if (NAS_EMM_SER_START_CAUSE_MO_CSFB_REQ == NAS_EMM_SER_GetEmmSERStartCause())
@@ -1084,17 +936,7 @@ VOS_VOID  NAS_EMM_MmSendCsfbSerPaingInd
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MmSendCsfbSerEndInd
- Description     :
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong 00150010      2012-02-23  Draft Enact
-    2.sunjitan 00193151    2014-10-11  Mod: CSFB ERR LOG上报
-*****************************************************************************/
 VOS_VOID  NAS_EMM_MmSendCsfbSerEndInd
 (
     MM_LMM_CSFB_SERVICE_RSLT_ENUM_UINT32     enCsfbSrvRslt,
@@ -1139,7 +981,6 @@ VOS_VOID  NAS_EMM_MmSendCsfbSerEndInd
 
     pstMmCsfbSerEndInd->enCsfbSrvRslt = enCsfbSrvRslt;
 
-    /* s00193151 add 2014-10-11: DTS2014102701776 for csfb err log 上报 */
     pstMmCsfbSerEndInd->ulCnCause = ucEMMCnCause;
 
     /* 发送DOPRA消息 */
@@ -1149,16 +990,7 @@ VOS_VOID  NAS_EMM_MmSendCsfbSerEndInd
 }
 /*lint +e961*/
 /*lint +e960*/
-/*****************************************************************************
- Function Name   : NAS_EMM_RestartSerProcedural
- Description     : 重启SERVICE流程
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         : wangchen  00209181   2013-03-30  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_EMM_RestartSerProcedural(VOS_VOID)
 {
     /* 重启SERVICE流程 */
@@ -1213,17 +1045,7 @@ VOS_VOID NAS_EMM_RestartSerProcedural(VOS_VOID)
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_EmcPndReqSerAbnormalCommProc
- Description     : 紧急类型的PDN连接建立引起的SERVICE异常的公共处理
- Input           : ucSs---------------------子状态
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong 00150010      2012-12-31  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_EmcPndReqSerAbnormalCommProc
 (
     NAS_EMM_SUB_STATE_ENUM_UINT16       ucSs
@@ -1249,33 +1071,24 @@ VOS_VOID  NAS_EMM_EmcPndReqSerAbnormalCommProc
                                 TI_NAS_EMM_STATE_NO_TIMER);
 }
 
-/*******************************************************************************
-  Function : NAS_EMM_ExtSerReqReTranProc
-  Input    : ulOpid
-  Output   : NONE
-  NOTE     : Ext Ser Req重传处理(目前NO RF或者HO导致Ext Ser Req上行直传发送失败,在收到系统消息后需要重传)
-  Return   : NONE
-  History  :
-    1.leixianitao 00258641       2015-2-4      新规作成
-*******************************************************************************/
+
 VOS_VOID NAS_EMM_ExtSerReqRetranProc(VOS_UINT32 ulOpid)
 {
     NAS_EMM_MRRC_MGMT_DATA_STRU         *pEmmMrrcMgmtData;
     VOS_UINT32                          ulIndex = 0;
     NAS_EMM_MRRC_DATA_REQ_STRU          *pMrrcDataMsg = VOS_NULL_PTR;
-    VOS_UINT32                          ulRrcMmDataReqMsgLen;
 
     pEmmMrrcMgmtData = NAS_EMM_FindMsgInDataReqBuffer(ulOpid);
     if(VOS_NULL_PTR == pEmmMrrcMgmtData)
     {
         return;
     }
-    ulRrcMmDataReqMsgLen = (sizeof(NAS_EMM_MRRC_DATA_REQ_STRU)+
-                                   pEmmMrrcMgmtData->ulNasMsgLength) -
-                                   NAS_EMM_4BYTES_LEN;
 
     /* 申请消息内存*/
-    pMrrcDataMsg = (NAS_EMM_MRRC_DATA_REQ_STRU *)(VOS_VOID*)NAS_LMM_MEM_ALLOC(ulRrcMmDataReqMsgLen);
+    /* 空口消息编码内存直接申请1024字节而不是实际长度, 解决:当申请内存为实际长度,
+        在加密加保护后, 加上安全头出现, 内存越界6个字节问题 */
+    pMrrcDataMsg = (NAS_EMM_MRRC_DATA_REQ_STRU *)(VOS_VOID*)NAS_LMM_MEM_ALLOC(NAS_EMM_INTRA_MSG_MAX_SIZE);
+
     if(VOS_NULL_PTR == pMrrcDataMsg)
     {
         NAS_EMM_PUBU_LOG_ERR("NAS_EMM_ProcHoWaitSysInfoBufferMsg: Mem Alloc Fail");
@@ -1300,16 +1113,7 @@ VOS_VOID NAS_EMM_ExtSerReqRetranProc(VOS_UINT32 ulOpid)
     NAS_LMM_MEM_FREE(pMrrcDataMsg);
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SER_CServiceCountProc
- Description     : AT&T美国需求对SERVICE异常失败计数的处理
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.sunjitan 00193151      2015-01-04  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SER_CServiceCountProc(VOS_VOID)
 {
     /* 打印进入该函数， INFO_LEVEL */
@@ -1334,20 +1138,7 @@ VOS_VOID  NAS_EMM_SER_CServiceCountProc(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcHoRetransESRMsg
- Description     : 针对网络侧缺陷所写函数
-                   UE发送ESR消息,并且搜到网络发送成功消息的响应,此时发送X2接口的切换
-                   UE切换成功后,MME应该重新触发eNB发送CSFB流程,因为网络异常,CSFB流程没有发起来
-                   UE未收到重定向GU的异系统流程,导致T3417ext超时
-                   优化为:UE识别该场景,重新发送一次ESR,触发网络发起CSFB流程
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.sunbing 00265702      2015-06-13  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_EMM_ProcHoRetransESRMsg(VOS_VOID)
 {
     NAS_EMM_MRRC_MGMT_DATA_STRU         *pEmmMrrcMgmtData = NAS_EMM_NULL_PTR;
@@ -1404,17 +1195,7 @@ VOS_VOID NAS_EMM_ProcHoRetransESRMsg(VOS_VOID)
 
     return;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_SndLrrcLmmCsfbNotify
- Description     : CSFB优化:LMM通知LRRC CSFB 启动和结束,LRRC用于判断是否是CSFB流程
-                   解决网侧不下发重定向释放的问题
- Input           : enCsfbStatus
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leixiantiao 00258641      2015-07-07  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_EMM_SndLrrcLmmCsfbNotify(LRRC_LNAS_CSFB_STATUS_ENUM_UINT16 enCsfbStatus)
 {
     LRRC_LMM_CSFB_NOTIFY_STRU           *pstLrrcCsfbNotifyMsg;
@@ -1455,16 +1236,7 @@ VOS_VOID NAS_EMM_SndLrrcLmmCsfbNotify(LRRC_LNAS_CSFB_STATUS_ENUM_UINT16 enCsfbSt
 
     return;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_SER_TbackoffProc
- Description     : AT&T美国需求对SERVICE异常失败补偿定时器的处理
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.yanglei 00307272      2015-12-10  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SER_TbackoffProc(VOS_VOID)
 {
 
@@ -1497,16 +1269,7 @@ VOS_VOID  NAS_EMM_SER_TbackoffProc(VOS_VOID)
 
     return;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_IsSerConditionSatisfied
- Description     : AT&T美国需求 判断SERVICE能否发起的定时器
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.yanglei 00307272      2015-12-10  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_IsSerConditionSatisfied(VOS_VOID)
 {
 

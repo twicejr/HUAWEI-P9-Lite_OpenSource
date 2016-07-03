@@ -11,7 +11,8 @@ obj-$(CONFIG_HUAWEI_BASTET) += \
 	bastet_channel.o \
 	bastet_reconn.o \
 	bastet_partner.o \
-	bastet_fastgrab.o
+	bastet_fastgrab.o \
+	bastet_filter.o \
 
 ifdef CONFIG_HISI_BALONG_MODEM
 EXTRA_CFLAGS += -DCONFIG_HUAWEI_BASTET_COMM

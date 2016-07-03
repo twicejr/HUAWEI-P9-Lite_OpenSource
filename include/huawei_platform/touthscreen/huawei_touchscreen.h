@@ -611,6 +611,7 @@ struct ts_device_data{
 	int x_max_mt;
 	int y_max_mt;
 	int lcd_full;
+	int test_enhance_raw_data_capacitance;
 	struct ts_device_ops *ops;
 	void * prv_data;
 	struct ts_bus_info *bops;

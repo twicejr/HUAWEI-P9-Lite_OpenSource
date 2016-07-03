@@ -1,24 +1,4 @@
-/************************************************************************
-*                                                                      *
-*                             lcp.c                                    *
-*                                                                      *
-*  Project Code:       VRP3.0                                          *
-*  Create Date:        2000/04/04                                      *
-*  Author:             Deng Yi Ou                                      *
-*  Modify Date:                                                        *
-*  Document:                                                           *
-*  Function:           PPP的LCP协议模块                                *
-*  Others:                                                             *
-*----------------------------------------------------------------------*
-*                                                                      *
-*  Copyright 2000-2002 VRP3.0 Team Beijing Institute HuaWei Tech, Inc. *
-*                      ALL RIGHTS RESERVED                             *
-*                                                                      *
-*----------------------------------------------------------------------*
-*                                                                      *
-*   这个文件定义了LCP协议模块的全部接口函数和内部处理函数              *
-*                                                                      *
-************************************************************************/
+
 
 
 /*****************************************************************************
@@ -79,22 +59,7 @@ PPPFSMCALLBACK_S g_stLcpCallbacks =
 /*lint -save -e958 */
 /*lint -e{572,778}*/
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：LCP接收外部事件.事件包括：Up、Down、Open、Close            *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstLcpInfo:LCP控制块指针                                   *
-*                ulCmd:命令字,可以为如下值:                                 *
-*                      PPPFSMLOWERDOWN:下层Down                             *
-*                      PPPFSMLOWERUP:下层Up                                 *
-*                      PPPFSMOPEN:Open事件                                  *
-*                      PPPFSMCLOSE:Down事件                                 *
-*                pPara:事件的参数,为NULL                                    *
-* OUTPUT       ：                                                           *
-* RETURN       ：NULL                                                       *
-* CALLED BY    ：PPP_Core_ReceiveEventFromShell、PPP_Core_RejectProtocol    *
-****************************************************************************/
+
 VOID PPP_LCP_ReceiveEventFromCore (VOID *pstLcpInfo, VOS_UINT32 ulCmd, char *pPara)
 {
     PPPFSM_S *pstFsm;
@@ -125,19 +90,7 @@ VOID PPP_LCP_ReceiveEventFromCore (VOID *pstLcpInfo, VOS_UINT32 ulCmd, char *pPa
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：LCP接收报文                                                *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstLcpInfo:LCP控制块                                       *
-*                pHead:存放报文内存的头指针,应负责释放这段内存              *
-*                pPacket:报文头位置                                         *
-*                ulLen:报文长度                                             *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_Core_ReceivePacketFromShell                            *
-****************************************************************************/
+
 VOID PPP_LCP_ReceivePacket (VOID *pstLcpInfo, UCHAR* pHead, UCHAR* pPacket, VOS_UINT32 ulLen)
 {
     PPPFSM_S *pstFsm = NULL;
@@ -153,8 +106,7 @@ VOID PPP_LCP_ReceivePacket (VOID *pstLcpInfo, UCHAR* pHead, UCHAR* pPacket, VOS_
 
     pstPppInfo = (((PPPLCPINFO_S*)pstLcpInfo)->pstPppInfo);
 
-    /*Added by y00125257 DTS2011051206336: 设置标志位表示收到过消息，如果未收到消息
-    则不统计失败*/
+    
     if (pstPppInfo != NULL)
     {
         PPP_DBG_OK_CNT(PPP_PHOK_914);
@@ -162,21 +114,12 @@ VOID PPP_LCP_ReceivePacket (VOID *pstLcpInfo, UCHAR* pHead, UCHAR* pPacket, VOS_
     }
 
     /* PPP ID参数只有在支持CCP压缩时在CCP模块有效,其他模带参是为了接口统一 */
-    PPP_FSM_ReceivePacket(pstFsm, pHead, pPacket, ulLen, 1);/* Modified by liutao 38563 at 2004-09-22 V800R002 for PPP压缩移植 */
+    PPP_FSM_ReceivePacket(pstFsm, pHead, pPacket, ulLen, 1);
     return;
 
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：确定LCP需要协商那些参数,在LCP初始化时进行                  *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm    :状态机                                          *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：状态机中执行tls动作的宏PPP_FSM_tls                         *
-****************************************************************************/
+
 VOID PPP_LCP_resetci(PPPFSM_S *pstFsm)
 {
     PPPLCPINFO_S *pstInfo;
@@ -222,9 +165,7 @@ VOID PPP_LCP_resetci(PPPFSM_S *pstFsm)
     pstWantOptions->neg_upap = 0;
     pstWantOptions->neg_eap = 0;
 
-    /* Added start by ZhangJun HT04406 at 2005-09-21 for PPP鉴权 */
     pstWantOptions->neg_chap = 0;
-    /* Added end by ZhangJun HT04406 at 2005-09-21 for PPP鉴权 */
     pstWantOptions->neg_magicnumber = 1;
 
     pstWantOptions->neg_pcompression  = g_ulPCompressOnoff;
@@ -285,8 +226,7 @@ VOID PPP_LCP_resetci(PPPFSM_S *pstFsm)
 
     pstFsm->ulTimeOutTime = pstConfig->ulNegTimeOut;
 
-    /* modified by gxf for GGSN80 20030224  ulEchoTimeOutTime=0不启动发送Echo
-       Request的定时器*/
+    
     pstFsm->ulEchoTimeOutTime = 0 /*IF_GetIfByIndex(pstPppInfo->ulIfIndex)->if_ulKeepAlive*/;
 
     if ((pstPppInfo->bReNego) ||(pstPppInfo->bReNegoV6))
@@ -298,16 +238,7 @@ VOID PPP_LCP_resetci(PPPFSM_S *pstFsm)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：计算要发送的Config Request报文数据部分长度                 *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm: 状态机                                             *
-* OUTPUT       ：                                                           *
-* RETURN       ：Config Request报文长度                                     *
-* CALLED BY    ：PPP_FSM_SendConfigReq                                      *
-****************************************************************************/
+
 VOS_UINT16 PPP_LCP_cilen(PPPFSM_S *pstFsm)
 {
     PPP_LCP_OPTION_S *pstGotOptions;
@@ -340,18 +271,7 @@ VOS_UINT16 PPP_LCP_cilen(PPPFSM_S *pstFsm)
     /*End of liushuang*/
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：组织一个Config Request报文内容                             *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm: 状态机                                             *
-*                pPacket:报文头位置                                         *
-* OUTPUT       ：                                                           *
-*                pPacket:组装好的报文                                       *
-* RETURN       ：                                                           *
-* CALLED BY    ：PPP_FSM_SendConfigReq                                      *
-****************************************************************************/
+
 VOID PPP_LCP_addci(PPPFSM_S *pstFsm, UCHAR *pPacket)
 {
     PPP_LCP_OPTION_S *pstGotOptions;
@@ -431,18 +351,7 @@ VOID PPP_LCP_addci(PPPFSM_S *pstFsm, UCHAR *pPacket)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：处理收到的Config ACK报文                                   *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm: 状态机                                             *
-*                pPacket:报文头位置                                         *
-*                ulLen:  报文长度                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：VOS_OK,合法的ACK报文;VOS_ERR:非法的ACK报文                 *
-* CALLED BY    ：PPP_FSM_ReceiveConfAck                                     *
-****************************************************************************/
+
 VOS_UINT16 PPP_LCP_ackci(PPPFSM_S *pstFsm, UCHAR *pPacket, VOS_UINT32 ulLen)
 {
     PPP_LCP_OPTION_S *pstGotOptions;
@@ -584,18 +493,7 @@ bad:
     return VOS_ERR;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：处理收到的Config Nak报文                                   *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm: 状态机                                             *
-*                pPacket:报文头位置                                         *
-*                ulLen:  报文长度                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：VOS_OK,合法的NAK报文;VOS_ERR:非法的NAK报文                 *
-* CALLED BY    ：PPP_FSM_ReceiveConfNakRej                                  *
-****************************************************************************/
+
 VOS_UINT16 PPP_LCP_nakci(PPPFSM_S *pstFsm, UCHAR *pPacket, VOS_UINT32 ulLen)
 {
     PPP_LCP_OPTION_S *pstGotOptions, *pstWantOptions;
@@ -952,18 +850,7 @@ bad:
     return VOS_ERR;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：处理收到的Config Reject报文                                *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm: 状态机                                             *
-*                pPacket:报文头位置                                         *
-*                ulLen:  报文长度                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：VOS_OK,合法的reject报文;VOS_ERR:非法的reject报文           *
-* CALLED BY    ：PPP_FSM_ReceiveConfNakRej                                  *
-****************************************************************************/
+
 VOS_UINT16 PPP_LCP_rejci(PPPFSM_S *pstFsm, UCHAR *pPacket, VOS_UINT32 ulLen)
 {
     PPP_LCP_OPTION_S *pstGotOptions;
@@ -1085,20 +972,7 @@ bad:
     return VOS_ERR;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：分析收到的config Request报文                               *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm: 状态机                                             *
-*                pPacket:报文头位置                                         *
-*                pulLen: 报文长度                                           *
-* OUTPUT       ：                                                           *
-*                pPacket:要发给对方的报文(ACK或NAK或REJ)内容                *
-*                pulLen: 要发给对方的报文的长度                             *
-* RETURN       ：发给对方的报文类型:CONFACK、CONFNAK或者CONFREJ             *
-* CALLED BY    ：PPP_FSM_ReceiveConfReq函数中由PPP_FSM_reqci宏调用          *
-****************************************************************************/
+
 UCHAR PPP_LCP_reqci(PPPFSM_S *pstFsm, UCHAR *pPacket, VOS_UINT32 *pulLen)
 {
     PPP_LCP_OPTION_S *pstAllowOptions;
@@ -1293,7 +1167,6 @@ UCHAR PPP_LCP_reqci(PPPFSM_S *pstFsm, UCHAR *pPacket, VOS_UINT32 *pulLen)
                 {
                     if (cishort == PPP_EAP)
                     {
-                        /* 只判断长度就可以了mode by z00129699 for DTS2013102109070 */
                         if (cilen != PPP_CILEN_SHORT)
                         {
                             orc = CONFREJ;
@@ -1668,25 +1541,10 @@ endswitch:
     return (rc);            /* Return final code */
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：处理子协议私有的报文私有的报文类型                         *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm: 状态机                                             *
-*                ucCode: 报文类型                                           *
-*                ucId:   报文ID                                             *
-*                pHead:  存放报文内存的头指针,应负责释放这段内存            *
-*                pPacket:报文头位置                                         *
-*                ulLen:  报文长度                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：VOS_OK :合法报文                                           *
-*                VOS_ERR:不能识别的报文                                     *
-* CALLED BY    ：PPP_FSM_ReceivePacket                                      *
-****************************************************************************/
+
 /*lint -e529*/
 VOS_UINT16 PPP_LCP_extcode(PPPFSM_S *pstFsm, UCHAR ucCode, UCHAR ucId, UCHAR *pHead, UCHAR *pPacket, VOS_UINT32
-                       ulLen, VOS_UINT32 ulUserIndex)/* Added by liutao 38563 at 2004-10-08 V800R002 for PPP压缩移植 */
+                       ulLen, VOS_UINT32 ulUserIndex)
 {
     PPP_LCP_OPTION_S *pstGotOptions;
     VOS_UINT32 ulMagicNumber;
@@ -1758,16 +1616,7 @@ VOS_UINT16 PPP_LCP_extcode(PPPFSM_S *pstFsm, UCHAR ucCode, UCHAR ucId, UCHAR *pH
     return VOS_OK;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：状态机up的处理函数                                         *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm:状态机                                              *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：是回调函数，由状态机tlu动作宏(PPP_FSM_tlu)调用             *
-****************************************************************************/
+
 VOID PPP_LCP_up(PPPFSM_S *pstFsm)
 {
     VOS_UINT32 ulAccept = 0;
@@ -1814,16 +1663,7 @@ VOID PPP_LCP_up(PPPFSM_S *pstFsm)
     }
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：状态机down的处理函数                                       *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm:状态机                                              *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：是回调函数，由状态机tld动作宏(PPP_FSM_tld)调用             *
-****************************************************************************/
+
 VOID PPP_LCP_down(PPPFSM_S *pstFsm)
 {
     PPPINFO_S *pstPppInfo = NULL;
@@ -1853,16 +1693,7 @@ VOID PPP_LCP_down(PPPFSM_S *pstFsm)
                                       NULL);
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：状态机finished的处理函数                                   *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm:状态机                                              *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：是回调函数，由状态机tlf动作宏(PPP_FSM_tlf)调用             *
-****************************************************************************/
+
 VOID PPP_LCP_finished(PPPFSM_S *pstFsm)
 {
     PPPINFO_S                          *pstPppInfo = NULL;
@@ -1908,16 +1739,7 @@ VOID PPP_LCP_finished(PPPFSM_S *pstFsm)
                                       NULL);
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：状态机starting的处理函数                                   *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm:状态机                                              *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：是回调函数，由状态机tls动作宏(PPP_FSM_tls)调用             *
-****************************************************************************/
+
 VOID PPP_LCP_starting(PPPFSM_S *pstFsm)
 {
     PPP_Core_ReceiveEventFromProtocol(((PPPINFO_S *)pstFsm->pPppInfo),
@@ -1925,16 +1747,7 @@ VOID PPP_LCP_starting(PPPFSM_S *pstFsm)
                                       NULL);
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：初始化LCP控制块                                            *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块                                       *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：封装函数                                                   *
-****************************************************************************/
+
 VOID PPP_LCP_Init(PPPINFO_S* pstPppInfo)
 {
     PPPLCPINFO_S *pstLcpInfo;
@@ -1962,8 +1775,7 @@ VOID PPP_LCP_Init(PPPINFO_S* pstPppInfo)
     pstFsm->ucEchoId = 0;
     pstFsm->ulEchoTimeoutID = 0;
 
-    /* modified by gxf for GGSN80 20030224  ulEchoTimeOutTime=0不启动发送Echo
-       Request的定时器*/
+    
     pstFsm->ulEchoTimeOutTime = 0 /*IF_GetIfByIndex(pstPppInfo->ulIfIndex)->if_ulKeepAlive*/;
 
     /*luofeng37050notify  协商参数值初始化,是否协商某个参数则在resetci函数中初始化 */
@@ -1978,19 +1790,7 @@ VOID PPP_LCP_Init(PPPINFO_S* pstPppInfo)
     pstAllowOptions->chap_mdtype = CHAP_DIGEST_MD5;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：处理收到的Echo Reply报文                                   *
-* MODIFY DATE  ： q34846 2004/06/17                                                                   *
-* INPUT        ：pstFsm: 状态机                                             *
-*                ucId:   报文ID                                             *
-*                pPacket:报文头位置                                         *
-*                ulLen:  报文长度                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_LCP_extcode                                            *
-****************************************************************************/
+
 
 /*r002*/
 VOID PPP_LCP_ReceiveEchoReply(PPPFSM_S *pstFsm, UCHAR ucId, UCHAR *pPacket, VOS_UINT32 ulLen)
@@ -2095,16 +1895,7 @@ A11PROC:
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：发送Echo Request报文,并设置定时器准备下次发送              *
-* MODIFY DATE  ：q34846 2004/06/17                                                           *
-* INPUT        ：pFsm:状态机                                                *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：是定时器的回调函数,定时器超时时调用                        *
-****************************************************************************/
+
 VOID PPP_LCP_EchoTimeOut(VOID *pFsm)
 {
     PPPFSM_S *pstFsm = (PPPFSM_S*)pFsm;
@@ -2147,16 +1938,7 @@ VOID PPP_LCP_EchoTimeOut(VOID *pFsm)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：发送Echo Request报文                                       *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm:状态机                                              *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_LCP_EchoTimeOut                                        *
-****************************************************************************/
+
 /*lint -e529*/
 VOID PPP_LCP_SendEchoRequest(PPPFSM_S *pstFsm)
 {
@@ -2236,18 +2018,7 @@ VOID PPP_LCP_SendEchoRequest(PPPFSM_S *pstFsm)
 
 /*r002 end*/
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：LCP up后对协商结果进行检查,并确定以后的协商参数            *
-* MODIFY DATE  ：modified by gxf 20030414                                   *
-* INPUT        ：pstPppInfo:PPP控制块                                       *
-* OUTPUT       ：                                                           *
-* RETURN       ：VOS_ERR:协商结果不可接受,调用者应结束协商                  *
-*                VOS_OK :协商结果可以接受,调用者应向上层协议报UP            *
-* CALLED BY    ：PPP_LCP_up                                                 *
-mode by zhaichao 00129699 2012.11.21
-****************************************************************************/
+
 VOS_UINT32 PPP_LCP_UpResetCi(PPPINFO_S *pstPppInfo)
 {
     PPPLCPINFO_S *pstLcpInfo;
@@ -2281,7 +2052,6 @@ VOS_UINT32 PPP_LCP_UpResetCi(PPPINFO_S *pstPppInfo)
     {
         pstHisOptions->neg_upap = 0;
     }
-    /*手机是客户端Add by chenmin 00265046*/
     pstPppInfo->bPppClient = 1;
 
     /*-------------------------------------------------------*/
@@ -2336,17 +2106,7 @@ VOS_UINT32 PPP_LCP_UpResetCi(PPPINFO_S *pstPppInfo)
 
  #ifdef __PRODUCT_TYPE_PDSN80
 
-/****************************************************************************
-* CREATE DATE  ：2004/06/17                                                 *
-* CREATED BY   ：QQ                                                     *
-* FUNCTION     ：TDORMANT定时器超时调用该函数发送echo消息       *
-* MODIFY DATE  ：                               *
-* INPUT        ：ucFlag ucFlag为1，标识通知PPPC发送Echo消息，ucFlag为0，标识终止和Echo相关的处理。 *
-* OUTPUT       ：                                                           *
-* RETURN       ：VOS_ERR:协商结果不可接受,调用者应结束协商                  *
-*                VOS_OK :协商结果可以接受,调用者应向上层协议报UP            *
-* CALLED BY    ：A11_ActiveStateMachProc                                                *
-****************************************************************************/
+
 VOS_UINT32 A11_PPPC_EchoSet(A11_ECHO_E ucFlag, VOS_UINT32 ulRPIndex)
 {
     PPPINFO_S *pstPppInfo;
@@ -2387,7 +2147,6 @@ VOS_UINT32 A11_PPPC_EchoSet(A11_ECHO_E ucFlag, VOS_UINT32 ulRPIndex)
 
     pstFsm = &(pstLcpInfo->stFsm);
 
-    /* DTS2012030802073 修改echo超时取配置，次数默认还是5次 */
     if (A11_SEND_ECHO == ucFlag)
     {
         pstFsm->ulEchoTimeOutTime = pstPppInfo->pstUsedConfigInfo->ulNegTimeOut;

@@ -1,37 +1,4 @@
-/*******************************************************************************
-  Copyright     : 2005-2007, Huawei Tech. Co., Ltd.
-  File name     : EmmTAU.c
-  Description   : EMM TAU REQUEST功能相关处理用源文件
-  Function List :
-    01.   NAS_EMM_MsRegSsNormalMsgSysinfo
-    02.   NAS_EMM_MsRegSsNormalMsgT3411Exp
-    03.   NAS_EMM_MsRegSsNormalMsgT3412Exp
-    04.   NAS_EMM_MsRegSsNormalMsgT3402Exp
-    05.   NAS_EMM_MsRegSsNormalMsgMmIntraTAUReq
-    06.   NAS_EMM_MsRegSsAtpUpdataMsgSysinfo
-    07.   NAS_EMM_MsRegSsAtpUpdataMsgT3411Exp
-    08.   NAS_EMM_MsRegSsAtpUpdataMsgT3402Exp
-    09.   NAS_EMM_MsRegSsLimitSRMsgSysinfo
-    10.   NAS_EMM_MsRegSsPLMNSearchMsgSysinfo
-    11.   NAS_EMM_MsRegSsUpdataNeedMsgSysinfo
-    12.   NAS_EMM_MsRegSsNocellMsgSysinfo
-    13.   NAS_EMM_MsTAUInitSsWaitCNCnfMsgTAUAcp
-    14.   NAS_EMM_MsTAUInitSsWaitCNCnfMsgTAURej
-    15.   NAS_EMM_MsTAUInitSsWaitCNCnfMsgT3430Exp
-    16.   NAS_EMM_MsTAUInitSsWaitCNCnfMsgSysinfo
-    17.   NAS_EMM_MsTauInitSsWaitCNCnfMsgIntraConnectFailInd
-    18.   NAS_EMM_MsTAUInitSsWaitCNCnfMsgRrcRelInd
-    19.   NAS_EMM_MsTAUInitSsWaitMrrcRelMsgMrrcRelInd
-    20.   NAS_EMM_MsSERInitSsWaitCNCnfMsgSysinfo
-    21.   NAS_EMM_MsSERInitSsWaitCNCnfMsgT3411Exp
-    22.   NAS_EMM_MsSERInitSsWaitCNCnfMsgT3412Exp
-    23.   NAS_EMM_MsSERInitSsWaitCNCnfMsgT3402Exp
-    24.   NAS_EMM_MsSERInitSsWaitCNCnfMsgMmIntraTAUReq
 
-  History       :
-    1.  Zhouyan 00125190  2008.09.17  新规作成
-    2.  leili       00132387    2009.06.25   BJ9001269 收到系统消息后处理优化
-*******************************************************************************/
 
 /*****************************************************************************
   1 Include HeadFile
@@ -141,24 +108,7 @@ NAS_LMM_TAU_COLLISION_DETACH_RCV_CN_REJ_PROC_STRU  gstEmmTauCollisionDetachRcvCn
 VOS_UINT32 gstEmmTauCollisionDetachRcvCnRejProcTblLen = sizeof(gstEmmTauCollisionDetachRcvCnRejProcTbl)
                                         / sizeof(NAS_LMM_TAU_COLLISION_DETACH_RCV_CN_REJ_PROC_STRU);
 
-/*******************************************************************************
-Module   : NAS_EMM_TAU_TAUReqRejectCasue367
-Function : 收到NAS_EMM_TAU_REJ_CAUSE367原语后的处理
-Input    : VOS_VOID *pMsg     原语首地址
-Output   : 无
-NOTE     : 1)set the EPS update status to EU3 ROAMING NOT ALLOWED
-           2)delete any GUTI,
-           3)last visited registered TAI, TAI list and KSI.
-           4)consider the USIM as invalid for EPS services until switching off or the UICC containing the USIM is removed.
-           5)delete the list of equivalent PLMNs
-           6)enter the state EMM-DEREGISTERED.
-Return   : VOS_UINT32
-History  :
-     1.  Zhouyan      00125190  2008.09.09  新规作成
-     2.  Zhengjunyan  00148421  2009.01.06  mod
-     3.  lihong       00150010  2012.12.14  Modify:Emergency
-     4.  sunjitan     00193151  2015-08-04  Modify for MT_CSFB_IMPROVED_PHASEII
-*******************************************************************************/
+
 VOS_VOID NAS_EMM_TAU_TAUReqRejectCasue367
 (
     NAS_EMM_CN_CAUSE_ENUM_UINT8         ucTAUrejcause,
@@ -217,18 +167,7 @@ VOS_VOID NAS_EMM_TAU_TAUReqRejectCasue367
 }
 
 
-/*******************************************************************************
-Module   : NAS_EMM_TAU_TAUReqRejectCasue8
-Function : 收到NAS_EMM_SER_REJ_CAUSE8原语后的处理
-Input    : 无
-Output   : 无
-NOTE     :
 
-Return   : VOS_UINT32
-History  :
-    1.  wangchen 00209181       2014-09-28  新规作成
-    2.  sunjitan 00193151       2015-08-04  Modify for MT_CSFB_IMPROVED_PHASEII
-*******************************************************************************/
 VOS_VOID NAS_EMM_TAU_TAUReqRejectCasue8
 (
     NAS_EMM_CN_CAUSE_ENUM_UINT8         ucTAUrejcause,
@@ -261,25 +200,7 @@ VOS_VOID NAS_EMM_TAU_TAUReqRejectCasue8
 
 }
 
-/*******************************************************************************
-Module   : NAS_EMM_TAU_TAUReqRejectCasue9
-Function : 收到NAS_EMM_SER_REJ_CAUSE9原语后的处理
-Input    : VOS_VOID *pMsg     原语首地址
-Output   : 无
-NOTE     :1)set the EPS update status to EU2 NOT UPDATED
-          2)delete any GUTI, last visited registered TAI, TAI list and KSI.
-          3)delete the list of equivalent PLMNs
-          4)enter the state EMM-DEREGISTERED.
-          5)automatically initiate the attach procedure.
 
-Return   : VOS_UINT32
-History  :
-    1.  Zhouyan      00125190  2008.09.09  新规作成
-    2.  Zhengjunyan  00148421  2009.01.06  mod
-    2.  lihong       00150010  2012.12.14  Modify:Emergency
-    4.  wangchen     00209181  2014.9.03   Modify:T3440
-    5.  sunjitan     00193151  2015-08-04  Modify for MT_CSFB_IMPROVED_PHASEII
-*******************************************************************************/
 VOS_VOID NAS_EMM_TAU_TAUReqRejectCasue9
 (
     NAS_EMM_CN_CAUSE_ENUM_UINT8         ucTAUrejcause,
@@ -378,23 +299,7 @@ VOS_VOID NAS_EMM_TAU_TAUReqRejectCasue9
 
 }
 
-/*******************************************************************************
-Module   : NAS_EMM_TAU_TAUReqRejectCasue10
-Function : 收到NAS_EMM_SER_REJ_CAUSE10原语后的处理
-Input    : VOS_VOID *pMsg     原语首地址
-Output   : 无
-NOTE     :  The UE shall delete the list of equivalent PLMNs
-            and shall enter the state EMM-DEREGISTERED.NORMAL-SERVICE.
-            The UE shall then perform a new attach procedure
-Return   : VOS_UINT32
-History  :
-    1.  Zhouyan      00125190  2008.09.09  新规作成
-    2.  Zhengjunyan  00148421  2009.01.06  mod
-    3.  Zhengjunyan  00148421  2010.11.08  Mod:TAU REJ #10不释放当前连接
-    4.  lihong       00150010  2011-09-29  Mod:combined detach
-    5.  lihong       00150010  2012.12.14  Modify:Emergency
-    6.  sunjitan     00193151  2015-08-04  Modify for MT_CSFB_IMPROVED_PHASEII
-*******************************************************************************/
+
 /*lint -e960*/
 VOS_VOID NAS_EMM_TAU_TAUReqRejectCasue10
 (
@@ -486,25 +391,7 @@ VOS_VOID NAS_EMM_TAU_TAUReqRejectCasue10
     return;
 }
 /*lint +e960*/
-/*******************************************************************************
-Module   : NAS_EMM_TAU_TAUReqRejectCasue11
-Function : 收到NAS_EMM_SER_REJ_CAUSE11原语后的处理
-Input    : VOS_VOID *pMsg     原语首地址
-Output   : 无
-NOTE     : 1)set the EPS update status to EU3 ROAMING NOT ALLOWED (and shall store it according to subclause 5.1.3.3)
-           2)delete any GUTI, last visited registered TAI, TAI list and KSI.
-           3)reset the tracking area updating attempt counter
-           4)delete the list of equivalent PLMNs
-           5)enter the state EMM-DEREGISTERED.PLMN-SEARCH.
-           6)store the PLMN identity in the "forbidden PLMN list".
-           7)perform a PLMN selection according to 3GPP TS 23.122 [3].
-Return   : VOS_UINT32
-History  :
-  1.  Zhouyan      00125190  2008.09.09  新规作成
-  2.  Zhengjunyan  00148421  2009.01.06  mod
-  3.  lihong       00150010  2012.12.14  Modify:Emergency
-  4.  sunjitan     00193151  2015-08-04  Modify for MT_CSFB_IMPROVED_PHASEII
-*******************************************************************************/
+
 /*lint -e960*/
 VOS_VOID NAS_EMM_TAU_TAUReqRejectCasue11
 (
@@ -560,24 +447,7 @@ VOS_VOID NAS_EMM_TAU_TAUReqRejectCasue11
 }
 /*lint +e960*/
 
-/*******************************************************************************
-Module   : NAS_EMM_TAU_TAUReqRejectCasue12
-Function : 收到NAS_EMM_SER_REJ_CAUSE11原语后的处理
-Input    : VOS_VOID *pMsg     原语首地址
-Output   : 无
-NOTE     :1)set the EPS update status to EU3 ROAMING NOT ALLOWED (and shall store it according to subclause 5.1.3.3)
-          2)and shall delete any GUTI, last visited registered TAI, TAI list and KSI.
-          3)reset the tracking area updating attempt counter
-          4)enter the state EMM-DEREGISTERED.LIMITED-SERVICE.
-          5)store the current TAI in the list of "forbidden tracking areas for regional provision of service".
 
-Return   : VOS_UINT32
-History  :
-  1.  Zhouyan      00125190  2008.09.09  新规作成
-  2.  Zhengjunyan  00148421  2009.01.06  mod
-  3.  lihong       00150010  2012.12.14  Modify:Emergency
-  4.  sunjitan     00193151  2015-08-04  Modify for MT_CSFB_IMPROVED_PHASEII
-*******************************************************************************/
 /*lint -e960*/
 VOS_VOID NAS_EMM_TAU_TAUReqRejectCasue12
 (
@@ -649,26 +519,7 @@ VOS_VOID NAS_EMM_TAU_TAUReqRejectCasue12
 
 }
 /*lint +e960*/
-/*******************************************************************************
-Module   : NAS_EMM_TAU_TAUReqRejectCasue13
-Function : 收到NAS_EMM_SER_REJ_CAUSE11原语后的处理
-Input    : VOS_VOID *pMsg     原语首地址
-Output   : 无
-NOTE     :1)set the EPS update status to EU3 ROAMING NOT ALLOWED (and shall store it according to subclause 5.1.3.3)
-          2)delete the list of equivalent PLMNs.
-          3)reset the tracking area updating attempt counter
-          4)change to state EMM-REGISTERED.PLMN-SEARCH.
-          5)store the current TAI in the list of "forbidden tracking areas for roaming"
-          6)remove the current TAI from the stored TAI list if present.
-          7)shall perform a PLMN selection according to 3GPP TS 23.122 [3].
 
-Return   : VOS_UINT32
-History  :
-   1.  Zhouyan      00125190  2008.09.09  新规作成
-   2.  Zhengjunyan  00148421  2009.01.06  mod
-   3.  lihong       00150010  2012.12.14  Modify:Emergency
-   4.  sunjitan     00193151  2015-08-04  Modify for MT_CSFB_IMPROVED_PHASEII
-*******************************************************************************/
 /*lint -e960*/
 VOS_VOID NAS_EMM_TAU_TAUReqRejectCasue13
 (
@@ -758,24 +609,7 @@ VOS_VOID NAS_EMM_TAU_TAUReqRejectCasue13
 
 }
 /*lint +e960*/
-/*******************************************************************************
-Module   : NAS_EMM_TAU_TAUReqRejectCasue14
-Function : 收到NAS_EMM_SER_REJ_CAUSE11原语后的处理
-Input    : VOS_VOID *pMsg     原语首地址
-Output   : 无
-NOTE     : 1)set the EPS update status to EU3 ROAMING NOT ALLOWED (and shall store it according to subclause 5.1.3.3).
-           2)delete any GUTI, last visited registered TAI, TAI list and KSI.
-           3)enter the state EMM-DEREGISTERED.PLMN-SEARCH.
-           4)store the PLMN identity in the "forbidden PLMNs for GPRS service" list.
-           5)perform a PLMN selection according to 3GPP TS 23.122 [3].
 
-Return   : VOS_UINT32
-History  :
-     1.  Zhouyan      00125190  2008.09.09  新规作成
-     2.  Zhengjunyan  00148421  2009.01.06  mod
-     3.  lihong       00150010  2012.12.14  Modify:Emergency
-     4.  sunjitan     00193151  2015-08-04  Modify for MT_CSFB_IMPROVED_PHASEII
-*******************************************************************************/
 /*lint -e960*/
 VOS_VOID NAS_EMM_TAU_TAUReqRejectCasue14
 (
@@ -828,25 +662,7 @@ VOS_VOID NAS_EMM_TAU_TAUReqRejectCasue14
 
 }
 /*lint +e960*/
-/*******************************************************************************
-Module   : NAS_EMM_TAU_TAUReqRejectCasue15
-Function : 收到NAS_EMM_SER_REJ_CAUSE11原语后的处理
-Input    : VOS_VOID *pMsg     原语首地址
-Output   : 无
-NOTE     :1)set the EPS update status to EU3 ROAMING NOT ALLOWED (and shall store it according to subclause 5.1.3.3).
-          2)reset the tracking area updating attempt counter
-          3)enter the state EMM-REGISTERED.LIMITED-SERVICE.
-          4)store the current TAI in the list of "forbidden tracking areas for roaming"
-          5)remove the current TAI from the stored TAI list if present.
-          6)search for a suitable cell in another tracking area or in another location area in the same PLMN according to 3GPP TS 36.304 [13].
 
-Return   : VOS_UINT32
-History  :
-     1.  Zhouyan      00125190  2008.09.09  新规作成
-     2.  Zhengjunyan  00148421  2009.01.06  mod
-     3.  lihong       00150010  2012.12.14  Modify:Emergency
-     4.  sunjitan     00193151  2015-08-04  Modify for MT_CSFB_IMPROVED_PHASEII
-*******************************************************************************/
 /*lint -e960*/
 VOS_VOID NAS_EMM_TAU_TAUReqRejectCasue15
 (
@@ -953,25 +769,7 @@ VOS_VOID NAS_EMM_TAU_TAUReqRejectCasue15
 /*lint +e960*/
 
 
-/*******************************************************************************
-Module   : NAS_EMM_TAU_TAUReqRejectCasue22
-Function : 收到NAS_EMM_SER_REJ_CAUSE22原语后的处理
-Input    : VOS_VOID *pMsg     原语首地址
-Output   : 无
-NOTE     :1)set the EPS update status to EU2 NOT UPDATED. (and shall store it according to subclause 5.1.3.3).
-          2)reset the tracking area updating attempt counter
-          3)enter the state EMM-REGISTERED.ATTEMPTING-TO-UPDATE.
-          4)The UE shall stop timer T3346 if it is running.
-          5)If the TRACKING AREA UPDATE REJECT message is integrity protected,
-            the UE shall start timer with the value provided in the T3346 value IE
-          6)If the TRACKING AREA UPDATE REJECT message is not integrity protected,
-            the UE shall start timer T3346 with a random value from the default range specified in 3GPP TS 24.008
 
-Return   : VOS_UINT32
-History  :
-     1.  wangchen 00209181  2015-02-10  新规作成
-     2.  sunjitan 00193151  2015-08-04  Modify for MT_CSFB_IMPROVED_PHASEII
-*******************************************************************************/
 VOS_VOID NAS_EMM_TAU_TAUReqRejectCasue22
 (
     NAS_EMM_CN_CAUSE_ENUM_UINT8         ucTAUrejcause,
@@ -1027,18 +825,7 @@ VOS_VOID NAS_EMM_TAU_TAUReqRejectCasue22
 
 
 #if(FEATURE_ON == FEATURE_CSG)
-/*******************************************************************************
-Module   : NAS_EMM_TAU_TAUReqRejectCasue25
-Function : 收到NAS_EMM_SER_REJ_CAUSE25原语后的处理
-Input    : VOS_VOID *pMsg     原语首地址
-Output   : 无
-NOTE     :
 
-Return   : VOS_UINT32
-History  :
-     1.  yanglei 00307272  2015-09-25  新规作成
-
-*******************************************************************************/
 VOS_VOID NAS_EMM_TAU_TAUReqRejectCasue25
 (
     NAS_EMM_CN_CAUSE_ENUM_UINT8         ucTAUrejcause,
@@ -1108,17 +895,7 @@ VOS_VOID NAS_EMM_TAU_TAUReqRejectCasue25
 }
 #endif
 
-/* leixiantiao 00258641 重构代码降低圈复杂度 2014-7-30 begin */
-/*******************************************************************************
-Module   : NAS_EMM_TAU_TAUReqRejectCasue35
-Function : 收到NAS_EMM_SER_REJ_CAUSE35原语后的处理
-Input    : NAS_EMM_CN_CAUSE_ENUM_UINT8   ucTAUrejcause
-Output   : 无
 
-Return   : None
-History  :
-     1.  leixiantiao      00258641  2014-07-30
-*******************************************************************************/
 VOS_VOID NAS_EMM_TAU_TAUReqRejectCasue35
 (
     NAS_EMM_CN_CAUSE_ENUM_UINT8   ucTAUrejcause,
@@ -1138,7 +915,6 @@ VOS_VOID NAS_EMM_TAU_TAUReqRejectCasue35
     }
     return;
 }
-/* leixiantiao 00258641 重构代码降低圈复杂度 2014-7-30 end */
 
 /*lint -e960*/
 
@@ -1226,18 +1002,7 @@ VOS_VOID NAS_EMM_TAU_TAUReqRejectCasue40
 /*lint +e960*/
 
 
-/*******************************************************************************
-Module   : NAS_EMM_TAU_TAUReqRejectCasue42
-Function : 收到NAS_EMM_SER_REJ_CAUSE42原语后的处理
-Input    : VOS_VOID *pMsg     原语首地址
-Output   : 无
-NOTE     :
 
-Return   : VOS_UINT32
-History  :
-    1.  wangchen 00209181   2014-09-01  新规作成
-    2.  sunjitan 00193151   2015-08-04  Modify for MT_CSFB_IMPROVED_PHASEII
-*******************************************************************************/
 VOS_VOID NAS_EMM_TAU_TAUReqRejectCasue42Release11
 (
     NAS_EMM_CN_CAUSE_ENUM_UINT8         ucTAUrejcause,
@@ -1291,17 +1056,7 @@ VOS_VOID NAS_EMM_TAU_TAUReqRejectCasue42Release11
     return;
 
 }
-/*******************************************************************************
-Module   : NAS_EMM_TAU_TAUReqRejectCasue42
-Function : 收到NAS_EMM_SER_REJ_CAUSE42原语后的处理
-Input    : VOS_VOID *pMsg     原语首地址
-Output   : 无
-NOTE     :
 
-Return   : VOS_UINT32
-History  :
-    1.  wangchen 00209181   2014-09-01  新规作成
-*******************************************************************************/
 VOS_VOID NAS_EMM_TAU_TAUReqRejectCasue42
 (
     NAS_EMM_CN_CAUSE_ENUM_UINT8   ucTAUrejcause,
@@ -1320,26 +1075,7 @@ VOS_VOID NAS_EMM_TAU_TAUReqRejectCasue42
 }
 
 
-/* s00193151 begin for 自适应网络拒绝原因值 */
-/*******************************************************************************
-  Module   : NAS_EMM_TAU_TAUReqRejectOtherCause
-  Function : 收到RRC_MM_REL_IND原语后的处理
-  Input    : VOS_VOID *pMsg     原语首地址
-  Output   : 无
-  NOTE     : 1)set the tracking area updating attempt counter to 5
-             2)stop any ongoing transmission of user data
-             3)Timer T3430 shall be stopped if still running.
-             4)start timer T3402
-             5)set the update status to EU2 NOT UPDATED
-             6)delete the list of equivalent PLMNs
-             7)change to state EMM-REGISTERED.ATTEMPTING-TO-UPDATE
-               or optionally to EMM-REGISTERED.PLMN-SEARCH in order to perform a PLMN selection according to 3GPP TS 23.122 [3].
-  Return   : VOS_UINT32
-  History  :
-    1.  Zhouyan   00125190  2008.09.09  新规作成
-    2.  lihong    00150010  2012.12.14  Modify:Emergency
-    3.  sunjitan  00193151  2015-08-04  Modify for MT_CSFB_IMPROVED_PHASEII
-*******************************************************************************/
+
 /*lint -e960*/
 VOS_VOID NAS_EMM_TAU_TAUReqRejectOtherCause
 (
@@ -1358,7 +1094,7 @@ VOS_VOID NAS_EMM_TAU_TAUReqRejectOtherCause
         (NAS_LMM_CAUSE_MSG_NONEXIST_NOTIMPLEMENTE == ucTAUrejcause)||
         (NAS_LMM_CAUSE_IE_NONEXIST_NOTIMPLEMENTED == ucTAUrejcause)||
         (NAS_LMM_CAUSE_PROTOCOL_ERROR == ucTAUrejcause)||
-        (VOS_TRUE == NAS_LMM_GetRoamingRejectNoRetryFlg(ucTAUrejcause)))/* 产品线刘海波定制需求DTS2014073107501 */
+        (VOS_TRUE == NAS_LMM_GetRoamingRejectNoRetryFlg(ucTAUrejcause)))
     {
         NAS_EMM_TAU_SaveEmmTAUAttemptCnt(NAS_EMM_TAU_ATTEMPT_CNT_MAX);
     }
@@ -1395,19 +1131,7 @@ VOS_VOID NAS_EMM_TAU_TAUReqRejectOtherCause
 
 }
 
-/*******************************************************************************
-  Module   :
-  Function : Nas_Emm_TAU_RcvTAURej
-  Input    :
-  Output   :
-  NOTE     :
-  Return   :
-  History  :
-    1.Zhouyan 00125190  2008.09.17  新规作成
-    2.zhengjunyan 00148421   2011-12-23  DTS2011122103346:CSG功能尚未实现，收到
-                                     REJ #25按非CSG处理，进入default处理分支
-    3.wangchen 00209181 2014-09-03  Modify:#8处理同#367
-*******************************************************************************/
+
 VOS_VOID    NAS_EMM_TAU_RcvTAURej
 (
     const NAS_EMM_CN_CAUSE_ENUM_UINT8   ucTAUrejcause,
@@ -1452,17 +1176,7 @@ VOS_VOID    NAS_EMM_TAU_RcvTAURej
     NAS_EMM_TAU_TAUReqRejectOtherCause(ucTAUrejcause, pstTAURej);
     return;
 }
-/* s00193151 end for 自适应网络拒绝原因值 */
-/*******************************************************************************
-  Module   :
-  Function : NAS_EMM_MsTauInitSsWaitCNCnfMsgTAURej
-  Input    :
-  Output   :
-  NOTE     :
-  Return   :
-  History  :
-    1.  Zhouyan 00125190  2008.09.10  新规作成
-*******************************************************************************/
+
 VOS_UINT32 NAS_EMM_MsTauInitSsWaitCNCnfMsgTAURej(VOS_UINT32  ulMsgId,
                                                    VOS_VOID   *pMsgStru
                                )
@@ -1513,10 +1227,8 @@ VOS_UINT32 NAS_EMM_MsTauInitSsWaitCNCnfMsgTAURej(VOS_UINT32  ulMsgId,
         NAS_LMM_ModifyPtlTimer(TI_NAS_EMM_PTL_T3346,ulTimerLen);
     }
 
-    /* s00193151 begin for 自适应网络拒绝原因值 */
     /* 根据当前场景考虑是否需要修改原因值 */
     NAS_LMM_AdaptRegRejCau(&NAS_EMM_TAU_GetEmmTauCnRejCause());
-    /* s00193151 end for 自适应网络拒绝原因值 */
 
     #if (FEATURE_PTM == FEATURE_ON)
     NAS_EMM_TAUErrRecord(pMsgStru, EMM_OM_ERRLOG_TYPE_CN_REJ);
@@ -1546,28 +1258,15 @@ VOS_UINT32 NAS_EMM_MsTauInitSsWaitCNCnfMsgTAURej(VOS_UINT32  ulMsgId,
                 break;
     }
 
-    /* s00193151 begin for 自适应网络拒绝原因值 */
     /*当TAU rej时，将rej事件发送给STK*/
     NAS_EMM_SendRejEventToSTK(NAS_EMM_TAU_GetEmmTauCnRejCause(), uTauType);
 
     NAS_EMM_TAU_RcvTAURej(NAS_EMM_TAU_GetEmmTauCnRejCause(), pstTAURej);
-    /* s00193151 end for 自适应网络拒绝原因值 */
 
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*******************************************************************************
-  Module   :
-  Function : NAS_EMM_MsTauInitSsWaitCnTauCnfProcMsgAuthRej
-  NOTE     : 主状态:TauInit 子状态:WtCnTauCnf 收到 INTRA_AUTH_REJ
-             作为卡无效处理
-  Input    :
-  Output   :
-  Return   :
-  History  :
-    1.zhengjunyan 00148421    2009-5-19  Draft Enact
-    2.X00148705               2009-09-30 重构
-*******************************************************************************/
+
 VOS_VOID NAS_EMM_MsTauInitSsWaitCnTauCnfProcMsgAuthRej(
                                                    VOS_UINT32  ulCause)
 {
@@ -1657,16 +1356,7 @@ VOS_VOID NAS_EMM_MsTauInitSsWaitCnTauCnfProcMsgAuthRej(
 
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_TAU_RcvTauRejCollisionProc
- Description     : TAU打断其他流程收到CN REJ时针对冲突的处理
- Input           : NAS_EMM_CN_CAUSE_ENUM_UINT8    TAU被拒原因值
- Output          : None
- Return          : NAS_EMM_COLLISION_ENUM_UINT8   冲突类型
 
- History         :
-    1.  sunjitan 00193151    2015-08-04    Draft Enact
-*****************************************************************************/
 NAS_EMM_COLLISION_ENUM_UINT8 NAS_EMM_TAU_RcvTauRejCollisionProc
 (
     NAS_EMM_CN_CAUSE_ENUM_UINT8         enTauRejcause
@@ -1701,16 +1391,7 @@ NAS_EMM_COLLISION_ENUM_UINT8 NAS_EMM_TAU_RcvTauRejCollisionProc
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_TAU_CollisionServiceRcvCnRejProc
- Description     : TAU打断SERVICE收到CN REJ的处理
- Input           : NAS_EMM_CN_CAUSE_ENUM_UINT8    TAU被拒原因值
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.  sunjitan 00193151    2015-08-04    Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_EMM_TAU_CollisionServiceRcvCnRejProc
 (
     NAS_EMM_CN_CAUSE_ENUM_UINT8         enTauRejcause
@@ -1748,15 +1429,7 @@ VOS_VOID  NAS_EMM_TAU_CollisionServiceRcvCnRejProc
     return;
 }
 
-/*******************************************************************************
-Module   : NAS_EMM_TAU_TAUCollisionSerRejCasue368
-Function : TAU打断SER收到CN REJ#3#6#8原语后的处理
-Input    : NAS_EMM_CN_CAUSE_ENUM_UINT8            TAU拒绝原因值
-Output   : VOS_VOID
-Return   : VOS_VOID
-History  :
-    1.  sunjitan 00193151    2015-08-04    Draft Enact
-*******************************************************************************/
+
 VOS_VOID NAS_EMM_TAU_TAUCollisionSerRejCasue3
 (
     NAS_EMM_CN_CAUSE_ENUM_UINT8         enTauRejcause
@@ -1837,15 +1510,7 @@ VOS_VOID NAS_EMM_TAU_TAUCollisionSerRejCasue3
 
 }
 
-/*******************************************************************************
-Module   : NAS_EMM_TAU_TAUCollisionSerRejCasue7
-Function : TAU打断SER收到CN REJ#7原语后的处理
-Input    : NAS_EMM_CN_CAUSE_ENUM_UINT8            TAU拒绝原因值
-Output   : VOS_VOID
-Return   : VOS_VOID
-History  :
-    1.  sunjitan 00193151    2015-08-04    Draft Enact
-*******************************************************************************/
+
 VOS_VOID NAS_EMM_TAU_TAUCollisionSerRejCasue7
 (
     NAS_EMM_CN_CAUSE_ENUM_UINT8         enTauRejcause
@@ -1915,15 +1580,7 @@ VOS_VOID NAS_EMM_TAU_TAUCollisionSerRejCasue7
 
 }
 
-/*******************************************************************************
-Module   : NAS_EMM_TAU_TAUCollisionSerRejCasueOther
-Function : TAU打断SER收到CN REJ#other原语后的处理
-Input    : NAS_EMM_CN_CAUSE_ENUM_UINT8            TAU拒绝原因值
-Output   : VOS_VOID
-Return   : VOS_VOID
-History  :
-    1.  sunjitan 00193151    2015-08-04    Draft Enact
-*******************************************************************************/
+
 VOS_VOID NAS_EMM_TAU_TAUCollisionSerRejCasueOther
 (
     NAS_EMM_CN_CAUSE_ENUM_UINT8         enTauRejcause
@@ -1934,16 +1591,7 @@ VOS_VOID NAS_EMM_TAU_TAUCollisionSerRejCasueOther
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_TAU_CollisionDetachRcvCnRejProc
- Description     : TAU打断DETACH收到CN REJ的处理
- Input           : NAS_EMM_CN_CAUSE_ENUM_UINT8    TAU被拒原因值
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.  sunjitan 00193151    2015-08-04    Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_EMM_TAU_CollisionDetachRcvCnRejProc
 (
     NAS_EMM_CN_CAUSE_ENUM_UINT8         enTauRejcause
@@ -1981,15 +1629,7 @@ VOS_VOID  NAS_EMM_TAU_CollisionDetachRcvCnRejProc
     return;
 }
 
-/*******************************************************************************
-Module   : NAS_EMM_TAU_TAUCollisionDetachRejCasue368
-Function : TAU打断Detach收到CN REJ#3#6#8原语后的处理
-Input    : NAS_EMM_CN_CAUSE_ENUM_UINT8            TAU拒绝原因值
-Output   : VOS_VOID
-Return   : VOS_VOID
-History  :
-    1.  sunjitan 00193151    2015-08-04    Draft Enact
-*******************************************************************************/
+
 VOS_VOID NAS_EMM_TAU_TAUCollisionDetachRejCasue3
 (
     NAS_EMM_CN_CAUSE_ENUM_UINT8         enTauRejcause
@@ -2023,15 +1663,7 @@ VOS_VOID NAS_EMM_TAU_TAUCollisionDetachRejCasue3
 
 }
 
-/*******************************************************************************
-Module   : NAS_EMM_TAU_TAUCollisionDetachRejCasue9
-Function : TAU打断Detach收到CN REJ#9原语后的处理
-Input    : NAS_EMM_CN_CAUSE_ENUM_UINT8            TAU拒绝原因值
-Output   : VOS_VOID
-Return   : VOS_VOID
-History  :
-    1.  sunjitan 00193151    2015-08-04    Draft Enact
-*******************************************************************************/
+
 VOS_VOID NAS_EMM_TAU_TAUCollisionDetachRejCasue9
 (
     NAS_EMM_CN_CAUSE_ENUM_UINT8         enTauRejcause
@@ -2066,15 +1698,7 @@ VOS_VOID NAS_EMM_TAU_TAUCollisionDetachRejCasue9
 
 }
 
-/*******************************************************************************
-Module   : NAS_EMM_TAU_TAUCollisionDetachRejCasue13
-Function : TAU打断Detach收到CN REJ#13原语后的处理
-Input    : NAS_EMM_CN_CAUSE_ENUM_UINT8            TAU拒绝原因值
-Output   : VOS_VOID
-Return   : VOS_VOID
-History  :
-    1.  sunjitan 00193151    2015-08-04    Draft Enact
-*******************************************************************************/
+
 VOS_VOID NAS_EMM_TAU_TAUCollisionDetachRejCasue13
 (
     NAS_EMM_CN_CAUSE_ENUM_UINT8         enTauRejcause
@@ -2117,15 +1741,7 @@ VOS_VOID NAS_EMM_TAU_TAUCollisionDetachRejCasue13
 
 }
 
-/*******************************************************************************
-Module   : NAS_EMM_TAU_TAUCollisionDetachRejCasue22
-Function : TAU打断Detach收到CN REJ#22原语后的处理
-Input    : NAS_EMM_CN_CAUSE_ENUM_UINT8            TAU拒绝原因值
-Output   : VOS_VOID
-Return   : VOS_VOID
-History  :
-    1.  sunjitan 00193151    2015-08-04    Draft Enact
-*******************************************************************************/
+
 VOS_VOID NAS_EMM_TAU_TAUCollisionDetachRejCasue22
 (
     NAS_EMM_CN_CAUSE_ENUM_UINT8         enTauRejcause
@@ -2173,15 +1789,7 @@ VOS_VOID NAS_EMM_TAU_TAUCollisionDetachRejCasue22
 
 }
 #if(FEATURE_ON == FEATURE_CSG)
-/*******************************************************************************
-Module   : NAS_EMM_TAU_TAUCollisionDetachRejCasue25
-Function : TAU打断Detach收到CN REJ#25原语后的处理
-Input    : NAS_EMM_CN_CAUSE_ENUM_UINT8            TAU拒绝原因值
-Output   : VOS_VOID
-Return   : VOS_VOID
-History  :
-    1.  yanglei 00193151    2015-10-22    Draft Enact
-*******************************************************************************/
+
 VOS_VOID NAS_EMM_TAU_TAUCollisionDetachRejCasue25
 (
     NAS_EMM_CN_CAUSE_ENUM_UINT8         enTauRejcause
@@ -2229,15 +1837,7 @@ VOS_VOID NAS_EMM_TAU_TAUCollisionDetachRejCasue25
 
 }
 #endif
-/*******************************************************************************
-Module   : NAS_EMM_TAU_TAUCollisionDetachRejCasueOther
-Function : TAU打断Detach收到CN REJ#other原语后的处理
-Input    : NAS_EMM_CN_CAUSE_ENUM_UINT8            TAU拒绝原因值
-Output   : VOS_VOID
-Return   : VOS_VOID
-History  :
-    1.  sunjitan 00193151    2015-08-04    Draft Enact
-*******************************************************************************/
+
 VOS_VOID NAS_EMM_TAU_TAUCollisionDetachRejCasueOther
 (
     NAS_EMM_CN_CAUSE_ENUM_UINT8         enTauRejcause

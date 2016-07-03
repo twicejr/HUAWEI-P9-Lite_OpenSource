@@ -104,17 +104,13 @@ DECLARE_INTERFACE (IIF_IP6_ND_IR_FUN)
                                     IN6ADDR_S stIn6Addr,
                                     IN6ADDR_S stPrefixMask);
     METHOD_(ULONG, pfIP6_ND_GetSpecialProxy)(IP6_ND_SPECIAL_PROXY_PARA_S *pstSpecProxyPara);
-    /*Added by guojianjun178934, 接口状态变化或physical地址变化主动发送通告NA报文, 2014/1/27   问题单号:S-IP-005-PUBLIC-FUNC-003 */
     METHOD_(ULONG, pfIP6_ND_NAStart) (IP6IFADDR_S *pstAddr);
     METHOD_(VOID, pfIP6_ND_NAStop)(const IP6IFADDR_S *pstIp6IfAddr);
     METHOD_(VOID, pfIP6_ND_NAStopAll)(VOID *pstIf);
-    /* End of Added by guojianjun178934, 2014/1/27   问题单号:S-IP-005-PUBLIC-FUNC-003 */
     
-    /*Added by guojianjun178934, 【检视问题单---DAD告警优化】产品定期发送地址冲突检测的NS报文，如果收到了NA我们需要启动DAD探测。, 2014/2/22   问题单号:DTS2014021206259  */
     METHOD_(ULONG, pfIP6_ND_DADExtStart) (IP6IFADDR_S *pstAddr);
     METHOD_(VOID, pfIP6_ND_DADExtStop)(const IP6IFADDR_S *pstIp6IfAddr);
     METHOD_(VOID, pfIP6_ND_DADExtStopAll)(VOID *pstIf);
-    /* End of Added by guojianjun178934, 2014/2/22   问题单号:DTS2014021206259  */
     METHOD_(ULONG, pfIP6_ND_NBEntry_UpdateVrfByIf)(ULONG ulVrfIndex, ULONG ulIfIndex);
 };
 
@@ -169,16 +165,12 @@ DECLARE_INTERFACE (IIF_IP6_ND_HOST_IR_FUN)
                                     IN6ADDR_S stIn6Addr,
                                     IN6ADDR_S stPrefixMask);
     METHOD_(ULONG, pfIP6_ND_GetSpecialProxy)(IP6_ND_SPECIAL_PROXY_PARA_S *pstSpecProxyPara);
-    /*Added by guojianjun178934, 接口状态变化或physical地址变化主动发送通告NA报文, 2014/1/27   问题单号:S-IP-005-PUBLIC-FUNC-003 */
     METHOD_(ULONG, pfIP6_ND_NAStart) (IP6IFADDR_S *pstAddr);
     METHOD_(VOID, pfIP6_ND_NAStop)(const IP6IFADDR_S *pstIp6IfAddr);
     METHOD_(VOID, pfIP6_ND_NAStopAll)(VOID *pstIf);
-    /* End of Added by guojianjun178934, 2014/1/27   问题单号:S-IP-005-PUBLIC-FUNC-003 */
-    /*Added by guojianjun178934, 【检视问题单---DAD告警优化】产品定期发送地址冲突检测的NS报文，如果收到了NA我们需要启动DAD探测。, 2014/2/22   问题单号:DTS2014021206259  */
     METHOD_(ULONG, pfIP6_ND_DADExtStart) (IP6IFADDR_S *pstAddr);
     METHOD_(VOID, pfIP6_ND_DADExtStop)(const IP6IFADDR_S *pstIp6IfAddr);
     METHOD_(VOID, pfIP6_ND_DADExtStopAll)(VOID *pstIf);
-    /* End of Added by guojianjun178934, 2014/2/22   问题单号:DTS2014021206259  */
     METHOD_(ULONG, pfIP6_ND_NBEntry_UpdateVrfByIf)(ULONG ulVrfIndex, ULONG ulIfIndex);
 };
 

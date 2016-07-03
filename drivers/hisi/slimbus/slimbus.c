@@ -95,6 +95,8 @@ uint32_t slimbus_log_count		= 300;
 uint32_t slimbus_rdwrerr_times	= 0;
 slimbus_device_info_t *slimbus_dev = NULL;
 
+uint8_t track_state[SLIMBUS_TRACK_MAX];
+
 /*
  * SLIMbus bus configuration
  */
@@ -472,6 +474,9 @@ int slimbus_track_activate(
 		break;
 	}
 
+	if (!ret)
+		track_state[track] = 1;
+
 	return ret;
 }
 EXPORT_SYMBOL(slimbus_track_activate);
@@ -568,7 +573,7 @@ int slimbus_track_remove(
 		ret = slimbus_drv_track_remove(ec_ref, SLIMBUS_ECREF_CHANNELS);
 		break;
 	case SLIMBUS_TRACK_SOUND_TRIGGER:
-    	/*  release soc slimbus clk to 21.777M */
+		/*  release soc slimbus clk to 21.777M */
 		slimbus_freq_release(pdata->asp_reg_base_addr);
 		(void)slimbus_drv_track_remove(sound_trigger, SLIMBUS_SOUND_TRIGGER_CHANNELS);
 		ret = slimbus_drv_track_remove(voice_up, SLIMBUS_VOICE_UP_SOUNDTRIGGER);
@@ -582,6 +587,9 @@ int slimbus_track_remove(
 		HiLOGE("audio", LOG_TAG, "[%s:%d] unknown track type:%d! \n", __FUNCTION__, __LINE__, track);
 		break;
 	}
+
+	if (!ret)
+		track_state[track] = 0;
 
 	return ret;
 }
@@ -689,6 +697,24 @@ int slimbus_param_set(
 }
 EXPORT_SYMBOL(slimbus_param_set);
 
+int slimbus_track_recover(void)
+{
+	slimbus_track_type_t track_type;
+	int ret = 0;
+
+	for (track_type = SLIMBUS_TRACK_AUDIO_PLAY; track_type < SLIMBUS_TRACK_MAX; track_type++) {
+
+		if (track_state[track_type]) {
+			pr_info("[%s:%d] recover track:%#x \n", __FUNCTION__, __LINE__, track_type);
+			ret = slimbus_track_configure(pdata->device_type, track_type, NULL);
+			ret += slimbus_track_activate(pdata->device_type, track_type);
+		}
+	}
+
+	return ret;
+}
+EXPORT_SYMBOL(slimbus_track_recover);
+
 slimbus_bus_config_t *slimbus_bus_config_get(void)
 {
 	return bus_config;
@@ -763,25 +789,45 @@ static int slimbus_probe(struct platform_device *pdev)
 		goto get_aspres_err;
 	}
 
+	/* get asp power state address from dts, step next if fail to protect no definition */
+	resource = platform_get_resource(pdev, IORESOURCE_MEM, 2);
+	if (!resource) {
+		dev_err(dev, "get sctrl base addr failed\n");
+	} else {
+		pd->sctrl_base_addr = ioremap(resource->start, resource_size(resource));
+		if (!pd->sctrl_base_addr) {
+			dev_err(dev, "remap base address %p failed\n", (void*)resource->start);
+			goto get_aspres_err;
+		}
+
+		ret = of_property_read_u32(pdev->dev.of_node, "asp_power_state_offset", &(pd->asp_power_state_offset));
+		if (ret) {
+			dev_err(dev, "of_property_read_u32 return error! ret:%d\n", ret);
+			goto map_sctrl_err;
+		}
+		pr_info("[%s:%d] sctrl base addr:0x%p, virtaddr:0x%p, offset:0x%x \n",
+			__FUNCTION__, __LINE__, (void*)resource->start, pd->sctrl_base_addr, pd->asp_power_state_offset);
+	}
+
 	dev_info(dev, "[%s:%d] virtual address slimbus:%p, asp:%p!\n", __FUNCTION__, __LINE__,pd->base_addr, pd->asp_reg_base_addr);
 
 	/* SLIMbus irq */
 	pd->irq = platform_get_irq_byname(pdev, "asp_irq_slimbus");
 	if (pd->irq < 0) {
 		dev_err(dev, "get irq failed\n");
-		goto map_asp_err;
+		goto map_sctrl_err;
 	}
 
 	pd->regu_asp = devm_regulator_get(dev, "slimbus-reg");
 	if (IS_ERR(pd->regu_asp)) {
 		dev_err(dev, "couldn't get regulators !\n");
-		goto map_asp_err;
+		goto map_sctrl_err;
 	}
 
 	ret = regulator_enable(pd->regu_asp);
 	if (ret) {
 		dev_err(dev, "couldn't enable regulators %d\n", ret);
-		goto map_asp_err;
+		goto map_sctrl_err;
 	}
 
 	/* ssi&slimbus iomux config */
@@ -863,6 +909,7 @@ static int slimbus_probe(struct platform_device *pdev)
 		}
 	}
 
+	memset(track_state, 0, sizeof(track_state));
 	if(SLIMBUS_DEVICE_HI6402 == pd->device_type) {
 		slimbus_hi6402_param_init(slimbus_devices[SLIMBUS_DEVICE_HI6402]);
 	} else {
@@ -906,8 +953,10 @@ ops_pinctrl_err:
 	pinctrl_put(pd->pctrl);
 get_pinctrl_err:
 	regulator_disable(pd->regu_asp);
+map_sctrl_err:
+	if (pd->sctrl_base_addr)
+		iounmap(pd->sctrl_base_addr);
 map_asp_err:
-	iounmap(pd->sctrl_base_addr);
 	iounmap(pd->asp_reg_base_addr);
 get_aspres_err:
 	iounmap(pd->base_addr);
@@ -949,7 +998,8 @@ static int slimbus_remove(struct platform_device *pdev)
 
 	iounmap(pd->asp_reg_base_addr);
 	iounmap(pd->base_addr);
-	iounmap(pd->sctrl_base_addr);
+	if (pd->sctrl_base_addr)
+		iounmap(pd->sctrl_base_addr);
 	clk_disable_unprepare(pd->pmu_audio_clk);
 	devm_clk_put(dev, pd->pmu_audio_clk);
 	devm_kfree(dev, pd);
@@ -969,14 +1019,17 @@ static int slimbus_suspend(struct platform_device *pdev, pm_message_t state)
 	BUG_ON(NULL == pd);
 
 	pd->portstate = slimbus_port_state_get(pd->base_addr);
-	pr_info("[%s:%d] portstate:%#x + \n", __FUNCTION__, __LINE__,  pd->portstate);
+	asppower = slimbus_asppower_state_get(pd->sctrl_base_addr, pd->asp_power_state_offset);
+	pr_info("[%s:%d] portstate:%#x asppower:0x%x + \n", __FUNCTION__, __LINE__,  pd->portstate, asppower);
 
 	if (!pd->portstate) {
+		/* make sure last msg has been processed finished */
+		mdelay(1);
+		slimbus_int_need_clear_set(true);
 		/*
 		* while fm, hi64xx pll is in high freq, slimbus framer is in codec side
 		* we need to switch to soc in this case, and switch to 64xx in resume
 		*/
-		slimbus_int_need_clear_set(true);
 
 		if (pd->framerstate == SLIMBUS_FRAMER_CODEC) {
 			ret = slimbus_switch_framer(pd->device_type, SLIMBUS_FRAMER_SOC);

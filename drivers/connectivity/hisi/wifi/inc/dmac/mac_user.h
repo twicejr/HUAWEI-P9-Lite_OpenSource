@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : mac_user.h
-  版 本 号   : 初稿
-  作    者   : huxiaotong
-  生成日期   : 2012年10月19日
-  最近修改   :
-  功能描述   : mac_user.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年10月19日
-    作    者   : huxiaotong
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __MAC_USER_H__
 #define __MAC_USER_H__
@@ -319,7 +302,8 @@ typedef struct
     oal_uint8                               bit_gtk       :1,                       /* 指示RX GTK的槽位，02使用 */
                                             bit_rsv       :7;
     wlan_priv_key_param_stru                ast_key[WLAN_NUM_TK + WLAN_NUM_IGTK];   /* key缓存 */
-    oal_uint8                               auc_reserved[2];
+    oal_uint8                               uc_last_gtk_key_idx;                      /* igtk索引 */
+    oal_uint8                               auc_reserved[1];
 }mac_key_mgmt_stru;
 
 /* 空间流信息结构体 */
@@ -381,6 +365,7 @@ typedef struct
     wlan_bw_cap_enum_uint8                  en_bandwidth_cap;                       /* 用户带宽能力信息 */
     wlan_bw_cap_enum_uint8                  en_avail_bandwidth;                     /* 用户和VAP带宽能力交集,供算法调用 */
     wlan_bw_cap_enum_uint8                  en_cur_bandwidth;                       /* 默认值与en_avail_bandwidth相同,供算法调用修改 */
+    oal_uint8                               uc_drop_ncw;                            /* notify channel width action帧上报开关 */
 
     mac_user_asoc_state_enum_uint8          en_user_asoc_state;                     /* 用户关联状态 */
 
@@ -437,21 +422,7 @@ if(!(_cond))\
 /*****************************************************************************
   9 OTHERS定义
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : mac_user_get_ra_lut_index
- 功能描述  : 获取用户对应的ra lut index
- 输入参数  : puc_index_table: 查找表数组
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月7日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint8  mac_user_get_ra_lut_index(oal_uint8 *puc_index_table)
 {
     return oal_get_lut_index(puc_index_table,
@@ -460,21 +431,7 @@ OAL_STATIC OAL_INLINE oal_uint8  mac_user_get_ra_lut_index(oal_uint8 *puc_index_
 }
 
 #ifdef _PRE_WLAN_FEATURE_PROXYSTA
-/*****************************************************************************
- 函 数 名  : mac_user_get_ra_lut_index_proxysta
- 功能描述  : 在开启Proxy STA特性的情况下，AP0关联的uer id只能为0~15(但只能关联15个)，所以从两个字节中取一个bit
- 输入参数  : 第2个入参值为1，第3个入参为15
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月15日
-    作    者   : y00184180
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint8  mac_user_get_ra_lut_index_proxysta(oal_uint8 *puc_index_table)
 
 {
@@ -484,21 +441,7 @@ OAL_STATIC OAL_INLINE oal_uint8  mac_user_get_ra_lut_index_proxysta(oal_uint8 *p
                          (oal_uint16)WLAN_ASSOC_USER_MAX_NUM_SPEC);
 }
 #endif
-/*****************************************************************************
- 函 数 名  : mac_user_del_ra_lut_index
- 功能描述  : 删除用户对应的ra lut index
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月7日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  mac_user_del_ra_lut_index(oal_uint8 *puc_index_table, oal_uint8 uc_ra_lut_index)
 {
     oal_del_lut_index(puc_index_table, uc_ra_lut_index);

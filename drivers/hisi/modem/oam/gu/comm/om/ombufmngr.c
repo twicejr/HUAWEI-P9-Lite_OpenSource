@@ -1,23 +1,6 @@
 
 
-/******************************************************************************
 
-                  版权所有 (C), 2001-2012, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名      : ombufmngr.c
-  版 本 号      : 初稿
-  作    者      : 甘兰
-  生成日期      : 2012年07月31日
-  最近修改      :
-  功能描述      : 该C文件给出了BM(Buffer Manager)模块的实现
-  函数列表      :
-
-  修改历史      :
-   1.日    期   : 2012年07月31日
-     作    者   : g47350
-     修改内容   : V900R001项目新增文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件
@@ -44,24 +27,7 @@ OM_BUF_RECORD_STRU                      g_stOmBufRecord;
   3 函数申明
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : OM_CreateTraceBuffer
- 功能描述  : 创建OM缓冲区
- 输入参数  : pstBufCtrl: 指向缓冲区控制块指针
-             lBufSize:   分配缓冲区大小
 
- 输出参数  : 无
-
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年07月31日
-    作    者   : g47350
-    修改内容   : V900R001项目新增函数
-
-*****************************************************************************/
 VOS_UINT32 OM_CreateTraceBuffer(OM_BUF_CTRL_STRU *pstBufCtrl, VOS_INT32 lBufSize)
 {
     VOS_UINT_PTR ulRealAddr;
@@ -98,25 +64,7 @@ VOS_UINT32 OM_CreateTraceBuffer(OM_BUF_CTRL_STRU *pstBufCtrl, VOS_INT32 lBufSize
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : OM_AllocTraceMem
- 功能描述  : 从缓冲区中分配连续的物理内存.
- 输入参数  : pstBufCtrl: 指向缓冲区控制块指针
-             lLen:      申请内存大小
 
- 输出参数  : 无
-
- 返 回 值  : VOS_NULL_PTR 分配失败
-             VOS_VOID*    分配内存的指针
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年07月31日
-    作    者   : g47350
-    修改内容   : V900R001项目新增函数
-
-*****************************************************************************/
 VOS_VOID* OM_AllocTraceMem(OM_BUF_CTRL_STRU *pstBufCtrl, VOS_INT32 lLen)
 {
     VOS_INT32                           lFreeSize;
@@ -186,25 +134,7 @@ VOS_VOID* OM_AllocTraceMem(OM_BUF_CTRL_STRU *pstBufCtrl, VOS_INT32 lLen)
     return VOS_NULL_PTR;
 }
 
-/*****************************************************************************
- 函 数 名  : OM_ReleaseTraceMem
- 功能描述  : 释放从缓冲区中分配连续的物理内存.
- 输入参数  : pstBufCtrl: 指向缓冲区控制块指针
-             pAddr:      指向释放内存的指针
-             lLen:       释放缓冲区大小
 
- 输出参数  : 无
-
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年07月31日
-    作    者   : g47350
-    修改内容   : V900R001项目新增函数
-
-*****************************************************************************/
 VOS_UINT32 OM_ReleaseTraceMem(OM_BUF_CTRL_STRU *pstBufCtrl,
                                         VOS_VOID *pAddr, VOS_INT32 lLen)
 {
@@ -269,23 +199,7 @@ VOS_UINT32 OM_ReleaseTraceMem(OM_BUF_CTRL_STRU *pstBufCtrl,
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : OM_TraceMemNBytes
- 功能描述  : 获得缓冲区中使用内存大小.
- 输入参数  : pstBufCtrl: 指向缓冲区控制块指针
 
- 输出参数  : 无
-
- 返 回 值  : VOS_INT32 使用内存大小
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年07月31日
-    作    者   : g47350
-    修改内容   : V900R001项目新增函数
-
-*****************************************************************************/
 VOS_INT32 OM_TraceMemNBytes(OM_BUF_CTRL_STRU *pstBufCtrl)
 {
     VOS_INT32 lUsedBytes;
@@ -307,71 +221,19 @@ VOS_INT32 OM_TraceMemNBytes(OM_BUF_CTRL_STRU *pstBufCtrl)
     return lUsedBytes;
 }
 
-/*****************************************************************************
- 函 数 名  : OM_AddrVirtToReal
- 功能描述  : 将虚地址转换为实地址.
- 输入参数  : pstBufCtrl: 指向缓冲区控制块指针
-             pucVirtAddr:待转换虚地址
 
- 输出参数  : 无
-
- 返 回 值  : VOS_NULL_PTR 转换失败
-             VOS_VOID*    指向转换后实地址
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年07月31日
-    作    者   : g47350
-    修改内容   : V900R001项目新增函数
-
-*****************************************************************************/
 VOS_VOID* OM_AddrVirtToReal(OM_BUF_CTRL_STRU *pstBufCtrl, VOS_UINT8 *pucVirtAddr)
 {
     return (VOS_VOID *)VOS_UncacheMemVirtToPhy(pucVirtAddr, pstBufCtrl->pucRealBuf, pstBufCtrl->pucBuf, (VOS_UINT32)pstBufCtrl->lBufSize);
 }
 
-/*****************************************************************************
- 函 数 名  : OM_AddrRealToVirt
- 功能描述  : 将实地址转换为虚地址.
- 输入参数  : pstBufCtrl: 指向缓冲区控制块指针
-             pucRealAddr:待转换实地址
 
- 输出参数  : 无
-
- 返 回 值  : VOS_NULL_PTR 转换失败
-             VOS_VOID*    指向转换后虚地址
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年07月31日
-    作    者   : g47350
-    修改内容   : V900R001项目新增函数
-
-*****************************************************************************/
 VOS_VOID* OM_AddrRealToVirt(OM_BUF_CTRL_STRU *pstBufCtrl, VOS_UINT8 *pucRealAddr)
 {
     return (VOS_VOID*)VOS_UncacheMemPhyToVirt(pucRealAddr, pstBufCtrl->pucRealBuf, pstBufCtrl->pucBuf, (VOS_UINT32)pstBufCtrl->lBufSize);
 }
 
-/*****************************************************************************
- 函 数 名  : OM_BufShow
- 功能描述  :
- 输入参数  : VOS_VOID
 
- 输出参数  : 无
-
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年07月31日
-    作    者   : g47350
-    修改内容   : V900R001项目新增函数
-
-*****************************************************************************/
 VOS_VOID OM_BufShow(VOS_VOID)
 {
     VOS_UINT32                          ulIndex;

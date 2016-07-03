@@ -26,14 +26,7 @@ using namespace testing;
 
 
 
-/*****************************************************************************
-类名     : Test_ADS_FILTER_InitCtx
-功能描述 : ADS_FILTER_InitCtx UT工程类
-修改历史 :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ADS_FILTER_InitCtx: public ::testing::Test
 {
 public:
@@ -49,15 +42,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_ADS_FILTER_InitCtx_001
-测试用例标题      : NV项读取失败
-预期结果          : 老化周期使用默认值
-修改历史          :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_FILTER_InitCtx, Test_ADS_FILTER_InitCtx_001)
 {
     // 变量声明
@@ -91,15 +76,7 @@ TEST_F(Test_ADS_FILTER_InitCtx, Test_ADS_FILTER_InitCtx_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_FILTER_InitCtx_002
-测试用例标题      : NV项读取成功
-预期结果          : 老化周期为10s
-修改历史          :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_FILTER_InitCtx, Test_ADS_FILTER_InitCtx_002)
 {
     // 变量声明
@@ -136,14 +113,7 @@ TEST_F(Test_ADS_FILTER_InitCtx, Test_ADS_FILTER_InitCtx_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_ADS_FILTER_HeapAlloc
-功能描述 : ADS_FILTER_HeapAlloc UT工程类
-修改历史 :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ADS_FILTER_HeapAlloc: public ::testing::Test
 {
 public:
@@ -159,15 +129,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_ADS_FILTER_HeapAlloc_001
-测试用例标题      : 申请的内存大小为0
-预期结果          : 申请失败，返回空指针
-修改历史          :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_FILTER_HeapAlloc, Test_ADS_FILTER_HeapAlloc_001)
 {
     // 变量声明
@@ -188,15 +150,7 @@ TEST_F(Test_ADS_FILTER_HeapAlloc, Test_ADS_FILTER_HeapAlloc_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_FILTER_HeapAlloc_002
-测试用例标题      : 申请的内存大小太大，为1025字节
-预期结果          : 申请失败，返回空指针
-修改历史          :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_FILTER_HeapAlloc, Test_ADS_FILTER_HeapAlloc_002)
 {
     // 变量声明
@@ -217,14 +171,7 @@ TEST_F(Test_ADS_FILTER_HeapAlloc, Test_ADS_FILTER_HeapAlloc_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_ADS_FILTER_HeapFree
-功能描述 : ADS_FILTER_HeapFree UT工程类
-修改历史 :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ADS_FILTER_HeapFree: public ::testing::Test
 {
 public:
@@ -240,15 +187,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_ADS_FILTER_HeapFree_001
-测试用例标题      : 释放空指针
-预期结果          : 不处理，直接返回
-修改历史          :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_FILTER_HeapFree, Test_ADS_FILTER_HeapFree_001)
 {
     // 变量声明
@@ -267,14 +206,7 @@ TEST_F(Test_ADS_FILTER_HeapFree, Test_ADS_FILTER_HeapFree_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_ADS_FILTER_AddFilter
-功能描述 : ADS_FILTER_AddFilter UT工程类
-修改历史 :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ADS_FILTER_AddFilter: public ::testing::Test
 {
 public:
@@ -298,15 +230,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_ADS_FILTER_AddFilter_001
-测试用例标题      : 内存申请失败
-预期结果          : 错误打印
-修改历史          :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_FILTER_AddFilter, Test_ADS_FILTER_AddFilter_001)
 {
     // 变量声明
@@ -341,15 +265,7 @@ TEST_F(Test_ADS_FILTER_AddFilter, Test_ADS_FILTER_AddFilter_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_FILTER_AddFilter_002
-测试用例标题      : 内存申请成功
-预期结果          : 过滤器增加到链表中
-修改历史          :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_FILTER_AddFilter, Test_ADS_FILTER_AddFilter_002)
 {
     // 变量声明
@@ -388,14 +304,7 @@ TEST_F(Test_ADS_FILTER_AddFilter, Test_ADS_FILTER_AddFilter_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_ADS_FILTER_IsInfoMatch
-功能描述 : ADS_FILTER_IsInfoMatch UT工程类
-修改历史 :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ADS_FILTER_IsInfoMatch: public ::testing::Test
 {
 public:
@@ -420,15 +329,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_ADS_FILTER_IsInfoMatch_001
-测试用例标题      : 过滤器IP首部不匹配
-预期结果          : 返回VOS_FALSE
-修改历史          :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_FILTER_IsInfoMatch, Test_ADS_FILTER_IsInfoMatch_001)
 {
     // 变量声明
@@ -458,15 +359,7 @@ TEST_F(Test_ADS_FILTER_IsInfoMatch, Test_ADS_FILTER_IsInfoMatch_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_FILTER_IsInfoMatch_002
-测试用例标题      : 过滤器TCP首部匹配
-预期结果          : 返回VOS_TRUE
-修改历史          :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_FILTER_IsInfoMatch, Test_ADS_FILTER_IsInfoMatch_002)
 {
     // 变量声明
@@ -497,15 +390,7 @@ TEST_F(Test_ADS_FILTER_IsInfoMatch, Test_ADS_FILTER_IsInfoMatch_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_FILTER_IsInfoMatch_003
-测试用例标题      : 过滤器UDP首部匹配
-预期结果          : 返回VOS_TRUE
-修改历史          :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_FILTER_IsInfoMatch, Test_ADS_FILTER_IsInfoMatch_003)
 {
     // 变量声明
@@ -536,15 +421,7 @@ TEST_F(Test_ADS_FILTER_IsInfoMatch, Test_ADS_FILTER_IsInfoMatch_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_FILTER_IsInfoMatch_004
-测试用例标题      : 过滤器ICMP首部匹配
-预期结果          : 返回VOS_TRUE
-修改历史          :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_FILTER_IsInfoMatch, Test_ADS_FILTER_IsInfoMatch_004)
 {
     // 变量声明
@@ -575,15 +452,7 @@ TEST_F(Test_ADS_FILTER_IsInfoMatch, Test_ADS_FILTER_IsInfoMatch_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_FILTER_IsInfoMatch_005
-测试用例标题      : 过滤器FRAGMENT首部匹配
-预期结果          : 返回VOS_TRUE
-修改历史          :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_FILTER_IsInfoMatch, Test_ADS_FILTER_IsInfoMatch_005)
 {
     // 变量声明
@@ -613,15 +482,7 @@ TEST_F(Test_ADS_FILTER_IsInfoMatch, Test_ADS_FILTER_IsInfoMatch_005)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_FILTER_IsInfoMatch_006
-测试用例标题      : 不支持的数据包类型
-预期结果          : 返回VOS_FALSE
-修改历史          :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_FILTER_IsInfoMatch, Test_ADS_FILTER_IsInfoMatch_006)
 {
     // 变量声明
@@ -650,14 +511,7 @@ TEST_F(Test_ADS_FILTER_IsInfoMatch, Test_ADS_FILTER_IsInfoMatch_006)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_ADS_FILTER_Match
-功能描述 : ADS_FILTER_Match UT工程类
-修改历史 :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ADS_FILTER_Match: public ::testing::Test
 {
 public:
@@ -680,15 +534,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_ADS_FILTER_Match_001
-测试用例标题      : 节点老化，过滤信息匹配，老化周期匹配
-预期结果          : 节点被老化，匹配节点老化时间刷新，返回VOS_TRUE
-修改历史          :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_FILTER_Match, Test_ADS_FILTER_Match_001)
 {
     // 变量声明
@@ -764,14 +610,7 @@ TEST_F(Test_ADS_FILTER_Match, Test_ADS_FILTER_Match_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_ADS_FILTER_SaveIPAddrInfo
-功能描述 : ADS_FILTER_SaveIPAddrInfo UT工程类
-修改历史 :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ADS_FILTER_SaveIPAddrInfo: public ::testing::Test
 {
 public:
@@ -788,15 +627,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_ADS_FILTER_SaveIPAddrInfo_001
-测试用例标题      : 保存过滤用IPv6地址
-预期结果          : 保存的地址相同
-修改历史          :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_FILTER_SaveIPAddrInfo, Test_ADS_FILTER_SaveIPAddrInfo_001)
 {
     // 变量声明
@@ -832,14 +663,7 @@ TEST_F(Test_ADS_FILTER_SaveIPAddrInfo, Test_ADS_FILTER_SaveIPAddrInfo_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_ADS_FILTER_ProcUlPacket
-功能描述 : ADS_FILTER_ProcUlPacket UT工程类
-修改历史 :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ADS_FILTER_ProcUlPacket: public ::testing::Test
 {
 public:
@@ -864,15 +688,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_ADS_FILTER_ProcUlPacket_001
-测试用例标题      : 上行发送IPV6数据包
-预期结果          : 可维可测信息IPV6数据包个数增加1
-修改历史          :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_FILTER_ProcUlPacket, Test_ADS_FILTER_ProcUlPacket_001)
 {
     // 变量声明
@@ -893,15 +709,7 @@ TEST_F(Test_ADS_FILTER_ProcUlPacket, Test_ADS_FILTER_ProcUlPacket_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_FILTER_ProcUlPacket_002
-测试用例标题      : 上行发送IPV4数据包，数据包类型不支持
-预期结果          : 可维可测信息IPV4不支持数据包类型个数增加1
-修改历史          :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_FILTER_ProcUlPacket, Test_ADS_FILTER_ProcUlPacket_002)
 {
     // 变量声明
@@ -933,15 +741,7 @@ TEST_F(Test_ADS_FILTER_ProcUlPacket, Test_ADS_FILTER_ProcUlPacket_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_FILTER_ProcUlPacket_003
-测试用例标题      : 上行发送IPV4数据包2个，数据包类型TCP类型，且过滤表中已经存在
-预期结果          : 可维可测信息IPV4数据包TCP类型个数增加2
-修改历史          :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_FILTER_ProcUlPacket, Test_ADS_FILTER_ProcUlPacket_003)
 {
     // 变量声明
@@ -1001,17 +801,7 @@ TEST_F(Test_ADS_FILTER_ProcUlPacket, Test_ADS_FILTER_ProcUlPacket_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_FILTER_ProcUlPacket_004
-测试用例标题      : 上行发送IPV4数据包2个，数据包类型ICMP类型，
-                    ECHO REQ及ECHO REPLY类型
-预期结果          : 可维可测信息IPV4数据包ICMP类型个数增加1
-                    不支持的数据包个数增加1
-修改历史          :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_FILTER_ProcUlPacket, Test_ADS_FILTER_ProcUlPacket_004)
 {
     // 变量声明
@@ -1077,15 +867,7 @@ TEST_F(Test_ADS_FILTER_ProcUlPacket, Test_ADS_FILTER_ProcUlPacket_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_FILTER_ProcUlPacket_005
-测试用例标题      : 上行发送IPV4数据包，数据包类型UDP类型，
-预期结果          : 可维可测信息IPV4数据包UDP类型个数增加1
-修改历史          :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_FILTER_ProcUlPacket, Test_ADS_FILTER_ProcUlPacket_005)
 {
     // 变量声明
@@ -1135,15 +917,7 @@ TEST_F(Test_ADS_FILTER_ProcUlPacket, Test_ADS_FILTER_ProcUlPacket_005)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_FILTER_ProcUlPacket_006
-测试用例标题      : 上行发送IPV4数据包，数据包类型TCP类型，且为分配包非首片，
-预期结果          : 可维可测信息非首片数据包类型个数增加1
-修改历史          :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_FILTER_ProcUlPacket, Test_ADS_FILTER_ProcUlPacket_006)
 {
     // 变量声明
@@ -1181,14 +955,7 @@ TEST_F(Test_ADS_FILTER_ProcUlPacket, Test_ADS_FILTER_ProcUlPacket_006)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_ADS_FILTER_ProcDlPacket
-功能描述 : ADS_FILTER_ProcDlPacket UT工程类
-修改历史 :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ADS_FILTER_ProcDlPacket: public ::testing::Test
 {
 public:
@@ -1213,15 +980,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_ADS_FILTER_ProcDlPacket_001
-测试用例标题      : 收到IPv6类型下行数据包，目的地址与过滤IPv6地址不匹配
-预期结果          : 返回VOS_ERR
-修改历史          :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_FILTER_ProcDlPacket, Test_ADS_FILTER_ProcDlPacket_001)
 {
     // 变量声明
@@ -1274,15 +1033,7 @@ TEST_F(Test_ADS_FILTER_ProcDlPacket, Test_ADS_FILTER_ProcDlPacket_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_FILTER_ProcDlPacket_002
-测试用例标题      : 收到IPv6类型下行数据包，目的地址与过滤IPv6地址匹配
-预期结果          : 返回VOS_OK
-修改历史          :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_FILTER_ProcDlPacket, Test_ADS_FILTER_ProcDlPacket_002)
 {
     // 变量声明
@@ -1337,15 +1088,7 @@ TEST_F(Test_ADS_FILTER_ProcDlPacket, Test_ADS_FILTER_ProcDlPacket_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_FILTER_ProcDlPacket_003
-测试用例标题      : 收到未知IP类型下行数据包
-预期结果          : 返回VOS_ERR
-修改历史          :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_FILTER_ProcDlPacket, Test_ADS_FILTER_ProcDlPacket_003)
 {
     // 变量声明
@@ -1367,15 +1110,7 @@ TEST_F(Test_ADS_FILTER_ProcDlPacket, Test_ADS_FILTER_ProcDlPacket_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_FILTER_ProcDlPacket_004
-测试用例标题      : 收到IPv4类型下行数据包，不支持的报文类型
-预期结果          : 返回VOS_ERR
-修改历史          :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_FILTER_ProcDlPacket, Test_ADS_FILTER_ProcDlPacket_004)
 {
     // 变量声明
@@ -1406,15 +1141,7 @@ TEST_F(Test_ADS_FILTER_ProcDlPacket, Test_ADS_FILTER_ProcDlPacket_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_FILTER_ProcDlPacket_005
-测试用例标题      : 收到IPv4类型下行TCP数据包非分片，且匹配
-预期结果          : 返回VOS_OK，可维可测信息TCP下行数据包增加1
-修改历史          :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_FILTER_ProcDlPacket, Test_ADS_FILTER_ProcDlPacket_005)
 {
     // 变量声明
@@ -1458,15 +1185,7 @@ TEST_F(Test_ADS_FILTER_ProcDlPacket, Test_ADS_FILTER_ProcDlPacket_005)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_FILTER_ProcDlPacket_006
-测试用例标题      : 收到IPv4类型下行TCP数据包非分片，不匹配
-预期结果          : 返回VOS_ERR，可维可测信息TCP下行数据包不变
-修改历史          :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_FILTER_ProcDlPacket, Test_ADS_FILTER_ProcDlPacket_006)
 {
     // 变量声明
@@ -1510,15 +1229,7 @@ TEST_F(Test_ADS_FILTER_ProcDlPacket, Test_ADS_FILTER_ProcDlPacket_006)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_FILTER_ProcDlPacket_007
-测试用例标题      : 收到IPv4类型下行UDP数据包非分片，且匹配
-预期结果          : 返回VOS_OK，可维可测信息UDP下行数据包增加1
-修改历史          :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_FILTER_ProcDlPacket, Test_ADS_FILTER_ProcDlPacket_007)
 {
     // 变量声明
@@ -1562,15 +1273,7 @@ TEST_F(Test_ADS_FILTER_ProcDlPacket, Test_ADS_FILTER_ProcDlPacket_007)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_FILTER_ProcDlPacket_008
-测试用例标题      : 收到IPv4类型下行UDP数据包非分片，不匹配
-预期结果          : 返回VOS_ERR，可维可测信息UDP下行数据包不变
-修改历史          :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_FILTER_ProcDlPacket, Test_ADS_FILTER_ProcDlPacket_008)
 {
     // 变量声明
@@ -1614,15 +1317,7 @@ TEST_F(Test_ADS_FILTER_ProcDlPacket, Test_ADS_FILTER_ProcDlPacket_008)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_FILTER_ProcDlPacket_009
-测试用例标题      : 收到IPv4类型下行ICMP数据包ping回复(ECHO REPLY)，且匹配
-预期结果          : 返回VOS_OK，可维可测信息ICMP下行ECHOREPLY数据包增加1
-修改历史          :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_FILTER_ProcDlPacket, Test_ADS_FILTER_ProcDlPacket_009)
 {
     // 变量声明
@@ -1666,15 +1361,7 @@ TEST_F(Test_ADS_FILTER_ProcDlPacket, Test_ADS_FILTER_ProcDlPacket_009)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_FILTER_ProcDlPacket_010
-测试用例标题      : 收到IPv4类型下行ICMP数据包，不支持的类型
-预期结果          : 返回VOS_ERR
-修改历史          :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_FILTER_ProcDlPacket, Test_ADS_FILTER_ProcDlPacket_010)
 {
     // 变量声明
@@ -1717,16 +1404,7 @@ TEST_F(Test_ADS_FILTER_ProcDlPacket, Test_ADS_FILTER_ProcDlPacket_010)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_FILTER_ProcDlPacket_011
-测试用例标题      : 收到IPv4类型下行ICMP数据包，
-                    Time Exceeded类型差错报文，源报文为TCP报文，且匹配
-预期结果          : 返回VOS_OK，可维可测信息，ICMP差错报文数增加1
-修改历史          :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_FILTER_ProcDlPacket, Test_ADS_FILTER_ProcDlPacket_011)
 {
     // 变量声明
@@ -1774,16 +1452,7 @@ TEST_F(Test_ADS_FILTER_ProcDlPacket, Test_ADS_FILTER_ProcDlPacket_011)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_FILTER_ProcDlPacket_012
-测试用例标题      : 收到IPv4类型下行ICMP数据包，
-                    Time Exceeded类型差错报文，源报文为UDP报文，且匹配
-预期结果          : 返回VOS_OK，可维可测信息，ICMP差错报文数增加1
-修改历史          :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_FILTER_ProcDlPacket, Test_ADS_FILTER_ProcDlPacket_012)
 {
     // 变量声明
@@ -1831,16 +1500,7 @@ TEST_F(Test_ADS_FILTER_ProcDlPacket, Test_ADS_FILTER_ProcDlPacket_012)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_FILTER_ProcDlPacket_013
-测试用例标题      : 收到IPv4类型下行ICMP数据包，
-                    Time Exceeded类型差错报文，源报文类型不支持
-预期结果          : 返回VOS_ERR
-修改历史          :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_FILTER_ProcDlPacket, Test_ADS_FILTER_ProcDlPacket_013)
 {
     // 变量声明
@@ -1887,18 +1547,7 @@ TEST_F(Test_ADS_FILTER_ProcDlPacket, Test_ADS_FILTER_ProcDlPacket_013)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_FILTER_ProcDlPacket_014
-测试用例标题      : 收到IPv4类型下行TCP数据包首分片，且匹配，
-                    并收到后续非首片
-预期结果          : 返回VOS_OK，
-                    可维可测信息下行分片首片数据包增加1
-                    下行分片包非首片数据包增加1
-修改历史          :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_FILTER_ProcDlPacket, Test_ADS_FILTER_ProcDlPacket_014)
 {
     // 变量声明
@@ -1974,18 +1623,7 @@ TEST_F(Test_ADS_FILTER_ProcDlPacket, Test_ADS_FILTER_ProcDlPacket_014)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_FILTER_ProcDlPacket_015
-测试用例标题      : 收到IPv4类型下行UDP数据包首分片，且匹配，
-                    并收到后续非首片
-预期结果          : 返回VOS_OK，
-                    可维可测信息下行分片首片数据包增加1
-                    下行分片包非首片数据包增加1
-修改历史          :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_FILTER_ProcDlPacket, Test_ADS_FILTER_ProcDlPacket_015)
 {
     // 变量声明
@@ -2059,15 +1697,7 @@ TEST_F(Test_ADS_FILTER_ProcDlPacket, Test_ADS_FILTER_ProcDlPacket_015)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_FILTER_ProcDlPacket_016
-测试用例标题      : 收到IPv4类型下行不支持类型的分片包首片
-预期结果          : 返回VOS_ERR
-修改历史          :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_FILTER_ProcDlPacket, Test_ADS_FILTER_ProcDlPacket_016)
 {
     // 变量声明
@@ -2100,14 +1730,7 @@ TEST_F(Test_ADS_FILTER_ProcDlPacket, Test_ADS_FILTER_ProcDlPacket_016)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_ADS_Ipv4AddrItoa
-功能描述 : ADS_Ipv4AddrItoa UT工程类
-修改历史 :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ADS_Ipv4AddrItoa: public ::testing::Test
 {
 public:
@@ -2123,15 +1746,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_ADS_Ipv4AddrItoa_001
-测试用例标题      : 入参为空指针
-预期结果          : 返回VOS_ERR
-修改历史          :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_Ipv4AddrItoa, Test_ADS_Ipv4AddrItoa_001)
 {
     // 变量声明
@@ -2152,14 +1767,7 @@ TEST_F(Test_ADS_Ipv4AddrItoa, Test_ADS_Ipv4AddrItoa_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_ADS_FILTER_ShowFilterLists
-功能描述 : ADS_FILTER_ShowFilterLists UT工程类
-修改历史 :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ADS_FILTER_ShowFilterLists: public ::testing::Test
 {
 public:
@@ -2180,15 +1788,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_ADS_FILTER_ShowFilterLists_001
-测试用例标题      :
-预期结果          :
-修改历史          :
-1.日   期  : 2013-06-19
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_FILTER_ShowFilterLists, Test_ADS_FILTER_ShowFilterLists_001)
 {
     // 变量声明

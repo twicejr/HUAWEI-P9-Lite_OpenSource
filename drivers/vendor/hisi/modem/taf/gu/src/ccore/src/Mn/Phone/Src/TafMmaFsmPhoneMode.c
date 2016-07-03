@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafMmaFsmPhoneMode.c
-  版 本 号   : 初稿
-  作    者   : w00176964
-  生成日期   : 2013年7月8日
-  最近修改   :
-  功能描述   : TafMmaFsmPhoneMode.C文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年7月7日
-    作    者   : w00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -41,13 +24,9 @@
 #include "TafMmaTimerMgmt.h"
 #include "TafAppMma.h"
 #include "TafMmaSndTaf.h"
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2014-1-3, begin */
 #include "TafMmaProcNvim.h"
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2014-1-3, end */
 #include "MmaUphyInterface.h"
-/* Added by w00167002 for L-C互操作项目, 2014-2-14, begin */
 #include "TafMmaSndApp.h"
-/* Added by w00167002 for L-C互操作项目, 2014-2-14, end */
 #include "TafMmaSndMscc.h"
 #include "NasMntn.h"
 #include "NasComm.h"
@@ -103,28 +82,7 @@ extern MN_PH_REG_TIME_INFO_STRU                 g_stRegTimeInfo;
 /*****************************************************************************
   6 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMmaInterPowerInit_PhoneMode_Init
- 功能描述  : 收到MMA的内部上电开机消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年7月10日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2013年4月1日
-   作    者   : y00176023
-   修改内容   : DSDS GUNAS II项目:修改状态名称和定时器名称
- 3.日    期   : 2014年7月11日
-   作    者   : y00213812
-   修改内容   : 增加开机顺序设置的有效性判断
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMmaInterPowerInit_PhoneMode_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -176,22 +134,7 @@ VOS_UINT32 TAF_MMA_RcvMmaInterPowerInit_PhoneMode_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMmaInterUsimStatusChangeInd_PhoneMode_Init
- 功能描述  : 收到MMA的内部USIM卡状态改变消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年7月10日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMmaInterUsimStatusChangeInd_PhoneMode_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -229,28 +172,7 @@ VOS_UINT32 TAF_MMA_RcvMmaInterUsimStatusChangeInd_PhoneMode_Init(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvOMPhoneModeSet_PhoneMode_Init
- 功能描述  : 收到OM的模式设置消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年7月10日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2014年3月22日
-   作    者   : y00176023
-   修改内容   : DSDS II wait the DSP init when start req
- 3.日    期   : 2014年7月11日
-   作    者   : y00213812
-   修改内容   : 增加开机顺序设置的有效性判断
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvOMPhoneModeSet_PhoneMode_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -338,31 +260,7 @@ VOS_UINT32 TAF_MMA_RcvOMPhoneModeSet_PhoneMode_Init(
     return VOS_TRUE;
 }
 
-/* Added by w00167002 for L-C互操作项目, 2014-2-14, begin */
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTafPhoneModeSet_PhoneMode_Init
- 功能描述  : 收到TAF的模式设置消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年2月14日
-   作    者   : w00167002
-   修改内容   : 新生成函数
-
- 2.日    期   : 2014年3月22日
-   作    者   : y00176023
-   修改内容   : DSDS II wait the DSP init when start req
- 3.日    期   : 2014年7月11日
-   作    者   : y00213812
-   修改内容   : 增加开机顺序设置的有效性判断
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTafPhoneModeSet_PhoneMode_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -446,28 +344,9 @@ VOS_UINT32 TAF_MMA_RcvTafPhoneModeSet_PhoneMode_Init(
 
     return VOS_TRUE;
 }
-/* Added by w00167002 for L-C互操作项目, 2014-2-14, end */
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvPihUsimStatusInd_PhoneMode_WaitExternalModuleInit
- 功能描述  : 收到PIH模块上报的卡状态指示消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年7月10日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-2. 日    期   : 2014年3月21日
-   作    者   : y00176023
-   修改内容   : 增加物理层初始化判断启动协议栈
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvPihUsimStatusInd_PhoneMode_WaitExternalModuleInit(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -506,40 +385,7 @@ VOS_UINT32 TAF_MMA_RcvPihUsimStatusInd_PhoneMode_WaitExternalModuleInit(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTiWaitExternalModuleInitExpired_PhoneMode_WaitExternalModuleInit
- 功能描述  : 收到等待PIH模块上报的卡状态指示消息超时的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年7月10日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
-  2.日    期   : 2014年1月24日
-    作    者   : z00234330
-    修改内容   : dts2013112601036
-  3.日    期   : 2014年3月21日
-   作    者   : y00176023
-   修改内容   : DSDS II 等待物理层初始化后启动协议栈
-  4.日    期   : 2014年2月27日
-   作    者   : z00234330
-   修改内容   : dts2014022402558,sim被puk锁定时,usim模块上报的invalid,usim没有上报
-                卡状态在位时,sdc默认为卡invalid,这两种情况需要区分一下,否则使用
-                at^cpin命令查询的会不正确。
-  5.日    期   : 2015年2月6日
-    作    者   : h00313353
-    修改内容   : USIMM卡接口调整
-  6.日    期   : 2015年5月30日
-    作    者   : f00179208
-    修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_2.0修改
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTiWaitExternalModuleInitExpired_PhoneMode_WaitExternalModuleInit(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -585,25 +431,7 @@ VOS_UINT32 TAF_MMA_RcvTiWaitExternalModuleInitExpired_PhoneMode_WaitExternalModu
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvUphyInitStatusInd_PhoneMode_WaitExternalModuleInit
- 功能描述  : 收到等待物理层上报初始化状态指示消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期    : 2014年3月21日
-    作    者   : y00176023
-    修改内容   : 新增
-  2.日    期   : 2015年5月25日
-    作    者   : f00179208
-    修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_2.0
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvUphyInitStatusInd_PhoneMode_WaitExternalModuleInit(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -680,32 +508,7 @@ VOS_UINT32 TAF_MMA_RcvUphyInitStatusInd_PhoneMode_WaitExternalModuleInit(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMmaStartReq_PhoneMode
- 功能描述  : 向MSCC或IMSA发送开机请求,迁移状态,启动保护定时器
- 输入参数  : ulReceivePid---接收PID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月10日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2014年2月19日
-    作    者   : s00217060
-    修改内容   : coverity清理
-  3.日    期   : 2014年07月08日
-    作    者   : y00245242
-    修改内容   : 为1X feature开发增加
-  4.日    期   : 2015年6月2日
-    作    者   : l00198894
-    修改内容   : TSTS
-  5.日    期   : 2015年08月24日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndStartReq_PhoneMode(
 )
 {
@@ -764,9 +567,7 @@ VOS_VOID TAF_MMA_SndStartReq_PhoneMode(
     /* 获取接入技术信息 */
     pstRatPrioList = TAF_MMA_GetRatPrioListAddr();
 
-    /* Modified by s00217060 for coverity清理, 2014-02-19, begin */
     PS_MEM_SET(&stSndRatPrioList, 0, sizeof(TAF_MMA_RAT_ORDER_STRU));
-    /* Modified by s00217060 for coverity清理, 2014-02-19, end */
 
     stSndRatPrioList.ucRatOrderNum = pstRatPrioList->ucRatOrderNum;
     PS_MEM_CPY(stSndRatPrioList.aenRatOrder,
@@ -794,33 +595,7 @@ VOS_VOID TAF_MMA_SndStartReq_PhoneMode(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ConvertSdcSimStatusToMsccFormat_PhoneMode
- 功能描述  : 将当前SDC的卡状态转换成MSCC格式的
- 输入参数  : ucSdcSimStatus:当前SDC中的SIM卡状态
- 输出参数  : 无
- 返 回 值  : NAS_MSCC_PIF_CARD_STATUS_ENUM_UINT8 返回当前卡状态
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月18日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-  2.日    期   : 2014年1月24日
-    作    者   : z00234330
-    修改内容   : dts2013112601036
-
-  3.日    期   : 2014年2月27日
-    作    者   : z00234330
-    修改内容   : dts2014022402558,sim被puk锁定时,usim模块上报的invalid,usim没有上报
-                卡状态在位时,sdc默认为卡invalid,这两种情况需要区分一下,否则使用
-                at^cpin命令查询的会不正确
-  4.日    期   : 2015年2月6日
-    作    者   : h00313353
-    修改内容   : USIMM卡接口调整(传入卡类型，分别进行替换)
-*****************************************************************************/
 NAS_MSCC_PIF_CARD_STATUS_ENUM_UINT8 TAF_MMA_ConvertSdcSimStatusToMsccFormat_PhoneMode(
     VOS_UINT8                           ucSdcSimStatus,
     VOS_UINT8                           ucSimType
@@ -869,23 +644,7 @@ NAS_MSCC_PIF_CARD_STATUS_ENUM_UINT8 TAF_MMA_ConvertSdcSimStatusToMsccFormat_Phon
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndPowerOffReq_PhoneMode
- 功能描述  : 向MSCC或IMSA发送关机请求,迁移状态,启动保护定时器
- 输入参数  : ulReceivePid---接收PID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年7月10日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2014年7月08日
-   作    者   : y00245242
-   修改内容   : 为1X feature开发增加
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndPowerOffReq_PhoneMode(
     VOS_UINT32                          ulReceivePid
 )
@@ -903,27 +662,7 @@ VOS_VOID TAF_MMA_SndPowerOffReq_PhoneMode(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcStartCnfSucc_NoPowerInit_PhoneMode
- 功能描述  : MMA模块对于非上电开机成功的结果处理
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年7月23日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
- 2.日    期   : 2014年2月19日
-   作    者   : w00167002
-   修改内容   : L-C互操作项目修改，不发送搜网
- 3.日    期   : 2014年08月13日
-   作    者   : s00217060
-   修改内容   : DTS2014073007533:开机完成后，释放投票的操作延后，否则中间C核可能睡下去
-*****************************************************************************/
 VOS_VOID TAF_MMA_ProcStartCnfSucc_NoPowerInit_PhoneMode(VOS_VOID)
 {
     VOS_UINT8                                               ucNeedPinFlg;
@@ -972,13 +711,10 @@ VOS_VOID TAF_MMA_ProcStartCnfSucc_NoPowerInit_PhoneMode(VOS_VOID)
         }
     }
 
-    /* Added by j00174725 for V9R1 干扰控制, 2013/08/12, begin */
 #if ( FEATURE_MULTI_MODEM == FEATURE_ON )
     TAF_MMA_SndMtcPowerStateInd(MTC_MODEM_POWER_ON);
 #endif
-    /* Added by j00174725 for V9R1 干扰控制, 2013/08/12, end */
 
-    /* Added by s00261364 for L-C互操作项目, 2014-1-27, begin */
     /* 读全局变量进行模式判断，如果不为C+L互操作模式，则发搜网注册请求 */
     if (VOS_TRUE != TAF_MMA_IsPowerOnCLInterWork())
     {
@@ -1005,7 +741,6 @@ VOS_VOID TAF_MMA_ProcStartCnfSucc_NoPowerInit_PhoneMode(VOS_VOID)
         }
 #endif
     }
-    /* Added by s00261364 for L-C互操作项目, 2014-1-27, end */
 
 #if defined(__PS_WIN32_RECUR__) || defined(NAS_STUB)
     if (TAF_SDC_USIM_STATUS_VALID == TAF_SDC_GetUsimStatus())
@@ -1042,26 +777,7 @@ VOS_VOID TAF_MMA_ProcStartCnfSucc_NoPowerInit_PhoneMode(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcStartCnfSucc_PowerInit_PhoneMode
- 功能描述  : MMA模块对于上电开机成功的结果处理
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年7月23日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2014年2月19日
-   作    者   : w00167002
-   修改内容   : L-C互操作项目修改，不发送搜网
- 3.日    期   : 2014年08月13日
-   作    者   : s00217060
-   修改内容   : DTS2014073007533:开机完成后，释放投票的操作延后，否则中间C核可能睡下去
-*****************************************************************************/
 VOS_VOID TAF_MMA_ProcStartCnfSucc_PowerInit_PhoneMode(VOS_VOID)
 {
     VOS_UINT32                          ulAutoSwitchOnFlg;
@@ -1113,13 +829,10 @@ VOS_VOID TAF_MMA_ProcStartCnfSucc_PowerInit_PhoneMode(VOS_VOID)
         }
     }
 
-    /* Added by j00174725 for V9R1 干扰控制, 2013/08/12, begin */
 #if ( FEATURE_MULTI_MODEM == FEATURE_ON )
     TAF_MMA_SndMtcPowerStateInd(MTC_MODEM_POWER_ON);
 #endif
-    /* Added by j00174725 for V9R1 干扰控制, 2013/08/12, end */
 
-    /* Modified by w00167002 for L-C互操作项目, 2014-2-15, begin */
     /*读全局变量进行模式判断，如果不为C+L互操作模式，则发搜网注册请求,否则等待CMMCA触发搜网注册请求 */
     if (VOS_TRUE != TAF_MMA_IsPowerOnCLInterWork())
     {
@@ -1151,7 +864,6 @@ VOS_VOID TAF_MMA_ProcStartCnfSucc_PowerInit_PhoneMode(VOS_VOID)
         Sta_AttachByModeService(STA_OPID_ATTATCH);
 #endif
     }
-    /* Modified by w00167002 for L-C互操作项目, 2014-2-15, end */
 
 #if defined(__PS_WIN32_RECUR__) || defined(NAS_STUB)
     if (TAF_SDC_USIM_STATUS_VALID == ucSdcSimStatus)
@@ -1185,28 +897,7 @@ VOS_VOID TAF_MMA_ProcStartCnfSucc_PowerInit_PhoneMode(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccStartCnf_PhoneMode_WaitMsccStartCnf
- 功能描述  : 收到MSCC模块的开机回复处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月10日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2013年4月16日
-    作    者   : y00176023
-    修改内容   : DSDS GUNAS II项目:修改了向at上报的失败类型
-  3.日    期   : 2014年07月08日
-    作    者   : y00245242
-    修改内容   : 为1X feature开发修改
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccStartCnf_PhoneMode_WaitMsccStartCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1241,25 +932,7 @@ VOS_UINT32 TAF_MMA_RcvMsccStartCnf_PhoneMode_WaitMsccStartCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTiWaitMsccStartCnfExpired_PhoneMode_WaitMsccStartCnf
- 功能描述  : 等待MSCC模块的开机回复超时处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月10日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2014年07月08日
-    作    者   : Y00213812
-    修改内容   : 为1X feature开发修改
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTiWaitMsccStartCnfExpired_PhoneMode_WaitMsccStartCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1277,20 +950,7 @@ VOS_UINT32 TAF_MMA_RcvTiWaitMsccStartCnfExpired_PhoneMode_WaitMsccStartCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcPowerOffCnf_UsimStatusChange_PhoneMode
- 功能描述  : MMA模块对于卡状态变化引起的关机回复处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年7月23日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_ProcPowerOffCnf_UsimStatusChange_PhoneMode(VOS_VOID)
 {
     /* 掉卡时，删除EPLMN信息 */
@@ -1309,24 +969,7 @@ VOS_VOID TAF_MMA_ProcPowerOffCnf_UsimStatusChange_PhoneMode(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcPowerOffCnfOnPowerOffMode_PhoneMode
- 功能描述  : MMA模块在poweroffmode下收到关机回复的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年7月23日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2013年9月27日
-   作    者   : w00167002
-   修改内容   : DTS2013092100149:删除C核TASKDELAY处理，在V9低功耗时，会导致
-                  TASKDELAY后未被唤醒，导致AT消息没有回复。
-*****************************************************************************/
 VOS_VOID TAF_MMA_ProcPowerOffCnfWithPowerOffMode_PhoneMode(VOS_VOID)
 {
     VOS_UINT16                          usAppCfgSupportType;
@@ -1379,20 +1022,7 @@ VOS_VOID TAF_MMA_ProcPowerOffCnfWithPowerOffMode_PhoneMode(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcPowerOffCnfOnPowerOffMode_PhoneMode
- 功能描述  : MMA根据指定的手机模式对关机回复的处理
- 输入参数  : ucPhoneMode--手机模式
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年7月23日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_ProcPowerOffCnfWithSpecPhoneMode_PhoneMode(
     VOS_UINT8                           ucPhoneMode
 )
@@ -1438,31 +1068,7 @@ VOS_VOID TAF_MMA_ProcPowerOffCnfWithSpecPhoneMode_PhoneMode(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccPowerOffCnf_PhoneMode_WaitMsccPowerOffCnf
- 功能描述  : 收到MSCC模块的关机回复处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年7月10日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2013年11月22日
-   作    者   : z00161729
-   修改内容   : SVLTE优化G-TL ps切换性能修改
- 3.日    期   : 2014年04月15日
-   作    者   : s00217060
-   修改内容   : 关机时增加投票
- 4.日    期   : 2014年07月08日
-   作    者   : y00245242
-   修改内容   : 为1X feature开发修改
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccPowerOffCnf_PhoneMode_WaitMsccPowerOffCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1483,28 +1089,7 @@ VOS_UINT32 TAF_MMA_RcvMsccPowerOffCnf_PhoneMode_WaitMsccPowerOffCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTiWaitMsccPowerOffCnfExpired_PhoneMode_WaitMsccPowerOffCnf
- 功能描述  : 等待MMC的关机回复超时处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月10日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2014年04月15日
-    作    者   : s00217060
-    修改内容   : 关机时增加投票
-  3.日    期   : 2014年07月08日
-    作    者   : y00245242
-    修改内容   : 为1X feature开发修改
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTiWaitMsccPowerOffCnfExpired_PhoneMode_WaitMsccPowerOffCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1523,39 +1108,15 @@ VOS_UINT32 TAF_MMA_RcvTiWaitMsccPowerOffCnfExpired_PhoneMode_WaitMsccPowerOffCnf
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcPowerOffReq_PhoneMode
- 功能描述  : MMA模块处理关机请求
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年7月13日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2014年1月28日
-   作    者   : s00217060
-   修改内容   : DTS2014011709107:清除开机到注册成功时间
- 3.日    期   : 2014年04月15日
-   作    者   : s00217060
-   修改内容   : 关机时增加投票
- 4.日    期   : 2014年07月08日
-   作    者   : y00245242
-   修改内容   : 为1X feature项目开发
-*****************************************************************************/
 VOS_VOID TAF_MMA_ProcPowerOffReq_PhoneMode(VOS_VOID)
 {
     VOS_UINT32                          ulModuleId;
 
     ulModuleId = 0;
 
-    /* Added by s00217060 for 关机投票, 2014/04/15, begin */
     /* 增加投票:关机时不允许睡眠,收到MSCC的关机回复之后解除 */
     TAF_DRVAPI_PWRCTRL_SLEEPVOTE_LOCK(PWRCTRL_SLEEP_NAS);
-    /* Added by s00217060 for 关机投票, 2014/04/15, end */
 
     /* 设置STOP状态标志量*/
     g_StatusContext.ulFsmState = STA_FSM_STOP;
@@ -1595,28 +1156,7 @@ VOS_VOID TAF_MMA_ProcPowerOffReq_PhoneMode(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcStartReq_PhoneMode
- 功能描述  : MMA模块处理开机请求
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年7月13日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2013年12月26日
-   作    者   : w00242748
-   修改内容   : DTS2013120306986:刚开机时，当NV 8229和NV 10000设置不一致时，
-                WAS读取NV 8229 RRC Connection Setup Complete给网侧上报当前UE
-                支持频段时存在问题。
- 3.日    期   : 2014年07月08日
-   作    者   : y00245242
-   修改内容   : 为1X feature开发修改
-*****************************************************************************/
 VOS_VOID TAF_MMA_ProcStartReq_PhoneMode(VOS_VOID)
 {
     TAF_CS_SERVICE_ENUM_UINT32          enCsServCapa;
@@ -1680,21 +1220,7 @@ VOS_VOID TAF_MMA_ProcStartReq_PhoneMode(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_GetCurrFsmEntryMsgId_PhoneMode
- 功能描述  : 获取当前状态机入口消息ID
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回入口消息ID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月17日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_MMA_GetCurrFsmEntryMsgId_PhoneMode(VOS_VOID)
 {
     TAF_MMA_ENTRY_MSG_STRU             *pstEntryMsg    = VOS_NULL_PTR;
@@ -1708,27 +1234,9 @@ VOS_UINT32  TAF_MMA_GetCurrFsmEntryMsgId_PhoneMode(VOS_VOID)
     return ulMsgId;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_GetCurrFsmEntryMsgOpId_PhoneMode
- 功能描述  : 获取当前状态机入口消息的OP ID
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回入口消息的OP ID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月17日
-    作    者   : w00176964
-    修改内容   : 新生成函数
- 2.日    期   : 2014年2月14日
-   作    者   : w00167002
-   修改内容   : L-C互操作项目:开关机函数调整
-
-*****************************************************************************/
 VOS_UINT8  TAF_MMA_GetCurrFsmEntryMsgOpId_PhoneMode(VOS_VOID)
 {
-    /* Modified by w00167002 for L-C互操作项目, 2014-2-14, begin */
     TAF_MMA_ENTRY_MSG_STRU             *pstEntryMsg         = VOS_NULL_PTR;
     MN_APP_REQ_MSG_STRU                *pstAppMsg           = VOS_NULL_PTR;
     TAF_MMA_PHONE_MODE_SET_REQ_STRU    *pstPhoneModeSetReq  = VOS_NULL_PTR;
@@ -1758,37 +1266,17 @@ VOS_UINT8  TAF_MMA_GetCurrFsmEntryMsgOpId_PhoneMode(VOS_VOID)
 
     return pstAppMsg->opId;
 
-    /* Modified by w00167002 for L-C互操作项目, 2014-2-14, end */
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_GetCurrFsmEntryMsgPhoneMode_PhoneMode
- 功能描述  : 获取当前状态机入口消息中设置的手机模式
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回入口消息设置的手机模式
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月17日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2014年2月14日
-    作    者   : w00167002
-    修改内容   : L-C互操作项目:开关机函数调整
-*****************************************************************************/
 VOS_UINT8  TAF_MMA_GetCurrFsmEntryMsgPhoneMode_PhoneMode(VOS_VOID)
 {
     TAF_MMA_ENTRY_MSG_STRU             *pstEntryMsg  = VOS_NULL_PTR;
     MN_APP_REQ_MSG_STRU                *pstAppMsg    = VOS_NULL_PTR;
     TAF_PH_OP_MODE_STRU                *pstPhModeSet    = VOS_NULL_PTR;
 
-    /* Modified by w00167002 for L-C互操作项目, 2014-2-14, begin */
 
-    /* Added by w00167002 for L-C互操作项目, 2014-2-14, begin */
     TAF_MMA_PHONE_MODE_SET_REQ_STRU    *pstPhoneModeSet = VOS_NULL_PTR;
-    /* Added by w00167002 for L-C互操作项目, 2014-2-14, end */
 
     VOS_UINT32                          ulEventType;
 
@@ -1796,13 +1284,10 @@ VOS_UINT8  TAF_MMA_GetCurrFsmEntryMsgPhoneMode_PhoneMode(VOS_VOID)
     pstEntryMsg     = TAF_MMA_GetCurrFsmMsgAddr();
     pstAppMsg       = (MN_APP_REQ_MSG_STRU *)(pstEntryMsg->aucEntryMsgBuffer);
 
-    /* Added by w00167002 for L-C互操作项目, 2014-2-14, begin */
     pstPhoneModeSet = (TAF_MMA_PHONE_MODE_SET_REQ_STRU *)(pstEntryMsg->aucEntryMsgBuffer);
-    /* Added by w00167002 for L-C互操作项目, 2014-2-14, end */
 
     ulEventType = pstEntryMsg->ulEventType;
 
-    /* Modified by w00167002 for L-C互操作项目, 2014-2-19, begin */
     if ((TAF_BuildEventType(WUEPS_PID_SPY, OAM_MMA_PHONE_MODE_SET_REQ) == ulEventType)
       || (TAF_BuildEventType(CCPU_PID_CBT, OAM_MMA_PHONE_MODE_SET_REQ) == ulEventType))
     {
@@ -1811,39 +1296,19 @@ VOS_UINT8  TAF_MMA_GetCurrFsmEntryMsgPhoneMode_PhoneMode(VOS_VOID)
         return pstPhModeSet->PhMode;
     }
 
-    /* Modified by w00167002 for L-C互操作项目, 2014-2-14, end */
 
-    /* Added by w00167002 for L-C互操作项目, 2014-2-14, begin */
 
     /* 关机可能是TAF发送的，也可能时CMMCA发送的 */
     if (TAF_BuildEventType(WUEPS_PID_TAF, ID_TAF_MMA_PHONE_MODE_SET_REQ) == ulEventType)
     {
         return pstPhoneModeSet->stPhoneModePara.PhMode;
     }
-    /* Added by w00167002 for L-C互操作项目, 2014-2-14, end */
     return TAF_SDC_GetCurPhoneMode();
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_GetCurrFsmEntryMsgClientId_PhoneMode
- 功能描述  : 获取当前状态机入口消息的Client ID
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回入口消息的client ID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月17日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2014年2月14日
-    作    者   : w00167002
-    修改内容   : L-C互操作项目:开关机函数调整
-*****************************************************************************/
 VOS_UINT16  TAF_MMA_GetCurrFsmEntryMsgClientId_PhoneMode(VOS_VOID)
 {
-    /* Modified by w00167002 for L-C互操作项目, 2014-2-14, begin */
     TAF_MMA_ENTRY_MSG_STRU             *pstEntryMsg         = VOS_NULL_PTR;
     MN_APP_REQ_MSG_STRU                *pstAppMsg           = VOS_NULL_PTR;
     TAF_MMA_PHONE_MODE_SET_REQ_STRU    *pstPhoneModeSetReq  = VOS_NULL_PTR;
@@ -1871,33 +1336,11 @@ VOS_UINT16  TAF_MMA_GetCurrFsmEntryMsgClientId_PhoneMode(VOS_VOID)
 
     return pstAppMsg->clientId;
 
-    /* Modified by w00167002 for L-C互操作项目, 2014-2-14, end */
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReportPhoneModeCnf_PhoneMode
- 功能描述  : 上报模式设置结果给AT或OM
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年7月10日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
- 2.日    期   : 2014年2月14日
-   作    者   : w00167002
-   修改内容   : L-C互操作项目:开关机函数调整
- 3.日    期   : 2014年07月07日
-   作    者   : z00234330
-   修改内容   : coverity清理
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReportPhoneModeCnf_PhoneMode(VOS_VOID)
 {
-    /* Modified by w00167002 for L-C互操作项目, 2014-2-14, begin */
     TAF_MMA_ENTRY_MSG_STRU             *pstEntryMsg    = VOS_NULL_PTR;
     VOS_UINT32                          ulEventType;
     VOS_UINT8                           ucOpId;
@@ -1927,29 +1370,11 @@ VOS_VOID TAF_MMA_ReportPhoneModeCnf_PhoneMode(VOS_VOID)
         return;
     }
 
-    /* Modified by w00167002 for L-C互操作项目, 2014-2-14, end */
 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndAtPsInitRsltInd
- 功能描述  : 向AT上报协议栈初始化结果指示(PSINIT)
- 输入参数  : ucSimStatus---SIM卡状态
-             ucSimLockStatus--SIM卡锁卡状态
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年7月18日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-2.日    期   : 2013年4月16日
-  作    者   : y00176023
-  修改内容   : DSDS GUNAS II项目:修改了向at上报的失败类型
-*****************************************************************************/
 
 VOS_VOID TAF_MMA_SndAtPsInitRsltInd_PhoneMode(
     TAF_MMA_PS_INIT_RSLT_ENUM_UINT32    enPsInitRslt
@@ -1987,20 +1412,7 @@ VOS_VOID TAF_MMA_SndAtPsInitRsltInd_PhoneMode(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ReportPhoneModeInd_PhoneMode
- 功能描述  : 广播上报模式设置结果指示
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年8月5日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_ReportPhoneModeInd_PhoneMode(VOS_VOID)
 {
     TAF_PHONE_EVENT_INFO_STRU          *pstPhoneEvent           = VOS_NULL_PTR;
@@ -2030,20 +1442,7 @@ VOS_VOID TAF_MMA_ReportPhoneModeInd_PhoneMode(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_GetMsccPowerOffCause_PhoneMode
- 功能描述  : 通过状态机入口消息获取关机原因值
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : NAS_MSCC_PIF_POWER_OFF_CAUSE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年07月03日
-    作    者   : Y00213812
-    修改内容   : CDMA 1X Iteration 0 新增函数
-*****************************************************************************/
 NAS_MSCC_PIF_POWER_OFF_CAUSE_ENUM_UINT32 TAF_MMA_GetMsccPowerOffCause_PhoneMode(VOS_VOID)
 {
     VOS_UINT32                          ulEntryMsgId;
@@ -2060,24 +1459,7 @@ NAS_MSCC_PIF_POWER_OFF_CAUSE_ENUM_UINT32 TAF_MMA_GetMsccPowerOffCause_PhoneMode(
     return NAS_MSCC_PIF_POWER_OFF_CAUSE_NORMAL;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcStartExpired_PhoneMode
- 功能描述  : 开机超时的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年07月03日
-    作    者   : Y00213812
-    修改内容   : CDMA 1X Iteration 0 新增函数
-
-  2.日    期   : 2015年6月2日
-    作    者   : l00198894
-    修改内容   : TSTS
-*****************************************************************************/
 VOS_VOID TAF_MMA_ProcStartExpired_PhoneMode(VOS_VOID)
 {
     if (MMA_MMA_INTER_POWER_INIT == TAF_MMA_GetCurrFsmEntryMsgId_PhoneMode())
@@ -2103,24 +1485,7 @@ VOS_VOID TAF_MMA_ProcStartExpired_PhoneMode(VOS_VOID)
     TAF_MMA_FSM_QuitSubFsm();
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcStartExpired_PhoneMode
- 功能描述  : 关机超时的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年07月03日
-    作    者   : Y00213812
-    修改内容   : CDMA 1X Iteration 0 新增函数
-
-  2.日    期   : 2015年6月2日
-    作    者   : l00198894
-    修改内容   : TSTS
-*****************************************************************************/
 VOS_VOID TAF_MMA_ProcPowerOffExpired_PhoneMode(VOS_VOID)
 {
     TAF_MMA_SetCurPhoneErrorCode_PhoneMode(TAF_ERR_TIME_OUT);
@@ -2140,29 +1505,7 @@ VOS_VOID TAF_MMA_ProcPowerOffExpired_PhoneMode(VOS_VOID)
     TAF_DRVAPI_PWRCTRL_SLEEPVOTE_UNLOCK(PWRCTRL_SLEEP_NAS);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcStartComplete_PhoneMode
- 功能描述  : 开机完成后的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年07月03日
-    作    者   : Y00213812
-    修改内容   : CDMA 1X Iteration 0 新增函数
-  2.日    期   : 2014年08月13日
-    作    者   : s00217060
-    修改内容   : DTS2014073007533:开机完成后，释放投票的操作延后，否则中间C核可能睡下去
-  3.日    期   : 2015年6月2日
-    作    者   : l00198894
-    修改内容   : TSTS
-  4.日    期   : 2015年11月2日
-    作    者   : l00289540
-    修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_3.0 修改
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_ProcStartComplete_PhoneMode(
     VOS_UINT32                          ulRslt
 )
@@ -2286,24 +1629,7 @@ VOS_UINT32 TAF_MMA_ProcStartComplete_PhoneMode(
 
     return VOS_TRUE;
 }
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcPowerOffComplete_PhoneMode
- 功能描述  : 关机完成后的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年07月03日
-    作    者   : Y00213812
-    修改内容   : CDMA 1X Iteration 0 新增函数
-
-  2.日    期   : 2015年6月2日
-    作    者   : l00198894
-    修改内容   : TSTS
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_ProcPowerOffComplete_PhoneMode(VOS_VOID)
 {
     VOS_UINT8                           ucPhoneMode;
@@ -2390,23 +1716,7 @@ VOS_UINT32 TAF_MMA_ProcPowerOffComplete_PhoneMode(VOS_VOID)
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcGetGeoNoSimStartReq_PhoneMode
- 功能描述  : MMA模块处理获取国家码的无卡开机请求
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月2日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-  2.日    期   : 2015年12月10日
-    作    者   : l00324781
-    修改内容   : CL_MUTIMODE_OPTIMIZE修改，增加TAF_MMA_UpdateRatPrio调用
-*****************************************************************************/
 VOS_VOID TAF_MMA_ProcGetGeoNoSimStartReq_PhoneMode(VOS_VOID)
 {
     TAF_MMA_RAT_ORDER_STRU              stSndRatPrioList;
@@ -2450,21 +1760,7 @@ VOS_VOID TAF_MMA_ProcGetGeoNoSimStartReq_PhoneMode(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcGetGeoNoSimPowerOffReq_PhoneMode
- 功能描述  : MMA模块处理获取国家码的无卡关机请求
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月2日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_ProcGetGeoNoSimPowerOffReq_PhoneMode(VOS_VOID)
 {
     /* 增加投票:关机时不允许睡眠,收到MSCC的关机回复之后解除 */
@@ -2486,21 +1782,7 @@ VOS_VOID TAF_MMA_ProcGetGeoNoSimPowerOffReq_PhoneMode(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcStopGetGeoReq_PhoneMode
- 功能描述  : MMA模块处理停止获取国家码的请求
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月2日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_ProcStopGetGeoReq_PhoneMode(VOS_VOID)
 {
     NAS_TRACE_HIGH("MMA Stop Get Geo Begin!!!");
@@ -2517,25 +1799,7 @@ VOS_VOID TAF_MMA_ProcStopGetGeoReq_PhoneMode(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccGetGeoCnf_PhoneMode_WaitMsccGetGeoCnf
- 功能描述  : 等待MSCC模块的获取地理信息回复的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年05月25日
-   作    者   : f00179208
-   修改内容   : 新生成函数
- 1.日    期   : 2015年12月10日
-   作    者   : l00324781
-   修改内容   : CL_MUTIMODE_OPTIMIZE 修改，增加cdma的位置信息处理
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccGetGeoCnf_PhoneMode_WaitMsccGetGeoCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2579,22 +1843,7 @@ VOS_UINT32 TAF_MMA_RcvMsccGetGeoCnf_PhoneMode_WaitMsccGetGeoCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTiWaitMsccGetGeoCnfExpired_PhoneMode_WaitMsccGetGeoCnf
- 功能描述  : 等待MSCC模块的获取地理信息超时的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年05月25日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTiWaitMsccGetGeoCnfExpired_PhoneMode_WaitMsccGetGeoCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2615,22 +1864,7 @@ VOS_UINT32 TAF_MMA_RcvTiWaitMsccGetGeoCnfExpired_PhoneMode_WaitMsccGetGeoCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvPihUsimStatusInd_PhoneMode_WaitMsccGetGeoCnf
- 功能描述  : 等待MSCC模块的获取地理信息过程中收到卡状态上报
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年05月25日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvPihUsimStatusInd_PhoneMode_WaitMsccGetGeoCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2655,22 +1889,7 @@ VOS_UINT32 TAF_MMA_RcvPihUsimStatusInd_PhoneMode_WaitMsccGetGeoCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTiWaitExternalModuleInitExpired_PhoneMode_WaitMsccGetGeoCnf
- 功能描述  : 收到等待PIH模块上报的卡状态指示消息超时的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年05月25日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTiWaitExternalModuleInitExpired_PhoneMode_WaitMsccGetGeoCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2693,22 +1912,7 @@ VOS_UINT32 TAF_MMA_RcvTiWaitExternalModuleInitExpired_PhoneMode_WaitMsccGetGeoCn
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvPihUsimStatusInd_PhoneMode_GetGeoCmpWaitUsimStatusInd
- 功能描述  : 在获取国家码完成后等待卡状态上报过程中收到卡状态上报
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年05月25日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvPihUsimStatusInd_PhoneMode_GetGeoCmpWaitUsimStatusInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2725,22 +1929,7 @@ VOS_UINT32 TAF_MMA_RcvPihUsimStatusInd_PhoneMode_GetGeoCmpWaitUsimStatusInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTiWaitExternalModuleInitExpired_PhoneMode_GetGeoCmpWaitUsimStatusInd
- 功能描述  : 在获取国家码完成后等待卡状态上报过程中收到卡状态上报超时
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年05月25日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTiWaitExternalModuleInitExpired_PhoneMode_GetGeoCmpWaitUsimStatusInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2759,22 +1948,7 @@ VOS_UINT32 TAF_MMA_RcvTiWaitExternalModuleInitExpired_PhoneMode_GetGeoCmpWaitUsi
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccStopGetGeoCnf_PhoneMode_WaitMsccStopGetGeoCnf
- 功能描述  : 收到MSCC模块的停止获取国家码的回复处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年05月25日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccStopGetGeoCnf_PhoneMode_WaitMsccStopGetGeoCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2791,25 +1965,7 @@ VOS_UINT32 TAF_MMA_RcvMsccStopGetGeoCnf_PhoneMode_WaitMsccStopGetGeoCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccGetGeoCnf_PhoneMode_WaitMsccStopGetGeoCnf
- 功能描述  : 收到MSCC模块获取国家码的回复处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年05月25日
-   作    者   : f00179208
-   修改内容   : 新生成函数
- 2.日    期   : 2015年12月10日
-   作    者   : l00324781
-   修改内容   : CL_MUTIMODE_OPTIMIZE 增加Cdma位置信息处理
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccGetGeoCnf_PhoneMode_WaitMsccStopGetGeoCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2845,22 +2001,7 @@ VOS_UINT32 TAF_MMA_RcvMsccGetGeoCnf_PhoneMode_WaitMsccStopGetGeoCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvPihUsimStatusInd_PhoneMode_GetGeo_WaitMsccStopGetGeoCnf
- 功能描述  : 新生成函数
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月9日
-    作    者   : n00269697
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvPihUsimStatusInd_PhoneMode_WaitMsccStopGetGeoCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2873,22 +2014,7 @@ VOS_UINT32 TAF_MMA_RcvPihUsimStatusInd_PhoneMode_WaitMsccStopGetGeoCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTiWaitMsccStopGetGeoCnfExpired_PhoneMode_WaitMsccStopGetGeoCnf
- 功能描述  : 收到MSCC模块的停止获取国家码超时的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年05月25日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTiWaitMsccStopGetGeoCnfExpired_PhoneMode_WaitMsccStopGetGeoCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2902,22 +2028,7 @@ VOS_UINT32 TAF_MMA_RcvTiWaitMsccStopGetGeoCnfExpired_PhoneMode_WaitMsccStopGetGe
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccStartCnf_PhoneMode_GetGeoWaitMsccStartCnf
- 功能描述  : 收到MSCC模块的开机回复处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年05月25日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccStartCnf_PhoneMode_GetGeoWaitMsccStartCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2988,22 +2099,7 @@ VOS_UINT32 TAF_MMA_RcvMsccStartCnf_PhoneMode_GetGeoWaitMsccStartCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvPihUsimStatusInd_PhoneMode_GetGeoWaitMsccStartCnf
- 功能描述  : 新生成函数
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月9日
-    作    者   : n00269697
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvPihUsimStatusInd_PhoneMode_GetGeoWaitMsccStartCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3017,22 +2113,7 @@ VOS_UINT32 TAF_MMA_RcvPihUsimStatusInd_PhoneMode_GetGeoWaitMsccStartCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTiWaitMsccStartCnfExpired_PhoneMode_GetGeoWaitMsccStartCnf
- 功能描述  : 等待MSCC模块的开机回复超时处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年05月25日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTiWaitMsccStartCnfExpired_PhoneMode_GetGeoWaitMsccStartCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3060,22 +2141,7 @@ VOS_UINT32 TAF_MMA_RcvTiWaitMsccStartCnfExpired_PhoneMode_GetGeoWaitMsccStartCnf
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTiWaitExternalModuleInitExpired_PhoneMode_GetGeoWaitMsccStartCnf
- 功能描述  : 等待PIH模块上报的卡状态指示消息超时的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年05月25日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTiWaitExternalModuleInitExpired_PhoneMode_GetGeoWaitMsccStartCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3089,22 +2155,7 @@ VOS_UINT32 TAF_MMA_RcvTiWaitExternalModuleInitExpired_PhoneMode_GetGeoWaitMsccSt
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccPowerOffCnf_PhoneMode_GetGeoWaitMsccPowerOffCnf
- 功能描述  : 收到MSCC模块的关机回复处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年05月25日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccPowerOffCnf_PhoneMode_GetGeoWaitMsccPowerOffCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3121,22 +2172,7 @@ VOS_UINT32 TAF_MMA_RcvMsccPowerOffCnf_PhoneMode_GetGeoWaitMsccPowerOffCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvPihUsimStatusInd_PhoneMode_GetGeoWaitMsccPowerOffCnf
- 功能描述  : 新生成函数
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月9日
-    作    者   : n00269697
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvPihUsimStatusInd_PhoneMode_GetGeoWaitMsccPowerOffCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3149,22 +2185,7 @@ VOS_UINT32 TAF_MMA_RcvPihUsimStatusInd_PhoneMode_GetGeoWaitMsccPowerOffCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTiWaitMsccPowerOffCnfExpired_PhoneMode_GetGeoWaitMsccPowerOffCnf
- 功能描述  : 收到MSCC模块的关机回复处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年05月25日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTiWaitMsccPowerOffCnfExpired_PhoneMode_GetGeoWaitMsccPowerOffCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3190,22 +2211,7 @@ VOS_UINT32 TAF_MMA_RcvTiWaitMsccPowerOffCnfExpired_PhoneMode_GetGeoWaitMsccPower
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndRatModInd_PhoneMode
- 功能描述  : 上报接入模式
- 输入参数  :
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2015年11月3日
-   作    者   : f00279542
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndRatModInd_PhoneMode(VOS_VOID)
 {
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)

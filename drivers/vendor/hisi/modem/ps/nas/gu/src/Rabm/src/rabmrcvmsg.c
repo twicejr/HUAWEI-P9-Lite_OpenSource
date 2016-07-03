@@ -1,34 +1,4 @@
-/*******************************************************************************
-  Copyright    : 2005-2007, Huawei Tech. Co., Ltd.
-  File name    : RabmRcvMsg.c
-  Description  : Rabm的接收函数
-  Function List:
-                 1.  RABM_RcvGmmReestCnf
-                 2.  RABM_RcvSmActInd
-                 3.  RABM_SaveDataProcess
-                 4.  RABM_RcvSmDeactInd
-                 5.  RABM_RcvSmModInd
-                 6.  RABM_RcvRrcStatusInd
-                 7.  RABM_RcvPsTcDataInd
-                 8.  RABM_RcvRrcRabInd
-                 9.  RABM_RcvPsDataReq
-                10.  RABM_RcvCsDataReq
-                11.  RABM_RcvRlcDataInd
-                12.  RABM_RcvTcTestReq
-                13.  RABM_RcvTcTestLoopReq
-  History:
-      1.   张志勇      2003.12.11   新规作成
-      2.   L47619   2005.12.12   A32D01107问题单
-      3.   L47619   2005.12.22   A32D00885问题单
-      4.   L47619   2006.01.10   问题单:A32D01571
-      5.   L47619   2006.02.23   问题单:A32D02155
-      6.   L47619   2006.06.12   问题单:A32D04258
-      7.   l47619   2006.08.21:  问题单:A32D05592
-      8.   L47619   2006.06.26   问题单:A32D05709
-      9. 日    期   : 2007年06月08日
-         作    者   : luojian 60022475
-         修改内容   : 根据问题单号A32D11570
-*******************************************************************************/
+
 #include "rabminclude.h"
 #include "NasRabmMsgProc.h"
 #include "NasRabmMain.h"
@@ -57,29 +27,7 @@
 extern RABM_FLUX_WRITE_NV_TIMER_SWITCH_ENUM_U32  g_stRabmWriteFluxToNvTimerSwitch;
 
 
-/*******************************************************************************
-  Module:      RABM_RcvGmmReestCnf
-  Function:    根据消息结果进行相应的处理
-  Input:       VOS_VOID                *pMsg        当前处理的消息
-  Output:      VOS_VOID
-  NOTE:
-  Return:      VOS_VOID
-  History:
-  1.  张志勇      2003.12.11   新规作成
 
-  2.日    期   : 2011年12月19日
-    作    者   : o00132663
-    修改内容   : PS融合项目，在收到RAB重建结果后，通知CDS
-  3.日    期   : 2012年10月31日
-    作    者   : z60575
-    修改内容   : DTS2012101906800，特殊原因值时增加0.5s延时
-  4.日    期   : 2013年2月18日
-    作    者   : A00165503
-    修改内容   : DTS2013021805741: RB建立流程优化
-  5.日    期   : 2013年04月12日
-    作    者   : l65478
-    修改内容   : DTS2013031901654:彩信并发发送失败
-*******************************************************************************/
 VOS_VOID RABM_RcvGmmReestCnf(
                          VOS_VOID  *pMsg                                            /* 当前处理的消息                           */
                          )
@@ -163,42 +111,7 @@ VOS_VOID RABM_RcvGmmReestCnf(
     return;
 }
 
-/*******************************************************************************
-  Module:      RABM_RcvSmActInd
-  Function:    保留参数，维护实体的状态
-  Input:       VOS_VOID                *pMsg        当前处理的消息
-  Output:      VOS_VOID
-  NOTE:
-  Return:      VOS_VOID
-  History:
-  1.  张志勇      2003.12.11   新规作成
-  2.日    期   : 2010年12月13日
-    作    者   : lijun 00171473
-    修改内容   : DTS2010112903583, 起个Timer, 流量数据每10分钟保存一次NV
-                 PDP激活后起TIMER
-  3.日    期   : 2011年10月21日
-    作    者   : h44270
-    修改内容   : V7R1 FAST DORMANCY特性，处理PDP激活状态的变化，从没有激活到有激活的PDP
-  4.日    期   : 2011年12月19日
-    作    者   : o00132663
-    修改内容   : PS融合项目，PDP激活成功后调用CDS提供的流控接口将QOS信息通知-
-                 CDS
-  5.日    期   : 2012年04月01日
-    作    者   : f00179208
-    修改内容   : 问题单号:DTS2012032603501, PDP拨号成功后,给CDS的QOS等级不正确
 
-  6.日    期   : 2012年08月07日
-    作    者   : f00179208
-    修改内容   : 问题单:DTS2012080604402, PDP激活去激活后发生内存泄露
-
-  7.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : RABM保存的QOS由动态内存改为静态数组
-
-  8.日    期   : 2013年8月2日
-    作    者   : A00165503
-    修改内容   : DTS2013040906296: Secondary PDP下行数传无法找到关联的承载ID
-*******************************************************************************/
 VOS_VOID RABM_RcvSmActInd(
     VOS_VOID                           *pMsg                                    /* 当前处理的消息                           */
 )
@@ -439,40 +352,7 @@ VOS_VOID RABM_SaveDataProcess(
     }
 }
 
-/*******************************************************************************
-  Module:      RABM_RcvSmDeactInd
-  Function:    释放资源，维护实体的状态
-  Input:       VOS_VOID                *pMsg        当前处理的消息
-  Output:      VOS_VOID
-  NOTE:
-  Return:      VOS_VOID
-  History:
-  1.  张志勇      2003.12.11   新规作成
-  2.日    期   : 2010年12月13日
-    作    者   : lijun 00171473
-    修改内容   : DTS2010112903583, 起个Timer, 流量数据每10分钟保存一次NV
-                 PDP去激活后 关TIMER, 写NV
 
-  3.日    期   : 2011年10月21日
-    作    者   : h44270
-    修改内容   : V7R1 FAST DORMANCY特性，处理PDP激活状态的变化，从有激活到没有激活的PDP
-
-  4.日    期   : 2011年12月19日
-    作    者   : o00132663
-    修改内容   : PS融合项目，PDP去激活后，需要调用CDS提供的流控接口通知CDS
-
-  5.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : RABM保存的QOS由动态内存改为静态数组
-
-  6.日    期   : 2013年04月12日
-    作    者   : l65478
-    修改内容   : DTS2013031901654:彩信并发发送失败
-
-  7.日    期   : 2015年1月9日
-    作    者   : A00165503
-    修改内容   : DTS2014123000271: RRC释放流程增加停止控制
-*******************************************************************************/
 VOS_VOID RABM_RcvSmDeactInd(VOS_VOID *pMsg)
 {
     RABMSM_DEACTIVATE_IND_STRU         *pTempMsg;                                    /* 定义局部变量                             */
@@ -563,25 +443,7 @@ VOS_VOID RABM_RcvSmDeactInd(VOS_VOID *pMsg)
     return;
 }
 
-/*******************************************************************************
-  Module:      RABM_RcvSmModInd
-  Function:    保留参数，维护实体的状态
-  Input:       VOS_VOID                *pMsg        当前处理的消息
-  Output:      VOS_VOID
-  NOTE:
-  Return:      VOS_VOID
-  History:
-  1.张志勇     2003.12.11   新规作成
 
-  2.日    期   : 2011年12月19日
-    作    者   : o00132663
-    修改内容   : PS融合项目，PDP激活成功后调用CDS提供的流控接口将QOS信息通知-
-                 CDS
-
-  3.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : RABM保存的QOS由动态内存改为静态数组
-*******************************************************************************/
 VOS_VOID RABM_RcvSmModInd(
     VOS_VOID                           *pMsg                                               /* 当前处理的消息                           */
 )
@@ -648,20 +510,7 @@ VOS_VOID RABM_RcvSmModInd(
     return;
 }
 
-/*******************************************************************************
-  Module:   RABM_RcvRrcStatusInd
-  Function: 根据RAB的CN域及RABM实体的状态，进行相应的处理
-  Input:    VOS_VOID    *pMsg           收到的消息
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1. 张志勇      2003.12.11   新规作成
 
-  2.日    期   : 2012年6月1日
-    作    者   : A00165503
-    修改内容   : DTS2012052606995: 跨RNC应切换后数传不能立刻恢复
-*******************************************************************************/
 VOS_VOID RABM_RcvRrcStatusInd(
                           VOS_VOID  *pMsg
                           )
@@ -822,20 +671,7 @@ VOS_VOID RABM_ClearTcDataQ(VOS_VOID)
     }
 } /* RABM_ClearTcDataQ */
 
-/*****************************************************************************
- 函 数 名  : RABM_ProcessTcPsData
- 功能描述  : 处理下行PS域环回数据
- 输入参数  : pstNode --- 数据节点
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月1日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID RABM_ProcessTcPsData(PDCP_RABM_TC_DATA_Q_NODE_STRU *pstNode)
 {
     PDCP_RABM_TC_DATA_STRU             *pstDataPacket = VOS_NULL_PTR;
@@ -899,22 +735,7 @@ VOS_VOID RABM_ProcessTcPsData(PDCP_RABM_TC_DATA_Q_NODE_STRU *pstNode)
     return;
 }
 
-/*******************************************************************************
-  Module:   RABM_EnqueueTcData
-  Function: 环回测试中，将下行数据放入PDCP->RABM数据队列，如果队列从空到非空，并发送消息通知RABM模块
-  Input:    VOS_VOID
-  Output:   VOS_VOID
-  NOTE:
-  Return:   PS_SUCC   --- 成功
-            PS_FAIL   --- 失败
-  History:
-  1.日    期   : 2012年7月20日
-    作    者   : L00171473
-    修改内容   : V7R1 C50 GUTL PhaseI调整: 接口函数从Rabm文件中移到UTRANCTRL文件中
-  2.日    期   : 2012年12月13日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-*******************************************************************************/
+
 VOS_UINT32 RABM_EnqueueTcData(PDCP_RABM_TC_DATA_Q_NODE_STRU *pstNode)
 {
 #if 0
@@ -968,30 +789,7 @@ VOS_UINT32 RABM_EnqueueTcData(PDCP_RABM_TC_DATA_Q_NODE_STRU *pstNode)
     return PS_SUCC;
 } /* RABM_EnqueueTcData */
 
-/*****************************************************************************
- 函 数 名  : RABM_RcvPsTcDataInd
- 功能描述  : RABM模块处理PDCP上报的PS域环回数据函数
- 输入参数  : VOS_VOID  *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2003年12月11日
-    作    者   : 张志勇
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年01月13日
-    作    者   : A00165503
-    修改内容   : 问题单号: DTS2011011302080，环回数据处理优化
-  3.日    期   : 2012年7月20日
-    作    者   : L00171473
-    修改内容   : V7R1 C50 GUTL PhaseI调整: 接口函数从Rabm文件中移到UTRANCTRL文件中
-  4.日    期   : 2013年6月05日
-    作    者   : Y00213812
-    修改内容   : DTS2013060507591,COVERITY和FORITY修改
-*****************************************************************************/
 VOS_VOID RABM_RcvPsTcDataInd(
                        VOS_VOID  *pMsg                                              /* 当前处理的消息                           */
                        )
@@ -1121,58 +919,7 @@ VOS_VOID RABM_RcvPsTcDataInd(
     } /* for (;;) */
 }
 
-/*******************************************************************************
-  Module:   RABM_RcvRrcRabInd
-  Function: 根据RAB的CN域及RABM实体的状态，进行相应的处理
-  Input:    VOS_VOID    *pMsg           收到的消息
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1. 张志勇      2003.12.11   新规作成
 
-  2.日    期   : 2011年12月15日
-    作    者   : l65478
-    修改内容   : 问题单号:DTS2011110206160 CCO过程中RABM向WRR回消息错误导致CCO回退失败
-
-  3.日    期   : 2012年3月24日
-    作    者   : A00165503
-    修改内容   : DTS2012032305582: CMW500环回建立失败, RABID在环回模式下取值
-                 范围检查过于严格
-
-  4.日    期   : 2012年9月11日
-    作    者   : A00165503
-    修改内容   : DTS2012080905905: 未检查是否为PS域, 错误的通知CDS恢复数传
-
-  5.日    期   : 2013年04月12日
-    作    者   : l65478
-    修改内容   : DTS2013031901654: 彩信并发发送失败
-
-  6.日    期   : 2013年7月17日
-    作    者   : A00165503
-    修改内容   : DTS2013071005164: PDP激活成功后没有流量, FD功能失效
-
-  7.日    期   : 2013年8月29日
-    作    者   : j00174725
-    修改内容   : clean coverity
-
-  8.日    期   : 2013年12月2日
-    作    者   : A00165503
-    修改内容   : DTS2013112919549: 使用RB_SETUP_REQUEST中的RAB信息填充
-                 RB_SETUP_RSP消息
-
-  9.日    期   : 2014年06月16日
-    作    者   : m00217266
-    修改内容   : modify for FD Optimize
-
- 10.日    期   : 2015年1月9日
-    作    者   : A00165503
-    修改内容   : DTS2014123000271: RRC释放流程增加停止控制
- 11.日    期   : 2015年7月9日
-    作    者   : A00165503
-    修改内容   : DTS2015071505434:rau或attach请求不带follow on，网络回复attach accept或rau accept中携带follow on proceed标识，gmm需要
-                增加判断如果ps rab存在或存在rabm重建或sm业务请求或cds存在缓存数据则不启动T3340，否则启动t3340开启网络防呆功能
-*******************************************************************************/
 VOS_VOID RABM_RcvRrcRabInd(VOS_VOID *pMsg)
 {
     RRRABM_RAB_IND_STRU                *pTempMsg;
@@ -1354,32 +1101,7 @@ VOS_VOID RABM_RcvRrcRabInd(VOS_VOID *pMsg)
 }
 
 
-/*******************************************************************************
-  Module:   RABM_RcvRrcRelAllReq
-  Function: RRC发生异常,指示RABM释放所有RAB
-  Input:    VOS_VOID
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-    1. L47619      2007.03.27   Modified for MAPS3000
 
-  2.日    期   : 2011年12月19日
-    作    者   : o00132663
-    修改内容   : PS融合项目，收到WRR的RAB承载释放消息后，通知CDS释放数据
-
-  3.日    期   : 2012年6月15日
-    作    者   : A00165503
-    修改内容   : DTS2012061401093: 多承载业务时, RABM处理RB释放的逻辑错误,
-                 有可能导致业务中断
-
-  4.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : RABM保存的QOS由动态内存改为静态数组
-  5.日    期   : 2013年04月12日
-    作    者   : l65478
-    修改内容   : DTS2013031901654:彩信并发发送失败
-*******************************************************************************/
 VOS_VOID RABM_RcvRrcRelAllReq(VOS_VOID)
 {
     VOS_UINT8                           ucEntId;
@@ -1638,20 +1360,7 @@ VOS_VOID RABM_RcvRlcDataInd(
 
 
 
-/*******************************************************************************
-  Module:   RABM_RcvTcTestReq
-  Function: 收到TC测试激活/去激活消息的处理
-  Input:    TCRABM_TEST_REQ_STRU *pRcvMsg
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.   张志勇      2004.05.09   新规作成
-  2.   l47619      2006.08.21   问题单: A32D05592
-  3.日    期   : 2012年12月11日
-    作    者   : l00167671
-    修改内容   : DTS2012121802573, TQE清理
-*******************************************************************************/
+
 VOS_VOID RABM_RcvTcTestReq(
                        TCRABM_TEST_REQ_STRU  *pRcvMsg
                        )
@@ -1775,33 +1484,7 @@ VOS_VOID RABM_RcvTcTestReq(
     RABM_SndTcTestCnf(pSndMsg);
 }
 
-/*****************************************************************************
- 函 数 名  : RABM_RcvTcTestLoopReq
- 功能描述  : 收到TC测试环开启/关闭消息的处理
- 输入参数  : TCRABM_TEST_LOOP_REQ_STRU *pRcvMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2004年5月9日
-    作    者   : 张志勇
-    修改内容   : 新生成函数
-
-  2.日    期   : 2006年1月10日
-    作    者   : L47619
-    修改内容   : 问题单: A32D01571
-
-  3.日    期   : 2004年5月9日
-    作    者   : A00165503
-    修改内容   : 问题单号: DTS2010120604951，CMU 2ms 重传率20%以上
-
-  4.日    期   : 2011年01月13日
-    作    者   : A00165503
-    修改内容   : 问题单号: DTS2011011302080，环回数据处理优化
-
-*****************************************************************************/
 VOS_VOID RABM_RcvTcTestLoopReq(TCRABM_TEST_LOOP_REQ_STRU *pRcvMsg)
 {
     VOS_UINT8                           i;
@@ -1941,62 +1624,19 @@ VOS_VOID RABM_RcvTcTestLoopReq(TCRABM_TEST_LOOP_REQ_STRU *pRcvMsg)
     RABM_SndTcTestLoopCnf();
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_SetTcFlowCtrl
- 功能描述  : 设置环回流控标志
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年1月11日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_RABM_SetTcFlowCtrl(VOS_VOID)
 {
     g_RabmTcInf.bFlowCtrlFlg = VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_ClearTcFlowCtrl
- 功能描述  : 清除环回流控标志
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年1月11日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_RABM_ClearTcFlowCtrl(VOS_VOID)
 {
     g_RabmTcInf.bFlowCtrlFlg = VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_IsRabIndPsDonmain
- 功能描述  : 判断RRRABM_RAB_IND消息中是否包含PS域的RAB信息
- 输入参数  : pstRrcRabInd - RRRABM_RAB_IND消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE     - 包含PS域RAB信息
-             VOS_FALSE    - 不包含PS域RAB信息
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月11日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_RABM_IsRabIndPsDonmain(
     RRRABM_RAB_IND_STRU                *pstRrcRabInd
 )

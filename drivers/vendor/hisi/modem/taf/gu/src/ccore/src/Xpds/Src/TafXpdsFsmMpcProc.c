@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafXpdsFsmPdeProc.c
-  版 本 号   : 初稿
-  作    者   : c00299064
-  生成日期   : 2015年08月24日
-  功能描述   : MPC状态机事件处理函数
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年08月24日
-    作    者   : c00299064
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -43,21 +28,7 @@ extern "C"{
   3 函数定义
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvMpcLinkConnectedMsg_MpcProc_Init
- 功能描述  : 在MPC INIT状态收到链路建链成功的消息
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月29日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvMpcOperationReqMsg_MpcProc_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -105,21 +76,7 @@ VOS_UINT32 TAF_XPDS_RcvMpcOperationReqMsg_MpcProc_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvMpcStartPosResp_MpcProc_WaitStartPosResp
- 功能描述  : 在MPC WaitStartPosResp状态收到MpcStartPosResp消息
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月29日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvMpcStartPosResp_MpcProc_WaitStartPosResp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -202,22 +159,7 @@ VOS_UINT32 TAF_XPDS_RcvMpcStartPosResp_MpcProc_WaitStartPosResp(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvTiStartPosRespExperied_MpcProc_WaitStartPosResp
- 功能描述  : 在MPC WaitStartPosResp状态收到MpcStartPosResp消息
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月29日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvTiStartPosRespExperied_MpcProc_WaitStartPosResp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -232,22 +174,7 @@ VOS_UINT32 TAF_XPDS_RcvTiStartPosRespExperied_MpcProc_WaitStartPosResp(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvMpcPosReportResp_MpcProc_WaitPosReportResp
- 功能描述  : 在MPC WaitPOS REP Resp状态收到POS REPORT RESP消息
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月29日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvMpcPosReportResp_MpcProc_WaitPosReportResp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -293,22 +220,7 @@ VOS_UINT32 TAF_XPDS_RcvMpcPosReportResp_MpcProc_WaitPosReportResp(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvTiPosReportExperied_MpcProc_WaitStartPosResp
- 功能描述  : 在MPC WaitResp状态收到定时器超时消息
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月29日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvTiPosReportExperied_MpcProc_WaitStartPosResp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -321,22 +233,7 @@ VOS_UINT32 TAF_XPDS_RcvTiPosReportExperied_MpcProc_WaitStartPosResp(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvXpdsAbortInd_MpcProc
- 功能描述  : 在MPC 状态收到ABORT IND
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月29日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvXpdsAbortInd_MpcProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg

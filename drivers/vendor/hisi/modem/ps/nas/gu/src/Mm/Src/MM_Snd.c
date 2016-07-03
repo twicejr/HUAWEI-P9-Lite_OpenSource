@@ -1,98 +1,4 @@
-/*******************************************************************************
-  Copyright    : 2005-2007, Huawei Tech. Co., Ltd.
-  File name    : MM_Snd.c
-  Description  : MM发送原语公共处理
-  Function List:
-                1.  Mm_SndMmcSvcStaInd
-                2.  Mm_SndMmcStartCnf
-                3.  Mm_SndMmcAuthFailInd
-                4.  Mm_SndMmcInfoInd
-                5.  Mm_SndMmcCmSvcInd
-                6.  Mm_SndMmcCmSvcRejInd
-                7.  Mm_SndCcEstCnf
-                8.  Mm_SndCcEstInd
-                9.  Mm_SndCcRelInd
-                10. Mm_SndCcDataInd
-                11. Mm_SndCcSyncInd
-                12. Mm_SndCcReestCnf
-                13. Mm_SndCcErrInd
-                14. Mm_SndRrRelReq
-                15. Mm_SndRrAbortReq
-                16. Mm_SndRrEstReq
-                17. Mm_SndRrDataReq
-                18. Mm_SndRrNasInfoChgReq
-                19. Mm_SndAgentUsimReadFileReq
-                20. Mm_SndAgentUsimUpdateFileReq
-                21. Mm_SndAgentUsimAuthenReq
-                22. Mm_SndMmcLuResultInd
-                23. Mm_SndMmcDetachCnf
-                24. Mm_SndMmcPowerOffCnf
-                25. Mm_SndMmcRrConnInfInd
-                27. Mm_SndCcPromptInd
-                28. Mm_SndSsEstCnf
-                29. Mm_SndSsEstInd
-                30. Mm_SndSsDataInd
-                31. Mm_SndSsRelInd
-                32. Mm_SndSmsEstCnf
-                33. Mm_SndSmsEstInd
-                34. Mm_SndSmsDataInd
-                35. Mm_SndSmsRelInd
-                36. Mm_SndTcDataInd
-  History:
-      1.  张志勇       03-12-09    新版做成
-      2.日    期   : 2006年2月17日
-        作    者   : liuyang id:48197
-        修改内容   : 问题单号：A32D01287，打印错误
-      3.  s46746     2006-03-18  根据问题单A32D02491修改
-      4.  s46746    2006-03-30   根据问题单A32D02606修改
-      5.  s46746    2006-04-19   根据问题单A32D03273修改
-      6.  s46746    2006-05-20   根据问题单A32D03368修改
-      7.  x51137 2006/5/30 A32D04051
-      8.日    期  : 2006年11月25日
-        作    者  : luojian id:60022475
-        修改内容  : 问题单号:A32D06583
-      9.日    期   : 2007年01月26日
-        作    者   : h44270
-        修改内容   : 问题单号：A32D08575
-     10.日    期   : 2007年06月08日
-        作    者   : luojian 60022475
-        修改内容   : 根据问题单号A32D11576
-     11.日    期   : 2007年9月27日
-        作    者   : s46746
-        修改内容   : 将卡无效信息从RRMM_NAS_INFO_CHANGE消息中拿掉
-     12.日    期   : 2007年10月06日
-        作    者   : l65478
-        修改内容   : 根据问题单号：A32D12977
-     13.日    期   : 2007年11月07日
-        作    者   : l00107747
-        修改内容   : 根据问题单号A32D13366,去掉SMS Agent错误上报
-     14.日    期   : 2008年5月27日
-        作    者   : s46746
-        修改内容   : 问题单号:AT2D03209,增加列表搜索时响应寻呼处理
-     15.日    期   : 2008年7月23日
-        作    者   : luojian id:107747
-        修改内容   : 根据问题单：AT2D04627/AT2D04237,
-                     ATTEMPT TO UPDATE/ATTACH 状态对CM服务处理
-     16.日    期   : 2009年03月06日
-        作    者   : o00132663
-        修改内容   : 问题单号：AT2D09746,【B036】【终端自动化测试】搜网专项测试，系统模式指示项中，
-                     概率出现手动搜网不可用网络成功的情况
-     17.日    期   : 2009年03月12日
-        作    者   : ouyangfei id:00132663
-        修改内容   : 问题单AT2D09683,丢网时，GMM上报服务状态异常导致MMC没有发起搜网。
-     18.日    期   : 2009年03月25日
-        作    者   : h44270
-        修改内容   : 问题单AT2D10415,USIM GCF测试的无卡紧急呼叫有问题
-     19.日    期   : 2009年9月7日
-        作    者   : s46746
-        修改内容   : 根据问题单号：AT2D14311，出服务区后，GMM存在连接时先进行了连接释放，会导致服务状态临时更新为Normal service
-     20.日    期   : 2009年09月12日
-        作    者   : s46746
-        修改内容   : 问题单号：AT2D14432,HPLMN定时器在异系统重选过程中超时没有立即进行HPLMN搜索
-     21.日    期   : 2009年09月25日
-        作    者   : s46746
-        修改内容   : 问题单号：AT2D14765,LAU/RAU过程中设置SYSCFG失败
-*******************************************************************************/
+
 
 #include        "MM_Inc.h"
 #include        "GmmMmInterface.h"
@@ -105,10 +11,8 @@
 #endif
 #include "NasUtranCtrlInterface.h"
 
-/* Added by n00355355 for 呼叫重建, 2015-9-24, begin */
 #include "NasMmlLib.h"
 #include "MmCcInterface.h"
-/* Added by n00355355 for 呼叫重建, 2015-9-24, end */
 
 
 #ifdef  __cplusplus
@@ -127,32 +31,7 @@
 
 /*lint -save -e958 */
 
-/*******************************************************************************
-  Module:      MM_ReportM2NOtaMsg
-  Function:    在trace中勾取MM的空口消息
-  Input:       VOS_UINT8       ucMsgType   SM msg type
-               NAS_MSG_STRU*   pNasMsg     SM空口消息
-  NOTE:
-  Return:      VOS_VOID
-  History:
-      1. 鲁琳    2009.07.11   新规作成
-      2.日    期   : 2012年3月26日
-        作    者   : w00166186
-        修改内容   : CSFB&PPAC&ETWS&ISR 开发,BBIT问题合入
-      3.日    期   : 2013年2月1日
-        作    者   : t00212959
-        修改内容   : DTS2013041108349,MM向网侧发送状态的OTA消息
-      4.日    期  : 2013年03月13日
-        作    者  : z00214637
-        修改内容  : BodySAR项目
 
-      5.日    期   : 2013年10月9日
-        作    者   : z00234330
-        修改内容   : DTS2013100906795,paging response消息未通过ota消息钩出
-      6.日    期   : 2013年10月11日
-        作    者   : z00161729
-        修改内容  : DTS2013101007129:mm status ota消息有上行和下行之分需要用两个消息id
-*******************************************************************************/
 VOS_VOID MM_ReportM2NOtaMsg(VOS_UINT32 ulSize, VOS_UINT8 *pData)
 {
     NAS_OTA_MSG_ID_ENUM_UINT16 usNasOtaMsyId = NAS_OTA_MSG_ID_BUTT;
@@ -264,23 +143,9 @@ VOS_VOID MM_ReportM2NOtaMsg(VOS_UINT32 ulSize, VOS_UINT8 *pData)
 }
 
 
-/* Deleted by s00261364 for V3R360_eCall项目, 2014-4-11, begin */
 
-/* Deleted by s00261364 for V3R360_eCall项目, 2014-4-11, end */
 
-/*******************************************************************************
-  Module:   Mm_SndMmcStartCnf
-  Function: 向MMC发送MMCMM_AUTHENTICATON_FAILURE_IND的处理
-  Input:    VOS_VOID
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇     2003.12.11  新版做成
-      2.日    期   : 2011年07月28日
-        作    者   : w00167002
-        修改内容   : v7r1_phaseII 内部消息发送调整
-*******************************************************************************/
+
 
 VOS_VOID Mm_SndMmcStartCnf()
 {
@@ -309,32 +174,12 @@ VOS_VOID Mm_SndMmcStartCnf()
 
 }
 
-/*******************************************************************************
-  Module:   Mm_SndMmcInfoInd
-  Function: 向MMC发送MMCMM_INFO_IND的处理
-  Input:    VOS_VOID
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.张志勇     2003.12.11  新版做成
 
-      2.日    期   : 2010年3月22日
-        作    者   : o00132663
-        修改内容   : NAS R7协议升级，使用新消息结构给MMC转发MM INFO消息
-      3.日    期   : 2011年07月28日
-        作    者   : w00167002
-        修改内容   : v7r1_phaseII 内部消息发送调整
-      4.日    期   : 2013年4月26日
-        作    者   : z00161729
-        修改内容   : 主动上报AT命令控制下移至C核及mma和mmc接口调整
-*******************************************************************************/
 
 VOS_VOID Mm_SndMmcInfoInd(VOS_VOID)
 {
     MMCMM_INFO_IND_STRU                   *pMmcInfoInd;
 
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-26, begin */
     /* 当前无可用信息直接返回不用通知MMC */
     if ( (VOS_FALSE == g_MmMsgMmInfo.ucLocalTmZoneFlg)
       && (VOS_FALSE == g_MmMsgMmInfo.ucUnvrslTmAndLocalTmZoneFlg)
@@ -345,7 +190,6 @@ VOS_VOID Mm_SndMmcInfoInd(VOS_VOID)
         NAS_INFO_LOG(WUEPS_PID_MM, "Mm_SndMmcInfoInd: No userful info");
         return;
     }
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-26, end */
 
     /* 申请消息内存分配 */
     pMmcInfoInd     = (MMCMM_INFO_IND_STRU *)NAS_MML_GetIntMsgSendBuf(sizeof(MMCMM_INFO_IND_STRU));
@@ -396,25 +240,7 @@ VOS_VOID Mm_SndMmcInfoInd(VOS_VOID)
 }
 
 
-/*******************************************************************************
-  Module:   Mm_SndMmcCmSvcInd
-  Function: 向MMC发送MMCMM_CM_SERVICE_IND的处理
-  Input:    VOS_UINT32 ulCsServFlg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇     2003.12.11  新版做成
-      2.  日    期   : 2007年10月06日
-          作    者   : l65478
-          修改内容   : 问题单号：A32D12977
-      3.  日    期   : 2011年07月28日
-          作    者   : w00167002
-          修改内容   : v7r1_phaseII 内部消息发送调整
-      4.  日    期   : 2012年8月21日
-          作    者   : z00161729
-          修改内容   : DCM定制需求和遗留问题修改
-*******************************************************************************/
+
 
 VOS_VOID Mm_SndMmcCmSvcInd(
                        VOS_UINT32 ulCsServFlg                                        /* 输入参数CS域的服务标识                   */
@@ -447,13 +273,11 @@ VOS_VOID Mm_SndMmcCmSvcInd(
         {
             pCmSvcInd->ulEmcFlg = MM_EMERGENCY_CALL_TRUE;
 
-            /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-23, begin */
             if (MM_CS_SERV_NOT_EXIST == ulCsServFlg)
             {
                  /* 清除紧急呼叫存在标识 */
                  NAS_MML_SetCsEmergencyServiceFlg(VOS_FALSE);
             }
-            /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-23, end */
 
             PS_NAS_LOG(WUEPS_PID_MM, VOS_NULL, PS_LOG_LEVEL_INFO, "Mm_SndMmcCmSvcInd:INFO: PLMN search procedure start EMC!");
         }
@@ -465,20 +289,7 @@ VOS_VOID Mm_SndMmcCmSvcInd(
     return;
 }
 
-/*******************************************************************************
-  Module:   Mm_SndMmcPlmnSearchInd
-  Function: 向MMC发送MMCMM_PLMN_SEARCH_IND的处理
-  Input:
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
- 1.日    期   : 2014年1月18日
-   作    者   : w00242748
-   修改内容   : DTS2014011302424:L下主叫，CSFB失败，回退到L后，MM模块给CC模块发送
-                释放链接请求，电话业务终止。为提高用户体验，如果回退到L的话，则需
-                发送搜网。
-*******************************************************************************/
+
 
 VOS_VOID NAS_MM_SndMmcPlmnSearchInd(MM_MMC_PLMN_SEARCH_TYPE_ENUM_U32 enPlmnSearchType)
 {
@@ -508,18 +319,7 @@ VOS_VOID NAS_MM_SndMmcPlmnSearchInd(MM_MMC_PLMN_SEARCH_TYPE_ENUM_U32 enPlmnSearc
 }
 
 
-/*******************************************************************************
-  Module:   Mm_SndMmcCsfbAbortInd
-  Function: 向MMC发送MMCMM_CSFB_ABORT_IND的处理
-  Input:
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
- 1.日    期   : 2015年5月7日
-   作    者   : b00269685
-   修改内容   : new
-*******************************************************************************/
+
 VOS_VOID NAS_MM_SndMmcCsfbAbortInd()
 {
     MMCMM_CSFB_ABORT_IND_STRU          *pstPlmnSearchInd;                    /* 定义原语类型指针                         */
@@ -546,19 +346,7 @@ VOS_VOID NAS_MM_SndMmcCsfbAbortInd()
     return;
 }
 
-/*******************************************************************************
-  Module:   Mm_SndMmcCmSvcRejInd
-  Function: 向MMC发送MMCMM_CM_SERVICE_REJECT_IND的处理
-  Input:    VOS_UINT32 ulCause
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇     2003.12.11  新版做成
-      2.日    期   : 2011年07月28日
-        作    者   : w00167002
-        修改内容   : v7r1_phaseII 内部消息发送调整
-*******************************************************************************/
+
 
 VOS_VOID Mm_SndMmcCmSvcRejInd(
                           VOS_UINT32 ulCause                                         /* 输入参数拒绝的原因值                     */
@@ -602,20 +390,7 @@ VOS_VOID Mm_SndMmcCmSvcRejInd(
 }
 
 /* MM->CC */
-/*******************************************************************************
-  Module:   Mm_SndCcEstCnf
-  Function: 向CC发送MMCC_EST_CNF的处理
-  Input:    VOS_UINT32 ulTransactionId
-            VOS_UINT32 ulResult
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇     2003.12.11  新版做成
-      2.  日    期   : 2009年05月25日
-          作    者   : l65478
-          修改内容   : 问题单:AT2D10870,在MM连接建立过程中发生LAI改变,没有发起LU,导致呼叫失败
-*******************************************************************************/
+
 
 VOS_VOID Mm_SndCcEstCnf(
                     VOS_UINT32 ulTransactionId,
@@ -741,29 +516,7 @@ VOS_VOID Mm_SndCcEstInd(
     return;
 }
 
-/*******************************************************************************
-  Module:   Mm_SndCcRelInd
-  Function: 向CC发送MMCC_REL_IND的处理
-  Input:    VOS_UINT32 ulTransactionId
-            VOS_UINT32 ulRelCause
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇    2003.12.11  新版做成
-      2.日    期   : 2012年8月22日
-        作    者   : z00161729
-        修改内容   : DCM定制需求和遗留问题修改
-     3.日    期   : 2014年5月4日
-       作    者   : z00161729
-       修改内容   : DTS2014042816166:l csfb 到w，rau被12拒绝，lau成功没有清除forbidden信息，导致fast return到l后csfb到w相同小区电话失败
-     4.日    期   : 2014年6月13日
-       作    者   : w00242748
-       修改内容   : DSDS 新特性
-     5.日    期   : 2014年9月23日
-       作    者   : z00161729
-       修改内容   : DTS2014092302846:L下拨打电话搜网到w下被#12拒绝的小区，电话失败后重选回l，mm会给cc多发一次mmcc rel ind
-*******************************************************************************/
+
 
 VOS_VOID Mm_SndCcRelInd(
                     VOS_UINT32 ulTransactionId,
@@ -783,13 +536,11 @@ VOS_VOID Mm_SndCcRelInd(
 
     NAS_MM_UpdateCsServiceBufferStatusFlg();
 
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-25, begin */
     /* 清除mml中紧急呼叫标志 */
     if (MMCC_EMERGENCY_CALL == g_MmCcEstReq.ulCallType)
     {
         NAS_MML_SetCsEmergencyServiceFlg(VOS_FALSE);
     }
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-25, end */
 
     enCsfbServiceStatus = NAS_MML_GetCsfbServiceStatus();
     if ((NAS_MML_CSFB_SERVICE_STATUS_MO_NORMAL_CC_EXIST == enCsfbServiceStatus)
@@ -1038,19 +789,7 @@ VOS_VOID Mm_SndCcReestCnf(
     return;
 }
 
-/*******************************************************************************
-  Module:   Mm_SndCcErrInd
-  Function: 向CC发送MMCC_ERR_IND的处理
-  Input:    VOS_UINT32 ulTransactionId
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇     2003.12.11  新版做成
-      2.日    期   :2014年9月24日
-        作    者   :s00217060
-        修改内容   :for cs_err_log
-*******************************************************************************/
+
 
 VOS_VOID Mm_SndCcErrInd(
     VOS_UINT32 ulTransactionId,
@@ -1085,18 +824,7 @@ VOS_VOID Mm_SndCcErrInd(
     return;
 }
 
-/*******************************************************************************
-  Module:   NAS_Mm_SndCcGetCallInfoReq
-  Function: 向CC发送MMCC_GET_CALL_INFOR_REQUEST_IND的处理
-  Input:    VOS_UINT32 ulTransactionId
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.日    期   : 2015年9月16日
-    作    者   : n00355355
-    修改内容   : 呼叫重建
-*******************************************************************************/
+
 VOS_VOID NAS_Mm_SndCcGetCallInfoReq( VOS_VOID )
 {
     MMCC_GET_CALL_INFO_REQ_STRU        *pstCcGetCallInfoReq = VOS_NULL_PTR;
@@ -1128,22 +856,7 @@ VOS_VOID NAS_Mm_SndCcGetCallInfoReq( VOS_VOID )
 }
 
 
-/*******************************************************************************
-  Module:   Mm_SndCcEmergencyNumberList
-  Function: 向CC发送MMCC_ERR_IND的处理
-  Input:    VOS_UINT32 ulTransactionId
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-        1.  x00115505     2009.05.11  新版做成
-        2. 日    期   : 2012年3月27日
-           作    者   : w00166186
-           修改内容   : CSFB&PPAC&ETWS&ISR 开发 ENERGENCY CALL
-        3. 日    期   : 2012年6月12日
-           作    者   : w00166186
-           修改内容   : AT&T&DCM项目
-*******************************************************************************/
+
 VOS_VOID Mm_SndCcEmergencyNumberList(NAS_MML_EMERGENCY_NUM_LIST_STRU *pEmergencyList)
 {
     MMCC_EMERGENCY_LIST_STRU            *pEmcNumLst = VOS_NULL;                            /* 定义原语类型指针                         */
@@ -1196,23 +909,8 @@ VOS_VOID Mm_SndCcEmergencyNumberList(NAS_MML_EMERGENCY_NUM_LIST_STRU *pEmergency
     return;
 }
 
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-10, begin */
 #if (FEATURE_ON == FEATURE_IMS)
-/*****************************************************************************
- 函 数 名  : NAS_MM_SndCcSrvccStatusInd
- 功能描述  : 通知CC模块当前SRVCC的状态
- 输入参数  : enSrvccSta----当前SRVCC的状态
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月10日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MM_SndCcSrvccStatusInd(
     NAS_MMCC_SRVCC_STATUS_ENUM_UINT32   enSrvccSta
 )
@@ -1246,7 +944,6 @@ VOS_VOID NAS_MM_SndCcSrvccStatusInd(
     return;
 }
 #endif
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-10, end */
 /* MM->RRC */
 /*******************************************************************************
   Module:   Mm_SndRrRelReq
@@ -1274,20 +971,7 @@ VOS_VOID Mm_SndRrRelReq(RRC_CELL_BAR_ENUM_UINT32  enBarValidFlg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_GetIdnnsType_CsfbMt
- 功能描述  : mt csfb到g时获取idnnstype值
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月10日
-    作    者   : z00161729
-    修改内容   : DTS2012101101736:mt csfb,paging response中mobile identity type与PAGING REQUEST message消息中不一致
-*****************************************************************************/
 VOS_UINT8 NAS_MM_GetIdnnsType_CsfbMt(VOS_VOID)
 {
     if (((MM_TMSI_PAGING == g_MmGlobalInfo.ucPagingRecordTypeId)
@@ -1302,40 +986,7 @@ VOS_UINT8 NAS_MM_GetIdnnsType_CsfbMt(VOS_VOID)
 }
 
 
-/*******************************************************************************
-  Module:   Mm_SndRrEstReq
-  Function: 向RRC发送RRMM_EST_REQ的处理
-  Input:    VOS_UINT32           ulOpId
-            VOS_UINT32           ulEstCause
-            IDNNS_STRU      *pIdnnsInfo
-            VOS_UINT32           ulSize
-            VOS_INT8            *pFisrstMsg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.张志勇     2003.12.12  新版做成
-      2.王毛       2010.09.08  DTS2010081902050 PLMN改变后，收不到网络寻呼
-      3.日    期   : 2010年9月30日
-        作    者   : 欧阳飞 00132663
-        修改内容   : 根据问题单号DTS2010092902368,TMSI只在等效PLMN内有效
-      4.日    期   : 2010年12月05日
-        作    者   : 欧阳飞 00132663
-        修改内容   : 根据问题单号DTS2010120300932,开机时，卡中存在的分配TMSI的网络和
-                     NV项中保存的等效PLMN不相同，即使当前驻留小区与卡中网络相同，也使
-                     用IMSI进行注册，导致TIM网络注册失败。
 
-      5.日    期   : 2012年11月9日
-        作    者   : w00167002
-        修改内容   : DTS2012102503890:删除根据EPLMN来进行TMSI的有效性判断,恢复
-                     跟协议保持一致，否则TD:GCF:9.4.2.2.1/9.4.2.2.2通不过(开机在
-                     00101上注册成功后，分配TMSI,再关机，再指定搜00102成功，
-                     发起LAU时需要匹配TMSI,而BALONG 发起的是IMSI)。
-      6.日    期   : 2014年4月2日
-        作    者   : w00176964
-        修改内容   : V3R3C60_eCall项目修改:g_MmGlobalInfo.MsCsInfo.OldLai和CurLai替换成MML中的
-
-*******************************************************************************/
 
 VOS_VOID Mm_SndRrEstReq(
     VOS_UINT32                          ulEstCause,
@@ -1347,11 +998,9 @@ VOS_VOID Mm_SndRrEstReq(
     VOS_UINT32                          ulOpId;
     IDNNS_STRU                          IdnnsInfo;
     VOS_UINT32                          ulRst;
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-4-2, begin */
     NAS_MML_LAI_STRU                   *pstCsSuccLai     = VOS_NULL_PTR;
     NAS_MML_PLMN_ID_STRU               *pstCurCampPlmnId = VOS_NULL_PTR;
     VOS_UINT32                          ulCurCampLac;
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-4-2, end */
     /* 删除根据EPLMN来进行TMSI的有效性判断,恢复跟协议保持一致 */
 
 #if (FEATURE_ON == FEATURE_LTE)
@@ -1362,11 +1011,9 @@ VOS_VOID Mm_SndRrEstReq(
     enNetRatType        = NAS_MML_GetCurrNetRatType();
 #endif
 
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-4-2, begin */
     pstCsSuccLai        = NAS_MML_GetCsLastSuccLai();
     ulCurCampLac        = NAS_MML_GetCurrCampLac();
     pstCurCampPlmnId    = NAS_MML_GetCurrCampPlmnId();
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-4-2, end */
 
 
     MM_ReportM2NOtaMsg(ulSize, pFisrstMsg);
@@ -1409,14 +1056,12 @@ VOS_VOID Mm_SndRrEstReq(
                   (MM_MS_ID_TMSI_PRESENT & g_MmGlobalInfo.MsCsInfo.MobileId.ucMsIdFlg) )
         {
 
-            /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-2, begin */
             if ((pstCurCampPlmnId->ulMcc != pstCsSuccLai->stPlmnId.ulMcc)
              || (pstCurCampPlmnId->ulMnc != pstCsSuccLai->stPlmnId.ulMnc))
             {
                 IdnnsInfo.ucIdnnsType = RRC_IDNNS_TMSI_DIFFER_PLMN;
             }
             else if (ulCurCampLac != NAS_MML_GetCsLastSuccLac())
-            /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-2, end */
             {
                 IdnnsInfo.ucIdnnsType = RRC_IDNNS_TMSI_DIFFER_LA;
             }
@@ -1443,10 +1088,8 @@ VOS_VOID Mm_SndRrEstReq(
         }
     }
 
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-2, begin */
     if ( (0x0000ffff & pstCurCampPlmnId->ulMcc)
       == (0x0000ffff & pstCsSuccLai->stPlmnId.ulMcc))
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-2, end */
     {
         IdnnsInfo.ucEnterPara = NAS_RRC_SPLMN_SAME_RPLMN;
     }
@@ -1462,9 +1105,7 @@ VOS_VOID Mm_SndRrEstReq(
         RRC_NAS_CS_DOMAIN,
         ulEstCause,
         &IdnnsInfo,
-        /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-3, begin */
         (RRC_PLMN_ID_STRU *)pstCurCampPlmnId,
-        /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-3, end */
         ulSize,
         (VOS_INT8*)pFisrstMsg);
     if( VOS_OK != ulRst)
@@ -1525,20 +1166,7 @@ VOS_VOID Mm_SndRrDataReq(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_GetAttachStatus
- 功能描述  : 获取MM的注册状态
- 输入参数  : 无
- 输出参数  : RRC_NAS_ATTACH_STATUS_ENUM_UINT32 注册状态
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月29日
-    作    者   : l00130025
-    修改内容   : DTS2011082201679/DTS2011121504358,W/G下注册状态没有更新
-*****************************************************************************/
 RRC_NAS_ATTACH_STATUS_ENUM_UINT32  NAS_MM_GetAttachStatus(VOS_VOID)
 {
     if (MM_STATUS_ATTACHED == g_MmSubLyrShare.MmShare.ucCsAttachState)
@@ -1552,32 +1180,14 @@ RRC_NAS_ATTACH_STATUS_ENUM_UINT32  NAS_MM_GetAttachStatus(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_GetTmsiLai
- 功能描述  : 获取MM的TMSI和LAI
- 输入参数  : 无
- 输出参数  : NAS_INFO_TMSI_LAI_STRU *pstTmsiLai,当前TMSI_LAI
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月29日
-    作    者   : l00130025
-    修改内容   : DTS2011082201679/DTS2011121504358,W/G下注册状态没有更新
-  2.日    期   : 2014年4月2日
-    作    者   : w00176964
-    修改内容   : V3R3C60_eCall项目修改:g_MmGlobalInfo.MsCsInfo.OldLai替换成MML中的
-*****************************************************************************/
 VOS_VOID  NAS_MM_GetTmsiLai(
     NAS_INFO_TMSI_LAI_STRU             *pstTmsiLai
 )
 {
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-2, begin */
     pstTmsiLai->stPlmnId.ulMcc = NAS_MML_GetCsLastSuccMcc();
     pstTmsiLai->stPlmnId.ulMnc = NAS_MML_GetCsLastSuccMnc();
     pstTmsiLai->usLac          = (VOS_UINT16)NAS_MML_GetCsLastSuccLac();
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-2, end */
 
     if ( VOS_FALSE == NAS_MML_GetSimCsRegStatus() )
     {
@@ -1593,20 +1203,7 @@ VOS_VOID  NAS_MM_GetTmsiLai(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_SndGasNasInfoChangeReq
- 功能描述  : 向GAS发送Nas的信息变更通知
- 输入参数  : VOS_UINT32 ulMask, 需要发送的标志位
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月29日
-    作    者   : l00130025
-    修改内容   : DTS2011082201679/DTS2011121504358,W/G下注册状态没有更新
-*****************************************************************************/
 VOS_VOID  NAS_MM_SndGasInfoChangeReq(VOS_UINT32 ulMask)
 {
     GRRMM_NAS_INFO_CHANGE_REQ_STRU     *pstNasInfoMsg = VOS_NULL_PTR;
@@ -1670,23 +1267,7 @@ VOS_VOID  NAS_MM_SndGasInfoChangeReq(VOS_UINT32 ulMask)
     return;
 
 }
-/*****************************************************************************
- 函 数 名  : NAS_MM_SndWasNasInfoChangeReq
- 功能描述  : 向Was发送Nas的信息变更通知
- 输入参数  : VOS_UINT32 ulMask, 需要发送的标志位
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月29日
-    作    者   : l00130025
-    修改内容   : DTS2011082201679/DTS2011121504358,W/G下注册状态没有更新
-  2.日    期   : 2012年7月14日
-    作    者   : W00176964
-    修改内容   : V7R1 C50 GUTL PhaseI调整:发送给WRR的消息统一用适配层函数替换
-*****************************************************************************/
 VOS_VOID  NAS_MM_SndWasInfoChangeReq(VOS_UINT32 ulMask)
 {
     RRMM_NAS_INFO_CHANGE_REQ_STRU      *pstNasInfoMsg = VOS_NULL_PTR;
@@ -1751,26 +1332,7 @@ VOS_VOID  NAS_MM_SndWasInfoChangeReq(VOS_UINT32 ulMask)
 
 }
 
-/*******************************************************************************
-  Module:   Mm_SndRrNasInfoChgReq
-  Function: 向RRC发送RRMM_NAS_INFO_CHANGE_REQ的处理
-  Input:    VOS_UINT8    bFlg
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.  李  彬    2003.12.12  新版做成
-  2.  张志勇    2004.10.25  SECURITY_KEY_INFO_STRU变更对应
-  3.日    期   : 2009年03月25日
-    作    者   : h44270
-    修改内容   : 问题单AT2D10415,USIM GCF测试的无卡紧急呼叫有问题
-  4.日    期   : 2011年7月27日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-  5.日    期   : 2011年12月27日
-    作    者   : l00130025
-    修改内容   : DTS2011082201679/DTS2011121504358,切换模式，回退后W/G下注册状态没有与NAS同步
-*******************************************************************************/
+
 VOS_VOID Mm_SndRrNasInfoChgReq(VOS_UINT32 ulMask)
 {
     if (MM_NAS_INFO_NULL_FLG == ulMask)
@@ -1795,21 +1357,7 @@ VOS_VOID Mm_SndRrNasInfoChgReq(VOS_UINT32 ulMask)
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_NotifyAsInfoChgReq
- 功能描述  : 当位置区改变时向W和G接入层发送RRMM_NAS_INFO_CHANGE_REQ的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月2日
-    作    者   : wx270776
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MM_NotifyAsInfoChgReq(VOS_VOID)
 {
     NAS_MM_SndWasInfoChangeReq(MM_NAS_INFO_LOCA_INFO_FLG);
@@ -1819,33 +1367,7 @@ VOS_VOID NAS_MM_NotifyAsInfoChgReq(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_WriteCkIkInCard
- 功能描述  : 根据全局变量中的IKCK写SIM卡
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月12日
-    作    者   : luokaihui / 00167671
-    修改内容   : 新生成函数
-  2.日    期   : 2011年7月27日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-  3.日    期   : 2012年12月26日
-    作    者   : 张鹏 id:00214637
-    修改内容   : USIM对外接口函数变更的处理 ，
-                 Client ID 到 PID的转换处理 ，入参封装成结构体。
-  4.日    期   : 2013年6月3日
-    作    者   : z00161729
-    修改内容   : SVLTE 和usim接口调整修改
-  5.日    期   : 2015年2月6日
-    作    者   : h00313353
-    修改内容   : USIMM卡接口调整
-*****************************************************************************/
 VOS_VOID NAS_MM_WriteCkIkInCard(VOS_VOID)
 {
     VOS_UINT16                          usLength;
@@ -1889,33 +1411,7 @@ VOS_VOID NAS_MM_WriteCkIkInCard(VOS_VOID)
 
      return;
 }
-/*****************************************************************************
- 函 数 名  : NAS_MM_WriteKCInCard
- 功能描述  : 根据全局变量中的KC写SIM卡
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年4月12日
-   作    者   : luokaihui / 00167671
-   修改内容   : 新生成函数
- 2.日    期   : 2011年7月27日
-   作    者   : h44270
-   修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
- 3.日    期   : 2012年12月26日
-   作    者   : 张鹏 id:00214637
-   修改内容   : USIM对外接口函数变更的处理 ，
-                Client ID 到 PID的转换处理 ，入参封装成结构体。
- 4.日    期   : 2013年6月3日
-   作    者   : z00161729
-   修改内容   : SVLTE 和usim接口调整修改
- 5.日    期   : 2015年2月6日
-   作    者   : h00313353
-   修改内容   : USIMM卡接口调整
-*****************************************************************************/
 VOS_VOID NAS_MM_WriteKCInCard(VOS_VOID)
 {
     VOS_UINT16                          usLength;
@@ -1964,36 +1460,7 @@ VOS_VOID NAS_MM_WriteKCInCard(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_WriteLocaInCard
- 功能描述  : 根据全局变量中的LAI、TMSI写SIM卡
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年4月12日
-   作    者   : luokaihui / 00167671
-   修改内容   : 新生成函数
- 2.日    期   : 2011年7月27日
-   作    者   : h44270
-   修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
- 3.日    期   : 2012年12月26日
-   作    者   : 张鹏 id:00214637
-   修改内容   : USIM对外接口函数变更的处理 ，
-                Client ID 到 PID的转换处理 ，入参封装成结构体。
- 4.日    期   : 2013年6月3日
-   作    者   : z00161729
-   修改内容   : SVLTE 和usim接口调整修改
- 5.日    期   : 2014年4月2日
-   作    者   : w00176964
-   修改内容   : V3R3C60_eCall项目修改:g_MmGlobalInfo.MsCsInfo.OldLai替换成MML中的
- 6.日    期   : 2015年2月6日
-   作    者   : h00313353
-   修改内容   : USIMM卡接口调整
-*****************************************************************************/
 
 VOS_VOID NAS_MM_WriteLocaInCard(VOS_VOID)
 {
@@ -2032,9 +1499,7 @@ VOS_VOID NAS_MM_WriteLocaInCard(VOS_VOID)
                NAS_MML_MAX_TMSI_LEN);
     usSn += NAS_MML_MAX_TMSI_LEN;
 
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-2, begin */
     /*lint -e961*/
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-2, begin */
     pucFileContent[usSn]
         = (VOS_UINT8)(NAS_MML_GetCsLastSuccMcc() &
         0x0000000f);
@@ -2058,7 +1523,6 @@ VOS_VOID NAS_MM_WriteLocaInCard(VOS_VOID)
         = (VOS_UINT8)(NAS_MML_GetCsLastSuccLac() >> 8);
     pucFileContent[usSn++]
         = (VOS_UINT8)(NAS_MML_GetCsLastSuccLac() & 0x000000ff);
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-2, end */
 
     pucFileContent[usSn++] = 0;
 
@@ -2092,20 +1556,7 @@ VOS_VOID NAS_MM_WriteLocaInCard(VOS_VOID)
 }
 
 #if (FEATURE_ON == FEATURE_PTM)
-/*****************************************************************************
- 函 数 名  : NAS_MM_SndAcpuOmChangeTmsi
- 功能描述  : 将TMSI的值发送给ACPU OM模块
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2013年08月23日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MM_SndAcpuOmChangeTmsi(VOS_VOID)
 {
     VOS_UINT8                          *pucTmsi      = VOS_NULL_PTR;
@@ -2173,24 +1624,7 @@ VOS_VOID NAS_MM_SndAcpuOmChangeTmsi(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_SndAcpuOmFaultErrLogInd
- 功能描述  : 将ID_OM_FAULT_ERR_LOG_IND指示发送给ACPU OM模块
- 输入参数  : pData
-             ulDataLen
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年09月22日
-   作    者   : f00179208
-   修改内容   : 新生成函数
- 2.日    期   : 2015年07月06日
-   作    者   : n00269697
-   修改内容   : ERR LOG上报类型分为故障上报和告警上报
-*****************************************************************************/
 VOS_VOID NAS_MM_SndAcpuOmFaultErrLogInd(
     VOS_VOID                           *pData,
     VOS_UINT32                          ulDataLen,
@@ -2250,30 +1684,7 @@ VOS_VOID NAS_MM_SndAcpuOmFaultErrLogInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_CsPagingFailRecord
- 功能描述  : 记录CS PAGING FAIL异常事件
- 输入参数  : enCause
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年09月22日
-   作    者   : f00179208
-   修改内容   : 新生成函数
- 2.日    期   :2015年3月13日
-   作    者   :zwx247453
-   修改内容   :CHR 优化项目
- 3.日    期   : 2015年07月06日
-   作    者   : n00269697
-   修改内容   : ERR LOG上报类型分为故障上报和告警上报
- 4.日    期   : 2015年08月10日
-   作    者   : f00179208
-   修改内容   : DTS2015080300492:添加域区分主被叫建链过程中以及LAU过程中
-                收到PAGING的场景
-*****************************************************************************/
 VOS_VOID NAS_MM_CsPagingFailRecord(
     NAS_ERR_LOG_CS_PAGING_CAUSE_ENUM_U32    enCause
 )
@@ -2354,23 +1765,7 @@ VOS_VOID NAS_MM_CsPagingFailRecord(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_CsfbMtFailRecord
- 功能描述  : 记录CSFB MT FAIL异常事件
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年09月22日
-   作    者   : f00179208
-   修改内容   : 新生成函数
- 2.日    期   : 2015年07月06日
-   作    者   : n00269697
-   修改内容   : ERR LOG上报类型分为故障上报和告警上报
-*****************************************************************************/
 VOS_VOID NAS_MM_CsfbMtFailRecord(VOS_VOID)
 {
     NAS_ERR_LOG_CSFB_MT_CALL_FAIL_EVENT_STRU    stCsfbMtFailEvt;
@@ -2467,20 +1862,7 @@ VOS_VOID NAS_MM_CsfbMtFailRecord(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_IDResInfoRecord
- 功能描述  : 记录NAS_ERR_LOG_ALM_PORCESS_INFO_IND异常事件
- 输入参数  : ucIDType
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年09月18日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MM_IDResInfoRecord(
     VOS_UINT8                           ucIDType
 )
@@ -2534,21 +1916,7 @@ VOS_VOID NAS_MM_IDResInfoRecord(
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : NAS_MM_SrvccFailRecord
- 功能描述  : SRVCC失败CHR记录
- 输入参数  : NAS_ERR_LOG_SRVCC_FAIL_CAUSE_ENUM_UINT8                 enSrvccCause
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月5日
-    作    者   : n00269697
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MM_SrvccFailRecord(
     NAS_ERR_LOG_SRVCC_FAIL_CAUSE_ENUM_UINT8                 enSrvccFailCause
 )
@@ -2609,51 +1977,7 @@ VOS_VOID NAS_MM_SrvccFailRecord(
 }
 #endif
 
-/*******************************************************************************
-  Module:   Mm_SndAgentUsimUpdateFileReq
-  Function: 向AGENT发送AGENT_USIM_UPDATE_FILE_REQ的处理
-  Input:    VOS_VOID
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.  李  彬  2003.12.12  新版做成
-  2.  张志勇  2004.10.25  AGENT接口变更对应
-  3.  张志勇  2005.03.19  NAS_IT_BUG_011对应
-  4.日    期   : 2006年2月17日
-    作    者   : liuyang id:48197
-    修改内容   : 打印错误，问题单号:A32D01287
-  5.日    期   : 2011年7月27日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
 
-  6.日    期   : 2011年12月1日
-    作    者   : zhoujun /40661
-    修改内容   : 比较EFLOCI文件改变后才需要更新卡内容
-  7.日    期   : 2012年12月26日
-    作    者   : 张鹏 id:00214637
-    修改内容   : USIM对外接口函数变更的处理 ，
-                 Client ID 到 PID的转换处理 ，入参封装成结构体。
-  8.日    期   : 2012年12月29日
-    作    者   : w00167002
-    修改内容   : DTS2012122900619:DCM MM-18-01-22 局方要求更新CS:4F20文件，PS更新
-                 4F52文件;balong更新了PS没有更新CS。
-  9.日    期   : 2013年6月3日
-    作    者   : z00161729
-    修改内容   : SVLTE 和usim接口调整修改
- 10.日    期   : 2013年08月23日
-    作    者   : f00179208
-    修改内容   : ErrLog&FTM项目
- 11.日    期   : 2014年4月2日
-    作    者   : w00176964
-    修改内容   : V3R3C60_eCall项目修改:g_MmGlobalInfo.MsCsInfo.OldLai替换成MML中的
- 12.日    期   : 2015年2月6日
-    作    者   : h00313353
-    修改内容   : USIMM卡接口调整
- 13.日    期   : 2015年11月17日
-    作    者   : z00359541
-    修改内容   : DTS2015111208926 IMSI REFRESH时禁止写入EFLOCI文件
-*******************************************************************************/
 VOS_VOID Mm_SndAgentUsimUpdateFileReq( VOS_UINT16 usEfId )
 {
     VOS_UINT16                          usLength = 0;
@@ -2772,7 +2096,6 @@ VOS_VOID Mm_SndAgentUsimUpdateFileReq( VOS_UINT16 usEfId )
                    NAS_MML_MAX_TMSI_LEN);
         usSn += NAS_MML_MAX_TMSI_LEN;
 
-        /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-2, begin */
         /*lint -e961*/
         pucFileContent[usSn]
             = (VOS_UINT8)((NAS_MML_GetCsLastSuccMcc()) &
@@ -2797,7 +2120,6 @@ VOS_VOID Mm_SndAgentUsimUpdateFileReq( VOS_UINT16 usEfId )
             = (VOS_UINT8)(NAS_MML_GetCsLastSuccLac() >> 8);
         pucFileContent[usSn++]
             = (VOS_UINT8)(NAS_MML_GetCsLastSuccLac() & 0x000000ff);
-        /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-2, end */
 
         pucFileContent[usSn++] = 0;
 
@@ -2846,33 +2168,7 @@ VOS_VOID Mm_SndAgentUsimUpdateFileReq( VOS_UINT16 usEfId )
 }
 
 
-/*******************************************************************************
-  Module:   Mm_SndAgentUsimAuthenReq
-  Function: 向AGENT发送AGENT_USIM_AUTHENTICATION_REQ的处理
-  Input:    VOS_VOID
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇     2003.12.12  新版做成
-      2.日    期  : 2006年11月25日
-        作    者  : luojian id:60022475
-        修改内容  : 问题单号:A32D06583
-      3.日    期  : 2012年12月26日
-        作    者  : 张鹏 id:00214637
-        修改内容  : USIM对外接口函数变更的处理 ，Client ID 到 PID的转换处理。
-      4.日    期  : 2013年6月4日
-        作    者  : w00242748
-        修改内容  : NAS_SndUsimmAuthReq修改为NAS_USIMMAPI_AuthReq，后者会根据当前模式自动
-                    适配
-      5.日    期  : 2013年11月30日
-        作    者  : l65478
-        修改内容  : DTS2013121919477,连续收到网络的两条鉴权消息,网络把第一条消息的响应作为第二条请求的响应,导致鉴权失败
 
-      6.日    期  : 2014年1月3日
-        作    者  : s00261364
-        修改内容  : mm模块Converity告警消除
-*******************************************************************************/
 
 VOS_VOID Mm_SndAgentUsimAuthenReq()
 {
@@ -2911,33 +2207,7 @@ VOS_VOID Mm_SndAgentUsimAuthenReq()
     return;
 }
 
-/*******************************************************************************
-  Module:   NAS_MM_SndMmcDetachCnf
-  Function: 向MMC发送MMCMM_DETACH_CNF的处理
-  Input:    VOS_UINT8   ucServiceStatus         服务状态
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇     2003.12.11  新版做成
-      2.日    期   : 2011年07月28日
-        作    者   : w00167002
-        修改内容   : v7r1_phaseII 内部消息发送调整
-      3.日    期   : 2011年11月16日
-        作    者   : l00130025
-        修改内容   : 问题单号:DTS2011111402583,opid值错误，导致AT挂死
 
-      4.日    期   : 2013年6月11日
-        作    者   : w00167002
-        修改内容   : V9R1_SVLTE:检视意见修改:将停DETACH保护定时器由外面统一移到
-                     该函数进行停止。
-      5.日    期   : 2014年05月22日
-        作    者   : w00176964
-        修改内容   : V3R3C60_eCall项目调整
-      6.日    期   :2015年3月13日
-        作    者   :zwx247453
-        修改内容   :CHR 优化项目
-*******************************************************************************/
 
 VOS_VOID NAS_MM_SndMmcDetachCnf(VOS_UINT8 ucServiceStatus)
 {
@@ -2981,7 +2251,6 @@ VOS_VOID NAS_MM_SndMmcDetachCnf(VOS_UINT8 ucServiceStatus)
             break;
     }
 
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-22, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
     /* ecall only模式配置为PS ONLY不影响CS的attach标记 */
     if (NAS_MML_ECALL_ONLY == NAS_MML_GetCallMode())
@@ -2994,7 +2263,6 @@ VOS_VOID NAS_MM_SndMmcDetachCnf(VOS_UINT8 ucServiceStatus)
         return;
     }
 #endif
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-22, end */
 
     NAS_MML_SetCsAttachAllowFlg( VOS_FALSE );
 
@@ -3008,23 +2276,7 @@ VOS_VOID NAS_MM_SndMmcDetachCnf(VOS_UINT8 ucServiceStatus)
     return;
 }
 
-/*******************************************************************************
-  Module:   Mm_SndMmcPowerOffCnf
-  Function: 向MMC发送MMCMM_DETACH_CNF的处理
-  Input:    VOS_VOID
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇     2003.12.11  新版做成
 
-      2.日    期   : 2006年6月7日
-        作    者   : liuyang id:48197
-        修改内容   : 问题单号：A32D02432
-      3.日    期   : 2011年07月28日
-        作    者   : w00167002
-        修改内容   : v7r1_phaseII 内部消息发送调整
-*******************************************************************************/
 
 VOS_VOID Mm_SndMmcPowerOffCnf()
 {
@@ -3064,23 +2316,7 @@ VOS_VOID Mm_SndMmcPowerOffCnf()
 /**************************************************
  ******    二期      begin    *********************
  **************************************************/
-/*******************************************************************************
-  Module:   Mm_SndMmcRrConnInfInd
-  Function: 向MMC发送MMCMM_RR_CONN_INFO_IND的处理
-  Input:    VOS_VOID
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇       2004.03.09  新版做成
 
-     2.日    期   : 2011年7月14日
-       作    者   : zhoujun 40661
-       修改内容   : 更新MML_CTX中的链接存在状态
-     3.日    期   : 2011年07月28日
-       作    者   : w00167002
-       修改内容   : v7r1_phaseII 内部消息发送调整
-*******************************************************************************/
 
 VOS_VOID Mm_SndMmcRrConnInfInd(
                         VOS_UINT32   ulRrConnFlg                                     /* RR连接状态                               */
@@ -3212,20 +2448,7 @@ VOS_VOID Mm_SndCcPromptInd(
     return;
 }
 
-/*******************************************************************************
-  Module:   Mm_SndSsEstCnf
-  Function: 向SS发送MMSS_EST_CNF的处理
-  Input:    VOS_UINT32 ulTransactionId
-            VOS_UINT32 ulResult
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇       2004.03.09  新版做成
-      2.  日    期   : 2009年05月25日
-          作    者   : l65478
-          修改内容   : 问题单:AT2D10870,在MM连接建立过程中发生LAI改变,没有发起LU,导致呼叫失败
-*******************************************************************************/
+
 
 VOS_VOID Mm_SndSsEstCnf(
                     VOS_UINT32 ulTransactionId,
@@ -3393,28 +2616,7 @@ VOS_VOID Mm_SndSsDataInd(
     }
     return;
 }
-/*******************************************************************************
-  Module:   Mm_SndSsRelInd
-  Function: 向SS发送MMSS_REL_IND的处理
-  Input:    VOS_UINT32 ulTransactionId
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇       2004.03.09  新版做成
-      2.日    期   :2013年9月12日
-        作    者   :z00161729
-        修改内容   :DTS2013082903019:支持ss重发功能
-      3.日    期   : 2014年5月4日
-        作    者   : z00161729
-        修改内容   : DTS2014042816166:l csfb 到w，rau被12拒绝，lau成功没有清除forbidden信息，导致fast return到l后csfb到w相同小区电话失败
-      4.日    期   : 2014年6月13日
-        作    者   : w00242748
-        修改内容   : DSDS 新特性
-      5.日    期   : 2014年9月23日
-        作    者   : z00161729
-        修改内容   : DTS2014092302846:L下拨打电话搜网到w下被#12拒绝的小区，电话失败后重选回l，mm会给cc多发一次mmcc rel ind
-*******************************************************************************/
+
 
 VOS_VOID Mm_SndSsRelInd(
     VOS_UINT32                          ulTransactionId,
@@ -3471,19 +2673,7 @@ VOS_VOID Mm_SndSsRelInd(
     return;
 }
 
-/*******************************************************************************
-  Module:   Mm_SndSmsEstCnf
-  Function: 向SMS发送MMSMS_EST_CNF的处理
-  Input:    VOS_UINT32 ulTransactionId
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇       2004.03.09  新版做成
-      2.  日    期   : 2009年05月25日
-          作    者   : l65478
-          修改内容   : 问题单:AT2D10870,在MM连接建立过程中发生LAI改变,没有发起LU,导致呼叫失败
-*******************************************************************************/
+
 
 VOS_VOID Mm_SndSmsEstCnf(
                     VOS_UINT32 ulTransactionId
@@ -3651,23 +2841,7 @@ VOS_VOID Mm_SndSmsDataInd(
     return;
 }
 
-/*******************************************************************************
-  Module:   Mm_SndSmsRelInd
-  Function: 向SMS发送MMSMS_REL_IND的处理
-  Input:    VOS_UINT32 ulTransactionId
-            VOS_UINT32 ulRelCause
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.张志勇       2004.03.09  新版做成
-      2.日    期   : 2007年11月07日
-        作    者   : l00107747
-        修改内容   : 根据问题单号A32D13366
-      3.日    期   : 2014年9月23日
-        作    者   : z00161729
-        修改内容   : DTS2014092302846:L下拨打电话搜网到w下被#12拒绝的小区，电话失败后重选回l，mm会给cc多发一次mmcc rel ind
-*******************************************************************************/
+
 
 VOS_VOID Mm_SndSmsRelInd(
                     VOS_UINT32 ulTransactionId,
@@ -3774,20 +2948,7 @@ VOS_VOID Mm_SndTcDataInd(
     return;
 }
 
-/*******************************************************************************
-  Module:   Mm_SndSmsRegStsInd
-  Function: 向SMS发送MMSMS_REG_STATE_IND的处理
-  Input:    VOS_UINT32 ulRegSts
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇     2004.06.28  新版做成
-      2. 日    期   : 2008年7月23日
-         作    者   : luojian id:107747
-         修改内容   : 根据问题单：AT2D04627/AT2D04237,
-                      ATTEMPT TO UPDATE/ATTACH 状态对CM服务处理
-*******************************************************************************/
+
 
 VOS_VOID Mm_SndSmsRegStsInd(
                         VOS_UINT8 ucRegSts
@@ -3891,19 +3052,7 @@ VOS_UINT8 MM_SndSapi3EstReq()
     return MM_TRUE;
 }
 
-/*******************************************************************************
-  Module:   MM_SndMmcRrRelInd
-  Function: 向MMC发送RR连接释放(GSM)
-  Input:
-  Output:
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  l48197    2005.11.23  新版做成
-      2.日    期   : 2011年07月28日
-        作    者   : w00167002
-        修改内容   : v7r1_phaseII 内部消息发送调整
-*******************************************************************************/
+
 VOS_VOID MM_SndMmcRrRelInd(VOS_UINT32 ulRelCause)
 {
     MMCMM_RR_REL_IND_ST  *pstMmcMmRelInd;
@@ -3933,24 +3082,7 @@ VOS_VOID MM_SndMmcRrRelInd(VOS_UINT32 ulRelCause)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_SndMmcResumeRsp
- 功能描述  : MM向MMC回复resume rsp
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年4月27日
-   作    者   : W00167002
-   修改内容   : 新生成函数
- 2.日    期   : 2011年07月28日
-   作    者   : w00167002
-   修改内容   : v7r1_phaseII 内部消息发送调整
-
-*****************************************************************************/
 VOS_VOID NAS_MM_SndMmcResumeRsp(VOS_VOID)
 {
     MMCMM_RESUME_RSP_STRU              *pstMmcMmResumeRsp = VOS_NULL_PTR;
@@ -3979,22 +3111,7 @@ VOS_VOID NAS_MM_SndMmcResumeRsp(VOS_VOID)
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_SndMmcAttachCnf
- 功能描述  : 收到MMCMM_ATTACH_REQ消息后，判定是否在该预处理函数中处理掉
-              MMCMM_ATTACH_REQ消息，不进各状态处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月28日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MM_SndMmcAttachCnf(VOS_VOID)
 {
 
@@ -4022,36 +3139,7 @@ VOS_VOID NAS_MM_SndMmcAttachCnf(VOS_VOID)
 }
 
 
-/*******************************************************************************
- 函 数 名  : NAS_MM_SndMmcCsRegResultInd
- 功能描述  : 向MMC发送MMMMC_CS_REG_RESULT_IND的处理
- 输入参数  : VOS_UINT32       ulRealFlg               LU流程是否为真
-              VOS_UINT32       ulLuResult              LU的结果
-              VOS_UINT32       ulCause                 LU失败的原因值
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年6月28日
-   作    者   : h44270
-   修改内容   : 新生成函数
- 2.日    期   : 2011年07月28日
-   作    者   : w00167002
-   修改内容   : v7r1_phaseII 内部消息发送调整
- 3.日    期   : 2012年1月4日
-   作    者   : w00167002
-   修改内容   : DTS2011122006209:g下PS ONLY注册成功_更改为CS后注册失败4次后未发起搜网.
-                 MMC不需要知道当前是真假流程，将MM/GMM给MMC的真假流程去掉。
-                 MM/GMM自己维护的真假流程也是不需要的，待MM/GMM重构时清理掉。
- 4.日    期   : 2012年3月2日
-   作    者   : W00176964
-   修改内容   : DTS2012022407450:成功时候区分真假流程对应不同原因值
- 5.日    期   : 2014年12月18日
-   作    者   : s00217060
-   修改内容   : Service_State_Optimize_PhaseI LAU假流程增加原因值HO SUCC
-*******************************************************************************/
 VOS_VOID NAS_MM_SndMmcCsRegResultInd(
     VOS_UINT32                          ulRealFlg,
     VOS_UINT32                          ulLuResult,
@@ -4114,11 +3202,9 @@ VOS_VOID NAS_MM_SndMmcCsRegResultInd(
 
     NAS_MM_ConvertToMmcServiceStatus(g_MmGlobalInfo.ucMmServiceState, &(pstCsRegRstInd->ulServiceStatus));
 
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-2, begin */
     pstCsRegRstInd->stOldLai.PlmnId.ulMcc = NAS_MML_GetCsLastSuccMcc();
     pstCsRegRstInd->stOldLai.PlmnId.ulMnc = NAS_MML_GetCsLastSuccMnc();
     pstCsRegRstInd->stOldLai.ulLac        = NAS_MML_GetCsLastSuccLac();
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-2, end */
 
     /* MM需要通知MMC此时是否在进行联合注册 */
     pstCsRegRstInd->ucIsComBined = g_MmGlobalInfo.ucIsComBined;
@@ -4132,20 +3218,7 @@ VOS_VOID NAS_MM_SndMmcCsRegResultInd(
     return;
 }
 
-/*******************************************************************************
- 函 数 名  : NAS_MM_SndMmcAbortInd
- 功能描述  : 向MMC发送MMMMC_ABORT_IND消息
- 输入参数  : enAbortCause:Abort原因值
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年7月12日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-*******************************************************************************/
 VOS_VOID NAS_MM_SndMmcAbortInd(
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16  enAbortCause
 )
@@ -4175,25 +3248,7 @@ VOS_VOID NAS_MM_SndMmcAbortInd(
     return;
 }
 
-/*******************************************************************************
-函 数 名  : NAS_Mm_SndGmmLuResultInd
-功能描述  : 向GMM发送MMGMM_LU_RESULT_IND的处理
-输入参数  : ulRealFlg               LU流程是否为真
-             ulLuResult              LU的结果
-             ulCause                 LU失败的原因值
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2011年7月1日
-  作    者   : h44270
-  修改内容   : 新生成函数
-2.日    期   : 2011年07月28日
-  作    者   : w00167002
-  修改内容   : v7r1_phaseII 内部消息发送调整
-*******************************************************************************/
 VOS_VOID NAS_MM_SndGmmLuResultInd(
     VOS_UINT32                          ulLuResult,
     VOS_UINT32                          ulCause
@@ -4227,23 +3282,7 @@ VOS_VOID NAS_MM_SndGmmLuResultInd(
 
 
 
-/*******************************************************************************
-函 数 名  : NAS_MM_SndGmmAuthFailInd
-功能描述  : 向GMM发送MMGMM_AUTHENTICATON_FAILURE_IND的处理
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2011年7月1日
-  作    者   : h44270
-  修改内容   : 新生成函数
-2.日    期   : 2011年07月28日
-  作    者   : w00167002
-  修改内容   : v7r1_phaseII 内部消息发送调整
-*******************************************************************************/
 VOS_VOID NAS_MM_SndGmmAuthFailInd(VOS_VOID)
 {
     MMGMM_AUTHENTICATON_FAILURE_IND_STRU  *pstAuthenFailInd = VOS_NULL_PTR;            /* 定义原语类型指针                         */
@@ -4270,23 +3309,7 @@ VOS_VOID NAS_MM_SndGmmAuthFailInd(VOS_VOID)
     return;
 }
 
-/*******************************************************************************
-函 数 名  : NAS_MM_SndGmmCsConnectInd
-功能描述  : 向GMM发送MMGMM_CS_CONNECT_IND的处理
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2011年7月22日
-  作    者   : h44270
-  修改内容   : 新生成函数
-2.日    期   : 2011年07月28日
-  作    者   : w00167002
-  修改内容   : v7r1_phaseII 内部消息发送调整
-*******************************************************************************/
 VOS_VOID NAS_MM_SndGmmCsConnectInd(
     MMGMM_CS_CONNECT_STATUS_ENUM_UINT32    enCsConnectStatus
 )
@@ -4317,20 +3340,7 @@ VOS_VOID NAS_MM_SndGmmCsConnectInd(
     return;
 }
 
-/*******************************************************************************
-函 数 名  : NAS_MM_SndGmmCsLocalDetachInd
-功能描述  : 向GMM发送MMGMM_CS_LOCAL_DETACH_IND的处理
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2013年06月12日
-  作    者   : w00167002
-  修改内容   : V9R1_SVLTE:MM通知GMM当前CS域已本地DETACH
-*******************************************************************************/
 VOS_VOID NAS_MM_SndGmmCsLocalDetachInd(VOS_VOID)
 {
     MMGMM_CS_LOCAL_DETACH_IND_STRU     *pstCsLocalDetachInd = VOS_NULL_PTR;            /* 定义原语类型指针                         */
@@ -4358,20 +3368,7 @@ VOS_VOID NAS_MM_SndGmmCsLocalDetachInd(VOS_VOID)
 }
 
 
-/*******************************************************************************
-函 数 名  : NAS_MM_SndGmmT3211ExpiredNotify
-功能描述  : 向GMM发送T3211定时器超时消息
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2015年1月5日
-  作    者   : z00161729
-  修改内容   : AT&T 支持DAM特性修改
-*******************************************************************************/
 VOS_VOID NAS_MM_SndGmmT3211ExpiredNotify(
     VOS_UINT8                           ucRejectCause
 )
@@ -4405,23 +3402,7 @@ VOS_VOID NAS_MM_SndGmmT3211ExpiredNotify(
 
 
 
-/*******************************************************************************
-函 数 名  : NAS_MM_SndGmmCmSvcRejInd
-功能描述  : 向GMM发送MMGMM_CM_SERVICE_REJECT_IND的处理
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2011年7月22日
-  作    者   : h44270
-  修改内容   : 新生成函数
-2.日    期   : 2011年07月28日
-  作    者   : w00167002
-  修改内容   : v7r1_phaseII 内部消息发送调整
-*******************************************************************************/
 VOS_VOID NAS_MM_SndGmmCmSvcRejInd(
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16  enCause
 )
@@ -4452,20 +3433,7 @@ VOS_VOID NAS_MM_SndGmmCmSvcRejInd(
     return;
 }
 
-/*******************************************************************************
-函 数 名  : NAS_MM_SndMmcRegisterInit
-功能描述  : 向GMM发送MMGMM_REGISTER_INITIATION的处理
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2011年8月9日
-  作    者   : h44270
-  修改内容   : 新生成函数
-*******************************************************************************/
 VOS_VOID NAS_MM_SndGmmRegisterInit( VOS_VOID  )
 {
     MMGMM_REGISTER_INITIATION_STRU          *pstMmRegisterInit;                   /* 定义原语类型指针                         */
@@ -4495,21 +3463,7 @@ VOS_VOID NAS_MM_SndGmmRegisterInit( VOS_VOID  )
 
 /* MM_GetNasInfo移至mmc */
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_SndTcRrRelInd
- 功能描述  : MM向TC发送连接释放消息。TC收到此消息时需结束TC环回流程
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月14日
-   作    者   : L00171473
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MM_SndTcRrRelInd(VOS_VOID)
 {
     TCMM_RR_REL_IND_STRU               *pstMsg = VOS_NULL_PTR;
@@ -4542,18 +3496,7 @@ VOS_VOID NAS_MM_SndTcRrRelInd(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_SndMmcSimAuthFailInfo
- 功能描述  : 上报的sim卡鉴权失败信息
- 输入参数  : enSimFailValue:sim卡鉴权失败信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 修改历史      :
- 1.日    期   : 2013年11月16日
-   作    者   : m00217266
-   修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID NAS_MM_SndMmcSimAuthFailInfo(
     NAS_MML_SIM_AUTH_FAIL_ENUM_UINT16   enSimFailValue
 )
@@ -4585,20 +3528,7 @@ VOS_VOID NAS_MM_SndMmcSimAuthFailInfo(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_SndRrMmServiceAbortNotify
- 功能描述  : 通知接入层cs业务终止指示
- 输入参数  : ulReceiverPid   - 接收pid
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年5月22日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MM_SndRrMmServiceAbortNotify(
     VOS_UINT32                          ulReceiverPid
 )
@@ -4636,21 +3566,7 @@ VOS_VOID NAS_MM_SndRrMmServiceAbortNotify(
 
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_MM_SndLmmCsfbServiceStartNotify
- 功能描述  : MM向LMM发送MM_LMM_CSFB_SERVICE_START_REQ消息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年2月14日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MM_SndLmmCsfbServiceStartNotify(VOS_VOID)
 {
     MM_LMM_CSFB_SERVICE_START_NOTIFY_STRU                  *pstMsg = VOS_NULL_PTR;
@@ -4702,21 +3618,7 @@ VOS_VOID NAS_MM_SndLmmCsfbServiceStartNotify(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_SndLmmCsfbServiceAbortNotify
- 功能描述  : MM向LMM发送MM_LMM_CSFB_SERVICE_ABORT_NOTIFY消息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年2月14日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MM_SndLmmCsfbServiceAbortNotify(VOS_VOID)
 {
     MM_LMM_CSFB_SERVICE_ABORT_NOTIFY_STRU                  *pstMsg = VOS_NULL_PTR;
@@ -4757,22 +3659,7 @@ VOS_VOID NAS_MM_SndLmmCsfbServiceAbortNotify(VOS_VOID)
     return;
 }
 
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-11, begin */
-/*****************************************************************************
- 函 数 名  : NAS_MM_SndLmmHoSecuInfoReq
- 功能描述  : MM向LMM发送ID_MM_LMM_HO_SECU_INFO_REQ消息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年10月11日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MM_SndLmmHoSecuInfoReq(VOS_VOID)
 {
     MM_LMM_HO_SECU_INFO_REQ_STRU       *pstMsg = VOS_NULL_PTR;
@@ -4815,22 +3702,7 @@ VOS_VOID NAS_MM_SndLmmHoSecuInfoReq(VOS_VOID)
     return;
 }
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-25, begin */
-/*****************************************************************************
- 函 数 名  : NAS_MM_SndLmmSrvccStatusNotify
- 功能描述  : MM向LMM发送ID_MM_LMM_SRVCC_STATUS_NOTIFY消息
- 输入参数  : enSrvccStatus---SRVCC的状态
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年12月25日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MM_SndLmmSrvccStatusNotify(
     NAS_MMCC_SRVCC_STATUS_ENUM_UINT32   enSrvccStatus
 )
@@ -4879,26 +3751,10 @@ VOS_VOID NAS_MM_SndLmmSrvccStatusNotify(
     return;
 }
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-25, end */
 
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-11, end */
 
 #if (FEATURE_ON == FEATURE_DSDS)
-/*****************************************************************************
- 函 数 名  : NAS_MM_ConvertRrcSessionTypeToLmmFormat
- 功能描述  : 将gmm和rrc接口中的session type转换为gmm和lmm的session type
- 输入参数  : enRrcSessionType    - gmm和rrc接口中的session type
- 输出参数  : pucLmmSessionType   - gmm和lmm的session type
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月25日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MM_ConvertRrcSessionTypeToLmmFormat(
     RRC_NAS_SESSION_TYPE_ENUM_UINT8     enRrcSessionType,
     MM_LMM_SESSION_TYPE_ENUM_UINT8     *puclmmSessionType
@@ -4961,20 +3817,7 @@ VOS_VOID NAS_MM_ConvertRrcSessionTypeToLmmFormat(
     return;
 }
 
-/*******************************************************************************
- 函 数 名  : NAS_MM_SndLmmBeginSessionNotify
- 功能描述  : 向LMM发送ID_MM_LMM_BEGIN_SESSION_NOTIFY消息
- 输入参数  : ulReceiverPid:接收者PID
-             enSessionType:Session类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
-1.日    期   : 2014年6月16日
-  作    者   : w00242748
-  修改内容   : DSDS 新特性
-*******************************************************************************/
 VOS_VOID NAS_MM_SndLmmBeginSessionNotify(
     MM_LMM_SESSION_TYPE_ENUM_UINT8      enSessionType
 )
@@ -5021,20 +3864,7 @@ VOS_VOID NAS_MM_SndLmmBeginSessionNotify(
     return;
 }
 
-/*******************************************************************************
- 函 数 名  : NAS_MM_SndLmmEndSessionNotify
- 功能描述  : 向AS发送ID_MM_LMM_END_SESSION_NOTIFY消息
- 输入参数  : ulReceiverPid:接收者PID
-             enSessionType:Session类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
-1.日    期   : 2014年6月16日
-  作    者   : w00242748
-  修改内容   : DSDS 新特性
-*******************************************************************************/
 VOS_VOID NAS_MM_SndLmmEndSessionNotify(
     MM_LMM_SESSION_TYPE_ENUM_UINT8      enSessionType
 )
@@ -5088,21 +3918,7 @@ VOS_VOID NAS_MM_SndLmmEndSessionNotify(
 
 #endif
 
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-22, begin */
-/*****************************************************************************
- 函 数 名  : NAS_MM_SndMmcSuspendRsp
- 功能描述  : MM向MMC回复suspend rsp
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年9月22日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MM_SndMmcSuspendRsp(VOS_VOID)
 {
     MMCMM_SUSPEND_RSP_ST               *pstucMmMsg = VOS_NULL_PTR;
@@ -5129,23 +3945,9 @@ VOS_VOID NAS_MM_SndMmcSuspendRsp(VOS_VOID)
     return;
 }
 
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-22, end */
 
 #if (FEATURE_ON == FEATURE_DSDS)
-/*******************************************************************************
- 函 数 名  : NAS_MM_SndAsBeginSessionNotify
- 功能描述  : 向AS发送RRMM_BEGIN_SESSION_NOTIFY消息
- 输入参数  : ulReceiverPid:接收者PID
-             enSessionType:Session类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
-1.日    期   : 2014年6月16日
-  作    者   : w00242748
-  修改内容   : DSDS 新特性
-*******************************************************************************/
 VOS_VOID NAS_MM_SndAsBeginSessionNotify(
     VOS_UINT32                          ulReceiverPid,
     RRC_NAS_SESSION_TYPE_ENUM_UINT8     enSessionType
@@ -5188,23 +3990,7 @@ VOS_VOID NAS_MM_SndAsBeginSessionNotify(
     return;
 }
 
-/*******************************************************************************
- 函 数 名  : NAS_MM_SndAsEndSessionNotify
- 功能描述  : 向AS发送RRMM_END_SESSION_NOTIFY消息
- 输入参数  : ulReceiverPid:接收者PID
-             enSessionType:Session类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
-1.日    期   : 2014年6月16日
-  作    者   : w00242748
-  修改内容   : DSDS 新特性
-2.日    期   : 2014年7月18日
-  作    者   : b00269685
-  修改内容   : 增加延迟时间
-*******************************************************************************/
 VOS_VOID NAS_MM_SndAsEndSessionNotify(
     VOS_UINT32                          ulReceiverPid,
     RRC_NAS_SESSION_TYPE_ENUM_UINT8     enSessionType,
@@ -5251,23 +4037,7 @@ VOS_VOID NAS_MM_SndAsEndSessionNotify(
     return;
 }
 
-/*******************************************************************************
- 函 数 名  : NAS_MM_SndBeginSessionNotify
- 功能描述  : 向AS/LMM发送RRMM_BEGIN_SESSION_NOTIFY消息
- 输入参数  : enRrcSessionType:Session类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
-1.日    期   : 2014年6月16日
-  作    者   : w00242748
-  修改内容   : DSDS 新特性
-
-2.日    期   : 2015年9月4日
-  作    者   : j00174725
-  修改内容   : DTS2015082406288
-*******************************************************************************/
 VOS_VOID NAS_MM_SndBeginSessionNotify(
     RRC_NAS_SESSION_TYPE_ENUM_UINT8     enRrcSessionType
 )
@@ -5326,26 +4096,7 @@ VOS_VOID NAS_MM_SndBeginSessionNotify(
     return;
 }
 
-/*******************************************************************************
- 函 数 名  : NAS_MM_SndEndSessionNotify
- 功能描述  : 向AS/LMM发送RRMM_END_SESSION_NOTIFY消息
- 输入参数  : enRrcSessionType:Session类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
-1.日    期   : 2014年6月16日
-  作    者   : w00242748
-  修改内容   : DSDS 新特性
-2.日    期   : 2014年7月18日
-  作    者   : b00269685
-  修改内容   : 增加延迟时间
-
-3.日    期   : 2015年9月4日
-  作    者   : j00174725
-  修改内容   : DTS2015082406288
-*******************************************************************************/
 VOS_VOID NAS_MM_SndEndSessionNotify(
     RRC_NAS_SESSION_TYPE_ENUM_UINT8     enRrcSessionType
 )
@@ -5416,20 +4167,7 @@ VOS_VOID NAS_MM_SndEndSessionNotify(
     return;
 }
 
-/*******************************************************************************
- 函 数 名  : NAS_MM_NotifySessionAccordingStateChg
- 功能描述  : 向AS/LMM发送Session消息
- 输入参数  : ucCurState:当前状态
-             ucTargetState:目标状态
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
-1.日    期   : 2014年6月16日
-  作    者   : w00242748
-  修改内容   : DSDS 新特性
-*******************************************************************************/
 VOS_VOID NAS_MM_NotifySessionAccordingStateChg(
     VOS_UINT8                           ucCurState,
     VOS_UINT8                           ucTargetState
@@ -5530,21 +4268,7 @@ VOS_VOID NAS_MM_NotifySessionAccordingStateChg(
 #endif
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_SndTransactionStatusNotify
- 功能描述  : 发送RRMM_TRANSACTIONACTION_STATUS_NOTIFY
- 输入参数  : RRMM_TRANSACTION_STATUS_ENUM_UINT8  enTranStatus
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月20日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MM_SndTransactionStatusNotify(
     RRMM_TRANSACTION_STATUS_ENUM_UINT8  enTranStatus
 )
@@ -5563,22 +4287,7 @@ VOS_VOID NAS_MM_SndTransactionStatusNotify(
     return;
 }
 
-/* Added by n00355355 for 呼叫重建, 2015-9-17, begin */
-/*****************************************************************************
- 函 数 名  : NAS_MM_SndAsCsTransactionStatus
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月17日
-    作    者   : n00355355
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MM_SndAsCsTransactionStatus(
     RRC_NAS_CS_TRANSACTION_ENUM_UINT8   enCsTransactionStatus,
     VOS_UINT32                          ulSenderEnqPid,
@@ -5628,25 +4337,8 @@ VOS_VOID NAS_MM_SndAsCsTransactionStatus(
     return;
 }
 
-/* Added by n00355355 for 呼叫重建, 2015-9-17, end */
 
-/*****************************************************************************
- 函 数 名  : NAS_GetTransactionInfo
- 功能描述  : 提供给接入层获取业务信息函数
- 输入参数  : 无
- 输出参数  : RRC_NAS_CS_TRANSACTION_INFO_STRU *pstCsTransactInfo:CS业务信息
-             RRC_NAS_PS_TRANSACTION_INFO_STRU *pstPsTransactInfo:PS业务信息
- 返 回 值  : VOS_OK :获取成功
-             VOS_ERR:获取失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月12日
-    作    者   : s46746
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_GetTransactionInfo(
     RRC_NAS_CS_TRANSACTION_INFO_STRU *pstCsTransactInfo,
     RRC_NAS_PS_TRANSACTION_INFO_STRU *pstPsTransactInfo
@@ -5662,7 +4354,6 @@ VOS_UINT32 NAS_GetTransactionInfo(
     /* 将NAS维护的CS标志类型转换为AS格式的CS状态标志 */
     NAS_MML_GetMmlCsTransactionStatus(&enCsTransactionstatus);
 
-    /* Added by n00355355 for 呼叫重建, 2015-9-18, begin */
     /* 对MMCC_CALL_INFO_STRU初始化 */
     for (ucIndex = 0; ucIndex < NAS_CC_MAX_ENTITY_NUM; ucIndex++)
     {
@@ -5690,7 +4381,6 @@ VOS_UINT32 NAS_GetTransactionInfo(
         pstCsTransactInfo->enCsTransactionType = enCsTransactionstatus;
         pstCsTransactInfo->ucIsCallActive      = ucIsCallActive;
     }
-    /* Added by n00355355 for 呼叫重建, 2015-9-18, end */
 
     if ( VOS_NULL_PTR != pstPsTransactInfo)
     {
@@ -5701,21 +4391,7 @@ VOS_UINT32 NAS_GetTransactionInfo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_SndRrcTransactionStatusNotify
- 功能描述  : 通知接入层当前连接处理状态
- 输入参数  : ulRcvPid   -- 接收pid
-             enTranStatus --状态
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年06月01日
-   作    者   : j00174725
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MM_SndRrcTransactionStatusNotify(
     VOS_UINT32                          ulRcvPid,
     RRMM_TRANSACTION_STATUS_ENUM_UINT8  enTranStatus
@@ -5756,20 +4432,7 @@ VOS_VOID NAS_MM_SndRrcTransactionStatusNotify(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_SndCcRrcConnectRelInd
- 功能描述  : 接收到接入层的链接释放消息后，通知CC清除缓存消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年12月12日
-   作    者   : j00174725
-   修改内容   : DTS2015121001913
-*****************************************************************************/
 VOS_VOID NAS_MM_SndCcRrcConnectRelInd(VOS_VOID)
 {
     MMCC_RRC_CONN_REL_IND_STRU         *pstMmccConnRelMsg;

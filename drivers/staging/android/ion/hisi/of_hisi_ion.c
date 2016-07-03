@@ -132,12 +132,6 @@ static struct ion_platform_heap hisi_ion_heaps[] = {
 		.size = 0x2000000,
 	},
 	*/
-    {
-		.type = ION_HEAP_TYPE_SECCM,
-		.id = ION_TUI_HEAP_ID,
-		.name = "tui-heap",
-		.size = HISI_RESERVED_TUI_CMA_PHYMEM_SIZE,
-    },
 };
 
 #ifndef CONFIG_ARM64

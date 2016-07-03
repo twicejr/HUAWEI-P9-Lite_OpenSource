@@ -28,14 +28,7 @@ using namespace testing;
 
 #if 0
 
-/*****************************************************************************
-类名       : Test_RNIC_DemandDialFileIO
-功能描述   : Test_RNIC_DemandDialFileIO UT工程类
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : w00199382
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_DemandDialFileIO: public ::testing::Test
 {
 public:
@@ -61,16 +54,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : RNIC_TransferStringToInt_001
-测试用例标题      : RNIC_ReadOnDemandFile文件超长
-预期结果          : 打印错误信息拷贝函数未调用
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_RNIC_DemandDialFileIO, RNIC_TransferStringToInt_001)
 {
     VOS_CHAR *pcSting = "5";
@@ -82,16 +66,7 @@ TEST_F( Test_RNIC_DemandDialFileIO, RNIC_TransferStringToInt_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : RNIC_TransferStringToInt_002
-测试用例标题      : RNIC_ReadOnDemandFile文件超长
-预期结果          : 打印错误信息拷贝函数未调用
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_RNIC_DemandDialFileIO, RNIC_TransferStringToInt_002)
 {
     VOS_CHAR *pcSting = "50";
@@ -103,16 +78,7 @@ TEST_F( Test_RNIC_DemandDialFileIO, RNIC_TransferStringToInt_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : RNIC_TransferStringToInt_002
-测试用例标题      : RNIC_ReadOnDemandFile文件超长
-预期结果          : 打印错误信息拷贝函数未调用
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_RNIC_DemandDialFileIO, RNIC_TransferStringToInt_003)
 {
     VOS_CHAR *pcSting = "0";
@@ -125,16 +91,7 @@ TEST_F( Test_RNIC_DemandDialFileIO, RNIC_TransferStringToInt_003)
 }
 
 #if 0
-/*******************************************************************
-测试用例编号      : TEST_RNIC_ReadOnDemandFile_001
-测试用例标题      : RNIC_ReadOnDemandFile文件超长
-预期结果          : 打印错误信息拷贝函数未调用
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_RNIC_DemandDialFileIO, TEST_RNIC_ReadOnDemandFile_001)
 {
     struct file    *pstFile;
@@ -156,16 +113,7 @@ TEST_F( Test_RNIC_DemandDialFileIO, TEST_RNIC_ReadOnDemandFile_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : TEST_RNIC_ReadOnDemandFile_002
-测试用例标题      : RNIC_ReadOnDemandFile文件长度为4
-预期结果          : 打印错误信息拷贝函数未调用
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_RNIC_DemandDialFileIO, TEST_RNIC_ReadOnDemandFile_002)
 {
     struct file    *pstFile;
@@ -194,16 +142,7 @@ TEST_F( Test_RNIC_DemandDialFileIO, TEST_RNIC_ReadOnDemandFile_002)
     GlobalMockObject::verify();
 }
 #endif
-/*******************************************************************
-测试用例编号      : TEST_RNIC_WriteOnDemandFile_001
-测试用例标题      : RNIC_ReadOnDemandFile文件长度为5
-预期结果          : 打印错误信息拷贝函数未调用
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_RNIC_DemandDialFileIO, TEST_RNIC_WriteOnDemandFile_001)
 {
     struct file    *pstFile;
@@ -225,16 +164,7 @@ TEST_F( Test_RNIC_DemandDialFileIO, TEST_RNIC_WriteOnDemandFile_001)
     GlobalMockObject::verify();
 }
 #if 0
-/*******************************************************************
-测试用例编号      : TEST_RNIC_WriteOnDemandFile_002
-测试用例标题      : RNIC_ReadOnDemandFile文件长度为4,模式为手动拨号
-预期结果          : 全局变量更新为手动拨号
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_RNIC_DemandDialFileIO, TEST_RNIC_WriteOnDemandFile_002)
 {
     struct file    *pstFile;
@@ -258,16 +188,7 @@ TEST_F( Test_RNIC_DemandDialFileIO, TEST_RNIC_WriteOnDemandFile_002)
     /* 检查调用时, 需要在用例结束位置加上这句 */
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号      : TEST_RNIC_WriteOnDemandFile_003
-测试用例标题      : RNIC_ReadOnDemandFile文件长度为4,模式为自动拨号
-预期结果          : 全局变量更新为自动拨号
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_RNIC_DemandDialFileIO, TEST_RNIC_WriteOnDemandFile_003)
 {
     struct file                        *pstFile;
@@ -297,16 +218,7 @@ TEST_F( Test_RNIC_DemandDialFileIO, TEST_RNIC_WriteOnDemandFile_003)
 }
 #endif
 
-/*******************************************************************
-测试用例编号      : TEST_RNIC_WriteOnDemandFile_003
-测试用例标题      : RNIC_ReadOnDemandFile文件长度为4,模式为0
-预期结果          : 全局变量不更新
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_RNIC_DemandDialFileIO, TEST_RNIC_WriteOnDemandFile_004)
 {
     struct file                        *pstFile;
@@ -334,16 +246,7 @@ TEST_F( Test_RNIC_DemandDialFileIO, TEST_RNIC_WriteOnDemandFile_004)
     GlobalMockObject::verify();
 }
 #if 0
-/*******************************************************************
-测试用例编号      : TEST_RNIC_ReadIdleTimerOutFile_001
-测试用例标题      : RNIC_ReadIdleTimerOutFile文件超长
-预期结果          : 打印错误信息拷贝函数未调用
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_RNIC_DemandDialFileIO, TEST_RNIC_ReadIdleTimerOutFile_001)
 {
     struct file    *pstFile;
@@ -365,16 +268,7 @@ TEST_F( Test_RNIC_DemandDialFileIO, TEST_RNIC_ReadIdleTimerOutFile_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : TEST_RNIC_ReadIdleTimerOutFile_002
-测试用例标题      : RNIC_ReadIdleTimerOutFiles文件长度为4
-预期结果          : 打印错误信息拷贝函数未调用
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_RNIC_DemandDialFileIO, TEST_RNIC_ReadIdleTimerOutFile_002)
 {
     struct file                         *pstFile;
@@ -405,16 +299,7 @@ TEST_F( Test_RNIC_DemandDialFileIO, TEST_RNIC_ReadIdleTimerOutFile_002)
 }
 #endif
 #if 0
-/*******************************************************************
-测试用例编号      : TEST_RNIC_WriteIdleTimerOutFile_001
-测试用例标题      : RNIC_IdleTimerOutFile文件长度为5
-预期结果          : 打印错误信息拷贝函数未调用
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_RNIC_DemandDialFileIO, TEST_RNIC_WriteIdleTimerOutFile_001)
 {
     struct file                         *pstFile;
@@ -437,16 +322,7 @@ TEST_F( Test_RNIC_DemandDialFileIO, TEST_RNIC_WriteIdleTimerOutFile_001)
 }
 #endif
 #if 0
-/*******************************************************************
-测试用例编号      : TEST_RNIC_WriteIdleTimerOutFile_002
-测试用例标题      : RNIC_ReadOnDemandFile文件长度为4,模式为自动拨号
-预期结果          : 全局变量更新为自动拨号
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_RNIC_DemandDialFileIO, TEST_RNIC_WriteIdleTimerOutFile_002)
 {
     struct file                        *pstFile;
@@ -481,16 +357,7 @@ TEST_F( Test_RNIC_DemandDialFileIO, TEST_RNIC_WriteIdleTimerOutFile_002)
 }
 #endif
 #if 0
-/*******************************************************************
-测试用例编号      : TEST_RNIC_ReadDialEventReportFile_001
-测试用例标题      : RNIC_ReadDialEventReportFile文件超长
-预期结果          : 打印错误信息拷贝函数未调用
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_RNIC_DemandDialFileIO, TEST_RNIC_ReadDialEventReportFile_001)
 {
     struct file    *pstFile;
@@ -512,16 +379,7 @@ TEST_F( Test_RNIC_DemandDialFileIO, TEST_RNIC_ReadDialEventReportFile_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : TEST_RNIC_ReadDialEventReportFile_002
-测试用例标题      : RNIC_ReadDialEventReportFile文件长度为4
-预期结果          : 打印错误信息拷贝函数未调用
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_RNIC_DemandDialFileIO, TEST_RNIC_ReadDialEventReportFile_002)
 {
     struct file                         *pstFile;
@@ -545,16 +403,7 @@ TEST_F( Test_RNIC_DemandDialFileIO, TEST_RNIC_ReadDialEventReportFile_002)
     GlobalMockObject::verify();
 }
 #endif
-/*******************************************************************
-测试用例编号      : TEST_RNIC_WriteDialEventReportFile_001
-测试用例标题      : RNIC_WriteDialEventReportFile文件长度为5
-预期结果          : 打印错误信息拷贝函数未调用
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_RNIC_DemandDialFileIO, TEST_RNIC_WriteDialEventReportFile_001)
 {
     struct file                         *pstFile;
@@ -577,16 +426,7 @@ TEST_F( Test_RNIC_DemandDialFileIO, TEST_RNIC_WriteDialEventReportFile_001)
 }
 
 #if 0
-/*******************************************************************
-测试用例编号      : TEST_RNIC_WriteDialEventReportFile_002
-测试用例标题      : RNIC_WriteDialEventReportFile文件长度为4,模式为自动拨号
-预期结果          : 全局变量更新为自动拨号
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_RNIC_DemandDialFileIO, TEST_RNIC_WriteDialEventReportFile_002)
 {
     struct file                        *pstFile;
@@ -621,14 +461,7 @@ TEST_F( Test_RNIC_DemandDialFileIO, TEST_RNIC_WriteDialEventReportFile_002)
 }
 #endif
 
-/*****************************************************************************
-类名       : Test_RNIC_InitDemandDialFile
-功能描述   : Test_RNIC_InitDemandDialFile UT工程类
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : w00199382
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_InitDemandDialFile: public ::testing::Test
 {
     public:
@@ -642,16 +475,7 @@ class Test_RNIC_InitDemandDialFile: public ::testing::Test
 };
 
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_InitDemandDialFile_001
-测试用例标题      : Test_RNIC_InitDemandDialFile创建路径失败
-预期结果          : 返回vos_err
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_RNIC_InitDemandDialFile, Test_RNIC_InitDemandDialFile_001)
 {
     MOCKER(kern_path)
@@ -671,16 +495,7 @@ TEST_F( Test_RNIC_InitDemandDialFile, Test_RNIC_InitDemandDialFile_001)
     GlobalMockObject::verify();
 
 }
-/*******************************************************************
-测试用例编号      : Test_RNIC_InitDemandDialFile_002
-测试用例标题      : Test_RNIC_InitDemandDialFile创建模式文件失败
-预期结果          : 返回vos_err
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_RNIC_InitDemandDialFile, Test_RNIC_InitDemandDialFile_002)
 {
     struct proc_dir_entry              stProcEntry;
@@ -702,16 +517,7 @@ TEST_F( Test_RNIC_InitDemandDialFile, Test_RNIC_InitDemandDialFile_002)
 
 }
 #if 0
-/*******************************************************************
-测试用例编号      : Test_RNIC_InitDemandDialFile_003
-测试用例标题      : Test_RNIC_InitDemandDialFile创建idletimerout文件失败
-预期结果          : 返回vos_err
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_RNIC_InitDemandDialFile, Test_RNIC_InitDemandDialFile_003)
 {
     struct proc_dir_entry              stProcEntry;
@@ -738,16 +544,7 @@ TEST_F( Test_RNIC_InitDemandDialFile, Test_RNIC_InitDemandDialFile_003)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_InitDemandDialFile_004
-测试用例标题      : Test_RNIC_InitDemandDialFile创建eventreport文件失败
-预期结果          : 返回vos_err
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_RNIC_InitDemandDialFile, Test_RNIC_InitDemandDialFile_004)
 {
     struct proc_dir_entry              stProcEntry;
@@ -776,16 +573,7 @@ TEST_F( Test_RNIC_InitDemandDialFile, Test_RNIC_InitDemandDialFile_004)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_InitDemandDialFile_005
-测试用例标题      : Test_RNIC_InitDemandDialFile创建成功
-预期结果          : 返回vos_OK
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_RNIC_InitDemandDialFile, Test_RNIC_InitDemandDialFile_005)
 {
     struct proc_dir_entry              stProcEntry;

@@ -1,13 +1,4 @@
-/******************************************************************************
 
-        @(#)Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : NasLcsMmMsgProc.c
-    Description : 处理MM发给LCS的消息
-    History     :
-            1.lihong  00150010       2015-09-28  Draft Enact
-******************************************************************************/
 
 
 /*****************************************************************************
@@ -44,16 +35,7 @@ extern "C" {
 /*****************************************************************************
   3 Function
 *****************************************************************************/
-/*****************************************************************************
-Function Name  : NAS_LCS_SndMmEstReq
-Description    : 给LMM发送LCS_MM_EST_REQ，请求建链
-Input          : ulTi--------------transation id
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  lihong 00150010 2015-9-29  新开发
-*****************************************************************************/
 VOS_VOID  NAS_LCS_SndMmEstReq
 (
     VOS_UINT32                          ulTi
@@ -80,16 +62,7 @@ VOS_VOID  NAS_LCS_SndMmEstReq
     NAS_LCS_SND_MSG(pstMmEstReq);
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_SndMmRelReq
-Description    : 给LMM发送LCS_MM_REL_REQ，请求释放实体
-Input          : ulTi--------------transation id
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  lihong 00150010 2015-10-08  新开发
-*****************************************************************************/
 VOS_VOID  NAS_LCS_SndMmRelReq
 (
     VOS_UINT32                          ulTi
@@ -116,18 +89,7 @@ VOS_VOID  NAS_LCS_SndMmRelReq
     NAS_LCS_SND_MSG(pstMmRelReq);
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_SndMmDataReq
-Description    : 给LMM发送LCS_MM_DATA_REQ
-Input          : ulTi--------------------TI
-                 ulLength----------------消息长度
-                 pucSendMsg--------------发送消息指针
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  lihong 00150010 2015-10-16  新开发
-*****************************************************************************/
 VOS_VOID  NAS_LCS_SndMmDataReq
 (
     VOS_UINT32                          ulTi,
@@ -183,16 +145,7 @@ VOS_VOID  NAS_LCS_SndMmDataReq
 }
 
 
-/*****************************************************************************
-Function Name  : NAS_LCS_JudgeSndMmRelReq
-Description    : 判断是否发送LCS_MM_REL_REQ，如果需要则发送
-Input          : ulIndex--------------实体索引
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  lihong 00150010 2015-10-09  新开发
-*****************************************************************************/
 VOS_VOID  NAS_LCS_JudgeSndMmRelReq
 (
     VOS_UINT32                          ulIndex
@@ -205,16 +158,7 @@ VOS_VOID  NAS_LCS_JudgeSndMmRelReq
 }
 
 
-/*****************************************************************************
-Function Name  : NAS_LCS_RcvMmEstCnf
-Description    : MM_LCS_EST_CNF消息处理函数
-Input          : VOS_VOID *pstEstCnf
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  lihong 00150010 2015-10-08  新开发
-*****************************************************************************/
 VOS_VOID  NAS_LCS_RcvMmEstCnf
 (
     const MM_LCS_EST_CNF_STRU          *pstEstCnf
@@ -255,16 +199,7 @@ VOS_VOID  NAS_LCS_RcvMmEstCnf
     NAS_LCS_SndRegister(ulIndex);
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_RcvMmDataInd
-Description    : MM_LCS_DATA_IND消息处理函数
-Input          : VOS_VOID *pstDataInd
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  lihong 00150010 2015-10-08  新开发
-*****************************************************************************/
 VOS_VOID  NAS_LCS_RcvMmDataInd
 (
     MM_LCS_DATA_IND_STRU               *pstDataInd
@@ -281,16 +216,7 @@ VOS_VOID  NAS_LCS_RcvMmDataInd
                         NAS_LCS_DOMAIN_TYPE_CS_LCS);
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_RcvMmRelInd
-Description    : MM_LCS_REL_IND消息处理函数
-Input          : VOS_VOID *pstRelInd
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  lihong 00150010 2015-10-10  新开发
-*****************************************************************************/
 VOS_VOID  NAS_LCS_RcvMmRelInd
 (
     const MM_LCS_REL_IND_STRU          *pstRelInd
@@ -345,16 +271,7 @@ VOS_VOID  NAS_LCS_RcvMmRelInd
     NAS_LCS_SndOmEntityInfo();
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_MmMsgDistr
-Description    : LCS模块MM消息处理函数
-Input          : VOS_VOID *pRcvMsg
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  lihong 00150010 2015-9-28  新开发
-*****************************************************************************/
 VOS_VOID NAS_LCS_MmMsgDistr( VOS_VOID *pRcvMsg )
 {
     PS_MSG_HEADER_STRU         *pMmMsg  = VOS_NULL_PTR;

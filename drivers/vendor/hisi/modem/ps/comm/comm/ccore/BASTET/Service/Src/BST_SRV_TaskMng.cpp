@@ -1,25 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : ProtocolAdapter.cpp
-  版 本 号   : 初稿
-  作    者   : d00173029
-  生成日期   : 2014年4月16日
-  最近修改   :
-  功能描述   : 协议适配类，参数上报类等
-  函数列表   :
-
-  修改历史   :
-  1.日    期   : 2014年04月16日
-    作    者   : d00173029
-    修改内容   : 创建文件
-
-  2.日    期   : 2015年01月16日
-    作    者   : d00173029
-    修改内容   : 升级V2.0架构，支持实时性任务
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -74,19 +53,7 @@ extern "C" sys_mbox_t   mbox;
    5 函数实现
 ******************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : BST_SRV_InitMultiThread
- 功能描述  : 初始化BASTET运行多任务线程
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  : 系统初始化
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年01月28日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID    BST_SRV_InitMultiThread( BST_VOID )
 {
     BST_SRV_THREAD_ITEM_STRU   *pThreadItem;
@@ -185,21 +152,7 @@ BST_VOID    BST_SRV_InitMultiThread( BST_VOID )
     BST_OS_SpinUnLock( &g_ThreadTreeLock, lcTreeCnt );
 }
 
-/*****************************************************************************
- 函 数 名  : BST_SRV_GetTaskMsgHandle
- 功能描述  : 根据procid, taskid找到应用对应的线程Message邮箱入口
- 输入参数  :
-             BST_PROCID_T    usProcId 任务类型
-             BST_TASKID_T    usTaskId 任务ID
- 输出参数  : 无
- 返 回 值  : BST_OS_MBX_T *  消息邮箱，NULL代表任务未找到对应线程入口
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年01月28日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_OS_MBX_T * BST_SRV_GetTaskMsgHandle(
     BST_PROCID_T    usProcId,
     BST_TASKID_T    usTaskId )
@@ -232,20 +185,7 @@ BST_OS_MBX_T * BST_SRV_GetTaskMsgHandle(
 }
 
 
-/*****************************************************************************
- 函 数 名  : BST_SRV_GetChnlCtrlHandle
- 功能描述  : 根据任务编号，获取ChnlCtrl类线程任务Message Handle
- 输入参数  :
-             BST_UINT32     线程序号
- 输出参数  : 无
- 返 回 值  : BST_OS_MBX_T *  消息邮箱，NULL代表任务未找到对应线程入口
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年01月28日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_OS_MBX_T * BST_SRV_GetChnlCtrlHandle(
     BST_UINT32      ulThdNumber )
 {
@@ -262,38 +202,14 @@ BST_OS_MBX_T * BST_SRV_GetChnlCtrlHandle(
     return pstTargetThread->pMsgHandle;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_SRV_GetSysMsgHandle
- 功能描述  : 获取系统任务对应线程EVENT邮箱消息入口
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : BST_OS_MBX_T *  消息邮箱，NULL代表任务未找到对应线程入口
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年01月28日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_OS_MBX_T * BST_SRV_GetSysMsgHandle( BST_VOID )
 {
     return( BST_SRV_GetSysThreadNode()->pMsgHandle );
 }
 
 #if( BST_CFG_RT_THRD_NUM != 0 )
-/*****************************************************************************
- 函 数 名  : BST_SRV_RT_AppThreadEntry
- 功能描述  : 实时任务执行入口
- 输入参数  : BST_VOID *pvArg    对应消息入口的邮箱地址，由该线程创建
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年01月28日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_STATIC BST_VOID BST_SRV_RT_AppThreadEntry( BST_VOID *pvArg )
 {
     BST_OS_MBX_T      **pstMailBox;
@@ -332,7 +248,6 @@ BST_STATIC BST_VOID BST_SRV_RT_AppThreadEntry( BST_VOID *pvArg )
             BST_OS_FREE( pstEvent->pucData );
         }
         BST_OS_FREE( pstEvent );
-    /*为UT退出死循环 c00297028*/
 #if ( BST_VER_TYPE == BST_UT_VER )
         break;
 #endif
@@ -341,19 +256,7 @@ BST_STATIC BST_VOID BST_SRV_RT_AppThreadEntry( BST_VOID *pvArg )
 #endif
 
 #if( BST_CFG_NRT_THRD_NUM != 0 )
-/*****************************************************************************
- 函 数 名  : BST_SRV_NRT_AppThreadEntry
- 功能描述  : 非实时任务执行入口
- 输入参数  : BST_VOID *pvArg    对应消息入口的邮箱地址，由该线程创建
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年01月28日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_STATIC BST_VOID BST_SRV_NRT_AppThreadEntry( BST_VOID *pvArg )
 {
     BST_OS_MBX_T      **pstMailBox;
@@ -392,7 +295,6 @@ BST_STATIC BST_VOID BST_SRV_NRT_AppThreadEntry( BST_VOID *pvArg )
             BST_OS_FREE( pstEvent->pucData );
         }
         BST_OS_FREE( pstEvent );
-    /*为UT退出死循环 c00297028*/
 #if ( BST_VER_TYPE == BST_UT_VER )
         break;
 #endif
@@ -400,19 +302,7 @@ BST_STATIC BST_VOID BST_SRV_NRT_AppThreadEntry( BST_VOID *pvArg )
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : BST_SRV_SysThreadEntry
- 功能描述  : 系统线程执行入口
- 输入参数  : BST_VOID *pvArg    对应消息入口的邮箱地址，由该线程创建
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年01月28日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_STATIC BST_VOID BST_SRV_SysThreadEntry( BST_VOID *pvArg )
 {
     BST_OS_MBX_T      **pstMailBox;
@@ -450,26 +340,13 @@ BST_STATIC BST_VOID BST_SRV_SysThreadEntry( BST_VOID *pvArg )
             BST_OS_FREE( pstEvent->pucData );
         }
         BST_OS_FREE( pstEvent );
-    /*为UT退出死循环 c00297028*/
 #if ( BST_VER_TYPE == BST_UT_VER )
         break;
 #endif
      }
 }
 
-/*****************************************************************************
- 函 数 名  : GetInstance
- 功能描述  : 获取BST_SRV_CTaskMng实例
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : BST_SRV_CTaskMng *
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 
 BST_SRV_CTaskMng *BST_SRV_CTaskMng::GetInstance( BST_VOID )
 {
@@ -481,19 +358,7 @@ BST_SRV_CTaskMng *BST_SRV_CTaskMng::GetInstance( BST_VOID )
     }
     return pcTaskManager;
 }
-/*****************************************************************************
- 函 数 名  : BST_SRV_CTaskMng
- 功能描述  : 构造函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 /*lint -e429*/
 BST_SRV_CTaskMng::BST_SRV_CTaskMng( BST_VOID )
 {
@@ -507,24 +372,7 @@ BST_SRV_CTaskMng::BST_SRV_CTaskMng( BST_VOID )
     m_pcRegedit             = BST_CORE_CRegedit::GetInstance();
 }
 /*lint +e429*/
-/*****************************************************************************
- 函 数 名  : Add
- 功能描述  : 增加任务
- 输入参数  : usObjAddr:任务类型
-            BST_APP_TYPE_MIN                = 0,
-            BST_APP_TYPE_SYSTASK,
-            BST_APP_TYPE_MAILBOX,
-            BST_APP_TYPE_HEARTBEAT,
-            BST_OBJ_TYPE_MAX
- 输出参数  : 无
- 返 回 值  : BST_DSPP_OFSTADDR_T
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 /*lint -e429*/
 BST_DSPP_OFSTADDR_T BST_SRV_CTaskMng::Assign(
     BST_DSPP_OBJTADDR_T     usObjAddr,
@@ -605,20 +453,7 @@ BST_DSPP_OFSTADDR_T BST_SRV_CTaskMng::Assign(
     }
 }
 /*lint +e429*/
-/*****************************************************************************
- 函 数 名  : Remove
- 功能描述  : 删除任务
- 输入参数  : usObjAddr:任务类型
-             usOfstAddr:该类任务下分配的ID
- 输出参数  : 无
- 返 回 值  : BST_ERR_ENUM_UINT8
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 /*lint -e438*/
 BST_ERR_ENUM_UINT8  BST_SRV_CTaskMng::Remove(
     BST_DSPP_OBJTADDR_T usObjAddr,
@@ -686,19 +521,7 @@ BST_ERR_ENUM_UINT8  BST_SRV_CTaskMng::Remove(
     return ucRtnVal;
 }
 /*lint +e438*/
-/*****************************************************************************
- 函 数 名  : RemoveAll
- 功能描述  : 删除所有任务
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : BST_ERR_ENUM_UINT8
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8  BST_SRV_CTaskMng::RemoveAll( BST_VOID )
 {
     BST_SRV_TASK_ITEM_STRU     *pstTaskIdx;
@@ -739,20 +562,7 @@ BST_ERR_ENUM_UINT8  BST_SRV_CTaskMng::RemoveAll( BST_VOID )
     BST_DBG_LOG( "BST_SRV_CTaskMng::RemoveAll" );
     return BST_NO_ERROR_MSG;
 }
-/*****************************************************************************
- 函 数 名  : Start
- 功能描述  : 任务开始
- 输入参数  : usObjAddr:任务类型
-             usOfstAddr:该类任务下分配的ID
- 输出参数  : 无
- 返 回 值  : BST_ERR_ENUM_UINT8
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8  BST_SRV_CTaskMng::Start(
         BST_DSPP_OBJTADDR_T         usObjAddr,
         BST_DSPP_OFSTADDR_T         usOfstAddr )
@@ -802,19 +612,7 @@ BST_ERR_ENUM_UINT8  BST_SRV_CTaskMng::Start(
     BST_OS_SpinUnLock( &g_ThreadTreeLock, lcTreeCnt );
     return ucRtnVal;
 }
-/*****************************************************************************
- 函 数 名  : StartAll
- 功能描述  : 开始所有任务
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : BST_ERR_ENUM_UINT8
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8  BST_SRV_CTaskMng::StartAll( BST_VOID )
 {
     BST_SRV_TASK_ITEM_STRU     *pstTaskIdx;
@@ -848,19 +646,7 @@ BST_ERR_ENUM_UINT8  BST_SRV_CTaskMng::StartAll( BST_VOID )
     return BST_NO_ERROR_MSG;
 }
 
-/*****************************************************************************
- 函 数 名  : StopAll
- 功能描述  : 停止所有任务
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : BST_ERR_ENUM_UINT8
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8  BST_SRV_CTaskMng::StopAll( BST_VOID )
 {
     BST_SRV_TASK_ITEM_STRU     *pstTaskIdx;
@@ -893,20 +679,7 @@ BST_ERR_ENUM_UINT8  BST_SRV_CTaskMng::StopAll( BST_VOID )
     BST_OS_SpinUnLock( &g_ThreadTreeLock, lcTreeCnt );
     return BST_NO_ERROR_MSG;
 }
-/*****************************************************************************
- 函 数 名  : Stop
- 功能描述  : 停止任务
- 输入参数  : usObjAddr:任务类型
-             usOfstAddr:该类任务下分配的ID
- 输出参数  : 无
- 返 回 值  : BST_ERR_ENUM_UINT8
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8  BST_SRV_CTaskMng::Stop(
         BST_DSPP_OBJTADDR_T         usObjAddr,
         BST_DSPP_OFSTADDR_T         usOfstAddr )
@@ -954,21 +727,7 @@ BST_ERR_ENUM_UINT8  BST_SRV_CTaskMng::Stop(
     BST_OS_SpinUnLock( &g_ThreadTreeLock, lcTreeCnt );
     return ucRtnVal;
 }
-/*****************************************************************************
- 函 数 名  : GetLen
- 功能描述  : 获取任务参数长度
- 输入参数  : usObjAddr:任务类型
-             usOfstAddr:该类任务下分配的ID
-             enPid: parameter ID
- 输出参数  : 无
- 返 回 值  : BST_UINT16
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_UINT16 BST_SRV_CTaskMng::GetLen(
         BST_DSPP_OBJTADDR_T         usObjAddr,
         BST_DSPP_OFSTADDR_T         usOfstAddr,
@@ -984,22 +743,7 @@ BST_UINT16 BST_SRV_CTaskMng::GetLen(
     }
     return m_pcRegedit->GetLen( usObjAddr, usOfstAddr, enPid );
 }
-/*****************************************************************************
- 函 数 名  : Inquire
- 功能描述  : 查询PID
- 输入参数  : usObjAddr:任务类型
-             usOfstAddr:该类任务下分配的ID
-             enPid: parameter ID
-             usLength:参数长度
- 输出参数  : pData:查询结果
- 返 回 值  : BST_UINT16
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_UINT16 BST_SRV_CTaskMng::Inquire(
         BST_DSPP_OBJTADDR_T         usObjAddr,
         BST_DSPP_OFSTADDR_T         usOfstAddr,
@@ -1025,23 +769,7 @@ BST_UINT16 BST_SRV_CTaskMng::Inquire(
     }
     return  m_pcRegedit->Inquire( usObjAddr, usOfstAddr, enPid, usLength, pData );
 }
-/*****************************************************************************
- 函 数 名  : Config
- 功能描述  : 配置任务
- 输入参数  : usObjAddr:任务类型
-             usOfstAddr:该类任务下分配的ID
-             enPid: parameter ID
-             usLength:参数长度
-             pData:配置参数
- 输出参数  : 无
- 返 回 值  : BST_ERR_ENUM_UINT8
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8  BST_SRV_CTaskMng::Config(
         BST_DSPP_OBJTADDR_T         usObjAddr,
         BST_DSPP_OFSTADDR_T         usOfstAddr,
@@ -1073,20 +801,7 @@ BST_ERR_ENUM_UINT8  BST_SRV_CTaskMng::Config(
                                                enPid, usLength, pData );
     return enRtnVal;
 }
-/*****************************************************************************
- 函 数 名  : Create
- 功能描述  : 创建任务
- 输入参数  : usObjAddr:任务类型
-             usOfstAddr:该类任务下分配的ID
- 输出参数  : 无
- 返 回 值  : BST_CTask *
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_SRV_CTaskMng::Create(
     BST_DSPP_OBJTADDR_T     usObjAddr,
     BST_DSPP_OFSTADDR_T     usOfstAddr )
@@ -1162,22 +877,7 @@ BST_ERR_ENUM_UINT8 BST_SRV_CTaskMng::Create(
     return BST_NO_ERROR_MSG;
 }
 
-/*****************************************************************************
- 函 数 名  : AssignToThread
- 功能描述  : 根据任务类型，将新生成任务分配到资源最优线程
- 输入参数  : 
-             BST_PROCID_T  usProcId,    任务类型Id
-             BST_TASKID_T  usTaskId,    任务编号Id
-             BST_UINT32    ulTaskType   任务应用类型（实时/非实时）
- 输出参数  : 无
- 返 回 值  : BST_OS_MBX_T *分配到线程的入口EVENT邮箱地址
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年01月28日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_OS_MBX_T *BST_SRV_CTaskMng::AssignToThread(
     BST_PROCID_T                usProcId,
     BST_TASKID_T                usTaskId,
@@ -1235,19 +935,7 @@ BST_OS_MBX_T *BST_SRV_CTaskMng::AssignToThread(
 }
 
 
-/*****************************************************************************
- 函 数 名  : GetAppTaskTotle
- 功能描述  : 查询当前创建引用任务总数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : BST_UINT16 应用APP任务总数（实时+非实时）
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年01月28日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_UINT16  BST_SRV_CTaskMng::GetAppTaskTotle( BST_VOID )
 {
 
@@ -1267,19 +955,7 @@ BST_UINT16  BST_SRV_CTaskMng::GetAppTaskTotle( BST_VOID )
     return usTotal;
 }
 
-/*****************************************************************************
- 函 数 名  : ~BST_SRV_CTaskMng
- 功能描述  : 析构函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_SRV_CTaskMng::~BST_SRV_CTaskMng()
 {
     BST_UINT32                          ulCnt;

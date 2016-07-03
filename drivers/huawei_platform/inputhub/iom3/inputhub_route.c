@@ -1876,15 +1876,7 @@ int set_log_config(uint8_t type, uint8_t val)
     return inputhub_mcu_write_cmd_adapter(&pkt, sizeof(pkt), NULL);
 }
 
-/*******************************************************************************************
-Function:       shb_set_light_leds
-Description:    将命令信息转换成通信协议格式发送给MCU设置三色灯的工作模式
-Data Accessed:  无
-Data Updated:   无
-Input:          const struct pkg_from_devsensorhub *cmdbuf，上层设置三色灯的命令的数据包的起始地址
-Output:         无
-Return:         成功或者失败信息
-*******************************************************************************************/
+
 static int shb_set_light_leds(const struct pkg_from_devsensorhub *cmdbuf)
 {
     switch (cmdbuf->work_mode) {
@@ -1939,15 +1931,7 @@ static int shb_set_light_leds(const struct pkg_from_devsensorhub *cmdbuf)
     }
 }
 
-/*******************************************************************************************
-Function:       shb_set_light_buttons
-Description:    将命令信息转换成通信协议格式发送给MCU设置button灯的工作模式
-Data Accessed:  无
-Data Updated:   无
-Input:          const struct pkg_from_devsensorhub *cmdbuf，上层设置button灯的命令的数据包的起始地址
-Output:         无
-Return:         成功或者失败信息
-*******************************************************************************************/
+
 static int shb_set_light_buttons(const struct pkg_from_devsensorhub *cmdbuf)
 {
     switch (cmdbuf->work_mode) {
@@ -1986,15 +1970,7 @@ static int shb_set_light_buttons(const struct pkg_from_devsensorhub *cmdbuf)
     }
 }
 
-/*******************************************************************************************
-Function:       shb_set_vibrator
-Description:    将命令信息转换成通信协议格式发送给MCU设置马达的工作模式
-Data Accessed:  无
-Data Updated:   无
-Input:          const struct pkg_from_devsensorhub *cmdbuf，上层设置马达的命令的数据包的起始地址
-Output:         无
-Return:         成功或者失败信息
-*******************************************************************************************/
+
 static int shb_set_vibrator(const struct pkg_from_devsensorhub *cmdbuf)
 {
     if (NULL == cmdbuf) {

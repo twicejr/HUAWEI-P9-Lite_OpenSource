@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2013, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafMtaModemControl.c
-  版 本 号   : 初稿
-  作    者   : l00198894
-  生成日期   : 2013年10月21日
-  最近修改   :
-  功能描述   : MTA模块处理Modem状态控制相关功能
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年10月21日
-    作    者   : l00198894
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -37,9 +20,7 @@ extern "C" {
 
 /*lint -e958*/
 
-/*lint -e767 修改人: l00198894; */
 #define    THIS_FILE_ID        PS_FILE_ID_TAF_MTA_MODEM_CONTROL_C
-/*lint +e767 修改人: l00198894; */
 
 /*****************************************************************************
   2 全局变量定义
@@ -50,20 +31,7 @@ extern "C" {
   3 函数实现
 *****************************************************************************/
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvMtcPsTransferInd
- 功能描述  : MTA模块收到MTC模块发的PS域迁移指示
- 输入参数  : VOS_VOID *pMsg  --消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月21日
-    作    者   : l00198894
-    修改内容   : V9R1C50 SVLTE离网重选项目新增
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvMtcPsTransferInd(
     VOS_VOID                           *pMsg
 )
@@ -93,20 +61,7 @@ VOS_VOID TAF_MTA_RcvMtcPsTransferInd(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SndMipiClkInfoToAt
- 功能描述  : MTA模块将^mipiclk上报给AT
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年03月04日
-    作    者   : j00174725
-    修改内容   : RF&LCD INTRUSION项目新增
-*****************************************************************************/
 VOS_VOID TAF_MTA_SndMipiClkInfoToAt(VOS_UINT16 usMipiClk)
 {
     AT_APPCTRL_STRU                     stAppCtrl;
@@ -144,20 +99,7 @@ VOS_VOID TAF_MTA_SndMipiClkInfoToAt(VOS_UINT16 usMipiClk)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_GetMipiClkRptCtl
- 功能描述  : 获取MipiClk主动上报控制
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年03月04日
-    作    者   : j00174725
-    修改内容   : RF&LCD INTRUSION项目新增
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_GetMipiClkRptCtl(VOS_VOID)
 {
     TAF_SDC_CURC_RPT_CTRL_STRU         *pstCurcRptCtrl      = VOS_NULL_PTR;
@@ -174,20 +116,7 @@ VOS_UINT32 TAF_MTA_GetMipiClkRptCtl(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvTiMipiClkExpired
- 功能描述  : MTA模块MipiClk主动上报命令超时处理函数
- 输入参数  : pMsg    -- 超时消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年03月04日
-    作    者   : j00174725
-    修改内容   : RF&LCD INTRUSION项目新增
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvTiMipiClkExpired(VOS_VOID *pMsg)
 {
     TAF_MTA_RF_LCD_CTX_STRU            *pstMtaRfLcdCtxAddr  = VOS_NULL_PTR;
@@ -214,20 +143,7 @@ VOS_VOID TAF_MTA_RcvTiMipiClkExpired(VOS_VOID *pMsg)
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvMtcMipiClkInfoInd
- 功能描述  : MTA模块收到MTC模块发的MipiClk上报指示
- 输入参数  : VOS_VOID *pMsg  --消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年03月04日
-    作    者   : j00174725
-    修改内容   : RF&LCD INTRUSION项目新增
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvMtcMipiClkInfoInd(VOS_VOID *pMsg)
 {
     MTC_MTA_MIPICLK_INFO_IND_STRU      *pstMipiClkIndMsg    = VOS_NULL_PTR;
@@ -270,21 +186,7 @@ VOS_VOID TAF_MTA_RcvMtcMipiClkInfoInd(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvAtQryMipiClkReq
- 功能描述  : mta收到ID_AT_MTA_MIPI_CLK_REQ消息处理函数
- 输入参数  : VOS_VOID *pMsg  --消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年03月04日
-    作    者   : j00174725
-    修改内容   : RF&LCD INTRUSION项目新增函数
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvAtQryMipiClkReq(VOS_VOID *pMsg)
 {
     AT_MTA_MSG_STRU                    *pstAtMtaMsg         = VOS_NULL_PTR;
@@ -334,19 +236,7 @@ VOS_VOID TAF_MTA_RcvAtQryMipiClkReq(VOS_VOID *pMsg)
 
 
 #if (FEATURE_ON == FEATURE_DSDS)
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SndRrmProtectPsInd
- 功能描述  : MTA向RRM发送ID_PS_RRM_PROTECT_PS_IND消息
- 输入参数  : enRrmPsRatType - RRM PS RAT类型
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史  :
-  1.日    期   : 2013年3月25日
-    作    者   : y00176023
-    修改内容   : 支持AT^PSPROTECTMODE
-*****************************************************************************/
+
 VOS_UINT32 TAF_MTA_SndRrmProtectPsInd(VOS_VOID)
 {
      VOS_UINT32                         ulResult;
@@ -390,19 +280,7 @@ VOS_UINT32 TAF_MTA_SndRrmProtectPsInd(VOS_VOID)
      return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SndRrmDeProtectPsInd
- 功能描述  : MTA向RRM发送ID_PS_RRM_DEPROTECT_PS_IND消息
- 输入参数  : enRrmPsRatType - RRM PS RAT类型
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 - 发送结果
- 调用函数  :
- 被调函数  :
- 修改历史  :
-  1.日    期   : 2013年3月25日
-    作    者   : y00176023
-    修改内容   : 支持AT^PSPROTECTMODE
-*****************************************************************************/
+
 VOS_UINT32 TAF_MTA_SndRrmDeProtectPsInd(VOS_VOID)
 {
      VOS_UINT32                         ulResult;
@@ -448,19 +326,7 @@ VOS_UINT32 TAF_MTA_SndRrmDeProtectPsInd(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SndRrmProtectPsType
- 功能描述  : MTA向RRM发送ID_PS_RRM_DEPROTECT_PS_IND消息
- 输入参数  : usRrmPsProtectType - RRM PS protect类型
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 - 发送结果
- 调用函数  :
- 被调函数  :
- 修改历史  :
-  1.日    期   : 2013年4月3日
-    作    者   : y00176023
-    修改内容   : 支持AT^PSPROTECTMODE
-*****************************************************************************/
+
 VOS_UINT32 TAF_MTA_SndRrmPsProtectType(
     PS_BOOL_ENUM_UINT8                  usRrmPsProtectType
 )
@@ -478,20 +344,7 @@ VOS_UINT32 TAF_MTA_SndRrmPsProtectType(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SndAsPsProtectIndMsg
- 功能描述  : MTA向接入层发送ID_MTA_RRC_PROTECT_PS_IND消息
- 输入参数  : ulReceiverPid - 接收方pid
-             ucProtectFlg  - 保护标志
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史  :
-  1.日    期   : 2013年3月25日
-    作    者   : y00176023
-    修改内容   : 支持AT^PSPROTECTMODE
-*****************************************************************************/
+
 VOS_UINT32 TAF_MTA_SndAsPsProtectIndMsg(
     VOS_UINT32                          ulReceiverPid,
     VOS_UINT8                           ucProtectFlg
@@ -531,19 +384,7 @@ VOS_UINT32 TAF_MTA_SndAsPsProtectIndMsg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SndAtSetPsProtectCnf
- 功能描述  : MTA处理^PSPROTECTMODE消息后给AT模块回消息
- 输入参数  : AT_MTA_MSG_STRU   *pstAtMtaReqMsg   AT给MTA发送的消息
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史  :
-  1.日    期   : 2013年3月25日
-    作    者   : y00176023
-    修改内容   : DSDS GUNAS II项目新增函数
-*****************************************************************************/
+
 VOS_VOID TAF_MTA_SndAtSetPsProtectCnf(
     AT_MTA_MSG_STRU                    *pstAtMtaReqMsg,
     AT_MTA_MSG_TYPE_ENUM_UINT32         enErr
@@ -563,20 +404,7 @@ VOS_VOID TAF_MTA_SndAtSetPsProtectCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvAtPsProtectSetReq
- 功能描述  : MTA模块收到AT发来的ID_AT_MTA_RRC_PROTECT_PS_REQ请求消息的处理函数
- 输入参数  : pMsg   -- AT发送的消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月25日
-    作    者   : y00176023
-    修改内容   : 新增^PSPROTECTMODE命令
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvAtPsProtectSetReq(
     VOS_VOID                           *pMsg
 )

@@ -48,7 +48,6 @@ extern struct IIF_IPV4_FIBCONTR_ComIntCFGVtbl     *g_pstPP4Fib4CCfgTable;
 
 extern struct IIF_IPV6_NATPT_ComINTF_V4STKVtbl *g_pstPp4NatptV4Stk;
 
-/* Add by w60786 for A82D24353 2008-03-18 增强DHCP Client兼容性. */
 /* DHCP4C组件接口函数表 */
 extern struct IIF_IPV4_DHCP4C_ComIntFunVtbl *g_pstPp4Dhcp4cFunVtbl;
 

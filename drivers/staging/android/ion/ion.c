@@ -1,5 +1,4 @@
 /*
-
  * drivers/gpu/ion/ion.c
  *
  * Copyright (C) 2011 Google, Inc.
@@ -38,7 +37,6 @@
 #include <linux/idr.h>
 #include <asm/cacheflush.h>
 #include <linux/smp.h>
-#include <linux/hisi/hisi_ion.h>
 #include "ion.h"
 #include "ion_priv.h"
 #include "compat_ion.h"
@@ -48,6 +46,7 @@
 #include <linux/proc_fs.h>
 #include <linux/vmstat.h>
 #include <linux/hisi/hisi_ion.h>
+#include <linux/atomic.h>
 
 #define HISI_ION_FLUSH_ALL_CPUS_CACHES 	(0x800000) /*8MB*/
 /**
@@ -124,6 +123,8 @@ struct ion_handle {
 	int id;
 	int import;
 };
+
+static atomic_long_t ion_total_size;
 
 bool ion_buffer_fault_user_mappings(struct ion_buffer *buffer)
 {
@@ -279,14 +280,11 @@ static struct ion_buffer *ion_buffer_create(struct ion_heap *heap,
 	   memory comming from the heaps is ready for dma, ie if it has a
 	   cached mapping that mapping has been invalidated */
 	for_each_sg(buffer->sg_table->sgl, sg, buffer->sg_table->nents, i) {
-		struct page *page = sg_page(sg);
-		int nr_pages = sg->length / PAGE_SIZE;
 		sg_dma_address(sg) = sg_phys(sg);
 		sg_dma_len(sg) = sg->length;
-		if (buffer->heap->type != ION_HEAP_TYPE_CARVEOUT) {
-			zone_page_state_add(nr_pages, page_zone(page), NR_ION);
-		}
 	}
+	if (buffer->heap->type != ION_HEAP_TYPE_CARVEOUT)
+		atomic_long_add(buffer->size, &ion_total_size);
 	/*if buffer is non secure*/
 	if (!(flags & ION_FLAG_SECURE_BUFFER)) {
 	/*if has ION_FLAG_NOT_ZERO_BUFFER means do not want to zero buffer*/
@@ -329,18 +327,9 @@ err2:
 
 void ion_buffer_destroy(struct ion_buffer *buffer)
 {
-	struct sg_table *table;
-	struct scatterlist *sg;
-	int i;
+	if (buffer->heap->type != ION_HEAP_TYPE_CARVEOUT)
+		atomic_long_sub(buffer->size, &ion_total_size);
 
-	table = buffer->sg_table;
-	if (buffer->heap->type != ION_HEAP_TYPE_CARVEOUT) {
-		for_each_sg(table->sgl, sg, table->nents, i) {
-			struct page *page = sg_page(sg);
-			int nr_pages = sg->length / PAGE_SIZE;
-			zone_page_state_add(-nr_pages, page_zone(page), NR_ION);
-		}
-	}
 	if (buffer->iommu_map) {
 		pr_info("%s: iommu map not released, do unmap now!\n", __func__);
 		buffer->heap->ops->unmap_iommu(buffer->iommu_map);
@@ -2167,59 +2156,4 @@ void __init ion_reserve(struct ion_platform_data *data)
 			data->heaps[i].size);
 	}
 }
-static size_t ion_client_total(struct ion_client *client)
-{
-	size_t size = 0;
-	struct rb_node *n;
-
-	mutex_lock(&client->lock);
-	for (n = rb_first(&client->handles); n; n = rb_next(n)) {
-		struct ion_handle *handle = rb_entry(n,
-				struct ion_handle, node);
-		if (!(handle->import) && (handle->buffer->heap->type !=
-					ION_HEAP_TYPE_CARVEOUT)) {
-			if (handle->buffer->cpudraw_sg_table)
-				size += handle->buffer->cpu_buffer_size;
-			else
-				size += handle->buffer->size;
-		}
-	}
-	mutex_unlock(&client->lock);
-	return size;
-}
-int hisi_ion_memory_info(void)
-{
-	struct rb_node *n;
-	struct ion_device *dev = get_ion_device();
-	if (!dev)
-		return -EINVAL;
-	down_read(&dev->lock);
-	for (n = rb_first(&dev->clients); n; n = rb_next(n)) {
-		struct ion_client *client = rb_entry(n,
-				struct ion_client, node);
-		size_t size = ion_client_total(client);
-		if (!size)
-			continue;
-		if (client->task) {
-			char task_comm[TASK_COMM_LEN];
-			get_task_comm(task_comm, client->task);
-			pr_info("%16.s %16u %16zu\n",
-					task_comm, client->pid, size);
-		} else {
-			pr_info("%16.s %16u %16zu\n",
-					client->name, client->pid, size);
-		}
-	}
-	up_read(&dev->lock);
-	mutex_lock(&dev->buffer_lock);
-	for (n = rb_first(&dev->buffers); n; n = rb_next(n)) {
-		struct ion_buffer *buffer = rb_entry(n, struct ion_buffer,
-				node);
-		if (!buffer->handle_count &&
-				(buffer->heap->type != ION_HEAP_TYPE_CARVEOUT))
-			pr_info("%16.s %16u %16zu\n", buffer->task_comm,
-					buffer->pid, buffer->size);
-	}
-	mutex_unlock(&dev->buffer_lock);
-	return 0;
-}
+#include "hisi/hisi_ion_dump.c"

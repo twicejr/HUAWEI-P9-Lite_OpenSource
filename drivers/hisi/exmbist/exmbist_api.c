@@ -27,21 +27,7 @@ extern exmbist_uint32 exm_rd_status (void) ;
 
 extern exmbist_uint32 exm_algo_run_loop (ExmCtx * ctx);
 
-/*****************************************************************************
- 函 数 名  : exmbist_init
- 功能描述  : 初始化入口函数
- 输入参数  : ExmCtx *ctx
- 输出参数  : 无
- 返 回 值  : exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月18日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 exmbist_uint32 exmbist_init(ExmCtx *ctx)
 {
     exmbist_uint32 uiret = EXMBIST_OK;
@@ -90,21 +76,7 @@ exmbist_uint32 exmbist_init(ExmCtx *ctx)
 }
 
 
-/*****************************************************************************
- 函 数 名  : exmbist_stop
- 功能描述  : exmbist停止函数
- 输入参数  : ExmCtx * ctx
- 输出参数  : 无
- 返 回 值  : exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月15日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 exmbist_uint32 exmbist_stop(ExmCtx * ctx)
 {
     exmbist_uint32 uiret = EXMBIST_OK;
@@ -127,23 +99,7 @@ exmbist_uint32 exmbist_stop(ExmCtx * ctx)
 }
 
 
-/*****************************************************************************
- 函 数 名  : exmbist_set_cmd
- 功能描述  : exmbist 命令配置接口函数
- 输入参数  : ExmCtx *ctx
-             exmbist_uint32 cmd_id
-             void *cmd_para
- 输出参数  : 无
- 返 回 值  : exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月15日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 exmbist_uint32 exmbist_set_cmd(ExmCtx *ctx, exmbist_uint32 cmd_id, void *cmd_para)
 {
     exmbist_uint32 uiret = EXMBIST_OK;
@@ -168,23 +124,7 @@ exmbist_uint32 exmbist_set_cmd(ExmCtx *ctx, exmbist_uint32 cmd_id, void *cmd_par
     return uiret;
 }
 
-/*****************************************************************************
- 函 数 名  : exmbist_algo_run
- 功能描述  : 算法运行入口函数
- 输入参数  : ExmCtx *ctx
-             exmbist_uint32 algo_id
-             exmbist_uint32 loop_cnt
- 输出参数  : 无
- 返 回 值  : exmbist_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月11日
-    作    者   : 戚小清 00242728
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 exmbist_uint32 exmbist_algo_run(ExmCtx *ctx, exmbist_uint32 algo_id, exmbist_uint32 loop_cnt)
 {
     exmbist_uint32 uiret;

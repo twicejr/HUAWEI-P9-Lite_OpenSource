@@ -81,7 +81,6 @@ spinlock_t g_SendFrame_Lock[VENC_MAX_CHN_NUM];     /*lock the destroy and send f
         } \
     } while (0)
 
-//PriorityTab[0][x]表示通道，PriorityTab[1][x]表示优先级 l00214825
 HI_S8 PriorityTab[2][VENC_MAX_CHN_NUM]={{-1,-1,-1,-1,-1,-1,-1,-1},{}};
 ///////////////////////////////////////////////////////////////
 extern VENC_EXPORT_FUNC_S s_VencExportFuncs;
@@ -92,14 +91,12 @@ HI_HANDLE   h_pre_enc_handle;//用于判断通道切换的标志
 HI_U32 cur_handle_num;//目前通道计数，用于判断帧间上下电
 HI_U32 b_Regular_down_flag;
 
-/* 外边复位vedu, 并设置时钟，撤销复位l00214825  */
 HI_VOID VENC_DRV_BoardInit(HI_VOID)
 {
     HI_U32 i = 0;
     HI_U32 ret = 0;
     HI_INFO_VENC("enter %s()\n", __func__);
 
-//	VENC_HAL_ResetReg(); //暂时不复位  l00214825
 	pre_enc_protocol = VEDU_H265;
 	h_pre_enc_handle =HI_INVALID_HANDLE ;
 #ifdef SHUTDOWN_REGULATOR_EN

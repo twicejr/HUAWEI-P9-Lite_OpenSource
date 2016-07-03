@@ -1,13 +1,4 @@
-/******************************************************************************
 
-        @(#)Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : NasLppLrrcMsgProc.c
-    Description : 处理LRRC发给LPP的消息
-    History     :
-    lifuxin 00253982    2015-7-7  新开发
-******************************************************************************/
 
 /*****************************************************************************
   1 Include HeadFile
@@ -58,16 +49,7 @@ extern VOS_UINT16  NAS_LPP_EncodeMessage
     VOS_UINT16                         *pusBitPos,
     VOS_UINT8                          *pucEncodeOutMsg
 );
-/*****************************************************************************
- Function Name  : NAS_LPP_RcvLrrcLppLasLcsCapabilityInd
- Description    : LPP模块处理LRRC上报消息处理函数
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-   1. wangensheng 00324863 2015-7-16
-*****************************************************************************/
 VOS_VOID    NAS_LPP_RcvLrrcLppLasLcsCapabilityInd
 (
     LRRC_LPP_LAS_LCS_CAPABILITY_IND_STRU                   *pRcvMsg
@@ -103,16 +85,7 @@ VOS_VOID    NAS_LPP_RcvLrrcLppLasLcsCapabilityInd
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_ProcessCPEcidMeasCnf
- Description    : LPP模块收到ECID的测量回复的处理
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-   1. wangensheng 00324863 2015-11-25 用户面逻辑  
-*****************************************************************************/
 VOS_VOID NAS_LPP_ProcessCPEcidMeasCnf
 (
     LRRC_LPP_ECID_MEAS_CNF_STRU        *pstEcidMeasCnf
@@ -203,16 +176,7 @@ VOS_VOID NAS_LPP_ProcessCPEcidMeasCnf
 
     return;
 }
-/*****************************************************************************
- Function Name  : NAS_LPP_RcvLrrclppEcidMeasCnf
- Description    : LPP模块收到ECID的测量回复的处理
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-   1. lifuxin 00253982 2015-7-7  新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_RcvLrrclppEcidMeasCnf
 (
     LRRC_LPP_ECID_MEAS_CNF_STRU         *pstEcidMeasCnf
@@ -235,16 +199,7 @@ VOS_VOID NAS_LPP_RcvLrrclppEcidMeasCnf
         NAS_LPP_ProcessCPEcidMeasCnf(pstEcidMeasCnf);
     }
 }
-/*****************************************************************************
- Function Name  : NAS_LPP_ProcessCpOtdoaMeasCnf
- Description    : LPP信令模块收到OTDOA的测量回复的处理
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-   1. wangensheng 00324863 2015-11-26  新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_ProcessCpOtdoaMeasCnf
 (
     LRRC_LPP_OTDOA_MEAS_CNF_STRU         *pstOtdoaMeasCnf
@@ -365,16 +320,7 @@ VOS_VOID NAS_LPP_ProcessCpOtdoaMeasCnf
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_RcvLrrcLppOtdoaMeasCnf
- Description    : LPP模块收到OTDOA的测量回复的处理
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-   1. lifuxin 00253982 2015-7-7  新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_RcvLrrcLppOtdoaMeasCnf
 (
     LRRC_LPP_OTDOA_MEAS_CNF_STRU         *pstOtdoaMeasCnf
@@ -397,16 +343,7 @@ VOS_VOID NAS_LPP_RcvLrrcLppOtdoaMeasCnf
     }
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_SaveEcidMeasResultInfo
- Description    : 保存ECID的测量IND消息
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-   1. lifuxin 00253982 2015-7-28  新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_SaveEcidMeasResultInfo
 (
     LRRC_LPP_ECID_MEAS_IND_STRU         *pstEcidMeasInd
@@ -424,16 +361,7 @@ VOS_VOID NAS_LPP_SaveEcidMeasResultInfo
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetNeighberMeasRsltElement
- Description    : 得到空口ecid的测量地址
- Input          :
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      lifuxin 00253982 2015-7-24  新开发
-*****************************************************************************/
 LPP_MEAS_RESULT_ELEMENT_STRU* NAS_LPP_GetNeighberMeasRsltElement
 (
     LPP_PROVIDE_LOCATION_INFO_R9_IES_STRU   *pstProvideLocR9Ies,
@@ -443,16 +371,7 @@ LPP_MEAS_RESULT_ELEMENT_STRU* NAS_LPP_GetNeighberMeasRsltElement
     return &(pstProvideLocR9Ies->stEcidPRovideLocationInfo.stEcidSignalMeasInfo.stMeasResultList.astMeasResultsList[ulLoop]);
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetPrimaryMeasRsltElement
- Description    : 得到空口ecid的测量地址
- Input          :
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      lifuxin 00253982 2015-7-24  新开发
-*****************************************************************************/
 LPP_MEAS_RESULT_ELEMENT_STRU* NAS_LPP_GetPrimaryMeasRsltElement
 (
     LPP_PROVIDE_LOCATION_INFO_R9_IES_STRU   *pstProvideLocR9Ies
@@ -461,16 +380,7 @@ LPP_MEAS_RESULT_ELEMENT_STRU* NAS_LPP_GetPrimaryMeasRsltElement
     return &(pstProvideLocR9Ies->stEcidPRovideLocationInfo.stEcidSignalMeasInfo.stPrimaryCellMeasResult);
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetLrrcEcidMeasRslt
- Description    : 得到LRRC上报测量的ECID地址
- Input          :
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      lifuxin 00253982 2015-7-24  新开发
-*****************************************************************************/
 LRRC_LPP_ECID_MEAS_RESULT_STRU* NAS_LPP_GetLrrcEcidMeasRslt
 (
     NAS_LPP_ECID_MEAS_RESULT_STRU         *pstEcidMeasRslt,
@@ -480,16 +390,7 @@ LRRC_LPP_ECID_MEAS_RESULT_STRU* NAS_LPP_GetLrrcEcidMeasRslt
     return &(pstEcidMeasRslt->stLrrcLppEcidMeasResultList.astLrrcLppEcidMeasResult[ulLoop]);
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_PrePareGloIdPara
- Description    : 准备GLO ID的参数转换
- Input          :
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      lifuxin 00253982 2015-7-24  新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_PrePareGloIdPara
 (
     LPP_MEAS_RESULT_ELEMENT_STRU            *pstMeasRsltEle,
@@ -510,16 +411,7 @@ VOS_VOID NAS_LPP_PrePareGloIdPara
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_PrePareEcidParameter
- Description    : 准备ECID编码的参数
- Input          :
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      lifuxin 00253982 2015-7-24  新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_PrePareEcidParameterElement
 (
     LPP_MEAS_RESULT_ELEMENT_STRU            *pstMeasRsltEle,
@@ -587,16 +479,7 @@ VOS_VOID NAS_LPP_PrePareEcidParameterElement
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_PrePareGnssParameter
- Description    : 准备GNSS ProvideLocation编码的参数
- Input          :
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      lifuxin 00253982 2015-10-20  新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_PrePareGnssParameter
 (
     LPP_PROVIDE_LOCATION_INFO_R9_IES_STRU   *pstProvideLocR9Ies,
@@ -651,16 +534,7 @@ VOS_VOID NAS_LPP_PrePareGnssParameter
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_PrePareEcidParameter
- Description    : 准备ECID编码的参数
- Input          :
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      lifuxin 00253982 2015-7-24  新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_PrePareEcidParameter
 (
     LPP_PROVIDE_LOCATION_INFO_R9_IES_STRU   *pstProvideLocR9Ies,
@@ -964,16 +838,7 @@ VOS_BOOL  NAS_LPP_OnlyEncodeOtdoa( VOS_VOID )
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_FillWithEcidParamter
- Description    : 填充ECID提供位置信息的参数
- Input          :
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      lifuxin 00253982 2015-11-06  新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_FillWithEcidParamter
 (
     LPP_PROVIDE_LOCATION_INFO_R9_IES_STRU  *pstProvideLocR9Ies,
@@ -1007,16 +872,7 @@ VOS_VOID NAS_LPP_FillWithEcidParamter
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_FillWithGnssParamter
- Description    : 填充GNSS提供位置信息的参数
- Input          :
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      lifuxin 00253982 2015-11-06  新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_FillWithGnssParamter
 (
     LPP_PROVIDE_LOCATION_INFO_R9_IES_STRU  *pstProvideLocR9Ies
@@ -1041,16 +897,7 @@ VOS_VOID NAS_LPP_FillWithGnssParamter
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_FillWithOtdoaParamter
- Description    : 填充OTDOA提供位置信息的参数
- Input          :
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      lifuxin 00253982 2015-11-06  新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_FillWithOtdoaParamter
 (
     LPP_PROVIDE_LOCATION_INFO_R9_IES_STRU  *pstProvideLocR9Ies,
@@ -1078,16 +925,7 @@ VOS_VOID NAS_LPP_FillWithOtdoaParamter
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_EncodeProvideLocationMsgWithIndentityInfo
- Description    : 编码能力提供消息
- Input          :
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      lifuxin 00253982 2015-7-24  新开发
-*****************************************************************************/
 VOS_UINT8 NAS_LPP_EncodeProvideLocationMsgWithIndentityInfo
 (
     VOS_UINT32                         *pulLppMsgLen,
@@ -1213,16 +1051,7 @@ VOS_UINT8 NAS_LPP_EncodeProvideLocationMsgWithIndentityInfo
     return NAS_LPP_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_SndUplinkProvideLocationMsg
- Description    : LPP模块收到ECID的测量IND的处理
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-   1. lifuxin 00253982 2015-7-28  新开发
-*****************************************************************************/
 VOS_UINT8 NAS_LPP_SndUplinkProvideLocationMsg
 (
     LPP_TRANSACTION_ID_STRU            *pstTransactionId,
@@ -1321,16 +1150,7 @@ VOS_VOID  NAS_LPP_CmplOtdoaLocationInfo
     pstMeasRslt->stOtdoaMeasRslt.ulNghbrRptNum = 0;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_SndProvideLocInfoAndChngState
- Description    : LPP模块收到ECID的测量IND的处理
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-   1. lifuxin 00253982 2015-7-28  新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_SndProvideLocInfoAndChngState
 (
     VOS_UINT8                           ucSessionIndx,
@@ -1445,16 +1265,7 @@ VOS_VOID  NAS_LPP_ReportOnceProcess
 }
 
 /*lint -e438*/
-/*****************************************************************************
- Function Name  : NAS_LPP_ProcessCPEcidMeasInd
- Description    : LPP模块收到ECID的测量IND的处理
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-   1. wangensheng 00324863 2015-11-27  新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_ProcessCPEcidMeasInd
 (
     LRRC_LPP_ECID_MEAS_IND_STRU         *pstEcidMeasInd
@@ -1574,16 +1385,7 @@ VOS_VOID NAS_LPP_ProcessCPEcidMeasInd
     }
 
 }
-/*****************************************************************************
- Function Name  : NAS_LPP_RcvLrrcLppEcidMeasInd
- Description    : LPP模块收到ECID的测量IND的处理
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-   1. lifuxin 00253982 2015-7-28  新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_RcvLrrcLppEcidMeasInd
 (
     LRRC_LPP_ECID_MEAS_IND_STRU         *pstEcidMeasInd
@@ -1828,16 +1630,7 @@ VOS_VOID NAS_LPP_RcvLrrcLppOtdoaMeasInd
     }
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_LrrcMsgDistr
- Description    : LPP模块LRRC消息处理函数
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-   1. lifuxin 00253982 2015-7-7  新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_LrrcMsgDistr( VOS_VOID *pRcvMsg )
 {
     PS_MSG_HEADER_STRU         *pEmmMsg  = VOS_NULL_PTR;

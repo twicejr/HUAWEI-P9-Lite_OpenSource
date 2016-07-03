@@ -1,27 +1,4 @@
-/*************************************************************************
- *
- *              Copyright 2005, Huawei Technologies Co. Ltd.
- *                          ALL RIGHTS RESERVED
- * 
- *-----------------------------------------------------------------------*
- *
- *                                mp_def.h
- *
- *  Project Code: VISP1.5
- *   Module Name: MP
- *  Date Created: 2000-03-27
- *        Author: HouZhipeng
- *   Description: MP模块的宏定义声明
- *
- *-----------------------------------------------------------------------*
- *  Modification History
- *  DATE            NAME            DESCRIPTION
- *  2000-03-27      HouZhipeng      Create
- *  2005-09-15      YaoChengliang   Modified for VISP
- *  2006-03-31      ZhuKun          Adjust for D00663
- *  2006-04-21      ZhuKun          Adjust for D00876
- *  2006-05-12      languanghua     支持ARM CPU 四字节对齐
- *************************************************************************/
+
 
 #ifndef _MP_DEF_H_
 #define _MP_DEF_H_
@@ -100,22 +77,18 @@ extern "C"{
 
 /* MP报文头部长度宏定义 */
 
-/* Modified by z43740: 加入PFC/ACFC后，最小长度为1, 2006/05/12 */
 #define MP_MIN_LEN      1       /* 最小MP报文长度 */
 #define MP_SHDRLEN      2       /* 短序列号MP头长度 */
 #define MP_LHDRLEN      4       /* 长序列号MP头长度 */
 #define MP_PPP_HDRLEN   4       /* PPP报文头长度 */
 
-/* Added by z43740 for A82D20089: MP重组窗口扩大系数，2007-09-13 */
 #define MP_REORDERWIN_TIMES_MIN   1
 #define MP_REORDERWIN_TIMES_DEF   2
 #define MP_REORDERWIN_TIMES_MAX   4
 /* End of addition */
 
-/* Modified by likaikun213099, 迭代4检视意见修改, 2014/12/22   问题单号:DTS2014121903356 */
 #define MP_MASK_BIT0    0x0001
 #define MP_MASK_BIT16   0x0100
-/*End of Modified by likaikun213099, 2014/12/22   问题单号:DTS2014121903356 */
 
 /* MP调试输出信息数组下标的枚举定义 */
 enum
@@ -170,7 +143,6 @@ enum
     MP_PUT_SHORT(usPro, p); \
 }
 
-/* Modified by z43740 for MC:增加参数ucClass, 2006/05/11 */
 #define MP_MAKEHEADER( pstMpInfo, pucData, ucFlag, ucClass )\
 { \
     if( 1 == pstMpInfo->bSheRcvShortHdr )\
@@ -210,7 +182,6 @@ enum
     }\
 }
 
-/* add by L00105073 for BC3D01550,比较非首次加入MP接口的子通道参数是否与mp一致 */
 #define MP_SON_CHECKOPTION(pstFatherLcpOption, pstSonLcpOption, ulCheckFailCode, ulWarningId)\
 do\
 {\

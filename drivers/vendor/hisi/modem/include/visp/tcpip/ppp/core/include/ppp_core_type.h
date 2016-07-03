@@ -1,28 +1,4 @@
-/*************************************************************************
- *
- *              Copyright 2005, Huawei Technologies Co. Ltd.
- *                          ALL RIGHTS RESERVED
- * 
- *-----------------------------------------------------------------------*
- *
- *                             ppp_core_type.h
- *
- *  Project Code: VISP1.5
- *   Module Name: PPP
- *  Date Created: 2004-07-01
- *        Author: YiAn
- *   Description: PPP模块的数据结构定义
- *
- *-----------------------------------------------------------------------*
- *  Modification History
- *  DATE            NAME            DESCRIPTION
- *  2004-07-01      YiAn            Create
- *  2006-03-31      ZhuKun          Adjust for D00661
- *  2006-04-21      ZhuKun          Adjust for D00875
- *  2006-05-11      luyao           为支持ARM CPU字节对齐特性，修改结构。
- *  2006-05-13      l48923          Delete useless code
- *
- *************************************************************************/
+
 
 #ifndef _PPP_CORE_TYPE_H_
 #define _PPP_CORE_TYPE_H_
@@ -33,8 +9,7 @@ extern "C" {
 
 #include "tcpip/ppp/include/ppp_api.h"
 
-/*modify by y36299 for SWFD03884  2004/12/10
-  *删除各子协议的debug all开关*/
+
 
 
 /* PPP控制块 */
@@ -200,11 +175,11 @@ typedef struct tagPppFsm
 
     ULONG   ulResetTimerId;        /* NCP reset定时器 */
 
-    ULONG   ulIPCPResetTimerId;    /* IPCP 状态机reset定时器 add by h00177429 for ipcp sub-opt adapt 2012/2/7 */
+    ULONG   ulIPCPResetTimerId;
 
     struct tagPppFsmCallbacks *pstCallBacks;  /* 回调函数集 */
 
-    ULONG   ulNeedNego;            /*子协议是否需要协商 add by y36299 for SWFD05286 2005/06/22*/
+    ULONG   ulNeedNego;
 
     USHORT  usProtocol;            /* 子协议的PPP协议号 */
     SHORT   sRetransmits;          /* config request/terminate request报文重传次数 */
@@ -249,7 +224,6 @@ typedef struct tagPppFsmCallbacks
                                        备好了重新协商,如可能,请发一个up事件.
                                        协议对这个动作没有具体规定,可以不实现*/
 
-    /* Add for DTS2011042101452, by z00166124, at 2011-04-21. 修改原因: 创建定时器时回调方式获取处理函数 */
     VOID (*timerout)(VOID *);       /* PPP各协议状态机FSM超时处理函数 */
 
     VOID (*ncpreset)(VOID *);       /* PPP各协议状态机报文重传超时处理函数 */
@@ -276,7 +250,6 @@ typedef struct tagMPGROUP_LIST_INFO
 } MPGROUP_LIST_INFO_S;
 
 /**引入的模块id*******/
-/* Modified by z43740 for A82D02377:删除PFC/ACFC/MC/PPPMUX预配置参数,2006/06/20 */
 typedef struct tagPPP_ModInfo
 {
     ULONG ulMID_PPP;
@@ -331,7 +304,7 @@ typedef struct tagPPP_ModInfo
     ULONG ulUnidirction;    /* 是否支持单向处理 */
     /* End of addition for IPHC,2005/09/19*/
     ULONG ulChapCheckUser;  /* Chap Client端是否校验用户名 */
-    ULONG ulGlobalTimer;    /* Added by z43740 for for BC3D01909: 支持使用系统定时器,2009-08-16 */
+    ULONG ulGlobalTimer;
     ULONG ulIphcSubOptAdapt;
 }PPP_MOD_INFO_S;
 

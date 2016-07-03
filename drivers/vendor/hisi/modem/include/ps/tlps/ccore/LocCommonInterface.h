@@ -37,13 +37,7 @@ extern "C" {
 /*****************************************************************************
   4 Enum
 *****************************************************************************/
-/*******************************************************************************
- 枚举名    : LOC_COM_VERTICAL_DIRECT_ENUM
- 枚举说明  : 速度方向
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 enum LOC_COM_VERTICAL_DIRECT_ENUM
 {
     LOC_COM_VERTICAL_DIRECT_UPWARD = 0,
@@ -52,13 +46,7 @@ enum LOC_COM_VERTICAL_DIRECT_ENUM
 };
 typedef VOS_UINT32      LOC_COM_VERTICAL_DIRECT_ENUM_UINT32;
 
-/*******************************************************************************
- 枚举名    : LOC_COM_LATITUDE_DIR_ENUM
- 枚举说明  : 维度方向
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 enum LOC_COM_LATITUDE_DIR_ENUM
 {
     LOC_COM_LATITUDE_DIR_HEITHT = 0,
@@ -67,13 +55,7 @@ enum LOC_COM_LATITUDE_DIR_ENUM
 };
 typedef VOS_UINT8   LOC_COM_LATITUDE_DIR_ENUM_UINT8;
 
-/*******************************************************************************
- 枚举名    : LOC_COM_LATITUDE_SIGN_ENUM
- 枚举说明  : 维度标记
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 enum LOC_COM_LATITUDE_SIGN_ENUM
 {
     LOC_COM_LATITUDE_SIGN_NORTH = 0,
@@ -87,13 +69,7 @@ typedef VOS_UINT8   LOC_COM_LATITUDE_SIGN_ENUM_UINT8;
 *****************************************************************************/
 
 
-/*******************************************************************************
- 结构名    : LOC_COM_ELLIPSOID_POINT_STRU
- 结构说明  : GPS提供位置信息Ellipsoid-Point
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -109,13 +85,7 @@ typedef struct
     VOS_INT32                                   lDegreesLongitude;
 }LOC_COM_ELLIPSOID_POINT_STRU;
 
-/*******************************************************************************
- 结构名    : LOC_COM_ELLIPSOID_POINT_WITH_UNCERTAINTY_CIRCLE_STRU
- 结构说明  : GPS提供位置信息Ellipsoid-PointWithUncertaintyCircle
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -133,13 +103,7 @@ typedef struct
     VOS_UINT32                                  ulUncretainty;
 }LOC_COM_ELLIPSOID_POINT_WITH_UNCERTAINTY_CIRCLE_STRU;
 
-/*******************************************************************************
- 结构名    : LOC_COM_ELLIPSOID_POINT_WITH_UNCERTAINTY_ELLIPSE_STRU
- 结构说明  : GPS提供位置信息EllipsoidPointWithUncertaintyEllipse
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -163,13 +127,7 @@ typedef struct
     VOS_UINT8                                   ucConfidence;
 }LOC_COM_ELLIPSOID_POINT_WITH_UNCERTAINTY_ELLIPSE_STRU;
 
-/*******************************************************************************
- 结构名    : LOC_COM_POLYGON_POINTS_STRU
- 结构说明  : GPS提供位置信息PolygonPoints
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -185,13 +143,7 @@ typedef struct
     VOS_INT32                                   lDegreesLatitude;
 }LOC_COM_POLYGON_POINTS_STRU;
 
-/*******************************************************************************
- 结构名    : LOC_COM_POLYGON_STRU
- 结构说明  : GPS提供位置信息Polygon
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -201,13 +153,7 @@ typedef struct
     LOC_COM_POLYGON_POINTS_STRU     astPolygonArray[LOC_COM_MAX_POLYGON_POINTS_LEN];
 }LOC_COM_POLYGON_STRU;
 
-/*******************************************************************************
- 结构名    : LOC_COM_ELLIPSOID_POINT_WITH_ALTITUDE_STRU
- 结构说明  : GPS提供位置信息EllipsoidPointWithAltitude
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -228,13 +174,7 @@ typedef struct
     VOS_UINT16                                  usAltitude;
 }LOC_COM_ELLIPSOID_POINT_WITH_ALTITUDE_STRU;
 
-/*******************************************************************************
- 结构名    : LOC_COM_ELLIPSOID_POINT_WITH_ALTITUDE_AND_UNCERTAINTY_ELLIPSOID_STRU
- 结构说明  : GPS提供位置信息EllipsoidPointWithAltitudeAndUncertaintyEllipsoid
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -264,13 +204,7 @@ typedef struct
     VOS_UINT8                                   ucConfidence;
 }LOC_COM_ELLIPSOID_POINT_WITH_ALTITUDE_AND_UNCERTAINTY_ELLIPSOID_STRU;
 
-/*******************************************************************************
- 结构名    : LOC_COM_ELLIPSOIDARC_STRU
- 结构说明  : GPS提供位置信息EllipsoidArc
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -296,13 +230,7 @@ typedef struct
     VOS_UINT8                                   ucConfidence;
 }LOC_COM_ELLIPSOIDARC_STRU;
 
-/*******************************************************************************
- 结构名    : LOC_COM_COORDINATE_STRU
- 结构说明  : GPS提供位置信息LocationCoordinates
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -342,13 +270,7 @@ typedef struct
         }u;
 }LOC_COM_COORDINATE_STRU;
 
-/*******************************************************************************
- 结构名    : LOC_COM_HORIZONTAL_VELCOCTIY_STRU
- 结构说明  : GPS提供位置信息HorizontalVelocity
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -361,13 +283,7 @@ typedef struct
     VOS_UINT16          usHorizontalSpeed;
 }LOC_COM_HORIZONTAL_VELCOCTIY_STRU;
 
-/*******************************************************************************
- 结构名    : LOC_COM_HORIZONTAL_WITH_VERTICAL_VELOCITY_STRU
- 结构说明  : GPS提供位置信息HorizontalWithVerticalVelocity
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -384,13 +300,7 @@ typedef struct
     VOS_UINT32                                  ulVerticalSpeed;
 }LOC_COM_HORIZONTAL_WITH_VERTICAL_VELOCITY_STRU;
 
-/*******************************************************************************
- 结构名    : LOC_COM_HORIZONTAL_VELCCITY_WITH_UNCERTAINTY_STRU
- 结构说明  : GPS提供位置信息HorizontalVelocityWithUncertainty
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -405,13 +315,7 @@ typedef struct
     VOS_UINT32                      ulUncertaintySpeed;
 }LOC_COM_HORIZONTAL_VELCCITY_WITH_UNCERTAINTY_STRU;
 
-/*******************************************************************************
- 结构名    : LOC_COM_HORIZONTAL_WITH_VERTICAL_VELOCITY_AND_UNCERTAINTY_STRU
- 结构说明  : GPS提供位置信息HorizontalWithVerticalVelocityAndUncertainty
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -433,13 +337,7 @@ typedef struct
     VOS_UINT8                                   ucRes;
 }LOC_COM_HORIZONTAL_WITH_VERTICAL_VELOCITY_AND_UNCERTAINTY_STRU;
 
-/*******************************************************************************
- 结构名    : LOC_COM_VELOCITY_STRU
- 结构说明  : GPS提供位置信息Velocity
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*

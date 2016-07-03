@@ -44,14 +44,7 @@ extern void UT_STUB_INIT(void);
 #endif
 #endif
 
-/*****************************************************************************
-类名     : Test_APP_VC_SetVoiceVolume
-功能描述 : APP_VC_SetVoiceVolume UT工程类
-修改历史     :
-1.日   期  : 2012-12-26
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_APP_VC_SetVoiceVolume: public ::testing::Test
 {
 public:
@@ -66,15 +59,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_APP_VC_SetVoiceVolume_001
-测试用例标题      : 将消息发送到modem0的PID
-预期结果          : 函数返回VOS_OK
-修改历史          :
-1.日   期  : 2012-12-26
-  作   者  : l00227485
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_APP_VC_SetVoiceVolume,Test_APP_VC_SetVoiceVolume_001)
 {
     MN_CLIENT_ID_T                      enClientId;
@@ -96,14 +81,7 @@ TEST_F(Test_APP_VC_SetVoiceVolume,Test_APP_VC_SetVoiceVolume_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_APP_VC_GetVoiceVolume
-功能描述 : APP_VC_GetVoiceVolume UT工程类
-修改历史     :
-1.日   期  : 2012-12-26
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_APP_VC_GetVoiceVolume: public ::testing::Test
 {
 public:
@@ -118,15 +96,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_APP_VC_GetVoiceVolume_001
-测试用例标题      : 将消息发送到modem0的PID
-预期结果          : 函数返回VOS_OK
-修改历史          :
-1.日   期  : 2012-12-26
-  作   者  : l00227485
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_APP_VC_GetVoiceVolume,Test_APP_VC_GetVoiceVolume_001)
 {
     MN_CLIENT_ID_T                      enClientId;
@@ -146,14 +116,7 @@ TEST_F(Test_APP_VC_GetVoiceVolume,Test_APP_VC_GetVoiceVolume_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_APP_VC_SetVoiceMode
-功能描述 : APP_VC_SetVoiceMode UT工程类
-修改历史     :
-1.日   期  : 2012-12-26
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_APP_VC_SetVoiceMode: public ::testing::Test
 {
 public:
@@ -168,15 +131,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_APP_VC_SetVoiceMode_001
-测试用例标题      : 将消息发送到modem0的PID
-预期结果          : 函数返回VOS_OK
-修改历史          :
-1.日   期  : 2012-12-26
-  作   者  : l00227485
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_APP_VC_SetVoiceMode,Test_APP_VC_SetVoiceMode_001)
 {
     MN_CLIENT_ID_T                      enClientId;
@@ -193,14 +148,7 @@ TEST_F(Test_APP_VC_SetVoiceMode,Test_APP_VC_SetVoiceMode_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_APP_VC_SetVoicePort
-功能描述 : APP_VC_SetVoicePort函数的UT测试类
-修改历史 :
-1.日   期  : 2011-10-13
-作   者  : f00179208
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_APP_VC_SetVoicePort: public ::testing::Test
 {
 public:
@@ -215,15 +163,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_APP_VC_SetVoicePort_001
-测试用例标题      : 内存分配失败
-预期结果          : 返回VOS_ERR
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_APP_VC_SetVoicePort,Test_APP_VC_SetVoicePort_001)
 {
     // 参数定义
@@ -254,15 +194,7 @@ TEST_F(Test_APP_VC_SetVoicePort,Test_APP_VC_SetVoicePort_001)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_APP_VC_SetVoicePort_002
-测试用例标题      : 发送消息到modem0的PID失败
-预期结果          : 返回VOS_ERR
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_APP_VC_SetVoicePort,Test_APP_VC_SetVoicePort_002)
 {
     // 参数定义
@@ -298,15 +230,7 @@ TEST_F(Test_APP_VC_SetVoicePort,Test_APP_VC_SetVoicePort_002)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_APP_VC_SetVoicePort_003
-测试用例标题      : 发送消息到modem0的PID成功
-预期结果          : 返回VOS_OK
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_APP_VC_SetVoicePort,Test_APP_VC_SetVoicePort_003)
 {
     // 参数定义
@@ -342,14 +266,7 @@ TEST_F(Test_APP_VC_SetVoicePort,Test_APP_VC_SetVoicePort_003)
 
 }
 
-/*****************************************************************************
-类名     : Test_APP_VC_GetVoiceMode
-功能描述 : APP_VC_GetVoiceMode函数的UT测试类
-修改历史 :
-1.日   期  : 2011-10-13
-作   者  : f00179208
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_APP_VC_GetVoiceMode: public ::testing::Test
 {
 public:
@@ -364,15 +281,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_APP_VC_GetVoiceMode_001
-测试用例标题      : 内存分配失败
-预期结果          : 返回VOS_ERR
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_APP_VC_GetVoiceMode,Test_APP_VC_GetVoiceMode_001)
 {
     // 参数定义
@@ -401,15 +310,7 @@ TEST_F(Test_APP_VC_GetVoiceMode,Test_APP_VC_GetVoiceMode_001)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_APP_VC_GetVoiceMode_002
-测试用例标题      : 发送消息到modem0的PID失败
-预期结果          : 返回VOS_ERR
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_APP_VC_GetVoiceMode,Test_APP_VC_GetVoiceMode_002)
 {
     // 参数定义
@@ -442,15 +343,7 @@ TEST_F(Test_APP_VC_GetVoiceMode,Test_APP_VC_GetVoiceMode_002)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_APP_VC_GetVoiceMode_003
-测试用例标题      : 发送消息到modem0的PID成功
-预期结果          : 返回VOS_OK
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_APP_VC_GetVoiceMode,Test_APP_VC_GetVoiceMode_003)
 {
     // 参数定义
@@ -483,14 +376,7 @@ TEST_F(Test_APP_VC_GetVoiceMode,Test_APP_VC_GetVoiceMode_003)
 
 }
 
-/*****************************************************************************
-类名     : Test_APP_VC_GetVoicePort
-功能描述 : APP_VC_GetVoicePort函数的UT测试类
-修改历史 :
-1.日   期  : 2011-10-13
-作   者  : f00179208
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_APP_VC_GetVoicePort: public ::testing::Test
 {
 public:
@@ -505,15 +391,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_APP_VC_GetVoicePort_001
-测试用例标题      : 内存分配失败
-预期结果          : 返回VOS_ERR
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_APP_VC_GetVoicePort,Test_APP_VC_GetVoicePort_001)
 {
     // 参数定义
@@ -542,15 +420,7 @@ TEST_F(Test_APP_VC_GetVoicePort,Test_APP_VC_GetVoicePort_001)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_APP_VC_GetVoicePort_002
-测试用例标题      : 发送消息到modem0的PID失败
-预期结果          : 返回VOS_ERR
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_APP_VC_GetVoicePort,Test_APP_VC_GetVoicePort_002)
 {
     // 参数定义
@@ -583,15 +453,7 @@ TEST_F(Test_APP_VC_GetVoicePort,Test_APP_VC_GetVoicePort_002)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_APP_VC_GetVoicePort_003
-测试用例标题      : 发送消息到modem0的PID成功
-预期结果          : 返回VOS_OK
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_APP_VC_GetVoicePort,Test_APP_VC_GetVoicePort_003)
 {
     // 参数定义
@@ -624,14 +486,7 @@ TEST_F(Test_APP_VC_GetVoicePort,Test_APP_VC_GetVoicePort_003)
 
 }
 
-/*****************************************************************************
-类名     : Test_APP_VC_AppVcVoiceMode2VcPhyVoiceMode
-功能描述 : APP_VC_AppVcVoiceMode2VcPhyVoiceMode函数的UT测试类
-修改历史 :
-1.日   期  : 2011-10-13
-作   者  : f00179208
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_APP_VC_AppVcVoiceMode2VcPhyVoiceMode: public ::testing::Test
 {
 public:
@@ -646,15 +501,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_APP_VC_AppVcVoiceMode2VcPhyVoiceMode_001
-测试用例标题      : 枚举各种语音模式，转换正确
-预期结果          : 返回对应的枚举
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_APP_VC_AppVcVoiceMode2VcPhyVoiceMode,Test_APP_VC_AppVcVoiceMode2VcPhyVoiceMode_001)
 {
     // 参数定义
@@ -668,14 +515,7 @@ TEST_F(Test_APP_VC_AppVcVoiceMode2VcPhyVoiceMode,Test_APP_VC_AppVcVoiceMode2VcPh
 
 }
 
-/*****************************************************************************
-类名     : Test_APP_VC_VcPhyVoiceMode2AppVcVoiceMode
-功能描述 : APP_VC_VcPhyVoiceMode2AppVcVoiceMode函数的UT测试类
-修改历史 :
-1.日   期  : 2011-10-13
-作   者  : f00179208
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_APP_VC_VcPhyVoiceMode2AppVcVoiceMode: public ::testing::Test
 {
 public:
@@ -690,15 +530,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_APP_VC_VcPhyVoiceMode2AppVcVoiceMode_001
-测试用例标题      : 枚举各种语音模式，转换正确
-预期结果          : 返回对应的枚举
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_APP_VC_VcPhyVoiceMode2AppVcVoiceMode,Test_APP_VC_VcPhyVoiceMode2AppVcVoiceMode_001)
 {
     // 参数定义
@@ -712,14 +544,7 @@ TEST_F(Test_APP_VC_VcPhyVoiceMode2AppVcVoiceMode,Test_APP_VC_VcPhyVoiceMode2AppV
 
 }
 
-/*****************************************************************************
-类名     : Test_APP_VC_GetMuteStatus
-功能描述 : Test_APP_VC_GetMuteStatus UT工程类
-修改历史 :
-1.日   期  : 2013-01-07
-  作   者  : z00220246
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_APP_VC_GetMuteStatus: public ::testing::Test
 {
 public:
@@ -734,15 +559,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_APP_VC_GetMuteStatus_001
-测试用例标题      : 将消息头发送到modem0的PID
-预期结果          : 返回VOS_OK
-修改历史          :
-1.日   期  : 2013-01-07
-  作   者  : z00220246
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_APP_VC_GetMuteStatus, Test_APP_VC_GetMuteStatus_001)
 {
     VOS_UINT16                          usClientId;
@@ -765,14 +582,7 @@ TEST_F(Test_APP_VC_GetMuteStatus, Test_APP_VC_GetMuteStatus_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_APP_VC_SetMuteStatus
-功能描述 : Test_APP_VC_SetMuteStatus UT工程类
-修改历史 :
-1.日   期  : 2013-01-07
-  作   者  : z00220246
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_APP_VC_SetMuteStatus: public ::testing::Test
 {
 public:
@@ -787,15 +597,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_APP_VC_SetMuteStatus_001
-测试用例标题      : 将消息头发送到modem0的PID
-预期结果          : 返回VOS_OK
-修改历史          :
-1.日   期  : 2013-01-07
-  作   者  : z00220246
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_APP_VC_SetMuteStatus, Test_APP_VC_SetMuteStatus_001)
 {
     VOS_UINT16                          usClientId;

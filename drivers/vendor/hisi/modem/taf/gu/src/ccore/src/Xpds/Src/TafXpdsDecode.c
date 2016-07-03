@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2012, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafXpdsDecode.c
-  版 本 号   : 初稿
-  作    者   : 谷传征
-  生成日期   : 2015年7月14日
-  最近修改   :
-  功能描述   : Modem Decode Msg From PDE server
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年7月14日
-    作    者   : g00261581
-    修改内容   : CDMA-AGPS项目新增
-
-******************************************************************************/
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -128,21 +111,7 @@ VOS_UINT32 TAF_XPDS_DecodeGetValue(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_DecodeGetOneBitFromOneByte
- 功能描述  : get 1 bit from a char
- 输入参数  : ucBuffer
-             usBitPos
- 输出参数  :
- 返 回 值  : value of this  bit
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月13日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 TAF_XPDS_DecodeGetOneBitFromOneByte(
     VOS_UINT8                           ucBuffer,
     VOS_UINT8                           ucBitPos
@@ -162,22 +131,7 @@ VOS_UINT8 TAF_XPDS_DecodeGetOneBitFromOneByte(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_GetBitsFromBytes
- 功能描述  : get N bits from an array
- 输入参数  : pucBuffer         VOS_UINT8类型的数组指针
-             usBitPos          需要取出的BIT在数组中的bit 的位置
-             ucBitNum          需要取出的bit数(1 - 32)
- 输出参数  :
- 返 回 值  : value of these N bits
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月13日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_DecodeGetBitsFromBytes(
     VOS_UINT8                          *pucBuffer,
     VOS_UINT16                          usBitPos,
@@ -1006,21 +960,7 @@ VOS_UINT32 TAF_XPDS_DecodeRequestLocResp(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_DecodeRequestMsInfo
- 功能描述  : PDE Request Ms Info
- 输入参数  : VOS_UINT8                          *pucHeadBuf
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月17日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_DecodeRequestMsInfo(
     VOS_UINT8                          *pucHeadBuf
 )
@@ -1390,22 +1330,7 @@ VOS_UINT32 TAF_XPDS_DecodeForwardPdeData(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_DecodeMpcStartPosRsp
- 功能描述  : decode PDE ADDR 参考协议(gpsone user plane ms-mpc ch4.2.3.1)
- 输入参数  :    ulDataLen: 总数据长度
-                *pucData:  数组首地址
-                *pusBytePos:当前的数组位置
- 输出参数  :    *pstPdeAddr: PDE 地址信息
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月13日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_DecodePdeAddr(
     VOS_UINT32                          ulDataLen,
     VOS_UINT8                          *pucData,
@@ -1484,21 +1409,7 @@ VOS_UINT32 TAF_XPDS_DecodePdeAddr(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_DecodeMpcStartPosRsp
- 功能描述  : decode mpc pos rsp 参考协议(gpsone user plane ms-mpc ch4.2.3.1)
- 输入参数  : ulDataLen        数据长度
-             pucData          数据指针
- 输出参数  : pstStartPosRsp
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月13日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_DecodeMpcStartPosRsp(
     VOS_UINT32                          ulDataLen,
     VOS_UINT8                          *pucData,
@@ -1655,21 +1566,7 @@ VOS_UINT32 TAF_XPDS_DecodeMpcStartPosRsp(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_DecodeMpcPosReportRsp
- 功能描述  : decode mpc pos rsp 参考协议(gpsone user plane ms-mpc ch4.2.3.1)
- 输入参数  : ulDataLen        数据长度
-             pucData          数据指针
- 输出参数  : pstStartPosRsp
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月13日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_DecodeMpcPosReportRsp(
     VOS_UINT32                          ulDataLen,
     VOS_UINT8                          *pucData,
@@ -1720,21 +1617,7 @@ VOS_UINT32 TAF_XPDS_DecodeMpcPosReportRsp(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_DecodeXsmsMpcPosReq
- 功能描述  : decode mpc pos req 参考协议(gpsone user plane ms-mpc ch3.1.1.1)
- 输入参数  : ulDataLen        数据长度
-             pucData          数据指针
- 输出参数  : pstStartPosRsp
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月13日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_DecodeXsmsMpcPosReq(
     VOS_UINT32                      ulDataLen,
     VOS_UINT8                      *pucData,
@@ -1809,24 +1692,7 @@ VOS_UINT32 TAF_XPDS_DecodeXsmsMpcPosReq(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_DecodeXsms
- 功能描述  : decode mpc pos req 参考协议(gpsone user plane ms-mpc ch3.1.1.1)
- 输入参数  : ulDataLen        数据长度
-             pucData          数据指针
- 输出参数  : pstStartPosRsp
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月13日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-  2.日    期   : 2015年09月06日
-    作    者   : y00174758
-    修改内容   : AGPS迭代2: 增加
-*****************************************************************************/
 TAF_XPDS_XSMS_MSG_DECODE_RSLT_ENUM_UINT8 TAF_XPDS_DecodeXsmsRcvMsg(
     VOS_UINT32                      ulDataLen,
     VOS_UINT8                      *pucData,

@@ -1,69 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : lte_nv_para_define.h
-  版 本 号   : 初稿
-  作    者   : tuzhiguo(52067)
-  生成日期   : 2010年12月28日
-  最近修改   :
-  功能描述   : NV项定义,定义和算法配置有关的NV项
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2010年12月28日
-    作    者   : tuzhiguo(52067)
-    修改内容   : 创建文件
---------------------------------------------------------------------------------
-  2.日    期 : 2011年6月28日
-    作    者 : shijiahong
-    修改内容 : DTS2011062404331 加入6360AGC的宏定义
--------------------------------------------------------------------------------
- 3.日    期 : 2011年9月20日
-    作    者 : zengshangyou
-    修改内容 : DTS2011090203399 加入CT BT NV
--------------------------------------------------------------------------------
- 4.日    期 : 2011年10月8日
-    作    者 : zengshangyou
-    修改内容 : DTS2011092600031 CT BT数据结构常开 AGC_MAX_GAIN_LEVEL修改为16
---------------------------------------------------------------------------------
- 5. 日    期   : 2011年10月14日
-    作    者   : liuxu
-    修改内容   : <DTS2011101401498> NV项增加UE能力等接口
- --------------------------------------------------------------------------------
-6.日  期   : 2011年 11 月 14日
-   作  者   : shijiahong
-   修改内容 : DTS 将前端相关配置时间T1~T10移入NV  PN:DTS2011111401524
-
-7.日    期   : 2011年11月26日
-  作    者   : tuzhiguo
-  修改内容   : DTS2011111800531 合入Pliot版本，增加CQI/SYNC项
---------------------------------------------------------------------------------
-8.日  期   : 2011年 12 月 06日
-   作  者   : shijiahong
-   修改内容 : DSP相关的所有配置时间移入NV,PN:DTS2011120604351
---------------------------------------------------------------------------------
-9.日    期   : 2011年12月19日
-  作    者   : tuzhiguo
-  修改内容   : DTS2011121502820 ETU信道的trms档位有小概率(20%)估计不准，
-          估成EVA信道，从而影响性能，算法对此修改一下trms的档位判断
---------------------------------------------------------------------------------
- 10.日    期   : 2012年04月17日
-   作    者   : Shen Guang
-   修改内容   : [DTS2012022700423]FDD-TDD互操作
-------------------------------------------------------------------------------
- 11.日    期   : 2012年5月26日
-    作    者   : xueqiuyan
-    修改内容   : [DTS2012032702692]GCF测试杂散模板指标超标，添加A-MPR特性
-------------------------------------------------------------------------------
- 12.日    期   : 2015年01月23日
-    作    者   : lixiangkun
-    修改内容   : 对应hi6210产品形态的lte nv头文件
-------------------------------------------------------------------------------
- 13.日    期   : 2015年02月26日
-    作    者   : lijiuyong
-    修改内容   :同步多模TAS
-******************************************************************************/
 
 
 #ifndef __LTE_NV_PARA_DEFINE_HI6921_H__
@@ -206,7 +141,6 @@ typedef struct
     UINT8 WhitenSwitchPBCH;                               /*PBCH噪声白化硬开关*/
     UINT8 Rsv0[2];
 }NV_PB_IRC_STRU;
-/* BEGIN: Added by l00174474, 2011/6/8   问题单号:DTS2011060205002*/
 
 /*PDC  IRC*/
 
@@ -371,7 +305,6 @@ typedef struct
 {
 	NV_IRC_STRU stIrc[2];
 }NV_IRC_PUB_STRU;
-/* BEGIN: Added by y00272211, 2015/2/12   问题单号:seattle_AMPR*/
 typedef struct
 {
     UINT16                      ausRegionAVal[NUM_2];
@@ -671,7 +604,6 @@ typedef struct
 #define APC_TABLE_NUM 2
 #define APC_TABLE_LEN 64
 /* #define APC_GAIN_LEVEL_NUM 4 */
-/* BEGIN: Added by l00131321, 2012/11/24   问题单号:V7R2_MODIFY*/
 typedef struct
 {
     UINT16 usFreqFixSwitch;
@@ -773,7 +705,6 @@ typedef struct{
     UINT8                               aucNvLteBandInd[MAX_RF_BAND_NUM];                  /*LTE Band号数组，每个值对应LTE Band号*/
     UINT8                               aucNvLtePaEnInd[MAX_RF_BAND_NUM];                  /*LTE各Band对应的PA En比特位,Band指示与aucNvLteBandInd一致*/
     UINT8                               ucNvLteDefaultBandIdx;              /*初始化时缺省BAND序号*/
-    /* BEGIN: Added by l00131321, 2011/10/15   问题单号:DTS2011101401498*/
     UINT8                               ucUeCap;                            /*1表示ue能力1，2标识ue能力2，5表示ue能力5*/
     UINT8                               ucAntSelect;                    /*0:false,1:true */
     UINT8                               ucSupport64Qam;                    /*0:64qam不支持，1:64qcam支持*/
@@ -2220,7 +2151,6 @@ typedef struct
 }NV_TERMINAL_TO_DSP_STRU;
 
 
-/*BEGIN:Added By m00295139, seattle 全网通特性lte NV*/
 #if 0
 typedef struct
 {
@@ -2258,9 +2188,7 @@ typedef struct
 	NV_GU_TRI_MODE_CHAN_PARA_STRU stPara[8];
 }NV_GU_TRI_MODE_CHAN_PARA_PROFILE_STRU;
 #endif
-/*END:Added By m00295139, seattle 全网通特性lte NV*/
 
-/*BEGIN:Added By m00295139, 主分集lna*/
 typedef struct
 {
 	UINT16 										usBandExtLNAEnFlg;
@@ -2278,7 +2206,6 @@ typedef struct
 	UINT16   							uResvered;
 	NV_RF_BAND_EXTERNAL_LNA_INFO_STRU	stBandLNAInfo[MAX_RX_LNA_NUM];
 }NV_RF_LTE_BAND_EXTERNAL_LNA_CFG_STRU;
-/*END:Added By m00295139, 主分集lna*/
 
 
 /*切换状态的门限参数*/
@@ -2328,7 +2255,6 @@ typedef struct
 }NV_LPHY_SINGLE_RX_BAND_CAL_PARA_STRU;
 
 
-/*BEGIN:Added By z00290476, 单XO兼容高铁温补自学习 lte NV*/
 /*****************************************************************************
  结构名    : NV_LTE_DCXO_PPM_UPDATE_THRESHOLD_STRU
  协议表格  :
@@ -2358,7 +2284,6 @@ typedef struct
     INT32  alPpmCdrxVarThr[DRX_CDRX_NUM_MAX];                /*连接态DRX不同周期PPM方差门限{80,160,320,640,1280,2560}，温补刷新使用*/
 	INT32  alPpmIdrxVarThr[DRX_IDRX_NUM_MAX];           	  /*Idle态不同DRX周期PPM方差门限{320,640,1280,2560}，温补刷新使用*/
 }NV_LTE_DCXO_PPM_VAR_THRESHOLD_STRU;
-/*END:Added By z00290476, 单XO兼容高铁温补自学习 lte NV*/
 /****************************************************************************************/
 
 /*****************************************band无关的nv项*********************************/
@@ -2521,7 +2446,6 @@ typedef struct
 	NV_LTE_TAS_BS_RSSI_THD_STRU   stTasBSRssiThd;					/*LTE TAS扫频阶段Rssi门限值*/
 	NV_TAS_BLIND_SW_THD_STRU stTasBlindSwThr;
 
-    /* BEGIN: Added by l00253980, 2014/12/15   CL+G新增NV PN:k3v3+tas*/
     NV_TAS_CLG_MODE_GPIO_CFG stTasClgModeGpioMap;
 	NV_TAS_HAPPY_UNHAPPY_THD_STRU stTasHappyThr;
 	UCOM_NV_TRI_MODE_ENABLE_STRU  stGuTriEn;

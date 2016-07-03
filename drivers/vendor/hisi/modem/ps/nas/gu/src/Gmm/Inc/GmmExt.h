@@ -1,67 +1,4 @@
-/*******************************************************************************
-  Copyright    : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : GmmExt.h
-  Description : WUEPS系统NAS内部GMM功能模块声明
-  History     :
-      1.  张志勇  2002.12.05  文件作成
-      2.  张志勇  2005.03.15  将()替换成(VOS_VOID)
-      3.日    期   : 2006年3月24日
-        作    者   : liuyang id:48197
-        修改内容   : 问题单号：A32D01882
-      4.x51137 2006/11/3 A32D06511
-      5.日    期   : 2006年11月8日
-        作    者   : s46746
-        修改内容   : 问题单号:A32D06867
-      6.日    期   : 2007年3月30日
-        作    者   : s46746
-        修改内容   : 问题单号:A32D09854
-      7.日    期   : 2007年10月27日
-        作    者   : luojian id:107747
-        修改内容   : 根据问题单号：A32D13038
-      8.日    期   : 2007年11月16日
-        作    者   : hanlufeng 41410
-        修改内容   : A32D12187
-      9.日    期   : 2007年12月18日
-        作    者   : luojian id:107747
-        修改内容   : 根据问题单号：A32D13917
-     10.日    期   : 2008年7月24日
-        作    者   : luojian 00107747
-        修改内容   : 根据问题单号：AT2D04627/AT2D04237,
-                     ATTEMPT TO UPDATE/ATTACH 状态对CM服务处理
-     11.日    期   : 2008年11月15日
-        作    者   : l00130025
-        修改内容   : 问题单号：AT2D06602,添加获取 FollowOnFlg函数和是否有业务的函数
-     12.日    期   : 2009年01月15日
-        作    者   : l00130025
-        修改内容   : 问题单号:AT2D07018,LAU或RAU过程中搜网和SYSCFG设置,发起底层释放链接的操作
-     13.日    期   : 2009年02月13日
-        作    者   : o00132663
-        修改内容   : 问题单号:AT2D08906,【TA 认证】【外场用例-HK】smartone UE没有处于attach状态, 就发起了业务请求.
-     14.日    期   : 2009年03月21日
-        作    者   : l00130025
-        修改内容   : 问题单号:AT2D09534,异系统切换后的建链失败过程中关机，Gmm/MM对关机消息没有处理，后续设置AT^CPAM超时，无响应
-     15.日    期   : 2009年05月6日
-        作    者   : l00130025
-        修改内容   : 根据问题单号：AT2D11326,G下数传时发起了HPLMN搜索
-     16.日    期   : 2009年05月23日
-        作    者   : L65478
-        修改内容   : 问题单号:AT2D06770,RAU失败，因为GRM建链的原因是DATA，实际应该是信令
-     17.日    期   : 2009年6月30日
-        作    者   : s46746
-        修改内容   : AT2D12561,3G2情形GPRS下未启动加密，NAS指派层2加密算法后，层2对上行数据进行了加密
-     18.日    期   : 2009年7月23日
-        作    者   : s46746
-        修改内容   : 根据问题单号：AT2D12878，GSM下HPLMN搜索时接收到GPRS寻呼或PDP激活(W下PDP激活相同处理)请求需要能及时响应
-     19.日    期   : 2009年9月7日
-        作    者   : s46746
-        修改内容   : 根据问题单号：AT2D14311，出服务区后，GMM存在连接时先进行了连接释放，会导致服务状态临时更新为Normal service
-     20.日    期   : 2010年3月2日
-        作    者   : zhoujun /z40661
-        修改内容   : NAS R7协议升级
-     21.日    期   : 2011年12月29日
-        作    者   : l00130025
-        修改内容   : DTS2011082201679/DTS2011121504358,切换模式，回退后W/G下注册状态没有与NAS同步
-*******************************************************************************/
+
 #ifndef _GMMEXTERN_H_
 #define _GMMEXTERN_H_
 
@@ -74,9 +11,7 @@
 #include "GmmRabmInterface.h"
 #include "Nasrrcinterface.h"
 
-/* Added by l00208543 STK升级 2013-07-23 begin */
 #include "NasStkInterface.h"
-/* Added by l00208543 STK升级 2013-07-23 end */
 
 #if (FEATURE_ON == FEATURE_LTE)
 #include "GmmLmmInterface.h"
@@ -132,9 +67,7 @@ extern VOS_UINT8                       gucLteGutiValid ;
 #define NAS_GMM_GetGmmState()          (g_GmmGlobalCtrl.ucState)
 #define NAS_GMM_GetSpecProc()           (g_GmmGlobalCtrl.ucSpecProc)
 
-/* Added by l00208543 for V9R1 STK升级, 2013-07-15, begin */
 #define NAS_GMM_GetPeriodicRauFlag()    (g_GmmRauCtrl.ucPeriodicRauFlg)
-/* Added by l00208543 for V9R1 STK升级, 2013-07-15, end */
 
 #define NAS_GMM_GetUeIdMask()                   (g_GmmGlobalCtrl.UeInfo.UeId.ucUeIdMask)
 #define NAS_GMM_GetUeIdRadioCpbAddr()           (g_GmmGlobalCtrl.UeInfo.aucRadioCpb)
@@ -265,14 +198,12 @@ extern VOS_VOID NAS_GMM_HandleVplmnRejCauseChange(
 );
 extern VOS_VOID NAS_GMM_ResetRejCauseChangedCounter (VOS_VOID);
 
-/* Added by l00208543 for V9R1 STK升级, 2013-07-09, begin */
 extern VOS_VOID NAS_GMM_SndStkAttachRej(VOS_UINT8 ucCause);
 
 
 extern NAS_STK_UPDATE_TYPE_ENUM_UINT8 NAS_GMM_ConvertGmmAttachTypeToStkRauType (
                                          NAS_GMM_SPEC_PROC_TYPE_ENUM_UINT8 enGmmAttachType
                                          );
-/* Added by l00208543 for V9R1 STK升级, 2013-07-09, end */
 
 
 extern VOS_VOID  Gmm_RcvAttachRejectMsg(NAS_MSG_FOR_PCLINT_STRU *);
@@ -360,9 +291,7 @@ extern VOS_VOID  Gmm_RcvRrmmPagingInd_RegNmlServ(RRMM_PAGING_IND_STRU *);
 extern VOS_VOID  Gmm_RcvAgentUsimAuthenticationCnf(VOS_VOID *);
 
 /* extern VOS_VOID  Gmm_Com_RcvAgentUsimAuthenticationCnf(AGENT_USIM_AUTHENTICATION_CNF_STRU *); */
-/* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-23, begin */
 extern VOS_VOID  Gmm_Com_RcvAgentUsimAuthenticationCnf(USIMM_AUTHENTICATION_CNF_STRU *);
-/* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-23, end */
 
 extern VOS_VOID  Gmm_RcvPtmsiReallocationCommandMsg(NAS_MSG_FOR_PCLINT_STRU *);
 extern VOS_VOID Gmm_RcvAuthenAndCipherRequestMsg_ForceToStandby(
@@ -379,6 +308,11 @@ extern VOS_VOID Gmm_RcvAuthenAndCipherRequestMsg_Gsm_Auth_Handling(
 extern VOS_VOID Gmm_RcvAuthenAndCipherRequestMsg_Auth_Fail_Handling(
                                                   VOS_UINT8 ucGmmAuthType);
 extern VOS_VOID Gmm_RcvAuthenAndCipherRequestMsg_T3314_Handling(VOS_VOID);
+
+extern VOS_UINT32 NAS_GMM_IsPowerOffTriggeredDetach(VOS_VOID);
+
+extern VOS_UINT32 NAS_GMM_IsNeedIgnoreAuthenAndCipherReq(VOS_VOID);
+
 extern VOS_UINT8 Gmm_RcvAuthenAndCipherRequestMsg_Preprocess(
                                                 NAS_MSG_FOR_PCLINT_STRU *pMsg
                                                 );
@@ -622,18 +556,14 @@ extern VOS_VOID  Gmm_RoutingAreaUpdateRejectCause9(
 );
 extern VOS_VOID  Gmm_RoutingAreaUpdateRejectCause3(VOS_UINT32);
 
-/* Added by l00208543 for V9R1 STK升级, 2013-07-09, begin */
 extern VOS_VOID NAS_GMM_SndStkRauRej(VOS_UINT8 ucCause);
-/* Added by l00208543 for V9R1 STK升级, 2013-07-09, end */
 
-/* Added by l00208543 for V9R1 STK升级, 2013-07-22, begin */
 extern NAS_STK_UPDATE_TYPE_ENUM_UINT8 NAS_GMM_ConvertGmmRauTypeToStkRauType (
                                          NAS_GMM_SPEC_PROC_TYPE_ENUM_UINT8 enGmmRauType
                                          );
 extern TAF_MMA_RAT_TYPE_ENUM_UINT8 NAS_GMM_ConvertGmmRatTypeToStkRatType (
                                          NAS_MML_NET_RAT_TYPE_ENUM_UINT8 enGmmRatType
                                          );
-/* Added by l00208543 for V9R1 STK升级, 2013-07-22, end */
 
 extern VOS_VOID  Gmm_RcvRoutingAreaUpdateRejectMsg(NAS_MSG_FOR_PCLINT_STRU *);
 
@@ -705,9 +635,7 @@ extern VOS_VOID  Gmm_SndMmcPdpStatusInd(VOS_UINT8);
 extern VOS_VOID Gmm_SndMmcTBFRelInd(VOS_VOID);
 extern VOS_VOID  Gmm_SndMmcStartCnf(VOS_VOID);
 extern VOS_VOID  Gmm_SndMmcLocalDetachInd(VOS_UINT32);
-/* Deleted by s00261364 for V3R360_eCall项目, 2014-4-11, begin */
 
-/* Deleted by s00261364 for V3R360_eCall项目, 2014-4-11, end */
 extern VOS_VOID  Gmm_SndRrmmEstReq(VOS_UINT32, VOS_UINT32, NAS_MSG_STRU *);
 extern VOS_UINT8 Gmm_Com_CmpPlmnid(GMM_PLMN_ID_STRU *);
 extern VOS_VOID  Gmm_SndRrmmDataReq(VOS_UINT8, NAS_MSG_STRU *);
@@ -869,10 +797,8 @@ extern VOS_VOID NAS_GMM_SndLmmTimerInfoNotify(
 );
 
 
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, begin */
 extern VOS_VOID NAS_GMM_TimerWaitAsMsRadioCapaInfoExpired(VOS_VOID);
 
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, end */
 
 #if(FEATURE_ON == FEATURE_DSDS)
 extern VOS_VOID NAS_GMM_SndLmmBeginSessionNotify(
@@ -885,32 +811,12 @@ extern VOS_VOID NAS_GMM_SndLmmEndSessionNotify(
 #endif
 #endif
 
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-13, begin */
-/*****************************************************************************
- 函 数 名  : NAS_GMM_SndMmcNetworkCapabilityInfoInd
- 功能描述  : 发送网络能力参数信息给MMC
 
- 输入参数  : pRcvMsg     消息地址
-             enNwEmcBS   网络的EMC BS支持参数
-             enNwImsVoPS 网络IMS voice PS能力参数
-             enLteCsCap  LTE网络的CS能力
-
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年7月12日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_GMM_SndMmcNetworkCapabilityInfoInd(
     GMM_MMC_NW_EMC_BS_CAP_ENUM_UINT8    enNwEmcBS,
     NAS_MML_NW_IMS_VOICE_CAP_ENUM_UINT8 enNwImsVoPS,
     GMM_MMC_LTE_CS_CAPBILITY_ENUM_UINT8 enLteCsCap
 );
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-13, end */
 
 
 
@@ -923,6 +829,14 @@ extern VOS_VOID NAS_GMM_TimerTcDelaySuspendRspExpired(VOS_VOID);
 extern VOS_VOID NAS_GMM_TimerDelayRadioCapaTrigedRauExpired(VOS_VOID);
 
 
+VOS_UINT32 NAS_GMM_IsTimerNeedSuspend(
+    VOS_UINT8                           ucTimerId
+);
+
+VOS_UINT32 NAS_GMM_IsTimerNeedResume(
+    VOS_UINT8                           ucTimerId
+);
+
 extern VOS_VOID GMM_SuspendTimer(VOS_VOID);
 extern VOS_VOID GMM_SuspendSingleTimer(VOS_UINT8);
 extern VOS_VOID GMM_ResumeTimer(VOS_UINT8);
@@ -930,9 +844,7 @@ extern VOS_VOID GMM_TimSuspendedExpired(VOS_VOID);
 
 extern VOS_VOID  Gmm_TimerPauseForTc(VOS_UINT8);
 extern VOS_VOID  Gmm_TimerResumeForTc(VOS_UINT8);
-/* Added by 张志勇    for MM 007037 20050110 begin */
 extern VOS_VOID Gmm_TimProtectForSignalingExpired(VOS_VOID);
-/* Added by 张志勇    for MM 007037 20050110 end   */
 
 extern VOS_VOID GMM_TimProtectForRrRel(VOS_VOID);
 
@@ -964,11 +876,9 @@ extern VOS_VOID  Gmm_Com_ServiceStatus_Handle(VOS_VOID);
 
 extern VOS_VOID Gmm_SndCcEmergencyNumberList(NAS_MML_EMERGENCY_NUM_LIST_STRU *pEmergencyList);
 
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, begin */
 extern VOS_VOID Gmm_SndMmcGprsServiceInd(
     NAS_MMC_GMM_GPRS_SERVICE_TYPE_ENUM_UINT32               enGprsServiceType
 );
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, end */
 
 
 extern  VOS_VOID NAS_GMM_UpdateAttemptCounterForSpecialCause(
@@ -1227,7 +1137,6 @@ extern VOS_UINT32 NAS_GMM_CheckSigConnStatusAffectAttach(
 
 VOS_VOID NAS_GMM_ProcBufferSmMsg_ResumeSuccess(VOS_VOID);
 
-/* Added by s00246516 for L-C互操作项目, 2014-01-27, Begin */
 #if (FEATURE_ON == FEATURE_LTE)
 VOS_VOID NAS_GMM_ProcResumeToLTE(VOS_VOID);
 #endif
@@ -1237,7 +1146,6 @@ VOS_VOID NAS_GMM_ProcResumeToHRPD(
     MMCGMM_RESUME_IND_ST               *pstResumeMsg
 );
 #endif
-/* Added by s00246516 for L-C互操作项目, 2014-01-27, End */
 
 VOS_UINT32 NAS_GMM_BackToOrgPlmnAfterCoverageLost(
     VOS_VOID                           *pMsg
@@ -1478,18 +1386,14 @@ extern GMM_SM_CAUSE_ENUM_UINT16 NAS_GMM_TransGmmNwCause2GmmSmCause(
 );
 
 
-/* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-14, begin */
 
 extern VOS_VOID NAS_GMM_LogPsRegContainDrxInfo(
     NAS_MML_PS_REG_CONTAIN_DRX_PARA_ENUM_UINT8    enPsRegContainDrx
 );
-/* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-14, end */
 
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-20, begin */
 extern VOS_UINT32 NAS_GMM_IsAModeAndNetworkI(VOS_VOID);
 extern VOS_UINT32 NAS_GMM_IsCombinedSpecProc(VOS_VOID);
 extern VOS_UINT32 NAS_GMM_IsNeedEnableLte_AttachPs(VOS_VOID);
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-20, end */
 
 
 extern VOS_UINT8 NAS_GMM_GetAttachType(VOS_VOID);

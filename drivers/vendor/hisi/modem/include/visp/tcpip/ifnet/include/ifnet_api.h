@@ -1,26 +1,4 @@
-/*******************************************************************************
-*
-*
-*                Copyright 2008, Huawei Technologies Co. Ltd.
-*                            ALL RIGHTS RESERVED
-*
-*-------------------------------------------------------------------------------
-*
-*                              ifnet_api.h
-*
-*  Project Code: VISPV100R007
-*   Module Name: IFNET
-*  Date Created: 2008年1月25日
-*        Author: x00100259
-*   Description: IFNET模块对外提供的数据结构定义和用户API声明
-*
-*-------------------------------------------------------------------------------
-*  Modification History
-*  DATE        NAME             DESCRIPTION    
-*  -----------------------------------------------------------------------------
-*  2008年1月25日  x00100259         Create the first version.
-*
-*******************************************************************************/
+
 
 
 #ifndef _IFNET_API_H_
@@ -50,7 +28,7 @@ enum enIfnetErrInfo
     VRP_IFNET_NO_HAVE_BEEN_DOWN,        /* 10 接口没有被shutdown*/
     VPR_IFNET_KEEPALIVE_VALUE_TOOBIG,   /* 11 KEEPALIVE 值太大*/
     VRP_IFNET_DESC_TOO_LONG,            /* 12 接口描述太长*/
-    VRP_IFNET_CANOT_BE_SHUTDOWN,        /* 13 接口不可被关闭,added for SWFD04676,20041228*/
+    VRP_IFNET_CANOT_BE_SHUTDOWN,
 
     VRP_IFNET_NULLPOINTER,              /* 14 输入参数指针为空 */
     VRP_IFNET_MTU_INVALID,              /* 15 用户配置的MTU值不在允许范围之内 */
@@ -71,12 +49,10 @@ enum enIfnetErrInfo
     VRP_IFNET_EENQUEUE,                 /* 30 Fail to put mbuf into link queue */
     VRP_IFNET_EWRITEQUEUE,              /* 31 Fail to write ioctl msg */
     
-    /* 由l00105073修改，问题单A82D20097:ifnet模块错误码唯一性整改 */    
     VRP_IFNET_TYPEERR,                  /* 32 ifnet的类型不匹配*/
     VRP_IFNET_ISNOTTRUNK,               /* 33 ifnet的类型不是TRUNK(当需要的是TRUNK时)*/
     VRP_IFNET_TRUNKVTBLNULL,            /* 34 TRUNK虚函数表指针为空*/
     VRP_IFNET_TRUNKHAVEPORT,            /* 35 TRUNK已经存在端口*/
-    /* 由l00105073修改，问题单A82D20097:ifnet模块错误码唯一性整改 */
     
     /* 由l52889修改，问题单A82D20371:IF_DeleteMpgroupIf函数错误码有问题 */
     VRP_IFNET_MPVTBLNULL,               /* 36 MP组件虚表为空 */
@@ -105,12 +81,10 @@ enum enIfnetErrInfo
     VRP_IFNET_IS_L2IF,                   /* 57 L2IF接口 */
     VRP_IFNET_L2IFVTBLNULL,              /* 58 L2IF虚函数表指针为空*/
 
-    /*Add for BC3D00792,DR.131获取链路层状态 start*/
     VRP_IFNET_IPOA_NOINIT,              /* 59 IPOA模块未使用 */ 
     VRP_IFNET_IPOA_ERR,                 /* 60 IPOA模块API处理失败 */ 
     VRP_IFNET_ETH_NOINIT,               /* 61 Eth模块未使用*/ 
     VRP_IFNET_ETH_ERR,                  /* 62 Eth模块API处理失败 */ 
-    /*Add for BC3D00792,DR.131获取链路层状态 end*/
     VRP_IFNET_PPIGETMTU_ERR,            /* 63 向底层查询最大MTU错误 */
 
     VRP_IFNET_L2TRUNKPHYTRANSMIT_NULL,  /* 64 二层TRUNK的物理层报文发送函数为空 */
@@ -118,9 +92,7 @@ enum enIfnetErrInfo
     VRP_IFNET_VRF_ERR,                  /* 65 VRF模块API处理失败 */ 
     /* End: VISP1.7C03 VRF qinyun , 2009-01-20 */
     
-    /* 66 Begin l00147446 判断g_pstIfFunVtbl是否为空 09-03-13*/
     VRP_IFNET_VRF_NOT_INIT,            
-    /*End l00147446 判断g_pstIfFunVtbl是否为空 09-03-13*/
     VRP_IFNET_NOIP6CPFSM,               /* 67 IP6CP状态机不存在*/
     VRP_IFNET_NO_DEVLINK,               /* 68 不存在对应的DEVLINK物理结点，同步自V1R7C01 */
     VRP_IFNET_KEEPALIVE,                /* 69 PPP接口没有完成保活处理,处于保活状态 */ 
@@ -153,7 +125,6 @@ enum enIfnetErrInfo
 #define IF_RTATTR_POINT2POINT           0x10
 #define IF_RTATTR_MULTICAST             0x8000
 
-/*Added by z00208058, for 可创建的最大ETH接口数扩展, 2012/12/7 */
 #define ETHIF_DEF_MAXNUM               4096
 
 /* 网络层协议类型 */
@@ -362,11 +333,9 @@ enum enumLowToUp
     ISLPPPNPLCPDOWN,        /* 19 NP探测到LCP Down */
     ISLPPPNPINTERCROSS,     /* 20 NP探测到串接 */
 
-    ISLNEEDRESENDARP,       /* 21 DTS2011022802677 增加Trunk接口的ARP请求报文的重传机制 */
+    ISLNEEDRESENDARP,
 
-    /* Modified by lihaiming218630, nsr倒换出现1way hello, 2013/4/20   问题单号:lhm */
     LSIFFINISH,             /*22 NSR实现中，倒换后底层上报完所有接口状态后，会上报一个finish*/    
-    /*End of Modified by lihaiming218630, 2013/4/20   问题单号:lhm */
 
     ISSETLINESTATUS,        /*23 设置链路状态 */
     
@@ -883,101 +852,18 @@ typedef struct tagTCPIP_ADDR_HOOK
 }TCPIP_ADDR_HOOK_S;
 
 
-/*******************************************************************************
-*    Func Name: TCPIP_ShutDownIf
-*  Description: shutdown接口
-*        Input: ULONG ulIfIndex:接口索引
-*       Output: 
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-04-09   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_ShutDownIf(ULONG ulIfIndex);
-/*******************************************************************************
-*    Func Name: TCPIP_CloseIfConfigEntry
-*  Description: close watilist object
-*        Input: ULONG ulWaitListHandle:WaitList Handle
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-24   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_CloseIfConfigEntry( UINTPTR ulWaitListHandle );
-/*******************************************************************************
-*    Func Name: TCPIP_CreateIFByDev
-*  Description: 创建接口
-*        Input: DEVLINK_S * pstDev:设备指针 
-*               ULONG *pulIfIndex:接口索引指针
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-24   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_CreateIFByDev( DEVLINK_S * pstDev, ULONG *pulIfIndex );
-/*******************************************************************************
-*    Func Name: TCPIP_DeleteIF
-*  Description: 删除接口
-*        Input: ULONG ulIfIndex:接口索引
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-24   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_DeleteIF( ULONG ulIfIndex );
-/*******************************************************************************
-*    Func Name: TCPIP_DynamicCreateIF
-*  Description: 动态创建接口
-*        Input: CHAR* szFullName:接口名称
-*               
-*               
-*       Output: ULONG *pulIfIndex:接口索引
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-24   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_DynamicCreateIF( CHAR* szFullName,  ULONG *pulIfIndex );
 
-/*******************************************************************************
-*    Func Name: TCPIP_RegFuncL2TrunkPhyTransmitHook
-* Date Created: 2009-02-13
-*       Author: L00105073
-*  Description: 注册L2Trunk 的物理层报文发送函数
-*        Input: L2Trunk_PhyTransmit_HOOK_FUNC pfHookFunc:要注册的钩子函数
-*       Output: 
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                               DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-02-13   L00105073                          Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_RegFuncL2TrunkPhyTransmitHook(L2Trunk_PhyTransmit_HOOK_FUNC pfHookFunc);
 
 /*******************************************************************************
@@ -1020,167 +906,25 @@ extern ULONG TCPIP_RegFuncL2TrunkPortPhyTransmitHook(L2TrunkPort_PhyTransmit_HOO
 *******************************************************************************/
 extern ULONG  TCPIP_CreateL2Trunk(CHAR* szFullName, ULONG *pulIfIndex);
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetConfigMtu
-*  Description: 获取接口的配置MTU值
-*        Input: ULONG ulIfIndex:接口索引
-*               
-*       Output: ULONG *pulMtu:MTU值
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-24   x00100259               Create
-*  2008-05-14   x36317                  A82D25788:直接访问IFNET_S字段获取,不再调用组件接口,
-*                                       避免在关中断期间获取信号量
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_GetConfigMtu( ULONG ulIfIndex, ULONG *pulMtu );
-/*******************************************************************************
-*    Func Name: TCPIP_GetFullNameByIfIndex
-*  Description: 根据接口索引获取接口名称
-*        Input: ULONG ulIfIndex:接口索引
-*               CHAR *pszIfName:接口名称
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-24   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_GetFullNameByIfIndex( ULONG ulIfIndex,CHAR *pszIfName );
-/*******************************************************************************
-*    Func Name: TCPIP_GetIfConfigEntry
-*  Description: Get object for IfConfig
-*        Input: ULONG ulEntryWaitList:WaitList Handle 
-*               
-*       Output: TCPIP_IFNET_S * pstIfConfig:指向获取到的TCPIP_IFNET_S的指针
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-24   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_GetIfConfigEntry( UINTPTR ulEntryWaitList, TCPIP_IFNET_S * pstIfConfig );
-/*******************************************************************************
-*    Func Name: TCPIP_GetIfIndexByFullName
-*  Description: 根据接口名称获取接口索引
-*        Input: CHAR *pszIfName:接口名称              
-*       Output: ULONG *pulIfIndex:接口索引
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-24   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_GetIfIndexByFullName( CHAR *pszIfName, ULONG *pulIfIndex );
-/*******************************************************************************
-*    Func Name: TCPIP_GetIfindexByPortInfo
-*  Description: 根据接口号和设备号获取接口索引
-*        Input: ULONG ulPortType:接口类型
-*               ULONG ulPortNo:接口号
-*       Output: ULONG *pulIfIndex:接口索引               
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-24   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_GetIfindexByPortInfo( ULONG *pulIfIndex, ULONG ulPortType,  ULONG ulPortNo);
-/*******************************************************************************
-*    Func Name: TCPIP_GetIfnetHADbg
-*  Description: 获取IFNET模块HA调试开关
-*        Input: 无
-*       Output: ULONG *pulDbg:HA调试开关
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-24   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_GetIfnetHADbg( ULONG *pulDbg );
-/*******************************************************************************
-*    Func Name: TCPIP_GetIsisFlag
-*  Description: 获取ISIS开关
-*        Input: ULONG ulIfIndex:接口索引
-*               
-*       Output: ULONG *pulFlag:ISIS开关
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-24   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_GetIsisFlag(  ULONG ulIfIndex ,ULONG *pulFlag );
-/*******************************************************************************
-*    Func Name: TCPIP_GetKeepAliveValue
-*  Description: 获取接口的KEEPALIVE值
-*        Input: ULONG ulIfIndex:接口索引
-*               
-*       Output: ULONG *pulValue:KEEPALIVE值
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-24   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_GetKeepAliveValue( ULONG ulIfIndex, ULONG *pulValue );
-/*******************************************************************************
-*    Func Name: TCPIP_GetLinkMtu
-*  Description: 获取接口的MTU值
-*        Input: ULONG ulIfIndex:接口索引
-*               
-*       Output: ULONG *pulMtu:接口MTU值
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-24   x00100259               Create
-*  2008-05-14   x36317                  A82D25788:直接访问IFNET_S字段获取,不再调用组件接口,
-*                                       避免在关中断期间获取信号量
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_GetLinkMtu( ULONG ulIfIndex, ULONG *pulMtu );
-/*******************************************************************************
-*    Func Name: TCPIP_GetLinkState
-*  Description: 获取接口的链路状态
-*        Input: ULONG ulIfIndex:接口索引
-*               
-*       Output: ULONG *pulState:接口状态
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-24   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_GetLinkState( ULONG ulIfIndex, ULONG *pulState );
 
 /*******************************************************************************
@@ -1202,323 +946,46 @@ extern ULONG  TCPIP_GetLinkState( ULONG ulIfIndex, ULONG *pulState );
 *******************************************************************************/
 extern ULONG  TCPIP_GetIP6LinkState(ULONG ulIfIndex, ULONG *pulState);
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetPhyCtlBlk
-*  Description: 获取接口的物理层控制块
-*        Input: ULONG ulIfIndex:
-*               ULONG *pulPhyCtlBlk:
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-24   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_GetPhyCtlBlk( ULONG ulIfIndex,UINTPTR *pulPhyCtlBlk );
-/*******************************************************************************
-*    Func Name: TCPIP_GetPortInfo
-*  Description: 根据IFINDEX查询端口类型端口号的API函数
-*        Input: ULONG ulIfIndex:接口索引
-*               
-*       Output: ULONG *pulPortType:接口类型
-*               ULONG *pulPortNo:接口号
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-24   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG   TCPIP_GetPortInfo( ULONG ulIfIndex, ULONG *pulPortType, ULONG *pulPortNo);
-/*******************************************************************************
-*    Func Name: TCPIP_IF_LinkIoCtl
-*  Description: 链路层IOCTL函数
-*        Input: ULONG ulIfIndex:接口索引
-*               ULONG ulCmdIndex:命令字
-*               CHAR *pData:命令字参数
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-24   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_IF_LinkIoCtl( ULONG ulIfIndex, ULONG ulCmdIndex, CHAR *pData );
-/*******************************************************************************
-*    Func Name: TCPIP_IF_LinkReceived
-*  Description: 链路层接收报文函数
-*        Input: ULONG ulIfIndex:接口索引
-*               MBUF_S *pstMbuf:报文
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-24   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_IF_LinkReceived( ULONG ulIfIndex,MBUF_S *pstMbuf);
-/*******************************************************************************
-*    Func Name: TCPIP_OpenIfConfigEntry
-*  Description: Open object for IfConfig  
-*        Input: 无  
-*       Output: ULONG *pulWaitListHandle:指向WaitList Handle的指针
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-24   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_OpenIfConfigEntry( UINTPTR *pulWaitListHandle );
-/*******************************************************************************
-*    Func Name: TCPIP_RegFuncATMLinkIntVTableHook
-*  Description: 注册atm接口虚表
-*        Input: ATMLinkIntVTable_HOOK_FUNC pfHookFunc:接口虚表指针
-*       Output: 无
-*       Return: VRP_IFNET_NOERR:成功
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-24   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_RegFuncATMLinkIntVTableHook( ATMLinkIntVTable_HOOK_FUNC pfHookFunc );
-/*******************************************************************************
-*    Func Name: TCPIP_RegFuncIFNotifyHook
-*  Description: 注册通知链函数
-*        Input: ULONG ulType:注册类型
-*               ULONG ulPriority:适配函数优先级
-*               IF_NOTIFY_FUNC* pfNotifyFn:通知函数
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-24   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_RegFuncIFNotifyHook( ULONG ulType, ULONG ulPriority, VOID *pfNotifyFn );
-/*******************************************************************************
-*    Func Name: TCPIP_RegFuncLinkMsgSendHook
-*  Description: 接口状态变化通知给路由管理模块注册接口
-*        Input: LinkMsgSend_HOOK_FUNC pfHookFunc:接口状态变化通知给路由管理模块适配函数
-*       Output: 无
-*       Return: VRP_IFNET_NOERR:成功
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-24   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_RegFuncLinkMsgSendHook( LinkMsgSend_HOOK_FUNC pfHookFunc  );
-/*******************************************************************************
-*    Func Name: TCPIP_RegFuncNotifyIfStateHook
-*  Description: 注册接口状态变化通知函数
-*        Input: NotifyIfState_HOOK_FUNC pfHookFunc:接口状态变化通知函数
-*       Output: 无
-*       Return: VRP_IFNET_NOERR:成功
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-24   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_RegFuncNotifyIfStateHook( NotifyIfState_HOOK_FUNC pfHookFunc );
 
-/*******************************************************************************
-*    Func Name: TCPIP_RegFuncPhyIoCtlHook
-*  Description: 注册物理层IOCTL函数
-*        Input: ULONG ulIfIndex:接口索引
-*               IF_PHYIOCTL_FUNC pfPhyIoctl:物理层IOCTL函数
-*       Output: 无
-*       Return: VRP_IFNET_NOERR:成功
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-24   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_RegFuncPhyIoCtlHook( ULONG ulIfIndex,IF_PHYIOCTL_FUNC pfPhyIocl );
-/*******************************************************************************
-*    Func Name: TCPIP_RegFuncPhyTransmitHook
-*  Description: 注册物理层发送函数
-*        Input: ULONG ulIfIndex:接口索引
-*               IF_TRANSMIT_FUNC *pfTransmitFn:物理层发送函数
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-24   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_RegFuncPhyTransmitHook( ULONG ulIfIndex,IF_TRANSMIT_FUNC pfTransmitFn );
-/*******************************************************************************
-*    Func Name: TCPIP_RegFuncVIOutputHook
-*  Description: 注册VI接口链路层发送函数
-*        Input: VIOutput_HOOK_FUNC pfHookFunc:VI接口链路层发送函数
-*       Output: 无
-*       Return: VRP_IFNET_NOERR:成功
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-24   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_RegFuncVIOutputHook( VIOutput_HOOK_FUNC pfHookFunc );
-/*******************************************************************************
-*    Func Name: TCPIP_ResumeIf
-*  Description: UNSHUTDOWN接口
-*        Input: ULONG ulIfIndex:接口索引
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-24   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_ResumeIf( ULONG ulIfIndex );
-/*******************************************************************************
-*    Func Name: TCPIP_SetIfnetHADbg
-*  Description: 配置IFNET模块HA调试开关
-*        Input: ULONG ulDbg:HA调试开关
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-24   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_SetIfnetHADbg( ULONG ulDbg );
-/*******************************************************************************
-*    Func Name: TCPIP_SetIsisFlag
-*  Description: 配置ISIS开关
-*        Input: ULONG ulIfIndex:接口索引
-*               ULONG ulFlag:ISIS开关
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-24   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_SetIsisFlag( ULONG ulIfIndex ,ULONG ulFlag );
-/*******************************************************************************
-*    Func Name: TCPIP_SetKeepAliveValue
-*  Description: 配置接口的KEEPALIVE值
-*        Input: ULONG ulIfIndex:接口索引
-*               ULONG ulValue:KEEPALIVE值
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-24   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_SetKeepAliveValue( ULONG ulIfIndex, ULONG ulValue );
-/*******************************************************************************
-*    Func Name: TCPIP_SetLinkMtu
-*  Description: 配置接口的MTU值
-*        Input: ULONG ulIfIndex:接口索引
-*               ULONG ulMtu:接口MTU
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-24   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_SetLinkMtu( ULONG ulIfIndex, ULONG ulMtu);
-/*******************************************************************************
-*    Func Name: TCPIP_SetPhyCtlBlk
-*  Description: 配置接口的物理层控制块
-*        Input: ULONG ulIfIndex:接口索引
-*               ULONG ulPhyCtlBlk:物理层控制块
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-24   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_SetPhyCtlBlk( ULONG ulIfIndex,UINTPTR ulPhyCtlBlk );
-/*******************************************************************************
-*    Func Name: TCPIP_UnRegFuncIFNotifyHook
-*  Description: 注销通知链函数
-*        Input: ULONG ulType:注销函数类型
-*               IF_NOTIFY_FUNC* pfNotifyFn:通知函数
-*       Output: 无
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-24   x00100259               Create
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_UnRegFuncIFNotifyHook ( ULONG ulType, VOID *pfNotifyFn );
-/*******************************************************************************
-*    Func Name: TCPIP_QosTransmitDone
-*  Description: 驱动transmit done通知函数
-*        Input: ULONG ulIfIndex:接口索引
-*               ULONG ulPhyLink:接口链路层控制块
-*               MBUF_S *pMBuf:报文
-*       Output: 
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-05-08   x00100259               Create
-*  2008-09-19   m59090                  Modified(add semaphore protect)
-*******************************************************************************/
+
 extern ULONG  TCPIP_QosTransmitDone(ULONG ulIfIndex, UINTPTR ulPhyLink, MBUF_S *pMBuf);
 /*扩展支持三维接口相关的用户API*/
 /*******************************************************************************
@@ -1661,22 +1128,7 @@ extern ULONG TCPIP_SetIpProtocolState(ULONG ulIfIndex,ULONG ulState);
 *
 *******************************************************************************/
 extern ULONG TCPIP_RegFuncGetCrossVIAddr(TCPIP_GETVIADDR_HOOK_FUNC pfHookFunc);
-/*******************************************************************************
-*    Func Name: TCPIP_QosTransmit
-*  Description: 链路层Qos发送函数
-*        Input: ULONG ulIfIndex:接口索引
-*               ULONG ulPhyLink:底层控制块的指针 
-*               MBUF_S *pMBuf:指向待发送的报文的指针
-*       Output: 无
-*       Return: 成功返回VOS_OK
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-06-04   x00100259               Create
-*  2008-09-19   m59090                  Modified(add semaphore protect)
-*******************************************************************************/
+
 extern ULONG TCPIP_QosTransmit(ULONG ulIfIndex, UINTPTR ulPhyLink, MBUF_S *pMBuf);
 /*******************************************************************************
 *    Func Name: TCPIP_RegFuncPhySetDevLink
@@ -1730,7 +1182,6 @@ extern ULONG TCPIP_GetIfInfobyFullName(  TCPIP_IFNET_S* pstIfnetInfo, CHAR* szNa
 extern ULONG TCPIP_VlinkIoCtl(VLINKSTATUS_S *pVLinkStatus, VOID *pCB);
 extern ULONG TCPIP_Vlink6IoCtl(IFVLINKENTRY6_S *pVLinkStatus, VOID *pCB);
 
-/*Add for BC3D00792,DR.131获取链路层状态 start*/
 /*******************************************************************************
 *    Func Name: TCPIP_GetLinkStatus
 * Date Created: 2008-11-25
@@ -1749,7 +1200,6 @@ extern ULONG TCPIP_Vlink6IoCtl(IFVLINKENTRY6_S *pVLinkStatus, VOID *pCB);
 *
 *******************************************************************************/
 extern ULONG TCPIP_GetLinkStatus(ULONG ulIfIndex,IF_LINKSTATUS_S *pStatus);
-/*Add for BC3D00792,DR.131获取链路层状态 end*/
 
 extern ULONG TCPIP_GetPortInfoByIfNameEx(UCHAR *pucName, ULONG *pulPortType, 
                                         ULONG *pulFirstDim,ULONG *pulSecondDim,
@@ -1809,114 +1259,22 @@ extern ULONG  TCPIP_GetVrfByIfIndex(ULONG ulIfIndex, ULONG *pulVrfIndex);
 
 ULONG  TCPIP_GetVrf6ByIfIndex(ULONG ulIfIndex, ULONG *pulVrf6Index);
 
-/*****************************************************************************
- 函 数 名  : TCPIP_GetIfInfobyFullName
- 功能描述  : 根据接口索引获取接口信息
- 输入参数  :  
-             ULONG ulIfIndex :接口索引             
- 输出参数  : TCPIP_IFNET_S* pstIfnetInfo 
- 返 回 值  : ULONG
- 调用函数  : 
- 被调函数  : 
- 
- 修改历史      :
-  1.日    期   : 2009年4月24日
-    作    者   : w62223
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 extern ULONG TCPIP_GetIfInfobyIfIndex(  TCPIP_IFNET_S* pstIfnetInfo, ULONG ulIfIndex );
 
-/*******************************************************************************
-*    Func Name: TCPIP_SetDevLink
-* Date Created: 2009-08-04
-*       Author: z00104207
-*  Description: 设置接口物理参数DEVLINK
-*        Input: DEVLINK_S *pstDevLink: 物理参数DEVLINK结构指针
-*       Output: 
-*       Return: 成功则返回VRP_IFNET_NOERR，失败则返回其他错误码
-*      Caution: 操作的接口必须是本板接口，接口类型必须是ETH/PPP/ATM/UI接口
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-08-04   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_SetDevLink(DEVLINK_S *pstDevLink);
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetDevLink
-* Date Created: 2009-08-04
-*       Author: z00104207
-*  Description: 获取接口物理参数DEVLINK
-*        Input: ULONG ulIfIndex:       接口索引
-*       Output: DEVLINK_S *pstDevLink: 物理参数DEVLINK结构指针
-*       Return: 成功则返回VRP_IFNET_NOERR，失败则返回其他错误码
-*      Caution: 操作的接口必须是本板接口，接口类型必须是ETH/PPP/ATM/UI接口
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-08-04   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_GetDevLink(ULONG ulIfIndex, DEVLINK_S *pstDevLink);
 
-/*******************************************************************************
-*    Func Name: TCPIP_ShowDevLink
-* Date Created: 2009-08-04
-*       Author: z00104207
-*  Description: 显示接口的物理参数DEVLINK信息
-*        Input: CHAR *szIfName: 接口名字
-*       Output: 
-*       Return: VOID
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-08-04   z00104207               Create
-*
-*******************************************************************************/
+
 extern VOID TCPIP_ShowDevLink(CHAR *szIfName);
 
-/*******************************************************************************
-*    Func Name: TCPIP_SetIfEventDebugSwitch
-* Date Created: 2009-08-06
-*       Author: z00104207
-*  Description: 设置底层上报事件调试开关
-*        Input: ULONG ulValue: -1(全F)打开所有接口，0关闭；等于接口索引，打开指定接口索引开关。
-*       Output: 
-*       Return: VRP_IFNET_NOERR:成功
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-08-06   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_SetIfEventDebugSwitch(ULONG ulValue);
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetIfEventDebugSwitch
-* Date Created: 2009-08-06
-*       Author: z00104207
-*  Description: 获取底层上报事件调试开关
-*        Input: 
-*       Output: ULONG *pulValue: 获取调试开关指针-1(全F)打开所有接口，0关闭；
-*                                等于接口索引，打开指定接口索引开关。
-*       Return: VRP_IFNET_NULLPOINTER:参数为空
-*               VRP_IFNET_NOERR:      成功
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-08-06   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_GetIfEventDebugSwitch(ULONG *pulValue);
 
 /*******************************************************************************
@@ -1938,62 +1296,13 @@ extern ULONG TCPIP_GetIfEventDebugSwitch(ULONG *pulValue);
 extern VOID TCPIP_ShowInterfaceByName(CHAR *pszIfName);
 
 
-/*******************************************************************************
-*    Func Name: TCPIP_IF_GetISIStatus
-* Date Created: 2009-12-15
-*       Author: Gexianjun/h00121208
-*  Description: 获取接口ISIS状态
-*        Input: ULONG ulIfIndex:  接口索引
-*       Output: ULONG *pulIfState: 接口ISIS状态
-*       Return: 成功则返回VOS_OK，失败则返回其他错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-12-15   Gexianjun/h00121208     Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_IF_GetISIStatus(ULONG ulIfIndex, ULONG *pulIfState);
 
-/*******************************************************************************
-*    Func Name: TCPIP_IF_GetIfNum
-* Date Created: 2009-12-15
-*       Author: Gexianjun/h00121208
-*  Description: 获取接口数目,不包括NULL接口
-*        Input: 
-*       Output: ULONG *pulIfNum: 接口数目
-*       Return: 成功则返回VOS_OK，失败则返回其他错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-12-15   Gexianjun/h00121208     Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_IF_GetIfNum(ULONG *pulIfNum);
 
-/*******************************************************************************
-*    Func Name: TCPIP_IF_GetAllIfIndex
-* Date Created: 2009-12-15
-*       Author: Gexianjun/h00121208
-*  Description: 更根据用户设定的获取接口数目,获取接口数目和接口索引列表,不包括NULL接口
-*        Input: ULONG *pulIfNum:  用户需要获取的接口数目
-*               ULONG *pulIfIndex:获取的接口索引列表
-*       Output: ULONG *pulIfNum:  实际获取的接口数目
-*               ULONG *pulIfIndex:获取的接口索引列表
-*       Return: 成功则返回VOS_OK，失败则返回其他错误码
-*      Caution: 接口索引列表pIfIndexList内存由用户分配，内存大小由用户需要获取
-*               的接口数目(*pulIfNum)决定, *pulIfNum为输入和输出参数,用户必须
-*               在传参数时给*pulIfNum赋值。 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-12-15   Gexianjun/h00121208     Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_IF_GetAllIfIndex(ULONG *pulIfNum, ULONG *pulIfIndex);
 
 /*******************************************************************************
@@ -2018,22 +1327,7 @@ ULONG TCPIP_RegFuncLinkMsg6SendHook(LinkMsg6Send_HOOK_FUNC pfHookFunc);
 /* 通知产品创建逻辑接口的钩子函数原型 */
 typedef ULONG (*TCPIP_CreateLogicIf_HookFunc)(ULONG ulIfIndex);
 
-/*******************************************************************************
-*    Func Name: TCPIP_RegFuncCreateLogicIfHook
-* Date Created: 2010-03-11
-*       Author: z00104207
-*  Description: 注册创建逻辑接口时的对外通知钩子函数
-*        Input: TCPIP_CreateLogicIf_HookFunc pfHookFunc: 钩子函数
-*       Output: 成功则返回VRP_IFNET_NOERR，否则返回其他错误码
-*       Return: 
-*      Caution: 用户需判断是否自己关注的接口类型
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-03-11   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_RegFuncCreateLogicIfHook(TCPIP_CreateLogicIf_HookFunc pfHookFunc);
 
 /*******************************************************************************

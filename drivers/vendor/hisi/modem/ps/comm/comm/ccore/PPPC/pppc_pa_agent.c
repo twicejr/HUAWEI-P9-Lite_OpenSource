@@ -1,24 +1,4 @@
-/************************************************************************
-*                                                                      *
-*                             pppc_pa_agent.c                          *
-*                                                                      *
-*  Project Code:       X Project                                       *
-*  Create Date:        2015/06/05                                      *
-*  Author:             Chenxianhua                                     *
-*  Modify Date:                                                        *
-*  Document:                                                           *
-*  Function:           实现PA模块的代理功能                            *
-*  Others:                                                             *
-*----------------------------------------------------------------------*
-*                                                                      *
-*  Copyright 2000-2002 Balong Team ShangHai Institute HuaWei Tech, Inc.*
-*                      ALL RIGHTS RESERVED                             *
-*                                                                      *
-*----------------------------------------------------------------------*
-*                                                                      *
-*   这个文件实现PA模块的代理功能                                       *
-*                                                                      *
-************************************************************************/
+
 
 
 
@@ -55,20 +35,7 @@ PA_AGENT_HRPD_CONTEXT_STRU              g_stPaAgentContext;
 *****************************************************************************/
 /*lint -save -e958 */
 
-/*****************************************************************************
-函 数 名  : PPPC_HRPD_PaAgentInit
-功能描述  : 初始化PA AGENT上下文
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOID
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2015-06-03
- 作    者   : c00184031
- 修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_HRPD_PaAgentInit(VOS_VOID)
 {
     PS_MEM_SET(&g_stPaAgentContext, 0, sizeof(g_stPaAgentContext));
@@ -76,20 +43,7 @@ VOS_VOID PPPC_HRPD_PaAgentInit(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : PPPC_HRPD_PaAgentRlpTimeout
-功能描述  : RLP定时器超时处理函数
-输入参数  : ulTimerName     标识是哪个定时器
-输出参数  : 无
-返 回 值  : VOID
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2015-06-03
- 作    者   : c00184031
- 修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_HRPD_PaAgentRlpTimeout(VOS_UINT32 ulTimerName)
 {
     PA_AGENT_HRPD_CONTEXT_STRU         *pstPaAgentCont;
@@ -127,20 +81,7 @@ VOS_VOID PPPC_HRPD_PaAgentRlpTimeout(VOS_UINT32 ulTimerName)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : PA_AGENT_HRPD_SetMaxReservNum
-功能描述  : 设置最大Reservation个数
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOID
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2015-06-03
- 作    者   : c00184031
- 修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PA_AGENT_HRPD_SetMaxReservNum
 (
     CTTF_PPP_HRPD_RESERVATIONS_IND_STRU    *pstReservationsInd
@@ -176,20 +117,7 @@ VOS_VOID PA_AGENT_HRPD_SetMaxReservNum
     return;
 }
 
-/*****************************************************************************
-函 数 名  : PPPC_HRPD_PaAgentGetResvLabel
-功能描述  : Reverse方向的Reservation迁移到OPEN状态
-输入参数  : pucData        Reservation信息
-输出参数  : 无
-返 回 值  : VOID
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2015-06-03
- 作    者   : c00184031
- 修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 PPPC_HRPD_PaAgentGetResvLabel
 (
     CTTF_HRPD_PA_APPLICATION_TYPE_ENUM_UINT16   enAppType
@@ -207,20 +135,7 @@ VOS_UINT8 PPPC_HRPD_PaAgentGetResvLabel
     }
 }
 
-/*****************************************************************************
-函 数 名  : PPPC_HRPD_PaAgentRevReservTransferToOpenState
-功能描述  : Reverse方向的Reservation迁移到OPEN状态
-输入参数  : pucData        Reservation信息
-输出参数  : 无
-返 回 值  : VOID
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2015-06-03
- 作    者   : c00184031
- 修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_HRPD_PaAgentRevReservTransferToOpenState
 (
     VOS_UINT8                          *pucData
@@ -299,20 +214,7 @@ VOS_VOID PPPC_HRPD_PaAgentRevReservTransferToOpenState
     return;
 }
 
-/*****************************************************************************
-函 数 名  : PPPC_HRPD_PaAgentRevReservTransferToCloseState
-功能描述  : Reverse方向的Reservation迁移到CLOSE状态
-输入参数  : pMsg        Reservation信息
-输出参数  : 无
-返 回 值  : VOID
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2015-06-03
- 作    者   : c00184031
- 修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_HRPD_PaAgentRevReservTransferToCloseState(VOS_UINT8 *pucReservInfoData)
 {
     PA_AGENT_HRPD_CONTEXT_STRU         *pstPaAgentCont;
@@ -354,20 +256,7 @@ VOS_VOID PPPC_HRPD_PaAgentRevReservTransferToCloseState(VOS_UINT8 *pucReservInfo
 }
 
 
-/*****************************************************************************
-函 数 名  : PPPC_HRPD_PaAgentFwdReservTransferToOpenState
-功能描述  : Forward方向的Reservation迁移到OPEN状态
-输入参数  : pMsg        Reservation信息
-输出参数  : 无
-返 回 值  : VOID
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2015-06-03
- 作    者   : c00184031
- 修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_HRPD_PaAgentFwdReservTransferToOpenState(VOS_UINT8 *pucReservInfoData)
 {
     PA_AGENT_HRPD_CONTEXT_STRU         *pstPaAgentCont;
@@ -440,20 +329,7 @@ VOS_VOID PPPC_HRPD_PaAgentFwdReservTransferToOpenState(VOS_UINT8 *pucReservInfoD
     return;
 }
 
-/*****************************************************************************
-函 数 名  : PPPC_HRPD_PaAgentFwdReservTransferToCloseState
-功能描述  : Forward方向的Reservation迁移到CLOSE状态
-输入参数  : pucReservInfoData        Reservation信息
-输出参数  : 无
-返 回 值  : VOID
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2015-06-03
- 作    者   : c00184031
- 修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_HRPD_PaAgentFwdReservTransferToCloseState(VOS_UINT8 *pucReservInfoData)
 {
     PA_AGENT_HRPD_CONTEXT_STRU         *pstPaAgentCont;
@@ -494,20 +370,7 @@ VOS_VOID PPPC_HRPD_PaAgentFwdReservTransferToCloseState(VOS_UINT8 *pucReservInfo
     return;
 }
 
-/*****************************************************************************
-函 数 名  : PPPC_HRPD_PaAgentCalReservOnMsgBitLen
-功能描述  : 计算ReservationOnReq消息的bit长度
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOID
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2015-06-03
- 作    者   : c00184031
- 修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT16 PPPC_HRPD_PaAgentCalReservOnMsgBitLen
 (
     PA_AGENT_HRPD_RESERV_CTRL_STRU     *pstReservInfo
@@ -539,20 +402,7 @@ VOS_UINT16 PPPC_HRPD_PaAgentCalReservOnMsgBitLen
     return usMsgBitLen;
 }
 
-/*****************************************************************************
-函 数 名  : PPPC_HRPD_PaAgentCalReservOffMsgBitLen
-功能描述  : 计算ReservationOffReq消息的bit长度
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOID
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2015-06-03
- 作    者   : c00184031
- 修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT16 PPPC_HRPD_PaAgentCalReservOffMsgBitLen
 (
     PA_AGENT_HRPD_RESERV_CTRL_STRU     *pstReservInfo
@@ -578,21 +428,7 @@ VOS_UINT16 PPPC_HRPD_PaAgentCalReservOffMsgBitLen
     return usMsgBitLen;
 }
 
-/*****************************************************************************
-函 数 名  : PPPC_HRPD_PaAgentSetReservLabelField
-功能描述  : 填充reservation label域和link域
-输入参数  : pucData         数据
-            pstReservInfo   应用信息
-输出参数  : 无
-返 回 值  : VOS_UINT8       bit偏移信息
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2015-06-03
- 作    者   : c00184031
- 修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 PPPC_HRPD_PaAgentSetReservLabelField
 (
     VOS_UINT8                              *pucData,
@@ -652,21 +488,7 @@ VOS_UINT8 PPPC_HRPD_PaAgentSetReservLabelField
     return ucOffset;
 }
 
-/*****************************************************************************
-函 数 名  : PPPC_HRPD_PaAgentGetReservLabelInof
-功能描述  : PA AGENT提取Reservation信息
-输入参数  : pucData          原始数据,从ReservationCount开始
-            pstReservInfo    APP信息
-输出参数  : 无
-返 回 值  : VOID
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2015-06-03
- 作    者   : c00184031
- 修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 PPPC_HRPD_PaAgentGetReservLabelInof
 (
     VOS_UINT8                          *pucData,
@@ -734,22 +556,7 @@ VOS_UINT32 PPPC_HRPD_PaAgentGetReservLabelInof
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : PPPC_HRPD_PaAgentResvStateTrans
-功能描述  : 根据从ReservationReject消息中过滤出的信息迁移状态
-输入参数  : ulMsgBufferIndx    储存的消息位置
-            pstResvInfo        消息中的Reservation信息
-            enMsgType          On/Off消息
-输出参数  : 无
-返 回 值  : VOS_VOID
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2015-06-03
- 作    者   : c00184031
- 修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_HRPD_PaAgentResvStateTrans
 (
     VOS_UINT32                              ulMsgBufferIndx,
@@ -833,20 +640,7 @@ VOS_VOID PPPC_HRPD_PaAgentResvStateTrans
     }
 }
 /*lint -e593*/
-/*****************************************************************************
-函 数 名  : PPPC_HRPD_PaAgentSndReservOnReq
-功能描述  : PA AGENT调用PA提供的接口发送ReservationOnReq到SNP
-输入参数  : pstReservInfo    APP信息
-输出参数  : 无
-返 回 值  : VOID
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2015-06-03
- 作    者   : c00184031
- 修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_HRPD_PaAgentSndReservOnReq
 (
     PA_AGENT_HRPD_RESERV_CTRL_STRU     *pstReservInfo
@@ -946,20 +740,7 @@ VOS_VOID PPPC_HRPD_PaAgentSndReservOnReq
     return;
 }
 
-/*****************************************************************************
-函 数 名  : PPPC_HRPD_PaAgentSndReservOffReq
-功能描述  : PA AGENT调用PA提供的接口发送ReservationOffReq到SNP
-输入参数  : pstReservInfo    APP信息
-输出参数  : 无
-返 回 值  : VOID
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2015-06-03
-作    者   : c00184031
-修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_HRPD_PaAgentSndReservOffReq
 (
     PA_AGENT_HRPD_RESERV_CTRL_STRU     *pstReservInfo
@@ -1047,20 +828,7 @@ VOS_VOID PPPC_HRPD_PaAgentSndReservOffReq
     return;
 }
 /*lint +e593*/
-/*****************************************************************************
-函 数 名  : PPPC_HRPD_PaAgentRcvRevReservOnProc
-功能描述  : PA AGENT收到PA的RevReservationOn消息
-输入参数  : pMsg    发自PA的Reservation消息
-输出参数  : 无
-返 回 值  : VOID
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2015-06-03
-作    者   : c00184031
-修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_HRPD_PaAgentRcvRevReservOnProc(VOS_UINT8 *pucData)
 {
     VOS_UINT8                          *pucMsgData;
@@ -1105,20 +873,7 @@ VOS_VOID PPPC_HRPD_PaAgentRcvRevReservOnProc(VOS_UINT8 *pucData)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : PPPC_HRPD_PaAgentRcvRevReservOffProc
-功能描述  : PA AGENT收到PA的RevReservationOff消息
-输入参数  : pMsg    发自PA的Reservation消息
-输出参数  : 无
-返 回 值  : VOID
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2015-06-03
-作    者   : c00184031
-修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_HRPD_PaAgentRcvRevReservOffProc(VOS_UINT8 *pucData)
 {
     VOS_UINT8                          *pucMsgData;
@@ -1142,20 +897,7 @@ VOS_VOID PPPC_HRPD_PaAgentRcvRevReservOffProc(VOS_UINT8 *pucData)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : PPPC_HRPD_PaAgentRcvFwdReservOnProc
-功能描述  : PA AGENT收到PA的FwdReservationOn消息
-输入参数  : pMsg    发自PA的Reservation消息
-输出参数  : 无
-返 回 值  : VOID
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2015-06-03
-作    者   : c00184031
-修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_HRPD_PaAgentRcvFwdReservOnProc(VOS_UINT8 *pucData)
 {
     VOS_UINT8                          *pucMsgData;
@@ -1200,20 +942,7 @@ VOS_VOID PPPC_HRPD_PaAgentRcvFwdReservOnProc(VOS_UINT8 *pucData)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : PPPC_HRPD_PaAgentRcvFwdReservOffProc
-功能描述  : PA AGENT收到PA的FwdReservationOn消息
-输入参数  : pMsg    发自PA的Reservation消息
-输出参数  : 无
-返 回 值  : VOID
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2015-06-03
-作    者   : c00184031
-修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_HRPD_PaAgentRcvFwdReservOffProc(VOS_UINT8 *pucData)
 {
     VOS_UINT8                          *pucMsgData;
@@ -1237,20 +966,7 @@ VOS_VOID PPPC_HRPD_PaAgentRcvFwdReservOffProc(VOS_UINT8 *pucData)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : PPPC_HRPD_PaAgentRcvReservRejectProc
-功能描述  : PA AGENT收到ReservationReject消息处理
-输入参数  : pMsg    发自PA的Reservation消息
-输出参数  : 无
-返 回 值  : VOID
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2015-06-03
-作    者   : c00184031
-修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_HRPD_PaAgentRcvReservRejectProc(VOS_UINT8 *pucData)
 {
     VOS_UINT8                           ucNewTransactionId;
@@ -1309,20 +1025,7 @@ VOS_VOID PPPC_HRPD_PaAgentRcvReservRejectProc(VOS_UINT8 *pucData)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : PPPC_HRPD_PaAgentRcvReservAcceptProc
-功能描述  : PA AGENT收到ReservationAccept消息处理
-输入参数  : pMsg    发自PA的Reservation消息
-输出参数  : 无
-返 回 值  : VOID
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2015-06-03
-作    者   : c00184031
-修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_HRPD_PaAgentRcvReservAcceptProc(VOS_UINT8 *pucData)
 {
     VOS_UINT8                           ucNewTransactionId;
@@ -1379,20 +1082,7 @@ VOS_VOID PPPC_HRPD_PaAgentRcvReservAcceptProc(VOS_UINT8 *pucData)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : PPPC_HRPD_PaAgentRcvReservDlMsgProc
-功能描述  : PA AGENT收到PA的下行消息处理
-输入参数  : pMsg    发自PA的Reservation消息
-输出参数  : 无
-返 回 值  : VOID
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2015-06-03
-作    者   : c00184031
-修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_HRPD_PaAgentRcvReservDlMsgProc(struct MsgCB * pMsg)
 {
     PA_AGENT_HRPD_RESERVATION_MSG_TYPE_ENUM_UINT8   enMsgType;
@@ -1462,20 +1152,7 @@ VOS_VOID PPPC_HRPD_PaAgentRcvReservDlMsgProc(struct MsgCB * pMsg)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : PPPC_HrpdPaAgentRcvOpenReservProc
-功能描述  : PA AGENT收到PA的Open Reservation指示
-输入参数  : pMsg    发自PA的Reservation消息
-输出参数  : 无
-返 回 值  : VOID
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2015-06-03
-作    者   : c00184031
-修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID PPPC_HrpdPaAgentRcvOpenReservProc(struct MsgCB * pMsg)
 {
     CTTF_PPP_HRPD_OPEN_RESERVATION_IND_STRU    *pstResvOpenInd;
@@ -1523,20 +1200,7 @@ VOS_VOID PPPC_HrpdPaAgentRcvOpenReservProc(struct MsgCB * pMsg)
     return;
 }
 
- /*****************************************************************************
- 函 数 名  : PPPC_HrpdPaAgentRcvCloseReservProc
- 功能描述  : PA AGENT收到PA的Close Reservation指示
- 输入参数  : pMsg    发自PA的Reservation消息
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2015-06-03
- 作    者   : c00184031
- 修改内容   : 新生成函数
- *****************************************************************************/
+ 
  VOS_VOID PPPC_HrpdPaAgentRcvCloseReservProc(struct MsgCB * pMsg)
  {
      CTTF_PPP_HRPD_CLOSE_RESERVATIONS_IND_STRU  *pstResvCloseInd;

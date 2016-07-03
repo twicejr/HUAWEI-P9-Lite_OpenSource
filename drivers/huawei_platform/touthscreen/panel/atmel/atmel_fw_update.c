@@ -859,7 +859,7 @@ int mxt_load_fw(struct mxt_data *data)
 	int ret;
 
 	if (!data->fw_name) {
-		TS_LOG_ERR("%s:data->fw_name = %d\n",__func__,strlen(data->fw_name));
+		TS_LOG_ERR("%s:data->fw_name is null\n",__func__);
 		return -EEXIST;
 	}
 	TS_LOG_INFO("mxt_load_fw %s\n",data->fw_name);

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmlLib.h
-  版 本 号   : 初稿
-  作    者   : zhoujun 40661
-  生成日期   : 2011年7月25日
-  最近修改   :
-  功能描述   : NasMmlLib.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年7月25日
-    作    者   : zhoujun 40661
-    修改内容   : 创建文件
-
-******************************************************************************/
 #ifndef _NAS_MML_LIB_H_
 #define _NAS_MML_LIB_H_
 /*****************************************************************************
@@ -73,28 +56,14 @@ extern "C" {
 /*****************************************************************************
   7 STRUCT定义
 *****************************************************************************/
-/*****************************************************************************
- 结构名    : NAS_MML_MCC_DESC_STRU
- 结构说明  : 记录一个国家所有的国家码信息的结构体
- 1.日    期   : 2015年9月30日
-   作    者   : l00289540
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                ulMccNum;
     VOS_UINT32               *pulMccList;
 }NAS_MML_MCC_DESC_STRU;
 
-/*****************************************************************************
- 结 构 名  : NAS_MML_SAVE_EXC_LOG_STRU
- 结构说明  : 保存NAS复位时的结构，包含NAS MML的全局变量
-             总分配内存为3072，目前已用2540
- 修改历史  :
-  1.日  期   : 2015年11月30日
-    作  者   : z00359541
-    修改内容 : 新生成结构,DTS2015112803743
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulBeginTag;
@@ -123,13 +92,7 @@ typedef struct
     VOS_UINT32                          ulEndTag;
 }NAS_MML_SAVE_EXC_LOG_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MML_DISCARD_MSG_STRU
- 结构说明  : 复位分析要忽略的消息的结构体
- 1.日    期   : 2015年11月30日
-   作    者   : z00359541
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_PID                             ulSenderPid;        /* 消息发送方PID */
@@ -189,7 +152,6 @@ VOS_UINT32 NAS_MML_ComparePlmnIdWithHplmn (
    NAS_MML_PLMN_ID_STRU                *pstPlmnId
 );
 
-/* Added by s00246516 for L-C互操作项目, 2014-02-12, Begin */
 VOS_UINT32 NAS_MML_ComparePlmnIdWithUplmn (
     NAS_MML_PLMN_ID_STRU               *pstPlmnId
 );
@@ -197,7 +159,6 @@ VOS_UINT32 NAS_MML_ComparePlmnIdWithUplmn (
 VOS_UINT32 NAS_MML_ComparePlmnIdWithOplmn (
     NAS_MML_PLMN_ID_STRU               *pstPlmnId
 );
-/* Added by s00246516 for L-C互操作项目, 2014-02-12, End */
 
 VOS_UINT32  NAS_MML_IsNetRatSupported(
    NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enSpecRat
@@ -209,12 +170,10 @@ VOS_UINT32 NAS_MML_IsSpecRatInRatList(
 );
 
 
-/* Added by s00246516 for L-C互操作项目, 2014-02-14, Begin */
 VOS_UINT32 NAS_MML_IsSpec3Gpp2RatInRatList(
     NAS_MML_3GPP2_RAT_TYPE_ENUM_UINT8   enSpec3Gpp2Rat,
     NAS_MML_3GPP2_RAT_PRIO_STRU        *pst3Gpp2RatList
 );
-/* Added by s00246516 for L-C互操作项目, 2014-02-14, End */
 
 VOS_UINT32  NAS_MML_IsBcchPlmnIdInDestSimPlmnList (
    NAS_MML_PLMN_ID_STRU               *pstPlmnId,
@@ -301,10 +260,8 @@ VOS_UINT32 NAS_MML_IsTaiInDestTaiList (
 );
 
 
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, begin */
 VOS_UINT32 NAS_MML_IsSupportLteCapability(VOS_VOID);
 
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, end */
 #endif
 
 VOS_UINT32 NAS_MML_GetGURPlmn(
@@ -647,7 +604,6 @@ VOS_UINT8 NAS_MML_CompareLai(
     NAS_MML_LAI_STRU                    *pstOldLai
 );
 
-/* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-17, begin */
 VOS_UINT32 NAS_MML_ExactlyCompareBcchPlmnwithSimPlmn(
     NAS_MML_PLMN_ID_STRU                *pstBccPlmnId,
     NAS_MML_PLMN_ID_STRU                *pstSimPlmnId
@@ -655,7 +611,6 @@ VOS_UINT32 NAS_MML_ExactlyCompareBcchPlmnwithSimPlmn(
 
 VOS_UINT32 NAS_MML_IsExistBufferedEmgCall(VOS_VOID);
 
-/* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-17, end */
 
 VOS_VOID NAS_MML_GetValidUserCfgEhplmnInfo(
     VOS_UINT8                          *pucImsi,
@@ -694,12 +649,10 @@ VOS_UINT32 NAS_MML_IsPlatformSupportGsm (VOS_VOID);
 VOS_UINT32 NAS_MML_IsPlatformSupportUtran (VOS_VOID);
 
 
-/* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, begin */
 VOS_UINT32 NAS_MML_IsAcInfoChanged(
     NAS_MML_ACCESS_RESTRICTION_STRU    *pstOldAcRestrictInfo,
     NAS_MML_ACCESS_RESTRICTION_STRU    *pstNewAcRestrictInfo
 );
-/* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, end */
 
 VOS_VOID NAS_MML_Update_Revision_Level(
     VOS_UINT8                          *pucClassMark
@@ -757,7 +710,6 @@ VOS_UINT32 NAS_MML_DecodeEmergencyNumList(
 
 VOS_UINT32 NAS_MML_IsNvimOplmnAvail(VOS_VOID);
 
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-21, begin */
 VOS_VOID NAS_MML_Fill_IE_TddClassMark3(
     VOS_UINT8                          *pTddClassMark3
 );
@@ -766,7 +718,6 @@ VOS_VOID NAS_MML_Fill_IE_FddClassMark3(
     VOS_UINT8                          *pFddClassMark3
 );
 
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-21, end */
 VOS_UINT32 NAS_MML_GetLaiIndexInRegFailForbLaList (
     NAS_MML_LAI_STRU                                       *pstLai,
     VOS_UINT8                                              *pucLaiIdx,
@@ -803,12 +754,10 @@ VOS_UINT32 NAS_MML_GetDisabledPlmnRejCause42ForbiddenTimeSlice(VOS_VOID);
 
 VOS_UINT32 NAS_MML_GetVoiceNotPreferDisabledPlmnForbiddenTimeSlice(VOS_VOID);
 
-/* Added by n00355355 for 呼叫重建, 2015-9-24, begin */
 VOS_VOID NAS_MML_GetMmlCsTransactionStatus(
     NAS_MML_CS_TRANSACTION_ENUM_UINT8                        *penAsCsTransactionsStatus
 );
 
-/* Added by n00355355 for 呼叫重建, 2015-9-24, end */
 
 VOS_VOID NAS_MML_DelEqualPlmnsInDisableRatList(
     VOS_UINT8                                              *pucEPlmnNum,
@@ -844,22 +793,8 @@ VOS_VOID NAS_MML_DelForbPlmnInPlmnList(
     VOS_UINT8                          *pucPlmnNum,
     NAS_MML_PLMN_ID_STRU               *pstPlmnList
 );
-/* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, end */
 
-/*****************************************************************************
- 函 数 名  : NAS_MML_GetCsOnlyDataServiceSupportFlg
- 功能描述  : 获取CS ONLY配置下，是否允许发起PS业务的标志
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE 允许发起PS 业务，VOS_FALSE 不允许发起PS 业务
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-    1.日    期   : 2014年02月13日
-      作    者   : f62575
-      修改内容   : DTS2014012902032
-*****************************************************************************/
 VOS_UINT32 NAS_MML_GetCsOnlyDataServiceSupportFlg(VOS_VOID);
 
 VOS_UINT32 NAS_MML_IsPlmnListSrchRslt(
@@ -877,9 +812,7 @@ VOS_UINT32 NAS_MML_IsPrefBandPlmnSrchRslt(
     VOS_UINT32                          enPlmnSrchRslt
 );
 
-/* Added by w00176964 for V3R3C60_eCall项目, 2014-4-28, begin */
 VOS_UINT32 NAS_MML_IsCampLaiInfoChanged( VOS_VOID );
-/* Added by w00176964 for V3R3C60_eCall项目, 2014-4-28, end */
 
 VOS_UINT8 NAS_MML_IsUeSupportIms(VOS_VOID);
 VOS_UINT8 NAS_MML_GetMoCallSetupFlg(VOS_VOID);
@@ -912,21 +845,7 @@ VOS_VOID NAS_MML_GetNewRatFromRatList(
     NAS_MML_PLMN_RAT_PRIO_STRU         *pstOutputRatList
 );
 
-/*****************************************************************************
- 函 数 名  : NAS_MML_GetSmsFilterFlg
- 功能描述  : 提供给接入层获取过滤功能是否打开的Nv
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE: 需要进行过滤
-             VOS_FALSE:不需要进行过滤
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月17日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-*****************************************************************************/
 extern VOS_UINT32 NAS_MML_GetSmsFilterFlg( VOS_VOID );
 
 extern VOS_UINT8 NAS_MML_GetCsfbMoCallSetupFlg(VOS_VOID);

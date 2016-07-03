@@ -1,18 +1,4 @@
-/******************************************************************************
-  文 件 名   : BST_PAL_ACom.c
-  版 本 号   : 初稿
-  作    者   : d00173029
-  生成日期   : 2014年4月16日
-  最近修改   :
-  功能描述   : 实现AP通信口驱动接口
-  函数列表   :
 
-  修改历史   :
-  1.日    期   : 2014年07月3日
-    作    者   : d00173029
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -59,20 +45,7 @@ BST_DRV_READ_T                  g_BstPalAcommRcvCb      = BST_NULL_PTR;
    6 函数实现
 ******************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : BST_Pal_DrvAcomSend
- 功能描述  : 通过邮件发送数据到AP
- 输入参数  : BST_UINT32 ulLength,   消息长度
-             BST_UINT8 *pucData     消息内容
- 输出参数  : 无
- 返 回 值  : BST_ERR_ENUM_UINT8     固定NO_ERR，为兼容设计
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_Pal_DrvAcomSend( BST_UINT32 ulLength, BST_UINT8 *pucData )
 {
 #ifndef BST_MODEM_SELF
@@ -94,20 +67,7 @@ BST_ERR_ENUM_UINT8 BST_Pal_DrvAcomSend( BST_UINT32 ulLength, BST_UINT8 *pucData 
 #endif
     return BST_NO_ERROR_MSG;
 }
-/*****************************************************************************
- 函 数 名  : BST_Pal_DrvAcomRecv
- 功能描述  : 收到AP发送的数据
- 输入参数  : BST_UINT32 ulLength,   消息长度
-             BST_UINT8 *pucData     消息内容
- 输出参数  :
- 返 回 值  : BST_UINT32             时间发送成功数据长度
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_UINT32 BST_Pal_DrvAcomRecv( BST_UINT32 ulLength, BST_UINT8 *pucData )
 {
 #ifndef BST_MODEM_SELF
@@ -131,20 +91,7 @@ BST_UINT32 BST_Pal_DrvAcomRecv( BST_UINT32 ulLength, BST_UINT8 *pucData )
     return ulLength;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_Pal_DrvAcomInit
- 功能描述  : 初始化AP通信口相关参数
- 输入参数  :  BST_DRV_READ_T pfRcvCb    收到数据后回调句柄
- 输出参数  : 无
- 返 回 值  : BST_ERR_ENUM_UINT8         成功:返回BST_NO_ERROR_MSG
-                                        失败:返回BST_ERR_ILLEGAL_PARAM
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8  BST_Pal_DrvAcomInit( BST_DRV_READ_T pfRcvCb )
 {
     if( BST_NULL_PTR == pfRcvCb )

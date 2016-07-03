@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2008-2018, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : ptp_main.h
-  版 本 号   : 初稿
-  作    者   :
-  生成日期   : 2008年5月4日
-  最近修改   :
-  功能描述   :
-  函数列表   :
-  修改历史   :
-  1.日    期   :2008-06-19
-    作    者   :tanqiang
-    修改内容   :按编程规范添加文件头注释，增加在头文件中未定义的函数定义
-
-******************************************************************************/
 #ifndef __ptp__main__h__
 #define __ptp__main__h__
 
@@ -31,9 +14,7 @@ extern "C" {
 #define PTP_QMODE                   VOS_Q_FIFO | VOS_Q_SYN
 
 /*PTP内部控制和配置的事件*/
-/* Modified by jijianhua00169178, 事件id需要使用高16位, 2012/1/13   问题单号:DTS2012011304845 */
 #define PTP_EVT_CTROL_Q             0x00010000
-/*End of Modified by jijianhua00169178, 2012/1/13   问题单号:DTS2012011304845 */
 
 /*PTP任务的消息类型*/
 typedef enum tagPTP_TMSG_TYPE_E
@@ -256,45 +237,11 @@ ULONG PTP_StartSyncReq(ULONG ulPtpPortNumber, PTP_UNI_MASTER_NODE_S *pstUnicastM
 ULONG PTP_StartMultiDelayRespReq(ULONG ulPtpPortNumber, PTP_PORT_ADDR_S *pstPortAddr);
 
 
-/*******************************************************************************
-*    Func Name: PTP_StartMasterDelayCancel
-* Date Created: 2012-09-19
-*       Author: limin00188004
-*  Description: 1588 PTP支持多TLV处理和协商链路单独删除
-*        Input: USHORT usPortNumber:
-*               PTP_UNI_SLAVE_NODE_S *pstUnicastSlave:
-*               PTP_PPI_S *pstPtpPpi:
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2012-09-19   limin00188004           Create
-*
-*******************************************************************************/
+
 ULONG PTP_StartMasterDelayCancel(USHORT usPortNumber, 
     PTP_UNI_SLAVE_NODE_S *pstUnicastSlave, PTP_PPI_S *pstPtpPpi);
 
-/*******************************************************************************
-*    Func Name: PTP_StartMasterSyncCancel
-* Date Created: 2012-09-19
-*       Author: limin00188004
-*  Description: 1588 PTP支持多TLV处理和协商链路单独删除
-*        Input: USHORT usPortNumber:
-*               PTP_UNI_SLAVE_NODE_S *pstUnicastSlave:
-*               PTP_PPI_S *pstPtpPpi:
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2012-09-19   limin00188004           Create
-*
-*******************************************************************************/
+
 ULONG PTP_StartMasterSyncCancel(USHORT usPortNumber, 
     PTP_UNI_SLAVE_NODE_S *pstUnicastSlave, PTP_PPI_S *pstPtpPpi);
 
@@ -495,22 +442,7 @@ ULONG PTP_InitPtpDev(ULONG ulPtpDevType);
 *******************************************************************************/
 VOID PTP_FreeRes();
 
-/*******************************************************************************
-*    Func Name: PTP_FreeAllSlaveTbl
-* Date Created: 2011-11-14
-*       Author: jijianhua00169178
-*  Description: 
-*        Input: 
-*       Output: 
-*       Return: VOID
-*      Caution: 释放所有的slaveTbl. 基于链表中所有的slave 节点已经释放条件下调用
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-11-14   jijianhua00169178       Create
-*
-*******************************************************************************/
+
 VOID PTP_FreeAllSlaveTbl();
 
 /******************************************************************************

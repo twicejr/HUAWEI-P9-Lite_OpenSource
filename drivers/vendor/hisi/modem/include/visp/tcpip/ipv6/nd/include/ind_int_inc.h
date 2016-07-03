@@ -98,12 +98,8 @@ DECLARE_INTERFACE (IIF_IP6_ND_INT_SSA)
     METHOD_(VOID, pfIP6_ND_NB_Timeout) (ND_TIMER_S  *pstTimerMsg);
     METHOD_(VOID, pfIP6_ND_NBCacheCleanup_Timeout)(ND_TIMER_S * pstTimerMsg);
     METHOD_(ULONG, pfIP6_ND_ClearRATimerId)(ULONG ulIfindex);
-    /*Added by guojianjun178934, 接口状态变化或physical地址变化主动发送通告NA报文, 2014/1/27   问题单号:S-IP-005-PUBLIC-FUNC-003 */
     METHOD_(VOID, pfIP6_ND_NA_Timeout) (ND_TIMER_S  *pstTimerMsg);
-    /* End of Added by guojianjun178934, 2014/1/27   问题单号:S-IP-005-PUBLIC-FUNC-003 */
-    /*Added by guojianjun178934, 【检视问题单---DAD告警优化】产品定期发送地址冲突检测的NS报文，如果收到了NA我们需要启动DAD探测。, 2014/2/22   问题单号:DTS2014021206259  */
     METHOD_(VOID, pfIP6_ND_DADExt_Timeout) (ND_TIMER_S  *pstTimerMsg);
-    /* End of Added by guojianjun178934, 2014/2/22   问题单号:DTS2014021206259  */
 };
 
 
@@ -169,12 +165,8 @@ DECLARE_INTERFACE (IIF_IP6_ND_HOST_INT_SSA)
     METHOD_(VOID, pfIP6_ND_NBCacheCleanup_Timeout)(ND_TIMER_S *pstTimerMsg);
     METHOD_(ULONG, pfIP6_ND_CtrlMsgNotify)(UINTPTR *pulCtrMsg);
     METHOD_(ULONG, pfIP6_ND_HostTimeoutHandler)(IP6_ND_HOST_TMRMSG_S *pstTmrMsg);
-    /*Added by guojianjun178934, 接口状态变化或physical地址变化主动发送通告NA报文, 2014/1/27   问题单号:S-IP-005-PUBLIC-FUNC-003 */
     METHOD_(VOID, pfIP6_ND_NA_Timeout) (ND_TIMER_S  *pstTimerMsg);
-    /* End of Added by guojianjun178934, 2014/1/27   问题单号:S-IP-005-PUBLIC-FUNC-003 */
-    /*Added by guojianjun178934, 【检视问题单---DAD告警优化】产品定期发送地址冲突检测的NS报文，如果收到了NA我们需要启动DAD探测。, 2014/2/22   问题单号:DTS2014021206259  */
     METHOD_(VOID, pfIP6_ND_DADExt_Timeout) (ND_TIMER_S  *pstTimerMsg);
-    /* End of Added by guojianjun178934, 2014/2/22   问题单号:DTS2014021206259  */
 };
 
 /******************************************************************************/

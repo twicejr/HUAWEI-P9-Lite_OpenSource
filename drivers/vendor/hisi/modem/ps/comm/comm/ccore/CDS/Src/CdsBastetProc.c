@@ -1,22 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2006, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CdsBastetProc.c
-  版 本 号   : 初稿
-  作    者   : d00173029
-  生成日期   : 2014年05月30日
-  最近修改   :
-  功能描述   : 实现CDS BASTET相关功能
-  函数列表   :
-
-  修改历史   :
-  1.日    期   : 2014年05月30日
-    作    者   : d00173029
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -100,21 +82,7 @@ CDS_BST_ENTITY_STRU g_CdsBstEntity          = { 0 };
    5 函数实现
 ******************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : CDS_BST_MsgProc
- 功能描述  : Bastet消息处理函数。
- 输入参数  : MsgBlock  *pstMsg  消息公共头
- 输出参数  : 无
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2013年07月31日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CDS_BST_MsgProc(MsgBlock  *pstMsg)
 {
     if ( VOS_NULL_PTR == pstMsg )
@@ -160,21 +128,7 @@ VOS_VOID CDS_BST_MsgProc(MsgBlock  *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_BST_DecodeDl
- 功能描述  : 解析下行IP包，获取目的端口号，协议类型信息
- 输入参数  : TTF_MEM_ST *pstIpPkt TTF       格式数据包，调用者保证有效
- 输出参数  : CDS_BST_IP_INFO_STRU *pstIpInfo解析后的IP包信息存储位置，调用者保证有效
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2014年05月22日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CDS_DecodeBstDlPacket( TTF_MEM_ST *pstIpPkt, CDS_BST_IP_INFO_STRU *pstIpInfo )
 {
     IPV4_HDR_STRU          *pstIpv4Hdr  = VOS_NULL_PTR;
@@ -264,22 +218,7 @@ VOS_UINT32 CDS_DecodeBstDlPacket( TTF_MEM_ST *pstIpPkt, CDS_BST_IP_INFO_STRU *ps
     return PS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_BstGetDataType
- 功能描述  : 判断是否为Bastet代理的下行数据包
- 输入参数  : TTF_MEM_ST *pstIpPkt TTF格式数据包，调用者保证有效
- 输出参数  : VOS_TRUE       数据为BASTET需要的IP包
-             VOS_FALSE      数据非BASTET需要，通知DLPROC转发到A核
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2014年05月22日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CDS_BstGetDataType( TTF_MEM_ST *pstIpPkt )
 {
     CDS_BST_ENTITY_STRU    *pstBstEntity    = VOS_NULL_PTR;
@@ -331,24 +270,7 @@ VOS_UINT32 CDS_BstGetDataType( TTF_MEM_ST *pstIpPkt )
     return pstBstEntity->pfPortCheck( stIpInfo.usProtocol, stIpInfo.usDstPort );
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_DlProcBastetData
- 功能描述  : 从空口收到的Bastet包处理函数，转发到BASTET线程处理
- 输入参数  : TTF_MEM_ST *pstIpPkt       TTF格式数据包
-             VOS_UINT8    ucDeftRabId,  数据来源RAB
-             VOS_UINT16   usModemId,    数据来源Modem
-             VOS_UINT32   ulSduLen      承载SDU(IP包)实际长度
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2014年05月22日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_DlProcBastetData( TTF_MEM_ST  *pstIpPkt,
                                VOS_UINT8    ucDeftRabId,
                                VOS_UINT16   usModemId,
@@ -390,20 +312,7 @@ VOS_VOID CDS_DlProcBastetData( TTF_MEM_ST  *pstIpPkt,
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_RxDataFromBastet
- 功能描述  : 接收来自BASTET的上行IP包，推入上行队列
- 输入参数  : const VOS_UINT8 *pData,    数据指针头
-             const VOS_UINT32 ulLen     数据长度
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_UINT32 CDS_RxDataFromBastet( const VOS_UINT8 *pData, const VOS_UINT32 ulLen, const VOS_UINT8 ucFlg )
 {
     CDS_ENTITY_STRU            *pstCdsEntity= VOS_NULL_PTR;
@@ -481,21 +390,7 @@ VOS_UINT32 CDS_RxDataFromBastet( const VOS_UINT8 *pData, const VOS_UINT32 ulLen,
     return ulLen;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_UlProcBastetData
- 功能描述  : CdsEntity处理上行Bastet事件IP包
- 输入参数  : 无(数据在pstBastetDataQue队列中)
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2014年05月22日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CDS_UlProcBastetData( VOS_VOID )
 {
     VOS_UINT32              ulCnt;
@@ -567,22 +462,7 @@ VOS_UINT32 CDS_UlProcBastetData( VOS_VOID )
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_FwProcBastetData
- 功能描述  : 入队Bastet认为非自行能够处理的IP包到A核
- 输入参数  : VOS_UINT8        *pData    转发包TTF_MEM_ST
-             VOS_UINT32        ulLen    辅助确认结构体长度
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2014年05月22日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CDS_FwProcBastetData(
     const VOS_UINT8        *pData,
     const VOS_UINT32        ulLen )
@@ -617,21 +497,7 @@ VOS_UINT32 CDS_FwProcBastetData(
     return (VOS_UINT32)sizeof(TTF_MEM_ST);
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_ConfigBastetNetState
- 功能描述  : 获取ID_BST_CDS_NET_DEVICE_UP_IND信息，保持当前网卡状态
- 输入参数  : const BST_CDS_NET_DEVICE_STATE_STRU *pstNetMsg 消息结构体
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2014年05月22日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_ConfigBastetNetState( const BST_CDS_NET_DEVICE_STATE_STRU *pstNetMsg )
 {
     CDS_BST_ENTITY_STRU        *pstBstEntity = VOS_NULL_PTR;
@@ -645,21 +511,7 @@ VOS_VOID CDS_ConfigBastetNetState( const BST_CDS_NET_DEVICE_STATE_STRU *pstNetMs
     pstBstEntity->usNetState    = (VOS_UINT16)pstNetMsg->ulNetDeviceState;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_RegBstDlRcvCB
- 功能描述  : 注册下行收包回调函数
- 输入参数  : const BST_CDS_REG_RCV_CB_STRU *pstRegDlRcvFunMsg 消息结构体
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2014年05月22日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CDS_RegBstDlRcvCB( const BST_CDS_REG_RCV_CB_STRU *pstRegDlRcvFunMsg )
 {
     CDS_BST_ENTITY_STRU        *pstBstEntity    = VOS_NULL_PTR;
@@ -677,21 +529,7 @@ VOS_UINT32 CDS_RegBstDlRcvCB( const BST_CDS_REG_RCV_CB_STRU *pstRegDlRcvFunMsg )
 }
 
 
-/*****************************************************************************
- 函 数 名  : CDS_RegBstDlRcvCB
- 功能描述  : 注册下行收包回调函数
- 输入参数  : const BST_CDS_REG_RCV_CB_STRU *pstRegDlRcvFunMsg 消息结构体
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2014年05月22日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CDS_ConfigAcoreModemRabid(
     const BST_CDS_NET_ACORE_MODEM_RABID_STRU *pstModemRabIdMsg )
 {
@@ -705,21 +543,7 @@ VOS_UINT32 CDS_ConfigAcoreModemRabid(
     CDS_PRINT_INFO2(CDS_ConfigAcoreModemRabid_ENUM, CDS_PRINT_MODEM_ID_RABID, pstBstEntity->usModemId,  pstBstEntity->ucRabId);
     return PS_SUCC;
 }
-/*****************************************************************************
- 函 数 名  : CDS_ConfigBastetTxRxEnable
- 功能描述  : 获取ID_BST_CDS_TX_RX_RPT_CTRL_REQ消息，配置是否上报数据收发标志
- 输入参数  : const BST_CDS_TX_RX_RPT_ENABLE_STRU *pstFlagMsg 消息结构体
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2014年05月22日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_ConfigBastetRxEnable( const BST_CDS_TX_RX_RPT_ENABLE_STRU *pstFlagMsg )
 {
     CDS_BST_ENTITY_STRU        *pstBstEntity    = VOS_NULL_PTR;
@@ -735,21 +559,7 @@ VOS_VOID CDS_ConfigBastetRxEnable( const BST_CDS_TX_RX_RPT_ENABLE_STRU *pstFlagM
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_ConfigBastetTxRxEnable
- 功能描述  : 获取ID_BST_CDS_TX_RX_RPT_CTRL_REQ消息，配置是否上报数据收发标志
- 输入参数  : const BST_CDS_TX_RX_RPT_ENABLE_STRU *pstFlagMsg 消息结构体
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2014年05月22日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_ConfigBastetTxEnable( const BST_CDS_TX_RX_RPT_ENABLE_STRU *pstFlagMsg )
 {
     CDS_BST_ENTITY_STRU        *pstBstEntity    = VOS_NULL_PTR;
@@ -766,22 +576,7 @@ VOS_VOID CDS_ConfigBastetTxEnable( const BST_CDS_TX_RX_RPT_ENABLE_STRU *pstFlagM
 }
 
 
-/*****************************************************************************
- 函 数 名  : CDS_BastetCheckChannelId
- 功能描述  : 检查当前使用的RabId, ModemId是否有变化，如果变化则立即通知Bastet
- 输入参数  : VOS_UINT16 usModemId,  当前使用的modemId
-             VOS_UINT8 ucRabId      当前使用的RabId
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2014年05月22日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_BstSendRsmCbMsg( VOS_VOID )
 {
     BST_CDS_SEND_CB_INFO_STRU  *pstChnlInfoMsg  = VOS_NULL_PTR;
@@ -808,21 +603,7 @@ VOS_VOID CDS_BstSendRsmCbMsg( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_SendBastetRxInd
- 功能描述  : 提示Bastet模块，当前有非Bastet数据IP包在接收，不可以快速拆链
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2014年05月22日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_BstSendRxInd( VOS_VOID )
 {
     BST_CDS_TX_RX_MSG_STRU     *pstTrxMsg;
@@ -860,21 +641,7 @@ VOS_VOID CDS_BstSendRxInd( VOS_VOID )
 }
 
 
-/*****************************************************************************
- 函 数 名  : CDS_BstSendTxInd
- 功能描述  : 提示Bastet模块，当前有非Bastet数据IP包在发送，不可以快速拆链
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2014年05月22日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_BstSendTxInd( VOS_VOID )
 {
     BST_CDS_TX_RX_MSG_STRU     *pstTrxMsg;
@@ -911,21 +678,7 @@ VOS_VOID CDS_BstSendTxInd( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_BstInit
- 功能描述  : LTE流控初始化
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月24日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_BstInit(VOS_VOID)
 {
     VOS_UINT32                          ulReturnCode;
@@ -957,21 +710,7 @@ VOS_VOID CDS_BstInit(VOS_VOID)
 
 
 
-/*****************************************************************************
- 函 数 名  : CDS_GetBastetSupportFlag
- 功能描述  : LTE流控初始化
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月24日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 PS_BOOL_ENUM_UINT8 CDS_GetBastetSupportFlag(VOS_VOID)
 {
     CDS_BST_ENTITY_STRU        *pstBstEntity;
@@ -983,22 +722,7 @@ PS_BOOL_ENUM_UINT8 CDS_GetBastetSupportFlag(VOS_VOID)
 
 
 
-/*****************************************************************************
- 函 数 名  : CDS_GU_BstProcDlData
- 功能描述 :GU模式下处理下行数据
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : PS_TRUE ----bastet模块已处理，CDS模块不需要继续处理，
-                       PS_FALSE----CDS模块需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2015年06月24日
-      作    者   : z00128442
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 PS_BOOL_ENUM_UINT8 CDS_GU_BstProcDlData( CDS_RABM_TRANS_DATA_STRU *pstDlData, MODEM_ID_ENUM_UINT16 enModemId )
 {
     VOS_UINT32                          ulDataType;
@@ -1075,22 +799,7 @@ PS_BOOL_ENUM_UINT8 CDS_GU_BstProcDlData( CDS_RABM_TRANS_DATA_STRU *pstDlData, MO
 #if (CDS_FEATURE_ON == CDS_FEATURE_LTE)
 extern VOS_VOID L2_DlAppThrStatProc(VOS_UINT32 ulLength);
 
-/*****************************************************************************
- 函 数 名  : CDS_LTE_BstProcDlData
- 功能描述 :LTE模式下处理下行数据
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : PS_TRUE ----bastet模块已处理，CDS模块不需要继续处理，
-                       PS_FALSE----CDS模块需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2015年06月24日
-      作    者   : z00128442
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 PS_BOOL_ENUM_UINT8 CDS_LTE_BstProcDlData(CDS_LPDCP_DATA_STRU *pstDsLpdcpData,VOS_UINT8 ucRabId )
 {
     VOS_UINT32                          ulDataType;
@@ -1171,60 +880,18 @@ PS_BOOL_ENUM_UINT8 CDS_LTE_BstProcDlData(CDS_LPDCP_DATA_STRU *pstDsLpdcpData,VOS
 /*lint +e429*/
 /*lint -restore*/
 #else
-/*****************************************************************************
- 函 数 名  : CDS_BstSendTxInd
- 功能描述 :bastet模块未定义时，该函数空实现
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2015年06月24日
-      作    者   : z00128442
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_BstSendTxInd( VOS_VOID )
 {
     return;
 }
-/*****************************************************************************
- 函 数 名  : CDS_BstSendRxInd
- 功能描述 :bastet模块未定义时，该函数空实现
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2015年06月24日
-      作    者   : z00128442
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_BstSendRxInd( VOS_VOID )
 {
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_GU_BstProcDlData
- 功能描述 :bastet模块未定义时，该函数空实现
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2015年06月24日
-      作    者   : z00128442
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 
 PS_BOOL_ENUM_UINT8 CDS_GU_BstProcDlData( CDS_RABM_TRANS_DATA_STRU *pstDlData, MODEM_ID_ENUM_UINT16 enModemId )
 {
@@ -1233,21 +900,7 @@ PS_BOOL_ENUM_UINT8 CDS_GU_BstProcDlData( CDS_RABM_TRANS_DATA_STRU *pstDlData, MO
 
 
 #if (CDS_FEATURE_ON == CDS_FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : CDS_LTE_BstProcDlData
- 功能描述 :bastet模块未定义时，该函数空实现
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2015年06月24日
-      作    者   : z00128442
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 
 PS_BOOL_ENUM_UINT8 CDS_LTE_BstProcDlData(CDS_LPDCP_DATA_STRU *pstDsLpdcpData,VOS_UINT8 ucRabId )
 {

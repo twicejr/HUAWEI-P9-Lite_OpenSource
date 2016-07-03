@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : mac_PM.c
-  版 本 号   : 初稿
-  作    者   : Zourong
-  生成日期   : 2013年6月18日
-  最近修改   :
-  功能描述   : PM平台代码，包括通用的状态机和仲裁机制
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年6月18日
-    作    者   : Zourong
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -44,29 +27,7 @@ extern "C" {
   2 全局变量定义
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : mac_fsm_create
- 功能描述  : 状态机创建接口
- 输入参数  :
-             p_oshandle: 状态机owner的指针，对低功耗状态机，指向VAP结构
-             p_name    : 状态机的名字
-             p_ctx     : 状态机context,指向pm_handler
-             uc_init_state:初始状态
-             p_state_info:状态机实例指针
-             uc_num_states:状态机状态个数
-             pp_event_names:本状态机中事件对应的事件名字
-             us_num_event_names:事件个数
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月18日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 mac_fsm_stru*  mac_fsm_create(oal_void*                 p_oshandle,         /*状态机owner的指针，对低功耗状态机，指向VAP结构*/
                                 const oal_uint8          *p_name,             /*状态机的名字*/
                                 oal_void                 *p_ctx,              /*状态机context*/
@@ -133,21 +94,7 @@ mac_fsm_stru*  mac_fsm_create(oal_void*                 p_oshandle,         /*状
 
 }
 
-/*****************************************************************************
- 函 数 名  : mac_fsm_destroy
- 功能描述  : 状态机的destroy接口
- 输入参数  : p_fsm:状态机指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月18日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void mac_fsm_destroy(mac_fsm_stru* p_fsm)
 {
     OAL_MEM_FREE(p_fsm, OAL_TRUE);
@@ -155,21 +102,7 @@ oal_void mac_fsm_destroy(mac_fsm_stru* p_fsm)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_fsm_trans_to
- 功能描述  : 状态机的destroy接口
- 输入参数  : p_fsm:状态机指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月18日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 mac_fsm_trans_to_state(mac_fsm_stru* p_fsm,oal_uint8 uc_state)
 {
     oal_uint8                    uc_cur_state = p_fsm->uc_cur_state;
@@ -209,21 +142,7 @@ oal_uint32 mac_fsm_trans_to_state(mac_fsm_stru* p_fsm,oal_uint8 uc_state)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_fsm_event_dispatch
- 功能描述  : 状态机的事件处理接口
- 输入参数  : p_fsm:状态机指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月18日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 mac_fsm_event_dispatch(mac_fsm_stru* p_fsm ,oal_uint16 us_event,
                            oal_uint16 us_event_data_len, oal_void *p_event_data)
 {
@@ -272,22 +191,7 @@ mac_pm_arbiter_state_info g_pm_arbiter_state_info[DEV_PWR_STATE_BUTT] =
     {DEV_PWR_STATE_OFF,         "Poweroff"}
 };
 
-/*****************************************************************************
- 函 数 名  : mac_pm_arbiter_init
- 功能描述  : 仲裁结构初始化
- 输入参数  : pst_device: mac_deivce结构指针
 
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年8月18日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 mac_pm_arbiter_init(mac_device_stru* pst_device)
 {
     mac_pm_arbiter_stru *pst_arbiter;
@@ -306,22 +210,7 @@ oal_uint32 mac_pm_arbiter_init(mac_device_stru* pst_device)
     return OAL_SUCC;
 
 }
-/*****************************************************************************
- 函 数 名  : mac_pm_arbiter_destroy
- 功能描述  : 仲裁结构销毁
- 输入参数  : pst_device: mac_deivce结构指针
 
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年8月18日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 mac_pm_arbiter_destroy(mac_device_stru* pst_device)
 {
     if(pst_device->pst_pm_arbiter)
@@ -333,23 +222,7 @@ oal_uint32 mac_pm_arbiter_destroy(mac_device_stru* pst_device)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_pm_arbiter_alloc_id
- 功能描述  : 分配仲裁ID接口
- 输入参数  : pst_device: mac_deivce结构指针
-             pst_name:   requestor的名字字符串指针
-             en_arbiter_type:MAC_PM_ARBITER_TYPE类型的requestor类型
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月18日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 mac_pm_arbiter_alloc_id(mac_device_stru* pst_device, oal_uint8* pst_name,mac_pm_arbiter_type_enum en_arbiter_type)
 {
     mac_pm_arbiter_stru *pst_pm_arbiter = (mac_pm_arbiter_stru*)(pst_device->pst_pm_arbiter);
@@ -385,22 +258,7 @@ oal_uint32 mac_pm_arbiter_alloc_id(mac_device_stru* pst_device, oal_uint8* pst_n
 
 }
 
-/*****************************************************************************
- 函 数 名  : mac_pm_arbiter_free_id
- 功能描述  : 分配仲裁ID接口
- 输入参数  : pst_device: mac_deivce结构指针
-             ul_arbiter_id: 待释放的ID号
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月18日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 mac_pm_arbiter_free_id(mac_device_stru* pst_device, oal_uint32 ul_arbiter_id)
 {
     mac_pm_arbiter_stru *pst_pm_arbiter = (mac_pm_arbiter_stru*)(pst_device->pst_pm_arbiter);
@@ -423,22 +281,7 @@ oal_uint32 mac_pm_arbiter_free_id(mac_device_stru* pst_device, oal_uint32 ul_arb
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_pwr_arbiter_to_state
- 功能描述  : 仲裁状态切换的接口
- 输入参数  : pst_device: mac_deivce结构指针
-             ul_arbiter_id: 待释放的ID号
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月18日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 oal_void mac_pm_arbiter_to_state(mac_device_stru *pst_device, oal_uint32 ul_arbiter_id,
                                             oal_uint8  uc_state_from, oal_uint8  uc_state_to)
@@ -506,21 +349,7 @@ oal_void mac_pm_arbiter_to_state(mac_device_stru *pst_device, oal_uint32 ul_arbi
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_pm_set_hal_state
- 功能描述  : PM操纵hal层接口
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月17日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 mac_pm_set_hal_state(mac_device_stru *pst_device,oal_uint8 uc_state_to)
 {
     hal_lpm_state_param_stru     st_para;

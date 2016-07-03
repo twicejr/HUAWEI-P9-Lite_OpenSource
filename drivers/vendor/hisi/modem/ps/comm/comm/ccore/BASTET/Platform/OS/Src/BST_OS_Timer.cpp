@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : BST_OS_PalTimer.c
-  版 本 号   : 初稿
-  作    者   : d00173029
-  生成日期   : 2014年05月04日
-  最近修改   :
-  功能描述   : 操作系统单TIMER操作实例
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年05月13日
-    作    者   : d00173029
-    修改内容   : 建立文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -51,34 +34,12 @@ extern "C" BST_UINT32                       BST_OS_TimerChkNearest( BST_VOID );
    6 函数实现
 ******************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : BST_OS_TimerNowMs
- 功能描述  : 获取当前OS tick
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 当前OS tick
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_UINT32 BST_OS_TimerNowMs( BST_VOID )
 {
     return BST_OS_PalTimerNowMs();
 }
-/***************************************************************
- 函 数 名  : BST_OS_TimeGetRemain
- 功能描述  : Get the remain seconds of the Timer(lId)
- 输入参数  : lId  ;Id of the timer
- 输出参数  :
- 返 回 值  : BST_OS_TIMERID_T
- 修改历史  :
-    1.日    期   : 2014/01/01
-      作    者   : Davy
-      修改内容   : 创建函数
-***************************************************************/
+
 BST_UINT32 BST_OS_TimeGetRemain( BST_OS_TIMERID_T ulId )
 {
     BST_OS_LOCKCNT_T                    tThreadLockCnt;
@@ -145,17 +106,7 @@ BST_UINT32 BST_OS_TimeGetRemain( BST_OS_TIMERID_T ulId )
     BST_OS_ThreadUnLock( tThreadLockCnt );
     return ulRemainer;
 }
-/***************************************************************
- 函 数 名  : BST_OS_TimerChkExpire
- 功能描述  : Traversal the Timer list, and find the minimum remaining time.
- 输入参数  : BST_VOID
- 输出参数  : BST_VOID
- 返 回 值  : BST_UINT32
- 修改历史  :
-    1.日    期   : 2014/01/01
-      作    者   : Davy
-      修改内容   : 创建函数
-***************************************************************/
+
 BST_BOOL BST_OS_TimerChkExpire(
     BST_UINT32  ulPastLength,
     BST_UINT32  ulTimerLength )
@@ -171,17 +122,7 @@ BST_BOOL BST_OS_TimerChkExpire(
     return BST_FALSE;
 }
 
-/***************************************************************
- 函 数 名  : BST_OS_TimerChkNearest
- 功能描述  : Traversal the Timer list, and find the minimum remaining time.
- 输入参数  : BST_VOID
- 输出参数  : BST_VOID
- 返 回 值  : BST_UINT32
- 修改历史  :
-    1.日    期   : 2014/01/01
-      作    者   : Davy
-      修改内容   : 创建函数
-***************************************************************/
+
 BST_UINT32 BST_OS_TimerChkNearest( BST_VOID )
 {
     BST_OS_TIMER_STRU      *pstTimerIdx;
@@ -265,19 +206,7 @@ BST_OS_TIMER_FIND_NEAREST:
     return ulMinMs;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_OS_TimerSysInit
- 功能描述  : 定时器初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_OS_TimerSysInit( BST_VOID )
 {
     BST_OS_LOCKCNT_T        tThreadLockCnt;
@@ -293,17 +222,7 @@ BST_VOID BST_OS_TimerSysInit( BST_VOID )
     BST_OS_ThreadUnLock( tThreadLockCnt );
 }
 
-/***************************************************************
- 函 数 名  : BST_OS_TimerCreate
- 功能描述  : Create a timer, set it's callback function,and get timer's pointer
- 输入参数  : call_back  ;timer's callback function
- 输出参数  : pTimer, pointer of the timer
- 返 回 值  : BST_INT32        ; timer ulId
- 修改历史  :
-    1.日    期   : 2014/01/01
-      作    者   : Davy
-      修改内容   : 创建函数
-***************************************************************/
+
 /*lint -e429*/
 BST_OS_TIMERID_T BST_OS_TimerCreateCpp(
     BST_OS_CTimerCb    *pcCallBack,
@@ -340,17 +259,7 @@ BST_OS_TIMERID_T BST_OS_TimerCreateCpp(
     return pstTimer->ulId;
 }
 /*lint +e429*/
-/***************************************************************
- 函 数 名  : BST_OS_TimerCreate
- 功能描述  : Create a timer, set it's callback function,and get timer's pointer
- 输入参数  : call_back  ;timer's callback function
- 输出参数  : pTimer, pointer of the timer
- 返 回 值  : BST_INT32        ; timer ulId
- 修改历史  :
-    1.日    期   : 2014/01/01
-      作    者   : Davy
-      修改内容   : 创建函数
-***************************************************************/
+
 /*lint -e429*/
 BST_OS_TIMERID_T BST_OS_TimerCreate(
     BST_OS_TIMER_CB_T   pfCallBack,
@@ -391,18 +300,7 @@ BST_OS_TIMERID_T BST_OS_TimerCreate(
     return pstTimer->ulId;
 }
 /*lint +e429*/
-/***************************************************************
- 函 数 名  : BST_OS_TimerStart
- 功能描述  : Set the timeout value of a Timer.
- 输入参数  : lId      ;timer ulId
-             length   ;Timeout length
- 输出参数  :
- 返 回 值  : BST_VOID
- 修改历史  :
-    1.日    期   : 2014/01/01
-      作    者   : Davy
-      修改内容   : 创建函数
-***************************************************************/
+
 BST_VOID BST_OS_TimerStart( BST_OS_TIMERID_T ulId, BST_UINT32 ulLength )
 {
     BST_UINT32                          ulNearestTime;
@@ -429,17 +327,7 @@ BST_VOID BST_OS_TimerStart( BST_OS_TIMERID_T ulId, BST_UINT32 ulLength )
     }
 }
 
-/***************************************************************
- 函 数 名  : BST_OS_TimerStop
- 功能描述  : Stop a Timer
- 输入参数  : lId      ;timer ulId
- 输出参数  :
- 返 回 值  : BST_VOID
- 修改历史  :
-    1.日    期   : 2014/01/01
-      作    者   : Davy
-      修改内容   : 创建函数
-***************************************************************/
+
 BST_VOID BST_OS_TimerStop( BST_OS_TIMERID_T ulId )
 {
     BST_OS_TIMER_STRU *timer_ptr        = BST_OS_TimerSrch( ulId );
@@ -469,17 +357,7 @@ BST_VOID BST_OS_TimerStop( BST_OS_TIMERID_T ulId )
     }
 }
 
-/***************************************************************
- 函 数 名  : BST_OS_TimerIsStop
- 功能描述  : Query whether a timer is stopped.
- 输入参数  : lId      ;timer ulId
- 输出参数  :
- 返 回 值  : BST_BOOL  ; True is stopped, False is active
- 修改历史  :
-    1.日    期   : 2014/01/01
-      作    者   : Davy
-      修改内容   : 创建函数
-***************************************************************/
+
 BST_BOOL BST_OS_TimerIsStop( BST_OS_TIMERID_T ulId )
 {
     BST_OS_TIMER_STRU *timer_ptr = BST_OS_TimerSrch( ulId );
@@ -492,17 +370,7 @@ BST_BOOL BST_OS_TimerIsStop( BST_OS_TIMERID_T ulId )
     return BST_TRUE;
 }
 
-/***************************************************************
- 函 数 名  : BST_OS_TimerRemove
- 功能描述  : Delete a timer from the timer list.
- 输入参数  : lId      ;timer ulId
- 输出参数  : BST_VOID
- 返 回 值  : BST_VOID
- 修改历史  :
-    1.日    期   : 2014/01/01
-      作    者   : Davy
-      修改内容   : 创建函数
-***************************************************************/
+
 BST_VOID BST_OS_TimerRemove( BST_OS_TIMERID_T ulId )
 {
     BST_OS_TIMER_STRU  *pstTimerIdx;
@@ -544,17 +412,7 @@ BST_VOID BST_OS_TimerRemove( BST_OS_TIMERID_T ulId )
     BST_OS_SpinUnLock( &g_BstTimerSpinLock, utThreadLockCnt );
 }
 
-/***************************************************************
- 函 数 名  : BST_OS_TimerSrch
- 功能描述  : Find a timer from the timer list
- 输入参数  : lId;   timer ulId
- 输出参数  : BST_VOID
- 返 回 值  : TEST_TIMER_STRU *
- 修改历史  :
-    1.日    期   : 2014/01/01
-      作    者   : Davy
-      修改内容   : 创建函数
-***************************************************************/
+
 BST_OS_TIMER_STRU *BST_OS_TimerSrch( BST_OS_TIMERID_T ulId )
 {
     BST_OS_TIMER_STRU  *pstTimerIdx;

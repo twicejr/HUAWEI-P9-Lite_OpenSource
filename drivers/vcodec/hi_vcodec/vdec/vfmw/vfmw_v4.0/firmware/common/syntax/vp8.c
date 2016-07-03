@@ -724,20 +724,7 @@ SINT32 VP8DEC_VDMPostProc(VP8_CTX_S *pCtx, SINT32 ErrRatio)
 }
 
 
-/*****************************************************************************
- 函 数 名  :  
- 功能描述  :  
- 输出参数  :  
- 返 回 值  :  
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
- 日    期  :  
- 作    者  :  
- 修改内容  :  
-
-*****************************************************************************/
 SINT32 VP8DEC_Init(VP8_CTX_S *pCtx, SYNTAX_EXTRA_DATA_S *pstExtraData)
 {
     VP8_CODECINF *pVp8CodecInfo;

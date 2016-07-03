@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasUsimmApi.c
-  版 本 号   : 初稿
-  作    者   : z00161729
-  生成日期   : 2013年6月3日
-  最近修改   :
-  功能描述   : NasUsimmApi.c文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年6月3日
-    作    者   : z00161729
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -25,9 +8,7 @@
 #include "NasUsimmApiMntn.h"
 #include "NasMmlCtx.h"
 
-    /* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-29, begin */
 #include "MM_Share.h"
-    /* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-29, end */
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -56,7 +37,6 @@ TAF_USIMM_VSIM_INFO_STRU             g_stNasVsimInfo;
 /*****************************************************************************
   5 变量定义
 *****************************************************************************/
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-30, begin */
 NAS_USIMM_SRVICES_TYPE_STRU g_NasUsimSrviceTypeTab[NAS_USIM_SVR_MAX_SERVICE] =
 {
     {NAS_USIM_SVR_NONE,                     UICC_SVR_NONE,                  UICC_SVR_NONE},                 /* 0 */
@@ -177,7 +157,6 @@ NAS_USIMM_SRVICES_TYPE_STRU g_NasUsimSrviceTypeTab[NAS_USIM_SVR_MAX_SERVICE] =
     {NAS_USIM_SVR_USSD ,                    SIM_SVR_USSD,                   UICC_SVR_NONE},
     {NAS_USIM_SVR_EXT_CCP ,                 SIM_SVR_ECCP,                   UICC_SVR_NONE},
 };
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-30, end */
 
 /*lint -save -e958 */
 
@@ -186,30 +165,7 @@ NAS_USIMM_SRVICES_TYPE_STRU g_NasUsimSrviceTypeTab[NAS_USIM_SVR_MAX_SERVICE] =
 *****************************************************************************/
 
 
-/*****************************************************************************
- 函 数 名  : NAS_USIMMAPI_SetFileReq
- 功能描述  : 对USIMM模块的NAS_SndUsimmUpdateFileReq和NAS_SndUsimmUpdateFileReq_Instance进行封装。
-             SVLTE模式下调用NAS_SndUsimmUpdateFileReq_Instance；
-             非SVLTE模式下调用NAS_SndUsimmUpdateFileReq
- 输入参数  : ulSenderPid:发送请求的pId；
-             ulSendPara :发送的参数；
-             pstSetFileInfo:设置的文件信息；
- 输出参数  : 无
- 返 回 值  : USIMM_API_SUCCESS
-             USIMM_API_FAILED
-             USIMM_API_WRONG_PARA
-             USIMM_API_NOTAVAILABLE
-             USIMM_API_NOCARD
-             USIMM_API_ALLOCMEM_FAILED
-             USIMM_API_SENDMSG_FAILED
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年6月4日
-   作    者   : w00242748
-   修改内容   : 新生成函数
- *****************************************************************************/
 VOS_UINT32 NAS_USIMMAPI_SetFileReq(
     VOS_UINT32                          ulSenderPid,
     VOS_UINT32                          ulSendPara,
@@ -229,30 +185,7 @@ VOS_UINT32 NAS_USIMMAPI_SetFileReq(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_USIMMAPI_GetFileReq
- 功能描述  : 对USIMM模块的USIMM_GetFileReq和USIMM_GetFileReq_Instance进行封装。
-             SVLTE模式下调用USIMM_GetFileReq_Instance；
-             非SVLTE模式下调用NAS_SndUsimmUpdateFileReq
- 输入参数  : ulSenderPid:发送请求的pId；
-             ulSendPara :发送的参数；
-             pstGetFileInfo:获取的文件信息；
- 输出参数  : 无
- 返 回 值  : USIMM_API_SUCCESS
-             USIMM_API_FAILED
-             USIMM_API_WRONG_PARA
-             USIMM_API_NOTAVAILABLE
-             USIMM_API_NOCARD
-             USIMM_API_ALLOCMEM_FAILED
-             USIMM_API_SENDMSG_FAILED
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年6月4日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_USIMMAPI_GetFileReq(
     VOS_UINT32                          ulSenderPid,
     VOS_UINT32                          ulSendPara,
@@ -272,31 +205,7 @@ VOS_UINT32 NAS_USIMMAPI_GetFileReq(
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_USIMMAPI_AuthReq
- 功能描述  : 对USIMM模块的NAS_SndUsimmAuthReq和NAS_SndUsimmAuthReq_Instance进行封装。
-             SVLTE模式下调用NAS_SndUsimmAuthReq_Instance；
-             非SVLTE模式下调用NAS_SndUsimmAuthReq
- 输入参数  : ulSenderPid:发送请求的pId；
-             ucChallengeType:鉴权类型
-             pucRand:鉴权随机数
-             pucAutn:鉴权数据
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年6月4日
-   作    者   : w00242748
-   修改内容   : 新生成函数
- 2.日    期  : 2013年11月30日
-   作    者  : l65478
-   修改内容  : DTS2013121919477,连续收到网络的两条鉴权消息,网络把第一条消息的响应作为第二条请求的响应,导致鉴权失败
- 3.日    期   : 2013年7月17日
-   作    者   : y00245242
-   修改内容   : 由于USIM接口修改，重新做适配
-*****************************************************************************/
 VOS_VOID NAS_USIMMAPI_AuthReq(
     VOS_UINT32                          ulSenderPid,
     VOS_UINT8                           ucChallengeType,
@@ -307,7 +216,6 @@ VOS_VOID NAS_USIMMAPI_AuthReq(
 {
     VOS_UINT32                          ulRet;
 
-    /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-22, begin */
     USIMM_CARDAPP_ENUM_UINT32           enAppType;
     NAS_USIMM_AUTH_DATA_STRU            stAuthData;
 
@@ -343,7 +251,6 @@ VOS_VOID NAS_USIMMAPI_AuthReq(
 
     /* 向USIMM发送鉴权消息 */
     ulRet = NAS_SndUsimmAuthReq(ulSenderPid, enAppType, &stAuthData, ucOpId);
-    /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-17, end */
 
     /* 调用可维可测 */
     NAS_LogUsimmApiAuthReq(ulRet, NAS_USIMM_API_TYPE_WITHOUT_INSTANCE, ucChallengeType, pucRand, pucAutn);
@@ -351,32 +258,7 @@ VOS_VOID NAS_USIMMAPI_AuthReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_USIMMAPI_PinReq
- 功能描述  : 对USIMM模块的USIMM_PinReq和USIMM_PinReq_Instance进行封装。
-             SVLTE模式下调用USIMM_PinReq_Instance；
-             非SVLTE模式下调用USIMM_PinReq
- 输入参数  : ulSenderPid:发送请求的pId；
-             ucCmdType:操作类型
-             ucPINType:PIN类型
-             pucOldPIN:PIN码内容
-             pucNewPIN:新PIN码内容
- 输出参数  : 无
- 返 回 值  : USIMM_API_SUCCESS
-             USIMM_API_FAILED
-             USIMM_API_WRONG_PARA
-             USIMM_API_NOTAVAILABLE
-             USIMM_API_NOCARD
-             USIMM_API_ALLOCMEM_FAILED
-             USIMM_API_SENDMSG_FAILED
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年6月4日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_USIMMAPI_PinReq(
     VOS_UINT32                          ulSenderPid,
     VOS_UINT8                           ucCmdType,
@@ -412,30 +294,7 @@ VOS_UINT32 NAS_USIMMAPI_PinReq(
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_USIMMAPI_MaxEFRecordNumReq
- 功能描述  : 对USIMM模块的USIMM_MaxEFRecordNumReq和USIMM_MaxEFRecordNumReq_Instance进行封装。
-             SVLTE模式下调用USIMM_MaxEFRecordNumReq_Instance；
-             非SVLTE模式下调用USIMM_MaxEFRecordNumReq
- 输入参数  : ulSenderPid:发送请求的pId；
-             enAppType  :usimm应用类型
-             usEFid     :文件id
- 输出参数  : 无
- 返 回 值  : USIMM_API_SUCCESS
-             USIMM_API_FAILED
-             USIMM_API_WRONG_PARA
-             USIMM_API_NOTAVAILABLE
-             USIMM_API_NOCARD
-             USIMM_API_ALLOCMEM_FAILED
-             USIMM_API_SENDMSG_FAILED
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年6月4日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  NAS_USIMMAPI_MaxEFRecordNumReq(
     VOS_UINT32                          ulSenderPid,
     USIMM_CARDAPP_ENUM_UINT32           enAppType,
@@ -453,27 +312,7 @@ VOS_UINT32  NAS_USIMMAPI_MaxEFRecordNumReq(
     return ulRet;
 }
 
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-29, begin */
-/*****************************************************************************
- 函 数 名  : NAS_CovertUsimSrvTypeToUiccSrvType
- 功能描述  : 转换NAS内部的(U)SIM service type到USIM接口UICC service type
 
- 输入参数  : enUsimSrvType －－ NAS内部定义的USIM service type
- 输出参数  : enUiccSrvType －－ 返回USIM接口的service type地址
- 返 回 值  : VOS_FALSE  无对应的UICC业务类型
-             VOS_TRUE   从table表中返回UICC业务类型
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2013年7月29日
-   作    者   : y00245242
-   修改内容   : 创建
- 2.日    期   : 2014年2月19日
-   作    者   : s00217060
-   修改内容   : coverity清理
-*****************************************************************************/
 VOS_UINT32  NAS_CovertUsimSrvTypeToUiccSrvType(
     NAS_USIMM_SERVICES_TYPE_ENUM_UINT32 enUsimSrvType,
     UICC_SERVICES_TYPE_ENUM_UINT32     *enUiccSrvType
@@ -484,9 +323,7 @@ VOS_UINT32  NAS_CovertUsimSrvTypeToUiccSrvType(
 
     ulRst = VOS_FALSE;
 
-    /* Added by s00217060 for coverity清理, 2014-02-19, begin */
     ucCardType  = USIMM_CARD_NOCARD;
-    /* Added by s00217060 for coverity清理, 2014-02-19, end */
 
     /* 此处需要调用API获取,因为此时相关全局变量在未开机时还未更新 */
     (VOS_VOID)NAS_USIMMAPI_GetCardType(VOS_NULL_PTR, &ucCardType);
@@ -513,39 +350,13 @@ VOS_UINT32  NAS_CovertUsimSrvTypeToUiccSrvType(
     return ulRst;
 }
 
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-29, end */
-/*****************************************************************************
- 函 数 名  : NAS_USIMMAPI_IsServiceAvailable
- 功能描述  : 对USIMM模块的USIMM_IsServiceAvailable和USIMM_IsServiceAvailable_Instance进行封装。
-             SVLTE模式下调用USIMM_IsServiceAvailable_Instance；
-             非SVLTE模式下调用USIMM_IsServiceAvailable
- 输入参数  : enService:服务ID；
- 输出参数  : 无
- 返 回 值  : USIMM_API_SUCCESS
-             USIMM_API_FAILED
-             USIMM_API_WRONG_PARA
-             USIMM_API_NOTAVAILABLE
-             USIMM_API_NOCARD
-             USIMM_API_ALLOCMEM_FAILED
-             USIMM_API_SENDMSG_FAILED
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年6月4日
-   作    者   : w00242748
-   修改内容   : 新生成函数
- 2.日    期   : 2013年7月22日
-   作    者   : y00245242
-   修改内容   : 适配新的USIM接口
-*****************************************************************************/
 VOS_UINT32  NAS_USIMMAPI_IsServiceAvailable(
     NAS_USIMM_SERVICES_TYPE_ENUM_UINT32 enService
 )
 {
     VOS_UINT32                          ulRst;
 
-    /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-29, begin */
     UICC_SERVICES_TYPE_ENUM_UINT32      enUiccSrvType;
 
     if (VOS_FALSE == NAS_CovertUsimSrvTypeToUiccSrvType(enService, &enUiccSrvType))
@@ -567,27 +378,11 @@ VOS_UINT32  NAS_USIMMAPI_IsServiceAvailable(
 
     NAS_LogUsimmApiIsServiceAvailable(ulRst,
                                       NAS_USIMM_API_TYPE_WITHOUT_INSTANCE, enUiccSrvType);
-    /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-29, end */
 
     return ulRst;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_USIMMAPI_IsTestCard
- 功能描述  : 对USIMM模块的USIMM_IsTestCard和USIMM_IsTestCard_Instance进行封装。
-             SVLTE模式下调用USIMM_IsTestCard_Instance；
-             非SVLTE模式下调用USIMM_IsTestCard
- 输入参数  : ulSenderPid - 发送pid
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:是；VOS_FALSE:否
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年6月4日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_BOOL  NAS_USIMMAPI_IsTestCard(VOS_VOID)
 {
     VOS_UINT32                          ulRet;
@@ -612,35 +407,7 @@ VOS_BOOL  NAS_USIMMAPI_IsTestCard(VOS_VOID)
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_USIMMAPI_GetPinStatus
- 功能描述  : 对USIMM模块的USIMM_GetPinStatus和USIMM_GetPinStatus_Instance进行封装。
-             SVLTE模式下调用USIMM_GetPinStatus_Instance；
-             非SVLTE模式下调用USIMM_GetPinStatus
- 输入参数  : ulSenderPid:发送pid
-             pucType    :PIN类型
- 输出参数  : pucBeEnable:PIN是否开启
-             pucBeNeed  :PIN是否需要
-             pucNum     :PIN剩余次数
- 返 回 值  : USIMM_API_SUCCESS
-             USIMM_API_FAILED
-             USIMM_API_WRONG_PARA
-             USIMM_API_NOTAVAILABLE
-             USIMM_API_NOCARD
-             USIMM_API_ALLOCMEM_FAILED
-             USIMM_API_SENDMSG_FAILED
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年6月4日
-   作    者   : w00242748
-   修改内容   : 新生成函数
- 2.日    期   : 2013年10月8日
-   作    者   : w00242748
-   修改内容   : DTS2013090309349 参数作为出参，获取该出参变量后，再赋值给临时
-                变量，再进行勾包处理。
-*****************************************************************************/
 VOS_UINT32  NAS_USIMMAPI_GetPinStatus(
     VOS_UINT8                          *pucType,
     VOS_UINT8                          *pucBeEnable,
@@ -707,30 +474,7 @@ VOS_UINT32  NAS_USIMMAPI_GetPinStatus(
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_USIMMAPI_GetCachedFile
- 功能描述  : 对USIMM模块的USIMM_GetCachedFile和USIMM_GetCachedFile_Instance进行封装。
-             SVLTE模式下调用USIMM_GetCachedFile_Instance；
-             非SVLTE模式下调用USIMM_GetCachedFile
- 输入参数  : usFileID   :读取文件的ID
-             enAppType  :USIMM卡类型
- 输出参数  : pulDataLen :返回文件的内容长度
-             ppucData   :返回文件内容的地址
- 返 回 值  : USIMM_API_SUCCESS
-             USIMM_API_FAILED
-             USIMM_API_WRONG_PARA
-             USIMM_API_NOTAVAILABLE
-             USIMM_API_NOCARD
-             USIMM_API_ALLOCMEM_FAILED
-             USIMM_API_SENDMSG_FAILED
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年6月4日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  NAS_USIMMAPI_GetCachedFile(
     VOS_UINT32                          ulFileID,
     VOS_UINT32                         *pulDataLen,
@@ -779,22 +523,7 @@ VOS_UINT32  NAS_USIMMAPI_GetCachedFile(
 }
 
 
-/* Added by l00208543 for V9R1 STK升级, 2013-07-24, begin */
-/*****************************************************************************
- 函 数 名  : NAS_GetOamReceivePid
- 功能描述  : 获取给oam发送的receive pid
- 输入参数  : 接收方PID
- 输出参数  : 无
- 返 回 值  : 经过转换后的接收方PID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月24日
-    作    者   : l00208543
-    修改内容   : STK升级项目，新增函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_GetOamReceivePid(VOS_UINT32 ulRcvPid)
 {
     if (VOS_FALSE == NAS_SNDUSIMM_IsSvlteSupported())
@@ -817,31 +546,9 @@ VOS_UINT32 NAS_GetOamReceivePid(VOS_UINT32 ulRcvPid)
             return ulRcvPid;
     }
 }
-/* Added by l00208543 for V9R1 STK升级, 2013-07-24, end */
 
 
-/*****************************************************************************
- 函 数 名  : NAS_USIMMAPI_GetCardIMSI
- 功能描述  : 对USIMM模块的USIMM_GetCardIMSI和USIMM_GetCardIMSI_Instance进行封装。
-             SVLTE模式下调用USIMM_GetCardIMSI_Instance；
-             非SVLTE模式下调用USIMM_GetCardIMSI
- 输入参数  : 无
- 输出参数  : pucImsi :存储文件的内容
- 返 回 值  : USIMM_API_SUCCESS
-             USIMM_API_FAILED
-             USIMM_API_WRONG_PARA
-             USIMM_API_NOTAVAILABLE
-             USIMM_API_NOCARD
-             USIMM_API_ALLOCMEM_FAILED
-             USIMM_API_SENDMSG_FAILED
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年6月4日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  NAS_USIMMAPI_GetCardIMSI(
     VOS_UINT8                          *pucImsi
 )
@@ -863,36 +570,7 @@ VOS_UINT32  NAS_USIMMAPI_GetCardIMSI(
     return ulRst;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_USIMMAPI_GetCardType
- 功能描述  : 对USIMM模块的USIMM_GetCardType和USIMM_GetCardType_Instance进行封装。
-             SVLTE模式下调用USIMM_GetCardType_Instance；
-             非SVLTE模式下调用USIMM_GetCardType
- 输入参数  : 无
- 输出参数  : pucCardStatus  :卡类型
-             pucCardType    :卡状态
- 返 回 值  : USIMM_API_SUCCESS
-             USIMM_API_FAILED
-             USIMM_API_WRONG_PARA
-             USIMM_API_NOTAVAILABLE
-             USIMM_API_NOCARD
-             USIMM_API_ALLOCMEM_FAILED
-             USIMM_API_SENDMSG_FAILED
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年6月4日
-   作    者   : w00242748
-   修改内容   : 新生成函数
- 2.日    期   : 2013年10月8日
-   作    者   : w00242748
-   修改内容   : DTS2013090309349 参数作为出参，获取该出参变量后，再赋值给临时
-                变量，再进行勾包处理。
- 3.日    期   : 2015年2月6日
-   作    者   : h00313353
-   修改内容   : USIMM卡接口调整
-*****************************************************************************/
 VOS_UINT32 NAS_USIMMAPI_GetCardType(
     VOS_UINT8                          *pucCardStatus,
     VOS_UINT8                          *pucCardType
@@ -942,22 +620,7 @@ VOS_UINT32 NAS_USIMMAPI_GetCardType(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_USIMMAPI_BdnQuery
- 功能描述  : 对USIMM模块的USIMM_BdnQuery和USIMM_BdnQuery_Instance进行封装。
-             SVLTE模式下调用USIMM_BdnQuery_Instance；
-             非SVLTE模式下调用USIMM_BdnQuery
- 输入参数  : 无
- 输出参数  : pulState :BDN状态
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年6月4日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  NAS_USIMMAPI_BdnQuery(
     VOS_UINT32                          *pulState
 )
@@ -988,22 +651,7 @@ VOS_VOID  NAS_USIMMAPI_BdnQuery(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_USIMMAPI_FdnQuery
- 功能描述  : 对USIMM模块的USIMM_FdnQuery和USIMM_FdnQuery_Instance进行封装。
-             SVLTE模式下调用USIMM_FdnQuery_Instance；
-             非SVLTE模式下调用USIMM_FdnQuery
- 输入参数  : 无
- 输出参数  : pulState :FDN状态
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年6月4日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  NAS_USIMMAPI_FdnQuery(
     VOS_UINT32                         *pulUsimState,
     VOS_UINT32                         *pulCsimState
@@ -1037,28 +685,7 @@ VOS_VOID  NAS_USIMMAPI_FdnQuery(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_USIMMAPI_GetPinRemainTime
- 功能描述  : 对USIMM模块的USIMM_GetPinRemainTime和USIMM_GetPinRemainTime_Instance进行封装。
-             SVLTE模式下调用USIMM_GetPinRemainTime_Instance；
-             非SVLTE模式下调用USIMM_GetPinRemainTime
- 输入参数  : 无
- 输出参数  : pstRemainTime :PIN剩余时间
- 返 回 值  : USIMM_API_SUCCESS
-             USIMM_API_FAILED
-             USIMM_API_WRONG_PARA
-             USIMM_API_NOTAVAILABLE
-             USIMM_API_NOCARD
-             USIMM_API_ALLOCMEM_FAILED
-             USIMM_API_SENDMSG_FAILED
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年6月4日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  NAS_USIMMAPI_GetPinRemainTime(
     USIMM_PIN_REMAIN_STRU              *pstRemainTime
 )
@@ -1085,28 +712,7 @@ VOS_UINT32  NAS_USIMMAPI_GetPinRemainTime(
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_USIMMAPI_RestrictedAccessReq
- 功能描述  :
- 输入参数  : ulSenderPid:发送请求的pId；
-             ulSendPara :发送的参数；
-             pstData:；
- 输出参数  : 无
- 返 回 值  : USIMM_API_SUCCESS
-             USIMM_API_FAILED
-             USIMM_API_WRONG_PARA
-             USIMM_API_NOTAVAILABLE
-             USIMM_API_NOCARD
-             USIMM_API_ALLOCMEM_FAILED
-             USIMM_API_SENDMSG_FAILED
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年02月15日
-   作    者   : h00313353
-   修改内容   : 新生成函数
- *****************************************************************************/
 VOS_UINT32 NAS_USIMMAPI_RestrictedAccessReq(
     VOS_UINT32                          ulSenderPid,
     VOS_UINT32                          ulSendPara,
@@ -1122,28 +728,7 @@ VOS_UINT32 NAS_USIMMAPI_RestrictedAccessReq(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_USIMMAPI_RestrictedAccessReq
- 功能描述  : 卡复位操作　
- 输入参数  : ulSenderPid:发送请求的pId；
-             pstCMDDetail :Reset信息
-             pstRstInfo:Reset信息；
- 输出参数  : 无
- 返 回 值  : USIMM_API_SUCCESS
-             USIMM_API_FAILED
-             USIMM_API_WRONG_PARA
-             USIMM_API_NOTAVAILABLE
-             USIMM_API_NOCARD
-             USIMM_API_ALLOCMEM_FAILED
-             USIMM_API_SENDMSG_FAILED
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年02月15日
-   作    者   : h00313353
-   修改内容   : 新生成函数
- *****************************************************************************/
 VOS_UINT32 NAS_USIMMAPI_ResetReq(
     VOS_UINT32                          ulSenderPid,
     USIMM_STK_COMMAND_DETAILS_STRU     *pstCMDDetail,
@@ -1160,28 +745,7 @@ VOS_UINT32 NAS_USIMMAPI_ResetReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_PIHAPI_RegUsimCardStatusIndMsg
- 功能描述  : 对PIH模块的PIH_RegUsimCardStatusIndMsg和PIH_RegUsimCardStatusIndMsg_Instance进行封装。
-             SVLTE模式下调用PIHAPI_RegUsimCardStatusIndMsg_Instance；
-             非SVLTE模式下调用PIHAPI_RegUsimCardStatusIndMsg
- 输入参数  : ulRegPID:注册的PID
- 输出参数  : 无
- 返 回 值  : USIMM_API_SUCCESS
-             USIMM_API_FAILED
-             USIMM_API_WRONG_PARA
-             USIMM_API_NOTAVAILABLE
-             USIMM_API_NOCARD
-             USIMM_API_ALLOCMEM_FAILED
-             USIMM_API_SENDMSG_FAILED
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年6月4日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_PIHAPI_RegUsimCardStatusIndMsg(
     VOS_UINT32                          ulRegPID
 )
@@ -1209,28 +773,7 @@ VOS_UINT32 NAS_PIHAPI_RegUsimCardStatusIndMsg(
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_PIHAPI_DeregUsimCardStatusIndMsg
- 功能描述  : 对PIH模块的PIH_DeregUsimCardStatusIndMsg和PIH_DeregUsimCardStatusIndMsg_Instance进行封装。
-             SVLTE模式下调用PIHAPI_DeregUsimCardStatusIndMsg_Instance；
-             非SVLTE模式下调用PIHAPI_DeregUsimCardStatusIndMsg
- 输入参数  : ulDeregPID:去注册的PID
- 输出参数  : 无
- 返 回 值  : USIMM_API_SUCCESS
-             USIMM_API_FAILED
-             USIMM_API_WRONG_PARA
-             USIMM_API_NOTAVAILABLE
-             USIMM_API_NOCARD
-             USIMM_API_ALLOCMEM_FAILED
-             USIMM_API_SENDMSG_FAILED
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年6月4日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_PIHAPI_DeregUsimCardStatusIndMsg(
     VOS_UINT32                          ulDeregPID
 )
@@ -1257,22 +800,7 @@ VOS_UINT32 NAS_PIHAPI_DeregUsimCardStatusIndMsg(
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_PIHAPI_RegCardRefreshIndMsg
- 功能描述  : 对PIH模块的PIH_RegCardRefreshIndMsg和PIH_RegCardRefreshIndMsg_Instance进行封装。
-             SVLTE模式下调用PIHAPI_RegCardRefreshIndMsg_Instance；
-             非SVLTE模式下调用PIHAPI_RegCardRefreshIndMsg
- 输入参数  : ulRegPID:注册的PID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年6月4日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_PIHAPI_RegCardRefreshIndMsg(
     VOS_UINT32                          ulRegPID
 )
@@ -1299,28 +827,7 @@ VOS_VOID NAS_PIHAPI_RegCardRefreshIndMsg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_PIHAPI_DeregCardRefreshIndMsg
- 功能描述  : 对PIH模块的PIH_DeregCardRefreshIndMsg和PIH_DeregCardRefreshIndMsg_Instance进行封装。
-             SVLTE模式下调用PIHAPI_DeregCardRefreshIndMsg_Instance；
-             非SVLTE模式下调用PIHAPI_DeregCardRefreshIndMsg
- 输入参数  : ulDerecPID:去注册的PID
- 输出参数  : 无
- 返 回 值  : USIMM_API_SUCCESS
-             USIMM_API_FAILED
-             USIMM_API_WRONG_PARA
-             USIMM_API_NOTAVAILABLE
-             USIMM_API_NOCARD
-             USIMM_API_ALLOCMEM_FAILED
-             USIMM_API_SENDMSG_FAILED
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年6月4日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_PIHAPI_DeregCardRefreshIndMsg(
     VOS_UINT32                          ulDeregPID
 )
@@ -1347,22 +854,7 @@ VOS_UINT32 NAS_PIHAPI_DeregCardRefreshIndMsg(
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_PBAPI_GetEccNumber
- 功能描述  : 对PB模块的SI_PB_GetEccNumber和SI_PB_GetEccNumber_Instance进行封装。
-             SVLTE模式下调用SI_PB_GetEccNumber_Instance；
-             非SVLTE模式下调用SI_PB_GetEccNumber
- 输入参数  : 无
- 输出参数  : pstEccData:获取ECC值
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年6月4日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_PBAPI_GetEccNumber(
     SI_PB_ECC_DATA_STRU                *pstEccData
 )
@@ -1389,25 +881,7 @@ VOS_VOID NAS_PBAPI_GetEccNumber(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_PBAPI_FdnNumCheck
- 功能描述  : 对STK模块的SI_PB_FdnNumCheck和SI_PB_FdnNumCheck_Instance进行封装。
-             SVLTE模式下调用SI_PB_FdnNumCheck_Instance；
-             非SVLTE模式下调用SI_PB_FdnNumCheck
- 输入参数  : ulPid          ：发送FDN号码检查请求的Pid
-             ulContextIndex :上下文索引
-             ulSendPara     :发送参数
-             pstFdnInfo     :FDN信息
- 输出参数  : pstEccData:获取ECC值
- 返 回 值  : 0:有效 1:无效
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年6月4日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_PBAPI_FdnNumCheck(
     VOS_UINT32                          ulPid,
     VOS_UINT32                          ulContextIndex,
@@ -1425,24 +899,7 @@ VOS_UINT32 NAS_PBAPI_FdnNumCheck(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_STKAPI_EnvelopeRsp_Decode
- 功能描述  : 对STK模块的SI_STK_EnvelopeRsp_Decode和SI_STK_EnvelopeRsp_Decode_Instance进行封装。
-             SVLTE模式下调用SI_STK_EnvelopeRsp_Decode_Instance；
-             非SVLTE模式下调用SI_STK_EnvelopeRsp_Decode
- 输入参数  : enDataType: 解码的信封命令数据类型
-             ulDataLen : 需要解码的数据长度
-             pucData   : 需要解码的数据内容
- 输出参数  : pstRspData: 解码后的数据内容
- 返 回 值  : 0:有效 1:无效
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年6月4日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_STKAPI_EnvelopeRsp_Decode(
     SI_STK_ENVELOPE_TYPE_UINT32         enDataType,
     VOS_UINT32                          ulDataLen,
@@ -1473,22 +930,7 @@ VOS_UINT32 NAS_STKAPI_EnvelopeRsp_Decode(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_STKAPI_EnvelopeRspDataFree
- 功能描述  : 对STK模块的SI_STK_EnvelopeRspDataFree和SI_STK_EnvelopeRspDataFree_Instance进行封装。
-             SVLTE模式下调用SI_STK_EnvelopeRspDataFree_Instance；
-             非SVLTE模式下调用SI_STK_EnvelopeRspDataFree
- 输入参数  : pstData   : 连接控制响应数据
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年6月4日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_STKAPI_EnvelopeRspDataFree(
     SI_STK_ENVELOPE_RSP_STRU           *pstData
 )
@@ -1513,30 +955,7 @@ VOS_VOID NAS_STKAPI_EnvelopeRspDataFree(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_STKAPI_EnvelopeDownload
- 功能描述  : 对STK模块的SI_STK_EnvelopeDownload和SI_STK_EnvelopeDownload_Instance进行封装。
-             SVLTE模式下调用SI_STK_EnvelopeDownload_Instance；
-             非SVLTE模式下调用SI_STK_EnvelopeDownload
- 输入参数  : ulSenderPid    : 发送者的PID
-             usClientId     : 发送参数
-             pstENStru      : Envelope数据
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年6月4日
-   作    者   : w00242748
-   修改内容   : 新生成函数
- 2.日    期   : 2013年6月26日
-   作    者   : f62575
-   修改内容   : V9R1 STK升级
- 3.日    期   : 2015年2月12日
-   作    者   : h00313353
-   修改内容   : USIMM卡接口调整
-*****************************************************************************/
 VOS_UINT32 NAS_STKAPI_EnvelopeDownload(
     VOS_UINT32                          ulSenderPid,
     VOS_UINT32                          ulClientId,
@@ -1557,30 +976,13 @@ VOS_UINT32 NAS_STKAPI_EnvelopeDownload(
     return ulRslt;
 }
 
-/* Deleted by f62575 for V9R1 STK升级, 2013-6-26, begin */
 /*
     NAS_STKAPI_MtCallEvent
 */
-/* Deleted by f62575 for V9R1 STK升级, 2013-6-26, end */
 
 
-/* Deleted by l00208543 for V9R1 STK升级, 2013-7-13, begin */
-/* Deleted by l00208543 for V9R1 STK升级, 2013-7-13, end */
 
-/*****************************************************************************
- 函 数 名  : NAS_USIMMAPI_DeactiveCardReq
- 功能描述  : 对USIMM_DeactiveCardReq进行封装,不区分svlte
- 输入参数  : ulSenderPid - 发送pid
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年6月4日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_USIMMAPI_DeactiveCardReq(VOS_UINT32 ulSenderPid)
 {
     VOS_UINT32                          ulRslt;
@@ -1593,20 +995,7 @@ VOS_UINT32 NAS_USIMMAPI_DeactiveCardReq(VOS_UINT32 ulSenderPid)
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_STKAPI_CCResultInd
- 功能描述  : 对SI_STK_CCResultInd和SI_STK_CCResultInd_Instance进行封装
- 输入参数  : pstRspData - 指向CALL CONTROL的解码后码流
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年6月13日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_STKAPI_CCResultInd(
     SI_STK_ENVELOPE_RSP_STRU           *pstRspData
 )
@@ -1629,20 +1018,7 @@ VOS_VOID NAS_STKAPI_CCResultInd(
     NAS_LogSTKApiCCResultInd(NAS_USIMM_API_TYPE_WITHOUT_INSTANCE, pstRspData);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_STKAPI_SMSCtrlResultInd
- 功能描述  : 对SI_STK_SMSCtrlResultInd和SI_STK_SMSCtrlResultInd_Instance进行封装
- 输入参数  : pstRspData - 指向SMS CONTROL的解码后码流
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年6月13日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_STKAPI_SMSCtrlResultInd(
     SI_STK_ENVELOPE_RSP_STRU           *pstRspData
 )
@@ -1665,21 +1041,7 @@ VOS_VOID NAS_STKAPI_SMSCtrlResultInd(
     NAS_LogSTKApiSMSCtrlResultInd(NAS_USIMM_API_TYPE_WITHOUT_INSTANCE, pstRspData);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_VSIM_SetVsimCtrlFlg
- 功能描述  : 设置NAS的虚拟卡控制配置
- 输入参数  : ucVsimCtrlFlg - NAS的虚拟卡控制功能标志
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2013年8月29日
-   作    者   : f62575
-   修改内容   : VSIM FEATURE
-
-*****************************************************************************/
 VOS_VOID NAS_VSIM_SetVsimCtrlFlg(
     VOS_UINT8                           ucVsimCtrlFlg
 )
@@ -1689,20 +1051,7 @@ VOS_VOID NAS_VSIM_SetVsimCtrlFlg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_VSIM_ReadNvimVsimCfg
- 功能描述  : 读取en_Item_NAS_VSIM_CTRL_FEATURE到内存
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年8月29日
-   作    者   : f62575
-   修改内容   : VSIM FEATURE
-*****************************************************************************/
 VOS_VOID NAS_VSIM_ReadNvimVsimCfg(VOS_VOID)
 {
     TAF_NVIM_VSIM_CFG_STRU              stVsimCfg;
@@ -1728,21 +1077,7 @@ VOS_VOID NAS_VSIM_ReadNvimVsimCfg(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_VSIM_InitVsimCfgInfo
- 功能描述  : VSIM特性初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月29日
-    作    者   : f62575
-    修改内容   : VSIM FEATURE
-
-*****************************************************************************/
 VOS_VOID NAS_VSIM_InitVsimCfgInfo(VOS_VOID)
 {
     NAS_VSIM_ReadNvimVsimCfg();
@@ -1750,43 +1085,13 @@ VOS_VOID NAS_VSIM_InitVsimCfgInfo(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_VSIM_GetVsimCtrlFlg
- 功能描述  : 获取NAS的虚拟卡特性配置
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  要求NAS进行VSIM控制；
-             VOS_FALSE 不要求NAS进行VSIM控制
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月29日
-    作    者   : f62575
-    修改内容   : VSIM FEATURE
-
-*****************************************************************************/
 VOS_UINT8 NAS_VSIM_GetVsimCtrlFlg(VOS_VOID)
 {
     return g_stNasVsimInfo.ucVsimCtrlFlg;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_VSIM_IsRequireVsimCtrl
- 功能描述  : 获取VSIM控制流程启用标志，
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  启用VSIM控制流程
-             VOS_FALSE 不启用VSIM控制流程
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月29日
-    作    者   : f62575
-    修改内容   : VSIM FEATURE
-
-*****************************************************************************/
 VOS_UINT32 NAS_VSIM_IsRequireVsimCtrl(VOS_VOID)
 {
 
@@ -1817,26 +1122,7 @@ VOS_UINT32 NAS_VSIM_IsRequireVsimCtrl(VOS_VOID)
     return VOS_FALSE;
 }
 
-/* Added by w00176964 for V3R3C60_eCall项目, 2014-4-23, begin */
-/*****************************************************************************
- 函 数 名  : NAS_PBAPI_QryECallNumber
- 功能描述  : 对STK模块的SI_PB_QryECallNumber和SI_PB_QryECallNumber_Instance进行封装。
-             SVLTE模式下调用SI_PB_QryECallNumber_Instance；
-             非SVLTE模式下调用SI_PB_QryECallNumber
- 输入参数  : ulPid          ：发送查询ecall号码请求的Pid
-             enPbType       : 电话本类型
-             ucListLen      : 指定的文件索引记录长度
-             pucList        : 指定的文件索引记录数组
- 输出参数  : 无
- 返 回 值  : 0:有效 1:无效
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年4月23日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_PBAPI_QryECallNumber(
     VOS_UINT32                          ulPid,
     SI_PB_STORAGE_ENUM_UINT32           enPbType,
@@ -1855,26 +1141,10 @@ VOS_VOID NAS_PBAPI_QryECallNumber(
     return;
 }
 
-/* Added by w00176964 for V3R3C60_eCall项目, 2014-4-23, end */
 
 #if (FEATURE_UE_MODE_CDMA == FEATURE_ON)
 
-/*****************************************************************************
- 函 数 名  : NAS_PBAPI_GetXeccNumber
- 功能描述  : 对PB模块的SI_PB_GetXeccNumber和SI_PB_GetXeccNumber_Instance进行封装。
-             SVLTE模式下调用SI_PB_GetEccNumber_Instance；
-             非SVLTE模式下调用SI_PB_GetEccNumber
- 输入参数  : 无
- 输出参数  : pstEccData:获取ECC值
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年07月28日
-   作    者   : h00313353
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_PBAPI_GetXeccNumber(
     SI_PB_ECC_DATA_STRU                *pstEccData
 )

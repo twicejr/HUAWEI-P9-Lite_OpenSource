@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafApsSndEhsm.c
-  版 本 号   : 初稿
-  作    者   : y00314741
-  生成日期   : 2015年05月08日
-  最近修改   :
-  功能描述   : TAF APS模块发送消息给HSM的函数实现文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年05月08日
-    作    者   : y00314741
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -61,21 +44,7 @@ extern "C" {
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndEhsmPdnActReq
- 功能描述  : 发送ID_APS_EHSM_PDN_ACTIVATE_REQ消息
- 输入参数  : VOS_UINT8                    ucPdpId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SndEhsmPdnActReq(
     VOS_UINT8                           ucPdpId,
     TAF_APS_ORIG_TYPE_ENUM_UINT8        enDailType
@@ -172,21 +141,7 @@ VOS_VOID TAF_APS_SndEhsmPdnActReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndEhsmPdnDeactReq
- 功能描述  : 发送ID_APS_EHSM_PDN_DEACTIVATE_REQ消息
- 输入参数  : VOS_UINT8                    ucPdpId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月13日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SndEhsmPdnDeactReq(
     VOS_UINT8                           ucPdpId
 )
@@ -217,21 +172,7 @@ VOS_VOID TAF_APS_SndEhsmPdnDeactReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndEhsmPsRatTypeNtf
- 功能描述  : 发送ID_APS_EHSM_PS_RAT_TYPE_NOTIFY消息
- 输入参数  : APS_EHSM_PS_RATTYPE_ENUM_UINT32     enPsRatType
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月15日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SndEhsmPsRatTypeNtf(
     TAF_APS_RAT_TYPE_ENUM_UINT32        enCurrCdataServiceMode
 )
@@ -285,21 +226,7 @@ VOS_VOID TAF_APS_SndEhsmPsRatTypeNtf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndEhsmReconnReq
- 功能描述  : 发送ID_APS_EHSM_RECONN_REQ消息
- 输入参数  : VOS_UINT8                           ucPdnId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月15日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SndEhsmReconnReq(
     VOS_UINT8                           ucPdpId
 )
@@ -332,21 +259,7 @@ VOS_VOID TAF_APS_SndEhsmReconnReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndEhsmPdnCtxInfoInd
- 功能描述  : 发送ID_APS_EHSM_PDN_CONTEXT_INFO_IND消息
- 输入参数  : VOS_UINT8                           ucPdnId
-             VOS_UINT8                           ucCid
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月15日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_APS_SndEhsmPdnCtxInfoNotify(
     VOS_UINT8                           ucPdpId,
     EHSM_APS_PDN_OPTION_ENUM_UINT32     enOption
@@ -422,21 +335,7 @@ VOS_VOID TAF_APS_SndEhsmPdnCtxInfoNotify(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndEhsmLocDetachInd
- 功能描述  : TAF Snd Ehsm Detach Ind
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月30日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SndEhsmLocDetachNotify(VOS_VOID)
 {
     APS_EHSM_LOC_DETACH_NOTIFY_STRU    *pstLocDetachNty = VOS_NULL_PTR;
@@ -463,21 +362,7 @@ VOS_VOID TAF_APS_SndEhsmLocDetachNotify(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndEhsmLocDeactReq
- 功能描述  : 发送ID_APS_EHSM_LOC_DEACTIVATE_NOTIFY消息
- 输入参数  : VOS_UINT8                    ucPdpId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月11日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SndEhsmLocDeactNtf(
     VOS_UINT8                           ucPdpId
 )
@@ -506,21 +391,7 @@ VOS_VOID TAF_APS_SndEhsmLocDeactNtf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndEhsmDiscNtf
- 功能描述  : 发送ID_APS_EHSM_DISC_NOTIFY消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月08日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SndEhsmDiscNtf(VOS_VOID)
 {
     APS_EHSM_DISC_NOTIFY_STRU             *pstDiscNtf = VOS_NULL_PTR;
@@ -549,21 +420,7 @@ VOS_VOID TAF_APS_SndEhsmDiscNtf(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndEhsmPdnAttachReq
- 功能描述  : TAF向EHSM发送Pdn Attach请求
- 输入参数  : VOS_UINT8                           ucCid
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月23日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SndEhsmPdnAttachReq(
     VOS_UINT8                           ucPdpId,
     TAF_APS_ORIG_TYPE_ENUM_UINT8        enDailType

@@ -5,13 +5,13 @@
 	};
 
 	amba {
-		i2c4: i2c@FDF0D000 {
+		i2c3: i2c@FDF0C000 {
 			max98925_smartpa_l:smartpa@31 {
 				compatible = "huawei,max98925";
 				smartpa_type = <0>; //left smartPA
 				reg = <0x31>;
 				gain = <0x14>;
-				gain_incall = <0x14>; //spk's is same as gain
+				gain_incall = <0x14>;
 				status = "disabled";
 			};
 			max98925_smartpa_r:smartpa@34 {

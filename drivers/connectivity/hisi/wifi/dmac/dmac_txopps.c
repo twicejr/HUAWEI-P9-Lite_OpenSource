@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : dmac_txopps.c
-  版 本 号   : 初稿
-  作    者   : z00237171
-  生成日期   : 2014年7月16日
-  最近修改   :
-  功能描述   : 11ac协议的TXOP PS特性相关结构定义和实现文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年7月16日
-    作    者   : z00237171
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -48,23 +31,7 @@ extern "C" {
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : dmac_txopps_set_machw_en_sta
- 功能描述  : sta模式，配置mac txop_ps使能寄存器，包括使能位，condition1和co-
-             ndition2
- 输入参数  : pst_mac_vap            : mac_vap结构
-             pst_txopps_machw_param : 设置mac txop ps使能寄存器参数结构
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月16日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_txopps_set_machw_en_sta(
                                     mac_vap_stru *pst_mac_vap,
                                     dmac_txopps_machw_param_stru *pst_txopps_machw_param)
@@ -94,21 +61,7 @@ oal_uint32  dmac_txopps_set_machw_en_sta(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_txopps_set_machw
- 功能描述  : 根据vap能力，设置mac txop ps使能寄存器
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月21日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_txopps_set_machw(mac_vap_stru *pst_mac_vap)
 {
     dmac_txopps_machw_param_stru       st_txopps_machw_param;
@@ -132,23 +85,7 @@ OAL_STATIC oal_uint32  dmac_txopps_set_machw(mac_vap_stru *pst_mac_vap)
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_txopps_set_en
- 功能描述  : 设置11ac模式vap的txop ps使能，如果是ap模式只要设置mib和能力；如
-             果是sta模式还要设置相应的mac寄存器
- 输入参数  : pst_mac_vap: mac_vap结构
-             en_switch  : 开关
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月16日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_txopps_set_en(mac_vap_stru *pst_mac_vap, oal_switch_enum_uint8 en_switch)
 {
     if (OAL_UNLIKELY(OAL_PTR_NULL == pst_mac_vap))
@@ -177,21 +114,7 @@ oal_uint32  dmac_txopps_set_en(mac_vap_stru *pst_mac_vap, oal_switch_enum_uint8 
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_config_set_txop_ps_machw
- 功能描述  : 配置mac txop ps使能寄存器
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月16日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 dmac_config_set_txop_ps_machw(mac_vap_stru *pst_mac_vap, oal_uint8 uc_len, oal_uint8 *puc_param)
 {
 
@@ -215,22 +138,7 @@ oal_uint32 dmac_config_set_txop_ps_machw(mac_vap_stru *pst_mac_vap, oal_uint8 uc
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_txopps_init_machw_sta
- 功能描述  : STA模式，VAP初始化时设置mac txop ps使能寄存器，如果支持则使能位
-             ，condition1以及condition2都为1
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月21日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_txopps_init_machw_sta(dmac_vap_stru *pst_dmac_vap)
 {
     if (OAL_UNLIKELY(OAL_PTR_NULL == pst_dmac_vap))
@@ -246,21 +154,7 @@ oal_uint32  dmac_txopps_init_machw_sta(dmac_vap_stru *pst_dmac_vap)
 
 
 
-/*****************************************************************************
- 函 数 名  : dmac_txopps_set_machw_partialaid_sta
- 功能描述  : sta将partial aid写入到mac寄存器
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月17日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_txopps_set_machw_partialaid_sta(mac_vap_stru *pst_mac_vap, oal_uint8 uc_len, oal_uint8 *puc_param)
 {
     oal_uint16                           us_partial_aid;

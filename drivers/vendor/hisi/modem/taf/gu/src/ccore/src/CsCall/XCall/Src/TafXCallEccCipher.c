@@ -1,20 +1,5 @@
 
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafXCallEccCipher.h
-  版 本 号   : 初稿
-  作    者   : c00177591
-  生成日期   : 2015年10月22日
-  功能描述   :
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年10月22日
-    作    者   : c00177591
-    修改内容   : 创建文件 for CDMA 1X Iteration 19
-******************************************************************************/
 /*****************************************************************************
   1 头文件包含
 *****************************************************************************/
@@ -46,41 +31,14 @@ extern "C"{
 /*****************************************************************************
   3 函数定义
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_CipherEccInit
- 功能描述  : ECC参数初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月09日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_CipherEccInit(VOS_VOID)
 {
     ECC_Init();
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_CipherInitVoice
- 功能描述  : 语音初始化函数
- 输入参数  : 无
- 输出参数  : pucKs     --  密钥KS
-             ulCallDir --  呼叫方向； VOS_TRUE 为主叫，VOS_FALSE 为被叫。
- 返 回 值  : VOS_TRUE -- 语音初始化成功，VOS_FLASE -- 语音初始化失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月09日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XCALL_CipherInitVoice(
     VOS_UINT8                          *pucKs,
     VOS_UINT32                          ulCallDir
@@ -94,21 +52,7 @@ VOS_UINT32 TAF_XCALL_CipherInitVoice(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_CipherGenTmpKey
- 功能描述  : 生成临时密钥对
- 输入参数  : 无
- 输出参数  : pstTmpPubKey  --  临时公钥
-             pstTmpPrivKey --  临时私钥
- 返 回 值  : VOS_TRUE -- 生成成功，VOS_FLASE -- 生成失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : c00177591
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XCALL_CipherGenTmpKey(
     TAF_XCALL_KMC_PUB_KEY_STRU         *pstTmpPubKey,
     TAF_XCALL_KMC_PRIV_KEY_STRU        *pstTmpPrivKey
@@ -206,21 +150,7 @@ VOS_UINT32 TAF_XCALL_CipherGenTmpKey(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_CipherEncrypt
- 功能描述  :
- 输入参数  : TAF_XCALL_CIPHER_ENCRYPTION_STRU -- 加解密数据及密钥信息
- 输出参数  :
 
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : c00177591
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XCALL_CipherEncrypt(
     TAF_XCALL_CIPHER_ENCRYPTION_STRU    *pstEncryption
 )
@@ -307,21 +237,7 @@ VOS_UINT32 TAF_XCALL_CipherEncrypt(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_CipherDecrypt
- 功能描述  :
- 输入参数  : TAF_XCALL_CIPHER_ENCRYPTION_STRU -- 加解密数据及密钥信息
- 输出参数  :
 
- 返 回 值  : VOS_BOOL
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : c00177591
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XCALL_CipherDecrypt(
     TAF_XCALL_CIPHER_DECRYPTION_STRU    *pstEncryption
 )
@@ -424,21 +340,7 @@ VOS_UINT32 TAF_XCALL_CipherDecrypt(
     return  VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_CipherVerify
- 功能描述  :
- 输入参数  : TAF_XCALL_CIPHER_ENCRYPTION_STRU --  签名数据及密钥信息
- 输出参数  :
 
- 返 回 值  : VOS_BOOL
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : c00177591
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XCALL_CipherVerify(
     TAF_XCALL_CIPHER_VERIFY_STRU        *pstVerifyData
 )
@@ -542,22 +444,7 @@ VOS_UINT32 TAF_XCALL_CipherVerify(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_CipherGetRandom
- 功能描述  :
- 输入参数  : ulRandomLen --  输出随机数长度
-             pucRandom -- 保存输出随机数
- 输出参数  :
 
- 返 回 值  : VOS_BOOL
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : c00177591
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XCALL_CipherGetRandom(
     VOS_UINT32                          ulRandomLen,
     VOS_UINT8                          *pucRandom
@@ -583,22 +470,7 @@ VOS_UINT32 TAF_XCALL_CipherGetRandom(
 }
 
 #if (FEATURE_ON == FEATURE_CHINA_TELECOM_VOICE_ENCRYPT_TEST_MODE)
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_CipherGetInterValSecond
- 功能描述  :
- 输入参数  : ulStartSlice   -- 保存的slice
-             ulCurSlice     -- 当前slice
- 输出参数  :
 
- 返 回 值  : VOS_FLOAT      -- 返回间隔s
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : c00177591
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_FLOAT TAF_XCALL_CipherGetInterValSecond(
     VOS_UINT32                          ulStartSlice,
     VOS_UINT32                          ulCurSlice
@@ -618,24 +490,7 @@ VOS_FLOAT TAF_XCALL_CipherGetInterValSecond(
     return (VOS_FLOAT)((ulRunSliceNum*1.0f)/VOS_GetSliceUnit());
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_CipherGetInterValSecond
- 功能描述  :
- 输入参数  : pucInput    -- 输入数据指针
-             ulInputLen  -- 输入数据长度
-             pucOutput   -- 保存输出数据
-             ulOutptuLen -- 输出长度
- 输出参数  :
 
- 返 回 值  : VOS_UINT8   -- 保存输出数据指针
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : c00177591
-    修改内容   : 新生成函数
-*****************************************************************************/
 
 VOS_INT8 *TAF_XCALL_CipherHex2Ascii(
     VOS_UINT8                          *pucInput,

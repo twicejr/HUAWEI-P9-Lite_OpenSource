@@ -60,35 +60,11 @@
 #include <linux/io.h>
 #include <linux/jiffies.h>
 #include <linux/kthread.h>
-#include <linux/mtd/mtd.h>
-#include <linux/dma-mapping.h>
-#include <linux/decompress/generic.h>
-#include <asm/dma-mapping.h>
-#include <asm/cacheflush.h>
 
 #include "product_config.h"
 #include "bsp_memmap.h"
-#include <bsp_ipc.h>
 #include <bsp_shared_ddr.h>
 #include "load_image.h"
-
-/*****************************************************************************
- 函 数 名  : MBB平台上A核请求复位C核
- 功能描述  : MBB平台上A核请求复位C核
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 成功返回OK,失败返回ERROR
- 调用函数  :
- 被调函数  :
-*****************************************************************************/
-static int his_modem_send_reset_request_mbb(void)
-{
-    int ret = 0;
-
-    ret = bsp_ipc_int_send(IPC_CORE_MCORE, IPC_MCU_INT_SRC_CCPU_START);
-    return ret;
-}
-
 
 static int __init his_modem_probe(struct platform_device *pdev)
 {
@@ -107,8 +83,8 @@ static int __init his_modem_probe(struct platform_device *pdev)
         return -EAGAIN;
     }
 
-    /*只在MBB平台上需要发送复位请求中断*/
-    ret = his_modem_send_reset_request_mbb();
+    /*在MBB平台上需要发送复位请求中断*/
+    ret = bsp_load_notify_ccpu_start();
     if (ret)
     {
         printk(KERN_ERR"send ipc to unreset ccore failed, ret=0x%x\n", ret);

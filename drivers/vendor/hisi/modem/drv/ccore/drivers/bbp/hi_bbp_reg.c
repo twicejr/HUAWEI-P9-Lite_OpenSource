@@ -1,14 +1,4 @@
-/*************************************************************************
-*   版权所有(C) 2008-2013, 深圳华为技术有限公司.
-*
-*   文 件 名 :  hi_bbp.c
-*
-*   作    者 :  x00195528
-*
-*   描    述 :
-*
-*   修改记录 :  2013年2月2日  v1.00  z00227143  创建
-*************************************************************************/
+
 /*lint -save -e537 -e656 -e801*/
 #include "product_config.h"
 #include "hi_base.h"
@@ -1107,6 +1097,9 @@ void bbp_comm_unreset_v8r5(void)
     }
     hi_bbpdma_clk_disable();
 
+    /*mask buserr irq*/
+    writel(0xfffffff,g_bbpinfo.part[BBP_SCTRL].reg_base + 0x210);
+
     bbp_debug_config();
 }
 void bbp_comm_unreset(void)
@@ -1293,7 +1286,9 @@ void hi_bbp_v8r5_init(void)
             writel(0,g_bbpinfo.part[BBP_DMA].reg_base+0x308+0x10*i);
         }
     }
-
+	/*mask buserr irq*/
+    writel(0xfffffff,g_bbpinfo.part[BBP_SCTRL].reg_base + 0x210);
+    
     bbp_debug_config();
 
     /*open yima clk,form peri_refclk*/

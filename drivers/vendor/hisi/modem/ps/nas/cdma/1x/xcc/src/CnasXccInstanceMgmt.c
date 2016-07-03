@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasXccInstMgmt.c
-  版 本 号   : 初稿
-  作    者   : y00245242
-  生成日期   : 2014年09月05日
-  功能描述   : 负责1X CC(call control) instance管理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年09月05日
-    作    者   : y00245242
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -262,22 +247,7 @@ CNAS_XCC_GET_CALL_INSTANCE_STRU g_astCnasXccGetCallInstanceMsgTbl[] = {
 *****************************************************************************/
 /*lint -save -e958*/
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetActivedCallInstanceNum
- 功能描述  : 获取已经激活的call instance数目
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : ucNum -- 激活的call instance数目
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年09月05日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 CNAS_XCC_GetActivedCallInstanceNum(VOS_VOID)
 {
     CNAS_XCC_CTX_STRU                  *pstXccCtxAddr   = VOS_NULL_PTR;
@@ -299,22 +269,7 @@ VOS_UINT8 CNAS_XCC_GetActivedCallInstanceNum(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_AllocConnectedId
- 功能描述  : 分配connect id，返回当前分配connect id的索引
- 输入参数  : 无
- 输出参数  : pucIndex -- 返回当前分配的call index
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年09月15日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 CNAS_XCC_AllocConnectedId(
     VOS_UINT8                          *pucIndex
 )
@@ -340,22 +295,7 @@ VOS_UINT8 CNAS_XCC_AllocConnectedId(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_IsCurrCallInstanceActive
- 功能描述  : check当前的call control instance是否已经被使用
- 输入参数  : 无
- 输出参数  : pstIndexList -- 当前激活的call index 列表
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年09月05日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_GetAllActiveCallInstanceIndex(
     CNAS_XCC_CALL_INSTANCE_LIST_STRU    *pstIndexList
 )
@@ -376,23 +316,7 @@ VOS_VOID CNAS_XCC_GetAllActiveCallInstanceIndex(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_IsVoiceCallInstanceActive
- 功能描述  : 检查voice call呼叫instance是否激活
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  -- 已激活
-             VOS_FALSE -- 无激活
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年09月19日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 CNAS_XCC_IsVoiceCallInstanceActive(VOS_VOID)
 {
     VOS_UINT8                           i;
@@ -419,23 +343,7 @@ VOS_UINT8 CNAS_XCC_IsVoiceCallInstanceActive(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetVoiceCallInstance
- 功能描述  : 获取voice call instance索引
- 输入参数  : 无
- 输出参数  : pucIndex -- 返回call instance索引
- 返 回 值  : VOS_TRUE  -- 找到对应的call instance索引
-             VOS_FALSE -- 对应的call instance索引没有找到
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年09月05日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 CNAS_XCC_GetSpecTypeInstance(
     CNAS_XCC_SERVICE_TYPE_ENUM_UINT32   enServiceType,
     VOS_UINT8                          *pucIndex
@@ -467,24 +375,7 @@ VOS_UINT8 CNAS_XCC_GetSpecTypeInstance(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetCallInstanceIndexByConnId
- 功能描述  : 根据UcConnId查找对应需要加载Call Control Instance实体
- 输入参数  : ucConnId -- 业务链接标识
 
- 输出参数  : pucIndex  -- 返回call instance索引
- 返 回 值  : VOS_TRUE  -- 找到对应的call instance索引
-             VOS_FALSE -- 对应的call instance索引没有找到
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年09月05日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 CNAS_XCC_GetCallInstanceIndexByConnId(
     VOS_UINT8                           ucConnId,
     VOS_UINT8                          *pucIndex
@@ -513,23 +404,7 @@ VOS_UINT8 CNAS_XCC_GetCallInstanceIndexByConnId(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetCallInstanceIndexByCallId
- 功能描述  : 根据ucCallId查找对应需要加载Call Control Instance实体
- 输入参数  : ucCallId -- 业务实体ID
 
- 输出参数  : pucIndex  -- 返回call instance索引
- 返 回 值  : VOS_TRUE  -- 找到对应的call instance索引
-             VOS_FALSE -- 对应的call instance索引没有找到
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年11月12日
-    作    者   : f279542
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 CNAS_XCC_GetCallInstanceIndexByCallId(
     VOS_UINT8                           ucCallId,
     VOS_UINT8                          *pucIndex
@@ -558,24 +433,7 @@ VOS_UINT8 CNAS_XCC_GetCallInstanceIndexByCallId(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetCallInstanceIndexByCallRef
- 功能描述  : 根据ucConRef查找对应需要加载Call Control Instance实体
- 输入参数  : ucConRef     -- 业务链接Reference
 
- 输出参数  : pucIndex     -- 返回call instance索引
- 返 回 值  : VOS_TRUE  -- 找到对应的call instance索引
-             VOS_FALSE -- 对应的call instance索引没有找到
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年09月06日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 CNAS_XCC_GetCallInstanceIndexByCallRef(
     VOS_UINT8                           ucConRef,
     VOS_UINT8                          *pucIndex
@@ -625,24 +483,7 @@ VOS_UINT8 CNAS_XCC_GetCallInstanceIndexByCallRef(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_IsCallConRefExist
- 功能描述  : check呼叫reference是否存在
- 输入参数  : ucConRef     -- 业务链接Reference
 
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  -- 存在
-             VOS_FALSE -- 不存在
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年09月29日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 CNAS_XCC_IsCallConRefExist(
     VOS_UINT8                           ucConRef
 )
@@ -687,22 +528,7 @@ VOS_UINT8 CNAS_XCC_IsCallConRefExist(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetConRefFromDschDataInd
- 功能描述  : 从f_dsch空口消息中，获取conRef
- 输入参数  : ulEventType -- 消息类型+PID
-             pMsg        -- 消息内容
- 输出参数  : pstCallInstanceFsmList -- 返回需要处理call control instance列表
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年10月15日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XCC_GetConRefFromDschDataInd(
     CAS_CNAS_1X_DSCH_DATA_IND_STRU     *pst1xDschDataInd,
     VOS_UINT8                          *pucConRef
@@ -761,22 +587,7 @@ VOS_VOID CNAS_XCC_GetConRefFromDschDataInd(
 
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetCallInstanceOf1xEstCnf
- 功能描述  : 获取消息ID_CAS_CNAS_1X_EST_CNF处理的call instance
- 输入参数  : pstMsg          -- 消息指针
- 输出参数  : pstCallInstList -- 返回call instance列表
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年09月11日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_GetCallInstanceOf1xEstCnf(
     struct MsgCB                       *pstMsg,
     CNAS_XCC_CALL_INSTANCE_LIST_STRU   *pstCallInstanceList
@@ -809,23 +620,7 @@ VOS_VOID CNAS_XCC_GetCallInstanceOf1xEstCnf(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetCallInstanceOf1xDschDataCnf
- 功能描述  : 获取消息ID_CAS_CNAS_1X_DSCH_DATA_CNF处理的call instance
- 输入参数  : pstMsg          -- 消息指针
- 输出参数  : pstCallInstList -- 返回call instance列表
- 返 回 值  : 无
 
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年09月11日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_GetCallInstanceOf1xDschDataCnf(
     struct MsgCB                       *pstMsg,
     CNAS_XCC_CALL_INSTANCE_LIST_STRU   *pstCallInstanceList
@@ -837,22 +632,7 @@ VOS_VOID CNAS_XCC_GetCallInstanceOf1xDschDataCnf(
     CNAS_XCC_GetAllActiveCallInstanceIndex(pstCallInstanceList);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetCallInstanceOf1xDschDataInd
- 功能描述  : 获取消息ID_CAS_CNAS_1X_DSCH_DATA_IND处理的call instance
- 输入参数  : pstMsg          -- 消息指针
- 输出参数  : pstCallInstList -- 返回call instance列表
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年09月11日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_GetCallInstanceOf1xDschDataInd(
     struct MsgCB                       *pstMsg,
     CNAS_XCC_CALL_INSTANCE_LIST_STRU   *pstCallInstanceList
@@ -885,26 +665,7 @@ VOS_VOID CNAS_XCC_GetCallInstanceOf1xDschDataInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetCallInstanceOf1xPagingInd
- 功能描述  : 获取消息ID_CAS_CNAS_1X_PAGING_IND处理的call instance
- 输入参数  : pstMsg          -- 消息指针
- 输出参数  : pstCallInstList -- 返回call instance列表
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年09月11日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_GetCallInstanceOf1xPagingInd(
     struct MsgCB                       *pstMsg,
     CNAS_XCC_CALL_INSTANCE_LIST_STRU   *pstCallInstanceList
@@ -935,23 +696,7 @@ VOS_VOID CNAS_XCC_GetCallInstanceOf1xPagingInd(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetCallInstanceOf1xResetWfoSubStateTimerInd
- 功能描述  : 获取消息ID_CAS_CNAS_1X_RESET_WFO_SUBSTATE_TIMER_IND处理的call instance
- 输入参数  : pstMsg          -- 消息指针
- 输出参数  : pstCallInstList -- 返回call instance列表
- 返 回 值  : 无
 
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年09月11日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_GetCallInstanceOf1xResetWfoSubStateTimerInd(
     struct MsgCB                       *pstMsg,
     CNAS_XCC_CALL_INSTANCE_LIST_STRU   *pstCallInstanceList
@@ -965,22 +710,7 @@ VOS_VOID CNAS_XCC_GetCallInstanceOf1xResetWfoSubStateTimerInd(
                    pstCallInstanceList->ucInstanceNum);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetCallInstOf1xUpdateCallInfoInd
- 功能描述  : 获取消息ID_CAS_CNAS_1X_UPDATE_CALL_INFO_IND处理的call instance
- 输入参数  : pstMsg          -- 消息指针
- 输出参数  : pstCallInstList -- 返回call instance列表
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年09月11日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_GetCallInstanceOf1xUpdateCallInfoInd(
     struct MsgCB                       *pstMsg,
     CNAS_XCC_CALL_INSTANCE_LIST_STRU   *pstCallInstanceList
@@ -1008,22 +738,7 @@ VOS_VOID CNAS_XCC_GetCallInstanceOf1xUpdateCallInfoInd(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetCallInstanceOf1xCallInitInd
- 功能描述  : 获取消息ID_CAS_CNAS_1X_CALL_INIT_IND处理的call instance
- 输入参数  : pstMsg          -- 消息指针
- 输出参数  : pstCallInstList -- 返回call instance列表
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年09月11日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_GetCallInstanceOf1xCallInitInd(
     struct MsgCB                       *pstMsg,
     CNAS_XCC_CALL_INSTANCE_LIST_STRU   *pstCallInstanceList
@@ -1051,22 +766,7 @@ VOS_VOID CNAS_XCC_GetCallInstanceOf1xCallInitInd(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetCallInstOf1xCallRelInd
- 功能描述  : 获取消息ID_CAS_CNAS_1X_CALL_REL_IND处理的call instance
- 输入参数  : pstMsg          -- 消息指针
- 输出参数  : pstCallInstList -- 返回call instance列表
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年09月11日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_GetCallInstanceOf1xCallRelInd(
     struct MsgCB                       *pstMsg,
     CNAS_XCC_CALL_INSTANCE_LIST_STRU   *pstCallInstanceList
@@ -1097,22 +797,7 @@ VOS_VOID CNAS_XCC_GetCallInstanceOf1xCallRelInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetCallInstanceOf1xCallTerminateInd
- 功能描述  : 获取消息ID_CAS_CNAS_1X_CALL_TERMINATE_IND处理的call instance
- 输入参数  : pstMsg          -- 消息指针
- 输出参数  : pstCallInstList -- 返回call instance列表
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年09月11日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_GetCallInstanceOf1xCallTerminateInd(
     struct MsgCB                       *pstMsg,
     CNAS_XCC_CALL_INSTANCE_LIST_STRU   *pstCallInstanceList
@@ -1156,34 +841,7 @@ VOS_VOID CNAS_XCC_GetCallInstanceOf1xCallTerminateInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetCallInstanceOfOrigCallReq
- 功能描述  : 获取消息ID_XCALL_XCC_ORIG_CALL_REQ处理的call instance
- 输入参数  : pstMsg          -- 消息指针
- 输出参数  : pstCallInstList -- 返回call instance列表
- 返 回 值  : 无
 
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年09月11日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年1月3日
-    作    者   : y00245242
-    修改内容   : NDSS ORIG功能开发
-
-  3.日    期   : 2015年7月20日
-    作    者   : h00313353
-    修改内容   : 迭代17 紧急呼
-
-  4.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-*****************************************************************************/
 VOS_VOID CNAS_XCC_GetCallInstanceOfOrigCallReq(
     struct MsgCB                       *pstMsg,
     CNAS_XCC_CALL_INSTANCE_LIST_STRU   *pstCallInstanceList
@@ -1226,23 +884,7 @@ VOS_VOID CNAS_XCC_GetCallInstanceOfOrigCallReq(
 
 /* Delete If 0 */
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetCallInstanceOfXccSendBurstDtmfReq
- 功能描述  : 获取消息ID_XCALL_XCC_BURST_DTMF_REQ处理的call instance
- 输入参数  : pstMsg          -- 消息指针
- 输出参数  : pstCallInstList -- 返回call instance列表
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年09月11
-    作    者   : y00245242
-    修改内容   : 新生成函数
-  2.日    期   : 2014年11月17日
-    作    者   : f279542
-    修改内容   : 1X SS Project修改
-*****************************************************************************/
 VOS_VOID CNAS_XCC_GetCallInstanceOfXccSendBurstDtmfReq(
     struct MsgCB                       *pstMsg,
     CNAS_XCC_CALL_INSTANCE_LIST_STRU   *pstCallInstanceList
@@ -1269,23 +911,7 @@ VOS_VOID CNAS_XCC_GetCallInstanceOfXccSendBurstDtmfReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetCallInstanceOfXccSendFlashReq
- 功能描述  : 获取消息XCALL_XCC_SEND_FLASH_REQ_STRU处理的call instance
- 输入参数  : pstMsg          -- 消息指针
- 输出参数  : pstCallInstList -- 返回call instance列表
- 返 回 值  : 无
 
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年09月11日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_GetCallInstanceOfXccSendFlashReq(
     struct MsgCB                       *pstMsg,
     CNAS_XCC_CALL_INSTANCE_LIST_STRU   *pstCallInstanceList
@@ -1315,23 +941,7 @@ VOS_VOID CNAS_XCC_GetCallInstanceOfXccSendFlashReq(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetServiceTypeAccordingMsgId
- 功能描述  : 获取XCC消息处理的call instance
- 输入参数  : pstMsg          -- 消息指针
- 输出参数  : pstCallInstList -- 返回call instance列表
- 返 回 值  : 无
 
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年09月11日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_XCC_SERVICE_TYPE_ENUM_UINT32 CNAS_XCC_GetServiceTypeAccordingMsgId(
     VOS_UINT32                          ulMsgName
 )
@@ -1374,23 +984,7 @@ CNAS_XCC_SERVICE_TYPE_ENUM_UINT32 CNAS_XCC_GetServiceTypeAccordingMsgId(
     return enServiceType;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetCallInstanceOfOtherMsg
- 功能描述  : 获取XCC消息处理的call instance
- 输入参数  : pstMsg          -- 消息指针
- 输出参数  : pstCallInstList -- 返回call instance列表
- 返 回 值  : 无
 
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年09月11日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_GetCallInstanceOfOtherMsg(
     struct MsgCB                       *pstMsg,
     CNAS_XCC_CALL_INSTANCE_LIST_STRU   *pstCallInstanceList
@@ -1420,23 +1014,7 @@ VOS_VOID CNAS_XCC_GetCallInstanceOfOtherMsg(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetCallInstanceOfApsDataCallSuspendRsp
- 功能描述  : 获取XSD消息ID_APS_XCC_DATA_CALL_SUSPEND_RSP的call instance
- 输入参数  : pstMsg          -- 消息指针
- 输出参数  : pstCallInstList -- 返回call instance列表
- 返 回 值  : 无
 
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年09月11日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_GetCallInstanceOfApsDataCallSuspendRsp(
     struct MsgCB                       *pstMsg,
     CNAS_XCC_CALL_INSTANCE_LIST_STRU   *pstCallInstanceList
@@ -1464,23 +1042,7 @@ VOS_VOID CNAS_XCC_GetCallInstanceOfApsDataCallSuspendRsp(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetCallInstanceOfTimerMsg
- 功能描述  : 获取Timer消息处理的call instance
- 输入参数  : pstMsg          -- 消息指针
- 输出参数  : pstCallInstList -- 返回call instance列表
- 返 回 值  : 无
 
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年09月11日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_GetCallInstanceOfTimerMsg(
     struct MsgCB                       *pstMsg,
     CNAS_XCC_CALL_INSTANCE_LIST_STRU   *pstCallInstanceList
@@ -1511,23 +1073,7 @@ VOS_VOID CNAS_XCC_GetCallInstanceOfTimerMsg(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetCallInstanceOfXccMoCalingRlstCnf
- 功能描述  : 获取内部消息ID_CNAS_XCC_XCC_MO_CALLING_RSLT_CNF处理的call instance
- 输入参数  : pstMsg          -- 消息指针
- 输出参数  : pstCallInstList -- 返回call instance列表
- 返 回 值  : 无
 
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年09月11日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_GetCallInstanceOfXccMoCalingRlstCnf(
     struct MsgCB                       *pstMsg,
     CNAS_XCC_CALL_INSTANCE_LIST_STRU   *pstCallInstanceList
@@ -1556,23 +1102,7 @@ VOS_VOID CNAS_XCC_GetCallInstanceOfXccMoCalingRlstCnf(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetCallInstanceOfXccMtCalingRlstCnf
- 功能描述  : 获取内部消息ID_CNAS_XCC_XCC_MT_CALLING_RSLT_CNF处理的call instance
- 输入参数  : pstMsg          -- 消息指针
- 输出参数  : pstCallInstList -- 返回call instance列表
- 返 回 值  : 无
 
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年09月11日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_GetCallInstanceOfXccMtCalingRlstCnf(
     struct MsgCB                       *pstMsg,
     CNAS_XCC_CALL_INSTANCE_LIST_STRU   *pstCallInstanceList
@@ -1601,23 +1131,7 @@ VOS_VOID CNAS_XCC_GetCallInstanceOfXccMtCalingRlstCnf(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetCallInstanceOfXccAbortReq
- 功能描述  : 获取内部消息ID_CNAS_XCC_XCC_ABORT_REQ处理的call instance
- 输入参数  : pstMsg          -- 消息指针
- 输出参数  : pstCallInstList -- 返回call instance列表
- 返 回 值  : 无
 
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年09月11日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_GetCallInstanceOfXccAbortReq(
     struct MsgCB                       *pstMsg,
     CNAS_XCC_CALL_INSTANCE_LIST_STRU   *pstCallInstanceList
@@ -1644,23 +1158,7 @@ VOS_VOID CNAS_XCC_GetCallInstanceOfXccAbortReq(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetCallInstanceOfXccPowerDownReq
- 功能描述  : 获取内部消息ID_CNAS_XCC_XCC_POWER_DOWN_IND处理的call instance
- 输入参数  : pstMsg          -- 消息指针
- 输出参数  : pstCallInstList -- 返回call instance列表
- 返 回 值  : 无
 
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年09月11日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_GetCallInstanceOfXccPowerDownReq(
     struct MsgCB                       *pstMsg,
     CNAS_XCC_CALL_INSTANCE_LIST_STRU   *pstCallInstanceList
@@ -1689,23 +1187,7 @@ VOS_VOID CNAS_XCC_GetCallInstanceOfXccPowerDownReq(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetCallInstanceOfXccNdssRedialInd
- 功能描述  : 获取内部消息ID_CNAS_XCC_XCC_NDSS_REDIAL_IND处理的call instance
- 输入参数  : pstMsg          -- 消息指针
- 输出参数  : pstCallInstList -- 返回call instance列表
- 返 回 值  : 无
 
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年09月11日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_GetCallInstanceOfXccNdssRedialInd(
     struct MsgCB                       *pstMsg,
     CNAS_XCC_CALL_INSTANCE_LIST_STRU   *pstCallInstanceList
@@ -1733,22 +1215,7 @@ VOS_VOID CNAS_XCC_GetCallInstanceOfXccNdssRedialInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetCallInstanceEntity
- 功能描述  : 查找处理消息的呼叫控制instance
- 输入参数  : ulEventType -- 消息类型+PID
-             pMsg        -- 消息内容
- 输出参数  : pstCallInstanceFsmList -- 返回需要处理call control instance列表
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年09月06日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XCC_GetCallInstanceEntity(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -1787,20 +1254,7 @@ VOS_VOID CNAS_XCC_GetCallInstanceEntity(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetCallInstanceOfXccSendContDtmfReq
- 功能描述  : 获取消息XCALL_XCC_SEND_CONT_DTMF_REQ_STRU处理的call instance
- 输入参数  : pstMsg          -- 消息指针
- 输出参数  : pstCallInstList -- 返回call instance列表
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月25
-    作    者   : l00324781
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XCC_GetCallInstanceOfXccSendContDtmfReq(
     struct MsgCB                       *pstMsg,
     CNAS_XCC_CALL_INSTANCE_LIST_STRU   *pstCallInstanceList

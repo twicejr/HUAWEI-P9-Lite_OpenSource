@@ -32,20 +32,7 @@
 /*lint +e767 修改人:罗建 107747;检视人:sunshaohua*/
 
 
-/***********************************************************************
-*  MODULE   : Ss_RcvMnssBeginReq
-*  FUNCTION : SS收到MNSS_BEGIN_REQ的处理
-*  INPUT    : ST_SSP_MSG        *pSspMsg    当前处理的消息
-*             VOS_UINT8             ucTafId     消息中的TAF ID
-*  OUTPUT   : VOS_VOID
-*  RETURN   : VOS_VOID
-*  NOTE     : 无
-*  HISTORY  :
-*     1.  张志勇 04-03-08  新版作成
-  2.日    期   : 2014年6月24日
-    作    者   : w00167002
-    修改内容   : DSDS III项目
-************************************************************************/
+
 
 VOS_VOID Ss_RcvMnssBeginReq(
     ST_SSP_MSG                         *pSspMsg
@@ -94,22 +81,7 @@ VOS_VOID Ss_RcvMnssFacilityReq( ST_SSP_MSG *pSspMsg )
     }
 }
 
-/***********************************************************************
-*  MODULE   : Ss_RcvMnssEndReq
-*  FUNCTION : SS收到MNSS_FACILITY_REQ的处理
-*  INPUT    : ST_SSP_MSG        *pSspMsg    当前处理的消息
-*             VOS_UINT8             ucTafId     消息中的TAF ID
-*  OUTPUT   : VOS_VOID
-*  RETURN   : VOS_VOID
-*  NOTE     : 无
-*  HISTORY  :
-*     1.  张志勇 04-03-08  新版作成
-*     2.  丁  庆 06-11-23  问题单A32D07452
 
-      3.日    期   : 2014年5月26日
-        作    者   : z00234330
-        修改内容   : dts2014050800110,app发送cancel cusd时,如果mm连接没有建立,需要给上层发送abort通知
-************************************************************************/
 VOS_VOID Ss_RcvMnssEndReq( ST_SSP_MSG *pSspMsg )
 {
     VOS_UINT8   i;
@@ -146,21 +118,7 @@ VOS_VOID Ss_RcvMnssEndReq( ST_SSP_MSG *pSspMsg )
 }
 
 
-/*****************************************************************************
- 函 数 名  : Ss_RcvMnssSsStatusNty
- 功能描述  : 新生成函数
- 输入参数  : ST_SSP_MSG                         *pSspMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月18日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID Ss_RcvMnssSsStatusNty(
     ST_SSP_MSG                         *pSspMsg
 )

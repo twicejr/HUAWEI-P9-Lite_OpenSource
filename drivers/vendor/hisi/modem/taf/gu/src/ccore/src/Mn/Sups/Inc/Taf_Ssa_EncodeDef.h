@@ -1,25 +1,4 @@
-/************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : SSA_EncodeDef.h
-  Author      : ---
-  Version     : V200R001
-  Date        : 2005-08-16
-  Description : 该头文件定义了SSA模块编码函数的接口
-  History     :
-  1. Date:2005-04-19
-     Author: ---
-     Modification:Create
-  2.日    期   : 2006年08月09日
-    作    者   : 蒋丽萍j60010247
-    修改内容   : 问题单A32D03479，在PC机上实现时将#pragma pack(0)和#pragma pack()加编译开关
-  3.Date:2007-01-19
-    Author: h44270
-    Modification: 问题单号:A32D08448
-  4.Date:2007-04-29
-    Author: Li Jilin 60827
-    Modification: 问题单号:A32D10708
 
-************************************************************************/
 
 #ifndef _SSA_ENCODEDEF_H_
 #define _SSA_ENCODEDEF_H_

@@ -347,10 +347,8 @@ VOS_UINT32 atSetGodLoad(VOS_UINT8 ucClientId)
 //
 // 调用要求: TODO: ...
 // 调用举例: TODO: ...
-// 作    者: 岑雪青/c00172979 [2010-11-29]
 
 //  2.日    期   : 2015年01月26日
-//    修改内容   : 修改问题单DTS2015011307352，AT^RESET命令打印OK
 
 // *****************************************************************************
 VOS_UINT32 atSetReset(VOS_UINT8 ucClientId)
@@ -433,7 +431,6 @@ VOS_UINT32 atSetNVFactoryBack(VOS_UINT8 ucClientId)
         return AT_ERROR;
     }
 
-    /* Added by d00212987 在该AT命令中增加SC的备份。 2015-08-10, begin */
     ulRst = SC_COMM_Backup();
     if(ulRst != ERR_MSP_SUCCESS)
     {
@@ -443,7 +440,6 @@ VOS_UINT32 atSetNVFactoryBack(VOS_UINT8 ucClientId)
 
         return AT_ERROR;
     }
-    /* Added by d00212987 在该AT命令中增加SC的备份。 2015-08-10, end */
 
     gstAtSendData.usBufLen = (VOS_UINT16)At_sprintf( AT_CMD_MAX_LEN,
                                            (VOS_CHAR *)pgucAtSndCodeAddr,
@@ -797,7 +793,6 @@ VOS_UINT32 atSetSdloadCnf(VOS_UINT8 ucClientId,VOS_VOID *pMsgBlock)
 //
 // 调用要求: TODO: ...
 // 调用举例: TODO: ...
-// 作    者: 岑雪青/c00172979 [2011-1-14]
 // *****************************************************************************
 /*
 VOS_UINT32 atQryBootRomVer(VOS_UINT8 ucClientId)
@@ -862,7 +857,6 @@ VOS_UINT32 atQryBootRomVer(VOS_UINT8 ucClientId)
 //
 // 调用要求: TODO: ...
 // 调用举例: TODO: ...
-// 作    者: 岑雪青/c00172979 [2010-11-29]
 // *****************************************************************************
 /* 原版备份
 VOS_UINT32 atQryDLoadVer(VOS_UINT8 ucClientId)
@@ -929,7 +923,6 @@ VOS_UINT32 atQryDLoadVer(VOS_UINT8 ucClientId)
 //
 // 调用要求: TODO: ...
 // 调用举例: TODO: ...
-// 作    者: 岑雪青/c00172979 [2010-11-29]
 // *****************************************************************************
 
 //原作备份
@@ -1110,7 +1103,6 @@ VOS_UINT32 atQryDLoadInfo(VOS_UINT8 ucClientId)
 //
 // 调用要求: TODO: ...
 // 调用举例: TODO: ...
-// 作    者: 岑雪青/c00172979 [2010-11-29]
 // *****************************************************************************
 /*
 //原作备份
@@ -1154,7 +1146,6 @@ VOS_UINT32 atSetNVBackup(VOS_UINT8 ucClientId)
 //
 // 调用要求: TODO: ...
 // 调用举例: TODO: ...
-// 作    者: 岑雪青/c00172979 [2010-11-29]
 // *****************************************************************************
 /*
 VOS_UINT32 atSetNVRestore(VOS_UINT8 ucClientId)
@@ -1192,7 +1183,6 @@ VOS_UINT32 atSetNVRestore(VOS_UINT8 ucClientId)
 //
 // 调用要求: TODO: ...
 // 调用举例: TODO: ...
-// 作    者: 岑雪青/c00172979 [2010-11-29]
 // *****************************************************************************
 /*
 //原作备份
@@ -1258,7 +1248,6 @@ VOS_UINT32 atQryAuthorityVer(VOS_UINT8 ucClientId)
 //
 // 调用要求: TODO: ...
 // 调用举例: TODO: ...
-// 作    者: 岑雪青/c00172979 [2010-11-29]
 // *****************************************************************************
 /*
 //原作备份
@@ -1333,7 +1322,6 @@ VOS_UINT32 atQryAuthorityID(VOS_UINT8 ucClientId)
 //
 // 调用要求: TODO: ...
 // 调用举例: TODO: ...
-// 作    者: 岑雪青/c00172979 [2010-11-29]
 // *****************************************************************************
 /*
 HTIMER g_hTimerDload = 0;

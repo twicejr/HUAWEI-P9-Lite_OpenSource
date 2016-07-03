@@ -38,22 +38,7 @@ static const char* const modem_state_str[] = {
 /*To make modem poweroff called only once when there are two rilds.*/
 static int modem_power_off_flag = 0;
 
-/*****************************************************************************
- 函 数 名  : modem_state_set
- 功能描述  : 提供ttf设置modem状态的API
- 输入参数  : unsigned int state
- 输出参数  : 无
- 返 回 值  : <0     failed,invalid state
-             =0     success
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月25日
-    作    者   : 陈易超
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int mdrv_set_modem_state(unsigned int state)
 {
     if (!balong_driver_plat_data){

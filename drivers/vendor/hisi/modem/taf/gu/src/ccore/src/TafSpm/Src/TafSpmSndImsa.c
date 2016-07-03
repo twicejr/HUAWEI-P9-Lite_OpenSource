@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafSpmSndImsa.c
-  版 本 号   : 初稿
-  作    者   : s00217060
-  生成日期   : 2013年7月11日
-  最近修改   :
-  功能描述   : spm发给imsa的消息的处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年7月11日
-    作    者   : s00217060
-    修改内容   : 创建文件
-
-******************************************************************************/
 /*****************************************************************************
   1 头文件包含
 *****************************************************************************/
@@ -46,23 +29,7 @@ extern "C" {
   4 函数实现
 *****************************************************************************/
 #if (FEATURE_IMS == FEATURE_ON)
-/*****************************************************************************
- 函 数 名  : TAF_SPM_SendImsaCallOrigReq
- 功能描述  : 给IMSA发送CallOrigReq消息
- 输入参数  : pstAppMsg                - 入口消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月20日
-    作    者   : y00245242
-    修改内容   : 修改数据结构
-*****************************************************************************/
 VOS_VOID TAF_SPM_SendImsaCallOrigReq(
     MN_CALL_APP_REQ_MSG_STRU           *pstAppMsg
 )
@@ -121,23 +88,7 @@ VOS_VOID TAF_SPM_SendImsaCallOrigReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_SendImsaSupsCmdReq
- 功能描述  : 给IMSA发送SupsCmdReq消息
- 输入参数  : pstAppMsg                - 入口消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月20日
-    作    者   : y00245242
-    修改内容   : 修改数据结构
-*****************************************************************************/
 VOS_VOID TAF_SPM_SendImsaSupsCmdReq(
     MN_CALL_APP_REQ_MSG_STRU           *pstAppMsg
 )
@@ -187,24 +138,7 @@ VOS_VOID TAF_SPM_SendImsaSupsCmdReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_SendImsaGetCallInfoReq
- 功能描述  : 给IMSA发送GetInfo消息
- 输入参数  : pstAppMsg                - 入口消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2013年09月18日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseII项目,增加标识是^CLCC查询呼叫信息，
-                                    还是ATA时调用TAFAGENT API查询呼叫信息
-*****************************************************************************/
 VOS_VOID TAF_SPM_SendImsaGetCallInfoReq(
     MN_CALL_APP_REQ_MSG_STRU                               *pstAppMsg,
     CALL_IMSA_GET_CALL_INFO_REQ_TYPE_ENMU_UINT8             enReqType                              /* 请求类型 */
@@ -241,10 +175,8 @@ VOS_VOID TAF_SPM_SendImsaGetCallInfoReq(
     pstSendImsaMsg->usClientId  = pstAppMsg->clientId;
     pstSendImsaMsg->ucOpId      = pstAppMsg->opId;
 
-    /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-09-18, begin */
     /* 增加标识是^CLCC查询呼叫信息，还是ATA时调用TAFAGENT API查询呼叫信息 */
     pstSendImsaMsg->enReqType   = enReqType;
-    /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-09-18, end */
 
     /* AT发过来的MN_CALL_APP_GET_INFO_REQ没有unParm的信息，这里也不填写 */
 
@@ -258,20 +190,7 @@ VOS_VOID TAF_SPM_SendImsaGetCallInfoReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_SendImsaGetEconfInfoReq
- 功能描述  : 给IMSA发送GetInfo消息
- 输入参数  : pstAppMsg                - 入口消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月28日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_SPM_SendImsaGetEconfInfoReq(
     MN_CALL_APP_REQ_MSG_STRU           *pstAppMsg
 )
@@ -319,23 +238,7 @@ VOS_VOID TAF_SPM_SendImsaGetEconfInfoReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_SendImsaGetClprReq
- 功能描述  : 给IMSA发送GetClprReq消息
- 输入参数  : pstMsg       :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月08日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月20日
-    作    者   : y00245242
-    修改内容   : 修改数据结构
-*****************************************************************************/
 VOS_VOID TAF_SPM_SendImsaGetClprReq(
     MN_CALL_APP_REQ_MSG_STRU           *pstAppMsg
 )
@@ -385,23 +288,7 @@ VOS_VOID TAF_SPM_SendImsaGetClprReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_SendImsaStartDtmfReq
- 功能描述  : 给IMSA发送StartDtmfReq消息
- 输入参数  : pstAppMsg                - 入口消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2013年10月25日
-    作    者   : y00245242
-    修改内容   : 适配新的DTMF接口
-*****************************************************************************/
 VOS_VOID TAF_SPM_SendImsaStartDtmfReq(
     MN_CALL_APP_REQ_MSG_STRU           *pstAppMsg
 )
@@ -433,7 +320,6 @@ VOS_VOID TAF_SPM_SendImsaStartDtmfReq(
     pstSendImsaMsg->ulLength                    = sizeof(SPM_IMSA_CALL_START_DTMF_REQ_STRU) - VOS_MSG_HEAD_LENGTH;
 
     /* 填写消息内容 */
-    /* Modified by y00245242 for VoLTE_PhaseII 项目, 2013-10-25, begin */
     pstSendImsaMsg->ulMsgId     = ID_SPM_IMSA_CALL_START_DTMF_REQ;
     pstSendImsaMsg->usClientId  = pstAppMsg->clientId;
     pstSendImsaMsg->ucOpId      = pstAppMsg->opId;
@@ -441,7 +327,6 @@ VOS_VOID TAF_SPM_SendImsaStartDtmfReq(
     PS_MEM_CPY(&(pstSendImsaMsg->stDtmf),
                 &(pstAppMsg->unParm.stDtmf),
                 sizeof(TAF_CALL_DTMF_PARAM_STRU));
-    /* Modified by y00245242 for VoLTE_PhaseII 项目, 2013-10-25, end */
 
     /* 发送消息 */
     if (VOS_OK != PS_SEND_MSG(WUEPS_PID_TAF, pstSendImsaMsg))
@@ -454,23 +339,7 @@ VOS_VOID TAF_SPM_SendImsaStartDtmfReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_SendImsaStopDtmfReq
- 功能描述  : 给IMSA发送StopDtmfReq消息
- 输入参数  : pstAppMsg                - 入口消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2013年10月25日
-    作    者   : y00245242
-    修改内容   : 适配新的DTMF接口
-*****************************************************************************/
 VOS_VOID TAF_SPM_SendImsaStopDtmfReq(
     MN_CALL_APP_REQ_MSG_STRU           *pstAppMsg
 )
@@ -502,13 +371,11 @@ VOS_VOID TAF_SPM_SendImsaStopDtmfReq(
     pstSendImsaMsg->ulLength                    = sizeof(SPM_IMSA_CALL_STOP_DTMF_REQ_STRU) - VOS_MSG_HEAD_LENGTH;
 
     /* 填写消息内容 */
-    /* Modified by y00245242 for VoLTE_PhaseII 项目, 2013-10-25, begin */
     pstSendImsaMsg->ulMsgId     = ID_SPM_IMSA_CALL_STOP_DTMF_REQ;
     pstSendImsaMsg->usClientId  = pstAppMsg->clientId;
     pstSendImsaMsg->ucOpId      = pstAppMsg->opId;
 
     PS_MEM_CPY(&(pstSendImsaMsg->stDtmf), &(pstAppMsg->unParm.stDtmf), sizeof(TAF_CALL_DTMF_PARAM_STRU));
-    /* Modified by y00245242 for VoLTE_PhaseII 项目, 2013-10-25, end */
 
     /* 发送消息 */
     if (VOS_OK != PS_SEND_MSG(WUEPS_PID_TAF, pstSendImsaMsg))
@@ -521,23 +388,7 @@ VOS_VOID TAF_SPM_SendImsaStopDtmfReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_SendImsaGetCdurReq
- 功能描述  : 给IMSA发送GetCdurReq消息
- 输入参数  : pstAppMsg                - 入口消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月20日
-    作    者   : y00245242
-    修改内容   : 修改数据结构
-*****************************************************************************/
 VOS_VOID TAF_SPM_SendImsaGetCdurReq(
     MN_CALL_APP_REQ_MSG_STRU           *pstAppMsg
 )
@@ -585,20 +436,7 @@ VOS_VOID TAF_SPM_SendImsaGetCdurReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_SendImsaRegisterSsMsg
- 功能描述  : 发送REGISTER消息给IMSA
- 输入参数  : pstAppMsg 消息地址
- 输出参数  : 无
- 返 回 值  : VOS_TRUE 消息处理成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_SPM_SendImsaRegisterSsReq(
     struct MsgCB                       *pstMsg
 )
@@ -642,20 +480,7 @@ VOS_VOID TAF_SPM_SendImsaRegisterSsReq(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_SendImsaEraseSsMsg
- 功能描述  : 发送ERASE消息给IMSA
- 输入参数  : pstAppMsg 消息地址
- 输出参数  : 无
- 返 回 值  : VOS_TRUE 消息处理成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_SPM_SendImsaEraseSsReq(
     struct MsgCB                       *pstMsg
 )
@@ -700,20 +525,7 @@ VOS_VOID TAF_SPM_SendImsaEraseSsReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_SendImsaActivateSsMsg
- 功能描述  : 发送ACTIVATE请求消息给IMSA
- 输入参数  : pstAppMsg 消息地址
- 输出参数  : 无
- 返 回 值  : VOS_TRUE 消息处理成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_SPM_SendImsaActivateSsReq(
     struct MsgCB                       *pstMsg
 )
@@ -759,20 +571,7 @@ VOS_VOID TAF_SPM_SendImsaActivateSsReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_SendImsaDeactivateSsReq
- 功能描述  : 发送DEACTIVATE请求消息给IMSA
- 输入参数  : pstAppMsg 消息地址
- 输出参数  : 无
- 返 回 值  : VOS_TRUE 消息处理成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_SPM_SendImsaDeactivateSsReq(
     struct MsgCB                       *pstMsg
 )
@@ -817,20 +616,7 @@ VOS_VOID TAF_SPM_SendImsaDeactivateSsReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_SendImsaInterrogateSsReq
- 功能描述  : 发送Interrogate请求消息给IMSA
- 输入参数  : pstAppMsg 消息地址
- 输出参数  : 无
- 返 回 值  : VOS_TRUE 消息处理成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_SPM_SendImsaInterrogateSsReq(
     struct MsgCB                       *pstMsg
 )
@@ -875,20 +661,7 @@ VOS_VOID TAF_SPM_SendImsaInterrogateSsReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_SendImsaProcessUssSsReq
- 功能描述  : 发送USSD DATA消息给IMSA
- 输入参数  : pstAppMsg 消息地址
- 输出参数  : 无
- 返 回 值  : VOS_TRUE 消息处理成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_SPM_SendImsaProcessUssSsReq(
     struct MsgCB                       *pstMsg
 )
@@ -932,20 +705,7 @@ VOS_VOID TAF_SPM_SendImsaProcessUssSsReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_SendImsaReleaseSsReq
- 功能描述  : 发送release请求消息给IMSA
- 输入参数  : pstAppMsg 消息地址
- 输出参数  : 无
- 返 回 值  : VOS_TRUE 消息处理成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_SPM_SendImsaReleaseSsReq(
     struct MsgCB                       *pstMsg
 )
@@ -988,20 +748,7 @@ VOS_VOID TAF_SPM_SendImsaReleaseSsReq(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_SendImsaCallInviteNewPtptReq
- 功能描述  : 邀请第三方通话请求
- 输入参数  : pstAppMsg                    - 入口消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月13日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_SPM_SendImsaCallInviteNewPtptReq(
     MN_CALL_APP_REQ_MSG_STRU           *pstAppMsg
 )
@@ -1061,20 +808,7 @@ VOS_VOID TAF_SPM_SendImsaCallInviteNewPtptReq(
 
 /*lint -restore */
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_SendImsaCallInviteNewPtptReq
- 功能描述  : 呼叫变更请求
- 输入参数  : pstAppMsg                    - 入口消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月16日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_SPM_SendImsaCallModifyReq(
     MN_CALL_APP_REQ_MSG_STRU           *pstAppMsg
 )
@@ -1124,20 +858,7 @@ VOS_VOID TAF_SPM_SendImsaCallModifyReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_SendImsaCallAnswerRemoteModifyReq
- 功能描述  : 应答远程呼叫变更请求
- 输入参数  : pstAppMsg                    - 入口消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月16日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_SPM_SendImsaCallAnswerRemoteModifyReq(
     MN_CALL_APP_REQ_MSG_STRU           *pstAppMsg
 )
@@ -1188,20 +909,7 @@ VOS_VOID TAF_SPM_SendImsaCallAnswerRemoteModifyReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_SendImsaEconfAddUsersReq
- 功能描述  : 给IMSA发送EconfAddUsersReq消息
- 输入参数  : pstAppMsg                    - 入口消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月28日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_SPM_SendImsaEconfAddUsersReq(
     MN_CALL_APP_REQ_MSG_STRU           *pstAppMsg
 )
@@ -1256,20 +964,7 @@ VOS_VOID TAF_SPM_SendImsaEconfAddUsersReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_SendImsaEconfDialReq
- 功能描述  : 给IMSA发送EconfDialReq消息
- 输入参数  : pstAppMsg                    - 入口消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月28日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_SPM_SendImsaEconfDialReq(
     MN_CALL_APP_REQ_MSG_STRU           *pstAppMsg
 )
@@ -1320,21 +1015,7 @@ VOS_VOID TAF_SPM_SendImsaEconfDialReq(
 }
 
 #if 0 /* 如果后续需要将检查成功的号码发给IMSA，需要使用这个函数 */
-/*****************************************************************************
- 函 数 名  : TAF_SPM_FillImsaEconfCallList
- 功能描述  : 将FDN & CC检查OK的电话号码填写到电话列表中
- 输入参数  : pstAppMsg                    - 入口消息
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                     - 发送内部消息成功
-             VOS_FASLE                    - 发送内部消息失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月28日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_SPM_FillImsaEconfCallList(
     TAF_CALL_ECONF_CALL_LIST_STRU      *pstCallList
 )

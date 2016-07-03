@@ -1,13 +1,4 @@
-/******************************************************************************
 
-        @(#)Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : NasLmmPubMMsgBuf.h
-    Description :
-    History     :
-    1.zhengjunyan 00148421  2011-05-28 文件名由 NasMmPubMMsgBuf.h修改为NasLmmPubMMsgBuf.h
-******************************************************************************/
 
 #ifndef _NASLMMPUBMMSGBUF_H
 #define _NASLMMPUBMMSGBUF_H

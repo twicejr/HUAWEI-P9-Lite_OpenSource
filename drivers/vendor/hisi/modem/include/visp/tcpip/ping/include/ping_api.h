@@ -281,71 +281,16 @@ ULONG TCPIP_GetPingTos(UCHAR *pucTos);
 *******************************************************************************/
 ULONG TCPIP_RegFuncPingStatHook(TCPIP_PINGSTAT_HOOK_FUNC pfFunc);
 
-/*****************************************************************************
- 函 数 名  : TCPIP_PingEx
- 功能描述  : PIng功能函数,支持多任务同时ping
- 输入参数  : ULONG ulExecID:任务ID
-             Ping_Comm_S *pPingParam
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年4月27日
-    作    者   : w62223
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 ULONG TCPIP_PingEx(ULONG ulExecID, Ping_Comm_S *pPingParam);
 
 
-/*****************************************************************************
- 函 数 名  : TCPIP_RegFuncPINGExOutputHook
- 功能描述  : PING信息输出适配函数注册接口
- 输入参数  : TCPIP_PINGExOutput_HOOK_FUNC pfHookFuc
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年4月27日
-    作    者   : w62223
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 ULONG TCPIP_RegFuncPINGExOutputHook(TCPIP_PINGExOutput_HOOK_FUNC pfHookFuc);
 
-/*******************************************************************************
-*    Func Name: TCPIP_VispPing
-* Date Created: 2009-09-15
-*       Author: z00104207
-*  Description: 之前VISP协议栈在各个产品应用时，经常出现Ping相关的问题，而定位时
-*               无法直接调用VISP的ping接口协助调试定位，因此需提供一个新的接口供
-*               协助调试定位使用。
-*        Input: CHAR *szHostName: 目的主机的地址
-*               ULONG ulTimeout:  ping操作的超时时间
-*               CHAR *szVrfName:  VRF名称
-*               ULONG ulDatalen:  ping报文的净荷长度
-*               ULONG ulPackets:  ping报文的个数
-*               ULONG ulTos:      TOS值
-*               ULONG ulTtl:      TTL值
-*               CHAR *szIfName:   出接口名
-*               CHAR *szSrcIp:    源地址
-*               ULONG ulTaskPri:  ping任务的优先级，默认取为100
-*       Output:
-*       Return: VOID
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-09-15   z00104207               Create
-*
-*******************************************************************************/
+
 extern VOID TCPIP_VispPing(CHAR *szHostName, ULONG ulTimeout, CHAR *szVrfName, ULONG ulDatalen, ULONG ulPackets,
     ULONG ulTos, ULONG ulTtl, CHAR *szIfName, CHAR *szSrcIp, ULONG ulTaskPri);
 

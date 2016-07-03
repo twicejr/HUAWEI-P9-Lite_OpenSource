@@ -1,22 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : BST_APP_MainTask.cpp
-  版 本 号   : 初稿
-  作    者   : d00173029
-  生成日期   : 2014年4月16日
-  最近修改   :
-  功能描述   : Bastet 方案的主控制类
-  函数列表   :
-
-  修改历史   :
-  1.日    期   : 2014年04月16日
-    作    者   : d00173029
-    修改内容   : 创建文件
-
-******************************************************************************/
 /*****************************************************************************
   1 头文件包含
 *****************************************************************************/
@@ -52,20 +34,7 @@ extern "C" BST_ERR_ENUM_UINT8 SysGetLocalIpInfo( NET_DRV_LOCAL_IP_INFO_STRU *pst
    6 函数实现
 ******************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : BST_APP_CMainTask
- 功能描述  : BST_APP_CMainTask类的构造函数
- 输入参数  : usInProcID ;ID of protocol adapter
-           : usInTaskID ;Task ID
- 输出参数  :
- 返 回 值  : BST_VOID
- 被调函数  :
- 调用函数  :
- 修改历史  :
-    1.日    期   : 2014/01/01
-      作    者   : Davy
-      修改内容   : 创建函数
-*****************************************************************************/
+
 BST_APP_CMainTask::BST_APP_CMainTask(
     BST_PROCID_T    usInProcID,
     BST_TASKID_T    usInTaskID )
@@ -152,19 +121,7 @@ BST_APP_CMainTask::BST_APP_CMainTask(
     BST_OS_ThreadUnLock ( tThreadLockCnt );
 }
 
-/*****************************************************************************
- 函 数 名  : ~BST_APP_CMainTask
- 功能描述  : Destructor function of class BST_APP_CMainTask
- 输入参数  : BST_VOID
- 输出参数  :
- 返 回 值  : BST_VOID
- 被调函数  :
- 调用函数  :
- 修改历史  :
-    1.日    期   : 2014/01/01
-      作    者   : Davy
-      修改内容   : 创建函数
-*****************************************************************************/
+
 BST_APP_CMainTask::~BST_APP_CMainTask( BST_VOID )
 {
     BST_CORE_CRegedit                  *pcRegedit;
@@ -172,19 +129,7 @@ BST_APP_CMainTask::~BST_APP_CMainTask( BST_VOID )
     BST_ASSERT_NULL( pcRegedit );
     pcRegedit->unRegist( this );
 }
-/*****************************************************************************
- 函 数 名  :
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 /*lint -e429*/
 BST_VOID BST_APP_CMainTask::Attach ( BST_CORE_CNPTask  *pC_NPTask )
 {
@@ -210,19 +155,7 @@ BST_VOID BST_APP_CMainTask::Attach ( BST_CORE_CNPTask  *pC_NPTask )
                      ( BST_UINT16 )ulNewLen, BST_NULL_PTR );
 }
 /*lint +e429*/
-/*****************************************************************************
- 函 数 名  :
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 /*lint -e438*/
 BST_VOID BST_APP_CMainTask::Detach ( BST_CORE_CNPTask  *pC_NPTask )
 {
@@ -254,19 +187,7 @@ BST_VOID BST_APP_CMainTask::Detach ( BST_CORE_CNPTask  *pC_NPTask )
                      ( BST_UINT16 )ulNewLen, BST_NULL_PTR );
 }
 /*lint +e438*/
-/*****************************************************************************
- 函 数 名  :
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 /*lint -e438*/
 BST_ERR_ENUM_UINT8 BST_APP_CMainTask::TrafficOverFlow( BST_UINT32 ulRealFlowValue )
 {
@@ -308,38 +229,12 @@ BST_ERR_ENUM_UINT8 BST_APP_CMainTask::TrafficOverFlow( BST_UINT32 ulRealFlowValu
     return enRtnVal;
 }
 /*lint +e438*/
-/*****************************************************************************
- 函 数 名  : ~BST_APP_CMainTask
- 功能描述  : Destructor function of class BST_APP_CMainTask
- 输入参数  : BST_VOID
- 输出参数  :
- 返 回 值  : BST_VOID
- 被调函数  :
- 调用函数  :
- 修改历史  :
-    1.日    期   : 2014/01/01
-      作    者   : Davy
-      修改内容   : 创建函数
-*****************************************************************************/
+
 BST_VOID BST_APP_CMainTask::Entry( BST_VOID )
 {
 }
 
-/*****************************************************************************
- 函 数 名  : ConfigNotice
- 功能描述  : Config notice function of sys main proc
- 输入参数  : enInPid   ;input task pid
-               : usNewLen  ;config data length
-               : pcNewVal  ;config data buffer
- 输出参数  :
- 返 回 值  : BST_UINT8
- 被调函数  :
- 调用函数  :
- 修改历史  :
-    1.日    期   : 2014/01/01
-      作    者   : Davy
-      修改内容   : 创建函数
-*****************************************************************************/
+
 BST_UINT16  BST_APP_CMainTask::Inquired( BST_CORE_PID_ENUM_UINT16   enParamId,
                                          BST_UINT16                 usDataSize,
                                          BST_VOID                  *const pData )
@@ -394,21 +289,7 @@ BST_UINT16  BST_APP_CMainTask::Inquired( BST_CORE_PID_ENUM_UINT16   enParamId,
     return usRtnLen;
 }
 
-/*****************************************************************************
- 函 数 名  : ConfigNotice
- 功能描述  : Config notice function of sys main proc
- 输入参数  : enInPid   ;input task pid
-               : usNewLen  ;config data length
-               : pcNewVal  ;config data buffer
- 输出参数  :
- 返 回 值  : BST_UINT8
- 被调函数  :
- 调用函数  :
- 修改历史  :
-    1.日    期   : 2014/01/01
-      作    者   : Davy
-      修改内容   : 创建函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_APP_CMainTask::Configed( BST_CORE_PID_ENUM_UINT16 enInPid,
                                                 BST_UINT16               usNewLen,
                                                 const BST_VOID *const    pcNewVal,
@@ -492,19 +373,7 @@ BST_ERR_ENUM_UINT8 BST_APP_CMainTask::Configed( BST_CORE_PID_ENUM_UINT16 enInPid
 }
 
 
-/*****************************************************************************
- 函 数 名  :
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_APP_CMainTask *BST_APP_CMainTask::GetInstance( BST_VOID )
 {
     static BST_APP_CMainTask *pSys      = BST_NULL_PTR;
@@ -517,19 +386,7 @@ BST_APP_CMainTask *BST_APP_CMainTask::GetInstance( BST_VOID )
     return pSys;
 }
 
-/*****************************************************************************
- 函 数 名  :
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID  BST_APP_CMainTask::Start( BST_VOID )
 {
     BST_SRV_CTaskMng                   *pcTaskManager;
@@ -538,19 +395,7 @@ BST_VOID  BST_APP_CMainTask::Start( BST_VOID )
     pcTaskManager->StartAll();
 }
 
-/*****************************************************************************
- 函 数 名  :
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID  BST_APP_CMainTask::Stop(BST_VOID)
 {
     BST_SRV_CTaskMng                   *pcTaskManager;
@@ -559,19 +404,7 @@ BST_VOID  BST_APP_CMainTask::Stop(BST_VOID)
     pcTaskManager->StopAll();
 }
 
-/*****************************************************************************
- 函 数 名  :
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID  BST_APP_CMainTask::Remove( BST_VOID )
 {
     BST_SRV_CTaskMng                   *pcTaskManager;
@@ -580,20 +413,7 @@ BST_VOID  BST_APP_CMainTask::Remove( BST_VOID )
     pcTaskManager->RemoveAll();
 }
 
-/*****************************************************************************
- 函 数 名  : RadioEvent
- 功能描述  : radio event which notify all the task what event happened
- 输入参数  : enEvent  ;radio event
-           : pData    ;event args
- 输出参数  : BST_VOID
- 返 回 值  : BST_VOID
- 被调函数  :
- 调用函数  :
- 修改历史  :
-    1.日    期   : 2014/01/01
-      作    者   : Davy
-      修改内容   : 创建函数
-*****************************************************************************/
+
 BST_VOID BST_APP_CMainTask::AsEventCallback( BST_AS_EVT_ENUM_UINT32 ulAsEvt, BST_UINT32 ulLength, BST_VOID *pData )
 {
     BST_UINT32                          ulPara;
@@ -685,19 +505,7 @@ BST_VOID BST_APP_CMainTask::AsEventCallback( BST_AS_EVT_ENUM_UINT32 ulAsEvt, BST
     }
 }
 
-/*****************************************************************************
- 函 数 名  : ConfigLocalIp
- 功能描述  : Config LocalIP of the LwIP Stack
- 输入参数  : pcNewVal  ;4 bytes buffer(IP addr)
- 输出参数  :
- 返 回 值  : BST_ERR_ENUM_UINT8 
- 被调函数  :
- 调用函数  :
- 修改历史  :
-    1.日    期   : 2014/01/01
-      作    者   : Davy
-      修改内容   : 创建函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8  BST_APP_CMainTask::SaveLocalIp( NET_DRV_LOCAL_IP_INFO_STRU *pstLocalMsg )
 {
     if ( BST_NULL_PTR == pstLocalMsg )
@@ -708,19 +516,7 @@ BST_ERR_ENUM_UINT8  BST_APP_CMainTask::SaveLocalIp( NET_DRV_LOCAL_IP_INFO_STRU *
     return BST_NO_ERROR_MSG;
 }
 
-/*****************************************************************************
- 函 数 名  :
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_APP_CMainTask::ConfigNetState( BST_NET_STATE_STRU *pstNetState )
 {
     BST_DRV_STRU                       *pNetDriver;
@@ -797,20 +593,7 @@ BST_ERR_ENUM_UINT8 BST_APP_CMainTask::ConfigNetState( BST_NET_STATE_STRU *pstNet
     }
 }
 
-/*****************************************************************************
- 函 数 名  : GetTotalTrFlow
- 功能描述  : Get the Total Traffice Flow of Tasks.
- 输入参数  : pucBuf[]       data buffer for save the BST_APP_TASK_TRFCFLOW_STRUs
-             usBufLen       Maxim Length of the buffer
- 输出参数  : BST_VOID
- 返 回 值  : BST_UINT16     The real used buffer length
- 被调函数  :
- 调用函数  :
- 修改历史  :
-    1.日    期   : 2014/10/22
-      作    者   : Davy
-      修改内容   : 创建函数
-*****************************************************************************/
+
 /*lint -e429*/
 BST_UINT16 BST_APP_CMainTask::GetTotalTrFlow( BST_UINT8 pucBuf[], BST_UINT16 usBufLen )
 {

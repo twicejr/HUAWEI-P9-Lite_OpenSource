@@ -121,7 +121,6 @@ typedef struct tagMBufIp6PacketInfo
     下一跳的结构应该是IN6ADDR_S,但是因为头文件引用的关系,
     定义后将导致原有的文件无法编译通过,只能定义一个相同的结构代替
     */
-    /* Modified by z00208058/w00207740, u8定义冲突, 2012/5/8 */
     struct {
         UCHAR ucaddr[16];
     }stNextHopIpAddr;       /*下一跳的地址，从路由表中获得*/
@@ -276,7 +275,6 @@ typedef struct tagMBuf
     ULONG ulTimeStampHigh;         /* 高字节时间戳 */
     ULONG ulTimeStampLow;         /* 低字节时间戳 */
     
-    /*Added by zhoushisong202096, 更改TCP重组队列, 2013/11/5 */ 
     struct tagMBuf * pstPrevMBuf;/*上一个mbuf， NULL表示无效，其他表示有效*/        
     UCHAR *pu8NetLayerHeader;    /* 指向报文的网络层首部 */
     
@@ -296,7 +294,6 @@ typedef struct MbufCfgInfo
     ULONG ulDBDCacheMask;
     ULONG ulDBCacheMask;
     ULONG ulCacheLock;
-    /*Added by zhoushisong202096, 支持MBUF预留长度可扩展, 2013/11/25 */
     ULONG ulReservedExtHeadLength;
 }MBUFCFGINFO_S;
 
@@ -323,7 +320,6 @@ typedef struct tagTCPIP_USER_DB_HOOK
     ULONG (*GetRefUserDB_HOOK_FUNC) (VOID * pBuf, ULONG * pulRetRef ); /*获取 DB的引用计数，参考VOS_Mem_GetRef */
 }TCPIP_USER_DB_HOOK_S;
 
-/* Added by z43740 for API整改:适配函数改为注册方式,2008/03/27 */
 typedef ULONG (*FreeSysDB_HOOK_FUNC)(MBUF_DATABLOCKDESCRIPTOR_S * pstDataBlockDescriptor);
 typedef ULONG (*DupSysDB_HOOK_FUNC)(MBUF_DATABLOCKDESCRIPTOR_S * pstSrcDataBlockDescriptor,
                                     MBUF_DATABLOCKDESCRIPTOR_S * pstDstDataBlockDescriptor);
@@ -440,46 +436,10 @@ ULONG MBUF_PrependDataBlock(MBUF_S * pstMBuf, ULONG ulLength, ULONG ulModuleID);
 *******************************************************************************/
 VOID MBUF_CutHeadInMultiDataBlock(MBUF_S * pstMBuf, ULONG ulLength);
 
-/*******************************************************************************
-*    Func Name: MBUF_DestroyFunc
-* Date Created: 2009-02-25
-*       Author: z00104207
-*  Description: 为配合VR7C03 lib小型化需求，将MBUF_Destroy宏改成函数调用
-*        Input: CHAR *szCurrentFileName:文件名
-*               ULONG ulLine:           行号
-*               MBUF_S *pMBuf:          MBUF指针
-*       Output: 
-*       Return: VOID
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-02-25   z00104207/l00111779     Create
-*
-*******************************************************************************/
+
 VOID MBUF_DestroyFunc(CHAR *szCurrentFileName, ULONG ulLine, MBUF_S *pMBuf);
 
-/*******************************************************************************
-*    Func Name: TCPIP_RegFuncUserMngDBHook
-* Date Created: 2013-12-19
-*       Author: lihaiming 00218630
-*      Purpose: 获取用户管理 DB的引用计数
-*  Description: 
-*        Input: VOID * pBuf
-*       Output: ULONG * pulRetRef: DB的引用计数
-*       Return: 成功：VOS_OK
-*               失败：VOS_ERR
-*      Caution: 
-*        Since: V300R002C00
-*    Reference: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2013-12-19   lihaiming 00218630        Create
-*
-*******************************************************************************/
+
 ULONG TCPIP_GetUserDBRef(VOID * pBuf, ULONG * pulRetRef );
 
 /*private function----------------------------------------------------------END*/
@@ -693,8 +653,7 @@ extern ULONG VOS_T_GetSelfID( ULONG * pulTaskID );
 extern VOID TCPIP_SchedPoint_Check_Delay(VOID);
 
 /* macro with parameters */
-/* Modified by likaikun213099, mbuf.h对外公开，安全编译宏在产品链接阶段找不到, 
-   2014/12/13   问题单号:DTS2014121300931  */
+
 #ifndef TCPIP_Mem_Set
 #define TCPIP_Mem_Set(pDstPtr, uChar, ulSetLen)                 TCPIP_Safe_Mem_Set(pDstPtr, ulSetLen, uChar, ulSetLen)
 #endif
@@ -702,7 +661,6 @@ extern VOID TCPIP_SchedPoint_Check_Delay(VOID);
 #ifndef TCPIP_Mem_Copy
 #define TCPIP_Mem_Copy(pDstPtr, dst_size, pSrcPtr, copy_size)   TCPIP_Safe_Mem_Copy(pDstPtr, dst_size, pSrcPtr, copy_size)
 #endif
-/*End of Modified by likaikun213099, 2014/12/13   问题单号:DTS2014121300931  */
 
 /*采用预配置方式,用以判断是否需要对MBUF Cache进行共享数据互斥保护*/
 #define MBUF_CACHE_LOCK(ulValue) \
@@ -923,7 +881,6 @@ extern VOID TCPIP_SchedPoint_Check_Delay(VOID);
     }\
 }
 
-/* Added by X36317, 新增为支持ARM CPU字节对齐特性使用的公共宏, 2006/5/9 */
 #ifdef TCPIP_SUPPORT_ARMCPU
 /*将Mbuf报文交给上层协议时需调用此宏。此宏的作用是判断报文的起始地址是否4字节的整数倍，
 如果不是，则需要新申请一个DB，将原来报文Mbuf内容Copy到新的DB中*/
@@ -1513,7 +1470,6 @@ ULONG MBUF_RegMbufCfgInfo(MBUFCFGINFO_S *pstMbufCfgInfo);
 *******************************************************************************/
 ULONG MBUF_GetMbufStatusInfo(MBUFSTATUSINFO_S* pstMbufStatus);
 
-/* Added by z43740 for API整改:适配函数改为注册方式,2008/03/27 */
 /*******************************************************************************
 *    Func Name: TCPIP_RegFuncFreeSysDBHook
 *  Description: 注册释放系统DB的函数指针
@@ -1580,27 +1536,7 @@ ULONG TCPIP_RegFuncGetSysDBRefCntHook(GetSysDBRefCnt_HOOK_FUNC pfHookFunc);
 ULONG TCPIP_RegFuncDecSysDBRefCntHook(DecSysDBRefCnt_HOOK_FUNC pfHookFunc);
 /* End of addition by z43740,2008/03/27 */
 
-/*******************************************************************************
-*    Func Name: TCPIP_RegFuncUserMngDBHook
-* Date Created: 2013-12-19
-*       Author: lihaiming 00218630
-*      Purpose: 注册用户管理DB的钩子
-*  Description: 
-*        Input: TCPIP_USER_DB_HOOK_S *pstHookFunc 钩子函数
-*                                       
-*       Output: 
-*       Return: 成功：VOS_OK
-*               失败：VOS_ERR
-*      Caution: 需要在协议栈初始化之前注册
-*        Since: V300R002C00
-*    Reference: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2013-12-19   lihaiming 00218630        Create
-*
-*******************************************************************************/
+
 ULONG TCPIP_RegFuncUserMngDBHook(TCPIP_USER_DB_HOOK_S *pstHookFunc);
 
 /*public function---------------------------------------------------------------------END*/
@@ -2056,7 +1992,6 @@ extern ULONG TCPIP_GetSysDBRefCnt(MBUF_DATABLOCKDESCRIPTOR_S * pstDataBlockDescr
 }
 
 /* 设置socket ID */
-/* Modified by y00176567, at 2011-05-26. 修改原因: 消除VC三级告警 */
 /* iFd前面添加(USHORT)，进行强制类型转换以和左边表达式类型一致 */
 #define MBUF_SET_SOCKET_ID(pMbuf, iFd)\
 {\
@@ -2086,7 +2021,6 @@ extern ULONG TCPIP_GetSysDBRefCnt(MBUF_DATABLOCKDESCRIPTOR_S * pstDataBlockDescr
     (((pstMBufM)->ulEncapType ) = (ulFlagM))
 
 /*****************************时间戳操作宏*****************************/
-/* Modify by z00171897/s00176784, at 2011-06-02. 修改原因: 支持获取保存ARP报文队列 */
 /* 设置低字节时间戳 */
 #define MBUF_SET_TIMESTAMP_LOW(pstMbuf,ulTimeMinSecondLow) \
     ((pstMbuf)->ulTimeStampLow = (ulTimeMinSecondLow))

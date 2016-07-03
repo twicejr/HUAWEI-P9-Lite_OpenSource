@@ -1,16 +1,4 @@
-/******************************************************************************
 
-
-        @(#)Copyright(C)2013,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : CssProcSrchRslt.h
-    Description : CSS处理搜网结果的头文件
-    History     :
-      1.chengmin 00285307   2015-05-15  Draft Enact
-
-
-******************************************************************************/
 
 #ifndef __CSSPROCSRCHRSLT_H__
 #define __CSSPROCSRCHRSLT_H__
@@ -82,7 +70,6 @@ extern VOS_UINT32  CSS_ProcBandScanReqest(VOS_VOID);
 extern VOS_UINT32 CSS_ProcAsBandScanReqest(CSS_RAT_TYPE_ENUM_UINT8 ucRatType, const CSS_BAND_LIST *pBandList);
 extern VOS_UINT32 CSS_ProcLphyBandScanRsltForCommScan(const CSS_LPHY_BAND_SCAN_RESULT_LIST_STRU *pstLphyBandScanRslt);
 extern VOS_UINT32 CSS_IsCommScanNeedSndLphyNextBandScanReq(VOS_VOID);
-/* c00285307 add for 多制式和重叠频段BAND优化 Begin */
 extern VOS_VOID CSS_SortRsltByRatSupport
 (
     CSS_BAND_SCAN_LIST_INFO_STRU       *pstCssBandInfo,
@@ -112,7 +99,6 @@ extern VOS_UINT32 CSS_IsNeedAddToRslt
     CSS_RAT_COVERAGE_STRU              *pstRatCoverage,
     VOS_UINT16                          ucBand
 );
-/* c00285307 add for 多制式和重叠频段BAND优化 End */
 extern VOS_UINT32  CSS_ProcLphyBandScanRsltForAsScan
 (
  const CSS_LPHY_BAND_SCAN_RESULT_LIST_STRU *pstLphyBandScanRslt

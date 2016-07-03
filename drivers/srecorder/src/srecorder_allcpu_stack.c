@@ -543,18 +543,7 @@ int srecorder_init_allcpu_stack(srecorder_module_init_params_t *pinit_params)
 }
 
 
-/**
-    @function: void srecorder_exit_allcpu(void)
-    @brief: 模块退出函数，它的主要工作是清除allcpu stack模块中的变量s_reserved_mem_info_for_log_temp，
-           因为在等待workqueue完成检查cpu调用栈的超时时间到了以后，我们不再希望其他的线程或者任务往
-           SRecorder的保留内存区写内容，因此必须把它设置为NULL。
 
-    @param: none
-    
-    @return: none
-
-    @note: 
-*/
 void srecorder_exit_allcpu_stack(void)
 {
     srecorder_set_log_dumped_bit(ALL_CPU_STACK_BIT3);

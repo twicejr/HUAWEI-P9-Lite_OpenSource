@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : oal_list.h
-  版 本 号   : 初稿
-  作    者   : chenwenfeng
-  生成日期   : 2012年12月3日
-  最近修改   :
-  功能描述   : oal_queue.h 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年12月3日
-    作    者   : chenwenfeng
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __OAL_LIST_H__
 #define __OAL_LIST_H__
@@ -126,43 +109,14 @@ typedef struct tag_oal_dlist_head_stru
 /*****************************************************************************
   10 函数声明
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : oal_list_init_head
- 功能描述  : 初始化单向链表头
- 输入参数  : pst_list_head: 单向链表头指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月16日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  oal_list_init_head(oal_list_head_stru *pst_list_head)
 {
     pst_list_head->pst_next = (oal_list_entry_stru *)pst_list_head;
     pst_list_head->pst_prev = (oal_list_entry_stru *)pst_list_head;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_list_add
- 功能描述  : 将链表节点加入到链表的尾部
- 输入参数  : pst_new: 新加入节点指针
-             pst_head: 链表头
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月26日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  oal_list_add(oal_list_entry_stru *pst_new,
                             oal_list_head_stru *pst_head)
 {
@@ -173,21 +127,7 @@ OAL_STATIC OAL_INLINE oal_void  oal_list_add(oal_list_entry_stru *pst_new,
     pst_head->pst_prev = pst_new;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_list_delete_head
- 功能描述  : 从链表头删除一个节点，不负责释放，不判断链表是否为空，请注意
- 输入参数  : pst_head: 链表头
- 输出参数  : 无
- 返 回 值  : 被删除的节点
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月26日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_list_entry_stru* oal_list_delete_head(oal_list_head_stru *pst_head)
 {
     oal_list_entry_stru *pst_node;
@@ -211,21 +151,7 @@ OAL_STATIC OAL_INLINE oal_list_entry_stru* oal_list_delete_head(oal_list_head_st
 }
 
 
-/*****************************************************************************
- 函 数 名  : oal_list_jion
- 功能描述  : 将参数2的单向链表合入参数1的单向链表中
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月20日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  oal_list_jion(oal_list_head_stru *pst_head1, oal_list_head_stru *pst_head2)
 {
     oal_list_entry_stru *pst_list1_tail;
@@ -239,21 +165,7 @@ OAL_STATIC OAL_INLINE oal_void  oal_list_jion(oal_list_head_stru *pst_head1, oal
 
 }
 
-/*****************************************************************************
- 函 数 名  : oal_dlist_is_empty
- 功能描述  : 判断一个链表是否为空
- 输入参数  : pst_head: 链表头指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月26日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_bool_enum_uint8 oal_list_is_empty(oal_list_head_stru *pst_head)
 {
     return pst_head->pst_next == (oal_list_entry_stru *)pst_head;
@@ -261,44 +173,14 @@ OAL_STATIC OAL_INLINE oal_bool_enum_uint8 oal_list_is_empty(oal_list_head_stru *
 
 
 
-/*****************************************************************************
- 函 数 名  : oal_dlist_init_head
- 功能描述  : 链表初始化函数
- 输入参数  : pst_list: 链表头指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月26日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  oal_dlist_init_head(oal_dlist_head_stru *pst_list)
 {
     pst_list->pst_next = pst_list;
     pst_list->pst_prev = pst_list;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_dlist_add
- 功能描述  : 链表节点加入操作
- 输入参数  : pst_new: 新加入节点指针
-             pst_prev: 加入位置的前一个节点指针
-             pst_next: 加入位置的下一个节点指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月26日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  oal_dlist_add(oal_dlist_head_stru *pst_new,
                             oal_dlist_head_stru *pst_prev,
                             oal_dlist_head_stru *pst_next)
@@ -309,43 +191,14 @@ OAL_STATIC OAL_INLINE oal_void  oal_dlist_add(oal_dlist_head_stru *pst_new,
     pst_prev->pst_next  = pst_new;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_dlist_delete
- 功能描述  : 从链表的指定位置删除一个节点提炼
- 输入参数  : pst_prev: 删除位置的前一个节点指针
-             pst_next: 删除位置的下一个节点指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月26日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  oal_dlist_delete(oal_dlist_head_stru *pst_prev, oal_dlist_head_stru *pst_next)
 {
     pst_next->pst_prev = pst_prev;
     pst_prev->pst_next = pst_next;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_dlist_is_empty
- 功能描述  : 判断一个链表是否为空
- 输入参数  : pst_head: 链表头指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月26日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_bool_enum_uint8 oal_dlist_is_empty(oal_dlist_head_stru *pst_head)
 {
     if (OAL_PTR_NULL == pst_head->pst_next || OAL_PTR_NULL == pst_head->pst_prev)
@@ -356,63 +209,19 @@ OAL_STATIC OAL_INLINE oal_bool_enum_uint8 oal_dlist_is_empty(oal_dlist_head_stru
     return pst_head->pst_next == pst_head;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_dlist_add_head
- 功能描述  : 往链表头部插入节点
- 输入参数  : pst_new: 要插入的新节点
-             pst_head: 链表头指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月26日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  oal_dlist_add_head(oal_dlist_head_stru *pst_new, oal_dlist_head_stru *pst_head)
 {
     oal_dlist_add(pst_new, pst_head, pst_head->pst_next);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_dlist_add_tail
- 功能描述  : 向链表尾部插入节点
- 输入参数  : pst_new: 要插入的新节点
-             pst_head: 链表头指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月26日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  oal_dlist_add_tail(oal_dlist_head_stru *pst_new, oal_dlist_head_stru *pst_head)
 {
     oal_dlist_add(pst_new, pst_head->pst_prev, pst_head);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_dlist_delete_entry
- 功能描述  : 删除链表中的指定节点,不负责释放，不判断链表是否为空，请注意
- 输入参数  : pst_entry: 需要删除的节点
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月26日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  oal_dlist_delete_entry(oal_dlist_head_stru *pst_entry)
 {
     if (OAL_UNLIKELY((OAL_PTR_NULL == pst_entry->pst_next) || (OAL_PTR_NULL == pst_entry->pst_prev)))
@@ -425,21 +234,7 @@ OAL_STATIC OAL_INLINE oal_void  oal_dlist_delete_entry(oal_dlist_head_stru *pst_
     pst_entry->pst_prev = OAL_PTR_NULL;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_dlist_delete_head
- 功能描述  : 从双向链表头部删除一个节点,不判断链表是否为空，不负责释放内存 请注意
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月1日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_dlist_head_stru* oal_dlist_delete_head(oal_dlist_head_stru *pst_head)
 {
     oal_dlist_head_stru *pst_node;
@@ -454,21 +249,7 @@ OAL_STATIC OAL_INLINE oal_dlist_head_stru* oal_dlist_delete_head(oal_dlist_head_
     return pst_node;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_dlist_delete_tail
- 功能描述  : 从双向链表头部删除一个节点,不判断链表是否为空，不负责释放内存 请注意
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月1日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_dlist_head_stru* oal_dlist_delete_tail(oal_dlist_head_stru *pst_head)
 {
     oal_dlist_head_stru *pst_node;
@@ -483,21 +264,7 @@ OAL_STATIC OAL_INLINE oal_dlist_head_stru* oal_dlist_delete_tail(oal_dlist_head_
     return pst_node;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_dlist_join_tail
- 功能描述  : 将链表2 加入链表1的尾部
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月1日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  oal_dlist_join_tail(oal_dlist_head_stru *pst_head1, oal_dlist_head_stru *pst_head2)
 {
     oal_dlist_head_stru *pst_dlist1_tail;
@@ -514,21 +281,7 @@ OAL_STATIC OAL_INLINE oal_void  oal_dlist_join_tail(oal_dlist_head_stru *pst_hea
     pst_dlist2_tail->pst_next    = pst_head1;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_dlist_jion_head
- 功能描述  : 将链表2 加入链表1的头部 也可用于将新链表 加入链表的指定节点后
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月2日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  oal_dlist_join_head(oal_dlist_head_stru *pst_head1, oal_dlist_head_stru *pst_head2)
 {
     oal_dlist_head_stru *pst_head2_first;
@@ -553,25 +306,7 @@ OAL_STATIC OAL_INLINE oal_void  oal_dlist_join_head(oal_dlist_head_stru *pst_hea
 }
 
 
-/*****************************************************************************
- 函 数 名  : oal_dlist_remove_head
- 功能描述  : 将链表2中从第一个元素到pst_last_dscr_entry元素摘出， 加入空链表1的头部
- 输入参数  :  pst_head1 :链表头1, 空链表
-              pst_head2 :链表头2
-              pst_last_entry : 链表2中的元素
 
-              默认入参都非NULL
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年5月16日
-    作    者   : c00260463
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  oal_dlist_remove_head(oal_dlist_head_stru *pst_head1,
                                                               oal_dlist_head_stru *pst_head2,
                                                               oal_dlist_head_stru *pst_last_entry)

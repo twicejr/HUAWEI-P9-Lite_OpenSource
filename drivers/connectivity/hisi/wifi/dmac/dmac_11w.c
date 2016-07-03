@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : dmac_11w.c
-  版 本 号   : 初稿
-  作    者   : z00273164
-  生成日期   : 2014年4月26日
-  最近修改   :
-  功能描述   : 11w dmac 功能处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年4月26日
-    作    者   : z00273164
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -55,21 +38,7 @@ extern "C" {
 
 #if (_PRE_WLAN_FEATURE_PMF != _PRE_PMF_NOT_SUPPORT)
 
-/*****************************************************************************
- 函 数 名  : dmac_11w_robust_non_action
- 功能描述  : 检查是否是强健管理帧中的action帧
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月22日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_bool_enum_uint8  dmac_11w_robust_action(oal_netbuf_stru *pst_mgmt_buf)
 {
     oal_uint8   uc_frame_type;
@@ -112,21 +81,7 @@ OAL_STATIC oal_bool_enum_uint8  dmac_11w_robust_action(oal_netbuf_stru *pst_mgmt
     return OAL_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_11w_robust_action
- 功能描述  : 检查是否为强健管理帧中的非action帧
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月22日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_bool_enum_uint8  dmac_11w_robust_non_action(oal_uint8 uc_frame_type, oal_uint8 *puc_payload)
 {
     mac_reason_code_enum_uint16 en_reason_code = 0;
@@ -155,21 +110,7 @@ OAL_STATIC oal_bool_enum_uint8  dmac_11w_robust_non_action(oal_uint8 uc_frame_ty
     return OAL_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_11w_robust_frame
- 功能描述  : 是否为强健管理帧
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月22日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_bool_enum_uint8  dmac_11w_robust_frame(oal_netbuf_stru *pst_mgmt_frame)
 {
     oal_uint8   uc_frame_type;
@@ -199,22 +140,7 @@ OAL_STATIC oal_bool_enum_uint8  dmac_11w_robust_frame(oal_netbuf_stru *pst_mgmt_
     return OAL_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_11w_get_pmf_cap
- 功能描述  : 获取vap的PMF能力
- 输入参数  : pst_dmac_vap       : dmac vap指针
-             en_pmf_cap_status  : vap能力的类型
- 输出参数  : 无
- 返 回 值  : oal_uint32 是否获取成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月3日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 dmac_11w_get_pmf_cap(mac_vap_stru *pst_mac_vap, wlan_pmf_cap_status_uint8 *pen_pmf_cap)
 {
     oal_bool_enum_uint8 en_MFPC;
@@ -248,21 +174,7 @@ oal_uint32 dmac_11w_get_pmf_cap(mac_vap_stru *pst_mac_vap, wlan_pmf_cap_status_u
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_11w_check_multicast
- 功能描述  : 确认是否11w支持的组播管理帧
- 输入参数  : pst_mgmt_buf:存储帧信息的netbuf
- 输出参数  : 无
- 返 回 值  : OAL_SUCC此帧是11w支持的强健组播管理帧
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月24日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_bool_enum_uint8 dmac_11w_check_multicast_mgmt(oal_netbuf_stru *pst_mgmt_buf)
 {
     oal_uint8                 *puc_da;
@@ -278,22 +190,7 @@ OAL_STATIC oal_bool_enum_uint8 dmac_11w_check_multicast_mgmt(oal_netbuf_stru *ps
     return dmac_11w_robust_frame(pst_mgmt_buf);
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_11w_check_vap_pmf_cap
- 功能描述  : 检测此vap是否具备管理帧加密的前提条件
- 输入参数  : pst_dmac_vap : dmac vap的指针
-             en_pmf_cap   : vap的pmf能力
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月3日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_bool_enum_uint8 dmac_11w_check_vap_pmf_cap(dmac_vap_stru *pst_dmac_vap, wlan_pmf_cap_status_uint8  en_pmf_cap)
 {
     mac_user_stru               *pst_multi_user;
@@ -319,21 +216,7 @@ OAL_STATIC oal_bool_enum_uint8 dmac_11w_check_vap_pmf_cap(dmac_vap_stru *pst_dma
     return OAL_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_11w_set_protectframe
- 功能描述  : 链接pmf使能的情况下对tx单播管理帧进行加密
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月2日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_11w_set_protectframe(dmac_vap_stru  *pst_dmac_vap,
                                              wlan_security_txop_params_stru  *pst_security,
                                              oal_netbuf_stru *pst_netbuf)
@@ -377,24 +260,7 @@ oal_void dmac_11w_set_protectframe(dmac_vap_stru  *pst_dmac_vap,
 
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_11w_bip_crypto
- 功能描述  : 11w damc层组播/广播 强健管理帧 加密
- 输入参数  : pst_dmac_vap    : 发送管理帧的dmac vap 指针
-             pst_netbuf_mgmt : 待发送管理帧的netbuf指针
-             pst_security    : 加密描述符
-             pus_len         : 帧体长度
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月26日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 dmac_bip_crypto(dmac_vap_stru *pst_dmac_vap,
                                  oal_netbuf_stru *pst_netbuf_mgmt,
                                  wlan_security_txop_params_stru  *pst_security,
@@ -456,22 +322,7 @@ oal_uint32 dmac_bip_crypto(dmac_vap_stru *pst_dmac_vap,
 
 #if(_PRE_WLAN_FEATURE_PMF == _PRE_PMF_HW_CCMP_SW_BIP)
 
-/*****************************************************************************
- 函 数 名  : dmac_11w_bip_decrypto
- 功能描述  : 11w dmac层 组播/广播 强健管理帧 解密
- 输入参数  : pst_dmac_vap : 接收方的dmac vap指针
-             pst_netbuf   : 接受帧的存储空间控制指针
- 输出参数  : 无
- 返 回 值  : OAL_SUCC     : bip完整性验证/重放验证结果 正确;或 此帧不用bip解密
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月26日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32 dmac_bip_decrypto(dmac_vap_stru  *pst_dmac_vap, oal_netbuf_stru *pst_netbuf)
 {
    wlan_priv_key_param_stru          *pst_pmf_igtk;
@@ -533,21 +384,7 @@ OAL_STATIC oal_uint32 dmac_bip_decrypto(dmac_vap_stru  *pst_dmac_vap, oal_netbuf
 }
 #endif /* (_PRE_WLAN_FEATURE_PMF == _PRE_PMF_HW_CCMP_SW_BIP) */
 
-/*****************************************************************************
- 函 数 名  : dmac_11w_update_users_status
- 功能描述  : 更新dmac vap下的所有user的pmf使能的统计信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月26日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_11w_update_users_status(dmac_vap_stru  *pst_dmac_vap, mac_user_stru *pst_mac_user, oal_bool_enum_uint8 en_user_pmf)
 {
 #if(_PRE_WLAN_FEATURE_PMF == _PRE_PMF_HW_CCMP_BIP)
@@ -586,21 +423,7 @@ oal_void dmac_11w_update_users_status(dmac_vap_stru  *pst_dmac_vap, mac_user_str
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_11w_rx_filter
- 功能描述  : 对接收强健管理帧的过滤操作
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月22日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 dmac_11w_rx_filter(dmac_vap_stru *pst_dmac_vap, oal_netbuf_stru  *pst_netbuf)
 {
     oal_uint32                           ul_relt = OAL_SUCC;
@@ -624,7 +447,6 @@ oal_uint32 dmac_11w_rx_filter(dmac_vap_stru *pst_dmac_vap, oal_netbuf_stru  *pst
     pst_user = (mac_user_stru *)mac_res_get_dmac_user(us_ta_user_idx);
     if (OAL_PTR_NULL == pst_user)
     {
-        /* DTS2016010710803 此处warning打印去掉,否则未关联状态下接收管理帧会刷屏 */
         return OAL_SUCC;
     }
 

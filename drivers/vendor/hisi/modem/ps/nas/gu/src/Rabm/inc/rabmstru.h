@@ -1,14 +1,4 @@
-/*******************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : RabmStru.h
-  Description : RABM数据结构头文件
-  History     :
-      1.  张志勇      2003.12.04   新版作成
-      2.  L47619   2005.12.12   A32D01107问题单
-      3.日    期  : 2006年12月4日
-        作    者  : luojian id:60022475
-        修改内容  : 增加 #pragma pack(4)，问题单号:A32D07779
-*******************************************************************************/
+
 
 #ifndef _RABM_STRU_INTERFACE_H_
 #define _RABM_STRU_INTERFACE_H_
@@ -50,15 +40,7 @@ typedef struct{
     VOS_UINT8     aucRbTxMode[RABM_MAX_RB_NUM_PER_RAB];                             /* RB 传输模式(与aucRbId下标一致)*/
 }RABM_RAB_INFO_STRU;
 
-/*****************************************************************************
- 结构名  : RABM_QOS_STRU
- 结构说明: RABM实体保存的QOS结构
 
- 修改历史      :
-  1.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : 修改成员
-*****************************************************************************/
 typedef struct{
     VOS_UINT32                          ulQosLength;                            /* Qos的数据大小 */
     VOS_UINT8                           aucQosValue[NAS_RABM_MAX_QOS_LEN];        /* Qos数据首地址 */

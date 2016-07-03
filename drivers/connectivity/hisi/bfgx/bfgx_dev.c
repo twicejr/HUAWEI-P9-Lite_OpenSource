@@ -149,6 +149,12 @@ int32 ps_get_core_reference(struct ps_core_s **core_data)
     }
 
     ps_plat_d  = dev_get_drvdata(&pdev->dev);
+    if (NULL == ps_plat_d)
+    {
+        PS_PRINT_ERR("ps_plat_d is NULL\n");
+        return FAILURE;
+    }
+
     *core_data = ps_plat_d->core_data;
 
     return SUCCESS;
@@ -661,9 +667,9 @@ int32 uart_wifi_close(void)
         post_to_visit_node(ps_core_d);
         return -ETIMEDOUT;
     }
-    
+
     PS_PRINT_WARNING("uart close WCPU done,gpio level[%d]\n",board_get_wlan_wkup_gpio_val());
-    
+
     post_to_visit_node(ps_core_d);
 
     return SUCCESS;
@@ -761,6 +767,10 @@ int32 bfgx_open_cmd_send(uint32 subsys)
     {
         ps_uart_state_dump(ps_core_d->tty);
         PS_PRINT_ERR("wait %s open ack timeout\n", g_bfgx_subsys_name[subsys]);
+        if (BFGX_GNSS == subsys)
+        {
+            CHR_EXCEPTION(CHR_GNSS_DRV(CHR_GNSS_DRV_EVENT_PLAT, CHR_PLAT_DRV_ERROR_OPEN_THREAD));
+        }
         return -ETIMEDOUT;
     }
 
@@ -803,6 +813,10 @@ int32 bfgx_close_cmd_send(uint32 subsys)
     {
         ps_uart_state_dump(ps_core_d->tty);
         PS_PRINT_ERR("wait %s close ack timeout\n", g_bfgx_subsys_name[subsys]);
+        if (BFGX_GNSS == subsys)
+        {
+            CHR_EXCEPTION(CHR_GNSS_DRV(CHR_GNSS_DRV_EVENT_PLAT, CHR_PLAT_DRV_ERROR_CLOSE_THREAD));
+        }
         return -ETIMEDOUT;
     }
 
@@ -2675,6 +2689,7 @@ STATIC ssize_t hw_debug_read(struct file *filp, int8 __user *buf,
  *     Modification : Created function
  *
  */
+#ifdef PLATFORM_DEBUG_ENABLE
 STATIC ssize_t hw_debug_write(struct file *filp, const int8 __user *buf,
                                 size_t count,loff_t *f_pos)
 {
@@ -2751,7 +2766,7 @@ STATIC ssize_t hw_debug_write(struct file *filp, const int8 __user *buf,
 
     return count;
 }
-
+#endif
 /**
  * Prototype    : hw_debug_release
  * Description  : called by oam func from hal when close debug inode
@@ -2896,12 +2911,18 @@ int32 uart_loop_test_open(void)
     struct ps_core_s *ps_core_d = NULL;
     int32  error = BFGX_POWER_SUCCESS;
 
-    PS_PRINT_INFO("%s", __func__);
+    PS_PRINT_INFO("%s\n", __func__);
 
     ps_get_core_reference(&ps_core_d);
     if (unlikely((NULL == ps_core_d)||(NULL == ps_core_d->ps_pm)||(NULL == ps_core_d->ps_pm->bfg_power_set)))
     {
         PS_PRINT_ERR("ps_core_d is err\n");
+        return -EINVAL;
+    }
+
+    if (ps_chk_bfg_active(ps_core_d))
+    {
+        PS_PRINT_ERR("bfgx subsys must all close\n");
         return -EINVAL;
     }
 
@@ -3062,12 +3083,7 @@ int32 uart_loop_test_send_data(struct ps_core_s *ps_core_d, uint8 *buf, size_t c
             ps_add_packet_head(skb->data, GNSS_Last_MSG, tx_skb_len);
         }
 
-        if (memcpy(&skb->data[sizeof(struct ps_packet_head)], buf, tx_gnss_len) < 0)
-        {
-            PS_PRINT_ERR("uart loop test, copy data to akb buf fail\n");
-            kfree_skb(skb);
-            return -EFAULT;
-        }
+        memcpy(&skb->data[sizeof(struct ps_packet_head)], buf, tx_gnss_len);
 
         /* push the skb to skb queue */
         ps_skb_enqueue(ps_core_d, skb, TX_LOW_QUEUE);
@@ -3185,7 +3201,7 @@ int32 uart_loop_test(void)
 
     count   = g_pst_uart_loop_test_info->test_cfg->loop_count;
     pkt_len = g_pst_uart_loop_test_info->test_cfg->pkt_len;
-    tx_total_len = count*pkt_len;
+    tx_total_len = ((unsigned long long)count) * ((unsigned long long)pkt_len);
 
     start_time = ktime_get();
 
@@ -3266,14 +3282,14 @@ STATIC const struct file_operations hw_gnss_fops = {
         .release        = hw_gnss_release,
 };
 
-STATIC const struct file_operations hw_debug_fops = {
+static const struct file_operations hw_ir_fops = {
         .owner          = THIS_MODULE,
-        .open           = hw_debug_open,
-        .write          = hw_debug_write,
-        .read           = hw_debug_read,
-        .unlocked_ioctl = hw_debug_ioctl,
-        .release        = hw_debug_release,
+        .open           = hw_ir_open,
+        .write          = hw_ir_write,
+        .read           = hw_ir_read,
+        .release        = hw_ir_release,
 };
+
 
 static const struct file_operations hw_nfc_fops = {
         .owner          = THIS_MODULE,
@@ -3284,30 +3300,21 @@ static const struct file_operations hw_nfc_fops = {
         .release        = hw_nfc_release,
 };
 
-static const struct file_operations hw_ir_fops = {
+STATIC const struct file_operations hw_debug_fops = {
         .owner          = THIS_MODULE,
-        .open           = hw_ir_open,
-        .write          = hw_ir_write,
-        .read           = hw_ir_read,
-        .release        = hw_ir_release,
+        .open           = hw_debug_open,
+#ifdef PLATFORM_DEBUG_ENABLE
+        .write          = hw_debug_write,
+#endif
+        .read           = hw_debug_read,
+        .unlocked_ioctl = hw_debug_ioctl,
+        .release        = hw_debug_release,
 };
 
 STATIC struct miscdevice hw_bt_device = {
         .minor  = MISC_DYNAMIC_MINOR,
         .name   = "hwbt",
         .fops   = &hw_bt_fops,
-};
-
-STATIC struct miscdevice hw_nfc_device = {
-        .minor  = MISC_DYNAMIC_MINOR,
-        .name   = "hwnfc",
-        .fops   = &hw_nfc_fops,
-};
-
-STATIC struct miscdevice hw_ir_device = {
-        .minor  = MISC_DYNAMIC_MINOR,
-        .name   = "hwir",
-        .fops   = &hw_ir_fops,
 };
 
 STATIC struct miscdevice hw_fm_device = {
@@ -3321,6 +3328,22 @@ STATIC struct miscdevice hw_gnss_device = {
         .name   = "hwgnss",
         .fops   = &hw_gnss_fops,
 };
+
+#ifdef HAVE_HISI_IR
+STATIC struct miscdevice hw_ir_device = {
+        .minor  = MISC_DYNAMIC_MINOR,
+        .name   = "hwir",
+        .fops   = &hw_ir_fops,
+};
+#endif
+
+#ifdef HAVE_HISI_NFC
+STATIC struct miscdevice hw_nfc_device = {
+        .minor  = MISC_DYNAMIC_MINOR,
+        .name   = "hwnfc",
+        .fops   = &hw_nfc_fops,
+};
+#endif
 
 STATIC struct miscdevice hw_debug_device = {
         .minor  = MISC_DYNAMIC_MINOR,
@@ -3447,27 +3470,35 @@ STATIC int32 ps_probe(struct platform_device *pdev)
         goto err_register_debug;
     }
 
-    err = misc_register(&hw_nfc_device);
-    if (0 != err)
-    {
-        PS_PRINT_ERR("Failed to register nfc inode\n ");
-        goto err_register_nfc;
-    }
-
+#ifdef HAVE_HISI_IR
     err = misc_register(&hw_ir_device);
     if (0 != err)
     {
         PS_PRINT_ERR("Failed to register ir inode\n");
         goto err_register_ir;
     }
+#endif
+
+#ifdef HAVE_HISI_NFC
+    err = misc_register(&hw_nfc_device);
+    if (0 != err)
+    {
+        PS_PRINT_ERR("Failed to register nfc inode\n ");
+        goto err_register_nfc;
+    }
+#endif
 
     PS_PRINT_SUC("%s is success!\n", __func__);
 
     return 0;
 
-    err_register_ir:
-        misc_deregister(&hw_nfc_device);
+#ifdef HAVE_HISI_NFC
     err_register_nfc:
+#endif
+#ifdef HAVE_HISI_IR
+        misc_deregister(&hw_ir_device);
+    err_register_ir:
+#endif
         misc_deregister(&hw_debug_device);
     err_register_debug:
         misc_deregister(&hw_gnss_device);
@@ -3569,12 +3600,19 @@ STATIC int32 ps_remove(struct platform_device *pdev)
 
     pdata = pdev->dev.platform_data;
     ps_plat_d = dev_get_drvdata(&pdev->dev);
+    if (NULL == ps_plat_d)
+    {
+        PS_PRINT_ERR("ps_plat_d is null\n");
+    }
 
     bfgx_user_ctrl_exit();
     PS_PRINT_INFO("sysfs user ctrl removed\n");
 
-    ps_plat_d->pm_pdev = NULL;
-    ps_core_exit(ps_plat_d->core_data);
+    if (NULL != ps_plat_d)
+    {
+        ps_plat_d->pm_pdev = NULL;
+        ps_core_exit(ps_plat_d->core_data);
+    }
 
     misc_deregister(&hw_bt_device);
     PS_PRINT_INFO("misc bt device have removed\n");
@@ -3584,13 +3622,21 @@ STATIC int32 ps_remove(struct platform_device *pdev)
     PS_PRINT_INFO("misc gnss device have removed\n");
     misc_deregister(&hw_debug_device);
     PS_PRINT_INFO("misc debug device have removed\n");
-    misc_deregister(&hw_nfc_device);
-    PS_PRINT_INFO("misc nfc have removed\n");
+#ifdef HAVE_HISI_IR
     misc_deregister(&hw_ir_device);
     PS_PRINT_INFO("misc ir have removed\n");
+#endif
+#ifdef HAVE_HISI_NFC
+    misc_deregister(&hw_nfc_device);
+    PS_PRINT_INFO("misc nfc have removed\n");
+#endif
 
-    kfree(ps_plat_d);
-    ps_plat_d = NULL;
+    if (NULL != ps_plat_d)
+    {
+        kfree(ps_plat_d);
+        ps_plat_d = NULL;
+    }
+
     return 0;
 }
 #ifdef _PRE_CONFIG_USE_DTS

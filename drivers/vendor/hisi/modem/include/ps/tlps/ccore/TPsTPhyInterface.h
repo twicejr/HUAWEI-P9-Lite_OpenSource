@@ -227,10 +227,8 @@ extern "C" {
 #define  MAX_DHI_LEN                     2100
 #endif
 
-/*TDS用户面性能优化:PDCP零拷贝q00208938 20151008 begin*/
 /*#define MAX_PDCP_HEADER_LEN             3*/
 #define MAX_PDCP_HEADER_LEN             (0)
-/*TDS用户面性能优化:PDCP零拷贝q00208938 20151008 end*/
 
 #define MAX_FRAME_NUM                   8192 /* sub frame*/
 

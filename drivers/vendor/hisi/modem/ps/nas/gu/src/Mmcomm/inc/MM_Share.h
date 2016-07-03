@@ -1,50 +1,4 @@
-/*******************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : MM_Share.h
-  Description :
-  History     :
-  1.  张志勇     2004.03.10  新规作成
-  2.  l40632     2006-04-20 根据问题单A32D03300
-  3.  x51137 2006/5/5 A32D03487
 
-  4.日    期   : 2006年8月4日
-    作    者   : liuyang id:48197
-    修改内容   : 根据问题单号：A32D05223
-  5.日    期   : 2006年08月09日
-    作    者   : 蒋丽萍j60010247
-    修改内容   : 问题单A32D03479，在PC机上实现时将#pragma pack(0)和#pragma pack()加编译开关
-  6. x51137 A32D06629 2006 10 22
-    Date         Updated By      PR Number
-    2006-10-26   Li Jilin        A32D06630
-  8.日    期   : 2006年11月17日
-    作    者   : luojian id:60022475
-    修改内容   : 根据问题单号：A32D06616
-  9.日    期   : 2007年07月10日
-    作    者   : s46746
-    修改内容   : 根据问题单号：A32D12268
- 10.日    期  : 2007年12月12日
-    作    者  : l65478
-    修改内容  : 问题单号:A32D13951
- 11.日    期   : 2008年5月27日
-    作    者   : s46746
-    修改内容   : 问题单号:AT2D03209,增加列表搜索时响应寻呼处理
- 12.日    期   : 2008年7月28日
-    作    者   : s46746
-    修改内容   : 问题单号:AT2D03915,修改联合RAU类型,CS如果已经单独LAU成功，需要
-                 发起with IMSI Attach的RAU
- 13.日    期   : 2008年09月03日
-    作    者   : o00132663
-    修改内容   : 问题单号：AT2D05472,扩展^CMM命令，支持修改接入模式和搜网模式。
- 14.日    期   : 2009年01月15日
-    作    者   : l00130025
-    修改内容   : 问题单号:AT2D07018,LAU或RAU过程中搜网和SYSCFG设置,发起底层释放链接的操作
- 15.日    期   : 2009年03月19日
-    作    者   : l00130025
-    修改内容   : 问题单号：AT2D09743,WAS的 D/F/P态下丢网处理
- 16.日    期   : 2009年04月23日
-    作    者   : l00130025
-    修改内容   : 问题单号:AT2D11301,IMEISv处理错误导致Gmm/MM在联通网络被拒
-*******************************************************************************/
 #ifndef _MMSHARE_H_
 #define _MMSHARE_H_
 
@@ -380,9 +334,7 @@ typedef struct
 
     MM_GLOBAL_CTRL_STRU                     pc_g_MmGlobalInfo;
 
-    /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-9, begin */
     MM_TIMER_STRU                           pc_gstMmTimer[MM_TIMER_MAX];
-    /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-9, end */
 } NAS_MM_OUTSIDE_RUNNING_CONTEXT_ST;
 
 /*****************************************************************************
@@ -400,13 +352,7 @@ typedef struct
 
 #define EVT_NAS_GMM_OUTSIDE_RUNNING_CONTEXT_FOR_PC_REPLAY   0xaaaa          /* 为PC工程回放定义的消息 */
 
-/*****************************************************************************
- 枚举名    : NAS_MM_LOG_OM_INFO_ENUM
- 结构说明  : 可维可测消息id
- 1.日    期   : 2012年3月17日
-   作    者   : z00161729
-   修改内容   : 新建结构
-*****************************************************************************/
+
 enum NAS_MM_LOG_OM_INFO_ENUM
 {
     NAS_MM_LOG_TIN_TYPE_INFO_IND       = 0xa00,
@@ -414,13 +360,7 @@ enum NAS_MM_LOG_OM_INFO_ENUM
 };
 typedef VOS_UINT32 NAS_MM_LOG_OM_INFO_ENUM_UINT32;
 
-/*****************************************************************************
- 结构名    : NAS_MM_LOG_TIN_INFO_STRU
- 结构说明  : MM TIN值更新时通知om勾消息，可维可测使用
-  1.日    期   : 2012年3月17日
-    作    者   : z00161729
-    修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;
@@ -455,9 +395,7 @@ extern VOS_VOID Mm_FillNasMmInfo(NAS_OM_MM_CONFIRM_STRU *pMsg);
 extern VOS_VOID Gmm_FillNasMmInfo(NAS_OM_MM_CONFIRM_STRU *pMsg);
 extern VOS_VOID Mmc_FillNasMmInfo(NAS_OM_MM_CONFIRM_STRU *pMsg);
 extern VOS_VOID Mm_OmQuery(VOS_VOID *pMsg);
-/* Deleted by f62575 for V9R1 STK升级, 2013-6-26, begin */
 /* Deleted Mm_TranslateNtwkName2Str */
-/* Deleted by f62575 for V9R1 STK升级, 2013-6-26, end */
 extern VOS_UINT8 NAS_MM_GetMncLenFromBCCHMnc(
     VOS_UINT32                          ulBcchMnc
 );

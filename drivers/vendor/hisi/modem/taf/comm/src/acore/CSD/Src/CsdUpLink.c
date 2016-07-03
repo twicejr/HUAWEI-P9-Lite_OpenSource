@@ -35,21 +35,7 @@ extern "C" {
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : CSD_UL_SendData
- 功能描述  : 提供给USB_MODEM用来发送数据的接口At_UsbModemDataInd
- 输入参数  : IMM_ZC_STRU *pstULData
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月14日
-    作    者   : w00199382
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CSD_UL_SendData(IMM_ZC_STRU *pstULData)
 {
     /*入参检查*/
@@ -82,21 +68,7 @@ VOS_VOID CSD_UL_SendData(IMM_ZC_STRU *pstULData)
     CSD_UL_InsertQueue(pstULData);
 
 }
-/*****************************************************************************
- 函 数 名  : CSD_UL_InsertQueue
- 功能描述  : 上行数据节点入队函数
- 输入参数  : IMM_ZC_STRU * pstULData
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月8日
-    作    者   : w00199382
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CSD_UL_InsertQueue(IMM_ZC_STRU *pstULData)
 {
 
@@ -145,21 +117,7 @@ VOS_UINT32 CSD_UL_InsertQueue(IMM_ZC_STRU *pstULData)
 
 }
 
-/*****************************************************************************
- 函 数 名  : CSD_InitUlQueue
- 功能描述  : 初始化上行缓存队列
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月7日
-    作    者   : w00199382
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CSD_UL_InitQueue(VOS_VOID)
 {
 
@@ -200,24 +158,7 @@ VOS_UINT32 CSD_UL_InitQueue(VOS_VOID)
     return VOS_OK;
     /*lint +e429*/
 }
-/*****************************************************************************
- 函 数 名  : CSD_UL_BuildDiccInsertData
- 功能描述  : 配置发送到DICC的数据
- 输入参数  : IMM_ZC_HEAD_STRU      *pstUlQueue,
-             CSD_UL_DATA_STRU      *pstULData
- 输出参数  : *pstULData
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月16日
-    作    者   : w00199382
-    修改内容   : 新生成函数
-  2.日    期   : 2012年05月21日
-    作    者   : f00179208
-    修改内容   : 问题单号:DTS2012052101051,C核过来的数据需要进行虚实地址转换
-*****************************************************************************/
 VOS_UINT32 CSD_UL_BuildDiccInsertData(
     IMM_ZC_HEAD_STRU                   *pstUlQueue,
     CSD_CST_DATA_REQ_STRU              *pstULData,
@@ -271,23 +212,7 @@ VOS_UINT32 CSD_UL_BuildDiccInsertData(
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : CSD_UL_SendDataToDICC
- 功能描述  : 上行任务取数据 并发送到DICC
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : CSD_UL_SEND_DATA_STATE_ENUM_UINT16
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月8日
-    作    者   : w00199382
-    修改内容   : 新生成函数
-  2.日    期   : 2012年05月24日
-    作    者   : f00179208
-    修改内容   : DTS2012052405689,将上行一次发送数据个数调整到最多50个
-*****************************************************************************/
 CSD_UL_SEND_DATA_STATE_ENUM_UINT16 CSD_UL_SendDataToDICC(VOS_VOID)
 {
     VOS_UINT32                          ulCnt;
@@ -413,23 +338,7 @@ CSD_UL_SEND_DATA_STATE_ENUM_UINT16 CSD_UL_SendDataToDICC(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : CSD_UL_CalcIsrSlice
- 功能描述  : 获取两次DICC中断间隔时间
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : w00199382
-    修改内容   : 新生成函数
-  2.日    期   : 2013年03月07日
-    作    者   : f00179208
-    修改内容   : timer由递减转换为递增
-*****************************************************************************/
 VOS_UINT32 CSD_UL_CalcIsrSlice(VOS_VOID)
 {
     VOS_UINT32                          ulCurrSliceCnt;
@@ -453,23 +362,7 @@ VOS_UINT32 CSD_UL_CalcIsrSlice(VOS_VOID)
     return ulSliceDuration;
 }
 
-/*****************************************************************************
- 函 数 名  : CSD_UL_ProcDataTask
- 功能描述  : 上行数据处理
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月7日
-    作    者   : w00199382
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月13日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-*****************************************************************************/
 VOS_VOID CSD_UL_ProcDataTask(VOS_VOID)
 {
     VOS_SEM                             hUpLinkSem = VOS_NULL_PTR;
@@ -540,21 +433,7 @@ VOS_VOID CSD_UL_ProcDataTask(VOS_VOID)
 #endif
     }
 }
-/*****************************************************************************
- 函 数 名  : CSD_UL_RcvAtCallStateOn
- 功能描述  : 处理接收到callstateon的状态
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月20日
-    作    者   : w00199382
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CSD_UL_RcvAtCallStateOn(VOS_VOID)
 {
     VOS_UINT32                          ulRslt;
@@ -577,21 +456,7 @@ VOS_UINT32 CSD_UL_RcvAtCallStateOn(VOS_VOID)
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : CSD_UL_RcvAtCallStateOff
- 功能描述  : 处理收到AT的callstateoff消息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月20日
-    作    者   : w00199382
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CSD_UL_RcvAtCallStateOff(VOS_VOID)
 {
     IMM_ZC_HEAD_STRU                   *pstULQueue;
@@ -636,23 +501,7 @@ VOS_UINT32 CSD_UL_RcvAtCallStateOff(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CSD_UL_RcvAtCallStateInd
- 功能描述  : 处理At发送来指示vedio phone状态的指示
- 输入参数  : AT_CSD_CALL_TYPE_STATE enCallState
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月6日
-    作    者   : w00199382
-    修改内容   : 新生成函数
-  2.日    期   : 2013年05月28日
-    作    者   : f00179208
-    修改内容   : V3R3 PPP PROJECT
-*****************************************************************************/
 VOS_UINT32 CSD_UL_RcvAtCallStateInd(MsgBlock* pMsg)
 {
     VOS_UINT32                          ulRslt;
@@ -685,21 +534,7 @@ VOS_UINT32 CSD_UL_RcvAtCallStateInd(MsgBlock* pMsg)
 
 }
 
-/*****************************************************************************
- 函 数 名  : CSD_UL_ProcMsg
- 功能描述  : CSD 上行PID消息处理
- 输入参数  : MsgBlock* pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年12月6日
-   作    者   : w00199382
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CSD_UL_ProcMsg(MsgBlock* pMsg)
 {
 
@@ -725,21 +560,7 @@ VOS_VOID CSD_UL_ProcMsg(MsgBlock* pMsg)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CSD_UL_RcvAtMsg
- 功能描述  : 处理上行PID消息
- 输入参数  : struct MsgCB                        *pRcvMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月6日
-    作    者   : w00199382
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CSD_UL_RcvAtMsg(MsgBlock* pMsg)
 {
     MSG_HEADER_STRU                    *pstMsgHeader;

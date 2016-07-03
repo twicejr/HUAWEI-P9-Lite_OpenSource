@@ -1,20 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : MnCallFacilityDecode.c
-  版 本 号   : 初稿
-  作    者   : 丁庆 49431
-  生成日期   : 2007年9月20日
-  最近修改   : 2007年9月20日
-  功能描述   : 实现CS呼叫相关的API接口函数
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 创建文件
-******************************************************************************/
 /*****************************************************************************
    1 头文件包含
 *****************************************************************************/
@@ -93,23 +77,7 @@ extern VOS_UINT32 SSA_DecodeSsNull(VOS_UINT8 **ppucSrc, TAG_MODE ucTagMode);
 /*****************************************************************************
   6 函数实现
 *****************************************************************************/
-/*****************************************************************************
- Prototype      : MN_CALL_DecodePresentationAddress
- Description    : 将参数项presentationAllowedAddress和presentationRestrictedAddress解码,类型定义参见24.080,附录
- Input          : **ppucSrc--解码前的字串, ucTagMode -- 标签模式,pucEndLocation--结束位置
- Output         : *pDest--输出的字串
- Return Value   : 操作结果
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2006-01-21
-    Author      : ---
-    Modification: Created function
-  2.日    期   : 2012年10月22日
-    作    者   : l65478
-    修改内容   : DTS2012101901424,OPTIONAL项不存在时不能认为解码失败
-*****************************************************************************/
 LOCAL VOS_UINT32 MN_CALL_DecodePresentationAddress(
     MN_CALL_PRESENTATION_ADDR_STRU      *pstDest,
     VOS_UINT8                           **ppucSrc,
@@ -373,26 +341,7 @@ LOCAL VOS_UINT32 MN_CALL_DecodeSsNotification(
 
 }
 
-/*****************************************************************************
- Prototype      : MN_CALL_DecodeEctIndicator
- Description    : 将参数项ect-Indicator解码,类型定义参见24.080,附录
- Input          : **ppucSrc--解码前的字串, ucTagMode -- 标签模式
- Output         : *pDest--解码后的数据类型
- Return Value   : 操作结果
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2006-01-21
-    Author      : ---
-    Modification: Created function
-  2.Date        : 2007-04-04
-    Author      : h44270
-    Modification: modified for A32D10114
-  3.日    期   : 2012年10月22日
-    作    者   : l65478
-    修改内容   : DTS2012101901424,OPTIONAL项不存在时不能认为解码失败
-*****************************************************************************/
 LOCAL VOS_UINT32 MN_CALL_DecodeEctIndicator(
     MN_CALL_ECT_INDICATOR_STRU          *pstDest,
     VOS_UINT8                           **ppucSrc,
@@ -562,23 +511,7 @@ LOCAL VOS_UINT32 MN_CALL_DecodeEctIndicator(
 }
 
 
-/*****************************************************************************
- Prototype      : MN_CALL_DecodeNameIndicator
- Description    : 将参数项nameIndicator解码,类型定义参见24.080,附录
- Input          : **ppucSrc--解码前的字串,ucTagMode -- 标签模式
- Output         : *pDest--解码后的数据类型
- Return Value   : 操作结果
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2006-01-21
-    Author      : ---
-    Modification: Created function
-  2.Date        : 2007-04-04
-    Author      : h44270
-    Modification: modified for A32D10114
-*****************************************************************************/
 LOCAL VOS_UINT32 MN_CALL_DecodeNameIndicator(
     MN_CALL_NAME_INDICATOR_STRU         *pstDest,
     VOS_UINT8                           **ppucSrc,
@@ -709,23 +642,7 @@ LOCAL VOS_UINT32 MN_CALL_DecodeNameIndicator(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_DecodeNotifySsSsCode
- 功能描述  : 对IE项的ss-Code解码
- 输入参数  : VOS_UINT8                           **ppucSrc        -解码前的字串
-             VOS_UINT8                           *pucCurLocation  -解码的当前位置
-             VOS_UINT8                           *pucEndLocation  -字串的结束位置
- 输出参数  : MN_CALL_SS_NOTIFYSS_ARG_STRU        *pstDest         -存放解码后参数结构体
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月14日
-    作    者   : 王毛/00166186
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MN_CALL_DecodeNotifySsSsCode(
     MN_CALL_SS_NOTIFYSS_ARG_STRU        *pstDest,
     VOS_UINT8                           **ppucSrc,
@@ -774,23 +691,7 @@ VOS_UINT32 MN_CALL_DecodeNotifySsSsCode(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_DecodeNotifySsSsStatus
- 功能描述  : 对IE项的ss-Status解码
- 输入参数  : VOS_UINT8                           **ppucSrc        -解码前的字串
-             VOS_UINT8                           *pucCurLocation  -解码的当前位置
-             VOS_UINT8                           *pucEndLocation  -字串的结束位置
- 输出参数  : MN_CALL_SS_NOTIFYSS_ARG_STRU        *pstDest         -存放解码后参数结构体
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月14日
-    作    者   : 王毛/00166186
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MN_CALL_DecodeNotifySsSsStatus(
     MN_CALL_SS_NOTIFYSS_ARG_STRU        *pstDest,
     VOS_UINT8                           **ppucSrc,
@@ -840,23 +741,7 @@ VOS_UINT32 MN_CALL_DecodeNotifySsSsStatus(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_DecodeNotifySsSsNotification
- 功能描述  : 对IE项的ss-Notification解码
- 输入参数  : VOS_UINT8                           **ppucSrc        -解码前的字串
-             VOS_UINT8                           *pucCurLocation  -解码的当前位置
-             VOS_UINT8                           *pucEndLocation  -字串的结束位置
- 输出参数  : MN_CALL_SS_NOTIFYSS_ARG_STRU        *pstDest         -存放解码后参数结构体
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月14日
-    作    者   : 王毛/00166186
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MN_CALL_DecodeNotifySsSsNotification(
     MN_CALL_SS_NOTIFYSS_ARG_STRU        *pstDest,
     VOS_UINT8                           **ppucSrc,
@@ -906,23 +791,7 @@ VOS_UINT32 MN_CALL_DecodeNotifySsSsNotification(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_DecodeNotifySsCallWaitingInd
- 功能描述  : 对IE项的callIsWaiting-Indicator解码
- 输入参数  : VOS_UINT8                           **ppucSrc        -解码前的字串
-             VOS_UINT8                           *pucCurLocation  -解码的当前位置
-             VOS_UINT8                           *pucEndLocation  -字串的结束位置
- 输出参数  : MN_CALL_SS_NOTIFYSS_ARG_STRU        *pstDest         -存放解码后参数结构体
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月14日
-    作    者   : 王毛/00166186
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MN_CALL_DecodeNotifySsCallWaitingInd(
     MN_CALL_SS_NOTIFYSS_ARG_STRU        *pstDest,
     VOS_UINT8                           **ppucSrc,
@@ -971,23 +840,7 @@ VOS_UINT32 MN_CALL_DecodeNotifySsCallWaitingInd(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_DecodeNotifySsCallOnHoldInd
- 功能描述  : 对IE项的callOnHold-Indicator解码
- 输入参数  : VOS_UINT8                           **ppucSrc        -解码前的字串
-             VOS_UINT8                           *pucCurLocation  -解码的当前位置
-             VOS_UINT8                           *pucEndLocation  -字串的结束位置
- 输出参数  : MN_CALL_SS_NOTIFYSS_ARG_STRU        *pstDest         -存放解码后参数结构体
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月14日
-    作    者   : 王毛/00166186
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MN_CALL_DecodeNotifySsCallOnHoldInd(
     MN_CALL_SS_NOTIFYSS_ARG_STRU        *pstDest,
     VOS_UINT8                           **ppucSrc,
@@ -1038,23 +891,7 @@ VOS_UINT32 MN_CALL_DecodeNotifySsCallOnHoldInd(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_DecodeNotifySsMptyIndicator
- 功能描述  : 对IE项的mpty-Indicator解码
- 输入参数  : VOS_UINT8                           **ppucSrc        -解码前的字串
-             VOS_UINT8                           *pucCurLocation  -解码的当前位置
-             VOS_UINT8                           *pucEndLocation  -字串的结束位置
- 输出参数  : MN_CALL_SS_NOTIFYSS_ARG_STRU        *pstDest         -存放解码后参数结构体
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月14日
-    作    者   : 王毛/00166186
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MN_CALL_DecodeNotifySsMptyIndicator(
     MN_CALL_SS_NOTIFYSS_ARG_STRU        *pstDest,
     VOS_UINT8                           **ppucSrc,
@@ -1102,23 +939,7 @@ VOS_UINT32 MN_CALL_DecodeNotifySsMptyIndicator(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_DecodeNotifySsCugIndex
- 功能描述  : 对IE项的cug-Index解码
- 输入参数  : VOS_UINT8                           **ppucSrc        -解码前的字串
-             VOS_UINT8                           *pucCurLocation  -解码的当前位置
-             VOS_UINT8                           *pucEndLocation  -字串的结束位置
- 输出参数  : MN_CALL_SS_NOTIFYSS_ARG_STRU        *pstDest         -存放解码后参数结构体
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月14日
-    作    者   : 王毛/00166186
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MN_CALL_DecodeNotifySsCugIndex(
     MN_CALL_SS_NOTIFYSS_ARG_STRU        *pstDest,
     VOS_UINT8                           **ppucSrc,
@@ -1167,23 +988,7 @@ VOS_UINT32 MN_CALL_DecodeNotifySsCugIndex(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_DecodeNotifySsClirSuppressionRej
- 功能描述  : 对IE项的clirSuppressionRejected解码
- 输入参数  : VOS_UINT8                           **ppucSrc        -解码前的字串
-             VOS_UINT8                           *pucCurLocation  -解码的当前位置
-             VOS_UINT8                           *pucEndLocation  -字串的结束位置
- 输出参数  : MN_CALL_SS_NOTIFYSS_ARG_STRU        *pstDest         -存放解码后参数结构体
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月14日
-    作    者   : 王毛/00166186
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MN_CALL_DecodeNotifySsClirSuppressionRej(
     MN_CALL_SS_NOTIFYSS_ARG_STRU        *pstDest,
     VOS_UINT8                           **ppucSrc,
@@ -1233,23 +1038,7 @@ VOS_UINT32 MN_CALL_DecodeNotifySsClirSuppressionRej(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_DecodeNotifySsEctIndicator
- 功能描述  : 对IE项的ect-Indicator解码
- 输入参数  : VOS_UINT8                           **ppucSrc        -解码前的字串
-             VOS_UINT8                           *pucCurLocation  -解码的当前位置
-             VOS_UINT8                           *pucEndLocation  -字串的结束位置
- 输出参数  : MN_CALL_SS_NOTIFYSS_ARG_STRU        *pstDest         -存放解码后参数结构体
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月14日
-    作    者   : 王毛/00166186
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MN_CALL_DecodeNotifySsEctIndicator(
     MN_CALL_SS_NOTIFYSS_ARG_STRU        *pstDest,
     VOS_UINT8                           **ppucSrc,
@@ -1298,23 +1087,7 @@ VOS_UINT32 MN_CALL_DecodeNotifySsEctIndicator(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_DecodeNotifySsEctIndicator
- 功能描述  : 对IE项的ect-Indicator解码
- 输入参数  : VOS_UINT8                           **ppucSrc        -解码前的字串
-             VOS_UINT8                           *pucCurLocation  -解码的当前位置
-             VOS_UINT8                           *pucEndLocation  -字串的结束位置
- 输出参数  : MN_CALL_SS_NOTIFYSS_ARG_STRU        *pstDest         -存放解码后参数结构体
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月14日
-    作    者   : 王毛/00166186
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MN_CALL_DecodeNotifySsNameIndicator(
     MN_CALL_SS_NOTIFYSS_ARG_STRU        *pstDest,
     VOS_UINT8                           **ppucSrc,
@@ -1365,23 +1138,7 @@ VOS_UINT32 MN_CALL_DecodeNotifySsNameIndicator(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_DecodeNotifySsCcbsFeature
- 功能描述  : 对IE项的ccbs-Feature解码
- 输入参数  : VOS_UINT8                           **ppucSrc        -解码前的字串
-             VOS_UINT8                           *pucCurLocation  -解码的当前位置
-             VOS_UINT8                           *pucEndLocation  -字串的结束位置
- 输出参数  : MN_CALL_SS_NOTIFYSS_ARG_STRU        *pstDest         -存放解码后参数结构体
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月14日
-    作    者   : 王毛/00166186
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MN_CALL_DecodeNotifySsCcbsFeature(
     MN_CALL_SS_NOTIFYSS_ARG_STRU        *pstDest,
     VOS_UINT8                           **ppucSrc,
@@ -1431,23 +1188,7 @@ VOS_UINT32 MN_CALL_DecodeNotifySsCcbsFeature(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_DecodeNotifySsAlertingPattern
- 功能描述  : 对IE项的alertingPattern解码
- 输入参数  : VOS_UINT8                           **ppucSrc        -解码前的字串
-             VOS_UINT8                           *pucCurLocation  -解码的当前位置
-             VOS_UINT8                           *pucEndLocation  -字串的结束位置
- 输出参数  : MN_CALL_SS_NOTIFYSS_ARG_STRU        *pstDest         -存放解码后参数结构体
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月14日
-    作    者   : 王毛/00166186
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MN_CALL_DecodeNotifySsAlertingPattern(
     MN_CALL_SS_NOTIFYSS_ARG_STRU        *pstDest,
     VOS_UINT8                           **ppucSrc,
@@ -1498,23 +1239,7 @@ VOS_UINT32 MN_CALL_DecodeNotifySsAlertingPattern(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_DecodeNotifySsMultiCallInd
- 功能描述  : 对IE项的multicall-Indicator解码
- 输入参数  : VOS_UINT8                           **ppucSrc        -解码前的字串
-             VOS_UINT8                           *pucCurLocation  -解码的当前位置
-             VOS_UINT8                           *pucEndLocation  -字串的结束位置
- 输出参数  : MN_CALL_SS_NOTIFYSS_ARG_STRU        *pstDest         -存放解码后参数结构体
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月14日
-    作    者   : 王毛/00166186
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MN_CALL_DecodeNotifySsMultiCallInd(
     MN_CALL_SS_NOTIFYSS_ARG_STRU        *pstDest,
     VOS_UINT8                           **ppucSrc,
@@ -1564,24 +1289,7 @@ VOS_UINT32 MN_CALL_DecodeNotifySsMultiCallInd(
 
     return ulRslt;
 }
-/*****************************************************************************
- 函 数 名  : MN_CALL_DecodeNotifySs
- 功能描述  : 将参数项notifySS解码,类型定义参见24.080,附录
- 输入参数  : VOS_UINT8                           **ppucSrc   -待解码的字串
- 输出参数  : MN_CALL_SS_NOTIFYSS_ARG_STRU        *pstDest    -存放解码后的参数
- 返 回 值  : LOCAL VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2006年1月21日
-    作    者   :
-    修改内容   : 新生成函数
-  2.日    期   : 2010年7月15日
-    作    者   : 王毛/00166186
-    修改内容   : 降圈复杂度
-
-*****************************************************************************/
 LOCAL VOS_UINT32 MN_CALL_DecodeNotifySs(
     MN_CALL_SS_NOTIFYSS_ARG_STRU        *pstDest,
     VOS_UINT8                           **ppucSrc

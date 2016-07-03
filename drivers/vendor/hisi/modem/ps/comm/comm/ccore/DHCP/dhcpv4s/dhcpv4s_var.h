@@ -61,13 +61,10 @@ extern ULONG ulSendRequestMsg;
 extern ULONG g_ulDhcpsDebug;
 extern ULONG g_ulUdpsStub;
 
-/* Added start by dongmingzhou 42828 at 2009-02-20 UGWV9R1C1 for 地址分配 */
 extern ULONG g_ulUsmInternalMsgQue[]; /*内部消息的队列ID*/
 extern ULONG g_ulAmUsmInternalMsgEve[];/*内部消息的事件位*/
 extern ULONG g_ulAmUsmTaskId;
-/* Added end by dongmingzhou 42828 at 2009-02-20 UGWV9R1C1 for 地址分配 */
 
-/* Added start by ZhangYang  z00142225 at 2009-03-26 UGWV900R001C001 for 性能统计 */
 extern VOS_SIZE_T  g_UEtoPGW_ulDHCPV4DiscoveryNumAddr ; /*用于统计PGW接收的UE始发的DHCPV4 Discovery消息包数*/
 extern VOS_SIZE_T  g_UEtoPGW_ulDHCPV4RequestNumAddr ;   /*用于统计PGW接收的UE始发的DHCPV4 Request消息包数*/
 extern VOS_SIZE_T  g_UEtoPGW_ulDHCPV4DeclineNumAddr ;   /*用于统计PGW接收的UE始发的DHCPV4 Decline消息包数*/
@@ -86,7 +83,6 @@ extern VOS_SIZE_T  g_UEtoSGW_ulDHCPV4InformNumAddr ;       /*用于统计SGW接收的UE
 extern VOS_SIZE_T  g_SGWtoUE_ulDHCPV4OfferNumAddr ;       /*用于统计SGW发送给UE的DHCPV4 Offer消息包数*/
 extern VOS_SIZE_T  g_SGWtoUE_ulDHCPV4AckNumAddr ;       /*用于统计SGW发送给UE的DHCPV4 Ack消息包数*/
 extern VOS_SIZE_T  g_SGWtoUE_ulDHCPV4NakNumAddr ;       /*用于统计SGW发送给UE的DHCPV4 Nak消息包数*/
-/* Added end by ZhangYang  z00142225 at 2009-03-26 UGWV900R001C001 for 性能统计 */
 
 extern ULONG g_ulGreProType;
 

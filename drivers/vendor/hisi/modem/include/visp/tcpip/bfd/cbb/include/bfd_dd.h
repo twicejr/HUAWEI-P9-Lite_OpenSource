@@ -59,7 +59,6 @@ VOID  BFD_PrintPKT(BFD_CONTROL_PACKET_S *pstBfdCtrlPkt, ULONG *pulDstIP, ULONG *
 extern CHAR* VOS_IpAddrToStr(ULONG ulAddr, CHAR * szStr);
 extern ULONG VOS_Tm_Now(ULONG *pulRetTimeInMillSecHigh, ULONG *pulRetTimeInMillSecLow);
 
-/* Add for DTS2011021002203, by chenyaoKF34558, at 2011-02-28. 修改原因: 重新设计license功能 */
 ULONG BFD_StartLicenseTimer();
 ULONG BFD_DelLicenseTimer();
 VOID  BFD_DD_ProcLicenseTimerOut();

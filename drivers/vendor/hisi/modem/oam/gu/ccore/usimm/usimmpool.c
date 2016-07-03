@@ -1,13 +1,4 @@
-/************************************************************************
-  Copyright    : 2005-2007, Huawei Tech. Co., Ltd.
-  File name    : UsimmBase.c
-  Author       : zhuli 00100318
-  Version      : v00R002
-  Date         : 2008-5-15
-  Description  : 该C文件给出了---POOL模块实现
-  Function List:
-  History      :
- ************************************************************************/
+
 #include "product_config.h"
 
 #if (FEATURE_ON == FEATURE_UE_UICC_MULTI_APP_SUPPORT)
@@ -40,22 +31,7 @@ extern "C" {
 
 #define NV_FILE_SEEK_SET                0       /* the beginning of the file*/
 
-/*****************************************************************************
-函 数 名  :USIMM_PoolFindFile
-功能描述  :在文件池内找出文件所在的位置　
-输入参数  :usFileId:文件ID
-           enAppType: APP类型
-输出参数  :pulPoolIndex:文件在文件池的位置
-返 回 值  :VOS_ERR/VOS_OK
-调用函数  :无
-修订记录  :
-1. 日    期   : 2007年7月10日s
-   作    者   : z00100318
-   修改内容   : Creat
-2. 日    期   : 2015年3月28日
-   作    者   : c00299064
-   修改内容   : APP类型使用结构体 USIMM_CARDAPP_ENUM_UINT32
-*****************************************************************************/
+
 VOS_UINT32 USIMM_PoolFindFile(
     VOS_UINT16                          usEFileId,
     VOS_UINT32                         *pulPoolIndex,
@@ -111,24 +87,7 @@ VOS_UINT32 USIMM_PoolFindFile(
     return VOS_ERR;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_PoolInsertOneFile
-功能描述  :在文件池内填入一个文件的内容　
-输入参数  :usFileId:文件ID
-           usLen:文件数据长度
-           pData:文件数据内容
-输出参数  :无
-返 回 值  :VOS_ERR/VOS_OK
-调用函数  :USIMM_PoolFindFile
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-1. 日    期   : 2015年03月30日
-   作    者   : C00299064
-   修改内容   : 入参合并
 
-*****************************************************************************/
 VOS_UINT32 USIMM_PoolInsertOneFile
 (
     USIMM_POOL_ONERECORD_ST *pstRecord
@@ -172,20 +131,7 @@ VOS_UINT32 USIMM_PoolInsertOneFile
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_PoolUpdateOneFile
-功能描述  :在文件池内更新一个文件的内容　
-输入参数  :usFileId:文件ID
-           ulNewLen:文件数据长度
-           pucNewData:文件数据内容
-输出参数  :无
-返 回 值  :VOS_ERR/VOS_OK
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : zhuli
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_PoolUpdateOneFile(
     USIMM_CARDAPP_ENUM_UINT32           enAppType,
     VOS_UINT16                          usFileID,
@@ -234,19 +180,7 @@ VOS_UINT32 USIMM_PoolUpdateOneFile(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_PoolDelOneFile
-功能描述  :从文件池内删除一个文件的内容　
-输入参数  :usFileId:文件ID
-输出参数  :无
-返 回 值  :VOS_ERR/VOS_OK
-调用函数  :USIMM_PoolFindFile
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_PoolDelOneFile(VOS_UINT16 usFileId, USIMM_CARDAPP_ENUM_UINT32 enAppType)
 {
     VOS_UINT32                          ulRecordNum;
@@ -282,19 +216,7 @@ VOS_UINT32 USIMM_PoolDelOneFile(VOS_UINT16 usFileId, USIMM_CARDAPP_ENUM_UINT32 e
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_PoolDelFilesByAppType
-功能描述  :从文件池内删除所用应用类型为enapptype的文件
-输入参数  :enAppType:应用类型
-输出参数  :无
-返 回 值  :VOS_ERR/VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2015年03月30日
-   作    者   : c00299064
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_PoolDelFilesByAppType(USIMM_CARDAPP_ENUM_UINT32 enAppType)
 {
     VOS_UINT32                         i;
@@ -324,20 +246,7 @@ VOS_UINT32 USIMM_PoolDelFilesByAppType(USIMM_CARDAPP_ENUM_UINT32 enAppType)
     return VOS_OK;
 
 }
-/*****************************************************************************
-函 数 名  :USIMM_PoolReadOneFile
-功能描述  :从文件池内读取一个文件的内容和长度　
-输入参数  :usFileId:文件ID
-输出参数  :pLen:文件数据长度
-           pData:文件数据内容
-返 回 值  :VOS_ERR/VOS_OK
-调用函数  :USIMM_PoolFindFile
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_PoolReadOneFile(
     VOS_UINT16                          usFileId,
     VOS_UINT16                          usLen,
@@ -396,22 +305,15 @@ VOS_UINT32 USIMM_PoolReadOneFile(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_PoolDelAll
-功能描述  :从文件池内读取一个文件的内容和长度　
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-调用函数  :无
-修订记录  :
-1. 日    期   : 2009年8月9日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_PoolDelAll(VOS_VOID)
 {
     VOS_UINT32                          i;
+
+    if (VOS_OK != VOS_TaskLock())
+    {
+        USIMM_ERROR_LOG("USIMM_PoolDelAll: VOS_TaskLock error");
+    }
 
     for (i=0; i<USIMM_POOL_MAX_NUM; i++)
     {
@@ -425,21 +327,11 @@ VOS_VOID USIMM_PoolDelAll(VOS_VOID)
 
     USIMM_InitPoolGlobal();
 
+    (VOS_VOID)VOS_TaskUnlock();
+
     return;
 }
-/*****************************************************************************
-函 数 名  :USIMM_PoolDelOneRecByIndex
-功能描述  :从文件池内删除一个记录
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-调用函数  :无
-修订记录  :
-1. 日    期   : 2015年04月15日
-   作    者   : c00299064
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_PoolDelOneRecByIndex(VOS_UINT32 ulIndex)
 {
     USIMM_POOL_ST                      *pstPool;
@@ -470,19 +362,7 @@ VOS_VOID USIMM_PoolDelOneRecByIndex(VOS_UINT32 ulIndex)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_PoolInsertOneRecByIndex
-功能描述  :从文件池内增加一个记录
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-调用函数  :无
-修订记录  :
-1. 日    期   : 2015年04月15日
-   作    者   : c00299064
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_PoolInsertOneRecByIndex(
     VOS_UINT32                           ulIndex,
     USIMM_POOL_ONERECORD_ST             *pstRecord
@@ -518,23 +398,7 @@ VOS_VOID USIMM_PoolInsertOneRecByIndex(
 }
 
 
-/*****************************************************************************
-函 数 名  :USIMM_InsertFileToPool
-功能描述  :
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  :
- 修订记录 :
-1. 日    期   : 2007年8月20日
-    作    者   : m00128685
-    修改内容   : Creat
-2. 日    期   : 2015年3月20日
-    作    者   : C00299064
-    修改内容   : 入参改变
-                usFileID改为enDefFileID，其类型为 USIMM_DEF_FILEID_ENUM_UINT32，
-                APP 使用新的定义类型USIMM_CARDAPP_ENUM_UINT32
-*****************************************************************************/
+
 VOS_UINT32 USIMM_InsertFileToPool
 (
     USIMM_CARDAPP_ENUM_UINT32           enAppType,
@@ -582,20 +446,7 @@ VOS_UINT32 USIMM_InsertFileToPool
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_LogDataSave
-功能描述  :保存数据到log缓冲区，TLV结构保存
-输入参数  :pucData 需要保存的数据
-           ucDataLen 保存数据长度
-输出参数  :无
-返 回 值  :无
-调用函数  :无
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_LogDataSave(VOS_UINT8 *pucData, VOS_UINT8 ucDataLen)
 {
     if((USIMM_NO_NEED_LOG == g_stUSIMMLogData.enLogState)   /*当前不需要记录log*/
@@ -622,19 +473,7 @@ VOS_VOID USIMM_LogDataSave(VOS_UINT8 *pucData, VOS_UINT8 ucDataLen)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_LogDataClear
-功能描述  :清空log缓冲区的内容　并且关闭记录功能
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-调用函数  :无
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_LogDataClear(VOS_VOID)
 {
     (VOS_VOID)VOS_CacheMemFree(g_stUSIMMLogData.pucData);
@@ -646,19 +485,7 @@ VOS_VOID USIMM_LogDataClear(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SaveLogFile
-功能描述  :写入log文件的内容　，写入无论成功与否都关闭记录log功能
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-调用函数  :无
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_SaveLogFile(VOS_VOID)
 {
     FILE                               *ctrlfp;
@@ -747,19 +574,7 @@ VOS_VOID USIMM_SaveLogFile(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_InitLogFile
-功能描述  :初始化log文件的内容　
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-调用函数  :无
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_InitLogFile(VOS_VOID)
 {
     VOS_CHAR                            aucLogFile[USIMM_LOG_FILE_NAME_LEN] = {0};
@@ -864,19 +679,7 @@ VOS_VOID USIMM_InitLogFile(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_LogDataClear
-功能描述  :清空log缓冲区的内容　并且关闭记录功能
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-调用函数  :无
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_ExcLogDataClear(VOS_VOID)
 {
     (VOS_VOID)VOS_CacheMemFree(g_stUSIMMExcLogData.pucData);
@@ -892,19 +695,7 @@ VOS_VOID USIMM_ExcLogDataClear(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SaveLogFile
-功能描述  :写入log文件的内容　，写入无论成功与否都关闭记录log功能
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-调用函数  :无
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_SaveExcLogFile(VOS_VOID)
 {
     FILE                               *logfp;
@@ -947,19 +738,7 @@ VOS_VOID USIMM_SaveExcLogFile(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ExcLogDataBK
-功能描述  :
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-调用函数  :无
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_ExcLogDataBK(VOS_VOID)
 {
     g_ulUSIMMExcLogLenBK = g_stUSIMMExcLogData.ulDataLen;
@@ -967,19 +746,7 @@ VOS_VOID USIMM_ExcLogDataBK(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ExcLogDataBK
-功能描述  :
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-调用函数  :无
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_ExcLogDataRE(VOS_VOID)
 {
     g_stUSIMMExcLogData.ulDataLen = g_ulUSIMMExcLogLenBK ;
@@ -987,20 +754,7 @@ VOS_VOID USIMM_ExcLogDataRE(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ExcLogDataSave
-功能描述  :保存数据到log缓冲区，TLV结构保存
-输入参数  :pucData 需要保存的数据
-           ucDataLen 保存数据长度
-输出参数  :无
-返 回 值  :无
-调用函数  :无
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_ExcLogDataSave(VOS_UINT8 *pucData, VOS_UINT8 ucDataLen)
 {
     VOS_UINT32      ulSlice;
@@ -1037,19 +791,7 @@ VOS_VOID USIMM_ExcLogDataSave(VOS_UINT8 *pucData, VOS_UINT8 ucDataLen)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_InitExcLogFile
-功能描述  :初始化log文件的内容　
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-调用函数  :无
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_InitExcLogFile(VOS_VOID)
 {
     VOS_UINT8                           ucLogFilterFlag;
@@ -1094,19 +836,7 @@ VOS_VOID USIMM_InitExcLogFile(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_ClearCurDFInfo
-功能描述  :
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-调用函数  :无
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_ClearCurDFInfo(USIMM_CURFILEINFO_ST *pstCurFileInfo)
 {
     pstCurFileInfo->usCurDFID       = USIMM_NULL_ID;
@@ -1120,19 +850,7 @@ VOS_VOID USIMM_ClearCurDFInfo(USIMM_CURFILEINFO_ST *pstCurFileInfo)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_ClearCurEFInfo
-功能描述  :
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-调用函数  :无
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_ClearCurEFInfo(USIMM_CURFILEINFO_ST *pstCurFileInfo)
 {
     pstCurFileInfo->usCurEFID       = USIMM_NULL_ID;
@@ -1144,19 +862,7 @@ VOS_VOID USIMM_ClearCurEFInfo(USIMM_CURFILEINFO_ST *pstCurFileInfo)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_ClearCurFileInfo
-功能描述  :
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-调用函数  :无
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_ClearCurFileInfo(USIMM_CARDAPP_ENUM_UINT32 enCardAppType)
 {
     USIMM_CURFILEINFO_ST               *pstCurFile;
@@ -1179,20 +885,7 @@ VOS_VOID USIMM_ClearCurFileInfo(USIMM_CARDAPP_ENUM_UINT32 enCardAppType)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UpdateFileByRelativePath
-功能描述  :根据相对路径更新文件信息
-输入参数  :pstSelectPara:      选择文件参数
-           pstFilePath:        相对路径
-           pstUSIMMCurFileInfo:当前文件信息
-输出参数  :无
-返 回 值  :无
-调用函数  :无
- 修订记录  :
-1. 日    期    : 2013年6月28日
-    作    者   : g47350
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID USIMM_UpdateFileByRelativePath(USIMM_SELECT_PARA_STUR *pstSelectPara,
                                             USIMM_U16_LVDATA_STRU    *pstFilePath,
                                             USIMM_CURFILEINFO_ST     *pstUSIMMCurFileInfo)
@@ -1267,23 +960,7 @@ VOS_VOID USIMM_UpdateFileByRelativePath(USIMM_SELECT_PARA_STUR *pstSelectPara,
     USIMM_UpdateFilePath(pstSelectPara, &stFileAllPath, pstUSIMMCurFileInfo);
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UpdateFilePath
-功能描述  :
-输入参数  :ucLen:路径数据长度
-           pData:路径数据内容
-           enUpdateFlag:更新文件FCP标识
-输出参数  :无
-返 回 值  :无
-调用函数  :无
- 修订记录  :
-1. 日    期   : 2007年7月10日
-    作    者   : z00100318
-    修改内容   : Creat
-2. 日    期   : 2011年4月29日
-   作    者   : j00168360
-   修改内容   : [DTS2011042700921]一卡双号切换过程中电话本功能不正常
-*****************************************************************************/
+
 VOS_VOID USIMM_UpdateFilePath(USIMM_SELECT_PARA_STUR      *pstSelectPara,
                                         USIMM_U16_LVDATA_STRU       *pstFilePath,
                                         USIMM_CURFILEINFO_ST        *pstUSIMMCurFileInfo)
@@ -1332,17 +1009,7 @@ VOS_VOID USIMM_UpdateFilePath(USIMM_SELECT_PARA_STUR      *pstSelectPara,
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_OpenSpeedFileInit
-功能描述  :初始化快速开机需要的文件初始化
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-修订记录  :
-1. 日    期   : 2013年5月22日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID USIMM_OpenSpeedFileInit(VOS_VOID)
 {
     VOS_UINT8                           aucImsi[USIMM_EF6F07Len];
@@ -1373,18 +1040,7 @@ VOS_VOID USIMM_OpenSpeedFileInit(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UsimVoltageSwitch
-功能描述  :USIMM卡电压切换
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_ERR
-        VOS_OK
-修订记录  :
-1. 日    期   : 2011年6月20日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_UsimVoltageSwitch(VOS_UINT8 ucCharaByte, VOS_UINT8 *pucVoltageMismatchFlag)
 {
     VOS_INT32                           lVoltageSwitchRst = USIMM_SCI_NONEED_CHANGEVCC;
@@ -1450,18 +1106,7 @@ VOS_UINT32 USIMM_UsimVoltageSwitch(VOS_UINT8 ucCharaByte, VOS_UINT8 *pucVoltageM
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_UsimTerminalCapability
-功能描述  : USIMM卡terminal capability下发
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_VOID
 
-修订记录  :
-1. 日    期   : 2011年6月20日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
 VOS_VOID USIMM_UsimTerminalCapability(VOS_VOID)
 {
     VOS_UINT32                          ulResult;
@@ -1490,23 +1135,7 @@ VOS_VOID USIMM_UsimTerminalCapability(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_InitCardOptionalFile
-功能描述  :实现了读取文件至缓存区的操作
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_PoolInsertOneFile
-修订记录  :
-1. 日    期   : 2008年8月20日
-   作    者   : m00128685
-   修改内容   : Creat
-2. 日    期   : 2010年7月5日
-   作    者   : j00168360
-   修改内容   : [DTS2011070600422]GCF 27.22.4.7.2-2 Refresh测试用例失败
 
-*****************************************************************************/
 VOS_UINT32 USIMM_InitCardOptionalFile(USIMM_CMDHEADER_REQ_STRU *pMsg)
 {
     USIMM_COMM_InitOPFile();
@@ -1642,20 +1271,7 @@ VOS_VOID USIMM_AttUpdataSupportTable(
 }
 
 
-/*****************************************************************************
-函 数 名  :USIMM_InitUsimEccFile
-功能描述  :初始化USIM卡ECC文件
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_ERR
-        VOS_OK
 
-修订记录  :
-1. 日    期   : 2011年6月20日
-   作    者   : j00168360
-   修改内容   : Creat   [DTS2011042900838]卡初始化流程优化
-
-*****************************************************************************/
 VOS_UINT32 USIMM_InitUsimEccFile(VOS_VOID)
 {
     VOS_UINT8                          *pData;
@@ -1759,19 +1375,7 @@ VOS_UINT32 USIMM_InitUsimEccFile(VOS_VOID)
 
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_InitSimEccFile
-功能描述  :初始化SIM卡ECC文件,已和sunxibo确认出错情况下可以不上报默认值，只要报紧急号码为0即可
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_ERR
-        VOS_OK
 
-修订记录  :
-1. 日    期   : 2011年3月18日
-   作    者   : zhuli
-   修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_InitSimEccFile(
     VOS_UINT8                           ucChannelID)
 {
@@ -1873,21 +1477,7 @@ VOS_UINT32 USIMM_InitSimEccFile(
 }
 
 
-/*****************************************************************************
-函 数 名  : USIMM_ChangePathToU16
-功能描述  : 把UINT8编码个数的数据转换成UINT16的数据
-输入参数  :
-输出参数  :
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :
 
- 修订记录  :
-1. 日    期   : 2007年7月10日
-    作    者   : z00100318
-    修改内容   : Creat
-
-*****************************************************************************/
 /*lint -e661 -e662 by h59254*/
 VOS_VOID USIMM_ChangePathToU16(VOS_UINT32 ulDataLen, VOS_UINT8 *pucData, VOS_UINT32 *pulLen, VOS_UINT16 *pusPath)
 {
@@ -1905,21 +1495,7 @@ VOS_VOID USIMM_ChangePathToU16(VOS_UINT32 ulDataLen, VOS_UINT8 *pucData, VOS_UIN
 }
 /*lint +e661 +e662 by h59254*/
 
-/*****************************************************************************
-函 数 名  :USIMM_SelectDFFile
-功能描述  :安照文件ID方式选择DF
-输入参数  :usFileId:DF文件ID
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_ReselectFileAPDU
-           USIMM_CheckSW
- 修订记录  :
-1. 日    期   : 2007年7月10日
-    作    者   : z00100318
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_SelectDFFile(
     VOS_UINT16                        usFileId,
     USIMM_SELECT_PARA_STUR           *pstSelectPara,
@@ -1988,25 +1564,7 @@ VOS_UINT32 USIMM_SelectDFFile(
     return USIMM_SW_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SelectEFByID
-功能描述  :按照文件ID方式选中EF并解析FCP
-输入参数  :usFileId:文件ID
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_ReselectFileAPDU
-          USIMM_CheckSW
-          USIMM_DecodeUsimEFFcp
-          USIMM_DecodeSimEFFcp
- 修订记录  :
- 1. 日    期   : 2007年7月10日
-     作    者   : z00100318
-     修改内容   : Creat
- 2. 日    期   : 2011年4月29日
-    作    者   : j00168360
-    修改内容   : [DTS2011042700921]一卡双号切换过程中电话本功能不正常
-*****************************************************************************/
+
 VOS_UINT32 USIMM_SelectEFByID(VOS_UINT16                     usFileId,
                                     USIMM_SELECT_PARA_STUR           *pstSelectPara,
                                     USIMM_CURFILEINFO_ST             *pstCurFileInfo)
@@ -2081,29 +1639,7 @@ VOS_UINT32 USIMM_SelectEFByID(VOS_UINT16                     usFileId,
     return USIMM_SW_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SelectFileNoPath
-功能描述  :根据路安装单步方式选择EF
-输入参数  :ucLen:路径数据长度
-           pData:路径数据内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_ReselectFileAPDU
-          USIMM_CheckSW
-          USIMM_DecodeUsimEFFcp
-          USIMM_DecodeSimEFFcp
- 修订记录  :
-1. 日    期   : 2007年7月10日
-    作    者   : z00100318
-    修改内容   : Creat
-2. 日    期   : 2011年4月29日
-   作    者   : j00168360
-   修改内容   : [DTS2011042700921]一卡双号切换过程中电话本功能不正常
-3. 日    期  : 2011年8月22日
-   作    者  : j00168360
-   修改内容  : [DTS2011081901894]，at+crsm命令引起的掉卡
-*****************************************************************************/
+
 VOS_UINT32 USIMM_SelectFileNoPath(
     USIMM_SELECT_PARA_STUR             *pstSelectPara,
     USIMM_U16_LVDATA_STRU              *pstFilePath,
@@ -2142,19 +1678,7 @@ VOS_UINT32 USIMM_SelectFileNoPath(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_GetDiffPos
-功能描述  :获得当前文件和选择文件的不同位置
-输入参数  :pstFilePath:   选择文件路径
-           pstCurFileInfo:当前文件信息
-输出参数  :无
-返 回 值  :路径不同点，从0开始
 
- 修订记录  :
-1. 日    期    : 2013年6月20日
-    作    者   : g47350
-    修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_GetDiffPos(USIMM_U16_LVDATA_STRU *pstFilePath,
                                   USIMM_CURFILEINFO_ST  *pstCurFileInfo)
 {
@@ -2182,18 +1706,7 @@ VOS_UINT32 USIMM_GetDiffPos(USIMM_U16_LVDATA_STRU *pstFilePath,
     return ulDiffPos;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_GetCurDfPos
-功能描述  :获得路径的当前目录位置
-输入参数  :pstCurFileInfo:  当前的文件信息
-输出参数  :无
-返 回 值  :目录的位置，从0开始
 
- 修订记录  :
-1. 日    期    : 2013年6月20日
-    作    者   : g47350
-    修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_GetCurDfPos(USIMM_CURFILEINFO_ST *pstCurFileInfo)
 {
     VOS_UINT32                              ulCurDFPos;
@@ -2211,20 +1724,7 @@ VOS_UINT32 USIMM_GetCurDfPos(USIMM_CURFILEINFO_ST *pstCurFileInfo)
     return ulCurDFPos;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SelectFileByRelativePath
-功能描述  :通过相对路径方式单步选择文件
-输入参数  :pstSelectPara:  选择文件参数
-           pstFilePath:    选择文件路径
-           pstCurFileInfo: 当前选中文件的信息
-输出参数  :无
-返 回 值  :VOS_ERR
 
- 修订记录  :
-1. 日    期    : 2013年6月20日
-    作    者   : g47350
-    修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_SelectFileByRelativePath(
     USIMM_SELECT_PARA_STUR             *pstSelectPara,
     USIMM_U16_LVDATA_STRU              *pstFilePath,
@@ -2318,26 +1818,7 @@ VOS_UINT32 USIMM_SelectFileByRelativePath(
     return USIMM_SelectFileNoPath(pstSelectPara, &stRelativePath, pstCurFileInfo, VOS_NULL_PTR);
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SelectEFByPath
-功能描述  :按照路径方式选择当前的EF
-输入参数  :ucLen:路径数据长度
-           pData:路径数据内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_ReselectFileAPDU
-          USIMM_CheckSW
-          USIMM_DecodeUsimEFFcp
-          USIMM_DecodeSimEFFcp
- 修订记录  :
-1. 日    期   : 2007年7月10日
-    作    者   : z00100318
-    修改内容   : Creat
-2. 日    期   : 2011年4月29日
-   作    者   : j00168360
-   修改内容   : [DTS2011042700921]一卡双号切换过程中电话本功能不正常
-*****************************************************************************/
+
 VOS_UINT32 USIMM_SelectFileByPath(USIMM_SELECT_PARA_STUR      *pstSelectPara,
                                          USIMM_U16_LVDATA_STRU          *pstFilePath,
                                          USIMM_CURFILEINFO_ST           *pstCurFileInfo)
@@ -2434,26 +1915,7 @@ VOS_UINT32 USIMM_SelectFileByPath(USIMM_SELECT_PARA_STUR      *pstSelectPara,
     return USIMM_SW_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SelectFileWithPath
-功能描述  :按照路径方式选择当前的EF
-输入参数  :ucLen:路径数据长度
-           pData:路径数据内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_ReselectFileAPDU
-          USIMM_CheckSW
-          USIMM_DecodeUsimEFFcp
-          USIMM_DecodeSimEFFcp
- 修订记录  :
-1. 日    期   : 2007年7月10日
-    作    者   : z00100318
-    修改内容   : Creat
-2. 日    期  : 2011年8月30日
-   作    者  : j00168360
-   修改内容  : [DTS2011083000162]，USIM模块正向清理保护性复位及卡路径选择
-*****************************************************************************/
+
 VOS_UINT32 USIMM_SelectFileWithPath(
     USIMM_SELECT_PARA_STUR             *pstSelectPara,
     USIMM_U16_LVDATA_STRU              *pstFilePath,
@@ -2503,19 +1965,7 @@ VOS_UINT32 USIMM_SelectFileWithPath(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_GetAIDType
-功能描述  : 根据AID长度获取当前所属类型
-输入参数  : ulAidLen:AID长度
-            pucAid:AID内容
-输出参数  : 无
-返 回 值  : USIMM_CARDAPP_ENUM_UINT32
 
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : 新增加函数
-*****************************************************************************/
 USIMM_CARDAPP_ENUM_UINT32 USIMM_GetAIDType(
     VOS_UINT32                              ulAidLen,
     VOS_UINT8                              *pucAid)
@@ -2543,17 +1993,7 @@ USIMM_CARDAPP_ENUM_UINT32 USIMM_GetAIDType(
     return USIMM_CARDAPP_BUTT;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_RefreshNoFileIndHandle
-功能描述  :没有文件ID指示类型的REFRESH命令上报函数
-输入参数  :pstMsg:REFRESH命令消息
-输出参数  :无
-返 回 值  :无
-修订记录  :
-1. 日    期   : 2013年05月28日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID USIMM_RefreshNoFileIndHandle(USIMM_STKREFRESH_REQ_STRU *pstMsg)
 {
     USIMM_STKREFRESH_IND_STRU              *pstRefreshMsg;
@@ -2578,24 +2018,7 @@ VOS_VOID USIMM_RefreshNoFileIndHandle(USIMM_STKREFRESH_REQ_STRU *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : USIMM_GetEFPathFromFList
- 功能描述  : 获取Filelist中的一个EF文件路径
- 输入参数  : pucFileList: EF文件列表
-             ulFileLen:文件列表长度
 
- 输出参数  : pucEFPath:存放第一个EF文件路径
-             pulPathLen:第一个EF文件路径长度
-
- 返 回 值  : VOS_ERR:未找到匹配文件
-             VOS_OK:找到EF文件
-
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : 新增加函数
-
-*****************************************************************************/
 VOS_UINT32 USIMM_GetEFPathFromFList(
     VOS_UINT8                          *pucFileList,
     VOS_UINT32                          ulFileLen,
@@ -2642,17 +2065,7 @@ VOS_UINT32 USIMM_GetEFPathFromFList(
 }
 
 
-/*****************************************************************************
-函 数 名  :USIMM_RefreshIsimFileIndHandle
-功能描述  :实现了IMSI文件更新上报功能
-输入参数  :pstRefreshMsg: 文件更新上报消息
-输出参数  :无
-返 回 值  :无
-修订记录  :
-1. 日    期   : 2013年7月24日
-   作    者   : g47350
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID USIMM_RefreshIsimFileIndHandle(USIMM_STKREFRESH_IND_STRU *pstRefreshMsg)
 {
     VOS_UINT16                          i;
@@ -2813,18 +2226,7 @@ VOS_VOID USIMM_RefreshIsimFileIndHandle(USIMM_STKREFRESH_IND_STRU *pstRefreshMsg
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_GetRefreshIndType
-功能描述  :实现了读取文件的操作和结果的返回
-输入参数  :API层下发消息内容
-输出参数  :无
-返 回 值  :无
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : 新增加函数
 
-*****************************************************************************/
 
 USIMM_REFRESH_FILE_TYPE_UINT16 USIMM_GetRefreshIndType(
     USIMM_STKREFRESH_REQ_STRU          *pstMsg)
@@ -2844,18 +2246,7 @@ USIMM_REFRESH_FILE_TYPE_UINT16 USIMM_GetRefreshIndType(
     }
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_RefreshFileIndHandle
-功能描述  :实现了读取文件的操作和结果的返回
-输入参数  :API层下发消息内容
-输出参数  :无
-返 回 值  :无
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : 新增加函数
 
-*****************************************************************************/
 VOS_VOID USIMM_RefreshFileIndHandle(
     USIMM_STKREFRESH_REQ_STRU          *pstMsg,
     USIMM_CARDAPP_ENUM_UINT32           enAppType
@@ -2959,17 +2350,7 @@ VOS_VOID USIMM_RefreshFileIndHandle(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_RefreshInd
-功能描述  :Refresh命令上报指示处理函数
-输入参数  :pstMsg:Refresh消息
-输出参数  :无
-返 回 值  :
-修订记录  :
-1. 日    期   : 2013年5月28日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID USIMM_RefreshInd(
     USIMM_CARDAPP_ENUM_UINT32           enAppType,
     USIMM_STKREFRESH_REQ_STRU          *pstMsg)
@@ -2987,18 +2368,7 @@ VOS_VOID USIMM_RefreshInd(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_SendRefreshTR
-功能描述  : 实现了卡重启相关操作
-输入参数  : API层下发消息内容
-输出参数  : 无
-返 回 值  : VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2015年3月18日
-   作    者   : zhuli
-   修改内容   : 新增加函数
-*****************************************************************************/
+
 VOS_VOID USIMM_SendRefreshTR(
     USIMM_STKREFRESH_REQ_STRU          *pstMsg,
     VOS_UINT32                          ulResult
@@ -3037,18 +2407,7 @@ VOS_VOID USIMM_SendRefreshTR(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_RefreshCardFile
-功能描述  : 实现了卡重启相关操作
-输入参数  : API层下发消息内容
-输出参数  : 无
-返 回 值  : VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID USIMM_RefreshCardFile(
     USIMM_STKREFRESH_REQ_STRU          *pstMsg,
     USIMM_CARDAPP_ENUM_UINT32           enAppType,
@@ -3107,18 +2466,7 @@ VOS_VOID USIMM_RefreshCardFile(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_RefreshICCFile
-功能描述  : 实现了卡重启相关操作
-输入参数  : API层下发消息内容
-输出参数  : 无
-返 回 值  : VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : zhuli
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_RefreshICCFile(USIMM_STKREFRESH_REQ_STRU       *pstMsg)
 {
     USIMM_CARDAPP_ENUM_UINT32           enAppType;
@@ -3184,18 +2532,7 @@ VOS_UINT32 USIMM_RefreshICCFile(USIMM_STKREFRESH_REQ_STRU       *pstMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_RefreshUICCFile
-功能描述  : 实现了卡重启相关操作
-输入参数  : API层下发消息内容
-输出参数  : 无
-返 回 值  : VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_RefreshUICCFile(USIMM_STKREFRESH_REQ_STRU      *pstMsg)
 {
     USIMM_CARDAPP_ENUM_UINT32           enAppType;
@@ -3303,18 +2640,7 @@ VOS_UINT32 USIMM_RefreshUICCFile(USIMM_STKREFRESH_REQ_STRU      *pstMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_RefreshNoReset
-功能描述  : 实现了卡重启相关操作
-输入参数  : API层下发消息内容
-输出参数  : 无
-返 回 值  : VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_RefreshNoReset(USIMM_STKREFRESH_REQ_STRU *pstMsg)
 {
     USIMM_PHYCARD_TYPE_ENUM_UINT32  enCardType;
@@ -3370,19 +2696,7 @@ extern "C" {
 
 #define NV_FILE_SEEK_SET                0       /* the beginning of the file*/
 
-/*****************************************************************************
-函 数 名  :USIMM_PoolDataInit
-功能描述  :初始化文件池的相关变量和状态　
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-调用函数  :无
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 
 VOS_VOID USIMM_PoolDataInit(VOS_VOID)
 {
@@ -3395,19 +2709,7 @@ VOS_VOID USIMM_PoolDataInit(VOS_VOID)
     /*lint +e534*/
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_PoolFindFile
-功能描述  :在文件池内找出文件所在的位置　
-输入参数  :usFileId:文件ID
-输出参数  :pucData:文件在文件池的位置
-返 回 值  :VOS_ERR/VOS_OK
-调用函数  :无
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_PoolFindFile(
     VOS_UINT16                          usFileId,
     VOS_UINT32                         *pulData,
@@ -3458,21 +2760,7 @@ VOS_UINT32 USIMM_PoolFindFile(
     return VOS_ERR;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_PoolInsertOneFile
-功能描述  :在文件池内填入一个文件的内容　
-输入参数  :usFileId:文件ID
-           usLen:文件数据长度
-           pData:文件数据内容
-输出参数  :无
-返 回 值  :VOS_ERR/VOS_OK
-调用函数  :USIMM_PoolFindFile
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_PoolInsertOneFile(
     VOS_UINT16                          usFileId,
     VOS_UINT16                          usLen,
@@ -3524,19 +2812,7 @@ VOS_UINT32 USIMM_PoolInsertOneFile(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_PoolDelOneFile
-功能描述  :从文件池内删除一个文件的内容　
-输入参数  :usFileId:文件ID
-输出参数  :无
-返 回 值  :VOS_ERR/VOS_OK
-调用函数  :USIMM_PoolFindFile
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_PoolDelOneFile(VOS_UINT16 usFileId, USIMM_APP_TYPE_ENUM_UINT32 enAppType)
 {
     VOS_UINT32  ulRecordNum;
@@ -3579,20 +2855,7 @@ VOS_UINT32 USIMM_PoolDelOneFile(VOS_UINT16 usFileId, USIMM_APP_TYPE_ENUM_UINT32 
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_PoolReadOneFile
-功能描述  :从文件池内读取一个文件的内容和长度　
-输入参数  :usFileId:文件ID
-输出参数  :pLen:文件数据长度
-           pData:文件数据内容
-返 回 值  :VOS_ERR/VOS_OK
-调用函数  :USIMM_PoolFindFile
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_PoolReadOneFile(
     VOS_UINT16                          usFileId,
     VOS_UINT16                          usLen,
@@ -3647,22 +2910,15 @@ VOS_UINT32 USIMM_PoolReadOneFile(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_PoolDelAll
-功能描述  :从文件池内读取一个文件的内容和长度　
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-调用函数  :无
-修订记录  :
-1. 日    期   : 2009年8月9日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_PoolDelAll(VOS_VOID)
 {
     VOS_UINT32 i;
+
+    if (VOS_OK != VOS_TaskLock())
+    {
+        USIMM_ERROR_LOG("USIMM_PoolDelAll: VOS_TaskLock error");
+    }
 
     for(i=0; i<POOLMAXNUM;i++)
     {
@@ -3676,25 +2932,12 @@ VOS_VOID USIMM_PoolDelAll(VOS_VOID)
 
     USIMM_PoolDataInit();
 
+    (VOS_VOID)VOS_TaskUnlock();
+
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_PoolUpdateOneFile
-功能描述  :更新文件池中一个文件内容，不改变其长度
-输入参数  :VOS_UINT16                   usFileId  文件ID
-           USIMM_APP_TYPE_ENUM_UINT32   enAppType 应用类型
-           VOS_UINT32                   ulDataLen 数据长度
-           VOS_CHAR                    *pucData   数据内容
 
-输出参数  :无
-返 回 值  :无
-调用函数  :无
-修订记录  :
-1. 日    期   : 2012年6月29日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32  USIMM_PoolUpdateOneFile(
     VOS_UINT16                          usFileId,
     USIMM_APP_TYPE_ENUM_UINT32          enAppType,
@@ -3730,19 +2973,7 @@ VOS_UINT32  USIMM_PoolUpdateOneFile(
 
 
 
-/*****************************************************************************
-函 数 名  :USIMM_InsertFileToPool
-功能描述  :
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  :
- 修订记录 :
-1. 日    期   : 2007年8月20日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_InsertFileToPool(USIMM_APP_TYPE_ENUM_UINT32 enAppType, VOS_UINT16 usFileID)
 {
     VOS_UINT8                          *pucData;
@@ -3847,20 +3078,7 @@ VOS_UINT32 USIMM_InsertFileToPool(USIMM_APP_TYPE_ENUM_UINT32 enAppType, VOS_UINT
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_LogDataSave
-功能描述  :保存数据到log缓冲区，TLV结构保存
-输入参数  :pucData 需要保存的数据
-           ucDataLen 保存数据长度
-输出参数  :无
-返 回 值  :无
-调用函数  :无
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_LogDataSave(VOS_UINT8 *pucData, VOS_UINT8 ucDataLen)
 {
     if((USIMM_NO_NEED_LOG == g_stUSIMMLogData.enLogState)   /*当前不需要记录log*/
@@ -3887,19 +3105,7 @@ VOS_VOID USIMM_LogDataSave(VOS_UINT8 *pucData, VOS_UINT8 ucDataLen)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_LogDataClear
-功能描述  :清空log缓冲区的内容　并且关闭记录功能
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-调用函数  :无
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_LogDataClear(VOS_VOID)
 {
     /*lint -e534*/
@@ -3913,19 +3119,7 @@ VOS_VOID USIMM_LogDataClear(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SaveLogFile
-功能描述  :写入log文件的内容　，写入无论成功与否都关闭记录log功能
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-调用函数  :无
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_SaveLogFile(VOS_VOID)
 {
     FILE                               *ctrlfp;
@@ -4022,19 +3216,7 @@ VOS_VOID USIMM_SaveLogFile(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_InitLogFile
-功能描述  :初始化log文件的内容　
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-调用函数  :无
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_InitLogFile(VOS_VOID)
 {
     VOS_CHAR                            aucLogFile[USIMM_LOG_FILE_NAME_LEN] = {0};
@@ -4149,19 +3331,7 @@ VOS_VOID USIMM_InitLogFile(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_LogDataClear
-功能描述  :清空log缓冲区的内容　并且关闭记录功能
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-调用函数  :无
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_ExcLogDataClear(VOS_VOID)
 {
     /*lint -e534*/
@@ -4179,19 +3349,7 @@ VOS_VOID USIMM_ExcLogDataClear(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SaveLogFile
-功能描述  :写入log文件的内容　，写入无论成功与否都关闭记录log功能
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-调用函数  :无
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_SaveExcLogFile(VOS_VOID)
 {
     FILE                               *logfp;
@@ -4236,19 +3394,7 @@ VOS_VOID USIMM_SaveExcLogFile(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ExcLogDataBK
-功能描述  :
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-调用函数  :无
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_ExcLogDataBK(VOS_VOID)
 {
     g_ulUSIMMExcLogLenBK = g_stUSIMMExcLogData.ulDataLen;
@@ -4256,19 +3402,7 @@ VOS_VOID USIMM_ExcLogDataBK(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ExcLogDataBK
-功能描述  :
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-调用函数  :无
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_ExcLogDataRE(VOS_VOID)
 {
     g_stUSIMMExcLogData.ulDataLen = g_ulUSIMMExcLogLenBK ;
@@ -4276,20 +3410,7 @@ VOS_VOID USIMM_ExcLogDataRE(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ExcLogDataSave
-功能描述  :保存数据到log缓冲区，TLV结构保存
-输入参数  :pucData 需要保存的数据
-           ucDataLen 保存数据长度
-输出参数  :无
-返 回 值  :无
-调用函数  :无
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_ExcLogDataSave(VOS_UINT8 *pucData, VOS_UINT8 ucDataLen)
 {
     VOS_UINT32      ulSlice;
@@ -4326,19 +3447,7 @@ VOS_VOID USIMM_ExcLogDataSave(VOS_UINT8 *pucData, VOS_UINT8 ucDataLen)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_InitExcLogFile
-功能描述  :初始化log文件的内容　
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-调用函数  :无
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_InitExcLogFile(VOS_VOID)
 {
     VOS_UINT8                              ucLogFilterFlag; 
@@ -4385,19 +3494,7 @@ VOS_VOID USIMM_InitExcLogFile(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_InitGlobalVarOnPower
-功能描述  :初始化全局变量，这些全局变量只要上电后初始化一次即可　
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-调用函数  :无
-修订记录  :
-1. 日    期   : 2013年6月19日
-   作    者   : j00168360
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_InitGlobalVarOnPower(VOS_VOID)
 {
     /*lint -e534*/
@@ -4438,19 +3535,7 @@ VOS_VOID USIMM_InitGlobalVarOnPower(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_InitGlobalVarOnReset
-功能描述  :初始化相关全局变量的内容,这些全局变量只要重新初始化就要clear　
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-调用函数  :无
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_InitGlobalVarOnReset(VOS_VOID)
 {
     VOS_UINT32                          i;
@@ -4510,18 +3595,7 @@ VOS_VOID USIMM_InitGlobalVarOnReset(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_AttGlobalInit
-功能描述  :初始化ATT相关全局变量的内容　
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-调用函数  :无
-修订记录  :
-1. 日    期   : 2012年6月18日
-   作    者   : H59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID USIMM_FeatureGlobalInit(VOS_VOID)
 {
     /* NV项读取失败按所有定制都不支持处理 */
@@ -4537,19 +3611,7 @@ VOS_VOID USIMM_FeatureGlobalInit(VOS_VOID)
 }
 
 
-/*****************************************************************************
-函 数 名  : USIMM_ClearCurDFInfo
-功能描述  :
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-调用函数  :无
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_ClearCurDFInfo(USIMM_CURFILEINFO_ST *pstCurFileInfo)
 {
     pstCurFileInfo->usCurDFID       = USIMM_NULL_ID;
@@ -4563,19 +3625,7 @@ VOS_VOID USIMM_ClearCurDFInfo(USIMM_CURFILEINFO_ST *pstCurFileInfo)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_ClearCurEFInfo
-功能描述  :
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-调用函数  :无
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_ClearCurEFInfo(USIMM_CURFILEINFO_ST *pstCurFileInfo)
 {
     pstCurFileInfo->usCurEFID       = USIMM_NULL_ID;
@@ -4587,19 +3637,7 @@ VOS_VOID USIMM_ClearCurEFInfo(USIMM_CURFILEINFO_ST *pstCurFileInfo)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_ClearCurFileInfo
-功能描述  :
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-调用函数  :无
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_ClearCurFileInfo(VOS_VOID)
 {
     gstUSIMMCurFileInfo.usFilePathLen  = 0;
@@ -4615,19 +3653,7 @@ VOS_VOID USIMM_ClearCurFileInfo(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_SaveDFPinInfo
-功能描述  :
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-调用函数  :无
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_SaveDFPinInfo(VOS_VOID)
 {
     /*lint -e534*/
@@ -4641,21 +3667,7 @@ VOS_VOID USIMM_SaveDFPinInfo(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_GetDFFcpLenInMap
-功能描述  : 在文件树中搜索当前DF的FCP长度
-输入参数  :
-输出参数  :
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :
 
- 修订记录  :
-1. 日    期   : 2007年7月10日
-    作    者   : z00100318
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 USIMM_GetDFFcpLenInMap(VOS_UINT16 usDFId, VOS_UINT32 *pulFcpLen)
 {
     VOS_UINT32 i;
@@ -4680,20 +3692,7 @@ VOS_UINT32 USIMM_GetDFFcpLenInMap(VOS_UINT16 usDFId, VOS_UINT32 *pulFcpLen)
     return VOS_ERR;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UpdateFileByRelativePath
-功能描述  :根据相对路径更新文件信息
-输入参数  :pstSelectPara:      选择文件参数
-           pstFilePath:        相对路径
-           pstUSIMMCurFileInfo:当前文件信息
-输出参数  :无
-返 回 值  :无
-调用函数  :无
- 修订记录  :
-1. 日    期    : 2013年6月28日
-    作    者   : g47350
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID USIMM_UpdateFileByRelativePath(USIMM_SELECT_PARA_STUR *pstSelectPara,
                                             USIMM_U16_LVDATA_STRU    *pstFilePath,
                                             USIMM_CURFILEINFO_ST     *pstUSIMMCurFileInfo)
@@ -4768,23 +3767,7 @@ VOS_VOID USIMM_UpdateFileByRelativePath(USIMM_SELECT_PARA_STUR *pstSelectPara,
     USIMM_UpdateFilePath(pstSelectPara, &stFileAllPath, pstUSIMMCurFileInfo);
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UpdateFilePath
-功能描述  :
-输入参数  :ucLen:路径数据长度
-           pData:路径数据内容
-           enUpdateFlag:更新文件FCP标识
-输出参数  :无
-返 回 值  :无
-调用函数  :无
- 修订记录  :
-1. 日    期   : 2007年7月10日
-    作    者   : z00100318
-    修改内容   : Creat
-2. 日    期   : 2011年4月29日
-   作    者   : j00168360
-   修改内容   : [DTS2011042700921]一卡双号切换过程中电话本功能不正常
-*****************************************************************************/
+
 VOS_VOID USIMM_UpdateFilePath(USIMM_SELECT_PARA_STUR      *pstSelectPara,
                                         USIMM_U16_LVDATA_STRU       *pstFilePath,
                                         USIMM_CURFILEINFO_ST        *pstUSIMMCurFileInfo)
@@ -4849,17 +3832,7 @@ VOS_VOID USIMM_UpdateFilePath(USIMM_SELECT_PARA_STUR      *pstSelectPara,
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_OpenSpeedFileInit
-功能描述  :初始化快速开机需要的文件初始化
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-修订记录  :
-1. 日    期   : 2013年5月22日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID USIMM_OpenSpeedFileInit(VOS_VOID)
 {
     VOS_UINT8                           aucImsi[USIMM_EF6F07Len];
@@ -4883,19 +3856,7 @@ VOS_VOID USIMM_OpenSpeedFileInit(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_InitOpneSpeed
-功能描述  :初始化快速开机需要的全局变量的内容，并上报卡状态　
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-调用函数  :
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_InitOpenSpeed(VOS_VOID)
 {
     /*初始化当前的基本内容*/
@@ -4920,18 +3881,7 @@ VOS_VOID USIMM_InitOpenSpeed(VOS_VOID)
 }
 
 
-/*****************************************************************************
-函 数 名  :USIMM_UsimVoltageSwitch
-功能描述  :USIMM卡电压切换
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_ERR
-        VOS_OK
-修订记录  :
-1. 日    期   : 2011年6月20日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_UsimVoltageSwitch(VOS_UINT8 ucCharaByte, VOS_UINT8 *pucVoltageMismatchFlag)
 {
     VOS_INT32                           lVoltageSwitchRst;
@@ -4992,18 +3942,7 @@ VOS_UINT32 USIMM_UsimVoltageSwitch(VOS_UINT8 ucCharaByte, VOS_UINT8 *pucVoltageM
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UsimTerminalCapability
-功能描述  :USIMM卡terminal capability下发
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_ERR
-        VOS_OK
-修订记录  :
-1. 日    期   : 2011年6月20日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID USIMM_UsimTerminalCapability(VOS_VOID)
 {
     VOS_UINT32                          ulResult;
@@ -5038,22 +3977,7 @@ VOS_VOID USIMM_UsimTerminalCapability(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_InsertNoNeedPinFileToPool
-功能描述  :将不受PIN保护文件放入缓冲池
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_ERR
-        VOS_OK
-调用函数  :USIMM_SelectDFFile
-          USIMM_InsertFileToPool
-          USIMM_ClearCurFileInfo
-修订记录  :
-1. 日    期   : 2011年6月20日
-   作    者   : j00168360
-   修改内容   : Creat[DTS2011042900838]卡初始化流程优化
 
-*****************************************************************************/
 VOS_UINT32 USIMM_InsertNoNeedPinFileToPool(VOS_VOID)
 {
     USIMM_APP_TYPE_ENUM_UINT32          enAppType;
@@ -5112,22 +4036,7 @@ VOS_UINT32 USIMM_InsertNoNeedPinFileToPool(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_InsertLPFileToPool
-功能描述  :选择语言文件并将其插入到文件缓冲池中，EFLP is optional in USIM card,
-           but it is mandatory in SIM card,因此即使选择失败初始化流程也不中断，所以此函数返回值为ok
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_ERR
-        VOS_OK
-调用函数  :USIMM_InsertFileToPool
 
-修订记录  :
-1. 日    期   : 2011年6月20日
-   作    者   : j00168360
-   修改内容   : Creat[DTS2011042900838]卡初始化流程优化
-
-*****************************************************************************/
 VOS_UINT32 USIMM_InsertLPFileToPool(VOS_VOID)
 {
     VOS_UINT32                          ulResult;
@@ -5147,22 +4056,7 @@ VOS_UINT32 USIMM_InsertLPFileToPool(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_InsertNeedPinFileToPool
-功能描述  :将受PIN保护文件放入缓冲池
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_ERR
-        VOS_OK
-调用函数  :USIMM_SelectDFFile
-          USIMM_InsertFileToPool
-          USIMM_SendInitCardMsg
-修订记录  :
-1. 日    期   : 2011年6月20日
-   作    者   : j00168360
-   修改内容   : Creat   [DTS2011042900838]卡初始化流程优化
 
-*****************************************************************************/
 VOS_UINT32 USIMM_InsertNeedPinFileToPool(VOS_VOID)
 {
     VOS_UINT32                          i;
@@ -5324,23 +4218,7 @@ VOS_VOID USIMM_InsertAttFileToPool(USIMM_APP_TYPE_ENUM_UINT32 enAppType, VOS_UIN
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_InitCardOptionalFile
-功能描述  :实现了读取文件至缓存区的操作
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_PoolInsertOneFile
-修订记录  :
-1. 日    期   : 2008年8月20日
-   作    者   : m00128685
-   修改内容   : Creat
-2. 日    期   : 2010年7月5日
-   作    者   : j00168360
-   修改内容   : [DTS2011070600422]GCF 27.22.4.7.2-2 Refresh测试用例失败
 
-*****************************************************************************/
 VOS_UINT32 USIMM_InitCardOptionalFile(USIMM_CMDHEADER_REQ_STRU *pMsg)
 {
     VOS_UINT32                          i;
@@ -5383,21 +4261,7 @@ VOS_UINT32 USIMM_InitCardOptionalFile(USIMM_CMDHEADER_REQ_STRU *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_InitUsimPBPath
-功能描述  : 初始化当前的USIM卡的电话簿路径
-输入参数  :
-输出参数  :
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :
 
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-
-*****************************************************************************/
 VOS_VOID USIMM_InitUsimPBPath(VOS_VOID)
 {
     VOS_UINT32              ulResult;
@@ -5423,21 +4287,7 @@ VOS_VOID USIMM_InitUsimPBPath(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_InitCardFile
-功能描述  :初始化卡文件
-输入参数  :
-输出参数  :
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_SelectDFFile
 
-修订记录  :
-1. 日    期   : 2011年6月20日
-   作    者   : j00168360
-   修改内容   : Creat[DTS2011042900838]卡初始化流程优化
-
-*****************************************************************************/
 VOS_VOID USIMM_InitCardFile(VOS_UINT32 ulDfMax, USIMM_DF_CONTENT_ST *pstDFContent)
 {
     VOS_UINT32          i;
@@ -5505,21 +4355,7 @@ VOS_VOID USIMM_InitCardFile(VOS_UINT32 ulDfMax, USIMM_DF_CONTENT_ST *pstDFConten
 
     return;
 }
-/*****************************************************************************
-函 数 名  :USIMM_InitUsimCardFileMap
-功能描述  :初始化USIM卡文件结构
-输入参数  :
-输出参数  :
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :
 
-修订记录  :
-1. 日    期   : 2011年6月20日
-   作    者   : j00168360
-   修改内容   : Creat[DTS2011042900838]卡初始化流程优化
-
-*****************************************************************************/
 VOS_UINT32 USIMM_InitUsimCardFileMap(VOS_VOID)
 {
     USIMM_InitCardFile(USIMM_USIMDFCONTENT_MAX, g_stUsimDFContent);
@@ -5529,23 +4365,7 @@ VOS_UINT32 USIMM_InitUsimCardFileMap(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_InitSimCardFileMap
-功能描述  :初始化SIM卡文件结构
-输入参数  :
-输出参数  :
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_ClearCurFileInfo
-        USIMM_SelectDFFile
-        USIMM_InitCardFile
 
-修订记录  :
-1. 日    期   : 2011年6月20日
-   作    者   : j00168360
-   修改内容   : Creat[DTS2011042900838]卡初始化流程优化
-
-*****************************************************************************/
 VOS_UINT32 USIMM_InitSimCardFileMap(VOS_VOID)
 {
     gstUSIMMBaseInfo.stPBInfo.usPBDfID = DFTELCOM;  /*SIM卡默认电话簿目录*/
@@ -5555,21 +4375,7 @@ VOS_UINT32 USIMM_InitSimCardFileMap(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_InitPINRemainTime
-功能描述  :初始化当前USIM卡的PIN剩余次数
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_GetPINRemainTime
-           USIMM_GetPUKRemainTime
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_InitPINRemainTime(VOS_VOID)
 {
     VOS_UINT32 ulResult;
@@ -5609,22 +4415,7 @@ VOS_UINT32 USIMM_InitPINRemainTime(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_InitCardPINInfo
-功能描述  :初始化当前卡PIN状态
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-           USIMM_InitPINRemainTime
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-2. 日    期  : 2011年8月30日
-   作    者  : j00168360
-   修改内容  : [DTS2011083000162]，USIM模块正向清理保护性复位及卡路径选择
-*****************************************************************************/
+
 VOS_UINT32 USIMM_InitCardPINInfo(VOS_VOID)
 {
     VOS_UINT32 ulResult;
@@ -5654,18 +4445,7 @@ VOS_UINT32 USIMM_InitCardPINInfo(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SimGetPhase
-功能描述  :获取SIM卡的phase
-输入参数  :无
-输出参数  :无
-返 回 值  :
 
-修订记录  :
-1. 日    期   : 2013年6月20日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
 VOS_VOID  USIMM_SimGetPhase(VOS_VOID)
 {
     VOS_UINT8                           ucData;
@@ -5698,19 +4478,7 @@ VOS_VOID  USIMM_SimGetPhase(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_InitNeedPinSteps
-功能描述  :初始卡需要PIN验证的文件并加入缓冲池
-输入参数  :无
-输出参数  :无
-返 回 值  :
 
-修订记录  :
-1. 日    期   : 2011年6月20日
-   作    者   : j00168360
-   修改内容   : Creat[DTS2011042900838]卡初始化流程优化
-
-*****************************************************************************/
 VOS_VOID USIMM_InitNeedPinSteps(USIMM_MODE_TYPE_ENUM_UINT8 ucMode)
 {
     VOS_UINT32                          ulRet = VOS_OK;
@@ -5770,20 +4538,7 @@ VOS_VOID USIMM_InitNeedPinSteps(USIMM_MODE_TYPE_ENUM_UINT8 ucMode)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_InitCardFirstStep
-功能描述  :实现了初始化的第一步，获取卡类型
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
 
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 USIMM_InitCardTypeByATR(VOS_VOID)
 {
     VOS_UINT32                          ulResult    = VOS_ERR;
@@ -5823,19 +4578,7 @@ VOS_UINT32 USIMM_InitCardTypeByATR(VOS_VOID)
     return VOS_OK;                                 /*初始化第一步完成*/
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_InitUsimGlobal
-功能描述  :初始USIM卡全局变量
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_OK
 
-修订记录  :
-1. 日    期   : 2011年6月20日
-   作    者   : j00168360
-   修改内容   : Creat[DTS2011042900838]卡初始化流程优化
-
-*****************************************************************************/
 VOS_UINT32 USIMM_InitUsimGlobal(VOS_VOID)
 {
     gstUSIMMBaseInfo.ucCLA        = USIMM_USIM_CLA;
@@ -5845,19 +4588,7 @@ VOS_UINT32 USIMM_InitUsimGlobal(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_InitSimGlobal
-功能描述  :初始USIM卡全局变量
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_OK
 
-修订记录  :
-1. 日    期   : 2011年6月20日
-   作    者   : j00168360
-   修改内容   : Creat[DTS2011042900838]卡初始化流程优化
-
-*****************************************************************************/
 VOS_UINT32 USIMM_InitSimGlobal(VOS_VOID)
 {
     gstUSIMMBaseInfo.ucCLA                              = USIMM_SIM_CLA;
@@ -5874,19 +4605,7 @@ VOS_UINT32 USIMM_InitSimGlobal(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_Reselect3GApp
-功能描述  :USIM卡重新选择3G应用
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
 
-修订记录  :
-1. 日    期   : 2013年4月23日
-   作    者   : h59254
-   修改内容   : 新增加函数
-*****************************************************************************/
 VOS_VOID USIMM_Reselect3GApp(VOS_VOID)
 {
     VOS_UINT32                          ulResult;
@@ -5926,20 +4645,7 @@ VOS_VOID USIMM_Reselect3GApp(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_RefreshAidVerify
-功能描述  :Refresh命令AID验证
-输入参数  :ulAidLen:AID长度
-           pucAid:AID内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
 
-修订记录  :
-1. 日    期   : 2013年4月23日
-   作    者   : h59254
-   修改内容   : 新增加函数
-*****************************************************************************/
 VOS_UINT32 USIMM_RefreshAidVerify(VOS_UINT32 ulAidLen, VOS_UINT8 *pucAid)
 {
     /* REFRESH命令中没有AID时返回正确 */
@@ -5962,20 +4668,7 @@ VOS_UINT32 USIMM_RefreshAidVerify(VOS_UINT32 ulAidLen, VOS_UINT8 *pucAid)
     return VOS_ERR;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_Select3GApp
-功能描述  :USIM卡选择3G应用
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
 
-修订记录  :
-1. 日    期   : 2011年6月20日
-   作    者   : j00168360
-   修改内容   : Creat[DTS2011042900838]卡初始化流程优化
-
-*****************************************************************************/
 VOS_UINT32 USIMM_Select3GApp(VOS_VOID)
 {
     VOS_UINT32              ulResult;
@@ -5992,20 +4685,7 @@ VOS_UINT32 USIMM_Select3GApp(VOS_VOID)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_Select2GApp
-功能描述  :SIM卡选择2G应用
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
 
-修订记录  :
-1. 日    期   : 2011年6月20日
-   作    者   : j00168360
-   修改内容   : Creat[DTS2011042900838]卡初始化流程优化s
-
-*****************************************************************************/
 VOS_UINT32 USIMM_Select2GApp(VOS_VOID)
 {
     VOS_INT32                           lVoltageSwitchRst;
@@ -6072,19 +4752,7 @@ VOS_UINT32 USIMM_Select2GApp(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_GetTerminalProfile
-功能描述  :读取nv项当前终端参数设置
-输入参数  :无
-输出参数  :无
-返 回 值  :
 
-修订记录  :
-1. 日    期   : 2011年6月20日
-   作    者   : j00168360
-   修改内容   : Creat[DTS2011042900838]卡初始化流程优化
-
-*****************************************************************************/
 VOS_VOID USIMM_GetTerminalProfile(USIMM_STK_CFG_STRU *pstProfileContent)
 {
     VOS_UINT32                          ulResult;
@@ -6121,24 +4789,7 @@ VOS_VOID USIMM_GetTerminalProfile(USIMM_STK_CFG_STRU *pstProfileContent)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UsimProfileDownload
-功能描述  :USIM卡终端能力参数下发
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
 
-调用函数  :USIMM_GetTerminalProfile
-        USIMM_TermimalProfile_APDU
-        USIMM_CheckSW
-
-修订记录  :
-1. 日    期   : 2011年6月20日
-   作    者   : j00168360
-   修改内容   : Creat[DTS2011042900838]卡初始化流程优化
-
-*****************************************************************************/
 VOS_UINT32 USIMM_UsimProfileDownload(VOS_VOID)
 {
     USIMM_STK_CFG_STRU                  stProfileContent;
@@ -6164,18 +4815,7 @@ VOS_UINT32 USIMM_UsimProfileDownload(VOS_VOID)
     return USIMM_INIT_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SimProfileDownload
-功能描述  :SIM卡终端能力参数下发
-输入参数  :无
-输出参数  :无
-返 回 值  :
 
-修订记录  :
-1. 日    期   : 2011年6月20日
-   作    者   : j00168360
-   修改内容   : Creat   [DTS2011042900838]卡初始化流程优化
-*****************************************************************************/
 VOS_VOID USIMM_SimWarmResetProc(VOS_VOID)
 {
     VOS_INT32                           lResult;
@@ -6231,18 +4871,7 @@ VOS_VOID USIMM_SimWarmResetProc(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SimProfileDownload
-功能描述  :SIM卡终端能力参数下发
-输入参数  :无
-输出参数  :无
-返 回 值  :
 
-修订记录  :
-1. 日    期   : 2011年6月20日
-   作    者   : j00168360
-   修改内容   : Creat   [DTS2011042900838]卡初始化流程优化
-*****************************************************************************/
 VOS_VOID USIMM_SimProfileDownload(USIMM_MODE_TYPE_ENUM_UINT8 ucMode)
 {
     VOS_UINT32                          ulResult;
@@ -6392,20 +5021,7 @@ VOS_VOID USIMM_AttUpdataSupportTable(VOS_VOID)
 }
 
 
-/*****************************************************************************
-函 数 名  :USIMM_InitUsimEccFile
-功能描述  :初始化USIM卡ECC文件
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_ERR
-        VOS_OK
 
-修订记录  :
-1. 日    期   : 2011年6月20日
-   作    者   : j00168360
-   修改内容   : Creat   [DTS2011042900838]卡初始化流程优化
-
-*****************************************************************************/
 VOS_UINT32 USIMM_InitUsimEccFile(VOS_VOID)
 {
     VOS_UINT8                          *pData;
@@ -6482,20 +5098,7 @@ VOS_UINT32 USIMM_InitUsimEccFile(VOS_VOID)
 
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_InitSimEccFile
-功能描述  :初始化SIM卡ECC文件,已和sunxibo确认出错情况下可以不上报默认值，只要报紧急号码为0即可
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_ERR
-        VOS_OK
 
-修订记录  :
-1. 日    期   : 2011年6月20日
-   作    者   : j00168360
-   修改内容   : Creat   [DTS2011042900838]卡初始化流程优化
-
-*****************************************************************************/
 VOS_UINT32 USIMM_InitSimEccFile(VOS_VOID)
 {
     VOS_UINT8                           *pData;
@@ -6567,18 +5170,7 @@ VOS_UINT32 USIMM_InitSimEccFile(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_PowerDownResetPrepare
-功能描述  :掉电重启前的准备工作
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2013年6月17日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_PowerDownResetPrepare(VOS_VOID)
 {
     VOS_UINT32                          ulResult;
@@ -6606,20 +5198,7 @@ VOS_UINT32 USIMM_PowerDownResetPrepare(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CLEnableGetICCID
-功能描述  :C+L选择EF ICCID的内容到内存
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
 
-修订记录  :
-1. 日    期   : 2014年01月16日
-   作    者   : zhuli
-   修改内容   :
-
-*****************************************************************************/
 
 VOS_VOID USIMM_CLEnableGetICCID(VOS_VOID)
 {
@@ -6652,20 +5231,7 @@ VOS_VOID USIMM_CLEnableGetICCID(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CheckCLStep
-功能描述  :C+L选择检查2G卡是否可用
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
 
-修订记录  :
-1. 日    期   : 2014年01月16日
-   作    者   : zhuli
-   修改内容   :
-
-*****************************************************************************/
 VOS_UINT32 USIMM_CheckCLStep(VOS_VOID)
 {
     VOS_UINT16                          ausCDMAPath[] = {MF, DFCDMA};
@@ -6741,18 +5307,7 @@ VOS_UINT32 USIMM_CheckCLStep(VOS_VOID)
         return VOS_OK;
     }
 }
-/*****************************************************************************
-函 数 名  :USIMM_InitNoNeedPinSteps
-功能描述  :初始化卡不受PIN保护的步骤
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2011年6月17日
-   作    者   : j00168360
-   修改内容   : Creat [DTS2011042900838]卡初始化流程优化
-*****************************************************************************/
+
 VOS_UINT32 USIMM_InitNoNeedPinSteps(VOS_VOID)
 {
     VOS_UINT32                          ulResult;
@@ -6828,19 +5383,7 @@ VOS_UINT32 USIMM_InitNoNeedPinSteps(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_InitIsimHandle
-功能描述  :初始化ISIM卡
-输入参数  :pMsg ->消息指针
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2011年6月20日
-   作    者   : j00168360
-   修改内容   : creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_InitIsimHandle(USIMM_CMDHEADER_REQ_STRU *pMsg)
 {
     VOS_UINT32                          ulResult;
@@ -6886,22 +5429,7 @@ VOS_UINT32 USIMM_InitIsimHandle(USIMM_CMDHEADER_REQ_STRU *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_InitCard
-功能描述  :完成卡初始化的主控函数
-输入参数  :pMsg ->消息指针
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
-2. 日    期   : 2011年6月20日
-   作    者   : j00168360
-   修改内容   :  [DTS2011042900838]卡初始化流程优化
 
-*****************************************************************************/
 VOS_UINT32 USIMM_InitCard(USIMM_MsgBlock *pMsg)
 {
     VOS_UINT32               ulResult;
@@ -6975,21 +5503,7 @@ VOS_UINT32 USIMM_InitCard(USIMM_MsgBlock *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_ChangePathToU16
-功能描述  : 把UINT8编码个数的数据转换成UINT16的数据
-输入参数  :
-输出参数  :
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :
 
- 修订记录  :
-1. 日    期   : 2007年7月10日
-    作    者   : z00100318
-    修改内容   : Creat
-
-*****************************************************************************/
 /*lint -e661 -e662 by h59254*/
 VOS_VOID USIMM_ChangePathToU16(VOS_UINT32 ulDataLen, VOS_UINT8 *pucData, VOS_UINT32 *pulLen, VOS_UINT16 *pusPath)
 {
@@ -7007,21 +5521,7 @@ VOS_VOID USIMM_ChangePathToU16(VOS_UINT32 ulDataLen, VOS_UINT8 *pucData, VOS_UIN
 }
 /*lint +e661 +e662 by h59254*/
 
-/*****************************************************************************
-函 数 名  : USIMM_SearchFileInList
-功能描述  : 再文件列表中搜索文件是否存在
-输入参数  :
-输出参数  :
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :
 
- 修订记录  :
-1. 日    期   : 2007年7月10日
-    作    者   : z00100318
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 USIMM_SearchFileInList(VOS_UINT16 usFileId, VOS_UINT16 usFileNum, VOS_UINT16 *pusFileList, VOS_UINT16 *pusOldList)
 {
     VOS_UINT32 i;
@@ -7053,19 +5553,7 @@ VOS_UINT32 USIMM_SearchFileInList(VOS_UINT16 usFileId, VOS_UINT16 usFileNum, VOS
     return VOS_ERR;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_SelectUiccADF
-功能描述  : 选择ADF
-输入参数  : 无
-输出参数  : 无
-返 回 值  :
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2009年6月26日
-  作    者  :
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 USIMM_SelectUiccADF(VOS_VOID)
 {
     VOS_UINT32                          ulResult;
@@ -7110,21 +5598,7 @@ VOS_UINT32 USIMM_SelectUiccADF(VOS_VOID)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SelectDFFile
-功能描述  :安照文件ID方式选择DF
-输入参数  :usFileId:DF文件ID
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_ReselectFileAPDU
-           USIMM_CheckSW
- 修订记录  :
-1. 日    期   : 2007年7月10日
-    作    者   : z00100318
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_SelectDFFile(VOS_UINT16                        usFileId,
                                     USIMM_SELECT_PARA_STUR           *pstSelectPara,
                                     USIMM_CURFILEINFO_ST             *pstCurFileInfo)
@@ -7183,25 +5657,7 @@ VOS_UINT32 USIMM_SelectDFFile(VOS_UINT16                        usFileId,
     return USIMM_SW_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SelectEFByID
-功能描述  :按照文件ID方式选中EF并解析FCP
-输入参数  :usFileId:文件ID
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_ReselectFileAPDU
-          USIMM_CheckSW
-          USIMM_DecodeUsimEFFcp
-          USIMM_DecodeSimEFFcp
- 修订记录  :
- 1. 日    期   : 2007年7月10日
-     作    者   : z00100318
-     修改内容   : Creat
- 2. 日    期   : 2011年4月29日
-    作    者   : j00168360
-    修改内容   : [DTS2011042700921]一卡双号切换过程中电话本功能不正常
-*****************************************************************************/
+
 VOS_UINT32 USIMM_SelectEFByID(VOS_UINT16                     usFileId,
                                     USIMM_SELECT_PARA_STUR           *pstSelectPara,
                                     USIMM_CURFILEINFO_ST             *pstCurFileInfo)
@@ -7269,29 +5725,7 @@ VOS_UINT32 USIMM_SelectEFByID(VOS_UINT16                     usFileId,
     return USIMM_SW_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SelectFileNoPath
-功能描述  :根据路安装单步方式选择EF
-输入参数  :ucLen:路径数据长度
-           pData:路径数据内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_ReselectFileAPDU
-          USIMM_CheckSW
-          USIMM_DecodeUsimEFFcp
-          USIMM_DecodeSimEFFcp
- 修订记录  :
-1. 日    期   : 2007年7月10日
-    作    者   : z00100318
-    修改内容   : Creat
-2. 日    期   : 2011年4月29日
-   作    者   : j00168360
-   修改内容   : [DTS2011042700921]一卡双号切换过程中电话本功能不正常
-3. 日    期  : 2011年8月22日
-   作    者  : j00168360
-   修改内容  : [DTS2011081901894]，at+crsm命令引起的掉卡
-*****************************************************************************/
+
 VOS_UINT32 USIMM_SelectFileNoPath(
     USIMM_SELECT_PARA_STUR             *pstSelectPara,
     USIMM_U16_LVDATA_STRU              *pstFilePath,
@@ -7330,19 +5764,7 @@ VOS_UINT32 USIMM_SelectFileNoPath(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_GetDiffPos
-功能描述  :获得当前文件和选择文件的不同位置
-输入参数  :pstFilePath:   选择文件路径
-           pstCurFileInfo:当前文件信息
-输出参数  :无
-返 回 值  :路径不同点，从0开始
 
- 修订记录  :
-1. 日    期    : 2013年6月20日
-    作    者   : g47350
-    修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_GetDiffPos(USIMM_U16_LVDATA_STRU *pstFilePath,
                                   USIMM_CURFILEINFO_ST  *pstCurFileInfo)
 {
@@ -7370,18 +5792,7 @@ VOS_UINT32 USIMM_GetDiffPos(USIMM_U16_LVDATA_STRU *pstFilePath,
     return ulDiffPos;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_GetCurDfPos
-功能描述  :获得路径的当前目录位置
-输入参数  :pstCurFileInfo:  当前的文件信息
-输出参数  :无
-返 回 值  :目录的位置，从0开始
 
- 修订记录  :
-1. 日    期    : 2013年6月20日
-    作    者   : g47350
-    修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_GetCurDfPos(USIMM_CURFILEINFO_ST *pstCurFileInfo)
 {
     VOS_UINT32                              ulCurDFPos;
@@ -7399,20 +5810,7 @@ VOS_UINT32 USIMM_GetCurDfPos(USIMM_CURFILEINFO_ST *pstCurFileInfo)
     return ulCurDFPos;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SelectFileByRelativePath
-功能描述  :通过相对路径方式单步选择文件
-输入参数  :pstSelectPara:  选择文件参数
-           pstFilePath:    选择文件路径
-           pstCurFileInfo: 当前选中文件的信息
-输出参数  :无
-返 回 值  :VOS_ERR
 
- 修订记录  :
-1. 日    期    : 2013年6月20日
-    作    者   : g47350
-    修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_SelectFileByRelativePath(
     USIMM_SELECT_PARA_STUR             *pstSelectPara,
     USIMM_U16_LVDATA_STRU              *pstFilePath,
@@ -7506,26 +5904,7 @@ VOS_UINT32 USIMM_SelectFileByRelativePath(
     return USIMM_SelectFileNoPath(pstSelectPara, &stRelativePath, pstCurFileInfo, VOS_NULL_PTR);
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SelectEFByPath
-功能描述  :按照路径方式选择当前的EF
-输入参数  :ucLen:路径数据长度
-           pData:路径数据内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_ReselectFileAPDU
-          USIMM_CheckSW
-          USIMM_DecodeUsimEFFcp
-          USIMM_DecodeSimEFFcp
- 修订记录  :
-1. 日    期   : 2007年7月10日
-    作    者   : z00100318
-    修改内容   : Creat
-2. 日    期   : 2011年4月29日
-   作    者   : j00168360
-   修改内容   : [DTS2011042700921]一卡双号切换过程中电话本功能不正常
-*****************************************************************************/
+
 VOS_UINT32 USIMM_SelectFileByPath(USIMM_SELECT_PARA_STUR         *pstSelectPara,
                                         USIMM_U16_LVDATA_STRU           *pstFilePath,
                                          USIMM_CURFILEINFO_ST           *pstCurFileInfo)
@@ -7603,21 +5982,7 @@ VOS_UINT32 USIMM_SelectFileByPath(USIMM_SELECT_PARA_STUR         *pstSelectPara,
     return USIMM_SW_OK;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_GetPBFilePath
-功能描述  : 获取当前的电话本路径
-输入参数  :
-输出参数  :
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :
 
- 修订记录  :
-1. 日    期   : 2007年7月10日
-    作    者   : z00100318
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 USIMM_GetPBFilePath(VOS_UINT16 usFileId, VOS_UINT32 *pulPathLen, VOS_UINT16 *pusPath)
 {
     VOS_UINT8   ucFileType;
@@ -7725,21 +6090,7 @@ VOS_UINT32 USIMM_GetAttFilePath(VOS_UINT16 usFileId, VOS_UINT32 *pulPathLen, VOS
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_GetCardFilePath
-功能描述  : 查询当前文件的路径
-输入参数  :
-输出参数  :
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :
 
- 修订记录  :
-1. 日    期   : 2007年7月10日
-    作    者   : z00100318
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 USIMM_GetCardFilePath(USIMM_APP_TYPE_ENUM_UINT32 enFileApp,
                                         VOS_UINT16                  usFileId,
                                         VOS_UINT32                  *pulPathLen,
@@ -7861,26 +6212,7 @@ VOS_UINT32 USIMM_GetCardFilePath(USIMM_APP_TYPE_ENUM_UINT32 enFileApp,
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SelectFileWithPath
-功能描述  :按照路径方式选择当前的EF
-输入参数  :ucLen:路径数据长度
-           pData:路径数据内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_ReselectFileAPDU
-          USIMM_CheckSW
-          USIMM_DecodeUsimEFFcp
-          USIMM_DecodeSimEFFcp
- 修订记录  :
-1. 日    期   : 2007年7月10日
-    作    者   : z00100318
-    修改内容   : Creat
-2. 日    期  : 2011年8月30日
-   作    者  : j00168360
-   修改内容  : [DTS2011083000162]，USIM模块正向清理保护性复位及卡路径选择
-*****************************************************************************/
+
 VOS_UINT32 USIMM_SelectFileWithPath(USIMM_SELECT_PARA_STUR          *pstSelectPara,
                                             USIMM_U16_LVDATA_STRU          *pstFilePath,
                                             USIMM_CURFILEINFO_ST           *pstCurFileInfo,
@@ -7928,19 +6260,7 @@ VOS_UINT32 USIMM_SelectFileWithPath(USIMM_SELECT_PARA_STUR          *pstSelectPa
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : USIMM_GetEFFilePath
- 功能描述  : 获取Filelist中的第一个EF文件路径
- 输入参数  : pucFileList: EF文件列表
-             ulFileLen:文件列表长度
-             pucEFPath:存放第一个EF文件路径
-             pulPathLen:第一个EF文件路径长度
- 输出参数  : 无
- 返 回 值  : VOS_ERR:未找到匹配文件
-             VOS_OK:找到EF文件
- 修改历史  : m00128685
-             2009-12-16
-*****************************************************************************/
+
 VOS_UINT32 USIMM_GetRefreshEFPath(VOS_UINT8 *pucFileList,
                                        VOS_UINT32 ulFileLen,
                                        VOS_UINT8 *pucEFPath,
@@ -7975,17 +6295,7 @@ VOS_UINT32 USIMM_GetRefreshEFPath(VOS_UINT8 *pucFileList,
     return VOS_ERR;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_RefreshNoFileIndHandle
-功能描述  :没有文件ID指示类型的REFRESH命令上报函数
-输入参数  :pstMsg:REFRESH命令消息
-输出参数  :无
-返 回 值  :无
-修订记录  :
-1. 日    期   : 2013年05月28日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID USIMM_RefreshNoFileIndHandle(USIMM_STKREFRESH_REQ_STRU *pstMsg)
 {
     USIMM_STKREFRESH_IND_STRU              *pstRefreshMsg;
@@ -8017,17 +6327,7 @@ VOS_VOID USIMM_RefreshNoFileIndHandle(USIMM_STKREFRESH_REQ_STRU *pstMsg)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_RefreshIsimFileIndHandle
-功能描述  :实现了IMSI文件更新上报功能
-输入参数  :pstRefreshMsg: 文件更新上报消息
-输出参数  :无
-返 回 值  :无
-修订记录  :
-1. 日    期   : 2013年7月24日
-   作    者   : g47350
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID USIMM_RefreshIsimFileIndHandle(USIMM_STKREFRESH_IND_STRU *pstRefreshMsg)
 {
     VOS_UINT16                          i;
@@ -8166,23 +6466,7 @@ VOS_VOID USIMM_RefreshIsimFileIndHandle(USIMM_STKREFRESH_IND_STRU *pstRefreshMsg
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_RefreshFileIndHandle
-功能描述  :实现了读取文件的操作和结果的返回
-输入参数  :API层下发消息内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_SelectFile
-          USIMM_ReadTFFile
-          USIMM_ReadLFFile
-          USIMM_GetFileCnf
-修订记录  :
-1. 日    期   : 2009年12月17日
-   作    者   : m00128685
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_RefreshFileIndHandle(USIMM_STKREFRESH_REQ_STRU *pstMsg)
 {
     VOS_UINT32                          ulOffset;
@@ -8294,17 +6578,7 @@ VOS_VOID USIMM_RefreshFileIndHandle(USIMM_STKREFRESH_REQ_STRU *pstMsg)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_RefreshInd
-功能描述  :Refresh命令上报指示处理函数
-输入参数  :pstMsg:Refresh消息
-输出参数  :无
-返 回 值  :
-修订记录  :
-1. 日    期   : 2013年5月28日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID USIMM_RefreshInd(USIMM_STKREFRESH_REQ_STRU *pstMsg)
 {
     /* REFRESH命令中指示文件更新 */
@@ -8321,17 +6595,7 @@ VOS_VOID USIMM_RefreshInd(USIMM_STKREFRESH_REQ_STRU *pstMsg)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_InitThirdSteps
-功能描述  :初始化第三步根据对接形态初始化可选文件
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_UINT32
-修订记录  :
-1. 日    期   : 2012年4月26日
-   作    者   : w00184875
-   修改内容   : AP-Modem锁网锁卡项目新增函数
-*****************************************************************************/
+
 VOS_UINT32 USIMM_InitThirdSteps(VOS_VOID)
 {
     NAS_NVIM_SYSTEM_APP_CONFIG_STRU stSysAppCfg;
@@ -8352,17 +6616,7 @@ VOS_UINT32 USIMM_InitThirdSteps(VOS_VOID)
     return USIMM_SendInitCardMsg(WUEPS_PID_USIM, USIMM_INITCONTINUE_REQ);
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SimRefreshFilePbAppCheck
-功能描述  :检查SIM卡的文件变更路径是否为电话本相关
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_UINT32
-修订记录  :
-1. 日    期   : 2013年05月30日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_SimRefreshFilePbAppCheck(
     VOS_UINT16                         *pusFilePath,
     VOS_UINT32                          ulPathLen)
@@ -8385,17 +6639,7 @@ VOS_UINT32 USIMM_SimRefreshFilePbAppCheck(
     }
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_UsimRefreshFilePbAppCheck
-功能描述  :检查USIM卡的文件变更路径是否为电话本相关
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_UINT32
-修订记录  :
-1. 日    期   : 2013年05月30日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 
 VOS_UINT32 USIMM_UsimRefreshFilePbAppCheck(
     VOS_UINT16                         *pusFilePath,
@@ -8488,17 +6732,7 @@ VOS_VOID USIMM_RefreshFileAppCheck(
     return;
 }
 
-/********************************************************************
-函 数 名  :USIMM_RefreshFileRead
-功能描述  :REFRESH命令文件读取处理函数　
-输入参数  :USIMM_STKREFRESH_REQ_STRU *pstMsg
-输出参数  :无
-返 回 值  :无
-修订记录  :
-1. 日    期   : 2013年04月20日
-   作    者   : h59254
-   修改内容   : Creat
-********************************************************************/
+
 VOS_VOID USIMM_RefreshFileRead(USIMM_STKREFRESH_REQ_STRU *pstMsg)
 {
     VOS_UINT32                          ulOffset;

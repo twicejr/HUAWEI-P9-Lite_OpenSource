@@ -47,22 +47,18 @@ extern ULONG ETHVLAN_Input(MBUF_S * pstMbuf,IFNET_S *pstIf);
 extern ULONG ETHVLAN_Output(IFNET_S *pIf, MBUF_S * pstMBuf,USHORT usVID,ULONG *pulSndPkts);
 extern ULONG ETHVLAN_InitPortInfo (ETHARP_MTSOFTC_S *pBufMtSoftC);
 
-/* Begin Add by zhaoyue00171897/shuxieliu00176784, at 2011-06-04. 修改原因: 支持VLAN配置不一致的告警 */
 extern VOID ETHVLAN_VlanConsistencyWarningProc(MBUF_S *pstMBuf, USHORT usVlanId, ULONG ulMainIfIndex,
                                                ULONG ulVlanSubIfIndex);
 extern VOID ETHVLAN_VlanConsistencyWarningBegin(ETHVLAN_PORTINFO_S  *pEthvlnPortInfo, ULONG ulIfIndex, 
                                                 USHORT usVlanId, ULONG ulSrcIp, ULONG ulDstIp);
 extern ULONG ETHVLAN_VlanConsistencyWarningEnd(IFNET_S *pstSubtIf, ULONG ulLocalIP, ULONG ulNeighbourIP,
                                                ULONG ulMatchMode, UCHAR ucRecoverReason);
-/* End Add by zhaoyue00171897/shuxieliu00176784, at 2011-06-04. 修改原因: 支持VLAN配置不一致的告警 */
 
-/* Begin Add by y00176567/z00171897, at 2011-06-29. 修改原因: 增加VLAN一致性告警显示功能 */
 VOID ETHVLAN_ShowVlanConsistencyWarningInfo(ULONG ulSubIfIndex);
 ULONG ETHVLAN_OpenWtLstObject(UINTPTR *pulWaitListHandle, VLAN_CONSISTENCY_WARN_NODE_S *pstHeadList);
 VOID *ETHVLAN_GetWtLstNext(VOID *pCur,VOID **ppNext);
 ULONG ETHVLAN_GetWtLstEntry(UINTPTR ulWaitListHandle, VLAN_CONSISTENCY_WARN_NODE_S *pstFindWarningNode);
 ULONG ETHVLAN_CloseWtLstObject(UINTPTR ulWaitListHandle);
-/* End Add by y00176567/z00171897, at 2011-06-29. 修改原因: 增加VLAN一致性告警显示功能 */
 
 #ifdef __cplusplus
 }

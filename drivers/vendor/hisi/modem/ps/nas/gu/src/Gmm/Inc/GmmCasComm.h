@@ -1,25 +1,4 @@
-/************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : GmmCasComm.h
-  Author      : Roger Leo
-  Version     : V200R001
-  Date        : 2005-11-17
-  Description : GmmCasComm模块的内部头文件
-  History     :
-  1. Date:2005-11-17
-     Author: Roger Leo
-     Modification:update
-  2. l40632 2006.05.20 根据问题单A32D03865修改
-  3.日    期   : 2006年08月09日
-    作    者   : 蒋丽萍j60010247
-    修改内容   : 问题单A32D03479，在PC机上实现时将#pragma pack(0)和#pragma pack()加编译开关
-  4.日    期   : 2009年7月23日
-    作    者   : s46746
-    修改内容   : 根据问题单号：AT2D12878，GSM下HPLMN搜索时接收到GPRS寻呼或PDP激活(W下PDP激活相同处理)请求需要能及时响应
-  5.日    期   : 2011年12月29日
-    作    者   : l00130025
-    修改内容   : DTS2011082201679/DTS2011121504358,删除LTE的模式判断函数
-************************************************************************/
+
 
 #ifndef _GMM_CAS_COMM_H_
 #define _GMM_CAS_COMM_H_
@@ -74,7 +53,6 @@ VOS_VOID    GMM_InitCasGlobalVariable (VOS_VOID);
 VOS_UINT8   GMM_CheckNasMsgIntegrity(RRMM_DATA_IND_STRU *pDataInd);
 VOS_UINT8   GMM_CheckNasMsgIntegrityGsm(VOS_VOID);
 
-/* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-23, begin */
 VOS_VOID GMM_CasRcvUsimCnfUmtsSucc(USIMM_TELECOM_AUTH_CNF_STRU *pAuthCnf);
 VOS_VOID GMM_CasRcvUsimCnfGsmSucc(USIMM_TELECOM_AUTH_CNF_STRU *pAuthCnf);
 VOS_VOID GMM_CasRcvUsimCnfFailGsm(USIMM_TELECOM_AUTH_CNF_STRU *pAuthCnf);
@@ -82,7 +60,6 @@ VOS_VOID GMM_CasRcvUsimCnfFailUmts(
     USIMM_TELECOM_AUTH_CNF_STRU        *pAuthCnf,
     USIMM_AUTH_RESULT_ENUM_UINT32       enResult
 );
-/* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-23, end */
 
 VOS_UINT32  GMM_SaveEstCnfMsgPara(RRMM_EST_CNF_STRU *pEstCnf);
 VOS_UINT32  GMM_SaveRelIndMsgPara(RRMM_REL_IND_STRU *pRelInd);
@@ -113,9 +90,7 @@ VOS_VOID    GMM_CharToUlong(VOS_UINT32 *ulDst, VOS_UINT8 *pucSrc);
 VOS_UINT32  GMM_GetPtmsiFromMsgIe(VOS_UINT8 *pData);
 
 VOS_VOID    GMM_FillReadyTimerParaIe (VOS_UINT8 *pAddr);
-/* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-23, begin */
 VOS_VOID GMM_SaveAuthenResult(USIMM_TELECOM_AUTH_CNF_STRU *pAuthCnf);
-/* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-23, end */
 VOS_UINT32  GMM_PowerOffNoSig(VOS_VOID *pPowerOffMsg);
 VOS_VOID    GMM_ClearBeforePowerOffCnf(VOS_VOID);
 VOS_UINT32  GMM_IsReadyForPowerOffCnf(VOS_VOID);

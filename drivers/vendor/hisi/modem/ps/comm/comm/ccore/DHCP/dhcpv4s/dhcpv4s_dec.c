@@ -1,21 +1,4 @@
-/************************************************************************
- *                                                                      *
- *                             DHCPS_DEC.C                               *
- *                                                                      *
- *  Project Code:       DHCP                                            *
- *  Create Date:        2002/04/10                                      *
- *  Author:                                                             *
- *  Modify Date:                                                        *
- *  Document:  《DHCP服务器详细设计说明书》                             *
- *             《DHCP服务器概要设计说明书》                             *
- *  Function:                                                           *
- *  Others:                                                             *
- *----------------------------------------------------------------------*
- *                                                                      *
- *             Copyright 2000 - 2002 HuaWei Tech, Inc.                  *
- *                      ALL RIGHTS RESERVED                             *
- *                                                                      *
- ***********************************************************************/
+
 #include "dhcp_inc.h"
 #include "dhcpc_def.h"
 #include "dhcpv4s_def.h"
@@ -33,21 +16,7 @@
 #define    THIS_FILE_ID          PS_FILE_ID_DHCPV4S_DEC_C
 /*lint +e767*/
 
- /*=================================================================
- * 函数名称:  DHCP_DEC_ParseOption
- * 初稿完成:  2002/03/15
- * 作    者:  郭新明
- * 函数功能:  对缓冲区的内容按照DHCP协议中的Option定义进行分析
- * 输入参数:
-    UCHAR * pucBuffer : 待分析的DHCP的option缓冲区起始指针
-    USHORT usLen : 缓冲区长度
- * 输出参数:
-    *pstAnalyzedPacket : dhcp的报文分析结构
- *  返回类型: 正确则返回VOS_OK，错误返回VOS_ERR；
- *  其他说明:
- *  调用函数:
- *  主调函数:  DHCP_DEC_Decode
-*================================================================*/
+ 
 
 ULONG DHCPS_DEC_ParseOption (DHCPS_ANALYZEDPACKET_S *pstAnalyzedPacket, UCHAR *pucBuffer,USHORT usLen)
 {
@@ -131,23 +100,7 @@ ULONG DHCPS_DEC_ParseOption (DHCPS_ANALYZEDPACKET_S *pstAnalyzedPacket, UCHAR *p
 }
 
 
-/*=================================================================
- *  函数名称:  ULONG DHCP_DEC_Decode
- *  初稿完成:
- *  作    者:  郭新明
- *  函数功能:  DHCP报文的解码函数
- *  输入参数:
-    UCHAR *pucUDPBuf： 从socket接收进来的dhcp报文的指针
-    USHORT usUDPBufLe：所接收的dhcp报文的长度
-    ULONG ulInterfaceIP ：服务器接收dhcp报文的接口地址（即dhcp报文的目标ip地址)
-    ULONG ulNetmask ：接口的子网掩码
- *  输出参数:
-    经过分析的dhcp报文（存放在pstAnalyzedPacket）
- *  返回类型:  VOS_OK表示成功，VOS_ERR表示失败
- *  其他说明:
- *  调用函数:  DHCP_DEC_ParseOption
- *  主调函数:  DHCP_COMM
- *================================================================*/
+
 
 ULONG DHCPS_DEC_Decode (UCHAR *pucUdpBuf, USHORT usUdpBufLen ,DHCPS_ANALYZEDPACKET_S *pstAnalyzedPacket)
 {

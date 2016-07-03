@@ -60,7 +60,6 @@ extern VOID IPOA_IpAddress(IFNET_S *pstIf, ULONG ulCmd);
 extern ULONG IPOA_NetIOCtrl (IFNET_S *pstIf, ULONG ulCmd, CHAR *pcData);
 extern VOID IPOA_PhyStateChange (IPOA_CB_S *pstIpoaCB, UCHAR ucState);
 extern ULONG IPOA_LlcIOCtrl (IFNET_S *pstIf, ULONG ulCmd, CHAR *pcData);
-/* Modify for DTS2011021504820, by zhaoyue 00171897/xiaoqingping xkf34549, at 2011-02-22. 修改原因: 设置IPOA路由状态 */
 extern VOID IPOA_MapStateChange(IPOA_MAP_IP_S   *pstIPMap);
 
 
@@ -117,7 +116,6 @@ extern ULONG IPOA_InterpretType (MBUF_S *pstMBuf, UCHAR ucEncType,ULONG *pulPktH
 /*ipoa_vlink*/
 extern ULONG IPOA_VLinkCtrl (IPOA_MAP_IP_S  * pstIPMap, UCHAR ucCmd);
 
-/* Modify for DTS2011021504820, by zhaoyue 00171897/xiaoqingping xkf34549, at 2011-02-22. 修改原因: 设置IPOA路由状态 */
 extern ULONG IPOA_Ppi_CtrlUpdate (IPOA_MAP_IP_S  * pstIPMap, UCHAR ucCmd);
 extern VOID IPOA_UpdateDstIPAddr(IPOA_PVC_S * pstPVC,ULONG ulIPAddr);
 extern VOID IPOA_ResetInARP (IPOA_MAP_IP_S  * pstIPMap, USHORT usMinute);

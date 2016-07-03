@@ -29,7 +29,6 @@ extern "C" {
 #define USHORT  unsigned short
 #endif
 
-/* Modified start by jiangyongliang 50758 at 2012-02-16 PGPV2R6 for 工程适配 */
 #ifdef __X86_PLATFORM__ 
 #ifndef LONG
 #define LONG int
@@ -60,9 +59,7 @@ extern "C" {
 #endif
 #endif
 #endif
-/* Modified end by jiangyongliang 50758 at 2012-02-16 PGPV2R6 for 工程适配 */
 
-/* Added start by majun 52643 at 2013-06-19 PGP V2R6C01 for Source 整理*/
 #ifndef VOS_USHORT
 #define VOS_USHORT  unsigned short
 #endif
@@ -92,7 +89,6 @@ extern "C" {
 #define VOS_PACKED  __attribute__ ((__packed__))
 #endif
 #endif
-/* Added end by majun 52643 at 2013-06-19 PGP V2R6C01 for Source 整理*/
 
 typedef struct tagUULONG 
 {
@@ -288,7 +284,6 @@ typedef union tagDULONG
 	}x;
 	struct tagULONG_US
 	{
-/* Deleted start by lihong 00181132 at 2012-09-07 V2R6C00 for 高端内存 */
 #if 0
 /*#if (VRP_BIG_ENDIAN==VRP_YES)
             USHORT usHiHi_s;
@@ -297,16 +292,13 @@ typedef union tagDULONG
             USHORT usLoLo_s;
 #else*/
 #endif
-/* Deleted end by lihong 00181132 at 2012-09-07 V2R6C00 for 高端内存 */
             USHORT usHiLo_s;
             USHORT usHiHi_s;
             USHORT usLoLo_s;
             USHORT usLoHi_s;
-/* Deleted start by lihong 00181132 at 2012-09-07 V2R6C00 for 高端内存 */
 #if 0
 /*#endif*/
 #endif
-/* Deleted end by lihong 00181132 at 2012-09-07 V2R6C00 for 高端内存 */
 	}y;
 }DULONG;
 

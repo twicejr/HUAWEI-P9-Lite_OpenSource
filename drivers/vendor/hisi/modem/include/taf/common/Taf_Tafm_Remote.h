@@ -37,14 +37,7 @@ extern "C" {
 /*宏定义结束*/
 
 /*远端API与TAFM进行通信时使用的消息类型*/
-/*********************************************************
-1.日    期   : 2012年12月10日
-  作    者   : w00176964
-  修改内容   : 增加ACINFO新增命令的查询消息
-2.日    期   : 2013年05月06日
-  作    者   : f62575
-  修改内容   : SS FDN&Call Control项目，删除TAF_MSG_GETPWD_MSG，新增TAF_MSG_MMA_COPN_INFO_QUERY_REQ
-**********************************************************/
+
 
 typedef enum
 {
@@ -65,7 +58,6 @@ typedef enum
 
     TAF_MSG_MMA_ME_PERSONAL_REQ,   /* 锁机操作请求 */
 
-    /* Added by C00173809 for AT Project，2011-10-08,  Begin*/
     TAF_MSG_MMA_GET_CURRENT_ATTACH_STATUS,      /*请求获取CS和PS的注册状态*/
 
     /* Deleted SSA消息 */
@@ -73,9 +65,7 @@ typedef enum
     TAF_MSG_MMA_USIM_INFO,
     TAF_MSG_MMA_CPNN_INFO,
 
-    /* Added by C00173809 for AT Project，2011-11-03,  Begin*/
     TAF_MSG_MMA_SET_PIN,
-    /* Added by C00173809 for AT Project，2011-11-03,  End*/
 
 
     TAF_MSG_MMA_COPS_FORMAT_TYPE_SET_REQ,

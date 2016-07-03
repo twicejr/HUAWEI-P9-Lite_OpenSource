@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmcPlmnSelectionStrategy.h
-  版 本 号   : 初稿
-  作    者   : sunxibo /46746
-  生成日期   : 2011年07月04日
-  最近修改   :
-  功能描述   : NasMmcPLmnSelectionStrategy.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年07月04日
-    作    者   : sunxibo /46746
-    修改内容   : Added for V7R1 phase II
-
-******************************************************************************/
 #ifndef _NAS_MMC_PLMN_SELECTION_STRATEGY_H_
 #define _NAS_MMC_PLMN_SELECTION_STRATEGY_H_
 
@@ -75,13 +58,7 @@ typedef VOS_VOID  (*pNasMmcPlmnSelectionListInitFunc)(
     NAS_MMC_SEARCHED_PLMN_LIST_INFO_STRU  *pstSearchedPlmnListInfo
 );
 
-/*****************************************************************************
- 结构名    : NAS_MMC_PLMN_SELECTION_LIST_INIT_TBL_STRU
- 结构说明  : 保存不同搜网场景搜网列表初始化函数
- 1.日    期   : 2011年7月04日
-   作    者   : s46746
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     NAS_MMC_PLMN_SEARCH_SCENE_ENUM_UINT32  enPlmnSearchScene;  /*搜网场景*/
@@ -231,7 +208,6 @@ VOS_VOID NAS_MMC_InitPlmnSelectionListRfEnable(
     NAS_MMC_SEARCHED_PLMN_LIST_INFO_STRU                   *pstSearchedPlmnListInfo
 );
 
-/* Added by s00246516 for L-C互操作项目, 2014-02-11, Begin */
 VOS_VOID NAS_MMC_InitPlmnSelectionList_RegNCell(
     NAS_MMC_PLMN_SELECTION_LIST_INFO_STRU                  *pstPlmnSelectionListInfo,
     NAS_MMC_SEARCHED_PLMN_LIST_INFO_STRU                   *pstSearchedPlmnListInfo
@@ -246,7 +222,6 @@ VOS_VOID NAS_MMC_InitPlmnSelectionList_RegPrefPlmn(
     NAS_MMC_PLMN_SELECTION_LIST_INFO_STRU                  *pstPlmnSelectionListInfo,
     NAS_MMC_SEARCHED_PLMN_LIST_INFO_STRU                   *pstSearchedPlmnListInfo
 );
-/* Added by s00246516 for L-C互操作项目, 2014-02-11, End */
 
 VOS_VOID NAS_MMC_BuildNcellPlmnSelectionPlmnList(
     NAS_MMC_PLMN_TYPE_ENUM_UINT8                            enPlmnType,
@@ -549,11 +524,9 @@ VOS_UINT32 NAS_MMC_IsLtePlmnSearchingAllowed_PlmnSelectionStrategy(
 );
 #endif
 
-/* Modified by z40661 for 泰国AIS特性 2012-05-17, begin */
 VOS_VOID NAS_MMC_AddAisRoamPlmnInPlmnSelectionList(
     NAS_MMC_PLMN_SELECTION_LIST_INFO_STRU                  *pstPlmnSelectionListInfo
 );
-/* Modified by z40661 for 泰国AIS特性 2012-05-17, end */
 
 VOS_UINT8  NAS_MMC_IsNeedNcellSearch(VOS_VOID);
 

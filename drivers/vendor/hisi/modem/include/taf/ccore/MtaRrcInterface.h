@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : MtaRrcInterface.h
-  版 本 号   : 初稿
-  作    者   : h44270
-  生成日期   : 2012年06月01日
-  最近修改   :
-  功能描述   : MTA与GU接入层之间的接口头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年06月01日
-    作    者   : h44270
-    修改内容   : 创建文件
-
- ******************************************************************************/
 
 #ifndef __MTARRCINTERFACE_H__
 #define __MTARRCINTERFACE_H__
@@ -51,17 +34,14 @@ extern "C" {
 
 #define  WRR_MTA_MAX_NCELL_NUM                  (8)  /* WAS最大临区个数 */
 
-/* Added by l00198894 for 新增+ECID命令, 2013-12-09, begin */
 #define  MTA_LRRC_MSG_TYPE_BASE                 (0x1000)            /* MTA模块与LTE接入层消息基数 */
 #define  LRRC_MAX_NCELL_NUM                     (8)
-/* Added by l00198894 for 新增+ECID命令, 2013-12-09, end */
 
 
 #define  MBMS_AVL_SERVICE_MAX_NUM               (0x10)              /* LRRC回复MTA MBMS可服务列表的最大个数 */
 
 #define  MTA_LRRC_INTEREST_FREQ_MAX_NUM         (0x05)              /* MTA通知LRRC Interest列表频点的最大个数 */
 
-/* Added by y00142674 for 云端频点收集, 2015-07-07, begin */
 #define MTA_RRC_MAX_PLMN_NUM                    (32)    /* PLMN的最大个数 */
 
 #define RRC_MTA_MAX_GSM_PLMN_NUM                (15)    /* GSM PLMN的最大个数 */
@@ -72,28 +52,12 @@ extern "C" {
 
 #define RRC_MTA_MAX_LTE_PLMN_NUM                (20)    /* LTE PLMN的最大个数 */
 #define RRC_MTA_MAX_LTE_FREQ_NUM                (16)    /* LTE 频点的最大个数 */
-/* Added by y00142674 for 云端频点收集, 2015-07-07, end */
 
 
 /*****************************************************************************
   3 枚举定义
 *****************************************************************************/
-/*****************************************************************************
- 枚举名    : MTA_RRC_MSG_TYPE_ENUM
- 结构说明  : 原语的usMsgName
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
- 2.日    期   : 2012年11月23日
-   作    者   : s46746
-   修改内容   : 定义NMR功能MTA与GU接入层之间的消息
- 3.日    期   : 2012年12月26日
-   作    者   : m00217266
-   修改内容   : 添加与WAS相关AT命令的消息ID
- 4.日    期   : 2013年5月31日
-   作    者   : s00217060
-   修改内容   : V9R1_SVLTE:添加与GAS相关AT命令的消息ID
-*****************************************************************************/
+
 enum MTA_RRC_MSG_TYPE_ENUM
 {
     /* 消息名称 */                              /* 消息ID */                    /* 备注 */
@@ -136,9 +100,7 @@ enum MTA_RRC_MSG_TYPE_ENUM
     ID_MTA_GRR_NETMON_TA_QRY_REQ                   = 0x0027,                    /* _H2ASN_MsgChoice MTA_GRR_NETMON_TA_QRY_REQ_STRU      */
     ID_MTA_WRR_JAM_DETECT_REQ                      = 0x0029,                    /* _H2ASN_MsgChoice MTA_WRR_JAM_DETECT_REQ_STRU */
 
-    /* Added by y00142674 for 云端频点收集, 2015-07-07, begin */
     ID_MTA_RRC_PLMN_FREQ_QRY_REQ                   = 0x002B,                    /* _H2ASN_MsgChoice MTA_RRC_PLMN_FREQ_QRY_REQ_STRU     */
-    /* Added by y00142674 for 云端频点收集, 2015-07-07, end */
 
     ID_MTA_RRC_MSG_POSITION_CNF                    = 0x0002,                    /* _H2ASN_MsgChoice MTA_RRC_POSITION_CNF_STRU */
 
@@ -180,11 +142,8 @@ enum MTA_RRC_MSG_TYPE_ENUM
     ID_GRR_MTA_NETMON_TA_QRY_CNF                   = 0x002A,                    /* _H2ASN_MsgChoice GRR_MTA_NETMON_TA_QRY_CNF_STRU   */
     ID_RRC_MTA_NETMON_CELL_QRY_CNF                 = 0x002C,                    /* _H2ASN_MsgChoice RRC_MTA_NETMON_CELL_INFO_QRY_CNF_STRU   */
 
-    /* Added by y00142674 for 云端频点收集, 2015-07-07, begin */
     ID_RRC_MTA_PLMN_FREQ_QRY_CNF                   = 0x002E,                    /* _H2ASN_MsgChoice RRC_MTA_PLMN_FREQ_QRY_CNF_STRU     */
-    /* Added by y00142674 for 云端频点收集, 2015-07-07, end */
 
-    /* Added by l00198894 for 新增+ECID命令, 2013-12-09, begin */
     /* 消息方向MTA->LRRC/GAS/WRR/TDRRC */
     ID_MTA_LRRC_CELLINFO_QRY_REQ                = MTA_LRRC_MSG_TYPE_BASE + 1,   /* _H2ASN_MsgChoice MTA_LRRC_CELLINFO_QRY_REQ_STRU      */
 
@@ -254,7 +213,6 @@ enum MTA_RRC_MSG_TYPE_ENUM
 
     ID_TLRRC_MTA_QRY_DPDT_VALUE_CNF              = MTA_LRRC_MSG_TYPE_BASE + 8,   /* _H2ASN_MsgChoice TLRRC_MTA_QRY_DPDT_VALUE_CNF_STRU      */
 
-    /* Added by l00198894 for 新增+ECID命令, 2013-12-09, end */
 
     ID_LRRC_MTA_NETMON_CELL_QRY_CNF             = MTA_LRRC_MSG_TYPE_BASE + 12,  /* _H2ASN_MsgChoice LRRC_MTA_NETMON_CELL_INFO_QRY_CNF_STRU      */
 
@@ -316,15 +274,7 @@ enum MTA_RRC_MSG_TYPE_ENUM
 };
 typedef VOS_UINT32 MTA_RRC_MSG_TYPE_ENUM_UINT32;
 
-/* Added by l00198894 for 新增+ECID命令, 2013-12-09, begin */
-/*****************************************************************************
- 枚举名    : MTA_RRC_RESULT_ENUM
- 结构说明  : MTA模块与接入层间的结果码枚举
 
-  1.日    期   : 2013年12月09日
-    作    者   : l00198894
-    修改内容   : 新增
-*****************************************************************************/
 enum MTA_RRC_RESULT_ENUM
 {
     MTA_RRC_RESULT_NO_ERROR                     = 0x000000,                     /* 消息处理正常 */
@@ -333,15 +283,8 @@ enum MTA_RRC_RESULT_ENUM
     MTA_RRC_RESULT_BUTT
 };
 typedef VOS_UINT32 MTA_RRC_RESULT_ENUM_UINT32;
-/* Added by l00198894 for 新增+ECID命令, 2013-12-09, end */
 
-/*******************************************************************************
- 枚举名    : NMR_UTRAN_MEASURED_TYPE_ENUM
- 结构说明  : NMR测量信息类型选择:FDD TDD
- 1.日    期   : 2012年11月23日
-   作    者   : w00134354
-   修改内容   : Added for NMR
-*******************************************************************************/
+
 enum NMR_UTRAN_MEASURED_TYPE_ENUM
 {
     NMR_UTRAN_MEASURED_TYPE_FDD = 0,
@@ -350,13 +293,7 @@ enum NMR_UTRAN_MEASURED_TYPE_ENUM
 };
 typedef VOS_UINT32 NMR_UTRAN_MEASURED_TYPE_ENUM_UINT32;
 
-/*******************************************************************************
- 枚举名    : GRR_MTA_NCELL_STATE_ENUM
- 结构说明  : 邻区状态枚举
- 1.日    期   : 2013年06月04日
-   作    者   : s00217060
-   修改内容   : for V9R1_SVLTE
-*******************************************************************************/
+
 enum GRR_MTA_NCELL_STATE_ENUM
 {
     GRR_MTA_NCELL_STATE_NULL    = 0x00,                                         /* 既没有TD的邻区，也没有4G邻区 */
@@ -368,14 +305,7 @@ enum GRR_MTA_NCELL_STATE_ENUM
 };
 typedef VOS_UINT8 GRR_MTA_NCELL_STATE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : MTA_RRC_JAM_MODE_ENUM
- 结构说明  : MTA模块与接入层间的JAM模式的枚举
 
-  1.日    期   : 2014年04月25日
-    作    者   : y00142674
-    修改内容   : 新增
-*****************************************************************************/
 enum MTA_RRC_JAM_MODE_ENUM
 {
     MTA_RRC_JAM_MODE_STOP               = 0x00,                                 /* 停止JAM检测 */
@@ -386,14 +316,7 @@ enum MTA_RRC_JAM_MODE_ENUM
 typedef VOS_UINT8 MTA_RRC_JAM_MODE_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名    : MTA_RRC_JAM_RESULT_ENUM
- 结构说明  : MTA模块与接入层间的JAM结果的枚举
 
-  1.日    期   : 2014年04月25日
-    作    者   : y00142674
-    修改内容   : 新增
-*****************************************************************************/
 enum MTA_RRC_JAM_RESULT_ENUM
 {
     MTA_RRC_JAM_RESULT_JAM_DISAPPEARED  = 0x00,                                 /* 干扰不存在 */
@@ -404,13 +327,7 @@ enum MTA_RRC_JAM_RESULT_ENUM
 typedef VOS_UINT8 MTA_RRC_JAM_RESULT_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名    : MTA_RRC_FREQLOCK_TYPE_ENUM
- 结构说明  : FREQLOCK锁频类型枚举
-1.日    期  : 2014年10月21日
-  作    者  : z00214637
-  修改内容  : 新增结构
-*****************************************************************************/
+
 enum MTA_RRC_FREQLOCK_TYPE_ENUM
 {
     MTA_RRC_FREQLOCK_TYPE_ENUM_FREQ_ONLY     = 1,                               /* 锁频ONLY类型 */
@@ -419,13 +336,7 @@ enum MTA_RRC_FREQLOCK_TYPE_ENUM
 };
 typedef VOS_UINT8 MTA_RRC_FREQLOCK_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : MTA_LRRC_CLEAR_HISTORY_FREQ_TYPE_ENUM
- 结构说明  : 清除历史频点类型枚举
-1.日    期   : 2015年9月11日
-  作    者   : z00161729
-  修改内容   : 支持LTE CSG功能新增
-*****************************************************************************/
+
 enum MTA_LRRC_CLEAR_HISTORY_FREQ_TYPE_ENUM
 {
     MTA_LRRC_CLEAR_HISTORY_FREQ_TYPE_NONE_CSG         = 0,    /* 清除非CSG历史频点信息 */
@@ -436,14 +347,7 @@ enum MTA_LRRC_CLEAR_HISTORY_FREQ_TYPE_ENUM
 };
 typedef VOS_UINT8 MTA_LRRC_CLEAR_HISTORY_FREQ_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : MBMS_SERVICE_OP_ENUM
- 结构说明  : MBMS Service特性是使能/去使能枚举
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
-*****************************************************************************/
 enum MBMS_SERVICE_OP_ENUM
 {
     MBMS_SERVICE_OP_DISABLE             = 0,
@@ -452,14 +356,7 @@ enum MBMS_SERVICE_OP_ENUM
 };
 typedef VOS_UINT8 MBMS_SERVICE_OP_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : MBMS_SERVICE_STATE_SET_ENUM
- 结构说明  : MBMS Service状态设置枚举
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
-*****************************************************************************/
 enum MBMS_SERVICE_STATE_SET_ENUM
 {
     MBMS_SERVICE_STATE_SET_ACTIVE       = 0,
@@ -469,14 +366,7 @@ enum MBMS_SERVICE_STATE_SET_ENUM
 };
 typedef VOS_UINT8 MBMS_SERVICE_STATE_SET_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : MBMS_CAST_MODE_ENUM
- 结构说明  : MBMS 广播模式枚举
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
-*****************************************************************************/
 enum MBMS_CAST_MODE_ENUM
 {
     MBMS_CAST_MODE_UNICAST              = 0,
@@ -485,14 +375,7 @@ enum MBMS_CAST_MODE_ENUM
 };
 typedef VOS_UINT8 MBMS_CAST_MODE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : MBMS_FUNTIONALITY_STATUS_ENUM
- 结构说明  : MBMS 功能状态枚举
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
-*****************************************************************************/
 enum MBMS_FUNTIONALITY_STATUS_ENUM
 {
     MBMS_FUNTIONALITY_OFF               = 0,
@@ -501,14 +384,7 @@ enum MBMS_FUNTIONALITY_STATUS_ENUM
 };
 typedef VOS_UINT8 MBMS_FUNTIONALITY_STATUS_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : MBMS_UNSOLICITED_CFG_ENUM
- 结构说明  : MBMS 主动上报配置枚举
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
-*****************************************************************************/
 enum MBMS_UNSOLICITED_CFG_ENUM
 {
     MBMS_UNSOLICITED_DISABLE            = 0,
@@ -517,14 +393,7 @@ enum MBMS_UNSOLICITED_CFG_ENUM
 };
 typedef VOS_UINT8 MBMS_UNSOLICITED_CFG_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : MBMS_SERVICE_EVENT_ENUM
- 结构说明  : MBMS 服务状态事件枚举
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
-*****************************************************************************/
 enum MBMS_SERVICE_EVENT_ENUM
 {
     MBMS_SERVICE_EVENT_SERVICE_CHANGE       = 0,
@@ -535,14 +404,7 @@ enum MBMS_SERVICE_EVENT_ENUM
 };
 typedef VOS_UINT8 MBMS_SERVICE_EVENT_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : MTA_LRRC_COEX_BW_TYPE_ENUM
- 枚举说明  : LTE&WIFI宽带类型枚举
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
-*****************************************************************************/
 enum MTA_LRRC_COEX_BW_TYPE_ENUM
 {
     MTA_LRRC_COEX_BAND_WIDTH_6RB        = 0,                                    /* 宽带1.4M */
@@ -555,14 +417,7 @@ enum MTA_LRRC_COEX_BW_TYPE_ENUM
 };
 typedef VOS_UINT16 MTA_LRRC_COEX_BW_TYPE_ENUM_UINT16;
 
-/*****************************************************************************
- 枚举名    : MTA_LRRC_COEX_CFG_ENUM
- 枚举说明  : LTE&WIFI共存方案配置枚举
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
-*****************************************************************************/
 enum MTA_LRRC_COEX_CFG_ENUM
 {
     MTA_LRRC_COEX_CFG_DISABLE           = 0,
@@ -571,14 +426,7 @@ enum MTA_LRRC_COEX_CFG_ENUM
 };
 typedef VOS_UINT16 MTA_LRRC_COEX_CFG_ENUM_UINT16;
 
-/*****************************************************************************
- 枚举名    : RRC_MTA_BAND_IND_ENUM
- 结构说明  : MTA模块与接入层间的频段的枚举
 
-  1.日    期   : 2015年07月07日
-    作    者   : y00142674
-    修改内容   : 新增, for 云端频点收集
-*****************************************************************************/
 enum RRC_MTA_BAND_IND_ENUM
 {
     RRC_MTA_BAND_IND_NONE               = 0,
@@ -632,14 +480,7 @@ enum RRC_MTA_BAND_IND_ENUM
 typedef VOS_UINT16 RRC_MTA_BAND_IND_ENUM_UINT16;
 
 
-/*****************************************************************************
- 枚举名    : MTA_RRC_FREQ_QRY_TYPE_ENUM
- 枚举说明  : 频点频段查询的类型
 
-  1.日    期   : 2015年7月22日
-    作    者   : f00179208
-    修改内容   : 新增
-*****************************************************************************/
 enum MTA_RRC_FREQ_QRY_TYPE_ENUM
 {
     MTA_RRC_FREQ_QRY_TYPE_SPEC_PLMN           = 0,
@@ -664,27 +505,14 @@ typedef VOS_UINT8 MTA_RRC_FREQ_QRY_TYPE_UINT8;
 /*****************************************************************************
   7 STRUCT定义
 *****************************************************************************/
-/*****************************************************************************
- 结构名    : MTA_RRC_PLMN_ID_STRU
- 结构说明  : PLMN ID结构体
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          ulMcc;                                  /* MCC, 3 bytes, 无效值: 0xFFFFFFFF */
     VOS_UINT32                          ulMnc;                                  /* MNC, 2 or 3 bytes, 无效值: 0xFFFFFFFF */
 } MTA_RRC_PLMN_ID_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_RRC_POSITION_REQ_STRU
- 结构说明  : 接入层发送给GPS芯片的定位请求的参数
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                             stMsgHeader;                    /*_H2ASN_Skip*/
@@ -699,13 +527,7 @@ typedef struct
     AGPS_MEASURE_REQ_STRU                       stPosMeas;                      /* pos_meas,位置测量请求 */
 }MTA_RRC_POSITION_REQ_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_RRC_POSITION_CNF_STRU
- 结构说明  : GPS的定位回复
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                     stMsgHeader;            /*_H2ASN_Skip*/
@@ -721,14 +543,7 @@ typedef struct
     }u;
 }MTA_RRC_POSITION_CNF_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_RRC_RESEL_OFFSET_CFG_NTF
- 结构说明  : W往L重选迟滞参数配置
- 1.日    期   : 2012年12月07日
-   作    者   : l00128652 h44270
-   修改内容   : 新增结构
 
-*******************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                             stMsgHeader;                    /*_H2ASN_Skip*/
@@ -737,17 +552,7 @@ typedef struct
 }MTA_RRC_RESEL_OFFSET_CFG_NTF_STRU;
 
 
-/*******************************************************************************
- 结构名    : NMR_UTRAN_FREQUENCY_INFO_FDD_STRU
- 结构说明  : NMR 频点信息
 
- 1.日    期   : 2012年11月23日
-   作    者   : w00134354
-   修改内容   : Added for NMR
-
-   FrequencyInfoFDD ::= SEQUENCE {uarfcn-UL UARFCN OPTIONAL,
-                                  uarfcn-DL UARFCN,...}
-*******************************************************************************/
 typedef struct
 {
     VOS_UINT32                                  bitOpUarfcn_UL        : 1;
@@ -756,13 +561,7 @@ typedef struct
     VOS_UINT16                                  usDlUarfcn;           /* 下行频点 */
 }NMR_UTRAN_FREQUENCY_INFO_FDD_STRU;
 
-/*******************************************************************************
- 结构名    : NMR_UTRAN_FREQUENCY_INFO_STRU
- 结构说明  : NMR FrequencyInfo结构
- 1.日    期   : 2012年11月23日
-   作    者   : w00134354
-   修改内容   : Added for NMR
-*******************************************************************************/
+
 typedef struct
 {
     NMR_UTRAN_MEASURED_TYPE_ENUM_UINT32           enFreqInfoChoice;     /* NMR频率信息类型:0:FDD,1:TDD */
@@ -773,13 +572,7 @@ typedef struct
     }u;
 
 }NMR_UTRAN_FREQUENCY_INFO_STRU;
-/*******************************************************************************
- 结构名    : NMR_UTRAN_CELL_MEAS_RESULTS_FDD_STRU
- 结构说明  : NMR Cell Measured Results FDD
- 1.日    期   : 2012年11月23日
-   作    者   : w00134354
-   修改内容   : Added for NMR
-*******************************************************************************/
+
 
 typedef struct
 {
@@ -797,13 +590,7 @@ typedef struct
 
 }NMR_UTRAN_CELL_MEAS_RESULTS_FDD_STRU;
 
-/*******************************************************************************
- 结构名    : NMR_UTRAN_MEAS_RESULTS_STRU
- 结构说明  : NMR Cell Measured Results TDD
- 1.日    期   : 2012年11月23日
-   作    者   : w00134354
-   修改内容   : Added for NMR
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                  bitOpProposedTGSN  : 1;
@@ -821,13 +608,7 @@ typedef struct
 
 }NMR_UTRAN_CELL_MEAS_RESULTS_TDD_STRU;
 
-/*******************************************************************************
- 结构名    : NMR_UTRAN_CELL_MEAS_RESULTS_STRU
- 结构说明  : NMR Cell Measured Results
- 1.日    期   : 2012年11月23日
-   作    者   : w00134354
-   修改内容   : Added for NMR
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                  bitOpCellID               : 1;
@@ -843,26 +624,14 @@ typedef struct
 
 }NMR_UTRAN_CELL_MEAS_RESULTS_STRU;
 
-/*******************************************************************************
- 结构名    : NMR_MEASURED_RESULTS_LIST_STRU
- 结构说明  : NMR Cell Measured Results List
- 1.日    期   : 2012年11月23日
-   作    者   : w00134354
-   修改内容   : Added for NMR
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                  ulMeasCellNum;            /* (0,32) */
     NMR_UTRAN_CELL_MEAS_RESULTS_STRU            astCellMeasResults[NMR_MAX_CELL_FREQ_NUM];
 }NMR_UTRAN_CELL_MEAS_RESULTS_LIST_STRU;
 
-/*******************************************************************************
- 结构名    : NMR_UTRAN_MEASURED_RESULTS_STRU
- 结构说明  : 3G模式下测量结果
- 1.日    期   : 2012年11月23日
-   作    者   : w00134354
-   修改内容   : Added for NMR
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                  bitOpFrequencyInfo        : 1;
@@ -875,26 +644,14 @@ typedef struct
     NMR_UTRAN_CELL_MEAS_RESULTS_LIST_STRU       stCellMeasResultsList;
 }NMR_UTRAN_MEASURED_RESULTS_STRU;
 
-/*******************************************************************************
- 结构名    : RRC_MTA_UTRAN_NMR_STRU
- 结构说明  : 3G模式下NMR数据信息
- 1.日    期   : 2012年11月23日
-   作    者   : w00134354
-   修改内容   : Added for NMR
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                ulFreqNum;            /* (0,8) */
     NMR_UTRAN_MEASURED_RESULTS_STRU           astMeasResults[NMR_MAX_FREQ_NUM];
 }RRC_MTA_UTRAN_NMR_STRU;
 
-/*******************************************************************************
- 结构名    : RRC_MTA_GSM_NMR_ELEMENT_STRU
- 结构说明  : 2G模式下NMR ELEMENT数据信息
- 1.日    期   : 2012年11月26日
-   作    者   : j00178524
-   修改内容   : Added for NMR
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                                usArfcn;            /* 小区绝对频点号, 取值范围[0,1023] */
@@ -903,13 +660,7 @@ typedef struct
 }RRC_MTA_GSM_NMR_ELEMENT_STRU;
 
 
-/*******************************************************************************
- 结构名    : RRC_MTA_GSM_NMR_STRU
- 结构说明  : 2G模式下NMR数据信息
- 1.日    期   : 2012年11月26日
-   作    者   : j00178524
-   修改内容   : Added for NMR
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                ulElemNum;                        /* GSM NMR元素个数 [0,15] */
@@ -918,13 +669,7 @@ typedef struct
     RRC_MTA_GSM_NMR_ELEMENT_STRU              astNmrElem[RRC_MTA_NMR_MAX_GSM_ELEM_NUM];
 }RRC_MTA_GSM_NMR_STRU;
 
-/*****************************************************************************
- 结构名    : MTA_RRC_QRY_NMR_REQ_STRU
- 结构说明  : ID_MTA_RRC_QRY_NMR_REQ消息结构
- 1.日    期   : 2012年11月23日
-   作    者   : s46746
-   修改内容   : 创建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;          /* 消息头    */     /*_H2ASN_Skip*/
@@ -933,13 +678,7 @@ typedef struct
     VOS_UINT8                           aucReserve[4];                          /* 预留后续使用 */
 } MTA_RRC_QRY_NMR_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : RRC_MTA_QRY_NMR_CNF_STRU
- 结构说明  : ID_RRC_MTA_QRY_NMR_CNF消息结构
- 1.日    期   : 2012年11月23日
-   作    者   : s46746
-   修改内容   : 创建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;          /* 消息头    */     /*_H2ASN_Skip*/
@@ -953,14 +692,7 @@ typedef struct
     }u;
 } RRC_MTA_QRY_NMR_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : MTA_WRR_AUTOTEST_PARA_STRU
- 结构说明  : AS测试命令参数
 
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 创建
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucCmd;                                  /* 自动化测试命令 */
@@ -969,14 +701,7 @@ typedef struct
     VOS_UINT32                          aulPara[MTA_WRR_AUTOTEST_MAX_PARA_NUM]; /* 命令参数 */
 }MTA_WRR_AUTOTEST_PARA_STRU;
 
-/*****************************************************************************
- 结构名    : MTA_WRR_AUTOTEST_QRY_REQ_STRU
- 结构说明  : AS测试命令结构
 
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 创建
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/
@@ -984,28 +709,14 @@ typedef struct
     MTA_WRR_AUTOTEST_PARA_STRU          stWrrAutotestPara;
 }MTA_WRR_AUTOTEST_QRY_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : WRR_MTA_AUTOTEST_QRY_RSLT_STRU
- 结构说明  : WAS测试命令返回结果
 
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 创建
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          ulRsltNum;                              /* 查询结果个数 */
     VOS_UINT32                          aulRslt[WRR_MTA_AUTOTEST_MAX_RSULT_NUM];/* 查询结果 */
 }WRR_MTA_AUTOTEST_QRY_RSLT_STRU;
 
-/*****************************************************************************
- 结构名    : WRR_MTA_AUTOTEST_QRY_CNF_STRU
- 结构说明  : WAS测试命令返回结果消息结构
 
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 创建
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/
@@ -1014,14 +725,7 @@ typedef struct
     WRR_MTA_AUTOTEST_QRY_RSLT_STRU      stWrrAutoTestRslt;
 } WRR_MTA_AUTOTEST_QRY_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : MTA_WRR_CELLINFO_SET_REQ_STRU
- 结构说明  : MTA设置WAS cellinfo消息结构
 
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 创建
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/
@@ -1029,14 +733,7 @@ typedef struct
     VOS_UINT32                          ulSetCellInfo;                          /* 0:查询主小区信息 1:查询W邻区信息 */
 } MTA_WRR_CELLINFO_QRY_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : WRR_MTA_WCDMA_CELLINFO_STRU
- 结构说明  : 小区信息结构
 
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 创建
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16                      usCellFreq;                                 /* 频点 */
@@ -1046,28 +743,14 @@ typedef struct
 
 }WRR_MTA_WCDMA_CELLINFO_STRU;
 
-/*****************************************************************************
- 结构名    : WRR_MTA_WCDMA_CELLINFO_RSLT_STRU
- 结构说明  : WRR回复MTA小区信息查询结构
 
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 创建
-*****************************************************************************/
 typedef struct
 {
      VOS_UINT32                     ulCellNum;
      WRR_MTA_WCDMA_CELLINFO_STRU    astWCellInfo[WRR_MTA_MAX_NCELL_NUM];         /*最多支持W 8个邻区的查询*/
 
 } WRR_MTA_WCDMA_CELLINFO_RSLT_STRU;
-/*****************************************************************************
- 结构名    : WRR_MTA_CELLINFO_QRY_CNF_STRU
- 结构说明  : WRR回复MTA小区信息查询结构
 
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 创建
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/
@@ -1076,28 +759,14 @@ typedef struct
     WRR_MTA_WCDMA_CELLINFO_RSLT_STRU        stWrrCellInfo;
 } WRR_MTA_CELLINFO_QRY_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : MTA_WRR_MEANRPT_QRY_REQ_STRU
- 结构说明  : MTA下发MEANRPT QRY消息结构
 
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 创建
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/
     VOS_UINT32                          ulMsgName;
 } MTA_WRR_MEANRPT_QRY_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : WRR_MTA_MEANRPT_STRU
- 结构说明  : 测量报告中的事件+小区
 
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 创建
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16                      usEventId;                                  /* 对应的事件类型 */
@@ -1105,15 +774,7 @@ typedef struct
     VOS_UINT16                      ausPrimaryScramCode[WRR_MTA_MEANRPT_MAX_CELL_NUM];/* 扰码 */
 }WRR_MTA_MEANRPT_STRU;
 
-/*****************************************************************************
- 结构名    : WRR_MTA_MEANRPT_RSLT_STRU
- 结构说明  : 自动化测试AT^MEANRPT,
-             查询最近最多10次测量报告中的事件+小区
 
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 创建
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                      ulRptNum;                                   /* 最近的测量报告次数 */
@@ -1121,14 +782,7 @@ typedef struct
 }WRR_MTA_MEANRPT_RSLT_STRU;
 
 
-/*****************************************************************************
- 结构名    : WRR_MTA_MEANRPT_QRY_CNF_STRU
- 结构说明  : WRR给MTA回复^MEANRPT请求的消息结构
 
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 创建
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/
@@ -1137,14 +791,7 @@ typedef struct
     WRR_MTA_MEANRPT_RSLT_STRU           stMeanRptRslt;
 } WRR_MTA_MEANRPT_QRY_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : MTA_WRR_FREQLOCK_CTRL_STRU
- 结构说明  : WAS锁频控制结构
 
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 创建
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucFreqLockEnable;                       /* 是否锁频 0:未锁频 1:锁频 */
@@ -1152,14 +799,7 @@ typedef struct
     VOS_UINT16                          usLockedFreq;                           /* 锁定的频点 */
 } MTA_WRR_FREQLOCK_CTRL_STRU;
 
-/*****************************************************************************
- 结构名    : MTA_WRR_FREQLOCK_SET_REQ_STRU
- 结构说明  : MTA下发MEANRPT QRY消息结构
 
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 创建
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/
@@ -1167,14 +807,7 @@ typedef struct
     MTA_WRR_FREQLOCK_CTRL_STRU          stFrelock;
 } MTA_WRR_FREQLOCK_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : WRR_MTA_FREQLOCK_SET_CNF_STRU
- 结构说明  : MTA给AT回的锁频设置结果
 
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 创建
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/
@@ -1182,28 +815,14 @@ typedef struct
     VOS_UINT32                          ulResult;
 } WRR_MTA_FREQLOCK_SET_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : MTA_WRR_FREQLOCK_QRY_REQ_STRU
- 结构说明  : MTA下发MEANRPT QRY消息结构
 
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 创建
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/
     VOS_UINT32                          ulMsgName;
 } MTA_WRR_FREQLOCK_QRY_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : WRR_MTA_FREQLOCK_QRY_CNF_STRU
- 结构说明  : MTA给AT回的锁频控制结构
 
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 创建
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/
@@ -1212,14 +831,7 @@ typedef struct
     MTA_WRR_FREQLOCK_CTRL_STRU          stFreqLockInfo;
 } WRR_MTA_FREQLOCK_QRY_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : MTA_WRR_RRC_VERSION_SET_REQ_STRU
- 结构说明  : MTA设置WRR version
 
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 创建
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/
@@ -1228,28 +840,14 @@ typedef struct
     VOS_UINT8                           aucReserv[3];
 } MTA_WRR_RRC_VERSION_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : MTA_WRR_RRC_VERSION_QRY_REQ_STRU
- 结构说明  : MTA查询WRR version
 
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 创建
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/
     VOS_UINT32                          ulMsgName;
 } MTA_WRR_RRC_VERSION_QRY_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : WRR_MTA_RRC_VERSION_SET_CNF_STRU
- 结构说明  : WRR给MTA上报version设置结果
 
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 创建
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/
@@ -1257,14 +855,7 @@ typedef struct
     VOS_UINT32                          ulResult;
 } WRR_MTA_RRC_VERSION_SET_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : WRR_MTA_RRC_VERSION_QRY_CNF_STRU
- 结构说明  : WRR给MTA上报version查询结果
 
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 创建
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/
@@ -1274,14 +865,7 @@ typedef struct
     VOS_UINT8                           aucReserved[3];
 } WRR_MTA_RRC_VERSION_QRY_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : MTA_WRR_CELLSRH_SET_REQ_STRU
- 结构说明  : MTA下发WRR cellsrh设置请求
 
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 创建
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/
@@ -1290,14 +874,7 @@ typedef struct
     VOS_UINT8                           aucReserve[3];
 } MTA_WRR_CELLSRH_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : WRR_MTA_CELLSRH_SET_CNF_STRU
- 结构说明  : WRR给MTA上报cellsrh设置结果
 
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 创建
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/
@@ -1305,28 +882,14 @@ typedef struct
     VOS_UINT32                          ulResult;
 } WRR_MTA_CELLSRH_SET_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : MTA_WRR_CELLSRH_QRY_REQ_STRU
- 结构说明  : MTA下发查询WRR cellsrh 消息
 
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 创建
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/
     VOS_UINT32                          ulMsgName;
 } MTA_WRR_CELLSRH_QRY_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : WRR_MTA_CELLSRH_QRY_CNF_STRU
- 结构说明  : WRR给MTA上报cellsrh查询结果
 
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 创建
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/
@@ -1337,14 +900,7 @@ typedef struct
 } WRR_MTA_CELLSRH_QRY_CNF_STRU;
 
 
-/*****************************************************************************
- 结构名    : MTA_GRR_NCELL_MONITOR_SET_REQ_STRU
- 结构说明  : MTA发给GRRC的异系统小区变化信息控制请求消息
 
-  1.日    期   : 2013年5月31日
-    作    者   : s00217060
-    修改内容   : 创建
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/
@@ -1353,28 +909,14 @@ typedef struct
     VOS_UINT8                           aucReserved[3];
 } MTA_GRR_NCELL_MONITOR_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : MTA_GRR_NCELL_MONITOR_QRY_REQ_STRU
- 结构说明  : MTA发给GRRC的查询异系统小区变化信息控制请求消息
 
-  1.日    期   : 2013年5月31日
-    作    者   : s00217060
-    修改内容   : 创建
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/
     VOS_UINT32                          ulMsgName;
 } MTA_GRR_NCELL_MONITOR_QRY_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : GRR_MTA_NCELL_MONITOR_SET_CNF_STRU
- 结构说明  : GRRC发给MTA的异系统小区变化信息控制请求消息的回复
 
-  1.日    期   : 2013年5月31日
-    作    者   : s00217060
-    修改内容   : 创建
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/
@@ -1382,14 +924,7 @@ typedef struct
     VOS_UINT32                          ulResult;
 } GRR_MTA_NCELL_MONITOR_SET_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : GRR_MTA_NCELL_MONITOR_QRY_CNF_STRU
- 结构说明  : GRRC发给MTA的查询异系统小区变化信息控制请求消息的回复
 
-  1.日    期   : 2013年5月31日
-    作    者   : s00217060
-    修改内容   : 创建
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/
@@ -1400,14 +935,7 @@ typedef struct
     VOS_UINT8                           aucReserved[2];
 } GRR_MTA_NCELL_MONITOR_QRY_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : GRR_MTA_NCELL_MONITOR_IND_STRU
- 结构说明  : GRRC发给MTA的异系统小区变化信息主动上报
 
-  1.日    期   : 2013年5月31日
-    作    者   : s00217060
-    修改内容   : 创建
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/
@@ -1416,33 +944,14 @@ typedef struct
     VOS_UINT8                           aucReserved[3];
 } GRR_MTA_NCELL_MONITOR_IND_STRU;
 
-/* Added by l00198894 for 新增+ECID命令, 2013-12-09, begin */
-/*****************************************************************************
- 结构名    : MTA_LRRC_CELLINFO_QRY_REQ_STRU
- 结构说明  : MTA发送给LRRC查询LTE增强型小区信息
 
-  1.日    期   : 2013年12月09日
-    作    者   : l00198894
-    修改内容   : 新增+ECID命令
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                /*_H2ASN_Skip*/
     VOS_UINT8                           aucReserved[4];             /* 保留位 */
 }MTA_LRRC_CELLINFO_QRY_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : LRRC_CELLINFO_STRU
- 结构说明  : LTE增强型小区信息结构
 
-  1.日    期   : 2013年12月09日
-    作    者   : l00198894
-    修改内容   : 新增+ECID命令
-
-  2.日    期   : 2015年12月2日
-    作    者   : l00198894
-    修改内容   : DTS2015120206389: LRRC接口变更，TA的偏移由物理层完成
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          bitOpEarfcn   :1;
@@ -1457,14 +966,7 @@ typedef struct
     VOS_UINT32                          ulTa;                                   /* 时间提前量，取值范围0~1282 */
 }LRRC_CELLINFO_STRU;
 
-/*****************************************************************************
- 结构名    : LRRC_CELLINFO_RSLT_STRU
- 结构说明  : LTE增强型小区信息结果结构
 
-  1.日    期   : 2013年12月09日
-    作    者   : l00198894
-    修改内容   : 新增+ECID命令
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          ulTac;
@@ -1472,30 +974,15 @@ typedef struct
     LRRC_CELLINFO_STRU                  astCellInfo[LRRC_MAX_NCELL_NUM];
 }LRRC_CELLINFO_RSLT_STRU;
 
-/*****************************************************************************
- 结构名    : LRRC_MTA_CELLINFO_QRY_CNF_STRU
- 结构说明  : LRRC回复MTA模块增强型小区信息查询结果结构
 
-  1.日    期   : 2013年12月09日
-    作    者   : l00198894
-    修改内容   : 新增+ECID命令
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                /*_H2ASN_Skip*/
     MTA_RRC_RESULT_ENUM_UINT32          enResult;
     LRRC_CELLINFO_RSLT_STRU             stCellInfoRslt;
 }LRRC_MTA_CELLINFO_QRY_CNF_STRU;
-/* Added by l00198894 for 新增+ECID命令, 2013-12-09, end */
 
-/*****************************************************************************
- 结构名    : MTA_RRC_PROTECT_PS_IND_STRU
- 结构说明  : MTA发送给rrc和lrrc模块PS保护消息的结构
 
-  1.日    期   : 2014年3月25日
-    作    者   : y00176023
-    修改内容   : 新增^PSPROTECTMODE命令
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;               /*_H2ASN_Skip*/
@@ -1503,14 +990,7 @@ typedef struct
     VOS_UINT8                           aucRsv[3];                 /* 保留位 */
 } MTA_RRC_PROTECT_PS_IND_STRU;
 
-/*****************************************************************************
-结构名    : MTA_TLRRC_SET_DPDTTEST_FLAG_NTF_STRU
-结构说明  : 设置天线算法打开、关闭消息结构
 
-  1.日    期  : 2014年04月01日
-    作    者  : g00261581
-    创建内容  : 新建
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/
@@ -1519,14 +999,7 @@ typedef struct
     VOS_UINT8                           aucReserved[3];
 } MTA_TLRRC_SET_DPDTTEST_FLAG_NTF_STRU;
 
-/*****************************************************************************
-结构名    : MTA_TLRRC_SET_DPDT_VALUE_NTF_STRU
-结构说明  : 设置天线当前DPDT Value值
 
-  1.日    期  : 2014年04月01日
-    作    者  : g00261581
-    创建内容  : 新建
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/
@@ -1534,14 +1007,7 @@ typedef struct
     VOS_UINT32                          ulDpdtValue;
 } MTA_TLRRC_SET_DPDT_VALUE_NTF_STRU;
 
-/*****************************************************************************
-结构名    : MTA_TLRRC_QRY_DPDT_VALUE_REQ_STRU
-结构说明  : 查询当前天线状态消息结构
 
-  1.日    期  : 2014年04月01日
-    作    者  : g00261581
-    创建内容  : 新建
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/
@@ -1549,14 +1015,7 @@ typedef struct
     VOS_UINT8                           aucReserved[4];
 } MTA_TLRRC_QRY_DPDT_VALUE_REQ_STRU;
 
-/*****************************************************************************
-结构名    : TLRRC_MTA_QRY_DPDT_VALUE_CNF_STRU
-结构说明  : 查询响应结果，显示当前天线DPDT Value值
 
-  1.日    期  : 2014年04月01日
-    作    者  : g00261581
-    创建内容  : 新建
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /*_H2ASN_Skip*/
@@ -1565,14 +1024,7 @@ typedef struct
     MTA_RRC_RESULT_ENUM_UINT32          enResult;
 } TLRRC_MTA_QRY_DPDT_VALUE_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : MTA_RRC_JAM_DETECT_REQ_STRU
- 结构说明  : MTA发给RRC的JAM检测的请求
 
-  1.日    期   : 2014年4月25日
-    作    者   : y00142674
-    修改内容   : 创建
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /*_H2ASN_Skip*/
@@ -1581,15 +1033,7 @@ typedef struct
     VOS_UINT8                           ucThreshold;                            /* 检测需要达到的频点测量值，取值范围:[0,30] */
     VOS_UINT8                           ucFreqNum;                              /* 检测需要达到的频点个数，取值范围:[0,255] */
 } MTA_RRC_JAM_DETECT_REQ_STRU;
-/*****************************************************************************
- 结构名    : MTA_WRR_JAM_DETECT_REQ_STRU
- 结构说明  : MTA发给WAS的JAM检测的请求
 
-  1.日    期   : 2015年2月17日
-    作    者   : y00142674
-    修改内容   : 创建
-
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /*_H2ASN_Skip*/
@@ -1604,28 +1048,14 @@ typedef struct
                                                                                    假设BAND带宽大于30M，则频点个数需要达到((30M*70%)/200K)*80% = 84个 */
     VOS_UINT8                           aucRsv[1];
 } MTA_WRR_JAM_DETECT_REQ_STRU;
-/*****************************************************************************
- 结构名    : RRC_MTA_JAM_DETECT_CNF_STRU
- 结构说明  : RRC发给MTA的JAM检测功能设置的回复
 
-  1.日    期   : 2014年4月25日
-    作    者   : y00142674
-    修改内容   : 创建
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /*_H2ASN_Skip*/
     MTA_RRC_RESULT_ENUM_UINT32          enResult;                               /* JAM设置的结果 */
 } RRC_MTA_JAM_DETECT_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : RRC_MTA_JAM_DETECT_IND_STRU
- 结构说明  : RRC发给MTA的JAM检测结果的回复
 
-  1.日    期   : 2014年4月25日
-    作    者   : y00142674
-    修改内容   : 创建
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /*_H2ASN_Skip*/
@@ -1633,14 +1063,7 @@ typedef struct
     VOS_UINT8                           aucReserved[3];
 } RRC_MTA_JAM_DETECT_IND_STRU;
 
-/*****************************************************************************
- 结构名    : MTA_RRC_CHECK_FREQ_VALIDITY_REQ_STRU
- 结构说明  : MTA发给各接入层，检查频点有效性的请求
 
-  1.日    期   : 2014年6月3日
-    作    者   : g00261581
-    修改内容   : 创建
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /*_H2ASN_Skip*/
@@ -1648,27 +1071,13 @@ typedef struct
     MTA_RRC_GSM_BAND_ENUM_UINT16        enBand;                                 /* GSM模式下需要带频带 */
 } MTA_RRC_CHECK_FREQ_VALIDITY_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : RRC_MTA_CHECK_FREQ_VALIDITY_CNF_STRU
- 结构说明  : 各接入层发给MTA的频点检测结果的回复
 
-  1.日    期   : 2014年6月3日
-    作    者   : g00261581
-    修改内容   : 创建
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /*_H2ASN_Skip*/
     MTA_RRC_RESULT_ENUM_UINT32          enResult;                               /* MTA_RRC_RESULT_NO_ERROR:频点有效； MTA_RRC_RESULT_ERROR:频点无效*/
 } RRC_MTA_CHECK_FREQ_VALIDITY_CNF_STRU;
-/*****************************************************************************
- 结构名    : MTA_GRR_FREQLOCK_SET_REQ_STRU
- 结构说明  : MTA给GAS下发锁频消息结构
 
-  1.日    期   : 2014年07月28日
-    作    者   : y00142674
-    修改内容   : 创建
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /*_H2ASN_Skip*/
@@ -1678,14 +1087,7 @@ typedef struct
     MTA_RRC_GSM_BAND_ENUM_UINT16        enBand;                                 /* GSM频段 */
 } MTA_GRR_FREQLOCK_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : GRR_MTA_FREQLOCK_SET_CNF_STRU
- 结构说明  : GAS给MTA回的锁频设置结果
 
-  1.日    期   : 2014年07月28日
-    作    者   : y00142674
-    修改内容   : 创建
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /*_H2ASN_Skip*/
@@ -1693,14 +1095,7 @@ typedef struct
 } GRR_MTA_FREQLOCK_SET_CNF_STRU;
 
 
-/*****************************************************************************
- 结构名    : MTA_RRC_PLMN_FREQ_QRY_REQ_STRU
- 结构说明  : MTA发给RRC的频点查询请求
 
-  1.日    期   : 2015年07月07日
-    作    者   : y00142674
-    修改内容   : 创建, for 云端频点收集
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /*_H2ASN_Skip*/
@@ -1710,28 +1105,14 @@ typedef struct
     MTA_RRC_PLMN_ID_STRU                astPlmnIdList[MTA_RRC_MAX_PLMN_NUM];    /* PLMN的列表，仅在enPlmnCheckFlag为TRUE时使用 */
 } MTA_RRC_PLMN_FREQ_QRY_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : RRC_MTA_FREQ_INFO_STRU
- 结构说明  : RRC发给MTA的频点信息
 
-  1.日    期   : 2015年07月07日
-    作    者   : y00142674
-    修改内容   : 创建, for 云端频点收集
-*****************************************************************************/
 typedef struct
 {
     RRC_MTA_BAND_IND_ENUM_UINT16        enBandInd;                              /* 频段指示 */
     VOS_UINT16                          usFreq;                                 /* 频点信息 */
 }RRC_MTA_FREQ_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : RRC_MTA_LTE_FREQ_INFO_STRU
- 结构说明  : LRRC发给MTA的频点信息
 
-  1.日    期   : 2015年07月07日
-    作    者   : y00142674
-    修改内容   : 创建, for 云端频点收集
-*****************************************************************************/
 typedef struct
 {
     RRC_MTA_BAND_IND_ENUM_UINT16        enBandInd;                              /* 频段指示 */
@@ -1739,14 +1120,7 @@ typedef struct
     VOS_UINT32                          ulFreq;                                 /* 频点信息 */
 }RRC_MTA_LTE_FREQ_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : RRC_MTA_GSM_FREQ_LIST_STRU
- 结构说明  : RRC发给MTA的GSM频点列表
 
-  1.日    期   : 2015年07月07日
-    作    者   : y00142674
-    修改内容   : 创建, for 云端频点收集
-*****************************************************************************/
 typedef struct
 {
     MTA_RRC_PLMN_ID_STRU                stPlmnId;                               /* 查询到的PLMN */
@@ -1755,14 +1129,7 @@ typedef struct
     RRC_MTA_FREQ_INFO_STRU              astFreqList[RRC_MTA_MAX_GSM_FREQ_NUM];  /* 频点列表 */
 }RRC_MTA_GSM_FREQ_LIST_STRU;
 
-/*****************************************************************************
- 结构名    : RRC_MTA_WCDMA_FREQ_LIST_STRU
- 结构说明  : RRC发给MTA的WCDMA频点列表
 
-  1.日    期   : 2015年07月07日
-    作    者   : y00142674
-    修改内容   : 创建, for 云端频点收集
-*****************************************************************************/
 typedef struct
 {
     MTA_RRC_PLMN_ID_STRU                stPlmnId;                               /* 查询到的PLMN */
@@ -1771,14 +1138,7 @@ typedef struct
     RRC_MTA_FREQ_INFO_STRU              astFreqList[RRC_MTA_MAX_WCDMA_FREQ_NUM];  /* 频点列表 */
 }RRC_MTA_WCDMA_FREQ_LIST_STRU;
 
-/*****************************************************************************
- 结构名    : RRC_MTA_LTE_FREQ_LIST_STRU
- 结构说明  : RRC发给MTA的LTE频点列表
 
-  1.日    期   : 2015年07月07日
-    作    者   : y00142674
-    修改内容   : 创建, for 云端频点收集
-*****************************************************************************/
 typedef struct
 {
     MTA_RRC_PLMN_ID_STRU                stPlmnId;                               /* 查询到的PLMN */
@@ -1787,14 +1147,7 @@ typedef struct
     RRC_MTA_LTE_FREQ_INFO_STRU          astFreqList[RRC_MTA_MAX_LTE_FREQ_NUM];  /* 频点列表 */
 }RRC_MTA_LTE_FREQ_LIST_STRU;
 
-/*****************************************************************************
- 结构名    : RRC_MTA_GSM_PLMN_FREQ_LIST_STRU
- 结构说明  : GSM发给MTA的频点查询结果
 
-  1.日    期   : 2015年07月07日
-    作    者   : y00142674
-    修改内容   : 创建, for 云端频点收集
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucPlmnNum;                              /* 查询到的PLMN的个数 */
@@ -1802,14 +1155,7 @@ typedef struct
     RRC_MTA_GSM_FREQ_LIST_STRU          astPlmnFreqList[RRC_MTA_MAX_GSM_PLMN_NUM];  /* 查询到的频点列表 */
 } RRC_MTA_GSM_PLMN_FREQ_LIST_STRU;
 
-/*****************************************************************************
- 结构名    : RRC_MTA_WCDMA_PLMN_FREQ_LIST_STRU
- 结构说明  : WCDMA发给MTA的频点查询结果
 
-  1.日    期   : 2015年07月07日
-    作    者   : y00142674
-    修改内容   : 创建, for 云端频点收集
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucPlmnNum;                              /* 查询到的PLMN的个数 */
@@ -1817,14 +1163,7 @@ typedef struct
     RRC_MTA_WCDMA_FREQ_LIST_STRU        astPlmnFreqList[RRC_MTA_MAX_WCDMA_PLMN_NUM];  /* 查询到的频点列表 */
 } RRC_MTA_WCDMA_PLMN_FREQ_LIST_STRU;
 
-/*****************************************************************************
- 结构名    : RRC_MTA_LTE_PLMN_FREQ_LIST_STRU
- 结构说明  : LTE发给MTA的频点查询结果
 
-  1.日    期   : 2015年07月07日
-    作    者   : y00142674
-    修改内容   : 创建, for 云端频点收集
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucPlmnNum;                              /* 查询到的PLMN的个数 */
@@ -1833,14 +1172,7 @@ typedef struct
 } RRC_MTA_LTE_PLMN_FREQ_LIST_STRU;
 
 
-/*****************************************************************************
- 结构名    : RRC_MTA_PLMN_FREQ_QRY_CNF_STRU
- 结构说明  : RRC发给MTA的频点查询结果，区分不同模式
 
-  1.日    期   : 2015年07月07日
-    作    者   : y00142674
-    修改内容   : 创建, for 云端频点收集
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /*_H2ASN_Skip*/
@@ -1853,14 +1185,7 @@ typedef struct
     }u;
 } RRC_MTA_PLMN_FREQ_QRY_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : MTA_TDS_FREQLOCK_SET_REQ_STRU
- 结构说明  : MTA给TDS下发的锁频消息结构
 
-  1.日    期   : 2014年10月21日
-    作    者   : z00214637
-    修改内容   : 新建
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /*_H2ASN_Skip*/
@@ -1870,28 +1195,14 @@ typedef struct
     VOS_UINT32                          ulSc;                                   /* 扰码 */
 } MTA_TDS_FREQLOCK_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : TDS_MTA_FREQLOCK_SET_CNF_STRU
- 结构说明  : TDS给MTA回的锁频设置结果
 
-  1.日    期   : 2014年10月21日
-    作    者   : z00214637
-    修改内容   : 新建
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                                    /*_H2ASN_Skip*/
     MTA_RRC_RESULT_ENUM_UINT32          enResult;                                       /* MTA_RRC_RESULT_NO_ERROR:锁频成功；MTA_RRC_RESULT_RRC:锁频失败 */
 } TDS_MTA_FREQLOCK_SET_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : MTA_LRRC_CLEAR_HISTORY_FREQ_REQ_STRU
- 结构说明  : MTA给LTE AS下发清除历史频点消息结构
 
-  1.日    期   : 2015年9月11日
-    作    者   : z00161729
-    修改内容   : 支持LTE CSG功能新增
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                                         stMsgHeader;               /*_H2ASN_Skip*/
@@ -1899,28 +1210,14 @@ typedef struct
     VOS_UINT8                                               aucReserved[3];
 } MTA_LRRC_CLEAR_HISTORY_FREQ_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : LRRC_MTA_CLEAR_HISTORY_FREQ_CNF_STRU
- 结构说明  : LRRC给MTA回复清除历史频点消息结构
 
-  1.日    期   : 2015年9月11日
-     作    者   : z00161729
-     修改内容   : 支持LTE CSG功能新增
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                  /*_H2ASN_Skip*/
     MTA_RRC_RESULT_ENUM_UINT32          enResult;
 } LRRC_MTA_CLEAR_HISTORY_FREQ_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : MTA_TDRR_FREQLOCK_SET_REQ_STRU
- 结构说明  : MTA给LTE AS下发的锁频消息结构
 
-  1.日    期   : 2014年10月21日
-    作    者   : z00214637
-    修改内容   : 新建
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /*_H2ASN_Skip*/
@@ -1930,28 +1227,14 @@ typedef struct
     VOS_UINT32                          ulPhyCellId;                            /* 物理小区ID */
 } MTA_LRRC_FREQLOCK_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : LRRC_MTA_FREQLOCK_SET_CNF_STRU
- 结构说明  : LRRC给MTA回的锁频设置结果
 
-  1.日    期   : 2014年10月21日
-    作    者   : z00214637
-    修改内容   : 新建
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                  /*_H2ASN_Skip*/
     MTA_RRC_RESULT_ENUM_UINT32          enResult;                     /* MTA_RRC_RESULT_NO_ERROR:锁频成功；MTA_RRC_RESULT_RRC:锁频失败 */
 } LRRC_MTA_FREQLOCK_SET_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : MTA_LRRC_MBMS_SERVICE_OPTION_REQ_STRU
- 结构说明  : MTA通知LRRC MBMS服务特性操作请求结构体
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     PS_MSG_HEADER_STRU                  stMsgHeader;                            /*_H2ASN_Skip*/
@@ -1959,42 +1242,21 @@ typedef struct
     VOS_UINT8                           aucReserved[3];                         /* 保留位 */
 } MTA_LRRC_MBMS_SERVICE_OPTION_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : LRRC_MTA_MBMS_SERVICE_OPTION_CNF_STRU
- 结构说明  : LRRC回复MTA MBMS服务特性操作结果结构体
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     PS_MSG_HEADER_STRU                  stMsgHeader;                            /*_H2ASN_Skip*/
     MTA_RRC_RESULT_ENUM_UINT32          enResult;                               /* 操作结果 */
 } LRRC_MTA_MBMS_SERVICE_OPTION_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : MBMS_TMGI_STRU
- 结构说明  : TMGI结构体
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          ulMbmsSerId;                            /* Service ID */
     MTA_RRC_PLMN_ID_STRU                stPlmnId;                               /* PLMN ID */
 } MBMS_TMGI_STRU;
 
-/*****************************************************************************
- 结构名    : MTA_LRRC_MBMS_SERVICE_STATE_SET_REQ_STRU
- 结构说明  : MTA通知LRRC MBMS服务状态设置请求结构体
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     PS_MSG_HEADER_STRU                  stMsgHeader;                            /*_H2ASN_Skip*/
@@ -2004,42 +1266,21 @@ typedef struct
     MBMS_TMGI_STRU                      stTMGI;                                 /* TMGI */
 } MTA_LRRC_MBMS_SERVICE_STATE_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : LRRC_MTA_MBMS_SERVICE_STATE_SET_CNF_STRU
- 结构说明  : LRRC回复MTA MBMS服务状态设置结果结构体
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     PS_MSG_HEADER_STRU                  stMsgHeader;                            /*_H2ASN_Skip*/
     MTA_RRC_RESULT_ENUM_UINT32          enResult;                               /* 状态设置结果 */
 } LRRC_MTA_MBMS_SERVICE_STATE_SET_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : MTA_LRRC_MBMS_AVL_SERVICE_LIST_QRY_REQ_STRU
- 结构说明  : MTA通知LRRC MBMS可用服务列表查询请求结构体
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     PS_MSG_HEADER_STRU                  stMsgHeader;                            /*_H2ASN_Skip*/
     VOS_UINT8                           aucReserved[4];                         /* 保留位 */
 } MTA_LRRC_MBMS_AVL_SERVICE_LIST_QRY_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : MTA_LRRC_MBMS_AVL_SERVICE_STRU
- 结构说明  : MBMS可用服务结构体
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          bitOpSessionId  : 1;
@@ -2049,14 +1290,7 @@ typedef struct
     VOS_UINT32                          ulSessionId;                            /* Session ID */
 } MTA_LRRC_MBMS_AVL_SERVICE_STRU;
 
-/*****************************************************************************
- 结构名    : LRRC_MTA_MBMS_AVL_SERVICE_LIST_QRY_CNF_STRU
- 结构说明  : LRRC回复MTA MBMS可用服务列表查询结果结构体
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     PS_MSG_HEADER_STRU                  stMsgHeader;                                /*_H2ASN_Skip*/
@@ -2065,14 +1299,7 @@ typedef struct
     MTA_LRRC_MBMS_AVL_SERVICE_STRU      astAvlServices[MBMS_AVL_SERVICE_MAX_NUM];   /* 可用服务列表 */
 } LRRC_MTA_MBMS_AVL_SERVICE_LIST_QRY_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : MTA_LRRC_MBMS_PREFERENCE_SET_REQ_STRU
- 结构说明  : MTA通知LRRC MBMS广播模式请求结构体
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     PS_MSG_HEADER_STRU                  stMsgHeader;                            /*_H2ASN_Skip*/
@@ -2080,42 +1307,21 @@ typedef struct
     VOS_UINT8                           aucReserved[3];                         /* 保留位 */
 } MTA_LRRC_MBMS_PREFERENCE_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : LRRC_MTA_MBMS_PREFERENCE_SET_CNF_STRU
- 结构说明  : LRRC回复MTA MBMS广播模式设置结果结构体
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     PS_MSG_HEADER_STRU                  stMsgHeader;                                /*_H2ASN_Skip*/
     MTA_RRC_RESULT_ENUM_UINT32          enResult;                                   /* 广播模式设置结果 */
 } LRRC_MTA_MBMS_PREFERENCE_SET_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : MTA_LRRC_SIB16_NETWORK_TIME_QRY_REQ_STRU
- 结构说明  : MTA通知LRRC SIB16网络时间的查询请求结构体
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     PS_MSG_HEADER_STRU                  stMsgHeader;                            /*_H2ASN_Skip*/
     VOS_UINT8                           aucReserved[4];                         /* 保留位 */
 } MTA_LRRC_SIB16_NETWORK_TIME_QRY_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : LRRC_MTA_SIB16_NETWORK_TIME_QRY_CNF_STRU
- 结构说明  : LRRC回复MTA SIB16网络时间的查询结果结构体
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     PS_MSG_HEADER_STRU                  stMsgHeader;                                /*_H2ASN_Skip*/
@@ -2124,28 +1330,14 @@ typedef struct
     VOS_UINT64                          ullUTC;                                     /* (0..549755813887) */
 } LRRC_MTA_SIB16_NETWORK_TIME_QRY_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : MTA_LRRC_BSSI_SIGNAL_LEVEL_QRY_REQ_STRU
- 结构说明  : MTA通知LRRC BSSI信号强度查询请求结构体
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     PS_MSG_HEADER_STRU                  stMsgHeader;                            /*_H2ASN_Skip*/
     VOS_UINT8                           aucReserved[4];                         /* 保留位 */
 } MTA_LRRC_BSSI_SIGNAL_LEVEL_QRY_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : LRRC_MTA_BSSI_SIGNAL_LEVEL_QRY_CNF_STRU
- 结构说明  : LRRC回复MTA BSSI信号强度查询结果结构体
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     PS_MSG_HEADER_STRU                  stMsgHeader;                            /*_H2ASN_Skip*/
@@ -2154,28 +1346,14 @@ typedef struct
     VOS_UINT8                           aucReserved[3];                         /* 保留位 */
 } LRRC_MTA_BSSI_SIGNAL_LEVEL_QRY_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : MTA_LRRC_NETWORK_INFO_QRY_REQ_STRU
- 结构说明  : MTA通知LRRC 查询网络信息请求结构体
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     PS_MSG_HEADER_STRU                  stMsgHeader;                            /*_H2ASN_Skip*/
     VOS_UINT8                           aucReserved[4];                         /* 保留位 */
 } MTA_LRRC_NETWORK_INFO_QRY_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : LRRC_MTA_NETWORK_INFO_QRY_CNF_STRU
- 结构说明  : LRRC回复MTA网络信息查询结果结构体
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     PS_MSG_HEADER_STRU                  stMsgHeader;                            /*_H2ASN_Skip*/
@@ -2183,14 +1361,7 @@ typedef struct
     VOS_UINT32                          ulCellId;                               /* 小区ID */
 } LRRC_MTA_NETWORK_INFO_QRY_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : MTA_LRRC_EMBMS_STATUS_QRY_REQ_STRU
- 结构说明  : MTA通知LRRC 查询eMBMS功能状态请求结构体
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     PS_MSG_HEADER_STRU                  stMsgHeader;                            /*_H2ASN_Skip*/
@@ -2198,14 +1369,7 @@ typedef struct
 } MTA_LRRC_EMBMS_STATUS_QRY_REQ_STRU;
 
 
-/*****************************************************************************
- 结构名    : LRRC_MTA_EMBMS_STATUS_QRY_CNF_STRU
- 结构说明  : LRRC回复MTA eMBMS功能状态结果结构体
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     PS_MSG_HEADER_STRU                  stMsgHeader;                            /*_H2ASN_Skip*/
@@ -2214,14 +1378,7 @@ typedef struct
     VOS_UINT8                           aucReserved[3];                         /* 保留位 */
 } LRRC_MTA_EMBMS_STATUS_QRY_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : MTA_LRRC_MBMS_UNSOLICITED_CFG_SET_REQ_STRU
- 结构说明  : MTA通知LRRC 设置MBMS主动上报配置请求结构体
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     PS_MSG_HEADER_STRU                  stMsgHeader;                            /*_H2ASN_Skip*/
@@ -2229,28 +1386,14 @@ typedef struct
     VOS_UINT8                           aucReserved[3];                         /* 保留位 */
 } MTA_LRRC_MBMS_UNSOLICITED_CFG_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : LRRC_MTA_MBMS_UNSOLICITED_CFG_SET_CNF_STRU
- 结构说明  : LRRC回复MTA MBMS主动上报配置设置结果结构体
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     PS_MSG_HEADER_STRU                  stMsgHeader;                            /*_H2ASN_Skip*/
     MTA_RRC_RESULT_ENUM_UINT32          enResult;                               /* 设置操作结果 */
 } LRRC_MTA_MBMS_UNSOLICITED_CFG_SET_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : LRRC_MTA_MBMS_SERVICE_EVENT_IND_STRU
- 结构说明  : LRRC给MTA发送MBMS服务事件主动上报结构体
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     PS_MSG_HEADER_STRU                  stMsgHeader;                            /*_H2ASN_Skip*/
@@ -2258,14 +1401,7 @@ typedef struct
     VOS_UINT8                           aucReserved[3];                         /* 保留位 */
 } LRRC_MTA_MBMS_SERVICE_EVENT_IND_STRU;
 
-/*****************************************************************************
- 结构名    : MTA_LRRC_COEX_PARA_STRU
- 结构说明  : LTE&WIFI共存参数结构体
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     MTA_LRRC_COEX_BW_TYPE_ENUM_UINT16           enCoexBWType;
@@ -2278,14 +1414,7 @@ typedef struct
     VOS_UINT16                                  usReserved;                 /* 保留位 */
 } MTA_LRRC_COEX_PARA_STRU;
 
-/*****************************************************************************
- 结构名    : MTA_LRRC_LTE_WIFI_COEX_SET_REQ_STRU
- 结构说明  : MTA通知LRRC 设置LTE&WIFI共存配置请求结构体
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     PS_MSG_HEADER_STRU                  stMsgHeader;                            /*_H2ASN_Skip*/
@@ -2294,56 +1423,28 @@ typedef struct
     VOS_UINT8                           aucCoexPara[4];
 } MTA_LRRC_LTE_WIFI_COEX_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : LRRC_MTA_LTE_WIFI_COEX_SET_CNF_STRU
- 结构说明  : LRRC回复MTA LTE&WIFI共存配置设置结果结构体
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     PS_MSG_HEADER_STRU                  stMsgHeader;                            /*_H2ASN_Skip*/
     MTA_RRC_RESULT_ENUM_UINT32          enResult;                               /* 设置结果 */
 } LRRC_MTA_LTE_WIFI_COEX_SET_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : MTA_LRRC_LOW_POWER_CONSUMPTION_SET_REQ_STRU
- 结构说明  : MTA通知LRRC设置低功耗请求结构体
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     PS_MSG_HEADER_STRU                  stMsgHeader;                            /*_H2ASN_Skip*/
     VOS_BOOL                            bLowPowerFlg;                           /* VOS_FALSE: Normal;VOS_TRUE: Low Power Consumption */
 } MTA_LRRC_LOW_POWER_CONSUMPTION_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : LRRC_MTA_LOW_POWER_CONSUMPTION_SET_CNF_STRU
- 结构说明  : LRRC回复MTA低功耗设置结果结构体
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     PS_MSG_HEADER_STRU                  stMsgHeader;                            /*_H2ASN_Skip*/
     MTA_RRC_RESULT_ENUM_UINT32          enResult;                               /* 设置操作结果 */
 } LRRC_MTA_LOW_POWER_CONSUMPTION_SET_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : MTA_LRRC_INTEREST_LIST_SET_REQ_STRU
- 结构说明  : MTA通知LRRC设置Interest请求结构体
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     PS_MSG_HEADER_STRU                  stMsgHeader;                                    /*_H2ASN_Skip*/
@@ -2351,26 +1452,13 @@ typedef struct
     VOS_BOOL                            bMbmsPriority;                                  /* VOS_FALSE: Normal;VOS_TRUE: Low Power Consumption */
 } MTA_LRRC_INTEREST_LIST_SET_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : LRRC_MTA_INTEREST_LIST_SET_CNF_STRU
- 结构说明  : LRRC回复MTA Interest设置结果结构体
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     PS_MSG_HEADER_STRU                  stMsgHeader;                                    /*_H2ASN_Skip*/
     MTA_RRC_RESULT_ENUM_UINT32          enResult;                                       /* 设置操作结果 */
 } LRRC_MTA_INTEREST_LIST_SET_CNF_STRU;
-/*******************************************************************************
- 结构名    : MTA_LRRC_SET_FR_REQ_STRU
- 结构说明  : 发给LRRC设置FR请求
- 1.日    期   : 2015年05月25日
-   作    者   : z00301431
-   修改内容   : FR动态控制添加
-*******************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                             stMsgHeader;                    /*_H2ASN_Skip*/
@@ -2379,13 +1467,7 @@ typedef struct
     VOS_UINT8                                   aucRsv[3];                      /* 保留位 */
 }MTA_LRRC_SET_FR_REQ_STRU;
 
-/*******************************************************************************
- 结构名    : LRRC_MTA_SET_FR_CNF_STRU
- 结构说明  : LRRC回复的FR设置响应
- 1.日    期   : 2015年05月25日
-   作    者   : z00301431
-   修改内容   : FR动态控制添加
-*******************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                             stMsgHeader;                    /*_H2ASN_Skip*/
@@ -2393,28 +1475,14 @@ typedef struct
     MTA_RRC_RESULT_ENUM_UINT32                  enRslt;                         /* FR设置及结果 */
 }LRRC_MTA_SET_FR_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : MTA_LRRC_TRANSMODE_QRY_REQ_STRU
- 结构说明  : MTA向LRRC查询传输模式请求ID_MTA_LRRC_TRANSMODE_QRY_REQ结构体
 
-  1.日    期   : 2015年7月30日
-    作    者   : lwx277467
-    修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     PS_MSG_HEADER_STRU                  stMsgHeader;                            /*_H2ASN_Skip*/
     VOS_UINT8                           aucReserved[4];                         /* 保留位 */
 } MTA_LRRC_TRANSMODE_QRY_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : LRRC_MTA_TRANSMODE_QRY_CNF_STRU
- 结构说明  : LRR回复MTA传输模式查询结果ID_LRRC_MTA_TRANSMODE_QRY_CNF结构体
 
-  1.日    期   : 2015年7月30日
-    作    者   : lwx277467
-    修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     PS_MSG_HEADER_STRU                  stMsgHeader;                            /*_H2ASN_Skip*/
@@ -2424,14 +1492,7 @@ typedef struct
 } LRRC_MTA_TRANSMODE_QRY_CNF_STRU;
 
 /************无线发射功率tx power (4G) begin*********************************/
-/*****************************************************************************
- 结构名    : TX_PWR_INFO_STRU
- 结构说明  : TXPower 内容结构体
 
-  1.日    期   : 2015年5月21日
-    作    者   : l00277962
-    修改内容   : 新建
-*****************************************************************************/
 typedef struct
 {
     VOS_INT16     sPuschPwr;
@@ -2439,27 +1500,13 @@ typedef struct
     VOS_INT16     sSrsPwr;
     VOS_INT16     sPrachPwr;
 }TX_PWR_INFO_STRU;
-/*****************************************************************************
- 结构名    : MTA_LRRC_TX_PWR_QRY_REQ
- 结构说明  : MTA向LRRC查询TXPower
 
-  1.日    期   : 2015年5月21日
-    作    者   : l00277962
-    修改内容   : 新建
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;
     VOS_UINT8                           aucReserved[4];
 }MTA_LRRC_TX_PWR_QRY_REQ;
-/*****************************************************************************
- 结构名    : TX_PWR_INFO_STRU
- 结构说明  : LRRC向MTA回复TXPower
 
-  1.日    期   : 2015年5月21日
-    作    者   : l00277962
-    修改内容   : 新建
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;
@@ -2469,41 +1516,20 @@ typedef struct
 /************无线发射功率tx power (4G) end***********************************/
 
 /************MCS 上下行调制解调方式 *****************************************/
-/*****************************************************************************
- 结构名    : TX_PWR_INFO_STRU
- 结构说明  : MCS 内容结构体
 
-  1.日    期   : 2015年5月21日
-    作    者   : l00277962
-    修改内容   : 新建
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16     usUlMcs;
     VOS_UINT16     usDlMcs[2];
     VOS_UINT8      aucReserved[2];
 }MCS_INFO_STRU;
-/*****************************************************************************
- 结构名    : TX_PWR_INFO_STRU
- 结构说明  : MTA向LRRC查询MCS
 
-  1.日    期   : 2015年5月21日
-    作    者   : l00277962
-    修改内容   : 新建
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;
     VOS_UINT8                           aucReserved[4];
 }MTA_LRRC_MCS_QRY_REQ;
-/*****************************************************************************
- 结构名    : TX_PWR_INFO_STRU
- 结构说明  : LRRC向MTA回复MCS
 
-  1.日    期   : 2015年5月21日
-    作    者   : l00277962
-    修改内容   : 新建
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;
@@ -2513,40 +1539,19 @@ typedef struct
 /****************************************************************************/
 
 /************EARFCN**********************************************************/
-/*****************************************************************************
- 结构名    : TX_PWR_INFO_STRU
- 结构说明  : EARFCN 内容结构体
 
-  1.日    期   : 2015年5月21日
-    作    者   : l00277962
-    修改内容   : 新建
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16    usUlEarfcn;
     VOS_UINT16    usDlEarfcn;
 }EARFCN_INFO_STRU;
-/*****************************************************************************
- 结构名    : TX_PWR_INFO_STRU
- 结构说明  : MTA向LRRC查询EARFCN
 
-  1.日    期   : 2015年5月21日
-    作    者   : l00277962
-    修改内容   : 新建
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;
     VOS_UINT8                           aucReserved[4];
 }MTA_LRRC_EARFCN_QRY_REQ;
-/*****************************************************************************
- 结构名    : TX_PWR_INFO_STRU
- 结构说明  : LRRC向MTA回复EARFCN
 
-  1.日    期   : 2015年5月21日
-    作    者   : l00277962
-    修改内容   : 新建
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;
@@ -2556,40 +1561,19 @@ typedef struct
 /****************************************************************************/
 
 /************TDD时隙配比*****************************************************/
-/*****************************************************************************
- 结构名    : TX_PWR_INFO_STRU
- 结构说明  : TDD时隙配比内容结构体
 
-  1.日    期   : 2015年5月21日
-    作    者   : l00277962
-    修改内容   : 新建
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8   ucSubframeAssign;
     VOS_UINT8   ucSubframePatterns;
 }LFRAMERATIO_INFO_STRU;
-/*****************************************************************************
- 结构名    : TX_PWR_INFO_STRU
- 结构说明  : MTA向LRRC查询TDD时隙配比
 
-  1.日    期   : 2015年5月21日
-    作    者   : l00277962
-    修改内容   : 新建
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;
     VOS_UINT8                           aucReserved[4];
 }MTA_LRRC_LFRAMERATIO_QRY_REQ;
-/*****************************************************************************
- 结构名    : TX_PWR_INFO_STRU
- 结构说明  : LRRC向MTA回复TDD时隙配比
 
-  1.日    期   : 2015年5月21日
-    作    者   : l00277962
-    修改内容   : 新建
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;
@@ -2599,27 +1583,13 @@ typedef struct
 /****************************************************************************/
 
 /************RRC status******************************************************/
-/*****************************************************************************
- 结构名    : TX_PWR_INFO_STRU
- 结构说明  : MTA向LRRC查询RRC status
 
-  1.日    期   : 2015年5月21日
-    作    者   : l00277962
-    修改内容   : 新建
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;
     VOS_UINT8                           aucReserved[4];
 }MTA_LRRC_RRC_STATUS_QRY_REQ;
-/*****************************************************************************
- 结构名    : TX_PWR_INFO_STRU
- 结构说明  : LRRC向MTA回复RRC status
 
-  1.日    期   : 2015年5月21日
-    作    者   : l00277962
-    修改内容   : 新建
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;

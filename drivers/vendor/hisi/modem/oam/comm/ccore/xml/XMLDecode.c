@@ -1,21 +1,4 @@
-/******************************************************************************
 
-版权所有 (C), 2001-2011, 华为技术有限公司
-
-******************************************************************************
-文 件 名      : XMLDecode.c
-版 本 号      : 初稿
-作    者      : 郑继树 176513
-生成日期      : 2010年12月20日
-最近修改      :
-功能描述      : 该头文件为XML相关操作c文件
-函数列表      :
-修改历史      :
-1.日    期    : 2010年12月20日
-作    者    : 郑继树 176513
-修改内容    : 创建文件
-
-******************************************************************************/
 /*****************************************************************************
 1 头文件包含
 *****************************************************************************/
@@ -129,42 +112,7 @@ VOS_CHAR   g_acXMLKeyWordTbl[] = { '<', '>', '/', '=', '"',
 extern VOS_VOID XML_SendMsg(VOS_UINT32 ulRet);
 #endif
 
-/*****************************************************************************
-函 数 名  : XML_WriteErrorLog
-功能描述  : 记录错误信息到Log文件
-输入参数  : ulErrLine 指出错时的代码行号
-          : ulNvId    指出错时对应的NV ID
-          : ulResult  指出错时函数对应的返回值
-输出参数  : 无
-返 回 值  : 无
-调用函数  : 无
-被调函数  : XML_CheckCharValidity
-            XML_ProcXmlOrinigal
-            XML_ProcXmlEnterLabel
-            XML_ProcXmlIgnore
-            XML_ProcXmlNodeLabel
-            XML_ProcXmlSingleEndLabel
-            XML_ProcXmlEndMustBeRight
-            XML_ProcXmlPropertyStart
-            XML_ProcXmlPropertyName
-            XML_ProcXmlPropertyNameTail
-            XML_ProcXmlValueStart
-            XML_ProcXmlValueTail
-            XML_Analyse
-            XML_DecodeXMLFile
-            XML_ProcInit
-            XML_GetProductId
-            XML_CheckXMLKeyWord
-            XML_CheckCharValidity
-            XML_WriteNVItem
-            XML_StringToNvId
-            XML_StringToNvValue
-            XML_StringToHex
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_VOID XML_WriteErrorLog(VOS_UINT32 ulErrLine, VOS_UINT16 ulNvId,
                                 VOS_UINT32 ulResult)
 {
@@ -177,20 +125,7 @@ VOS_VOID XML_WriteErrorLog(VOS_UINT32 ulErrLine, VOS_UINT16 ulNvId,
     return ;
 }
 
-/*****************************************************************************
-函 数 名  : XML_CheckXMLKeyWord
-功能描述  : 检查当前字符的是否是XML关键字
-输入参数  : cCurrentChar 指当前字符
-输出参数  : 无
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : 无
-被调函数  : XML_CheckCharValidity
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
-*****************************************************************************/
 XML_RESULT_ENUM_UINT32 XML_CheckXMLKeyWord(VOS_CHAR cCurrentChar)
 {
     VOS_UINT32 lCount;
@@ -215,21 +150,7 @@ XML_RESULT_ENUM_UINT32 XML_CheckXMLKeyWord(VOS_CHAR cCurrentChar)
 }
 
 
-/*****************************************************************************
-函 数 名  : XML_CheckCharValidity
-功能描述  : 检查当前字符的有效性
-输入参数  : cCurrentChar 指当前字符
-输出参数  : 无
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : XML_CheckXMLKeyWord
-            XML_WriteErrorLog
-被调函数  : XML_Analyse
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
-*****************************************************************************/
 XML_RESULT_ENUM_UINT32 XML_CheckCharValidity(VOS_CHAR cCurrentChar)
 {
     XML_RESULT_ENUM_UINT32 ulReturnVal;
@@ -265,20 +186,7 @@ XML_RESULT_ENUM_UINT32 XML_CheckCharValidity(VOS_CHAR cCurrentChar)
 }
 
 
-/*****************************************************************************
-函 数 名  : XML_StringToNvId
-功能描述  : 把字符串转成十进制的格式
-输入参数  : pcBuff 指字符串缓冲区
-输出参数  : pusRetVal 指转换后的返回值
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : XML_WriteErrorLog
-被调函数  : XML_WriteNVItem
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
-*****************************************************************************/
 XML_RESULT_ENUM_UINT32 XML_StringToNvId(VOS_CHAR  *pcBuff,
                                             VOS_UINT16 *pusRetVal)
 {
@@ -330,21 +238,7 @@ XML_RESULT_ENUM_UINT32 XML_StringToNvId(VOS_CHAR  *pcBuff,
     return XML_RESULT_SUCCEED;
 }
 
-/*****************************************************************************
-函 数 名  : XML_StringToHex
-功能描述  : 把字符转成十六进制的格式
-输入参数  : pucSrc 待转换的字符串
-输出参数  : pucDest转换后的数据
-          : pucDestLen 转换后的数据长度
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : XML_WriteErrorLog
-被调函数  : XML_StringToNvValue
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
-*****************************************************************************/
 XML_RESULT_ENUM_UINT32 XML_StringToHex(VOS_UINT8 *pucSrc, VOS_UINT8 *pucDest)
 {
     VOS_UINT8  ucCurrent;
@@ -399,22 +293,7 @@ XML_RESULT_ENUM_UINT32 XML_StringToHex(VOS_UINT8 *pucSrc, VOS_UINT8 *pucDest)
 }
 
 
-/*****************************************************************************
-函 数 名  : XML_StringToNvValue
-功能描述  : 把字符串转成十六进制的格式
-输入参数  : pucBuff 指字符串缓冲区
-输出参数  : pucRetBuff转换后的数据
-          : pucRetBuffLen转换后数据的长度
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : XML_WriteErrorLog
-            XML_StringToHex
-被调函数  : XML_WriteNVItem
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
-*****************************************************************************/
 XML_RESULT_ENUM_UINT32 XML_StringToNvValue(VOS_UINT8  *pucBuff,
                                                  VOS_UINT8  *pucRetBuff,
                                                  VOS_UINT32 *pulRetBuffLen)
@@ -489,25 +368,7 @@ XML_RESULT_ENUM_UINT32 XML_StringToNvValue(VOS_UINT8  *pucBuff,
     return ulReturnVal;
 }
 
-/*****************************************************************************
-函 数 名  : XML_WriteNVItem
-功能描述  : 把节点信息写到NV中
-输入参数  : 无
-输出参数  : 无
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : VOS_StrCmp
-            XML_StringToNvId
-            XML_StringToNvValue
-            NV_Write
-            XML_WriteErrorLog
-被调函数  : XML_CheckNodeLabelValid
-            XML_CheckNodeEndLabelValid
-            XML_ProcXmlEnterLabel
-修改历史
-1.日    期 : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
-*****************************************************************************/
+
 XML_RESULT_ENUM_UINT32 XML_WriteNVItem(VOS_VOID)
 {
     XML_RESULT_ENUM_UINT32              ulReturnVal;
@@ -581,22 +442,7 @@ XML_RESULT_ENUM_UINT32 XML_WriteNVItem(VOS_VOID)
     return XML_RESULT_SUCCEED;
 }
 
-/*****************************************************************************
-函 数 名  : XML_NodeReset
-功能描述  : 清空节点信息
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-调用函数  : 无
-被调函数  : XML_CheckNodeLabelValid
-            XML_CheckNodeEndLabelValid
-            XML_ProcXmlEnterLabel
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID XML_NodeReset(VOS_VOID)
 {
     /* 节点标签复位,已使用的长度为0  */
@@ -618,29 +464,7 @@ VOS_VOID XML_NodeReset(VOS_VOID)
 }
 
 
-/*****************************************************************************
-函 数 名  : XML_AddACharToBuff
-功能描述  : 把字符添加进指定长度缓冲区
-输入参数  : pcDestChar待添加的字符，
-          : pcStrBuff被添加字符串指针的地址，
-          : plBuffLength字符创当前长度的地址
-          : ulIsNodeValue指pcStrBuff是否是指向Node Value
-输出参数  : 无
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : XML_WriteErrorLog
-被调函数  : XML_ProcXmlOrinigal
-            XML_ProcXmlEnterLabel
-            XML_ProcXmlNodeLabel
-            XML_ProcXmlSingleEndLabel
-            XML_ProcXmlPropertyStart
-            XML_ProcXmlPropertyName
-            XML_ProcXmlValueStart
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
-*****************************************************************************/
 XML_RESULT_ENUM_UINT32 XML_AddACharToBuff(VOS_CHAR   cNowChar,
                                                  VOS_CHAR   *pcStrBuff,
                                                  VOS_UINT32 *plBuffLength,
@@ -680,21 +504,7 @@ XML_RESULT_ENUM_UINT32 XML_AddACharToBuff(VOS_CHAR   cNowChar,
 }
 
 
-/*****************************************************************************
-函 数 名  : XML_CheckNodeLabelValid
-功能描述  : 检查当前标签是否是有效标签
-输入参数  : 无
-输出参数  : 无
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : VOS_StrCmp
-被调函数  : XML_ProcXmlNodeLabel
-            XML_ProcXmlPropertyStart
-            XML_ProcXmlValueTail
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
-*****************************************************************************/
+
 XML_RESULT_ENUM_UINT32 XML_CheckNodeLabelValid(VOS_VOID)
 {
     /* 判断该标签是否有效 */
@@ -774,22 +584,7 @@ XML_RESULT_ENUM_UINT32 XML_CheckNodeLabelValid(VOS_VOID)
 }
 
 
-/*****************************************************************************
-函 数 名  : XML_CheckNodeEndLabelValid
-功能描述  : 检查当前独立标签是否是有效节点的结束标签
-输入参数  : 无
-输出参数  : 无
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : XML_WriteNVItem
-            VOS_StrCmp
-            XML_NodeReset
-被调函数  : XML_ProcXmlSingleEndLabel
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
-*****************************************************************************/
 XML_RESULT_ENUM_UINT32 XML_CheckNodeEndLabelValid(VOS_VOID)
 {
     XML_RESULT_ENUM_UINT32 ulReturnVal;
@@ -856,21 +651,7 @@ XML_RESULT_ENUM_UINT32 XML_CheckNodeEndLabelValid(VOS_VOID)
     return XML_RESULT_SUCCEED;
 }
 
-/*****************************************************************************
-函 数 名  : XML_CreateAProperty
-功能描述  : 在内存中创建一个属性并初始化
-输入参数  : 无
-输出参数  : 无
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : VOS_MemAlloc
-            XML_WriteErrorLogs
-被调函数  : XML_CreateANode
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
-*****************************************************************************/
 XML_RESULT_ENUM_UINT32 XML_CreateAProperty( VOS_VOID )
 {
     /* 分配属性名内存,+1为保留字符串结束符用 */
@@ -907,22 +688,7 @@ XML_RESULT_ENUM_UINT32 XML_CreateAProperty( VOS_VOID )
 }
 
 
-/*****************************************************************************
-函 数 名  : XML_CreateANode
-功能描述  : 创建一个新节点
-输入参数  : 无
-输出参数  : 无
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : VOS_MemAlloc
-            XML_CreateAProperty
-            XML_WriteErrorLog
-被调函数  : XML_ProcInit
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
-*****************************************************************************/
 XML_RESULT_ENUM_UINT32 XML_CreateANode(VOS_VOID)
 {
     XML_RESULT_ENUM_UINT32 ulReturnVal = XML_RESULT_SUCCEED;
@@ -981,21 +747,7 @@ XML_RESULT_ENUM_UINT32 XML_CreateANode(VOS_VOID)
 }
 
 
-/*****************************************************************************
-函 数 名  : XML_ProcXmlOrinigal
-功能描述  : 状态机处理函数，初始状态的处理函数
-输入参数  : 当前处理的字符
-输出参数  : 无
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : XML_AddACharToBuff
-            XML_WriteErrorLog
-被调函数  : XML_Analyse
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
-*****************************************************************************/
 XML_RESULT_ENUM_UINT32 XML_ProcXmlOrinigal(VOS_CHAR cNowChar)
 {
     XML_RESULT_ENUM_UINT32 ulReturnVal = XML_RESULT_SUCCEED;
@@ -1031,20 +783,7 @@ XML_RESULT_ENUM_UINT32 XML_ProcXmlOrinigal(VOS_CHAR cNowChar)
 }
 
 
-/*****************************************************************************
-函 数 名  : XML_ProcXmlIgnore
-功能描述  : 状态机处理函数，序言处理函数
-输入参数  : 当前处理的字符
-输出参数  : 无
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : 无
-被调函数  : XML_Analyse
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
-*****************************************************************************/
 XML_RESULT_ENUM_UINT32 XML_ProcXmlIgnore(VOS_CHAR cNowChar)
 {
     /* 直到遇到标签结尾，否则一直忽略 */
@@ -1057,22 +796,7 @@ XML_RESULT_ENUM_UINT32 XML_ProcXmlIgnore(VOS_CHAR cNowChar)
 }
 
 
-/*****************************************************************************
-函 数 名  : XML_ProcXmlSingleEndLabel
-功能描述  : 状态机处理函数，进入独立的结尾标签的处理
-输入参数  : 当前处理的字符
-输出参数  : 无
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : XML_AddACharToBuff
-            XML_CheckNodeEndLabelValid
-            XML_WriteErrorLog
-被调函数  : XML_Analyse
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
-*****************************************************************************/
 XML_RESULT_ENUM_UINT32 XML_ProcXmlSingleEndLabel(VOS_CHAR cNowChar)
 {
     XML_RESULT_ENUM_UINT32 ulReturnVal;
@@ -1115,17 +839,7 @@ XML_RESULT_ENUM_UINT32 XML_ProcXmlSingleEndLabel(VOS_CHAR cNowChar)
 }
 
 #if (FEATURE_ON == FEATURE_XNV_SUPPORT_PRODUCT_CAT)
-/*****************************************************************************
-函 数 名  : XML_ProductCatNullNodeProc
-功能描述  : 支持产品集的XML解析过程中空节点处理
-输入参数  : 当前处理的字符
-输出参数  : 无
-返 回 值  : XML_RESULT_ENUM_UINT32
-修改历史
-1.日    期   : 2014年03月25日
-作    者   : jinni 00168360
-修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_VOID XML_ProductCatNullNodeProc(VOS_VOID)
 {
     g_stXMLCurrentNode.pcNodeLabel[g_stXMLCurrentNode.ulLabelLength] = '\0';
@@ -1162,22 +876,7 @@ VOS_VOID XML_ProductCatNullNodeProc(VOS_VOID)
 }
 #endif
 
-/*****************************************************************************
-函 数 名  : XML_ProcXmlEndMustBeRight
-功能描述  : 状态机处理函数，进入Lable/等待>
-输入参数  : 当前处理的字符
-输出参数  : 无
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : XML_WriteNVItem
-            XML_NodeReset
-            XML_WriteErrorLog
-被调函数  : XML_Analyse
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
-*****************************************************************************/
 XML_RESULT_ENUM_UINT32 XML_ProcXmlEndMustBeRight(VOS_CHAR cNowChar)
 {
     XML_RESULT_ENUM_UINT32 ulReturnVal;
@@ -1221,22 +920,7 @@ XML_RESULT_ENUM_UINT32 XML_ProcXmlEndMustBeRight(VOS_CHAR cNowChar)
 }
 
 
-/*****************************************************************************
-函 数 名  : XML_ProcXmlEnterLabel
-功能描述  : 状态机处理函数，进入节点后的处理
-输入参数  : 当前处理的字符
-输出参数  : 无
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : XML_CheckNodeLabelValid
-            XML_AddACharToBuff
-            XML_WriteErrorLog
-被调函数  : XML_Analyse
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
-*****************************************************************************/
 XML_RESULT_ENUM_UINT32 XML_ProcXmlNodeLabel(VOS_CHAR cNowChar)
 {
     XML_RESULT_ENUM_UINT32 ulReturnVal;
@@ -1291,23 +975,7 @@ XML_RESULT_ENUM_UINT32 XML_ProcXmlNodeLabel(VOS_CHAR cNowChar)
 }
 
 
-/*****************************************************************************
-函 数 名  : XML_ProcXmlEnterLabel
-功能描述  : 状态机处理函数，进入Label后的处理
-输入参数  : 当前处理的字符
-输出参数  : 无
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : XML_WriteNVItem
-            XML_NodeReset
-            XML_AddACharToBuff
-            XML_WriteErrorLog
-被调函数  : XML_Analyse
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
-*****************************************************************************/
 XML_RESULT_ENUM_UINT32 XML_ProcXmlEnterLabel(VOS_CHAR cNowChar)
 {
     XML_RESULT_ENUM_UINT32 ulReturnVal = XML_RESULT_SUCCEED;
@@ -1382,22 +1050,7 @@ XML_RESULT_ENUM_UINT32 XML_ProcXmlEnterLabel(VOS_CHAR cNowChar)
 }
 
 
-/*****************************************************************************
-函 数 名  : XML_ProcXmlPropertyStart
-功能描述  : 状态机处理函数，进入属性的解析
-输入参数  : 当前处理的字符
-输出参数  : 无
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : XML_CheckNodeLabelValid
-            XML_AddACharToBuff
-            XML_WriteErrorLog
-被调函数  : XML_Analyse
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
-*****************************************************************************/
 XML_RESULT_ENUM_UINT32 XML_ProcXmlPropertyStart(VOS_CHAR cNowChar)
 {
     XML_RESULT_ENUM_UINT32 ulReturnVal = XML_RESULT_SUCCEED;
@@ -1445,21 +1098,7 @@ XML_RESULT_ENUM_UINT32 XML_ProcXmlPropertyStart(VOS_CHAR cNowChar)
 }
 
 
-/*****************************************************************************
-函 数 名  : XML_ProcXmlPropertyName
-功能描述  : 状态机处理函数，属性名字的解析
-输入参数  : 当前处理的字符
-输出参数  : 无
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : XML_AddACharToBuff
-            XML_WriteErrorLog
-被调函数  : XML_Analyse
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
-*****************************************************************************/
 XML_RESULT_ENUM_UINT32 XML_ProcXmlPropertyName(VOS_CHAR cNowChar)
 {
     XML_RESULT_ENUM_UINT32 ulReturnVal = XML_RESULT_SUCCEED;
@@ -1492,20 +1131,7 @@ XML_RESULT_ENUM_UINT32 XML_ProcXmlPropertyName(VOS_CHAR cNowChar)
 }
 
 
-/*****************************************************************************
-函 数 名  : XML_ProcXmlPropertyNameTail
-功能描述  : 状态机处理函数，属性名字结束，等待"即属性值开始
-输入参数  : 当前处理的字符
-输出参数  : 无
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : XML_WriteErrorLog
-被调函数  : XML_Analyse
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
-*****************************************************************************/
 XML_RESULT_ENUM_UINT32 XML_ProcXmlPropertyNameTail(VOS_CHAR cNowChar)
 {
     /* 跳过空格 */
@@ -1530,22 +1156,7 @@ XML_RESULT_ENUM_UINT32 XML_ProcXmlPropertyNameTail(VOS_CHAR cNowChar)
 }
 
 
-/*****************************************************************************
-函 数 名  : XML_ProcXmlValueStart
-功能描述  : 状态机处理函数，属性名字结束，等待"即属性值结束
-输入参数  : 当前处理的字符
-输出参数  : 无
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : XML_AddACharToBuff
-            XML_WriteErrorLog
-被调函数  : XML_Analyse
-被调函数  :
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
-*****************************************************************************/
 XML_RESULT_ENUM_UINT32 XML_ProcXmlValueStart(VOS_CHAR cNowChar)
 {
     XML_RESULT_ENUM_UINT32 ulReturnVal = XML_RESULT_SUCCEED;
@@ -1580,22 +1191,7 @@ XML_RESULT_ENUM_UINT32 XML_ProcXmlValueStart(VOS_CHAR cNowChar)
 }
 
 
-/*****************************************************************************
-函 数 名  : XML_ProcXmlValueTail
-功能描述  : 状态机处理函数，属性名字结束，等待"即属性值结束
-输入参数  : 当前处理的字符
-输出参数  : 无
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : XML_CheckNodeLabelValid
-            XML_WriteErrorLog
-被调函数  : XML_Analyse
-被调函数  :
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
-*****************************************************************************/
 XML_RESULT_ENUM_UINT32 XML_ProcXmlValueTail(VOS_CHAR cNowChar)
 {
     XML_RESULT_ENUM_UINT32 ulReturnVal;
@@ -1633,31 +1229,7 @@ XML_RESULT_ENUM_UINT32 XML_ProcXmlValueTail(VOS_CHAR cNowChar)
     return XML_RESULT_FALIED_BAD_SYNTAX;
 }
 
-/*****************************************************************************
-函 数 名  : XML_Analyse
-功能描述  : 主状态机
-输入参数  : 当前解析的字符
-输出参数  : 无
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : XML_CheckCharValidity
-            XML_ProcXmlOrinigal
-            XML_ProcXmlEnterLabel
-            XML_ProcXmlIgnore
-            XML_ProcXmlNodeLabel
-            XML_ProcXmlSingleEndLabel
-            XML_ProcXmlEndMustBeRight
-            XML_ProcXmlPropertyStart
-            XML_ProcXmlPropertyName
-            XML_ProcXmlPropertyNameTail
-            XML_ProcXmlValueStart
-            XML_ProcXmlValueTail
-被调函数  : XML_DecodeXMLFile
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
-*****************************************************************************/
 /*Global map table used to find the function according the xml analyse status.*/
 XML_FUN g_ulXmlAnalyseFunTbl[] =
 {
@@ -1700,21 +1272,7 @@ XML_RESULT_ENUM_UINT32 XML_Analyse(VOS_CHAR cNowChar)
 }
 
 #if (FEATURE_ON == FEATURE_XNV_SUPPORT_PRODUCT_CAT)
-/*****************************************************************************
-函 数 名  : XML_CalcXmlMd5Value
-功能描述  : 计算xml文件的MD5校验值
-输入参数  : pfXmlFile -- XML文件指针
-            pcXmlFileReadBuf -- 指向读XML文件的buff
-            pcSaveHashValueBuf -- 指向存储xml分段计算的MD5校验值
-输出参数  : pucHash -- 指向输出校验值的buff
-            plHlen -- 校验值长度
-返 回 值  : XML_RESULT_ENUM_UINT32
 
-修改历史
-1.日    期   : 2014年3月13日
-  作    者   : 靳妮 00168360
-  修改内容   : 新生成函数
-*****************************************************************************/
 XML_RESULT_ENUM_UINT32 XML_CalcXmlMd5Value(VOS_CHAR *pcXmlFileReadBuf, VOS_CHAR *pcSaveHashValueBuf, FILE *pfXmlFile, VOS_CHAR *pucHash, VOS_INT32 *plHlen)
 {
     VOS_INT32           lReaded = 0;       /* 读出的字节数 */
@@ -1769,19 +1327,7 @@ XML_RESULT_ENUM_UINT32 XML_CalcXmlMd5Value(VOS_CHAR *pcXmlFileReadBuf, VOS_CHAR 
     return XML_RESULT_SUCCEED;
 }
 
-/*****************************************************************************
-函 数 名  : XML_CalcXmlCheckValue
-功能描述  : 计算xml文件的MD5校验值
-输入参数  : pfXmlFile -- XML文件指针
-输出参数  : pucHash -- 指向输出校验值的buff
-            plHlen -- 校验值长度
-返 回 值  : XML_RESULT_ENUM_UINT32
 
-修改历史
-1.日    期   : 2014年3月13日
-  作    者   : 靳妮 00168360
-  修改内容   : 新生成函数
-*****************************************************************************/
 XML_RESULT_ENUM_UINT32 XML_CalcXmlCheckValue(VOS_CHAR *pcXmlFilePath, VOS_CHAR *pucHash, VOS_INT32 *plHlen)
 {
     VOS_CHAR                    *pcXmlFileReadBuf = VOS_NULL_PTR;
@@ -1859,19 +1405,7 @@ XML_RESULT_ENUM_UINT32 XML_CalcXmlCheckValue(VOS_CHAR *pcXmlFilePath, VOS_CHAR *
     return  ulReturnVal;
 }
 
-/*****************************************************************************
-函 数 名  : XML_GetProductOffset
-功能描述  : 获取产品在xnv.xml中对应的product cat偏移和product id偏移
-输入参数  : pstOffset -- 指向map文件的数据部分
-            ulNum -- 当前buffer中的产品数目
-输出参数  : pstPrdtOffset--输出当前产品的偏移量
-返 回 值  : XML_RESULT_ENUM_UINT32
 
-修改历史
-1.日    期   : 2014年3月13日
-  作    者   : 靳妮 00168360
-  修改内容   : 新生成函数
-*****************************************************************************/
 XML_RESULT_ENUM_UINT32 XML_GetProductOffset(XML_XNV_PRDT_OFFSET_STRU *pstOffset, VOS_UINT32 ulNum, XML_XNV_PRDT_OFFSET_STRU *pstPrdtOffset)
 {
     VOS_UINT32                          ulLow;
@@ -1916,18 +1450,7 @@ XML_RESULT_ENUM_UINT32 XML_GetProductOffset(XML_XNV_PRDT_OFFSET_STRU *pstOffset,
     return XML_RESULT_FALIED_GET_PRODUCT_OFFSET;
 }
 
-/*****************************************************************************
-函 数 名  : XML_SearchProductInfo
-功能描述  : 查找当前产品在xnv.xml中对应的product cat偏移和product id偏移
-输入参数  : pfMapFile -- 指向map文件
-输出参数  : pstPrdtOffset--指向产品信息结构
-返 回 值  : XML_RESULT_ENUM_UINT32
 
-修改历史
-1.日    期   : 2014年3月13日
-  作    者   : 靳妮 00168360
-  修改内容   : 新生成函数
-*****************************************************************************/
 XML_RESULT_ENUM_UINT32 XML_SearchProductInfo(FILE* pfMapFile, XML_XNV_PRDT_OFFSET_STRU *pstPrdtOffset)
 {
     VOS_INT32                   lReaded = 0;       /* 读出的字节数 */
@@ -2016,20 +1539,7 @@ XML_RESULT_ENUM_UINT32 XML_SearchProductInfo(FILE* pfMapFile, XML_XNV_PRDT_OFFSE
     return XML_RESULT_FALIED_GET_PRODUCT_OFFSET;
 }
 
-/*****************************************************************************
-函 数 名  : XML_DecodeMapFile
-功能描述  : 解析产品索引文件，获取产品在xnv.xml中对应的product cat偏移和product id偏移
-输入参数  : pcMapFilePath -- 指向要解析的map文件路径
-            pcXmlFilePath -- 指向要解析的xml文件路径
-输出参数  : pstPrdtOffset -- 指向产品信息结构
-            pulProductNum -- 指向当前产品数
-返 回 值  : XML_RESULT_ENUM_UINT32
 
-修改历史
-1.日    期   : 2014年3月13日
-  作    者   : 靳妮 00168360
-  修改内容   : 新生成函数
-*****************************************************************************/
 XML_RESULT_ENUM_UINT32 XML_DecodeMapFile(VOS_CHAR *pcMapFilePath, VOS_CHAR *pcXmlFilePath, VOS_UINT32  *pulProductNum, XML_XNV_PRDT_OFFSET_STRU *pstPrdtOffset)
 {
     XML_RESULT_ENUM_UINT32      ulReturnVal;
@@ -2130,20 +1640,7 @@ XML_RESULT_ENUM_UINT32 XML_DecodeMapFile(VOS_CHAR *pcMapFilePath, VOS_CHAR *pcXm
     return ulReturnVal;
 }
 
-/*****************************************************************************
-函 数 名  : XML_DecodeProductCatXMLFile
-功能描述  : 解析支持PRODUCT CAT的xml文件
-输入参数  : lFile -- 指向打开的文件描述符
-            ulProductNum -- 当前map文件中支持的产品数
-            pstPrdtOffset -- 指向当前产品的偏移量
-输出参数  : 无
-返 回 值  : XML_RESULT_ENUM_UINT32
 
-修改历史
-1.日    期   : 2014年3月13日
-  作    者   : 靳妮 00168360
-  修改内容   : 新生成函数
-*****************************************************************************/
 XML_RESULT_ENUM_UINT32 XML_DecodeProductCatXMLFile(FILE* pfFile, VOS_UINT32 ulProductNum, XML_XNV_PRDT_OFFSET_STRU *pstPrdtOffset)
 {
     VOS_INT32                   lReaded = 0;       /* 读出的字节数 */
@@ -2242,23 +1739,7 @@ XML_RESULT_ENUM_UINT32 XML_DecodeProductCatXMLFile(FILE* pfFile, VOS_UINT32 ulPr
 }
 #endif
 
-/*****************************************************************************
-函 数 名  : XML_DecodeXMLFile
-功能描述  : 读取XML文件数据，进行解析
-输入参数  : lFile指打开的文件描述符
-输出参数  : 无
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : mdrv_file_read
-            mdrv_file_close
-            XML_Analyse
-            XML_WriteErrorLog
-被调函数  : XML_DecodeMain
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
-*****************************************************************************/
 XML_RESULT_ENUM_UINT32 XML_DecodeXMLFile(FILE* pfFile)
 {
     VOS_INT32               lReaded = 0;       /* 读出的字节数 */
@@ -2323,22 +1804,7 @@ XML_RESULT_ENUM_UINT32 XML_DecodeXMLFile(FILE* pfFile)
 }
 
 
-/*****************************************************************************
-函 数 名  : XML_GetProductId
-功能描述  : 获得当前单板的product id
-输入参数  : 无
-输出参数  : pcProductId 获得当前单板的product ids
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : VOS_MemSet
-            DRV_MEM_VERCTRL
-            XML_WriteErrorLog
-被调函数  : XML_ProcInit
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
-*****************************************************************************/
 XML_RESULT_ENUM_UINT32 XML_GetProductId(VOS_VOID)
 {
     VOS_INT                             lProductId;
@@ -2369,20 +1835,7 @@ XML_RESULT_ENUM_UINT32 XML_GetProductId(VOS_VOID)
 }
 
 
-/*****************************************************************************
-函 数 名  : XML_InitGlobal
-功能描述  : 初始化全局变量
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-调用函数  : 无
-被调函数  : XML_ProcInit
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID XML_InitGlobal(VOS_VOID)
 {
     /* 初始化Product节点信息 */
@@ -2404,24 +1857,7 @@ VOS_VOID XML_InitGlobal(VOS_VOID)
 }
 
 
-/*****************************************************************************
-函 数 名  : XML_ProcInit
-功能描述  : 初时化本模块全部变量内容
-输入参数  : 无
-输出参数  : 无
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : XML_InitGlobal
-            XML_GetProductId
-            XML_CreateANode
-            VOS_MemAlloc
-            XML_WriteErrorLogs
-被调函数  : XML_DecodeMain
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
-*****************************************************************************/
 XML_RESULT_ENUM_UINT32 XML_ProcInit(VOS_VOID)
 {
     XML_RESULT_ENUM_UINT32 ulReturnVal;
@@ -2472,20 +1908,7 @@ XML_RESULT_ENUM_UINT32 XML_ProcInit(VOS_VOID)
     return XML_RESULT_SUCCEED;
 }
 
-/*****************************************************************************
-函 数 名  : XML_FreeMem
-功能描述  : XML 释放内存函数
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-调用函数  : 无
-被调函数  : XML_DecodeMain
 
-修改历史
-1.日    期   : 2011年04月14日
-作    者   : x51137
-修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID XML_FreeMem(VOS_VOID)
 {
     /*lint -e534*/
@@ -2505,20 +1928,7 @@ VOS_VOID XML_FreeMem(VOS_VOID)
     /*lint +e534*/
 }
 
-/*****************************************************************************
- 函 数 名  : XML_OpenAndDecodeXMLFile
- 功能描述  : 打开并解析xml文件
- 输入参数  : 需要打开XML的文件路径
 
- 输出参数  : 无
-
- 返 回 值  : XML_RESULT_ENUM_UINT32
-
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : d00212987
-    修改内容   : V9R1 XML扩展
-*****************************************************************************/
 XML_RESULT_ENUM_UINT32 XML_OpenAndDecodeXMLFile(VOS_CHAR *pcFilePath)
 {
     FILE                               *pFile  = VOS_NULL_PTR;
@@ -2557,20 +1967,7 @@ XML_RESULT_ENUM_UINT32 XML_OpenAndDecodeXMLFile(VOS_CHAR *pcFilePath)
     return XML_RESULT_SUCCEED;
 }
 
-/*****************************************************************************
- 函 数 名  : XML_DecodeOperator
- 功能描述  : operator.xml 解析写入NV 内存
- 输入参数  : pbIsDecodeXml 是否有XML需解析
 
- 输出参数  : 无
-
- 返 回 值  : VOS_VOID
-
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : d00212987
-    修改内容   : V9R1 XML扩展
-*****************************************************************************/
 VOS_VOID XML_DecodeOperator(VOS_BOOL *pbIsDecodeXml)
 {
 #if (FEATURE_ON == FEATURE_S_SKU_M_OPERATORS)
@@ -2599,28 +1996,7 @@ VOS_VOID XML_DecodeOperator(VOS_BOOL *pbIsDecodeXml)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : XML_DecodeMain
-功能描述  : XML处理主调函数
-输入参数  : pbIsDecodeXml 是否有XML需解析
-输出参数  : pbIsDecodeXml
-返 回 值  : 无
-调用函数  : mdrv_file_open
-            mdrv_file_close
-            mdrv_file_remove
-            mdrv_om_system_error
-            VOS_FlowReboot
-            XML_ProcInit
-            XML_InitGlobal
-            XML_DecodeXMLFile
-            XML_WriteErrorLog
-被调函数  : NV_UpdateProc()/NV_RestoreManufactureProc()
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者     : 郑继树 176513
-修改内容     : 新生成函数
-*****************************************************************************/
 VOS_VOID XML_DecodeMain(VOS_BOOL *pbIsDecodeXml)
 {
     VOS_INT32                   lExistXNVFile  = VOS_FALSE;
@@ -2765,20 +2141,7 @@ VOS_VOID XML_DecodeMain(VOS_BOOL *pbIsDecodeXml)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : XML_DeleteFile
- 功能描述  : xml 文件删除
- 输入参数  : 无
 
- 输出参数  : 无
-
- 返 回 值  : VOS_VOID
-
- 修改历史      :
-  1.日    期   : 2013年8月12日
-    作    者   : d00212987
-    修改内容   : 新增
-*****************************************************************************/
 VOS_VOID XML_DeleteFile(VOS_VOID)
 {
     VOS_UINT32              i;

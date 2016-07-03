@@ -27,14 +27,7 @@ using namespace testing;
 #if 0
 
 #if( FEATURE_ON == FEATURE_CSD )
-/*****************************************************************************
-类名 : Test_CSD_DL_ProcData
-功能描述 : Test_CSD_DL_ProcData UT工程类
-修改历史     :
-1.日   期  : 2011-12-10
-  作   者  : w00199382
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_CSD_DL_ProcDataTask: public ::testing::Test
 {
 public:
@@ -50,16 +43,7 @@ private:
 
 };
 
-/*******************************************************************
-测试用例编号      : Test_CSD_DL_ProcDataTask_001
-测试用例标题      : CSD_DL_ProcDataTask下行任务没有收到数据,信号量未释放
-预期结果          : 打印信号量未释放log
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_DL_ProcDataTask, Test_CSD_DL_ProcDataTask_001 )
 {
     /* 输入码流配置 */
@@ -85,16 +69,7 @@ TEST_F( Test_CSD_DL_ProcDataTask, Test_CSD_DL_ProcDataTask_001 )
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_CSD_DL_ProcDataTask_002
-测试用例标题      : CSD_DL_ProcDataTask中CSD_GetCallState不为 AT_CSD_CALL_STATE_ON下行任务没有接通电话
-预期结果          : 清空DICC发送来的数据，使能中断，打印异常 。下行数据被释放
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_DL_ProcDataTask, Test_CSD_DL_ProcDataTask_002 )
 {
     /* 输入码流配置 */
@@ -128,17 +103,7 @@ TEST_F( Test_CSD_DL_ProcDataTask, Test_CSD_DL_ProcDataTask_002 )
 
 
 }
-/*******************************************************************
-测试用例编号      : Test_CSD_DL_ClearData_001
-测试用例标题      : CSD_DL_ProcDataTask中CSD_GetCallState不为 AT_CSD_CALL_STATE_ON下行任务没有接通电话
-                    从DICC中移出数据失败
-预期结果          : 打印异常，下行数据未释放
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_DL_ProcDataTask, Test_CSD_DL_ClearData_001 )
 {
     /* 输入码流配置 */
@@ -172,17 +137,7 @@ TEST_F( Test_CSD_DL_ProcDataTask, Test_CSD_DL_ClearData_001 )
 
 
 }
-/*******************************************************************
-测试用例编号      : Test_CSD_DL_ClearData_002
-测试用例标题      : CSD_DL_ProcDataTask中CSD_GetCallState不为 AT_CSD_CALL_STATE_ON下行任务没有接通电话
-                    清除DICC中发送来的数据,获取节点数目非法
-预期结果          : 不清除数据直接返回
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_DL_ProcDataTask, Test_CSD_DL_ClearData_002 )
 {
     /* 输入码流配置 */
@@ -216,16 +171,7 @@ TEST_F( Test_CSD_DL_ProcDataTask, Test_CSD_DL_ClearData_002 )
 
 }
 
-/*******************************************************************
-测试用例编号      :  Test_CSD_DL_SendData_001
-测试用例标题      :  CSD_DL_ProcDataTask中CSD_DL_SendData ulDICCNodeCnt为零
-预期结果          :  打印缓存发完结果，下行数据被清空
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_DL_ProcDataTask, Test_CSD_DL_SendData_001 )
 {
     /* 输入码流配置 */
@@ -261,17 +207,7 @@ TEST_F( Test_CSD_DL_ProcDataTask, Test_CSD_DL_SendData_001 )
 
 
 }
-/*******************************************************************
-测试用例编号      :  Test_CSD_DL_SendData_002
-测试用例标题      :  CSD_DL_ProcDataTask中CSD_DL_SendData,
-                     获取DICC通道节点数目非法
-预期结果          :  打印节点数目异常信息，终止流程，下行数据未改变
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_DL_ProcDataTask, Test_CSD_DL_SendData_002 )
 {
     /* 输入码流配置 */
@@ -307,17 +243,7 @@ TEST_F( Test_CSD_DL_ProcDataTask, Test_CSD_DL_SendData_002 )
 
 }
 
-/*******************************************************************
-测试用例编号      :  Test_CSD_DL_SendData_003
-测试用例标题      :  CSD_DL_ProcDataTask中CSD_DL_SendData,
-                     ulRslt为VOS_ERR下行任务从DICC中移除数据失败
-预期结果          :  打印数据移出异常信息，终止流程，
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_DL_ProcDataTask, Test_CSD_DL_SendData_003 )
 {
     /* 输入码流配置 */
@@ -360,17 +286,7 @@ TEST_F( Test_CSD_DL_ProcDataTask, Test_CSD_DL_SendData_003 )
 
 }
 
-/*******************************************************************
-测试用例编号      :  Test_CSD_DL_SendData_004
-测试用例标题      :  CSD_DL_ProcDataTask中CSD_DL_SendData,
-                     C核传送过来的数据指针为空
-预期结果          :  打印数据指针为空异常信息，终止流程
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_DL_ProcDataTask, Test_CSD_DL_SendData_004 )
 {
     CST_CSD_DATA_IND_STRU               stDLData;
@@ -419,16 +335,7 @@ TEST_F( Test_CSD_DL_ProcDataTask, Test_CSD_DL_SendData_004 )
 
 }
 
-/*******************************************************************
-测试用例编号      :  Test_CSD_DL_SendData_005
-测试用例标题      :  CSD_DL_SendData中IMM_ZcLargeMemAlloc申请数据内存失败VOS_NULL_PTR
-预期结果          :  打印内存申请失败异常，释放C核数据
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_DL_ProcDataTask, Test_CSD_DL_SendData_005 )
 {
     CST_CSD_DATA_IND_STRU               stDLData;
@@ -480,16 +387,7 @@ TEST_F( Test_CSD_DL_ProcDataTask, Test_CSD_DL_SendData_005 )
 
 }
 
-/*******************************************************************
-测试用例编号      :  Test_CSD_DL_SendData_006
-测试用例标题      :  CSD_DL_SendData中AT_UsbModemWriteData写数据内存失败
-预期结果          :  释放A核内存和C核数据内存
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_DL_ProcDataTask, Test_CSD_DL_SendData_006 )
 {
     CST_CSD_DATA_IND_STRU               stDLData;
@@ -548,16 +446,7 @@ TEST_F( Test_CSD_DL_ProcDataTask, Test_CSD_DL_SendData_006 )
 
 }
 
-/*******************************************************************
-测试用例编号      :  Test_CSD_DL_ProcDataTask_007
-测试用例标题      :  发送数据成功
-预期结果          :  发送数据成功使能DICC中断
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_DL_ProcDataTask, Test_CSD_DL_ProcDataTask_007 )
 {
     CST_CSD_DATA_IND_STRU               stDLData;
@@ -616,16 +505,7 @@ TEST_F( Test_CSD_DL_ProcDataTask, Test_CSD_DL_ProcDataTask_007 )
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_CSD_DL_ProcIsr_001
-测试用例标题      : 调用中断响应函数
-预期结果          : 释放信号量，关闭中断
-修改历史     :
-1.日   期  : 2011-12-09
-  作   者  : w00199382
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F( Test_CSD_DL_ProcDataTask, Test_CSD_DL_ProcIsr_001 )
 {
     /* 输入码流配置 */

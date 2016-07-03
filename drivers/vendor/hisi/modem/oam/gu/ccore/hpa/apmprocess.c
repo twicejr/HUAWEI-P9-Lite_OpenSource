@@ -51,9 +51,7 @@ extern "C" {
 #include "psregrpt.h"
 
 /* Macro of log */
-/*lint -e767 修改人: m00128685；检视人：l46160；原因简述：打点日志文件宏ID定义*/
 #define    THIS_FILE_ID        PS_FILE_ID_APM_PROCESS_C
-/*lint +e767 修改人: m00128685；检视人：l46160*/
 
 
 #define     APM_WAITING_LOOP_TIMES      (50)
@@ -159,25 +157,7 @@ VOS_UINT32 SHPA_Ldf_Hifi_Saving(VOS_VOID)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : GHPA_GetRealFN
- 功能描述  : 获取当前实际的帧号
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2006年4月26日
-    作    者   : 阳思聪 y49634
-    修改内容   : 新生成函数 问题单号 A32D02824
-
-  1.日    期   : 2012年3月14日
-    作    者   : 阳思聪 y49634
-    修改内容   : 戴明扬要求从GAS移植，
-
-*****************************************************************************/
 VOS_UINT32 GHPA_GetRealFN(MODEM_ID_ENUM_UINT16 enModemID)
 {
     VOS_UINT16  usFnLow  = 0;
@@ -217,16 +197,7 @@ VOS_UINT32 SHPA_ReadWTxPower( VOS_VOID)
     return 0;
 }
 
-/*****************************************************************************
- 函 数 名  : APM_ReportEvent
- 功能描述  : 通过调用OM提供的接口上报状态事件
- 输入参数  : ulEventData:  事件数据
- 输出参数  : 无
- 返 回 值  : VOS_VOID
 
- 修改历史  : m00128685
-             2009-03-25
-*****************************************************************************/
 VOS_VOID APM_ReportEvent(VOS_UINT ulEventData)
 {
     DIAG_EVENT_IND_STRU                 stEventInd;
@@ -244,24 +215,7 @@ VOS_VOID APM_ReportEvent(VOS_UINT ulEventData)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SHPA_AcitiveDSP
- 功能描述  : 完成DSP解复位，并配置对应的NV信息功能
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年3月29日
-    作    者   : L46160
-    修改内容   : 新生成函数
-  2.日    期   : 2012年5月12日
-    作    者   : s00207770
-    修改内容   : DSP上移适配
-
-*****************************************************************************/
 VOS_UINT32 SHPA_ActiveDSP(VOS_RATMODE_ENUM_UINT32 enRatMode, MODEM_ID_ENUM_UINT16 enModemId)
 {
     UPHY_OAM_ACTIVE_UPHY_REQ_STRU      *pstMsg;
@@ -423,26 +377,7 @@ VOS_UINT32 SHPA_ActiveDSP(VOS_RATMODE_ENUM_UINT32 enRatMode, MODEM_ID_ENUM_UINT1
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : SHPA_LoadPhy
- 功能描述  : Init one memory control block
- 输入参数  : VOS_UINT32 ulSenderPid
-             VOS_UINT16 usSysMode
- 输出参数  : 无
- 返 回 值  : VOS_UINT16 VOS_TRUE
-                        VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   :
-    作    者   :
-    修改内容   : 新生成函数
-  2.日    期   : 2012年5月12日
-    作    者   : s00207770
-    修改内容   : DSP上移适配
-
-*****************************************************************************/
 VOS_UINT16 SHPA_LoadPhy( PHY_OAM_SET_WORK_MODE_REQ_STRU stSetWorkMode )
 {
     PHY_OAM_SET_WORK_MODE_REQ_STRU      *pstSetWorkModeReq;
@@ -736,20 +671,7 @@ VOS_UINT32 APM_InitSystemAddr(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : HPA_DspAcitveCnf
- 功能描述  : Handle the DSP Active Cnf Msg
- 输入参数  : PHY_OAM_MSG_STRU *pstRcvMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   :
-    作    者   :
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID HPA_DspAcitveCnf(PHY_OAM_MSG_STRU *pstMsg)
 {
     UPHY_OAM_ACTIVE_UPHY_CNF_STRU   *pstDspMsg;
@@ -779,20 +701,7 @@ VOS_VOID HPA_DspAcitveCnf(PHY_OAM_MSG_STRU *pstMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : HPA_DspLoadCnf
- 功能描述  : Handle the DSP Load Cnf Msg
- 输入参数  : PHY_OAM_MSG_STRU *pstRcvMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   :
-    作    者   :
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID HPA_DspLoadCnf(PHY_OAM_MSG_STRU *pstMsg)
 {
     PHY_OAM_SET_WORK_MODE_CNF_STRU      *pstDspMsg;
@@ -821,24 +730,7 @@ VOS_VOID HPA_DspLoadCnf(PHY_OAM_MSG_STRU *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : HPA_ApmMsgPIDProc
- 功能描述  : Put Msg from ARM into ARM -> DSP APM mailbox
- 输入参数  : MsgBlock *pstRcvMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   :
-    作    者   :
-    修改内容   : 新生成函数
-  2.日    期   : 2012年5月18日
-    作    者   : s00207770
-    修改内容   : DSP上移，添加加载PHY成功后处理
-
-*****************************************************************************/
 VOS_VOID HPA_ApmMsgPIDProc(MsgBlock *pstRcvMsg)
 {
 #ifdef FEATURE_DSP2ARM
@@ -893,23 +785,7 @@ VOS_VOID APM_InitAPMGlobal(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DualModem_DDRQosUpdate
- 功能描述  : CCPU通信组件DDR调频接口
- 输入参数  : MODEM_ID_ENUM_UINT16 enModem                       当前Modem Id
-             DUALMODEM_SCENE_TYPE_ENUM_UINT16   enSceneType     投票通道类型
-             VOS_UINT32 ulValue                                 DDR实际投票频率
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月11日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DualModem_DDRQosUpdate(MODEM_ID_ENUM_UINT16 enModem, DUALMODEM_SCENE_TYPE_ENUM_UINT16 enSceneType,  VOS_UINT32 ulValue)
 {
     VOS_INT                             lIntLevel;
@@ -1081,21 +957,7 @@ VOS_VOID HPA_ShowSystemAddr(VOS_VOID)
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : HPA_ShowDDRFreqInfo
- 功能描述  : CCPU通信组件DDR调频信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月11日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID HPA_ShowDDRFreqInfo(VOS_VOID)
 {
     VOS_INT                             lIntLevel;
@@ -1122,21 +984,7 @@ VOS_VOID HPA_ShowDDRFreqInfo(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : HPA_ShowDDRFreqTrack
- 功能描述  : CCPU通信组件DDR投票轨迹信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月11日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID HPA_ShowDDRFreqTrack(VOS_VOID)
 {
     VOS_INT                             lIntLevel;

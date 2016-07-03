@@ -1,24 +1,4 @@
-/************************************************************************
-*                                                                      *
-*                             ppp_fsm.c                                *
-*                                                                      *
-*  Project Code:       VRP3.0                                          *
-*  Create Date:        2000/04/04                                      *
-*  Author:             Deng Yi Ou                                      *
-*  Modify Date:                                                        *
-*  Document:                                                           *
-*  Function:           PPP中状态机模块的所有函数                       *
-*  Others:                                                             *
-*----------------------------------------------------------------------*
-*                                                                      *
-*  Copyright 2000-2002 VRP3.0 Team Beijing Institute HuaWei Tech, Inc. *
-*                      ALL RIGHTS RESERVED                             *
-*                                                                      *
-*----------------------------------------------------------------------*
-*                                                                      *
-*   这个文件包含了PPP中状态机模块的所有函数                            *
-*                                                                      *
-************************************************************************/
+
 
 
 
@@ -216,21 +196,7 @@ VOID PPP_FSM_RleseCode(PPPFSM_S * pstFsm, VOS_UINT32 ulLcpCode, VOS_UINT32 ulIpc
 
 
 
-/*****************************************************************************
- 函 数 名  : PPP_FSM_OpenedStateRenegoStart
- 功能描述  : LCP状态机在Opened状态开始重协商的处理函数
- 输入参数  : PPPFSM_S *pstFsm
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月16日
-    作    者   : y00125257
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_FSM_OpenedStateRenegoStart(PPPFSM_S *pstFsm)
 {
     PPPINFO_S* pstPppInfo = NULL;
@@ -417,22 +383,7 @@ VOID PPP_FSM_SetRetransmitTimer( PPPFSM_S *pstFsm)
 }
 
 
-/*****************************************************************************
- 函 数 名  : PPP_FSM_StartRestartTimer
- 功能描述  : 启动Restart Timer定时器
- 输入参数  : pstFsm   -- 状态机
-             ucPppId  -- PppId
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月25日
-    作    者   : d00314740
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_FSM_StartRestartTimer(VOS_UINT8 ucPppId)
 {
     (VOS_VOID)VOS_StartRelTimer((HTIMER*)&(g_hRestartTimer), MID_PPPC, PPP_DEFTIMEOUTTIME,
@@ -445,22 +396,7 @@ VOS_VOID PPP_FSM_StartRestartTimer(VOS_UINT8 ucPppId)
 
 /* 外部事件处理 */
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：状态机接收外部事件.事件包括：Up、Down、Open、Close         *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-*                ulCmd:命令字,可以为如下值:                                 *
-*                      PPP_EVENT_FSM_DOWN:下层Down                          *
-*                      PPP_EVENT_FSM_UP:下层Up                              *
-*                      PPP_EVENT_FSM_OPEN:Open事件                          *
-*                      PPP_EVENT_FSM_CLOSE:Down事件                         *
-*                pPara:事件的参数,为NULL                                    *
-* OUTPUT       ：                                                           *
-* RETURN       ：NULL                                                       *
-* CALLED BY    ：各子协议的事件接收函数(如PPP_LCP_ReceiveEventFromCore)     *
-****************************************************************************/
+
 
 VOS_VOID PPP_FSM_ReceiveEvent (PPPFSM_S* pstFsm, VOS_UINT32 ulCmd, CHAR *pPara)
 {
@@ -492,16 +428,7 @@ VOS_VOID PPP_FSM_ReceiveEvent (PPPFSM_S* pstFsm, VOS_UINT32 ulCmd, CHAR *pPara)
 
 
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：状态机接收到Up事件                                         *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm:状态机数据结构                                      *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_FSM_ReceiveEvent                                       *
-****************************************************************************/
+
 VOID PPP_FSM_LowerUp_TestStub(PPPFSM_S *pstFsm)
 {
     /* 该事件的态转换图 */
@@ -583,16 +510,7 @@ VOID PPP_FSM_LowerUp_TestStub(PPPFSM_S *pstFsm)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：状态机接收到Up事件                                         *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm:状态机数据结构                                      *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_FSM_ReceiveEvent                                       *
-****************************************************************************/
+
 VOID PPP_FSM_LowerUp(PPPFSM_S *pstFsm)
 {
     /* 该事件的态转换图 */
@@ -658,16 +576,7 @@ VOID PPP_FSM_LowerUp(PPPFSM_S *pstFsm)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：状态机接收到Down事件                                       *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm:状态机数据结构                                      *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_FSM_ReceiveEvent                                       *
-****************************************************************************/
+
 VOID PPP_FSM_LowerDown(PPPFSM_S *pstFsm)
 {
     /* 该事件的态转换图 */
@@ -754,16 +663,7 @@ VOID PPP_FSM_LowerDown(PPPFSM_S *pstFsm)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：状态机接收到Open事件                                       *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm:状态机数据结构                                      *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_FSM_ReceiveEvent                                       *
-****************************************************************************/
+
 VOID PPP_FSM_Open(PPPFSM_S *pstFsm)
 {
     /* 该事件的态转换图 */
@@ -857,16 +757,7 @@ VOID PPP_FSM_Open(PPPFSM_S *pstFsm)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：状态机接收到Close事件                                      *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm:状态机数据结构                                      *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_FSM_ReceiveEvent                                       *
-****************************************************************************/
+
 VOID PPP_FSM_Close(PPPFSM_S *pstFsm)
 {
     /* 该事件的态转换图 */
@@ -962,24 +853,12 @@ VOID PPP_FSM_Close(PPPFSM_S *pstFsm)
 
 /* 接收报文处理 */
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：FSM接收报文                                                *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm:状态机                                              *
-*                pHead:存放报文内存的头指针,应负责释放这段内存              *
-*                pPacket:报文头位置                                         *
-*                ulLen:报文长度                                             *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：各子协议的接收报文函数                                     *
-****************************************************************************/
+
 VOID PPP_FSM_ReceivePacket (PPPFSM_S* pstFsm,
                             UCHAR*    pHead,
                             UCHAR*    pPacket,
                             VOS_UINT32     ulLen,
-                            VOS_UINT32     ulRPIndex /* Modified by liutao 38563 at 2004-09-22 V800R002 for PPP压缩移植 */
+                            VOS_UINT32     ulRPIndex
 )
 {
     UCHAR ucCode;
@@ -1135,7 +1014,7 @@ VOID PPP_FSM_ReceivePacket (PPPFSM_S* pstFsm,
 
                 /* 可能是协议私有的报文类型 */
                 usRetVal = (pstFsm->pstCallBacks->extcode)(pstFsm, ucCode, ucId, pHead, pPacket,
-                                                         ulCiLen, ulRPIndex);/* Modified by liutao 38563 at 2004-09-22 V800R002 for PPP压缩移植 */
+                                                         ulCiLen, ulRPIndex);
 
 
             }
@@ -1154,20 +1033,7 @@ VOID PPP_FSM_ReceivePacket (PPPFSM_S* pstFsm,
 }
 
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：RCR+或RCR-事件(接收Config Request报文)处理函数             *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm: 状态机                                             *
-*                ucId:   报文ID                                             *
-*                pHead:  存放报文内存的头指针,应负责释放这段内存            *
-*                pPacket:报文头位置                                         *
-*                ulLen:  报文长度                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_FSM_ReceivePacket                                      *
-****************************************************************************/
+
 VOID PPP_FSM_ReceiveConfReq_TestStub(PPPFSM_S *pstFsm,
                             UCHAR     ucId,
                             UCHAR *   pHead,
@@ -1364,10 +1230,8 @@ VOID PPP_FSM_ReceiveConfReq_TestStub(PPPFSM_S *pstFsm,
             break;
 
         case PPP_STATE_OPENED:
-            /* Added start by g00127633 at 2010-12-02 PDSNC05 for DTS2010113004989 兼容江苏现网P90 POS机 */
             PPP_DBG_OK_CNT(PPP_PHOK_1095);
             break;
-            /* Added end by g00127633 at 2010-12-02 PDSNC05 for DTS2010113004989 兼容江苏现网P90 POS机 */
 
         default:
 
@@ -1380,20 +1244,7 @@ VOID PPP_FSM_ReceiveConfReq_TestStub(PPPFSM_S *pstFsm,
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：RCR+或RCR-事件(接收Config Request报文)处理函数             *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm: 状态机                                             *
-*                ucId:   报文ID                                             *
-*                pHead:  存放报文内存的头指针,应负责释放这段内存            *
-*                pPacket:报文头位置                                         *
-*                ulLen:  报文长度                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_FSM_ReceivePacket                                      *
-****************************************************************************/
+
 VOID PPP_FSM_ReceiveConfReq(PPPFSM_S *pstFsm,
                             UCHAR     ucId,
                             UCHAR *   pHead,
@@ -1618,18 +1469,14 @@ VOID PPP_FSM_ReceiveConfReq(PPPFSM_S *pstFsm,
                 PPP_PerfInc(&g_stPppPerfStatistic.ulCcpTotal, PERF_TYPE_PPPC_CCP_NEGO_ATTEMP, pstPppInfo->bEhrpdUser);
             }
 
-            /* Added start by y00202564 at 2012-03-27 for ipv6性能统计,IPv6CP协商尝试次数 */
             else if (PPP_IPV6CP == pstFsm->usProtocol)
             {
                 pstPppInfo = (PPPINFO_S*)pstFsm->pPppInfo;
                 PPPC_INFO_LOG("\r\n PPP_FSM_ReceiveConfReq,IPV6_PerfStatistic Attempt: enter!");
 
-                /*Added start by y00202564 at 2012-04-20 for PCF性能统计,IPv6CP协商尝试次数*/
                 A11_OM_PerfStatisticPCFUnit((VOS_UINT32)PERF_TYPE_PCF_PPPC_IPV6CP_NEGO_REQ_NUM, pstPppInfo->ulPcfIP);
-                /*Added end by y00202564 at 2012-04-20 for PCF性能统计,IPv6CP协商尝试次数*/
 
             }
-            /* Added end by y00202564 at 2012-03-27 for ipv6性能统计,IPv6CP协商尝试次数 */
 
             /* scr */
             PPP_FSM_scr(pstFsm);
@@ -1664,19 +1511,7 @@ VOID PPP_FSM_ReceiveConfReq(PPPFSM_S *pstFsm,
 }
 
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：RCA事件(接收Config Ack报文)处理函数                        *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm: 状态机                                             *
-*                ucId:   报文ID                                             *
-*                pPacket:报文头位置                                         *
-*                ulLen:  报文长度                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_FSM_ReceivePacket                                      *
-****************************************************************************/
+
 VOID PPP_FSM_ReceiveConfAck_TestStub(PPPFSM_S *pstFsm,
                             UCHAR     ucId,
                             UCHAR *   pPacket,
@@ -1831,29 +1666,13 @@ VOID PPP_FSM_ReceiveConfAck_TestStub(PPPFSM_S *pstFsm,
             break;
     }
 
-    /* Added start by ZhangJun HT04406 at 2005-10-11   for PDSN激活优化 */
  #ifdef __PRODUCT_TYPE_PDSN80
-    /* Deleted start by dongenjie 28913 at 2008-03-31 PDSN V9R7 Demo for 移植 */
-    /* Deleted end by dongenjie 28913 at 2008-03-31 PDSN V9R7 Demo for 移植 */
  #endif
-    /* Added end by ZhangJun HT04406 at 2005-10-11   for PDSN激活优化 */
 
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：RCA事件(接收Config Ack报文)处理函数                        *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm: 状态机                                             *
-*                ucId:   报文ID                                             *
-*                pPacket:报文头位置                                         *
-*                ulLen:  报文长度                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_FSM_ReceivePacket                                      *
-****************************************************************************/
+
 VOID PPP_FSM_ReceiveConfAck(PPPFSM_S *pstFsm,
                             UCHAR     ucId,
                             UCHAR *   pPacket,
@@ -2020,19 +1839,7 @@ VOID PPP_FSM_ReceiveConfAck(PPPFSM_S *pstFsm,
 
 
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：RCN事件(接收Config Nak或Rej报文)处理函数                   *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm: 状态机                                             *
-*                ucId:   报文ID                                             *
-*                pPacket:报文头位置                                         *
-*                ulLen:  报文长度                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_FSM_ReceivePacket                                      *
-****************************************************************************/
+
 VOID PPP_FSM_ReceiveConfNakRej_TestStub(PPPFSM_S *pstFsm,
                                UCHAR     ucId,
                                UCHAR     ucCode,
@@ -2175,19 +1982,7 @@ VOID PPP_FSM_ReceiveConfNakRej_TestStub(PPPFSM_S *pstFsm,
 }
 
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：RCN事件(接收Config Nak或Rej报文)处理函数                   *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm: 状态机                                             *
-*                ucId:   报文ID                                             *
-*                pPacket:报文头位置                                         *
-*                ulLen:  报文长度                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_FSM_ReceivePacket                                      *
-****************************************************************************/
+
 VOID PPP_FSM_ReceiveConfNakRej(PPPFSM_S *pstFsm,
                                UCHAR     ucId,
                                UCHAR     ucCode,
@@ -2331,19 +2126,7 @@ VOID PPP_FSM_ReceiveConfNakRej(PPPFSM_S *pstFsm,
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：RXJ+或RXJ-事件(接收Code Rej报文)处理函数                   *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm: 状态机                                             *
-*                ucId:   报文ID                                             *
-*                pPacket:报文头位置                                         *
-*                ulLen:  报文长度                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_FSM_ReceivePacket                                      *
-****************************************************************************/
+
 VOID PPP_FSM_ReceiveCodeRej(PPPFSM_S *pstFsm,
                             UCHAR     ucId,
                             UCHAR *   pPacket,
@@ -2567,18 +2350,7 @@ VOID PPP_FSM_ReceiveCodeRej(PPPFSM_S *pstFsm,
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：RXJ+或RXJ-事件(接收Protocol Rej报文)处理函数               *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm: 状态机                                             *
-*                pPacket:报文头位置                                         *
-*                ulLen:  报文长度                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_FSM_ReceivePacket                                      *
-****************************************************************************/
+
 VOID PPP_FSM_ReceiveProtocolRej(PPPFSM_S *pstFsm,
                                 UCHAR *   pPacket,
                                 VOS_UINT32     ulLen)
@@ -2682,18 +2454,7 @@ VOID PPP_FSM_ReceiveProtocolRej(PPPFSM_S *pstFsm,
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：RXJ+事件(LCP Protocol Rej报文中指定拒绝该协议)处理函数     *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm: 状态机                                             *
-*                pPacket:报文头位置                                         *
-*                ulLen:  报文长度                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_FSM_ReceiveProtocolRej                                 *
-****************************************************************************/
+
 VOID PPP_FSM_RXJ_Plus(PPPFSM_S *pstFsm)
 {
     /* 该事件的状态转换图 */
@@ -2750,18 +2511,7 @@ VOID PPP_FSM_RXJ_Plus(PPPFSM_S *pstFsm)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：RXJ-事件((LCP Protocol Rej报文中指定拒绝该协议))处理函数   *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm: 状态机                                             *
-*                pPacket:报文头位置                                         *
-*                ulLen:  报文长度                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_FSM_ReceiveProtocolRej                                 *
-****************************************************************************/
+
 VOID PPP_FSM_RXJ_Sub(PPPFSM_S *pstFsm)
 {
     /* 该事件的状态转换图 */
@@ -2855,17 +2605,7 @@ VOID PPP_FSM_RXJ_Sub(PPPFSM_S *pstFsm)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：RTR事件(接收Terminate Req报文)处理函数                     *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm: 状态机                                             *
-*                ucId:   报文ID                                             *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_FSM_ReceivePacket                                      *
-****************************************************************************/
+
 VOID PPP_FSM_ReceiveTermReq(PPPFSM_S *pstFsm, UCHAR ucId)
 {
     /* 该事件的状态转换图 */
@@ -2982,9 +2722,7 @@ VOID PPP_FSM_ReceiveTermReq(PPPFSM_S *pstFsm, UCHAR ucId)
             {
                 PPP_FSM_SetRetransmitTimer(pstFsm);
 
-                /* BEGIN: Added for PN:解决ppp协商定时器资源挂死问题 by wangyong 00138171, 2013/12/21 */
                 (VOID)PPP_NodeAdd(pstPppInfo->ulRPIndex, 0, PPP_NEGO_LIST_NODE_MS_RELEASE_START);
-                /* END:   Added for PN:解决ppp协商定时器资源挂死问题 by wangyong 00138171, 2013/12/21 */
 
                 /* 启动restart timer */
                 if (PPPC_PPP_ID_FOR_ACCESS_AUTH == pstPppInfo->ulRPIndex)
@@ -3045,17 +2783,7 @@ VOID PPP_FSM_ReceiveTermReq(PPPFSM_S *pstFsm, UCHAR ucId)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：RTA事件(接收Terminate Ack报文)处理函数                     *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm: 状态机                                             *
-*                ucId:   报文ID                                             *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_FSM_ReceivePacket                                      *
-****************************************************************************/
+
 VOID PPP_FSM_ReceiveTermAck(PPPFSM_S *pstFsm, UCHAR ucId)
 {
     /* 该事件的状态转换图 */
@@ -3185,20 +2913,7 @@ VOID PPP_FSM_ReceiveTermAck(PPPFSM_S *pstFsm, UCHAR ucId)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：RUC事件(接收到不支持或不能识别的报文)处理函数              *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm: 状态机                                             *
-*                ucId:   报文ID                                             *
-*                pHead:  存放报文内存的头指针,应负责释放这段内存            *
-*                pPacket:报文头位置                                         *
-*                ulLen:  报文长度                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_FSM_ReceivePacket                                      *
-****************************************************************************/
+
 VOID PPP_FSM_ReceiveUnknownCode(PPPFSM_S *pstFsm,
                                 UCHAR     ucId,
                                 UCHAR *   pHead,
@@ -3254,16 +2969,7 @@ VOID PPP_FSM_ReceiveUnknownCode(PPPFSM_S *pstFsm,
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：定时器超时处理函数,处理TO+和TO-事件                        *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pFsm: 状态机                                               *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：定时器                                                     *
-****************************************************************************/
+
 //[EBCC]2542
 VOID PPP_FSM_TimeOut(VOID *pFsm)
 {
@@ -3318,7 +3024,6 @@ VOID PPP_FSM_TimeOut(VOID *pFsm)
                           ulRPIndex,
                           usProtocol);
 
-    /* BEGIN: Added for PN:PDSN融合 by wangyong 00138171, 2013/1/19 */
     if (usProtocol == PPP_VSNCP)
     {
         ulPDNIndex = ulRPIndex;
@@ -3344,7 +3049,6 @@ VOID PPP_FSM_TimeOut(VOID *pFsm)
             return;
         }
     }
-    /* END:   Added for PN:PDSN融合 by wangyong 00138171, 2013/1/19 */
 
     if (ulRPIndex <= PPP_MAX_USER_NUM)
     {
@@ -3397,7 +3101,6 @@ VOID PPP_FSM_TimeOut(VOID *pFsm)
         }
         pstFsm = &(((PPPIPV6CPINFO_S*)(pstPppInfo->pstIpV6cpInfo))->stFsm);
     }
-    /* BEGIN: Added for PN:PDSN融合 by wangyong 00138171, 2013/1/19 */
     else if (PPP_VSNCP == usProtocol)
     {
         /*lint -e613*/
@@ -3410,7 +3113,6 @@ VOID PPP_FSM_TimeOut(VOID *pFsm)
         /*lint +e613*/
         pstFsm = &(stVSNCPInfo.stFsm);
     }
-    /* END:   Added for PN:PDSN融合 by wangyong 00138171, 2013/1/19 */
     else if (PPP_CCP == usProtocol)
     {
         if (NULL == pstPppInfo->pstCcpInfo)
@@ -3425,9 +3127,7 @@ VOID PPP_FSM_TimeOut(VOID *pFsm)
     }
 
 
-    /* Modified start by g34667 at 2004-07-20 R001B03D005 for D03087
-       在定时器消息入队列还没有处理期间PPP控制块可能被删除, 定时器消息无意义
-     */
+    
     if (VOS_NULL_PTR == pstFsm)
     {
         PPPC_WARNING_LOG2("pstFsm is NULL", usProtocol, ulRPIndex);
@@ -3634,32 +3334,16 @@ VOID PPP_FSM_TimeOut(VOID *pFsm)
         }
     } /* ucEvent == 0 */
 
-    /* BEGIN: Added for PN:PDSN融合 by wangyong 00138171, 2013/1/19 */
     if (PPP_VSNCP == usProtocol)
     {
         /* vsncp状态机处理完毕后刷新pdn上下文中的状态信息 */
         PPP_VSNCP_FreshPDNContext(&stVSNCPInfo, pstPDNContext, pstPppInfo);
     }
-    /* END:   Added for PN:PDSN融合 by wangyong 00138171, 2013/1/19 */
 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_FSM_VSTimeOut
- 功能描述  : 版本能力指示报文定时器超时处理函数
- 输入参数  : VOID *pFsm
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月15日
-    作    者   : z00129699
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_FSM_VSTimeOut(VOS_VOID *pFsm)
 {
     VOS_UINT32      ulMagic     = 0;
@@ -3724,26 +3408,7 @@ VOS_VOID PPP_FSM_VSTimeOut(VOS_VOID *pFsm)
 
 /* 发送报文函数 */
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：发送一个已经组装好内容的报文.函数调用                      *
-*                PPP_Shell_GetPacketFromCore函数发送报文,                   *
-*                一个重要前提是:pPacket前面预留有足够的空间(8字节)          *
-*                用于打报文头                                               *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm    :状态机                                          *
-*                ucCode    :报文代码,如CONFREQ等                            *
-*                ucId      :报文ID                                          *
-*                pHead     :报文所在内存的首地址                            *
-*                pPacket   :字符数组形式存在的报文                          *
-*                ulLen     :报文长度                                        *
-*                usProtocol:PPP协议号                                       *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_FSM_SendPacketByCode、PPP_FSM_SendConfigReq、          *
-*                PPP_LCP_SendEchoRequest、PPP_Core_ReceiveUnknownProtocol   *
-****************************************************************************/
+
 VOID PPP_FSM_SendPacket(PPPFSM_S *pstFsm,
                         UCHAR     ucCode,
                         UCHAR     ucId,
@@ -3901,22 +3566,7 @@ VOID PPP_FSM_SendPacket(PPPFSM_S *pstFsm,
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：按协议号创建并发送一个报文                                 *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm    :状态机                                          *
-*                ucCode    :报文代码,如CONFREQ等                            *
-*                ucId      :报文ID                                          *
-*                pHead     :报文所在内存的首地址                            *
-*                pPacket   :字符数组形式存在的报文                          *
-*                ulLen     :报文长度                                        *
-*                usProtocol:PPP协议号                                       *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_FSM_str、PPP_FSM_sta                                   *
-****************************************************************************/
+
 VOID PPP_FSM_SendPacketByCode(PPPFSM_S *pstFsm,
                               UCHAR     ucCode,
                               UCHAR     ucId)
@@ -3943,30 +3593,19 @@ VOID PPP_FSM_SendPacketByCode(PPPFSM_S *pstFsm,
      |--------- ulOffset ------------|
     pHead                           pPacket
      */
-    /* BEGIN: Added for PN:PDSN融合 by wangyong 00138171, 2013/1/19 */
     if (PPP_VSNCP == pstFsm->usProtocol)
     {
         /* 组织报文内容 */
         ulLen = (VSNCP_OPTION_PDNID_LEN + VSNCP_3GPP2_OUI_LEN);
         PPP_VSNCP_Termaddci(pstFsm, pPacket);
     }
-    /* END:   Added for PN:PDSN融合 by wangyong 00138171, 2013/1/19 */
 
     PPP_FSM_SendPacket(pstFsm, ucCode, ucId, pHead, pPacket, ulLen);
 
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：创建并发送一个Config Request报文                           *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm    :状态机                                          *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：执行scr动作的宏PPP_FSM_scr                                 *
-****************************************************************************/
+
 VOID PPP_FSM_SendConfigReq(PPPFSM_S *pstFsm)
 {
     UCHAR *pPacket;
@@ -4038,21 +3677,7 @@ VOID PPP_FSM_SendConfigReq(PPPFSM_S *pstFsm)
 
 /* EAP-dev */
 
-/*****************************************************************************
- 函 数 名  : PPP_FSM_SendVendorSpecific
- 功能描述  : 创建并发送一个版本能力协商报文
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月15日
-    作    者   : z00129699
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_FSM_SendVendorSpecific(PPPFSM_S *pstFsm , UCHAR ucid,VOS_UINT32 ulMagic, UCHAR ucKind)
 {
     UCHAR *pHead, *pPacket;
@@ -4228,20 +3853,7 @@ VOS_VOID PPP_FSM_SendVendorSpecific(PPPFSM_S *pstFsm , UCHAR ucid,VOS_UINT32 ulM
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2010/01/06                                                 *
-* CREATED BY   ：zhaichao                                                *
-* FUNCTION     ：处理接收到得能力协商报文             *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm: 状态机                                             *
-*                ucId:   报文ID                                             *
-*                pHead:  存放报文内存的头指针,应负责释放这段内存            *
-*                pPacket:报文头位置                                         *
-*                ulLen:  报文长度                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_FSM_ReceivePacket                                      *
-****************************************************************************/
+
 VOS_VOID PPP_FSM_ReceiveVendorSpecific(PPPFSM_S *pstFsm,
                                                 UCHAR     ucId,
                                                 UCHAR *   pHead,
@@ -4400,7 +4012,6 @@ VOS_VOID PPP_FSM_ReceiveVendorSpecific(PPPFSM_S *pstFsm,
 
                 PPPC_INFO_LOG4("\r\n PPP_FSM_ReceiveVendorSpecific: ucVersion[%u] Capality[%x][%x][%x]",
                              ucVersion, aucCapality[0], aucCapality[1], aucCapality[2]);
-                /* for pc-lint, lint提示capality未是用, 这是因为PPPC_INFO_LOG被define为空了 */
                 (VOS_VOID)aucCapality;
 
                 /* MS没有IPCP NAK HANDLING能力, 也没有上报过此能力
@@ -4528,16 +4139,7 @@ VOS_VOID PPP_FSM_ReceiveVendorSpecific(PPPFSM_S *pstFsm,
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：状态机初始化                                               *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm    :状态机                                          *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：各子协议的初始化函数(如PPP_LCP_Init)                       *
-****************************************************************************/
+
 VOID PPP_FSM_Init(PPPFSM_S *pstFsm)
 {
     PPPINFO_S *pstPppInfo;

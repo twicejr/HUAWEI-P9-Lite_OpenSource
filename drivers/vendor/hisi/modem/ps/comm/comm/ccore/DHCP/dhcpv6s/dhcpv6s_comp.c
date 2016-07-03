@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : dhcpv6_proc.c
-  版 本 号   : 初稿
-  作    者   : zhoujunping
-  生成日期   : 2008年12月12日
-  最近修改   :
-  功能描述   : DHCPV6
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2008年12月12日
-    作    者   : zhoujunping
-    修改内容   : 生成
-
-******************************************************************************/
 #include "dhcp_inc.h"
 #include "dhcpc_def.h"
 #include "dhcpv6_proc.h"
@@ -99,18 +82,7 @@ ULONG DHCPV6S_OmInitial()
     return VOS_OK;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6S_LocalMemInit
- *  初稿完成:       2012-08-02
- *  作    者:       y00170683
- *  函数功能:       DHCPV6S本地内存初始化
- *  输入参数:
- *  输出参数:       无
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 ULONG DHCPV6S_LocalMemInit()
 {
     /* 申请收消息缓存 */
@@ -135,21 +107,7 @@ ULONG DHCPV6S_LocalMemInit()
 
 #ifdef __LINUX_PLATFORM__
 
-/*****************************************************************************
- 函 数 名  : DHCPV6S_GetSelfCompInfo
- 功能描述  : 获取本组件相关信息
- 输入参数  : DMS_COMMID_T myCSI
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月14日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6S_GetSelfCompInfo(DMS_COMMID_T myCSI )
 {
     g_stDhcpv6sComInfo.ullSelfCsi = PSM_Inf_GetSelfCSI(E_COMP_TYPE_DSV6);
@@ -199,21 +157,7 @@ VOID DHCPV6S_ScheduleInit( DMS_COMMID_T ullCpi )
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : DHCPV6S_CommInit1
- 功能描述  : 第二阶段公共初始化
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月14日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6S_CommInit1(  )
 {
     ULONG ulRet = VOS_OK;
@@ -237,41 +181,13 @@ ULONG DHCPV6S_CommInit1(  )
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6S_CommInit2
- 功能描述  : 第二阶段公共初始化
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月14日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6S_CommInit2(  )
 {
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6S_CommInit3
- 功能描述  : 第三阶段公共初始化
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月14日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6S_CommInit3( )
 {
     ULONG ulReturn = 0;
@@ -314,21 +230,7 @@ VOID DHCPV6S_ProcPfMsg(VOID* pMsg)
 
 #ifdef __LINUX_PLATFORM__
 
-/*****************************************************************************
- 函 数 名  : DHCPV6S_CompMsgDistribute
- 功能描述  : 组件消息分发函数
- 输入参数  : VOID* pMsg
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月14日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6S_CompMsgDistribute(ULONG ulMsgType, VOID* pMsg )
 {
     if ( NULL == pMsg )
@@ -356,24 +258,7 @@ ULONG DHCPV6S_CompMsgDistribute(ULONG ulMsgType, VOID* pMsg )
 }
 
 #define __DHCPV6S_COMP_FRAME____________
-/*****************************************************************************
- 函 数 名  : DHCPV6S_CompConstruct
- 功能描述  : DHCPC组件构造函数
- 输入参数  : RTF_COMP_CONSTRUCT_STAGE_E eConstructStage
-             DMS_COMMID_T myCSI
-             DMS_COMMID_T myCPI
-             VOID* pThis
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月14日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6S_CompConstruct( RTF_COMP_CONSTRUCT_STAGE_E eConstructStage,
                             DMS_COMMID_T myCSI, DMS_COMMID_T myCPI, VOID* pThis )
 {
@@ -438,44 +323,14 @@ ULONG DHCPV6S_CompConstruct( RTF_COMP_CONSTRUCT_STAGE_E eConstructStage,
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6S_CompDestruct
- 功能描述  : DHCPC组件析构函数
- 输入参数  : DMS_COMMID_T myPid
-             VOID* pThis
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月14日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6S_CompDestruct( DMS_COMMID_T myPid, VOID* pThis )
 {
     vos_printf("Destruct Component DHCPS\r\n");
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6S_CompMsgProc
- 功能描述  : DHCPC组件消息处理函数
- 输入参数  : VOID* pMsg
-             VOID* pThis
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月14日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6S_CompMsgProc(VOID* pMsg, VOID* pThis)
 {
     DMS_IID_T recvIId;

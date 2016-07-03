@@ -103,13 +103,11 @@ VOS_VOID CNAS_HSM_ProcessBufferMsg(VOS_VOID)
 
     ucOldBuffMsgNum = CNAS_HSM_GetCacheMsgNum();
 
-    /* Modified by w00176964 for CNASÄÚ´æ²Ã¼ô, 2015-9-18, begin */
     if (0 < ucOldBuffMsgNum)
     {
         /* Allocate memory to copy the buffer message */
         pstEntryMsg = (CNAS_HSM_MSG_STRU *)PS_MEM_ALLOC(UEPS_PID_HSM, sizeof(CNAS_HSM_MSG_STRU));
     }
-    /* Modified by w00176964 for CNASÄÚ´æ²Ã¼ô, 2015-9-18, end */
 
     if (VOS_NULL_PTR == pstEntryMsg)
     {
@@ -281,21 +279,7 @@ VOS_UINT32  CNAS_HSM_InitTask(VOS_VOID)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_InitPid
-Description     :   The init function of HSM module PID
-Input parameters:   enInitPhase----the init phase
-Outout parameters:  None
-Return Value    :   VOS_UINT32
 
-Modify History  :
-1)  Date           : 2015-01-27
-    Author         : w00176964
-    Modify content : Create
-2)  Date           : 2015-09-30
-    Author         : y00307564
-    Modify content : DTS2015082403731 Ôö¼Ó¿¨×´Ì¬×´Ì¬ÉÏ±¨×¢²áº¯Êý
-*****************************************************************************/
 
 VOS_UINT32 CNAS_HSM_InitPid(
     enum VOS_INIT_PHASE_DEFINE         enInitPhase

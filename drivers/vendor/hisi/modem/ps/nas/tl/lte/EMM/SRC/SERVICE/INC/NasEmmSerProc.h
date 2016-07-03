@@ -79,7 +79,7 @@ extern "C" {
 #define NAS_EMM_TYPE_OF_IDENTITY_TMSI_PTMSI_MTMSI   (0x04)
 #define NAS_EMM_EXTENDED_SER_REQ_CSFB_RSP_IEI       (0xB0)
 
-#define NAS_EMM_DISCARD_ERABM_RESET_REQ_MAX_CNT   3
+#define NAS_EMM_DISCARD_ERABM_RESET_REQ_MAX_CNT   10
 
 #define EMM_COUNT_DATA_REQ_LEN(NAS_CN_MSG_LEN)\
         (\
@@ -296,7 +296,6 @@ extern VOS_VOID  NAS_EMM_SER_SERREJ18
 (
     const NAS_EMM_CN_SER_REJ_STRU   *pMsgStru
 );
-/* leixiantiao 00258641 ΩµµÕ»¶∏¥‘”∂» begin */
 #if(FEATURE_ON == FEATURE_CSG)
 extern VOS_VOID NAS_EMM_SER_SERREJ25
 (
@@ -311,7 +310,6 @@ extern VOS_VOID NAS_EMM_SER_SERREJ35
 (
     const NAS_EMM_CN_SER_REJ_STRU   *pMsgStru
 );
-/* leixiantiao 00258641 ΩµµÕ»¶∏¥‘”∂» end */
 
 
 extern VOS_VOID  NAS_EMM_SER_SERREJ40

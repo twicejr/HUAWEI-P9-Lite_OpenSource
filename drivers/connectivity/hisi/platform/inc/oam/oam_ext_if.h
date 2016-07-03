@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : oam_ext_if.h
-  版 本 号   : 初稿
-  作    者   : 康国昌
-  生成日期   : 2012年9月20日
-  最近修改   :
-  功能描述   : oam对外公共接口头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年9月20日
-    作    者   : 康国昌
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __OAM_EXT_IF_H__
 #define __OAM_EXT_IF_H__
@@ -304,6 +287,33 @@ extern "C" {
 #define OAM_STAT_GET_STAT_ALL()
 
 #endif
+#elif (_PRE_PRODUCT_ID == _PRE_PRODUCT_ID_HI1102_HOST)
+/* 统计信息宏定义 *//*lint -e506*/ /*lint -e774*/
+#define OAM_STAT_DEV_INCR(_uc_dev_id, _member, _num)
+
+/* 为了对数组下标进行保护，必须要传入数组长度(第4个参数) */
+#define OAM_STAT_DEV_ARRAY_INCR(_uc_dev_id, _member, _uc_array_index, _uc_array_max_size)
+
+#define OAM_STAT_DEV_UPDATE(_uc_dev_id, _member, _uc_q_id, _uc_index, _ul_val)
+
+#define OAM_STAT_DEV_GET_VAL(_uc_dev_id, _member,_pul_val)
+
+#define OAM_STAT_DEV_SET_VAL(_uc_dev_id, _member, _uc_val)
+
+#define OAM_STAT_VAP_INCR(_uc_vap_id, _member, _num) do{ \
+            if (_uc_vap_id < WLAN_VAP_SUPPOTR_MAX_NUM_SPEC)          \
+            {                                                   \
+                g_st_stat_info.ast_vap_stat_info[_uc_vap_id].ul_##_member += (_num);   \
+            }                                                                               \
+        }while(0)
+
+#define OAM_STAT_MGMT_INCR(_uc_vap_id, _uc_mgmt_id, _member)
+
+#define OAM_STAT_USER_INCR(_uc_user_id, _member, _num) 
+
+#define OAM_STAT_TID_INCR(_uc_user_id, _uc_tid_num, _member, _num)
+
+#define OAM_STAT_GET_STAT_ALL() (&g_st_stat_info)
 #else
 #ifdef _PRE_DEBUG_MODE
 /* 统计信息宏定义 *//*lint -e506*/ /*lint -e774*/
@@ -1432,7 +1442,7 @@ typedef struct
     oal_uint32                              ul_rx_mpdu_in_ampdu;    /* 统计周期内接收到属于ampdu的mpdu个数 */
 }oam_user_track_rx_ampdu_stat;
 #endif
-#if (_PRE_PRODUCT_ID == _PRE_PRODUCT_ID_HI1151)
+#if (_PRE_PRODUCT_ID == _PRE_PRODUCT_ID_HI1151)||(_PRE_PRODUCT_ID == _PRE_PRODUCT_ID_HI1102_HOST)
 
 /* 设备级别统计信息结构体 */
 typedef struct
@@ -1665,7 +1675,7 @@ typedef struct
     oal_bool_enum   en_filter_switch;       /* 过滤开关状态 */
 	oal_uint8		uc_recv[3];
 }oam_sdt_stat_info_stru;
-#if (_PRE_PRODUCT_ID == _PRE_PRODUCT_ID_HI1151)
+#if (_PRE_PRODUCT_ID == _PRE_PRODUCT_ID_HI1151)||(_PRE_PRODUCT_ID == _PRE_PRODUCT_ID_HI1102_HOST)
 extern oam_stat_info_stru g_st_stat_info;
 #endif
 extern oam_sdt_stat_info_stru g_st_sdt_stat_info;
@@ -2250,7 +2260,7 @@ extern oal_uint32  oam_stats_report_timer_info_to_sdt(
 extern oal_uint32  oam_stats_report_event_queue_info_to_sdt(
                                     oal_uint8   *puc_event_queue_addr,
                                     oal_uint16    us_event_queue_info_len);
-#if (_PRE_PRODUCT_ID == _PRE_PRODUCT_ID_HI1151)
+#if (_PRE_PRODUCT_ID == _PRE_PRODUCT_ID_HI1151)||(_PRE_PRODUCT_ID == _PRE_PRODUCT_ID_HI1102_HOST)
 
 extern oal_uint32 oam_stats_report_info_to_sdt(oam_ota_type_enum_uint8 en_ota_type);
 extern oal_uint32  oam_report_vap_pkt_stat_to_sdt(oal_uint8 uc_vap_id);
@@ -2358,21 +2368,7 @@ OAL_STATIC OAL_INLINE  oal_switch_enum_uint8 oam_get_log_switch(
 }
 
 
-/*****************************************************************************
- 函 数 名  : oam_event_chan_report
- 功能描述  : 信道改变时间上报接口
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月22日
-    作    者   : zouhongliang
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32  oam_event_chan_report(oal_uint8 uc_channel_num)
 {
     oal_uint8               auc_event[4];

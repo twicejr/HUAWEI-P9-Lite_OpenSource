@@ -125,21 +125,7 @@ CTTF_EHSM_ATTACH_TYPE_MAP_STRU          g_astCttfEhsmAttachTypeMapTbl[] =
 *****************************************************************************/
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_GetCidFromLteBitCid
- 功能描述  : 根据Esm提供的BitCid来转换成APS内部用的CID
- 输入参数  : ulBitCid: bit cid
- 输出参数  : 无
- 返 回 值  : EHMS内部定义的CID值
- 调用函数  :
- 被调函数  :
 
- 修改历史    :
- 1.日    期  : 2015年05月29日
-   作    者  : f00279542
-   修改内容  : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 CNAS_EHSM_GetCidFromLteBitCid(
     VOS_UINT32                          ulBitCid
 )
@@ -167,22 +153,7 @@ VOS_UINT8 CNAS_EHSM_GetCidFromLteBitCid(
  }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_IsPsRatTypeEqual
- 功能描述  : 比较两个ps rat type 是否相同
- 输入参数  : CNAS_CCB_PS_RATTYPE_ENUM_UINT32     enCcbPsRatType
-             APS_EHSM_PS_RATTYPE_ENUM_UINT32     enPsRatType
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史    :
- 1.日    期  : 2015年05月29日
-   作    者  : f00279542
-   修改内容  : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_IsPsRatTypeChanged
 (
     CNAS_CCB_PS_RATTYPE_ENUM_UINT32     enCcbPsRatType,
@@ -199,21 +170,7 @@ VOS_UINT32 CNAS_EHSM_IsPsRatTypeChanged
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_MapCttfErrCode
- 功能描述  : 将Cttf的错误码映射成与APS域的错误码定义
- 输入参数  : ulL4aCause - L4A错误码
- 输出参数  : 无
- 返 回 值  : TAF_PS_CAUSE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 EHSM_APS_CAUSE_ENUM_UINT32 CNAS_EHSM_MapCttfErrCode(
     CNAS_CTTF_EHRPD_ERROR_CODE_ENUM_UINT16   enErrorCode
 )
@@ -235,21 +192,7 @@ EHSM_APS_CAUSE_ENUM_UINT32 CNAS_EHSM_MapCttfErrCode(
 
     return EHSM_APS_CAUSE_UNKNOWN;
 }
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_MapHsmCauseToAps
- 功能描述  : HSM与aps 建联失败err code 映射
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月26日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 VOS_UINT32 CNAS_EHSM_MapHsmCauseToAps(
     EHSM_HSM_RSLT_ENUM_UINT32        enCause
@@ -272,21 +215,7 @@ VOS_UINT32 CNAS_EHSM_MapHsmCauseToAps(
 
     return EHSM_APS_CAUSE_UNKNOWN;
 }
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_MapCttfPdnTypeToEhms
- 功能描述  : EHSM与cttf 建联pdn type 映射
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月26日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_EHSM_PDN_TYPE_ENUM_UINT8 CNAS_EHSM_MapCttfPdnTypeToEhms(
     CNAS_CTTF_EHRPD_PDN_TYPE_ENUM_UINT8                     enCttfPdnType
 )
@@ -308,21 +237,7 @@ CNAS_EHSM_PDN_TYPE_ENUM_UINT8 CNAS_EHSM_MapCttfPdnTypeToEhms(
 
     return CNAS_EHSM_PDN_TYPE_INVALID;
 }
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_MapEhsmPdnTypeToCtty
- 功能描述  : EHSM与cttf 建联pdn type 映射
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月26日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_CTTF_EHRPD_PDN_TYPE_ENUM_UINT8 CNAS_EHSM_MapEhsmPdnTypeToCttf(
     CNAS_EHSM_PDN_TYPE_ENUM_UINT8       enPdnType
 )
@@ -345,21 +260,7 @@ CNAS_CTTF_EHRPD_PDN_TYPE_ENUM_UINT8 CNAS_EHSM_MapEhsmPdnTypeToCttf(
     return CNAS_CTTF_EHRPD_PDN_TYPE_INVALID;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_MapCttfPdnTypeToEhms
- 功能描述  : EHSM与cttf 建联pdn type 映射
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月26日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_EHSM_PDN_TYPE_ENUM_UINT8 CNAS_EHSM_MapApsPdnTypeToEhsm(
     EHSM_APS_PDN_TYPE_ENUM_UINT8        enPdnType
 )
@@ -382,21 +283,7 @@ CNAS_EHSM_PDN_TYPE_ENUM_UINT8 CNAS_EHSM_MapApsPdnTypeToEhsm(
     return CNAS_EHSM_PDN_TYPE_INVALID;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_MapApsPdnTypeToEhsm
- 功能描述  : EHSM与aps 建联pdn type 映射
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月26日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 EHSM_APS_PDN_TYPE_ENUM_UINT8 CNAS_EHSM_MapEhsmPdnTypeToAps(
     CNAS_EHSM_PDN_TYPE_ENUM_UINT8       enPdnType
 )
@@ -419,20 +306,7 @@ EHSM_APS_PDN_TYPE_ENUM_UINT8 CNAS_EHSM_MapEhsmPdnTypeToAps(
     return EHSM_APS_PDN_TYPE_INVALID;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_MapApsPsRatTypeToCcb
- 功能描述  : aps与ccb 建联ps rat type 映射
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月26日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-*****************************************************************************/
 CNAS_CCB_PS_RATTYPE_ENUM_UINT32 CNAS_EHSM_MapApsPsRatTypeToCcb(
     APS_EHSM_PS_RATTYPE_ENUM_UINT32     enApsPsRatType
 )
@@ -455,20 +329,7 @@ CNAS_CCB_PS_RATTYPE_ENUM_UINT32 CNAS_EHSM_MapApsPsRatTypeToCcb(
     return CNAS_CCB_PS_RATTYPE_BUTT;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_MapCttfAttachTyepToEhsm
- 功能描述  : CTTF 与EHSM 建联ATTACH type 映射
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月26日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-*****************************************************************************/
 CNAS_EHSM_ATTACH_TYPE_ENUM_UINT8 CNAS_EHSM_MapCttfAttachTypeToEhsm(
     CNAS_CTTF_EHRPD_ATTACH_TYPE_ENUM_UINT8                  enAttachType
 )
@@ -493,21 +354,7 @@ CNAS_EHSM_ATTACH_TYPE_ENUM_UINT8 CNAS_EHSM_MapCttfAttachTypeToEhsm(
 
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_MapApsAuthTypeToEhsm
- 功能描述  : EHSM与cttf 建联pdn type 映射
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月6日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_EHSM_AUTH_TYPE_ENUM_UINT8 CNAS_EHSM_MapApsAuthTypeToEhsm(
     EHSM_APS_AUTH_TYPE_ENUM_UINT8       enAuthType
 )

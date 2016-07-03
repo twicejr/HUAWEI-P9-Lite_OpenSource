@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasCcCtx.h
-  版 本 号   : 初稿
-  作    者   : s62952
-  生成日期   : 2012年03月03日
-  最近修改   :
-  功能描述   : NasCcCtx.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年03月03日
-    作    者   : s62952
-    修改内容   : 创建文件
-
-******************************************************************************/
 #ifndef _NAS_CC_CTX_H_
 #define _NAS_CC_CTX_H_
 
@@ -30,9 +13,7 @@
 #include "NasCcAirMsg.h"
 
 #include "omringbuffer.h"
-/* Added by wx270776 for OM融合, 2015-7-24, begin */
 #include "NasMntn.h"
-/* Added by wx270776 for OM融合, 2015-7-24, end */
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -57,14 +38,7 @@ extern "C" {
 /*****************************************************************************
   3 枚举定义
 *****************************************************************************/
-/* Added by l00198894 for V9R1 STK升级, 2013/07/11, begin */
-/*****************************************************************************
- 结构名    : NAS_CC_SS_SWITCH_STATE_ENUM
- 结构说明  : CC模块SS补充业务切换状态枚举
- 1.日    期   : 2013年07月11日
-   作    者   : l00198894
-   修改内容   : V9R1 STK升级项目
-*****************************************************************************/
+
 enum NAS_CC_SS_SWITCH_STATE_ENUM
 {
     NAS_CC_SS_SWITCH_IDLE               = 0,                                    /* 当前没有补充业务状态切换 */
@@ -78,7 +52,6 @@ enum NAS_CC_SS_SWITCH_STATE_ENUM
     NAS_CC_SS_SWITCH_STATE_BUTT
 };
 typedef VOS_UINT8 NAS_CC_SS_SWITCH_STATE_ENUM_UINT8;
-/* Added by l00198894 for V9R1 STK升级, 2013/07/11, end */
 
 
 
@@ -101,13 +74,7 @@ typedef VOS_UINT8 NAS_CC_SS_SWITCH_STATE_ENUM_UINT8;
   7 STRUCT定义
 *****************************************************************************/
 
-/*****************************************************************************
- 结构名    : MN_CALL_CUSTOM_CFG_INFO_STRU
- 结构说明  : NVIM项中的MS定制需求信息
- 1.日    期   : 2012年03月03日
-   作    者   : s62952
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucCcbsSupportFlg;                       /*CCBS(遇忙呼叫完成)业务*/
@@ -115,26 +82,13 @@ typedef struct
     VOS_UINT8                           aucReserved[2];
 }NAS_CC_CUSTOM_CFG_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : MN_CALL_MS_CFG_INFO_STRU
- 结构说明  : MS支持的MS配置能力
- 1.日    期   : 2012年03月03日
-   作    者   : s62952
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     NAS_CC_CUSTOM_CFG_INFO_STRU        stCustomCfg;                             /* NVIM中的定制信息 */
 }NAS_CC_MS_CFG_INFO_STRU;
 
-/* Added by l00198894 for V9R1 STK升级, 2013/07/11, begin */
-/*****************************************************************************
- 结构名    : NAS_CC_SS_SWITCH_INFO_STRU
- 结构说明  : CC模块补充业务状态切换信息
-  1.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-*****************************************************************************/
+
 typedef struct
 {
     NAS_CC_SS_SWITCH_STATE_ENUM_UINT8   enHoldState;                            /* 呼叫保持业务切换状态 */
@@ -152,26 +106,13 @@ typedef struct
     NAS_CC_MSG_FACILITY_MT_STRU         stFacility;                             /* 记录网侧下发的FACILITY消息 */
 }NAS_CC_SS_SWITCH_INFO_STRU;
 
-/*****************************************************************************
-结构名    : NAS_CC_SS_CONTROL_STRU
-结构说明  : CC模块SS补充业务控制信息
-1.日    期  : 2013年07月11日
-  作    者  : l00198894
-  修改内容  :
-*****************************************************************************/
+
 typedef struct
 {
     NAS_CC_SS_SWITCH_INFO_STRU          stSwitchInfo;                           /* 通话补充业务状态切换信息 */
 } NAS_CC_SS_CONTROL_STRU;
-/* Added by l00198894 for V9R1 STK升级, 2013/07/11, end */
 
-/*****************************************************************************
- 结构名    : NAS_CC_ERRLOG_CTRL_INFO_STRU
- 结构说明  : NAS_CC_ERRLOG_CTRL_INFO_STRU信息
- 1.日    期   : 2014年10月07日
-   作    者   : f00179208
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucErrLogCtrlFlag;                       /* ERRLOG打开标识 */
@@ -179,13 +120,7 @@ typedef struct
     VOS_UINT16                          usAlmLevel;                             /* 故障告警级别 */
 }NAS_CC_ERRLOG_CTRL_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_CC_ERRLOG_BUFF_INFO_STRU
- 结构说明  : NAS_CC_ERRLOG_BUFF_INFO_STRU信息
- 1.日    期   : 2014年10月07日
-   作    者   : f00179208
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     OM_RING_ID                          pstRingBuffer;                          /* MM层的共享缓存 */
@@ -193,13 +128,7 @@ typedef struct
 }NAS_CC_ERRLOG_BUFF_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_CC_ERRLOG_INFO_STRU
- 结构说明  : NAS_CC_ERRLOG_INFO_STRU信息
- 1.日    期   : 2014年10月07日
-   作    者   : f00179208
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     NAS_CC_ERRLOG_CTRL_INFO_STRU        stCtrlInfo;
@@ -218,25 +147,13 @@ typedef struct
     VOS_UINT8                           aucEntryMsgBuffer[NAS_CC_MAX_MSG_BUFFER_LEN];
 } NAS_CC_ENTRY_MSG_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_CC_CACHE_MSG_INFO_STRU
- 结构说明  : 缓存的消息内容
- 1.日    期   : 2014年12月20日
-   作    者   : b00269685
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     NAS_CC_ENTRY_MSG_STRU               stMsgEntry;     /* 缓存的具体内容 */
 }NAS_CC_CACHE_MSG_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_CC_MSG_QUEUE_STRU
- 结构说明  : 缓存的消息队列
- 1.日    期   : 2014年12月20日
-   作    者   : b00269685
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucCacheMsgNum;                          /* 缓存消息的个数 */
@@ -244,13 +161,7 @@ typedef struct
     NAS_CC_CACHE_MSG_INFO_STRU          astMsgQueue[NAS_CC_MAX_MSG_QUEUE_NUM]; /* CC的消息队列数组，存储的是带通用消息头的消息 */
 } NAS_CC_MSG_QUEUE_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_CC_LOG_BUFFER_MSG_INFO_STRU
- 结构说明  : 用来将缓存消息打印出来，可维可测
- 1.日    期   : 2014年12月20日
-   作    者   : b00269685
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;/* 消息头                                   */ /*_H2ASN_Skip*/
@@ -258,22 +169,11 @@ typedef struct
     NAS_CC_MSG_QUEUE_STRU               stMsgQueue;
 } NAS_CC_LOG_BUFFER_MSG_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_CC_CONTEXT_STRU
- 结构说明  : CC 模块运行上下文
-  1.日    期   : 2012年03月03日
-    作    者   : s62952
-    修改内容   : 新建
-  2.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目, 增加CC补充业务控制信息
-*****************************************************************************/
+
 typedef struct
 {
     NAS_CC_MS_CFG_INFO_STRU             stMsCfgInfo;                            /* MS的配置信息 */
-    /* Added by l00198894 for V9R1 STK升级, 2013/07/11, begin */
     NAS_CC_SS_CONTROL_STRU              stSsControl;                            /* CC补充业务控制信息 */
-    /* Added by l00198894 for V9R1 STK升级, 2013/07/11, end */
 
     NAS_CC_ERRLOG_INFO_STRU             stErrlogInfo;
     NAS_CC_MSG_QUEUE_STRU               stBufferEntryMsgQueue;
@@ -296,7 +196,6 @@ typedef struct
 *****************************************************************************/
 NAS_CC_CUSTOM_CFG_INFO_STRU* NAS_CC_GetCustomCfgInfo( VOS_VOID );
 
-/* Added by l00198894 for V9R1 STK升级, 2013/07/11, begin */
 NAS_CC_SS_SWITCH_STATE_ENUM_UINT8 NAS_CC_GetSsSwitchHoldState(VOS_VOID);
 
 NAS_CC_SS_SWITCH_STATE_ENUM_UINT8 NAS_CC_GetSsSwitchRetrieveState(VOS_VOID);
@@ -339,7 +238,6 @@ VOS_UINT8 NAS_CC_GetSsSwitchOpInvokeId(VOS_VOID);
 VOS_UINT8 NAS_CC_GetSsSwitchInvokeId(VOS_VOID);
 
 VOS_VOID NAS_CC_InitSsSwitchInfo(VOS_VOID);
-/* Added by l00198894 for V9R1 STK升级, 2013/07/11, end */
 
 NAS_CC_MSG_QUEUE_STRU* NAS_CC_GetCachMsgBufferAddr(VOS_VOID);
 
@@ -368,12 +266,10 @@ VOS_UINT32  NAS_CC_GetNextSpecEventTypeCachedMsg(
     NAS_CC_ENTRY_MSG_STRU              *pstEntryMsg
 );
 
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
 VOS_VOID NAS_CC_SetSsSwitchHoldEntityID(NAS_CC_ENTITY_ID_T ulEntityID);
 
 VOS_VOID NAS_CC_SetSsSwitchRetrieveEntityID(NAS_CC_ENTITY_ID_T ulEntityID);
 
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 
 #if (FEATURE_ON == FEATURE_PTM)
 OM_RING_ID NAS_CC_GetErrLogRingBufAddr(VOS_VOID);

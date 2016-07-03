@@ -1,20 +1,5 @@
 
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafXCallDecKmcMsg.c
-  版 本 号   : 初稿
-  作    者   : l00359089
-  生成日期   : 2015年10月20日
-  功能描述   : Taf X Call 对KMC的user data进行解码
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年10月20日
-    作    者   : l00359089
-    修改内容   : 创建文件 for CDMA 1X Iteration 19
-******************************************************************************/
 /*****************************************************************************
   1 头文件包含
 *****************************************************************************/
@@ -38,20 +23,7 @@ extern "C"{
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
 
 #if (FEATURE_ON == FEATURE_CHINA_TELECOM_VOICE_ENCRYPT)
-/*****************************************
-函数名： TAF_XCALL_ConvertBcdToDecimal;
-功能：将bcd格式的数转换成十进制
-Input：
-        VOS_UINT8                                              *pucSrcData,
-        VOS_UINT16                                             *pusDestData
-Output：无
-返回：  VOS_UINT32
-        VOS_FALSE  转换失败
-        VOS_TRUE   转换成功
- 日期:      20151102
- 作者:      l00359089
- 修改内容：新建
-*******************************************/
+
 VOS_UINT32 TAF_XCALL_ConvertBcdToDecimal(
     VOS_UINT8                                              *pucSrcData,
     VOS_UINT16                                             *pusDestData
@@ -77,20 +49,7 @@ VOS_UINT32 TAF_XCALL_ConvertBcdToDecimal(
 
     return VOS_TRUE;
 }
-/*****************************************
-函数名： TAF_XCALL_ConvertBcdTimeStampToDecimalTimeStamp;
-功能：   将BCD格式的时间戳转换成十进制的时间戳
-Input：
-        VOS_UINT8                                              *pucSrcData,
-        TAF_STD_TIME_ZONE_TYPE_STRU                            *pstTimeStamp
-Output：无
-返回：  VOS_UINT32
-        VOS_FALSE  转换失败
-        VOS_TRUE   转换成功
- 日期:      20151102
- 作者:      l00359089
- 修改内容：新建
-*******************************************/
+
 VOS_UINT32 TAF_XCALL_ConvertBcdTimeStampToDecimalTimeStamp(
     VOS_UINT8                                              *pucSrcData,
     TAF_STD_TIME_ZONE_TYPE_STRU                            *pstTimeStamp
@@ -157,18 +116,7 @@ VOS_UINT32 TAF_XCALL_ConvertBcdTimeStampToDecimalTimeStamp(
 
     return VOS_TRUE;
 }
-/*****************************************
-函数名： TAF_XCALL_DecKeyRspMsg;
-功能：拆分 User Data；
-Input：VOS_UINT8 *pucMsgData： 待拆分的User Data；
-        VOS_UINT16 usMsgDataLen： User Data的长度
-        VOS_UINT8 *pucdata_ptr： 待拆分的User Data的临时指针；
-Output：TAF_XCALL_KMC_MSG_STRU *pstDecodedData拆分User Data后形成的特定结构的数据；
-返回：无
- 日期:      20151020
- 作者:      l00359089
- 修改内容：新建
-*******************************************/
+
 VOS_VOID TAF_XCALL_DecKeyRspMsg(
     VOS_UINT8                                              *pucMsgData,
     VOS_UINT16                                              usMsgDataLen,
@@ -212,18 +160,7 @@ VOS_VOID TAF_XCALL_DecKeyRspMsg(
     PS_MEM_CPY(pstKeyRsp->stSignInfo.aucSignInfo, pucdata_ptr, pstKeyRsp->stSignInfo.ucSignInfoLen);
     pstDecodedData->enRslt = TAF_XCALL_KMC_MSG_PROCESS_RSLT_SUCCESS;
 }
-/*****************************************
-函数名：TAF_XCALL_DecMtEncryptIndMsg
-功能：拆分 User Data；
-Input：VOS_UINT8 *pucMsgData： 待拆分的User Data；
-        VOS_UINT16 usMsgDataLen： User Data的长度
-        VOS_UINT8 *pucdata_ptr： 待拆分的User Data的临时指针；
-Output：TAF_XCALL_KMC_MSG_STRU *pstDecodedData拆分User Data后形成的特定结构的数据；
-返回：无
- 日期:      20151020
- 作者:      l00359089
- 修改内容：新建
-*******************************************/
+
 VOS_VOID TAF_XCALL_DecMtEncryptIndMsg(
     VOS_UINT8                                              *pucMsgData,
     VOS_UINT16                                              usMsgDataLen,
@@ -253,18 +190,7 @@ VOS_VOID TAF_XCALL_DecMtEncryptIndMsg(
 
     pstDecodedData->enRslt = TAF_XCALL_KMC_MSG_PROCESS_RSLT_SUCCESS;
 }
-/*****************************************
-函数名：TAF_XCALL_DecErrIndMsg
-功能：拆分 User Data；
-Input：VOS_UINT8 *pucMsgData： 待拆分的User Data；
-        VOS_UINT16 usMsgDataLen： User Data的长度
-        VOS_UINT8 *pucdata_ptr： 待拆分的User Data的临时指针；
-Output：TAF_XCALL_KMC_MSG_STRU *pstDecodedData拆分User Data后形成的特定结构的数据；
-返回：无
- 日期:      20151020
- 作者:      l00359089
- 修改内容：新建
-*******************************************/
+
 VOS_VOID TAF_XCALL_DecErrIndMsg(
     VOS_UINT8                                              *pucMsgData,
     VOS_UINT16                                              usMsgDataLen,
@@ -283,18 +209,7 @@ VOS_VOID TAF_XCALL_DecErrIndMsg(
 
     pstDecodedData->enRslt = TAF_XCALL_KMC_MSG_PROCESS_RSLT_SUCCESS;
 }
-/*****************************************
-函数名：TAF_XCALL_DecPubKeyUpdateReqMsg
-功能：拆分 User Data；
-Input：VOS_UINT8 *pucMsgData： 待拆分的User Data；
-        VOS_UINT16 usMsgDataLen： User Data的长度
-        VOS_UINT8 *pucdata_ptr： 待拆分的User Data的临时指针；
-Output：TAF_XCALL_KMC_MSG_STRU *pstDecodedData拆分User Data后形成的特定结构的数据；
-返回：无
- 日期:      20151020
- 作者:      l00359089
- 修改内容：新建
-*******************************************/
+
 VOS_VOID TAF_XCALL_DecPubKeyUpdateMsg(
     VOS_UINT8                                              *pucMsgData,
     VOS_UINT16                                              usMsgDataLen,
@@ -344,18 +259,7 @@ VOS_VOID TAF_XCALL_DecPubKeyUpdateMsg(
                pstDecodedData->u.stPubKeyUpdateInd.stSignInfo.ucSignInfoLen);
     pstDecodedData->enRslt = TAF_XCALL_KMC_MSG_PROCESS_RSLT_SUCCESS;
 }
-/*****************************************
-函数名： TAF_XCALL_DecPubKeyUpdateAckMsg
-功能：拆分 User Data；
-Input：VOS_UINT8 *pucMsgData： 待拆分的User Data；
-       VOS_UINT16 usMsgDataLen： User Data的长度
-        VOS_UINT8 *pucdata_ptr： 待拆分的User Data的临时指针；
-Output：TAF_XCALL_KMC_MSG_STRU *pstDecodedData拆分User Data后形成的特定结构的数据；
-返回：无
- 日期:      20151020
- 作者:      l00359089
- 修改内容：新建
-*******************************************/
+
 VOS_VOID TAF_XCALL_DecPubKeyUpdateAckMsg(
     VOS_UINT8                                              *pucMsgData,
     VOS_UINT16                                              usMsgDataLen,
@@ -373,18 +277,7 @@ VOS_VOID TAF_XCALL_DecPubKeyUpdateAckMsg(
     PS_MEM_CPY(pstDecodedData->u.stPubKeyUpdateAck.aucRandomData, pucdata_ptr, TAF_XCALL_KMC_MSG_RANDOM_DATA_LEN);
     pstDecodedData->enRslt = TAF_XCALL_KMC_MSG_PROCESS_RSLT_SUCCESS;
 }
-/*****************************************
-函数名： TAF_XCALL_DecRemoteCtrlCmdMsg
-功能：拆分 User Data；
-Input：VOS_UINT8 *pucMsgData： 待拆分的User Data；
-        VOS_UINT16 usMsgDataLen： User Data的长度
-        VOS_UINT8 *pucdata_ptr： 待拆分的User Data的临时指针；
-Output：TAF_XCALL_KMC_MSG_STRU *pstDecodedData拆分User Data后形成的特定结构的数据；
-返回：无
- 日期:      20151020
- 作者:      l00359089
- 修改内容：新建
-*******************************************/
+
 VOS_VOID TAF_XCALL_DecRemoteCtrlCmdMsg(
     VOS_UINT8                                              *pucMsgData,
     VOS_UINT16                                              usMsgDataLen,
@@ -440,17 +333,7 @@ VOS_VOID TAF_XCALL_DecRemoteCtrlCmdMsg(
 }
 
 
-/*****************************************
-函数名： TAF_XCALL_DecodeKmcMsg
-功能：拆分 User Data；
-Input：VOS_UINT8 *pucUserData： 待拆分的User Data；
-        VOS_UINT16 usUserDataLen： User Data的长度
-Output：TAF_XCALL_KMC_MSG_STRU *pstDecodedData拆分User Data后形成的特定结构的数据；
-返回：无
- 日期:      20151020
- 作者:      l00359089
- 修改内容：新建
-*******************************************/
+
 VOS_VOID TAF_XCALL_DecodeKmcMsg(
     VOS_UINT8                          *pucMsgData,
     VOS_UINT16                          usMsgDataLen,

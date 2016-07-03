@@ -1,66 +1,4 @@
-/************************************************************************
-  Copyright    : 2005-2007, Huawei Tech. Co., Ltd.
-  File name    : MmSuspend.c
-  Author       : s46746
-  Version      : V200R001
-  Date         : 2005-08-16
-  Description  : 该C文件给出了MM模块SuspendProc子模块的实现
-  Function List:
-        1) MM_GetConnectState
-        2) MM_GetMsg
-        3) MM_HandleCmMsg
-        4) MM_HandleMsg
-        5) MM_InsertMsg
-        6) MM_RelMsgBuf
-        7) MM_Restore
-        8) MM_SaveMsg
-        9) MM_SndMsgFuncChg
-       10) MM_SuspendProc
-       11) MM_SuspendTimeout
 
-  History      :
-  1. Date:2005-04-19
-     Author: ---
-     Modification:Create
-  2.  s46746  2006.02.28  依据问题单A32D02234修改
-  3.  s46746  2006.02.28  依据问题单A32D02235修改
-  4.  s46746  2006.03.01  依据问题单A32D02192修改
-  5.  s46746  2006.03.07  依据问题单A32D02356修改
-  6.  s46746  2006-03-39  根据问题单A32D02486修改
-  7.  s46746  2006-04-17  根据问题单A32D02829修改
-  8.  x51137 2006/5/5 A32D03487
-  9. 日    期   : 2006年9月9日
-     作    者   : sunxibo id:46746
-     修改内容   : 根据问题单号：A32D05803
-  10.x51137 2006/11/3 A32D06511
-  11.日    期  : 2006年12月4日
-     作    者  : luojian id:60022475
-     修改内容  : 问题单号:A32D07777
-  12.日    期   : 2007年01月04日
-     作    者   : luojian id:60022475
-     修改内容   : 根据问题单号：A32D06408
-  13.日    期   : 2007年01月25日
-     作    者   : x51137
-     修改内容   : 根据问题单号：A32D08545
-  14.日    期   : 2007年07月31日
-     作    者   : luojian id:60022475
-     修改内容   : 问题单号:A32D12640,MM拒绝SS建连请求应该回EST_CNF消息
-  15.日    期   : 2007年09月05日
-     作    者   : s46746
-     修改内容   : 根据问题单号：AT2D01456
-  16.日    期  : 2008年9月4日
-     作    者  : ouyangfei id:00132663
-     修改内容  : 问题单号:AT2D05490,重建过程支持异系统切换
-  17.日    期   : 2009年03月19日
-     作    者   : l00130025
-     修改内容   : 问题单号：AT2D09743/AT2D10328,WAS的 D/F/P态下丢网处理
-  18.日    期   : 2009年07月24日
-     作    者   : z40661
-     修改内容   : 异系统重选后，紧急呼叫不能接通
-  19.日    期   : 2009年09月25日
-     作    者   : s46746
-     修改内容   : AT2D14760,异系统重选完成后立即上报出服务区，NAS上报服务状态不正确
-************************************************************************/
 
 /*****************************************************************************
    1 头文件包含
@@ -115,23 +53,7 @@ extern VOS_UINT32   g_MmResumeRspOpt;
 /*****************************************************************************
    3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : NAS_MM_SaveSuspendInfo
- 功能描述  : 将RRMM_SUSPEND_IND_ST所带的全局变量信息缓存到MM的全局变量中
- 输入参数  : pstMsg:MMC转发过来的挂起消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月12日
-   作    者   : h44270
-   修改内容   : 新生成函数
- 2.日    期   : 2013年4月1日
-   作    者   : y00176023
-   修改内容   : DSDS GUNAS II项目:增加对对目标RAT的保存
-*****************************************************************************/
 VOS_VOID NAS_MM_SaveSuspendInfo(
     MMCMM_SUSPEND_IND_STRU             *pstMsg
 )
@@ -148,20 +70,7 @@ VOS_VOID NAS_MM_SaveSuspendInfo(
                 pstMsg->astReTxMsg, sizeof(NAS_RRC_RE_TX_MSG_STRU));
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_InitCcoFallbackCtx
- 功能描述  : 对CCO 回退流程需要的MM上下文进行初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年1月9日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MM_InitCcoFallbackCtx(VOS_VOID)
 {
     g_MmGlobalInfo.stBackupShare.ucState                    = MM_STATE_NULL;
@@ -211,27 +120,7 @@ VOS_VOID NAS_MM_InitCcoFallbackCtx(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_BackupCcoFallbackCtx
- 功能描述  : 对CCO 回退流程需要的MM上下文进行备份，当CCO回退时，MM直接
-              可以恢复到正常服务
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月12日
-   作    者   : h44270
-   修改内容   : 新生成函数
- 2.日    期   : 2012年03月08日
-   作    者   : l00130025
-   修改内容   : DTS2012030107623: G->W Est_Rej_Cogest,CCO回退过程，Eplmn被删除，导致受限驻留
- 3.日    期   : 2013年2月4日
-   作    者   : w00176964
-   修改内容   : DTS2011082402748:EST CNF fail导致CCO回退时,3211不需要恢复启动
-*****************************************************************************/
 VOS_VOID NAS_MM_BackupCcoFallbackCtx(VOS_VOID)
 {
     /* 对g_MmGlobalInfo.stBackupShare进行赋值，将g_MmGlobalInfo.stBackupShare
@@ -290,29 +179,7 @@ VOS_VOID NAS_MM_BackupCcoFallbackCtx(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_ResumeCcoFallbackCtx
- 功能描述  : 对CCO 回退流程，恢复CCO流程发起时的MM参数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月12日
-   作    者   : h44270
-   修改内容   : 新生成函数
- 2.日    期   : 2012年03月08日
-   作    者   : l00130025
-   修改内容   : DTS2012030107830: G->W Est_Rej_Cogest,CCO回退过程，T3211没有停止，导致错误发起LAU,LAU Type错误
- 3.日    期   : 2012年03月08日
-   作    者   : l00130025
-   修改内容   : DTS2012030107623: G->W Est_Rej_Cogest,CCO回退过程，Eplmn被删除，导致受限驻留
- 4.日    期   : 2013年2月4日
-   作    者   : w00176964
-   修改内容   : DTS2011082402748:EST CNF fail导致CCO回退时,3211不需要恢复启动
-*****************************************************************************/
 VOS_VOID NAS_MM_ResumeCcoFallbackCtx(VOS_VOID)
 {
     /* 对g_MmGlobalInfo的成员变量赋值，赋值的来源
@@ -355,9 +222,7 @@ VOS_VOID NAS_MM_ResumeCcoFallbackCtx(VOS_VOID)
     /* 还原 MS CS域信息 */
     g_MmGlobalInfo.MsCsInfo = g_MmGlobalInfo.stBackupShare.stMsCsInfo;
 
-    /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-9, begin */
     for ( i = 0; i < MM_TIMER_MAX; i++ )
-    /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-9, end */
     {
         if ( MM_TIMER_PAUSE == gstMmTimer[i].ucTimerStatus)
         {
@@ -473,27 +338,7 @@ VOS_VOID MM_SaveMsg(const VOS_VOID* pMsg, VOS_UINT8 ucEventId, VOS_UINT32 ulLeng
 }
 
 
-/*****************************************************************************
- Prototype      : MM_SndMsgFuncChg
- Description    : 改变向接入层发送消息的函数指针
- Input          :
- Output         :
- Return Value   : 无
- Calls          :
 
- Called By      :
-
- History        : ---
-  1.Date        : 2005-08-16
-    Author      : s46746
-    Modification: Created function
-  2.日    期  : 2010年7月10日
-    作    者  : l00130025
-    修改内容  : 问题单号:DTS2010062601081,2G->3G重选后，Nsd被清零，导致网侧丢弃后续消息
-  3.日    期   : 2011年12月29日
-    作    者   : l00130025
-    修改内容   : DTS2011082201679/DTS2011121504358,切换模式，回退后W/G下注册状态没有与NAS同步
-*****************************************************************************/
 VOS_VOID MM_SndMsgFuncChg()
 {
     if (NAS_MML_NET_RAT_TYPE_GSM == NAS_MML_GetCurrNetRatType()) /* 在 GSM 网络下 */
@@ -529,33 +374,7 @@ VOS_VOID MM_SndMsgFuncChg()
     return;
 }
 
-/*****************************************************************************
- Prototype      : MM_RetransferMsg
- Description    : MM模块在离开挂起状态后重新发送挂起前接入层未发送成功的消息
- Input          : 接入层未成功发送的消息
- Output         :
- Return Value   : 无
- Calls          :
 
- Called By      :
-
- History        : ---
-  1.Date        : 2006-12-12
-    Author      : s46746
-    Modification: Created function
-  2.日    期   : 2011年7月12日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，替换g_MmSubLyrShare.MmSuspendShare的全局变量
-  3.日    期   : 2011年07月14日
-    作    者   : z00161729
-    修改内容   : V7R1 phase II全局变量调整修改,替换classmark2
-  4.日    期   : 2014年04月03日
-    作    者   : w00176964
-    修改内容   : V3R3C60_eCall项目修改:g_MmGlobalInfo.MsCsInfo.CurLai替换成MML中的
-  5.日    期   : 2015年08月04日
-    作    者   : j00174725
-    修改内容   :  DTS2015080400959
-*****************************************************************************/
 VOS_VOID MM_RetransferMsg()
 {
     RRMM_EST_REQ_STRU  *pEstReqMsg;
@@ -622,9 +441,7 @@ VOS_VOID MM_RetransferMsg()
                                                            RRC_NAS_CS_DOMAIN,
                                                            pEstReqMsg->ulEstCause,
                                                            &stIdnnsInfo,
-                                                           /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-3, begin */
                                                            (RRC_PLMN_ID_STRU *)NAS_MML_GetCurrCampPlmnId(),
-                                                           /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-3, end */
                                                            pEstReqMsg->FisrtNasMsg.ulNasMsgSize,
                                                            (VOS_INT8*)pEstReqMsg->FisrtNasMsg.aucNasMsg);
                 if (VOS_OK != Result)
@@ -643,9 +460,7 @@ VOS_VOID MM_RetransferMsg()
                                                            RRC_NAS_CS_DOMAIN,
                                                            pEstReqMsg->ulEstCause,
                                                            &stIdnnsInfo,
-                                                           /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-3, begin */
                                                            (RRC_PLMN_ID_STRU *)NAS_MML_GetCurrCampPlmnId(),
-                                                           /* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-3, end */
                                                            pEstReqMsg->FisrtNasMsg.ulNasMsgSize,
                                                            (VOS_INT8*)pEstReqMsg->FisrtNasMsg.aucNasMsg);
                 if (VOS_OK != Result)
@@ -946,28 +761,7 @@ VOS_VOID MM_RelMsgBuf()
     return;
 }
 
-/*****************************************************************************
- Prototype      : MM_SuspendTimeout
- Description    : 缓存队列保护定时器超时的处理
- Input          :
- Output         :
- Return Value   : 无
- Calls          :
- Called By      :
 
- History        : ---
-  1.Date        : 2005-08-16
-    Author      : s46746
-    Modification: Created function
-
-  2. x51137 2006/5/5 A32D03487
-  3.日    期  : 2006年12月4日
-    作    者  : luojian id:60022475
-    修改内容  : 问题单号:A32D07777
-  4.日    期   : 2011年7月12日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，替换g_MmSubLyrShare.MmSuspendShare的全局变量
-*****************************************************************************/
 VOS_VOID MM_SuspendTimeout()
 {
     MMCMM_RESUME_IND_STRU               stResumeInd;;
@@ -1042,44 +836,7 @@ VOS_VOID MM_SuspendTimeout()
 }
 
 
-/*****************************************************************************
- Prototype      : Mm_Cell_S3_E84
- Description    : process after MMCMM_SUSPEND_IND
- Input          :
- Output         :
- Return Value   : 无
- Calls          :
- Called By      :
 
- History        : ---
-  1.Date        : 2006-05-05
-    Author      : x51137
-    Modification: Created function
-  2.日    期  : 2006年12月4日
-    作    者  : luojian id:60022475
-    修改内容  : 问题单号:A32D07777
-  3.日    期  : 2008年9月4日
-    作    者  : ouyangfei id:00132663
-    修改内容  : 问题单号:AT2D05490,重建过程支持异系统切换
-  4.日    期   : 2010年09月27日
-    作    者   : z00161729
-    修改内容   : 问题单号AT2D19560:问题单号AT2D19560:W重定向到G小特性NAS修改合入,异系统切换，当前处在建链请求状态，模拟发EST_CNF(fail)清除建链请求
-  5.日    期   : 2011年7月12日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，用于缓存CCO流程中的MM全局变量
-  6.日    期   : 2011年07月28日
-    作    者   : w00167002
-    修改内容   : v7r1_phaseII 内部消息发送调整
-  7.日    期   : 2013年2月4日
-    作    者   : w00176964
-    修改内容   : DTS2011082402748:EST CNF fail导致CCO回退时,3211不需要恢复启动
-  8.日    期   : 2013年9月22日
-    作    者   : w00176964
-    修改内容   : VoLTE_PhaseII项目调整:增加CS安全上下文获取流程
-  9.日    期   : 2015年1月4日
-    作    者   : s00217060
-    修改内容   : Service_State_Optimize_PhaseI HO定时器修改
-*****************************************************************************/
 VOS_VOID Mm_Cell_S3_E84( VOS_VOID* pMsg )
 {
     VOS_UINT8                           i = 0;
@@ -1103,19 +860,15 @@ VOS_VOID Mm_Cell_S3_E84( VOS_VOID* pMsg )
     }
 
     /* suspend timer except period timer */
-    /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-9, begin */
     for ( i=0; i< MM_TIMER_MAX; i++ )
-    /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-9, end */
     {
         if ( MM_TIMER_RUNNING == gstMmTimer[i].ucTimerStatus )
         {
-            /* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-24, begin */
             /* T3242和T3243定时器不暂停,因为对应的INTRAT_CHANGE状态也进行了处理 */
             if ((MM_TIMER_T3212 != i)
              && (MM_TIMER_T3242 != i)
              && (MM_TIMER_T3243 != i)
              && (MM_TIMER_PROTECT_MT_CSFB_PAGING_PROCEDURE != i))
-            /* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-24, end */
             {
                 Mm_TimerPause(i);
             }
@@ -1144,7 +897,6 @@ VOS_VOID Mm_Cell_S3_E84( VOS_VOID* pMsg )
         NAS_LOG(WUEPS_PID_MM, MM_SUSPEND, PS_LOG_LEVEL_INFO,"start MM_TIMER_PROTECT_SUSPEND success");
     }
 
-    /* Modified by w00176964 for VoLTE_PhaseII 项目, 2013-9-22, begin */
 #if (FEATURE_ON == FEATURE_LTE)
     /* L到GU的切换流程,增加CS安全上下文的获取流程 */
     if  ((MMC_SUSPEND_CAUSE_HANDOVER  == ((MMCMM_SUSPEND_IND_STRU*)pMsg)->ucSuspendCause)
@@ -1165,7 +917,6 @@ VOS_VOID Mm_Cell_S3_E84( VOS_VOID* pMsg )
 #endif
 
     NAS_MM_SndMmcSuspendRsp();
-    /* Modified by w00176964 for VoLTE_PhaseII 项目, 2013-9-22, end */
 
     NAS_MM_RecordErrorLogInfo(NAS_ERR_LOG_BASE_STATE_SUSPEND_IND_RECEIVED, 0);
 
@@ -1173,38 +924,7 @@ VOS_VOID Mm_Cell_S3_E84( VOS_VOID* pMsg )
 }
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_MM_EndCsfbFlow
- 功能描述  : 结束CSFB流程的处理
- 输入参数  : enCsfbServiceStatus - CSFB状态
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年2月14日
-   作    者   : z00161729
-   修改内容   : 新生成函数
- 2.日    期   : 2012年10月29日
-   作    者   : z00161729
-   修改内容   : DTS2012083102536:支持cc呼叫重建
- 3.日    期   : 2013年3月30日
-   作    者   : l00167671
-   修改内容   : 主动上报AT命令控制下移至C核
- 4.日    期   :2013年9月12日
-   作    者   :z00161729
-   修改内容   :DTS2013082903019:支持ss重发功能
- 5.日    期   :2014年6月13日
-   作    者   :w00242748
-   修改内容   :DSDS III 新特性
- 6.日    期   :2014年9月20日
-   作    者   :s00217060
-   修改内容   :cs_err_log原因值上报
- 7.日    期   :2015年10月16日
-   作    者   :j00174725
-   修改内容   :DTS2015101603066
-*****************************************************************************/
 VOS_VOID NAS_MM_EndCsfbFlow(
     NAS_MML_CSFB_SERVICE_STATUS_ENUM_UINT8 enCsfbServiceStatus,
     NAS_MMCM_REL_CAUSE_ENUM_UINT32         enRelCause
@@ -1284,35 +1004,14 @@ VOS_VOID NAS_MM_EndCsfbFlow(
         /* 更新CSFB状态为不存在 */
         NAS_MML_SetCsfbServiceStatus(NAS_MML_CSFB_SERVICE_STATUS_NOT_EXIST);
 
-        /* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
         NAS_MML_SetRelCauseCsfbHighPrioFlg(VOS_FALSE);
-        /* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
     }
 
     return;
 }
 
 
-/*****************************************************************************
-函 数 名  : NAS_MM_ResumeBackToGU_CSFB
-功能描述  : CSFB流程异系统变换到GU
-输入参数  : enCsfbServiceStatus - CSFB状态
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期   : 2012年2月14日
-  作    者   : z00161729
-  修改内容   : 新生成函数
-2.日    期   : 2012年3月27日
-  作    者   : w00166186
-  修改内容   : CSFB&PPAC&ETWS&ISR 开发 ENERGENCY CALL
-3.日    期   : 2014年05月30日
-  作    者   : s00217060
-  修改内容   : 支持ultra_flash_csfb时，收到resume_ind直接发cm_service_request,提升MO CSFB电话接通速度
-*****************************************************************************/
 VOS_VOID NAS_MM_ResumeBackToGU_CSFB(
     MMCMM_RESUME_IND_STRU                                  *pstResumeInd,
     NAS_MML_CSFB_SERVICE_STATUS_ENUM_UINT8                  enCsfbServiceStatus
@@ -1368,34 +1067,7 @@ VOS_VOID NAS_MM_ResumeBackToGU_CSFB(
 
 }
 
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, begin */
-/*****************************************************************************
- 函 数 名  : NAS_MM_ProcResumeIndBackToLTE
- 功能描述  : 处理异系统回到LTE后收到resume ind消息的处理
- 输入参数  : pstResumeMsg----MMC的resume ind消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2013年10月12日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2014年1月18日
-   作    者   : w00242748
-   修改内容   : DTS2014011302424:L下主叫，CSFB失败，回退到L后，MM模块给CC模块发送
-                释放链接请求，电话业务终止。为提高用户体验，如果回退到L的话，则需
-                发送搜网。
- 3.日    期   : 2015年1月5日
-   作    者   : z00161729
-   修改内容   : AT&T 支持DAM特性修改
- 4.日    期   : 2015年8月13日
-   作    者   : l00289540
-   修改内容   : User_Exp_Improve修改
- 5.日    期   : 2015年10月16日
-   作    者   : j00174725
-   修改内容   : DTS2015101603066
-*****************************************************************************/
+
 VOS_VOID NAS_MM_ProcResumeIndBackToLTE(
     MMCMM_RESUME_IND_STRU              *pstResumeMsg
 )
@@ -1425,7 +1097,6 @@ VOS_VOID NAS_MM_ProcResumeIndBackToLTE(
         g_MmGlobalInfo.LuInfo.ucPsRandomAccessFailCnt = 0;
     }
 
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, begin */
     /* LTE到GU的handover流程,回退到LTE时需要回退CS的安全上下文 */
     if ((MMC_SUSPEND_CAUSE_HANDOVER == g_MmGlobalInfo.stSuspendShare.ucSuspendCause)
      && (NAS_MML_NET_RAT_TYPE_LTE   == g_MmGlobalInfo.stSuspendShare.enOldNetType))
@@ -1439,11 +1110,8 @@ VOS_VOID NAS_MM_ProcResumeIndBackToLTE(
         NAS_MM_ProcResumeIndBackToLTE_Srvcc();
     }
 #endif
-    /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, end */
 
-    /* Modified by z00234330 for ISR测试发现问题, 2013-3-25, begin */
     NAS_MM_ChgStateIntoLMode();
-    /* Modified by z00234330 for ISR测试发现问题, 2013-3-25, end */
 
     /* 清除MML中的CS连接相关信息 */
     NAS_MML_SetCsSigConnStatusFlg(VOS_FALSE);
@@ -1494,24 +1162,8 @@ VOS_VOID NAS_MM_ProcResumeIndBackToLTE(
 
 #endif
 
-/* Added by s00246516 for L-C互操作项目, 2014-01-27, Begin */
 #if (FEATURE_ON == FEATURE_CL_INTERWORK)
-/*****************************************************************************
- 函 数 名  : NAS_MM_ProcResumeToHRPD
- 功能描述  : 处理异系统到HRPD后收到resume ind消息的处理
- 输入参数  : pstResumeMsg----MMC的resume ind消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2014年1月27日
-   作    者   : s00246516
-   修改内容   : 新生成函数
- 2.日    期   :2014年9月24日
-   作    者   :s00217060
-   修改内容   :for cs_err_log
-*****************************************************************************/
+
 VOS_VOID NAS_MM_ProcResumeToHRPD(
     MMCMM_RESUME_IND_STRU              *pstResumeMsg
 )
@@ -1545,21 +1197,8 @@ VOS_VOID NAS_MM_ProcResumeToHRPD(
     return;
 }
 #endif
-/* Added by s00246516 for L-C互操作项目, 2014-01-27, End */
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_ResumeSuspendInfo
- 功能描述  : 恢复挂起信息
- 输入参数  : pstResumeMsg--MMC转发过来的resume ind消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2013年10月12日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_VOID NAS_MM_ResumeSuspendInfo(
     MMCMM_RESUME_IND_STRU              *pstResumeMsg
 )
@@ -1587,9 +1226,7 @@ VOS_VOID NAS_MM_ResumeSuspendInfo(
     }
 
     /* resume timer  */
-    /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-9, begin */
     for ( i = 0; i < MM_TIMER_MAX; i++ )
-    /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-9, end */
     {
         if ( MM_TIMER_PAUSE == gstMmTimer[i].ucTimerStatus )
         {
@@ -1622,19 +1259,7 @@ VOS_VOID NAS_MM_ResumeSuspendInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_ProcResumeIndInterSysChanged
- 功能描述  : 处理异系统变换到GU后收到resume ind的消息处理
- 输入参数  : pstResumeMsg--MMC转发过来的resume ind消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2013年10月12日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_VOID NAS_MM_ProcResumeIndInterRatChangedToGU(
     MMCMM_RESUME_IND_STRU              *pstResumeMsg
 )
@@ -1731,31 +1356,7 @@ VOS_VOID NAS_MM_ProcResumeIndInterRatChangedToGU(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_ProcResumeIndBackToGU
- 功能描述  : 处理异系统回到GU后收到resume ind消息的处理
- 输入参数  : pstResumeMsg--MMC转发过来的resume ind消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2013年10月12日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2014年2月19日
-   作    者   : s00217060
-   修改内容   : coverity清理
- 3.日    期   : 2014年4月08日
-   作    者   : y00245242
-   修改内容   : warning清理
- 4.日    期   : 2014年12月13日
-   作    者   : s00217060
-   修改内容   : 服务状态显示优化PhaseI 异系统切换流程修改
- 5.日    期   : 2015年8月13日
-   作    者   : l00289540
-   修改内容   : User_Exp_Improve修改
-*****************************************************************************/
+
 VOS_VOID NAS_MM_ProcResumeIndBackToGU(
     MMCMM_RESUME_IND_STRU              *pstResumeMsg
 )
@@ -1763,11 +1364,9 @@ VOS_VOID NAS_MM_ProcResumeIndBackToGU(
 #if (FEATURE_ON == FEATURE_LTE)
     NAS_MML_CSFB_SERVICE_STATUS_ENUM_UINT8  enCsfbStatus;
 #endif
-    /* Modified by s00217060 for coverity清理, 2014-02-19, begin */
 #if (FEATURE_ON == FEATURE_IMS)
     VOS_UINT8                               ucSrvccFlg;
 #endif
-    /* Modified by s00217060 for coverity清理, 2014-02-19, end */
     /* W异系统到GSM后需清除联合注册建链失败次数 */
     if (NAS_MML_NET_RAT_TYPE_WCDMA == g_MmGlobalInfo.stSuspendShare.enOldNetType)
     {
@@ -1794,10 +1393,8 @@ VOS_VOID NAS_MM_ProcResumeIndBackToGU(
 
     if (NAS_MML_NET_RAT_TYPE_LTE == g_MmGlobalInfo.stSuspendShare.enOldNetType)
     {
-        /* Modified by s00217060 for coverity清理, 2014-02-19, begin */
         if ( (VOS_TRUE == NAS_MML_IsCsfbServiceStatusExist())
           && (NAS_MML_CSFB_SERVICE_STATUS_NOT_EXIST != enCsfbStatus) )
-        /* Modified by s00217060 for coverity清理, 2014-02-19, end */
         {
             NAS_MM_ResumeBackToGU_CSFB((MMCMM_RESUME_IND_STRU*)pstResumeMsg, enCsfbStatus);
         }
@@ -1827,34 +1424,7 @@ VOS_VOID NAS_MM_ProcResumeIndBackToGU(
 }
 
 #if (FEATURE_ON == FEATURE_IMS)
-/*****************************************************************************
- 函 数 名  : NAS_MM_ProcSrvccSuccess
- 功能描述  : SRVCC成功的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2013年10月12日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2014年01月10日
-   作    者   : w00176964
-   修改内容   : VoLTE_PhaseIII项目
- 3.日    期   : 2014年05月30日
-   作    者   : s00217060
-   修改内容   : ultra flash csfb时不需要通知cc模块srvcc成功
 
- 4.日    期   : 2014年12月16日
-   作    者   : w00167002
-   修改内容   : DTS2014120200900:在SRVCC后，对端发DISC，携带的TI异常，为8，认为当前
-                还是主叫，CC通知TI 不合法后，通知MM REL, 后在ACTIVE状态收到REL处理，
-                状态迁移到了MM NULL,需要设置释放后的原因值。
- 5.日    期   : 2015年11月11日
-   作    者   : c00318887
-   修改内容   : DTS2015110909408 IMS电话接通从L handover 到W，电话结束没做LAU
-****************************************************************************/
 VOS_VOID NAS_MM_ProcSrvccSuccess(VOS_VOID)
 {
     /* 3GPP.24008 协议中关于SRVCC过程中MM的处理:
@@ -1927,22 +1497,7 @@ VOS_VOID NAS_MM_ProcSrvccSuccess(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_ProcSrvccFail
- 功能描述  : SRVCC失败的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2013年10月12日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2014年05月30日
-   作    者   : s00217060
-   修改内容   : ultra flash csfb时不需要通知cc模块srvcc成功
-****************************************************************************/
+
 VOS_VOID NAS_MM_ProcSrvccFail(VOS_VOID)
 {
     /* 回退CS的安全上下文 */
@@ -1964,19 +1519,7 @@ VOS_VOID NAS_MM_ProcSrvccFail(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_ProcSrvccNoCallNum
- 功能描述  : SRVCC携带CALLNUM为0的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2015年10月10日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-****************************************************************************/
+
 VOS_VOID NAS_MM_ProcSrvccNoCallNum(VOS_VOID)
 {
     /* 释放RRC链接 */
@@ -1998,23 +1541,7 @@ VOS_VOID NAS_MM_ProcSrvccNoCallNum(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_ProcResumeIndBackToGU_Srvcc
- 功能描述  : SRVCC流程下收到resume ind切到GU下的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2013年9月24日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2015年10月10日
-   作    者   : f00179208
-   修改内容   : DTS2015100907818:BSRVCC的场景，IMSA不给TAF同步CALLINFO信息，导致MM/TAF层状态异常，
-                如果IMSA不同步CALLINFO信息，则以SRVCC失败处理，释放RRC连接
-*****************************************************************************/
+
 VOS_VOID NAS_MM_ProcResumeIndBackToGU_Srvcc(VOS_VOID)
 {
 #if (FEATURE_ON == FEATURE_LTE)
@@ -2060,19 +1587,7 @@ VOS_VOID NAS_MM_ProcResumeIndBackToGU_Srvcc(VOS_VOID)
 }
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_MM_ProcResumeIndBackToLTE_Srvcc
- 功能描述  : SRVCC流程下收到resume ind切到LTE下的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2013年9月24日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_VOID NAS_MM_ProcResumeIndBackToLTE_Srvcc(VOS_VOID)
 {
     /* 清除SRVCC过程标记 */
@@ -2090,25 +1605,9 @@ VOS_VOID NAS_MM_ProcResumeIndBackToLTE_Srvcc(VOS_VOID)
 
 #endif
 #endif
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-24, end */
 
 
-/* Added by z00234330 for ISR测试发现问题,dts2013041604521 2013-3-25, begin */
-/*****************************************************************************
- 函 数 名  : NAS_MM_ChgStateIntoLMode
- 功能描述  : 迁移到L模，MM迁移服务状态
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年3月25日
-    作    者   : z00234330
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  NAS_MM_ChgStateIntoLMode( VOS_VOID )
 {
     if ( VOS_FALSE == NAS_MML_GetCsSigConnStatusFlg())
@@ -2156,114 +1655,14 @@ VOS_VOID  NAS_MM_ChgStateIntoLMode( VOS_VOID )
 
 }
 
-/* Added by z00234330 for ISR测试发现问题,dts2013041604521 2013-3-25, end */
 
 
-/*****************************************************************************
- Prototype      : Mm_Cell_S32_E85
- Description    : process after MMCMM_RESUME_IND
- Input          :
- Output         :
- Return Value   : 无
- Calls          :
- Called By      :
 
- History        : ---
-  1.Date        : 2006-05-05
-    Author      : x51137
-    Modification: Created function
-  2.日    期  : 2006年12月4日
-    作    者  : luojian id:60022475
-    修改内容  : 问题单号:A32D07777
-  3.日    期   : 2007年01月04日
-    作    者   : luojian id:60022475
-    修改内容   : 根据问题单号：A32D06408
-  4.日    期  : 2008年9月4日
-    作    者  : ouyangfei id:00132663
-    修改内容  : 问题单号:AT2D05490,重建过程支持异系统切换
-  5.日    期   : 2009年03月19日
-    作    者   : l00130025
-    修改内容   : 问题单号：AT2D09743/AT2D10328,WAS的 D/F/P态下丢网处理
-  6.日    期   : 2009年9月18日
-    作    者   : l00130025
-    修改内容   : 问题单号:AT2D14551,网络模式II下,从2G通过PCCO过程到3G后,在W下发起的RRC连接请求原因值不符合协议要求
-  7.日    期   : 2010年05月14日
-    作    者   : l65478
-    修改内容   : 问题单号:AT2D19292,MM在寻呼建立连接时，收到系统信息，把状态迁到NORMAL状态，导致GCF失败
-  8.日    期   : 2010年09月27日
-    作    者   : z00161729
-    修改内容   : 问题单号AT2D19560:W重定向到G小特性NAS修改合入,异系统切换，当前处在建链请求状态，模拟发EST_CNF(fail)清除建链请求
-  9.日    期   : 2011年3月3日
-    作    者   : z00161729
-    修改内容   : DTS2011021201997:PS、CS完整性保护是否开启由GMM和MM分开维护,MMC不再维护
- 10.日    期   : 2011年7月12日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，用于恢复CCO流程中的MM全局变量,替换g_MmSubLyrShare.MmSuspendShare的全局变量
- 11.日    期   : 2011年07月15日
-    作    者   : l65478
-    修改内容   : 问题单号：DTS2011071101580, 系统间重选挂起失败
- 12.日    期   : 2011年12月25日
-    作    者   : l65478
-    修改内容   : 问题单号：DTS2011122307328, 注册过程中重选，导致MMC挂死
- 13.日    期   : 2011年12月1日
-    作    者   : w00176964
-    修改内容   : V7R1 PhaseIV 调整:RRC链接维护调整
- 14.日    期   : 2012年03月08日
-    作    者   : l00130025
-    修改内容   : DTS2012030107830: G->W Est_Rej_Cogest,CCO回退过程，T3211没有停止，导致错误发起LAU,LAU Type错误
- 15.日    期   : 2012年04月24日
-    作    者   : w00166186
-    修改内容   : DTS2012042303735，从L CCO到G后再重选会L，第一次TAU失败
- 16. 日    期   : 2012年2月14日
-     作    者   : z00161729
-     修改内容   : V7R1C50 支持CSFB特性修改
- 17.日    期   : 2012年04月11日
-    作    者   : z00161729
-    修改内容  : csfb mt L重定向到W失败回退到L，再csfb mt失败
- 16.日    期   : 2012年05月21日
-    作    者   :  z40661
-    修改内容  :  DTS2012052308001:从L重选到G后反复进行LAU
- 17.日    期   : 2012年06月13日
-    作    者   : s46746
-    修改内容   : For CS/PS mode 1，CS存在信令连接重选到L后，没有清除GMM的CS连接标志
- 18.日    期   : 2012年10月22日
-    作    者   : t00212959
-    修改内容   : DTS2012101907218:NAS向接入层发送LAU请求时，Establishment cause按照协议写为Registration
- 19.日    期   : 2012年10月29日
-    作    者   : z00161729
-    修改内容   : DTS2012083102536:支持cc呼叫重建
- 20.日    期   : 2013年2月4日
-    作    者   : w00176964
-    修改内容   : DTS2011082402748:EST CNF fail导致CCO回退时,3211不需要恢复启动
- 21.日    期   : 2013年3月25日
-    作    者   : z00234330
-    修改内容   : ISR测试发现问题,W链接态到L模，关机时，MM会通知WRR发送detach
- 22.日    期   :2013年8月13日
-    作    者   :z00161729
-    修改内容   :DTS2013081207431:mm挂起状态收到cc的t303超时abort消息，需要缓存，收到resume ind时再处理
- 22.日    期   :2013年9月23日
-    作    者   :w00242748
-    修改内容   :DTS2013091407626:W下UE被叫，未收到网侧建联CNF前，发生重定向到G后，未发起LAU
- 23.日    期   :2013年10月18日
-    作    者   :z00161729
-    修改内容   :DTS2013101900866:mm在wait for mm connection状态收到gas丢网消息没有给cc回复rel ind导致呼叫T303超时呼叫失败
- 24.日    期   : 2013年9月22日
-    作    者   : w00176964
-    修改内容   : Volte_phaseII 项目:增加SRVCC流程处理并重新整理该函数
- 25.日    期   : 2014年1月27日
-    作    者   : s00246516
-    修改内容   : L-C互操作项目:增加异系统到HRPD的处理
- 26.日    期   :2014年9月24日
-    作    者   :s00217060
-    修改内容   :for cs_err_log
-*****************************************************************************/
 VOS_VOID Mm_Cell_S32_E85( VOS_VOID* pMsg )
 {
-    /* Added by s00246516 for L-C互操作项目, 2014-01-27, Begin */
 #if (FEATURE_ON == FEATURE_CL_INTERWORK)
     MMCMM_RESUME_IND_STRU              *pstResumeIndMsg = VOS_NULL_PTR;
 #endif
-    /* Added by s00246516 for L-C互操作项目, 2014-01-27, End */
 
     NAS_LOG(WUEPS_PID_MM, MM_SUSPEND, PS_LOG_LEVEL_INFO,  "MM leave SUSPEND state");
 
@@ -2273,7 +1672,6 @@ VOS_VOID Mm_Cell_S32_E85( VOS_VOID* pMsg )
     /* MM向mmc发送resume rsp */
     NAS_MM_SndMmcResumeRsp();
 
-    /* Added by s00246516 for L-C互操作项目, 2014-01-27, Begin */
 #if (FEATURE_ON == FEATURE_CL_INTERWORK)
     pstResumeIndMsg = (MMCMM_RESUME_IND_STRU*)pMsg;
 
@@ -2285,7 +1683,6 @@ VOS_VOID Mm_Cell_S32_E85( VOS_VOID* pMsg )
         return;
     }
 #endif
-    /* Added by s00246516 for L-C互操作项目, 2014-01-27, End */
 
 #if (FEATURE_ON == FEATURE_LTE)
     /* 异系统变换到LTE下的处理 */
@@ -2416,29 +1813,7 @@ VOS_VOID Mm_Cell_S32_DataTransfer( VOS_VOID* pMsg )
     return;
 }
 
-/*****************************************************************************
- Prototype      : Mm_Cell_S32_CCEstREQ
- Description    : process after CC est req  at SUSPEND state
- Input          :
- Output         :
- Return Value   : 无
- Calls          :
- Called By      :
 
- History        : ---
-  1.Date        : 2006-05-05
-    Author      : x51137
-    Modification: Created function
-  2.日    期   : 2012年10月29日
-    作    者   : z00161729
-    修改内容   : DTS2012083102536:支持cc呼叫重建
-  3.日    期   : 2013年8月17日
-    作    者   : z00161729
-    修改内容  : DTS2013062406563:EMO的卡在OOS时没有驻留到SBM的网络
-  4.日    期   :2014年9月24日
-    作    者   :s00217060
-    修改内容   :for cs_err_log
-*****************************************************************************/
 VOS_VOID Mm_Cell_S32_CCEstREQ( VOS_VOID* pMsg )
 {
     /* MM refuse the est req of CC */
@@ -2467,26 +1842,7 @@ VOS_VOID Mm_Cell_S32_CCEstREQ( VOS_VOID* pMsg )
     return;
 }
 
-/*****************************************************************************
- Prototype      : Mm_Cell_S32_SMSEstREQ
- Description    : process after SMS est req  at SUSPEND state
- Input          :
- Output         :
- Return Value   : 无
- Calls          :
- Called By      :
 
- History        : ---
-  1.Date        : 2006-05-05
-    Author      : x51137
-    Modification: Created function
-  2.日    期   :2013年9月12日
-    作    者   :z00161729
-    修改内容   :DTS2013082903019:支持ss重发功能
-  3.日    期   :2014年9月24日
-    作    者   :s00217060
-    修改内容   :for cs_err_log
-*****************************************************************************/
 VOS_VOID Mm_Cell_S32_SMSEstREQ( VOS_VOID* pMsg )
 {
     /* MM refuse the est req of SMS */
@@ -2502,32 +1858,7 @@ VOS_VOID Mm_Cell_S32_SMSEstREQ( VOS_VOID* pMsg )
     return;
 }
 
-/*****************************************************************************
- Prototype      : Mm_Cell_S32_SSEstREQ
- Description    : process after SS est req  at SUSPEND state
- Input          :
- Output         :
- Return Value   : 无
- Calls          :
- Called By      :
 
- History        : ---
-  1.Date        : 2006-05-05
-    Author      : x51137
-    Modification: Created function
-  2.日    期   : 2007年07月31日
-    作    者   : luojian id:60022475
-    修改内容   : 问题单号:A32D12640
-  3.日    期   : 2012年10月29日
-    作    者   : z00161729
-    修改内容   : DTS2012083102536:支持cc呼叫重建
-  4.日    期   :2013年9月12日
-    作    者   :z00161729
-    修改内容   :DTS2013082903019:支持ss重发功能
-  5.日    期   :2014年9月24日
-    作    者   :s00217060
-    修改内容   :for cs_err_log
-*****************************************************************************/
 VOS_VOID Mm_Cell_S32_SSEstREQ( VOS_VOID* pMsg )
 {
     /* MM refuse the est req of SS */
@@ -2543,35 +1874,7 @@ VOS_VOID Mm_Cell_S32_SSEstREQ( VOS_VOID* pMsg )
     return;
 }
 
-/*****************************************************************************
- Prototype      : Mm_Cell_S32_E23
- Description    : process MMC_MM_POWER_OFF
- Input          :
- Output         :
- Return Value   : 无
- Calls          :
- Called By      :
 
- History        : ---
- 1.Date        : 2006-05-05
-   Author      : x51137
-   Modification: Created function
- 2.日    期   : 2006年9月9日
-   作    者   : sunxibo id:46746
-   修改内容   : 根据问题单号：A32D05803
- 3.日    期   : 2011年7月25日
-   作    者   : h44270
-   修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
- 4.日    期   : 2012年10月29日
-   作    者   : z00161729
-   修改内容   : DTS2012083102536:支持cc呼叫重建
- 5.日    期   : 2013年05月15日
-   作    者   : s46746
-   修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
- 6.日    期   :2014年9月24日
-   作    者   :s00217060
-   修改内容   :for cs_err_log
-*****************************************************************************/
 VOS_VOID Mm_Cell_S32_E23( VOS_VOID* pMsg )
 {
     if ( MM_FALSE == Mm_RcvMmcPowerOffReq(pMsg) )
@@ -2618,24 +1921,7 @@ VOS_VOID Mm_Cell_S32_E23( VOS_VOID* pMsg )
 
 }
 
-/*****************************************************************************
- 函 数 名  : Mm_Cell_S32_E22
- 功能描述  : MM在挂起状态收到detach消息的处理
- 输入参数  : VOS_VOID* pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年1月9日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2013年05月15日
-   作    者   : s46746
-   修改内容   : SS FDN&Call Control项目，更新CSPS注册状态
-
-*****************************************************************************/
 VOS_VOID Mm_Cell_S32_E22( VOS_VOID* pMsg )
 {
     MMCMM_DETACH_REQ_STRU*          pMmcDetachReq;

@@ -228,9 +228,7 @@ ULONG DHCP4C_OpenEntry (UINTPTR *pulWaitListHandle, ULONG ulWaitId);
 ULONG DHCP4C_GetEntry (UINTPTR ulEntryWaitList, UCHAR *ucData, ULONG ulDataSize, ULONG ulType);
 ULONG DHCP4C_CloseObject (UINTPTR ulWaitListHandle);
 DHCP4C_SESSION_S *DHCP4C_HA_CreateAtSlave (ULONG ulIfIndex);
-/* Modified by caili cKF34546,创建socket不依赖于是否有session, 2011/2/15 问题单号:DTS2011012803825 */
 ULONG DHCP4C_HA_CreateSocketAtSlave (VOID);
-/*End of Modified by caili cKF34546,2011/2/15 问题单号:DTS2011012803825 */
 ULONG DHCP4C_HA_GetDhcp4cVerboseDbg (ULONG *pulDbg);
 ULONG DHCP4C_HA_SetDhcp4cVerboseDbg(ULONG ulDbg);
 VOID DHCP4C_HA_DebugOutPut(UCHAR *pBuf,ULONG ulMsgLen,ULONG ulCmd);

@@ -76,13 +76,7 @@ extern "C" {
   4 Enum
 *****************************************************************************/
 
-/*****************************************************************************
- 枚举名    : LPP_MTA_MSG_TYPE_ENUM
- 枚举说明  : LPP跟MTA交互的消息
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*****************************************************************************/
+
 enum LPP_MTA_MSG_TYPE_ENUM
 {
     /****************************信令面接口start*****************************************************/
@@ -120,13 +114,7 @@ enum LPP_MTA_MSG_TYPE_ENUM
 };
 typedef VOS_UINT32 LPP_MTA_MSG_TYPE_ENUM_UINT32;
 
-/*******************************************************************************
- 枚举名    : LPP_MTA_AGNSS_ERROR_ENUM_UINT32
- 枚举说明  : LPP回复MTA的错误原因值，目前暂设定一个原因值，encode fail
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 enum LPP_MTA_AGNSS_ERROR_ENUM
 {
     LPP_MTA_AGNSS_ERROR_ENCODE_ERROR    = 0,       /*编码失败*/
@@ -134,13 +122,7 @@ enum LPP_MTA_AGNSS_ERROR_ENUM
 };
 typedef VOS_UINT8  LPP_MTA_AGNSS_ERROR_ENUM_UINT32;
 
-/*******************************************************************************
- 枚举名    : LPP_COMMON_IES_ABORT_ENUM
- 枚举说明  : LPP流程abort原因值
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 enum LPP_COMMON_IES_ABORT_ENUM
 {
     LPP_COMMON_IES_ABORT_UNDEFINED = 0,
@@ -151,13 +133,7 @@ enum LPP_COMMON_IES_ABORT_ENUM
 };
 typedef VOS_UINT8  LPP_COMMON_IES_ABORT_ENUM_UINT8;
 
-/*******************************************************************************
- 枚举名    : LPP_ECID_TARGET_DEVICE_ERROR_CAUSE_ENUM
- 枚举说明  : ECID target device错误原因
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 enum LPP_ECID_TARGET_DEVICE_ERROR_CAUSE_ENUM
 {
     LPP_ECID_TARGET_DEVICE_ERROR_CAUSE_UNDEFINED = 0,
@@ -167,13 +143,7 @@ enum LPP_ECID_TARGET_DEVICE_ERROR_CAUSE_ENUM
 };
 typedef VOS_UINT32  LPP_ECID_TARGET_DEVICE_ERROR_CAUSE_ENUM_UINT32;
 
-/*******************************************************************************
- 枚举名    : LPP_ECID_LOCATION_SERVER_ERROR_CAUSE_ENUM
- 枚举说明  : ECID location server错误原因
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 enum LPP_ECID_LOCATION_SERVER_ERROR_CAUSE_ENUM
 {
     LPP_ECID_LOCATION_SERVER_ERROR_CAUSE_UNDEFINED = 0,
@@ -181,13 +151,7 @@ enum LPP_ECID_LOCATION_SERVER_ERROR_CAUSE_ENUM
 };
 typedef VOS_UINT32  LPP_ECID_LOCATION_SERVER_ERROR_CAUSE_ENUM_UINT32;
 
-/*******************************************************************************
- 枚举名    : LPP_MPATH_DET_ENUM
- 枚举说明  : mpath类型
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 enum LPP_MPATH_DET_ENUM
 {
     LPP_MPATH_DET_NOT_MEAS = 0,
@@ -198,13 +162,7 @@ enum LPP_MPATH_DET_ENUM
 };
 typedef VOS_UINT32  LPP_MPATH_DET_ENUM_UINT32;
 
-/*******************************************************************************
- 枚举名    : LPP_LOCATION_FAILURE_CAUSE_ENUM
- 枚举说明  : location错误原因
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 enum LPP_LOCATION_FAILURE_CAUSE_ENUM
 {
     LPP_LOCATION_FAILURE_CAUSE_UNDEFINED = 0,
@@ -215,13 +173,7 @@ enum LPP_LOCATION_FAILURE_CAUSE_ENUM
 };
 typedef VOS_UINT32  LPP_LOCATION_FAILURE_CAUSE_ENUM_UINT32;
 
-/*******************************************************************************
- 枚举名    : LPP_ENVIRONMENT_ENUM
- 枚举说明  : environment
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 enum LPP_ENVIRONMENT_ENUM
 {
     LPP_ENVIRONMENT_BAD_AREA = 0,
@@ -231,13 +183,7 @@ enum LPP_ENVIRONMENT_ENUM
 };
 typedef VOS_UINT8  LPP_ENVIRONMENT_ENUM_UINT8;
 
-/*******************************************************************************
- 枚举名    : LPP_ADDITON_REPORT_ENUM
- 枚举说明  : 位置信息是否上报附加信息
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 enum LPP_ADDITON_REPORT_ENUM
 {
     LPP_ADDITON_REPORT_ONLY_RETURN_INFO_REQ = 0,
@@ -246,13 +192,7 @@ enum LPP_ADDITON_REPORT_ENUM
 };
 typedef VOS_UINT8  LPP_ADDITON_REPORT_ENUM_UNIT8;
 
-/*******************************************************************************
- 枚举名    : LPP_REPORT_INTERVAL_ENUM
- 枚举说明  : 位置信息上报间隔
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 enum LPP_REPORT_INTERVAL_ENUM
 {
     LPP_REPORT_INTERVAL_NO_PERIOD_REPORT = 0,
@@ -269,13 +209,7 @@ enum LPP_REPORT_INTERVAL_ENUM
 };
 typedef VOS_UINT32  LPP_REPORT_INTERVAL_ENUM_UINT32;
 
-/*******************************************************************************
- 枚举名    : LPP_REPORT_AMOUNT_ENUM
- 枚举说明  : 位置信息周期性上报次数
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 enum LPP_REPORT_AMOUNT_ENUM
 {
     LPP_REPORT_AMOUNT_RA1 = 0,
@@ -290,13 +224,7 @@ enum LPP_REPORT_AMOUNT_ENUM
 };
 typedef VOS_UINT32  LPP_REPORT_AMOUNT_ENUM_UINT32;
 
-/*******************************************************************************
- 枚举名    : LPP_SBAS_ID_ENUM
- 枚举说明  : Sbas定位类型
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 enum LPP_LOCATION_INFO_TYPE_ENUM
 {
     LPP_LOCATION_INFO_TYPE_ESTIMATE_REQUIRED = 0,
@@ -307,13 +235,7 @@ enum LPP_LOCATION_INFO_TYPE_ENUM
 };
 typedef VOS_UINT8  LPP_LOCATION_INFO_TYPE_ENUM_UINT8;
 
-/*******************************************************************************
- 枚举名    : LPP_SBAS_ID_ENUM
- 枚举说明  : Sbas定位类型
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 enum LPP_SBAS_ID_ENUM
 {
     LPP_SBAS_ID_WAAS     = 0,
@@ -324,13 +246,7 @@ enum LPP_SBAS_ID_ENUM
 };
 typedef VOS_UINT8 LPP_SBAS_ID_ENUM_UINT8;
 
-/*******************************************************************************
- 枚举名    : LPP_BSALIGN_ENUM
- 枚举说明  : BsAlign
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 enum LPP_BSALIGN_ENUM
 {
     LPP_BSALIGN_TRUE = 0,
@@ -339,13 +255,7 @@ enum LPP_BSALIGN_ENUM
 };
 typedef VOS_UINT32 LPP_BSALIGN_ENUM_UINT32;
 
-/*******************************************************************************
- 枚举名    : LPP_INITIATOR_TYPE_ENUM
- 枚举说明  : 定位流程发起
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 enum LPP_INITIATOR_TYPE_ENUM
 {
     LPP_INITIATOR_TYPE_LOCATION_SERVER  = 0,
@@ -355,13 +265,7 @@ enum LPP_INITIATOR_TYPE_ENUM
 };
 typedef VOS_UINT8  LPP_INITIATOR_TYPE_ENUM_UINT8;
 
-/*******************************************************************************
- 枚举名    : LPP_GNSS_ID_ENUM_UINT8
- 枚举说明  : GNSS定位类型
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 enum LPP_GNSS_ID_ENUM
 {
     LPP_GNSS_ID_GPS                     = 0,
@@ -374,13 +278,7 @@ enum LPP_GNSS_ID_ENUM
 };
 typedef VOS_UINT8  LPP_GNSS_ID_ENUM_UINT8;
 
-/*******************************************************************************
- 枚举名    : LPP_CONFIDENCE_SUPPORT_R10_ENUM
- 枚举说明  : confidence support
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 enum LPP_CONFIDENCE_SUPPORT_R10_ENUM
 {
     LPP_CONFIDENCE_SUPPORT_R10_TRUE     = 0,
@@ -389,13 +287,7 @@ enum LPP_CONFIDENCE_SUPPORT_R10_ENUM
 };
 typedef VOS_UINT8  LPP_CONFIDENCE_SUPPORT_R10_ENUM_UINT8;
 
-/*******************************************************************************
- 枚举名    : LPP_DOPPLER_UNCERTAINTY_EXT_SUPPORT_R10_ENUM
- 枚举说明  : doppler uncertainty ext support
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 enum LPP_DOPPLER_UNCERTAINTY_EXT_SUPPORT_R10_ENUM
 {
     LPP_DOPPLER_UNCERTAINTY_EXT_SUPPORT_R10_TRUE     = 0,
@@ -404,13 +296,7 @@ enum LPP_DOPPLER_UNCERTAINTY_EXT_SUPPORT_R10_ENUM
 };
 typedef VOS_UINT8  LPP_DOPPLER_UNCERTAINTY_EXT_SUPPORT_R10_ENUM_UINT8;
 
-/*******************************************************************************
- 枚举名    : LPP_INTER_FREQ_RSTD_MEASUREMENT_R10_ENUM
- 枚举说明  : 异频测量是否支持
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 enum LPP_INTER_FREQ_RSTD_MEASUREMENT_R10_ENUM
 {
     LPP_INTER_FREQ_RSTD_MEASUREMENT_R10_SUPPORT     = 0,
@@ -420,13 +306,7 @@ enum LPP_INTER_FREQ_RSTD_MEASUREMENT_R10_ENUM
 typedef VOS_UINT32  LPP_INTER_FREQ_RSTD_MEASUREMENT_R10_ENUM_UINT32;
 typedef VOS_UINT32  LPP_ADDITIONAL_NEIGH_CELL_INFO_LIST_R10_ENUM_UINT32;
 
-/*******************************************************************************
- 枚举名    : LPP_DOPPLER_EXTR10_ENUM
- 枚举说明  : doppler分类
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 enum LPP_DOPPLER_EXTR10_ENUM
 {
     LPP_DOPPLER_EXTR10_D60 = 0,
@@ -438,13 +318,7 @@ enum LPP_DOPPLER_EXTR10_ENUM
 };
 typedef VOS_UINT8  LPP_DOPPLER_EXTR10_ENUM_UINT8;
 
-/*******************************************************************************
- 枚举名    : LPP_GNSS_LOCATION_SERVER_ERROR_CAUSE_ENUM
- 枚举说明  : Gnss location server错误原因值
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 enum LPP_GNSS_LOCATION_SERVER_ERROR_CAUSE_ENUM
 {
     LPP_GNSS_LOCATION_SERVER_ERROR_CAUSE_UNDEFINED = 0,
@@ -454,13 +328,7 @@ enum LPP_GNSS_LOCATION_SERVER_ERROR_CAUSE_ENUM
 };
 typedef VOS_UINT8  LPP_GNSS_LOCATION_SERVER_ERROR_CAUSE_ENUM_UINT8;
 
-/*******************************************************************************
- 枚举名    : LPP_GNSS_LOCATION_TARGET_DEVICE_ERROR_CAUSE_ENUM
- 枚举说明  : Gnss target device错误原因值
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 enum LPP_GNSS_LOCATION_TARGET_DEVICE_ERROR_CAUSE_ENUM
 {
     LPP_GNSS_LOCATION_TARGET_DEVICE_ERROR_UNDEFINED = 0,
@@ -471,13 +339,7 @@ enum LPP_GNSS_LOCATION_TARGET_DEVICE_ERROR_CAUSE_ENUM
 };
 typedef VOS_UINT8 LPP_GNSS_LOCATION_TARGET_DEVICE_ERROR_CAUSE_ENUM_UINT8;
 
-/*******************************************************************************
- 枚举名    : LPP_OTDOA_LOCATION_SERVER_ERROR_CAUSE_ENUM
- 枚举说明  : otdoa location server错误原因值
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 enum LPP_OTDOA_LOCATION_SERVER_ERROR_CAUSE_ENUM
 {
     LPP_OTDOA_LOCATION_SERVER_ERROR_CAUSE_UNDEFINED = 0,
@@ -487,13 +349,7 @@ enum LPP_OTDOA_LOCATION_SERVER_ERROR_CAUSE_ENUM
 };
 typedef VOS_UINT8  LPP_OTDOA_LOCATION_SERVER_ERROR_CAUSE_ENUM_UINT8;
 
-/*******************************************************************************
- 枚举名    : LPP_OTDOA_LOCATION_TARGET_DEVICE_ERROR_CAUSE_ENUM
- 枚举说明  : otdoa target device错误原因值
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 enum LPP_OTDOA_LOCATION_TARGET_DEVICE_ERROR_CAUSE_ENUM
 {
     LPP_OTDOA_LOCATION_TARGET_DEVICE_ERROR_UNDEFINED = 0,
@@ -505,13 +361,7 @@ enum LPP_OTDOA_LOCATION_TARGET_DEVICE_ERROR_CAUSE_ENUM
 };
 typedef VOS_UINT32 LPP_OTDOA_LOCATION_TARGET_DEVICE_ERROR_CAUSE_ENUM_UINT32;
 
-/*******************************************************************************
- 枚举名    : LPP_ANTENNA_PORT_CONFIG_ENUM
- 枚举说明  : 天线端口配置
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 enum LPP_ANTENNA_PORT_CONFIG_ENUM
 {
     LPP_ANTENNA_PORT_CONFIG_PORTS1_OR_2 = 0,
@@ -520,13 +370,7 @@ enum LPP_ANTENNA_PORT_CONFIG_ENUM
 };
 typedef VOS_UINT8  LPP_ANTENNA_PORT_CONFIG_ENUM_UINT8;
 
-/*******************************************************************************
- 枚举名    : LPP_CP_LENGTH_ENUM
- 枚举说明  : cp length
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 enum LPP_CP_LENGTH_ENUM
 {
     LPP_CP_LENGTH_NORMAL = 0,
@@ -535,13 +379,7 @@ enum LPP_CP_LENGTH_ENUM
 };
 typedef VOS_UINT8  LPP_CP_LENGTH_ENUM_UINT8;
 
-/*******************************************************************************
- 枚举名    : LPP_PRS_BAND_WITH_ENUM
- 枚举说明  : PRS band带宽
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 enum LPP_PRS_BAND_WITH_ENUM
 {
     LPP_PRS_BAND_WITH_N6 = 0,
@@ -554,13 +392,7 @@ enum LPP_PRS_BAND_WITH_ENUM
 };
 typedef VOS_UINT8  LPP_PRS_BAND_WITH_ENUM_UINT8;
 
-/*******************************************************************************
- 枚举名    : LPP_NUMDL_FRAMES_ENUM
- 枚举说明  : frames
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 enum LPP_NUMDL_FRAMES_ENUM
 {
     LPP_NUMDL_FRAMES_SF_1 = 0,
@@ -571,13 +403,7 @@ enum LPP_NUMDL_FRAMES_ENUM
 };
 typedef VOS_UINT8  LPP_NUMDL_FRAMES_ENUM_UINT8;
 
-/*******************************************************************************
- 枚举名    : LPP_COMMON_IES_ERROR_ENUM
- 枚举说明  : 公共错误类型
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 enum LPP_COMMON_IES_ERROR_ENUM
 {
     LPP_COMMON_IES_ERROR_UNDEFINED = 0,
@@ -592,13 +418,7 @@ typedef VOS_UINT8  LPP_COMMON_IES_ERROR_ENUM_UINT8;
 /*****************************************************************************
   5 STRUCT
 *****************************************************************************/
-/*******************************************************************************
- 结构名    : LPP_MTA_COMMON_PLMN_IDENTITY_STRU
- 结构说明  : 公共接口之plmn-Identity
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -614,13 +434,7 @@ typedef struct
     VOS_UINT8               ucMncNum;
 }LPP_MTA_COMMON_PLMN_IDENTITY_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_COMMON_GNSS_SIGNAL_IDS_STRU
- 结构说明  : 公共接口之GNSS-SignalIDs
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -636,13 +450,7 @@ typedef struct
     VOS_UINT8                               aucRes[3];
 }LPP_MTA_COMMON_GNSS_SIGNAL_IDS_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_COMMON_CELL_IDENTITY_STRU
- 结构说明  : 公共接口之cellIdentity
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -662,13 +470,7 @@ typedef struct
     }u;
 }LPP_MTA_COMMON_CELL_IDENTITY_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_COMMON_SV_ID_STRU
- 结构说明  : 公共接口之SV-ID
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -691,13 +493,7 @@ typedef struct
     LPP_MTA_COMMON_CELL_IDENTITY_STRU   stCellIdentity;
 }LPP_MTA_COMMON_CELL_GLO_EUTRA_UTRA_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_COMMON_FDD_STRU
- 结构说明  : 公共接口之mode OF FDD
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -712,13 +508,7 @@ typedef struct
     VOS_UINT32              ulPrimaryCpichInfo;
 }LPP_MTA_COMMON_FDD_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_COMMON_TDD_STRU
- 结构说明  : 公共接口之mode OF TDD
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -733,13 +523,7 @@ typedef struct
     VOS_UINT32              ulCellParameters;
 }LPP_MTA_COMMON_TDD_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_COMMON_MODE_SELECT_STRU
- 结构说明  : 公共接口之mode
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32              ulChoice;
@@ -754,13 +538,7 @@ typedef struct
     }u;
 }LPP_MTA_COMMON_MODE_SELECT_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_COMMON_CELL_GLO_ID_GERAN_STRU
- 结构说明  : 公共接口之CellGlobalIdGERAN
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -782,13 +560,7 @@ typedef struct
     VOS_UINT16                          usCellIdentity;
 }LPP_MTA_COMMON_CELL_GLO_ID_GERAN_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_COMMON_SV_ID_STRU
- 结构说明  : 公共接口之SV-ID
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
    /*
@@ -804,13 +576,7 @@ typedef struct
    VOS_UINT8        aucRes[3];
 }LPP_MTA_COMMON_SV_ID_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_COMMON_GNSS_SIGNAL_ID_STRU
- 结构说明  : 公共接口之GNSS-SignalID
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -825,13 +591,7 @@ typedef struct
     VOS_UINT8           aucRes[3];
 }LPP_MTA_COMMON_GNSS_SIGNAL_ID_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_COMMON_GNSS_ID_BITMAP_STRU
- 结构说明  : 公共接口之GNSS-ID-Bitmap
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -851,13 +611,7 @@ typedef struct
     VOS_UINT16                              usGNSSIDs;
 }LPP_MTA_COMMON_GNSS_ID_BITMAP_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_LOCATION_SERVER_ERROR_CAUSE_STRU
- 结构说明  : GPS提供位置信息GNSS-LocationServerErrorCauses
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -879,13 +633,7 @@ typedef struct
     VOS_UINT8                                           aucRsv[3];
 }MTA_LPP_GNSS_LOCATION_SERVER_ERROR_CAUSE_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_TARGET_DEVICE_ERROR_CAUSE_STRU
- 结构说明  : GPS提供位置信息GNSS-TargetDeviceErrorCauses
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -914,13 +662,7 @@ typedef struct
     VOS_UINT8                                               ucMultiFrequencyMeasurementsNotPossible;
 }MTA_LPP_GNSS_TARGET_DEVICE_ERROR_CAUSE_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_COMMON_GNSS_ERROR_STRU
- 结构说明  : GPS提供位置信息A-GNSS-Error
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -944,13 +686,7 @@ typedef struct
     }u;
 }LPP_MTA_COMMON_GNSS_ERROR_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_COMMON_ECGI_STRU
- 结构说明  : 公共接口之ECGI
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -964,13 +700,7 @@ typedef struct
     VOS_UINT32                          ulCellIdentity;
 }LPP_MTA_COMMON_ECGI_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_LOCATION_ERROR_STRU
- 结构说明  : GPS提供位置信息LocationError
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -985,13 +715,7 @@ typedef struct
     LPP_LOCATION_FAILURE_CAUSE_ENUM_UINT32      enLocationFailureCasue;
 }MTA_LPP_LOCATION_ERROR_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_COMMON_IES_PROVIDE_LOCATION_INFO_STRU
- 结构说明  : GPS提供位置信息CommonIEsProvideLocationInformation
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1013,13 +737,7 @@ typedef struct
     MTA_LPP_LOCATION_ERROR_STRU             stLocationError;
 }MTA_LPP_COMMON_IES_PROVIDE_LOCATION_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_COMMON_GNSS_ID_STRU
- 结构说明  : GNSS公共信元之GNSS-ID
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1035,13 +753,7 @@ typedef struct
     VOS_UINT8                           ucRes[3];
 }LPP_MTA_COMMON_GNSS_ID_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_MEAS_REF_TIME_EUTRA
- 结构说明  : GPS提供位置信息eUTRA
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1062,13 +774,7 @@ typedef struct
     VOS_UINT32                              ulSystemFramNumber;
 }MTA_LPP_MEAS_REF_TIME_EUTRA;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_MEAS_REF_TIME_UTRA
- 结构说明  : GPS提供位置信息uTRA
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1099,13 +805,7 @@ typedef struct
     VOS_UINT32                                  ulRefSystemFramNumber;
 }MTA_LPP_MEAS_REF_TIME_UTRA;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_REF_FRAME_STRU
- 结构说明  : GPS提供位置信息referenceFrame
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1123,13 +823,7 @@ typedef struct
     VOS_UINT16                              usRefFnmsn;
 }MTA_LPP_REF_FRAME_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_MEAS_REF_TIME_GSM
- 结构说明  : GPS提供位置信息gSM
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1158,13 +852,7 @@ typedef struct
     VOS_UINT32                              ulDelaGnssTod;
 }MTA_LPP_MEAS_REF_TIME_GSM;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_NET_WORK_TIME_MEAS_REF_STRU
- 结构说明  : GPS提供位置信息networkTime
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1221,13 +909,7 @@ typedef struct
     }u;
 }MTA_LPP_NET_WORK_TIME_MEAS_REF_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_MEAS_REF_TIME_STRU
- 结构说明  : GPS提供位置信息MeasurementReferenceTime
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1255,13 +937,7 @@ typedef struct
     MTA_LPP_NET_WORK_TIME_MEAS_REF_STRU stNetWorktime;
 }MTA_LPP_MEAS_REF_TIME_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_SAT_MEAS_ELEMENT_STRU
- 结构说明  : GPS提供位置信息SatMeasElement
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1297,26 +973,14 @@ typedef struct
     VOS_UINT32                          ulAdr;
 }MTA_LPP_GNSS_SAT_MEAS_ELEMENT_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_SAT_MEAS_LIST_STRU
- 结构说明  : GPS提供位置信息SatMeasList
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                              ulGNSSSatMeasListCnt;
     MTA_LPP_GNSS_SAT_MEAS_ELEMENT_STRU      astGNSSSatMeasListArray[LPP_MAX_GNSS_SAT_CNT];
 }MTA_LPP_GNSS_SAT_MEAS_LIST_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_SGN_MEAS_ELEMENT_STRU
- 结构说明  : GPS提供位置信息SgnMeasElement
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1336,13 +1000,7 @@ typedef struct
     MTA_LPP_GNSS_SAT_MEAS_LIST_STRU     stGNSSSatMeasList;
 }MTA_LPP_GNSS_SGN_MEAS_ELEMENT_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_SGN_LIST_STRU
- 结构说明  : GPS提供位置信息SgnMeasList
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1352,13 +1010,7 @@ typedef struct
     MTA_LPP_GNSS_SGN_MEAS_ELEMENT_STRU      astGNSSSgnMeasListArray[LPP_MAX_GNSS_SGN_MEAS_ELMENT_LEN];
 }MTA_LPP_GNSS_SGN_LIST_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_MEAS_FOR_ONE_GNSS_STRU
- 结构说明  : GPS提供位置信息MeasurementForOneGNSS
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1375,26 +1027,14 @@ typedef struct
     MTA_LPP_GNSS_SGN_LIST_STRU      stGNSSSgnMeasList;
 }MTA_LPP_GNSS_MEAS_FOR_ONE_GNSS_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_MEAS_LIST_STRU
- 结构说明  : GPS提供位置信息measurementList
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                              ulGNSSMeasListCnt;
     MTA_LPP_GNSS_MEAS_FOR_ONE_GNSS_STRU    *pastGNSSMeasListArray[LPP_MAX_VALID_GNSS_POSITION_TECH];
 }MTA_LPP_GNSS_MEAS_LIST_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_SIGNAL_MEAS_INFO_STRU
- 结构说明  : GPS提供位置信息之SignalMeasurementInformation
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1411,13 +1051,7 @@ typedef struct
     MTA_LPP_GNSS_MEAS_LIST_STRU         stGNSSMeasList;
 }MTA_LPP_GNSS_SIGNAL_MEAS_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_LOCATION_INFO_STRU
- 结构说明  : GPS提供位置信息之LocationInformation
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1434,13 +1068,7 @@ typedef struct
     LPP_MTA_COMMON_GNSS_ID_BITMAP_STRU      stAGNSSList;
 }MTA_LPP_GNSS_LOCATION_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_ARFCN_VALUE_EUTRA_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之ARFCN-ValueEUTRA
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1450,13 +1078,7 @@ typedef struct
     VOS_UINT32          ulArfcnValueEUTRA;
 }LPP_MTA_ARFCN_VALUE_EUTRA_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_ARFCN_VALUE_EUTRA_V9A0_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之ARFCN-ValueEUTRA-v9a
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1470,13 +1092,7 @@ typedef struct
     VOS_UINT32          ulArfcnValueEUTRAv9a0;
 }LPP_MTA_ARFCN_VALUE_EUTRA_V9A0_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_EUTRA_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之eUTRA
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1501,13 +1117,7 @@ typedef struct
     LPP_MTA_ARFCN_VALUE_EUTRA_V9A0_STRU         stEarfcnV9a0;
 }LPP_MTA_EUTRA_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_ARFCN_VALUE_UTRA_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之ARFCN-ValueUTRA
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1516,13 +1126,7 @@ typedef struct
     VOS_UINT32          ulArfcnValueUTRA;
 }LPP_MTA_ARFCN_VALUE_UTRA_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_UTRA_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之uTRA
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1551,13 +1155,7 @@ typedef struct
     LPP_MTA_ARFCN_VALUE_UTRA_STRU               stUarfcn;
 }LPP_MTA_UTRA_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GSM_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之gSM
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1578,13 +1176,7 @@ typedef struct
     LPP_MTA_COMMON_CELL_GLO_ID_GERAN_STRU   stCellGlobalIdGeran;
 }LPP_MTA_GSM_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_EUTRA_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之NetworkTime
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1640,13 +1232,7 @@ typedef struct
     }u;
 }LPP_MTA_CELL_ID_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_NET_WORK_TIME_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之NetworkTime
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1701,13 +1287,7 @@ typedef struct
     LPP_MTA_CELL_ID_STRU                    stCellID;
 }LPP_MTA_NET_WORK_TIME_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_AGNSS_PROVIDE_LOCATION_INFO_STRU
- 结构说明  : GPS提供位置信息之A-GNSS-ProvideLocationInformation
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1729,15 +1309,7 @@ typedef struct
     LPP_MTA_COMMON_GNSS_ERROR_STRU          stGNSSError;
 }MTA_LPP_AGNSS_PROVIDE_LOCATION_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_MEAS_RESULT_ELEMENT_STRU
- 结构说明  : MeasuredResultsElement
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-   注意: stArfcnEutraV9a0与stArfcnEutra都是频点信息，如果频点大于65535,stArfcnEutra
-   中的频点值填写65535，同时bitOpArfcnEutraV9a0，bitOpMeasResultElementExt选中，
-   stArfcnEutraV9a0中填写具体的频点值
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1774,12 +1346,7 @@ typedef struct
     LPP_MTA_ARFCN_VALUE_EUTRA_V9A0_STRU     stArfcnEutraV9a0;
 }LPP_MTA_MEAS_RESULT_ELEMENT_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_MEAS_RESULT_LIST_STRU
- 结构说明  : MeasuredResultsList
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1789,12 +1356,7 @@ typedef struct
     LPP_MTA_MEAS_RESULT_ELEMENT_STRU    astMeasResultsList[LPP_MAX_MEAS_RSLT_ELMENT_LEN];
 }LPP_MTA_MEAS_RESULT_LIST_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_ECID_SIGNAL_MEAS_INFO_STRU
- 结构说明  : ECID-SignalMeasurementInformation
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1812,12 +1374,7 @@ typedef struct
     LPP_MTA_MEAS_RESULT_LIST_STRU       stMeasResultList;
 }LPP_MTA_ECID_SIGNAL_MEAS_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_ECID_LOCATION_SERVER_ERROR_CAUSE_STRU
- 结构说明  : ECID-LocationServerErrorCauses
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1834,12 +1391,7 @@ typedef struct
     LPP_ECID_LOCATION_SERVER_ERROR_CAUSE_ENUM_UINT32    enEcidLocatSerErrorCause;
 }LPP_MTA_ECID_LOCATION_SERVER_ERROR_CAUSE_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_ECID_TARGET_DEVICE_ERROR_CAUSE_STRU
- 结构说明  : ECID-TargetDeviceErrorCauses
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1867,12 +1419,7 @@ typedef struct
     VOS_UINT8                                           ucRes;
 }LPP_MTA_ECID_TARGET_DEVICE_ERROR_CAUSE_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_ECID_ERROR_STRU
- 结构说明  : ECID-Error
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1897,12 +1444,7 @@ typedef struct
 
 }LPP_MTA_ECID_ERROR_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_ECID_PROVIDE_LOCATION_INFO_STRU
- 结构说明  : ECID-ProvideLocationInformation
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1921,12 +1463,7 @@ typedef struct
     LPP_MTA_ECID_ERROR_STRU                 stEcidError;
 }LPP_MTA_ECID_PROVIDE_LOCATION_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_OTDOA_MEAS_QUALITY_STRU
- 结构说明  : OTDOA-MeasQuality
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1948,12 +1485,7 @@ typedef struct
     VOS_UINT8                       ucRes;
 }LPP_MTA_OTDOA_MEAS_QUALITY_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_NEIGHBOUR_MEAS_ELEMENT_STRU
- 结构说明  : NeighbourMeasurementElement
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1982,12 +1514,7 @@ typedef struct
     LPP_MTA_ARFCN_VALUE_EUTRA_V9A0_STRU stEarfcnNeighbourV9a0;
 }LPP_MTA_NEIGHBOUR_MEAS_ELEMENT_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_NEIGHBOUR_MEAS_LIST_STRU
- 结构说明  : NeighbourMeasurementList
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -1997,26 +1524,14 @@ typedef struct
     LPP_MTA_NEIGHBOUR_MEAS_ELEMENT_STRU     astNeighbourMeasListArray[LPP_MAX_NEIGHBOUR_MEAS_ELEMENT_LEN];
 }LPP_MTA_NEIGHBOUR_MEAS_LIST_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_UP_MTA_NEIGHBOUR_MEAS_LIST_STRU
- 结构说明  : NeighbourMeasurementList
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                              ulNeighbourMeasListCnt;
     LPP_MTA_NEIGHBOUR_MEAS_ELEMENT_STRU     astNeighbourMeasListArray[LPP_MAX_NEIGHBOUR_MEAS_ELEMENT_NUM];
 }LPP_UP_MTA_NEIGHBOUR_MEAS_LIST_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_OTDOA_SIGNAL_MEAS_INFO_STRU
- 结构说明  : OTDOA-SignalMeasurementInformation
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-   注意: stEarfcnRefV9a0与stEarfcnRef都是频点信息，需要关注其相应的bit去识别对应
-   的频点
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -2048,14 +1563,7 @@ typedef struct
     LPP_MTA_ARFCN_VALUE_EUTRA_V9A0_STRU stEarfcnRefV9a0;
 }LPP_MTA_OTDOA_SIGNAL_MEAS_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_UP_MTA_OTDOA_SIGNAL_MEAS_INFO_STRU
- 结构说明  : OTDOA-SignalMeasurementInformation
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-   注意: stEarfcnRefV9a0与stEarfcnRef都是频点信息，需要关注其相应的bit去识别对应
-   的频点
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -2087,12 +1595,7 @@ typedef struct
     LPP_MTA_ARFCN_VALUE_EUTRA_V9A0_STRU stEarfcnRefV9a0;
 }LPP_UP_MTA_OTDOA_SIGNAL_MEAS_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_OTDOA_LOCATION_SERVER_ERROR_CAUSE_STRU
- 结构说明  : OTDOA-LocationServerErrorCauses
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -2110,12 +1613,7 @@ typedef struct
     VOS_UINT8                                               aucRsv[3];
 }MTA_LPP_OTDOA_LOCATION_SERVER_ERROR_CAUSE_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_OTDOA_TARGET_DEVICE_ERROR_CAUSE_STRU
- 结构说明  : OTDOA-TargetDeviceErrorCauses
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -2135,12 +1633,7 @@ typedef struct
     LPP_OTDOA_LOCATION_TARGET_DEVICE_ERROR_CAUSE_ENUM_UINT32        enOtoaTargetDeviceErrorCause;
 }MTA_LPP_OTDOA_TARGET_DEVICE_ERROR_CAUSE_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_OTDOA_ERROR_STRU
- 结构说明  : OTDOA-Error
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -2164,12 +1657,7 @@ typedef struct
     }u;
 }MTA_LPP_OTDOA_ERROR_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_OTDOA_PROVIDE_LOCATION_INFO_STRU
- 结构说明  : OTDOA-ProvideLocationInformation
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -2188,12 +1676,7 @@ typedef struct
     MTA_LPP_OTDOA_ERROR_STRU                stOtdoaError;
 }LPP_MTA_OTDOA_PROVIDE_LOCATION_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_UP_MTA_OTDOA_PROVIDE_LOCATION_INFO_STRU
- 结构说明  : OTDOA-ProvideLocationInformation
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -2212,13 +1695,7 @@ typedef struct
     MTA_LPP_OTDOA_ERROR_STRU                stOtdoaError;
 }LPP_UP_MTA_OTDOA_PROVIDE_LOCATION_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_UP_MEAS_IND_STRU
- 结构说明  : 用户面Modem将OTDOA或者ECID的测量信息报给MTA
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for OTDOA
-*******************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                  /*_H2ASN_Skip*/
@@ -2231,13 +1708,7 @@ typedef struct
     LPP_UP_MTA_OTDOA_PROVIDE_LOCATION_INFO_STRU     stOtdoaPRovideLocationInfo;
 }LPP_MTA_UP_MEAS_IND_STRU;/*27.007 8.55-19 8.55-11, 8.50-2*/
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_REQ_LOCATION_INFO_STRU
- 结构说明  : UE提供位置信息
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                  /*_H2ASN_Skip*/
@@ -2251,13 +1722,7 @@ typedef struct
     MTA_LPP_COMMON_IES_PROVIDE_LOCATION_INFO_STRU   stCommonProvideLocInfo;
 }MTA_LPP_GNSS_RROVIDE_LOCATION_INFO_IND_STRU;/*27.007 8.55-19 8.55-11, 8.50-2*/
 
-/*******************************************************************************
- 结构名    : LPP_MTA_COMMON_TRIGGER_REPORT_CRITERIA_STRU
- 结构说明  : 网侧下发GPS请求位置信息之TriggeredReportingCriteria
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -2275,13 +1740,7 @@ typedef struct
     VOS_UINT32                      ulReportDuration;
 }LPP_MTA_COMMON_TRIGGER_REPORT_CRITERIA_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_COMMON_PERIODICAL_REPORT_STRU
- 结构说明  : 网侧下发GPS请求位置信息之PeriodicalReportingCriteria
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -2300,13 +1759,7 @@ typedef struct
     LPP_REPORT_INTERVAL_ENUM_UINT32         enReportInterval;
 }LPP_MTA_COMMON_PERIODICAL_REPORT_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_COMMON_VERTICAL_ACCURACY_STRU
- 结构说明  : 网侧下发GPS请求位置信息之VerticalAccuracy
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -2324,13 +1777,7 @@ typedef struct
     VOS_UINT8           aucRes[2];
 }LPP_MTA_COMMON_HORIZONTAL_ACCURACY_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_COMMON_VERTICAL_ACCURACY_STRU
- 结构说明  : 网侧下发GPS请求位置信息之VerticalAccuracy
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -2348,13 +1795,7 @@ typedef struct
     VOS_UINT8           aucRes[2];
 }LPP_MTA_COMMON_VERTICAL_ACCURACY_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_COMMON_RESPONSE_TIME_STRU
- 结构说明  : 网侧下发GPS请求位置信息之ResponseTime
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -2370,13 +1811,7 @@ typedef struct
     VOS_UINT8           aucRes[3];
 }LPP_MTA_COMMON_RESPONSE_TIME_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_COMMON_QOS_STRU
- 结构说明  : 网侧下发GPS请求位置信息之QoS
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -2402,13 +1837,7 @@ typedef struct
     VOS_BOOL                                bVelocityReq;
 }LPP_MTA_COMMON_QOS_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_COMMON_LOCATION_COORDINATE_TYPE_STRU
- 结构说明  : 网侧下发GPS请求位置信息之LocationCoordinateTypes
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -2435,13 +1864,7 @@ typedef struct
     VOS_BOOL                    bEllipsoidArc;
 }LPP_MTA_COMMON_LOCATION_COORDINATE_TYPE_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_COMMON_VELOCITY_TYPE_STRU
- 结构说明  : 网侧下发GPS请求位置信息之VelocityTypes
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -2462,13 +1885,7 @@ typedef struct
     VOS_BOOL                bHorizontalWithVerticalVelocityAndUncertainty;
 }LPP_MTA_COMMON_VELOCITY_TYPE_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_COMMON_IES_REQ_LOCATION_INFO_STRU
- 结构说明  : 网侧下发GPS请求位置信息之CommonIEsRequestLocationInformation
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -2507,13 +1924,7 @@ typedef struct
    LPP_MTA_COMMON_VELOCITY_TYPE_STRU            stVeloctytype;
 }LPP_MTA_COMMON_IES_REQ_LOCATION_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GNSS_POSITION_INSTRUCTION_STRU
- 结构说明  : 网侧下发GPS请求位置信息之PositioningInstructions
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -2536,13 +1947,7 @@ typedef struct
     VOS_BOOL                            bAssistanceAvailability;
 }LPP_MTA_GNSS_POSITION_INSTRUCTION_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_AGNSS_REQ_LOCATION_INFO_STRU
- 结构说明  : 网侧下发GPS请求位置信息之A-GNSS-RequestLocationInformation
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -2557,12 +1962,7 @@ typedef struct
     LPP_MTA_GNSS_POSITION_INSTRUCTION_STRU      stGNSSPositonINsturction;
 }LPP_MTA_AGNSS_REQ_LOCATION_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_OTDOA_REQ_LOCATION_INFO_STRU
- 结构说明  :OTDOA-RequestLocationInformation
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -2576,12 +1976,7 @@ typedef struct
     VOS_BOOL                        bAssistanceAvailability;
 }MTA_LPP_OTDOA_REQ_LOCATION_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_REQ_MEASUREMENT_STRU
- 结构说明  :OTDOA-RequestLocationInformation
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
 
@@ -2590,12 +1985,7 @@ typedef struct
     VOS_UINT8           ucRes[2];
 }MTA_LPP_REQ_MEASUREMENT_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_ECID_REQ_LOCATION_INFO_STRU
- 结构说明  :ECID-RequestLocationInformation
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -2612,13 +2002,7 @@ typedef struct
     MTA_LPP_REQ_MEASUREMENT_STRU    stRequestedMeasurements;
 }MTA_LPP_ECID_REQ_LOCATION_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_UP_MEAS_NTY_STRU
- 结构说明  : 用户面通知modem ECID或者OTDOA的测量
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                      /*_H2ASN_Skip*/
@@ -2633,13 +2017,7 @@ typedef struct
     MTA_LPP_ECID_REQ_LOCATION_INFO_STRU         stEcidReqLocationInfo;
 }MTA_LPP_UP_MEAS_NTY_STRU;/*27.007 8.55-9*/
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GNSS_PROVIDE_ASSIST_DATA_STRU
- 结构说明  : 网络侧请求UE的位置信息
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                      /*_H2ASN_Skip*/
@@ -2650,13 +2028,7 @@ typedef struct
     LPP_MTA_AGNSS_REQ_LOCATION_INFO_STRU        stGnssReqLocationInfo;
 }LPP_MTA_GNSS_LOCATION_INFO_REQ_STRU;/*27.007 8.55-9*/
 
-/*******************************************************************************
- 结构名    : LPP_MTA_RESET_GNSS_ASSIST_DATA_STRU
- 结构说明  : 用于LPP发送给MTA，reset GPS的辅助数据
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                      /*_H2ASN_Skip*/
@@ -2665,13 +2037,7 @@ typedef struct
     VOS_UINT32                                  ulRsv;
 }LPP_MTA_RESET_GNSS_ASSIST_DATA_STRU;/*27.007 8.55-22*/
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GNSS_ERR_IND_STRU
- 结构说明  : 用于LPP发送给MTA，GNSS err信息
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                      /*_H2ASN_Skip*/
@@ -2680,13 +2046,7 @@ typedef struct
     LPP_MTA_COMMON_GNSS_ERROR_STRU              stGNSSError;            /*Lpp给LMM报的error*/
 }LPP_MTA_GNSS_ERR_IND_STRU;/*27.007 8.55-14*/
 
-/*******************************************************************************
- 结构名    : MTA_LPP_UP_MEAS_ABORT_NTY_STRU
- 结构说明  : 用户面用于MTA通知LPP停止当前OTDOA或者ECID测量
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for OTDOA ECID
-*******************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                      /*_H2ASN_Skip*/
@@ -2697,13 +2057,7 @@ typedef struct
     VOS_BOOL                                    bAbortOtdoaMeas;        /* 停止OTDOA测量 */
 }MTA_LPP_UP_MEAS_ABORT_NTY_STRU;/*27.007 8.55-9*/
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GNSS_MEAS_ABORT_IND_STRU
- 结构说明  : 用于LPP发送给MTA，GNSS 测量停止消息
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                      /*_H2ASN_Skip*/
@@ -2712,13 +2066,7 @@ typedef struct
     VOS_UINT32                                  ulRsv;
 }LPP_MTA_GNSS_MEAS_ABORT_IND_STRU;/*27.007 8.55-9*/
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GNSS_TIME_MODEL_ELEMENT_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之TimeModelElement
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -2749,13 +2097,7 @@ typedef struct
     VOS_INT16                       sDeltaT;
 }LPP_MTA_GNSS_TIME_MODEL_ELEMENT_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GNSS_TIME_MODEL_LIST_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之TimeModelList
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -2765,13 +2107,7 @@ typedef struct
     LPP_MTA_GNSS_TIME_MODEL_ELEMENT_STRU    astGNSSTimeModelListArray[LPP_MAX_GNSS_TIME_MODE_ELMENT_LEN];
 }LPP_MTA_GNSS_TIME_MODEL_LIST_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_DGNSS_CORRECT_ELEMENT_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之DGNSS-CorrectionsElement
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -2801,26 +2137,14 @@ typedef struct
     VOS_UINT8                   aucRes[3];
 }LPP_MTA_DGNSS_CORRECT_ELEMENT_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_DGNSS_SAT_LIST_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之DGNSS-SatList
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                              ulDGNSSSatListcnt;
     LPP_MTA_DGNSS_CORRECT_ELEMENT_STRU      astDGNSSCorrectElementArray[LPP_MAX_GNSS_SAT_CNT];
 }LPP_MTA_DGNSS_SAT_LIST_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_DGNSS_SGN_TYPE_ELEMENT_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之DGNSS-SgnTypeElement
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -2840,13 +2164,7 @@ typedef struct
     LPP_MTA_DGNSS_SAT_LIST_STRU         stDGNSSSatList;
 }LPP_MTA_DGNSS_SGN_TYPE_ELEMENT_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_DGNSS_SGN_TYPE_LIST_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之DGNSS-SgnTypeList
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -2856,13 +2174,7 @@ typedef struct
     LPP_MTA_DGNSS_SGN_TYPE_ELEMENT_STRU     astDGNSSSgnTypeListArray[LPP_MAX_DGNSS_SGN_TYPE_ELEMENT_LEN];
 }LPP_MTA_DGNSS_SGN_TYPE_LIST_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GNSS_DIFF_CORRECT_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之StandardClockModelElement
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -2880,13 +2192,7 @@ typedef struct
     LPP_MTA_DGNSS_SGN_TYPE_LIST_STRU    stDGNSSSgnTypeList;
 }LPP_MTA_GNSS_DIFF_CORRECT_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_STANDARD_CLOCK_MODEL_LIST_ELEMENT_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之StandardClockModelElement
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -2913,13 +2219,7 @@ typedef struct
     VOS_UINT16                  usStanModelID;
 }LPP_MTA_STANDARD_CLOCK_MODEL_LIST_ELEMENT_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_STANDARD_CLOCK_MODEL_LIST_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之StandardClockModelList
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -2929,13 +2229,7 @@ typedef struct
     LPP_MTA_STANDARD_CLOCK_MODEL_LIST_ELEMENT_STRU      astStandardClockModelListArray[LPP_MAX_STANDARD_CLOCK_ELEMENT_LEN];
 }LPP_MTA_STANDARD_CLOCK_MODEL_LIST_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_NAV_CLOCK_MODEL_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之NAV-ClockModel
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -2960,13 +2254,7 @@ typedef struct
     VOS_UINT8           aucRes[3];
 }LPP_MTA_NAV_CLOCK_MODEL_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_CNAV_CLOCK_MODEL_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之CNAV-ClockModel
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -3017,13 +2305,7 @@ typedef struct
     VOS_UINT8                   aucRes[2];
 }LPP_MTA_CNAV_CLOCK_MODEL_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GLONASS_CLOCK_MODEL_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之GLONASS-ClockModel
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -3043,13 +2325,7 @@ typedef struct
     VOS_INT16                   sGloDeltatau;
 }LPP_MTA_GLONASS_CLOCK_MODEL_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_SBAS_CLOCK_MODEL_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之SBAS-ClockModel
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -3069,13 +2345,7 @@ typedef struct
     VOS_UINT8           aucRes[2];
 }LPP_MTA_SBAS_CLOCK_MODEL_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GNSS_CLOCK_MODEL_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之ClockModel
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -3108,13 +2378,7 @@ typedef struct
     }u;
 }LPP_MTA_GNSS_CLOCK_MODEL_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_NAV_MODEL_KEPLERIAN_SET_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之NavModelKeplerianSet
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -3159,13 +2423,7 @@ typedef struct
     VOS_INT16                       sKeplerCuc;
 }LPP_MTA_NAV_MODEL_KEPLERIAN_SET_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_EPHEM_SF1_RSVD_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之ephemSF1Rsvd
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -3182,13 +2440,7 @@ typedef struct
     VOS_UINT32                  ulReserved4;
 }LPP_MTA_EPHEM_SF1_RSVD_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_ADD_NAV_PARAM_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之addNAVparam
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -3211,13 +2463,7 @@ typedef struct
     VOS_UINT32                      ulEphemAODA;
 }LPP_MTA_ADD_NAV_PARAM_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_NAV_MODEL_NAV_KEPLERIAN_SET_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之NavModelNAV-KeplerianSet
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -3279,13 +2525,7 @@ typedef struct
     LPP_MTA_ADD_NAV_PARAM_STRU          stAddNavParam;
 }LPP_MTA_NAV_MODEL_NAV_KEPLERIAN_SET_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_NAV_MODEL_CNAV_KEPLERIAN_SET_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之NavModelCNAV-KeplerianSet
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -3336,13 +2576,7 @@ typedef struct
     VOS_INT32                       lCnavCuc;
 }LPP_MTA_NAV_MODEL_CNAV_KEPLERIAN_SET_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_NAV_MODEL_GLONASS_ECEF_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之NavModel-GLONASS-ECEF
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -3382,13 +2616,7 @@ typedef struct
     VOS_INT32               lGloZdotdot;
 }LPP_MTA_NAV_MODEL_GLONASS_ECEF_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_NAV_MODEL_SBAS_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之NavModel-SBAS-ECEF
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -3424,13 +2652,7 @@ typedef struct
     VOS_INT32                   lSbasZgDotDot;
 }LPP_MTA_NAV_MODEL_SBAS_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GNSS_ORBIT_MODEL_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之OrbitModel
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -3463,13 +2685,7 @@ typedef struct
     }u;
 }LPP_MTA_GNSS_ORBIT_MODEL_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GNSS_NAV_MODEL_SATELLITE_LIST_ELEMENT_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之NavModelSatelliteElement
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -3492,26 +2708,14 @@ typedef struct
     LPP_MTA_GNSS_ORBIT_MODEL_STRU   stGNSSOrbitModel;
 }LPP_MTA_GNSS_NAV_MODEL_SATELLITE_LIST_ELEMENT_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GNSS_NAV_MODEL_SATELLITE_LIST_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之NavModelSatelliteList
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                              ulGNSSNavModelSatelliteListCnt;
     LPP_MTA_GNSS_NAV_MODEL_SATELLITE_LIST_ELEMENT_STRU      astGNSSNavModelSatelliteListArray[LPP_MAX_GNSS_SAT_CNT];
 }LPP_MTA_GNSS_NAV_MODEL_SATELLITE_LIST_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GNSS_NAVIGATION_MODEL_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之NavigationModel
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -3529,13 +2733,7 @@ typedef struct
     LPP_MTA_GNSS_NAV_MODEL_SATELLITE_LIST_STRU  stGNSSSatelliteList;
 }LPP_MTA_GNSS_NAVIGATION_MODEL_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GNSS_BAD_SIGNAL_ELEMENT_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之BadSignalElement
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -3553,26 +2751,14 @@ typedef struct
     LPP_MTA_COMMON_GNSS_SIGNAL_IDS_STRU     stBadSignalId;
 }LPP_MTA_GNSS_BAD_SIGNAL_ELEMENT_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GNSS_BAD_SIGNAL_LIST_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之BadSignalList
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                  ulGNSSBadSignalListCnt;
     LPP_MTA_GNSS_BAD_SIGNAL_ELEMENT_STRU        stGNSSBadSignalListArray[LPP_MAX_GNSS_SAT_CNT];
 }LPP_MTA_GNSS_BAD_SIGNAL_LIST_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GNSS_REALTIME_INTERGRITY_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之RealTimeIntegrity
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -3587,13 +2773,7 @@ typedef struct
     LPP_MTA_GNSS_BAD_SIGNAL_LIST_STRU       stGNSSBadSignalList;
 }LPP_MTA_GNSS_REALTIME_INTERGRITY_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GNSS_DATA_BITS_SGN_ELEMENT_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之DataBitsSgnElement
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -3611,13 +2791,7 @@ typedef struct
     VOS_UINT8                           aucGNSSDataBitsArray[LPP_MAX_GNSS_DATA_BITS_LEN];
 }LPP_MTA_GNSS_DATA_BITS_SGN_ELEMENT_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GNSS_DATA_BITS_SGN_LIST_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之DataBitsSgnList
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -3627,13 +2801,7 @@ typedef struct
     LPP_MTA_GNSS_DATA_BITS_SGN_ELEMENT_STRU     astGNSSDataBitsSgnElementArray[LPP_MAX_GNSS_DATA_BITS_SGN_ELEMENT_LEN];
 }LPP_MTA_GNSS_DATA_BITS_SGN_LIST_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GNSS_DATA_BITS_SAT_ELEMENT_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之DataBitsSatElement
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -3650,13 +2818,7 @@ typedef struct
     LPP_MTA_GNSS_DATA_BITS_SGN_LIST_STRU            stGNSSDataBitsSgnList;
 }LPP_MTA_GNSS_DATA_BITS_SAT_ELEMENT_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GNSS_DATA_BITS_SATLIST_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之DataBitsSatList
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*GPS-24颗， 21颗工作， 3颗备用
@@ -3670,13 +2832,7 @@ typedef struct
     LPP_MTA_GNSS_DATA_BITS_SAT_ELEMENT_STRU        *pastGNSSDataBitsSatListArray[LPP_MAX_GNSS_SAT_CNT];
 }LPP_MTA_GNSS_DATA_BITS_SATLIST_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GNSS_DATA_BIT_ASSIST_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之DataBitAssistance
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -3696,13 +2852,7 @@ typedef struct
     LPP_MTA_GNSS_DATA_BITS_SATLIST_STRU stGNSSDataBitsSatlist;
 }LPP_MTA_GNSS_DATA_BIT_ASSIST_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GNSS_ACQUISIT_ASSIST_ELEMENT_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之AcquisitionAssistElement
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -3744,26 +2894,14 @@ typedef struct
     VOS_BOOL                        bCodePhase1023;
 }LPP_MTA_GNSS_ACQUISIT_ASSIST_ELEMENT_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GNSS_ACQUISIT_ASSIST_LIST_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之AcquisitionAssistList
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                  ulGNSSAcquisitAssitListCnt;
     LPP_MTA_GNSS_ACQUISIT_ASSIST_ELEMENT_STRU   astGNSSAcquisitAssistListArray[LPP_MAX_GNSS_SAT_CNT];
 }LPP_MTA_GNSS_ACQUISIT_ASSIST_LIST_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GNSS_ACQUISIT_ASSIST_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之AcquisitionAssistance
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -3784,13 +2922,7 @@ typedef struct
     VOS_UINT32                              ulConfidenceR10;
 }LPP_MTA_GNSS_ACQUISIT_ASSIST_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_ALMANAC_NAV_KEPLERIAN_SET_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之AlmanacNAV-KeplerianSet
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -3826,13 +2958,7 @@ typedef struct
     VOS_UINT8                   usRes[2];
 }LPP_MTA_ALMANAC_KEPLERIAN_SET_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_ALMANAC_NAV_KEPLERIAN_SET_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之AlmanacNAV-KeplerianSet
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -3867,13 +2993,7 @@ typedef struct
     VOS_INT16                   sNavAlmaf1;
 }LPP_MTA_ALMANAC_NAV_KEPLERIAN_SET_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_ALMANAC_REDUCED_KEPLERIAN_SET_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之AlmanacReducedKeplerianSet
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -3901,13 +3021,7 @@ typedef struct
     VOS_BOOL                    bRedAlmL5Health;
 }LPP_MTA_ALMANAC_REDUCED_KEPLERIAN_SET_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_ALMANAC_MIDI_ALMANAC_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之AlmanacMidiAlmanacSet
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -3948,13 +3062,7 @@ typedef struct
     VOS_BOOL                    bMidiAlmL5Health;
 }LPP_MTA_ALMANAC_MIDI_ALMANAC_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_ALMANAC_GLONASS_ALMANAC_SET_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之AlmanacGLONASS-AlmanacSet
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -3995,13 +3103,7 @@ typedef struct
     VOS_UINT8                           aucRes[2];
 }LPP_MTA_ALMANAC_GLONASS_ALMANAC_SET_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_ALMANAC_ECEF_SBAS_ALMANAC_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之 AlmanacECEF-SBAS-AlmanacSet
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -4036,13 +3138,7 @@ typedef struct
     VOS_UINT8                       ucRes1;
 }LPP_MTA_ALMANAC_ECEF_SBAS_ALMANAC_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GNSS_ALMANAC_ELEMENT_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之AlmanacElement
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -4078,26 +3174,14 @@ typedef struct
     }u;
 }LPP_MTA_GNSS_ALMANAC_ELEMENT_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GNSS_ALMANAC_LIST_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之AlmanacList
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulGNSSAlmanacListCnt;
     LPP_MTA_GNSS_ALMANAC_ELEMENT_STRU   astGNSSAlmanacListArray[LPP_MAX_GNSS_SAT_CNT];
 }LPP_MTA_GNSS_ALMANAC_LIST_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GNSS_ALMANAC_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之Almanac
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -4124,13 +3208,7 @@ typedef struct
     LPP_MTA_GNSS_ALMANAC_LIST_STRU  stGNSSAlmanacList;
 }LPP_MTA_GNSS_ALMANAC_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_UTC_MODEL_SET1_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之UTC-ModelSet1
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -4160,13 +3238,7 @@ typedef struct
     VOS_UINT8               aucRes[2];
 }LPP_MTA_UTC_MODEL_SET1_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_UTC_MODEL_SET2_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之UTC-ModelSet2
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -4198,13 +3270,7 @@ typedef struct
     VOS_UINT8               aucRes[3];
 }LPP_MTA_UTC_MODEL_SET2_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_UTC_MODEL_SET3_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之UTC-ModelSet3
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -4230,13 +3296,7 @@ typedef struct
     VOS_UINT32                      ulKp;
 }LPP_MTA_UTC_MODEL_SET3_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_UTC_MODEL_SET4_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之UTC-ModelSet4
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -4268,13 +3328,7 @@ typedef struct
     VOS_UINT8               ucRes;
 }LPP_MTA_UTC_MODEL_SET4_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GNSS_UTC_MODEL_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之GNSS-UTC-Model
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -4303,13 +3357,7 @@ typedef struct
     }u;
 }LPP_MTA_GNSS_UTC_MODEL_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GNSS_ID_GLONASS_SAT_ELEMENT_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之GNSS-ID-GLONASS-SatElement
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -4329,26 +3377,14 @@ typedef struct
     VOS_INT32                               lChannelNumber;
 }LPP_MTA_GNSS_ID_GLONASS_SAT_ELEMENT_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GNSS_ID_GLONASS_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之GNSS-ID-GLONASS
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                  ulGNSSIdGlonassCnt;
     LPP_MTA_GNSS_ID_GLONASS_SAT_ELEMENT_STRU    astGNSSIdGlonassArray[LPP_MAX_GNSS_SAT_CNT];
 }LPP_MTA_GNSS_ID_GLONASS_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GNSS_ID_GPS_SAT_ELEMENT_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之GNSS-ID-GPS-SatElement
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -4365,26 +3401,14 @@ typedef struct
     LPP_MTA_COMMON_GNSS_SIGNAL_IDS_STRU    stSignalAvailable;
 }LPP_MTA_GNSS_ID_GPS_SAT_ELEMENT_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GNSS_ID_GPS_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之GNSS-ID-GPS
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                              ulGNSSIdGpsCnt;
     LPP_MTA_GNSS_ID_GPS_SAT_ELEMENT_STRU    astGNSSIdGpsArray[LPP_MAX_GNSS_SAT_CNT];
 }LPP_MTA_GNSS_ID_GPS_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GNSS_AUX_INFO_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之AuxiliaryInformation
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -4408,13 +3432,7 @@ typedef struct
     }u;
 }LPP_MTA_GNSS_AUX_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_COMMON_SBAS_IDS_STRU
- 结构说明  : GNSS公共接口之SBAS-IDs
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -4434,13 +3452,7 @@ typedef struct
     VOS_UINT8               ucRes[2];
 }LPP_MTA_COMMON_SBAS_IDS_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_COMMON_SBAS_ID_STRU
- 结构说明  : GNSS公共接口之SBAS-ID
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -4456,13 +3468,7 @@ typedef struct
     VOS_UINT8                               aucRes[3];
 }LPP_MTA_COMMON_SBAS_ID_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GNSS_GENERIC_ASSIST_DATA_ELEMENT_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之GenericAssistDataElement
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -4507,13 +3513,7 @@ typedef struct
     LPP_MTA_GNSS_AUX_INFO_STRU              stGNSSAuxInfo;/*ATCPOS_GNSS_ID_GLONASS_STRU*/
 }LPP_MTA_GNSS_GENERIC_ASSIST_DATA_ELEMENT_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GNSS_GENERIC_ASSIST_DATA_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之GenericAssistData
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*根据协议36355 C版本协议，目前支持的GNSS的定位技术可以如下:
@@ -4526,13 +3526,7 @@ typedef struct
     LPP_MTA_GNSS_GENERIC_ASSIST_DATA_ELEMENT_STRU  *pastGNSSGenericAssistDataArray[LPP_MAX_VALID_GNSS_POSITION_TECH];
 }LPP_MTA_GNSS_GENERIC_ASSIST_DATA_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GPS_TOW_ASSIST_ELEMENT_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之GPS-TOW-AssistElement
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -4557,13 +3551,7 @@ typedef struct
     VOS_UINT8           ucRes1;
 }LPP_MTA_GPS_TOW_ASSIST_ELEMENT_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GPS_TOW_ASSIST_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之GPS-TOW-Assist
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -4573,13 +3561,7 @@ typedef struct
     LPP_MTA_GPS_TOW_ASSIST_ELEMENT_STRU         astGpsTowAssistArray[LPP_MAX_GPS_TOW_ASSIST_ELMENT_LEN];
 }LPP_MTA_GPS_TOW_ASSIST_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GNSS_SYSTEM_TIME_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之SystemTime
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -4608,13 +3590,7 @@ typedef struct
     LPP_MTA_GPS_TOW_ASSIST_STRU     stGpsTowAssist;
 }LPP_MTA_GNSS_SYSTEM_TIME_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GNSS_REFERENCE_TIME_FOR_CELL_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之ReferenceTimeForOneCell
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -4635,13 +3611,7 @@ typedef struct
     LPP_BSALIGN_ENUM_UINT32         enBsAlign;
 }LPP_MTA_GNSS_REFERENCE_TIME_FOR_CELL_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GNSS_REFERENCE_TIME_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之ReferenceTime
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -4665,13 +3635,7 @@ typedef struct
     LPP_MTA_GNSS_REFERENCE_TIME_FOR_CELL_STRU   astGNSSReferenceTimeForCells[LPP_MAX_GNSS_REF_TIME_FOR_CELLS_LEN];
 }LPP_MTA_GNSS_REFERENCE_TIME_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_ELLIP_POINT_WITH_ALTITUDE_UNCERTAIN_ELLIPSOID_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之EllipsoidPointWithAltitudeAndUncertaintyEllipsoid
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -4701,13 +3665,7 @@ typedef struct
     VOS_UINT8                       ucConfidence;
 }LPP_MTA_ELLIP_POINT_WITH_ALTITUDE_UNCERTAIN_ELLIPSOID_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GNSS_REFERENCE_LOCATION_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之ReferenceLocation
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -4722,13 +3680,7 @@ typedef struct
     LPP_MTA_ELLIP_POINT_WITH_ALTITUDE_UNCERTAIN_ELLIPSOID_STRU      stThreeDlocation;
 }LPP_MTA_GNSS_REFERENCE_LOCATION_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_KLOBUCHAR_MODEL_PARAMTER_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之KlobucharModelParameter
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -4760,13 +3712,7 @@ typedef struct
     VOS_INT8                acRev[3];
 }LPP_MTA_KLOBUCHAR_MODEL_PARAMTER_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_NEQUICK_MODEL_PARAMETER_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之NeQuickModelParameter
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -4801,13 +3747,7 @@ typedef struct
     VOS_UINT8                   ucRes;
 }LPP_MTA_NEQUICK_MODEL_PARAMETER_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GNSS_IONOSPHERIC_MODEL_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之IonosphericModel
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -4826,13 +3766,7 @@ typedef struct
     LPP_MTA_NEQUICK_MODEL_PARAMETER_STRU    stNeQuickModel;
 }LPP_MTA_GNSS_IONOSPHERIC_MODEL_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GNSS_EARTH_ORIENTATION_PARAMETERS_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之EarthOrientationParameters
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -4859,13 +3793,7 @@ typedef struct
     VOS_INT32               lDeltaUt1Dot;
 }LPP_MTA_GNSS_EARTH_ORIENTATION_PARAMETERS_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GNSS_COMMON_ASSIST_DATA_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之CommonAssistData
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -4890,13 +3818,7 @@ typedef struct
     LPP_MTA_GNSS_EARTH_ORIENTATION_PARAMETERS_STRU  stEarthOrientationParameters;
 }LPP_MTA_GNSS_COMMON_ASSIST_DATA_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_AGNSS_PROVIDE_ASSIST_DATA_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之A-GNSS-ProvideAssistanceData
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -4918,13 +3840,7 @@ typedef struct
     LPP_MTA_COMMON_GNSS_ERROR_STRU              stGNSSError;
 }LPP_MTA_AGNSS_PROVIDE_ASSIST_DATA_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_AGNSS_PROVIDE_ASSIST_DATA_ELEMENT_STRU
- 结构说明  : 网侧下发GPS模块辅助数据之A-GNSS-ProvideAssistanceData
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -4946,13 +3862,7 @@ typedef struct
     LPP_MTA_COMMON_GNSS_ERROR_STRU                  stGNSSError;
 }LPP_MTA_AGNSS_PROVIDE_ASSIST_DATA_ELEMENT_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GNSS_PROVIDE_ASSIST_DATA_STRU
- 结构说明  : 网络侧下发辅助数据的结构
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                  /*_H2ASN_Skip*/
@@ -4962,12 +3872,7 @@ typedef struct
     LPP_MTA_AGNSS_ERROR_ENUM_UINT32                 enLppMtaAgnssError;
 }LPP_MTA_GNSS_PROVIDE_ASSIST_DATA_CNF_STRU; /*27.007 8.55-15*/
 
-/*******************************************************************************
- 结构名    : MTA_LPP_PRS_MUTING_INFO_R9_STRU
- 结构说明  :    协议为空
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                          ulChoice;
@@ -4986,12 +3891,7 @@ typedef struct
     }u;
 }MTA_LPP_PRS_MUTING_INFO_R9_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_PRS_INFO_STRU
- 结构说明  :PRS-Info
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -5021,13 +3921,7 @@ typedef struct
     MTA_LPP_PRS_MUTING_INFO_R9_STRU         stPrsMutingInfoR9;
 }MTA_LPP_PRS_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_OTDOA_REF_CELL_INFO_STRU
- 结构说明  :OTDOA-ReferenceCellInfo
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-   注意: 当前频点的填值需要关注stEarfcnRef以及stEarfcnRefV9a0，对应的bit域会指示其有效性
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -5063,13 +3957,7 @@ typedef struct
     LPP_MTA_ARFCN_VALUE_EUTRA_V9A0_STRU stEarfcnRefV9a0;
 }MTA_LPP_OTDOA_REF_CELL_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_OTDOA_NEIGHBOUR_CELL_INFO_ELEMENT_STRU
- 结构说明  :OTDOA-NeighbourCellInfoElement
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-   注意: 当前频点的填值需要关注stEarfcnRef以及stEarfcnRefV9a0，对应的bit域会指示其有效性
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -5117,12 +4005,7 @@ typedef struct
     LPP_MTA_ARFCN_VALUE_EUTRA_V9A0_STRU     stEarfcnv9a0;
 }MTA_LPP_OTDOA_NEIGHBOUR_CELL_INFO_ELEMENT_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_OTDOA_NEIGHBOUR_FREQ_INFO_STRU
- 结构说明  :OTDOA-NeighbourFreqInfo
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -5132,12 +4015,7 @@ typedef struct
     MTA_LPP_OTDOA_NEIGHBOUR_CELL_INFO_ELEMENT_STRU  astOtdoaNeighbourFreqInfoArray[LPP_MAX_OTDOA_NEIGHBOUR_CELL_INFO_ELMENT_LEN];
 }MTA_LPP_OTDOA_NEIGHBOUR_FREQ_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_OTDOA_NEIGHOUR_CELL_INFO_STRU
- 结构说明  :OTDOA-NeighbourCellInfoList
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -5147,12 +4025,7 @@ typedef struct
     MTA_LPP_OTDOA_NEIGHBOUR_FREQ_INFO_STRU  astOtdoaNeighourFreqInfoArray[LPP_MAX_FREQ_LAYERS_LEN];
 }MTA_LPP_OTDOA_NEIGHOUR_CELL_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_OTDOA_PROVIDE_ASSIST_DATA_STRU
- 结构说明  :OTDOA-ProvideAssistanceData
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -5174,13 +4047,7 @@ typedef struct
     MTA_LPP_OTDOA_ERROR_STRU                stOtdoaError;
 }MTA_LPP_OTDOA_PROVIDE_ASSIST_DATA_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_UP_OTDOA_ASSIST_DATA_NTY_STRU
- 结构说明  : 用户面网络侧下发OTDOA辅助数据的结构
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for OTDOA
-*******************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                  /*_H2ASN_Skip*/
@@ -5189,13 +4056,7 @@ typedef struct
     MTA_LPP_OTDOA_PROVIDE_ASSIST_DATA_STRU          stOTDOAProvideAssistanceData;
 }MTA_LPP_UP_OTDOA_ASSIST_DATA_NTY_STRU; /*27.007 8.55-15*/
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GNSS_PROVIDE_ASSIST_DATA_STRU
- 结构说明  : 网络侧下发辅助数据的结构
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                  /*_H2ASN_Skip*/
@@ -5204,13 +4065,7 @@ typedef struct
     LPP_MTA_AGNSS_PROVIDE_ASSIST_DATA_ELEMENT_STRU  stGnssProvideAssistData;
 }LPP_MTA_GNSS_PROVIDE_ASSIST_DATA_IND_STRU; /*27.007 8.55-15*/
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_TIME_MODEL_ELEMENT_REQ_STRU
- 结构说明  : GPS模块提供能力之TimeModelElementReq
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -5228,13 +4083,7 @@ typedef struct
     VOS_BOOL            bdeltaTreq;
 }MTA_LPP_GNSS_TIME_MODEL_ELEMENT_REQ_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_TIME_MODEL_LIST_REQ_STRU
- 结构说明  : GPS模块提供能力之TimeModelListReq
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -5245,13 +4094,7 @@ typedef struct
     MTA_LPP_GNSS_TIME_MODEL_ELEMENT_REQ_STRU    astGNSSTimeModelListElementReq[LPP_MAX_GNSS_TIME_MODEL_ELEMENT_LEN];
 }MTA_LPP_GNSS_TIME_MODEL_LIST_REQ_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_DIFF_CORRECT_REQ_STRU
- 结构说明  : GPS模块提供能力之DifferentialCorrectionsReq
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -5268,13 +4111,7 @@ typedef struct
     VOS_BOOL                                bDGNSSValidityTimeReq;
 }MTA_LPP_GNSS_DIFF_CORRECT_REQ_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_SATLIST_RELATED_DATALIST_ELEMENT_STRU
- 结构说明  : GPS模块提供能力之SatListRelatedDataElement
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -5297,13 +4134,7 @@ typedef struct
     VOS_UINT8                   ucOrbitModelId;
 }MTA_LPP_SATLIST_RELATED_DATALIST_ELEMENT_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_SATLIST_RELATED_DATALIST_STRU
- 结构说明  : GPS模块提供能力之SatListRelatedDataList
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*SatListRelatedDataList ::= SEQUENCE (SIZE (1..64)) OF SatListRelatedDataElement*/
@@ -5311,13 +4142,7 @@ typedef struct
     MTA_LPP_SATLIST_RELATED_DATALIST_ELEMENT_STRU   astSatListRelatedDataListElementArray[LPP_MAX_GNSS_SAT_CNT];
 }MTA_LPP_SATLIST_RELATED_DATALIST_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_STORED_NAVLIST_STRU
- 结构说明  : GPS模块提供能力之StoredNavListInfo
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -5339,13 +4164,7 @@ typedef struct
     MTA_LPP_SATLIST_RELATED_DATALIST_STRU   stSatlistRelatedDataList;
 }MTA_LPP_STORED_NAVLIST_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_COMMON_CLOCK_MODEL_ID_STRU
- 结构说明  : GPS模块提供能力之clockModelID-PrefList
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*clockModelID-PrefList   SEQUENCE (SIZE (1..8)) OF   INTEGER (1..8)*/
@@ -5354,13 +4173,7 @@ typedef struct
     VOS_UINT8       ucClockModelIDList[LPP_MAX_CLOCK_MODEL_ID_PRELIST_LEN];
 }LPP_MTA_COMMON_CLOCK_MODEL_ID_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_COMMON_ORBIT_MODEL_ID_STRU
- 结构说明  : GPS模块提供能力之orbitModelID-PrefList
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*orbitModelID-PrefList   SEQUENCE (SIZE (1..8)) OF   INTEGER (1..8)*/
@@ -5369,13 +4182,7 @@ typedef struct
     VOS_UINT8       ucOrbitModelIDList[LPP_MAX_ORBIT_MODEL_ID_PREFLIST_LEN];
 }LPP_MTA_COMMON_ORBIT_MODEL_ID_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_REQ_NAVLIST_STRU
- 结构说明  : GPS模块提供能力之ReqNavListInfo
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -5399,13 +4206,7 @@ typedef struct
     VOS_BOOL                                bAddNavparamReq;
 }MTA_LPP_REQ_NAVLIST_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_NAVIGATION_MODEL_REQ_STRU
- 结构说明  : GPS模块提供能力之NavigationModelReq
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -5429,13 +4230,7 @@ typedef struct
     }u;
 }MTA_LPP_GNSS_NAVIGATION_MODEL_REQ_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_REALTIME_INTERGRITY_REQ_STRU
- 结构说明  : GPS模块提供能力之RealTimeIntergrityReq
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*协议为空*/
@@ -5443,13 +4238,7 @@ typedef struct
     VOS_UINT32      bitOpSpare                          :31;
 }MTA_LPP_GNSS_REALTIME_INTERGRITY_REQ_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_DATA_BIT_REQ_SAT_ELEMENT_STRU
- 结构说明  : GPS模块提供能力之DataBitsReqSatElement
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -5464,26 +4253,14 @@ typedef struct
     LPP_MTA_COMMON_SV_ID_STRU   stSvId;
 }MTA_LPP_GNSS_DATA_BIT_REQ_SAT_ELEMENT_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_DATA_BIT_REQ_SAT_LIST_STRU
- 结构说明  : GPS模块提供能力之DataBitsReqSatList
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                  ulGNSSDataBitsReqListCnt;
     MTA_LPP_GNSS_DATA_BIT_REQ_SAT_ELEMENT_STRU  astGNSSDataBitReqSatList[LPP_MAX_GNSS_SAT_CNT];
 }MTA_LPP_GNSS_DATA_BIT_REQ_SAT_LIST_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_DATA_BIT_ASSIST_REQ_STRU
- 结构说明  : GPS模块提供能力之DataBitAssistanceReq
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -5508,13 +4285,7 @@ typedef struct
     MTA_LPP_GNSS_DATA_BIT_REQ_SAT_LIST_STRU stGNSSDataBitsReqSatList;
 }MTA_LPP_GNSS_DATA_BIT_ASSIST_REQ_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_ACQUISIT_ASSIST_REQ_STRU
- 结构说明  : GPS模块提供能力之AcquisitionAssistanceReq
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -5529,13 +4300,7 @@ typedef struct
     LPP_MTA_COMMON_GNSS_SIGNAL_ID_STRU  stGNSSSignalIdReq;
 }MTA_LPP_GNSS_ACQUISIT_ASSIST_REQ_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_ALMANAC_REQ_STRU
- 结构说明  : GPS模块提供能力之AlmanacReq
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -5552,13 +4317,7 @@ typedef struct
     VOS_UINT8           aucRes[3];
 }MTA_LPP_GNSS_ALMANAC_REQ_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_UTC_MODEL_REQ_STRU
- 结构说明  : GPS模块提供能力之UTC-ModelReq
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -5575,13 +4334,7 @@ typedef struct
     VOS_UINT8           aucRes[3];
 }MTA_LPP_GNSS_UTC_MODEL_REQ_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_AUX_INFO_REQ_STRU
- 结构说明  : GPS模块提供能力之AuxInfoReq
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -5591,13 +4344,7 @@ typedef struct
     VOS_UINT32      bitOpSpare              :31;
 }MTA_LPP_GNSS_AUX_INFO_REQ_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_GENERIC_ASSIST_DATA_REQ_ELEMENT_STRU
- 结构说明  : GPS模块提供能力之GenericAssistDataReqElement
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -5642,26 +4389,14 @@ typedef struct
     MTA_LPP_GNSS_AUX_INFO_REQ_STRU              stGNSSAuxInfoReq;
 }MTA_LPP_GNSS_GENERIC_ASSIST_DATA_REQ_ELEMENT_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_GENERIC_ASSIST_DATA_REQ_STRU
- 结构说明  : GPS模块提供能力之GenericAssistDataReq
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                              ulGNSSGenericAssistDataReqCnt;
     MTA_LPP_GNSS_GENERIC_ASSIST_DATA_REQ_ELEMENT_STRU      *pastGNSSGenericAssistDataReqElement[LPP_MAX_VALID_GNSS_POSITION_TECH];
 }MTA_LPP_GNSS_GENERIC_ASSIST_DATA_REQ_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_REFERENCE_TIME_REQ_STRU
- 结构说明  : GPS模块提供能力之ReferenceTimeReq
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -5683,13 +4418,7 @@ typedef struct
     VOS_BOOL                        bNotOFLeapSecReq;
 }MTA_LPP_GNSS_REFERENCE_TIME_REQ_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_REFERENCE_LOCATION_REQ_STRU
- 结构说明  : GPS模块提供能力之refLocationReq
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -5699,13 +4428,7 @@ typedef struct
     VOS_UINT32          bitOpSpare:31;
 }MTA_LPP_GNSS_REFERENCE_LOCATION_REQ_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_IONOSPHERIC_MODEL_REQ_STRU
- 结构说明  : GPS模块提供能力之IonosphericModelReq
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -5725,13 +4448,7 @@ typedef struct
     VOS_UINT32                  ulQuickModelReq;
 }MTA_LPP_GNSS_IONOSPHERIC_MODEL_REQ_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_EARTH_ORIENTATION_PARAMETERS_REQ_STRU
- 结构说明  : GPS模块提供能力之EarthOrientationParametersReq
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -5740,13 +4457,7 @@ typedef struct
     VOS_UINT32          ulRes;
 }MTA_LPP_GNSS_EARTH_ORIENTATION_PARAMETERS_REQ_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_COMMON_ASSIST_DATA_REQ_STRU
- 结构说明  : GPS模块提供能力之CommonAssistDataReq
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -5775,13 +4486,7 @@ typedef struct
     MTA_LPP_GNSS_EARTH_ORIENTATION_PARAMETERS_REQ_STRU  stEarthOrientationParametersReq;
 }MTA_LPP_GNSS_COMMON_ASSIST_DATA_REQ_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_AGNSS_REQ_ASSIST_DATA_STRU
- 结构说明  : GPS模块提供能力之RequestAssistanceData
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -5800,12 +4505,7 @@ typedef struct
     MTA_LPP_GNSS_GENERIC_ASSIST_DATA_REQ_STRU   stGNSSGenericAssistDataReq;
 }MTA_LPP_AGNSS_REQ_ASSIST_DATA_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_OTDOA_REQ_ASSIST_DATA_STRU
- 结构说明  :OTDOA-RequestAssistanceData
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -5821,13 +4521,7 @@ typedef struct
     VOS_UINT16          usRes;
 }LPP_MTA_OTDOA_REQ_ASSIST_DATA_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_UP_NO_OTDOA_ASSIST_DATA_IND_STRU
- 结构说明  : 用户面modem没有OTDOA的辅助数据，通知MTA
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for OTDOA
-*******************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                          /*_H2ASN_Skip*/
@@ -5836,13 +4530,7 @@ typedef struct
     LPP_MTA_OTDOA_REQ_ASSIST_DATA_STRU      stOtodaAssistDataReq;
 }LPP_MTA_UP_NO_OTDOA_ASSIST_DATA_IND_STRU;/*27.007 8.55-15*/
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_ASSIST_DATA_REQ_STRU
- 结构说明  : 请求网络侧的辅助数据的结构
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                          /*_H2ASN_Skip*/
@@ -5851,13 +4539,7 @@ typedef struct
     MTA_LPP_AGNSS_REQ_ASSIST_DATA_STRU      stGnssAssistDataReq;
 }MTA_LPP_GNSS_ASSIST_DATA_REQ_STRU;/*27.007 8.55-15*/
 
-/*******************************************************************************
- 结构名    : LPP_MTA_COMMON_ACCESS_TYPES_STRU
- 结构说明  : GPS模块提供能力之AccessTypes
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -5877,13 +4559,7 @@ typedef struct
     VOS_UINT8                               aucRsv[2];
 }LPP_MTA_COMMON_ACCESS_TYPES_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_COMMON_POSITIONING_MODES_STRU
- 结构说明  : GPS模块提供能力之PositioningModes
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -5902,13 +4578,7 @@ typedef struct
     VOS_UINT8               ucRes[2];
 }LPP_MTA_COMMON_POSITIONING_MODES_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_FTA_MEAS_SUPPORT_STRU
- 结构说明  : GPS模块提供能力之MeasSupport
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -5925,13 +4595,7 @@ typedef struct
     LPP_MTA_COMMON_POSITIONING_MODES_STRU   stPositioningModes;
 }MTA_LPP_FTA_MEAS_SUPPORT_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_SUPPORT_ELEMENT_STRU
- 结构说明  : GPS模块提供能力之SupportElement
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -5964,26 +4628,14 @@ typedef struct
     VOS_BOOL                                bVelocityMeasurementSupport;
 }MTA_LPP_GNSS_SUPPORT_ELEMENT_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_SUPPORT_LIST_STRU
- 结构说明  : GPS模块提供能力之SupportList
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                  ulSupportElementNum;
     MTA_LPP_GNSS_SUPPORT_ELEMENT_STRU           astGnssSupportElementArray[LPP_MAX_VALID_GNSS_POSITION_TECH];
 }MTA_LPP_GNSS_SUPPORT_LIST_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_REFERENCE_TIME_SUPPORT_STRU
- 结构说明  : GPS模块提供能力之ReferenceTimeSupport
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -6001,13 +4653,7 @@ typedef struct
     LPP_MTA_COMMON_ACCESS_TYPES_STRU        stFtaSupport;
 }MTA_LPP_GNSS_REFERENCE_TIME_SUPPORT_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_REFERENCE_LOCATION_SUPPORT_STRU
- 结构说明  : GPS模块提供能力之refLoctionSupport
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /* 协议里此结构为空 */
@@ -6015,13 +4661,7 @@ typedef struct
     VOS_UINT32          bitOpSpare                  :31;
 }MTA_LPP_GNSS_REFERENCE_LOCATION_SUPPORT_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_IONOSPHERIC_MODE_SUPPORT_STRU
- 结构说明  : GPS模块提供能力之IonosphericModelSupport
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -6040,13 +4680,7 @@ typedef struct
     VOS_UINT8       ucRes[2];
 }MTA_LPP_GNSS_IONOSPHERIC_MODE_SUPPORT_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_EARTH_ORIENTATION_PARAMETERS_SUPPORT_STRU
- 结构说明  : GPS模块提供能力之EarthOrientationParameters
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /* 协议里此结构为空 */
@@ -6054,13 +4688,7 @@ typedef struct
     VOS_UINT32      bitOpSpare:31;
 }MTA_LPP_GNSS_EARTH_ORIENTATION_PARAMETERS_SUPPORT_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_COMMON_ASSISTANCE_DATA_SUPPORT_STRU
- 结构说明  : GPS模块提供能力之CommonAssistanceDataSupport
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -6089,13 +4717,7 @@ typedef struct
     MTA_LPP_GNSS_EARTH_ORIENTATION_PARAMETERS_SUPPORT_STRU  stGnssEarthOrientationParametersSupport; /*empty*/
 }MTA_LPP_GNSS_COMMON_ASSISTANCE_DATA_SUPPORT_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_TIME_MODE_LIST_SUPPORT_STRU
- 结构说明  : GPS模块提供能力之TimeModeList
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /* 协议里此结构为空 */
@@ -6103,13 +4725,7 @@ typedef struct
     VOS_UINT32      bitOpSpare:31;
 }MTA_LPP_GNSS_TIME_MODE_LIST_SUPPORT_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_DIFFERENTIAL_CORRECTIONS_SUPPORT_STRU
- 结构说明  : GPS模块提供能力之DifferentialCorrectionsSupport
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -6126,13 +4742,7 @@ typedef struct
     VOS_BOOL                                bDgnssValidityTimeSup;
 }MTA_LPP_GNSS_DIFFERENTIAL_CORRECTIONS_SUPPORT_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_CLOCK_MODEL_STRU
- 结构说明  : GPS模块提供能力之clockModel
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucClockModelCnt;
@@ -6140,13 +4750,7 @@ typedef struct
     VOS_UINT8                           ucRes[2];
 }MTA_LPP_CLOCK_MODEL_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_ORBIT_MODEL_STRU
- 结构说明  : GPS模块提供能力之orbitModel
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucOrbitModelCnt;
@@ -6154,13 +4758,7 @@ typedef struct
     VOS_UINT8                           ucRes[2];
 }MTA_LPP_ORBIT_MODEL_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_NAVIGATION_MODE_SUPPORT_STRU
- 结构说明  : GPS模块提供能力之NavigationModelSupport
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -6187,13 +4785,7 @@ typedef struct
     MTA_LPP_ORBIT_MODEL_STRU            stOrbitModel;
 }MTA_LPP_GNSS_NAVIGATION_MODE_SUPPORT_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_REAL_TIME_INTEGRITY_SUPPORT_STRU
- 结构说明  : GPS模块提供能力之realTimeIntegritySupport
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /* 协议里此结构为空 */
@@ -6201,13 +4793,7 @@ typedef struct
     VOS_UINT32      bitOpSpare:31;
 }MTA_LPP_GNSS_REAL_TIME_INTEGRITY_SUPPORT_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_DATA_BIT_ASSISTANCE_SUPPORT_STRU
- 结构说明  : GPS模块提供能力之dataBitAssistSupport
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /* 协议里此结构为空 */
@@ -6215,13 +4801,7 @@ typedef struct
     VOS_UINT32          bitOpSpare:31;
 }MTA_LPP_GNSS_DATA_BIT_ASSISTANCE_SUPPORT_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_ACQUISITION_ASSISTANCE_SUPPORT_STRU
- 结构说明  : GPS模块提供能力之AcquisitionAssistanceSupport
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -6242,13 +4822,7 @@ typedef struct
     VOS_UINT8                                           ucRes;
 }MTA_LPP_GNSS_ACQUISITION_ASSISTANCE_SUPPORT_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_ALMANAC_SUPPORT_STRU
- 结构说明  : GPS模块提供能力之almanacModel
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulAlmanacModelCnt;
@@ -6256,13 +4830,7 @@ typedef struct
     VOS_UINT8                           ucRes[3];
 }MTA_LPP_ALMANAC_MODEL_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_ALMANAC_SUPPORT_STRU
- 结构说明  : GPS模块提供能力之AlmanacSupport
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -6283,13 +4851,7 @@ typedef struct
     MTA_LPP_ALMANAC_MODEL_STRU                              stAlmanacModel;
 }MTA_LPP_GNSS_ALMANAC_SUPPORT_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_UTC_MODEL_STRU
- 结构说明  : GPS模块提供能力之utc-Model
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulUtcModelCnt;
@@ -6297,13 +4859,7 @@ typedef struct
     VOS_UINT8                           aucRes[3];
 }MTA_LPP_UTC_MODEL_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_GNSS_UTC_MODEL_SUPPORT_STRU
- 结构说明  : GPS模块提供能力之UTC-ModelSupport
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -6322,13 +4878,7 @@ typedef struct
     MTA_LPP_UTC_MODEL_STRU                              stUtcModel;
 }MTA_LPP_GNSS_UTC_MODEL_SUPPORT_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_AUXILIARY_INFORMATION_SUPPORT_STRU
- 结构说明  : GPS模块提供能力之AuxiliaryInformationSupport
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /* 协议里此结构为空 */
@@ -6336,13 +4886,7 @@ typedef struct
     VOS_UINT32              bitOpSpare                  :31;
 }MTA_LPP_GNSS_AUXILIARY_INFORMATION_SUPPORT_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_GENERIC_ASSISTANCE_DATA_SUPPORT_ELEMENT_STRU
- 结构说明  : GPS模块提供能力之GenericAssistDataSupportElement
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -6396,26 +4940,14 @@ typedef struct
     MTA_LPP_GNSS_AUXILIARY_INFORMATION_SUPPORT_STRU         stGnssAuxiliaryInformationSupport;
 }MTA_LPP_GNSS_GENERIC_ASSISTANCE_DATA_SUPPORT_ELEMENT_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_GENERIC_ASSISTANCE_DATA_SUPPORT_STRU
- 结构说明  : GPS模块提供能力之GenericAssistanceDataSupport
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                                  ulSupportElementNum;
     MTA_LPP_GNSS_GENERIC_ASSISTANCE_DATA_SUPPORT_ELEMENT_STRU   astSupportElementArray[LPP_MAX_VALID_GNSS_POSITION_TECH];
 }MTA_LPP_GNSS_GENERIC_ASSISTANCE_DATA_SUPPORT_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_ASSISTANCE_DATA_SUPPORT_LIST_STRU
- 结构说明  : GPS模块提供能力之AssistanceDataSupportList
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -6432,13 +4964,7 @@ typedef struct
     MTA_LPP_GNSS_GENERIC_ASSISTANCE_DATA_SUPPORT_STRU   stGnssGenericAssistanceDataSupport;
 }MTA_LPP_ASSISTANCE_DATA_SUPPORT_LIST_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_VELOCITY_TYPES_STRU
- 结构说明  : GPS模块提供能力之VelocityTypes
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -6459,13 +4985,7 @@ typedef struct
     VOS_BOOL                            bHorizontalWithVerticalVelocityAndUncertainty;
 }MTA_LPP_VELOCITY_TYPES_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GNSS_CAP_REQ_STRU
- 结构说明  : 请求GPS模块能力请求结构
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -6490,12 +5010,7 @@ typedef struct
     MTA_LPP_VELOCITY_TYPES_STRU                     stVelocityTypes;
 }MTA_LPP_AGNSS_PROVIDE_CAP_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_OTDOA_MODE_STRU
- 结构说明  :
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                               ucOTDOAMode;
@@ -6503,12 +5018,7 @@ typedef struct
     VOS_UINT8                               ucRes[2];
 }LPP_MTA_OTDOA_MODE_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_SUPPORTED_BAND_EUTRA_STRU
- 结构说明  :SupportedBandEUTRA
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -6522,24 +5032,14 @@ typedef struct
     VOS_UINT32                              ulBandEutra;
 }LPP_MTA_SUPPORTED_BAND_EUTRA_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_SUPPORTED_BAND_LIST_EUTRA_STRU
- 结构说明  :
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                              ulSupportBandNum;
     LPP_MTA_SUPPORTED_BAND_EUTRA_STRU       astSupportedBandArray[LPP_MAX_SUPPORTED_BAND_EUTRA_NUM];
 }LPP_MTA_SUPPORTED_BAND_LIST_EUTRA_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_SUPPORTED_BAND_EUTRA_V9A0_STRU
- 结构说明  :SupportedBandEUTRA-v9a0
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -6555,26 +5055,14 @@ typedef struct
     VOS_UINT32                              ulBandEutraV9A0;
 }LPP_MTA_SUPPORTED_BAND_EUTRA_V9A0_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_SUPPORTED_BAND_LIST_EUTRA_V9A0_STRU
- 结构说明  :
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                              ulSupportBandNum;
     LPP_MTA_SUPPORTED_BAND_EUTRA_V9A0_STRU  astSupportedBandArray[LPP_MAX_SUPPORTED_BAND_EUTRA_NUM];
 }LPP_MTA_SUPPORTED_BAND_LIST_EUTRA_V9A0_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_OTDOA_PROVIDE_CAP_STRU
- 结构说明  :OTDOA-ProvideCapabilities
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-   注意: modem当前支持的bandlist需要关注对应的bit域，stSupportedBandListEutra，
-   stSupportedBandListEutraV9A0都有可能带对应支持的band
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -6602,12 +5090,7 @@ typedef struct
     LPP_ADDITIONAL_NEIGH_CELL_INFO_LIST_R10_ENUM_UINT32 enAdditionalNeighbourCellInfoListR10;
 }LPP_MTA_OTDOA_PROVIDE_CAP_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_ECID_MEAS_SUPPORTED_STRU
- 结构说明  :
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT8           ucEcidMeasSupCnt;
@@ -6615,12 +5098,7 @@ typedef struct
     VOS_UINT8           ucRes[2];
 }LPP_MTA_ECID_MEAS_SUPPORTED_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_ECID_PROVIDE_CAP_STRU
- 结构说明  :
- 1.日    期   : 2015年07月06日
-   作    者   : w00324863
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                              bitOpEcidProvideCapExt:1;
@@ -6628,13 +5106,7 @@ typedef struct
     LPP_MTA_ECID_MEAS_SUPPORTED_STRU        stEcidMeasSupported;
 }LPP_MTA_ECID_PROVIDE_CAP_STRU;
 
-/*******************************************************************************
- 结构名    : LPP_MTA_UP_CAPABILITY_CNF_STRU
- 结构说明  : 用户面LPP回复SUPL当前ECID和OTDOA的能力
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                          /*_H2ASN_Skip*/
@@ -6647,13 +5119,7 @@ typedef struct
     LPP_MTA_ECID_PROVIDE_CAP_STRU           stECIDProvideCapabilities;
 }LPP_MTA_UP_CAPABILITY_CNF_STRU;/*27.007 8.55-4*/
 
-/*******************************************************************************
- 结构名    : MTA_LPP_GNSS_PROVIDE_CAPABITY_STRU
- 结构说明  : 提供GNSS能力给网侧的结构
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                          /*_H2ASN_Skip*/
@@ -6663,13 +5129,7 @@ typedef struct
     MTA_LPP_AGNSS_PROVIDE_CAP_STRU          stGnssProvideCap;
 }MTA_LPP_GNSS_PROVIDE_CAPABITY_CNF_STRU;/*27.007 8.55-4*/
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GNSS_CAP_REQ_STRU
- 结构说明  : 请求GPS模块能力请求结构
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     /*
@@ -6688,13 +5148,7 @@ typedef struct
     VOS_BOOL                            blocationVelocityTypesReq;
 }LPP_MTA_GNSS_CAP_REQ_STRU;
 
-/*******************************************************************************
- 结构名    : MTA_LPP_UP_CAPABILITY_REQ_STRU
- 结构说明  : 用户面AP侧请求modem ECID以及OTDOA的能力
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                          /*_H2ASN_Skip*/
@@ -6703,13 +5157,7 @@ typedef struct
     VOS_UINT32                          ulRsv;              /*保留位*/
 }MTA_LPP_UP_CAPABILITY_REQ_STRU; /*27.007 8.55-4*/
 
-/*******************************************************************************
- 结构名    : LPP_MTA_GNSS_CAPABITY_REQ_STRU
- 结构说明  : 请求GPS模块能力请求结构
- 1.日    期   : 2015年06月24日
-   作    者   : l00253982
-   修改内容   : Added for GNSS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                          /*_H2ASN_Skip*/

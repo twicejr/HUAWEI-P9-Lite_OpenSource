@@ -1,39 +1,4 @@
-/******************************************************************************
 
-    Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : PsNvInterface.h
-  Description     : PsNvInterface.h header file
-  History           :
-     1.Name+ID      yyyy-mm-dd  Draft Enact
-     2.guojiyu 00149868   2010-02-1  BJ9D02655:规划修改NV项信息,把锁频、锁小区以及NV读取失败的处理综合考虑
-     3.linyu   00161178   2010-02-23 BJ9D02764:针对世博会外场做的相关修改和规避
-.....4.Wang Yangcai 49178 2010-03-04 BJ9D02803:分模块编译代码整理
-     5.Wang Yue  00151278 2010-03-09 BJ9D02817:3db重选特性添加
-     6.Zhu Hua  00161499 2010-03-12 BJ9D02761:NV锁信息处理修改
-     7.wangxingtong 00132391  2010-5-07 BJ9D02900:合入小区搜索优化修改
-     8.wangyue 00151278   2010-05-13 BJ9D02926:DRX特性合入
-     9.lishangfeng 55206   2010-06-25 DTS2010062301125 :生产NV新合入
-     10.zhangwei 00103912 2010-07-23 DTS2010072301127: 新增NV项合入
-     11.wangyue 00151278  2010-7-22 DTS2010072101159:配置DSP DRX开关和时钟门控开关合入
-     12.Wang Yangcai 49178  2010-08-18 DTS2010081700724:增加NV项控制RTT的功控开关和补偿开关
-     13.lihong 00150010   2010-09-01 DTS2010083103486: 新增NV项控制PCO功能的开与关
-     14.wangyue 00151278 2010-09-02 DTS2010083101214:DT新需求，需要将系统消息接收保护定时器加长
-     15.wangxingtong 00132391   2010-09-27 DTS2010092601206:软银新需求，Band64特性合入
-     16.guojiyu 00149868        2010-11-08 DTS2010110302568:RRC连接请求消息中的establishment cause根据24.301 Table D.1.1修改
-     17.Wang Yangcai 49178      2010-12-15 DTS2010121403984:AFC老化修改
-     18.wangxingtong 00132391   2011-1-8   DTS2010102100541:Modem与网络重建完成后，出现了UE和网络流量无法自行恢复的严重问题
-     19.lihong 00150010         2011-1-17  DTS2011011701778:DHCP SERVER新需求，控制DHCP SERVER功能的开与关
-     20.Wang Yangcai 49178      2011-02-15 DTS2011013100231:合入快速校准
-     21.Wang Yangcai 49178      2011-03-08 DTS2011030105833:APC校准的功率档位表从DSP和装备各自维护改为NV维护
-	 22.wangyue 00151278        2011-07-15 DTS2011062801783: KDF算法修改
-	 23.lihong 00150010         2011-08-18 DTS2011081804004: combined attach新特性
-	 24.lishangfeng  55206 2011-09-11 DTS2011091100356:候补信息维护策略改进，并且能够支持多Band时的维护
-	 25.wangyue 151278       2011-11-26 DTS2011112400987: 时延优化
-	 26.liujiyan 285345      2014-08-25  ADRX功能开发
-	 27 shujunwei 00204251   2014-6-28 DTS2014050604888 B28等全频段支持时，根据小区的 带宽确定分频点
-******************************************************************************/
 
 #ifndef __LPSNVINTERFACE_H__
 #define __LPSNVINTERFACE_H__
@@ -178,7 +143,6 @@ ERR_MSP_NVIM_NOT_SUPPORT_WRITE       2007           系统模式不允许修改该项
 #define LPS_NV_GET_L_BGS_SUPPORT_BIT                 ( 0x00200000 )
 /* bgs end */
 
-/*y00151394,tcp并发*/
 #define LPS_NV_TCP_OPT_BIT            ( 0x00800000 )
 
 
@@ -250,7 +214,6 @@ ERR_MSP_NVIM_NOT_SUPPORT_WRITE       2007           系统模式不允许修改该项
 
 #define LPS_NV_LRRC_CHR_FEATURE_ON_FLAG_BIT    (0x00040000)
 
-/*add by l00220658 低功耗模块增加 ADRX SSC NV开关 stPsFunFlag03 第0位 第1位*/
 #define LPS_NV_GET_SSC_SUPPORT_BIT                (0x00000001)
 #define LPS_NV_GET_ADRX_SUPPORT_BIT               (0x00000002)
 #define LPS_NV_GET_NOT_TRY_FAKE_CELL_FLAG_BIT     (0x00000004)
@@ -302,7 +265,6 @@ ERR_MSP_NVIM_NOT_SUPPORT_WRITE       2007           系统模式不允许修改该项
 #define TPS_NV_OP_Cellupdate_stub_BIT            ( 0x00000001 )
 /*CELLUPDATE MODEFIED END*/
 #define TPS_NV_OP_ADRX_GET_BIT            ( 0x00000100 )
-/*DTS2015031800795 强制ADRX */
 #define TPS_NV_OP_FORCE_ADRX_GET_BIT      ( 0x00001000 )
 
 /* Cell-Reselection optimazation in CELL-FACH when Srx/SNR are lower than the thresholds*/
@@ -337,11 +299,9 @@ ERR_MSP_NVIM_NOT_SUPPORT_WRITE       2007           系统模式不允许修改该项
 #define TPS_NV_OP_RlcUmDataInd_GET_BIT       (0x00000080)
 
 
-/*DTS2013022506993 软调信息添加 BEGIN*/
 #define TPS_NV_OP_Debug_Info_BIT            ( 0x00000002 )
 
 #define TPS_NV_OP_Debug_State_BIT            ( 0x00000004 )
-/*DTS2013022506993 软调信息添加 END*/
 
 
 #define TPS_NV_GCF_CS_LOOP_BIT            ( 0x00000001 )
@@ -373,16 +333,12 @@ ERR_MSP_NVIM_NOT_SUPPORT_WRITE       2007           系统模式不允许修改该项
 /* LTE PS Transfer end */
 #define LRRC_IRAT_REDIR_NOT_BANDSCAN_BIT (0x00000008)
 
-/* 测试网侧发送Paging情况,不处理本UE Paging l00285345 begin*/
 #define LRRC_IDLE_DISCARD_PAGING_BIT     (0x00000001)
-/* 测试网侧发送Paging情况,不处理本UE Paging l00285345 end*/
 
 #define TPS_NV_OP_OCCUPY_GET_BIT            ( 0x00000001 )
 #define TPS_NV_OP_SIGNAL_REL_GET_BIT        ( 0x00000002 )
 
-/* 测试网侧发送Paging情况,不处理本UE Paging l00285345 begin*/
 #define TPS_NV_OP_DISCARD_PAGING_GET_BIT    ( 0x00000004 )
-/* 测试网侧发送Paging情况,不处理本UE Paging l00285345 end*/
 
 #define LRRC_MAX_NUM_IDC_SUBFRAME_PATTERNLIST           8
 #define LRRC_MAX_NUM_SUBFRAME_CONFIG0_R11               9
@@ -744,40 +700,7 @@ typedef struct
     ****************************************************************************/
     LPS_NV_LONG_BIT_STRU                 stPsFunFlag02;
 
-    /************************stPsFunFlag03各个BIT含义***************************
-     bitFlag01:  终端开发SCC特性; 缺省值:0; 0:关;1:开;wanjiang w00178404
-     bitFlag02:  终端开发ADRX特性;缺省值:0; 0:关;1:开;wanjiang w00178404
-     bitFlag03:
-     bitFlag04:
-     bitFlag05:
-     bitFlag06:  异系统到L,TAU带ACTIVE FLAG定制开关;确省值:0; 0:关; 1:开
-     bitFlag07:  软银定制不允许MFBI情况下的band定制外频点的连接态测量开关;缺省值0;0:允许测量;1:不允许测量
-     bitFlag08:
-     bitFlag09:
-     bitFlag10:
-     bitFlag11:
-     bitFlag12:
-     bitFlag13:
-     bitFlag14:
-     bitFlag15:
-     bitFlag16:
-     bitFlag17:
-     bitFlag18:
-     bitFlag19:
-     bitFlag20:
-     bitFlag21:
-     bitFlag22:
-     bitFlag23:
-     bitFlag24:
-     bitFlag25:
-     bitFlag26:
-     bitFlag27:
-     bitFlag28:
-     bitFlag29:
-     bitFlag30:
-     bitFlag31:
-     bitFlag32:
-    ****************************************************************************/
+    
     LPS_NV_LONG_BIT_STRU                 stPsFunFlag03;
 
    /************************stPsFunFlag04各个BIT含义***************************
@@ -820,7 +743,6 @@ typedef struct
     LPS_NV_GLOBAL_PRINT_STRU             stPsNvGlobalPrint;
 }LPS_SWITCH_PARA_STRU;
 
-/*DTS2013010602867 Tps相关开关控制*/
 /*****************************************************************************
  结构名    : TPS_SWITCH_PARA_STRU
  协议表格  :
@@ -1044,7 +966,6 @@ typedef struct
     LPS_NV_LONG_BIT_STRU                 stTPsFunFlag02;
 }TPS_SWITCH_PARA_STRU;
 
-/*DTS2013010602867 end Tps相关开关控制*/
 /*****************************************************************************
  结构名    : TDS_CERSSI_REPORT_PARA_STRU
  协议表格  :
@@ -1206,7 +1127,6 @@ typedef struct
     RRC_NV_LOCK_INFO_ENUM_UINT32         enLockInd;
     PS_BOOL_ENUM_UINT8                   ucActiveFlag;                   /*有效标志位，用于下电丢失,PS_TRUE下电有效，否则无效*/
     LRRC_NV_LOCK_MODE_UINT8              ucLockMode;                     /*锁频模式,*/
-    /*end: add by wangmiao00272217 有效标志位，用于下电丢失,PS_TRUE下电有效，否则无效*/
     VOS_UINT8                            ucBandInd;                      /* 频段指示 */
     VOS_UINT8                            ucForbidReselAndHO;             /* 锁频过程中是否允许切换和重选 */
     VOS_UINT16                           usCellId;                       /* 小区ID */
@@ -1789,10 +1709,8 @@ typedef struct
     VOS_UINT32          ulFreqSearchEnhanceSrchThres;
     /* mod for FreqSearchEnhance end */
     VOS_UINT32          ulTReselectCdma;
-    /*DTS2015030702005,add by l00195322,GU高优先级RAT背景搜L，LTE搜网驻留IND的门限，单位-1/8 dB*/
     VOS_UINT32          ulBgsL2GuSearchIndThreshFlag;
     VOS_INT32           lBgsL2GuSearchIndThresh;
-    /*DTS2015030702005,add by l00195322,GU高优先级RAT背景搜L，LTE搜网驻留IND的门限，单位-1/8 dB*/
     VOS_UINT32          ulCampFailRetryNum;
     VOS_INT32           lDelfaultqQualMin;/*SIB1中不含qQualMin时，使用一个默认值判断是否起同频测量*/
     /* mod for Balong CL begin */
@@ -1828,7 +1746,6 @@ typedef struct
      VOS_UINT16                     usLength;                                       /* UE能力码流长度 */
      VOS_UINT8                      aucCapInfo[MAX_IRAT_TDS_UE_CAPABILITY_LENGHT];                                /* UE能力码流 */
 } LTE_IRAT_TDS_UE_CAPABILITY_STRU;
-/*BEGIN DTS2014041603793 c00203521 modify for B28全频段特性*/
 
 
 /*****************************************************************************
@@ -1860,7 +1777,6 @@ typedef struct
     LRRC_NV_EXT_BAND_LIST_STRU          stCandBandsInfo[8]; /*支持最多8个频定制分频*/
 }LTE_RRC_EXTBANDINFO_WITH_BANDWIDTH_STRU;
 
-/*END DTS2014041603793 c00203521 modify for B28全频段特性*/
 /*****************************************************************************
  结构名    : LRRC_NV_DSDS_CONFIG_STRU
  协议表格  :
@@ -2721,9 +2637,7 @@ extern VOS_UINT32  g_ulLBgsSupportFlg;
 extern VOS_UINT32  g_ulLBgsLSupportFlg;
 
 extern VOS_UINT32 g_ulLTEReestMeasGapSetupFlag;
-/* BEGIN DTS********** c00171433 2012-12-08 Add, 控制屏幕关闭后发送AT命令，通知LTE进入IDLE的功能*/
 extern VOS_UINT32 g_ulLTEConnToIdleFlag;
-/* END DTS********** c00171433 2012-12-08 Add, 控制屏幕关闭后发送AT命令，通知LTE进入IDLE的功能*/
 
 
 /* gaojishan-PLMN_EXACTLY_COMPARE_FLG */
@@ -2749,14 +2663,11 @@ extern VOS_UINT32 g_ulDlCtrlPduNotifyFlag;
 extern VOS_UINT32                              gul_CmasRptBeforeAuthSwitch;
 /* gaojishan-CMAS-End */
 
-/*add by l00220658 低功耗模块增加 ADRX SSC NV开关 stPsFunFlag03 第0位 第1位*/
 extern VOS_UINT32 g_ulSscSupportFlag;
 extern VOS_UINT32 g_ulAdrxSupportFlag;
 extern VOS_UINT32 g_ulRedirNotBandScanFlg;
 
-/* 测试网侧发送Paging情况,不处理本UE Paging l00285345 begin*/
 extern PS_BOOL_ENUM_UINT8  g_enPsIdleDiscardPagingFlag;
-/* 测试网侧发送Paging情况,不处理本UE Paging l00285345 end*/
 
 /* ESR流程发生切换,未发起TAU,重传ESR消息控制开关:规避小区切换后网侧不下发REL问题 */
 extern VOS_UINT32  g_ulNasEmmHoRetransEsrFlag;

@@ -1,27 +1,4 @@
-/*******************************************************************************
-*
-*
-*                Copyright 2006, Huawei Technologies Co. Ltd.
-*                            ALL RIGHTS RESERVED
-*
-*-------------------------------------------------------------------------------
-*
-*                              idhcp4c_inc.h
-*
-*  Project Code: VISP1.5
-*   Module Name: DHCP client Module
-*  Date Created: 2004-05-27
-*        Author: Tang Congfeng(36956)
-*   Description: DHCP 组件方法定义
-*
-*-------------------------------------------------------------------------------
-*  Modification History
-*  DATE        NAME                         DESCRIPTION
-*  -----------------------------------------------------------------------------
-*  2004-05-27  Tang Congfeng(36956)         Creat the first version.
-*  2007-03-23  J51916                       Modify for A82D12837
-*
-*******************************************************************************/
+
 
 #ifndef _DHCP4C_INC_H_
 #define _DHCP4C_INC_H_
@@ -66,7 +43,6 @@ DECLARE_INTERFACE(IIF_IPV4_DHCP4C_ComIntFun)
 
     METHOD_(ULONG,pfDHCP4C_HA_Clean)();
 
-    /* Add by w60786 for A82D24353 2008-03-18 增强DHCP Client兼容性. */
     METHOD_(ULONG,pfDHCP4C_IsRecvUnicastBeforeCfgIP)(ULONG ulIfIndex);
 
     METHOD_(ULONG,pfDHCP4C_HA_VirtualCfgInput)(UCHAR *pucBuf, USHORT usDataLen);
@@ -78,9 +54,7 @@ DECLARE_INTERFACE(IIF_IPV4_DHCP4C_ComIntFun)
     METHOD_(ULONG,pfDHCP4C_StartRmt)(ULONG ulIfIndex, ULONG ulOutIfIndex);
     METHOD_(ULONG,pfDHCP4C_SetDHCPVlanScanning)(ULONG ulIfIndex, ULONG ulEnable, ULONG ulDelayTime);
     METHOD_(ULONG,pfDHCP4C_GetDHCPVlanScanning)(ULONG ulIfIndex, ULONG *pulEnable, ULONG *pulDelayTime);
-    /* Add for DTS2011073000991, by zhaoyue00171897, at 2011-08-05. 修改原因: 删除接口时应删除DHCP4C会话控制块和配置控制块 */
     METHOD_(VOID,pfDHCP4C_ProcIfDeleted)(ULONG ulIfIndex);
-    /* Add by heyijun 00218462 for DTS2012092900232 维测需求开发, 2012-9 */
     METHOD_(ULONG,pfDHCP4C_GetDhcp4cStatistic)(struct tagDHCP4C_Statistic *pstStat);
     METHOD_(ULONG,pfDHCP4C_ClrDhcp4cStatistic)();
 };

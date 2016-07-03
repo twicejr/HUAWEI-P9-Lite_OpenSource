@@ -133,33 +133,7 @@ VOS_VOID RABM_SaveData(
     pSaveDataPtr->ucNum++;                                                      /* 更新缓存的数据个数                       */
 }
 
-/*******************************************************************************
-  Module:   RABM_ComSaveRabPara
-  Function: 存储RAB的参数
-  Input:    RRRABM_RAB_IND_STRU *pMsg           目前处理的消息
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1. 张志勇      2003.12.11   新规作成
-      2. 张志勇   2005.01.07   移植修改
-      3. 张志勇   2005.03.30   NAS_IT_BUG_41
-      4. L47619   2006.01.10   问题单:A32D01571
-      5. L47619   2006.06.26   问题单:A32D05709
-      6. L47619   2007.08.09   问题单:AR12D01322
-      7. L47619   2007.08.15   问题单:AR12D01371
 
-  8.日    期   : 2012年3月24日
-    作    者   : A00165503
-    修改内容   : DTS2012032305582: CMW500环回建立失败, RABID在环回模式下取值
-                 范围检查过于严格
-  9.日    期   : 2013年04月12日
-    作    者   : l65478
-    修改内容   : DTS2013031901654:彩信并发发送失败
- 10.日    期   : 2013年8月29日
-    作    者   : j00174725
-    修改内容   : clean coverity
-*******************************************************************************/
 VOS_VOID RABM_ComSaveRabPara(
                          RRRABM_RAB_IND_STRU  *pMsg                             /* 目前处理的消息                           */
                          )
@@ -443,34 +417,7 @@ VOS_VOID RABM_ComSaveRabPara(
     return;
 }
 
-/*******************************************************************************
-  Module:   RABM_ComRlsRabReource
-  Function: 释放RAB的参数
-  Input:    RRRABM_RAB_IND_STRU *pMsg           目前处理的消息
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1. 张志勇      2003.12.11   新规作成
-      2. L47619      2007.08.09   问题单:AR12D01322
 
-  3.日    期   : 2012年3月24日
-    作    者   : A00165503
-    修改内容   : DTS2012032305582: CMW500环回建立失败, RABID在环回模式下取值
-                 范围检查过于严格
-
-  4.日    期   : 2012年6月15日
-    作    者   : A00165503
-    修改内容   : DTS2012061401093: 多承载业务时, RABM处理RB释放的逻辑错误,
-                 有可能导致业务中断
-
-  5.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : RABM保存的QOS由动态内存改为静态数组
-  6.日    期   : 2013年8月29日
-    作    者   : j00174725
-    修改内容   : clean coverity
-*******************************************************************************/
 VOS_VOID RABM_ComRlsRabReource(
     RRRABM_RAB_IND_STRU                 *pMsg                                   /* 目前处理的消息                           */
 )
@@ -836,21 +783,7 @@ VOS_VOID RABM_TcRbStatus(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_GetGRabIdStatus
- 功能描述  : G下获取指定RAB承载的状态
- 输入参数  : ucRabId   -  指定的RAB承载ID值
- 输出参数  : 无
- 返 回 值  : RABM_RAB_STATUS_ENUM_UINT32 - RAB承载状态值
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 RABM_RAB_STATUS_ENUM_UINT32 NAS_RABM_GetGRabIdStatus(
     VOS_UINT32                          ulEntId
 )
@@ -887,21 +820,7 @@ RABM_RAB_STATUS_ENUM_UINT32 NAS_RABM_GetGRabIdStatus(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_GetWRabIdStatus
- 功能描述  : W下获取指定RAB承载的状态
- 输入参数  : ucRabId   -  指定的RAB承载ID值
- 输出参数  : 无
- 返 回 值  : RABM_RAB_STATUS_ENUM_UINT32 - RAB承载状态值
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 RABM_RAB_STATUS_ENUM_UINT32 NAS_RABM_GetWRabIdStatus(
     VOS_UINT32                          ulEntId
 )
@@ -940,21 +859,7 @@ RABM_RAB_STATUS_ENUM_UINT32 NAS_RABM_GetWRabIdStatus(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_GetRabIdStatus
- 功能描述  : 获取指定RAB承载的状态
- 输入参数  : ucRabId   -  指定的RAB承载ID值
- 输出参数  : 无
- 返 回 值  : RABM_RAB_STATUS_ENUM_UINT32 - RAB承载状态值
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 RABM_RAB_STATUS_ENUM_UINT32 NAS_RABM_GetRabIdStatus(
     VOS_UINT8                           ucRabId
 )
@@ -989,20 +894,7 @@ RABM_RAB_STATUS_ENUM_UINT32 NAS_RABM_GetRabIdStatus(
     return enRabStatus;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_GetDefaultRabId
- 功能描述  : 获取缺省的RABID
- 输入参数  : ucRabId      - RABID [5,15]
- 输出参数  : pucDeftRabId - Linked RABID [5,15]
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月2日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_RABM_GetDefaultRabId(
     VOS_UINT8                           ucRabId,
     VOS_UINT8                          *pucDeftRabId
@@ -1045,21 +937,7 @@ VOS_UINT32 NAS_RABM_GetDefaultRabId(
     return PS_SUCC ;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_UL_DataReq
- 功能描述  : RABM上行发送函数，供CDS调用
- 输入参数  : ucRabId   -  指定的RAB承载ID值
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_RABM_UL_DataReq (
     CDS_RABM_TRANS_DATA_STRU           *pstUlData
 )
@@ -1070,24 +948,7 @@ VOS_VOID NAS_RABM_UL_DataReq (
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_DL_DataInd
- 功能描述  : RABM下行发送函数，调用CDS API发送数据给CDS
- 输入参数  : ucRabId   -  指定的RAB承载ID值
-             pstData   -  数据块指针
- 输出参数  : 无
- 返 回 值  : 发送数据成功或失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月26日
-    作    者   : m00217266
-    修改内容   : DSDA C核项目CDS接口修改
-*****************************************************************************/
 VOS_UINT32 NAS_RABM_DL_DataInd(
     VOS_UINT8                           ucRabId,
     TTF_MEM_ST                         *pstData
@@ -1125,25 +986,7 @@ VOS_UINT32 NAS_RABM_DL_DataInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_QosParaTransferToQci
- 功能描述  : 根据QOS参数转换为QCI等级
- 输入参数  : ucTrafficClass            -  会话类型
-             ucTransDelay              -  会话时延
-             ucTraffHandlPrior         -  会话处理优先级
-             ucSrcStatisticsDescriptor -  源数据指示
-             ucSignallingIndication    -  信令优化指示
- 输出参数  : 无
- 返 回 值  : QCI类型
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 QCI_TYPE_ENUM_UINT8 NAS_RABM_QosParaTransferToQci(
     VOS_UINT8                           ucTrafficClass,
     VOS_UINT8                           ucTransDelay,
@@ -1218,22 +1061,7 @@ QCI_TYPE_ENUM_UINT8 NAS_RABM_QosParaTransferToQci(
     return enQci;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_UnpackQos
- 功能描述  : 从QOS字节流获取QCI等级
- 输入参数  : ulQosLength   -  QOS字节流长度
-             pQosValue     -  QOS字节流指针
- 输出参数  : 无
- 返 回 值  : QCI等级
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 QCI_TYPE_ENUM_UINT8 NAS_RABM_GetQciFromQos(
     VOS_UINT32                      ulQosLength,
     VOS_UINT8                      *pQosValue
@@ -1321,20 +1149,7 @@ QCI_TYPE_ENUM_UINT8 NAS_RABM_GetQciFromQos(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_SetFinIpInRdFlag
- 功能描述  : 设置CDS读取一次RD后处理最后一个IP包标识
- 输入参数  : VOS_UINT32 ulFlag
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年1月30日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_RABM_SetFinIpInRdFlag(VOS_UINT32 ulFlag)
 {
     GMM_RABM_NET_RAT_ENUM_UINT32        enCurrentSysMode;
@@ -1355,20 +1170,7 @@ VOS_VOID NAS_RABM_SetFinIpInRdFlag(VOS_UINT32 ulFlag)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_StartReestRabPendingTmr
- 功能描述  : 启动RB建立保护定时器
- 输入参数  : ucRabId - RABID [5,15]
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年3月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_RABM_StartReestRabPendingTmr(VOS_UINT8 ucRabId)
 {
     RABM_ENTITY_PS_STRU                *pstWPsEnt;
@@ -1390,20 +1192,7 @@ VOS_VOID NAS_RABM_StartReestRabPendingTmr(VOS_UINT8 ucRabId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_StopReestRabPendingTmr
- 功能描述  : 停止RB建立保护定时器
- 输入参数  : ucRabId - RABID [5,15]
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年3月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_RABM_StopReestRabPendingTmr(VOS_UINT8 ucRabId)
 {
     RABM_ENTITY_PS_STRU                *pstWPsEnt;

@@ -23,34 +23,7 @@
 /*      Roger    05/03/30     1.0     build this file                        */
 /*      liuyang  05/10/07     1.1     add attach & detach funcation                                                                    */
 /*  jiangliping  06/08/09     1.1     A32D03479，在PC机上实现时将#pragma pack(0)和#pragma pack()加编译开关                             */
-/*    1.日    期   : 2006年11月2日
-        作    者   : sunxibo id:46746
-        修改内容   : 根据问题单号：A32D06406
-      2.日    期   : 2007年07月21日
-        作    者   : l60022475
-        修改内容   : A32D12535,del Sta_UsimDetachPreproc
-      3.日    期   : 2008年3月17日
-        作    者   : s46746
-        修改内容   : 问题单号:AT2D02570,NAS B005版本新增需求合入
-      4.日    期   : 2008年8月05日
-        作    者   : s46746
-        修改内容   : 问题单号：AT2D04712，修改SYSINFO上报HSPA状态
-      5.日    期   : 2008年12月20日
-        作    者   : l65478,l00130025
-        修改内容   : 问题单号：AT2D07555，AT2D07488,指定搜网处理，加入双模搜索，待有注册结果后，再上报搜网结果
-      6.日    期   : 2009年01月05日
-        作    者   : l00130025
-        修改内容   : 根据问题单AT2D07968,双模列表搜网完毕,搜网状态判断和排序调整
-      7.日    期   : 2009年03月26日
-        作    者   : l00130025
-        修改内容   : 问题单号：AT2D10349/AT2D10492,MSCC/MMA之间交互的SYSCFG回复消息多了个VOS_HEADER
-      8. 日    期   : 2009年07月07日
-         作    者   : h44270
-         修改内容   : 问题单号：AT2D12792，不能显示EGPRS小区信息
-      9. 日    期   : 2011年04月23日
-         作    者   : L00171473
-         修改内容   : for V7R1 porting, 去掉BUTT后的逗号，避免编译WARNING
-*******************************************************************************/
+
 
 
 /******************************************************************************/
@@ -58,25 +31,17 @@
 extern "C" {
 #endif
 /*=================================================================*/
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-7, begin */
 /* 删除ExtAppMsccInterface.h*/
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-7, end */
 
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
 #include "MmaMsccInterface.h"
 #include "TafAppMma.h"
 #include "TafSdcLib.h"
 
-/* Deleted by z00161729 for V9R1 STK升级, 2013-7-24, begin */
 
-/* Deleted by z00161729 for V9R1 STK升级, 2013-7-24, end */
 
-/* Modified by z00161729 for V9R1 STK升级, 2013-7-24, begin */
 #include "NasStkInterface.h"
-/* Modified by z00161729 for V9R1 STK升级, 2013-7-24, end */
 #include "TafMmaCtx.h"
 
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
 
 #pragma pack(4)
@@ -195,9 +160,7 @@ extern "C" {
 #define STA_FSM_PLMN_LIST               0X0040
 #define STA_FSM_PLMN_RESEL              0X0080
 #define STA_FSM_PLMN_SEL                0X0100
-/* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-26, begin */
 
-/* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-26, end */
 /* 清除子状态描述的定时器名称 */
 #define STA_FSM_TIMER_CLEAR             0X1001
 /* 不改变当前状态标志 */
@@ -260,10 +223,8 @@ typedef enum
     STA_DATA_TRANSFER_HSUPA,
     STA_DATA_TRANSFER_HSDPA_AND_HSUPA,
     STA_DATA_TRANSFER_HSPA_PLUS,
-    /* Modified by z40661 for V7R1 点灯 , 2012-02-20, begin */
     STA_DATA_TRANSFER_LTE_DATA,
     STA_DATA_TRANSFER_LTE_IDLE,
-    /* Modified by z40661 for V7R1 点灯 , 2012-02-20, end */
     STA_DATA_TRANSFER_DC_HSPA_PLUS,
     STA_DATA_TRANSFER_DC_MIMO,
     STA_DATA_TRANSFER_MODE_BUTT
@@ -283,14 +244,7 @@ typedef VOS_UINT8 STA_DATA_TRANSFER_STATUS_UINT8;
 
 typedef VOS_UINT8 STA_USER_SPECIFY_PLMN_PROC_CTRL_ENUM_UINT8;
 
-/*****************************************************************************
-枚举名    : TAF_MMA_PLMN_MODE_ENUM
-枚举说明  : 记录6F15文件的PLMN MODE位
 
-  1.日    期   : 2012年6月13日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成
-*****************************************************************************/
 enum TAF_MMA_PLMN_MODE_ENUM
 {
     TAF_MMA_PLMN_MODE_ENUM_DISABLE,
@@ -299,14 +253,7 @@ enum TAF_MMA_PLMN_MODE_ENUM
 };
 typedef VOS_UINT8 TAF_MMA_PLMN_MODE_ENUM_UINT8;
 
-/*****************************************************************************
-枚举名    : TAF_MMA_AUTO_PLMN_SEL_USER_ENUM
-枚举说明  : 记录是由AT发起的自动搜网还是6F15文件refresh触发的自动搜网
 
-  1.日    期   : 2012年6月13日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成
-*****************************************************************************/
 enum TAF_MMA_AUTO_PLMN_SEL_USER_ENUM
 {
     TAF_MMA_AUTO_PLMN_SEL_USER_AT,
@@ -315,14 +262,7 @@ enum TAF_MMA_AUTO_PLMN_SEL_USER_ENUM
 };
 typedef VOS_UINT8 TAF_MMA_AUTO_PLMN_SEL_USER_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : TAF_MMA_RAT_MODE_ENUM_U8
- 枚举说明  : MSCC当前的服务状态
 
-  1.日    期   : 2012年6月21日
-    作    者   : l60609
-    修改内容   : AT&T&DCM:记录4F36文件的RAT MODE值
-*****************************************************************************/
 enum TAF_MMA_RAT_MODE_ENUM
 {
     TAF_MMA_RAT_MODE_ENUM_DAUL_MODE,
@@ -335,13 +275,7 @@ enum TAF_MMA_RAT_MODE_ENUM
 typedef VOS_UINT8 TAF_MMA_RAT_MODE_ENUM_U8;
 
 
-/*****************************************************************************
- 枚举名    : TAF_MMA_CS_DOMAIN_CAPA_CHANGE_TYPE_ENUM
- 结构说明  : CS域能力变化类型的枚举
- 1.日    期   : 2013年6月11日
-   作    者   : s00217060
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_MMA_CS_DOMAIN_CAPA_CHANGE_TYPE_ENUM
 {
     TAF_MMA_CS_DOMAIN_CAPA_NO_CHANGE                        = 0,                /* CS域能力无变化 */
@@ -364,13 +298,7 @@ typedef struct MMA_TIMER
 #define     MMA_TIMER_RUN   1
 #define     MMA_TIMER_ERROR 2
 
-/*****************************************************************************
- 结构名    : TAF_MMA_NETWORK_SELECTION_MENU_CTX_STRU
- 结构说明  : 网络选择菜单控制上下文
- 1.日    期   : 2012年6月18日
-   作    者   : l60609
-   修改内容   : AT&T&DCM新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                   ucNetSelMenuFlg;                /* 网络选择菜单激活标识，VOS_TRUE表示激活，VOS_FALSE表示未激活 */
@@ -380,13 +308,7 @@ typedef struct
     MMA_TIMER_ST                                stTiPeriodTryingNetSelMenu;     /* 网络选择菜单控制周期性尝试自动选网定时器 */
 }TAF_MMA_NETWORK_SELECTION_MENU_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_MMA_RAT_BALANCING_CTX_STRU
- 结构说明  : 接入技术平衡控制上下文
- 1.日    期   : 2012年6月18日
-   作    者   : l60609
-   修改内容   : AT&T&DCM新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                   ucRatBalancingFlg;              /* 接入技术平衡激活标识，VOS_TRUE表示激活，VOS_FALSE表示未激活 */
@@ -396,17 +318,7 @@ typedef struct
 }TAF_MMA_RAT_BALANCING_CTX_STRU;
 
 
-/*****************************************************************************
- 结构名    : STATUS_CONTEXT_STRU
- 结构说明  : STATUS内部状态机全局变量信息
- 1.日    期   : 2011年7月11日
-   作    者   : z00161729
-   修改内容   : 增加接入模式优先级stRatPrioList,删除原ucModeAccess和ucPlmnPrio
- 2.日    期   : 2012年6月12日
-   作    者   : l60609
-   修改内容   : 增加ucNetSelMenuFlg，用于保存网络选择菜单控制功能是否激活
 
-*****************************************************************************/
 
 /*--------- STATUS_CONTEXT_STRU结构定义 -------*/
 typedef struct
@@ -435,7 +347,6 @@ typedef struct
     VOS_UINT8           ucPlmnListAbortProc;           /* Plmn List Abort处理过程 */
     VOS_UINT8           aucReserv[3];
 
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-4, begin */
     VOS_UINT32          ulMmProc;                       /* MSCC处理过程*/
     VOS_UINT32          ulCsCause;                      /* CS域原因值 */
     VOS_UINT32          ulPsCause;                      /* PS域原因值 */
@@ -455,7 +366,6 @@ typedef struct
     VOS_UINT8                                   ucPlmnSelMode;                  /* 记录搜网模式:手动，自动 */
     VOS_UINT8                                   ucPreUtranMode;                 /* 记录当前的UtranMode：FDD，TDD */
     VOS_UINT8                                   aucRes[2];
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-4, end */
     TAF_MMA_NETWORK_SELECTION_MENU_CTX_STRU     stNetSelMenuCtx;                /* 网络选择菜单控制上下文 */
     TAF_MMA_RAT_BALANCING_CTX_STRU              stRatBalancingCtx;              /* 接入技术平衡控制上下文 */
 } STATUS_CONTEXT_STRU;
@@ -535,7 +445,6 @@ VOS_UINT32 Sta_DataTranAttri(
 
 VOS_VOID MN_PH_UpdateBeginRegTime( VOS_VOID  );
 
-/* Modified by w00176964 for VoLTE_PhaseI项目, 2013-7-15, end */
 
 
 #if 0
@@ -545,12 +454,9 @@ VOS_UINT32   Sta_SyncMsClassType(VOS_UINT32 opId,
 
 VOS_VOID Sta_UpdateDataTranStatusAndMode(NAS_MSCC_PIF_DATATRAN_ATTRI_ENUM_UINT8 enDataTranAttri);
 
-/* Deleted by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, begin */
 /* VOS_VOID Sta_DataTranAttri(MSCC_MMA_DATATRAN_ATTRI_IND_STRU *pstDataTranAttri); */
-/* Deleted by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, end */
 VOS_VOID Sta_ModeChangeEventReport(VOS_UINT8 ucNewSysMode, VOS_UINT8 ucNewSysSubMode);
 
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-2, end */
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /*---------- 向协议栈发送请求消息处理函数(内部)----------*/
@@ -594,7 +500,6 @@ VOS_VOID Sta_DetachTimeoutProc4App(STA_TIMER_NAME_E    TimerId,
                                    VOS_UINT16          TimerIndex,
                                    VOS_UINT8           ucOperate);
 
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-2, begin */
 #if 0
 VOS_UINT32 Sta_ProcSetMsClassTypeforDetach(MSCC_MMA_DETACH_CNF_STRU *pDetachCnf );
 
@@ -606,7 +511,6 @@ VOS_UINT32 Sta_CompleteDefMsClassType(MSCC_MMA_DETACH_CNF_STRU *pDetachCnf );
 
 
 
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-2, end */
 
 VOS_VOID Sta_ProcMsClassTypeNewToOld(TAF_PH_MS_CLASS_TYPE   CurMsClassType,
                                        TAF_PH_MS_CLASS_TYPE   NewMsClassType,
@@ -617,25 +521,17 @@ VOS_VOID Sta_ProcMsClassTypeNewToOld(TAF_PH_MS_CLASS_TYPE   CurMsClassType,
 #endif
 
 extern VOS_UINT32 Sta_StopAllRunningTimer(VOS_VOID);
-/* Deleted by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, begin */
 /* extern VOS_VOID Sta_ResetFsmFlg(VOS_VOID); */
-/* Deleted by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, end */
 #if 0
 VOS_VOID Sta_AttachByModeService(VOS_UINT32  ulOpId);
 #endif
-/* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-12, begin */
 
-/* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-12, end */
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-7, begin */
 
 VOS_VOID Sta_GetLocInfoForSat(MMA_MSCC_PLMN_ID_STRU stPlmnId, VOS_UINT16 usLac, VOS_UINT16 usCellId,
                               VOS_UINT8 *pucLocInfo);
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-7, end */
 
 VOS_UINT8 Sta_GetStatusForSat(VOS_UINT32 ulServiceStatus);
-/* Deleted by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, begin */
 /* VOS_UINT32 Sta_SysCfgCnf( MSCC_MMA_SYS_CFG_SET_CNF_STRU  *pstSysCfgCnf); */
-/* Deleted by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, end */
 /* 服务状态上报，统一放到Sta_ServiceStatusInd()处理,attach cnf 和 detach cnf不再做处理 */
 
 VOS_VOID Mma_ComGetServiceStatusForReport(VOS_UINT32 ulCsServiceStatus,
@@ -645,7 +541,6 @@ VOS_VOID Mma_ComGetServiceStatusForReport(VOS_UINT32 ulCsServiceStatus,
 VOS_VOID Sta_UpdateServiceStatus(VOS_UINT32 ulServiceStatus,
                              VOS_UINT32 ulCnDomain);
 
-/* Added by l00208543 for V9R1 STK升级, 2013-07-26, begin */
 TAF_SDC_REPORT_SRVSTA_ENUM_UINT8 TAF_MMA_GetSrvTypeForStk(VOS_VOID);
 
 VOS_VOID TAF_MMA_ProcLociStatusEvent(VOS_VOID);
@@ -666,25 +561,18 @@ TAF_SDC_REPORT_SRVSTA_ENUM_UINT8 TAF_MMA_ConvertTafSrvStaToStkType(
                             TAF_SDC_REPORT_SRVSTA_ENUM_UINT8      enTafSrvType
                             );
 
-/* Added by l00208543 for V9R1 STK升级, 2013-07-26, end */
 
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-7, begin */
 VOS_VOID Mma_ModeChgReport(
     TAF_SDC_SYS_MODE_ENUM_UINT8         enCurNetWork,
     VOS_UINT8                           ucSysSubMode
 );
 
 
-/* Deleted by z00161729 for V9R1 STK升级, 2013-7-24, begin */
-/* Deleted by z00161729 for V9R1 STK升级, 2013-7-24, end */
 
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-7, end */
 
-/* Added by l00208543 for V9R1 STK升级, 2013-07-22, begin */
 TAF_MMA_RAT_TYPE_ENUM_UINT8 TAF_MMA_ConvertMmaRatToStkRat(
                                          TAF_SDC_SYS_MODE_ENUM_UINT8 enMmaRatType
                                          );
-/* Added by l00208543 for V9R1 STK升级, 2013-07-22, end */
 
 TAF_PH_PLMN_SELECTION_RESULT_ENUM_UINT32 TAF_MMA_ConvertServiceTypeToAtType(
     NAS_MSCC_PIF_PLMN_SELECTION_RESULT_ENUM_UINT32 enMmaServiceType
@@ -693,8 +581,6 @@ TAF_PH_PLMN_SELECTION_RESULT_ENUM_UINT32 TAF_MMA_ConvertServiceTypeToAtType(
 
 
 
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-2, begin */
-/* Modified by w00176964 for VoLTE_PhaseI项目, 2013-7-15, begin */
 extern VOS_UINT32 Sta_MmInfo(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -703,10 +589,8 @@ extern VOS_UINT32 Sta_MmInfo(
 
 
 
-/* Modified by w00176964 for VoLTE_PhaseI项目, 2013-7-15, end */
 
 
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-2, end */
 
 
 extern  VOS_UINT8 Sta_GetSysSubMode_W(STA_DATA_TRANSFER_STATUS_UINT8      ucDataTranStatus ,
@@ -741,8 +625,6 @@ VOS_UINT32 TAF_MMA_IsEnablePlmnList(VOS_VOID);
 VOS_UINT32 TAF_MMA_IsEnableDeAttach(VOS_VOID);
 VOS_VOID TAF_MMA_SndAutoPlmnReselect_Refresh(VOS_VOID);
 
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-2, begin */
-/* Modified by w00176964 for VoLTE_PhaseI项目, 2013-7-15, begin */
 /* VOS_UINT32 TAF_MMA_RcvMsccPlmnReselCnf(MSCC_MMA_PLMN_RESEL_CNF_STRU *pstMsg); */
 VOS_UINT32 TAF_MMA_RcvMsccPlmnSpecialSelCnf(
     VOS_UINT32                          ulEventType,
@@ -754,34 +636,28 @@ VOS_UINT32 TAF_MMA_RcvMsccPlmnReselCnf(
     struct MsgCB                       *pstMsg
 );
 
-/* Modified by w00176964 for VoLTE_PhaseI项目, 2013-7-15, end */
 
 VOS_VOID TAF_MMA_ProcPhoneStop_NotEnableStatus(VOS_VOID);
 VOS_UINT32 TAF_MMA_IsEnablePlmnSelect(VOS_VOID);
 
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-4, begin */
 VOS_VOID TAF_MMA_DeleteRatType(
     TAF_MMA_RAT_TYPE_ENUM_UINT8          ucRatType,
     TAF_MMA_RAT_ORDER_STRU              *pstPlmnRatPrioList
 );
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-4, end */
 
 VOS_VOID TAF_MMA_GetAvailablePlmnRatPrio(TAF_MMA_RAT_ORDER_STRU *pstRatPrioList);
 
 
 
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-7, begin */
 VOS_UINT8 TAF_MMA_IsModeChange(
     TAF_SDC_SYS_MODE_ENUM_UINT8         enCurNetWork,
     VOS_UINT8                           ucSysSubMode
 );
 
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-7, end */
 
 
 
 VOS_VOID TAF_MMA_PlmnListAbortCnfUserAbort (MSCC_MMA_PLMN_LIST_ABORT_CNF_STRU *pPlmnListAbortCnf);
-/* Modified by w00176964 for VoLTE_PhaseI项目, 2013-7-15, begin */
 VOS_UINT32 TAF_MMA_RcvPlmnListAbortCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -797,7 +673,6 @@ VOS_UINT32 TAF_MMA_RcvMsccUserPlmnRej(
     struct MsgCB                       *pstMsg
 );
 
-/* Modified by w00176964 for VoLTE_PhaseI项目, 2013-7-15, end */
 VOS_VOID  TAF_MMA_RcvTimerPlmnListCnfExpired(VOS_UINT32 ulOpId);
 
 VOS_VOID  TAF_MMA_RcvUserAbortPlmnList(
@@ -829,21 +704,16 @@ VOS_VOID TAF_MMA_ReportCsgListSearchResult(
 
 
 
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-2, end */
 
 
 VOS_UINT32 TAF_MMA_IsGsmAccessForbidden(VOS_VOID);
-/* Deleted by s00217060 for VoLTE_PhaseI  项目, 2013-07-22, begin */
-/* Deleted by s00217060 for VoLTE_PhaseI  项目, 2013-07-22, end */
 
 VOS_UINT32 TAF_MMA_IsExistPlmnRatAllowAccess(VOS_VOID);
 
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-3, begin */
 VOS_VOID TAF_MMA_ReportRegStatus(
     NAS_MSCC_PIF_REG_STATE_ENUM_UINT8        enRegState,
     NAS_MSCC_PIF_SRVDOMAIN_ENUM_UINT32        enCnDomainId
 );
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-3, end */
 
 VOS_UINT32 TAF_MMA_IsCsServDomainAvail(
     TAF_PH_MS_CLASS_TYPE                enMsClassType
@@ -855,16 +725,13 @@ VOS_VOID TAF_MMA_SndStkCsServiceChangeNotify(
     TAF_CS_SERVICE_ENUM_UINT32          enCsState
 );
 
-/* Deleted by w00176964 for VoLTE_PhaseII 项目, 2013-10-10, begin */
 
-/* Deleted by w00176964 for VoLTE_PhaseII 项目, 2013-10-10, end */
 
 
 VOS_UINT32 TAF_MMA_IsNeedSndStkEvt(VOS_VOID);
 
 VOS_VOID TAF_MMA_SndMtaAreaLostInd(VOS_VOID);
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-19, begin */
 VOS_UINT32  TAF_MMA_PlmnReselectAutoReq_PowerOff(VOS_UINT32 ulOpID);
 VOS_UINT32  TAF_MMA_RcvPlmnSelectionReq_PowerOff(
     TAF_MMA_PLMN_SPECIAL_SEL_REQ_STRU  *pstPlmnUserSelMsg,
@@ -873,7 +740,6 @@ VOS_UINT32  TAF_MMA_RcvPlmnSelectionReq_PowerOff(
     VOS_UINT8                           ucReselMode
 );
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-19, end */
 
 VOS_UINT32 TAF_MMA_IsPsServDomainAvail(
     TAF_PH_MS_CLASS_TYPE                enMsClassType

@@ -1,23 +1,5 @@
 
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafApsSndAds.c
-  版 本 号   : 初稿
-  作    者   : m00217266
-  生成日期   : 2014年1月27日
-  最近修改   :
-  功能描述   : aps通知ads消息函数
-  函数列表   :
-
-  修改历史   :
-  1.日    期   : 2014年1月27日
-    作    者   : m00217266
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -62,21 +44,7 @@
 ******************************************************************************/
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_QosParaTransferToQci
- 功能描述  : 根据QOS参数转换为QCI等级
- 输入参数  : TAF_UMTS_QOS_STRU                   *pQos
- 输出参数  : 无
- 返 回 值  : QCI类型
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月18日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ADS_QCI_TYPE_ENUM_UINT8 TAF_APS_QosParaTransferToQci(
     TAF_UMTS_QOS_STRU                   *pQos
 )
@@ -159,22 +127,7 @@ ADS_QCI_TYPE_ENUM_UINT8 TAF_APS_QosParaTransferToQci(
     return enQci;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SendAdsPdpStatusInd
- 功能描述  : aps通知ads pdp激活状态
- 输入参数  : VOS_UINT32                          ulPid,
-             ADS_PDP_STATUS_IND_STRU            *pstAdsInd
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年01月23日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SendAdsPdpStatusInd(
     VOS_UINT32                          ulPid,
     ADS_PDP_STATUS_IND_STRU            *pstAdsInd
@@ -236,23 +189,7 @@ VOS_VOID TAF_APS_SendAdsPdpStatusInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_NotifyAdsWhenPdpModify
- 功能描述  : PDP modify时 APS发送ADS PDP状态信息
- 输入参数  : TAF_PS_CALL_PDP_MODIFY_CNF_STRU
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月26日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-  2.日    期   : 2014年07月31日
-    作    者   : f00179208
-    修改内容   : VTLTE项目:开放module_id为imsa时给ads状态改变通知
-*****************************************************************************/
 VOS_VOID TAF_APS_NotifyAdsWhenPdpModify(
     TAF_PS_CALL_PDP_MODIFY_CNF_STRU    *pstEvent
 )
@@ -298,23 +235,7 @@ VOS_VOID TAF_APS_NotifyAdsWhenPdpModify(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_NotifyAdsWhenPdpDeactivated
- 功能描述  : PDP deactive时 APS发送ADS PDP状态信息
- 输入参数  : pstEvent
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月26日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-  2.日    期   : 2014年07月31日
-    作    者   : f00179208
-    修改内容   : VTLTE项目:开放module_id为imsa时给ads状态改变通知
-*****************************************************************************/
 VOS_VOID TAF_APS_NotifyAdsWhenPdpDeactivated(
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU    *pstEvent
 )
@@ -360,23 +281,7 @@ VOS_VOID TAF_APS_NotifyAdsWhenPdpDeactivated(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_NotifyAdsWhenPdpAvtivated
- 功能描述  : PDP active时 APS发送ADS PDP状态信息
- 输入参数  : pstEvent
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月26日
-    作    者   : m00217266
-    修改内容   : 新生成函数
-  2.日    期   : 2014年07月31日
-    作    者   : f00179208
-    修改内容   : VTLTE项目:开放module_id为imsa时给ads状态改变通知
-*****************************************************************************/
 VOS_VOID TAF_APS_NotifyAdsWhenPdpAvtivated(
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent
 )
@@ -421,7 +326,6 @@ VOS_VOID TAF_APS_NotifyAdsWhenPdpAvtivated(
 
     return;
 }
-/* Added by m00217266 for L-C互操作项目, 2014-1-26, end */
 
 
 #ifdef __cplusplus

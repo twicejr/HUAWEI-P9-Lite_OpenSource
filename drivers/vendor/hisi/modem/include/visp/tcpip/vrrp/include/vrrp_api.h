@@ -307,41 +307,10 @@ typedef ULONG (*VRRP_GETBFDSESSIONSTATE)(ULONG ulSessionID, ULONG ulVrfIndex, UL
 /*******************************************************************************
  * API原型:                                                                    *
  *******************************************************************************/
-/*******************************************************************************
-*    Func Name: TCPIP_VRRP_CreateStandby
-* Date Created: 2009-01-17
-*       Author: L00105073,L00111779
-*  Description: 在指定接口上创建备份组
-*        Input: ULONG ulIfIndex:接口索引
-*               ULONG ulVrid:备份组id
-*       Output: 
-*       Return: 成功或错误码
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                                          DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-01-17   L00105073,L00111779                             Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_VRRP_CreateStandby(ULONG ulIfIndex, ULONG ulVrid);
 
-/*******************************************************************************
-*    Func Name: TCPIP_VRRP_DelStandby
-* Date Created: 2009-01-17
-*       Author: L00105073,L00111779
-*  Description: 删除备份组
-*        Input: ULONG ulVrid: 备份组ID
-*       Output: 
-*       Return: 成功或错误码
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                                          DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-01-17   L00105073,L00111779                             Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_VRRP_DelStandby(ULONG ulVrid);
 
 /*******************************************************************************
@@ -419,99 +388,19 @@ extern ULONG TCPIP_VRRP_DelAllVirtualIP(ULONG ulVrid);
 *******************************************************************************/
 extern ULONG TCPIP_VRRP_EnablePing(ULONG ulVrid, ULONG ulSetYes);
 
-/*******************************************************************************
-*    Func Name: TCPIP_VRRP_SetAdvertiseTimer
-* Date Created: 2009-01-21
-*       Author: L00105073,L00111779
-*  Description: 设置Master发送VRRP报文的间隔时间
-*        Input: ULONG ulVrid:  备份组ID
-*               ULONG ulTimer: 发送时间间隔，范围1~255s，默认1s
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                                          DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-01-21   L00105073,L00111779                             Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_VRRP_SetAdvertiseTimer(ULONG ulVrid, ULONG ulTimer);
 
-/*******************************************************************************
-*    Func Name: TCPIP_VRRP_SetPriority
-* Date Created: 2009-01-22
-*       Author: L00105073,L00111779
-*  Description: 配置备份组的优先级
-*        Input: ULONG ulVrid:备份组id
-*               ULONG ulPriority:要配置的优先级
-*       Output: 
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                                          DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-01-22   L00105073,L00111779                             Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_VRRP_SetPriority(ULONG ulVrid, ULONG ulPriority);
 
-/*******************************************************************************
-*    Func Name: TCPIP_VRRP_SetPreemptDelay
-* Date Created: 2009-01-22
-*       Author: L00105073,L00111779
-*  Description: 配置抢占延迟时间
-*        Input: ULONG ulVrid:备份组id
-*               ULONG ulDelay:延迟时间
-*       Output: 
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                                          DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-01-22   L00105073,L00111779                             Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_VRRP_SetPreemptDelay(ULONG ulVrid, ULONG ulDelay);
 
-/*******************************************************************************
-*    Func Name: TCPIP_VRRP_EnablePreempt
-* Date Created: 2009-01-22
-*       Author: L00105073,L00111779
-*  Description: 设置备份组中路由器是否采用抢占方式
-*        Input: ULONG ulVrid:备份组id
-*               ULONG ulSetYes:是否采用抢占方式，1表示抢占，0表示不抢占
-*               默认值为可抢占,如果设置了不抢占，内部自动把delay时间清零
-*       Output: 
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                                          DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-01-22   L00105073,L00111779                             Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_VRRP_EnablePreempt(ULONG ulVrid, ULONG ulSetYes);
 
-/*******************************************************************************
-*    Func Name: TCPIP_VRRP_EnableCheckTTL
-* Date Created: 2009-01-21
-*       Author: L00105073,L00111779
-*  Description: 设置是否检测VRRP报文的TTL值
-*        Input: ULONG ulVrid: 备份组ID
-*               ULONG ulSetYes: True/False
-*       Output: 
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                                          DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-01-21   L00105073,L00111779                             Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_VRRP_EnableCheckTTL(ULONG ulVrid, ULONG ulSetYes);
 
 /*******************************************************************************
@@ -533,46 +422,11 @@ extern ULONG TCPIP_VRRP_EnableCheckTTL(ULONG ulVrid, ULONG ulSetYes);
 extern ULONG TCPIP_VRRP_SetGratuitousArpTimer(ULONG ulTimer);
 
 
-/*******************************************************************************
-*    Func Name: TCPIP_VRRP_SetAuthMode
-* Date Created: 2009-01-21
-*       Author: L00105073,L00111779
-*  Description: 设置指定接口上的所以VRRP备份组的简单认证认证字
-*        Input: ULONG ulVrid:VRID
-*               ULONG ulMode:0表示不做认证(默认),1表示简单认证
-*               UCHAR pszKey:长度不超过8的字符串，如果ulMode为0,则不处理ucKey
-*       Output: 
-*       Return: 成功返回VRRP_OK，失败返回错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                                          DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-01-21   L00105073,L00111779                             Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_VRRP_SetAuthMode(ULONG ulVrid, ULONG ulMode, UCHAR* pszKey);
 
 
-/*******************************************************************************
-*    Func Name: TCPIP_VRRP_TrackIF
-* Date Created: 2009-02-02
-*       Author: L00105073,L00111779
-*  Description: 设置/取消备份组要监视的接口
-*        Input: ULONG ulVrid:备份组ID
-*               ULONG ulTrackIfIndex:备份组要监视的接口索引
-*               LONG lReduce:当被监视的接口down时减少的运行优先级，有效值1~255
-*               ULONG ulSetYes:添加或删除监视接口 1 设置 0 取消
-*       Output: 
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                                          DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-02-02   L00105073,L00111779                          Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_VRRP_TrackIF(ULONG ulVrid, ULONG ulTrackIfIndex, LONG lReduce, ULONG ulSetYes);
 
 /*******************************************************************************
@@ -598,105 +452,22 @@ extern ULONG TCPIP_VRRP_TrackIF(ULONG ulVrid, ULONG ulTrackIfIndex, LONG lReduce
 *******************************************************************************/
 extern ULONG TCPIP_VRRP_TrackBFD(ULONG ulVrid, ULONG ulBfdSession, ULONG ulVrfIndex, LONG lReduce, ULONG ulSetYes);
 
-/*******************************************************************************
-*    Func Name: TCPIP_VRRP_Track1AG
-* Date Created: 2009-01-10
-*       Author: L00105073,L00111779
-*  Description: 配置VRRP监听1AG会话
-*        Input: ULONG ulVrid:VRRP备份组号
-*               UCHAR* szMdName:MD名字
-*               UCHAR* szMaName:MA名字
-*               USHORT usRmepid:rmep id
-*               LONG lReduce:设置当被监视的1AG会话产生告警时，优先级降低的数值。取值范围是1～255
-*               ULONG ulSetYes:1 设置监听  0 取消监听
-*       Output:
-*       Return: 成功VRRP_OK，其他返回错误码
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                         DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-01-10   L00105073,L00111779          Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_VRRP_Track1AG(ULONG ulVrid, UCHAR* szMdName, UCHAR* szMaName, USHORT usRmepid,
                                         LONG lReduce, ULONG ulSetYes);
 
 
-/*******************************************************************************
-*    Func Name: TCPIP_VRRP_Track3AH
-* Date Created: 2009-01-10
-*       Author: L00105073,L00111779
-*  Description: 配置VRRP监听3AH会话
-*        Input: ULONG ulVrid:VRRP备份组号
-*               ULONG ulTrackIfIndex:被监视的使能3AH的接口索引
-*               LONG lReduce:设置当被监视的3AH会话变为非sendany状态时，优先级减少的数值。取值范围是1～255
-*               ULONG ulSetYes:1 设置监听  0 取消监听
-*       Output:
-*       Return: 成功VRRP_OK，其他返回错误码
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-01-10   L00105073,L00111779         Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_VRRP_Track3AH(ULONG ulVrid, ULONG ulTrackIfIndex, LONG lReduce, ULONG ulSetYes);
 
 
-/*******************************************************************************
-*    Func Name: TCPIP_VRRP_GetConfigInfo
-* Date Created: 2009-01-20
-*       Author: L00105073,L00111779
-*  Description: 获取备份组配置信息
-*        Input: ULONG ulVrid:备份组id
-*       Output: TCPIP_VRRP_CONFIGINFO_S *pstVrrpConfigInfo:配置信息
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                                          DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-01-20   L00105073,L00111779                             Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_VRRP_GetConfigInfo(ULONG ulVrid, TCPIP_VRRP_CONFIGINFO_S *pstVrrpConfigInfo);
 
-/*******************************************************************************
-*    Func Name: TCPIP_VRRP_ShowConfigInfo
-* Date Created: 2009-01-20
-*       Author: L00105073,L00111779
-*  Description: 显示备份组配置信息
-*        Input: ULONG ulVrid:备份组id
-*       Output: 
-*       Return: VOID
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                                          DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-01-20   L00105073,L00111779                             Create
-*
-*******************************************************************************/
+
 extern VOID TCPIP_VRRP_ShowConfigInfo(ULONG ulVrid);
 
-/*******************************************************************************
-*    Func Name: TCPIP_VRRP_ShowAllInfo
-* Date Created: 2009-01-20
-*       Author: L00105073,L00111779
-*  Description: 显示所有备份组信息
-*        Input: VOID
-*       Output: 
-*       Return: VOID
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                                          DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-01-20   L00105073,L00111779                             Create
-*
-*******************************************************************************/
+
 extern VOID TCPIP_VRRP_ShowAllInfo(VOID);
 
 /*******************************************************************************
@@ -847,42 +618,11 @@ extern ULONG TCPIP_VRRP_GetTrack3AHInfo(ULONG ulVrid, TCPIP_VRRP_TRACK3AH_S stVr
 *******************************************************************************/
 extern VOID TCPIP_VRRP_ShowTrack3AHInfo(ULONG ulVrid);
 
-/*******************************************************************************
-*    Func Name: TCPIP_VRRP_GetVridlistByIfIndex
-* Date Created: 2009-01-20
-*       Author: L00105073,L00111779
-*  Description: 获取接口上的备份组列表
-*        Input: ULONG ulIfIndex:接口索引
-*       Output: ULONG* pulVridCount:接口下含有的备份组个数
-*               UCHAR ucVridlist[VRRP_MAX_ROUTERNUM_PERPORT]:备份组列表
-*       Return: 成功或错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                                          DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-01-20   L00105073,L00111779                             Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_VRRP_GetVridlistByIfIndex(ULONG ulIfIndex, ULONG* pulVridCount,
                                                             UCHAR ucVridlist[VRRP_MAX_ROUTERNUM_PERPORT]);
 
-/*******************************************************************************
-*    Func Name: TCPIP_VRRP_ShowVridlist
-* Date Created: 2009-01-20
-*       Author: L00105073,L00111779
-*  Description: 显示接口上的备份组列表
-*        Input: UCHAR* pszIfName:接口名
-*       Output: 
-*       Return: VOID
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                                          DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-01-20   L00105073,L00111779                             Create
-*
-*******************************************************************************/
+
 extern VOID TCPIP_VRRP_ShowVridlist(UCHAR* pszIfName);
 
 /*******************************************************************************
@@ -921,22 +661,7 @@ extern ULONG TCPIP_VRRP_ResetStatistic(ULONG ulVrid);
 *******************************************************************************/
 extern ULONG TCPIP_VRRP_GetStatistic(ULONG ulVrid, TCPIP_VRRP_STATISTICS_S *pstVrrpStatics);
 
-/*******************************************************************************
-*    Func Name: TCPIP_VRRP_ShowStatistic
-* Date Created: 2009-01-20
-*       Author: L00105073,L00111779
-*  Description: 显示备份组统计信息
-*        Input: ULONG ulVrid:备份组id
-*       Output: 
-*       Return: VOID
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                                          DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-01-20   L00105073,L00111779                             Create
-*
-*******************************************************************************/
+
 extern VOID TCPIP_VRRP_ShowStatistic(ULONG ulVrid);
 
 /*******************************************************************************

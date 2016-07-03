@@ -1,19 +1,4 @@
-/******************************************************************************
 
-            Copyright 2014, Huawei Technologies Co. Ltd.
-
- ******************************************************************************
-File Name       :   NasMsccFsmCLInterSys.c
-Author          :   W00176964
-Version         :
-Date            :   2015-11-05
-Description     :   CL异系统流程状态机各状态的消息处理文件
-Function list   :
-History         :
-    1) Date :
-       Author:
-       Modification:
-******************************************************************************/
 
 
 /*****************************************************************************
@@ -55,19 +40,7 @@ extern "C" {
   6 函数实现
 *****************************************************************************/
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
-  Function Name   :   NAS_MSCC_RcvHsdInterSysStartInd_CLInterSys_Init
-  Description     :   CL异系统的INIT状态收到HSD的异系统开始指示
-  Input parameters:   VOS_UINT32                          ulEventType,
-                      struct MsgCB                       *pstMsg
-  Outout parameters:  VOS_VOID
-  Return Value    :   VOS_TRUE----消息处理完成
-                      VOS_FALSE----消息未处理完成
-  Modify History:
-      1)  Date    :   2015-11-05
-          Author  :   w00176964
-          Modify content :    Create
-*****************************************************************************/
+
 VOS_UINT32 NAS_MSCC_RcvHsdInterSysStartInd_CLInterSys_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -86,19 +59,7 @@ VOS_UINT32 NAS_MSCC_RcvHsdInterSysStartInd_CLInterSys_Init(
 }
 
 
-/*****************************************************************************
-  Function Name   :   NAS_MSCC_RcvMmcInterSysStartInd_CLInterSys_Init
-  Description     :   CL异系统的INIT状态收到MMC的异系统开始指示
-  Input parameters:   VOS_UINT32                          ulEventType,
-                      struct MsgCB                       *pstMsg
-  Outout parameters:  VOS_VOID
-  Return Value    :   VOS_TRUE----消息处理完成
-                      VOS_FALSE----消息未处理完成
-  Modify History:
-      1)  Date    :   2015-11-05
-          Author  :   w00176964
-          Modify content :    Create
-*****************************************************************************/
+
 VOS_UINT32 NAS_MSCC_RcvMmcInterSysStartInd_CLInterSys_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -129,19 +90,7 @@ VOS_UINT32 NAS_MSCC_RcvMmcInterSysStartInd_CLInterSys_Init(
 }
 
 
-/*****************************************************************************
-  Function Name   :   NAS_MSCC_RcvMmcPowerSaveCnf_CLInterSys_WaitMmcPowerSaveCnf
-  Description     :   CL异系等mmc power save cnf状态收到mmc power save cnf
-  Input parameters:   VOS_UINT32                          ulEventType,
-                      struct MsgCB                       *pstMsg
-  Outout parameters:  VOS_VOID
-  Return Value    :   VOS_TRUE----消息处理完成
-                      VOS_FALSE----消息未处理完成
-  Modify History:
-      1)  Date    :   2015-11-05
-          Author  :   w00176964
-          Modify content :    Create
-*****************************************************************************/
+
 VOS_UINT32 NAS_MSCC_RcvMmcPowerSaveCnf_CLInterSys_WaitMmcPowerSaveCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -159,19 +108,7 @@ VOS_UINT32 NAS_MSCC_RcvMmcPowerSaveCnf_CLInterSys_WaitMmcPowerSaveCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
-  Function Name   :   NAS_MSCC_RcvHsdInterSysEndInd_CLInterSys_WaitInterSysEndInd
-  Description     :   CL异系统等异系统结束的状态收到hsd的异系统结束指示
-  Input parameters:   VOS_UINT32                          ulEventType,
-                      struct MsgCB                       *pstMsg
-  Outout parameters:  VOS_VOID
-  Return Value    :   VOS_TRUE----消息处理完成
-                      VOS_FALSE----消息未处理完成
-  Modify History:
-      1)  Date    :   2015-11-05
-          Author  :   w00176964
-          Modify content :    Create
-*****************************************************************************/
+
 VOS_UINT32 NAS_MSCC_RcvHsdInterSysEndInd_CLInterSys_WaitInterSysEndInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -194,19 +131,7 @@ VOS_UINT32 NAS_MSCC_RcvHsdInterSysEndInd_CLInterSys_WaitInterSysEndInd(
 }
 
 
-/*****************************************************************************
-  Function Name   :   NAS_MSCC_RcvMsccAbortFsmReq_CLInterSys_WaitInterSysEndInd
-  Description     :   CL异系统的INIT状态收到MMC的异系统开始指示
-  Input parameters:   VOS_UINT32                          ulEventType,
-                      struct MsgCB                       *pstMsg
-  Outout parameters:  VOS_VOID
-  Return Value    :   VOS_TRUE----消息处理完成
-                      VOS_FALSE----消息未处理完成
-  Modify History:
-      1)  Date    :   2015-11-05
-          Author  :   w00176964
-          Modify content :    Create
-*****************************************************************************/
+
 VOS_UINT32 NAS_MSCC_RcvMsccAbortFsmReq_CLInterSys_WaitInterSysEndInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -236,19 +161,7 @@ VOS_UINT32 NAS_MSCC_RcvMsccAbortFsmReq_CLInterSys_WaitInterSysEndInd(
 
 
 
-/*****************************************************************************
-  Function Name   :   NAS_MSCC_RcvMmcInterSysEndInd_CLInterSys_WaitInterSysEndInd
-  Description     :   CL异系统的INIT状态收到MMC的异系统开始指示
-  Input parameters:   VOS_UINT32                          ulEventType,
-                      struct MsgCB                       *pstMsg
-  Outout parameters:  VOS_VOID
-  Return Value    :   VOS_TRUE----消息处理完成
-                      VOS_FALSE----消息未处理完成
-  Modify History:
-      1)  Date    :   2015-11-05
-          Author  :   w00176964
-          Modify content :    Create
-*****************************************************************************/
+
 VOS_UINT32 NAS_MSCC_RcvMmcInterSysEndInd_CLInterSys_WaitInterSysEndInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -270,19 +183,7 @@ VOS_UINT32 NAS_MSCC_RcvMmcInterSysEndInd_CLInterSys_WaitInterSysEndInd(
 }
 
 
-/*****************************************************************************
-  Function Name   :   NAS_MSCC_RcvTiWaitCLInterSysEndIndExpired_CLInterSys_WaitInterSysEndInd
-  Description     :   CL异系统的INIT状态收到MMC的异系统开始指示
-  Input parameters:   VOS_UINT32                          ulEventType,
-                      struct MsgCB                       *pstMsg
-  Outout parameters:  VOS_VOID
-  Return Value    :   VOS_TRUE----消息处理完成
-                      VOS_FALSE----消息未处理完成
-  Modify History:
-      1)  Date    :   2015-11-05
-          Author  :   w00176964
-          Modify content :    Create
-*****************************************************************************/
+
 VOS_UINT32 NAS_MSCC_RcvTiWaitCLInterSysEndIndExpired_CLInterSys_WaitInterSysEndInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -309,19 +210,7 @@ VOS_UINT32 NAS_MSCC_RcvTiWaitCLInterSysEndIndExpired_CLInterSys_WaitInterSysEndI
     return VOS_TRUE;
 }
 
-/*****************************************************************************
-  Function Name   :   NAS_MSCC_RcvTiWaitMmcPowerSaveCnfExpired_CLInterSys_WaitMmcPowerSaveCnf
-  Description     :   CL异系统等power save cnf超时
-  Input parameters:   VOS_UINT32                          ulEventType,
-                      struct MsgCB                       *pstMsg
-  Outout parameters:  VOS_VOID
-  Return Value    :   VOS_TRUE----消息处理完成
-                      VOS_FALSE----消息未处理完成
-  Modify History:
-      1)  Date    :   2015-11-05
-          Author  :   w00176964
-          Modify content :    Create
-*****************************************************************************/
+
 VOS_UINT32 NAS_MSCC_RcvTiWaitMmcPowerSaveCnfExpired_CLInterSys_WaitMmcPowerSaveCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -336,17 +225,7 @@ VOS_UINT32 NAS_MSCC_RcvTiWaitMmcPowerSaveCnfExpired_CLInterSys_WaitMmcPowerSaveC
     return VOS_TRUE;
 }
 
-/*****************************************************************************
-  Function Name   :   NAS_MSCC_JudgeCLInterSysRslt
-  Description     :   根据异系统发起方和当前处于激活态的接入网络判断异系统结果
-  Input parameters:   None
-  Outout parameters:  None
-  Return Value    :   None
-  Modify History:
-      1)  Date    :   2015-11-09
-          Author  :   y00346957
-          Modify content :    Create
-*****************************************************************************/
+
 NAS_MSCC_CL_INTERSYS_RESULT_ENUM_UINT32 NAS_MSCC_JudgeCLInterSysRslt(VOS_VOID)
 {
     NAS_MSCC_MSG_STRU                   *pstEntryMsg = VOS_NULL_PTR;

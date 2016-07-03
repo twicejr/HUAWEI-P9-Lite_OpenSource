@@ -166,17 +166,12 @@ imx179_match_id(
 {
     sensor_t* sensor = I2S(si);
     struct sensor_cfg_data *cdata = (struct sensor_cfg_data *)data;
-    int32_t module_id = 0;
-    char * sensor_name[] = {"IMX179_SUNNY", "IMX179_LITEON"};
-    int rc = 0;
 
-    cam_info("%s enter.", __func__);
+    cam_info("%s name:%s", __func__, sensor->board_info->name);
 
-    cdata->data = SENSOR_INDEX_INVALID;
-
-    strncpy(cdata->cfg.name, sensor_name[0], DEVICE_NAME_SIZE-1);
+    memset(cdata->cfg.name, 0, DEVICE_NAME_SIZE);
+    strncpy(cdata->cfg.name, "IMX179_4L_FOXCONN", DEVICE_NAME_SIZE-1);
     cdata->data = sensor->board_info->sensor_index;
-    cam_info("%s TODO. cdata->data=%d,cdata->cfg.name = %s", __func__, cdata->data,cdata->cfg.name);
     return 0;
 }
 
@@ -234,7 +229,7 @@ imx179_config(
 			ret = si->vtbl->match_id(si,argp);
 			break;
 		default:
-			cam_err("%s cfgtype(%d) is error", __func__, data->cfgtype);
+			cam_warn("%s cfgtype(%d) not support", __func__, data->cfgtype);
 			break;
 	}
 

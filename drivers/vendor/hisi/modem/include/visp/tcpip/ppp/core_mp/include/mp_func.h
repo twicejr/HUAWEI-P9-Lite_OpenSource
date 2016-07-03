@@ -256,7 +256,6 @@ extern ULONG IF_AnalyseIfName(IFNAME_S * pstIfName, CHAR * szName);
 /* add by ybo for MP LQM*/
 ULONG MP_GetLqmCfgInfo(ULONG ulIfIndex,ULONG *pulLqmEnable,USHORT *pusLqmPeriod);
 
-/* Added by z43740 for A82D20089:MP重组窗口扩大,2007-09-13 */
 extern ULONG MP_SetReorderWindowTimes(ULONG ulTimes);
 extern VOID  MP_IN_SetReorderWindowTimes(ULONG ulTimes);
 extern ULONG MP_GetReorderWindowTimes(VOID);
@@ -272,7 +271,6 @@ extern ULONG TCPIP_QM_Transmit(ULONG ulIfIndex, MBUF_S *pstMBuf, USHORT usProtoc
 extern VOID TCPIP_QosChange( ULONG ulFatherIndex, ULONG *pulLfiConfigFlag);
 extern ULONG TCPIP_QOS_TransmitDone(ULONG ulIfIndex, ULONG ulPointerToDcb, MBUF_S * pstMBuf);
 
-/* Added by z43740 for TR报文发送增强,2009-04-09 */
 extern ULONG MP_SetDiscReq(ULONG ulIfIndex, ULONG ulSetYes);
 extern ULONG MP_GetDiscReq(ULONG ulIfIndex, ULONG *pulSetYes);
 extern ULONG MP_SetDiscReq_PT(ULONG ulIfIndex, ULONG ulSetYes);

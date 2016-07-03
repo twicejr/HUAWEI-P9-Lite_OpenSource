@@ -1,26 +1,4 @@
-/*************************************************************************
- *
- *              Copyright 2005, Huawei Technologies Co. Ltd.
- *                          ALL RIGHTS RESERVED
- * 
- *-----------------------------------------------------------------------*
- *
- *                         iphc_fun.h
- *
- *  Project Code: VISP
- *   Module Name: IPHC
- *  Date Created: 2002/06/25
- *        Author: wangyue
- *   Description: 本头文件包含iphc模块的宏定义；   
- *
- *
- *-----------------------------------------------------------------------*
- *  Modification History
- *  DATE            NAME            DESCRIPTION
- *  2006-03-30      xiehuaguo       Adjust for D00647
- *  2006-05-13      l48923          Delete useless code
- *
- ************************************************************************/
+
  
 #ifndef _IPHC_FUN_H_
 #define _IPHC_FUN_H_
@@ -58,7 +36,6 @@ VOID IPHC_TCPRelease(struct tagIPHC_COMPRESSION_CONTEXT *pIPHC_Context);
 VOID IPHC_NonTCPRelease(struct tagIPHC_COMPRESSION_CONTEXT *pIPHC_Context);
 struct tagIPHC_COMPRESSION_CONTEXT *IPHC_Release(struct tagIPHC_COMPRESSION_CONTEXT *pIPHC_Context);
 
-/* Modified by z43740: 将参数类型改为VOID*, 2007-03-28 */
 VOID IPHC_TimerCall(VOID *pArg);
 /* End of modification */
 

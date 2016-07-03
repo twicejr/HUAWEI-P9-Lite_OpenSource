@@ -39,9 +39,7 @@ extern "C" {
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /*----------- STATUS 给TAFM提供的API接口函数 ------------*/
 /*=======================================================*/
-/* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-12, begin */
 
-/* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-12, end */
 
 /*--------------- PLMN搜索过程  ---------------*/
 VOS_UINT32 Sta_PlmnList (VOS_VOID);
@@ -54,11 +52,7 @@ VOS_VOID Sta_PlmnSelect ( VOS_UINT32 ulOpID, TAF_PLMN_ID_STRU PlmnId, TAF_PH_RA_
 
 /*------ 向上层应用发送协议栈消息的接口 -------*/
 
-/* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-9, begin */
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-2, begin */
 /* Sta_MsgInd函数移动位置 */
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-2, end */
-/* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-9, end */
 
  /*-------------- DETACH过程请求 --------------*/
 /* Sta_Detach */

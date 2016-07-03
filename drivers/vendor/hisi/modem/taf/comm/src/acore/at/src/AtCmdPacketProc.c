@@ -30,22 +30,7 @@ extern "C" {
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : AT_AppConvertPdpStateToConnStatus
- 功能描述  : 转换承载状态 -> 连接状态
- 输入参数  : enPdpState      - 承载状态
- 输出参数  : 无
- 返 回 值  : AT_APP_DIALING  - 连接正在建立
-             AT_APP_DIALED   - 连接已经建立
-             AT_APP_UNDIALED - 连接已经断开
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年3月9日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 AT_APP_CONN_STATE_ENUM_U32 AT_AppConvertPdpStateToConnStatus(
     AT_PDP_STATE_ENUM_U8                enPdpState
 )
@@ -72,21 +57,7 @@ AT_APP_CONN_STATE_ENUM_U32 AT_AppConvertPdpStateToConnStatus(
     return enConnStatus;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SetChdataPara_AppUser
- 功能描述  : APP下发的^CHDATA =<cid>,<datachannel>
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月2日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_SetChdataPara_AppUser(VOS_UINT8 ucIndex)
 {
     VOS_UINT8                           ucLoop;
@@ -144,21 +115,7 @@ VOS_UINT32 AT_SetChdataPara_AppUser(VOS_UINT8 ucIndex)
     return AT_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SetChdataPara_HsicUser
- 功能描述  : HSIC通道下发的^CHDATA =<cid>,<datachannel>
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月2日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_SetChdataPara_HsicUser(VOS_UINT8 ucIndex)
 {
     VOS_UINT8                           ucLoop;
@@ -239,28 +196,7 @@ VOS_UINT32 AT_SetChdataPara_HsicUser(VOS_UINT8 ucIndex)
     return AT_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SetChdataPara
- 功能描述  : ^CHDATA =<cid>,<datachannel>
- 输入参数  : TAF_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月17日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年9月10日
-    作    者   : L60609
-    修改内容   : AP适配项目
-
-  3.日    期   : 2015年5月27日
-    作    者   : l00198894
-    修改内容   : TSTS
-*****************************************************************************/
 VOS_UINT32 AT_SetChdataPara(VOS_UINT8 ucIndex)
 {
     VOS_UINT8                           ucUserIndex;
@@ -327,21 +263,7 @@ VOS_UINT32 AT_SetChdataPara(VOS_UINT8 ucIndex)
     return AT_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_QryChdataPara_AppUser
- 功能描述  : APP下发的AT^CHDATA?
- 输入参数  : TAF_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月2日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_QryChdataPara_AppUser(TAF_UINT8 ucIndex)
 {
     VOS_UINT8                           ucLoop;
@@ -392,21 +314,7 @@ VOS_UINT32 AT_QryChdataPara_AppUser(TAF_UINT8 ucIndex)
     return AT_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_QryChdataPara_HsicUser
- 功能描述  : HSIC下发的AT^CHDATA?
- 输入参数  : TAF_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月2日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_QryChdataPara_HsicUser(TAF_UINT8 ucIndex)
 {
     VOS_UINT8                           ucLoop;
@@ -466,28 +374,7 @@ VOS_UINT32 AT_QryChdataPara_HsicUser(TAF_UINT8 ucIndex)
     return AT_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_QryChdataPara
- 功能描述  : AT^CHDATA?
- 输入参数  : ucIndex - 用户索引
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年02月17日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年9月10日
-    作    者   : L60609
-    修改内容   : AP适配项目
-
-  3.日    期   : 2015年5月27日
-    作    者   : l00198894
-    修改内容   : TSTS
-*****************************************************************************/
 VOS_UINT32 AT_QryChdataPara(TAF_UINT8 ucIndex)
 {
     VOS_UINT8                           ucUserId;
@@ -542,37 +429,14 @@ VOS_UINT32 AT_QryChdataPara(TAF_UINT8 ucIndex)
     return AT_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_TestChdataPara
- 功能描述  : ^CHDATA测试函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年03月20日
-    作    者   : l00198894
-    修改内容   : 新增函数
-
-  2.日    期   : 2012年8月13日
-    作    者   : l60609
-    修改内容   : MUX:增加MUX通道的处理
-
-  3.日    期   : 2012年9月10日
-    作    者   : l60609
-    修改内容   : AP适配项目：修改CHDATA的通道检查
-*****************************************************************************/
 VOS_UINT32 AT_TestChdataPara(VOS_UINT8 ucIndex)
 {
-    /* Modified by l60609 for AP适配项目 ，2012-09-10 Begin */
     /* 通道检查 */
     if (VOS_FALSE == AT_IsApPort(ucIndex))
     {
         return AT_ERROR;
     }
-    /* Modified by l60609 for AP适配项目 ，2012-09-10 End */
 
     gstAtSendData.usBufLen = (VOS_UINT16)At_sprintf(AT_CMD_MAX_LEN,
                                        (VOS_CHAR *)pgucAtSndCodeAddr,
@@ -584,20 +448,7 @@ VOS_UINT32 AT_TestChdataPara(VOS_UINT8 ucIndex)
     return AT_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_ReportDhcp
- 功能描述  : 上报IPv4的DHCP信息
- 输入参数  : ucIndex --- 用户索引
- 输出参数  : 无
- 返 回 值  : AT_XXX  --- ATC返回码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月10日
-    作    者   : Y00213812
-    修改内容   : C50 IPv6 项目新增函数
-*****************************************************************************/
 VOS_UINT32 AT_PS_ReportDhcp(VOS_UINT8 ucIndex)
 {
     AT_PS_CALL_ENTITY_STRU             *pstCallEntity = VOS_NULL_PTR;
@@ -648,31 +499,7 @@ VOS_UINT32 AT_PS_ReportDhcp(VOS_UINT8 ucIndex)
     return AT_OK;
 }
 
-/*****************************************************************************
- Prototype      : At_SetDhcpPara
- Description    : ^DHCP设置命令
- Input          : ucIndex --- 用户索引
- Output         :
- Return Value   : AT_XXX  --- ATC返回码
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2009-09-01
-    Author      : L47619
-    Modification: Created function
-
-  2.日    期   : 2011年10月24日
-    作    者   : o00132663
-    修改内容   : AT融合项目，获取命令名全局变量改变
-  3.日    期   : 2012年03月03日
-    作    者   : s62952
-    修改内容   : BalongV300R002 Build优化项目:与数传相关的AP代码都已经废弃
-  4.日    期   : 2012年12月10日
-    作    者   : Y00213812
-    修改内容   : C50 IPv6 Project，PDP未激活或者参数错误时返回ERROR，支持指定
-                 CID查询
-*****************************************************************************/
 VOS_UINT32 At_SetDhcpPara(VOS_UINT8 ucIndex)
 {
     /* 参数检查 */
@@ -691,21 +518,7 @@ VOS_UINT32 At_SetDhcpPara(VOS_UINT8 ucIndex)
     return AT_PS_ReportDhcp(ucIndex);
 }
 
-/*****************************************************************************
- 函 数 名  : At_QryDhcpPara_AppUser
- 功能描述  : APP User下发AT^DHCP?
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月3日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 At_QryDhcpPara_AppUser(VOS_UINT8 ucIndex)
 {
     VOS_UINT16                          usLength;
@@ -755,21 +568,7 @@ VOS_UINT32 At_QryDhcpPara_AppUser(VOS_UINT8 ucIndex)
 
 }
 
-/*****************************************************************************
- 函 数 名  : At_QryDhcpPara_NdisUser
- 功能描述  : Ndis User下发AT^DHCP?
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月3日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 At_QryDhcpPara_NdisUser(VOS_UINT8 ucIndex)
 {
     VOS_UINT16                          usLength;
@@ -816,20 +615,7 @@ VOS_UINT32 At_QryDhcpPara_NdisUser(VOS_UINT8 ucIndex)
     return AT_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_PS_GetDailPortUsrType
- 功能描述  : 获取拨号端口期望的用户类型(用于PCUI端口等触发APPP/NDIS拨号)
- 输入参数  : enUsrType    --- 端口类型
- 输出参数  : 无
- 返 回 值  : AT_USER_TYPE --- 拨号类型
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月13日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 AT_USER_TYPE AT_PS_GetDailPortUsrType(AT_USER_TYPE enUsrType)
 {
     VOS_UINT8                          *pucSystemAppConfig = VOS_NULL_PTR;
@@ -858,24 +644,7 @@ AT_USER_TYPE AT_PS_GetDailPortUsrType(AT_USER_TYPE enUsrType)
     return enExpUsrType;
 }
 
-/*****************************************************************************
- 函 数 名  : At_QryDhcpPara
- 功能描述  : <clip>,<netmask>,<gate>,<dhcp>,<pDNS>,<sDNS>,<max_rx_data>,<max_tx_data>
- 输入参数  : ucIndex --- 用户索引
- 输出参数  : 无
- 返 回 值  : AT_XXX  --- ATC返回码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月23日
-    作    者   : sunshaohua
-    修改内容   : 新生成函数
-
-  2.日    期   : 2014年1月13日
-    作    者   : A00165503
-    修改内容   : DTS2013100906456: PCUI端口支持查询APP/NDIS的DHCP操作
-*****************************************************************************/
 VOS_UINT32 At_QryDhcpPara(VOS_UINT8 ucIndex)
 {
     VOS_UINT32                          ulResult;
@@ -902,21 +671,7 @@ VOS_UINT32 At_QryDhcpPara(VOS_UINT8 ucIndex)
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_TestDhcpPara
- 功能描述  : ^DHCP测试命令
- 输入参数  : ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月10日
-    作    者   : Y00213812
-    修改内容   : C50 IPv6 项目新增函数
-
-*****************************************************************************/
 VOS_UINT32 AT_TestDhcpPara(VOS_UINT8 ucIndex)
 {
     gstAtSendData.usBufLen = (VOS_UINT16)At_sprintf(AT_CMD_MAX_LEN,
@@ -929,24 +684,7 @@ VOS_UINT32 AT_TestDhcpPara(VOS_UINT8 ucIndex)
 }
 
 #if (FEATURE_ON == FEATURE_IPV6)
-/*****************************************************************************
- 函 数 名  : AT_PS_ReportDhcpv6
- 功能描述  : 上报IPv6的DHCP信息
- 输入参数  : ucIndex --- 用户索引
- 输出参数  : 无
- 返 回 值  : AT_XXX  --- ATC返回码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月10日
-    作    者   : Y00213812
-    修改内容   : C50 IPv6 项目新增函数
-
-  2.日    期   : 2014年12月8日
-    作    者   : A00165503
-    修改内容   : DTS2014103102656: IPv6前缀未获取, ^DHCPV6查询需要返回ERROR
-*****************************************************************************/
 VOS_UINT32 AT_PS_ReportDhcpv6(TAF_UINT8 ucIndex)
 {
     AT_PS_CALL_ENTITY_STRU             *pstCallEntity = VOS_NULL_PTR;
@@ -1036,21 +774,7 @@ VOS_UINT32 AT_PS_ReportDhcpv6(TAF_UINT8 ucIndex)
     return AT_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SetDhcpv6Para
- 功能描述  : 指定CID，查询IPv6类型PDP上下文
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月10日
-    作    者   : Y00213812
-    修改内容   : C50 IPv6 项目新增函数
-
-*****************************************************************************/
 VOS_UINT32 AT_SetDhcpv6Para(VOS_UINT8 ucIndex)
 {
     /* 参数检查 */
@@ -1068,21 +792,7 @@ VOS_UINT32 AT_SetDhcpv6Para(VOS_UINT8 ucIndex)
     /* 查询指定CID的实体PDP上下文 */
     return AT_PS_ReportDhcpv6(ucIndex);
 }
-/*****************************************************************************
- 函 数 名  : AT_QryDhcpV6Para_AppUser
- 功能描述  : APP User下发AT^DHCPV6?
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月3日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_QryDhcpV6Para_AppUser(VOS_UINT8 ucIndex)
 {
     VOS_UINT16                          usLength;
@@ -1165,21 +875,7 @@ VOS_UINT32 AT_QryDhcpV6Para_AppUser(VOS_UINT8 ucIndex)
     return AT_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_QryDhcpV6Para_NdisUser
- 功能描述  : NDIS User下发AT^DHCPV6?
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月3日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_QryDhcpV6Para_NdisUser(VOS_UINT8 ucIndex)
 {
     VOS_UINT16                          usLength;
@@ -1259,24 +955,7 @@ VOS_UINT32 AT_QryDhcpV6Para_NdisUser(VOS_UINT8 ucIndex)
     return AT_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_QryDhcpv6Para
- 功能描述  :
- 输入参数  : ucIndex - 用户索引
- 输出参数  : 无
- 返 回 值  : AT_XXX  - ATC返回码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月21日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2014年1月13日
-    作    者   : A00165503
-    修改内容   : DTS2013100906456: PCUI端口支持查询APP/NDIS的DHCP操作
-*****************************************************************************/
 VOS_UINT32 AT_QryDhcpv6Para(VOS_UINT8 ucIndex)
 {
     VOS_UINT32                          ulResult;
@@ -1303,21 +982,7 @@ VOS_UINT32 AT_QryDhcpv6Para(VOS_UINT8 ucIndex)
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_TestDhcpv6Para
- 功能描述  : ^DHCPV6测试命令
- 输入参数  : ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月10日
-    作    者   : Y00213812
-    修改内容   : C50 IPv6 项目新增函数
-
-*****************************************************************************/
 VOS_UINT32 AT_TestDhcpv6Para(VOS_UINT8 ucIndex)
 {
     gstAtSendData.usBufLen = (VOS_UINT16)At_sprintf(AT_CMD_MAX_LEN,
@@ -1328,21 +993,7 @@ VOS_UINT32 AT_TestDhcpv6Para(VOS_UINT8 ucIndex)
 
     return AT_OK;
 }
-/*****************************************************************************
- 函 数 名  : AT_PS_ReportApraInfo
- 功能描述  : 上报IPv6的RA信息
- 输入参数  : TAF_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月27日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_PS_ReportApraInfo(TAF_UINT8 ucIndex)
 {
     VOS_UINT16                          usLength;
@@ -1450,21 +1101,7 @@ VOS_UINT32 AT_PS_ReportApraInfo(TAF_UINT8 ucIndex)
     return AT_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SetApRaInfoPara
- 功能描述  : 指定CID，查询IPv6 RA消息中相关参数取值值, 包括MTU, 前缀,前缀的preferred lifetime和Valid lifetime
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月25日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_SetApRaInfoPara(VOS_UINT8 ucIndex)
 {
     if (AT_CMD_OPT_SET_PARA_CMD != g_stATParseCmd.ucCmdOptType)
@@ -1482,25 +1119,7 @@ VOS_UINT32 AT_SetApRaInfoPara(VOS_UINT8 ucIndex)
     return AT_PS_ReportApraInfo(ucIndex);
 }
 
-/*****************************************************************************
- 函 数 名  : AT_QryApRaInfoPara
- 功能描述  : 查询IPv6 RA消息中相关参数取值值, 包括MTU, 前缀,
-             前缀的preferred lifetime和Valid lifetime
- 输入参数  : ucIndex - 用户索引
- 输出参数  : 无
- 返 回 值  : AT_XXX  - ATC返回码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月25日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年5月11日
-    作    者   : l60609
-    修改内容   : DTS2012051101376：lifetime输出应该为%u
-*****************************************************************************/
 VOS_UINT32 AT_QryApRaInfoPara(VOS_UINT8 ucIndex)
 {
     VOS_UINT16                          usLength;
@@ -1610,21 +1229,7 @@ VOS_UINT32 AT_QryApRaInfoPara(VOS_UINT8 ucIndex)
     return AT_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_TestApRaInfoPara
- 功能描述  : ^APRAINFO测试命令
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月27日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_TestApRaInfoPara(VOS_UINT8 ucIndex)
 {
     gstAtSendData.usBufLen = (VOS_UINT16)At_sprintf(AT_CMD_MAX_LEN,
@@ -1637,21 +1242,7 @@ VOS_UINT32 AT_TestApRaInfoPara(VOS_UINT8 ucIndex)
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_PS_ReportLanAddr
- 功能描述  : IPv6 路由器LAN端口地址取值
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月27日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_PS_ReportLanAddr(VOS_UINT8 ucIndex)
 {
     VOS_UINT8                           ucCallId;
@@ -1716,21 +1307,7 @@ VOS_UINT32 AT_PS_ReportLanAddr(VOS_UINT8 ucIndex)
     return AT_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SetApLanAddrPara
- 功能描述  : 指定CID，查询IPv6 路由器LAN端口地址取值
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月25日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_SetApLanAddrPara(VOS_UINT8 ucIndex)
 {
     if (AT_CMD_OPT_SET_PARA_CMD != g_stATParseCmd.ucCmdOptType)
@@ -1748,21 +1325,7 @@ VOS_UINT32 AT_SetApLanAddrPara(VOS_UINT8 ucIndex)
     return AT_PS_ReportLanAddr(ucIndex);
 }
 
-/*****************************************************************************
- 函 数 名  : AT_QryApLanAddrPara
- 功能描述  : 查询IPv6 路由器LAN端口地址取值
- 输入参数  : ucIndex - 用户索引
- 输出参数  : 无
- 返 回 值  : AT_XXX  - ATC返回码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月25日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_QryApLanAddrPara(VOS_UINT8 ucIndex)
 {
     VOS_UINT16                          usLength;
@@ -1828,21 +1391,7 @@ VOS_UINT32 AT_QryApLanAddrPara(VOS_UINT8 ucIndex)
     return AT_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_TestApLanAddrPara
- 功能描述  : ^APLANADDR测试命令
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月27日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_TestApLanAddrPara(VOS_UINT8 ucIndex)
 {
     gstAtSendData.usBufLen = (VOS_UINT16)At_sprintf(AT_CMD_MAX_LEN,
@@ -1856,21 +1405,7 @@ VOS_UINT32 AT_TestApLanAddrPara(VOS_UINT8 ucIndex)
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : AT_PS_ReportConnSt
- 功能描述  : 上报呼叫状态
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月27日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_PS_ReportConnSt(VOS_UINT8 ucIndex)
 {
     VOS_UINT8                           ucCallId;
@@ -1972,21 +1507,7 @@ VOS_UINT32 AT_PS_ReportConnSt(VOS_UINT8 ucIndex)
     return AT_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : At_SetApConnStPara
- 功能描述  : 指定cid，查询APP拨号状态
- 输入参数  : VOS_UINT8                           ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月25日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  At_SetApConnStPara(
     VOS_UINT8                           ucIndex
 )
@@ -2006,25 +1527,7 @@ VOS_UINT32  At_SetApConnStPara(
     return AT_PS_ReportConnSt(ucIndex);
 }
 
-/*****************************************************************************
- 函 数 名  : At_QryApConnStPara
- 功能描述  : 查询APP拨号状态
- 输入参数  : TAF_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : 成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年9月9日
-    作    者   : s62952
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年11月4日
-    作    者   : W00316404
-    修改内容   : 支持多PDP TYPE的类型（DTS2015110302814）
-
-*****************************************************************************/
 VOS_UINT32  At_QryApConnStPara(
     VOS_UINT8                           ucIndex
 )
@@ -2144,21 +1647,7 @@ VOS_UINT32  At_QryApConnStPara(
     return AT_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_TestApConnStPara
- 功能描述  : ^APCONNST测试命令
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月27日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_TestApConnStPara(VOS_UINT8 ucIndex)
 {
     gstAtSendData.usBufLen = (VOS_UINT16)At_sprintf(AT_CMD_MAX_LEN,
@@ -2170,21 +1659,7 @@ VOS_UINT32 AT_TestApConnStPara(VOS_UINT8 ucIndex)
     return AT_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : At_SetApThroughputPara
- 功能描述  : 指定CID，查询当前流量
- 输入参数  : VOS_UINT8                           ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月25日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 At_SetApThroughputPara(
     VOS_UINT8                           ucIndex
 )
@@ -2253,24 +1728,7 @@ VOS_UINT32 At_SetApThroughputPara(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : At_QryApThroughputPara
- 功能描述  : E5查询当前流量
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : 成功或失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2010年9月9日
-   作    者   : s62952
-   修改内容   : 新生成函数
- 2.日    期   : 2011年12月08日
-   作    者   : f00179208
-   修改内容   : PS Project: 给RNIC发流速查询消息
-
-*****************************************************************************/
 VOS_UINT32 At_QryApThroughputPara(
     VOS_UINT8                           ucIndex
 )
@@ -2312,21 +1770,7 @@ VOS_UINT32 At_QryApThroughputPara(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : AT_TestApThroughputPara
- 功能描述  : ^APTHROUGHOUT测试命令
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月27日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_TestApThroughputPara(VOS_UINT8 ucIndex)
 {
     gstAtSendData.usBufLen = (VOS_UINT16)At_sprintf(AT_CMD_MAX_LEN,
@@ -2338,21 +1782,7 @@ VOS_UINT32 AT_TestApThroughputPara(VOS_UINT8 ucIndex)
     return AT_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SetApEndPppPara
- 功能描述  : APENDPPP命令的设置函数，该命令仅用于PAD版本断开PPP拨号
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月9日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_SetApEndPppPara(VOS_UINT8 ucIndex)
 {
 #if (FEATURE_ON == FEATURE_AT_HSIC)
@@ -2384,20 +1814,7 @@ VOS_UINT32 AT_SetApEndPppPara(VOS_UINT8 ucIndex)
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SetApDsFlowRptCfgPara
- 功能描述  : ^APDSFLOWRPTCFG=<enable>[,<threshold>[,<total_threshold>[,<oper>]]]
- 输入参数  : ucIndex --- 端口索引
- 输出参数  : 无
- 返 回 值  : AT_XXX  --- ATC返回码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月2日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_SetApDsFlowRptCfgPara(VOS_UINT8 ucIndex)
 {
     TAF_APDSFLOW_RPT_CFG_STRU           stRptCfg;
@@ -2468,20 +1885,7 @@ VOS_UINT32 AT_SetApDsFlowRptCfgPara(VOS_UINT8 ucIndex)
     return AT_WAIT_ASYNC_RETURN;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_QryApDsFlowRptCfgPara
- 功能描述  : ^APDSFLOWRPTCFG?
- 输入参数  : ucIndex --- 端口索引
- 输出参数  : 无
- 返 回 值  : AT_XXX  --- ATC返回码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月2日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_QryApDsFlowRptCfgPara(VOS_UINT8 ucIndex)
 {
     /* 执行命令操作 */
@@ -2499,20 +1903,7 @@ VOS_UINT32 AT_QryApDsFlowRptCfgPara(VOS_UINT8 ucIndex)
     return AT_WAIT_ASYNC_RETURN;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SetDsFlowNvWriteCfgPara
- 功能描述  : ^DSFLOWNVWRCFG=<enable>[,<interval>]
- 输入参数  : ucIndex --- 端口索引
- 输出参数  : 无
- 返 回 值  : AT_XXX  --- ATC返回码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月2日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_SetDsFlowNvWriteCfgPara(VOS_UINT8 ucIndex)
 {
     TAF_DSFLOW_NV_WRITE_CFG_STRU        stWriteNvCfg;
@@ -2588,20 +1979,7 @@ VOS_UINT32 AT_SetDsFlowNvWriteCfgPara(VOS_UINT8 ucIndex)
     return AT_WAIT_ASYNC_RETURN;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_QryDsFlowNvWriteCfgPara
- 功能描述  : ^DSFLOWNVWRCFG?
- 输入参数  : ucIndex --- 端口索引
- 输出参数  : 无
- 返 回 值  : AT_XXX  --- ATC返回码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月2日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_QryDsFlowNvWriteCfgPara(VOS_UINT8 ucIndex)
 {
     /* 执行命令操作 */
@@ -2619,21 +1997,7 @@ VOS_UINT32 AT_QryDsFlowNvWriteCfgPara(VOS_UINT8 ucIndex)
     return AT_WAIT_ASYNC_RETURN;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SetImsPdpCfg
- 功能描述  : ^IMSPNDPCFG
- 输入参数  : ucIndex --- 端口索引
- 输出参数  : 无
- 返 回 值  : AT_XXX  --- ATC返回码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月29日
-    作    者   : z00301431
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_SetImsPdpCfg(VOS_UINT8 ucIndex)
 {
     TAF_IMS_PDP_CFG_STRU                stImsPdpCfg;

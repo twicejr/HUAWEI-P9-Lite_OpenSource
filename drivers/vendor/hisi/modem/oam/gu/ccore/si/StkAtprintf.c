@@ -1,18 +1,4 @@
-/************************************************************************
-Copyright   : 2005-2008, Huawei Tech. Co., Ltd.
-File name   : SimProc.c
-Author      : z00100318
-Version     : V300R002
-Date        : 2008-10-18
-Description : 该文件定义了SIM卡事件实现
 
-Description : SIM卡事件的处理和实现
-History     :
-
-1.日    期  : 2008年10月28日
-  作    者  : H59254
-  修改内容  : Create
-************************************************************************/
 
 #include "AtOamInterface.h"
 #include "TafOamInterface.h"
@@ -46,24 +32,7 @@ VOS_UINT8 gaucAtCsen[] = "^CSEN:";
 VOS_UINT8 gaucAtCsmn[] = "^CSMN:";
 
 
-/*****************************************************************************
- Prototype      : At_sprintf
- Description    :
- Input          :
- Output         :
- Return Value   : 返回地址指针
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-04-19
-    Author      : ---
-    Modification: Created function
-
-  2.日    期   : 2011年10月29日
-    作    者   : c64416
-    修改内容   : AT融合项目，移植V7R1的调用接口
-*****************************************************************************/
 /*lint -esym(960,69) 修改人：胡文 44270；检视:s62952;原因简述：可变参数，需要保留 */
 /*lint -esym(961,47) 修改人：胡文 44270；检视:s62952;原因简述：可变参数，需要保留 */
 VOS_INT32 At_sprintf(VOS_INT32 MaxLength,VOS_CHAR *pHeadAddr,VOS_CHAR *pCurrAddr,const VOS_CHAR *fmt,...)
@@ -246,24 +215,7 @@ VOS_INT32 At_sprintf(VOS_INT32 MaxLength,VOS_CHAR *pHeadAddr,VOS_CHAR *pCurrAddr
     /*lint +e530 +e830 */
 }
 
-/*****************************************************************************
- Prototype      : At_HexText2AsciiString
- Description    : 完成16进制数转换功能
- Input          : nptr --- 字符串
- Output         :
- Return Value   : AT_SUCCESS --- 成功
-                  AT_FAILURE --- 失败
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-04-19
-    Author      : ---
-    Modification: Created function
-  2.日    期 : 2007-03-27
-    作    者 : h59254
-    修改内容 : 问题单号:A32D09820(PC-Lint修改)
-*****************************************************************************/
 VOS_UINT32 At_HexText2AsciiString(VOS_UINT32 MaxLength,VOS_INT8 *headaddr,VOS_UINT8 *pucDst,SI_STK_TEXT_STRING_STRU *pTextStr)
 {
     VOS_UINT16 usLen = 0;
@@ -337,24 +289,7 @@ VOS_UINT32 At_HexText2AsciiString(VOS_UINT32 MaxLength,VOS_INT8 *headaddr,VOS_UI
     return usLen;
 }
 
-/*****************************************************************************
- Prototype      : At_HexAlpha2AsciiString
- Description    : 完成16进制数转换功能
- Input          : nptr --- 字符串
- Output         :
- Return Value   : AT_SUCCESS --- 成功
-                  AT_FAILURE --- 失败
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-04-19
-    Author      : ---
-    Modification: Created function
-  2.日    期 : 2007-03-27
-    作    者 : h59254
-    修改内容 : 问题单号:A32D09820(PC-Lint修改)
-*****************************************************************************/
 VOS_UINT32 At_HexAlpha2AsciiString(VOS_UINT32 MaxLength,VOS_INT8 *headaddr,VOS_UINT8 *pucDst,VOS_UINT8 *pucSrc,VOS_UINT16 usSrcLen)
 {
     VOS_UINT16 usLen = 0;
@@ -414,20 +349,7 @@ VOS_UINT32 At_HexAlpha2AsciiString(VOS_UINT32 MaxLength,VOS_INT8 *headaddr,VOS_U
     return usLen;
 }
 
-/*****************************************************************************
- Prototype      : At_PbEmailGsm7bit2AsciiTransfer
- Description    : 将EMAIL信息中GSM编码的"@"找到，转换成ASCII编码
- Input          :
- Output         :
- Return Value   : ---
- Calls          : ---
- Called By      : ---
 
- History        : m00128685
-  1.Date        : 2009-06-18
-    Author      : ---
-    Modification: Created function
-*****************************************************************************/
 VOS_VOID At_UsimGsm7bit2AsciiTransfer(VOS_UINT8 *pucData, VOS_UINT32 *pulDataLen)
 {
     VOS_UINT32  i,j;

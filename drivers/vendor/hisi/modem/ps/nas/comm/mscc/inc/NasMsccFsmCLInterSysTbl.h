@@ -1,19 +1,4 @@
-/******************************************************************************
 
-            Copyright 2014, Huawei Technologies Co. Ltd.
-
- ******************************************************************************
-File Name       :   NasMsccFsmCLInterSysTbl.h
-Author          :   w00176964
-Version         :
-Date            :   2015-11-5
-Description     :   CL intersys状态机相关的状态定义头文件
-Function list   :
-History         :
-    1) Date :
-       Author:
-       Modification:
-******************************************************************************/
 
 
 #ifndef _NAS_MSCC_FSM_CL_INTERSYS_TBL_H_

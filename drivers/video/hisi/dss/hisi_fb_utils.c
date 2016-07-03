@@ -161,7 +161,7 @@ int hisifb_ctrl_fastboot(struct hisi_fb_data_type *hisifd)
 	hisi_overlay_on(hisifd, true);
 
 	if (hisifd->panel_info.esd_enable) {
-		hrtimer_restart(&hisifd->esd_hrtimer);
+		hrtimer_restart(&hisifd->esd_ctrl.esd_hrtimer);
 	}
 
 	return ret;
@@ -191,7 +191,7 @@ int hisifb_ctrl_on(struct hisi_fb_data_type *hisifd)
 	hisi_overlay_on(hisifd, false);
 
 	if (hisifd->panel_info.esd_enable) {
-		hrtimer_start(&hisifd->esd_hrtimer, ktime_set(ESD_CHECK_TIME_PERIOD / 1000,
+		hrtimer_start(&hisifd->esd_ctrl.esd_hrtimer, ktime_set(ESD_CHECK_TIME_PERIOD / 1000,
 			(ESD_CHECK_TIME_PERIOD % 1000) * 1000000), HRTIMER_MODE_REL);
 	}
 
@@ -209,7 +209,7 @@ int hisifb_ctrl_off(struct hisi_fb_data_type *hisifd)
 	BUG_ON(pdata == NULL);
 
 	if (hisifd->panel_info.esd_enable) {
-		hrtimer_cancel(&hisifd->esd_hrtimer);
+		hrtimer_cancel(&hisifd->esd_ctrl.esd_hrtimer);
 	}
 
 	hisifb_vsync_suspend(hisifd);
@@ -1131,21 +1131,9 @@ static ssize_t hisifb_lcd_hkadc_debug_show(struct device *dev,
 		return 0;
 	}
 
-	down(&hisifd->blank_sem);
-
-	if (!hisifd->panel_power_on) {
-		HISI_FB_DEBUG("fb%d, panel power off!\n", hisifd->index);
-		goto err_out;
-	}
-
 	if (pdata->lcd_hkadc_debug_show) {
-		hisifb_activate_vsync(hisifd);
 		ret = pdata->lcd_hkadc_debug_show(hisifd->pdev, buf);
-		hisifb_deactivate_vsync(hisifd);
 	}
-
-err_out:
-	up(&hisifd->blank_sem);
 
 	return ret;
 }
@@ -1186,21 +1174,9 @@ static ssize_t hisifb_lcd_hkadc_debug_store(struct device *dev,
 		return 0;
 	}
 
-	down(&hisifd->blank_sem);
-
-	if (!hisifd->panel_power_on) {
-		HISI_FB_DEBUG("fb%d, panel power off!\n", hisifd->index);
-		goto err_out;
-	}
-
 	if (pdata->lcd_hkadc_debug_store) {
-		hisifb_activate_vsync(hisifd);
 		ret = pdata->lcd_hkadc_debug_store(hisifd->pdev, buf, count);
-		hisifb_deactivate_vsync(hisifd);
 	}
-
-err_out:
-	up(&hisifd->blank_sem);
 
 	return ret;
 }
@@ -1526,6 +1502,117 @@ static ssize_t hisifb_lcd_color_temperature_store(struct device *dev,
 	if (pdata->lcd_color_temperature_store) {
 		hisifb_activate_vsync(hisifd);
 		ret = pdata->lcd_color_temperature_store(hisifd->pdev, buf, count);
+		hisifb_deactivate_vsync(hisifd);
+	}
+
+err_out:
+	up(&hisifd->blank_sem);
+
+	return count;
+}
+
+static ssize_t hisifb_lcd_ic_color_enhancement_mode_show(struct device *dev,
+	struct device_attribute *attr, char *buf)
+{
+	ssize_t ret = 0;
+	struct fb_info *fbi = NULL;
+	struct hisi_fb_data_type *hisifd = NULL;
+	struct hisi_fb_panel_data *pdata = NULL;
+
+	if (NULL == dev) {
+		HISI_FB_ERR("NULL Pointer!\n");
+		return 0;
+	}
+
+	fbi = dev_get_drvdata(dev);
+	if (NULL == fbi) {
+		HISI_FB_ERR("NULL Pointer!\n");
+		return 0;
+	}
+
+	hisifd = (struct hisi_fb_data_type *)fbi->par;
+	if (NULL == hisifd) {
+		HISI_FB_ERR("NULL Pointer!\n");
+		return 0;
+	}
+
+	pdata = dev_get_platdata(&hisifd->pdev->dev);
+	if (NULL == pdata) {
+		HISI_FB_ERR("NULL Pointer!\n");
+		return 0;
+	}
+	if (NULL == buf) {
+		HISI_FB_ERR("NULL Pointer!\n");
+		return 0;
+	}
+
+	down(&hisifd->blank_sem);
+
+	if (!hisifd->panel_power_on) {
+		HISI_FB_DEBUG("fb%d, panel power off!\n", hisifd->index);
+		ret = -EINVAL;
+		goto err_out;
+	}
+
+	if (pdata->lcd_ic_color_enhancement_mode_show) {
+		hisifb_activate_vsync(hisifd);
+		ret = pdata->lcd_ic_color_enhancement_mode_show(hisifd->pdev, buf);
+		hisifb_deactivate_vsync(hisifd);
+	}
+
+err_out:
+	up(&hisifd->blank_sem);
+
+	return ret;
+}
+
+static ssize_t hisifb_lcd_ic_color_enhancement_mode_store(struct device *dev,
+	struct device_attribute *attr, const char *buf, size_t count)
+{
+	ssize_t ret = 0;
+	struct fb_info *fbi = NULL;
+	struct hisi_fb_data_type *hisifd = NULL;
+	struct hisi_fb_panel_data *pdata = NULL;
+
+	if (NULL == dev) {
+		HISI_FB_ERR("NULL Pointer!\n");
+		return 0;
+	}
+
+	fbi = dev_get_drvdata(dev);
+	if (NULL == fbi) {
+		HISI_FB_ERR("NULL Pointer!\n");
+		return 0;
+	}
+
+	hisifd = (struct hisi_fb_data_type *)fbi->par;
+	if (NULL == hisifd) {
+		HISI_FB_ERR("NULL Pointer!\n");
+		return 0;
+	}
+
+	pdata = dev_get_platdata(&hisifd->pdev->dev);
+	if (NULL == pdata) {
+		HISI_FB_ERR("NULL Pointer!\n");
+		return 0;
+	}
+	if (NULL == buf) {
+		HISI_FB_ERR("NULL Pointer!\n");
+		return 0;
+	}
+
+
+	down(&hisifd->blank_sem);
+
+	if (!hisifd->panel_power_on) {
+		HISI_FB_DEBUG("fb%d, panel power off!\n", hisifd->index);
+		ret = -EINVAL;
+		goto err_out;
+	}
+
+	if (pdata->lcd_ic_color_enhancement_mode_store) {
+		hisifb_activate_vsync(hisifd);
+		ret = pdata->lcd_ic_color_enhancement_mode_store(hisifd->pdev, buf, count);
 		hisifb_deactivate_vsync(hisifd);
 	}
 
@@ -3071,6 +3158,118 @@ static ssize_t hisifb_lcd_hbm_ctrl_store(struct device *dev,
 	return ret;
 }
 
+static ssize_t hisifb_lcd_amoled_vr_mode_show(struct device *dev,
+	struct device_attribute *attr, char *buf)
+{
+	ssize_t ret = 0;
+	struct fb_info *fbi = NULL;
+	struct hisi_fb_data_type *hisifd = NULL;
+	struct hisi_fb_panel_data *pdata = NULL;
+
+	if (NULL == dev) {
+		HISI_FB_ERR("NULL Pointer!\n");
+		return -EINVAL;
+	}
+
+	if (NULL == buf) {
+		HISI_FB_ERR("NULL Pointer!\n");
+		return -EINVAL;
+	}
+
+	fbi = dev_get_drvdata(dev);
+	if (NULL == fbi) {
+		HISI_FB_ERR("NULL Pointer!\n");
+		return -EINVAL;
+	}
+
+	hisifd = (struct hisi_fb_data_type *)fbi->par;
+	if (NULL == hisifd) {
+		HISI_FB_ERR("NULL Pointer!\n");
+		return -EINVAL;
+	}
+
+	pdata = dev_get_platdata(&hisifd->pdev->dev);
+	if (NULL == pdata) {
+		HISI_FB_ERR("NULL Pointer!\n");
+		return -EINVAL;
+	}
+
+	down(&hisifd->blank_sem);
+
+	if (!hisifd->panel_power_on) {
+		HISI_FB_ERR("fb%d, panel power off!\n", hisifd->index);
+		goto err_out;
+	}
+
+	if (pdata->lcd_amoled_vr_mode_show) {
+		hisifb_activate_vsync(hisifd);
+		ret = pdata->lcd_amoled_vr_mode_show(hisifd->pdev, buf);
+		hisifb_deactivate_vsync(hisifd);
+	}
+
+err_out:
+	up(&hisifd->blank_sem);
+
+	return ret;
+}
+
+static ssize_t hisifb_lcd_amoled_vr_mode_store(struct device *dev,
+	struct device_attribute *attr, const char *buf, size_t count)
+{
+	ssize_t ret = 0;
+	struct fb_info *fbi = NULL;
+	struct hisi_fb_data_type *hisifd = NULL;
+	struct hisi_fb_panel_data *pdata = NULL;
+
+	if (NULL == dev) {
+		HISI_FB_ERR("NULL Pointer!\n");
+		return -EINVAL;
+	}
+
+	if (NULL == buf) {
+		HISI_FB_ERR("NULL Pointer!\n");
+		return -EINVAL;
+	}
+
+	fbi = dev_get_drvdata(dev);
+	if (NULL == fbi) {
+		HISI_FB_ERR("NULL Pointer!\n");
+		return -EINVAL;
+	}
+
+	hisifd = (struct hisi_fb_data_type *)fbi->par;
+	if (NULL == hisifd) {
+		HISI_FB_ERR("NULL Pointer!\n");
+		return -EINVAL;
+	}
+
+	pdata = dev_get_platdata(&hisifd->pdev->dev);
+	if (NULL == pdata) {
+		HISI_FB_ERR("NULL Pointer!\n");
+		return -EINVAL;
+	}
+
+	down(&hisifd->blank_sem);
+
+	if (!hisifd->panel_power_on) {
+		HISI_FB_ERR("fb%d, panel power off!\n", hisifd->index);
+		ret = -EINVAL;
+		goto err_out;
+	}
+
+	if (pdata->lcd_amoled_vr_mode_store) {
+		hisifb_activate_vsync(hisifd);
+		ret = pdata->lcd_amoled_vr_mode_store(hisifd->pdev, buf, count);
+		hisifb_deactivate_vsync(hisifd);
+	}
+
+err_out:
+	up(&hisifd->blank_sem);
+
+	return ret;
+}
+
+
 static ssize_t hisifb_lcd_acl_ctrl_show(struct device *dev,
 	struct device_attribute *attr, char *buf)
 {
@@ -3107,9 +3306,21 @@ static ssize_t hisifb_lcd_acl_ctrl_show(struct device *dev,
 		return 0;
 	}
 
-	if (pdata->lcd_acl_ctrl_show) {
-		ret = pdata->lcd_acl_ctrl_show(hisifd->pdev, buf);
+	down(&hisifd->blank_sem);
+
+	if (!hisifd->panel_power_on) {
+		HISI_FB_ERR("fb%d, panel power off!\n", hisifd->index);
+		goto err_out;
 	}
+
+	if (pdata->lcd_acl_ctrl_show) {
+		hisifb_activate_vsync(hisifd);
+		ret = pdata->lcd_acl_ctrl_show(hisifd->pdev, buf);
+		hisifb_deactivate_vsync(hisifd);
+	}
+
+err_out:
+	up(&hisifd->blank_sem);
 
 	return ret;
 }
@@ -3150,9 +3361,22 @@ static ssize_t hisifb_lcd_acl_ctrl_store(struct device *dev,
 		return 0;
 	}
 
-	if (pdata->lcd_acl_ctrl_store) {
-		ret = pdata->lcd_acl_ctrl_store(hisifd->pdev, buf, count);
+	down(&hisifd->blank_sem);
+
+	if (!hisifd->panel_power_on) {
+		HISI_FB_ERR("fb%d, panel power off!\n", hisifd->index);
+		ret = -EINVAL;
+		goto err_out;
 	}
+
+	if (pdata->lcd_acl_ctrl_store) {
+		hisifb_activate_vsync(hisifd);
+		ret = pdata->lcd_acl_ctrl_store(hisifd->pdev, buf, count);
+		hisifb_deactivate_vsync(hisifd);
+	}
+
+err_out:
+	up(&hisifd->blank_sem);
 
 	return ret;
 }
@@ -3449,6 +3673,7 @@ static DEVICE_ATTR(lcd_hkadc, S_IRUGO|S_IWUSR, hisifb_lcd_hkadc_debug_show, hisi
 static DEVICE_ATTR(lcd_checksum, S_IRUGO|S_IWUSR, hisifb_lcd_gram_check_show, hisifb_lcd_gram_check_store);
 static DEVICE_ATTR(lcd_dynamic_checksum, S_IRUGO|S_IWUSR, hisifb_lcd_dynamic_sram_check_show, hisifb_lcd_dynamic_sram_check_store);
 static DEVICE_ATTR(lcd_color_temperature, S_IRUGO|S_IWUSR, hisifb_lcd_color_temperature_show, hisifb_lcd_color_temperature_store);
+static DEVICE_ATTR(lcd_ic_color_enhancement_mode, S_IRUGO|S_IWUSR, hisifb_lcd_ic_color_enhancement_mode_show, hisifb_lcd_ic_color_enhancement_mode_store);
 static DEVICE_ATTR(led_rg_lcd_color_temperature, S_IRUGO|S_IWUSR, hisifb_led_rg_lcd_color_temperature_show, hisifb_led_rg_lcd_color_temperature_store);
 static DEVICE_ATTR(lcd_comform_mode, S_IRUGO|S_IWUSR, hisifb_lcd_comform_mode_show, hisifb_lcd_comform_mode_store);
 static DEVICE_ATTR(lcd_cinema_mode, S_IRUGO|S_IWUSR, hisifb_lcd_cinema_mode_show, hisifb_lcd_cinema_mode_store);
@@ -3470,6 +3695,7 @@ static DEVICE_ATTR(2d_sharpness, 0600, hisifb_2d_sharpness_show, hisifb_2d_sharp
 static DEVICE_ATTR(panel_info, 0600, hisifb_panel_info_show, NULL);
 static DEVICE_ATTR(lcd_acm_state, S_IRUGO|S_IWUSR, hisifb_lcd_acm_state_show, hisifb_lcd_acm_state_store);
 static DEVICE_ATTR(amoled_acl, S_IRUGO|S_IWUSR, hisifb_lcd_acl_ctrl_show, hisifb_lcd_acl_ctrl_store);
+static DEVICE_ATTR(amoled_vr_mode, 0644, hisifb_lcd_amoled_vr_mode_show, hisifb_lcd_amoled_vr_mode_store);
 
 /*lint +e665*/
 void hisifb_sysfs_attrs_add(struct hisi_fb_data_type *hisifd)
@@ -3511,6 +3737,8 @@ void hisifb_sysfs_attrs_add(struct hisi_fb_data_type *hisifd)
 		hisifd->sysfs_attrs_append_fnc(hisifd, &dev_attr_panel_info.attr);
 		hisifd->sysfs_attrs_append_fnc(hisifd, &dev_attr_lcd_acm_state.attr);
 		hisifd->sysfs_attrs_append_fnc(hisifd, &dev_attr_amoled_acl.attr);
+		hisifd->sysfs_attrs_append_fnc(hisifd, &dev_attr_lcd_ic_color_enhancement_mode.attr);
+		hisifd->sysfs_attrs_append_fnc(hisifd, &dev_attr_amoled_vr_mode.attr);
 	}
 
 	HISI_FB_DEBUG("fb%d, -.\n", hisifd->index);

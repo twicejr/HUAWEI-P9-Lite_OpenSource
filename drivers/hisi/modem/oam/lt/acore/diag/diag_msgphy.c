@@ -45,17 +45,7 @@ VOS_VOID DIAG_DspInitFinished(VOS_VOID)
 }
 
 
-/*****************************************************************************
- Function Name   : diag_AgentVoteToSocp
- Description     : DSP 向SOCP投票
- Input           : SOCP_VOTE_TYPE_ENUM_U32 voteType
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.w00182550      2012-12-20  Draft Enact
-
-*****************************************************************************/
 VOS_VOID diag_DspVoteToSocp(SOCP_VOTE_TYPE_ENUM_U32 voteType)
 {
 #if(FEATURE_SOCP_ON_DEMAND == FEATURE_ON)
@@ -82,17 +72,7 @@ VOS_VOID diag_DspVoteToSocp(SOCP_VOTE_TYPE_ENUM_U32 voteType)
 }
 
 
-/*****************************************************************************
- Function Name   : diag_DspSocpVoteCnfMsgProc
- Description     : 投票回复消息处理，只处理LDSP首次初始化时的反对票回复
- Input           : MsgBlock * pMsgBlock
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.w00182550      2012-12-20  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 diag_DspSocpVoteCnfMsgProc(MsgBlock * pMsgBlock)
 {
 #if(FEATURE_SOCP_ON_DEMAND == FEATURE_ON)
@@ -370,17 +350,7 @@ VOS_UINT32 diag_AppTransPhyProc(MsgBlock* pMsgBlock)
 
 
 #if(VOS_OS_VER == VOS_LINUX)
-/*****************************************************************************
- Function Name   : diag_GuDspTransProc
- Description     : GU DSP的命令直接透传消息给GUDSP，并由MSP代替回复
- Input           : pData    诊断命令请求的内容
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.c00326366      2015-06-14  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 diag_GuDspTransProc(DIAG_FRAME_INFO_STRU *pData)
 {
     VOS_UINT32 ulRet                    = ERR_MSP_SUCCESS;

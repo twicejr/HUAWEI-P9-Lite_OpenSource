@@ -1,17 +1,4 @@
-/******************************************************************************
 
-        @(#)Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : NasEsmTimerMsgProc.c
-    Description : 处理定时器超时消息
-    History     :
-     1.丁丽 00128736        2008-09-01  Draft Enact
-     2.祝义强 00138739      2008-09-10
-     3.dingli 00128736      2008-10-14  Modify
-     4.孙兵 49683           2009-01-06  Modify BA8D00870
-     5.杨茜惠 00135146      2009-03-06  Modify BA8D01127
-******************************************************************************/
 
 /*****************************************************************************
   1 Include HeadFile
@@ -41,18 +28,7 @@ extern "C" {
 /*****************************************************************************
   3 Function
 *****************************************************************************/
-/*****************************************************************************
- Function Name  : NAS_ESM_TimerMsgProc()
- Description    : SM模块TIMER消息分发函数
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.丁丽 00128736      2008-09-01  Draft Enact
-      2.sunbing 49683      2009-02-05  Modify
-      3.lihong00150010     2010-02-10  Modify
-*****************************************************************************/
 VOS_VOID NAS_ESM_TimerMsgDistr(const VOS_VOID *pRcvMsg )
 {
     VOS_UINT32                          ulIndex         = NAS_ESM_NULL;
@@ -138,17 +114,7 @@ VOS_VOID NAS_ESM_TimerMsgDistr(const VOS_VOID *pRcvMsg )
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_ProcTimerMsgWaitPtiInvaidExp
- Description     : 等待PTI失效定时器超时处理
- Input           : pMsg
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2010-2-2  Draft Enact
-
-*****************************************************************************/
 /*lint -e961*/
 VOS_VOID NAS_ESM_ProcTimerMsgWaitPtiInvaidExp(const VOS_VOID * pMsg)
 {
@@ -177,19 +143,7 @@ VOS_VOID NAS_ESM_ProcTimerMsgWaitPtiInvaidExp(const VOS_VOID * pMsg)
     NAS_ESM_ClearEsmBuffItem(NAS_ESM_BUFF_ITEM_TYPE_PTI, ulEsmBuffIndex);
 }
 
-/*****************************************************************************
- Function Name  : NAS_ESM_ProcTimerMsgT3482Exp()
- Description    : EMM模块处于ATTACHING状态，正在注册过程中，SM模块向网络发送
-                    PDN CONNECT REQ消息，网络侧响应超时；
- Input          : VOS_VOID *pMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.祝义强 00138739      2008-09-09  Draft Enact
-      2.dingli 00138739      2008-10-14  Modify
-      3.sunbing 49683        2009-02-05  Modify
-*****************************************************************************/
 VOS_VOID    NAS_ESM_ProcTimerMsgT3482Exp(const VOS_VOID * pMsg)
 {
     VOS_UINT32                          ulStateTblIndex     = NAS_ESM_NULL;
@@ -335,19 +289,7 @@ VOS_VOID    NAS_ESM_ProcTimerMsgT3482Exp(const VOS_VOID * pMsg)
     NAS_ESM_RelStateTblResource(ulStateTblIndex);
 }
 /*lint +e961*/
-/*****************************************************************************
- Function Name  : NAS_ESM_ProcTimerMsgT3492Exp()
- Description    : EMM模块处于ATTACHED状态，UE发起PDN去连接过程，发送消息:
-                    PDN_DISCONNECT_REQ,等待网络响应超时；
- Input          : VOS_VOID *pMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.祝义强 00138739      2008-09-09  Draft Enact
-      2.dingli 00138739      2008-10-14  Modify
-      3.sunbing 49683        2009-02-05  Modify
-*****************************************************************************/
 VOS_VOID    NAS_ESM_ProcTimerMsgT3492Exp(const VOS_VOID * pMsg)
 {
     VOS_UINT32                          ulStateTblIndex  = NAS_ESM_NULL;
@@ -424,20 +366,7 @@ VOS_VOID    NAS_ESM_ProcTimerMsgT3492Exp(const VOS_VOID * pMsg)
     NAS_ESM_RelStateTblResource(ulStateTblIndex);
 }
 
-/*****************************************************************************
- Function Name  : NAS_ESM_ProcTimerMsgT3480Exp()
- Description    : EMM模块处于ATTACHED状态，BEARER处于ACTIVE状态，PROCEDURE处于PENDING状态，
-                    UE发起缺省承载资源分配请求，SM向MM发送消息:BEARER RESOURCE ALLOCATION REQ
-                    网络响应超时；
- Input          : VOS_VOID *pMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.祝义强 00138739      2008-09-09  Draft Enact
-      2.dingli 00138739      2008-10-14  Modify
-      3.sunbing 49683        2009-02-05  Modify
-*****************************************************************************/
 VOS_VOID   NAS_ESM_ProcTimerMsgT3480Exp
 (
     const VOS_VOID * pMsg
@@ -515,20 +444,7 @@ VOS_VOID   NAS_ESM_ProcTimerMsgT3480Exp
 }
 
 
-/*****************************************************************************
- Function Name  : NAS_ESM_ProcTimerMsgT3481Exp()
- Description    : EMM模块处于ATTACHED状态，BEARER处于ACTIVE状态，PROCEDURE处于PENDING状态，
-                    UE发起缺省承载资源修改请求，SM向MM发送消息:BEARER RESOURCE MODIFICATION REQ
-                    网络响应超时；
- Input          : VOS_VOID *pMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.祝义强 00138739      2008-09-09  Draft Enact
-      2.dingli 00138739      2008-10-14  Modify
-      3.sunbing 49683        2009-02-05  Modify
-*****************************************************************************/
 VOS_VOID    NAS_ESM_ProcTimerMsgT3481Exp(const VOS_VOID * pMsg)
 {
     VOS_UINT32                          ulStateTblIndex     = NAS_ESM_NULL;
@@ -624,17 +540,7 @@ VOS_VOID    NAS_ESM_ProcTimerMsgT3481Exp(const VOS_VOID * pMsg)
     NAS_ESM_RelStateTblResource(ulStateTblIndex);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_ProcTimerMsgWaitAppCnfExp
- Description     : 等待APP回复定时器超时处理函数
- Input           : VOS_VOID *pMsg
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2009-12-4  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ESM_ProcTimerMsgWaitAppCnfExp(const VOS_VOID * pMsg)
 {
     VOS_UINT32                          ulStateTblIndex     = NAS_ESM_NULL;
@@ -661,17 +567,7 @@ VOS_VOID NAS_ESM_ProcTimerMsgWaitAppCnfExp(const VOS_VOID * pMsg)
     NAS_ESM_AppPdpManageRspMsgRefuseProc(ulStateTblIndex);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_ProcTimerMsgAttachBearerReestExp
- Description     : 等待注册承载重建定时器超时处理函数
- Input           : VOS_VOID *pMsg
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.liuhua   00212067   2012-09-06  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ESM_ProcTimerMsgAttachBearerReestExp(const VOS_VOID * pMsg)
 {
     /*打印进入该函数*/
@@ -690,16 +586,7 @@ VOS_VOID NAS_ESM_ProcTimerMsgAttachBearerReestExp(const VOS_VOID * pMsg)
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_ProcTimerMsgDeferRelNonEmcExp
- Description     : 释放非紧急PDN连接延迟定时器的超时处理
- Input           : None
- Output          : None
- Return          : None
- History         :
-    1.liuhua    00212067       2012-10-25  Draft Enact
 
-*****************************************************************************/
 VOS_VOID NAS_ESM_ProcTimerMsgDeferRelNonEmcExp(const VOS_VOID * pMsg)
 {
     NAS_ESM_INFO_LOG("NAS_ESM_ProcTimerMsgDeferRelNonEmcExp: enter");

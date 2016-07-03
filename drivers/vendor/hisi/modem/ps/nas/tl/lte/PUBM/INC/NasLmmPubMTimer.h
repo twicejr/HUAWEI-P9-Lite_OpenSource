@@ -1,16 +1,4 @@
-/******************************************************************************
 
-    Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : NasLmmPubMTimer.h
-  Description     : NasLmmPubMTimer.c header file
-  History         :
-     1.lining 00141619       2008-10-25     Draft Enact
-     2.zhuyiqiang 00138739   2009-05-14     Modify BJ9D00720
-     3.zhengjunyan 00148421  2011-05-28     文件名由 NasMmPubMTimer.h修改为
-                                            NasLmmPubMTimer.h
-******************************************************************************/
 
 #ifndef __NASLMMPUBMTIMER_H__
 #define __NASLMMPUBMTIMER_H__
@@ -202,14 +190,7 @@ enum    NAS_LMM_TIMER_RUN_STA_ENUM
 typedef VOS_UINT32   NAS_LMM_TIMER_RUN_STA_ENUM_UINT32;
 
 
-/*****************************************************************************
- 结构名    : NAS_EMM_TIMER_INFO_STRU
- 结构说明  : log出EMM定时器运行情况
- 1.日    期   : 2012年12月03日
-   作    者   : n00181501
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                          stMsgHeader;     /*_H2ASN_Skip*/

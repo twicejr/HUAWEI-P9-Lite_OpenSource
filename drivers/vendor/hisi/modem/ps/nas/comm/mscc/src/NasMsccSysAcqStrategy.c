@@ -307,21 +307,7 @@ VOS_VOID NAS_MSCC_BuildSysAcqList_HrpdLost(
 }
 
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_BuildSysAcqList_LteLost
-Description     :   The function is used to build system acquire list while lte lost
-Input parameters:   pst1xLocInfo ---- 1x location info
-                    pstLteLocInfo-----lte location info
-Output parameters:  pstSysAcqListInfo---system acqurie list info
-Return Value    :   VOS_VOID
-Modify History:
-    1)  Date    :   2015-04-16
-        Author  :   w00176964
-        Modify content :Create
-    2)  Date    :   2015-12-21
-        Author  :   w00176964
-        Modify content :CL_MUTIMODE_OPTIMIZE调整
-*****************************************************************************/
+
 
 VOS_VOID NAS_MSCC_BuildSysAcqList_LteLost(
     NAS_MSCC_1X_LOC_INFO_STRU                              *pst1xLocInfo,
@@ -347,18 +333,7 @@ VOS_VOID NAS_MSCC_BuildSysAcqList_LteLost(
     return;
 }
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_BuildSysAcqList_LteNotAvailable
-Description     :   LTE不可用(临时或永久)时构造捕获列表
-Input parameters:   pst1xLocInfo ---- 1x location info
-                    pstLteLocInfo-----lte location info
-Output parameters:  pstSysAcqListInfo---system acqurie list info
-Return Value    :   VOS_VOID
-Modify History:
-    1)  Date    :   2015-12-21
-        Author  :   w00176964
-        Modify content :Create
-*****************************************************************************/
+
 
 VOS_VOID NAS_MSCC_BuildSysAcqList_LteNotAvailable(
     NAS_MSCC_1X_LOC_INFO_STRU                              *pst1xLocInfo,
@@ -910,23 +885,7 @@ VOS_VOID  NAS_MSCC_ConvertSysAcqSceneToBuildSysAcqListScene(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_GetAllowedSrchLtePriClassWith1xLocInfo
- 功能描述  : 用1x位置信息取得ltepriclass及是否允许搜lte的标志位
 
- 输入参数  : pst1xSysSrvInfoInd 1x系统服务信息
- 输出参数  : penLtePriClass   lte的priclass
- 返 回 值  : VOS_FALSE:不允许搜lte
-             VOS_TRUE: 允许搜lte
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2015年09月18日
-   作    者   : y00346957
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 NAS_MSCC_GetAllowedSrchLtePriClassWith1xLocInfo(
     XSD_MSCC_1X_SYSTEM_SERVICE_INFO_IND_STRU               *pst1xSysSrvInfoInd,
     NAS_MSCC_PIF_PLMN_PRIORITY_CLASS_ENUM_UINT8            *penLtePriClass
@@ -991,23 +950,7 @@ VOS_UINT8 NAS_MSCC_GetAllowedSrchLtePriClassWith1xLocInfo(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_GetLtePriClassInMsplListWith1xIndex
- 功能描述  : 基于1xIndex取得lte的priclass
- 输入参数  : pstMsplList: MSPL列表
-             uc1xIndex:   1x系统的下标
- 输出参数  : penLtePriClass: 匹配Lte且优先级大于等于1x的prioClass
- 返 回 值  : vos_ture:存在lte网络优先级不小于1x
-             vos_false:不存在在lte网络优先级不小于1x
 
- 修改历史      :
-  1.日    期   : 2015年9月18日
-    作    者   : y00346957
-    修改内容   : 新生成函数
-  2.日    期   : 2015年12月10日
-    作    者   : y00346957
-    修改内容   : DTS2015120901925 修改，在MSPL表中lte优先级大于1x且对lte限定最低的priclass
-*****************************************************************************/
 VOS_UINT8 NAS_MSCC_GetLtePriClassInMsplListWith1xIndex(
     NAS_MSCC_MSPL_SYS_LIST_INFO_STRU                       *pstMsplList,
     NAS_MSCC_PIF_PLMN_PRIORITY_CLASS_ENUM_UINT8            *penLtePriClass,
@@ -1079,20 +1022,7 @@ VOS_UINT8 NAS_MSCC_GetLtePriClassInMsplListWith1xIndex(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_GetLtePriClassAfter1xIndex
- 功能描述  : 基于1xIndex取得1x记录后面的lte的priclass
- 输入参数  : pstMsplList: MSPL列表
-             uc1xIndex:   1x系统的下标
- 输出参数  : penLtePriClass:lte priclass
- 返 回 值  : vos_ture:存在1x记录后面的lte网络优先级不小于1x
-             vos_false:不存在1x记录后面的lte网络优先级不小于1x
 
- 修改历史      :
-  1.日    期   : 2015年12月7日
-    作    者   : y00346957
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 NAS_MSCC_GetLtePriClassInMsplListBehind1xIndex(
     NAS_MSCC_MSPL_SYS_LIST_INFO_STRU                       *pstMsplList,
     NAS_MSCC_PIF_PLMN_PRIORITY_CLASS_ENUM_UINT8            *penLtePriClass,
@@ -1139,21 +1069,7 @@ VOS_UINT8 NAS_MSCC_GetLtePriClassInMsplListBehind1xIndex(
     return ucRet;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_GetPrefRatWithNoCardInitSearchLocInfo
- 功能描述  : 根据无卡初搜位置信息，查找lte或hrpd的优先级。如果返回NAS_MSCC_PRIOR_SYS_BUTT，需要使用last loc info查找lte或hrpd优先级
- 输入参数  : VOS_VOID
- 输出参数  : VOS_VOID
- 返 回 值  : NAS_MSCC_PRIOR_SYS_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月10日
-    作    者   : j00354216
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_MSCC_PRIOR_SYS_ENUM_UINT8 NAS_MSCC_GetPrefRatWithNoCardInitSearchLocInfo(VOS_VOID)
 {
     NAS_MSCC_NO_CARD_INIT_SEARCH_LOC_STRU                  *pstNoCardInitSearchLocInfo = VOS_NULL_PTR;

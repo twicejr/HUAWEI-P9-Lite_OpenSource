@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafSpmSndInternalMsg.c
-  版 本 号   : 初稿
-  作    者   : w00176964
-  生成日期   : 2013年5月9日
-  最近修改   :
-  功能描述   : spm发给spm的消息的处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年5月9日
-    作    者   : w00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 /*****************************************************************************
   1 头文件包含
 *****************************************************************************/
@@ -47,23 +30,7 @@ extern "C" {
 /*****************************************************************************
   4 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : TAF_SPM_SndServiceCtrlRsltInd
- 功能描述  : 发送service ctrl结果消息
- 输入参数  : enRslt                     - 状态机退出结果
-             ulCause                    - 失败时携带的caue值
-             usClientId                 - 当前进行FDN CALL CTRL检查的client ID
-             pstEntryMsg                - 修改过的入口消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年05月15日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_SPM_SndServiceCtrlRsltInd(
     TAF_SPM_SERVICE_CTRL_RESULT_ENUM_UINT32                 enRslt,
     VOS_UINT32                                              ulCause,
@@ -119,22 +86,7 @@ VOS_VOID TAF_SPM_SndServiceCtrlRsltInd(
 }
 
 /* 放到IMS宏开关外面公共使用 */
-/* Added by y00245242 for VoLTE_PhaseII 项目, 2013-9-25, begin */
-/*****************************************************************************
- 函 数 名  : TAF_SPM_SndInternalDomainSelectionInd
- 功能描述  : 发送业务域选择指示给SPM，触发缓存消息的域选择
- 输入参数  : 无
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年09月24日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_SPM_SndInternalDomainSelectionInd(VOS_VOID)
 {
     TAF_SPM_DOMAIN_SEL_IND_STRU        *pstDomainSelInd = VOS_NULL_PTR;
@@ -177,21 +129,7 @@ VOS_VOID TAF_SPM_SndInternalDomainSelectionInd(VOS_VOID)
 }
 
 #if (FEATURE_IMS == FEATURE_ON)
-/*****************************************************************************
- 函 数 名  : TAF_SPM_SendMsgSmmaRsp
- 功能描述  : SPM向MSG模块发送SMMA RSP消息,携带信令类型
- 输入参数  : enMsgSignallingType---信令类型
- 输出参数  : 无
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年10月17日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_SPM_SendMsgSmmaRsp(
     TAF_MSG_SIGNALLING_TYPE_ENUM_UINT32 enMsgSignallingType,
     struct MsgCB                       *pstMsg
@@ -230,28 +168,9 @@ VOS_VOID TAF_SPM_SendMsgSmmaRsp(
     return;
 }
 #endif
-/* Added by y00245242 for VoLTE_PhaseII 项目, 2013-9-25, end */
 
-/* Added by y00245242 for V3R3C60_eCall项目, 2014-4-26, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
-/*****************************************************************************
- 函 数 名  : TAF_SPM_SndTafRelCallReq
- 功能描述  : 发送消息通知CALL模块释放所有正常呼叫请求，如果有紧急呼叫存在，不
-             处理，返回失败；
 
- 输入参数  : 无
-
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                     - 发送内部消息成功
-             VOS_FASLE                    - 发送内部消息失败
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年09月24日
-    作    者   : y00245242
-    修改内容   : 为eCall特性增加
-*****************************************************************************/
 VOS_VOID TAF_SPM_SndTafRelCallReq(
     MN_CLIENT_ID_T                      usClientId,
     MN_OPERATION_ID_T                   ucOpId,
@@ -290,7 +209,6 @@ VOS_VOID TAF_SPM_SndTafRelCallReq(
     return;
 }
 #endif
-/* Added by y00245242 for V3R3C60_eCall项目, 2014-4-26, end */
 /*lint -restore */
 
 #ifdef __cplusplus

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasXsdSndXreg.c
-  版 本 号   : 初稿
-  作    者   : h00246512
-  生成日期   : 2014年7月7日
-  最近修改   :
-  功能描述   : XSD发送给XREG的消息处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年7月7日
-    作    者   : h00246512
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -46,24 +29,9 @@ extern "C" {
   3 函数实现
 *****************************************************************************/
 /*lint -save -e958*/
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_SndXregStartReq
- 功能描述  : 向XREG发送开机请求
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月7日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_SndXregStartReq(VOS_VOID)
 {
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-6, begin */
     XSD_XREG_START_REQ_STRU            *pstInternalMsg      = VOS_NULL_PTR;
     VOS_UINT32                          ulLen;
 
@@ -89,28 +57,12 @@ VOS_VOID CNAS_XSD_SndXregStartReq(VOS_VOID)
 
     /* 发送内部消息 */
     CNAS_SndInternalMsg(pstInternalMsg);
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-6, end */
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_SndXregPowerOffReq
- 功能描述  : 向XREG发送关机回复
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月7日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_SndXregPowerOffReq(VOS_VOID)
 {
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-6, begin */
     XSD_XREG_POWER_OFF_REQ_STRU        *pstInternalMsg      = VOS_NULL_PTR;
     VOS_UINT32                          ulLen;
 
@@ -136,31 +88,15 @@ VOS_VOID CNAS_XSD_SndXregPowerOffReq(VOS_VOID)
 
     /* 发送内部消息 */
     CNAS_SndInternalMsg(pstInternalMsg);
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-6, end */
 
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_SndXregDeregisterInd
- 功能描述  : 向XREG模块发送关机去注册指示
- 输入参数  : enCause----获取去注册原因
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月17日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_SndXregDeregisterInd(
     XSD_XREG_DEREGISTER_REASON_ENUM_UINT8                   enCause
 )
 {
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-6, begin */
     XSD_XREG_DEREGISTER_IND_STRU                           *pstInternalMsg      = VOS_NULL_PTR;
     VOS_UINT32                                              ulLen;
 
@@ -190,26 +126,11 @@ VOS_VOID CNAS_XSD_SndXregDeregisterInd(
 
     /* 发送内部消息 */
     CNAS_SndInternalMsg(pstInternalMsg);
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-6, end */
 
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_BuildXregSysInfoInd
- 功能描述  : 构造XSD给XREG的系统消息
- 输入参数  : CAS_CNAS_1X_OHM_IND_STRU           *pstCasCnas1xOhmInd
- 输出参数  : XSD_XREG_SYS_INFO_STRU             *pstXsdXregSysInfo
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月8日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_BuildXregSysInfoInd(
     CAS_CNAS_1X_OHM_IND_STRU           *pstCasCnas1xOhmInd,
     XSD_XREG_SYS_INFO_STRU             *pstXsdXregSysInfo
@@ -260,28 +181,12 @@ VOS_VOID CNAS_XSD_BuildXregSysInfoInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_SndXregSysInfoInd
- 功能描述  : 向XREG发送ID_XSD_XREG_SYS_INFO_IND消息
- 输入参数  : XSD_XREG_SERVICE_STATUS_ENUM_UINT32                     enSrvSta
-             XSD_XREG_SYS_INFO_STRU                                 *pstSysInfo
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月8日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XSD_SndXregSysInfoInd(
     XSD_XREG_SERVICE_STATUS_ENUM_UINT32                     enSrvSta,
     XSD_XREG_SYS_INFO_STRU                                 *pstSysInfo
 )
 {
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-6, begin */
     XSD_XREG_SYS_INFO_IND_STRU         *pstInternalMsg = VOS_NULL_PTR;
     VOS_UINT32                          ulLen;
 
@@ -309,7 +214,6 @@ VOS_VOID CNAS_XSD_SndXregSysInfoInd(
 
     /* 发送内部消息 */
     CNAS_SndInternalMsg(pstInternalMsg);
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-6, end */
 
 }
 
@@ -317,7 +221,6 @@ VOS_VOID CNAS_XSD_SndXregSysInfoInd(
 
 VOS_VOID CNAS_XSD_SndXregRedirInd(VOS_VOID)
 {
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-6, begin */
     XSD_XREG_REDIRECTION_IND_STRU      *pstInternalMsg      = VOS_NULL_PTR;
     VOS_UINT32                          ulLen;
 
@@ -343,7 +246,6 @@ VOS_VOID CNAS_XSD_SndXregRedirInd(VOS_VOID)
 
     /* 发送内部消息 */
     CNAS_SndInternalMsg(pstInternalMsg);
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-6, end */
 
 }
 
@@ -355,7 +257,6 @@ VOS_VOID CNAS_XSD_SndXregUeStateInd(
     CAS_CNAS_1X_CAS_SUB_STATE_ENUM_UINT8                    enCasSubState
 )
 {
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-6, begin */
     XSD_XREG_UE_STATE_IND_STRU         *pstInternalMsg      = VOS_NULL_PTR;
     VOS_UINT32                          ulLen;
 
@@ -384,7 +285,6 @@ VOS_VOID CNAS_XSD_SndXregUeStateInd(
 
     /* 发送内部消息 */
     CNAS_SndInternalMsg(pstInternalMsg);
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-6, end */
 
     return;
 

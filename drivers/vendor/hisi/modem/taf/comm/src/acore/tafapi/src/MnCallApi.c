@@ -28,34 +28,7 @@ extern "C"{
    2 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_SendAppRequest
- 功能描述  : 将APP的异步请求发送到CCA所在任务处理
- 输入参数  : enReq    - 请求的类型
-              clientId - Client ID
-              opId     - 本次操作的标识
-              callId   - 呼叫的ID
-              punParam - 请求中携带的参数
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2011年11月07日
-    作    者   : f00179208
-    修改内容   : AT Project, 修改AT虚拟的WUEPS_PID_VC为WUEPS_PID_AT
-  3.日    期   : 2012年9月27日
-    作    者   : A00165503
-    修改内容   : STK&DCM项目: CS域错误码上报
-  4.日    期   : 2012年12月22日
-    作    者   : l00227485
-    修改内容   : DSDA phaseII
-
-*****************************************************************************/
 VOS_UINT32  MN_CALL_SendAppRequest(
     MN_CALL_APP_REQ_ENUM_UINT32         enReq,
     MN_CLIENT_ID_T                      clientId,
@@ -105,28 +78,7 @@ VOS_UINT32  MN_CALL_SendAppRequest(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_Orig
- 功能描述  : 发起一个主叫
- 输入参数  : clientId   - Client ID
-             opId       - 本次操作的标识
-             pstOrigParam - 主叫操作需要的参数
- 输出参数  : pCallId    - 本次呼叫的ID, 用来唯一的标识这个呼叫
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2011年10月06日
-    作    者   : f00179208
-    修改内容   : AT移植项目, 分配CALLId放到C核
-  3.日    期   : 2012年9月25日
-    作    者   : A00165503
-    修改内容   : STK&DCM项目: CS域错误码上报
-*****************************************************************************/
 VOS_UINT32  MN_CALL_Orig(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId,
@@ -153,27 +105,7 @@ VOS_UINT32  MN_CALL_Orig(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_End
- 功能描述  : 挂断一个呼叫
- 输入参数  : clientId   - Client ID
-             opId       - 本次操作的标识
-             callId     - 需要挂断的呼叫的ID
-             pstEndParam  - 挂断操作需要的参数, 该参数可选, NULL表示使用默认参数
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年09月18日
-    作    者   : y00213812
-    修改内容   : STK&DCM 项目CS域错误码上报，上报网侧定义的错误码
-
-*****************************************************************************/
 VOS_UINT32  MN_CALL_End(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId,
@@ -201,23 +133,7 @@ VOS_UINT32  MN_CALL_End(
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_QryCdur
- 功能描述  : 查询通话时长
- 输入参数  : MN_CLIENT_ID_T                      clientId  Client ID
-             MN_OPERATION_ID_T                   opId      本次操作的标识
-             MN_CALL_ID_T                        callId    呼叫的ID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月6日
-    作    者   : f62575
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  MN_CALL_QryCdur(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId,
@@ -234,23 +150,7 @@ VOS_UINT32  MN_CALL_QryCdur(
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_Answer
- 功能描述  : 接听一个来电
- 输入参数  : clientId   - Client ID
-             opId       - 本次操作的标识
-             callId     - 需要接听的呼叫的ID
-             pstAnsParam  - 接听操作需要的参数, 该参数可选, NULL表示使用默认参数
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  MN_CALL_Answer(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId,
@@ -276,23 +176,7 @@ VOS_UINT32  MN_CALL_Answer(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_SendDtmf
- 功能描述  : APP给TAF发送DTMF
- 输入参数  : enMsgType      - DTMF请求消息类型
-             clientId       - Client ID
-             opId           - 本次操作的标识
-             pstDtmfParam   - 发送DTMF操作需要的参数
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-*****************************************************************************/
 VOS_UINT32  TAF_CALL_SendDtmf(
     AT_MN_MSGTYPE_ENUM_UINT16           enMsgType,
     MN_CLIENT_ID_T                      clientId,
@@ -315,28 +199,7 @@ VOS_UINT32  TAF_CALL_SendDtmf(
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_Sups
- 功能描述  : 发起一次呼叫相关补充业务
- 输入参数  : clientId   - Client ID
-             opId       - 本次操作的标识
-             pstCallSupsParam   - 发送呼叫相关补充业务需要的参数
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年9月25日
-    作    者   : A00165503
-    修改内容   : STK&DCM项目: CS域错误码上报
-  3.日    期   : 2013年09月30日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseII项目，里层和外层的CallId填成一致
-*****************************************************************************/
 VOS_UINT32  MN_CALL_Sups(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId,
@@ -346,42 +209,16 @@ VOS_UINT32  MN_CALL_Sups(
     VOS_UINT32                          ulResult;
 
     /* 发送异步应用请求 */
-    /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-09-30, begin */
     /* 里层和外层的CallId填成一致 */
     ulResult = MN_CALL_SendAppRequest(MN_CALL_APP_SUPS_CMD_REQ, clientId,
                                       opId, pstCallSupsParam->callId,
                                       (MN_CALL_APP_REQ_PARM_UNION*)pstCallSupsParam);
-    /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-09-30, end */
 
     return ulResult;
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_GetInfoList
- 功能描述  : 获取当前所有状态不为IDLE的呼叫信息
- 输入参数  : pNumOfCalls - 输出缓存最多能存储的呼叫信息个数
- 输出参数  : pNumOfCalls - 实际输出的(状态不为IDLE的)呼叫信息个数
-              pstCallInfos  - 输出的呼叫信息
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-
-  2.日    期   : 2010年3月1日
-    作    者   : zhoujun /z40661
-    修改内容   : 修改接口获取当前呼叫信息
-  3.日    期   : 2011年10月15日
-    作    者   : f00179208
-    修改内容   : AT移植项目，发送异步消息到C核获取CALL Info
-  4.日    期   : 2012年9月25日
-    作    者   : A00165503
-    修改内容   : STK&DCM项目: CS域错误码上报
-*****************************************************************************/
 VOS_UINT32  MN_CALL_GetCallInfos(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId,
@@ -398,31 +235,7 @@ VOS_UINT32  MN_CALL_GetCallInfos(
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_SetAlsLineNo
- 功能描述  : 根据设置的线路号更新NV和当前使用的线路号
- 输入参数  : enAlsLine : 选择的线路号
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月22日
-    作    者   : z40661
-    修改内容   : 新生成函数
-  2.日    期   : 2011年10月24日
-    作    者   : c00173809
-    修改内容   : AT融合项目，通过核间通信方式而不直接调用MN_CALL_UpdateAlsLineInfo函数。
-
-  3.日    期   : 2011年10月24日
-    作    者   : o00132663
-    修改内容   : AT融合项目， CC API调用MN_CALL_UpdateAlsLineInfo改为消息交
-                 互
-  4.日    期   : 2012年9月25日
-    作    者   : A00165503
-    修改内容   : STK&DCM项目: CS域错误码上报
-*****************************************************************************/
 VOS_UINT32 MN_CALL_SetAlsLineNo(
     TAF_UINT8                           ucIndex,
     MN_CALL_ALS_LINE_NO_ENUM_U8         enAlsLine
@@ -444,22 +257,7 @@ VOS_UINT32 MN_CALL_SetAlsLineNo(
     return ulRst;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_CheckUus1ParmValid
- 功能描述  : 检查设置UUS1输入参数是否合法
- 输入参数  : enSetType      :激活或去激活UUS1
-             pstUus1Info    :UUS1相关信息
- 输出参数  : 无
- 返 回 值  : VOS_UINT32     :参数检查成功或失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月27日
-    作    者   : zhoujun /40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MN_CALL_CheckUus1ParmValid(
     MN_CALL_SET_UUS1_TYPE_ENUM_U32      enSetType,
     MN_CALL_UUS1_INFO_STRU              *pstUus1Info
@@ -489,22 +287,7 @@ VOS_UINT32 MN_CALL_CheckUus1ParmValid(
     return MN_ERR_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SendFlashReq
- 功能描述  : APP给TAF发送Flash请求
- 输入参数  : clientId       - Client ID
-             opId           - 本次操作的标识
-             pstFlashPara   - 发送Flash操作需要的参数
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月8日
-    作    者   : L00256032
-    修改内容   : 1X SS Project修改
-*****************************************************************************/
 VOS_UINT32  TAF_XCALL_SendFlashReq(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId,
@@ -550,22 +333,7 @@ VOS_UINT32  TAF_XCALL_SendFlashReq(
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SendBurstDtmf
- 功能描述  : APP给TAF发送Flash请求
- 输入参数  : clientId              - Client ID
-             opId                  - 本次操作的标识
-             pstSndBurstDTMFPara   - 发送Send Burst Dtmf操作需要的参数
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月10日
-    作    者   : f279542
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  TAF_XCALL_SendBurstDtmf(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId,
@@ -611,22 +379,7 @@ VOS_UINT32  TAF_XCALL_SendBurstDtmf(
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SendCustomDialReq
- 功能描述  : APP给TAF发送Flash请求
- 输入参数  : clientId       - Client ID
-             opId           - 本次操作的标识
-             pstFlashPara   - 发送Flash操作需要的参数
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月8日
-    作    者   : w00242748
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_UINT32  TAF_XCALL_SendCustomDialReq(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId,
@@ -715,22 +468,7 @@ VOS_UINT32  TAF_XCALL_SendContinuousDtmf(
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SendCclpr
- 功能描述  : APP给TAF发送Clpr请求
- 输入参数  : clientId              - Client ID
-             opId                  - 本次操作的标识
-             ucCallId               - 呼叫id
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月20日
-    作    者   : f279542
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  TAF_XCALL_SendCclpr(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId,
@@ -773,25 +511,7 @@ VOS_UINT32  TAF_XCALL_SendCclpr(
 }
 
 #if ((FEATURE_ON == FEATURE_UE_MODE_CDMA)&&(FEATURE_ON == FEATURE_CHINA_TELECOM_VOICE_ENCRYPT))
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SndEncryptCall
- 功能描述  : xcall收到AT的密话通知请求后发送消息函数
- 输入参数  : VOS_UINT32                                              ulModuleId,
-             MN_CLIENT_ID_T                                          usClientId,
-             MN_OPERATION_ID_T                                       opId,
-             TAF_CALL_APP_ENCRYPT_VOICE_TYPE_ENUM_UINT32             enEccVoiceType, 密话呼叫模式
-             MN_CALL_CALLED_NUM_STRU                                *pstDialNumber   密话呼叫号码
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XCALL_SendEncryptCall(
     VOS_UINT32                                              ulModuleId,
     MN_CLIENT_ID_T                                          usClientId,
@@ -841,25 +561,7 @@ VOS_UINT32 TAF_XCALL_SendEncryptCall(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SndEccCtrl
- 功能描述  : 密话远程控制命令响应
- 输入参数  : VOS_UINT32                                              ulModuleId,
-             MN_CLIENT_ID_T                                          usClientId,
-             MN_OPERATION_ID_T                                       opId,
-             TAF_CALL_REMOTE_CTRL_APP_TYPE_ENUM_UINT32               ulRemoteCtrlEvtType,远程控制命令类型
-             TAF_CALL_REMOTE_CTRL_APP_RESULT_ENUM_UINT32             ulResult            远程控制命令响应结果
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XCALL_SendEccCtrl(
     VOS_UINT32                                              ulModuleId,
     MN_CLIENT_ID_T                                          usClientId,
@@ -909,25 +611,7 @@ VOS_UINT32 TAF_XCALL_SendEccCtrl(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SetEccCap
- 功能描述  : 设置modem密话能力，消息发送接口
- 输入参数  : VOS_UINT32                                              ulModuleId,
-             MN_CLIENT_ID_T                                          usClientId,
-             MN_OPERATION_ID_T                                       opId,
-             TAF_CALL_APP_ECC_SRV_CAP_ENUM_UINT32                    ulEccSrvCap,   密话能力(仅能消除或者保持当前密话能力)
-             TAF_CALL_APP_ECC_SRV_STATUS_ENUM_UINT32                 ulEccSrvStatus 密话状态(关闭，打开)
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XCALL_SetEccCap(
     VOS_UINT32                                              ulModuleId,
     MN_CLIENT_ID_T                                          usClientId,
@@ -975,23 +659,7 @@ VOS_UINT32 TAF_XCALL_SetEccCap(
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_QryEncryptCallCap
- 功能描述  : 查询当前modem的密话能力 消息发送函数
- 输入参数  : VOS_UINT32                                              ulModuleId,
-             MN_CLIENT_ID_T                                          usClientId,
-             MN_OPERATION_ID_T                                       opId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XCALL_QryEncryptCallCap(
     VOS_UINT32                                              ulModuleId,
     MN_CLIENT_ID_T                                          usClientId,
@@ -1040,24 +708,7 @@ VOS_UINT32 TAF_XCALL_QryEncryptCallCap(
 
 #if  (FEATURE_ON == FEATURE_CHINA_TELECOM_VOICE_ENCRYPT_TEST_MODE)
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SetEccKmc
- 功能描述  : 设置KMC公钥 消息发送函数
- 输入参数  : VOS_UINT32                                              ulModuleId,
-             MN_CLIENT_ID_T                                          usClientId,
-             MN_OPERATION_ID_T                                       opId,
-             TAF_CALL_APP_EC_KMC_DATA_STRU                          *pstEccKmcData 待设置的公钥数据
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XCALL_SetEncryptCallKmc(
     VOS_UINT32                                              ulModuleId,
     MN_CLIENT_ID_T                                          usClientId,
@@ -1105,24 +756,7 @@ VOS_UINT32 TAF_XCALL_SetEncryptCallKmc(
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SetEccTestMode
- 功能描述  : 密话测试模式设置 消息发送函数
- 输入参数  : VOS_UINT32                                              ulModuleId,
-             MN_CLIENT_ID_T                                          usClientId,
-             MN_OPERATION_ID_T                                       opId,
-             VOS_UINT32                                              ulTestMode 测试模式
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XCALL_SetEccTestMode(
     VOS_UINT32                                              ulModuleId,
     MN_CLIENT_ID_T                                          usClientId,
@@ -1173,24 +807,7 @@ VOS_UINT32 TAF_XCALL_SetEccTestMode(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_QryEncryptCallRandom
- 功能描述  : 随即数查询请求消息发送函数
- 输入参数  : VOS_UINT32                                              ulModuleId,
-             MN_CLIENT_ID_T                                          usClientId,
-             MN_OPERATION_ID_T                                       opId
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XCALL_QryEncryptCallRandom(
     VOS_UINT32                                              ulModuleId,
     MN_CLIENT_ID_T                                          usClientId,
@@ -1234,24 +851,7 @@ VOS_UINT32 TAF_XCALL_QryEncryptCallRandom(
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_QryEncryptCallKmc
- 功能描述  : 查看密话公钥 消息发送函数
- 输入参数  : VOS_UINT32                                              ulModuleId,
-             MN_CLIENT_ID_T                                          usClientId,
-             MN_OPERATION_ID_T                                       opId
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XCALL_QryEncryptCallKmc(
     VOS_UINT32                                              ulModuleId,
     MN_CLIENT_ID_T                                          usClientId,
@@ -1295,24 +895,7 @@ VOS_UINT32 TAF_XCALL_QryEncryptCallKmc(
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_QryEncryptCallTestMode
- 功能描述  : 查询当前是否未测试模式 消息发送函数
- 输入参数  : VOS_UINT32                                              ulModuleId,
-             MN_CLIENT_ID_T                                          usClientId,
-             MN_OPERATION_ID_T                                       opId
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT 32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XCALL_QryEncryptCallTestMode(
     VOS_UINT32                                              ulModuleId,
     MN_CLIENT_ID_T                                          usClientId,
@@ -1360,25 +943,7 @@ VOS_UINT32 TAF_XCALL_QryEncryptCallTestMode(
 #endif
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_SetPrivacyModePreferred
- 功能描述  : 设置Privacy mode优先模式
- 输入参数  : VOS_UINT32                                              ulModuleId,
-             MN_CLIENT_ID_T                                          usClientId,
-             MN_OPERATION_ID_T                                       opId,
-             VOS_UINT32                                              ulPrivacyMode
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年12月22日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XCALL_SetPrivacyModePreferred(
     VOS_UINT32                                              ulModuleId,
     MN_CLIENT_ID_T                                          usClientId,
@@ -1427,24 +992,7 @@ VOS_UINT32 TAF_XCALL_SetPrivacyModePreferred(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_QryPrivacyModePreferred
- 功能描述  : 查询Privacy mode优先模式
- 输入参数  : VOS_UINT32                                              ulModuleId,
-             MN_CLIENT_ID_T                                          usClientId,
-             MN_OPERATION_ID_T                                       opId
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年12月22日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XCALL_QryPrivacyModePreferred(
     VOS_UINT32                                              ulModuleId,
     MN_CLIENT_ID_T                                          usClientId,

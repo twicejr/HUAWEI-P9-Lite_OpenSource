@@ -1,34 +1,11 @@
-/*******************************************************************************
-  File name   : AsNasApi.h
-  Description : As层对Nas提供的Api接口头文件
-  History     :
-  1.  z49132  2003-07-25: The first version
-  2.  z49132  2004.10.25  CK,IK的存储结构改为字节流
-  3.日    期  : 2006年12月4日
-    作    者  : luojian id:60022475
-    修改内容  : 增加 #pragma pack(4)，问题单号:A32D07779
-  4.日    期   : 2009年02月05日
-    作    者   : l00130025
-    修改内容   : 问题单号:AT2D07529,AT2D07611,AT2D08749,W搜网优化NAS修改
-  5.日    期   : 2009年04月27日
-    作    者   : l65478
-    修改内容  : 问题单号：AT2D11554，出服务区优化
-  6.日    期   : 2010年3月2日
-    作    者   : zhoujun /z40661
-    修改内容   : NAS R7协议升级
-  7.日    期   : 2011年12月29日
-    作    者   : l00130025
-    修改内容   : DTS2011082201679/DTS2011121504358,切换模式，回退后W/G下注册状态没有与NAS同步,删除冗余定义
-*******************************************************************************/
+
 #ifndef _AS_NAS_API_H_
 #define _AS_NAS_API_H_
 
 #include "product_config.h"
 #include "Nasrrcinterface.h"
 #include "TtfDrvInterface.h"
-/* Added by wx270776 for OM融合, 2015-7-24, begin */
 #include "NasMntn.h"
-/* Added by wx270776 for OM融合, 2015-7-24, end */
 
 /* Determine if a C++ compiler is being used.  If so, ensure that standard
    C is used to process the API information.  */
@@ -114,7 +91,6 @@ typedef struct security_info_stru
     VOS_UINT32                  ulCsCipherStatus;                                           /* CS域当前加密启动状态                      */
     VOS_UINT32                  ulPsCipherStatus;                                           /* PS域当前加密启动状态                      */
     VOS_UINT32                  ulIntegCmd;                                                 /* 完整性保护启动命令                        */
-    /* added by weijiantao 05-04-15 begin: 为了对应MM/GMM向AGENT上报加密算法 */
     VOS_UINT32                  ulCsCipherAlgor;                                            /* CS域最新加密算法, 仅当CS域加密启动后有效  */
     VOS_UINT32                  ulPsCipherAlgor;                                            /* PS域最新加密算法, 仅当PS域加密启动后有效  */
 }SECURITY_INFO_STRU;

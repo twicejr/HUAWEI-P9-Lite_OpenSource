@@ -83,6 +83,7 @@ typedef enum
     WLAN_CFG_DTS_CALI_TXPWR_PA_DC_REF_5G_VAL_BAND5,
     WLAN_CFG_DTS_CALI_TXPWR_PA_DC_REF_5G_VAL_BAND6,
     WLAN_CFG_DTS_CALI_TXPWR_PA_DC_REF_5G_VAL_BAND7,
+    WLAN_CFG_DTS_CALI_TONE_AMP_GRADE,
     /* FCC认证 */
     WLAN_CFG_DTS_BAND_EDGE_LIMIT_2G_11G_TXPWR,                                                      /* FCC CH1,CH11 band edge limit */      //21
     WLAN_CFG_DTS_BAND_EDGE_LIMIT_TXPWR_START = WLAN_CFG_DTS_BAND_EDGE_LIMIT_2G_11G_TXPWR,           /* FCC认证:TXPWR 起始配置ID */
@@ -124,6 +125,8 @@ typedef enum
     WLAN_CFG_DTS_BT_CALI_TXPWR_PA_FRE6,
     WLAN_CFG_DTS_BT_CALI_TXPWR_PA_FRE7,
     WLAN_CFG_DTS_BT_CALI_TXPWR_PA_FRE8,         //53
+    WLAN_CFG_DTS_BT_CALI_TONE_AMP_GRADE,
+
     WLAN_CFG_DTS_BUTT,
 }WLAN_CFG_DTS;
 
@@ -208,9 +211,43 @@ typedef enum
     WLAN_CFG_INIT_RANDOM_MAC_ADDR_SCAN,
     /* 11AC2G */
     WLAN_CFG_INIT_11AC2G_ENABLE,                    /* 11ac2g开关 */                    //56
+    WLAN_CFG_INIT_DISABLE_CAPAB_2GHT40,             /* 2ght40禁止开关 */
 
     WLAN_CFG_INIT_BUTT,
 }WLAN_CFG_INIT;
+
+/* 定制化 NVRAM PARAMS INDEX */
+typedef enum
+{
+    NVRAM_PARAMS_INDEX_0   = 0,
+    NVRAM_PARAMS_INDEX_1   = 1,
+    NVRAM_PARAMS_INDEX_2   = 2,
+    NVRAM_PARAMS_INDEX_3   = 3,
+    NVRAM_PARAMS_INDEX_4   = 4,
+    NVRAM_PARAMS_INDEX_5   = 5,
+    NVRAM_PARAMS_INDEX_6   = 6,
+    NVRAM_PARAMS_INDEX_7   = 7,
+    NVRAM_PARAMS_INDEX_8   = 8,
+    NVRAM_PARAMS_INDEX_9   = 9,
+    NVRAM_PARAMS_INDEX_10  = 10,
+    NVRAM_PARAMS_INDEX_11  = 11,
+    NVRAM_PARAMS_INDEX_12  = 12,
+    NVRAM_PARAMS_INDEX_13  = 13,
+    NVRAM_PARAMS_INDEX_14  = 14,
+    NVRAM_PARAMS_INDEX_15  = 15,
+    NVRAM_PARAMS_INDEX_16  = 16,
+    NVRAM_PARAMS_INDEX_17  = 17,
+    NVRAM_PARAMS_INDEX_18  = 18,
+    NVRAM_PARAMS_INDEX_19  = 19,
+    NVRAM_PARAMS_INDEX_20  = 20,
+    NVRAM_PARAMS_INDEX_21  = 21,
+    NVRAM_PARAMS_INDEX_22  = 22,
+    NVRAM_PARAMS_INDEX_23  = 23,
+    NVRAM_PARAMS_INDEX_24  = 24,
+    NVRAM_PARAMS_INDEX_25  = 25,
+
+    NVRAM_PARAMS_INDEX_BUTT,
+}NVRAM_PARAMS_INDEX;
 
 typedef struct
 {
@@ -233,6 +270,8 @@ typedef struct
     signed char     c_roam_delta_a;
     /* scan */
     unsigned char   uc_random_mac_addr_scan;
+    /* capab */
+    unsigned char   uc_disable_capab_2ght40;
 } wlan_customize_stru;
 
 extern wlan_customize_stru g_st_wlan_customize;

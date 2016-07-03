@@ -39,17 +39,7 @@ extern "C" {
   3 Function
 *****************************************************************************/
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SecuInit
- Description     : 安全模块的初始化函数
- Input           :VOS_VOID
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.zhengjunyan 00148421      2010-3-3  Draft Enact
-    2.zhengjunyan 00148421      2011-3-8  安全修改为调用BSP接口，不需要初始化引擎
-*****************************************************************************/
 /*lint -e960*/
 /*lint -e961*/
 VOS_VOID    NAS_EMM_SecuInit( VOS_VOID )
@@ -89,17 +79,7 @@ VOS_VOID  NAS_EMM_FreeSecuDyn( VOS_VOID )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_Secu_FsmInit
- Description     : 安全模块状态机初始化
- Input           :VOS_VOID
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.zhengjunyan 00148421      2010-3-3  Draft Enact
-
-*****************************************************************************/
 VOS_VOID    NAS_Secu_FsmInit( VOS_VOID )
 {
 
@@ -118,17 +98,7 @@ VOS_VOID    NAS_Secu_FsmInit( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ConnToIdleTransSecuSta
- Description     : 连接态从CONN进入IDLE，导致当前安全上下文状态变化
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-3-15  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ConnToIdleTransSecuSta( VOS_VOID )
 {
 
@@ -149,19 +119,7 @@ VOS_VOID  NAS_EMM_ConnToIdleTransSecuSta( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SecuSetCurCntxt
- Description     : 开机读卡时，用从卡中读出的安全上下文设置当前安全上下文，
-                   并根据该数据是否有效，设置当前安全上下文的状态
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-3-24  Draft Enact
-    2.zhengjunyan 00148421      2011-08-10 DTS2011080301942
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SecuSetCurCntxt( const NAS_LMM_SECU_CONTEXT_STRU *pstCurSecuCntxt )
 {
     VOS_UINT32                          ulRslt;
@@ -222,17 +180,7 @@ VOS_VOID  NAS_EMM_SecuSetCurCntxt( const NAS_LMM_SECU_CONTEXT_STRU *pstCurSecuCn
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SecuGetCurCntxtAddr
- Description     : 获取当前安全上下文的地址
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-3-24  Draft Enact
-
-*****************************************************************************/
 NAS_LMM_SECU_CONTEXT_STRU *  NAS_EMM_SecuGetCurCntxtAddr(VOS_VOID)
 {
     NAS_EMM_SECU_LOG_INFO("NAS_EMM_SecuGetCurCntxtAddr entered.");
@@ -242,17 +190,7 @@ NAS_LMM_SECU_CONTEXT_STRU *  NAS_EMM_SecuGetCurCntxtAddr(VOS_VOID)
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ClearCurSecuCntxt
- Description     : 删除当前安全上下文
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-3-15  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_EMM_ClearCurSecuCntxt(VOS_VOID)
 {
     VOS_UINT32                          ulRslt = NAS_EMM_SECU_SUCC;
@@ -284,17 +222,7 @@ VOS_VOID NAS_EMM_ClearCurSecuCntxt(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ClearNewMappedSecuCntxt
- Description     : 删除 new mapped security context
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-4-28  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ClearNewMappedSecuCntxt( VOS_VOID )
 {
     NAS_EMM_SECU_LOG_INFO("NAS_EMM_ClearNewMappedSecuCntxt entered.");
@@ -312,17 +240,7 @@ VOS_VOID  NAS_EMM_ClearNewMappedSecuCntxt( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ClearNewNativeSecuCntxt
- Description     : 删除 new native security context
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-4-28  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ClearNewNativeSecuCntxt( VOS_VOID )
 
 {
@@ -341,17 +259,7 @@ VOS_VOID  NAS_EMM_ClearNewNativeSecuCntxt( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ClearCurMappedSecuCntxt
- Description     : 删除 current mapped security context
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-4-28  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ClearCurMappedSecuCntxt( VOS_VOID )
 
 {
@@ -377,17 +285,7 @@ VOS_VOID  NAS_EMM_ClearCurMappedSecuCntxt( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ClearNonCurNativeSecuCntxt
- Description     : 删除 non-current native security context
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-5-31  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ClearNonCurNativeSecuCntxt( VOS_VOID )
 {
     NAS_EMM_SECU_LOG_INFO("NAS_EMM_ClearNonCurNativeSecuCntxt entered.");
@@ -411,18 +309,7 @@ VOS_VOID  NAS_EMM_ClearNonCurNativeSecuCntxt( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ClearAllSecuCntxt
- Description     : 删除所有的安全上下文，ATTACH/TAU/SERVICE/DETACH等流程收到
-                   核心网特定原因值的处理，需要删除所有的安全上下文时，调用。
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-12-13  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ClearAllSecuCntxt( VOS_VOID )
 {
     NAS_EMM_SECU_LOG_INFO("NAS_EMM_ClearAllSecuCntxt entered.");
@@ -446,23 +333,7 @@ VOS_VOID  NAS_EMM_ClearAllSecuCntxt( VOS_VOID )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SecuDeregClrSecuCntxt
- Description     : EMM从REG态进入DEREG态，需要:
-                  1)删除 new mapped security context
-                  2)删除 current mapped security context,如果存在
-                    non-current native security context则保存到current中
-                  3)删除 new native security context
 
-                  与HO相关，暂未完全实现
- Input           : None
- Output          : None
- Return          : VOS_UINT32
-
- History         :
-    1.zhengjunyan 00148421      2011-4-29  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SecuDeregClrSecuCntxt( VOS_VOID )
 {
     /* 删除 new mapped secu cntxt*/
@@ -498,18 +369,7 @@ VOS_VOID  NAS_EMM_SecuDeregClrSecuCntxt( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SecuGetKSIValue
- Description     : NAS其他模块获取SECU模块中当前安全上下文的KSI
- Input           : VOS_VOID
- Output          : None
- Return          : VOS_VOID *
 
- History         :
-    1.zhengjunyan 00148421      2010-3-16  Draft Enact
-    2.zhengjunyan 00148421      2011-4-28  MOD:INTER RAT
-
-*****************************************************************************/
 VOS_UINT8   NAS_EMM_SecuGetKSIValue( VOS_VOID )
 {
     VOS_UINT8                           ucKsi = 0;
@@ -545,82 +405,32 @@ VOS_UINT8   NAS_EMM_SecuGetKSIValue( VOS_VOID )
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SecuGetUmtsKsi
- Description     : NAS其他模块获取SECU模块中的 UMTS KSI
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-4-28  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_SecuGetUmtsKsi( VOS_VOID )
 {
     return NAS_EMM_GetUmtsKsi();
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SecuGetUlNasCountVAlue
- Description     : NAS其他模块获取SECU模块中UL NAS COUNT 参数的值
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-3-16  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_SecuGetUlNasCountVAlue( VOS_VOID )
 {
     return  NAS_EMM_GetSecuUlNasCount();
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SecuGetNonceUE
- Description     : NAS其他模块获取SECU模块中 NonceUE 的值
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-3-16  Draft Enact
-
-*****************************************************************************/
 VOS_UINT8*  NAS_EMM_SecuGetNonceUE( VOS_VOID )
 {
     return  NAS_EMM_GetSecuNonceUEAddr();
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SecuGetNonCurKSIasme
- Description     : NAS其他模块获取SECU模块中 non-current KSIasme的值。
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-6-2  Draft Enact
-
-*****************************************************************************/
 VOS_UINT8  NAS_EMM_SecuGetNonCurKSIasme( VOS_VOID )
 {
    return NAS_EMM_GetSecuNonCurNativeKSIasme();
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SecuPrintCipherPara
- Description     : 为了便于操作维护，打印与BSP_Cipher的安全接口
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.h41410      2010-3-29  Draft Enact
-    2.z00148421   2011-3-10  安全接口调整为调用 Cipher
-*****************************************************************************/
 VOS_VOID NAS_EMM_SecuPrintCipherPara(CIPHER_SINGLE_CFG_S const *pstSingleSecuPara,
                                                 VOS_UINT8  const *pucSrc)
 {
@@ -694,17 +504,7 @@ VOS_VOID NAS_EMM_SecuPrintCipherPara(CIPHER_SINGLE_CFG_S const *pstSingleSecuPar
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SecuSetKeyByKeyIndex
- Description     : 封装BSP提供的将NAS密钥写入寄存器的接口
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-3-8  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_SecuSetKeyByKeyIndex( const VOS_UINT8 *pucKeyAddr,
                                     NAS_EMM_SECU_NAS_KEY_TYPE_ENUM_UINT8 enKeyType )
 {
@@ -750,17 +550,7 @@ VOS_UINT32  NAS_EMM_SecuSetKeyByKeyIndex( const VOS_UINT8 *pucKeyAddr,
     return NAS_EMM_SECU_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SecuGetKeyByIndex
- Description     : 读取Register中的密钥
- Input           : None
- Output          : None
- Return          : VOS_UINT8 *
 
- History         :
-    1.zhengjunyan 00148421      2011-3-10  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_SecuGetKeyByIndex(   VOS_UINT32      ulKeyIndex,
                                         KEY_GET_S      *pstKeyGet)
 {
@@ -778,17 +568,7 @@ VOS_UINT32 NAS_EMM_SecuGetKeyByIndex(   VOS_UINT32      ulKeyIndex,
 
 
 
-/*****************************************************************************
- Function Name   : NAS_CIPHER_SingleSubmitTask
- Description     : 封装 CIPHER 提供的接口函数 mdrv_cipher_single_submit_task
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-3-16  Draft Enact
-
-*****************************************************************************/
 VOS_INT32  NAS_CIPHER_SingleSubmitTask(CIPHER_SINGLE_CFG_S *pstSingleSecuPara)
 {
     VOS_INT32                           lRslt;
@@ -804,18 +584,7 @@ VOS_INT32  NAS_CIPHER_SingleSubmitTask(CIPHER_SINGLE_CFG_S *pstSingleSecuPara)
      return lRslt;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_PreProcReselSecuInfoReq
- Description     : 重选场景下，GMM请求LMM计算 Mapped UMTS security context和
-                   NAS TOKEN
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-4-25  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_LMM_PreProcReselSecuInfoReq( MsgBlock * pMsg )
 {
     LMM_GMM_RESEL_SECU_INFO_CNF_STRU   *pstLmmReselSecuInfoCnf = VOS_NULL_PTR;
@@ -859,18 +628,7 @@ VOS_UINT32  NAS_LMM_PreProcReselSecuInfoReq( MsgBlock * pMsg )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_LMM_CompLmmReselSecuInfoCnf
- Description     :
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-4-26  Draft Enact
-    2.zhengjunyan 00148421      2011-6-02  DTS2011060202506:每计算一次NAS TOKEN，
-                                           UpNasCount需要加1
-*****************************************************************************/
 VOS_VOID  NAS_LMM_CompLmmReselSecuInfoCnf(
                     LMM_GMM_RESEL_SECU_INFO_CNF_STRU   *pstLmmReselSecuInfoCnf )
 {
@@ -933,17 +691,7 @@ VOS_VOID  NAS_LMM_CompLmmReselSecuInfoCnf(
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_CompLmmHoSecuInfoCnf
- Description     : 组装 LMM_GMM_HO_SECU_INFO_CNF消息
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-5-31  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_LMM_CompLmmHoSecuInfoCnf(
                     LMM_GMM_HO_SECU_INFO_CNF_STRU   *pstLmmHoSecuInfoCnf )
 {
@@ -967,17 +715,7 @@ VOS_VOID  NAS_LMM_CompLmmHoSecuInfoCnf(
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_CompLmmMmHoSecuInfoCnf
- Description     : 组装 LMM_MM_HO_SECU_INFO_CNF消息
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.wangchen 00209181     2013-10-09  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_LMM_CompLmmMmHoSecuInfoCnf(
                     LMM_MM_HO_SECU_INFO_CNF_STRU   *pstLmmHoSecuInfoCnf )
 {
@@ -1011,17 +749,7 @@ VOS_VOID  NAS_LMM_CompLmmMmHoSecuInfoCnf(
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_LMM_PreProcHoSecuInfoReq
- Description     : 切换场景下，GMM请求LMM计算 Mapped UMTS security context
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-5-31  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_LMM_PreProcHoSecuInfoReq(  MsgBlock * pMsg )
 {
     LMM_GMM_HO_SECU_INFO_CNF_STRU   *pstLmmHoSecuInfoCnf = VOS_NULL_PTR;
@@ -1065,17 +793,7 @@ VOS_UINT32  NAS_LMM_PreProcHoSecuInfoReq(  MsgBlock * pMsg )
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_PreProcMsgMmHoSecuInfoReq
- Description     : 切换场景下，MM请求LMM计算 Mapped UMTS security context
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.wangchen 00209181     2013-10-09  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_LMM_PreProcMsgMmHoSecuInfoReq(  MsgBlock * pMsg )
 {
     LMM_MM_HO_SECU_INFO_CNF_STRU   *pstLmmHoSecuInfoCnf = VOS_NULL_PTR;
@@ -1164,17 +882,7 @@ GMM_LMM_RESULT_ID_ENUM_UINT32  STUB_NAS_LMM_CompLmmHoSecuInfoCnf(
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SecuGetUmtsSecuContext
- Description     : 获取UMTS安全上下文
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-4-23  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_SecuGetUmtsSecuContext( VOS_VOID )
 {
     MMC_LMM_RESULT_ID_ENUM_UINT32       enRslt;
@@ -1241,20 +949,7 @@ VOS_VOID  NAS_EMM_SecuResumeIdle(VOS_VOID )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SecuRrcSecuParamIndHo
- Description     : GU切换到L,根据LRRC上报的安全参数,
-                   产生 current mapped security context
-                   注:从24301协议分析 non-current native 和 new native任何时候不
-                   应该同时存在
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-4-25  Draft Enact
-    2.zhengjunyan 00148421      2011-9-13  DTS2011082202543
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SecuRrcSecuParamIndHo(
                                                 const VOS_UINT8 *pucSecuParaHo )
 {
@@ -1391,18 +1086,7 @@ VOS_VOID  NAS_EMM_SecuDecodeRrcSecuPara(
 
     return;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_Eia0SecuVerifyRrcSecuPara
- Description     : GU切换到L,验证LRRC上报的安全参数的有效性
-                   KsiValue为MME产生，不一定与UMTS ksi一致。
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong 00150010      2012-10-19  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_Eia0SecuVerifyRrcSecuPara
 (
     const NAS_LMM_HO_LRRC_SECU_PARA_STRU *pstHoLrrcSecuPara
@@ -1455,18 +1139,7 @@ VOS_UINT32  NAS_EMM_Eia0SecuVerifyRrcSecuPara
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_NotEia0SecuVerifyRrcSecuPara
- Description     : GU切换到L,验证LRRC上报的安全参数的有效性
-                   KsiValue为MME产生，不一定与UMTS ksi一致。
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-5-30  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_NotEia0SecuVerifyRrcSecuPara(
                         const NAS_LMM_HO_LRRC_SECU_PARA_STRU *pstHoLrrcSecuPara )
 {
@@ -1508,18 +1181,7 @@ VOS_UINT32  NAS_EMM_NotEia0SecuVerifyRrcSecuPara(
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SecuSaveCurNativeToNonCurNative
- Description     : 将 current native security context
-                   保存到 non-current native security context中
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-5-30  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SecuSaveCurNativeToNonCurNative( VOS_VOID )
 {
     NAS_LMM_SECU_CONTEXT_STRU          *pstNonCurNatvieSecuCntxt = VOS_NULL_PTR;
@@ -1557,18 +1219,7 @@ VOS_VOID  NAS_EMM_SecuSaveCurNativeToNonCurNative( VOS_VOID )
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SecuRecovNonCurNativeToCurNative
- Description     : 将 non-current native security context
-                   还原到 current native security context中
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-5-30  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SecuRecovNonCurNativeToCurNative( VOS_VOID )
 {
     NAS_LMM_SECU_CONTEXT_STRU          *pstNonCurNatvieSecuCntxt = VOS_NULL_PTR;
@@ -1617,17 +1268,7 @@ VOS_VOID  NAS_EMM_SecuRecovNonCurNativeToCurNative( VOS_VOID )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SecuHoCurMappedSecuCntxt
- Description     : GU切换到 L,产生映射的安全上下文作为当前安全上下文
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-5-31  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_SecuHoCurMappedSecuCntxt(
                         const NAS_LMM_HO_LRRC_SECU_PARA_STRU *pstHoLrrcSecuPara )
 
@@ -1697,18 +1338,7 @@ VOS_UINT32  NAS_EMM_SecuHoCurMappedSecuCntxt(
     return NAS_EMM_SECU_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SecuSendLrrcSecuParaRsp
- Description     : 成功处理LRRC_LMM_SECU_PARA_IND，回复LRRC_LMM_SECU_PARA_RSP
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-5-31  Draft Enact
-    2.zhengjunyan 00148421      2011-9-19  DTS2011090201417
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SecuSendLrrcSecuParaRsp( VOS_VOID )
 {
     LRRC_LMM_SECU_PARA_RSP_STRU        *pstLrrcSecuParaRsp = VOS_NULL_PTR;
@@ -1753,18 +1383,7 @@ VOS_VOID  NAS_EMM_SecuSendLrrcSecuParaRsp( VOS_VOID )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SecuRrcRelIndHoFail
- Description     : LRRC执行GU到L的切换失败，需要删除本次产生的 current mapped
-                   security context
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-5-31  Draft Enact
-    2.zhengjunyan 00148421      2011-9-13  DTS2011082202543
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SecuRrcRelIndHoFail(VOS_VOID )
 {
     NAS_EMM_SECU_LOG_INFO("NAS_EMM_SecuRrcRelIndHoFail entered.");
@@ -1817,25 +1436,7 @@ VOS_VOID  NAS_EMM_SecuRrcRelIndHoFail(VOS_VOID )
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SecuUpdateDlNasCountHo
- Description     : 从 L向 G/U切换，更新DL_NASCOUNT(第一阶段暂不实现)
-                   24301 9.9.2.6 NAS security parameters from E-UTRA
-                        ---------------------------------------
-                         8   7   6   5   4   3   2   1
-                         --------------------------------------
-                         0 | 0 | 0 | 0 |  DL NAS COUNT value
-                         --------------------------------------
- (short)
- octet 2
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-5-31  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SecuUpdateDlNasCountHo( VOS_UINT8 ucCnDlNasCount )
 {
     VOS_UINT32                          ulUeDlNasCount = 0;
@@ -1886,17 +1487,7 @@ VOS_VOID  NAS_EMM_SecuUpdateDlNasCountHo( VOS_UINT8 ucCnDlNasCount )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SecuHoOrCcoReverse
- Description     : 切换或者CCO回退，当前安全上下文的状态要恢复到激活态
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-6-1  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SecuHoOrCcoReverse( VOS_VOID)
 {
     NAS_EMM_SECU_LOG_INFO("NAS_EMM_SecuHoOrCcoReverse entered.");
@@ -1917,17 +1508,7 @@ VOS_VOID  NAS_EMM_SecuHoOrCcoReverse( VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SecuGetUmtsSecuCntxtAndNasTokenIdle
- Description     : IDLE态下为G/U模计算UMTS secu context和 NAS TOKEN
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-4-26  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SecuGetUmtsSecuCntxtAndNasTokenIdle(
                         LMM_GMM_RESEL_SECU_INFO_STRU       *pstReselSecuInfo )
 {
@@ -1977,17 +1558,7 @@ VOS_VOID  NAS_EMM_SecuGetUmtsSecuCntxtAndNasTokenIdle(
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SecuGetUmtsSecuCntxtHo
- Description     : 切换场景下为G/U模计算UMTS security context
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-4-26  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SecuGetUmtsSecuCntxtHo(
                                 LMM_GMM_UMTS_SECU_CONTEXT_STRU *pstUmtsSecuCntxt)
 {
@@ -2019,17 +1590,7 @@ VOS_VOID  NAS_EMM_SecuGetUmtsSecuCntxtHo(
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SecuGetMmUmtsSecuCntxtHo
- Description     : SRVCC切换场景下为U模计算UMTS security context
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.wangchen 00209181     2013-10-09   Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SecuGetMmUmtsSecuCntxtHo(
                                 MM_LMM_GU_SECU_CONTEXT_STRU *pstUmtsSecuCntxt)
 {
@@ -2062,17 +1623,7 @@ VOS_VOID  NAS_EMM_SecuGetMmUmtsSecuCntxtHo(
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_DeriveRandNonceUE
- Description     : 随机产生NONCEue
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-4-21  Draft Enact
-    2.zhengjunyan 00148421      2011-5-18  为了GTR测试能够匹配，在PC环境下固定NonceUE
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_DeriveRandNonceUE( VOS_UINT8 *pucNonceUE )
 {
     VOS_UINT8                           i;
@@ -2110,25 +1661,7 @@ VOS_UINT32  NAS_EMM_DeriveRandNonceUE( VOS_UINT8 *pucNonceUE )
     return NAS_EMM_SECU_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_DeriveKasmeFromUmtsIdle
- Description     : 从 G/U 模重选,重定向或者CCO到 L 模，计算K'asme
-                   reference:33401-960 A.11
-                     -   FC = 0x19,
-                     -   P0 = NONCEUE
-                     -   L0 = length of the NONCEUE (i.e. 0x00 0x04)
-                     -   P1 = NONCEMME
-                     -   L1 = length of the NONCEMME (i.e. 0x00 0x04)
-                   The input key shall be the concatenation of CK || IK.
 
- Input           : None
- Output          : None
- Return          : VOS_UINT32
-
- History         :
-    1.zhengjunyan 00148421      2011-4-21  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_DeriveKasmeFromUmtsIdle( VOS_UINT8 *pucKasme )
 {
     VOS_UINT8                       aucAlgParam[NAS_EMM_SECU_MAX_ALG_PARAM_LEN];
@@ -2194,23 +1727,7 @@ VOS_UINT32  NAS_EMM_DeriveKasmeFromUmtsIdle( VOS_UINT8 *pucKasme )
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_DeriveKasmeFromUmtsHo
- Description     : 从 G/U 模切换到 L 模，计算K'asme
-                   reference:33401-960 A.10
-                 -   FC = 0x18
-                 -   P0 = NONCEMME
-                 -   L0  = length of NONCEMME (i.e. 0x00 0x04)
-                 The input key shall be the concatenation of CK || IK.
 
- Input           : None
- Output          : None
- Return          : VOS_UINT32
-
- History         :
-    1.zhengjunyan 00148421      2011-4-21  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_DeriveKasmeFromUmtsHo( VOS_UINT8 *pucKasme )
 {
     VOS_UINT8                       aucAlgParam[NAS_EMM_SECU_MAX_ALG_PARAM_LEN];
@@ -2265,22 +1782,7 @@ VOS_UINT32  NAS_EMM_DeriveKasmeFromUmtsHo( VOS_UINT8 *pucKasme )
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_DeriveUmtsCkIkFromEpsIdle
- Description     : 从 L 模重选、重定向或者CCO到 G/U 模，产生UMTS安全上下文的CK,IK
-                   reference:33401-960 A.13
-                 -   FC = 0x1B
-                 -   P0 = NAS uplink COUNT value
-                 -   L0 = length of NAS uplink COUNT value (i.e. 0x00 0x04)
-                 The input key shall be KASME.
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-4-21  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_DeriveUmtsCkIkFromEpsIdle(       VOS_UINT8 *pucUmtsCK,
                                                                    VOS_UINT8 *pucUmtsIk )
 {
@@ -2346,23 +1848,7 @@ VOS_UINT32  NAS_EMM_DeriveUmtsCkIkFromEpsIdle(       VOS_UINT8 *pucUmtsCK,
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_DeriveUmtsCkIkFromEpsHo
- Description     : 从 L 模切换到 G/U 模，产生UMTS安全上下文的CK,IK
-                   reference:33401-960 A.8
-                 -   FC = 0x16
-                 -   P0 = NAS downlink COUNT value
-                 -   L0 = length of NAS downlink COUNT value (i.e. 0x00 0x04)
-                 The input key shall be KASME.
 
- Input           : None
- Output          : None
- Return          : VOS_UINT32
-
- History         :
-    1.zhengjunyan 00148421      2011-4-21  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_DeriveUmtsCkIkFromEpsHo( VOS_UINT8 *pucUmtsCK,
                                                             VOS_UINT8 *pucUmtsIk)
 {
@@ -2425,23 +1911,7 @@ VOS_UINT32  NAS_EMM_DeriveUmtsCkIkFromEpsHo( VOS_UINT8 *pucUmtsCK,
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_DeriveUmtsCkIkFromEpsSrvcc
- Description     : 从 L 模切换到 G/U 模，产生UMTS安全上下文的CK,IK
-                   reference:33401-960 A.12
-                 -   FC = 0x1A
-                 -   P0 = NAS downlink COUNT value
-                 -   L0 = length of NAS downlink COUNT value (i.e. 0x00 0x04)
-                 The input key shall be KASME.
 
- Input           : None
- Output          : None
- Return          : VOS_UINT32
-
- History         :
-    1.wangchen 00209181     2013-10-11  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_DeriveUmtsCkIkFromEpsSrvcc( VOS_UINT8 *pucUmtsCK,
                                                             VOS_UINT8 *pucUmtsIk)
 {
@@ -2505,22 +1975,7 @@ VOS_UINT32  NAS_EMM_DeriveUmtsCkIkFromEpsSrvcc( VOS_UINT8 *pucUmtsCK,
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_DeriveNasToken
- Description     : 计算NAS TOKEN 33401 A.9
-                 -   FC = 0x17
-                 -   P0 = Uplink NAS COUNT
-                 -   L0 = length of uplink NAS COUNT (i.e. 0x00 0x04)
-                 The input key shall be the 256-bit KASME.
 
- Input           : None
- Output          : None
- Return          : VOS_UINT32
-
- History         :
-    1.zhengjunyan 00148421      2011-4-22  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_DeriveNasToken( VOS_UINT8 *pucNasToken )
 {
     VOS_UINT8                       aucAlgParam[NAS_EMM_SECU_MAX_ALG_PARAM_LEN];
@@ -2568,20 +2023,7 @@ VOS_UINT32  NAS_EMM_DeriveNasToken( VOS_UINT8 *pucNasToken )
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_KDF_HmacSha256
- Description     : 调用HMAC-SHA-256算法进行密钥派生
- Input           : VOS_UINT8 *pucBuf   :输入的数据
-                   VOS_UINT32 ulBuflen :输入的数据长度
-                   VOS_UINT8 *pucKey   :输入的密钥
-                   VOS_UINT8 aucDigest[MAX_HMAC_HASH_SIZE]:最终生成的256bit密钥
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2011-06-24  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_KDF_HmacSha256
 (
     VOS_UINT8 *pucBuf,
@@ -2728,17 +2170,7 @@ VOS_UINT32 NAS_EMM_KDF_HmacSha256
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SecuSetInterRatHoNotMapped
- Description     : 其他模块调用该函数清除Mapped安全上下文标志
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-9-13  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SecuSetInterRatHoNotMapped( VOS_VOID )
 {
     NAS_EMM_SECU_LOG_INFO("NAS_EMM_SecuSetInterRatHoNotMapped entered.");
@@ -2746,16 +2178,7 @@ VOS_VOID  NAS_EMM_SecuSetInterRatHoNotMapped( VOS_VOID )
     NAS_EMM_SetFlagInterRatHoMapped(NAS_EMM_SECU_INTER_RAT_HO_NOT_MAPPED);
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SecuCurrentContextUpNasCountBack
- Description     : 上行NAS COUNT回退，主要用于空口消息发送失败的场景
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.    sunjitan 00193151      2012-10-15  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SecuCurrentContextUpNasCountBack(VOS_VOID)
 {
     if(NAS_EMM_SMC_OPEN == g_ulSmcControl)

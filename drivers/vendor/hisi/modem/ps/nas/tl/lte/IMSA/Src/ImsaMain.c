@@ -150,17 +150,7 @@ VOS_VOID IMSA_Init(VOS_VOID)
     IMSA_ImsAdaption_Init();
 }
 
-/*****************************************************************************
- Function Name  : IMSA_ClearResource()
- Description    : IMSA清除资源
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1. lihong00150010      2013-07-27  Draft Enact
-
-*****************************************************************************/
 VOS_VOID IMSA_ClearResource( VOS_VOID )
 {
     IMSA_CONN_ClearResource();
@@ -186,16 +176,7 @@ VOS_VOID IMSA_ClearResource( VOS_VOID )
     IMSA_ImsAdaption_ClearResource();
 }
 
-/*****************************************************************************
- Function Name  : IMSA_PrintState()
- Description    : 打印子模块的状态
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-08-29  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_PrintState( VOS_VOID )
 {
     IMSA_SRV_PrintNrmSrvState();
@@ -719,16 +700,7 @@ VOS_VOID IMSA_VcMsgDistr(const VOS_VOID *pRcvMsg)
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_AtMsgDistr()
- Description    : AT消息处理函数
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.leili 00132387      2013-10-15  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_AtMsgDistr(const VOS_VOID *pRcvMsg)
 {
     /* 定义消息头指针*/
@@ -756,25 +728,14 @@ VOS_VOID IMSA_AtMsgDistr(const VOS_VOID *pRcvMsg)
             IMSA_ProcMsgVolteImpuQryReq((VOS_VOID *)pRcvMsg);
             break;
 
-        case ID_AT_IMSA_CCWAI_SET_REQ:
-            IMSA_ProcMsgCcwaiSetReq((VOS_VOID *)pRcvMsg);
-            break;
+
         default:
             break;
     }
 }
 
 #if (FEATURE_ON == FEATURE_PTM)
-/*****************************************************************************
- Function Name  : IMSA_OmMsgDistr()
- Description    : OM消息处理函数
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-01-04  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_OmMsgDistr(const VOS_VOID *pRcvMsg)
 {
     /* 定义消息头指针*/
@@ -798,16 +759,7 @@ VOS_VOID IMSA_OmMsgDistr(const VOS_VOID *pRcvMsg)
     }
 }
 #endif
-/*****************************************************************************
- Function Name  : IMSA_MtcMsgDistr()
- Description    : MTC消息处理函数
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.xiongxianghui 00253310   2015-01-04  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_MtcMsgDistr(const VOS_VOID *pRcvMsg)
 {
     /* 定义消息头指针*/
@@ -964,16 +916,7 @@ VOS_VOID IMSVA_TaskEntry(MsgBlock * pMsg)
 
 }
 
-/*****************************************************************************
- Function Name  : IMSA_EmmMsgDistr()
- Description    : EMM消息处理入口
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.leixiantiao 00258641      2015-12-10  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_LmmMsgDistr(const MsgBlock * pMsg)
 {
     /* 定义消息头指针*/

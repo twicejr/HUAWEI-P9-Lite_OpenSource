@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2015, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasHsdSndHsm.c
-  版 本 号   : 初稿
-  作    者   : h00300778
-  生成日期   : 2014年12月10日
-  最近修改   :
-  功能描述   : HSD发送给HSM的消息处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年12月10日
-    作    者   : h00300778
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -45,21 +28,7 @@ extern "C" {
   3 函数实现
 *****************************************************************************/
 /*lint -save -e958*/
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndHsmStartReq
- 功能描述  : 向HSM发送开机请求
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月12日
-    作    者   : h00300778
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SndHsmStartReq(VOS_VOID)
 {
     HSD_HSM_START_REQ_STRU             *pstMsg;
@@ -90,21 +59,7 @@ VOS_VOID CNAS_HSD_SndHsmStartReq(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndHsmPowerOffReq
- 功能描述  : 向HSM发送关机请求
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月12日
-    作    者   : h00300778
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SndHsmPowerOffReq(VOS_VOID)
 {
     HSD_HSM_POWEROFF_REQ_STRU          *pstMsg;
@@ -135,21 +90,7 @@ VOS_VOID CNAS_HSD_SndHsmPowerOffReq(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndHsmSysAcqSuccInd
- 功能描述  : 向HSM发送搜网成功
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月12日
-    作    者   : h00300778
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SndHsmSysAcqSuccInd(
     VOS_UINT32                                              aulSystemTime[],
     HSD_HSM_SYSTEM_ACQUIRE_TYPE_ENUM_UINT8                  enCurSysAcqType
@@ -188,21 +129,7 @@ VOS_VOID CNAS_HSD_SndHsmSysAcqSuccInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndHsmOverheadMsgInd
- 功能描述  : 向HSM发送Overhead消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年01月14日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SndHsmOverheadMsgInd(
     CAS_CNAS_HRPD_OVERHEAD_MSG_IND_STRU                    *pstCasOhmMsg
 )
@@ -282,21 +209,7 @@ VOS_VOID CNAS_HSD_SndHsmOhmNotCurrentInd(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndHsmIratFromLteInd
- 功能描述  : 向HSM发送ID_HSD_HSM_IRAT_FROM_LTE_IND
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月02日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SndHsmIratFromLteInd(VOS_VOID)
 {
     HSD_HSM_IRAT_FROM_LTE_IND_STRU     *pstMsg;
@@ -327,21 +240,7 @@ VOS_VOID CNAS_HSD_SndHsmIratFromLteInd(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndHsmIratToLteInd
- 功能描述  : 向HSM发送ID_HSD_HSM_IRAT_TO_LTE_IND
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月02日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SndHsmIratToLteInd(VOS_VOID)
 {
     HSD_HSM_IRAT_TO_LTE_IND_STRU       *pstMsg;
@@ -372,21 +271,7 @@ VOS_VOID CNAS_HSD_SndHsmIratToLteInd(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndHsmSuspendInd
- 功能描述  : 向HSM发送ID_HSD_HSM_SUSPEND_IND
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月02日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SndHsmSuspendInd(VOS_VOID)
 {
     HSD_HSM_SUSPEND_IND_STRU           *pstMsg;
@@ -418,21 +303,7 @@ VOS_VOID CNAS_HSD_SndHsmSuspendInd(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndHsmResumeInd
- 功能描述  : 向HSM发送ID_HSD_HSM_RESUME_IND
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月02日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SndHsmResumeInd(VOS_VOID)
 {
     HSD_HSM_RESUME_IND_STRU            *pstMsg;
@@ -464,21 +335,7 @@ VOS_VOID CNAS_HSD_SndHsmResumeInd(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndHsmPowerSaveReq
- 功能描述  : 向HSM发送ID_HSD_HSM_POWER_SAVE_REQ
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月02日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SndHsmPowerSaveReq(VOS_VOID)
 {
     HSD_HSM_POWER_SAVE_REQ_STRU         *pstMsg;
@@ -510,21 +367,7 @@ VOS_VOID CNAS_HSD_SndHsmPowerSaveReq(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SndHsmPilotSearchFailNtf
- 功能描述  : 向HSM发送ID_HSD_HSM_RESUME_IND
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月12日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SndHsmPilotSearchFailNtf(VOS_VOID)
 {
     HSD_HSM_PILOT_SEARCH_FAIL_NTF_STRU *pstMsg;

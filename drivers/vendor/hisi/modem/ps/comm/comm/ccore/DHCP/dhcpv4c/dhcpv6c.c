@@ -79,25 +79,7 @@ ULONG DHCPC_PickUpDhcp(UDPS_PACKET_INFO_S * pstUdp, PMBUF_S *pstMbuf)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_UnpackDhcpMsgFromMbuf
- 功能描述  : 从SD分发的Mbuf中解封装Dhcp信令消息
- 输入参数  : PMBUF_S *pstMsgBuf
-             UCHAR ucDhcpMsgType
-             UCHAR **ppucDhcpMsg
-             ULONG *pulMsgLen
-             ULONG *pulServerIp
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月11日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_UnpackDhcpMsgFromMbuf(PMBUF_S *pstMsgBuf, UDPS_PACKET_INFO_S *pstPtkInf,
                                     UCHAR **ppucDhcpMsg, ULONG *pulMsgLen)
 {
@@ -155,22 +137,7 @@ ULONG DHCPC_UnpackDhcpMsgFromMbuf(PMBUF_S *pstMsgBuf, UDPS_PACKET_INFO_S *pstPtk
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_ProcDhcpMsg
- 功能描述  : 处理dhcpv6 server发送的dhcp消息
- 输入参数  : UCHAR *pucDhcpv6Msg
-             ULONG ulMsgLen
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月12日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_ProcDhcpMsg(UCHAR *pucDhcpv6Msg, UCHAR ucMsgType, ULONG ulMsgLen , ULONG *pulSrvIpAddr)
 {
     ULONG ulReturn = VOS_ERR;
@@ -252,18 +219,7 @@ ULONG DHCPV6C_ProcDhcpMsg(UCHAR *pucDhcpv6Msg, UCHAR ucMsgType, ULONG ulMsgLen ,
     return VOS_OK;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPV6C_CheckServerMsgType
- *  初稿完成:       2012-07-19
- *  作    者:       y00170683
- *  函数功能:       检查收到的消息类型
- *  输入参数:       ucMsgType
- *  输出参数:
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 ULONG DHCPV6C_CheckServerMsgType(UCHAR ucMsgType)
 {
     ULONG ulRet = VOS_OK;
@@ -288,21 +244,7 @@ ULONG DHCPV6C_CheckServerMsgType(UCHAR ucMsgType)
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_ProcMbufMsg
- 功能描述  : 处理以Mbuf封装的dhcpv6信令消息
- 输入参数  : PMBUF_S *pstMsgBuf
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月11日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPV6C_ProcMbufMsg(PMBUF_S *pstMsgBuf)
 {
     UCHAR   ucMsgType = 0;
@@ -348,21 +290,7 @@ VOID DHCPV6C_ProcMbufMsg(PMBUF_S *pstMsgBuf)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_ProcSDMsg
- 功能描述  : 处理SD分发的dhcpv6消息
- 输入参数  : UCHAR *pucMsg
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月11日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPV6C_ProcSDMsg(UCHAR *pucMsg)
 {
     PMBUF_S *pstMsgBuf = NULL;
@@ -382,18 +310,7 @@ VOID DHCPV6C_ProcSDMsg(UCHAR *pucMsg)
     return;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPC_CalcSuccSendLapNum
- *  初稿完成:       2012-07-19
- *  作    者:       y00170683
- *  函数功能:       统计通知LAP成功计数
- *  输入参数:       ucMsgType
- *  输出参数:
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOID DHCPC_CalcSuccSendLapNum(UCHAR ucMsgType)
 {
     /* 消息计数 */
@@ -423,18 +340,7 @@ VOID DHCPC_CalcSuccSendLapNum(UCHAR ucMsgType)
     return;
 }
 
-/*****************************************************************************
- *  函数名称:       DHCPC_CalcFailSendLapNum
- *  初稿完成:       2012-07-19
- *  作    者:       y00170683
- *  函数功能:       统计通知LAP失败计数
- *  输入参数:       ucMsgType
- *  输出参数:
- *  返回类型:       ULONG
- *  其他说明:       无
- *  调用函数:
- *  主调函数:
-*****************************************************************************/
+
 VOID DHCPC_CalcFailSendLapNum(UCHAR ucMsgType)
 {
     /* 消息计数 */
@@ -464,22 +370,7 @@ VOID DHCPC_CalcFailSendLapNum(UCHAR ucMsgType)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_SendMsgToLAP2ByContext
- 功能描述  : 根据控制块内容向LAP2发送消息
- 输入参数  : DHCPC_CTRLBLK *pstDhcpcContext
-             UCHAR MsgType
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月12日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_SendMsgToLAP2ByContext(DHCPC_CTRLBLK *pstDhcpcContext, UCHAR MsgType)
 {
     ULONG ulReturn = VOS_ERR;
@@ -526,21 +417,7 @@ ULONG DHCPC_SendMsgToLAP2ByContext(DHCPC_CTRLBLK *pstDhcpcContext, UCHAR MsgType
     return ulReturn;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_EmsReportAndCleanCause
- 功能描述  : 上报EMS消息,并清除原因值字段
- 输入参数  : DHCPC_CTRLBLK *pstDhcpcContext
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月15日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPC_EmsReportAndCleanCause(DHCPC_CTRLBLK *pstDhcpcContext)
 {
     UCHAR ucCause = 0;
@@ -572,21 +449,7 @@ VOID DHCPC_EmsReportAndCleanCause(DHCPC_CTRLBLK *pstDhcpcContext)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_NotifyLapFail
- 功能描述  : 通知LAP分配地址失败
- 输入参数  : DHCPC_CTRLBLK *pstDhcpcContext
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月15日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_NotifyLapFail(DHCPC_CTRLBLK *pstDhcpcContext)
 {
     UCHAR ucMsgType = 0;
@@ -619,22 +482,7 @@ ULONG DHCPC_NotifyLapFail(DHCPC_CTRLBLK *pstDhcpcContext)
     return ulReturn;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPCv6_Get_MsgDirection
- 功能描述  : dhcpv6消息收或者发送
- 输入参数  : UCHAR MsgDirection
 
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年7月30日
-    作    者   : linyufeng 00176669
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPCv6_Get_MsgDirection(UCHAR MsgDirection,UCHAR ucUgwRole)
 {
     ULONG ulDirection = TRC_DIRECTION_LEFT_IN_SGW;

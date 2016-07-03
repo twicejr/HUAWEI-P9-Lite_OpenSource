@@ -82,6 +82,17 @@ static ulong lowmem_free_mem;
 
 static unsigned long lowmem_deathpending_timeout;
 
+#ifdef CONFIG_HUAWEI_CACHED_APPS_KILL
+//adj add 1, so score_adj should add 59
+#define SCORE_ADJ_UNIT         59
+#define SERVICE_APPS_COUNT     5
+#define CACHED_APPS_COUNT      20
+#define CACHED_APP_MIN_ADJ     529
+#define PERCEPTIBLE_APP_ADJ    117
+//MEMSIZE_2G  2 * 1024 * 1024 * 1024UL/ PAGE_SIZE
+#define MEMSIZE_2G    (1024 * 512)
+#endif
+
 #define lowmem_print(level, x...)			\
 	do {						\
 		if (lowmem_debug_level >= (level))	\
@@ -305,6 +316,37 @@ static void dump_threads(struct task_struct *tsk)
 	}
 }
 
+#ifdef CONFIG_HUAWEI_CACHED_APPS_KILL
+static int multiple_process_kill(struct task_struct *ptr[], int ptr_size)
+{
+    int i = 0;
+	int tasksize = 0;
+	int free_size = 0;
+
+	for (i = 0; i < ptr_size; i++) {
+	    if (ptr[i] == NULL)
+		    break;
+
+		if (test_tsk_thread_flag(ptr[i], TIF_MEMDIE))
+			continue;
+
+		task_lock(ptr[i]);
+		if (ptr[i]->mm) {
+			lowmem_print(1, "multiple apps killing '%s' (%d), tgid=%d  adj = %d\n",
+			   ptr[i]->comm, ptr[i]->pid, ptr[i]->tgid, ptr[i]->signal->oom_score_adj);
+			tasksize = get_mm_rss(ptr[i]->mm);
+			free_size += tasksize;
+			send_sig(SIGKILL, ptr[i], 0);
+			set_tsk_thread_flag(ptr[i], TIF_MEMDIE);
+			__thaw_task(ptr[i]);
+			set_user_nice(ptr[i], -10);
+		}
+		task_unlock(ptr[i]);
+	}
+
+	return free_size;
+}
+#endif
 static int lowmem_shrink(struct shrinker *s, struct shrink_control *sc)
 {
 	struct task_struct *tsk;
@@ -321,6 +363,18 @@ static int lowmem_shrink(struct shrinker *s, struct shrink_control *sc)
 	int other_file;
 	unsigned long nr_to_scan = sc->nr_to_scan;
 	static atomic_t atomic_lmk = ATOMIC_INIT(0);
+#ifdef CONFIG_HUAWEI_CACHED_APPS_KILL
+	struct task_struct *cached_apps[CACHED_APPS_COUNT];
+	struct task_struct *cached_min_apps[SERVICE_APPS_COUNT];
+	struct task_struct *service_apps[SERVICE_APPS_COUNT];
+	int j = 0;
+	int m = 0;
+	int n = 0;
+	int k = 0;
+	int cached_mem = 0;
+	int service_mem = 0;
+	bool total_mem_2G = false;
+#endif
 
 	other_free = global_page_state(NR_FREE_PAGES);
 
@@ -366,6 +420,23 @@ static int lowmem_shrink(struct shrinker *s, struct shrink_control *sc)
 		return 0;
 	}
 
+#ifdef CONFIG_HUAWEI_CACHED_APPS_KILL
+	if (totalram_pages <= MEMSIZE_2G) {
+		lowmem_print(3,"the mem total is = 0x%x, 2G MEM!\n", totalram_pages);
+		total_mem_2G = true;
+		for (j = 0; j < CACHED_APPS_COUNT; j++) {
+			cached_apps[j] = NULL;
+		}
+		j = 0;
+
+		for (k = 0; k < SERVICE_APPS_COUNT; k++) {
+			service_apps[k] = NULL;
+			cached_min_apps[k] = NULL;
+		}
+		k = 0;
+	}
+
+#endif
 	rcu_read_lock();
 	for_each_process(tsk) {
 		struct task_struct *p;
@@ -377,6 +448,9 @@ static int lowmem_shrink(struct shrinker *s, struct shrink_control *sc)
 		p = find_lock_task_mm(tsk);
 		if (!p)
 			continue;
+#ifdef CONFIG_HUAWEI_CACHED_APPS_KILL
+		oom_score_adj = p->signal->oom_score_adj;
+#endif
 
 		if (test_tsk_thread_flag(p, TIF_MEMDIE)) {
 			if (time_before_eq(jiffies,
@@ -390,24 +464,86 @@ static int lowmem_shrink(struct shrinker *s, struct shrink_control *sc)
 					     p->comm, p->pid);
 				dump_threads(tsk);
 				show_stack(p, NULL);
+#ifdef CONFIG_HUAWEI_CACHED_APPS_KILL
+				oom_score_adj -= SCORE_ADJ_UNIT;
+#endif
 			}
 		}
 
+#ifdef CONFIG_HUAWEI_CACHED_APPS_KILL
+		if (total_mem_2G) {
+			if ((oom_score_adj > CACHED_APP_MIN_ADJ) && (j < CACHED_APPS_COUNT))
+				cached_apps[j++] = p;
+			if (min_score_adj == CACHED_APP_MIN_ADJ) {
+				if (oom_score_adj == CACHED_APP_MIN_ADJ)
+					cached_apps[j++] = p;
+				else if ((oom_score_adj < min_score_adj) && (k < SERVICE_APPS_COUNT) &&
+				   ((oom_score_adj + SCORE_ADJ_UNIT) >= min_score_adj))
+					service_apps[k++] = p;
+			}
+		}
+#endif
+
+#ifndef CONFIG_HUAWEI_CACHED_APPS_KILL
 		oom_score_adj = p->signal->oom_score_adj;
+#endif
 		if (oom_score_adj < min_score_adj) {
 			task_unlock(p);
 			continue;
 		}
 		tasksize = get_mm_rss(p->mm);
+#ifdef CONFIG_HUAWEI_CACHED_APPS_KILL
+        tasksize = get_mm_rss(p->mm) +
+                p->mm->nr_ptes +
+                get_mm_counter(p->mm, MM_SWAPENTS);
+#endif
 		task_unlock(p);
 		if (tasksize <= 0)
 			continue;
 		if (selected) {
+#ifdef CONFIG_HUAWEI_CACHED_APPS_KILL
+			if ((total_mem_2G) && (oom_score_adj <= CACHED_APP_MIN_ADJ) &&
+				(oom_score_adj > PERCEPTIBLE_APP_ADJ)) {
+				if ((oom_score_adj == selected_oom_score_adj) && (m < SERVICE_APPS_COUNT)) {
+					if (tasksize > selected_tasksize) {
+						cached_min_apps[m++] = selected;
+						lowmem_print(2, " '%s' (%d), adj %hd, size %d, to cached min\n",
+							 selected->comm, selected->pid, oom_score_adj, selected_tasksize);
+					} else {
+						cached_min_apps[m++] = p;
+						lowmem_print(2, " '%s' (%d), adj %hd, size %d, to cached min\n",
+							 p->comm, p->pid, oom_score_adj, tasksize);
+					}
+				} else if ((oom_score_adj < selected_oom_score_adj) && (n < SERVICE_APPS_COUNT) &&
+						   ((oom_score_adj + SCORE_ADJ_UNIT) >= selected_oom_score_adj )){
+					service_apps[n++] = p;
+					lowmem_print(2, " '%s' (%d), adj %hd, size %d, to services\n",
+					p->comm, p->pid, oom_score_adj, tasksize);
+				}
+			}
+#endif
+
 			if (oom_score_adj < selected_oom_score_adj)
 				continue;
 			if (oom_score_adj == selected_oom_score_adj &&
 			    tasksize <= selected_tasksize)
 				continue;
+#ifdef CONFIG_HUAWEI_CACHED_APPS_KILL
+			if ((total_mem_2G) && (oom_score_adj > selected_oom_score_adj) &&
+               (oom_score_adj <= CACHED_APP_MIN_ADJ)) {
+				n = m;
+				for (m = 0; m < SERVICE_APPS_COUNT; m++) {
+					service_apps[m] = cached_min_apps[m];
+					cached_min_apps[m] = NULL;
+				}
+				m = 0;
+
+				if (oom_score_adj <= (selected_oom_score_adj + SCORE_ADJ_UNIT))
+					service_apps[n++] = selected;
+
+				lowmem_print(1, "cached_min_apps clean\n");
+			}
+#endif
 		}
 		selected = p;
 		selected_tasksize = tasksize;
@@ -456,6 +592,26 @@ static int lowmem_shrink(struct shrinker *s, struct shrink_control *sc)
 
 		lowmem_deathpending_timeout = jiffies + HZ;
 		rem -= selected_tasksize;
+
+#ifdef CONFIG_HUAWEI_CACHED_APPS_KILL
+		if (total_mem_2G) {
+			lowmem_print(1, "cached apps killed!\n");
+			cached_mem = multiple_process_kill(cached_apps, CACHED_APPS_COUNT);
+
+			if (j < SERVICE_APPS_COUNT) {
+				lowmem_print(1, "cached min apps killed!\n");
+				cached_mem += multiple_process_kill(cached_min_apps, SERVICE_APPS_COUNT);
+			}
+			lowmem_print(1, "cached_mem = %ldkB\n", cached_mem * (long)(PAGE_SIZE / 1024));
+
+			if ((m < SERVICE_APPS_COUNT) && (selected_oom_score_adj <= CACHED_APP_MIN_ADJ)) {
+				lowmem_print(1, "service apps killed!\n");
+				service_mem = multiple_process_kill(service_apps, SERVICE_APPS_COUNT - m);
+				lowmem_print(1, "service_mem = %ldkB\n", service_mem * (long)(PAGE_SIZE / 1024));
+			}
+		}
+#endif
+
 #ifdef CONFIG_HISI_LOWMEM_DBG
 		if (selected_oom_score_adj == 0)
 			write_log_to_exception("LMK-EXCEPTION", 'C', "lower memory killer exception");

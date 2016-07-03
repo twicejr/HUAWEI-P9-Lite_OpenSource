@@ -123,7 +123,7 @@ enum enumACLHelp
     Help_ACL_FUNC_NULL,                 /* 43 注册类型数据结构中有函数指针为空*/
     Help_ACL_INIT_ERR,                  /* 44 ACL CBB已经完成初始化*/
     Help_ACL_NOT_INIT,                  /* 45 ACL CBB未成功初始化*/
-    Help_ACL_PortNumError,              /* 46 端口范围的段数不合法 */
+    Help_ACL_PortNumError,
     Help_ACL_Type_MallocError,          /* 47 为规则类型分配内存失败 */
     Help_ACL_Group_MallocError,         /* 48 为规则组分配内存失败 */
     Help_ACL_MatchOrderErr_Snd,         /* 49 规则匹配顺序错误 */
@@ -2924,7 +2924,6 @@ typedef struct tagACL_ICMP
 
 #ifndef _PF_ACLREFRESHCALLBACK
 #define _PF_ACLREFRESHCALLBACK
-/* Added by z43740 for: ACL变化对外通知,2008/03/12 */
 /**
 * @defgroup PF_ACLREFRESHCALLBACK PF_ACLREFRESHCALLBACK
 * @ingroup accssf ACL Functions

@@ -50,17 +50,7 @@ extern "C" {
 /*****************************************************************************
   3 Function
 *****************************************************************************/
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcInterSystemTransferBearerInfo
- Description     : 异系统变换时存在ISR激活后承载，去激活ISR
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2011-11-30  Draft Enact
-
-*****************************************************************************/
 /*lint -e960*/
 /*lint -e961*/
 VOS_VOID  NAS_EMM_ProcInterSystemTransferBearerInfo(VOS_VOID)
@@ -169,12 +159,10 @@ VOS_UINT32  NAS_EMM_PreProcMsgMmcSuspendReq( MsgBlock * pMsg )
                     /* 不停止3412定时器 */
 
                     NAS_LMM_SetEmmInfoTriggerTauSysChange(NAS_EMM_NO);
-                    /* del by y00307272 for DTS2015122301277 ,2015-12-26，Begin */
                     /* DEL CAUSE:csfb到G下，挂起ps并通知LNAS，随后电话挂断后FR失败，回退到G下丢网，搜L
                      失败，搜W失败(搜时MMC会给LNAS发挂起，我们这是会设置ps not suspension)，在搜到L判断
                      PS没有挂起，不发TAU，被叫失败 */
                     /*NAS_LMM_SetEmmInfoPsState(GMM_LMM_GPRS_NOT_SUSPENSION);*/
-                    /* del by y00307272 for DTS2015122301277 ,2015-12-26，End */
                     NAS_EMM_ProcInterSystemTransferBearerInfo();
 
                     /* 记录挂起的参数: 挂起源 */
@@ -239,12 +227,10 @@ VOS_VOID  NAS_EMM_ValidStateMsgMmcSuspendReq
 
     NAS_LMM_SetEmmInfoTriggerTauSysChange(NAS_EMM_NO);
 
-    /* del by y00307272 for DTS2015122301277 ,2015-12-26，Begin */
     /* DEL CAUSE:csfb到G下，挂起ps并通知LNAS，随后电话挂断后FR失败，回退到G下丢网，搜L
      失败，搜W失败(搜时MMC会给LNAS发挂起，我们这是会设置ps not suspension)，在搜到L判断
      PS没有挂起，不发TAU，被叫失败 */
     /*NAS_LMM_SetEmmInfoPsState(GMM_LMM_GPRS_NOT_SUSPENSION);*/
-    /* del by y00307272 for DTS2015122301277 ,2015-12-26，End */
     NAS_EMM_ProcInterSystemTransferBearerInfo();
     /* 记录挂起前的状态*/
     NAS_LMM_MEM_CPY_S(  NAS_EMM_GetStateBeforeSuspendAddr(),
@@ -279,17 +265,7 @@ VOS_VOID  NAS_EMM_ValidStateMsgMmcSuspendReq
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcMsResumeMsgMmcSuspendReq
- Description     : RESUME状态下收到MMC的挂起消息处理
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2011-11-30  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ProcMsResumeMsgMmcSuspendReq(VOS_VOID)
 {
     /*RESUME状态下收到MMC的挂起消息处理*/
@@ -312,17 +288,7 @@ VOS_VOID  NAS_EMM_ProcMsResumeMsgMmcSuspendReq(VOS_VOID)
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcRrcOriResumeMsgMmcSuspendReq
- Description     : RESUME+RRCORI_WAIT_SYS_INFO状态收到MMC挂起消息的处理
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387     2011-11-29  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ProcRrcOriResumeMsgMmcSuspendReq(VOS_VOID)
 {
     NAS_EMM_PUBU_LOG1_INFO(" NAS_EMM_ProcRrcOriResumeMsgMmcSuspendReq:NAS_EMM_GetResumeType()",
@@ -544,32 +510,7 @@ VOS_UINT32  NAS_EMM_PreProcMsgRrcSuspendInd( MsgBlock * pMsg )
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_RcvLrrcSuspendInd
- Description     : 已开机完成，并且当前没有压栈的状态下，收到LRRC挂起指示
-                   该动作函数暂时不包含有压栈的状态处理
 
-                    MMC    ERABM/ESM        LMM         LRRC
-                    |           |           |           |
-                    |        SUS_IND        | <-------- |
-                    | <---------------------|           |
-                    |    SUS_RSP|           |           |
-                    |  -------------------> |           |
-                    |           |           |-------->  |
-                    |           |<--------  |           |
-                    |           |<--------  |           |
-                    |           | --------> |           |
-                    |           | --------> |           |
-                    |           |           |           |
- Input           : None
- Output          : None
- Return          : VOS_UINT32
-
- History         :
-    1.zhengjunyan 00148421      2011-4-25  Draft Enact
-    2.lihong00150010            2011-7-4   Modify
-    3.sunli 00180715            2011-7-29  DTS2011080401328
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_RcvLrrcSuspendInd( VOS_UINT32  ulMsgId,
                                   const VOS_VOID   *pMsgStru  )
 {
@@ -614,20 +555,7 @@ VOS_UINT32  NAS_EMM_RcvLrrcSuspendInd( VOS_UINT32  ulMsgId,
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsSuspendSsRrcOriWaitMmcSuspendMmcSusRsp
- Description     :
-                   对LRRC触发的挂起:
-                   收到 MMC的挂起响应，再给ESM,ERABM发送挂起消息
 
- Input           : None
- Output          : None
- Return          : VOS_UINT32
-
- History         :
-    1.zhengjunyan 00148421      2011-4-23  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsSuspendSsRrcOriWaitMmcSuspendMmcSusRsp(VOS_UINT32        ulMsgId,
                                                              VOS_VOID   *pMsgStru   )
 {
@@ -735,25 +663,7 @@ VOS_UINT32  NAS_EMM_SsRrcOriWaitMmcSuspenTimerExp(
 
     return  NAS_LMM_MSG_HANDLED;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_MsSuspendSsRrcOriWaitOtherMsgSusRsp
- Description     :
-                   对LRRC触发的挂起:
-                   收到 ESM,ERABM 的挂起响应，再给MMC发送挂起指示；
-                   收到 MMC的挂起响应，再给LRRC发送响应
 
-                   对MMC触发的挂起:
-                   收到 ESM,ERABM 的挂起响应，再给RRCC发送挂起指示；
-                   收到 RRC的挂起响应，再给MMC发送响应
-
- Input           : None
- Output          : None
- Return          : VOS_UINT32
-
- History         :
-    1.zhengjunyan 00148421      2011-4-23  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsSuspendSsRrcOriWaitOtherMsgSusRsp(
                                         VOS_UINT32  ulMsgId,
                                         VOS_VOID   *pMsgStru  )
@@ -831,16 +741,7 @@ VOS_UINT32  NAS_EMM_MsSuspendSsRrcOriWaitOtherMsgMmcSuspendRelReq
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsSuspendSsRrcOriWaitOtherMsgMmcDetachReq
- Description     : RRC触发挂起等ESM和ERABM回复过程中收到MMC下发的DETACH请求处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.sunjitan 00193151      2013-12-30  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsSuspendSsRrcOriWaitOtherMsgMmcDetachReq
 (
     VOS_UINT32                          ulMsgId,
@@ -945,18 +846,7 @@ VOS_UINT32  NAS_EMM_MsSuspendSsRrcOriWaitOtherMsgMmcDetachReq
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsSuspendSsWaitDownlayerMsgUplayerRsp
- Description     :
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.Hanlufeng 41410      2011-5-4  Draft Enact
-    2.sunjitan 00193151   2012-05-24 增加清除Resume触发和类型记录信息
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsSuspendSsMmcOriWaitOtherMsgSusRsp(
                                         VOS_UINT32  ulMsgId,
                                         VOS_VOID   *pMsgStru  )
@@ -996,17 +886,7 @@ VOS_UINT32  NAS_EMM_MsSuspendSsMmcOriWaitOtherMsgSusRsp(
     return  NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsSuspendSsMmcOriWaitOtherMsgMmcDetachReq
- Description     : MMC或者SYSCFG触发的挂起在等ESM和ERABM挂起过程中收到MMC的DETACH
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.sunjitan 00193151      2013-12-30  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsSuspendSsMmcOrSyscfgOriWaitOtherMsgMmcDetachReq
 (
     VOS_UINT32                          ulMsgId,
@@ -1056,17 +936,7 @@ VOS_UINT32  NAS_EMM_MsSuspendSsMmcOrSyscfgOriWaitOtherMsgMmcDetachReq
 
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsSuspendSsWaitOtherMsgTimerExp
- Description     : 等待 ESM,ERABM 的挂起响应超时
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-4-25  Draft Enact
-    2.sunbing 49683             2012-5-29  增加复位原因，便于问题定位
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsSuspendSsWaitOtherMsgTimerExp(
                                         VOS_UINT32  ulMsgId,
                                         VOS_VOID   *pMsgStru  )
@@ -1099,23 +969,7 @@ VOS_UINT32  NAS_EMM_MsSuspendSsWaitOtherMsgTimerExp(
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsSuspendSsWaitEndMsgMmcResumeNotify
- Description     : 收到 G/U 模的解挂消息，意味着GU已经完成系统变换；
-                   L2GU的CCO过程，收到此消息也认为系统变换完成，只是
-                   随后收到的LRRC的RESUME可能是CCO REVERSE；
-                   系统变换完成，不影响连接状态，HO和CCO都等着LRRC的REL消息
-                   才影响连接状态；
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-4-25  Draft Enact
-    2.sunli 00180715            2011-7-29  DTS2011080401328
-    3.sunjitan 00193151   2012-05-24 增加清除Resume触发和类型记录信息
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsSuspendSsWaitEndMsgMmcResumeNotify(
                                         VOS_UINT32  ulMsgId,
                                         VOS_VOID   *pMsgStru  )
@@ -1136,12 +990,10 @@ VOS_UINT32  NAS_EMM_MsSuspendSsWaitEndMsgMmcResumeNotify(
     NAS_EMM_ClearResumeInfo();
 
     NAS_LMM_SetEmmInfoTriggerTauSysChange(NAS_EMM_NO);
-    /* del by y00307272 for DTS2015122301277 ,2015-12-26，Begin */
     /* DEL CAUSE:csfb到G下，挂起ps并通知LNAS，随后电话挂断后FR失败，回退到G下丢网，搜L
      失败，搜W失败(搜时MMC会给LNAS发挂起，我们这是会设置ps not suspension)，在搜到L判断
      PS没有挂起，不发TAU，被叫失败 */
     /*NAS_LMM_SetEmmInfoPsState(GMM_LMM_GPRS_NOT_SUSPENSION);*/
-    /* del by y00307272 for DTS2015122301277 ,2015-12-26，End */
 
 
     /* 如果是不是自研CL版本，才执行此分支的处理 */
@@ -1237,17 +1089,7 @@ VOS_VOID    NAS_EMM_SuspendEndStateChng( VOS_VOID)
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsSuspendSsWaitEndMsgWtEndTimerExp
- Description     :
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-4-25  Draft Enact
-    2.sunbing 49683             2012-5-29  增加复位原因，便于问题定位
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsSuspendSsWaitEndMsgWtEndTimerExp(
                                         VOS_UINT32  ulMsgId,
                                         VOS_VOID   *pMsgStru  )
@@ -1261,20 +1103,7 @@ VOS_UINT32  NAS_EMM_MsSuspendSsWaitEndMsgWtEndTimerExp(
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsSuspendSsRrcOriMsgRrcAccessGrantInd
- Description     :  Suspend.RrcOriWtMmcSuspend
-                    Suspend.RrcOriWtOtherSuspend
-                    Suspend.WtEnd
-                   三个状态下收到LRRC_LMM_ACCESS_GRANT_IND消息的处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-11-29  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsSuspendSsRrcOriMsgRrcAccessGrantInd(
                                         VOS_UINT32  ulMsgId,
                                         VOS_VOID   *pMsgStru  )
@@ -1825,17 +1654,7 @@ VOS_VOID  NAS_EMM_SendLrrcSuspendRsp( LRRC_LNAS_RESULT_ENUM_UINT32 ulRst )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_PreProcMsgMmcActionRstReq
- Description     : 挂起状态下，接收处理GUNAS发来的业务结果消息
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.Hanlufeng 41410      2011-5-12  Draft Enact
-    2.sunjitan 00193151   2012-05-31  Modify      原只处理PS下的鉴权拒绝，改为所有鉴权拒绝均处理
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_PreProcMsgMmcActionRstReq( MsgBlock * pMsg )
 {
     MMC_LMM_ACTION_RESULT_REQ_STRU     *pMmcActResult = VOS_NULL_PTR;
@@ -1902,17 +1721,7 @@ VOS_UINT32  NAS_EMM_PreProcMsgMmcActionRstReq( MsgBlock * pMsg )
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SaveGuActRstPara
- Description     : 将GU动作结果消息保存至本地
- Input           : MsgBlock * pMsg
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.Zhangcaixia 00179470      2011-5-30  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SaveGuActRstPara( MsgBlock * pMsg  )
 {
     MMC_LMM_ACTION_RESULT_REQ_STRU     *pMmcActResult = VOS_NULL_PTR;
@@ -1935,17 +1744,7 @@ VOS_VOID  NAS_EMM_SaveGuActRstPara( MsgBlock * pMsg  )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_CheckMmcActionRstReqStateValid
- Description     : 判断接收MMC的ActionResultReq消息的状态是否正确
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.Zhangcaixai 00179470      2011-5-28  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_CheckMmcActionRstReqStateValid( VOS_VOID )
 {
     VOS_UINT32                          ulRet = NAS_EMM_STATE_INVALID;
@@ -1967,17 +1766,7 @@ VOS_UINT32  NAS_EMM_CheckMmcActionRstReqStateValid( VOS_VOID )
     }
     return ulRet;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_GuActionMsgDistr
- Description     : GU Action分发处理
- Input           : MsgBlock * pMsg
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.Zhangcaixia 00179470      2011-5-30  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_GuActionMsgDistr( MsgBlock * pMsg  )
 {
     MMC_LMM_ACTION_RESULT_REQ_STRU     *pMmcActResult = VOS_NULL_PTR;
@@ -2030,17 +1819,7 @@ VOS_VOID  NAS_EMM_GuActionMsgDistr( MsgBlock * pMsg  )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_GuActionSendStatusInd
- Description     : 因GU的action导致EMM状态有可能改变，向ESM发送StatusInd消息
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.Zhangcaixia 00179470      2011-5-30  Draft Enact
-    2.leixiantiao 00258641      2014-6-9 判断当前状态是否改变,若没有改变则不给esm发送相应状态信息
-*****************************************************************************/
 VOS_VOID  NAS_EMM_GuActionSendStatusInd( NAS_LMM_MAIN_STATE_ENUM_UINT16 enPreMainState)
 {
     /* 判断当前状态是否改变,若没有改变则不给esm发送相应状态信息 */
@@ -2067,17 +1846,7 @@ VOS_VOID  NAS_EMM_GuActionSendStatusInd( NAS_LMM_MAIN_STATE_ENUM_UINT16 enPreMai
     }
     return;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_GuAttachActionRej
- Description     : GU attach 结果域为CN REJ时处理
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.Zhangcaixia 00179470      2011-5-30  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_GuAttachActionRej( MsgBlock * pMsg  )
 {
     /*不再判断请求域和结果域，只根据原因值进行处理*/
@@ -2085,17 +1854,7 @@ VOS_VOID  NAS_EMM_GuAttachActionRej( MsgBlock * pMsg  )
 
 
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_CheckGuActReqDomainCmbRstDomainCmb
- Description     : 判断GU的Combined Action Domain为req为Combined， rst为Combined
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.Zhangcaixai 00179470      2011-5-28  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_CheckGuActReqDomainCmbRstDomainCmb( MsgBlock * pMsg  )
 {
 
@@ -2113,17 +1872,7 @@ VOS_UINT32  NAS_EMM_CheckGuActReqDomainCmbRstDomainCmb( MsgBlock * pMsg  )
 
     return NAS_EMM_SUSPEND_GU_ACT_DOMAIN_NO;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_CheckGuActReqDomainPsRstDomainPs
- Description     : 判断GU的ACTION是否PS_only ActionDomain结果域也为PS_only
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.Zhangcaixai 00179470      2011-5-30  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_CheckGuActReqDomainPsRstDomainPs( MsgBlock * pMsg  )
 {
     MMC_LMM_ACTION_RESULT_REQ_STRU     *pMmcActResult = VOS_NULL_PTR;
@@ -2140,17 +1889,7 @@ VOS_UINT32  NAS_EMM_CheckGuActReqDomainPsRstDomainPs( MsgBlock * pMsg  )
 
     return NAS_EMM_SUSPEND_GU_ACT_DOMAIN_NO;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_CheckGuActReqDomainCombiRstDomainPs
- Description     : 判断GU的REQ_Domain为PS/IMSI结果域为PS_only
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.Zhangcaixai 00179470      2011-5-30  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_CheckGuActReqDomainCombiRstDomainPs( MsgBlock * pMsg  )
 {
     MMC_LMM_ACTION_RESULT_REQ_STRU     *pMmcActResult = VOS_NULL_PTR;
@@ -2168,17 +1907,7 @@ VOS_UINT32  NAS_EMM_CheckGuActReqDomainCombiRstDomainPs( MsgBlock * pMsg  )
     return NAS_EMM_SUSPEND_GU_ACT_DOMAIN_NO;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_CheckMmUpStateAndLaiChange
- Description     : 判断MM的UPDATE STATE是否为U1且LAI没有变更
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2012-6-5  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_CheckMmUpStateAndLaiChange( MsgBlock * pMsg  )
 {
     MMC_LMM_ACTION_RESULT_REQ_STRU     *pMmcActResult = VOS_NULL_PTR;
@@ -2195,17 +1924,7 @@ VOS_UINT32  NAS_EMM_CheckMmUpStateAndLaiChange( MsgBlock * pMsg  )
 
     return NAS_EMM_FAIL;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_CheckMmUpStateAndLaiChange
- Description     : 判断GPRS的UPDATE STATE是否为GU1且RAI没有变更
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2012-6-5  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_CheckGprsUpStateAndRaiChange( MsgBlock * pMsg  )
 {
     MMC_LMM_ACTION_RESULT_REQ_STRU     *pMmcActResult = VOS_NULL_PTR;
@@ -2223,22 +1942,7 @@ VOS_UINT32  NAS_EMM_CheckGprsUpStateAndRaiChange( MsgBlock * pMsg  )
     return NAS_EMM_FAIL;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_RetainCsRegDomainUnchangeProcess
- Description     : CS注册域不变,PS去注册
-                    状态转换到DEREG态时,注册域更新为NULL,为了保持CS注册域不变
-                    进行以下步骤:
-                    1.保存当前注册域
-                    2.状态转换
-                    3.更新保存的注册域进行注册域更新
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2012-6-11  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ProcCsDomainRetainPsDomainNull
 (
     NAS_EMM_SUB_STATE_ENUM_UINT16   usSs
@@ -2270,18 +1974,7 @@ VOS_VOID  NAS_EMM_ProcCsDomainRetainPsDomainNull
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcPsDomainRetainCsDomainNull
- Description     : PS注册域不变,CS去注册
 
- Input           : None
- Output          : None
- Return          : VOS_VOID
-
- History         :
-    1.leili 00132387      2012-6-11  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ProcPsDomainRetainCsDomainNull( VOS_VOID)
 {
     /*更新注册域状态*/
@@ -2300,17 +1993,7 @@ VOS_VOID  NAS_EMM_ProcPsDomainRetainCsDomainNull( VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_GuCombinedAndPsOnlyAttachRej
- Description     : GU attach REJ时，Combined与PS only处理一样
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.Zhangcaixia 00179470      2011-5-30  Draft Enact
-    2.sunjitan 00193151        2012-05-31  Modify     #25原因值也按照other处理
-*****************************************************************************/
 VOS_VOID  NAS_EMM_GuCombinedAndPsOnlyAttachRej( MsgBlock * pMsg  )
 {
     MMC_LMM_ACTION_RESULT_REQ_STRU     *pMmcActResult = VOS_NULL_PTR;
@@ -2369,34 +2052,14 @@ VOS_VOID  NAS_EMM_GuCombinedAndPsOnlyAttachRej( MsgBlock * pMsg  )
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_GuRauActionRej
- Description     : GU Rau 结果域为CN REJ时处理
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.Zhangcaixia 00179470      2011-5-30  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_GuRauActionRej( MsgBlock * pMsg  )
 {
     /*不再判断请求域和注册域，只根据原因值进行处理*/
     NAS_EMM_GuCmbAndPsOnlyRauRej(pMsg);
 
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_GuCombinedAndPsOnlyRauRej
- Description     : GU Rau REJ时，Combined与PS only处理一样
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.Zhangcaixia 00179470      2011-5-30  Draft Enact
-    2.sunjitan 00193151        2012-05-31  Modify     #25原因值也按照other处理
-*****************************************************************************/
 VOS_VOID  NAS_EMM_GuCmbAndPsOnlyRauRej( MsgBlock * pMsg  )
 {
     MMC_LMM_ACTION_RESULT_REQ_STRU     *pMmcActResult = VOS_NULL_PTR;
@@ -2512,16 +2175,7 @@ VOS_VOID  NAS_EMM_GuCmbAndPsOnlyRauRej( MsgBlock * pMsg  )
     return;
 }
 
-/*****************************************************************************
-Function Name   : NAS_EMM_GuLauActionRej
-Description     : GU LAU REJ处理
-Input           : None
-Output          : None
-Return          : VOS_VOID
 
-History         :
- 1.leili 00132387      2012-6-6  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_EMM_GuLauActionRej( MsgBlock * pMsg  )
 {
     MMC_LMM_ACTION_RESULT_REQ_STRU     *pMmcActResult = VOS_NULL_PTR;
@@ -2561,18 +2215,7 @@ VOS_VOID  NAS_EMM_GuLauActionRej( MsgBlock * pMsg  )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcGuRauAttemptCounter
- Description     : GU RauAttemptCounter为5的处理过程
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.Zhangcaixia 00179470      2011-5-27  Draft Enact
-    2.lihong 00150010           2012-12-18 Modify:Emergency
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ProcGuRauAttemptCounter (MsgBlock * pMsg )
 {
     MMC_LMM_ACTION_RESULT_REQ_STRU     *pMmcActResult = VOS_NULL_PTR;
@@ -2643,17 +2286,7 @@ VOS_VOID  NAS_EMM_ProcGuRauAttemptCounter (MsgBlock * pMsg )
     }
     return;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_GuAttachSuccCommonProcess
- Description     : GU ATTACH成功公共处理
- Input           : VOS_VOID
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2011-09-27  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_EMM_GuAttachSuccCommonProc( MsgBlock * pMsg )
 {
     NAS_EMM_PUBU_FSMTranState(      EMM_MS_REG,
@@ -2686,17 +2319,7 @@ VOS_VOID NAS_EMM_GuAttachSuccCommonProc( MsgBlock * pMsg )
     NAS_LMM_SetEmmInfoFirstTauFlag(NAS_EMM_FIRST_TAU);
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProGuAttachSucc
- Description     : 挂起状态下，处理GU发来的ATTACH成功结果
- Input           : VOS_VOID
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2011-09-26  Draft Enact
-    2.sunjitan 00193151   2014-08-21  Mod: DTS2014082008149
-*****************************************************************************/
 VOS_VOID NAS_EMM_ProGuAttachSucc
 (
     MsgBlock                           *pMsg
@@ -2706,8 +2329,7 @@ VOS_VOID NAS_EMM_ProGuAttachSucc
 
     pMmcActResult = (MMC_LMM_ACTION_RESULT_REQ_STRU *)pMsg;
 
-    /* s00193151 DTS2014082008149:  GU下PS注册成功，需要将注册状态设置
-       为正常注册，避免在后续收到ANY CELL系统消息时，被误认为是EMC注册 */
+    
     NAS_LMM_SetEmmInfoRegStatus(NAS_LMM_REG_STATUS_NORM_REGED);
     if (NAS_RELEASE_R11)
     {
@@ -2812,17 +2434,7 @@ VOS_VOID NAS_EMM_ProGuAttachRst( MsgBlock * pMsg )
     }
     return;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_ProGuRauRstSucc
- Description     : 挂起状态下，处理GU发来的RAU成功结果
- Input           : VOS_VOID
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2011-09-23  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_EMM_ProGuRauRstSucc
 (
     MsgBlock                           *pMsg
@@ -2892,17 +2504,7 @@ VOS_VOID NAS_EMM_ProGuRauRstSucc
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProGuRauRst
- Description     : 挂起状态下，处理GU发来的RAU结果
- Input           : VOS_VOID
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.Zhangcaixia 00179470      2011-5-27  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_EMM_ProGuRauRst( MsgBlock * pMsg )
 {
     MMC_LMM_ACTION_RESULT_REQ_STRU     *pMmcActResult = VOS_NULL_PTR;
@@ -2961,17 +2563,7 @@ VOS_VOID NAS_EMM_ProGuRauRst( MsgBlock * pMsg )
 
     return;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_CheckGuMtDetachTypeImsi
- Description     : 判断GU的detach是IMSI detach
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.Zhangcaixai 00179470      2011-5-30  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_CheckGuMtDetachTypeImsi( MsgBlock * pMsg  )
 {
     MMC_LMM_ACTION_RESULT_REQ_STRU     *pMmcActResult = VOS_NULL_PTR;
@@ -2992,17 +2584,7 @@ VOS_UINT32  NAS_EMM_CheckGuMtDetachTypeImsi( MsgBlock * pMsg  )
     return NAS_EMM_SUSPEND_GU_ACT_DOMAIN_NO;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_CheckGuMtDetachTypePsReAttNotRequ
- Description     : 判断GU的detach是非IMSI detach,且re_attach_not_req
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.Zhangcaixai 00179470      2011-5-30  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_CheckGuMtDetachTypePsReAttNotRequ( MsgBlock * pMsg  )
 {
     MMC_LMM_ACTION_RESULT_REQ_STRU     *pMmcActResult = VOS_NULL_PTR;
@@ -3023,17 +2605,7 @@ VOS_UINT32  NAS_EMM_CheckGuMtDetachTypePsReAttNotRequ( MsgBlock * pMsg  )
     return NAS_EMM_SUSPEND_GU_ACT_DOMAIN_NO;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_CheckGuMtDetachTypePsReAttRequ
- Description     : 判断GU的detach是非IMSI detach,且re_attach_req
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.Zhangcaixai 00179470      2011-5-30  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_CheckGuMtDetachTypePsReAttRequ( MsgBlock * pMsg  )
 {
     MMC_LMM_ACTION_RESULT_REQ_STRU     *pMmcActResult = VOS_NULL_PTR;
@@ -3054,17 +2626,7 @@ VOS_UINT32  NAS_EMM_CheckGuMtDetachTypePsReAttRequ( MsgBlock * pMsg  )
     return NAS_EMM_SUSPEND_GU_ACT_DOMAIN_NO;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProGuMtDetachRstCauseValue
- Description     : reattach_not_requeired时处理GU发来的DETACH 的cause value
- Input           : VOS_VOID
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.Zhangcaixia 00179470      2011-5-30  Draft Enact
-    2.sunjitan 00193151        2012-05-31  Modify     #25原因值也按照other处理
-*****************************************************************************/
 VOS_VOID NAS_EMM_ProGuMtDetachRstCauseValue( MsgBlock * pMsg )
 {
     MMC_LMM_ACTION_RESULT_REQ_STRU     *pMmcActResult = VOS_NULL_PTR;
@@ -3151,17 +2713,7 @@ VOS_VOID NAS_EMM_ProGuMtDetachRstCauseValue( MsgBlock * pMsg )
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProGuMoDetachRst
- Description     : 挂起状态下，处理GU发来的MO DETACH结果
- Input           : VOS_VOID
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010            2011-11-18   Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_EMM_ProGuMoDetachRst( MsgBlock * pMsg )
 {
     MMC_LMM_ACTION_RESULT_REQ_STRU     *pMmcActResult = VOS_NULL_PTR;
@@ -3221,17 +2773,7 @@ VOS_VOID NAS_EMM_ProGuMoDetachRst( MsgBlock * pMsg )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProGuLocalDetachRst
- Description     : 挂起状态下，处理GU发来的LOCAL DETACH结果
- Input           : VOS_VOID
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010            2011-11-18   Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_EMM_ProGuLocalDetachRst( MsgBlock * pMsg )
 {
     MMC_LMM_ACTION_RESULT_REQ_STRU     *pMmcActResult = VOS_NULL_PTR;
@@ -3287,18 +2829,7 @@ VOS_VOID NAS_EMM_ProGuLocalDetachRst( MsgBlock * pMsg )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProGuMtDetachRst
- Description     : 挂起状态下，处理GU发来的MT DETACH结果
- Input           : VOS_VOID
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.Zhangcaixia 00179470      2011-5-27   Draft Enact
-    2.lihong00150010            2011-11-18  Modify
-
-*****************************************************************************/
 VOS_VOID NAS_EMM_ProGuMtDetachRst( MsgBlock * pMsg )
 {
     MMC_LMM_ACTION_RESULT_REQ_STRU     *pMmcActResult = VOS_NULL_PTR;
@@ -3367,18 +2898,7 @@ VOS_VOID NAS_EMM_ProGuMtDetachRst( MsgBlock * pMsg )
 
     return;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_ProGuLauRst
- Description     : 挂起状态下，处理GU发来的LAU结果
- Input           : pstMsg---------------------MMC_LMM_ACTION_RESULT_REQ消息指针
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.Zhangcaixia 00179470      2011-5-27  Draft Enact
-    2.lihong 00150010      2011-09-26  Modify
-
-*****************************************************************************/
 VOS_VOID NAS_EMM_ProGuLauRst
 (
     MsgBlock                           *pstMsg
@@ -3449,16 +2969,7 @@ VOS_VOID NAS_EMM_ProGuLauRst
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProGuCmRst
- Description     : 挂起状态下，处理GU发来的CM结果
- Input           : pstMsg---------------------MMC_LMM_ACTION_RESULT_REQ消息指针
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2012-6-6  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_EMM_ProGuCmRst
 (
     MsgBlock                           *pstMsg
@@ -3500,16 +3011,7 @@ VOS_VOID NAS_EMM_ProGuCmRst
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProGuAbortRst
- Description     : 挂起状态下，处理GU发来的Abort结果
- Input           : pstMsg---------------------MMC_LMM_ACTION_RESULT_REQ消息指针
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2012-6-6  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_EMM_ProGuAbortRst
 (
     MsgBlock                           *pstMsg
@@ -3546,17 +3048,7 @@ VOS_VOID NAS_EMM_ProGuAbortRst
 
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProGuServiceRst
- Description     : 挂起状态下，处理GU发来的SERVICE结果
- Input           : VOS_VOID
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.Zhangcaixia 00179470      2011-5-27  Draft Enact
-    2.sunjitan 00193151        2012-05-31  Modify     #25原因值也按照other处理
-*****************************************************************************/
 VOS_VOID NAS_EMM_ProGuServiceRst( MsgBlock * pMsg )
 {
     MMC_LMM_ACTION_RESULT_REQ_STRU     *pMmcActResult = VOS_NULL_PTR;
@@ -3644,17 +3136,7 @@ VOS_VOID NAS_EMM_ProGuServiceRst( MsgBlock * pMsg )
 
     return;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_GuActionClearRegInfo
- Description     : GU ACTION导致的删L的GUTI,LVR TAI,KSI
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.Zhangcaixia 00179470      2011-5-27  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_GuActionClearRegInfo( VOS_UINT32 ulDeleteRplmn )
 {
     /*删除GUTI*/
@@ -3679,17 +3161,7 @@ VOS_VOID  NAS_EMM_GuActionClearRegInfo( VOS_UINT32 ulDeleteRplmn )
     NAS_LMM_WritePsLoc(NAS_NV_ITEM_UPDATE);
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcGuRejCause3
- Description     : GU拒绝原因为3的处理过程
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.Zhangcaixia 00179470      2011-5-27  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ProcGuAttRejCause3( VOS_VOID )
 {
     NAS_LMM_SetPsSimValidity(NAS_LMM_SIM_INVALID);
@@ -3714,17 +3186,7 @@ VOS_VOID  NAS_EMM_ProcGuAttRejCause3( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcGuRejCause7
- Description     : GU拒绝原因为7的处理过程
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2011-6-5  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ProcGuAttRejCause7( VOS_VOID )
 {
     NAS_LMM_SetPsSimValidity(NAS_LMM_SIM_INVALID);
@@ -3748,17 +3210,7 @@ VOS_VOID  NAS_EMM_ProcGuAttRejCause7( VOS_VOID )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcGuRejCause3
- Description     : GU DETACH 拒绝原因为3的处理过程
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.Zhangcaixia 00179470      2011-5-27  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ProcGuDettRejCause3( VOS_VOID )
 {
     NAS_LMM_SetPsSimValidity(NAS_LMM_SIM_INVALID);
@@ -3785,17 +3237,7 @@ VOS_VOID  NAS_EMM_ProcGuDettRejCause3( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcGuRejCause7
- Description     : GU DETACH 拒绝原因为7的处理过程
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2012-6-6  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ProcGuDettRejCause7( VOS_VOID )
 {
     NAS_LMM_SetPsSimValidity(NAS_LMM_SIM_INVALID);
@@ -3818,17 +3260,7 @@ VOS_VOID  NAS_EMM_ProcGuDettRejCause7( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcGuDettachRejCause11
- Description     : GU Attach拒绝原因为11的处理过程
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.Zhangcaixia 00179470      2011-5-27  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ProcGuDettachRejCause11( VOS_VOID )
 {
     /*进入EMM_SS_DEREG_NO_CELL_AVAILABLE的状态*/
@@ -3852,17 +3284,7 @@ VOS_VOID  NAS_EMM_ProcGuDettachRejCause11( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcGuDettachRejCause14
- Description     : GU Attach拒绝原因为14的处理过程
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2012-6-6  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ProcGuDettachRejCause14( VOS_VOID )
 {
     /* 删除GUTI后会自动保存EPS_LOC,所以需要先设置STATUS */
@@ -3882,17 +3304,7 @@ VOS_VOID  NAS_EMM_ProcGuDettachRejCause14( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcGuAttachRejCause11
- Description     : GU Attach拒绝原因为11的处理过程
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.Zhangcaixia 00179470      2011-5-27  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ProcGuAttachRejCause11( VOS_VOID )
 {
     /*进入EMM_SS_DEREG_NO_CELL_AVAILABLE的状态*/
@@ -3915,17 +3327,7 @@ VOS_VOID  NAS_EMM_ProcGuAttachRejCause11( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcGuAttachRejCause14
- Description     : GU Attach拒绝原因为14的处理过程
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2012-6-5  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ProcGuAttachRejCause14( VOS_VOID )
 {
     /* 删除GUTI后会自动保存EPS_LOC,所以需要先设置STATUS */
@@ -3945,17 +3347,7 @@ VOS_VOID  NAS_EMM_ProcGuAttachRejCause14( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcGuAttachAttemptCounterEq5
- Description     : GU AttachAttachAttemptCounter为5的处理过程
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.Zhangcaixia 00179470      2011-5-27  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ProcGuAttachAttemptCounterEq5( MsgBlock * pMsg )
 {
     MMC_LMM_ACTION_RESULT_REQ_STRU     *pMmcActResult = VOS_NULL_PTR;
@@ -4009,17 +3401,7 @@ VOS_VOID  NAS_EMM_ProcGuAttachAttemptCounterEq5( MsgBlock * pMsg )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcGuRauRejCause9
- Description     : GU RAU rej cause为9的处理过程
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.Zhangcaixia 00179470      2011-5-27  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ProcGuRauSerRejCause9( VOS_VOID )
 {
     /* 删除GUTI后会自动保存EPS_LOC,所以需要先设置STATUS */
@@ -4034,17 +3416,7 @@ VOS_VOID  NAS_EMM_ProcGuRauSerRejCause9( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcGuRauRejCause11
- Description     : GU RAU rej cause为11的处理过程
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.Zhangcaixia 00179470      2011-5-27  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ProcGuRauSerRejCause11( VOS_VOID )
 {
     /*进入EMM_SS_DEREG_NO_CELL_AVAILABLE的状态*/
@@ -4064,17 +3436,7 @@ VOS_VOID  NAS_EMM_ProcGuRauSerRejCause11( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcGuRauRejCause14
- Description     : GU RAU rej cause为14的处理过程
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2012-6-6  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ProcGuRauSerRejCause14( VOS_VOID )
 {
     /* 删除GUTI后会自动保存EPS_LOC,所以需要先设置STATUS */
@@ -4090,18 +3452,7 @@ VOS_VOID  NAS_EMM_ProcGuRauSerRejCause14( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcGuRauRejCause13
- Description     : GU RAU rej cause为11的处理过程
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.Zhangcaixia 00179470      2011-5-27  Draft Enact
-    2.lihong 00150010           2012-12-18 Modify:Emergency
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ProcGuRauSerRejCause13( VOS_VOID )
 {
     /*进入EMM_SS_DEREG_NO_CELL_AVAILABLE的状态*/
@@ -4124,17 +3475,7 @@ VOS_VOID  NAS_EMM_ProcGuRauSerRejCause13( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcGuLauRejOther
- Description     : GU LAU rej cause为其他的处理过程
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2012-6-6  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ProcGuLauAttemptCounter(MsgBlock * pMsg  )
 {
     MMC_LMM_ACTION_RESULT_REQ_STRU     *pMmcActResult = VOS_NULL_PTR;
@@ -4156,17 +3497,7 @@ VOS_VOID  NAS_EMM_ProcGuLauAttemptCounter(MsgBlock * pMsg  )
 
 
 
-/*****************************************************************************
- Function Name   : NAS_LMM_ProcRrcSysCfgCnfBandNotSupport
- Description     :
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.    zhangcaixia  00179470      2011-09-10  Draft Enact
-    2.    lifuxin      00253982      2014-10-31  建链流程重构
-*****************************************************************************/
 VOS_VOID  NAS_LMM_ProcRrcSysCfgCnfBandNotSupport( VOS_VOID )
 {
     NAS_LMM_EstingOrReleasingProcessTimerHandle();
@@ -4207,17 +3538,7 @@ VOS_VOID  NAS_LMM_ProcRrcSysCfgCnfBandNotSupport( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_ProcRrcSysCfgCnfLteNotActive
- Description     :
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.    zhangcaixia  00179470      2011-09-10  Draft Enact
-    2.    lifuxin      00253982      2014-10-31  建链流程重构
-*****************************************************************************/
 VOS_VOID  NAS_LMM_ProcRrcSysCfgCnfLteNotActive( VOS_VOID )
 {
 
@@ -4258,18 +3579,7 @@ VOS_VOID  NAS_LMM_ProcRrcSysCfgCnfLteNotActive( VOS_VOID )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_LMM_ProcRrcSysCfgCnfNotSuspend
- Description     :
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.    zhangcaixia  00179470      2011-09-10  Draft Enact
-    2.    sunjitan 00193151          2012-01-17  Modify for UE radio capbility
-    3.    lifuxin  00253982          2014-10-31  建链流程重构
-*****************************************************************************/
 VOS_UINT32  NAS_LMM_ProcRrcSysCfgCnfNotSuspend(VOS_VOID)
 {
     VOS_UINT32                          ulCurEmmStat;
@@ -4376,18 +3686,7 @@ VOS_UINT32  NAS_LMM_ProcRrcSysCfgCnfNotSuspend(VOS_VOID)
     return ulRslt;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsSuspendSsSysCfgOriWaitOtherMsgSusRsp
- Description     :
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhangcaixia 179470      2011-9-10  Draft Enact
-    2.sunjitan 00193151   2012-05-24 增加清除Resume触发和类型记录信息
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsSuspendSsSysCfgOriWaitOtherMsgSusRsp(
                                         VOS_UINT32  ulMsgId,
                                         VOS_VOID   *pMsgStru  )
@@ -4428,12 +3727,10 @@ VOS_UINT32  NAS_EMM_MsSuspendSsSysCfgOriWaitOtherMsgSusRsp(
 
         NAS_LMM_SetEmmInfoTriggerTauSysChange(NAS_EMM_NO);
 
-        /* del by y00307272 for DTS2015122301277 ,2015-12-26，Begin */
         /* DEL CAUSE:csfb到G下，挂起ps并通知LNAS，随后电话挂断后FR失败，回退到G下丢网，搜L
          失败，搜W失败(搜时MMC会给LNAS发挂起，我们这是会设置ps not suspension)，在搜到L判断
          PS没有挂起，不发TAU，被叫失败 */
         /*NAS_LMM_SetEmmInfoPsState(GMM_LMM_GPRS_NOT_SUSPENSION);*/
-        /* del by y00307272 for DTS2015122301277 ,2015-12-26，End */
         /* 挂起结束，改状态 */
         NAS_EMM_SuspendEndStateChng();
 
@@ -4521,18 +3818,7 @@ VOS_UINT32  NAS_EMM_MsSuspendSsSomeStatusMsgIntraTauReq( VOS_UINT32  ulMsgId,
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegInitRcvLrrcSyscfgCnfProc
- Description     : 主状态EMM_MS_REG_INIT收到LRRC的LRRC_LMM_SYS_CFG_CNF时的处理
-                   主要用于UE无线能力上报。
- Input           : None
- Output          : None
- Return          : VOS_UINT32
- History         :
-    1.sunjitan 00193151      2012-01-17  Draft Enact
-    2.niuxiufan 00181501     2012-05-06  modify
 
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsRegInitRcvLrrcSyscfgCnfProc(VOS_VOID)
 {
 
@@ -4576,17 +3862,7 @@ VOS_UINT32  NAS_EMM_MsRegInitRcvLrrcSyscfgCnfProc(VOS_VOID)
     return  NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegSsAnyStateRcvLrrcSyscfgCnfCommProc
- Description     : 主状态EMM_MS_REG收到LRRC的LRRC_LMM_SYS_CFG_CNF时的处理
-                   主要用于UE无线能力上报。
- Input           : None
- Output          : None
- Return          : VOS_UINT32
- History         :
-    1.sunjitan 00193151      2012-01-17  Draft Enact
-    2.liuhua   00212067      2012-05-29  Correct timer id of T3411
-*****************************************************************************/
+
 VOS_UINT32  NAS_EMM_MsRegSsAnyStateRcvLrrcSyscfgCnfCommProc(VOS_VOID)
 {
     NAS_LMM_PTL_TI_ENUM_UINT16  enPtlTimerId;
@@ -4634,16 +3910,7 @@ VOS_UINT32  NAS_EMM_MsRegSsAnyStateRcvLrrcSyscfgCnfCommProc(VOS_VOID)
     return  NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsTauSerRcvLrrcSyscfgCnfProc
- Description     : 主状态EMM_MS_TAU_INIT或EMM_MS_SER_INIT, 等待网侧回复时收到
-                    LRRC的LRRC_LMM_SYS_CFG_CNF时的处理，主要用于UE无线能力上报。
- Input           : None
- Output          : None
- Return          : VOS_UINT32
- History         :
-    1.sunjitan 00193151      2012-01-17  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  NAS_EMM_MsTauSerRcvLrrcSyscfgCnfProc(VOS_VOID)
 {
     MMC_LMM_TAU_RSLT_ENUM_UINT32        ulTauRslt = MMC_LMM_TAU_RSLT_BUTT;
@@ -4701,16 +3968,7 @@ VOS_UINT32  NAS_EMM_MsTauSerRcvLrrcSyscfgCnfProc(VOS_VOID)
     return  NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegWaitAccGrantIndRcvLrrcSyscfgCnfProc
- Description     : 主状态EMM_MS_REG子状态WAIT_ACCESS_GRANT_IND收到
-                   LRRC的LRRC_LMM_SYS_CFG_CNF时的处理，主要用于UE无线能力上报。
- Input           : None
- Output          : None
- Return          : VOS_UINT32
- History         :
-    1.sunjitan 00193151      2012-01-17  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  NAS_EMM_MsRegSsWaitAccGrantIndRcvLrrcSyscfgCnfProc(VOS_VOID)
 {
 
@@ -4759,15 +4017,7 @@ VOS_UINT32  NAS_EMM_MsRegSsWaitAccGrantIndRcvLrrcSyscfgCnfProc(VOS_VOID)
 
     return  NAS_LMM_MSG_HANDLED;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegInitRcvLrrcSuspendIndProc
- Description     : 主状态EMM_MS_REG_INIT收到LRRC的LRRC_LMM_SUSPEND_IND时的处理
- Input           : None
- Output          : None
- Return          : VOS_VOID
- History         :
-    1.niuxiufan 00181501      2012-06-12  Draft Enact
-*****************************************************************************/
+
 VOS_VOID  NAS_EMM_MsRegInitRcvLrrcSuspendIndProc(const MsgBlock * pMsg )
 {
     VOS_UINT32                  ulMsgId = ID_LRRC_LMM_SUSPEND_IND;
@@ -4809,15 +4059,7 @@ VOS_VOID  NAS_EMM_MsRegInitRcvLrrcSuspendIndProc(const MsgBlock * pMsg )
     }
 
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_MsDeregInitRcvLrrcSuspendIndProc
- Description     : 主状态EMM_MS_DEREG_INIT收到LRRC的LRRC_LMM_SUSPEND_IND时的处理
- Input           : None
- Output          : None
- Return          : VOS_VOID
- History         :
-    1.niuxiufan 00181501      2012-06-12  Draft Enact
-*****************************************************************************/
+
 VOS_VOID  NAS_EMM_MsDeregInitRcvLrrcSuspendIndProc(const MsgBlock * pMsg )
 {
     (VOS_VOID)pMsg;
@@ -4858,16 +4100,7 @@ VOS_VOID  NAS_EMM_MsDeregInitRcvLrrcSuspendIndProc(const MsgBlock * pMsg )
     }
 
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_MsSerInitRcvLrrcSuspendIndProc
- Description     : 主状态EMM_MS_SER_INIT收到LRRC的LRRC_LMM_SUSPEND_IND时的处理
- Input           : None
- Output          : None
- Return          : VOS_VOID
- History         :
-    1.niuxiufan 00181501      2012-06-12  Draft Enact
-    2.lihong 00150010         2012-12-18  Modify:Emergency
-*****************************************************************************/
+
 VOS_VOID  NAS_EMM_MsSerInitRcvLrrcSuspendIndProc(const MsgBlock * pMsg )
 {
     VOS_UINT32                  ulMsgId = ID_LRRC_LMM_SUSPEND_IND;
@@ -4971,15 +4204,7 @@ VOS_VOID  NAS_EMM_MsSerInitRcvLrrcSuspendIndProc(const MsgBlock * pMsg )
     }
 
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_MsTauInitRcvLrrcSuspendIndProc
- Description     : 主状态EMM_MS_TAU_INIT收到LRRC的LRRC_LMM_SUSPEND_IND时的处理
- Input           : None
- Output          : None
- Return          : VOS_VOID
- History         :
-    1.niuxiufan 00181501      2012-06-12  Draft Enact
-*****************************************************************************/
+
 VOS_VOID  NAS_EMM_MsTauInitRcvLrrcSuspendIndProc(const MsgBlock * pMsg )
 {
     MMC_LMM_TAU_RSLT_ENUM_UINT32        ulTauRslt = MMC_LMM_TAU_RSLT_BUTT;
@@ -4995,15 +4220,7 @@ VOS_VOID  NAS_EMM_MsTauInitRcvLrrcSuspendIndProc(const MsgBlock * pMsg )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsAuthInitRcvLrrcSuspendIndProc
- Description     : 主状态EMM_MS_AUTH_INIT收到LRRC的LRRC_LMM_SUSPEND_IND时的处理
- Input           : None
- Output          : None
- Return          : VOS_VOID
- History         :
-    1.niuxiufan 00181501      2012-06-12  Draft Enact
-*****************************************************************************/
+
 VOS_VOID  NAS_EMM_MsAuthInitRcvLrrcSuspendIndProc(const MsgBlock * pMsg )
 {
     (VOS_VOID)pMsg;
@@ -5018,17 +4235,7 @@ VOS_VOID  NAS_EMM_MsAuthInitRcvLrrcSuspendIndProc(const MsgBlock * pMsg )
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRrcConnRelInitRcvLrrcSuspendIndProc
- Description     : 在链路释放状态收到LRRC的挂起消息处理
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2012-8-20  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_MsRrcConnRelInitRcvLrrcSuspendIndProc( VOS_VOID)
 {
     if (NAS_EMM_CONN_RELEASING != NAS_EMM_GetConnState())
@@ -5057,15 +4264,7 @@ VOS_VOID  NAS_EMM_MsRrcConnRelInitRcvLrrcSuspendIndProc( VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsSuspendSsRrcOriWaitMmcSuspendFailProc
- Description     : 主状态EMM_MS_SUSPEND 子状态WAIT_MMC_SUSPEND_RSP收到MMC的挂起失败或者超时的处理
- Input           : None
- Output          : None
- Return          : VOS_VOID
- History         :
-    1.niuxiufan 00181501      2012-06-12  Draft Enact
-*****************************************************************************/
+
 VOS_VOID  NAS_EMM_MsSuspendSsRrcOriWaitMmcSuspendFailProc(VOS_VOID)
 {
     NAS_LMM_FSM_STATE_STRU             *pstStatBeforeSuspend  = NAS_EMM_NULL_PTR;

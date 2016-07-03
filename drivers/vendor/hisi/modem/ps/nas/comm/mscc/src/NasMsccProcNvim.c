@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMsccProcNvim.c
-  版 本 号   : 初稿
-  作    者   : y00245242
-  生成日期   : 2015年01月26日
-  功能描述   : MSCC module读NVIM处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年01月26日
-    作    者   : y00245242
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -51,24 +36,7 @@ extern "C"{
 /*****************************************************************************
   3 函数定义
 *****************************************************************************/
-/*****************************************************************************
-Function Name   :   NAS_MSCC_ReadNvim_SwitchOn
-Description     :   This function is used to read NVIM info while switch on.
-Input parameters:   None.
-Output parameters:  None.
-Return Value    :   VOS_VOID.
-Modify History:
-    1)  Date    :   2014-02-02
-        Author  :   a00295761
-        Modify content :    Create
-    2)  Date    :   2015-04-11
-        Author  :   a00295761
-        Modify content :CDMA 1X Iteration Modified
-    3.  日    期   : 2016年1月6日
-        作    者   : w00242748
-        修改内容   : DTS2015072705348:进入紧急呼回呼模式后，挂起HRPD和LTE；退出紧急呼
-                     回呼模式后，再进行搜网，紧急呼回呼模式下，不进行其他任何形式搜网；
-*****************************************************************************/
+
 
 VOS_VOID NAS_MSCC_ReadNvim(VOS_VOID)
 {
@@ -105,25 +73,7 @@ VOS_VOID NAS_MSCC_ReadImsCfgInfoNvim(VOS_VOID)
     NAS_MSCC_ReadWaitImsVoiceCapTimerLenNvim();
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_ReadImsRatSupportNvim
- 功能描述  : 初始化IMS支持信息
- 输入参数  : pstImsCfgInfo -- 本地保存IMS NV配置信息地址
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2015年01月27日
-   作    者   : y00245242
-   修改内容   : 新生成函数
- 2.日    期   : 2015年04月13日
-   作    者   : w00176964
-   修改内容   : CDMA 1x Iteration 10 Modified
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_ReadImsRatSupportNvim(VOS_VOID)
 {
 #if (FEATURE_ON == FEATURE_IMS)
@@ -179,24 +129,7 @@ VOS_VOID NAS_MSCC_ReadImsRatSupportNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_ReadVoiceDomainNvim
- 功能描述  : 初始化语音优选域
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年01月29日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
- 2.日    期   : 2015年04月13日
-   作    者   : w00176964
-   修改内容   : CDMA 1x Iteration 10 Modified
-*****************************************************************************/
 VOS_VOID NAS_MSCC_ReadVoiceDomainNvim(VOS_VOID)
 {
 #if (FEATURE_ON == FEATURE_IMS)
@@ -246,24 +179,7 @@ VOS_VOID NAS_MSCC_ReadVoiceDomainNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_ReadWaitImsVoiceCapTimerLenNvim
- 功能描述  : 从NV中获取等待IMS VOICE CAP的定时器时长
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年01月29日
-   作    者   : y00245242
-   修改内容   : 新生成函数
- 2.日    期   : 2015年4月13日
-   作    者   : w00176964
-   修改内容   : CDMA 1x Iteration Modified
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_ReadWaitImsVoiceCapTimerLenNvim(VOS_VOID)
 {
 #if (FEATURE_ON == FEATURE_IMS)
@@ -626,20 +542,7 @@ VOS_UINT8 NAS_MSCC_ReadMlplMsplNvim(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_ReadEmcCallBackCfgNvim
- 功能描述  : 从NVIM中获取紧急呼回呼配置信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月6日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_ReadEmcCallBackCfgNvim(VOS_VOID)
 {
     CNAS_NVIM_1X_CALLBACK_CFG_STRU      stNvCallBackCfg;
@@ -662,20 +565,7 @@ VOS_VOID NAS_MSCC_ReadEmcCallBackCfgNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_Read1xServiceClSysAcqStrategyCfgNvim
- 功能描述  : 从NVIM中获取1x有服务时CL系统捕获策略配置信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月10日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_Read1xServiceClSysAcqStrategyCfgNvim(VOS_VOID)
 {
     NAS_NVIM_1X_SERVICE_CL_SYSTEM_ACQUIRE_STRATEGY_CFG_STRU stNvim1xSrvClSysAcqStrategyCfg;

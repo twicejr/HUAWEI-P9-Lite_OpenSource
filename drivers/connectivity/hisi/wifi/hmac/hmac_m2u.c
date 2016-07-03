@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : hmac_m2u.c
-  版 本 号   : 初稿
-  作    者   : t00231215
-  生成日期   : 2014年4月23日
-  最近修改   :
-  功能描述   : 组播转单播处理函数所在文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年4月23日
-    作    者   : t00231215
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -45,21 +28,7 @@ extern "C" {
 *****************************************************************************/
 
 
-/*****************************************************************************
- 函 数 名  : hmac_m2u_add_member_list
- 功能描述  : 将一个组成员加入到相对应的组中去
- 输入参数  : pst_grp_list 组播组结构体; pst_list_entry 待更新节点结构体
- 输出参数  : ul_ret
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月4日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_m2u_add_member_list(hmac_m2u_grp_list_entry_stru *pst_grp_list, hmac_m2u_list_update_stru *pst_list_entry)
 {
     hmac_m2u_grp_member_stru *pst_grp_member;
@@ -82,21 +51,7 @@ oal_uint32 hmac_m2u_add_member_list(hmac_m2u_grp_list_entry_stru *pst_grp_list, 
     oal_set_mac_addr(pst_grp_member->auc_grp_member_addr, pst_list_entry->auc_grp_member);
     return ul_ret;
 }
-/*****************************************************************************
- 函 数 名  : hmac_m2u_remove_expired_member
- 功能描述  : 删除超时的组成员
- 输入参数  : pst_grp_list 组播组结构体; pst_hmac_vap vap 结构体; ul_nowtimestamp nowtime变量
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月26日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_m2u_remove_expired_member(hmac_m2u_grp_list_entry_stru *pst_grp_list,
                                               hmac_vap_stru  *pst_hmac_vap,
                                               oal_uint32 ul_nowtimestamp)
@@ -127,21 +82,7 @@ oal_uint32  hmac_m2u_remove_expired_member(hmac_m2u_grp_list_entry_stru *pst_grp
     return ul_ret;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_m2u_remove_all_grp_member
- 功能描述  : 从一个给定的组播组下，删除某个组播组成员
- 输入参数  : pst_grp_list 组播组结构体; puc_grp_member_addr 组播成员IP地址
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月6日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void  hmac_m2u_remove_all_member_grp(hmac_m2u_grp_list_entry_stru *pst_grp_list,
                                                                 oal_uint8 *puc_grp_member_addr)
 {
@@ -164,21 +105,7 @@ OAL_STATIC oal_void  hmac_m2u_remove_all_member_grp(hmac_m2u_grp_list_entry_stru
     }
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_m2u_find_member_src
- 功能描述  : 根据成员的mac地址以及组播源地址返回所需的组成员
- 输入参数  : pst_grp_list 组播组结构体; puc_grp_member_addr 组播成员IP地址; ul_src_ip_addr 组播源IP地址
- 输出参数  : pst_grp_member 组播组成员结构体 OR 空指针
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月6日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC hmac_m2u_grp_member_stru *hmac_m2u_find_member_src(hmac_m2u_grp_list_entry_stru *pst_grp_list,
                                                                         oal_uint8 *puc_grp_member_addr,
                                                                         oal_uint32 ul_src_ip_addr)
@@ -202,21 +129,7 @@ OAL_STATIC hmac_m2u_grp_member_stru *hmac_m2u_find_member_src(hmac_m2u_grp_list_
     return OAL_PTR_NULL;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_m2u_find_member
- 功能描述  : 根据成员的mac地址返回所需的组成员
- 输入参数  : pst_grp_list 组播组结构体; puc_grp_member_addr 组播组成员IP地址
- 输出参数  : pst_grp_member 组播组成员结构体 OR 空指针
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月6日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC hmac_m2u_grp_member_stru *hmac_m2u_find_member(hmac_m2u_grp_list_entry_stru *pst_grp_list,
                                                                    oal_uint8 *puc_grp_member_addr)
 {
@@ -240,21 +153,7 @@ OAL_STATIC hmac_m2u_grp_member_stru *hmac_m2u_find_member(hmac_m2u_grp_list_entr
 }
 
 
-/*****************************************************************************
- 函 数 名  : hmac_m2u_find_group_list
- 功能描述  : 根据组的mac地址返回所需的组
- 输入参数  : pst_hmac_vap vap结构体; puc_grp_addr 组播组mac地址指针
- 输出参数  : pst_grp_list_member 组播组结构体 OR 空指针
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月26日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC hmac_m2u_grp_list_entry_stru *hmac_m2u_find_group_list(hmac_vap_stru  *pst_hmac_vap , oal_uint8 *puc_grp_addr)
 {
     hmac_m2u_snoop_list_stru         *pst_snp_list;
@@ -285,21 +184,7 @@ OAL_STATIC hmac_m2u_grp_list_entry_stru *hmac_m2u_find_group_list(hmac_vap_stru 
     return OAL_PTR_NULL;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_m2u_create_grp_list
- 功能描述  : 根据组播组的MAC地址创建一个组，如果此组存在则返回该组，否则重新创建
- 输入参数  : pst_hmac_vap vap结构体; puc_grp_addr 组播组mac地址指针
- 输出参数  : pst_grp_list_member 组播组结构体
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月26日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC hmac_m2u_grp_list_entry_stru *hmac_m2u_create_grp_list(hmac_vap_stru *pst_hmac_vap, oal_uint8 *puc_grp_addr)
 {
     hmac_m2u_snoop_list_stru         *pst_snp_list;
@@ -332,21 +217,7 @@ OAL_STATIC hmac_m2u_grp_list_entry_stru *hmac_m2u_create_grp_list(hmac_vap_stru 
     return (pst_grp_list_member);
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_m2u_Update_Snoop_List
- 功能描述  : 根据接收到的用户信息更新链表
- 输入参数  : pst_list_entry  待更新节点结构体
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月26日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_m2u_update_snoop_list(hmac_m2u_list_update_stru *pst_list_entry)
 {
     hmac_m2u_grp_list_entry_stru  *pst_grp_list;
@@ -420,21 +291,7 @@ oal_uint32 hmac_m2u_update_snoop_list(hmac_m2u_list_update_stru *pst_list_entry)
     return ul_ret;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_m2u_show_snoop_deny_table
- 功能描述  : 打印黑名单
- 输入参数  : pst_hmac_vap vap结构体
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月12日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void hmac_m2u_show_snoop_deny_table(hmac_vap_stru *pst_hmac_vap)
 {
     hmac_m2u_stru             *pst_m2u;
@@ -470,21 +327,7 @@ oal_void hmac_m2u_show_snoop_deny_table(hmac_vap_stru *pst_hmac_vap)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_m2u_snoop_is_denied
- 功能描述  : 所加入组播组的IP地址是否在黑名单内
- 输入参数  : pst_hmac_vap vap结构体; ul_grpaddr 组播组的IP地址
- 输出参数  : OAL_FALSE OR OAL_TRUE
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月26日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32 hmac_m2u_snoop_is_denied(hmac_vap_stru *pst_hmac_vap, oal_uint32 ul_grpaddr)
 {
     oal_uint8                 uc_idx;
@@ -513,21 +356,7 @@ OAL_STATIC oal_uint32 hmac_m2u_snoop_is_denied(hmac_vap_stru *pst_hmac_vap, oal_
     return OAL_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_m2u_clear_deny_table
- 功能描述  : 清空黑名单
- 输入参数  : pst_hmac_vap vap结构体
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月1日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void hmac_m2u_clear_deny_table(hmac_vap_stru *pst_hmac_vap)
 {
     hmac_m2u_snoop_list_stru *pst_snp_list;
@@ -542,21 +371,7 @@ oal_void hmac_m2u_clear_deny_table(hmac_vap_stru *pst_hmac_vap)
     pst_snp_list->uc_deny_count = 3;
     return;
 }
-/*****************************************************************************
- 函 数 名  : hmac_m2u_add__snoop_deny_entry
- 功能描述  : 增加黑名单成员
- 输入参数  : pst_hmac_vap vap结构体; ul_grpaddr 组播组的IP地址
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月1日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void hmac_m2u_add_snoop_deny_entry(hmac_vap_stru *pst_hmac_vap, oal_uint32 *ul_grpaddr)
 {
     oal_uint8                 uc_idx;
@@ -581,20 +396,7 @@ oal_void hmac_m2u_add_snoop_deny_entry(hmac_vap_stru *pst_hmac_vap, oal_uint32 *
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : hmac_m2u_print_all_snoop_list
- 功能描述  : 输出snoop表所有成员
- 输入参数  : pst_hmac_vap vap结构体
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月9日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-*****************************************************************************/
 /*lint -e550*/
 oal_void hmac_m2u_print_all_snoop_list(hmac_vap_stru *pst_hmac_vap)
 {
@@ -669,21 +471,7 @@ oal_void hmac_m2u_print_all_snoop_list(hmac_vap_stru *pst_hmac_vap)
     }
 }
 /*lint +e550*/
-/*****************************************************************************
- 函 数 名  : hmac_m2u_check
- 功能描述  : 组播转单播输入检查
- 输入参数  : pst_hmac_vap vap结构体;pst_ether_header 以太网头结构体
- 输出参数  : OAL_FAIL OR OAL_SUCC
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月2日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_m2u_check(hmac_vap_stru *pst_hmac_vap, mac_ether_header_stru *pst_ether_header)
 {
     oal_uint32       ul_ret  = OAL_SUCC;
@@ -698,21 +486,7 @@ oal_uint32 hmac_m2u_check(hmac_vap_stru *pst_hmac_vap, mac_ether_header_stru *ps
     return ul_ret;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_m2u_igmp_v1v2_update
- 功能描述  : IGMP V1 V2 报文更新snoop链表
- 输入参数  : pst_hmac_vap vap结构体; st_list_entry 待更新的节点结构体; pst_igmp IGMP报文结构体
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月2日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_m2u_igmp_v1v2_update(hmac_vap_stru *pst_hmac_vap, hmac_m2u_list_update_stru *pst_list_entry, mac_igmp_header_stru *pst_igmp)
 {
     oal_uint32           ul_group_addr = 0;                 /* to hold group address from group record */
@@ -752,21 +526,7 @@ oal_uint32 hmac_m2u_igmp_v1v2_update(hmac_vap_stru *pst_hmac_vap, hmac_m2u_list_
     ul_ret = hmac_m2u_update_snoop_list(pst_list_entry);
     return ul_ret;
 }
-/*****************************************************************************
- 函 数 名  : hmac_m2u_igmp_v3_update
- 功能描述  : IGMP V3报文更新snoop链表
- 输入参数  : pst_hmac_vap vap结构体; st_list_entry 待更新的节点结构体; pst_igmpr3 IGMP v3报文结构体
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月2日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_m2u_igmp_v3_update(hmac_vap_stru *pst_hmac_vap, hmac_m2u_list_update_stru *pst_list_entry, mac_igmp_v3_report_stru *pst_igmpr3)
 {
     oal_uint32                           ul_group_addr = 0;                  /* to hold group address from group record */
@@ -909,21 +669,7 @@ oal_uint32 hmac_m2u_igmp_v3_update(hmac_vap_stru *pst_hmac_vap, hmac_m2u_list_up
     }
     return ul_ret;
 }
-/*****************************************************************************
- 函 数 名  : hmac_m2u_snoop_inspecting
- 功能描述  : 监听IGMP报文来创建组播组链表
- 输入参数  : pst_hmac_vap vap结构体; pst_hmac_user user结构体; pst_buf netbuf结构体
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月26日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void hmac_m2u_snoop_inspecting(hmac_vap_stru *pst_hmac_vap, hmac_user_stru *pst_hmac_user, oal_netbuf_stru *pst_buf)
 {
     mac_ether_header_stru                *pst_ether_header;
@@ -1030,21 +776,7 @@ oal_void hmac_m2u_snoop_inspecting(hmac_vap_stru *pst_hmac_vap, hmac_user_stru *
     }
     return;
 }
-/*****************************************************************************
- 函 数 名  : hmac_m2u_count_member_anysrclist
- 功能描述  : 找出一个组播组内,组播源为所有源的所有STA用户
- 输入参数  : pst_grp_list 组播组结构体; puc_table 组播组成员所在指针数组; us_timestamp nowtime变量
- 输出参数  : uc_count
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月27日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint8 hmac_m2u_count_member_anysrclist(hmac_m2u_grp_list_entry_stru *pst_grp_list, oal_uint8 *puc_table,
                                                         oal_uint32 ul_timestamp)
 {
@@ -1072,23 +804,7 @@ OAL_STATIC oal_uint8 hmac_m2u_count_member_anysrclist(hmac_m2u_grp_list_entry_st
     return (uc_count);
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_m2u_count_member_src_list
- 功能描述  : 找出一个组播组内,组播源为指定源的所有STA用户
- 输入参数  : pst_grp_list 组播组结构体; ul_src_ip_addr 组播源IP地址;
-             puc_table 组播组成员的MAC地址所在指针数组
-             us_timestamp nowtime
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月27日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 OAL_STATIC oal_uint8 hmac_m2u_count_member_src_list(hmac_m2u_grp_list_entry_stru *pst_grp_list,
                                                     oal_uint32 ul_src_ip_addr, oal_uint8 *puc_table,
@@ -1140,24 +856,7 @@ OAL_STATIC oal_uint8 hmac_m2u_count_member_src_list(hmac_m2u_grp_list_entry_stru
      }
     return (uc_count);
 }
-/*****************************************************************************
- 函 数 名  : hmac_m2u_get_snooplist_member
- 功能描述  : 找到一个group内需要该组播源的所有STA用户
- 输入参数  : pst_hmac_vap vap结构体;
-             puc_grp_addr  组播组IP地址;
-             ul_src_ip_addr 组播源IP地址;
-             puc_table 组播组成员的MAC地址所在指针数组
- 输出参数  : uc_count
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月27日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 OAL_STATIC oal_uint8 hmac_m2u_get_snooplist_member(hmac_vap_stru *pst_hmac_vap, oal_uint8 *puc_grp_addr,
                                 oal_uint32 ul_src_ip_addr, oal_uint8 *puc_table)
@@ -1179,21 +878,7 @@ OAL_STATIC oal_uint8 hmac_m2u_get_snooplist_member(hmac_vap_stru *pst_hmac_vap, 
 
     return (uc_count);
 }
-/*****************************************************************************
- 函 数 名  : hmac_m2u_remove_node_grp
- 功能描述  : 删除一个组播组下属于特定STA的节点，如果该入参STA为空，则清空该组播组
- 输入参数  : pst_grp_list 组播组结构体; pst_hmac_user user结构体
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月27日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void hmac_m2u_remove_node_grp(hmac_m2u_grp_list_entry_stru *pst_grp_list, hmac_user_stru *pst_hmac_user)
 {
     hmac_m2u_grp_member_stru *pst_grp_member;
@@ -1213,21 +898,7 @@ OAL_STATIC oal_void hmac_m2u_remove_node_grp(hmac_m2u_grp_list_entry_stru *pst_g
         }
     }
 }
-/*****************************************************************************
- 函 数 名  : hmac_m2u_clean_snp_list
- 功能描述  : 清空组播组链表以及组播组内的成员
- 输入参数  : pst_hmac_vap vap结构体
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月28日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void hmac_m2u_clean_snp_list(hmac_vap_stru *pst_hmac_vap)
 {
     hmac_m2u_stru                 *pst_m2u;
@@ -1250,21 +921,7 @@ OAL_STATIC oal_void hmac_m2u_clean_snp_list(hmac_vap_stru *pst_hmac_vap)
         OAL_MEM_FREE(pst_grp_list, OAL_TRUE);
     }
 }
-/*****************************************************************************
- 函 数 名  : hmac_m2u_cleanup_snoopwds_node
- 功能描述  : 清空各个组播组内的某个STA用户
- 输入参数  : pst_hmac_user user结构体
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月28日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void hmac_m2u_cleanup_snoopwds_node(hmac_user_stru *pst_hmac_user)
 {
     hmac_vap_stru                 *pst_hmac_vap ;
@@ -1303,21 +960,7 @@ oal_void hmac_m2u_cleanup_snoopwds_node(hmac_user_stru *pst_hmac_user)
         }
     }
 }
-/*****************************************************************************
- 函 数 名  : hmac_m2u_tx_event
- 功能描述  : 组播转单播，单播封装802.11头以及发送事件
- 输入参数  : pst_vap vap结构体; pst_user user结构体; pst_buf netbuf结构体
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月2日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_m2u_tx_event( hmac_vap_stru *pst_vap, hmac_user_stru *pst_user, oal_netbuf_stru *pst_buf)
 {
     frw_event_stru          *pst_event;        /* 事件结构体 */
@@ -1376,20 +1019,7 @@ oal_uint32 hmac_m2u_tx_event( hmac_vap_stru *pst_vap, hmac_user_stru *pst_user, 
 
      return ul_ret;
 }
-/*****************************************************************************
- 函 数 名  : hmac_m2u_convert_loop_end
- 输入参数  : pst_vap vap结构体; pst_buf netbuf 结构体
- 输出参数  : ul_ret
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月9日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void hmac_m2u_convert_loop_end(oal_netbuf_stru *pst_copy_buf, oal_netbuf_stru **pst_buf,
                                     oal_uint8 *puc_newmaccnt, oal_uint8 *puc_newmacidx)
 {
@@ -1404,21 +1034,7 @@ oal_void hmac_m2u_convert_loop_end(oal_netbuf_stru *pst_copy_buf, oal_netbuf_str
         (*puc_newmaccnt)--;
     }
 }
-/*****************************************************************************
- 函 数 名  : hmac_m2u_snoop_convert_count
- 功能描述  : 组播转单播发送计数
- 输入参数  : pst_vap vap结构体; pst_buf netbuf 结构体
- 输出参数  : ul_ret
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月25日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void hmac_m2u_snoop_convert_count(hmac_vap_stru *pst_vap, oal_uint32 uc_newmaccnt, oal_uint32 ul_ret, oal_netbuf_stru *pst_buf)
 {
     /* ucast event fail 的发送计数 */
@@ -1447,21 +1063,7 @@ oal_void hmac_m2u_snoop_convert_count(hmac_vap_stru *pst_vap, oal_uint32 uc_newm
         }
     }
 }
- /*****************************************************************************
- 函 数 名  : hmac_m2u_snoop_change_mac_hdr
- 功能描述  : 组播转单播发送计数
- 输入参数  : pst_vap vap结构体; pst_buf netbuf 结构体
- 输出参数  : ul_ret
- 返 回 值  :
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年9月25日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
+ 
 oal_void hmac_m2u_snoop_change_mac_hdr(hmac_m2u_stru *pst_m2u, mac_ether_header_stru  **pst_ucast_ether_hdr, oal_netbuf_stru *pst_buf)
 {
     mcast_tunnel_hdr_stru  *pst_mcast_tunHdr;
@@ -1489,21 +1091,7 @@ oal_void hmac_m2u_snoop_change_mac_hdr(hmac_m2u_stru *pst_m2u, mac_ether_header_
         *pst_ucast_ether_hdr = (mac_ether_header_stru *)oal_netbuf_data(pst_buf);
     }
 }
-/*****************************************************************************
- 函 数 名  : hmac_m2u_snoop_convert
- 功能描述  : 发送方向的组播转单播处理
- 输入参数  : pst_vap vap结构体; pst_buf netbuf 结构体
- 输出参数  : ul_ret
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月30日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_m2u_snoop_convert(hmac_vap_stru *pst_vap, oal_netbuf_stru *pst_buf)
 {
     hmac_user_stru         *pst_user = OAL_PTR_NULL;
@@ -1724,21 +1312,7 @@ oal_uint32 hmac_m2u_snoop_convert(hmac_vap_stru *pst_vap, oal_netbuf_stru *pst_b
 
     return HMAC_TX_DONE;
 }
-/*****************************************************************************
- 函 数 名  : hmac_m2u_snoop_list_init
- 功能描述  : 发送方向的组播转单播处理
- 输入参数  : pst_hmac_vap vap结构体
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月8日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void hmac_m2u_snoop_list_init( hmac_vap_stru *pst_hmac_vap)
 {
     hmac_m2u_stru            *pst_m2u  = (hmac_m2u_stru *)(pst_hmac_vap->pst_m2u);
@@ -1749,21 +1323,7 @@ oal_void hmac_m2u_snoop_list_init( hmac_vap_stru *pst_hmac_vap)
     oal_dlist_init_head(&(pst_snp_list->st_grp_list));
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_m2u_time_fn
- 功能描述  : 组播转单播的定时器，删除长时间沉默的成员
- 输入参数  : p_arg 输入参数
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月7日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_m2u_time_fn(oal_void *p_arg)
 {
     hmac_vap_stru *pst_hmac_vap = (hmac_vap_stru *)p_arg;
@@ -1795,21 +1355,7 @@ oal_uint32 hmac_m2u_time_fn(oal_void *p_arg)
     }
     return OAL_SUCC;
 }
-/*****************************************************************************
- 函 数 名  : hmac_m2u_attach
- 功能描述  : 组播转单播的初始化函数
- 输入参数  : pst_hmac_vap vap结构体
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月8日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void hmac_m2u_attach(hmac_vap_stru *pst_hmac_vap)
 {
     hmac_m2u_stru            *pst_m2u;
@@ -1857,21 +1403,7 @@ oal_void hmac_m2u_attach(hmac_vap_stru *pst_hmac_vap)
     pst_snp_list->us_max_length = MAX_SNOOP_ENTRIES;
     hmac_m2u_snoop_list_init(pst_hmac_vap);
 }
-/*****************************************************************************
- 函 数 名  : hmac_m2u_detach
- 功能描述  : 组播转单播的detach
- 输入参数  : pst_hmac_vap vap结构体
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月10日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void hmac_m2u_detach(hmac_vap_stru *pst_hmac_vap)
 {
     hmac_m2u_stru    *pst_m2u  = (hmac_m2u_stru *)(pst_hmac_vap->pst_m2u);

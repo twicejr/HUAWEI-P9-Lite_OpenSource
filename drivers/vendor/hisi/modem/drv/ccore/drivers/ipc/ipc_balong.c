@@ -379,6 +379,49 @@ s32 bsp_ipc_spin_lock(u32 u32SignalNum)
 	return MDRV_OK;
 }
 
+s32 bsp_ipc_spin_lock_timeout(u32 u32SignalNum, u32 TimeoutMs)
+{
+	u32 u32HsCtrl = 0;
+	u32 start_time = 0, end_time = 0, elapsed = 0;
+	IPC_CHECK_PARA(u32SignalNum,IPC_SEM_BUTTOM);
+
+	start_time = bsp_get_slice_value();
+	elapsed = TimeoutMs * bsp_get_slice_freq() / 1000; /*lint !e647 */
+
+	/* coverity[no_escape] */
+	for(;;)
+	{
+		u32HsCtrl = readl(ipc_ctrl.ipc_base[IPCM_NS] + BSP_IPC_HS_CTRL(ipc_ctrl.core_num, u32SignalNum));
+		if (0 == u32HsCtrl)
+		{
+			ipc_debug.u32SemTakeTimes[u32SignalNum]++;
+			ipc_debug.u32SemId = u32SignalNum;
+			break;
+		}
+
+		end_time = bsp_get_slice_value();
+		if(get_timer_slice_delta(start_time, end_time) > elapsed)
+		{
+			ipc_debug.u32SemCore = readl(ipc_ctrl.ipc_base[IPCM_NS] + BSP_IPC_HS_STAT(ipc_ctrl.core_num, u32SignalNum));
+			return MDRV_ERROR;
+		}
+	}
+	return MDRV_OK;
+}
+
+s32 bsp_ipc_spin_lock_timeout_irqsave(unsigned int u32SignalNum, unsigned int TimeoutMs, unsigned long *flags)
+{
+	int ret = MDRV_OK;
+
+	local_irq_save(*flags);
+	ret = bsp_ipc_spin_lock_timeout(u32SignalNum, TimeoutMs);
+	if(ret == MDRV_ERROR) {
+		local_irq_restore(*flags);
+		return ret;
+	}
+	return ret;
+}
+
 s32 bsp_ipc_spin_trylock(u32 u32SignalNum)
 {
 	u32 u32HsCtrl = 0;
@@ -631,6 +674,7 @@ void bsp_ipc_debug_show(void)
 {
 	u32 i = 0;
 	bsp_trace(BSP_LOG_LEVEL_ERROR,BSP_MODU_IPC,"\ncurrent sem ID       : \t%d\n", ipc_debug.u32SemId);
+	bsp_trace(BSP_LOG_LEVEL_ERROR,BSP_MODU_IPC,"\ncurrent sem core     : \t%d\n", ipc_debug.u32SemCore);
 	bsp_trace(BSP_LOG_LEVEL_ERROR,BSP_MODU_IPC,"current recv int coreid: \t%d\n", ipc_debug.u32RecvIntCore);
 	for(i = 0; i < INTSRC_NUM; i++)
 	{

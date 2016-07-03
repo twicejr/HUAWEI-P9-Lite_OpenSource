@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasCcb.h
-  版 本 号   : 初稿
-  作    者   : y00245242
-  生成日期   : 2014年06月27日
-  功能描述   : CnasCcb.c头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年06月27日
-    作    者   : y00245242
-    修改内容   : 创建文件
-******************************************************************************/
 #ifndef _CNAS_CCB_H_
 #define _CNAS_CCB_H_
 
@@ -218,14 +203,7 @@ enum CNAS_CCB_1X_CAS_P_REV_ENUM
 typedef VOS_UINT8 CNAS_CCB_1X_CAS_P_REV_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名    : CNAS_CCB_1X_CALL_STATE_ENUM
- 结构说明  : 1X呼叫状态
 
- 1.日    期   : 2015年05月22日
-   作    者   : L00301449
-   修改内容   : 新增
-*****************************************************************************/
 enum CNAS_CCB_1X_CALL_STATE_ENUM
 {
     CNAS_CCB_1X_CALL_STATE_WAIT_FOR_ORDER,
@@ -240,14 +218,7 @@ enum CNAS_CCB_1X_CALL_STATE_ENUM
 typedef VOS_UINT8 CNAS_CCB_1X_CALL_STATE_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名    : CNAS_CCB_1X_SO_TYPE_ENUM
- 结构说明  : 1X业务类型
 
- 1.日    期   : 2015年07月22日
-   作    者   : y00322978
-   修改内容   : 新增
-*****************************************************************************/
 enum CNAS_CCB_1X_SO_TYPE_ENUM
 {
     CNAS_CCB_1X_SO_TYPE_VOICE,
@@ -259,14 +230,7 @@ enum CNAS_CCB_1X_SO_TYPE_ENUM
 };
 typedef VOS_UINT8 CNAS_CCB_1X_SO_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : CNAS_CCB_1X_RETURN_CAUSE_ENUM
- 结构说明  : C.S0005-A_v6.0 Table 2.7.1.3.2.1-2 RETURN_CASUSE Codes
 
- 1.日    期   : 2015.07.13
-   作    者   : m00312079
-   修改内容   : 新增
-*****************************************************************************/
 enum CNAS_CCB_1X_RETURN_CAUSE_ENUM
 {
     CNAS_CCB_1X_RETURN_CAUSE_NORMAL_ACCESS             = 0x00,
@@ -280,14 +244,7 @@ enum CNAS_CCB_1X_RETURN_CAUSE_ENUM
 };
 typedef VOS_UINT8 CNAS_CCB_1X_RETURN_CAUSE_ENUM_UINT8;
 
-/*******************************************************************************
- 枚举名    : CNAS_CCB_ESN_MEID_TYPE_ENUM
- 结构说明  :
 
- 1.日    期   : 2015.09.30
-   作    者   : y00307564
-   修改内容   : 新增
- *******************************************************************************/
 enum CNAS_CCB_ESN_MEID_TYPE_ENUM
 {
     CNAS_CCB_ESN_MEID_TYPE_ESN      = 0,
@@ -297,13 +254,7 @@ enum CNAS_CCB_ESN_MEID_TYPE_ENUM
 };
 typedef VOS_UINT8 CNAS_CCB_ESN_MEID_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : CNAS_CCB_SERVICE_STATUS_ENUM_UINT32
- 结构说明  : 服务状态
- 1.日    期: 2016年01月23日
-   作    者: h00313353
-   修改内容: 新增
-*****************************************************************************/
+
 enum CNAS_CCB_SERVICE_STATUS_ENUM
 {
     CNAS_CCB_SERVICE_STATUS_NO_SERVICE                      = 0,        /* 无服务   */
@@ -333,13 +284,7 @@ typedef VOS_UINT32 CNAS_CCB_SERVICE_STATUS_ENUM_UINT32;
   7 STRUCT定义
 *****************************************************************************/
 
-/*****************************************************************************
- 结构名    : CNAS_CCB_1X_CALL_STATE_STRU
- 结构说明  : CALL STATE 信息
- 1.日    期   : 2015年7月21日
-   作    者   : y00322978
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     CNAS_CCB_1X_CALL_STATE_ENUM_UINT8                       en1xCallState;
@@ -348,25 +293,13 @@ typedef struct
 }CNAS_CCB_1X_CALL_STATE_STRU;
 
 
-/*****************************************************************************
- 结构名    : CNAS_CCB_UIMID_STRU
- 结构说明  : UIMID 信息
- 1.日    期   : 2015年6月3日
-   作    者   : y00346957
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           aucEFRUIMID[CNAS_CCB_EFRUIMID_OCTET_LEN_EIGHT]; /* all the bytes in the EFRUIMID  */
 }CNAS_CCB_UIMID_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_CCB_ESNMEIDME_INFO_STRU
- 结构说明  : ESNMEIDMEID 信息
- 1.日    期   : 2015年9月30日
-   作    者   : y00307564
-   修改内容   : DTS2015082403731新建
-*****************************************************************************/
+
 typedef struct
 {
     CNAS_CCB_ESN_MEID_TYPE_ENUM_UINT8   enEsnMeidType;
@@ -378,13 +311,7 @@ typedef struct
     }u;
 }CNAS_CCB_ESNMEIDME_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_CCB_HRPD_ACCESS_AUTH_INFO_STRU
- 结构说明  : HRPDUPPID 信息,HRPD接入鉴权用户名
- 1.日    期   : 2015年9月30日
-   作    者   : y00307564
-   修改内容   : DTS2015082403731新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucAccessAuthAvailFlag;     /* VOS_TRUE/VOS_FALSE */
@@ -393,19 +320,7 @@ typedef struct
     VOS_UINT8                           aucAccessAuthUserName[CNAS_CCB_MAX_AUTHDATA_USERNAME_LEN];
 }CNAS_CCB_HRPD_ACCESS_AUTH_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_CCB_CARD_INFO_STRU
- 结构说明  : 卡信息
- 1.日    期   : 2014年7月15日
-   作    者   : h00246512
-   修改内容   : 新建
- 2.日    期   : 2015年6月02日
-   作    者   : y00346957
-   修改内容   : 增加卡的UIMID
- 3.日    期   : 2015年9月30日
-   作    者   : y00307564
-   修改内容   : 增加卡的ESNMEIDME和PPP AN鉴权用户名
-*****************************************************************************/
+
 typedef struct
 {
     CNAS_CCB_CARD_STATUS_ENUM_UINT8                         enCsimCardStatus;  /* CSIM卡状态 */
@@ -417,13 +332,7 @@ typedef struct
     CNAS_CCB_HRPD_ACCESS_AUTH_INFO_STRU                     stHrpdAccessAuthInfo;     /* 卡文件6f57，当前卡文件中的hrpd ppp an 鉴权用户名 */
 }CNAS_CCB_CARD_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_CCB_1X_SYS_INFO_STRU
- 结构说明  : CDAM 1x Sys info信息
-  1.日    期   : 2015年10月27日
-    作    者   : g00261581
-    修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usSid;
@@ -432,13 +341,7 @@ typedef struct
     VOS_UINT16                          usChannel;
 }CNAS_CCB_1X_SYS_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_CCB_NW_INFO_STRU
- 结构说明  : 网络信息
- 1.日    期   : 2014年9月15日
-   作    者   : y00245242
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                               ucConcurrentSupported;                  /* 并发业务是否支持 */
@@ -455,13 +358,7 @@ typedef struct
     CNAS_CCB_1X_SYS_INFO_STRU               st1xSysInfo;
 }CNAS_CCB_NW_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_CALL_CONFIG_INFO_STRU
- 结构说明  : 呼叫配置信息
- 1.日    期   : 2014年9月15日
-   作    者   : w00242748
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     /* 注册模块赋值，XCC会使用 */
@@ -469,13 +366,7 @@ typedef struct
     VOS_UINT8                           aucReserved[3];
 }CNAS_CALL_CONFIG_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_CCB_CUSTOM_CFG_INFO_STRU
- 结构说明  : NVIM配置信息
- 1.日    期   : 2014年10月23日
-   作    者   : w00176964
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucPowerOffCampOnCtrlFlg;                /* 关机驻留控制标记 */
@@ -483,13 +374,7 @@ typedef struct
 }CNAS_CCB_CUSTOM_CFG_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_1X_HOME_SID_NID_STRU
- 结构说明  : HOME_SID_NID相关信息
- 1.日    期   : 2014年12月31日
-   作    者   : h00313353
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usSid;
@@ -498,13 +383,7 @@ typedef struct
     VOS_UINT16                          usReserved;
 }CNAS_CCB_1X_HOME_SID_NID_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_1X_HOME_SID_NID_LIST_STRU
- 结构说明  : HOME_SID_NID列表信息
- 1.日    期   : 2014年12月31日
-   作    者   : h00313353
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucSysNum;
@@ -512,42 +391,21 @@ typedef struct
     CNAS_CCB_1X_HOME_SID_NID_STRU       astHomeSidNid[CNAS_CCB_MAX_HOME_SID_NID_LIST];
 }CNAS_CCB_1X_HOME_SID_NID_LIST_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_CCB_MODEM_INFO_STRU
- 结构说明  : C模与modem对接的modem信息
- 1.日    期   : 2015年5月21日
-   作    者   : w00242748
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     MODEM_ID_ENUM_UINT16                enCdmaModeModemId;
     VOS_UINT8                           aucReserve[2];
 }CNAS_CCB_MODEM_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_CCB_1X_SRV_INFO_STRU
- 结构说明  : 1X服务信息
- 1.日    期   : 2016年01月26日
-   作    者   : h00313353
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     CNAS_CCB_SERVICE_STATUS_ENUM_UINT32 enCurSrvStatus; /* 存储1X当前服务状态 */
     VOS_UINT8                           aucReserved[4];
 }CNAS_CCB_1X_SRV_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_CCB_MSG_STATE_STRU
- 结构说明  : 发送接收消息状态结构体
 
-  1.日    期   : 2015年7月12日
-    作    者   : y00322978
-    修改内容   : 新生成
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          ulReceiveTime;  /* 接收时间 */
@@ -558,40 +416,19 @@ typedef struct
     VOS_UINT8                           ucCnasFsmId;    /* 对应模块状态机ID  */
     VOS_UINT8                           ucCnasState;    /* 对应模块的s当前状态  */
 }CNAS_CCB_MSG_STATE_STRU;
-/*****************************************************************************
- 结构名    : CNAS_CCB_LOG_MSG_STATUS_STRU
- 结构说明  : 发送接收消息状态结构体
 
-  1.日    期   : 2015年7月12日
-    作    者   : y00322978
-    修改内容   : 新生成
-*****************************************************************************/
 typedef struct
 {
     CNAS_CCB_MSG_STATE_STRU             stMsgState[CNAS_CCB_MAX_LOG_MSG_STATE_NUM];
     VOS_UINT32                          ucLatestIndex;
 }CNAS_CCB_LOG_MSG_STATUS_STRU;
-/*****************************************************************************
- 结构名    : CNAS_CCB_MNTN_CTX_STRU
- 结构说明  : cnas 模块勾取发送接收消息结构体 可维可测
 
-  1.日    期   : 2015年7月12日
-    作    者   : y00322978
-    修改内容   : 新生成
-*****************************************************************************/
 typedef struct
 {
     CNAS_CCB_LOG_MSG_STATUS_STRU            stLogMsgState;
 }CNAS_CCB_MNTN_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_CCB_SYS_INFO_STRU
- 结构说明  : 保存的SID和MCC信息
 
-  1.日    期   : 2015年5月21日
-    作    者   : w00242748
-    修改内容   : 新生成
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16                          usStartSid;
@@ -599,13 +436,7 @@ typedef struct
     VOS_UINT32                          ulMcc;
 }CNAS_CCB_SYS_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_NVIM_OPER_LOCK_WHITE_SID_STRU
- 结构说明  : en_NV_Item_OPER_LOCK_WHITE_SID_INFO NV项结构
-  1.日    期   : 2015年7月3日
-    作    者   : w00242748
-    修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucEnable;                          /* 白名单是否使能 */
@@ -614,26 +445,14 @@ typedef struct
     CNAS_CCB_SYS_INFO_STRU              astSysInfo[CNAS_CCB_MAX_WHITE_LOCK_SYS_NUM];
 }CNAS_CCB_OPER_LOCK_SYS_WHITE_LIST_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_CCB_FREQENCY_CHANNEL_STRU
- 结构说明  : 频点结构
-  1.日    期   : 2015年7月3日
-    作    者   : w00242748
-    修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usChannel;
     VOS_UINT8                           aucReserved[2];
 }CNAS_CCB_FREQENCY_CHANNEL_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_CCB_CTCC_CUSTOMIZE_INFO_STRU
- 结构说明  : 中国电信定制频点结构
-  1.日    期   : 2015年7月3日
-    作    者   : w00242748
-    修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucEnableFlg;
@@ -642,25 +461,13 @@ typedef struct
     CNAS_CCB_FREQENCY_CHANNEL_STRU      astFreqList[CNAS_CCB_MAX_FREQ_NUM];
 }CNAS_CCB_CTCC_CUSTOMIZE_FREQ_LIST_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_CCB_CTCC_CUSTOMIZE_INFO_STRU
- 结构说明  : 中国电信定制结构
-  1.日    期   : 2015年7月3日
-    作    者   : w00242748
-    修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     CNAS_CCB_CTCC_CUSTOMIZE_FREQ_LIST_STRU                  stCustFreqList;
 }CNAS_CCB_CTCC_CUSTOMIZE_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_CCB_CDMA_STANDARD_CHANNELS_STRU
- 结构说明  : CDAM standard channels信息
-  1.日    期   : 2015年7月14日
-    作    者   : y00245242
-    修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usPrimaryA;
@@ -669,13 +476,7 @@ typedef struct
     VOS_UINT16                          usSecondaryB;
 }CNAS_CCB_CDMA_STANDARD_CHANNELS_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_CCB_CTX_STRU
- 结构说明  : CNAS的公共信息
- 1.日    期   : 2014年7月15日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     CNAS_CCB_CARD_INFO_STRU                                 stCardInfo;
@@ -709,14 +510,7 @@ typedef struct
     CNAS_CCB_1X_SRV_INFO_STRU                               st1XSrvInfo;
 }CNAS_CCB_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_CCB_MODEM_PID_TAB_STRU
- 结构说明  : DSDA 两个modem接收AT发送消息的PID映射表
 
-  1.日    期   : 2015年5月21日
-    作    者   : w00242748
-    修改内容   : 新生成
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                           ulModem0Pid;

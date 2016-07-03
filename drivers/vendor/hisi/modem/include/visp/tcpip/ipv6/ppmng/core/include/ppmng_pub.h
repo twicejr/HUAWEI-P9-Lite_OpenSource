@@ -271,7 +271,6 @@ typedef enum tagProduct
 #define VRP_MODULE_IPV6_TUNNEL_REG          0x00000004
 /*ended*/
 
-/*Added by wangbin, for DTS2015102607923 ，解决发送IP报文频繁使用TCPIP_Rand_Safe导致性能恶化问题, 2015/10/24 */
 #define IP_PP6_NEWID_TIMEOUT    2
 #define IP6ID_UPDATECOUNT     0x400
 
@@ -393,8 +392,7 @@ typedef struct tagIP6_S {
 
 #endif
 
-/* Add for 新需求, by mengzechao176865, at 2011-02-23. 
-   修改原因: 将IPv6头的TOS映射到VLAN优先级,其中魔鬼字的定义 */
+
 #define IPV6_FLOWLABELBIT       20      /* IPV6头 flow label字段BIT数 */
 #define IPV6_TRAFFICCLASSBIT    8       /* IPV6头 Traffic class 字段BIT数 */
 #define IPV6_TOSPRIBIT          3       /* IPV6头 Traffic class优先级BIT数 */

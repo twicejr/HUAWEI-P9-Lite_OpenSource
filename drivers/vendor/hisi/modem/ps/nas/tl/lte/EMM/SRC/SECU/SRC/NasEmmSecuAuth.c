@@ -44,16 +44,7 @@ VOS_UINT8           aucDstBuf[LRRC_LNAS_MAX_DATA_LENGTH];
 /*****************************************************************************
   3 Function
 *****************************************************************************/
-/*****************************************************************************
- Function Name   : NAS_EMM_SecuDmaMalloc
- Description     : 安全模块初始化非可cache内存
- Input           :VOS_VOID
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lifuxin 00253982      2014-08-14  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_EMM_SecuDmaMalloc(VOS_VOID)
 {
     VOS_UINT_PTR            ulTempAddr  = VOS_NULL_PTR;
@@ -162,17 +153,7 @@ VOS_UINT32  NAS_EMM_DeriveKasme(        const VOS_UINT8 *pucCK,
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SendAuthRsp
- Description     : 向MRRC发送NAS_EMM_MRRC_DATA_REQ(Authentication response)消息
- Input           : None
- Output          : None
- Return          : None
- History         :
-    1.liuwenyu 00143951         2008-12-20  Draft Enact
-    2.zhuyiqiang 00138739       2009-08-11  MODIFY    BJ9D01672,上行编码优化
-    3.zhengjunyan00148421       2010-03-19  AUTH重构
-*****************************************************************************/
+
 VOS_VOID NAS_EMM_SendAuthRsp(VOS_VOID)
 {
      VOS_UINT32                         ulPos          = 0;
@@ -240,16 +221,7 @@ VOS_VOID NAS_EMM_SendAuthRsp(VOS_VOID)
      return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SendAuthFail
- Description     : 向MRRC发送NAS_EMM_MRRC_DATA_REQ(Authentication failure)消息
- Input           : None
- Output          : None
- Return          : None
- History         :
-    1.zhengjunyan 00148421        2010-03-22  Draft Enact
 
- *****************************************************************************/
 VOS_VOID NAS_EMM_SendAuthFail(NAS_EMM_AUTH_FAIL_CAUSE_ENUM_UINT8 enAuthFailCause)
 {
     VOS_UINT32                          uldataReqMsgLenNoHeader     = 0;
@@ -329,19 +301,7 @@ VOS_VOID NAS_EMM_SendAuthFail(NAS_EMM_AUTH_FAIL_CAUSE_ENUM_UINT8 enAuthFailCause
 
 }
 
-/*****************************************************************************
- Function Name  : NAS_EMM_SendUsimAuthenticationReq()
- Description    : 给USIM发送鉴权请求
- Input          : ulAppType     应用类型
-                  enAuthType    鉴权类型
-                  ulOpId
-                  uAuth         鉴权数据
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.zhaochen 00308719  2015-02-09   Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_EMM_SendUsimAuthenticationReq
 (
     USIMM_CARDAPP_ENUM_UINT32       ulAppType,
@@ -383,18 +343,7 @@ VOS_VOID NAS_EMM_SendUsimAuthenticationReq
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_UsimAuthSucc
- Description     : USIM_AUTH_CNF结果为成功的处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-3-22  Draft Enact
-    2.zhengjunyan 00148421      2011-5-31  MOD:AUTH成功产生new native secu cntxt
-                                           删除non-current native secu cntxt
-*****************************************************************************/
 VOS_VOID  NAS_EMM_UsimAuthSucc( const USIMM_AUTHENTICATION_CNF_STRU  *pstUsimAuthCnf  )
 {
     VOS_UINT32                          ulDeriveKeyRslt;
@@ -452,17 +401,7 @@ VOS_VOID  NAS_EMM_UsimAuthSucc( const USIMM_AUTHENTICATION_CNF_STRU  *pstUsimAut
 
     return;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_UsimAuthFail
- Description     : USIM_AUTH_CNF结果为失败的处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-3-22  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_UsimAuthFail( NAS_EMM_AUTH_FAIL_CAUSE_ENUM_UINT8 enAuthFailCause )
 {
     NAS_EMM_SECU_LOG_INFO("NAS_EMM_UsimAuthFail entered.");
@@ -509,18 +448,7 @@ VOS_VOID  NAS_EMM_UsimAuthFail( NAS_EMM_AUTH_FAIL_CAUSE_ENUM_UINT8 enAuthFailCau
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_AuthCheckFail
- Description     : UE鉴权网络非法:
-                   1)本地释放RRC连接
-                   2)通知RRC当前小区被bar
- Input           : None
- Output          : None
- Return          : None
- History         :
-    1.liuwenyu 00143951         2008-12-20  Draft Enact
 
-*****************************************************************************/
 VOS_VOID NAS_EMM_AuthCheckFail(VOS_VOID)
 {
     NAS_EMM_SECU_LOG_INFO("NAS_EMM_AuthCheckFail entered.");
@@ -533,17 +461,7 @@ VOS_VOID NAS_EMM_AuthCheckFail(VOS_VOID)
     NAS_EMM_RelReq(                     NAS_LMM_BARRED);
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SecuClearRandRes
- Description     : 清空MEM中保存的RAND和RES
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-3-5  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SecuClearRandRes( VOS_VOID )
 {
     NAS_EMM_SECU_LOG_INFO("NAS_EMM_SecuClearRandRes entered!");
@@ -562,17 +480,7 @@ VOS_VOID  NAS_EMM_SecuClearRandRes( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_AbortAuthProcedure
- Description     : 终止本次AUTH流程
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-3-5  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_EMM_AbortAuthProcedure(VOS_VOID)
 {
     NAS_EMM_SECU_LOG_INFO("NAS_EMM_AbortAuthProcedure entered!");
@@ -591,17 +499,7 @@ VOS_VOID NAS_EMM_AbortAuthProcedure(VOS_VOID)
     return;
 }
 
-/*******************************************************************************
-Module   : NAS_EMM_AuthStateConvert
-Function : 系统状态机状态转换
-Input    : ucMs                         -- 主状态
-           ucSs                         -- 子状态
-           ucStaTId                     -- 该状态的定时器
-Output   : None
-Return   : None
-History  :
-   1.liuwenyu 00143951         2008-12-20  Draft Enact
-*******************************************************************************/
+
 VOS_VOID  NAS_EMM_AuthStateConvert(NAS_EMM_MAIN_STATE_ENUM_UINT16 ucMs,
                                    NAS_EMM_SUB_STATE_ENUM_UINT16 ucSs,
                                    NAS_EMM_STATE_TI_ENUM_UINT16 ucStaTId)
@@ -620,16 +518,7 @@ VOS_VOID  NAS_EMM_AuthStateConvert(NAS_EMM_MAIN_STATE_ENUM_UINT16 ucMs,
     return;
 }
 
-/*******************************************************************************
-  Module   :
-  Function : NAS_EMM_TAU_SendEsmBearerStatusInd
-  Input    : None
-  Output   : None
-  NOTE     : 给ESM发送EMM_ESM_DEACT_NON_EMC_BEAR_IND消息
-  Return   : VOS_VOID
-  History  :
-    1.  lihong 00150010  2012.10.19  新规作成
-*******************************************************************************/
+
 VOS_VOID NAS_EMM_SendEsmDeactNonEmcBearInd( VOS_VOID )
 {
     EMM_ESM_DEACT_NON_EMC_BEARER_IND_STRU *pstDeactNonEmerBearInd = NAS_EMM_NULL_PTR;
@@ -658,26 +547,7 @@ VOS_VOID NAS_EMM_SendEsmDeactNonEmcBearInd( VOS_VOID )
 
     return;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_MsAnyStateSsAnyStateMsgCnAuthReq
- Description     : RegInit.WtAttCnf,Reg.Normal_Service,TauInit.WtCnTauCnf,
-                   SerInit.WtSerCnf,DeregInit.WtCnDetCnf五种
-                   状态下处理AUTH_REQ消息
-                   AUTN:
-                   Separation Bit:AMF最高位
-                   ----------------------------------------------------------
-                   | SQN ^ AK |   AMF   |   MAC   |
-                   ----------------------------------------------------------
-                   |  6 Byte  | 2 Byte  |   8 Byte|
-                   ----------------------------------------------------------
- Input           :
- Output          :
- Return          :
- History         :
-    1.zhengjunyan 00148421 2010-03-18  New Draft
-    2.lihong 00150010      2012-12-17  Modify:Emergency
 
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_MsAnyStateSsAnyStateMsgCnAuthReq(        VOS_UINT32  ulMsgId,
                                                             VOS_VOID   *pMsg )
 {
@@ -783,16 +653,7 @@ VOS_UINT32 NAS_EMM_MsAnyStateSsAnyStateMsgCnAuthReq(        VOS_UINT32  ulMsgId,
     return NAS_LMM_MSG_HANDLED;
 
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_MsAuthInitSsWtCnAuthMsgCnAuthReq
- Description     : AuthInit.WtCnAuth收到AUTH REQ消息，需要停止T3418 OR T3420
- Input           :
- Output          :
- Return          :
- History         :
-    1.zhengjunyan 00148421 2010-03-18  New Draft
 
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_MsAuthInitSsWtCnAuthMsgCnAuthReq(        VOS_UINT32  ulMsgId,
                                                             VOS_VOID   *pMsg )
 {
@@ -811,18 +672,7 @@ VOS_UINT32 NAS_EMM_MsAuthInitSsWtCnAuthMsgCnAuthReq(        VOS_UINT32  ulMsgId,
     return ulAuthRslt;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsAuthInitSsWtCnAuthMsgCnAuthRej
- Description     : AuthInit.WtCnAuth状态下收到AUTH REJ消息
- Input           : ulMsgId,pMsgStru
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.X00148705           2009-09-29  处理AUTH REJ消息
-    2.lifuxin 00253982  2014-09-10    逻辑重构
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsAuthInitSsWtCnAuthMsgCnAuthRej(
                                         VOS_UINT32  ulMsgId,
                                         VOS_VOID   *pMsgStru)
@@ -886,18 +736,7 @@ VOS_UINT32  NAS_EMM_MsAuthInitSsWtCnAuthMsgCnAuthRej(
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsAuthInitSsWtCnAuthMsgAttachRej
- Description     : AuthInit.WtCnAuth状态下收到网侧回复ATTACH REJ消息，CAUSE #3
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2009-11-10  Draft Enact
-    2.lifuxin 00253982          2014-09-09  逻辑重构，去掉内部消息
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsAuthInitSsWtCnAuthMsgAttachRej(
                                         VOS_UINT32  ulMsgId,
                                         VOS_VOID   *pMsgStru)
@@ -926,18 +765,7 @@ VOS_UINT32  NAS_EMM_MsAuthInitSsWtCnAuthMsgAttachRej(
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsAuthInitSsWtCnAuthMsgTauRej
- Description     : AuthInit.WtCnAuth状态下收到网侧回复TAU REJ消息，CAUSE #3
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2009-11-10  Draft Enact
-    2.lifuxin 00253982          2014-09-09  逻辑重构，去掉内部消息
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsAuthInitSsWtCnAuthMsgTauRej(
                                         VOS_UINT32  ulMsgId,
                                         VOS_VOID   *pMsgStru)
@@ -967,17 +795,7 @@ VOS_UINT32  NAS_EMM_MsAuthInitSsWtCnAuthMsgTauRej(
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsAuthInitSsWtCnAuthMsgSerRej
- Description     : AuthInit.WtCnAuth状态下收到网侧回复SER REJ消息，CAUSE #3
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2009-11-10  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsAuthInitSsWtCnAuthMsgSerRej(
                                         VOS_UINT32  ulMsgId,
                                         VOS_VOID   *pMsgStru)
@@ -1099,16 +917,7 @@ VOS_UINT32  NAS_EMM_MsAuthInitSsWtCnAuthMsgT3420Exp(
 
     return NAS_LMM_MSG_HANDLED;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegSsNorOrUpdateMmMsgT3420Exp
- Description     : 仅针对GCF测试用例，由于鉴权失败导致的T3420定时器超时
- Input           : ulMsgId              -- 网侧消息ID
-                   pMsg                 -- 需要处理的消息
- Output          : None
- Return          : 消息处理状态
- History         :
-    1.wangchen 00209181 2015-12-23  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  NAS_EMM_MsRegSsNorOrUpdateMmMsgT3420Exp
 (
     VOS_UINT32  ulMsgId,
@@ -1136,16 +945,7 @@ VOS_UINT32  NAS_EMM_MsRegSsNorOrUpdateMmMsgT3420Exp
 
     return NAS_LMM_MSG_HANDLED;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegSsNorOrUpdateMmMsgT3418Exp
- Description     : 仅针对GCF测试用例，由于鉴权失败导致的T3420定时器超时
- Input           : ulMsgId              -- 网侧消息ID
-                   pMsg                 -- 需要处理的消息
- Output          : None
- Return          : 消息处理状态
- History         :
-    1.wangchen 00209181 2015-12-23  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  NAS_EMM_MsRegSsNorOrUpdateMmMsgT3418Exp
 (
     VOS_UINT32  ulMsgId,
@@ -1175,17 +975,7 @@ VOS_UINT32  NAS_EMM_MsRegSsNorOrUpdateMmMsgT3418Exp
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsAuthInitSsWtCnAuthMsgRrcRelInd
- Description     : 在AuthInit等待CN消息时处理RRC_REL_IND消息
- Input           : ulMsgId,pMsgStru
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.X00148705           2009-09-29  处理RRC_REL_IND消息
-    2.Z00148421           2010-01-30  添加失败次数清零
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsAuthInitSsWtCnAuthMsgRrcRelInd(
                                         VOS_UINT32  ulMsgId,
                                         VOS_VOID   *pMsgStru)
@@ -1244,16 +1034,7 @@ VOS_UINT32  NAS_EMM_MsAuthInitSsWtCnAuthMsgRrcRelInd(
     return NAS_LMM_MSG_HANDLED;
 
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_MsAuthInitSsWtCnAuthMsgEia0ActNotify
- Description     : 在AuthInit等待CN消息时处理EIA0 ACT NOTIFY消息
- Input           : ulMsgId,pMsgStru
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010        2012-10-19      Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsAuthInitSsWtCnAuthMsgEia0ActNotify
 (
     VOS_UINT32                          ulMsgId,
@@ -1279,16 +1060,7 @@ VOS_UINT32  NAS_EMM_MsAuthInitSsWtCnAuthMsgEia0ActNotify
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsAuthInitSsWtCnAuthMsgRabmDrbSetupInd
- Description     : 在AuthInit等待CN消息时处理DRB建立消息
- Input           : ulMsgId,pMsgStru
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010        2012-10-19      Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsAuthInitSsWtCnAuthMsgRabmDrbSetupInd
 (
     VOS_UINT32                          ulMsgId,
@@ -1347,16 +1119,7 @@ VOS_UINT32  NAS_EMM_MsAuthInitSsWtCnAuthMsgRabmDrbSetupInd
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsAuthInitSsWtCnAuthMsgAttachAccept
- Description     : 在AuthInit等待CN消息时ATTACH ACCPET消息
- Input           : ulMsgId,pMsgStru
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010        2012-10-19      Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsAuthInitSsWtCnAuthMsgAttachAccept
 (
     VOS_UINT32                          ulMsgId,
@@ -1406,16 +1169,7 @@ VOS_UINT32  NAS_EMM_MsAuthInitSsWtCnAuthMsgAttachAccept
     return NAS_EMM_MsRegInitSsWtCnAttCnfMsgCnAttachAcp(ulMsgId, pMsgStru);
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsAuthInitSsWtCnAuthMsgTauAccept
- Description     : 在AuthInit等待CN消息时TAU ACCPET消息
- Input           : ulMsgId,pMsgStru
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010        2012-10-19      Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsAuthInitSsWtCnAuthMsgTauAccept
 (
     VOS_UINT32                          ulMsgId,
@@ -1466,16 +1220,7 @@ VOS_UINT32  NAS_EMM_MsAuthInitSsWtCnAuthMsgTauAccept
     return NAS_EMM_MsTauInitSsWaitCNCnfMsgTAUAcp(ulMsgId, pMsgStru);
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsAuthInitSsWtCnAuthMsgCnDetachAcp
- Description     : 在AuthInit等待CN消息时DETACH ACCPET消息
- Input           : ulMsgId,pMsgStru
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010        2012-10-19      Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsAuthInitSsWtCnAuthMsgCnDetachAcp
 (
     VOS_UINT32                          ulMsgId,
@@ -1536,21 +1281,7 @@ VOS_UINT32  NAS_EMM_MsAuthInitSsWtCnAuthMsgCnDetachAcp
         return NAS_EMM_MsRegImsiDetachWtCnDetCnfMsgCnDetachAcp(ulMsgId, pMsgStru);
     }
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_MsAnyStateSsAnyStateMsgUsimAuthCnf
- Description     : RegInit.WtAttCnf,Reg.Normal_Service,TauInit.WtCnTauCnf,
-                   SerInit.WtSerCnf,DeregInit.WtCnDetCnf五种
-                   状态下处理PS_USIM_AUTHENTICATION_CNF消息
-                   Auts的长度:在EPS系统中固定为14
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-3-19  Draft Enact
-    2.zhaochen    00308719      2015-02-28 Modify for USIM Interface
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsAnyStateSsAnyStateMsgUsimAuthCnf(  VOS_UINT32  ulMsgId,
                                                          VOS_VOID   *pMsg )
 {
@@ -1580,17 +1311,13 @@ VOS_UINT32  NAS_EMM_MsAnyStateSsAnyStateMsgUsimAuthCnf(  VOS_UINT32  ulMsgId,
 
              /*USIM鉴权失败:MAC FAIL*/
         case USIMM_AUTH_MAC_FAILURE:
-             /* c00285307 向mmc发卡鉴权失败的消息 begin */
              NAS_EMM_SndMmcSimAuthFailInd(LMM_MMC_SIM_AUTH_FAIL_MAC_FAILURE);
-             /* c00285307 向mmc发卡鉴权失败的消息 end */
              NAS_EMM_UsimAuthFail(NAS_EMM_AUTH_MAC_FAILURE);
              break;
 
              /*USIM鉴权失败:SYNCFAIL*/
         case USIMM_AUTH_SYNC_FAILURE:
-             /* c00285307 向mmc发卡鉴权失败的消息 begin */
              NAS_EMM_SndMmcSimAuthFailInd(LMM_MMC_SIM_AUTH_FAIL_SYNC_FAILURE);
-             /* c00285307 向mmc发卡鉴权失败的消息 end */
 
              /*获取USIM_AUTH_CNF携带的AUTS:pstUsimAuthCnf->u.aucAuts第一个字节为Auts的长度*/
 
@@ -1606,26 +1333,14 @@ VOS_UINT32  NAS_EMM_MsAnyStateSsAnyStateMsgUsimAuthCnf(  VOS_UINT32  ulMsgId,
         default:
              NAS_EMM_SECU_LOG_ERR("NAS_EMM_MsAnyStateSsAnyStateMsgUsimAuthCnf: USIM CNF RSLT ERR.");
              TLPS_PRINT2LAYER_ERROR(NAS_EMM_MsAnyStateSsAnyStateMsgUsimAuthCnf_ENUM,LNAS_FUNCTION_LABEL1);
-             /* c00285307 向mmc发卡鉴权失败的消息 begin */
              NAS_EMM_SndMmcSimAuthFailInd(LMM_MMC_SIM_AUTH_FAIL_OTHER);
-             /* c00285307 向mmc发卡鉴权失败的消息 end */
              break;
     }
 
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_PreProcAnyStateUsimAuthCnf
- Description     :对USIM返回的鉴权CNF进行预处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.jiqiang   00271914      2014-11-20 Draft Enact
-    2.zhaochen  00308719      2015-02-10 Modify for USIM interface
-*****************************************************************************/
 VOS_VOID NAS_LMM_PreProcAnyStateUsimAuthCnf(const USIMM_AUTHENTICATION_CNF_STRU  *pstUsimAuthCnf)
 {
     VOS_UINT32                          ulDeriveKeyRslt;
@@ -1683,19 +1398,7 @@ VOS_VOID NAS_LMM_PreProcAnyStateUsimAuthCnf(const USIMM_AUTHENTICATION_CNF_STRU 
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_LMM_PreProcUsimAuthCnf
- Description     :在某些场景下，USIM回复鉴权CNF之后，LMM不能成功向网侧发送錫uth_rsp，且
-                  LMM不会存储USIM_AUTH_CNF的结果。这个会导致UE收到网侧重发的AUTH_REQ时，
-                  LMM将相同的参数又发给USIM，导致USIM计算产生sync 错误。
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.jiqiang   00271914      2014-11-11  Draft Enact
-    2.zhaochen  00308719      2015-02-10  Modify for USIM interface
-*****************************************************************************/
 VOS_UINT32 NAS_LMM_PreProcUsimAuthCnf(MsgBlock  *pMsg)
 {
     VOS_UINT32                          ulCurEmmStat;
@@ -1741,17 +1444,7 @@ VOS_UINT32 NAS_LMM_PreProcUsimAuthCnf(MsgBlock  *pMsg)
 
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SndMmcSimAuthFailInd
- Description     : 卡鉴权失败 通知MMC
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.chengmin 00285307      2014-11-03  Draft Enact
-
-*****************************************************************************/
 
 VOS_VOID NAS_EMM_SndMmcSimAuthFailInd(LMM_MMC_SIM_AUTH_FAIL_ENUM_UINT16  enSimAuthFailValue)
 {

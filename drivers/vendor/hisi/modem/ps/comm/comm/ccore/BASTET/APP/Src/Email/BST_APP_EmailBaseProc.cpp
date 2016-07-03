@@ -1,24 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2006, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : BST_APP_EmailPacketProc.c
-  版 本 号   : 初稿
-  作    者   : d00173029
-  生成日期   : 2013年10月9日
-  最近修改   :
-  功能描述   : 邮箱的基类，包括设置账户信息以及开启邮箱代理
-  函数列表   :
-
-  修改历史   :
-  1.日    期   : 2013年10月9日
-    作    者   : d00173029
-    修改内容   : 创建文件
-  2.日    期   : 2014年4月17日
-    作    者   : z00220931
-    修改内容   :
-******************************************************************************/
 /*****************************************************************************
   1 头文件包含
 *****************************************************************************/
@@ -51,19 +31,7 @@
 /******************************************************************************
    6 函数实现
 ******************************************************************************/
-/*****************************************************************************
-函 数 名   : BST_APP_CEmailPacketProc
-功能描述   : 构造函数,初始化成员变量
-输入参数   : pstInAccountInfo: 账号信息
-输出参数   : 无
-返 回 值   : BST_VOID
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2013年10月9日
-   作者    : d00173029
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_APP_CEmailPacketProc::BST_APP_CEmailPacketProc( const EMAIL_ACCOUNT_STRU *pstAccountInfo )
     : m_pstAccountInfo( const_cast<EMAIL_ACCOUNT_STRU *>(pstAccountInfo) )
 {
@@ -76,19 +44,7 @@ BST_APP_CEmailPacketProc::BST_APP_CEmailPacketProc( const EMAIL_ACCOUNT_STRU *ps
     m_usErrSocketTimes                  = 0;
 }
 
-/*****************************************************************************
-函 数 名   : ~BST_APP_CEmailPacketProc
-功能描述   : 析构函数
-输入参数   : 无
-输出参数   : 无
-返 回 值   : 无
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年6月9日
-   作者    : z00220931
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_APP_CEmailPacketProc::~BST_APP_CEmailPacketProc()
 {
     if ( BST_NULL_PTR != m_pstLastUID )
@@ -113,20 +69,7 @@ BST_APP_CEmailPacketProc::~BST_APP_CEmailPacketProc()
     m_pcHostTask                        = BST_NULL_PTR;
 }
 
-/*****************************************************************************
-函 数 名   : InitEmailProc
-功能描述   : 初始化
-输入参数   : pTaskProp: 任务指针
-输出参数   : 无
-返 回 值   : FALSE 初始化失败
-             TRUE  初始化成功
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年7月17日
-   作者    : z00220931
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_BOOL BST_APP_CEmailPacketProc::InitEmailProc( BST_CORE_CNPTask *pTaskProp )
 {
     BST_OS_CTimerCb                    *pcTimerCb;
@@ -204,20 +147,7 @@ BST_BOOL BST_APP_CEmailPacketProc::InitEmailProc( BST_CORE_CNPTask *pTaskProp )
     return BST_TRUE;
 }
 
-/*****************************************************************************
-函 数 名   : TimerExpied
-功能描述   : 定时器的回调函数
-输入参数   : ulId: 定时器ID
-             pvPara: 定时器参数
-输出参数   : 无
-返 回 值   : 无
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年4月17日
-   作者    : z00220931
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_VOID BST_APP_CEmailPacketProc::TimerExpired(
     BST_OS_TIMERID_T ulId,
     BST_VOID        *pvPara )
@@ -233,19 +163,7 @@ BST_VOID BST_APP_CEmailPacketProc::TimerExpired(
     CloseConnection();
 }
 
-/*****************************************************************************
-函 数 名   : EntryProc
-功能描述   : 回调函数
-输入参数   : BST_VOID
-输出参数   : 无
-返 回 值   : 无
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年4月17日
-   作者    : z00220931
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_VOID BST_APP_CEmailPacketProc::EntryProc( BST_VOID )
 {
     BST_BOOL                            bRtnVal;
@@ -270,19 +188,7 @@ BST_VOID BST_APP_CEmailPacketProc::EntryProc( BST_VOID )
 
     return;
 }
-/*****************************************************************************
-函 数 名  : NewMailProc
-功能描述  : 收到新邮件处理
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修改历史  :
-1.日期    : 2014年4月17日
-  作者    : d00173029
-  修改内容: 新函数
-*****************************************************************************/
+
 BST_VOID BST_APP_CEmailPacketProc::NewMailProc( BST_VOID )
 {
     if ( BST_NULL_PTR == m_pcHostTask )
@@ -299,19 +205,7 @@ BST_VOID BST_APP_CEmailPacketProc::NewMailProc( BST_VOID )
     m_pcHostTask->Stop();
 #endif
 }
-/*****************************************************************************
-函 数 名  : FailProc
-功能描述  : 出错异常处理
-输入参数  : BST_ERR_ENUM_UINT8 enErrType    出错信息类型
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修改历史  :
-1.日期    : 2014年4月17日
-  作者    : d00173029
-  修改内容: 新函数
-*****************************************************************************/
+
 BST_VOID BST_APP_CEmailPacketProc::FailProc( BST_ERR_ENUM_UINT8 enErrType )
 {
     if ( BST_NULL_PTR == m_pcHostTask )
@@ -367,19 +261,7 @@ BST_VOID BST_APP_CEmailPacketProc::FailProc( BST_ERR_ENUM_UINT8 enErrType )
     BST_DBG_UPDATE_ERR_NUM( m_pcHostTask->m_usProcId, m_pcHostTask->m_usTaskId );
 }
 
-/*****************************************************************************
-函 数 名  : Connectd
-功能描述  : 协议栈在连接到服务器后触发的回调函数
-输入参数  : fd: pSockedHandle socket句柄
-输出参数  : 无
-返 回 值  : BST_IP_ERR_T 协议栈信息
-调用函数  :
-被调函数  :
-修改历史  :
-1.日期    : 2014年4月17日
-  作者    : z00220931
-  修改内容: 新函数
-*****************************************************************************/
+
 BST_IP_ERR_T BST_APP_CEmailPacketProc::Connectd( BST_IP_CSocket *pcSocket )
 {
     BST_ERR_ENUM_UINT8                  enErrMsg;
@@ -405,21 +287,7 @@ BST_IP_ERR_T BST_APP_CEmailPacketProc::Connectd( BST_IP_CSocket *pcSocket )
     return BST_IP_ERR_OK;
 }
 
-/*****************************************************************************
-函 数 名  : Received
-功能描述  : 协议栈接收到数据后触发的回调函数
-输入参数  : pSockedHandle socket: 句柄
-            pucData: 数据指针
-            usLength: 数据长度
-输出参数  : 无
-返 回 值  : BST_IP_ERR_T: 协议栈状态信息
-调用函数  :
-被调函数  :
-修改历史  :
-1.日期    : 2014年4月17日
-  作者    : z00220931
-  修改内容: 新函数
-*****************************************************************************/
+
 BST_IP_PKTPROC_MODE_ENUM BST_APP_CEmailPacketProc::Received(
         BST_IP_CSocket     *pcSocket,
         const BST_UINT8    *const pucData,
@@ -480,19 +348,7 @@ BST_IP_PKTPROC_MODE_ENUM BST_APP_CEmailPacketProc::Received(
     return BST_IP_PKT_REMOVE_PROC;
 }
 
-/*****************************************************************************
-函 数 名   : Closed
-功能描述   : Remote端远程关闭了Socket
-输入参数  :  fd: pSockedHandle socket句柄
-输出参数   : 无
-返 回 值   : 无
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年4月17日
-   作者    : d00173029
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_VOID BST_APP_CEmailPacketProc::IpErr( BST_IP_CSocket *pcSocket, BST_IP_ERR_T InIpErrMsg )
 {
     /*
@@ -524,20 +380,7 @@ BST_VOID BST_APP_CEmailPacketProc::IpErr( BST_IP_CSocket *pcSocket, BST_IP_ERR_T
     m_pcHostTask->Finished();
 }
 
-/*****************************************************************************
-函 数 名   : CloseAndFinish
-功能描述   : 关闭socket连接并且调用Finished接口
-输入参数   : BST_VOID
-输出参数   : 无
-返 回 值   : BST_TRUE  成功
-             BST_FALSE 失败
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年4月17日
-   作者    : z00220931
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_VOID BST_APP_CEmailPacketProc::CloseAndFinish( BST_VOID )
 {
     CloseConnection();
@@ -549,20 +392,7 @@ BST_VOID BST_APP_CEmailPacketProc::CloseAndFinish( BST_VOID )
     m_pcHostTask->Finished();
 }
 
-/*****************************************************************************
-函 数 名   : CloseConnection
-功能描述   : 关闭socket连接
-输入参数   : BST_VOID
-输出参数   : 无
-返 回 值   : BST_TRUE  成功
-             BST_FALSE 失败
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年4月17日
-   作者    : z00220931
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_VOID BST_APP_CEmailPacketProc::CloseConnection( BST_VOID )
 {
     BST_IP_ERR_T                        lRtnVal;
@@ -587,20 +417,7 @@ BST_VOID BST_APP_CEmailPacketProc::CloseConnection( BST_VOID )
     }
 }
 
-/*****************************************************************************
-函 数 名  : CreateConnection
-功能描述  : 创建socket连接
-输入参数  : BST_VOID
-输出参数  : 无
-返 回 值  : BST_TRUE  成功
-            BST_FALSE 失败
-调用函数  :
-被调函数  :
-修改历史  :
-1.日期    : 2014年4月17日
-  作者    : z00220931
-  修改内容: 新函数
-*****************************************************************************/
+
 BST_BOOL BST_APP_CEmailPacketProc::CreateConnection( BST_VOID )
 {
     BST_IP_ERR_T                        enIpErr;
@@ -636,20 +453,7 @@ BST_BOOL BST_APP_CEmailPacketProc::CreateConnection( BST_VOID )
     return BST_TRUE;
 }
 
-/*****************************************************************************
-函 数 名  : SendCommand
-功能描述  : 发送邮箱协议的命令
-输入参数  : cmd: 发送的命令指针
-            length: 发送的命令长度
-输出参数  : 无
-返 回 值  : BST_ERR_ENUM_UINT8  
-调用函数  :
-被调函数  :
-修改历史  :
-1.日期    : 2014年4月17日
-  作者    : z00220931
-  修改内容: 新函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_APP_CEmailPacketProc::SendCommand(
     const BST_UINT8 *pucCmd,
     BST_UINT16       usLength )
@@ -689,19 +493,7 @@ BST_ERR_ENUM_UINT8 BST_APP_CEmailPacketProc::SendCommand(
     return BST_NO_ERROR_MSG;
 }
 
-/*****************************************************************************
-函 数 名   : IsBasicConfigOk
-功能描述   : 判断基本配置是否完成
-输入参数   : 无
-输出参数   : 无
-返 回 值   : FALSE 配置失败 TRUE 配置成功
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年6月9日
-   作者    : z00220931
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_BOOL BST_APP_CEmailPacketProc::IsBasicConfigOk( BST_VOID ) const
 {
     BST_DRV_STRU                       *pNetDrvHandle;
@@ -756,20 +548,7 @@ BST_BOOL BST_APP_CEmailPacketProc::IsBasicConfigOk( BST_VOID ) const
     return BST_TRUE;
 }
 
-/*****************************************************************************
-函 数 名  : BST_APP_CEmailBox
-功能描述  : 构造函数
-输入参数  : ProcID: 类型id
-            TaskID: 任务id
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数    :
-修改历史    :
-  1.日期    :
-    作者    :
-    修改内容:
-*****************************************************************************/
+
 BST_APP_CEmailBox::BST_APP_CEmailBox(
     BST_PROCID_T    usProcID,
     BST_TASKID_T    usTaskID )
@@ -856,20 +635,7 @@ BST_APP_CEmailBox::BST_APP_CEmailBox(
     BST_ASSERT_NORM( BST_NO_ERROR_MSG != enRtnVal );
 }
 
-/****************************************************************************
-函 数 名   : ~BST_APP_CEmailBox
-功能描述   : 析构函数,释放构造函数中申请的内存。
-             注意new->delete,malloc->free的对应关系
-输入参数   : BST_VOID
-输出参数   : 无
-返 回 值   :
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年6月9日
-   作者    : z00220931
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_APP_CEmailBox::~BST_APP_CEmailBox( BST_VOID )
 {
     if ( BST_NULL_PTR == m_pstAccountInfo )
@@ -888,20 +654,7 @@ BST_APP_CEmailBox::~BST_APP_CEmailBox( BST_VOID )
     }
 }
 
-/*****************************************************************************
-函 数 名   : ConfigType
-功能描述   : 配置邮箱的类型
-输入参数   : pData 标识邮箱类型的数据
-            usLen 数据的长度
-输出参数   : 无
-返 回 值   : 存储邮箱类型的地址
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年6月9日
-   作者    : z00220931
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_UINT8 * BST_APP_CEmailBox::ConfigType(
     const BST_VOID *const pData,
     BST_UINT16      usLen )
@@ -962,20 +715,7 @@ BST_UINT8 * BST_APP_CEmailBox::ConfigType(
     return (BST_UINT8 *)&m_pstAccountInfo->enMbxType;
 }
 
-/*****************************************************************************
-函 数 名  : SetProtclType
-功能描述  : 配置协议的类型
-输入参数  : pData: 标识协议类型的数据指针
-           usLen: 数据长度
-输出参数  : 无
-返 回 值  : BST_UINT8*
-调用函数  :
-被调函数    :
-修改历史    :
-    1.日期  :
-      作者    :
-      修改内容:
-*****************************************************************************/
+
 BST_UINT8 * BST_APP_CEmailBox::SetProtclType(
     const BST_VOID *const pData,
     BST_UINT16            usLen )
@@ -1016,20 +756,7 @@ BST_UINT8 * BST_APP_CEmailBox::SetProtclType(
     return ( BST_UINT8 *)&m_ProtolType;
 }
 
-/*****************************************************************************
-函 数 名  : SetUsername
-功能描述  : 设置用户名
-输入参数  : pucUserName: 用户名数据指针
-            usLen: 用户名长度
-输出参数  : 无
-返 回 值  : BST_UINT8 *用户名存储的地址
-调用函数  :
-被调函数    :
-修改历史    :
-    1.日期  :
-      作者    :z00220931
-      修改内容:新增函数
-*****************************************************************************/
+
 BST_UINT8 * BST_APP_CEmailBox::SetUsername(
     BST_UINT8 *pucUserName,
     BST_UINT16 usLen ) const
@@ -1064,20 +791,7 @@ BST_UINT8 * BST_APP_CEmailBox::SetUsername(
     return pucRtnVal;
 }
 
-/*****************************************************************************
-函 数 名   : SetPasswd
-功能描述   : 设置密码
-输入参数   : pucPasswd: 密码的指针
-             usLen: 密码长度
-输出参数   : 无
-返 回 值   : BST_UINT8 *: 存储密码的地址
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年6月9日
-   作者    : z00220931
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_UINT8 *BST_APP_CEmailBox::SetPasswd(
     BST_UINT8 *pucPasswd,
     BST_UINT16 usLen ) const
@@ -1113,20 +827,7 @@ BST_UINT8 *BST_APP_CEmailBox::SetPasswd(
     return ( BST_UINT8 *)(m_pstAccountInfo->pPassWord->pData);
 }
 
-/*****************************************************************************
-函 数 名   : SetCipherkey
-功能描述   : 设置加密算法的密钥
-输入参数   : pucCipherKey: 密钥
-             usLen: 密钥长度
-输出参数   : 无
-返 回 值   : BST_UINT8 *: 密钥存储的地址
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年6月9日
-   作者    : z00220931
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_UINT8 * BST_APP_CEmailBox::SetCipherkey(
     BST_UINT8 *pucCipherKey,
     BST_UINT16 usLen ) const
@@ -1159,20 +860,7 @@ BST_UINT8 * BST_APP_CEmailBox::SetCipherkey(
     return ( BST_UINT8 *)( m_pstAccountInfo->pCipherKey->pData );
 }
 
-/****************************************************************************
-函 数 名   : SetEncryptType
-功能描述   : 设置加密类型
-输入参数   : pData: 标识加密类型数据的指针
-            usLen: 数据的长度
-输出参数   : 无
-返 回 值   : BST_UINT8 *:存储加密类型的地址
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年6月9日
-   作者    : z00220931
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_UINT8 *BST_APP_CEmailBox::SetEncryptType(
     const BST_VOID *const pData,
     BST_UINT16      usLen )
@@ -1201,20 +889,7 @@ BST_UINT8 *BST_APP_CEmailBox::SetEncryptType(
     return (BST_UINT8 *)&m_pstAccountInfo->enEcryptionType;
 }
 
-/****************************************************************************
-函 数 名   : SetSyncType
-功能描述   : 设置exchange邮箱的同步类型，分为PUSH和周期性同步
-输入参数   : pData: 标识同步类型的数据指针
-            usLen: 数据长度
-输出参数   : 无
-返 回 值   : BST_UINT8 *:存储同步类型的地址
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年6月9日
-   作者    : z00220931
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_UINT8 * BST_APP_CEmailBox::SetSyncType(
     const BST_VOID *const pData,
     BST_UINT16      usLen )
@@ -1242,21 +917,7 @@ BST_UINT8 * BST_APP_CEmailBox::SetSyncType(
     m_pstAccountInfo->enSyncType        = enSyncType;
     return (BST_UINT8 *)&m_pstAccountInfo->enSyncType;
 }
-/****************************************************************************
-函 数 名   : SetStrategyInfo
-功能描述   : 设置不同Strategy所需要的独有的信息
-输入参数   : enParamId: 设置的PID项的值
-            usLen    : 数据长度
-            pData    : 数据指针
-输出参数   : 无
-返 回 值   : BST_UINT8 *其他配置项的地址
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年6月9日
-   作者    : z00220931
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_UINT8 * BST_APP_CEmailBox::SetStrategyInfo (
     BST_CORE_PID_ENUM_UINT16 enParamId,
     BST_UINT16         usLen,
@@ -1276,23 +937,7 @@ BST_UINT8 * BST_APP_CEmailBox::SetStrategyInfo (
 
     return pucRtnPtr;
 }
-/****************************************************************************
-函 数 名   : ConfigNoticeEx
-功能描述   : 配置信息的入口函数，在此函数中分别调用具体的配置函数
-输入参数   : enParamId   : 配置对应的PID
-             usLen      : 数据长度
-             pData      : 数据内容
-             ulBaseCfged: 基础PID项设置的标志
-             pucNewAddr : 存储新设置项的指针
-输出参数   : 无
-返 回 值   : BST_ERR_ENUM_UINT8
-调用函数   :
-被调函数   :
-修改历史   :
- 1.日期    : 2014年6月9日
-   作者    : z00220931
-   修改内容: 新函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_APP_CEmailBox::PidConfiged(
     BST_CORE_PID_ENUM_UINT16 enParamId,
     BST_UINT16               usLen,
@@ -1356,19 +1001,7 @@ BST_ERR_ENUM_UINT8 BST_APP_CEmailBox::PidConfiged(
     return enRtnVal;
 }
 
-/****************************************************************************
-函 数 名  : Entry
-功能描述  : 超时回调函数
-输入参数  : BST_VOID
-输出参数  : 无
-返 回 值  : BST_VOID
-调用函数  :
-被调函数  : TimerExpireProc
-修改历史  :
-1.日期    :
-  作者    :
-  修改内容: 新函数
-*****************************************************************************/
+
 BST_VOID BST_APP_CEmailBox::Entry( BST_VOID )
 {
     BST_DBG_LOG( "Email Box base class called " );

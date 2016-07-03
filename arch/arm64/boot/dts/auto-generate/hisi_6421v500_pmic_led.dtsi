@@ -16,34 +16,34 @@
 		pmic_led: pmic_led@a0 {
 			compatible = "hisilicon,hisi-pmic-led";
 			status = "disabled";
-			hisilicon,dr_led_ctrl = <0xB8>;
-			hisilicon,dr_out_ctrl = <0xB9>;
+			hisilicon,dr_led_ctrl = <0x14D>;
+			hisilicon,dr_out_ctrl = <0x14E>;
 
 			led@a0 {
 				compatible = "hisilicon,hisi-led0";
 				hisilicon,dr_ctrl = "red";
-				hisilicon,dr_start_del = <0xBB>;
-				hisilicon,dr_iset = <0xBA>;
-				hisilicon,dr_time_config0 = <0xC0>;
-				hisilicon,dr_time_config1 = <0xC1>;
+				hisilicon,dr_start_del = <0x150>;
+				hisilicon,dr_iset = <0x14F>;
+				hisilicon,dr_time_config0 = <0x155>;
+				hisilicon,dr_time_config1 = <0x156>;
 			};
 
 			led@a1 {
 				compatible = "hisilicon,hisi-led1";
 				hisilicon,dr_ctrl = "green";
-				hisilicon,dr_start_del = <0xBD>;
-				hisilicon,dr_iset = <0xBC>;
-				hisilicon,dr_time_config0 = <0xC0>;
-				hisilicon,dr_time_config1 = <0xC1>;
+				hisilicon,dr_start_del = <0x152>;
+				hisilicon,dr_iset = <0x151>;
+				hisilicon,dr_time_config0 = <0x155>;
+				hisilicon,dr_time_config1 = <0x156>;
             };
 
 			led@a2 {
 				compatible = "hisilicon,hisi-led2";
 				hisilicon,dr_ctrl = "blue";
-				hisilicon,dr_start_del = <0xBF>;
-				hisilicon,dr_iset = <0xBE>;
-				hisilicon,dr_time_config0 = <0xC0>;
-				hisilicon,dr_time_config1 = <0xC1>;
+				hisilicon,dr_start_del = <0x154>;
+				hisilicon,dr_iset = <0x153>;
+				hisilicon,dr_time_config0 = <0x155>;
+				hisilicon,dr_time_config1 = <0x156>;
             };
         };
     };

@@ -1,11 +1,4 @@
-/*******************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : Rabmdef.h
-  Description : RABM宏定义
-  History     :
-      1.  张志勇       2003-07-25: The first version
-      2.  l47619   2005-10-21  Modify for V200R001
-*******************************************************************************/
+
 #ifndef _RABM_DEF_H_
 #define _RABM_DEF_H_
 

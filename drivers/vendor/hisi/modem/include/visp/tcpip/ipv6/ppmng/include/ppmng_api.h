@@ -264,7 +264,6 @@ typedef struct tagTCPIP_IP6_PROC_ICMP6_PKT_HOOK
     ULONG (*pfTCPIPIp6ProcRcvIcmp6PktHook) (MBUF_S *pstMBuf);
 }TCPIP_IP6_PROC_ICMP6_PKT_HOOK_S;
 
-/*Added by wangtong207740, MRP IPv6选路需求, 2012/11/21 */
 typedef enum enumIP6RetSrcRt
 {
     IP6_GO_WITH_SCRRT, /*查产品源路由成功*/
@@ -278,22 +277,7 @@ typedef struct tagIP6SrcRtSearch
     ULONG ulOutIfIndex;  /* 出接口, 必须是三层接口 */
 } IP6_SRC_RT_SEARCH_S;
 
-/*******************************************************************************
-*    Func Name: gpfIP6TCPIPSrcRtSearch
-*  Description: 根据源IP查找路由钩子原型
-*        Input: IN6ADDR_S ulSrcIPAddr: 报文的源地址,网络序
-*             : IN6ADDR_S ulDstIPAddr: 报文的目的地址,网络序
-*       Output: IP6_SRC_RT_SEARCH_S *pstOutput:  源IP路由查询结果
-*       Return: 成功:VOS_OK
-*               失败:其他    不通过源IP路由方式发送，VISP按照原有方式
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-06-01   z00171897/s00176784     Create
-*  2011-07-28   z00171897               DTS2011072801526 输入参数增加目的IP
-*******************************************************************************/
+
 typedef ULONG (*gpfIP6TCPIPSrcRtSearch)(IN6ADDR_S ulSrcIPAddr, IN6ADDR_S ulDstIPAddr, IP6_SRC_RT_SEARCH_S *pstOutput);
 
 extern gpfIP6TCPIPSrcRtSearch g_pfIp6SrcRtSearch;
@@ -308,7 +292,6 @@ typedef struct tagSrcRt6Packet
 typedef ULONG (*TCPIP_SRC_RT6_SEARCH_FUN)(SRC_RT6_PKT_S *pstPktInfo, IP6_SRC_RT_SEARCH_S *pstOutput);
 extern TCPIP_SRC_RT6_SEARCH_FUN g_pfIp6SrcRtSearchByVrf;
 
-/*add by wuling 00201943 for 支持IPv6无下一跳定制场景报文收发 2014-04-29 --start*/
 typedef ULONG (*pfTCPIPNeedLookupNdHook)(MBUF_S* pstMbuf);
 extern pfTCPIPNeedLookupNdHook g_pfIP6NeedLookupNd;
 
@@ -317,7 +300,6 @@ typedef enum enumIP6NeedLookUpND
     IP6_NO_NEED_LOOK_UP_ND,   /*不需要查找ND*/
     IP6_NEED_LOOK_UP_ND,      /*需要查找ND*/     
 }IP6_NEED_LOOK_UP_E;
-/*add by wuling 00201943 for 支持IPv6无下一跳定制场景报文收发 2014-04-29 --end*/
 
 /* IPv6 address数据结构
    该结构定义了IPv6地址的内容。
@@ -437,7 +419,6 @@ typedef struct tagIP6_PKTOPTS_S {
      */
     ULONG ip6po_ulNeedFree;
 
-    /* Add for Jira: VISPV2R3C05STACK-119 , by y00176567, at 2011-09-14. 修改原因: 增加IPv6报文头流标签选项 */
     ULONG ip6po_ulFlowID;
 }IP6_PKTOPTS_S;
 
@@ -466,7 +447,6 @@ typedef struct  tag6DOMAIN
 
 typedef struct tagIP6_PROTOSW
 {
-    /* Modified by X36317, 将此变量类型有short改为LONG，以解决ARM CPU四字节对齐问题, 2006/5/20 */
     LONG   pr_sType;                       /* socket type used for */
     struct tag6DOMAIN *pr_pDomain;         /* domain protocol a member of */
     SHORT  pr_sProtocol;                   /* protocol number */
@@ -722,125 +702,26 @@ extern ULONG IP6_PP_PM_Protocol_Register (LONG lPID, IP6_PP_PROTOSW_S *pstProtoc
 *******************************************************************************/
 extern ULONG TCPIP_PP6Output(MBUF_S* pstMBuf);
 
-/*******************************************************************************
-*    Func Name: TCPIP_PP6_PktTypeStat_Register
-* Date Created: 2014-04-03
-*       Author: wuling 00201943
-*  Description: 注册对应协议号&端口号的报文统计
-*        Input: TCPIP_PP6_PKTTYPE_STAT_KEY_S  *pKey:根据协议号和端口号注册报文
-*               统计信息;结构体中的端口号usPort必须为网络序
-*       Output: 成功：VOS_OK
-*               失败：VOS_ERR
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-04-03   wuling 00201943         Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_PP6_PktTypeStat_Register(TCPIP_PP6_PKTTYPE_STAT_KEY_S  *pKey);
 
-/*******************************************************************************
-*    Func Name: TCPIP_PP6_PktTypeStat_UnRegister
-* Date Created: 2014-04-03
-*       Author: wuling 00201943
-*  Description: 删除对应协议号&端口号的报文统计
-*        Input: TCPIP_PP6_PKTTYPE_STAT_KEY_S  *pKey:根据协议号和端口号注册报文
-*               统计信息;结构体中的端口号usPort必须为网络序
-*       Output: 成功：VOS_OK
-*               失败：VOS_ERR
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-04-03   wuling 00201943         Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_PP6_PktTypeStat_UnRegister(TCPIP_PP6_PKTTYPE_STAT_KEY_S  *pKey);
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetPP6PktTypeStat
-* Date Created: 2014-04-03
-*       Author: wuling 00201943
-*  Description: 删除对应协议号&端口号的报文统计
-*        Input: TCPIP_PP6_PKTTYPE_STAT_KEY_S  *pKey:根据协议号和端口号注册报文
-*               统计信息;结构体中的端口号usPort必须为网络序
-*       Output: TCPIP_PP6_PKTTYPE_STAT_S *pstFlowStat:报文统计计数
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-04-03   wuling 00201943         Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_GetPP6PktTypeStat(TCPIP_PP6_PKTTYPE_STAT_KEY_S  *pKey, 
                                          TCPIP_PP6_PKTTYPE_STAT_S *pstFlowStat);
 
-/*******************************************************************************
-*    Func Name: TCPIP_ClrPP6PktTypeStat
-* Date Created: 2014-04-03
-*       Author: wuling 00201943
-*  Description: 
-*        Input: TCPIP_PP6_PKTTYPE_STAT_KEY_S  *pKey:根据协议号和端口号注册报文
-*               统计信息;结构体中的端口号usPort必须为网络序
-*       Output: 成功：VOS_OK
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-04-03   wuling 00201943         Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_ClrPP6PktTypeStat(TCPIP_PP6_PKTTYPE_STAT_KEY_S  *pKey);
 
 
 extern ULONG TCPIP_ClrPP6PktStatAll(VOID);
 
-/*******************************************************************************
-*    Func Name: TCPIP_ShowPP6PktTypeStat
-* Date Created: 2014-04-03
-*       Author: wuling 00201943
-*  Description: 
-*        Input: 
-*       Output: 成功：VOS_OK
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-04-03   wuling 00201943         Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_ShowPP6PktTypeStat(VOID);
 
-/*******************************************************************************
-*    Func Name: TCPIP_RegLookupNdHook
-* Date Created: 2014-04-29
-*       Author: wuling 00201943
-*  Description: 产品注册钩子，根据Mbuf中的下一跳判断是否需要查找ND表项
-*        Input: pfTCPIPNeedLookupNdHook  pfHookFunc:产品注册钩子函数
-*       Output: 
-*       Return: VOS_OK-注册钩子函数成功
-*               PP6_INPUT_PARA_NULL-注册钩子函数失败
-*      Caution: 
-*               IP6_NO_NEED_LOOK_UP_ND, 不需要查找ND
-*               IP6_NEED_LOOK_UP_ND,     需要查找ND
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-04-29   wuling 00201943         Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_RegLookupNdHook(pfTCPIPNeedLookupNdHook pfHookFunc);
 
 

@@ -1,24 +1,4 @@
-/************************************************************************
-*                                                                      *
-*                             pap.c                                    *
-*                                                                      *
-*  Project Code:       VRP3.0                                          *
-*  Create Date:        2000/06/01                                      *
-*  Author:             Zhu Fengzhi                                     *
-*  Modify Date:                                                        *
-*  Document:                                                           *
-*  Function:           PPP的PAP协议模块                                *
-*  Others:                                                             *
-*----------------------------------------------------------------------*
-*                                                                      *
-* Copyright 2000-2002 VRP3.0 Team Beijing Institute HuaWei Tech, Inc.  *
-*                     ALL RIGHTS RESERVED                              *
-*                                                                      *
-*----------------------------------------------------------------------*
-*                                                                      *
-*   这个文件定义了PAP协议模块的全部接口函数和内部处理函数                *
-*                                                                      *
-************************************************************************/
+
 
 
 
@@ -51,16 +31,7 @@ extern "C" {
 *****************************************************************************/
 /*lint -save -e958 */
 
-/****************************************************************************
-* CREATE DATE  ：2000/06/09                                                 *
-* CREATED BY   ：Zhu Feng Zhi                                               *
-* FUNCTION     ：PAP初始化PAP控制块                                            *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-* OUTPUT       ：                                                           *
-* RETURN       ：                                                            *
-* CALLED BY    ：PPP_Core_AuthenticatePhase                                    *
-****************************************************************************/
+
 VOID PPP_PAP_Init(PPPINFO_S *pstPppInfo)
 {
     PPPPAPINFO_S *pstPapInfo;
@@ -106,21 +77,7 @@ VOID PPP_PAP_Init(PPPINFO_S *pstPppInfo)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/06/09                                                 *
-* CREATED BY   ：Zhu Feng Zhi                                               *
-* FUNCTION     ：PAP接收外部事件.事件包括：ClientUp、ServerUp、Down            *                                           Open、Close            *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-*                ulCmd:命令字,可以为如下值:                                 *
-*                    PAP_EVENT_CLIENTLOWERUP:本地下层UP                        *
-*                    PAP_EVENT_SERVERLOWERUP:对端下层UP                        *
-*                    PAP_EVENT_LOWERDOWN:下层DOWN                            *
-*                pPara:事件的参数,为NULL                                    *
-* OUTPUT       ：                                                           *
-* RETURN       ：NULL                                                       *
-* CALLED BY    ：PPP_Core_AuthenticatePhase                                    *
-****************************************************************************/
+
 VOID PPP_PAP_ReceiveEventFromCore (PPPINFO_S *pstPppInfo, VOS_UINT32 ulCmd, char *pPara)
 {
     if (pstPppInfo == 0)
@@ -151,17 +108,7 @@ VOID PPP_PAP_ReceiveEventFromCore (PPPINFO_S *pstPppInfo, VOS_UINT32 ulCmd, char
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/06/09                                                 *
-* CREATED BY   ：Zhu Feng Zhi                                               *
-* FUNCTION     ：PAP本地LowerUp,由对端验证我方                                *
-*                 进入PAP_STATE_SEND_AUTHREQ状态,向对端发出验证请求              *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-* OUTPUT       ：                                                           *
-* RETURN       ：                                                            *
-* CALLED BY    ：PPP_PAP_ReceiveEventFromCore                                *
-****************************************************************************/
+
 VOID PPP_PAP_ClientLowerUp(PPPINFO_S *pstPppInfo)
 {
     PPPCONFIGINFO_S                    *pstConfig       = pstPppInfo->pstUsedConfigInfo;
@@ -209,17 +156,7 @@ VOID PPP_PAP_ClientLowerUp(PPPINFO_S *pstPppInfo)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/06/09                                                 *
-* CREATED BY   ：Zhu Feng Zhi                                               *
-* FUNCTION     ：PAP远端LowerUp,由我端验证对端                                *
-*                 进入PAP_STATE_SERVER_LISTEN状态,等待对端送出验证字            *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-* OUTPUT       ：                                                           *
-* RETURN       ：                                                            *
-* CALLED BY    ：PPP_PAP_ReceiveEventFromCore                                *
-****************************************************************************/
+
 VOID PPP_PAP_ServerLowerUp(PPPINFO_S *pstPppInfo)
 {
     PPPPAPINFO_S *pstPapInfo = pstPppInfo->pstPapInfo;
@@ -253,18 +190,7 @@ VOID PPP_PAP_ServerLowerUp(PPPINFO_S *pstPppInfo)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/06/09                                                 *
-* CREATED BY   ：Zhu Feng Zhi                                               *
-* FUNCTION     ：PAPLowerDown                                                *
-*                 进入PAP_STATE_SERVER_INITIAL状态并进入PAP_STATE_CLIENT_INITIAL状态*
-*                 同时删除定时器                                                *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-* OUTPUT       ：                                                           *
-* RETURN       ：                                                            *
-* CALLED BY    ：PPP_PAP_ReceiveEventFromCore                                *
-****************************************************************************/
+
 VOID PPP_PAP_LowerDown(PPPINFO_S *pstPppInfo)
 {
     PPPPAPINFO_S *pstPapInfo = pstPppInfo->pstPapInfo;
@@ -287,19 +213,7 @@ VOID PPP_PAP_LowerDown(PPPINFO_S *pstPppInfo)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/06/09                                                 *
-* CREATED BY   ：Zhu Feng Zhi                                               *
-* FUNCTION     ：PAP收到pap 数据包,分析报文头并作相应处理                    *
-*                pHead:存放报文内存的头指针包括协议号,应负责释放这段内存    *
-*                pPacket:报文头位置                                         *
-*                ulLen:报文长度                                             *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-* OUTPUT       ：                                                           *
-* RETURN       ：                                                            *
-* CALLED BY    ：PPP_Core_ReceivePacketFromShell                            *
-****************************************************************************/
+
 VOID PPP_PAP_ReceivePacket (PPPINFO_S *pstPppInfo, UCHAR* pHead, UCHAR* pPacket, VOS_UINT32 ulLen)
 {
     UCHAR ucCode, ucId;
@@ -364,16 +278,7 @@ VOID PPP_PAP_ReceivePacket (PPPINFO_S *pstPppInfo, UCHAR* pHead, UCHAR* pPacket,
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/06/09                                                 *
-* CREATED BY   ：Zhu Feng Zhi                                               *
-* FUNCTION     ：删除定时器                                                    *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-* OUTPUT       ：                                                           *
-* RETURN       ：                                                            *
-* CALLED BY    ：                                                            *
-****************************************************************************/
+
 VOID PPP_PAP_DeleteTimer(PPPINFO_S *pstPppInfo)
 {
     PPPPAPINFO_S *pstPapInfo;
@@ -404,16 +309,7 @@ VOID PPP_PAP_DeleteTimer(PPPINFO_S *pstPppInfo)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/06/09                                                 *
-* CREATED BY   ：Zhu Feng Zhi                                               *
-* FUNCTION     ：PAP收到一非法协议,通知底层DOWN                                *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-* OUTPUT       ：                                                           *
-* RETURN       ：                                                            *
-* CALLED BY    ：PPP_PAP_ReceivePacket                                        *
-****************************************************************************/
+
 VOID PPP_PAP_ReceiveUnknownCode(PPPINFO_S *pstPppInfo)
 {
     /* 输出事件调试信息 */
@@ -439,19 +335,7 @@ VOID PPP_PAP_ReceiveUnknownCode(PPPINFO_S *pstPppInfo)
    peer是不应收到Authenticate-Request的, 即这段代码在手机端是使用不到的
 */
 #if 0
-/****************************************************************************
-* CREATE DATE  ：2000/06/09                                                 *
-* CREATED BY   ：Zhu Feng Zhi                                               *
-* FUNCTION     ：PAP收到验证请求包,分析当前状态并进行处理                    *
-* MODIFY DATE  ：modified by gxf for GGSN80 20030220                        *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-*                 pPacket:报文头位置                                            *
-*                 ucId:报文ID                                                *
-*                ulLen:报文数据长度                                            *
-* OUTPUT       ：                                                           *
-* RETURN       ：                                                            *
-* CALLED BY    ：PPP_PAP_ReceivePacket                                        *
-****************************************************************************/
+
 VOID PPP_PAP_ReceiveAuthReq(PPPINFO_S *pstPppInfo, UCHAR *pPacket, UCHAR ucId, VOS_UINT32 ulLen)
 {
     PPPPAPINFO_S *pstPapInfo = pstPppInfo->pstPapInfo;
@@ -484,8 +368,7 @@ VOID PPP_PAP_ReceiveAuthReq(PPPINFO_S *pstPppInfo, UCHAR *pPacket, UCHAR ucId, V
     /*当已经验证过再次收到验证请求，则以上次验证结果回复对方。*/
     if (pstPapInfo->ucServerState == PAP_STATE_SERVER_SUCCESS)
     {
-         /*Modified by liushuang for DTS2012050403584. L2TP用户建立隧道时收到
-           终端的Request消息，直接丢弃*/
+         
         if ( ( 0 == pstPppInfo->bReNego )
                 && (0 == pstPppInfo->bPppClient)
                  && (1 == pstPppInfo->bPppMode))
@@ -587,7 +470,6 @@ VOID PPP_PAP_ReceiveAuthReq(PPPINFO_S *pstPppInfo, UCHAR *pPacket, UCHAR ucId, V
         PAP_Debug_Error(pstPppInfo, PPP_LOG_WARNING, "Too long Password!");
         HSGW_EmsTraceByRpIndex(pstPppInfo->ulRPIndex, HSGW_EMS_MODULE_PPP, EMS_PPP_29);
 
-        /* BEGIN: Added for 问题单号:DTS2010101801457 by z00129699, 2010/10/18 */
         PPP_PAP_SendResponse(pstPppInfo, (UCHAR)PAP_AUTHNAK, ucId, AuthMsgError, (VOS_UINT16)VOS_StrLen(AuthMsgError));
 
         SNMP_SetFailReason(pstPppInfo, FSM_ALARM_AUTH_ERROR_ACCOUNT);
@@ -700,7 +582,6 @@ VOID PPP_PAP_ReceiveAuthReq(PPPINFO_S *pstPppInfo, UCHAR *pPacket, UCHAR ucId, V
     pstMsg->ucPktID = ucId;
     pstMsg->stIMSI = pstPppInfo->stIMSI;
 
-    /* add by g00127633 for 预付费重协商*/
     pstMsg->ucRenegoFlag = pstPppInfo->bPpcAAAFlag;
 
     (VOID)VOS_MemCpy((CHAR *)pstPapInfo->szPapUsrPwd, pPacket, (VOS_UINT32 )pstMsg->ucPwdLen);
@@ -747,21 +628,7 @@ VOID PPP_PAP_ReceiveAuthReq(PPPINFO_S *pstPppInfo, UCHAR *pPacket, UCHAR ucId, V
 
 
 
-/*****************************************************************************
- 函 数 名  : PPP_PAP_ReceiveAAAResult
- 功能描述  : Pap模块收到AAA的鉴权消息
- 输入参数  : AAA_AUTHRSP_S *pMsg
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月30日
-    作    者   : luofang
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID PPP_PAP_ReceiveAAAResult(AAA_AUTHRSP_S *pMsg)
 {
     PPPINFO_S *pstPppInfo;
@@ -873,21 +740,7 @@ VOID PPP_PAP_ReceiveAAAResult(AAA_AUTHRSP_S *pMsg)
 
 
 
-/*****************************************************************************
- 函 数 名  : PPP_PAP_SendAAAAuthReq
- 功能描述  : 向AAA发送鉴权请求
- 输入参数  : AAA_AUTHREQ_S *pstMsg
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2003年2月21日
-    作    者   : gxf
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID PPP_PAP_SendAAAAuthReq(PPPPAPINFO_S *pstPapInfo)
 {
 #if 0
@@ -972,19 +825,7 @@ VOID PPP_PAP_SendAAAAuthReq(PPPPAPINFO_S *pstPapInfo)
 
 
 
-/****************************************************************************
-* CREATE DATE  ：2000/06/09                                                 *
-* CREATED BY   ：Zhu Feng Zhi                                               *
-* FUNCTION     ：PAP收到对端ACK,进行处理                                    *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-*                 pPacket:报文头位置                                            *
-*                 ucId:报文ID                                                *
-*                ulLen:报文数据长度                                            *
-* OUTPUT       ：                                                           *
-* RETURN       ：                                                            *
-* CALLED BY    ：PPP_PAP_ReceivePacket                                        *
-****************************************************************************/
+
 VOID PPP_PAP_ReceiveAuthAck(PPPINFO_S *pstPppInfo, UCHAR *pPacket, UCHAR ucId, VOS_UINT32 ulLen)
 {
     PPPPAPINFO_S *pstPapInfo = pstPppInfo->pstPapInfo;
@@ -1053,19 +894,7 @@ VOID PPP_PAP_ReceiveAuthAck(PPPINFO_S *pstPppInfo, UCHAR *pPacket, UCHAR ucId, V
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/06/09                                                 *
-* CREATED BY   ：Zhu Feng Zhi                                               *
-* FUNCTION     ：PAP收到对端NAK,进行处理                                    *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-*                 pPacket:报文头位置                                            *
-*                 ucId:报文ID                                                *
-*                ulLen:报文数据长度                                            *
-* OUTPUT       ：                                                           *
-* RETURN       ：                                                            *
-* CALLED BY    ：PPP_PAP_ReceivePacket                                        *
-****************************************************************************/
+
 VOID PPP_PAP_ReceiveAuthNak(PPPINFO_S *pstPppInfo, UCHAR *pPacket, UCHAR ucId, VOS_UINT32 ulLen)
 {
     PPPPAPINFO_S *pstPapInfo = pstPppInfo->pstPapInfo;
@@ -1159,17 +988,7 @@ VOID PPP_PAP_ReceiveAuthNak(PPPINFO_S *pstPppInfo, UCHAR *pPacket, UCHAR ucId, V
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/06/09                                                 *
-* CREATED BY   ：Zhu Feng Zhi                                               *
-* FUNCTION     ：PAP向对端发出验证请求                                        *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-* OUTPUT       ：                                                           *
-* RETURN       ：                                                            *
-* CALLED BY    ：PPP_PAP_ClientLowerUp,PPP_PAP_SendAuthReqTimeout,            *
-*                 PPP_PAP_ReceiveAuthNak                                        *
-****************************************************************************/
+
 VOID PPP_PAP_SendAuthReq(PPPINFO_S *pstPppInfo)
 {
     PPPPAPINFO_S *pstPapInfo = pstPppInfo->pstPapInfo;
@@ -1254,20 +1073,7 @@ VOID PPP_PAP_SendAuthReq(PPPINFO_S *pstPppInfo)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/06/09                                                 *
-* CREATED BY   ：Zhu Feng Zhi                                               *
-* FUNCTION     ：PAP向对端发出响应(ACK或NAK)                                *
-* MODIFY DATE  ：                                                            *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-*                 ucCode: 验证成功/失败报文code                                *
-*                 stMsg: 回传信息                                                *
-*                 ucMsgLen: 信息长度                                            *
-* OUTPUT       ：                                                           *
-* RETURN       ：                                                            *
-* CALLED BY    ：PPP_PAP_ClientLowerUp,PPP_PAP_SendAuthReqTimeout,            *
-*                 PPP_PAP_ReceiveAuthNak                                        *
-****************************************************************************/
+
 VOID PPP_PAP_SendResponse(PPPINFO_S * pstPppInfo, UCHAR ucCode, UCHAR ucId, char *stMsg, VOS_UINT16 usMsgLen)
 {
     PPPPAPINFO_S *pstPapInfo;
@@ -1324,16 +1130,7 @@ VOID PPP_PAP_SendResponse(PPPINFO_S * pstPppInfo, UCHAR ucCode, UCHAR ucId, char
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/06/09                                                 *
-* CREATED BY   ：Zhu Feng Zhi                                               *
-* FUNCTION     ：Server端等待对端发送验证请求超时,向内核报PAP验证失败       *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-* OUTPUT       ：                                                           *
-* RETURN       ：                                                            *
-* CALLED BY    ：由ulServerTimeoutID触发                                    *
-****************************************************************************/
+
 VOS_VOID PPP_PAP_WaitReqTimeout(VOS_UINT32 ulPppId)
 {
     PPPINFO_S *pstPppInfo;
@@ -1384,16 +1181,7 @@ VOS_VOID PPP_PAP_WaitReqTimeout(VOS_UINT32 ulPppId)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/06/09                                                 *
-* CREATED BY   ：Zhu Feng Zhi                                               *
-* FUNCTION     ：PAP Client端等待验证结果超时                                *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-* OUTPUT       ：                                                           *
-* RETURN       ：                                                            *
-* CALLED BY    ：由ulClientTimeoutID定时器触发                                *
-****************************************************************************/
+
 VOS_VOID PPP_PAP_SendAuthReqTimeout(VOS_UINT32 ulPppId)
 {
     PPPINFO_S *pstPppInfo;
@@ -1447,21 +1235,7 @@ VOS_VOID PPP_PAP_SendAuthReqTimeout(VOS_UINT32 ulPppId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_PAP_AuthRspTimeout
- 功能描述  : PAP Server端等待AAA验证结果超时
- 输入参数  : VOID *pPppInfo
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2003年2月21日
-    作    者   : gxf
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID PPP_PAP_AuthRspTimeout(VOID *ulIndex)
 {
     PPPINFO_S *pstPppInfo = NULL;

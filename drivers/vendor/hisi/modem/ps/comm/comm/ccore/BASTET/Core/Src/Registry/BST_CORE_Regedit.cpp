@@ -1,22 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : BST_CORE_Regedit.cpp
-  版 本 号   : V1.1
-  作    者   : d00173029
-  生成日期   : 2014年6月10日
-  最近修改   :
-  功能描述   : 注册表相关处理函数
-  函数列表   :
-
-  修改历史   :
-  1.日    期   : 2014年06月10日
-    作    者   : d00173029
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -32,19 +14,7 @@
    2 函数实现
 ******************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : GetInstance
- 功能描述  : 单例模式，获取注册表的实例
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回BST_CORE_CRegedit实例化指针
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_CORE_CRegedit *BST_CORE_CRegedit::GetInstance ( BST_VOID )
 {
     static BST_CORE_CRegedit           *pcInstance = BST_NULL_PTR;
@@ -55,21 +25,7 @@ BST_CORE_CRegedit *BST_CORE_CRegedit::GetInstance ( BST_VOID )
     }
     return pcInstance;
 }
-/*****************************************************************************
- 函 数 名  : GetLen
- 功能描述  : 获取PID对应参数的长度
- 输入参数  : usObjtAddr :对象索引,代理类型(Email/HeartBeat)
-             usOfstAddr :偏移地址
-             enParamId  :参数PID
- 输出参数  : 无
- 返 回 值  : 返回PID对应参数的长度
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_UINT16 BST_CORE_CRegedit::GetLen(
     BST_OBJT_ADDR_T            usObjtAddr,
     BST_OFST_ADDR_T            usOfstAddr,
@@ -85,23 +41,7 @@ BST_UINT16 BST_CORE_CRegedit::GetLen(
     }
     return pRegParam->stParamInfo.usLen;
 }
-/*****************************************************************************
- 函 数 名  : Inquire
- 功能描述  : 查询对应PID的值
- 输入参数  : usObjtAddr :对象索引,代理类型(Email/HeartBeat)
-             usOfstAddr :偏移地址
-             enParamId  :参数PID
-             usDataLen  :数据长度
-             pData      :数据指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_UINT16 BST_CORE_CRegedit::Inquire(
     BST_OBJT_ADDR_T           usObjtAddr,
     BST_OFST_ADDR_T           usOfstAddr,
@@ -173,21 +113,7 @@ BST_UINT16 BST_CORE_CRegedit::Inquire(
     return 0;
 }
 
-/*****************************************************************************
- 函 数 名  : Config
- 功能描述  : 配置注册表的参数，重载函数
- 输入参数  : usObjtAddr :对象索引,代理类型(Email/HeartBeat)
-             usOfstAddr :偏移地址
-             pstRegParam:注册表指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8  BST_CORE_CRegedit::Config(
     BST_OBJT_ADDR_T             usObjtAddr,
     BST_OFST_ADDR_T             usOfstAddr,
@@ -203,23 +129,7 @@ BST_ERR_ENUM_UINT8  BST_CORE_CRegedit::Config(
                       pstRegParam->usLen,
                       pstRegParam->pvContent ) );
 }
-/*****************************************************************************
- 函 数 名  : Save
- 功能描述  : 保持应用config相关参数信息
- 输入参数  :
-    BST_CORE_PIDNODE_STRU      *pstPid,     参数PID条目头信息，调用者保证有效
-    BST_UINT16                  usDataLen,  输入数据长度
-    BST_VOID                   *pData       输入缓冲区入口
 
- 输出参数  : BST_ERR_ENUM_UINT8 errcode
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
 BST_ERR_ENUM_UINT8 BST_CORE_CRegedit::Save(
     BST_CORE_CAPACallBack      *pCallBack,
     BST_CORE_PIDNODE_STRU      *pstPid,
@@ -288,23 +198,7 @@ BST_ERR_ENUM_UINT8 BST_CORE_CRegedit::Save(
     return enRet;
 }
 
-/*****************************************************************************
- 函 数 名  : Config
- 功能描述  : 配置对应PID的参数，重载函数
- 输入参数  : usObjtAddr :对象索引,代理类型(Email/HeartBeat)
-             usOfstAddr :偏移地址
-             enParamId  :参数PID
-             usDataLen  :数据长度
-             pData      :数据指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8  BST_CORE_CRegedit::Config(
     BST_OBJT_ADDR_T           usObjtAddr,
     BST_OFST_ADDR_T           usOfstAddr,
@@ -373,23 +267,7 @@ BST_ERR_ENUM_UINT8  BST_CORE_CRegedit::Config(
     return BST_ERR_ITEM_NOT_EXISTED;
 }
 
-/*****************************************************************************
- 函 数 名  : Update
- 功能描述  : 更新对应PID的参数长度和内容
- 输入参数  : usObjtAddr :对象索引,代理类型(Email/HeartBeat)
-             usOfstAddr :偏移地址
-             enParamId  :参数PID
-             usDataLen  :数据长度
-             pData      :数据指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8  BST_CORE_CRegedit::Update(
     BST_OBJT_ADDR_T           usObjtAddr,
     BST_OFST_ADDR_T           usOfstAddr,
@@ -435,21 +313,7 @@ BST_ERR_ENUM_UINT8  BST_CORE_CRegedit::Update(
 }
 
 
-/*****************************************************************************
- 函 数 名  : Regist
- 功能描述  : 注册一个任务的回调函数
- 输入参数  : pTask      :   任务指针
-             pCallBack  :   回调函数指针
-             ulAPVersion:   AP层协议版本
- 输出参数  : 无
- 返 回 值  : BST_NO_ERROR_MSG :注册成功，其他为注册失败，返回相应的出错类型
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年05月10日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_CORE_CRegedit::Regist(
     BST_CTask                  *pTask, 
     BST_VOID                   *pAPInf,
@@ -486,23 +350,7 @@ BST_ERR_ENUM_UINT8 BST_CORE_CRegedit::Regist(
     return BST_NO_ERROR_MSG;
 }
 
-/*****************************************************************************
- 函 数 名  : Regist
- 功能描述  : 注册一个任务
- 输入参数  : pTask     :任务指针
-             ulNoticeFlag该PID是否通过pcCallBack回调
-             enParamId :参数PID
-             usLen     :参数PID长度
-             pValue    :数据指针
- 输出参数  : 无
- 返 回 值  : BST_NO_ERROR_MSG :注册成功，其他为注册失败，返回相应的出错类型
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 /*lint -e429*/
 /*lint -e438*/
 BST_ERR_ENUM_UINT8  BST_CORE_CRegedit::Regist(
@@ -576,22 +424,7 @@ BST_ERR_ENUM_UINT8  BST_CORE_CRegedit::Regist(
     return BST_NO_ERROR_MSG;
 }
 
-/*****************************************************************************
- 函 数 名  : Regist
- 功能描述  : 注册一个任务
- 输入参数  : pTask     :任务指针
-             enParamId :参数PID
-             usLen     :参数PID长度
-             pValue    :数据指针
- 输出参数  : 无
- 返 回 值  : BST_NO_ERROR_MSG :注册成功，其他为注册失败，返回相应的出错类型
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 /*lint -e429*/
 /*lint -e438*/
 BST_ERR_ENUM_UINT8  BST_CORE_CRegedit::Regist(
@@ -608,20 +441,7 @@ BST_ERR_ENUM_UINT8  BST_CORE_CRegedit::Regist(
 }
 /*lint +e438*/
 /*lint +e429*/
-/*****************************************************************************
- 函 数 名  : unRegist
- 功能描述  : 注销对应PID，重载函数
- 输入参数  : pTask     : 任务指针
-             enParamId : 参数PID
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8  BST_CORE_CRegedit::unRegist(
     const BST_CTask            *pTask,
     BST_CORE_PID_ENUM_UINT16    enParamId )
@@ -671,19 +491,7 @@ BST_ERR_ENUM_UINT8  BST_CORE_CRegedit::unRegist(
     }
     return BST_ERR_ITEM_NOT_EXISTED;
 }
-/*****************************************************************************
- 函 数 名  : unRegist
- 功能描述  : 注销一个任务，重载函数
- 输入参数  : BST_CTask *pTask  :任务指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 /*lint -e438*/
 BST_ERR_ENUM_UINT8  BST_CORE_CRegedit::unRegist ( const BST_CTask *pTask )
 {
@@ -723,19 +531,7 @@ BST_ERR_ENUM_UINT8  BST_CORE_CRegedit::unRegist ( const BST_CTask *pTask )
     return BST_NO_ERROR_MSG;
 }
 /*lint +e438*/
-/*****************************************************************************
- 函 数 名  : ChnlCtrl
- 功能描述  : 配置任务
- 输入参数  : BST_SRV_CHNL_HEAD_STRU     *const pstChnHead 信道控制头部
- 输出参数  : 无
- 返 回 值  : BST_ERR_ENUM_UINT8
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_CORE_CRegedit::ChnlCtrl(
     BST_OBJT_ADDR_T            usObjtAddr,
     BST_OFST_ADDR_T            usOfstAddr,
@@ -781,21 +577,7 @@ BST_ERR_ENUM_UINT8 BST_CORE_CRegedit::ChnlCtrl(
     return BST_NO_ERROR_MSG;
 }
 
-/*****************************************************************************
- 函 数 名  : Select
- 功能描述  : 根据PID从注册表中找到对应的注册项
- 输入参数  : usObjtAddr :对象索引,代理类型(Email/HeartBeat)
-             usOfstAddr :偏移地址
-             enParamId  :参数PID类型
- 输出参数  : 无
- 返 回 值  : 返回对应的注册项,若未找到,返回NULL
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_CORE_PIDNODE_STRU* BST_CORE_CRegedit::Select(
     BST_OBJT_ADDR_T            usObjtAddr,
     BST_OFST_ADDR_T            usOfstAddr,
@@ -828,20 +610,7 @@ BST_CORE_PIDNODE_STRU* BST_CORE_CRegedit::Select(
     }
     return BST_NULL_PTR;
 }
-/*****************************************************************************
- 函 数 名  : Select
- 功能描述  : 根据应用的类型和偏移地址从注册表中找到对应的注册项
- 输入参数  : usObjtAddr :对象索引,代理类型(Email/HeartBeat)
-             usOfstAddr :偏移地址
- 输出参数  : 无
- 返 回 值  : 返回对应的注册项,若未找到,返回NULL
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_CORE_REGNODE_STRU* BST_CORE_CRegedit::Select(
     BST_OBJT_ADDR_T   usObjtAddr,
     BST_OFST_ADDR_T   usOfstAddr )
@@ -869,21 +638,7 @@ BST_CORE_REGNODE_STRU* BST_CORE_CRegedit::Select(
     }
     return BST_NULL_PTR;
 }
-/*****************************************************************************
- 函 数 名  : InputCheck
- 功能描述  : 添加注册表时的入口检查
- 输入参数  : enParamId : 参数PID
-             usDataLen : 数据长度
-             pData     : 数据指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_BOOL BST_CORE_CRegedit::InputCheck(
     BST_CORE_PID_ENUM_UINT16    enParamId,
     BST_UINT16                  usDataLen,
@@ -912,19 +667,7 @@ BST_BOOL BST_CORE_CRegedit::InputCheck(
     }
     return BST_TRUE;
 }
-/*****************************************************************************
- 函 数 名  : BST_CORE_CRegedit
- 功能描述  : 构造函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_CORE_CRegedit::BST_CORE_CRegedit ( BST_VOID )
 {
    /*

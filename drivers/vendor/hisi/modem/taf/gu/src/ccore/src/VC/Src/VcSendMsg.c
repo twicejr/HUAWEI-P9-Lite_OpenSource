@@ -1,24 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : VcSendMsg.c
-  版 本 号   : 初稿
-  作    者   : 胡文 44270
-  生成日期   : 2009年7月05日
-  最近修改   : 2007年7月05日
-  功能描述   : 实现VC模块的功能
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2009年7月05日
-    作    者   : 胡文 44270
-    修改内容   : 创建文件
-
-  2.日    期   : 2010年3月16日
-    作    者   : zhoujun /z40661
-    修改内容   : AMR速率调整
-******************************************************************************/
 
 /*****************************************************************************
    1 头文件包含
@@ -33,17 +13,13 @@
 #include "NasUtranCtrlInterface.h"
 
 #include "MnComm.h"
-/* Added by s00217060 for VoLTE_PhaseI  项目, 2013-07-11, begin */
 #if (FEATURE_ON == FEATURE_IMS)
 #include "VcImsaInterface.h"
 #endif
 #include "TafOamInterface.h"
-/* Added by s00217060 for VoLTE_PhaseI  项目, 2013-07-11, end */
 
-/* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, begin */
 #include "VcCtx.h"
 #include "VcMntn.h"
-/* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, end */
 
 #include "Taf_Tafm_Remote.h"
 
@@ -65,36 +41,7 @@
 /*****************************************************************************
    2 函数实现
 *****************************************************************************/
-/*****************************************************************************
-函 数 名  : APP_VC_SendStartReq
-功能描述  : 发送消息ID_VC_CODEC_START_REQ给物理层
-输入参数  : pstChanInfo - 信道信息
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年07月05日
-    作    者   : h44270
-    修改内容   : Creat
 
-  2.日    期   : 2010年3月16日
-    作    者   : zhoujun /z40661
-    修改内容   : AMR速率调整
-
-  3.日    期   : 2012年7月16日
-    作    者   : w00167002
-    修改内容   : 在CS语音呼叫的建立及接听过程中，CALL模块会通知VC模块，VC
-                  模块在通知HIFI启动语音处理时，需要通知其当前通信服务的制式
-                  是GSM，WCDMA还是TD-SCDMA，HIFI才能与不同DSP正确进行交互。
-  4.日    期   : 2013年07月22日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseI项目
-
-  5.日    期   : 2014年11月5日
-    作    者   : y00213812
-    修改内容   : 增加CDMA模式的处理
-*****************************************************************************/
 VOS_UINT32  APP_VC_SendStartReq(
     CALL_VC_CHANNEL_INFO_STRU           *pstChanInfo,
     CALL_VC_RADIO_MODE_ENUM_U8          enRadioMode
@@ -138,13 +85,11 @@ VOS_UINT32  APP_VC_SendStartReq(
         enMode = VCVOICE_NET_MODE_TDSCDMA;
     }
 
-    /* Added by s00217060 for VoLTE_PhaseI  项目, 2013-07-22, begin */
     /* 如果网络模式是EUTRAN_IMS,则以EUTRAN_IMS制式通知HIFI启动语音处理 */
     if (CALL_VC_MODE_IMS_EUTRAN == pstChanInfo->stChannelParam.enMode)
     {
         enMode = VCVOICE_NET_MODE_IMS_EUTRAN;
     }
-    /* Added by s00217060 for VoLTE_PhaseI  项目, 2013-07-22, end */
 
     /* 如果网络模式是CDMA,则以CDMA制式通知HIFI启动语音处理 */
     if (CALL_VC_MODE_CDMA == pstChanInfo->stChannelParam.enMode)
@@ -187,23 +132,7 @@ VOS_UINT32  APP_VC_SendStartReq(
 
 }
 
-/*****************************************************************************
-函 数 名  : APP_VC_SendStopReq
-功能描述  : 发送消息VC_PHY_STOP_REQ给物理层
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年07月05日
-    作    者   : h44270
-    修改内容   : Creat
 
-2.日    期   : 2010年3月16日
-  作    者   : zhoujun /z40661
-  修改内容   : AMR速率调整
-*****************************************************************************/
 VOS_VOID APP_VC_SendStopReq(
     CALL_VC_RADIO_MODE_ENUM_U8          enRadioMode
 )
@@ -253,38 +182,15 @@ VOS_VOID APP_VC_SendStopReq(
     pstRstMsg->ulSenderPid            = ulSenderPid;
     pstRstMsg->ulReceiverPid          = WUEPS_PID_VC;
 
-    /* Modified by n00269697 for V3R3C60_eCall项目, 2014-3-29, begin */
     /* 把pstStopReq->ulReceiverPid改成DSP_PID_VOICE 因为上面消息发送后，pstStopReq就释放了 */
     PS_SEND_MSG(DSP_PID_VOICE, pstRstMsg);
-    /* Modified by n00269697 for V3R3C60_eCall项目, 2014-3-29, end   */
 
 #endif
 
     return;
 }
 
-/*****************************************************************************
-函 数 名  : APP_VC_SendSetDeviceReq
-功能描述  : 发送消息ID_VC_CODEC_SET_DEVICE_REQ给物理层
-输入参数  : pstChanInfo - 信道信息
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修订记录  :
-  1.日    期   : 2009年07月05日
-    作    者   : h44270
-    修改内容   : Creat
-  2.日    期   : 2010年3月30日
-    作    者   : zhoujun /z40661
-    修改内容   : AMR速率调整
-  3.日    期   : 2012年12月26日
-    作    者   : m00217266
-    修改内容   : DSDA C核项目接口修改(删除enRadioMode入参)
-  4.日    期   : 2015年6月16日
-    作    者   : l00198894
-    修改内容   : TSTS
-*****************************************************************************/
+
 VOS_UINT32  APP_VC_SendSetDeviceReq(
     VC_PHY_DEVICE_MODE_ENUM_U16         enDeviceMode
 )
@@ -342,26 +248,7 @@ VOS_UINT32  APP_VC_SendSetDeviceReq(
     return ulRet;
 }
 
-/*****************************************************************************
-函 数 名  : APP_VC_SendSetVolumeReq
-功能描述  : 发送消息ID_VC_CODEC_SET_VOLUME_REQ给物理层
-输入参数  : pstChanInfo - 信道信息
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年07月05日
-    作    者   : h44270
-    修改内容   : Creat
 
-2.  日    期   : 2010年3月30日
-    作    者   : zhoujun /z40661
-    修改内容   : AMR速率调整
-3.  日    期   : 2012年12月26日
-    作    者   : m00217266
-    修改内容   : DSDA C核项目,(删除enRadioMode入参)
-*****************************************************************************/
 VOS_UINT32  APP_VC_SendSetVolumeReq(
     VOS_UINT16                          usVolTarget,
     VOS_INT16                           sVolValue
@@ -420,31 +307,7 @@ VOS_UINT32  APP_VC_SendSetVolumeReq(
 
 }
 
-/*****************************************************************************
-函 数 名  : APP_VC_SendSetCodecReq
-功能描述  : 发送消息VC_PHY_SET_CODEC_REQ给物理层
-输入参数  : pstChanInfo - 信道信息
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年07月05日
-    作    者   : h44270
-    修改内容   : Creat
 
-  2.日    期   : 2010年3月16日
-    作    者   : zhoujun /z40661
-    修改内容   : AMR速率调整
-  3.日    期   : 2012年7月16日
-    作    者   : w00167002
-    修改内容   : 在CS语音呼叫的建立及接听过程中，CALL模块会通知VC模块，VC
-                  模块在通知HIFI启动语音处理时，需要通知其当前通信服务的制式
-                  是GSM，WCDMA还是TD-SCDMA，HIFI才能与不同DSP正确进行交互
-  4.日    期   : 2013年07月22日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseI项目
-*****************************************************************************/
 VOS_VOID APP_VC_SendSetCodecReq(
     CALL_VC_CHANNEL_INFO_STRU           *pstChanInfo
 )
@@ -485,13 +348,11 @@ VOS_VOID APP_VC_SendSetCodecReq(
         enMode = VCVOICE_NET_MODE_TDSCDMA;
     }
 
-    /* Added by s00217060 for VoLTE_PhaseI  项目, 2013-07-22, begin */
     /* 如果网络模式是EUTRAN_IMS,则以EUTRAN_IMS制式通知HIFI启动语音处理 */
     if (CALL_VC_MODE_IMS_EUTRAN == pstChanInfo->stChannelParam.enMode)
     {
         enMode = VCVOICE_NET_MODE_IMS_EUTRAN;
     }
-    /* Added by s00217060 for VoLTE_PhaseI  项目, 2013-07-22, end */
 
     /* 如果网络模式是CDMA,则以CDMA制式通知HIFI启动语音处理 */
     if (CALL_VC_MODE_CDMA == pstChanInfo->stChannelParam.enMode)
@@ -534,22 +395,7 @@ VOS_VOID APP_VC_SendSetCodecReq(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : APP_VC_SendEndCallReq
-功能描述  : 发送挂断电话消息给CALL模块
-输入参数  : APP_VC_OPEN_CHANNEL_FAIL_CAUSE_ENUM_UINT32 - 挂断电话原因值
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年07月05日
-    作    者   : h44270
-    修改内容   : Creat
-2.  日    期   :2014年9月24日
-    作    者   :s00217060
-    修改内容   :for cs_err_log
-*****************************************************************************/
+
 VOS_VOID APP_VC_SendEndCallReq(
     APP_VC_OPEN_CHANNEL_FAIL_CAUSE_ENUM_UINT32  enCause
 )
@@ -583,23 +429,7 @@ VOS_VOID APP_VC_SendEndCallReq(
 
 }
 
-/*****************************************************************************
-函 数 名  : APP_VC_SendPhyTestModeNotify
-功能描述  : 发送消息ID_VC_CODEC_START_REQ给HPA测试模式通知
-输入参数  : pstChanInfo - 信道信息
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2012年03月08日
-    作    者   : h44270
-    修改内容   : 新建，增加发送给物理层测试模式消息
-  2.日    期   : 2012年12月11日
-    作    者   : l00167671
-    修改内容   : DTS2012121802573, TQE清理
 
-*****************************************************************************/
 VOS_VOID APP_VC_SendPhyTestModeNotify(
     CALL_VC_RADIO_MODE_ENUM_U8              enMode
 )
@@ -639,19 +469,7 @@ VOS_VOID APP_VC_SendPhyTestModeNotify(
 }
 
 
-/*****************************************************************************
-函 数 名  : APP_VC_SendSetForeGroundReq
-功能描述  : VC 下发 CODEC 设置前向模式设置请求
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2012年12月28日
-    作    者   : 张鹏/00214637
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 APP_VC_SendSetForeGroundReq(VOS_VOID)
 {
     VCVOICE_FOREGROUND_REQ_STRU        *pstCodecMsg = VOS_NULL_PTR;
@@ -678,19 +496,7 @@ VOS_UINT32 APP_VC_SendSetForeGroundReq(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : APP_VC_SendSetBackGroundReq
-功能描述  : VC 下发 CODEC 设置后向模式设置请求
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2012年12月28日
-    作    者   : 张鹏/00214637
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 APP_VC_SendSetBackGroundReq(VOS_VOID)
 {
     VCVOICE_BACKGROUND_REQ_STRU        *pstCodecMsg = VOS_NULL_PTR;
@@ -717,19 +523,7 @@ VOS_UINT32 APP_VC_SendSetBackGroundReq(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : APP_VC_SendGroundQry
-功能描述  : VC 下发 CODEC 查询前向模式设置请求
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2012年12月28日
-    作    者   : 张鹏/00214637
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 APP_VC_SendGroundQry(VOS_VOID)
 {
     VCVOICE_GROUND_QRY_STRU    *pstCodecMsg = VOS_NULL_PTR;
@@ -757,22 +551,7 @@ VOS_UINT32 APP_VC_SendGroundQry(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : APP_VC_SendSetForeGroundCnf
-功能描述  : VC 发送 AT 前向模式设置回复消息
-输入参数  : clientId--AT Client ID,enExeRslt--设置操作结果
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2012年12月28日
-    作    者   : 张鹏/00214637
-    修改内容   : Creat
-2.  日    期   : 2013年02月28日
-    作    者   : 张鹏/00214637
-    修改内容   : AT^CBG设置、查询命令导致单板复位
-*****************************************************************************/
+
 VOS_VOID APP_VC_SendSetForeGroundCnf(
     MN_CLIENT_ID_T                      usClientId,
     VCVOICE_EXECUTE_RSLT_ENUM_UINT16    enExeRslt
@@ -815,22 +594,7 @@ VOS_VOID APP_VC_SendSetForeGroundCnf(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : APP_VC_SendSetBackGroundCnf
-功能描述  : VC 发送 AT 后向模式设置回复消息
-输入参数  : clientId--AT Client ID,enExeRslt--设置操作结果
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2012年12月28日
-    作    者   : 张鹏/00214637
-    修改内容   : Creat
-2.  日    期   : 2013年02月28日
-    作    者   : 张鹏/00214637
-    修改内容   : AT^CBG设置、查询命令导致单板复位
-*****************************************************************************/
+
 VOS_VOID APP_VC_SendSetBackGroundCnf(
     MN_CLIENT_ID_T                      usClientId,
     VCVOICE_EXECUTE_RSLT_ENUM_UINT16    enExeRslt
@@ -873,22 +637,7 @@ VOS_VOID APP_VC_SendSetBackGroundCnf(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : APP_VC_SendGroundRsp
-功能描述  : VC 发送 AT 查询前向模式回复消息
-输入参数  : clientId--AT Client ID,enState--查询状态，ucQryRslt--查询操作结果
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2012年12月28日
-    作    者   : 张鹏/00214637
-    修改内容   : Creat
-2.  日    期   : 2013年02月28日
-    作    者   : 张鹏/00214637
-    修改内容   : AT^CBG设置、查询命令导致单板复位
-*****************************************************************************/
+
 VOS_VOID APP_VC_SendGroundRsp(
     MN_CLIENT_ID_T                      usClientId,
     VCVOICE_GROUND_ENUM_UINT16          enState ,
@@ -932,21 +681,7 @@ VOS_VOID APP_VC_SendGroundRsp(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VC_SendSetModemLoopReq
- 功能描述  : VC发送Codec设置语音环回模式的消息
- 输入参数  : VCVOICE_LOOP_ENUM_UINT16 enVoiceLoop
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月5日
-    作    者   : s00190137
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 APP_VC_SendSetModemLoopReq(VCVOICE_LOOP_ENUM_UINT16 enVoiceLoop)
 {
     VCVOICE_LOOP_REQ_STRU    *pstMsg = VOS_NULL_PTR;
@@ -982,21 +717,8 @@ VOS_UINT32 APP_VC_SendSetModemLoopReq(VCVOICE_LOOP_ENUM_UINT16 enVoiceLoop)
 }
 
 
-/* Added by s00217060 for VoLTE_PhaseI  项目, 2013-07-11, begin */
 #if (FEATURE_ON == FEATURE_IMS)
-/*****************************************************************************
-函 数 名  : APP_VC_SendImsaExceptionNtf
-功能描述  : VC 发送给IMSA的异常消息
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2013年7月11日
-    作    者   : s00217060
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID APP_VC_SendImsaExceptionNtf(
     VC_IMSA_EXCEPTION_CAUSE_ENUM_UINT32                     enCause
 )
@@ -1032,21 +754,7 @@ VOS_VOID APP_VC_SendImsaExceptionNtf(
 #endif
 
 
-/*****************************************************************************
- 函 数 名  : APP_VC_LogEndCallReq
- 功能描述  : 勾异常情况需要挂断电话时的可维可测消息
- 输入参数  : enVcCause:挂断电话原因值
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月22日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  APP_VC_LogEndCallReq(
     APP_VC_OPEN_CHANNEL_FAIL_CAUSE_ENUM_UINT32              enVcCause
 )
@@ -1078,26 +786,9 @@ VOS_VOID  APP_VC_LogEndCallReq(
     return;
 }
 
-/* Added by s00217060 for VoLTE_PhaseI  项目, 2013-07-11, end */
 
-/* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
-/*****************************************************************************
-函 数 名  : APP_VC_SendAtSetCnf
-功能描述  : VC回复AT设置消息
-输入参数  : usMsgName -- 消息名称
-            clientId--AT Client ID
-            enExeRslt--设置操作结果
-输出参数  : 无
-返 回 值  : VOS_VOID
-调用函数  :
-被调函数  :
 
-修订记录  :
-1.日    期   : 2014年3月27日
-  作    者   : j00174725
-  修改内容   : V3R3C60_eCall项目
-*****************************************************************************/
 VOS_VOID APP_VC_SendAtSetCnf(
     VOS_UINT16                          usMsgName,
     MN_CLIENT_ID_T                      usClientId,
@@ -1149,19 +840,7 @@ VOS_VOID APP_VC_SendAtSetCnf(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : APP_VC_SendQryMsdCnf
-功能描述  : VC回复AT MSD 查询结果
-输入参数  : clientId--AT Client ID
-输出参数  : 无
-返 回 值  : VOS_VOID
-调用函数  :
-被调函数  :
-修订记录  :
-1.日    期   : 2014年3月27日
-  作    者   : j00174725
-  修改内容   : V3R3C60_eCall项目
-*****************************************************************************/
+
 VOS_VOID APP_VC_SendQryMsdCnf(
     MN_CLIENT_ID_T                      usClientId
 )
@@ -1212,19 +891,7 @@ VOS_VOID APP_VC_SendQryMsdCnf(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : APP_VC_SendQryEcallCfgCnf
-功能描述  : VC回复AT eCall配置查询结果
-输入参数  : clientId--AT Client ID
-输出参数  : 无
-返 回 值  : VOS_VOID
-调用函数  :
-被调函数  :
-修订记录  :
-1.日    期   : 2014年3月27日
-  作    者   : j00174725
-  修改内容   : V3R3C60_eCall项目
-*****************************************************************************/
+
 VOS_VOID APP_VC_SendQryEcallCfgCnf(
     MN_CLIENT_ID_T                      usClientId
 )
@@ -1271,19 +938,7 @@ VOS_VOID APP_VC_SendQryEcallCfgCnf(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : APP_VC_SendEcallCfgReq
-功能描述  : 发送消息ID_VC_VOICE_SET_ECALLCFG_REQ给MED
-输入参数  :
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修订记录  :
-1.日    期   : 2014年3月27日
-  作    者   : j00174725
-  修改内容   : V3R3C60_eCall项目
-*****************************************************************************/
+
 VOS_UINT32  APP_VC_SendEcallCfgReq(
     APP_VC_ECALL_MSD_MODE_ENUM_UINT16   enMode,
     APP_VC_ECALL_VOC_CONFIG_ENUM_UINT16 enVocConfig
@@ -1314,20 +969,7 @@ VOS_UINT32  APP_VC_SendEcallCfgReq(
 
 }
 
-/*****************************************************************************
-函 数 名  : APP_VC_SendEcallTransStatusInd
-功能描述  : 发送消息VC_CALL_ECALL_TRANS_STATUS_NTF给Call模块
-输入参数  : enEcallTransStatus  --传送状态
-            enEcallTransFailCause -- 失败原因
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修订记录  :
-1.日    期   : 2014年3月27日
-  作    者   : j00174725
-  修改内容   : V3R3C60_eCall项目
-*****************************************************************************/
+
 VOS_VOID APP_VC_SendEcallTransStatusInd(
     VC_CALL_ECALL_TRANS_STATUS_ENUM_UINT8      enEcallTransStatus,
     VC_CALL_ECALL_TRANS_FAIL_CAUSE_ENUM_UINT8  enEcallTransFailCause
@@ -1363,19 +1005,7 @@ VOS_VOID APP_VC_SendEcallTransStatusInd(
 
 }
 
-/*****************************************************************************
-函 数 名  : APP_VC_SendMsdReq
-功能描述  : 发送MSD数据给MED模块
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_VOID
-调用函数  :
-被调函数  :
-修订记录  :
-1.日    期   : 2014年3月27日
-  作    者   : j00174725
-  修改内容   : V3R3C60_eCall项目
-*****************************************************************************/
+
 VOS_VOID APP_VC_SendMsdReq(VOS_VOID)
 {
     VCVOICE_SET_MSD_REQ_STRU           *pstMsdReq  = VOS_NULL_PTR;
@@ -1429,21 +1059,8 @@ VOS_VOID APP_VC_SendMsdReq(VOS_VOID)
     return;
 }
 #endif
-/* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, end */
 
-/*****************************************************************************
-函 数 名  : APP_VC_SendDtmfInd
-功能描述  : VC  发送给 AT DTMF Decoder 消息
-输入参数  : VOICEVC_DTMF_IND_STRU              *pstDtmfInd
-输出参数  : 无
-返 回 值  : VOS_UINT32
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2014年5月9日
-    作    者   : g00261581
-    修改内容   : 新增
-*****************************************************************************/
+
 VOS_UINT32 APP_VC_SendDtmfInd(
     VOICEVC_DTMF_IND_STRU              *pstDtmfInd
 )
@@ -1488,21 +1105,7 @@ VOS_UINT32 APP_VC_SendDtmfInd(
 }
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- 函 数 名  : APP_VC_SendSoCtrlOrderInd
- 功能描述  : 发送ID_VC_VOICE_SO_CTRL_ORDER_IND消息
- 输入参数  : CALL_VC_CHANNEL_INFO_STRU          *pstChanInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月10日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  APP_VC_SendSoCtrlOrderInd(
     VCVOICE_TYPE_ENUM_UINT16        enCodecType,
     VOS_UINT8                       ucORDQ
@@ -1536,21 +1139,7 @@ VOS_UINT32  APP_VC_SendSoCtrlOrderInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : APP_VC_SendSoCtrlMsgInd
- 功能描述  : 发送ID_VC_VOICE_SO_CTRL_MSG_IND消息
- 输入参数  : CALL_VC_CHANNEL_INFO_STRU          *pstChanInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月10日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  APP_VC_SendSoCtrlMsgInd(
     VCVOICE_TYPE_ENUM_UINT16        enCodecType,
     SO_CTRL_MSG_CODEC_STRU         *pstCodec

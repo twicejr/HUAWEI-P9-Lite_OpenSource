@@ -1,22 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasRabmMain.c
-  版 本 号   : 初稿
-  作    者   : anhuiqing / 00165503
-  生成日期   : 2011年03月30日
-  最近修改   :
-  功能描述   :
-  函数列表   :
-
-  修改历史   :
-  1.日    期   : 2011年03月30日
-    作    者   : anhuiqing / 00165503
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -31,10 +13,8 @@
 
 #include "NasUtranCtrlCommFunc.h"
 
-/* Added by l00167671 for NV拆分项目 , 2013-05-17, begin */
 #include "NasNvInterface.h"
 #include "TafNvInterface.h"
-/* Added by l00167671 for NV拆分项目 , 2013-05-17, end*/
 #if (FEATURE_ON == FEATURE_BASTET)
 #include "BastetRabmInterface.h"
 #endif
@@ -67,22 +47,7 @@ NAS_RABM_VOICEPREFER_CTX_STRU g_stNasRabmVoicePreferCtx;
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_RegProcFuncTbl
- 功能描述  : 注册指定系统模式下的RABM函数处理表
- 输入参数  : enSysMode      - 系统模式
-             pstProcFucTbl  - 函数处理表
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月1日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_RABM_RegProcFuncTbl(
     GMM_RABM_NET_RAT_ENUM_UINT32         enSysMode,
     NAS_RABM_PROC_FUNC_TBL_STRU        *pstProcFucTbl
@@ -100,24 +65,7 @@ VOS_VOID NAS_RABM_RegProcFuncTbl(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_CtxInit
- 功能描述  : RABM初始化
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月1日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年5月17日
-    作    者   : A00165503
-    修改内容   : DTS2012051707907: L下开机后L2U重定向后, PING包无法恢复
-*****************************************************************************/
 VOS_VOID NAS_RABM_CtxInit(VOS_VOID)
 {
     VOS_UINT32                          i;
@@ -148,31 +96,7 @@ VOS_VOID NAS_RABM_CtxInit(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_MsgProc
- 功能描述  : 处理RABM消息, 根据消息类型调用相应的处理函数
- 输入参数  : struct MsgCB                       *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月1日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年12月19日
-    作    者   : o00132663
-    修改内容   : PS融合项目，增加处理来自CDS的消息
-
-  3.日    期   : 2012年7月13日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseI:支持TD-SCDMA特性时，需对消息进行适配处理
-  4.日    期   : 2012年12月13日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-*****************************************************************************/
 VOS_VOID NAS_RABM_MsgProc(
     struct MsgCB                       *pMsg
 )
@@ -230,21 +154,7 @@ VOS_VOID NAS_RABM_MsgProc(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_RcvSmMsg
- 功能描述  : 处理SM消息, 根据消息类型调用对应处理函数
- 输入参数  : struct MsgCB                       *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月1日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_RABM_RcvSmMsg(
     struct MsgCB                       *pMsg
 )
@@ -288,23 +198,7 @@ VOS_VOID NAS_RABM_RcvSmMsg(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_ProcessGmmMsg
- 功能描述  : 处理GMM消息, 根据消息类型调用对应处理函数
- 输入参数  : struct MsgCB                       *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月1日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-  2.日    期   : 2011年10月21日
-    作    者   : h44270
-    修改内容   : V7R1 FAST DORMANCY特性，增加对ID_GMM_RABM_MML_RPOC_STATUS_QRY_CNF消息的处理
-*****************************************************************************/
 VOS_VOID NAS_RABM_RcvGmmMsg(
     struct MsgCB                       *pMsg
 )
@@ -333,21 +227,7 @@ VOS_VOID NAS_RABM_RcvGmmMsg(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_RcvSmActivateInd
- 功能描述  : 处理RABMSM_ACTIVATE_IND原语
- 输入参数  : pstSmActivateInd - RABMSM_ACTIVATE_IND消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月1日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_RABM_RcvSmActivateInd(
     RABMSM_ACTIVATE_IND_STRU           *pstSmActivateInd
 )
@@ -388,21 +268,7 @@ VOS_VOID NAS_RABM_RcvSmActivateInd(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_RcvSmDeactivateInd
- 功能描述  : 处理RABMSM_DEACTIVATE_IND原语
- 输入参数  : pstSmDeactivateInd - RABMSM_DEACTIVATE_IND消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月1日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_RABM_RcvSmDeactivateInd(
     RABMSM_DEACTIVATE_IND_STRU         *pstSmDeactivateInd
 )
@@ -443,21 +309,7 @@ VOS_VOID NAS_RABM_RcvSmDeactivateInd(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_RcvSmModifyInd
- 功能描述  : 处理RABMSM_MODIFY_IND原语
- 输入参数  : pstSmModifyInd - RABMSM_MODIFY_IND消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月1日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_RABM_RcvSmModifyInd(
     RABMSM_MODIFY_IND_STRU             *pstSmModifyInd
 )
@@ -499,36 +351,7 @@ VOS_VOID NAS_RABM_RcvSmModifyInd(
 }
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_RABM_RcvSmBearerActivateInd
- 功能描述  : 处理ID_SM_RABM_BEARER_ACTIVATE_IND原语
- 输入参数  : pstSmBearerActivateInd - ID_SM_RABM_BEARER_ACTIVATE_IND消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月6日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年5月22日
-    作    者   : y00213812
-    修改内容   : 解决问题单DTS2012052102642，释放SM为Qos申请的内存
-
-  3.日    期   : 2012年7月19日
-    作    者   : A00165503
-    修改内容   : DTS2012071805127: 去除当前接入技术为LTE的保护
-
-  4.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : RABM/SM原语接口中的动态内存改为静态数组
-
-  5.日    期   : 2013年8月2日
-    作    者   : A00165503
-    修改内容   : DTS2013040906296: Secondary PDP下行数传无法找到关联的承载ID
-*****************************************************************************/
 VOS_VOID NAS_RABM_RcvSmBearerActivateInd(
     SM_RABM_BEARER_ACTIVATE_IND_STRU   *pstSmBearerActivateInd
 )
@@ -560,32 +383,7 @@ VOS_VOID NAS_RABM_RcvSmBearerActivateInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_RcvSmBearerModifyInd
- 功能描述  : 处理ID_SM_RABM_BEARER_MODIFY_IND原语
- 输入参数  : pstSmBearerModifyInd - ID_SM_RABM_BEARER_MODIFY_IND消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月6日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年5月22日
-    作    者   : y00213812
-    修改内容   : 解决问题单DTS2012052102642，释放SM为Qos申请的内存
-
-  3.日    期   : 2012年7月19日
-    作    者   : A00165503
-    修改内容   : DTS2012071805127: 去除当前接入技术为LTE的保护
-
-  4.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : RABM/SM原语接口中的动态内存改为静态数组
-*****************************************************************************/
 VOS_VOID NAS_RABM_RcvSmBearerModifyInd(
     SM_RABM_BEARER_MODIFY_IND_STRU     *pstSmBearerModifyInd
 )
@@ -617,33 +415,7 @@ VOS_VOID NAS_RABM_RcvSmBearerModifyInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_RcvSmBearerDeactivateInd
- 功能描述  : 处理ID_SM_RABM_BEARER_DEACTIVATE_IND原语
- 输入参数  : pstSmBearerDeactivateInd - ID_SM_RABM_BEARER_DEACTIVATE_IND消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月6日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  3.日    期   : 2012年7月19日
-    作    者   : A00165503
-    修改内容   : DTS2012071805127: 去除当前接入技术为LTE的保护
-
-  4.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : RABM保存的QOS由动态内存改为静态数组
-
-  5.日    期   : 2014年2月15日
-    作    者   : A00165503
-    修改内容   : DTS2014021503901: G下挂起指定搜LTE过程中处理用户去附着PS域
-                 请求, RABM无法清除G实体信息, 状态维护异常
-*****************************************************************************/
 VOS_VOID NAS_RABM_RcvSmBearerDeactivateInd(
     SM_RABM_BEARER_DEACTIVATE_IND_STRU *pstSmBearerDeactivateInd
 )
@@ -675,21 +447,7 @@ VOS_VOID NAS_RABM_RcvSmBearerDeactivateInd(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_RcvGmmReestablishCnf
- 功能描述  : 处理ID_GMM_RABM_REESTABLISH_CNF原语
- 输入参数  : pstGmmReestablishCnf   - ID_GMM_RABM_REESTABLISH_CNF消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月1日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_RABM_RcvGmmReestablishCnf(
     GMMRABM_REESTABLISH_CNF_STRU       *pstGmmReestablishCnf
 )
@@ -730,29 +488,7 @@ VOS_VOID NAS_RABM_RcvGmmReestablishCnf(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_ProcSysSrvChangeInd
- 功能描述  : 处理ID_GMM_RABM_SYS_SRV_CHG_IND原语
- 输入参数  : pstGmmSysSrvChgInd - ID_GMM_RABM_SYS_SRV_CHG_IND消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月1日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-  2.日    期   : 2011年7月13日
-    作    者   : w00176964
-    修改内容   : V7R1 PhaseII阶段调整，向RABM指示RAB是否需要重建
-  3.日    期   : 2011年10月21日
-    作    者   : h44270
-    修改内容   : V7R1 FAST DORMANCY特性，增加来自RABM消息的处理
-  4.日    期   : 2013年3月22日
-    作    者   : z60575
-    修改内容   : DTS2013032203256,W2L切换后无法进入FD
-*****************************************************************************/
 VOS_VOID NAS_RABM_RcvGmmSysSrvChgInd(
     GMM_RABM_SYS_SRV_CHG_IND_STRU      *pstGmmSysSrvChgInd
 )
@@ -789,21 +525,7 @@ VOS_VOID NAS_RABM_RcvGmmSysSrvChgInd(
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_RcvDataSuspendInd
- 功能描述  : 处理挂起指示
- 输入参数  : bRatChangeFlg - 异系统切换标志
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月23日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_RABM_RcvDataSuspendInd(
     VOS_BOOL                            bRatChangeFlg
 )
@@ -844,24 +566,7 @@ VOS_VOID NAS_RABM_RcvDataSuspendInd(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_RcvDataResumeInd
- 功能描述  : 处理恢复指示
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月1日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-  2.日    期   : 2011年7月13日
-    作    者   : w00176964
-    修改内容   : V7R1 PhaseII阶段调整，向RABM指示RAB是否需要重建
-
-*****************************************************************************/
 VOS_VOID NAS_RABM_RcvDataResumeInd(
     VOS_UINT8                           ucRebuildRabFlag
 )
@@ -902,21 +607,7 @@ VOS_VOID NAS_RABM_RcvDataResumeInd(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_RcvSysModeChgInd
- 功能描述  : 处理系统模式改变
- 输入参数  : enNewSysMode - 新的系统模式
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月11日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_RABM_RcvSysModeChgInd(
     GMM_RABM_NET_RAT_ENUM_UINT32        enNewSysMode
 )
@@ -962,21 +653,7 @@ VOS_VOID NAS_RABM_RcvSysModeChgInd(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_ProcessCommMsg
- 功能描述  : 处理除了SM, GMM其他模块的消息
- 输入参数  : struct MsgCB                       *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月1日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_RABM_RcvCommMsg(
     struct MsgCB                       *pMsg
 )
@@ -1015,24 +692,7 @@ VOS_VOID NAS_RABM_RcvCommMsg(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_RcvAtMsg
- 功能描述  : 处理来自AT的消息
- 输入参数  : struct MsgCB                       *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年10月19日
-   作    者   : h44270
-   修改内容   : 新生成函数
-  2.日    期   : 2013年7月11日
-    作    者   : M00217266
-    修改内容  : Optimize RIL:
-
-*****************************************************************************/
 VOS_VOID NAS_RABM_RcvAtMsg(
     struct MsgCB                       *pstMsg
 )
@@ -1069,24 +729,7 @@ VOS_VOID NAS_RABM_RcvAtMsg(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_RcvAtMsg
- 功能描述  : 处理来自CDS的消息
- 输入参数  : pstMsg   -  CDS消息指针
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年12月19日
-   作    者   : o00132663
-   修改内容   : 新生成函数
- 2.日    期   : 2013年04月12日
-   作    者   : l65478
-   修改内容   : DTS2013031901654:彩信并发发送失败
-
-*****************************************************************************/
 VOS_VOID NAS_RABM_RcvCdsMsg(
     struct MsgCB                       *pstMsg
 )
@@ -1106,21 +749,7 @@ VOS_VOID NAS_RABM_RcvCdsMsg(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_IsDataServiceRequestPending
- 功能描述  : RAB重建流程是否启动
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_TRUE
-             VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年3月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_RABM_IsDataServiceRequestPending(VOS_VOID)
 {
     if (VOS_TRUE == NAS_RABM_GetRabRsestTimerFlg())
@@ -1131,21 +760,7 @@ VOS_UINT32 NAS_RABM_IsDataServiceRequestPending(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_IsRabReestablishPending
- 功能描述  : 是否正在等待建立RB
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_TRUE
-             VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年3月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_RABM_IsRabReestablishPending(VOS_VOID)
 {
     VOS_UINT8                           ucEntId;
@@ -1166,24 +781,7 @@ VOS_UINT32 NAS_RABM_IsRabReestablishPending(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_RcvCdsServiceInd
- 功能描述  : 处理来自CDS的ID_CDS_RABM_SERVICE_IND消息
- 输入参数  : pstMsg   -  CDS消息指针
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-
-  2.日    期   : 2013年2月18日
-    作    者   : A00165503
-    修改内容   : DTS2013021805741: RB建立流程优化
-*****************************************************************************/
 VOS_VOID NAS_RABM_RcvCdsServiceInd(
     CDS_RABM_SERVICE_IND_STRU          *pstCdsServiceInd
 )
@@ -1246,39 +844,13 @@ VOS_VOID NAS_RABM_RcvCdsServiceInd(
 }
 
 #if (FEATURE_ON == FEATURE_HUAWEI_VP)
-/*****************************************************************************
- 函 数 名  : NAS_RABM_VoicePreferGetVpStatus
- 功能描述  : 获取 当前VP激活状态
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值     :  VOS_TRUE:VP激活VOS_FALSE:VP 未激活
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月26日
-    作    者   : s00273135
-
-*****************************************************************************/
 VOS_UINT32 NAS_RABM_VoicePreferGetVpStatus(VOS_VOID)
 {
     return g_stNasRabmVoicePreferCtx.ulCpVoicePreferActiveFlag;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_VoicePreferGetVpStatus
- 功能描述  : 设置当前VP激活状态
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值     :  VOS_TRUE:VP激活VOS_FALSE:VP 未激活
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月26日
-    作    者   : s00273135
-
-*****************************************************************************/
 VOS_VOID NAS_RABM_VoicePreferSetVpStatus(VOS_UINT32 ulVpStatus)
 {
     g_stNasRabmVoicePreferCtx.ulCpVoicePreferActiveFlag = ulVpStatus;
@@ -1286,58 +858,19 @@ VOS_VOID NAS_RABM_VoicePreferSetVpStatus(VOS_UINT32 ulVpStatus)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_VoicePreferGetNvEnableFlag
- 功能描述  : 获取NV打开VoicePrefer开关
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月26日
-    作    者   : s00273135
-
-*****************************************************************************/
 VOS_UINT8 NAS_RABM_VoicePreferGetNvEnableFlag(VOS_VOID)
 {
     return g_stNasRabmVoicePreferCtx.ucVoicePreferNvimEnableFlag;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_VoicePreferGetReQryGmmCnt
- 功能描述  : 获取重查询GMM的次数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月26日
-    作    者   : s00273135
-
-*****************************************************************************/
 VOS_UINT8 NAS_RABM_VoicePreferGetReQryGmmCnt(VOS_VOID)
 {
     return g_stNasRabmVoicePreferCtx.ucVoicePreferReQryGmmCnt;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_VoicePreferClrReQryGmmCnt
- 功能描述  : 重试查询GMM的次数清零
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月26日
-    作    者   : s00273135
-
-*****************************************************************************/
 VOS_VOID NAS_RABM_VoicePreferClrReQryGmmCnt(VOS_VOID)
 {
     g_stNasRabmVoicePreferCtx.ucVoicePreferReQryGmmCnt = 0;
@@ -1345,20 +878,7 @@ VOS_VOID NAS_RABM_VoicePreferClrReQryGmmCnt(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_VoicePreferIncReQryGmmCnt
- 功能描述  : 重查询GMM的次数加1
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月26日
-    作    者   : s00273135
-
-*****************************************************************************/
 VOS_VOID NAS_RABM_VoicePreferIncReQryGmmCnt(VOS_VOID)
 {
     g_stNasRabmVoicePreferCtx.ucVoicePreferReQryGmmCnt ++;
@@ -1366,57 +886,18 @@ VOS_VOID NAS_RABM_VoicePreferIncReQryGmmCnt(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_VoicePreferGetVoiceCallExsitFlag
- 功能描述  : 获取语音呼叫存在标志
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月26日
-    作    者   : s00273135
-
-*****************************************************************************/
 VOS_UINT32 NAS_RABM_VoicePreferGetVoiceCallExsitFlag(VOS_VOID)
 {
     return g_stNasRabmVoicePreferCtx.ulVoiceCallExsitFlag;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_VoicePreferGetStopVpFlag
- 功能描述  : 获取停止VP标志
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月26日
-    作    者   : s00273135
-
-*****************************************************************************/
 VOS_UINT32 NAS_RABM_VoicePreferGetStopVpFlag(VOS_VOID)
 {
     return g_stNasRabmVoicePreferCtx.ulReceiveApVoicePreferStopFlag;
 }
-/*****************************************************************************
- 函 数 名  : NAS_RABM_VoicePreferSetStopVpFlag
- 功能描述  : 设置停止VP标志
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月26日
-    作    者   : s00273135
-
-*****************************************************************************/
 VOS_VOID NAS_RABM_VoicePreferSetStopVpFlag(VOS_UINT32 ulStopVpFlag)
 {
     g_stNasRabmVoicePreferCtx.ulReceiveApVoicePreferStopFlag = ulStopVpFlag;
@@ -1424,59 +905,20 @@ VOS_VOID NAS_RABM_VoicePreferSetStopVpFlag(VOS_UINT32 ulStopVpFlag)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_VoicePreferGetApStatusMask
- 功能描述  : 获取AP status mask
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月26日
-    作    者   : s00273135
-
-*****************************************************************************/
 VOS_UINT32 NAS_RABM_VoicePreferGetApStatusMask(VOS_VOID)
 {
     return g_stNasRabmVoicePreferCtx.ulApVoicePreferStatusMask;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_VoicePreferSetApStatusMask
- 功能描述  : 保存AP status mask
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月26日
-    作    者   : s00273135
-
-*****************************************************************************/
 VOS_VOID NAS_RABM_VoicePreferSetApStatusMask(VOS_UINT32 ulApStatusMask)
 {
     g_stNasRabmVoicePreferCtx.ulApVoicePreferStatusMask = ulApStatusMask;
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : NAS_RABM_InitVoicePreferCtx
- 功能描述  : rabm初始化VP上下文
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月26日
-    作    者   : s00273135
-
-*****************************************************************************/
 VOS_VOID NAS_RABM_InitVoicePreferCtx(VOS_VOID)
 {
     g_stNasRabmVoicePreferCtx.ulApVoicePreferStatusMask  = 0xFFFFFFFF;
@@ -1496,20 +938,7 @@ VOS_VOID NAS_RABM_InitVoicePreferCtx(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_ReadVoicePreferNvim
- 功能描述  : 获取NV voiceprefer 相关参数
- 输入参数  : pstFastDormPara - AT的设置消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年12月26日
-   作    者   : s00273135
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_RABM_ReadVoicePreferNvim(VOS_VOID)
 {
     NAS_RABM_NVIM_WCDMA_VOICE_PREFER_STRU                   stVoicePreferCfg;
@@ -1543,20 +972,7 @@ VOS_VOID NAS_RABM_ReadVoicePreferNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_RcvSetVoicePreferParaReq
- 功能描述  : 设置AP传过来的VP生效参数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月26日
-    作    者   : s00273135
-
-*****************************************************************************/
 VOS_VOID NAS_RABM_RcvSetVoicePreferParaReq(AT_RABM_SET_VOICEPREFER_PARA_REQ_STRU *pstVoicePreferPara)
 {
     /* NV配置使能VP*/
@@ -1577,20 +993,7 @@ VOS_VOID NAS_RABM_RcvSetVoicePreferParaReq(AT_RABM_SET_VOICEPREFER_PARA_REQ_STRU
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_RcvGetVoicePreferParaReq
- 功能描述  : AT触发，获取当前VOICEPREFER参数
- 输入参数  : pstVoicePreferPara - AT的设置消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年12月26日
-   作    者   : s00273135
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_RABM_RcvGetVoicePreferParaReq(
     AT_RABM_QRY_VOICEPREFER_PARA_REQ_STRU *pstVoicePreferPara)
 {
@@ -1602,20 +1005,7 @@ VOS_VOID NAS_RABM_RcvGetVoicePreferParaReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_RcvVoicePreferCsExistInd
- 功能描述  : 处理CALL发送过来语音业务存在指示
- 输入参数  : pstMsg - CALL发送的语音业务指示消息上
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年12月26日
-   作    者   : s00273135
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_RABM_RcvVoicePreferCsExistInd(VOS_VOID *pstMsg)
 {
     CALL_RABM_VOICE_PREFER_CS_EXIST_IND_STRU                 *pstVoiceInd;
@@ -1640,22 +1030,7 @@ VOS_VOID NAS_RABM_RcvVoicePreferCsExistInd(VOS_VOID *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_VoicePreferIsPdpActive
- 功能描述  : W模下，是否存在PDP激活
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE - 当前存在PDP激活
-              VOS_FALSE - 当前不存在PDP激活
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年12月26日
-   作    者   : s00273135
-   修改内容   : 新生成函数
-
-****************************************************************************/
 VOS_UINT32 NAS_RABM_VoicePreferIsPdpActive(VOS_VOID)
 {
     VOS_UINT32                          ulEntId;
@@ -1674,22 +1049,7 @@ VOS_UINT32 NAS_RABM_VoicePreferIsPdpActive(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_VoicePreferApStatusMatch
- 功能描述  : AP是否满足VP激活
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE - AP满足激活条件
-              VOS_FALSE - AP不满足激活条件
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年12月26日
-   作    者   : s00273135
-   修改内容   : 新生成函数
-
-****************************************************************************/
 VOS_UINT32 NAS_RABM_VoicePreferApStatusMatch(VOS_VOID)
 {
     VOS_UINT32      ulAgpsStatus;
@@ -1733,23 +1093,7 @@ VOS_UINT32 NAS_RABM_VoicePreferApStatusMatch(VOS_VOID)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_VoicePreferPlmnMatch
- 功能描述  : 注册网络是否是指定网络或者测试网络,call模块
-                            传过来的是十六进制
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE - 满足激活条件
-              VOS_FALSE - 不满足激活条件
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年12月26日
-   作    者   : s00273135
-   修改内容   : 新生成函数
-
-****************************************************************************/
 VOS_UINT32 NAS_RABM_VoicePreferPlmnMatch(VOS_VOID)
 {
     VOS_UINT32      ulHexMcc;/*十六进制形式的PLMN*/
@@ -1779,20 +1123,7 @@ VOS_UINT32 NAS_RABM_VoicePreferPlmnMatch(VOS_VOID)
 
     return VOS_FALSE;
 }
-/*****************************************************************************
- 函 数 名  : NAS_RABM_IsVpActivateMatchInStepOne
- 功能描述  : 判断是否满足VP初步激活初步条件
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年12月26日
-   作    者   : s00273135
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_RABM_IsVpActivateMatchInStepOne(VOS_VOID)
 {
     /* NV配置使能VP*/
@@ -1839,20 +1170,7 @@ VOS_UINT32 NAS_RABM_IsVpActivateMatchInStepOne(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_VoicePreferActivateJudgeStepOne
- 功能描述  : 进行VP激活的初步判决
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年12月26日
-   作    者   : s00273135
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_RABM_VoicePreferActivateJudgeStepOne(VOS_VOID)
 {
     VOS_UINT32      ulVpActMatch;
@@ -1906,20 +1224,7 @@ VOS_VOID NAS_RABM_VoicePreferActivateJudgeStepOne(VOS_VOID)
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : NAS_RABM_VoicePreferActivateJudgeStepTwo
- 功能描述  : 进行VP激活的第二步判决
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年12月26日
-   作    者   : s00273135
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_RABM_VoicePreferActivateJudgeStepTwo(VOS_VOID)
 {
     VOS_UINT32      ulVpActMatchInStepOne;
@@ -1941,20 +1246,7 @@ VOS_VOID NAS_RABM_VoicePreferActivateJudgeStepTwo(VOS_VOID)
     }
     return;
 }
-/*****************************************************************************
- 函 数 名  : NAS_RABM_VoicePreferDelayExpired
- 功能描述  : VP激活延迟定时器超时
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年12月26日
-   作    者   : s00273135
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_RABM_VoicePreferDelayExpired(VOS_VOID)
 {
     /* 停止定时器 */
@@ -1974,20 +1266,7 @@ VOS_VOID NAS_RABM_VoicePreferDelayExpired(VOS_VOID)
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : NAS_RABM_VoicePreferReQryGmmDelayExpired
- 功能描述  : GMM再次查询定时器超时处理函数
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年12月26日
-   作    者   : s00273135
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_RABM_VoicePreferReQryGmmDelayExpired(VOS_VOID)
 {
     /* 停止定时器*/
@@ -1998,20 +1277,7 @@ VOS_VOID NAS_RABM_VoicePreferReQryGmmDelayExpired(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_RABM_RcvGmmVoicePreferMmlProcStatusQryCnf
- 功能描述  : 处理GMM发来的ID_GMM_RABM_MML_PROC_STATUS_QRY_CNF消息
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年12月26日
-   作    者   : s00273135
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_RABM_RcvGmmVoicePreferMmlProcStatusQryCnf(
     struct MsgCB                       *pstMsg
 )
@@ -2041,20 +1307,7 @@ VOS_VOID NAS_RABM_RcvGmmVoicePreferMmlProcStatusQryCnf(
 #endif
 
 #if (FEATURE_ON == FEATURE_BASTET)
-/*****************************************************************************
- 函 数 名  : NAS_RABM_RcvBastetMsg
- 功能描述  : 处理来自Bastet的消息
- 输入参数  : pstMsg   -  Bastet消息指针
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年11月10日
-   作    者   : z00128442
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_RABM_RcvBastetMsg(
     struct MsgCB                       *pstMsg
 )

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2012, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名      : ScComm.c
-  版 本 号      : 初稿
-  作    者      : w00184875
-  生成日期      : 2012年04月07日
-  最近修改      :
-  功能描述      : 该C文件给出了ScComm模块的实现
-  函数列表      :
-  修改历史      :
-  1.日    期    : 2012年04月16日
-    作    者    : w00184875
-    修改内容    : 创建文件
-
-******************************************************************************/
 /*****************************************************************************
   1 头文件包含
 *****************************************************************************/
@@ -50,24 +33,7 @@
   3 函数申明
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : SC_COMM_ReadFile
- 功能描述  : 读取文件接口
- 输入参数  : pcFilePath: 文件路径
-             ulContentLen: 文件长度
 
- 输出参数  : pucContent: 文件内容
-
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年04月18日
-    作    者   : w00184875
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 SC_ERROR_CODE_ENUM_UINT32 SC_COMM_ReadFile(
     VOS_CHAR                           *pcFilePath,
     VOS_UINT8                          *pucContent,
@@ -109,24 +75,7 @@ SC_ERROR_CODE_ENUM_UINT32 SC_COMM_ReadFile(
     return SC_ERROR_CODE_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_COMM_WriteFile
- 功能描述  : 读取文件接口
- 输入参数  : pcFilePath: 文件路径
-             ulContentLen: 文件长度
 
- 输出参数  : pucContent: 文件内容
-
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年04月18日
-    作    者   : w00184875
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 SC_ERROR_CODE_ENUM_UINT32 SC_COMM_WriteFile(
     VOS_CHAR                           *pcFilePath,
     VOS_UINT8                          *pucContent,
@@ -169,25 +118,7 @@ SC_ERROR_CODE_ENUM_UINT32 SC_COMM_WriteFile(
     return SC_ERROR_CODE_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_COMM_GenerateKey
- 功能描述  : 生成IPK/SSK/DSSK
- 输入参数  : pucData: 字符串
-             ucLen: 字符串长度
-             ulKeyLen: KEY长度
 
- 输出参数  : pucKey: KEY内容
-
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年04月09日
-    作    者   : w00184875
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 SC_ERROR_CODE_ENUM_UINT32 SC_COMM_GenerateKey(
     VOS_CHAR                           *pcData,
     VOS_UINT32                          ulLen,
@@ -218,26 +149,7 @@ SC_ERROR_CODE_ENUM_UINT32 SC_COMM_GenerateKey(
     return SC_ERROR_CODE_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_COMM_GenerateCryptoPwd
- 功能描述  : 生成CK/UK/DK密码的密文
- 输入参数  : enPwdType: 密码类型
-             pucPwd: 密码为明文传送(密码为16个“0”-“9”字符组成)
-             ucPwdLen: 密码长度
-             ucCryptoPwdLen: 密码的密文长度
 
- 输出参数  : pucCryptoPwd: 密码的密文
-
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年04月09日
-    作    者   : w00184875
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 SC_ERROR_CODE_ENUM_UINT32 SC_COMM_GenerateCryptoPwd(
     SC_CRYPTO_PASSWORD_TYPE_ENUM_UINT8  enPwdType,
     VOS_UINT8                          *pucPwd,
@@ -301,25 +213,7 @@ SC_ERROR_CODE_ENUM_UINT32 SC_COMM_GenerateCryptoPwd(
     return SC_ERROR_CODE_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_COMM_GenerateSignCode
- 功能描述  : 文件签名的计算
- 输入参数  : pucContent: 文件内容
-             ucContentLen: 文件内容长度
-             ucSignCodeLen: 文件签名长度
 
- 输出参数  : pucSignCode: 文件签名码流
-
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年04月07日
-    作    者   : w00184875
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 SC_ERROR_CODE_ENUM_UINT32 SC_COMM_GenerateSignCode(
     VOS_UINT8                          *pucContent,
     VOS_UINT32                          ulContentLen,
@@ -384,24 +278,7 @@ SC_ERROR_CODE_ENUM_UINT32 SC_COMM_GenerateSignCode(
     return SC_ERROR_CODE_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_COMM_CreateSignFile
- 功能描述  : 创建签名文件
- 输入参数  : enFileType: 文件类型
-             pucContent: 文件内容
-             ucContentLen: 文件内容长度
 
- 输出参数  : NA
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年04月07日
-    作    者   : w00184875
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 SC_ERROR_CODE_ENUM_UINT32 SC_COMM_CreateSignFile(
     SC_SECRET_FILE_TYPE_ENUM_UINT8      enFileType,
     VOS_UINT8                          *pucContent,
@@ -436,22 +313,7 @@ SC_ERROR_CODE_ENUM_UINT32 SC_COMM_CreateSignFile(
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_COMM_ReadSignFile
- 功能描述  : 签名文件的读取
- 输入参数  : enFileType: 文件类型
 
- 输出参数  : pucContent: 签名文件内容
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年04月07日
-    作    者   : w00184875
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 SC_ERROR_CODE_ENUM_UINT32 SC_COMM_ReadSignFile(
     SC_SECRET_FILE_TYPE_ENUM_UINT8      enFileType,
     VOS_UINT8                          *pucContent
@@ -471,24 +333,7 @@ SC_ERROR_CODE_ENUM_UINT32 SC_COMM_ReadSignFile(
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_COMM_WriteSecretFile
- 功能描述  : 创建安全文件
- 输入参数  : enFileType: 文件类型
-             pucContent: 文件内容
-             ucContentLen: 文件内容长度
 
- 输出参数  : NA
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年04月07日
-    作    者   : w00184875
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 SC_ERROR_CODE_ENUM_UINT32 SC_COMM_WriteSecretFile(
     SC_SECRET_FILE_TYPE_ENUM_UINT8      enFileType,
     VOS_UINT8                          *pucContent,
@@ -519,23 +364,7 @@ SC_ERROR_CODE_ENUM_UINT32 SC_COMM_WriteSecretFile(
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_COMM_ReadSCFileAndCmpSign
- 功能描述  : 读取锁网锁卡相关的安全文件并进行安全校验
- 输入参数  : enFileType: 读取文件类型
-             ulContentLen: 读取文件长度
 
- 输出参数  : pucContent: 文件内容
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年04月07日
-    作    者   : w00184875
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 SC_ERROR_CODE_ENUM_UINT32 SC_COMM_ReadSCFileAndCmpSign(
     SC_SECRET_FILE_TYPE_ENUM_UINT8      enFileType,
     VOS_UINT8                          *pucContent,
@@ -593,24 +422,7 @@ SC_ERROR_CODE_ENUM_UINT32 SC_COMM_ReadSCFileAndCmpSign(
     return SC_ERROR_CODE_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_COMM_RsaDecrypt
- 功能描述  : RSA解密接口
- 输入参数  : pucPwd: 密文
-             ulCipherLen: 密文长度
 
- 输出参数  : pucPubContent: 明文
-             pulPubLen: 明文长度
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年04月07日
-    作    者   : w00184875
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 SC_ERROR_CODE_ENUM_UINT32 SC_COMM_RsaDecrypt(
     VOS_UINT8                          *pucPwd,
     VOS_UINT32                          ulCipherLen,
@@ -677,25 +489,7 @@ SC_ERROR_CODE_ENUM_UINT32 SC_COMM_RsaDecrypt(
     return SC_ERROR_CODE_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_COMM_RsaEncrypt
- 功能描述  : NAS收到AT^PHONEPHYNUM?查询命令，通过该接口对物理号进行RSA加密
- 输入参数  : pucRawData: 物理号，明文存储
-             ulLen: 物理号长度
-             pucCipherData: RSA加密后的密文
-             pulCipherLen: RSA加密后的密文长度
 
- 输出参数  : NA
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年4月3日
-    作    者   : w00184875
-    修改内容   : 初始生成
-
-*****************************************************************************/
 SC_ERROR_CODE_ENUM_UINT32 SC_COMM_RsaEncrypt(
     VOS_UINT8                          *pucRawData,
     VOS_UINT32                          ulLen,
@@ -761,20 +555,7 @@ SC_ERROR_CODE_ENUM_UINT32 SC_COMM_RsaEncrypt(
     return SC_ERROR_CODE_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_COMM_GetUsimmCachedFile
- 功能描述  : SC模块读取USIMM模块缓存文件封装接口
- 输入参数  :enModemID:Modem ID
- 输出参数  :usFileID:读取的文件ID
-            pulDataLen:返回文件的内容长度
-            ppucData:返回文件内容的地址
-            enAppType:应用类型
- 返 回 值  : VOS_OK/VOS_ERR
- 修改历史      :
-  1.日    期   : 2013年8月15日
-    作    者   : h59254
-    修改内容   : 初始生成
-*****************************************************************************/
+
 VOS_UINT32 SC_COMM_GetUsimmCachedFile(
     VOS_CHAR                           *pucFilePath,
     VOS_UINT32                         *pulDataLen,
@@ -790,20 +571,7 @@ VOS_UINT32 SC_COMM_GetUsimmCachedFile(
     return USIMM_GetCachedFile_Instance(enModemID, pucFilePath, pulDataLen, ppucData, enAppType);
 }
 
-/*****************************************************************************
-函 数 名  :SC_COMM_IsUsimServiceAvailable
-功能描述  :获取卡服务状态　
-输入参数  :enModemID:Modem ID
-           enService:服务ID
-输出参数  :无
-返 回 值  :PS_USIM_SERVICE_NOT_AVAILIABLE
-           PS_USIM_SERVICE_NOT_AVAILIABLE
-被调函数  :
-修订记录  :
-1.日    期   : 2013年8月15日
-  作    者   : h59254
-  修改内容   : 初始生成
-*****************************************************************************/
+
 VOS_UINT32 SC_COMM_IsUsimServiceAvailable(
     UICC_SERVICES_TYPE_ENUM_UINT32  enService,
     MODEM_ID_ENUM_UINT16            enModemID)
@@ -816,20 +584,7 @@ VOS_UINT32 SC_COMM_IsUsimServiceAvailable(
     return USIMM_IsServiceAvailable_Instance(enModemID, enService);
 }
 
-/*****************************************************************************
-函 数 名  : SC_COMM_Backup
-功能描述  : SC文件备份到底软SC备份区
-输入参数  :
 
-输出参数  : 无
-返 回 值  : VOS_UINT32
-
-被调函数  :
-修订记录  :
-1.日    期   : 2014年6月27日
-  作    者   : d00212987
-  修改内容   : SC备份到底软NV备份的扩展分区
-*****************************************************************************/
 VOS_UINT32 SC_COMM_Backup(VOS_VOID)
 {
     return SC_ERROR_CODE_NO_ERROR;

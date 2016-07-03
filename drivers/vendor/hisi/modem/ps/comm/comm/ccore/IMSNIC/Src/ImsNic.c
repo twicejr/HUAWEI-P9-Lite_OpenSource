@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : ImsNic.c
-  版 本 号   : 初稿
-  作    者   : caikai
-  生成日期   : 2013年7月22日
-  最近修改   :
-  功能描述   : VoLTE特性中IMS虚拟网卡的处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年7月22日
-    作    者   : caikai
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -135,21 +118,7 @@ extern VOS_UINT32  ST_IMS_NIC_PrintData( VOS_UINT8 *pData, VOS_UINT16 usLen );
 #endif
 
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_MNTN_InitLogCnt
- 功能描述  : 初始化LOG实体记录信息
- 输入参数  : IMS_NIC_LOG_ENT_STRU *pstLogEnt  LOG实体地址
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月9日
-    作    者   : t00148005
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IMS_NIC_MNTN_InitLogCnt(IMS_NIC_LOG_ENT_STRU *pstLogEnt)
 {
     if(VOS_OK != VOS_SmP(g_stImsNicCtx.ulInitLogMutexSem, 0))
@@ -164,23 +133,7 @@ VOS_VOID IMS_NIC_MNTN_InitLogCnt(IMS_NIC_LOG_ENT_STRU *pstLogEnt)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_MNTN_LogOutput
- 功能描述  : 输出LOG记录信息
- 输入参数  :
-             IMS_NIC_LOG_ENT_STRU           *pstLogEnt,  LOG实体地址
-             VOS_UINT32                      ulPid,      当前待输出LOG记录所属PID
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月9日
-    作    者   : t00148005
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IMS_NIC_MNTN_LogOutput(IMS_NIC_LOG_ENT_STRU *pstLogEnt, VOS_UINT32 ulPid)
 {
     IMS_NIC_TRACE_LOG_MSG_STRU          stImsTraceLogMsg;
@@ -213,30 +166,7 @@ VOS_VOID IMS_NIC_MNTN_LogOutput(IMS_NIC_LOG_ENT_STRU *pstLogEnt, VOS_UINT32 ulPi
 }
 
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_MNTN_LogSave
- 功能描述  : 保存1条LOG记录信息
- 输入参数  :
-            IMS_NIC_LOG_ENT_STRU           *pstLogEnt,  LOG实体地址
-            VOS_UINT32                      ulPid,      当前待输出LOG记录所属PID
-            LOG_LEVEL_EN                    enLevel,    LOG记录告警级别
-            PS_FILE_ID_DEFINE_ENUM_UINT32   enFile,     LOG记录所属文件名
-            VOS_UINT32                      ulLine,     LOG记录所属文件行号
-            VOS_INT32                       lpara1,     LOG记录携带参数
-            VOS_INT32                       lpara2,     LOG记录携带参数
-            VOS_INT32                       lpara3,     LOG记录携带参数
-            VOS_INT32                       lpara4      LOG记录携带参数
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年11月23日
-    作    者   : t00148005
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IMS_NIC_MNTN_LogSave
 (
     IMS_NIC_LOG_ENT_STRU           *pstLogEnt,
@@ -287,23 +217,7 @@ VOS_VOID IMS_NIC_MNTN_LogSave
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_MntnTrace
- 功能描述  : 可维可测，将数据TRACE到SDT
- 输入参数  : VOS_UINT16 usMsgId     消息ID
-             VOS_UINT8  *pucData    消息内容指针
-             VOS_UINT32 ulLen       消息数据内容长度
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : t00148005
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID IMS_NIC_MntnTrace(VOS_UINT16 usMsgId, VOS_UINT8 *pucData, VOS_UINT32 ulLen, VOS_UINT32 ulPara1, VOS_UINT32 ulPara2)
 {
     IMS_NIC_MNTN_TRACE_MSG_STRU *pstMntnTrace;
@@ -340,21 +254,7 @@ VOS_VOID IMS_NIC_MntnTrace(VOS_UINT16 usMsgId, VOS_UINT8 *pucData, VOS_UINT32 ul
     PS_MEM_FREE(UEPS_PID_IMSNIC, pstMntnTrace);
 }
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_MNTN_LogEntInit
- 功能描述  : 创建互斥信号量,LOG实体初始化
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月9日
-    作    者   : t00148005
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 IMS_NIC_MNTN_LogEntInit(VOS_UINT32 ulPid)
 {
     VOS_UINT32      ulResult;
@@ -385,22 +285,7 @@ VOS_UINT32 IMS_NIC_MNTN_LogEntInit(VOS_UINT32 ulPid)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_I2A
- 功能描述  : 根据转换基数(10或16), 将整数转换为ASCII码, 将结果输出至字符串
- 输入参数  : usValue    - 待转换为ASCII码的整数
-             pcStr      - 输出结果的字符串
-             usRadix    - 转换基数
- 输出参数  : 无
- 返 回 值  : VOS_CHAR*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_CHAR* IMS_NIC_I2A(VOS_UINT16 usValue, VOS_CHAR *pcStr, VOS_UINT16 usRadix)
 {
     if (IMS_NIC_TYPE_HEX == usRadix)
@@ -419,23 +304,7 @@ VOS_CHAR* IMS_NIC_I2A(VOS_UINT16 usValue, VOS_CHAR *pcStr, VOS_UINT16 usRadix)
     return pcStr;
 }
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_FindIpv6AddrZeroFieldsToBeCompressed
- 功能描述  : 找出需要使用"::"表示的IP地址段的起始位置
- 输入参数  : ausAddrValue[]     - IPV6地址段数组
-             ucTokensNum        - 地址段个数
- 输出参数  : pucZeroFieldStart  - 数值连续为0的IP地址段起始位置
-             pucZeroFieldCount  - 数值连续为0的IP地址段个数
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IMS_NIC_FindIpv6AddrZeroFieldsToBeCompressed(
     VOS_UINT8                          *pucZeroFieldStart,
     VOS_UINT8                          *pucZeroFieldCount,
@@ -495,22 +364,7 @@ VOS_VOID IMS_NIC_FindIpv6AddrZeroFieldsToBeCompressed(
 }
 
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_ConvertIpv6AddrToCompressedStr
- 功能描述  : 将IPV6地址格式转换为字符串压缩格式
- 输入参数  : aucIpAddr[]    - IPV6地址(协议格式)
-             ucTokensNum    - 地址段个数
- 输出参数  : aucAddrStr[]   - IPV6地址(字符串格式)
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IMS_NIC_ConvertIpv6AddrToCompressedStr(
     VOS_UINT8                          *pucAddrStr,
     VOS_UINT8                          *pucIpAddr,
@@ -583,23 +437,7 @@ VOS_VOID IMS_NIC_ConvertIpv6AddrToCompressedStr(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_IsSameIpAddr
- 功能描述  : 根据IPv4,IPv6地址对比两个地址是否相同
- 输入参数  : pucIpAddr1            -- 需要比较的地址1
-             pucIpAddr2            -- 需要比较的地址2
-             ucIpAddrLen           -- IP地址长度
- 输出参数  : 无
- 返 回 值  : 相等返回1，不相等返回0
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 IMS_NIC_IsSameIpAddr(VOS_UINT8 *pucIpAddr1, VOS_UINT8 *pucIpAddr2, VOS_UINT8 ucIpAddrLen)
 {
     VOS_UINT32 *pulIpAddrTmp1 = (VOS_UINT32 *)pucIpAddr1;
@@ -624,23 +462,7 @@ VOS_UINT32 IMS_NIC_IsSameIpAddr(VOS_UINT8 *pucIpAddr1, VOS_UINT8 *pucIpAddr2, VO
     }
 }
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_DnsAddrCheck
- 功能描述  : 检查待配置的DNS服务器地址是否已经配置过
- 输入参数  : pucIpAddr              -- 欲配置的DNS服务器IP
-             ulIpAddrLen            -- IP地址长度
-             pstImsNicDnsInfo       -- 内部存储的DNS配置信息
- 输出参数  : pucDnsIndx             -- 配置过则返回DNS服务器的索引，没配置过则返回可配置的DNS服务器的索引
- 返 回 值  : 配置过为VOS_TRUE，没有配置过为VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 IMS_NIC_DnsAddrCheck (VOS_UINT8 *pucIpAddr, VOS_UINT8 ucIpAddrLen, IMS_NIC_DNS_INFO_STRU *pstDnsInfo, VOS_UINT8 *pucDnsIndx)
 {
     VOS_UINT8                           ucIndex;
@@ -689,24 +511,7 @@ VOS_UINT32 IMS_NIC_DnsAddrCheck (VOS_UINT8 *pucIpAddr, VOS_UINT8 ucIpAddrLen, IM
 
 }
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_DnsConfig
- 功能描述  : 配置DNS服务器
- 输入参数  : pucIpAddr              -- 欲配置的DNS服务器IP
-             ulIpAddrLen            -- IP地址长度
-             pstImsNicDnsInfo       -- 内部存储的DNS配置信息
-             pstImsNicPdnInfo       -- 内部存储的对应承载上虚拟网卡的配置信息
- 输出参数  : 无
- 返 回 值  : 成功:IMS_NIC_SUCC，失败为对应的错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 IMS_NIC_DnsConfig (VOS_UINT8 *pucIpAddr, VOS_UINT8 ucIpAddrLen, IMS_NIC_DNS_INFO_STRU *pstDnsInfo, IMS_NIC_SINGLE_PDN_INFO_STRU *pstSinglePdnInfo)
 {
     VOS_UINT8               ucDnsIndx;
@@ -768,22 +573,7 @@ VOS_UINT32 IMS_NIC_DnsConfig (VOS_UINT8 *pucIpAddr, VOS_UINT8 ucIpAddrLen, IMS_N
 }
 
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_RecfgUncfgedDnsIpv4
- 功能描述  : 将之前保存的因为Interpeak DNSS满没有配给Interpeak的DNS IP配给Interpeak
- 输入参数  : IMS_NIC_PDN_INFO_STRU *pstPdnInfo 保存的PDN信息
 
- 输出参数  : 无
- 返 回 值  : 成功:IMS_NIC_SUCC，失败为对应的错误码
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年8月07日
-    作    者   : t00148005
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 IMS_NIC_RecfgUncfgedDnsIpv4(IMS_NIC_SINGLE_PDN_INFO_STRU *pstSinglePdnInfo, IMS_NIC_DNS_INFO_STRU *pstDnsInfo)
 {
     VOS_UINT32 ulRst;
@@ -822,22 +612,7 @@ VOS_UINT32 IMS_NIC_RecfgUncfgedDnsIpv4(IMS_NIC_SINGLE_PDN_INFO_STRU *pstSinglePd
 }
 
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_RecfgUncfgedDnsIpv6
- 功能描述  : 将之前保存的因为Interpeak DNSS满没有配给Interpeak的DNS IP配给Interpeak
- 输入参数  : IMS_NIC_PDN_INFO_STRU *pstPdnInfo 保存的PDN信息
 
- 输出参数  : 无
- 返 回 值  : 成功:IMS_NIC_SUCC，失败为对应的错误码
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年8月07日
-    作    者   : t00148005
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 IMS_NIC_RecfgUncfgedDnsIpv6(IMS_NIC_SINGLE_PDN_INFO_STRU *pstSinglePdnInfo, IMS_NIC_DNS_INFO_STRU *pstDnsInfo)
 {
     VOS_UINT32 ulRst;
@@ -876,22 +651,7 @@ VOS_UINT32 IMS_NIC_RecfgUncfgedDnsIpv6(IMS_NIC_SINGLE_PDN_INFO_STRU *pstSinglePd
 }
 
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_RecfgUncfgedDns
- 功能描述  : 将之前保存的因为Interpeak DNSS满没有配给Interpeak的DNS IP配给Interpeak
- 输入参数  : IMS_NIC_PDN_INFO_STRU *pstPdnInfo 保存的PDN信息
 
- 输出参数  : 无
- 返 回 值  : 成功:IMS_NIC_SUCC，失败为对应的错误码
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年8月07日
-    作    者   : t00148005
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  IMS_NIC_RecfgUncfgedDns(IMS_NIC_PDN_INFO_STRU *pstPdnInfo)
 {
     VOS_UINT32                      ulIndx;
@@ -929,23 +689,7 @@ VOS_VOID  IMS_NIC_RecfgUncfgedDns(IMS_NIC_PDN_INFO_STRU *pstPdnInfo)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_DnsInfoDel
- 功能描述  : 从Interpeak中删除配置的DNS Server IP
- 输入参数  : IMS_NIC_PDN_INFO_STRU *pstPdnInfo 保存的PDN信息
-             VOS_UINT8 ucRabId                 要删除的rabid
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年8月07日
-    作    者   : t00148005
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IMS_NIC_DnsInfoDel(IMS_NIC_PDN_INFO_STRU *pstPdnInfo, VOS_UINT8 ucRabId)
 {
     VOS_UINT32                           ulIndx;
@@ -991,22 +735,7 @@ VOS_VOID IMS_NIC_DnsInfoDel(IMS_NIC_PDN_INFO_STRU *pstPdnInfo, VOS_UINT8 ucRabId
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_PdnInfoDel
- 功能描述  : IMS虚拟网卡PDN配置信息删除，由IMSA模块在PDN去激活后调用
- 输入参数  : ucRabId        承载号
-             enModemId      当前modemID
- 输出参数  : 无
- 返 回 值  : 成功:IMS_NIC_SUCC，失败为对应的错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 IMS_NIC_PdnInfoDel(VOS_UINT8 ucRabId, MODEM_ID_ENUM_UINT16 enModemId)
 {
     IMS_NIC_ENTITY_STRU                 *pstImsNicEntity;
@@ -1086,21 +815,7 @@ VOS_UINT32 IMS_NIC_PdnInfoDel(VOS_UINT8 ucRabId, MODEM_ID_ENUM_UINT16 enModemId)
     return IMS_NIC_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_PdnInfoConfigIpv4
- 功能描述  : IMS虚拟网卡IPv4配置接口
- 输入参数  : pstConfigInfo   IMS虚拟网卡配置信息
- 输出参数  : 无
- 返 回 值  : 成功:IMS_NIC_SUCC，失败为对应的错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 IMS_NIC_PdnInfoConfigIpv4(IMS_NIC_PDN_INFO_CONFIG_STRU *pstConfigInfo)
 {
     VOS_UINT32                          ulRst;
@@ -1157,21 +872,7 @@ VOS_UINT32 IMS_NIC_PdnInfoConfigIpv4(IMS_NIC_PDN_INFO_CONFIG_STRU *pstConfigInfo
     return ulRst;
 }
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_PdnInfoConfigIpv6
- 功能描述  : IMS虚拟网卡IPv6配置接口
- 输入参数  : pstConfigInfo   IMS虚拟网卡配置信息
- 输出参数  : 无
- 返 回 值  : 成功:IMS_NIC_SUCC，失败为对应的错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 IMS_NIC_PdnInfoConfigIpv6(IMS_NIC_PDN_INFO_CONFIG_STRU *pstConfigInfo)
 {
     VOS_UINT8                           aucIpAddrStr[IMS_NIC_IPV6_ADDR_STR_LEN + 1] = {0};
@@ -1241,21 +942,7 @@ VOS_UINT32 IMS_NIC_PdnInfoConfigIpv6(IMS_NIC_PDN_INFO_CONFIG_STRU *pstConfigInfo
     return ulRst;
 }
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_PdnInfoConfig
- 功能描述  : IMS虚拟网卡配置接口,由IMSA模块调用
- 输入参数  : pstConfigInfo   IMS虚拟网卡配置信息
- 输出参数  : 无
- 返 回 值  : 成功:IMS_NIC_SUCC，失败为对应的错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 IMS_NIC_PdnInfoConfig (IMS_NIC_PDN_INFO_CONFIG_STRU *pstConfigInfo)
 {
     IMS_NIC_ENTITY_STRU                 *pstImsNicEntity;
@@ -1366,22 +1053,7 @@ VOS_UINT32 IMS_NIC_PdnInfoConfig (IMS_NIC_PDN_INFO_CONFIG_STRU *pstConfigInfo)
 }
 
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_RegUlDataSendCb
- 功能描述  : 注册IMS虚拟网卡上行数据发送回调函数，由CDS模块调用
- 输入参数  : pFunc        上行数据发送回调接口
-             enModemId    当前modemID
- 输出参数  : 无
- 返 回 值  : 成功:IMS_NIC_SUCC，失败:IMS_NIC_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 IMS_NIC_RegUlDataSendCb(IMS_NIC_SEND_UL_DATA_FUNC pFunc, MODEM_ID_ENUM_UINT16 enModemId)
 {
     IMS_NIC_ENTITY_STRU     *pstImsNicEntity;
@@ -1410,23 +1082,7 @@ VOS_UINT32 IMS_NIC_RegUlDataSendCb(IMS_NIC_SEND_UL_DATA_FUNC pFunc, MODEM_ID_ENU
     return IMS_NIC_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_DlParaCheck
- 功能描述  : IMS虚拟网卡下行数据接收参数检查
- 输入参数  : pucData      IP包数据
-             usLen        IP包长度
-             enModemId    当前modemID
- 输出参数  :
- 返 回 值  : 成功:IMS_NIC_SUCC，失败:IMS_NIC_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 IMS_NIC_DlParaCheck(VOS_UINT8 *pucData, VOS_UINT16 usLen, MODEM_ID_ENUM_UINT16 enModemId)
 {
 
@@ -1464,22 +1120,7 @@ VOS_UINT32 IMS_NIC_DlParaCheck(VOS_UINT8 *pucData, VOS_UINT16 usLen, MODEM_ID_EN
 }
 
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_UlDataSend
- 功能描述  : 该函数负责将MUX层出来的数据交给CDS
- 输入参数  : pucData      IP包数据
-             usLen        IP包长度
-             enModemId    当前modemID
- 输出参数  : 无
- 返 回 值  : 成功:IMS_NIC_SUCC，失败为IMS_NIC_FAIL
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 IMS_NIC_UlDataSend(VOS_UINT8 *pucData, VOS_UINT16 usLen, MODEM_ID_ENUM_UINT16 enModemId)
 {
     IMS_NIC_ENTITY_STRU                     *pstImsNicEntity;
@@ -1571,21 +1212,7 @@ VOS_UINT32 IMS_NIC_UlDataSend(VOS_UINT8 *pucData, VOS_UINT16 usLen, MODEM_ID_ENU
     return IMS_NIC_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_InitAll
- 功能描述  : 初始化所有的IMS虚拟网卡
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 成功:IMS_NIC_SUCC，失败为IMS_NIC_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 IMS_NIC_InitAll(VOS_VOID)
 {
     VOS_UINT32      ulResult;
@@ -1618,23 +1245,7 @@ VOS_UINT32 IMS_NIC_InitAll(VOS_VOID)
     return IMS_NIC_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_Addr_Util_GetUnsetBitsInByte
- 功能描述  : VISP内存裁剪后不支持地址选择，网卡地址选择在IMS实现。方法由VISP提供
- 输入参数  : ucAddressByte          IP地址字节数
-             pulLeftUnsetBits
 
- 输出参数  : pulLeftUnsetBits
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年06月09日
-    作    者   : g00178567
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 IMS_NIC_Addr_Util_GetUnsetBitsInByte(VOS_UINT8 ucAddressByte, VOS_UINT32 *pulLeftUnsetBits)
 {
     VOS_UINT32  ulLoopIndex;
@@ -1667,25 +1278,7 @@ VOS_UINT32 IMS_NIC_Addr_Util_GetUnsetBitsInByte(VOS_UINT8 ucAddressByte, VOS_UIN
     return ADDRADP_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_Addr_Util_GetNumOfMatchingBits
- 功能描述  : VISP内存裁剪后不支持地址选择，网卡地址选择在IMS实现。获取匹配bit数
-             方法由VISP提供
- 输入参数  : pstIP6Addr1
-             pstIP6Addr2
-             pulMatchBitsNum
 
- 输出参数  : pulLeftUnsetBits
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年06月09日
-    作    者   : g00178567
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 IMS_NIC_Addr_Util_GetNumOfMatchingBits(const IN6ADDR_S *pstIP6Addr1,
                                          const IN6ADDR_S *pstIP6Addr2,
                                          VOS_UINT32 *pulMatchBitsNum)
@@ -1732,23 +1325,7 @@ VOS_UINT32 IMS_NIC_Addr_Util_GetNumOfMatchingBits(const IN6ADDR_S *pstIP6Addr1,
     return ADDRADP_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_MatchSrcAddr
- 功能描述  : VISP内存裁剪后不支持地址选择，网卡地址选择在IMS实现。选择源地址
-             方法由VISP提供
- 输入参数  : pstMatchSrcAddr
 
- 输出参数  : pstMatchSrcAddr
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年06月09日
-    作    者   : g00178567
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG IMS_NIC_MatchSrcAddr(TCPIP_ADDR_INFO_S *pstMatchSrcAddr)
 {
     VOS_UINT32                          ulCount;
@@ -1808,23 +1385,7 @@ ULONG IMS_NIC_MatchSrcAddr(TCPIP_ADDR_INFO_S *pstMatchSrcAddr)
     return ADDRADP_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_IsLocalAddr
- 功能描述  : VISP内存裁剪后不支持地址选择，网卡地址选择在IMS实现。判断是否为本地地址
-             方法由VISP提供
- 输入参数  : pstMatchSrcAddr
 
- 输出参数  : pstMatchSrcAddr
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年06月09日
-    作    者   : g00178567
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG IMS_NIC_IsLocalAddr(TCPIP_ADDR_INFO_S *pstMatchSrcAddr)
 {
     VOS_UINT32                          ulCount;
@@ -1897,23 +1458,7 @@ ULONG IMS_NIC_IsLocalAddr(TCPIP_ADDR_INFO_S *pstMatchSrcAddr)
     return ADDRADP_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_HaveAddrCheck
- 功能描述  : VISP内存裁剪后不支持地址选择，网卡地址选择在IMS实现。地址检查
-             方法由VISP提供
- 输入参数  : pstMatchSrcAddr
 
- 输出参数  : pstMatchSrcAddr
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年06月09日
-    作    者   : g00178567
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG IMS_NIC_HaveAddrCheck(TCPIP_ADDR_INFO_S *pstMatchSrcAddr)
 {
     VOS_UINT32                          ulCount;
@@ -1969,24 +1514,7 @@ ULONG IMS_NIC_HaveAddrCheck(TCPIP_ADDR_INFO_S *pstMatchSrcAddr)
     return ADDRADP_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_SetLinklocalAddr
- 功能描述  : VISP内存裁剪后不支持地址选择，网卡地址选择在IMS实现。设置本地地址
-             方法由VISP提供
- 输入参数  : pstLinkLocalAddr
-             pData
 
- 输出参数  : pstLinkLocalAddr
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年06月09日
-    作    者   : g00178567
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IMS_NIC_SetLinklocalAddr(IN6ADDR_S *pstLinkLocalAddr, VOS_UINT8 *pData)
 {
     VOS_UINT8               ucInterfaceID[8];   /* 接口ID */
@@ -2020,24 +1548,7 @@ TCPIP_ADDR_HOOK_S stAddrHook =
     IMS_NIC_HaveAddrCheck
 };
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_ConfigIpv6Addr
- 功能描述  : 配置IPV6地址到协议栈
- 输入参数  : pucIpAddr      IP地址
-             enModemId      当前modemID
-             ulBitPrefixLen IPV6前缀长度,单位为bit
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年3月26日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID   IMS_NIC_ConfigIpv6Addr
 (
     MODEM_ID_ENUM_UINT16                enModemId,
@@ -2092,23 +1603,7 @@ VOS_VOID   IMS_NIC_ConfigIpv6Addr
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_ConfigIpv4Addr
- 功能描述  : 配置IPV4地址到协议栈
- 输入参数  : pucIpAddr      IP地址
-             enModemId      当前modemID
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年3月26日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID   IMS_NIC_ConfigIpv4Addr(MODEM_ID_ENUM_UINT16 enModemId, VOS_UINT8 *pucIpAddr)
 {
     VOS_UINT32                          ulRet;
@@ -2153,23 +1648,7 @@ VOS_VOID   IMS_NIC_ConfigIpv4Addr(MODEM_ID_ENUM_UINT16 enModemId, VOS_UINT8 *puc
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_PdnInfoDelIpv6
- 功能描述  : IMS虚拟网卡PDN IPv6配置信息删除
- 输入参数  : ucRabId        承载号
-             enModemId      当前modemID
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID   IMS_NIC_PdnInfoDelIpv6(VOS_UINT8 ucRabId, MODEM_ID_ENUM_UINT16 enModemId)
 {
     VOS_INT8                            acIpAddrStr[IMS_NIC_IPV6_ADDR_STR_LEN + 1] = {0};
@@ -2214,23 +1693,7 @@ VOS_VOID   IMS_NIC_PdnInfoDelIpv6(VOS_UINT8 ucRabId, MODEM_ID_ENUM_UINT16 enMode
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_PdnInfoDelIpv4
- 功能描述  : IMS虚拟网卡PDN IPv4配置信息删除
- 输入参数  : ucRabId        承载号
-             enModemId      当前modemID
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年3月26日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID   IMS_NIC_PdnInfoDelIpv4(VOS_UINT8 ucRabId, MODEM_ID_ENUM_UINT16 enModemId)
 {
     IMS_NIC_ENTITY_STRU                *pstImsNicEntity;
@@ -2272,23 +1735,7 @@ VOS_VOID   IMS_NIC_PdnInfoDelIpv4(VOS_UINT8 ucRabId, MODEM_ID_ENUM_UINT16 enMode
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_DnsConfigtoIpStack
- 功能描述  : 配置DNS服务器到协议栈
- 输入参数  : ucIpAddrLen              -- IP地址长度
-             ucDnsIndx                -- 空闲DNS服务器索引
-             pucIpAddr                -- 欲配置的DNS服务器IP
- 输出参数  : 无
- 返 回 值  : 成功:IMS_NIC_SUCC，失败为对应的错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年c月26日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IMS_NIC_DnsConfigtoIpStack
 (
     VOS_UINT8                           ucIpAddrLen,
@@ -2347,21 +1794,7 @@ VOS_VOID IMS_NIC_DnsConfigtoIpStack
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_DnsDeltoIpStack
- 功能描述  : 删除DNS服务器到协议栈
- 输入参数  : ulIndx           要删除的DNS服务器索引
- 输出参数  : 无
- 返 回 值  : 成功:IMS_NIC_SUCC，失败为对应的错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年c月26日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IMS_NIC_DnsDeltoIpStack
 (
     VOS_UINT32                          ulIndx,
@@ -2419,21 +1852,7 @@ VOS_VOID IMS_NIC_DnsDeltoIpStack
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_ResetAll
- 功能描述  : 将IMS NIC模块设置到初始状态
- 输入参数  : MODEM_ID_ENUM_UINT16 enModemId MODEM ID号
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年3月26日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID IMS_NIC_ResetAll(MODEM_ID_ENUM_UINT16 enModemId)
 {
     IMS_NIC_ENTITY_STRU                *pstImsNicEntity;
@@ -2459,21 +1878,7 @@ VOS_VOID IMS_NIC_ResetAll(MODEM_ID_ENUM_UINT16 enModemId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_SetDefaultRoute
- 功能描述  : 配置默认路由
- 输入参数  : enModemId   Modem编号
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月29日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IMS_NIC_SetDefaultRoute(MODEM_ID_ENUM_UINT16 enModemId)
 {
     VOS_UINT8                           aucInput[IMS_NIC_TCPIP_INPUT_LEN];
@@ -2520,23 +1925,7 @@ VOS_VOID IMS_NIC_SetDefaultRoute(MODEM_ID_ENUM_UINT16 enModemId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_SetSocketPort
- 功能描述  : 配置Socket端口上下限
- 输入参数  : usMinPort   端口下限
-             usMaxPort   端口上限
-             enModemId   当前网卡
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月13日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 IMS_NIC_SetSocketPort
 (
     VOS_UINT16                          usMinPort,
@@ -2578,21 +1967,7 @@ VOS_UINT32 IMS_NIC_SetSocketPort
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_MtuSet
- 功能描述  : IMS虚拟网卡MTU设置
- 输入参数  : ulMtu        最大发送单元
- 输出参数  : 无
- 返 回 值  : 成功:IMS_NIC_SUCC，失败为对应的错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月14日
-    作    者   : lvcunpai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 IMS_NIC_MtuSet(VOS_UINT32 ulMtu)
 {
     VOS_UINT16                          usIndex;
@@ -2654,23 +2029,7 @@ VOS_UINT32 IMS_NIC_MtuSet(VOS_UINT32 ulMtu)
 }
 
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_DlDataRcv
- 功能描述  : IMS虚拟网卡下行数据接收接口，提供给CDS调用
- 输入参数  : pucData      IP包数据
-             usLen        IP包长度
-             enModemId    当前modemID
- 输出参数  :
- 返 回 值  : 成功:IMS_NIC_SUCC，失败:IMS_NIC_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月14日
-    作    者   : lvcunpai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 IMS_NIC_DlDataRcv(VOS_UINT8 *pucData, VOS_UINT16 usLen, MODEM_ID_ENUM_UINT16 enModemId)
 {
     MBUF_S                             *pMbuf;
@@ -2740,21 +2099,7 @@ VOS_UINT32 IMS_NIC_DlDataRcv(VOS_UINT8 *pucData, VOS_UINT16 usLen, MODEM_ID_ENUM
     return IMS_NIC_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_Delete
- 功能描述  : IMS虚拟网卡卸载函数
- 输入参数  : enModemId      --当前Modem号
- 输出参数  : 无
- 返 回 值  : 成功:IMS_NIC_SUCC，失败为对应的错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月14日
-    作    者   : lvcunpai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 IMS_NIC_Delete (MODEM_ID_ENUM_UINT16 enModemId)
 {
     VOS_UINT32                          ulIfIndex;
@@ -2806,22 +2151,7 @@ VOS_UINT32 IMS_NIC_Delete (MODEM_ID_ENUM_UINT16 enModemId)
     return IMS_NIC_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_UL_IPDataSend
- 功能描述  : 该函数负责将MUX层出来的数据交给CDS
- 输入参数  : pucData      IP包数据
-             usLen        IP包长度
-             enModemId    当前modemID
- 输出参数  : 无
- 返 回 值  : 成功:IMS_NIC_SUCC，失败为IMS_NIC_FAIL
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 IMS_NIC_UL_IPDataSend(VOS_UINT8 *pucData, VOS_UINT16 usLen, MODEM_ID_ENUM_UINT16 enModemId)
 {
     IMS_NIC_ENTITY_STRU                     *pstImsNicEntity;
@@ -2898,22 +2228,7 @@ VOS_UINT32 IMS_NIC_UL_IPDataSend(VOS_UINT8 *pucData, VOS_UINT16 usLen, MODEM_ID_
     return IMS_NIC_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_Send
- 功能描述  : 该函数负责将MUX层出来的数据交给CDS
- 输入参数  : VOS_UINT32 ulPhyLink   --  底层控制块指针
-             MBUF_S * pMbuf         --  以太报文,请参考MBUF结构体
- 输出参数  : 无
- 返 回 值  : 2                      --  需求通知VISP已经处理完成，否则VISP内部还要继续处理数据
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月14日
-    作    者   : lvcunpai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 IMS_NIC_Send (VOS_UINT32 ulPhyLink, MBUF_S * pMbuf)
 {
     VOS_UINT32                          ulResult;
@@ -2970,23 +2285,7 @@ VOS_UINT32 IMS_NIC_Send (VOS_UINT32 ulPhyLink, MBUF_S * pMbuf)
     return IMS_NIC_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_Ioctl
- 功能描述  : 该函数负责执行IO控制命令
- 输入参数  : VOS_UINT32 ulPhyLink       --  底层控制块指针
-             VOS_UINT32 ulCmdIndex      --  控制命令字
-             char *pData                --  控制参数
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月14日
-    作    者   : lvcunpai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 IMS_NIC_Ioctl(VOS_UINT32 ulPhyLink, VOS_UINT32 ulCmdIndex, VOS_CHAR *pData)
 {
     IMS_NIC_ENTITY_STRU                *pstImsNicEntity;
@@ -3074,24 +2373,7 @@ VOS_UINT32 IMS_NIC_Ioctl(VOS_UINT32 ulPhyLink, VOS_UINT32 ulCmdIndex, VOS_CHAR *
     return IMS_NIC_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_Load
- 功能描述  : 接口初始化函数
- 输入参数  : DEVLINK_S *pstDev      --  网卡设备指针
-             VOS_UINT32 *pulIfIndex --  接口索引指针
-             VOS_UINT32 *pulSlot    --  当前未使用
-             VOS_UINT32 ulSlotNum   --  当前未使用
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月14日
-    作    者   : lvcunpai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 IMS_NIC_Load(DEVLINK_S *pstDev, VOS_UINT32 *pulIfIndex, VOS_UINT32 *pulSlot, VOS_UINT32 ulSlotNum)
 {
     VOS_UINT32                          ulRet;
@@ -3122,24 +2404,7 @@ VOS_UINT32 IMS_NIC_Load(DEVLINK_S *pstDev, VOS_UINT32 *pulIfIndex, VOS_UINT32 *p
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_Init
- 功能描述  : 创建一维以太设备接口
- 输入参数  : enModemId      --当前Modem号
- 输出参数  : 无
- 返 回 值  : 成功:IMS_NIC_SUCC，失败为对应的错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月14日
-    作    者   : lvcunpai
-    修改内容   : 新生成函数
-  2.日    期   : 2015年9月5日
-    作    者   : w00146666
-    修改内容   : 静态告警清理
-
-*****************************************************************************/
 VOS_UINT32 IMS_NIC_Init (MODEM_ID_ENUM_UINT16 enModemId)
 {
     VOS_UINT32                          ulIfIndex;
@@ -3245,21 +2510,7 @@ VOS_UINT32 IMS_NIC_Init (MODEM_ID_ENUM_UINT16 enModemId)
 }
 
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_GetMntnInfo
- 功能描述  : 获取IMS虚拟网卡的统计信息，用于周期性上报
- 输入参数  : usType         -- 可维可测消息类型
- 输出参数  : pucData        -- 存储数据的内存
-             pulLen         -- 数据长度
- 返 回 值  : 成功:IMS_NIC_OK，失败为IMS_NIC_FAIL
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 IMS_NIC_GetMntnInfo
 (
     VOS_UINT8                       *pucData,
@@ -3309,20 +2560,7 @@ VOS_UINT32 IMS_NIC_GetMntnInfo
     return IMS_NIC_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_Help
- 功能描述  : 显示网卡所有Debug函数
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : t00148005
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IMS_NIC_Help(VOS_VOID)
 {
     (VOS_VOID)vos_printf("打印网卡状态信息：IMS_NIC_ShowEntityState \n");
@@ -3331,20 +2569,7 @@ VOS_VOID IMS_NIC_Help(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_ShowEntityState
- 功能描述  : 显示网卡状态信息,配置的IP, DNS等
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : t00148005
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IMS_NIC_ShowEntityState(VOS_VOID)
 {
     VOS_UINT8                       ucRabId;
@@ -3440,20 +2665,7 @@ VOS_VOID IMS_NIC_ShowEntityState(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : IMS_NIC_ShowEntityState
- 功能描述  : 显示网卡统计信息，收发包情况，异常统计信息等
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : t00148005
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IMS_NIC_ShowStats(VOS_VOID)
 {
     VOS_INT32                i;

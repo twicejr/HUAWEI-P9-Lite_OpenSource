@@ -1,18 +1,6 @@
 
 
-/************************************************************************
-Copyright   : 2005-2008, Huawei Tech. Co., Ltd.
-File name   : SI_SIM.h
-Author      : H59254
-Version     : V200R001
-Date        : 2008-10-18
-Description : SIM卡的头文件
-History     :
-History     :
-1.日    期  : 2008年10月18日
-  作    者  : H59254
-  修改内容  : Create
-************************************************************************/
+
 #ifndef __SI_STK_H__
 #define __SI_STK_H__
 
@@ -194,12 +182,10 @@ typedef VOS_UINT32 (*DS2TLV)(VOS_UINT8 Tag,VOS_UINT8 *pDes,VOS_UINT8 *pSrc,VOS_U
 
 #define STK_NMR_TIMER_STOP                                  VOS_StopRelTimer(&gstSTKNMRTimer)
 
-/* Modified by w00184875 for V7R1C51 STK与AP对接, 2012-05-07, begin */
 #define STK_GETTA_TIMER_START                               VOS_StartRelTimer(&gstSTKGetTATimer, MAPS_STK_PID,\
                                                                             5000, STK_GETTA_TIMER_NAME, 0,VOS_RELTIMER_NOLOOP, VOS_TIMER_PRECISION_5)
 
 #define STK_GETTA_TIMER_STOP                                VOS_StopRelTimer(&gstSTKGetTATimer)
-/* Modified by w00184875 for V7R1C51 STK与AP对接, 2012-05-07, end */
 
 #define STK_IND_TIMER_START(ulLength)                       VOS_StartRelTimer(&gstSTKINDTimer, MAPS_STK_PID,\
                                                                             ulLength, STK_IND_TIMER_NAME, 0,VOS_RELTIMER_NOLOOP, VOS_TIMER_PRECISION_5)
@@ -531,13 +517,7 @@ enum SI_STK_SETUP_CALL_COMMAND_QUALIFIER_ENUM
 };
 typedef VOS_UINT8 SI_STK_SETUP_CALL_COMMAND_QUALIFIER_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : SI_STK_HOOK_MSG_NAME_ENUM_UINT32
- 结构说明  : 钩包消息类型
- 1.日    期: 2013年7月12日
-   作    者: H59254
-   修改内容: 新增
-*****************************************************************************/
+
 enum SI_STK_HOOK_MSG_NAME_ENUM
 {
      STK_TAF_CS_SERVICE_STATUS          = 0xFF00,    /* CS服务状态勾包 */
@@ -546,13 +526,7 @@ enum SI_STK_HOOK_MSG_NAME_ENUM
 };
 typedef VOS_UINT32 SI_STK_HOOK_MSG_NAME_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : SI_STK_TEXT_STRING_DCS_ENUM_UINT8
- 结构说明  : TEXT STRING数据结构的编码方式
- 1.日    期: 2013年7月12日
-   作    者: H59254
-   修改内容: 新增
-*****************************************************************************/
+
 enum SI_STK_TEXT_STRING_DCS_ENUM
 {
      SI_STK_TEXT_STRING_DCS_7BIT        = 0x00,
@@ -814,13 +788,7 @@ typedef struct
     VOS_UINT32                       ulCsServiceStatus;
 }STK_CS_SERVICE_STRU;
 
-/*****************************************************************************
- 枚举名    : STK_CBS_DCS_STRU
- 结构说明  : NAS DCS解码函数钩包函数
- 1.日    期: 2013年7月12日
-   作    者: H59254
-   修改内容: 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucInputDcs;
@@ -894,9 +862,7 @@ extern SI_STK_DATA_INFO_STRU            gstUsatCmdDecode;
 
 extern HTIMER                           gstSTKProtectTimer;
 
-/* Modified by w00184875 for V7R1C51 STK与AP对接, 2012-05-07, begin */
 extern HTIMER                           gstSTKGetTATimer;
-/* Modified by w00184875 for V7R1C51 STK与AP对接, 2012-05-07, end */
 
 extern HTIMER                           gstSTKINDTimer;
 
@@ -944,9 +910,7 @@ extern VOS_UINT16                       gusSTKSMSIndEnable;
 
 extern VOS_UINT8                        *g_pucSTKSndCodeAddr;
 
-/* Modified by w00184875 for V7R1C51 STK与AP对接, 2012-05-07, begin */
 extern SI_STK_CMD_PROC_STATUS_UINT32    g_enTACmdStatus;
-/* Modified by w00184875 for V7R1C51 STK与AP对接, 2012-05-07, end */
 
 extern SI_STK_SETUP_CALL_CTRL_STRU      g_stStkSetupCallCtrl;
 
@@ -1063,227 +1027,55 @@ extern VOS_VOID STK_InitGobal(VOS_VOID);
 
 extern VOS_VOID STK_ResetGlobalValue(VOS_VOID);
 
-/*****************************************************************************
-函 数 名  : STK_InitCallGobal
-功能描述  : 初时化与呼叫相关的全局变量的内容
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2012年9月13日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
+
 extern VOS_VOID STK_InitCallGobal(VOS_VOID);
 
-/*****************************************************************************
-函 数 名  : STK_GetCsSvcStatus
-功能描述  : 获取当前CS域服务状态
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 当前服务状态
-History     :
-1.日    期  : 2013年07月11日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
+
 extern VOS_UINT32 STK_GetCsSvcStatus(VOS_VOID);
 
-/*****************************************************************************
-函 数 名  : STK_GetSvcStatus
-功能描述  : 获取当前服务状态
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 服务状态
-History     :
-1.日    期  : 2013年07月11日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
+
 extern VOS_UINT32 STK_GetSvcStatus(VOS_VOID);
 
-/*****************************************************************************
-函 数 名  : STK_UpdateCsSvcStatus
-功能描述  : 更新当前CS域服务状态
-输入参数  : enCsServiceStatus:CS域服务状态
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2013年07月11日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
+
 extern VOS_VOID STK_UpdateCsSvcStatus(NAS_STK_SERVICE_STATUS_ENUM_UINT8 enCsServiceStatus);
 
-/*****************************************************************************
-函 数 名  : STK_UpdateSvcStatus
-功能描述  : 更新当前服务状态
-输入参数  : enServiceStatus:服务状态
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2014年01月15日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
+
 extern VOS_VOID STK_UpdateSvcStatus(NAS_STK_SERVICE_STATUS_ENUM_UINT8 enServiceStatus);
 
-/*****************************************************************************
-函 数 名  : STK_GetSysInfo
-功能描述  : 更新当前系统状态
-输入参数  : pstSysInfo:CS域系统信息
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2013年07月11日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
+
 extern VOS_VOID STK_GetSysInfo(SI_STK_SYS_INFO_STRU *pstSysInfo);
 
-/*****************************************************************************
-函 数 名  : STK_UpdateSysInfo
-功能描述  : 更新当前系统状态
-输入参数  : pstSysInfo:CS域系统信息
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2013年07月11日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
+
 extern VOS_VOID STK_UpdateSysInfo(NAS_STK_SYS_INFO_STRU *pstSysInfo);
 
-/*****************************************************************************
-函 数 名  : STK_GetCurRat
-功能描述  : 获取当前接入技术
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 接入技术
-History     :
-1.日    期  : 2013年07月11日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
+
 extern VOS_UINT8 STK_GetCurRat(VOS_VOID);
 
-/*****************************************************************************
-函 数 名  : STK_UpdateCurRat
-功能描述  : 更新当前接入技术
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 接入技术
-History     :
-1.日    期  : 2013年07月11日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
+
 extern VOS_VOID STK_UpdateCurRat(TAF_MMA_RAT_TYPE_ENUM_UINT8 ucRat);
 
-/*****************************************************************************
-函 数 名  : STK_GetSearchMode
-功能描述  : 获取当前搜网模式
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 搜网模式
-History     :
-1.日    期  : 2013年07月11日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
+
 extern VOS_UINT8 STK_GetSearchMode(VOS_VOID);
 
-/*****************************************************************************
-函 数 名  : STK_UpdateSearchMode
-功能描述  : 更新当前搜网模式
-输入参数  : 当前搜网模式
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2013年07月11日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
+
 extern VOS_VOID STK_UpdateSearchMode(VOS_UINT8 ucSearchMode);
 
-/*****************************************************************************
-函 数 名  : STK_ProfileInit
-功能描述  : 初始化时PROFILE内容初始化
-输入参数  : 无
-输出参数  : ppucProfile:Profile内容
-            pucProfileLen:Profile长度
-返 回 值  : 无
-History     :
-1.日    期  : 2013年07月11日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
+
 extern VOS_VOID STK_GetProfileInfo(VOS_UINT8 **ppucProfile, VOS_UINT8 *pucProfileLen);
 
-/*****************************************************************************
-函 数 名  : STK_ProfileInit
-功能描述  : 初始化时PROFILE内容初始化
-输入参数  : pstSTKProfileContent:Profile全局结构指针
-            enPhyType:卡物理类型
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2013年07月11日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
+
 extern VOS_VOID STK_ProfileInit(USIMM_STK_CFG_STRU *pstSTKProfileContent, USIMM_PHYCARD_TYPE_ENUM_UINT32 enPhyType);
 
-/*****************************************************************************
-函 数 名  : STK_ClearPauseCharGobal
-功能描述  : 清除pause字符相关全局变量
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2012年9月19日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
+
 extern VOS_VOID STK_ClearPauseCharGobal(VOS_VOID);
 
-/*****************************************************************************
-函 数 名  : STK_ClearPauseCharGobal
-功能描述  : SETUP CALL全局变量中呼叫状态机设置
-输入参数  : enCallStatus:重置的呼叫状态
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2012年9月19日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
+
 extern VOS_VOID STK_CallStateMachineSet(SI_STK_CALL_STATUS_ENUM_UINT32 enCallStatus);
 
-/*****************************************************************************
-函 数 名  : STK_SetCallCleanGobal
-功能描述  : SETUP CALL全局变量清除
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2012年9月19日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
+
 extern VOS_VOID STK_SetCallCleanGobal(VOS_VOID);
 
-/*****************************************************************************
-函 数 名  : STK_CLCfgInit
-功能描述  : L+C共SIM卡功能状态初始化
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2013年12月19日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
+
 extern VOS_VOID STK_CLCfgInit(VOS_VOID);
 
 /* STKPro.c */
@@ -1431,34 +1223,10 @@ extern VOS_VOID SI_STK_CbpTRDataReqProc(SI_STK_REQ_STRU *STKReqMsg);
 *****************************************************************************/
 extern VOS_VOID SI_STK_CbpTRCnfProc(VOS_UINT32 ulErrorCode, VOS_UINT8 ucSW1, VOS_UINT8 ucSW2);
 
-/*****************************************************************************
-函 数 名  :SI_STK_RefreshCallInServiceProc
-功能描述  :Refresh命令当UE在呼叫状态的处理函数
-输入参数  :pCmdData:主动命令内容
-输出参数  :
-返 回 值  :
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2012年09月13日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
+
 extern VOS_UINT32 SI_STK_RefreshCallInServiceProc(SI_STK_DATA_INFO_STRU *pCmdData);
 
-/*****************************************************************************
-函 数 名  : SI_STK_CmdIndTimeOutProc
-功能描述  : 主动命令上报超时处理函数
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_UINT32函数执行结果
- 调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2009年07月10日
-  作    者  : z00100318
-  修改内容  : Create
-*****************************************************************************/
+
 extern VOS_VOID SI_STK_CmdIndTimeOutProc(VOS_VOID);
 
 extern VOS_VOID SI_STK_MenuSelectionProc(SI_STK_REQ_STRU *STKReqMsg);

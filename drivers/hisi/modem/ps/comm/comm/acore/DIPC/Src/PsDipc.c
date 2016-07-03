@@ -56,23 +56,7 @@ DIPC_DATA_Q_CTRL_ST                     g_stDipcDataQ;
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
-函 数 名  : DIPC_PrintLog
-功能描述  : 目前临时使用DIPC打印函数，后续等A核打印可用后切换为TTF_LOG，打印没有参数的打印
-输入参数  : VOS_UINT32  ulModuleId      打印模块名
-            VOS_UINT32  ulSubMod        打印子模块名
-            VOS_UINT32  ulLevel         打印级别
-            VOS_CHAR   *pcString        打印内容
-            VOS_INT32   lPara1          打印参数
-输出参数  : 无
-返 回 值  : 无
 
-修改历史      :
- 1.日    期   : 2012年2月13日
-   作    者   : x59651
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID DIPC_PrintLog
 (
     VOS_UINT32      ulModuleId,
@@ -90,23 +74,7 @@ VOS_VOID DIPC_PrintLog
 }
 
 
-/*****************************************************************************
-函 数 名  : DIPC_PrintLog1
-功能描述  : 目前临时使用DIPC打印函数，后续等A核打印可用后切换为TTF_LOG，打印有1个参数的打印
-输入参数  : VOS_UINT32  ulModuleId      打印模块名
-            VOS_UINT32  ulSubMod        打印子模块名
-            VOS_UINT32  ulLevel         打印级别
-            VOS_CHAR   *pcString        打印内容
-            VOS_INT32   lPara1          打印参数
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2012年2月13日
-   作    者   : x59651
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID DIPC_PrintLog1
 (
     VOS_UINT32      ulModuleId,
@@ -125,24 +93,7 @@ VOS_VOID DIPC_PrintLog1
 }
 
 
-/*****************************************************************************
-函 数 名  : DIPC_PrintLog2
-功能描述  : 目前临时使用DIPC打印函数，后续等A核打印可用后切换为TTF_LOG，打印有2个参数的打印
-输入参数  : VOS_UINT32  ulModuleId      打印模块名
-            VOS_UINT32  ulSubMod        打印子模块名
-            VOS_UINT32  ulLevel         打印级别
-            VOS_CHAR   *pcString        打印内容
-            VOS_INT32   lPara1          打印参数
-            VOS_INT32   lPara2          打印参数2
-输出参数  : 无
-返 回 值  : 无
 
-修改历史      :
- 1.日    期   : 2012年2月13日
-   作    者   : x59651
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID DIPC_PrintLog2
 (
     VOS_UINT32      ulModuleId,
@@ -300,20 +251,7 @@ VOS_UINT32  DIPC_EnqueueData(IMM_ZC_STRU *pstImmZc)
 
 
 
-/*****************************************************************************
- 函 数 名  : DIPC_DEV_HsicAcmFreeDlDataCB
- 功能描述  : 向底软注册ACM下HSIC用户面通道下行数据释放回调函数
- 输入参数  : IMM_ZC_STRU *pstBuf    需要释放的内存结构，为sk_buff类型
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
-
- 修改历史      :
-  1.日    期   : 2012年2月13日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID DIPC_DEV_HsicAcmFreeDlDataCB(IMM_ZC_STRU *pstBuf)
 {
     IMM_ZcFree(pstBuf);
@@ -321,20 +259,7 @@ VOS_VOID DIPC_DEV_HsicAcmFreeDlDataCB(IMM_ZC_STRU *pstBuf)
 }
 
 
-/*****************************************************************************
- 函 数 名  : DIPC_DEV_AcmOpenDevice
- 功能描述  : DIPC使用的ACM下HSIC用户面数据设备初始化
- 输入参数  : DEV_INFO_STRU *pstDevInfo  设备相关结构
- 输出参数  : 无
- 返 回 值  : PS_SUCC:成功；
-             PS_FAIL:失败
 
- 修改历史      :
-  1.日    期   : 2012年2月13日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DIPC_DEV_AcmOpenDevice(DEV_INFO_STRU *pstDevInfo)
 {
     UDI_OPEN_PARAM_S        stParam;
@@ -369,22 +294,7 @@ VOS_UINT32 DIPC_DEV_AcmOpenDevice(DEV_INFO_STRU *pstDevInfo)
 }
 
 
-/*****************************************************************************
- 函 数 名  : DIPC_DEV_NcmOpenDevice
- 功能描述  : DIPC使用的NCM下HSIC用户面数据设备初始化
- 输入参数  : DEV_INFO_STRU *pstDevInfo  设备相关结构
 
- 输出参数  : 无
-
- 返 回 值  : PS_SUCC:成功；
-             PS_FAIL:失败
-
- 修改历史      :
-  1.日    期   : 2012年8月30日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DIPC_DEV_NcmOpenDevice(DEV_INFO_STRU *pstDevInfo)
 {
     UDI_OPEN_PARAM_S                      stParam;
@@ -410,22 +320,7 @@ VOS_UINT32 DIPC_DEV_NcmOpenDevice(DEV_INFO_STRU *pstDevInfo)
 }
 
 
-/*****************************************************************************
- 函 数 名  : DIPC_DEV_AcmGetUlDataBuf
- 功能描述  : 封装从HSIC ACM设备读数据的接口
- 输入参数  : UDI_HANDLE slUdiHsicAcmHdl ACM设备的句柄
-             IMM_ZC_STRU **ppstBuf      用来指向输出的上行数据Buf指针
 
- 输出参数  : IMM_ZC_STRU **ppstBuf      用来指向输出的上行数据Buf指针中指向的内容
-
- 返 回 值  : PS_SUCC:成功
-             PS_FAIL:失败
-
- 修改历史      :
-  1.日    期   : 2012年2月15日
-    作    者   : x59651
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DIPC_DEV_AcmGetUlDataBuf(UDI_HANDLE slUdiHsicAcmHdl, IMM_ZC_STRU **ppstBuf)
 {
     ACM_WR_ASYNC_INFO                   stCtlParam;
@@ -457,20 +352,7 @@ VOS_UINT32 DIPC_DEV_AcmGetUlDataBuf(UDI_HANDLE slUdiHsicAcmHdl, IMM_ZC_STRU **pp
 }
 
 
-/*****************************************************************************
- 函 数 名  : DIPC_DEV_UsbAcmReadUlData
- 功能描述  : 底软上报数据的上行数据接收函数
- 输入参数  : DIPC_DEV_ACM_ID_ENUM_UINT32 enDeviceId  通知有上行数据的设备id,使用的为内部ID
- 输出参数  : 无
- 返 回 值  : PS_SUCC    数据成功接收和转发
-             PS_FAIL    数据接收或者转发失败
 
- 修改历史      :
-  1.日    期   : 2012年2月15日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DIPC_DEV_UsbAcmReadUlData(DIPC_DEV_ID_ENUM_UINT32 enDeviceId)
 {
     UDI_HANDLE                          slUdiHandle;
@@ -501,20 +383,7 @@ VOS_UINT32 DIPC_DEV_UsbAcmReadUlData(DIPC_DEV_ID_ENUM_UINT32 enDeviceId)
 }
 
 
-/*****************************************************************************
- 函 数 名  : DIPC_DEV_UsbAcm1ReadUlData
- 功能描述  : ACM1设备上上报的上行数据回调函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : PS_SUCC    数据成功接收和转发
-             PS_FAIL    数据接收或者转发失败
 
- 修改历史      :
-  1.日    期   : 2012年2月15日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DIPC_DEV_UsbAcm1ReadUlData( VOS_VOID)
 {
     DIPC_DEV_UsbAcmReadUlData(DIPC_DEV_ID1);
@@ -522,20 +391,7 @@ VOS_UINT32 DIPC_DEV_UsbAcm1ReadUlData( VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : DIPC_DEV_UsbAcm3ReadUlData
- 功能描述  : ACM3设备上上报的上行数据回调函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : PS_SUCC    数据成功接收和转发
-             PS_FAIL    数据接收或者转发失败
 
- 修改历史      :
-  1.日    期   : 2012年2月15日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DIPC_DEV_UsbAcm3ReadUlData( VOS_VOID)
 {
     DIPC_DEV_UsbAcmReadUlData(DIPC_DEV_ID2);
@@ -543,20 +399,7 @@ VOS_UINT32 DIPC_DEV_UsbAcm3ReadUlData( VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : DIPC_DEV_UsbAcm5ReadUlData
- 功能描述  : ACM5设备上上报的上行数据回调函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : PS_SUCC    数据成功接收和转发
-             PS_FAIL    数据接收或者转发失败
 
- 修改历史      :
-  1.日    期   : 2012年2月15日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DIPC_DEV_UsbAcm5ReadUlData( VOS_VOID)
 {
     DIPC_DEV_UsbAcmReadUlData(DIPC_DEV_ID3);
@@ -564,20 +407,7 @@ VOS_UINT32 DIPC_DEV_UsbAcm5ReadUlData( VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : DIPC_DEV_UsbAcmWriteData
- 功能描述  : 通过HSIC对应的ACM口将数据发送给底软
- 输入参数  : UDI_HANDLE slUdiHandle 待写数据所在设备的句柄
-             IMM_ZC_STRU *pstBuf    待写数据所在结构的指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
 
- 修改历史      :
-  1.日    期   : 2012年2月15日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DIPC_DEV_UsbAcmWriteData(UDI_HANDLE slUdiHandle, IMM_ZC_STRU *pstBuf)
 {
     ACM_WR_ASYNC_INFO                   stCtlParam;
@@ -606,21 +436,7 @@ VOS_UINT32 DIPC_DEV_UsbAcmWriteData(UDI_HANDLE slUdiHandle, IMM_ZC_STRU *pstBuf)
 }
 
 
-/*****************************************************************************
- 函 数 名  : DIPC_DEV_UsbNcm0ReadUlData
- 功能描述  : NCM0设备上上报的上行数据回调函数
- 输入参数  : UDI_HANDLE slUdiHandle 底软回调函数输入的数据对应的设备句柄
-             VOS_VOID *pPktNodes    底软会点函数输入的数据所在结构的指针
- 输出参数  : 无
- 返 回 值  : PS_SUCC    数据成功接收和转发
-             PS_FAIL    数据接收或者转发失败
 
- 修改历史      :
-  1.日    期   : 2012年8月30日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DIPC_DEV_UsbNcm0ReadUlData(UDI_HANDLE ulhandle, VOS_VOID *pPktNode)
 {
     UDI_HANDLE              slUdiHandle;
@@ -654,21 +470,7 @@ VOS_UINT32 DIPC_DEV_UsbNcm0ReadUlData(UDI_HANDLE ulhandle, VOS_VOID *pPktNode)
 }
 
 
-/*****************************************************************************
- 函 数 名  : DIPC_DEV_UsbNcm1ReadUlData
- 功能描述  : NCM1设备上上报的上行数据回调函数
- 输入参数  : UDI_HANDLE slUdiHandle 底软回调函数输入的数据对应的设备句柄
-             VOS_VOID *pPktNodes    底软会点函数输入的数据所在结构的指针
- 输出参数  : 无
- 返 回 值  : PS_SUCC    数据成功接收和转发
-             PS_FAIL    数据接收或者转发失败
 
- 修改历史      :
-  1.日    期   : 2012年8月30日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DIPC_DEV_UsbNcm1ReadUlData(UDI_HANDLE ulhandle, VOS_VOID *pPktNode)
 {
     UDI_HANDLE              slUdiHandle;
@@ -702,21 +504,7 @@ VOS_UINT32 DIPC_DEV_UsbNcm1ReadUlData(UDI_HANDLE ulhandle, VOS_VOID *pPktNode)
 }
 
 
-/*****************************************************************************
- 函 数 名  : DIPC_DEV_UsbNcm2ReadUlData
- 功能描述  : NCM2设备上上报的上行数据回调函数
- 输入参数  : UDI_HANDLE slUdiHandle 底软回调函数输入的数据对应的设备句柄
-             VOS_VOID *pPktNodes    底软会点函数输入的数据所在结构的指针
- 输出参数  : 无
- 返 回 值  : PS_SUCC    数据成功接收和转发
-             PS_FAIL    数据接收或者转发失败
 
- 修改历史      :
-  1.日    期   : 2012年8月30日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DIPC_DEV_UsbNcm2ReadUlData(UDI_HANDLE ulhandle, VOS_VOID *pPktNode)
 {
     UDI_HANDLE              slUdiHandle;
@@ -750,20 +538,7 @@ VOS_UINT32 DIPC_DEV_UsbNcm2ReadUlData(UDI_HANDLE ulhandle, VOS_VOID *pPktNode)
 }
 
 
-/*****************************************************************************
- 函 数 名  : DIPC_DEV_UsbNcmWriteData
- 功能描述  : 通过HSIC对应的NCM口将数据发送给底软
- 输入参数  : UDI_HANDLE     slUdiHandle 待写数据所在设备的句柄
-             IMM_ZC_STRU   *pstBuf      待写数据所在结构的指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
 
- 修改历史      :
-  1.日    期   : 2012年8月30日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DIPC_DEV_UsbNcmWriteData(UDI_HANDLE slUdiHandle, IMM_ZC_STRU *pstBuf)
 {
     VOS_INT32                           ulResult;
@@ -787,20 +562,7 @@ VOS_UINT32 DIPC_DEV_UsbNcmWriteData(UDI_HANDLE slUdiHandle, IMM_ZC_STRU *pstBuf)
 }
 
 
-/*****************************************************************************
- 函 数 名  : DIPC_DEV_UsbWriteData
- 功能描述  : 通过HSIC对应的NCM口将数据发送给底软
- 输入参数  : DIPC_DEV_ID_ENUM enDipcDevId   设备内部ID
-             IMM_ZC_STRU *pstBuf            待写数据所在结构的指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
 
- 修改历史      :
-  1.日    期   : 2012年8月30日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DIPC_DEV_UsbWriteData(DIPC_DEV_ID_ENUM_UINT32 enDipcDevId, IMM_ZC_STRU *pstBuf)
 {
     DEV_INFO_STRU                           *pstDevInfo;
@@ -816,20 +578,7 @@ VOS_UINT32 DIPC_DEV_UsbWriteData(DIPC_DEV_ID_ENUM_UINT32 enDipcDevId, IMM_ZC_STR
 }
 
 
-/*****************************************************************************
- 函 数 名  : DIPC_DEV_PortInit
- 功能描述  : A核 DIPC功能端口初始化函数
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_OK  初始化成功
-             VOS_ERR 初始化失败
 
- 修改历史      :
-  1.日    期   : 2012年2月16日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DIPC_DEV_PortInit( VOS_VOID )
 {
     DIPC_DEV_ID_ENUM_UINT32         enDipcDevId;
@@ -901,21 +650,7 @@ VOS_UINT32 DIPC_DEV_PortInit( VOS_VOID )
 }
 
 
-/*****************************************************************************
- 函 数 名  : DIPC_DEV_AddNewIpTypeService
- 功能描述  : DIPC模块添加新的设备对应的IP类型服务
- 输入参数  : DIPC_DEV_ID_ENUM_UINT32 enDevId                    内部设备ID
-             DIPC_SERVICE_TYPE_ENUM_UINT32 enDipcServiceTypes   服务类型
-             DEV_SERVICE_INFO_STRU *pstDevServiceInfo           设备服务结构
 
- 输出参数  : 无
- 返 回 值  : 无
-
- 修改历史      :
-  1.日    期   : 2012年12月15日
-    作    者   : x59651
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID DIPC_DEV_AddNewIpTypeService(DIPC_DEV_ID_ENUM_UINT32 enDevId,
     DIPC_SERVICE_TYPE_ENUM_UINT32 enDipcServiceType, SERVICE_INFO_STRU *pstServiceInfo)
 {
@@ -931,20 +666,7 @@ VOS_VOID DIPC_DEV_AddNewIpTypeService(DIPC_DEV_ID_ENUM_UINT32 enDevId,
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DIPC_DEV_DelIpTypeService
- 功能描述  : DIPC模块删除该设备上对应的服务
- 输入参数  : DIPC_DEV_ID_ENUM_UINT32        enDevId             DIPC内部使用的设备ID
-             DIPC_SERVICE_TYPE_ENUM_UINT32  enDipcServiceType   对应服务的类型
- 输出参数  : 无
- 返 回 值  : PS_SUCC 删除成功
-             PS_FAIL删除失败
 
- 修改历史      :
-  1.日    期   : 2012年12月15日
-    作    者   : x59651
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DIPC_DEV_DelIpTypeService(DIPC_DEV_ID_ENUM_UINT32 enDevId,
     DIPC_SERVICE_TYPE_ENUM_UINT32 enDipcServiceType)
 {
@@ -959,20 +681,7 @@ VOS_UINT32 DIPC_DEV_DelIpTypeService(DIPC_DEV_ID_ENUM_UINT32 enDevId,
 }
 
 
-/*****************************************************************************
- 函 数 名  : DIPC_DEV_GetDevIdByUdiId
- 功能描述  : 通过外部设备ID获取内部设备ID
- 输入参数  : UDI_DEVICE_ID_E enUdiDevId   底软使用设备ID
 
- 输出参数  : 无
- 返 回 值  : DIPC_DEV_ID_ENUM_UINT32    对应的内部设备ID，无效时为DIPC_DEV_BUTT
-
- 修改历史      :
-  1.日    期   : 2012年2月15日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 DIPC_DEV_ID_ENUM_UINT32 DIPC_DEV_GetDevIdByUdiId(UDI_DEVICE_ID_E enUdiDevId)
 {
     DIPC_DEV_ID_ENUM_UINT32             enDevId;
@@ -999,20 +708,7 @@ DIPC_DEV_ID_ENUM_UINT32 DIPC_DEV_GetDevIdByUdiId(UDI_DEVICE_ID_E enUdiDevId)
 }
 
 
-/*****************************************************************************
- 函 数 名  : DIPC_DRV_GetDevHandleByDevId
- 功能描述  : 通过内部使用设备ID获取设备句柄
- 输入参数  : DIPC_DEV_ACM_ID_ENUM_UINT32 ulDeviceId  内部使用设备ID
 
- 输出参数  : 无
- 返 回 值  : DevId对应的句柄,无效时为UDI_INVALID_HANDLE
-
- 修改历史      :
-  1.日    期   : 2012年2月15日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 UDI_HANDLE DIPC_DRV_GetDevHandleByDevId(DIPC_DEV_ID_ENUM_UINT32 enDevId)
 {
     if (DIPC_DEV_BUTT <= enDevId)
@@ -1026,19 +722,7 @@ UDI_HANDLE DIPC_DRV_GetDevHandleByDevId(DIPC_DEV_ID_ENUM_UINT32 enDevId)
     return g_astDevInfo[enDevId].slUdiHsicHdl;
 }
 
-/*****************************************************************************
- 函 数 名  : DIPC_DEV_CheckUdiDevIdPara
- 功能描述  : 外部使用设备ID是否合法检查
- 输入参数  : UDI_DEVICE_ID_E enUdiDevId  AT发来的PDP激活消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 VOS_OK:无错误,VOS_ERR:有错误
 
- 修改历史      :
-  1.日    期   : 2012年12月15日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DIPC_DEV_CheckUdiDevIdPara(UDI_DEVICE_ID_E enUdiDevId)
 {
     if (BSP_MODULE_SUPPORT == mdrv_misc_support_check(BSP_MODULE_TYPE_HSIC_NCM))
@@ -1064,22 +748,7 @@ VOS_UINT32 DIPC_DEV_CheckUdiDevIdPara(UDI_DEVICE_ID_E enUdiDevId)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DIPC_DEV_UlDataProc
- 功能描述  : DIPC模块上行数据处理
- 输入参数  : DIPC_DEV_ID_ENUM_UINT32 enDeviceId 设备ID
-             IMM_ZC_STRU *pstBuf                用来指向输出的上行数据Buf指针
 
- 输出参数  : IMM_ZC_STRU *pstBuf      用来指向输出的上行数据Buf指针中指向的内容
-
- 返 回 值  : PS_SUCC:成功
-             PS_FAIL:失败
-
- 修改历史      :
-  1.日    期   : 2012年12月15日
-    作    者   : x59651
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DIPC_DEV_UlDataProc(DIPC_DEV_ID_ENUM_UINT32 enDeviceId, IMM_ZC_STRU *pstBuf)
 {
     VOS_UINT16  usApp;      /* 使用skb_buff结构中已有字段传递上下行和参数信息 */
@@ -1096,19 +765,7 @@ VOS_UINT32 DIPC_DEV_UlDataProc(DIPC_DEV_ID_ENUM_UINT32 enDeviceId, IMM_ZC_STRU *
     return DIPC_EnqueueData(pstBuf);
 }
 
-/*****************************************************************************
- 函 数 名  : DIPC_MGR_RegNewService
- 功能描述  : 注册一个新的Service
- 输入参数  : SERVICE_INFO_STRU *pstServInputInfo    输入的服务信息
- 输出参数  : 无
 
- 返 回 值  : SERVICE_INFO_STRU  获取的服务对应结构的指针,无法注册时为VOS_NULL_PTR
-
- 修改历史      :
-  1.日    期   : 2012年12月15日
-    作    者   : x59651
-    修改内容   : 新生成函数
-*****************************************************************************/
 SERVICE_INFO_STRU* DIPC_MGR_RegNewService(SERVICE_INFO_STRU *pstServInputInfo)
 {
     SERVICE_INFO_STRU  *pstGetServInfo;
@@ -1154,19 +811,7 @@ SERVICE_INFO_STRU* DIPC_MGR_RegNewService(SERVICE_INFO_STRU *pstServInputInfo)
 }
 
 
-/*****************************************************************************
- 函 数 名  : DIPC_MGR_DeregService
- 功能描述  : 去注册一个新的Service
- 输入参数  : SERVICE_INFO_STRU *pstServiceInfo  去注册的服务结构指针
- 输出参数  : 无
 
- 返 回 值  :
-
- 修改历史      :
-  1.日    期   : 2012年12月15日
-    作    者   : x59651
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID DIPC_MGR_DeregService(SERVICE_INFO_STRU *pstServiceInfo)
 {
     DIPC_CLR_SERVICE_STRU_REG(g_stTotalServiceInfo.ulServiceMask, pstServiceInfo->ucServiceIndex);
@@ -1184,22 +829,7 @@ VOS_VOID DIPC_MGR_DeregService(SERVICE_INFO_STRU *pstServiceInfo)
 }
 
 
-/*****************************************************************************
- 函 数 名  : DIPC_MGR_UlDataProc
- 功能描述  : DIPC模块上行数据处理
- 输入参数  : DIPC_DEV_ID_ENUM_UINT32 enDeviceId 设备ID
-             IMM_ZC_STRU *pstBuf                用来指向输出的上行数据Buf指针
 
- 输出参数  : IMM_ZC_STRU *pstBuf      用来指向输出的上行数据Buf指针中指向的内容
-
- 返 回 值  : PS_SUCC:成功
-             PS_FAIL:失败
-
- 修改历史      :
-  1.日    期   : 2012年12月15日
-    作    者   : x59651
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DIPC_MGR_UlDataProc(DIPC_DEV_ID_ENUM_UINT32 enDeviceId, IMM_ZC_STRU *pstBuf)
 {
     DEV_SERVICE_INFO_STRU              *pstDevServiceInfo;
@@ -1261,20 +891,7 @@ VOS_UINT32 DIPC_MGR_UlDataProc(DIPC_DEV_ID_ENUM_UINT32 enDeviceId, IMM_ZC_STRU *
 }
 
 
-/*****************************************************************************
- 函 数 名  : DIPC_MGR_IpV4Match
- 功能描述  : 检测收到的数据为ipV4类型
- 输入参数  : IMM_ZC_STRU *pstImmZcData  收到的上行数据IMM内存指针
 
- 输出参数  : 无
- 返 回 值  : PS_SUCC,匹配成功
-             PS_FAIL,匹配失败
-
- 修改历史      :
-  1.日    期   : 2012年12月15日
-    作    者   : x59651
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DIPC_MGR_IpV4Match(IMM_ZC_STRU *pstImmZcData)
 {
     VOS_UINT8                          *pucIpData;
@@ -1292,20 +909,7 @@ VOS_UINT32 DIPC_MGR_IpV4Match(IMM_ZC_STRU *pstImmZcData)
 }
 
 
-/*****************************************************************************
- 函 数 名  : DIPC_MGR_IpV6Match
- 功能描述  : 检测收到的数据为ipV6类型
- 输入参数  : IMM_ZC_STRU *pstImmZcData  收到的上行数据IMM内存指针
 
- 输出参数  : 无
- 返 回 值  : PS_SUCC,匹配成功
-             PS_FAIL,匹配失败
-
- 修改历史      :
-  1.日    期   : 2012年12月15日
-    作    者   : x59651
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DIPC_MGR_IpV6Match(IMM_ZC_STRU *pstImmZcData)
 {
     VOS_UINT8                          *pucIpData;
@@ -1323,25 +927,7 @@ VOS_UINT32 DIPC_MGR_IpV6Match(IMM_ZC_STRU *pstImmZcData)
 }
 
 
-/*****************************************************************************
- 函 数 名  : DIPC_MGR_AddNewIpService
- 功能描述  : DIPC模块添加新的RabId对应的IP类型服务
- 输入参数  : VOS_UINT8 ucRabId                              对应的RabId
-             DIPC_DEV_ID_ENUM_UINT32 enDevId                对应的设备Id
-             DIPC_SERVICE_TYPE_ENUM_UINT32 enDipcServiceId  对应的服务类型
-             DIPC_SERV_ULDATA_MATCHFUNC pServiceUlDataMatchFunc 类型对应的匹配上行函数指针
-             DIPC_SERV_DLDATA_MATCHFUNC pServiceDlDataMatchFunc 类型对应的匹配下行函数指针
 
- 输出参数  : 无
- 返 回 值  : PS_SUCC 匹配成功
-             PS_FAIL 匹配失败
-
- 修改历史      :
-  1.日    期   : 2012年12月15日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DIPC_MGR_AddNewIpService(VOS_UINT8 ucRabId,
     DIPC_DEV_ID_ENUM_UINT32 enDevId, DIPC_SERVICE_TYPE_ENUM_UINT32 enDipcServiceType,
     DIPC_SERV_ULDATA_MATCHFUNC pServiceUlDataMatchFunc,     DIPC_SERV_DLDATA_MATCHFUNC pServiceDlDataMatchFunc)
@@ -1373,21 +959,7 @@ VOS_UINT32 DIPC_MGR_AddNewIpService(VOS_UINT8 ucRabId,
 }
 
 
-/*****************************************************************************
- 函 数 名  : DIPC_MGR_DelIpVService
- 功能描述  : DIPC模块添加新的RabId对应的IP类型服务
- 输入参数  : VOS_UINT8 ucRabId                              要删除的RabID
-             DIPC_BEARER_TYPE_ENUM_UINT8 enDipcServiceType  该RabID上对应的服务类型
- 输出参数  : 无
- 返 回 值  : PS_SUCC:删除成功
-             PS_FAIL:删除失败
 
- 修改历史      :
-  1.日    期   : 2012年12月15日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DIPC_MGR_DelIpVService(VOS_UINT8 ucRabId, DIPC_SERVICE_TYPE_ENUM_UINT32 enDipcServiceType)
 {
     SERVICE_INFO_STRU             *pstServiceInfo;
@@ -1412,21 +984,7 @@ VOS_UINT32 DIPC_MGR_DelIpVService(VOS_UINT8 ucRabId, DIPC_SERVICE_TYPE_ENUM_UINT
 }
 
 
-/*****************************************************************************
- 函 数 名  : DIPC_MGR_AddNewService
- 功能描述  : DIPC模块添加新的RabId对应的服务
- 输入参数  : DIPC_DEV_ID_ENUM_UINT32 enDevId                    设备ID
-             VOS_UINT8 ucRabId                                  对应的Rab Id
-             DIPC_SERVICE_TYPE_ENUM_UINT32 enDipcServiceType    对应的服务类型
- 输出参数  : 无
- 返 回 值  : PS_SUCC:成功
-             PS_FAIL:失败
- 修改历史      :
-  1.日    期   : 2012年12月15日
-    作    者   : x59651
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_UINT32 DIPC_MGR_AddNewService(DIPC_DEV_ID_ENUM_UINT32 enDevId,
     VOS_UINT8 ucRabId, DIPC_SERVICE_TYPE_ENUM_UINT32 enDipcServiceType)
 {
@@ -1456,20 +1014,7 @@ VOS_UINT32 DIPC_MGR_AddNewService(DIPC_DEV_ID_ENUM_UINT32 enDevId,
 
 
 
-/*****************************************************************************
- 函 数 名  : DIPC_DlAdsDataRcv
- 功能描述  : DIPC注册的下行数据接收回调函数
- 输入参数  : VOS_UINT8               ucRabId    RabId信息
-             IMM_ZC_STRU            *pData      输入数据指针
- 输出参数  : 无
- 返 回 值  : 无
 
- 修改历史      :
-  1.日    期   : 2012年2月15日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DIPC_MGR_DlAdsDataRcv(VOS_UINT8 ucRabId, IMM_ZC_STRU *pData)
 {
     RAB_SERVICE_INFO_STRU              *pstRabServiceInfo;
@@ -1512,21 +1057,7 @@ VOS_UINT32 DIPC_MGR_DlAdsDataRcv(VOS_UINT8 ucRabId, IMM_ZC_STRU *pData)
 }
 
 
-/*****************************************************************************
- 函 数 名  : DIPC_MGR_GetServiceByRabId
- 功能描述  : 通过RabId获取服务
- 输入参数  : VOS_UINT8 ucRabId                                  用来查询设备句柄的Rab Id
-             DIPC_SERVICE_TYPE_ENUM_UINT32 enDipcServiceType    服务类型
 
- 输出参数  : 无
- 返 回 值  : 服务对应数据结构的指针
-
- 修改历史      :
-  1.日    期   : 2012年2月15日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 SERVICE_INFO_STRU* DIPC_MGR_GetServiceByRabId(VOS_UINT8 ucRabId,
     DIPC_SERVICE_TYPE_ENUM_UINT32 enDipcServiceType)
 {
@@ -1553,21 +1084,7 @@ SERVICE_INFO_STRU* DIPC_MGR_GetServiceByRabId(VOS_UINT8 ucRabId,
     return pstRabServiceInfo->apstServiceInfo[enDipcServiceType];
 }
 
-/*****************************************************************************
- 函 数 名  : DIPC_MGR_AddNewIpTypeService
- 功能描述  : DIPC模块添加新的RAB对应的IP类型服务
- 输入参数  : VOS_UINT8 ucRabId                                  Rab Id
-             DIPC_SERVICE_TYPE_ENUM_UINT32 enDipcServiceTypes   服务类型
-             DEV_SERVICE_INFO_STRU *pstDevServiceInfo           设备服务结构
 
- 输出参数  : 无
- 返 回 值  : 无
-
- 修改历史      :
-  1.日    期   : 2013年2月19日
-    作    者   : x59651
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID DIPC_MGR_AddNewIpTypeService(VOS_UINT8 ucRabId,
     DIPC_SERVICE_TYPE_ENUM_UINT32 enDipcServiceType, SERVICE_INFO_STRU *pstServiceInfo)
 {
@@ -1583,19 +1100,7 @@ VOS_VOID DIPC_MGR_AddNewIpTypeService(VOS_UINT8 ucRabId,
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DIPC_MGR_DelIpTypeService
- 功能描述  : DIPC模块删除该RAB上对应的服务
- 输入参数  : VOS_UINT8                      ucRabId             对应的Rab Id
-             DIPC_SERVICE_TYPE_ENUM_UINT32  enDipcServiceType   对应服务的类型
- 输出参数  : 无
- 返 回 值  : 无
 
- 修改历史      :
-  1.日    期   : 2012年12月15日
-    作    者   : x59651
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID DIPC_MGR_DelIpTypeService(VOS_UINT8 ucRabId,
     DIPC_SERVICE_TYPE_ENUM_UINT32 enDipcServiceType)
 {
@@ -1611,20 +1116,7 @@ VOS_VOID DIPC_MGR_DelIpTypeService(VOS_UINT8 ucRabId,
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DIPC_GetDevIdByRabId
- 功能描述  : 通过RabId获取内部使用的DEV Id
- 输入参数  : VOS_UINT8 ucRabId  用来查询设备句柄的Rab Id
 
- 输出参数  : 无
- 返 回 值  : RabId对应的内部使用设备Id,无效时为DIPC_DEV_BUTT
-
- 修改历史      :
-  1.日    期   : 2013年2月19日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 DIPC_DEV_ID_ENUM_UINT32 DIPC_GetDevIdByRabId(VOS_UINT8 ucRabId)
 {
     RAB_SERVICE_INFO_STRU              *pstRabServiceInfo;
@@ -1651,20 +1143,7 @@ DIPC_DEV_ID_ENUM_UINT32 DIPC_GetDevIdByRabId(VOS_UINT8 ucRabId)
 }
 
 
-/*****************************************************************************
- 函 数 名  : DIPC_GetDevHandleByRabId
- 功能描述  : 通过RabId获取设备句柄，此函数是给AT使用
- 输入参数  : VOS_UINT8 ucRabId  用来查询设备句柄的Rab Id
 
- 输出参数  : 无
- 返 回 值  : RabId对应的句柄,无效时为UDI_INVALID_HANDLE
-
- 修改历史      :
-  1.日    期   : 2012年2月15日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 UDI_HANDLE DIPC_GetDevHandleByRabId(VOS_UINT8 ucRabId)
 {
     DIPC_DEV_ID_ENUM_UINT32             enDipcDevId;
@@ -1686,29 +1165,7 @@ UDI_HANDLE DIPC_GetDevHandleByRabId(VOS_UINT8 ucRabId)
     return g_astDevInfo[enDipcDevId].slUdiHsicHdl;
 }
 
-/*****************************************************************************
- 函 数 名  : DIPC_CheckRelation
- 功能描述  : 检查RabId和Dev Id之间的关系是否正确
-             认为为正确的情况包括:
-             一个Dev对应2个Rab，分别为IPV4和IPV6
-             一个Dev对应1个Rab，上面同时支持IPV4和IPV6，
-             一个Dev对应1个Rab，为IPV4
-             一个Dev对应1个Rab，为IPV6
 
-             认为为错误的情况包括:
-             2个Dev对应一个Rab的情况
-             已经有一个Dev对应一个Rab，又被重复配置了一次
- 输入参数  : AT_DIPC_PDP_ACT_STRU *pstAtDipcPdpActMsg   消息
- 输出参数  : 无
- 返 回 值  : VOS_OK:无错误
-             VOS_ERR:有错误
-
- 修改历史      :
-  1.日    期   : 2013年2月19日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DIPC_CheckRelation(AT_DIPC_PDP_ACT_STRU *pstAtDipcPdpActMsg)
 {
     RAB_SERVICE_INFO_STRU              *pstRabServiceInfo;
@@ -1754,8 +1211,7 @@ VOS_UINT32 DIPC_CheckRelation(AT_DIPC_PDP_ACT_STRU *pstAtDipcPdpActMsg)
         }
     }
 
-    /* 如果pstRabServiceInfo->ulServiceCnt不为0，理论上不会出现pstServInfo为空的情况，
-    此处是为了消除PC LINT告警 */
+    
     if (VOS_NULL_PTR == pstServInfo)
     {
         return VOS_ERR;
@@ -1784,20 +1240,7 @@ VOS_UINT32 DIPC_CheckRelation(AT_DIPC_PDP_ACT_STRU *pstAtDipcPdpActMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DIPC_MGR_CheckPdpActPara
- 功能描述  : PDP激活消息参数检查
- 输入参数  : AT_DIPC_PDP_ACT_STRU  *pstAtDipcPdpActMsg  AT发来的PDP激活消息指针
- 输出参数  : 无
- 返 回 值  : VOS_OK:无错误
-             VOS_ERR:有错误
 
- 修改历史      :
-  1.日    期   : 2012年12月15日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DIPC_CheckPdpActPara(AT_DIPC_PDP_ACT_STRU *pstAtDipcPdpActMsg)
 {
     if ((pstAtDipcPdpActMsg->ucRabId < MIN_RAB_ID) || (pstAtDipcPdpActMsg->ucRabId > MAX_RAB_ID))
@@ -1833,19 +1276,7 @@ VOS_UINT32 DIPC_CheckPdpActPara(AT_DIPC_PDP_ACT_STRU *pstAtDipcPdpActMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DIPC_RcvAtPdpActIndProc
- 功能描述  : DIPC接收来自AT模块ID_AT_DIPC_PDP_ACT_IND的消息处理函数
- 输入参数  : AT_DIPC_PDP_ACT_STRU *pstAtDipcPdpActMsg    AT发来的PDP激活消息指针
- 输出参数  : 无
- 返 回 值  : 无
 
- 修改历史      :
-  1.日    期   : 2012年2月15日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID DIPC_RcvAtPdpActIndProc(AT_DIPC_PDP_ACT_STRU *pstAtDipcPdpActMsg)
 {
     VOS_UINT32                          ulRslt;
@@ -1890,19 +1321,7 @@ VOS_VOID DIPC_RcvAtPdpActIndProc(AT_DIPC_PDP_ACT_STRU *pstAtDipcPdpActMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DIPC_MGR_CheckPdpActPara
- 功能描述  : 检查PDP去激活消息参数是否正确
- 输入参数  : AT_DIPC_PDP_DEACT_STRU  *pstAtDipcPdpDeactMsg  AT发来的PDP去激活消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 VOS_OK:无错误,VOS_ERR:有错误
 
- 修改历史      :
-  1.日    期   : 2012年12月15日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DIPC_CheckPdpRelPara(AT_DIPC_PDP_DEACT_STRU *pstAtDipcPdpDeactMsg)
 {
     if ((pstAtDipcPdpDeactMsg->ucRabId < MIN_RAB_ID) || (pstAtDipcPdpDeactMsg->ucRabId > MAX_RAB_ID))
@@ -1934,19 +1353,7 @@ VOS_UINT32 DIPC_CheckPdpRelPara(AT_DIPC_PDP_DEACT_STRU *pstAtDipcPdpDeactMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DIPC_RcvAtPdpRelIndProc
- 功能描述  : DIPC接收来自AT模块ID_AT_DIPC_PDP_REL_IND的消息处理函数
- 输入参数  : AT_DIPC_PDP_DEACT_STRU *pstAtDipcPdpDeactMsg    AT发来的PDP去激活消息指针
- 输出参数  : 无
- 返 回 值  : 无
 
- 修改历史      :
-  1.日    期   : 2012年2月15日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID DIPC_RcvAtPdpRelIndProc(AT_DIPC_PDP_DEACT_STRU *pstAtDipcPdpDeactMsg)
 {
     VOS_UINT32              ulRslt;
@@ -1980,21 +1387,7 @@ VOS_VOID DIPC_RcvAtPdpRelIndProc(AT_DIPC_PDP_DEACT_STRU *pstAtDipcPdpDeactMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : DIPC_DlAdsDataRcv
- 功能描述  : DIPC注册的下行数据接收回调函数
- 输入参数  : VOS_UINT8               ucRabId    RabId信息
-             IMM_ZC_STRU            *pData      输入数据指针
-             ADS_PKT_TYPE_ENUM_UINT8 enPktType  没有使用，只是为了兼容NDIS模式，PPP也有该入参，没有使用
- 输出参数  : 无
- 返 回 值  : 无
 
- 修改历史      :
-  1.日    期   : 2012年2月15日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DIPC_DlAdsDataRcv(VOS_UINT8 ucRabId, IMM_ZC_STRU *pData,
     ADS_PKT_TYPE_ENUM_UINT8 enPktType, VOS_UINT32 ulExParam)
 {
@@ -2079,20 +1472,7 @@ VOS_VOID  DIPC_ProcDataNotify(VOS_VOID)
 } /* DIPC_ProcDataNotify */
 
 
-/*****************************************************************************
- 函 数 名  : DIPC_MsgProc
- 功能描述  : DIPC的消息处理函数
- 输入参数  : MsgBlock *pMsgBlock    从AT发来的消息
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
-
- 修改历史      :
-  1.日    期   : 2012年2月15日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DIPC_AtMsgProc( const MsgBlock *pMsgBlock )
 {
     TTF_U32MSG_COMM_HEAD_STRU  *pstHsicCtrlMsg    = (TTF_U32MSG_COMM_HEAD_STRU *)pMsgBlock;
@@ -2170,19 +1550,7 @@ VOS_VOID DIPC_DataQInit(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DIPC_Init
- 功能描述  : APP核 DIPC功能的初始化函数
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_OK  初始化成功
 
- 修改历史      :
-  1.日    期   : 2012年2月16日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DIPC_Init( VOS_VOID )
 {
     VOS_UINT8                       ucRabId;
@@ -2245,18 +1613,7 @@ VOS_UINT32 DIPC_Init( VOS_VOID )
 }
 
 
-/*****************************************************************************
- 函 数 名  : DIPC_Pid_InitFunc
- 功能描述  : DIPC PID初始化
- 输入参数  : VOS_INIT_PHASE_DEFINE ip   初始化类型
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
 
- 修改历史      :
-  1.日    期   : 2012年2月16日
-    作    者   : x59651
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DIPC_Pid_InitFunc( enum VOS_INIT_PHASE_DEFINE ip )
 {
     switch( ip )
@@ -2284,20 +1641,7 @@ VOS_UINT32 DIPC_Pid_InitFunc( enum VOS_INIT_PHASE_DEFINE ip )
 }
 
 
-/*****************************************************************************
- 函 数 名  : DIPC_TraceUlData
- 功能描述  : DIPC模块对于底软上报的数据进行勾包，是否输出使用全局变量控制
- 输入参数  : DIPC_DEV_ACM_ID_ENUM_UINT32 ulDeviceId  通知有上行数据的设备id,使用的为内部ID
-             IMM_ZC_STRU *pstData   上行数据地址
- 输出参数  : 无
- 返 回 值  : 无
 
- 修改历史      :
-  1.日    期   : 2012年2月16日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID DIPC_TraceUlData(DIPC_DEV_ID_ENUM_UINT32 ulDeviceId, IMM_ZC_STRU *pstData)
 {
     TRACE_UL_DIPC_DATA_MSG             *pstTraceUlData;
@@ -2337,20 +1681,7 @@ VOS_VOID DIPC_TraceUlData(DIPC_DEV_ID_ENUM_UINT32 ulDeviceId, IMM_ZC_STRU *pstDa
 }
 
 
-/*****************************************************************************
- 函 数 名  : DIPC_TraceDlData
- 功能描述  : DIPC模块对于底软上报的数据进行勾包，是否输出使用全局变量控制
- 输入参数  : VOS_UINT8    ucRabId       RabId信息
-             IMM_ZC_STRU *pstData       上行数据地址
- 输出参数  : 无
- 返 回 值  : 无
 
- 修改历史      :
-  1.日    期   : 2012年2月16日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID DIPC_TraceDlData(VOS_UINT8 ucRabId, IMM_ZC_STRU *pstData)
 {
     TRACE_DL_DIPC_DATA_MSG             *pstTraceDlData;
@@ -2387,19 +1718,7 @@ VOS_VOID DIPC_TraceDlData(VOS_UINT8 ucRabId, IMM_ZC_STRU *pstData)
 }
 
 
-/*****************************************************************************
- 函 数 名  : DIPC_MappingInfoTrace
- 功能描述  : DIPC模块Mapping信息勾包
- 输入参数  : DIPC_TRACE_MSG_TYPE_ENUM_UINT32 enDipcTraceMsgType 引发映射信息勾包的事件
- 输出参数  : 无
- 返 回 值  : 无
 
- 修改历史      :
-  1.日    期   : 2012年2月16日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID DIPC_MappingInfoTrace(DIPC_TRACE_MSG_TYPE_ENUM_UINT32 enDipcTraceMsgType)
 {
     DIPC_DEV_SUITE_INFO_MSG                 stDevTotalInfo;
@@ -2443,19 +1762,7 @@ VOS_VOID DIPC_MappingInfoTrace(DIPC_TRACE_MSG_TYPE_ENUM_UINT32 enDipcTraceMsgTyp
 }
 
 
-/*****************************************************************************
- 函 数 名  : DIPC_StaticInfoInit
- 功能描述  : A核 DIPC功能统计信息初始化
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : 无
 
- 修改历史      :
-  1.日    期   : 2012年2月16日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID DIPC_StaticInfoInit( VOS_VOID )
 {
     PS_MEM_SET(&g_stDipcStaticInfo, 0, sizeof(DIPC_STATIC_INFO_STRU));
@@ -2467,19 +1774,7 @@ VOS_VOID DIPC_StaticInfoInit( VOS_VOID )
 }
 
 
-/*****************************************************************************
- 函 数 名  : DIPC_ShowStat
- 功能描述  : A核 DIPC统计信息打印
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : 无
 
- 修改历史      :
-  1.日    期   : 2012年2月16日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID DIPC_ShowStat( VOS_VOID )
 {
     DIPC_DEV_ID_ENUM_UINT32         enDipcDevId;
@@ -2518,19 +1813,7 @@ VOS_VOID DIPC_ShowStat( VOS_VOID )
 }
 
 
-/*****************************************************************************
- 函 数 名  : DIPC_ShowMappingInfo
- 功能描述  : A核 DIPC显示映射信息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : 无
 
- 修改历史      :
-  1.日    期   : 2012年2月24日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID DIPC_ShowMappingInfo( VOS_VOID )
 {
     DIPC_DEV_ID_ENUM_UINT32                 enDeviceId;
@@ -2559,19 +1842,7 @@ VOS_VOID DIPC_ShowMappingInfo( VOS_VOID )
 }
 
 
-/*****************************************************************************
- 函 数 名  : DIPC_SetTraceFlag
- 功能描述  : DIPC Trace开关打开
- 输入参数  : VOS_UINT32  ulFlag 输入参数修改标识
- 输出参数  : 无
- 返 回 值  : 无
 
- 修改历史      :
-  1.日    期   : 2012年2月24日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID DIPC_SetTraceFlag( VOS_UINT32  ulFlag )
 {
     g_ulDipcTraceFlag   = ulFlag;
@@ -2580,19 +1851,7 @@ VOS_VOID DIPC_SetTraceFlag( VOS_UINT32  ulFlag )
 }
 
 
-/*****************************************************************************
- 函 数 名  : DIPC_SetLogFlag
- 功能描述  : DIPC Log开关打开
- 输入参数  : VOS_UINT32  ulFlag 输入参数修改标识
- 输出参数  : 无
- 返 回 值  : 无
 
- 修改历史      :
-  1.日    期   : 2012年2月24日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID DIPC_SetLogFlag( VOS_UINT32  ulFlag )
 {
     g_ulDipcPrintFlag   = ulFlag;
@@ -2612,56 +1871,19 @@ VOS_VOID DIPC_SetLogFlag( VOS_UINT32  ulFlag )
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : DIPC_GetDevHandleByRabId
- 功能描述  : 通过RabId获取设备句柄，此函数是给AT使用 (STUB !!!)
- 输入参数  : VOS_UINT8 ucRabId  用来查询设备句柄的Rab Id
 
- 输出参数  : 无
- 返 回 值  : RabId对应的句柄,无效时为UDI_INVALID_HANDLE
-
- 修改历史      :
-  1.日    期   : 2012年2月15日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 UDI_HANDLE DIPC_GetDevHandleByRabId(VOS_UINT8 ucRabId)
 {
     return UDI_INVAL_DEV_ID;
 }
 
-/*****************************************************************************
- 函 数 名  : DIPC_Pid_InitFunc
- 功能描述  : DIPC PID初始化
- 输入参数  : VOS_INIT_PHASE_DEFINE ip   初始化类型
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
 
- 修改历史      :
-  1.日    期   : 2012年2月16日
-    作    者   : x59651
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DIPC_Pid_InitFunc( enum VOS_INIT_PHASE_DEFINE ip )
 {
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : DIPC_MsgProc
- 功能描述  : DIPC的消息处理函数
- 输入参数  : MsgBlock *pMsgBlock    从AT发来的消息
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
-
- 修改历史      :
-  1.日    期   : 2012年2月15日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 DIPC_AtMsgProc( const MsgBlock *pMsgBlock )
 {
     return VOS_OK;

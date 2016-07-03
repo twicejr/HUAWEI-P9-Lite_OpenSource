@@ -7,14 +7,7 @@
 //建议这样引用，避免下面用关键字时需要加前缀 testing::
 using namespace testing;
 
-/*****************************************************************************
-类名     : Test_AT_TestXcposrPara
-功能描述 : AT_TestXcposrPara UT工程类
-修改历史 :
-1.日    期   : 2012年07月03日
-  作    者   : y00213812
-  修改内容   : V7R1C50 A-GPS项目新增函数
-*****************************************************************************/
+
 class Test_AT_TestXcposrPara: public ::testing::Test
 {
 public:
@@ -52,15 +45,7 @@ public:
     VOS_UINT8                  *pucSystemAppConfig;
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_TestXcposrPara_001
-测试用例标题      : 通过HSIC通道下发正确的测试命令
-预期结果          : 返回AT_OK
-修改历史          :
-1.日    期   : 2012年07月03日
-  作    者   : y00213812
-  修改内容   : V7R1C50 A-GPS项目新增函数
-*******************************************************************/
+
 TEST_F(Test_AT_TestXcposrPara, Test_AT_TestXcposrPara_001)
 {
     // 变量声明
@@ -82,15 +67,7 @@ TEST_F(Test_AT_TestXcposrPara, Test_AT_TestXcposrPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_TestXcposrPara_002
-测试用例标题      : 非HSIC通道下发
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日    期   : 2012年07月03日
-  作    者   : y00213812
-  修改内容   : V7R1C50 A-GPS项目新增函数
-*******************************************************************/
+
 TEST_F(Test_AT_TestXcposrPara, Test_AT_TestXcposrPara_002)
 {
     // 变量声明
@@ -114,14 +91,7 @@ TEST_F(Test_AT_TestXcposrPara, Test_AT_TestXcposrPara_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_TestCgpsClockPara
-功能描述 : AT_TestCgpsClockPara UT工程类
-修改历史 :
-1.日    期   : 2012年07月03日
-  作    者   : y00213812
-  修改内容   : V7R1C50 A-GPS项目新增函数
-*****************************************************************************/
+
 class Test_AT_TestCgpsClockPara: public ::testing::Test
 {
 public:
@@ -159,15 +129,7 @@ public:
     VOS_UINT8                          *pucSystemAppConfig;
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_TestCgpsClockPara_001
-测试用例标题      : 通过HSIC通道下发正确的测试命令
-预期结果          : 返回AT_OK
-修改历史          :
-1.日    期   : 2012年07月03日
-  作    者   : y00213812
-  修改内容   : V7R1C50 A-GPS项目新增函数
-*******************************************************************/
+
 TEST_F(Test_AT_TestCgpsClockPara, Test_AT_TestCgpsClockPara_001)
 {
     // 变量声明
@@ -193,15 +155,7 @@ TEST_F(Test_AT_TestCgpsClockPara, Test_AT_TestCgpsClockPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_TestCgpsClockPara_002
-测试用例标题      : 非HSIC通道下发
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日    期   : 2012年07月03日
-  作    者   : y00213812
-  修改内容   : V7R1C50 A-GPS项目新增函数
-*******************************************************************/
+
 TEST_F(Test_AT_TestCgpsClockPara, Test_AT_TestCgpsClockPara_002)
 {
     VOS_UINT32                          ulRet;
@@ -229,14 +183,7 @@ TEST_F(Test_AT_TestCgpsClockPara, Test_AT_TestCgpsClockPara_002)
 
 
 #if (FEATURE_ON == FEATURE_AT_HSIC)
-/*****************************************************************************
-类名     : Test_AT_TestApSecPara
-功能描述 : AT_TestApSecPara UT工程类
-修改历史 :
-1.日    期 : 2012年09月03日
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_TestApSecPara: public ::testing::Test
 {
 public:
@@ -251,15 +198,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_TestApSecPara_001
-测试用例标题      : 命令下发通道错误
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日    期 : 2012年09月03日
-  作   者  : 工号
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_TestApSecPara, Test_AT_TestApSecPara_001)
 {
     // 变量声明
@@ -282,15 +221,7 @@ TEST_F(Test_AT_TestApSecPara, Test_AT_TestApSecPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_TestApSecPara_002
-测试用例标题      : 命令下发通道正确
-预期结果          : 返回AT_OK
-修改历史          :
-1.日    期 : 2012年09月03日
-  作   者  : 工号
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_TestApSecPara, Test_AT_TestApSecPara_002)
 {
     // 变量声明
@@ -314,14 +245,7 @@ TEST_F(Test_AT_TestApSecPara, Test_AT_TestApSecPara_002)
 }
 #endif
 
-/******************************************************************************
-类名     : Test_AT_TestClprPara
-功能描述 :  AT_TestClprPara UT工程类
-修改历史 :
- 1.日   期  : 2012-09-28
-   作   者  : Y00213812
-   修改内容 : STK&DCM Project 项目新增类
-******************************************************************************/
+
 class Test_AT_TestClprPara: public ::testing::Test
 {
 public:
@@ -343,15 +267,7 @@ public:
     VOS_UINT8                           ucIndex;
     AT_PAR_CMD_ELEMENT_STRU             stCmdInfo;
 };
-/******************************************************************************
-测试用例编号: Test_AT_TestClprPara_001
-测试用例标题:
-预期结果    :
-修改历史    :
- 1.日   期  : 2012-09-28
-   作   者  : Y00213812
-   修改内容 : STK&DCM Project 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_TestClprPara, Test_AT_TestClprPara_001)
 {
     // 变量声明
@@ -373,14 +289,7 @@ TEST_F(Test_AT_TestClprPara, Test_AT_TestClprPara_001)
 }
 
 
-/*****************************************************************************
-类名     : Test_AT_TestBodySarGsmPara
-功能描述 : AT_TestBodySarGsmPara UT工程类
-修改历史 :
-1.日   期  : 2013-03-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_TestBodySarGsmPara: public ::testing::Test
 {
 public:
@@ -413,15 +322,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_TestBodySarGsmPara_001
-测试用例标题      : GSM Band能力值获取失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2013-03-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_TestBodySarGsmPara, Test_AT_TestBodySarGsmPara_001)
 {
     // 变量声明
@@ -445,15 +346,7 @@ TEST_F(Test_AT_TestBodySarGsmPara, Test_AT_TestBodySarGsmPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_TestBodySarGsmPara_002
-测试用例标题      : GSM Band能力值获取成功
-预期结果          : 返回AT_OK
-修改历史          :
-1.日   期  : 2013-03-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_TestBodySarGsmPara, Test_AT_TestBodySarGsmPara_002)
 {
     // 变量声明
@@ -484,14 +377,7 @@ TEST_F(Test_AT_TestBodySarGsmPara, Test_AT_TestBodySarGsmPara_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_TestNetScan
-功能描述 : AT_TestNetScan UT工程类
-修改历史 :
-1.日   期  : 2013-10-31
-  作   者  : w00242748
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_TestNetScan: public ::testing::Test
 {
 public:
@@ -524,15 +410,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_TestNetScan_001
-测试用例标题      : GSM Band能力值获取失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2013-03-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_TestNetScan, Test_AT_TestNetScan_001)
 {
     // 变量声明
@@ -559,14 +437,7 @@ TEST_F(Test_AT_TestNetScan, Test_AT_TestNetScan_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_TestBodySarWcdmaPara
-功能描述 : AT_TestBodySarWcdmaPara UT工程类
-修改历史 :
-1.日   期  : 2013-03-13
-  作   者  : z00214637
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_TestBodySarWcdmaPara: public ::testing::Test
 {
 public:
@@ -599,15 +470,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_TestBodySarWcdmaPara_001
-测试用例标题      : WCDMA Band能力值获取失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2013-03-13
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_TestBodySarWcdmaPara, Test_AT_TestBodySarWcdmaPara_001)
 {
     // 变量声明
@@ -631,15 +494,7 @@ TEST_F(Test_AT_TestBodySarWcdmaPara, Test_AT_TestBodySarWcdmaPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_TestBodySarWcdmaPara_002
-测试用例标题      : WCDMA Band能力值获取成功
-预期结果          : 返回AT_OK
-修改历史          :
-1.日   期  : 2013-03-13
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_TestBodySarWcdmaPara, Test_AT_TestBodySarWcdmaPara_002)
 {
     // 变量声明
@@ -674,14 +529,7 @@ TEST_F(Test_AT_TestBodySarWcdmaPara, Test_AT_TestBodySarWcdmaPara_002)
 }
 
 #if (FEATURE_VSIM == FEATURE_ON)
-/*****************************************************************************
- 类名       : Test_AT_TestSyscfgEx
- 功能描述   : AT_TestRsfwPara UT工程类
- 修改历史   :
- 1.日   期  : 2013-09-03
-   作   者  : zhangxuechao 00185430
-   修改内容 : 新建CASE
-*****************************************************************************/
+
 class Test_AT_TestRsfwPara: public ::testing::Test
 {
 public:
@@ -698,15 +546,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号 : Test_AT_TestRsfwPara_001
- 测试用例标题 : AT_TestRsfwPara  测试函数
- 预期结果     : 返回AT_OK
- 修改历史     :
- 1.日   期  : 2013-09-03
-   作   者  : zhangxuechao 00185430
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_TestRsfwPara,Test_AT_TestRsfwPara_001)
 {
     /* 变量初始化 */

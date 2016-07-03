@@ -1,42 +1,4 @@
-/************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : Taf_Aps.h
-  Author      : 韩鲁峰
-  Version     : V200R001
-  Date        : 2005-0
-  Description : 该头文件定义了---
-  History     :
-  1. Date:2005-0 -
-     Author: ---
-     Modification:Create
-  2. 2006-02-23 modify by 韩鲁峰 FOR A32D02144
-  3. 2006-02-24 add by 韩鲁峰 for A32D01902
-  4. 2006-03-03 add by h41410 for A32D02345
-  5. 2006-03-13 add by L47619 for A32D02493
-  6. 2006-04-10 MODIFY BY H41410 FOR A32D01902
-  7. 2006-04-14 DELETE BY H41410 FOR A32D03180
-  8. 2006-04-14 modify by h41410 for A32D03182
-  9. 2006-04-14 modify by h41410 for A32D03185
-  10.2006-04-15 modify by h41410 for A32D03206
-  11.2006-04-18 modify by h41410 for A32D03235
-  12.2006-07-03 modify by L47619 for A32D04540
-  13.2006-08-09 modify by J60010247 for A32D03479
-  14.2006-08-15 modify by L47619 for A32D05709
-  15.2006-09-30 modify by L47619 for A32D06451
-  16    日    期 : 2006-12-07
-        作    者 : 韩鲁峰
-        修改内容 : A32D07824 增加CGEQNEG的处理
-  17    日    期 : 2006-12-30
-        作    者 : 孙少华
-        修改内容 : A32D08079
-                   修改#define APS_SM_CAUSE_CONDITIONAL_IE_ERROR的值
-  18.2006-09-30 modify by L47619 for A32D08332
-  19 2007-07-31 Add by hanlufeng 41410 for  A32D12649
 
-  20.日    期   : 2011年04月23日
-    作    者   : L00171473
-    修改内容   : for V7R1 porting
-************************************************************************/
 
 #ifndef _TAF_APS_H_
 #define _TAF_APS_H_
@@ -69,17 +31,11 @@
 
 #include "TafClientApi.h"
 
-/* Added by m00217266 for L-C互操作项目, 2014-1-26, begin */
 #include "AdsInterface.h"
-/* Added by m00217266 for L-C互操作项目, 2014-1-26, end */
 
-/* Added by zhuli for K3V3VSIM项目, 2014-10-16, begin */
 #include "siapppih.h"
-/* Added by zhuli for K3V3VSIM项目, 2014-10-16, end */
 
-/* Added by wx270776 for OM融合, 2015-6-27, begin */
 #include "TafLog.h"
-/* Added by wx270776 for OM融合, 2015-6-27, end */
 
 #if (FEATURE_ON == FEATURE_LTE)
 #include "ApsL4aInterface.h"
@@ -907,7 +863,6 @@ AUTH_PAP (RFC 1334)
                     &&( ((PS_TRUE == stUECapa.enSuppUl16QAM) && (7 == stUECapa.ucEDCHPhyCategoryExt))\
                       ||((PS_TRUE == stUECapa.enDcUpaSupport) && (9 == stUECapa.ucEDCHPhyCategoryExt2))))
 
-/* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
 #define TAF_APS_MAX_PDPID               (11)
 
 #define TAF_CID_NUMS_VALID              (1)
@@ -990,14 +945,7 @@ enum TAF_APS_ORIG_TYPE_ENUM
 };
 typedef VOS_UINT8 TAF_APS_ORIG_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 结构名    : TAF_PDP_TABLE_STRU
- 结构说明  : PDP结构表，用于保存PDP的上下文参数信息
- 修改记录  :
- 1.日    期   : 2012年01月04日
-   作    者   : l00198894
-   修改内容   : PS Project，统一与LTE的PDP表结构
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucUsed;                                 /*0：未使用，1：使用*/
@@ -1150,7 +1098,6 @@ typedef struct
 } TAF_PSCALL_FOR_DIAL_EXT_STRU;
 
 
-/* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
 
 /*******************************************************************************
@@ -1233,14 +1180,7 @@ typedef enum
 typedef VOS_UINT8 MN_PS_MSG_PROC_MODE_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名称: TAF_PDP_ACTIVE_STATUS_ENUM
- 枚举说明: PDP去激活清除标志
- 修改历史      :
-  1.日    期   : 2013年07月18日
-    作    者   : Y00213812
-    修改内容   : 新增枚举
-*****************************************************************************/
+
 enum TAF_TEAR_DOWN_ENUM
 {
     TAF_PDP_NOT_TEAR_DOWN               = 0x00,                                 /*PDP去激活时不需清除*/
@@ -1250,13 +1190,7 @@ enum TAF_TEAR_DOWN_ENUM
 };
 typedef VOS_UINT8 TAF_TEAR_DOWN_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : TAF_APS_RAT_TYPE_ENUM_UINT32
- 结构说明  : 当前的接入技术
- 1.日    期   : 2014年10月19日
-   作    者   : Y00213812
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_APS_RAT_TYPE_ENUM
 {
     TAF_APS_RAT_TYPE_NULL,          /* 当前未在任何网络上驻留 */
@@ -1433,8 +1367,6 @@ typedef struct
     VOS_UINT8                           aucSecDns[TAF_IPV6_ADDR_LEN];
 } MN_APS_PDP_IPV6_DNS_STRU;
 
-/* Deleted by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
-/* Deleted by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
 #endif
 
@@ -1647,9 +1579,7 @@ typedef struct
     VOS_UINT32                          bitOpEpsQos         :   1;
 #endif
 
-    /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     VOS_UINT32                          bitOpImCnSigalFlag  :   1;
-    /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
 #if (FEATURE_ON == FEATURE_LTE)
     VOS_UINT32                          bitOpSpare          :   15;
@@ -1686,6 +1616,8 @@ typedef struct
     TAF_APS_CLIENT_INFO_STRU            stClientInfo;
 
     APS_PDP_PROC_TRACK_ST               PdpProcTrack;       /*PDP操作记录*/
+
+    VOS_UINT32                          ulNdClientActiveFlg;
 
     /* 收到dhcp IPv4, IPv6 协商完成标志，从而判断收到消息次序  */
     VOS_UINT8                           ucRcvDhcpDnsFlgIpv4;
@@ -1991,15 +1923,7 @@ typedef struct
     VOS_UINT8   ucMeanThrough;
 }APS_MEAN_THROUGH_CUSTOMIZE_STRU;
 
-/*****************************************************************************
- 结构名  : TAF_APS_SM_ERROR_MAP_STRU
- 结构说明: TAF错误码与SM错误码映射结构
 
- 修改历史      :
-  1.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     TAF_PS_CAUSE_ENUM_UINT32            enPsCuase;
@@ -2008,15 +1932,7 @@ typedef struct
 
 } TAF_APS_SM_ERR_CODE_MAP_STRU;
 
-/*****************************************************************************
- 结构名  : TAF_APS_ESM_ERR_CODE_MAP_STRU
- 结构说明: TAF错误码与ESM错误码映射结构
 
- 修改历史      :
-  1.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     TAF_PS_CAUSE_ENUM_UINT32            enPsCause;
@@ -2025,15 +1941,7 @@ typedef struct
 } TAF_APS_ESM_ERR_CODE_MAP_STRU;
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- 结构名  : TAF_APS_XCC_ERR_CODE_MAP_STRU
- 结构说明: TAF错误码与XCC错误码映射结构
 
- 修改历史      :
-  1.日    期   : 2014年10月22日
-    作    者   : y00213812
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     TAF_PS_CAUSE_ENUM_UINT32            enPsCause;
@@ -2041,15 +1949,7 @@ typedef struct
 
 } TAF_APS_XCC_ERR_CODE_MAP_STRU;
 
-/*****************************************************************************
- 结构名  : TAF_APS_HSM_ERR_CODE_MAP_STRU
- 结构说明: TAF错误码与HSM错误码映射结构
 
- 修改历史      :
-  1.日    期   : 2015年01月12日
-    作    者   : y00213812
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     TAF_PS_CAUSE_ENUM_UINT32            enPsCause;
@@ -2058,15 +1958,7 @@ typedef struct
 } TAF_APS_HSM_ERR_CODE_MAP_STRU;
 
 
-/*****************************************************************************
- 结构名  : TAF_APS_EHSM_ERR_CODE_MAP_STRU
- 结构说明: TAF错误码与EHSM错误码映射结构
 
- 修改历史      :
-  1.日    期   : 2015年05月15日
-    作    者   : y00314741
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     TAF_PS_CAUSE_ENUM_UINT32            enPsCause;
@@ -2074,15 +1966,7 @@ typedef struct
 
 } TAF_APS_EHSM_ERR_CODE_MAP_STRU;
 
-/*****************************************************************************
- 结构名  : TAF_APS_3GPD_FILEID_FLAG_MAP_STRU
- 结构说明: TAF读取3gpd 文件id 和读取标志位的map结构
 
- 修改历史      :
-  1.日    期   : 2015年05月15日
-    作    者   : y00322978
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     USIMM_DEF_FILEID_ENUM_UINT32                            usEfId;
@@ -2109,28 +1993,7 @@ typedef struct
     const VOS_UINT32                    ulMsgTblSize;
 } MN_PS_MSG_TBL_ENTRY_STRU;
 
-/*****************************************************************************
- 结构名称: TAF_APS_CHAP_PARAM_STRU
- 结构说明: The struct contains the parameter of CHAP.
-           ulChallengeLen     - Length of challenge
-           aucChallenge       - Array of challenge
-           ulChallengeNameLen - Length of challenge name
-           aucChallengeName   - Array of challenge name (system name "HUAWEI_CHAP_SRVR")
-           ulResponseLen      - Length of response
-           aucResponse        - Array of response
-           ucResponseNameLen  - Length of response name (username)
-           aucResponseName    - Array of response name (username)
 
-           The Response Value is the one-way hash calculated over a stream of
-           octets consisting of the Identifier, followed by (concatenated with)
-           the "secret", followed by (concatenated with) the Challenge Value.
-           The length of the Response Value depends upon the hash algorithm
-           used (16 octets for MD5). Refer to RFC[1994] section 4.1.
-
- 1.日    期   : 2012年08月20日
-   作    者   : f00179208
-   修改内容   : Added for LTE PPP
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          ulChallengeLen;
@@ -2144,18 +2007,7 @@ typedef struct
 
 } TAF_APS_CHAP_PARAM_STRU;
 
-/*****************************************************************************
- 结构名称: TAF_APS_PAP_PARAM_STRU
- 结构说明: The struct contains the parameter of PAP.
-           ucUsernameLen - Length of username
-           aucUsername   - Array of username
-           ucPasswordLen - Length of password
-           aucPassword   - Array of password
 
- 1.日    期   : 2012年08月20日
-   作    者   : f00179208
-   修改内容   : Added for LTE PPP
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucUsernameLen;
@@ -2165,18 +2017,7 @@ typedef struct
 
 } TAF_APS_PAP_PARAM_STRU;
 
-/*****************************************************************************
- 结构名称: TAF_APS_AUTH_INFO_STRU
- 结构说明: The struct contains the authentication information.
-           enAuthType  - Auth type (NONE/PAP/CHAP)
-           ucAuthId    - Identifier
-           stChapParam - Parameters of CHAP
-           stPapParam  - Parameters of PAP
 
- 1.日    期   : 2012年08月20日
-   作    者   : f00179208
-   修改内容   : Added for LTE PPP
-*****************************************************************************/
 typedef struct
 {
     TAF_PDP_AUTH_TYPE_ENUM_UINT8        enAuthType;
@@ -2192,19 +2033,7 @@ typedef struct
 } TAF_APS_AUTH_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名称: TAF_APS_IPCP_INFO_STRU
- 结构说明: The struct contains the IPCP information.
-           aucIpAddr   - IP address
-           aucPrimDns  - Primary DNS address
-           aucSecDns   - Secondary DNS address
-           aucPrimNbns - Primary NBNS address
-           aucSecNbns  - Secondary NBNS address
 
- 1.日    期   : 2012年08月20日
-   作    者   : f00179208
-   修改内容   : Added for LTE PPP
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          bitOpIpAddr         :1;
@@ -2222,7 +2051,6 @@ typedef struct
 
 } TAF_APS_IPCP_INFO_STRU;
 
-/* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
 
 typedef struct
 {
@@ -2232,15 +2060,7 @@ typedef struct
 } TAF_PPP_FRAME_HEAD_STRU;
 
 
-/*****************************************************************************
- 结构名称: TAF_NDIS_AUTHDATA_TABLE_STRU
- 结构说明: NDIS鉴权参数表结构
 
- 修改历史      :
-  1.日    期   : 2013年07月18日
-    作    者   : Y00213812
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucUsed;                                 /*0：未使用，1：使用*/
@@ -2257,7 +2077,6 @@ typedef struct
     VOS_UINT16                          usClientId;
 }TAF_PS_ANSWER_MODE_STRU;
 
-/* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
 typedef struct
 {
@@ -2265,15 +2084,7 @@ typedef struct
     VOS_UINT8                           aucCid[TAF_MAX_CID + 1];
 }TAF_APS_BITCID_INFO_STRU;
 
-/*****************************************************************************
- 结构名称: TAF_APS_MATCH_PARAM_STRU
- 结构说明: 拨号参数匹配结构
 
- 修改历史      :
-  1.日    期   : 2014年5月16日
-    作    者   : A00165503
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucPrimaryPdpFlg;
@@ -2283,15 +2094,7 @@ typedef struct
     TAF_PDP_APN_STRU                    stApn;
 } TAF_APS_MATCH_PARAM_STRU;
 
-/*****************************************************************************
- 结构名称: TAF_APS_CID_IMS_CFG_TBL_STRU
- 结构说明: CID IMS配置表
 
- 修改历史      :
-  1.日    期   : 2015年7月30日
-    作    者   : z00301431
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8            aucImsFlag[TAF_MAX_CID + 1];
@@ -2562,8 +2365,6 @@ VOS_VOID    Aps_ReleaseSndcpResource(   VOS_UINT8                   ucPdpId );
 
 VOS_VOID    Aps_ReleaseApsResource  (   VOS_UINT8                   ucPdpId );
 
-/* Deleted by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
-/* Deleted by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
 VOS_VOID    Taf_IpAddr2LenStr(CONST     VOS_UINT8                      *pucIpAddr,
                                         VOS_UINT8                      *pucStr);
@@ -2626,7 +2427,6 @@ VOS_UINT32  Aps_ChngDns(                TAF_PDP_DNS_EXT_STRU       *pDnsPara,
                                         VOS_UINT8                   ucCid  );
 
 
-/* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
 VOS_UINT32    Aps_SetEvtAddr(
     VOS_UINT8                           ucPdpId,
     TAF_PDP_ADDR_STRU                  *pstPdpAddr
@@ -2645,7 +2445,6 @@ VOS_VOID    Aps_SetEvtDns(
     TAF_PDP_IPV6_DNS_STRU              *pstIpv6Dns
 );
 
-/* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
 
 /*****************************************************************************
@@ -2679,8 +2478,6 @@ VOS_VOID MN_APS_SetEvtGateWay(
 );
 
 
-/* Deleted by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
-/* Deleted by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
 
 
@@ -3825,7 +3622,6 @@ VOS_VOID TAF_APS_FillEvtPdpType(
 
 
 
-/* Add by w00199382 for V7代码同步, 2012-04-07, Begin   */
 #if(FEATURE_ON == FEATURE_LTE)
 
 
@@ -3838,7 +3634,6 @@ VOS_VOID    Aps_DefPsPdprofmod (
 
 
 #endif
-/* Add by w00199382 for V7代码同步, 2012-04-07, End   */
 
 VOS_VOID TAF_APS_RcvSetCidPara_PdpActLimit(
     TAF_PDP_PRIM_CONTEXT_EXT_STRU      *pstPdpPrimContextExt
@@ -3847,25 +3642,9 @@ VOS_VOID TAF_APS_RcvSetPrimPdpCtxInfoReq_PdpActLimit(
     TAF_PS_SET_PRIM_PDP_CONTEXT_INFO_REQ_STRU    *pstSetPdpCtxInfoReq
 );
 
-/* Deleted by wx270776 for OM融合, 2015-7-1, begin */
 
-/* Deleted by wx270776 for OM融合, 2015-7-1, end */
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndDsFlowOMRptInd
- 功能描述  : 将流量信息通过消息ID_NAS_OM_DSFLOW_RPT_IND主动上报到OM
- 输入参数  : pstDsFlowRptInfo   --流量信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月09日
-    作    者   : l00198894
-    修改内容   : Probe路测工具对接项目新增
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SndDsFlowOMRptInd(
     TAF_DSFLOW_REPORT_STRU             *pstDsFlowRptInfo
 );
@@ -3939,7 +3718,6 @@ VOS_VOID TAF_APS_ConvertNvPdpTab2LocalPdpTab(
     TAF_PDP_TABLE_STRU                 *pstLocalPdpTab
 );
 
-/* Added by m00217266 for L-C互操作项目, 2014-2-12, begin */
 VOS_UINT32  TAF_APS_SndSetUmtsQosInfoCnf(
     TAF_CTRL_STRU                      *pstCtrl,
     VOS_UINT32                          ulErrCode
@@ -3949,7 +3727,6 @@ VOS_UINT32  TAF_APS_SndSetUmtsQosMinInfoCnf(
     TAF_CTRL_STRU                      *pstCtrl,
     VOS_UINT32                          ulErrCode
 );
-/* Added by m00217266 for L-C互操作项目, 2014-2-12, end */
 
 #if (FEATURE_ON == FEATURE_LTE)
 VOS_VOID TAF_APS_SetEvtTftInfo(

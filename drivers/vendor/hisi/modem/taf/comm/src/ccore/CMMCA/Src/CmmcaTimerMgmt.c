@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CmmcaTimerMgmt.c
-  版 本 号   : 初稿
-  作    者   : 鲁琳/l60609
-  生成日期   : 2014年01月21日
-  最近修改   :
-  功能描述   : CMMCA的定时器文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年01月21日
-    作    者   : 鲁琳/l60609
-    修改内容   : 创建文件
-
-******************************************************************************/
 /*****************************************************************************
   1 头文件包含
 *****************************************************************************/
@@ -53,24 +36,7 @@ CMMCA_TIMER_PRECISION_STRU              g_stCmmcaTimerPrcision[]=
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : CMMCA_MNTN_TraceTimerOperation
- 功能描述  : SDT中勾定时器消息
- 输入参数  : VOS_UINT32                            ulPid
-             CMMCA_TIMER_ID_ENUM_UINT32            enTimerId
-             VOS_UINT32                            ulTimerLen
-             CMMCA_TIMER_OPERATION_TYPE_ENUM_UINT8 enTimerAction
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月21日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  CMMCA_MNTN_TraceTimerOperation(
     VOS_UINT32                            ulPid,
     CMMCA_TIMER_ID_ENUM_UINT32            enTimerId,
@@ -96,21 +62,7 @@ VOS_VOID  CMMCA_MNTN_TraceTimerOperation(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_GetTimerPrecision
- 功能描述  : 获取定时器精度
- 输入参数  : CMMCA_TIMER_ID_ENUM_UINT32          enTimerId
- 输出参数  : 无
- 返 回 值  : VOS_TIMER_PRECISION_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月21日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_TIMER_PRECISION_ENUM_UINT32 CMMCA_GetTimerPrecision(
     CMMCA_TIMER_ID_ENUM_UINT32          enTimerId
 )
@@ -140,24 +92,7 @@ VOS_TIMER_PRECISION_ENUM_UINT32 CMMCA_GetTimerPrecision(
     return ulPrecision;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_StartTimer
- 功能描述  : CMMCA启动定时器
- 输入参数  : VOS_UINT32                          ulPid
-             CMMCA_TIMER_ID_ENUM_UINT32          enTimerId
-             VOS_UINT32                          ulLen
-             VOS_UINT32                          ulParam
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月21日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  CMMCA_StartTimer(
     VOS_UINT32                          ulPid,
     CMMCA_TIMER_ID_ENUM_UINT32          enTimerId,
@@ -236,22 +171,7 @@ VOS_VOID  CMMCA_StartTimer(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CMMCA_StopTimer
- 功能描述  : CMMCA停止定时器
- 输入参数  : VOS_UINT32                          ulPid
-             CMMCA_TIMER_ID_ENUM_UINT32          enTimerId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月21日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_StopTimer(
     VOS_UINT32                          ulPid,
     CMMCA_TIMER_ID_ENUM_UINT32          enTimerId
@@ -294,22 +214,7 @@ VOS_VOID CMMCA_StopTimer(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_GetTimerStatus
- 功能描述  : 获取定时器状态
- 输入参数  : VOS_UINT32                          ulPid
-             CMMCA_TIMER_ID_ENUM_UINT32          enTimerId
- 输出参数  : 无
- 返 回 值  : CMMCA_TIMER_STATUS_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月21日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CMMCA_TIMER_STATUS_ENUM_UINT8 CMMCA_GetTimerStatus(
     VOS_UINT32                          ulPid,
     CMMCA_TIMER_ID_ENUM_UINT32          enTimerId

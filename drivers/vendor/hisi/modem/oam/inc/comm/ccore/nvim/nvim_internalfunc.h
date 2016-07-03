@@ -208,14 +208,7 @@ enum NVIM_RESTORE_TYPE_ENUM
 };
 typedef VOS_UINT32 NVIM_RESTORE_TYPE_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : NV_PRIORITY_ENUM
- 枚举说明  : 指定NV优先级别
 
-  1.日    期   : 2012年05月23日
-    作    者   : d00212987
-    修改内容   : V7R1C50 Flashless PhaseII项目新增枚举
-*****************************************************************************/
 enum NV_PRIORITY_ENUM
 {
     NV_PRIORITY_HIGH      = 0x00,
@@ -230,14 +223,7 @@ enum NV_PRIORITY_ENUM
 };
 typedef VOS_UINT16 NV_PRIORITY_ENUM_UINT16;
 
-/*****************************************************************************
- 枚举名    : NV_MSG_ENUM
- 枚举说明  :
 
-  1.日    期   : 2012年05月29日
-    作    者   : d00212987
-    修改内容   : V7R1C50 Flashless PhaseII项目新增枚举
-*****************************************************************************/
 enum NV_MSG_TYPE_ENUM
 {
     NV_FLUSH_NOTIFY_IND   = 0x0001,
@@ -311,14 +297,7 @@ typedef struct
     VOS_UINT16  usRsv;
 }NV_ID_RETUEN_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NV_PRIORITY_THRESHOLD_STRU
- 结构说明  :  NV 优先级阈值
 
-  1.日    期   : 2012年05月23日
-    作    者   : d00212987
-    修改内容   : V7R1C50 Flashless PhaseII项目新增结构
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16  ausNvMiddle[NV_PRI_MID_LEVEL_NUM];           /* 中优先级的阈值 */
@@ -336,14 +315,7 @@ typedef struct
 }NVIM_FL_EVENT_DATA_STRU;
 
 #if 0
-/*****************************************************************************
- 结构名    : NVIM_FLUSH_MSG_STRU
- 结构说明  :  NV Flush更新消息原语
 
-  1.日    期   : 2012年05月23日
-    作    者   : d00212987
-    修改内容   : V7R1C50 Flashless PhaseII项目新增结构
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER

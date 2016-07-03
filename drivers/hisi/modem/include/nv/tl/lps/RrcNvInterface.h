@@ -1,20 +1,4 @@
-/******************************************************************************
 
-    Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : RrcNvInterface.h
-  Description     : RrcNvInterface.h header file
-  History           :
-     1.Name+ID      yyyy-mm-dd  Draft Enact
-     2.guojiyu 00149868   2010-02-1  BJ9D02655:规划修改NV项信息,把锁频、锁小区以及NV读取失败的处理综合考虑
-     3.wangyue 00151278   2010-2-24 BJ9D02691:SIB接收优化
-     4.Wang Yangcai 49178 2010-03-04 BJ9D02803:分模块编译代码整理
-     5.Zhu Hua   00161499 2010-03-12 BJ9D02761:NV锁信息处理修改
-     6.Wang Yangcai 49178 2011-02-15 DTS2011013100231:合入快速校准
-     7.lidui 143774 2011-06-27 DTS2011062001924:UE能力四字节对齐修改
-	 8.lishangfeng  55206 2011-09-11 DTS2011091100356:候补信息维护策略改进，并且能够支持多Band时的维护
-******************************************************************************/
 
 #ifndef __RRCNVINTERFACE_H__
 #define __RRCNVINTERFACE_H__

@@ -1,32 +1,13 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2012, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafSpmMntn.c
-  版 本 号   : 初稿
-  作    者   : w00176964
-  生成日期   : 2013年5月8日
-  最近修改   :
-  功能描述   : spm模块可维可测相关的处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年5月8日
-    作    者   : w00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
 *****************************************************************************/
 #include "TafLog.h"
 #include "TafSpmMntn.h"
-/* Added by y00245242 for VoLTE_PhaseII 项目, 2013-10-15, begin */
 #if (FEATURE_IMS == FEATURE_ON)
 #include "TafSpmCtx.h"
 #endif
-/* Added by y00245242 for VoLTE_PhaseII 项目, 2013-10-15, end */
 
 #include "TafSdcCtx.h"
 
@@ -50,20 +31,7 @@ extern "C" {
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_LogFsmInfo
- 功能描述  : 状态机启动停止或状态迁移时，以消息形式在SDT中进行显示，方便可维可测
- 输入参数  : pstRspData
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年05月16日
-    作    者   : s46746
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID  TAF_SPM_LogFsmInfo(VOS_VOID)
 {
     TAF_SPM_LOG_FSM_INFO_STRU          *pstMsg = VOS_NULL_PTR;
@@ -95,25 +63,7 @@ VOS_VOID  TAF_SPM_LogFsmInfo(VOS_VOID)
     return;
 }
 
-/* Added by y00245242 for VoLTE_PhaseII 项目, 2013-10-15, begin */
-/* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-23, begin */
-/*****************************************************************************
- 函 数 名  : TAF_SPM_LogSrvDomainSelQueueInfo
- 功能描述  : 以消息形式在SDT中显示当前消息queue中缓存的消息数目，方便可维可测
-             当前仅打印queue中缓存的消息数目以及最大保存消息的数目，未来需要，
-             可以增加其他观测信息。
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年10月15日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  TAF_SPM_LogSrvDomainSelQueueInfo(VOS_VOID)
 {
     TAF_SPM_LOG_SRV_DOMAIN_SEL_QUEUE_INFO_STRU             *pstMsg = VOS_NULL_PTR;
@@ -156,30 +106,9 @@ VOS_VOID  TAF_SPM_LogSrvDomainSelQueueInfo(VOS_VOID)
 
     return;
 }
-/* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-23, end */
 
 #if ( FEATURE_ON == FEATURE_IMS )
-/*****************************************************************************
- 函 数 名  : TAF_SPM_LogSrvDomainSelPreconditionInfo
- 功能描述  : 以消息形式在SDT中显示与当前域选择相关的前提条件信息
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年10月22日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月17日
-    作    者   : y00245242
-    修改内容   : 移IMS注册状态到SDC中
-  3.日    期   : 2014年04月01日
-    作    者   : y00245242
-    修改内容   : 为DTS2014040203732修改，增加NV控制USSD业务域选择；USSD业务NV打开，
-                 进行正常域选择，否则选择CS域
-*****************************************************************************/
 VOS_VOID  TAF_SPM_LogSrvDomainSelPreconditionInfo(VOS_VOID)
 {
     TAF_SPM_LOG_SRV_DOMAIN_SEL_PRECONDITION_INFO_STRU      *pstMsg = VOS_NULL_PTR;
@@ -244,20 +173,7 @@ VOS_VOID  TAF_SPM_LogSrvDomainSelPreconditionInfo(VOS_VOID)
     PS_MEM_FREE(WUEPS_PID_TAF, pstMsg);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_LogSrvDomainSelRedialInfo
- 功能描述  : 以消息形式在SDT中显示与当前域选择换域重拨信息
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2014年2月10日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_SPM_LogSrvDomainSelRedialInfo(VOS_VOID)
 {
     TAF_SPM_LOG_SRV_DOMAIN_SEL_REDIAL_INFO_IND_STRU        *pstMsg = VOS_NULL_PTR;
@@ -300,20 +216,7 @@ VOS_VOID TAF_SPM_LogSrvDomainSelRedialInfo(VOS_VOID)
     PS_MEM_FREE(WUEPS_PID_TAF, pstMsg);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_LogRedialCallInfo
- 功能描述  : 以消息形式在SDT中显示调用IMSA API获取到的呼叫信息
 
- 输入参数  : pstCallInfoInd:调用IMSA API获取到的呼叫信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2014年06月05日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_SPM_LogRedialCallInfo(
     IMSA_SPM_CALL_GET_CALL_INFO_IND_STRU                   *pstCallInfoInd
 )
@@ -351,7 +254,6 @@ VOS_VOID TAF_SPM_LogRedialCallInfo(
     PS_MEM_FREE(WUEPS_PID_TAF, pstMsg);
 }
 #endif
-/* Added by y00245242 for VoLTE_PhaseII 项目, 2013-10-15, end */
 
 
 

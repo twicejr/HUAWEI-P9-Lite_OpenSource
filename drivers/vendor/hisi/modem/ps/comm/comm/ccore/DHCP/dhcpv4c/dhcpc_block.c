@@ -1,29 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : dhcpc_block.c
-  版 本 号   : 初稿
-  作    者   : tianyang 00144555
-  生成日期   : 2012年7月13日
-  最近修改   :
-  功能描述   : DHCP控制块管理
-  函数列表   :
-*
-*       1.                DHCPC_AddDhcpcContextToPool
-*       2.                DHCPC_CreateDhcpcContext
-*       3.                DHCPC_FreeDhcpcContext
-*       4.                DHCPC_InsertIdleTable
-*       5.                DHCPC_QueryDhcpcContext
-*
-#include "dhcp_inc.h"
-  修改历史   :
-  1.日    期   : 2012年7月13日
-    作    者   : tianyang 00144555
-    修改内容   : 创建文件
-
-******************************************************************************/
 #include "dhcp_inc.h"
 #include "dhcpc_def.h"
 #include "dhcpc.h"
@@ -50,21 +25,7 @@ DHCPC_MANAGEBLK           *g_pstScanWaitFreeTablePos = NULL;
 DHCPC_MANAGEBLK           *g_pstPreScanWaitFreeTablePos = NULL;
 
 
-/*****************************************************************************
- 函 数 名  : DHCPC_CreateDhcpcContext
- 功能描述  : 创建DHCPC控制块
- 输入参数  : DHCPC_CTRLBLK **ppstDhcpcContext
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月13日
-    作    者   : tianyang 00144555
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_CreateDhcpcContext(DHCPC_CTRLBLK **ppstDhcpcContext)
 {
     ULONG ulRet = 0;
@@ -99,21 +60,7 @@ ULONG DHCPC_CreateDhcpcContext(DHCPC_CTRLBLK **ppstDhcpcContext)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_GetDhcpcBlockfromIdleTable
- 功能描述  : 从IDLE控制块链中获取可用的控制块
- 输入参数  : VOID
- 输出参数  : 无
- 返 回 值  : DHCPC_CTRLBLK *
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月19日
-    作    者   : tianyang 00144555
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 DHCPC_CTRLBLK *DHCPC_GetDhcpcBlockfromIdleTable(VOID)
 {
     DHCPC_CTRLBLK *pstDhcpcContext = NULL;
@@ -149,21 +96,7 @@ DHCPC_CTRLBLK *DHCPC_GetDhcpcBlockfromIdleTable(VOID)
     return pstDhcpcContext;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_CreateNewDhcpcBlock
- 功能描述  : 新申请内存分配控制块，并将内存管理起来
- 输入参数  : VOID
- 输出参数  : 无
- 返 回 值  : DHCPC_CTRLBLK *
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月19日
-    作    者   : tianyang 00144555
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_CreateNewDhcpcBlock(VOID)
 {
     DHCPC_MANAGEBLK *pstTempManageBlk = NULL;
@@ -194,21 +127,7 @@ ULONG DHCPC_CreateNewDhcpcBlock(VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_MangeNewBlock
- 功能描述  : 将新申请的控制块内存管理入空闲控制块链和等待释放链中
- 输入参数  : DHCPC_CTRLBLK *pstDchpcContext
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月19日
-    作    者   : tianyang 00144555
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPC_MangeNewBlock(DHCPC_MANAGEBLK *pstManageBlk)
 {
     ULONG ulBlockIndex = 0;
@@ -232,23 +151,7 @@ VOID DHCPC_MangeNewBlock(DHCPC_MANAGEBLK *pstManageBlk)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_QueryDhcpcContext
- 功能描述  : 查找控制块
- 输入参数  : UCHAR ucIpType
-             ULONG ulTeidc
-             DHCPC_CTRLBLK **ppstDhcpcContext
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月13日
-    作    者   : tianyang 00144555
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_QueryDhcpcContext(UCHAR ucIpType, ULONG ulTeidc, DHCPC_CTRLBLK **ppstDhcpcContext)
 {
     ULONG ulHashKey = 0;
@@ -291,21 +194,7 @@ ULONG DHCPC_QueryDhcpcContext(UCHAR ucIpType, ULONG ulTeidc, DHCPC_CTRLBLK **pps
     return VOS_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_AddDhcpcContextToPool
- 功能描述  : 将控制块加入控制链
- 输入参数  : DHCPC_CTRLBLK *pstDhcpcContext
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月13日
-    作    者   : tianyang 00144555
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_AddDhcpcContextToPool(DHCPC_CTRLBLK *pstDhcpcContext)
 {
     ULONG ulHashKey = 0;
@@ -344,23 +233,7 @@ ULONG DHCPC_AddDhcpcContextToPool(DHCPC_CTRLBLK *pstDhcpcContext)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_MallocDhcpcContext
- 功能描述  : 申请控制块函数
- 输入参数  : UCHAR ucIpType
-             ULONG ulTeidc
-             DHCPC_CTRLBLK **ppstDhcpcContext
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月3日
-    作    者   : tianyang 00144555
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_MallocDhcpcContext(UCHAR ucIpType, ULONG ulTeidc, DHCPC_CTRLBLK **ppstDhcpcContext)
 {
     ULONG ulRet = 0;
@@ -405,21 +278,7 @@ ULONG DHCPC_MallocDhcpcContext(UCHAR ucIpType, ULONG ulTeidc, DHCPC_CTRLBLK **pp
 }
 
 
-/*****************************************************************************
- 函 数 名  : DHCPC_FreeDhcpcContext
- 功能描述  : 从控制链中删除控制块
- 输入参数  : UCHAR ucIpType, ULONG ulTeidc
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月13日
-    作    者   : tianyang 00144555
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_FreeDhcpcContext(UCHAR ucIpType, ULONG ulTeidc)
 {
     ULONG ulRet = 0;
@@ -484,21 +343,7 @@ ULONG DHCPC_FreeDhcpcContext(UCHAR ucIpType, ULONG ulTeidc)
     return VOS_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_InsertIdleTable
- 功能描述  : 将空白的控制块插入空闲链中以备申请使用
- 输入参数  : DHCPC_CTRLBLK *pstDhcpcContext
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月13日
-    作    者   : tianyang 00144555
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPC_InsertIdleTable(DHCPC_CTRLBLK *pstDhcpcContext)
 {
     DHCPC_CTRLBLK *pstTmpDhcpcContext = NULL;
@@ -531,21 +376,7 @@ VOID DHCPC_InsertIdleTable(DHCPC_CTRLBLK *pstDhcpcContext)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_DelWholeBlkFromIdleTable
- 功能描述  : 将可以释放的整块内存中所有的控制块从空闲链中删除
- 输入参数  : DHCPC_CTRLBLK *pstDhcpcContext
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月17日
-    作    者   : tianyang 00144555
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_DelWholeBlkFromIdleTable(DHCPC_CTRLBLK *pstDhcpcContext)
 {
     ULONG ulIndex = 0;
@@ -578,21 +409,7 @@ ULONG DHCPC_DelWholeBlkFromIdleTable(DHCPC_CTRLBLK *pstDhcpcContext)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_DelSingleBlkFromIdleTable
- 功能描述  : 将单个控制块从空闲链中删除
- 输入参数  : DHCPC_CTRLBLK *pstDhcpcContext
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月17日
-    作    者   : tianyang 00144555
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_DelSingleBlkFromTable(DHCPC_CTRLBLK *pstDhcpcContext, DHCPC_CTRLBLK **ppstDhcpcContextHead)
 {
     DHCPV6C_DBGCNT_ADD(E_DHCPV6C_BLK_DELSINGLE_NUM);
@@ -644,22 +461,7 @@ ULONG DHCPC_DelSingleBlkFromTable(DHCPC_CTRLBLK *pstDhcpcContext, DHCPC_CTRLBLK 
 }
 
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_QueryDhcpBlockBySeq
- 功能描述  : 根据SeqNo查找dhcp控制块
- 输入参数  : USHORT usSeqNo
-             DHCPC_CTRLBLK **ppstDhcpcContext
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月11日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_QueryDhcpBlockBySeq(USHORT usSeqNo, DHCPC_CTRLBLK **ppstDhcpcContext)
 {
     ULONG   ulReturn = VOS_ERR;
@@ -682,21 +484,7 @@ ULONG DHCPV6C_QueryDhcpBlockBySeq(USHORT usSeqNo, DHCPC_CTRLBLK **ppstDhcpcConte
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : DHCPC_InsertWaitFreeTable
- 功能描述  : 将新申请的内存放入等待释放链中
- 输入参数  : DHCPC_CTRLBLK *pstDhcpcContext
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月13日
-    作    者   : tianyang 00144555
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPC_InsertWaitFreeTable(DHCPC_MANAGEBLK *pstManageBlk)
 {
     DHCPV6C_DBGCNT_ADD(E_DHCPV6C_BLK_INSERTWAIT_NUM);
@@ -715,21 +503,7 @@ VOID DHCPC_InsertWaitFreeTable(DHCPC_MANAGEBLK *pstManageBlk)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_FreeDhcpcCtrlBlkMem
- 功能描述  : 释放内存
- 输入参数  : VOID
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月14日
-    作    者   : tianyang 00144555
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPC_FreeDhcpcCtrlBlkMem(VOID)
 {
     ULONG ulScanIndex = 0;
@@ -801,21 +575,7 @@ VOID DHCPC_FreeDhcpcCtrlBlkMem(VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_DelNodeFromWaitFreeTable
- 功能描述  : 将该片内存从等待释放链中删除
- 输入参数  : DHCPC_MANAGEBLK *pstWaitDelBlk
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月19日
-    作    者   : tianyang 00144555
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_DelNodeFromWaitFreeTable(DHCPC_MANAGEBLK **pstPreWaitFreeBlk, DHCPC_MANAGEBLK *pstWaitDelBlk)
 {
     DHCPV6C_DBGCNT_ADD(E_DHCPV6C_BLK_DELWAITNOD_NUM);
@@ -862,21 +622,7 @@ ULONG DHCPC_DelNodeFromWaitFreeTable(DHCPC_MANAGEBLK **pstPreWaitFreeBlk, DHCPC_
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : DHCPC_BlkMemCanbeFree
- 功能描述  : 判断该片内存能否被释放
- 输入参数  : DHCPC_CTRLBLK *pstDhcpcContext
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月14日
-    作    者   : tianyang 00144555
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_BlkMemCanbeFree(DHCPC_CTRLBLK *pstDhcpcContext)
 {
     ULONG ulIndex = 0;
@@ -900,61 +646,19 @@ ULONG DHCPC_BlkMemCanbeFree(DHCPC_CTRLBLK *pstDhcpcContext)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_GetCtlBlkUsedNum
- 功能描述  : 获取已使用的DHCPC控制块个数
- 输入参数  : VOID
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月23日
-    作    者   : tianyang 00144555
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_GetCtlBlkUsedNum(VOID)
 {
     return g_ulDhcpcBlkUsedNum;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_GetIdelBlkNum
- 功能描述  : 获取空闲的DHCPC控制块个数
- 输入参数  : VOID
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月23日
-    作    者   : tianyang 00144555
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_GetIdelBlkNum(VOID)
 {
     return g_ulDhcpcBlkIdleNum;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_GetManageMemNum
- 功能描述  : 获取申请管理内存的个数
- 输入参数  : VOID
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月23日
-    作    者   : tianyang 00144555
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_GetManageMemNum(VOID)
 {
     return g_ulDhcpcManageMemNum;

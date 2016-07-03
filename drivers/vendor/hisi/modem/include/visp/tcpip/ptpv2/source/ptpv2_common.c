@@ -447,7 +447,6 @@ ULONG PTPV2_GetPortInfoByPort(ULONG usPtpPortNo, PTPV2_PORT_S **ppstPortInfo)
 
         *ppstPortInfo = (PTPV2_PORT_S *)ulHandle;
     }
-    /*Added by wuling for DTS2014101506342  2014-10-27 OC下启动端口需要寻找最小可用的PTP端口索引号*/
     else
     {
         if (g_pstPortManageInfo->ulCrtPortCount > 0)
@@ -1345,9 +1344,7 @@ VOID PTPV2_WarningRemoveProc()
 *******************************************************************************/
 ULONG PTPV2_HaveParent()
 {
-    /* Modified by wuling201943, 消除fortify告警, 2014/9/9   问题单号:DTS2014090901965 */
     return (ULONG)(g_pstBmcEbest ? PTPV2_YES: PTPV2_NO);
-    /*End of Modified by wuling201943, 2014/9/9   问题单号:DTS2014090901965 */
 }
 
 /*******************************************************************************

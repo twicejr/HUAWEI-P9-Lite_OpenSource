@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafXpdsFsmPdeProc.c
-  版 本 号   : 初稿
-  作    者   : y00174758
-  生成日期   : 2015年08月24日
-  功能描述   : PDE状态机事件处理函数
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年08月24日
-    作    者   : y00174758
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -47,22 +32,7 @@ extern "C"{
   3 函数定义
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvXpdsPdeProcStartReq_L2Pde_Init
- 功能描述  : INIT状态收到ID_TAF_XPDS_XPDS_PDE_PROC_START_REQ消息处理函数
- 输入参数  : ulEventType - 消息类型
-             pstMsg      - 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 已处理
-             VOS_FALSE - 未处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : y00174758
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvXpdsPdeProcStartReq_L2Pde_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -139,22 +109,7 @@ VOS_UINT32 TAF_XPDS_RcvXpdsPdeProcStartReq_L2Pde_Init(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvXpdsForwardPdeDataInd_L2Pde_MsaWaitPdeAssistInfo
- 功能描述  : MSA_WAIT_PDE_ASSIST_INFO状态收到ID_TAF_XPDS_XPDS_FORWARD_PDE_DATA_IND消息处理函数
- 输入参数  : ulEventType - 消息类型
-             pstMsg      - 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 已处理
-             VOS_FALSE - 未处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : x00314862
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvXpdsForwardPdeDataInd_L2Pde_MsaWaitPdeAssistInfo(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -244,22 +199,7 @@ VOS_UINT32 TAF_XPDS_RcvXpdsForwardPdeDataInd_L2Pde_MsaWaitPdeAssistInfo(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvXpdsForwardPdeDataIndExpired_L2Pde_MsaWaitPdeAssistInfo
- 功能描述  : MSA_WAIT_PDE_ASSIST_INFO状态收到定时器超时消息处理函数
- 输入参数  : ulEventType - 消息类型
-             pstMsg      - 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 已处理
-             VOS_FALSE - 未处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : y00174758
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvTiXpdsForwardPdeDataIndExpired_L2Pde_MsaWaitPdeAssistInfo(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -272,22 +212,7 @@ VOS_UINT32 TAF_XPDS_RcvTiXpdsForwardPdeDataIndExpired_L2Pde_MsaWaitPdeAssistInfo
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvXpdsForwardPdeDataInd_L2Pde_MsaWaitGpsPseudoInfo
- 功能描述  : MSA_WAIT_GPS_PSEUDO_INFO状态收到ID_TAF_XPDS_XPDS_FORWARD_PDE_DATA_IND消息处理函数
- 输入参数  : ulEventType - 消息类型
-             pstMsg      - 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 已处理
-             VOS_FALSE - 未处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月09日
-    作    者   : y00174758
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvXpdsForwardPdeDataInd_L2Pde_MsaWaitGpsPseudoInfo(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -310,22 +235,7 @@ VOS_UINT32 TAF_XPDS_RcvXpdsForwardPdeDataInd_L2Pde_MsaWaitGpsPseudoInfo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvAtGpsPrmInfoRsp_L2Pde_MsaWaitGpsPseudoInfo
- 功能描述  : MSA_WAIT_GPS_PSEUDO_INFO状态收到ID_AT_XPDS_GPS_PRM_INFO_RSP消息处理函数
- 输入参数  : ulEventType - 消息类型
-             pstMsg      - 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 已处理
-             VOS_FALSE - 未处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : x00314862
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvAtGpsPrmInfoRsp_L2Pde_MsaWaitGpsPseudoInfo(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -416,22 +326,7 @@ VOS_UINT32 TAF_XPDS_RcvAtGpsPrmInfoRsp_L2Pde_MsaWaitGpsPseudoInfo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvAtPrmInfoRspExpired_L2Pde_MsaWaitGpsPseudoInfo
- 功能描述  : MSA_WAIT_GPS_PSEUDO_INFO状态收到定时器超时消息处理函数
- 输入参数  : ulEventType - 消息类型
-             pstMsg      - 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 已处理
-             VOS_FALSE - 未处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : x00314862
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvTiPrmInfoRspExpired_L2Pde_MsaWaitGpsPseudoInfo(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -483,22 +378,7 @@ VOS_UINT32 TAF_XPDS_RcvTiPrmInfoRspExpired_L2Pde_MsaWaitGpsPseudoInfo(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvTiWaitGpsPrecisionPseudoRangeExpired_L2Pde_MsaWaitGpsPseudoInfo
- 功能描述  : MSA_WAIT_GPS_PSEUDO_INFO状态收到定时器超时消息处理函数
- 输入参数  : ulEventType - 消息类型
-             pstMsg      - 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 已处理
-             VOS_FALSE - 未处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : x00314862
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvTiWaitGpsPrecisionPseudoRangeExpired_L2Pde_MsaWaitGpsPseudoInfo(
     VOS_UINT32                           ulEventType,
     struct MsgCB                        *pstMsg
@@ -551,22 +431,7 @@ VOS_UINT32 TAF_XPDS_RcvTiWaitGpsPrecisionPseudoRangeExpired_L2Pde_MsaWaitGpsPseu
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvTiWaitGpsPseudoRangeCnfExpired_L2Pde_MsaWaitGpsPseudoInfo
- 功能描述  : MSA_WAIT_GPS_PSEUDO_INFO状态收到定时器超时消息处理函数
- 输入参数  : ulEventType - 消息类型
-             pstMsg      - 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 已处理
-             VOS_FALSE - 未处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : x00314862
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvTiWaitGpsPseudoRangeCnfExpired_L2Pde_MsaWaitGpsPseudoInfo(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -611,22 +476,7 @@ VOS_UINT32 TAF_XPDS_RcvTiWaitGpsPseudoRangeCnfExpired_L2Pde_MsaWaitGpsPseudoInfo
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvXpdsForwardPdeDataInd_L2Pde_MsaWaitPdeLocRespInfo
- 功能描述  : MSA_WAIT_PDE_LOC_RSP状态收到ID_TAF_XPDS_XPDS_FORWARD_PDE_DATA_IND消息处理函数
- 输入参数  : ulEventType - 消息类型
-             pstMsg      - 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 已处理
-             VOS_FALSE - 未处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : y00174758
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvXpdsForwardPdeDataInd_L2Pde_MsaWaitPdeLocRespInfo(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -674,22 +524,7 @@ VOS_UINT32 TAF_XPDS_RcvXpdsForwardPdeDataInd_L2Pde_MsaWaitPdeLocRespInfo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvXpdsForwardPdeDataIndExpired_L2Pde_MsaWaitLocRespInfo
- 功能描述  : MSA_WAIT_PDE_LOC_RSP状态收到定时器超时消息处理函数
- 输入参数  : ulEventType - 消息类型
-             pstMsg      - 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 已处理
-             VOS_FALSE - 未处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : x00314862
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvTiXpdsForwardPdeDataIndExpired_L2Pde_MsaWaitPdeLocRespInfo(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -703,22 +538,7 @@ VOS_UINT32 TAF_XPDS_RcvTiXpdsForwardPdeDataIndExpired_L2Pde_MsaWaitPdeLocRespInf
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvXpdsForwardPdeDataInd_L2Pde_MsbWaitPdeData
- 功能描述  : MSB_WAIT_PDE_DATA状态收到ID_TAF_XPDS_XPDS_FORWARD_PDE_DATA_IND消息处理函数
- 输入参数  : ulEventType - 消息类型
-             pstMsg      - 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 已处理
-             VOS_FALSE - 未处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : y00174758
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvXpdsForwardPdeDataInd_L2Pde_MsbWaitPdeData(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -765,22 +585,7 @@ VOS_UINT32 TAF_XPDS_RcvXpdsForwardPdeDataInd_L2Pde_MsbWaitPdeData(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvTiWaitPdeMsbDataExpired_L2Pde_MsbWaitPdeData
- 功能描述  : MSB_WAIT_PDE_DATA状态收到等待MSB数据的定时器超时处理
- 输入参数  : ulEventType - 消息类型
-             pstMsg      - 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 已处理
-             VOS_FALSE - 未处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月27日
-    作    者   : y00174758
-    修改内容   : AGPS迭代2新增
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvTiWaitPdeMsbDataExpired_L2Pde_MsbWaitPdeData(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -828,23 +633,7 @@ VOS_UINT32 TAF_XPDS_RcvTiWaitPdeMsbDataExpired_L2Pde_MsbWaitPdeData(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_RcvXpdsAbnormalAbortSessionInd_L2Pde_MsbWaitPdeData
- 功能描述  : MSB_WAIT_PDE_DATA状态收到等待ID_TAF_XPDS_XPDS_INT_ABNORMAL_ABORT_AGPS_SESSION_IND
-             消息的处理
- 输入参数  : ulEventType - 消息类型
-             pstMsg      - 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 已处理
-             VOS_FALSE - 未处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月09日
-    作    者   : y00174758
-    修改内容   : AGPS迭代2新增
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_RcvXpdsAbnormalAbortSessionInd_L2Pde(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -876,22 +665,7 @@ VOS_UINT32 TAF_XPDS_RcvXpdsAbnormalAbortSessionInd_L2Pde(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_ProcReqFromPde_L2Pde
- 功能描述  : 处理PDE来的请求消息
- 输入参数  : ulEventType - 消息类型
-             pstMsg      - 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 已处理
-             VOS_FALSE - 未处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : x00314862
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XPDS_ProcReqFromPde_L2Pde
 (
     VOS_UINT32                          ulDataMask,
@@ -951,21 +725,7 @@ VOS_VOID TAF_XPDS_ProcReqFromPde_L2Pde
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_ProcPdeLocationRsp_L2Pde
- 功能描述  : 收到PDE回复的Location info，需要发送给GPS
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月25日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_ProcPdeLocationRsp_L2Pde(VOS_VOID)
 {
     TAF_XPDS_FIX_MODE_ENUM_UINT8        enFixMode;
@@ -994,20 +754,7 @@ VOS_VOID TAF_XPDS_ProcPdeLocationRsp_L2Pde(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_ProcEphData_L2Pde_MsbWaitPdeData
- 功能描述  : 处理从PDE服务器接收到的EPH数据
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : y00174758
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XPDS_ProcEphData_L2Pde_MsbWaitPdeData(VOS_VOID)
 {
     if (VOS_TRUE == TAF_XPDS_GetRespGpsIonInEphimFlag())
@@ -1035,20 +782,7 @@ VOS_VOID TAF_XPDS_ProcEphData_L2Pde_MsbWaitPdeData(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_ProcAlmData_L2Pde_MsbWaitPdeData
- 功能描述  : 处理从PDE服务器接收到的ALM数据
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : y00174758
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XPDS_ProcAlmData_L2Pde_MsbWaitPdeData(VOS_VOID)
 {
     TAF_XPDS_SndAtGpsAlmInfo();
@@ -1070,20 +804,7 @@ VOS_VOID TAF_XPDS_ProcAlmData_L2Pde_MsbWaitPdeData(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_ProcQuitL2Pde_L2Pde
- 功能描述  : 退出L2 PDE状态机处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : y00174758
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XPDS_ProcQuitL2Pde_L2Pde(VOS_VOID)
 {
     /* 如果PDE没有下发SS_SEND消息，向PDE发送SS_SEND消息 */
@@ -1105,21 +826,7 @@ VOS_VOID TAF_XPDS_ProcQuitL2Pde_L2Pde(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndPdeStartDeliverData_L2Pde
- 功能描述  : MS send start delive data to PDE server
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月23日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndPdeStartDeliverData_L2Pde(VOS_VOID)
 {
     VOS_UINT8                          *pucEncodeBuf       = VOS_NULL_PTR;
@@ -1166,21 +873,7 @@ VOS_VOID TAF_XPDS_SndPdeStartDeliverData_L2Pde(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndPdeReverseMsg_L2Pde
- 功能描述  : 构造码流后，发送给网络侧的PDE
- 输入参数  : TAF_XPDS_ENCODE_RL_INFO_STRU       *pstEncodeRlInfo
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月27日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndPdeReverseMsg_L2Pde(
     TAF_XPDS_ENCODE_RL_INFO_STRU       *pstEncodeRlInfo,
     TAF_XPDS_CALL_TYPE_ENUM_UINT8       enCallType
@@ -1221,20 +914,7 @@ VOS_VOID TAF_XPDS_SndPdeReverseMsg_L2Pde(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_StopAllL2PdeTimer_L2Pde
- 功能描述  : 停止所有PDE状态机的定时器
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月8日
-    作    者   : y00174758
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XPDS_StopAllL2PdeTimer_L2Pde(VOS_VOID)
 {
     TAF_XPDS_StopTimer(TI_TAF_XPDS_WAIT_RSP_PDE_PSEUDORANGE_REQ_QUALITY);

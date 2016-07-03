@@ -16,14 +16,7 @@ using namespace testing;
 2 用例实现
 *****************************************************************************/
 
-/*****************************************************************************
-类名       : Test_RNIC_StopNetCard
-功能描述   : RNIC_StopNetCard UT工程类
-修改历史   :
-1.日   期  : 2011-12-09
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_StopNetCard: public ::testing::Test
 {
 public:
@@ -36,16 +29,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_StopNetCard_001
-测试用例标题      : 网卡指针为空
-预期结果          : 返回RNIC_ERROR
-修改历史   :
-1.日   期  : 2011-12-09
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_StopNetCard, Test_RNIC_StopNetCard_001)
 {
     VOS_INT                             lRst;
@@ -75,16 +59,7 @@ TEST_F(Test_RNIC_StopNetCard, Test_RNIC_StopNetCard_001)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_StopNetCard_002
-测试用例标题      : 网卡私有数据指针为空
-预期结果          : 返回RNIC_ERROR
-修改历史   :
-1.日   期  : 2011-12-09
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_StopNetCard, Test_RNIC_StopNetCard_002)
 {
     VOS_INT                             lRst;
@@ -115,16 +90,7 @@ TEST_F(Test_RNIC_StopNetCard, Test_RNIC_StopNetCard_002)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_StopNetCard_003
-测试用例标题      : 网卡停止成功
-预期结果          : 网卡状态标志置为关闭,返回RNIC_OK
-修改历史   :
-1.日   期  : 2011-12-09
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_StopNetCard, Test_RNIC_StopNetCard_003)
 {
     VOS_INT                             lRst;
@@ -158,14 +124,7 @@ TEST_F(Test_RNIC_StopNetCard, Test_RNIC_StopNetCard_003)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名       : Test_RNIC_OpenNetCard
-功能描述   : RNIC_OpenNetCard UT工程类
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_OpenNetCard: public ::testing::Test
 {
 public:
@@ -178,16 +137,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_OpenNetCard_001
-测试用例标题      : 网卡指针为空
-预期结果          : 返回RNIC_ERROR
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_OpenNetCard, Test_RNIC_OpenNetCard_001)
 {
     VOS_INT                             lRst;
@@ -213,16 +163,7 @@ TEST_F(Test_RNIC_OpenNetCard, Test_RNIC_OpenNetCard_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_OpenNetCard_002
-测试用例标题      : 网卡私有结构指针为空
-预期结果          : 返回RNIC_ERROR
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_OpenNetCard, Test_RNIC_OpenNetCard_002)
 {
     VOS_INT                             lRst;
@@ -256,16 +197,7 @@ TEST_F(Test_RNIC_OpenNetCard, Test_RNIC_OpenNetCard_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_OpenNetCard_003
-测试用例标题      : 该设备如果已经打开
-预期结果          : 返回RNIC_BUSY
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_OpenNetCard, Test_RNIC_OpenNetCard_003)
 {
     VOS_INT                             lRst;
@@ -300,16 +232,7 @@ TEST_F(Test_RNIC_OpenNetCard, Test_RNIC_OpenNetCard_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_OpenNetCard_004
-测试用例标题      : 网卡停止成功
-预期结果          : 网卡状态标志置为打开,返回RNIC_OK
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_OpenNetCard, Test_RNIC_OpenNetCard_004)
 {
     VOS_INT                             lRst;
@@ -344,14 +267,7 @@ TEST_F(Test_RNIC_OpenNetCard, Test_RNIC_OpenNetCard_004)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名       : Test_RNIC_StartXmit
-功能描述   : RNIC_StartXmit UT工程类
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_StartXmit: public ::testing::Test
 {
 public:
@@ -380,16 +296,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_StartXmit_001
-测试用例标题      : 网卡指针为空
-预期结果          : 返回NETDEV_TX_OK
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_StartXmit, Test_RNIC_StartXmit_001)
 {
     netdev_tx_t                         enRst;
@@ -422,16 +329,7 @@ TEST_F(Test_RNIC_StartXmit, Test_RNIC_StartXmit_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_StartXmit_002
-测试用例标题      : 收到的数据无效
-预期结果          : 返回NETDEV_TX_OK
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_StartXmit, Test_RNIC_StartXmit_002)
 {
     netdev_tx_t                         enRst;
@@ -463,16 +361,7 @@ TEST_F(Test_RNIC_StartXmit, Test_RNIC_StartXmit_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_StartXmit_003
-测试用例标题      : 根据网卡设备获取不到网卡ID
-预期结果          : 返回NETDEV_TX_OK，网卡错误丢包个数加1
-修改历史   :
-1.日   期  : 2012-12-5
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_StartXmit, Test_RNIC_StartXmit_003)
 {
     netdev_tx_t                         enRst;
@@ -532,16 +421,7 @@ TEST_F(Test_RNIC_StartXmit, Test_RNIC_StartXmit_003)
     /* 检查调用时, 需要在用例结束位置加上这句 */
     GlobalMockObject::verify();}
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_StartXmit_004
-测试用例标题      : 流控启动时, 直接丢弃数据包
-预期结果          : 返回NETDEV_TX_OK，流控启动丢包个数加1
-修改历史   :
-1.日   期  : 2012-12-5
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_StartXmit, Test_RNIC_StartXmit_004)
 {
     netdev_tx_t                         enRst;
@@ -612,16 +492,7 @@ TEST_F(Test_RNIC_StartXmit, Test_RNIC_StartXmit_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_StartXmit_005
-测试用例标题      : IPV4 PDP未激活的情况下，收到广播包的情况
-预期结果          : 返回NETDEV_TX_OK，上行收到的广播包加1
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_StartXmit, Test_RNIC_StartXmit_005)
 {
     netdev_tx_t                         enRst;
@@ -699,16 +570,7 @@ TEST_F(Test_RNIC_StartXmit, Test_RNIC_StartXmit_005)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_StartXmit_006
-测试用例标题      : IPV4 PDP未激活的情况下，收到有效数据包的情况，通知APP拨号成功
-预期结果          : 返回NETDEV_TX_OK,按需拨号成功全局变量加1
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_StartXmit, Test_RNIC_StartXmit_006)
 {
     netdev_tx_t                         enRst;
@@ -799,16 +661,7 @@ TEST_F(Test_RNIC_StartXmit, Test_RNIC_StartXmit_006)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_StartXmit_007
-测试用例标题      : IPV4 PDP未激活的情况下，收到有效数据包的情况，通知APP拨号失败
-预期结果          : 返回NETDEV_TX_OK,按需拨号失败全局变量加1
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_StartXmit, Test_RNIC_StartXmit_007)
 {
     netdev_tx_t                         enRst;
@@ -895,16 +748,7 @@ TEST_F(Test_RNIC_StartXmit, Test_RNIC_StartXmit_007)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_StartXmit_008
-测试用例标题      : 无效的IP报文
-预期结果          : 返回NETDEV_TX_OK
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_StartXmit, Test_RNIC_StartXmit_008)
 {
     netdev_tx_t                         enRst;
@@ -975,18 +819,8 @@ TEST_F(Test_RNIC_StartXmit, Test_RNIC_StartXmit_008)
     GlobalMockObject::verify();
 }
 
-/* Added by m00217266 for L-C互操作项目, 2014-2-7, begin */
 #if (FEATURE_ON == FEATURE_CL_INTERWORK)
-/*******************************************************************
-测试用例编号      : Test_RNIC_StartXmit_009
-测试用例标题      : 外部modem ipv4数据包发送成功
-预期结果          : 返回NETDEV_TX_OK
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_StartXmit, Test_RNIC_StartXmit_009)
 {
     netdev_tx_t                         enRst;
@@ -1062,16 +896,7 @@ TEST_F(Test_RNIC_StartXmit, Test_RNIC_StartXmit_009)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_StartXmit_010
-测试用例标题      : 外部modem ipv6数据包发送成功
-预期结果          : 返回NETDEV_TX_OK
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_StartXmit, Test_RNIC_StartXmit_010)
 {
     netdev_tx_t                         enRst;
@@ -1147,16 +972,7 @@ TEST_F(Test_RNIC_StartXmit, Test_RNIC_StartXmit_010)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_StartXmit_011
-测试用例标题      : 外部modem ipv6数据包，但IPV6未激活
-预期结果          : 释放数据包内存，返回NETDEV_TX_OK
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_StartXmit, Test_RNIC_StartXmit_011)
 {
     netdev_tx_t                         enRst;
@@ -1227,16 +1043,7 @@ TEST_F(Test_RNIC_StartXmit, Test_RNIC_StartXmit_011)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_StartXmit_012
-测试用例标题      : 外部modem ipv6数据包发送失败
-预期结果          : 释放数据包内存，返回NETDEV_TX_OK
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_StartXmit, Test_RNIC_StartXmit_012)
 {
     netdev_tx_t                         enRst;
@@ -1310,16 +1117,7 @@ TEST_F(Test_RNIC_StartXmit, Test_RNIC_StartXmit_012)
     /* 检查调用时, 需要在用例结束位置加上这句 */
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号      : Test_RNIC_StartXmit_013
-测试用例标题      : 外部modem 发送非ipv4、ipv6数据包
-预期结果          : 释放数据包内存，返回NETDEV_TX_OK
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_StartXmit, Test_RNIC_StartXmit_013)
 {
     netdev_tx_t                         enRst;
@@ -1394,16 +1192,7 @@ TEST_F(Test_RNIC_StartXmit, Test_RNIC_StartXmit_013)
 }
 #endif
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_StartXmit_014
-测试用例标题      : modem type 异常
-预期结果          : 释放数据包内存，返回NETDEV_TX_OK
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_StartXmit, Test_RNIC_StartXmit_014)
 {
     netdev_tx_t                         enRst;
@@ -1468,16 +1257,8 @@ TEST_F(Test_RNIC_StartXmit, Test_RNIC_StartXmit_014)
     GlobalMockObject::verify();
 }
 
-/* Added by m00217266 for L-C互操作项目, 2014-2-7, end */
 
-/*****************************************************************************
-类名       : Test_RNIC_SendULIpv6Data
-功能描述   : RNIC_SendULIpv6Data UT工程类
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_SendULIpv6Data: public ::testing::Test
 {
 public:
@@ -1523,16 +1304,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_SendULIpv6Data_001
-测试用例标题      : 收到IPV6的数据，但是RABID无效时
-预期结果          : 上行rab err丢包数加1
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_SendULIpv6Data, Test_RNIC_SendULIpv6Data_001)
 {
     netdev_tx_t                         enRst;
@@ -1597,16 +1369,7 @@ TEST_F(Test_RNIC_SendULIpv6Data, Test_RNIC_SendULIpv6Data_001)
 }
 
 #if(0)
-/*******************************************************************
-测试用例编号      : Test_RNIC_SendULIpv6Data_002
-测试用例标题      : IPV6激活的情况下,收到由Linux系统提供IPV6的数据包,跨核内存拷贝失败
-预期结果          : 上行丢包加1
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_SendULIpv6Data, Test_RNIC_SendULIpv6Data_002)
 {
     netdev_tx_t                         enRst;
@@ -1683,16 +1446,7 @@ TEST_F(Test_RNIC_SendULIpv6Data, Test_RNIC_SendULIpv6Data_002)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_SendULIpv6Data_003
-测试用例标题      : IPV6激活的情况下,收到由Linux系统提供的IPV6非modem0或1的数据包,跨核内存拷贝成功
-预期结果          : 发包数加1
-修改历史   :
-1.日   期  : 2011-12-29
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_SendULIpv6Data, Test_RNIC_SendULIpv6Data_003)
 {
     netdev_tx_t                         enRst;
@@ -1752,16 +1506,7 @@ TEST_F(Test_RNIC_SendULIpv6Data, Test_RNIC_SendULIpv6Data_003)
 
 }
 #else
-/*******************************************************************
-测试用例编号      : Test_RNIC_SendULIpv6Data_004
-测试用例标题      : IPV6激活的情况下,收到由Linux系统提供的IPV6非modem0或1的数据包,跨核内存拷贝成功
-预期结果          : 发包数加1
-修改历史   :
-1.日   期  : 2011-12-29
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_SendULIpv6Data, Test_RNIC_SendULIpv6Data_004)
 {
     netdev_tx_t                         enRst;
@@ -1821,14 +1566,7 @@ TEST_F(Test_RNIC_SendULIpv6Data, Test_RNIC_SendULIpv6Data_004)
 }
 #endif
 
-/*****************************************************************************
-类名       : Test_RNIC_SendULIpv4Data
-功能描述   : RNIC_SendULIpv4Data UT工程类
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_SendULIpv4Data: public ::testing::Test
 {
 public:
@@ -1875,16 +1613,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_SendULIpv4Data_001
-测试用例标题      : 收到IPV4的数据，但是RABID无效时
-预期结果          : 上行丢包数加1
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_SendULIpv4Data, Test_RNIC_SendULIpv4Data_001)
 {
     netdev_tx_t                         enRst;
@@ -1951,16 +1680,7 @@ TEST_F(Test_RNIC_SendULIpv4Data, Test_RNIC_SendULIpv4Data_001)
 
 }
 #if(0)
-/*******************************************************************
-测试用例编号      : Test_RNIC_SendULIpv4Data_002
-测试用例标题      : IPV4激活的情况下,收到由用户管理系统提供IPV4的数据包,A核共享内存池以外的内存,跨核内存拷贝失败
-预期结果          : 上行丢包加1
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_SendULIpv4Data, Test_RNIC_SendULIpv4Data_002)
 {
     netdev_tx_t                         enRst;
@@ -2039,16 +1759,7 @@ TEST_F(Test_RNIC_SendULIpv4Data, Test_RNIC_SendULIpv4Data_002)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_SendULIpv4Data_003
-测试用例标题      : IPV4激活的情况下,收到由用户管理系统提供IPV4的modem0的数据包,A核共享内存池以外的内存,跨核内存拷贝成功
-预期结果          : 丢包数加1
-修改历史   :
-1.日   期  : 2011-12-29
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_SendULIpv4Data, Test_RNIC_SendULIpv4Data_003)
 {
     netdev_tx_t                         enRst;
@@ -2121,16 +1832,7 @@ TEST_F(Test_RNIC_SendULIpv4Data, Test_RNIC_SendULIpv4Data_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_SendULIpv4Data_004
-测试用例标题      : IPV4激活的情况下,收到由用户管理系统提供A核共享内存池的modem0的IPV4数据包,A核共享内存池的内存,发送给ADS失败
-预期结果          : 丢包数加1
-修改历史   :
-1.日   期  : 2011-12-29
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_SendULIpv4Data, Test_RNIC_SendULIpv4Data_004)
 {
     netdev_tx_t                         enRst;
@@ -2192,16 +1894,7 @@ TEST_F(Test_RNIC_SendULIpv4Data, Test_RNIC_SendULIpv4Data_004)
 #else
 
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_RNIC_SendULIpv4Data_005
-测试用例标题      : IPV4激活的情况下,收到由系统管理系统提供modem1的IPV4数据包,数据成功发给ADS
-预期结果          : 发包数加1
-修改历史   :
-1.日   期  : 2012-09-03
-  作   者  : L60609
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_SendULIpv4Data, Test_RNIC_SendULIpv4Data_005)
 {
     netdev_tx_t                         enRst;
@@ -2264,16 +1957,7 @@ TEST_F(Test_RNIC_SendULIpv4Data, Test_RNIC_SendULIpv4Data_005)
 }
 #endif
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_SendULIpv4Data_006
-测试用例标题      : IPV4激活的情况下,收到由系统管理系统提供modem1的IPV4数据包,数据成功发给ADS
-预期结果          : 发包数加1
-修改历史   :
-1.日   期  : 2012-09-03
-  作   者  : L60609
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_SendULIpv4Data, Test_RNIC_SendULIpv4Data_006)
 {
     netdev_tx_t                         enRst;
@@ -2333,14 +2017,7 @@ TEST_F(Test_RNIC_SendULIpv4Data, Test_RNIC_SendULIpv4Data_006)
 }
 #endif
 
-/*****************************************************************************
-类名       : Test_RNIC_RcvAdsDlData
-功能描述   : RNIC_RcvAdsDlData UT工程类
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_RcvAdsDlData: public ::testing::Test
 {
 public:
@@ -2368,16 +2045,7 @@ public:
         memset(g_astRnicStats, 0, sizeof(g_astRnicStats));
     }
 };
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvAdsDlData_001
-测试用例标题      : 根据RABID获取不到网卡ID
-预期结果          : 返回RNIC_INVAL
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvAdsDlData, Test_RNIC_RcvAdsDlData_001)
 {
     VOS_UINT8                           ucRabid;
@@ -2414,16 +2082,7 @@ TEST_F(Test_RNIC_RcvAdsDlData, Test_RNIC_RcvAdsDlData_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvAdsDlData_002
-测试用例标题      : RNIC网卡的私有数据为空
-预期结果          : 返回RNIC_INVAL
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvAdsDlData, Test_RNIC_RcvAdsDlData_002)
 {
     VOS_UINT8                           ucRabid;
@@ -2460,16 +2119,7 @@ TEST_F(Test_RNIC_RcvAdsDlData, Test_RNIC_RcvAdsDlData_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvAdsDlData_003
-测试用例标题      : 网卡设备未打开
-预期结果          : 丢包数加1，返回RNIC_OK
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvAdsDlData, Test_RNIC_RcvAdsDlData_003)
 {
     VOS_UINT8                           ucRabid;
@@ -2513,16 +2163,7 @@ TEST_F(Test_RNIC_RcvAdsDlData, Test_RNIC_RcvAdsDlData_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvAdsDlData_004
-测试用例标题      : skb数据长度超出有效值(不包含MAC头)
-预期结果          : 错包数加1，返回RNIC_OK
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvAdsDlData, Test_RNIC_RcvAdsDlData_004)
 {
     VOS_UINT8                           ucRabid;
@@ -2576,16 +2217,7 @@ TEST_F(Test_RNIC_RcvAdsDlData, Test_RNIC_RcvAdsDlData_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvAdsDlData_005
-测试用例标题      : ADS发来的IPV4数据包有效的情况下，发送给IPstack失败
-预期结果          : 返回RNIC_ERROR
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvAdsDlData, Test_RNIC_RcvAdsDlData_005)
 {
     VOS_UINT8                           ucRabid;
@@ -2642,16 +2274,7 @@ TEST_F(Test_RNIC_RcvAdsDlData, Test_RNIC_RcvAdsDlData_005)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvAdsDlData_006
-测试用例标题      : ADS发来的IPV6数据包有效的情况下，发送给IPstack成功
-预期结果          : 流量统计信息增加，返回RNIC_OK
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvAdsDlData, Test_RNIC_RcvAdsDlData_006)
 {
     VOS_UINT8                           ucRabid;
@@ -2710,16 +2333,7 @@ TEST_F(Test_RNIC_RcvAdsDlData, Test_RNIC_RcvAdsDlData_006)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvAdsDlData_007
-测试用例标题      : ADS发来的IPV6数据包类型与承载支持类型不一致
-预期结果          : 下行err数据包加1，返回RNIC_ERROR
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvAdsDlData, Test_RNIC_RcvAdsDlData_007)
 {
     VOS_UINT8                           ucRabid;
@@ -2771,16 +2385,7 @@ TEST_F(Test_RNIC_RcvAdsDlData, Test_RNIC_RcvAdsDlData_007)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvAdsDlData_008
-测试用例标题      : ADS发来的IPV4数据包有效的情况下，发送给IPstack失败
-预期结果          : 返回RNIC_ERROR
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvAdsDlData, Test_RNIC_RcvAdsDlData_008)
 {
     VOS_UINT8                           ucRabid;
@@ -2837,14 +2442,7 @@ TEST_F(Test_RNIC_RcvAdsDlData, Test_RNIC_RcvAdsDlData_008)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名       : Test_RNIC_SetMacAddress
-功能描述   : RNIC_SetMacAddress UT工程类
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_SetMacAddress: public ::testing::Test
 {
 public:
@@ -2859,16 +2457,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_SetMacAddress_001
-测试用例标题      : RNIC网卡网卡指针为空
-预期结果          : 返回RNIC_ERROR
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_SetMacAddress, Test_RNIC_SetMacAddress_001)
 {
     VOS_INT                             lRst;
@@ -2902,16 +2491,7 @@ TEST_F(Test_RNIC_SetMacAddress, Test_RNIC_SetMacAddress_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_SetMacAddress_002
-测试用例标题      : 设置的MAC地址无效
-预期结果          : 返回RNIC_ADDR_INVALID
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_SetMacAddress, Test_RNIC_SetMacAddress_002)
 {
     VOS_INT                             lRst;
@@ -2946,16 +2526,7 @@ TEST_F(Test_RNIC_SetMacAddress, Test_RNIC_SetMacAddress_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_SetMacAddress_003
-测试用例标题      : 网卡指针的dev_addr为空
-预期结果          : 返回RNIC_ERROR
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_SetMacAddress, Test_RNIC_SetMacAddress_003)
 {
     VOS_INT                             lRst;
@@ -2992,16 +2563,7 @@ TEST_F(Test_RNIC_SetMacAddress, Test_RNIC_SetMacAddress_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_SetMacAddress_004
-测试用例标题      : 设置MAC地址成功
-预期结果          : 返回RNIC_OK
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_SetMacAddress, Test_RNIC_SetMacAddress_004)
 {
     VOS_INT                             lRst;
@@ -3040,14 +2602,7 @@ TEST_F(Test_RNIC_SetMacAddress, Test_RNIC_SetMacAddress_004)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名       : Test_RNIC_ChangeMtu
-功能描述   : RNIC_ChangeMtu UT工程类
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_ChangeMtu: public ::testing::Test
 {
 public:
@@ -3062,16 +2617,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_ChangeMtu_001
-测试用例标题      : RNIC网卡网卡指针为空
-预期结果          : 返回RNIC_ERROR
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_ChangeMtu, Test_RNIC_ChangeMtu_001)
 {
     VOS_INT                             lRst;
@@ -3102,16 +2648,7 @@ TEST_F(Test_RNIC_ChangeMtu, Test_RNIC_ChangeMtu_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_ChangeMtu_002
-测试用例标题      : 设置的的MTU不在有效范围内
-预期结果          : 返回RNIC_OUT_RANGE
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_ChangeMtu, Test_RNIC_ChangeMtu_002)
 {
     VOS_INT                             lRst;
@@ -3142,16 +2679,7 @@ TEST_F(Test_RNIC_ChangeMtu, Test_RNIC_ChangeMtu_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_ChangeMtu_003
-测试用例标题      : 设置的MTU值成功
-预期结果          : 返回RNIC_OK
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_ChangeMtu, Test_RNIC_ChangeMtu_003)
 {
     VOS_INT                             lRst;
@@ -3186,14 +2714,7 @@ TEST_F(Test_RNIC_ChangeMtu, Test_RNIC_ChangeMtu_003)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名       : Test_RNIC_ProcTxTimeout
-功能描述   : RNIC_ProcTxTimeout UT工程类
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_ProcTxTimeout: public ::testing::Test
 {
 public:
@@ -3208,16 +2729,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_ProcTxTimeout_001
-测试用例标题      : RNIC网卡网卡指针为空
-预期结果          : 打印错误信息
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_ProcTxTimeout, Test_RNIC_ProcTxTimeout_001)
 {
     struct net_device                  *pstNetDev = VOS_NULL_PTR;
@@ -3244,16 +2756,7 @@ TEST_F(Test_RNIC_ProcTxTimeout, Test_RNIC_ProcTxTimeout_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_ProcTxTimeout_002
-测试用例标题      : 网卡指针不为空
-预期结果          : 打印正常信息
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_ProcTxTimeout, Test_RNIC_ProcTxTimeout_002)
 {
     struct net_device                   stNetDev ;
@@ -3280,14 +2783,7 @@ TEST_F(Test_RNIC_ProcTxTimeout, Test_RNIC_ProcTxTimeout_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名       : Test_RNIC_Ioctrl
-功能描述   : RNIC_Ioctrl UT工程类
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_Ioctrl: public ::testing::Test
 {
 public:
@@ -3302,16 +2798,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_Ioctrl_001
-测试用例标题      : 不做处理
-预期结果          : 返回RNIC_NOTSUPP
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_Ioctrl, Test_RNIC_Ioctrl_001)
 {
     struct net_device                   stNetDev;
@@ -3338,14 +2825,7 @@ TEST_F(Test_RNIC_Ioctrl, Test_RNIC_Ioctrl_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名       : Test_RNIC_DeinitNetCard
-功能描述   : RNIC_DeinitNetCard UT工程类
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_DeinitNetCard: public ::testing::Test
 {
 public:
@@ -3359,16 +2839,7 @@ public:
         RNIC_SetSpecNetCardPrivate(VOS_NULL_PTR, 0);
     }
 };
-/*******************************************************************
-测试用例编号      : Test_RNIC_DeinitNetCard_001
-测试用例标题      : RNIC网卡指针为空
-预期结果          : 不需要释放网卡设备指针
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_DeinitNetCard, Test_RNIC_DeinitNetCard_001)
 {
     struct net_device                  *pstNetDev = VOS_NULL_PTR;
@@ -3405,16 +2876,7 @@ TEST_F(Test_RNIC_DeinitNetCard, Test_RNIC_DeinitNetCard_001)
     /* 检查调用时, 需要在用例结束位置加上这句 */
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号      : Test_RNIC_DeinitNetCard_002
-测试用例标题      : 根据设备获取不到网卡ID
-预期结果          : 不需要释放网卡设备指针
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_DeinitNetCard, Test_RNIC_DeinitNetCard_002)
 {
     struct net_device                   stNetDev;
@@ -3458,16 +2920,7 @@ TEST_F(Test_RNIC_DeinitNetCard, Test_RNIC_DeinitNetCard_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_DeinitNetCard_003
-测试用例标题      : RNIC网卡去初始化成功
-预期结果          : 网卡设备指针为空
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_DeinitNetCard, Test_RNIC_DeinitNetCard_003)
 {
     struct net_device                   stNetDev;
@@ -3514,14 +2967,7 @@ TEST_F(Test_RNIC_DeinitNetCard, Test_RNIC_DeinitNetCard_003)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名       : Test_RNIC_GetNetCardStats
-功能描述   : RNIC_GetNetCardStats UT工程类
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_GetNetCardStats: public ::testing::Test
 {
 public:
@@ -3536,16 +2982,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_GetNetCardStats_001
-测试用例标题      : RNIC网卡指针为空
-预期结果          : 返回VOS_NULL_PTR
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_GetNetCardStats, Test_RNIC_GetNetCardStats_001)
 {
     struct net_device_stats            *pstStats;
@@ -3565,16 +3002,7 @@ TEST_F(Test_RNIC_GetNetCardStats, Test_RNIC_GetNetCardStats_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_GetNetCardStats_002
-测试用例标题      : RNIC网卡私有数据为空
-预期结果          : 返回VOS_NULL_PTR
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_GetNetCardStats, Test_RNIC_GetNetCardStats_002)
 {
     struct net_device_stats            *pstStats;
@@ -3597,16 +3025,7 @@ TEST_F(Test_RNIC_GetNetCardStats, Test_RNIC_GetNetCardStats_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_GetNetCardStats_003
-测试用例标题      : 获取网卡数据信息成功
-预期结果          : 返回获取到得数据
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_GetNetCardStats, Test_RNIC_GetNetCardStats_003)
 {
     struct net_device_stats            *pstStats;
@@ -3635,14 +3054,7 @@ TEST_F(Test_RNIC_GetNetCardStats, Test_RNIC_GetNetCardStats_003)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名       : Test_RNIC_InitNetCard
-功能描述   : RNIC_InitNetCard UT工程类
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_InitNetCard: public ::testing::Test
 {
 public:
@@ -3667,16 +3079,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_InitNetCard_001
-测试用例标题      : RNIC网卡指针为空
-预期结果          : 返回RNIC_NOMEM
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_InitNetCard, Test_RNIC_InitNetCard_001)
 {
     VOS_INT                             lRst;
@@ -3711,16 +3114,7 @@ TEST_F(Test_RNIC_InitNetCard, Test_RNIC_InitNetCard_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_InitNetCard_002
-测试用例标题      : RNIC网卡MAC地址指针为空
-预期结果          : 返回RNIC_NOMEM
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_InitNetCard, Test_RNIC_InitNetCard_002)
 {
     VOS_INT                             lRst;
@@ -3762,16 +3156,7 @@ TEST_F(Test_RNIC_InitNetCard, Test_RNIC_InitNetCard_002)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_InitNetCard_003
-测试用例标题      : RNIC网卡注册失败
-预期结果          : 返回RNIC_STATE
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_InitNetCard, Test_RNIC_InitNetCard_003)
 {
     VOS_INT                             lRst;
@@ -3819,16 +3204,7 @@ TEST_F(Test_RNIC_InitNetCard, Test_RNIC_InitNetCard_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_InitNetCard_004
-测试用例标题      : RNIC虚拟网卡初始化成功
-预期结果          : 返回RNIC_OK
-修改历史   :
-1.日   期  : 2011-12-10
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_InitNetCard, Test_RNIC_InitNetCard_004)
 {
     VOS_INT                             lRst;
@@ -3943,15 +3319,7 @@ TEST_F(Test_RNIC_InitNetCard, Test_RNIC_InitNetCard_004)
     GlobalMockObject::verify();
 }
 
-/* Added by m00217266 for L-C互操作项目, 2014-2-7, begin */
-/*****************************************************************************
-类名       : Test_RNIC_ConfigRmnetStatus
-功能描述   : RNIC_ConfigRmnetStatus UT工程类
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_ConfigRmnetStatus: public ::testing::Test
 {
 public:
@@ -3968,16 +3336,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_ConfigRmnetStatus_001
-测试用例标题      : 网卡接入技术能力无效
-预期结果          : 直接返回error
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_ConfigRmnetStatus, Test_RNIC_ConfigRmnetStatus_001)
 {
     /* 参数初始化 */
@@ -4002,16 +3361,7 @@ TEST_F(Test_RNIC_ConfigRmnetStatus, Test_RNIC_ConfigRmnetStatus_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_ConfigRmnetStatus_002
-测试用例标题      : RAB ID无效
-预期结果          : 直接返回error
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_ConfigRmnetStatus, Test_RNIC_ConfigRmnetStatus_002)
 {
     /* 参数初始化 */
@@ -4037,16 +3387,7 @@ TEST_F(Test_RNIC_ConfigRmnetStatus, Test_RNIC_ConfigRmnetStatus_002)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_ConfigRmnetStatus_003
-测试用例标题      : PDN ID类型无效
-预期结果          : 直接返回error
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_ConfigRmnetStatus, Test_RNIC_ConfigRmnetStatus_003)
 {
     /* 参数初始化 */
@@ -4072,16 +3413,7 @@ TEST_F(Test_RNIC_ConfigRmnetStatus, Test_RNIC_ConfigRmnetStatus_003)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_ConfigRmnetStatus_004
-测试用例标题      : 网卡操作类型错误异常
-预期结果          : 直接返回error
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_ConfigRmnetStatus, Test_RNIC_ConfigRmnetStatus_004)
 {
     /* 参数初始化 */
@@ -4107,16 +3439,7 @@ TEST_F(Test_RNIC_ConfigRmnetStatus, Test_RNIC_ConfigRmnetStatus_004)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_ConfigRmnetStatus_005
-测试用例标题      : IP类型错误异常
-预期结果          : 直接返回error
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_ConfigRmnetStatus, Test_RNIC_ConfigRmnetStatus_005)
 {
     /* 参数初始化 */
@@ -4142,16 +3465,7 @@ TEST_F(Test_RNIC_ConfigRmnetStatus, Test_RNIC_ConfigRmnetStatus_005)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_ConfigRmnetStatus_006
-测试用例标题      : modem id 错误
-预期结果          : 直接返回error
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_ConfigRmnetStatus, Test_RNIC_ConfigRmnetStatus_006)
 {
     /* 参数初始化 */
@@ -4177,16 +3491,7 @@ TEST_F(Test_RNIC_ConfigRmnetStatus, Test_RNIC_ConfigRmnetStatus_006)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_ConfigRmnetStatus_007
-测试用例标题      : 网卡id错误
-预期结果          : 直接返回error
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_ConfigRmnetStatus, Test_RNIC_ConfigRmnetStatus_007)
 {
     /* 参数初始化 */
@@ -4212,16 +3517,7 @@ TEST_F(Test_RNIC_ConfigRmnetStatus, Test_RNIC_ConfigRmnetStatus_007)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_ConfigRmnetStatus_008
-测试用例标题      : 发送内部消息失败，内存申请失败
-预期结果          : 直接返回error
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_ConfigRmnetStatus, Test_RNIC_ConfigRmnetStatus_008)
 {
     /* 参数初始化 */
@@ -4261,16 +3557,7 @@ TEST_F(Test_RNIC_ConfigRmnetStatus, Test_RNIC_ConfigRmnetStatus_008)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_ConfigRmnetStatus_009
-测试用例标题      : 发送内部消息失败，消息发送失败
-预期结果          : 直接返回error
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_ConfigRmnetStatus, Test_RNIC_ConfigRmnetStatus_009)
 {
     /* 参数初始化 */
@@ -4314,16 +3601,7 @@ TEST_F(Test_RNIC_ConfigRmnetStatus, Test_RNIC_ConfigRmnetStatus_009)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_ConfigRmnetStatus_010
-测试用例标题      : 发送内部消息失败，内存申请失败
-预期结果          : 直接返回error
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_ConfigRmnetStatus, Test_RNIC_ConfigRmnetStatus_010)
 {
     /* 参数初始化 */
@@ -4363,16 +3641,7 @@ TEST_F(Test_RNIC_ConfigRmnetStatus, Test_RNIC_ConfigRmnetStatus_010)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_ConfigRmnetStatus_011
-测试用例标题      : 发送内部消息失败，消息发送失败
-预期结果          : 直接返回error
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_ConfigRmnetStatus, Test_RNIC_ConfigRmnetStatus_011)
 {
     /* 参数初始化 */
@@ -4418,16 +3687,7 @@ TEST_F(Test_RNIC_ConfigRmnetStatus, Test_RNIC_ConfigRmnetStatus_011)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_ConfigRmnetStatus_012
-测试用例标题      : 发送内部消息成功
-预期结果          : 直接返回ok
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_ConfigRmnetStatus, Test_RNIC_ConfigRmnetStatus_012)
 {
     /* 参数初始化 */
@@ -4454,14 +3714,7 @@ TEST_F(Test_RNIC_ConfigRmnetStatus, Test_RNIC_ConfigRmnetStatus_012)
 }
 
 #if (FEATURE_ON == FEATURE_CL_INTERWORK)
-/*****************************************************************************
-类名       : Test_RNIC_RcvSdioDlData
-功能描述   : RNIC_RcvSdioDlData UT工程类
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_RcvSdioDlData: public ::testing::Test
 {
 public:
@@ -4490,16 +3743,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvSdioDlData_001
-测试用例标题      : 根据PDNid获取不到网卡ID
-预期结果          : 返回RNIC_INVAL
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvSdioDlData, Test_RNIC_RcvSdioDlData_001)
 {
     VOS_UINT32                          aulIpHeader[5] = {0};
@@ -4527,16 +3771,7 @@ TEST_F(Test_RNIC_RcvSdioDlData, Test_RNIC_RcvSdioDlData_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvSdioDlData_002
-测试用例标题      : RNIC的私有数据为空
-预期结果          : 返回RNIC_INVAL
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvSdioDlData, Test_RNIC_RcvSdioDlData_002)
 {
     VOS_UINT32                          aulIpHeader[5] = {0};
@@ -4569,16 +3804,7 @@ TEST_F(Test_RNIC_RcvSdioDlData, Test_RNIC_RcvSdioDlData_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_RcvSdioDlData_003
-测试用例标题      : 网卡未打开
-预期结果          : 下行丢包统计加1，释放内存，返回RNIC_OK
-修改历史   :
-1.日   期  : 2014-02-07
-  作   者  : m00217266
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_RNIC_RcvSdioDlData, Test_RNIC_RcvSdioDlData_003)
 {
     VOS_UINT32                          aulIpHeader[5] = {0};
@@ -4611,6 +3837,5 @@ TEST_F(Test_RNIC_RcvSdioDlData, Test_RNIC_RcvSdioDlData_003)
 
 }
 #endif
-/* Added by m00217266 for L-C互操作项目, 2014-2-7, end */
 
 #endif

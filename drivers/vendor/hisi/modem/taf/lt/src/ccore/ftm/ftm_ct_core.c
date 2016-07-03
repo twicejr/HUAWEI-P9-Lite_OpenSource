@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 1998-2010, 华为技术有限公司
-
-*******************************************************************************
-  文 件 名   : ftm_ct_core.c
-  版 本 号   : V1.0
-  作    者   : 陈文峰/00149739
-  生成日期   : 2010-05-12
-  功能描述   : TODO: ...
-
-  函数列表   : TODO: ...
-  修改历史   :
-  1.日    期 : 2010-05-12
-    作    者 : 陈文峰/00149739
-    修改内容 : 创建文件
-
-******************************************************************************/
 
 /******************************************************************************
  PROJECT   :
@@ -167,7 +150,6 @@ SYM_TMODE_ENUM* ftm_GetTmodeMainInfo(VOS_VOID)
     return &(g_stFtmMainInfo.symMode);
 }
 
-/*快速校准 c00173035  start in 2010-12-29*/
 
 FTM_CT_F_MANAGE_INFO_STRU* ftm_GetFastCTMainInfo(VOS_VOID)
 {
@@ -641,22 +623,7 @@ VOS_UINT32 ftm_TaskMsg(OS_MSG_STRU * pMsg)
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : FTM_MsgConvert
- 功能描述  : 消息格式转换接口(由于AT移到A核，消息不能传输指针，适配原有接口)
- 输入参数  : MsgBlock* pMsg
-             OS_MSG_STRU* pstFtmMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年9月28日
-    作    者   : 刘海君/wx26324
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 FTM_MsgConvert(MsgBlock* pMsg, OS_MSG_STRU* pstFtmMsg)
 {
 	/*lint -save -e740*/
@@ -679,25 +646,7 @@ VOS_UINT32 FTM_MsgConvert(MsgBlock* pMsg, OS_MSG_STRU* pstFtmMsg)
     return ERR_FTM_SUCCESS;
 }
 
-/*****************************************************************************
- 函 数 名  : ftm_SendDataMsg
- 功能描述  : FTM给AT发送消息接口(由于AT移到A核，消息不能传输指针，适配原有接口)
- 输入参数  : VOS_UINT32 ulSenderId
-             VOS_UINT32 ulRecverId
-             VOS_UINT32 ulMsgId
-             VOS_UINT32 ulParam1
-             VOS_UINT32 ulParam2
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年9月28日
-    作    者   : 刘海君/wx26324
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 ftm_SendDataMsg(VOS_UINT32 ulSenderId, VOS_UINT32 ulRecverId, VOS_UINT32 ulMsgId, VOS_UINT32 ulParam1, VOS_UINT32 ulParam2)
 {
     VOS_UINT32 ret = ERR_FTM_UNKNOWN;

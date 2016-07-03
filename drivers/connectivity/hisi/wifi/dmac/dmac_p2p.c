@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : dmac_p2p.c
-  版 本 号   : 初稿
-  作    者   : duankaiyong
-  生成日期   : 2014年11月26日
-  最近修改   :
-  功能描述   : P2P 相关特性处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年11月26日
-    作    者   : duankaiyong 00194999
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -67,21 +50,7 @@ extern "C" {
 
 
 /* 检查是否只包含11B 速率，11b速率集:0x82 = 1Mbps, 0x84 = 2Mbps, 0x8B = 5.5Mbps, 0x96 = 11Mbps */
-/*****************************************************************************
- 函 数 名  : dmac_p2p_is_11b_rate
- 功能描述  : 检查是否为11b 速率
- 输入参数  : oal_uint8 uc_rate
- 输出参数  : 无
- 返 回 值  : oal_bool_enum_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月27日
-    作    者   : duankaiyong 00194999
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_bool_enum_uint8 dmac_is_11b_rate(oal_uint8 uc_rate)
 {
     uc_rate &= (oal_uint8)(~BIT7);
@@ -98,21 +67,7 @@ oal_bool_enum_uint8 dmac_is_11b_rate(oal_uint8 uc_rate)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : mac_is_p2p_action_frame
- 功能描述  : 过滤P2P action帧
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月7日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_bool_enum_uint8 mac_is_p2p_action_frame(oal_uint8 *puc_data)
 {
     oal_bool_enum_uint8       ul_ret;
@@ -158,21 +113,7 @@ oal_bool_enum_uint8 mac_is_p2p_action_frame(oal_uint8 *puc_data)
 
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_is_p2p_pd_disc_req_frame
- 功能描述  : 过滤P2P action帧
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月23日
-    作    者   : l00324381
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_bool_enum_uint8 dmac_is_p2p_pd_disc_req_frame(OAL_CONST oal_uint8 *puc_data)
 {
     if((MAC_ACTION_CATEGORY_PUBLIC == puc_data[MAC_ACTION_OFFSET_CATEGORY])&&
@@ -187,23 +128,7 @@ oal_bool_enum_uint8 dmac_is_p2p_pd_disc_req_frame(OAL_CONST oal_uint8 *puc_data)
 
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_p2p_is_only_11b_rates
- 功能描述  : 检查是否只支持11b 速率
- 输入参数  : oal_uint8 *puc_frame_body
-             oal_uint16 us_frame_len
- 输出参数  : 无
- 返 回 值  : oal_uint32 OAL_TRUE  -  仅支持11B速率，
-                        OAL_FALSE -  不仅支持11B速率，而且支持11G速率
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月27日
-    作    者   : duankaiyong 00194999
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_bool_enum_uint8 dmac_p2p_is_only_11b_rates(oal_uint8 *puc_frame_body, oal_uint16 us_frame_len)
 {
     oal_uint8      *puc_ie;
@@ -239,21 +164,7 @@ oal_bool_enum_uint8 dmac_p2p_is_only_11b_rates(oal_uint8 *puc_frame_body, oal_ui
     return OAL_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_is_p2p_presence_req_frame
- 功能描述  : 是否是P2P presence reqest action帧
- 输入参数  : oal_uint8 *puc_data
- 输出参数  : 无
- 返 回 值  : OAL_TRUE 是P2P presence reqest action帧
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月23日
-    作    者   : x00305155
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_bool_enum_uint8 dmac_is_p2p_presence_req_frame(oal_uint8 *puc_data)
 {
     if((MAC_ACTION_CATEGORY_VENDOR == puc_data[MAC_ACTION_OFFSET_CATEGORY])&&
@@ -263,22 +174,7 @@ oal_bool_enum_uint8 dmac_is_p2p_presence_req_frame(oal_uint8 *puc_data)
         return OAL_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_p2p_listen_filter_frame
- 功能描述  : 检查收到的probe request是不是要
- 输入参数  : puc_frame_body:  probe req 帧体
 
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年11月27日
-    作    者   : duankaiyong 00194999
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_p2p_listen_filter_frame(dmac_vap_stru *pst_dmac_vap, oal_uint8 *puc_frame_body, oal_uint16 us_frame_len)
 {
     oal_uint8                   *puc_p2p_ie     = OAL_PTR_NULL;
@@ -306,21 +202,7 @@ OAL_STATIC oal_uint32  dmac_p2p_listen_filter_frame(dmac_vap_stru *pst_dmac_vap,
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_p2p_listen_filter_vap
- 功能描述  : 检查vap状态是否要处理probe request
- 输入参数  : pst_dmac_vap
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月24日
-    作    者   : xiaoyuren 00305155
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_p2p_listen_filter_vap(dmac_vap_stru *pst_dmac_vap)
 {
 
@@ -335,21 +217,7 @@ OAL_STATIC oal_uint32  dmac_p2p_listen_filter_vap(dmac_vap_stru *pst_dmac_vap)
     return OAL_FAIL;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_is_p2p_go_neg_req_frame
- 功能描述  : 是否是P2P GO negotiation request action帧
- 输入参数  : oal_uint8 *puc_data
- 输出参数  : 无
- 返 回 值  : OAL_TRUE 是P2P GO negotiation request action帧
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月22日
-    作    者   : x00305155
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_bool_enum_uint8 dmac_is_p2p_go_neg_req_frame(OAL_CONST oal_uint8* puc_data)
 {
     if((MAC_ACTION_CATEGORY_PUBLIC == puc_data[MAC_ACTION_OFFSET_CATEGORY])&&
@@ -364,23 +232,7 @@ oal_bool_enum_uint8 dmac_is_p2p_go_neg_req_frame(OAL_CONST oal_uint8* puc_data)
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_p2p_listen_rx_mgmt
- 功能描述  : P2P 设备接收到管理帧处理
- 输入参数  : dmac_vap_stru   *pst_dmac_vap
-             oal_netbuf_stru *pst_netbuf
- 输出参数  : 无
- 返 回 值  : oal_bool_enum_uint8    OAL_TRUE:继续上报HMAC 处理
-                                    OAL_FALSE:不用上报HMAC 处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月26日
-    作    者   : duankaiyong 00194999
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint8 dmac_p2p_listen_rx_mgmt(dmac_vap_stru   *pst_dmac_vap,
                                   oal_netbuf_stru *pst_netbuf)
 {
@@ -417,8 +269,6 @@ oal_uint8 dmac_p2p_listen_rx_mgmt(dmac_vap_stru   *pst_dmac_vap,
         }
         else
         {
-            /* begin:DTS2015041705894 接收到p2p GO negotiation request 重设监听定时器*/
-            /* begin:DTS2015071707751 接收到provision discovery request帧则延长listen时间，避免action发送未完成即切信道 */
             if(OAL_TRUE == dmac_is_p2p_go_neg_req_frame(puc_frame_body) || OAL_TRUE == dmac_is_p2p_pd_disc_req_frame(puc_frame_body))
             {
                 /* 延长监听时间，由于监听共用扫描接口，故延长扫描定时器 */
@@ -429,7 +279,6 @@ oal_uint8 dmac_p2p_listen_rx_mgmt(dmac_vap_stru   *pst_dmac_vap,
                                               (pst_mac_device->st_scan_params.us_scan_time), OAL_FALSE);
                 }
             }
-            /* end:DTS2015041705894 接收到p2p GO negotiation request 重设监听定时器*/
 
             /* 如果是ACTION 帧，则上报 */
             return OAL_TRUE;
@@ -453,21 +302,7 @@ oal_uint8 dmac_p2p_listen_rx_mgmt(dmac_vap_stru   *pst_dmac_vap,
     return OAL_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_set_p2p0_ssid_ie
- 功能描述  : 设置p2p0的BSSID IE
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月6日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  mac_set_p2p0_ssid_ie(oal_void *pst_vap, oal_uint8 *puc_buffer, oal_uint8 *puc_ie_len, oal_uint16 us_frm_type)
 {
     oal_uint8     uc_ssid_len;
@@ -513,22 +348,7 @@ oal_void  mac_set_p2p0_ssid_ie(oal_void *pst_vap, oal_uint8 *puc_buffer, oal_uin
 
 //oal_module_symbol();
 
-/*****************************************************************************
- 函 数 名  : mac_set_p2p_noa
- 功能描述  : 填充p2p noa信息
- 输入参数  : pst_vap: 指向vap
-             puc_buffer: 指向buffer
- 输出参数  : puc_ie_len: element的长度
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月22日
-    作    者   : x00305155
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void mac_set_p2p_noa(oal_void *pst_vap, oal_uint8 *puc_buffer, oal_uint8 *puc_ie_len)
 {
     oal_uint8       uc_index;
@@ -616,22 +436,7 @@ oal_void mac_set_p2p_noa(oal_void *pst_vap, oal_uint8 *puc_buffer, oal_uint8 *pu
     *puc_ie_len = MAC_IE_HDR_LEN + P2P_OUI_LEN+ P2P_ATTR_HDR_LEN + (P2P_NOA_DESC_NUM*13) + 2;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_set_p2p_none_noa
- 功能描述  : 填充p2p noa信息不包含NoA description
- 输入参数  : pst_vap: 指向vap
-             puc_buffer: 指向buffer
- 输出参数  : puc_ie_len: element的长度
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月22日
-    作    者   : x00305155
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void mac_set_p2p_none_noa(oal_void *pst_vap, oal_uint8 *puc_buffer, oal_uint8 *puc_ie_len)
 {
     oal_uint8       uc_index;
@@ -678,22 +483,7 @@ oal_void mac_set_p2p_none_noa(oal_void *pst_vap, oal_uint8 *puc_buffer, oal_uint
 }
 
 
-/*****************************************************************************
- 函 数 名  : mac_set_p2p_status
- 功能描述  : 填充p2p status信息
- 输入参数  : pst_vap: 指向vap
-             puc_buffer: 指向buffer
- 输出参数  : puc_ie_len: element的长度
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月22日
-    作    者   : x00305155
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void mac_set_p2p_status(oal_uint8 *puc_buffer, oal_uint8 *puc_ie_len, P2P_STATUS_CODE_T status)
 {
     oal_uint8       uc_index = 0;
@@ -734,21 +524,7 @@ oal_void mac_set_p2p_status(oal_uint8 *puc_buffer, oal_uint8 *puc_ie_len, P2P_ST
     *puc_ie_len = uc_index;
 }
 #if 0
-/*****************************************************************************
- 函 数 名  : mac_set_p2p_ie_hdr
- 功能描述  : 填充p2p ie header信息
- 输入参数  : puc_buffer: 指向buffer
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月16日
-    作    者   : x00305155
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void mac_set_p2p_ie_hdr(oal_uint8 *puc_buffer)
 {
    puc_buffer[0] = MAC_EID_P2P;
@@ -759,22 +535,7 @@ oal_void mac_set_p2p_ie_hdr(oal_uint8 *puc_buffer)
    puc_buffer[5] = WFA_P2P_v1_0;
 }
 #endif
-/*****************************************************************************
- 函 数 名  : dmac_process_p2p_presence_req
- 功能描述  : 收到presence request处理
- 输入参数  : pst_dmac_vap: dmac vap
-             pst_netbuf: 接收到的net buffer
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月22日
-    作    者   : x305155
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_process_p2p_presence_req(dmac_vap_stru *pst_dmac_vap, oal_netbuf_stru *pst_netbuf)
 {
     oal_netbuf_stru            *pst_mgmt_buf;
@@ -836,21 +597,7 @@ oal_uint32  dmac_process_p2p_presence_req(dmac_vap_stru *pst_dmac_vap, oal_netbu
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : damc_is_p2p_ie
- 功能描述  : 是否是P2P IE
- 输入参数  : oal_uint8 *puc_data
- 输出参数  : 无
- 返 回 值  : OAL_TRUE 是P2P IE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月28日
-    作    者   : x00305155
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_bool_enum_uint8 damc_is_p2p_ie(oal_uint8 *puc_data)
 {
     if((MAC_EID_P2P   == puc_data[0]) &&
@@ -863,23 +610,7 @@ oal_bool_enum_uint8 damc_is_p2p_ie(oal_uint8 *puc_data)
         return OAL_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_mgmt_encap_presence_response
- 功能描述  : 封装presence response帧
- 输入参数  : pst_dmac_vap: DMAC vap
-             puc_buffer  : probe response帧内存
-             puc_ra      : 接收地址
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月23日
-    作    者   : x00305155
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint16  dmac_mgmt_encap_p2p_presence_rsp(dmac_vap_stru *pst_dmac_vap, oal_netbuf_stru *pst_netbuf, oal_uint8 *puc_ra, oal_uint8 *puc_data)
 {
     oal_uint8        uc_ie_len;
@@ -982,23 +713,7 @@ oal_uint16  dmac_mgmt_encap_p2p_presence_rsp(dmac_vap_stru *pst_dmac_vap, oal_ne
     return (oal_uint16)(puc_payload_addr - puc_payload_addr_origin + MAC_80211_FRAME_LEN);
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_get_p2p_attr
- 功能描述  : 从beacon帧中查找P2P NoA attr
- 输入参数  : 1) beacon帧
-             2) 帧长度
-             3) 相对于帧头的偏移位置长度，从这里查找
- 输出参数  : 无
- 返 回 值  : 指向beacon帧中p2p NoA attr的位置
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月28日
-    作    者   : x00305155
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint8  *dmac_get_p2p_noa_attr(oal_uint8 *puc_frame_body, oal_uint16 us_rx_len, oal_uint16 uc_tag_param_offset, oal_uint16 *pus_attr_len)
 {
     oal_uint16  us_index         = 0;
@@ -1054,22 +769,7 @@ oal_uint8  *dmac_get_p2p_noa_attr(oal_uint8 *puc_frame_body, oal_uint16 us_rx_le
     return OAL_PTR_NULL;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_process_p2p_noa
- 功能描述  : beacon帧时，是否包含p2p noa参数
-             解析NoA节能参数
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : oal_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月27日
-    作    者   : x00305155
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_process_p2p_noa(dmac_vap_stru *pst_dmac_vap, oal_netbuf_stru *pst_netbuf)
 {
     dmac_rx_ctl_stru            *pst_rx_ctrl;
@@ -1218,22 +918,7 @@ oal_void dmac_process_p2p_noa(dmac_vap_stru *pst_dmac_vap, oal_netbuf_stru *pst_
     }
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_p2p_go_absence_period_start_sta_prot
- 功能描述  : This function checks if a WMM service period is in progress.
-             If it is, a Trigger frame is queued.
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : oal_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月21日
-    作    者   : xiaoyuren
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_p2p_go_absence_period_start_sta_prot(dmac_vap_stru * pst_dmac_vap)
 {
 #ifdef _PRE_FEATURE_WLAN_STA_UAPSD
@@ -1253,21 +938,7 @@ oal_void dmac_p2p_go_absence_period_start_sta_prot(dmac_vap_stru * pst_dmac_vap)
     }
 #endif
 }
-/*****************************************************************************
- 函 数 名  : dmac_p2p_noa_absent_start_event
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : oal_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月27日
-    作    者   : xiaoyuren
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 dmac_p2p_noa_absent_start_event(frw_event_mem_stru *pst_event_mem)
 {
     frw_event_stru             *pst_event;
@@ -1319,21 +990,7 @@ oal_uint32 dmac_p2p_noa_absent_start_event(frw_event_mem_stru *pst_event_mem)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_p2p_noa_absent_end_event
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : oal_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月27日
-    作    者   : xiaoyuren
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 dmac_p2p_noa_absent_end_event(frw_event_mem_stru *pst_event_mem)
 {
     frw_event_stru             *pst_event;
@@ -1388,22 +1045,7 @@ oal_uint32 dmac_p2p_noa_absent_end_event(frw_event_mem_stru *pst_event_mem)
 
     return OAL_SUCC;
 }
-/*****************************************************************************
- 函 数 名  : dmac_p2p_oppps_ctwindow_end_event
- 功能描述  : beacon帧时，是否包含p2p noa参数
-             解析NoA节能参数
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : oal_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月27日
-    作    者   : xiaoyuren
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 dmac_p2p_oppps_ctwindow_end_event(frw_event_mem_stru *pst_event_mem)
 {
     frw_event_stru             *pst_event;
@@ -1458,21 +1100,7 @@ oal_uint32 dmac_p2p_oppps_ctwindow_end_event(frw_event_mem_stru *pst_event_mem)
     }
     return OAL_SUCC;
 }
-/*****************************************************************************
- 函 数 名  : dmac_p2p_oppps_ctwindow_start_event
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : oal_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月27日
-    作    者   : xiaoyuren
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_p2p_oppps_ctwindow_start_event(dmac_vap_stru * pst_dmac_vap)
 {
 #ifdef _PRE_WLAN_FEATURE_STA_PM
@@ -1496,21 +1124,7 @@ oal_void dmac_p2p_oppps_ctwindow_start_event(dmac_vap_stru * pst_dmac_vap)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_p2p_reset_ps_status_for_dbac
- 功能描述  : dbac启动时,判断如果p2p设备被pause,恢复其状态
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : oal_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月14日
-    作    者   : sunxiaolin
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_p2p_reset_ps_status_for_dbac(
                                 mac_device_stru  *pst_device,
                                 mac_vap_stru     *pst_led_vap,
@@ -1554,21 +1168,7 @@ oal_void dmac_p2p_reset_ps_status_for_dbac(
     }
 }
 #ifdef _PRE_WLAN_FEATURE_STA_PM
-/*****************************************************************************
- 函 数 名  : dmac_p2p_resume_send_null_to_ap
- 功能描述  : P2P 恢复后发送null帧接口
- 输入参数  : dmac_vap_stru * pst_dmac_vap mac_sta_pm_handler_stru *pst_mac_sta_pm_handle
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月11日
-    作    者   : liuzhengqi
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_p2p_resume_send_null_to_ap(dmac_vap_stru *pst_dmac_vap,mac_sta_pm_handler_stru *pst_mac_sta_pm_handle)
 {
     oal_uint8       uc_power_mgmt = 0xff;
@@ -1614,22 +1214,7 @@ oal_void dmac_p2p_resume_send_null_to_ap(dmac_vap_stru *pst_dmac_vap,mac_sta_pm_
     }
 }
 #endif
-/*****************************************************************************
- 函 数 名  : dmac_p2p_handle_ps
- 功能描述  : 处理p2p节能状态
- 输入参数  : dmac_vap_stru * pst_dmac_vap
-             oal_uint8 en_pause: OAL_TRUE 暂停发送 OAL_FALSE 恢复发送
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月21日
-    作    者   : xiaoyuren
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_p2p_handle_ps(dmac_vap_stru * pst_dmac_vap, oal_bool_enum_uint8 en_pause)
 {
 

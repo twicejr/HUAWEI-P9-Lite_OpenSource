@@ -45,7 +45,6 @@ typedef struct  tagOAM1AGVLANTAG
 #endif
 }OAM1AG_VLANTAG_S;
 
-/* Added begin for 支持接收不带VLAN头的1AG报文2009-05-14 */
 /*OAM 1AG 不带VLAN的SNAP以太头*/
 typedef struct  tagOAM1AGNOVLANSNAPETHDR
 {
@@ -66,7 +65,6 @@ typedef struct tagOAM1AGNOVLANETHERHDR
     UCHAR   ucHdrSrcMacAddr[OAM_1AG_MACADDR_LEN];     /*源physical地址     */
     USHORT  usType;                                   /* 以太类型 */
 }OAM1AG_NOVLAN_ETHERHDR_S;
-/* Added end for 支持接收不带VLAN头的1AG报文2009-05-14 */
 
 /*OAM 1AG 带VLAN的SNAP以太头*/
 typedef struct  tagOAM1AGSNAPETHDR
@@ -202,9 +200,7 @@ typedef struct tagOAM_1AG_MEP
     USHORT usMepOutTimerCount;                      /*mep超时发送CCm计数值*/
     UCHAR  ucLevel;                                 /*MEP级别,同所在MD级别,方便判断*/
 
-    /* Edit by L00105073 at 2009-12-24 for 1agOverTrunkPort
-        在ifnet结构上增加一个字段if_ul1agMultiCount，用于是否需要下发多播组的计数，
-        增加if_ul1agMultiCount后，下面这个字段废弃不用 */
+    
     UCHAR  ucMultiFlag;                             /* 标志删除所有MEP时是否需要下发退出多播组命令 */
                                                     
     UCHAR  uc1agVersion;                            /* 该MEP使用的1AG版本号,0:Draft7版本;1:标准版本;2:Y1731版本 */
@@ -213,7 +209,6 @@ typedef struct tagOAM_1AG_MEP
     OAM_1AG_STAT_S stMepStat;                       /*MEP统计信息*/
     USHORT usLossDetectTimer;                       /*本端MEP的Loss检测时间*/                                                  
     UCHAR  ucPadding[2];                            /*padding*/
-    /* Add for V2R3C06, by z00171897/p00193127, at 2011-10-17. 修改原因: 支持Y1731使能/去使性能检测 */
     MEP_PM_INFO_S stPMCheckDLM;
     MEP_PM_INFO_S stPMCheckSLM;
     MEP_PM_INFO_S stPMCheckDDM; 
@@ -251,14 +246,11 @@ typedef struct tagOAM_1AG_RMEP
     UCHAR  ucRmepCheck;                             /*未收到CCM前是否向NP下发RMEP，已使NP可以进行连通性检查*/
     UCHAR  ucPadding[2];                            /*Padding*/
     ULONG  ulSequence;                              /*序列号*/
-    /* Add for V2R3C06, by z00171897/p00193127, at 2011-10-17. 修改原因: 支持Y1731使能/去使性能检测 */
     RMEP_PM_INFO_S  stPMCheckDLM;                       /*双端帧丢失检测使能标记*/
     RMEP_PM_INFO_S  stPMCheckSLM;                       /*单端帧丢失检测使能标记*/
     RMEP_PM_INFO_S  stPMCheckDDM;                       /*双向延时检测使能标记*/
 
-    /* Modified by likaikun213099, 支持基于RMEP的CCM统计功能, 2014/10/15   问题单号:DTS2014101504612  */
     OAM_1AG_RMEP_STAT_S stRMepStat;                              /* 收到的ccm报文统计 */
-    /*End of Modified by likaikun213099, 2014/10/15   问题单号:DTS2014101504612  */
 }OAM_1AG_RMEP_S;
 /*---------------------------------------------------------------------------------------
 ---------------------------------------CCM_Struct_Begin----------------------------------*/

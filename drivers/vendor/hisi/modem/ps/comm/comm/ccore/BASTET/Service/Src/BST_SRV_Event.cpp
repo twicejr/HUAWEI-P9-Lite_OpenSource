@@ -1,24 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : BST_SRV_Event.c
-  版 本 号   : 初稿
-  作    者   : d00173029
-  生成日期   : 2014年7月4日
-  最近修改   :
-  功能描述   : 服务程序事件处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年7月4日
-    作    者   : d00173029
-    修改内容   : 创建文件
-  2.日    期   : 2015年1月10日
-    作    者   : d00173029
-    修改内容   : 维护支持升级V2.0版本，加入APP-Task独立线程处理
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -58,19 +38,7 @@ extern "C" sys_mbox_t   mbox;
    6 函数实现
 ******************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : BST_SRV_InitInstance
- 功能描述  : 初始化系统主要部件实例
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年1月14日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_SRV_InitInstance( BST_VOID )
 {
     BST_SRV_CAsEvt::GetInstance();
@@ -80,20 +48,7 @@ BST_VOID BST_SRV_InitInstance( BST_VOID )
     BST_IP_CAsRcver::GetInstance();
 }
 
-/*****************************************************************************
- 函 数 名  : BST_SRV_ApiSendAcomRxEvent
- 功能描述  : 接收DSPP数据
- 输入参数  : ulLength:数据长度
-             pucData:DSPP数据
- 输出参数  : 无
- 返 回 值  : BST_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年01月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_UINT32 BST_SRV_ApiSendAcomRxEvent( BST_UINT32 ulLength, BST_UINT8 *pucData )
 {
     BST_ACOM_EVT_STRU      *pstAcpuEvent;
@@ -142,22 +97,7 @@ BST_UINT32 BST_SRV_ApiSendAcomRxEvent( BST_UINT32 ulLength, BST_UINT8 *pucData )
     }
 }
 
-/*****************************************************************************
- 函 数 名  : BST_SRV_ApiSendPTaskEvent
- 功能描述  : 处理PTASK超时事件
- 输入参数  :
-             BST_UINT16  enComdId   事件命令ID
-             BST_VOID   *pvTask     任务类对象指针
-             BST_UINT16  usContnt   事件具体内容
- 输出参数  : 无
- 返 回 值  : BST_UINT32 实际发送事件字节数
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年1月14日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_UINT32 BST_SRV_ApiSendPTaskEvent(
     BST_VOID               *pvTask,
     BST_UINT16              enComdId,
@@ -218,23 +158,7 @@ BST_UINT32 BST_SRV_ApiSendPTaskEvent(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : BST_SRV_ApiSendAsEvent
- 功能描述  : 发送AS事件至相应APP对应线程
- 输入参数  : 
-             pcInAsRcver:事件接收线程消息句柄
-             enAsEvent:事件ID
-             ulLength:参数长度
-             pvData:参数内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年1月14日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_UINT32 BST_SRV_ApiSendAsEvent(
     BST_VOID               *pcInAsRcver,
     BST_AS_EVT_ENUM_UINT32  enAsEvent,
@@ -290,23 +214,7 @@ BST_UINT32 BST_SRV_ApiSendAsEvent(
         return 0;
     }
 }
-/*****************************************************************************
- 函 数 名  : BST_SRV_ApiSendLwipAsEvent
- 功能描述  : 发送As事件到TCP/IP线程
- 输入参数  : 
-             pcInAsRcver:事件接收线程消息句柄
-             enAsEvent:事件ID
-             ulLength:参数长度
-             pvData:参数内容
- 输出参数  : 无
- 返 回 值  : BST_UINT32 实际事件发送字节数
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年5月14日
-      作    者   : z00220931
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_UINT32 BST_SRV_ApiSendLwipAsEvent(
     BST_VOID               *pcInAsRcver,
     BST_AS_EVT_ENUM_UINT32  enAsEvent,
@@ -369,19 +277,7 @@ BST_UINT32 BST_SRV_ApiSendLwipAsEvent(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : BST_SRV_ApiSendLwipTimerEvent
- 功能描述  : 发送LWIP定时超时事件至TCP/IP线程
- 输入参数  : BST_OS_TIMERID_T ulTimerId 定时器ID
- 输出参数  : 无
- 返 回 值  : BST_UINT32 实际事件发送字节数
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年1月14日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_UINT32 BST_SRV_ApiSendLwipTimerEvent( BST_OS_TIMERID_T ulTimerId )
 {
     struct tcpip_msg           *pstLwipMsg;
@@ -408,21 +304,7 @@ BST_UINT32 BST_SRV_ApiSendLwipTimerEvent( BST_OS_TIMERID_T ulTimerId )
     }
 }
 
-/*****************************************************************************
- 函 数 名  : BST_SRV_ApiSendExpiredEvent
- 功能描述  : 发送定时器超时消息
- 输入参数  : 
-             BST_OS_MBX_T       *pstRcvHandle 对应接收线程邮箱句柄
-             BST_OS_TIMERID_T    ulTimerId定时器ID
- 输出参数  : 无
- 返 回 值  : BST_UINT32 实际事件发送字节数
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年1月14日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_UINT32 BST_SRV_ApiSendExpiredEvent(
     BST_VOID           *pstRcvHandle,
     BST_UINT32          ulTimerId )
@@ -470,21 +352,7 @@ BST_UINT32 BST_SRV_ApiSendExpiredEvent(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : BST_SRV_ApiSendTcpIpEvent
- 功能描述  : 发送TCP/IP事件
- 输入参数  : 
-             BST_OS_MBX_T       *pstRcvHandle   对应接收线程邮箱句柄
-             BST_IP_EVENT_STRU  *pstEvent       TCP/IP事件类型
- 输出参数  : 无
- 返 回 值  : BST_IP_ERR_T
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年1月14日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_UINT32 BST_SRV_ApiSendTcpIpEvent(
     BST_VOID           *pstRcver,
     BST_VOID           *pstEvent )
@@ -527,23 +395,7 @@ BST_UINT32 BST_SRV_ApiSendTcpIpEvent(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : BST_SRV_ApiSendDsppEvent
- 功能描述  : 接收DSPP处理命令
- 输入参数  : 
-             BST_UINT32             ulMsgId,            DSPP事件ID
-             BST_DSPP_HEAD_STRU    *const pstDsppHead,  解析DSPP头信息
-             BST_OS_MBX_T          *pstRcvHandle        对应接收线程邮箱句柄
 
- 输出参数  : 无
- 返 回 值  : BST_UINT32 实际事件发送字节数
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年1月14日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
 BST_UINT32 BST_SRV_ApiSendDsppEvent(
     BST_UINT32             ulMsgId,
     BST_UINT32             ulApVer,
@@ -607,19 +459,7 @@ BST_UINT32 BST_SRV_ApiSendDsppEvent(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : BST_SRV_EvtProcRxAcom
- 功能描述  : 处理AP数据接口（主线程处理）
- 输入参数  : BST_EVT_HEAD_STRU *pvInData    事件内容信息结构
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年1月14日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_SRV_EvtProcRxAcom( BST_EVT_HEAD_STRU *pvInData )
 {
     BST_DSPP_CTrsDlVa      *pcTrslayer;
@@ -636,19 +476,7 @@ BST_VOID BST_SRV_EvtProcRxAcom( BST_EVT_HEAD_STRU *pvInData )
     pstEvtData->ulLength    = 0;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_SRV_EvtProcRcvAs
- 功能描述  : 处理AS事件（主线程/应用均有处理）
- 输入参数  : BST_EVT_HEAD_STRU *pvInData    事件内容信息结构
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年1月14日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_SRV_EvtProcRcvAs( BST_EVT_HEAD_STRU *pvInData )
 {
     BST_AS_EVT_STRU        *pstEvtData;
@@ -663,19 +491,7 @@ BST_VOID BST_SRV_EvtProcRcvAs( BST_EVT_HEAD_STRU *pvInData )
 
 }
 
-/*****************************************************************************
- 函 数 名  : BST_SRV_EvtProcExpired
- 功能描述  : 处理定时器超时事件（主线程/应用均有处理，除IP线程）
- 输入参数  : BST_EVT_HEAD_STRU *pvInData    事件内容信息结构
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年1月14日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_SRV_EvtProcExpired( BST_EVT_HEAD_STRU *pvInData )
 {
     BST_OS_TIMER_STRU                  *pstTimer;
@@ -712,19 +528,7 @@ BST_VOID BST_SRV_EvtProcExpired( BST_EVT_HEAD_STRU *pvInData )
     }
 }
 
-/*****************************************************************************
- 函 数 名  : BST_SRV_EvtProcLwipExpired
- 功能描述  : 处理定时器超时事件（IP线程）
- 输入参数  : tcpip_msg *pstLwipMs       LWIP格式事件信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年1月14日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_SRV_EvtProcLwipExpired( BST_VOID *pstLwipMsg )
 {
     BST_OS_TIMER_STRU                  *pstTimer;
@@ -759,19 +563,7 @@ BST_VOID BST_SRV_EvtProcLwipExpired( BST_VOID *pstLwipMsg )
     }
     BST_OS_FREE( pstLwipMsg );
 }
-/*****************************************************************************
- 函 数 名  : BST_SRV_EvtProcLwipAsEvent
- 功能描述  : 处理定时器超时事件（IP线程）
- 输入参数  : tcpip_msg *pstLwipMs       LWIP格式事件信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年5月14日
-      作    者   : z00220931
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_SRV_EvtProcLwipAsEvent( BST_VOID *pstLwipMsg )
 {
     BST_AS_EVT_STRU         stEvtData;
@@ -792,19 +584,7 @@ BST_VOID BST_SRV_EvtProcLwipAsEvent( BST_VOID *pstLwipMsg )
     BST_OS_FREE( pstLwipMsg );
 }
 
-/*****************************************************************************
- 函 数 名  : BST_SRV_EvtProcStoT
- 功能描述  : 处理Schd到Task的消息
- 输入参数  : BST_EVT_HEAD_STRU *pvInData    事件内容信息结构
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年1月14日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_SRV_EvtProcStoT( BST_EVT_HEAD_STRU *pstEvent )
 {
     BST_PTASK_EVT_STRU         *pstPtskEvent;
@@ -863,19 +643,7 @@ BST_VOID BST_SRV_EvtProcStoT( BST_EVT_HEAD_STRU *pstEvent )
     pstPtskEvent->pucData       = BST_NULL_PTR;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_SRV_EvtProcTtoS
- 功能描述  : 处理Task到Schd的消息
- 输入参数  : BST_EVT_HEAD_STRU *pvInData    事件内容信息结构
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年1月14日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_SRV_EvtProcTtoS( BST_EVT_HEAD_STRU *pstEvent )
 {
     BST_CTaskSchdler           *pcSchdler;
@@ -941,19 +709,7 @@ BST_VOID BST_SRV_EvtProcTtoS( BST_EVT_HEAD_STRU *pstEvent )
     pstPtskEvent->pucData       = BST_NULL_PTR;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_SRV_EvtProcDsppCmd
- 功能描述  : 线程接收处理DSPP相关事务
- 输入参数  : BST_EVT_HEAD_STRU *pvInData    事件内容信息结构
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年1月14日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_SRV_EvtProcDsppCmd( BST_EVT_HEAD_STRU *pstEvent )
 {
     BST_DSPP_CAppDlVa          *pcApalayer;
@@ -999,19 +755,7 @@ BST_VOID BST_SRV_EvtProcDsppCmd( BST_EVT_HEAD_STRU *pstEvent )
    }
 }
 
-/*****************************************************************************
- 函 数 名  : BST_SRV_EvtProcTCPIP
- 功能描述  : 处理TCP/IP相关异步提醒事件（应用线程处理）
- 输入参数  : BST_EVT_HEAD_STRU *pvInData    事件内容信息结构
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年1月14日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_SRV_EvtProcTCPIP( BST_EVT_HEAD_STRU *pstEvent )
 {
     BST_IP_EVENT_STRU          *pstNetEvt;
@@ -1048,19 +792,7 @@ BST_VOID BST_SRV_EvtProcTCPIP( BST_EVT_HEAD_STRU *pstEvent )
     }
 }
 
-/*****************************************************************************
- 函 数 名  : BST_SRV_ProcAppEvent
- 功能描述  : 处理应用事件总入口
- 输入参数  : BST_EVT_HEAD_STRU *pvInData    事件内容信息结构
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年1月14日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_SRV_ProcAppEvent( BST_EVT_HEAD_STRU *pstEvent )
 {
     switch( pstEvent->enId )
@@ -1090,19 +822,7 @@ BST_VOID BST_SRV_ProcAppEvent( BST_EVT_HEAD_STRU *pstEvent )
     }
 }
 
-/*****************************************************************************
- 函 数 名  : BST_SRV_ProcAppEvent
- 功能描述  : 处理系统事件（含应用）总入口
- 输入参数  : BST_EVT_HEAD_STRU *pvInData    事件内容信息结构
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年1月14日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_SRV_ProcSysEvent( BST_EVT_HEAD_STRU *pstEvent )
 {
     switch( pstEvent->enId )
@@ -1137,19 +857,7 @@ BST_VOID BST_SRV_ProcSysEvent( BST_EVT_HEAD_STRU *pstEvent )
 }
 
 
-/*****************************************************************************
- 函 数 名  : BST_SRV_ProcChnlCtrEvent
- 功能描述  : 处理信道消息入口
- 输入参数  : BST_EVT_HEAD_STRU *pvInData    事件内容信息结构
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年1月14日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_SRV_ProcChnlCtrEvent( BST_EVT_HEAD_STRU *pstEvent )
 {
     switch( pstEvent->enId )

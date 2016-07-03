@@ -1,11 +1,4 @@
-/*******************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : RabmInclude.h
-  Description :
-  History     :
-      1.  张志勇   2003.12.04   新版作成
-      2.  l47619   2005.10.21   Modify
-*******************************************************************************/
+
 #include "PsTypeDef.h"
 #include "pscfg.h"
 #include "product_config.h"

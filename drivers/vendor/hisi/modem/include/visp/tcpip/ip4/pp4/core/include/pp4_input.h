@@ -103,7 +103,6 @@ extern  "C"{
 #define IPOPT_DEBMEAS       0x40    /*  */
 #define IPOPT_RESERVED2     0x60    /* 保留2 */
 
-/* Add for DTS2011042101816, by z00166124, at 2011-04-22. 修改原因: 从pp4_input.c中移过来 */
 #define IPOPT_RR_PS            2       /* IPOPT_RR选项对应开关标志位 */
 #define IPOPT_TS_PS            4       /* IPOPT_TS选项对应开关标志位 */
 #define IPOPT_SECURITY_PS      8       /* IPOPT_SECURITY选项对应开关标志位 */
@@ -111,7 +110,6 @@ extern  "C"{
 #define IPOPT_SATID_PS         32      /* IPOPT_SATID选项对应开关标志位 */
 #define IPOPT_SSRR_PS          64      /* IPOPT_SSRR选项对应开关标志位 */
 #define IPOPT_ROUTE_ALERT_PS   128     /* IPOPT_ROUTE_ALERT选项对应开关标志位 */
-/* Add for DTS2011082700364, by zhaoyue00171897, at 2011-08-27. 修改原因: 增加不识别的选项处理 */
 #define IPOPT_UNKOWN_PS    0x80000000  /*不识别的选项开关标记*/
 
 /*
@@ -238,7 +236,7 @@ typedef struct tagIPREASSQUEUE
     struct tagINADDR ipq_stDst;     /* destenation address*/
     UCHAR  ipq_chFirstFragTTL;      /* time for reass q to live */
     UCHAR  ucPadding[3]; 
-    ULONG  ulVrfIndex;              /* 该IP报文所属VRF的vrfindex, added by yuyong&mayun 2002/10/30 for address overlap*/
+    ULONG  ulVrfIndex;
     /* MBUF_S    *ipq_pMBuf;*/
 }IPREASSQUEUE_S;
 
@@ -257,7 +255,6 @@ extern IPSTAT_S    stIpStat;            /* 全局IP统计信息 */
 extern UCHAR       *ucDebugInfo[];      /* 调试信息 */
 extern ULONG       g_ulIpPktLoopTimes;  /* IP报文循环处理的次数，超过该值则丢弃 */
 extern USHORT      g_usIpId;              /* ip packet ctr, for ids */
-/*Added by wangbin, DTS2015102607923，随机生成IP报文ID开关, 2015/10/26 */
 extern ULONG           g_ulIpDoRandomId;
 extern IPREASSQUEUE_S  g_stIpReassQueue;/* ip reass. queue */
 extern IPROUTECACHE_S  g_ulIpRouteCache ; /*路由缓存*/

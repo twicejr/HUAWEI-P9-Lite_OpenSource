@@ -1,28 +1,4 @@
-/*******************************************************************************
-  Copyright    : 2005-2007, Huawei Tech. Co., Ltd.
-  File name    : SmrTafMsg.c
-  Description  : 和上层消息的交互过程
-  Function List:
-               1.  SMS_RcvMnDataReq
-               2.  SMS_RcvMnSmmaReq
-               3.  SMS_RcvMnReportReq
-               4.  SMS_SendMnDataReq
-               5.  SMS_SendMnReportReq
-  History:
-      1.   张志勇      2004.03.09   新规作成
-      2.   Date         : 2007-04-06
-           Author       : h44270
-           Modification : 问题单号:A32D10113
-      3.   Date         : 2007-08-20
-           Author       : z40661
-           Modification : 问题单号:A32D12705
-      4.   日    期     : 2008年6月5日
-           作    者     : fuyingjun id:62575
-           修改内容     : 注册状态在MN层的更新不正确，SMS的TAF层不能进入正常驻留状态,问题单号:AT2D03632
-      5.   日    期   : 2009年3月23日
-           作    者   : f62575
-           修改内容   : AT2D08752, W接入方式下，信号较弱时连续发送多条短信会概率性出现发送操作失败；
-*******************************************************************************/
+
 
 #include "smsinclude.h"
 #include "NasGmmInterface.h"
@@ -46,30 +22,7 @@ VOS_UINT8 g_ucCurSendDomain;
 
 /*lint -save -e958 */
 
-/*******************************************************************************
-  Module:   SMS_RcvMnDataReq
-  Function: 收到SMRL_DATA_REQ原语的处理
-  Input:    VOS_VOID        * pRcvMsg       收到的消息
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.   张志勇   2004.03.09   新规作成
-      2. Date         : 2007-04-06
-         Author       : h44270
-         Modification : 问题单号:A32D10113
-      3. Date         :2008-02-22
-         Author       :根据优化修改,SMS到TAF直接直接通过发送消息来实现
-      5.日    期   : 2012年06月01日
-        作    者   : f62575
-        修改内容   : DTS2012052904375，解决搜网过程中接收到SMS的EST_REQ没有回复REL_IND问题
-      6.日    期   : 2012年8月31日
-        作    者   : z00161729
-        修改内容   : DCM定制需求和遗留问题修改
-      7.日    期   : 2013年07月11日
-        作    者   : l00198894
-        修改内容   : V9R1 STK升级项目
-*******************************************************************************/
+
 
 VOS_VOID SMS_RcvMnDataReq (
     const SMT_SMR_DATA_STRU             *pstData
@@ -101,9 +54,7 @@ VOS_VOID SMS_RcvMnDataReq (
         if ((NAS_GMM_NET_RAT_TYPE_LTE == GMM_GetCurNetwork())
          && (SMS_SEND_DOMAIN_PS != ucSendDomain))
         {
-            /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
             SMS_SendMnReportReq(SMR_SMT_ERROR_NO_SERVICE, VOS_NULL_PTR, 0);
-            /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
             SMS_LOG( PS_LOG_LEVEL_WARNING, "SMS:SMS_RcvMnDataReq: LTE not support CS SMS." );
             return;
@@ -129,9 +80,7 @@ VOS_VOID SMS_RcvMnDataReq (
         break;
     default:
 
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
         SMS_SendMnReportReq(SMR_SMT_ERROR_STATE_NOT_COMPATIBLE, VOS_NULL_PTR, 0);
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
         SMS_LOG( PS_LOG_LEVEL_WARNING, "SMS:SMS_RcvMnDataReq: invalid message,discard." );
         break;
@@ -162,19 +111,7 @@ VOS_VOID SMS_RcvMnCpAckReq (
     return;
 }
 
-/*******************************************************************************
-  Module:   SMS_RcvMnSmmaReq
-  Function: 收到SMRL_MEM_AVAIL_REQ原语的处理
-  Input:    VOS_VOID        * pRcvMsg       收到的消息
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.   张志勇   2004.03.09   新规作成
-      2.日    期   : 2012年8月13日
-        作    者   : z00161729
-        修改内容   : DCM定制需求和遗留问题修改
-*******************************************************************************/
+
 VOS_VOID SMS_RcvMnSmmaReq(
     const SMT_SMR_SMMA_STRU             *pstData
                               )
@@ -220,15 +157,11 @@ VOS_VOID SMS_RcvMnSmmaReq(
             }
 
 
-            /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
             SMS_SendMnReportReq(SMR_SMT_ERROR_USER_ABORT, VOS_NULL_PTR, 0);
-            /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
             g_SmrEnt.SmrMo.ucRetransFlg  = SMR_RETRANS_PERMIT;                  /* 清除RETRANS FLAG                         */
             g_SmrEnt.SmrMo.ucMemAvailFlg = SMS_FALSE;
-            /* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
             g_SmrEnt.SmrMo.ucState       = SMR_IDLE;
-            /* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
         }
         break;
     default:
@@ -295,21 +228,7 @@ VOS_VOID SMS_RcvMnReportReq(
     }
 }
 
-/*******************************************************************************
-  Module:   SMS_SendMnDataReq
-  Function: 做成并发送SMRL_DATA_IND原语
-  Input:    VOS_UINT8       *pucData        数据首地址
-            VOS_UINT32        ulLen          数据长度
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.   张志勇   2004.03.10   新规作成
-      2.日    期   : 2013年6月4日
-        作    者   : s00217060
-        修改内容   : for V9R1_SVLTE:接收短信时，把接收域是CS还是PS域带上去，MSG要用
-                        修改函数名，原函数名为SMS_SendMnDataReq
-*******************************************************************************/
+
 VOS_VOID SMS_SendMnEstInd(
     VOS_UINT8                           *pucData,                               /* 数据首地址                               */
     VOS_UINT32                          ulSendLen,                               /* 数据长度                                 */
@@ -341,33 +260,17 @@ VOS_VOID SMS_SendMnEstInd(
     }
 }
 
-/*******************************************************************************
-Module:   SMS_SendMnReportReq
-Function: 做成并发送SMRL_REPORT_IND原语
-Input:    SMR_SMT_ERROR_ENUM_UINT32           enErrorCode   错误码
-          VOS_UINT8                          *pucData       RPDU
-          VOS_UINT32                          ulSendLen     RPDU长度
-Output:   VOS_VOID
-NOTE:
-Return:   VOS_VOID
-History:
-1.   张志勇   2004.03.10   新规作成
-2.日    期   : 2013年6月26日
-  作    者   : f62575
-  修改内容   : V9R1 STK升级
-*******************************************************************************/
+
 VOS_VOID SMS_SendMnReportReq(
     SMR_SMT_ERROR_ENUM_UINT32           enErrorCode,
     VOS_UINT8                          *pucData,
     VOS_UINT32                          ulSendLen
 )
 {
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     SMR_SMT_MO_REPORT_STRU             *pstSendMsg = VOS_NULL_PTR;
 
     pstSendMsg = (SMR_SMT_MO_REPORT_STRU *)PS_ALLOC_MSG_WITH_HEADER_LEN(WUEPS_PID_TAF,
                                                                         sizeof(SMR_SMT_MO_REPORT_STRU));
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
     if (VOS_NULL_PTR == pstSendMsg)
     {
         SMS_LOG(PS_LOG_LEVEL_WARNING,"SMS_SendMnReportReq: VOS_AllocMsg fails");
@@ -381,7 +284,6 @@ VOS_VOID SMS_SendMnReportReq(
     pstSendMsg->ulReceiverPid   = WUEPS_PID_TAF;
     pstSendMsg->ulMsgName       = SMR_SMT_REPORT_IND;
 
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     pstSendMsg->enErrorCode     = enErrorCode;
 
     /* 填写RPDU，接收到RP-ACK或RP-ERROR时有效 */
@@ -391,7 +293,6 @@ VOS_VOID SMS_SendMnReportReq(
         pstSendMsg->stRpduData.ulDataLen    = ulSendLen;
         PS_MEM_CPY(pstSendMsg->stRpduData.aucData, pucData, ulSendLen);
     }
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
     if ( VOS_OK != PS_SEND_MSG(WUEPS_PID_TAF, pstSendMsg ) )
     {
@@ -400,21 +301,7 @@ VOS_VOID SMS_SendMnReportReq(
 
 }
 
-/*******************************************************************************
-Module:   SMS_SendMnMtErrInd
-Function: 做成并发送SMRL_TR2M_TIMEOUT_IND原语
-Input:    ucRpStatus:Rp的状态,成功或失败
-          ucRpCause:Rp的原因值
-Output:   VOS_VOID
-NOTE:
-Return:   VOS_VOID
-History:
-1.   z40661   2008.03.19   新规作成
-2.日    期   : 2013年07月11日
-  作    者   : f62575
-  修改内容   : V9R1 STK升级项目
 
-*******************************************************************************/
 VOS_VOID SMS_SendMnMtErrInd(SMR_SMT_ERROR_ENUM_UINT32 enErrorCode)
 {
     SMR_SMT_MT_ERR_STRU                *pstSendMsg = VOS_NULL_PTR;
@@ -481,18 +368,7 @@ VOS_VOID SMS_AttachFlag(
     }
 }
 
-/*******************************************************************************
-Module:   SMS_SendMnMoCpAckSent
-Function: 做成并发送SMRL_CP_ACK_SENT_IND原语
-Input:    VOS_VOID
-Output:   VOS_VOID
-NOTE:
-Return:   VOS_VOID
-History:
-  1.日    期   : 2009年3月5日
-    作    者   : f62575
-    修改内容   : 新生成函数
-*******************************************************************************/
+
 VOS_VOID SMS_SendMnMoLinkCloseInd(VOS_VOID)
 {
     VOS_UINT32                          ulLen;

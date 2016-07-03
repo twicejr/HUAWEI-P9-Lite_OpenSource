@@ -41,20 +41,7 @@
    5 函数实现
 ******************************************************************************/
 /*lint -save -e958 */
-/*****************************************************************************
- Prototype      : TTF_ParseIpDataType
- Description    : 用于解析IP包协议类型
- Input          : *pData 入参有效性由调用者保证，为IP数据包
- Output         :
- Return Value   : IP_DATA_TYPE_ENUM_UINT8
- History        :
- 1. Date        : 2014-02-14
-    Author      : g00178567
-    Modification: Created function
- 2. Date        : 2015-10-31
-    Author      : g00178567
-    Modification: 修改函数入参
-*****************************************************************************/
+
 IP_DATA_TYPE_ENUM_UINT8 TTF_ParseIpDataType
 (
     VOS_UINT32                          ulPid,
@@ -184,17 +171,7 @@ IP_DATA_TYPE_ENUM_UINT8 TTF_ParseIpDataType
     return enDataType;
 } /* TTF_ParseIpDataType */
 
-/*****************************************************************************
- Prototype      : TTF_GetIpDataTraceLen
- Description    : 用来获得可维可测勾取IP报的安全长度，以免泄露用户隐私
- Input          : *pData 入参有效性由调用者保证，为IP数据包
- Output         :
- Return Value   : VOS_UINT32 安全勾包长度
- History        :
- 1. Date        : 2014-02-14
-    Author      : g00178567
-    Modification: Created function
-*****************************************************************************/
+
 VOS_UINT16 TTF_GetIpDataTraceLen
 (
     VOS_UINT32                          ulPid,
@@ -293,17 +270,7 @@ VOS_UINT16 TTF_GetIpDataTraceLen
 }
 
 
-/*****************************************************************************
- Prototype      : TTF_GetIpDataInfo
- Description    : 用于解析IP包协议类型，目前仅支持IPv4
- Input          : TTF_MEM_ST *pstSdu 入参有效性由调用者保证，Data为IP数据包
- Output         :
- Return Value   : IP_DATA_TYPE_ENUM_UINT8
- History        :
- 1. Date        : 2015-10-31
-    Author      : g00178567
-    Modification: Created function
-*****************************************************************************/
+
 VOS_UINT32 TTF_GetTcpIpDataInfo(VOS_UINT32 ulPid, TTF_MEM_ST *pstSdu, TTF_IP_DATA_PARAM_STRU *pstParseParam)
 {
     VOS_UINT8                                  *pData;

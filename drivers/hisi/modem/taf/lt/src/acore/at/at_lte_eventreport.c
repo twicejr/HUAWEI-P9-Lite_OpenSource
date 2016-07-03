@@ -50,8 +50,7 @@
  */
 /* 调用举例: TODO: ...
  */
-/* 作    者: 陈晓军00184452 [2010-10-10]
- */
+
 /******************************************************************************
  */
 /*按照V1中的#define MSP_HAVE_AT_RSSI_REPORT修改的
@@ -347,8 +346,7 @@ VOS_UINT32 atSetAnlevelCnfSameProc(VOS_VOID *pMsgBlock)
  */
 /* 调用举例: TODO: ...
  */
-/* 作    者: 陈晓军00184452 [2010-10-10]
- */
+
 /******************************************************************************
  */
 
@@ -477,8 +475,7 @@ VOS_UINT32 atCerssiInfoCnfProc(VOS_VOID *pMsgBlock)
  */
 /* 调用举例: TODO: ...
  */
-/* 作    者: 陈晓军00184452 [2010-10-10]
- */
+
 /******************************************************************************
  */
 
@@ -503,21 +500,7 @@ VOS_UINT32 atSysModeIndProc(VOS_VOID *pMsgBlock)
 }
 
 
-/*****************************************************************************
- 函 数 名  : atLwclashCnfProc
- 功能描述  : ^LWCLASH命令应答处理
- 输入参数  : VOS_VOID *pMsgBlock
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月25日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 atLwclashCnfProc(VOS_VOID *pMsgBlock)
 {
     L4A_READ_LWCLASH_CNF_STRU *pstLwclash = NULL;
@@ -772,21 +755,7 @@ VOS_UINT32 atQryCellInfoCnfProc(VOS_VOID *pMsgBlock)
     return AT_FW_CLIENT_STATUS_READY;
 }
 
-/*****************************************************************************
- 函 数 名  : atLwclashInd
- 功能描述  : ^LWURC命令主动上报处理
- 输入参数  : VOS_VOID *pMsgBlock
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月25日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID atLwclashInd(VOS_VOID *pMsgBlock)
 {
     L4A_READ_LWCLASH_IND_STRU *pstLwclash = NULL;
@@ -920,8 +889,7 @@ static const AT_L4A_MSG_FUN_TABLE_STRU g_astAtL4aIndMsgFunTable[] = {
  */
 /* 调用举例: TODO: ...
  */
-/* 作    者: 陈晓军00184452 [2010-10-10]
- */
+
 /******************************************************************************
  */
 AT_L4A_MSG_FUN_TABLE_STRU* atL4aGetCnfMsgFun(VOS_UINT32 ulMsgId)
@@ -966,8 +934,7 @@ AT_L4A_MSG_FUN_TABLE_STRU* atL4aGetCnfMsgFun(VOS_UINT32 ulMsgId)
  */
 /* 调用举例: TODO: ...
  */
-/* 作    者: 陈晓军00184452 [2010-10-10]
- */
+
 /******************************************************************************
  */
 AT_L4A_MSG_FUN_TABLE_STRU* atL4aGetIndMsgFun(VOS_UINT32 ulMsgId)
@@ -1015,8 +982,7 @@ AT_L4A_MSG_FUN_TABLE_STRU* atL4aGetIndMsgFun(VOS_UINT32 ulMsgId)
  */
 /* 调用举例: TODO: ...
  */
-/* 作    者: 陈晓军00184452 [2010-10-10]
- */
+
 /******************************************************************************
  */
 VOS_UINT32 at_L4aCnfProc(MsgBlock* pMsgBlockTmp)
@@ -1293,21 +1259,7 @@ VOS_UINT32 At_FtmEventMsgProc(VOS_VOID* pMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_ProcTempprtEventInd
- 功能描述  : 处理消息ID_TEMPPRT_AT_EVENT_IND
- 输入参数  : pstMsg - 来自SPY的消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   :
-   作    者   :
-   修改内容   :
-
-*****************************************************************************/
 VOS_UINT32    AT_ProcTempprtEventInd(
     TEMP_PROTECT_EVENT_AT_IND_STRU     *pstMsg
 )

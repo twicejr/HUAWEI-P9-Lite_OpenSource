@@ -372,7 +372,6 @@ typedef struct tagOSPF6_CFG_GR
     ULONG ulhitlessGrReason;           /*平滑重启原因*/
 } OSPF6_CFG_GR_S;
 
-/*Added by w00207740, 支持ospfv3 GR功能, 2014/3/14 */
 typedef struct tagOSPF6_CFG_GRHELPER
 {
     UCHAR szIfname[OSPF6_MAX_IF_NAME_LENGTH+1];          /*接口名称*/
@@ -938,59 +937,12 @@ ULONG OSPF6_Intermediate_Hook_Register(ULONG ulDirection,
 *
 *******************************************************************************/
 ULONG OSPF6_Intermediate_UnHook_Register(ULONG ulDirection);
-/*******************************************************************************
-*    Func Name: OSPF6_CFG_Area
-* Date Created: 2014-03-04
-*       Author: w00207740
-*  Description: 配置OSPFv3区域
-*        Input: OSPF6_CFGAREA_S *pstAreaIn:
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-03-04   w00207740               Create      参考OSPF_CFG_CmdAreaProc编写
-*
-*******************************************************************************/
+
 ULONG OSPF6_CFG_Area(OSPF6_CFGAREA_S *pstAreaIn);
 
-/*******************************************************************************
-*    Func Name: OSPF6_CFG_RouterId
-* Date Created: 2014-03-12
-*       Author: w00207740
-*  Description: 配置/修改进程route id
-*        Input: USHORT usProcessId:
-*               ULONG ulRouterId:
-*       Output: 
-*       Return: 
-*      Caution: 若需要新配置的route id生效，需要重启进程
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-03-12   w00207740               Create      参考OSPF_CFG_RouterId
-*
-*******************************************************************************/
+
 ULONG OSPF6_CFG_RouterId(USHORT usProcessId, ULONG ulRouterId);
-/*******************************************************************************
-*    Func Name: OSPF6_CFG_AdminProc
-* Date Created: 2014-03-12
-*       Author: w00207740
-*  Description: 由用户配置进程UP/DOWN/RESET
-*        Input: USHORT usProcessId:
-*               ULONG ulOperation:
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-03-12   w00207740               Create
-*
-*******************************************************************************/
+
 ULONG OSPF6_CFG_AdminProc(USHORT usProcessId,ULONG ulOperation);
 
 /*S-IP-003-OSPFv3-005 配置OSPFv3 进程GR重启*/
@@ -1014,22 +966,7 @@ ULONG OSPF6_CFG_GR(OSPF6_CFG_GR_S * pstOSPFGR);
 
 
 ULONG OSPF6_CFG_CmdGrHelper(OSPF6_CFG_GRHELPER_S * pstGrHelper);
-/*******************************************************************************
-*    Func Name: OSPF6_CFG_CmdGrHelperProc
-* Date Created: 2014-04-15
-*       Author: w00207740
-*  Description: 针对进程配置Gr Helper
-*        Input: OSPF6_CFGGRHELPER_PRO_S * pstGrHelperProc:
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-04-15   w00207740               Create
-*
-*******************************************************************************/
+
 ULONG OSPF6_CFG_CmdGrHelperProc(OSPF6_CFGGRHELPER_PRO_S * pstGrHelperProc);
 
 /*******************************************************************************

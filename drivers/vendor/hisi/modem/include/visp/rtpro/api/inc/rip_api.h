@@ -33,9 +33,7 @@ typedef ULONG (*RIP_PACKET_HOOK_FUNC)(USHORT usProcId ,ULONG ulIfIndex, CHAR *pc
 
 typedef enum tagRIP_ERROR_E  
 {
-    /*Begin BC3D02305 修正错误码拼写错误 l00147446 09-11-13*/
     RIP_SUCCESS,
-    /*End BC3D02305 修正错误码拼写错误 l00147446 09-11-13*/
 
     RIP_ERR_GEN_ERROR = MID_COMP_RIP + 2, 
     RIP_ERR_WRONG_VALUE, /*MIB配置的值错误*/
@@ -49,16 +47,12 @@ typedef enum tagRIP_ERROR_E
     RIP_ERR_PRODUCT_NOT_READY,
     RIP_ERR_CFG_TIMEOUT = MID_COMP_RIP + 15,/*配置超时15*/ 
     RIP_ERR_INIT_FAILED, /*RIP 没有初始化成功*/
-    /*Begin BC3D01911 RIP_ERR_POINTER_IS_NULL拼写错误 l00147446 09-08-17*/
     RIP_ERR_POINTER_IS_NULL,   
-    /*End BC3D01911 RIP_ERR_POINTER_IS_NULL拼写错误 l00147446 09-08-17*/
     RIP_ERR_CONFIG_FLAG_INVALID,/*错误的配置标志，不是TRUE也不是FALSE*/
     RIP_ERR_PRAR_INVALID,/*参数不合法*/
     RIP_ERR_ALREADY_EXIST,/*RIP实例已经存在*/
     
-    /*Begin BC3D02305 修正错误码拼写错误 l00147446 09-11-13*/
     RIP_ERR_INSTANCE_NOT_EXIST, /*RIP实例不存在*/       
-    /*End BC3D02305 修正错误码拼写错误 l00147446 09-11-13*/
     
     RIP_ERR_INSTANCE_CANNOT_IS_ZERO, /*RIP实例号不能为0*/
     RIP_ERR_IPS_IS_NULL, /*RIP 的IPS消息为空*/
@@ -137,9 +131,7 @@ typedef struct tagRIP_CFG_INFO
     UCHAR ucGarbageTimeOutVal;/*垃圾搜集时间*/ 
     USHORT usMaxBalCount; /*最大平衡路由个数*/ 
     USHORT usProcId; /*RIP实例号*/
-    /*Begin BC3D01346 l00147446 OSPF、RIP获取和显示接口缺少VRF信息 09-03-28*/
     ULONG ulVrfIndex;
-    /*End BC3D01346 l00147446 OSPF、RIP获取和显示接口缺少VRF信息 09-03-28*/
 } RIP_CFG_INFO_S;
 
 typedef struct tagRIP_CONFIG_IF_DEF_ORG /*默认路由的默认cost值配置结构*/

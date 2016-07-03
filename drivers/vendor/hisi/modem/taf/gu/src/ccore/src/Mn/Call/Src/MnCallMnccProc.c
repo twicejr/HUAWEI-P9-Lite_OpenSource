@@ -1,56 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : MnCallMnccProc.c
-  版 本 号   : 初稿
-  作    者   : 丁庆 49431
-  生成日期   : 2007年9月20日
-  最近修改   : 2007年9月20日
-  功能描述   : 处理来自CC的MNCC原语
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 创建文件
-  2.日    期   : 2008年7月12日
-    作    者   : 胡文 44270
-    修改内容   : 问题单号:AT2D04057
-  3.日    期   : 2008年7月23日
-    作    者   : 黎客来 130025
-    修改内容   : 问题单号:AT2D04596
-  4.日    期   : 2008年7月23日
-    作    者   : 黎客来 130025
-    修改内容   : 问题单号:AT2D04594
-  5.日    期   : 2008年9月11日
-    作    者   :S62952
-    修改内容   : 问题单号:AT2D05594
-  6.日    期   : 2008年10月20日
-    作    者   : h44270
-    修改内容   : 问题单号:A32D14153,来电时，用户尚未接听电话就打开了声码器,，AMR速率变换没有上报
-  7.日    期   : 2009年3月2日
-    作    者   : 胡文 44270
-    修改内容   : 问题单号:AT2D09095
-  8.日    期   : 2009年5月20日
-    作    者   : h44270
-    修改内容   : 问题单号A32D14863，在中国移动的网络下（G网），被叫单板，来电接不起来。
-  9.日    期   : 2009年12月6日
-    作    者   : h44270
-    修改内容   : 问题单号AT2D15568，NAS处理SD晚指配有问题,没有打开声码器。
-
-  10.日    期   : 2010年3月2日
-    作    者   : zhoujun /z40661
-    修改内容   : NAS R7协议升级
-
-  11.日    期   : 2010年3月16日
-    作    者   : zhoujun /z40661
-    修改内容   : AMR速率调整
-
-  12.日    期   : 2010年7月27日
-    作    者   : zhoujun /40661
-    修改内容   : 支持UUS1
-******************************************************************************/
 
 /*****************************************************************************
    1 头文件包含
@@ -80,20 +28,16 @@
 
 #include "NVIM_Interface.h"
 
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, begin */
 #include "TafSdcCtx.h"
 #include "TafSdcLib.h"
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, end */
 #include "NasUtranCtrlInterface.h"
 #include "NasUsimmApi.h"
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-11, begin */
 #if (FEATURE_ON == FEATURE_IMS)
 #include "SpmImsaInterface.h"
 #endif
 #include "MnCallImsaProc.h"
 #include "MnCallMgmt.h"
 
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-11, end */
 
 #include "MnCallReqProc.h"
 #include "TafStdlib.h"
@@ -115,9 +59,7 @@ extern "C" {
 /* 当前TCH信道参数 */
 LOCAL  MN_CALL_CHANNEL_INFO_STRU        f_stCallTchStatus;
 
-/* Added by l00171473 for DTS2013010800120 语音带宽信息上报, 2013-1-5, begin */
 MN_CALL_CHANNEL_INFO_STRU               g_stLastCallTchStatus;
-/* Added by l00171473 for DTS2013010800120 语音带宽信息上报, 2013-1-5, end */
 
 
 /* 当前呼叫是否等待发送Alert信息 */
@@ -135,20 +77,7 @@ LOCAL  MN_CALL_INFO_STRU                f_astCallInfos[MN_CALL_MAX_NUM];
 /*****************************************************************************
    2 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : CALL_SetChannelOpenFlg
- 功能描述  : 设置信道打开标志
- 输入参数  : bChannelOpenFlg - 语音信道打开标志
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID MN_CALL_SetChannelOpenFlg(
     VOS_BOOL                            bChannelOpenFlg
 )
@@ -156,41 +85,14 @@ VOS_VOID MN_CALL_SetChannelOpenFlg(
     f_bChannelOpenFlg = bChannelOpenFlg;
 }
 
-/*****************************************************************************
- 函 数 名  : CALL_GetChannelOpenFlg
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_BOOL MN_CALL_GetChannelOpenFlg( VOS_VOID )
 {
     return f_bChannelOpenFlg;
 }
 
 
-/*****************************************************************************
- 函 数 名  : CALL_SetWaitSendAlertStatus
- 功能描述  :
- 输入参数  : bWaitSendAlertStatus   - 业务信道的状态
-             uccallId               - 呼叫Id
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID MN_CALL_SetWaitSendAlertStatus(
     VOS_BOOL                            bWaitSendAlertStatus,
     VOS_UINT8                           uccallId
@@ -200,21 +102,7 @@ VOS_VOID MN_CALL_SetWaitSendAlertStatus(
     f_stWaitSendAlert.ucCallId = uccallId;
 }
 
-/*****************************************************************************
- 函 数 名  : CALL_GetWaitSendAlertStatus
- 功能描述  :
- 输入参数  :
- 输出参数  : pbWaitSendAlertStatus - 当前是否处于等待发送alerting消息状态
-              puccallId             - 对应的呼叫Id
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID MN_CALL_GetWaitSendAlertStatus(
     VOS_BOOL                            *pbWaitSendAlertStatus,
     VOS_UINT8                           *puccallId
@@ -225,20 +113,7 @@ VOS_VOID MN_CALL_GetWaitSendAlertStatus(
 
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_SetTchStatus
- 功能描述  :
- 输入参数  : bAvailable - 业务信道的状态
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID MN_CALL_SetTchStatus(
     VOS_BOOL                            bAvailable
 )
@@ -246,32 +121,7 @@ VOS_VOID MN_CALL_SetTchStatus(
     f_stCallTchStatus.bChannelEnable = bAvailable;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_SetTchPara
- 功能描述  :
- 输入参数  : pstTchPara - 信道参数
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-
-  2.日    期   : 2010年3月16日
-    作    者   : zhoujun /z40661
-    修改内容   : AMR速率调整
-
-  3.日    期   : 2012年2月9日
-    作    者   : z40661
-    修改内容   : 支持AMR-WB
-
-  4.日    期   : 2014年04月18日
-    作    者   : y00245242
-    修改内容   : 为eCall feature修改
-*****************************************************************************/
 LOCAL VOS_BOOL MN_CALL_SetTchPara(
     const NAS_CC_SYNC_IND_STRU           *pstTchPara,
     const VOS_UINT8                       ucCallId
@@ -341,7 +191,6 @@ LOCAL VOS_BOOL MN_CALL_SetTchPara(
             return VOS_FALSE;
     }
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-4-18, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
     if (VOS_TRUE == TAF_CALL_IsCallTypeEcall(ucCallId))
     {
@@ -352,7 +201,6 @@ LOCAL VOS_BOOL MN_CALL_SetTchPara(
     {
         TAF_CALL_SetTchCallType(TAF_CALL_TYPE_NORMAL_CALL);
     }
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-4-18, end */
 
     f_stCallTchStatus.stChannelParam.enCodecType = enCodecType;
     f_stCallTchStatus.stChannelParam.enMode = enMode;
@@ -361,43 +209,13 @@ LOCAL VOS_BOOL MN_CALL_SetTchPara(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_GetTchStatus
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2010年6月20日
-    作    者   : z00161729
-    修改内容   : 问题单DTS2010061100528
-*****************************************************************************/
 VOS_BOOL MN_CALL_GetTchStatus( VOS_VOID )
 {
     return f_stCallTchStatus.bChannelEnable;
 }
 
-/* Added by l00171473 for DTS2013010800120 语音带宽信息上报, 2013-1-5, begin */
-/*****************************************************************************
- 函 数 名  : MN_CALL_SetLastCallTchStatus
- 功能描述  : 设置TCH信道参数全局变量
- 输入参数  : pstCallTchStatus: TCH信道参数
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年01月05日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID MN_CALL_SetLastCallTchStatus(
     MN_CALL_CHANNEL_INFO_STRU          *pstCallTchStatus
 )
@@ -407,67 +225,21 @@ VOS_VOID MN_CALL_SetLastCallTchStatus(
                sizeof(MN_CALL_CHANNEL_INFO_STRU));
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_GetLastCodecType
- 功能描述  : 获取保存的上次的CODEC TYPE
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : CODEC TYPE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年01月05日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-*****************************************************************************/
 MN_CALL_CODEC_TYPE_ENUM_U8 MN_CALL_GetLastCodecType(VOS_VOID)
 {
     return g_stLastCallTchStatus.stChannelParam.enCodecType;
 }
-/* Added by l00171473 for DTS2013010800120 语音带宽信息上报, 2013-1-5, end */
 
-/* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-16, begin */
 /* MN_CALL_JudgeMtCallType调整到MnComm.c中 */
-/* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-16, end */
 
-/* Added by y00245242 for V3R3C60_eCall项目, 2014-4-18, begin */
-/*****************************************************************************
- 函 数 名  : TAF_CALL_SetTchCallType
- 功能描述  : 更新当前TCH中的呼叫类型
- 输入参数  : enCallType －呼叫类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年04月18日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_CALL_SetTchCallType(TAF_CALL_TYPE_ENUM_UINT16 enCallType)
 {
     f_stCallTchStatus.stChannelParam.enCallType = enCallType;
 }
-/* Added by y00245242 for V3R3C60_eCall项目, 2014-4-18, end */
 
-/*****************************************************************************
- 函 数 名  : CALL_JudgeMtCallMode
- 功能描述  : 判定来电的呼叫模式
- 输入参数  : pstBCRepeatInd - IE Repeat indicator
-              pstBC1         - IE BC1
-              pstBC2         - IE BC2
- 输出参数  : penCallMode    - 呼叫模式
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 LOCAL VOS_UINT32  MN_CALL_JudgeMtCallMode(
     const NAS_CC_IE_REPEAT_INDICATOR_STRU       *pstBCRepeatInd,
     const NAS_CC_IE_BC_STRU                     *pstBC1,
@@ -526,23 +298,7 @@ LOCAL VOS_UINT32  MN_CALL_JudgeMtCallMode(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_ProcNotifyForwardSsCode
- 功能描述  : 当补充业务是呼叫前转时,Component中的Operation Code为NotifySs时，调用该函数
-             进行处理
- 输入参数  : ucCallId    - 呼叫ID
-             pstNotifySs - notifySs内容
- 输出参数  : pstSsInfo   - 记录上报信息
- 返 回 值  : VOS_OK      - 成功
-             VOS_ERR     - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年12月25日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-*****************************************************************************/
 LOCAL VOS_UINT32 MN_CALL_ProcNotifyForwardSsCode(
     VOS_UINT8                           ucCallId,
     const MN_CALL_SS_NOTIFYSS_ARG_STRU  *pstNotifySs,
@@ -587,22 +343,7 @@ LOCAL VOS_UINT32 MN_CALL_ProcNotifyForwardSsCode(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_NotifyNtfyOnHoldOrRetrieved
- 功能描述  : 当补充业务是告知呼叫被保持或者恢复,Component中的Operation Code为
-             NotifySs时，调用该函数进行处理
- 输入参数  :ucCallId     - 呼叫ID
-            pstNotifySs  - notifySs内容
- 输出参数  : pstSsInfo   - 记录上报信息
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年12月25日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-*****************************************************************************/
 LOCAL VOS_VOID MN_CALL_NotifyNtfyOnHoldOrRetrieved(
     VOS_UINT8                           ucCallId,
     const MN_CALL_SS_NOTIFYSS_ARG_STRU  *pstNotifySs,
@@ -624,21 +365,7 @@ LOCAL VOS_VOID MN_CALL_NotifyNtfyOnHoldOrRetrieved(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_ProcNotifyCcbsSscode
- 功能描述  : 当补充业务是CCBS时,Component中的Operation Code为NotifySs时，调用该函数
-             进行处理
- 输入参数  : pstNotifySs    - notifySs内容
- 输出参数  : pstSsInfo      - 记录上报相关信息
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年12月20日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-*****************************************************************************/
 LOCAL VOS_VOID MN_CALL_ProcNotifyCcbsSscode(
     const MN_CALL_SS_NOTIFYSS_ARG_STRU  *pstNotifySs,
     MN_CALL_SS_NOTIFY_STRU              *pstSsInfo
@@ -660,25 +387,7 @@ LOCAL VOS_VOID MN_CALL_ProcNotifyCcbsSscode(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CALL_SsRegCcEntryProc
- 功能描述  : 更新补充业务Ect操作的进展
- 输入参数  : callId      - 呼叫Id
-             unComponent - 网络回复的component
-             enErrcode   - 错误码
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年12月20日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年06月27日
-    作    者   : l00171473
-    修改内容   : DTS2012082204471, TEQ告警清理, 参数修改为指针
-*****************************************************************************/
 LOCAL VOS_VOID MN_CALL_SsRegCcEntryProc(
     MN_CALL_ID_T                        callId,
     MN_CALL_SS_COMPONENT_UNION         *punComponent,
@@ -702,28 +411,7 @@ LOCAL VOS_VOID MN_CALL_SsRegCcEntryProc(
 
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_ProcNotifySsCode
- 功能描述  : 当补充业务Component中的Operation Code为NotifySs时，调用该函数
-             进行处理
- 输入参数  : ucCallId    - 呼叫ID
-             pstNotifySs - notifySs内容
- 输出参数  : pstSsInfo   - 记录上报信息
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年12月25日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年03月03日
-    作    者   : s62952
-    修改内容   : BalongV300R002 Build优化项目
-  3.日    期   : 2013年3月29日
-    作    者   : 傅映君 62575
-    修改内容   : DTS2013033004557,参考新的特性控制原则: CD业务信息上报不受业务控制NV项限制
-*****************************************************************************/
 LOCAL VOS_VOID MN_CALL_ProcNotifySsCode(
     VOS_UINT8                           ucCallId,
     const MN_CALL_SS_NOTIFYSS_ARG_STRU  *pstNotifySs,
@@ -731,12 +419,10 @@ LOCAL VOS_VOID MN_CALL_ProcNotifySsCode(
 
 )
 {
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     MN_CALL_CUSTOM_CFG_INFO_STRU        *pstCustomCfgAddr;
 
     /* 获取特性控制NV地址 */
     pstCustomCfgAddr                    = MN_CALL_GetCustomCfgInfo();
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
     /*呼叫禁止相关信息*/
     if (TAF_ALL_BARRING_SS_CODE == (pstNotifySs->SsCode & 0xf0))
@@ -773,7 +459,6 @@ LOCAL VOS_VOID MN_CALL_ProcNotifySsCode(
 
     }
 
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     if (MN_CALL_NV_ITEM_ACTIVE == pstCustomCfgAddr->ucCcbsSupportFlg)
     {
         MN_CALL_ProcNotifyCcbsSscode(pstNotifySs, pstSsInfo);
@@ -791,7 +476,6 @@ LOCAL VOS_VOID MN_CALL_ProcNotifySsCode(
             pstSsInfo->enCode = MN_CALL_SS_NTFY_DEFLECTED_CALL;
         }
     }
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end*/
 
     MN_CALL_UpdateSsNotify(ucCallId, pstSsInfo);
 
@@ -802,34 +486,7 @@ LOCAL VOS_VOID MN_CALL_ProcNotifySsCode(
 
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_ProcNotifySsEct
- 功能描述  : 当补充业务是ECT时,Component中的Operation Code为NotifySs时，调用该函数
-             进行处理
- 输入参数  : ucCallId    - 呼叫ID
-             pstNotifySs - notifySs内容
- 输出参数  : pstSsInfo   - 记录上报信息
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年12月25日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  3.日    期   : 2012年11月08日
-    作    者   : l65478
-    修改内容   : DTS2012110702322,MT没有显示新的号码,同时CUSS上报也是旧的信息
-  4.日    期   : 2013年07月222日
-    作    者   : j00177245
-    修改内容   : 清理Coverity
-  5.日    期   : 2013年12月24日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseIII项目
-*****************************************************************************/
 LOCAL VOS_VOID MN_CALL_ProcNotifySsEct(
     VOS_UINT8                           ucCallId,
     const MN_CALL_SS_NOTIFYSS_ARG_STRU  *pstNotifySs,
@@ -851,14 +508,12 @@ LOCAL VOS_VOID MN_CALL_ProcNotifySsEct(
                     = MN_CALL_ECT_RDN_PRESENTATION_ALLOWED_ADDR;
         pstSsInfo->stEctIndicator.rdn.stPresentationAllowedAddr.enNumType
                     = pstNotifySs->EctIndicator.PresentationAllowedAddr.NumType;
-        /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, begin */
         if (MN_ERR_NO_ERROR != TAF_STD_ConvertAsciiNumberToBcd((VOS_CHAR*)pstNotifySs->EctIndicator.PresentationAllowedAddr.aucPartyNumber,
                             pstSsInfo->stEctIndicator.rdn.stPresentationAllowedAddr.aucBcdNum,
                             &ucBcdLen))
         {
             MN_INFO_LOG("MN_CALL_ProcNotifySsEct: TAF_STD_ConvertAsciiNumberToBcd fail");
         }
-        /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, end */
         pstSsInfo->stEctIndicator.rdn.stPresentationAllowedAddr.ucNumLen = ucBcdLen;
 
         /* 参考22.091 8.1,8.3 */
@@ -883,14 +538,12 @@ LOCAL VOS_VOID MN_CALL_ProcNotifySsEct(
                     = MN_CALL_ECT_RDN_PRESENTATION_RESTRICTED_ADDR;
         pstSsInfo->stEctIndicator.rdn.stPresentationRestrictedAddr.enNumType
                     = pstNotifySs->EctIndicator.PresentationRestrictedAddr.NumType;
-        /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, begin */
         if (MN_ERR_NO_ERROR != TAF_STD_ConvertAsciiNumberToBcd((VOS_CHAR*)pstNotifySs->EctIndicator.PresentationRestrictedAddr.aucPartyNumber,
                             pstSsInfo->stEctIndicator.rdn.stPresentationRestrictedAddr.aucBcdNum,
                             &ucBcdLen))
         {
             MN_INFO_LOG("MN_CALL_ProcNotifySsEct: TAF_STD_ConvertAsciiNumberToBcd fail");
         }
-        /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, end */
         pstSsInfo->stEctIndicator.rdn.stPresentationAllowedAddr.ucNumLen = ucBcdLen;
     }
 
@@ -902,29 +555,7 @@ LOCAL VOS_VOID MN_CALL_ProcNotifySsEct(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CALL_ProcNotifySs
- 功能描述  : 当补充业务Component中的Operation Code为NotifySs时，调用该函数
-             进行处理。该函数将向应用层上报相应的补充业务通知事件。
- 输入参数  : pstSsCompo     - 来自网络的Facility IE中的SS component
-             ucCallId       - 呼叫Id
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-
-  2.日    期   : 2010年1月2日
-    作    者   : zhoujun /z40661
-    修改内容   : NAS R7协议升级
-  3.日    期   : 2012年10月20日
-    作    者   : l65478
-    修改内容   : DTS2012101901424,没有更新ECT后的新的号码
-*****************************************************************************/
 LOCAL VOS_VOID  MN_CALL_ProcNotifySs(
     VOS_UINT8                           ucCallId,
     const MN_CALL_SS_NOTIFYSS_ARG_STRU  *pstNotifySs
@@ -995,29 +626,7 @@ LOCAL VOS_VOID  MN_CALL_ProcNotifySs(
 
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_Bc1Bc2CompChk
- 功能描述  : 对call confirm消息中的BC进行检查。
- 输入参数  : callId -呼叫标识
- 输出参数  : pstBc1Setup            - 检查后BC1值
-              pstBc2Setup           - 检查后BC2值
-              pstRepeatIndSetup     - repeat indicator的值
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : y00213812
-    修改内容   : DTS2012082204471, TQE清理
-
-  3.日    期   : 2012年10月16日
-    作    者   : z40661
-    修改内容   : DTS2012071007225
-*****************************************************************************/
 LOCAL VOS_UINT32 MN_CALL_Bc1Bc2CompChk(
     MN_CALL_ID_T                        callId,
     NAS_CC_IE_BC_STRU                   *pstBc1Setup,
@@ -1064,11 +673,9 @@ LOCAL VOS_UINT32 MN_CALL_Bc1Bc2CompChk(
         {
             /*保留检查通过的BC, 丢弃检查失败的BC(将不携带在Call Confirm中)*/
             /* 此处将检查失败的BC设置为不存在 */
-            /*modified by Y00213812 for DTS2012082204471 TQE清理, 2012-08-10, begin*/
             PS_MEM_CPY(pstBc1Setup,
                        pstBc2Setup,
                        sizeof(NAS_CC_IE_BC_STRU));
-            /*modified by Y00213812 for DTS2012082204471 TQE清理, 2012-08-10, end*/
             NAS_IE_SET_ABSENT(pstBc2Setup);
         }
         else if (VOS_OK != ulBc2ChkRslt)
@@ -1091,37 +698,7 @@ LOCAL VOS_UINT32 MN_CALL_Bc1Bc2CompChk(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CALL_BcChkForCallCnf
- 功能描述  : 对call confirm或cc establishment消息中的BC进行检查
- 输入参数  : pMsg - MT的setup消息或MO的setup消息
-             callId - 呼叫Id
-             enCallDir -呼叫方向
-             pstDataCfgInfo     - cs data 业务配置数据
- 输出参数  : pstBc1CallCnf      - 回复的call confirm或cc establishment confirm消息中的Bc1
-              pstBc2CallCnf     - 回复的call confirm或cc establishment confirm消息中的Bc2
-              penRepeatInd      - repeat indicator的值
- 返 回 值  : VOS_OK:成功
-             VOS_ERR:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-
-  2.日    期   : 2010年3月1日
-    作    者   : zhoujun /z40661
-    修改内容   : 增加CCBS支持
-  3.日    期   : 2010年12月3日
-    作    者   : z00161729
-    修改内容  : DTS2010120301487:GCF 11.1.1用例要求对不支持的业务类型回复原因值为88的release complete消息
-  4.日    期   : 2012年05月21日
-    作    者   : f00179208
-    修改内容   : 问题单号:DTS2012052100994,拨打可视电话，发给网侧的承载类型不对
-
-*****************************************************************************/
 LOCAL VOS_UINT32 MN_CALL_BcChkForCallCnf(
     VOS_VOID                            *pMsg,
     NAS_CC_IE_BC_STRU                   *pstBc1CallCnf,
@@ -1234,20 +811,7 @@ LOCAL VOS_UINT32 MN_CALL_BcChkForCallCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CALL_UpdateCallStateForCallCnf
- 功能描述  : 对call confirm消息处理时，刷新呼叫状态。
- 输入参数  : callId - 呼叫ID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 LOCAL VOS_VOID MN_CALL_UpdateCallStateForCallCnf(
     MN_CALL_ID_T                        callId
 )
@@ -1264,23 +828,7 @@ LOCAL VOS_VOID MN_CALL_UpdateCallStateForCallCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CALL_GetDataCfgInfoForCallCnf
- 功能描述  : 获取数据业务的配置信息。
- 输入参数  : pstBc1CallCnf      - call confirm消息中的Bc1
-              pstBc2CallCnf     - call confirm消息中的Bc2
-              enCallType        - 呼叫类型
-              enCallMode        - 呼叫模式
- 输出参数  : pstDataCfgInfo     - 数据业务的配置信息
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 LOCAL VOS_VOID MN_CALL_GetDataCfgInfoForCallCnf(
     NAS_CC_IE_BC_STRU                   *pstBc1CallCnf,
     NAS_CC_IE_BC_STRU                   *pstBc2CallCnf,
@@ -1306,21 +854,7 @@ LOCAL VOS_VOID MN_CALL_GetDataCfgInfoForCallCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CALL_JudgeAllowToSendAlertReq
- 功能描述  : 判定是否需要发送Alerting消息
- 输入参数  : callId   - 呼叫Id
-              pstSetup - MT的setup消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 LOCAL VOS_UINT32 MN_CALL_JudgeAllowToSendAlertReq(
     MN_CALL_ID_T                        callId,
     NAS_CC_MSG_SETUP_MT_STRU           *pstSetup
@@ -1358,25 +892,7 @@ LOCAL VOS_UINT32 MN_CALL_JudgeAllowToSendAlertReq(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CALL_SsCdOperationProc
- 功能描述  : 更新补充业务CD操作的进展
- 输入参数  : callId      - 呼叫Id
-             unComponent - 网络回复的component
-             enErrcode   - 错误码
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年06月27日
-    作    者   : l00171473
-    修改内容   : DTS2012082204471, TEQ告警清理, 参数修改为指针
-*****************************************************************************/
 LOCAL VOS_VOID MN_CALL_SsCdOperationProc(
     MN_CALL_ID_T                        callId,
     MN_CALL_SS_COMPONENT_UNION         *punComponent,
@@ -1398,31 +914,7 @@ LOCAL VOS_VOID MN_CALL_SsCdOperationProc(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CALL_SsSplitMptyOperationProc
- 功能描述  : 更新补充业务Split Mpty操作的进展
- 输入参数  : callId         - 呼叫Id
-              unComponent   - 网络回复的component
-              enErrcode     - 错误码
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2008年7月23日
-    作    者   : 黎客来 130025
-    修改内容   : 问题单号:AT2D04596
-  3.日    期   : 2012年06月27日
-    作    者   : l00171473
-    修改内容   : DTS2012082204471, TEQ告警清理, 参数修改为指针
-  4.日    期   : 2012年09月20日
-    作    者   : f62575
-    修改内容   : STK&DCM 项目
-*****************************************************************************/
 LOCAL VOS_VOID MN_CALL_SsSplitMptyOperationProc(
     MN_CALL_ID_T                        callId,
     MN_CALL_SS_COMPONENT_UNION         *punComponent,
@@ -1466,31 +958,7 @@ LOCAL VOS_VOID MN_CALL_SsSplitMptyOperationProc(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CALL_SsHoldMptyOperationProc
- 功能描述  : 更新补充业务Hold Mpty操作的进展
- 输入参数  : callId      - 呼叫Id
-             unComponent - 网络回复的component
-             enErrcode   - 错误码
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年06月27日
-    作    者   : l00171473
-    修改内容   : DTS2012082204471, TEQ告警清理, 参数修改为指针
-  3.日    期   : 2012年09月20日
-    作    者   : f62575
-    修改内容   : STK&DCM 项目
-  4.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目，多方通话被保持，释放DTMF缓存
-*****************************************************************************/
 LOCAL VOS_VOID MN_CALL_SsHoldMptyOperationProc(
     MN_CALL_ID_T                        callId,
     MN_CALL_SS_COMPONENT_UNION         *punComponent,
@@ -1516,9 +984,7 @@ LOCAL VOS_VOID MN_CALL_SsHoldMptyOperationProc(
         /* 给AT模块上报MN_CALL_EVT_HOLD事件 */
         MN_CALL_ReportHoldEvent(MN_CLIENT_ALL, (VOS_UINT8)ulNumOfCalls, aCallIds);
 
-        /* Added by l00198894 for V9R1 STK升级, 2013/07/11, begin */
         TAF_CALL_ResetDtmfCtx(TAF_CS_CAUSE_CALL_ON_HOLD);
-        /* Added by l00198894 for V9R1 STK升级, 2013/07/11, end */
 
         MN_CALL_UpdateCallSupsProgress(callId,
                                        MN_CALL_SS_PROG_EVT_HOLD_CNF,
@@ -1533,28 +999,7 @@ LOCAL VOS_VOID MN_CALL_SsHoldMptyOperationProc(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CALL_SsHoldMptyOperationProc
- 功能描述  : 更新补充业务Retrieve Mpty操作的进展
- 输入参数  : callId      - 呼叫Id
-             unComponent - 网络回复的component
-             enErrcode   - 错误码
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年06月27日
-    作    者   : l00171473
-    修改内容   : DTS2012082204471, TEQ告警清理, 参数修改为指针
-  3.日    期   : 2012年09月20日
-    作    者   : f62575
-    修改内容   : STK&DCM 项目
-*****************************************************************************/
 LOCAL VOS_VOID MN_CALL_SsRetrieveMptyOperationProc(
     MN_CALL_ID_T                        callId,
     MN_CALL_SS_COMPONENT_UNION         *punComponent,
@@ -1592,32 +1037,7 @@ LOCAL VOS_VOID MN_CALL_SsRetrieveMptyOperationProc(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CALL_SsBuildMptyOperationProc
- 功能描述  : 更新补充业务Build Mpty操作的进展
- 输入参数  : callId      - 呼叫Id
-             unComponent - 网络回复的component
-             enErrcode   - 错误码
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年06月27日
-    作    者   : l00171473
-    修改内容   : DTS2012082204471, TEQ告警清理, 参数修改为指针
-  3.日    期   : 2012年11月09日
-    作    者   : Y00213812
-    修改内容   : DTS2012110809089, 发起多方通话，MN_CALL_S_HELD态的呼叫在恢复时
-                 未上报^CCALLSTATE的RETRIEVE
-  4.日    期   : 2012年12月11日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-*****************************************************************************/
 LOCAL VOS_VOID MN_CALL_SsBuildMptyOperationProc(
     MN_CALL_ID_T                        callId,
     MN_CALL_SS_COMPONENT_UNION         *punComponent,
@@ -1667,25 +1087,7 @@ LOCAL VOS_VOID MN_CALL_SsBuildMptyOperationProc(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CALL_SsEctOperationProc
- 功能描述  : 更新补充业务Ect操作的进展
- 输入参数  : callId      - 呼叫Id
-             unComponent - 网络回复的component
-             enErrcode   - 错误码
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年06月27日
-    作    者   : l00171473
-    修改内容   : DTS2012082204471, TEQ告警清理, 参数修改为指针
-*****************************************************************************/
 LOCAL VOS_VOID MN_CALL_SsEctOperationProc(
     MN_CALL_ID_T                        callId,
     MN_CALL_SS_COMPONENT_UNION         *punComponent,
@@ -1709,23 +1111,7 @@ LOCAL VOS_VOID MN_CALL_SsEctOperationProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CALL_SsGetInvokeId
- 功能描述  : 更新补充业务Ect操作的进展
- 输入参数  : unComponent - 网络回复的component
- 输出参数  : pucInvokeId - Invoke id
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年06月27日
-    作    者   : l00171473
-    修改内容   : DTS2012082204471, TEQ告警清理, 参数修改为指针
-*****************************************************************************/
 LOCAL VOS_VOID MN_CALL_SsGetInvokeId(
     MN_CALL_SS_COMPONENT_UNION          *punComponent,
     VOS_UINT8                           *pucInvokeId
@@ -1746,30 +1132,7 @@ LOCAL VOS_VOID MN_CALL_SsGetInvokeId(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_ProcSsFacility
- 功能描述  : 处理来自网络的Facility IE
- 输入参数  : pstFacIe - 来自网络的Facility IE
-             callId   - 呼叫Id
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年03月03日
-    作    者   : s62952
-    修改内容   : BalongV300R002 Build优化项目
-  3.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  4.日    期   : 2012年10月22日
-    作    者   : l65478
-    修改内容   : DTS2012101901424,OPTIONAL项不存在时不能认为解码失败
-*****************************************************************************/
 VOS_VOID  MN_CALL_ProcSsFacility(
     MN_CALL_ID_T                        callId,
     const NAS_CC_IE_FACILITY_STRU       *pstFacIe
@@ -1779,12 +1142,10 @@ VOS_VOID  MN_CALL_ProcSsFacility(
     VOS_UINT8                           ucOpCode;
     VOS_UINT8                           ucInvokeId;
     MN_CALL_SS_ERR_CODE_ENUM_U8         enErrcode;
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     MN_CALL_CUSTOM_CFG_INFO_STRU        *pstCustomCfgAddr;
 
     /* 获取特性控制NV地址 */
     pstCustomCfgAddr                    = MN_CALL_GetCustomCfgInfo();
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
     PS_MEM_SET(&unComponent, 0, sizeof(MN_CALL_SS_COMPONENT_UNION));
 
@@ -1843,7 +1204,6 @@ VOS_VOID  MN_CALL_ProcSsFacility(
             MN_CALL_ProcNotifySs(callId, &unComponent.invokeComp.unArg.notifySsArg);
             break;
 
-        /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
         case MN_CALL_SS_CD_OPERATION:
            if (MN_CALL_NV_ITEM_ACTIVE == pstCustomCfgAddr->ucCallDeflectionSupportFlg )
            {
@@ -1859,7 +1219,6 @@ VOS_VOID  MN_CALL_ProcSsFacility(
                 MN_CALL_SsRegCcEntryProc(callId, &unComponent, enErrcode);
             }
             break;
-        /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
 
         case MN_CALL_SS_SPLITMPTY_OPERATION:
@@ -1896,26 +1255,7 @@ VOS_VOID  MN_CALL_ProcSsFacility(
 
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_NegotBc
- 功能描述  : 对cc establishment或setup_ind消息中的BC进行协商
- 输入参数  : pMsg           - 消息内容
-             ucCallId       - 呼叫ID
-             enCallDir      - 呼叫方向
- 输出参数  : pstBc1CallCnf  - 回复消息中的BC1
-             pstBc2CallCnf  - 回复消息中的BC2
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010-5-24
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 LOCAL VOS_UINT32 MN_CALL_NegotBc(
     VOS_VOID                            *pMsg,
     MN_CALL_ID_T                        ucCallId,
@@ -1999,21 +1339,7 @@ LOCAL VOS_UINT32 MN_CALL_NegotBc(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_ProcMnccDisIndWithCcbs
- 功能描述  : MNCC_DISC_IND原语中disconnect消息中带CCBS激活相关信息的处理
- 输入参数  : pstDisc    - 通过MNCC_DISC_IND原语收到的disconnect消息
-             ucCallId   - 呼叫ID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   :2009-12-24
-    作    者   :z00161729
-    修改内容   : 新生成函数
-*****************************************************************************/
 
 LOCAL VOS_VOID MN_CALL_ProcMnccDisIndWithCcbs(
     const NAS_CC_MSG_DISCONNECT_MT_STRU    *pstDisc,
@@ -2031,22 +1357,7 @@ LOCAL VOS_VOID MN_CALL_ProcMnccDisIndWithCcbs(
 
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_CcbsProcMnccRelCnf
- 功能描述  : 用户选择CCBS激活收到MNCC_REL_CNF原语但没有带facility时的处理
-             或CCBS回呼用户没有响应超时收到MNCC_REL_CNF原语时的处理
- 输入参数  : enCallState    - 呼叫状态
-             ucCallId       - 呼叫ID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   :2009-12-24
-    作    者   :z00161729
-    修改内容   : 新生成函数
-*****************************************************************************/
 
 LOCAL VOS_VOID MN_CALL_CcbsProcMnccRelCnf(
     MN_CALL_STATE_ENUM_U8               enCallState,
@@ -2076,23 +1387,7 @@ LOCAL VOS_VOID MN_CALL_CcbsProcMnccRelCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_ProcMnccEstInd
- 功能描述  : 处理MNCC_CC_EST_IND原语
- 输入参数  : pstMsg - 来自CC的原语消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009-12-25
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_VOID MN_CALL_ProcMnccEstInd(
     const MNCC_IND_PRIM_MSG_STRU        *pstMsg
 )
@@ -2247,20 +1542,7 @@ VOS_VOID MN_CALL_ProcMnccEstInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_ProcMnccRecallInd
- 功能描述  : 处理MNCC_RECALL_IND原语
- 输入参数  : pstMsg - 来自CC的原语消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009-12-25
-    作    者   : z00161729
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_VOID  MN_CALL_ProcMnccRecallInd(
     const MNCC_IND_PRIM_MSG_STRU        *pstMsg
 )
@@ -2274,37 +1556,7 @@ VOS_VOID  MN_CALL_ProcMnccRecallInd(
                            (NAS_CC_IE_FACILITY_STRU*)&pstMsg->unParam.stRecall.stFacility);
 
 }
-/*****************************************************************************
- 函 数 名  :  MN_CALL_CheckNvAllowMtCall
- 功能描述  : 检查NV配置项是否允许被叫
- 输入参数  : ucCallType     - 呼叫类型
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年5月19日
-    作    者   : h44270
-    修改内容   : 新生成函数
-  2.日    期   : 2013年8月29日
-    作    者   : f62575
-    修改内容   : VSIM FEATURE
-
-  3.日    期   : 2013年10月24日
-    作    者   : z00234330
-    修改内容   : DTS2013101201412
-  4.日    期   : 2013年12月09日
-    作    者   : f62575
-    修改内容   : DTS2013120411878，终端不支持VOICE/VIDEO CALL，回复RELEASE COMPLETE
-消息原因定制值
-  4.日    期   : 2014年05月12日
-    作    者   : y00245242
-    修改内容   : eCall feature修改
-  5.日    期   : 2014年6月24日
-    作    者   : z00161729
-    修改内容   : DSDS III新增
-*****************************************************************************/
 VOS_BOOL MN_CALL_CheckNvAllowMtCall(
     MN_CALL_TYPE_ENUM_U8                enCallType,
     MN_CALL_CC_CAUSE_ENUM_U8           *penCause
@@ -2320,9 +1572,7 @@ VOS_BOOL MN_CALL_CheckNvAllowMtCall(
     pstCustomCfg = MN_CALL_GetCustomCfgInfo();
 
 
-    /* Deleted by y00245242 for V3R3C60_eCall项目, 2014-5-12, begin */
     /* 删除对cause值初始化操作 */
-    /* Deleted by y00245242 for V3R3C60_eCall项目, 2014-5-12, end */
 
     /* VSIM的MODEM且NAS的VSIM特性开关打开，则拒绝接受被叫业务 */
     if (VOS_TRUE == NAS_VSIM_IsRequireVsimCtrl())
@@ -2344,7 +1594,6 @@ VOS_BOOL MN_CALL_CheckNvAllowMtCall(
         return VOS_FALSE;
     }
 
-    /* Modified by z00234330 for PCLINT清理, 2014-07-03, begin */
     ucTafMultiSimCallStatusControl = TAF_CALL_GetMultiSimCallStatusControl();
     enVpNvCfgState                 = TAF_CALL_GetVpCfgState();
     /* Voice类型的呼叫，使用的是gucTafCallStatusControl和gucTafMultiSimCallStatusControl这两个NV项的值 */
@@ -2380,27 +1629,10 @@ VOS_BOOL MN_CALL_CheckNvAllowMtCall(
         return VOS_TRUE;
     }
 
-    /* Modified by z00234330 for PCLINT清理, 2014-07-03, end */
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_IsMtCallAllowed
- 功能描述  : 检查MT eCall是否允许发起
- 输入参数  : pstSetup - MT setup消息
-             ucCallId - 呼叫标识
 
- 输出参数  : penCause - 返回呼叫不允许原因值
- 返 回 值  : VOS_TRUE  -- 允许发起
-             VOS_FALSE -- 不允许发起
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年4月15日
-    作    者   : y00245242
-    修改内容   : 为eCall feature增加
-*****************************************************************************/
 VOS_UINT8 TAF_CALL_IsMtCallAllowed(
     NAS_CC_MSG_SETUP_MT_STRU           *pstSetup,
     VOS_UINT8                           ucCallId,
@@ -2413,10 +1645,10 @@ VOS_UINT8 TAF_CALL_IsMtCallAllowed(
     MN_CALL_TYPE_ENUM_U8                enCallType = MN_CALL_TYPE_VOICE;
     MN_CALL_MODE_ENUM_U8                enCallMode = MN_CALL_MODE_SINGLE;
     TAF_CALL_CCWA_CTRL_MODE_ENUM_U8    enCcwaCtrlMode;
-    VOS_UINT8                           ucCcwaiFlg;
+    TAF_CALL_CCWAI_MODE_ENUM_UINT8     enCcwaiMode;
 
     enCcwaCtrlMode = TAF_CALL_GetCcwaCtrlMode();
-    ucCcwaiFlg     = TAF_CALL_GetCcwaiFlg();
+    enCcwaiMode    = TAF_CALL_GetCcwaiMode();
 
    /*查找是否有正在通话的呼叫，如果有正在进行的可视电话，则不允许接收另一个呼叫*/
     MN_CALL_GetCallsByState(MN_CALL_S_ACTIVE, &ulNumOfCalls, aCallIds);
@@ -2431,8 +1663,8 @@ VOS_UINT8 TAF_CALL_IsMtCallAllowed(
     }
 
     if ((ulNumOfCalls > 0)
-     && (TAF_CALL_CCWA_CTRL_BY_IMS == enCcwaCtrlMode)
-     && (VOS_FALSE == ucCcwaiFlg))
+     && (TAF_CALL_CCWA_CTRL_BY_UE == enCcwaCtrlMode)
+     && (VOS_FALSE == enCcwaiMode))
     {
         *penCause = MN_CALL_USER_BUSY;
 
@@ -2482,70 +1714,7 @@ VOS_UINT8 TAF_CALL_IsMtCallAllowed(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_ProcMnccSetupInd
- 功能描述  : 处理MNCC_SETUP_IND原语
- 输入参数  : pstMsg - 来自CC的原语消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2009年5月20日
-    作    者   : h44270
-    修改内容   : 问题单号A32D14863，在中国移动的网络下（G网），被叫单板，来电接不起来。
-
-  3.日    期   : 2010年3月1日
-    作    者   : zhoujun /z40661
-    修改内容   : 支持ALS多线路
-  4.日    期   : 2010年07月20日
-    作    者   : h44270
-    修改内容   : 问题单号： DTS2010071902031
-  5.日    期   : 2012年03月03日
-    作    者   : s62952
-    修改内容   : BalongV300R002 Build优化项目
-  6.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  7.日    期   : 2012年09月20日
-    作    者   : f62575
-    修改内容   : STK&DCM 项目新增函数
-  8.日    期   : 2012年10月29日
-    作    者   : z00161729
-    修改内容   : DTS2012083102536:支持cc呼叫重建
-  9.日    期   : 2012年12月11日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
- 10.日    期   : 2013年3月7日
-    作    者   : w00176964
-    修改内容   : DTS2013030606529:TD下,网测下发connect消息,RB未建好,此时上报RING
-                 用户接听可能会失败,此处进行规避延长TD下的RING上报时机
- 12.日    期   : 2013年9月4日
-    作    者   : w00167002
-    修改内容   : DTS2013090403562:NAS定时器清理，需要启动32K定时器。将MM/MMA/SMS/cc
-                模块的循环定时器修改为非循环定时器。
-
- 13.日    期   : 2013年10月24日
-    作    者   : z00234330
-    修改内容   : DTS2013101201412
-
- 14.日    期   : 2013年12月28日
-    作    者   : j00174725
-    修改内容   : HSUART PHASE III
- 15.日    期   : 2014年4月15日
-    作    者   : y00245242
-    修改内容   : 为eCall feature修改
- 16.日    期   : 2014年6月11日
-    作    者   : y00245242
-    修改内容   : DTS2014060306029
- 17.日    期   : 2015年7月7日
-    作    者   : zwx247453
-    修改内容   : CHR 优化项目
-*****************************************************************************/
 VOS_VOID  MN_CALL_ProcMnccSetupInd(
     const MNCC_IND_PRIM_MSG_STRU        *pstMsg
 )
@@ -2570,12 +1739,10 @@ VOS_VOID  MN_CALL_ProcMnccSetupInd(
     VOS_BOOL                            bWaitSendAlertStatus;
     MN_CALL_ID_T                        ucCallId;
 
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     MN_CALL_CUSTOM_CFG_INFO_STRU        *pstCustomCfgAddr;
 
     /* 获取特性控制NV地址 */
     pstCustomCfgAddr                    = MN_CALL_GetCustomCfgInfo();
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
 
     callId = 0;
@@ -2595,9 +1762,7 @@ VOS_VOID  MN_CALL_ProcMnccSetupInd(
 
     pstSetup = (NAS_CC_MSG_SETUP_MT_STRU*)&(pstMsg->unParam.stSetup);
 
-    /* Deleted by y00245242 for V3R3C60_eCall项目, 2014-4-30, begin */
     /* 下移重拨缓存处理到MT呼叫检查完成后 */
-    /* Deleted by y00245242 for V3R3C60_eCall项目, 2014-4-30, end */
 
     /* 分配 Call Id */
     (VOS_VOID)MN_CALL_AllocCallId(&callId);
@@ -2607,7 +1772,6 @@ VOS_VOID  MN_CALL_ProcMnccSetupInd(
 
     MN_NORM_LOG1("MN_CALL_ProcMnccSetupInd: call id, ", callId);
 
-    /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-30, begin */
     /*对call confirm消息中的BC进行检查*/
     if (VOS_OK != MN_CALL_BcChkForCallCnf(pstSetup,
                                       &stBc1CallCnf,
@@ -2649,9 +1813,7 @@ VOS_VOID  MN_CALL_ProcMnccSetupInd(
     if ((MN_CALL_TIMER_STATUS_RUNING == TAF_CALL_GetRedialIntervalTimerStatus(pstBufferdMsg->stBufferedSetupMsg.ucCallId))
      && (MN_CALL_S_DIALING           == enCallState))
     {
-        /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-8, begin */
         TAF_CALL_StopAllRedialTimers(pstBufferdMsg->stBufferedSetupMsg.ucCallId);
-        /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-8, end */
 
         if (VOS_TRUE == pstBufferdMsg->bitOpBufferedRejIndMsg)
         {
@@ -2668,7 +1830,6 @@ VOS_VOID  MN_CALL_ProcMnccSetupInd(
             ;
         }
     }
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-4-30, end */
 
     /*对通过检查的BC进行协商, 得到需要携带在Call Confirm消息中的BC*/
     /* 目前不支持单号码方案，在前面已经返回，因此在此处，暂不处理BC1
@@ -2717,9 +1878,7 @@ VOS_VOID  MN_CALL_ProcMnccSetupInd(
         NAS_EventReport(WUEPS_PID_TAF, NAS_OM_EVENT_CC_MT_ATTEMPT, VOS_NULL_PTR, NAS_OM_EVENT_NO_PARA);
     }
 
-    /* Deleted by y00245242 for V3R3C60_eCall项目, 2014-6-12, begin */
     /* 此处处理下移到后面处理 */
-    /* Deleted by y00245242 for V3R3C60_eCall项目, 2014-6-12, end */
 
     /*刷新当前的呼叫状态*/
     MN_CALL_UpdateCallStateForCallCnf(callId);
@@ -2731,7 +1890,6 @@ VOS_VOID  MN_CALL_ProcMnccSetupInd(
         MN_CALL_UpdateNoCliCause(callId, MN_CALL_NO_CLI_USR_REJ);
     }
 
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     if ( MN_CALL_NV_ITEM_ACTIVE == pstCustomCfgAddr->ucAlsSupportFlg )
     {
         /* 广播来电(INCOMING)事件,需要区分是线路1的来电还是线路2的来电 */
@@ -2746,11 +1904,8 @@ VOS_VOID  MN_CALL_ProcMnccSetupInd(
         }
 
     }
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
-    /* 此处删除dts2013030606529的修改，统一在alert请求发送给网络后, 上报INCOMING
-     * 事件，同时启动RING定时器
-     */
+    
     if (VOS_OK != MN_CALL_JudgeAllowToSendAlertReq(callId, pstSetup))
     {
         return;
@@ -2786,7 +1941,6 @@ VOS_VOID  MN_CALL_ProcMnccSetupInd(
         MN_CALL_ReportEvent(callId, MN_CALL_EVT_UUS1_INFO);
     }
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-5-27, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
     if (MN_CALL_TIMER_STATUS_RUNING == MN_CALL_GetTimerStatus(TAF_CALL_TID_T9))
     {
@@ -2794,46 +1948,11 @@ VOS_VOID  MN_CALL_ProcMnccSetupInd(
         MN_CALL_UpdateCallType(callId, MN_CALL_TYPE_PSAP_ECALL);
     }
 #endif
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-5-27, end */
 
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_ProcMnccSetupCnf
- 功能描述  : 处理MNCC_SETUP_CNF原语
- 输入参数  : pstMsg - 来自CC的原语消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2010年07月20日
-    作    者   : h44270
-    修改内容   : 问题单号： DTS2010071902031
-  3.日    期   : 2012年09月20日
-    作    者   : f62575
-    修改内容   : STK&DCM 项目新增函数
-  4.日    期   : 2012年10月29日
-    作    者   : z00161729
-    修改内容   : DTS2012083102536:支持cc呼叫重建
-  5.日    期   : 2012年12月11日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-  6.日    期   : 2014年2月19日
-    作    者   : s00217060
-    修改内容   : coverity清理
-  7.日    期   : 2014年4月2日
-    作    者   : y00245242
-    修改内容   : 为eCall feature修改
-  8.日    期   : 2015年8月14日
-    作    者   : s00217060
-    修改内容   : User_Exp_Improve修改
-*****************************************************************************/
 VOS_VOID  MN_CALL_ProcMnccSetupCnf(
     const MNCC_IND_PRIM_MSG_STRU        *pstMsg
 )
@@ -2851,9 +1970,7 @@ VOS_VOID  MN_CALL_ProcMnccSetupCnf(
     enCallState = MN_CALL_S_BUTT;
     enMptyState = MN_CALL_MPYT_STATE_BUTT;
 
-    /* Added by s00217060 for coverity清理, 2014-02-17, begin */
     PS_MEM_SET(&stConnNumber, 0, sizeof(MN_CALL_BCD_NUM_STRU));
-    /* Added by s00217060 for coverity清理, 2014-02-17, end */
 
     /* 获取当前呼叫状态*/
     MN_CALL_GetCallState(pstMsg->ucCallId, &enCallState, &enMptyState);
@@ -2887,7 +2004,6 @@ VOS_VOID  MN_CALL_ProcMnccSetupCnf(
      && (pstMsgBuff->stBufferedSetupMsg.ucCallId == pstMsg->ucCallId))
 
     {
-        /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-4, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
         if (VOS_TRUE == TAF_CALL_IsCallTypeEcall(pstMsg->ucCallId))
         {
@@ -2900,9 +2016,7 @@ VOS_VOID  MN_CALL_ProcMnccSetupCnf(
         }
 
         TAF_CALL_StopAllRedialTimers(pstMsg->ucCallId);
-        /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-4, begin */
     }
-    /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-4, end */
 
     /*如果是可视电话，通知CST模块建立通道*/
     if (MN_CALL_TYPE_VIDEO == MN_CALL_GetCallType(pstMsg->ucCallId))
@@ -2915,12 +2029,10 @@ VOS_VOID  MN_CALL_ProcMnccSetupCnf(
     {
         if (VOS_FALSE == MN_CALL_GetChannelOpenFlg())
         {
-            /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-18, begin */
             /* 发送消息通知VC打开语音通道 */
             MN_CALL_SendVcMsg(CALL_VC_CHANNEL_OPEN);
             /* 发送消息通知AT语音通道状态 */
             MN_CALL_ReportChannelEvent(MN_CALL_EVT_CHANNEL_OPEN);
-            /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-18, end */
             MN_CALL_SetChannelOpenFlg(VOS_TRUE);
             TAF_CALL_SetSrvccLocalAlertedFlagByCallId(pstMsg->ucCallId, VOS_FALSE);
         }
@@ -2948,7 +2060,6 @@ VOS_VOID  MN_CALL_ProcMnccSetupCnf(
 
     MN_CALL_SndStkCallConnEvent(pstMsg->ucTi, MN_CALL_DIR_MO);
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-4-4, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
     /* 增加eCall处理相关*/
     if (VOS_TRUE == TAF_CALL_IsCallTypeEcall(pstMsg->ucCallId))
@@ -2966,7 +2077,6 @@ VOS_VOID  MN_CALL_ProcMnccSetupCnf(
         }
     }
 #endif
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-4-4, end */
 
 #if (FEATURE_ON == FEATURE_HUAWEI_VP)
     MN_CALl_VoicePreferJudgeVoiceCallExist();
@@ -2974,44 +2084,7 @@ VOS_VOID  MN_CALL_ProcMnccSetupCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_ProcMnccSetupComplInd
- 功能描述  : 处理MNCC_SETUP_COMPL_IND原语
- 输入参数  : pstMsg - 来自CC的原语消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2009年01月29日
-    作    者   : x00115505
-    修改内容   : GCF用例26.8.1.3.5.3 Fail,呼叫过程中挂不断电话
-  3.日    期   : 2010年05月07日
-    作    者   : z00161729
-    修改内容   : 修改问题单AT2D19199,修改上报MN_CALL_EVT_CONNECT事件的限制条件
-  4.日    期   : 2010年07月20日
-    作    者   : h44270
-    修改内容   : 问题单号： DTS2010071902031
-  5.日    期   : 2012年11月09日
-    作    者   : Y00213812
-    修改内容   : DTS2012110501198, 发起多方通话，主叫未上报^CCALLSTATE状态
-  6.日    期   : 2012年12月11日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-  7.日    期   : 2013年05月17日
-    作    者   : m00217266
-    修改内容   : nv项拆分
-  8.日    期   : 2014年4月15日
-    作    者   : y00245242
-    修改内容   : 为eCall feature修改
-  9.日    期   : 2014年6月24日
-    作    者   : z00161729
-    修改内容   : DSDS III新增
-*****************************************************************************/
 VOS_VOID MN_CALL_ProcMnccSetupComplInd(
     const MNCC_IND_PRIM_MSG_STRU        *pstMsg
 )
@@ -3046,12 +2119,10 @@ VOS_VOID MN_CALL_ProcMnccSetupComplInd(
     {
         if (VOS_FALSE == MN_CALL_GetChannelOpenFlg())
         {
-            /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-18, begin */
             /* 发送消息通知VC打开语音通道 */
             MN_CALL_SendVcMsg(CALL_VC_CHANNEL_OPEN);
             /* 发送消息通知AT语音通道状态 */
             MN_CALL_ReportChannelEvent(MN_CALL_EVT_CHANNEL_OPEN);
-            /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-18, end */
         }
         MN_CALL_SetChannelOpenFlg(VOS_TRUE);
     }
@@ -3097,7 +2168,6 @@ VOS_VOID MN_CALL_ProcMnccSetupComplInd(
     MN_CALl_VoicePreferJudgeVoiceCallExist();
 #endif
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-4-4, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
     /* 增加eCall处理相关*/
     if (MN_CALL_TIMER_STATUS_RUNING == MN_CALL_GetTimerStatus(TAF_CALL_TID_T9))
@@ -3115,30 +2185,10 @@ VOS_VOID MN_CALL_ProcMnccSetupComplInd(
         MN_CALL_UpdateCallType(pstMsg->ucCallId, MN_CALL_TYPE_PSAP_ECALL);
     }
 #endif
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-4-4, end */
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_ProcMnccCallProcInd
- 功能描述  : 处理MNCC_CALL_PROC_IND原语
- 输入参数  : pstMsg - 来自CC的原语消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年10月29日
-    作    者   : z00161729
-    修改内容   : DTS2012083102536:支持cc呼叫重建
-  3.日    期   : 2014年4月15日
-    作    者   : y00245242
-    修改内容   : 为eCall feature修改
-*****************************************************************************/
 VOS_VOID  MN_CALL_ProcMnccCallProcInd(
     const MNCC_IND_PRIM_MSG_STRU        *pstMsg
 )
@@ -3221,7 +2271,6 @@ VOS_VOID  MN_CALL_ProcMnccCallProcInd(
     if ((VOS_TRUE == pstMsgBuff->bitOpBufferedSetupMsg)
      && (pstMsgBuff->stBufferedSetupMsg.ucCallId == pstMsg->ucCallId))
     {
-        /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-8, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
         if (VOS_TRUE == TAF_CALL_IsCallTypeEcall(pstMsg->ucCallId))
         {
@@ -3234,10 +2283,8 @@ VOS_VOID  MN_CALL_ProcMnccCallProcInd(
         }
 
         TAF_CALL_StopAllRedialTimers(pstMsg->ucCallId);
-        /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-8, end */
     }
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-4-30, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
     if (VOS_TRUE == TAF_CALL_IsCallTypeEcall(pstMsg->ucCallId))
     {
@@ -3248,49 +2295,10 @@ VOS_VOID  MN_CALL_ProcMnccCallProcInd(
         }
     }
 #endif
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-4-30, end */
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_ProcMnccSyncInd
- 功能描述  : 处理MNCC_SYNC_IND原语
- 输入参数  : pstMsg - 来自CC的原语消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  1.日    期   : 2010年7月21日
-    作    者   : h44270
-    修改内容   : 问题单号：DTS2010071302154
-  2.日    期   : 2012年12月11日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-  3.日    期   : 2013年3月7日
-    作    者   : w00176964
-    修改内容   : DTS2013030606529:TD下,网测下发connect消息,RB未建好,此时上报RING
-                 用户接听可能会失败,此处进行规避延长TD下的RING上报时机
-  4.日    期   : 2013年6月13日
-    作    者   : z00161729
-    修改内容   : SVLTE 和usim接口调整修改
-  5.日    期   : 2013年8月3日
-    作    者   : z60575
-    修改内容   : TQE修改
-  6.日    期   : 2013年12月23日
-    作    者   : y00245242
-    修改内容   : 增加SRVCC缓存处理
-  7.日    期   : 2014年04月18日
-    作    者   : y00245242
-    修改内容   : 为eCall feature修改
-  8.日    期   : 2014年6月11日
-    作    者   : y00245242
-    修改内容   : DTS2014060306029
-*****************************************************************************/
 VOS_VOID  MN_CALL_ProcMnccSyncInd(
     const MNCC_IND_PRIM_MSG_STRU        *pstMsg
 )
@@ -3302,7 +2310,6 @@ VOS_VOID  MN_CALL_ProcMnccSyncInd(
     MN_CALL_MPTY_STATE_ENUM_U8          enMptyState;
     MN_CALL_ID_T                        aCallIds[MN_CALL_MAX_NUM];
     VOS_UINT32                          ulNumOfCalls;
-    /* 删除dts2013030606529的修改 */
 
     PS_MEM_SET(aCallIds, 0, sizeof(aCallIds));
 
@@ -3320,9 +2327,7 @@ VOS_VOID  MN_CALL_ProcMnccSyncInd(
         {
             /*设置业务信道建立标志*/
             MN_CALL_SetTchStatus(VOS_TRUE);
-            /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-18, begin */
             (VOS_VOID)MN_CALL_SetTchPara(&(pstMsg->unParam.stSyncInd), pstMsg->ucCallId);
-            /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-18, end */
             MN_CALL_GetWaitSendAlertStatus(&bWaitSendAlertStatus, &uccallId);
             if (VOS_TRUE == bWaitSendAlertStatus)
             {
@@ -3346,12 +2351,10 @@ VOS_VOID  MN_CALL_ProcMnccSyncInd(
             {
                 if (VOS_FALSE == MN_CALL_GetChannelOpenFlg())
                 {
-                    /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-18, begin */
                     /* 发送消息通知VC打开语音通道 */
                     MN_CALL_SendVcMsg(CALL_VC_CHANNEL_OPEN);
                     /* 发送消息通知AT语音通道状态 */
                     MN_CALL_ReportChannelEvent(MN_CALL_EVT_CHANNEL_OPEN);
-                    /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-18, end */
 
                     MN_CALL_SetChannelOpenFlg(VOS_TRUE);
                 }
@@ -3363,34 +2366,27 @@ VOS_VOID  MN_CALL_ProcMnccSyncInd(
                 {
                     if (VOS_FALSE == TAF_CALL_GetSrvccLocalAlertedFlagByCallId(pstMsg->ucCallId))
                     {
-                        /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-18, begin */
                         /* 发送消息通知VC打开语音通道 */
                         MN_CALL_SendVcMsg(CALL_VC_CHANNEL_OPEN);
                         /* 发送消息通知AT语音通道状态 */
                         MN_CALL_ReportChannelEvent(MN_CALL_EVT_CHANNEL_OPEN);
-                        /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-18, end */
 
                         MN_CALL_SetChannelOpenFlg(VOS_TRUE);
                     }
                 }
             }
 
-            /* 删除dts2013030606529的修改 */
         }
         else
         {
-            /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-21, begin */
             bResult = MN_CALL_SetTchPara(&(pstMsg->unParam.stSyncInd), pstMsg->ucCallId);
-            /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-21, end */
 
             if ((VOS_TRUE == MN_CALL_GetChannelOpenFlg()) && (VOS_TRUE == bResult))
             {
-                /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-18, begin */
                 /* 发送消息通知VC语音通道配置改变 */
                 MN_CALL_SendVcMsg(CALL_VC_CHANNEL_PARA_CHANGE);
                 /* 发送消息通知AT语音通道状态 */
                 MN_CALL_ReportChannelEvent(MN_CALL_EVT_CHANNEL_PARA_CHANGE);
-                /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-18, end */
 
                 return;
             }
@@ -3402,12 +2398,10 @@ VOS_VOID  MN_CALL_ProcMnccSyncInd(
         {
             if (VOS_TRUE == MN_CALL_GetChannelOpenFlg())
             {
-                /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-18, begin */
                 /* 发送消息通知VC关闭语音通道 */
                 MN_CALL_SendVcMsg(CALL_VC_CHANNEL_CLOSE);
                 /* 发送消息通知AT语音通道状态 */
                 MN_CALL_ReportChannelEvent(MN_CALL_EVT_CHANNEL_CLOSE);
-                /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-18, end */
                 MN_CALL_SetChannelOpenFlg(VOS_FALSE);
             }
 
@@ -3427,32 +2421,7 @@ VOS_VOID  MN_CALL_ProcMnccSyncInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_ProcMnccAlertInd
- 功能描述  : 处理MNCC_ALERT_IND原语
- 输入参数  : pstMsg - 来自CC的原语消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年10月29日
-    作    者   : z00161729
-    修改内容   : DTS2012083102536:支持cc呼叫重建
-  3.日    期   : 2012年12月11日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-  4.日    期   : 2013年6月3日
-    作    者   : z00161729
-    修改内容   : SVLTE 修改支持本地回铃音
-  5.日    期   : 2014年4月15日
-    作    者   : y00245242
-    修改内容   : 为eCall feature修改
-*****************************************************************************/
 VOS_VOID  MN_CALL_ProcMnccAlertInd(
     const MNCC_IND_PRIM_MSG_STRU        *pstMsg
 )
@@ -3494,12 +2463,10 @@ VOS_VOID  MN_CALL_ProcMnccAlertInd(
         {
             if (VOS_FALSE == MN_CALL_GetChannelOpenFlg())
             {
-                /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-18, begin */
                 /* 发送消息通知VC打开语音通道 */
                 MN_CALL_SendVcMsg(CALL_VC_CHANNEL_OPEN);
                 /* 发送消息通知AT语音通道状态 */
                 MN_CALL_ReportChannelEvent(MN_CALL_EVT_CHANNEL_OPEN);
-                /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-18, end */
             }
             MN_CALL_SetChannelOpenFlg(VOS_TRUE);
         }
@@ -3529,7 +2496,6 @@ VOS_VOID  MN_CALL_ProcMnccAlertInd(
     if ((VOS_TRUE == pstMsgBuff->bitOpBufferedSetupMsg)
      && (pstMsgBuff->stBufferedSetupMsg.ucCallId == pstMsg->ucCallId))
     {
-        /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-8, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
         if (VOS_TRUE == TAF_CALL_IsCallTypeEcall(pstMsg->ucCallId))
         {
@@ -3542,10 +2508,8 @@ VOS_VOID  MN_CALL_ProcMnccAlertInd(
         }
 
         TAF_CALL_StopAllRedialTimers(pstMsg->ucCallId);
-        /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-8, end */
     }
 
-        /* Added by y00245242 for V3R3C60_eCall项目, 2014-4-30, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
     if (VOS_TRUE == TAF_CALL_IsCallTypeEcall(pstMsg->ucCallId))
     {
@@ -3556,50 +2520,10 @@ VOS_VOID  MN_CALL_ProcMnccAlertInd(
         }
     }
 #endif
-        /* Added by y00245242 for V3R3C60_eCall项目, 2014-4-30, end */
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_ProcMnccDiscInd
- 功能描述  : 处理MNCC_DISC_IND原语
- 输入参数  : pstMsg - 来自CC的原语消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-
-  2.日    期   : 2010年3月2日
-    作    者   : zhoujun /z40661
-    修改内容   : NAS R7协议升级
-  3.日    期   : 2012年03月03日
-    作    者   : s62952
-    修改内容   : BalongV300R002 Build优化项目
-  4.日    期   : 2012年09月20日
-    作    者   : f62575
-    修改内容   : STK&DCM 项目新增函数
-  5.日    期   : 2012年12月11日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-  6.日    期   : 2013年01月29日
-    作    者   : Y00213812
-    修改内容   : DTS2013012909872,记录CALL挂断的方向
-  7.日    期   : 2014年04月18日
-    作    者   : y00245242
-    修改内容   : 为eCall feature修改
-  8.日    期   : 2014年10月09日
-    作    者   : s00217060
-    修改内容   : for cs_err_log
-  9.日    期   : 2014年12月11日
-    作    者   : s00217060
-    修改内容   : DTS2014121003107:no tch不再上报，用网络disconnect带上来的原
-                 因值,如果网络没带原因值用默认值#16
-*****************************************************************************/
 VOS_VOID  MN_CALL_ProcMnccDiscInd(
     const MNCC_IND_PRIM_MSG_STRU        *pstMsg
 )
@@ -3607,13 +2531,11 @@ VOS_VOID  MN_CALL_ProcMnccDiscInd(
     MN_CALL_STATE_ENUM_U8               enCallState;
     MN_CALL_MPTY_STATE_ENUM_U8          enMptyState;
     const NAS_CC_MSG_DISCONNECT_MT_STRU *pstDisc;
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     MN_CALL_CUSTOM_CFG_INFO_STRU        *pstCustomCfgAddr;
     VOS_UINT32                          ulTchStatus;
 
     /* 获取特性控制NV地址 */
     pstCustomCfgAddr                    = MN_CALL_GetCustomCfgInfo();
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
 
     enCallState = MN_CALL_S_BUTT;
@@ -3636,12 +2558,10 @@ VOS_VOID  MN_CALL_ProcMnccDiscInd(
     {
         if (VOS_FALSE == MN_CALL_GetChannelOpenFlg())
         {
-            /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-18, begin */
             /* 发送消息通知VC打开语音通道 */
             MN_CALL_SendVcMsg(CALL_VC_CHANNEL_OPEN);
             /* 发送消息通知AT语音通道状态 */
             MN_CALL_ReportChannelEvent(MN_CALL_EVT_CHANNEL_OPEN);
-            /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-18, end */
         }
         MN_CALL_SetChannelOpenFlg(VOS_TRUE);
     }
@@ -3674,12 +2594,10 @@ VOS_VOID  MN_CALL_ProcMnccDiscInd(
                                (NAS_CC_IE_FACILITY_STRU*)&pstDisc->stFacility);
     }
 
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     if (MN_CALL_NV_ITEM_ACTIVE == pstCustomCfgAddr->ucCcbsSupportFlg)
     {
         MN_CALL_ProcMnccDisIndWithCcbs(pstDisc, pstMsg->ucCallId);
     }
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
     /* UUS1存在,需上报UUS1信息 */
     if ( VOS_TRUE == NAS_IE_IS_PRESENT(&pstDisc->stUserUser) )
@@ -3696,20 +2614,7 @@ VOS_VOID  MN_CALL_ProcMnccDiscInd(
 
 }
 
-/* Added by y00245242 for V3R3C60_eCall项目, 2014-4-29, begin */
-/*****************************************************************************
- 函 数 名  : TAF_CALL_ProcAllCallReleased
- 功能描述  : 所有呼叫释放后的处理流程
- 输入参数  : pstMsg - 来自CC的原语消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 1.日    期   : 2014年4月15日
-   作    者   : y00245242
-   修改内容   : 为eCall feature增加
-*****************************************************************************/
 VOS_VOID TAF_CALL_ProcCallAllReleased(
     const MNCC_IND_PRIM_MSG_STRU       *pstMsg
 )
@@ -3750,22 +2655,7 @@ VOS_VOID TAF_CALL_ProcCallAllReleased(
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_ProcCallCause
- 功能描述  : 处理呼叫原因值
- 输入参数  : ucCallId         - 呼叫标识
-             ucCauseExistFlag － 原因值存在标志
-             enCallCause      － cause值
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 1.日    期   : 2014年4月15日
-   作    者   : y00245242
-   修改内容   : 为eCall feature增加
-*****************************************************************************/
 VOS_VOID TAF_CALL_ProcCallCause(
     VOS_UINT8                           ucCallId,
     VOS_UINT8                           ucCauseExistFlag,
@@ -3804,20 +2694,7 @@ VOS_VOID TAF_CALL_ProcCallCause(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_ProcCallRedialAfterCallRel
- 功能描述  : 处理呼叫释放后的重拨
- 输入参数  : ucCallId         － 呼叫标识
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 1.日    期   : 2014年4月15日
-   作    者   : y00245242
-   修改内容   : 为eCall feature增加
-*****************************************************************************/
 VOS_VOID TAF_CALL_ProcCallRedialAfterCallRel(
     VOS_UINT8                           ucCallId
 )
@@ -3829,7 +2706,6 @@ VOS_VOID TAF_CALL_ProcCallRedialAfterCallRel(
     if ((VOS_TRUE == pstMsgBuff->bitOpBufferedSetupMsg)
      && (ucCallId == pstMsgBuff->stBufferedSetupMsg.ucCallId))
     {
-        /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-8, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
         if (VOS_TRUE == TAF_CALL_IsCallTypeEcall(ucCallId))
         {
@@ -3844,84 +2720,13 @@ VOS_VOID TAF_CALL_ProcCallRedialAfterCallRel(
         TAF_CALL_StopAllRedialTimers(ucCallId);
     }
 }
-/* Added by y00245242 for V3R3C60_eCall项目, 2014-4-29, end */
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_ProcMnccRelInd
- 功能描述  : 处理MNCC_REL_IND原语
- 输入参数  : pstMsg - 来自CC的原语消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2008年7月12日
-    作    者   : 胡文 44270
-    修改内容   : 问题单号:AT2D04057
-  3.日    期   : 2008年9月11日
-    作    者   :S62952
-    修改内容   : 问题单号:AT2D05594
-  4.日    期   : 2009年3月2日
-    作    者   : 胡文 44270
-    修改内容   : 问题单号:AT2D09095
-
-  5.日    期   : 2010年3月1日
-    作    者   : zhoujun /z40661
-    修改内容   : 更新支持CCBS
-  6.日    期   : 2011年10月15日
-    作    者   : f00179208
-    修改内容   : AT移植项目
-  7.日    期   : 2012年03月02日
-    作    者   : f00179208
-    修改内容   : 问题单号:DTS2012020206417，使用ATD117;拨打电话，一段时间后挂断电话，
-                 单板主动上报的CEND中，通话时间显示为0
-   8.日    期   : 2012年03月03日
-    作    者   : s62952
-    修改内容   : BalongV300R002 Build优化项目
-   9.日    期   : 2012年10月29日
-     作    者   : z00161729
-     修改内容   : DTS2012083102536:支持cc呼叫重建
-  6.日    期   : 2012年12月11日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-  7.日    期   : 2013年01月18日
-    作    者   : Y00213812
-    修改内容   : DTS2013011201560修改错误原因值上报
-  8.日    期   : 2013年01月29日
-    作    者   : Y00213812
-    修改内容   : DTS2013012909872,记录CALL挂断的方向
-  9.日    期   : 2013年05月06日
-    作    者   : f62575
-    修改内容   : SS FDN&Call Control项目，SS FDN&Call Control移动到TAF
- 10.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目，呼叫释放，若未处于多方通话中则释放DTMF缓存
- 11.日    期   : 2013年07月09日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseI项目
- 12.日    期   : 2013年08月19日
-    作    者   : l00198894
-    修改内容   : V9R1 干扰控制项目，给MTC上报呼叫状态
- 13.日    期   : 2013年11月06日
-    作    者   : l00198894
-    修改内容   : DTS2013111305567: 解决多方呼叫时DTMF上下文清理错误
- 14.日    期   : 2014年4月15日
-    作    者   : y00245242
-    修改内容   : 为eCall feature修改
- 15.日    期   :2014年9月28日
-    作    者   :s00217060
-    修改内容   :for cs_err_log
-*****************************************************************************/
 VOS_VOID  MN_CALL_ProcMnccRelInd(
     const MNCC_IND_PRIM_MSG_STRU        *pstMsg
 )
 {
-    /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-29, begin */
     MN_CALL_STATE_ENUM_U8               enCallState;
     MN_CALL_MPTY_STATE_ENUM_U8          enMptyState;
     const NAS_CC_MSG_RELEASE_MT_STRU   *pstRel;
@@ -3929,7 +2734,6 @@ VOS_VOID  MN_CALL_ProcMnccRelInd(
 #if (FEATURE_ON == FEATURE_ECALL)
     MN_CALL_MGMT_STRU                   stCallEntity;
 #endif
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     MN_CALL_CUSTOM_CFG_INFO_STRU        *pstCustomCfgAddr;
 
     MN_CALL_ID_T                        ucDtmfCallId;
@@ -3939,7 +2743,6 @@ VOS_VOID  MN_CALL_ProcMnccRelInd(
 
     /* 获取特性控制NV地址 */
     pstCustomCfgAddr                    = MN_CALL_GetCustomCfgInfo();
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
 
     enCallState = MN_CALL_S_BUTT;
@@ -3957,7 +2760,6 @@ VOS_VOID  MN_CALL_ProcMnccRelInd(
         MN_CALL_ProcSsFacility(pstMsg->ucCallId, (NAS_CC_IE_FACILITY_STRU*)&pstRel->stFacility);
     }
 
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     /*CCBS激活超时，用户没有响应，网侧发release消息，cause为102:recovery on timer expiry,上报CCBS激活失败事件*/
     if ( (MN_CALL_S_CCBS_WAITING_ACTIVE == enCallState)
        &&(MN_CALL_NV_ITEM_ACTIVE == pstCustomCfgAddr->ucCcbsSupportFlg))
@@ -3966,7 +2768,6 @@ VOS_VOID  MN_CALL_ProcMnccRelInd(
                                        MN_CALL_ERR_SS_UNSPECIFIC,
                                        MN_CALL_SS_RES_FAIL);
     }
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
     /*如果是可视电话，且CST已建立好业务信道，通知CST模块释放*/
     if (MN_CALL_TYPE_VIDEO == MN_CALL_GetCallType(pstMsg->ucCallId))
@@ -4020,9 +2821,7 @@ VOS_VOID  MN_CALL_ProcMnccRelInd(
                                    MN_CALL_SS_PROG_EVT_REL,
                                    MN_CALL_ERR_SS_UNSPECIFIC);
 
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     TAF_CALL_ProcRelCallSsKeyEvent(pstMsg->ucCallId);
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
     TAF_CALL_ProcCallRedialAfterCallRel(pstMsg->ucCallId);
 
@@ -4067,80 +2866,10 @@ VOS_VOID  MN_CALL_ProcMnccRelInd(
 
     return;
 
-    /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-29, end */
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_ProcMnccRelCnf
- 功能描述  : 处理MNCC_REL_CNF原语
- 输入参数  : pstMsg - 来自CC的原语消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2008年7月12日
-    作    者   : 胡文 44270
-    修改内容   : 问题单号:AT2D04057
-  3.日    期   : 2009年3月2日
-    作    者   : 胡文 44270
-    修改内容   : 问题单号:AT2D09095
-
-  4.日    期   : 2010年1月2日
-    作    者   : zhoujun /z40661
-    修改内容   : NAS R7协议升级
-  5.日    期   : 2011年10月15日
-    作    者   : f00179208
-    修改内容   : AT移植项目
-  6.日    期   : 2012年03月02日
-    作    者   : f00179208
-    修改内容   : 问题单号:DTS2012020206417，使用ATD117;拨打电话，一段时间后挂断电话，
-                 单板主动上报的CEND中，通话时间显示为0
-  7.日    期   : 2012年03月03日
-    作    者   : s62952
-    修改内容   : BalongV300R002 Build优化项目
-  8.日    期   : 2012年09月20日
-    作    者   : f62575
-    修改内容   : STK&DCM 项目新增函数
-  9.日    期   : 2012年10月29日
-    作    者   : z00161729
-    修改内容   : DTS2012083102536:支持cc呼叫重建
- 10.日    期   : 2012年12月11日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
- 11.日    期   : 2013年01月18日
-    作    者   : Y00213812
-    修改内容   : DTS2013011201560修改错误原因值上报
- 12.日    期   : 2013年01月29日
-    作    者   : Y00213812
-    修改内容   : DTS2013012909872,记录CALL挂断的方向
- 13.日    期   : 2013年05月06日
-    作    者   : f62575
-    修改内容   : SS FDN&Call Control项目，SS FDN&Call Control移动到TAF
- 14.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目，软关机时重置DTMF状态及缓存
- 15.日    期   : 2013年07月09日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseI项目
- 16.日    期   : 2013年08月19日
-    作    者   : l00198894
-    修改内容   : V9R1 干扰控制项目，给MTC上报呼叫状态
- 17.日    期   : 2013年11月06日
-    作    者   : l00198894
-    修改内容   : DTS2013111305567: 解决多方呼叫时DTMF上下文清理错误
- 18.日    期   : 2014年4月15日
-    作    者   : y00245242
-    修改内容   : 为eCall feature修改
- 19.日    期   :2014年9月28日
-    作    者   :s00217060
-    修改内容   :for cs_err_log
-*****************************************************************************/
 VOS_VOID  MN_CALL_ProcMnccRelCnf(
     const MNCC_IND_PRIM_MSG_STRU        *pstMsg
 )
@@ -4149,7 +2878,6 @@ VOS_VOID  MN_CALL_ProcMnccRelCnf(
     MN_CALL_MPTY_STATE_ENUM_U8                              enMptyState;
     const NAS_CC_MSG_RELEASE_COMPLETE_MT_STRU              *pstRelComp;
     VOS_UINT8                                               ucNumOfCalls;
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     MN_CALL_CUSTOM_CFG_INFO_STRU                           *pstCustomCfgAddr;
 
     MN_CALL_ID_T                                            ucDtmfCallId;
@@ -4162,7 +2890,6 @@ VOS_VOID  MN_CALL_ProcMnccRelCnf(
 
     /* 获取特性控制NV地址 */
     pstCustomCfgAddr                    = MN_CALL_GetCustomCfgInfo();
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
 
     enCallState = MN_CALL_S_BUTT;
@@ -4182,7 +2909,6 @@ VOS_VOID  MN_CALL_ProcMnccRelCnf(
         /* 处理呼叫相关补充业务 */
         MN_CALL_ProcSsFacility(pstMsg->ucCallId, (NAS_CC_IE_FACILITY_STRU*)&pstRelComp->stFacility);
     }
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     else
     {
         if (MN_CALL_NV_ITEM_ACTIVE == pstCustomCfgAddr->ucCcbsSupportFlg)
@@ -4192,7 +2918,6 @@ VOS_VOID  MN_CALL_ProcMnccRelCnf(
         }
 
     }
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
 
     /*如果是可视电话，通知CST模块释放*/
@@ -4241,9 +2966,7 @@ VOS_VOID  MN_CALL_ProcMnccRelCnf(
                                    MN_CALL_SS_PROG_EVT_REL,
                                    MN_CALL_ERR_SS_UNSPECIFIC);
 
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     TAF_CALL_ProcRelCallSsKeyEvent(pstMsg->ucCallId);
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
     /* UUS1存在,需上报UUS1信息 */
     if ( VOS_TRUE == NAS_IE_IS_PRESENT(&pstRelComp->stUserUser) )
@@ -4275,13 +2998,11 @@ VOS_VOID  MN_CALL_ProcMnccRelCnf(
     /* 下发CALL DISCONNECT EVENT到USIM模块 */
     MN_CALL_SndStkCallDiscEvent(pstMsg, pstMsg->enPrimName, VOS_TRUE);
 
-    /* Added by l00198894 for V9R1 STK升级, 2013/07/11, begin */
     enCause = TAF_CALL_GetAllowedDtmfCallId(&ucDtmfCallId);
     if (enCause != TAF_CS_CAUSE_SUCCESS)
     {
         TAF_CALL_ResetDtmfCtx(TAF_CS_CAUSE_CALL_RELEASE);
     }
-    /* Added by l00198894 for V9R1 STK升级, 2013/07/11, end */
 
 #if (FEATURE_ON == FEATURE_ECALL)
     TAF_CALL_ProcEcallRel(&stCallEntity);
@@ -4291,69 +3012,7 @@ VOS_VOID  MN_CALL_ProcMnccRelCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_ProcMnccRejInd
- 功能描述  : 处理MNCC_REJ_IND原语
- 输入参数  : pstMsg - 来自CC的原语消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2008年7月12日
-    作    者   : 胡文 44270
-    修改内容   : 问题单号:AT2D04057
-  3.日    期   : 2008年7月23日
-    作    者   : 黎客来 130025
-    修改内容   : 问题单号:AT2D04594
-  4.日    期   : 2009年3月2日
-    作    者   : 胡文 44270
-    修改内容   : 问题单号:AT2D09095
-  5.日    期   : 2011年10月15日
-    作    者   : f00179208
-    修改内容   : AT移植项目
-  6.日    期   : 2012年03月02日
-    作    者   : f00179208
-    修改内容   : 问题单号:DTS2012020206417，使用ATD117;拨打电话，一段时间后挂断电话，
-                 单板主动上报的CEND中，通话时间显示为0
-  7.日    期   : 2012年09月20日
-    作    者   : f62575
-    修改内容   : STK&DCM 项目下发CALL DISCONNECT EVENT到USIM模块
-  8.日    期   : 2012年09月20日
-    作    者   : A00165503
-    修改内容   : STK&DCM 项目cs域错误码上报
-  9.日    期   : 2012年10月29日
-    作    者   : z00161729
-    修改内容   : DTS2012083102536:支持cc呼叫重建
- 10.日    期   : 2012年12月11日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
- 11.日    期   : 2013年01月29日
-    作    者   : Y00213812
-    修改内容   : DTS2013012909872,记录CALL挂断的方向
- 12.日    期   : 2013年05月06日
-    作    者   : f62575
-    修改内容   : SS FDN&Call Control项目，SS FDN&Call Control移动到TAF
- 13.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目，呼叫重建指示，清空缓存
- 14.日    期   : 2013年07月20日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseI项目
- 15.日    期   : 2013年08月19日
-    作    者   : l00198894
-    修改内容   : V9R1 干扰控制项目，给MTC上报呼叫状态
- 16.日    期   : 2014年4月15日
-    作    者   : y00245242
-    修改内容   : 为eCall feature修改
- 17.日    期   :2014年9月28日
-    作    者   :s00217060
-    修改内容   :for cs_err_log
-*****************************************************************************/
 VOS_VOID  MN_CALL_ProcMnccRejInd(
     MNCC_IND_PRIM_MSG_STRU             *pstMsg
 )
@@ -4361,11 +3020,9 @@ VOS_VOID  MN_CALL_ProcMnccRejInd(
     MN_CALL_STATE_ENUM_U8               enCallState;
     MN_CALL_MPTY_STATE_ENUM_U8          enMptyState;
     VOS_UINT8                           ucNumOfCalls;
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-6-6, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
     MN_CALL_MGMT_STRU                   stCallEntity;
 #endif
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-6-6, end */
 
     MN_CALL_MSG_BUFF_STRU              *pstBufferdMsg = VOS_NULL_PTR;
 
@@ -4385,7 +3042,6 @@ VOS_VOID  MN_CALL_ProcMnccRejInd(
         pstBufferdMsg->bitOpBufferedRejIndMsg = VOS_TRUE;
         PS_MEM_CPY(&pstBufferdMsg->stBufferedRejIndMsg, pstMsg, sizeof(MNCC_IND_PRIM_MSG_STRU));
 
-        /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-8, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
         if (VOS_TRUE == TAF_CALL_IsCallTypeEcall(pstMsg->ucCallId))
         {
@@ -4399,13 +3055,10 @@ VOS_VOID  MN_CALL_ProcMnccRejInd(
         {
             MN_CALL_StartTimer(MN_CALL_TID_WAIT_CALL_REDAIL_INTERVAL, 0, 0, VOS_RELTIMER_NOLOOP);
         }
-        /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-8, end */
         return;
     }
 
-    /* Added by l00198894 for V9R1 STK升级, 2013/07/11, begin */
     TAF_CALL_ResetDtmfCtx(TAF_CS_CAUSE_CALL_RELEASE);
-    /* Added by l00198894 for V9R1 STK升级, 2013/07/11, end */
 
 
     MN_CALL_UpdateCcCause(pstMsg->ucCallId, pstMsg->unParam.enCause);
@@ -4455,11 +3108,8 @@ VOS_VOID  MN_CALL_ProcMnccRejInd(
                                    MN_CALL_SS_PROG_EVT_REL,
                                    MN_CALL_ERR_SS_UNSPECIFIC);
 
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     TAF_CALL_ProcRelCallSsKeyEvent(pstMsg->ucCallId);
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-6-9, begin */
     TAF_CALL_ProcCallRedialAfterCallRel(pstMsg->ucCallId);
 
 #if (FEATURE_ON == FEATURE_ECALL)
@@ -4467,47 +3117,29 @@ VOS_VOID  MN_CALL_ProcMnccRejInd(
     PS_MEM_SET(&stCallEntity, 0, sizeof(MN_CALL_MGMT_STRU));
     (VOS_VOID)MN_CALL_GetSpecificCallInfo(pstMsg->ucCallId, &stCallEntity);
 #endif
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-6-9, end */
 
     MN_CALL_FreeCallId(pstMsg->ucCallId);
 
     MN_CALL_GetCallInfoList(&ucNumOfCalls, f_astCallInfos);
 
-    /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-29, begin */
     if (0 == ucNumOfCalls)
     {
         TAF_CALL_ProcCallAllReleased(pstMsg);
     }
-    /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-29, end */
 
     /* 下发CALL DISCONNECT EVENT到USIM模块 */
     MN_CALL_SndStkCallDiscEvent(pstMsg, pstMsg->enPrimName, VOS_TRUE);
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-6-6, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
     if (MN_CALL_S_DIALING != enCallState)
     {
         TAF_CALL_ProcEcallRel(&stCallEntity);
     }
 #endif
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-6-6, end */
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_ProcMnccFacilityInd
- 功能描述  : 处理MNCC_FACILITYS_IND原语
- 输入参数  : pstMsg - 来自CC的原语消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  MN_CALL_ProcMnccFacilityInd(
     const MNCC_IND_PRIM_MSG_STRU        *pstMsg
 )
@@ -4517,32 +3149,9 @@ VOS_VOID  MN_CALL_ProcMnccFacilityInd(
 
 }
 
-/* Deleted by l00198894 for V9R1 STK升级, 2013/07/11 */
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_ProcMnccHoldCnf
- 功能描述  : 处理MNCC_HOLD_CNF原语
- 输入参数  : pstMsg - 来自CC的原语消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年09月20日
-    作    者   : f62575
-    修改内容   : STK&DCM 项目
-  3.日    期   : 2012年12月11日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-  4.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目，呼叫保持时清空DTMF缓存
-*****************************************************************************/
 VOS_VOID  MN_CALL_ProcMnccHoldCnf(
     const MNCC_IND_PRIM_MSG_STRU        *pstMsg
 )
@@ -4563,9 +3172,7 @@ VOS_VOID  MN_CALL_ProcMnccHoldCnf(
 
     MN_CALL_UpdateCallState(pstMsg->ucCallId, MN_CALL_S_HELD);
 
-    /* Added by l00198894 for V9R1 STK升级, 2013/07/11, begin */
     TAF_CALL_ResetDtmfCtx(TAF_CS_CAUSE_CALL_ON_HOLD);
-    /* Added by l00198894 for V9R1 STK升级, 2013/07/11, end */
 
     /* 更新补充业务操作的进展(HOLD_CNF) */
     MN_CALL_UpdateCallSupsProgress(pstMsg->ucCallId,
@@ -4575,26 +3182,7 @@ VOS_VOID  MN_CALL_ProcMnccHoldCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_ProcMnccHoldRej
- 功能描述  : 处理MNCC_HOLD_REJ原语
- 输入参数  : pstMsg - 来自CC的原语消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月11日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-  3.日    期   : 2015年08月17日
-    作    者   : f00179208
-    修改内容   : DTS2015080300502:在电话挂断过程中，保持该路电话被拒后，不需要更新错误原因值
-*****************************************************************************/
 VOS_VOID  MN_CALL_ProcMnccHoldRej(
     const MNCC_IND_PRIM_MSG_STRU        *pstMsg
 )
@@ -4629,29 +3217,7 @@ VOS_VOID  MN_CALL_ProcMnccHoldRej(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_ProcMnccRetrieveCnf
- 功能描述  : 处理MNCC_RETRIEVE_CNF原语
- 输入参数  : pstMsg - 来自CC的原语消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年09月20日
-    作    者   : f62575
-    修改内容   : STK&DCM 项目
-  3.日    期   : 2012年12月11日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-  4.日    期   : 2013年02月03日
-    作    者   : Y00213812
-    修改内容   : DTS2013020203946,前一个呼叫未置为HLED，本消息不处理Retrieved结果
-*****************************************************************************/
 VOS_VOID  MN_CALL_ProcMnccRetrieveCnf(
     const MNCC_IND_PRIM_MSG_STRU        *pstMsg
 )
@@ -4686,30 +3252,7 @@ VOS_VOID  MN_CALL_ProcMnccRetrieveCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_ProcMnccRetrieveRej
- 功能描述  : 处理MNCC_RETRIEVE_REJ原语
- 输入参数  : pstMsg - 来自CC的原语消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月11日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-  3.日    期   : 2013年02月03日
-    作    者   : Y00213812
-    修改内容   : DTS2013020203946,retrieve操作失败，增加处理，如果此时有两个hold状态的呼叫，
-				   此时应该要把另外一个处于hold状态的呼叫回退
-  4.日    期   : 2013年8月3日
-    作    者   : z60575
-    修改内容   : TQE修改
-*****************************************************************************/
 VOS_VOID  MN_CALL_ProcMnccRetrieveRej(
     const MNCC_IND_PRIM_MSG_STRU        *pstMsg
 )
@@ -4755,20 +3298,7 @@ VOS_VOID  MN_CALL_ProcMnccRetrieveRej(
 
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_ProcMnccFacilityLocalRej
- 功能描述  : 处理MNCC_RETRIEVE_REJ原语
- 输入参数  : pstMsg - 来自CC的原语消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  MN_CALL_ProcMnccFacilityLocalRej(
     const MNCC_IND_PRIM_MSG_STRU        *pstMsg
 )
@@ -4801,23 +3331,7 @@ VOS_VOID  MN_CALL_ProcMnccFacilityLocalRej(
 
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_SendVcMsg
- 功能描述  : 上报声码器控制事件
- 输入参数  : enEventType - 事件类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2014年04月18日
-    作    者   : y00245242
-    修改内容   : 为eCall feature修改
-*****************************************************************************/
 VOS_VOID  MN_CALL_SendVcMsg(
     CALL_VC_MSG_ID_ENUM_U16             enEventType
 )
@@ -4834,9 +3348,7 @@ VOS_VOID  MN_CALL_SendVcMsg(
     }
 
     pstChannelInfoMsg->ulReceiverPid = WUEPS_PID_VC;
-    /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-18, begin */
     pstChannelInfoMsg->enMsgName     = enEventType;
-    /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-18, end */
     (VOS_VOID)VOS_MemCpy(&pstChannelInfoMsg->stChannelInfo,
                &f_stCallTchStatus,
                sizeof(MN_CALL_CHANNEL_INFO_STRU));
@@ -4847,29 +3359,7 @@ VOS_VOID  MN_CALL_SendVcMsg(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_ReportChannelEvent
- 功能描述  : 上报声码器控制事件
- 输入参数  : callId - 需要上报事件的呼叫的ID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年03月03日
-    作    者   : s62952
-    修改内容   : BalongV300R002 Build优化项目:cs宏打开
-  3.日    期   : 2013年01月05日
-    作    者   : l00171473
-    修改内容   : DTS2013010800120 语音带宽信息上报
-  4.日    期   : 2014年04月18日
-    作    者   : y00245242
-    修改内容   : 为eCall feature修改
-*****************************************************************************/
 VOS_VOID  MN_CALL_ReportChannelEvent(
     MN_CALL_CHANNEL_EVENT_ENUM_U32      enEventType
 )
@@ -4890,30 +3380,7 @@ VOS_VOID  MN_CALL_ReportChannelEvent(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_ProcMnccProgressInd
- 功能描述  : 处理MNCC_PROGRESS_IND原语
- 输入参数  : pstMsg - 来自CC的原语消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2013年6月21日
-    作    者   : z00161729
-    修改内容   : SVLTE 和usim接口调整修改
-  3.日    期   : 2013年10月6日
-    作    者   : z00161729
-    修改内容  : DTS2013100800595:IOT主叫过程网络先下发progress ind指示不支持网络放音接着下发alerting
-	              ind指示支持网络放音，call模块未打开声码器导致听不见声音
-  4.日    期   : 2014年04月18日
-    作    者   : y00245242
-    修改内容   : 为eCall feature修改
-*****************************************************************************/
 VOS_VOID  MN_CALL_ProcMnccProgressInd(
     const MNCC_IND_PRIM_MSG_STRU        *pstMsg
 )
@@ -4927,12 +3394,10 @@ VOS_VOID  MN_CALL_ProcMnccProgressInd(
         if ((VOS_FALSE == MN_CALL_GetChannelOpenFlg())
          && (VOS_FALSE == ulLocalAlertingFlg))
         {
-            /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-18, begin */
             /* 发送消息通知VC打开语音通道 */
             MN_CALL_SendVcMsg(CALL_VC_CHANNEL_OPEN);
             /* 发送消息通知AT语音通道状态 */
             MN_CALL_ReportChannelEvent(MN_CALL_EVT_CHANNEL_OPEN);
-            /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-18, end */
 
             MN_CALL_SetChannelOpenFlg(VOS_TRUE);
         }
@@ -4949,7 +3414,6 @@ VOS_VOID  MN_CALL_ProcMnccProgressInd(
         MN_CALL_ReportEvent(pstMsg->ucCallId, MN_CALL_EVT_UUS1_INFO);
     }
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-4-30, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
     if (VOS_TRUE == TAF_CALL_IsCallTypeEcall(pstMsg->ucCallId))
     {
@@ -4960,27 +3424,9 @@ VOS_VOID  MN_CALL_ProcMnccProgressInd(
         }
     }
 #endif
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-4-30, end */
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_GetTchStatus
- 功能描述  : 当前信道打开时获取当前TCH信道类型等参数
- 输入参数  : 无
- 输出参数  : pstChannInfo  -  当前信道参数
- 返 回 值  : VOS_UINT32 VOS_ERR:当前信道未打开
-                        VOS_OK :当前信道打开
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年4月9日
-    作    者   : zhoujun /z40661
-    修改内容   : 新生成函数
-  2.日    期   : 2014年04月08日
-    作    者   : y00245242
-    修改内容   : 为eCall feature增加
-*****************************************************************************/
 VOS_UINT32 MN_CALL_GetTchParm(
     MN_CALL_CHANNEL_PARAM_STRU          *pstChannParm
 )
@@ -4992,30 +3438,14 @@ VOS_UINT32 MN_CALL_GetTchParm(
 
     pstChannParm->enCodecType = f_stCallTchStatus.stChannelParam.enCodecType;
     pstChannParm->enMode      = f_stCallTchStatus.stChannelParam.enMode;
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-5-9, begin */
     pstChannParm->enCallType  = f_stCallTchStatus.stChannelParam.enCallType;
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-5-9, end */
 
     return VOS_OK;
 }
 
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_UpdateCcUus1Info
- 功能描述  : 调用CC模块中函数更新UUS1信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月27日
-    作    者   : zhoujun /40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MN_CALL_UpdateCcUus1Info(
     MN_CALL_SET_UUS1_TYPE_ENUM_U32      enSetType,
     MN_CALL_UUS1_INFO_STRU              *pstUus1Info
@@ -5069,22 +3499,7 @@ VOS_UINT32 MN_CALL_UpdateCcUus1Info(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_GetCcUus1Info
- 功能描述  : 获取CC保存的UUS1相关信息
- 输入参数  : 无
- 输出参数  : pulActNum      :CC总共激活个数
-             pstUus1Info    :激活UUS1的信息
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月28日
-    作    者   : zhoujun /40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MN_CALL_GetCcUus1Info(
     VOS_UINT32                          *pulActNum,
     MN_CALL_UUS1_INFO_STRU              *pstUus1Info
@@ -5111,21 +3526,7 @@ VOS_UINT32 MN_CALL_GetCcUus1Info(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_ProcUusInfoInd
- 功能描述  : 处理空口User to User Info信息，包括其他消息中携带该信息
- 输入参数  : pstMsg :消息中User to User内容
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年8月2日
-    作    者   : zhoujun /40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  MN_CALL_ProcUusInfoInd(
     const MNCC_IND_PRIM_MSG_STRU        *pstMsg
 )
@@ -5142,21 +3543,7 @@ VOS_VOID  MN_CALL_ProcUusInfoInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_ProcEmergencyListInd
- 功能描述  : 处理MM上报的紧急呼号码
- 输入参数  : pstMsg :消息
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年06月11日
-    作    者   : w00166186
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  MN_CALL_ProcEmergencyListInd(
     const MNCC_IND_PRIM_MSG_STRU        *pstMsg
 )
@@ -5178,28 +3565,7 @@ VOS_VOID  MN_CALL_ProcEmergencyListInd(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_ReportHoldEvent
- 功能描述  : 上报呼叫HOLD事件
- 输入参数  : VOS_UINT8 ucCallNum        -- 呼叫总数
-             VOS_UINT8 *pucCallId       -- CallId数组
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月24日
-    作    者   : 李紫剑/00198894
-    修改内容   : 新生成函数
-  2.日    期   : 2013年4月17日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核
-  3.日    期   : 2013年9月20日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseII 增加呼叫域信息
-
-*****************************************************************************/
 VOS_VOID MN_CALL_ReportHoldEvent(
     MN_CLIENT_ID_T                      usClientId,
     VOS_UINT8                           ucCallNum,
@@ -5208,7 +3574,6 @@ VOS_VOID MN_CALL_ReportHoldEvent(
     MN_CALL_EVT_HOLD_STRU               stEvent;
     VOS_UINT8                           ucLoop;
     MN_CALL_INFO_STRU                   stCallInfo;
-    /* Modified by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-10, end */
     TAF_SDC_CURC_RPT_CTRL_STRU         *pstCurcRptCtrl          = VOS_NULL_PTR;
     TAF_SDC_UNSOLICITED_RPT_CTRL_STRU  *pstUnsolicitedRptCtrl   = VOS_NULL_PTR;
 
@@ -5230,10 +3595,8 @@ VOS_VOID MN_CALL_ReportHoldEvent(
                 pstUnsolicitedRptCtrl->aucRptCfg,
                 sizeof(stEvent.aucUnsolicitedRptCfg));
 
-    /* Added by Y00213812 for VoLTE_PhaseII 项目, 2013-9-12, begin */
     /* 语音呼叫域信息 */
     stEvent.enVoiceDomain = TAF_CALL_VOICE_DOMAIN_3GPP;
-    /* Added by Y00213812 for VoLTE_PhaseII 项目, 2013-9-12, end */
 
     /* 将HOLD事件发送到AT */
     if (VOS_TRUE == TAF_SDC_CheckRptCmdStatus(pstCurcRptCtrl->aucRptCfg,
@@ -5242,7 +3605,6 @@ VOS_VOID MN_CALL_ReportHoldEvent(
     {
         MN_SendReportMsg(MN_CALLBACK_CS_CALL, (VOS_UINT8 *)&stEvent, sizeof(MN_CALL_EVT_HOLD_STRU));
     }
-    /* Modified by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-10, end */
 
     /* 将HOLD事件发送到OAM */
     for (ucLoop = 0; ucLoop < ucCallNum; ucLoop++)
@@ -5258,27 +3620,7 @@ VOS_VOID MN_CALL_ReportHoldEvent(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_ReportRetrieveEvent
- 功能描述  : 上报呼叫Retrieve事件
- 输入参数  : VOS_UINT8 ucCallNum        -- 呼叫总数
-             VOS_UINT8 *pucCallId       -- CallId数组
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月24日
-    作    者   : 李紫剑/00198894
-    修改内容   : 新生成函数
-  2.日    期   : 2013年4月17日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核
-  3.日    期   : 2013年9月20日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseII 增加呼叫域信息
-*****************************************************************************/
 VOS_VOID MN_CALL_ReportRetrieveEvent(
     MN_CLIENT_ID_T                      usClientId,
     VOS_UINT8                           ucCallNum,
@@ -5287,7 +3629,6 @@ VOS_VOID MN_CALL_ReportRetrieveEvent(
     MN_CALL_EVT_RETRIEVE_STRU           stEvent;
     VOS_UINT8                           ucLoop;
     MN_CALL_INFO_STRU                   stCallInfo;
-    /* Modified by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-10, end */
     TAF_SDC_CURC_RPT_CTRL_STRU          *pstCurcRptCtrl          = VOS_NULL_PTR;
     TAF_SDC_UNSOLICITED_RPT_CTRL_STRU   *pstUnsolicitedRptCtrl   = VOS_NULL_PTR;
 
@@ -5309,10 +3650,8 @@ VOS_VOID MN_CALL_ReportRetrieveEvent(
                 pstUnsolicitedRptCtrl->aucRptCfg,
                 sizeof(stEvent.aucUnsolicitedRptCfg));
 
-    /* Added by Y00213812 for VoLTE_PhaseII 项目, 2013-9-12, begin */
     /* 语音呼叫域信息 */
     stEvent.enVoiceDomain = TAF_CALL_VOICE_DOMAIN_3GPP;
-    /* Added by Y00213812 for VoLTE_PhaseII 项目, 2013-9-12, end */
 
     /* 将RETRIEVE事件发送到AT */
     if (VOS_TRUE == TAF_SDC_CheckRptCmdStatus(pstCurcRptCtrl->aucRptCfg,
@@ -5341,45 +3680,7 @@ VOS_VOID MN_CALL_ReportRetrieveEvent(
 /* 删除MN_CALL_ReportErrIndEvent */
 
 
-/* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-30, begin */
-/*****************************************************************************
- 函 数 名  : MN_CALL_ProcBufferedCall
- 功能描述  : 释放重拨缓存消息处理
- 输入参数  : ucCallId - 缓存的call id
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月29日
-    作    者   : z00161729
-    修改内容   : DTS2012083102536:支持cc呼叫重建
-  2.日    期   : 2012年12月11日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-  3.日    期   : 2013年01月29日
-    作    者   : Y00213812
-    修改内容   : DTS2013012909872,记录CALL挂断的方向
-  4.日    期   : 2013年07月20日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseI项目
-  5.日    期   : 2013年08月19日
-    作    者   : l00198894
-    修改内容   : V9R1 干扰控制项目，给MTC上报呼叫状态
-  6.日    期   : 2014年4月15日
-    作    者   : y00245242
-    修改内容   : 为eCall feature修改
-  7.日    期   :2014年9月28日
-    作    者   :s00217060
-    修改内容   :for cs_err_log
-  8.日    期   : 2015年7月7日
-    作    者   : zwx247453
-    修改内容   : CHR 优化项目
-  9.日    期   : 2015年10月10日
-    作    者   : c00318887
-    修改内容   : DTS2015090607329
-*****************************************************************************/
 VOS_VOID  MN_CALL_ProcBufferedCall(
     VOS_UINT8                           ucCallId,
     TAF_CS_CAUSE_ENUM_UINT32            enCause
@@ -5402,9 +3703,7 @@ VOS_VOID  MN_CALL_ProcBufferedCall(
 
     MN_CALL_ASSERT( MN_CALL_S_DIALING == enCallState);
 
-    /* Deleted by y00245242 for V3R3C60_eCall项目, 2014-4-30, begin */
     /* 定时器停止移到函数外面统一处理 */
-    /* Deleted by y00245242 for V3R3C60_eCall项目, 2014-4-30, end */
 
     MN_CALL_UpdateCcCause(ucCallId, enCause);
 
@@ -5455,9 +3754,7 @@ VOS_VOID  MN_CALL_ProcBufferedCall(
                                    MN_CALL_SS_PROG_EVT_REL,
                                    MN_CALL_ERR_SS_UNSPECIFIC);
 
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     TAF_CALL_ProcRelCallSsKeyEvent(ucCallId);
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
     MN_CALL_FreeCallId(ucCallId);
 
@@ -5467,12 +3764,10 @@ VOS_VOID  MN_CALL_ProcBufferedCall(
     {
         if (VOS_TRUE == MN_CALL_GetChannelOpenFlg())
         {
-            /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-18, begin */
             /* 发送消息通知VC关闭语音通道 */
             MN_CALL_SendVcMsg(CALL_VC_CHANNEL_CLOSE);
             /* 发送消息通知AT语音通道状态 */
             MN_CALL_ReportChannelEvent(MN_CALL_EVT_CHANNEL_CLOSE);
-            /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-18, end */
 
         }
         MN_CALL_SetTchStatus(VOS_FALSE);
@@ -5489,16 +3784,12 @@ VOS_VOID  MN_CALL_ProcBufferedCall(
     if (0 == ucNumOfCalls)
     {
         MN_CALL_ReportEvent(ucCallId, MN_CALL_EVT_ALL_RELEASED);
-        /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, begin */
         TAF_CALL_SetCsCallExistFlg(VOS_FALSE, MN_CALL_TYPE_BUTT);
-        /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, end */
         
-        /* Added by l00198894 for V9R1 干扰控制, 2013/08/19, begin */
 #if (FEATURE_MULTI_MODEM == FEATURE_ON)
         /* 给MTC模块上报当前CS域业务状态 */
         TAF_SendMtcCsSrvInfoInd();
 #endif
-        /* Added by l00198894 for V9R1 干扰控制, 2013/08/19, end */
     }
 
     if ((VOS_TRUE == pstBufferdMsg->bitOpBufferedSetupMsg)
@@ -5509,26 +3800,8 @@ VOS_VOID  MN_CALL_ProcBufferedCall(
 
     return;
 }
-/* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-30, end */
 
-/* Added by y00245242 for V3R3C60_eCall项目, 2014-4-30, begin */
-/*****************************************************************************
- 函 数 名  : TAF_CALL_ProcBufferedRedialMessage
- 功能描述  : 处理缓存的重拨消息
- 输入参数  : pstBufferdMsg - 缓存的重拨消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月15日
-    作    者   : y00245242
-    修改内容   : 为eCall feature增加
-  2.日    期   : 2015年7月7日
-    作    者   : zwx247453
-    修改内容   : CHR 优化项目
-*****************************************************************************/
 VOS_VOID TAF_CALL_ProcBufferedRedialMessage(
     MN_CALL_MSG_BUFF_STRU              *pstBufferdMsg,
     TAF_CS_CAUSE_ENUM_UINT32            enCause
@@ -5552,38 +3825,8 @@ VOS_VOID TAF_CALL_ProcBufferedRedialMessage(
 
     }
 }
-/* Added by y00245242 for V3R3C60_eCall项目, 2014-4-30, end */
 
-/* Added by l00171473 for DTS2013010800120 语音带宽信息上报, 2013-1-5, begin */
-/*****************************************************************************
- 函 数 名  : MN_CALL_SndAtChannelInfoInd
- 功能描述  : 向AT上报语音Channel信息
- 输入参数  : enChannelEvent
-             pstChannelInfo
-             ucIsLocalAlertingFlag
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年01月05日
-    作    者   : l00171473
-    修改内容   : 新建 for DTS2013010800120 语音带宽信息上报
-
-  2.日    期   : 2013年04月11日
-    作    者   : l00198894
-    修改内容   : C50问题单同步
-  3.日    期   : 2013年6月3日
-    作    者   : z00161729
-    修改内容   : SVLTE 修改
-  4.日    期   : 2013年9月20日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseII 增加呼叫域信息
-  5.日    期   : 2014年3月29日
-    作    者   : w00176964
-    修改内容   : DTS2014032901140:接口优化调整
-*****************************************************************************/
 VOS_VOID MN_CALL_SndAtChannelInfoInd(
     MN_CALL_CHANNEL_EVENT_ENUM_U32      enChannelEvent,
     MN_CALL_CHANNEL_INFO_STRU          *pstChannelInfo,
@@ -5600,36 +3843,18 @@ VOS_VOID MN_CALL_SndAtChannelInfoInd(
 
     stChannelEvt.ucIsLocalAlertingFlag = ucIsLocalAlertingFlag;
 
-    /* Added by Y00213812 for VoLTE_PhaseII 项目, 2013-9-12, begin */
     /* 语音呼叫域信息 */
     stChannelEvt.enVoiceDomain = TAF_CALL_VOICE_DOMAIN_3GPP;
-    /* Added by Y00213812 for VoLTE_PhaseII 项目, 2013-9-12, end */
 
     stChannelEvt.enCodecType   = pstChannelInfo->stChannelParam.enCodecType;
 
     MN_SendReportMsg(MN_CALLBACK_CS_CALL, (VOS_UINT8 *)&stChannelEvt, sizeof(MN_CALL_EVT_CHANNEL_INFO_STRU));
 }
 
-/* Deleted by y00245242 for V3R3C60_eCall项目, 2014-4-18, begin */
 /* 删除该函数，功能实现移到函数MN_CALL_ReportChannelEvent中 */
-/* Deleted by y00245242 for V3R3C60_eCall项目, 2014-4-18, end */
 
-/* Added by l00171473 for DTS2013010800120 语音带宽信息上报, 2013-1-5, end */
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_IsNeedLocalAlerting
- 功能描述  : 是否需要本地播放回铃音
- 输入参数  : pstProgInd - progress indicator IE信息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:不需要；VOS_TRUE:需要
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月3日
-    作    者   : z00161729
-    修改内容   : SVLTE 修改支持本地回铃音
-*****************************************************************************/
 VOS_UINT32 TAF_CALL_IsNeedLocalAlerting(const NAS_CC_IE_PROGRESS_INDICATOR_STRU *pstProgInd)
 {
     if (VOS_TRUE == pstProgInd->IsExist)
@@ -5647,24 +3872,7 @@ VOS_UINT32 TAF_CALL_IsNeedLocalAlerting(const NAS_CC_IE_PROGRESS_INDICATOR_STRU 
 }
 
 
-/* Added by l00198894 for V9R1 STK升级, 2013/07/11, begin */
-/*****************************************************************************
- 函 数 名  : TAF_CALL_RcvCcStartDtmfCnf
- 功能描述  : 处理MNCC_START_DTMF_CNF原语
- 输入参数  : pstMsg - 来自CC的原语消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-  2.日    期   :2013年10月24日
-    作    者   :z00161729
-    修改内容   :DTS2013102403705:dtmf不支持off_length参数，SBM IOT认证需要stop dtmf req和下一个start dtmf req间隔大于70ms
-*****************************************************************************/
 VOS_VOID  TAF_CALL_RcvCcStartDtmfCnf(
     const MNCC_IND_PRIM_MSG_STRU        *pstMsg
 )
@@ -5733,20 +3941,7 @@ VOS_VOID  TAF_CALL_RcvCcStartDtmfCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_RcvCcStartDtmfRej
- 功能描述  : 处理MNCC_START_DTMF_REJ原语
- 输入参数  : pstMsg - 来自CC的原语消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-*****************************************************************************/
 VOS_VOID  TAF_CALL_RcvCcStartDtmfRej(
     const MNCC_IND_PRIM_MSG_STRU        *pstMsg
 )
@@ -5837,23 +4032,7 @@ VOS_VOID  TAF_CALL_RcvCcStartDtmfRej(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_RcvCcStopDtmfCnf
- 功能描述  : 处理MNCC_STOP_DTMF_CNF原语
- 输入参数  : pstMsg - 来自CC的原语消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-  2.日    期   :2013年10月24日
-    作    者   :z00161729
-    修改内容   :DTS2013102403705:dtmf不支持off_length参数，SBM IOT认证需要stop dtmf req和下一个start dtmf req间隔大于70ms小于600ms
-*****************************************************************************/
 VOS_VOID  TAF_CALL_RcvCcStopDtmfCnf(
     const MNCC_IND_PRIM_MSG_STRU        *pstMsg
 )
@@ -5912,12 +4091,10 @@ VOS_VOID  TAF_CALL_RcvCcStopDtmfCnf(
         TAF_CALL_DelDtmfNode(pstNode);
 
         /* 回复STOP_DTMF的正式响应 */
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
         TAF_CALL_SendDtmfCnf(pstDtmfCurInfo->usClientId,
                              pstDtmfCurInfo->opId,
                              MN_CALL_EVT_STOP_DTMF_RSLT,
                              TAF_CS_CAUSE_SUCCESS);
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
         /* 如果缓存为空，则直接重置缓存及DTMF状态，退出 */
         if (TAF_CALL_GetDtmfBufCnt() == 0)
@@ -5959,23 +4136,8 @@ VOS_VOID  TAF_CALL_RcvCcStopDtmfCnf(
 
     return;
 }
-/* Added by l00198894 for V9R1 STK升级, 2013/07/11, end */
 
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-24, begin */
-/*****************************************************************************
- 函 数 名  : TAF_CALL_DeleteAllCallEntities
- 功能描述  : 清除所有呼叫管理实体
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月25日
-    作    者   : W00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  TAF_CALL_DeleteAllCallEntities( VOS_VOID)
 {
     MN_CALL_MGMT_STRU                  *pstMnEntity = VOS_NULL_PTR;
@@ -6001,23 +4163,7 @@ VOS_VOID  TAF_CALL_DeleteAllCallEntities( VOS_VOID)
 
 
 #if (FEATURE_ON == FEATURE_IMS)
-/*****************************************************************************
- 函 数 名  : TAF_CALL_ProcDtmfBuffer
- 功能描述  : 在SRVCC成功后，处理同步过来的DTMF请求消息
 
- 输入参数  : 无
-
- 输出参数  : 无
- 返 回 值  : 无
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2013年12月23日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_CALL_ProcDtmfBuffer(VOS_VOID)
 {
     HI_LIST_S                          *pstListHead    = VOS_NULL_PTR;
@@ -6092,24 +4238,7 @@ VOS_VOID TAF_CALL_ProcDtmfBuffer(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_MapCallStateToCcState
- 功能描述  : 根据call状态生成CC状态
- 输入参数  : pstCcInfo －－ CC信息指针
-             enCallState －－ call呼叫状态
 
- 输出参数  : 无
-
- 返回值    : 无
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年10月11日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_CALL_MapCallStateToCcState(
     MNCC_ENTITY_STATUS_STRU            *pstCcInfo,
     MN_CALL_STATE_ENUM_U8               enCallState
@@ -6130,9 +4259,7 @@ VOS_VOID TAF_CALL_MapCallStateToCcState(
             pstCcInfo->enCallState    = NAS_CC_CALL_STATE_U4;
             break;
 
-        /* Added by y00245242 for VoLTE_PhaseIII 项目, 2014-1-3, begin */
         case MN_CALL_S_WAITING_ACCEPT:
-        /* Added by y00245242 for VoLTE_PhaseIII 项目, 2014-1-3, end */
         case MN_CALL_S_WAITING:
         case MN_CALL_S_INCOMING:
             pstCcInfo->enCallState    = NAS_CC_CALL_STATE_U7;
@@ -6145,26 +4272,7 @@ VOS_VOID TAF_CALL_MapCallStateToCcState(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_GetInfoTransCap
- 功能描述  : 转换CC能力参数中的信息传输能力
- 输入参数  : CallId -- call ID
-             pEnInfoTransCap1 －－ 信息传输能力1指针
-             pEnInfoTransCap2 －－ 信息传输能力2指针
-             penBcRepeatInd －－ BC重复指示指针
 
- 输出参数  : 无
-
- 返回值    : 无
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年10月11日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_CALL_GetInfoTransCap(
     MN_CALL_ID_T                        CallId,
     NAS_CC_INFO_TRANSFER_CAP_ENUM_U8   *pEnInfoTransCap1,
@@ -6226,27 +4334,7 @@ VOS_VOID TAF_CALL_GetInfoTransCap(
     *penBcRepeatInd = MN_CALL_REP_IND_NULL;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_MapCallInfoToCcInfo
- 功能描述  : 根据call模块信息生成CC需要的信息，包括BC参数，call状态等
- 输入参数  : pstCcInfo -- CC信息指针
 
-
- 输出参数  : 无
-
- 返回值    : pucCallNum －－ 返回call数目
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年10月11日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-  2.日    期   : 2014年1月7日
-    作    者   : y00245242
-    修改内容   : 修改SRVCC过程中呼叫实体创建
-*****************************************************************************/
 VOS_VOID TAF_CALL_MapCallInfoToCcInfo(
     MNCC_ENTITY_STATUS_STRU            *pstCcInfo,
     VOS_UINT8                          *pucCallNum
@@ -6312,23 +4400,7 @@ VOS_VOID TAF_CALL_MapCallInfoToCcInfo(
 
 /* 删除此函数 */
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_ProcMnccSrvccStart
- 功能描述  : 处理CC指示的SRVCC启动指示
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013-12-10
-    作    者   : w00176964
-    修改内容   : 新增函数
-  2.日    期   : 2013年12月23日
-    作    者   : y00245242
-    修改内容   : 增加SRVCC缓存处理
-*****************************************************************************/
 VOS_VOID  TAF_CALL_ProcMnccSrvccStart(VOS_VOID)
 {
     /* 这里临时圈掉函数调用的方式读取call信息 */
@@ -6413,32 +4485,7 @@ VOS_VOID  TAF_CALL_ProcMnccSrvccStart(VOS_VOID)
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_ProcMnccSrvccSucc
- 功能描述  : 处理CC指示的SRVCC成功指示
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013-12-10
-    作    者   : w00176964
-    修改内容   : 新增函数
-  2.日    期   : 2013-12-14
-    作    者   : y00245242
-    修改内容   : 增加SRVCC缓存功能
-  3.日    期   : 2014年03月01日
-    作    者   : s00217060
-    修改内容   : CS域业务状态变化时通知MTC
-  4.日    期   : 2014年11月06日
-    作    者   : s00217060
-    修改内容   : DTS2014110608091:IMS电话时不处理cs域的paging inds
-  5.日    期   : 2015年10月10日
-    作    者   : c00318887
-    修改内容   : DTS2015090607329
-*****************************************************************************/
 VOS_VOID  TAF_CALL_ProcMnccSrvccSucc(VOS_VOID)
 {
     VOS_UINT8                           i;
@@ -6451,12 +4498,10 @@ VOS_VOID  TAF_CALL_ProcMnccSrvccSucc(VOS_VOID)
     
     TAF_SndMmaImsSrvInfoNotify(VOS_FALSE);
 
-    /* Added by s00217060 for CS域业务状态变化时通知MTC, 2014/03/01, begin */
 #if (FEATURE_MULTI_MODEM == FEATURE_ON)
     /* 给MTC模块上报当前CS域业务状态 */
     TAF_SendMtcCsSrvInfoInd();
 #endif
-    /* Added by s00217060 for CS域业务状态变化时通知MTC, 2014/03/01, end */
 
     /* 通知IMSA模块SRVCC状态消息 */
     TAF_CALL_SendImsaSrvccStatusNtf(CALL_IMSA_SRVCC_STATUS_SUCCESS);
@@ -6517,23 +4562,7 @@ VOS_VOID  TAF_CALL_ProcMnccSrvccSucc(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_ProcMnccSrvccFail
- 功能描述  : 处理CC指示的SRVCC失败指示
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013-12-10
-    作    者   : w00176964
-    修改内容   : 新增函数
-  2.日    期   : 2013-12-23
-    作    者   : y00245242
-    修改内容   : 增加SRVCC缓存功能
-*****************************************************************************/
 VOS_VOID  TAF_CALL_ProcMnccSrvccFail(VOS_VOID)
 {
     TAF_CALL_SetSrvccState(MN_CALL_SRVCC_STATE_FAIL);
@@ -6555,20 +4584,7 @@ VOS_VOID  TAF_CALL_ProcMnccSrvccFail(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_ProcMnccSrvccStatusInd
- 功能描述  : 处理MNCC_SRVCC_STATUS_IND原语
- 输入参数  : pstSrvccMsg - 来自CC的原语消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013-9-25
-    作    者   : w00176964
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_VOID  TAF_CALL_ProcMnccSrvccStatusInd(
     MNCC_SRVCC_STATUS_IND_STRU         *pstSrvccMsg
 )
@@ -6599,23 +4615,7 @@ VOS_VOID  TAF_CALL_ProcMnccSrvccStatusInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_ProcSrvccSyncInfo
- 功能描述  : 收到TCH分配指示时，处理SRVCC相关信息
 
- 输入参数  : 无
-
- 输出参数  : 无
- 返 回 值  : 无
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2014年1月15日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_CALL_ProcSrvccSyncInfo(VOS_VOID)
 {
     if (MN_CALL_SRVCC_STATE_SUCCESS == TAF_CALL_GetSrvccState())
@@ -6631,28 +4631,9 @@ VOS_VOID TAF_CALL_ProcSrvccSyncInfo(VOS_VOID)
     }
 }
 #endif
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-24, end */
 
-/* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-8, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
-/*****************************************************************************
- 函 数 名  : TAF_CALL_ProcessEcallPeriodTimerLen
- 功能描述  : 检查eCall重拨是否存在，如果存在且不在等待PSAP回呼，返回VOS_TRUE
 
- 输入参数  : 无
-
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  -- eCall重拨存在
-             VOS_FALSE -- eCall重拨存在
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2014年04月08日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_CALL_ProcessEcallPeriodTimerLen(VOS_UINT8 ucCallId)
 {
     VOS_UINT32                          ulEcallPeriodTimerLen;
@@ -6667,24 +4648,7 @@ VOS_VOID TAF_CALL_ProcessEcallPeriodTimerLen(VOS_UINT8 ucCallId)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_IsEcallRedialExist
- 功能描述  : 检查eCall重拨是否存在，如果存在且不在等待PSAP回呼，返回VOS_TRUE
 
- 输入参数  : 无
-
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  -- eCall重拨存在
-             VOS_FALSE -- eCall重拨存在
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2014年04月08日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 TAF_CALL_IsEcallRedialExist(VOS_VOID)
 {
     MN_CALL_MSG_BUFF_STRU              *pstCallMsgBuff    = VOS_NULL_PTR;
@@ -6706,26 +4670,7 @@ VOS_UINT8 TAF_CALL_IsEcallRedialExist(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_ProcEcallRel
- 功能描述  : 收到呼叫释放后，处理eCall流程
 
- 输入参数  : pstCallEntity -- call呼叫实体信息
-
- 输出参数  : 无
- 返 回 值  : 无
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2014年04月08日
-   作    者   : y00245242
-   修改内容   : 新生成函数
- 2.日    期   : 2014年07月14日
-   作    者   : b00269685
-   修改内容   : 添加PSAP类型
-*****************************************************************************/
 VOS_VOID TAF_CALL_ProcEcallRel(
     MN_CALL_MGMT_STRU                  *pstCallEntity
 )
@@ -6818,7 +4763,6 @@ VOS_VOID TAF_CALL_ProcEcallRel(
     MN_CALL_ClearBufferedMsg();
 }
 #endif
-/* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-8, end */
 
 /*lint -restore */
 

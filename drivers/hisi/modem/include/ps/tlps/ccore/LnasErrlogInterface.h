@@ -547,13 +547,7 @@ enum    EMM_OM_ERRLOG_SS_STATE_ENUM
 typedef VOS_UINT16  EMM_OM_ERRLOG_SS_STATE_ENUM_UINT16;
 
 
-/*****************************************************************************
- 枚举名    : EMM_ERR_LOG_UNSOLI_REPORT_TYPE_ENUM_U16
- 枚举说明  : err log主动上报类型
- 1.日    期   : 2015年08月05日
-   作    者   : wangchen 00209181
-   修改内容   : 新建
-*****************************************************************************/
+
 enum EMM_ERR_LOG_UNSOLI_REPORT_TYPE_ENUM
 {
     EMM_ERR_LOG_FAULT_REPORT                                = 0x01,             /* 故障上报 */

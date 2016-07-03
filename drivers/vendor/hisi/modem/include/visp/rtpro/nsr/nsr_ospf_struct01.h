@@ -63,13 +63,11 @@ typedef struct nsr_ospf_smooth_info
     NBB_BYTE pad[2];
 }NSR_OSPF_SMOOTH_INFO;
 
-/* Modified by lihaiming218630, nsr通知ospf，start backup和backup cancel消息前提条件，因是两个任务，
-在nsr读取配置链上的ospf备份状态时可能存在时序问题, 2013/9/2   问题单号:DTS2013082303531  */
+
 typedef struct nsr_ospf_process_info
 {
     NBB_LONG flag; /*值0-进程被删除*/
 }NSR_OSPF_PROCESS_INFO;
-/*End of Modified by lihaiming218630, 2013/9/2   问题单号:DTS2013082303531  */
 
 
 /*OSPF NSR控制类型消息定义*/
@@ -137,13 +135,11 @@ typedef struct nsr_ospf_data
     NBB_LQE ospf_backup_list;
 }NSR_OSPF_DATA;
 
-/*Added by guojianjun178934, I3通知OSPF更新认证序号, 2013/3/2   问题单号:20130118_01 */
 typedef struct atg_i3_notify_crypto_seq_num_refresh
 {
     NBB_IPS ips_hdr;
     NBB_ULONG seq_num;
 }ATG_I3_NOTIFY_CRYPTO_SEQ_NUM_REFRESH;
-/* End of Added by guojianjun178934, 2013/3/2   问题单号:20130118_01 */
 
 /*OSPF NSR消息统计数据结构*/
 /*OSPF NSR备份消息统计*/

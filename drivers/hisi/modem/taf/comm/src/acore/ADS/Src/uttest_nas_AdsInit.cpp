@@ -512,14 +512,7 @@ void UT_IMM_STUB_INIT(void)
 #endif
 #endif
 
-/*****************************************************************************
-类名     : Test_ADS_UL_FidInit
-功能描述 : ADS_UL_FidInit UT工程类
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ADS_UL_FidInit: public ::testing::Test
 {
 public:
@@ -534,15 +527,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_FidInit_001
-测试用例标题      : ADS任务初始化
-预期结果          : ADS上下行PID、下行自处理任务注册成功，返回VOS_OK
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_FidInit,Test_ADS_UL_FidInit_001)
 {
     VOS_UINT32                          ulRslt;
@@ -573,15 +558,7 @@ TEST_F(Test_ADS_UL_FidInit,Test_ADS_UL_FidInit_001)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_FidInit_002
-测试用例标题      : ADS任务初始化
-预期结果          : 上行初始化PID注册失败，返回VOS_ERR
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_FidInit,Test_ADS_UL_FidInit_002)
 {
     VOS_UINT32                          ulRslt;
@@ -600,14 +577,7 @@ TEST_F(Test_ADS_UL_FidInit,Test_ADS_UL_FidInit_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_ADS_UL_PidInit
-功能描述 : ADS_UL_PidInit UT工程类
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ADS_UL_PidInit: public ::testing::Test
 {
 public:
@@ -634,15 +604,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_PidInit_001
-测试用例标题      : ADS上行PID初始化
-预期结果          : ADS上下文初始化，返回VOS_OK
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_PidInit,Test_ADS_UL_PidInit_001)
 {
     ADS_UL_CTX_STRU                    *pAdsUlCtx;
@@ -708,15 +670,7 @@ TEST_F(Test_ADS_UL_PidInit,Test_ADS_UL_PidInit_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_PidInit_002
-测试用例标题      : ADS上行PID初始化，非VOS_IP_INITIAL
-预期结果          : 不进行上行上下文初始化，返回VOS_OK
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_PidInit,Test_ADS_UL_PidInit_002)
 {
     MOCKER(ADS_InitUlCtx)
@@ -728,15 +682,7 @@ TEST_F(Test_ADS_UL_PidInit,Test_ADS_UL_PidInit_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_PidInit_003
-测试用例标题      : ADS上行PID初始化，NVen_NV_Item_ADS_Queue_Scheduler_Pri读失败
-预期结果          : ADS上下文初始化，返回VOS_OK
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_PidInit,Test_ADS_UL_PidInit_003)
 {
     ADS_UL_CTX_STRU                    *pAdsUlCtx;
@@ -806,15 +752,7 @@ TEST_F(Test_ADS_UL_PidInit,Test_ADS_UL_PidInit_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_PidInit_004
-测试用例标题      : ADS上行PID初始化，初始化上行信号量失败
-预期结果          : ADS上下文初始化，返回VOS_OK
-修改历史     :
-1.日   期  : 2013-04-25
-作   者  :   f00179208
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_PidInit,Test_ADS_UL_PidInit_004)
 {
     ADS_UL_CTX_STRU                    *pAdsUlCtx;
@@ -888,15 +826,7 @@ TEST_F(Test_ADS_UL_PidInit,Test_ADS_UL_PidInit_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_PidInit_005
-测试用例标题      : ADS上行PID初始化，初始化下行信号量失败
-预期结果          : ADS上下文初始化，返回VOS_OK
-修改历史     :
-1.日   期  : 2013-04-25
-作   者  :   f00179208
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_UL_PidInit,Test_ADS_UL_PidInit_005)
 {
     ADS_UL_CTX_STRU                    *pAdsUlCtx;
@@ -970,14 +900,7 @@ TEST_F(Test_ADS_UL_PidInit,Test_ADS_UL_PidInit_005)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_ADS_DL_PidInit
-功能描述 : ADS_DL_PidInit UT工程类
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ADS_DL_PidInit: public ::testing::Test
 {
 public:
@@ -1003,15 +926,7 @@ public:
 };
 
 #if (FEATURE_OFF == FEATURE_SKB_EXP)
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_PidInit_001
-测试用例标题      : ADS下行PID初始化
-预期结果          : ADS初始化ADQ，返回VOS_OK
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_PidInit,Test_ADS_DL_PidInit_001)
 {
 
@@ -1043,15 +958,7 @@ TEST_F(Test_ADS_DL_PidInit,Test_ADS_DL_PidInit_001)
     GlobalMockObject::verify();
 }
 #endif
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_PidInit_002
-测试用例标题      : ADS下行PID初始化，非VOS_IP_INITIAL
-预期结果          : 不进行下行上下文初始化，返回VOS_OK
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_PidInit,Test_ADS_DL_PidInit_002)
 {
     MOCKER(ADS_InitDlCtx)
@@ -1063,14 +970,7 @@ TEST_F(Test_ADS_DL_PidInit,Test_ADS_DL_PidInit_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_ADS_DL_FidInit
-功能描述 : ADS_DL_FidInit UT工程类
-修改历史     :
-1.日   期  : 2012-06-11
-  作   者  : A00165503
-  修改内容 : 新建CASE
-*****************************************************************************/
+
 class Test_ADS_DL_FidInit: public ::testing::Test
 {
 public:
@@ -1086,15 +986,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_FidInit_001
-测试用例标题      : ADS任务初始化
-预期结果          : ADS下行PID注册，中断处理函数成功，返回VOS_OK
-修改历史     :
-1.日   期  : 2012-06-11
-  作   者  : A00165503
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_FidInit,Test_ADS_DL_FidInit_001)
 {
     VOS_UINT32                          ulRslt;
@@ -1129,15 +1021,7 @@ TEST_F(Test_ADS_DL_FidInit,Test_ADS_DL_FidInit_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_FidInit_002
-测试用例标题      : ADS任务初始化
-预期结果          : 下行初始化PID注册失败，返回VOS_ERR
-修改历史     :
-1.日   期  : 2012-06-11
-  作   者  : A00165503
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_FidInit,Test_ADS_DL_FidInit_002)
 {
     VOS_UINT32                          ulRslt;
@@ -1156,15 +1040,7 @@ TEST_F(Test_ADS_DL_FidInit,Test_ADS_DL_FidInit_002)
     GlobalMockObject::verify();
 }
 #if (FEATURE_OFF == FEATURE_SKB_EXP)
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_FidInit_003
-测试用例标题      : ADS任务初始化
-预期结果          : ADS下行PID注册，空中断处理函数注册失败，返回VOS_ERR
-修改历史     :
-1.日   期  : 2012-06-11
-  作   者  : A00165503
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_FidInit,Test_ADS_DL_FidInit_003)
 {
     VOS_UINT32                          ulRslt;
@@ -1195,14 +1071,7 @@ TEST_F(Test_ADS_DL_FidInit,Test_ADS_DL_FidInit_003)
 #endif
 
 
-/*****************************************************************************
-类名     : Test_ADS_DL_FidTask
-功能描述 : ADS_DL_FidTask UT工程类
-修改历史     :
-1.日   期  : 2013-01-04
-  作   者  : l60609
-  修改内容 : 新建CASE
-*****************************************************************************/
+
 class Test_ADS_DL_FidTask: public ::testing::Test
 {
 public:
@@ -1227,15 +1096,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_FidTask_001
-测试用例标题      : 处理ADS_DL_EVENT_IPF_RD_INT事件
-预期结果          : 调用ADS_DL_ProcEvent
-修改历史     :
-1.日   期  : 2013-01-04
-  作   者  : l60609
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_FidTask, Test_ADS_DL_FidTask_001)
 {
     VOS_UINT32                          ulEvent;
@@ -1263,15 +1124,7 @@ TEST_F(Test_ADS_DL_FidTask, Test_ADS_DL_FidTask_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_FidTask_002
-测试用例标题      : 处理ADS_DL_EVENT_IPF_ADQ_EMPTY_INT事件
-预期结果          : 调用ADS_DL_ProcAdqEmptyEvent
-修改历史     :
-1.日   期  : 2013-01-04
-  作   者  : l60609
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_FidTask, Test_ADS_DL_FidTask_002)
 {
     VOS_UINT32                          ulEvent;
@@ -1301,14 +1154,7 @@ TEST_F(Test_ADS_DL_FidTask, Test_ADS_DL_FidTask_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名       : Test_ADS_DL_CCpuResetCallback
-功能描述   : ADS_DL_CCpuResetCallback UT工程类
-修改历史   :
-1.日   期  : 2013-04-19
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ADS_DL_CCpuResetCallback: public ::testing::Test
 {
 public:
@@ -1330,16 +1176,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_CCpuResetCallback_001
-测试用例标题      : C核复位前，分配内存失败
-预期结果          : 返回VOS_ERROR
-修改历史   :
-1.日   期  : 2013-04-19
-  作   者  : f00179208
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_ADS_DL_CCpuResetCallback, Test_ADS_DL_CCpuResetCallback_001)
 {
     VOS_UINT32                          ulRst;
@@ -1371,16 +1208,7 @@ TEST_F(Test_ADS_DL_CCpuResetCallback, Test_ADS_DL_CCpuResetCallback_001)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_CCpuResetCallback_002
-测试用例标题      : C核复位前，消息发送失败
-预期结果          : 返回VOS_ERROR
-修改历史   :
-1.日   期  : 2013-04-19
-  作   者  : f00179208
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_ADS_DL_CCpuResetCallback, Test_ADS_DL_CCpuResetCallback_002)
 {
     VOS_UINT32                          ulRst;
@@ -1411,16 +1239,7 @@ TEST_F(Test_ADS_DL_CCpuResetCallback, Test_ADS_DL_CCpuResetCallback_002)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_CCpuResetCallback_003
-测试用例标题      : C核复位前，消息发送成功，锁信号量失败
-预期结果          : 返回VOS_ERROR
-修改历史   :
-1.日   期  : 2013-04-19
-  作   者  : f00179208
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_ADS_DL_CCpuResetCallback, Test_ADS_DL_CCpuResetCallback_003)
 {
     VOS_UINT32                          ulRst;
@@ -1452,16 +1271,7 @@ TEST_F(Test_ADS_DL_CCpuResetCallback, Test_ADS_DL_CCpuResetCallback_003)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_CCpuResetCallback_004
-测试用例标题      : C核复位前，消息发送成功，锁信号量成功
-预期结果          : 返回VOS_OK
-修改历史   :
-1.日   期  : 2013-04-19
-  作   者  : f00179208
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_ADS_DL_CCpuResetCallback, Test_ADS_DL_CCpuResetCallback_004)
 {
     VOS_UINT32                          ulRst;
@@ -1492,16 +1302,7 @@ TEST_F(Test_ADS_DL_CCpuResetCallback, Test_ADS_DL_CCpuResetCallback_004)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_CCpuResetCallback_005
-测试用例标题      : C核复位后，申请内存失败
-预期结果          : 返回VOS_ERROR
-修改历史   :
-1.日   期  : 2013-04-19
-  作   者  : f00179208
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_ADS_DL_CCpuResetCallback, Test_ADS_DL_CCpuResetCallback_005)
 {
     VOS_UINT32                          ulRst;
@@ -1529,16 +1330,7 @@ TEST_F(Test_ADS_DL_CCpuResetCallback, Test_ADS_DL_CCpuResetCallback_005)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_CCpuResetCallback_006
-测试用例标题      : C核复位后，发送消息失败
-预期结果          : 返回VOS_ERROR
-修改历史   :
-1.日   期  : 2013-09-13
-  作   者  : f00179208
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_ADS_DL_CCpuResetCallback, Test_ADS_DL_CCpuResetCallback_006)
 {
     VOS_UINT32                          ulRst;
@@ -1566,16 +1358,7 @@ TEST_F(Test_ADS_DL_CCpuResetCallback, Test_ADS_DL_CCpuResetCallback_006)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_CCpuResetCallback_007
-测试用例标题      : C核复位后消息发送成功
-预期结果          : 返回VOS_OK
-修改历史   :
-1.日   期  : 2013-09-13
-  作   者  : f00179208
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_ADS_DL_CCpuResetCallback, Test_ADS_DL_CCpuResetCallback_007)
 {
     VOS_UINT32                          ulRst;
@@ -1599,16 +1382,7 @@ TEST_F(Test_ADS_DL_CCpuResetCallback, Test_ADS_DL_CCpuResetCallback_007)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_CCpuResetCallback_008
-测试用例标题      : 非C核复位前后
-预期结果          : 返回VOS_ERROR
-修改历史   :
-1.日   期  : 2013-04-19
-  作   者  : f00179208
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_ADS_DL_CCpuResetCallback, Test_ADS_DL_CCpuResetCallback_008)
 {
     VOS_UINT32                          ulRst;
@@ -1632,14 +1406,7 @@ TEST_F(Test_ADS_DL_CCpuResetCallback, Test_ADS_DL_CCpuResetCallback_008)
 
 }
 
-/*****************************************************************************
-类名       : Test_ADS_UL_CCpuResetCallback
-功能描述   : ADS_UL_CCpuResetCallback UT工程类
-修改历史   :
-1.日   期  : 2013-04-19
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ADS_UL_CCpuResetCallback: public ::testing::Test
 {
 public:
@@ -1653,16 +1420,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_CCpuResetCallback_001
-测试用例标题      : C核复位前，分配内存失败
-预期结果          : 返回VOS_ERROR
-修改历史   :
-1.日   期  : 2013-04-19
-  作   者  : f00179208
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_ADS_UL_CCpuResetCallback, Test_ADS_UL_CCpuResetCallback_001)
 {
     VOS_UINT32                          ulRst;
@@ -1689,16 +1447,7 @@ TEST_F(Test_ADS_UL_CCpuResetCallback, Test_ADS_UL_CCpuResetCallback_001)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_CCpuResetCallback_002
-测试用例标题      : C核复位前，消息发送失败
-预期结果          : 返回VOS_ERROR
-修改历史   :
-1.日   期  : 2013-04-19
-  作   者  : f00179208
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_ADS_UL_CCpuResetCallback, Test_ADS_UL_CCpuResetCallback_002)
 {
     VOS_UINT32                          ulRst;
@@ -1725,16 +1474,7 @@ TEST_F(Test_ADS_UL_CCpuResetCallback, Test_ADS_UL_CCpuResetCallback_002)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_CCpuResetCallback_003
-测试用例标题      : C核复位前，消息发送成功，锁信号量失败
-预期结果          : 返回VOS_ERROR
-修改历史   :
-1.日   期  : 2013-04-19
-  作   者  : f00179208
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_ADS_UL_CCpuResetCallback, Test_ADS_UL_CCpuResetCallback_003)
 {
     VOS_UINT32                          ulRst;
@@ -1762,16 +1502,7 @@ TEST_F(Test_ADS_UL_CCpuResetCallback, Test_ADS_UL_CCpuResetCallback_003)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_CCpuResetCallback_004
-测试用例标题      : C核复位前，消息发送成功，锁信号量成功
-预期结果          : 返回VOS_OK
-修改历史   :
-1.日   期  : 2013-04-19
-  作   者  : f00179208
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_ADS_UL_CCpuResetCallback, Test_ADS_UL_CCpuResetCallback_004)
 {
     VOS_UINT32                          ulRst;
@@ -1798,16 +1529,7 @@ TEST_F(Test_ADS_UL_CCpuResetCallback, Test_ADS_UL_CCpuResetCallback_004)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_CCpuResetCallback_005
-测试用例标题      : C核复位后
-预期结果          : 返回VOS_OK
-修改历史   :
-1.日   期  : 2013-04-19
-  作   者  : f00179208
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_ADS_UL_CCpuResetCallback, Test_ADS_UL_CCpuResetCallback_005)
 {
     VOS_UINT32                          ulRst;
@@ -1831,16 +1553,7 @@ TEST_F(Test_ADS_UL_CCpuResetCallback, Test_ADS_UL_CCpuResetCallback_005)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_UL_CCpuResetCallback_006
-测试用例标题      : 非C核复位前后
-预期结果          : 返回VOS_ERROR
-修改历史   :
-1.日   期  : 2013-04-19
-  作   者  : f00179208
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_ADS_UL_CCpuResetCallback, Test_ADS_UL_CCpuResetCallback_006)
 {
     VOS_UINT32                          ulRst;

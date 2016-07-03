@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafSpmMain.h
-  版 本 号   : 初稿
-  作    者   : w00176964
-  生成日期   : 2013年5月8日
-  最近修改   :
-  功能描述   : TafSpmMain.c的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年5月8日
-    作    者   : w00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 #ifndef _TAF_SPM_MAIN_H_
 #define _TAF_SPM_MAIN_H_
 
@@ -114,12 +97,10 @@ VOS_VOID  TAF_SPM_InitCtx(
     TAF_SPM_CONTEXT_STRU               *pstSpmCtx
 );
 
-/* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-14, begin */
 VOS_UINT32 TAF_SPM_PreProcessMsg(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 );
-/* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-14, end */
 
 #if (VOS_OS_VER == VOS_WIN32)
 #pragma pack()

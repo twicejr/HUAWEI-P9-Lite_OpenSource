@@ -64,7 +64,6 @@ extern "C" {
 /*****************************************************************************
   10 函数声明
 *****************************************************************************/
-/* Added by n00269697 for V3R3C60_eCall项目, 2014-3-29, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
 VOS_UINT32 AT_SetCecallPara(VOS_UINT8 ucIndex);
 VOS_UINT32 AT_QryCecallPara(VOS_UINT8 ucIndex);
@@ -77,7 +76,6 @@ VOS_UINT32 AT_SetEclmsdPara(VOS_UINT8 ucIndex);
 VOS_UINT32 AT_QryEclmsdPara(VOS_UINT8 ucIndex);
 VOS_UINT32 AT_TestEclmsdPara(VOS_UINT8 ucIndex);
 #endif
-/* Added by n00269697 for V3R3C60_eCall项目, 2014-3-29, end   */
 
 VOS_UINT32 At_RcvVcMsgDtmfDecoderIndProc(
     MN_AT_IND_EVT_STRU                 *pstData

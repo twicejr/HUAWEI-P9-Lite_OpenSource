@@ -57,7 +57,6 @@ extern ULONG Extern_BFD_AddRtStatic(ULONG *ulDestIp,ULONG ulPrefixLen,ULONG *ulN
 extern ULONG Extern_BFD_DelRtStatic(ULONG *ulDestIp,ULONG ulPrefixLen,ULONG *ulNextHop,ULONG ulIfIndex,
                                            ULONG ulSessionId,ULONG ulVrfIndex,ULONG ulRouteVrfIndex,ULONG ulIpVersion);
 extern BOOL_T Extern_BFD_CheckStaticRelationByFilter(BFD_FOR_STATIC_FILTER_S *pstFilter, BFD_STATIC_NODE_S * pstEntry);
-/* Add for DTS2011021002203, by chenyaoKF34558, at 2011-02-28. 修改原因: 重新设计license功能 */
 extern ULONG Extern_BFD_ActRtStatic(ULONG ulDestIp,ULONG ulPrefixLen,ULONG ulNextHop,ULONG ulIfIndex,
                                            ULONG ulSessionId,ULONG ulVrfIndex, ULONG ulRelVrfIndex, ULONG ulIpVersion);
 extern ULONG Extern_BFD_RmNotifyUpStatic(ULONG ulProcIndex,BFD_STATIC_NODE_S *pstNode,ULONG ulIpVersion);

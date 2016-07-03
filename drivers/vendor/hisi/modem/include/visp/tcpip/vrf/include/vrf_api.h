@@ -47,12 +47,10 @@ extern  "C"{
 #define VRF_CALLBACK_DELETE 0x02
 #define VRF_CALLBACK_CHANGE 0x03
 
-/*Added by limin00188004, 支持全局和VRF域的控制License, 2012/9/24   问题单号:S.VRF.02.01 */
 #define VRF_LICENCE_DISABLE 0x00
 #define VRF_LICENCE_ENABLE  0x01
 
 typedef ULONG(*VRF_GET_LICENSE_STATE_FUNC)(ULONG ulVrfIndex, UCHAR *pucVrfSwitch);
-/* End of Added by limin00188004, 2012/9/24   问题单号:S.VRF.02.01 */
 
 typedef enum tagVRF_RM_PRO_TYPE_E
 {
@@ -532,96 +530,19 @@ extern ULONG TCPIP_VRF_GetHaDbg(ULONG *pulDbg);
 *******************************************************************************/
 extern ULONG TCPIP_GetVrfIndexByRmPro(ULONG ulRtType,ULONG ulInstance,ULONG *pulVrfIndex);
 
-/*******************************************************************************
-*    Func Name: TCPIP_EnableVrfLicence
-* Date Created: 2012-09-25
-*       Author: limin00188004
-*  Description: 使能/去使能VRF的License特性
-*        Input: UCHAR ucOper: 0,vrf licence特性关闭; 1,vrf licence特性打开
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2012-09-25   limin00188004           Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_EnableVrfLicence(UCHAR ucOper);
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetVrfLicenceSwitch
-* Date Created: 2012-09-27
-*       Author: limin00188004
-*  Description: 获取VRF License特性是否使能的开关
-*        Input: UCHAR *pucOper:传出参数
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2012-09-27   limin00188004           Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_GetVrfLicenceSwitch(UCHAR *pucOper);
 
-/*******************************************************************************
-*    Func Name: TCPIP_CfgLicenceByVrf
-* Date Created: 2012-09-25
-*       Author: limin00188004
-*  Description: 配置指定VRF域的License开关
-*        Input: CHAR szVrfName[VRF_MAX_VRFNAME_LENGTH + 1]: vrf名称
-*               UCHAR ucOper: 0, licence关闭; 1, licence打开
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2012-09-25   limin00188004           Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_CfgLicenceByVrf(CHAR szVrfName[VRF_MAX_VRFNAME_LENGTH + 1], UCHAR ucOper);
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetLicenceByVrf
-* Date Created: 2012-09-27
-*       Author: limin00188004
-*  Description: 通过VRF名称，获取指定VRF的licence
-*        Input: CHAR szVrfName[VRF_MAX_VRFNAME_LENGTH + 1]:VRF名称
-*               UCHAR *pucOper:传出参数，vrf的licence
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2012-09-27   limin00188004           Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_GetLicenceByVrf(CHAR szVrfName[VRF_MAX_VRFNAME_LENGTH + 1], UCHAR *pucOper);
 
-/*******************************************************************************
-*    Func Name: TCPIP_ShowVrfLicenceSwitch
-* Date Created: 2012-09-27
-*       Author: limin00188004
-*  Description: 显示VRF licence使能信息,以及VRF licence为开启状态的所有VRF
-*        Input: 
-*       Output: 
-*       Return: VOID
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2012-09-27   limin00188004           Create
-*
-*******************************************************************************/
+
 extern VOID TCPIP_ShowVrfLicenceSwitch(VOID);
 
 #endif  /* _VRF_API_H_  */

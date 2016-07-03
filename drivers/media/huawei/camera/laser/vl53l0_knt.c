@@ -37,9 +37,6 @@ static hw_vl53l0_t *s_laser = NULL;
 
 extern struct hisi_pmic_ctrl_t ncp6925_ctrl;
 static bool use_gpio = 0;
-static bool laser_on = 0;
-static bool laser_ext_on = 0;
-extern bool pmic_power_on;
 extern void hw_camdrv_msleep(unsigned int ms);
 
 static int vl53l0_knt_get_dt_data(struct platform_device *pdev, hw_vl53l0_t *laser)
@@ -143,13 +140,6 @@ hwlaser_subdev_config(
 			break;
 
 		case HWCAM_LASER_POWERON:
-			if (!pmic_power_on && !laser_ext_on) {
-				pmic_ctrl = hisi_get_pmic_ctrl();
-				if(pmic_ctrl != NULL) {
-					pmic_ctrl->func_tbl->pmic_on(pmic_ctrl, 0);
-				}
-			}
-
 			if (ncp6925_ctrl.func_tbl->pmic_seq_config) {
 				rc = ncp6925_ctrl.func_tbl->pmic_seq_config(&ncp6925_ctrl, VOUT_LDO_5, VAL_LASER_2P85, 1);
 			}
@@ -168,7 +158,6 @@ hwlaser_subdev_config(
 			}
 
 			hw_camdrv_msleep(2);
-			laser_on = 1;
 			HWCAM_CFG_INFO("laser power up");
 			break;
 
@@ -190,29 +179,14 @@ hwlaser_subdev_config(
                 rc = ncp6925_ctrl.func_tbl->pmic_seq_config(&ncp6925_ctrl, VOUT_LDO_5, VAL_LASER_2P85, 0);
             }
 
-			if (!pmic_power_on && !laser_ext_on) {
-				pmic_ctrl = hisi_get_pmic_ctrl();
-				if(pmic_ctrl != NULL) {
-					pmic_ctrl->func_tbl->pmic_off(pmic_ctrl);
-				}
-			}
-			laser_on = 0;
 			HWCAM_CFG_INFO("laser power down");
 			break;
 
 		case HWCAM_LASER_POWERON_EXT:
-			if (!pmic_power_on && !laser_on) {
-				pmic_ctrl = hisi_get_pmic_ctrl();
-				if(pmic_ctrl != NULL) {
-					pmic_ctrl->func_tbl->pmic_on(pmic_ctrl, 0);
-				}
-			}
-
 			if (ncp6925_ctrl.func_tbl->pmic_seq_config) {
 				rc = ncp6925_ctrl.func_tbl->pmic_seq_config(&ncp6925_ctrl, VOUT_LDO_4, VAL_XSHUT, 1);
 			}
 			hw_camdrv_msleep(1);
-			laser_ext_on = 1;
 			HWCAM_CFG_INFO("laser power up ext");
 			break;
 
@@ -221,13 +195,6 @@ hwlaser_subdev_config(
 				rc = ncp6925_ctrl.func_tbl->pmic_seq_config(&ncp6925_ctrl, VOUT_LDO_4, VAL_XSHUT, 0);
 			}
 
-			if (!pmic_power_on && !laser_on) {
-				pmic_ctrl = hisi_get_pmic_ctrl();
-				if(pmic_ctrl != NULL) {
-					pmic_ctrl->func_tbl->pmic_off(pmic_ctrl);
-				}
-			}
-			laser_ext_on = 0;
 			HWCAM_CFG_INFO("laser power down ext");
 			break;
 

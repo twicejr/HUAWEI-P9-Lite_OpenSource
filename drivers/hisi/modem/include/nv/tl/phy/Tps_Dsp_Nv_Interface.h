@@ -1,17 +1,4 @@
- /******************************************************************************
-
-                   版权所有 (C), 2001-2011, 华为技术有限公司
-
-  ******************************************************************************
-   文 件 名   : Tps_Dsp_Nv_Interface.h
-   版 本 号   : 初稿
-   作    者   : y00194530
-   生成日期   : 2012年05月29日
-   最近修改   :
-   功能描述   :
-   函数列表   :
-   修改历史   : y00194530 新增  TDS NV 结构
- ******************************************************************************/
+ 
 #ifndef   __TPS_DSP_NV_INTERFACE_H__
 #define   __TPS_DSP_NV_INTERFACE_H__
 
@@ -237,7 +224,6 @@ typedef struct
 }NV_DSP2RF_CFG_STRU;
 typedef struct
 {
-    /* BEGIN: Modified by W00180842, 2012/6/25	 PN:装备*/
     /*VOS_UINT16 ulAgcTblNoBlock[RF_AGC_TBL_NUM];
  */
     /*VOS_UINT16 ulAgcTblBlock[RF_AGC_TBL_NUM];
@@ -252,7 +238,6 @@ typedef struct
 }NV_RF_APC_CODE_STRU;
 typedef struct
 {
-    /* BEGIN: Modified by W00180842, 2012/6/25	 PN:装备*/
     /*NV_RF_APC_CODE_STRU stNvApcHighTbl[RF_APC_TBL_HIGH_NUM];
  */
     NV_RF_APC_CODE_STRU stNvApcLowTbl[RF_APC_TBL_LOW_NUM];
@@ -351,19 +336,16 @@ typedef struct
 
 typedef struct
 {
-/* BEGIN: Modified by W00180842, 2012/6/15   PN:装备*/
     /*VOS_UINT16 ausTxApcOffReduce;
  */
     VOS_UINT32 ausTxApcOffReduce;
 }TDS_NV_TX_APCOFF_REDUCE_STRU;
 
-/* BEGIN: Modified by W00180842, 2012/6/15   PN:装备*/
 typedef struct
 {
     VOS_INT16 sAcsDifferThreshold;                       /*(6)*/
     VOS_INT16 sAcsPowerThreshold0;                       /*(-49)1*/
     VOS_INT16 sAcsPowerThreshold1;                        /*(-30)1*/
-    /* BEGIN: Modified by W00180842, 2012/6/25	 PN:装备*/
     VOS_INT16 sRev;
 
 }NV_RF_ACS_PARA_STRU;
@@ -392,7 +374,6 @@ typedef struct
  */
     VOS_INT16 sPowerConst; /*(2688)
  */
-    /* BEGIN: Modified by W00180842, 2012/6/25	 PN:装备*/
     VOS_INT16 sRev;
 }NV_RF_AGC_CAL_PARA_STRU;
 
@@ -411,7 +392,6 @@ typedef struct
  */
     RF_ADVANCE_TIME_STU stRfAdvanceTime;/*（ID：0xE401）
  */
-    /* BEGIN: Modified by W00180842, 2012/6/15   PN:装备*/
     #if 0
     NV_RF_AGC_PARA_STRU stRfAgcPara;
     NV_RF_APC_PARA_STRU stRfApcPara;

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : BST_DRV_NETDEVICE.c
-  版 本 号   : 初稿
-  作    者   : d00173029
-  生成日期   : 2014年05月04日
-  最近修改   :
-  功能描述   : 实现Bastet与无线3GPP协议栈IP包收发接口
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年05月13日
-    作    者   : d00173029
-    修改内容   : 建立文件
-
-******************************************************************************/
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -71,41 +54,14 @@ BST_PAL_NET_ENTITY_STRU                 g_BstPalNetEntity   =
    6 函数实现
 ******************************************************************************/
 #if( BST_IP_SUPPORT_PPP == BST_FEATURE_ON )
-/*****************************************************************************
- 函 数 名  : BST_PAL_NetApiPackPppForwd
- 功能描述  : 转发PPP包到AP侧
- 输入参数  : BST_UINT32   ulLength,                 包长度
-             BST_UINT8   *pucData                   包内容
- 输出参数  : 无
- 返 回 值  : BST_ERR_ENUM_UINT8 BST_ERR_NO_MEMORY   内存不足，发送失败
-                                BST_NO_ERROR_MSG    发送成功
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8  BST_PAL_NetApiPackPppForwd(  BST_UINT32   ulLength,
                                             BST_UINT8   *pucData )
 {
     return BST_NO_ERROR_MSG;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_PAL_NetApiPacketPppRcvd
- 功能描述  : PPP网络数据包接收函数
- 输入参数  : BST_UINT32   ulLength,             包长度
-             BST_UINT8   *pucData               包内容
- 输出参数  : 无
- 返 回 值  : BST_UINT32                         成功接收数据长度
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_UINT32 BST_PAL_NetApiPacketPppRcvd( BST_UINT32   ulLength,
                                   BST_UINT8   *pucData )
 {
@@ -122,19 +78,7 @@ BST_UINT32 BST_PAL_NetApiPacketPppRcvd( BST_UINT32   ulLength,
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : BST_PAL_NetDLEvtProc
- 功能描述  : BASTET dl消息处理函数。
- 输入参数  :
- 输出参数  :
- 返 回 值  :
 
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
 BST_VOID BST_PAL_NetDLEvtProc( BST_VOID )
 {
     BST_UINT32                  ulCnt;
@@ -159,21 +103,7 @@ BST_VOID BST_PAL_NetDLEvtProc( BST_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_PAL_NetMsgEntry
- 功能描述  : IMSA消息处理函数。
- 输入参数  :
- 输出参数  :
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2013年07月31日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-*****************************************************************************/
 BST_VOID BST_PAL_NetMsgEntry( MsgBlock  *pstMsg )
 {
     BST_UINT32                  ulTrsFlg;
@@ -212,19 +142,7 @@ BST_VOID BST_PAL_NetMsgEntry( MsgBlock  *pstMsg )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_PAL_NetMsgCfgCallBack
- 功能描述  : 将数据包转发到AP
- 输入参数  : BST_CDS_SEND_CB_INFO_STRU *pstMsg Modem Id 消息结构体
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_PAL_NetMsgCfgCallBack( const BST_CDS_SEND_CB_INFO_STRU *pstMsg  )
 {
     BST_PAL_NET_ENTITY_STRU    *pstBstNetEntity;
@@ -239,23 +157,7 @@ BST_VOID BST_PAL_NetMsgCfgCallBack( const BST_CDS_SEND_CB_INFO_STRU *pstMsg  )
     pstBstNetEntity->pfRsmItf   = pstMsg->pResmCbFun;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_PAL_NetApiPacketSend
- 功能描述  : 实现TCP/IP包向空口协议栈的发送功能
- 输入参数  : BST_UINT32   ulLength,                 包长度
-             BST_UINT8   *pucData                   包内容
- 输出参数  : 无
- 返 回 值  : BST_ERR_ENUM_UINT8 BST_ERR_PAR_LEN     数据长度有误
-                                BST_ERR_PAR_UNKNOW  发送口参数异常
-                                BST_ERR_NO_MEMORY   内存不足，无法发送
-                                BST_NO_ERROR_MSG    发送成功
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8  BST_PAL_NetApiPacketSend(
     BST_UINT32   ulLength,
     BST_UINT8   *pucData)
@@ -295,19 +197,7 @@ BST_ERR_ENUM_UINT8  BST_PAL_NetApiPacketSend(
     return BST_NO_ERROR_MSG;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_PAL_NetApiPacketResume
- 功能描述  : 将数据包转发到AP
- 输入参数  : BST_VOID *pstItem              NET_DRV_PACKET_STRU格式数据包
- 输出参数  : 无
- 返 回 值  : BST_ERR_ENUM_UINT8             出错类型
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_PAL_NetApiPacketResume( BST_VOID *pstItem )
 {
     BST_PAL_NET_ENTITY_STRU            *pstBstNetEntity;
@@ -331,19 +221,7 @@ BST_ERR_ENUM_UINT8 BST_PAL_NetApiPacketResume( BST_VOID *pstItem )
     }
     return BST_NO_ERROR_MSG;
 }
-/*****************************************************************************
- 函 数 名  : BST_PAL_NetApiPacketFree
- 功能描述  : 清除数据包
- 输入参数  : BST_VOID *pstItem              NET_DRV_PACKET_STRU格式数据包
- 输出参数  : 无
- 返 回 值  : BST_ERR_ENUM_UINT8             出错类型
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8 BST_PAL_NetApiPacketFree( BST_VOID *pstItem )
 {
     TTF_MEM_ST                        *pstTtfMem;
@@ -357,20 +235,7 @@ BST_ERR_ENUM_UINT8 BST_PAL_NetApiPacketFree( BST_VOID *pstItem )
     return BST_NO_ERROR_MSG;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_PAL_NetApiPacketRcved
- 功能描述  : 接收来自cds的下行IP包
- 输入参数  : const BST_UINT8 *pData,    数据指针头
-             const BST_UINT32 ulLen     数据长度
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_UINT32 BST_PAL_NetApiPacketRcved( const BST_UINT8 *pData, const BST_UINT32 ulLen )
 {
     BST_OS_LOCKCNT_T            tThreadLockCnt;
@@ -405,37 +270,13 @@ BST_UINT32 BST_PAL_NetApiPacketRcved( const BST_UINT8 *pData, const BST_UINT32 u
     return ulLen;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_PAL_NetApiPacketLen
- 功能描述  : 获取TTF格式包长度接口
- 输入参数  : BST_VOID *pvArg    UnUsed
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年09月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_UINT32 BST_PAL_NetApiPacketLen( BST_VOID *pvPkt )
 {
     return ( BST_UINT32 )TTF_MemGetLen( UEPS_PID_BASTET, ( TTF_MEM_ST *)pvPkt );
 }
 
-/*****************************************************************************
- 函 数 名  : BST_PAL_NetApiSetRxMsgEnable
- 功能描述  : 设置是否允许CDS上报数据接收消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_PAL_NetApiSetRxMsgEnable( BST_UINT32 ulEnableFlag )
 {
     BST_CDS_TX_RX_RPT_ENABLE_STRU  *pstTrxEnableMsg;
@@ -460,19 +301,7 @@ BST_VOID BST_PAL_NetApiSetRxMsgEnable( BST_UINT32 ulEnableFlag )
 }
 
 
-/*****************************************************************************
- 函 数 名  : BST_PAL_NetApiSetTxMsgEnable
- 功能描述  : 设置是否允许CDS上报Tx数据发送消息
- 输入参数  : ulEnableFlag   -- 是否允许上报，BST_TRUE 允许上报，BST_FALSE不允许上报
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年05月27日
-      作    者   : z00128442
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_PAL_NetApiSetTxMsgEnable( BST_UINT32 ulEnableFlag )
 {
     BST_CDS_TX_RX_RPT_ENABLE_STRU  *pstTrxEnableMsg;
@@ -496,20 +325,7 @@ BST_VOID BST_PAL_NetApiSetTxMsgEnable( BST_UINT32 ulEnableFlag )
     BST_PAL_NetSendMsg( pstTrxEnableMsg );
 }
 
-/*****************************************************************************
- 函 数 名  : BST_PAL_NetIpStackInput
- 功能描述  : 3GPP网络IP包接收函数
- 输入参数  : BST_UINT32   ulLength,             包长度
-             BST_UINT8   *pucData               包内容
- 输出参数  : 无
- 返 回 值  : BST_UINT32                         成功接收数据长度
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_UINT32 BST_PAL_NetIpStackInput(
     const BST_UINT32   const ulLength,
     const BST_UINT8  * const pucData,
@@ -557,20 +373,7 @@ BST_UINT32 BST_PAL_NetIpStackInput(
 
 }
 
-/*****************************************************************************
- 函 数 名  : BST_PAL_NetProcDlPacket
- 功能描述  : 实现从空口接收下行IP数据包
- 输入参数  : TTF_MEM_ST    *pstSrcMem          空口中取出的数据片Item
- 输出参数  : 无
- 返 回 值  : BST_BOOL       BST_FALSE           IP包非Bastet代理数据，不处理
-                            BST_TRUE            IP包由Bastet取到
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_PAL_NetProcDlPacket( const TTF_MEM_ST  *pstTtfPacket )
 {
     BST_IP_PKT_PROC_ENUM_INT8           enPktProcMode;
@@ -646,19 +449,7 @@ BST_VOID BST_PAL_NetProcDlPacket( const TTF_MEM_ST  *pstTtfPacket )
 /*lint -e429 -e438 */
 }   /*pucTmpdata 是否free需要判断ulIsMalloced，如果指针不是Malloc的，则不需FREE*/
 /*lint +e429 +e438*/
-/*****************************************************************************
- 函 数 名  : BST_PAL_NetSendNetStateMsg
- 功能描述  : 设置NET状态
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_PAL_NetSendNetStateMsg( BST_UINT32 ulNetState )
 {
     BST_CDS_NET_DEVICE_STATE_STRU      *pstNetStateMsg;
@@ -696,19 +487,7 @@ BST_VOID BST_PAL_NetSendNetStateMsg( BST_UINT32 ulNetState )
     BST_PAL_NetSendMsg( pstNetStateMsg );
 }
 
-/*****************************************************************************
- 函 数 名  : BST_PAL_NetSendNetStateMsg
- 功能描述  : 设置NET状态
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_PAL_NetSendModemRabId( BST_DRV_NET_MODEM_RABID_STRU *pstModemRabId )
 {
     BST_CDS_NET_ACORE_MODEM_RABID_STRU *pstNetModemRabMsg;
@@ -761,19 +540,7 @@ BST_VOID BST_PAL_NetSendModemRabId( BST_DRV_NET_MODEM_RABID_STRU *pstModemRabId 
     BST_PAL_NetSendMsg( pstNetModemRabMsg );
 }
 
-/*****************************************************************************
- 函 数 名  : BST_PAL_NetSendRegCbMsg
- 功能描述  : 注册下行回调函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_PAL_NetSendRegCbMsg( BST_VOID )
 {
     BST_CDS_REG_RCV_CB_STRU    *pstRcvCbMsg;
@@ -791,19 +558,7 @@ BST_VOID BST_PAL_NetSendRegCbMsg( BST_VOID )
     BST_PAL_NetSendMsg( pstRcvCbMsg );
 }
 
-/*****************************************************************************
- 函 数 名  : BST_PAL_NetApiInitial
- 功能描述  : 初始化IP包接收线程及消息邮箱
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID  BST_PAL_NetApiInitial( BST_VOID )
 {
     BST_PAL_NET_ENTITY_STRU    *pstBstNetEntity;

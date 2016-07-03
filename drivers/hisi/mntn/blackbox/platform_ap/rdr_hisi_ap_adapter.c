@@ -1,20 +1,4 @@
-/*******************************************************************************
 
-  版权所有 (C), 2001-2011, 华为技术有限公司
-
- *******************************************************************************
- 文 件 名   : rdr_hisi_ap_adapter.c
- 版 本 号   : 初稿
- 作    者   : 蒋孝伟 00207786
- 生成日期   : 2015年1月12日
- 最近修改   :
- 功能描述   : 基于RDR框架，AP侧适配，实现资源、异常初始化，dump及reset操作
- 修改历史   :
- 1.日  期   : 2015年1月12日
-   作  者   : 蒋孝伟 00207786
- 修改内容   : 创建文件
-
- *******************************************************************************/
 
 /*******************************************************************************
   1 头文件包含
@@ -1361,13 +1345,7 @@ void rdr_hisiap_dump(u32 modid, u32 etype, u64 coreid, char *log_path,
 	}
 }
 
-/*****************************************************************************
-Description : 初始化复位原因
-History
-1.Date: 2015/02/06
-Author : l00249396
-Modification : Created function
-*****************************************************************************/
+
 void hisiap_nmi_notify_lpm3(void)
 {
 	unsigned int value;
@@ -1396,13 +1374,7 @@ void get_bbox_curtime_slice(void)
 	       "printk_time is %llu, 32k_abs_timer_value is %llu.\n",
 	       curtime, curslice);
 }
-/*****************************************************************************
-Description : 异常时，ap的reset函数
-History
-1.Date: 2015/02/06
-Author : l00249396
-Modification : Created function
-*****************************************************************************/
+
 void rdr_hisiap_reset(u32 modid, u32 etype, u64 coreid)
 {
 	printk("%s start\n", __func__);
@@ -1468,25 +1440,13 @@ int get_pmu_reset_base_addr(void)
 	return 0;
 }
 
-/*****************************************************************************
-Description : 获取记录复位原因的pmu寄存器的地址
-History
-1.Date: 2015/02/06
-Author : l00249396
-Modification : Created function
-*****************************************************************************/
+
 unsigned long long get_pmu_reset_reg(void)
 {
 	return g_pmu_reset_reg;
 }
 
-/*****************************************************************************
-Description : 供rdr使用，将异常记录到pmu中
-History
-1.Date: 2015/02/06
-Author : l00249396
-Modification : Created function
-*****************************************************************************/
+
 void record_exce_type(struct rdr_exception_info_s *einfo)
 {
 	struct rdr_exception_info_s *e = NULL;
@@ -1509,13 +1469,7 @@ void record_exce_type(struct rdr_exception_info_s *einfo)
 	}
 	return;
 }
-/*****************************************************************************
-Description : 注册异常的参数，在dump和reset之间调用
-History
-1.Date: 2015/02/06
-Author : l00249396
-Modification : Created function
-*****************************************************************************/
+
 void hisiap_callback(u32 argc, void *argv)
 {
 	int ret;
@@ -1530,13 +1484,7 @@ void hisiap_callback(u32 argc, void *argv)
 	return;
 }
 
-/*****************************************************************************
-Description : 向rdr注册异常
-History
-1.Date: 2015/02/06
-Author : l00249396
-Modification : Created function
-*****************************************************************************/
+
 static void rdr_hisiap_register_exception(void)
 {
 	int i;
@@ -1562,13 +1510,7 @@ static void rdr_hisiap_register_exception(void)
 	printk("[%s], end\n", __func__);
 }
 
-/*****************************************************************************
-Description : 向rdr注册dump和reset函数
-History
-1.Date: 2015/02/06
-Author : l00249396
-Modification : Created function
-*****************************************************************************/
+
 static int rdr_hisiap_register_core(void)
 {
 	struct rdr_module_ops_pub s_soc_ops;
@@ -1594,25 +1536,13 @@ static int rdr_hisiap_register_core(void)
 	return ret;
 }
 
-/*****************************************************************************
-Description : 获取初始化状态
-History
-1.Date: 2015/02/06
-Author : l00249396
-Modification : Created function
-*****************************************************************************/
+
 bool rdr_get_ap_init_done(void)
 {
 	return rdr_ap_init == 1;
 }
 
-/*****************************************************************************
-Description : 将一个文件的内容copy到另一个文件中
-History
-1.Date: 2015/02/06
-Author : l00249396
-Modification : Created function
-*****************************************************************************/
+
 static int rdr_copy_file_apend(char *dst, char *src)
 {
 	long fddst, fdsrc;
@@ -1909,13 +1839,7 @@ out:
 	return ret;
 }
 
-/*****************************************************************************
-Description : 将未注册到rdr的异常写入history.log中
-History
-1.Date: 2015/02/06
-Author : l00249396
-Modification : Created function
-*****************************************************************************/
+
 int record_reason_task(void *arg)
 {
 	char date[DATATIME_MAXLEN];
@@ -1936,13 +1860,7 @@ int record_reason_task(void *arg)
 	return 0;
 }
 
-/*****************************************************************************
-Description : 钩子函数，用于系统panic处理之前死循环，使现场保留
-History
-1.Date: 2015/02/06
-Author : l00249396
-Modification : Created function
-*****************************************************************************/
+
 static int acpu_panic_loop_notify(struct notifier_block *nb,
 				  unsigned long event, void *buf)
 {
@@ -1954,13 +1872,7 @@ static int acpu_panic_loop_notify(struct notifier_block *nb,
 	return 0;
 }
 
-/*****************************************************************************
-Description : panic复位的钩子函数
-History
-1.Date: 2015/02/06
-Author : l00249396
-Modification : Created function
-*****************************************************************************/
+
 static int rdr_hisiap_panic_notify(struct notifier_block *nb,
 				   unsigned long event, void *buf)
 {
@@ -1969,13 +1881,7 @@ static int rdr_hisiap_panic_notify(struct notifier_block *nb,
 	return 0;
 }
 
-/*****************************************************************************
-Description : die复位的钩子函数
-History
-1.Date: 2015/02/06
-Author : l00249396
-Modification : Created function
-*****************************************************************************/
+
 static int rdr_hisiap_die_notify(struct notifier_block *nb,
 				 unsigned long event, void *pReg)
 {
@@ -2068,13 +1974,7 @@ void fill_etr_trace_info(void)
 }
 #endif
 
-/*****************************************************************************
-Description : 初始化函数
-History
-1.Date: 2015/02/06
-Author : l00249396
-Modification : Created function
-*****************************************************************************/
+
 int __init rdr_hisiap_init(void)
 {
 	struct task_struct *recordTask = NULL;

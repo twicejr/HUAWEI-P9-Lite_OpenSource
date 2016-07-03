@@ -1,26 +1,4 @@
-/*******************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : CcMmIf.h
-  Description : CC与MM接口头文件
-  History     :
-  1.  张志勇   2003.11.27   新版作成
-  2.日    期  : 2006年12月4日
-    作    者  : luojian id:60022475
-    修改内容  : 增加 #pragma pack(4)，问题单号:A32D07779
-  3.日    期   : 2008年10月25日
-    作    者   : h44270
-    修改内容   : 问题单号:A32D14150,在不同RNC不同NOBDE的同频硬切换后，虽然连接链路还存在，但没有了声音
-  4.日    期   : 2009年12月04日
-    作    者   : h44270
-    修改内容   : 问题单号:AT2D15770,CC向TAF多上报了一条SYNC原语
 
-  5.日    期   : 2010年3月2日
-    作    者   : zhoujun /z40661
-    修改内容   : NAS R7协议升级
-  6.日    期   : 2011年04月23日
-    作    者   : L00171473
-    修改内容   : for V7R1 porting, 去掉枚举成员最后的逗号，避免编译WARNING
-*******************************************************************************/
 
 #ifndef _CC_MM_INTERFACE_H_
 #define _CC_MM_INTERFACE_H_
@@ -42,18 +20,14 @@ extern "C" {
 #define MMCC_REEST_REQ                                      10
 #define MMCC_PROMPT_REJ                                     12
 #define MMCC_START_CC                                       14
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-23, begin */
 #define MMCC_SRVCC_CALL_INFO_NOTIFY                         16
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-23, end */
 
 #define MMCC_BEGIN_SESSION_NOTIFY                           (18)
 #define MMCC_END_SESSION_NOTIFY                             (20)
 
 #define MMCC_CALL_STATUS_NTY                                (22)
 
-/* Added by n00355355 for 呼叫重建, 2015-9-17, begin */
 #define MMCC_GET_CALL_INFO_CNF                              (24)
-/* Added by n00355355 for 呼叫重建, 2015-9-17, end */
 
 /* CC接收MM的原语 */
 #define MMCC_EST_CNF                                        1
@@ -66,13 +40,9 @@ extern "C" {
 #define MMCC_ERR_IND                                        15
 #define MMCC_PROMPT_IND                                     17
 #define MMCC_EMC_NUM_LST_IND                                19
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-23, begin */
 #define MMCC_SRVCC_STATUS_IND                               21
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-23, end */
 
-/* Added by n00355355 for 呼叫重建, 2015-9-16, begin */
 #define MMCC_GET_CALL_INFO_REQ                              23
-/* Added by n00355355 for 呼叫重建, 2015-9-16, end */
 
 #define MMCC_RRC_CONN_REL_IND                               25                  /* 当收到接入层的释放消息后，通知CC清除缓存 */
 
@@ -114,21 +84,13 @@ typedef struct
     VOS_UINT32                          ulResult;                               /* 该MM连接建立结果                          */
 }MMCC_EST_CNF_STRU;
 
-/* Added by n00355355 for 呼叫重建, 2015-9-17, begin */
-/*****************************************************************************
- 结构体       : MMCC_GET_CALL_INFO_REQ_STRU
- 结构体说明  : 原语MMCC_GET_CALL_INFO_REQ的结构体
-  1.日    期   : 2015年9月17日
-    作    者   : n00355355
-    修改内容   : 呼叫重建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;                              /* 消息头                                   */
     VOS_UINT8                           aucReserve[4];
 }MMCC_GET_CALL_INFO_REQ_STRU;
 
-/* Added by n00355355 for 呼叫重建, 2015-9-17, end */
 
 typedef struct
 {
@@ -193,13 +155,7 @@ typedef struct
 }MMCC_DATA_IND_STRU;
 
 /* 原语MMCC_SYNC_IND的结构体 */
-/*****************************************************************************
- 枚举名    : MMCC_CHANNEL_MODE_ENUM_U32
- 枚举说明  : MMCC接口的定义，需要与RRMM接口定义一致
- 1.日    期   : 2012年2月9日
-   作    者   : zhoujun 40661
-   修改内容   : modify
-*****************************************************************************/
+
 typedef enum
 {
     MMCC_CHAN_MOD_SIG_ONLY,
@@ -334,13 +290,7 @@ typedef struct
     MMCC_EMERGENCY_CONTENT_STRU         astEmergencyLists[MMCC_EMERGENCY_NUMBER_LISTS_MAX_NUMBER];
 }MMCC_EMERGENCY_LIST_STRU;
 
-/*****************************************************************************
- 枚举名    : MMCC_SESSION_TYPE_ENUM_UINT8
- 枚举说明  : CS域SESSION类型
- 1.日    期   : 2014年5月28日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 enum MMCC_SESSION_TYPE_ENUM
 {
     MMCC_SESSION_TYPE_MO_NORMAL_CALL,
@@ -350,13 +300,7 @@ enum MMCC_SESSION_TYPE_ENUM
 };
 typedef VOS_UINT8 MMCC_SESSION_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 结构名    : MMCC_BEGIN_SESSION_NOTIFY_STRU
- 结构说明  : SESSION开始指示
- 1.日    期   : 2014年5月28日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stMsgHeader;                /*_H2ASN_Skip*/
@@ -366,13 +310,7 @@ typedef struct
 
 
 
-/*****************************************************************************
- 结构名    : MMCC_END_SESSION_NOTIFY_STRU
- 结构说明  : SESSION结束指示
- 1.日    期   : 2014年5月28日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stMsgHeader;                /*_H2ASN_Skip*/
@@ -382,14 +320,7 @@ typedef struct
 
 
 
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-23, begin */
-/*****************************************************************************
- 枚举名    : NAS_MMCC_SRVCC_STATUS_ENUM_UINT32
- 枚举说明  : MM模块通知CC模块SRVCC的状态枚举值
- 1.日    期   : 2013年9月23日
-   作    者   : w00176964
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MMCC_SRVCC_STATUS_ENUM
 {
     NAS_MMCC_SRVCC_STATUS_START        = 0,     /* SRVCC开始 */
@@ -399,14 +330,7 @@ enum NAS_MMCC_SRVCC_STATUS_ENUM
 };
 typedef VOS_UINT32  NAS_MMCC_SRVCC_STATUS_ENUM_UINT32;
 
-/*****************************************************************************
- 结构名    : MMCC_SRVCC_STATUS_IND_STRU
- 结构说明  : MM模块通知CC模块SRVCC的状态通知消息结构体
 
-  1.日    期   : 2013年9月26日
-    作    者   : w00176964
-    修改内容   : 新建
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;          /* _H2ASN_Skip */
@@ -416,13 +340,7 @@ typedef struct
 
 typedef MNCC_CALL_STATUS_ENUM_UINT8 MMCC_CALL_STATUS_ENUM_UINT8;
 
-/*****************************************************************************
- 结构名    : MMCC_CALL_STATUS_NTF_STRU
- 结构说明  : CC模块通知MM模块呼叫建立状态结构体
-  1.日    期   : 2015年8月15日
-    作    者   : s00217060
-    修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;          /* _H2ASN_Skip */
@@ -430,14 +348,7 @@ typedef struct
     VOS_UINT8                           aucReserve[3];
 }MMCC_CALL_STATUS_NTF_STRU;
 
-/* Added by n00355355 for 呼叫重建, 2015-9-17, begin */
-/*****************************************************************************
- 枚举名    : NAS_CC_CALL_TYPE_ENUM_U8
- 枚举说明  : 呼叫类型
- 1.日    期   : 2014年6月18日
-   作    者   : w00242748
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_CC_CALL_TYPE
 {
     NAS_CC_CALL_TYPE_MO_NORMAL_CALL,                    /* 主叫正常呼 */
@@ -447,14 +358,7 @@ enum NAS_CC_CALL_TYPE
 };
 typedef VOS_UINT8  NAS_CC_CALL_TYPE_ENUM_U8;
 
-/*****************************************************************************
- 结构名    : MMCC_CC_CALL_INFO_STRU
- 结构说明  : CC模块通知MM模块呼叫信息结构体
 
-  1.日    期   : 2015年9月17日
-    作    者   : n00355355
-    修改内容   : 新建
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucCallId;
@@ -471,47 +375,24 @@ typedef struct
 /* 无效的CALL ID */
 #define NAS_CC_INVALID_CALL_ID          (0xff)
 
-/*****************************************************************************
- 结构名    : MMCC_GET_CALL_INFO_CNF_STRU
- 结构说明  : CC模块通知MM模块呼叫信息结构体
 
-  1.日    期   : 2015年9月17日
-    作    者   : n00355355
-    修改内容   : 新建
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;
     MMCC_CALL_INFO_STRU                 astCallInfo[NAS_CC_MAX_ENTITY_NUM];
 }MMCC_GET_CALL_INFO_CNF_STRU;
-/* Added by n00355355 for 呼叫重建, 2015-9-17, end */
 
 #define   NAS_MM_MAX_CC_CONNECTION_NUM      7
 
-/*****************************************************************************
- 结构名    : MMCC_SRVCC_CALL_INFO_NOTIFY_STRU
- 结构说明  : CC模块通知MM模块SRVCC过程中的呼叫信息通知消息结构体
 
-  1.日    期   : 2013年9月23日
-    作    者   : w00176964
-    修改内容   : 新建
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;          /* _H2ASN_Skip */
     VOS_UINT8                           ucTiNum;
     VOS_UINT8                           aucTransactionId[NAS_MM_MAX_CC_CONNECTION_NUM];
 }MMCC_SRVCC_CALL_INFO_NOTIFY_STRU;
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-23, end */
 
-/*****************************************************************************
- 结构名    : MMCC_RRC_CONN_REL_IND_STRU
- 结构说明  : MMCC_RRC_CONN_REL_IND 消息结构体
 
-  1.日    期   : 2015年12月12日
-    作    者   : j00174725
-    修改内容   : DTS2015121001913
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;          /* _H2ASN_Skip */
@@ -519,12 +400,10 @@ typedef struct
 }MMCC_RRC_CONN_REL_IND_STRU;
 
 
-/* Added by n00355355 for 呼叫重建, 2015-9-24, begin */
 VOS_VOID NAS_CC_GetCallInfo(
     MMCC_CALL_INFO_STRU                *pstCallInfo
 );
 
-/* Added by n00355355 for 呼叫重建, 2015-9-24, end */
 
 
 #if ((VOS_OS_VER == VOS_WIN32) || (VOS_OS_VER == VOS_NUCLEUS))

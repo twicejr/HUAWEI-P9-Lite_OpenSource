@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2012, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : MtcIntrusion.c
-  版 本 号   : 初稿
-  作    者   : l60609
-  生成日期   : 2013年07月30日
-  最近修改   :
-  功能描述   : MTC模块的干扰控制
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年7月30日
-    作    者   : l60609
-    修改内容   : 新生成
-
-******************************************************************************/
 /*****************************************************************************
   1 头文件包含
 *****************************************************************************/
@@ -35,9 +18,7 @@ extern "C" {
 
 /*lint -e958*/
 
-/*lint -e767 修改人: l00198894; */
 #define    THIS_FILE_ID        PS_FILE_ID_MTC_INTRUSION_C
-/*lint +e767 修改人: l00198894; */
 
 /*****************************************************************************
   2 全局变量定义
@@ -120,21 +101,7 @@ const MTC_INTRUSION_GSM_BAND_STATE_STRU g_stMtcIntrusionGsmBandStateTbl[] =
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : MTC_SndRrcIntrusionActionSetReq
- 功能描述  : 通知接入层上报频段信息
- 输入参数  : ulRecvPid      -- 接收PID
-             enEnableFlag   -- 使能标识
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年08月13日
-    作    者   : j00174725
-    修改内容   : V9R1 干扰控制项目
-*****************************************************************************/
 VOS_VOID MTC_SndRrcIntrusionActionSetReq(
     VOS_UINT32                          ulRecvPid,
     PS_BOOL_ENUM_UINT8                  enEnableFlag
@@ -177,21 +144,7 @@ VOS_VOID MTC_SndRrcIntrusionActionSetReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_SndIntrusionActionSetReq
- 功能描述  : 通知接入层干扰控制使能状态
- 输入参数  : enModemId      -- Modem ID
-             enEnableFlg    -- 干扰控制使能状态
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月21日
-    作    者   : l00198894
-    修改内容   : V9R1 Notch Bypass项目
-*****************************************************************************/
 VOS_VOID MTC_SndIntrusionActionSetReq(
     MODEM_ID_ENUM_UINT16                enModemId,
     PS_BOOL_ENUM_UINT8                  enEnableFlg
@@ -233,21 +186,7 @@ VOS_VOID MTC_SndIntrusionActionSetReq(
 
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_SndRrcIntrusionBandSetReq
- 功能描述  : 通知接入层禁用频段信息
- 输入参数  : ulRecvPid      -- 接收PID
-             pstForbiddenBandInfo   -- 禁用的单板信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年08月13日
-    作    者   : l00198894
-    修改内容   : V9R1 干扰控制项目
-*****************************************************************************/
 VOS_VOID MTC_SndRrcIntrusionBandSetReq(
     VOS_UINT32                          ulRecvPid,
     RRC_MTC_MS_BAND_INFO_STRU          *pstForbiddenBandInfo
@@ -303,20 +242,7 @@ VOS_VOID MTC_SndRrcIntrusionBandSetReq(
 
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_SndTdsLteIntrusionBandSetReq
- 功能描述  : 通知TDS与LTE接入层禁用频段信息
- 输入参数  : pstForbiddenBandInfo   -- 禁用的单板信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年08月13日
-    作    者   : l00198894
-    修改内容   : V9R1 干扰控制项目
-*****************************************************************************/
 VOS_VOID MTC_SndTdsLteIntrusionBandSetReq(
     RRC_MTC_MS_BAND_INFO_STRU          *pstForbiddenBandInfo
 )
@@ -360,20 +286,7 @@ VOS_VOID MTC_SndTdsLteIntrusionBandSetReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_IntrusionDisableB39
- 功能描述  : 执行禁用B39操作
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年08月12日
-    作    者   : l00198894
-    修改内容   : V9R1 干扰控制项目
-*****************************************************************************/
 VOS_VOID MTC_IntrusionDisableB39(VOS_VOID)
 {
     RRC_MTC_MS_BAND_INFO_STRU           stForbiddenBandInfo;
@@ -387,20 +300,7 @@ VOS_VOID MTC_IntrusionDisableB39(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_IntrusionDisableB3
- 功能描述  : 执行禁用B3操作
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年08月12日
-    作    者   : l00198894
-    修改内容   : V9R1 干扰控制项目
-*****************************************************************************/
 VOS_VOID MTC_IntrusionDisableB3(VOS_VOID)
 {
     RRC_MTC_MS_BAND_INFO_STRU           stForbiddenBandInfo;
@@ -418,20 +318,7 @@ VOS_VOID MTC_IntrusionDisableB3(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_IntrusionEnableB39
- 功能描述  : 执行启用B39操作
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年08月12日
-    作    者   : l00198894
-    修改内容   : V9R1 干扰控制项目
-*****************************************************************************/
 VOS_VOID MTC_IntrusionEnableB39(VOS_VOID)
 {
     RRC_MTC_MS_BAND_INFO_STRU           stForbiddenBandInfo;
@@ -443,20 +330,7 @@ VOS_VOID MTC_IntrusionEnableB39(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_IntrusionEnableB3
- 功能描述  : 执行启用B3操作
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年08月12日
-    作    者   : l00198894
-    修改内容   : V9R1 干扰控制项目
-*****************************************************************************/
 VOS_VOID MTC_IntrusionEnableB3(VOS_VOID)
 {
     RRC_MTC_MS_BAND_INFO_STRU           stForbiddenBandInfo;
@@ -472,20 +346,7 @@ VOS_VOID MTC_IntrusionEnableB3(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_IntrusionEnableB3B39
- 功能描述  : 执行启用B3 B39操作
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年08月12日
-    作    者   : l00198894
-    修改内容   : V9R1 干扰控制项目
-*****************************************************************************/
 VOS_VOID MTC_IntrusionEnableB3B39(VOS_VOID)
 {
     /* 调用启用B3流程 */
@@ -497,20 +358,7 @@ VOS_VOID MTC_IntrusionEnableB3B39(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_ProcIntrusionStrategy
- 功能描述  : 处理冲突裁决函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年08月12日
-    作    者   : l00198894
-    修改内容   : V9R1 干扰控制项目
-*****************************************************************************/
 VOS_VOID MTC_ProcIntrusionStrategy(VOS_VOID)
 {
     MTC_MODEM_POWER_STATE_ENUM_UINT8        enModem0PowerState;
@@ -570,21 +418,7 @@ VOS_VOID MTC_ProcIntrusionStrategy(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_IntrusionModemPowerStateChange
- 功能描述  : Modem开关机状态变化时，干扰控制相关处理
- 输入参数  : enModemId      -- Modem ID
-             enPowerState   -- Modem状态变化
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月21日
-    作    者   : l00198894
-    修改内容   : V9R1 Notch Bypass项目
-*****************************************************************************/
 VOS_VOID MTC_IntrusionModemPowerStateChange(
     MODEM_ID_ENUM_UINT16                enModemId,
     MTC_MODEM_POWER_STATE_ENUM_UINT8    enPowerState
@@ -613,20 +447,7 @@ VOS_VOID MTC_IntrusionModemPowerStateChange(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_GetModem1GsmBandState
- 功能描述  : 获取Modem1的GSM的频段状态
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : MTC_INTRUSION_GSM_BAND_STATE_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年08月13日
-    作    者   : l00198894
-    修改内容   : V9R1 干扰控制项目
-*****************************************************************************/
 MTC_INTRUSION_GSM_BAND_STATE_ENUM_UINT8 MTC_GetModem1GsmBandState(VOS_VOID)
 {
     VOS_UINT32                          ulLoop;
@@ -697,20 +518,7 @@ MTC_INTRUSION_GSM_BAND_STATE_ENUM_UINT8 MTC_GetModem1GsmBandState(VOS_VOID)
     return enGsmBandState;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_GetModem0TLBandState
- 功能描述  : 获取Modem0的TDS与LTE的频段状态
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : MTC_INTRUSION_TL_BAND_STATE_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年08月13日
-    作    者   : l00198894
-    修改内容   : V9R1 干扰控制项目
-*****************************************************************************/
 MTC_INTRUSION_TL_BAND_STATE_ENUM_UINT8 MTC_GetModem0TLBandState(VOS_VOID)
 {
     RRC_MTC_MS_BAND_INFO_STRU          *pstBandInfo = VOS_NULL_PTR;
@@ -734,20 +542,7 @@ MTC_INTRUSION_TL_BAND_STATE_ENUM_UINT8 MTC_GetModem0TLBandState(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_GetModem0NCellTLBandState
- 功能描述  : 获取Modem0的临区TL频段状态
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : MTC_INTRUSION_TL_BAND_STATE_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月28日
-    作    者   : j00174725
-    修改内容   : DTS2015102706654
-*****************************************************************************/
 MTC_INTRUSION_TL_BAND_STATE_ENUM_UINT8 MTC_GetModem0NCellTLBandState(VOS_VOID)
 {
     RRC_MTC_MS_BAND_INFO_STRU          *pstBandInfo = VOS_NULL_PTR;
@@ -772,20 +567,7 @@ MTC_INTRUSION_TL_BAND_STATE_ENUM_UINT8 MTC_GetModem0NCellTLBandState(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : MTC_RcvIntrusionActionSetCnf
- 功能描述  : 干扰控制开关设置回复
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年08月19日
-    作    者   : j00174725
-    修改内容   : V9R1 干扰控制项目
-*****************************************************************************/
 VOS_VOID MTC_RcvIntrusionActionSetCnf(VOS_VOID * pMsg)
 {
     RRC_MTC_RESULT_CNF_STRU            *pstResultCnf;
@@ -805,20 +587,7 @@ VOS_VOID MTC_RcvIntrusionActionSetCnf(VOS_VOID * pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_RcvIntrusionBandSetCnf
- 功能描述  : BAND设置回复消息处理
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年08月19日
-    作    者   : j00174725
-    修改内容   : V9R1 干扰控制项目
-*****************************************************************************/
 VOS_VOID MTC_RcvIntrusionBandSetCnf(VOS_VOID * pMsg)
 {
     RRC_MTC_RESULT_CNF_STRU            *pstResultCnf;
@@ -838,32 +607,7 @@ VOS_VOID MTC_RcvIntrusionBandSetCnf(VOS_VOID * pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_RcvIntrusionBandInfoInd
- 功能描述  : 接入层上报频段信息消息处理
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年08月19日
-    作    者   : j00174725
-    修改内容   : V9R1 干扰控制项目
-  2.日    期   : 2013年12月21日
-    作    者   : z60575
-    修改内容   : V9R1 Notch Bypass项目
-  3.日    期   : 2014年02月13日
-    作    者   : f00179208
-    修改内容   : Jazz Narrow Band dcs项目
-  4.日    期   : 2014年3月24日
-    作    者   : A00165503
-    修改内容   : B39&B32 Intrusion
-  5.日    期   : 2014年9月24日
-    作    者   : j00174725
-    修改内容   : 打孔新方案
-*****************************************************************************/
 VOS_VOID MTC_RcvIntrusionBandInfoInd(VOS_VOID * pMsg)
 {
     MTC_MODEM_INFO_STRU                    *pstModemInfo = VOS_NULL_PTR;
@@ -952,23 +696,7 @@ VOS_VOID MTC_RcvIntrusionBandInfoInd(VOS_VOID * pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_CheckGsmWithB3
- 功能描述  : 判断gsm是否支持BAND3
- 输入参数  : pulBandInfo 频段信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月21日
-    作    者   : z60575
-    修改内容   : V9R1 Notch Bypass项目
-  2.日    期   : 2014年02月13日
-    作    者   : f00179208
-    修改内容   : Jazz Narrow Band dcs项目
-*****************************************************************************/
 PS_BOOL_ENUM_UINT8 MTC_CheckGsmWithB3(
     RRC_MTC_MS_BAND_INFO_STRU          *pulBandInfo
 )
@@ -985,23 +713,7 @@ PS_BOOL_ENUM_UINT8 MTC_CheckGsmWithB3(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_CheckTLWithB34B39
- 功能描述  : 判断TL是否支持BAND34/B39
- 输入参数  : pulBandInfo 频段信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月21日
-    作    者   : z60575
-    修改内容   : V9R1 Notch Bypass项目
-  2.日    期   : 2014年02月13日
-    作    者   : f00179208
-    修改内容   : Jazz Narrow Band dcs项目
-*****************************************************************************/
 PS_BOOL_ENUM_UINT8 MTC_CheckTLWithB34B39(
     RRC_MTC_MS_BAND_INFO_STRU          *pulBandInfo
 )
@@ -1017,20 +729,7 @@ PS_BOOL_ENUM_UINT8 MTC_CheckTLWithB34B39(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_ProcNotchStrategy
- 功能描述  : 处理notch裁决函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月21日
-    作    者   : z60575
-    修改内容   : V9R1 Notch Bypass项目
-*****************************************************************************/
 VOS_VOID MTC_ProcNotchStrategy(VOS_VOID)
 {
     MTC_MODEM_POWER_STATE_ENUM_UINT8        enModem0PowerState;
@@ -1125,22 +824,7 @@ VOS_VOID MTC_ProcNotchStrategy(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_ChangeNotchState
- 功能描述  : 通知G/T/L接入层使能Notch Bypass或复位Notch
- 输入参数  : PS_BOOL_ENUM_UINT8 enEnableFlag
-                 PS_TRUE    -- 使能Notch Bypass
-                 PS_FALSE   -- 复位Notch
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年09月18日
-    作    者   : z60575
-    修改内容   : V9R1 Notch Bypass项目
-*****************************************************************************/
 VOS_VOID MTC_ChangeNotchState(
     PS_BOOL_ENUM_UINT8                  enEnableFlag
 )
@@ -1184,21 +868,7 @@ VOS_VOID MTC_ChangeNotchState(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_SndRrcNotchChannelInd
- 功能描述  : 给接入层发送notch使能/去使能指示
- 输入参数  : ulRecvPid      -- 接收PID
-             enEnableFlag   -- 使能标识
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月21日
-    作    者   : z60575
-    修改内容   : V9R1 Notch Bypass项目
-*****************************************************************************/
 VOS_VOID MTC_SndRrcNotchChannelInd(
     VOS_UINT32                          ulRecvPid,
     PS_BOOL_ENUM_UINT8                  enEnableFlag
@@ -1242,20 +912,7 @@ VOS_VOID MTC_SndRrcNotchChannelInd(
 
 
 
-/*****************************************************************************
- 函 数 名  : MTC_CheckGsmWithB31
- 功能描述  : 判断gsm是否支持BAND31
- 输入参数  : pulBandInfo 频段信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年02月13日
-    作    者   : f00179208
-    修改内容   : Jazz Narrow Band dcs项目
-*****************************************************************************/
 PS_BOOL_ENUM_UINT8 MTC_CheckGsmWithB31(
     RRC_MTC_MS_BAND_INFO_STRU          *pulBandInfo
 )
@@ -1271,20 +928,7 @@ PS_BOOL_ENUM_UINT8 MTC_CheckGsmWithB31(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_CheckGsmWithB32
- 功能描述  : 判断gsm是否支持BAND32
- 输入参数  : pulBandInfo 频段信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年02月13日
-    作    者   : f00179208
-    修改内容   : Jazz Narrow Band dcs项目
-*****************************************************************************/
 PS_BOOL_ENUM_UINT8 MTC_CheckGsmWithB32(
     RRC_MTC_MS_BAND_INFO_STRU          *pulBandInfo
 )
@@ -1300,21 +944,7 @@ PS_BOOL_ENUM_UINT8 MTC_CheckGsmWithB32(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_SndRrcBandCfgInd
- 功能描述  : 给接入层发送NarrowBandDcs使能/去使能指示
- 输入参数  : ulRecvPid      -- 接收PID
-             enEnableFlag   -- 使能标识
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年02月13日
-    作    者   : f00179208
-    修改内容   : Jazz Narrow Band dcs项目
-*****************************************************************************/
 VOS_VOID MTC_SndRrcBandCfgInd(
     VOS_UINT32                          ulRecvPid,
     PS_BOOL_ENUM_UINT8                  enEnableFlag
@@ -1352,22 +982,7 @@ VOS_VOID MTC_SndRrcBandCfgInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_ChangeNarrowBandDcsState
- 功能描述  : 通知GSM使能Notch Bypass或复位Notch
- 输入参数  : PS_BOOL_ENUM_UINT8 enEnableFlag
-                 PS_TRUE    -- 使能Notch Bypass
-                 PS_FALSE   -- 复位Notch
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年02月13日
-    作    者   : f00179208
-    修改内容   : Jazz Narrow Band dcs项目
-*****************************************************************************/
 VOS_VOID MTC_ChangeNarrowBandDcsState(
     PS_BOOL_ENUM_UINT8                  enEnableFlag
 )
@@ -1395,20 +1010,7 @@ VOS_VOID MTC_ChangeNarrowBandDcsState(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_ProcNarrowDcsStrategy
- 功能描述  : 处理Narrow band dcs裁决函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年02月13日
-    作    者   : f00179208
-    修改内容   : Jazz Narrow Band dcs项目
-*****************************************************************************/
 VOS_VOID MTC_ProcNarrowDcsStrategy(VOS_VOID)
 {
     MTC_MODEM_POWER_STATE_ENUM_UINT8        enGModemPowerState;
@@ -1467,20 +1069,7 @@ VOS_VOID MTC_ProcNarrowDcsStrategy(VOS_VOID)
 
 
 
-/*****************************************************************************
- 函 数 名  : MTC_SndI1GasRrcTdsLteRfCtrlInd
- 功能描述  : 控制TL射频上行发射
- 输入参数  : enUplinkCloseFlag --- 上行发射开关
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月24日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID MTC_SndI1GasRrcTdsLteRfCtrlInd(PS_BOOL_ENUM_UINT8 enUplinkCloseFlag)
 {
     MTC_RRC_TDS_LTE_RF_CONTROL_IND_STRU    *pstMsg = VOS_NULL_PTR;
@@ -1509,20 +1098,7 @@ VOS_VOID MTC_SndI1GasRrcTdsLteRfCtrlInd(PS_BOOL_ENUM_UINT8 enUplinkCloseFlag)
 }
 
 
-/*****************************************************************************
- 函 数 名  : MTC_ProcB39B32IntrusionStrategy
- 功能描述  : 打孔方案裁决函数
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : PS_BOOL_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年09月24日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-*****************************************************************************/
 PS_BOOL_ENUM_UINT8 MTC_ProcB39B32IntrusionStrategy(VOS_VOID)
 {
     RRC_MTC_MS_BAND_INFO_STRU          *pstSerCellBandInfo = VOS_NULL_PTR;
@@ -1587,20 +1163,7 @@ PS_BOOL_ENUM_UINT8 MTC_ProcB39B32IntrusionStrategy(VOS_VOID)
     return PS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_ProcB39B32Intrusion
- 功能描述  : 打孔方案裁决函数
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年09月24日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID MTC_ProcB39B32Intrusion(VOS_VOID)
 {
     PS_BOOL_ENUM_UINT8                  ulStrategyRet;
@@ -1621,21 +1184,7 @@ VOS_VOID MTC_ProcB39B32Intrusion(VOS_VOID)
 }
 
 
-/*lint -e958 修改人: j00174725 for RSE 2014-06-16 begin */
-/*****************************************************************************
- 函 数 名  : MTC_SndRrcRseCfgInd
- 功能描述  : MTC模块向Modem1 GAS发送Rse配置消息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年04月21日
-    作    者   : j00174725
-    修改内容   : RSE项目
-*****************************************************************************/
 VOS_VOID MTC_SndRrcRseCfgInd(
     VOS_UINT32                          ulRcvPid,
     PS_BOOL_ENUM_UINT8                  enRseOnFlag
@@ -1674,22 +1223,8 @@ VOS_VOID MTC_SndRrcRseCfgInd(
 
     return;
 }
-/*lint +e958 修改人: j00174725 for RSE 2014-06-16 End */
 
-/*****************************************************************************
- 函 数 名  : MTC_ProcRseStrategy
- 功能描述  : 处理Rse裁决函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年05月12日
-    作    者   : j00174725
-    修改内容   : RSE项目
-*****************************************************************************/
 VOS_VOID MTC_ProcRseStrategy(VOS_VOID)
 {
     PS_BOOL_ENUM_UINT8                  enRseOnFlag;

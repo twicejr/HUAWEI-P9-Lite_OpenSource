@@ -37,7 +37,6 @@ extern  "C"{
 #define IP_DEBUG_IFANY            3    /*  debug ip packet 加入或出接口过滤 */
 
 
-/* PP4返回的错误码定义已经挪到pp4_api.h里 2008-4-24,z00104207*/
 
 #define PP4_DIRECTLOOKUPIP   1
 #define PP4_NO_DIRECTLOOKUPIP 0

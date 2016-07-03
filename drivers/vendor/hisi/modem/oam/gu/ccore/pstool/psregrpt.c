@@ -149,20 +149,7 @@ VOS_UINT32                      g_ulPsRegGUCBBPDbgSleepCount = 0;
 ******************************************************************************/
 #if (FEATURE_GUC_BBP_TRIG == FEATURE_OFF)
 
-/*****************************************************************************
- 函 数 名  : PsRegDmaInfoShow
- 功能描述  : 显示可维可测信息函数
- 输入参数  : VOS_VOID
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2014年8月9日
-     作    者  : d00212987
-     修改内容  : Creat Function
-*****************************************************************************/
 VOS_VOID PsRegDmaInfoShow(VOS_VOID)
 {
     VOS_UINT32                          i;
@@ -231,20 +218,7 @@ VOS_VOID PsRegDmaInfoShow(VOS_VOID)
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : PsRegGetSlice
- 功能描述  : 统计时间功能
- 输入参数  : NA
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2014年8月9日
-     作    者  : d00212987
-     修改内容  : Creat Function
-*****************************************************************************/
 VOS_UINT32 PsRegGetSlice(VOS_VOID)
 {
     if(VOS_TRUE == g_bIsOmGetSliceFlag)
@@ -255,21 +229,7 @@ VOS_UINT32 PsRegGetSlice(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PsRegSendDataSetHead
- 功能描述  : 设置DmaDest对于消息头
- 输入参数  : pDmaDest  : Edma DmaDest消息头起始地址
-             ulSysMode : 对应模式
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2014年8月9日
-     作    者  : d00212987
-     修改内容  : Creat Function
-*****************************************************************************/
 VOS_VOID PsRegSendDataSetHead(PS_REG_RPT_IND_CONTENT_HEAD *pstRegRptIndContHead, VOS_UINT32 ulSysMode)
 {
     /*根据不同模式填充发送和接收PID*/
@@ -307,21 +267,7 @@ VOS_VOID PsRegSendDataSetHead(PS_REG_RPT_IND_CONTENT_HEAD *pstRegRptIndContHead,
 
 }
 
-/*****************************************************************************
- 函 数 名  : PsRegPackageSendData
- 功能描述  : 打包需搬运寄存器数据
- 输入参数  : pulOffset     : 相对于包头的偏移地址
-             ulSendBufIndex: 当前发送区Buff编号
 
- 输出参数  : pulTotalOffset : 相对于包头的偏移地址
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2014年8月9日
-     作    者  : d00212987
-     修改内容  : Creat Function
-*****************************************************************************/
 VOS_VOID PsRegPackageSendData(VOS_UINT32 *pulTotalOffset, VOS_UINT32 ulSendBufIndex)
 {
     PS_REG_RPT_IND_CONTENT_HEAD        *pstRegRptIndContHead;
@@ -453,20 +399,7 @@ VOS_VOID PsRegPackageSendData(VOS_UINT32 *pulTotalOffset, VOS_UINT32 ulSendBufIn
 
     return ;
 }
-/*****************************************************************************
- 函 数 名  : PsRegTransferTaskEntry
- 功能描述  : 搬运寄存器Log到SCOP任务
- 输入参数  : VOS_VOID
 
- 输出参数  : 无
- 返 回 值  : VOS_VOIDg
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2014年8月9日
-     作    者  : d00212987
-     修改内容  : Creat Function
-*****************************************************************************/
 VOS_VOID PsRegTransferTaskEntry(VOS_VOID)
 {
     VOS_UINT32                          ulTotalOffset = 0;
@@ -571,21 +504,7 @@ VOS_VOID PsRegTransferTaskEntry(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : PsRegDmaIsr
- 功能描述  : Dma搬运完成后中断响应函数
- 输入参数  : ulChannelarg:通道号，返回调用者传入参数
-             ulIntState:  标识中断类型
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2014年8月9日
-     作    者  : d00212987
-     修改内容  : Creat Function
-*****************************************************************************/
 VOS_VOID PsRegDmaIsr(VOS_UINT32 ulChannelarg, VOS_UINT32 ulIntState)
 {
     VOS_UINT32              ulStartTime;
@@ -656,21 +575,7 @@ VOS_VOID PsRegDmaIsr(VOS_UINT32 ulChannelarg, VOS_UINT32 ulIntState)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PsRegDmaGetFirstNode
- 功能描述  : 获取Dma头节点配置函数
- 输入参数  : psttemp   : EDMA链表控制块起始地址
-             pstDmaNode: 待配置EDMA链表控制块起始地址
 
- 输出参数  : psttemp   : EDMA链表控制块起始地址
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2014年8月9日
-     作    者  : d00212987
-     修改内容  : Creat Function
-*****************************************************************************/
 VOS_VOID PsRegDmaGetFirstNode(BALONG_DMA_CB_S *psttemp, BALONG_DMA_CB_S *pstDmaNode)
 {
     /* g_pstDmaDestTemp = pstDmaNode->des_addr;*/
@@ -693,20 +598,7 @@ VOS_VOID PsRegDmaGetFirstNode(BALONG_DMA_CB_S *psttemp, BALONG_DMA_CB_S *pstDmaN
 
 }
 
-/*****************************************************************************
- 函 数 名  : PsRegDmaSetDmaNode
- 功能描述  : Dma节点配置函数
- 输入参数  : ulSysMode:系统模式W/G
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2014年8月9日
-     作    者  : d00212987
-     修改内容  : Creat Function
-*****************************************************************************/
 VOS_UINT32 PsRegDmaSetDmaNode(BALONG_DMA_CB_S *psttemp, VOS_UINT32 ulSysMode)
 {
     VOS_UINT32                          ulRest = VOS_OK;
@@ -777,20 +669,7 @@ VOS_UINT32 PsRegDmaSetDmaNode(BALONG_DMA_CB_S *psttemp, VOS_UINT32 ulSysMode)
 
 }
 
-/*****************************************************************************
- 函 数 名  : PsRegGetDmaCaptureStatus
- 功能描述  : Dma搬运状态
- 输入参数  : enModemId:modem0/1
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2014年8月9日
-     作    者  : d00212987
-     修改内容  : Creat Function
-*****************************************************************************/
 VOS_UINT32 PsRegGetDmaCaptureStatus(MODEM_ID_ENUM_UINT16 enModemId)
 {
     if (MODEM_ID_0 == enModemId)
@@ -817,20 +696,7 @@ VOS_UINT32 PsRegGetDmaCaptureStatus(MODEM_ID_ENUM_UINT16 enModemId)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : PsRegSetDmaCaptureBusy
- 功能描述  : Dma搬运状态
- 输入参数  : lDMAChanID
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2014年8月9日
-     作    者  : d00212987
-     修改内容  : Creat Function
-*****************************************************************************/
 VOS_VOID PsRegSetDmaCaptureBusy(VOS_INT32 lDMAChanID)
 {
     /* 防止BBP下电 */
@@ -854,20 +720,7 @@ VOS_VOID PsRegSetDmaCaptureBusy(VOS_INT32 lDMAChanID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PsRegSetDmaCaptureIdle
- 功能描述  : Dma搬运状态
- 输入参数  : lDMAChanID
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2014年8月9日
-     作    者  : d00212987
-     修改内容  : Creat Function
-*****************************************************************************/
 VOS_VOID PsRegSetDmaCaptureIdle(VOS_INT32 lDMAChanID)
 {
     if (g_lDMAChanID0 == lDMAChanID)
@@ -898,20 +751,7 @@ VOS_VOID PsRegSetDmaCaptureIdle(VOS_INT32 lDMAChanID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PsRegDmaCapture
- 功能描述  : Dma节点配置函数
- 输入参数  : ulSysMode:系统模式W/G
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2014年8月9日
-     作    者  : d00212987
-     修改内容  : Creat Function
-*****************************************************************************/
 VOS_VOID PsRegDmaCapture(VOS_UINT32 ulSysMode)
 {
     BALONG_DMA_CB_S                    *psttemp;
@@ -989,20 +829,7 @@ VOS_VOID PsRegDmaCapture(VOS_UINT32 ulSysMode)
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : PsRegDmaNodeInit
- 功能描述  : Dma节点初始化函数
- 输入参数  : pRcvMsg:工具下发消息，包含寄存器个数、地址等信息
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2014年8月9日
-     作    者  : d00212987
-     修改内容  : Creat Function
-*****************************************************************************/
 VOS_UINT32 PsRegDmaNodeInit(APP_OM_REG_START_MODE_STRU *pRcvMsg)
 {
     BALONG_DMA_CB_S                    *psttemp;
@@ -1088,20 +915,7 @@ VOS_UINT32 PsRegDmaNodeInit(APP_OM_REG_START_MODE_STRU *pRcvMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PsRegDmaUnCacheMemAlloc
- 功能描述  : 寄存器上报所需缓存申请
- 输入参数  : VOS_VOID
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2014年8月9日
-     作    者  : d00212987
-     修改内容  : Creat Function
-*****************************************************************************/
 VOS_UINT32 PsRegDmaUnCacheMemAlloc(VOS_VOID)
 {
     VOS_UINT_PTR                        ulAddr;
@@ -1149,20 +963,7 @@ VOS_UINT32 PsRegDmaUnCacheMemAlloc(VOS_VOID)
     return VOS_OK;
   }
 
-/*****************************************************************************
- 函 数 名  : PsRegDmaInit
- 功能描述  :
- 输入参数  : VOS_VOID
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2014年8月9日
-     作    者  : d00212987
-     修改内容  : Creat Function
-*****************************************************************************/
 VOS_UINT32 PsRegDmaInit(VOS_VOID)
 {
     /* Dma 所需内存申请 */
@@ -1489,20 +1290,7 @@ VOS_VOID PsRegSndOmAppRegModCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : PsRegRcvAppOmRegDiffSetNumReq
- 功能描述  : 设置差异上报次数，达到该次数后需上报一帧全的
- 输入参数  : pRcvMsg: 工具下发消息
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2014年8月9日
-     作    者  : d00212987
-     修改内容  : Creat Function
-*****************************************************************************/
 VOS_VOID PsRegRcvAppOmRegDiffSetNumReq(VOS_VOID* pRcvMsg)
 {
     OM_APP_REG_START_CNF_STRU           stOmAppRegCnf;
@@ -1649,20 +1437,7 @@ VOS_VOID PsRegRcvAppOmRegStopReq(VOS_VOID* pRcvMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PsRegAddrCheck
- 功能描述  : 寄存器地址检测
- 输入参数  : PS_REG_SYS_MODE_ENUM_UINT32 enSysMode
-             VOS_UINT32 ulAddr
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2014年9月19日
-     作    者  : s00207770
-     修改内容  : Creat Function
-*****************************************************************************/
+
 VOS_UINT32 PsRegAddrCheck(PS_REG_SYS_MODE_ENUM_UINT32 enSysMode, VOS_UINT32 ulAddr)
 {
     VOS_UINT32                          ulRegBase = 0;
@@ -1720,20 +1495,7 @@ VOS_UINT32 PsRegAddrCheck(PS_REG_SYS_MODE_ENUM_UINT32 enSysMode, VOS_UINT32 ulAd
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PsRegRcvAppMsgCheck
- 功能描述  : 收到工具下发消息检查
- 输入参数  : pRcvMsg: 工具下发消息
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2014年8月9日
-     作    者  : d00212987
-     修改内容  : Creat Function
-*****************************************************************************/
 VOS_UINT32 PsRegRcvAppMsgCheck(APP_OM_REG_START_MODE_STRU *pRcvMsg)
 {
     VOS_UINT32                          ulRegNumLoop;
@@ -2005,23 +1767,7 @@ VOS_VOID PsRegRcvAppOmRegStartReq(VOS_VOID* pMsg)
 #endif
 
 #if (FEATURE_GUC_BBP_TRIG == FEATURE_ON)
-/*****************************************************************************
- 函 数 名  : PsRegSndGUCBBPDbgRegCnf
- 功能描述  : 回复工具维测信息
- 输入参数  : VOS_UINT16                     usTransPrimId
-             VOS_UINT32                     ulResult,
-             APP_OM_GUC_REGLIST_CNF_STRU   *pstOmAppRegCnf
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月22日
-    作    者   : S00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PsRegSndGUCBBPDbgRegCnf(
     VOS_UINT16                          usTransPrimId,
     VOS_UINT32                          ulResult,
@@ -2067,21 +1813,7 @@ VOS_VOID PsRegSndGUCBBPDbgRegCnf(
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : PsRegRcvGUCBBPDbgRegSetReq
- 功能描述  : 配置GUB BBP Dbg寄存器列表
- 输入参数  : MsgBlock *pRcvMsg
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月22日
-    作    者   : S00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  PsRegRcvGUCBBPDbgRegSetReq( MsgBlock *pRcvMsg )
 {
     APP_OM_GUC_REGLIST_REQ_STRU        *pRcvMsgHead = (APP_OM_GUC_REGLIST_REQ_STRU*)pRcvMsg;
@@ -2202,22 +1934,7 @@ VOS_VOID  PsRegRcvGUCBBPDbgRegSetReq( MsgBlock *pRcvMsg )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PsRegGUCBBPDbgIsAwake
- 功能描述  : 查询当前模式是否醒着
- 输入参数  : MODEM_ID_ENUM_UINT16 enModemId
-             VOS_RATMODE_ENUM_UINT32 enMode
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月22日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PsRegGUCBBPDbgIsAwake(PS_REG_BBP_TRIG_MODE_ENUM_UINT16    enPsRegType)
 {
     VOS_RATMODE_ENUM_UINT32   enMode = VOS_RATMODE_WCDMA;
@@ -2243,21 +1960,7 @@ VOS_UINT32 PsRegGUCBBPDbgIsAwake(PS_REG_BBP_TRIG_MODE_ENUM_UINT16    enPsRegType
     return SLEEP_IsAwake(enMode);
 }
 
-/*****************************************************************************
- 函 数 名  : PsRegRcvGUCBBPDbgStartReq
- 功能描述  : 使能GUB BBP Dbg功能
- 输入参数  : MsgBlock *pRcvMsg
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月22日
-    作    者   : S00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  PsRegRcvGUCBBPDbgStartReq( MsgBlock *pRcvMsg )
 {
     APP_OM_BBPTRIG_CFG_REQ_STRU        *pRcvMsgHead = (APP_OM_BBPTRIG_CFG_REQ_STRU*)pRcvMsg;
@@ -2292,22 +1995,7 @@ VOS_VOID  PsRegRcvGUCBBPDbgStartReq( MsgBlock *pRcvMsg )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PsRegGUCBBPDbgGetState
- 功能描述  : 查询当前模式是否打开BBP Dbg功能
- 输入参数  : MODEM_ID_ENUM_UINT16 enModemId
-             VOS_RATMODE_ENUM_UINT32 enMode
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月22日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PsRegGUCBBPDbgGetState( MODEM_ID_ENUM_UINT16 enModemId, VOS_RATMODE_ENUM_UINT32 enMode )
 {
     PS_REG_BBP_TRIG_MODE_ENUM_UINT16    enPsRegType;
@@ -2337,22 +2025,7 @@ VOS_UINT32 PsRegGUCBBPDbgGetState( MODEM_ID_ENUM_UINT16 enModemId, VOS_RATMODE_E
     return g_stPsRegGUCBBPDbgState.aulValue[enModemId][enPsRegType];
 }
 
-/*****************************************************************************
- 函 数 名  : PsRegGUCBBPDbgEnable
- 功能描述  : 使能当前模式是否打开BBP Dbg功能
- 输入参数  : MODEM_ID_ENUM_UINT16 enModemId
-             VOS_RATMODE_ENUM_UINT32 enMode
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月22日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PsRegGUCBBPDbgEnable(MODEM_ID_ENUM_UINT16 enModemId, VOS_RATMODE_ENUM_UINT32 enMode)
 {
     PS_REG_BBP_TRIG_MODE_ENUM_UINT16    enPsRegType;
@@ -2388,22 +2061,7 @@ VOS_VOID PsRegGUCBBPDbgEnable(MODEM_ID_ENUM_UINT16 enModemId, VOS_RATMODE_ENUM_U
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PsRegGUCBBPDbgDisable
- 功能描述  : 去使能当前模式是否打开BBP Dbg功能
- 输入参数  : MODEM_ID_ENUM_UINT16 enModemId
-             VOS_RATMODE_ENUM_UINT32 enMode
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月22日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PsRegGUCBBPDbgDisable(MODEM_ID_ENUM_UINT16 enModemId, VOS_RATMODE_ENUM_UINT32 enMode)
 {
     PS_REG_BBP_TRIG_MODE_ENUM_UINT16    enPsRegType;
@@ -2439,22 +2097,7 @@ VOS_VOID PsRegGUCBBPDbgDisable(MODEM_ID_ENUM_UINT16 enModemId, VOS_RATMODE_ENUM_
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PsRegGUCBBPDbgBackup
- 功能描述  : 下电时对SRAM进行备份
- 输入参数  : MODEM_ID_ENUM_UINT16 enModemId
-             VOS_RATMODE_ENUM_UINT32 enMode
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月22日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PsRegGUCBBPDbgBackup(MODEM_ID_ENUM_UINT16 enModemId, VOS_RATMODE_ENUM_UINT32 enMode)
 {
     VOS_UINT32                          ulBBPListCfgReg1Addr = DBG_TRIG_W1_CONFIG1_ADDR;
@@ -2481,22 +2124,7 @@ VOS_VOID PsRegGUCBBPDbgBackup(MODEM_ID_ENUM_UINT16 enModemId, VOS_RATMODE_ENUM_U
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PsRegGUCBBPDbgBackup
- 功能描述  : PsRegGUCBBPDbgRestore
- 输入参数  : MODEM_ID_ENUM_UINT16 enModemId
-             VOS_RATMODE_ENUM_UINT32 enMode
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月22日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PsRegGUCBBPDbgRestore(MODEM_ID_ENUM_UINT16 enModemId, VOS_RATMODE_ENUM_UINT32 enMode)
 {
     VOS_UINT32                          ulBBPListBaseAddr    = DBG_TRIG_TRACE_ADDR_RAM_ADDR;
@@ -2542,21 +2170,7 @@ VOS_VOID PsRegGUCBBPDbgRestore(MODEM_ID_ENUM_UINT16 enModemId, VOS_RATMODE_ENUM_
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PsRegGUCBBPInit
- 功能描述  : GUC BBP TRIG功能初始化配置
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月26日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PsRegGUCBBPInit( VOS_VOID )
 {
     g_stPsRegGUCBBPTrigInfo.stModeTrigInfo[MODEM_ID_0][PS_REG_BBP_TRIG_MODE_WCDMA].ulGUCBBPTrigEnable      = VOS_FALSE;
@@ -2716,20 +2330,7 @@ VOS_VOID  Reg_MsgProc(MsgBlock *pRcvMsg)
     OM_RecordInfoEnd(VOS_EXC_DUMP_MEM_NUM_2);
 }
 
-/******************************************************************************
- Prototype      : Reg_CnfMsgProc
- Description    : 寄存器功能消息回复处理函数
- Input          : pstRcvMsg - 消息体
-                  ulMsgId - 消息ID
 
- Output         : VOID
- Return Value   : VOID
-
- History        : ---
-  1.Date        : 2015-6-19
-    Author      : h00300778
-    Modification: Created function
-******************************************************************************/
 VOS_VOID Reg_CnfMsgProc(
     APP_OM_REG_REQ_MSG_STRU            *pstRcvMsg,
     VOS_UINT32                          ulMsgId)

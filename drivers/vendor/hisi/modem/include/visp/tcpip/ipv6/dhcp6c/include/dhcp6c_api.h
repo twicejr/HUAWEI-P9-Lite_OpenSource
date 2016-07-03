@@ -974,29 +974,7 @@ ULONG TCPIP_SetRapidCommit(ULONG ulIfIndex, DHCP6C_CFG_OPT_E ulOperationType);
 *******************************************************************************/
 ULONG TCPIP_GetRapidCommit(ULONG ulIfIndex, DHCP6C_CFG_OPT_E *pulOperationType);
 
-/*******************************************************************************
-*    Func Name: TCPIP_SetDNS6ServerRequest
-* Date Created: 2009-12-17
-*       Author: wujie 61195
-*      Purpose: 
-*  Description: 用户配置DNS Server选项
-*        Input: ULONG ulIfIndex:      接口索引<非0>
-*               IN6ADDR_S *pstAddress:     用户期望的DNS Server 地址数组，如果用户不清楚则设置为空指针，
-*                                此时完全由DHCPv6 Server负责分配
-*               ULONG *ulAddressCnt:   DNS Server 地址个数，对于删除操作该值必须为1
-*               DHCP6C_CFG_OPT_E ulOperationType:操作类型<add或delete>
-*       Output: 
-*       Return: 成功返回DHCP6C_OK
-*               失败返回错误码
-*      Caution: 
-*    Reference: TCPIP_GetCfgDNS6ServerAddrs
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-12-17   wujie 61195             Create
-*
-*******************************************************************************/
+
 ULONG TCPIP_SetDNS6ServerRequest(ULONG ulIfIndex, const IN6ADDR_S *pstAddress, 
                               ULONG ulAddressCnt, DHCP6C_CFG_OPT_E ulOperationType); 
 
@@ -1022,28 +1000,7 @@ ULONG TCPIP_SetDNS6ServerRequest(ULONG ulIfIndex, const IN6ADDR_S *pstAddress,
 *******************************************************************************/
 ULONG TCPIP_GetCfgDNS6ServerAddrs(ULONG ulIfIndex, IN6ADDR_S **ppstAddress, ULONG *pulAddressCount);
 
-/*******************************************************************************
-*    Func Name: TCPIP_SetRawOption
-* Date Created: 2009-12-17
-*       Author: wujie 61195
-*      Purpose: 
-*  Description: 用户直接以tlv方式指定option，VISP不解释这些option的具体内容，直接编码在dhcp报文里
-*        Input: ULONG ulIfIndex:          接口索引<非0>
-*               DHCP6C_RAWOPTION_S *pstRawOptionRequest:option数据区<非空>
-*               DHCP6C_CFG_OPT_E ulOperationType:    操作类型<add或delete>
-*       Output: 
-*       Return: 成功返回DHCP6C_OK
-*               失败返回错误码
-*      Caution: 不能设置如下选项类型:
-*               1~9、11~14、18、19、20、23、25、26、37、38 
-*    Reference: TCPIP_GetCfgRawOptions
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-12-17   wujie 61195             Create
-*
-*******************************************************************************/
+
 ULONG TCPIP_SetRawOption(ULONG ulIfIndex, const DHCP6C_RAWOPTION_S *pstRawOptionRequest, DHCP6C_CFG_OPT_E ulOperationType);
 
 /*******************************************************************************

@@ -180,7 +180,6 @@
          && (0x00010003 == ((pAddress)->s6_addr32[3])))
 
 /* 全球单播地址判断宏 */
-/* Modified by w00207740, DTS2013121700565 ,sitelocal地址属于global地址, 2013/12/17 */
 #define DHCP6R_IS_ADDR_GLOBAL( pAddress ) \
         (!((DHCP6R_IS_ADDR_MULTICAST(pAddress)) \
             ||(DHCP6R_IS_ADDR_LOOPBACK(pAddress)) \

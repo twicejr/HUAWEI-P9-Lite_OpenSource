@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : wal_proxysta.c
-  版 本 号   : 初稿
-  作    者   : y00184180
-  生成日期   : 2014年4月21日
-  最近修改   :
-  功能描述   : Proxy STA 特性驱动相关函数
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年4月21日
-    作    者   : y00184180
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -163,21 +146,7 @@ OAL_STATIC oal_nf_hook_ops_stru proxysta_brhooks[] = {
 *****************************************************************************/
 
 
-/*****************************************************************************
- 函 数 名  : wal_proxysta_brroute_hook
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月30日
-    作    者   : y00184180
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 #if (LINUX_VERSION_CODE >= KERNEL_VERSION(3,10,44))
         /*TBD*/
 #else
@@ -193,21 +162,7 @@ OAL_STATIC oal_int32 wal_proxysta_brroute_hook(oal_netbuf_stru *pst_netbuf)
 	return OAL_FALSE; /* bridge it */
 }
 #endif
-/*****************************************************************************
- 函 数 名  : wal_proxysta_dev_xmit
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月28日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void  wal_proxysta_dev_xmit(oal_netbuf_stru *pst_netbuf)
 {
     if (pst_netbuf->len > pst_netbuf->dev->mtu)
@@ -225,21 +180,7 @@ OAL_STATIC oal_void  wal_proxysta_dev_xmit(oal_netbuf_stru *pst_netbuf)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : wal_proxysta_find_net_dev
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月26日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  wal_proxysta_find_net_dev(mac_device_proxysta_stru *pst_dev_psta,
                                                  oal_uint8                *puc_mac_addr,
                                                  oal_net_device_stru     **ppst_net_device)
@@ -278,21 +219,7 @@ OAL_STATIC oal_uint32  wal_proxysta_find_net_dev(mac_device_proxysta_stru *pst_d
     return OAL_FAIL;
 }
 
-/*****************************************************************************
- 函 数 名  : wal_proxysta_find_mainsta_net_dev
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月12日
-    作    者   : liuming
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  wal_proxysta_find_mainsta_net_dev(mac_device_proxysta_stru *pst_dev_psta,
                                                  oal_uint8                *puc_mac_addr,
                                                  oal_net_device_stru     **ppst_net_device)
@@ -323,21 +250,7 @@ OAL_STATIC oal_uint32  wal_proxysta_find_mainsta_net_dev(mac_device_proxysta_str
     return OAL_FAIL;
 }
 
-/*****************************************************************************
- 函 数 名  : wal_proxysta_get_psta_dev
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月9日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  wal_proxysta_get_psta_dev(OAL_CONST oal_net_device_stru *pst_net_device, mac_device_proxysta_stru **ppst_dev_psta)
 {
     mac_device_stru   *pst_mac_device;
@@ -360,21 +273,7 @@ OAL_STATIC oal_uint32  wal_proxysta_get_psta_dev(OAL_CONST oal_net_device_stru *
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : wal_proxsysta_add_dev
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月24日
-    作    者   : y00184180
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  wal_proxysta_add_vap(frw_event_mem_stru *pst_event_mem)
 {
     frw_event_stru              *pst_event;
@@ -443,21 +342,7 @@ oal_uint32  wal_proxysta_add_vap(frw_event_mem_stru *pst_event_mem)
     return  OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : wal_proxysta_remove_vap
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月24日
-    作    者   : y00184180
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  wal_proxysta_remove_vap(mac_vap_stru *pst_mac_vap)
 {
     oal_uint32                   uc_hash_value;
@@ -510,21 +395,7 @@ oal_uint32  wal_proxysta_remove_vap(mac_vap_stru *pst_mac_vap)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : wal_proxysta_handle_pre_route
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月28日
-    作    者   : liuming
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  wal_proxysta_handle_pre_route(oal_uint32 ul_hooknum,
                                                      oal_netbuf_stru *pst_netbuf,
                                                      OAL_CONST oal_net_device_stru *pst_in,
@@ -686,21 +557,7 @@ OAL_STATIC oal_uint32  wal_proxysta_handle_pre_route(oal_uint32 ul_hooknum,
 }
 
 #if 0
-/*****************************************************************************
- 函 数 名  : wal_proxysta_handle_pre_route
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月25日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  wal_proxysta_handle_pre_route(oal_uint32 ul_hooknum,
                                                      oal_netbuf_stru *pst_netbuf,
                                                      OAL_CONST oal_net_device_stru *pst_in,
@@ -783,21 +640,7 @@ OAL_STATIC oal_uint32  wal_proxysta_handle_pre_route(oal_uint32 ul_hooknum,
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : wal_proxysta_handle_forward
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月25日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  wal_proxysta_handle_forward(oal_uint32 ul_hooknum,
                                                    oal_netbuf_stru *pst_netbuf,
                                                    OAL_CONST oal_net_device_stru *pst_in,
@@ -845,21 +688,7 @@ OAL_STATIC oal_uint32  wal_proxysta_handle_forward(oal_uint32 ul_hooknum,
 }
 
 #if 0
-/*****************************************************************************
- 函 数 名  : wal_proxysta_handle_post_route
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月25日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  wal_proxysta_handle_post_route(oal_uint32 ul_hooknum,
                                                       oal_netbuf_stru *pst_netbuf,
                                                       OAL_CONST oal_net_device_stru *pst_in,
@@ -940,21 +769,7 @@ OAL_STATIC oal_uint32  wal_proxysta_handle_post_route(oal_uint32 ul_hooknum,
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : wal_proxysta_handle_post_route
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月28日
-    作    者   : liuming
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  wal_proxysta_handle_post_route(oal_uint32 ul_hooknum,
                                                       oal_netbuf_stru *pst_netbuf,
                                                       OAL_CONST oal_net_device_stru *pst_in,
@@ -1107,21 +922,7 @@ OAL_STATIC oal_uint32  wal_proxysta_handle_post_route(oal_uint32 ul_hooknum,
     return OAL_NF_ACCEPT;
 }
 
-/*****************************************************************************
- 函 数 名  : wal_proxysta_handle_local_in
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月25日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  wal_proxysta_handle_local_in(oal_uint32 ul_hooknum,
                                                     oal_netbuf_stru *pst_netbuf,
                                                     OAL_CONST oal_net_device_stru *pst_in,

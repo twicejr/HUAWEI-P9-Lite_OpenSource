@@ -1,14 +1,4 @@
-/******************************************************************************
 
-   Copyright(C)2013,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : CssProcTimerMsg.c
-  Description     : 该C文件给出了CSS模块初始化和消息处理入口的实现
-  History           :
-     1.wangchen 00209181    2015-05-14  Draft Enact
-
-******************************************************************************/
 
 /*****************************************************************************
   1 Include HeadFile
@@ -37,16 +27,7 @@ extern "C" {
 /*****************************************************************************
   3 Function
 *****************************************************************************/
-/*****************************************************************************
- Function Name  : CSS_ProcSetInactiveModeTimerExp()
- Description    : TI_CSS_WAIT_FOR_SET_INACTIVE_MODE_CNF定时器超时处理函数
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-05-14  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_ProcSetInactiveModeTimerExp
 (
     VOS_VOID
@@ -61,16 +42,7 @@ VOS_VOID CSS_ProcSetInactiveModeTimerExp
     return ;
 }
 
-/*****************************************************************************
- Function Name  : CSS_ProcSetActiveModeTimerExp()
- Description    : TI_CSS_WAIT_FOR_SET_ACTIVE_MODE_CNF定时器超时处理函数
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-05-14  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_ProcSetActiveModeTimerExp
 (
     VOS_VOID
@@ -93,16 +65,7 @@ VOS_VOID CSS_ProcSetActiveModeTimerExp
 
     return ;
 }
-/*****************************************************************************
- Function Name  : CSS_ProcBandScanTimerExp()
- Description    : TI_CSS_WAIT_FOR_SCAN_IND定时器超时处理函数
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-05-14  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_ProcBandScanTimerExp
 (
     VOS_VOID
@@ -125,16 +88,7 @@ VOS_VOID CSS_ProcBandScanTimerExp
 
     return ;
 }
-/*****************************************************************************
- Function Name  : CSS_ProcStopBandScanTimerExp()
- Description    : TI_CSS_WAIT_FOR_STOP_SCAN_CNF定时器超时处理函数
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-05-14  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_ProcStopBandScanTimerExp
 (
     VOS_VOID
@@ -150,16 +104,7 @@ VOS_VOID CSS_ProcStopBandScanTimerExp
     return ;
 }
 
-/*****************************************************************************
- Function Name  : CSS_ProcApUpdateWaitMccSetReqTimerExp()
- Description    : TI_CSS_WAIT_AP_UPDATE_MCC_SET_REQ定时器超时处理函数
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-14  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_ProcApUpdateWaitMccSetReqTimerExp(VOS_VOID)
 {
     /* 终止AP更新流程 */
@@ -167,16 +112,7 @@ VOS_VOID CSS_ProcApUpdateWaitMccSetReqTimerExp(VOS_VOID)
 }
 
 
-/*****************************************************************************
- Function Name  : CSS_ProcMmcOrAsUpdateWaitMccSetReqTimerExp()
- Description    : TI_CSS_WAIT_MMC_OR_AS_UPDATE_MCC_SET_REQ定时器超时处理函数
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-14  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_ProcMmcOrAsUpdateWaitMccSetReqTimerExp(const REL_TIMER_MSG *pRcvMsg)
 {
     VOS_UINT32                          ulLoop;
@@ -201,16 +137,7 @@ VOS_VOID CSS_ProcMmcOrAsUpdateWaitMccSetReqTimerExp(const REL_TIMER_MSG *pRcvMsg
 
 }
 
-/*****************************************************************************
- Function Name  : CSS_ProcWaitStartBgsTimerExp()
- Description    : TI_CSS_WAIT_START_BG_SERACH_CNF定时器超时处理函数
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-12-05  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_ProcWaitStartBgsTimerExp(const REL_TIMER_MSG *pRcvMsg)
 {
     CSS_CONTROL_STRU                   *pstCssControl = CSS_GetControlAddr();
@@ -231,16 +158,7 @@ VOS_VOID CSS_ProcWaitStartBgsTimerExp(const REL_TIMER_MSG *pRcvMsg)
 }
 
 
-/*****************************************************************************
- Function Name  : CSS_ProcLphyMsg()
- Description    : LPHY消息处理函数
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-05-14  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_ProcTimerMsg(const REL_TIMER_MSG *pRcvMsg)
 {
     CSS_TIMER_ID_ENUM_UINT16            enTimerName;

@@ -1,28 +1,4 @@
-/*******************************************************************************
-  Copyright    : 2005-2007, Huawei Tech. Co., Ltd.
-  File name    : SmrCom.c
-  Description  : SMR的公共处理
-  Function List:
-               3.  SMR_MemNotifyRetrans
-               5.  SMR_TimerTr1mExpire
-               6.  SMR_TimerTr2mExpire
-               7.  SMR_TimerTramExpire
-               8.  SMR_SmcChk
-               9.  SMR_SndRpErrorReq
-              10.  SMR_MkSndReportError
-              11.
-  History:
-      1.   张志勇      2004.03.09   新规作成
-      2.   Date         : 2007-04-06
-           Author       : h44270
-           Modification : 问题单号:A32D10113
-      3.   Date         : 2007-08-20
-           Author       : z40661
-           Modification : 问题单号:A32D12705
-      4.日    期   : 2009年3月23日
-        作    者   : f62575
-        修改内容   : AT2D08752, W接入方式下，信号较弱时连续发送多条短信会概率性出现发送操作失败；
-*******************************************************************************/
+
 #include "smsinclude.h"
 
 
@@ -41,23 +17,7 @@
 /*lint +e767 修改人:罗建 107747;检视人:sunshaohua*/
 
 
-/*******************************************************************************
-Module:   SMR_MemNotifyRetrans
-Function: 根据重传标识进行重传或进入空闲
-Input:    VOS_UINT8  ucRelCause           释放标志
-                     enErrorType          错误类型
-Output:
-NOTE:
-Return:   VOS_VOID
-History:
-1.   张志勇   2004.03.10   新规作成
-2.日    期   : 2012年8月29日
-  作    者   : z00161729
-  修改内容   : DCM定制需求和遗留问题修改,增加入参enErrorType
-3.日    期   : 2013年07月11日
-  作    者   : f62575
-  修改内容   : V9R1 STK升级项目
-*******************************************************************************/
+
 VOS_VOID SMR_MemNotifyRetrans(
     SMR_SMT_ERROR_ENUM_UINT32           enErrorCode,
     VOS_UINT8                          *pucData,
@@ -66,9 +26,7 @@ VOS_VOID SMR_MemNotifyRetrans(
 {
     if ( SMR_RETRANS_PERMIT != g_SmrEnt.SmrMo.ucRetransFlg )
     {                                                                           /* RETRANS FLAG 置位                        */
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
         SMS_SendMnReportReq(enErrorCode, pucData, ulSendLen);
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
         g_SmrEnt.SmrMo.ucRetransFlg  = SMR_RETRANS_PERMIT;                      /* 将RETRANS FLAG置0清除                    */
         g_SmrEnt.SmrMo.ucMemAvailFlg = SMS_FALSE;                               /* 清除标志位                               */
 
@@ -77,9 +35,7 @@ VOS_VOID SMR_MemNotifyRetrans(
     }
     else
     {
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
         SMC_SmrApiRelReq((VOS_UINT8)enErrorCode, SMS_FALSE );                                   /* 发送MNSMS_REL_REQ,释放mm连接             */
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
         /*清除前面的消息*/
         g_SmrEnt.SmrMo.ucRetransFlg = SMR_RETRANS_NO_PERMIT;                    /* 将RETRANS FLAG置0清除                    */
 
@@ -94,20 +50,7 @@ VOS_VOID SMR_MemNotifyRetrans(
 
     }
 }
-/*******************************************************************************
-Module:     SMR_TimerTr1mExpire
-Function:   TR1M定时器溢出处理
-Input:
-Output:
-NOTE:
-Return:   VOS_VOID
-History:
-1.   张志勇   2004.03.10   新规作成
-2.日    期   : 2012年8月31日
-  作    者   : z00161729
-  修改内容   : DCM定制需求和遗留问题修改
 
-*******************************************************************************/
 VOS_VOID SMR_TimerTr1mExpire()
 {
     /* 停止timer TR1M */
@@ -121,9 +64,7 @@ VOS_VOID SMR_TimerTr1mExpire()
     {
         if ( SMS_TRUE == g_SmrEnt.SmrMo.ucMemAvailFlg )
         {                                                                       /*是内存通知过程                            */
-            /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
             SMR_MemNotifyRetrans(SMR_SMT_ERROR_TR1M_TIMEOUT, VOS_NULL_PTR, 0);         /* 调用重发过程的处理                       */
-            /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
             if (SMR_IDLE == g_SmrEnt.SmrMo.ucState)
             {
@@ -138,27 +79,12 @@ VOS_VOID SMR_TimerTr1mExpire()
             PS_NAS_LOG(WUEPS_PID_SMS, VOS_NULL, PS_LOG_LEVEL_NORMAL, "SMR_TimerTr1mExpire:NORMAL:SMS state = SMR_IDLE");
             g_SmrEnt.SmrMo.ucState = SMR_IDLE;                                  /* 进入空闲                                 */
 
-            /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
             SMS_SendMnReportReq(SMR_SMT_ERROR_TR1M_TIMEOUT, VOS_NULL_PTR, 0);
-            /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
         }
     }
 }
-/*******************************************************************************
-Module:   SMR_TimerTr2mExpire
-Function: TR2M定时器溢出处理
-Input:
-Output:
-NOTE:
-Return:   VOS_VOID
-History:
-1.   张志勇   2004.03.10   新规作成
-2.
-3.日    期   : 2013年6月26日
-  作    者   : f62575
-  修改内容   : V9R1 STK升级
-*******************************************************************************/
+
 VOS_VOID SMR_TimerTr2mExpire()
 {
     /* 停止timer TR2M */
@@ -174,9 +100,7 @@ VOS_VOID SMR_TimerTr2mExpire()
         SMC_SmrApiAbortReq( SMR_SMC_ABORT_CAUSE_TR2M_EXP );                     /* 发送MNSMS_ABORT_REQ                      */
         /* SMR_MkSndReportError( g_SmrEnt.SmrMt.ucMr,SMR_ERR_CAUSE_TEMP_FAILURE );  发送SMRL_REPORT_IND                      */
         /*定时器超时后，还没有响应，通知AT修改+CNMI命令参数<mt>和<ds>置为0*/
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
         SMS_SendMnMtErrInd(SMR_SMT_ERROR_TR2M_TIMEOUT);
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
         PS_NAS_LOG(WUEPS_PID_SMS, VOS_NULL, PS_LOG_LEVEL_NORMAL, "SMR_TimerTr2mExpire:NORMAL:SMS state = SMR_IDLE");
         g_SmrEnt.SmrMt.ucState = SMR_IDLE;                                      /* 状态迁移到空闲状态                       */
     }
@@ -375,9 +299,7 @@ VOS_VOID SMR_SndRpErrorReq(
     SMC_SmrApiDataReq(ErrData,5);                                              /* 调用发送API                              */
 }
 
-/* Deleted by f62575 for V9R1 STK升级, 2013-6-26, begin */
 /* Delete SMR_MkSndReportError */
-/* Deleted by f62575 for V9R1 STK升级, 2013-6-26, end */
 
 #ifdef  __cplusplus
   #if  __cplusplus

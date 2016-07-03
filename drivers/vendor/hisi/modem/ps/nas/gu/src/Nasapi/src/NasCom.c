@@ -64,38 +64,7 @@ NAS_CONVERT_MTC_SESSION_STRU             g_stNasConvertMtcSessiontype[] =
 
 /*lint -save -e958 */
 
-/*****************************************************************************
- 函 数 名  : NAS_GetTimerPrecision
- 功能描述  : 获取定时器精度范围
- 输入参数  : Pid       -- 启动定时器的PID
-             ulName    -- 定时器名
- 输出参数  : 无
- 返 回 值  : VOS_TIMER_PRECISION_ENUM_UINT32 -- 定时器精度范围
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年3月15日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-
-  2.日    期   : 2013年9月4日
-    作    者   : w00167002
-    修改内容   : DTS2013090403562:NAS定时器清理，需要启动32K定时器。将MM/MMA/SMS
-                模块的循环定时器修改为非循环定时器。
-
-                定时器分为两种，26M定时器和32K定时器，
-                 26M定时器，系统开销少，推荐使用，但当DRX睡眠时，停止计数，可能计时不准。
-                 32K定时器，系统开销大，不推荐使用，但计时准确，
-                 当选择无精度要求时(VOS_TIMER_NO_PRECISION)，启动26M定时器
-                 其他有精度要求的，启动32K定时器。
-             定时器选择依据:
-               1）对IDLE态下定时器，要求定时器必须是精确定时的，包括我们异常保护定时器中
-                  自己设计的要求绝对定时的； 协议定时器中必须绝对定时的，比如说必须绝对
-                  定时才能通过GCF用例； 对这类定时器，使用32K定时器；
-               2）其他IDLE定时器，不需要绝对定时的：挂到26M定时器；
-               3）非IDLE态的定时器，使用26M定时器
-*****************************************************************************/
 VOS_TIMER_PRECISION_ENUM_UINT32 NAS_GetTimerPrecision(
     VOS_PID                             Pid,
     VOS_UINT32                          ulName
@@ -121,27 +90,7 @@ VOS_TIMER_PRECISION_ENUM_UINT32 NAS_GetTimerPrecision(
     return ulPrecision;
 }
 
-/*****************************************************************************
- Function   : NAS_StartRelTimer
- Description: NAS启动定时器函数.
- Input      : Pid       -- process ID of application
-              ulLength  -- expire time. the metrics is millsecond
-              ulName    -- timer name to be pass to application as a parameter
-              ulParam   -- additional parameter to be pass to application
-              ucMode    -- timer work mode
-                           VOS_RELTIMER_LOOP  -- start periodically
-                           VOS_RELTIMER_NOLOO -- start once time
-              ulPrecision -- Timer Precision
- Output     : phTm      -- timer address which system retuns to application
- Return     : VOS_OK on success and errno on failure
- HISTORY    :
-      1.  日    期   : 2011年06月24日
-          作    者   : c00173809
-          修改内容   : 根据问题单号：DTS2011051202669，SM的T3380,T3390超时消息解析不正确。
-      2. 日    期   : 2013年06月28日
-         作    者   : l00167671
-         修改内容   : DCM LOGGER项目定时器事件上报
-*****************************************************************************/
+
 VOS_UINT32 NAS_StartRelTimer(HTIMER *phTm, VOS_PID Pid, VOS_UINT32 ulLength,
     VOS_UINT32 ulName, VOS_UINT32 ulParam, VOS_UINT8 ucMode)
 {
@@ -189,33 +138,17 @@ VOS_UINT32 NAS_StartRelTimer(HTIMER *phTm, VOS_PID Pid, VOS_UINT32 ulLength,
 
     DIAG_TraceReport(&stTimer);
 
-    /* added  by l00167671 for v9r1 dcm logger可维可测项目, 2013-06-27, begin */
     NAS_TIMER_EventReport(stTimer.MsgHeader.ulMsgName,Pid, NAS_OM_EVENT_TIMER_OPERATION_START);
-    /* added  by l00167671 for v9r1 dcm logger可维可测项目, 2013-06-27, end */
 
     return ulRet;
 }
 
-/*****************************************************************************
- Function   : NAS_StartRelTimer
- Description: MM层停止定时器函数.
- Input      : Pid       -- process ID of application
-              ulName    -- timer name to be pass to application as a parameter
- Output     : phTm      -- timer address which system retuns to application
- Return     : VOS_OK on success and errno on failure
-   1. 日    期   : 2013年06月28日
-     作    者   : l00167671
-     修改内容   : DCM LOGGER项目定时器事件上报
- 2. 日    期   : 2013年07月24日
-    作    者   : w00242748
-    修改内容   : DTS2013071705401
-*****************************************************************************/
+
 VOS_UINT32 NAS_StopRelTimer(VOS_PID Pid, VOS_UINT32 ulName, HTIMER *phTm)
 {
     VOS_UINT32                          ulRet;
     NAS_TIMER_OPERATION_STRU            stTimer;
 
-    /* added  by l00167671 for v9r1 dcm logger可维可测项目, 2013-06-27, begin */
     VOS_UINT32                          ulTimerRemainLen;
 
     ulTimerRemainLen = 0;
@@ -233,7 +166,6 @@ VOS_UINT32 NAS_StopRelTimer(VOS_PID Pid, VOS_UINT32 ulName, HTIMER *phTm)
     {
         NAS_TIMER_EventReport(ulName, Pid, NAS_OM_EVENT_TIMER_OPERATION_STOP);
     }
-    /* added  by l00167671 for v9r1 dcm logger可维可测项目, 2013-06-27, end */
 
     ulRet = VOS_StopRelTimer(phTm);
 
@@ -254,26 +186,7 @@ VOS_UINT32 NAS_StopRelTimer(VOS_PID Pid, VOS_UINT32 ulName, HTIMER *phTm)
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_ConvertCustomMsRelToPsUeRel
- 功能描述  : 将NV项中定制的协议版本转换为代码中定义的协议版本宏
- 输入参数  : enCustomMsRel
- 输出参数  : 无
- 返 回 值  : 转换后协议版本
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年3月15日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月15日
-   作    者   : z40661
-   修改内容  :NV项NAS_Support_3GPP_Relase(8288)设置的协议版本为R7，与当前UE支持的协议版本不一致
- 3.日    期   : 2015年6月4日
-   作    者   : z00161729
-   修改内容   : 24008 23122 R11 CR升级项目修改
-*****************************************************************************/
 VOS_INT8 NAS_ConvertCustomMsRelToPsUeRel(
     NAS_MML_3GPP_REL_ENUM_UINT8         enCustomMsRel
 )
@@ -322,33 +235,7 @@ VOS_INT8 NAS_ConvertCustomMsRelToPsUeRel(
     return cVersion;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_Common_Get_Supported_3GPP_Version
- 功能描述  : 获取当前与网络交互的协议版本
- 输出参数  : VOS_VOID
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2009年05月10日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-  2.日    期   : 2009年06月17日
-    作    者   : o00132663
-    修改内容   : 根据终端可配置需求修改
-  3.日    期   : 2011年07月26日
-    作    者   : z00161729
-    修改内容   : MMC_Com.c文件删除移动
-  5.日    期   : 2012年03月15日
-    作    者   : s46746
-    修改内容   : 对于R7、R8新增信息单元,使用协议版本控制
-  6.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-  7.日    期   : 2015年7月4日
-    作    者   : z00161729
-    修改内容   : 24008 23122 R11 CR升级项目修改
-*****************************************************************************/
+
 VOS_INT8 NAS_Common_Get_Supported_3GPP_Version(VOS_UINT32 ulCnDomainId)
 {
     VOS_INT8                           cVersion;
@@ -375,9 +262,7 @@ VOS_INT8 NAS_Common_Get_Supported_3GPP_Version(VOS_UINT32 ulCnDomainId)
             cVersion = cVersionFromNV;
         }
 
-        /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
         if (NAS_MSCC_PIF_SRVDOMAIN_CS == ulCnDomainId)
-        /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
         {
             switch (pstMs3GppRel->enMsMscRel)
             {
@@ -435,19 +320,7 @@ VOS_INT8 NAS_Common_Get_Supported_3GPP_Version(VOS_UINT32 ulCnDomainId)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_ImsiToImsiStr
- 功能描述  : 将全局变量的Imsi转换成字串形式
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期  : 2009年7月3日
-   作    者  : h44270
-   修改内容  : creat function
-*****************************************************************************/
+
 VOS_VOID NAS_ImsiToImsiStr(VOS_CHAR  *pcImsi)
 {
     VOS_UINT32                          i;
@@ -472,27 +345,7 @@ VOS_VOID NAS_ImsiToImsiStr(VOS_CHAR  *pcImsi)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_PreventTestImsiRegFlg
- 功能描述  : 在NV项激活时，判定当前的IMSI是否是测试号段，是的话返回VOS_TRUE,
-              其他情况下，都返回VOS_FALSE
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_BOOL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月7日
-    作    者   : h44270
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  3.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-*****************************************************************************/
 VOS_BOOL NAS_PreventTestImsiRegFlg(VOS_VOID)
 {
     VOS_CHAR                            *pcLabImsi1="00101";
@@ -550,20 +403,7 @@ VOS_BOOL NAS_PreventTestImsiRegFlg(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_ConvertSessionTypeToMTCFormat
- 功能描述  : 将NAS Session Type转换成MTC的Session Type
- 输入参数  : RRC_NAS_SESSION_TYPE_ENUM_UINT8
- 输出参数  : MTC_SESSION_TYPE_ENUM_UINT8
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月04日
-    作    者   : j00174725
-    修改内容   : DTS2015082406288
-*****************************************************************************/
 VOS_UINT32 NAS_ConvertSessionTypeToMTCFormat(
     RRC_NAS_SESSION_TYPE_ENUM_UINT8     enNasSessionType,
     MTC_SESSION_TYPE_ENUM_UINT8        *penMtcSessionType

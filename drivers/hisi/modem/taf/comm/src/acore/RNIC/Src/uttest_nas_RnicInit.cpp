@@ -15,14 +15,7 @@ using namespace testing;
 2 用例实现
 *****************************************************************************/
 
-/*****************************************************************************
-类名       : Test_RNIC_PidInit
-功能描述   : RNIC_PidInit UT工程类
-修改历史   :
-1.日   期  : 2012-12-05
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_PidInit: public ::testing::Test
 {
 public:
@@ -35,16 +28,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_PidInit_001
-测试用例标题      : VOS_IP_LOAD_CONFIG分支处理
-预期结果          : 返回VOS_OK
-修改历史   :
-1.日   期  : 2012-12-05
-  作   者  : f00179208
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_PidInit, Test_RNIC_PidInit_001)
 {
     VOS_UINT32                          ulRst;
@@ -79,16 +63,7 @@ TEST_F(Test_RNIC_PidInit, Test_RNIC_PidInit_001)
     
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_PidInit_002
-测试用例标题      : default分支处理
-预期结果          : 返回VOS_OK
-修改历史   :
-1.日   期  : 2012-12-05
-  作   者  : f00179208
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_PidInit, Test_RNIC_PidInit_002)
 {
     VOS_UINT32                          ulRst;
@@ -123,16 +98,7 @@ TEST_F(Test_RNIC_PidInit, Test_RNIC_PidInit_002)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_PidInit_003
-测试用例标题      : 创建信号量失败
-预期结果          : 返回VOS_OK
-修改历史   :
-1.日   期  : 2013-04-19
-  作   者  : f00179208
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_PidInit, Test_RNIC_PidInit_003)
 {
     VOS_UINT32                          ulRst;
@@ -169,14 +135,7 @@ TEST_F(Test_RNIC_PidInit, Test_RNIC_PidInit_003)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名       : Test_RNIC_FidInit
-功能描述   : RNIC_FidInit UT工程类
-修改历史   :
-1.日   期  : 2012-12-05
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_FidInit: public ::testing::Test
 {
 public:
@@ -189,16 +148,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_FidInit_001
-测试用例标题      : 网卡模块注册PID成功，且任务优先级设置成功
-预期结果          : 返回VOS_OK
-修改历史   :
-1.日   期  : 2012-12-05
-  作   者  : f00179208
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_FidInit, Test_RNIC_FidInit_001)
 {
     VOS_UINT32                          ulRst;
@@ -233,16 +183,7 @@ TEST_F(Test_RNIC_FidInit, Test_RNIC_FidInit_001)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_FidInit_002
-测试用例标题      : 网卡模块注册PID失败
-预期结果          : 返回VOS_ERROR
-修改历史   :
-1.日   期  : 2012-12-05
-  作   者  : f00179208
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_FidInit, Test_RNIC_FidInit_002)
 {
     VOS_UINT32                          ulRst;
@@ -272,16 +213,7 @@ TEST_F(Test_RNIC_FidInit, Test_RNIC_FidInit_002)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_FidInit_003
-测试用例标题      : 网卡模块注册PID成功，但任务优先级设置失败
-预期结果          : 返回VOS_ERROR
-修改历史   :
-1.日   期  : 2012-12-05
-  作   者  : f00179208
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_FidInit, Test_RNIC_FidInit_003)
 {
     VOS_UINT32                          ulRst;
@@ -316,16 +248,7 @@ TEST_F(Test_RNIC_FidInit, Test_RNIC_FidInit_003)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_FidInit_004
-测试用例标题      : default分支处理
-预期结果          : 返回VOS_OK
-修改历史   :
-1.日   期  : 2012-12-05
-  作   者  : f00179208
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_FidInit, Test_RNIC_FidInit_004)
 {
     VOS_UINT32                          ulRst;
@@ -357,14 +280,7 @@ TEST_F(Test_RNIC_FidInit, Test_RNIC_FidInit_004)
 
 }
 
-/*****************************************************************************
-类名       : Test_RNIC_CCpuResetCallback
-功能描述   : RNIC_CCpuResetCallback UT工程类
-修改历史   :
-1.日   期  : 2013-04-19
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_RNIC_CCpuResetCallback: public ::testing::Test
 {
 public:
@@ -377,16 +293,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_CCpuResetCallback_001
-测试用例标题      : C核复位前，分配内存失败
-预期结果          : 返回VOS_ERROR
-修改历史   :
-1.日   期  : 2013-04-19
-  作   者  : f00179208
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_CCpuResetCallback, Test_RNIC_CCpuResetCallback_001)
 {
     VOS_UINT32                          ulRst;
@@ -413,16 +320,7 @@ TEST_F(Test_RNIC_CCpuResetCallback, Test_RNIC_CCpuResetCallback_001)
     
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_CCpuResetCallback_002
-测试用例标题      : C核复位前，消息发送失败
-预期结果          : 返回VOS_ERROR
-修改历史   :
-1.日   期  : 2013-04-19
-  作   者  : f00179208
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_CCpuResetCallback, Test_RNIC_CCpuResetCallback_002)
 {
     VOS_UINT32                          ulRst;
@@ -449,16 +347,7 @@ TEST_F(Test_RNIC_CCpuResetCallback, Test_RNIC_CCpuResetCallback_002)
     
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_CCpuResetCallback_003
-测试用例标题      : C核复位前，消息发送成功，锁信号量失败
-预期结果          : 返回VOS_ERROR
-修改历史   :
-1.日   期  : 2013-04-19
-  作   者  : f00179208
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_CCpuResetCallback, Test_RNIC_CCpuResetCallback_003)
 {
     VOS_UINT32                          ulRst;
@@ -486,16 +375,7 @@ TEST_F(Test_RNIC_CCpuResetCallback, Test_RNIC_CCpuResetCallback_003)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_CCpuResetCallback_004
-测试用例标题      : C核复位前，消息发送成功，锁信号量成功
-预期结果          : 返回VOS_OK
-修改历史   :
-1.日   期  : 2013-04-19
-  作   者  : f00179208
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_CCpuResetCallback, Test_RNIC_CCpuResetCallback_004)
 {
     VOS_UINT32                          ulRst;
@@ -522,16 +402,7 @@ TEST_F(Test_RNIC_CCpuResetCallback, Test_RNIC_CCpuResetCallback_004)
     
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_CCpuResetCallback_005
-测试用例标题      : C核复位后
-预期结果          : 返回VOS_OK
-修改历史   :
-1.日   期  : 2013-04-19
-  作   者  : f00179208
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_CCpuResetCallback, Test_RNIC_CCpuResetCallback_005)
 {
     VOS_UINT32                          ulRst;
@@ -555,16 +426,7 @@ TEST_F(Test_RNIC_CCpuResetCallback, Test_RNIC_CCpuResetCallback_005)
     
 }
 
-/*******************************************************************
-测试用例编号      : Test_RNIC_CCpuResetCallback_006
-测试用例标题      : 非C核复位前后
-预期结果          : 返回VOS_ERROR
-修改历史   :
-1.日   期  : 2013-04-19
-  作   者  : f00179208
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_RNIC_CCpuResetCallback, Test_RNIC_CCpuResetCallback_006)
 {
     VOS_UINT32                          ulRst;

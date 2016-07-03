@@ -1,95 +1,4 @@
-/************************************************************************
-  Copyright    : 2005-2007, Huawei Tech. Co., Ltd.
-  File name    : GmmCasComm.c
-  Author       : Roger Leo
-  Version      : V200R001
-  Date         : 2005-08-25
-  Description  : 该C文件给出了Gmm Cas模块中通用处理过程的实现
-  Function List:
-        ---
-        ---
-        ---
-  History      :
-  1. Date:2005-08-25
-     Author: Roger Leo
-     Modification:update
-  2. s46746 2006-03-08 根据问题单A32D02368修改
-  3. s46746 2006-03-18 根据问题单A32D02141修改
-  4. l40632 2006-04-11 根据问题单A32D03039修改
-  5. l40632 2006-04-17 根据问题单A32D03141修改
-  6. l40632 2006-04-25 根据问题单A32D03000修改
-  7. x51137 2006/4/28 A32D02889
-  8. l40632 2006.05.20 根据问题单A32D03865修改
-  9. l40632 2006.05.30 根据问题单A32D03830
-  10.l40632 2006.06.29 根据问题单A32D04514
-  11.日    期   : 2006年10月9日
-     作    者   : s46746
-     修改内容   : 根据问题单号：A32D05744
-  12.日    期   : 2007年01月13日
-     作    者   : s46746
-     修改内容   : 根据问题单号：A32D08326
-  13.日    期   : 2007年03月21日
-     作    者   : luojian 60022475
-     修改内容   : Maps3000接口修改
-  14.日    期   : 2007年07月12日
-     作    者   : hanlufeng 41410
-     修改内容   : A32D12338
-  15.日    期   : 2007年08月19日
-     作    者   : l60022475
-     修改内容   : 根据问题单号：A32D12706
-  16.日    期   : 2007年09月10日
-     作    者   : s46746
-     修改内容   : 根据问题单号：A32D12829
-  17.日    期   : 2007-10-26
-     作    者   : hanlufeng
-     修改内容   : A32D13172
-  18.日    期   : 2007年11月22日
-     作    者   : s46746
-     修改内容   : 根据问题单号：A32D13475,修改异系统改变后指派的old TLLI和开机加密密钥为全0问题
-  19.日    期   : 2007-10-26
-     作    者   : l00107747
-     修改内容   : A32D13862
-  20.日    期   : 2007年12月14日
-     作    者   : s46746
-     修改内容   : 问题单A32D13638，保证进行RAU之前不向网侧发送其它数据，并且RAU不成功，不恢复层2
-  21.日    期   : 2007年12月21日
-     作    者   : l00107747
-     修改内容   : 问题单A32D13950,W支持CS&PS,G下不支持PS，切换到W模式后GMM没有发起联合RAU
-  22.日    期   : 2007年12月28日
-     作    者   : s46746
-     修改内容   : 根据问题单号：A32D13954,修改GMM在2G3过程中缓存消息机制
-  23.日    期   : 2008年5月2日
-     作    者   : s46746
-     修改内容   : 根据问题单号：AT2D03268,没有判断小区是否改变标志，直接进行了RAU或Attach
-  24.日    期   : 2008年8月22日
-     作    者   : s46746
-     修改内容   : 根据问题单号：AT2D05192,cell update判断时，判断依据RAI是否改变没有赋值正确
-  25.日    期   : 2008年9月23日
-     作    者   : o00132663
-     修改内容   : 根据问题单号：AT2D05839,清除无用全局变量 ucRlsMsgFlg和状态GMM_REGISTERED_WAIT_FOR_RAU
-  26.日    期   : 2008年12月18日
-     作    者   : x00115505
-     修改内容   : 根据问题单号：AT2D07624,修改可维可测消息中TimerStamp
-                  字段的读取方式。
-  27.日    期   : 2009年04月01日
-     作    者   : x00115505
-     修改内容   : 问题单号:AT2D10473,Rau过程中出服务区，回到服务区之后没有发起Rau。
-  28.日    期   : 2009年05月14日
-     作    者   : h44270
-     修改内容   : 问题单号:AT2D11898/AT2D11828,在IDLE态下发送PS域短信，没有按照ATTACH ACCEPT消息中Radio Priority for SMS来请求资源
-  29.日    期   : 2009年6月30日
-     作    者   : s46746
-     修改内容   : AT2D12561,3G2情形GPRS下未启动加密，NAS指派层2加密算法后，层2对上行数据进行了加密
-  30.日    期   : 2009年7月23日
-     作    者   : s46746
-     修改内容   : 根据问题单号：AT2D12878，GSM下HPLMN搜索时接收到GPRS寻呼或PDP激活(W下PDP激活相同处理)请求需要能及时响应
-  31.日    期   : 2011-11-11
-     作    者   : h44270
-     修改内容   : 根问题单号：DTS2010110500099/DTS2010111103124,修正GMM在W模下向GAS发送去指派消息
-  32.日    期   : 2011年12月29日
-     作    者   : l00130025
-     修改内容   : DTS2011082201679/DTS2011121504358,删除LTE的模式判断函数
-************************************************************************/
+
 
 /*****************************************************************************
    1 头文件包含
@@ -201,32 +110,7 @@ VOS_UINT8 GMM_IsLastRand(VOS_VOID)
     return ucRel;
 }
 
-/*****************************************************************************
- Prototype      :
- Description    : 公共接入层模块使用全局结构变量初始化函数
-                  HSS 4100 V200R001 新增
- Input          :
- Output         :
- Return Value   :
- Calls          :
- Called By      :
 
- History        :
-  1.Date        : 2005-11-08
-    Author      : Roger Leo
-    Modification: Created function
-
-  2. x51137 2006/4/28 A32D02889
-  3.日    期   : 2009年05月14日
-    作    者   : h44270
-    修改内容   : 问题单号:AT2D11898/AT2D11828,在IDLE态下发送PS域短信，没有按照ATTACH ACCEPT消息中Radio Priority for SMS来请求资源
-  4.日    期   : 2009年09月03日
-    作    者   : l65478
-    修改内容   : 问题单号：AT2D14239,detach完成后,再次发起ATTATCH REQ时,GAS使用旧的TLLI建立的TBF发送数据,没有及时使用新的TLLI,导致MS和仪器侧维护的TLLI不一致,从而导致GAS因为TLLI不匹配丢弃了建立下行TBF的指派命令,最终导致用例失败
-  5.日    期   : 2010年12月18日
-    作    者   : o00132663
-    修改内容   : 问题单号:DTS2010121800152,GMM关机关不掉，状态挂死
-*****************************************************************************/
 VOS_VOID GMM_InitCasGlobalVariable (VOS_VOID)
 {
     /* GMM CAS全局结构变量清零 */
@@ -266,40 +150,13 @@ VOS_VOID GMM_InitCasGlobalVariable (VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Prototype      : GMM_CasRcvUsimCnfUmtsSucc
- Description    : 收到USIM卡UMTS鉴权成功结果
-                  HSS 4100 V200R001 新增
- Input          : USIMM_TELECOM_AUTH_CNF_STRU *pAuthCnf 参数结构指针
- Output         :
- Return Value   :
- Calls          :
- Called By      :
 
- History        :
-  1.Date        : 2005-08-25
-    Author      : Roger Leo
-    Modification: Created function
-  2.日    期    : 2009年03月18日
-    作    者    : l65478
-    修改内容    : 根据问题单号：AT2D08671,数传状态下，W出服务区后，切到G，数传恢复失败，因为GMM没有配置LL加密算法
-  3.日    期   : 2009年03月31日
-    作    者   : L65478
-    修改内容   : 根据问题单号：AT2D10529两次鉴权失败后没有释放RRC连接
-  4.日    期   : 2011年7月27日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-  5.日    期   : 2013年07月23日
-    作    者   : y00245242
-    修改内容   : VOLTE开发，适配新的USIM接口
-*****************************************************************************/
 VOS_VOID GMM_CasRcvUsimCnfUmtsSucc(USIMM_TELECOM_AUTH_CNF_STRU *pAuthCnf)
 {
     NAS_MSG_STRU *pNasMsg;                                  /* 定义指向NAS消息的指针*/
 
     NAS_MML_SetSimPsSecurityCksn(g_GmmAuthenCtrl.ucCksnSav);            /* 暂存消息中的CKSN赋给全局变量中的CKSN                         */
 
-    /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-23, begin */
     /* 记录CK值到全局变量中, 跳过首个长度字节 */
     Gmm_MemCpy(NAS_MML_GetSimPsSecurityUmtsCk(),
             &(pAuthCnf->aucCK[1]), 16 );                          /* 更新全局变量中的Ck*/
@@ -321,7 +178,6 @@ VOS_VOID GMM_CasRcvUsimCnfUmtsSucc(USIMM_TELECOM_AUTH_CNF_STRU *pAuthCnf)
         Gmm_MemCpy(NAS_MML_GetSimPsSecurityGsmKc(),
                 &(pAuthCnf->aucGsmKc[1]), 8 );                        /* 更新全局变量中的GSM Kc*/
     }
-    /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-23, end */
 
 
     /* 保存CK,IK,Kc值到SIM中 */
@@ -364,27 +220,7 @@ VOS_VOID GMM_CasRcvUsimCnfUmtsSucc(USIMM_TELECOM_AUTH_CNF_STRU *pAuthCnf)
     return;
 }
 
-/*****************************************************************************
- Prototype      : GMM_CasRcvUsimCnfGsmSucc
- Description    : 收到USIM卡GSM鉴权成功结果
-                  HSS 4100 V200R001 新增
- Input          :
- Output         :
- Return Value   :
- Calls          :
- Called By      :
 
- History        :
- 1.Date        : 2005-11-08
-   Author      : Roger Leo
-   Modification: Created function
- 2.日    期   : 2011年7月25日
-   作    者   : h44270
-   修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
- 3.日    期   : 2013年07月23日
-   作    者   : y00245242
-   修改内容   : 为开发VOLTE，适配新的USIM接口
-*****************************************************************************/
 VOS_VOID GMM_CasRcvUsimCnfGsmSucc(USIMM_TELECOM_AUTH_CNF_STRU *pAuthCnf)
 {
     NAS_MSG_STRU *pNasMsg;                                  /* 定义指向NAS消息的指针*/
@@ -392,11 +228,9 @@ VOS_VOID GMM_CasRcvUsimCnfGsmSucc(USIMM_TELECOM_AUTH_CNF_STRU *pAuthCnf)
     NAS_MML_SetSimPsSecurityCksn(g_GmmAuthenCtrl.ucCksnSav);            /* 暂存消息中的CKSN赋给全局变量中的CKSN                                 */
 
 
-    /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-23, begin */
     /* 记录Kc值到全局变量中, 跳过首个长度字节COPY */
     Gmm_MemCpy(NAS_MML_GetSimPsSecurityGsmKc(),
             &(pAuthCnf->aucGsmKc[1]), 8 );                        /* 更新全局变量中的GSM Kc*/
-    /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-23, end */
 
 
     /* 计算IK,CK */
@@ -444,40 +278,7 @@ VOS_VOID GMM_CasRcvUsimCnfGsmSucc(USIMM_TELECOM_AUTH_CNF_STRU *pAuthCnf)
     return;
 }
 
-/*****************************************************************************
- Prototype      : GMM_CasRcvUsimCnfFailUmts
- Description    : UMTS鉴权:SYNC失败或者MAC失败
-                  HSS 4100 V200R001 新增
- Input          :
- Output         :
- Return Value   :
- Calls          :
- Called By      :
 
- History        :
-  1.Date        : 2005-11-08
-    Author      : Roger Leo
-    Modification: Created function
-  2.  日    期   : 2006年12月5日
-      作    者   : luojian 60022475
-      修改内容   : Maps3000接口修改
-  3.  日    期   : 2009年03月31日
-      作    者   : L65478
-      修改内容   : 根据问题单号：AT2D10529两次鉴权失败后没有释放RRC连接
-  4.  日    期   : 2012年4月20日
-      作    者   : l00130025
-      修改内容   : DTS2012032004389，Netork连续3次被Ms Auth Rej或T3318/T3320超时时，没有通知GAS Bar掉当前小区
-  5.  日    期   : 2012年8月25日
-      作    者   : m00217266
-      修改内容   : 删除GMM_SaveErrCode，添加Gmm_Save_Detach_Cause，
-                  保存导致Attach失败的原因值
-  6.  日    期   : 2013年07月23日
-      作    者   : y00245242
-      修改内容   : 为开发VOLTE，适配新的USIM接口
-  7.  日    期  :2014年01月09日
-      作    者  :l65478
-      修改内容  :DTS2014010704608:第一次鉴权响应和网络发起的第二次鉴权请求冲突
-*****************************************************************************/
 VOS_VOID GMM_CasRcvUsimCnfFailUmts(
     USIMM_TELECOM_AUTH_CNF_STRU        *pAuthCnf,
     USIMM_AUTH_RESULT_ENUM_UINT32       enResult
@@ -515,12 +316,10 @@ VOS_VOID GMM_CasRcvUsimCnfFailUmts(
     else
     {/* SQN failure */
         /* AUTHENTICATION AND CIPHERING FAILURE作成 */
-        /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-23, begin */
         pNasMsg = Gmm_AuthenAndCipherFailureMsgMake(
                             NAS_MML_REG_FAIL_CAUSE_SYNCH_FAILURE,
                             pAuthCnf->aucAuts[0],
                             &(pAuthCnf->aucAuts[1]));
-        /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-23, end */
 
         /* 调用发送函数 */
         Gmm_SndRrmmDataReq(RRC_NAS_MSG_PRIORTY_HIGH, pNasMsg);
@@ -554,24 +353,7 @@ VOS_VOID GMM_CasRcvUsimCnfFailUmts(
     return;
 }
 
-/*****************************************************************************
- Prototype      : GMM_CasRcvUsimCnfFailGsm
- Description    : GSM鉴权失败,或者其它原因
-                  HSS 4100 V200R001 新增
- Input          :
- Output         :
- Return Value   :
- Calls          :
- Called By      :
 
- History        :
-  1.Date        : 2006-01-13
-    Author      : Roger Leo
-    Modification: Created function
-  2.日    期   : 2013年07月23日
-    作    者   : y00245242
-    修改内容   : 为开发VOLTE，适配新的USIM接口,修改函数入参结构定义
-*****************************************************************************/
 VOS_VOID GMM_CasRcvUsimCnfFailGsm(USIMM_TELECOM_AUTH_CNF_STRU *pAuthCnf)
 {
     /*NAS_MSG_STRU    *pNasMsg;*/
@@ -673,69 +455,7 @@ VOS_VOID GMM_ExecLlgmmStatusIndCause(VOS_UINT16 usCause)
     return;
 }
 
-/*****************************************************************************
- Prototype      :
- Description    :
-                  HSS 4100 V200R001 新增
- Input          :
- Output         :
- Return Value   :
- Calls          :
- Called By      :
 
- History        :
-  1.Date        : 2005-11-08
-    Author      : Roger Leo
-    Modification: Created function
-  2.日    期   : 2006年10月9日
-    作    者   : s46746
-    修改内容   : 根据问题单号：A32D05744
-  3.日    期   : 2007年08月19日
-    作    者   : l60022475
-    修改内容   : 根据问题单号：A32D12706
-  4.日    期   : 2007-10-26
-    作    者   : hanlufeng
-    修改内容   : A32D13172
-  5.日    期   : 2007-10-26
-    作    者   : l00107747
-    修改内容   : A32D13862
-  6.日    期   : 2009-6-3
-    作    者   : l00130025
-    修改内容   : 问题单号:AT2D12225,从GPRS小区重选到GSM小区,t3312超时后,重回原GPRS小区,发起了normal RAU而非周期性RAU
-  7.日    期   : 2010年8月14日
-    作    者   : s46746
-    修改内容   : DTS2010073001405,G2W异系统重选后，不向层2发送去指派而是挂起层2
-  8.日    期   : 2010年9月09日
-    作    者   : l65478
-    修改内容   : DTS2010090302562,PDP激活过程中发生重选，PDP激活事件比标杆慢
-  9.日    期   : 2010年12月01日
-    作    者   : z00161729
-    修改内容  : DTS2010111903590:LAI、RAI、CELL均未变只是网络模式发生改变，UE发起RAU或LAU，标杆不会
- 10.日    期   : 2011年03月1日
-    作    者   : w00176964
-    修改内容   : 问题单号：DTS2011022503955, [正向质量活动-背景搜优化双模]背景搜快速指定搜过程中，发起
-                 用户列表搜索，关机等操作，停止搜网后回RPLMN成功，但当前小区禁止或不支持CS/PS，缓存的用
-                 户操作未立即处理，需要等待定时器超时进行异常处理
- 11.日    期   : 2012年03月17日
-    作    者   : s46746
-    修改内容   : DTS2012030705720:RAI和网络模式发生改变,需要进行LAU流程
- 12.日    期   : 2012年2月15日
-    作    者   : w00166186
-    修改内容   : CSFB&PPAC&ETWS&ISR 开发
- 13. 日    期   : 2012年7月17日
-     作    者   : z00161729
-     修改内容   : DTS2012071606177:W(LAI1)-L(TAI2/LAI2 ISR激活CS LAI改变)-W(LAI1网络模式I)需要
-                  发起联合rau
- 14.日    期   : 2012年8月14日
-    作    者   : t00212959
-    修改内容   : DCM定制需求和遗留问题
- 15.日    期   : 2012年12月11日
-    作    者   : w00176964
-    修改内容   : NAS_MML_GetPsRestrictNormalServiceFlg修改函数名
- 16.日    期   : 2015年1月15日
-    作    者   : z00161729
-    修改内容   : AT&T 支持DAM特性修改
-*****************************************************************************/
 VOS_UINT32 GMM_SaveGsmSysInfoIndMsgPara(MMCGMM_GSM_SYS_INFO_IND_ST *pSysInfo)
 {
     GMM_RAI_STRU                *pRaiTemp  = VOS_NULL_PTR;
@@ -888,9 +608,7 @@ VOS_UINT32 GMM_SaveGsmSysInfoIndMsgPara(MMCGMM_GSM_SYS_INFO_IND_ST *pSysInfo)
                     }
 
                     /* 收到G模系统消息, 指示RABM当前系统模式, 根据是否支持GPRS, 挂起或恢复RABM */
-                    /* Modified by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, begin */
                     if ((VOS_TRUE == NAS_MML_GetPsRestrictNormalServiceFlg())
-                    /* Modified by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, end */
                      || (0 == pSysInfo->ucGprsSupportInd)
                      || (GMM_FALSE == gstGmmCasGlobalCtrl.ucTlliAssignFlg))
                     {
@@ -925,9 +643,7 @@ VOS_UINT32 GMM_SaveGsmSysInfoIndMsgPara(MMCGMM_GSM_SYS_INFO_IND_ST *pSysInfo)
                     /*= GMM_CasGetNetChgTypeByGsm(ucNetMod);*/
     }
 
-    /* Modified by t00212959 for DCM定制需求和遗留问题, 2012-8-16, begin */
     /* 删除对2G系统消息ucDrxTimerMax赋值到DrxLen*/
-    /* Modified by t00212959 for DCM定制需求和遗留问题, 2012-8-16, end */
 
     if (GMM_TRUE == gstGmmCasGlobalCtrl.TempMsgPara.ucGsmCellChgFlg)
     {
@@ -1102,9 +818,7 @@ VOS_VOID GMM_CreateNewTlli(VOS_UINT32 *pulTmsi, VOS_UINT8 ucType)
     {
         case GMM_RANDOM_TLLI:
             ulHead5  = 0x0f;            /* 5位值是 01111 */
-            /* Modified by wx270776 for OM融合, 2015-7-23, begin */
             ulTLLI   = VOS_GetSlice();   /* 取系统时钟数作为伪随机数 */
-            /* Modified by wx270776 for OM融合, 2015-7-23, end */
             break;
 
         case GMM_LOCAL_TLLI:
@@ -1134,21 +848,7 @@ VOS_VOID GMM_CreateNewTlli(VOS_UINT32 *pulTmsi, VOS_UINT8 ucType)
 }
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_GMM_UseGutiDerivedPtmsi
- 功能描述  : 当前Tin值和GU P-tmsi是否指示需要使用 GUTI导出的P-Tmsi
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年8月20日
-    作    者   : l00130025
-    修改内容   : PhaseI 问题单修改:DTS2011080305247,G模要使用映射的P-TMSI导出TLLI
-
-*****************************************************************************/
 VOS_UINT32 NAS_GMM_UseGutiDerivedPtmsi ( VOS_VOID )
 {
     VOS_UINT8                           ucUeIdMask;
@@ -1211,27 +911,7 @@ VOS_UINT32 NAS_GMM_UseGutiDerivedPtmsi ( VOS_VOID )
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_GetPTmsiForTLLI
- 功能描述  : 获取当前要使用的P-TMSI值
- 输入参数  : VOS_UINT8 *
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年8月19日
-    作    者   : l00130025
-    修改内容   : PhaseI 问题单修改:DTS2011080305247,G模要使用映射的P-TMSI导出TLLI
-  2.日    期   : 2013年05月21日
-    作    者   : l65478
-    修改内容   : DTS2013053002449希腊问题:当不支持LTE时,使用GU下的ID
- 3.日    期   :2013年8月29日
-    作    者   :z00161729
-    修改内容  :DTS2013082702039:syscfg不支持l或l disable时，gmm rau和attach不需携带ue network capability
-
-*****************************************************************************/
 VOS_UINT32 NAS_GMM_GetPTmsiForTLLI(
     VOS_UINT8                           aucPtmsi[NAS_MML_MAX_PTMSI_LEN]
 )
@@ -1376,27 +1056,7 @@ VOS_UINT32 NAS_GMM_GetPTmsiForTLLI(
 
 }
 
-/*****************************************************************************
- 函 数 名  : GMM_UpdateSysTlli
- 功能描述  : 检查TLLI类型有效性,并更新默认TLLI类型和数值
- 输入参数  : TlliType
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月27日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-  2.日    期   : 2011年8月19日
-    作    者   : l00130025
-    修改内容   : 问题单号:DTS2011080305247,G模要使用映射的P-TMSI导出TLLI
-  3.日    期   : 2013年5月20日
-    作    者   : s00217060
-    修改内容   : coverity和foritfy修改
-
-*****************************************************************************/
 VOS_VOID GMM_UpdateSysTlli(GMM_TLLI_TYPE TlliType)
 {
     VOS_UINT8                           aucPtmsi[NAS_MML_MAX_PTMSI_LEN];
@@ -1410,10 +1070,8 @@ VOS_VOID GMM_UpdateSysTlli(GMM_TLLI_TYPE TlliType)
         return;
     }
 
-    /* Added by s00217060 for coverity和foritfy修改 , 2013-05-20, begin */
     /* 初始化 */
     PS_MEM_SET(aucPtmsi, 0, sizeof(aucPtmsi));
-    /* Added by s00217060 for coverity和foritfy修改 , 2013-05-20, end */
 
     /* 没有存贮有效的PTMSI, 计算RANDOM TLLI */
     if (VOS_FALSE == NAS_GMM_GetPTmsiForTLLI(aucPtmsi))
@@ -1436,27 +1094,7 @@ VOS_VOID GMM_UpdateSysTlli(GMM_TLLI_TYPE TlliType)
     return;
 }
 
-/*****************************************************************************
- Prototype      : GMM_GetPtmsiFromMsgIe
- Description    : 从指定消息IE中得到PTMSI
-                  HSS 4100 V200R001 新增
- Input          :
- Output         :
- Return Value   :
- Calls          :
- Called By      :
 
- History        :
-  1.Date        : 2005-11-08
-    Author      : Roger Leo
-    Modification: Created function
-  2.日    期   : 2012年8月10日
-    作    者   : y00213812
-    修改内容   : DTS2012082204471, TQE清理
-  3.日    期   : 2013年08月23日
-    作    者   : f00179208
-    修改内容   : ErrLog&FTM项目,PTMSI发生改变时上报给OM
-*****************************************************************************/
 VOS_UINT32 GMM_GetPtmsiFromMsgIe(VOS_UINT8 *pData)
 {
     VOS_UINT32  ulNewTlli = 0;
@@ -1482,13 +1120,11 @@ VOS_UINT32 GMM_GetPtmsiFromMsgIe(VOS_UINT8 *pData)
     GMM_CreateNewTlli(&ulNewTlli, GMM_LOCAL_TLLI);          /*计算TLLI*/
 
     /* 指配new TLLI */
-    /*modified by Y00213812 for DTS2012082204471 TQE清理, 2012-08-10, begin*/
     ulRslt = GMM_AssignNewTlli(ulNewTlli, GMM_LOCAL_TLLI);
     if (GMM_FALSE == ulRslt)
     {
         GMM_LOG_WARN("GMM_GetPtmsiFromMsgIe():Error: new TLLI assigned failed!");
     }
-    /*modified by Y00213812 for DTS2012082204471 TQE清理, 2012-08-10, end*/
 
 #if (FEATURE_ON == FEATURE_PTM)
     /* 工程菜单打开后，PTMSI发生改变需要上报给OM */
@@ -1498,24 +1134,7 @@ VOS_UINT32 GMM_GetPtmsiFromMsgIe(VOS_UINT8 *pData)
     return GMM_TRUE;
 }
 
-/*****************************************************************************
- Prototype      : GMM_FreeOldTlli
- Description    : 释放old TLLI
-                  HSS 4100 V200R001 新增
- Input          :
- Output         :
- Return Value   :
- Calls          :
- Called By      :
 
- History        :
-  1.Date        : 2005-11-08
-    Author      : Roger Leo
-    Modification: Created function
-  2.Date        : 2011-11-11
-    Author      : h44270
-    Modification: 问题单号：DTS2010110500099/DTS2010111103124,修正GMM在W模下向GAS发送去指派消息
-*****************************************************************************/
 VOS_VOID GMM_FreeOldTlli(VOS_VOID)
 {
     LL_GMM_ASSIGN_REQ_MSG   *pAssignReqMsg;
@@ -1551,24 +1170,7 @@ VOS_VOID GMM_FreeOldTlli(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Prototype      : GMM_FreeSysTlli
- Description    : 释放系统默认TLLI
-                  HSS 4100 V200R001 新增
- Input          :
- Output         :
- Return Value   :
- Calls          :
- Called By      :
 
- History        :
-  1.Date        : 2005-11-08
-    Author      : Roger Leo
-    Modification: Created function
-  2. 日    期   : 2010年10月29日
-     作    者   : l00167671/罗开辉
-     修改内容   : 问题单号：DTS2010100802035,添加恢复LLC
-*****************************************************************************/
 VOS_VOID GMM_FreeSysTlli(VOS_VOID)
 {
     LL_GMM_ASSIGN_REQ_MSG   *pAssignReqMsg;
@@ -1709,24 +1311,7 @@ VOS_UINT32 GMM_AssignModifyTlli(VOS_UINT32 ulNewTlli, VOS_UINT8 ucType)
     return GMM_TRUE;
 }
 
-/*****************************************************************************
- Prototype      : GMM_AssignSysTlli
- Description    : 指配同步当前系统的TLLI
-                  HSS 4100 V200R001 新增
- Input          :
- Output         :
- Return Value   :
- Calls          :
- Called By      :
 
- History        :
-  1.Date        : 2005-11-15
-    Author      : Roger Leo
-    Modification: Created function
-  2.日    期   : 2011年12月8日
-    作    者   : s46746
-    修改内容   : 问题单号：DTS2011111603445,接收到系统消息而且层2已经指派后才能恢复RABM
-*****************************************************************************/
 VOS_VOID GMM_AssignSysTlli(VOS_VOID)
 {
     LL_GMM_ASSIGN_REQ_MSG   *pAssignReqMsg;
@@ -1781,24 +1366,7 @@ VOS_VOID GMM_AssignSysTlli(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Prototype      : GMM_AssignGsmKc
- Description    : 指配GSM Kc
-                  HSS 4100 V200R001 新增
- Input          :
- Output         :
- Return Value   :
- Calls          :
- Called By      :
 
- History        :
-  1.Date        : 2005-12-27
-    Author      : Roger Leo
-    Modification: Created function
-  2.日    期    : 2009年03月18日
-    作    者    : l65478
-    修改内容    : 根据问题单号：AT2D08671,数传状态下，W出服务区后，切到G，数传恢复失败，因为GMM没有配置LL加密算法
-*****************************************************************************/
 VOS_VOID GMM_AssignGsmKc(VOS_VOID)
 {
     LL_GMM_ASSIGN_REQ_MSG   *pAssignReqMsg;
@@ -1823,32 +1391,13 @@ VOS_VOID GMM_AssignGsmKc(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Prototype      : GMM_SaveAuthenResult
- Description    : 保存USIM卡鉴权结果
-                  HSS 4100 V200R001 新增
- Input          :
- Output         :
- Return Value   :
- Calls          :
- Called By      :
 
- History        :
-  1.Date        : 2005-11-08
-    Author      : Roger Leo
-    Modification: Created function
-  2.日    期   : 2013年07月23日
-    作    者   : y00245242
-    修改内容   : 为开发VOLTE，适配新的USIM接口
-*****************************************************************************/
 VOS_VOID GMM_SaveAuthenResult(USIMM_TELECOM_AUTH_CNF_STRU *pAuthCnf)
 {
     VOS_UINT8   i;
     VOS_UINT8  *pucAuthRes;
 
-    /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-23, begin */
     pucAuthRes = &(pAuthCnf->aucAuthRes[0]);
-    /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-23, end */
 
     /* 保存GSM鉴权结果 */
     if (GMM_UMTS_AUTHEN_UNSUPPORTED == g_GmmAuthenCtrl.ucUmtsAuthFlg)
@@ -1862,9 +1411,7 @@ VOS_VOID GMM_SaveAuthenResult(USIMM_TELECOM_AUTH_CNF_STRU *pAuthCnf)
             }
             else
             {
-                /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-8-9, begin */
                 g_GmmAuthenCtrl.aucRes[i-1] = *((pucAuthRes + i));
-                /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-8-9, end */
             }
         }
         return;
@@ -1907,24 +1454,7 @@ VOS_VOID GMM_SaveAuthenResult(USIMM_TELECOM_AUTH_CNF_STRU *pAuthCnf)
     return;
 }
 
-/*****************************************************************************
- Prototype      : GMM_UpdateAuthenCtrlFlg
- Description    : 更新鉴权控制结构中的标志
-                  HSS 4100 V200R001 新增
- Input          :
- Output         :
- Return Value   :
- Calls          :
- Called By      :
 
- History        :
-  1.Date        : 2005-11-08
-    Author      : Roger Leo
-    Modification: Created function
-  2.日    期    : 2007年01月13日
-    作    者    : s46746
-    修改内容    : 根据问题单号：A32D08326
-*****************************************************************************/
 VOS_VOID GMM_UpdateAuthenCtrlFlg(VOS_VOID)
 {
     VOS_UINT8   i;
@@ -1954,32 +1484,7 @@ VOS_VOID GMM_UpdateAuthenCtrlFlg(VOS_VOID)
 }
 
 
-/*****************************************************************************
- Prototype      : GMM_RcvGsmPagingAtRegNmlServ
- Description    : 在GMM_REGISTERED_NORMAL_SERVICE状态，
-                   接收GRRMM_PAGING_IND消息
-                  HSS 4100 V200R001 新增
- Input          :
- Output         :
- Return Value   :
 
- Calls          :
- Called By      :
-
- History        :
-  1.Date        : 2005-11-03
-    Author      : Roger Leo
-    Modification: Created function
-
-  2. x51137 2006/4/28 A32D02889
-  3.日    期   : 2012年3月1日
-    作    者   : z00161729
-    修改内容   : V7R1 C50 支持ISR修改
-  4.日    期   : 2014年9月5日
-    作    者   : w00167002
-    修改内容   : GCF.2.3.1.6 失败修改，在收到 GAS的PAGING IND时候不启动T3314，待
-                 收到LL下发的数据才启动。
-*****************************************************************************/
 VOS_VOID GMM_RcvGsmPagingAtRegNmlServ(GRRMM_PAGING_IND_ST *pMsg)
 {
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8    enRatType;
@@ -2147,32 +1652,12 @@ VOS_VOID GMM_RcvGsmPagingAtRauInit(GRRMM_PAGING_IND_ST *pMsg)
     return;
 }
 
-/*****************************************************************************
- Prototype      : GMM_RcvGsmPaging_RegPlmnSrch
- Description    : 在GMM_REGISTER_PLMN_SEARCH状态，
-                   接收GRRMM_PAGING_IND消息
- Input          :
- Output         :
- Return Value   :
 
- Calls          :
- Called By      :
-
- History        :
-  1.Date        : 2009-07-20
-    Author      : s46746
-    Modification: Created function
-  2.日    期   : 2012年8月15日
-    作    者   : z00161729
-    修改内容   : DCM定制需求和遗留问题修改
-*****************************************************************************/
 VOS_VOID GMM_RcvGsmPaging_RegPlmnSrch(GRRMM_PAGING_IND_ST *pMsg)
 {
     if (GAS_IMSI != pMsg->ucMSIDType)
     {
-        /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, begin */
         Gmm_SndMmcGprsServiceInd(NAS_MMC_GMM_GPRS_SERVICE_PAGING);
-        /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, end */
 
         g_GmmGlobalCtrl.enServReq = GMM_SERVICE_REQ_PAGING;
     }
@@ -2180,27 +1665,7 @@ VOS_VOID GMM_RcvGsmPaging_RegPlmnSrch(GRRMM_PAGING_IND_ST *pMsg)
     return;
 }
 
-/*****************************************************************************
- Prototype      : GMM_AuthType
- Description    : 分析当前鉴权过程类型
-                  HSS 4100 V200R001 新增
- Input          :
- Output         :
- Return Value   :
- Calls          :
- Called By      :
 
- History        :
- 1.Date        : 2005-11-08
-   Author      : Roger Leo
-   Modification: Created function
- 2.日    期   : 2011年01月18日
-   作    者   : lijun 00171473
-   修改内容   : W网络下SIM卡收到网络的3G鉴权应该按2G鉴权处理
- 3.日    期   : 2011年7月25日
-   作    者   : h44270
-   修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-*****************************************************************************/
 VOS_UINT8 GMM_AuthType(VOS_UINT8 ucAutnFlag)
 {
     VOS_UINT8                               usAuthTypeRet;
@@ -2281,46 +1746,7 @@ VOS_UINT8 GMM_AuthType(VOS_UINT8 ucAutnFlag)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_RauCompleteHandling
- 功能描述  : RAU过程中，收到RAU ACCEPT后，需要等待WRR或RABM的回复消息，
-             再收到所有回复消息后，回复网络RAU COMPLETE消息，及通知MMC等模块。
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年3月18日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-  2.日    期   : 2010年4月12日
-    作    者   : l65478
-    修改内容   : AT2D18389,在初始小区更新时，GMM应该通知LLC发送NULL帧
-  3.日    期   : 2010年9月09日
-    作    者   : l65478
-    修改内容   : DTS2010090302562,PDP激活过程中发生重选，PDP激活事件比标杆慢
-  4.日    期   : 2012年3月16日
-    作    者   : s46746
-    修改内容   : DTS2012030603347:GSM下,GMM进行联合注册,仅PS成功,5次触发CS注册,CS单独注册失败,
-                 接入层恢复GPRS失败导致又进行联合RAU,形成注册循环
-  5.日    期   : 2012年4月03日
-    作    者   : l65478
-    修改内容   : DTS2012032603732:在RAU失败时，却打印了RAU成功
-  6.日    期   : 2012年4月26日
-    作    者   : l65478
-    修改内容   : DTS2012041707074:在联合RAU PS成功,CS失败时,最后一次RAU ACCEPT没有通知MM/MMC注册结果
-  7.日    期   : 2012年12月22日
-    作    者   : l00171473
-    修改内容   : DTS2012122200186:调用2G的处理函数时没有判断2G
-  8.日    期   : 2014年6月13日
-    作    者   : w00242748
-    修改内容   : DSDS 新特性
-  9.日    期   : 2014年7月18日
-    作    者   : b00269685
-    修改内容   : DSDS IV修改
-*****************************************************************************/
 VOS_VOID NAS_GMM_RauCompleteHandling( VOS_VOID )
 {
     NAS_MSG_STRU                            *pSendNasMsg;
@@ -2412,96 +1838,31 @@ VOS_VOID NAS_GMM_RauCompleteHandling( VOS_VOID )
 }
 
 
-/*****************************************************************************
-  函 数 名  : NAS_GMM_GetGmmCasGlobalCtrl
-  功能描述  : 获取全局变量gstGmmCasGlobalCtrl的地址
-  输入参数  : 无
-  输出参数  : 无
-  返 回 值  : GMM_CAS_CTRL_STRU*
-  调用函数  :
-  被调函数  :
 
-  修改历史  :
-1.日    期  : 2015年4月7日
-  作    者  : wx270776
-  修改内容  : 新生成函数
-*****************************************************************************/
 GMM_CAS_CTRL_STRU* NAS_GMM_GetGmmCasGlobalCtrl(VOS_VOID)
 {
     return &(gstGmmCasGlobalCtrl);
 }
 
-/*****************************************************************************
-  函 数 名  : NAS_GMM_GetMui
-  功能描述  : 获取全局变量usMui的值
-  输入参数  : 无
-  输出参数  : 无
-  返 回 值  : VOS_UINT16
-  调用函数  :
-  被调函数  :
 
-  修改历史  :
-1.日    期  : 2015年4月7日
-  作    者  : wx270776
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT16 NAS_GMM_GetMui(VOS_VOID)
 {
     return (NAS_GMM_GetGmmCasGlobalCtrl()->usMui);
 }
 
-/*****************************************************************************
-  函 数 名  : NAS_GMM_IncreaseMui
-  功能描述  : usMui自增
-  输入参数  : 无
-  输出参数  : 无
-  返 回 值  : VOS_UINT16
-  调用函数  :
-  被调函数  :
 
-  修改历史  :
-1.日    期  : 2015年4月7日
-  作    者  : wx270776
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT16 NAS_GMM_IncreaseMui(VOS_VOID)
 {
     return ((NAS_GMM_GetGmmCasGlobalCtrl()->usMui)++);
 }
 
-/*****************************************************************************
-  函 数 名  : NAS_GMM_GetPowerOffDetachPsMui
-  功能描述  : 获取全局变量usPowerOffDetachPsMui的值
-  输入参数  : 无
-  输出参数  : 无
-  返 回 值  : VOS_UINT16
-  调用函数  :
-  被调函数  :
 
-  修改历史  :
-1.日    期  : 2015年4月7日
-  作    者  : wx270776
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT16 NAS_GMM_GetPowerOffDetachPsMui(VOS_VOID)
 {
     return (NAS_GMM_GetGmmCasGlobalCtrl()->usPowerOffDetachPsMui);
 }
 
-/*****************************************************************************
-  函 数 名  : NAS_GMM_SetPowerOffDetachPsMui
-  功能描述  : 设置usPowerOffDetachPsMui的值
-  输入参数  : VOS_UINT16                usMui
-  输出参数  : 无
-  返 回 值  : 无
-  调用函数  :
-  被调函数  :
 
-  修改历史  :
-1.日    期  : 2015年4月7日
-  作    者  : wx270776
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_GMM_SetPowerOffDetachPsMui(
     VOS_UINT16                          usMui
 )
@@ -2511,21 +1872,7 @@ VOS_VOID NAS_GMM_SetPowerOffDetachPsMui(
     return;
 }
 
-/*****************************************************************************
-  函 数 名  : NAS_GMM_IsPowerOffPsDetachMsg
-  功能描述  : 判断是否是PS关机DETACH消息
-  输入参数  : 无
-  输出参数  : 无
-  返 回 值  : VOS_TRUE: 是关机PS DETACH消息
-              VOS_FALSE:
-  调用函数  :
-  被调函数  :
 
-  修改历史  :
-1.日    期  : 2015年4月7日
-  作    者  : wx270776
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_GMM_IsPowerOffPsDetachMsg(
     NAS_MSG_STRU                       *pstNasL3Msg
 )
@@ -2547,20 +1894,7 @@ VOS_UINT32 NAS_GMM_IsPowerOffPsDetachMsg(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
-  函 数 名  : NAS_GMM_GetCiphInd
-  功能描述  : 获取CiphInd
-  输入参数  : 无
-  输出参数  : 无
-  返 回 值  : VOS_UINT8
-  调用函数  :
-  被调函数  :
 
-  修改历史  :
-1.日    期  : 2015年4月7日
-  作    者  : wx270776
-  修改内容  : 新生成函数:原有逻辑进行函数封装
-*****************************************************************************/
 VOS_UINT8 NAS_GMM_GetCiphInd(
     NAS_MSG_STRU                       *pstNasL3Msg
 )

@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasPrlParse.c
-  版 本 号   : 初稿
-  作    者   : y00245242
-  生成日期   : 2014年08月日
-  功能描述   : NAS 1X&EVDO PRL解析处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年08月06日
-    作    者   : y00245242
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -78,22 +63,7 @@ CNAS_PARSE_ACQ_TYPE_REC_PROC_ENTITY     g_astCnasPrlProcParseAcqTypeRec[] =
 *****************************************************************************/
 /*lint -save -e958 */
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_IsAcqRecTabValid
- 功能描述  : 捕获记录表是否有效
- 输入参数  : pstAcqRecInfo -- 捕获表记录信息
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  -- 有效
-             VOS_FALSE -- 无效
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年08月08日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_PRL_IsAcqRecTabValid(
     CNAS_PRL_ACQ_RECORD_INFO_STRU      *pstAcqRecInfo
 )
@@ -112,22 +82,7 @@ VOS_UINT32 CNAS_PRL_IsAcqRecTabValid(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_IsSysRecTabValid
- 功能描述  : 系统记录表是否有效
- 输入参数  : pstSysRecInfo -- 系统表记录信息
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  -- 有效
-             VOS_FALSE -- 无效
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年08月08日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_PRL_IsSysRecTabValid(
     CNAS_PRL_SYS_RECORD_INFO_STRU      *pstSysRecInfo
 )
@@ -146,42 +101,13 @@ VOS_UINT32 CNAS_PRL_IsSysRecTabValid(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_GetPrlInfoAddr
- 功能描述  : 获取当前PRL信息首地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回PRL信息首地址
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年08月08日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_PRL_INFO_STRU* CNAS_PRL_GetPrlInfoAddr(VOS_VOID)
 {
     return &(g_stCnasPrlInfo);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_CheckPrlCrcChecksum
- 功能描述  : 验证CRC校验和
- 输入参数  : pPrl -- prl原始数据地址
- 输出参数  : 无
- 返 回 值  : CNAS_PRL_PARSE_SUCCESS  － CRC校验成功
-             CNAS_PRL_PARSE_CRC_FAIL － CRC校验失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年08月06日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_PRL_PARSE_CAUSE_ENUM_UINT32 CNAS_PRL_CheckPrlCrcChecksum(
     VOS_UINT8                          *pPrl
 )
@@ -220,23 +146,7 @@ CNAS_PRL_PARSE_CAUSE_ENUM_UINT32 CNAS_PRL_CheckPrlCrcChecksum(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_ExtractBitStringToOctet
- 功能描述  : 由给定的字节流的开始地址，以及对应的bit偏移量，对应数据结构的bit长度，做数据的赋值
- 输入参数  : pucSrcAddr  -- 对应的bit字节流的地址
-             usOffsetPos -- 一个字节中的偏移位置
-             usBitLen    -- 需要赋值的bit长度
- 输出参数  : 无
- 返 回 值  : 转换后的字节内容
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月5日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 /*lint -e701*/
 VOS_UINT8  CNAS_PRL_ExtractBitStringToOctet(
     VOS_UINT8                          *pucSrcAddr,
@@ -278,23 +188,7 @@ VOS_UINT8  CNAS_PRL_ExtractBitStringToOctet(
 /*lint +e701*/
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_ExtractBitStringToWord
- 功能描述  : 由给定的字节流的开始地址，以及对应的bit偏移量，对应数据结构的bit长度，做数据的赋值
- 输入参数  : pucSrcAddr  -- 对应的bit字节流的地址
-             usOffsetPos -- 当前字节的bit偏移位置
-             usBitLen    -- 需要赋值的bit长度
- 输出参数  : 无
- 返 回 值  : 转换后的双字节内容
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月5日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 /*lint -e701*/
 VOS_UINT16 CNAS_PRL_ExtractBitStringToWord(
     VOS_UINT8                          *pucSrcAddr,
@@ -364,25 +258,7 @@ VOS_UINT16 CNAS_PRL_ExtractBitStringToWord(
 /*lint +e701*/
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_ParseAcqRec_CellularCdmaStandard
- 功能描述  : 解析一条acquisition record记录,Acquisition Record Type类型为
-             Cellular CDMA (Standard Channels)
- 输入参数  : pucSrc - 输入的bit流
-             usOffsetPos    - 对应在一个字节中的偏移位置
- 输出参数  : pastPrlAcqRecord - 输出的捕获记录数据结构
-             pulCurOffSetPos - 返回本记录中的bit偏移量
- 返 回 值  : VOS_TRUE  -- 解析成功
-             VOS_FALSE -- 解析失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_PRL_ParseAcqRec_CellularCdmaStandard(
     VOS_UINT8                          *pucSrc,
     VOS_UINT32                          ulOffsetPos,
@@ -487,24 +363,7 @@ VOS_UINT32 CNAS_PRL_ParseAcqRec_CellularCdmaStandard(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_ParseAcqRec_CellularCdmaCustom
- 功能描述  : 解析一条acquisition record记录,,Acquisition Record Type类型为
-             Cellular CDMA (Custom Channels)
- 输入参数  : pucSrc - 输入的bit流
-             usOffsetPos - 对应在一个字节中的偏移位置
- 输出参数  : pstPrlAcqRecord - 输出的捕获记录数据结构
-             pulCurOffSetPos - 返回本记录中的bit偏移量
- 返 回 值  : VOS_TRUE：解析成功； VOS_FALSE：解析失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_PRL_ParseAcqRec_CellularCdmaCustom(
     VOS_UINT8                          *pucSrc,
     VOS_UINT32                          ulOffsetPos,
@@ -606,24 +465,7 @@ VOS_UINT32 CNAS_PRL_ParseAcqRec_CellularCdmaCustom(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_ParseAcqRec_CellularCdmaPrefered
- 功能描述  : 解析一条acquisition record记录,,Acquisition Record Type类型为
-             Cellular CDMA Preferred
- 输入参数  : pucSrc - 输入的bit流
-             ulOffsetPos - 对应在一个字节中的偏移位置
- 输出参数  : pstPrlAcqRecord - 输出的捕获记录数据结构
-             pulCurOffSetPos - 返回本记录中的bit偏移量
- 返 回 值  : VOS_TRUE：解析成功； VOS_FALSE：解析失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_PRL_ParseAcqRec_CellularCdmaPrefered(
     VOS_UINT8                          *pucSrc,
     VOS_UINT32                          ulOffsetPos,
@@ -718,27 +560,7 @@ VOS_UINT32 CNAS_PRL_ParseAcqRec_CellularCdmaPrefered(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_ParseAcqRec_PcsCdmaUsingBlocks
- 功能描述  : 解析一条acquisition record记录,,Acquisition Record Type类型为
-             PCS CDMA (Using Blocks)
 
- 输入参数  : pucSrc - 输入的bit流
-             usOffsetPos    - 对应在一个字节中的偏移位置
-
- 输出参数  : pstPrlAcqRecord - 输出的捕获记录数据结构
-             pulCurOffSetPos - 返回本记录中的bit偏移量
-
- 返 回 值  : VOS_TRUE：解析成功； VOS_FALSE：解析失败
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_PRL_ParseAcqRec_PcsCdmaUsingBlocks(
     VOS_UINT8                          *pucSrc,
     VOS_UINT32                          ulOffsetPos,
@@ -846,27 +668,7 @@ VOS_UINT32 CNAS_PRL_ParseAcqRec_PcsCdmaUsingBlocks(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_ParseAcqRec_PcsCdmaUsingChannels
- 功能描述  : 解析一条acquisition record记录,,Acquisition Record Type类型为
-             PCS CDMA (Using Channels)
 
- 输入参数  : pucSrc - 输入的bit流
-             usOffsetPos    - 对应在一个字节中的偏移位置
-
- 输出参数  : pstPrlAcqRecord - 输出的捕获记录数据结构
-             pulCurOffSetPos - 返回本记录中的bit偏移量
-
- 返 回 值  : VOS_TRUE：解析成功； VOS_FALSE：解析失败
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_PRL_ParseAcqRec_PcsCdmaUsingChannels(
     VOS_UINT8                          *pucSrc,
     VOS_UINT32                          ulOffsetPos,
@@ -959,27 +761,7 @@ VOS_UINT32 CNAS_PRL_ParseAcqRec_PcsCdmaUsingChannels(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_ParseAcqRec_GenericCdma1X
- 功能描述  : 解析一条acquisition record记录,,Acquisition Record Type类型为
-             Generic Acquisition Record for cdma2000 1x and IS-95
 
- 输入参数  : pucSrc - 输入的bit流
-             usOffsetPos    - 对应在一个字节中的偏移位
-
- 输出参数  : pstPrlAcqRecord - 输出的捕获记录数据结构
-             pulCurOffSetPos - 返回本记录中的bit偏移量
-
- 返 回 值  : VOS_TRUE：解析成功； VOS_FALSE：解析失败
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_PRL_ParseAcqRec_GenericCdma1X(
     VOS_UINT8                          *pucSrc,
     VOS_UINT32                          ulOffsetPos,
@@ -1049,26 +831,7 @@ VOS_UINT32 CNAS_PRL_ParseAcqRec_GenericCdma1X(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_ParseAcqRec_CellularAnalog
- 功能描述  : 解析一条acquisition record记录,Acquisition Record Type类型为cellular
-             analog record type
- 输入参数  : pucSrc - 输入的bit流
-             usOffsetPos    - 对应在一个字节中的偏移位置
 
- 输出参数  : pstPrlAcqRecord - 输出的捕获记录数据结构
-             pulCurOffSetPos - 返回本记录中的bit偏移量
-
- 返 回 值  : VOS_TRUE：解析成功； VOS_FALSE：解析失败
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_PRL_ParseAcqRec_CellularAnalog(
     VOS_UINT8                          *pucSrc,
     VOS_UINT32                          ulOffsetPos,
@@ -1134,26 +897,7 @@ VOS_UINT32 CNAS_PRL_ParseAcqRec_CellularAnalog(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_ParseAcqRec_JtacsCdmaStandardChannels
- 功能描述  : 解析一条acquisition record记录,Acquisition Record Type类型JTACS
-             CDMA standard channels
- 输入参数  : pucSrc - 输入的bit流
-             usOffsetPos    - 对应在一个字节中的偏移位置
 
- 输出参数  : pstPrlAcqRecord - 输出的捕获记录数据结构
-             pulCurOffSetPos - 返回本记录中的bit偏移量
-
- 返 回 值  : VOS_TRUE：解析成功； VOS_FALSE：解析失败
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_PRL_ParseAcqRec_JtacsCdmaStandardChannels(
     VOS_UINT8                          *pucSrc,
     VOS_UINT32                          ulOffsetPos,
@@ -1224,26 +968,7 @@ VOS_UINT32 CNAS_PRL_ParseAcqRec_JtacsCdmaStandardChannels(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_ParseAcqRec_JtacsCdmaCustomChannels
- 功能描述  : 解析一条acquisition record记录,Acquisition Record Type类型JTACS
-             CDMA custom channels
- 输入参数  : pucSrc - 输入的bit流
-             usOffsetPos    - 对应在一个字节中的偏移位置
 
- 输出参数  : pstPrlAcqRecord - 输出的捕获记录数据结构
-             pulCurOffSetPos - 返回本记录中的bit偏移量
-
- 返 回 值  : VOS_TRUE：解析成功； VOS_FALSE：解析失败
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_PRL_ParseAcqRec_JtacsCdmaCustomChannels(
     VOS_UINT8                          *pucSrc,
     VOS_UINT32                          ulOffsetPos,
@@ -1313,26 +1038,7 @@ VOS_UINT32 CNAS_PRL_ParseAcqRec_JtacsCdmaCustomChannels(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_ParseAcqRec_2gBandUsingChannels
- 功能描述  : 解析一条acquisition record记录,Acquisition Record Type类型2G BAND
-             USING CHANNELS
- 输入参数  : pucSrc - 输入的bit流
-             usOffsetPos    - 对应在一个字节中的偏移位置
 
- 输出参数  : pstPrlAcqRecord - 输出的捕获记录数据结构
-             pulCurOffSetPos - 返回本记录中的bit偏移量
-
- 返 回 值  : VOS_TRUE：解析成功； VOS_FALSE：解析失败
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_PRL_ParseAcqRec_2gBandUsingChannels(
     VOS_UINT8                          *pucSrc,
     VOS_UINT32                          ulOffsetPos,
@@ -1402,30 +1108,7 @@ VOS_UINT32 CNAS_PRL_ParseAcqRec_2gBandUsingChannels(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_ParseAcqRec_GenericAcqRecordForHrpd
- 功能描述  : 解析一条acquisition record记录,Acquisition Record Type类型Generic
-             acquisition record for HRPD
 
- 输入参数  : pucSrc - 输入的bit流
-             usOffsetPos    - 对应在一个字节中的偏移位置
-
- 输出参数  : pstPrlAcqRecord - 输出的捕获记录数据结构
-             pulCurOffSetPos - 返回本记录中的bit偏移量
-
- 返 回 值  : VOS_TRUE：解析成功； VOS_FALSE：解析失败
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-  2.日    期   : 2014年12月6日
-    作    者   : d00212987
-    修改内容   : EVDO HSD Phase0
-
-*****************************************************************************/
 VOS_UINT32 CNAS_PRL_ParseAcqRec_GenericAcqRecordForHrpd(
     VOS_UINT8                          *pucSrc,
     VOS_UINT32                          ulOffsetPos,
@@ -1509,26 +1192,7 @@ VOS_UINT32 CNAS_PRL_ParseAcqRec_GenericAcqRecordForHrpd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_ParseAcqRec_ComAcqTabRecordForUmb
- 功能描述  : 解析一条acquisition record记录,Acquisition Record Type类型Common
-             Acquisition Table Record for UMB
 
- 输入参数  : pucSrc - 输入的bit流
-             usOffsetPos    - 对应在一个字节中的偏移位置
-
- 输出参数  : pstPrlAcqRecord - 输出的捕获记录数据结构
-             pulCurOffSetPos - 返回本记录中的bit偏移量
- 返 回 值  : VOS_TRUE：解析成功； VOS_FALSE：解析失败
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_PRL_ParseAcqRec_ComAcqTabRecordForUmb(
     VOS_UINT8                          *pucSrc,
     VOS_UINT32                          ulOffsetPos,
@@ -1586,27 +1250,7 @@ VOS_UINT32 CNAS_PRL_ParseAcqRec_ComAcqTabRecordForUmb(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_ParseAcqRec_ComAcqRecordForUmb
- 功能描述  : 解析一条acquisition record记录,Acquisition Record Type类型Common
-             Acquisition Record for UMB
 
- 输入参数  : pucSrc - 输入的bit流
-             usOffsetPos    - 对应在一个字节中的偏移位置
-
- 输出参数  : pstPrlAcqRecord - 输出的捕获记录数据结构
-             pulCurOffSetPos - 返回本记录中的bit偏移量
-
- 返 回 值  : VOS_TRUE：解析成功； VOS_FALSE：解析失败
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_PRL_ParseAcqRec_ComAcqRecordForUmb(
     VOS_UINT8                          *pucSrc,
     VOS_UINT32                          ulOffsetPos,
@@ -1663,30 +1307,7 @@ VOS_UINT32 CNAS_PRL_ParseAcqRec_ComAcqRecordForUmb(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_ParseAcqRec_NotSupportRecType
- 功能描述  : 解析一条acquisition record记录,Acquisition Record Type类型不支持
 
- 输入参数  : pucSrc         - 输入的bit流
-             usOffsetPos    - 对应在一个字节中的偏移位置
-
- 输出参数  : pstPrlAcqRecord - 输出的捕获记录数据结构
-             pulCurOffSetPos - 返回本记录中的bit偏移量
-
- 返 回 值  : VOS_TRUE：解析成功； VOS_FALSE：解析失败
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年8月14日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_PRL_ParseAcqRec_NotSupportRecType(
     VOS_UINT8                          *pucSrc,
     VOS_UINT32                          ulOffsetPos,
@@ -1749,25 +1370,7 @@ VOS_UINT32 CNAS_PRL_ParseAcqRec_NotSupportRecType(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_ParseExAcqRecTbl
- 功能描述  : 对每一个捕获记录做解析
- 输入参数  : enAcqType - 捕获记录类型
-             pucSrc    - 输入的原始码流
- 输出参数  : pstPrlAcqRecord - 解析后的数据结构
- 返 回 值  : VOS_TRUE：解析成功； VOS_FALSE：解析失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年8月14日
-    作    者   : y00245242
-    修改内容   : DTS2015030604458
-*****************************************************************************/
 VOS_UINT32 CNAS_PRL_ParseExAcqRecTbl(
     CNAS_PRL_ACQ_TYPE_ENUM_UINT8        enAcqType,
     VOS_UINT8                          *pucSrc,
@@ -1806,23 +1409,7 @@ VOS_UINT32 CNAS_PRL_ParseExAcqRecTbl(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_AddCTCCCustomizeFreqListIntoAcqRec
- 功能描述  : 将中国电信自定义频点加入到捕获表中
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月7日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-*****************************************************************************/
 VOS_VOID CNAS_PRL_AddCTCCCustomizeFreqListIntoAcqRec(VOS_VOID)
 {
     CNAS_CCB_CTCC_CUSTOMIZE_FREQ_LIST_STRU                 *pstCustFreqList = VOS_NULL_PTR;
@@ -1860,24 +1447,7 @@ VOS_VOID CNAS_PRL_AddCTCCCustomizeFreqListIntoAcqRec(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_ParsePrlAcqRec
- 功能描述  : 解析一条acquisition record记录
- 输入参数  : pucSrc:原始bit码流
-             pstPrlAcqRecord:解析后的acquisition record
- 输出参数  : pulBitOffset:解析后的bit偏移量
- 返 回 值  : VOS_TRUE：解析成功； VOS_FALSE：解析失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-  2.日    期   : 2015年7月7日
-    作    者   : w00242748
-    修改内容   : CDMA 1X Iteration 17 modified
-*****************************************************************************/
 CNAS_PRL_PARSE_CAUSE_ENUM_UINT32 CNAS_PRL_ParsePrlAcqRec(
     VOS_UINT8                          *pucSrc,
     VOS_UINT32                          ulOffsetPos,
@@ -1965,21 +1535,7 @@ CNAS_PRL_PARSE_CAUSE_ENUM_UINT32 CNAS_PRL_ParsePrlAcqRec(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_ParseSysIdRec_1X
- 功能描述  : 解析Type-specific system ID record记录
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_PRL_ParseSysIdRec_1X(
     VOS_UINT8                          *pucSrc,
     VOS_UINT32                          ulOffsetPos,
@@ -2041,24 +1597,7 @@ VOS_VOID CNAS_PRL_ParseSysIdRec_1X(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_ParseSubnetComm
- 功能描述  : 解析Type-specific system ID record记录
- 输入参数  : pucSrc       : EPRL 码流
-             ulOffsetPos  : SubnetCom相对表头的码流
-             pstIs586Id   : Subnet地址
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年12月3日
-    作    者   : d00212987
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_PRL_ParseSubnetComm(
     VOS_UINT8                          *pucSrc,
     VOS_UINT32                          ulOffsetPos,
@@ -2095,25 +1634,7 @@ VOS_VOID CNAS_PRL_ParseSubnetComm(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_ParseSysIdRec_Is856
- 功能描述  : 解析Type-specific system ID record记录
- 输入参数  : pucSrc          - EPRL 码流
-             ulOffsetPos     - EPRL 码流当前位置
-             pstIs856Id      - 解析存码流放地址
 
- 输出参数  : pulCurOffsetPos - 解析完的bit码流长度
-
- 返 回 值  : VOS_TRUE：解析成功； VOS_FALSE：解析失败
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年12月3日
-    作    者   : d00212987
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_PRL_ParseSysIdRec_Is856(
     VOS_UINT8                          *pucSrc,
     VOS_UINT32                          ulOffsetPos,
@@ -2194,23 +1715,7 @@ VOS_VOID CNAS_PRL_ParseSysIdRec_Is856(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_ParseSysIdRec_Mcc
- 功能描述  : 解析Type-specific system ID record记录
- 输入参数  : pucSrc          - EPRL 码流
-             ulOffsetPos     - EPRL 码流当前位置
-             pstMccMncIdId   - 解析存码流放地址
 
- 输出参数  : pulCurOffsetPos - 解析完的bit码流长度
- 返 回 值  : VOS_TRUE：解析成功； VOS_FALSE：解析失败
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年12月3日
-    作    者   : d00212987
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_PRL_ParseSysIdRec_Mcc(
     VOS_UINT8                          *pucSrc,
     VOS_UINT32                          ulOffsetPos,
@@ -2366,25 +1871,7 @@ VOS_UINT32 CNAS_PRL_ParseSysIdRec_Mcc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_ParseSysRec_REV3
- 功能描述  : 解析一条system record记录
- 输入参数  : pucSrc:原始bit码流
-             pstPrlAcqRecord:解析后的system record
- 输出参数  : pulBitOffset:解析后的bit偏移量
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-  2.日    期   : 2015年7月3日
-    作    者   : w00242748
-    修改内容   : CDMA 1X Iteration 17
-
-*****************************************************************************/
 VOS_VOID CNAS_PRL_ParseSysRec_REV3(
     VOS_UINT8                          *pucSrc,
     VOS_UINT32                          ulOffsetPos,
@@ -2521,22 +2008,7 @@ VOS_VOID CNAS_PRL_ParseSysRec_REV3(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_ParseSysRec_REV1
- 功能描述  : 解析一条PRL system record记录
- 输入参数  : pucSrc:原始bit码流
-             pstPrlAcqRecord:解析后的system record
- 输出参数  : pulBitOffset:解析后的bit偏移量
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月10日
-    作    者   : c00294324
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_PRL_ParseSysRec_REV1(
     VOS_UINT8                          *pucSrc,
     VOS_UINT32                          ulOffsetPos,
@@ -2626,25 +2098,7 @@ VOS_VOID CNAS_PRL_ParseSysRec_REV1(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_ParsePrlSysRec
- 功能描述  : 解析一条system record记录
- 输入参数  : pucSrc:原始bit码流
-             pstPrlAcqRecord:解析后的system record
- 输出参数  : pulBitOffset:解析后的bit偏移量
- 返 回 值  : VOS_TRUE：解析成功； VOS_FALSE：解析失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-  2.日    期   : 2015年7月7日
-    作    者   : w00242748
-    修改内容   : CDMA 1X Iteration 17 modified
-
-*****************************************************************************/
 CNAS_PRL_PARSE_CAUSE_ENUM_UINT32 CNAS_PRL_ParsePrlSysRec(
     VOS_UINT8                          *pucSrc,
     VOS_UINT32                          ulOffsetPos,
@@ -2769,22 +2223,7 @@ CNAS_PRL_PARSE_CAUSE_ENUM_UINT32 CNAS_PRL_ParsePrlSysRec(
     return CNAS_PRL_PARSE_SUCCESS;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_ParsePrlHeader
- 功能描述  : 解析PRL表中的信息
- 输入参数  : pucSrc -- PRL数据原始数据首地址
-             enPrlRev -- PRL版本，为解析使用
- 输出参数  : 无
- 返 回 值  : VOS_TRUE：解析成功； VOS_FALSE：解析失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_PRL_PARSE_CAUSE_ENUM_UINT32 CNAS_PRL_ParsePrlHeader(
     VOS_UINT8                          *pucSrc,
     CNAS_PRL_SSPR_P_REV_ENUM_UINT8      enPrlRev
@@ -2932,28 +2371,7 @@ CNAS_PRL_PARSE_CAUSE_ENUM_UINT32 CNAS_PRL_ParsePrlHeader(
     return CNAS_PRL_PARSE_SUCCESS;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_ParsePrlCalcCommSubnetSize
- 功能描述  : 解析COMMON_SUBNET_TABLE占空大小
- 输入参数  : pucSrc        -- 当前record首地址
-             ucOffsetPos   -- 当前record在字节中的bit偏移
-             usNumSubnetRecs- 当前Sub net个数
 
- 输出参数  : pulBitOffset －－ 返回当前记录的bit偏移
-
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-  2.日    期   : 2014年12月6日
-    作    者   : d00212987
-    修改内容   : EVDO HSD Phase0
-
-*****************************************************************************/
 VOS_VOID CNAS_PRL_ParsePrlCalcComSubnetBits(
     VOS_UINT8                          *pucSrc,
     VOS_UINT16                          usNumSubnetRecs,
@@ -2995,22 +2413,7 @@ VOS_VOID CNAS_PRL_ParsePrlCalcComSubnetBits(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_ParsePrlInfo
- 功能描述  : 解析PRL表中的信息
- 输入参数  : pucSrc   -- PRL原始数据
-             usSrcLen -- 原始数据长度
- 输出参数  : 无
- 返 回 值  : VOS_TRUE：解析成功； VOS_FALSE：解析失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_PRL_PARSE_CAUSE_ENUM_UINT32 CNAS_PRL_ParsePrlInfo(
     VOS_UINT8                          *pucSrc,
     VOS_UINT16                          usSrcLen,
@@ -3085,26 +2488,7 @@ CNAS_PRL_PARSE_CAUSE_ENUM_UINT32 CNAS_PRL_ParsePrlInfo(
     return CNAS_PRL_PARSE_SUCCESS;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_IsConcatenatedPrlProbable
- 功能描述  : 串连PRL是否是可能，如果是，返回TRUE，否则为FALSE
 
- 输入参数  : pucSrc             -- PRL原始数据
-             usSrcLen           -- 原始数据长度
-             usFirstPrlListSize -- 首个PRL长度
-
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  －－可能有串连PRL
-             VOS_FALSE --  不可能有串连PRL
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年10月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_PRL_IsConcatenatedPrlProbable(
     VOS_UINT8                          *pucSrc,
     VOS_UINT16                          usSrcLen,
@@ -3131,25 +2515,7 @@ VOS_UINT32 CNAS_PRL_IsConcatenatedPrlProbable(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_ParsePrlBitStream
- 功能描述  : 解析PRL表中的信息, 默认使用版本1解析码流，如果解析失败，尝试用版本
-             2解析码流
-             如果是串连PRL，
 
- 输入参数  : pucSrc   -- PRL原始数据
-             usSrcLen -- 原始数据长度
- 输出参数  : 无
- 返 回 值  : VOS_TRUE：解析成功； VOS_FALSE：解析失败
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年10月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_PRL_ParsePrlBitStream(
     VOS_UINT8                          *pucSrc,
     VOS_UINT16                          usSrcLen
@@ -3248,24 +2614,7 @@ VOS_UINT32 CNAS_PRL_ParsePrlBitStream(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_ParseEprlBitStream
- 功能描述  : 解析PRL表中的信息, 默认使用版本3解析码流，如果解析失败，尝试用版本
-             1解析码流
 
- 输入参数  : pucSrc   -- PRL原始数据
-             usSrcLen -- 原始数据长度
- 输出参数  : 无
- 返 回 值  : VOS_TRUE：解析成功； VOS_FALSE：解析失败
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年10月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_PRL_ParseEprlBitStream(
     VOS_UINT8                          *pucSrc,
     VOS_UINT16                          usSrcLen

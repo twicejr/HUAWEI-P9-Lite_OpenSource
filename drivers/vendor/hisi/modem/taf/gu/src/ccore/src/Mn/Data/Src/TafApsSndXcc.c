@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafApsSndXcc.c
-  版 本 号   : 初稿
-  作    者   : y00213812
-  生成日期   : 2014年09月18日
-  最近修改   :
-  功能描述   : TAF APS模块发送消息给XCC的函数实现文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年09月18日
-    作    者   : y00213812
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -60,21 +43,7 @@ extern "C" {
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndXccDataCallSuspendRsp
- 功能描述  : 发送ID_APS_XCC_DATA_CALL_SUSPEND_RSP消息
- 输入参数  : VOS_UINT8                           ucConnectId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月18日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SndXccDataCallSuspendRsp(
     VOS_UINT8                           ucConnectId
 )
@@ -103,22 +72,7 @@ VOS_VOID TAF_APS_SndXccDataCallSuspendRsp(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndXccHangUpDataCallReq
- 功能描述  : 发送ID_APS_XCC_HANGUP_DATA_CALL_REQ消息
- 输入参数  : VOS_UINT8                           ucCallId
-             TAF_XCC_END_REASON_ENUM_UINT8       enEndReason
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月15日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SndXccHangUpDataCallReq(
     VOS_UINT8                           ucCallId,
     TAF_XCC_END_REASON_ENUM_UINT8       enEndReason
@@ -148,22 +102,7 @@ VOS_VOID TAF_APS_SndXccHangUpDataCallReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndXccOrigDataCallReq
- 功能描述  : 发送ID_APS_XCC_ORIG_DATA_CALL_REQ消息
- 输入参数  : VOS_UINT8                    ucPdpId
-             VOS_UINT8                    ucHrpdHandOff1xFlg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月15日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SndXccOrigDataCallReq(
     VOS_UINT8                           ucPdpId,
     VOS_UINT8                           ucHrpdHandOff1xFlg
@@ -223,21 +162,7 @@ VOS_VOID TAF_APS_SndXccOrigDataCallReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndXccIncomingCallRsp
- 功能描述  : 发送ID_APS_XCC_INCOMING_CALL_RSP消息
- 输入参数  : VOS_UINT8                  ucPdpId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月15日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SndXccIncomingCallRsp(
     VOS_UINT8                           ucCallId,
     VOS_UINT8                           ucConnectId,
@@ -270,21 +195,7 @@ VOS_VOID TAF_APS_SndXccIncomingCallRsp(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndXccAnswerDataCallReq
- 功能描述  : 发送ID_APS_XCC_ANSWER_DATA_CALL_REQ消息
- 输入参数  : VOS_UINT8                   ucPdpId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月15日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SndXccAnswerDataCallReq(
     VOS_UINT8                           ucPdpId
 )
@@ -315,21 +226,7 @@ VOS_VOID TAF_APS_SndXccAnswerDataCallReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndXccEpdszidInfoNtf
- 功能描述  : APS transfer Pzid info to XCC
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月30日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SndXccPzidInfoNtf(
     XCC_APS_SO_CTRL_MSG_IND_STRU       *pstSoCtrlMsgInd
 )
@@ -389,21 +286,7 @@ VOS_VOID TAF_APS_SndXccPzidInfoNtf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SndXccReserveSrIdNtf
- 功能描述  : APS transfer Pzid info to XCC
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月24日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SndXccReserveSrIdNtf(
     VOS_UINT8                           ucSrId,
     VOS_UINT8                           ucCallId,
@@ -439,20 +322,7 @@ VOS_VOID TAF_APS_SndXccReserveSrIdNtf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_IsExist1xDataOperation
- 功能描述  : 获取当前状态机状态
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月14日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_IsExist1xDataOperation(
     TAF_CDMA_SO_TYPE_ENUM_UINT16        enSo
 )

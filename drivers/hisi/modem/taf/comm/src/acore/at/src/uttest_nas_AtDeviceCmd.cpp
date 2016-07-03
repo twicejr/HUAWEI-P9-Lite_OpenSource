@@ -35,14 +35,7 @@ AT_PAR_CMD_ELEMENT_STRU             gstHssptCmdInfo = {AT_CMD_HSSPT,
 
 
 
-/*****************************************************************************
-类名     : Test_AT_SetHsspt
-功能描述 : Test_AT_SetHsspt UT工程类
-修改历史 :
-1.日   期  : 2012-04-21
-作   者  : l60609
-修改内容 :
-*****************************************************************************/
+
 class Test_AT_SetHsspt: public ::testing::Test
 {
 public:
@@ -57,15 +50,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetHsspt_001
-测试用例标题      : 非设置命令
-预期结果          : 返回AT_DPAUPA_ERROR
-修改历史          :
-1.日   期  : 2012-04-21
-作   者  : l60609
-修改内容 :
-*******************************************************************/
+
 TEST_F(Test_AT_SetHsspt, Test_AT_SetHsspt_001)
 {
     /*变量定义*/
@@ -85,15 +70,7 @@ TEST_F(Test_AT_SetHsspt, Test_AT_SetHsspt_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetHsspt_002
-测试用例标题      : 参数个数不为1
-预期结果          : 返回AT_DPAUPA_ERROR
-修改历史          :
-1.日   期  : 2012-04-21
-作   者  : l60609
-修改内容 :
-*******************************************************************/
+
 TEST_F(Test_AT_SetHsspt, Test_AT_SetHsspt_002)
 {
     /*变量定义*/
@@ -115,15 +92,7 @@ TEST_F(Test_AT_SetHsspt, Test_AT_SetHsspt_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetHsspt_003
-测试用例标题      : DATALOCK未解锁
-预期结果          : 返回AT_DATA_UNLOCK_ERROR
-修改历史          :
-1.日   期  : 2012-04-21
-作   者  : l60609
-修改内容 :
-*******************************************************************/
+
 TEST_F(Test_AT_SetHsspt, Test_AT_SetHsspt_003)
 {
     /*变量定义*/
@@ -147,15 +116,7 @@ TEST_F(Test_AT_SetHsspt, Test_AT_SetHsspt_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetHsspt_004
-测试用例标题      : 设置W
-预期结果          : 返回AT_OK
-修改历史          :
-1.日   期  : 2012-04-21
-作   者  : l60609
-修改内容 :
-*******************************************************************/
+
 TEST_F(Test_AT_SetHsspt, Test_AT_SetHsspt_004)
 {
     /*变量定义*/
@@ -188,15 +149,7 @@ TEST_F(Test_AT_SetHsspt, Test_AT_SetHsspt_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetHsspt_005
-测试用例标题      : 设置DPA
-预期结果          : 返回AT_OK
-修改历史          :
-1.日   期  : 2012-04-21
-作   者  : l60609
-修改内容 :
-*******************************************************************/
+
 TEST_F(Test_AT_SetHsspt, Test_AT_SetHsspt_005)
 {
     /*变量定义*/
@@ -229,15 +182,7 @@ TEST_F(Test_AT_SetHsspt, Test_AT_SetHsspt_005)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetHsspt_006
-测试用例标题      : 设置DPA/UPA
-预期结果          : 返回AT_OK
-修改历史          :
-1.日   期  : 2012-04-21
-作   者  : l60609
-修改内容 :
-*******************************************************************/
+
 TEST_F(Test_AT_SetHsspt, Test_AT_SetHsspt_006)
 {
     /*变量定义*/
@@ -270,15 +215,7 @@ TEST_F(Test_AT_SetHsspt, Test_AT_SetHsspt_006)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetHsspt_007
-测试用例标题      : 设置HSPA+
-预期结果          : 返回AT_OK
-修改历史          :
-1.日   期  : 2012-04-21
-作   者  : l60609
-修改内容 :
-*******************************************************************/
+
 TEST_F(Test_AT_SetHsspt, Test_AT_SetHsspt_007)
 {
     /*变量定义*/
@@ -312,14 +249,7 @@ TEST_F(Test_AT_SetHsspt, Test_AT_SetHsspt_007)
 }
 
 
-/*****************************************************************************
-类名     : Test_AT_QryHsspt
-功能描述 : Test_AT_QryHsspt UT工程类
-修改历史 :
-1.日   期  : 2012-04-21
-作   者  : l60609
-修改内容 :
-*****************************************************************************/
+
 class Test_AT_QryHsspt: public ::testing::Test
 {
 public:
@@ -334,15 +264,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryHsspt_001
-测试用例标题      : W
-预期结果          : 返回0
-修改历史          :
-1.日   期  : 2012-04-21
-作   者  : l60609
-修改内容 :
-*******************************************************************/
+
 TEST_F(Test_AT_QryHsspt, Test_AT_QryHsspt_001)
 {
     /*变量定义*/
@@ -374,15 +296,7 @@ TEST_F(Test_AT_QryHsspt, Test_AT_QryHsspt_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryHsspt_002
-测试用例标题      : DPA
-预期结果          : 返回1
-修改历史          :
-1.日   期  : 2012-04-21
-作   者  : l60609
-修改内容 :
-*******************************************************************/
+
 TEST_F(Test_AT_QryHsspt, Test_AT_QryHsspt_002)
 {
     /*变量定义*/
@@ -414,15 +328,7 @@ TEST_F(Test_AT_QryHsspt, Test_AT_QryHsspt_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryHsspt_003
-测试用例标题      : DPA/UPA
-预期结果          : 返回2
-修改历史          :
-1.日   期  : 2012-04-21
-作   者  : l60609
-修改内容 :
-*******************************************************************/
+
 TEST_F(Test_AT_QryHsspt, Test_AT_QryHsspt_003)
 {
     /*变量定义*/
@@ -455,15 +361,7 @@ TEST_F(Test_AT_QryHsspt, Test_AT_QryHsspt_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryHsspt_004
-测试用例标题      : DPA/UPA
-预期结果          : 返回6
-修改历史          :
-1.日   期  : 2012-04-21
-作   者  : l60609
-修改内容 :
-*******************************************************************/
+
 TEST_F(Test_AT_QryHsspt, Test_AT_QryHsspt_004)
 {
     /*变量定义*/
@@ -495,14 +393,7 @@ TEST_F(Test_AT_QryHsspt, Test_AT_QryHsspt_004)
 
     GlobalMockObject::verify();
 }
-/*****************************************************************************
-类名     : Test_AT_ExistSpecificPort
-功能描述 : Test_AT_ExistSpecificPort UT工程类
-修改历史 :
-1.日   期  : 2012-02-08
-作   者  : f62575
-修改内容 : B050 Project
-*****************************************************************************/
+
 class Test_AT_ExistSpecificPort: public ::testing::Test
 {
 public:
@@ -517,15 +408,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_ExistSpecificPort_001
-测试用例标题      : 存在指定类型的DIAG端口
-预期结果          : 返回VOS_TRUE
-修改历史          :
-1.日   期  : 2012-02-08
-作   者  : f62575
-修改内容 : B050 Project
-*******************************************************************/
+
 TEST_F(Test_AT_ExistSpecificPort, Test_AT_ExistSpecificPort_001)
 {
     /*变量定义*/
@@ -556,15 +439,7 @@ TEST_F(Test_AT_ExistSpecificPort, Test_AT_ExistSpecificPort_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_ExistSpecificPort_002
-测试用例标题      : 不存在指定类型的DIAG端口
-预期结果          : 返回VOS_FALSE
-修改历史          :
-1.日   期  : 2012-02-08
-作   者  : f62575
-修改内容 : B050 Project
-*******************************************************************/
+
 TEST_F(Test_AT_ExistSpecificPort, Test_AT_ExistSpecificPort_002)
 {
     /*变量定义*/
@@ -595,15 +470,7 @@ TEST_F(Test_AT_ExistSpecificPort, Test_AT_ExistSpecificPort_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_ExistSpecificPort_003
-测试用例标题      : NV项读取失败
-预期结果          : 返回VOS_FALSE
-修改历史          :
-1.日   期  : 2012-02-08
-作   者  : f62575
-修改内容 : B050 Project
-*******************************************************************/
+
 TEST_F(Test_AT_ExistSpecificPort, Test_AT_ExistSpecificPort_003)
 {
     /*变量定义*/
@@ -634,14 +501,7 @@ TEST_F(Test_AT_ExistSpecificPort, Test_AT_ExistSpecificPort_003)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_ExistSpecificPortChange
-功能描述 : Test_AT_ExistSpecificPortChange UT工程类
-修改历史 :
-1.日   期  : 2012-02-08
-作   者  : f62575
-修改内容 : B050 Project
-*****************************************************************************/
+
 class Test_AT_ExistSpecificPortChange: public ::testing::Test
 {
 public:
@@ -656,15 +516,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : AT_ExistSpecificPortChange_001
-测试用例标题      : 切换后的第一个端口形态为AT_DEV_CDROM
-预期结果          : 返回VOS_OK但端口关闭操作不执行
-修改历史          :
-1.日   期  : 2012-02-08
-作   者  : f62575
-修改内容 : B050 Project
-*******************************************************************/
+
 TEST_F(Test_AT_ExistSpecificPortChange, AT_ExistSpecificPortChange_001)
 {
     /*变量定义*/
@@ -691,14 +543,7 @@ TEST_F(Test_AT_ExistSpecificPortChange, AT_ExistSpecificPortChange_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_CloseDiagPort
-功能描述 : Test_AT_CloseDiagPort UT工程类
-修改历史 :
-1.日   期  : 2012-02-08
-作   者  : f62575
-修改内容 : B050 Project
-*****************************************************************************/
+
 class Test_AT_CloseDiagPort: public ::testing::Test
 {
 public:
@@ -713,15 +558,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_CloseDiagPort_001
-测试用例标题      : 切换后的第一个端口形态为AT_DEV_CDROM
-预期结果          : 返回VOS_OK但端口关闭操作不执行
-修改历史          :
-1.日   期  : 2012-02-08
-作   者  : f62575
-修改内容 : B050 Project
-*******************************************************************/
+
 TEST_F(Test_AT_CloseDiagPort, Test_AT_CloseDiagPort_001)
 {
     /*变量定义*/
@@ -752,14 +589,7 @@ TEST_F(Test_AT_CloseDiagPort, Test_AT_CloseDiagPort_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_OpenDiagPort
-功能描述 : Test_AT_OpenDiagPort UT工程类
-修改历史 :
-1.日   期  : 2012-02-08
-作   者  : f62575
-修改内容 : B050 Project
-*****************************************************************************/
+
 class Test_AT_OpenDiagPort: public ::testing::Test
 {
 public:
@@ -774,15 +604,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_OpenDiagPort_001
-测试用例标题      : 切换后的第一个端口形态为AT_DEV_CDROM
-预期结果          : 返回VOS_OK但端口关闭操作不执行
-修改历史          :
-1.日   期  : 2012-02-08
-作   者  : f62575
-修改内容 : B050 Project
-*******************************************************************/
+
 TEST_F(Test_AT_OpenDiagPort, Test_AT_OpenDiagPort_001)
 {
     /*变量定义*/
@@ -813,15 +635,7 @@ TEST_F(Test_AT_OpenDiagPort, Test_AT_OpenDiagPort_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_CloseDiagPort_002
-测试用例标题      : 切换后的第一个端口形态为AT_DEV_SD
-预期结果          : 返回VOS_OK但端口关闭操作不执行
-修改历史          :
-1.日   期  : 2012-02-08
-作   者  : f62575
-修改内容 : B050 Project
-*******************************************************************/
+
 TEST_F(Test_AT_CloseDiagPort, Test_AT_CloseDiagPort_002)
 {
     /*变量定义*/
@@ -852,14 +666,7 @@ TEST_F(Test_AT_CloseDiagPort, Test_AT_CloseDiagPort_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_GetSimLockStatus
-功能描述 : Test_AT_GetSimLockStatus UT工程类
-修改历史 :
-1.日   期  : 2012-02-08
-作   者  : f62575
-修改内容 : B050 Project
-*****************************************************************************/
+
 class Test_AT_GetSimLockStatus: public ::testing::Test
 {
 public:
@@ -874,15 +681,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_GetSimLockStatus_001
-测试用例标题      : 发送消息到C核获取锁卡状态OK
-预期结果          : 返回VOS_OK
-修改历史          :
-1.日   期  : 2012-02-08
-作   者  : f62575
-修改内容 : B050 Project
-*******************************************************************/
+
 TEST_F(Test_AT_GetSimLockStatus, Test_AT_GetSimLockStatus_001)
 {
     /*变量定义*/
@@ -914,15 +713,7 @@ TEST_F(Test_AT_GetSimLockStatus, Test_AT_GetSimLockStatus_001)
 }
 
 #if(FEATURE_ON == FEATURE_WIFI)
-/*****************************************************************************
-类名     : Test_AT_TestWifiPaRangePara
-功能描述 : Test_AT_TestWifiPaRangePara UT工程类
-修改历史     :
 
-1.日   期  : 2012-02-08
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
 class Test_AT_TestWifiPaRangePara: public ::testing::Test
 {
 public:
@@ -953,16 +744,7 @@ protected:
     AT_PAR_CMD_ELEMENT_STRU     stCmdInfo;
 };
 #if 0
-/*******************************************************************
-测试用例编号      : Test_AT_TestWifiPaRangePara_001
-测试用例标题      : 查询当前单板支持的模式为PA模式
-预期结果          : 返回AT_OK
-修改历史   :
 
-1.日   期  : 2012-02-08
-  作   者  : l00198894
-  修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_AT_TestWifiPaRangePara, Test_AT_TestWifiPaRangePara_001)
 {
     /*变量定义*/
@@ -992,16 +774,7 @@ TEST_F(Test_AT_TestWifiPaRangePara, Test_AT_TestWifiPaRangePara_001)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_TestWifiPaRangePara_002
-测试用例标题      : 查询当前单板的模式为NOPA模式
-预期结果          : 返回AT_OK
-修改历史   :
 
-1.日   期  : 2012-02-08
-  作   者  : l00198894
-  修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_AT_TestWifiPaRangePara, Test_AT_TestWifiPaRangePara_002)
 {
     /*变量定义*/
@@ -1031,16 +804,7 @@ TEST_F(Test_AT_TestWifiPaRangePara, Test_AT_TestWifiPaRangePara_002)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_TestWifiPaRangePara_003
-测试用例标题      : 查询当前单板支持两种模式
-预期结果          : 返回AT_OK
-修改历史   :
 
-1.日   期  : 2012-02-08
-  作   者  : l00198894
-  修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_AT_TestWifiPaRangePara, Test_AT_TestWifiPaRangePara_003)
 {
     /*变量定义*/
@@ -1070,16 +834,7 @@ TEST_F(Test_AT_TestWifiPaRangePara, Test_AT_TestWifiPaRangePara_003)
 
 }
 #endif
-/*******************************************************************
-测试用例编号      : Test_AT_TestWifiPaRangePara_004
-测试用例标题      : 获取当前单板支持模式失败
-预期结果          : 返回AT_ERROR
-修改历史   :
 
-1.日   期  : 2012-02-08
-  作   者  : l00198894
-  修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_AT_TestWifiPaRangePara, Test_AT_TestWifiPaRangePara_004)
 {
     /*变量定义*/
@@ -1141,14 +896,7 @@ AT_PAR_CMD_ELEMENT_STRU     gstPstandbyCmdInfo = {AT_CMD_PSTANDBY,
     (TAF_UINT8*)"^CMDLEN",    (VOS_UINT8 *)"(0-65535),(0-65535)"};*/
 
 #if 0
-/*****************************************************************************
-类名     : Test_AT_QryTbatPara
-功能描述 : Test_AT_QryTbatPara UT工程类
-修改历史 :
-1.日   期  : 2012-1-10
-作   者  : f62575
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryTbatPara: public ::testing::Test
 {
 public:
@@ -1164,15 +912,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryTbatPara_001
-测试用例标题      : ^TBAT命令获取电池安装方式
-预期结果          : 根据AT手册格式返回
-修改历史          :
-1.日   期  : 2012-1-10
-作   者  : f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryTbatPara, Test_AT_QryTbatPara_001)
 {
     /*变量定义*/
@@ -1194,14 +934,7 @@ TEST_F(Test_AT_QryTbatPara, Test_AT_QryTbatPara_001)
     ASSERT_STREQ(paucExpectedStr, (char *)pgucAtSndCodeAddr);
 }
 #endif
-/*****************************************************************************
-类名     : Test_AT_QryWiwepPara
-功能描述 : Test_AT_QryWiwepPara UT工程类
-修改历史 :
-1.日   期  : 2012-1-10
-作   者  : f62575
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryWiwepPara: public ::testing::Test
 {
 public:
@@ -1217,15 +950,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryWiwepPara_001
-测试用例标题      : WIFI KEY信息查询成功
-预期结果          : 返回AT_OK
-修改历史          :
-1.日   期  : 2012-1-10
-作   者  : f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryWiwepPara, Test_AT_QryWiwepPara_001)
 {
     /*变量定义*/
@@ -1270,15 +995,7 @@ TEST_F(Test_AT_QryWiwepPara, Test_AT_QryWiwepPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryWiwepPara_002
-测试用例标题      : 内存申请失败，WIFI KEY信息查询失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-1-10
-作   者  : f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryWiwepPara, Test_AT_QryWiwepPara_002)
 {
     /*变量定义*/
@@ -1306,15 +1023,7 @@ TEST_F(Test_AT_QryWiwepPara, Test_AT_QryWiwepPara_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryWiwepPara_003
-测试用例标题      : NV项en_NV_Item_MULTI_WIFI_KEY读取失败，WIFI KEY信息查询失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-1-10
-作   者  : f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryWiwepPara, Test_AT_QryWiwepPara_003)
 {
     /*变量定义*/
@@ -1345,14 +1054,7 @@ TEST_F(Test_AT_QryWiwepPara, Test_AT_QryWiwepPara_003)
 
 
 #if (FEATURE_ON != FEATURE_LTE)
-/*****************************************************************************
-类名     : Test_AT_SetTbatPara
-功能描述 : Test_AT_SetTbatPara UT工程类
-修改历史 :
-1.日   期  : 2012-1-10
-作   者  : f62575
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_SetTbatPara: public ::testing::Test
 {
 public:
@@ -1368,15 +1070,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetTbatPara_001
-测试用例标题      : ^TBAT命令获取电池电压数字值
-预期结果          : 函数返回AT_WAIT_ASYNC_RETURN
-修改历史          :
-1.日   期  : 2012-1-10
-作   者  : f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetTbatPara, Test_AT_SetTbatPara_001)
 {
     /*变量定义*/
@@ -1410,15 +1104,7 @@ TEST_F(Test_AT_SetTbatPara, Test_AT_SetTbatPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetTbatPara_002
-测试用例标题      : ^TBAT命令获取电池电压数字值失败
-预期结果          : 函数返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-1-10
-作   者  : f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetTbatPara, Test_AT_SetTbatPara_002)
 {
     /*变量定义*/
@@ -1452,15 +1138,7 @@ TEST_F(Test_AT_SetTbatPara, Test_AT_SetTbatPara_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetTbatPara_003
-测试用例标题      : 设置电池电压数字值，用于电池校准
-预期结果          : 函数返回AT_OK
-修改历史          :
-1.日   期  : 2012-1-10
-作   者  : f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetTbatPara, Test_AT_SetTbatPara_003)
 {
     /*变量定义*/
@@ -1497,15 +1175,7 @@ TEST_F(Test_AT_SetTbatPara, Test_AT_SetTbatPara_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetTbatPara_004
-测试用例标题      : 设置电池电压数字值，用于电池校准，写NV项失败
-预期结果          : 函数返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-1-10
-作   者  : f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetTbatPara, Test_AT_SetTbatPara_004)
 {
     /*变量定义*/
@@ -1553,15 +1223,7 @@ TEST_F(Test_AT_SetTbatPara, Test_AT_SetTbatPara_004)
     GlobalMockObject::verify();
 }
 #if 0
-/*******************************************************************
-测试用例编号      : Test_AT_SetTbatPara_004
-测试用例标题      : ^TBAT命令设置命令参数检查,操作类型为模拟电池电压
-预期结果          : 返回AT_CME_INCORRECT_PARAMETERS
-修改历史          :
-1.日   期  : 2012-1-10
-作   者  : f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetTbatPara, Test_AT_SetTbatPara_004)
 {
     /*变量定义*/
@@ -1580,15 +1242,7 @@ TEST_F(Test_AT_SetTbatPara, Test_AT_SetTbatPara_004)
     GlobalMockObject::verify();
 }
 #endif
-/*******************************************************************
-测试用例编号      : Test_AT_SetTbatPara_006
-测试用例标题      : ^TBAT设置命令操作类型错误
-预期结果          : 函数返回AT_CME_INCORRECT_PARAMETERS
-修改历史          :
-1.日   期  : 2012-1-10
-作   者  : f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetTbatPara, Test_AT_SetTbatPara_006)
 {
     VOS_UINT32                          ulRet;
@@ -1608,15 +1262,7 @@ TEST_F(Test_AT_SetTbatPara, Test_AT_SetTbatPara_006)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetTbatPara_007
-测试用例标题      : ^TBAT设置命令第一个参数为空
-预期结果          : 函数返回AT_CME_INCORRECT_PARAMETERS
-修改历史          :
-1.日   期  : 2012-1-10
-作   者  : f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetTbatPara, Test_AT_SetTbatPara_007)
 {
     VOS_UINT32                          ulRet;
@@ -1640,15 +1286,7 @@ TEST_F(Test_AT_SetTbatPara, Test_AT_SetTbatPara_007)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetTbatPara_008
-测试用例标题      : ^TBAT设置命令第二个参数为空
-预期结果          : 函数返回AT_CME_INCORRECT_PARAMETERS
-修改历史          :
-1.日   期  : 2012-1-10
-作   者  : f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetTbatPara, Test_AT_SetTbatPara_008)
 {
     VOS_UINT32                          ulRet;
@@ -1672,15 +1310,7 @@ TEST_F(Test_AT_SetTbatPara, Test_AT_SetTbatPara_008)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetTbatPara_009
-测试用例标题      : ^TBAT设置命令电池电压数字值查询参数个数不是2
-预期结果          : 函数返回AT_CME_INCORRECT_PARAMETERS
-修改历史          :
-1.日   期  : 2012-1-10
-作   者  : f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetTbatPara, Test_AT_SetTbatPara_009)
 {
     VOS_UINT32                          ulRet;
@@ -1706,15 +1336,7 @@ TEST_F(Test_AT_SetTbatPara, Test_AT_SetTbatPara_009)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetTbatPara_010
-测试用例标题      : ^TBAT设置命令电池电压数字值设置参数个数不是4
-预期结果          : 函数返回AT_CME_INCORRECT_PARAMETERS
-修改历史          :
-1.日   期  : 2012-1-10
-作   者  : f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetTbatPara, Test_AT_SetTbatPara_010)
 {
     VOS_UINT32                          ulRet;
@@ -1740,15 +1362,7 @@ TEST_F(Test_AT_SetTbatPara, Test_AT_SetTbatPara_010)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetTbatPara_011
-测试用例标题      : ^TBAT设置命令电池电压数字值设置第三个参数为空
-预期结果          : 函数返回AT_CME_INCORRECT_PARAMETERS
-修改历史          :
-1.日   期  : 2012-1-10
-作   者  : f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetTbatPara, Test_AT_SetTbatPara_011)
 {
     VOS_UINT32                          ulRet;
@@ -1777,15 +1391,7 @@ TEST_F(Test_AT_SetTbatPara, Test_AT_SetTbatPara_011)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetTbatPara_012
-测试用例标题      : ^TBAT设置命令电池电压数字值设置第四个参数为空
-预期结果          : 函数返回AT_CME_INCORRECT_PARAMETERS
-修改历史          :
-1.日   期  : 2012-1-10
-作   者  : f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetTbatPara, Test_AT_SetTbatPara_012)
 {
     VOS_UINT32                          ulRet;
@@ -1814,14 +1420,7 @@ TEST_F(Test_AT_SetTbatPara, Test_AT_SetTbatPara_012)
 
 }
 #endif
-/*****************************************************************************
-类名     : Test_AT_SetWiwepPara
-功能描述 : Test_AT_SetWiwepPara UT工程类
-修改历史 :
-1.日   期  : 2012-1-10
-作   者  : f62575
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_SetWiwepPara: public ::testing::Test
 {
 public:
@@ -1837,15 +1436,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetWiwepPara_001
-测试用例标题      : 设置指定INDEX的WiFi WEP（WIFI的KEY）内容成功
-预期结果          : 返回AT_OK
-修改历史          :
-1.日   期  : 2012-1-10
-作   者  : f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetWiwepPara, Test_AT_SetWiwepPara_001)
 {
     /*变量定义*/
@@ -1886,15 +1477,7 @@ TEST_F(Test_AT_SetWiwepPara, Test_AT_SetWiwepPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetWiwepPara_002
-测试用例标题      : 申请内存失败，设置指定INDEX的WiFi WEP（WIFI的KEY）内容失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-1-10
-作   者  : f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetWiwepPara, Test_AT_SetWiwepPara_002)
 {
     /*变量定义*/
@@ -1932,15 +1515,7 @@ TEST_F(Test_AT_SetWiwepPara, Test_AT_SetWiwepPara_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetWiwepPara_003
-测试用例标题      : 读取en_NV_Item_MULTI_WIFI_KEY失败，设置指定INDEX的WiFi WEP（WIFI的KEY）内容失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-1-10
-作   者  : f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetWiwepPara, Test_AT_SetWiwepPara_003)
 {
     /*变量定义*/
@@ -1978,15 +1553,7 @@ TEST_F(Test_AT_SetWiwepPara, Test_AT_SetWiwepPara_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetWiwepPara_004
-测试用例标题      : 写en_NV_Item_MULTI_WIFI_KEY失败，设置指定INDEX的WiFi WEP（WIFI的KEY）内容失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-1-10
-作   者  : f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetWiwepPara, Test_AT_SetWiwepPara_004)
 {
     /*变量定义*/
@@ -2029,15 +1596,7 @@ TEST_F(Test_AT_SetWiwepPara, Test_AT_SetWiwepPara_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetWiwepPara_005
-测试用例标题      : 设置操作类型为无参数设置操作，设置指定INDEX的WiFi WEP（WIFI的KEY）内容失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-1-10
-作   者  : f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetWiwepPara, Test_AT_SetWiwepPara_005)
 {
     /*变量定义*/
@@ -2070,15 +1629,7 @@ TEST_F(Test_AT_SetWiwepPara, Test_AT_SetWiwepPara_005)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetWiwepPara_006
-测试用例标题      : 设置操作参数个数不为2，设置指定INDEX的WiFi WEP（WIFI的KEY）内容失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-1-10
-作   者  : f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetWiwepPara, Test_AT_SetWiwepPara_006)
 {
     /*变量定义*/
@@ -2111,15 +1662,7 @@ TEST_F(Test_AT_SetWiwepPara, Test_AT_SetWiwepPara_006)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetWiwepPara_007
-测试用例标题      : 设置操作第一个参数为空，设置指定INDEX的WiFi WEP（WIFI的KEY）内容失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-1-10
-作   者  : f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetWiwepPara, Test_AT_SetWiwepPara_007)
 {
     /*变量定义*/
@@ -2152,15 +1695,7 @@ TEST_F(Test_AT_SetWiwepPara, Test_AT_SetWiwepPara_007)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetWiwepPara_008
-测试用例标题      : 设置操作第二个参数为空，设置指定INDEX的WiFi WEP（WIFI的KEY）内容失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-1-10
-作   者  : f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetWiwepPara, Test_AT_SetWiwepPara_008)
 {
     /*变量定义*/
@@ -2193,15 +1728,7 @@ TEST_F(Test_AT_SetWiwepPara, Test_AT_SetWiwepPara_008)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetWiwepPara_009
-测试用例标题      : 设置操作第二个参数长度超过允许值，设置指定INDEX的WiFi WEP（WIFI的KEY）内容失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-1-10
-作   者  : f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetWiwepPara, Test_AT_SetWiwepPara_009)
 {
     /*变量定义*/
@@ -2233,15 +1760,7 @@ TEST_F(Test_AT_SetWiwepPara, Test_AT_SetWiwepPara_009)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetWiwepPara_010
-测试用例标题      : 设置指定INDEX的WiFi WEP（WIFI的KEY）内容：无参数输入    
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-1-10
-作   者  : f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetWiwepPara, Test_AT_SetWiwepPara_010)
 {
     /*变量定义*/
@@ -2273,15 +1792,7 @@ TEST_F(Test_AT_SetWiwepPara, Test_AT_SetWiwepPara_010)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetWiwepPara_011
-测试用例标题      : 设置指定INDEX的WiFi WEP（WIFI的KEY）内容：第一个参数长度为0
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-1-10
-作   者  : f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetWiwepPara, Test_AT_SetWiwepPara_011)
 {
     /*变量定义*/
@@ -2313,15 +1824,7 @@ TEST_F(Test_AT_SetWiwepPara, Test_AT_SetWiwepPara_011)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetWiwepPara_011
-测试用例标题      : 设置指定INDEX的WiFi WEP（WIFI的KEY）内容：第一个参数长度为0
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-1-10
-作   者  : f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetWiwepPara, Test_AT_SetWiwepPara_012)
 {
     /*变量定义*/
@@ -2352,15 +1855,7 @@ TEST_F(Test_AT_SetWiwepPara, Test_AT_SetWiwepPara_012)
     EXPECT_EQ(AT_ERROR, ulRet);
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号      : Test_AT_SetWiwepPara_013
-测试用例标题      : 设置指定INDEX的WiFi WEP（WIFI的KEY）内容：第二个参数长度为0
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-1-10
-作   者  : f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetWiwepPara, Test_AT_SetWiwepPara_013)
 {
     /*变量定义*/
@@ -2392,15 +1887,7 @@ TEST_F(Test_AT_SetWiwepPara, Test_AT_SetWiwepPara_013)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetWiwepPara_014
-测试用例标题      : 设置指定INDEX的WiFi WEP（WIFI的KEY）内容：待写入的WIWEP数据与NV中的相同
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-1-10
-作   者  : f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetWiwepPara, Test_AT_SetWiwepPara_014)
 {
     /*变量定义*/
@@ -2444,14 +1931,7 @@ TEST_F(Test_AT_SetWiwepPara, Test_AT_SetWiwepPara_014)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_TestWiwepPara
-功能描述 : Test_AT_TestWiwepPara UT工程类
-修改历史 :
-1.日   期  : 2012-1-10
-作   者  : f62575
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_TestWiwepPara: public ::testing::Test
 {
 public:
@@ -2467,15 +1947,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_TestWiwepPara_001
-测试用例标题      : WIWEP的测试命令
-预期结果          : 输出工位支持的WIFI KEY总数
-修改历史          :
-1.日   期  : 2012-1-10
-作   者  : f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_TestWiwepPara, Test_AT_TestWiwepPara_001)
 {
     /*变量定义*/
@@ -2502,14 +1974,7 @@ TEST_F(Test_AT_TestWiwepPara, Test_AT_TestWiwepPara_001)
 
     GlobalMockObject::verify();
 }
-/*****************************************************************************
-类名     : Test_AT_GetTseLrfLoadDspInfo
-功能描述 : Test_AT_GetTseLrfLoadDspInfo UT工程类
-修改历史     :
-1.日   期  : 2012-1-17
-作   者  :   f62575
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_GetTseLrfLoadDspInfo: public ::testing::Test
 {
 public:
@@ -2523,17 +1988,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_GetTseLrfLoadDspInfo_001
-测试用例标题      : ^TSELRF命令是否触发LOAD DSP：^TSELRF命令设置的射频通路编号为GSM且当前已经LOAD了该通路，无需LOAD DSP
-                    g_stAtDevCmdCtrl.ucDeviceRatMode为AT_RAT_MODE_GSM
-                    g_stAtDevCmdCtrl.bDspLoadFlag为VOS_TRUE
-预期结果          : 无需LOAD DSP
-修改历史     :
-1.日   期  : 2012-1-17
-作   者  :   f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_GetTseLrfLoadDspInfo, Test_AT_GetTseLrfLoadDspInfo_001)
 {
     AT_TSELRF_PATH_ENUM_UINT32          enPath;
@@ -2554,17 +2009,7 @@ TEST_F(Test_AT_GetTseLrfLoadDspInfo, Test_AT_GetTseLrfLoadDspInfo_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_GetTseLrfLoadDspInfo_002
-测试用例标题      : ^TSELRF命令是否触发LOAD DSP：^TSELRF命令设置的射频通路编号为GSM 但没有LOAD通路，需要LOAD DSP
-                    g_stAtDevCmdCtrl.ucDeviceRatMode为AT_RAT_MODE_GSM
-                    g_stAtDevCmdCtrl.bDspLoadFlag为VOS_TRUE
-预期结果          : 需要LOAD DSP
-修改历史     :
-1.日   期  : 2012-1-17
-作   者  :   f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_GetTseLrfLoadDspInfo, Test_AT_GetTseLrfLoadDspInfo_002)
 {
     AT_TSELRF_PATH_ENUM_UINT32          enPath;
@@ -2587,17 +2032,7 @@ TEST_F(Test_AT_GetTseLrfLoadDspInfo, Test_AT_GetTseLrfLoadDspInfo_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_GetTseLrfLoadDspInfo_003
-测试用例标题      : ^TSELRF命令是否触发LOAD DSP：^TSELRF命令设置的射频通路编号为WCDMA，需要LOAD DSP
-                    g_stAtDevCmdCtrl.ucDeviceRatMode为AT_RAT_MODE_WCDMA
-                    g_stAtDevCmdCtrl.bDspLoadFlag为VOS_TRUE
-预期结果          : 需要LOAD DSP
-修改历史     :
-1.日   期  : 2012-1-17
-作   者  :   f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_GetTseLrfLoadDspInfo, Test_AT_GetTseLrfLoadDspInfo_003)
 {
     AT_TSELRF_PATH_ENUM_UINT32          enPath;
@@ -2620,17 +2055,7 @@ TEST_F(Test_AT_GetTseLrfLoadDspInfo, Test_AT_GetTseLrfLoadDspInfo_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_GetTseLrfLoadDspInfo_004
-测试用例标题      : ^TSELRF命令是否触发LOAD DSP：^TSELRF命令设置的射频通路编号为WCDMA已有LOAD通路，不需要LOAD DSP
-                    g_stAtDevCmdCtrl.ucDeviceRatMode为AT_RAT_MODE_WCDMA
-                    g_stAtDevCmdCtrl.bDspLoadFlag为VOS_TRUE
-预期结果          : 不需要LOAD DSP
-修改历史     :
-1.日   期  : 2012-1-17
-作   者  :   f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_GetTseLrfLoadDspInfo, Test_AT_GetTseLrfLoadDspInfo_004)
 {
     AT_TSELRF_PATH_ENUM_UINT32          enPath;
@@ -2651,17 +2076,7 @@ TEST_F(Test_AT_GetTseLrfLoadDspInfo, Test_AT_GetTseLrfLoadDspInfo_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_GetTseLrfLoadDspInfo_005
-测试用例标题      : ^TSELRF命令是否触发LOAD DSP：^TSELRF命令设置的射频通路编号为WCDMA没有LOAD通路，需要LOAD DSP
-                    g_stAtDevCmdCtrl.ucDeviceRatMode为AT_RAT_MODE_AWS
-                    g_stAtDevCmdCtrl.bDspLoadFlag为VOS_TRUE
-预期结果          : 需要LOAD DSP
-修改历史     :
-1.日   期  : 2012-1-17
-作   者  :   f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_GetTseLrfLoadDspInfo, Test_AT_GetTseLrfLoadDspInfo_005)
 {
     AT_TSELRF_PATH_ENUM_UINT32          enPath;
@@ -2685,17 +2100,7 @@ TEST_F(Test_AT_GetTseLrfLoadDspInfo, Test_AT_GetTseLrfLoadDspInfo_005)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_GetTseLrfLoadDspInfo_006
-测试用例标题      : ^TSELRF命令是否触发LOAD DSP：^TSELRF命令设置的射频通路编号为WCDMA没有LOAD通路，需要LOAD DSP
-                    g_stAtDevCmdCtrl.ucDeviceRatMode为AT_RAT_MODE_WCDMA
-                    g_stAtDevCmdCtrl.bDspLoadFlag为VOS_FALSE
-预期结果          : 需要LOAD DSP
-修改历史     :
-1.日   期  : 2012-1-17
-作   者  :   f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_GetTseLrfLoadDspInfo, Test_AT_GetTseLrfLoadDspInfo_006)
 {
     AT_TSELRF_PATH_ENUM_UINT32          enPath;
@@ -2719,17 +2124,7 @@ TEST_F(Test_AT_GetTseLrfLoadDspInfo, Test_AT_GetTseLrfLoadDspInfo_006)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_GetTseLrfLoadDspInfo_007
-测试用例标题      : ^TSELRF命令是否触发LOAD DSP：^TSELRF命令设置的射频通路编号为GSM，需要LOAD DSP
-                    g_stAtDevCmdCtrl.ucDeviceRatMode为AT_RAT_MODE_WCDMA
-                    g_stAtDevCmdCtrl.bDspLoadFlag为VOS_FALSE
-预期结果          : 需要LOAD DSP
-修改历史     :
-1.日   期  : 2012-1-17
-作   者  :   f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_GetTseLrfLoadDspInfo, Test_AT_GetTseLrfLoadDspInfo_007)
 {
     AT_TSELRF_PATH_ENUM_UINT32          enPath;
@@ -2753,17 +2148,7 @@ TEST_F(Test_AT_GetTseLrfLoadDspInfo, Test_AT_GetTseLrfLoadDspInfo_007)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_GetTseLrfLoadDspInfo_008
-测试用例标题      : ^TSELRF命令是否触发LOAD DSP：^TSELRF命令设置的射频通路编号不存在，无需加载
-                    该分支为异常分支，仅用于代码完整性，流程不会走到。
-预期结果          : 不需要LOAD DSP
-                    打印告警信息
-修改历史     :
-1.日   期  : 2012-1-17
-作   者  :   f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_GetTseLrfLoadDspInfo, Test_AT_GetTseLrfLoadDspInfo_008)
 {
     AT_TSELRF_PATH_ENUM_UINT32          enPath;
@@ -2785,14 +2170,7 @@ TEST_F(Test_AT_GetTseLrfLoadDspInfo, Test_AT_GetTseLrfLoadDspInfo_008)
 
     GlobalMockObject::verify();
 }
-/*****************************************************************************
-类名     : Test_AT_QryCmdlenPara
-功能描述 : Test_AT_QryCmdlenPara UT工程类
-修改历史     :
-1.日   期  : 2012-1-17
-作   者  :   f62575
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryCmdlenPara: public ::testing::Test
 {
 public:
@@ -2807,16 +2185,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryCmdlenPara_001
-测试用例标题      : 查询单板最大可以直接接收AT命令字符个数，以及单板通过AT一次最大
-                    可以响应的字符个数，该字符个数均不包含AT这两个字符。
-预期结果          : 输出字符串^CMDLEN:1598,5000
-修改历史     :
-1.日   期  : 2012-1-17
-作   者  :   f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryCmdlenPara, Test_AT_QryCmdlenPara_001)
 {
     /*变量定义*/
@@ -2838,14 +2207,7 @@ TEST_F(Test_AT_QryCmdlenPara, Test_AT_QryCmdlenPara_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_SetTseLrfPara
-功能描述 : Test_AT_SetTseLrfPara UT工程类
-修改历史     :
-1.日   期  : 2012-1-17
-作   者  :   f62575
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_SetTseLrfPara: public ::testing::Test
 {
 public:
@@ -2859,15 +2221,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetTseLrfPara_001
-测试用例标题      : ^TSELRF的设置操作: 无参数的设置操作
-预期结果          : 函数返回AT_ERROR
-修改历史     :
-1.日   期  : 2012-1-17
-作   者  :   f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetTseLrfPara, Test_AT_SetTseLrfPara_001)
 {
     /*变量定义*/
@@ -2886,15 +2240,7 @@ TEST_F(Test_AT_SetTseLrfPara, Test_AT_SetTseLrfPara_001)
 }
 
 #if (FEATURE_ON != FEATURE_LTE)
-/*******************************************************************
-测试用例编号      : Test_AT_SetTseLrfPara_002
-测试用例标题      : ^TSELRF的设置操作: 第一个参数不存在
-预期结果          : 函数返回AT_ERROR
-修改历史     :
-1.日   期  : 2012-1-17
-作   者  :   f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetTseLrfPara, Test_AT_SetTseLrfPara_002)
 {
     /*变量定义*/
@@ -2914,15 +2260,7 @@ TEST_F(Test_AT_SetTseLrfPara, Test_AT_SetTseLrfPara_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetTseLrfPara_003
-测试用例标题      : ^TSELRF的设置操作: 不支持WIFI情况下收到设置WIFI通路请求
-预期结果          : 函数返回AT_ERROR
-修改历史     :
-1.日   期  : 2012-1-17
-作   者  :   f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetTseLrfPara, Test_AT_SetTseLrfPara_003)
 {
     /*变量定义*/
@@ -2952,15 +2290,7 @@ TEST_F(Test_AT_SetTseLrfPara, Test_AT_SetTseLrfPara_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetTseLrfPara_004
-测试用例标题      : ^TSELRF的设置操作: 参数个数不为1
-预期结果          : 函数返回AT_ERROR
-修改历史     :
-1.日   期  : 2012-1-17
-作   者  :   f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetTseLrfPara, Test_AT_SetTseLrfPara_004)
 {
     /*变量定义*/
@@ -2981,15 +2311,7 @@ TEST_F(Test_AT_SetTseLrfPara, Test_AT_SetTseLrfPara_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetTseLrfPara_005
-测试用例标题      : ^TSELRF的设置操作: 支持WIFI情况下收到设置WIFI通路请求
-预期结果          : 函数返回AT_OK
-修改历史     :
-1.日   期  : 2012-1-17
-作   者  :   f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetTseLrfPara, Test_AT_SetTseLrfPara_005)
 {
     /*变量定义*/
@@ -3024,15 +2346,7 @@ TEST_F(Test_AT_SetTseLrfPara, Test_AT_SetTseLrfPara_005)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetTseLrfPara_006
-测试用例标题      : ^TSELRF的设置操作: 非WIFI版本收到设置WIFI通路请求
-预期结果          : 函数返回AT_ERROR
-修改历史     :
-1.日   期  : 2012-1-17
-作   者  :   f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetTseLrfPara, Test_AT_SetTseLrfPara_006)
 {
     /*变量定义*/
@@ -3059,15 +2373,7 @@ TEST_F(Test_AT_SetTseLrfPara, Test_AT_SetTseLrfPara_006)
 }
 #endif
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetTseLrfPara_007
-测试用例标题      : ^TSELRF的设置操作: 信令模式下收到设置非WIFI通路请求
-预期结果          : 函数返回AT_ERROR
-修改历史     :
-1.日   期  : 2012-1-17
-作   者  :   f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetTseLrfPara, Test_AT_SetTseLrfPara_007)
 {
     /*变量定义*/
@@ -3090,15 +2396,7 @@ TEST_F(Test_AT_SetTseLrfPara, Test_AT_SetTseLrfPara_007)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetTseLrfPara_008
-测试用例标题      : ^TSELRF的设置操作: 接收机未打开情况下收到设置分集请求
-预期结果          : 函数返回AT_OK同时记录打开分集标志到本地
-修改历史     :
-1.日   期  : 2012-1-17
-作   者  :   f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetTseLrfPara, Test_AT_SetTseLrfPara_008)
 {
     /*变量定义*/
@@ -3125,15 +2423,7 @@ TEST_F(Test_AT_SetTseLrfPara, Test_AT_SetTseLrfPara_008)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetTseLrfPara_009
-测试用例标题      : ^TSELRF的设置操作: 发送设置分集请求失败
-预期结果          : 函数返回AT_ERROR
-修改历史     :
-1.日   期  : 2012-1-17
-作   者  :   f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetTseLrfPara, Test_AT_SetTseLrfPara_009)
 {
     /*变量定义*/
@@ -3161,15 +2451,7 @@ TEST_F(Test_AT_SetTseLrfPara, Test_AT_SetTseLrfPara_009)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetTseLrfPara_010
-测试用例标题      : ^TSELRF的设置操作: 发送设置分集请求成功
-预期结果          : 函数返回AT_WAIT_ASYNC_RETURN
-修改历史     :
-1.日   期  : 2012-1-17
-作   者  :   f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetTseLrfPara, Test_AT_SetTseLrfPara_010)
 {
     /*变量定义*/
@@ -3199,15 +2481,7 @@ TEST_F(Test_AT_SetTseLrfPara, Test_AT_SetTseLrfPara_010)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetTseLrfPara_011
-测试用例标题      : ^TSELRF的设置操作: 接收到设置WCDMA主集通道配置且要求LOAD DSP，但LOAD 指令发送失败
-预期结果          : 函数返回AT_ERROR
-修改历史     :
-1.日   期  : 2012-1-17
-作   者  :   f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetTseLrfPara, Test_AT_SetTseLrfPara_011)
 {
     /*变量定义*/
@@ -3243,15 +2517,7 @@ TEST_F(Test_AT_SetTseLrfPara, Test_AT_SetTseLrfPara_011)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetTseLrfPara_012
-测试用例标题      : ^TSELRF的设置操作: 接收到设置WCDMA主集通道配置且要求LOAD DSP
-预期结果          : 函数返回AT_WAIT_ASYNC_RETURN
-修改历史     :
-1.日   期  : 2012-1-17
-作   者  :   f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetTseLrfPara, Test_AT_SetTseLrfPara_012)
 {
     /*变量定义*/
@@ -3287,15 +2553,7 @@ TEST_F(Test_AT_SetTseLrfPara, Test_AT_SetTseLrfPara_012)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetTseLrfPara_013
-测试用例标题      : ^TSELRF的设置操作: 接收到设置WCDMA主集通道配置且不要求LOAD DSP
-预期结果          : 函数返回AT_OK
-修改历史     :
-1.日   期  : 2012-1-17
-作   者  :   f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetTseLrfPara, Test_AT_SetTseLrfPara_013)
 {
     /*变量定义*/
@@ -3331,14 +2589,7 @@ TEST_F(Test_AT_SetTseLrfPara, Test_AT_SetTseLrfPara_013)
 }
 
 #if(FEATURE_LTE != FEATURE_ON)
-/*****************************************************************************
-类名     : Test_AT_QryTseLrfPara
-功能描述 : Test_AT_QryTseLrfPara UT工程类
-修改历史     :
-1.日   期  : 2012-1-17
-作   者  :   f62575
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryTseLrfPara: public ::testing::Test
 {
 public:
@@ -3353,15 +2604,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryTseLrfPara_001
-测试用例标题      : 查询命令用来返回单板支持的所有情况，每种情况分行显示
-预期结果          : 输出字符串^TSELRF:4\r\n^TSELRF:1\r\n^TSELRF:2\r\n^TSELRF:3\r\n^TSELRF:7
-修改历史     :
-1.日   期  : 2012-1-17
-作   者  :   f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryTseLrfPara, Test_AT_QryTseLrfPara_001)
 {
     /*变量定义*/
@@ -3384,14 +2627,7 @@ TEST_F(Test_AT_QryTseLrfPara, Test_AT_QryTseLrfPara_001)
 
 #endif
 #if 0
-/*****************************************************************************
-类名     : Test_AT_SetCmdlenPara
-功能描述 : Test_AT_SetCmdlenPara UT工程类
-修改历史     :
-1.日   期  : 2012-1-17
-作   者  :   f62575
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_SetCmdlenPara: public ::testing::Test
 {
 public:
@@ -3406,17 +2642,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetCmdlenPara_001
-测试用例标题      : 告知单板PC一次期望发送的字符个数和PC期望单板一次发送的字符个数
-                    该命令用于支撑SIMLOCK数据的分段发送，BALONG无此需求，仅返回OK保证工
-                    位归一化流程正常执行
-预期结果          : 函数返回OK
-修改历史     :
-1.日   期  : 2012-1-17
-作   者  :   f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetCmdlenPara, Test_AT_SetCmdlenPara_001)
 {
     /*变量定义*/
@@ -3438,17 +2664,7 @@ TEST_F(Test_AT_SetCmdlenPara, Test_AT_SetCmdlenPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetCmdlenPara_002
-测试用例标题      : 告知单板PC一次期望发送的字符个数和PC期望单板一次发送的字符个数
-                    该命令用于支撑SIMLOCK数据的分段发送，BALONG无此需求，仅返回OK保证工
-                    位归一化流程正常执行，无参数输入
-预期结果          : 函数返回AT_CME_INCORRECT_PARAMETERS
-修改历史     :
-1.日   期  : 2012-1-17
-作   者  :   f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetCmdlenPara, Test_AT_SetCmdlenPara_002)
 {
     /*变量定义*/
@@ -3470,17 +2686,7 @@ TEST_F(Test_AT_SetCmdlenPara, Test_AT_SetCmdlenPara_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetCmdlenPara_003
-测试用例标题      : 告知单板PC一次期望发送的字符个数和PC期望单板一次发送的字符个数
-                    该命令用于支撑SIMLOCK数据的分段发送，BALONG无此需求，仅返回OK保证工
-                    位归一化流程正常执行参数一为空
-预期结果          : 函数返回AT_CME_INCORRECT_PARAMETERS
-修改历史     :
-1.日   期  : 2012-1-17
-作   者  :   f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetCmdlenPara, Test_AT_SetCmdlenPara_003)
 {
     /*变量定义*/
@@ -3501,17 +2707,7 @@ TEST_F(Test_AT_SetCmdlenPara, Test_AT_SetCmdlenPara_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetCmdlenPara_004
-测试用例标题      : 告知单板PC一次期望发送的字符个数和PC期望单板一次发送的字符个数
-                    该命令用于支撑SIMLOCK数据的分段发送，BALONG无此需求，仅返回OK保证工
-                    位归一化流程正常执行参数二为空
-预期结果          : 函数返回AT_CME_INCORRECT_PARAMETERS
-修改历史     :
-1.日   期  : 2012-1-17
-作   者  :   f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetCmdlenPara, Test_AT_SetCmdlenPara_004)
 {
     /*变量定义*/
@@ -3532,17 +2728,7 @@ TEST_F(Test_AT_SetCmdlenPara, Test_AT_SetCmdlenPara_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetCmdlenPara_005
-测试用例标题      : 告知单板PC一次期望发送的字符个数和PC期望单板一次发送的字符个数
-                    该命令用于支撑SIMLOCK数据的分段发送，BALONG无此需求，仅返回OK保证工
-                    位归一化流程正常执行参数二大于1598
-预期结果          : 函数返回AT_ERROR
-修改历史     :
-1.日   期  : 2012-1-17
-作   者  :   f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetCmdlenPara, Test_AT_SetCmdlenPara_005)
 {
     /*变量定义*/
@@ -3563,14 +2749,7 @@ TEST_F(Test_AT_SetCmdlenPara, Test_AT_SetCmdlenPara_005)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_SetTmodeAutoPowerOff
-功能描述 : Test_AT_SetTmodeAutoPowerOff UT工程类
-修改历史     :
-1.日   期  : 2012-1-17
-作   者  :   f62575
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_SetTmodeAutoPowerOff: public ::testing::Test
 {
 public:
@@ -3585,17 +2764,7 @@ public:
 };
 
 #if (FEATURE_ON == FEATURE_E5)
-/*******************************************************************
-测试用例编号      : Test_AT_SetTmodeAutoPowerOff_001
-测试用例标题      : 自动关机的装备命令消息发送操作执行成功
-                    产线要求先通知用户AT命令已执行，满足产线的时效需求
-                    用户通过检测端口是否消失来确认任务是否正确执行
-预期结果          : 函数返回OK
-修改历史     :
-1.日   期  : 2012-1-17
-作   者  :   f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetTmodeAutoPowerOff, Test_AT_SetTmodeAutoPowerOff_001)
 {
     /*变量定义*/
@@ -3619,17 +2788,7 @@ TEST_F(Test_AT_SetTmodeAutoPowerOff, Test_AT_SetTmodeAutoPowerOff_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetTmodeAutoPowerOff_002
-测试用例标题      : 自动关机的装备命令消息发送操作执行失败
-                    产线要求先通知用户AT命令已执行，满足产线的时效需求
-                    用户通过检测端口是否消失来确认任务是否正确执行
-预期结果          : 函数返回AT_ERROR
-修改历史     :
-1.日   期  : 2012-1-17
-作   者  :   f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetTmodeAutoPowerOff, Test_AT_SetTmodeAutoPowerOff_002)
 {
     /*变量定义*/
@@ -3654,17 +2813,7 @@ TEST_F(Test_AT_SetTmodeAutoPowerOff, Test_AT_SetTmodeAutoPowerOff_002)
 }
 #else
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetTmodeAutoPowerOff_001
-测试用例标题      : 自动关机的装备命令消息发送操作执行成功
-                    产线要求先通知用户AT命令已执行，满足产线的时效需求
-                    用户通过检测端口是否消失来确认任务是否正确执行
-预期结果          : 函数返回OK
-修改历史     :
-1.日   期  : 2012-1-17
-作   者  :   f62575
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetTmodeAutoPowerOff, Test_AT_SetTmodeAutoPowerOff_001)
 {
     /*变量定义*/
@@ -3683,14 +2832,7 @@ TEST_F(Test_AT_SetTmodeAutoPowerOff, Test_AT_SetTmodeAutoPowerOff_001)
 
 #endif
 
-/*****************************************************************************
-类名     : Test_AT_TestHsicCmdPara
-功能描述 : AT_TestHsicCmdPara UT工程类
-修改历史 :
-1.日   期  : 2012-04-12
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_TestHsicCmdPara: public ::testing::Test
 {
 public:
@@ -3705,15 +2847,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_TestHsicCmdPara_001
-测试用例标题      : 测试命令从HSIC通道下发
-预期结果          : 返回AT_OK
-修改历史          :
-1.日   期  : 2012-04-12
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_TestHsicCmdPara, Test_AT_TestHsicCmdPara_001)
 {
     // 变量声明
@@ -3740,15 +2874,7 @@ TEST_F(Test_AT_TestHsicCmdPara, Test_AT_TestHsicCmdPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_TestHsicCmdPara_002
-测试用例标题      : 获取的用户索引非法
-预期结果          : 返回VOS_ERR
-修改历史          :
-1.日   期  : 2012-04-12
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_TestHsicCmdPara, Test_AT_TestHsicCmdPara_002)
 {
     // 变量声明
@@ -3775,14 +2901,7 @@ TEST_F(Test_AT_TestHsicCmdPara, Test_AT_TestHsicCmdPara_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_TestSimlockUnlockPara
-功能描述 : AT_TestSimlockUnlockPara UT工程类
-修改历史 :
-1.日   期  : 2012-09-24
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_TestSimlockUnlockPara: public ::testing::Test
 {
 public:
@@ -3813,15 +2932,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_TestSimlockUnlockPara_001
-测试用例标题      : 命令下发通道非HSIC通道
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-09-24
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_TestSimlockUnlockPara, Test_AT_TestSimlockUnlockPara_001)
 {
     // 变量声明
@@ -3847,15 +2958,7 @@ TEST_F(Test_AT_TestSimlockUnlockPara, Test_AT_TestSimlockUnlockPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_TestSimlockUnlockPara_002
-测试用例标题      : 命令下发通道为HSIC1通道
-预期结果          : 返回AT_OK, 打印结果
-修改历史          :
-1.日   期  : 2012-09-24
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_TestSimlockUnlockPara, Test_AT_TestSimlockUnlockPara_002)
 {
     // 变量声明
@@ -3886,14 +2989,7 @@ TEST_F(Test_AT_TestSimlockUnlockPara, Test_AT_TestSimlockUnlockPara_002)
 
 
 
-/******************************************************************************
-类名     : Test_AT_QryFPllStatusPara
-功能描述 : AT_QryFPllStatusPara UT工程类
-修改历史 :
- 1.日   期  : 2013-11-30
-   作   者  : L00256032
-   修改内容 : Added for PLL status query
-******************************************************************************/
+
 class Test_AT_QryFPllStatusPara: public ::testing::Test
 {
 public:
@@ -3907,15 +3003,7 @@ public:
 
     }
 };
-/******************************************************************************
-测试用例编号: Test_AT_QryFPllStatusPara_001
-测试用例标题: 当前模式不合法
-预期结果    : 
-修改历史    :
- 1.日   期  : 2013-11-30
-   作   者  : L00256032
-   修改内容 : Added for PLL status query
-******************************************************************************/
+
 TEST_F(Test_AT_QryFPllStatusPara, Test_AT_QryFPllStatusPara_001)
 {
     // 变量声明
@@ -3939,15 +3027,7 @@ TEST_F(Test_AT_QryFPllStatusPara, Test_AT_QryFPllStatusPara_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_QryFPllStatusPara_002
-测试用例标题: 申请消息失败
-预期结果    : 
-修改历史    :
- 1.日   期  : 2013-11-30
-   作   者  : L00256032
-   修改内容 : Added for PLL status query
-******************************************************************************/
+
 TEST_F(Test_AT_QryFPllStatusPara, Test_AT_QryFPllStatusPara_002)
 {
     // 变量声明
@@ -3974,15 +3054,7 @@ TEST_F(Test_AT_QryFPllStatusPara, Test_AT_QryFPllStatusPara_002)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_QryFPllStatusPara_003
-测试用例标题: 发送消息失败
-预期结果    : 
-修改历史    :
- 1.日   期  : 2013-11-30
-   作   者  : L00256032
-   修改内容 : Added for PLL status query
-******************************************************************************/
+
 TEST_F(Test_AT_QryFPllStatusPara, Test_AT_QryFPllStatusPara_003)
 {
     // 变量声明
@@ -4009,15 +3081,7 @@ TEST_F(Test_AT_QryFPllStatusPara, Test_AT_QryFPllStatusPara_003)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_QryFPllStatusPara_004
-测试用例标题: 发送消息成功
-预期结果    : 
-修改历史    :
- 1.日   期  : 2013-11-30
-   作   者  : L00256032
-   修改内容 : Added for PLL status query
-******************************************************************************/
+
 TEST_F(Test_AT_QryFPllStatusPara, Test_AT_QryFPllStatusPara_004)
 {
     // 变量声明
@@ -4043,14 +3107,7 @@ TEST_F(Test_AT_QryFPllStatusPara, Test_AT_QryFPllStatusPara_004)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_At_RfPllStatusCnfProc
-功能描述 : At_RfPllStatusCnfProc UT工程类
-修改历史 :
- 1.日   期  : 2013-11-30
-   作   者  : L00256032
-   修改内容 : Added for PLL status query
-******************************************************************************/
+
 class Test_At_RfPllStatusCnfProc: public ::testing::Test
 {
 public:
@@ -4088,15 +3145,7 @@ public:
 
     }
 };
-/******************************************************************************
-测试用例编号: Test_At_RfPllStatusCnfProc_001
-测试用例标题: 当前AT命令未处于等待AT_CMD_FPLLSTATUS_QRY响应的状态
-预期结果    : 
-修改历史    :
- 1.日   期  : 2013-11-30
-   作   者  : L00256032
-   修改内容 : Added for PLL status query
-******************************************************************************/
+
 TEST_F(Test_At_RfPllStatusCnfProc, Test_At_RfPllStatusCnfProc_001)
 {
     // 变量声明
@@ -4119,15 +3168,7 @@ TEST_F(Test_At_RfPllStatusCnfProc, Test_At_RfPllStatusCnfProc_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_At_RfPllStatusCnfProc_002
-测试用例标题: 正常执行查询命令的返回
-预期结果    : 
-修改历史    :
- 1.日   期  : 2013-11-30
-   作   者  : L00256032
-   修改内容 : Added for PLL status query
-******************************************************************************/
+
 TEST_F(Test_At_RfPllStatusCnfProc, Test_At_RfPllStatusCnfProc_002)
 {
     // 变量声明

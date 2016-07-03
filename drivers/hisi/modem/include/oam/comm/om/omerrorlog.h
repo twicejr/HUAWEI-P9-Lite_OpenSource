@@ -443,13 +443,7 @@ typedef struct
     pFuncOMGetData                      pSendUlAtFunc;     /* 各组件注册 接收数据函数 */
 }OM_REGISTER_PROJECT_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : OM_ERRLOG_TRANS_MSG_STRU
- 结构说明  : Error Log 消息勾包结构体
- 1.日    期   : 2014年09月19日
-   作    者   : d00212987
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8           ucFuncType;
@@ -476,37 +470,10 @@ typedef struct
 /*****************************************************************************
   10 函数声明
 *****************************************************************************/
-/******************************************************************************
-函数名  ：OM_RegisterGetData
-功能描述：OM Ccpu接收各组件上报工程模式数据到APP回调函数注册接口
-输入参数：enProjectModule        ：回调组建编号，固定为OM_VOLTE_MOUDLE_PROJECT
-          pFuncProjectCallbak    ：回调函数指针
-输出参数：NA
-返回值  ：VOS_OK/VOS_ERR
-修改历史：
-1.  日期    ：2014年1月2日
-作者    ：
-修改内容：新生成函数
-说明:
-    1、工程模式主动上报开关通知各组件，Data域包含完整的OmHeard和OMPayload
-    2、工程模式命令上报消息通知各组件，Data域包含完整的OmHeard和OMPayload
-*****************************************************************************/
+
 extern VOS_UINT32 OM_RegisterGetData(OM_ERR_LOG_MOUDLE_ID_ENUM_UINT32 enProjectModule, pFuncOMGetData pFuncProjectCallback);
 
-/******************************************************************************
-函数名  ：OM_GetData
-功能描述：OM Ccpu接收各组件上报工程模式数据
-输入参数：enProjectModule    ：组建编号
-          pData              ：发送数据
-          ulLen              ：发送数据长度
-输出参数：NA
-返回值  ：VOS_OK/VOS_ERR
-修改历史：
-1.  日期    ：2014年1月2日
-作者    ：
-修改内容：新生成函数
-说明：pData从OMHeader的MsgType域开始。相当于调用组件预先申请Header部分，其中Header部分的SN字段由COMM填写
-*****************************************************************************/
+
 extern VOS_UINT32 OM_GetData(OM_ERR_LOG_MOUDLE_ID_ENUM_UINT32 enProjectModule, VOS_VOID *pData, VOS_UINT32 ulLen);
 
 extern VOS_VOID OM_AcpuSendVComData(VOS_UINT8 *pData, VOS_UINT32 uslength);

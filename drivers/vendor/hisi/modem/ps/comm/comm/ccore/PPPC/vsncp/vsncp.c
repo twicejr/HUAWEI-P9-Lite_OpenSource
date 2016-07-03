@@ -1,19 +1,4 @@
-/************************************************************************
-*                                                                      *
-*                             Vsncp.c                                  *
-*                                                                      *
-*  Project Code:                                                       *
-*  Create Date:        2015/05/25                                      *
-*  Author:             TIAN CHENCHEN                                   *
-*  Modify Date:                                                        *
-*  Document:                                                           *
-*  Function:           PPP的VSNCP协议模块                              *
-*  Others:                                                             *
-*----------------------------------------------------------------------*
-*                                                                      *
-*   这个文件定义了VSNCP协议模块的全部接口函数和内部处理函数            *
-*                                                                      *
-************************************************************************/
+
 
 
 
@@ -78,16 +63,7 @@ PPPFSMCALLBACK_S g_stVsncpCallbacks =
 *****************************************************************************/
 /*lint -save -e958 */
 /*lint -e572*/
-/****************************************************************************
-* CREATE DATE  ：2015/06/10                                                 *
-* CREATED BY   ：chenxianhua 00184031                                       *
-* FUNCTION     ：根据Pdn Id清除上下文中的部分信息(迭代新增)                 *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：                                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：
-* CALLED BY    ：
-****************************************************************************/
+
 VOID PPP_VSNCP_ClearPdnContext(VOS_UINT8 ucPdnId)
 {
     if (ucPdnId < A11_MAX_PDN_NUM)
@@ -116,16 +92,7 @@ VOID PPP_VSNCP_ClearPdnContext(VOS_UINT8 ucPdnId)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2012/12/12                                                 *
-* CREATED BY   ：wangyong 00138171                                          *
-* FUNCTION     ：vsncp状态机收到finish事件处理                              *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：                                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：
-* CALLED BY    ：
-****************************************************************************/
+
 VOID PPP_CORE_VSNCPFinishProc(PPPINFO_S *pstPppInfo)
 {
     PPPVSNCPINFO_S *pstVsncpInfo = VOS_NULL_PTR;
@@ -161,21 +128,7 @@ VOID PPP_CORE_VSNCPFinishProc(PPPINFO_S *pstPppInfo)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_Shell_ReceiveVSNCPUpFromCore
- 功能描述  : PPP的处理VSNCP UP事件的函数
- 输入参数  : PPPINFO_S *pstPppInfo
- 输出参数  : 无
- 返 回 值  : VOS_OK;VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012-12-19
-    作    者   : WANGYONG 00138171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_Shell_ReceiveVSNCPUpFromCore(PPPINFO_S *pstPppInfo)
 {
     PPPVSNCPINFO_S *pstVSNCPInfo = VOS_NULL_PTR;
@@ -187,9 +140,7 @@ VOS_UINT32 PPP_Shell_ReceiveVSNCPUpFromCore(PPPINFO_S *pstPppInfo)
 
     /* 删除协商定时器 */
     (VOID)PPP_NodeDelete(pstPppInfo->ulRPIndex);
-    /* BEGIN: Added for PN:解决ppp协商定时器资源挂死问题 by wangyong 00138171, 2013/12/23 */
     (VOID)PPP_PDNNodeDelete(pstVSNCPInfo->ulPDNIndex);
-    /* END:   Added for PN:解决ppp协商定时器资源挂死问题 by wangyong 00138171, 2013/12/23 */
 
     if (pstVSNCPInfo->ucRenegoFlag)
     {
@@ -232,21 +183,7 @@ VOS_UINT32 PPP_Shell_ReceiveVSNCPUpFromCore(PPPINFO_S *pstPppInfo)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_VSNCP_FSM_SetRetransmitTimer
- 功能描述  : vsncp状态机重启重传定时器
- 输入参数  : PPPFSM_S *pstFsm
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013-04-10
-    作    者   : WANGYONG 00138171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID PPP_VSNCP_FSM_SetRetransmitTimer(PPPFSM_S *pstFsm)
 {
     PPPVSNCPINFO_S *pstVsncpInfo = VOS_NULL_PTR;
@@ -307,21 +244,7 @@ VOID PPP_VSNCP_FSM_SetRetransmitTimer(PPPFSM_S *pstFsm)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_VSNCP_FSM_DelRetransmitTimer
- 功能描述  : vsncp状态机删除重传定时器
- 输入参数  : PPPFSM_S *pstFsm
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013-04-10
-    作    者   : WANGYONG 00138171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_VSNCP_FSM_DelRetransmitTimer(PPPFSM_S *pstFsm)
 {
     PPPVSNCPINFO_S *pstVsncpInfo = VOS_NULL_PTR;
@@ -362,21 +285,7 @@ VOS_UINT32 PPP_VSNCP_FSM_DelRetransmitTimer(PPPFSM_S *pstFsm)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_VSNCP_StopRetransmitTimer
- 功能描述  : 停VSNCP重传定时器
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016-02-02
-    作    者   : h00309869
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_VSNCP_StopRetransmitTimer(VOS_VOID)
 {
     PDN_CONTEXT_S                      *pstPDNContext = VOS_NULL_PTR;
@@ -400,16 +309,7 @@ VOS_VOID PPP_VSNCP_StopRetransmitTimer(VOS_VOID)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2012/12/12                                                 *
-* CREATED BY   ：wangyong 00138171                                          *
-* FUNCTION     ：清除vsncp控制信息                                          *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：                                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：
-* CALLED BY    ：
-****************************************************************************/
+
 VOID PPP_VSNCP_Clear(PPPVSNCPINFO_S *pstVsncpInfo, PDN_CONTEXT_S *pstPDNContext)
 {
     if ((VOS_NULL_PTR == pstVsncpInfo) || (VOS_NULL_PTR == pstPDNContext))
@@ -439,7 +339,6 @@ VOID PPP_VSNCP_Clear(PPPVSNCPINFO_S *pstVsncpInfo, PDN_CONTEXT_S *pstPDNContext)
 
         pstPDNContext->stEhrpd.stVSNCP.ulPmipv6UpdTimeOutID = 0;
     }
-    /* BEGIN: Added for PN:DTS2013112106760 L切C如果有残留资源则先释放再建立新连接 by y00170683, 2013/11/25 */
     if (pstPDNContext->stEhrpd.stVSNCP.ulReconnectDnsTimeOutID)
     {
         PDN_FsmStopTimer(TIMER_TYPE_PDN_IPV6_FSM_TIEMR,
@@ -447,7 +346,6 @@ VOID PPP_VSNCP_Clear(PPPVSNCPINFO_S *pstVsncpInfo, PDN_CONTEXT_S *pstPDNContext)
 
         pstPDNContext->stEhrpd.stVSNCP.ulReconnectDnsTimeOutID = 0;
     }
-    /* END:   Added for PN:DTS2013112106760 L切C如果有残留资源则先释放再建立新连接 by y00170683, 2013/11/25 */
     PPP_MemSet((UCHAR *)&(pstVsncpInfo->stFsm), 0, sizeof(PPPFSM_S));
 
     PPPC_INFO_LOG("\r\n [ppp]PPP_VSNCP_Clear :success! ");
@@ -456,16 +354,7 @@ VOID PPP_VSNCP_Clear(PPPVSNCPINFO_S *pstVsncpInfo, PDN_CONTEXT_S *pstPDNContext)
 }
 
 
-/****************************************************************************
-* CREATE DATE  ：2012/12/12                                                 *
-* CREATED BY   ：wangyong 00138171                                          *
-* FUNCTION     ：清除所有vsncp控制信息                                      *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：                                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：
-* CALLED BY    ：
-****************************************************************************/
+
 VOID PPP_VSNCP_ClearALL(PPPINFO_S *pstPppInfo)
 {
     PPPVSNCPINFO_S stVSNCPInfo = {0};
@@ -519,16 +408,7 @@ VOID PPP_VSNCP_ClearALL(PPPINFO_S *pstPppInfo)
 
 
 
-/****************************************************************************
-* CREATE DATE  ：2012/12/12                                                 *
-* CREATED BY   ：wangyong 00138171                                          *
-* FUNCTION     ：设置所有PDN的重协商标记                                    *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：                                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：
-* CALLED BY    ：
-****************************************************************************/
+
 VOID PPP_VSNCP_SetRenegoFlagForAllPDN(PPPINFO_S *pstPppInfo)
 {
     PDN_CONTEXT_S *pstPDNContext = VOS_NULL_PTR;
@@ -558,16 +438,7 @@ VOID PPP_VSNCP_SetRenegoFlagForAllPDN(PPPINFO_S *pstPppInfo)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2015/05/27                                                 *
-* CREATED BY   ：t00265288                                                  *
-* FUNCTION     ：通过pdn id查找PDN上下文                                    *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：                                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：
-* CALLED BY    ：
-****************************************************************************/
+
 VOS_UINT32 PPP_GetPDNContextByPDNID(UCHAR ucPDNId, PDN_CONTEXT_S **ppstPDNContext)
 {
     PS_BOOL_ENUM_UINT8                  enIsUsing;
@@ -584,16 +455,7 @@ VOS_UINT32 PPP_GetPDNContextByPDNID(UCHAR ucPDNId, PDN_CONTEXT_S **ppstPDNContex
     return VOS_OK;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2015/06/02                                                 *
-* CREATED BY   ：t00265288                                                  *
-* FUNCTION     ：通过pdn id查找PDN连接状态                                  *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：                                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：
-* CALLED BY    ：
-****************************************************************************/
+
 PS_BOOL_ENUM_UINT8 PPP_VSNCP_IsPDNOpened(UCHAR ucPDNId)
 {
     PDN_CONTEXT_S *pstPDNContext = VOS_NULL_PTR;
@@ -617,16 +479,7 @@ PS_BOOL_ENUM_UINT8 PPP_VSNCP_IsPDNOpened(UCHAR ucPDNId)
 }
 
 #if 0
-/****************************************************************************
-* CREATE DATE  ：2012/12/12                                                 *
-* CREATED BY   ：wangyong 00138171                                          *
-* FUNCTION     ：通过pdn id查找PDN上下文                                    *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：                                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：
-* CALLED BY    ：
-****************************************************************************/
+
 VOS_UINT32 PPP_VSNCP_GetPDNContextByPDNID(VOS_UINT32 ulRpIdx, UCHAR ucPDNId, PDN_CONTEXT_S **ppstPDNContext)
 {
     SDB_RETURNCODE_E enSdbResult = SDB_SUCCESS;
@@ -685,22 +538,7 @@ VOS_UINT32 PPP_VSNCP_GetPDNContextByPDNID(VOS_UINT32 ulRpIdx, UCHAR ucPDNId, PDN
 }
 #endif
 
-/****************************************************************************
-* CREATE DATE  ：2012/12/12                                                 *
-* CREATED BY   ：wangyong 00138171                                          *
-* FUNCTION     ：VSNCP接收外部事件.事件包括：Up、Down、Open、Close          *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstVSNCPInfo:LCP控制块指针                                 *
-*                ulCmd:命令字,可以为如下值:                                 *
-*                      PPPFSMLOWERDOWN:下层Down                             *
-*                      PPPFSMLOWERUP:下层Up                                 *
-*                      PPPFSMOPEN:Open事件                                  *
-*                      PPPFSMCLOSE:Down事件                                 *
-*                pPara:事件的参数,为NULL                                    *
-* OUTPUT       ：                                                           *
-* RETURN       ：NULL                                                       *
-* CALLED BY    ：    *
-****************************************************************************/
+
 VOID PPP_VSNCP_ReceiveEventFromCore(VOID *pstVsncpInfo, VOS_UINT32 ulCmd, char *pPara)
 {
     PPPFSM_S *pstFsm;
@@ -725,19 +563,7 @@ VOID PPP_VSNCP_ReceiveEventFromCore(VOID *pstVsncpInfo, VOS_UINT32 ulCmd, char *
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2012/12/12                                                 *
-* CREATED BY   ：wangyong 00138171                                          *
-* FUNCTION     ：VSNCP接收报文                                              *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstVsncpInfo:VSNCP控制块                                   *
-*                pHead:存放报文内存的头指针,应负责释放这段内存              *
-*                pPacket:报文头位置                                         *
-*                ulLen:报文长度                                             *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_Core_ReceivePacketFromShell                            *
-****************************************************************************/
+
 VOID PPP_VSNCP_ReceivePacket (VOID *pstVsncpInfo, UCHAR* pHead, UCHAR* pPacket, VOS_UINT32 ulLen)
 {
     PPPFSM_S *pstFsm = VOS_NULL_PTR;
@@ -759,16 +585,7 @@ VOID PPP_VSNCP_ReceivePacket (VOID *pstVsncpInfo, UCHAR* pHead, UCHAR* pPacket, 
 
 }
 
-/****************************************************************************
-* CREATE DATE  ：2015/05/30                                                 *
-* CREATED BY   ：t00265288                                                  *
-* FUNCTION     ：更新PdnContext中ApnAmbr处理函数                            *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：                                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：
-* CALLED BY    ：
-****************************************************************************/
+
 VOID PPP_VSNCP_UpdateApnAmbr
 (
     PDN_CONTEXT_S                      *pstPDNContext,
@@ -857,16 +674,7 @@ VOID PPP_VSNCP_UpdateApnAmbr
     }
 }
 
-/****************************************************************************
-* CREATE DATE  ：2015/05/30                                                 *
-* CREATED BY   ：t00265288                                                  *
-* FUNCTION     ：更新PdnContext处理函数                                     *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：                                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：
-* CALLED BY    ：
-****************************************************************************/
+
 VOID PPP_VSNCP_UpdatePdnContext
 (
     PDN_CONTEXT_S                      *pstPDNContext,
@@ -937,16 +745,7 @@ VOID PPP_VSNCP_UpdatePdnContext
     (VOS_VOID)pucIpv4DefaultRouterAddress;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2015/05/30                                                 *
-* CREATED BY   ：t00265288                                                  *
-* FUNCTION     ：更新PdnContext中的ErrorCode处理函数                        *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：                                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：
-* CALLED BY    ：
-****************************************************************************/
+
 VOID PPP_VSNCP_UpdateErrorCode
 (
     PDN_CONTEXT_S                      *pstPDNContext,
@@ -956,16 +755,7 @@ VOID PPP_VSNCP_UpdateErrorCode
     pstPDNContext->stEhrpd.enErrorCode = ucErrorCode;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2012/12/12                                                 *
-* CREATED BY   ：wangyong 00138171                                          *
-* FUNCTION     ：确定VSNCP需要协商那些参数,在VSNCP初始化时进行              *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm    :状态机                                          *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：状态机中执行tls动作的宏PPP_FSM_tls                         *
-****************************************************************************/
+
 /*lint -e550*/
 VOID PPP_VSNCP_resetci(PPPFSM_S *pstFsm)
 {
@@ -982,16 +772,7 @@ VOID PPP_VSNCP_resetci(PPPFSM_S *pstFsm)
 }
 /*lint +e550*/
 
-/****************************************************************************
-* CREATE DATE  ：2015/06/01                                                 *
-* CREATED BY   ：t00265288                                                  *
-* FUNCTION     ：计算要发送的Config Request报文数据部分长度                 *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm: 状态机                                             *
-* OUTPUT       ：                                                           *
-* RETURN       ：Config Request报文长度                                     *
-* CALLED BY    ：PPP_FSM_SendConfigReq                                      *
-****************************************************************************/
+
 VOS_UINT16 PPP_VSNCP_cilen(PPPFSM_S *pstFsm)
 {
     PPPVSNCPINFO_S *pstVSNCPInfo = (PPPVSNCPINFO_S *)pstFsm->pProtocolInfo;
@@ -1049,18 +830,7 @@ VOS_UINT16 PPP_VSNCP_cilen(PPPFSM_S *pstFsm)
     return usTotalLen;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2012/12/12                                                 *
-* CREATED BY   ：wangyong 00138171                                          *
-* FUNCTION     ：组织一个Config Request报文内容                             *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm: 状态机                                             *
-*                pPacket:报文头位置                                         *
-* OUTPUT       ：                                                           *
-*                pPacket:组装好的报文                                       *
-* RETURN       ：                                                           *
-* CALLED BY    ：PPP_FSM_SendConfigReq                                      *
-****************************************************************************/
+
 VOID PPP_VSNCP_addci(PPPFSM_S *pstFsm, UCHAR *pPacket)
 {
     PPPVSNCPINFO_S *pstVSNCPInfo = (PPPVSNCPINFO_S *)pstFsm->pProtocolInfo;
@@ -1143,18 +913,7 @@ VOID PPP_VSNCP_addci(PPPFSM_S *pstFsm, UCHAR *pPacket)
 }
 
 
-/****************************************************************************
-* CREATE DATE  ：2012/12/12                                                 *
-* CREATED BY   ：wangyong 00138171                                          *
-* FUNCTION     ：组织一个Teminate Request报文内容                           *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm: 状态机                                             *
-*                pPacket:报文头位置                                         *
-* OUTPUT       ：                                                           *
-*                pPacket:组装好的报文                                       *
-* RETURN       ：                                                           *
-* CALLED BY    ：PPP_FSM_SendConfigReq                                      *
-****************************************************************************/
+
 VOID PPP_VSNCP_Termaddci(PPPFSM_S *pstFsm, UCHAR *pPacket)
 {
     PPPVSNCPINFO_S *pstVSNCPInfo = (PPPVSNCPINFO_S *)pstFsm->pProtocolInfo;
@@ -1171,18 +930,7 @@ VOID PPP_VSNCP_Termaddci(PPPFSM_S *pstFsm, UCHAR *pPacket)
 }
 
 
-/****************************************************************************
-* CREATE DATE  ：2015/06/01                                                 *
-* CREATED BY   ：t00265288                                                  *
-* FUNCTION     ：处理收到的Config ACK报文                                   *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm: 状态机                                             *
-*                pPacket:报文头位置                                         *
-*                ulLen:  报文长度                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：VOS_OK,合法的ACK报文;VOS_ERR:非法的ACK报文                 *
-* CALLED BY    ：PPP_FSM_ReceiveConfAck                                     *
-****************************************************************************/
+
 VOS_UINT16 PPP_VSNCP_ackci(PPPFSM_S *pstFsm, UCHAR *pPacket, VOS_UINT32 ulLen)
 {
     VOS_UINT16 usOffset = 0;
@@ -1232,38 +980,14 @@ VOS_UINT16 PPP_VSNCP_ackci(PPPFSM_S *pstFsm, UCHAR *pPacket, VOS_UINT32 ulLen)
     return VOS_OK;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2012/12/12                                                 *
-* CREATED BY   ：wangyong 00138171                                          *
-* FUNCTION     ：处理收到的Config Reject报文                                *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm: 状态机                                             *
-*                pPacket:报文头位置                                         *
-*                ulLen:  报文长度                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：VOS_OK,合法的reject报文;VOS_ERR:非法的reject报文           *
-* CALLED BY    ：PPP_FSM_ReceiveConfNakRej                                  *
-****************************************************************************/
+
 VOS_UINT16 PPP_VSNCP_rejci(PPPFSM_S *pstFsm, UCHAR *pPacket, VOS_UINT32 ulLen)
 {
     PPP_DBG_OK_CNT(PPP_PHOK_1399);
     return VOS_ERR;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2012/12/12                                                 *
-* CREATED BY   ：wangyong 00138171                                          *
-* FUNCTION     ：分析收到的config Request报文                               *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm: 状态机                                             *
-*                pPacket:报文头位置                                         *
-*                pulLen: 报文长度                                           *
-* OUTPUT       ：                                                           *
-*                pPacket:要发给对方的报文(ACK或NAK或REJ)内容                *
-*                pulLen: 要发给对方的报文的长度                             *
-* RETURN       ：发给对方的报文类型:CONFACK、CONFNAK或者CONFREJ             *
-* CALLED BY    ：PPP_FSM_ReceiveConfReq函数中由PPP_FSM_reqci宏调用          *
-****************************************************************************/
+
 UCHAR PPP_VSNCP_reqci(PPPFSM_S *pstFsm, UCHAR *pPacket, VOS_UINT32 *pulLen)
 {
     PPPVSNCPINFO_S *pstVSNCPInfo = VOS_NULL_PTR;
@@ -1349,16 +1073,7 @@ UCHAR PPP_VSNCP_reqci(PPPFSM_S *pstFsm, UCHAR *pPacket, VOS_UINT32 *pulLen)
     return CONFACK;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2012/12/12                                                 *
-* CREATED BY   ：wangyong 00138171                                          *
-* FUNCTION     ：状态机up的处理函数                                         *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm:状态机                                              *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：是回调函数，由状态机tlu动作宏(PPP_FSM_tlu)调用             *
-****************************************************************************/
+
 VOID PPP_VSNCP_up(PPPFSM_S *pstFsm)
 {
     VOS_UINT32 ulAccept = 0;
@@ -1424,16 +1139,7 @@ VOID PPP_VSNCP_up(PPPFSM_S *pstFsm)
     PPPC_StartPppInactiveTimer((VOS_UINT8)pstPppInfo->ulRPIndex);
 }
 
-/****************************************************************************
-* CREATE DATE  ：2012/12/12                                                 *
-* CREATED BY   ：wangyong 00138171                                          *
-* FUNCTION     ：状态机down的处理函数                                       *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm:状态机                                              *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：是回调函数，由状态机tld动作宏(PPP_FSM_tld)调用             *
-****************************************************************************/
+
 VOID PPP_VSNCP_down(PPPFSM_S *pstFsm)
 {
 
@@ -1443,16 +1149,7 @@ VOID PPP_VSNCP_down(PPPFSM_S *pstFsm)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2015/06/03                                                 *
-* CREATED BY   ：t00265288                                                  *
-* FUNCTION     ：状态机finished的处理函数                                   *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm:状态机                                              *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：是回调函数，由状态机tlf动作宏(PPP_FSM_tlf)调用             *
-****************************************************************************/
+
 VOID PPP_VSNCP_finished(PPPFSM_S *pstFsm)
 {
     VOS_UINT32 ulRet = 0;
@@ -1513,16 +1210,7 @@ VOID PPP_VSNCP_finished(PPPFSM_S *pstFsm)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2012/12/12                                                 *
-* CREATED BY   ：wangyong 00138171                                          *
-* FUNCTION     ：状态机starting的处理函数                                   *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstFsm:状态机                                              *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：是回调函数，由状态机tls动作宏(PPP_FSM_tls)调用             *
-****************************************************************************/
+
 VOID PPP_VSNCP_starting(PPPFSM_S *pstFsm)
 {
 
@@ -1531,16 +1219,7 @@ VOID PPP_VSNCP_starting(PPPFSM_S *pstFsm)
                                       VOS_NULL_PTR);
 }
 
-/****************************************************************************
-* CREATE DATE  ：2012/12/12                                                 *
-* CREATED BY   ：wangyong 00138171                                          *
-* FUNCTION     ：初始化VSNCP控制块                                          *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块                                       *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：封装函数                                                   *
-****************************************************************************/
+
 VOID PPP_VSNCP_Init(PPPINFO_S *pstPppInfo,
                     PPPVSNCPINFO_S *pstVSNCPInfo,
                     PDN_CONTEXT_S *pstPDNContext,
@@ -1601,16 +1280,7 @@ VOID PPP_VSNCP_Init(PPPINFO_S *pstPppInfo,
 }
 
 
-/****************************************************************************
-* CREATE DATE  ：2012/12/12                                                 *
-* CREATED BY   ：wangyong 00138171                                          *
-* FUNCTION     ：vsncp状态机处理完毕后刷新pdn上下文中的状态信息             *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块                                       *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：封装函数                                                   *
-****************************************************************************/
+
 VOID PPP_VSNCP_FreshPDNContext(PPPVSNCPINFO_S *pstVSNCPInfo, PDN_CONTEXT_S *pstPDNContext, PPPINFO_S *pstPppInfo)
 {
     PPPFSM_S *pstFsm = VOS_NULL_PTR;
@@ -1635,32 +1305,13 @@ VOID PPP_VSNCP_FreshPDNContext(PPPVSNCPINFO_S *pstVSNCPInfo, PDN_CONTEXT_S *pstP
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2012/12/12                                                 *
-* CREATED BY   ：wangyong 00138171                                          *
-* FUNCTION     ：VSNCP up后对协商结果进行检查,并确定以后的协商参数          *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块                                       *
-* OUTPUT       ：                                                           *
-* RETURN       ：VOS_ERR:协商结果不可接受,调用者应结束协商                  *
-*                VOS_OK :协商结果可以接受,调用者应向上层协议报UP            *
-* CALLED BY    ：PPP_VSNCP_up                                               *
-****************************************************************************/
+
 VOS_UINT32 PPP_VSNCP_UpResetCi(PPPINFO_S *pstPppInfo)
 {
     return VOS_OK;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2012/12/12                                                 *
-* CREATED BY   ：wangyong 00138171                                          *
-* FUNCTION     ：vsncp发送reject消息                                        *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：                                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：
-* CALLED BY    ：
-****************************************************************************/
+
 /*lint -e550*/
 VOID PPP_VSNCP_SendReject(PPPINFO_S *pstPppInfo,
                           UCHAR *pucMsg,
@@ -1751,16 +1402,7 @@ VOID PPP_VSNCP_SendReject(PPPINFO_S *pstPppInfo,
 /*lint +e550*/
 
 
-/****************************************************************************
-* CREATE DATE  ：2015/05/26                                                 *
-* CREATED BY   ：t00265288                                                  *
-* FUNCTION     ：通知VSNCP启动协商                                          *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：                                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：
-* CALLED BY    ：
-****************************************************************************/
+
 VOS_UINT32 PPP_VSNCP_NotifyVSNCPStart(PPPINFO_S *pstPppInfo, UCHAR ucPDNId)
 {
     PPPVSNCPINFO_S stVSNCPInfo = {0};
@@ -1822,16 +1464,7 @@ VOS_UINT32 PPP_VSNCP_NotifyVSNCPStart(PPPINFO_S *pstPppInfo, UCHAR ucPDNId)
     return VOS_OK;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2015/05/26                                                 *
-* CREATED BY   ：t00265288                                                  *
-* FUNCTION     ：通知VSNCP stop                                             *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：                                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：
-* CALLED BY    ：
-****************************************************************************/
+
 VOS_UINT32 PPP_VSNCP_NotifyVSNCPStop(PPPINFO_S *pstPppInfo, UCHAR ucPDNId)
 {
     PPPVSNCPINFO_S stVSNCPInfo = {0};
@@ -1871,16 +1504,7 @@ VOS_UINT32 PPP_VSNCP_NotifyVSNCPStop(PPPINFO_S *pstPppInfo, UCHAR ucPDNId)
 }
 
 #if 0
-/****************************************************************************
-* CREATE DATE  ：2012/12/12                                                 *
-* CREATED BY   ：wangyong 00138171                                          *
-* FUNCTION     ：检查必选信元是否改变                                       *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：                                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：
-* CALLED BY    ：
-****************************************************************************/
+
 VOS_UINT32 PPP_VSNCP_CheckOptionIsChange(PDN_PPP_VSNCP_REQ_S *pstNewVsncpReqInfo,
                                     PDN_PPP_VSNCP_REQ_S *pstOldVsncpReqInfo,
                                     VOS_UINT16 usOldAPNIndex,
@@ -1946,16 +1570,7 @@ VOS_UINT32 PPP_VSNCP_CheckOptionIsChange(PDN_PPP_VSNCP_REQ_S *pstNewVsncpReqInfo
 }
 #endif
 
-/****************************************************************************
-* CREATE DATE  ：2012/12/12                                                 *
-* CREATED BY   ：wangyong 00138171                                          *
-* FUNCTION     ：vsncp req协商报文处理函数                                  *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：                                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：
-* CALLED BY    ：
-****************************************************************************/
+
 VOS_UINT32 PPP_VSNCP_ConReqPactketProc(PPPINFO_S *pstPppInfo,
                                   UCHAR *pHead,
                                   UCHAR *pPacket,
@@ -2038,16 +1653,7 @@ VOS_UINT32 PPP_VSNCP_ConReqPactketProc(PPPINFO_S *pstPppInfo,
     return VOS_OK;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2015/05/30                                                 *
-* CREATED BY   ：t00265288                                                  *
-* FUNCTION     ：OUI Check处理函数                                          *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：                                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：
-* CALLED BY    ：
-****************************************************************************/
+
 VOS_UINT32 PPP_VSNCP_CheckOUI(UCHAR *pPacket, VOS_UINT32 ulLen)
 {
     UCHAR *pOuiPos = VOS_NULL_PTR;
@@ -2079,16 +1685,7 @@ VOS_UINT32 PPP_VSNCP_CheckOUI(UCHAR *pPacket, VOS_UINT32 ulLen)
     return VOS_OK;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2012/12/12                                                 *
-* CREATED BY   ：wangyong 00138171                                          *
-* FUNCTION     ：vsncp ack协商报文处理函数                                  *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：                                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：
-* CALLED BY    ：
-****************************************************************************/
+
 VOS_UINT32 PPP_VSNCP_ConAckPactketProc(PPPINFO_S *pstPppInfo,
                                   UCHAR *pHead,
                                   UCHAR *pPacket,
@@ -2173,16 +1770,7 @@ VOS_UINT32 PPP_VSNCP_ConAckPactketProc(PPPINFO_S *pstPppInfo,
 
 
 
-/****************************************************************************
-* CREATE DATE  ：2012/12/12                                                 *
-* CREATED BY   ：wangyong 00138171                                          *
-* FUNCTION     ：vsncp rej协商报文处理函数                                  *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：                                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：
-* CALLED BY    ：
-****************************************************************************/
+
 VOS_UINT32 PPP_VSNCP_ConRejPactketProc(PPPINFO_S *pstPppInfo,
                                   UCHAR *pHead,
                                   UCHAR *pPacket,
@@ -2264,16 +1852,7 @@ VOS_UINT32 PPP_VSNCP_ConRejPactketProc(PPPINFO_S *pstPppInfo,
 }
 
 
-/****************************************************************************
-* CREATE DATE  ：2012/12/12                                                 *
-* CREATED BY   ：wangyong 00138171                                          *
-* FUNCTION     ：vsncp term req协商报文处理函数                             *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：                                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：
-* CALLED BY    ：
-****************************************************************************/
+
 VOS_UINT32 PPP_VSNCP_TermReqPactketProc(PPPINFO_S *pstPppInfo,
                                    UCHAR *pHead,
                                    UCHAR *pPacket,
@@ -2340,16 +1919,7 @@ VOS_UINT32 PPP_VSNCP_TermReqPactketProc(PPPINFO_S *pstPppInfo,
 }
 
 
-/****************************************************************************
-* CREATE DATE  ：2012/12/12                                                 *
-* CREATED BY   ：wangyong 00138171                                          *
-* FUNCTION     ：term ack协商报文处理函数                                   *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：                                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：
-* CALLED BY    ：
-****************************************************************************/
+
 VOS_UINT32 PPP_VSNCP_TermAckPactketProc(PPPINFO_S *pstPppInfo,
                                    UCHAR *pHead,
                                    UCHAR *pPacket,
@@ -2430,16 +2000,7 @@ VOS_UINT32 PPP_VSNCP_TermAckPactketProc(PPPINFO_S *pstPppInfo,
     return VOS_OK;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2012/12/12                                                 *
-* CREATED BY   ：wangyong 00138171                                          *
-* FUNCTION     ：vsncp协商报文处理函数                                      *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：                                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：
-* CALLED BY    ：
-****************************************************************************/
+
 VOID PPP_VSNCP_PactketProc(PPPINFO_S *pstPppInfo,
                            UCHAR *pHead,
                            UCHAR *pPacket,
@@ -2492,16 +2053,7 @@ VOID PPP_VSNCP_PactketProc(PPPINFO_S *pstPppInfo,
 #if 0
 #define __VSNCP_PDN_INTERFACE__
 
-/****************************************************************************
-* CREATE DATE  ：2013/5/6                                                   *
-* CREATED BY   ：wangyong 00138171                                          *
-* FUNCTION     ：pdn子状态机通知VSNCP获取PCO成功                            *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：                                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：
-* CALLED BY    ：
-****************************************************************************/
+
 VOS_UINT32 PPP_SubPDNNotifyVSNCPGetPCOSucc(VOS_UINT32 ulRpIdx, UCHAR ucPDNId, UCHAR *pucPacket)
 {
     PPPINFO_S *pstPppInfo = VOS_NULL_PTR;
@@ -2586,16 +2138,7 @@ VOS_UINT32 PPP_SubPDNNotifyVSNCPGetPCOSucc(VOS_UINT32 ulRpIdx, UCHAR ucPDNId, UC
     return VOS_OK;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2012/12/12                                                 *
-* CREATED BY   ：wangyong 00138171                                          *
-* FUNCTION     ：pdn子状态机通知VSNCP启动重协商协商                         *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：                                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：
-* CALLED BY    ：
-****************************************************************************/
+
 VOS_UINT32 PPP_SubPDNNotifyVSNCPRenegoStart(VOS_UINT32 ulRpIdx, UCHAR ucPDNId)
 {
     PPPINFO_S *pstPppInfo = VOS_NULL_PTR;
@@ -2636,12 +2179,10 @@ VOS_UINT32 PPP_SubPDNNotifyVSNCPRenegoStart(VOS_UINT32 ulRpIdx, UCHAR ucPDNId)
         return VOS_OK;
     }
 
-    /* BEGIN: Added for PN:解决ppp协商定时器资源挂死问题 by wangyong 00138171, 2013/12/21 */
     if (AM_RELCODE_PDN_HSGW_IDLETIMEOUT == pstPDNContext->usReleaseCode)
     {
         (VOID)PPP_PDNNodeAdd(pstPppInfo->ulRPIndex, pstPDNContext->ulPdnIndex, PPP_NEGO_LIST_NODE_VSNCP_RENEGO_START);
     }
-    /* END:   Added for PN:解决ppp协商定时器资源挂死问题 by wangyong 00138171, 2013/12/21 */
 
     /* 如果此时vsncp处于以下几个状态说明还没有收到用户的VSNCP请求，所以不需要再发起重协商 */
     if ((PPP_STATE_REQSENT == pstPDNContext->stEhrpd.stVSNCP.ucState)
@@ -2699,16 +2240,7 @@ VOS_UINT32 PPP_SubPDNNotifyVSNCPRenegoStart(VOS_UINT32 ulRpIdx, UCHAR ucPDNId)
     return VOS_OK;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2012/12/12                                                 *
-* CREATED BY   ：wangyong 00138171                                          *
-* FUNCTION     ：pdn子状态机通知VSNCP启动协商                               *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：                                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：
-* CALLED BY    ：
-****************************************************************************/
+
 VOS_UINT32 PPP_SubPDNNotifyVSNCPStart(VOS_UINT32 ulRpIdx, UCHAR ucPDNId, UCHAR *pucPacket)
 {
     PPPINFO_S *pstPppInfo = VOS_NULL_PTR;
@@ -2789,16 +2321,7 @@ VOS_UINT32 PPP_SubPDNNotifyVSNCPStart(VOS_UINT32 ulRpIdx, UCHAR ucPDNId, UCHAR *
     return VOS_OK;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2013/04/12                                                 *
-* CREATED BY   ：wangyong 00138171                                          *
-* FUNCTION     ：根据去活原因值映射reject code                              *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：                                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：
-* CALLED BY    ：
-****************************************************************************/
+
 UCHAR PPP_VSNCP_SetRejectCodeByReleaseCode(VOS_UINT32 ulReleaseCode)
 {
     UCHAR ucErrCode = 0;
@@ -2873,16 +2396,7 @@ UCHAR PPP_VSNCP_SetRejectCodeByReleaseCode(VOS_UINT32 ulReleaseCode)
     return ucErrCode;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2012/12/12                                                 *
-* CREATED BY   ：wangyong 00138171                                          *
-* FUNCTION     ：pdn子状态机通知VSNCP stop                                  *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：                                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：
-* CALLED BY    ：
-****************************************************************************/
+
 VOS_UINT32 PPP_SubPDNNotifyVSNCPStop(VOS_UINT32 ulRpIdx, UCHAR ucPDNId, VOS_UINT32 ulReleaseCode)
 {
     PPPINFO_S *pstPppInfo = VOS_NULL_PTR;
@@ -2960,16 +2474,7 @@ VOS_UINT32 PPP_SubPDNNotifyVSNCPStop(VOS_UINT32 ulRpIdx, UCHAR ucPDNId, VOS_UINT
 }
 
 
-/****************************************************************************
-* CREATE DATE  ：2012/12/12                                                 *
-* CREATED BY   ：wangyong 00138171                                          *
-* FUNCTION     ：提供给PDN发送reject消息                                    *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：                                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：
-* CALLED BY    ：
-****************************************************************************/
+
 VOID PPP_PDNSendVSNCPReject(VOS_UINT32 ulRPIndex,
                             UCHAR *pucMsg,
                             UCHAR ucErrCode)
@@ -3007,16 +2512,7 @@ VOID PPP_PDNSendVSNCPReject(VOS_UINT32 ulRPIndex,
 }
 
 
-/****************************************************************************
-* CREATE DATE  ：2012/12/12                                                 *
-* CREATED BY   ：wangyong 00138171                                          *
-* FUNCTION     ：提供给PDN清除vsncp控制信息                                 *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：                                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：
-* CALLED BY    ：
-****************************************************************************/
+
 VOID PPP_PDNClearVSNCP(PDN_CONTEXT_S *pstPDNContext)
 {
     PPPINFO_S *pstPppInfo = VOS_NULL_PTR;

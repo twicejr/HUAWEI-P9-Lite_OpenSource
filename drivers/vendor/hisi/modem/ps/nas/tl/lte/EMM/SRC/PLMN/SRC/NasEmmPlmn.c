@@ -1,16 +1,4 @@
-/******************************************************************************
 
-   Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : NasEmmPlmn.c
-  Description     : PLMN模块处理流程
-  History         :
-     1.lining 00141619       2008-9-11   Draft Enact
-     2.hanlufeng 41410 BJ9D00494 ATTEMPING TO ATTACH状态下收到系统消息后
-                                 发起ATTACH，不再和SM交互，因此改为直接
-                                 调用ATTACH 模块提供的接口。
-******************************************************************************/
 
 
 /*****************************************************************************
@@ -51,18 +39,7 @@ extern "C" {
 /*****************************************************************************
   3.1  消息发送 Function
 *****************************************************************************/
-/*****************************************************************************
- Function Name   : NAS_EMM_PLMN_SendAppStartCnf
- Description     : 向APP发送APP_MM_START_CNF消息
- Input           : ulAppMmStartParam -- 启动消息参数
- Output          : None
- Return          : NAS_EMM_PLMN_OK  -- 发送成功
-                   an error code    -- 发送失败
 
- History         :
-    1.lining 00141619      2008-9-16  Draft Enact
-    2.zhengjunyan 00148421 2010-11-16  MMC和LMM之间的消息修改为MMC内部消息
-*****************************************************************************/
 /*lint -e960*/
 /*lint -e961*/
 VOS_UINT32  NAS_EMM_PLMN_SendAppStartCnf(
@@ -104,19 +81,7 @@ VOS_UINT32  NAS_EMM_PLMN_SendAppStartCnf(
     return ulSendResult;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_PLMN_SendAppStopCnf
- Description     : 向APP发送APP_MM_STOP_CNF消息
- Input           : ulAppMmStopParam -- 停止消息参数
- Output          : None
- Return          : NAS_EMM_PLMN_OK  -- 发送成功
-                   an error code    -- 发送失败
 
- History         :
-    1.lining 00141619      2008-9-16  Draft Enact
-    2.zhengjunyan 00148421 2010-11-16  MMC和LMM之间的消息修改为MMC内部消息
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_PLMN_SendAppStopCnf(
                     VOS_UINT32                              ulAppRslt,
                     VOS_UINT32                              ulOpId)
@@ -156,18 +121,7 @@ VOS_UINT32  NAS_EMM_PLMN_SendAppStopCnf(
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_PLMN_SendRrcStartReq
- Description     : 向RRC发送RRC_MM_START_REQ消息
- Input           : None
- Output          : None
- Return          : NAS_EMM_PLMN_OK  -- 发送成功
-                   an error code    -- 发送失败
 
- History         :
-    1.lining 00141619      2008-9-16  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_PLMN_SendRrcStartReq( VOS_VOID )
 {
     LRRC_LMM_START_REQ_STRU            *pstRrcStartReqMsg;
@@ -220,19 +174,7 @@ VOS_UINT32  NAS_EMM_PLMN_SendRrcStartReq( VOS_VOID )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_PLMN_SendRrcStopReq
- Description     : 向RRC发送MM_RRC_STOP_REQ消息
- Input           : None
- Output          : None
- Return          : NAS_EMM_PLMN_OK  -- 发送成功
-                   an error code    -- 发送失败
 
- History        :
-    1.lining 00141619      2008-9-16  Draft Enact
-    2.sunbing 49683        2010-9-11  在RRC消息队列中消息超过10条的场景下，
-                                      关机消息已紧急消息形式插入到消息队列中，确保关机消息得到处理
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_PLMN_SendRrcStopReq( VOS_VOID )
 {
     RRC_MM_STOP_REQ_STRU                *pstRrcStopReqMsg;
@@ -277,18 +219,7 @@ VOS_UINT32  NAS_EMM_PLMN_SendRrcStopReq( VOS_VOID )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_PLMN_SendMmcStartReq
- Description     : 向MMC发送MMC_EMM_START_REQ消息
- Input           : None
- Output          : None
- Return          : NAS_EMM_PLMN_OK  -- 发送成功
-                   NAS_EMM_PLMN_ERR -- 发送失败
 
- History         :
-    1.lining 00141619      2008-9-16  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_PLMN_SendMmcStartReq(
                     VOS_UINT32                              ulStartCause )
 {
@@ -326,18 +257,7 @@ VOS_UINT32  NAS_EMM_PLMN_SendMmcStartReq(
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_PLMN_SendMmcStopReq
- Description     : 向MMC发送MMC_EMM_STOP_REQ消息
- Input           : None
- Output          : None
- Return          : NAS_EMM_PLMN_OK  -- 发送成功
-                   NAS_EMM_PLMN_ERR -- 发送失败
 
- History         :
-    1.lining 00141619      2008-9-16  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_PLMN_SendMmcStopReq( VOS_VOID )
 {
     EMMC_EMM_STOP_REQ_STRU               *pstMmcStopReqMsg;
@@ -370,16 +290,7 @@ VOS_UINT32  NAS_EMM_PLMN_SendMmcStopReq( VOS_VOID )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_PLMN_SendEmmEsmStautsInd
- Description     : 向ESM发送EMM_ESM_STATUS_IND消息
- Input           : ulStatRst    -状态类型
- Output          : None
- Return          : NONE
- History         :
-    1.leili 00132387      2009-02-06  Draft Enact
 
-*****************************************************************************/
 
 VOS_VOID NAS_EMM_PLMN_SendEmmEsmStautsInd(EMM_ESM_ATTACH_STATUS_ENUM_UINT32 ulStatRst)
 {
@@ -418,17 +329,7 @@ VOS_VOID NAS_EMM_PLMN_SendEmmEsmStautsInd(EMM_ESM_ATTACH_STATUS_ENUM_UINT32 ulSt
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_PLMN_ImsiPagingProc
- Description     : Process the Paging_Ind with Imsi
- Input           :
- Output          :
- Return          :
- History         :
-    1.zhengjunyan 00148421 2009.03.24 New Draft
-    2.yangfan     00159566 2010.03.30 Modify
-    3.yangfan     00159566 2010.06.21 修改本地Detach
-*****************************************************************************/
+
 
 VOS_VOID NAS_EMM_PLMN_ImsiPagingProc(VOS_VOID)
 {
@@ -467,16 +368,7 @@ VOS_VOID NAS_EMM_PLMN_ImsiPagingProc(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_PLMN_STmsiPagingProc
- Description     : Process the Paging_Ind with S-TMSI
- Input           :
- Output          :
- Return          :
- History         :
-    1.zhengjunyan 00148421 2009.03.24 New Draft
-    2.X00148705            2010-03-02 在EmmMsRegSsAttemptToUpdate响应TMSI Paging
-*****************************************************************************/
+
 
 VOS_VOID NAS_EMM_PLMN_STmsiPagingProc(VOS_VOID)
 {
@@ -515,9 +407,7 @@ VOS_VOID NAS_EMM_PLMN_STmsiPagingProc(VOS_VOID)
     }
     else if (ulCurEmmStat == NAS_LMM_PUB_COMP_EMMSTATE( EMM_MS_REG, EMM_SS_REG_ATTEMPTING_TO_UPDATE))
     {
-        /* 由于流程冲突标识为COLLISION_SERVICE，后续发起TAU流程active flag会置上，相当此次TAU也起到了发serviece的作用，
-           后面TAU完成后也不会发起SERVICE，因为DRB已经建立成功。
-           因此将SER参数都置上，代表也发起了service流程，后面TAU失败或者被拒，会通知erabm service失败*/
+        
 
         /* 大数据: 设置SER类型为MT Ser */
         NAS_EMM_SetOmMtSerFlag(NAS_EMM_YES);
@@ -554,17 +444,7 @@ VOS_VOID NAS_EMM_PLMN_STmsiPagingProc(VOS_VOID)
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_PLMN_CsPagingProc
- Description     : 处理CS PAGING
- Input           : NONE
- Output          : NONE
- Return          : VOS_VOID
- History         :
-    1.lihong 00150010       2012.02.22 New Draft
-    2.leixiantiao 00258641  2015-06-24 DTS2015061001947不处理CS PAGING问题
-    3.sunjitan 00193151     2015-07-09 Modify for MT_CSFB_IMPROVED_PHASEI
-*****************************************************************************/
+
 VOS_VOID NAS_EMM_PLMN_CsPagingProc
 (
     LRRC_LNAS_PAGING_UE_ID_ENUM_UINT32  enPagingUeId
@@ -762,15 +642,7 @@ VOS_UINT32  NAS_EMM_MmcStartCheck(
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_EsmSendStartNotifyInd
- Description     : 向ESM发送ID_EMM_ESM_START_NOTIFY_IND消息
- Input           : VOS_VOID
- Output          : VOS_VOID
- Return          : VOS_VOID
- History         :
-    1.sunjitan 00193151     2015-01-15  Draft Enact
-*****************************************************************************/
+
 VOS_VOID    NAS_EMM_EsmSendStartNotifyInd (VOS_VOID)
 {
     EMM_ESM_START_NOTIFY_IND_STRU     *pEmmEsmStartNotifyMsg;
@@ -801,20 +673,7 @@ VOS_VOID    NAS_EMM_EsmSendStartNotifyInd (VOS_VOID)
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsNullSsWaitAppStartReqMsgAppStartReq
- Description     : 在MS_NULL + SS_NULL_WAIT_APP_START_REQ状态下，
-                   收到APP_MM_START_REQ消息，消息响应处理程序
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lining 00141619      2008-10-16  Draft Enact
-    2.yangfan 00159566     2009-09-24  Modify
-    3.yangfan 00159566     2010-02-24  Modify  BJ9D02775
-    4.sunbing 49683        2012-05-28  有卡但读IMSI失败，认为无卡，不再复位
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsNullSsWaitAppStartReqMsgAppStartReq(
                     VOS_UINT32                              ulMsgId,
                     VOS_VOID                                *pMsg )
@@ -878,10 +737,8 @@ VOS_UINT32    NAS_EMM_MsNullSsWaitAppStartReqMsgAppStartReq(
     /* 通知ESM开机 */
     NAS_EMM_EsmSendStartNotifyInd();
 
-    /* Added by wangchen 00209181 begin for 搜网优化 2015-05-30 */
     /* 通知CSS模块开机 */
     NAS_LMM_SendCssStartInd();
-    /* Added by wangchen 00209181 begin for 搜网优化 2015-05-30 */
 
 
     /* 设置App消息的相关参数 */
@@ -1010,17 +867,7 @@ VOS_VOID  NAS_EMM_SendMmcErrInd( VOS_UINT32 ulErrTpye )
 }
 #endif
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsNotNullSsAnyStateMsgAppStartReq
- Description     : 在主状态非空状态下，收到APP_MM_START_REQ消息，消息响应处理程序
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lining 00141619      2008-10-16  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsNotNullSsAnyStateMsgAppStartReq(
                     VOS_UINT32                              ulMsgId,
                     VOS_VOID                                *pMsg )
@@ -1070,21 +917,7 @@ VOS_UINT32    NAS_EMM_MsNotNullSsAnyStateMsgAppStartReq(
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_WhenStopingThenMsgAppStartReq
- Description     : 在EMM_MS_NULL + EMM_SS_NULL_WAIT_SWITCH_OFF 或
-                     EMM_MS_NULL + EMM_SS_NULL_WAIT_MMC_STOP_CNF 或
-                     EMM_MS_NULL + EMM_SS_NULL_WAIT_SWITCH_OFF状态下，
-                   收到APP发来的APP_MM_START_REQ消息，消息响应处理程序
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lining 00141619      2008-10-16  Draft Enact
-    2.hanlufeng 41410      2009-06-22
-    3.X00148705            2010-03-27  删除停定时器TI_NAS_EMM_WAIT_RRC_STOP_CNF_TIMER
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_WhenStopingThenMsgAppStartReq(
                     VOS_UINT32                              ulMsgId,
                     VOS_VOID                                *pMsg )
@@ -1124,19 +957,7 @@ VOS_UINT32    NAS_EMM_WhenStopingThenMsgAppStartReq(
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsNullSsWaitMmcStartCnfMsgMmcStartCnf
- Description     : 在MS_NULL + SS_NULL_WAIT_MMC_START_CNF状态下，收到MMC发来的
-                   MMC_EMM_START_CNF消息，消息响应处理程序
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lining 00141619      2008-9-16  Draft Enact
-    2.X00148705            2010-03-27 修改发送失败的处理
-
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsNullSsWaitMmcStartCnfMsgMmcStartCnf(
                     VOS_UINT32                              ulMsgId,
                     VOS_VOID                                *pMsg )
@@ -1201,18 +1022,7 @@ VOS_UINT32    NAS_EMM_MsNullSsWaitMmcStartCnfMsgMmcStartCnf(
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsNullSsWaitMmcStartCnfMsgTimerExp
- Description     : 在MS_NULL + SS_NULL_WAIT_MMC_START_CNF状态下，
-                   TI_NAS_EMM_WAIT_MMC_START_CNF_TIMER超时处理程序
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lining 00141619      2008-10-16  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsNullSsWaitMmcStartCnfMsgTimerExp(
                     VOS_UINT32                              ulMsgId,
                     VOS_VOID                                *pMsg )
@@ -1274,19 +1084,7 @@ VOS_UINT32    NAS_EMM_MsNullSsWaitMmcStartCnfMsgTimerExp(
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsNullSsWaitRrcStartCnfMsgRrcStartCnf
- Description     : 在MS_NULL + SS_NULL_WAIT_RRC_START_CNF状态下，收到RRC发来的
-                   RRC_MM_START_CNF消息，消息响应处理程序
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lining 00141619      2008-9-16  Draft Enact
-    2.X00148705            2010-03-27 修改发送失败的处理
-
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsNullSsWaitRrcStartCnfMsgRrcStartCnf(
                     VOS_UINT32                              ulMsgId,
                     VOS_VOID                                *pMsg )
@@ -1417,18 +1215,7 @@ VOS_UINT32    NAS_EMM_MsNullSsWaitRrcStartCnfMsgRrcStartCnf(
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsNullSsWaitRrcStartCnfMsgTimerExp
- Description     : 在MS_NULL + SS_NULL_WAIT_RRC_START_CNF状态下，
-                   TI_NAS_EMM_WAIT_RRC_START_CNF_TIMER超时处理程序
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lining 00141619      2008-10-16  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsNullSsWaitRrcStartCnfMsgTimerExp(
                 VOS_UINT32              ulMsgId,
                 VOS_VOID                *pMsg )
@@ -1467,20 +1254,7 @@ VOS_UINT32  NAS_EMM_MsNullSsWaitRrcStartCnfMsgTimerExp(
 /*****************************************************************************
   3.3  关机相关流程处理 Function
 *****************************************************************************/
-/*****************************************************************************
- Function Name   : NAS_EMM_MsNullSsAnyReadUsimStateMsgAppStopReq
- Description     : 在MS_NULL + SS_NULL_WAIT_APP_START_REQ状态下，
-                   收到APP_MM_STOP_REQ消息，消息响应处理程序
-                   说明当前状态是关机状态或者整个关机过程已经执行完成，
-                   直接向APP回复APP_MM_STOP_CNF消息
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lining 00141619      2008-10-16  Draft Enact
-    1.yangfan 00159566     2010-3-16  Draft Enact
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsNullSsAnyReadUsimStateMsgAppStopReq(
                     VOS_UINT32                              ulMsgId,
                     VOS_VOID                                *pMsg )
@@ -1585,10 +1359,8 @@ VOS_VOID NAS_EMM_ProcLocalStop( VOS_VOID )
     NAS_EMM_EsmSendStopNotifyInd();
 
 
-    /* Added by wangchen 00209181 begin for 搜网优化 2015-05-30 */
     /* 通知CSS模块关机 */
     NAS_LMM_SendCssStopInd();
-    /* Added by wangchen 00209181 begin for 搜网优化 2015-05-30 */
 
     /*通知 RABM:RRC_CONN_REL_IND*/
     NAS_LMM_SendRabmRrcConRelInd(EMM_ERABM_REL_CAUSE_NULL);
@@ -1636,17 +1408,7 @@ VOS_VOID NAS_EMM_ProcLocalStop( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsNotNullNotRegMsgAppStopReq
- Description     : 在主状态非空状态下，收到APP_MM_STOP_REQ消息，消息响应处理程序
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lining 00141619      2008-10-16  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsNotNullNotRegMsgAppStopReq(
                     VOS_UINT32                              ulMsgId,
                     VOS_VOID                                *pMsg )
@@ -1674,19 +1436,7 @@ VOS_UINT32    NAS_EMM_MsNotNullNotRegMsgAppStopReq(
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsNullSsWaitMmcStopCnfMsgMmcStopCnf
- Description     : 在MS_NULL + SS_NULL_WAIT_MMC_STOP_CNF状态下，收到MMC发来的
-                   MMC_EMM_STOP_CNF消息，消息响应处理程序
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lining 00141619      2008-9-16  Draft Enact
-    2.X00148705            2010-03-27 修改发送失败的处理
-
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsNullSsWaitMmcStopCnfMsgMmcStopCnf(
                     VOS_UINT32                              ulMsgId,
                     VOS_VOID                         *pMsg )
@@ -1747,18 +1497,7 @@ VOS_UINT32    NAS_EMM_MsNullSsWaitMmcStopCnfMsgMmcStopCnf(
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsNullSsWaitMmcStopCnfMsgTimerExp
- Description     : 在MS_NULL + SS_NULL_WAIT_MMC_START_CNF状态下，
-                   TI_NAS_EMM_WAIT_MMC_STOP_CNF_TIMER超时处理程序
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lining 00141619      2008-10-16  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsNullSsWaitMmcStopCnfMsgTimerExp(
                     VOS_UINT32                              ulMsgId,
                     VOS_VOID                         *pMsg )
@@ -1814,20 +1553,7 @@ VOS_UINT32    NAS_EMM_MsNullSsWaitMmcStopCnfMsgTimerExp(
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsNullSsWaitRrcStopCnfMsgRrcStopCnf
- Description     : 在MS_NULL + SS_NULL_WAIT_RRC_STOP_CNF状态下，收到RRC发来的
-                   RRC_MM_STOP_CNF消息，消息响应处理程序
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lining 00141619      2008-9-16  Draft Enact
-    2.leili 00132387       2009-05-13 modify
-    3.X00148705            2009-05-18 Modify
-
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsNullSsWaitRrcStopCnfMsgRrcStopCnf(
                     VOS_UINT32                              ulMsgId,
                     VOS_VOID                                *pMsg )
@@ -1889,19 +1615,7 @@ VOS_UINT32    NAS_EMM_MsNullSsWaitRrcStopCnfMsgRrcStopCnf(
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsNullSsWaitRrcStopCnfMsgTimerExp
- Description     : 在MS_NULL + SS_NULL_WAIT_RRC_START_CNF状态下，
-                   TI_NAS_EMM_WAIT_RRC_STOP_CNF_TIMER超时处理程序
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lining 00141619      2008-10-16  Draft Enact
-    2.X00148705            2010-03-27  修改发送结果的处理
-
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsNullSsWaitRrcStopCnfMsgTimerExp(
                     VOS_UINT32                              ulMsgId,
                     VOS_VOID                                *pMsg )
@@ -1961,22 +1675,7 @@ VOS_UINT32    NAS_EMM_MsNullSsWaitRrcStopCnfMsgTimerExp(
 /*****************************************************************************
   3.4  其它相关流程处理 Function
 *****************************************************************************/
-/*****************************************************************************
- Function Name   : NAS_EMM_MsNotNullSsAnyStateMsgMmcPlmnInd
- Description     : 在主状态非空状态下，收到MMC_EMM_PLMN_IND消息，消息响应处理程序
-                   (在主状态非空状态下，都有可能收到MMC_EMM_PLMN_IND消息)
-                   (MMC_EMM_PLMN_IND消息是在MMC收到APP的用户重选消息后，
-                    设置MMC状态，并通知EMM发生用户重选，而不是MMC通知EMM的搜网结果，
-                    搜网结果通过MMC_EMM_SYS_INFO_IND消息发给EMM。)
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lining 00141619      2008-9-16  Draft Enact
-    2.zhengjunyan 00148421 2011-12-27 EMMC收到搜网请求时，已经对连接状态进行了判断，
-                                      这里不需要再进行判断
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsNotNullSsAnyStateMsgMmcPlmnInd(
                     VOS_UINT32                              ulMsgId,
                     VOS_VOID                         *pMsg)
@@ -2074,18 +1773,7 @@ VOS_UINT32    NAS_EMM_MsNotNullSsAnyStateMsgMmcPlmnInd(
 
     return NAS_LMM_MSG_HANDLED;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegSsRegAttemptUpdateMmMsgMmcPlmnInd
- Description     : 处理在REG+ATTEMPT_TO_UPDATE_MM状态下收到PLMN IND消息
- Input           : ulMsgId-------------------------消息ID
-                   pMsgStru------------------------消息指针
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong 00150010      2011-11-17  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsRegSsRegAttemptUpdateMmMsgMmcPlmnInd
 (
     VOS_UINT32                          ulMsgId,
@@ -2135,18 +1823,7 @@ VOS_UINT32    NAS_EMM_MsRegSsRegAttemptUpdateMmMsgMmcPlmnInd
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegSsRegAttemptUpdateMmMsgIntraMrrcRelInd
- Description     : 处理在REG+ATTEMPT_TO_UPDATE_MM状态下收到内部链路释放消息
- Input           : ulMsgId-------------------------消息ID
-                   pMsgStru------------------------消息指针
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2011-11-17  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsRegSsRegAttemptUpdateMmMsgIntraMrrcRelInd
 (
     VOS_UINT32                          ulMsgId,
@@ -2208,18 +1885,7 @@ VOS_UINT32  NAS_EMM_MsRegSsNormalServiceMsgMrrcRelInd(
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsNotNullSsAnyStateMsgMmcCoverageLostInd
- Description     : 在主状态非空状态下，收到MMC_EMM_COVERAGE_LOST_IND消息，消息响应处理程序
-                   (在主状态非空状态下，都有可能收到MMC_EMM_COVERAGE_LOST_IND消息)
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lining 00141619      2008-9-17  Draft Enact
-    2.hanlufeng     41410  2009-05-21
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsNotNullSsAnyStateMsgMmcCoverageLostInd(
                     VOS_UINT32                              ulMsgId,
                     VOS_VOID                                *pMsg )
@@ -2292,17 +1958,7 @@ VOS_UINT32    NAS_EMM_MsNotNullSsAnyStateMsgMmcCoverageLostInd(
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegSsRegAttemptUpdateMmMsgMmcCoverageLostInd
- Description     : 在REG+ATTEMPT_TO_UPDATE_MM状态下收到丟网消息
- Input           : ulMsgId----------------------消息ID
-                   pMsg-------------------------丟网消息指针
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2011-11-16  Draft Enact
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_MsRegSsRegAttemptUpdateMmMsgMmcCoverageLostInd
 (
     VOS_UINT32                          ulMsgId,
@@ -2355,23 +2011,7 @@ VOS_UINT32 NAS_EMM_MsRegSsRegAttemptUpdateMmMsgMmcCoverageLostInd
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsDeregSsAttemptToAttachMsgMmcSysInfoInd
- Description     : 在Dereg.AttemptToAttach状态下，收到MMC发来的MMC_EMM_SYS_INFO_IND消息，
-                   响应处理程序
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.zhengjunyan   00148421    2009.03.10  New Draft
-    2.hanlufeng     41410       2009-04-30  ATTEMPTING TO ATTACH状态下，发起
-                                ATTACH，直接使用ATTACH模块缓存的PDN消息，不再
-                                向SM模块请求
-    3.leili         00132387    问题单BJ9D01091
-    4.liuhua        00212067    2012-05-29 当收到小区被禁消息后，不需要停止T3411, T3402
-    5.lihong00150010            2012-11-01  Modify:emgergency
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsDeregSsAttemptToAttachMsgMmcSysInfoInd(
                     VOS_UINT32                              ulMsgId,
                     VOS_VOID                                *pMsg )
@@ -2483,19 +2123,7 @@ VOS_UINT32    NAS_EMM_MsDeregSsAttemptToAttachMsgMmcSysInfoInd(
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsDeregSsNormalSrvMsgMmcSysInfoInd
- Description     : Dereg.Normal_Servie状态下收到系统消息，检查如果有禁止信息，状态
-                    迁移到 Dereg.Limite_service状态，如果没有禁止信息，状态不变
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2009-8-20  Draft Enact
-    2.lihong00150010            2012-12-13 Modify:Emergency
-    3.leixiantiao 00258641      2015-07-03 fix DTS2015062301014
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsDeregSsNormalSrvMsgMmcSysInfoInd(
                                     VOS_UINT32              ulMsgId,
                                     VOS_VOID               *pMsg )
@@ -2587,21 +2215,7 @@ VOS_UINT32  NAS_EMM_MsDeregSsNormalSrvMsgMmcSysInfoInd(
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsDeregSsLimitSrvMsgMmcSysInfoInd
- Description     : Dereg.Limit_Servie状态下收到系统消息，判断有没有禁止信息，
-                   若没有，再根据Last TA和定时器判断是否需要等定时器超时，如果
-                   不需要，则立即发起ATTACH
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2009-7-22   Draft Enact
-    2.sunjitan 00193151         2012-07-10  Modify: Last attempt reg TA 维护,增加对定时器的判断
-    3.lihong00150010            2012-11-01  Modify:emgergency
-    4.leixiantiao 00258641      2015-07-03  fix DTS2015062301014
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_MsDeregSsLimitSrvMsgMmcSysInfoInd(
                                     VOS_UINT32              ulMsgId,
                                     VOS_VOID               *pMsg )
@@ -2717,21 +2331,7 @@ VOS_UINT32 NAS_EMM_MsDeregSsLimitSrvMsgMmcSysInfoInd(
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsDeregSsPlmnSearchMsgMmcSysInfoInd
- Description     : Dereg.Plmn_Search状态下收到系统消息，如果没有禁止信息，
-                   再根据Last TA和定时器判断是否需要等待定时器超时，如果不需要，
-                   则立即发起ATTACH, 否则转状态等定时器超时
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2009-7-22   Draft Enact
-    2.sunjitan 00193151         2012-07-10  modify: Last attempt reg TA 维护,增加对定时器的判断
-    3.lihong00150010            2012-11-01  Modify:emgergency
-    4.leixiantiao 00258641      2015-07-03  fix DTS2015062301014
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_MsDeregSsPlmnSearchMsgMmcSysInfoInd(
                                             VOS_UINT32              ulMsgId,
                                             VOS_VOID               *pMsg )
@@ -2849,22 +2449,7 @@ VOS_UINT32 NAS_EMM_MsDeregSsPlmnSearchMsgMmcSysInfoInd(
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsDeregSsNoCellAvailMsgMmcSysInfoInd
- Description     : Dereg.NoCellAvailable状态下收到系统消息，判断如果有禁止信
-                   息，进入Dereg.Limit_Service状态，没有禁止信息，判断是否需要等
-                   定时器超时，如果不需要，则立即发起ATTACH
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2009-7-22   Draft Enact
-    2.zhengjunyan 00148421      2011-12-22
-    3.sunjitan 00193151         2012-07-10  Modify: Last attempt reg TA 维护,增加对定时器的判断
-    4.lihong00150010            2012-11-01  Modify:emgergency
-    4.leixiantiao 00258641      2015-07-03  fix DTS2015062301014
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_MsDeregSsNoCellAvailMsgMmcSysInfoInd
 (
     VOS_UINT32              ulMsgId,
@@ -2990,19 +2575,7 @@ VOS_UINT32 NAS_EMM_MsDeregSsNoCellAvailMsgMmcSysInfoInd
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsNotNullSsAnyStateMsgRrcErrInd
- Description     : 在主状态非空状态下，收到RRC_MM_ERR_IND消息，消息响应处理程序
-                   NAS收到该消息后会清除NAS当前的资源，发送内部AppStartReq消息，
-                   进入开机流程
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lining 00141619      2008-10-17  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsNotNullSsAnyStateMsgRrcErrInd(
                     VOS_UINT32                              ulMsgId,
                     VOS_VOID                                *pMsg )
@@ -3074,16 +2647,7 @@ VOS_UINT32    NAS_EMM_MsNotNullSsAnyStateMsgRrcErrInd(
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsNotNullSsAnyStateMsgRrcPagingInd
- Description     : 在主状态非空状态下，收到RRC_EMM_PAGING_IND消息
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.zhengjunyan 00148421 2009.03.24 New Draft
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsNotNullSsAnyStateMsgRrcPagingInd(
                     VOS_UINT32                              ulMsgId,
                     VOS_VOID                                *pMsg )
@@ -3138,16 +2702,7 @@ VOS_UINT32    NAS_EMM_MsNotNullSsAnyStateMsgRrcPagingInd(
 
     return NAS_LMM_MSG_HANDLED;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_MsTauInitSsTauWaitCnTauCnfMsgRrcPagingInd
- Description     : 在主状态TAU INIT收到RRC_EMM_PAGING_IND消息
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.sunjitan 00193151    2015-07-09   Draft Enact
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsTauInitSsTauWaitCnTauCnfMsgRrcPagingInd(
     VOS_UINT32                          ulMsgId,
     VOS_VOID                           *pMsg
@@ -3178,16 +2733,7 @@ VOS_UINT32    NAS_EMM_MsTauInitSsTauWaitCnTauCnfMsgRrcPagingInd(
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsSerInitSsSerWaitCnSerCnfMsgRrcPagingInd
- Description     : 在主状态SER INIT收到RRC_EMM_PAGING_IND消息
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.sunjitan 00193151    2015-07-09   Draft Enact
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsSerInitSsSerWaitCnSerCnfMsgRrcPagingInd(
     VOS_UINT32                          ulMsgId,
     VOS_VOID                           *pMsg
@@ -3219,17 +2765,7 @@ VOS_UINT32    NAS_EMM_MsSerInitSsSerWaitCnSerCnfMsgRrcPagingInd(
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsDeregSsNoImsiMsgMmcPlmnInd
- Description     : 在主状态DEREG下，子状态为NoImsi,收到MMC_EMM_PLMN_IND消息的处理；
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
- 1. X00148705      2009-08-12  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsDeregSsNoImsiMsgMmcPlmnInd(
                     VOS_UINT32                              ulMsgId,
                     VOS_VOID                                *pMsg)
@@ -3271,23 +2807,7 @@ VOS_UINT32    NAS_EMM_MsDeregSsNoImsiMsgMmcPlmnInd(
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsNullSsAnyStateMsgRrcErrInd
- Description     : 处理在MS未NULL时的RRC_ERR_IND消息
- Input           :
-                   在NULL状态下收到ErrInd，将其丢弃
-                   1)等待RRC_Cnf时收到ErrInd，丢弃此消息。记时器超时后会回到WaitAppStartReq
-                     状态。
-                   2)关机过程中收到消息，将其丢弃，记时器超时后会继续完成关机过程
 
- Output          : None
- Return          : VOS_UINT32
-
- History         :
-    1.X00148705    2009-11-2  Draft Enact
-    2.y00159566    2010-6-10  Modify
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsNullSsAnyStateMsgRrcErrInd(
     VOS_UINT32                                              ulMsgId,
     VOS_VOID                                                *pMsg)
@@ -3305,17 +2825,7 @@ VOS_UINT32  NAS_EMM_MsNullSsAnyStateMsgRrcErrInd(
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcRrcStopRslt
- Description     : 收到RRC_STOP_CNF或者等待RRC关机超时的公共处理，完成NAS关机
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-8-30  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ProcRrcStopRslt( VOS_VOID )
 {
     NAS_EMM_FSM_STATE_STRU              EmmState;
@@ -3335,19 +2845,7 @@ VOS_VOID  NAS_EMM_ProcRrcStopRslt( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsNullSsWaitSwitchOffProcMsgRrcRelInd
- Description     : 在状态MsNullSsWaitSwitchOff对RRC_REL_IND消息的处理,
-                   在该状态下,对RRC_ERR_REL_IND的处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.X00148705    2009-11-2  Draft Enact,代码由原函数
-                   NAS_EMM_MsNullSsWaitSwitchOffMsgRrcRelInd重构而成
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsNullSsWaitSwitchOffProcMsgRrcRelInd(VOS_VOID)
 {
     VOS_UINT32                          ulSendResult;
@@ -3362,10 +2860,8 @@ VOS_UINT32  NAS_EMM_MsNullSsWaitSwitchOffProcMsgRrcRelInd(VOS_VOID)
     /* 通知ESM关机 */
     NAS_EMM_EsmSendStopNotifyInd();
 
-    /* Added by wangchen 00209181 begin for 搜网优化 2015-05-30 */
     /* 通知CSS模块关机 */
     NAS_LMM_SendCssStopInd();
-    /* Added by wangchen 00209181 begin for 搜网优化 2015-05-30 */
 
     /*通知 RABM:RRC_CONN_REL_IND*/
     NAS_LMM_SendRabmRrcConRelInd(EMM_ERABM_REL_CAUSE_NULL);
@@ -3373,10 +2869,8 @@ VOS_UINT32  NAS_EMM_MsNullSsWaitSwitchOffProcMsgRrcRelInd(VOS_VOID)
     /* 通知ETC:REL_IND */
     NAS_EMM_TcSendRelInd();
 
-    /*sunbing 00265702/yanglei 关机定时器没有停 begin for DTS2015092904078*/
     /*停止定时器*/
     NAS_LMM_StopPtlTimer(              TI_NAS_EMM_PTL_SWITCH_OFF_TIMER);
-    /*sunbing 00265702/yanglei 关机定时器没有停 end for DTS2015092904078*/
 
     #if (FEATURE_ON == FEATURE_DSDS)
     /*发送end notify消息给RRC，通知RRC释放资源*/
@@ -3420,17 +2914,7 @@ VOS_UINT32  NAS_EMM_MsNullSsWaitSwitchOffProcMsgRrcRelInd(VOS_VOID)
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsNullSsWaitSwitchOffMsgRrcErrInd
- Description     : 在状态MsNullSsWaitSwitchOff处理消息RRC_ERR_IND
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.X00148705    2009-11-2  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsNullSsWaitSwitchOffMsgRrcErrInd(
     VOS_UINT32                                              ulMsgId,
     VOS_VOID                                                *pMsg )
@@ -3469,17 +2953,7 @@ VOS_UINT32  NAS_EMM_MsNullSsWaitSwitchOffMsgRrcErrInd(
     return(                             ulRet);
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsDrgSsNoImsiMsgSysInfoInd
- Description     : Dereg.NO_IMSI状态下收到系统消息，直接给MMC回复ATTACH失败
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.z00179470         2012-02-06  Draft Enact
-    2.lihong00150010    2012-11-01  Modify:emgergency
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_MsDrgSsNoImsiMsgSysInfoInd(
                                     VOS_UINT32              ulMsgId,
                                     VOS_VOID               *pMsg )

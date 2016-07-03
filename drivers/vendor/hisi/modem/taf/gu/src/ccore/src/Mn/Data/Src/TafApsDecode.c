@@ -1,23 +1,5 @@
 
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafApsDecode
-  版 本 号   : 初稿
-  作    者   : S62952
-  生成日期   : 2011年12月14日
-  最近修改   :
-  功能描述   : 公共解码处理函数
-  函数列表   :
-
-  修改历史   :
-  1.日    期   : 2011年12月14日
-    作    者   : S62952
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -67,23 +49,7 @@ const TAF_APS_DECODE_IPCP_PROC_STRU g_astTafApsDecIpcpProcTab[]=
    5 函数实现
 ******************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_DecodeIpcpIpAddr
- 功能描述  : 解码IPCP包中的Static IP
- 输入参数  : pucProtocolPacket  - 待解码的CONFIG_REQ的Packet地址
-             ucOptLen           - 操作长度
- 输出参数  : pstIpcpInfo        - IPCP解码后的信息
- 返 回 值  : VOS_OK             - 解码成功
-             VOS_ERR            - 解码失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年08月20日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_DecodeIpcpIpAddr(
     TAF_APS_IPCP_INFO_STRU             *pstIpcpInfo,
     VOS_UINT8                          *pucProtocolPacket,
@@ -109,23 +75,7 @@ VOS_UINT32 TAF_APS_DecodeIpcpIpAddr(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_DecodeIpcpPriDns
- 功能描述  : 解码IPCP包中的Pri Dns
- 输入参数  : pucProtocolPacket  - 待解码的CONFIG_REQ的Packet地址
-             ucOptLen           - 操作长度
- 输出参数  : pstIpcpInfo        - IPCP解码后的信息
- 返 回 值  : VOS_OK             - 解码成功
-             VOS_ERR            - 解码失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年08月20日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_DecodeIpcpPriDns(
     TAF_APS_IPCP_INFO_STRU             *pstIpcpInfo,
     VOS_UINT8                          *pucProtocolPacket,
@@ -151,23 +101,7 @@ VOS_UINT32 TAF_APS_DecodeIpcpPriDns(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_DecodeIpcpPriNbns
- 功能描述  : 解码IPCP包中的Pri Nbns
- 输入参数  : pucProtocolPacket  - 待解码的CONFIG_REQ的Packet地址
-             ucOptLen           - 操作长度
- 输出参数  : pstIpcpInfo        - IPCP解码后的信息
- 返 回 值  : VOS_OK             - 解码成功
-             VOS_ERR            - 解码失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年08月20日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_DecodeIpcpPriNbns(
     TAF_APS_IPCP_INFO_STRU             *pstIpcpInfo,
     VOS_UINT8                          *pucProtocolPacket,
@@ -193,23 +127,7 @@ VOS_UINT32 TAF_APS_DecodeIpcpPriNbns(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_DecodeIpcpSecDns
- 功能描述  : 解码IPCP包中的Sec Dns
- 输入参数  : pucProtocolPacket  - 待解码的CONFIG_REQ的Packet地址
-             ucOptLen           - 操作长度
- 输出参数  : pstIpcpInfo        - IPCP解码后的信息
- 返 回 值  : VOS_OK             - 解码成功
-             VOS_ERR            - 解码失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年08月20日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_DecodeIpcpSecDns(
     TAF_APS_IPCP_INFO_STRU             *pstIpcpInfo,
     VOS_UINT8                          *pucProtocolPacket,
@@ -235,23 +153,7 @@ VOS_UINT32 TAF_APS_DecodeIpcpSecDns(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_DecodeIpcpSecNbns
- 功能描述  : 解码IPCP包中的Sec Nbns
- 输入参数  : pucProtocolPacket  - 待解码的CONFIG_REQ的Packet地址
-             ucOptLen           - 操作长度
- 输出参数  : pstIpcpInfo        - IPCP解码后的信息
- 返 回 值  : VOS_OK             - 解码成功
-             VOS_ERR            - 解码失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年08月20日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_DecodeIpcpSecNbns(
     TAF_APS_IPCP_INFO_STRU             *pstIpcpInfo,
     VOS_UINT8                          *pucProtocolPacket,
@@ -277,22 +179,7 @@ VOS_UINT32 TAF_APS_DecodeIpcpSecNbns(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetIpcpDecFuncByOptType
- 功能描述  : 获取解码操作函数
- 输入参数  : ucOptType          - IPCP解码操作类型
- 输出参数  : 无
- 返 回 值  : pDecIpcpProcFunc   - 解码操作函数地址
-             VOS_NULL_PTR       - 空
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年08月21日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_APS_DECODE_IPCP_PROC_FUNC TAF_APS_GetIpcpDecFuncByOptType(VOS_UINT8 ucOptType)
 {
     VOS_UINT8                           i;
@@ -313,23 +200,7 @@ TAF_APS_DECODE_IPCP_PROC_FUNC TAF_APS_GetIpcpDecFuncByOptType(VOS_UINT8 ucOptTyp
     return VOS_NULL_PTR;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_DecodeIpcpConfigReqPkt
- 功能描述  : 解码IPCP包中的CONFIG信息
- 输入参数  : pucProtocolPacket  - 待解码的CONFIG_REQ的Packet地址
-             usPktLen           - IPCP码流长度
- 输出参数  : pstIpcpInfo        - IPCP解码后的信息
- 返 回 值  : VOS_OK             - 解码成功
-             VOS_ERR            - 解码失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年08月13日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_DecodeIpcpConfigReqPkt(
     TAF_APS_IPCP_INFO_STRU             *pstIpcpInfo,
     VOS_UINT8                          *pucProtocolPacket,
@@ -408,23 +279,7 @@ VOS_UINT32 TAF_APS_DecodeIpcpConfigReqPkt(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_DecodeIpcpStaticIpFromPppDialReq
- 功能描述  : 解码PPP拨号请求中IPCP包的 Config req
- 输入参数  : pucIpcpPkt         - 待解码的ipcp的Packet地址
-             usIpcpPktLen       - IPCP码流长度
- 输出参数  : pstIpcpInfo        - IPCP解码后的信息
- 返 回 值  : VOS_OK             - 解码成功
-             VOS_ERR            - 解码失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年08月13日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_DecodeIpcpPkt(
     TAF_APS_IPCP_INFO_STRU             *pstIpcpInfo,
     VOS_UINT8                          *pucIpcpPkt,
@@ -502,22 +357,7 @@ VOS_UINT32 TAF_APS_DecodeIpcpPkt(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_DecodePapInfo
- 功能描述  : 解码Pap类型的AUTH信息
- 输入参数  : aucPapReqBuf               - Pap鉴权信息
-             usPapReqLen                - Pap鉴权信息长度
- 输出参数  : pstAuthInfo                - 解码后鉴权参数
- 返 回 值  : VOS_OK                     - 成功
-             VOS_ERR                    - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年08月14日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_DecodePapInfo(
     TAF_APS_AUTH_INFO_STRU             *pstAuthInfo,
     VOS_UINT8                           aucPapReqBuf[],
@@ -601,24 +441,7 @@ VOS_UINT32 TAF_APS_DecodePapInfo(
     return  VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_DecodeChapInfo
- 功能描述  : 解码Chap类型的AUTH信息
- 输入参数  : aucChapChallengeBuf        - Chap鉴权challenge信息
-             usChapChallengeLen         - Chap鉴权challenge长度
-             aucChapResponseBuf         - Chap鉴权response信息
-             usChapResponseLen          - Chap鉴权response长度
- 输出参数  : pstAuthInfo                - 解码后鉴权参数
- 返 回 值  : VOS_OK                     - 成功
-             VOS_ERR                    - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年08月14日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_DecodeChapInfo(
     TAF_APS_AUTH_INFO_STRU             *pstAuthInfo,
     VOS_UINT8                           aucChapChallengeBuf[],
@@ -739,21 +562,7 @@ VOS_UINT32 TAF_APS_DecodeChapInfo(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_DecodeAuthInfo
- 功能描述  : 解析PPP REQ中的AUTH信息
- 输入参数  : pstPppAuthConfig           - PPP 拨号参数中鉴权信息
- 输出参数  : pstAuthInfo                - PPP 解码后的鉴权信息
- 返 回 值  : VOS_OK                     - 成功
-             VOS_ERR                    - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年08月14日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_DecodeAuthInfo(
     TAF_APS_AUTH_INFO_STRU             *pstAuthInfo,
     TAF_PPP_REQ_AUTH_CONFIG_INFO_STRU  *pstPppAuthConfig

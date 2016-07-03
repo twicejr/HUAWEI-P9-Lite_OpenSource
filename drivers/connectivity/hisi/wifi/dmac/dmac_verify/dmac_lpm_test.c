@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : dmac_chip_test.c
-  版 本 号   : 初稿
-  作    者   : 邹嵘
-  生成日期   : 2012年9月18日
-  最近修改   :
-  功能描述   : 芯片验证的dmac层测试代码、桩函数等
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年9月18日
-    作    者   : z52447
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -56,21 +39,7 @@ extern oal_uint32  dmac_scan_send_probe_req_frame(dmac_vap_stru *pst_dmac_vap, o
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : dmac_test_lpm_sleep_timer
- 功能描述  : wow睡眠后定时检查GPIO管脚上是否有唤醒信号
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月12日
-    作    者   : z52447
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 dmac_test_lpm_sleep_timer(oal_void *p_arg)
 {
 
@@ -183,21 +152,7 @@ oal_uint32 dmac_test_lpm_sleep_timer(oal_void *p_arg)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_test_lpm_create_sleep_timer
- 功能描述  : 软件寄存器方式sleep，创建睡眠定时器，根据输入参数设定睡眠时间
- 输入参数  : us_sleep_time,毫秒为单位的睡眠时间
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月12日
-    作    者   : z52447
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_test_lpm_create_sleep_timer(mac_device_stru *pst_device,oal_uint16 us_sleep_time)
 {
     FRW_TIMER_CREATE_TIMER(&(g_st_dmac_test_mng.st_sleep_timer),
@@ -209,24 +164,7 @@ oal_void dmac_test_lpm_create_sleep_timer(mac_device_stru *pst_device,oal_uint16
                                pst_device->ul_core_id);
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_test_lpm_smps_set_rate
- 功能描述  : SMPS测试打桩，根据输入条件，设置发送的11n的速率、RTS使能. 组合起来可以测试SMPS的行为是否正确:
-             1. 单流发送，应该可以通
-             2. 双流发送，不发RTS，应该不能通
-             3. 双流发送，先发RTS，应该可以通
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月12日
-    作    者   : z52447
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_test_lpm_smps_set_rate(mac_tx_ctl_stru *pst_tx_ctl, hal_tx_txop_alg_stru *pst_txop_alg,dmac_test_stub_opera_enum_uint8 en_opera)
 {
     dmac_lpm_smps_tx_stub_stru          *pst_smps_stub ;
@@ -292,22 +230,7 @@ oal_void dmac_test_lpm_smps_set_rate(mac_tx_ctl_stru *pst_tx_ctl, hal_tx_txop_al
 
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_test_lpm_txopps_en
- 功能描述  : TXOP PS测试开关,置1时,接收端才会统计接收到得测试报文的个数。开关关闭时，
-             计数器清零。
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月12日
-    作    者   : z52447
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_test_lpm_txopps_en(oal_uint8 uc_en)
 {
     g_st_dmac_test_mng.uc_txop_ps_en = uc_en;
@@ -318,22 +241,7 @@ oal_void dmac_test_lpm_txopps_en(oal_uint8 uc_en)
 
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_test_lpm_txopps_rx_count()
- 功能描述  : TXOP PS测试开关置1时,接收端统计接收到的测试报文的个数。简单起见，统计长度大于
-             128字节的报文,测试时，要求AP侧发128以上字节的报文。
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月12日
-    作    者   : z52447
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_test_lpm_txopps_rx_count(oal_uint16 us_pkt_len)
 {
     if ((1 == g_st_dmac_test_mng.uc_txop_ps_en)&& (us_pkt_len>=128))
@@ -342,43 +250,14 @@ oal_void dmac_test_lpm_txopps_rx_count(oal_uint16 us_pkt_len)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_test_lpm_txopps_debug()
- 功能描述  : 打印接收端统计接收到的测试报文的个数。简单起见，统计长度大于
-             128字节的报文,测试时，要求AP侧发128以上字节的报文。
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月12日
-    作    者   : z52447
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_test_lpm_txopps_debug(oal_void)
 {
    OAM_INFO_LOG1(0, OAM_SF_ANY, "Receive test pkt cnt = %d\n",g_st_dmac_test_mng.us_txop_rx_cnt);
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_test_lpm_txopps_set_partial_aid
- 功能描述  : TXOP PS测试打桩，打桩开始时，对Partial AID打桩；打桩结束时，恢复原来的值
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月12日
-    作    者   : z52447
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_test_lpm_txopps_set_partial_aid(dmac_vap_stru         *pst_dmac_vap,
                                                           dmac_user_stru        *pst_dmac_user,
                                                           dmac_test_stub_opera_enum_uint8 en_opera)
@@ -422,21 +301,7 @@ oal_void dmac_test_lpm_txopps_set_partial_aid(dmac_vap_stru         *pst_dmac_va
      return ;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_test_lpm_send_probe_requst
- 功能描述  : 测试命令控制主动发送probe request报文，WOW测试用
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月12日
-    作    者   : z52447
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 dmac_test_lpm_send_probe_requst(dmac_vap_stru *pst_dmac_vap,oal_uint8 uc_positive,oal_uint8* puc_bssid)
 {
     oal_int8    ac_ssid[4] = {'\0'};
@@ -465,41 +330,13 @@ oal_uint32 dmac_test_lpm_send_probe_requst(dmac_vap_stru *pst_dmac_vap,oal_uint8
     return ul_ret;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_test_lpm_wow_int_proc
- 功能描述  : wow主CPU唤醒中断处理函数,测试仅计数,以验证wifi芯片是否发了唤醒信号
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月12日
-    作    者   : z52447
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_test_lpm_wow_int_proc(oal_void)
 {
     g_st_dmac_test_mng.ul_wow_int_cnt++;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_test_lpm_wow_init
- 功能描述  : wow测试初始化，在主CPU中注册唤醒中断处理函数
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月12日
-    作    者   : z52447
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_test_lpm_wow_init(oal_void)
 {
 #ifdef _PRE_BOARD_SD5115
@@ -521,21 +358,7 @@ oal_void dmac_test_lpm_wow_init(oal_void)
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_test_lpm_set_wow_en
- 功能描述  : 设置全局wow使能开关
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月12日
-    作    者   : z52447
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_test_lpm_set_wow_en(oal_uint8 uc_en)
 {
      g_st_dmac_test_mng.uc_wow_en = uc_en;
@@ -547,41 +370,13 @@ oal_void dmac_test_lpm_set_wow_en(oal_uint8 uc_en)
 
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_test_lpm_get_wow_en
- 功能描述  : 获取全局wow使能开关
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月12日
-    作    者   : z52447
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint8 dmac_test_lpm_get_wow_en(oal_void)
 {
      return g_st_dmac_test_mng.uc_wow_en ;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_test_lpm_wow_debug
- 功能描述  : WOW调试，显示中断次数统计
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月12日
-    作    者   : z52447
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_test_lpm_wow_debug(oal_void)
 {
 
@@ -618,21 +413,7 @@ oal_void dmac_test_lpm_wow_debug(oal_void)
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_test_lpm_wow_prepare_probe_resp
- 功能描述  : wow测试用，准备probe response帧
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月12日
-    作    者   : z52447
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 dmac_test_lpm_wow_prepare_probe_resp(dmac_vap_stru *pst_dmac_vap)
 {
     oal_uint8       ast_dest_addr[WLAN_MAC_ADDR_LEN] = {0,0,0,0,0,0};
@@ -657,21 +438,7 @@ oal_uint32 dmac_test_lpm_wow_prepare_probe_resp(dmac_vap_stru *pst_dmac_vap)
 
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_test_lpm_wow_release_probe_resp
- 功能描述  : 退出wow模式时，释放为mac准备的probe response帧。
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月13日
-    作    者   : z52447
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_test_lpm_wow_release_probe_resp(dmac_vap_stru *pst_dmac_vap)
 {
     if(OAL_PTR_NULL != pst_dmac_vap->pst_wow_probe_resp)
@@ -684,21 +451,7 @@ oal_void dmac_test_lpm_wow_release_probe_resp(dmac_vap_stru *pst_dmac_vap)
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_test_lpm_wow_prepare_null_data
- 功能描述  : WOW测试用，为mac准备空帧。
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月13日
-    作    者   : z52447
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 dmac_test_lpm_wow_prepare_null_data(dmac_vap_stru *pst_dmac_vap)
 {
     dmac_user_stru* pst_dmac_user;
@@ -742,21 +495,7 @@ oal_uint32 dmac_test_lpm_wow_prepare_null_data(dmac_vap_stru *pst_dmac_vap)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_test_lpm_wow_release_null_data
- 功能描述  : 释放为MAC准备的null data帧。
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月12日
-    作    者   : z52447
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_test_lpm_wow_release_null_data(dmac_vap_stru *pst_dmac_vap)
 {
     if (OAL_PTR_NULL != pst_dmac_vap->pst_wow_null_data)
@@ -766,21 +505,7 @@ oal_void dmac_test_lpm_wow_release_null_data(dmac_vap_stru *pst_dmac_vap)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_test_lpm_tx_null_data
- 功能描述  : 测试用，主动发送null data帧
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月13日
-    作    者   : z52447
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 dmac_test_lpm_send_nulldata(dmac_vap_stru *pst_dmac_vap,oal_uint8 uc_psm,oal_uint8* puc_da)
 {
     oal_netbuf_stru             *pst_null_data;
@@ -882,21 +607,7 @@ oal_uint32 dmac_test_lpm_send_nulldata(dmac_vap_stru *pst_dmac_vap,oal_uint8 uc_
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_test_always_tx
- 功能描述  : 将发送描述符中的NEXT描述符字段指向本身
- 输入参数  : pst_tx_dscr:描述符
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月12日
-    作    者   : y00196452
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_test_always_tx(hal_to_dmac_device_stru * pst_hal_device, hal_tx_dscr_stru * pst_tx_dscr)
 {
     /* 获取设备 */
@@ -905,21 +616,7 @@ oal_void dmac_test_always_tx(hal_to_dmac_device_stru * pst_hal_device, hal_tx_ds
          hal_rf_test_enable_al_tx(pst_hal_device, pst_tx_dscr);
     }
 }
-/*****************************************************************************
- 函 数 名  : dmac_test_dfx_set_tx_cnt
- 功能描述  : 设置重传次数为3
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月21日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  dmac_test_dfx_set_tx_cnt(hal_tx_txop_alg_stru *pst_txop_alg)
 {
     hal_tx_txop_per_rate_params_union   *past_rate_param;

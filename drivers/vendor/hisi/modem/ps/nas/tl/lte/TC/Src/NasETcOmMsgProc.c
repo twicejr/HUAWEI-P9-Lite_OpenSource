@@ -42,17 +42,7 @@ extern "C" {
 /*****************************************************************************
   3 Function
 *****************************************************************************/
-/*****************************************************************************
- Function Name   : NAS_ETC_SndAirMsgReportInd
- Description     : 发送空口消息
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2010-04-15  Draft Enact
-
-*****************************************************************************/
 /*lint -e960*/
 /*lint -e961*/
 VOS_VOID NAS_ETC_SndAirMsgReportInd
@@ -64,9 +54,7 @@ VOS_VOID NAS_ETC_SndAirMsgReportInd
 )
 {
 #ifndef PS_ITT_PC_TEST
-    /*z00282933, 多模OM融合添加 - BEGIN*/
     DIAG_AIR_IND_STRU       stAirMsg;
-    /*z00282933, 多模OM融合添加 - END*/
     VOS_UINT8                  *pucTmpData = VOS_NULL_PTR;
 
     /*分配空口消息空间*/
@@ -81,7 +69,6 @@ VOS_VOID NAS_ETC_SndAirMsgReportInd
 
     NAS_ETC_MEM_CPY_S(pucTmpData,ulLength, pucData, ulLength);
 
-    /*z00282933, 多模OM融合添加 - BEGIN*/
     /*设置空口消息方向*/
     if(NAS_ETC_AIR_MSG_DIR_ENUM_UP == enMsgDir)
     {
@@ -105,7 +92,6 @@ VOS_VOID NAS_ETC_SndAirMsgReportInd
         NAS_ETC_WARN_LOG("NAS_ETC_SndAirMsgReportInd: Send Msg Fail!");
         TLPS_PRINT2LAYER_WARNING(NAS_ETC_SndAirMsgReportInd_ENUM, LNAS_TC_SendMsgFail);
     }
-    /*z00282933, 多模OM融合添加 - END*/
 
     /*释放空口消息空间*/
     NAS_ETC_MEM_FREE(pucTmpData);
@@ -115,20 +101,9 @@ VOS_VOID NAS_ETC_SndAirMsgReportInd
     TLPS_PRINT2LAYER_INFO(NAS_ETC_SndAirMsgReportInd_ENUM, LNAS_FUNCTION_LABEL1);
 }
 
-/*****************************************************************************
- Function Name  : NAS_ETC_SndKeyEventReportInd()
- Description    : 作成和发送OM_PS_KEY_EVENT_REPORT_IND消息
- Input          : VOS_UINT8 ucKeyEvent 关键事件
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-    1.lihong00150010      2010-04-15  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ETC_SndKeyEventReportInd(OM_PS_KEY_EVENT_ENUM_UINT8 enKeyEvent)
 {
-    /*z00282933, 多模OM融合添加 - BEGIN*/
 #if (VOS_WIN32 != VOS_OS_VER)
     DIAG_EVENT_IND_STRU stDiagEventInd;
 
@@ -151,7 +126,6 @@ VOS_VOID NAS_ETC_SndKeyEventReportInd(OM_PS_KEY_EVENT_ENUM_UINT8 enKeyEvent)
 #endif
 
 #endif
-    /*z00282933, 多模OM融合添加 - END*/
 
     NAS_ETC_NORM_LOG("TC->OMT: PS_OMT_KEY_EVT_REPORT_IND\r");
     TLPS_PRINT2LAYER_INFO(NAS_ETC_SndKeyEventReportInd_ENUM, LNAS_FUNCTION_LABEL1);

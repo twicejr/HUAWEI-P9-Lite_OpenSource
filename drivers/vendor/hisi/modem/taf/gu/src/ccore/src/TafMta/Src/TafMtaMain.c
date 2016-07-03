@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2012, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafMtaMain.c
-  版 本 号   : 初稿
-  作    者   : 闫志吉
-  生成日期   : 2012年6月27日
-  最近修改   :
-  功能描述   : MTA模块消息处理函数对应表及相关公共处理定义
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年6月27日
-    作    者   : Y00213812
-    修改内容   : A-GPS项目新增
-
-******************************************************************************/
 
 /*****************************************************************************
   1 其他头文件包含
@@ -32,9 +15,7 @@
 #include "MtaPhyInterface.h"
 #include "TafMtaPhy.h"
 #include "NasMtaInterface.h"
-/* Added by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-11, begin */
 #include "TafMtaUnSolicitedReport.h"
-/* Added by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-11, begin */
 
 #if (FEATURE_ON == FEATURE_PTM)
 #include "NasErrorLog.h"
@@ -93,13 +74,11 @@ const MTA_MSG_PROC_STRU g_astMtaMsgProcAtTab[]=
 
     {ID_AT_MTA_BODY_SAR_SET_REQ,                TAF_MTA_RcvAtBodySarSetReq},
 
-    /* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-1, begin */
     {ID_AT_MTA_CURC_SET_NOTIFY,                 TAF_MTA_RcvAtSetCurcNotify},
     {ID_AT_MTA_CURC_QRY_REQ,                    TAF_MTA_RcvAtQryCurcReq},
     {ID_AT_MTA_UNSOLICITED_RPT_SET_REQ,         TAF_MTA_RcvAtSetUnsolicitedRptReq},
     {ID_AT_MTA_UNSOLICITED_RPT_QRY_REQ,         TAF_MTA_RcvAtQryUnsolicitedRptReq},
     {ID_TAFAGENT_MTA_GET_SYSMODE_REQ,           TAF_MTA_RcvTafAgentGetSysModeReq},
-    /* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-1, end */
 
     {ID_AT_MTA_IMEI_VERIFY_QRY_REQ,             TAF_MTA_RcvQryImeiVerifyReq},
     {ID_AT_MTA_CGSN_QRY_REQ,                    TAF_MTA_RcvQryCgsnReq},
@@ -123,9 +102,7 @@ const MTA_MSG_PROC_STRU g_astMtaMsgProcAtTab[]=
     { ID_AT_MTA_PHY_INIT_REQ,                   TAF_MTA_RcvAtPhyInitReq},
 
 
-    /* Added by l00198894 for 新增+ECID命令, 2013-12-09, begin */
     {ID_AT_MTA_ECID_SET_REQ,                    TAF_MTA_RcvAtEcidSetReq},
-    /* Added by l00198894 for 新增+ECID命令, 2013-12-09, end */
 
     {ID_AT_MTA_MIPICLK_QRY_REQ,                TAF_MTA_RcvAtQryMipiClkReq},
 
@@ -209,9 +186,7 @@ const MTA_MSG_PROC_STRU g_astMtaMsgProcGasTab[]=
     /* 消息ID */                                /* 消息处理函数 */
     {ID_RRC_MTA_MSG_POSITION_REQ,               TAF_MTA_RcvRrcMsgPositionReq},
 
-    /* Modified by l00198894 for 新增+ECID命令, 2013-12-10, begin */
     {ID_RRC_MTA_QRY_NMR_CNF,                    TAF_MTA_RcvGUAsEcellInfoQryCnf},
-    /* Modified by l00198894 for 新增+ECID命令, 2013-12-10, end */
 
     {ID_GRR_MTA_NCELL_MONITOR_SET_CNF,          TAF_MTA_RcvRrcSetNCellMonitorCnf},
     {ID_GRR_MTA_NCELL_MONITOR_QRY_CNF,          TAF_MTA_RcvRrcQryNCellMonitorCnf},
@@ -244,9 +219,7 @@ const MTA_MSG_PROC_STRU g_astMtaMsgProcWcomTab[]=
 /* MTA模块处理来自接入层Wrr模下消息函数对应表*/
 const MTA_MSG_PROC_STRU g_astMtaMsgProcWrrTab[]=
 {
-    /* Modified by l00198894 for 新增+ECID命令, 2013-12-10, begin */
     {ID_RRC_MTA_QRY_NMR_CNF,                    TAF_MTA_RcvGUAsEcellInfoQryCnf},
-    /* Modified by l00198894 for 新增+ECID命令, 2013-12-10, end */
     {ID_WRR_MTA_AUTOTEST_QRY_CNF,               TAF_MTA_RcvWrrAutotestQryCnf},
     {ID_WRR_MTA_CELLINFO_QRY_CNF,               TAF_MTA_RcvWrrCellInfoQryCnf},
     {ID_WRR_MTA_MEASRPT_QRY_CNF,                TAF_MTA_RcvWrrMeanrptQryCnf},
@@ -318,9 +291,7 @@ const MTA_MSG_PROC_STRU g_astMtaMsgProcTimerTab[]=
     {TI_TAF_MTA_WAIT_PHY_HANDLEDECT_SET_CNF,    TAF_MTA_RcvTiWaitPhySetHandleDectExpired},
     {TI_TAF_MTA_WAIT_PHY_HANDLEDECT_QRY_CNF,    TAF_MTA_RcvTiWaitPhyQryHandleDectExpired},
 
-    /* Added by l00198894 for 新增+ECID命令, 2013-12-10, begin */
     {TI_TAF_MTA_WAIT_AS_ECID_SET_CNF,           TAF_MTA_RcvTiEcidSetExpired},
-    /* Added by l00198894 for 新增+ECID命令, 2013-12-10, end */
 
 
     {TI_TAF_MTA_RF_LCD_MIPI_CLK_REPORT,         TAF_MTA_RcvTiMipiClkExpired},
@@ -387,7 +358,6 @@ const MTA_MSG_PROC_STRU g_astMtaMsgProcNasTab[]=
 #endif
 };
 
-/* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
 /* MTA模块处理来自AT消息函数对应表*/
 const MTA_MSG_PROC_STRU g_astMtaMsgProcTafAgentTab[]=
 {
@@ -395,7 +365,6 @@ const MTA_MSG_PROC_STRU g_astMtaMsgProcTafAgentTab[]=
 
     {ID_TAFAGENT_MTA_GET_ANT_STATE_REQ,         TAF_MTA_RcvTafAgentGetAntStateReq},
 };
-/* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
 
 #if (FEATURE_ON == FEATURE_PTM)
@@ -420,7 +389,6 @@ const MTA_MSG_PROC_STRU g_astMtaMsgProcMtcTab[]=
     {ID_MTC_MTA_GSM_CELLINFO_QRY_CNF,           TAF_MTA_RcvMtcGsmCellInfoQryCnf},
 };
 
-/* Added by l00198894 for 新增+ECID命令, 2013-12-10, begin */
 #if (FEATURE_ON == FEATURE_LTE)
 const MTA_MSG_PROC_STRU g_astMtaMsgProcLrrcTab[]=
 {
@@ -457,7 +425,6 @@ const MTA_MSG_PROC_STRU g_astMtaMsgProcLrrcTab[]=
     {ID_LRRC_MTA_NETMON_CELL_QRY_CNF,           TAF_MTA_RcvLrrcNetMonCellQryCnf},
 };
 #endif
-/* Added by l00198894 for 新增+ECID命令, 2013-12-10, end */
 
 /* MTA模块处理来自物理层初始化消息函数对应表*/
 const MTA_MSG_PROC_STRU g_astMtaMsgProcDspStartTab[]=
@@ -509,27 +476,7 @@ const MTA_MSG_PROC_STRU g_astMtaMsgProcTLphyAgentTab[]=
   3 函数申明
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SndAtMsg
- 功能描述  : MTA向AT发送消息函数
- 输入参数  : AT_APPCTRL_STRU   *pAppCtrl接收消息的ID
-             VOS_UINT32         ulMsgId 消息ID
-             VOS_UINT32         ulLen   消息长度
-             VOS_UINT8         *pData   消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年06月27日
-    作    者   : y00213812
-    修改内容   : V7R1C50 A-GPS项目新增函数
-  2.日    期   : 2012年12月11日
-    作    者   : l00167671
-    修改内容   : DTS2012121802573, TQE清理
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_SndAtMsg(
     AT_APPCTRL_STRU                    *pAppCtrl,
     VOS_UINT32                          ulMsgId,
@@ -574,23 +521,7 @@ VOS_VOID TAF_MTA_SndAtMsg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SearchMsgProcTab
- 功能描述  : 处理来自AT模块的消息
- 输入参数  : ulMsgCnt       消息列表的大小
-             *pstMsg        处理消息
-             pstMsgProcTab  消息列表
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年06月28日
-    作    者   : y00213812
-    修改内容   : V7R1C50 A-GPS项目新增函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_SearchMsgProcTab(
     VOS_UINT32                          ulMsgCnt,
     VOS_VOID                           *pstMsg,
@@ -622,21 +553,7 @@ VOS_UINT32 TAF_MTA_SearchMsgProcTab(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvAtMsg
- 功能描述  : 处理来自AT模块的消息
- 输入参数  : struct MsgCB *pstMsg
- 输出参数  : 无
- 返 回 值  : TAF_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年06月28日
-    作    者   : y00213812
-    修改内容   : V7R1C50 A-GPS项目新增函数
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvAtMsg(struct MsgCB *pstMsg)
 {
     VOS_UINT32                          ulMsgCnt;
@@ -657,21 +574,7 @@ VOS_VOID TAF_MTA_RcvAtMsg(struct MsgCB *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvApmMsg
- 功能描述  : 处理来自PHY APM模块的消息
- 输入参数  : struct MsgCB *pstMsg
- 输出参数  : 无
- 返 回 值  : TAF_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年03月11日
-    作    者   : z00214637
-    修改内容   : BODYSAR项目新增函数
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvApmMsg(struct MsgCB *pstMsg)
 {
     VOS_UINT32                          ulMsgCnt;
@@ -692,21 +595,7 @@ VOS_VOID TAF_MTA_RcvApmMsg(struct MsgCB *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvRttAgentMsg
- 功能描述  : 处理来自RTTAGENT模块的消息
- 输入参数  : struct MsgCB *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月17日
-    作    者   : zwx247453
-    修改内容   : Refclkfreq项目新增函数
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvRttAgentMsg(struct MsgCB *pstMsg)
 {
     VOS_UINT32                          ulMsgCnt;
@@ -727,21 +616,7 @@ VOS_VOID TAF_MTA_RcvRttAgentMsg(struct MsgCB *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvGasMsg
- 功能描述  : 处理来自G模式下接入层的消息
- 输入参数  : struct MsgCB *pstMsg
- 输出参数  : 无
- 返 回 值  : TAF_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年06月28日
-    作    者   : y00213812
-    修改内容   : V7R1C50 A-GPS项目新增函数
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvGasMsg(struct MsgCB *pstMsg)
 {
     VOS_UINT32                          ulMsgCnt;
@@ -763,24 +638,7 @@ VOS_VOID TAF_MTA_RcvGasMsg(struct MsgCB *pstMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvWcomMsg
- 功能描述  : 处理来自W模式下接入层的消息
- 输入参数  : struct MsgCB *pstMsg
- 输出参数  : 无
- 返 回 值  : TAF_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年06月28日
-    作    者   : y00213812
-    修改内容   : V7R1C50 A-GPS项目新增函数
-  2.日    期   : 2012年11月21日
-    作    者   : z00161729
-    修改内容   : 支持cerssi和nmr
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvWcomMsg(struct MsgCB *pstMsg)
 
 {
@@ -803,21 +661,7 @@ VOS_VOID TAF_MTA_RcvWcomMsg(struct MsgCB *pstMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvWrrMsg
- 功能描述  : 处理来自W模式下接入层的消息
- 输入参数  : struct MsgCB *pstMsg
- 输出参数  : 无
- 返 回 值  : TAF_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年06月28日
-    作    者   : y00213812
-    修改内容   : V7R1C50 A-GPS项目新增函数
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvWrrMsg(struct MsgCB *pstMsg)
 {
     VOS_UINT32                          ulMsgCnt;
@@ -838,21 +682,7 @@ VOS_VOID TAF_MTA_RcvWrrMsg(struct MsgCB *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvGphyMsg
- 功能描述  : 处理来自G模式下物理层的消息
- 输入参数  : struct MsgCB *pstMsg
- 输出参数  : 无
- 返 回 值  : TAF_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年06月28日
-    作    者   : y00213812
-    修改内容   : V7R1C50 A-GPS项目新增函数
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvGphyMsg(struct MsgCB *pstMsg)
 {
     VOS_UINT32                          ulMsgCnt;
@@ -885,21 +715,7 @@ VOS_VOID TAF_MTA_RcvGphyMsg(struct MsgCB *pstMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvWphyMsg
- 功能描述  : 处理来自W模式下物理层的消息
- 输入参数  : struct MsgCB *pstMsg
- 输出参数  : 无
- 返 回 值  : TAF_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年06月28日
-    作    者   : y00213812
-    修改内容   : V7R1C50 A-GPS项目新增函数
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvWphyMsg(struct MsgCB *pstMsg)
 {
     VOS_UINT32                          ulMsgCnt;
@@ -932,21 +748,7 @@ VOS_VOID TAF_MTA_RcvWphyMsg(struct MsgCB *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvTcMsg
- 功能描述  : 处理来自Tc的消息
- 输入参数  : struct MsgCB *pstMsg
- 输出参数  : 无
- 返 回 值  : TAF_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年07月09日
-    作    者   : y00213812
-    修改内容   : V7R1C50 A-GPS项目新增函数
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvTcMsg(struct MsgCB *pstMsg)
 {
     VOS_UINT32                          ulMsgCnt;
@@ -967,21 +769,7 @@ VOS_VOID TAF_MTA_RcvTcMsg(struct MsgCB *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvTimerMsg
- 功能描述  : 定时器超时处理
- 输入参数  : VOS_VOID *pstMsg
- 输出参数  : 无
- 返 回 值  : TAF_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年06月28日
-    作    者   : y00213812
-    修改内容   : V7R1C50 A-GPS项目新增函数
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvTimerMsg(VOS_VOID *pstMsg)
 {
     VOS_UINT32                          ulLoop;
@@ -1016,21 +804,7 @@ VOS_VOID TAF_MTA_RcvTimerMsg(VOS_VOID *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvNasMsg
- 功能描述  : 处理来自AT模块的消息
- 输入参数  : struct MsgCB *pstMsg
- 输出参数  : 无
- 返 回 值  : TAF_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年06月28日
-    作    者   : y00213812
-    修改内容   : V7R1C50 A-GPS项目新增函数
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvNasMsg(struct MsgCB *pstMsg)
 {
     VOS_UINT32                          ulMsgCnt;
@@ -1052,20 +826,7 @@ VOS_VOID TAF_MTA_RcvNasMsg(struct MsgCB *pstMsg)
 }
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvCtasMsg
- 功能描述  : 处理来自CTAS模块的消息
- 输入参数  : struct MsgCB *pstMsg
- 输出参数  : 无
- 返 回 值  : TAF_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月18日
-    作    者   : h00313353
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvCtasMsg(struct MsgCB *pstMsg)
 {
     VOS_UINT32                          ulMsgCnt;
@@ -1087,22 +848,7 @@ VOS_VOID TAF_MTA_RcvCtasMsg(struct MsgCB *pstMsg)
 }
 #endif
 
-/* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvTafAgentMsg
- 功能描述  : 处理来自TAFAGENT模块的消息
- 输入参数  : struct MsgCB *pstMsg
- 输出参数  : 无
- 返 回 值  : TAF_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年08月28日
-    作    者   : y00213812
-    修改内容   : VoLTE_PhaseI 项目
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvTafAgentMsg(struct MsgCB *pstMsg)
 {
     VOS_UINT32                          ulMsgCnt;
@@ -1123,25 +869,10 @@ VOS_VOID TAF_MTA_RcvTafAgentMsg(struct MsgCB *pstMsg)
     return;
 }
 
-/* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
 
 #if (FEATURE_ON == FEATURE_PTM)
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvAcpuOmMsg
- 功能描述  : 处理来自A核OM模块的消息
- 输入参数  : struct MsgCB *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年08月23日
-    作    者   : f00179208
-    修改内容   : 商用ErrLog上报及工程模式扩展目新增函数
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvAcpuOmMsg(struct MsgCB *pstMsg)
 {
     VOS_UINT32                          ulMsgCnt;
@@ -1164,20 +895,7 @@ VOS_VOID TAF_MTA_RcvAcpuOmMsg(struct MsgCB *pstMsg)
 #endif
 
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvMtcMsg
- 功能描述  : 处理来自MTC模块的消息
- 输入参数  : struct MsgCB *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月21日
-    作    者   : l00198894
-    修改内容   : V9R1C50 SVLTE离网重选项目新增
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvMtcMsg(struct MsgCB *pstMsg)
 {
     VOS_UINT32                          ulMsgCnt;
@@ -1199,22 +917,8 @@ VOS_VOID TAF_MTA_RcvMtcMsg(struct MsgCB *pstMsg)
 }
 #endif
 
-/* Added by l00198894 for 新增+ECID命令, 2013-12-10, begin */
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvLrrcMsg
- 功能描述  : 处理来自LRRC模块的消息
- 输入参数  : struct MsgCB *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月10日
-    作    者   : l00198894
-    修改内容   : 新增+ECID命令
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvLrrcMsg(struct MsgCB *pstMsg)
 {
     VOS_UINT32                          ulMsgCnt;
@@ -1235,21 +939,8 @@ VOS_VOID TAF_MTA_RcvLrrcMsg(struct MsgCB *pstMsg)
     return;
 }
 #endif
-/* Added by l00198894 for 新增+ECID命令, 2013-12-10, end */
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvPhyStartMsg
- 功能描述  : 处理来自DSP_PID_STARTUP模块的消息
- 输入参数  : struct MsgCB *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
-1.日    期   : 2013年3月26日
-  作    者   : y00176023
-  修改内容   : DSDS GUNAS II项目新增函数
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvDspStartMsg(struct MsgCB *pstMsg)
 {
     VOS_UINT32                          ulMsgCnt;
@@ -1277,20 +968,7 @@ VOS_VOID TAF_MTA_RcvDspStartMsg(struct MsgCB *pstMsg)
 
 
 #if (FEATURE_ON == FEATURE_UE_MODE_TDS)
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvTdsMsg
- 功能描述  : 处理来自TRRC模块的消息
- 输入参数  : struct MsgCB *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月20日
-    作    者   : g00261581
-    修改内容   : 新增Freq Lock命令
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvTdsMsg(struct MsgCB *pstMsg)
 {
     VOS_UINT32                          ulMsgCnt;
@@ -1313,20 +991,7 @@ VOS_VOID TAF_MTA_RcvTdsMsg(struct MsgCB *pstMsg)
 #endif
 
 #if 0
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvTLphyAgentMsg
- 功能描述  : 处理来自TLPHY代理模块的消息
- 输入参数  : struct MsgCB *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvTLphyAgentMsg(struct MsgCB *pstMsg)
 {
     VOS_UINT32                          ulMsgCnt;
@@ -1349,20 +1014,7 @@ VOS_VOID TAF_MTA_RcvTLphyAgentMsg(struct MsgCB *pstMsg)
 #endif
 
 #if (FEATURE_ON == FEATURE_TDS_WCDMA_DYNAMIC_LOAD)
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvCcbtMsg
- 功能描述  : 处理来自CCBT模块的消息
- 输入参数  : struct MsgCB *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月26日
-    作    者   : w00242748
-    修改内容   : 动态加载项目
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvCcbtMsg(struct MsgCB *pstMsg)
 {
     CCBT_MTA_MSG_HEADER_STRU           *pstMsgHeader = VOS_NULL_PTR;
@@ -1389,20 +1041,7 @@ VOS_VOID TAF_MTA_RcvCcbtMsg(struct MsgCB *pstMsg)
 #endif
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvUsimmMsg
- 功能描述  : 处理来自USIMM模块的消息
- 输入参数  : struct MsgCB *pstMsg
- 输出参数  : 无
- 返 回 值  : TAF_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月18日
-    作    者   : z00316370
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvUsimmMsg(struct MsgCB *pstMsg)
 {
     VOS_UINT32                          ulMsgCnt;
@@ -1425,20 +1064,7 @@ VOS_VOID TAF_MTA_RcvUsimmMsg(struct MsgCB *pstMsg)
 #endif
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvRcmMsg
- 功能描述  : 处理来自RCM模块的消息
- 输入参数  : struct MsgCB *pstMsg
- 输出参数  : 无
- 返 回 值  : TAF_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月25日
-    作    者   : c00299064
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvRcmMsg(struct MsgCB *pstMsg)
 {
     RCM_MTA_AFC_CLK_INFO_QRY_CNF_STRU          *pstCnf               = VOS_NULL_PTR;
@@ -1463,32 +1089,7 @@ VOS_VOID TAF_MTA_RcvRcmMsg(struct MsgCB *pstMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_ProcMsg
- 功能描述  : 分发其它模块发给MTA的消息
- 输入参数  : struct MsgCB * pstMsg
- 输出参数  : 无
- 返 回 值  : TAF_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年06月28日
-    作    者   : y00213812
-    修改内容   : V7R1C50 A-GPS项目新增函数
-  2.日    期   : 2013年08月23日
-    作    者   : f00179208
-    修改内容   : ErrLog&FTM项目
-  3.日    期   : 2013年10月21日
-    作    者   : l00198894
-    修改内容   : V9R1C50 SVLTE离网重选项目新增
-  4.日    期   : 2013年4月1日
-    作    者   : y00176023
-    修改内容   : DSDS GUNAS II项目:增加对物理层发来的初始化消息的处理
-  5.日    期   : 2015年6月17日
-    作    者   : zwx247453
-    修改内容   : Refclkfreq项目:增加对物理层发来的AFC锁定状态消息的处理
-*****************************************************************************/
 VOS_VOID  TAF_MTA_ProcMsg (struct MsgCB *pstMsg)
 {
     /* 消息为空，直接返回 */
@@ -1534,11 +1135,9 @@ VOS_VOID  TAF_MTA_ProcMsg (struct MsgCB *pstMsg)
         case WUEPS_PID_MMA:
             TAF_MTA_RcvNasMsg(pstMsg);
             break;
-        /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
         case ACPU_PID_TAFAGENT:
             TAF_MTA_RcvTafAgentMsg(pstMsg);
             break;
-        /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 #if (FEATURE_ON == FEATURE_PTM)
         case MSP_PID_DIAG_APP_AGENT:
             TAF_MTA_RcvAcpuOmMsg(pstMsg);
@@ -1549,13 +1148,11 @@ VOS_VOID  TAF_MTA_ProcMsg (struct MsgCB *pstMsg)
             TAF_MTA_RcvMtcMsg(pstMsg);
             break;
 #endif
-        /* Added by l00198894 for 新增+ECID命令, 2013-12-10, begin */
 #if (FEATURE_ON == FEATURE_LTE)
         case PS_PID_ERRC:
             TAF_MTA_RcvLrrcMsg(pstMsg);
             break;
 #endif
-        /* Added by l00198894 for 新增+ECID命令, 2013-12-10, end */
 
         case DSP_PID_STARTUP:
             TAF_MTA_RcvDspStartMsg(pstMsg);
@@ -1577,13 +1174,11 @@ VOS_VOID  TAF_MTA_ProcMsg (struct MsgCB *pstMsg)
             TAF_MTA_RcvRttAgentMsg(pstMsg);
             break;
 
-        /* Added by lwx277467 for 新增+CEUS命令, 2015-09-10, begin */
 #if (FEATURE_ON == FEATURE_LTE)
         case PS_PID_MM:
             TAF_MTA_RcvNasMsg(pstMsg);
             break;
 #endif
-        /* Added by lwx277467 for 新增+CEUS命令, 2015-09-10, end */
 
 #if (FEATURE_ON == FEATURE_TDS_WCDMA_DYNAMIC_LOAD)
         case CCPU_PID_CBT:
@@ -1617,26 +1212,7 @@ VOS_VOID  TAF_MTA_ProcMsg (struct MsgCB *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_InitCtx
- 功能描述  : MTA CTX模块初始化
- 输入参数  : pstMtaCtx:MTA上下文信息
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年06月28日
-    作    者   : y00213812
-    修改内容   : V7R1C50 A-GPS项目新增函数
-  2.日    期   : 2013年07月22日
-    作    者   : l00198894
-    修改内容   : V9R1 AGPS
-  3.日    期   : 2014年11月17日
-    作    者   : l00198894
-    修改内容   : ECID命令产品线定制需求
-*****************************************************************************/
 VOS_VOID  TAF_MTA_InitCtx(TAF_MTA_CONTEXT_STRU *pstMtaCtx)
 {
     /* 初始化化记录XML码流资源的结构 */
@@ -1670,21 +1246,7 @@ VOS_VOID  TAF_MTA_InitCtx(TAF_MTA_CONTEXT_STRU *pstMtaCtx)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_InitTask
- 功能描述  : MTA任务初始化函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年06月28日
-   作    者   : y00213812
-   修改内容   : V7R1C50 A-GPS项目新增函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_MTA_InitTask( VOS_VOID )
 {
     TAF_MTA_CONTEXT_STRU                *pstMtaCtx;
@@ -1696,20 +1258,7 @@ VOS_UINT32  TAF_MTA_InitTask( VOS_VOID )
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_InitPid
- 功能描述  : MTA的PID初始化函数
- 输入参数  : enum VOS_INIT_PHASE_DEFINE ip
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年06月28日
-    作    者   : y00213812
-    修改内容   : V7R1C50 A-GPS项目新增函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_InitPid(enum VOS_INIT_PHASE_DEFINE ip)
 {
     switch ( ip )

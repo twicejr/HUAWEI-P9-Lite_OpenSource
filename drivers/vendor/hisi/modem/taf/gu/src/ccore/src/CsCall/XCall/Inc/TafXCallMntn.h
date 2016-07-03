@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafXCallMntn.h
-  版 本 号   : 初稿
-  作    者   : l60609
-  生成日期   : 2014年9月20日
-  最近修改   :
-  功能描述   : TafXCallMntn.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年9月20日
-    作    者   : l60609
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __TAF_X_CALL_MNTN_H__
 #define __TAF_X_CALL_MNTN_H__
@@ -54,13 +37,7 @@ extern "C" {
   3 枚举定义
 *****************************************************************************/
 
-/*****************************************************************************
- 枚举名    : TAF_XCALL_MNTN_MSG_ID_ENUM
- 结构说明  : TAF XCALL 模块发送给OM的可维可测消息
-  1.日    期   : 2014年09月20日
-    作    者   : l60609
-    修改内容   : TAF XCALL 模块发送给OM的可维可测消息
-*****************************************************************************/
+
 enum TAF_XCALL_MNTN_MSG_ID_ENUM
 {
     ID_TAF_XCALL_MNTN_LOG_CALL_INFO_IND   = ID_TAF_MNTN_XCALL_BASE,             /*_H2ASN_MsgChoice  TAF_XCALL_MNTN_LOG_CALL_INFO_STRU */
@@ -113,13 +90,7 @@ typedef VOS_UINT32 TAF_XCALL_MNTN_MSG_ID_ENUM_UINT32;
 /*****************************************************************************
   7 STRUCT定义
 *****************************************************************************/
-/*****************************************************************************
- 结构名    : TAF_XCALL_MNTN_LOG_CALL_INFO_STRU
- 结构说明  : ID_TAF_XCALL_MNTN_LOG_CALL_INFO_IND的消息结构
- 1.日    期   : 2014年09月20日
-   作    者   : l60609
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* 消息头 */    /* _H2ASN_Skip */
@@ -127,13 +98,7 @@ typedef struct
     TAF_XCALL_CALL_ENTITY_STRU          astCallEntity[TAF_XCALL_CALL_ENTITY_MAX_NUM];
 }TAF_XCALL_MNTN_LOG_CALL_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XCALL_MNTN_LOG_SUPS_CMD_MGMT_STRU
- 结构说明  : ID_TAF_XCALL_MNTN_LOG_SUPS_CMD_MGMT的消息结构
- 1.日    期   : 2014年09月20日
-   作    者   : l60609
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* 消息头 */    /* _H2ASN_Skip */
@@ -141,13 +106,7 @@ typedef struct
     TAF_XCALL_SUPS_CMD_MGMT_STRU        stSupsCmdMgmt;
 }TAF_XCALL_MNTN_LOG_SUPS_CMD_MGMT_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XCALL_MNTN_LOG_CALL_REDIAL_PERIOD_STRU
- 结构说明  : ID_TAF_XCALL_MNTN_LOG_SUPS_CMD_MGMT的消息结构
- 1.日    期   : 2015年08月09日
-   作    者   : h00313353
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* 消息头 */    /* _H2ASN_Skip */
@@ -156,13 +115,7 @@ typedef struct
 } TAF_XCALL_MNTN_LOG_CALL_REDIAL_PERIOD_STRU;
 
 
-/*****************************************************************************
- 结构名    : TAF_XCALL_MNTN_LOG_START_AND_STOP_CONT_DTMF_INTERVAL_STRU
- 结构说明  : ID_TAF_XCALL_MNTN_LOG_START_AND_STOP_CONT_DTMF_INTERVAL的消息结构
- 1.日    期   : 2015年08月18日
-   作    者   : l00324781
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* 消息头 */    /* _H2ASN_Skip */
@@ -171,13 +124,7 @@ typedef struct
 } TAF_XCALL_MNTN_LOG_START_AND_STOP_CONT_DTMF_INTERVAL_STRU;
 
 #if (FEATURE_ON == FEATURE_CHINA_TELECOM_VOICE_ENCRYPT)
-/*****************************************************************************
- 结构名    : TAF_XCALL_MNTN_LOG_TIME_STAMP_VALIDATION_STRU
- 结构说明  : ID_TAF_XCALL_MNTN_LOG_TIME_STAMP_VALIDATION的消息结构
- 1.日    期   : 2015年08月09日
-   作    者   : h00313353
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* 消息头 */    /* _H2ASN_Skip */
@@ -189,13 +136,7 @@ typedef struct
     VOS_UINT64                          ullStdMsgTimeInterval;                  /* 消息中带的时间间隔 */
 } TAF_XCALL_MNTN_LOG_TIME_STAMP_VALIDATION_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XCALL_MNTN_LOG_VOICEENC_PUB_KEY_AND_VER_STRU
- 结构说明  : ID_TAF_XCALL_MNTN_LOG_VOICEENC_PUB_KEY_AND_VER_INFO的消息结构
-  1.日    期   : 2015年10月26日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* 消息头 */    /* _H2ASN_Skip */
@@ -205,13 +146,7 @@ typedef struct
     VOS_UINT8                           aucPubKey[TAF_XCALL_MNTN_LOG_KMC_MSG_MAX_KMC_PUB_KEY_LEN];
 } TAF_XCALL_MNTN_LOG_VOICEENC_PUB_KEY_AND_VER_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XCALL_MNTN_LOG_VOICEENC_CAP_CFG_PARA_STRU
- 结构说明  : ID_TAF_XCALL_MNTN_LOG_VOICEENC_CAP_CFG_PARA_INFO的消息结构
-  1.日    期   : 2015年10月26日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* 消息头 */    /* _H2ASN_Skip */
@@ -221,13 +156,7 @@ typedef struct
     VOS_UINT8                           aucReserved[2];
 } TAF_XCALL_MNTN_LOG_VOICEENC_CAP_CFG_PARA_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XCALL_MNTN_LOG_VOICEENC_LAST_INFO_ERASE_TIME_STRU
- 结构说明  : ID_TAF_XCALL_MNTN_LOG_VOICEENC_LAST_INFO_ERASE_TIME的消息结构
-  1.日    期   : 2015年10月26日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* 消息头 */    /* _H2ASN_Skip */
@@ -240,13 +169,7 @@ typedef struct
     VOS_UINT16                          usSecond;   /* Second of minute [0..59] */
 } TAF_XCALL_MNTN_LOG_VOICEENC_LAST_INFO_ERASE_TIME_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XCALL_MNTN_LOG_VOICEENC_LAST_PASSWD_RESET_TIME_STRU
- 结构说明  : ID_TAF_XCALL_MNTN_LOG_VOICEENC_LAST_PASSWD_RESET_TIME的消息结构
-  1.日    期   : 2015年10月26日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* 消息头 */    /* _H2ASN_Skip */
@@ -259,13 +182,7 @@ typedef struct
     VOS_UINT16                          usSecond;   /* Second of minute [0..59] */
 } TAF_XCALL_MNTN_LOG_VOICEENC_LAST_PASSWD_RESET_TIME_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XCALL_MNTN_LOG_VOICEENC_TIMER_CFG_INFO_STRU
- 结构说明  : ID_TAF_XCALL_MNTN_LOG_VOICEENC_TIMER_CFG_INFO_LEN的消息结构
-  1.日    期   : 2015年10月26日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* 消息头 */    /* _H2ASN_Skip */
@@ -274,13 +191,7 @@ typedef struct
     VOS_UINT16                          usRemoteCtrlAnswerTimerLen;             /* 远程控制应答时长 */
 } TAF_XCALL_MNTN_LOG_VOICEENC_TIMER_CFG_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XCALL_MNTN_LOG_MO_KMC_MSG_KEY_REQ_STRU
- 结构说明  : ID_TAF_XCALL_MNTN_LOG_MO_KMC_MSG_KEY_REQ的消息结构
-  1.日    期   : 2015年10月26日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* 消息头 */    /* _H2ASN_Skip */
@@ -288,13 +199,7 @@ typedef struct
     TAF_XCALL_KMC_MSG_KEY_REQ_STRU              stMoKeyReq;                     /* 主叫密钥请求 */
 } TAF_XCALL_MNTN_LOG_MO_KMC_MSG_KEY_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XCALL_MNTN_LOG_MO_KMC_MSG_KEY_RSP_STRU
- 结构说明  : ID_TAF_XCALL_MNTN_LOG_MO_KMC_MSG_KEY_RSP的消息结构
-  1.日    期   : 2015年10月26日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* 消息头 */    /* _H2ASN_Skip */
@@ -303,13 +208,7 @@ typedef struct
     TAF_XCALL_KMC_MSG_KEY_RSP_STRU              stMoKeyRsp;                     /* 主叫密钥响应 */
 } TAF_XCALL_MNTN_LOG_MO_KMC_MSG_KEY_RSP_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XCALL_MNTN_LOG_KMC_MSG_MT_ENCRYPT_IND_STRU
- 结构说明  : ID_TAF_XCALL_MNTN_LOG_KMC_MSG_MT_ENCRYPT_IND的消息结构
-  1.日    期   : 2015年10月26日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* 消息头 */    /* _H2ASN_Skip */
@@ -318,13 +217,7 @@ typedef struct
     TAF_XCALL_KMC_MSG_MT_ENCRYPT_IND_STRU       stMtEncryptInd;                 /* 被叫加密通知消息 */
 } TAF_XCALL_MNTN_LOG_KMC_MSG_MT_ENCRYPT_IND_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XCALL_MNTN_LOG_MT_KMC_MSG_KEY_REQ_STRU
- 结构说明  : ID_TAF_XCALL_MNTN_LOG_MT_KMC_MSG_KEY_REQ的消息结构
-  1.日    期   : 2015年10月26日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* 消息头 */    /* _H2ASN_Skip */
@@ -332,13 +225,7 @@ typedef struct
     TAF_XCALL_KMC_MSG_KEY_REQ_STRU              stMtKeyReq;                     /* 被叫密钥请求 */
 } TAF_XCALL_MNTN_LOG_MT_KMC_MSG_KEY_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XCALL_MNTN_LOG_MT_KMC_MSG_KEY_RSP_STRU
- 结构说明  : ID_TAF_XCALL_MNTN_LOG_MT_KMC_MSG_KEY_RSP的消息结构
-  1.日    期   : 2015年10月26日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* 消息头 */    /* _H2ASN_Skip */
@@ -347,13 +234,7 @@ typedef struct
     TAF_XCALL_KMC_MSG_KEY_RSP_STRU              stMtKeyRsp;                     /* 被叫密钥响应 */
 } TAF_XCALL_MNTN_LOG_MT_KMC_MSG_KEY_RSP_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XCALL_MNTN_LOG_KMC_MSG_ERR_IND_STRU
- 结构说明  : ID_TAF_XCALL_MNTN_LOG_KMC_MSG_ERR_IND的消息结构
-  1.日    期   : 2015年10月26日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* 消息头 */    /* _H2ASN_Skip */
@@ -362,13 +243,7 @@ typedef struct
     TAF_XCALL_KMC_MSG_ERR_IND_STRU              stErrInd;                       /* 错误通知 */
 } TAF_XCALL_MNTN_LOG_KMC_MSG_ERR_IND_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XCALL_MNTN_LOG_KMC_MSG_PUB_KEY_UPDATE_IND_STRU
- 结构说明  : ID_TAF_XCALL_MNTN_LOG_KMC_MSG_PUB_KEY_UPDATE_IND的消息结构
-  1.日    期   : 2015年10月26日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* 消息头 */    /* _H2ASN_Skip */
@@ -377,13 +252,7 @@ typedef struct
     TAF_XCALL_KMC_MSG_PUB_KEY_UPDATE_IND_STRU   stPubKeyUpdateInd;              /* KMC公钥更新 */
 } TAF_XCALL_MNTN_LOG_KMC_MSG_PUB_KEY_UPDATE_IND_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XCALL_MNTN_LOG_KMC_MSG_PUB_KEY_UPDATE_RSP_STRU
- 结构说明  : ID_TAF_XCALL_MNTN_LOG_KMC_MSG_PUB_KEY_UPDATE_RSP的消息结构
-  1.日    期   : 2015年10月26日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* 消息头 */    /* _H2ASN_Skip */
@@ -391,13 +260,7 @@ typedef struct
     TAF_XCALL_KMC_MSG_PUB_KEY_UPDATE_RSP_STRU   stPubKeyUpdateRsp;              /* KMC公钥更新响应 */
 } TAF_XCALL_MNTN_LOG_KMC_MSG_PUB_KEY_UPDATE_RSP_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XCALL_MNTN_LOG_KMC_MSG_PUB_KEY_UPDATE_ACK_STRU
- 结构说明  : ID_TAF_XCALL_MNTN_LOG_KMC_MSG_PUB_KEY_UPDATE_ACK的消息结构
-  1.日    期   : 2015年10月26日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* 消息头 */    /* _H2ASN_Skip */
@@ -406,13 +269,7 @@ typedef struct
     TAF_XCALL_KMC_MSG_PUB_KEY_UPDATE_ACK_STRU   stPubKeyUpdateAck;              /* KMC公钥更新确认 */
 } TAF_XCALL_MNTN_LOG_KMC_MSG_PUB_KEY_UPDATE_ACK_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XCALL_MNTN_LOG_KMC_MSG_ROMOTE_CTRL_CMD_IND_STRU
- 结构说明  : ID_TAF_XCALL_MNTN_LOG_KMC_MSG_ROMOTE_CTRL_CMD_IND的消息结构
-  1.日    期   : 2015年10月26日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* 消息头 */    /* _H2ASN_Skip */
@@ -421,13 +278,7 @@ typedef struct
     TAF_XCALL_KMC_MSG_ROMOTE_CTRL_CMD_IND_STRU  stRemoteCtrlInd;                /* 远程控制指令 */
 } TAF_XCALL_MNTN_LOG_KMC_MSG_ROMOTE_CTRL_CMD_IND_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XCALL_MNTN_LOG_KMC_MSG_ROMOTE_CTRL_CMD_RSP_STRU
- 结构说明  : ID_TAF_XCALL_MNTN_LOG_KMC_MSG_ROMOTE_CTRL_CMD_RSP的消息结构
-  1.日    期   : 2015年10月26日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* 消息头 */    /* _H2ASN_Skip */
@@ -435,13 +286,7 @@ typedef struct
     TAF_XCALL_KMC_MSG_ROMOTE_CTRL_CMD_RSP_STRU  stRemoteCtrlRsp;                /* 远程控制指令响应 */
 } TAF_XCALL_MNTN_LOG_KMC_MSG_ROMOTE_CTRL_CMD_RSP_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XCALL_MNTN_LOG_VOICEENC_REMOTE_CTRL_STATE_INFO_STRU
- 结构说明  : ID_TAF_XCALL_MNTN_LOG_VOICEENC_REMOTE_CTRL_STATE_INFO的消息结构
-  1.日    期   : 2015年10月26日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                                  /* 消息头 */    /* _H2ASN_Skip */
@@ -451,13 +296,7 @@ typedef struct
     TAF_XCALL_REMOTE_CTRL_STA_ENUM_UINT32               enState;
 } TAF_XCALL_MNTN_LOG_VOICEENC_REMOTE_CTRL_STATE_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XCALL_MNTN_LOG_VOICEENC_KEY_UPDATE_STATE_INFO_STRU
- 结构说明  : ID_TAF_XCALL_MNTN_LOG_VOICEENC_KEY_UPDATE_STATE_INFO的消息结构
-  1.日    期   : 2015年10月26日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                                  /* 消息头 */    /* _H2ASN_Skip */
@@ -467,13 +306,7 @@ typedef struct
     TAF_XCALL_K0_UPATE_STA_ENUM_UINT32                  enState;
 } TAF_XCALL_MNTN_LOG_VOICEENC_KEY_UPDATE_STATE_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XCALL_MNTN_LOG_VOICEENC_VOICE_ENCRYPT_STATE_INFO_STRU
- 结构说明  : ID_TAF_XCALL_MNTN_LOG_VOICEENC_VOICE_ENCRYPT_STATE_INFO的消息结构
-  1.日    期   : 2015年10月26日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                                  /* 消息头 */    /* _H2ASN_Skip */
@@ -483,13 +316,7 @@ typedef struct
     TAF_XCALL_VOICE_ENCRYPT_STA_ENUM_UINT32             enState;
 } TAF_XCALL_MNTN_LOG_VOICEENC_VOICE_ENCRYPT_STATE_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XCALL_MNTN_LOG_CIPHERTEXT_INFO_STRU
- 结构说明  : ID_TAF_XCALL_MNTN_LOG_CIPHERTEXT_INFO的消息结构
-  1.日    期   : 2015年10月26日
-    作    者   : h00313353
-    修改内容   : Iteration 19
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                                  /* 消息头 */    /* _H2ASN_Skip */
@@ -656,8 +483,6 @@ VOS_VOID TAF_XCALL_MNTN_LogKmcEncMsg(
 );
 #endif
 
-/* Deleted by wx270776 for OM融合, 2015-6-28, begin */
-/* Deleted by wx270776 for OM融合, 2015-6-28, end */
 #endif
 
 

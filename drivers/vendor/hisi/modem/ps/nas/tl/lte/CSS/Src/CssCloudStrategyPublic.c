@@ -1,14 +1,4 @@
-/******************************************************************************
 
-   Copyright(C)2013,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : CssCloudStrategyPublic.c
-  Description     : CSS云端频点频段特性公共功能的实现
-  History         :
-     1.chengmin 00285307    2015-10-12  Draft Enact
-
-******************************************************************************/
 
 
 /*****************************************************************************
@@ -59,16 +49,7 @@ CSS_COUNTY_MCC_DESC_STRU g_astCountryMccList[] =
   3 Function
 *****************************************************************************/
 
-/*****************************************************************************
- Function Name  : CSS_ConvertSimPlmnToGuPlmn
- Description    : 将Sim中存储PLMN的格式转化为GU存储PLMN的格式
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-16  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_ConvertSimPlmnToGuPlmn
 (
     VOS_UINT8                           aucPlmn[CSS_PLMN_ID_LEN],
@@ -95,16 +76,7 @@ VOS_VOID CSS_ConvertSimPlmnToGuPlmn
 }
 
 
-/*****************************************************************************
- Function Name  : CSS_ConvertSimMccToGuMcc
- Description    : 将Sim中存储MCC的格式转化为GU存储MCC的格式
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-16  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_ConvertSimMccToGuMcc
 (
     VOS_UINT8                           aucMcc[2],
@@ -121,16 +93,7 @@ VOS_VOID CSS_ConvertSimMccToGuMcc
     *pulMcc |= ulTempData << CSS_OCTET_MOVE_16_BITS;
 }
 
-/*****************************************************************************
- Function Name  : CSS_ConvertSimMncToGuMnc
- Description    : 将Sim中存储MNC的格式转化为GU存储MNC的格式
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-16  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_ConvertSimMncToGuMnc
 (
     VOS_UINT8                           aucMnc[2],
@@ -148,16 +111,7 @@ VOS_VOID CSS_ConvertSimMncToGuMnc
 }
 
 
-/*****************************************************************************
- Function Name  : CSS_ConvertGuMccToSimMcc
- Description    : 将GU存储MCC的格式转化为Sim中存储MCC的格式
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-16  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_ConvertGuMccToSimMcc
 (
     VOS_UINT32                          ulMcc,
@@ -170,16 +124,7 @@ VOS_VOID CSS_ConvertGuMccToSimMcc
 }
 
 
-/*****************************************************************************
- Function Name  : CSS_ConvertGuMncToSimMnc
- Description    : 将GU存储MNC的格式转化为Sim中存储MNC的格式
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-16  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_ConvertGuMncToSimMnc
 (
     VOS_UINT32                          ulMnc,
@@ -192,16 +137,7 @@ VOS_VOID CSS_ConvertGuMncToSimMnc
 }
 
 
-/*****************************************************************************
- Function Name  : CSS_ConvertMccDigitToSimMcc
- Description    : 将MCC1/MCC2/MCC3的格式转化为Sim中存储MCC的格式
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-16  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_ConvertMccDigitToSimMcc
 (
     VOS_UINT8                           ucMccDigit1,
@@ -214,16 +150,7 @@ VOS_VOID CSS_ConvertMccDigitToSimMcc
     aucMcc[1] = (ucMccDigit3 & CSS_OCTET_LOW_4_BITS);
 }
 
-/*****************************************************************************
- Function Name  : CSS_ConvertMncDigitToSimMnc
- Description    : 将MNC1/MNC2/MNC3的格式转化为Sim中存储MNC的格式
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-16  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_ConvertMncDigitToSimMnc
 (
     VOS_UINT8                           ucMncDigit1,
@@ -236,16 +163,7 @@ VOS_VOID CSS_ConvertMncDigitToSimMnc
     aucMnc[1] = (((ucMncDigit2 & CSS_OCTET_LOW_4_BITS) << CSS_OCTET_MOVE_4_BITS) | (ucMncDigit1 & CSS_OCTET_LOW_4_BITS));
 }
 
-/*****************************************************************************
- Function Name  : CSS_HasGetMccVersionFromAp
- Description    : 是否从云端获取过版本
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
 
- History        :
-      1.chengmin 00285307   2015-10-16  Draft Enact
-*****************************************************************************/
 VOS_UINT32 CSS_HasGetMccVersionFromAp(VOS_VOID)
 {
     VOS_UINT32                          ulLoop;
@@ -271,16 +189,7 @@ VOS_UINT32 CSS_HasGetMccVersionFromAp(VOS_VOID)
     return CSS_FALSE;
 }
 
-/*****************************************************************************
- Function Name  : CSS_GetLocalMccFreqVersion
- Description    : 从本地获取预置频点的版本号，供NAS在CHR上报时调用
- Input          : VOS_UINT8
- Output         : VOS_UINT8
- Return Value   : VOS_UINT32
 
- History        :
-      1.qinxuying 00355475   2016-01-07  Draft Enact
-*****************************************************************************/
 CSS_RESULT_ENUM_UINT32 CSS_GetLocalMccFreqVersion(VOS_UINT8 aucVersion[CSS_MCC_VERSION_INFO_LEN])
 {
     VOS_UINT32                          ulLoop = 0;
@@ -299,16 +208,7 @@ CSS_RESULT_ENUM_UINT32 CSS_GetLocalMccFreqVersion(VOS_UINT8 aucVersion[CSS_MCC_V
     return CSS_RESULT_SUCC;
 }
 
-/*****************************************************************************
- Function Name  : CSS_InitMccVersion
- Description    : 初始化版本号
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-16  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_InitMccVersion(VOS_VOID)
 {
     g_stCloudContrl.aucVersion[0] = '0';
@@ -322,16 +222,7 @@ VOS_VOID CSS_InitMccVersion(VOS_VOID)
     g_stCloudContrl.aucVersion[8] = '0';
 }
 
-/*****************************************************************************
- Function Name  : CSS_IsMccBelongToCountry
- Description    : 判断某个MCC是否属于某个CSS预定义的多MCC国家
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-16  Draft Enact
-*****************************************************************************/
 VOS_UINT32 CSS_IsMccBelongToCountry
 (
     VOS_UINT32                          ulMcc,
@@ -349,16 +240,7 @@ VOS_UINT32 CSS_IsMccBelongToCountry
     return CSS_FALSE;
 }
 
-/*****************************************************************************
- Function Name  : CSS_IsMccBelongToMultiCountry
- Description    : 判断某个MCC是否属于CSS预定义的多MCC国家
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-16  Draft Enact
-*****************************************************************************/
 VOS_UINT32 CSS_IsMccBelongToMultiCountry(VOS_UINT32 ulMcc)
 {
     VOS_UINT32                          i;
@@ -374,16 +256,7 @@ VOS_UINT32 CSS_IsMccBelongToMultiCountry(VOS_UINT32 ulMcc)
 }
 
 
-/*****************************************************************************
- Function Name  : CSS_IsTwoMccBelongToOneCountry
- Description    : 判断两个MCC是否属于同一个国家
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-16  Draft Enact
-*****************************************************************************/
 VOS_UINT32 CSS_IsTwoMccBelongToOneCountry
 (
     VOS_UINT32                          ulMcc1,
@@ -404,16 +277,7 @@ VOS_UINT32 CSS_IsTwoMccBelongToOneCountry
 }
 
 
-/*****************************************************************************
- Function Name  : CSS_AddAllMccBelongToCountry
- Description    : 初始化版本号
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-16  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_AddAllMccBelongToCountry
 (
     VOS_UINT32                         *pulOutNum,
@@ -500,16 +364,7 @@ VOS_VOID CSS_GetAllMccBelongToOneCountry
 
 
 
-/*****************************************************************************
- Function Name  : CSS_isMncMatch
- Description    : MNC是否一致
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-16  Draft Enact
-*****************************************************************************/
 VOS_UINT32 CSS_isMncMatch(VOS_UINT8 aucMnc1[2], VOS_UINT8 aucMnc2[2])
 {
     VOS_UINT32                          ulTmp1;
@@ -526,16 +381,7 @@ VOS_UINT32 CSS_isMncMatch(VOS_UINT8 aucMnc1[2], VOS_UINT8 aucMnc2[2])
     return CSS_FALSE;
 }
 
-/*****************************************************************************
- Function Name  : CSS_isMccMatch
- Description    : MCC是否一致
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-16  Draft Enact
-*****************************************************************************/
 VOS_UINT32 CSS_isMccMatch(VOS_UINT8 aucMcc1[2], VOS_UINT8 aucMcc2[2])
 {
     VOS_UINT32                          ulTmp1;
@@ -552,16 +398,7 @@ VOS_UINT32 CSS_isMccMatch(VOS_UINT8 aucMcc1[2], VOS_UINT8 aucMcc2[2])
     return CSS_FALSE;
 }
 
-/*****************************************************************************
- Function Name  : CSS_IsRatSupportInFlag
- Description    : 在supportFlag中是否支持某制式
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-16  Draft Enact
-*****************************************************************************/
 VOS_UINT32 CSS_IsRatSupportInFlag(CSS_RAT_TYPE_ENUM_UINT8 ucRat, VOS_UINT8 ucSupportFlag)
 {
     if (CSS_RAT_GSM == ucRat
@@ -688,16 +525,7 @@ VOS_VOID CSS_DeleteAllMcc(VOS_VOID)
 
 }
 
-/*****************************************************************************
- Function Name  : CSS_DeleteOneMcc
- Description    : 从内存中删除某个MCC
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-12  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_DeleteOneMcc(VOS_UINT8 aucMccId[2])
 {
     CSS_PUB_PREF_MCC_STRU              *pMccNode;
@@ -734,16 +562,7 @@ VOS_VOID CSS_DeleteOneMcc(VOS_UINT8 aucMccId[2])
     }
 }
 
-/*****************************************************************************
- Function Name  : CSS_IsMccExistInLocal
- Description    : 本地是否存在某个MCC
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-12  Draft Enact
-*****************************************************************************/
 VOS_UINT32 CSS_IsMccExistInLocal(VOS_UINT8 aucMccId[2])
 {
     CSS_PUB_PREF_MCC_STRU              *pMccNode;
@@ -762,16 +581,7 @@ VOS_UINT32 CSS_IsMccExistInLocal(VOS_UINT8 aucMccId[2])
 }
 
 
-/*****************************************************************************
- Function Name  : CSS_IsMccUpdatedAccordToUpdateStateTable
- Description    : 某个MCC是否在动态表中已经更新了
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-12  Draft Enact
-*****************************************************************************/
 VOS_UINT32 CSS_IsMccUpdatedAccordToUpdateStateTable(VOS_UINT8 aucMccId[2])
 {
     VOS_UINT32                          ulLoop1;
@@ -839,19 +649,7 @@ VOS_VOID CSS_StartApMccUpdateProcedure
 }
 
 
-/*****************************************************************************
- Function Name   : CSS_StartMmcOrAsMccUpdateProcedure
- Description     : 启动MMC或AS侧的MCC更新过程
- Input           : astMccID
-                   ulMccNum
-                   astMccToSend
-                   ulMccNumToSend
-                   ulPId
- Output          : VOS_VOID
- Return          : VOS_VOID
- History         :
-    1.chengmin 00285307 2015-10-15  Draft Enact
-*****************************************************************************/
+
 VOS_VOID CSS_StartMmcOrAsMccUpdateProcedure
 (
     CSS_MCC_ID_STRU                     astMccID[CSS_MAX_PLMN_ID_NUM],
@@ -968,16 +766,7 @@ VOS_VOID CSS_StartMmcOrAsMccUpdateProcedure
 }
 
 
-/*****************************************************************************
- Function Name  : CSS_EndApUpdateProcedure
- Description    : 终止AP的更新流程
- Input          :
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-12  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_EndApUpdateProcedure(VOS_VOID)
 {
     CSS_CLOUD_PUB_CONTROL_STRU         *pstCssCloudContrl;
@@ -1002,16 +791,7 @@ VOS_VOID CSS_EndApUpdateProcedure(VOS_VOID)
     CSS_StopTimer(&(pstCssCloudContrl->stApMccUpdate.stTimer));
 }
 
-/*****************************************************************************
- Function Name  : CSS_EndMmcOrAsUpdateProcedure
- Description    : 终止MMC或AS的更新流程
- Input          :
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-12  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_EndMmcOrAsUpdateProcedure(CSS_MCC_UPDATE_STRU *pstUpdate)
 {
     /* 初始化参数 */
@@ -1060,15 +840,7 @@ VOS_VOID CSS_CloudContrlTimerInit(VOS_VOID)
 }
 
 
-/*****************************************************************************
- Function Name   : CSS_ReadNvCloudStrategy
- Description     : 读取云通信使能NV
- Input           : None
- Output          : None
- Return          : VOS_UINT32
- History         :
-    1.    chengmin 00285307      2015-10-15  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  CSS_ReadNvCloudStrategy(VOS_VOID)
 {
     VOS_UINT32                          ulDataLen = 0;
@@ -1098,15 +870,7 @@ VOS_UINT32  CSS_ReadNvCloudStrategy(VOS_VOID)
     return CSS_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : CSS_ReadNvCloudPrefArfcn
- Description     : 读取NV中预置频点
- Input           : None
- Output          : None
- Return          : VOS_UINT32
- History         :
-    1.    chengmin 00285307      2015-10-15  Draft Enact
-*****************************************************************************/
+
 VOS_VOID  CSS_ReadNvCloudPrefArfcn(VOS_VOID)
 {
     VOS_UINT32                          ulDataLen = 0;
@@ -1175,16 +939,7 @@ VOS_VOID  CSS_ReadNvCloudPrefArfcn(VOS_VOID)
 }
 
 
-/*****************************************************************************
- Function Name   : CSS_AddNvRatSupport
- Description     : 将制式的支持加入freq节点中
- Input           :
- Output          :
- Return          :
 
- History         :
-    1.chengmin 00285307 2015-10-15  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_AddNvRatSupport(VOS_UINT8 *pucRatSupport, CSS_RAT_TYPE_ENUM_UINT8 ucRat)
 {
     VOS_UINT8                           ucRatFlagTmp = *pucRatSupport;
@@ -1209,16 +964,7 @@ VOS_VOID CSS_AddNvRatSupport(VOS_UINT8 *pucRatSupport, CSS_RAT_TYPE_ENUM_UINT8 u
 
 
 
-/*****************************************************************************
- Function Name   : CSS_AddNvOneFreq
- Description     : 将NV中一个预置频点加入到内存中BAND结构中
- Input           :
- Output          :
- Return          :
 
- History         :
-    1.chengmin 00285307 2015-10-15  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_AddNvOneFreq(CSS_PUB_PREF_BAND_STRU *pstBand, CSS_NV_PREF_ARFCN_STRU *pNvFreq, CSS_RAT_TYPE_ENUM_UINT8 ucRat)
 {
     CSS_PUB_PREF_FREQ_STRU             *pstFreqNode;
@@ -1274,16 +1020,7 @@ VOS_VOID CSS_AddNvOneFreq(CSS_PUB_PREF_BAND_STRU *pstBand, CSS_NV_PREF_ARFCN_STR
 }
 
 
-/*****************************************************************************
- Function Name   : CSS_AddNvOneBand
- Description     : 将NV中一个BAND的预置频点加入到内存中BAND结构中
- Input           :
- Output          :
- Return          :
 
- History         :
-    1.chengmin 00285307 2015-10-15  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_AddNvOneBand(CSS_PUB_PREF_MNC_STRU *pstMnc, CSS_NV_PREF_MNC_STRU *pNvMnc)
 {
     CSS_PUB_PREF_BAND_STRU             *pstBandNode;
@@ -1351,16 +1088,7 @@ VOS_VOID CSS_AddNvOneBand(CSS_PUB_PREF_MNC_STRU *pstMnc, CSS_NV_PREF_MNC_STRU *p
     pstMnc->ucBandNum++;
 }
 
-/*****************************************************************************
- Function Name   : CSS_AddNvOneMnc
- Description     : 将NV中一个MNC的预置频点加入到内存中MNC结构中
- Input           :
- Output          :
- Return          :
 
- History         :
-    1.chengmin 00285307 2015-10-15  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_AddNvOneMnc(CSS_PUB_PREF_MCC_STRU *pstMcc, CSS_NV_PREF_MNC_STRU *pstNvMnc)
 {
     CSS_PUB_PREF_MNC_STRU              *pstMncNode;
@@ -1412,16 +1140,7 @@ VOS_VOID CSS_AddNvOneMnc(CSS_PUB_PREF_MCC_STRU *pstMcc, CSS_NV_PREF_MNC_STRU *ps
 }
 
 
-/*****************************************************************************
- Function Name   : CSS_AddNvOneMcc
- Description     : 将NV中一个国家的预置频点加入内存中
- Input           :
- Output          :
- Return          :
 
- History         :
-    1.chengmin 00285307 2015-10-15  Draft Enact
-*****************************************************************************/
 /*lint -e429*/
 VOS_VOID CSS_AddNvOneMcc(CSS_NV_PREF_MCC_STRU *pPrefMcc, VOS_UINT32 ulIndex)
 {
@@ -1579,19 +1298,7 @@ VOS_VOID CSS_GetMccListFromLocal
 }
 
 
-/*****************************************************************************
- Function Name   : CSS_GetMccListFromLocal
- Description     : 判断某个MCC的云端预置频点和频段是否已经获取。
-                   考虑云通信数据可能不全，即使获取过MCC的预置频点和频段，也有可能没有某些PLMN ID的预置频点
- Input           : ulPlmnNum      :MCC ID个数
-                   astPlmn        :MCC ID列表，MNC填0xFF，表示MNC无效
- Output          :
- Return          : VOS_TRUE       :全部已获取
-                   VOS_FALSE      :没有全部获取
 
- History         :
-    1.chengmin 00285307 2015-10-15  Draft Enact
-*****************************************************************************/
 VOS_UINT32 CSS_IsMccFreqExist
 (
     VOS_UINT32                                    ulPlmnNum,
@@ -1935,16 +1642,7 @@ VOS_VOID CSS_GetPrefBandFromMncNode
     *pulOutNum = ulBandNum;
 }
 
-/*****************************************************************************
- Function Name   : CSS_IsRatHasNoPrefBand
- Description     : 判断某个制式的PLMN下是否没有云端BAND
- Input           :
- Output          :
- Return          :
 
- History         :
-    1.chengmin 00285307 2015-10-15  Draft Enact
-*****************************************************************************/
 VOS_UINT32 CSS_IsRatHasNoPrefBand
 (
     CSS_RAT_TYPE_ENUM_UINT8             enRat,
@@ -1954,16 +1652,7 @@ VOS_UINT32 CSS_IsRatHasNoPrefBand
     return CSS_IsRatSupportInFlag(enRat, pMncNode->ucNoPrefBandFlg);
 }
 
-/*****************************************************************************
- Function Name   : CSS_JudgeMultiMccCountryHasPrefBand
- Description     : 判断某个制式的PLMN下是否没有云端BAND,将个数为0的MCC删除，不为0的数据保留
- Input           :
- Output          :
- Return          :
 
- History         :
-    1.chengmin 00285307 2015-10-15  Draft Enact
-*****************************************************************************/
 VOS_UINT32 CSS_JudgeMultiMccCountryHasPrefBand
 (
     VOS_UINT32                         *pulNum,
@@ -2279,16 +1968,31 @@ CSS_RESULT_ENUM_UINT32 CSS_GetPreferBandInfo
     return CSS_RESULT_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : CSS_GetMccFromPlmnArr
- Description     : 从PLMN数组中找出MCC
- Input           :
- Output          :
- Return          :
 
- History         :
-    1.chengmin 00285307 2015-10-15  Draft Enact
-*****************************************************************************/
+VOS_UINT32    CSS_CheckMccIsValid
+(
+    VOS_UINT8                           aucMcc[2]
+)
+{
+    VOS_UINT8                          ucMccDigit1 = 0;
+    VOS_UINT8                          ucMccDigit2 = 0;
+    VOS_UINT8                          ucMccDigit3 = 0;
+
+    ucMccDigit1 = aucMcc[0] & CSS_OCTET_LOW_4_BITS;
+    ucMccDigit2 = (aucMcc[0] & CSS_OCTET_HIGH_4_BITS) >> CSS_OCTET_MOVE_4_BITS;
+    ucMccDigit3 = aucMcc[1] & CSS_OCTET_LOW_4_BITS;
+
+    if ((ucMccDigit1 <= CSS_DEC_DIGIT_9) &&
+        (ucMccDigit2 <= CSS_DEC_DIGIT_9) &&
+        (ucMccDigit3 <= CSS_DEC_DIGIT_9))
+    {
+        return VOS_TRUE;
+    }
+
+    return VOS_FALSE;
+}
+
+
 VOS_VOID CSS_GetMccFromPlmnArr
 (
     CSS_MCC_ID_STRU                     astMccID[CSS_MAX_PLMN_ID_NUM],
@@ -2300,6 +2004,7 @@ VOS_VOID CSS_GetMccFromPlmnArr
     VOS_UINT32                          ulLoop1,ulLoop2;
     VOS_UINT32                          ulMccNum = 0;
     VOS_UINT32                          ulIsExist = CSS_FALSE;
+    VOS_UINT32                          ulIsValid = CSS_FALSE;
     VOS_UINT8                           aucMcc[2] = {0};
 
     CSS_MEM_SET_S(astMccID, sizeof(CSS_MCC_ID_STRU)*CSS_MAX_PLMN_ID_NUM, 0, sizeof(CSS_MCC_ID_STRU)*CSS_MAX_PLMN_ID_NUM);
@@ -2310,6 +2015,12 @@ VOS_VOID CSS_GetMccFromPlmnArr
         ulIsExist = CSS_FALSE;
 
         CSS_ConvertGuMccToSimMcc(astPlmnId[ulLoop1].ulMcc, aucMcc);
+
+        ulIsValid = CSS_CheckMccIsValid(aucMcc);
+        if ( VOS_TRUE != ulIsValid )
+        {
+            continue;
+        }
 
         /* 查看数组中是否已经存在 */
         for (ulLoop2 = 0; ulLoop2 < ulMccNum; ++ulLoop2)
@@ -2331,16 +2042,7 @@ VOS_VOID CSS_GetMccFromPlmnArr
     *pulMccNum = ulMccNum;
 }
 
-/*****************************************************************************
- Function Name   : CSS_IsMccUpdatedFromAp
- Description     : 查看某mCC是否从云端更新过
- Input           :
- Output          :
- Return          :
 
- History         :
-    1.chengmin 00285307 2015-10-15  Draft Enact
-*****************************************************************************/
 VOS_UINT32 CSS_IsMccUpdatedFromAp(VOS_UINT8 aucMcc[2])
 {
     VOS_UINT32                          i,j;
@@ -2421,16 +2123,7 @@ VOS_VOID CSS_DeleteSameMccAccordToLocal
     }
 }
 
-/*****************************************************************************
- Function Name   : CSS_IsMccUpdatingInUpdateStateTable
- Description     : 如果MCC正在等待云端下发则删除
- Input           :
- Output          :
- Return          :
 
- History         :
-    1.chengmin 00285307 2015-10-15  Draft Enact
-*****************************************************************************/
 VOS_UINT32 CSS_IsMccUpdatingInUpdateStateTable
 (
     VOS_UINT8                           aucMccID[2]
@@ -2475,16 +2168,7 @@ VOS_UINT32 CSS_IsMccUpdatingInUpdateStateTable
 }
 
 
-/*****************************************************************************
- Function Name   : CSS_DeleteMccAlreadySndToAp
- Description     : 如果MCC正在等待云端下发则删除
- Input           :
- Output          :
- Return          :
 
- History         :
-    1.chengmin 00285307 2015-10-15  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_DeleteMccAlreadySndToAp
 (
     CSS_MCC_ID_STRU                     astMccID[CSS_MAX_PLMN_ID_NUM],
@@ -2535,16 +2219,7 @@ VOS_VOID CSS_DeleteMccAlreadySndToAp
 
 
 
-/*****************************************************************************
- Function Name   : CSS_DeleteLocalMccFromMccArray
- Description     : 根据传入的数组删除本地的这些MCC
- Input           :
- Output          :
- Return          :
 
- History         :
-    1.chengmin 00285307 2015-10-15  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_DeleteLocalMccFromMccArray
 (
     CSS_MCC_ID_STRU                     astMccID[CSS_MAX_PLMN_ID_NUM],
@@ -2593,19 +2268,7 @@ VOS_VOID CSS_DeleteLocalMccFromMccArray
 }
 
 
-/*****************************************************************************
- Function Name  : CSS_ReadFreqFromAtMsg
- Description    : 从码流中读取频点数据
- Input          : pstBand : BAND节点
-                  pAddr   : 码流首地址
-                  pulSum  : 地址偏移量
- Output         : pstBand : BAND节点
-                  pulSum  : 地址偏移量
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-12  Draft Enact
-*****************************************************************************/
 VOS_UINT32 CSS_ReadFreqFromAtMsg(CSS_PUB_PREF_BAND_STRU *pstBand, VOS_UINT8 *pAddr, VOS_UINT32 *pulSum, VOS_UINT32 ulRemainLen)
 {
     CSS_PUB_PREF_FREQ_STRU             *pstFreqNode;
@@ -2692,19 +2355,7 @@ VOS_UINT32 CSS_ReadFreqFromAtMsg(CSS_PUB_PREF_BAND_STRU *pstBand, VOS_UINT8 *pAd
     return CSS_SUCC;
 }
 
-/*****************************************************************************
- Function Name  : CSS_ReadBandRatSuppotFromAtMsg
- Description    : 从码流中读取BAND 的ratSupport数据
- Input          : pstMnc  : MNC节点
-                  pAddr   : 码流首地址
-                  pulSum  : 地址偏移量
- Output         : pstMnc  : MNC节点
-                  pulSum  : 地址偏移量
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-12  Draft Enact
-*****************************************************************************/
 VOS_UINT32 CSS_ReadBandRatSuppotFromAtMsg(VOS_UINT8 *pucBandRatFlag, VOS_UINT8 *pAddr, VOS_UINT32 *pulSum, VOS_UINT32 ulRemainLen)
 {
     VOS_UINT8                           ucFreqRangeNum;
@@ -2740,19 +2391,7 @@ VOS_UINT32 CSS_ReadBandRatSuppotFromAtMsg(VOS_UINT8 *pucBandRatFlag, VOS_UINT8 *
     return CSS_SUCC;
 }
 
-/*****************************************************************************
- Function Name  : CSS_ReadNoPrefBandFlgFromAtMsg
- Description    : 从码流中读取BAND 的ratSupport数据
- Input          : pstMnc  : MNC节点
-                  pAddr   : 码流首地址
-                  pulSum  : 地址偏移量
- Output         : pstMnc  : MNC节点
-                  pulSum  : 地址偏移量
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-12  Draft Enact
-*****************************************************************************/
 VOS_UINT32 CSS_ReadNoPrefBandFlgFromAtMsg(CSS_PUB_PREF_MNC_STRU *pstMnc, VOS_UINT8 *pAddr, VOS_UINT32 *pulSum, VOS_UINT32 ulRemainLen)
 {
     VOS_UINT32                          ulSumTmp = 0;
@@ -2792,19 +2431,7 @@ VOS_UINT32 CSS_ReadNoPrefBandFlgFromAtMsg(CSS_PUB_PREF_MNC_STRU *pstMnc, VOS_UIN
 
 
 
-/*****************************************************************************
- Function Name  : CSS_AddBandFromAtMsg
- Description    : 从码流中读取BAND数据
- Input          : pstMnc  : MNC节点
-                  pAddr   : 码流首地址
-                  pulSum  : 地址偏移量
- Output         : pstMnc  : MNC节点
-                  pulSum  : 地址偏移量
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-12  Draft Enact
-*****************************************************************************/
 VOS_UINT32 CSS_ReadBandFromAtMsg(CSS_PUB_PREF_MNC_STRU *pstMnc, VOS_UINT8 *pAddr, VOS_UINT32 *pulSum, VOS_UINT32 ulRemainLen)
 {
     CSS_PUB_PREF_BAND_STRU             *pstBandNode;
@@ -2922,19 +2549,7 @@ VOS_UINT32 CSS_ReadBandFromAtMsg(CSS_PUB_PREF_MNC_STRU *pstMnc, VOS_UINT8 *pAddr
 }
 
 
-/*****************************************************************************
- Function Name  : CSS_ReadMncFromAtMsg
- Description    : 从码流中读取MNC数据
- Input          : pstMcc  : MCC节点
-                  pAddr   : 码流首地址
-                  pulSum  : 地址偏移量
- Output         : pstMcc  : MCC节点
-                  pulSum  : 地址偏移量
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-12  Draft Enact
-*****************************************************************************/
 VOS_UINT32 CSS_ReadMncFromAtMsg(CSS_PUB_PREF_MCC_STRU *pstMcc, VOS_UINT8 *pAddr, VOS_UINT32 *pulSum, VOS_UINT32 ulRemainLen)
 {
     CSS_PUB_PREF_MNC_STRU              *pstMncNode;
@@ -3026,17 +2641,7 @@ VOS_UINT32 CSS_ReadMncFromAtMsg(CSS_PUB_PREF_MCC_STRU *pstMcc, VOS_UINT8 *pAddr,
 }
 
 
-/*****************************************************************************
- Function Name  : CSS_ReadMccFromAtMsg
- Description    : 从码流中读取MCC数据
- Input          : pAddr         : 码流首地址
-                  ulRemainLen   : 剩余字节数
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-12  Draft Enact
-*****************************************************************************/
 /*lint -e429*/
 VOS_UINT32 CSS_ReadMccFromAtMsg(VOS_UINT8 *pAddr, VOS_UINT32 ulRemainLen)
 {
@@ -3108,20 +2713,7 @@ VOS_UINT32 CSS_ReadMccFromAtMsg(VOS_UINT8 *pAddr, VOS_UINT32 ulRemainLen)
 }
 /*lint +e429*/
 
-/*****************************************************************************
- Function Name  : CSS_AddFreqNodeToLocal
- Description    : 将一个FREQ节点加入到本地某个BAND节点下，加入原则:
-                  若发现本地BAND节点下已经有了相同的频点数值，则更新制式支持flag，释放
-                  传入的指针的内存;
-                  若发现本地BAND节点下没有相同的频点数值，则直接将本地BAND中的FREQ尾节点指针
-                  指向传入的FREQ指针，不用申请内存。
- Input          : pstFreqIn     : 传入的FREQ节点
- Output         : pstBandNode   : 需要插入FREQ节点的本地BAND节点
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-12  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_AddFreqNodeToLocal(CSS_PUB_PREF_BAND_STRU *pstBandNode, CSS_PUB_PREF_FREQ_STRU *pstFreqIn)
 {
     CSS_PUB_PREF_FREQ_STRU             *pstFreqNode;
@@ -3183,20 +2775,7 @@ VOS_VOID CSS_AddFreqNodeToLocal(CSS_PUB_PREF_BAND_STRU *pstBandNode, CSS_PUB_PRE
 }
 
 
-/*****************************************************************************
- Function Name  : CSS_AddBandNodeToLocal
- Description    : 将一个BAND节点加入到本地某个MNC节点下，加入原则:
-                  若发现本地MNC节点下已经有了相同的BAND数值，则遍历传入的BAND指针，
-                  依次将传入BAND指针中的FREQ加入到本地BAND节点中;
-                  若发现本地MNC节点下没有相同的BAND数值，则直接本地中的BAND尾节点指针
-                  指向传入的BAND指针，不用申请内存。
- Input          : pstBandIn     : 传入的BAND节点
- Output         : pstMncNode    : 需要插入BAND节点的本地MNC节点
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-12  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_AddBandNodeToLocal(CSS_PUB_PREF_MNC_STRU *pstMncNode, CSS_PUB_PREF_BAND_STRU *pstBandIn)
 {
     CSS_PUB_PREF_BAND_STRU             *pstBandNode;
@@ -3270,20 +2849,7 @@ VOS_VOID CSS_AddBandNodeToLocal(CSS_PUB_PREF_MNC_STRU *pstMncNode, CSS_PUB_PREF_
 }
 
 
-/*****************************************************************************
- Function Name  : CSS_AddMncNodeToLocal
- Description    : 将一个MNC节点加入到本地某个MCC节点下，加入原则:
-                  若发现本地MCC节点下已经有了相同的MNC数值，则遍历传入的MNC指针，
-                  依次将传入MNC指针中的BAND加入到本地MNC节点中;
-                  若发现本地MCC节点下没有相同的MNC数值，则直接本地中的MNC尾节点指针
-                  指向传入的MNC指针，不用申请内存。
- Input          : pstMncIn      : 传入的MNC节点
- Output         : pstMccNode    : 需要插入MNC节点的本地MCC节点
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-12  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_AddMncNodeToLocal(CSS_PUB_PREF_MCC_STRU *pstMccNode, CSS_PUB_PREF_MNC_STRU *pstMncIn)
 {
     CSS_PUB_PREF_MNC_STRU              *pstMncNode;
@@ -3354,20 +2920,7 @@ VOS_VOID CSS_AddMncNodeToLocal(CSS_PUB_PREF_MCC_STRU *pstMccNode, CSS_PUB_PREF_M
 }
 
 
-/*****************************************************************************
- Function Name  : CSS_AddMccNodeToLocal
- Description    : 将一个MCC节点加入到本地，加入原则:
-                  若发现本地已经有了相同的MCC，则遍历传入的MCC指针，
-                  依次将传入MCC指针中的MNC加入到本地MCC节点中;
-                  若发现本地没有相同的MCC，则直接本地中的MCC尾节点指针
-                  指向传入的MCC指针，不用申请内存。
- Input          : pstMccIn      : 传入的MCC节点
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-12  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_AddMccNodeToLocal(CSS_PUB_PREF_MCC_STRU *pstMccIn)
 {
     CSS_PUB_PREF_MCC_STRU              *pstMccNode;
@@ -3437,16 +2990,7 @@ VOS_VOID CSS_AddMccNodeToLocal(CSS_PUB_PREF_MCC_STRU *pstMccIn)
 }
 
 
-/*****************************************************************************
- Function Name  : CSS_UpdateRatFreqToNv
- Description    : 将本地某制式支持的FREQ节点写入NV。
- Input          : aucMncId      : 传入的MNC ID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-12  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_UpdateRatFreqToNv
 (
     VOS_UINT8 aucMncId[2],
@@ -3508,16 +3052,7 @@ VOS_VOID CSS_UpdateRatFreqToNv
 }
 
 
-/*****************************************************************************
- Function Name  : CSS_UpdateRatFreqToNv
- Description    : 将本地某制式支持的BAND节点写入NV，用于BAND下没有预置频点的情况
- Input          : aucMncId      : 传入的MNC ID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-12  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_UpdateRatBandToNv
 (
     VOS_UINT8 aucMncId[2],
@@ -3541,16 +3076,7 @@ VOS_VOID CSS_UpdateRatBandToNv
 }
 
 
-/*****************************************************************************
- Function Name  : CSS_UpdateFreqToNv
- Description    : 将本地某个BAND下的所有FREQ节点写入NV。
- Input          : aucMncId      : 传入的MNC ID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-12  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_UpdateFreqToNv
 (
     VOS_UINT8 aucMncId[2],
@@ -3627,16 +3153,7 @@ VOS_VOID CSS_UpdateFreqToNv
 
 
 
-/*****************************************************************************
- Function Name  : CSS_UpdateBandToNv
- Description    : 将本地某个MNC下的所有BAND写入NV。
- Input          : pstMccIn      : 传入的MCC节点
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-12  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_UpdateBandToNv(CSS_PUB_PREF_MNC_STRU *pstMncNode, CSS_NV_PREF_MCC_STRU *pstNvMcc)
 {
     CSS_PUB_PREF_BAND_STRU             *pstBandNode;
@@ -3650,16 +3167,7 @@ VOS_VOID CSS_UpdateBandToNv(CSS_PUB_PREF_MNC_STRU *pstMncNode, CSS_NV_PREF_MCC_S
     }
 }
 
-/*****************************************************************************
- Function Name  : CSS_UpdateMncToNv
- Description    : 将本地某个MCC下的所有MNC写入NV。
- Input          : pstMccIn      : 传入的MCC节点
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-12  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_UpdateMncToNv(CSS_PUB_PREF_MCC_STRU *pstMccNode, CSS_NV_PREF_MCC_STRU *pstNvMcc)
 {
     CSS_PUB_PREF_MNC_STRU              *pstMncNode;
@@ -3677,16 +3185,7 @@ VOS_VOID CSS_UpdateMncToNv(CSS_PUB_PREF_MCC_STRU *pstMccNode, CSS_NV_PREF_MCC_ST
     pstNvMcc->bitMccDigit3 = (pstMccNode->aucMccId[1] & CSS_OCTET_LOW_4_BITS);
 }
 
-/*****************************************************************************
- Function Name  : CSS_UpdateMccToNv
- Description    : 将本地某个MCC写入NV。
- Input          : pstMccIn      : 传入的MCC节点
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-12  Draft Enact
-*****************************************************************************/
 VOS_UINT32 CSS_UpdateMccToNv(VOS_UINT8 aucMccId[2], CSS_NV_PREF_MCC_STRU *pstNvMcc)
 {
     CSS_PUB_PREF_MCC_STRU              *pstMccNode;
@@ -3706,16 +3205,7 @@ VOS_UINT32 CSS_UpdateMccToNv(VOS_UINT8 aucMccId[2], CSS_NV_PREF_MCC_STRU *pstNvM
     return CSS_FAIL;
 }
 
-/*****************************************************************************
- Function Name  : CSS_WriteNvMccPrefFreq
- Description    : 将本地已存储的MCC 写入NV。
- Input          : pstMccIn      : 传入的MCC节点
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-12  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_WriteNvMccPrefFreq(VOS_VOID)
 {
     VOS_UINT32                          ulDataLen = 0;
@@ -3822,16 +3312,7 @@ VOS_VOID CSS_WriteNvMccPrefFreq(VOS_VOID)
 }
 
 
-/*****************************************************************************
- Function Name  : CSS_ConvertAscToHex
- Description    : 将ASC码转化成16进制
- Input          :
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-12  Draft Enact
-*****************************************************************************/
 VOS_UINT32 CSS_ConvertAscToHex(VOS_UINT8 *pucDest, VOS_UINT8 ucSrc)
 {
     if (CSS_NULL_PTR == pucDest)
@@ -3862,16 +3343,7 @@ VOS_UINT32 CSS_ConvertAscToHex(VOS_UINT8 *pucDest, VOS_UINT8 ucSrc)
 }
 
 
-/*****************************************************************************
- Function Name  : CSS_ConvertStrToHex
- Description    : 将字符串转化成16进制
- Input          :
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-12  Draft Enact
-*****************************************************************************/
 VOS_UINT32 CSS_ConvertStrToHex(VOS_UINT8 *pucHex, const VOS_UINT8 *pucStr, VOS_UINT32 ulStrLen)
 {
     VOS_UINT8                           ucConvertHex;
@@ -3913,16 +3385,7 @@ VOS_UINT32 CSS_ConvertStrToHex(VOS_UINT8 *pucHex, const VOS_UINT8 *pucStr, VOS_U
     return CSS_SUCC;
 }
 
-/*****************************************************************************
- Function Name  : CSS_IsMccNeedToDelete
- Description    : 判断某个MCC是否需要删除(基于是否正在更新)
- Input          :
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-12  Draft Enact
-*****************************************************************************/
 VOS_UINT32 CSS_IsMccNeedToDelete(VOS_UINT8 aucMccId[2])
 {
     VOS_UINT8                           ucIsBelongToMutiMccCountry;
@@ -3971,16 +3434,7 @@ VOS_UINT32 CSS_IsMccNeedToDelete(VOS_UINT8 aucMccId[2])
 }
 
 
-/*****************************************************************************
- Function Name  : CSS_DeleteLocalMccNotUpdating
- Description    : 将本地保存的MCC数据中不属于正在更新的MCC数据删掉，只有在内存已满的情况下才会调用此函数。用来接收最新的MCC。
- Input          :
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-12  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_DeleteLocalMccNotUpdating(VOS_VOID)
 {
     CSS_PUB_PREF_MCC_STRU              *pMccNode;

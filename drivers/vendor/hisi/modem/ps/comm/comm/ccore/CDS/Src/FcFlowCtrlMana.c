@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : FcFlowCtrlMana.c
-  版 本 号   : 初稿
-  作    者   : w00145177
-  生成日期   : 2011年12月23日
-  最近修改   :
-  功能描述   : C核流控管理模块
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年12月23日
-    作    者   : w00145177
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -97,21 +80,7 @@ extern VOS_UINT32 LUP_GetCurrentTime(VOS_VOID);
    5 函数实现
 ******************************************************************************/
 #if (CDS_FEATURE_ON == CDS_FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : Fc_LteConfig2Default
- 功能描述  : NV读失败时流控初始化为默认值
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月7日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID Fc_LteConfig2Default(VOS_VOID)
 {
     g_stFcLteConfig.stFcCpuConfig.usFirstDelay = 5;
@@ -143,21 +112,7 @@ VOS_VOID Fc_LteConfig2Default(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : FC_LteConfigcheck
- 功能描述  : 流控参数检查
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月22日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 FC_LteConfigcheck(VOS_VOID)
 {
     VOS_UINT32 i = 0;
@@ -223,21 +178,7 @@ VOS_UINT32 FC_LteConfigcheck(VOS_VOID)
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : Fc_KbpsToBsr
- 功能描述  : 将NV配置kbps转换为BSR上报门限
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年1月7日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID Fc_KbpsToBsr(VOS_VOID)
 {
     VOS_UINT32                  i;
@@ -251,21 +192,7 @@ VOS_VOID Fc_KbpsToBsr(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : Fc_BsrTimerSetting
- 功能描述  : 设置BSR周期
- 输入参数  : VOS_UINT32 ulBsrTimer
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年1月6日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID Fc_BsrTimerSetting( VOS_UINT32 ulBsrTimer )
 {
     if(g_stFcLteTemperatureCtrl.ulBsrTimerLen != ulBsrTimer)
@@ -280,21 +207,7 @@ VOS_VOID Fc_BsrTimerSetting( VOS_UINT32 ulBsrTimer )
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : Fc_CdsConfig2Default
- 功能描述  : NV读失败时流控初始化为默认值
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月7日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID Fc_CdsConfig2Default(VOS_VOID)
 {
     g_stFcCdsConfig.ulFcEnableMask = 0;
@@ -315,21 +228,7 @@ VOS_VOID Fc_CdsConfig2Default(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : FC_CdsConfigcheck
- 功能描述  : 流控参数检查
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月22日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 FC_CdsConfigcheck(VOS_VOID)
 {
     if(g_stFcCdsConfig.stFcCdsDlConfig.ulDiscardRate >= 100)
@@ -367,21 +266,7 @@ VOS_UINT32 FC_CdsConfigcheck(VOS_VOID)
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : Fc_LteStatusInit
- 功能描述  : LTE流控状态初始化
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月9日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID Fc_LteStatusInit(VOS_VOID)
 {
     /* 复位流控状态 */
@@ -393,21 +278,7 @@ VOS_VOID Fc_LteStatusInit(VOS_VOID)
     g_stFcLteTemperatureCtrl.ucCurrPos = FC_UL_THROUGHPUT_THRES_CNT;
 }
 
-/*****************************************************************************
- 函 数 名  : Fc_LteInit
- 功能描述  : LTE流控初始化
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月24日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID Fc_LteInit(VOS_VOID)
 {
     VOS_UINT32                  ulReturnCode;
@@ -532,21 +403,7 @@ VOS_VOID Fc_LteInit(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NULL_CPUFcProcess
- 功能描述  : NULL模式 CPU流控回调处理
- 输入参数  : unsigned int arg
- 输出参数  : 无
- 返 回 值  : unsigned int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月28日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 unsigned int NULL_CPUFcProcess( unsigned int arg )
 {
     if(arg > g_stFcLteCpuCtrl.ulDowngradeThres)
@@ -557,21 +414,7 @@ unsigned int NULL_CPUFcProcess( unsigned int arg )
     return 0;
 }
 
-/*****************************************************************************
- 函 数 名  : NULL_DownGradeUlProcess
- 功能描述  : NULL模式温保降速回调函数
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : SPY_DATA_UPGRADE_RESULT_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月28日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 SPY_DATA_DOWNGRADE_RESULT_ENUM_UINT32 NULL_DownGradeUlProcess (VOS_VOID)
 {
     CDS_WARNING_LOG(UEPS_PID_CDS,"NULL_DownGradeUlProcess : NULL Speed Downgrade");
@@ -580,21 +423,7 @@ SPY_DATA_DOWNGRADE_RESULT_ENUM_UINT32 NULL_DownGradeUlProcess (VOS_VOID)
     return SPY_DATA_DOWNGRADE_CONTINUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NULL_UpGradeUlProcess
- 功能描述  : NULL模式温保升速回调函数
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : SPY_DATA_UPGRADE_RESULT_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月28日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 SPY_DATA_UPGRADE_RESULT_ENUM_UINT32 NULL_UpGradeUlProcess (VOS_VOID)
 {
     CDS_WARNING_LOG(UEPS_PID_CDS,"NULL_UpGradeUlProcess : NULL Speed Upgrade");
@@ -603,21 +432,7 @@ SPY_DATA_UPGRADE_RESULT_ENUM_UINT32 NULL_UpGradeUlProcess (VOS_VOID)
     return SPY_DATA_UPGRADE_FINISH;
 }
 
-/*****************************************************************************
- 函 数 名  : NULL_RecoverUlGradeProcess
- 功能描述  : NULL温保直接恢复回调函数
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月29日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NULL_RecoverUlGradeProcess (VOS_VOID)
 {
     CDS_WARNING_LOG(UEPS_PID_CDS, "NULL_RecoverUlGradeProcess : NULL Speed Recover");
@@ -626,21 +441,7 @@ VOS_VOID NULL_RecoverUlGradeProcess (VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : FC_HarqDown
- 功能描述  : HARQ降速
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年1月7日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID FC_HarqDown (VOS_VOID)
 {
     if(g_stFcLteCpuCtrl.ulHqMaxDiscardRate > (100 - g_ulHarqKeepRate))
@@ -661,21 +462,7 @@ VOS_VOID FC_HarqDown (VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : FC_HarqUp
- 功能描述  : HARQ升速
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年1月7日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID FC_HarqUp (VOS_VOID)
 {
     FC_CL_HQ_UP_STAT(1);
@@ -695,21 +482,7 @@ VOS_VOID FC_HarqUp (VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : FC_LCPU_Process
- 功能描述  : LTE CPU流控回调处理
- 输入参数  : unsigned int arg
- 输出参数  : 无
- 返 回 值  : unsigned int
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月28日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 unsigned int FC_LCPU_Process( unsigned int arg )
 {
     static VOS_UINT32 ulFirstDelay = 0;
@@ -786,21 +559,7 @@ unsigned int FC_LCPU_Process( unsigned int arg )
     return 0;
 }
 
-/*****************************************************************************
- 函 数 名  : FC_LDownUlGrade_Process
- 功能描述  : LTE温保降速回调函数
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : SPY_DATA_UPGRADE_RESULT_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月28日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 SPY_DATA_DOWNGRADE_RESULT_ENUM_UINT32 FC_LDownUlGrade_Process (VOS_VOID)
 {
     if(g_stFcLteTemperatureCtrl.ucCurrPos >=  FC_UL_THROUGHPUT_THRES_CNT)
@@ -852,21 +611,7 @@ SPY_DATA_DOWNGRADE_RESULT_ENUM_UINT32 FC_LDownUlGrade_Process (VOS_VOID)
     return SPY_DATA_DOWNGRADE_CONTINUE;
 }
 
-/*****************************************************************************
- 函 数 名  : FC_LUpUlGrade_Process
- 功能描述  : LTE温保升速回调函数
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : SPY_DATA_UPGRADE_RESULT_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月28日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 SPY_DATA_UPGRADE_RESULT_ENUM_UINT32 FC_LUpUlGrade_Process (VOS_VOID)
 {
     FC_CL_TEMPERATURE_UP_STAT(1);
@@ -909,21 +654,7 @@ SPY_DATA_UPGRADE_RESULT_ENUM_UINT32 FC_LUpUlGrade_Process (VOS_VOID)
     return SPY_DATA_UPGRADE_CONTINUE;
 }
 
-/*****************************************************************************
- 函 数 名  : FC_LRecoverUlGrade_Process
- 功能描述  : LTE温保直接恢复回调函数
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月29日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID FC_LRecoverUlGrade_Process (VOS_VOID)
 {
     FC_CL_TEMPERATURE_RECOVER_STAT(1);
@@ -938,21 +669,7 @@ VOS_VOID FC_LRecoverUlGrade_Process (VOS_VOID)
 }
 
 #if (CDS_FEATURE_ON == CDS_FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : FC_UlDowngradeInput
- 功能描述  : LTE温保用户名入口流控控制
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月8日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  FC_UlDowngradeInput(VOS_VOID)
 {
     static VOS_UINT32   ulIPStatTick = 0;
@@ -980,21 +697,7 @@ VOS_UINT32  FC_UlDowngradeInput(VOS_VOID)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : Fc_SwitchToGu
- 功能描述  : 流控信息接收模块切换
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月24日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID Fc_SwitchToGu(VOS_VOID)
 {
     FC_CL_TO_GU_STAT(1);
@@ -1012,21 +715,7 @@ VOS_VOID Fc_SwitchToGu(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : Fc_SwitchToLte
- 功能描述  : 流控信息接收模块切换
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月24日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID Fc_SwitchToLte(VOS_VOID)
 {
     /* 新进入LTE，恢复流控状态 */
@@ -1041,21 +730,7 @@ VOS_VOID Fc_SwitchToLte(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : Fc_SwitchToNull
- 功能描述  : 流控信息接收模块切换, 环回或NULL模式
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月24日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID Fc_SwitchToNull(VOS_VOID)
 {
     FC_CL_TO_NULL_STAT(1);
@@ -1073,21 +748,7 @@ VOS_VOID Fc_SwitchToNull(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : Fc_BufferReportDiscount
- 功能描述  : 通过Buffer上报降速
- 输入参数  : VOS_UINT32 ulBufferSize
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月28日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 g_BsrCheck = 0;
 VOS_UINT32 Fc_BufferReportDiscount( VOS_UINT32 ulBufferSize )
 {
@@ -1139,26 +800,11 @@ VOS_UINT32 Fc_BufferReportDiscount( VOS_UINT32 ulBufferSize )
     return ulBufferSize;
 }
 
-/*****************************************************************************
- 函 数 名  : Fc_CdsDlPktDiscard
- 功能描述  : 下行共享内存不足流控处理
- 输入参数  : VOS_UINT8 ucRabId
- 输出参数  : 无
- 返 回 值  : VOS_BOOL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月28日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_BOOL Fc_CdsDlPktDiscard(VOS_UINT8 ucRabId)
 {
     VOS_UINT32 ulRandValue;
 
-    /* 规避PC-LINT问题，后面扩展下行流控时将用到 */
     (VOS_VOID)ucRabId;
     /*lint -e960*/
     if((g_stFcCdsDlCtrl.bDlCdsFcEnable)
@@ -1179,21 +825,7 @@ VOS_BOOL Fc_CdsDlPktDiscard(VOS_UINT8 ucRabId)
     /*lint +e960*/
 }
 
-/*****************************************************************************
- 函 数 名  : Fc_ShowLtePara
- 功能描述  : 显示LTE流控参数
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月29日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID Fc_ShowLtePara(VOS_VOID)
 {
     PS_PRINTF("LTE流控参数 :\r\n");
@@ -1239,21 +871,7 @@ VOS_VOID Fc_ShowLtePara(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : Fc_ShowLteStats
- 功能描述  : 显示C核LTE流控统计量
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月29日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID Fc_ShowLteStats(VOS_VOID)
 {
     PS_PRINTF("C核LTE流控统计 :\r\n");
@@ -1282,21 +900,7 @@ VOS_VOID Fc_ShowLteStats(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : Fc_ShowLteResult
- 功能描述  : 显示C核LTE流控结果
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月29日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID Fc_ShowLteResult(VOS_VOID)
 {
     PS_PRINTF("C核LTE流控结果 :\r\n");
@@ -1313,21 +917,7 @@ VOS_VOID Fc_ShowLteResult(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : Fc_ResetLteStats
- 功能描述  : 清除LTE流控统计量
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月29日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID Fc_ResetLteStats(VOS_VOID)
 {
     PS_MEM_SET(&g_stFcCLStats, 0, sizeof(FC_CL_STATS_INFO_STRU));
@@ -1335,21 +925,7 @@ VOS_VOID Fc_ResetLteStats(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : Fc_LteHelp
- 功能描述  : LTE流控软调命令
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月29日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID Fc_LteHelp(VOS_VOID)
 {
     PS_PRINTF("LTE流控软调命令 :\r\n");

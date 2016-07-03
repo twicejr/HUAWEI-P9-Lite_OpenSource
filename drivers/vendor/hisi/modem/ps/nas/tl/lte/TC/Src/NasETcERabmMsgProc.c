@@ -40,17 +40,7 @@ extern "C" {
 /*****************************************************************************
   3 Function
 *****************************************************************************/
-/*****************************************************************************
- Function Name   : NAS_ETC_RabmMsgDistr
- Description     : RABM消息处理函数
- Input           : pRcvMsg-----------收到的消息
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2009-10-15  Draft Enact
-
-*****************************************************************************/
 /*lint -e960*/
 /*lint -e961*/
 VOS_VOID  NAS_ETC_RabmMsgDistr( VOS_VOID *pRcvMsg )
@@ -85,17 +75,7 @@ VOS_VOID  NAS_ETC_RabmMsgDistr( VOS_VOID *pRcvMsg )
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ETC_SndTcRabmActTestModeMsg
- Description     : 向RABM发送ACTIVATE TEST MODE消息
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2009-10-15  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ETC_SndTcRabmActTestModeMsg( VOS_VOID )
 {
     ETC_ERABM_ACTIVATE_TEST_MODE_STRU     *pstTcRabmActTestMode = VOS_NULL_PTR;
@@ -128,17 +108,7 @@ VOS_VOID  NAS_ETC_SndTcRabmActTestModeMsg( VOS_VOID )
     TLPS_PRINT2LAYER_INFO(NAS_ETC_SndTcRabmActTestModeMsg_ENUM, LNAS_FUNCTION_LABEL1);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ETC_SndTcRabmDeactTestModeMsg
- Description     : 向RABM发送DEACTIVATE TEST MODE消息
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2009-10-15  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ETC_SndTcRabmDeactTestModeMsg( VOS_VOID )
 {
     ETC_ERABM_DEACTIVATE_TEST_MODE_STRU     *pstTcRabmDeactTestMode = VOS_NULL_PTR;
@@ -171,17 +141,7 @@ VOS_VOID  NAS_ETC_SndTcRabmDeactTestModeMsg( VOS_VOID )
     TLPS_PRINT2LAYER_INFO(NAS_ETC_SndTcRabmDeactTestModeMsg_ENUM, LNAS_FUNCTION_LABEL1);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ETC_SndTcRabmSuspendRsp
- Description     : ETC模块回复ID_ETC_ERABM_SUSPEND_RSP消息
- Input           : ETC_ERABM_RSLT_TYPE_ENUM_UINT32       enRslt
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2011-05-04  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ETC_SndTcRabmSuspendRsp
 (
     ETC_ERABM_RSLT_TYPE_ENUM_UINT32       enRslt
@@ -216,17 +176,7 @@ VOS_VOID NAS_ETC_SndTcRabmSuspendRsp
     NAS_ETC_SND_MSG(pstTcRabmSuspendRsp);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ETC_SndTcRabmResumeRsp
- Description     : ESM模块回复ID_ETC_ERABM_RESUME_RSP消息
- Input           : ETC_ERABM_RSLT_TYPE_ENUM_UINT32       enRslt
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2011-05-04  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ETC_SndTcRabmResumeRsp
 (
     ETC_ERABM_RSLT_TYPE_ENUM_UINT32       enRslt
@@ -262,16 +212,7 @@ VOS_VOID NAS_ETC_SndTcRabmResumeRsp
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ETC_RcvTcRabmSuspendInd
- Description     : ETC模块收到ID_ETC_ERABM_SUSPEND_IND处理函数
- Input           : ETC_ERABM_SUSPEND_IND_STRU *pRcvMsg
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010            2011-05-04      Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_ETC_RcvTcRabmSuspendInd(const ETC_ERABM_SUSPEND_IND_STRU *pRcvMsg )
 {
     (VOS_VOID)pRcvMsg;
@@ -283,16 +224,7 @@ VOS_VOID  NAS_ETC_RcvTcRabmSuspendInd(const ETC_ERABM_SUSPEND_IND_STRU *pRcvMsg 
     NAS_ETC_SndTcRabmSuspendRsp(ETC_ERABM_RSLT_TYPE_SUCC);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ETC_RcvTcRabmResumeInd
- Description     : SM模块收到ID_EMM_ERABM_RESUME_IND处理函数
- Input           : ETC_ERABM_RESUME_IND_STRU *pRcvMsg
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010            2011-05-04      Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_ETC_RcvTcRabmResumeInd(const ETC_ERABM_RESUME_IND_STRU *pRcvMsg )
 {
     (VOS_VOID)pRcvMsg;

@@ -772,18 +772,7 @@ VOS_UINT32 CNAS_HSM_RcvHsdOhmInd_SessionAct_WaitScpActiveCnf(
         }
         else
         {
-            /*****************************************************************************************
-              C.S0024-A V3.0 7.3.7.1.6.1:
-              If the access terminal receives a RouteUpdate.IdleHO indication or a ConnectedState.ConnectionClosed,
-              and then it receives an OverheadMessages.Updated indication,
-              access terminal shall send a UATIRequest, if both of the following two conditions are true
-              1: the subnet associated with UATI and the current subnet are different;
-              2: supportSecondaryColorCodes is set to 0x00 or UATIColorCode is different from all of the
-                 secondaryColorCode values provided as public data by the Overhead Messages protocol
-              完全按照协议处理CCF用例C.S0038 2.2.2.8将会Failed并且RF自动化测试(DTS2015091705555)也不会通过。
-              因此如果CNAS_HSM_GetStartUatiReqAfterSectorIdChgFlg()返回TRUE(NV可控)，则CNAS参照标杆处理，
-              不判断CNAS_HSM_RCV_OHM_SCENE_FOLLOW_CONN_CLOSE 和 CNAS_HSM_RCV_OHM_SCENE_FOLLOW_IDLE_HO两个条件。
-              *****************************************************************************************/
+            
 
             if ((VOS_TRUE == CNAS_HSM_GetStartUatiReqAfterSectorIdChgFlg())
              || (CNAS_HSM_RCV_OHM_SCENE_FOLLOW_IDLE_HO    == enRcvOhmScene)
@@ -804,23 +793,7 @@ VOS_UINT32 CNAS_HSM_RcvHsdOhmInd_SessionAct_WaitScpActiveCnf(
 }
 
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_RcvHsmSessionCloseInd_SessionAct_WaitScpActiveCnf
-Description     :   process hsm internal session close ind message wait scp active cnf state
-Input parameters:   ulEventType-----message ID +pid
-                    pstMsg     -----message content
-Outout parameters:  None
-Return Value    :   CNAS_HSM_FSM_EVENT_HANDLED-------the current event is processed finished
-                    CNAS_HSM_FSM_EVENT_NOT_HANDLED---the current event need to further process
 
-Modify History  :
-1)  Date           : 2015-06-10
-    Author         : y00307564
-    Modify content : Create
-2)  Date           : 2016-01-25
-    Author         : w00351686
-    Modify content : DTS2016011700511:当前缓存中有OHM消息，则清除此消息，避免多次向网侧发送session close
-*****************************************************************************/
 VOS_UINT32 CNAS_HSM_RcvHsmSessionCloseInd_SessionAct_WaitScpActiveCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -850,23 +823,7 @@ VOS_UINT32 CNAS_HSM_RcvHsmSessionCloseInd_SessionAct_WaitScpActiveCnf(
     return CNAS_HSM_FSM_EVENT_HANDLED;
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_RcvHsmSessionCloseInd_SessionAct_WaitPaRatModeNtf
-Description     :   process hsm internal session close ind message wait pa rat mode ntf state
-Input parameters:   ulEventType-----message ID +pid
-                    pstMsg     -----message content
-Outout parameters:  None
-Return Value    :   CNAS_HSM_FSM_EVENT_HANDLED-------the current event is processed finished
-                    CNAS_HSM_FSM_EVENT_NOT_HANDLED---the current event need to further process
 
-Modify History  :
-1)  Date           : 2015-06-10
-    Author         : y00307564
-    Modify content : Create
-2)  Date           : 2016-01-25
-    Author         : w00351686
-    Modify content : DTS2016011700511:当前缓存中有OHM消息，则清除此消息，避免多次向网侧发送session close
-*****************************************************************************/
 VOS_UINT32 CNAS_HSM_RcvHsmSessionCloseInd_SessionAct_WaitPaRatModeNtf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg

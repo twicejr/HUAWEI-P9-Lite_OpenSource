@@ -79,7 +79,7 @@ static const UINT32 quant8_inter_default[16] =
     0x1c191814, 0x47362921, 0x211c1918, 0x5b473629
 };
 
-static UINT32  s_auiSigLastScan[HEVC_MAX_CU_DEPTH][HEVC_MAX_CU_SIZE *HEVC_MAX_CU_SIZE];     //z00290437 20141016 仅保存对角扫描映射
+static UINT32  s_auiSigLastScan[HEVC_MAX_CU_DEPTH][HEVC_MAX_CU_SIZE *HEVC_MAX_CU_SIZE];
 HEVC_TMP_PARAM_SET_S s_TmpParam;
 UINT32 g_TsToRsMap[HEVC_MAX_MB_NUM];
 UINT8  g_IsDeced[HEVC_MAX_MB_NUM];
@@ -2272,12 +2272,7 @@ SINT32 HEVC_SeiMessage(HEVC_CTX_S *pHevcCtx,HEVC_SEI_PARAM_SET_S * pSEI, HEVC_SE
         BsSkip(pHevcCtx->pBS, 8);
         payloadType += 255;
 
-        /* l00232354: 20141213 DPT产品遇到一条码流，发现SEI只有14bit,但因解析时
-           没有做nal有效长度的限制，从而导致概率性访问到无效地址挂死。
-           当前解决办法:加一个有效长度判断条件，加8是因为后面还有8个bit的消耗
-           ((pHevcCtx->pBS->TotalPos + 8) > pHevcCtx->pBS->BsLen)
-           建议最终解决办法:将这块容错放到码流解析函数里去。
-        */
+        
         if ((pHevcCtx->pBS->TotalPos + 8) > pHevcCtx->pBS->BsLen)
         {
             dprint(PRN_ERROR, "line:%d Cosume TotalPos(%d > %d)!!!\n", __LINE__,
@@ -2294,12 +2289,7 @@ SINT32 HEVC_SeiMessage(HEVC_CTX_S *pHevcCtx,HEVC_SEI_PARAM_SET_S * pSEI, HEVC_SE
         BsSkip(pHevcCtx->pBS, 8);
         payloadSize += 255;
 
-        /* l00232354: 20141213 DPT产品遇到一条码流，发现SEI只有14bit,但因解析时
-           没有做nal有效长度的限制，从而导致概率性访问到无效地址挂死。
-           当前解决办法:加一个有效长度判断条件，加8是因为后面还有8个bit的消耗
-           ((pHevcCtx->pBS->TotalPos + 8) > pHevcCtx->pBS->BsLen)
-           建议最终解决办法:将这块容错放到码流解析函数里去。
-        */
+        
         if ((pHevcCtx->pBS->TotalPos + 8) > pHevcCtx->pBS->BsLen)
         {
             dprint(PRN_ERROR, "line:%d Cosume TotalPos(%d > %d)!!!\n", __LINE__,
@@ -5477,8 +5467,7 @@ SINT32 HEVC_WriteSliceMsg(HEVC_CTX_S *pHevcCtx)
 
         if (end_ctb_in_slice_tile >= 0 && end_ctb_in_slice_tile < HEVC_MAX_MB_NUM)
         {
-            /*这个地方不能用g_TsToRsMap，因为在多个tile码流同时解码的时候会公用g_TsToRsMap，导致解码出错
-               z00183560*/
+            
             pCurrSlicePara->end_ctb_in_slice_raster = HEVC_CtbTsAddrToRsAddr(pHevcCtx, end_ctb_in_slice_tile);
             //        pCurrSlicePara->end_ctb_in_slice_raster = g_TsToRsMap[end_ctb_in_slice_tile];
         }
@@ -5544,9 +5533,7 @@ UINT8 HEVC_IsRefForCurrPic(HEVC_CTX_S *pHevcCtx)
 
     is_reference = 0;
 
-    /* l00232354, 20141223, 在使用id之前，应该做一个有效值判断，否则会因错误而
-       导致coredown的问题。
-    */
+    
     if ((pHevcCtx->CurrSlice.pic_parameter_set_id < 0) ||
         (pHevcCtx->CurrSlice.pic_parameter_set_id >= (pHevcCtx->MaxPpsNum)))
     {
@@ -5556,9 +5543,7 @@ UINT8 HEVC_IsRefForCurrPic(HEVC_CTX_S *pHevcCtx)
     }
     pPPS = &pHevcCtx->pPPS[pHevcCtx->CurrSlice.pic_parameter_set_id];
 
-    /* l00232354, 20141223, 在使用id之前，应该做一个有效值判断，否则会因错误而
-       导致coredown的问题。
-    */
+    
     if ((pPPS->seq_parameter_set_id < 0) ||
         (pPPS->seq_parameter_set_id >= (pHevcCtx->MaxSpsNum)))
     {
@@ -5577,9 +5562,7 @@ UINT8 HEVC_IsRefForCurrPic(HEVC_CTX_S *pHevcCtx)
     //long-time
     for (i = pTempRps->num_negative_pics + pTempRps->num_positive_pics; i < pTempRps->num_of_pics; i++)
     {
-        /* l00232354, 20141223, 在使用i之前，应该做一个有效值判断，否则会因错误而
-           导致coredown的问题。
-        */
+        
         if (i >= HEVC_MAX_NUM_REF_PICS)
         {
             dprint(PRN_FATAL, "line:%d, i(%d) > Max(%d) num_of_pics %d\n", __LINE__,
@@ -5606,9 +5589,7 @@ UINT8 HEVC_IsRefForCurrPic(HEVC_CTX_S *pHevcCtx)
     //short-time
     for (i = 0; i < (pTempRps->num_negative_pics + pTempRps->num_positive_pics); i++)
     {
-        /* l00232354, 20141223, 在使用i之前，应该做一个有效值判断，否则会因错误而
-           导致coredown的问题。
-        */
+        
         if (i > HEVC_MAX_NUM_REF_PICS)
         {
             dprint(PRN_FATAL, "line:%d, i(%d) > Max(%d)(neg%d + pos%d)\n", __LINE__, i,
@@ -8581,7 +8562,6 @@ SINT32 HEVC_IsNewPic(HEVC_CTX_S *pHevcCtx)
 
     /* as 'PocRandomAccess == HEVC_MAX_INT' is mean the first frame want to decode,
       it's nal type should be as fellow these type!*/
-    /*第一次的时候，检测到是如下的几种nal_type才开始解码 add by l00228308*/
     if (HEVC_MAX_INT == pHevcCtx->PocRandomAccess)
     {
         flag |= pHevcCtx->pCurrNal->nal_unit_type == NAL_UNIT_CODED_SLICE_CRA;
@@ -8597,9 +8577,7 @@ SINT32 HEVC_IsNewPic(HEVC_CTX_S *pHevcCtx)
         }
     }
 
-    /* 此处要及时更新随机插入点PocRandomAccess的值，如果seek后第一个送过来的帧的nal type = CRA,其后有可能送
-    参考CRA之前的RASL帧，此时随机参考点的值必须更新为当前CRA帧的poc值，接下来才会把RASL帧正确丢弃，
-    在接下来遇到IDR帧的时候，才赋值为-HEVC_MAX_INT，此后再遇到CRA帧，也无需重新对PocRandomAccess赋值 change by l00228308*/
+    
     if (pHevcCtx->pCurrNal->nal_unit_type == NAL_UNIT_CODED_SLICE_CRA
         || pHevcCtx->pCurrNal->nal_unit_type == NAL_UNIT_CODED_SLICE_BLA_W_LP
         || pHevcCtx->pCurrNal->nal_unit_type == NAL_UNIT_CODED_SLICE_BLA_N_LP
@@ -8618,9 +8596,7 @@ SINT32 HEVC_IsNewPic(HEVC_CTX_S *pHevcCtx)
     if ((pHevcCtx->CurrSlice.poc < pHevcCtx->PocRandomAccess)
         && (pHevcCtx->pCurrNal->nal_unit_type == NAL_UNIT_CODED_SLICE_RASL_R || pHevcCtx->pCurrNal->nal_unit_type == NAL_UNIT_CODED_SLICE_RASL_N))
     {
-        /*del by l00228308 : 这几行会引起H265 正常播放闪现之前出现的帧的现象，这几行是从PV模型中同步过来的，
-           在skip 帧的时候，如果还自加LastDisplayPoc 会引起此前已经解码的几帧画面没有得到正确的时机输出，遗留在DPB管理队列中，
-           在某个时刻才被刷出来.因此以下把LastDisplayPoc 自加的代码注释掉 (以下三处均是此原因)*/
+        
         //pHevcCtx->LastDisplayPoc++;
         dprint(PRN_ERROR, "%s, %d, CurrSlice.poc = %d, PocRandomAccess = %d, nal_unit_type = %d, should skip this frame\n", __func__, __LINE__,
                pHevcCtx->CurrSlice.poc, pHevcCtx->PocRandomAccess, pHevcCtx->pCurrNal->nal_unit_type);
@@ -10161,7 +10137,7 @@ SINT32 HEVCDEC_Init(HEVC_CTX_S *pHevcCtx,SYNTAX_EXTRA_DATA_S *pstExtraData)
         pHevcCtx->MaxVpsNum   = HEVC_MAX_VIDEO_PARAM_SET_ID;
         pHevcCtx->MaxSpsNum   = HEVC_MAX_SEQ_PARAM_SET_ID;
         pHevcCtx->MaxPpsNum   = HEVC_MAX_PIC_PARAM_SET_ID;
-        pHevcCtx->MaxSliceNum = HEVC_MAX_SLICE_NUM;     //z00290437  20141025  //Slice数不是Slot数
+        pHevcCtx->MaxSliceNum = HEVC_MAX_SLICE_NUM;
         pHevcCtx->MaxSlotNum  = HEVC_MAX_SLOT_NUM;
     }
 

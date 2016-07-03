@@ -1,13 +1,4 @@
-/************************************************************************
-  Copyright    : 2005-2007, Huawei Tech. Co., Ltd.
-  File name    : UsimmBase.c
-  Author       : zhuli 00100318
-  Version      : v00R002
-  Date         : 2008-5-15
-  Description  : 该C文件给出了---Base模块实现
-  Function List:
-  History      :
-************************************************************************/
+
 #include "pamom.h"
 #include "ombbplog.h"
 #include "omprivate.h"
@@ -92,18 +83,7 @@ VOS_VOID OM_WriteDspNv(MsgBlock* pMsg)
     return;
 }
 
-/*****************************************************************************
- Prototype       : OM_RecordInfoEnd
- Description     : 记录消息退出的slice值
- Input           : ulNumer -- 任务号
- Output          : None
- Return Value    : VOS_VOID
 
- History         : ---
-    Date         : 2012-06-28
-    Author       : j00168360
-    Modification : Created function
- *****************************************************************************/
 
 VOS_VOID OM_RecordInfoEnd(VOS_EXC_DUMP_MEM_NUM_ENUM_UINT32 enNumber)
 {
@@ -132,21 +112,7 @@ VOS_VOID OM_RecordInfoEnd(VOS_EXC_DUMP_MEM_NUM_ENUM_UINT32 enNumber)
     return;
 }
 
-/*****************************************************************************
- Prototype       : OM_RecordInfoStart
- Description     : 记录消息入口的信息
- Input           : ulNumer -- 任务号
-                   ulSendPid -- 发送PID
-                   ulRcvPid -- 接收PID
-                   ulMsgName -- 消息名称
- Output          : None
- Return Value    : VOS_VOID
 
- History         : ---
-    Date         : 2012-06-28
-    Author       : j00168360
-    Modification : Created function
- *****************************************************************************/
 
 VOS_VOID OM_RecordInfoStart(VOS_EXC_DUMP_MEM_NUM_ENUM_UINT32 enNumber, VOS_UINT32 ulSendPid, VOS_UINT32 ulRcvPid, VOS_UINT32 ulMsgName)
 {
@@ -180,18 +146,7 @@ VOS_VOID OM_RecordInfoStart(VOS_EXC_DUMP_MEM_NUM_ENUM_UINT32 enNumber, VOS_UINT3
     return;
 }
 
-/*****************************************************************************
- Prototype       : OM_RecordMemInit
- Description     : 可谓可测空间分配
- Input           : None
- Output          : None
- Return Value    : VOS_VOID
 
- History         : ---
-    Date         : 2012-06-28
-    Author       : j00168360
-    Modification : Created function
- *****************************************************************************/
 
 VOS_VOID OM_RecordMemInit(VOS_VOID)
 {
@@ -215,19 +170,7 @@ VOS_VOID OM_RecordMemInit(VOS_VOID)
    return;
 }
 
-/*****************************************************************************
-函 数 名  :OM_GetLogPath
-功能描述  :获取log路径
-输入参数  :pucOldPath -- 指向发货版本路径
-           pucUnitaryPath -- 指向新版本归一化后路径
-输出参数  :pucBuf -- 指向获取到的路径
-返 回 值  :VOS_OK/VOS_ERR
-修订记录  :
-1. 日    期   : 2014年3月11日
-   作    者   : j00168360
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 OM_GetLogPath(VOS_CHAR *pucBuf, VOS_CHAR *pucOldPath, VOS_CHAR *pucUnitaryPath)
 {
     NV_PRODUCT_TYPE_FOR_LOG_DIRECTORY   stLogDir;
@@ -518,7 +461,6 @@ VOS_UINT32 PAMOM_PidInit(enum VOS_INIT_PHASE_DEFINE ip)
             return PAMOM_PidLoadConfigInit();
 
         case VOS_IP_INITIAL:
-            /* Added by j00174725 for BBP数采项目，初始化BBP数采使用的EDMA通道，2012-12-03，Begin */
             return Om_BbpDumpEdmaInit();
 
             /* 获取三色灯状态与NAS启动时序有冲突 */
@@ -625,20 +567,7 @@ VOS_UINT32 PAMOM_FID_Init(enum VOS_INIT_PHASE_DEFINE ip)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : VOS_ICCError_CB
- 功能描述  : 用于ICC WIFI通道的数据读取回调函数
- 输入参数  : ulChannelID:   当前通道ID
-             ulLen:         当前通道数据长度
- 输出参数  : 无
- 返 回 值  : VOS_ERROR/VOS_OK
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2011年3月10日
-     作    者  : l46160
-     修改内容  : Creat Function
-*****************************************************************************/
+
 
 VOS_UINT VOS_ICCError_CB(VOS_UINT ulChanID, VOS_UINT ulEvent, VOS_VOID* pParam)
 {
@@ -650,19 +579,7 @@ VOS_UINT VOS_ICCError_CB(VOS_UINT ulChanID, VOS_UINT ulEvent, VOS_VOID* pParam)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : VOS_ICC_Init
- 功能描述  : 用于OM在CCPU初始化ICC通道
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_ERR/VOS_OK
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2011年3月10日
-     作    者  : l46160
-     修改内容  : Creat Function
-*****************************************************************************/
+
 VOS_UINT32 VOS_ICC_Init(VOS_VOID)
 {
    OM_ICC_UDI_CTRL_STRU                astCCPUICCCtrlTable;
@@ -703,18 +620,7 @@ VOS_UINT32 VOS_ICC_Init(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : OM_OSAEvent
- 功能描述  : 上报OSA的可维可测消息
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
 
- 修改历史      :
-  1.日    期   : 2013年7月27日
-    作    者   : x51137
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID OM_OSAEvent(VOS_VOID *pData, VOS_UINT32 ulLength)
 {
     DIAG_EVENT_IND_STRU                 stEventInd;
@@ -779,21 +685,7 @@ VOS_UINT32 VOS_Hifi_ICC_Init(VOS_VOID)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : PAM_OM_LayerMsgFilter
- 功能描述  : 过滤PAM中的敏感信息
- 输入参数  : const VOID *pMsg:消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:
-                返回VOS_TRUE:  表示该消息需要进行过滤
-                返回VOS_FALSE: 表示该消息无需进行过滤
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2015年10月28日
-    作    者   : zhuli
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_UINT32 PAM_OM_LayerMsgFilter(
     const VOS_VOID                      *pMsg
 )

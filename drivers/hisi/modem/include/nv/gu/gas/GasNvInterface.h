@@ -81,15 +81,7 @@ enum NVIM_TDS_FREQ_BAND_LIST_ENUM
 };
 typedef VOS_UINT8  NVIM_TDS_FREQ_BAND_LIST_ENUM_UINT8;
 
-/*****************************************************************************
- 枚 举 名  : NVIM_BAND_IND
- 枚举说明  : NV的BAND指示
- 修改历史  :
-  1.日  期   : 2015年9月14日
-    作  者   : s00184266
-    修改内容 : 新生成枚举
 
-*****************************************************************************/
 enum NVIM_BAND_IND_ENUM
 {
     NVIM_BAND_IND_2                 = 0x2,          /* BAND2 */
@@ -306,15 +298,7 @@ typedef struct
     VOS_UINT8                           aucReserve[2];
 }NVIM_PREFER_GSM_PLMN_SWITCH_STRU;
 
-/*****************************************************************************
- 结 构 名  : NVIM_PREFER_GSM_PLMN_CUSTOMIZE_CFG_STRU
- 结构说明  : 优选小区性能定制
- 修改历史  :
-  1.日  期   : 2015年9月9日
-    作  者   : s00184266
-    修改内容 : 新生成结构
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucAgingEnable;                          /* 优选小区老化的NV使能 */
@@ -640,14 +624,7 @@ typedef struct
     VOS_UINT8                               aucCbsMidRangeList[NVIM_CBS_MID_RANGE_LIST_LEN];
 }NVIM_CBS_MID_RANGE_LIST_STRU;
 
-/*****************************************************************************
- 结构名    : NVIM_GSM_AUTO_FR_LTE_MEAS_CONFIG_STRU
- 结构说明  : GSM自主重定向到LTE的LTE频点测量配置
- 修改历史  :
- 1.日    期    : 2013年08月05日
-   作    者    : y00142674
-   修改内容    : 新建结构体, GSM自主重定向到LTE
-*****************************************************************************/
+
 typedef struct
 {
    VOS_UINT8                            ucFrLteMeasFlag;                        /* 是否开启GSM自主重定向到LTE的LTE频点测量，0: 关闭, 1: 开启，默认值为1 */
@@ -657,14 +634,7 @@ typedef struct
    VOS_UINT8                            ucMaxInvalidMeasTimes;                  /* 最大无效测量次数，用来判定频点是否有效，不大于最大保存的测量次数，默认值为8，范围:[0,8] */
 }NVIM_GSM_AUTO_FR_LTE_MEAS_CONFIG_STRU;
 
-/*****************************************************************************
- 结构名    : NVIM_GSM_C1_CUSTOMIZE_CFG_STRU
- 结构说明  : C1准则定制配置
- 修改历史  :
- 1.日    期    : 2014年01月17日
-   作    者    : w00146666
-   修改内容    : 新建结构体, 应用于C1准则定制
-*****************************************************************************/
+
 typedef struct
 {
    VOS_UINT8                            ucC1CustomizeSwitchFlag;          /* 是否开启路损C1定制，0: 关闭, 1: 开启，默认值为0 */
@@ -740,17 +710,7 @@ typedef struct
     VOS_UINT8                           aucRsv[36];
 }NVIM_GAS_INDIVIDUAL_CUSTOMIZE_CFG_STRU;
 
-/*****************************************************************************
- 结构名    : NVIM_GSM_MNTN_CONFIG_STRU
- 结构说明  : GSM可维可测相关的NV配置
- 修改历史  :
- 1.日    期    : 2014年07月03日
-   作    者    : w00146666
-   修改内容    : 新建结构体
- 2.日    期    : 2015年10月26日
-   作    者    : w00146666
-   修改内容    : 调整结构，新增两次伪基站CHR上报的最短时间间隔 NV配置 
-*****************************************************************************/
+
 typedef struct
 {
    VOS_UINT16                           usCsHoTimeAlarmThreshold;              /* CS切换时间长度门限，超过该切换时间，GAS主动上报告警信息 */
@@ -772,16 +732,7 @@ typedef struct
    VOS_UINT32                           ulRsv7;                                /* 预留位7，为以后KWKC预留 */
 }NVIM_GAS_MNTN_CONFIG_STRU;
 
-/*****************************************************************************
- 结构名    : NVIM_GAS_UTRAN_TDD_DEFAULT_Q_RXLMIN
- 结构说明  : en_NV_Item_GAS_UTRAN_TDD_DEFAULT_Q_RXLMIN NV结构 网络没有配置
-             基于优先级的 UTRAN 重选参数时, 默认的 UTRAN TDD Q_RXLMIN. 仅在基于
-             优先级重选时使用. 基于 Ranking 的默认重选门限是 -90dB, 不需要定制
- 修改历史  :
- 1.日    期    : 2014年12月20日
-   作    者    : p00166345
-   修改内容    : 新建结构体
-*****************************************************************************/
+
 typedef struct
 {
    VOS_UINT8                            ucTdsDefaultQRxlMin;            /* TDS 默认重选门限, 单位: -1dB */
@@ -789,14 +740,7 @@ typedef struct
    VOS_UINT8                            aucRsv[3];                      /* 保留位 */
 }NVIM_GAS_UTRAN_TDD_DEFAULT_Q_RXLMIN;
 
-/*****************************************************************************
- 结构名    : NVIM_GAS_C1_CALC_OPT_PLMN_WHITE_LIST_STRU
- 结构说明  : C1计算优化网络白名单(目前仅在L CSFB G流程中使用)
- 修改历史  : 
- 1.日    期    : 2015年02月06日
-   作    者    : y00265681
-   修改内容    : 新建结构体
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulMcc;
@@ -824,28 +768,14 @@ typedef struct
     VOS_UINT8                           aucRsv[2];                      /* 保留位 */
 }NVIM_GSM_RAPID_HO_CUSTOMIZE_CFG_STRU;
 
-/*****************************************************************************
- 结构名    : NVIM_GSM_BAND_CUSTOMIZE_STRU
- 结构说明  : GSM 频段定制结构定义
- 修改历史  : 
- 1.日    期    : 2015-04-23
-   作    者    : p00166345
-   修改内容    : 新建结构体
-*****************************************************************************/
+
 typedef struct
 {
     NVIM_GAS_PLMN_ID_STRU               stPlmn;
     VOS_UINT32                          ulBand;
 }NVIM_GSM_BAND_CUSTOMIZE_STRU;
 
-/*****************************************************************************
- 结构名    : NVIM_GAS_GSM_BAND_CUSTOMIZE_CFG_STRU
- 结构说明  : en_NV_Item_GAS_GSM_BAND_CUSTOMIZE_CFG NV 结构定义
- 修改历史  : 
- 1.日    期    : 2015-04-23
-   作    者    : p00166345
-   修改内容    : 新建结构体
-*****************************************************************************/
+
 typedef struct
 {
    VOS_UINT16                           usItemCnt;                  /* 定制项个数 */
@@ -854,7 +784,6 @@ typedef struct
    NVIM_GSM_BAND_CUSTOMIZE_STRU         astCustomizeBand[NVIM_GAS_GSM_BAND_CUSTOMIZE_LIST_MAX_CNT];
 }NVIM_GAS_GSM_BAND_CUSTOMIZE_CFG_STRU;
 
-/* Added by y00142674 for 漫游搜网优化, 2015-04-30, begin */
 /*****************************************************************************
  结构名    : NVIM_GSM_SEARCH_CUSTOMIZE_CFG_STRU
  结构说明  : en_NV_Item_GSM_SEARCH_CUSTOMIZE_CFG 结构，GSM搜网流程相关配置
@@ -875,20 +804,8 @@ typedef struct
     VOS_UINT8                           ucHistorySrchOperatorCustomizeCellCnt;  /* HISTORY搜索运营商定制频点的个数范围 */
 
 }NVIM_GSM_SEARCH_CUSTOMIZE_CFG_STRU;
-/* Added by y00142674 for 漫游搜网优化, 2015-04-30, end */
 
-/*****************************************************************************
- 结构名    : NVIM_GAS_GSM_CELL_HISTORY_BCCH_SI_CFG_STRU
- 结构说明  : en_NV_Item_GAS_GSM_CELL_HISTORY_BCCH_SI_CFG NV 结构定义
- 修改历史  : 
- 1.日    期    : 2015-05-06
-   作    者    : p00166345
-   修改内容    : 新建结构体
- 2.日    期    : 2015-07-15
-   作    者    : y00142674
-   修改内容    : 增加邻区系统消息使能标志和有效时长
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucEnableFlg;                    /* 是否生效 */
@@ -903,14 +820,7 @@ typedef struct
     VOS_UINT8                           ucRsv4;                         /* 保留位 */
 }NVIM_GAS_GSM_CELL_HISTORY_BCCH_SI_CFG_STRU;
 
-/*****************************************************************************
- 结构名    : NVIM_GAS_H_PRIO_CONDITION_FLAG_STRU
- 结构说明  : H_PRIO使用场景定制配置 
- 修改历史  : 
- 1.日    期    : 2015年05月17日
-   作    者    : w00146666
-   修改内容    : 新建结构体
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                            ucHPrioCustomizeFlag;   /* H_PRIO使用场景定制配置, 0表示使用H_PRIO参数不考虑异系统小区的优先级，
@@ -923,15 +833,7 @@ typedef struct
     VOS_UINT8                            ucRsv3;                 /* 保留位3 */
 }NVIM_GAS_INTER_RAT_RESEL_H_PRIO_CUSTOMIZE_STRU;
 
-/*****************************************************************************
- 结构名    : NVIM_GAS_FAST_AREA_LOST_CFG_STRU
- 结构说明  : en_NV_Item_GAS_FAST_AREA_LOST_CFG NV结构
-             用于定制 RR 随机接入失败后是否快速给 NAS 上报丢网
- 修改历史  : 
- 1.日    期    : 2015年05月15日
-   作    者    : p00166345
-   修改内容    : 新建结构体
-*****************************************************************************/
+
 typedef struct
 {
    VOS_UINT8                            ucRrRaFailEnableFlg;        /* 生效标志 */
@@ -941,15 +843,7 @@ typedef struct
    VOS_UINT8                            ucRsv3;                     /* 保留位 */
 }NVIM_GAS_FAST_AREA_LOST_CFG_STRU;
 
-/*****************************************************************************
- 结构名    : NVIM_GAS_AUTO_FR_CFG_STRU
- 结构说明  : en_NV_Item_GAS_AUTO_FR_CFG NV结构
-             用于配置在具体场景下是否可以启动自主 FR.
- 修改历史  : 
- 1.日    期    : 2015-06-09
-   作    者    : p00166345
-   修改内容    : 新建结构体
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                            ucAutoFrInvalidMask;   /* 生效标志。各bit值 0 表示可以返回, 1 表示无效不可以返回 */
@@ -962,16 +856,7 @@ typedef struct
     VOS_UINT8                            ucRsv3;                /* 保留位 */
 }NVIM_GAS_AUTO_FR_CFG_STRU;
 
-/* Added by p00166345 for DTS2015052601104(伪基站识别), 2015-08-02, begin */
-/*****************************************************************************
- Structure      : NVIM_GAS_PSEUD_BTS_IDENT_CUSTOMIZE_CFG_STRU
- Description    : 伪基站判断定制用NV结构
- Message origin :
- 修改历史 :
-  1.日    期    : 2015年07月29日
-    作    者    : yangsicong
-    修改内容    : 伪基站识别项目
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16      usEnableBitmap;             /* 识别算法是否使能 ：0=是；1=否 */
@@ -999,17 +884,8 @@ typedef struct
     VOS_UINT16      usPseudBTSFeatureSet6;      /* 备用字段*/
     VOS_UINT16      usPseudBTSFeatureSet7;      /* 备用字段*/
 } NVIM_GAS_PSEUD_BTS_IDENT_CUSTOMIZE_CFG_STRU;
-/* Added by p00166345 for DTS2015052601104(伪基站识别), 2015-08-02, end */
 
-/*****************************************************************************
- 结 构 名  : NVIM_GAS_NETWORK_SEARCH_CUSTOMIZE_CFG_STRU
- 结构说明  : 网络搜索定制NV
- 修改历史  :
-  1.日  期   : 2015年9月14日
-    作  者   : s00184266
-    修改内容 : 新生成结构
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32              ulHistoryFreqEnableBitmap;                          /* 历史频点搜索流程使能bit位 */
@@ -1031,15 +907,7 @@ typedef struct
     VOS_UINT32              ulReserved5;                                        /* 保留位 */
 }NVIM_GSM_NETWORK_SEARCH_CUSTOMIZE_CFG_STRU;
 
-/*****************************************************************************
- 结 构 名  : NVIM_GSM_OPERATE_CUSTOMIZE_FREQ_RANGE_STRU
- 结构说明  : GSM运营商定制的频点范围结构
- 修改历史  :
-  1.日  期   : 2015年8月28日
-    作  者   : s00184266
-    修改内容 : 新生成结构
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16                          usFreqBegin;                            /* 起始频点 */
@@ -1050,15 +918,7 @@ typedef struct
     VOS_UINT8                           ucRsv3;                                 /* 保留位 */
 }NVIM_GSM_OPERATE_CUSTOMIZE_FREQ_RANGE_STRU;
 
-/*****************************************************************************
- 结 构 名  : NVIM_GSM_OPERATE_CUSTOMIZE_DISCRETE_STRU
- 结构说明  : GSM运营商定制的GSM离散频点结构
- 修改历史  :
-  1.日  期   : 2015年9月1日
-    作  者   : s00184266
-    修改内容 : 新生成结构
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16                          usFreq;                                 /* 频点号 */
@@ -1066,15 +926,7 @@ typedef struct
     VOS_UINT8                           ucRsv1;                                 /* 保留位 */
 }NVIM_GSM_OPERATE_CUSTOMIZE_DISCRETE_STRU;
 
-/*****************************************************************************
- 结 构 名  : NVIM_GSM_OPERATOR_CUSTOMIZE_PLMN_ITEM_STRU
- 结构说明  : 运营商定制的GSM频点列表，由PLMN、BAND、起始频点、终止频点、离散频点
- 修改历史  :
-  1.日  期   : 2015年8月28日
-    作  者   : s00184266
-    修改内容 : 新生成结构
 
-*****************************************************************************/
 typedef struct
 {
     NVIM_GAS_PLMN_ID_STRU                       stPlmn;                         /* PLMN结构 */
@@ -1092,15 +944,7 @@ typedef struct
     VOS_UINT32                                  ulRsv1;                         /* 保留位 */
 }NVIM_GSM_OPERATOR_CUSTOMIZE_PLMN_ITEM_STRU;
 
-/*****************************************************************************
- 结 构 名  : NVIM_GSM_OPERATOR_CUSTOMIZE_FREQ_CFG_STRU
- 结构说明  : 运营商定制的GSM频点列表的NV结构
- 修改历史  :
-  1.日  期   : 2015年8月28日
-    作  者   : s00184266
-    修改内容 : 新生成结构
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                                   ucPlmnCnt;                      /* 运营商定制的PLMN列表个数，最大个数:NVIM_GSM_OPERATE_CUSTOMIZE_FREQ_PLMN_MAX_CNT */
@@ -1158,15 +1002,7 @@ typedef struct
 
 }NVIM_GSM_PARALLEL_SEARCH_CUSTOMIZE_CFG_STRU;
 
-/*****************************************************************************
- 结 构 名  : NVIM_GSM_ENABLE_HISTORY_ARFCN_WITH_SPEC_ARFCN_LST_STRU
- 结构说明  : en_NV_Item_GSM_ENABLE_HISTORY_ARFCN_WITH_SPEC_ARFCN_LST NV结构
-             L2G 重定向过程中,搜索网络指定频点时使用历史频点的相关配置
- 修改历史  :
-  1.日  期   : 2015-10-16
-    作  者   : p00166345
-    修改内容 : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucCsfbEnableFlg;
@@ -1179,17 +1015,7 @@ typedef struct
     VOS_UINT8                           ucRsv4;
 }NVIM_GSM_ENABLE_HISTORY_ARFCN_WITH_SPEC_ARFCN_LST_STRU;
 
-/*****************************************************************************
- 结构名    : NVIM_GAS_RR_CONNECT_FAIL_PUNISH_CFG_STRU
- 结构说明  : RR建链失败惩罚的开关以及门限配置
- 修改历史  :
-  1.日  期   : 2015年10月21日
-    作  者   : w00146666
-    修改内容 : 新生成结构
-  2.日  期   : 2015年12月4日
-    作  者   : w00146666
-    修改内容 : for DTS2015112600361, 增加信号强度变化老化和时间老化机制
-*****************************************************************************/
+
 typedef struct
 {
     /* ===============惩罚机制总体相关的NV配置项===================== */
@@ -1270,15 +1096,7 @@ typedef struct
     VOS_UINT8                           aucRsv6;
 }NVIM_GSM_PING_PONG_HO_CUSTOMIZE_CFG_STRU;
 
-/*****************************************************************************
- 结 构 名  : NVIM_GSM_LTE_MEASURE_CFG_STRU
- 结构说明  : GSM测量LTE配置NV
- 修改历史  :
-  1.日  期   : 2015年12月7日
-    作  者   : s00184266
-    修改内容 : dts2015100803984,新生成结构
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucDistLteAcsTypeEnable;         /* 使能区分LTE制式进行测量的开关 */
@@ -1305,14 +1123,7 @@ typedef struct
 }NVIM_GSM_SEC_RXQUAL_SUB_ALPHA_FILTERING_CFG_STRU;
 
 #if defined( __PS_WIN32_RECUR__ ) || defined (DMT)
-/*****************************************************************************
- 结 构 名  : NVIM_GAS_CHR_PC_CFG_STRU
- 结构说明  : 
- 修改历史  :
-  1.日  期   : 2015年12月28日
-    作  者   : w00146666
-    修改内容 : 新生成结构
-*****************************************************************************/
+
 typedef struct  
 {
     VOS_UINT32  ulPermitedChrAlarmIdCount;

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2012, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名      : ScPersonalization.c
-  版 本 号      : 初稿
-  作    者      : w00184875
-  生成日期      : 2012年04月07日
-  最近修改      :
-  功能描述      : 该C文件给出了ScPersonalization模块的实现
-  函数列表      :
-  修改历史      :
-  1.日    期    : 2012年04月07日
-    作    者    : w00184875
-    修改内容    : 创建文件
-
-******************************************************************************/
 /*****************************************************************************
   1 头文件包含
 *****************************************************************************/
@@ -46,22 +29,7 @@ extern "C"{
   3 函数申明
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : SC_PERS_GetCategoryByStatus
- 功能描述  : 通过锁状态获取当前的category
- 输入参数  : enSIMLockStatus: 当前锁网锁卡状态
 
- 输出参数  : 无
- 返 回 值  : SC_PERSONALIZATION_CATEGORY_ENUM_UINT8
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年04月09日
-    作    者   : w00184875
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 SC_PERSONALIZATION_CATEGORY_ENUM_UINT8 SC_PERS_GetCategoryByStatus(
     SC_VERIFY_SIMLOCK_RESULT_ENUM_UINT8 enSIMLockStatus
 )
@@ -88,22 +56,7 @@ SC_PERSONALIZATION_CATEGORY_ENUM_UINT8 SC_PERS_GetCategoryByStatus(
     return SC_PERSONALIZATION_CATEGORY_BUTT;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_PERS_GetStatusByCategory
- 功能描述  : 通过当前的category的信息获取锁网锁卡状态
- 输入参数  : pstSimlockCatogory: 当前category的信息
 
- 输出参数  : 无
- 返 回 值  : SC_VERIFY_SIMLOCK_RESULT_ENUM
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年04月12日
-    作    者   : w00184875
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 SC_VERIFY_SIMLOCK_RESULT_ENUM_UINT8 SC_PERS_GetStatusByCategory(
     SC_SIMLOCK_CATEGORY_STRU *pstSimlockCatogory
 )
@@ -151,21 +104,7 @@ SC_VERIFY_SIMLOCK_RESULT_ENUM_UINT8 SC_PERS_GetStatusByCategory(
 }
 
 
-/*****************************************************************************
- 函 数 名  : SC_PERS_Bcd2Num
- 功能描述  : 对锁网锁卡号段，做BCD码到数字的转换
- 输入参数  : pucBcdNum: 输入的BCD码
-             ulBcdNumLen:BCD码长度
- 输出参数  : pucDestNum: 数据转换后输出内容
- 返 回 值  : NA
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月9日
-    作    者   : h59254
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-*****************************************************************************/
 VOS_VOID SC_PERS_Bcd2Num(
     VOS_UINT8                          *pucDestNum,
     const VOS_UINT8                    *pucBcdNum,
@@ -196,21 +135,7 @@ VOS_VOID SC_PERS_Bcd2Num(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_PERS_ImsiBcd2Num
- 功能描述  : 将输入的IMSI转换成数字输出
- 输入参数  : ucLen: IMSI的长度，9字节
-             pucImsi:IMSI的内容
- 输出参数  : pucNum: 数据转换后输出内容
- 返 回 值  : NA
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月9日
-    作    者   : h59254
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-*****************************************************************************/
 VOS_UINT32 SC_PERS_ImsiBcd2Num(
     VOS_UINT8                           ucLen,
     const VOS_UINT8                    *pucImsi,
@@ -241,21 +166,7 @@ VOS_UINT32 SC_PERS_ImsiBcd2Num(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_PERS_SPBcd2Num
- 功能描述  : 将输入的SP转换成数字输出
- 输入参数  : ucLen: SP的长度，1字节
-             pucSP:SP的内容
- 输出参数  : pucNum: 数据转换后输出内容
- 返 回 值  : NA
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月18日
-    作    者   : w00184875
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-*****************************************************************************/
 VOS_UINT32 SC_PERS_SPBcd2Num(
     VOS_UINT8                          *pucNum,
     const VOS_UINT8                    *pucSP,
@@ -277,21 +188,7 @@ VOS_UINT32 SC_PERS_SPBcd2Num(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_PERS_CheckSimlockCodeLast2Char
- 功能描述  : 检查锁网锁卡号码数字串最后两位的合法性
- 输入参数  : SC_PERSONALIZATION_CATEGORY_ENUM_UINT8  enCategory     -- 号段类型
- 输出参数  : VOS_UINT8                              *pucLast2Num    -- 数字串最后两位
- 返 回 值  : VOS_UINT32     -- 转换结果
-                VOS_OK      -- 转换成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月14日
-    作    者   : w00184875
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-*****************************************************************************/
 VOS_UINT32 SC_PERS_CheckSimlockCodeLast2Char(
     SC_PERSONALIZATION_CATEGORY_ENUM_UINT8  enCategory,
     VOS_UINT8                              *pucLast2Num
@@ -325,22 +222,7 @@ VOS_UINT32 SC_PERS_CheckSimlockCodeLast2Char(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_PERS_CheckSimlockCodeNum
- 功能描述  : 检查锁网锁卡号码数字串合法性，并返回正确的长度
- 输入参数  : SC_PERSONALIZATION_CATEGORY_ENUM_UINT8  enCategory     -- 号段类型
- 输出参数  : VOS_UINT8                              *pucNum         -- 检查后的数字串
-             VOS_UINT8                              *pucDepartLen   -- 数字串正确的长度
- 返 回 值  : VOS_UINT32     -- 转换结果
-                VOS_OK      -- 转换成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月14日
-    作    者   : w00184875
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-*****************************************************************************/
 VOS_UINT32 SC_PERS_CheckSimlockCodeNum(
     SC_PERSONALIZATION_CATEGORY_ENUM_UINT8  enCategory,
     VOS_UINT8                              *pucNum,
@@ -398,23 +280,7 @@ VOS_UINT32 SC_PERS_CheckSimlockCodeNum(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_PERS_SimlockCodeBcd2Num
- 功能描述  : 对锁网锁卡号段，做BCD码到数字的转换
- 输入参数  : const VOS_UINT8                        *pucBCD         -- 待转换BCD号段
-             VOS_UINT8                              *pucDepartLen   -- 转换后BCD码的长度
-             SC_PERSONALIZATION_CATEGORY_ENUM_UINT8  enCategory     -- 号段类型
- 输出参数  : VOS_UINT8                              *pucNum         -- 转换后的数字串
- 返 回 值  : VOS_UINT32     -- 转换结果
-                VOS_OK      -- 转换成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月18日
-    作    者   : w00184875
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-*****************************************************************************/
 VOS_UINT32 SC_PERS_SimlockCodeBcd2Num(
     VOS_UINT8                              *pucNum,
     VOS_UINT8                              *pucDepartLen,
@@ -475,25 +341,7 @@ VOS_UINT32 SC_PERS_SimlockCodeBcd2Num(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_PERS_CheckCode
- 功能描述  : 进行号段校验
- 输入参数  : stSimLockCat:每一个类别的结构
-             pucIMSI:IMSI拆分后的数字串
-             enModemID:Modem ID
 
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:校验通过
-             VOS_FALSE:校验失败
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年04月10日
-    作    者   : w00184875
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 VOS_UINT32 SC_PERS_CheckCode(
     SC_SIMLOCK_CATEGORY_STRU           *pstSimLockCat,
     VOS_UINT8                          *pucIMSI,
@@ -646,22 +494,7 @@ VOS_UINT32 SC_PERS_CheckCode(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_PERS_VerifySimLock
- 功能描述  : 进行锁网锁卡校验
- 输入参数  : enModemID:Modem ID
 
- 输出参数  : pucSimLockResult:锁网锁卡状态
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年04月07日
-    作    者   : w00184875
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 SC_ERROR_CODE_ENUM_UINT32 SC_PERS_VerifySimLock(
     SC_VERIFY_SIMLOCK_RESULT_ENUM_UINT8 *penVerifySimlockRslt,
     MODEM_ID_ENUM_UINT16                 enModemID
@@ -803,22 +636,7 @@ SC_ERROR_CODE_ENUM_UINT32 SC_PERS_VerifySimLock(
     return SC_ERROR_CODE_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_PERS_AsciiNum2DecNum
- 功能描述  : SC模块数字字符串转换为十进制数字串
- 输入参数  : VOS_UINT8     *pucAsciiNum -- 待转换字符数组
-             VOS_UINT32     ulLen       -- 字符数组长度
- 输出参数  : VOS_UINT8     *pucDecNum   -- 转转换后的十进制数字串
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年08月01日
-    作    者   : d00212987
-    修改内容   : Imei 修改问题单修改新增函数
-*****************************************************************************/
 VOS_VOID SC_PERS_AsciiNum2DecNum(
     VOS_UINT8                          *pucAsciiNum,
     VOS_UINT8                          *pucDecNum,
@@ -842,21 +660,7 @@ VOS_VOID SC_PERS_AsciiNum2DecNum(
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_PERS_ReadCMPIMEI
- 功能描述  : IMEI读校验。
- 输入参数  : enModemID    : 卡0 或者卡 1
 
- 输出参数  : NA
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年5月9日
-    作    者   : d00212987
-    修改内容   : IMEI验证
-*****************************************************************************/
 SC_ERROR_CODE_ENUM_UINT32 SC_PERS_ReadCMPIMEI(MODEM_ID_ENUM_UINT16 enModemID)
 {
     VOS_UINT8                           aucScImei [SC_RSA_ENCRYPT_LEN]  = {0};
@@ -944,18 +748,7 @@ SC_ERROR_CODE_ENUM_UINT32 SC_PERS_ReadCMPIMEI(MODEM_ID_ENUM_UINT16 enModemID)
     return SC_ERROR_CODE_NO_ERROR;
 }
 
-/*****************************************************************************
-函 数 名  : SC_PERS_IsIMEIValid
-功能描述  : 检查IMEI是否有效
-输入参数  : pucNvImei : NV IMEI值
-输出参数  : 无
-返 回 值  : VOS_FALSE/VOS_TRUE
 
-修订记录  :
-1.日    期  : 2015年12月1日
-  作    者  : d00212987
-  修改内容  : Create
-*****************************************************************************/
 VOS_UINT32 SC_PERS_IsIMEIValid(
     VOS_UINT8                           *pucNvImei
 )
@@ -973,21 +766,7 @@ VOS_UINT32 SC_PERS_IsIMEIValid(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_PERS_CheeckImei2ReplaceFlg
- 功能描述  : Check是否需要开启modem0 IMEI替换modem2。
- 输入参数  : enModemID: 卡0 或者卡1
 
- 输出参数  : NA
- 返 回 值  : VOS_BOOL
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年11月30日
-    作    者   : d00212987
-    修改内容   : IMEI验证
-*****************************************************************************/
 VOS_BOOL SC_PERS_CheeckImei2ReplaceFlg(
     MODEM_ID_ENUM_UINT16                enModemID)
 {
@@ -1041,21 +820,7 @@ VOS_BOOL SC_PERS_CheeckImei2ReplaceFlg(
     return bRpelaceFlg;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_PERS_VerifyIMEI
- 功能描述  : Android形态下，提供给NAS检测IMEI是否验证通过API。
- 输入参数  : enModemID: 卡0 或者卡1
 
- 输出参数  : NA
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年5月9日
-    作    者   : d00212987
-    修改内容   : IMEI验证
-*****************************************************************************/
 SC_ERROR_CODE_ENUM_UINT32 SC_PERS_VerifyIMEI(MODEM_ID_ENUM_UINT16 enModemID)
 {
 /* 对读取IMEI低概率失败问题的一个规避，COMM读取三次，只要有一次成功返回，否则返回全0 */
@@ -1084,22 +849,7 @@ SC_ERROR_CODE_ENUM_UINT32 SC_PERS_VerifyIMEI(MODEM_ID_ENUM_UINT16 enModemID)
     return enResult;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_PERS_NoVerifyNvReadImei
- 功能描述  : 读取存在NV里的IMEI
-             说明:不对IMEI的合法性作校验，直接去读NV,区别于NV_Read接口，SC_PERS_NoVerifyNvReadImei接口在modem2 IMEI没写的情况下，读取modem0
- 输入参数  : enModemID : Modem ID
-             usID      : Nv id
-             ulLength  : Nv 长度
 
- 输出参数  : *pItem    : 获取NV 内容
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
-
- 修改历史      :
-  1.日    期   : 2015年11月30日
-    作    者   : d00212987
-    修改内容   : IMEI验证
-*****************************************************************************/
 SC_ERROR_CODE_ENUM_UINT32 SC_PERS_NoVerifyNvReadImei(
     MODEM_ID_ENUM_UINT16                enModemID,
     VOS_UINT16                          usID,
@@ -1130,22 +880,7 @@ SC_ERROR_CODE_ENUM_UINT32 SC_PERS_NoVerifyNvReadImei(
     return SC_ERROR_CODE_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_PERS_VerifyNvReadImei
- 功能描述  : 读取存在NV里的IMEI,增加IMEI验证(返回值为:SC_ERROR_CODE_NO_ERROR,读取的NV内容可用，否则不可用)
-             说明:先校验IMEI号的合法性，然后再读取NV，如果IMEI号非法返回全0 IMEI,并且在modem2 imei 没写的情况下，读取modem0
- 输入参数  : enModemID : Modem ID
-             usID      : Nv id
-             ulLength  : Nv 长度
 
- 输出参数  : *pItem    : 获取NV 内容
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
-
- 修改历史      :
-  1.日    期   : 2013年5月25日
-    作    者   : d00212987
-    修改内容   : IMEI验证
-*****************************************************************************/
 SC_ERROR_CODE_ENUM_UINT32 SC_PERS_VerifyNvReadImei(
     MODEM_ID_ENUM_UINT16                enModemID,
     VOS_UINT16                          usID,
@@ -1180,25 +915,7 @@ SC_ERROR_CODE_ENUM_UINT32 SC_PERS_VerifyNvReadImei(
     return SC_ERROR_CODE_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_PERS_CheckCryptoCKUKPwd
- 功能描述  : CK/UK密码的校验
- 输入参数  : pucPwd: 解锁密码
-             ucLen: 密码长度
-             enSIMLockStatus: 锁网锁卡状态
-             enCategory: 当前所在的类别
 
- 输出参数  : 无
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年04月07日
-    作    者   : w00184875
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 SC_ERROR_CODE_ENUM_UINT32 SC_PERS_CheckCryptoCKUKPwd(
     VOS_UINT8                          *pucPwd,
     VOS_UINT8                           ucLen,
@@ -1273,24 +990,7 @@ SC_ERROR_CODE_ENUM_UINT32 SC_PERS_CheckCryptoCKUKPwd(
     return SC_ERROR_CODE_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_PERS_UpdateSimlockStatus
- 功能描述  : 根据密码校验结果更新PI文件中的锁网锁卡状态
- 输入参数  : enResult: 密码校验的结果
-             pstSimlockCategory: 锁网锁卡的类别信息
-             penVerifySimlockRslt: 当前锁网锁卡状态
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年04月12日
-    作    者   : w00184875
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 VOS_VOID SC_PERS_UpdateSimlockStatus(
     SC_ERROR_CODE_ENUM_UINT32               enResult,
     SC_SIMLOCK_CATEGORY_STRU               *pstSimlockCategory,
@@ -1336,23 +1036,7 @@ VOS_VOID SC_PERS_UpdateSimlockStatus(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_PERS_UnLock
- 功能描述  : 解锁或UNBLOC操作
- 输入参数  : pcPwd: 解锁密码
-             ucLen: 密码长度
-             enModemID:Modem ID
- 输出参数  : pucSimLockResult:解锁操作后的锁网锁卡状态
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年04月07日
-    作    者   : w00184875
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 SC_ERROR_CODE_ENUM_UINT32 SC_PERS_UnLock(
     VOS_UINT8                          *pucPwd,
     VOS_UINT8                           ucLen,
@@ -1482,21 +1166,7 @@ SC_ERROR_CODE_ENUM_UINT32 SC_PERS_UnLock(
 }
 
 
-/*****************************************************************************
- 函 数 名  : SC_PERS_ErasePIFile
- 功能描述  : 将PI文件中除CATEGORY以外的所有数据字段全部清零
- 输入参数  : pstPiFile:PI文件内容在内存中的地址
 
- 输出参数  : NA
- 返 回 值  : NA
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年4月7日
-    作    者   : h59254
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-*****************************************************************************/
 VOS_VOID SC_PERS_ErasePIFile(SC_PI_FILE_STRU *pstPiFile)
 {
     SC_PERSONALIZATION_CATEGORY_ENUM_UINT8                  enCategory;
@@ -1516,21 +1186,7 @@ VOS_VOID SC_PERS_ErasePIFile(SC_PI_FILE_STRU *pstPiFile)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_PERS_EraseCKFile
- 功能描述  : 将CK文件中所有数据字段全部清零
- 输入参数  : pstCkFile:CK文件内容在内存中的地址
 
- 输出参数  : NA
- 返 回 值  : NA
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年4月12日
-    作    者   : h59254
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-*****************************************************************************/
 VOS_VOID SC_PERS_EraseCKFile(SC_CK_FILE_STRU *pstCkFile)
 {
     /*lint -e534*/
@@ -1540,22 +1196,7 @@ VOS_VOID SC_PERS_EraseCKFile(SC_CK_FILE_STRU *pstCkFile)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_PERS_UpdatePIFile
- 功能描述  : 将PI文件中对应CATEGORY的数据按AT命令的输入进行修改
- 输入参数  : pstPiFile:PI文件内容在内存中的地址
-             pstWriteSimLockData: 需写入PI-FILE的SIMLOCK信息
 
- 输出参数  : NA
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32类型的SC错误码
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年4月9日
-    作    者   : h59254
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-*****************************************************************************/
 SC_ERROR_CODE_ENUM_UINT32 SC_PERS_UpdatePIFile(
     SC_PI_FILE_STRU                    *pstPiFile,
     SC_WRITE_SIMLOCK_DATA_STRU         *pstWriteSimLockData
@@ -1646,21 +1287,7 @@ SC_ERROR_CODE_ENUM_UINT32 SC_PERS_UpdatePIFile(
 
 }
 
-/*****************************************************************************
- 函 数 名  : SC_PERS_UpdateCKUKPwd
- 功能描述  : 更新内存中CK和UK密码并写入CK文件
- 输入参数  : pucEncryptPwd:AT命令传入的用私钥加密过的密码
-             enIndicator:指定category的锁网类型是否激活
- 输出参数  : pucPwd:CK文件中需要修改的密码的内存地址
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32类型的SC错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月9日
-    作    者   : h59254
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-*****************************************************************************/
 SC_ERROR_CODE_ENUM_UINT32 SC_PERS_UpdateCKUKPwd(
     VOS_UINT8                                              *pucPwd,
     VOS_UINT8                                              *pucEncryptPwd,
@@ -1728,22 +1355,7 @@ SC_ERROR_CODE_ENUM_UINT32 SC_PERS_UpdateCKUKPwd(
     return SC_ERROR_CODE_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_PERS_UpdateCKFile
- 功能描述  : 将CK文件中对应CK/UK密码的数据按AT命令的输入进行修改
- 输入参数  : pstCkFile:CK文件内容在内存中的地址
-             pstWriteSimLockData: 需写入CK-File的信息
 
- 输出参数  : NA
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32类型的SC错误码
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年4月9日
-    作    者   : h59254
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-*****************************************************************************/
 SC_ERROR_CODE_ENUM_UINT32 SC_PERS_UpdateCKFile(
     SC_CK_FILE_STRU                    *pstCkFile,
     SC_WRITE_SIMLOCK_DATA_STRU         *pstWriteSimLockData
@@ -1787,21 +1399,7 @@ SC_ERROR_CODE_ENUM_UINT32 SC_PERS_UpdateCKFile(
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_PERS_WriteSimLockData
- 功能描述  : NAS收到AT^SIMLOCKDATAWRITE命令，通过该接口写入SIMLOCK信息
- 输入参数  : pstWriteSimLockData: 需写入PI-FILE和CK-File的SIMLOCK信息
 
- 输出参数  : NA
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32类型的SC错误码
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年4月7日
-    作    者   : h59254
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-*****************************************************************************/
 SC_ERROR_CODE_ENUM_UINT32 SC_PERS_WriteSimLockData(SC_WRITE_SIMLOCK_DATA_STRU *pstWriteSimLockData)
 {
     VOS_UINT32                          ulResult;
@@ -1907,21 +1505,7 @@ SC_ERROR_CODE_ENUM_UINT32 SC_PERS_WriteSimLockData(SC_WRITE_SIMLOCK_DATA_STRU *p
 }
 
 
-/*****************************************************************************
- 函 数 名  : SC_PERS_GetSimlockInfo
- 功能描述  : NAS通过该接口获取SIMLOCK信息
- 输入参数  : pstSimlockInfo:获取SIMLOCK信息的数据结构，由调用者申请内存
- 输出参数  : NA
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年04月09日
-    作    者   : d00212987
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-
-*****************************************************************************/
 SC_ERROR_CODE_ENUM_UINT32 SC_PERS_GetSimlockInfo(SC_SIMLOCK_INFO_STRU *pstSimlockInfo)
 {
     VOS_UINT32                          ulResult;
@@ -1936,23 +1520,7 @@ SC_ERROR_CODE_ENUM_UINT32 SC_PERS_GetSimlockInfo(SC_SIMLOCK_INFO_STRU *pstSimloc
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_PERS_SimlockUnlock
- 功能描述  : 解锁Simlock锁网锁卡
- 输入参数  : enCategory         -- 锁网锁卡类型
-             *pucPwd            -- 解锁密码
- 输出参数  : 无
- 返 回 值  : VOS_OK     -- 解锁成功
-             VOS_ERR    -- 解锁失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年09月18日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 SC_PERS_SimlockUnlock(
     SC_PERSONALIZATION_CATEGORY_ENUM_UINT8  enCategory,
     VOS_UINT8                              *pucPwd)
@@ -2074,21 +1642,7 @@ VOS_VOID SC_DEBUG(VOS_UINT8 *pucData, VOS_UINT32 ulDataLen)
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_PERS_SupportPlatform
- 功能描述  : 判断当前modem是否支持电信制式
- 输入参数  : enModemID:Modem ID
 
- 输出参数  : 锁G/锁C
- 返 回 值  : SC_PERS_PLATFORM_ENUM_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年10月07日
-    作    者   : d00212987
-    修改内容   : CDMA锁网锁卡项目新增函数
-*****************************************************************************/
 SC_PERS_PLATFORM_ENUM_UINT32 SC_PERS_SupportPlatform(
     MODEM_ID_ENUM_UINT16                enModemID
 )
@@ -2115,22 +1669,7 @@ SC_PERS_PLATFORM_ENUM_UINT32 SC_PERS_SupportPlatform(
     return SC_PERS_PLATFORM_G;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_PERS_ChangeNum
- 功能描述  : 按照协议计还原算值
- 输入参数  : ulSrcValude  -- BCD码长度
-             ulCodeMode   -- BCD码存放的位置
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 -按照协议还原计算值
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年08月28日
-    作    者   :
-    修改内容   : Create
-*****************************************************************************/
 VOS_UINT32 SC_PERS_ChangeNum(VOS_UINT32 ulSrcValude, VOS_UINT32 ulCodeMode)
 {
     VOS_UINT32                          ulTempl   = 0;
@@ -2166,24 +1705,7 @@ VOS_UINT32 SC_PERS_ChangeNum(VOS_UINT32 ulSrcValude, VOS_UINT32 ulCodeMode)
     return ulDstValue;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_PERS_CDMAImsiBcd2Num
- 功能描述  : 从IMSI获取PLMN
- 输入参数  : enModemID:Modem ID
 
- 输出参数  :  ucLen     : IMSI长度
-             *pucImsi   : IMSI值
-             *pucNum    : 转换出来的PLMN
-
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年10月07日
-    作    者   : d00212987
-    修改内容   : CDMA锁网锁卡项目新增函数
-*****************************************************************************/
 VOS_UINT32 SC_PERS_CDMAImsiBcd2Num(
     VOS_UINT8                           ucLen,
     const VOS_UINT8                    *pucImsi,
@@ -2223,21 +1745,7 @@ VOS_UINT32 SC_PERS_CDMAImsiBcd2Num(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : SC_PERS_CDMACheckCode
- 功能描述  : 进行锁网锁卡校验
- 输入参数  : enModemID:Modem ID
 
- 输出参数  : pucSimLockResult:锁网锁卡状态
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年10月07日
-    作    者   : d00212987
-    修改内容   : CDMA锁网锁卡项目新增函数
-*****************************************************************************/
 VOS_UINT32 SC_PERS_CDMACheckCode(
     SC_SIMLOCK_CATEGORY_STRU           *pstSimLockCat,
     VOS_UINT8                          *pucIMSI,
@@ -2347,21 +1855,7 @@ VOS_UINT32 SC_PERS_CDMACheckCode(
 }
 
 
-/*****************************************************************************
- 函 数 名  : SC_PERS_CDMAVrifySimLock
- 功能描述  : 进行锁网锁卡校验
- 输入参数  : enModemID:Modem ID
 
- 输出参数  : pucSimLockResult:锁网锁卡状态
- 返 回 值  : SC_ERROR_CODE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年10月07日
-    作    者   : d00212987
-    修改内容   : CDMA锁网锁卡项目新增函数
-*****************************************************************************/
 VOS_UINT32 SC_PERS_CDMAVrifySimLock(
     SC_VERIFY_SIMLOCK_RESULT_ENUM_UINT8 *penVerifySimlockRslt,
     SC_PI_FILE_STRU                     *pstPIFile,

@@ -1,31 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CardLockCipher.c
-  版 本 号   : 初稿
-  作    者   : luojian id:107747
-  生成日期   : 2008年4月8日
-  最近修改   :
-  功能描述   :Operator card lock password generator
-  函数列表   :
-              CardLockCipher
-              CardLockCipher_Finish
-              CardLockCipher_Hmac
-              CardLockCipher_Hmac_Finish
-              CardLockCipher_Hmac_Starts
-              CardLockCipher_Hmac_Update
-              CardLockCipher_Process
-              CardLockCipher_Self_Test
-              CardLockCipher_Starts
-              CardLockCipher_Update
-  修改历史   :
-  1.日    期   : 2008年4月8日
-    作    者   : luojian id:107747
-    修改内容   : 创建文件
-
-******************************************************************************/
 #if 0
 
 
@@ -73,21 +46,7 @@
     }
 #endif
 
-/*****************************************************************************
- 函 数 名  : CardLockCipher_starts
- 功能描述  : CardLockCipher_starts
- 输入参数  : CARDLOCK_CIPHER_CONTEXT_STRU *pstCtx
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年4月8日
-    作    者   : luojian id:107747
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CardLockCipher_Starts( CARDLOCK_CIPHER_CONTEXT_STRU *pstCtx )
 {
     pstCtx->aulTotal[0] = 0;
@@ -99,22 +58,7 @@ VOS_VOID CardLockCipher_Starts( CARDLOCK_CIPHER_CONTEXT_STRU *pstCtx )
     pstCtx->aulState[3] = 0x10325476;
 }
 
-/*****************************************************************************
- 函 数 名  : CardLockCipher_process
- 功能描述  :
- 输入参数  : CARDLOCK_CIPHER_CONTEXT_STRU *pstCtx
-             VOS_UINT8 aucData[64]
- 输出参数  : 无
- 返 回 值  : static VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年4月8日
-    作    者   : luojian id:107747
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 /*lint -esym(960,91) 修改人：luojian 107747；检视人：sunshaohua 62952；原因简述：成熟专用算法*/
 /*lint -esym(961,92) 修改人：luojian 107747；检视人：sunshaohua 62952；原因简述：成熟专用算法*/
 static VOS_VOID CardLockCipher_Process( CARDLOCK_CIPHER_CONTEXT_STRU *pstCtx, VOS_UINT8 aucData[64] )
@@ -249,23 +193,7 @@ static VOS_VOID CardLockCipher_Process( CARDLOCK_CIPHER_CONTEXT_STRU *pstCtx, VO
 }
 /*lint -esym(960,91)修改人：luojian 107747；检视人：sunshaohua */
 /*lint -esym(961,92)修改人：luojian 107747；检视人：sunshaohua */
-/*****************************************************************************
- 函 数 名  : CardLockCipher_update
- 功能描述  :
- 输入参数  : CARDLOCK_CIPHER_CONTEXT_STRU *pstCtx
-             VOS_UINT8 *pucInput
-             VOS_INT32 ulInputLen
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年4月8日
-    作    者   : luojian id:107747
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CardLockCipher_Update( CARDLOCK_CIPHER_CONTEXT_STRU *pstCtx, VOS_UINT8 *pucInput, VOS_INT32 lInputLen )
 {
     VOS_INT32                           lFill;
@@ -318,22 +246,7 @@ static const VOS_UINT8 gaucCardLockCipher_Padding[64] =
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 };
 
-/*****************************************************************************
- 函 数 名  : CardLockCipher_finish
- 功能描述  :
- 输入参数  : CARDLOCK_CIPHER_CONTEXT_STRU *pstCtx
-             VOS_UINT8 aucOutput[16]
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年4月8日
-    作    者   : luojian id:107747
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CardLockCipher_Finish( CARDLOCK_CIPHER_CONTEXT_STRU *pstCtx, VOS_UINT8 aucOutput[16] )
 {
     VOS_UINT32                          ulLast;
@@ -361,23 +274,7 @@ VOS_VOID CardLockCipher_Finish( CARDLOCK_CIPHER_CONTEXT_STRU *pstCtx, VOS_UINT8 
     PUT_ULONG_LE( pstCtx->aulState[3], aucOutput, 12 );
 }
 
-/*****************************************************************************
- 函 数 名  : CardLockCipher
- 功能描述  :
- 输入参数  : VOS_UINT8 *pucInput
-             VOS_INT32 ulInputLen
-             VOS_UINT8 aucOutput[16]
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年4月8日
-    作    者   : luojian id:107747
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CardLockCipher( VOS_UINT8 *pucInput, VOS_INT32 ulInputLen, VOS_UINT8 aucOutput[16] )
 {
     CARDLOCK_CIPHER_CONTEXT_STRU        stCtx;
@@ -387,23 +284,7 @@ VOS_VOID CardLockCipher( VOS_UINT8 *pucInput, VOS_INT32 ulInputLen, VOS_UINT8 au
     CardLockCipher_Finish( &stCtx, aucOutput );
 }
 
-/*****************************************************************************
- 函 数 名  : CardLockCipher_hmac_starts
- 功能描述  :
- 输入参数  : CARDLOCK_CIPHER_CONTEXT_STRU *pstCtx
-             VOS_UINT8 *key
-             VOS_INT32 keylen
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年4月8日
-    作    者   : luojian id:107747
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CardLockCipher_Hmac_Starts( CARDLOCK_CIPHER_CONTEXT_STRU *pstCtx, VOS_UINT8 *pucKey, VOS_INT32 lKeylen )
 {
     VOS_INT32                           i;
@@ -430,47 +311,13 @@ VOS_VOID CardLockCipher_Hmac_Starts( CARDLOCK_CIPHER_CONTEXT_STRU *pstCtx, VOS_U
 
 }
 
-/*****************************************************************************
- 函 数 名  : CardLockCipher_hmac_update
- 功能描述  :
- 输入参数  : CARDLOCK_CIPHER_CONTEXT_STRU *pstCtx
-             VOS_UINT8 *pucInput
-             VOS_INT32 ulInputLen
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年4月8日
-    作    者   : luojian id:107747
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CardLockCipher_Hmac_Update( CARDLOCK_CIPHER_CONTEXT_STRU *pstCtx, VOS_UINT8 *pucInput, VOS_INT32 lInputLen )
 {
     CardLockCipher_Update( pstCtx, pucInput, lInputLen );
 }
 
-/*****************************************************************************
- 函 数 名  : CardLockCipher_hmac_finish
- 功能描述  :
- 输入参数  : CARDLOCK_CIPHER_CONTEXT_STRU *pstCtx
-             VOS_UINT8 aucOutput[16]
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1. 日    期   : 2008年4月8日
-     作    者   : luojian id:107747
-     修改内容   : 新生成函数
-  2. 日    期   : 2013年07月222日
-     作    者   : j00177245
-     修改内容   : 清理Coverity
-
-*****************************************************************************/
 VOS_VOID CardLockCipher_Hmac_Finish( CARDLOCK_CIPHER_CONTEXT_STRU *pstCtx, VOS_UINT8 aucOutput[16] )
 {
     VOS_UINT8                           aucTmpbuf[64];
@@ -482,25 +329,7 @@ VOS_VOID CardLockCipher_Hmac_Finish( CARDLOCK_CIPHER_CONTEXT_STRU *pstCtx, VOS_U
     CardLockCipher_Finish( pstCtx, aucOutput );
 }
 
-/*****************************************************************************
- 函 数 名  : CardLockCipher_hmac
- 功能描述  :
- 输入参数  : VOS_UINT8 *key
-             VOS_INT32 keylen
-             VOS_UINT8 *pucInput
-             VOS_INT32 ulInputLen
-             VOS_UINT8 aucOutput[16]
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年4月8日
-    作    者   : luojian id:107747
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CardLockCipher_Hmac(
 VOS_UINT8 *pucKey,
 VOS_INT32 lKeylen,

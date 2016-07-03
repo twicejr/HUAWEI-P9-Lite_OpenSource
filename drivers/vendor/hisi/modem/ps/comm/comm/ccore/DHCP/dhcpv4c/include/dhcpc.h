@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : dhcpc.h
-  版 本 号   : 初稿
-  作    者   : c57548
-  生成日期   : 2007年11月3日
-  最近修改   :
-  功能描述   : dhcpc模块的数据结构定义
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2007年11月3日
-    作    者   : c57548
-    修改内容   : 创建文件
-
-******************************************************************************/
 #ifndef _DHCPC_H_
 #define _DHCPC_H_
 
@@ -27,7 +10,6 @@
 
 
 
-/*暂时写成125000 modified by z00113478 2008-04-29*/
 #define DHCPGRP_MAX_NUM            1000
 
 #define DHCPC_PROBE_SERVER_INTERVAL 30      /* 探测DHCP Server状态的默认时间间隔. 单位:s */
@@ -40,14 +22,12 @@
 
 #define DHCP_MAX_FAILURE_COUNTER  1000
 
-/* linyufeng 00176669 DHCPv6特性 2012-07-14 start */
 #ifdef __WIN32_PLATFORM__
 #define DHCPC_SERVER_INTERVAL_AND_MIN (10)   /*用于控制DHCPv6服务器由down状态变为try状态的时长，单位: ms*/
 #define DHCPC_SERVER_INTERVAL_MAX     (3600)  /*用于控制DHCPv6服务器由down状态变为try状态的时长，单位: ms*/
 #else
 #define DHCPC_SERVER_INTERVAL_AND_MIN (180)   /*用于控制DHCPv6服务器由down状态变为try状态的时长，单位: ms*/
 #define DHCPC_SERVER_INTERVAL_MAX     (3600)  /*用于控制DHCPv6服务器由down状态变为try状态的时长，单位: ms*/
-/* linyufeng 00176669 DHCPv6特性 2012-07-14 end */
 #endif
 
 #define DHCPC_COPY_IPV6_ADDR(dest, src) \
@@ -132,7 +112,7 @@ typedef struct tagDHCPC_TEMPCTRLBLK
     UCHAR       ucCtrlBlkFlgStr[8];     /*DHCP控制块的简单标识" DhcpBlk"*/
     ULONG       aulMSISDN[2];           /*MSISDN*/
     ULONG       aulIMSI[2];             /*IMSI*/
-    ULONG       aulIMEI[2];             /*IMEI*/    /* Added by jixiaoming for  IMEI跟踪 at 2012-8-17 */
+    ULONG       aulIMEI[2];
     ULONG       ulTEIDC;                     /*TEIDC*/  
     ULONG       ulPdpIndex;             /*用户索引*/
     ULONG       ulModId;                /*保留发起地址申请的模块ID，返回响应时使用*/
@@ -156,7 +136,7 @@ typedef struct tagDHCPC_TEMPCTRLBLK
     UCHAR       ucRole;             /* Prouct Role(UGW PGW GGSN) */
     UCHAR       ucSCID;                 /*SCID*/
     UCHAR       ucLAPNo;
-    UCHAR       ucRandomNo;        /* 随机跟踪 DTS2012091903437 y00170683 */
+    UCHAR       ucRandomNo;
     UCHAR       aucResved[3];
 }DHCPC_TEMPCTRLBLK;
 
@@ -220,7 +200,6 @@ typedef struct tagDHCP_OPTION
 
 }VOS_PACKED DHCP_OPTION_S;
 
-/* BEGIN: Added for PN:DHCPv6特性 by tianyang 00144555, 2012/7/13 */
 #define DHCPC_AGING_TIMES 2
 
 #define DHCP_MAX_MALLBLOCKNUM 64
@@ -230,7 +209,6 @@ typedef struct tagDHCPC_MANAGEBLK
     struct tagDHCPC_MANAGEBLK *pstNextNode; 
     DHCPC_CTRLBLK stDhcpcBlk[DHCP_MAX_MALLBLOCKNUM];
 }DHCPC_MANAGEBLK;
-/* END:   Added for PN:DHCPv6特性 by tianyang 00144555, 2012/7/13 */
 
 /* 原因值枚举 */
 typedef enum DHCPV6C_CAUSE_E
@@ -1263,9 +1241,7 @@ typedef enum{
 }enumDhcpStandardCounterIndex;
 
 
-/* z00175135 DTS2012011104522 DHCPServer宕掉情况下续租失败后写队列失败重试处理 2012-02-01 start */
 #define DHCP_WRITE_QUE_RETRY_MAX_COUNT 10
-/* z00175135 DTS2012011104522 DHCPServer宕掉情况下续租失败后写队列失败重试处理 2012-02-01 end   */
 
 extern DHCPC_CTRLBLK ** g_pstDhcpcCtrlBlkRec;
 //extern VOID DHCPC_DBGPrint( ULONG ulModId, ULONG ulCtrlLevel, CHAR * pcFileName, USHORT ulLineNo, CHAR *fmt,...);
@@ -1289,12 +1265,10 @@ ULONG DHCPC_GetCtlBlkHashKey( ULONG ulDHCPCtlIdx );
 VOID DHCPC_DebugShowMemInfo(ULONG argc, CHAR* argv[]);
 SDB_GSPU_CONTEXT_S * DHCPC_GetOneContextByteidc(ULONG ulTeidc);
 
-/*m00221573 全文件pclint 2012-10-19 start*/
 extern ULONG DHCPC_QueryDhcpcContext(UCHAR ucIpType, ULONG ulTeidc, DHCPC_CTRLBLK **ppstDhcpcContext);
 extern ULONG DHCPC_StopTimer(UCHAR ucIpType, ULONG ulTeidc, UCHAR ucEvent);
 extern ULONG DHCPC_NotifyBKUpdate(ULONG ulTeidc);
 extern ULONG DHCPC_FreeDhcpcContext(UCHAR ucIpType, ULONG ulTeidc);
-/*m00221573 全文件pclint 2012-10-19 end*/
 
 extern void DHCPC_SetTmpCtrlBlkSrvIp(DHCPC_TEMPCTRLBLK *pstDhcpTmpCtrlBlk);
 extern ULONG DHCPC_StartLeaseRebuildWaitTimer(VOID);

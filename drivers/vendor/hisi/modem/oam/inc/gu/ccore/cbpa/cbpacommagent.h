@@ -1,16 +1,4 @@
-/************************************************************************
-  Copyright   : 2013-2015, Huawei Tech. Co., Ltd.
-  File name   : cbpacommagent.h
-  Author      : l00256032
-  Version     : V900R001
-  Date        : 2013-12-19
-  Description : L+C共SIM卡项目头文件相关定义---
-  History     :
-   1.Date:2013-12-19
-     Author: l00256032
-     Modification:create
 
-************************************************************************/
 
 #ifndef __CBPA_COMMAGENT_H__
 #define __CBPA_COMMAGENT_H__

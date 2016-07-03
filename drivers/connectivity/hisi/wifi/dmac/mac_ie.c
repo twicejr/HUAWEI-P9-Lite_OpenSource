@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : mac_ie.c
-  版 本 号   : 初稿
-  作    者   : zourong
-  生成日期   : 2013年1月8日
-  最近修改   :
-  功能描述   :
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年1月8日
-    作    者   : zourong
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -44,21 +27,7 @@ extern "C" {
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : mac_ie_get_vht_rx_mcs_map
- 功能描述  : 获取VHT信息元素中的接收方向的mcs集合
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月23日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  mac_ie_get_vht_rx_mcs_map(mac_rx_max_mcs_map_stru    *pst_mac_rx_mcs_sta,
                                                mac_rx_max_mcs_map_stru    *pst_mac_rx_mcs_ap)
 {
@@ -91,25 +60,7 @@ oal_void  mac_ie_get_vht_rx_mcs_map(mac_rx_max_mcs_map_stru    *pst_mac_rx_mcs_s
     *pus_rx_mcs_sta = (*pus_rx_mcs_sta) | 0xFFF0;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_ie_proc_ht_supported_channel_width
- 功能描述  : 处理ht cap ie中的 supported channel width
- 输入参数  :
-            pst_mac_user_sta           : user结构体指针
-            pst_mac_vap                : vap结构体指针
-            uc_supported_channel_width : 是否支持40Mhz带宽  0: 不支持， 1: 支持
-            en_prev_asoc_ht            : user之前是否已ht站点身份关联到ap  0: 之前未关联， 1: 之前关联过
- 输出参数  : 无
- 返 回 值  :用户中共享区域的st_ht_hdl.bit_supported_channel_width信息
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月18日
-    作    者   : c00260463
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_bool_enum_uint8 mac_ie_proc_ht_supported_channel_width(
                                         mac_user_stru    *pst_mac_user_sta ,
                                         mac_vap_stru     *pst_mac_vap,
@@ -120,7 +71,6 @@ oal_bool_enum_uint8 mac_ie_proc_ht_supported_channel_width(
     /* 不支持20/40Mhz频宽*/
     if (0 == uc_supported_channel_width)
     {
-        /*  如果STA之前没有作为HT站点与AP关联， 或者STA之前已经作为支持20/40Mhz频宽的HT站点与AP关联*/
         if ((OAL_FALSE == en_prev_asoc_ht) || (OAL_TRUE == pst_mac_user_sta->st_ht_hdl.bit_supported_channel_width))
         {
             pst_mac_vap->st_protection.uc_sta_20M_only_num++;
@@ -140,25 +90,7 @@ oal_bool_enum_uint8 mac_ie_proc_ht_supported_channel_width(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : mac_ie_proc_ht_green_field
- 功能描述  : 处理ht cap ie中的 ht green field  BIT4
- 输入参数  :
-            pst_mac_user_sta  : user结构体指针
-            pst_mac_vap       : vap结构体指针
-            uc_ht_green_field : 是否支持gf， 0: 不支持， 1: 支持
-            en_prev_asoc_ht   : user之前是否已ht站点身份关联到ap  0: 之前未关联， 1: 之前关联过
- 输出参数  : 无
- 返 回 值  :用户公共区域的st_ht_hdl.bit_ht_green_field信息
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月12日
-    作    者   : y00184180
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_bool_enum_uint8 mac_ie_proc_ht_green_field(
                                         mac_user_stru    *pst_mac_user_sta ,
                                         mac_vap_stru     *pst_mac_vap,
@@ -168,7 +100,6 @@ oal_bool_enum_uint8 mac_ie_proc_ht_green_field(
     /* 不支持Greenfield */
     if (0 == uc_ht_green_field)
     {
-        /*  如果STA之前没有作为HT站点与AP关联， 或者STA之前已经作为支持GF的HT站点与AP关联*/
         if ((OAL_FALSE == en_prev_asoc_ht ) || (OAL_TRUE == pst_mac_user_sta->st_ht_hdl.bit_ht_green_field))
         {
             pst_mac_vap->st_protection.uc_sta_non_gf_num++;
@@ -188,25 +119,7 @@ oal_bool_enum_uint8 mac_ie_proc_ht_green_field(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : mac_ie_proc_lsig_txop_protection_support
- 功能描述  : 处理ht cap ie中的 lsig_txop_protection_support
- 输入参数  :
-            pst_mac_user_sta                : user结构体指针
-            pst_mac_vap                     : vap结构体指针
-            uc_lsig_txop_protection_support : 是否支持lsig txop保护， 0: 不支持， 1: 支持
-            en_prev_asoc_ht                 : user之前是否已ht站点身份关联到ap  0: 之前未关联， 1: 之前关联过
- 输出参数  : 无
- 返 回 值  :用户公共区域的st_ht_hdl.bit_lsig_txop_protection信息
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月18日
-    作    者   : c00260463
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_bool_enum_uint8 mac_ie_proc_lsig_txop_protection_support(
                                         mac_user_stru    *pst_mac_user_sta,
                                         mac_vap_stru     *pst_mac_vap,
@@ -216,7 +129,6 @@ oal_bool_enum_uint8 mac_ie_proc_lsig_txop_protection_support(
     /* 不支持L-sig txop protection */
     if (0 == uc_lsig_txop_protection_support)
     {
-        /*  如果STA之前没有作为HT站点与AP关联， 或者STA之前已经作为支持Lsig txop protection的HT站点与AP关联*/
         if ((OAL_FALSE == en_prev_asoc_ht) || (OAL_TRUE == pst_mac_user_sta->st_ht_hdl.bit_lsig_txop_protection))
         {
             pst_mac_vap->st_protection.uc_sta_no_lsig_txop_num++;
@@ -236,21 +148,7 @@ oal_bool_enum_uint8 mac_ie_proc_lsig_txop_protection_support(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : mac_ie_proc_ht_sta
- 功能描述  : 搜索asoc rsp frame帧中的HT cap IE
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月10日
-    作    者   : y00184180
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  mac_ie_proc_ht_sta(
                    mac_vap_stru            *pst_mac_sta,
                    oal_uint8                *puc_payload,
@@ -403,21 +301,7 @@ oal_uint32  mac_ie_proc_ht_sta(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_ie_check_p2p_action
- 功能描述  : 检查action帧是不是p2p帧
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月30日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_bool_enum_uint8 mac_ie_check_p2p_action(oal_uint8 *puc_payload)
 {
     //oal_uint8   auc_p2p_oui[MAC_OUI_LEN] = {0x50, 0x6F, 0x9A};
@@ -433,21 +317,7 @@ oal_bool_enum_uint8 mac_ie_check_p2p_action(oal_uint8 *puc_payload)
     return OAL_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_update_sm_power_save
- 功能描述  : 更新ht cap ie中的 sm power save field B2~B3
- 输入参数  : pst_mac_user_sta --用户结构体指针，uc_smps--用户smps模式
- 输出参数  : 无
- 返 回 值  : 用户信息中st_ht_hdl.bit_sm_power_save的信息
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月12日
-    作    者   : y00184180
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 wlan_mib_mimo_power_save_enum_uint8 mac_ie_proc_sm_power_save_field(mac_user_stru *pst_mac_user, oal_uint8 uc_smps)
 {
     if (MAC_SMPS_STATIC_MODE == uc_smps)
@@ -465,21 +335,7 @@ wlan_mib_mimo_power_save_enum_uint8 mac_ie_proc_sm_power_save_field(mac_user_str
 
 }
 
-/*****************************************************************************
- 函 数 名  : mac_ie_get_chan_num
- 功能描述  : 从帧体中解析ie中的chan信息，先在HT operation IE中找chan信息，如果找到就返回，如找不到，再在DSSS Param set ie中寻找
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月19日
-    作    者   : y00184180
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint8  mac_ie_get_chan_num(oal_uint8 *puc_frame_body, oal_uint16 us_frame_len, oal_uint16 us_offset,oal_uint8 uc_curr_chan)
 {
     oal_uint8   uc_chan_num = 0;
@@ -506,22 +362,7 @@ oal_uint8  mac_ie_get_chan_num(oal_uint8 *puc_frame_body, oal_uint16 us_frame_le
     return uc_chan_num;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_ie_proc_ext_cap_ie
- 功能描述  : 处理Extended Capabilities IE
- 输入参数  : pst_mac_user: MAC USER结构体指针
-             puc_payload : 指向Extended Capabilities IE的指针
- 输出参数  :
- 返 回 值  : OAL_SUCC或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月14日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  mac_ie_proc_ext_cap_ie(mac_user_stru *pst_mac_user, oal_uint8 *puc_payload)
 {
     /* 目前无实际操作任务，此函数注空 */
@@ -545,20 +386,7 @@ oal_uint32  mac_ie_proc_ext_cap_ie(mac_user_stru *pst_mac_user, oal_uint8 *puc_p
     return OAL_SUCC;
 }
 #ifdef _PRE_WLAN_FEATURE_OPMODE_NOTIFY
-/*****************************************************************************
- 函 数 名  : mac_check_is_assoc_frame
- 功能描述  : 判断帧类型是否为(重)关联请求/响应
- 输入参数  : uc_mgmt_frm_type: 帧类型
- 输出参数  :
- 返 回 值  : 是OAL_TRUE/否OAL_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月2日
-    作    者   : zhangyu
-    修改内容   : 新生成函数
-*****************************************************************************/
 oal_uint32  mac_check_is_assoc_frame(oal_uint8 uc_mgmt_frm_type)
 {
     if ((uc_mgmt_frm_type == WLAN_FC0_SUBTYPE_ASSOC_RSP) ||
@@ -573,21 +401,7 @@ oal_uint32  mac_check_is_assoc_frame(oal_uint8 uc_mgmt_frm_type)
 }
 #endif
 #if 0
-/*****************************************************************************
- 函 数 名  : mac_set_channel_switch_wrapper_ie
- 功能描述  : 为11AC 模式下，封装channel switch wrapper IE
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月6日
-    作    者   : w00196298
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  mac_set_channel_switch_wrapper_ie(
                 oal_uint8                            uc_channel,
                 wlan_channel_bandwidth_enum_uint8    en_bw,
@@ -697,21 +511,7 @@ oal_uint32  mac_set_channel_switch_wrapper_ie(
     return OAL_SUCC;
 }
 #endif
-/*****************************************************************************
- 函 数 名  : mac_set_second_channel_offset_ie
- 功能描述  : 构建从20M信道偏移IE
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月5日
-    作    者   : w00196298
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  mac_set_second_channel_offset_ie(
                 wlan_channel_bandwidth_enum_uint8    en_bw,
                 oal_uint8                           *pauc_buffer,
@@ -769,21 +569,7 @@ oal_uint32  mac_set_second_channel_offset_ie(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : mac_set_11ac_wideband_ie
- 功能描述  : 为11AC模式下，信道切换构建宽带IE
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月5日
-    作    者   : w00196298
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  mac_set_11ac_wideband_ie(
                 oal_uint8                            uc_channel,
                 wlan_channel_bandwidth_enum_uint8    en_bw,
@@ -855,22 +641,7 @@ oal_uint32  mac_set_11ac_wideband_ie(
 }
 
 #ifdef _PRE_WLAN_FEATURE_20_40_80_COEXIST
-/*****************************************************************************
- 函 数 名  : mac_ie_proc_chwidth_field
- 功能描述  : 处理Channel Width Field
- 输入参数  : pst_mac_user: MAC USER结构体指针
-             puc_payload : 指向Operating Mode Notification IE的指针
- 输出参数  :
- 返 回 值  : OAL_SUCC或其它错误码
- 调用函数  :
- 被调函数  :
 
-
- 修改历史      :
-  1.日    期   : 2014年6月10日
-    作    者   : zhangyu
-    修改内容   : 新生成函数
-*****************************************************************************/
 oal_uint32  mac_ie_proc_chwidth_field(mac_vap_stru *pst_mac_vap, mac_user_stru *pst_mac_user,oal_uint8 uc_chwidth)
 {
     wlan_bw_cap_enum_uint8      en_bwcap_vap = 0;        /* vap自身带宽能力 */
@@ -900,22 +671,7 @@ oal_uint32  mac_ie_proc_chwidth_field(mac_vap_stru *pst_mac_vap, mac_user_stru *
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : mac_config_set_mib
- 功能描述  : 设置VAP mib值
- 输入参数  : mac_vap_stru *pst_mac_vap
-             oal_uint16 us_len
-             oal_uint8 *puc_param
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月30日
-    作    者   : l00311403
-    修改内容   : 新生成函数
-*****************************************************************************/
 oal_uint32  mac_config_set_mib(mac_vap_stru *pst_mac_vap, oal_uint16 us_len, oal_uint8 *puc_param)
 {
     mac_cfg_set_mib_stru   *pst_set_mib;
@@ -938,7 +694,7 @@ oal_uint32  mac_config_set_mib(mac_vap_stru *pst_mac_vap, oal_uint16 us_len, oal
             break;
 
         case WLAN_MIB_INDEX_FORTY_MHZ_OPERN_IMPLEMENT:
-            pst_mac_vap->pst_mib_info->st_phy_ht.en_dot11FortyMHzOperationImplemented = (oal_bool_enum_uint8)(pst_set_mib->ul_mib_value);
+            mac_mib_set_FortyMHzOperationImplemented(pst_mac_vap, (oal_bool_enum_uint8)(pst_set_mib->ul_mib_value));
             break;
 
         case WLAN_MIB_INDEX_2040_COEXT_MGMT_SUPPORT:

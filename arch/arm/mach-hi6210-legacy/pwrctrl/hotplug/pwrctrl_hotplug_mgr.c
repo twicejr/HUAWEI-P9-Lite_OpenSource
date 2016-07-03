@@ -8,40 +8,7 @@
  * published by the Free Software Foundation.
  */
 
-/******************************************************************************
 
- ******************************************************************************
-  文 件 名   : pwrctrl_hotplug_mgr.c
-  版 本 号   : 初稿
-  作    者   : 石连传61250
-  生成日期   : 2012年9月2日
-  最近修改   :
-  功能描述   : CPU  HOTPLUG 控制层代码
-  函数列表   :
-              pwrctrl_cpu_load
-              pwrctrl_hotplug_timer_workqueue
-              pwrctrl_hotlpug_timer_init
-              pwrctrl_hotlpug_timer_exit
-              pwrctrl_hotlpug_gov_init
-              pwrctrl_hotlpug_gov_exit
-              pwrctrl_hotlpug_gov_dbs
-              pwrctrl_cpu_down_verfiy
-              pwrctrl_cpu_up_verfiy
-         pwrctrl_cpunumbermax_handle
-         pwrctrl_cpunumbermin_handle
-         pwrctrl_cpunumberlock_handle
-         pwrctrl_hotplug_parm_set
-              pwrctrl_hotplug_mcu_control_isr
-              pwrctrl_hotplug_mcu_control_init
-              pwrctrl_hotplug_mcu_control_uninit
-              pwrctrl_hotlpug_init
-              pwrctrl_hotlpug_exit
-  修改历史   :
-  1.日    期   : 2012年9月2日
-    作    者   :  石连传61250
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含

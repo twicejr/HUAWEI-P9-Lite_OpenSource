@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : test_immzc.cpp
-  版 本 号   : 初稿
-  作    者   :
-  生成日期   : 2014年05月15日
-  最近修改   :
-  功能描述   : UT测试脚本
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年01月29日
-    作    者   :
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -64,17 +47,7 @@ extern int _raw_spin_unlock_irqrestore();
 #endif
 
 
-/*****************************************************************************
- 被测函数  : test_IMM_ZcStaticAlloc_Debug
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_IMM_ZcStaticAlloc_Debug, ImmZcAllocTest01)
 {
 	unsigned char buf[80] = {0};
@@ -109,17 +82,7 @@ TEST(test_test_IMM_ZcStaticAlloc_Debug, ImmZcAllocTest01)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_IMM_ZcAddMacHead
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_IMM_ZcAddMacHead, ImmZcAddMacHeadTest01)
 {
 	int iRet = 0;
@@ -152,17 +115,7 @@ TEST(test_test_IMM_ZcAddMacHead, ImmZcAddMacHeadTest01)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_IMM_ZcAddMacHead
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_IMM_ZcAddMacHead, ImmZcAddMacHeadTest02)
 {
 	int iRet = 0;
@@ -195,17 +148,7 @@ TEST(test_test_IMM_ZcAddMacHead, ImmZcAddMacHeadTest02)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_IMM_ZcAddMacHead
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_IMM_ZcAddMacHead, ImmZcAddMacHeadTest03)
 {
 	int iRet = 0;
@@ -238,17 +181,7 @@ TEST(test_test_IMM_ZcAddMacHead, ImmZcAddMacHeadTest03)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_IMM_ZcAddMacHead
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_IMM_ZcAddMacHead, ImmZcAddMacHeadTest04)
 {
 	int iRet = 0;
@@ -285,17 +218,7 @@ TEST(test_test_IMM_ZcAddMacHead, ImmZcAddMacHeadTest04)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_test_IMM_ZcRemoveMacHead
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_IMM_ZcRemoveMacHead, ImmZcRemoveMacHeadTest01)
 {
 	int iRet = 0;
@@ -328,17 +251,7 @@ TEST(test_test_IMM_ZcRemoveMacHead, ImmZcRemoveMacHeadTest01)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_test_IMM_ZcRemoveMacHead
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_IMM_ZcRemoveMacHead, ImmZcRemoveMacHeadTest02)
 {
 	int iRet = 0;
@@ -371,17 +284,7 @@ TEST(test_test_IMM_ZcRemoveMacHead, ImmZcRemoveMacHeadTest02)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_test_IMM_ZcRemoveMacHead
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_IMM_ZcRemoveMacHead, ImmZcRemoveMacHeadTest03)
 {
 	int iRet = 0;
@@ -414,17 +317,7 @@ TEST(test_test_IMM_ZcRemoveMacHead, ImmZcRemoveMacHeadTest03)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_IMM_ZcPush_Debug
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_IMM_ZcPush_Debug, ImmZcPushTest01)
 {
 	unsigned char * pucImmZc;
@@ -460,17 +353,7 @@ TEST(test_test_IMM_ZcPush_Debug, ImmZcPushTest01)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_IMM_ZcPull_Debug
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_IMM_ZcPull_Debug, ImmZcPullTest01)
 {
 	unsigned char * pucImmZc;
@@ -506,17 +389,7 @@ TEST(test_test_IMM_ZcPull_Debug, ImmZcPullTest01)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_IMM_ZcPull_Debug
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_IMM_ZcPut_Debug, ImmZcPutTest01)
 {
 	unsigned char * pucImmZc;
@@ -553,17 +426,7 @@ TEST(test_test_IMM_ZcPut_Debug, ImmZcPutTest01)
 }
 
 
-/*****************************************************************************
- 被测函数  : test_IMM_ZcPull_Debug
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_IMM_ZcReserve_Debug, ImmZcReserveTest01)
 {
 	int iRet = 0;
@@ -596,17 +459,7 @@ TEST(test_test_IMM_ZcReserve_Debug, ImmZcReserveTest01)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_test_ZcGetUsedLen
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_ZcGetUsedLen, ImmZcGetUsedLenTest01)
 {
 	int iRet = 0;
@@ -639,17 +492,7 @@ TEST(test_test_ZcGetUsedLen, ImmZcGetUsedLenTest01)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_test_ZcGetUsedLen
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_ZcGetUsedLen, ImmZcGetUsedLenTest02)
 {
 	int iRet = 0;
@@ -682,17 +525,7 @@ TEST(test_test_ZcGetUsedLen, ImmZcGetUsedLenTest02)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_IMM_ZcGetUserApp
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_IMM_ZcGetUserApp, ImmZcGetUserAppTest01)
 {
 	int iRet = 0;
@@ -726,17 +559,7 @@ TEST(test_test_IMM_ZcGetUserApp, ImmZcGetUserAppTest01)
 }
 
 
-/*****************************************************************************
- 被测函数  : test_IMM_ZcSetUserApp
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_IMM_ZcSetUserApp, ImmZcSetUserAppTest01)
 {
 	int iRet = 0;
@@ -769,17 +592,7 @@ TEST(test_test_IMM_ZcSetUserApp, ImmZcSetUserAppTest01)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_IMM_ZcQueueHeadInit_Debug
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_IMM_ZcQueueHeadInit_Debug, ImmZcQueueHeadInitTest01)
 {
 	int iRet = 0;
@@ -813,17 +626,7 @@ TEST(test_test_IMM_ZcQueueHeadInit_Debug, ImmZcQueueHeadInitTest01)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_IMM_ZcQueueHead_Debug
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_IMM_ZcQueueHead_Debug, ImmZcQueueHeadTest01)
 {
 	int iRet = 0;
@@ -859,17 +662,7 @@ TEST(test_test_IMM_ZcQueueHead_Debug, ImmZcQueueHeadTest01)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_IMM_ZcQueueTail_Debug
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_IMM_ZcQueueTail_Debug, ImmZcQueueTailTest01)
 {
 	int iRet = 0;
@@ -905,17 +698,7 @@ TEST(test_test_IMM_ZcQueueTail_Debug, ImmZcQueueTailTest01)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : IMM_ZcDequeueHead_Debug
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_IMM_ZcDequeueHead_Debug, ImmZcDeQueueHeadTest01)
 {
 	int iRet = 0;
@@ -952,17 +735,7 @@ TEST(test_test_IMM_ZcDequeueHead_Debug, ImmZcDeQueueHeadTest01)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : IMM_ZcDequeueTail_Debug
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_IMM_ZcDequeueTail_Debug, ImmZcDeQueueTailTest01)
 {
 	int iRet = 0;
@@ -998,17 +771,7 @@ TEST(test_test_IMM_ZcDequeueTail_Debug, ImmZcDeQueueTailTest01)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数  : test_IMM_ZcQueueLen_Debug
- 被测功能  :
- 用例条件  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : g00178567
-    修改内容   : 新生成UT用例
-
-*****************************************************************************/
 TEST(test_test_IMM_ZcQueueLen_Debug, ImmZcQueueLenTest01)
 {
 	int iRet = 0;

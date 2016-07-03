@@ -253,21 +253,7 @@ VOS_UINT32 g_ulMagicNum;
    5 函数实现
 ******************************************************************************/
 /*lint -save -e958 */
-/*****************************************************************************
- 函 数 名  : Debug_DataPrint
- 功能描述  : 供调试使用，打印数据信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月26日
-    作    者   : s00164817
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID DICC_PrintDebugData(VOS_VOID *pData, VOS_UINT32 ulDataLen)
 {
     VOS_UINT8       *ptr;
@@ -300,22 +286,7 @@ VOS_VOID DICC_PrintDebugData(VOS_VOID *pData, VOS_UINT32 ulDataLen)
     vos_printf("\n");
 }
 
-/*****************************************************************************
- 函 数 名  : Debug_PrintStateSet
- 功能描述  : 供调试使用，配置Debug_print
- 输入参数  : ulPrintState - 打印状态, PS_TRUE - 打印状态, 其它 - 关闭打印
-             ucPrintDataMaxLen - 打印DICC通道数据字节数上限, 单位: 字节
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月26日
-    作    者   : s00164817
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID DICC_SetDebugPrintState(VOS_UINT32 ulPrintState, VOS_UINT8 ucPrintDataMaxLen)
 {
     g_ulDiccDebugPrint      = (PS_TRUE != ulPrintState) ? PS_FALSE : PS_TRUE;
@@ -324,21 +295,7 @@ VOS_VOID DICC_SetDebugPrintState(VOS_UINT32 ulPrintState, VOS_UINT8 ucPrintDataM
     return;
 }/* Debug_PrintStateSet */
 
-/*****************************************************************************
- 函 数 名  : DICC_TraceInfo
- 功能描述  : 借鉴VC下TRACE记录机制, 记录下程序执行路径, 支持手动打印到串口
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月17日
-    作    者   : liukai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID DICC_TraceInfo()
 {
     DICC_TRACE_INFO_STRU     *pstDiccTraceInfo;
@@ -390,24 +347,7 @@ VOS_VOID DICC_DealWithFatalError(DICC_SOFT_REBOOT_INFO_STRU *pstRebootInfo)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : DICC_SndEvent
- 功能描述  : 上报DICC事件
- 输入参数  : ulPid - 操作PID
-             enEventId - 事件ID
-             pEventData - 事件信息内容
-             ulDataLen - 事件信息长度
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月22日
-    作    者   : liukai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  DICC_SndEvent(DICC_MNTN_EVENT_ID_ENUM_UINT16 enEventId,
                         VOS_VOID   *pEventData,
                         VOS_UINT32  ulDataLen,
@@ -450,20 +390,7 @@ VOS_VOID  DICC_SndEvent(DICC_MNTN_EVENT_ID_ENUM_UINT16 enEventId,
     return ;
 }    /* DICC_SndEvent */
 
-/*****************************************************************************
-函 数 名  : DICC_GetCtrlChnAddr
-功能描述  : 获取通道的控制数据结构起始地址
-输入参数  : ucChnId - 通道ID
-输出参数  : 无
-返 回 值  : 通道的控制数据结构起始地址
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2011年8月20日
-   作    者   : g00178567
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8* DICC_GetCtrlChnAddr(VOS_UINT8 ucChnId, DICC_CPU_ID_ENUM_UINT8 enCpuId)
 {
     VOS_UINT8                               *pucCtrlChnAddr = VOS_NULL_PTR;
@@ -475,20 +402,7 @@ VOS_UINT8* DICC_GetCtrlChnAddr(VOS_UINT8 ucChnId, DICC_CPU_ID_ENUM_UINT8 enCpuId
     return pucCtrlChnAddr;
 }/* DICC_GetCtrlChnAddr */
 
-/*****************************************************************************
-函 数 名  : DICC_GetTtfRingQStChnAddr
-功能描述  : 获取通道的TTF_RING_Q_ST管理结构(DICC queue node)起始地址
-输入参数  : ucChnId - 通道ID
-输出参数  : 无
-返 回 值  : 通道的TTF_RING_Q_ST管理结构起始地址
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2011年8月20日
-   作    者   : g00178567
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8* DICC_GetTtfRingQStChnAddr(VOS_UINT8 ucChnId, DICC_CPU_ID_ENUM_UINT8 enCpuId)
 {
     DICC_CHAN_CTRL_STRU                    *pstDiccChnCtrl = VOS_NULL_PTR;
@@ -504,20 +418,7 @@ VOS_UINT8* DICC_GetTtfRingQStChnAddr(VOS_UINT8 ucChnId, DICC_CPU_ID_ENUM_UINT8 e
     return pucSpace;
 }/* DICC_GetTtfRingQStChnAddr */
 
-/*****************************************************************************
-函 数 名  : DICC_GetQueueNodeChnAddr
-功能描述  : 获取核间通道用于传递数据的内存(DICC queue data)起始地址
-输入参数  : ucChnId - 通道ID
-输出参数  : 无
-返 回 值  : 核间通道用于传递数据的起始地址
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2011年8月20日
-   作    者   : g00178567
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8* DICC_GetQueueNodeChnAddr(VOS_UINT8 ucChnId,
                DICC_CPU_ID_ENUM_UINT8 enCpuId)
 {
@@ -534,23 +435,7 @@ VOS_UINT8* DICC_GetQueueNodeChnAddr(VOS_UINT8 ucChnId,
     return pucSpace;
 }/* DICC_GetQueueNodeChnAddr */
 
-/*****************************************************************************
-函 数 名  : DICC_GetChannelNodeCnt
-功能描述  : 检查获取通道中数据块数的参数
-输入参数  : ulPid - 调用此接口的PID
-            ucChanId - 通道ID
-            enGetChnNodeCntType - 指示获取通道中已经存放的数据个数,
-                                  或者通道中可以继续存放的个数
-输出参数  : 无
-返 回 值  : 操作成功与否, DICC_OK - 成功, 其它 - 失败
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2011年8月11日
-   作    者   : liukai
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DICC_CheckCpuId(DICC_CPU_ID_ENUM_UINT8 enCpuId)
 {
     if (DICC_CPU_ID_BUTT <= enCpuId)
@@ -575,20 +460,7 @@ VOS_UINT32 DICC_CheckCpuId(DICC_CPU_ID_ENUM_UINT8 enCpuId)
     return DICC_OK;
 }
 
-/*****************************************************************************
-函 数 名  : DICC_RecordIsrOp
-功能描述  : 记录用户中断操作
-输入参数  : pstIsrRecord - 用户操作中断的记录信息
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2011年12月13日
-   作    者   : liukai
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID DICC_RecordIsrOp(DICC_RECORD_ISR_STRU *pstIsrRecord,
                           DICC_CPU_ID_ENUM_UINT8       enCpuId)
 {
@@ -630,21 +502,7 @@ VOS_VOID DICC_RecordIsrOp(DICC_RECORD_ISR_STRU *pstIsrRecord,
     }
 }    /* DICC_RecordIsrOp */
 
-/*****************************************************************************
-函 数 名  : DICC_EnableIsr
-功能描述  : 上报用户操作消息
-输入参数  : 使能核间通信中断API
-输出参数  : ulPid - 操作PID
-            enServiceType - 服务号
-返 回 值  : 操作成功与否, DICC_OK - 成功, 其它 - 失败
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2011年8月13日
-   作    者   : liukai
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DICC_EnableIsr(VOS_UINT32                   ulPid,
                           DICC_SERVICE_TYPE_ENUM_UINT8 enServiceType,
                           DICC_CPU_ID_ENUM_UINT8       enCpuId)
@@ -698,22 +556,7 @@ VOS_UINT32 DICC_EnableIsr(VOS_UINT32                   ulPid,
     return ulRet;
 }    /* DICC_EnableIsr */
 
-/*****************************************************************************
-函 数 名  : DICC_DisableIsr
-功能描述  : 去使能核间通信中断API
-            在中断服务程序中执行, 不能有阻塞性操作
-输入参数  : ulPid - 操作PID
-            enServiceType - 服务号
-输出参数  : 无
-返 回 值  : 操作成功与否, DICC_OK - 成功, 其它 - 失败
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2011年12月7日
-   作    者   : liukai
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DICC_DisableIsr(VOS_UINT32 ulPid, DICC_SERVICE_TYPE_ENUM_UINT8 enServiceType,
                DICC_CPU_ID_ENUM_UINT8       enCpuId)
 {
@@ -767,20 +610,7 @@ VOS_UINT32 DICC_DisableIsr(VOS_UINT32 ulPid, DICC_SERVICE_TYPE_ENUM_UINT8 enServ
     return ulRet;
 }    /* DICC_DisableIsr */
 
-/*****************************************************************************
-函 数 名  : DICC_CheckIsExistEnoughMem
-功能描述  : 检查核间是否还存在足够的内存
-输入参数  : penSndChnInfo    -   通道参数
-输出参数  : 无
-返 回 值  : 操作成功与否, DICC_OK - 成功, 其它 - 失败
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2011年8月20日
-   作    者   : g00178567
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DICC_CheckIsExistEnoughMem(DICC_BLK_CHN_INFO_STRU *penSndChnInfo,
                DICC_CPU_ID_ENUM_UINT8 enCpuId)
 {
@@ -816,21 +646,7 @@ VOS_UINT32 DICC_CheckIsExistEnoughMem(DICC_BLK_CHN_INFO_STRU *penSndChnInfo,
     return DICC_OK;
 }/* DICC_CheckIsExistEnoughMem */
 
-/*****************************************************************************
-函 数 名  : DICC_CheckChnInitStatus
-功能描述  : 检查核间通道是否已经初始化
-输入参数  : enServiceType - 服务号
-输出参数  : 无
-返 回 值  : DICC_OK       -    通道未初始化
-            其它          -    通道已经初始化
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2011年8月20日
-   作    者   : g00178567
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DICC_CheckChnInitStatus(DICC_SERVICE_TYPE_ENUM_UINT8 enServiceType,
                DICC_CPU_ID_ENUM_UINT8 enCpuId)
 {
@@ -854,20 +670,7 @@ VOS_UINT32 DICC_CheckChnInitStatus(DICC_SERVICE_TYPE_ENUM_UINT8 enServiceType,
     return DICC_OK;
 }/* DICC_CheckChnInitStatus */
 
-/*****************************************************************************
-函 数 名  : DICC_RING_Q_InitAndNodeAddrSet
-功能描述  : 初始化环形队列，关联核间共享结点地址到通道结点队列中
-输入参数  : pstDiccChnCtrl - 通道管理结构
-输出参数  : 无
-返 回 值  : 操作成功与否, DICC_OK - 成功, 其它 - 失败
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2011年8月21日
-   作    者   : g00178567
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  DICC_RING_Q_InitAndNodeAddrSet(VOS_UINT32 ulPid,
                 DICC_CHAN_CTRL_STRU *pstDiccChnCtrl,
                 DICC_CPU_ID_ENUM_UINT8 enCpuId)
@@ -923,21 +726,7 @@ VOS_UINT32  DICC_RING_Q_InitAndNodeAddrSet(VOS_UINT32 ulPid,
     return DICC_OK;
 } /* DICC_RING_Q_InitAndNodeAddrSet */
 
-/*****************************************************************************
-函 数 名  : DICC_SenderChnInit
-功能描述  : 通道发送端初始化
-输入参数  : ucChnId - 通道ID
-            penChnInfo - 通道基本信息(申请核间信息块数和大小等)
-输出参数  : 无
-返 回 值  : 操作成功与否, DICC_OK - 成功, 其它 - 失败
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2011年8月12日
-   作    者   : liukai
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DICC_SenderChnInit(VOS_UINT32 ulPid, DICC_CHAN_ID_ENUM_UINT8 ucChnId,
                               DICC_BLK_CHN_INFO_STRU        *penChnInfo,
                               DICC_CHAN_LOCAL_SEM_PAPA_STRU *pstLocalSemPara,
@@ -991,21 +780,7 @@ VOS_UINT32 DICC_SenderChnInit(VOS_UINT32 ulPid, DICC_CHAN_ID_ENUM_UINT8 ucChnId,
     return DICC_OK;
 }    /* DICC_SenderChanInit */
 
-/*****************************************************************************
-函 数 名  : DICC_ChnIsrInit
-功能描述  : DICC用户通道初始化参数检查函数
-输入参数  : enServiceType - 服务类别号
-            pfuncRecvIsr - 中断服务程序
-输出参数  : 无
-返 回 值  : 操作成功与否, DICC_OK - 成功, 其它 - 失败
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2011年12月8日
-   作    者   : liukai
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DICC_ChnIsrInit(VOS_UINT32 ulPid, VOS_UINT32 ulIntLevel,
                            VOIDFUNCPTR pfuncRecvIsr, DICC_INT_OP_STRU *pstIntOp)
 {
@@ -1036,22 +811,7 @@ VOS_UINT32 DICC_ChnIsrInit(VOS_UINT32 ulPid, VOS_UINT32 ulIntLevel,
     return DICC_OK;
 }    /* DICC_ChnIsrInit */
 
-/*****************************************************************************
-函 数 名  : DICC_RecverChnInit
-功能描述  : 通道接收端初始化
-输入参数  : ulPid - 操作PID
-            enServiceType - 服务类别号
-            pfuncRecvIsr - 中断服务程序
-输出参数  : 无
-返 回 值  : 操作成功与否, DICC_OK - 成功, 其它 - 失败
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2011年8月12日
-   作    者   : liukai
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DICC_RecverChnInit(VOS_UINT32                        ulPid,
                               DICC_SERVICE_TYPE_ENUM_UINT8      enServiceType,
                               VOIDFUNCPTR                       pfuncRecvIsr,
@@ -1094,21 +854,7 @@ VOS_UINT32 DICC_RecverChnInit(VOS_UINT32                        ulPid,
     return ulReturn;
 }    /* DICC_RecverChanInit */
 
-/*****************************************************************************
-函 数 名  : DICC_ChkChnInit
-功能描述  : DICC用户通道初始化参数检查函数
-输入参数  : enServiceType - 服务类别号
-            pstInitChanInfo - 通道的基本信息
-输出参数  : 无
-返 回 值  : 操作成功与否, DICC_OK - 成功, 其它 - 失败
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2011年12月7日
-   作    者   : liukai
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DICC_ChkChnServiceInfo(DICC_SERVICE_TYPE_ENUM_UINT8 enServiceType,
                            DICC_INIT_CHN_INFO_STRU     *pstInitChanInfo,
                            DICC_CPU_ID_ENUM_UINT8 enCpuId)
@@ -1158,24 +904,7 @@ VOS_UINT32 DICC_ChkChnServiceInfo(DICC_SERVICE_TYPE_ENUM_UINT8 enServiceType,
     return DICC_OK;
 }   /* DICC_ChkChnInit */
 
-/*****************************************************************************
-函 数 名  : DICC_Sync
-功能描述  : DICC双核共享内存初始化同步
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 操作成功与否, DICC_OK - 成功, 其它 - 失败
-调用函数  :
-被调函数  :
-说    明  : 初始化过程同一核需要互斥
-            防止重复创建硬件信号量, 锁中断, 直到整个操作结束,
-            否则一旦管理结构没有完成初始化, 被高优先级任务抢走, 判断ucSemCreated为1,
-            离开此函数, 实际上此时并没有完成sync的初始化
 
-修改历史      :
- 1.日    期   : 2011年10月20日
-   作    者   : wangrong
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DICC_Sync(VOS_UINT32 ulFileId, VOS_UINT32 ulLineNum, VOS_UINT32 ulPid,
                DICC_CPU_ID_ENUM_UINT8 enCpuId)
 {
@@ -1315,22 +1044,7 @@ VOS_UINT32 DICC_Sync(VOS_UINT32 ulFileId, VOS_UINT32 ulLineNum, VOS_UINT32 ulPid
     return DICC_OK;
 }
 
-/*****************************************************************************
-函 数 名  : DICC_SingleChnInit
-功能描述  : DICC用户单通道初始化API(按照服务类别初始化一个通道)
-输入参数  : ulPid - 调用此接口的PID
-            enServiceType - 服务类别号
-            pstInitChanInfo - 要初始化的通道的具体参数
-输出参数  : 无
-返 回 值  : 操作成功与否, DICC_OK - 成功, 其它 - 失败
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2011年11月28日
-   作    者   : liukai
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DICC_SingleChnInitAction(VOS_UINT32             ulFileId,
                               VOS_UINT32                   ulLineNum,
                               VOS_UINT32                   ulPid,
@@ -1503,21 +1217,7 @@ VOS_UINT32 DICC_SingleChnInitAction(VOS_UINT32             ulFileId,
     return DICC_OK;
 }    /* DICC_SingleChnInit */
 
-/*****************************************************************************
-函 数 名  : DICC_OpenChannelByRole
-功能描述  : 按照角色打开核间通信通道
-输入参数  : ucChanId - 通道ID
-            enUserRole - 在当前CPU上本端在通道上扮演的角色
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2011年8月11日
-   作    者   : liukai
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DICC_OpenChannelByRole(DICC_CHAN_ID_ENUM_UINT8      ucChnId,
                                 DICC_CHAN_ROLE_ENUM_UINT8      enUserRole,
                                 VOS_UINT32                     ulPid,
@@ -1579,20 +1279,7 @@ VOS_UINT32 DICC_OpenChannelByRole(DICC_CHAN_ID_ENUM_UINT8      ucChnId,
     return DICC_OK;
 }    /* DICC_SenderOpenChannel */
 
-/*****************************************************************************
-函 数 名  : DICC_CheckChanOpPara
-功能描述  : 检查通道操作的基本参数
-输入参数  : ucChanId - 通道ID
-输出参数  : 无
-返 回 值  : 检查合法与否, DICC_OK - 合法, 其它 - 失败
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2011年12月15日
-   作    者   : liukai
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DICC_CheckChanOpPara(DICC_CHAN_ID_ENUM_UINT8 ucChnId,
                DICC_CPU_ID_ENUM_UINT8 enCpuId)
 {
@@ -1616,21 +1303,7 @@ VOS_UINT32 DICC_CheckChanOpPara(DICC_CHAN_ID_ENUM_UINT8 ucChnId,
     return DICC_OK;
 }    /* DICC_CheckChanOpPara */
 
-/*****************************************************************************
-函 数 名  : DICC_CheckOpenPara
-功能描述  : 检查通道操作的参数
-输入参数  : ucChanId - 通道ID
-            enUserRole - 在当前CPU上本端在通道上扮演的角色
-输出参数  : 无
-返 回 值  : 检查合法与否, DICC_OK - 合法, 其它 - 失败
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2011年12月15日
-   作    者   : liukai
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DICC_CheckOpenPara(DICC_CHAN_ID_ENUM_UINT8   ucChnId,
                               DICC_CHAN_ROLE_ENUM_UINT8 enUserRole,
                               VOS_UINT32                ulPid,
@@ -1694,22 +1367,7 @@ VOS_UINT32 DICC_CheckOpenPara(DICC_CHAN_ID_ENUM_UINT8   ucChnId,
     return DICC_OK;
 }    /* DICC_CheckOpenPara */
 
-/*****************************************************************************
-函 数 名  : DICC_OpenChannel
-功能描述  : 打开核间通信通道API
-输入参数  : ulPid - 调用此接口的PID
-            ucChanId - 通道ID
-            enUserRole - 在当前CPU上本端在通道上扮演的角色
-输出参数  : 无
-返 回 值  : 操作成功与否, VOS_OK - 成功, VOS_ERR - 失败
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2011年8月11日
-   作    者   : liukai
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DICC_OpenChannel(VOS_UINT32 ulPid, DICC_CHAN_ID_ENUM_UINT8 ucChnId,
                             DICC_CHAN_ROLE_ENUM_UINT8 enUserRole,
                             DICC_CPU_ID_ENUM_UINT8 enCpuId)
@@ -1754,21 +1412,7 @@ VOS_UINT32 DICC_OpenChannel(VOS_UINT32 ulPid, DICC_CHAN_ID_ENUM_UINT8 ucChnId,
     return ulRet;
 }    /* DICC_SenderOpenChannel */
 
-/*****************************************************************************
-函 数 名  : DICC_CloseChannel
-功能描述  : 关闭核间通信通道API
-输入参数  : ulPid - 调用此接口的PID
-            ucChanId - 通道ID
-输出参数  : 无
-返 回 值  : 操作成功与否, VOS_OK - 成功, VOS_ERR - 失败
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2011年8月11日
-   作    者   : liukai
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DICC_CloseChannel(VOS_UINT32 ulPid, DICC_CHAN_ID_ENUM_UINT8 ucChnId,
                DICC_CPU_ID_ENUM_UINT8 enCpuId)
 {
@@ -1898,20 +1542,7 @@ VOS_UINT32 DICC_CloseChannel(VOS_UINT32 ulPid, DICC_CHAN_ID_ENUM_UINT8 ucChnId,
     return DICC_OK;
 }    /* DICC_CloseChannel */
 
-/*****************************************************************************
-函 数 名  : DICC_CheckTrigPara
-功能描述  : 检查触发核间中断操作的参数
-输入参数  : ucChanId - 通道ID
-输出参数  : 无
-返 回 值  : 检查合法与否, DICC_OK - 合法, 其它 - 失败
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2011年12月15日
-   作    者   : liukai
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DICC_CheckTrigPara(DICC_CHAN_ID_ENUM_UINT8 ucChnId,
                               DICC_CPU_ID_ENUM_UINT8 enCpuId)
 {
@@ -1935,22 +1566,7 @@ VOS_UINT32 DICC_CheckTrigPara(DICC_CHAN_ID_ENUM_UINT8 ucChnId,
     return DICC_OK;
 }    /* DICC_CheckTrigPara */
 
-/*****************************************************************************
-函 数 名  : DICC_TriggerChanDataTx
-功能描述  : 触发核间通信中断API
-            触发核间通信中断, 以知会对端接收传递的信息
-输入参数  : ulPid  - 调用此接口的PID
-            ucChanId - 通道ID
-输出参数  : 无
-返 回 值  : 操作成功与否, VOS_OK - 成功, VOS_ERR - 失败
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2011年12月15日
-   作    者   : liukai
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DICC_TriggerChanDataTx(VOS_UINT32 ulPid,
                DICC_CHAN_ID_ENUM_UINT8 ucChnId, DICC_CPU_ID_ENUM_UINT8 enCurrCpuId)
 {
@@ -2029,21 +1645,7 @@ VOS_UINT32 DICC_TriggerChanDataTx(VOS_UINT32 ulPid,
     return DICC_OK;
 }    /* DICC_TriggerChanDataTx */
 
-/*****************************************************************************
-函 数 名  : DICC_TimeDiff
-功能描述  : 计算两个时刻的时间差
-输入参数  : ulTimeStart  - 起始时刻
-            ulTimeEnd - 结束时刻
-输出参数  : 无
-返 回 值  : 时间差
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2011年12月14日
-   作    者   : liukai
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DICC_TimeDiff(VOS_UINT32 ulTimeStart, VOS_UINT32 ulTimeEnd)
 {
     VOS_UINT32 ulTimeDiff;
@@ -2063,21 +1665,7 @@ VOS_UINT32 DICC_TimeDiff(VOS_UINT32 ulTimeStart, VOS_UINT32 ulTimeEnd)
     return ulTimeDiff;
 }    /* DICC_TimeDiff */
 #if 0
-/*****************************************************************************
-函 数 名  : DICC_ChanStayInFullState
-功能描述  : 队列数据满处理
-输入参数  : ulPid - 调用此接口的PID
-            pstDiccChnCtrl - 通道的控制数据结构起始地址
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2011年12月14日
-   作    者   : liukai
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID DICC_ChanStayInFullState(VOS_UINT32 ulFileId, VOS_UINT32 ulLineNum,
                                   VOS_UINT32 ulPid,
                                   volatile DICC_CHAN_CTRL_STRU *pstDiccChnCtrl,
@@ -2128,21 +1716,7 @@ VOS_VOID DICC_ChanStayInFullState(VOS_UINT32 ulFileId, VOS_UINT32 ulLineNum,
     return;
 }    /* DICC_ChanStayInFullState */
 #endif
-/*****************************************************************************
-函 数 名  : DICC_CheckInsertPara
-功能描述  : 检查插入数据操作的参数
-输入参数  : ucChanId - 通道ID
-            pstDscpBlk - 核间传递描述字段
-输出参数  : 无
-返 回 值  : 检查合法与否, DICC_OK - 合法, 其它 - 失败
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2011年12月15日
-   作    者   : liukai
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DICC_CheckInsertPara(DICC_CHAN_ID_ENUM_UINT8    ucChnId,
                                 DICC_INSERT_DSCP_BLK_STRU *pstDscpBlk,
                                 DICC_CPU_ID_ENUM_UINT8     enCpuId)
@@ -2205,25 +1779,7 @@ VOS_UINT32 DICC_CheckInsertPara(DICC_CHAN_ID_ENUM_UINT8    ucChnId,
     return DICC_OK;
 }
 
-/*****************************************************************************
-函 数 名  : DICC_InsertChannelDataAction
-功能描述  : 将待传递的信息数据转移到核间API
-            如果描述块结构中enAutoTrigTx置为0时, 不会触发传递行为,
-            此时需要由发送端来触发调用DICC_TriggerChanDataTx传递;
-            只有在通道打开后, 信息才会真正传递到对端
-            发送端和接收端任意一端未打开, 向核间转移待传递的信息数据操作失败
-输入参数  : ucChanId - 通道ID
-            pstDscpBlk - 核间传递描述字段
-输出参数  : 无
-返 回 值  : 操作成功与否, VOS_OK - 成功, VOS_ERR - 失败
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2011年8月11日
-   作    者   : liukai
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DICC_InsertChannelDataAction(VOS_UINT32 ulFileId, VOS_UINT32 ulLineNum,
                                         VOS_UINT32 ulPid, DICC_CHAN_ID_ENUM_UINT8 ucChnId,
                                         DICC_INSERT_DSCP_BLK_STRU *pstDscpBlk,
@@ -2373,21 +1929,7 @@ VOS_UINT32 DICC_InsertChannelDataAction(VOS_UINT32 ulFileId, VOS_UINT32 ulLineNu
     return DICC_OK;
 }    /* DICC_InsertChannelData */
 
-/*****************************************************************************
-函 数 名  : DICC_CheckRemovePara
-功能描述  : 检查取出数据操作的参数
-输入参数  : ucChanId - 通道ID
-            pucUsrData - 从核间取出的数据拷贝到此, 外部使用者保证指针非空
-输出参数  : 无
-返 回 值  : 检查合法与否, DICC_OK - 合法, 其它 - 失败
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2011年12月15日
-   作    者   : liukai
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DICC_CheckRemovePara(DICC_CHAN_ID_ENUM_UINT8 ucChnId,
                                 VOS_UINT8              *pucUsrData,
                                 DICC_CPU_ID_ENUM_UINT8  enCpuId)
@@ -2420,22 +1962,7 @@ VOS_UINT32 DICC_CheckRemovePara(DICC_CHAN_ID_ENUM_UINT8 ucChnId,
     return DICC_OK;
 }
 
-/*****************************************************************************
-函 数 名  : DICC_RemoveChannelData
-功能描述  : 将传递的信息从核间环形共享缓冲中取出API
-输入参数  : ulPid - 调用此接口的PID
-            ucChanId - 通道ID
-            pucUsrData - 从核间取出的数据拷贝到此, 外部使用者保证指针非空
-输出参数  : 无
-返 回 值  : 操作成功与否, DICC_OK - 成功, 其它 - 失败
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2011年8月11日
-   作    者   : liukai
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DICC_RemoveChannelData(VOS_UINT32              ulPid,
                                   DICC_CHAN_ID_ENUM_UINT8 ucChnId,
                                   VOS_UINT8              *pucUsrData,
@@ -2550,21 +2077,7 @@ VOS_UINT32 DICC_RemoveChannelData(VOS_UINT32              ulPid,
     return DICC_OK;
 }    /* DICC_RemoveChannelData */
 
-/*****************************************************************************
-函 数 名  : DICC_IsCurrChnOpen
-功能描述  : 判断通道本端是否打开
-输入参数  : ucChanId - 通道ID
-输出参数  : 无
-返 回 值  : 打开:PS_TRUE
-            没有打开:PS_FALSE
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2011年8月11日
-   作    者   : g00178567
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 DICC_IsCurrChnOpen(DICC_CHAN_ID_ENUM_UINT8 ucChnId,
               DICC_CPU_ID_ENUM_UINT8           enCpuId)
 {
@@ -2606,22 +2119,7 @@ VOS_UINT8 DICC_IsCurrChnOpen(DICC_CHAN_ID_ENUM_UINT8 ucChnId,
     }
 }
 
-/*****************************************************************************
-函 数 名  : DICC_CheckGetNodeCntPara
-功能描述  : 检查获取通道中数据块数的参数
-输入参数  : ucChanId - 通道ID
-            enGetChnNodeCntType - 指示获取通道中已经存放的数据个数,
-                                  或者通道中可以继续存放的个数
-输出参数  : 无
-返 回 值  : 检查合法与否, DICC_OK - 合法, 其它 - 失败
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2011年8月11日
-   作    者   : g00178567
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DICC_CheckGetNodeCntPara(DICC_CHAN_ID_ENUM_UINT8          ucChnId,
                                     DICC_GET_CHN_NODE_CNT_ENUM_UINT8 enGetChnNodeCntType,
                                     DICC_CPU_ID_ENUM_UINT8 enCpuId)
@@ -2651,23 +2149,7 @@ VOS_UINT32 DICC_CheckGetNodeCntPara(DICC_CHAN_ID_ENUM_UINT8          ucChnId,
     return DICC_OK;
 }
 
-/*****************************************************************************
-函 数 名  : DICC_GetChannelNodeCnt
-功能描述  : 检查获取通道中数据块数的参数
-输入参数  : ulPid - 调用此接口的PID
-            ucChanId - 通道ID
-            enGetChnNodeCntType - 指示获取通道中已经存放的数据个数,
-                                  或者通道中可以继续存放的个数
-输出参数  : 无
-返 回 值  : 操作成功与否, DICC_OK - 成功, 其它 - 失败
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2011年8月11日
-   作    者   : liukai
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DICC_GetChannelNodeCnt(VOS_UINT32                       ulPid,
                                   DICC_CHAN_ID_ENUM_UINT8          ucChnId,
                                   DICC_GET_CHN_NODE_CNT_ENUM_UINT8 enGetChnNodeCntType,
@@ -2705,21 +2187,7 @@ VOS_UINT32 DICC_GetChannelNodeCnt(VOS_UINT32                       ulPid,
 }    /* DICC_GetChannelNodeCnt */
 
 #if (VOS_WIN32 != VOS_OS_VER)
-/*****************************************************************************
-函 数 名  : DICC_Info
-功能描述  : DICC通道管理结构输出
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-说    明  : 单板上可测可维函数, 直接使用vos_printf向串口打印
 
-修改历史      :
- 1.日    期   : 2011年12月27日
-   作    者   : liukai
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID DICC_Info()
 {
     volatile DICC_CHAN_CTRL_STRU *pstDiccChnCtrl = VOS_NULL_PTR;
@@ -2782,21 +2250,7 @@ VOS_VOID DICC_Info()
     return;
 }
 
-/*****************************************************************************
-函 数 名  : DICC_Chan_Info
-功能描述  : DICC通道现状输出
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-说    明  : 单板上可测可维函数, 直接使用vos_printf向串口打印
 
-修改历史      :
- 1.日    期   : 2011年12月27日
-   作    者   : liukai
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID DICC_Chan_Info(VOS_INT32 lChanId)
 {
     DICC_CPU_ID_ENUM_UINT8                 enCpuId;
@@ -2859,20 +2313,7 @@ VOS_VOID DICC_Chan_Info(VOS_INT32 lChanId)
     vos_printf("ulEnableIptCnt:             %u\n", pstIsrOp->ulEnableCnt);
 }
 
-/*****************************************************************************
-函 数 名  : DICC_Help
-功能描述  : 单板上可测可维函数
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2011年12月27日
-   作    者   : liukai
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID DICC_Help()
 {
     vos_printf("===============================================\n");
@@ -2886,21 +2327,7 @@ VOS_VOID DICC_Help()
 }  /* DICC_Help */
 #endif    /* end of #if (VOS_WIN32 != VOS_OS_VER) */
 
-/*****************************************************************************
-函 数 名  : DICC_CheckBatRemovePara
-功能描述  : 检查取出数据操作的参数
-输入参数  : ucChanId - 通道ID
-            pucUsrData - 从核间取出的数据拷贝到此, 外部使用者保证指针非空
-输出参数  : 无
-返 回 值  : 检查合法与否, DICC_OK - 合法, 其它 - 失败
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2011年12月15日
-   作    者   : liukai
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DICC_CheckBatRemovePara(DICC_CHAN_ID_ENUM_UINT8  ucChnId,
                                 VOS_UINT16                  usNeedRemoveCnt,
                                 VOS_UINT16                 *pusActiveRemoveCnt,
@@ -2952,22 +2379,7 @@ VOS_UINT32 DICC_CheckBatRemovePara(DICC_CHAN_ID_ENUM_UINT8  ucChnId,
     return DICC_OK;
 }
 
-/*****************************************************************************
-函 数 名  : DICC_BatRemoveChannelData
-功能描述  : 将传递的信息从核间环形共享缓冲中取出API
-输入参数  : ulPid - 调用此接口的PID
-            ucChanId - 通道ID
-            pucUsrData - 从核间取出的数据拷贝到此, 外部使用者保证指针非空
-输出参数  : 无
-返 回 值  : 操作成功与否, DICC_OK - 成功, 其它 - 失败
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2011年8月11日
-   作    者   : liukai
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DICC_BatRemoveChannelData(VOS_UINT32            ulPid,
                                   DICC_CHAN_ID_ENUM_UINT8  ucChnId,
                                   VOS_UINT8                aucUsrData[],
@@ -3094,21 +2506,7 @@ VOS_UINT32 DICC_BatRemoveChannelData(VOS_UINT32            ulPid,
 }    /* DICC_RemoveChannelData */
 
 VOS_UINT8 g_ucCheckBatInsert = 1;
-/*****************************************************************************
-函 数 名  : DICC_CheckBatInsertPara
-功能描述  : 检查插入数据操作的参数
-输入参数  : ucChanId - 通道ID
-            pstDscpBlk - 核间传递描述字段
-输出参数  : 无
-返 回 值  : 检查合法与否, DICC_OK - 合法, 其它 - 失败
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2011年12月15日
-   作    者   : liukai
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DICC_CheckBatInsertPara(VOS_UINT32 ulPid,
                                 DICC_CHAN_ID_ENUM_UINT8    ucChnId,
                                 DICC_BAT_INSERT_DSCP_BLK_STRU    *pstBatDscpBlk,
@@ -3198,25 +2596,7 @@ VOS_UINT32 DICC_CheckBatInsertPara(VOS_UINT32 ulPid,
     return DICC_OK;
 }
 
-/*****************************************************************************
-函 数 名  : DICC_BatInsertChannelDataAction
-功能描述  : 将待传递的信息数据转移到核间API
-            如果描述块结构中enAutoTrigTx置为0时, 不会触发传递行为,
-            此时需要由发送端来触发调用DICC_TriggerChanDataTx传递;
-            只有在通道打开后, 信息才会真正传递到对端
-            发送端和接收端任意一端未打开, 向核间转移待传递的信息数据操作失败
-输入参数  : ucChanId - 通道ID
-            pstDscpBlk - 核间传递描述字段
-输出参数  : 无
-返 回 值  : 操作成功与否, VOS_OK - 成功, VOS_ERR - 失败
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2011年8月11日
-   作    者   : liukai
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 DICC_BatInsertChannelDataAction(VOS_UINT32 ulFileId, VOS_UINT32 ulLineNum,
                                         VOS_UINT32 ulPid, DICC_CHAN_ID_ENUM_UINT8 ucChnId,
                                         DICC_BAT_INSERT_DSCP_BLK_STRU    *pstBatDscpBlk,

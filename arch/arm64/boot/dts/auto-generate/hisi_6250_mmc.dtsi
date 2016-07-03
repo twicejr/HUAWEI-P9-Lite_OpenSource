@@ -1,0 +1,83 @@
+/{
+	aliases {
+		mshc1 = &dwmmc1;
+		mshc2 = &dwmmc2;
+	};
+
+	/* emmc 5.0 */
+	sdhci0: sdhci@FF390000 {
+		compatible = "arasan,sdhci";
+		reg = <0x0 0xff390000 0x0 0x10000>;
+		clock-names = "clk_xin", "clk_ahb";
+		clocks = <&clk_gate_emmc0>, <&hclk_gate_emmc0>;
+		interrupt-parent = <&gic>;
+		interrupts = <0 137 4>;
+		bus-width = <8>;
+		non-removable;
+		use-adma;//use-pio, use-dma, use-adma
+		caps2-mmc-cache-ctrl;
+		caps2-mmc-HC-erase-size;
+		hi6250-phy-config;
+		status = "ok";
+	};
+
+	/* SD */
+	dwmmc1: dwmmc1@FF37F000 {
+		compatible = "hisilicon,hi3650-dw-mshc";
+		reg = <0x0 0xff37f000 0x0 0x1000>;
+		interrupts = <0 139 4>;
+		num-slots = <1>;
+		clocks = <&clk_gate_sd>, <&hclk_gate_sd>;
+		clock-names = "ciu", "biu";
+		fifo-depth = <0x100>;
+		card-detect-delay = <200>;
+		supports-highspeed;
+		hi6250-timing-config;
+		scperctrls = <0x314>;
+		bit_sdcard_o_sel18 = <0x4>; /* 1<<2 */
+		pinctrl-names = "default","idle";
+		pinctrl-0 = <&gpio041_cfg_func &gpio042_cfg_func &gpio043_cfg_func
+				&gpio044_cfg_func &gpio045_cfg_func &gpio046_cfg_func
+				&gpio041_pmx_func &gpio042_pmx_func &gpio043_pmx_func
+				&gpio044_pmx_func &gpio045_pmx_func &gpio046_pmx_func>;
+		pinctrl-1 = <&gpio041_cfg_idle &gpio042_cfg_idle &gpio043_cfg_idle
+				&gpio044_cfg_idle &gpio045_cfg_idle &gpio046_cfg_idle
+				&gpio041_pmx_idle &gpio042_pmx_idle &gpio043_pmx_idle
+				&gpio044_pmx_idle &gpio045_pmx_idle &gpio046_pmx_idle>;
+		slot@0 {
+                       reg = <0>;
+                       bus-width = <4>;
+                       disable-wp;
+               };
+	};
+
+	/* wifi */
+	dwmmc2: dwmmc2@ff37d000 {
+		compatible = "hisilicon,hi3650-dw-mshc";
+		reg = <0x0 0xff37d000 0x0 0x1000>;
+		interrupts = <0 140 4>;
+		num-slots = <1>;
+		clocks = <&clk_gate_sdio0>, <&hclk_gate_sdio0>;
+		clock-names = "ciu", "biu";
+		fifo-depth = <0x100>;
+		card-detect-delay = <200>;
+		caps2-support-wifi;
+		supports-highspeed;
+		keep-power-in-suspend;
+		hi6250-timing-config;
+                pinctrl-names = "default","idle";
+		pinctrl-0 = <>;
+		pinctrl-1 = <>;
+		slot@0 {
+                       reg = <0>;
+                       bus-width = <4>;
+                       disable-wp;
+               };
+	};
+
+	hisi_rpmb: rpmb {
+		compatible = "hisilicon,hisi-rpmb";
+		hisi,bl31-share-mem = <0x8000 0x8000>;
+		status = "ok";
+	};
+};

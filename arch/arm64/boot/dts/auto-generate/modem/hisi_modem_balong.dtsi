@@ -18,17 +18,16 @@
 /include/ "hisi_modem_reset.dtsi"
 
 /* peripheral --- bsp2 */
-/include/ "hisi_modem_pmic_ocp.dtsi"
 /include/ "hisi_modem_dsp_balong.dtsi"
-
+/include/ "hisi_modem_pmic_ocp.dtsi"
 
 /* debug system --- bsp1 */
 /include/ "hisi_modem_socp_balong.dtsi"
 /include/ "hisi_modem_dump.dtsi"
 /include/ "hisi_modem_coresight.dtsi"
 /include/ "hisi_modem_log.dtsi"
-/include/ "hisi_modem_apr.dtsi"
 
 /* data transfer --- bsp4 */
 /include/ "hisi_modem_ipf_balong.dtsi"
+/include/ "hisi_modem_psam_balong.dtsi"
 

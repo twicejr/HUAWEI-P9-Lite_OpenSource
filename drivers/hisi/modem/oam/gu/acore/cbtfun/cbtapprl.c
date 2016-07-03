@@ -1,23 +1,6 @@
 
 
-/******************************************************************************
 
-                  版权所有 (C), 2015-2025, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : Cbtapprl.c
-  版 本 号   : 初稿
-  作    者   :
-  生成日期   :
-  最近修改   :
-  功能描述   : 进行CBT通道的数据包分包和组包
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年2月27日
-    作    者   : x00263027
-    修改内容   :
-
-***************************************************************************** */
 
 /*****************************************************************************
   1 头文件包含
@@ -65,17 +48,7 @@ VOS_UINT32                              g_ulCbtMsgSN;
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : CBT_AcpuUsbFrameInit
- 功能描述  : 当为虚拟串口时，需要初始化缓冲区
- 输入参数  : VOS_VOID
- 输出参数  : VOS_VOID
- 返 回 值  : VOS_UINT32
- 修改历史  :
-   1.日    期  : 2009年3月28日
-     作    者  : g47350
-     修改内容  : Creat Function
-*****************************************************************************/
+
 VOS_UINT32 CBT_AcpuUsbFrameInit(VOS_VOID)
 {
     VOS_UINT_PTR                        ulRealAddr;
@@ -98,19 +71,7 @@ VOS_UINT32 CBT_AcpuUsbFrameInit(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名     : CBT_AcpuInit
- 功能描述  : OMRL模块的初始化函数
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2015年3月2日
-     作    者  : x00263027
-     修改内容  : Creat Function
-*****************************************************************************/
+
 VOS_UINT32 CBT_AcpuInit(VOS_VOID)
 {
     g_ulCbtMsgSN       = 0;
@@ -135,19 +96,7 @@ VOS_UINT32 CBT_AcpuInit(VOS_VOID)
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : CBT_AcpuCpuIdToPid
- 功能描述  : 根据SSID ID找到对应模块的PID
- 输入参数  : ucSsId:   ssid ID
- 输出参数  : pulPid -- 指向模块PID
- 返 回 值  : VOS_ERR/VOS_OK
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2015年2月27日
-     作    者  : x00263027
-     修改内容  : Creat Function
-*****************************************************************************/
+
 VOS_UINT32 CBT_AcpuSsIdToPid(VOS_UINT8 ucSsId, VOS_UINT32 *pulPid)
 {
       switch(ucSsId)
@@ -169,19 +118,7 @@ VOS_UINT32 CBT_AcpuSsIdToPid(VOS_UINT8 ucSsId, VOS_UINT32 *pulPid)
       return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CBT_AcpuMsgDispatch
- 功能描述  : 将数据包分发出去
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_ERR/VOS_OK
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2015年2月27日
-     作    者  : x00263027
-     修改内容  : Creat Function
-*****************************************************************************/
+
 VOS_UINT32 CBT_AcpuMsgDispatch(CBT_RCV_CHAN_CTRL_INFO_STRU * pstCtrlInfo)
 {
     VOS_UINT32                          ulRslt;
@@ -239,23 +176,7 @@ VOS_UINT32 CBT_AcpuMsgDispatch(CBT_RCV_CHAN_CTRL_INFO_STRU * pstCtrlInfo)
     return VOS_OK;
 
 }
-/*****************************************************************************
- 函 数 名  : CBT_AcpuMsgCombine
- 功能描述  : 对消息 组包并发送给对应CPU OM消息处理模块处理
- 输入参数  : pucData:   需要处理的数据内容
-             ulDataLen: 数据长度
 
- 输出参数  : 无
- 返 回 值  : VOS_ERR/VOS_OK
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年2月26日
-    作    者   : x00263027
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CBT_AcpuMsgCombine(CBT_RCV_CHAN_CTRL_INFO_STRU *pstCtrlInfo, VOS_UINT8 *pucData, VOS_UINT32 usLen)
 {
     VOS_UINT32                          ulRslt = VOS_OK;
@@ -499,37 +420,13 @@ VOS_UINT32 CBT_AcpuMsgCombine(CBT_RCV_CHAN_CTRL_INFO_STRU *pstCtrlInfo, VOS_UINT
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : CBT_AcpuRcvData
- 功能描述  : ACPU接收CBT通道上的数据
- 输入参数  : pucData:   需要发送的数据内容
-             ulSize: 数据长度
-             pucRBData:回卷数据内容
-             ulRBSize:回卷数据大小
- 输出参数  : 无
- 返 回 值  : VOS_ERR/VOS_OK
- 修改历史  :
-   1.日    期  : 2015年3月2日
-     作    者  : x00263027
-     修改内容  : Creat Function
-*****************************************************************************/
+
 VOS_UINT32 CBT_AcpuRcvData(VOS_UINT8 *pucData, VOS_UINT32 ulSize)
 {
     return CBT_AcpuMsgCombine(&g_stAcpuCbtCtrlInfo, pucData, ulSize);
 }
 
-/*****************************************************************************
- 函 数 名  : CBT_AcpuSendSegData
- 功能描述  : 将CBT相关消息经HDLC封装后调接口发走
- 输入参数  : pucSrc:指向待发送校准数据
-             usSrcLen:数据长度
- 输出参数  : 无
- 返 回 值  : VOS_ERR/VOS_OK
- 修改历史  :
-   1.日    期   : 2015年3月2日
-     作    者   : x00263027
-     修改内容   : creat
-*****************************************************************************/
+
 VOS_UINT32 CBT_AcpuSendSegData(VOS_UINT8 * pucSrc, VOS_UINT16 usSrcLen)
 {
     VOS_UINT16                         usHdlcEncLen;
@@ -568,19 +465,7 @@ VOS_UINT32 CBT_AcpuSendSegData(VOS_UINT8 * pucSrc, VOS_UINT16 usSrcLen)
     return ulResult;
 }
 
-/*****************************************************************************
- Prototype      : CBT_AcpuSendData
- Description    : CBT sends the data to tool side.
- Input          : pstMsg      - 待发送数据.
-                  usMsgLen    - 数据长度.
- Output         : void
- Return Value   : VOS_OK - Success.
 
- History        : ---
-    Date        : 2015-02-25
-    Author      : x00263027
-    Modification: Created function
- *****************************************************************************/
 VOS_UINT32 CBT_AcpuSendData(CBT_UNIFORM_MSG_STRU * pstMsg, VOS_UINT16 usMsgLen)
 {
     VOS_UINT8                           ucCurSegNum = 0; /*当前段序号*/
@@ -736,19 +621,7 @@ VOS_VOID CBT_AcpuSendContentChannel(CBT_MODEM_SSID_STRU stModemSsid, CBT_COMPONE
 }
 
 
-/*****************************************************************************
- 函 数 名  : CBT_AcpuRcvSucShow
- 功能描述  : 打印数据从PC侧发往UE侧时正常处理的数据
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2015年3月16日
-     作    者  : x00263027
-     修改内容  : Creat Function
-*****************************************************************************/
+
 VOS_VOID CBT_AcpuRcvSucShow(VOS_VOID)
 {
     CBT_ACPU_PC_UE_SUC_STRU              *pstPcToUeSucRecord = &(g_stAcpuCbtCtrlInfo.stPcToUeSucRecord);
@@ -783,19 +656,7 @@ VOS_VOID CBT_AcpuRcvSucShow(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CBT_AcpuRcvErrShow
- 功能描述  : 打印数据从PC侧发往UE侧时异常数据
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2015年3月016日
-     作    者  : x00263027
-     修改内容  : Creat Function
-*****************************************************************************/
+
 VOS_VOID CBT_AcpuRcvErrShow(VOS_VOID)
 {
     CBT_ACPU_PC_UE_FAIL_STRU             *pstPcToUeErrRecord = &(g_stAcpuCbtCtrlInfo.stPcToUeErrRecord);
@@ -851,19 +712,7 @@ VOS_VOID CBT_AcpuRcvErrShow(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CBT_OpenLog
- 功能描述  : 打印当前OM通道的状态
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2015年11月18日
-     作    者  : j00334311
-     修改内容  : Creat Function
-*****************************************************************************/
+
 VOS_VOID CBT_AcpuOpenLog(VOS_UINT32 ulFlag)
 {
     g_ulCbtAcpuDbgFlag = ulFlag;

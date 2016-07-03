@@ -242,7 +242,6 @@ extern USHORT g_usIpPortReservedEnd;
 #define IPVLAN_VLANID_MASK  0xfff
 #define IPGETPRECEDENCE(pIp) ((pIp->ip_chTOS>>5)&0x07)
 
-/*Added by wangbin, for DTS2015102607923 ，解决发送IP报文频繁使用TCPIP_Rand_Safe导致性能恶化问题, 2015/10/24 */
 #define IPID_UPDATECOUNT     0x400
 
 /*

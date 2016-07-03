@@ -1,32 +1,4 @@
-/*******************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : MM_Def.h
-  Description : MM全局控制数据结构宏定义文件
-  History     :
-      1.  张志勇      2003.11.25   新规作成
-      2.  s46746   2006-03-17   根据问题单A32D02502修改
-      3.日    期   : 2006年11月6日
-        作    者   : s46746
-        修改内容   : 问题单号:A32D06442
-      4.日    期   : 2007年3月5日
-        作    者   : liurui id:40632
-        修改内容   : 根据问题单号：A32D09094
-      5.日    期   : 2007年3月20日
-        作    者   : s46746
-        修改内容   : 问题单号：A32D09497
-      6.日    期   : 2007年6月26日
-        作    者   : s46746
-        修改内容   : 问题单号：A32D11968,GSM接入层最大接入次数为8,每次约0.5秒,因此保护时间设置为4秒
-      7.日    期   : 2009年02月28日
-        作    者   : s46746
-        修改内容   : 根据问题单AT2D09546,WCDMA单模下，A5/1能力设置为不支持
-      8.日    期   : 2009年07月24日
-        作    者   : z40661
-        修改内容   : 异系统重选后，紧急呼叫不能接通
-      9.日    期   : 2009年11月09日
-        作    者   : s46746
-        修改内容   : 问题单号：AT2D15401,CS关机Detach保护时间太短，没有等到网络释放连接就超时主动释放了
-*******************************************************************************/
+
 #ifndef _MM_DEF_H_
 #define _MM_DEF_H_
 
@@ -98,12 +70,8 @@ extern "C" {
 /* MM Timer个数，增加新定时器，请同步更新。 */
 
 
-/* Modified by w00176964 for VoLTE_PhaseII 项目, 2013-9-22, begin */
 
-/* Deleted by y00245242 for V3R3C60_eCall项目, 2014-4-9, begin */
-/* Deleted by y00245242 for V3R3C60_eCall项目, 2014-4-9, end */
 
-/* Modified by w00176964 for VoLTE_PhaseII 项目, 2013-9-22, end */
 
 
 
@@ -156,9 +124,7 @@ extern "C" {
 #define     NAS_MM_TIMER_PROTECT_DETACH_NOT_BY_SYSCFG_VALUE       (90000)
 
 
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-11, begin */
 #define     MM_TIMER_WAIT_GET_HO_SECU_INFO_CNF_LEN_VALUE           (5000)     /* MM等待获取LMM的CS安全上下文的定时器时长 */
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-11, end */
 
 
 #define     MM_TIMER_MAX_VALUE                             (18*60*60*1000)      /*OSA定时器最大长度*/
@@ -166,10 +132,8 @@ extern "C" {
 /* 以下宏定义仅函数: MM_TimerStop 有效 */
 #define     MM_TIMER_STOP_ALL                          100                      /* 停止当前已经启动的所有定时器             */
 
-/* Added by y00245242 for V3R3C60_eCall项目, 2014-4-9, begin */
 #define     MM_TIMER_T3242_VALUE                                    (12*3600*1000)  /* 时长12小时 */
 #define     MM_TIMER_T3243_VALUE                                    (12*3600*1000)  /* 时长12小时 */
-/* Added by y00245242 for V3R3C60_eCall项目, 2014-4-9, end */
 
 
 /*****************************************************************************/
@@ -257,10 +221,8 @@ extern "C" {
 
 #define     MM_EVENT_ID_TC_MESSAGE             73
 
-/* Added by y00245242 for V3R3C60_eCall项目, 2014-4-1, begin */
 #define     MM_EVENT_ID_T3242_EXPIRED          (90)
 #define     MM_EVENT_ID_T3243_EXPIRED          (91)
-/* Added by y00245242 for V3R3C60_eCall项目, 2014-4-1, end */
 
 #define     MM_EVENT_ID_STATUS_95              195
 #define     MM_EVENT_ID_STATUS_96              196

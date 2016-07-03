@@ -103,21 +103,7 @@ extern VOS_UINT8                        g_ucPppConfigWins;
    5 函数实现
 ******************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : PPP_InitHdlcConfig
- 功能描述  : 根据PPP ID初始化HDLC相关配置，主要是配置软件还是硬件解封装，
-             当前实现还只有一路PPP，直接根据g_ulHDLCConfig决定该路配置
- 输入参数  : usPppId    -   PPP实体ID
- 输出参数  :
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012-04-19
-    作    者   : l00164359
-    修改内容   : Created
-*****************************************************************************/
 VOS_UINT32 PPP_InitHdlcConfig(PPP_ID usPppId)
 {
     PPP_HDLC_CONFIG_STRU               *pstHdlcConfig;
@@ -396,21 +382,7 @@ VOS_UINT32 Ppp_ReleaseRawDataPppReq ( PPP_ID usPppId)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_SndTeConfigInfo
- 功能描述  : 发送PDP激活请求
- 输入参数  : usPppId            -   PPP实体ID
-             pPppReqConfigInfo  -   PDP激活请求参数
- 输出参数  :
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011-03-09
-    作    者   : l00164359
-    修改内容   : Created
-*****************************************************************************/
 VOS_UINT32 PPP_ProcTeConfigInfo (VOS_UINT16 usPppId, PPP_REQ_CONFIG_INFO_STRU *pPppReqConfigInfo)
 {
     AT_PPP_REQ_CONFIG_INFO_STRU         stPppAtReqConfigInfo;
@@ -421,39 +393,13 @@ VOS_UINT32 PPP_ProcTeConfigInfo (VOS_UINT16 usPppId, PPP_REQ_CONFIG_INFO_STRU *p
     return At_RcvTeConfigInfoReq(usPppId,&stPppAtReqConfigInfo);
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_ProcPppRelEvent
- 功能描述  : PPP主动请求PDP去激活
- 输入参数  : usPppId    -   PPP实体ID
- 输出参数  :
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011-03-09
-    作    者   : l00164359
-    修改内容   : Created
-*****************************************************************************/
 VOS_UINT32 PPP_ProcPppRelEvent (VOS_UINT16 usPppId)
 {
     return At_RcvPppReleaseInd (usPppId);
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_ProcPppDisconnEvent
- 功能描述  : PPP链接断开通知
- 输入参数  : usPppId    -   PPP实体ID
- 输出参数  :
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011-03-09
-    作    者   : l00164359
-    修改内容   : Created
-*****************************************************************************/
 VOS_UINT32 PPP_ProcPppDisconnEvent (VOS_UINT16 usPppId)
 {
     return Ppp_SndPPPDisconnIndtoAT(usPppId);
@@ -583,23 +529,7 @@ VOS_UINT32 PPP_RcvAtCtrlOperEvent(VOS_UINT16 usPppId, PPP_AT_CTRL_OPER_TYPE_ENUM
 }
 
 
-/*****************************************************************************
- Prototype      : Ppp_SndPPPDisconnIndtoAT
- Description    : PPP协议释放后再通知AT模块拉管脚信号,
-                  原本XP上,断开时直接拉管脚信号,但这在MAC操作系统上有缺陷
-                  MAC操作系统,断开(PC主动或网侧主动)时都需要完成PPP的断开协商
-                  否则MAC上的网络接口状态仍然会显示是连接态
-                  该接口用于通知AT模块拉管脚信号,在PPP完成断开协商时调用
- Input          : PPPID
- Output         : ---
- Return Value   : ---VOS_UINT32
- Calls          : ---
- Called By      : ---
- History        : ---
-  1.Date        : 2010-03-05
-    Author      : x00138766
-    Modification: Created function
-*****************************************************************************/
+
 VOS_UINT32 Ppp_SndPPPDisconnIndtoAT(VOS_UINT16 usPppId)
 {
     AT_PPP_PROTOCOL_REL_IND_MSG_STRU    *pstMsg;
@@ -647,21 +577,7 @@ VOS_UINT32 Ppp_SndPPPDisconnIndtoAT(VOS_UINT16 usPppId)
 }
 
 
-/*****************************************************************************
- 函 数 名  : PPP_SavePcoInfo
- 功能描述  : 保存PCO信息
- 输入参数  : usPppId -   PPP id
-             pstAtPppIndConfigInfo - AT发送的PCO信息
- 输出参数  :
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011-03-09
-    作    者   : l00164359
-    修改内容   : Created
-*****************************************************************************/
 VOS_UINT32 PPP_SavePcoInfo
 (
     PPP_ID usPppId,
@@ -741,21 +657,7 @@ VOS_UINT32 PPP_SavePcoInfo
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_GetReqConfigInfo
- 功能描述  : 设置PDP激活请求参数
- 输入参数  : pstPppReqConfigInfo    -   PPP_REQ_CONFIG_INFO_STRU指针
-             pstPppAtReqConfigInfo  -   PPP_AT_REQ_CONFIG_INFO_STRU指针
- 输出参数  :
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011-03-09
-    作    者   : l00164359
-    修改内容   : Created
-*****************************************************************************/
 VOS_VOID PPP_GetReqConfigInfo
 (
     PPP_REQ_CONFIG_INFO_STRU    *pstPppReqConfigInfo,

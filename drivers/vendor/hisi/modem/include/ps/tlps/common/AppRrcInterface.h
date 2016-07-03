@@ -1,14 +1,4 @@
-/******************************************************************************
 
-    Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : AppRrcInterface.h
-  Description     : AppRrcInterface.h header file
-  History         :
-     1.XiaoJun 58160       2009-4-29     Draft Enact
-	 2.lishangfeng  55206 2011-09-11 DTS2011091100356:候补信息维护策略改进，并且能够支持多Band时的维护
-******************************************************************************/
 
 #ifndef __APPRRCINTERFACE_H__
 #define __APPRRCINTERFACE_H__
@@ -84,7 +74,6 @@ extern "C" {
 
 /* 受限列表中保存最大的条目数 */
 #define RRC_APP_MAX_LIMITED_ITEM_COUNT         (32)
-/*f00295098新增测量消息中上报小区最大个数*/
 #define LRRC_LCSEL_INTRA_CELL_REPORT_NUM 4
 #define LRRC_LCSEL_INTER_CELL_REPORT_NUM 4
 #define LRRC_LCSEL_UTRAN_CELL_REPORT_NUM 4
@@ -135,19 +124,15 @@ enum APP_RRC_MSG_ID_ENUM
     ID_APP_LRRC_FAST_DORM_CFG_NTF          = (PS_MSG_ID_APP_TO_RRC_BASE + 0x12),   /* _H2ASN_MsgChoice APP_LRRC_FAST_DORM_CFG_NTF_STRU  */
     ID_APP_LRRC_GET_NCELL_INFO_REQ      = (PS_MSG_ID_APP_TO_RRC_BASE + 0x13),   /* _H2ASN_MsgChoice APP_LRRC_GET_NCELL_INFO_REQ_STRU  */
 
-    /* begin:V7R2-DT 移植强制切换，重选和禁止限制小区接入等功能,c00134407,2014/3/26 */
     /* yangfan Prob Begin */
     ID_APP_LRRC_INQ_TCFG_TXPOWER_REQ    = (PS_MSG_ID_APP_TO_RRC_BASE + 0x14),   /* _H2ASN_MsgChoice APP_RRC_INQ_TCFG_TXPOWER_REQ_STRU */
     /* yangfan Prob End */
     ID_APP_RRC_FORCE_HOANDCSEL_REQ        = (PS_MSG_ID_APP_TO_RRC_BASE + 0x15),/*_H2ASN_MsgChoice APP_RRC_FORCE_HOANDCSEL_REQ_STRU*/
     ID_APP_RRC_BARCELL_ACCESS_REQ        = (PS_MSG_ID_APP_TO_RRC_BASE + 0x16),/*_H2ASN_MsgChoice APP_RRC_BARCELL_ACCESS_REQ_STRU*/
-    /* end:V7R2-DT 移植强制切换，重选和禁止限制小区接入等功能,c00134407,2014/3/26 */
     ID_APP_LRRC_SET_UE_REL_VERSION_REQ      = (PS_MSG_ID_APP_TO_RRC_BASE + 0x17), /* _H2ASN_MsgChoice APP_LRRC_SET_UE_REL_VERSION_REQ_STRU  */
 
-    /* begin:add for 路测融合 */
     ID_DT_LRRC_MEAS_REPORT_REQ         = (PS_MSG_ID_APP_TO_RRC_BASE + 0x18),
     ID_DT_LRRC_SYNC_REPORT_REQ         = (PS_MSG_ID_APP_TO_RRC_BASE + 0x19),
-    /* end:add for 路测融合 */
 
     ID_APP_LRRC_SET_TLPS_PRINT2LAYER_REQ    = (PS_MSG_ID_RRC_TO_APP_BASE + 0x18),
 
@@ -231,13 +216,11 @@ enum APP_RRC_MSG_ID_ENUM
     ID_RRC_APP_DAM_BAR_LIST_DBG_INFO_IND    = (PS_MSG_ID_RRC_TO_APP_BASE + 0x46), /* _H2ASN_MsgChoice LRRC_APP_DAM_BAR_LIST_DBG_INFO_IND_STRU */
     ID_LRRC_APP_SET_TLPS_PRINT2LAYER_CNF = (PS_MSG_ID_RRC_TO_APP_BASE + 0x47),
 
-    /* begin:add for 路测融合 */
     ID_LRRC_DT_MEAS_REPORT_CNF   = (PS_MSG_ID_RRC_TO_APP_BASE + 0x48),
     ID_LRRC_DT_SYNC_REPORT_CNF   = (PS_MSG_ID_RRC_TO_APP_BASE + 0x49),
     ID_LRRC_DT_MEAS_INFO_IND     = (0x988),/* 根据对外接口，路测测量Ind消息id为0x988，等于id_lrrc_lphy_conn_meas_ind */
     ID_LRRC_DT_SYNC_INFO_IND     = (0x904),/* 根据对外接口，路测测量Ind消息id为0x904，等于id_lrrc_lphy_sync_info_ind */
     ID_LRRC_DT_OUT_OF_SYNC_INFO_IND = (0x90f),/* 根据对外接口，路测测量Ind消息id为0x90f，等于id_lrrc_lphy_out_of_sync_info_ind */
-    /* end:add for 路测融合 */
 
     ID_RRC_PTL_CSG_CELL_BAR_TIMER_INFO_IND   = (PS_MSG_ID_RRC_TO_APP_BASE + 0x50),
 
@@ -1137,7 +1120,6 @@ typedef struct
 
 /* niuxiufan DT end */
 
-/* begin:V7R2-DT 移植强制切换、重选和禁止限制小区接入等功能,c00134407,2014/3/26 */
 typedef struct
 {
     VOS_MSG_HEADER                                          /*_H2ASN_Skip*/
@@ -1174,7 +1156,6 @@ typedef struct
     VOS_UINT8                           ucRsv[3];
 }APP_RRC_BARCELL_ACCESS_REQ_STRU;
 
-/* end:V7R2-DT 移植强制切换、重选和禁止限制小区接入等功能,c00134407,2014/3/26 */
 
 /*****************************************************************************
  结构名    : APP_RRC_MSG_DATA

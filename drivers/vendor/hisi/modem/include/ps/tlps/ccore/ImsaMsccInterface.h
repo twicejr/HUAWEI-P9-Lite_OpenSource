@@ -1,20 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : ImsaMsccInterface.h
-  版 本 号   : 初稿
-  作    者   : yanglinping y00245242
-  生成日期   : 2015年1月22日
-  功能描述   : IMSA和MSCC接口头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年1月22日
-    作    者   : yanglinping y00245242
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifndef __IMSAMSCCINTERFACE_H__
@@ -138,13 +122,7 @@ enum MSCC_IMSA_IMS_VOICE_CAP_ENUM
 };
 typedef VOS_UINT8 MSCC_IMSA_IMS_VOICE_CAP_ENUM_UINT8;
 
-/*****************************************************************************
- 结构名    : MSCC_IMSA_VOICE_DOMAIN_ENUM_UINT32
- 结构说明  : VOIDE DOMAIN类型
-  1.日    期   : 2015年04月13日
-    作    者   : f00179208
-    修改内容   : 新建
- *****************************************************************************/
+
 enum MSCC_IMSA_VOICE_DOMAIN_ENUM
 {
     MSCC_IMSA_VOICE_DOMAIN_CS_ONLY            = 0,    /* CS voice only */
@@ -155,13 +133,7 @@ enum MSCC_IMSA_VOICE_DOMAIN_ENUM
     MSCC_IMSA_VOICE_DOMAIN_BUTT
 };
 typedef VOS_UINT32  MSCC_IMSA_VOICE_DOMAIN_ENUM_UINT32;
-/*****************************************************************************
- 结构名    : MSCC_IMSA_START_TYPE_ENUM_UINT32
- 结构说明  : 开启IMS协议栈的操作类型
-  1.日    期   : 2015年07月03日
-    作    者   : f00179208
-    修改内容   : 新建
- *****************************************************************************/
+
 enum MSCC_IMSA_START_TYPE_ENUM
 {
     MSCC_IMSA_START_TYPE_POWER_ON            = 0,
@@ -170,13 +142,7 @@ enum MSCC_IMSA_START_TYPE_ENUM
 };
 typedef VOS_UINT32  MSCC_IMSA_START_TYPE_ENUM_UINT32;
 
-/*****************************************************************************
- 结构名    : MSCC_IMSA_STOP_TYPE_ENUM_UINT32
- 结构说明  : 关闭IMS协议栈的操作类型
-  1.日    期   : 2015年07月03日
-    作    者   : f00179208
-    修改内容   : 新建
- *****************************************************************************/
+
 enum MSCC_IMSA_STOP_TYPE_ENUM
 {
     MSCC_IMSA_STOP_TYPE_POWER_OFF            = 0,

@@ -1,26 +1,4 @@
-/*******************************************************************************
-*
-*
-*                Copyright 2011, Huawei Technologies Co. Ltd.
-*                            ALL RIGHTS RESERVED
-*
-*-------------------------------------------------------------------------------
-*
-*                              lldp_def.h
-*
-*  Project Code: V2R3C06
-*   Module Name: 
-*  Date Created: 2011-09-27
-*        Author: liangjicheng 00103192
-*   Description: 内部宏定义
-*
-*-------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  -----------------------------------------------------------------------------
-*  2011-09-27   liangjicheng 00103192   Create
-*
-*******************************************************************************/
+
 #ifndef _LLDP_DEF_H_
 #define _LLDP_DEF_H_
 
@@ -68,8 +46,8 @@ extern "C"{
 
 
 #define LLDP_TIMEER_PERIOD 1000
-#define LLDP_QUEUE_LENGHTH    1024    /*Modified by luogaowei,扩展接收报文队列和控制事件队列为1024，DTS2013042202597*/
-#define LLDP_TIMER_QUEUE_LENGTH 1024 /*扩展定时器队列为1024,DTS2013040700361*/
+#define LLDP_QUEUE_LENGHTH    1024
+#define LLDP_TIMER_QUEUE_LENGTH 1024
 
 #define MID_LLDP    MID_COMP_LLDP
 
@@ -78,13 +56,11 @@ extern "C"{
 #define LLDP_GLOBALCFG_TXHOLDMULTIPLIER     2
 #define LLDP_GLOBALCFG_REINITDELAY          3
 #define LLDP_GLOBALCFG_FASTTXPACKETNUM      4
-/*Begin of added by w00217009, Hert新需求,支持配置快速发送时间间隔msgFastTx, DTS2013011606002*/
 #define LLDP_GLOBALCFG_MSGFASTTX            5
 
 /*LLDP 默认全局配置信息,start*/
 #define LLDP_DEFAULT_MSG_TX_INTERVAL      30     /*发送的默认时间间隔，默认30秒*/
 #define LLDP_MIN_MSG_TX_INTERVAL          1      /*发送的最小时间间隔*/
-/*Begin of modify by w00217009, 兼容05版报文发送间隔最大可配由3600改为32768, DTS2013011606446*/
 #define LLDP_MAX_MSG_TX_INTERVAL          32768  /*发送的最大时间间隔*/
 
 #define LLDP_DEFAULT_MSG_TX_HOLD          4      /*发送的默认时间间隔系数，默认4*/
@@ -102,7 +78,6 @@ extern "C"{
 
 #define LLDP_DEFAULT_TXCREDITMAX              5     /*txCreditMax*/
 #define LLDP_DEFAULT_MSG_TX_FAST              1     /*快速发送间隔，默认1秒*/
-/*Begin of added by w00217009, Hert新需求,支持配置快速发送时间间隔msgFastTx, DTS2013011606002*/
 #define LLDP_MIN_MSG_TX_FAST              1      /*FAST模式下发送的最小时间间隔*/
 #define LLDP_MAX_MSG_TX_FAST              8192   /*FAST模式下发送的最大时间间隔*/
 
@@ -214,10 +189,8 @@ Chassis ID TLV(4B),Port ID TLV(4B),Time To Live TLV(4B),Management Address TLV(1
 #define LLDP_XTPOVERIPV6 20
 #define LLDP_RESERVED_SUBTYPE 21
 
-/* Modified by limin00188004, 系统能力TLV默认的是Route, 2011/11/8   问题单号:DTS2011110800968 */
 #define LLDP_SYSTEM_CAPABILITIES_BRIDGE                 0x04
 #define LLDP_SYSTEM_CAPABILITIES_ROUTE                  0x10
-/*End of Modified by limin00188004, 2011/11/8   问题单号:DTS2011110800968 */
 
 /*LLDP TLV type=127 information, start*/
 #define LLDP_ORGSPEC_TLVINFO_SUBTYPE1   3  /*TLV information string中标示该TLV为802.1或802.3字段的长度，单位字节*/
@@ -321,27 +294,20 @@ Chassis ID TLV(4B),Port ID TLV(4B),Time To Live TLV(4B),Management Address TLV(1
 #define LLDP_TLV_BIT_LINK_AGGREGATION 0x0100  /*Link Aggregation TLV*/
 #define LLDP_TLV_BIT_POWER_VIA_MDI    0x0200  /*Power Via Mdi TLV*/
 #define LLDP_TLV_BIT_PPVID            0x0400  /*Port and Protocol Vlan ID TLV*/
-/* Modified by limin00188004, 查询处邻居节点的ulTlvValidFlag字段，
-    标示Vlan Name TLV和Management VID TLV的Bit位反了, 2012/9/5   问题单号:DTS2012090408826 */
+
 #define LLDP_TLV_BIT_VLAN_NAME        0x0800  /*VLAN NAME TLV*/
 #define LLDP_TLV_BIT_MANAGE_VID       0x1000  /*Management VID TLV*/
-/*End of Modified by limin00188004, 2012/9/5   问题单号:DTS2012090408826 */
 
-/* Modified by limin00188004, TLV的bit位冲突，报文和TLV的统计有误, 
-    2012/9/5   问题单号:DTS2012090306833 */
-/*Added by guo00178934, 补充TLV位编码, 2011/11/8   问题单号:DTS2011110800426 */
+
 #define LLDP_TLV_BIT_CHASSIS_ID       0x00010000
 #define LLDP_TLV_BIT_PORT_ID          0x00020000
 #define LLDP_TLV_BIT_TIME_TO_LIVE     0x00040000
 #define LLDP_TLV_BIT_END_OF_LLDPDU    0x00080000
-/* End of Added by guo00178934, 2011/11/8   问题单号:DTS2011110800426 */
 
 /*Remote中ulTlvValidFlag的BIT位, 携带的可选TLV有效标志（bit标识）,END*/
 
-/*Added by guo00178934, LLDP报文解析错误码, 当前有效的TLV错误标识0xFFFF, 支持16种TLV, 
-2011/10/29   问题单号:20110927 */
 
-/*Added by guo00178934, 补充TLV错误位编码, 2011/11/8   问题单号:DTS2011110800426 */
+
 /*错误的TLV，导致报文丢弃，如前3个基本TLV乱序、重复，缺少End TLV等*/
 #define LLDP_TLV_ERR_DROP_PKT               0x00100000 
 
@@ -351,14 +317,11 @@ Chassis ID TLV(4B),Port ID TLV(4B),Time To Live TLV(4B),Management Address TLV(1
 
 /*不识别的TLV，跳过该TLV，继续解析后面的TLV*/
 #define LLDP_TLV_ERR_UNKNOWN             0x00400000
-/* End of Added by guo00178934, 2011/11/8   问题单号:DTS2011110800426 */
 
 /*错误的TLV，不符合协议的规定，不包括不识别的TLV*/
 #define LLDP_TLV_ERR_ALL                0x003FFFFF
 
-/*Added by guo00178934, 补充TLV错误位编码, 2011/11/8   问题单号:DTS2011110800426 */
 #define LLDP_PACKET_ERR_OTHER            0x00800000
-/* End of Added by guo00178934, 2011/11/8   问题单号:DTS2011110800426 */
 
 /*错误报文的统计*/
 #define LLDP_PACKET_ERR_ALL    (LLDP_TLV_ERR_DROP_PKT         \
@@ -370,12 +333,10 @@ Chassis ID TLV(4B),Port ID TLV(4B),Time To Live TLV(4B),Management Address TLV(1
 
 #define LLDP_PACKET_DROP                 0x08000000
 
-/*End of Modified by limin00188004, 2012/9/5   问题单号:DTS2012090306833 */
 
 #define LLDP_AGENT_REM_AGE              0x20000000
 #define LLDP_PACKET_SEND                0x40000000
 #define LLDP_PACKET_RECEIVE             0x80000000
-/* End of Added by guo00178934, 2011/10/29   问题单号:20110927 */
 
 /*******************************************************************************/
 typedef enum enumLLDP_8023_TLV_SUBTYPE
@@ -479,7 +440,6 @@ typedef enum enumLLDP_ADMIN_STATUS
     (cp) ++ ; \
 }
 
-/*Added by guo00178934, 防止强制转换为Long/Short时,字节不对齐引发问题, 2011/11/8   问题单号:DTS2011110800968 */
 /* 将USHORT型值按照网络字节顺序放入连续缓存中 */
 #define LLDP_PUTSHORT(s, cp) \
 { \
@@ -510,7 +470,6 @@ typedef enum enumLLDP_ADMIN_STATUS
     (s) = (USHORT)((((UCHAR *)(cp))[0] << 8) | (((UCHAR *)(cp))[1])); \
     (cp) += 2 ; \
 }
-/* End of Added by guo00178934, 2011/11/11   问题单号:DTS2011110800968 */
 
 
 
@@ -556,13 +515,11 @@ typedef enum enumLLDP_ADMIN_STATUS
   ((pstGlobalCfgInfoA)->ulTxInterval == (pstGlobalCfgInfoB)->ulTxInterval   \
   && (pstGlobalCfgInfoA)->ulTxHoldMultiplier == (pstGlobalCfgInfoB)->ulTxHoldMultiplier) 
 
-/*Added by zhang00187023,管理地址比较由字符串比较改为内存比较, 2011/11/11   问题单号:DTS2011111104717 */
 #define LLDP_MANAGEMENT_INFO_EQUAL(pstManagementInfoA, pstManagementInfoB)   \
   ((pstManagementInfoA)->ulManAddrSubtype == (pstManagementInfoB)->ulManAddrSubtype   \
   && (LLDP_ManageAddressCmp((pstManagementInfoA)->szManAddr, (pstManagementInfoB)->szManAddr,(pstManagementInfoA)->ulManAddrSubtype))  \
   && (pstManagementInfoA)->ulManAddrIfSubtype == (pstManagementInfoB)->ulManAddrIfSubtype \
   && (pstManagementInfoA)->ulManAddrIfId == (pstManagementInfoB)->ulManAddrIfId) 
-/* End of Added by zhang00187023, 2011/11/11   问题单号:DTS2011111104717 */
 
 #define LLDP_PVID_INFO_EQUAL(pstPvidInfoA, pstPvidInfoB)   \
     ((pstPvidInfoA)->usPvid == (pstPvidInfoB)->usPvid) 
@@ -606,19 +563,15 @@ typedef enum enumLLDP_ADMIN_STATUS
 #define LLDP_MAC_INDEX_CFG(ulMacIndex) ((ulMacIndex) - 1)
 #define LLDP_MAC_INDEX_GET(ulMacIndex) ((ulMacIndex) + 1)
 
-/*Added by guo00178934, 多播组有效性判断, 2011/11/8   问题单号:DTS2011110400121  */
 #define LLDP_DEST_ADDR_GROUP_VALID(ulDestAddrGroup)  \
   ((ulDestAddrGroup) == LLDP_NEAREST_BRIDGE ||          \
   (ulDestAddrGroup) == LLDP_NEAREST_NON_TPMR_BRIDGE ||  \
   (ulDestAddrGroup) == LLDP_NEAREST_CUSTOMER_BRIDGE)
-/* End of Added by guo00178934, 2011/11/8   问题单号:DTS2011110400121  */
 
-/*Added by limin00188004, 判断该TLV是否标准的头3个基本TLV, 2012/9/5   问题单号:DTS2012090306833 */
 #define LLDP_CHECK_FIRST_3BASIC_TLV(usTLVType)\
     ((LLDP_TLV_TYPE_CHASSIS_ID == usTLVType)\
         || (LLDP_TLV_TYPE_PORT_ID == usTLVType)\
         || (LLDP_TLV_TYPE_TIME_TO_LIVE == usTLVType))
-/* End of Added by limin00188004, 2012/9/5   问题单号:DTS2012090306833 */
 
 #ifdef  __cplusplus
 }

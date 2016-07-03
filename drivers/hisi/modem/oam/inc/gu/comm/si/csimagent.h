@@ -1,18 +1,6 @@
 
 
-/************************************************************************
-  Copyright   : 2013-2015, Huawei Tech. Co., Ltd.
-  File name   : csimagent.h
-  Author      : l00256032
-  Version     : V900R001
-  Date        : 2013-12-19
-  Description : L+C共SIM卡项目头文件相关定义---
-  History     :
-   1.Date:2013-12-19
-     Author: L47619
-     Modification:create
 
-************************************************************************/
 
 #ifndef __CSIMAGENT_H__
 #define __CSIMAGENT_H__

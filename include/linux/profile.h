@@ -34,6 +34,11 @@ static inline int create_proc_profile(void)
 enum profile_type {
 	PROFILE_TASK_EXIT,
 	PROFILE_MUNMAP
+#ifdef CONFIG_HUAWEI_UID_IO_STATS
+	,
+	PROFILE_TASK_END_FORK,
+	PROFILE_END_SETRESUID
+#endif
 };
 
 #ifdef CONFIG_PROFILING
@@ -67,6 +72,10 @@ struct mm_struct;
 
 /* task is in do_exit() */
 void profile_task_exit(struct task_struct * task);
+#ifdef CONFIG_HUAWEI_UID_IO_STATS
+void profile_task_end_fork(struct task_struct * task);
+void profile_end_setresuid(struct task_struct * task);
+#endif
 
 /* task is dead, free task struct ? Returns 1 if
  * the task was taken, 0 if the task should be freed.

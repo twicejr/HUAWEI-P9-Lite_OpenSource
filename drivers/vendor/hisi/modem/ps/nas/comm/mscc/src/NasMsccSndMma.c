@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMsccSndMma.c
-  版 本 号   : 初稿
-  作    者   : y00245242
-  生成日期   : 2015年01月27日
-  功能描述   : MSCC发送MMA消息处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年01月27日
-    作    者   : y00245242
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -41,21 +26,7 @@ extern "C"{
 /*****************************************************************************
   3 函数定义
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaRssiInd
- 功能描述  : 发送信号质量
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年1月30日
-   作    者   : x00314862
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 
 VOS_VOID NAS_MSCC_SndMmaRssiInd(MMC_MSCC_RSSI_IND_STRU *pstMsg)
 
@@ -90,21 +61,7 @@ VOS_VOID NAS_MSCC_SndMmaRssiInd(MMC_MSCC_RSSI_IND_STRU *pstMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaMmInfo
- 功能描述  : 上报网络下发的MM INFO消息中包含的相关信息
- 输入参数  : NAS_MM_INFO_IND_STRU *pstMmInfo - MM INFO结构的指针
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年02月02日
-   作    者   : x00314862
-   修改内容   : 新函数体
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaMmInfo(MMC_MSCC_MM_INFO_IND_STRU* pstMsg)
 {
     MSCC_MMA_MM_INFO_IND_STRU           *pstMmInfoInd       = VOS_NULL_PTR;
@@ -139,23 +96,7 @@ VOS_VOID NAS_MSCC_SndMmaMmInfo(MMC_MSCC_MM_INFO_IND_STRU* pstMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaDataTranAttri
- 功能描述  : 上报当前PDP激活情况
- 输入参数  : ucDataTranAttri:PDP激活标志
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月20日
-   作    者   : zhoujun \40661
-   修改内容   : 新生成函数
- 2.日    期   : 2013年3月30日
-   作    者   : l00167671
-   修改内容   : 主动上报AT命令控制下移至C核
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaDataTranAttri(
     MMC_MSCC_DATATRAN_ATTRI_IND_STRU   *pstMsg
 )
@@ -191,20 +132,7 @@ VOS_VOID NAS_MSCC_SndMmaDataTranAttri(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaImsVoiceCapInd
- 功能描述  : 向mma发送IMS VOICE CAP消息
- 输入参数  : ucImsVoiceAvail---IMS voice是否可用
- 输出参数  : 无
- 返 回 值  : 无
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年01月27日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaImsVoiceCapInd(
     VOS_UINT8                           ucImsVoiceAvail
 )
@@ -242,20 +170,7 @@ VOS_VOID NAS_MSCC_SndMmaImsVoiceCapInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaImsVoiceCapInd
- 功能描述  : 向mma发送IMS VOICE CAP消息
- 输入参数  : pstNwCapInfoInd -- 网络能力指示消息
- 输出参数  : 无
- 返 回 值  : 无
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年01月27日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaNetworkCapabilityInfoInd(
     MMC_MSCC_NETWORK_CAPABILITY_INFO_IND_STRU              *pstNwCapInfoInd
 )
@@ -296,20 +211,7 @@ VOS_VOID NAS_MSCC_SndMmaNetworkCapabilityInfoInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaRegResultInd
- 功能描述  : 向mma发送IMS VOICE CAP消息
- 输入参数  : ucImsVoiceAvail---IMS voice是否可用
- 输出参数  : 无
- 返 回 值  : 无
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年01月27日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaRegResultInd(
     MMC_MSCC_REG_RESULT_IND_STRU       *pstMmcMsccRegResultInd
 )
@@ -345,22 +247,7 @@ VOS_VOID NAS_MSCC_SndMmaRegResultInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMma3gppSysInfoInd
- 功能描述  : 向mma发送system information indication消息
- 输入参数  : pstMmcMsccSysInfoInd -- MMC系统信息消息
- 输出参数  : 无
- 返 回 值  : 无
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年01月27日
-   作    者   : y00245242
-   修改内容   : 新生成函数
- 1.日    期   : 2015年02月02日
-   作    者   : x00314862
-   修改内容   : 新函数体
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMma3gppSysInfoInd(
     MMC_MSCC_SYS_INFO_IND_STRU         *pstMmcMsccSysInfoInd
 )
@@ -396,23 +283,7 @@ VOS_VOID NAS_MSCC_SndMma3gppSysInfoInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaServiceStatusInd
- 功能描述  : 向mma发送3gpp的服务状态信息
- 输入参数  : pstMmcMsccSrvStatusInd -- MMC服务状态信息
- 输出参数  : 无
- 返 回 值  : 无
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年01月27日
-   作    者   : y00245242
-   修改内容   : 新生成函数
- 1.日    期   : 2015年02月02日
-   作    者   : x00314862
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaServiceStatusInd(
     MMC_MSCC_SERVICE_STATUS_IND_STRU   *pstMmcMsccSrvStatusInd
 )
@@ -448,24 +319,7 @@ VOS_VOID NAS_MSCC_SndMmaServiceStatusInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaPlmnSelectStartInd
- 功能描述  : 向MMA上报搜网开始的标示
- 输入参数  : enFlag
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年10月09日
-   作    者   : l00208543
-   修改内容   : DTS2013100904573 新生成函数
- 2.日    期   : 2013年10月09日
-   作    者   : l00208543
-   修改内容   : CDMA Iteration 15 Modified:修改消息名
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaSystemAcquireStartInd(
     MSCC_MMA_ACQ_SYS_TYPE_ENUM_UINT32   enSysType
 )
@@ -499,25 +353,7 @@ VOS_VOID NAS_MSCC_SndMmaSystemAcquireStartInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaDetachInd
- 功能描述  : 向MMA发送TAFMMC_DETACH_IND消息
- 输入参数  : VOS_UINT32                          ulCnDomainId
-             VOS_UINT32                          ulDetachType
-             VOS_UINT32                          ulCause
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月11日
-   作    者   : lijun 00171473
-   修改内容   : 修改函数名及函数实现 for V7R1 phase II
- 2.日    期   : 2013年3月30日
-   作    者   : l00167671
-   修改内容   : 主动上报AT命令控制下移至C核
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaDetachInd(
     MMC_MSCC_DETACH_IND_STRU           *pstMsg
 )
@@ -551,6 +387,7 @@ VOS_VOID NAS_MSCC_SndMmaDetachInd(
     pstDetachInd->enCnDomainId                = pstMsg->enCnDomainId;
     pstDetachInd->enServiceStatus             = pstMsg->enServiceStatus;
     pstDetachInd->ucOriginalDetachCause       = pstMsg->ucOriginalDetachCause;
+    PS_MEM_CPY(((VOS_UINT8*)(&(pstDetachInd->stCampPostion))),(VOS_UINT8*)(&(pstMsg->stCampPostion)), sizeof(NAS_MSCC_PIF_CAMP_POSITION_STRU));
     NAS_MSCC_LogMsgInfo((MSG_HEADER_STRU*)pstDetachInd);
 
     PS_SEND_MSG(UEPS_PID_MSCC, pstDetachInd);
@@ -559,28 +396,7 @@ VOS_VOID NAS_MSCC_SndMmaDetachInd(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaAttachCnf
- 功能描述  : 发送原语D_MMC_ATTACH_CNF的公共处理
- 输入参数  : VOS_UINT32  ulCnDomainId
-             VOS_UINT32  ulServiceStatus
-             VOS_UINT32  ulOpid
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月14日
-    作    者   : 王毛/00166186
-    修改内容   : 新生成函数
-  2.日    期   : 2012年4月27日
-    作    者   : l00130025
-    修改内容   : DTS2012032303156:MMC的服务状态与上报的服务状态需要转换
-  3.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaAttachCnf(
      MMC_MSCC_ATTACH_CNF_STRU          *pstMsg
 )
@@ -619,23 +435,7 @@ VOS_VOID NAS_MSCC_SndMmaAttachCnf(
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaDetachCnf
- 功能描述  : 发送原语D_MMC_DETACH_CNF的公共处理
- 输入参数  : VOS_UINT32  ulCnDomainId
-             VOS_UINT32  ulServiceStatus
-             VOS_UINT32  ulOpid
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月2日
-    作    者   : x00314862
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaDetachCnf(
     MMC_MSCC_DETACH_CNF_STRU           *pstMsg
 )
@@ -655,6 +455,7 @@ VOS_VOID NAS_MSCC_SndMmaDetachCnf(
 
     pstDetachCnf->enServiceStatus             = pstMsg->enServiceStatus;
     pstDetachCnf->enCnDomainId                = pstMsg->enCnDomainId;
+    pstDetachCnf->enOperRslt                  = pstMsg->enOperRslt;
 
     pstDetachCnf->MsgHeader.ulMsgName         = ID_MSCC_MMA_DETACH_CNF;
     pstDetachCnf->MsgHeader.ulSenderCpuId     = VOS_LOCAL_CPUID;
@@ -670,26 +471,7 @@ VOS_VOID NAS_MSCC_SndMmaDetachCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaCoverageLost
- 功能描述  : 向MMA发送丢网指示
- 输入参数  : ucType - 出服务区还是进服务区类型
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月20日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2012年4月27日
-    作    者   : l00130025
-    修改内容   : DTS2012032303156:MMC的服务状态与上报的服务状态需要转换
-  3.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaCoverageInd(
     MMC_MSCC_COVERAGE_AREA_IND_STRU    *pstMsg
 )
@@ -725,22 +507,7 @@ VOS_VOID NAS_MSCC_SndMmaCoverageInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaServRejRsltInd
- 功能描述  : 收到SERVICE_REJECT_IND消息后发送给mma
- 输入参数  : enCnDomainId - 服务域
-             usRejCause   - 拒绝原因值
-             enRejType    - 拒绝类型
- 输出参数  : 无
- 输出参数  : 无
- 返 回 值  : 发送结果
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2014年4月1日
-    作    者   : z00161729
-    修改内容   : DTS2014040300125:service 被拒和网络detach ind被拒需要上报^rejinfo
-*****************************************************************************/
+
 VOS_UINT32 NAS_MSCC_SndMmaServRejRsltInd(
     MMC_MSCC_SERV_REJ_IND_STRU         * pstMsg
 )
@@ -771,6 +538,8 @@ VOS_UINT32 NAS_MSCC_SndMmaServRejRsltInd(
     pstServReqRsltInd->usRejCause   = pstMsg->usRejCause;
     pstServReqRsltInd->ucOriginalRejCause         = pstMsg->ucOriginalRejCause;
     NAS_MSCC_LogMsgInfo((MSG_HEADER_STRU*)pstServReqRsltInd);
+    PS_MEM_CPY(((VOS_UINT8*)(&(pstServReqRsltInd->stCampPostion))),
+        (VOS_UINT8*)(&(pstMsg->stCampPostion)), sizeof(NAS_MSCC_PIF_CAMP_POSITION_STRU));
 
     PS_SEND_MSG(UEPS_PID_MSCC, pstServReqRsltInd);
 
@@ -779,18 +548,7 @@ VOS_UINT32 NAS_MSCC_SndMmaServRejRsltInd(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaUsimAuthFailInd
- 功能描述  : 发送MMA网络拒绝原因值消息
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 修改历史      :
- 1.日    期   : 2013年11月15日
-   作    者   : m00217266
-   修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaUsimAuthFailInd(
     MMC_MSCC_USIM_AUTH_FAIL_IND_STRU   *pstMsg
  )
@@ -825,18 +583,7 @@ VOS_VOID NAS_MSCC_SndMmaUsimAuthFailInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaCsServiceConnStatusInd
- 功能描述  : 给MMA发送cs业务信令连接状态消息
- 输入参数  : ucCsServiceConnStatusFlag - cs业务信令连接状态标识
- 输出参数  : 无
- 返 回 值  : 无
- 修改历史      :
- 1.日    期   : 2014年3月4日
-   作    者   : z00161729
-   修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaCsServiceConnStatusInd(
     MMC_MSCC_CS_SERVICE_CONN_STATUS_IND_STRU               *pstMsg
 )
@@ -877,23 +624,7 @@ VOS_VOID NAS_MSCC_SndMmaCsServiceConnStatusInd(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaSysCfgCnf
- 功能描述  : MMC给MMA上报syscfg设置结果
- 输入参数  : ulRst - syscfg设置结果
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月2日
-    作    者   : x00314862
-    修改内容   : 新生成函数
-  2.日    期   : 2015年4月15日
-    作    者   : m00270891
-    修改内容   : changing the input parameter
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaSysCfgCnf(
     NAS_MSCC_PIF_SYS_CFG_SET_RESULT_ENUM_UINT32      ulSysCfgCnfRst
 )
@@ -930,21 +661,7 @@ VOS_VOID NAS_MSCC_SndMmaSysCfgCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaNetScanCnf
- 功能描述  : MMC给MMA上报NetScan结果
- 输入参数  : pstNetScanCnf - 接入层上报的结果
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月16日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaNetScanCnf(
     MSCC_MMA_NET_SCAN_CNF_STRU          *pstMsg
 )
@@ -980,21 +697,7 @@ VOS_VOID NAS_MSCC_SndMmaNetScanCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaAbortNetScanCnf
- 功能描述  : MMC给MMA上报停止NetScan结果
- 输入参数  : pstSndMmaAbortNetScanCnfMsg - 接入层上报的结果
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月16日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaAbortNetScanCnf(
     MMC_MSCC_ABORT_NET_SCAN_CNF_STRU    *pstMsg
 )
@@ -1033,22 +736,7 @@ VOS_VOID NAS_MSCC_SndMmaAbortNetScanCnf(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaPlmnListAbortCnf
- 功能描述  : 向MMA发送ID_MSCC_MMA_PLMN_LIST_ABORT_CNF消息
- 输入参数  : usSearchPlmnNum 搜索列表中保存的PLMN ID个数
-             pstListInfo     搜索列表信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年2月2日
-   作    者   : x00314862
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaPlmnListAbortCnf(
     MSCC_MMA_PLMN_LIST_ABORT_CNF_STRU    *pstMmcPlmnListAbortCnf
 )
@@ -1082,21 +770,7 @@ VOS_VOID NAS_MSCC_SndMmaPlmnListAbortCnf(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaSpecPlmnSearchAbortCnf
- 功能描述  : 向MMA发送MMA_MMC_SPEC_PLMN_SEARCH_ABORT_CNF消息
- 输入参数  : pstSndMmaMsg - MMA_MMC_SPEC_PLMN_SEARCH_ABORT_CNF消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年2月2日
-   作    者   : x00314862
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaSpecPlmnSearchAbortCnf(
     MMC_MSCC_SPEC_PLMN_SEARCH_ABORT_CNF_STRU               *pstMsg
 )
@@ -1130,25 +804,7 @@ VOS_VOID NAS_MSCC_SndMmaSpecPlmnSearchAbortCnf(
 
 }
 
-/* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, begin */
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaAcInfoChangeInd
- 功能描述  : 向MMA发送小区接入信息变化指示
- 输入参数  : VOS_UINT32                          ulCnDomainId,
-             NAS_MML_ACCESS_RESTRICTION_STRU    *pstPsAcInfo
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaAcInfoChangeInd(
     MMC_MSCC_AC_INFO_CHANGE_IND_STRU  *pstMsg
 )
@@ -1183,25 +839,10 @@ VOS_VOID NAS_MSCC_SndMmaAcInfoChangeInd(
     return;
 }
 
-/* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, end */
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaEplmnInfoInd
- 功能描述  : MMC给MMA上报等效plmn信息
- 输入参数  : pstEplmnInfo - 等效plmn信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月24日
-    作    者   : z00161729
-    修改内容   : SVLTE支持NCELL搜网
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaEplmnInfoInd(
     MMC_MSCC_EPLMN_INFO_IND_STRU       *pstMsg
 )
@@ -1236,21 +877,7 @@ VOS_VOID NAS_MSCC_SndMmaEplmnInfoInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaEOPlmnSetCnf
- 功能描述  : 向MMA发送EOPLMN设置结果
- 输入参数  : VOS_UINT32                          ulRst,
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年10月15日
-    作    者   : x65241
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaEOPlmnSetCnf(
     MMC_MSCC_EOPLMN_SET_CNF_STRU       *pstMsg
 )
@@ -1284,20 +911,7 @@ VOS_VOID NAS_MSCC_SndMmaEOPlmnSetCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaCampOnInd
- 功能描述  : 发送MMA驻留指示
- 输入参数  : ucCampOnFlg---是否驻留
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年11月18日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaCampOnInd(
     MMC_MSCC_CAMP_ON_IND_STRU_STRU     *pstMsg
 )
@@ -1334,20 +948,7 @@ VOS_VOID NAS_MSCC_SndMmaCampOnInd(
 
 
 
-/*****************************************************************************
-  函 数 名  : NAS_MSCC_SndMmaWCipherInfo
-  功能描述  : 发送ID_MSCC_MMA_UMTS_CIPHER_INFO_IND消息
-  输入参数  : MMC_MSCC_UMTS_CIPHER_INFO_IND_STRU               *pstMsg
-  输出参数  : 无
-  返 回 值  : 无
-  调用函数  :
-  被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年02月02日
-   作    者   : x00314862
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaWCipherInfo(
     MMC_MSCC_UMTS_CIPHER_INFO_IND_STRU *pstMsg)
 {
@@ -1381,20 +982,7 @@ VOS_VOID NAS_MSCC_SndMmaWCipherInfo(
 }
 
 
-/*****************************************************************************
-  函 数 名  : NAS_MSCC_SndMmaGCipherInfo
-  功能描述  : 发送ID_MSCC_MMA_GPRS_CIPHER_INFO_IND消息
-  输入参数  : MMC_MSCC_GPRS_CIPHER_INFO_IND_STRU               *pstMsg
-  输出参数  : 无
-  返 回 值  : 无
-  调用函数  :
-  被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年02月02日
-   作    者   : x00314862
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaGCipherInfo(
     MMC_MSCC_GPRS_CIPHER_INFO_IND_STRU *pstMsg
 )
@@ -1428,21 +1016,7 @@ VOS_VOID NAS_MSCC_SndMmaGCipherInfo(
     return;
 }
 
-/* Added by s00246516 for L-C互操作项目, 2014-02-12, Begin */
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaAcqCnf
- 功能描述  : 发送ACQ CNF消息
- 输入参数  : MMC_MSCC_ACQ_CNF_STRU              *pstMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年02月12日
-   作    者   : s00246516
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaAcqCnf(
     MMC_MSCC_ACQ_CNF_STRU              *pstMsg
 )
@@ -1483,20 +1057,7 @@ VOS_VOID NAS_MSCC_SndMmaAcqCnf(
 }
 
 #if (FEATURE_ON == FEATURE_CL_INTERWORK)
-/*****************************************************************************
-  函 数 名  : NAS_MSCC_SndMmaAcqInd
-  功能描述  : 发送AcqInd消息
-  输入参数  : MMC_MSCC_ACQ_IND_STRU               *pstMsg
-  输出参数  : 无
-  返 回 值  : 无
-  调用函数  :
-  被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年02月02日
-   作    者   : x00314862
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaAcqInd(
     MMC_MSCC_ACQ_IND_STRU               *pstMsg
 )
@@ -1539,20 +1100,7 @@ VOS_VOID NAS_MSCC_SndMmaAcqInd(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaRegCnf
- 功能描述  : 给MMA发送RegCnf
- 输入参数  : MMC_MSCC_REG_CNF_STRU              *pstMsg
- 输出参数  : 无
- 返 回 值  : 无
- 修改历史      :
- 1.日    期   : 2015年02月02日
-   作    者   : x00314862
-   修改内容   : 新生成函数
- 2.日    期   : 2015年08月20日
-   作    者   : wx270776
-   修改内容   : VIA CL DTS2015031602665
-*****************************************************************************/
+
 VOS_VOID NAS_MSCC_SndMmaRegCnf(
     MMC_MSCC_REG_CNF_STRU              *pstMsg
 )
@@ -1594,17 +1142,7 @@ VOS_VOID NAS_MSCC_SndMmaRegCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaPowerSaveCnf
- 功能描述  : 给MMA发送PowerSaveCnf
- 输入参数  : MMC_MSCC_POWER_SAVE_CNF_STRU       *pstMsg
- 输出参数  : 无
- 返 回 值  : 无
- 修改历史      :
- 1.日    期   : 2015年02月02日
-   作    者   : x00314862
-   修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_VOID NAS_MSCC_SndMmaPowerSaveCnf(
     MMC_MSCC_POWER_SAVE_CNF_STRU       *pstMsg
 )
@@ -1640,18 +1178,7 @@ VOS_VOID NAS_MSCC_SndMmaPowerSaveCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaPsServiceConnStatusInd
- 功能描述  : 给MMA发送ps业务信令连接状态消息
- 输入参数  : MMC_MSCC_PS_SERVICE_CONN_STATUS_IND_STRU               *pstMsg
- 输出参数  : 无
- 返 回 值  : 无
- 修改历史      :
- 1.日    期   : 2015年02月02日
-   作    者   : x00314862
-   修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaPsServiceConnStatusInd(
     MMC_MSCC_PS_SERVICE_CONN_STATUS_IND_STRU               *pstMsg
 )
@@ -1689,20 +1216,7 @@ VOS_VOID NAS_MSCC_SndMmaPsServiceConnStatusInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaRfAvailInd
- 功能描述  : 向MMA发送MmaPlmnListCnf
- 输入参数  : MMC_MSCC_RF_AVAILABLE_IND_STRU      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年02月02日
-   作    者   : x00314862
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaRfAvailInd(
     NAS_MSCC_PIF_RF_AVAILABLE_IND_STRU *pstMsg
 )
@@ -1739,20 +1253,7 @@ VOS_VOID NAS_MSCC_SndMmaRfAvailInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaRfAvailInd
- 功能描述  : 向MMA发送MmaPlmnListCnf
- 输入参数  : MMC_MSCC_PLMN_LIST_CNF_STRU        *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年02月02日
-   作    者   : x00314862
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaPlmnListCnf(
     MMC_MSCC_PLMN_LIST_CNF_STRU        *pstMsg
 )
@@ -1787,20 +1288,7 @@ VOS_VOID NAS_MSCC_SndMmaPlmnListCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaSrchedPlmnInfo
- 功能描述  : 向MMA发送SrchedPlmnInfo
- 输入参数  : MMC_MSCC_PLMN_LIST_CNF_STRU        *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年02月02日
-   作    者   : x00314862
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaSrchedPlmnInfo(
     MMC_MSCC_SRCHED_PLMN_INFO_IND_STRU                     *pstMsg
 )
@@ -1834,20 +1322,7 @@ VOS_VOID NAS_MSCC_SndMmaSrchedPlmnInfo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaPlmnListRej
- 功能描述  : 向MMA发送PlmnLIstRej
- 输入参数  : MMC_MSCC_PLMN_LIST_REJ_STRU        *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年02月02日
-   作    者   : x00314862
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaPlmnListRej(
     MMC_MSCC_PLMN_LIST_REJ_STRU        *pstMsg
 )
@@ -1882,20 +1357,7 @@ VOS_VOID NAS_MSCC_SndMmaPlmnListRej(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaPlmnSpecialSelCnf
- 功能描述  : 向MMA发送PlmnSpecialSelCnf
- 输入参数  : MMC_MSCC_PLMN_SPECIAL_SEL_CNF_STRU  *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年02月02日
-   作    者   : x00314862
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaPlmnSpecialSelCnf(
    MMC_MSCC_PLMN_SPECIAL_SEL_CNF_STRU  *pstMsg
 )
@@ -1930,20 +1392,7 @@ VOS_VOID NAS_MSCC_SndMmaPlmnSpecialSelCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaPlmnSpecialSelRej_PreProc
- 功能描述  : 向MMA发送PlmnSpecialSelRej
- 输入参数  : MMC_MSCC_PLMN_SPECIAL_SEL_REJ_STRU   *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年02月02日
-   作    者   : x00314862
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaPlmnSpecialSelRej(
   MMC_MSCC_PLMN_SPECIAL_SEL_REJ_STRU   *pstMsg
 )
@@ -1978,20 +1427,7 @@ VOS_VOID NAS_MSCC_SndMmaPlmnSpecialSelRej(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaPlmnReselCnf_PreProc
- 功能描述  : 向MMA发送PlmnReselCnf
- 输入参数  : MMC_MSCC_PLMN_RESEL_CNF_STRU         *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年02月02日
-   作    者   : x00314862
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaPlmnReselCnf(
   NAS_MSCC_PIF_USER_PLMN_SEARCH_RESULT_ENUM_UINT8           enResult
 )
@@ -2026,20 +1462,7 @@ VOS_VOID NAS_MSCC_SndMmaPlmnReselCnf(
     return;
 }
 #if (FEATURE_ON == FEATURE_CSG)
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaCsgListSearchCnf
- 功能描述  : 发送csg list搜网结果ID_MSCC_MMA_CSG_LIST_SEARCH_CNF消息
- 输入参数  : pstMsg - 消息内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月18日
-    作    者   : z00161729
-    修改内容   : 支持LTE CSG功能新增
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaCsgListSearchCnf(
     MMC_MSCC_CSG_LIST_SEARCH_CNF_STRU  *pstMsg
 )
@@ -2077,20 +1500,7 @@ VOS_VOID NAS_MSCC_SndMmaCsgListSearchCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaCsgListRej
- 功能描述  : 发送csg list搜网rej消息
- 输入参数  : pstMsg - 消息内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月18日
-    作    者   : z00161729
-    修改内容   : 支持LTE CSG功能新增
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaCsgListRej(
     MMC_MSCC_CSG_LIST_REJ_STRU         *pstMsg
 )
@@ -2123,20 +1533,7 @@ VOS_VOID NAS_MSCC_SndMmaCsgListRej(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaCsgListAbortCnf
- 功能描述  : 发送ID_MSCC_MMA_CSG_LIST_ABORT_CNF消息
- 输入参数  : pstMsg - 消息内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月18日
-    作    者   : z00161729
-    修改内容   : 支持LTE CSG功能新增
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaCsgListAbortCnf(
     MMC_MSCC_CSG_LIST_ABORT_CNF_STRU   *pstMsg
 )
@@ -2174,24 +1571,7 @@ VOS_VOID NAS_MSCC_SndMmaCsgListAbortCnf(
     return;
 }
 #endif
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaGetGeoCnf
- 功能描述  : 发送ID_MSCC_MMA_GET_GEO_CNF消息
- 输入参数  : MMC_MSCC_GET_GEO_CNF_STRU            *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月23日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2015年12月10日
-    作    者   : j00354216
-    修改内容   : 多模搜网优化修改
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaGetGeoCnf(
     NAS_MSCC_NO_CARD_INIT_SEARCH_LOC_STRU                  *pstNoCardInitSearchLocInfo
 )
@@ -2231,21 +1611,7 @@ VOS_VOID NAS_MSCC_SndMmaGetGeoCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaStopGetGeoCnf
- 功能描述  : 发送ID_MSCC_MMA_STOP_GET_GEO_CNF消息
- 输入参数  : MMC_MSCC_STOP_GET_GEO_CNF_STRU            *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月01日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaStopGetGeoCnf(
     MMC_MSCC_STOP_GET_GEO_CNF_STRU     *pstMsg
 )
@@ -2279,20 +1645,7 @@ VOS_VOID NAS_MSCC_SndMmaStopGetGeoCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaDplmnSetCnf
- 功能描述  : MSCC给MMA发送ID_MSCC_MMA_DPLMN_SET_CNF 消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月12日
-    作    者   : n00355355
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaDplmnSetCnf(
     MMC_MSCC_DPLMN_SET_CNF_STRU        *pstMsg
 )
@@ -2326,21 +1679,7 @@ VOS_VOID NAS_MSCC_SndMmaDplmnSetCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaSrvAcqCnf
- 功能描述  : 发送ID_MSCC_MMA_SRV_ACQ_CNF消息
- 输入参数  : enResult  - 获取结果
-             enSrvType - 业务类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年02月04日
-   作    者   : l00208516
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaSrvAcqCnf(
     MMC_MSCC_SRV_ACQ_CNF_STRU          *pstMsg
 )
@@ -2594,20 +1933,7 @@ VOS_VOID NAS_MSCC_SndMmaHrpdOverheadMsgInd(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaCFPlmnSetCnf
- 功能描述  : 向MMA发送confirm message
- 输入参数  : MMC_MSCC_CFPLMN_SET_CNF_STRU         *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年02月05日
-   作    者   : f0279542
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaCFPlmnSetCnf(
     MMC_MSCC_CFPLMN_SET_CNF_STRU       *pstMsg
 )
@@ -2639,20 +1965,7 @@ VOS_VOID NAS_MSCC_SndMmaCFPlmnSetCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaCFPlmnQueryCnf
- 功能描述  : 向MMA发送confirm message
- 输入参数  : MMC_MSCC_CFPLMN_SET_CNF_STRU         *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年02月05日
-   作    者   : f0279542
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaCFPlmnQueryCnf(
     MMC_MSCC_CFPLMN_QUERY_CNF_STRU     *pstMsg
 )
@@ -2697,20 +2010,7 @@ VOS_VOID NAS_MSCC_SndMmaCFPlmnQueryCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaPrefPlmnQueryCnf
- 功能描述  : 向MMA发送PrefPlmnQueryCnf
- 输入参数  : MMC_MSCC_PREF_PLMN_QUERY_CNF_STRU  *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年02月05日
-   作    者   : y00307564
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaPrefPlmnQueryCnf(
     MMC_MSCC_PREF_PLMN_QUERY_CNF_STRU  *pstMsg
 )
@@ -2754,20 +2054,7 @@ VOS_VOID NAS_MSCC_SndMmaPrefPlmnQueryCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaPrefPlmnSetCnf
- 功能描述  : 向MMA发送PrefPlmnSetCnf
- 输入参数  : MMC_MSCC_PREF_PLMN_SET_CNF_STRU  *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年02月05日
-   作    者   : y00307564
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaPrefPlmnSetCnf(
     MMC_MSCC_PREF_PLMN_SET_CNF_STRU  *pstMsg
 )
@@ -2806,20 +2093,7 @@ VOS_VOID NAS_MSCC_SndMmaPrefPlmnSetCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaCdmacsqSetCnf
- 功能描述  : 向MMA发送MSCC_MMA_CDMACSQ_SET_CNF
- 输入参数  : XSD_MSCC_CDMACSQ_SET_CNF_STRU      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年02月02日
-   作    者   : x00314862
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaCdmacsqSetCnf(
     XSD_MSCC_CDMACSQ_SET_CNF_STRU      *pstMsg
 )
@@ -2855,24 +2129,7 @@ VOS_VOID NAS_MSCC_SndMmaCdmacsqSetCnf(
     PS_SEND_MSG(UEPS_PID_MSCC, pstCdmacsqSetCnf);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaCdmacsqSignalQualityInd
- 功能描述  : 向MMA发送MSCC_MMA_CDMACSQ_IND_STRU
- 输入参数  : XSD_MSCC_CDMACSQ_IND_STRU      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年02月02日
-   作    者   : x00314862
-   修改内容   : 新生成函数
-
- 2.日    期   : 2015年10月16日
-   作    者   : m00312079
-   修改内容   : DTS2015101505057:添加ec/Io的上报门限
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaCdmacsqSignalQualityInd(
    XSD_MSCC_CDMACSQ_IND_STRU           *pstMsg
 )
@@ -2910,20 +2167,7 @@ VOS_VOID NAS_MSCC_SndMmaCdmacsqSignalQualityInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMma1xSystemServiceInfoInd
- 功能描述  : 向MMA发送MSCC_MMA_1X_SYSTEM_SERVICE_INFO_IND
- 输入参数  : XSD_MSCC_1X_SYSTEM_SERVICE_INFO_IND_STRU      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年02月02日
-   作    者   : x00314862
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMma1xSystemServiceInfoInd(
     XSD_MSCC_1X_SYSTEM_SERVICE_INFO_IND_STRU                *pstMsg
 )
@@ -2961,20 +2205,7 @@ VOS_VOID NAS_MSCC_SndMma1xSystemServiceInfoInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMma1xSystemServiceInfoInd
- 功能描述  : 向MMA发送MSCC_MMA_LMM_CELL_SIGN_INFO_REPORT_IND_STRU
- 输入参数  : MMC_MSCC_LMM_CELL_SIGN_INFO_REPORT_IND_STRU      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年02月02日
-   作    者   : x00314862
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaLmmCellSignInfoReportInd(
     MMC_MSCC_LMM_CELL_SIGN_INFO_REPORT_IND_STRU            *pstMsg
 )
@@ -3011,20 +2242,7 @@ VOS_VOID NAS_MSCC_SndMmaLmmCellSignInfoReportInd(
     PS_SEND_MSG(UEPS_PID_MSCC, pstLmmCellSignInfoInd);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMma1xSystemTimeInd
- 功能描述  : 向MMA发送ID_MSCC_MMA_1X_SYSTEM_TIME_IND
- 输入参数  : XSD_MSCC_1X_SYSTEM_TIME_IND_STRU      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年03月04日
-   作    者   : L00256032
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMma1xSystemTimeInd(
     XSD_MSCC_1X_SYSTEM_TIME_IND_STRU   *pstMsg
 )
@@ -3061,20 +2279,7 @@ VOS_VOID NAS_MSCC_SndMma1xSystemTimeInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaUeStatusInd
- 功能描述  : 向MMA发送 UE STATUS
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年09月18日
-   作    者   : c00299064
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaUeStatusInd(
     VOS_UINT8                           ucUeMainState,
     VOS_UINT8                           ucUeSubState
@@ -3112,20 +2317,7 @@ VOS_VOID NAS_MSCC_SndMmaUeStatusInd(
 
 
 #if (FEATURE_ON == FEATURE_IMS)
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaImsStartCnf
- 功能描述  : 向MMA发送ID_MSCC_MMA_IMS_START_CNF
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年04月15日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaImsStartCnf(
     NAS_MSCC_PIF_IMS_START_RESULT_ENUM_UINT32               enResult
 )
@@ -3161,20 +2353,7 @@ VOS_VOID NAS_MSCC_SndMmaImsStartCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaImsStopCnf
- 功能描述  : 向MMA发送ID_MSCC_MMA_IMS_STOP_CNF
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年04月15日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaImsStopCnf(
     NAS_MSCC_PIF_IMS_STOP_RESULT_ENUM_UINT32                enResult
 )
@@ -3211,20 +2390,7 @@ VOS_VOID NAS_MSCC_SndMmaImsStopCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaImsSwitchStateInd
- 功能描述  : 向mma发送ID_MSCC_MMA_IMS_SWITCH_STATE_IND消息
- 输入参数  : enImsSwitch
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年04月15日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaImsSwitchStateInd(
     NAS_MSCC_PIF_IMS_SWITCH_STATE_ENUM_UINT8                enImsSwitch
 )
@@ -3269,24 +2435,7 @@ VOS_VOID NAS_MSCC_SndMmaImsSwitchStateInd(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaSidNidInd
- 功能描述  : 上报mma sid,nid信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月9日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-  2.日    期   : 2015年12月10日
-    作    者   : l00324781
-    修改内容   : CL_MUTIMODE_OPTIMIZE修改
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaSidNidInd(
     VOS_UINT16                          usSid,
     VOS_UINT16                          usNid
@@ -3328,21 +2477,7 @@ VOS_VOID NAS_MSCC_SndMmaSidNidInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaSyncServiceAvailInd
- 功能描述  :  上报服务可用消息信息
- 输入参数  : MSCC_MMA_SYNC_SERVICE_AVAIL_IND_STRU                   *pstSyncSrvAvailInd
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月31日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaSyncServiceAvailInd(
     MSCC_MMA_SYNC_SERVICE_AVAIL_IND_STRU                   *pstSyncSrvAvailInd
 )
@@ -3388,20 +2523,7 @@ VOS_VOID NAS_MSCC_SndMmaSyncServiceAvailInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaHdrcsqSetCnf
- 功能描述  : 向MMA发送MSCC_MMA_HDR_CSQ_SET_CNF
- 输入参数  : HSD_MSCC_HDR_CSQ_SET_CNF_STRU      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年10月20日
-   作    者   : c00299064
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaHdrcsqSetCnf(
     HSD_MSCC_HDR_CSQ_SET_CNF_STRU      *pstHsdSetCnf
 )
@@ -3439,20 +2561,7 @@ VOS_VOID NAS_MSCC_SndMmaHdrcsqSetCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaHdrcsqSignalQualityInd
- 功能描述  : 向MMA发送MSCC_MMA_HDR_CSQ_IND_STRU
- 输入参数  : XSD_MSCC_CDMACSQ_IND_STRU      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年02月02日
-   作    者   : c0029906
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaHdrcsqSignalQualityInd(
    MSCC_MMA_HDR_CSQ_IND_STRU           *pstMsg
 )
@@ -3491,20 +2600,7 @@ VOS_VOID NAS_MSCC_SndMmaHdrcsqSignalQualityInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaDataCallRedialSysAcqInd
- 功能描述  : 向MMA发送ID_MSCC_MMA_DATA_CALL_REDIAL_SYS_ACQ_IND
- 输入参数  : HSD_MSCC_DATA_CALL_REDIAL_SYS_ACQ_CNF_STRU      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年12月16日
-   作    者   : y00314741
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaDataCallRedialSysAcqInd(
    NAS_MSCC_PIF_ACQUIRED_RESULT_ENUM_UINT32    enRslt,
    VOS_UINT8                                   ucIsEhrpdSupport
@@ -3554,20 +2650,7 @@ VOS_VOID NAS_MSCC_SndMmaDataCallRedialSysAcqInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaEmcCallBackInd
- 功能描述  : 向MMA发送ID_MSCC_MMA_1X_EMC_CALL_BACK_IND
- 输入参数  : HSD_MSCC_DATA_CALL_REDIAL_SYS_ACQ_CNF_STRU      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2016年1月6日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaEmcCallBackInd(
    NAS_MSCC_PIF_EMC_CALLBACK_MODE_ENUM_UINT32               enCallBackMode
 )
@@ -3606,20 +2689,7 @@ VOS_VOID NAS_MSCC_SndMmaEmcCallBackInd(
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndMmaHandsetInfoQryCnf
- 功能描述  : 向MMA发送ID_MSCC_MMA_CL_SYSTEM_ACQUIRE_END_IND
- 输入参数  : NAS_MSCC_PIF_CL_ACQUIRED_RESULT_ENUM_UINT32 enRslt
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年05月22日
-   作    者   : z00316370
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndMmaHandsetInfoQryCnf(
     MSCC_MMA_HANDSET_INFO_QRY_CNF_STRU                     *pstInfo
 )

@@ -1,14 +1,4 @@
-/*************************************************************************
-*   版权所有(C) 2008-2015, 深圳华为技术有限公司.
-*
-*   文 件 名 :  clk_balong_core.h
-*
-*   作    者 :  huangxianke h00277960
-*
-*   描    述 :  clk_balong_core.c使用的头文件
-*
-*   修改记录 : 2014年9月15日  v1.00  h00277960  创建
-**************************************************************************/
+
 
 /*lint --e{762} */
 
@@ -53,7 +43,7 @@ enum clk_op_type{
 #define LOG_CLK_NAME_LEN   8  /* 记录时钟名字的前8个字符 */
 
 struct clk_op_entry{
-    OSL_TASK_ID       task_id;                         /* 操作者任务ID */
+    OSL_TASK_ID       task_id;
 	char              clk_name[LOG_CLK_NAME_LEN];      /* 被操作的时钟名字 */
 	unsigned int      op_type;                         /* 操作类型 */
 	unsigned int      enable_count_before_op;          /* 操作前的应用计数 */

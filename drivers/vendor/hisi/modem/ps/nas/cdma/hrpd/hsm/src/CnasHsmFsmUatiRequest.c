@@ -90,29 +90,7 @@ CNAS_HSM_SCP_FAIL_REASON_MAP_UATI_FAIL_REASON_STRU g_astHsmScpFailReasonMapUatiF
 /*****************************************************************************
   3 Function Define
 *****************************************************************************/
-/*****************************************************************************
-Function Name   :   CNAS_HSM_RcvInterUatiReq_UATIRequest_Init
-Description     :   handle msg ID_CNAS_HSM_HSM_UATI_REQ in setup state
-Input parameters:   ulEventType-----message ID +pid
-                    pstMsg     -----message content
-Outout parameters:  None
-Return Value    :   CNAS_HSM_FSM_EVENT_HANDLED--------the current event is processed finished
-                    CNAS_HSM_FSM_EVENT_NOT_HANDLED----the current event need to further process
 
-Modify History  :
-1)  Date           : 2015-02-07
-    Author         : y00174758
-    Modify content : Create
-2)  Date           : 2015-05-29
-    Author         : y00346957
-    Modify content : wait mac txended -> wait snp data cnf
-3)  Date           : 2015-11-27
-    Author         : m00312079
-    Modify content : DTS2015111102189:按照C.S0024协议要求，UATI req只允许在AC上发送，CNAS需添加保护
-4)  Date           : 2016-01-05
-    Author         : w00351686
-    Modify content : DTS2015110200394 del UatiComplete SubState modify
-*****************************************************************************/
 VOS_UINT32 CNAS_HSM_RcvInterUatiReq_UATIRequest_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -163,29 +141,7 @@ VOS_UINT32 CNAS_HSM_RcvInterUatiReq_UATIRequest_Init(
 
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_RcvCttfSnpDataCnf_UatiReq_WaitUatiReqSnpDataCnf
-Description     :   handle msg ID_CTTF_CNAS_HRPD_SNP_DATA_CNF in setup state
-Input parameters:   ulEventType-----message ID +pid
-                    pstMsg     -----message content
-Outout parameters:  None
-Return Value    :   CNAS_HSM_FSM_EVENT_HANDLED--------the current event is processed finished
-                    CNAS_HSM_FSM_EVENT_NOT_HANDLED----the current event need to further process
 
-Modify History  :
-1)  Date           : 2015-02-07
-    Author         : y00174758
-    Modify content : Create
-2)  Date           : 2015-05-29
-    Author         : y00346957
-    Modify content : wait mac txended -> wait snp data cnf
-3)  Date           : 2015-09-23
-    Author         : t00323010
-    Modify content : HSM MNTN(DTS2015092201636): log disacrd snp data cnf info
-4)  Date           : 2015-11-27
-    Author         : m00312079
-    Modify content : DTS2015111102189:按照C.S0024协议要求，UATI req只允许在AC上发送，CNAS需添加保护
-*****************************************************************************/
 VOS_UINT32 CNAS_HSM_RcvCttfSnpDataCnf_UatiReq_WaitUatiReqSnpDataCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -637,23 +593,7 @@ VOS_UINT32 CNAS_HSM_RcvHsdPowerSaveReq_UatiReq_WaitUatiCmplSnpDataCnf(
 }
 #endif
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_RcvHsdOverHeadMsgInd_UatiReq_WaitUatiReqSnpDataCnf
-Description     :   process the hsd OverHead message in UATIRequst WaitSnpDataCnf substate
-Input parameters:   ulEventType-----message ID +pid
-                    pstMsg     -----message content
-Outout parameters:  None
-Return Value    :   CNAS_HSM_FSM_EVENT_HANDLED--------the current event is processed finished
-                    CNAS_HSM_FSM_EVENT_NOT_HANDLED----the current event need to further process
 
-Modify History  :
-1)  Date           : 2015-05-30
-    Author         : m00312079
-    Modify content : Create
-2)  Date           : 2015-12-31
-    Author         : m00312079
-    Modify content : DTS2015123108077:UATI更新过程中，如果UE回退到原小区则需退出UATI更新流程
-*****************************************************************************/
 VOS_UINT32 CNAS_HSM_RcvHsdOverHeadMsgInd_UatiReq_WaitUatiReqSnpDataCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -729,25 +669,7 @@ VOS_UINT32 CNAS_HSM_RcvHsdOverHeadMsgInd_UatiReq_WaitUatiReqSnpDataCnf(
     return CNAS_HSM_FSM_EVENT_HANDLED;
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_RcvHsdOverHeadMsgInd_UatiReq_WaitUatiAssign
-Description     :   process the hsd PowerSaveReq message in WaitUATIAssign substate
-Input parameters:   ulEventType-----message ID +pid
-                    pstMsg     -----message content
-Outout parameters:  None
-Return Value    :   CNAS_HSM_FSM_EVENT_HANDLED--------the current event is processed finished
-                    CNAS_HSM_FSM_EVENT_NOT_HANDLED----the current event need to further process
 
-Modify History  :
-1)  Date           : 2015-05-30
-    Author         : m00312079
-    Modify content : Create
-
-2.  日    期   : 2015年08月24日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSM_RcvHsdOverHeadMsgInd_UatiReq_WaitUatiAssign(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1210,22 +1132,7 @@ VOS_UINT32 CNAS_HSM_RcvEhsmDiscReq_UatiReq_WaitUatiCmplSnpDataCnf(
 }
 #endif
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_RcvHsmSessionCloseInd_UatiReq_WaitUatiReqSnpDataCnf
-Description     :   Process the hsm internal session close  message in wait snp data cnf state
-Input parameters:   VOS_UINT32                          ulEventType,
-                    struct MsgCB                       *pstMsg
-Outout parameters:  None
-Return Value    :   VOS_UINT32;
 
-Modify History  :
-1)  Date           : 2015-06-03
-    Author         : y00174758
-    Modify content : Create
-2)  Date           : 2016-01-25
-    Author         : w00351686
-    Modify content : DTS2016011700511:当前缓存中有OHM消息，则清除此消息，避免多次向网侧发送session close
-*****************************************************************************/
 VOS_UINT32 CNAS_HSM_RcvHsmSessionCloseInd_UatiReq_WaitUatiReqSnpDataCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1293,22 +1200,7 @@ VOS_UINT32 CNAS_HSM_RcvHsmSessionCloseInd_UatiReq_WaitUatiReqSnpDataCnf(
     return CNAS_HSM_FSM_EVENT_HANDLED;
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_RcvHsmSessionCloseInd_UatiReq_WaitUatiAssign
-Description     :   Process hsm internal session close in wait uati assign state
-Input parameters:   VOS_UINT32                          ulEventType,
-                    struct MsgCB                       *pstMsg
-Outout parameters:  None
-Return Value    :   VOS_UINT32;
 
-Modify History  :
-1)  Date           : 2015-06-03
-    Author         : y00174758
-    Modify content : Create
-2)  Date           : 2016-01-25
-    Author         : w00351686
-    Modify content : DTS2016011700511:当前缓存中有OHM消息，则清除此消息，避免多次向网侧发送session close
-*****************************************************************************/
 VOS_UINT32 CNAS_HSM_RcvHsmSessionCloseInd_UatiReq_WaitUatiAssign(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1417,25 +1309,7 @@ VOS_UINT32 CNAS_HSM_RcvEhsmDiscReq_UatiReq_WaitUatiAssign(
     return CNAS_HSM_FSM_EVENT_HANDLED;
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_ProcAmpMsg_UATIRequest_WaitUATIAssign
-Description     :   Process the AMP message in uati request wait uati assign
-Input parameters:   CTTF_CNAS_HRPD_SNP_DATA_IND_STRU    *pstSnpDataInd
-Outout parameters:  None
-Return Value    :   VOS_UINT8;
 
-Modify History  :
-1)  Date           : 2015-05-31
-    Author         : y00307564
-    Modify content : Create
-2)  Date           : 2015-06-08
-    Author         : y00346957
-    Modify content : 1.UATI assign成功后不应该直接退出UATI状态机而是将状态切换至uati comp wait snp data cnf
-                     2.停止定时器TI_CNAS_HSM_WAIT_UATI_ASSIGN应该在处理UATI分配之前
-3)  Date           : 2016-01-05
-    Author         : w00351686
-    Modify content : DTS2015110200394 del UatiComplete SubState modify
-*****************************************************************************/
 VOS_UINT8 CNAS_HSM_ProcAmpMsg_UATIRequest_WaitUATIAssign(
     CTTF_CNAS_HRPD_SNP_DATA_IND_STRU                       *pstSnpDataInd
 )
@@ -1516,23 +1390,7 @@ VOS_UINT32 CNAS_HSM_RcvEhsmEhrpdNotAvailableInd_UatiReq_WaitUatiReqSnpDataCnf(
     return CNAS_HSM_FSM_EVENT_HANDLED;
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_RcvCasPaRatModeNtf_UatiReq_WaitUatiReqSnpDataCnf
-Description     :   process ID_EHSM_HSM_EHRPD_NOT_AVAILABLE_IND msg in substate
-Input parameters:   ulEventType-----message ID +pid
-                    pstMsg     -----message content
-Outout parameters:  None
-Return Value    :   CNAS_HSM_FSM_EVENT_HANDLED------------the current event is processed finished
-                    CNAS_HSM_FSM_EVENT_NOT_HANDLED--------the current event need to further process
 
-Modify History  :
-1)  Date           : 2015-05-29
-    Author         : x00314862
-    Modify content : Create
-2)  Date           : 2015-08-15
-    Author         : y00307564
-    Modify content : DTS2015081302622修改
-*****************************************************************************/
 VOS_UINT32 CNAS_HSM_RcvCasPaRatModeNtf_UatiReq_WaitUatiReqSnpDataCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1608,23 +1466,7 @@ VOS_UINT32 CNAS_HSM_RcvEhsmEhrpdNotAvailableInd_UatiReq_WaitUatiAssign(
     return CNAS_HSM_FSM_EVENT_HANDLED;
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_RcvCasPaRatModeNtf_UatiReq_WaitUatiAssign
-Description     :   process ID_EHSM_HSM_EHRPD_NOT_AVAILABLE_IND msg in substate
-Input parameters:   ulEventType-----message ID +pid
-                    pstMsg     -----message content
-Outout parameters:  None
-Return Value    :   CNAS_HSM_FSM_EVENT_HANDLED------------the current event is processed finished
-                    CNAS_HSM_FSM_EVENT_NOT_HANDLED--------the current event need to further process
 
-Modify History  :
-1)  Date           : 2015-05-29
-    Author         : x00314862
-    Modify content : Create
-2)  Date           : 2015-08-15
-    Author         : y00307564
-    Modify content : DTS2015081302622修改
-*****************************************************************************/
 VOS_UINT32 CNAS_HSM_RcvCasPaRatModeNtf_UatiReq_WaitUatiAssign(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1699,23 +1541,7 @@ VOS_UINT32 CNAS_HSM_RcvEhsmEhrpdNotAvailableInd_UatiReq_WaitUatiCmplSnpDataCnf(
     return CNAS_HSM_FSM_EVENT_HANDLED;
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_RcvCasPaRatModeNtf_UatiReq_WaitUatiCmplSnpDataCnf
-Description     :   process ID_EHSM_HSM_EHRPD_NOT_AVAILABLE_IND msg in substate
-Input parameters:   ulEventType-----message ID +pid
-                    pstMsg     -----message content
-Outout parameters:  None
-Return Value    :   CNAS_HSM_FSM_EVENT_HANDLED------------the current event is processed finished
-                    CNAS_HSM_FSM_EVENT_NOT_HANDLED--------the current event need to further process
 
-Modify History  :
-1)  Date           : 2015-05-29
-    Author         : x00314862
-    Modify content : Create
-2)  Date           : 2015-08-15
-    Author         : y00307564
-    Modify content : DTS2015081302622修改
-*****************************************************************************/
 VOS_UINT32 CNAS_HSM_RcvCasPaRatModeNtf_UatiReq_WaitUatiCmplSnpDataCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1775,25 +1601,7 @@ VOS_UINT32 CNAS_HSM_RcvCasPaRatModeNtf_UatiReq_WaitUatiCmplSnpDataCnf(
 
 
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_RcvCttfHrpdSnpDataInd_UatiReq_WaitUatiReqSnpDataCnf
-Description     :   Process the uati assignment message which the AN originate
-Input parameters:   VOS_UINT32                          ulEventType,
-                    struct MsgCB                       *pstMsg
-Outout parameters:  None
-Return Value    :   VOS_UINT32;
 
-Modify History  :
-1)  Date           : 2015-06-11
-    Author         : m00312079
-    Modify content : Create
-2)  Date           : 2015-09-18
-    Author         : m00312079
-    Modify content : DTS2015091604029:在等cttf的snpDataCnf时收到UATI assingment同样认为有效，退出UATI申请流程
-3)  Date           : 2015-01-05
-    Author         : w000351686
-    Modify content : DTS2015110200394 del UatiComplete SubState modify
-*****************************************************************************/
 
 VOS_UINT32 CNAS_HSM_RcvCttfHrpdSnpDataInd_UatiReq_WaitUatiReqSnpDataCnf(
     VOS_UINT32                          ulEventType,

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmcFsmInterSysHo.c
-  版 本 号   : 初稿
-  作    者   : W00176964
-  生成日期   : 2011年06月29日
-  最近修改   :
-  功能描述   : INTER SYS Ho时状态处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年06月29日
-    作    者   : W00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -31,9 +14,7 @@
 #include "NasMmlMsgProc.h"
 #include "Nasrrcinterface.h"
 
-/* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
 #include "MsccMmcInterface.h"
-/* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
 #include "MmcGmmInterface.h"
 #include "MmcMmInterface.h"
@@ -72,25 +53,7 @@ extern "C" {
 /*lint -save -e958 */
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvWasSuspendInd_InterSysHo_Init
- 功能描述  : 在Ho的INIT状态,收到was的RRMM_SUSPEND_IND消息后的处理
- 输入参数  : ulEventType:消息类型
-             pstmsg:收到WAS的RRMM_SUSPEND_IND消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年6月29日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2012年06月01日
-   作    者   : sunxibo /46746
-   修改内容   : Added for V7R1 C50 CS/PS mode 1
-
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvWasSuspendInd_InterSysHo_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -134,25 +97,7 @@ VOS_UINT32  NAS_MMC_RcvWasSuspendInd_InterSysHo_Init(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvGasSuspendInd_InterSysHo_Init
- 功能描述  : 在Ho的INIT状态,收到Gas的RRMM_SUSPEND_IND消息后的处理
- 输入参数  : ulEventType:消息类型
-             pstmsg:收到GAS的RRMM_SUSPEND_IND消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年6月29日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2012年06月01日
-   作    者   : sunxibo /46746
-   修改内容   : Added for V7R1 C50 CS/PS mode 1
-
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvGasSuspendInd_InterSysHo_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -196,22 +141,7 @@ VOS_UINT32  NAS_MMC_RcvGasSuspendInd_InterSysHo_Init(
 }
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvLmmSuspendInd_InterSysHo_Init
- 功能描述  : 在Ho的INIT状态,收到LMM的ID_LMM_MMC_SUSPEND_IND消息后的处理
- 输入参数  : ulEventType:消息类型
-             pstmsg:收到LMM的ID_LMM_MMC_SUSPEND_IND消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年6月29日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  NAS_MMC_RcvLmmSuspendInd_InterSysHo_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -250,26 +180,7 @@ VOS_UINT32  NAS_MMC_RcvLmmSuspendInd_InterSysHo_Init(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvLmmResumeInd_InterSysHo_WaitAsResumeInd
- 功能描述  : MMC在NAS_MMC_InterSysHo_STA_WAIT_AS_RESUME_IND状态
-              收到ID_LMM_MMC_RESUME_IND消息的处理
- 输入参数  : ulEventType:消息类型
-             pstmsg:ID_LMM_MMC_RESUME_IND消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年6月29日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2011年12月1日
-   作    者   : w00176964
-   修改内容   : GUNAS V7R1 PhaseIV 阶段调整
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvLmmResumeInd_InterSysHo_WaitAsResumeInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -308,25 +219,7 @@ VOS_UINT32 NAS_MMC_RcvLmmResumeInd_InterSysHo_WaitAsResumeInd(
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmSuspendRsp_InterSysHo_WaitMmSuspendRsp
- 功能描述  : MMC在NAS_MMC_InterSysHo_STA_WAIT_MM_SUSPEND_RSP状态
-              收到MMCMM_SUSPEND_RSP消息的处理
- 输入参数  : ulEventType:消息类型
-             pstmsg:MMCMM_SUSPEND_RSP消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年6月29日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2015年04月24日
-   作    者   : j00174725
-   修改内容   : DSDS(接入层修改定时器长度) DTS2015042702414
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMmSuspendRsp_InterSysHo_WaitMmSuspendRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -359,25 +252,7 @@ VOS_UINT32 NAS_MMC_RcvMmSuspendRsp_InterSysHo_WaitMmSuspendRsp(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvGmmSuspendRsp_InterSysHo_WaitMmSuspendRsp
- 功能描述  : MMC在NAS_MMC_InterSysHo_STA_WAIT_GMM_SUSPEND_RSP状态
-              收到MMCGMM_SUSPEND_RSP消息的处理
- 输入参数  : ulEventType:消息类型
-             pstmsg:MMCGMM_SUSPEND_RSP消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年6月29日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2015年04月24日
-   作    者   : j00174725
-   修改内容   : DSDS(接入层修改定时器长度) DTS2015042702414
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvGmmSuspendRsp_InterSysHo_WaitMmSuspendRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -412,23 +287,7 @@ VOS_UINT32 NAS_MMC_RcvGmmSuspendRsp_InterSysHo_WaitMmSuspendRsp(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiWaitMmSuspendRspExpired_InterSysHo_WaitMmSuspendRsp
- 功能描述  : MMC在NAS_MMC_InterSysHo_STA_WAIT_MM_SUSPEND_RSP状态
-              收到TI_NAS_MMC_WAIT_MM_SUSPEND_RSP_TIMER消息的处理
- 输入参数  : ulEventType:消息类型
-             pstmsg:TI_NAS_MMC_WAIT_MM_SUSPEND_RSP_TIMER消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年6月29日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvTiWaitMmSuspendRspExpired_InterSysHo_WaitMmSuspendRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -459,29 +318,7 @@ VOS_UINT32 NAS_MMC_RcvTiWaitMmSuspendRspExpired_InterSysHo_WaitMmSuspendRsp(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvWasResumeInd_InterSysHo_WaitAsResumeInd
- 功能描述  : MMC在NAS_MMC_InterSysHo_STA_WAIT_AS_RESUME_IND状态
-              收到WAS:RRMM_RESUME_IND消息的处理
- 输入参数  : ulEventType:消息类型
-             pstmsg:RRMM_RESUME_IND消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年6月29日
-   作    者   : W00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2011年12月1日
-   作    者   : w00176964
-   修改内容   : GUNAS V7R1 PhaseIV 阶段调整
-
- 3.日    期   : 2012年9月11日
-   作    者   : z40661
-   修改内容   : DTS2012090505066:异系统回退信号门限上报不正确
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvWasResumeInd_InterSysHo_WaitAsResumeInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -533,29 +370,7 @@ VOS_UINT32 NAS_MMC_RcvWasResumeInd_InterSysHo_WaitAsResumeInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvGasResumeInd_InterSysHo_WaitAsResumeInd
- 功能描述  : MMC在NAS_MMC_InterSysHo_STA_WAIT_AS_RESUME_IND状态
-              收到GAS:RRMM_RESUME_IND消息的处理
- 输入参数  : ulEventType:消息类型
-             pstmsg:RRMM_RESUME_IND消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年6月29日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2011年12月1日
-   作    者   : w00176964
-   修改内容   : GUNAS V7R1 PhaseIV 阶段调整
-
- 3.日    期   : 2012年9月11日
-   作    者   : z40661
-   修改内容   : DTS2012090505066:异系统回退信号门限上报不正确
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvGasResumeInd_InterSysHo_WaitAsResumeInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -606,35 +421,7 @@ VOS_UINT32 NAS_MMC_RcvGasResumeInd_InterSysHo_WaitAsResumeInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiWaitAsResumeIndExpired_InterSysHo_WaitAsResumeInd
- 功能描述  : MMC在NAS_MMC_InterSysHo_STA_WAIT_AS_RESUME_IND状态
-              收到TI_NAS_MMC_WAIT_AS_RESUME_IND_TIMER消息的处理
- 输入参数  : ulEventType:消息类型
-             pstmsg:TI_NAS_MMC_WAIT_AS_RESUME_IND_TIMER消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年6月29日
-   作    者   : W00176964
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年12月15日
-   作    者   : w00167002
-   修改内容   : DTS2011120702166:MMC复位后无复位信息,在MML模块封装复位信息，
-                 以供MM层调用，进行软复位。
- 3.日    期   : 2014年2月18日
-   作    者  :  w00242748
-   修改内容  :  DTS2014021803515:复位时明确是收到哪个接入技术的异常消息导致的。
-
- 4.日    期   : 2015年3月11日
-   作    者   : wx270776
-   修改内容   : DTS2015011212939:增加复位场景
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvTiWaitAsResumeIndExpired_InterSysHo_WaitAsResumeInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -670,32 +457,7 @@ VOS_UINT32 NAS_MMC_RcvTiWaitAsResumeIndExpired_InterSysHo_WaitAsResumeInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvRrMmRelInd_InterSysHo_WaitAsResumeInd
- 功能描述  : MMC在NAS_MMC_InterSysHo_STA_WAIT_AS_RESUME_IND状态
-              收到RRMM_REL_IND消息的处理
- 输入参数  : ulEventType:消息类型
-             pstmsg:RRMM_REL_IND消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年11月29日
-   作    者   : z00161729
-   修改内容   : 新生成函数
- 2.日    期   : 2012年03月23日
-   作    者   : l00130025
-   修改内容   : DTS2012031604090,收到WRR的Rel_ind时没有设置RAT，导致恢复ResumeRsp错误
- 3.日    期   : 2012年5月24日
-   作    者   : l00171473
-   修改内容   : DTS2012051104124, relind处理修改
-
- 4.日    期   : 2012年9月11日
-   作    者   : z40661
-   修改内容   : DTS2012090505066:异系统回退信号门限上报不正确
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvRrMmRelInd_InterSysHo_WaitAsResumeInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -743,22 +505,7 @@ VOS_UINT32 NAS_MMC_RcvRrMmRelInd_InterSysHo_WaitAsResumeInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvRrMmHandoverInd_InterSysHo_WaitAsResumeInd
- 功能描述  : MMC在NAS_MMC_InterSysHo_STA_WAIT_AS_RESUME_IND状态
-              收到RRMM_HANDOVER_INFO_IND消息的处理
- 输入参数  : ulEventType:消息类型
-             pstmsg:RRMM_HANDOVER_INFO_IND消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年11月26s日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvRrMmHandoverInd_InterSysHo_WaitAsResumeInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -803,25 +550,7 @@ VOS_UINT32 NAS_MMC_RcvRrMmHandoverInd_InterSysHo_WaitAsResumeInd(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvGmmResumeRsp_InterSysHo_WaitMmResumeRsp
- 功能描述  : MMC在NAS_MMC_InterSysHo_STA_WAIT_MM_RESUME_RSP状态
-              收到MMCGMM_RESUME_RSP消息的处理
- 输入参数  : ulEventType:消息类型
-             pstmsg:MMCGMM_RESUME_RSP消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年6月29日
-   作    者   : W00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2012年11月21日
-   作    者   : z00161729
-   修改内容   : 支持cerssi和nmr
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvGmmResumeRsp_InterSysHo_WaitMmResumeRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -857,26 +586,7 @@ VOS_UINT32 NAS_MMC_RcvGmmResumeRsp_InterSysHo_WaitMmResumeRsp(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvMmResumeRsp_InterSysHo_WaitMmResumeRsp
- 功能描述  : MMC在NAS_MMC_InterSysHo_STA_WAIT_MM_RESUME_RSP状态
-              收到MMCMM_RESUME_RSP消息的处理
- 输入参数  : ulEventType:消息类型
-             pstmsg:MMCMM_RESUME_RSP消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年6月29日
-   作    者   : W001176964
-   修改内容   : 新生成函数
- 2.日    期   : 2012年11月21日
-   作    者   : z00161729
-   修改内容   : 支持cerssi和nmr
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvMmResumeRsp_InterSysHo_WaitMmResumeRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -909,25 +619,7 @@ VOS_UINT32 NAS_MMC_RcvMmResumeRsp_InterSysHo_WaitMmResumeRsp(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvTiWaitMmResumeRspExpired_InterSysHo_WaitMmResumeRsp
- 功能描述  : MMC在NAS_MMC_InterSysHo_STA_WAIT_MM_RESUME_RSP状态
-              收到TI_NAS_MMC_WAIT_MM_RESUME_RSP_TIMER消息的处理
- 输入参数  : ulEventType:消息类型
-             pstmsg:TI_NAS_MMC_WAIT_MM_RESUME_RSP_TIMER消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年6月29日
-   作    者   : W00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2012年11月21日
-   作    者   : z00161729
-   修改内容   : 支持cerssi和nmr
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_RcvTiWaitMmResumeRspExpired_InterSysHo_WaitMmResumeRsp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -951,21 +643,7 @@ VOS_UINT32 NAS_MMC_RcvTiWaitMmResumeRspExpired_InterSysHo_WaitMmResumeRsp(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndGmmResumeInd_Handover
- 功能描述  : 切换时NAS向MM发送ResumeInd的指示
- 输入参数  : RRMM_RESUME_IND_ST                 *pstMsg
-             ucPsSigExistFlg                    :PS信令连接存在标记
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月26日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndGmmResumeInd_Handover(
     RRMM_RESUME_IND_ST                 *pstMsg,
     VOS_UINT8                           ucPsSigExistFlg
@@ -1004,21 +682,7 @@ VOS_VOID NAS_MMC_SndGmmResumeInd_Handover(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndMmResumeInd_Handover
- 功能描述  : handover时NAS向MM发送ResumeInd的指示
- 输入参数  : RRMM_RESUME_IND_ST                 *pstMsg
-             ucCsSigExistFlg                    :CS信令连接存在标记
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月26日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  NAS_MMC_SndMmResumeInd_Handover(
     RRMM_RESUME_IND_ST                 *pstMsg,
     VOS_UINT8                           ucCsSigExistFlg

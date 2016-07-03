@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasXsdCtx.h
-  版 本 号   : 初稿
-  作    者   : y00245242
-  生成日期   : 2014年7月4日
-  最近修改   :
-  功能描述   : CnasXsdCtx.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年7月4日
-    作    者   : y00245242
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __CNAS_XSD_CTX_H__
 #define __CNAS_XSD_CTX_H__
@@ -108,13 +91,7 @@ extern "C" {
 /*****************************************************************************
   3 枚举定义
 *****************************************************************************/
-/*****************************************************************************
- 枚举名    : CNAS_XSD_FSM_ID_ENUM
- 枚举说明  : 状态机ID枚举定义
- 1.日    期   : 2014年07月04日
-   作    者   : y00245242
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CNAS_XSD_FSM_ID_ENUM
 {
     /***********************************************************************
@@ -156,13 +133,7 @@ enum CNAS_XSD_ACQUIRED_CAUSE_ENUM
 };
 typedef VOS_UINT8 CNAS_XSD_ACQUIRED_CAUSE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : CNAS_XSD_INIT_CTX_TYPE_ENUM
- 结构说明  : 初始化XSD CTX类型
- 1.日    期   : 2014年7月11日
-   作    者   : h00246512
-   修改内容   : 新增
-*****************************************************************************/
+
 enum CNAS_XSD_INIT_CTX_TYPE_ENUM
 {
     CNAS_XSD_INIT_CTX_STARTUP                    = 0,
@@ -171,14 +142,7 @@ enum CNAS_XSD_INIT_CTX_TYPE_ENUM
 };
 typedef VOS_UINT8 CNAS_XSD_INIT_CTX_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : CNAS_XSD_READ_CARD_FILES_CNF_ENUM
- 结构说明  : 用于标记读取卡文件的回复消息
- 1.日    期   : 2014年7月11日
-   作    者   : h00246512
-   修改内容   : 新增
 
-*****************************************************************************/
 enum   CNAS_XSD_READ_CARD_FILES_CNF_ENUM
 {
     CNAS_XSD_READ_CARD_FILE_FLG_NULL                        = 0x00,
@@ -194,20 +158,7 @@ enum   CNAS_XSD_READ_CARD_FILES_CNF_ENUM
 
 typedef VOS_UINT32 CNAS_XSD_READ_CARD_FILES_CNF_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : CNAS_XSD_SYS_ACQ_SCENE_ENUM
- 枚举说明  : 各种系统捕获场景的定义
- 1.日    期   : 2014年8月5日
-   作    者   : w00176964
-   修改内容   : 新建
- 2.日    期   : 2014年12月29日
-   作    者   : w00176964
-   修改内容   : CDMA 1X Iteration 6 Modified
- 3.日    期   : 2015年1月3日
-   作    者   : y00245242
-   修改内容   : 增加OOC系统捕获调度机制
 
-*****************************************************************************/
 enum CNAS_XSD_SYS_ACQ_SCENE_ENUM
 {
     CNAS_XSD_SYS_ACQ_SCENE_SWITCH_ON,                       /* 开机 */
@@ -258,13 +209,7 @@ enum CNAS_XSD_SYS_ACQ_SCENE_ENUM
 };
 typedef VOS_UINT32 CNAS_XSD_SYS_ACQ_SCENE_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : CNAS_XSD_SCAN_CHAN_STATUS_ENUM
- 枚举说明  : 频点的扫描状态取值定义
- 1.日    期   : 2014年8月5日
-   作    者   : w00176964
-   修改内容   : 新增
-*****************************************************************************/
+
 enum CNAS_XSD_SCAN_CHAN_STATUS_ENUM
 {
     CNAS_XSD_SCAN_CHAN_STATUS_NO_SYNCED,                        /* 未搜索，当前环境中是否存在该频点还不确定 */
@@ -275,13 +220,7 @@ enum CNAS_XSD_SCAN_CHAN_STATUS_ENUM
 };
 typedef VOS_UINT8 CNAS_XSD_SCAN_CHAN_STATUS_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : CNAS_XSD_AVAIL_SYS_STATUS_ENUM
- 枚举说明  : available system 状态取值定义
- 1.日    期   : 2014年8月14日
-   作    者   : l60609
-   修改内容   : 新增
-*****************************************************************************/
+
 enum CNAS_XSD_AVAIL_SYS_STATUS_ENUM
 {
     CNAS_XSD_AVAIL_SYS_STATUS_NO_ACQUIRED,                  /* 未捕获*/
@@ -291,13 +230,7 @@ enum CNAS_XSD_AVAIL_SYS_STATUS_ENUM
 };
 typedef VOS_UINT8 CNAS_XSD_AVAIL_SYS_STATUS_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : CNAS_XSD_SYS_TYPE_ENUM
- 枚举说明  : 系统类型定义
- 1.日    期   : 2014年8月21日
-   作    者   : l60609
-   修改内容   : 新增
-*****************************************************************************/
+
 enum CNAS_XSD_SYS_TYPE_ENUM
 {
     CNAS_XSD_SYS_TYPE_PREFERRED,
@@ -308,13 +241,7 @@ enum CNAS_XSD_SYS_TYPE_ENUM
 typedef VOS_UINT8 CNAS_XSD_SYS_TYPE_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名    : CNAS_XSD_ACQ_SYS_REGION_IND_ENUM
- 枚举说明  : 捕获系统列表中的记录相对下一条是否为新的系统表记录
- 1.日    期   : 2014年8月21日
-   作    者   : W00176964
-   修改内容   : 新增
-*****************************************************************************/
+
 enum CNAS_XSD_ACQ_SYS_REGION_IND_ENUM
 {
     CNAS_XSD_ACQ_SYS_REGION_IND_NEW = 0,  /* 捕获系统列表中的第一条系统记录,设置为0,后续如果相对下条记录时新的系统表记录也设置为0 */
@@ -324,13 +251,7 @@ enum CNAS_XSD_ACQ_SYS_REGION_IND_ENUM
 };
 typedef VOS_UINT8 CNAS_XSD_ACQ_SYS_REGION_IND_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : CNAS_XSD_CALL_EXIST_FLAG_ENUM
- 结构说明  : 呼叫存在标记枚举
- 1.日    期   : 2014年12月2日
-   作    者   : w00176964
-   修改内容   : 新增
-*****************************************************************************/
+
 enum CNAS_XSD_CALL_EXIST_FLAG_ENUM
 {
     CNAS_XSD_CALL_EXIST_NULL_FLAG                    = 0x00,
@@ -340,13 +261,7 @@ enum CNAS_XSD_CALL_EXIST_FLAG_ENUM
 };
 typedef VOS_UINT8 CNAS_XSD_CALL_EXIST_FLAG_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : CNAS_XSD_SYSTEM_ACQUIRE_MODE_ENUM
- 结构说明  : system acquire mode
- 1.日    期   : 5/1/2014
-   作    者   : w00176964
-   修改内容   : Create
-*****************************************************************************/
+
 enum CNAS_XSD_SYSTEM_ACQUIRE_MODE_ENUM
 {
     CNAS_XSD_SYSTEM_ACQUIRE_MODE_ANY                    = 0,   /* try to acquire any system without regard to
@@ -381,13 +296,7 @@ enum CNAS_XSD_SYSTEM_ACQUIRE_MODE_ENUM
 typedef VOS_UINT8 CNAS_XSD_SYSTEM_ACQUIRE_MODE_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名    : CNAS_XSD_OOC_SCAN_STRATEGY_ENUM
- 结构说明  : 频点重复搜索策略枚举
- 1.日    期   : 2015年1月4日
-   作    者   : c00299063
-   修改内容   : 新增
-*****************************************************************************/
+
 enum CNAS_XSD_OOC_SCAN_STRATEGY_ENUM
 {
     CNAS_XSD_OOC_SCAN_NORMAL,                           /* OOC后，scan list列表按正常方式构建 */
@@ -399,13 +308,7 @@ enum CNAS_XSD_OOC_SCAN_STRATEGY_ENUM
 };
 typedef VOS_UINT8 CNAS_XSD_OOC_SCAN_STRATEGY_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : CNAS_XSD_NEG_PREF_SYS_CMP_CTRL_ENUM
- 结构说明  : neg系统和 perf系统比较控制
- 1.日    期   : 2015年6月9日
-   作    者   : c00299063
-   修改内容   : 新增
-*****************************************************************************/
+
 enum CNAS_XSD_NEG_PREF_SYS_CMP_CTRL_ENUM
 {
     CNAS_XSD_NEG_PREF_SYS_CMP_BAND_CHAN_AMBIGUOUS_MATCH,                /* Band Channel 模糊匹配 */
@@ -414,13 +317,7 @@ enum CNAS_XSD_NEG_PREF_SYS_CMP_CTRL_ENUM
 };
 typedef VOS_UINT8 CNAS_XSD_NEG_PREF_SYS_CMP_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : CNAS_XSD_EMC_STATE_ENUM
- 结构说明  : XSD紧急呼流程标识
- 1.日    期   : 2015年7月2日
-   作    者   : h00313353
-   修改内容   : 新增
-*****************************************************************************/
+
 enum CNAS_XSD_EMC_STATE_ENUM
 {
     CNAS_XSD_EMC_STATE_NULL             = 0x00,             /* 清空紧急呼所有状态 */
@@ -430,13 +327,7 @@ enum CNAS_XSD_EMC_STATE_ENUM
 };
 typedef VOS_UINT8 CNAS_XSD_EMC_STATE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : CNAS_XSD_SERVICE_STATUS_ENUM_UINT32
- 结构说明  : 服务状态
- 1.日    期: 2015年7月10日
-   作    者: y00245242
-   修改内容: 新增
-*****************************************************************************/
+
 enum CNAS_XSD_SERVICE_STATUS_ENUM
 {
     CNAS_XSD_SERVICE_STATUS_NO_SERVICE                      = 0,        /* 无服务   */
@@ -446,16 +337,7 @@ enum CNAS_XSD_SERVICE_STATUS_ENUM
 };
 typedef VOS_UINT32 CNAS_XSD_SERVICE_STATUS_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : CNAS_XSD_AVOID_REASON_ENUM
- 枚举说明  : avoid频点原因
- 1.日    期   : 2014年10月17日
-   作    者   : y00245242
-   修改内容   : 新增
- 2.日    期   : 2014年12月25日
-   作    者   : w00176964
-   修改内容   : CDMA 1X Iteration 6 Modified
-*****************************************************************************/
+
 enum CNAS_XSD_AVOID_REASON_ENUM
 {
     CNAS_XSD_AVOID_P_REV_MISMATCH,                  /* P_REV mismatch */
@@ -494,43 +376,20 @@ typedef VOS_UINT8 CNAS_XSD_AVOID_REASON_ENUM_UINT8;
 /*****************************************************************************
   7 STRUCT定义
 *****************************************************************************/
-/*****************************************************************************
- 结构名    : CNAS_XSD_MSG_STRU
- 结构说明  : XSD消息结构，状态机保存的入口消息和CACHE消息都使用此结构
- 1.日    期   : 2014年07月04日
-   作    者   : y00245242
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          ulEventType;
     VOS_UINT8                           aucMsgBuffer[CNAS_XSD_MAX_MSG_BUFFER_LEN];
 }CNAS_XSD_MSG_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_CACH_MSG_INFO_STRU
- 结构说明  : 缓存的消息内容
- 1.日    期   : 2014年07月04日
-   作    者   : y00245242
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     CNAS_XSD_MSG_STRU                   stCacheMsg;         /* 缓存的具体内容 */
 }CNAS_XSD_CACHE_MSG_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_CACHE_MSG_INFO_STRU
- 结构说明  : 缓存的消息队列
- 1.日    期   : 2014年07月04日
-   作    者   : y00245242
-   修改内容   : 新建
- 2.日    期   : 2015年09月07日
-   作    者   : w00176964
-   修改内容   : CNAS内存裁剪调整
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucCacheMsgNum;                          /* 缓存消息的个数 */
@@ -549,13 +408,7 @@ typedef struct
     CNAS_PRL_1X_SYSTEM_STRU             astSystem[CNAS_XSD_MAX_MRU_SYS_NUM];
 }CNAS_XSD_MRU_LIST_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_TEST_CONFIG_STRU
- 结构说明  : CNAS XSD 测试控制
- 1.日    期   : 2015年5月11日
-   作    者   : c00299063
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucReadNvPrlDirectly;
@@ -565,39 +418,21 @@ typedef struct
 }CNAS_XSD_TEST_CONFIG_STRU;
 
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_CALLBACK_CFG_STRU
- 结构说明  : 紧急呼CALLBACK模式设置
- 1.日    期   : 2015年7月2日
-   作    者   : h00313353
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulCallBackEnableFlg;        /* 是否支持CallBack模式 */
     VOS_UINT32                          ulCallBackModeTimerLen;     /* CallBack定时器时长 */
 } CNAS_XSD_CALLBACK_CFG_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_FREQENCY_CHANNEL_STRU
- 结构说明  : 频点结构
-  1.日    期   : 2015年7月3日
-    作    者   : h00313353
-    修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usChannel;
     CNAS_PRL_BAND_CLASS_ENUM_UINT16     enBandClass;
 } CNAS_XSD_FREQUENCY_CHANNEL_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_CDMA_1X_PREF_CHANNELS_STRU
- 结构说明  : 中国电信1X优选频点结构
-  1.日    期   : 2015年7月3日
-    作    者   : h00313353
-    修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucEnableFlg;
@@ -606,13 +441,7 @@ typedef struct
     CNAS_XSD_FREQUENCY_CHANNEL_STRU     astFreqList[CNAS_XSD_MAX_CDMA_1X_CUSTOM_PREF_CHANNELS_NUM];
 } CNAS_XSD_CDMA_1X_CUSTOM_PREF_CHANNELS_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_ADD_AVOID_FREQ_CFG_STRU
- 结构说明  : CNAS XSD 添加avoid频点控制
- 1.日    期   : 2015年5月11日
-   作    者   : c00299063
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucIsNegSysAdd;
@@ -620,26 +449,14 @@ typedef struct
 }CNAS_XSD_ADD_AVOID_LIST_CFG_STRU;
 
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_NEG_PREF_SYS_CMP_CTRL_STRU
- 结构说明  : CNAS XSD negitave syetem 判断控制
- 1.日    期   : 2015年5月11日
-   作    者   : c00299063
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     CNAS_XSD_NEG_PREF_SYS_CMP_TYPE_ENUM_UINT8               enNegPrefSysCmpType;
     VOS_UINT8                                               aucReserve[15];
 }CNAS_XSD_NEG_PREF_SYS_CMP_CTRL_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_SYS_ACQ_NVIM_CFG_STRU
- 结构说明  : CNAS XSD 系统捕获NV控制
- 1.日    期   : 2015年5月11日
-   作    者   : c00299063
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     CNAS_XSD_ADD_AVOID_LIST_CFG_STRU                        stAddAvoidListCfg;
@@ -647,14 +464,7 @@ typedef struct
 }CNAS_XSD_SYS_ACQ_NVIM_CFG_STRU;
 
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_CFREQ_LOCK_SET_PARA_STRU
- 结构说明  : CNAS XSD 锁频信息
- 1.日    期   : 2014年12月29日
-   作    者   : y00307564
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                                                   ucFreqLockMode;
@@ -769,13 +579,7 @@ typedef struct
     VOS_UINT8                           aucAvoidTimes[CNAS_XSD_AVOID_REASON_MAX];  /* CNAS_XSD_AVOID_REASON_MAX = 12*/
 }CNAS_XSD_AVOID_FREQ_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_SCAN_CHANNEL_INFO_STRU
- 结构说明  : 保存扫描的频点信息
- 1.日    期   : 2014年8月05日
-   作    者   : W00176964
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     CNAS_PRL_FREQENCY_CHANNEL_STRU          stFreqChan;
@@ -859,17 +663,7 @@ typedef struct
 }CNAS_XSD_CALL_REDIAL_SYS_LIST_STRU;
 
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_ACQUIRE_SYSTEM_INFO_STRU
- 结构说明  : 保存需要捕获的系统记录信息
- 1.日    期   : 2014年8月05日
-   作    者   : W00176964
-   修改内容   : 新增
 
- 2.日    期   : 2015年7月3日
-   作    者   : y00245242
-   修改内容   : iteration 17开发
-*****************************************************************************/
 typedef struct
 {
     CNAS_PRL_1X_SYSTEM_STRU                                 stAcqSys;                           /* 需要捕获的系统ID */
@@ -878,16 +672,7 @@ typedef struct
     CNAS_PRL_PREF_NEG_SYS_ENUM_UINT8                        enPrefNegSys;                       /* 在频点扫描列表中的索引,方便对应的频点状态刷新 */
 }CNAS_XSD_ACQUIRE_SYSTEM_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_SCAN_CHANNEL_LIST_STRU
- 结构说明  : 频点扫描列表结构体
- 1.日    期   : 2014年8月05日
-   作    者   : W00176964
-   修改内容   : 新增
- 2.日    期   : 2015年1月09日
-   作    者   : W00176964
-   修改内容   : CDMA 1X Iteration 6 Modidifed:Add Max List Size Item
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usTotalNum;                             /* 列表中保存的chan个数 */
@@ -901,13 +686,7 @@ typedef struct
 
 }CNAS_XSD_SCAN_CHANNEL_LIST_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_EMC_REDIAL_SYS_ACQ_CFG_STRU
- 结构说明  : 紧急呼重拨搜网控制
-  1.日    期   : 2015年10月26日
-    作    者   : c00299063
-    修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                               ucRedialCount;
@@ -917,13 +696,7 @@ typedef struct
     CNAS_XSD_MRU_LIST_STRU                                  stEmcRedialMruList;
 }CNAS_XSD_EMC_REDIAL_SYS_ACQ_CFG_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_EMC_CALLBACK_CANDIDATE_FREQ_INFO_STRU
- 结构说明  : 紧急呼回呼模式异频临区信息
-  1.日    期   : 2016年01月28日
-    作    者   : h00313353
-    修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usCfChannelNum;
@@ -931,13 +704,7 @@ typedef struct
     CNAS_PRL_FREQENCY_CHANNEL_STRU      astChannelList[CNAS_XSD_MAX_CANDIDATE_FREQ_NUM];    /* 异频临区频点信息 */
 }CNAS_XSD_EMC_CALLBACK_CANDIDATE_FREQ_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_CUR_SYNC_GEO_LIST_INFO
- 结构说明  : 记录当前正在同步的GEO list首个索引
- 1.日    期   : 2015年7月8日
-   作    者   : y00245242
-   修改内容   : iteration 17开发
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                                              usGeoNum;
@@ -945,21 +712,7 @@ typedef struct
     VOS_UINT16                                              ausGeoFirstIndex[CNAS_PRL_MAX_MATCHING_GEO_NUM];
 }CNAS_XSD_CUR_SYNC_GEO_LIST_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_GEO_SYS_RECORD_SRCH_LIST_STRU
- 结构说明  : 系统捕获列表信息-用于系统捕获时使用
- 1.日    期   : 2014年8月05日
-   作    者   : W00176964
-   修改内容   : 新增
 
- 2.日    期   : 2015年1月09日
-   作    者   : W00176964
-   修改内容   : CDMA 1X Iteration 6 Modidifed:Add Max List Size Item
-
- 3.日    期   : 2015年7月3日
-   作    者   : y00245242
-   修改内容   : iteration 17开发
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16                                              usTotalNum;                             /* 列表中保存的sys总个数 */
@@ -971,21 +724,7 @@ typedef struct
 }CNAS_XSD_GEO_SYS_RECORD_SRCH_LIST_STRU;
 
 
-/*****************************************************************************
- 结构名    : CNAX_XSD_CAMPED_SYS_INFO_STRU
- 结构说明  : 驻留成功的系统信息
- 1.日    期   : 2014年8月21日
-   作    者   : l60609
-   修改内容   : 新增
 
- 2.日    期   : 3/12/2014
-   作    者   : y00245242
-   修改内容   : add camp on flag
-
- 3.日    期   : 2015年7月10日
-   作    者   : y00245242
-   修改内容   : iteration 17开发
-*****************************************************************************/
 typedef struct
 {
     CNAS_PRL_1X_SYSTEM_STRU             stSystem;
@@ -999,13 +738,7 @@ typedef struct
 }CNAX_XSD_CAMPED_SYS_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_CALL_REDIAL_CTRL_INFO_STRU
- 结构说明  : 呼叫重拨的控制信息
- 1.日    期   : 2014年11月21日
-   作    者   : c00299063
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucCallExistFlg;              /* call exist flag */
@@ -1015,13 +748,7 @@ typedef struct
     CNAS_XSD_SCAN_CHANNEL_LIST_STRU     stCallRedialChanScanList;    /* 呼叫重拨场景下的频点列表 */
 }CNAS_XSD_CALL_REDIAL_CTRL_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_EMC_CALL_CTRL_INFO_STRU
- 结构说明  : 紧急呼流程控制信息
- 1.日    期   : 2015年07月04日
-   作    者   : h00313353
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     CNAS_XSD_EMC_STATE_ENUM_UINT8                           enEmcState;                  /* 紧急呼流程状态 */
@@ -1035,13 +762,7 @@ typedef struct
 } CNAS_XSD_EMC_CALL_CTRL_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_OOC_CTX_INFO_STRU
- 结构说明  : OOC上下文信息
- 1.日    期   : 2015年1月4日
-   作    者   : y00245242
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                               ucWaitSearchFlag;           /* OOC等待搜索标志，即在MRU0搜索时，OOC定时器到期 */
@@ -1055,26 +776,14 @@ typedef struct
     CNAS_XSD_SYS_ACQ_SCENE_ENUM_UINT32                      enOocSearchScene;
 }CNAS_XSD_OOC_CTX_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_OOC_TIMER_INFO_STRU
- 结构说明  : OOC搜网定时器信息
- 1.日    期   : 2015年1月4日
-   作    者   : y00245242
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usTimes;
     VOS_UINT16                          usTimerLen;
 }CNAS_XSD_OOC_TIMER_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_OOC_CONFIG_INFO_STRU
- 结构说明  : OOC搜网调度信息, 所有信息源与NV配置
- 1.日    期   : 2015年1月4日
-   作    者   : y00245242
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                               ucMru0SearchTimerLen;       /* 搜索MRU0时长 */
@@ -1087,39 +796,21 @@ typedef struct
     CNAS_XSD_OOC_TIMER_INFO_STRU                            astOocTimerInfo[CNAS_XSD_MAX_OOC_SCHEDULE_PHASE_NUM];
 }CNAS_XSD_OOC_CONFIG_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_1X_OOC_INFO_STRU
- 结构说明  : out of cell相关信息
- 1.日    期   : 2015年1月4日
-   作    者   : y00245242
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     CNAS_XSD_OOC_CTX_INFO_STRU                              stOocCtxInfo;
     CNAS_XSD_OOC_CONFIG_INFO_STRU                           stConfigInfo;               /* 保存OOC场景下，搜网配置信息 */
 }CNAS_XSD_OOC_SCHEDULE_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_GEO_SRCH_STATUS_INFO_STRU
- 结构说明  : GEO list搜索信息，记录PRL表中GEO的起始索引以及搜索状态
- 1.日    期   : 2015年7月3日
-   作    者   : y00245242
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                                              usGeoBeginIndex;
     VOS_UINT16                                              usGeoSrchStatus;
 }CNAS_XSD_GEO_SRCH_STATUS_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_GEO_LIST_SRCH_INFO_STRU
- 结构说明  : GEO list搜索信息, 记录某个GEO是否已经搜索过
- 1.日    期   : 2015年7月3日
-   作    者   : y00245242
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                                              usGeoNum;                   /* GEO数目 */
@@ -1127,13 +818,7 @@ typedef struct
     CNAS_XSD_GEO_SRCH_STATUS_INFO_STRU                     *pstGeoSrchInfo;             /* 指向GEO搜索信息首地址 */
 }CNAS_XSD_GEO_LIST_SRCH_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_HISTORY_SYNCED_SYS_FREQ_LIST_STRU
- 结构说明  : 同步成功的系统频点列表信息
- 1.日    期   : 2015年7月7日
-   作    者   : y00245242
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulTotalNum;                                     /* 所能保存频点的最大个数 */
@@ -1141,13 +826,7 @@ typedef struct
     CNAS_PRL_FREQENCY_CHANNEL_STRU      astFreq[CNAS_XSD_1X_SYNC_SUCC_FREQ_MAX_NUM];    /* 保存同步到系统的频点 */
 }CNAS_XSD_HISTORY_SYNCED_SYS_FREQ_LIST_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_AVOID_SCHEDULE_STRU
- 结构说明  : avoid策略信息
-  1.日    期   : 2015年11月23日
-    作    者   : c00299063
-    修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           aucAvoidTimerLen[CNAS_XSD_AVOID_REASON_MAX][CNAS_XSD_AVOID_MAX_PHASE_NUM];
@@ -1191,14 +870,7 @@ typedef struct
 
 }CNAS_XSD_SYSTEM_ACQUIRE_CTRL_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_CALL_INFO_STRU
- 结构说明  : CNAS XSD 模块保存的呼叫相关的信息
- 1.日    期   : 2014年08月01日
-   作    者   : l60609
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucExistNorVoiceCall;
@@ -1207,28 +879,14 @@ typedef struct
     VOS_UINT8                           ucRsved;
 }CNAS_XSD_CALL_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_FSM_SWITCH_ON_CTX_STRU
- 结构说明  : 存放开机状态机的上下文信息
-  1.日    期   : 2014年07月04日
-    作    者   : y00245242
-    修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          ulXsdReadCardFileFlg;                   /* 标记卡文件是否读取完成 */
     VOS_UINT8                           aucReserved[4];
 }CNAS_XSD_FSM_SWITCH_ON_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_FSM_POWER_OFF_CTX_STRU
- 结构说明  : 存放关机状态机的上下文信息
-  1.日    期   : 2014年10月20日
-    作    者   : w00176964
-    修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucCampOnNeedFlg;                    /* 是否需要驻留标记 */
@@ -1238,13 +896,7 @@ typedef struct
 }CNAS_XSD_FSM_POWER_OFF_CTX_STRU;
 
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_SYSTEM_WITH_SAME_CHANNEL_STRU
- 结构说明  : 保存相同频点捕获的系统记录信息
- 1.日    期   : 2014年8月05日
-   作    者   : W00176964
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     CNAS_PRL_FREQENCY_CHANNEL_STRU      stFreq;
@@ -1253,14 +905,7 @@ typedef struct
     CNAS_PRL_1X_SYSTEM_ID_STRU          astSysId[CNAS_XSD_1X_MAX_SAME_PRIO_SYS_NUM];            /* 需要捕获的系统ID */
 }CNAS_XSD_SYSTEM_WITH_SAME_CHANNEL_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_LAST_1X_ACQ_SYSTEM_INFO
- 结构说明  : 存放最近一次发给CAS发送的捕获系统信息
-  1.日    期   : 2014年08月18日
-    作    者   : l60609
-    修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16                              usSndSysNum;                        /* 保存上次发给CAS的需要捕获系统的个数 */
@@ -1268,18 +913,7 @@ typedef struct
     CNAS_XSD_SYSTEM_WITH_SAME_CHANNEL_STRU  astSndSys[CNAS_XSD_1X_SND_CAS_MAX_SYSTEM_NUM];  /* 保存上次发给CAS的需要捕获的系统 */
 }CNAS_XSD_LATEST_SND_CAS_ACQ_SYSTEM_INFO;
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_CALL_REL_ANY_CAMP_ON_FREQ_STRU
- 结构说明  : 呼叫释放信息, 存放呼叫释放后，任何系统直接驻留的频点
-             如下:
-             Upon call release MS shall first try to acquire the last channel
-             being used in Traffic state. If MS fails to acquire the last channel
-             being used in Traffic state, it shall try to acquire the channel
-             that is listed in MRU[0].
- 1.日    期   : 2015年7月27日
-   作    者   : y00245242
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usChanNum;       /* 呼叫释放同步的频点个数 */
@@ -1287,19 +921,7 @@ typedef struct
     CNAS_PRL_FREQENCY_CHANNEL_STRU      astFreq[CNAS_XSD_CALL_REL_SYNC_MAX_FREQ_NUM];   /* 保存呼叫释放后，首次需要搜索的频点 */
 }CNAS_XSD_CALL_REL_ANY_CAMP_ON_FREQ_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_FSM_SYS_ACQ_CTX_STRU
- 结构说明  : 存放SYS ACQ状态机的上下文信息
-  1.日    期   : 2014年08月08日
-    作    者   : l60609
-    修改内容   : 新建
-  2.日    期   : 2014年12月25日
-    作    者   : w00176964
-    修改内容   : CDMA Iteration 6:Move the avail system list to the global variables
-  3.日    期   : 2015年7月4日
-    作    者   : y00245242
-    修改内容   : iteration 17开发
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                               ucIsAvailSysAcqList;/* 标记当前捕获列表是否为available system list，默认为VOS_FALSE */
@@ -1312,14 +934,7 @@ typedef struct
     CNAS_XSD_CALL_REL_ANY_CAMP_ON_FREQ_STRU                 stCallRelFirstSyncFreq;
 }CNAS_XSD_FSM_SYS_ACQ_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_FSM_L1_MAIN_CTX_STRU
- 结构说明  : 存放开机状态机的上下文信息
-  1.日    期   : 2014年07月04日
-    作    者   : y00245242
-    修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          ulCurAvailableTimerCount;               /* 当前Available Timer启动次数 */
@@ -1336,13 +951,7 @@ typedef struct
 }CNAS_XSD_FSM_REDIR_CTX_STRU;
 
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_FSM_EXTRA_CTX_UNION
- 结构说明  : 状态机状态描述结构,状态机上下文信息
- 1.日    期   : 2014年07月04日
-   作    者   : y00245242
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef union
 {
     CNAS_XSD_FSM_SWITCH_ON_CTX_STRU     stSwitchOnCtx;
@@ -1352,14 +961,7 @@ typedef union
     CNAS_XSD_FSM_REDIR_CTX_STRU         stRedirCtx;
 }CNAS_XSD_FSM_EXTRA_CTX_UNION;
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_FSM_CTX_STRU
- 结构说明  : 状态机状态描述结构
- 1.日    期   : 2014年07月04日
-   作    者   : y00245242
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     /* 状态机描述指针,指针为NULL表示当前状态机无效  */
@@ -1384,13 +986,7 @@ typedef struct
     CNAS_XSD_FSM_EXTRA_CTX_UNION        unFsmCtx;
 }CNAS_XSD_FSM_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_FSM_STACK_STRU
- 结构说明  : 状态机栈描述结构
- 1.日    期   : 2014年07月04日
-   作    者   : y00245242
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usStackDepth;                           /* 当前压栈的状态机数 */
@@ -1398,14 +994,7 @@ typedef struct
     CNAS_XSD_FSM_CTX_STRU               astFsmStack[CNAS_XSD_MAX_FSM_STACK_DEPTH];  /* 状态机栈的深度 */
 }CNAS_XSD_FSM_STACK_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_INT_MSG_QUEUE_STRU
- 结构说明  : 缓存的消息队列
- 1.日    期   : 2014年10月15日
-   作    者   : c00299063
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucIntMsgNum;                                /* 缓存消息的个数 */
@@ -1414,14 +1003,7 @@ typedef struct
 }CNAS_XSD_INT_MSG_QUEUE_STRU;
 
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_CTX_STRU
- 结构说明  : CNAS XSD 模块运行上下文
- 1.日    期   : 2014年07月04日
-   作    者   : y00245242
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     /**************************************************************************
@@ -1721,12 +1303,10 @@ VOS_VOID CNAS_XSD_ClearEmcCallOriginalSys( VOS_VOID );
 
 VOS_UINT32 CNAS_XSD_IsEmcCallOriginalSysExist( VOS_VOID );
 
-/* Modified by w00176964 for CNAS内存裁剪, 2015-9-18, begin */
 VOS_VOID CNAS_XSD_InitCacheMsgQueue(
     CNAS_XSD_INIT_CTX_TYPE_ENUM_UINT8   enInitType,
     CNAS_XSD_CACHE_MSG_QUEUE_STRU      *pstCacheMsgQueue
 );
-/* Modified by w00176964 for CNAS内存裁剪, 2015-9-18, end */
 
 VOS_VOID CNAS_XSD_SetCallOrigSysExistFlg(
     VOS_UINT8                           ucFlg

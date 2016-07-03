@@ -1,27 +1,4 @@
-/******************************************************************************
 
-            版权所有 (C), 2005-2007, 华为技术有限公司
-
-
-  文 件 名   : App_Api_Reg.h
-  版 本 号   : 初稿
-  作    者   : liuyang id:48197
-  生成日期   : 2006年2月17日
-  最近修改   :
-  功能描述   : App_Api_Reg.c 的头文件
-  函数列表   :
-                ---
-                ---
-                ---
-  修改历史   :
-        1.日    期   : 2006年2月17日
-          作    者   : liuyang id:48197
-          修改内容   : 创建文件
-        2.日    期   : 2006年2月17日
-          作    者   : ---
-          修改内容   : Add function ... 问题单号:
-
-******************************************************************************/
 
 #ifndef __APP_API_REG_H__
 #define __APP_API_REG_H__
@@ -79,8 +56,6 @@
 extern  TAF_VOID Demo_Init(	TAF_VOID);
 
 extern  TAF_VOID Demo_CsCallCallBack(   TAF_CS_CALL_EVENT_INFO_STRU *pEvent);
-/* Deleted by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, begin */
-/* Deleted by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, begin */
 extern  TAF_VOID Demo_PhoneCallCallBack(TAF_PHONE_EVENT_INFO_STRU   *pEvent);
 
 extern  TAF_VOID Demo_PhoneBookCallBack(TAF_PB_EVENT_INFO_STRU  *pEvent);

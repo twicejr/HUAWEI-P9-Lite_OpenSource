@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : dmac_user.h
-  版 本 号   : 初稿
-  作    者   : huxiaotong
-  生成日期   : 2012年10月19日
-  最近修改   :
-  功能描述   : dmac_user.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年10月19日
-    作    者   : huxiaotong
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __DMAC_USER_H__
 #define __DMAC_USER_H__
@@ -164,13 +147,17 @@ typedef struct
 typedef struct
 {
     oal_int32    ul_signal;
-    oal_uint32   ul_drv_rx_pkts;      /* 驱动接收数据包数目 */
-    oal_uint32   ul_hw_tx_pkts;      /* 发送完成中断上报发送成功的个数 */
+    oal_uint32   ul_drv_rx_pkts;      /* 接收数据(硬件上报，包含rx描述符不成功的帧)数目，仅仅统计数据帧 */
+    oal_uint32   ul_hw_tx_pkts;      /* 发送完成中断上报发送成功的个数 ，仅仅统计数据帧 */
     oal_uint32   ul_drv_rx_bytes;    /* 驱动接收字节数，不包括80211头尾 */
     oal_uint32   ul_hw_tx_bytes;     /* 发送完成中断上报发送成功字节数 */
     oal_uint32   ul_tx_retries;      /*发送重传次数*/
-    oal_uint32   ul_rx_dropped_misc; /*接收失败次数*/
-    oal_uint32   ul_tx_failed;     /* 发送失败次数，仅仅统计数据帧 */
+    oal_uint32   ul_rx_dropped_misc; /*接收失败(决定丢弃的帧)次数*/
+    oal_uint32   ul_tx_failed;      /* 发送失败最终丢弃的次数，仅仅统计数据帧  */
+
+    oal_uint32   ul_hw_tx_failed;   /* 发送完成中断上报发送失败的个数，仅仅统计数据帧 */
+    oal_uint32   ul_tx_total;       /* 发送总计，仅仅统计数据帧  */
+
 }dmac_user_query_stats_stru;
 
 /* 软件平均rssi统计信息结构体 */

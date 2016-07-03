@@ -20,6 +20,7 @@ hisifb-objs := \
 	hisi_fb_panel.o \
 	hisi_fb_isr.o \
 	hisi_fb_vsync.o \
+	hisi_fb_esd.o \
 	hisi_fb_buf_sync.o \
 	hisi_fb_bl.o \
 	hisi_fb_utils.o \

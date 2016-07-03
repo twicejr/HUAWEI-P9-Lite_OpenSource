@@ -40,18 +40,7 @@ VOS_UINT32                              g_ulSrcIpMatchSwitch = 1;
 /*****************************************************************************
   3 Function
 *****************************************************************************/
-/*****************************************************************************
- Function Name   : NAS_ERABM_AppMsgDistr
- Description     : APP消息分发处理函数
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.yangqianhui 00135146      2009-3-7  Draft Enact
-    2.lihong 00150010           2010-4-12 Modify
-
-*****************************************************************************/
 VOS_VOID  NAS_ERABM_AppMsgDistr( VOS_VOID *pRcvMsg )
 {
     PS_MSG_HEADER_STRU            *pRrcMsg;
@@ -167,18 +156,7 @@ VOS_VOID NAS_ERABM_RcvRabmAppDataReq( const APP_ERABM_DATA_TRANS_REQ_STRU *pRcvM
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_AppAssignMidHeader
- Description     : 分配APP消息头APP_PS_MSG_HEADER中的MID参数
- Input           : VOS_UINT32  *pulOriMid,
-                    VOS_UINT32 *pulTerMid
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2010-4-12  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ERABM_AppAssignMidHeader
 (
     VOS_UINT16                         *pusOriMid,
@@ -190,17 +168,7 @@ VOS_VOID  NAS_ERABM_AppAssignMidHeader
     *pusTerMid = UE_MODULE_RABM_ID;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_IsExistUplinkPfinTft
- Description     : 判断承载的TFT中是否存在上行的PacketFilter
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.liuwenyu 00143951      2010-5-14  Draft Enact
-
-*****************************************************************************/
 PS_BOOL_ENUM_UINT8  NAS_ERABM_IsExistUplinkPfinTft( VOS_UINT32 ulEpsbId)
 {
     VOS_UINT32                          ulTftPfCnt = NAS_ERABM_NULL;
@@ -220,17 +188,7 @@ PS_BOOL_ENUM_UINT8  NAS_ERABM_IsExistUplinkPfinTft( VOS_UINT32 ulEpsbId)
     return PS_FALSE;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_SaveIpv4SegDataInfo
- Description     : 保存分片包信息(包括identifier,源和目的IP地址)
- Input           : NAS_ERABM_IPV4_HEADER_STRU   *pstIpv4HeaderInfo
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.yangqianhui 00135146    2010-11-27    Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ERABM_SaveIpv4SegDataInfo
 (
     const NAS_ERABM_IPV4_HEADER_STRU   *pstIpv4HeaderInfo,
@@ -279,18 +237,7 @@ VOS_VOID NAS_ERABM_SaveIpv4SegDataInfo
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_DecodeIpV4Data
- Description     : 将IPv4包进行大小端转换
- Input           : VOS_UINT32 *pulSrcData
-                   VOS_UINT32 *puLDestData
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.y00135146      2009-7-27  Draft Enact
-
-*****************************************************************************/
 
 VOS_VOID NAS_ERABM_DecodeIpV4Data
 (
@@ -324,18 +271,7 @@ VOS_VOID NAS_ERABM_DecodeIpV4Data
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_DecodeIpV6Data
- Description     : 将IPv6包进行大小端转换
- Input           : (VOS_VOID *)pstSdu->pData
-                   pulIpv6Data
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.y00135146      2009-7-28  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ERABM_DecodeIpV6Data
 (
     VOS_UINT8 *pucSrcData,

@@ -1,24 +1,4 @@
-/************************************************************************
-*                                                                      *
-*                             ppp_cvt.c                                *
-*                                                                      *
-*  Project Code:       VRP3.0                                          *
-*  Create Date:        2000/03/27                                      *
-*  Author:             Deng Yi Ou                                      *
-*  Modify Date:                                                        *
-*  Document:                                                           *
-*  Function:           PPP模块的全局变量定义                           *
-*  Others:                                                             *
-*----------------------------------------------------------------------*
-*                                                                      *
-*  Copyright 2000-2002 VRP3.0 Team Beijing Institute HuaWei Tech, Inc. *
-*                      ALL RIGHTS RESERVED                             *
-*                                                                      *
-*----------------------------------------------------------------------*
-*                                                                      *
-*   这个文件定义了PPP模块的所有全局变量                                *
-*                                                                      *
-************************************************************************/
+
 
 
 
@@ -91,17 +71,7 @@ VOS_UINT16 usFcsTab[256] = {
 *****************************************************************************/
 /*lint -save -e958 */
 
-/****************************************************************************
-* CREATE DATE  ：2015/06/18                                                 *
-* CREATED BY   ：chenxianhua                                                 *
-* FUNCTION     ：将上行数据同步报文转换为异步报文                                   *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pMbuf:同步报文                                             *
-*                ulAsynAccm:同异步转换字符                                  *
-* OUTPUT       ：                                                           *
-* RETURN       ：转换后的异步报文,NULL则表示失败                            *
-* CALLED BY    ：PPP_Shell_SendPacketToISL                                  *
-****************************************************************************/
+
 VOS_UINT32 PPP_UlDataSynToAsy
 (
     VOS_UINT8                          *pucHeadData,
@@ -189,17 +159,7 @@ VOS_UINT32 PPP_UlDataSynToAsy
 }
 
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：将同步报文转换为异步报文                                   *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pMbuf:同步报文                                             *
-*                ulAsynAccm:同异步转换字符                                  *
-* OUTPUT       ：                                                           *
-* RETURN       ：转换后的异步报文,NULL则表示失败                            *
-* CALLED BY    ：PPP_Shell_SendPacketToISL                                  *
-****************************************************************************/
+
 PMBUF_S *PPP_SynToAsy(PMBUF_S *pstSynMBuf, VOS_UINT32 ulAsynAccm)
 {
     PMBUF_S *pstAsyBuf;
@@ -232,7 +192,6 @@ PMBUF_S *PPP_SynToAsy(PMBUF_S *pstSynMBuf, VOS_UINT32 ulAsynAccm)
 
     /* 根据同步报文大小,申请异步报文,大小为同步报文*2+2 */
 
-    /* modified by luofang  切平台 20120925 */
     pAsyHead = (UCHAR *)PPP_Malloc(ulAsyDataBlockLen);
     if (pAsyHead == NULL)
     {
@@ -328,25 +287,7 @@ PMBUF_S *PPP_SynToAsy(PMBUF_S *pstSynMBuf, VOS_UINT32 ulAsynAccm)
     return pstAsyBuf;
 }
 
-/******************************************************************************
-函 数 名  : FWD_PppAsynToSyn
-功能描述  : 将一实际异步数据段转换为同步数据段
-输入参数  :
-            VOS_UINT16                          usLenToHandle,
-            VOS_UINT8                          *pucAsynData,
-            VOS_UINT8                          *ucIsFinished
-输出参数  : NA
-全局变量  : NA
-返 回 值  : NA
-调用函数  : NA
-被调函数  : NA
 
-修改历史      :
-1.日    期   : 星期六 2015年8月13日
-作    者   : zWX297122
-修改内容   : 新生成函数
-
-******************************************************************************/
 VOS_UINT32 PPP_AsyToSyn
 (
     VOS_UINT8                           ucAsynByte

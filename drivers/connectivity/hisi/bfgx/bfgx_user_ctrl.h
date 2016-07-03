@@ -11,6 +11,8 @@
 /*****************************************************************************
   2 Define macro
 *****************************************************************************/
+#define SNPRINT_LIMIT_TO_KERNEL   (512)
+
 enum PLAT_LOGLEVLE{
 	PLAT_LOG_ALERT = 0,
 	PLAT_LOG_ERR = 1,
@@ -36,11 +38,13 @@ enum BUG_ON_CTRL{
   4 EXTERN VARIABLE
 *****************************************************************************/
 extern struct kobject *g_sysfs_hi110x_bfgx;
-extern struct kobject *g_sysfs_bfgx_exception;
 extern int32 g_plat_loglevel;
-
-extern int32 g_uart_rx_dump;
 extern int32 g_bug_on_enable;
+
+#ifdef PLATFORM_DEBUG_ENABLE
+extern int32 g_uart_rx_dump;
+#endif
+
 /*****************************************************************************
   5 EXTERN FUNCTION
 *****************************************************************************/

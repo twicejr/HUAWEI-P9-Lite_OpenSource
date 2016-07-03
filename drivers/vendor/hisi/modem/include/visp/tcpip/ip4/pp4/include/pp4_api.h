@@ -157,7 +157,6 @@ extern "C"{
 /* 标志报文为组播策略路由转发,需要检查出接口的合法性 */
 #define IP_PKT_MCAST_PR         0x40000000
 
-/* Add for DTS2011042101816, by z00166124, at 2011-04-22. 修改原因: 增加选项 */
 #define IPOPT_EOL           0       /* 选项列表结束 end of option list */
 #define IPOPT_NOP           1       /* 无操作 no operation */
 #define IPOPT_RR            7       /* 记录报文经过路由 record packet route */
@@ -167,7 +166,6 @@ extern "C"{
 #define IPOPT_SATID         136     /* satnet id */
 #define IPOPT_SSRR          137     /* 严格源站选路 strict source route */
 #define IPOPT_ROUTE_ALERT   148     /* 传输路线告警，若值为零则直接发送 route alert, if value is 0, then delivertoup */
-/* Add for DTS2011082700364, by zhaoyue00171897, at 2011-08-27. 修改原因: 增加不识别的选项处理 */
 #define IPOPT_UNKOWN        0x80000000 /*不识别的选项标记*/
 
 /* IP选项对应开关状态宏定义 */
@@ -192,7 +190,6 @@ typedef enum tagIP_DEBUG_FILTER
 #define IP_DEBUG_FILTER_FLAG_NOR 1    /* 打开普通报文过滤 */
 #define IP_DEBUG_FILTER_FLAG_VBS 2    /* 打开详细报文过滤 */
 
-/* Modify for DTS2011080805157, by zhaoyue00171897, at 2011-08-08. 修改原因: 修改返回值，增加报文丢弃情况 */
 /* 注册源IP路由后,报文发送方式宏定义 */
 #define IP_GO_WITH_SRCROUTE      0    /* 按源路由发送报文 */
 #define IP_DROP_PACKET           1    /* 丢弃报文 */
@@ -250,7 +247,6 @@ typedef struct  tagIPIFSTAT
     ULONG   ifi_ulODropBytes;/* dorp bytes sent on interface */
     ULONG   ipi_ulHookProcessed;    /* processed by hook */
     ULONG   ipi_ulHookNotProcessed; /* not processed by hook */
-    /* Add by heyijun 00218462 for DTS2012092900232 维测需求开发, 2012-9 */
     ULONG   ipi_ulHookBcastProcessed;   /* b-cast packets processed by hook */
     ULONG   ipi_ulHookBcastNotProcessed;/* b-cast packets not processed by hook */
     ULONG   ipi_ulHookMcastProcessed;   /* m-cast packets processed by hook */
@@ -261,16 +257,13 @@ typedef struct  tagIPIFSTAT
     ULONG   ipi_ulPpiBcastNotProcessed; /* b-cast packets not processed by ppi output */
     ULONG   ipi_ulPpiMcastProcessed;    /* m-cast packets processed by ppi output */
     ULONG   ipi_ulPpiMcastNotProcessed; /* m-cast packets not processed by ppi output */
-    /* End of Add by heyijun 00218462 for DTS2012092900232 维测需求开发, 2012-9 */
 }IPIFSTAT_S;
 
-/* Add by heyijun 00218462 for DTS2012092803600 维测需求开发, 2012-9 */
 typedef struct  tagIPIFSTAT_LIST
 {
     ULONG      ulIfIndex;
     IPIFSTAT_S stIpIfStat;
 }IPIFSTAT_LIST_S;
-/* End of Add by heyijun 00218462 for DTS2012092803600 维测需求开发, 2012-9 */
 
 
 
@@ -308,29 +301,13 @@ typedef struct tagIPSTAT
     ULONG   ips_ulDistSockSent;  /* distributed socket send package */
 }IPSTAT_S;
 
-/* Modify by z00171897/s00176784, at 2011-06-02. 修改原因: 支持根据源IP查找路由 */
 typedef struct tagSrcRtSearch
 {
     ULONG ulNextHopIPAddr;  /* 下一跳地址, 网络序 */
     ULONG ulOutIfIndex;  /* 出接口, 必须是三层接口 */
 } SRC_RT_SEARCH_S;
 
-/*******************************************************************************
-*    Func Name: gpfTCPIPSrcRtSearch
-*  Description: 根据源IP查找路由钩子原型
-*        Input: ULONG ulSrcIPAddr: 报文的源地址,网络序
-*             : ULONG ulDstIPAddr: 报文的目的地址,网络序
-*       Output: SRC_RT_SEARCH_S *pstOutput:  源IP路由查询结果
-*       Return: 成功:VOS_OK
-*               失败:其他    不通过源IP路由方式发送，VISP按照原有方式
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-06-01   z00171897/s00176784     Create
-*  2011-07-28   z00171897               DTS2011072801526 输入参数增加目的IP
-*******************************************************************************/
+
 typedef ULONG (*gpfTCPIPSrcRtSearch)(ULONG ulSrcIPAddr, ULONG ulDstIPAddr, SRC_RT_SEARCH_S *pstOutput);
 
 typedef struct tagSrcRtPacket
@@ -339,396 +316,52 @@ typedef struct tagSrcRtPacket
     ULONG ulDstIPAddr; /* 报文的目的地址,网络序   */
     ULONG ulVrfIndex;
 } SRC_RT_PKT_S;
-/*******************************************************************************
-*    Func Name: TCPIP_SRC_RT_SEARCH_FUN
-*  Description: 根据源IP查找路由钩子原型
-*        Input: SRC_RT_PKT_S *pstPktInfo: 报文的源地址目的地址,网络序,以及VRF索引
-*             : IP6_SRC_RT_SEARCH_S *pstOutput: 输出路由
-*       Output: SRC_RT_SEARCH_S *pstOutput:  源IP路由查询结果
-*       Return: 成功:VOS_OK
-*               失败:其他    不通过源IP路由方式发送，VISP按照原有方式
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2013-12-5   l00213099     Create
-*******************************************************************************/
+
 typedef ULONG (*TCPIP_SRC_RT_SEARCH_FUN)( SRC_RT_PKT_S *pstPktInfo, SRC_RT_SEARCH_S *pstOutput);
 
-/*******************************************************************************
-*    Func Name: TCPIP_ClrIpStatByIf
-*  Description: 根据接口索引，清除接口的IP统计信息
-*        Input: ULONG ulIfIndex:接口索引
-*       Output: 
-*       Return: 成功:VOS_OK
-*               失败:
-*               IP_PP4_CFG_NULL_INT
-*               IP_PP4_CFG_NULLIPCTLBLOCK
-*               VOS_ERR
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-08   z00104207               Create
-*  2008-08-13   f54882                  Modified for BC3D00242
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_ClrIpStatByIf(ULONG ulIfIndex);
-/*******************************************************************************
-*    Func Name: TCPIP_ClrIpStatics
-*  Description: 清除当前系统的IP统计信息
-*        Input: 
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-08   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_ClrIpStatics (VOID);
-/*******************************************************************************
-*    Func Name: TCPIP_GetDefaultTTL
-*  Description: 获取系统默认TTL值
-*        Input: 
-*       Output: 
-*       Return: 系统TTL值
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-08   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_GetDefaultTTL(VOID);
-/*******************************************************************************
-*    Func Name: TCPIP_GetIpStatByIf
-*  Description: 根据接口索引，获取接口的IP统计信息
-*        Input: ULONG ulIfIndex:接口索引
-*               IPIFSTAT_S * pstIpStat:指向结构体IPSTAT_S的指针。其所指向的内存由用户负责申请和释放。
-*       Output: 
-*       Return: 成功:VOS_OK
-*               失败:
-*               IP_PP4_CFG_NULL_POINTER
-*               IP_PP4_CFG_NULL_INT
-*               IP_PP4_CFG_NULLIPCTLBLOCK
-*               VOS_ERR
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-08   z00104207               Create
-*  2008-08-13   f54882                  Modified for BC3D00242
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_GetIpStatByIf(ULONG ulIfIndex, IPIFSTAT_S * pstIpStat);
-/*******************************************************************************
-*    Func Name: TCPIP_GetIpStatics
-*  Description: 获取当前系统的IP统计信息
-*        Input: IPSTAT_S* pstIpStat:IP统计信息输出缓冲区
-*       Output: 
-*       Return: 成功:VOS_OK
-*               失败:IP_PP4_CFG_NULL_POINTER
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-08   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_GetIpStatics (IPSTAT_S* pstIpStat);
-/*******************************************************************************
-*    Func Name: TCPIP_GetPP4DebugFlag
-*  Description: 获取系统当前IP的调试开关状态
-*        Input: ULONG *pulDebugFlag:指向存放IP调试开关状态的指针, 0 ：关闭  1：打开
-*               ULONG *pulDebugIpAcl:指向存放标准Acl规则组的编号
-*               ULONG *pulDebugIpIfAcl:指向存放基于接口Acl规则组的编号
-*               ULONG *pulDebugIpIfOpt:该值目前始终为 3
-*               ULONG *pulDebugIpErr:指向存放IP错误调试开关状态的指针, 0 ：关闭  1：打开
-*               ULONG *pulDebugPacketVerbose:指向显示报文头详细信息标识的开关, 0 ：关闭  1：打开
-*       Output: 
-*       Return: 成功:IP_PP4_CFG_OK
-*               失败:IP_PP4_CFG_NULL_POINTER
-*      Caution: "	pulDebugIpIfOpt目前该参数是作为函数的预留参数，该值目前始终为 3
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-08   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_GetPP4DebugFlag(ULONG *pulDebugFlag, ULONG *pulDebugIpAcl, ULONG *pulDebugIpIfAcl,
     ULONG *pulDebugIpIfOpt, ULONG *pulDebugIpErr, ULONG *pulDebugPacketVerbose);
-/*******************************************************************************
-*    Func Name: TCPIP_IpOutput
-*  Description: 用户直接调用该API发送IP报文
-*        Input: MBUF_S* pstMBuf:IP报文
-*       Output: 
-*       Return: 成功:0
-*               失败:1
-*               ENETUNREACH
-*               FIB4_ERR_ENETUNREACH
-*               FIB4_ERR_BLACKHOLE
-*               FIB4_ERR_REJECT2
-*               EHOSTUNREACH
-*               UNKNOWNED_FRAME
-*               ETHARP_HA_IS_SMOOTHING
-*               INVALID_IFNET
-*               GETMTSOFTFAIL
-*               LINKISDOWN
-*               UNKNOWNED_PROTO
-*               MEMPREPEND_FAIL
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-08   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_IpOutput (MBUF_S* pstMBuf);
-/*******************************************************************************
-*    Func Name: TCPIP_IP_IF_Output
-*  Description: 目前产品适配的TCPIP_SendDhcpPacket中调用到了IP_IF_Output接口
-*        Input: MBUF_S *pstMbuf: 输出的MBUF
-*       Output: 
-*       Return: 成功 0
-*               失败，请参见pp4_api.h里的错误码定义
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-04-24   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_IP_IF_Output(MBUF_S *pstMbuf);
-/*******************************************************************************
-*    Func Name: TCPIP_IP_PP4_Intermediate_Hook_Register
-*  Description: 注册IP层中间处理钩子函数
-*        Input: ULONG ulType:钩子类型
-*               ULONG ulPriority:优先级，值越大钩子函数越先得到处理
-*               IP_PP4_INTERMEDIATE_HOOK_FUNC pfIpFwHookFunc:钩子函数
-*       Output: 
-*       Return: 成功:VOS_OK
-*               失败:
-*               IP_PP4_CFG_MEMMALLOC_FAIL
-*               IP_PP4_CFG_NULL_POINTER
-*               IP_PP4_CFG_ERR_HOOKTYPE
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-08   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_IP_PP4_Intermediate_Hook_Register(ULONG ulType, ULONG ulPriority, 
     IP_PP4_INTERMEDIATE_HOOK_FUNC pfIpFwHookFunc);
-/*******************************************************************************
-*    Func Name: TCPIP_IP_PP4_Intermediate_Hook_UnRegister
-*  Description: 动态解注册IP层中间处理钩子函数
-*        Input: ULONG ulType:钩子类型
-*               IP_PP4_INTERMEDIATE_HOOK_FUNC pfIpFwHookFunc:钩子函数
-*       Output: 
-*       Return: 成功:VOS_OK
-*               失败:
-*               IP_PP4_CFG_UNREGISTER_FAIL
-*               IP_PP4_CFG_NULL_POINTER
-*               IP_PP4_CFG_ERR_HOOKTYPE
-*               IP_PP4_CFG_NULL_HEAD
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-08   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_IP_PP4_Intermediate_Hook_UnRegister(ULONG ulType, 
     IP_PP4_INTERMEDIATE_HOOK_FUNC pfIpFwHookFunc);
-/*******************************************************************************
-*    Func Name: TCPIP_SetDefaultTTL
-*  Description: 设置系统默认TTL值
-*        Input: ULONG ulTtl:TTL取值
-*       Output: 
-*       Return: 成功:IP_PP4_CFG_OK
-*               失败:IP_PP4_CFG_GEN_ERR
-*                    IP_PP4_CFG_HA_IS_SMOOTHING
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-08   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_SetDefaultTTL(ULONG ulTtl);
-/*******************************************************************************
-*    Func Name: TCPIP_SetIcmpHostUnreach
-*  Description: 设置指定接口是否可以发送ICMP主机不可达报文
-*        Input: ULONG ulIfIndex:接口索引
-*               ULONG ulFlag:是否发送不可达报文标志, 0 使能, 1 去使能
-*       Output: 
-*       Return: 成功:VOS_OK
-*               失败:
-*               VOS_ERR
-*               IP_PP4_CFG_PARA_ERR
-*               IP_PP4_CFG_NULL_INT
-*               IP_PP4_CFG_HA_IS_SMOOTHING
-*               IP_PP4_CFG_NULLIPCTLBLOCK
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-08   z00104207               Create
-*  2008-08-13   f54882                  Modified for BC3D00242
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_SetIcmpHostUnreach (ULONG ulIfIndex, ULONG ulFlag);
-/*******************************************************************************
-*    Func Name: TCPIP_SetIcmpRedirects
-*  Description: 设置指定接口是否可以发送ICMP重定向报文
-*        Input: ULONG ulIfIndex:接口索引
-*               ULONG ulFlag:使能标志：0 使能；1 去使能
-*       Output: 
-*       Return: 成功:VOS_OK
-*               失败:
-*               VOS_ERR
-*               IP_PP4_CFG_PARA_ERR
-*               IP_PP4_CFG_NULL_INT
-*               IP_PP4_CFG_HA_IS_SMOOTHING
-*               IP_PP4_CFG_NULLIPCTLBLOCK
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-08   z00104207               Create
-*  2008-08-13   f54882                  Modified for BC3D00242
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_SetIcmpRedirects(ULONG ulIfIndex, ULONG ulFlag);
-/*******************************************************************************
-*    Func Name: TCPIP_SetPP4DebugFlag
-*  Description: 设置系统当前IP的调试开关状态
-*        Input: ULONG ulIpDebugNo:IP调试开关状态, 0 ：关闭  1：打开
-*               ULONG ulDebugAcl:当使用标准Acl规则来过滤IP调试信息时，表示标准Acl规则组的编号
-*               ULONG ulDebugIfAcl:当使用基于接口Acl规则来过滤IP调试信息时，表示基于接口Acl规则组的编号
-*               ULONG ulDebugIfOpt:,该值目前始终为 3 
-*               ULONG ulDebugIpErr:IP错误调试开关的状态, 0 ：关闭  1：打开
-*               ULONG ulDebugIpVerbose:是否显示报文头详细信息标识, 0 ：关闭  1：打开
-*       Output: 
-*       Return: 成功:IP_PP4_CFG_OK
-*               失败:IP_PP4_CFG_PARA_ERR
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-08   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_SetPP4DebugFlag(ULONG ulIpDebugNo, ULONG ulDebugAcl, ULONG ulDebugIfAcl, 
     ULONG ulDebugIfOpt, ULONG ulDebugIpErr, ULONG ulDebugIpVerbose);
-/*******************************************************************************
-*    Func Name: TCPIP_ShowPP4Statistic
-*  Description: 显示网络层统计信息
-*        Input: VOID
-*       Output: 
-*       Return: VOID
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-08   z00104207               Create
-*
-*******************************************************************************/
+
 extern VOID TCPIP_ShowPP4Statistic(VOID);
-/*******************************************************************************
-*    Func Name: TCPIP_ShowPP4StatisticByInterface
-*  Description: 显示基于接口的网络层统计信息
-*        Input: CHAR *pName:接口名称
-*       Output: 
-*       Return: VOID
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-08   z00104207               Create
-*
-*******************************************************************************/
+
 extern VOID TCPIP_ShowPP4StatisticByInterface(CHAR *pName);
-/*******************************************************************************
-*    Func Name: TCPIP_SetForwardFlag
-*  Description: 设置报文转发开关
-*        Input: ULONG ulFlag:报文转发开关，0: 关闭,1: 打开
-*       Output: 
-*       Return: IP_PP4_CFG_OK,IP_PP4_CFG_GEN_ERR
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-25   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_SetForwardFlag(ULONG ulFlag);
-/*******************************************************************************
-*    Func Name: TCPIP_GetForwardFlag
-*  Description: 获取IP报文转发开关状态
-*        Input: 无
-*       Output: ULONG *pulFlag:IP报文转发开关状态，0: 关闭,1: 打开
-*       Return: 成功:VOS_OK;
-*               失败:IP_PP4_CFG_GEN_ERR
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-03-25   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_GetForwardFlag(ULONG *pulFlag);
-/*******************************************************************************
-*    Func Name: TCPIP_GetIpId
-*  Description: 获取最新IP报文ID
-*        Input: 
-*       Output: ULONG *pulIpId:报文ID输出缓冲区
-*       Return: 成功: VOS_OK，失败: IP_PP4_CFG_NULL_POINTER
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-06-04   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_GetIpId(USHORT *pusIpId);
-/*******************************************************************************
-*    Func Name: TCPIP_IncreaseIpId
-*  Description: 最新IP报文ID加1
-*        Input: VOID
-*       Output: 
-*       Return: VOID
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2008-06-04   z00104207               Create
-*
-*******************************************************************************/
+
 extern VOID TCPIP_IncreaseIpId(VOID);
 extern ULONG TCPIP_ShowPP4DebugFlag( VOID );
 /*******************************************************************************
@@ -842,95 +475,17 @@ extern ULONG TCPIP_SetIpOptPermitSwitch(ULONG ulOption, ULONG ulSwitch);
 *******************************************************************************/
 extern ULONG TCPIP_GetIpOptPermitSwitch(ULONG ulOption, ULONG *pulSwitch);
 
-/*******************************************************************************
-*    Func Name: TCPIP_SetIpDebugFilter
-* Date Created: 2009-11-23
-*       Author: z00104207
-*  Description: 设置基于6元组的IP报文过滤条件
-*        Input: ULONG ulSetYes:  打开或关闭IP报文调试开关:
-*                                1-打开IP报文普通调试开关
-*                                2-打开IP报文详细调试开关
-*                                0-关闭所有调试开关
-*               ULONG ulIfIndex: 接口索引
-*               CHAR *szSrcIp:   源地址，可不指定
-*               CHAR *szDstIp:   目的地址，可不指定
-*               ULONG ulProtocol:协议号
-*               ULONG ulSrcPort: 源端口
-*               ULONG ulDstPort: 目的端口
-*       Output: 
-*       Return: 成功则返回IP_PP4_CFG_OK，失败则返回其他错误码
-*      Caution: 如果不指定对某个元素过滤时，将该元素值置为0，如不过滤源地址，
-*               则将源地址值置为0，或不传入源地址
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-11-23   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_SetIpDebugFilter(ULONG ulSetYes, ULONG ulIfIndex, CHAR *szSrcIp, CHAR *szDstIp,
     ULONG ulProtocol, ULONG ulSrcPort, ULONG ulDstPort);
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetIpDebugFilter
-* Date Created: 2009-11-24
-*       Author: z00104207
-*  Description: 获取基于6元组的IP报文过滤条件信息
-*        Input: 
-*       Output: ULONG *pulDebugFlag:  调试开关信息，取值如下:
-*                                     1-打开了IP报文普通调试开关
-*                                     2-打开了IP报文详细调试开关
-*                                     0-未打开调试开关
-*               ULONG *pulDebugFilter:6元组的IP报文过滤条件信息，要求传入的是一片
-*                                     4*IP_DEBUG_FILTER_MAX字节的内存起始地址
-*       Return: 成功则返回IP_PP4_CFG_OK，失败则返回其他错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-11-24   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_GetIpDebugFilter(ULONG *pulDebugFlag, ULONG *pulDebugFilter);
 
-/*******************************************************************************
-*    Func Name: TCPIP_ShowIpDebugFilter
-* Date Created: 2009-11-24
-*       Author: z00104207
-*  Description: 显示基于6元组的IP报文过滤条件信息
-*        Input: 
-*       Output: 
-*       Return: VOID
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-11-24   z00104207               Create
-*
-*******************************************************************************/
+
 extern VOID TCPIP_ShowIpDebugFilter(VOID);
 
-/*******************************************************************************
-*    Func Name: TCPIP_RegFuncSrcRtSearch
-* Date Created: 2011-06-01
-*       Author: zhaoyue00171897/shuxieliu00176784
-*  Description: 注册根据源IP查找路由钩子
-*        Input: gpfTCPIPSrcRtSearch pfHookFunc: 产品注册根据源IP查找路由钩子函数
-*       Output: 
-*       Return: IP_GO_WITH_SRCROUTE     按源路由发送报文
-*               IP_DROP_PACKET          丢弃报文
-*               IP_GO_PASS              按原有方式发送报文
-*      Caution: 不允许解注册
-*    Reference: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-06-01   z00171897/s00176784     Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_RegFuncSrcRtSearch(gpfTCPIPSrcRtSearch pfHookFunc);
 
 /*******************************************************************************

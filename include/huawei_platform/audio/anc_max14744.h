@@ -122,6 +122,8 @@ void anc_max14744_stop_charge(void);
 void anc_max14744_force_charge(int disable);
 bool check_anc_max14744_support(void);
 bool anc_max14744_plug_enable(void);
+void anc_max14744_invert_headset_control(int connect);
+void anc_max14744_refresh_headset_type(int headset_type);
 #else
 int anc_max14744_dev_register(struct anc_hs_dev *dev, void * codec_data)
 {
@@ -154,6 +156,14 @@ static inline bool check_anc_max14744_support(void)
 static inline bool anc_max14744_plug_enable(void)
 {
     return false;
+}
+void anc_max14744_invert_headset_control(int connect)
+{
+    return;
+}
+void anc_max14744_refresh_headset_type(int headset_type)
+{
+    return;
 }
 #endif
 

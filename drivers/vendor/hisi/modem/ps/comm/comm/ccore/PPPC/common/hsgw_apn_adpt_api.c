@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : hsgw_apn_adpt_api.c
-  版 本 号   : 初稿
-  作    者   : honglei 50774
-  生成日期   : 2013年5月17日
-  最近修改   :
-  功能描述   : HSGW产品APN/DOMAIN适配接口
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年5月17日
-    作    者   : honglei 50774
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 
@@ -55,21 +38,7 @@ extern VOS_UINT32 USM_GetApnCfgByApnIndex(VOS_UINT16 usApnIndex, HSGW_APN_INFO_S
 *****************************************************************************/
 /*lint -save -e958 */
 
-/*****************************************************************************
- 函 数 名  : AM_ApnApiGetL2tpGroup
- 功能描述  : APN的L2TP group配置
- 输入参数  : VOS_UINT16 usApnIdx
- 输出参数  : VOS_UINT16 *pusL2tpGroup
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月14日
-    作    者   : h50774
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AM_ApnApiGetL2tpGroup(VOS_UINT16 usApnIdx, VOS_UINT16 *pusL2tpGroup)
 {
     S_CFG_DOMAINNODE *pstDomain = VOS_NULL;
@@ -91,21 +60,7 @@ VOS_UINT32 AM_ApnApiGetL2tpGroup(VOS_UINT16 usApnIdx, VOS_UINT16 *pusL2tpGroup)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AM_ApnApiGetApnIdx
- 功能描述  : 根据APN结构返回APN索引，主要用于各组的APN回调函数
- 输入参数  : UCHAR *pucApnInfo
- 输出参数  : VOS_UINT16 *pusApnIdx
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月14日
-    作    者   : h50774
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AM_ApnApiGetApnIdx(UCHAR *pucApnInfo, VOS_UINT16 *pusApnIdx)
 {
     S_CFG_DOMAINNODE *pstDomain = (S_CFG_DOMAINNODE*)pucApnInfo;
@@ -120,21 +75,7 @@ VOS_UINT32 AM_ApnApiGetApnIdx(UCHAR *pucApnInfo, VOS_UINT16 *pusApnIdx)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AM_ApnApiGetApnIdxByName
- 功能描述  : 根据APN名返回APN索引，注意该接口效率较低，需谨慎使用!
- 输入参数  : UCHAR *pucApnInfo
- 输出参数  : VOS_UINT16 *pusApnIdx
- 返 回 值  : APN/Domain索引
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月14日
-    作    者   : h50774
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AM_ApnApiGetApnIdxByName(UCHAR *pucApnName, VOS_UINT16 *pusApnIdx)
 {
     VOS_UINT32 ulRet = VOS_OK;
@@ -163,22 +104,7 @@ VOS_UINT32 AM_ApnApiGetApnIdxByName(UCHAR *pucApnName, VOS_UINT16 *pusApnIdx)
 }
 
 
-/*****************************************************************************
- 函 数 名  : AM_ApnApiGetApnIdxByName
- 功能描述  : 根据CDB的APN配置内容，获取APN索引和RadiusGroupID
- 输入参数  : UCHAR *pucApnInfo
- 输出参数  : VOS_UINT16 *pusApnIdx
-             VOS_UINT16 *pusServerGroupID
- 返 回 值  : APN/Domain索引
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月14日
-    作    者   : h50774
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 VOS_UINT32 AM_ApnApiGetRadiusInfo(UCHAR *pucApnNodeAddr, VOS_UINT16 *pusApnIdx, VOS_UINT16 *pusServerGroupID)
 {
@@ -195,21 +121,7 @@ VOS_UINT32 AM_ApnApiGetRadiusInfo(UCHAR *pucApnNodeAddr, VOS_UINT16 *pusApnIdx, 
 }
 
 
-/*****************************************************************************
- 函 数 名  : AM_ApnApiGetAcctInfo
- 功能描述  : 根据APN/Domain索引获取计费信息
- 输入参数  : VOS_UINT16 usApnIdx
- 输出参数  : APN_ACCT_INFO *pstAcctInfo
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月14日
-    作    者   : h50774
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AM_ApnApiGetAcctInfo(VOS_UINT16 usApnIdx, APN_ACCT_INFO *pstAcctInfo)
 {
     S_CFG_DOMAINNODE *pstDomain = VOS_NULL;
@@ -233,61 +145,19 @@ VOS_UINT32 AM_ApnApiGetAcctInfo(VOS_UINT16 usApnIdx, APN_ACCT_INFO *pstAcctInfo)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AM_ApnApiGetAcctInfo
- 功能描述  : 根据APN/Domain索引获取计费类型
- 输入参数  : VOS_UINT16 usApnIdx
- 输出参数  : APN_CM_TYPE_S *pstApnType
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月14日
-    作    者   : h50774
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AM_ApnApiGetCmApnType(VOS_UINT16 usApnIdx, APN_CM_TYPE_S *pstApnType)
 {
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AM_ApnApiGetAcctInfo
- 功能描述  : 根据APN/Domain索引获取Idle开关
- 输入参数  : VOS_UINT16 usApnIdx
- 输出参数  : UCHAR *pucIdleSwitch
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月14日
-    作    者   : h50774
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AM_ApnApiGetIdleSwitch(VOS_UINT16 usApnIdx, UCHAR *pucIdleSwitch, UCHAR *pucUpdateSwitch)
 {
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AM_ApnApiGetApnName
- 功能描述  : 根据APN/Domain索引获取Idle开关
- 输入参数  : VOS_UINT16 usApnIdx
- 输出参数  :
- 返 回 值  : APN/DOMAIN名，当不存在时返回NULL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月14日
-    作    者   : h50774
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 UCHAR* AM_ApnApiGetApnName(VOS_UINT16 usApnIdx)
 {
     S_CFG_DOMAINNODE *pstDomain = VOS_NULL;
@@ -302,21 +172,7 @@ UCHAR* AM_ApnApiGetApnName(VOS_UINT16 usApnIdx)
     return &pstDomain->aucAPN[0];
 }
 
-/*****************************************************************************
- 函 数 名  : AM_ApnApiGetAliasApnName
- 功能描述  : 获取别名APN/Domain名字
- 输入参数  : VOS_UINT16 usApnIdx
- 输出参数  :
- 返 回 值  : APN/DOMAIN名，当不存在时返回NULL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月14日
-    作    者   : h50774
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AM_ApnApiGetAliasApnName(VOS_UINT16 usAliasApnIdx, UCHAR *pucAliasApnName)
 {
     UCHAR *pucApnName = NULL;
@@ -335,42 +191,13 @@ VOS_UINT32 AM_ApnApiGetAliasApnName(VOS_UINT16 usAliasApnIdx, UCHAR *pucAliasApn
     }
 }
 
-/*****************************************************************************
- 函 数 名  : AM_ApnApiGetMultiServiceMod
- 功能描述  : 获取APN配置的MultiServiceMod
- 输入参数  : VOS_UINT16 usApnIdx
- 输出参数  : pucMultiServiceMod
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月22日
-    作    者   : Z66908
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AM_ApnApiGetMultiServiceMod(VOS_UINT16 usApnIdx, UCHAR *pucMultiServiceMod)
 {
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AM_ApnApiGetApnNameForHsgw
- 功能描述  : hsgw 根据apn index 获取apn name
- 输入参数  : VOS_UINT16 usApnIndex
-             UCHAR *pucApnName
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月28日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AM_ApnApiGetApnNameForHsgw(VOS_UINT16 usApnIndex, UCHAR *pucApnName)
 {
     VOS_UINT32 ulRet = VOS_OK;
@@ -392,20 +219,7 @@ VOS_UINT32 AM_ApnApiGetApnNameForHsgw(VOS_UINT16 usApnIndex, UCHAR *pucApnName)
 }
 
 
-/*****************************************************************************
- 函 数 名  : AM_ApnApiGetApnSoftParaVaule
- 功能描述  : 根据APN的软参索引获取软参值
- 输入参数  : APN索引：usAPNIndex, ucSoftParaIndex(1-8)
- 输出参数  : 软参值： *pucSoftParaValue
- 返 回 值  : VOS_OK－成功 VOS_ERR－失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月6日
-    作    者   : xuchao 00249899
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_UINT32 AM_ApnApiGetApnSoftParaVaule(VOS_UINT16 usAPNIndex , UCHAR ucSoftParaIndex, UCHAR *pucSoftParaValue)
 {
     if ((NULL == g_pstApnByIndex) || (NULL == pucSoftParaValue))

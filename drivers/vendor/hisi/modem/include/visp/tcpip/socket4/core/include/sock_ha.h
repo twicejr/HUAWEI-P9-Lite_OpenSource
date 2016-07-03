@@ -241,7 +241,6 @@ typedef struct tagBKSOCKMSG
 }
 
 /* Get socket info that can identify it */
-/* Modified by y00176567, at 2011-05-26. 修改原因: 消除VC三级告警 */
 /* (pstSocketInfo)->sProtoType = (SHORT)((pSocket)->so_pProto->pr_sType); 增加(SHORT)以保证两端类型一致*/
 #define SOCK_HA_GETSOCKETINFO(pSocket, pstSocketInfo) \
 do \

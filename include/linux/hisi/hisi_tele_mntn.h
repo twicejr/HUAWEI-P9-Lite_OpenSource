@@ -1,25 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : hisi_tele_mntn.h
-  版 本 号   : 初稿
-  作    者   : hisi_tele_mntn.h
-  生成日期   : 2014年11月22日
-  最近修改   :
-  功能描述   : bsp_tele_mntn.h 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年11月22日
-    作    者   : hisi_tele_mntn.h
-    修改内容   : 创建文件
-  2.注    意   : 如下几个文件内容必须完全相同
-                 vendor\hisi\confidential\lpmcu\include\hisi_tele_mntn.h
-                 bootable\bootloader\legacy\include\hisi_tele_mntn.h
-                 kernel\include\linux\hisi\hisi_tele_mntn.h
-
-******************************************************************************/
 
 /*****************************************************************************
   1 其他头文件包含
@@ -533,73 +512,7 @@ extern ACORE_TELE_MNTN_STRU *p_acore_tele_mntn;
 /*****************************************************************************
   10 函数声明
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : tele_mntn_write_log
- 功能描述  : 保存log接口
- 输入参数  : TELE_MNTN_TYPE_ID type_id
-             u32_t len
-             void_t * data
- 输出参数  : 无
- 返 回 值  : s32_t
- 调用函数  :
- 被调函数  :
- 说    明  : 该函数一次传输len最大值为64字节，建议len为8字节对齐。
-             未避免多次调用影响性能，建议一个type_id一次流程的数据封装成结构体，一次性存入telemntn
- 举    例  : hifi上电，该完整流程的log记录
 
-             hifi上下电的typeid为 TELE_MNTN_PUPD_HIFI 表示上电和下电，可以分解为两个流程，上电和下电。
-             对于上电流程，建议将PWC_TELE_MNTN_PU_STRU填充满后再调用执行tele_mntn_write_log接口，
-             不建议一个流程调用执行多次tele_mntn_write_log接口。
-
-
-             typedef struct PWC_TELE_MNTN_PU_STRU_S
-             {
-                 u32_t  wakeCount;
-                 u32_t  wakeSrc0;
-                 u32_t  wakeSrc1;
-                 u32_t  wakeSrcIPC;
-                 u8_t   wakeSrcGPIO[8];
-             }PWC_TELE_MNTN_PU_STRU;
-
-     	     typedef struct PWC_TELE_MNTN_PD_STRU_S
-     	     {
-     	         u32_t  sleepCount;
-     	     }PWC_TELE_MNTN_PD_STRU;
-
-             typedef struct PWC_TELE_MNTN_PUPD_STRU_S
-             {
-                 PWC_TELE_MNTN_PD_STRU pdStat;
-                 PWC_TELE_MNTN_PU_STRU puStat; //该结构体数据log会记录到telemntn中
-                 u32_t pdSliceTime;
-                 u32_t puSliceTime;  //该时间为本地记录时间
-             }PWC_TELE_MNTN_PUPD_STRU;
-
-             g_hifi_log = (PWC_TELE_MNTN_PUPD_STRU *)0x25000; //全局变量，指向固定内存空间
-             s32_t  pwc_power_up_hifi( void_t )
-             {
-                 //可维可测部分，先将一次完整流程的log记录到本地
-                 g_hifi_log->puStat.wakeCount++;
-
-                 上电处理……
-
-                 //可维可测部分，先将一次完整流程的log记录到本地
-                 g_hifi_log->puStat.wakeSrc0 = xxx;
-                 g_hifi_log->puStat.wakeSrcIPC = xxx;
-                 g_hifi_log->puStat.wakeSrcGPIO = xxx;
-                 g_hifi_log->puSliceTime = get_slice_time();
-
-                 //将该次完整流程记录到telemntn中，不带时间信息
-                 (void)tele_mntn_write_log(TELE_MNTN_PUPD_HIFI,sizeof(g_hifi_log->puStat),&(g_hifi_log->puStat));
-
-                 return RET_OK;
-             }
-
- 修改历史      :
-  1.日    期   : 2014年5月19日
-    作    者   : 李彬彬 00186593
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 #if (defined FASTBOOT_MNTN)
 #else
 extern int tele_mntn_write_log(TELE_MNTN_TYPE_ID type_id, unsigned int len, const void *data);

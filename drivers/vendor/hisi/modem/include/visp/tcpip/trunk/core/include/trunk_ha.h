@@ -262,7 +262,6 @@ typedef struct tagTrunkSysPriByIdBak
     USHORT usPadding;
 }TRUNK_SYSPRI_BYID_BAK_S;
 
-/* Add by shuxieliu00176784/baiweiqiang00177000, at 2011-06-29. 修改原因: 产品定制策略备份  */
 typedef struct tagTrunkProductPolicyBak
 {
     ULONG ulTrunkId;

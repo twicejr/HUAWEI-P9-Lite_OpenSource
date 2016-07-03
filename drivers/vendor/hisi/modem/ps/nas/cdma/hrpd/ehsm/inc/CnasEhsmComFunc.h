@@ -262,44 +262,20 @@ typedef struct
     VOS_UINT8                           aucRsv[3];
 }CNAS_EHSM_NOTIFICATION_IND_STRU;
 
-/*****************************************************************************
- 结构名  : CNAS_EHSM_CTTF_ERR_CODE_MAP_STRU
- 结构说明: CTTF的原因值与APS间的原因值转换表
 
- 修改历史      :
-  1.日    期   : 2015年05月26日
-    作    者   : h00246512
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     EHSM_APS_CAUSE_ENUM_UINT32               enEsmApsCause;
     VOS_UINT32                               ulCttfErrCode;
 } CNAS_EHSM_CTTF_ERR_CODE_MAP_STRU;
-/*****************************************************************************
- 结构名  : HSM_EHSM_ERR_CODE_MAP_STRU
- 结构说明: TAF错误码与EHSM错误码映射结构
 
- 修改历史      :
-  1.日    期   : 2015年06月02日
-    作    者   : y00322978
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     EHSM_HSM_RSLT_ENUM_UINT32           enHsmCause;
     EHSM_APS_CAUSE_ENUM_UINT32          enApsCause;
 } HSM_EHSM_ERR_CODE_MAP_STRU;
 
-/*****************************************************************************
- 结构名  : CTTF_EHSM_PDN_TYPE_MAP_STRU
- 结构说明: cttf  和ehsm的pdnn type映射
 
- 修改历史      :
-  1.日    期   : 2015年06月02日
-    作    者   : f00279542
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     CNAS_CTTF_EHRPD_PDN_TYPE_ENUM_UINT8 enCttfPdnType;
@@ -307,30 +283,14 @@ typedef struct
     VOS_UINT8                           aucReserved[2];
 } CTTF_EHSM_PDN_TYPE_MAP_STRU;
 
-/*****************************************************************************
- 结构名  : CNAS_EHSM_APS_EHSM_PDN_TYPE_MAP_STRU
- 结构说明: aps  和ehsm的pdnn type映射
 
- 修改历史      :
-  1.日    期   : 2015年06月02日
-    作    者   : f00279542
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     EHSM_APS_PDN_TYPE_ENUM_UINT8        enApsPdnType;
     CNAS_EHSM_PDN_TYPE_ENUM_UINT8       enEhsmPdnType;
     VOS_UINT8                           aucReserved[2];
 } CNAS_EHSM_APS_EHSM_PDN_TYPE_MAP_STRU;
-/*****************************************************************************
- 结构名  : CNAS_EHSM_APS_CTTF_PDN_TYPE_MAP_STRU
- 结构说明: cttf  和APS 的pdnn type映射
 
- 修改历史      :
-  1.日    期   : 2015年06月02日
-    作    者   : f00279542
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     EHSM_APS_PDN_TYPE_ENUM_UINT8        enApsPdnType;
@@ -338,30 +298,14 @@ typedef struct
     VOS_UINT8                           aucReserved[2];
 } CNAS_EHSM_APS_CTTF_PDN_TYPE_MAP_STRU;
 
-/*****************************************************************************
- 结构名  : APS_CCB_PS_RAT_TYPE_MAP_STRU
- 结构说明: aps  和ccb 的ps rat type映射
 
- 修改历史      :
-  1.日    期   : 2015年06月02日
-    作    者   : f00279542
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     APS_EHSM_PS_RATTYPE_ENUM_UINT32     enAspPsRatType;
     CNAS_CCB_PS_RATTYPE_ENUM_UINT32     enCcbPsRatType;
 } APS_CCB_PS_RAT_TYPE_MAP_STRU;
 
-/*****************************************************************************
- 结构名  : CNAS_EHSM_APS_EHSM_AUTH_TYPE_MAP_STRU
- 结构说明: APS 和 EHSM 的AUTH TYPE映射
 
- 修改历史      :
-  1.日    期   : 2016年1月6日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-*****************************************************************************/
 typedef struct
 {
     EHSM_APS_AUTH_TYPE_ENUM_UINT8       enAuthType;
@@ -369,15 +313,7 @@ typedef struct
     VOS_UINT8                           aucReserved[2];
 } CNAS_EHSM_APS_EHSM_AUTH_TYPE_MAP_STRU;
 
-/*****************************************************************************
- 结构名  : APS_CCB_PS_RAT_TYPE_MAP_STRU
- 结构说明: cctf  和ehsm 的attach type映射
 
- 修改历史      :
-  1.日    期   : 2015年06月02日
-    作    者   : f00279542
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     CNAS_CTTF_EHRPD_ATTACH_TYPE_ENUM_UINT8                  enCttfAttachType;

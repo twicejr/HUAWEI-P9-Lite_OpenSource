@@ -30,16 +30,7 @@ extern "C" {
   3 Function
 *****************************************************************************/
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_TcMsgDistr()
- Description     : RABM模块TC消息分发处理
- Input           : VOS_VOID *pRcvMsg-----------消息指针
- Output          : VOS_VOID
- Return          : VOS_VOID
- History         :
-     1.lihong 00150010       2009-10-16   Draft Enact
 
-*****************************************************************************/
 /*lint -e960*/
 /*lint -e961*/
 VOS_VOID NAS_ERABM_TcMsgDistr( VOS_VOID *pRcvMsg )
@@ -89,17 +80,7 @@ VOS_VOID NAS_ERABM_TcMsgDistr( VOS_VOID *pRcvMsg )
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_RcvRabmTcActTestMode
- Description     : 收到TC模块ACTIVATE TEST MODE消息处理函数
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2009-10-16  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ERABM_RcvRabmTcActTestMode( VOS_VOID )
 {
     if (NAS_ERABM_L_MODE_STATUS_NORMAL != NAS_ERABM_GetLModeStatus())
@@ -121,17 +102,7 @@ VOS_VOID  NAS_ERABM_RcvRabmTcActTestMode( VOS_VOID )
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_RcvRabmTcDeactTestMode
- Description     : 收到TC模块DEACTIVATE TEST MODE消息处理函数
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2009-10-16  Draft Enact
-    2.yangfan 00159566    2011-03-28  Modify
-*****************************************************************************/
 VOS_VOID  NAS_ERABM_RcvRabmTcDeactTestMode( VOS_VOID )
 {
     if (NAS_ERABM_L_MODE_STATUS_NORMAL != NAS_ERABM_GetLModeStatus())
@@ -166,17 +137,7 @@ VOS_VOID  NAS_ERABM_RcvRabmTcDeactTestMode( VOS_VOID )
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_RcvRabmTcRelReq
- Description     : 收到TC模块REL REQ消息处理函数
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2009-10-16  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ERABM_RcvRabmTcRelReq( VOS_VOID )
 {
     VOS_UINT32 ulLoop = NAS_ERABM_NULL;
@@ -219,17 +180,7 @@ VOS_VOID  NAS_ERABM_RcvRabmTcRelReq( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_SndRabmTcSuspendInd
- Description     : ERABM模块向ETC发送ID_ETC_ERABM_SUSPEND_IND消息
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2011-05-03  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ERABM_SndRabmTcSuspendInd( VOS_VOID )
 {
     ETC_ERABM_SUSPEND_IND_STRU           *pstRabmTcSuspendInd  = VOS_NULL_PTR;
@@ -258,17 +209,7 @@ VOS_VOID NAS_ERABM_SndRabmTcSuspendInd( VOS_VOID )
     NAS_ERABM_SND_MSG(pstRabmTcSuspendInd);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_SndRabmTcResumeInd
- Description     : ERABM模块向ETC发送ID_ETC_ERABM_RESUME_IND消息
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2011-05-03  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ERABM_SndRabmTcResumeInd( VOS_VOID )
 {
     ETC_ERABM_RESUME_IND_STRU            *pstRabmTcResumeInd  = VOS_NULL_PTR;

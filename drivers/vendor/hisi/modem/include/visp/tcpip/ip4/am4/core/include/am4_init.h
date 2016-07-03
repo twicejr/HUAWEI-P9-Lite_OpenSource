@@ -59,7 +59,6 @@ ULONG IP_AM4_RegShSrmJudgeFun(AM4_SHELL_RM_FUNC_PTR *pfShCallback);
 extern ULONG (*g_pfIpChangeNotifyBfd)(ULONG, ULONG, ULONG);
 extern ULONG (*g_pfIpChangeNotifyPolicyRoute)(ULONG, ULONG, ULONG, ULONG);
 
-/* Add by zhaoyue00171897/shuxieliu00176784, at 2011-06-04. 修改原因: 支持VLAN配置不一致的告警 */
 ULONG IP_AM4_Ethvlan_VlanWarningHook_Register(IP_AM4_ETHVLN_VLANWARNING_HOOK_FUNC pfHookFunc);
 
 #endif  /* end of _AM4_INIT_H_ */ 

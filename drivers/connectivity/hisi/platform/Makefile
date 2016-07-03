@@ -11,7 +11,7 @@ CONFIG_HI110X_KERNEL_MODULES_BUILD_SUPPORT ?= no
 
 ifneq ($(KERNELRELEASE),)
 ifeq ($(HI1102_MAKE_FLAG),)
-KERNEL_DIR := $(srctree)
+KERNEL_DIR=$(PWD)
 HI1102_DRIVER_SRC_PATH=$(KERNEL_DIR)/$(HI1102_DRIVER_BUILTIN_PATH)
 endif
 
@@ -43,7 +43,7 @@ chr_devs-objs := $(addprefix ../common/chr_log/,$(chr_devs-objs))
 main-objs := plat_main.o
 main-objs := $(addprefix main/,$(main-objs))
 
-pm-objs :=  plat_firmware.o plat_pm.o  plat_pm_wlan.o plat_pm_user_ctrl.o plat_cali.o gps_plat.o
+pm-objs :=  plat_firmware.o plat_pm.o  plat_pm_wlan.o plat_cali.o gps_plat.o
 pm-objs := $(addprefix pm/,$(pm-objs))
 
 driver-objs :=  plat_sdio.o plat_uart.o
@@ -135,6 +135,18 @@ HI1102_INCLUDES += -I$(HI1102_DRIVER_SRC_PATH)/wifi/dmac/dmac_verify/
 KBUILD_CFLAGS += -DPLATFORM_TYPE_FOR_HI110X=0
 KBUILD_CFLAGS += -DPLATFORM_HI110X_k3v2oem1=1
 KBUILD_CFLAGS += -DPLATFORM_HI110X_UEDGE=2  
+
+ifneq ($(TARGET_BUILD_VARIANT),user)
+KBUILD_CFLAGS += -DPLATFORM_DEBUG_ENABLE
+endif
+
+ifeq ($(HAVE_HISI_FEATURE_IR),true)
+KBUILD_CFLAGS += -DHAVE_HISI_IR
+endif
+
+ifeq ($(HAVE_HISI_FEATURE_NFC),true)
+KBUILD_CFLAGS += -DHAVE_HISI_NFC
+endif
 
 HI110X_VER_COMMIT_ID = $(shell cd $(HI1102_DRIVER_SRC_PATH);if test -d .git;then git rev-parse --verify --short HEAD 2>/dev/null;fi)
 ifneq ($(HI110X_VER_COMMIT_ID),)

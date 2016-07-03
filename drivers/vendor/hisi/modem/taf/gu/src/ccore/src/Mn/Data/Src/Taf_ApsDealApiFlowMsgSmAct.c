@@ -1,58 +1,4 @@
-/************************************************************************
-  Copyright    : 2005-2007, Huawei Tech. Co., Ltd.
-  File name    : Aps_DealApiFlowMsgSmAct.c
-  Author       : 韩鲁峰
-  Version      : V200R001
-  Date         : 2005-0
-  Description  :
-  Function List:
-        ---Aps_PdpActReq
-        ---Aps_PdpActReqStateCheck
-        ---Aps_PackSmActReqMsg
-        ---Aps_ActReqFillState
-        ---TAF_APS_SndPdpActivateRej
 
-        ---Aps_PdpSecActReq
-        ---Aps_SecActReqFillState
-        ---Aps_PdpSecActReqParaCheck
-        ---Aps_PdpSecActReqStateCheck
-        ---Aps_PackSmSecActReqMsg
-
-        ---Aps_PdpMdfReq
-        ---Aps_PackSmMdfReqMsg
-        ---TAF_APS_SndPdpModifyRej
-
-        ---Aps_AppDeactReq
-        ---Aps_PdpDeActReq
-        ---Aps_PdpDeActOneReq
-        ---Aps_PdpDeActReqParaCheck
-
-        ---Aps_PdpAnsRej
-        ---Aps_FindAllTearDownPdp
-        ---Aps_CompAddr
-        ---Aps_PackSmQos
-        ---Aps_PackSmTft
-
-        ---Aps_PackSmAddr
-        ---Aps_PackSmApn
-        ---Aps_TftValidOrNot
-        ---Aps_QosValidOrNot
-        ---Aps_FindPdpContext
-
-        ---Aps_PackSmPco
-        ---
-  History      :
-  1. Date:2005-0
-     Author: ---
-     Modification:Create
-  2. 2006-02-23 modify by 韩鲁峰 FOR A32D02144
-  3. 2006-03-03 MODIFY BY H41410 FOR A32D02345
-  4. 2006-04-10 modify BY H41410 FOR A32D01902
-  5. 2006-05-22 modify by h41410 for A32D03787
-  6. 2006-07-03 modify by L47619 for A32D04540
-  7. 2006-08-03 modify by L47619 for A32D05213
-  8. 2006-08-03 modify by L47619 for A32D05212
-************************************************************************/
 
 
 /*****************************************************************************
@@ -95,22 +41,7 @@
    3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- Prototype      : Aps_PdpActReq
- Description    : PDP激活
- Input          :
- Output         :
- Return Value   :
- Calls          : Aps_PdpActReqParaCheck()
- Called By      : Aps_PsCallOrig();
- History        : ---
-  1.Date        : 2005-
-    Author      : ---
-    Modification: Created function
-  2.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : PS融合项目修改
-*****************************************************************************/
+
 VOS_UINT32  Aps_PdpActReq(
     APS_PDP_ACT_REQ_ST                 *pActReq
 )
@@ -152,37 +83,7 @@ VOS_UINT32  Aps_PdpActReq(
     return TAF_APS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : Aps_PackSmActReqMsg
- 功能描述  : 打包向SM发送ACT_REQ的消息
- 输入参数  : SMREG_PDP_ACTIVATE_REQ_STRU        *pActReq
-             SMREG_PDP_ACTIVATE_REQ_STRU        *pStPdpActReq
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2005年xx月xx日
-    作    者   : 韩鲁峰
-    修改内容   : 新生成函数
-
-  2.日    期   : 2010年05月14日
-    作    者   : s62952
-    修改内容   : 问题单号: AT2D19341
-
-  3.日    期   : 2010年12月15日
-    作    者   : A00165503
-    修改内容   : 问题单号: DTS2010120605160，W单模下PDP激活后，修改为双模，
-                 重选到G下数传无法恢复
-  4.日    期   : 2012年01月05日
-    作    者   : h44270
-    修改内容   : 增加默认承载，当前发送到SM的CR变为从实体中的TI中来获取，不再
-                 直接使用PDP ID
-  5.日    期   : 2013年4月23日
-    作    者   : L47619
-    修改内容   : V9R1 IPv6&TAF/SM接口优化项目修改
-*****************************************************************************/
 VOS_UINT32 Aps_PackSmActReqMsg (
     APS_PDP_ACT_REQ_ST                 *pActReq,
     SMREG_PDP_ACTIVATE_REQ_STRU        *pStPdpActReq
@@ -242,28 +143,7 @@ VOS_UINT32 Aps_PackSmActReqMsg (
     return  TAF_APS_SUCC;
 }
 
-/*****************************************************************************
- Prototype      : Aps_SecActReqFillState
- Description    : 将输入的参数填入二次激活的PDP状态机中:QOS、TFT、SAPI;
-                  将主激活PDP中的一些参数填入二次激活的PDP状态机中,包括PDPTYPE、ADDR、APN;
- Input          :
- Output         :
- Return Value   :
- Data Accessed  :
- Data Update    : g_PdpEntity[ucPdpId].
- Calls          :
- Called By      :
- History        : ---
-  1.Date        : 2005-
-    Author      : 韩鲁峰
-    Modification: Created function
- 2.日    期   : 2011年12月17日
-   作    者   : s62952
-   修改内容   : PS融合项目修改:删除状态处理,将这部分功能移到状态机中处理
-  3.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，结构替换
-*****************************************************************************/
+
 VOS_VOID    Aps_ActReqFillState(
     APS_PDP_ACT_REQ_ST                 *pActReq
 )
@@ -382,30 +262,7 @@ VOS_VOID    Aps_ActReqFillState(
 }
 
 
-/*****************************************************************************
- Prototype      : Aps_PdpSecActReq()
- Description    : PDP二次激活. V100V001中二次激活只能由UE发起.在V200V001中,网络
-                  也可以发起二次激活.
- Input          : pSecActReq
- Output         :
- Return Value   :
- Data Accessed  :
- Data Update    :
- Calls          : Aps_PdpSecActReqStateCheck()
-                  Aps_PdpSecActReqParaCheck
- Called By      :
- History        : ---
-  1.Date        : 2005-
-    Author      : ---
-    Modification: Created function
-  2.日    期   : 2011年12月17日
-   作    者   : s62952
-   修改内容   : PS融合项目修改
 
-  3.日    期   : 2012年5月3日
-    作    者   : A00165503
-    修改内容   : DTS2012042604902: GCF 8.2.2.35 用例失败
-*****************************************************************************/
 VOS_UINT32  Aps_PdpSecActReq(
     APS_PDP_SEC_ACT_REQ_ST             *pSecActReq
 )
@@ -459,25 +316,7 @@ VOS_UINT32  Aps_PdpSecActReq(
 
 }
 
-/*****************************************************************************
- Prototype      : Aps_SecActReqFillState
- Description    : 将输入的参数填入二次激活的PDP状态机中:QOS、TFT、SAPI;
-                  将主激活PDP中的一些参数填入二次激活的PDP状态机中,包括PDPTYPE、ADDR、APN;
- Input          :
- Output         :
- Return Value   :
- Data Accessed  :
- Data Update    : g_PdpEntity[ucPdpId].
- Calls          :
- Called By      :
- History        : ---
-  1.Date        : 2005-
-    Author      : 韩鲁峰
-    Modification: Created function
- 2.日    期   : 2011年12月17日
-   作    者   : s62952
-   修改内容   : PS融合项目修改
-*****************************************************************************/
+
 VOS_VOID    Aps_SecActReqFillState(
     APS_PDP_SEC_ACT_REQ_ST              *pSecActReq
 )
@@ -545,35 +384,7 @@ VOS_VOID    Aps_SecActReqFillState(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : Aps_PdpSecActReqParaCheck
- 功能描述  : 二次激活时输入的参数检查
- 输入参数  : APS_PDP_SEC_ACT_REQ_ST *pSecActReq
- 输出参数  : 无
- 返 回 值  : APS_PARA_VALID
-             APS_PARA_INVALID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2005
-    作    者   : 韩鲁峰
-    修改内容   : 新生成函数
-
-  2.日    期   : 2010年12月15日
-    作    者   : A00165503
-    修改内容   : 问题单号: DTS2010120605160, W单模下PDP激活后, 修改为双模,
-                 重选到G下数传无法恢复
-
-  3.日    期   : 2011年5月26日
-    作    者   : A00165503
-    修改内容   : 问题单号: DTS2011051903901, 网侧下发PDP_ACTIVATE_ACCEPT
-                 消息中的QOS IE为reserved "0", PDP激活失败
-
-  4.日    期   : 2012年5月3日
-    作    者   : A00165503
-    修改内容   : DTS2012042604902: GCF 8.2.2.35 用例失败
-*****************************************************************************/
 VOS_UINT32  Aps_PdpSecActReqParaCheck ( APS_PDP_SEC_ACT_REQ_ST *pSecActReq)
 {
 
@@ -607,35 +418,7 @@ VOS_UINT32  Aps_PdpSecActReqParaCheck ( APS_PDP_SEC_ACT_REQ_ST *pSecActReq)
     return  APS_PARA_VALID;
 }
 
-/*****************************************************************************
- 函 数 名  : Aps_PackSmSecActReqMsg
- 功能描述  : 打包向SM发送SEC_ACT_REQ的消息
- 输入参数  : APS_PDP_SEC_ACT_REQ_ST             *pSecActReq
-             SMREG_PDP_ACTIVATE_SEC_REQ_STRU    *pStSecActReq
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2005年xx月xx日
-    作    者   : 韩鲁峰
-    修改内容   : 新生成函数
-
-  2.日    期   : 2006年03月03日
-    作    者   : H41410
-    修改内容   : 问题单号: A32D02345
-
-  3.日    期   : 2010年12月15日
-    作    者   : A00165503
-    修改内容   : 问题单号: DTS2010120605160，W单模下PDP激活后，修改为双模，
-                 重选到G下数传无法恢复
-  4.日    期   : 2012年01月05日
-    作    者   : h44270
-    修改内容   : 增加默认承载，当前发送到SM的CR变为从实体中的TI中来获取，不再
-                 直接使用PDP ID
-
-*****************************************************************************/
 VOS_VOID Aps_PackSmSecActReqMsg(
     APS_PDP_SEC_ACT_REQ_ST             *pSecActReq,
     SMREG_PDP_ACTIVATE_SEC_REQ_STRU    *pStSecActReq
@@ -670,30 +453,7 @@ VOS_VOID Aps_PackSmSecActReqMsg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : Aps_PdpMdfReq
- 功能描述  : PDP修改
- 输入参数  : APS_PDP_MDF_REQ_ST              *pMdfReq
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2005
-    作    者   : ---
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年5月26日
-    作    者   : A00165503
-    修改内容   : 问题单号: DTS2011051903901, 网侧下发PDP_ACTIVATE_ACCEPT
-                 消息中的QOS IE为reserved "0", PDP激活失败
-
-  3.日    期   : 2011年12月22日
-    作    者   : A00165503
-    修改内容   : PS Project: 修改PDP修改处理逻辑
-
-*****************************************************************************/
 VOS_UINT32  Aps_PdpMdfReq( APS_PDP_MDF_REQ_ST              *pMdfReq)
 {
 
@@ -741,33 +501,7 @@ VOS_UINT32  Aps_PdpMdfReq( APS_PDP_MDF_REQ_ST              *pMdfReq)
     return(TAF_APS_SUCC);
 }
 
-/*****************************************************************************
- Prototype      : Aps_PackSmMdfReqMsg
- Description    :
- Input          :
- Output         :
- Return Value   :
- Data Accessed  :
- Data Update    :
- Calls          :
- Called By      : Aps_PdpMdfReq
- History        : ---
-  1.Date        : 2005-
-    Author      : 韩鲁峰
-    Modification: Created function
-  2.2006-03-03 MODIFY BY H41410 FOR A32D02345
-  3.日    期   : 2012年01月05日
-    作    者   : h44270
-    修改内容   : 增加默认承载，当前发送到SM的CR变为从实体中的TI中来获取，不再
-                 直接使用PDP ID
-  4.日    期   : 2012年04月04日
-    作    者   : s62952
-    修改内容   : 问题单号:DTS20120404,删除TFT处理
 
-  5.日    期   : 2013年4月23日
-    作    者   : L47619
-    修改内容   : V9R1 IPv6&TAF/SM接口优化项目修改
-*****************************************************************************/
 VOS_VOID    Aps_PackSmMdfReqMsg( APS_PDP_MDF_REQ_ST             *pMdfReq,
                                             SMREG_PDP_MODIFY_REQ_STRU       *pStPdpMdfReq   )
 {
@@ -813,40 +547,7 @@ VOS_VOID    Aps_PackSmMdfReqMsg( APS_PDP_MDF_REQ_ST             *pMdfReq,
 }
 
 
-/*****************************************************************************
- Prototype      : Aps_AppDeactReq()
- Description    : APP发起去激活，则调用此函数.此函数的特点是状态机中的去激
-                  活方式中设置为APP去激活,不上报去激活，而是等SM或SNDCP响应后
-                  再上报DEACT_CNF.
- Input          : ucPdpId,
-                  RejCause
- Output         : NO
- Return Value   : NO
- Data Accessed  : NO
- Data Update    : NO
- Calls          : Aps_PdpDeActReq()
- Called By      :
- History        : ---
-  1.Date        : 2005-
-    Author      : 韩鲁峰
-    Modification: Created function
 
-  2.日    期   : 2011年12月22日
-    作    者   : A00165503
-    修改内容   : PS Project: 修改PDP去激活处理逻辑
-  3. 日    期   : 2010年12月27日
-     作    者   : h44270
-     修改内容   : Modified by PS Project, 增加cause的填写
-  4.日    期   : 2012年06月05日
-    作    者   : f00179208
-    修改内容   : DTS2012060200787, 去激活默认承载，挂接的专有承载也需要一起去激活
-  5.日    期   : 2012年06月29日
-    作    者   : f00179208
-    修改内容   : DTS2012062902425, IPV4V6拨号，IPV4成功IPV6失败，会内部去激活掉IPV4的PDP
-  6.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-*****************************************************************************/
 VOS_UINT32 Aps_AppDeactReq(
     VOS_UINT8                           ucPdpId,
     SM_TAF_CAUSE_ENUM_UINT16            enCause
@@ -883,30 +584,7 @@ VOS_UINT32 Aps_AppDeactReq(
 }
 
 
-/*****************************************************************************
- Prototype      : Aps_PdpDeActReq()
- Description    : PDP去修改,或拒绝网络发起的激活。
-                  当拒绝网络发起的激活时，输入的参数pDeActReq->ucTearDown
-                  必须为TAF_PDP_NOT_TEAR_DOWN，即只拒绝一个PDP。
-                  该函数包括了状态修改和定时器启动
- Input          : pDeActReq
- Output         :
- Return Value   :
- Data Accessed  :
- Calls          : Aps_OnePdpDeActReq
- Called By      :
- History        : ---
-  1.Date        : 2005-
-    Author      : ---
-    Modification: Created function
 
-  2.日    期   : 2011年12月22日
-    作    者   : A00165503
-    修改内容   : PS Project: 修改PDP去激活处理逻辑
-  3.日    期   : 2012年06月05日
-    作    者   : f00179208
-    修改内容   : DTS2012060200787, 去激活默认承载，挂接的专有承载也需要一起去激活
-*****************************************************************************/
 VOS_UINT32 Aps_PdpDeActReq(
     APS_PDP_DEACT_REQ_ST               *pDeActReq
 )
@@ -941,30 +619,7 @@ VOS_UINT32 Aps_PdpDeActReq(
     return VOS_OK;
 }
 
-/*****************************************************************************
- Prototype      : Aps_PdpDeActOneReq()
- Description    : 去激活一个PDP,此函数不进行状态修改;
- Input          : pDeActReq
-                  ucRelSmType   去激活SM的类型:
-                            #define APS_LOCAL_REL     0
-                            #define APS_SYS_REL       1
- Output         : NO
- Return Value   : NO
- Data Accessed  :
- Data Update    :
- Calls          :
- Called By      : Aps_PdpDeActReq()
- History        : ---
-  1.Date        : 2005-
-    Author      : 韩鲁峰
-    Modification: Created function
-  2.日    期   : 2011年10月8日
-    作    者   : A00165503
-    修改内容   : AT Project: 不需要再上报TAF_PS_EVT_PDP_DEACTIVE_ING事件
-  3.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-*****************************************************************************/
+
 VOS_VOID    Aps_PdpDeActOneReq(         APS_PDP_DEACT_REQ_ST   *pDeActReq,
                                         VOS_UINT8               ucRelSmType)
 {
@@ -1052,36 +707,7 @@ VOS_UINT32  Aps_PdpDeActReqParaCheck( APS_PDP_DEACT_REQ_ST *pDeActReq )
 }
 
 
-/*****************************************************************************
- Prototype      : Aps_PackSmQos()
- Description    : 将APS的QOS结构打包成SM需要的QOS结构
- Input          : pApSQos
- Output         : pSmQos
- Return Value   :
- Calls          :
- Called By      :
- History        : ---
-  1.Date        : 2005-
-    Author      : ---
-    Modification: Created function
 
-  2.日    期   : 2011年12月29日
-    作    者   : A00165503
-    修改内容   : PS Project: 修改获取当前RAT类型的方式
-
-  3.日    期   : 2012年5月28日
-    作    者   : A00165503
-    修改内容   : DTS2012052605200: NV50060使能, 且禁止Spare_bit3等参数时,
-                 W模PDP激活QOS参数异常
-  4.日    期   : 2012年7月6日
-    作    者   : z60575
-    修改内容   : DTS2012070400072: 协议版本为r7时也不带QOS OCT 17和18
-  5.日    期   : 2013年6月18日
-    作    者   : Y00213812
-    修改内容   : DTS2013032204300: 协议版本为r7时，判断NV9008中接入能力，判断
-                 是否携带QOS OCT 17和18
-
-*****************************************************************************/
 VOS_VOID  Aps_PackSmQos   (
     APS_PDP_QOS_ST                     *pApsQos,
     SM_TAF_QOS_STRU                    *pSmQos
@@ -1212,34 +838,7 @@ VOS_VOID  Aps_PackSmQos   (
 
 }
 
-/*****************************************************************************
- Prototype      : Aps_PackSmTft
- Description    : 将APS的TFT结构打包成SM需要的TFT结构.基本继承V100R001.V200添加
-                  3个新成员,需要修改.
- Input          : pApSTft
- Output         : pSmTft
- Return Value   :
- Calls          :
- Called By      :
-    VOS_UINT32              OP_SourcePort           : 1;
-    VOS_UINT32              OP_DestPort             : 1;
-    VOS_UINT32              OP_SourceIpAddrAndMask  : 1;
-    VOS_UINT32              OP_ProtocolId           : 1;
-    VOS_UINT32              OP_ulSecuParaIndex      : 1;
 
-    VOS_UINT32              OP_ucTypeOfService      : 1;
-    VOS_UINT32              OP_ucTypeOfServiceMask  : 1;
- History        : ---
-  1.Date        : 2005-05
-    Author      : ---
-    Modification: Created function
-  2.Date        : 2005-
-    Author      : ---
-    Modification: V200添加了3个成员,还没有修改
-  3.2006-03-03 MODIFY BY H41410 FOR A32D02345
-  4.2006-08-03 modify by L47619 for A32D05213
-  5.2006-08-03 modify by L47619 for A32D05212
-*****************************************************************************/
 VOS_VOID  Aps_PackSmTft   (     VOS_UINT8           ucPdpId,
                                 APS_PDP_TFT_ST*     pApsTft,
                                 SM_TAF_TFT_STRU*    pSmTft  )
@@ -1524,22 +1123,7 @@ VOS_VOID    Aps_PackSmApn(  VOS_UINT8              *pucAppApn,
 
 
 
-/*****************************************************************************
- 函 数 名  : MN_APS_QosValidOrNot_ForTrafficHandlingPriority
- 功能描述  : Traffic handling priority合法性校验(Aps_QosValidOrNot降圈复杂度)
- 输入参数  : psQos
- 输出参数  :
- 返 回 值  : TAF_APS_SUCC, QOS合法
-             TAF_APS_FAIL,程序执行 error , 或QOS非法。
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年06月01日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MN_APS_QosValidOrNot_ForTrafficHandlingPriority(
     APS_PDP_QOS_STRU                    *psQos
 )
@@ -1554,22 +1138,7 @@ VOS_UINT32 MN_APS_QosValidOrNot_ForTrafficHandlingPriority(
 }/* end of Function */
 
 #if(PS_UE_REL_VER >= PS_PTL_VER_R5)
-/*****************************************************************************
- 函 数 名  : Aps_QosValidOrNot_ForSrcStatisticsDescriptor
- 功能描述  : Source statistics descriptor合法性校验(Aps_QosValidOrNot降圈复杂度)
- 输入参数  : psQos
- 输出参数  :
- 返 回 值  : TAF_APS_SUCC, QOS合法
-             TAF_APS_FAIL,程序执行 error , 或QOS非法。
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 Aps_QosValidOrNot_ForSrcStatisticsDescriptor(
     APS_PDP_QOS_STRU                    *psQos
 )
@@ -1585,25 +1154,7 @@ VOS_UINT32 Aps_QosValidOrNot_ForSrcStatisticsDescriptor(
 }
 
 
-/*****************************************************************************
- 函 数 名  : Aps_QosValidOrNot_ForSignallingIndication
- 功能描述  : Signalling indication合法性校验(Aps_QosValidOrNot降圈复杂度)
- 输入参数  : psQos
- 输出参数  :
- 返 回 值  : TAF_APS_SUCC, QOS合法
-             TAF_APS_FAIL,程序执行 error , 或QOS非法。
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-  2.日    期   : 2011年06月01日
-    作    者   : f00179208
-    修改内容   : 根据问题单号：DTS2011052605913,[B052]UE对PDP激活接受消息检查过严
-                 当Guaranteed bit rate for downlink为reserved 255(0xFF)时，PDP激活失败
-*****************************************************************************/
 VOS_UINT32 Aps_QosValidOrNot_ForSignallingIndication(
     APS_PDP_QOS_STRU                    *psQos
 )
@@ -1617,25 +1168,7 @@ VOS_UINT32 Aps_QosValidOrNot_ForSignallingIndication(
     return TAF_APS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : Aps_QosValidOrNot_ForMaxBitRateForDownExt
- 功能描述  : Max bitrate for downlink(extended)合法性校验(Aps_QosValidOrNot降圈复杂度)
- 输入参数  : psQos
- 输出参数  :
- 返 回 值  : TAF_APS_SUCC, QOS合法
-             TAF_APS_FAIL,程序执行 error , 或QOS非法。
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-  2.日    期   : 2011年06月01日
-    作    者   : f00179208
-    修改内容   : 根据问题单号：DTS2011052605913,[B052]UE对PDP激活接受消息检查过严
-                 当Guaranteed bit rate for downlink为reserved 255(0xFF)时，PDP激活失败
-*****************************************************************************/
 VOS_UINT32 Aps_QosValidOrNot_ForMaxBitRateForDownExt(
     APS_PDP_QOS_STRU                    *psQos
 )
@@ -1657,25 +1190,7 @@ VOS_UINT32 Aps_QosValidOrNot_ForMaxBitRateForDownExt(
 }
 
 
-/*****************************************************************************
- 函 数 名  : Aps_QosValidOrNot_ForGuarantBitRateForDownExt
- 功能描述  : Guaranteed bitrate for downlink(extended)合法性校验(Aps_QosValidOrNot降圈复杂度)
- 输入参数  : psQos
- 输出参数  :
- 返 回 值  : TAF_APS_SUCC, QOS合法
-             TAF_APS_FAIL,程序执行 error , 或QOS非法。
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-  2.日    期   : 2011年06月01日
-    作    者   : f00179208
-    修改内容   : 根据问题单号：DTS2011052605913,[B052]UE对PDP激活接受消息检查过严
-                 当Guaranteed bit rate for downlink为reserved 255(0xFF)时，PDP激活失败
-*****************************************************************************/
 VOS_UINT32 Aps_QosValidOrNot_ForGuarantBitRateForDownExt(
     APS_PDP_QOS_STRU                    *psQos
 )
@@ -1699,25 +1214,7 @@ VOS_UINT32 Aps_QosValidOrNot_ForGuarantBitRateForDownExt(
 
 
 #if(PS_UE_REL_VER >= PS_PTL_VER_R7)
-/*****************************************************************************
- 函 数 名  : Aps_QosValidOrNot_ForMaxBitRateForUpExt
- 功能描述  : Max bitrate for downlink(extended)合法性校验(Aps_QosValidOrNot降圈复杂度)
- 输入参数  : psQos
- 输出参数  :
- 返 回 值  : TAF_APS_SUCC, QOS合法
-             TAF_APS_FAIL,程序执行 error , 或QOS非法。
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-  2.日    期   : 2011年06月01日
-    作    者   : f00179208
-    修改内容   : 根据问题单号：DTS2011052605913,[B052]UE对PDP激活接受消息检查过严
-                 当Guaranteed bit rate for downlink为reserved 255(0xFF)时，PDP激活失败
-*****************************************************************************/
 VOS_UINT32 Aps_QosValidOrNot_ForMaxBitRateForUpExt(
     APS_PDP_QOS_STRU                    *psQos
 )
@@ -1738,25 +1235,7 @@ VOS_UINT32 Aps_QosValidOrNot_ForMaxBitRateForUpExt(
     return TAF_APS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : Aps_QosValidOrNot_ForGuarantBitRateForUpExt
- 功能描述  : Guaranteed bitrate for downlink(extended)合法性校验(Aps_QosValidOrNot降圈复杂度)
- 输入参数  : psQos
- 输出参数  :
- 返 回 值  : TAF_APS_SUCC, QOS合法
-             TAF_APS_FAIL,程序执行 error , 或QOS非法。
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-  2.日    期   : 2011年06月01日
-    作    者   : f00179208
-    修改内容   : 根据问题单号：DTS2011052605913,[B052]UE对PDP激活接受消息检查过严
-                 当Guaranteed bit rate for downlink为reserved 255(0xFF)时，PDP激活失败
-*****************************************************************************/
 VOS_UINT32 Aps_QosValidOrNot_ForGuarantBitRateForUpExt(
     APS_PDP_QOS_STRU                    *psQos
 )
@@ -1778,29 +1257,7 @@ VOS_UINT32 Aps_QosValidOrNot_ForGuarantBitRateForUpExt(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : Aps_QosValidOrNot
- 功能描述  : 检查QOS Parameter 是否合法。QOS各 Parameter 的取值见10.5.6.5/24008
- 输入参数  : psQos
- 输出参数  :
- 返 回 值  : TAF_APS_SUCC, QOS合法
-             TAF_APS_FAIL,程序执行 error , 或QOS非法。
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-  2.日    期   : 2011年5月19日
-    作    者   : o00132663
-    修改内容   : 根据问题单号：DTS2011051801887,网侧下发PDP_ACTIVATE_ACCEPT
-                 消息中的QOS IE为reserved “0”，PDP激活失败
-  3.日    期   : 2011年06月01日
-    作    者   : f00179208
-    修改内容   : 根据问题单号：DTS2011052605913,[B052]UE对PDP激活接受消息检查过严
-                 当Guaranteed bit rate for downlink为reserved 255(0xFF)时，PDP激活失败
-*****************************************************************************/
 VOS_UINT32 Aps_QosValidOrNot(
     APS_PDP_QOS_STRU                   *psQos
 )
@@ -2207,25 +1664,7 @@ VOS_UINT8  *Aps_PackPcoAuth(            APS_PDP_ACT_REQ_ST     *pActReq,
     return  pAuthCurLoc;
 }
 
-/*****************************************************************************
- Prototype      : Aps_PackPcoIpcp
- Description    : 打包SM需要的PCO信息中的IPCP
- Input          :
- Output         :
- Return Value   : 放置AUTH信息的最后一个字节的地址+1, 即将放置下一个IE的第一个
-                  字节
- Data Accessed  :
- Data Update    :
- Calls          :
- Called By      :
- History        : ---
-  1.Date        : 2005-
-    Author      : 韩鲁峰
-    Modification: Created function
-  2.日    期 : 2013年07月08日
-    作    者 : Y00213812
-    修改内容 : VoLTE_PhaseI 项目，DNS和NBNS结构变换
-*****************************************************************************/
+
 VOS_UINT8  *Aps_PackPcoIpcp(            APS_PDP_ACT_REQ_ST     *pActReq,
                                         VOS_UINT8              *pPcoIpcpBegin)
 {
@@ -2332,24 +1771,7 @@ VOS_UINT8  *Aps_PackPcoIpcp(            APS_PDP_ACT_REQ_ST     *pActReq,
 }
 
 #if (FEATURE_ON == FEATURE_IPV6)
-/*****************************************************************************
- 函 数 名  : MN_APS_FillPcoIpV6DnsPara
- 功能描述  : 填写PCO信息DNS Server IPV6 Address
- 输入参数  : pucPcoPkt - PCO Packet地址
- 输出参数  : 无
- 返 回 值  : VOS_UINT8*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年6月1日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年4月21日
-    作    者   : A00165503
-    修改内容   : DTS2012042100658: IPv6拨号无法获取辅DNS Server IPv6地址
-*****************************************************************************/
 VOS_UINT8* MN_APS_FillPcoIpV6DnsPara(
     VOS_UINT8                          *pucPcoPkt
 )

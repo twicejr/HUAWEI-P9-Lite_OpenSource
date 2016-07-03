@@ -1,113 +1,4 @@
-/*******************************************************************************
-  Copyright     : 2005-2007, Huawei Tech. Co., Ltd.
-  File name     : GmmDetach.c
-  Description   : GMM定时器功能相关处理用源文件
-  Function List :
-    01.   Gmm_RcvTimerExpired
-    02.   Gmm_Tim3302Expired
-    03.   Gmm_Tim3310Expired
-    04.   Gmm_Tim3311Expired
-    05.   Gmm_Tim3312Expired
-    06.   Gmm_Tim3312Expired_RegNmlServ
-    07.   Gmm_Tim3312Expired_RegNoCell
-    08.   Gmm_Tim3316Expired
-    09.   Gmm_Tim3317Expired
-    10.   Gmm_Tim3318Expired
-    11.   Gmm_Tim3320Expired
-    12.   Gmm_Tim3321Expired
-    13.   Gmm_Tim3321Expired_DeregInit
-    14.   Gmm_Tim3321Expired_RegImsiDtchInit
-    15.   Gmm_Tim3330Expired
-    16.   Gmm_Tim5sExpired
-    17.   Gmm_TimerCreat
-    18.   Gmm_TimerDistroy
-    19.   Gmm_TimerPause
-    20.   Gmm_TimerPauseForTc
-    21.   Gmm_TimerResume
-    22.   Gmm_TimerResumeForTc
-    23.   Gmm_TimerStart
-    24.   Gmm_TimerStop
-    25.   Gmm_TimProtectExpired
-  History       :
-    1.  张志勇  2003.12.05  新规作成
-    2.  s46746  2006-03-08  根据问题单A32D02368修改
-    3.  s46746  2006-03-27  根据问题单A32D02387修改
-    4.  s46746  2006-04-18  根据问题单A32D03102修改
-    5.  l40632   2006-04-17  根据问题单A32D03132修改
-    6.  s46746  2006-05-08  根据问题单A32D03487修改
-    7.  l40632  2006-06-08  根据问题单A32D04196修改
-    8.  日    期   : 2006年9月23日
-        作    者   : sunxibo id:46746
-        修改内容   : 根据问题单号：A32D05848
-    9.  日    期   : 2006年11月8日
-        作    者   : s46746
-        修改内容   : 问题单号:A32D06867
-   10.  日    期   : 2006年11月20日
-        作    者   : s46746
-        修改内容   : 创建，根据问题单号：A32D07433
-   11.  日    期   : 2006年12月07日
-        作    者   : s46746
-        修改内容   : 创建，根据问题单号：A32D07799
-   12.  日    期   : 2007年01月04日
-        作    者   : s46746
-        修改内容   : 创建，根据问题单号：A32D08235
-   13.  日    期   : 2007年03月20日
-        作    者   : x51137
-        修改内容   : A32D09192
-   14.  日    期   : 2007年3月30日
-        作    者   : s46746
-        修改内容   : 问题单号:A32D09854
-   15.  日    期   : 2007年05月11日
-        作    者   : luojian id:60022475
-        修改内容   : 问题单号:A32D10713
-   16.  日    期   : 2007年7月14日
-        作    者   : luojian id:60022475
-        修改内容   : 根据问题单号：A32D12438
-   17.  日    期   : 2007年11月12日
-        作    者   : l39007
-        修改内容   : 根据问题单A32D13044,VOS_GetRelTmRemainTime函数执行失败,
-                     定时器剩余时间不清零,定时器继续运行
-   18.  日    期   : 2007年11月22日
-        作    者   : s46746
-        修改内容   : 根据问题单号：A32D13475,修改异系统改变后指派的old TLLI和开机加密密钥为全0问题
-   19.  日    期   : 2007年12月14日
-        作    者   : s46746
-        修改内容   : 问题单A32D13638，保证进行RAU之前不向网侧发送其它数据，并且RAU不成功，不恢复层2
-   20.  日    期   : 2007年12月28日
-        作    者   : s46746
-        修改内容   : 根据问题单号：A32D13954,修改GMM在2G3过程中缓存消息机制
-   21.  日    期   : 2008年7月2日
-        作    者   : l00107747
-        修改内容   : 根据问题单号：AT2D03900,FOLLOW ON标志清除排查
-   22.  日    期   : 2008年10月2日
-        作    者   : s46746
-        修改内容   : 根据问题单号：AT2D05988,W下关机时，如果GPRS Detach过程网络
-                     未释放连接导致GMM 5S定时器超时，GMM未向MMC指示连接不存在
-   23.  日    期   : 2007年4月25日
-        作    者   : h44270
-        修改内容   : 问题单号:AT2D11404/AT2D10802
-   24.  日    期   : 2009年04月25日
-        作    者   : h44270
-        修改内容   : 问题单号:AT2D08867
-   25.  日    期   : 2009年07月30日
-        作    者   : x00115505
-        修改内容   : 问题单号:AT2D13363,接入被拒后，GAS不应该清除GRM数据，应该先STOP GRM，等待T3172/T3146超时后，再INIT GRM。
-   26.  日    期   : 2009年08月24日
-        作    者   : x00115505
-        修改内容   : AT2D14023,测试GCF用例44.2.2.1.9失败
-   27.  日    期   : 2009年08月25日
-        作    者   : l60609
-        修改内容   : AT2D14064,驻留在不支持GPRS的小区，T3312超时没发起LAU
-   28.  日    期   : 2009年09月07日
-        作    者   : x00115505
-        修改内容   : AT2D14252,数传过程中，跨RNC迁移到新RNC下，MS发起RAU过程，没有设置Follow-on
-   29.  日    期   : 2010年03月15日
-        作    者   : x00115505
-        修改内容   : AT2D17570,某些情况Rau发起时没有上报EVENT事件
-   30.  日    期   : 2010年04月14日
-        作    者   : x00115505
-        修改内容   : AT2D18080,Direct Signalling Re-establish触发的Rau，Counter维护错误
-*******************************************************************************/
+
 
 #include "GmmInc.h"
 #include "GmmCasGlobal.h"
@@ -118,9 +9,7 @@
 #include "GmmMmInterface.h"
 #include  "GmmCasGsm.h"
 
-/* added  by l00167671 for v9r1 dcm logger可维可测项目, 2013-06-27, begin */
 #include "NasComm.h"
-/* added  by l00167671 for v9r1 dcm logger可维可测项目, 2013-06-27, end */
 
 #ifdef  __cplusplus
   #if  __cplusplus
@@ -140,31 +29,11 @@ extern VOS_UINT32   g_ulGmmDelaySuspendRsp;
 
 /*lint -save -e958 */
 
-/* delete by z00234330 for PCLINT清理, 2014-06-24, begin */
-/* delete by z00234330 for PCLINT清理, 2014-06-24, end */
 
 
 /* extern VOS_UINT32 Mmc_IsPlmnSearching(VOS_VOID); */
 
-/***********************************************************************
-  Module   : Gmm_TimerStart
-  Function : GMM使用的定时器启动
-  Input    : VOS_UINT8           ucTimerId     定时器ID
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-     1. 张志勇    2003.12.10  新版作成
-     2.日    期   : 2012年3月3日
-       作    者   : z00161729
-       修改内容   : V7R1 C50 支持ISR修改,T3312启动停止超时均需通知L
-     3.日    期   : 2015年6月4日
-       作    者   : z00161729
-       修改内容   : 24008 23122 R11 CR升级项目修改
-     4.日    期   : 2015年9月26日
-       作    者   : c00318887
-       修改内容   : 扩展GMM定时器到64个
- ************************************************************************/
+
 VOS_VOID Gmm_TimerStart(
                     VOS_UINT8 ucTimerId                                             /* Timer ID                                 */
                     )
@@ -247,42 +116,7 @@ VOS_VOID Gmm_TimerStart(
 
 }
 
-/***********************************************************************
-  Module   : Gmm_TimerStop
-  Function : GMM使用的定时器停止
-  Input    : VOS_UINT8           ucTimerId     定时器ID
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-     1.  张志勇  2003.12.10  新版作成
-     2.  日    期   : 2006年12月07日
-         作    者   : s46746
-         修改内容   : 创建，根据问题单号：A32D07799
-     3.  日    期   : 2007年01月04日
-         作    者   : s46746
-         修改内容   : 创建，根据问题单号：A32D08235
-     4.  日    期   : 2007年3月30日
-         作    者   : s46746
-         修改内容   : 问题单号:A32D09854
-     5.  日    期   : 2009年5月9日
-         作    者   : l00130025
-         修改内容   : 根据问题单号：AT2D11645/AT2D11797,关机，若detach的EST_REQ失败，Gmm会反复发起EST_REQ
-     6.  日    期   : 2010年12月18日
-         作    者   : o00132663
-         修改内容   : 根据问题单号：问题单号:DTS2010121800152,GMM关机关不掉，状态挂死
-     7.  日    期   : 2011年5月16日
-         作    者   : c00173809
-         修改内容   : 根据问题单号：问题单号:DTS2011050905176,从支持GPRS的小区异系统重选到不支持GPRS的
-                      小区,异常停止了T3312定时器.
-     8.  日    期   : 2012年4月3日
-         作    者   : z00161729
-         修改内容   : 支持 ISR修改
 
-  9.日    期   : 2015年9月26日
-    作    者   : c00318887
-    修改内容   : 扩展GMM定时器到64个
- ************************************************************************/
 VOS_VOID Gmm_TimerStop(
                    VOS_UINT8       ucTimerId                                    /* Timer ID                                 */
                    )
@@ -413,13 +247,14 @@ VOS_VOID Gmm_TimerStop(
             }
             break;
 
-        case GMM_TIMER_ALL_EXCEPT_T3312_T3323:
+        case GMM_TIMER_ALL_EXCEPT_T3312_T3323_T3302:
 
            for (i = 0; i < GMM_TIMER_NUM; i ++)
            {
                if ((GMM_TIMER_1S == i )
                 || (GMM_TIMER_T3312 == i)
-                || (GMM_TIMER_T3323 == i))
+                || (GMM_TIMER_T3323 == i)
+                || (GMM_TIMER_T3302 == i))
                {
                    continue;
                }
@@ -498,24 +333,7 @@ VOS_VOID Gmm_TimerStop(
     return;                                                                     /* 返回                                     */
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_IsTimerIdInTimerList
- 功能描述  : 判断某个定时器是否在定时器数组中
- 输入参数  : ucTimerId   特定定时器
-             ucTimerNum  定时器个数
-             pucTimer    定时器数组
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  表示在该数组中
-             VOS_FALSE 表示不在该数组中
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年1月6日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_GMM_IsTimerIdInTimerList(
     VOS_UINT8                           ucTimerId,
     VOS_UINT8                           ucTimerNum,
@@ -535,25 +353,7 @@ VOS_UINT32 NAS_GMM_IsTimerIdInTimerList(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_TimerStopExceptSpecialTimers
- 功能描述  : GMM模块停止所有除特定定时器外的所有定时器
- 输入参数  : ucTimerNum  定时器个数
-             pucTimer    定时器数组
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月6日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年9月26日
-    作    者   : c00318887
-    修改内容   : 扩展GMM定时器到64个
-*****************************************************************************/
 VOS_VOID NAS_GMM_TimerStopExceptSpecialTimers(
     VOS_UINT8                           ucTimerNum,
     VOS_UINT8                          *pucTimer
@@ -620,20 +420,7 @@ VOS_VOID NAS_GMM_TimerStopExceptSpecialTimers(
     gstGmmSuspendCtrl.ulTimerRunMaskEx  = 0x0;
 }
 
-/***********************************************************************
-  Module   : Gmm_TimerPause
-  Function : GMM使用的定时器暂停
-  Input    : VOS_UINT8           ucTimerId     定时器ID
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-     1. 张志勇  2003.12.10  新版作成
 
-  2.日    期   : 2015年9月26日
-    作    者   : c00318887
-    修改内容   : 扩展GMM定时器到64个
- ************************************************************************/
 VOS_VOID Gmm_TimerPause(
                     VOS_UINT8                   ucTimerId                           /* Timer ID                                 */
                     )
@@ -669,20 +456,7 @@ VOS_VOID Gmm_TimerPause(
     }
 }
 
-/***********************************************************************
-  Module   : Gmm_TimerResume
-  Function : GMM使用的暂停后的定时器的恢复
-  Input    : VOS_UINT8           ucTimerId     定时器ID
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-     1.  张志勇  2003.12.10  新版作成
 
-  2.日    期   : 2015年9月26日
-    作    者   : c00318887
-    修改内容   : 扩展GMM定时器到64个
- ************************************************************************/
 VOS_VOID Gmm_TimerResume (
                       VOS_UINT8                   ucTimerId                         /* Timer ID                                 */
                       )
@@ -716,6 +490,8 @@ VOS_VOID Gmm_TimerResume (
             return;                                                             /* 返回                                     */
         }
 
+        NAS_NORMAL_LOG1(WUEPS_PID_GMM, "Gmm_TimerResume: Timer resumed, ucTimerId =", ucTimerId);
+
         (*pulTimerSusMask) &= ~(VOS_UINT32)(0x00000001 << ucTimerBitIndex);     /* 清Timer的挂起标志                        */
     }
     else
@@ -726,28 +502,7 @@ VOS_VOID Gmm_TimerResume (
     /*lint +e701*/
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_QryTimerStatus
- 功能描述  : 查询指定的GMM定时器的状态以及剩余时间
- 输入参数  : ucTimerId  - 需要查询的定时器ID
- 输出参数  : pusLeftLen - 定时器的剩余时间
- 返 回 值  : VOS_TRUE - 定时器在运行
-             VOS_FALSE - 定时器不在运行
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年9月27日
-    作    者   : h44270
-    修改内容   : 新生成函数
-  2.日    期   : 2012年1月30日
-    作    者   : l00130025
-    修改内容   : DTS2012010500368,调用同步接口VOS_GetRelTmRemainTimehTimer时没有判断hTimer是否为0，与定时器异步消息冲突导致异常打印
-
-  3.日    期   : 2015年9月26日
-    作    者   : c00318887
-    修改内容   : 扩展GMM定时器到64个
-*****************************************************************************/
 VOS_UINT32  NAS_GMM_QryTimerStatus(VOS_UINT8 ucTimerId)
 {
     VOS_UINT32                         *pulTimerRunMask     = VOS_NULL_PTR;  
@@ -768,32 +523,83 @@ VOS_UINT32  NAS_GMM_QryTimerStatus(VOS_UINT8 ucTimerId)
 }
 
 
-/***********************************************************************
-  Module   : Gmm_SuspendTimer
-  Function : GMM使用的定时器暂停
-  Input    : VOS_UINT8           ucTimerId     定时器ID
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-     1. s46746  2006.05.07  新版作成
-     2. 日    期   : 2007年11月12日
-        作    者   : l39007
-        修改内容   : 根据问题单A32D13044
-     3. 日    期   : 2014年3月13日
-        作    者   : w00176964
-        修改内容   : DTS2014031207844:SYSCFG触发detach不停止detach定时器
-     4.日    期   :2014年4月2日
-       作    者   :w00242748
-       修改内容   :DTS2014040310584:LTE下未与网络交互的ATTACH/TAU，不停止T3211/T3212/T3213;
-                   只有与网络交互后，才将T3211/T3212/T3213停止。
-     5.日    期   : 2015年4月15日
-       作    者   : y00245242
-       修改内容   : iteration 13开发
-      6.日    期   : 2015年9月26日
-        作    者   : c00318887
-        修改内容   : 扩展GMM定时器到64个
- ************************************************************************/
+VOS_UINT32 NAS_GMM_IsTimerNeedSuspend(
+    VOS_UINT8                           ucTimerId
+)
+{
+    VOS_UINT32                          ulSuspendFlg;
+
+    ulSuspendFlg = VOS_TRUE;
+
+    /* 如下定时器在收到挂起消息时不需要被挂起 */
+    switch (ucTimerId)
+    {
+        case GMM_TIMER_T3312:
+            ulSuspendFlg = VOS_FALSE;
+            break;
+
+        case GMM_TIMER_T3314:
+            ulSuspendFlg = VOS_FALSE;
+            break;
+
+        case GMM_TIMER_1S:
+            ulSuspendFlg = VOS_FALSE;
+            break;
+
+        case GMM_TIMER_T3323:
+            ulSuspendFlg = VOS_FALSE;
+            break;
+
+        case GMM_TIMER_T3302:
+            ulSuspendFlg = VOS_FALSE;
+            break;
+
+        default:
+            ulSuspendFlg = VOS_TRUE;
+            break;
+    }
+
+    return ulSuspendFlg;
+}
+
+
+VOS_UINT32 NAS_GMM_IsTimerNeedResume(
+    VOS_UINT8                           ucTimerId
+)
+{
+    VOS_UINT32                          ulResumeFlg;
+
+    ulResumeFlg = VOS_TRUE;
+
+    /* 如下定时器在收到挂起消息时不需要被挂起 */
+    switch (ucTimerId)
+    {
+        case GMM_TIMER_T3312:
+            ulResumeFlg = VOS_FALSE;
+            break;
+
+        case GMM_TIMER_T3314:
+            ulResumeFlg = VOS_FALSE;
+            break;
+
+        case GMM_TIMER_SUSPENDED:
+            ulResumeFlg = VOS_FALSE;
+            break;
+
+        case GMM_TIMER_T3302:
+            ulResumeFlg = VOS_FALSE;
+            break;
+
+        default:
+            ulResumeFlg = VOS_TRUE;
+            break;
+    }
+
+    return ulResumeFlg;
+}
+
+
+
 VOS_VOID GMM_SuspendTimer(VOS_VOID)
 {
     VOS_UINT8 i;
@@ -810,8 +616,9 @@ VOS_VOID GMM_SuspendTimer(VOS_VOID)
 
     for (i = 0; i < GMM_TIMER_NUM; i ++)
     {
-        if ((i == GMM_TIMER_T3312) || (GMM_TIMER_T3314 == i) || (GMM_TIMER_1S == i) || (GMM_TIMER_T3323 == i))
+        if (VOS_FALSE == NAS_GMM_IsTimerNeedSuspend(i))
         {
+            NAS_NORMAL_LOG1(WUEPS_PID_GMM, "GMM_SuspendTimer: Timer should not be suspended, ucTimerId =", i);
             continue;
         }
 
@@ -830,6 +637,7 @@ VOS_VOID GMM_SuspendTimer(VOS_VOID)
              && (GMM_TIMER_PROTECT_PS_DETACH == i)
              && (NAS_MML_NET_RAT_TYPE_GSM    == enCurRat))
             {
+                NAS_NORMAL_LOG(WUEPS_PID_GMM, "GMM_SuspendTimer: GMM_TIMER_PROTECT_PS_DETACH should not be suspended");
                 continue;
             }
 
@@ -840,22 +648,7 @@ VOS_VOID GMM_SuspendTimer(VOS_VOID)
 
 }
 
-/***********************************************************************
-  Module   : Gmm_SuspendTimer
-  Function : GMM使用的定时器暂停
-  Input    : VOS_UINT8           ucTimerId     定时器ID
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-     1. s46746  2006.05.07  新版作成
-     2. 日    期   : 2007年11月12日
-        作    者   : l39007
-        修改内容   : 根据问题单A32D13044
-     3. 日    期   : 2012年1月30日
-        作    者   : l00130025
-        修改内容   : DTS2012010500368,调用同步接口VOS_GetRelTmRemainTimehTimer时没有判断hTimer是否为0，与定时器异步消息冲突导致异常打印
- ************************************************************************/
+
 VOS_VOID GMM_SuspendSingleTimer(VOS_UINT8 ucTimerId)
 {
     VOS_UINT32                          ulRet;
@@ -885,25 +678,7 @@ VOS_VOID GMM_SuspendSingleTimer(VOS_UINT8 ucTimerId)
     return;
 }
 
-/***********************************************************************
-  Module   : Gmm_ResumeTimer
-  Function : GMM定时器恢复
-  Input    : VOS_UINT8           ucTimerId     定时器ID
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-     1. s46746  2006.05.07  新版作成
-     2. 日    期   : 2013年2月4日
-        作    者   : w00176964
-        修改内容   : DTS2011082402748:EST CNF fail导致CCO回退时,3311不需要恢复启动
-     3. 日    期   : 2014年3月13日
-        作    者   : w00176964
-        修改内容   : DTS2014031207844:SYSCFG触发detach不停止detach定时器
-      4.日    期   : 2015年9月26日
-        作    者   : c00318887
-        修改内容   : 扩展GMM定时器到64个
- ************************************************************************/
+
 VOS_VOID GMM_ResumeTimer(VOS_UINT8 ucResume)
 {
     VOS_UINT8                           i;
@@ -917,6 +692,8 @@ VOS_VOID GMM_ResumeTimer(VOS_UINT8 ucResume)
 
     if (GMM_TIMER_NOT_RESUME == ucResume)
     {
+        NAS_NORMAL_LOG(WUEPS_PID_GMM, "GMM_ResumeTimer: No need to resume GMM timer");
+
         gstGmmSuspendCtrl.ulTimerRunMask                    = 0x0;
 
         gstGmmSuspendCtrl.ulTimerRunMaskEx                  = 0x0;
@@ -926,8 +703,9 @@ VOS_VOID GMM_ResumeTimer(VOS_UINT8 ucResume)
 
     for (i = 0; i < GMM_TIMER_NUM; i ++)
     {
-        if ((GMM_TIMER_T3312 == i) || (GMM_TIMER_T3314 == i) || (GMM_TIMER_SUSPENDED == i))
+        if (VOS_FALSE == NAS_GMM_IsTimerNeedResume(i))
         {
+            NAS_NORMAL_LOG1(WUEPS_PID_GMM, "GMM_ResumeTimer: Timer should not be resumed, ucTimerId =", i);
             continue;
         }
 
@@ -960,20 +738,30 @@ VOS_VOID GMM_ResumeTimer(VOS_UINT8 ucResume)
                 continue;
             }
 
-            if (VOS_OK != Mm_StartRelTimer(&g_GmmTimerMng.aTimerInf[i].hTimer,
-                                            WUEPS_PID_GMM,
-                                            gstGmmSuspendCtrl.ulTimerValue[i],
-                                            (VOS_UINT32)i,
-                                            g_GmmTimerMng.aTimerInf[i].ulParam,
-                                            VOS_RELTIMER_NOLOOP))
+            /* 启动定时器时先判断剩余时长是否为0，以免启动时长0秒的定时器 */
+            if (0 != gstGmmSuspendCtrl.ulTimerValue[i])
             {
-                GMM_LOG_WARN("Gmm_ResumeTimer:Resume some timer fail.");
+                if (VOS_OK != Mm_StartRelTimer(&g_GmmTimerMng.aTimerInf[i].hTimer,
+                                                WUEPS_PID_GMM,
+                                                gstGmmSuspendCtrl.ulTimerValue[i],
+                                                (VOS_UINT32)i,
+                                                g_GmmTimerMng.aTimerInf[i].ulParam,
+                                                VOS_RELTIMER_NOLOOP))
+                {
+                    GMM_LOG_WARN("Gmm_ResumeTimer:Resume some timer fail.");
+                }
+                else
+                {
+                    /*lint -e701*/
+                    (*pulTimerRunMask) |= (0x00000001 << ucTimerBitIndex);
+                    /*lint +e701*/
+                
+                    NAS_NORMAL_LOG1(WUEPS_PID_GMM, "GMM_ResumeTimer: GMM Timer resumed, TimerId =", i);
+                }
             }
             else
             {
-                /*lint -e701*/
-                (*pulTimerRunMask) |= (0x00000001 << ucTimerBitIndex);
-                /*lint +e701*/
+                NAS_WARNING_LOG1(WUEPS_PID_GMM, "GMM_ResumeTimer: WARNING: resume timer len is 0", i);
             }
         }
     }
@@ -982,28 +770,7 @@ VOS_VOID GMM_ResumeTimer(VOS_UINT8 ucResume)
 }
 
 
-/***********************************************************************
-  Module   : Gmm_Tim3302Expired
-  Function : 定时器T3302溢出处理
-  Input    : 无
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-     1. 张志勇  2003.12.10  新版作成
-     2.日    期   : 2012年2月15日
-       作    者   : w00166186
-       修改内容   : CSFB&PPAC&ETWS&ISR 开发
-     3.日    期   : 2013年7月19日
-       作    者   : w00167002
-       修改内容   : DTS2013071900239:W下网络模式I,联合注册PS only成功，CS失败原因
-                    #17,网络模式由I--->II,此时不应发起联合ATTACH.
-                    如果此时依然是网络模式I,但用户设置为PS ONLY,则也不用发起
-                    联合ATTACH.
-     4.日    期   : 2015年1月5日
-       作    者   : z00161729
-       修改内容   : AT&T 支持DAM特性修改
- ************************************************************************/
+
 VOS_VOID Gmm_Tim3302Expired(VOS_VOID)
 {
     VOS_UINT8                           ucCsRestrictionFlg;
@@ -1062,50 +829,7 @@ VOS_VOID Gmm_Tim3302Expired(VOS_VOID)
     }
 }
 
-/***********************************************************************
-  Module   : Gmm_Tim3310Expired
-  Function : 定时器T3310溢出处理
-  Input    : 无
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1.张志勇    2003.12.10  新版作成
 
-  2.日    期   : 2009年5月7日
-    作    者   : l00130025
-    修改内容   : 根据问题单号：AT2D11692/At2D11768,HPlmnTIMER和T3310,T3311同时超时的处理
-
-  3.日    期   : 2009年09月25日
-    作    者   : l00130025
-    修改内容   : 问题单号:AT2D14675,RAU/Attach过程中，list搜网失败
-
-  4.日    期   : 2010年7月21日
-    作    者   : 欧阳飞
-    修改内容   : DTS2010071500036,当ATTACH或RAU失败后，未通知LL清除信令数据
-                 ，导致UE仍然在反复重发数据
-  5.日    期   : 2011年7月14日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
-  6.日    期   : 2011年11月8日
-    作    者   : s46746
-    修改内容   : V7R1 PhaseII阶段解决关机慢问题
-  7.日    期   : 2011年12月24日
-    作    者   : w00166186
-    修改内容   : DTS2011122104474,指定搜网不停LAU问题统一修改
-  8.日    期   : 2012年08月24日
-    作    者   : m00217266
-    修改内容   : 修改Gmm_SndSmEstablishCnf接口，添加原因值
-  9.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
- 10.日    期   : 2014年05月22日
-    作    者   : W00242748
-    修改内容   : DTS2014050900899:将GMM的处理状态通知给WAS
- 11.日    期   : 2015年4月21日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-************************************************************************/
 VOS_VOID Gmm_Tim3310Expired(VOS_VOID)
 {
     NAS_MSG_STRU                    *pNasMsg = VOS_NULL_PTR ;
@@ -1118,7 +842,6 @@ VOS_VOID Gmm_Tim3310Expired(VOS_VOID)
 
     enCause = NAS_MML_REG_FAIL_CAUSE_TIMER_TIMEOUT;
 
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
     /* 如果当前接入技术是G，给GAS发送GRRGMM_GPRS_PROC_IND,类型为ATTACH,标志为FINISH */
     if ( (NAS_MML_NET_RAT_TYPE_GSM == enCurRat)
       || (NAS_MML_NET_RAT_TYPE_WCDMA== enCurRat))
@@ -1128,7 +851,6 @@ VOS_VOID Gmm_Tim3310Expired(VOS_VOID)
         NAS_MML_SetGmmProcType(NAS_MML_GMM_PROC_TYPE_ATTACH);
         NAS_MML_SetGmmProcFlag(NAS_MML_GMM_PROC_FLAG_FINISH);
     }
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
     if (GMM_REGISTERED_INITIATED == g_GmmGlobalCtrl.ucState)
     {                                                                           /* 判断GMM状态是GMM_REGISTERED_INITIATED    */
@@ -1152,7 +874,6 @@ VOS_VOID Gmm_Tim3310Expired(VOS_VOID)
         if (g_GmmAttachCtrl.ucT3310outCnt < GMM_TIMER_EXPIRED_MAX_CNT)
         {                                                                       /* 判断ucT3310OutCnt 小于 5                 */
 
-            /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
             /* 如果当前接入技术是G，给GAS发送GRRGMM_GPRS_PROC_IND,类型为ATTACH,标志为START */
             if ( (NAS_MML_NET_RAT_TYPE_GSM == enCurRat)
               || (NAS_MML_NET_RAT_TYPE_WCDMA == enCurRat) )
@@ -1162,7 +883,6 @@ VOS_VOID Gmm_Tim3310Expired(VOS_VOID)
                 NAS_MML_SetGmmProcType(NAS_MML_GMM_PROC_TYPE_ATTACH);
                 NAS_MML_SetGmmProcFlag(NAS_MML_GMM_PROC_FLAG_START);
             }
-            /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
 #if (FEATURE_ON == FEATURE_DSDS)
 
@@ -1270,36 +990,7 @@ VOS_VOID Gmm_Tim3310Expired(VOS_VOID)
     return;                                                                     /* 返回                                     */
 }
 
-/***********************************************************************
-  Module   : Gmm_Tim3311Expired
-  Function : 定时器T3311溢出处理
-  Input    : 无
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-     1.  张志勇  2003.12.10  新版作成
-     2.  日    期   : 2009年5月7日
-         作    者   : l00130025
-         修改内容   : 根据问题单号：AT2D11692/At2D11768,HPlmnTIMER和T3310,T3311同时超时的处理
-     3.  日    期   : 2011年04月02日
-         作    者   : f00179208
-         修改内容   : 根据问题单号：DTS2011032604117,周期性RAU建链失败后，没有再发起周期性RAU
-     4.  日    期   : 2013年06月18日
-         作    者   : l65478
-         修改内容   : 问题单号：DTS2013061406222,T3311超时时,发起RAU时应该判断 CS的业务状态
 
-     5.日    期   : 2013年7月19日
-       作    者   : w00167002
-       修改内容   : DTS2013071900239:W下网络模式I,联合注册PS only成功，CS失败原因
-                    #17,网络模式由I--->II,此时不应发起联合ATTACH.
-                    如果此时依然是网络模式I,但用户设置为PS ONLY,则也不用发起
-                    联合ATTACH.
-     6.日    期   : 2014年6月17日
-       作    者   : s00217060
-       修改内容   : DTS2014061003286:记录T3311超时标志，在GMM_REGISTERED_NO_CELL_AVAILABLE/
-                    GMM_REGISTERED_PLMN_SEARCH收到系统消息时作RAU
-***********************************************************************/
 VOS_VOID Gmm_Tim3311Expired(VOS_VOID)
 {
     VOS_UINT8                           ucCsRestrictionFlg;
@@ -1363,37 +1054,7 @@ VOS_VOID Gmm_Tim3311Expired(VOS_VOID)
     }
 }
 
-/***********************************************************************
-  Module   : Gmm_Tim3312Expired
-  Function : 定时器T3312溢出处理
-  Input    : 无
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-     1.  张志勇  2003.12.10  新版作成
-     2. 日    期   : 2007年05月11日
-        作    者   : luojian id:60022475
-        修改内容   : 问题单号:A32D10713
-     3. 日    期   : 2007年7月14日
-        作    者   : luojian id:60022475
-        修改内容   : 根据问题单号：A32D12438
-     4. 日    期   : 2012年2月15日
-        作    者   : w00166186
-        修改内容   : CSFB&PPAC&ETWS&ISR 开发
-     5. 日    期   : 2012年3月3日
-        作    者   : z00161729
-        修改内容   : V7R1 C50 支持ISR修改,T3312启动停止超时均需通知L
-     6. 日    期   : 2012年5月7日
-        作    者   : l00171473
-        修改内容   : DTS2012050204913, L模时不需要发起LU
-     7. 日    期   : 2012年11月25日
-        作    者   : l65478
-        修改内容   : DTS2012112606482,GCF 9.2.3.3.2测试失败
-     8. 日    期   : 2013年1月23日
-        作    者   : w00176964
-        修改内容   : DTS2013012290625:3312超时在L下驻留态清除GS口
- ************************************************************************/
+
 VOS_VOID Gmm_Tim3312Expired(VOS_VOID)
 {
     VOS_UINT32                  ucOldState;
@@ -1482,29 +1143,7 @@ VOS_VOID Gmm_Tim3312Expired(VOS_VOID)
     return;
 }
 
-/***********************************************************************
-  Module   : Gmm_Tim3312Expired_RegNmlServ
-  Function : 定时器T3312在状态GMM_REGISTERED_NORMAL_SERVICE下的溢出处理
-  Input    : 无
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-     1.  张志勇  2003.12.10  新版作成
-     2. 日    期   : 2007年05月11日
-        作    者   : luojian id:60022475
-        修改内容   : 问题单号:A32D10713
-     3. 日    期   : 2009年04月25日
-        作    者   : h44270
-        修改内容   : 问题单号:AT2D08867
-     4. 日    期   : 2010年12月08日
-        作    者   : l00167671
-        修改内容   : 问题单号:DTS2010111202717,重选过程中不做RAU,
-                      等到SYS_INFO上报时再做
-     5. 日    期   : 2012年2月02日
-        作    者   : l00130025
-        修改内容   : 问题单号:DTS2012011906061,只在G下需要判断gstGmmCasGlobalCtrl.ucCellReselFlg
-************************************************************************/
+
 VOS_VOID Gmm_Tim3312Expired_RegNmlServ(VOS_VOID)
 {
     g_GmmRauCtrl.ucT3312ExpiredFlg = GMM_TRUE;                                  /* 置3312溢出标志                           */
@@ -1528,29 +1167,7 @@ VOS_VOID Gmm_Tim3312Expired_RegNmlServ(VOS_VOID)
 }
 
 
-/***********************************************************************
-  Module   : Gmm_Tim3312Expired_RegNoCell
-  Function : 定时器T3312在状态GMM_REGISTERED_NO_CELL_AVAILABLE下的溢出处理
-  Input    : 无
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-     1. 张志勇 2003.12.10  新版作成
-     2. 日    期   : 2007年05月11日
-        作    者   : luojian id:60022475
-        修改内容   : 问题单号:A32D10713
-     3. 日    期   : 2011年03月24日
-        作    者   : 欧阳飞
-        修改内容   : 问题单号:DTS2011032400460，驻留成功后，用户指定不存在网络搜网，
-                     受限驻留后，T3312超时后，MM发起了不期望的LAU
-     4.日    期   : 2012年3月7日
-       作    者   : z00161729
-       修改内容   : V7R1 C50 支持ISR修改
-     5.日    期   : 2013年2月4日
-       作    者   : w00176964
-       修改内容   : DTS2011022802215:CS ONLY,网络模式I下也进行联合注册
- ************************************************************************/
+
 VOS_VOID Gmm_Tim3312Expired_RegNoCell(VOS_VOID)
 {
 #if (FEATURE_ON == FEATURE_LTE)
@@ -1583,20 +1200,7 @@ VOS_VOID Gmm_Tim3312Expired_RegNoCell(VOS_VOID)
 }
 
 
-/***********************************************************************
-  Module   : Gmm_Tim3316Expired
-  Function : 定时器T3316溢出处理
-  Input    : 无
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-     1.  张志勇  2003.12.10  新版作成
-    2.日    期  :2014年01月09日
-      作    者  :l65478
-      修改内容  :DTS2014010704608:第一次鉴权响应和网络发起的第二次鉴权请求冲突
 
- ************************************************************************/
 VOS_VOID Gmm_Tim3316Expired(VOS_VOID)
 {
     g_GmmAuthenCtrl.ucResStoredFlg  = GMM_FALSE;                                /* 将RES存在标志置为FALSE                   */
@@ -1604,26 +1208,7 @@ VOS_VOID Gmm_Tim3316Expired(VOS_VOID)
 }
 
 
-/***********************************************************************
-  Module   : Gmm_Tim3317Expired
-  Function : 定时器T3317溢出处理
-  Input    : 无
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1.张志勇    2003.12.10  新版作成
-  2.日    期   : 2011年7月14日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
-  3.日    期   : 2012年3月17日
-    作    者   : w00176964
-    修改内容   : DTS2012031900095 V7R1 C30 SBM&EM定制需求:增加拨号被拒定制
-  4.日    期   : 2012年08月24日
-    作    者   : m00217266
-    修改内容   : 修改GMM_SndSmServiceRej接口，添加原因值
 
-************************************************************************/
 VOS_VOID Gmm_Tim3317Expired(VOS_VOID)
 {
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16  enCause;
@@ -1695,28 +1280,7 @@ VOS_VOID Gmm_Tim3317Expired(VOS_VOID)
     }
 }
 
-/***********************************************************************
-  Module   : Gmm_Tim3318Expired
-  Function : 定时器T3318溢出处理
-  Input    : 无
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-     1. 张志勇  2003.12.10  新版作成
-     2.日    期   : 2009年03月31日
-       作    者   : L65478
-       修改内容   : 根据问题单号：AT2D10529两次鉴权失败后没有释放RRC连接
-     3.日    期   : 2012年4月20日
-       作    者   : l00130025
-       修改内容   : DTS2012032004389，Netork连续3次被Ms Auth Rej或T3318/T3320超时时，没有通知GAS Bar掉当前小区
-     4.日    期   : 2012年12月25日
-       作    者   : L65478
-       修改内容   : DTS2012122900226,G下定时器超时根据失败次数决定是否禁止当前小区
-     5.日    期   : 2013年01月23日
-       作    者   : L65478
-       修改内容   : DTS2013012301527,GCF 12.6.1.3.3失败
- ************************************************************************/
+
 VOS_VOID Gmm_Tim3318Expired(VOS_VOID)
 {
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8             enCurRat;
@@ -1742,16 +1306,7 @@ VOS_VOID Gmm_Tim3318Expired(VOS_VOID)
     /* 存在被停止的retransmission timer将其启动 */
     Gmm_Start_StopedRetransmissionTimer();
 }
-/***********************************************************************
-  Module   : Gmm_Tim3319Expired
-  Function : 定时器T3319溢出处理
-  Input    : 无
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-        1.  x00115505     2009.05.11  新版做成
- ************************************************************************/
+
 VOS_VOID Gmm_Tim3319Expired(VOS_VOID)
 {
     VOS_VOID                            *pMsg;
@@ -1830,21 +1385,7 @@ VOS_VOID Gmm_Tim3321Expired(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : VOS_VOID NAS_GMM_TimerProtectPsDetachExpired(VOS_VOID)
- 功能描述  : GMM PS的Detach消息保护定时器超时的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月4日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_GMM_TimerProtectPsDetachExpired(VOS_VOID)
 {
     VOS_UINT32                          ulRslt;
@@ -1932,20 +1473,7 @@ VOS_VOID NAS_GMM_TimerProtectPsDetachExpired(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_Gmm_RcvMmT3211ExpiredNotify
- 功能描述  : GMM收到MM的T3211定时器超时消息的处理
- 输入参数  : pstMsg - 消息内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月5日
-    作    者   : z00161729
-    修改内容   : AT&T 支持DAM特性修改
-*****************************************************************************/
 VOS_VOID NAS_Gmm_RcvMmT3211ExpiredNotify(
     VOS_VOID                           *pstMsg
 )
@@ -2017,21 +1545,7 @@ VOS_VOID NAS_Gmm_RcvMmT3211ExpiredNotify(
 }
 
 
-/*****************************************************************************
- 函 数 名  : VOS_VOID NAS_Gmm_RcvMmCsLocalDetachInd(VOS_VOID)
- 功能描述  : GMM收到MM的CS域本地Detach消息的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月4日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_Gmm_RcvMmCsLocalDetachInd(
     VOS_VOID                           *pstMsg
 )
@@ -2068,38 +1582,7 @@ VOS_VOID NAS_Gmm_RcvMmCsLocalDetachInd(
 }
 
 
-/***********************************************************************
-  Module   : Gmm_Tim3321Expired_DeregInit
-  Function : 定时器T3321溢出处理
-  Input    : 无
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1. 张志勇    2003.12.10  新版作成
-  2. 日    期   : 2006年9月23日
-     作    者   : sunxibo id:46746
-     修改内容   : 根据问题单号：A32D05848
-  3. 日    期   : 2006年11月20日
-     作    者   : s46746
-     修改内容   : 创建，根据问题单号：A32D07433
-  4. 日    期   : 2011年07月13日
-     作    者   : w00166186
-     修改内容   : V7R1 PHASE II ATTACH/DETACH调整
-  5.日    期   : 2011年7月27日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-  6. 日    期   : 2012年1月12日
-     作    者   : w00166186
-     修改内容   : DTS2011122704039:开机搜网后CS注册被拒#12,PS注册被拒#14，在ON
-                   PLMN状态，服务域被设置为不支持GMM需要将服务域不支持信息通知给MMC.
-  7.日    期   : 2013年8月7日
-    作    者   : w00167002
-    修改内容   : DTS2013080207367:在CS only时候，用户发起PDP激活，网络模式I时候，
-                 会触发联合注册.用户发起PDP去激活，会导致PS域的去注册。收到网侧
-                 的去注册成功后需要通知MM，否则MM当前在NORMAL SERVICE状态，不
-                 触发T3212定时器的启动，长时间可能导致丢寻呼.
-************************************************************************/
+
 VOS_VOID Gmm_Tim3321Expired_DeregInit(VOS_VOID)
 {
     NAS_MSG_STRU         *pNasMsg = VOS_NULL_PTR ;                              /* 定义指针                                 */
@@ -2266,74 +1749,7 @@ VOS_VOID Gmm_Tim3321Expired_RegImsiDtchInit(VOS_VOID)
     return;                                                                     /* 返回                                     */
 }
 
-/***********************************************************************
-  Module   : Gmm_Tim3330Expired
-  Function : 定时器T3330溢出处理
-  Input    : 无
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1.张志勇    2003.12.10  新版作成
-  2.日    期   : 2008年9月18日
-    作    者   : ouyangfei 00132663
-    修改内容   : 根据问题单号：AT2D05816，在GMM过程中，来自CM层的SMS请求应该被缓存，等GMM过程结束再发起。
-  3.日    期   : 2009年05月23日
-    作    者   : L65478
-    修改内容   : 问题单号:AT2D06770,RAU失败，因为GRM建链的原因是DATA，实际应该是信令
-  4.日    期   : 2009年06月30日
-    作    者   : l65478
-    修改内容   : 问题单：AT2D12655,增加清除LLC数据类型的处理
-  5.日    期   : 2009年09月25日
-    作    者   : l00130025
-    修改内容   : 问题单号:AT2D14675,RAU/Attach过程中，list搜网失败
-  6.日    期   : 2009年10月3日
-    作    者   : l00130025
-    修改内容   : 根据问题单号：AT2D14889,G网络模式I下,Combined RAU过程中，
-                 设置需要CS detach的SYSCFG失败
-  7.日    期   : 2010年7月21日
-    作    者   : 欧阳飞
-    修改内容   : DTS2010071500036,当ATTACH或RAU失败后，未通知LL清除信令数据
-                ，导致UE仍然在反复重发数据
-  8.日    期   : 2011年7月10日
-    作    者   : w00166186
-    修改内容   : V7R1 PHASE II ATTACH/DETACH调整
-  9.日    期   : 2011年7月14日
-    作    者   : h44270
-    修改内容   : V7R1 PhaseII阶段调整，注册结果简化
- 10.日    期   : 2011年7月26日
-    作    者   : l00130025
-    修改内容   : V7R1 PhaseII阶段调整，删除UserDelay标志，由MMC处理
- 11.日    期   : 2011年4月29日
-    作    者   : c00173809
-    修改内容   : DTS2011042804013,UE在网络模式I下,通过设置W单模搜网到W下相同RAI
-                      的小区,先在W下发起电话,然后PDP激活,然后释放CS电话,UE进行的联合RAU
-                      是通过EST_REQ而不是通过DATE_REQ发送的.
- 12.日    期   : 2011年11月8日
-    作    者   : s46746
-    修改内容   : V7R1 PhaseII阶段解决关机慢问题
- 13.日    期   : 2011年12月24日
-    作    者   : w00166186
-    修改内容   : DTS2011122104474,指定搜网不停LAU问题统一修改
- 14.日    期   : 2012年2月15日
-    作    者   : w00167002
-    修改内容   : V7R1C50 CSFB&PPAC&ETWS&ISR:调整，若当前存在CSFB业务标志，则只做RAU
- 15.日    期   : 2012年2月15日
-    作    者   : w00166186
-    修改内容   : CSFB&PPAC&ETWS&ISR 开发
- 16.日    期   : 2013年3月30日
-    作    者   : l00167671
-    修改内容   : 主动上报AT命令控制下移至C核
- 17.日    期   : 2013年7月22日
-    作    者   : z00161729
-    修改内容   : DTS2013071908566:rau init状态从w cco到g再回退到w，gmm不重新发起rau
- 18.日    期   : 2014年05月22日
-    作    者   : W00242748
-    修改内容   : DTS2014050900899:将GMM的处理状态通知给WAS
- 19.日    期   : 2015年4月21日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-************************************************************************/
+
 VOS_VOID Gmm_Tim3330Expired(VOS_VOID)
 {
     VOS_UINT8            ucUpdateType = GMM_RA_UPDATING;                         /* 定义临时变量保存更新类型                 */
@@ -2350,7 +1766,6 @@ VOS_VOID Gmm_Tim3330Expired(VOS_VOID)
 
     enCause  = NAS_MML_REG_FAIL_CAUSE_TIMER_TIMEOUT;
 
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
     if ( (NAS_MML_NET_RAT_TYPE_GSM == enCurRat)
       || (NAS_MML_NET_RAT_TYPE_WCDMA == enCurRat) )
     {
@@ -2371,7 +1786,6 @@ VOS_VOID Gmm_Tim3330Expired(VOS_VOID)
             NAS_MML_SetGmmProcFlag(NAS_MML_GMM_PROC_FLAG_FINISH);
         }
     }
-    /* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
     if (GMM_RAU_FOR_WAITSERVICE == gstGmmSuspendCtrl.ucRauCause)
     {
@@ -2437,7 +1851,6 @@ VOS_VOID Gmm_Tim3330Expired(VOS_VOID)
         {                                                                       /* 当前RAU是否是周期RAU标志                 */
             ucUpdateType = GMM_PERIODC_UPDATING;                                /* RAU是周期RAU                             */
 
-            /* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
             /* 如果当前接入技术是G，给GAS发送GRRGMM_GPRS_PROC_IND,类型为PERIODIC RAU,标志为START */;
             if ( (NAS_MML_NET_RAT_TYPE_GSM == enCurRat)
               || (NAS_MML_NET_RAT_TYPE_WCDMA == enCurRat) )
@@ -2447,7 +1860,6 @@ VOS_VOID Gmm_Tim3330Expired(VOS_VOID)
                 NAS_MML_SetGmmProcType(NAS_MML_GMM_PROC_TYPE_PERIOD_RAU);
                 NAS_MML_SetGmmProcFlag(NAS_MML_GMM_PROC_FLAG_START);
             }
-            /* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
         }
         else
@@ -2483,7 +1895,6 @@ VOS_VOID Gmm_Tim3330Expired(VOS_VOID)
             g_GmmGlobalCtrl.MsgHold.ucInitiateLuFlg = GMM_FALSE;                        /* 清除标志                                 */
 
 
-            /* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
             /* 如果当前接入技术是G，给GAS发送GRRGMM_GPRS_PROC_IND,类型为NORMAL RAU,标志为START */;
             if ( (NAS_MML_NET_RAT_TYPE_GSM == enCurRat)
               || (NAS_MML_NET_RAT_TYPE_WCDMA == enCurRat) )
@@ -2493,7 +1904,6 @@ VOS_VOID Gmm_Tim3330Expired(VOS_VOID)
                 NAS_MML_SetGmmProcType(NAS_MML_GMM_PROC_TYPE_NORMAL_RAU);
                 NAS_MML_SetGmmProcFlag(NAS_MML_GMM_PROC_FLAG_START);
             }
-            /* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
         }
 
@@ -2575,20 +1985,7 @@ VOS_VOID NAS_GMM_Timer3340Expired(VOS_VOID)
     return;                                                                     /* 返回                                     */
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_TimerDetachForPowerOffExpired
- 功能描述  : GMM收到关机detach定时器超时消息的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年10月15日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-************************************************************************/
 VOS_VOID NAS_GMM_TimerDetachForPowerOffExpired(VOS_VOID)
 {
     /* 关机保护定时器超时，强制关机 */
@@ -2651,46 +2048,7 @@ VOS_VOID NAS_GMM_TimerDetachForPowerOffExpired(VOS_VOID)
 }
 
 
-/***********************************************************************
-  Module   : Gmm_Tim5sExpired
-  Function : 定时器 5s溢出处理
-  Input    : 无
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-    1. 张志勇  2003.12.10  新版作成
-    2.  日    期   : 2009年5月9日
-        作    者   : l00130025
-        修改内容   : 根据问题单号：AT2D11645/AT2D11797,关机，若detach的EST_REQ失败，Gmm会反复发起EST_REQ
-    3. 日    期   : 2009年05月23日
-       作    者   : L65478
-       修改内容   : 问题单号:AT2D06770,RAU失败，因为GRM建链的原因是DATA，实际应该是信令
-    4. 日    期   : 2010年07月26日
-       作    者   : L65478
-       修改内容   : 问题单号:DTS2010072200479,开机注册过程中，关机，再开机时失败，因为GMM没有立刻处理关机消息，导致MMC保护定时器超时
-    5. 日    期   : 2010年09月13日
-       作    者   : L65478
-       修改内容   : 问题单号:DTS2010091301310,WCDMA下关机，重新开机后，在GSM模式下无法注册成功
-    6. 日    期   : 2010年12月18日
-       作    者   : o00132663
-       修改内容   : 问题单号:DTS2010121800152,清理关机流程，保证GMM在收到关机请求后8秒内关机
-    7. 日    期   : 2011年11月8日
-       作    者   : s46746
-       修改内容   : V7R1 PhaseII阶段解决关机慢问题
-    8. 日    期   : 2012年2月15日
-       作    者   : w00166186
-       修改内容   : CSFB&PPAC&ETWS&ISR 开发
-    9. 日    期   : 2012年2月15日
-       作    者   : w00166186
-       修改内容   : CSFB&PPAC&ETWS&ISR 开发
-   10. 日    期   : 2012年10月12日
-       作    者   : w00176964
-       修改内容   : DTS2012091400694:G模关机慢
-   11. 日    期   : 2015年2月6日
-       作    者   : h00313353
-       修改内容   : USIMM卡接口调整
-************************************************************************/
+
 VOS_VOID Gmm_Tim5sExpired(VOS_VOID)
 {
     NAS_MSG_STRU           *pNasMsg;                                            /* 定义指针 */
@@ -2815,22 +2173,7 @@ VOS_VOID Gmm_Tim5sExpired(VOS_VOID)
     return;
 }
 
-/***********************************************************************
-  Module   : Gmm_TimProtectExpired
-  Function : 保护定时器溢出处理
-  Input    : 无
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-     1. 张志勇  2003.12.10  新版作成
-     2.日    期  : 2011年03月30日
-       作    者  : 欧阳飞
-       修改内容  : DTS2011032802556,网络异常，连续发送鉴权请求消息，导致鉴权失败，卡无效。
-    3.日    期  :2014年01月09日
-      作    者  :l65478
-      修改内容  :DTS2014010704608:第一次鉴权响应和网络发起的第二次鉴权请求冲突
- ************************************************************************/
+
 VOS_VOID Gmm_TimProtectExpired(VOS_VOID)
 {
     PS_NAS_LOG(WUEPS_PID_GMM, VOS_NULL, PS_LOG_LEVEL_WARNING, "Gmm_TimProtectExpired:WARNING: Protected Timer is expired");
@@ -2851,58 +2194,7 @@ VOS_VOID Gmm_TimProtectExpired(VOS_VOID)
     }
 }
 
-/***********************************************************************
-  Module   : Gmm_RcvTimerExpired
-  Function : 定时器溢出处理
-  Input    : VOS_UINT8           ucTimerId     定时器ID
-  Output   : 无
-  NOTE     : 无
-  Return   : 无
-  History  :
-     1.  张志勇  2003.12.10  新版作成
-     2. 日    期   : 2006年11月8日
-        作    者   : s46746
-        修改内容   : 问题单号:A32D06867
-     3. 日    期   : 2009年5月9日
-        作    者   : l00130025
-        修改内容   : 根据问题单号：AT2D11645/AT2D11797,关机，若detach的EST_REQ失败，Gmm会反复发起EST_REQ
-     4. 日    期   : 2011年7月11日
-        作    者   : sunxibo 46746
-        修改内容   : V7R1 phase II,autoplmnsrch状态机调整为PlmnSelection状态机
-     5. 日    期   : 2011年10月11日
-        作    者   : l00171473
-        修改内容   : V7R1 phase II, TC环回调整，延迟向MMC回复SUSPEND_RSP定时器超时处理
-     6.日    期   : 2012年4月17日
-       作    者   : z00161729
-       修改内容  : DTS2012041402264：L小区下发起CS语音业务，通过重定向CS Fallback到W小区。激活PDP后释放CS语音，未上系统消息，UE不会发起联合RAU
-     6. 日    期   : 2012年5月15日
-        作    者   : l00130025
-        修改内容   : DTS2012041002516: L下默认承载存在数据连接时设置W only失败
-     7.日    期   : 2012年8月13日
-       作    者   : z00161729
-       修改内容   : DCM定制需求和遗留问题修改
-     8.日    期   : 2012年10月12日
-       作    者   : w00176964
-       修改内容   : DTS2012091400694:G模关机慢
-     9.日    期   : 2012年10月30日
-       作    者   : s00217060
-       修改内容   : DTS2012050301830:调整,收到MM的CsConnectInd时,如果RRC连接存在,立即发起RAU；
-                    否则,收到接入层上报的系统消息后再做联合RAU.
-    10.日    期   : 2013年6月6日
-       作    者   : w00167002
-       修改内容   : V9R1_SVLTE项目修改
-    11.日    期   : 2013年06月28日
-       作    者   : l00167671
-       修改内容   : DCM LOGGER项目定时器事件上报
-     2.日    期   : 2014年12月25日
-       作    者   : w00167002
-       修改内容   : DTS2014122201960:在L下SRVCC HO到G再HO到W,RABM触发重建，导致立即
-                    触发RAU，后续收到系统消息又再次发起RAU,导致网络REL了链路，导致
-                    掉话。修改为在HO后，启动保护定时器等系统消息。
-    13.日    期   : 2015年9月26日
-       作    者   : c00318887
-       修改内容   : 扩展GMM定时器到64个
- ************************************************************************/
+
 VOS_VOID Gmm_RcvTimerExpired(
     VOS_UINT8                           ucTimerId
 )
@@ -2915,9 +2207,7 @@ VOS_VOID Gmm_RcvTimerExpired(
     NAS_GMM_GetTimerRunMask(ucTimerId, &pulTimerRunMask, &ucTimerBitIndex);
  
 
-    /* added  by l00167671 for v9r1 dcm logger可维可测项目, 2013-06-27, begin */
     NAS_TIMER_EventReport(ucTimerId, WUEPS_PID_GMM, NAS_OM_EVENT_TIMER_OPERATION_EXPIRED);
-    /* added  by l00167671 for v9r1 dcm logger可维可测项目, 2013-06-27, begin */
 
     /*lint -e701*/
     if (0 != ( (*pulTimerRunMask) & ( 0x00000001 << ucTimerBitIndex )))
@@ -3035,13 +2325,11 @@ VOS_VOID Gmm_RcvTimerExpired(
 #endif
 
 
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, begin */
 #if (FEATURE_ON == FEATURE_LTE)
     case GMM_TIMER_WAIT_AS_MS_RADIO_CAPA_INFO:
         NAS_GMM_TimerWaitAsMsRadioCapaInfoExpired();
         break;
 #endif
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, end */
 
     /* GMM 关机detach定时器超时 */
     case GMM_TIMER_DETACH_FOR_POWER_OFF:
@@ -3238,26 +2526,7 @@ VOS_VOID Gmm_TimerResumeForTc(
     return;
 }
 
-/***********************************************************************
-Module   : Gmm_TimProtectForSignalingExpired
-Function : GMM_TIMER_PROTECT_FOR_SIGNALING 溢出处理
-Input    : 无
-Output   : 无
-NOTE     : 无
-Return   : 无
-History  :
-1. 张志勇  2005.01.10  新版作成
-2. 日    期   : 2007年11月1日
-   作    者   : l65478
-   修改内容   : A32D13307, 增加SR过程超时后的处理
- 3.日    期   : 2012年3月17日
-   作    者   : w00176964
-   修改内容   : DTS2012031900095 V7R1 C30 SBM&EM定制需求:增加拨号被拒定制
- 4.日    期   : 2012年08月24日
-   作    者   : m00217266
-   修改内容   : 修改GMM_SndSmServiceRej接口，添加原因值
 
-************************************************************************/
 VOS_VOID Gmm_TimProtectForSignalingExpired(VOS_VOID)
 {
     PS_NAS_LOG(WUEPS_PID_GMM, VOS_NULL, PS_LOG_LEVEL_WARNING, "Gmm_TimProtectForSignalingExpired:WARNING: Protected timer for signalling is expired");
@@ -3272,38 +2541,7 @@ VOS_VOID Gmm_TimProtectForSignalingExpired(VOS_VOID)
     }
 }
 
-/***********************************************************************
-Module   : GMM_TimProtectForRrRel
-Function : GMM_TIMER_PROTECT_FOR_RR_REL 溢出处理
-Input    : 无
-Output   : 无
-NOTE     : 无
-Return   : 无
-History  :
-1. s46746  2006.03.27  Create
-2. 日    期   : 2007年01月25日
-   作    者   : s46746
-   修改内容   : 创建，根据问题单号：A32D07433
-3. 日    期   : 2007年03月20日
-   作    者   : x51137
-   修改内容   : A32D09192
-4.日    期   : 2011年07月13日
-  作    者   : w00166186
-  修改内容   : V7R1 PHASE II ATTACH/DETACH调整
-5. 日    期   : 2012年1月12日
-   作    者   : w00166186
-   修改内容   : DTS2011122704039:开机搜网后CS注册被拒#12,PS注册被拒#14，在ON
-                 PLMN状态，服务域被设置为不支持GMM需要将服务域不支持信息通知给MMC.
-6.日    期   : 2013年8月7日
-  作    者   : w00167002
-  修改内容   : DTS2013080207367:在CS only时候，用户发起PDP激活，网络模式I时候，
-                 会触发联合注册.用户发起PDP去激活，会导致PS域的去注册。收到网侧
-                 的去注册成功后需要通知MM，否则MM当前在NORMAL SERVICE状态，不
-                 触发T3212定时器的启动，长时间可能导致丢寻呼.
-7.日    期   : 2015年3月27日
-  作    者   : wx270776
-  修改内容   : DTS2015022804322: 保护定时器超时后W下存在信令链接时，通知PS域的链路释放
-************************************************************************/
+
 VOS_VOID GMM_TimProtectForRrRel()
 {
     RRMM_REL_IND_STRU *prrmm_rel_ind;
@@ -3395,19 +2633,7 @@ VOS_VOID GMM_TimProtectForRrRel()
 	}
 }
 
-/***********************************************************************
-Module   : GMM_TimSuspendedExpired
-Function : GMM_TIMER_SUSPENDED 溢出处理
-Input    : 无
-Output   : 无
-NOTE     : 无
-Return   : 无
-History  :
- 1. s46746  2006.03.27  Create
- 2.日    期   : 2011年7月12日
-   作    者   : h44270
-   修改内容   : V7R1 PhaseII阶段调整，全局变量调整，需要修改响应的超时处理
-************************************************************************/
+
 VOS_VOID GMM_TimSuspendedExpired()
 {
     switch(g_GmmGlobalCtrl.ucState)
@@ -3444,19 +2670,7 @@ VOS_VOID GMM_TimSuspendedExpired()
     return;
 }
 
-/***********************************************************************
-Module   : GMM_TimProtectForOldTlli
-Function : GMM_TIMER_PROTECT_FOR_OLD_TLLI 溢出处理
-Input    : 无
-Output   : 无
-NOTE     : 无
-Return   : 无
-History  :
-1. s46746  2006.11.08  Create for A32D06867
-       10.  日    期   : 2006年11月20日
-            作    者   : s46746
-            修改内容   : 创建，根据问题单号：A32D07433
-************************************************************************/
+
 VOS_VOID GMM_TimProtectForOldTlli()
 {
     Gmm_TimerStop(GMM_TIMER_PROTECT_OLD_TLLI);
@@ -3464,27 +2678,7 @@ VOS_VOID GMM_TimProtectForOldTlli()
     gstGmmCasGlobalCtrl.ulOldTLLI = 0xffffffff;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_TimerWaitInterRatCnfExpired
- 功能描述  : 定时器GMM_TIMER_INTERRAT_HANDOVER_INFO_CNF超时处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年3月27日
-    作    者   : o00132663
-    修改内容   : 新生成函数
-  2.日    期   : 2014年6月13日
-    作    者   : w00242748
-    修改内容   : DSDS 新特性
-  3.日    期   : 2014年7月18日
-    作    者   : b00269685
-    修改内容   : DSDS IV修改
-
-*****************************************************************************/
 VOS_VOID NAS_GMM_TimerWaitInterRatCnfExpired( VOS_VOID )
 {
     NAS_MSG_STRU                            *pstSendNasMsg = VOS_NULL_PTR;
@@ -3528,28 +2722,7 @@ VOS_VOID NAS_GMM_TimerWaitInterRatCnfExpired( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_TimerWaitReselSecuCnfExpired
- 功能描述  : GMM获取LMM安全参数定时器超时的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月14日
-    作    者   : zhoujun /40661
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月2日
-    作    者   : s46746
-    修改内容   : 从L异系统改变到GU后，没有指派加密密钥到GU接入层
-  3.日    期   : 2012年3月17日
-    作    者   : w00176964
-    修改内容   : DTS2012031308021:[GCF测试]L2U重选,携带RAU request的上行消息
-                 中的RAU参数以及PTMSI类型错误。
-
-*****************************************************************************/
 VOS_VOID  NAS_GMM_TimerWaitReselSecuCnfExpired( VOS_VOID )
 {
     if (NAS_GMM_SPEC_PROC_RAU == NAS_GMM_GetSpecProcNeedSecInfo())
@@ -3573,23 +2746,7 @@ VOS_VOID  NAS_GMM_TimerWaitReselSecuCnfExpired( VOS_VOID )
 
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_GMM_TimerWaitHoSecuCnfExpired
- 功能描述  : GMM获取LMM安全参数定时器超时的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月20日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月2日
-    作    者   : s46746
-    修改内容   : 从L异系统改变到GU后，没有指派加密密钥到GU接入层
-*****************************************************************************/
 VOS_VOID  NAS_GMM_TimerWaitHoSecuCnfExpired( VOS_VOID )
 {
     /* 如果此时在GMM的挂起状态，而且挂起发起方为LTE，则向MMC回复挂起回复 */
@@ -3603,21 +2760,7 @@ VOS_VOID  NAS_GMM_TimerWaitHoSecuCnfExpired( VOS_VOID )
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_Timer3323Expired
- 功能描述  : T3323定时器超时的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月7日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_GMM_Timer3323Expired(VOS_VOID)
 {
     NAS_MML_RPLMN_CFG_INFO_STRU        *pstRplmnCfgInfo = VOS_NULL_PTR;
@@ -3643,21 +2786,7 @@ VOS_VOID NAS_GMM_Timer3323Expired(VOS_VOID)
 /* 收到MM的CsConnectInd时,如果RRC连接存在,立即发起RAU；
    否则,收到接入层上报的系统消息后再做联合RAU */
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_TimerWaitConnectRelExpired
- 功能描述  : 等待主动连接释放的保护定时器超时处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年7月11日
-    作    者  : s46746
-    修改内容  : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_GMM_TimerWaitConnectRelExpired()
 {
     PS_NAS_LOG(WUEPS_PID_GMM, VOS_NULL, PS_LOG_LEVEL_WARNING, "NAS_GMM_TimerWaitConnectRelExpired:WARNING: Wait connect rel expired.");
@@ -3691,23 +2820,7 @@ VOS_VOID NAS_GMM_TimerWaitConnectRelExpired()
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_TimerTcDelaySuspendRspExpired
- 功能描述  : 延迟向MMC回复SUSPEND_RSP的定时器超时的处理。
-             用于TC状态的GCF测试中，以达到延迟向接入层回复SUSPEND_RSP。
-             GMM延迟向MMC回复SUSPEND_RSP, 于是相应地向接入层回复SUSPEND_RSP也延迟了。
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月14日
-   作    者   : L00171473
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_GMM_TimerTcDelaySuspendRspExpired(VOS_VOID)
 {
 #if (defined(__PS_WIN32_RECUR__)) || ( VOS_WIN32 == VOS_OS_VER )
@@ -3735,22 +2848,7 @@ VOS_VOID NAS_GMM_TimerTcDelaySuspendRspExpired(VOS_VOID)
 
 #if (FEATURE_ON == FEATURE_LTE)
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_CheckRadioAccessCapaTrigedRAU
- 功能描述  : 接收到Gas发来的RadioAccessCapability与上次不同时，判断前后的RAT变化是否需要触发RAU;
-              目前只在模式增减L模时，做对应的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:需要触发RAU,VOS_FALSE:不需要触发RAUs
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月15日
-    作    者   : l00130025
-    修改内容   : DTS2012041002516: L下默认承载存在数据连接时设置W only失败,
-                  GU下接入能力变化时，需要触发一次RAU过程
-*****************************************************************************/
 VOS_UINT32 NAS_GMM_CheckRatTrigedRAU(
     NAS_MML_PLMN_RAT_PRIO_STRU         *pstOldRatList,
     NAS_MML_PLMN_RAT_PRIO_STRU         *pstNewRatList
@@ -3784,30 +2882,9 @@ VOS_UINT32 NAS_GMM_CheckRatTrigedRAU(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_TimerDelayRadioCapaTrigedRauExpired
- 功能描述  : SYSCFG设置后,检查RadioCapa改变是否需要触发RAU,需要时，触发RAU
-             目前 RAU采用best Effort策略，尽量发起，不能发起时，放弃
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年5月15日
-   作    者   : l00130025
-   修改内容   : DTS2012041002516: L下默认承载存在数据连接时设置W only失败
- 2.日    期   : 2012年8月15日
-   作    者   : z00161729
-   修改内容   : DCM定制需求和遗留问题修改
- 3.日    期   : 2013年05月08日
-   作    者   : s46746
-   修改内容   : SS FDN&Call Control项目，lte能力改变非CS业务过程中立即发起RAU
-*****************************************************************************/
 VOS_VOID NAS_GMM_TimerDelayRadioCapaTrigedRauExpired(VOS_VOID)
 {
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, begin */
     /* rau或attach中ms radio capa IE中携带的LTE能力与接入层最新上报的LTE能力不一致，需要触发rau */
     if (g_GmmGlobalCtrl.UeInfo.ucMsRadioCapSupportLteFromAs == g_GmmGlobalCtrl.UeInfo.ucMsRadioCapSupportLteFromRegReq)
     {
@@ -3817,32 +2894,10 @@ VOS_VOID NAS_GMM_TimerDelayRadioCapaTrigedRauExpired(VOS_VOID)
     NAS_GMM_HandleMsRadioCapLteSupportChanged();
 
     return;
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, end */
 
 }
 
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, begin */
-/*****************************************************************************
- 函 数 名  : NAS_GMM_TimerWaitAsMsRadioCapaInfoExpired
- 功能描述  : GMM_TIMER_WAIT_AS_MS_RADIO_CAPA_INFO定时器超时的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年8月15日
-   作    者   : z00161729
-   修改内容   : 新增函数
- 2.日    期   : 2013年9月2日
-    作    者  : z00161729
-    修改内容  : DTS2013082702039:syscfg不支持l或l disable时，gmm rau和attach不需携带ue network capability
- 3.日    期   : 2014年02月25日
-   作    者   : z00161729
-   修改内容   : DTS2014022206794:GCF 9.2.1.2.1b/9.2.3.2.3/9.2.1.2.1失败disable lte时rau需要从L获取安全上下文
-
-*****************************************************************************/
 VOS_VOID NAS_GMM_TimerWaitAsMsRadioCapaInfoExpired(VOS_VOID)
 {
     VOS_UINT32                          ulGetLmmSecInfoFlg;
@@ -3900,23 +2955,8 @@ VOS_VOID NAS_GMM_TimerWaitAsMsRadioCapaInfoExpired(VOS_VOID)
     return;
 }
 
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, end */
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_IsNeedStartT3323
- 功能描述  : 是否需要启动T3323定时器
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 需要
-             VOS_FALSE - 不需要
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年10月22日
-   作    者   : z00161729
-   修改内容   : 新增函数
-*****************************************************************************/
 VOS_UINT32 NAS_GMM_IsNeedStartT3323(VOS_VOID)
 {
     NAS_MML_TIN_TYPE_ENUM_UINT8         enTinType;
@@ -3962,20 +3002,7 @@ VOS_UINT32 NAS_GMM_IsNeedStartT3323(VOS_VOID)
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_TimerHoWaitSysinfoExpired
- 功能描述  : GMM_TIMER_HO_WAIT_SYSINFO保护定时器超时的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年12月15日
-   作    者   : s00217060
-   修改内容   : 新增函数
-*****************************************************************************/
 VOS_VOID NAS_GMM_TimerHoWaitSysinfoExpired(VOS_VOID)
 {
     /* 切换流程一般是业务时才会有，PS域不报注册成功假流程，靠CS上报来保证驻留信息和信号强度更新，否则IMSA可能会提前去流程IMSA
@@ -3999,23 +3026,7 @@ VOS_VOID NAS_GMM_TimerHoWaitSysinfoExpired(VOS_VOID)
 
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_GMM_TimerDelayVoiceDomainTrigRauExpired
- 功能描述  : GMM_TIMER_DELAY_VOICE_DOMAIN_TRIG_RAU保护定时器超时的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月12日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2015年8月13日
-    作    者   : l00289540
-    修改内容   : User_Exp_Improve修改
-*****************************************************************************/
 VOS_VOID NAS_GMM_TimerDelayVoiceDomainTrigRauExpired(VOS_VOID)
 {
     /* 相关协议章节:
@@ -4081,20 +3092,7 @@ VOS_VOID NAS_GMM_TimerDelayVoiceDomainTrigRauExpired(VOS_VOID)
 #endif
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_RcvTiDelayPsSmsConnRelExpired
- 功能描述  : GMM_TIMER_DELAY_PS_SMS_CONN_REL定时器超时的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月23日
-    作    者   : c00318887
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_GMM_RcvTiDelayPsSmsConnRelExpired(VOS_VOID)
 {
     if (VOS_TRUE == NAS_GMM_IsNeedProcDelayPsSmsConnRelTimer())
@@ -4105,20 +3103,7 @@ VOS_VOID NAS_GMM_RcvTiDelayPsSmsConnRelExpired(VOS_VOID)
     return;    
 }
 
-/***********************************************************************
-  Module   : NAS_GMM_GetTimerRunMask
-  Function : GMM使用的定时器启动
-  Input    : VOS_UINT8           ucTimerId     定时器ID
-  Output   : 
-             VOS_UINT32    **pulTimerRunMask   该定时器RunMask 标示位的成员: g_GmmTimerMng.ulTimerRunMask 或 g_GmmTimerMng.ulTimerRunMaskEx
-             VOS_UINT8      *pucTimerBitIndex  该定时器在标示位的索引
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1.日    期   : 2015年9月26日
-    作    者   : c00318887
-    修改内容   : 新建函数
- ************************************************************************/
+
 VOS_VOID NAS_GMM_GetTimerRunMask(
     VOS_UINT8                           ucTimerId,
     VOS_UINT32                        **pulTimerRunMask,  
@@ -4137,20 +3122,7 @@ VOS_VOID NAS_GMM_GetTimerRunMask(
     }
 }
 
-/***********************************************************************
-  Module   : NAS_GMM_GetTimerSuspendMask
-  Function : GMM使用的定时器启动
-  Input    : VOS_UINT8           ucTimerId     定时器ID
-  Output   : 
-             VOS_UINT32    **pulTimerSusMask   该定时器SusMask 标示位的成员: g_GmmTimerMng.ulTimerSusMask 或 g_GmmTimerMng.ulTimerSusMaskEx
-             VOS_UINT8      *pucTimerIndex     该定时器在标示位的索引
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1.日    期   : 2015年9月26日
-    作    者   : c00318887
-    修改内容   : 新建函数
- ************************************************************************/
+
 VOS_VOID NAS_GMM_GetTimerSuspendMask(
     VOS_UINT8                           ucTimerId,
     VOS_UINT32                        **pulTimerSusMask,  
@@ -4170,20 +3142,7 @@ VOS_VOID NAS_GMM_GetTimerSuspendMask(
 }
 
 
-/***********************************************************************
-  Module   : NAS_GMM_GetTimerSuspendTcMask
-  Function : GMM使用的定时器启动
-  Input    : VOS_UINT8       ucTimerId     定时器ID
-  Output   : 
-             VOS_UINT32    **pulTimerSusTcMask   该定时器ulTimerSusTcMask 标示位的成员: g_GmmTimerMng.ulTimerSusTcMask 或 g_GmmTimerMng.ulTimerSusTcMaskEx
-             VOS_UINT8      *pucTimerBitIndex    该定时器在标示位的索引
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1.日    期   : 2015年9月26日
-    作    者   : c00318887
-    修改内容   : 新建函数
- ************************************************************************/
+
 VOS_VOID NAS_GMM_GetTimerSuspendTcMask(
     VOS_UINT8                           ucTimerId,
     VOS_UINT32                        **pulTimerSusTcMask,  
@@ -4202,20 +3161,7 @@ VOS_VOID NAS_GMM_GetTimerSuspendTcMask(
     }
 }
 
-/***********************************************************************
-  Module   : NAS_GMM_GetTimerSuspendTcMask
-  Function : GMM使用的定时器启动
-  Input    : VOS_UINT8       ucTimerId     定时器ID
-  Output   : 
-             VOS_UINT32    **pulTimerRunMask   该定时器ulTimerValMask 标示位的成员: g_GmmTimerMng.ulTimerValMask 或 g_GmmTimerMng.ulTimerValMaskEx
-             VOS_UINT8      *pucTimerIndex     该定时器在标示位的索引
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1.日    期   : 2015年9月26日
-    作    者   : c00318887
-    修改内容   : 新建函数
- ************************************************************************/
+
 VOS_VOID NAS_GMM_GetTimerValMask(
     VOS_UINT8                           ucTimerId,
     VOS_UINT32                        **pulTimerValMask,  
@@ -4233,20 +3179,7 @@ VOS_VOID NAS_GMM_GetTimerValMask(
         (*pucTimerBitIndex)             = ucTimerId - GMM_TIMER_ONE_GROUP_NUMR;
     }
 }
-/***********************************************************************
-  Module   : NAS_GMM_GetTimerSuspendCtrlRunMask
-  Function : GMM使用的定时器启动
-  Input    : VOS_UINT8       ucTimerId     定时器ID
-  Output   : 
-             VOS_UINT32    **pulSuspendCtrlRunMask   该定时器TimerSusTcMask 标示位的成员: gstGmmSuspendCtrl.ulTimerRunMask 或 gstGmmSuspendCtrl.ulTimerRunMaskEx
-             VOS_UINT8      *pucTimerBitIndex     该定时器在标示位的索引
-  NOTE     : 无
-  Return   : 无
-  History  :
-  1.日    期   : 2015年9月26日
-    作    者   : c00318887
-    修改内容   : 新建函数
- ************************************************************************/
+
 VOS_VOID NAS_GMM_GetTimerSuspendCtrlRunMask(
     VOS_UINT8                           ucTimerId,
     VOS_UINT32                        **pulSuspendCtrlRunMask,  

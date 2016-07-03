@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasHsdComFunc.c
-  版 本 号   : 初稿
-  作    者   : h00300778
-  生成日期   : 2014年12月14日
-  最近修改   :
-  功能描述   : HSD模块公用函数处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年12月17日
-    作    者   : h00300778
-    修改内容   : 新生成函数
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -52,22 +35,7 @@ VOS_UINT32                              g_ulHsdSliceNumOfOneSec = 1;
   3 函数实现
 *****************************************************************************/
 /*lint -save -e958*/
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_StartTimer
- 功能描述  : HSD模块封装的启动定时器函数
- 输入参数  : CNAS_HSD_TIMER_ID_ENUM_UINT32       enTimerId,
-             VOS_UINT32                          ulTimerLen
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月17日
-    作    者   : h00300778
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_StartTimer(
     CNAS_HSD_TIMER_ID_ENUM_UINT32       enTimerId,
     VOS_UINT32                          ulTimerLen
@@ -95,21 +63,7 @@ VOS_VOID CNAS_HSD_StartTimer(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_StopTimer
- 功能描述  : HSD模块封装的停止定时器函数
- 输入参数  : CNAS_HSD_TIMER_ID_ENUM_UINT32       enTimerId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月17日
-    作    者   : h00300778
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_StopTimer(
     CNAS_HSD_TIMER_ID_ENUM_UINT32       enTimerId
 )
@@ -120,25 +74,7 @@ VOS_VOID CNAS_HSD_StopTimer(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_TransferCasStatusTypeToHsdFormat
- 功能描述  : 将CasStatus由CAS定义的枚举类型转为HSD定义的枚举类型
- 输入参数  : enCasStatus -- CAS定义的枚举类型
 
- 输出参数  : 无
- 返 回 值  : enHsdCasStatus -- HSD定义的枚举类型
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年01月07日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-  2.日    期   : 2015年06月15日
-    作    者   : z00316370
-    修改内容   : CAS状态枚举值由CAS改为HSM
-
-*****************************************************************************/
 CNAS_HSD_AT_STATUS_ENUM_UINT32 CNAS_HSD_TransferCasStatusTypeToHsdFormat(
     HSM_HSD_HRPD_CAS_STATUS_ENUM_UINT16                     enCasStatus
 )
@@ -167,22 +103,7 @@ CNAS_HSD_AT_STATUS_ENUM_UINT32 CNAS_HSD_TransferCasStatusTypeToHsdFormat(
     return enHsdCasStatus;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_GetSystemSlice
- 功能描述  : 获取系统slice
- 输入参数  : 无
 
- 输出参数  : 无
- 返 回 值  : 当前的slice
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年01月06日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_GetSystemSlice(VOS_VOID)
 {
 #ifdef DMT
@@ -192,22 +113,7 @@ VOS_UINT32 CNAS_HSD_GetSystemSlice(VOS_VOID)
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_GetSystemSliceNumOfOneSecond
- 功能描述  : 获取1秒slice的个数
- 输入参数  : 无
 
- 输出参数  : 无
- 返 回 值  : 1秒钟slice的个数
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年01月06日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_GetSystemSliceNumOfOneSecond(VOS_VOID)
 {
     return VOS_GetSliceUnit();
@@ -215,25 +121,7 @@ VOS_UINT32 CNAS_HSD_GetSystemSliceNumOfOneSecond(VOS_VOID)
 
 /*lint -restore*/
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_CheckHybridMode
- 功能描述  : 通过MMA下发的接入技术判断是混合或非混合模式
- 输入参数  : aenRatMode:接入技术
- 输出参数  : 无
- 返 回 值  : 混合或非混合模式
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年7月15日
-   作    者   : h00300778
-   修改内容   : 新生成函数
-
- 2.日    期   : 2015年4月27日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_HSD_SYS_MODE_TYPD_ENUM_UINT32 CNAS_HSD_CheckHybridMode(
     VOS_UINT8               ucSuppNum,
     VOS_RATMODE_ENUM_UINT32 aenRatMode[VOS_RATMODE_BUTT]
@@ -270,24 +158,7 @@ CNAS_HSD_SYS_MODE_TYPD_ENUM_UINT32 CNAS_HSD_CheckHybridMode(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_QRY_PrefSubnet
- 功能描述  : 查询背景搜的HRPD系统的属性信息
- 输入参数  : pstReqMsg                  - 带背景搜频点信息的消息请求
-             pucHrpdSysNum              - HRPD系统个数
-             pstHrpdSysInfoList         - 待回复的HRPD系统列表
-             pfunc                      - 获取pri class的函数指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      : 新增
-  1.日    期   : 2015年05月04日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_QRY_HrpdSysInfo(
     MSCC_HSD_QRY_HRPD_SYS_INFO_REQ_STRU *pstReqMsg,
     VOS_UINT8                           *pucHrpdSysNum,
@@ -400,23 +271,7 @@ VOS_VOID CNAS_HSD_QRY_HrpdSysInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_Set_HrpdSysInfo_Invalid
- 功能描述  : 将HRPD系统的信息设为无效
- 输入参数  : pstHrpdSysInfo                  - 请求的系统类型
-             ucSysNum                        - 系统个数
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      : 新增
-  1.日    期   : 2015年05月04日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_Set_HrpdSysInfo_Invalid(
     MSCC_HSD_HRPD_SYS_INFO_STRU        *pstHrpdSysInfo,
     VOS_UINT8                           ucSysNum
@@ -440,21 +295,7 @@ VOS_VOID CNAS_HSD_Set_HrpdSysInfo_Invalid(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_GetPriClassWithTypeAI
- 功能描述  : 系统类型为CDMA2000_AI，计算驻留频点的PRI CLASS
- 输入参数  : pstHrpdSys                 - 驻留的频点
- 输出参数  : PRI CLASS
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      : 新增
-  1.日    期   : 2015年04月03日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 MSCC_HSD_PRI_CLASS_ENUM_UINT8 CNAS_HSD_GetPriClassWithTypeAI(
     CNAS_PRL_HRPD_SYSTEM_STRU          *pstHrpdSys
 )
@@ -477,21 +318,7 @@ MSCC_HSD_PRI_CLASS_ENUM_UINT8 CNAS_HSD_GetPriClassWithTypeAI(
     return enPriClass;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_GetPriClassWithTypeHRPD
- 功能描述  : 系统类型为CDMA2000_HRPD，计算驻留频点的PRI CLASS
- 输入参数  : pstHrpdSys                 - 驻留的频点
- 输出参数  : PRI CLASS
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      : 新增
-  1.日    期   : 2015年04月03日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 MSCC_HSD_PRI_CLASS_ENUM_UINT8 CNAS_HSD_GetPriClassWithTypeHRPD(
     CNAS_PRL_HRPD_SYSTEM_STRU          *pstHrpdSys
 )
@@ -574,23 +401,7 @@ MSCC_HSD_PRI_CLASS_ENUM_UINT8 CNAS_HSD_GetPriClassWithTypeHRPD(
     return enPriClass;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SetPriolvl
- 功能描述  : 根据GEO信息设置系统的优先级
- 输入参数  : enSysType                  - 当前请求的系统类型，HPRD或者AI
-             enRecordType               - HRPD系统表中的类型，HRPD或者1x
-             enPriInd                   - 优先级，more 或者 same
- 输出参数  : pstQryCtrl                 - 输出的PrioLvl
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      : 新增
-  1.日    期   : 2015年04月11日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_UpdatePrioLvl(
     MSCC_HSD_SYS_TYPE_ENUM_UINT8                            enSysType,
     CNAS_PRL_EXT_SYS_RECORD_STRU                           *pstSysRecord,
@@ -635,24 +446,7 @@ VOS_VOID CNAS_HSD_UpdatePrioLvl(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SetPriorityWithCurrent
- 功能描述  : 设置系统的优先级
- 输入参数  : enSysType                  - 当前请求的系统类型，HPRD或者AI
-             enRecordType               - HRPD系统表中的类型，HRPD或者1x
-             ucCurPriolvl               - 当前的Priority
- 输出参数  : ucPriolvl                  - 输出的Priority
-             ucPriolvlFlag              - 优先级设置标记
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      : 新增
-  1.日    期   : 2015年04月11日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SetPriorityWithCurrent(
     MSCC_HSD_SYS_TYPE_ENUM_UINT8        enSysType,
     CNAS_PRL_EXT_SYS_RECORD_STRU       *pstSysRecord,
@@ -679,23 +473,7 @@ VOS_VOID CNAS_HSD_SetPriorityWithCurrent(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_SetPriolvl
- 功能描述  : 设置系统的Pri_class
- 输入参数  : ucCurPrioLvl               - 当前PrioLvl
-             ucFirstPriolvl             - 最高优先级
-             ucSecondPriolvl            - 次高优先级
- 输出参数  : ucPriClass                 - 输出的PriClass
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      : 新增
-  1.日    期   : 2015年04月11日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_SetPriClass(
     VOS_UINT8                           ucCurPrioLvl,
     VOS_UINT8                           ucFirstPriolvl,
@@ -720,20 +498,7 @@ VOS_VOID CNAS_HSD_SetPriClass(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_BuildHrpdScanList_HighPriority
- 功能描述  : 背景搜HRPD，CAS请求频点时，构建搜网列表
- 输入参数  : enSysAcqScene - 捕获场景
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年04月13日
-   作    者   : z00316370
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_HSD_BuildHrpdScanList_CasReq(
     CNAS_HSD_SYS_ACQ_SCENE_ENUM_UINT32  enSysAcqScene
 )
@@ -769,23 +534,7 @@ VOS_VOID CNAS_HSD_BuildHrpdScanList_CasReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_ConvertLmmPlmnToGUNasPlmn
- 功能描述  : 将指定个数的LMM的PLMN转换为GUnas格式的plmn
- 输入参数  : VOS_UINT32                          ulLmmPlmnNum
-              MMC_LMM_PLMN_ID_STRU               *pstLmmPlmn
-              MMC_PLMN_ID_STRU                   *pstGUNasPlmn
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年04月20日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_ConvertLmmPlmnToGUNasPlmn(
     VOS_UINT32                          ulLmmPlmnNum,
     CNAS_CAS_HRPD_PLMN_STRU            *pstLmmPlmn,
@@ -800,20 +549,7 @@ VOS_VOID CNAS_HSD_ConvertLmmPlmnToGUNasPlmn(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_ConvertPlmnToNasPLMN
- 功能描述  : 将背景搜得到的3字节格式PLMN转换为MCC和MNC分开的格式
- 输入参数  : aucEFplmn[3]
- 输出参数  : 无
- 返 回 值  : NAS_MML_PLMN_ID_STRU
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年04月20日
-   作    者   : z00316370
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  CNAS_HSD_ConvertPlmnToNasPLMN(
     CNAS_CAS_HRPD_PLMN_STRU             *pstLmmPlmn,
     NAS_MSCC_PIF_PLMN_ID_STRU           *pstNasPlmn
@@ -852,22 +588,7 @@ VOS_VOID  CNAS_HSD_ConvertPlmnToNasPLMN(
 
 /*lint -restore*/
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_ConvertPlmnToNasPLMN
- 功能描述  : 将HRPD空口消息中的MCC格式转换成NAS格式
-             中国电信HRPD网络MCC - 460，空口格式 - 0x1cc，转换之后格式 - 0x00000604
-             美国HRPD网络MCC     - 311，空口格式 - 0x137，转换之后格式 - 0x00010103
- 输入参数  : usHrpdMcc - 空口格式的MCC
- 输出参数  : 无
- 返 回 值  : NAS格式的MCC
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年05月04日
-   作    者   : y00174758
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  CNAS_HSD_ConvertHrpdMccToNasMcc(
     VOS_UINT16                          usHrpdMcc
 )
@@ -888,21 +609,7 @@ VOS_UINT32  CNAS_HSD_ConvertHrpdMccToNasMcc(
     return ulNasMcc;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_IsHrpdSysChange
- 功能描述  : 比较是否相同的HRPD系统
- 输入参数  : pstCurrHrpdSys        当前的HRPD系统
-             pstLastHrpdSys        上次的HRPD系统
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月04日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_IsHrpdSysChange(
     CNAS_PRL_HRPD_SYSTEM_STRU          *pstCurrHrpdSys,
     CNAS_PRL_HRPD_SYSTEM_STRU          *pstLastHrpdSys
@@ -918,21 +625,7 @@ VOS_UINT32 CNAS_HSD_IsHrpdSysChange(
     return CNAS_HSD_IsSubnetIdChange(pstCurrHrpdSys, pstLastHrpdSys);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_ProcessCTCCCustomize
- 功能描述  : 处理中国电信定制(默认频点搜网)
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月16日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  CNAS_HSD_ProcessCTCCCustomize(VOS_VOID)
 {
     CNAS_PRL_SSPR_P_REV_ENUM_UINT8      enSsprPRev;
@@ -950,22 +643,7 @@ VOS_VOID  CNAS_HSD_ProcessCTCCCustomize(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_IsMccInOperLockWhiteSidList
- 功能描述  : 判断MCC是否在白名单中
- 输入参数  : ulMcc
- 输出参数  : 无
- 返 回 值  : VOS_TRUE   表示在白名单中
-             VOS_FALSE  表示不在白名单中
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月31日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_IsMccInOperLockWhiteSidList(
     VOS_UINT16                          usMcc
 )
@@ -1007,22 +685,7 @@ VOS_UINT32 CNAS_HSD_IsMccInOperLockWhiteSidList(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_Is1xNormalService
- 功能描述  : 获取当前XSD服务状态
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE   表示是正常服务
-             VOS_FALSE  表示非正常服务
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年2月1日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_Is1xNormalService(VOS_VOID)
 {
     if (CNAS_CCB_SERVICE_STATUS_NORMAL_SERVICE == CNAS_CCB_GetCur1XSrvStatus())

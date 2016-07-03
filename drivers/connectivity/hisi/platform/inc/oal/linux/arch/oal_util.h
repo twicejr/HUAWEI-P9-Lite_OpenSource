@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : oal_util.h
-  版 本 号   : 初稿
-  作    者   : c59720
-  生成日期   : 2012年9月25日
-  最近修改   :
-  功能描述   : oal_util_linux.h 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年9月25日
-    作    者   : c59720
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __OAL_LINUX_UTIL_H__
 #define __OAL_LINUX_UTIL_H__
@@ -185,143 +168,43 @@ static OAL_INLINE void oal_random_ether_addr(oal_uint8 *addr)
    random_ether_addr(addr);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_bit_atomic_test_and_set
- 功能描述  : 原子的对某个位进行置1操作，并返回该位置的旧值。
- 输入参数  : nr: 需要设置的位
-             p_addr需要置位的变量地址
- 输出参数  :
- 返 回 值  : 返回原来bit位的值
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月11日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_bitops  oal_bit_atomic_test_and_set(oal_bitops nr, OAL_VOLATILE oal_bitops *p_addr)
 {
     return test_and_set_bit(nr, p_addr);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_bit_atomic_clear
- 功能描述  : 封装各个操作系统平台下对某个位进行原子清0操作。
- 输入参数  : nr: 需要清零的位
-             p_addr需要清零的变量地址
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月11日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  oal_bit_atomic_clear(oal_bitops nr, OAL_VOLATILE oal_bitops *p_addr)
 {
     clear_bit(nr, p_addr);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_byteorder_host_to_net_uint16
- 功能描述  : 将16位本地字节序转换为网络字节序
- 输入参数  : us_byte: 需要字节序转换的变量
- 输出参数  : 无
- 返 回 值  : 转换好的变量
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月14日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE __attribute_const__ oal_uint16  oal_byteorder_host_to_net_uint16(oal_uint16 us_byte)
 {
     return htons(us_byte);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_byteorder_host_to_net_uint16
- 功能描述  : 将16位本地字节序转换为网络字节序
- 输入参数  : us_byte: 需要字节序转换的变量
- 输出参数  : 无
- 返 回 值  : 转换好的变量
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月14日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE __attribute_const__ oal_uint16  oal_byteorder_net_to_host_uint16(oal_uint16 us_byte)
 {
     return ntohs(us_byte);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_byteorder_host_to_net_uint16
- 功能描述  : 将32位本地字节序转换为网络字节序
- 输入参数  : us_byte: 需要字节序转换的变量
- 输出参数  : 无
- 返 回 值  : 转换好的变量
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月14日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE __attribute_const__ oal_uint32  oal_byteorder_host_to_net_uint32(oal_uint32 ul_byte)
 {
     return htonl(ul_byte);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_byteorder_host_to_net_uint16
- 功能描述  : 将32位本地字节序转换为网络字节序
- 输入参数  : us_byte: 需要字节序转换的变量
- 输出参数  : 无
- 返 回 值  : 转换好的变量
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月14日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE __attribute_const__ oal_uint32  oal_byteorder_net_to_host_uint32(oal_uint32 ul_byte)
 {
     return ntohl(ul_byte);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_file_open_rw
- 功能描述  : 打开文件，方式rw，没有则创建
- 输入参数  : pc_path: 文件路径
- 输出参数  : 无
- 返 回 值  : 文件句柄
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月14日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_file_stru* oal_file_open_rw(const oal_int8 *pc_path)
 {
     oal_file_stru *file;
@@ -335,21 +218,7 @@ OAL_STATIC OAL_INLINE oal_file_stru* oal_file_open_rw(const oal_int8 *pc_path)
     return file;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_file_open_append
- 功能描述  : 打开文件,方式append，没有则创建
- 输入参数  : pc_path: 文件路径
- 输出参数  : 无
- 返 回 值  : 文件句柄
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月14日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_file_stru* oal_file_open_append(const oal_int8 *pc_path)
 {
     oal_file_stru* file;
@@ -363,21 +232,7 @@ OAL_STATIC OAL_INLINE oal_file_stru* oal_file_open_append(const oal_int8 *pc_pat
     return file;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_file_open_rw
- 功能描述  : 打开文件，方式只读
- 输入参数  : pc_path: 文件路径
- 输出参数  : 无
- 返 回 值  : 文件句柄
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月14日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_file_stru* oal_file_open_readonly(const oal_int8 *pc_path)
 {
     oal_file_stru* file;
@@ -391,23 +246,7 @@ OAL_STATIC OAL_INLINE oal_file_stru* oal_file_open_readonly(const oal_int8 *pc_p
     return file;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_file_write
- 功能描述  : 写文件
- 输入参数  : file: 文件句柄
-           : pc_string: 输入内容地址
-           : ul_length: 输入内容长度
- 输出参数  : 无
- 返 回 值  : 文件句柄
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月14日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_file_stru* oal_file_write(oal_file_stru *file, oal_int8 *pc_string, oal_uint32 ul_length)
 {
     oal_int i_ret;
@@ -417,21 +256,7 @@ OAL_STATIC OAL_INLINE oal_file_stru* oal_file_write(oal_file_stru *file, oal_int
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_file_close
- 功能描述  : 关闭文件
- 输入参数  : pc_path: 文件路径
- 输出参数  : 无
- 返 回 值  : 文件句柄
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月14日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_int32 oal_file_close(oal_file_stru *file)
 {
     int ret = -1;
@@ -446,23 +271,7 @@ OAL_STATIC OAL_INLINE oal_int32 oal_file_close(oal_file_stru *file)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : oal_file_read
- 功能描述  : 内核读文件，从头开始读
- 输入参数  : file:指向要读取的文件的指针
-             puc_buf:从文件读出数据后存放的buf
-             ul_count:指定要读取的长度
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月10日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_int32  oal_file_read(oal_file_stru *file,
 		                                         oal_int8 *pc_buf,
 		                                         oal_uint32 ul_count)
@@ -470,21 +279,7 @@ OAL_STATIC OAL_INLINE oal_int32  oal_file_read(oal_file_stru *file,
     return kernel_read(file, 0, pc_buf, ul_count);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_file_size
- 功能描述  : 获取文件大小
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月11日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_int32  oal_file_size(oal_uint32   *pul_file_size)
 {
     oal_file_stru     *p_file;
@@ -502,21 +297,7 @@ OAL_STATIC OAL_INLINE oal_int32  oal_file_size(oal_uint32   *pul_file_size)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_atoi
- 功能描述  : 字符串类型转换成整形
- 输入参数  : c_string: 字符串地址
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月11日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_int32  oal_atoi(const oal_int8 *c_string)
 {
     oal_int32 l_ret = 0;
@@ -544,43 +325,13 @@ OAL_STATIC OAL_INLINE oal_int32  oal_atoi(const oal_int8 *c_string)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : oal_itoa
- 功能描述  : 整形转字符串
- 输入参数  : oal_int32 l_val
-             oal_int8 *c_string
-             oal_uint8 uc_strlen
- 输出参数  : 无
- 返 回 值  : OAL_STATIC OAL_INLINE oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月28日,星期六
-    作    者   : y00201072
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  oal_itoa(oal_int32 l_val, oal_int8 *c_string, oal_uint8 uc_strlen)
 {
     snprintf(c_string, uc_strlen, "%d", l_val);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_strtok
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月4日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_int8 *oal_strtok(oal_int8 *pc_token, OAL_CONST oal_int8 *pc_delemit, oal_int8 **ppc_context)
 {
     oal_int8 *pc_str;
@@ -700,21 +451,7 @@ OAL_STATIC OAL_INLINE unsigned long long oal_simple_strtoull(const oal_int8 *cp,
     return result;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_strtol
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月3日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_int  oal_strtol(OAL_CONST oal_int8 *pc_nptr, oal_int8 **ppc_endptr, oal_int32 l_base)
 {
     /* 跳过空格 */
@@ -729,142 +466,44 @@ OAL_STATIC OAL_INLINE oal_int  oal_strtol(OAL_CONST oal_int8 *pc_nptr, oal_int8 
     return oal_simple_strtoull(pc_nptr, ppc_endptr, l_base);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_udelay
- 功能描述  : 微秒级延迟函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月8日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  oal_udelay(oal_uint u_loops)
 {
     udelay(u_loops);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_mdelay
- 功能描述  : 毫秒级延迟函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月6日
-    作    者   : daihu
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  oal_mdelay(oal_uint u_loops)
 {
     mdelay(u_loops);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_kallsyms_lookup_name
- 功能描述  : 根据全局变量名字查找全局变量地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回0，代表未找到
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月26日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32  oal_kallsyms_lookup_name(OAL_CONST oal_uint8 *uc_var_name)
 {
     return kallsyms_lookup_name(uc_var_name);
 }
 
 
-/*****************************************************************************
- 函 数 名  : oal_dump_stack
- 功能描述  : 打印函数调用栈
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月3日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void oal_dump_stack(oal_void)
 {
     dump_stack();
 }
 
-/*****************************************************************************
- 函 数 名  : oal_msleep
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月28日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  oal_msleep(oal_uint32 ul_usecs)
 {
     msleep(ul_usecs);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_strcpy
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月30日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_int8 *oal_strcpy(oal_int8 *pc_dest, OAL_CONST oal_int8 *pc_src)
 {
     return strcpy((oal_int8 *)pc_dest, pc_src);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_print_hex_dump
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   :
-    作    者   :
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void oal_print_hex_dump(oal_uint8*addr, oal_int32 len, oal_int32 groupsize,oal_int8* pre_str)
 {
 #ifdef CONFIG_PRINTK

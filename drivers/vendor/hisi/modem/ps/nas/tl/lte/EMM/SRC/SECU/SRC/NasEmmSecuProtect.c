@@ -1,15 +1,4 @@
-/******************************************************************************
 
-   Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : NasEmmSecuProtect.c
-  Description     :
-  History         :
-        1. zhengjunyan 00148421 2010-03-02 Draft Enact
-        2. zhengjunyan 00148421 2011-03-16 MOD:底层接口由 L2修改为CIPHER提供
-        3. zhengjunyan 00148421 2011-04-22 MOD:支持G/U模式
-******************************************************************************/
 
 
 /*****************************************************************************
@@ -206,7 +195,6 @@ const VOS_UINT32 g_LmmSecuFailTypePrintTableSize =
 
 
 
-/* 删除TAU消息加密的相关无效配置代码 y00307272 20151017 DTS2015101700432 */
 
 
 /* 安全激活场景下能否处理明文REJ空口消息: 0为不能处理，1为能处理。默认为不处理 */
@@ -216,17 +204,7 @@ VOS_UINT32  g_ulNasPlainRejMsgFlag  = 0;
   3 Function
 *****************************************************************************/
 
-/*****************************************************************************
- Function Name   : NAS_LMM_SECU_FsmErr
- Description     : 安全上下文状态机出错处理回调函数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-3-4  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_LMM_SECU_FsmErr(         VOS_UINT32           ulMsgId,
                                         VOS_VOID      *PMsg)
 {
@@ -236,17 +214,7 @@ VOS_UINT32  NAS_LMM_SECU_FsmErr(         VOS_UINT32           ulMsgId,
     return NAS_EMM_SECU_UNPROT_FAIL;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_SECU_FsmReg
- Description     : 安全上下文状态机注册函数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-3-4  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_LMM_SECU_FsmReg(VOS_VOID)
 {
     VOS_UINT32                          ulRslt;
@@ -272,18 +240,7 @@ VOS_VOID  NAS_LMM_SECU_FsmReg(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SecuStateConvert
- Description     : 安全上下文状态转换函数
- Input           : usCurSta:当前安全上下文目标状态
-                   usNewSta:新安全上下文目标状态
- Output          : None
- Return          : None
 
- History         :
-    1.zhengjunyan 00148421      2010-3-4  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SecuStateConvert(NAS_EMM_MAIN_STATE_ENUM_UINT16 usCurSta,
                                    NAS_EMM_SUB_STATE_ENUM_UINT16 usNewSta )
 {
@@ -299,19 +256,7 @@ VOS_VOID  NAS_EMM_SecuStateConvert(NAS_EMM_MAIN_STATE_ENUM_UINT16 usCurSta,
     /*NAS_LMM_StaTransProc(stDestState);*/
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_IsSpecNasMsg
- Description     : 判断收到的消息是不是NAS特权消息
- Input           : pucRcvNasMsg:明文消息
-                   pulNasMsgSize:明文消息的长度
- Output          : None
- Return          : VOS_TRUE: 是特权消息
-                   VOS_FALSE:不是特权消息
 
- History         :
-    1.zhengjunyan 00148421      2010-3-4  Draft Enact
-    2.zhengjunyan 00148421      2011-12-23 DTS2011122103346:REJ #25不作为特权消息
-*****************************************************************************/
 VOS_BOOL NAS_EMM_IsSpecNasMsg(          const VOS_UINT8     *pucRcvNasMsg,
                                         VOS_UINT32          *pulNasMsgSize)
 {
@@ -377,17 +322,7 @@ VOS_BOOL NAS_EMM_IsSpecNasMsg(          const VOS_UINT8     *pucRcvNasMsg,
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_CompDlNasCount
- Description     : 获得新的DL_NASCOUNT
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-3-9  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_CompDlNasCount(
                                         VOS_UINT32  ulLocDlNasCount,
                                         VOS_UINT8   ucRcvSn )
@@ -438,20 +373,7 @@ VOS_UINT32    NAS_EMM_CompDlNasCount(
     return ulDlForUnprot;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SecuIntCheck
- Description     : 对收到的空口消息进行完整性检查
- Input           : pucRcvCnNasMsg: 带安全头的NAS消息
-                   pstUnProtParam->pucMsg       : 头类型+MAC+SN+MSG
-                   pstUnProtParam->pulMsgSize   : 头类型+MAC+SN+MSG 的长度
- Output          : pstUnProtParam->pucMsg       : MSG
-                   pstUnProtParam->pulMsgSize   : MSG 的长度
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-3-9  Draft Enact
-
-*****************************************************************************/
 /*lint -e960*/
 /*lint -e961*/
 VOS_UINT32  NAS_EMM_SecuIntCheck( const NAS_EMM_PROT_PARAM_STRU   *pstUnProtParam)
@@ -545,17 +467,7 @@ VOS_UINT32  NAS_EMM_SecuIntCheck( const NAS_EMM_PROT_PARAM_STRU   *pstUnProtPara
     return NAS_EMM_SECU_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SecuDecrypt
- Description     : 解密
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-3-10  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_SecuDecrypt(const NAS_EMM_PROT_PARAM_STRU   *pstUnProtParam)
 {
 
@@ -628,17 +540,7 @@ VOS_UINT32  NAS_EMM_SecuDecrypt(const NAS_EMM_PROT_PARAM_STRU   *pstUnProtParam)
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SecuDelSecuHead
- Description     : 去掉空口消息中的安全头
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-3-9  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SecuDelSecuHead(VOS_UINT8          *pucRcvCnNasMsg,
                                  VOS_UINT32         *pulNasMsgSize)
 {
@@ -653,17 +555,7 @@ VOS_VOID  NAS_EMM_SecuDelSecuHead(VOS_UINT8          *pucRcvCnNasMsg,
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_IntEncMsgCommProc
- Description     : 完整性保护并且加密的消息统一处理函数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-3-10  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_IntEncMsgCommProc( LRRC_LNAS_MSG_STRU *pstNasMsg )
 {
 
@@ -726,21 +618,7 @@ VOS_UINT32  NAS_EMM_IntEncMsgCommProc( LRRC_LNAS_MSG_STRU *pstNasMsg )
     return NAS_EMM_SECU_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_CurNotActiveNewAnyMsgPlain
- Description     : 状态:
-                     1)EMM_CUR_SECU_NOT_EXIST.EMM_NEW_SECU_ANY
-                     2)EMM_CUR_SECU_EXIST_NOT_ACTIVE.EMM_NWW_SECU_ANY
-                   消息:
-                     明文消息(0x07)
- Input           : pulRrcNasMsg:指向RRC_NAS_MSG_STRU
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-3-4  Draft Enact
-
-*****************************************************************************/
 NAS_EMM_SECU_UNPROT_RSLT_ENUM_UINT32  NAS_EMM_CurNotActiveNewAnyMsgPlain(
                                         VOS_UINT32  ulSecuHeadType,
                                         VOS_VOID   *pulRrcNasMsg)
@@ -768,18 +646,7 @@ NAS_EMM_SECU_UNPROT_RSLT_ENUM_UINT32  NAS_EMM_CurNotActiveNewAnyMsgPlain(
     return NAS_EMM_SECU_UNPROT_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_CurNotActiveNewAnyMsgInt
- Description     : 没有安全连接的情况下收到完整性保护的消息，判断是特权消息则
-                   获取明文，否则丢弃。
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-3-9  Draft Enact
-
-*****************************************************************************/
 NAS_EMM_SECU_UNPROT_RSLT_ENUM_UINT32  NAS_EMM_CurNotActiveNewAnyMsgInt(
                                         VOS_UINT32  ulSecuHeadType,
                                         VOS_VOID   *pulRrcNasMsg)
@@ -811,19 +678,7 @@ NAS_EMM_SECU_UNPROT_RSLT_ENUM_UINT32  NAS_EMM_CurNotActiveNewAnyMsgInt(
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_CurExistNotAcitveNewAnyMsgIntEnc
- Description     : 当前安全上下文存在但是没有激活的情况下，收到完整性保护并
-                   且加密的消息，如果完整性检查和解密都通过，则恢复安全连接
-                   ；否则丢弃。
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-3-9  Draft Enact
-
-*****************************************************************************/
 NAS_EMM_SECU_UNPROT_RSLT_ENUM_UINT32  NAS_EMM_CurExistNotAcitveNewAnyMsgIntEnc(
                                         VOS_UINT32  ulSecuHeadType,
                                         VOS_VOID   *pulRrcNasMsg)
@@ -851,18 +706,7 @@ NAS_EMM_SECU_UNPROT_RSLT_ENUM_UINT32  NAS_EMM_CurExistNotAcitveNewAnyMsgIntEnc(
     return NAS_EMM_SECU_UNPROT_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_CurExistActiveNewAnyMsgIntEnc
- Description     : 安全连接存在的情况下，收到完整性保护且加密的消息，解保护
-                   ，解密。
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-3-9  Draft Enact
-
-*****************************************************************************/
 NAS_EMM_SECU_UNPROT_RSLT_ENUM_UINT32  NAS_EMM_CurExistActiveNewAnyMsgIntEnc(
                                         VOS_UINT32  ulSecuHeadType,
                                         VOS_VOID   *pulRrcNasMsg)
@@ -888,19 +732,7 @@ NAS_EMM_SECU_UNPROT_RSLT_ENUM_UINT32  NAS_EMM_CurExistActiveNewAnyMsgIntEnc(
     return NAS_EMM_SECU_UNPROT_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_CurExistActiveNewAnyMsgPlain
- Description     : 安全连接存在的情况下，收到明文的消息，根据当前NV设置以及是否是
-                   特权消息决定是否处理，特权消息仅为:
-                   ATTACH REJ, TAU REJ ,SER REJ.
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.sunjitan 00193151      2014-05-30  Draft Enact
-
-*****************************************************************************/
 NAS_EMM_SECU_UNPROT_RSLT_ENUM_UINT32  NAS_EMM_CurExistActiveNewAnyMsgPlain(
                                         VOS_UINT32  ulSecuHeadType,
                                         VOS_VOID   *pulRrcNasMsg)
@@ -956,19 +788,7 @@ NAS_EMM_SECU_UNPROT_RSLT_ENUM_UINT32  NAS_EMM_CurExistActiveNewAnyMsgPlain(
     return ucRslt;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_OnlyCurExistMsgSmc
- Description     : 只存在current安全上下文，new mapped和new native都不存在，
-                   收到SMC消息，则SMC只能激活current安全上下文
 
- Input           : None
- Output          : None
- Return          : VOS_UINT32
-
- History         :
-     1.zhengjunyan 00148421      2011-4-26  Draft Enact
-
-*****************************************************************************/
 NAS_EMM_SECU_UNPROT_RSLT_ENUM_UINT32    NAS_EMM_OnlyCurExistMsgSmc(
                                         VOS_UINT32  ulSecuHeadType,
                                         VOS_VOID   *pulRrcNasMsg)
@@ -1033,19 +853,7 @@ NAS_EMM_SECU_UNPROT_RSLT_ENUM_UINT32    NAS_EMM_CurAnyNewExistMsgSmc(
 
     return NAS_EMM_SECU_UNPROT_SMC;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_CurNotExistNewNotExistMsgSmc
- Description     : 当前安全上下文不存在，new mapped、new native和non-current
-                   native都不存在，收到SMC消息，只能处理启动算法为EIA0
 
- Input           : None
- Output          : None
- Return          : VOS_UINT32
-
- History         :
-     1.zhengjunyan 00148421      2011-4-26  Draft Enact
-
-*****************************************************************************/
 NAS_EMM_SECU_UNPROT_RSLT_ENUM_UINT32 NAS_EMM_CurNotExistNewNotExistMsgSmc
 (
     VOS_UINT32                          ulSecuHeadType,
@@ -1088,19 +896,7 @@ NAS_EMM_SECU_UNPROT_RSLT_ENUM_UINT32 NAS_EMM_CurNotExistNewNotExistMsgSmc
     return NAS_EMM_SECU_UNPROT_SMC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_VerifyDlMsgLen
- Description     : 检查下行空口消息的长度是否合法:
-                   明文消息:   最短长度 2
-                   保护的消息: 最短长度 8
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-4-12  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_VerifyDlMsgLen(      VOS_UINT32   ulSecuHeaderType,
                                         MsgBlock    *pMsg )
 {
@@ -1135,20 +931,7 @@ VOS_UINT32 NAS_EMM_VerifyDlMsgLen(      VOS_UINT32   ulSecuHeaderType,
     return ulVerifyRslt;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SecuUnProtect
- Description     : 根据安全上下文的状态将CN消息解保护，
-                   若是SMC消息则在此函数中成处理，
-                   其他CN消息解密后此函数生成明文，消息继续进入EMM状态机, 解码
-                   并根据状态处理。
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-3-11  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_SecuUnProtect( MsgBlock  *pMsg )
 {
     NAS_EMM_SECU_UNPROT_RSLT_ENUM_UINT32    enRslt = NAS_EMM_SECU_UNPROT_FAIL;
@@ -1272,17 +1055,7 @@ VOS_UINT32  NAS_EMM_SecuUnProtect( MsgBlock  *pMsg )
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SecuSerIntProt
- Description     : SER REQ消息的格式与其他CN消息不同，需单独处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-3-16  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_SecuSerIntProt( LRRC_LNAS_MSG_STRU *pstSerReqMsg )
 {
 /* PC环境:短MAC在SERVICE REQ消息组装时已经被赋值为0，不再需要处理 */
@@ -1369,17 +1142,7 @@ VOS_UINT32    NAS_EMM_SecuSerIntProt( LRRC_LNAS_MSG_STRU *pstSerReqMsg )
 #endif
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SecuNotSerIntProt
- Description     : 非SER REQ消息完整性保护
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-3-17  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_SecuNotSerIntProt( const LRRC_LNAS_MSG_STRU *pstRrcNasMsg )
 {
 /* PC环境: MAC赋值 */
@@ -1462,18 +1225,7 @@ VOS_UINT32  NAS_EMM_SecuNotSerIntProt( const LRRC_LNAS_MSG_STRU *pstRrcNasMsg )
 #endif
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SecuAddSecuHeader
- Description     : 完整性保护计算MAC完成后，将 SecuHeadType,MAC,SN,PlainMsg
-                   组装起来,其中MAC存储在全局变量NAS_EMM_GetSecuDstSpace()中
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-3-17  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SecuAddSecuHeader(NAS_EMM_SECU_HEAD_TYPE_ENUM_UINT8 enSecurHeadType,
                                   LRRC_LNAS_MSG_STRU                 *pstRrcNasMsg)
 {
@@ -1518,17 +1270,7 @@ VOS_VOID  NAS_EMM_SecuAddSecuHeader(NAS_EMM_SECU_HEAD_TYPE_ENUM_UINT8 enSecurHea
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SecuEncrypt
- Description     : 非SER REQ消息进行加密处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-3-17  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_SecuEncrypt( LRRC_LNAS_MSG_STRU *pstRrcNasMsg )
 {
 /*PC环境下明文不变，直接返回*/
@@ -1620,7 +1362,6 @@ VOS_UINT32  NAS_EMM_SecuEncrypt( LRRC_LNAS_MSG_STRU *pstRrcNasMsg )
 *****************************************************************************/
 VOS_UINT32  NAS_EMM_SecuMsgNeedNotEncrypt( NAS_EMM_CN_MSG_TYPE_ENUM_UINT8 enMsgType)
 {
-    /* 删除TAU消息加密的相关无效配置代码 y00307272 20151017 DTS2015101700432 */
     /* TAU和attach req消息永远不能加密*/
     if(( NAS_EMM_CN_MT_TAU_REQ == enMsgType)||( NAS_EMM_CN_MT_ATTACH_REQ == enMsgType))
     {
@@ -1634,17 +1375,7 @@ VOS_UINT32  NAS_EMM_SecuMsgNeedNotEncrypt( NAS_EMM_CN_MSG_TYPE_ENUM_UINT8 enMsgT
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_NotSerReqMsgProt
- Description     : 不是SER REQ消息加保护处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-3-16  Draft Enact
-    2.sunbing 49683             2010-9-20  TAU和attach req消息永远不加密
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_NotSerReqMsgProt( LRRC_LNAS_MSG_STRU *pstRrcNasMsg )
 {
     VOS_UINT32                          ulRslt    = NAS_EMM_FAIL;
@@ -1693,17 +1424,7 @@ VOS_UINT32  NAS_EMM_NotSerReqMsgProt( LRRC_LNAS_MSG_STRU *pstRrcNasMsg )
 }
 /*lint +e961*/
 /*lint +e960*/
-/*****************************************************************************
- Function Name   : NAS_EMM_SecuWhetherNeedProt
- Description     : 判断是否需要做保护
- Input           : pstNasMsg:  指向 RRC_NAS_MSG_STRU结构
- Output          : None
- Return          :
 
- History         :
-    1.zhengjunyan 00148421      2010-3-15  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_SecuWhetherNeedProt(const LRRC_LNAS_MSG_STRU *pstNasMsg)
 
 {
@@ -1724,17 +1445,7 @@ VOS_UINT32 NAS_EMM_SecuWhetherNeedProt(const LRRC_LNAS_MSG_STRU *pstNasMsg)
     return NAS_EMM_SECU_NEED_PROT;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SecuUpLayerMsgProt
- Description     : EMM上层透传消息加密，加完整性保护:包括ESM上行透传消息，环回消息等
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-3-27  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_SecuUpLayerMsgProt( LRRC_LNAS_MSG_STRU *pstNasMsg )
 {
     VOS_UINT32                          ulRslt = NAS_EMM_FAIL;
@@ -1774,17 +1485,7 @@ VOS_UINT32  NAS_EMM_SecuUpLayerMsgProt( LRRC_LNAS_MSG_STRU *pstNasMsg )
     return NAS_EMM_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SecuEmmMsgProt
- Description     : EMM上行消息加保护处理:需要区分是否是SER REQ消息进行不同处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-3-27  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_SecuEmmMsgProt( LRRC_LNAS_MSG_STRU *pstNasMsg )
 {
     NAS_EMM_SECU_HEAD_TYPE_ENUM_UINT8   enSecurHeadType;
@@ -1819,17 +1520,7 @@ VOS_UINT32  NAS_EMM_SecuEmmMsgProt( LRRC_LNAS_MSG_STRU *pstNasMsg )
     return NAS_EMM_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SecuProtect
- Description     : 对上行空口消息加保护处理
- Input           : pstMrrcDataReq:  指向 NAS_EMM_MRRC_DATA_REQ_STRU结构
- Output          : None
- Return          :
 
- History         :
-    1.zhengjunyan 00148421      2010-3-15  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_SecuProtect(VOS_VOID  * pstMrrcDataReq)
 {
     NAS_EMM_MRRC_DATA_REQ_STRU         *pstIntraDataReq = VOS_NULL_PTR;
@@ -1908,18 +1599,7 @@ VOS_UINT32    NAS_EMM_SecuProtect(VOS_VOID  * pstMrrcDataReq)
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SndOmLogSecuVerifyFail
- Description     : 安全检查失败，可维可测上报
- Input           : enIeType 信元类型
-                   enCause  失败原因
-                   ulValue  失败值
- Output          : None
- Return          : None
 
- History         :
-    1.chengmin 00285307      2015-6-20  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_EMM_SndOmLogSecuVerifyFail
 (
     NAS_LMM_OM_LOG_SECU_FAIL_TYPE_ENUM_UINT32           enSecuFailType,

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2012, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafXpdsEncode.c
-  版 本 号   : 初稿
-  作    者   : 谷传征
-  生成日期   : 2015年7月14日
-  最近修改   :
-  功能描述   : Modem Encode Msg
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年7月14日
-    作    者   : g00261581
-    修改内容   : CDMA-AGPS项目新增
-
-******************************************************************************/
 #ifdef __cplusplus
 #if __cplusplus
 extern "C" {
@@ -34,22 +17,7 @@ extern "C" {
 
 #if ((FEATURE_ON == FEATURE_UE_MODE_CDMA) && (FEATURE_ON == FEATURE_AGPS))
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_EncodeMpcStartPosReq
- 功能描述  : encode mpc start req to array refer(gpsone user plane ms-mpc ch4.2.2.1)
- 输入参数  :    pstMpcStartReq:输入
 
- 输出参数  :    *pucData:    目标数组
-                *pulDataLen: 得到的长度
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年07月14日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XPDS_EncodeMpcStartPosReq(
     TAF_XPDS_MPC_START_POS_REQ_STRU   *pstMpcStartReq,
     VOS_UINT32                        *pulDataLen,
@@ -162,22 +130,7 @@ VOS_VOID TAF_XPDS_EncodeMpcStartPosReq(
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_EncodeMpcPosReportReq
- 功能描述  : encode mpc pos report req to array,reference:gpsone user plane ms-mpc ch4.2.2.1
- 输入参数  :    pstMpcStartReq:输入
 
- 输出参数  :    *pucData:    目标数组
-                *pulDataLen: 得到的长度
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年07月14日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XPDS_EncodeMpcPosReportReq(
     TAF_XPDS_MPC_POS_REPORT_STRU  *pstMpcPosReportReq,
     VOS_UINT32                    *pulDataLen,
@@ -337,22 +290,7 @@ VOS_VOID TAF_XPDS_EncodeMpcPosReportReq(
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_EncodeMpcPosReportReq
- 功能描述  : encode mpc pos report req to array,reference:gpsone user plane ms-mpc ch4.2.2.1
- 输入参数  :    pstMpcStartReq:输入
 
- 输出参数  :    *pucData:    目标数组
-                *pulDataLen: 得到的长度
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年07月14日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_EncodeMpcCancelTrTrackReq(
     TAF_XPDS_MPC_CANCEL_TRACK_STRU    *pstMpcCancelTrack,
     VOS_UINT32                        *pulDataLen,
@@ -395,22 +333,7 @@ VOS_UINT32 TAF_XPDS_EncodeMpcCancelTrTrackReq(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_EncodeXsmsMpcRejPosReq
- 功能描述  : encode mpc pos report req to array,reference:gpsone user plane ms-mpc ch3.2.1.1
- 输入参数  :    pstMpcStartReq:输入
 
- 输出参数  :    *pucData:    目标数组
-                *pulDataLen: 得到的长度
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年07月14日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_EncodeXsmsMpcRejPosReq(
     TAF_XPDS_XSMS_REJ_POS_REQ_STRU *pstRejPosReq,
     VOS_UINT32                     *pulDataLen,
@@ -484,22 +407,7 @@ VOS_UINT32 TAF_XPDS_EncodeXsmsMpcRejPosReq(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_EncodeXsmsMpcCancelPosNotifty
- 功能描述  : encode mpc pos report req to array,reference:gpsone user plane ms-mpc ch3.2.1.2
- 输入参数  :    pstMpcStartReq:输入
 
- 输出参数  :    *pucData:    目标数组
-                *pulDataLen: 得到的长度
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年07月14日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_EncodeXsmsMpcCancelPosNotifty(
     TAF_XPDS_XSMS_CANCEL_POS_NOTIFICATION_STRU         *pstCancelNotify,
     VOS_UINT32                                         *pulDataLen,
@@ -1225,22 +1133,7 @@ VOS_VOID TAF_XPDS_EncodeStartDeliverData(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_EncodePdMsgHeader
- 功能描述  : Cagps Encode Session Header
- 输入参数  : TAF_XPDS_PD_MSG_HEADER_STRU        *pstPdMsgHeader,
 
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年7月16日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_EncodePdMsgHeader(
     TAF_XPDS_PD_MSG_HEADER_STRU        *pstPdMsgHeader,
     VOS_UINT8                          *pucMsgBuff,
@@ -1266,23 +1159,7 @@ VOS_VOID TAF_XPDS_EncodePdMsgHeader(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_EncodeReverseLinkReqs
- 功能描述  : Encode Multi Reqs
- 输入参数  : TAF_XPDS_ENCODE_RL_INFO_STRU  *pstEncodeRlInfo
-             VOS_UINT8                          *pucMsgBuff
-             VOS_UINT32                         *pulLength
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月16日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_EncodeReverseReqs(
     TAF_XPDS_ENCODE_RL_INFO_STRU                           *pstEncodeRlInfo,
     VOS_UINT8                                              *pucMsgBuff,
@@ -1351,23 +1228,7 @@ VOS_VOID TAF_XPDS_EncodeReverseReqs(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_EncodeReverseRsps
- 功能描述  : Encode Multi Rsps
- 输入参数  : TAF_XPDS_ENCODE_RL_INFO_STRU  *pstEncodeRlInfo
-             VOS_UINT8                          *pucMsgBuff
-             VOS_UINT32                         *pulLength
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月16日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_EncodeReverseRsps(
     TAF_XPDS_ENCODE_RL_INFO_STRU       *pstEncodeRlInfo,
     VOS_UINT8                          *pucMsgBuff,
@@ -1421,23 +1282,7 @@ VOS_VOID TAF_XPDS_EncodeReverseRsps(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_EncodeReverseMsg
- 功能描述  : Encode one Reverse Link Msg
- 输入参数  : TAF_XPDS_ENCODE_RL_INFO_STRU  *pstEncodeRlInfo
-             VOS_UINT8                          *pcDestBuf
-             VOS_UINT32                         *pulLength
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月16日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_EncodeReverseMsg(
     TAF_XPDS_ENCODE_RL_INFO_STRU       *pstEncodeRlInfo,
     VOS_UINT8                          *pcDestBuf,
@@ -3650,23 +3495,7 @@ VOS_UINT32 TAF_XPDS_EncodeServSysInfo(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_EncodeExtReverseReqs
- 功能描述  : Encode Multi Reqs
- 输入参数  : TAF_XPDS_ENCODE_RL_INFO_STRU  *pstEncodeRlInfo
-             VOS_UINT8                          *pucMsgBuff
-             VOS_UINT32                         *pulLength
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月12日
-    作    者   : Arjun A00903922
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_EncodeExtReverseReqs(
     TAF_XPDS_ENCODE_RL_INFO_STRU  *pstEncodeRlInfo,
     VOS_UINT8                          *pucMsgBuff,
@@ -3746,23 +3575,7 @@ VOS_UINT32 TAF_XPDS_EncodeExtReverseReqs(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_EncodeExtReverseRsps
- 功能描述  : Encode Multi Rsps
- 输入参数  : TAF_XPDS_ENCODE_RL_INFO_STRU  *pstEncodeRlInfo
-             VOS_UINT8                          *pucMsgBuff
-             VOS_UINT32                         *pulLength
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月12日
-    作    者   : Arjun A00903922
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_EncodeExtReverseRsps(
     TAF_XPDS_ENCODE_RL_INFO_STRU  *pstEncodeRlInfo,
     VOS_UINT8                          *pucMsgBuff,
@@ -3903,21 +3716,7 @@ VOS_UINT32 TAF_XPDS_EncodeDataBurstMsg(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_EncodeMsIdRec
- 功能描述  : TAF_XPDS_EncodeMsIdRec to be fixed in IT2
- 输入参数  :
 
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年07月14日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XPDS_EncodeMsIdRec(
     TAF_XPDS_MS_ID_RECORD_STRU           *pstMsIdRec
 )
@@ -3926,21 +3725,7 @@ VOS_VOID TAF_XPDS_EncodeMsIdRec(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_GetMsIdRecFromCard
- 功能描述  : TAF_XPDS_EncodeMsIdRec to be fixed in IT2
- 输入参数  :
 
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年07月14日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XPDS_GetMsIdRecFromCard(
     VOS_UINT8                          *paucData
 )

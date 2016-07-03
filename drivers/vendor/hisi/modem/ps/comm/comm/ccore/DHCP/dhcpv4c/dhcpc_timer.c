@@ -78,19 +78,7 @@ VOID DHCPC_incCurTimerHourSec()
 }
 
 
-/*****************************************************************************
- 函 数 名  : DHCPC_InitTimerList
- 功能描述  : 初始化DHCP时间链表:时间节点哈希链，时间节点秒级链、时间节点小时链
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  : DHCPC_LocalMemInit
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012-07-23
-    作    者   : zhangjinquan 00175135
-    修改内容   : 新生成函数 zhangjinquan 00175135 DHCPv6特性 2012-07-23
-*****************************************************************************/
+
 ULONG DHCPC_InitTimerList()
 {
     ULONG ulMemSize;
@@ -153,19 +141,7 @@ ULONG DHCPC_IsTimNodeExist(UCHAR ucIpType, ULONG ulTeidc)
 }
 
 
-/*****************************************************************************
- 函 数 名  : DHCPC_InitTimerList
- 功能描述  : 初始化DHCP时间链表:时间节点哈希链，时间节点秒级链、时间节点小时链
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  : DHCPC_LocalMemInit
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012-07-23
-    作    者   : zhangjinquan 00175135
-    修改内容   : 新生成函数 zhangjinquan 00175135 DHCPv6特性 2012-07-23
-*****************************************************************************/
+
 VOID DHCPC_CreateDhcpcTimerNode(DHCPC_TIMER_NODE_S **ppstDHCPTimerNode)
 {
     DHCPC_TIMER_NODE_S *pstDHCPTimerNode = NULL;
@@ -192,21 +168,7 @@ VOID DHCPC_CreateDhcpcTimerNode(DHCPC_TIMER_NODE_S **ppstDHCPTimerNode)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_putTimerNodeToHashList
- 功能描述  : 将用户控制块放入哈希链表，本函数不做入参校验，依赖于外部调用函数
- 输入参数  : DHCPC_TIMER_LIST_HEAD_S *pstTimerList 哈希链
-             DHCPC_TIMER_NODE_S *pstDHCPTimerNode 时间节点
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史     :
-  1.日    期  : 2012-07-23
-    作    者  : zhangjinquan 00175135
-    修改内容  : 新生成函数 zhangjinquan 00175135 DHCPv6特性 2012-07-23
-*****************************************************************************/
 VOID DHCPC_putTimerNodeToHashList(DHCPC_TIMER_LIST_HEAD_S *pstHashList,
                                     DHCPC_TIMER_NODE_S *pstTimerNode)
 {
@@ -219,22 +181,7 @@ VOID DHCPC_putTimerNodeToHashList(DHCPC_TIMER_LIST_HEAD_S *pstHashList,
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_putTimerNodeToTimerList
- 功能描述  : 将用户控制块放入时间链表，本函数不做入参校验，依赖于外部调用函数
- 输入参数  : DHCPC_TIMER_NODE_S *pstTimerList 时间链
-             DHCPC_TIMER_NODE_S *pstDHCPTimerNode 时间节点
-             ULONG ulTimerPos 存放的位置
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史     :
-  1.日    期  : 2012-07-23
-    作    者  : zhangjinquan 00175135
-    修改内容  : 新生成函数 zhangjinquan 00175135 DHCPv6特性 2012-07-23
-*****************************************************************************/
 VOID DHCPC_putTimerNodeToTimerList(DHCPC_TIMER_NODE_S *pstTimerList,
                                     DHCPC_TIMER_NODE_S *pstTimerNode, ULONG ulTimerPos)
 {
@@ -254,20 +201,7 @@ VOID DHCPC_putTimerNodeToTimerList(DHCPC_TIMER_NODE_S *pstTimerList,
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_StartTimer
- 功能描述  : 将某个用户对应控制块加入定时器链表，实现重发或续租处理
- 输入参数  : DHCPC_TIMER_NODE_S *pstTimerNode
-             ULONG ulTimerInterval 超时时间，单位:秒
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  : DHCPC_putTimerNodeToTimerList
- 被调函数  : DHCPC_StartTimer
- 修改历史      :
-  1.日    期   : 2012-07-25
-    作    者   : zhangjinquan 00175135
-    修改内容   : 新生成函数 zhangjinquan 00175135 DHCPv6特性 2012-07-25
-*****************************************************************************/
+
 VOID DHCPC_putIntoTimerList(DHCPC_TIMER_NODE_S *pstTimerNode, ULONG ulTimerInterval)
 {
     ULONG ulTempSeconds = 0;
@@ -312,23 +246,7 @@ VOID DHCPC_putIntoTimerList(DHCPC_TIMER_NODE_S *pstTimerNode, ULONG ulTimerInter
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_StartTimer
- 功能描述  : 将某个用户对应控制块加入定时器链表，实现重发或续租处理
- 输入参数  : UCHAR ucIpType 地址类型
-             ULONG ulTeidc  用户teidc
-             UCHAR ucEvent  事件类型
-             ULONG ulTimerInterval 超时时间，单位:秒
-             DHCPC_TIMER_CALLBACK pCallBackFun 定时器回调处理函数
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012-07-23
-    作    者   : zhangjinquan 00175135
-    修改内容   : 新生成函数 zhangjinquan 00175135 DHCPv6特性 2012-07-23
-*****************************************************************************/
+
 ULONG DHCPC_StartTimer(UCHAR ucIpType, ULONG ulTeidc, UCHAR ucEvent, ULONG ulTimerInterval, DHCPC_TIMER_CALLBACK pCallBackFun)
 {
     DHCPC_TIMER_NODE_S *pstTimerNode = NULL;
@@ -363,19 +281,7 @@ ULONG DHCPC_StartTimer(UCHAR ucIpType, ULONG ulTeidc, UCHAR ucEvent, ULONG ulTim
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_DeleteNodeFromHashList
- 功能描述  : 查找返回某个用户对应时间节点，并从时间节点哈希链中删除该节点，入参合法性依赖于调用函数，本函数不做校验
- 输入参数  : UCHAR ucIpType, ULONG ulTeidc, UCHAR ucEvent
- 输出参数  : DHCPC_TIMER_NODE_S **ppstTimerNode
- 返 回 值  : 无
- 调用函数  :
- 被调函数  : DHCPC_StopTimer
- 修改历史      :
-  1.日    期   : 2012-07-23
-    作    者   : zhangjinquan 00175135
-    修改内容   : 新生成函数 zhangjinquan 00175135 DHCPv6特性 2012-07-23
-*****************************************************************************/
+
 ULONG DHCPC_DeleteNodeFromHashList(UCHAR ucIpType, ULONG ulTeidc, UCHAR ucEvent, DHCPC_TIMER_NODE_S **ppstTimerNode)
 {
     ULONG ulHashKey = DHCPC_GET_HASHKEY(ulTeidc);
@@ -425,19 +331,7 @@ ULONG DHCPC_DeleteNodeFromHashList(UCHAR ucIpType, ULONG ulTeidc, UCHAR ucEvent,
     return VOS_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_CutTimerNodeFromTimerList
- 功能描述  : 将定时器节点从定时器链表删除，并释放内存
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012-08-14
-    作    者   : zhangjinquan 00175135
-    修改内容   : 新生成函数 zhangjinquan 00175135 DHCPv6特性 2012-08-14
-*****************************************************************************/
+
 ULONG DHCPC_CutTimerNodeFromTimerList(DHCPC_TIMER_NODE_S *pstTimerNode)
 {
     if (NULL == pstTimerNode)
@@ -466,7 +360,6 @@ ULONG DHCPC_CutTimerNodeFromTimerList(DHCPC_TIMER_NODE_S *pstTimerNode)
     pstTimerNode->pstPrevNode = NULL;
     pstTimerNode->pstNextNode = NULL;
 
-    /* deleted by t00265288 start PC调试时出现堆错误，暂时注释掉，以后确定超时重传的时间和方案后再看这里改不改 */
 #if 0
     DHCP_Free(DHCPC_HANDLE, pstTimerNode);
 #endif
@@ -474,19 +367,7 @@ ULONG DHCPC_CutTimerNodeFromTimerList(DHCPC_TIMER_NODE_S *pstTimerNode)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_StopTimer
- 功能描述  : 将某个用户对应控制块从定时器链表删除，以停止重发或续租处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012-07-23
-    作    者   : zhangjinquan 00175135
-    修改内容   : 新生成函数 zhangjinquan 00175135 DHCPv6特性 2012-07-23
-*****************************************************************************/
+
 ULONG DHCPC_StopTimer(UCHAR ucIpType, ULONG ulTeidc, UCHAR ucEvent)
 {
     DHCPC_TIMER_NODE_S *pstTimerNode = NULL;
@@ -513,20 +394,7 @@ ULONG DHCPC_StopTimer(UCHAR ucIpType, ULONG ulTeidc, UCHAR ucEvent)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_HourListTimerOut
- 功能描述  : 小时链表超时扫描处理函数，主要用于扫描发现过去的时间小于1小时的节点，然后转移到秒级链表中，
-             特别的，对于时间刚好是小时的整数倍的情况，一旦超时，需要通过回调函数进行重发或续租的业务处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012-07-23
-    作    者   : zhangjinquan 00175135
-    修改内容   : 新生成函数 zhangjinquan 00175135 DHCPv6特性 2012-07-23
-*****************************************************************************/
+
 VOID DHCPC_HourListTimerOut(VOID *pvArg)
 {
     ULONG ulCurIndex = 0;
@@ -596,19 +464,7 @@ VOID DHCPC_HourListTimerOut(VOID *pvArg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_DealBusAndDelFromTimerList
- 功能描述  : 调用回调函数进行业务处理，并从时间链表删除，释放时间节点内存
- 输入参数  : DHCPC_TIMER_NODE_S *pstTimerNode
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012-07-25
-    作    者   : zhangjinquan 00175135
-    修改内容   : 新生成函数 zhangjinquan 00175135 DHCPv6特性 2012-07-25
-*****************************************************************************/
+
 VOID DHCPC_DealBusAndDelFromTimerList(DHCPC_TIMER_NODE_S *pstTimerNode)
 {
     ULONG ulTeidc = pstTimerNode->ulTeidc;
@@ -625,19 +481,7 @@ VOID DHCPC_DealBusAndDelFromTimerList(DHCPC_TIMER_NODE_S *pstTimerNode)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_DeleteNodeFromHashListByNode
- 功能描述  : 查找返回某个用户对应时间节点，并从时间节点哈希链中删除该节点，入参合法性依赖于调用函数，本函数不做校验
- 输入参数  : DHCPC_TIMER_NODE_S *pstTimerNode
- 输出参数  : DHCPC_TIMER_NODE_S **ppstTimerNode
- 返 回 值  : 无
- 调用函数  :
- 被调函数  : DHCPC_ProcSecondListTimerOut
- 修改历史      :
-  1.日    期   : 2012-08-14
-    作    者   : zhangjinquan 00175135
-    修改内容   : 新生成函数 zhangjinquan 00175135 DHCPv6特性 2012-08-14
-*****************************************************************************/
+
 ULONG DHCPC_DeleteNodeFromHashListByNode(DHCPC_TIMER_NODE_S *pstTimerNode, DHCPC_TIMER_NODE_S **ppstTimerNode)
 {
     DHCPC_TIMER_NODE_S *pstPrevNode = NULL;
@@ -686,19 +530,7 @@ ULONG DHCPC_DeleteNodeFromHashListByNode(DHCPC_TIMER_NODE_S *pstTimerNode, DHCPC
     return VOS_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_ProcSecondListTimerOut
- 功能描述  : 秒级链表超时扫描处理函数，主要用于超时时通过回调函数进行重发或续租的业务处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012-07-27
-    作    者   : zhangjinquan 00175135
-    修改内容   : 新生成函数 zhangjinquan 00175135 DHCPv6特性 2012-07-27
-*****************************************************************************/
+
 VOID DHCPC_ProcSecondListTimerOut()
 {
     ULONG ulCurIndex = 0;
@@ -755,19 +587,7 @@ VOID DHCPC_ProcSecondListTimerOut()
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_SecondListTimerOut
- 功能描述  : 秒级链表超时扫描处理函数，主要用于超时时通过回调函数进行重发或续租的业务处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012-07-23
-    作    者   : zhangjinquan 00175135
-    修改内容   : 新生成函数 zhangjinquan 00175135 DHCPv6特性 2012-07-23
-*****************************************************************************/
+
 VOID DHCPC_SecondListTimerOut(VOID *pvArg)
 {
 

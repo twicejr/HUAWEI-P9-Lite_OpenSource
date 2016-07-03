@@ -1,13 +1,4 @@
-/******************************************************************************
 
-   Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : NasCommPrint.c
-  Description     : Nas公共打印模块
-  History         :
-     1.liuwenyu 00143951       2010-4-28   Draft Enact
-******************************************************************************/
 
 
 
@@ -292,20 +283,7 @@ NAS_COMM_PRINT_LIST_STRU g_astMmLppMsgIdArray[] =
 /*****************************************************************************
   3 Function
 *****************************************************************************/
-/*****************************************************************************
- Function Name   : NAS_COMM_nsprintf
- Description     : 打印字符串到缓存中
- Input           : pcBuff    -- 缓存区
-                   usOffset  -- 缓存区中的打印起始位置
-                   String    -- 要打印的字符串
- Output          : pilOutLen -- 返回打印到缓存去中的字符的个数
-                                打印出现异常时，返回0
- Return          : VOS_VOID
 
- History         :
-    1.lining 00141619      2008-11-4  Draft Enact
-
-*****************************************************************************/
 /*lint -e960*/
 /*lint -e961*/
 VOS_VOID    NAS_COMM_nsprintf
@@ -369,21 +347,7 @@ VOS_VOID    NAS_COMM_nsprintf
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_COMM_nsprintf_1
- Description     : 打印字符串到缓存中
- Input           : pcBuff    -- 缓存区
-                   usOffset  -- 缓存区中的打印起始位置
-                   String    -- 要打印的字符串
-                   para1     -- 参数String需要用到的参数
- Output          : pilOutLen -- 返回打印到缓存去中的字符的个数
-                                打印出现异常时，返回0
- Return          : VOS_VOID
 
- History         :
-    1.lining 00141619      2008-11-4  Draft Enact
-
-*****************************************************************************/
 VOS_VOID    NAS_COMM_nsprintf_1
 (
     VOS_CHAR                                *pcBuff,
@@ -446,22 +410,7 @@ VOS_VOID    NAS_COMM_nsprintf_1
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_COMM_nsprintf_2
- Description     : 打印字符串到缓存中
- Input           : pcBuff    -- 缓存区
-                   usOffset  -- 缓存区中的打印起始位置
-                   String    -- 要打印的字符串
-                   para1     -- 参数String需要用到的参数
-                   para2     -- 参数String需要用到的参数
- Output          : pilOutLen -- 返回打印到缓存去中的字符的个数
-                                打印出现异常时，返回0
- Return          : VOS_VOID
 
- History         :
-    1.liuwenyu 00143951      2010-04-09  Draft Enact
-
-*****************************************************************************/
 VOS_VOID    NAS_COMM_nsprintf_2(
                     VOS_CHAR                                *pcBuff,
                     VOS_UINT16                              usOffset,
@@ -524,23 +473,7 @@ VOS_VOID    NAS_COMM_nsprintf_2(
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_COMM_nsprintf_3
- Description     : 打印字符串到缓存中
- Input           : pcBuff    -- 缓存区
-                   usOffset  -- 缓存区中的打印起始位置
-                   String    -- 要打印的字符串
-                   para1     -- 参数String需要用到的参数
-                   para2     -- 参数String需要用到的参数
-                   para3     -- 参数String需要用到的参数
- Output          : pilOutLen -- 返回打印到缓存去中的字符的个数
-                                打印出现异常时，返回0
- Return          : VOS_VOID
 
- History         :
-    1.liuwenyu 00143951      2010-04-12  Draft Enact
-
-*****************************************************************************/
 VOS_VOID    NAS_COMM_nsprintf_3(
                     VOS_CHAR                                *pcBuff,
                     VOS_UINT16                              usOffset,
@@ -606,18 +539,7 @@ VOS_VOID    NAS_COMM_nsprintf_3(
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_COMM_Print
- Description     : 增加结束符并打印
- Input           : pcBuff -- Formatted buffer
-                   usLen  -- Print length
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lining 00141619      2008-11-4  Draft Enact
-
-*****************************************************************************/
 VOS_VOID    NAS_COMM_Print
 (
     VOS_CHAR                                *pcBuff,
@@ -652,16 +574,7 @@ VOS_VOID    NAS_COMM_Print
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_COMM_PrintArray
- Description     : 打印数组
- Input           : pucArray -- the addr of data to print
-                   ulLen    -- the len of data to print
- Output          : None
- History         :
-    1.zhengjunyan 00148421      2010-01-12  Draft Enact
 
-*****************************************************************************/
 VOS_VOID   NAS_COMM_PrintArray
 (
     VOS_CHAR                                    *pcBuff,
@@ -713,20 +626,7 @@ VOS_VOID   NAS_COMM_PrintArray
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_COMM_PrintMmRabmMsg
- Description     : 打印收到RABM消息(文件内部调用函数)
- Input           : pcBuff   -- Formatted buffer
-                   usOffset -- Offset
-                   enMsgId  -- EMM_ERABM_MSG_TYPE_ENUM_UINT32
- Output          : None
- Return          : The number of bytes that have been stored in the output buffer pcBuff
-                   If the input parameter is erroneous, the return value will be 0.
 
- History         :
-    1.lining 00141619      2008-10-24  Draft Enact
-
-*****************************************************************************/
 VOS_INT32   NAS_COMM_PrintMmRabmMsg
 (
     VOS_CHAR                                *pcBuff,
@@ -780,20 +680,7 @@ VOS_INT32   NAS_COMM_PrintMmRabmMsg
     return (usTotalLen - usOffset);
 }
 
-/*****************************************************************************
- Function Name   : NAS_COMM_PrintMmEsmMsg
- Description     : 打印收到ESM消息(文件内部调用函数)
- Input           : pcBuff   -- Formatted buffer
-                   usOffset -- Offset
-                   enMsgId  -- EMM_ESM_MSG_TYPE_ENUM_UINT32
- Output          : None
- Return          : The number of bytes that have been stored in the output buffer pcBuff
-                   If the input parameter is erroneous, the return value will be 0.
 
- History         :
-    1.lining 00141619      2008-10-24  Draft Enact
-
-*****************************************************************************/
 VOS_INT32   NAS_COMM_PrintMmEsmMsg
 (
     VOS_CHAR                                *pcBuff,
@@ -857,20 +744,7 @@ VOS_INT32   NAS_COMM_PrintMmEsmMsg
     return (usTotalLen - usOffset);
 }
 
-/*****************************************************************************
- Function Name   : NAS_COMM_PrintSmEsmMsg
- Description     : 打印收到SM消息(文件内部调用函数)
- Input           : pcBuff   -- Formatted buffer
-                   usOffset -- Offset
-                   enMsgId  -- EMM_ESM_MSG_TYPE_ENUM_UINT32
- Output          : None
- Return          : The number of bytes that have been stored in the output buffer pcBuff
-                   If the input parameter is erroneous, the return value will be 0.
 
- History         :
-    1.lihong00150010      2011-05-02  Draft Enact
-
-*****************************************************************************/
 VOS_INT32   NAS_COMM_PrintSmEsmMsg
 (
     VOS_CHAR                                *pcBuff,
@@ -933,20 +807,7 @@ VOS_INT32   NAS_COMM_PrintSmEsmMsg
     return (usTotalLen - usOffset);
 }
 
-/*****************************************************************************
- Function Name   : NAS_COMM_PrintSmEsmMsg
- Description     : 打印收到OM消息(文件内部调用函数)
- Input           : pcBuff   -- Formatted buffer
-                   usOffset -- Offset
-                   enMsgId  -- EMM_ESM_MSG_TYPE_ENUM_UINT32
- Output          : None
- Return          : The number of bytes that have been stored in the output buffer pcBuff
-                   If the input parameter is erroneous, the return value will be 0.
 
- History         :
-    1.lihong00150010      2011-05-02  Draft Enact
-
-*****************************************************************************/
 VOS_INT32   NAS_COMM_PrintOmEsmMsg
 (
     VOS_CHAR                                *pcBuff,
@@ -1266,19 +1127,7 @@ VOS_INT32  NAS_COMM_PrintMmTcMsg
 }
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- Function Name   : NAS_COMM_PrintEhsmEsmMsg
- Description     : 打印收到EHSM消息(文件内部调用函数)
- Input           : pcBuff   -- Formatted buffer
-                   usOffset -- Offset
-                   enMsgId  -- EMM_ESM_MSG_TYPE_ENUM_UINT32
- Output          : None
- Return          : The number of bytes that have been stored in the output buffer pcBuff
-                   If the input parameter is erroneous, the return value will be 0.
 
- History         :
-    1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_INT32   NAS_COMM_PrintEhsmEsmMsg
 (
     VOS_CHAR                                *pcBuff,
@@ -1536,19 +1385,7 @@ VOS_INT32  NAS_COMM_PrintEsmRabmDeactIndMsg
 
 #if (FEATURE_LPP == FEATURE_ON)
 #if 0
-/*****************************************************************************
- Function Name   : NAS_COMM_PrintMmLppMsg
- Description     : 打印发送收到LPP消息(文件内部调用函数)
- Input           : pcBuff   -- Formatted buffer
-                   usOffset -- Offset
-                   enMsgId  -- EMM_ESM_MSG_TYPE_ENUM_UINT32
- Output          : None
- Return          : The number of bytes that have been stored in the output buffer pcBuff
-                   If the input parameter is erroneous, the return value will be 0.
 
- History         :
-    1.lifuxin 00253982      2015-07-20  Draft Enact
-*****************************************************************************/
 VOS_INT32   NAS_COMM_PrintMmLppMsg
 (
     VOS_CHAR                                *pcBuff,

@@ -10,10 +10,8 @@
 #include "PsLogdef.h"
 
 #include "MnMsgApi.h"
-/* Added by wx270776 for OM融合, 2015-6-27, begin */
 #include "errorlog.h"
 #include "msp_diag_comm.h"
-/* Added by wx270776 for OM融合, 2015-6-27, end */
 
 #if (OSA_CPU_CCPU == VOS_OSA_CPU)
 #include "MnComm.h"
@@ -216,100 +214,32 @@ extern "C" {
   4 接口函数声明
 *****************************************************************************/
 
-/* Deleted by f62575 for V9R1 STK升级, 2013-6-26, begin */
 /* Deleted MN_UnPack7Bit */
-/* Deleted by f62575 for V9R1 STK升级, 2013-6-26, end */
 
-/* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, begin */
-/* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, end */
 
-/*****************************************************************************
- 函 数 名  : MN_ChkNumType
- 功能描述  : 同步函数,号码类型检查,参考协议23040 9.1.2.5
- 输入参数  : enNumType      - 号码类型
- 输出参数  : 无
- 返 回 值  : MN_ERR_NO_ERROR号码类型检查通过 其他,号码类型检查失败
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2008年1月21日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-  2.日    期   : 2010年2月21日
-    作    者   : f62575
-    修改内容   : 问题单号：AT2D16979，UE侧不再检查地址的TON和NPI类型
-*****************************************************************************/
+
 TAF_UINT32 MN_ChkNumType(
     MN_MSG_TON_ENUM_U8                  enNumType
 );
 
-/*****************************************************************************
- 函 数 名  : MN_ChkNumPlan
- 功能描述  : 同步函数,拨号计划类型检查,参考协议23040 9.1.2.5
- 输入参数  : enNumPlan - 拨号计划类型
- 输出参数  : 无
- 返 回 值  : MN_ERR_NO_ERROR拨号计划类型检查通过 其他,拨号计划类型检查失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月13日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-  2.日    期   : 2010年2月21日
-    作    者   : f62575
-    修改内容   : 问题单号：AT2D16717，UE侧不再检查地址的TON和NPI类型
-*****************************************************************************/
 TAF_UINT32 MN_ChkNumPlan(
     MN_MSG_NPI_ENUM_U8                  enNumPlan
 );
 
-/* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, begin */
-/* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, end */
 
 
 
 
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_Decode_UsimMsg
- 功能描述  : 同步函数,将(U)SIM卡下发的短信TPDU码流转换成空口发送需要的TPDU码流
- 输入参数  : pucData         - (U)SIM卡下发的短信TPDU码流
-             ulLen           - (U)SIM卡下发的短信TPDU码流长度
- 输出参数  : pstLongSubmit   - 根据(U)SIM卡下发的短信TPDU码流解码得到长短信数据结构
- 返 回 值  : VOS_UINT32:函数返回的结果,成功以及失败的原因值
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 12.日    期   : 2009年10月28日
-    作    者   : f62575
-    修改内容   : 新生成函数，AT2D15272, STK短信发送需要支持长短信的分段发送功能
-*****************************************************************************/
 VOS_UINT32 MN_MSG_Decode_UsimMsg(
     VOS_UINT8                           *pucData,
     VOS_UINT32                          ulLen,
     MN_MSG_SUBMIT_LONG_STRU             *pstLongSubmit
 );
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_GetAddressFromSubmit
- 功能描述  : 获取发送失败短信的目的号码和短信中心号码
- 输入参数  : VOS_UINT8                          *pucRpduContent
-             VOS_UINT32                          ulRpDataLen
-             NAS_MNTN_BCD_ADDR_STRU             *pstScAddr,
-             NAS_MNTN_BCD_ADDR_STRU             *pstDestAddr
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年9月19日
-    作    者   : 傅映君/f62575
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MN_MSG_GetAddressFromSubmit(
     VOS_UINT8                          *pucRpduContent,
     VOS_UINT32                          ulRpDataLen,
@@ -318,32 +248,14 @@ VOS_VOID MN_MSG_GetAddressFromSubmit(
 );
 
 
-/* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-16, begin */
-/* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-16, end */
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_EncodeTpRd
- 功能描述  : 编码TP-RD参数到TP-FO
- 输入参数  : VOS_BOOL                            bRejectDuplicates  TP-RD标志
- 输出参数  : VOS_UINT8                          *pucTpFo            TP-FO
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月8日
-    作    者   : f62575
-    修改内容   : DTS2012110604069 新生成函数
-
-*****************************************************************************/
 VOS_VOID MN_MSG_EncodeTpRd(
     VOS_BOOL                            bRejectDuplicates,
     VOS_UINT8                          *pucTpFo
 );
 
-/* Deleted by f62575 for V9R1 STK升级, 2013-6-26, begin */
 /* Deleted MN_Pack7Bit */
-/* Deleted by f62575 for V9R1 STK升级, 2013-6-26, end */
 
 #if ((VOS_OS_VER == VOS_WIN32) || (VOS_OS_VER == VOS_NUCLEUS))
 #pragma pack()

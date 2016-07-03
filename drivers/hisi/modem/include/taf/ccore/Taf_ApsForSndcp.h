@@ -1,17 +1,4 @@
-/************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : Taf_ApsForSndcp.h
-  Author      : 韩鲁峰
-  Version     : V200R001
-  Date        : 2005-0
-  Description : 该头文件定义了---
-  History     :
-  1. Date:2005-0 -
-     Author: ---
-     Modification:Create
-  2. 2006-02-28 modify by 韩鲁峰 for A32D02262 接口数据结构4字节对齐
-  3. 2006-08-09 modify by 蒋丽萍 for A32D03479 在PC机上实现时将#pragma pack(0)和#pragma pack()加编译开关
-************************************************************************/
+
 
 #ifndef _TAF_APSFORSNDCP_H
 #define _TAF_APSFORSNDCP_H

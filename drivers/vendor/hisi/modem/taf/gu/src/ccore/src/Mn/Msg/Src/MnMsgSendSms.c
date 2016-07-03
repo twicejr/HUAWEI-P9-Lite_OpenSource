@@ -1,24 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : MnMsgSendSms.c
-  版 本 号   : 初稿
-  作    者   : 周君 40661
-  生成日期   : 2008年2月21日
-  最近修改   :
-  功能描述   : 实现MSG模块发送消息到nas层sms模块的函数接口
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2008年2月21日
-    作    者   : 周君 40661
-    修改内容   : 创建文件
-  2.日    期   : 2009年3月23日
-    作    者   : f62575
-    修改内容   : AT2D08752, W接入方式下，信号较弱时连续发送多条短信会概率性出现发送操作失败；
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -44,26 +24,7 @@
   2 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_SendSmsRpDataReq
- 功能描述  : 发送Rp-Data数据到NAS层的SMS模块
- 输入参数  : enSendDomain:Rp-Data的发送域
-             pucSendMsg:发送数据的内容,具体为协议24011中RP-Data的内容
-             ucSendLen:pucSendMsg的长度
- 输出参数  : 无
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2007年10月15日
-    作    者   : z40661
-    修改内容   : 新生成函数
-  2.日    期   : 2013年7月10日
-    作    者   : y00245242
-    修改内容   : 增加SMS发送路由判断，决定SMS发送给IMS栈还是PS栈    
-*****************************************************************************/
 VOS_UINT32 MN_MSG_SendSmsRpDataReq(
     MN_MSG_SEND_DOMAIN_ENUM_U8          enSendDomain,
     const VOS_UINT8                     *pucSendMsg ,
@@ -82,7 +43,6 @@ VOS_UINT32 MN_MSG_SendSmsRpDataReq(
         return VOS_ERR;
     }
 
-/* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-10, begin */
     pstSendMsg->ulSenderCpuId = VOS_LOCAL_CPUID;
     pstSendMsg->ulSenderPid = WUEPS_PID_TAF;
     pstSendMsg->ulReceiverCpuId = VOS_LOCAL_CPUID;
@@ -111,28 +71,11 @@ VOS_UINT32 MN_MSG_SendSmsRpDataReq(
         MN_WARN_LOG( "MN_MSG_SendSmsRpDataReq:WARNING:SEND SMT_SMR_DATA_STRU msg FAIL!" );
         return VOS_ERR;
     }    
-/* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-10, end */
 
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_SendSmsCpAckReq
- 功能描述  : 发送CP-ACK数据到NAS层的SMS模块
- 输入参数  : enSendDomain:Rp-Data的发送域
-             pucSendMsg:发送数据的内容,具体为协议24011中RP-Data的内容
-             ucSendLen:pucSendMsg的长度
- 输出参数  : 无
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2007年10月15日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID MN_MSG_SendSmsCpAckReq(VOS_VOID)
 {
     SMT_SMR_DATA_STRU                   *pstSendMsg ;
@@ -159,25 +102,7 @@ VOS_VOID MN_MSG_SendSmsCpAckReq(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_SendSmsRpReportReq
- 功能描述  : 发送Rp-Report数据到NAS层的SMS模块
- 输入参数  : pSendMsg:发送数据的内容,具体为协议24011中RP-ACK或RP-ERROR的内容
-             ucSendLen:发送数据的长度
- 输出参数  : 无
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2007年10月15日
-    作    者   : z40661
-    修改内容   : 新生成函数
-  2.日    期   : 2013年7月10日
-    作    者   : y00245242
-    修改内容   : 增加SMS发送路由判断，决定SMS发送给IMS栈还是PS栈
-*****************************************************************************/
 VOS_UINT32 MN_MSG_SendSmsRpReportReq(
     const VOS_UINT8                    *pucSendMsg ,
     VOS_UINT8                           ucSendLen,
@@ -198,7 +123,6 @@ VOS_UINT32 MN_MSG_SendSmsRpReportReq(
     pstSendMsg->ulSenderPid = WUEPS_PID_TAF;
     pstSendMsg->ulReceiverCpuId = VOS_LOCAL_CPUID;
  
-/* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-10, begin */
 #if (FEATURE_ON == FEATURE_IMS)    
     if (TAF_MSG_SIGNALLING_TYPE_CS_OVER_IP == enMsgSignallingType)
     {
@@ -211,14 +135,11 @@ VOS_UINT32 MN_MSG_SendSmsRpReportReq(
         pstSendMsg->ulReceiverPid = WUEPS_PID_SMS;
         pstSendMsg->ulMsgName = SMT_SMR_REPORT_REQ;
     }
-/* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-10, end */
 
     pstSendMsg->ulDataLen = ucSendLen;
     PS_MEM_CPY(pstSendMsg->aucData ,pucSendMsg,ucSendLen);
 
-/* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-10, begin */
     if ( VOS_OK != PS_SEND_MSG( WUEPS_PID_TAF, pstSendMsg ) )
-/* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-10, end */
     {
         MN_WARN_LOG( "MN_MSG_SendSmsRpReportReq:WARNING:SEND SMT_SMR_DATA_STRU msg FAIL!" );
         return VOS_ERR;
@@ -226,30 +147,7 @@ VOS_UINT32 MN_MSG_SendSmsRpReportReq(
     return VOS_OK;
 }
 
-/* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-10, begin */
-/*****************************************************************************
- 函 数 名  : MN_MSG_SendSmsSmmaReq
- 功能描述  : 发送SMMA消息到NAS层的SMS模块
- 输入参数  : enSendDomain:Rp-Data的发送域
-             pSendMsg:发送数据的内容,具体为协议24011中RP-Data的内容
-             ucSendLen:pucSendMsg的长度
- 输出参数  : 无
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2007年10月15日
-    作    者   : z40661
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月28日
-    作    者   : 傅映君/f62575
-    修改内容   : DTS2012122406218, 短信正向质量发现问题: 短信发送流程部分
-  3.日    期   : 2013年7月3日
-    作    者   : y00245242
-    修改内容   : 增加SMS发送路由判断，决定SMS发送给IMS栈还是PS栈    
-*****************************************************************************/
 VOS_UINT32 MN_MSG_SendSmsSmmaReq(
     MN_MSG_SEND_DOMAIN_ENUM_U8          enSendDomain,
     TAF_MSG_SIGNALLING_TYPE_ENUM_UINT32 enMsgSignallingType
@@ -270,7 +168,6 @@ VOS_UINT32 MN_MSG_SendSmsSmmaReq(
     pstSmaMsg->ucAbortFlg = SMT_SMR_ABORT_FLG_NO_EXIST;
     PS_MEM_SET(pstSmaMsg->aucReserve1, 0, sizeof(pstSmaMsg->aucReserve1));
     
-    /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-11, begin */
 #if (FEATURE_ON == FEATURE_IMS)    
     if (TAF_MSG_SIGNALLING_TYPE_CS_OVER_IP == enMsgSignallingType)
     {
@@ -285,31 +182,14 @@ VOS_UINT32 MN_MSG_SendSmsSmmaReq(
     }
 
     if ( VOS_OK != PS_SEND_MSG( WUEPS_PID_TAF, pstSmaMsg ) )
-    /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-11, end */
     {
         MN_WARN_LOG( "MN_MSG_SendSmsSmmaReq:WARNING:SEND SMT_SMR_SMMA_STRU msg FAIL!" );
         return VOS_ERR;
     }
     return VOS_OK;
 }
-/* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-10, end */
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_EncodeRpData
- 功能描述  : 根据24011中Rp-Data的结构构造一条Rp-Data的字节流
- 输入参数  : stRpData:24011中Rp-Data的结构
- 输出参数  : pucRpduContent:Rp-Data的字节流的内容
-             pucRpduLen:Rp-Data的字节流的长度
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2007年10月15日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  MN_MSG_EncodeRpData(
     const MN_MSG_RP_DATA_STRU           *pstRpData,
     VOS_UINT8                           *pucRpduContent,
@@ -362,22 +242,7 @@ VOS_VOID  MN_MSG_EncodeRpData(
     *pucRpduLen = (VOS_UINT8)ulPos;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_EncodeRpAck
- 功能描述  : 根据24011中Rp-ACK的结构构造一条Rp-ACK的字节流
- 输入参数  : pstRpAck:24011中Rp-ACK的结构
- 输出参数  : pucRpduContent:Rp-ACK的字节流的内容
-             pucRpduLen:Rp-ACK的字节流的长度
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2007年10月15日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  MN_MSG_EncodeRpAck(
     const MN_MSG_RP_ACK_STRU            *pstRpAck,
     VOS_UINT8                           *pucRpduContent,
@@ -404,22 +269,7 @@ VOS_VOID  MN_MSG_EncodeRpAck(
     *pucRpduLen = (VOS_UINT8)ulPos;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_EncodeRpErr
- 功能描述  : 根据24011中Rp-Error的结构构造一条Rp-Error的字节流
- 输入参数  : pstRpErr:24011中Rp-Error的结构
- 输出参数  : pucRpduContent:Rp-Error的字节流的内容
-             pucRpduLen:Rp-Error的字节流的长度
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2007年10月15日
-    作    者   : z40661
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  MN_MSG_EncodeRpErr(
     const MN_MSG_RP_ERR_STRU            *pstRpErr,
     VOS_UINT8                           *pucRpduContent,

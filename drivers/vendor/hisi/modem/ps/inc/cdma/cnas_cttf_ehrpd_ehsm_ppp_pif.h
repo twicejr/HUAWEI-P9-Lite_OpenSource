@@ -157,13 +157,7 @@ enum CNAS_CTTF_EHRPD_PDN_TYPE_ENUM
 };
 typedef VOS_UINT8 CNAS_CTTF_EHRPD_PDN_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : CNAS_CTTF_EHRPD_LINK_STATUS_ENUM
- 结构说明  : 链路建链情况枚举
- 1.日    期   : 2015年11月28日
-   作    者   : g00261581
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CNAS_CTTF_EHRPD_LINK_STATUS_ENUM
 {
     CNAS_CTTF_EHRPD_LINK_NOT_EXISTED             = 0x00,                        /* 链路不存在 */

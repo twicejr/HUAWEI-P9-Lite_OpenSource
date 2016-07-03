@@ -48,7 +48,6 @@ ULONG PPP_MUXCP_upresetci(PPPINFO_S *);
 VOID  PPP_MUXCP_down (PPPFSM_S *pstFsm);
 VOID  PPP_MUXCP_finished (PPPFSM_S *pstFsm);
 VOID  PPP_MUXCP_starting (PPPFSM_S *pstFsm);
-/* Add for DTS2011042101452, by z00166124, at 2011-04-21. 修改原因: 定时器传入接口索引指针 */
 VOID PPP_MUXCP_FSM_TimeOut(VOID *pIfIndex);
 VOID PPP_MUXCP_Ncp_Reset(VOID *pIfIndex);
 

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : frw_event_deploy.c
-  版 本 号   : 初稿
-  作    者   : c00178899
-  生成日期   : 2012年10月16日
-  最近修改   :
-  功能描述   : 事件部署以及核间通信主模块，包括对外接口
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年10月16日
-    作    者   : c00178899
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -64,21 +47,7 @@ OAL_STATIC oal_uint32  frw_ipc_event_queue_empty(oal_void);
 /* 事件部署接口 */
 OAL_STATIC oal_uint32  frw_event_deploy_pipeline(oal_mem_stru *pst_mem_event, frw_event_deploy_enum_uint8 *en_deploy_result);
 
-/*****************************************************************************
- 函 数 名  : frw_ipc_recv
- 功能描述  : 消息接收处理，运行在中断上下文环境，不能加锁
- 输入参数  : pst_ipc_mem_msg: 消息结构体指针
- 输出参数  : 无
- 返 回 值  : OAL_SUCC: 成功; 其他: 失败
- 调用函数  : 由接收中断处理回调
- 被调函数  : IPC模块内部其他函数
 
- 修改历史      :
-  1.日    期   : 2012年10月17日
-    作    者   : c00178899
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void  frw_ipc_recv(frw_ipc_msg_mem_stru *pst_ipc_mem_msg)
 {
     frw_ipc_msg_header_stru     *pst_header;    /* 消息头部结构体 */
@@ -195,21 +164,7 @@ OAL_STATIC oal_void  frw_ipc_recv(frw_ipc_msg_mem_stru *pst_ipc_mem_msg)
     FRW_EVENT_FREE(pst_ipc_mem_msg);
 }
 
-/*****************************************************************************
- 函 数 名  : frw_ipc_send
- 功能描述  : 对外接口, 发送核间消息, 消息内容为事件, 调用该函数后可以释放内存
- 输入参数  : pst_ipc_mem_msg: 消息结构体指针
- 输出参数  : 无
- 返 回 值  : OAL_SUCC: 成功; 其他: 失败
- 调用函数  : 外部模块用来发送事件
- 被调函数  : 内部函数
 
- 修改历史      :
-  1.日    期   : 2012年10月18日
-    作    者   : c00178899
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  frw_ipc_send(frw_ipc_msg_mem_stru *pst_ipc_mem_msg)
 {
     oal_uint32                   ul_ret;
@@ -286,41 +241,13 @@ OAL_STATIC oal_uint32  frw_ipc_send(frw_ipc_msg_mem_stru *pst_ipc_mem_msg)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : frw_ipc_tx_complete_handler
- 功能描述  : 发送完成中断处理，非OFFLOAD情况下不用，OFFLOAD情况下需要用
- 输入参数  : pst_msg:消息结构体指针
- 输出参数  : 无
- 返 回 值  : OAL_SUCC: 成功; 其他: 失败
- 调用函数  : 由发送完成中断处理回调
- 被调函数  : 内部函数
 
- 修改历史      :
-  1.日    期   : 2012年10月17日
-    作    者   : c00178899
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void  frw_ipc_tx_complete(frw_ipc_msg_mem_stru *pst_msg)
 {
     /* TBD */
 }
 
-/*****************************************************************************
- 函 数 名  : frw_ipc_init
- 功能描述  : 对外接口，IPC模块初始化，OFFLOAD情况下主CPU侧由主核调用该函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : OAL_SUCC－成功；其他－失败
- 调用函数  : 外部负责初始化的模块
- 被调函数  : 内部函数
 
- 修改历史      :
-  1.日    期   : 2012年10月16日
-    作    者   : c00178899
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  frw_ipc_init(oal_void)
 {
     oal_uint32   ul_ret;
@@ -355,21 +282,7 @@ OAL_STATIC oal_uint32  frw_ipc_init(oal_void)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : frw_ipc_init_master
- 功能描述  : 主核IPC模块初始化，OFFLOAD情况下主CPU和WIFI都调用该函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : OAL_SUCC－成功；其他－失败
- 调用函数  : IPC初始化
- 被调函数  : 内部函数
 
- 修改历史      :
-  1.日    期   : 2012年10月16日
-    作    者   : c00178899
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  frw_ipc_init_master(frw_ipc_node_stru *pst_ipc_node)
 {
     oal_uint32 ul_ret;
@@ -440,21 +353,7 @@ OAL_STATIC oal_uint32  frw_ipc_init_master(frw_ipc_node_stru *pst_ipc_node)
 }
 
 
-/*****************************************************************************
- 函 数 名  : frw_ipc_init_slave
- 功能描述  : 从核IPC模块初始化: OFFLOAD情况下不需要用
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : OAL_SUCC－成功；其他－失败
- 调用函数  : IPC初始化
- 被调函数  : 内部函数
 
- 修改历史      :
-  1.日    期   : 2012年10月16日
-    作    者   : c00178899
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  frw_ipc_init_slave(frw_ipc_node_stru *pst_ipc_node)
 {
     oal_uint32 ul_ret;
@@ -505,21 +404,7 @@ OAL_STATIC oal_uint32  frw_ipc_init_slave(frw_ipc_node_stru *pst_ipc_node)
 
 }
 
-/*****************************************************************************
- 函 数 名  : frw_ipc_exit
- 功能描述  : 真正的释放资源
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : OAL_SUCC－退出响应处理成功；其他－退出响应处理失败
- 调用函数  : IPC内部函数
- 被调函数  : 内部函数
 
- 修改历史      :
-  1.日    期   : 2012年10月18日
-    作    者   : c00178899
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  frw_ipc_exit(oal_void)
 {
     oal_uint32 ul_ret;
@@ -570,22 +455,7 @@ OAL_STATIC oal_uint32  frw_ipc_exit(oal_void)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : frw_ipc_send_connect_request
- 功能描述  : 采用异步方式进行连接，该函数只发送连接请求，
-             在中断服务例程中接收处理连接响应，并改变IPC状态
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : OAL_SUCC－发送连接请求成功；其他－发送连接请求失败
- 调用函数  : IPC内部函数
- 被调函数  : 内部函数
 
- 修改历史      :
-  1.日    期   : 2012年10月17日
-    作    者   : c00178899
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  frw_ipc_send_connect_request(oal_void)
 {
     oal_uint32    ul_ret;
@@ -603,21 +473,7 @@ OAL_STATIC oal_uint32  frw_ipc_send_connect_request(oal_void)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : frw_ipc_send_connect_response
- 功能描述  : 运行在中断上下文，采用异步方式进行连接，该函数只发送连接响应，
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : OAL_SUCC－发送连接请求成功；其他－发送连接请求失败
- 调用函数  : IPC内部函数
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月17日
-    作    者   : c00178899
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  frw_ipc_send_connect_response(oal_void)
 {
     oal_uint32    ul_ret;
@@ -633,23 +489,7 @@ OAL_STATIC oal_uint32  frw_ipc_send_connect_response(oal_void)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : frw_ipc_inter_msg_send
- 功能描述  : 发送核间通信内部消息
- 输入参数  : uc_msg_type: 内部消息类型
-             puc_data: 需要发送的数据
-             us_len: 数据长度
- 输出参数  : 无
- 返 回 值  : OAL_SUCC－发送成功；OAL_FAIL－发送失败
- 调用函数  : IPC内部函数
- 被调函数  : 调用事件创建接口
 
- 修改历史      :
-  1.日    期   : 2012年10月17日
-    作    者   : c00178899
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  frw_ipc_send_inter_msg(oal_uint8  uc_msg_type,
                                                        oal_uint8 *puc_data,
                                                        oal_uint8  us_len)
@@ -722,41 +562,14 @@ OAL_STATIC oal_uint32  frw_ipc_send_inter_msg(oal_uint8  uc_msg_type,
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : frw_ipc_reset
- 功能描述  : IPC模块复位
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : OAL_SUCC－成功；其他－失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月18日
-    作    者   : c00178899
-
-*****************************************************************************/
 oal_uint32  frw_ipc_reset(oal_void)
 {
     /* TBD */
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : frw_ipc_pkt_dispatch
- 功能描述  : 多核报文分发保序入口
- 输入参数  : buf-网络帧结构体指针
- 输出参数  : 无
- 返 回 值  : OAL_SUCC－成功；其他－失败
- 调用函数  : 注册挂接在报文接收入口处
- 被调函数  : 内部函数
 
- 修改历史      :
-  1.日    期   : 2012年10月18日
-    作    者   : c00178899
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  frw_ipc_smp_dispatch(oal_void *buf)
 {
     /* TBD */
@@ -764,21 +577,7 @@ oal_uint32  frw_ipc_smp_dispatch(oal_void *buf)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : frw_ipc_pkt_ordering
- 功能描述  : 报文保序处理
- 输入参数  : buf-网络帧结构体指针
- 输出参数  : 无
- 返 回 值  : OAL_SUCC－成功；其他－失败
- 调用函数  : 注册挂接在报文发送出口处
- 被调函数  : 内部函数
 
- 修改历史      :
-  1.日    期   : 2012年10月18日
-    作    者   : c00178899
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  frw_ipc_smp_ordering(oal_void *buf)
 {
     /* TBD */
@@ -786,21 +585,7 @@ oal_uint32  frw_ipc_smp_ordering(oal_void *buf)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : frw_ipc_event_queue_full
- 功能描述  : 当事件调度模块发现队列高于某个阀值时，调用该接口通知对方内核
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : OAL_SUCC－成功；其他－失败
- 调用函数  : 事件调度模块
- 被调函数  : 内部函数
 
- 修改历史      :
-  1.日    期   : 2012年10月18日
-    作    者   : c00178899
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  frw_ipc_event_queue_full(oal_void)
 {
     oal_uint32    ul_ret;
@@ -816,21 +601,7 @@ OAL_STATIC oal_uint32  frw_ipc_event_queue_full(oal_void)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : frw_ipc_event_queue_empty
- 功能描述  : 当事件调度模块发现队列低于某个阀值时，调用该接口通知对方内核
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : OAL_SUCC－成功；其他－失败
- 调用函数  : 事件调度模块
- 被调函数  : 内部函数
 
- 修改历史      :
-  1.日    期   : 2012年10月18日
-    作    者   : c00178899
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  frw_ipc_event_queue_empty(oal_void)
 {
     oal_uint32    ul_ret;
@@ -846,21 +617,7 @@ OAL_STATIC oal_uint32  frw_ipc_event_queue_empty(oal_void)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : frw_event_deploy_init
- 功能描述  : 对外接口，事件部署模块初始化接口
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : OAL_SUCC-成功; 其他-失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月18日
-    作    者   : c00178899
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  frw_event_deploy_init(oal_void)
 {
     oal_uint32 ul_ret;
@@ -888,21 +645,7 @@ oal_uint32  frw_event_deploy_init(oal_void)
 }
 
 
-/*****************************************************************************
- 函 数 名  : frw_event_deploy_exit
- 功能描述  : 对外接口，事件部署模块退出接口
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : OAL_SUCC-成功; 其他-失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月18日
-    作    者   : c00178899
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  frw_event_deploy_exit(oal_void)
 {
     oal_uint32 ul_ret;
@@ -924,22 +667,7 @@ oal_uint32  frw_event_deploy_exit(oal_void)
 }
 
 
-/*****************************************************************************
- 函 数 名  : frw_event_deploy_pipeline
- 功能描述  : 内部函数，事件部署接口，挂接到事件管理模块中，按照PIPELINE部署
- 输入参数  : pst_mem_event: 事件内存块指针
- 输出参数  : en_deploy: FRW_EVENT_DEPLOY_IPC-该事件需要IPC
-                        FRW_EVENT_DEPLOY_POST-该事件需要入队列
- 返 回 值  : OAL_SUCC-成功; 其他-失败
- 调用函数  : 事件分发函数
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月18日
-    作    者   : c00178899
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  frw_event_deploy_pipeline(frw_ipc_msg_mem_stru *pst_ipc_mem_msg,
                                               frw_event_deploy_enum_uint8 *en_deploy_result)
 {
@@ -968,22 +696,7 @@ OAL_STATIC oal_uint32  frw_event_deploy_pipeline(frw_ipc_msg_mem_stru *pst_ipc_m
 }
 
 #if 0
-/*****************************************************************************
- 函 数 名  : frw_event_deploy_owner
- 功能描述  : 内部函数，事件部署接口，挂接到事件管理模块中，按照CHIP, DEVICE, VAP部署
- 输入参数  : pst_mem_event: 事件内存块指针
- 输出参数  : en_deploy: FRW_EVENT_DEPLOY_IPC-该事件需要IPC
-                        FRW_EVENT_DEPLOY_POST-该事件需要入队列
- 返 回 值  : OAL_SUCC-成功; 其他-失败
- 调用函数  : 事件分发函数
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月18日
-    作    者   : c00178899
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  frw_event_deploy_owner(frw_ipc_msg_mem_stru *pst_ipc_mem_msg,
                                             frw_event_deploy_enum_uint8 *en_deploy_result)
 {
@@ -1006,22 +719,7 @@ oal_uint32  frw_event_deploy_owner(frw_ipc_msg_mem_stru *pst_ipc_mem_msg,
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : frw_event_deploy_set_affinity_device
- 功能描述  : 对外接口，chip亲和力绑定
- 输入参数  : uc_device_id-设备ID
-             ul_core_mask-CPU掩码
- 输出参数  : 无
- 返 回 值  : OAL_SUCC-成功; 其他-失败
- 调用函数  : device创建时调用
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月18日
-    作    者   : c00178899
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  frw_event_deploy_set_affinity_device(oal_uint8 uc_device_id,
                                                             oal_cpumask ul_core_mask)
 {
@@ -1041,22 +739,7 @@ oal_uint32  frw_event_deploy_set_affinity_device(oal_uint8 uc_device_id,
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : frw_event_deploy_set_affinity_vap
- 功能描述  : 对外接口，chip亲和力绑定
- 输入参数  : uc_vap_id-vap ID
-             ul_core_mask-CPU掩码
- 输出参数  : 无
- 返 回 值  : OAL_SUCC-成功; 其他-失败
- 调用函数  : VAP创建时调用
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月18日
-    作    者   : c00178899
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  frw_event_deploy_set_affinity_vap(oal_uint8 uc_vap_id,
                                                         oal_cpumask ul_core_mask)
 {
@@ -1075,22 +758,7 @@ oal_uint32  frw_event_deploy_set_affinity_vap(oal_uint8 uc_vap_id,
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : frw_event_deploy_set_affinity_chip
- 功能描述  : 对外接口，chip亲和力绑定
- 输入参数  : uc_chip_id-chip id
-             ul_core_mask-CPU掩码
- 输出参数  : 无
- 返 回 值  : OAL_SUCC-成功; 其他-失败
- 调用函数  : CHIP创建时调用
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月18日
-    作    者   : c00178899
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  frw_event_deploy_set_affinity_chip(oal_uint8 uc_chip_id,
                                                          oal_cpumask ul_core_mask)
 {

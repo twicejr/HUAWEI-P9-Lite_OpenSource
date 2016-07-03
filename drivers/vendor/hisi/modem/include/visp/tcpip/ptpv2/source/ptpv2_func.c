@@ -127,9 +127,7 @@ VOID PTPV2_RcvPacketEventProc()
         VOS_DBGASSERT(ulIfRcvIndex == MBUF_GET_RECEIVE_IFNET_INDEX(pstMBuf));
         (VOID)PTPV2_OverMacPktRcvProc(pstMBuf);
 
-        /*Added by likaikun213099, 清除Fortify DeadCode告警, 2014/9/12   问题单号:DTS2014091008399 */
         ulCount++;
-        /* End of Added by likaikun213099, 2014/9/12   问题单号:DTS2014091008399 */
         if (ulCount >= LEN_128) /*一次处理128个报文，释放10ms*/
         {
             PTPV2_UnLock();

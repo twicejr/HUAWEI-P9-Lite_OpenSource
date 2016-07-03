@@ -1,0 +1,26 @@
+/*
+ * Hisilicon Ltd. Hi6250 SoC
+ *
+ * Copyright (C) 2012-2013 Hisilicon Ltd.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * publishhed by the Free Software Foundation.
+ */
+
+  /{
+    jtagtosd {
+        compatible = "hisilicon,jtagtosd";
+        sdio-ldo = <&ldo9>;
+        reg = <0x0 0xFFF0A308 0x0 0x1000>;
+        value = <0x01000000>;
+        mask = <0x03000000>;
+    };
+
+    djtagtosd{
+        compatible = "hisilicon,djtagtosd";
+        reg = <0x0 0xFFF0A308 0x0 0x1000>;
+        value = <0x03000000>;
+        mask = <0x03000000>;
+    };
+  };

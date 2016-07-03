@@ -1,40 +1,4 @@
-/************************************************************************
-  Copyright    : 2005-2007, Huawei Tech. Co., Ltd.
-  File name    : Aps_DealSndcpMsg.c
-  Author       : 韩鲁峰
-  Version      : V200R001
-  Date         : 2005-0
-  Description  :
-  Function List:
-        ---Aps_DealAllFromSndcp
-        ---Aps_SnMsgModSnActRsp
-        ---Aps_SnMsgModSnActRspParaCheck
-        ---Aps_SnMsgModSnMdfRsp
-        ---Aps_SnMsgModSnMdfRspParaCheck
 
-        ---Aps_SnMsgModSnDeActRsp
-        ---Aps_SnMsgModSnDeActRspParaCheck
-        ---Aps_SnMsgModSnStatusReq
-        ---Aps_SnMsgModSnStatusReqParaCheck
-        ---Aps_FindSapiPdp
-
-        ---Aps_FindSapiTransModePdp
-        ---Aps_Nsapi2PdpId
-        ---
-  History      :
-  1. Date:2005-10-30
-     Author: 韩鲁峰
-     Modification:Create
-  2. 2006-02-23 modify by 韩鲁峰 FOR A32D02144
-  3. 2006-02-28 modify by 韩鲁峰 for A32D02265
-
-  4.日    期   : 2006年4月4日
-    作    者   : liuyang id:48197
-    修改内容   : 问题单号:A32D01738
-  5.日    期   : 2006年7月6日
-    作    者   : L47619
-    修改内容   : 问题单号:A32D04774
-************************************************************************/
 
 
 /*****************************************************************************
@@ -223,25 +187,7 @@ VOS_UINT32  Aps_SnMsgModSnMdfRspParaCheck( APS_SNDCP_MODIFY_RSP_ST*   pSnActRsp)
     return  APS_PARA_VALID;
 }
 
-/*****************************************************************************
- Prototype      : Aps_SnMdfRspChngEntity()
- Description    : 收到SN_MDF_RSP后修改状态机参数,TRANSMODE,状态
- Input          : pSnMdfRsp
- Output         : NO
- Return Value   :
- Data Access    :
- Data Update    :
- Calls          : Rabm_SetTransMode();
-                  Aps_DealEntityTrans();
- Called By      : Aps_DealAllFromSndcp()
- History        : ---
-  1.Date        : 2005-
-    Author      : ---
-    Modification: Created function
- 2.日    期   : 2011年12月17日
-   作    者   : s62952
-   修改内容   : PS融合项目修改 :删除状态处理
-*****************************************************************************/
+
 VOS_VOID    Aps_SnMdfRspChngEntity(
     APS_SNDCP_MODIFY_RSP_ST            *pSnMdfRsp,
     VOS_UINT8                           ucPdpId
@@ -346,28 +292,7 @@ VOS_UINT32  Aps_SetRabmTransMode(   RABM_APS_SET_TRANS_MODE_ST *pApsRabmSetTRans
 
 }
 
-/*****************************************************************************
- Prototype      : Aps_RabmMsgActSndcp
- Description    : 收到RABM的切换消息后，若要激活SNDCP，就调用此函数.
- Input          : pRabmMsg
- Output         : ---
- Return Value   : ---
- Data Access    :
- Data Update    :
- Calls          : ---
- Called By      : ---
- History        : ---
-  1.Date        : 2005-0
-    Author      : 韩鲁峰
-    Modification: Created function
-  2.日    期   : 2011年5月12日
-    作    者   : A00165503
-    修改内容   : 问题单号: DTS2011050405023, W2G挂起过程中发起PDP去激活, 重选
-                 到G后, APS没有激活SNDCP, 导致SNDCP的状态与当前PDP状态不一致
-  3.日    期   : 2011年12月22日
-    作    者   : A00165503
-    修改内容   : PS Project: 修改激活SNDCP处理逻辑, 去除发送消息失败的处理
-*****************************************************************************/
+
 VOS_VOID    Aps_RabmMsgActSndcp (   VOS_UINT8    ucPdpId )
 {
     APS_INNER_SN_ACT_ST             InnerSnActInd;
@@ -429,23 +354,7 @@ VOS_VOID    Aps_RabmMsgDeActSndcp ( VOS_UINT8    ucPdpId )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ValidatePdpForSnStatusReq
- 功能描述  : 检查当前APS实体中的SAPI是否满足SN STATUS消息中指定的SAPI
- 输入参数  : ucPdpId                    - APS实体索引
-             pstSnStatusReq             - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 满足
-             VOS_FALSE                  - 不满足
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月24日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_ValidatePdpForSnStatusReq(
     VOS_UINT8                           ucPdpId,
     APS_SNDCP_STATUS_REQ_ST            *pstSnStatusReq

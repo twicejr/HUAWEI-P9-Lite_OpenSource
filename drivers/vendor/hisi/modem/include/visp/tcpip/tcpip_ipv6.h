@@ -36,7 +36,6 @@ extern "C"{
 *******************************************************************************/
 
 /* 修改该文件时需注意,要保证单独包含tcpip_ipv6.h文件时可以编译通过 */
-/* Add for DTS2011120204259, by zhaoyue00171897, at 2011-12-02. 修改原因: 增加acl6头文件 */
 #include "tcpip/public/tcpip_basetype.h"
 #include "tcpip/public/vrpvos/mbuf.h"
 #include "tcpip/public/tcpip_id.h"

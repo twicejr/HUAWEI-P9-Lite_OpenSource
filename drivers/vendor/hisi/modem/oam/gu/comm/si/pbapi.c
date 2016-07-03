@@ -1,15 +1,6 @@
 
 
-/************************************************************************
-  Copyright    : 2005-2009, Huawei Tech. Co., Ltd.
-  File name    : PBApi.c
-  Author       : z00100318
-  Version      : V200R001
-  Date         : 2008-10-28
-  Description  : 该C文件给出了---接口模块实现
-  Function List:
-  History      :
- ************************************************************************/
+
 #ifdef __cplusplus
  #if __cplusplus
 extern "C" {
@@ -30,19 +21,7 @@ extern "C" {
 
 #if ((OSA_CPU_ACPU == VOS_OSA_CPU) || (defined(DMT)))
 
-/*****************************************************************************
-函 数 名  : SI_PB_GetReceiverPid
-功能描述  : FDN激活
-输入参数  : 无
-输出参数  : 无
-返 回 值  : SI_UINT32 函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2008年10月18日
-  作    者  : H59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_PB_GetReceiverPid(MN_CLIENT_ID_T  ClientId, VOS_UINT32 *pulReceiverPid)
 {
 #if ( FEATURE_MULTI_MODEM == FEATURE_ON )
@@ -75,19 +54,7 @@ VOS_UINT32 SI_PB_GetReceiverPid(MN_CLIENT_ID_T  ClientId, VOS_UINT32 *pulReceive
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_Read
-功能描述  : 读取电话本记录
-输入参数  : 无
-输出参数  : 无
-返 回 值  : SI_UINT32 函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2008年10月14日
-  作    者  : H59254
-  修改内容  : Create
-*****************************************************************************/
+
 SI_UINT32 SI_PB_Read(  MN_CLIENT_ID_T           ClientId,
                             MN_OPERATION_ID_T        OpId,
                             SI_PB_STORATE_TYPE       Storage,
@@ -140,19 +107,7 @@ SI_UINT32 SI_PB_Read(  MN_CLIENT_ID_T           ClientId,
 #endif
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_SRead
-功能描述  : 读取复合电话本记录
-输入参数  : 无
-输出参数  : 无
-返 回 值  : SI_UINT32 函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2009年06月05日
-  作    者  : m00128685
-  修改内容  : Create
-*****************************************************************************/
+
 SI_UINT32 SI_PB_SRead(  MN_CLIENT_ID_T           ClientId,
                             MN_OPERATION_ID_T        OpId,
                             SI_PB_STORATE_TYPE       Storage,
@@ -205,19 +160,7 @@ SI_UINT32 SI_PB_SRead(  MN_CLIENT_ID_T           ClientId,
 #endif
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_Query
-功能描述  : 电话本号码查询
-输入参数  : 无
-输出参数  : 无
-返 回 值  : SI_UINT32 函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2008年10月14日
-  作    者  : H59254
-  修改内容  : Create
-*****************************************************************************/
+
 SI_UINT32 SI_PB_Query(     MN_CLIENT_ID_T           ClientId,
                                 MN_OPERATION_ID_T        OpId)
 {
@@ -252,19 +195,7 @@ SI_UINT32 SI_PB_Query(     MN_CLIENT_ID_T           ClientId,
 #endif
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_Set
-功能描述  : 设置当前号码本使用的存储器类型
-输入参数  : 无
-输出参数  : 无
-返 回 值  : SI_UINT32 函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2008年10月14日
-  作    者  : H59254
-  修改内容  : Create
-*****************************************************************************/
+
 SI_UINT32 SI_PB_Set(    MN_CLIENT_ID_T           ClientId,
                             MN_OPERATION_ID_T        OpId,
                             SI_PB_STORATE_TYPE      Storage)
@@ -313,19 +244,7 @@ SI_UINT32 SI_PB_Set(    MN_CLIENT_ID_T           ClientId,
     return TAF_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_Add
-功能描述  : 电话本中追加一条记录
-输入参数  : 无
-输出参数  : 无
-返 回 值  : SI_UINT32 函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2008年10月14日
-  作    者  : H59254
-  修改内容  : Create
-*****************************************************************************/
+
 SI_UINT32 SI_PB_Add(    MN_CLIENT_ID_T          ClientId,
                             MN_OPERATION_ID_T        OpId,
                              SI_PB_STORATE_TYPE      Storage,
@@ -348,9 +267,7 @@ SI_UINT32 SI_PB_Add(    MN_CLIENT_ID_T          ClientId,
         return TAF_FAILURE;
     }
 
-    /*lint -e433  修改人: j00174725; 检视人: xucheng */
     pMsg = (SI_PB_ADD_REP_STRU *)VOS_AllocMsg(WUEPS_PID_AT, sizeof(SI_PB_ADD_REP_STRU) - VOS_MSG_HEAD_LENGTH);
-    /*lint +e433  修改人: j00174725; 检视人: xucheng */
 
     if (VOS_NULL_PTR == pMsg)
     {
@@ -392,19 +309,7 @@ SI_UINT32 SI_PB_Add(    MN_CLIENT_ID_T          ClientId,
 
     return TAF_SUCCESS;
 }
-/*****************************************************************************
-函 数 名  : SI_PB_SAdd
-功能描述  : 电话本中追加一条记录
-输入参数  : 无
-输出参数  : 无
-返 回 值  : SI_UINT32 函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2009年06月05日
-  作    者  : m00128685
-  修改内容  : Create
-*****************************************************************************/
+
 SI_UINT32 SI_PB_SAdd(    MN_CLIENT_ID_T          ClientId,
                             MN_OPERATION_ID_T        OpId,
                              SI_PB_STORATE_TYPE      Storage,
@@ -422,9 +327,7 @@ SI_UINT32 SI_PB_SAdd(    MN_CLIENT_ID_T          ClientId,
         return TAF_FAILURE;
     }
 
-    /*lint -e433  修改人: j00174725; 检视人: xucheng */
     pMsg = (SI_PB_ADD_REP_STRU *)VOS_AllocMsg(WUEPS_PID_AT, sizeof(SI_PB_ADD_REP_STRU) - VOS_MSG_HEAD_LENGTH);
-    /*lint +e433  修改人: j00174725; 检视人: xucheng */
 
     if (VOS_NULL_PTR == pMsg)
     {
@@ -464,19 +367,7 @@ SI_UINT32 SI_PB_SAdd(    MN_CLIENT_ID_T          ClientId,
 #endif
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_Modify
-功能描述  : 电话本中追加一条记录
-输入参数  : 无
-输出参数  : 无
-返 回 值  : SI_UINT32 函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2008年10月14日
-  作    者  : H59254
-  修改内容  : Create
-*****************************************************************************/
+
 SI_UINT32 SI_PB_Modify(    MN_CLIENT_ID_T          ClientId,
                                 MN_OPERATION_ID_T       OpId,
                                 SI_PB_STORATE_TYPE      Storage,
@@ -499,9 +390,7 @@ SI_UINT32 SI_PB_Modify(    MN_CLIENT_ID_T          ClientId,
         return TAF_FAILURE;
     }
 
-    /*lint -e433  修改人: j00174725; 检视人: xucheng */
     pMsg = (SI_PB_MODIFY_REP_STRU *)VOS_AllocMsg(WUEPS_PID_AT, sizeof(SI_PB_MODIFY_REP_STRU) - VOS_MSG_HEAD_LENGTH);
-    /*lint +e433  修改人: j00174725; 检视人: xucheng */
 
     if (VOS_NULL_PTR == pMsg)
     {
@@ -542,19 +431,7 @@ SI_UINT32 SI_PB_Modify(    MN_CLIENT_ID_T          ClientId,
     return TAF_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_SModify
-功能描述  : 电话本中追加一条记录
-输入参数  : 无
-输出参数  : 无
-返 回 值  : SI_UINT32 函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2009年06月05日
-  作    者  : m00128685
-  修改内容  : Create
-*****************************************************************************/
+
 SI_UINT32 SI_PB_SModify(    MN_CLIENT_ID_T          ClientId,
                                 MN_OPERATION_ID_T       OpId,
                                 SI_PB_STORATE_TYPE      Storage,
@@ -572,9 +449,7 @@ SI_UINT32 SI_PB_SModify(    MN_CLIENT_ID_T          ClientId,
         return TAF_FAILURE;
     }
 
-    /*lint -e433  修改人: j00174725; 检视人: xucheng */
     pMsg = (SI_PB_MODIFY_REP_STRU *)VOS_AllocMsg(WUEPS_PID_AT, sizeof(SI_PB_MODIFY_REP_STRU) - VOS_MSG_HEAD_LENGTH);
-    /*lint +e433  修改人: j00174725; 检视人: xucheng */
 
     if (VOS_NULL_PTR == pMsg)
     {
@@ -612,19 +487,7 @@ SI_UINT32 SI_PB_SModify(    MN_CLIENT_ID_T          ClientId,
 #endif
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_Delete
-功能描述  : 电话本中删除一条记录
-输入参数  : 无
-输出参数  : 无
-返 回 值  : SI_UINT32 函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2008年10月14日
-  作    者  : H59254
-  修改内容  : Create
-*****************************************************************************/
+
 SI_UINT32 SI_PB_Delete(     MN_CLIENT_ID_T             ClientId,
                                 MN_OPERATION_ID_T           OpId,
                                 SI_PB_STORATE_TYPE          Storage,
@@ -678,19 +541,7 @@ SI_UINT32 SI_PB_Delete(     MN_CLIENT_ID_T             ClientId,
     return TAF_SUCCESS;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PB_Search
-功能描述  : 电话本中查找一个记录
-输入参数  : 无
-输出参数  : 无
-返 回 值  : SI_UINT32 函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2009年3月12日
-  作    者  : H59254
-  修改内容  : Create
-*****************************************************************************/
+
 SI_UINT32 SI_PB_Search(    MN_CLIENT_ID_T             ClientId,
                                 MN_OPERATION_ID_T           OpId,
                                 SI_PB_STORATE_TYPE          Storage,
@@ -702,9 +553,7 @@ SI_UINT32 SI_PB_Search(    MN_CLIENT_ID_T             ClientId,
 #else
     SI_PB_SEARCH_REQ_STRU  *pMsg;
 
-    /*lint -e433  修改人: j00174725; 检视人: xucheng */
     pMsg = (SI_PB_SEARCH_REQ_STRU *)VOS_AllocMsg(WUEPS_PID_AT, sizeof(SI_PB_SEARCH_REQ_STRU) - VOS_MSG_HEAD_LENGTH);
-    /*lint +e433  修改人: j00174725; 检视人: xucheng */
 
     if (VOS_NULL_PTR == pMsg)
     {
@@ -739,18 +588,7 @@ SI_UINT32 SI_PB_Search(    MN_CLIENT_ID_T             ClientId,
 #endif
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_GetStorateType
-功能描述  :获取电话本当前存储介质
-输入参数  :无
-输出参数  :无
-返 回 值  :电话本当前存储介质
 
-修订记录  :
-1. 日    期   : 2011年05月17日
-   作    者   : j00168360
-   修改内容   : Creat [DTS2011042105653]，at+cpbf混合查找功能
-*****************************************************************************/
 VOS_UINT32 SI_PB_GetStorateType(VOS_VOID)
 {
 #if (( FEATURE_MULTI_MODEM == FEATURE_ON )&&(!defined(DMT)))
@@ -760,18 +598,7 @@ VOS_UINT32 SI_PB_GetStorateType(VOS_VOID)
 #endif
 }
 
-/*****************************************************************************
-函 数 名  :SI_PB_GetSPBFlag
-功能描述  :获取复合电话本标志，由此可判断出当前是否支持复合电话本
-输入参数  :无
-输出参数  :无
-返 回 值  :复合电话本flag
 
-修订记录  :
-1. 日    期   : 2011年05月17日
-   作    者   : j00168360
-   修改内容   : Creat [DTS2011042105653]，at+cpbf混合查找功能
-*****************************************************************************/
 VOS_UINT32 SI_PB_GetSPBFlag(VOS_VOID)
 {
 #if (( FEATURE_MULTI_MODEM == FEATURE_ON )&&(!defined(DMT)))
@@ -786,20 +613,7 @@ VOS_UINT32 SI_PB_GetSPBFlag(VOS_VOID)
 
 #if ((OSA_CPU_CCPU == VOS_OSA_CPU)||(defined(DMT)))
 
-/*****************************************************************************
-函 数 名      :
-功能描述  :
-输入参数  :
-输出参数  :
-返 回 值      :
-调用函数  :
-被调函数  :
-修订记录  :
-1. 日    期   : 2007年10月15日
-    作    者   : z00100318
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 SI_PB_GetEccNumber(SI_PB_ECC_DATA_STRU *pstEccData)
 {
     VOS_UINT32                          ulResult;
@@ -868,17 +682,7 @@ VOS_UINT32 SI_PB_GetEccNumber(SI_PB_ECC_DATA_STRU *pstEccData)
 }
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
-函 数 名  : SI_PB_GetXeccNumber
-功能描述  : 获取CDMA ECC号码
-输入参数  : 无
-输出参数  : pstEccData:ECC号码内容
-返 回 值  : VOS_OK/VOS_ERR
-修订记录  :
-1. 日    期   : 2015年06月15日
-   作    者   : h00300778
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PB_GetXeccNumber(SI_PB_ECC_DATA_STRU *pstEccData)
 {
     VOS_UINT32                          ulResult;

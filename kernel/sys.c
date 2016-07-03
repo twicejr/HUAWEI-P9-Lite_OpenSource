@@ -961,7 +961,13 @@ SYSCALL_DEFINE3(setresuid, uid_t, ruid, uid_t, euid, uid_t, suid)
 		goto error;
 	if (!new->uid && (checkroot_setresuid(old->gid)))
 		goto error;
+#ifdef CONFIG_HUAWEI_UID_IO_STATS
+	retval = commit_creds(new);
+	profile_end_setresuid(current);
+	return retval;
+#else
 	return commit_creds(new);
+#endif
 
 error:
 	abort_creds(new);

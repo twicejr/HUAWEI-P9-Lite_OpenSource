@@ -1,21 +1,4 @@
-/******************************************************************************
 
-  Copyright (C), 2001-2011, Huawei Tech. Co., Ltd.
-
- ******************************************************************************
-  File Name     : dhcpc_cdb.h
-  Version       : Initial Draft
-  Author        : l00103336
-  Created       : 2012/4/19
-  Last Modified :
-  Description   : DHCPC模块配置数据结构
-  Function List :
-  History       :
-  1.Date        : 2012/4/19
-    Author      : l00103336
-    Modification: Created file
-
-******************************************************************************/
 #ifndef __DHCPC_CDB_H__
 #define __DHCPC_CDB_H__
 
@@ -62,7 +45,6 @@ typedef struct
 #define LAP_DHCP_SERVER_GROUP_NAME_MAX_LENGTH    32
 #define LAP_VPN_INSTANCE_NAME_MAX_LENGTH         31
 
-/* zhangjinquan 00175135 DHCPv6特性 2012-07-02 start */
 typedef struct tagLAPDHCPCFG
 {
      ULONG aulPrimaryServerIp[4];        /*  主服务器的IP 地址*/
@@ -77,7 +59,6 @@ typedef struct tagLAPDHCPCFG
      UCHAR ucRetransmitTimeOut;    /* 配置的重发间隔，范围1-10，默认3 */
      UCHAR ucReserve;              /* 保留字段 */
 }LAP_DHCP_CFG_S;
-/* zhangjinquan 00175135 DHCPv6特性 2012-07-02 end   */
 
 #ifdef   __WIN32_PLATFORM__
 #pragma pack(pop, 1)

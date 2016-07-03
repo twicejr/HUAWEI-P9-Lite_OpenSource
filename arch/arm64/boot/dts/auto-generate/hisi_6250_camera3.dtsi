@@ -1,0 +1,154 @@
+/*
+ * Copyright (c) 2012-2013, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+/ {
+	huawei,hisi_isp110 {
+		compatible = "huawei,hisi_isp110";
+		hisi,product_name = "hi6250";
+        hisi,is_fpga = <1>;
+
+        clocks = <&aclk_gate_isp>, <&aclk_gate_dss>, <&pclk_gate_dss>;
+        clock-names = "aclk_isp", "aclk_dss", "pclk_dss";
+
+        pinctrl-names = "default", "idle";
+        pinctrl-0 = </*&gpio009_pmx_func*/
+                 /*&gpio010_pmx_func*/
+                 &gpio017_pmx_func
+                 &gpio018_pmx_func
+                 &gpio019_pmx_func
+                 &gpio022_pmx_func
+                 &gpio023_pmx_func
+                 &gpio025_pmx_func
+                 &gpio026_pmx_func
+                 &gpio027_pmx_func
+                 &gpio028_pmx_func
+                 /*&gpio009_cfg_func*/
+                 /*&gpio010_cfg_func*/
+                 &gpio017_cfg_func
+                 &gpio018_cfg_func
+                 &gpio019_cfg_func
+                 &gpio022_cfg_func
+                 &gpio023_cfg_func
+                 &gpio025_cfg_func
+                 &gpio026_cfg_func
+                 &gpio027_cfg_func
+                 &gpio028_cfg_func
+                 >;
+		pinctrl-1 = </*&gpio009_pmx_idle*/
+                 /*&gpio010_pmx_idle*/
+                 &gpio017_pmx_idle
+                 &gpio018_pmx_idle
+                 &gpio019_pmx_idle
+                 &gpio022_pmx_idle
+                 &gpio023_pmx_idle
+                 &gpio025_pmx_idle
+                 &gpio026_pmx_idle
+                 &gpio027_pmx_idle
+                 &gpio028_pmx_idle
+                 /*&gpio009_cfg_idle*/
+                 /*&gpio010_cfg_idle*/
+                 &gpio017_cfg_idle
+                 &gpio018_cfg_idle
+                 &gpio019_cfg_idle
+                 &gpio022_cfg_idle
+                 &gpio023_cfg_idle
+                 &gpio025_cfg_idle
+                 &gpio026_cfg_idle
+                 &gpio027_cfg_idle
+                 &gpio028_cfg_idle
+                 >;
+
+		status = "ok";
+	};
+	
+    histarisp: isp@e8400000 {
+        compatible = "hisilicon,isp";
+        reg = <0xe8400000 0x200000>;
+        interrupts = <0 261 4>;
+
+        status = "ok";
+        isp-subsys-rproc-supply = <&ispsubsys>;
+        /* isp-subsys-rproc = <&ispsubsys>; */
+        isp-remap-addr = <0x00000000>;
+        isp-ipc-addr = <0xC2020000>;
+        isp-names = "isp_a7";
+        firmware-names = "isp_fw.elf";
+        bootware-names = "isp_bw.elf";
+        mailbox-names = "isp_mailbox";
+		isp_local_timer = <19200000>;
+		clocks = <&clk_gate_ispa7>, <&clk_gate_isp_timer>;
+		clock-names = "clk_ispa7", "isp_timer";
+		ispa7-default-clk = <800000000>;
+        iommu_info{
+            start-addr = <0xc0000000>;
+            size = <0x3ffffc00>;
+        };
+    };
+    histarispsmmu: ispsmmu@e8406000 {
+        compatible = "hisilicon,smmu-irq";
+        reg = <0xe8406000 0x1000>;
+            isp-smmu-addr = <0xe8406000>;
+            isp-dss-addr = <0xe8608000>;
+        interrupts = <0 267 4>,<0 268 4>;
+        status = "ok";
+    };
+
+/* begin for hwcam arch  */
+
+	huawei,camcfgdev {
+			compatible = "huawei,camcfgdev";		
+			status = "ok";
+	};
+
+    huawei,scharger_flash {
+        compatible = "huawei,scharger_flash";
+
+        huawei,flash-name = "scharger_flash";
+        huawei,flash-index = <0>;
+        huawei,flash-type = <0>;
+        huawei,slave-address = <0x67>;
+
+        pvdd-classd-supply = <&schg_boost3>;
+        flash-led-supply = <&schg_source1>;
+        torch-led-supply = <&schg_source2>;
+
+        huawei,flash_led_num = <16>;
+        huawei,flash_led = <125000 250000 375000 500000 625000 750000 875000 1000000 1125000 1250000 1375000 1500000 1500000 1500000 1500000 1500000>;
+        huawei,torch_led_num = <8>;
+        huawei,torch_led = <50000 100000 150000 200000 250000 300000 350000 400000>;
+
+        hisi,is_fpga = <0>;
+        status = "disabled";
+    };
+
+    amba{
+        i2c4: i2c@FDF0D000 {
+
+            huawei,lm3646@67{
+                compatible = "huawei,lm3646";
+                reg = <0x67>;
+                huawei,flash-name = "lm3646";
+                huawei,flash-index = <0>;
+                huawei,flash-type = <0>;
+                huawei,slave-address = <0x67>;
+                huawei,flash-ctrltype = <1>;
+                huawei,need-wakelock = <0>;
+                huawei,flash-chipid = <0x11>;
+                huawei,flash_led_num = <11>;
+                huawei,flash_led = <0x0 0x1 0x2 0x3 0x4 0x5 0x6 0x7 0x8 0x9 0xa>;
+                huawei,torch_led_num = <8>;
+                huawei,torch_led = <0x0 0x1 0x2 0x3 0x4 0x5 0x6 0x7>;
+                status = "disabled";
+            };
+        };
+    };
+};

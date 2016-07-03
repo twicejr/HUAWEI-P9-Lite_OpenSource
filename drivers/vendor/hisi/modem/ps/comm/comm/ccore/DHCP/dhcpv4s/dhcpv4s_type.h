@@ -29,9 +29,7 @@ typedef enum
     DHCPS_STATE_REQUESTIP  = 1,       /*向USM申请IP地址*/
     DHCPS_STATE_OFFERED      = 2,       /*向对端发送了OFFER*/
     DHCPS_STATE_COMMITED   = 3,       /*租约的稳定状态*/
-    /* Added start by ZhangYang  z00142225 at 2008-12-29 UGWV900R001C001 for 地址分配功能 */
     DHCPS_STATE_RELAY      = 4,       /*角色为SGW，PMIP接入的场景下，DHCP的RELAY状态*/
-    /* Added end by ZhangYang  z00142225 at 2008-12-29 UGWV900R001C001 for 地址分配功能 */
     DHCPS_STATE_MAX
 }DHCPS_LEASESTATE_E;
 
@@ -81,7 +79,6 @@ typedef struct tagDHCPS_SEND_UDP_PARA
 } DHCPS_SEND_UDP_PARA_S;
 
 
-/* Added start by ZhangYang  z00142225 at 2009-01-05 UGWV900R001C001 for 地址分配功能 */
 typedef struct
 {
 	/*lint -e553*/

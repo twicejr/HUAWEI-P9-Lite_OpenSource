@@ -250,10 +250,7 @@ static int fusb301_ctrl_port_mode(int value)
         case TYPEC_HOST_PORT_MODE_DRP:
             hwlog_info("%s: set to DRP mode\n", __func__);
             fusb301_host_port_mode(FUSB301_REG_SET_DRP);
-            fusb301_set_port_state(TYPEC_STATE_UNATTACHED_DISABLED);
-            mdelay(DISABLE_DURATION_MS);
-            fusb301_host_port_mode(FUSB301_REG_SET_DRP);
-            fusb301_set_port_state(TYPEC_STATE_UNATTACHED_SINK);
+            fusb301_set_port_state(TYPEC_STATE_UNATTACHED_ERRORRECOVERY);
             break;
         default:
             hwlog_err("%s: wrong input action!\n", __func__);

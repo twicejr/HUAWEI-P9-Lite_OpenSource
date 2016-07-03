@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : hmac_vap.h
-  版 本 号   : 初稿
-  作    者   : huxiaotong
-  生成日期   : 2012年10月19日
-  最近修改   :
-  功能描述   : hmac_vap.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年10月19日
-    作    者   : huxiaotong
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __HMAC_VAP_H__
 #define __HMAC_VAP_H__
@@ -146,7 +129,9 @@ typedef struct
     oal_bool_enum_uint8              uc_get_dbb_completed_flag;                 /*获取DBB版本号成功上报标志*/
     oal_bool_enum_uint8              uc_check_fem_pa_flag;                      /*fem和pa是否烧毁上报标志*/
     oal_bool_enum_uint8              uc_get_rx_pkct_flag;                       /*接收数据包上报标志位*/
-    oal_uint8                        uc_reserved[3];
+    oal_bool_enum_uint8              uc_lte_gpio_check_flag;                    /*接收数据包上报标志位*/
+    oal_bool_enum_uint8              uc_report_efuse_reg_flag;              /*efuse 寄存器读取*/
+    oal_uint8                        uc_reserved[1];
 }hmac_atcmdsrv_get_stats_stru;
 
 

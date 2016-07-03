@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafSpmServiceDomainSelProc.c
-  版 本 号   : 初稿
-  作    者   : y00245242
-  生成日期   : 2013年7月11日
-  最近修改   :
-  功能描述   : TafSpmServiceDomainSelProc.C文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年7月11日
-    作    者   : y00245242
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -34,9 +17,7 @@
 #endif
 #include "TafSpmSndImsa.h"
 #include "TafFsm.h"
-/* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-18, begin */
 #include "MnCallSendApp.h"
-/* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-18, end */
 #include "MnCall.h"
 #include "TafSdcLib.h"
 #include "TafSdcCtx.h"
@@ -98,9 +79,7 @@ TAF_SPM_PROC_MSG_STRU g_astTafSpmImsDomainSelMsgTbl[]=
     TAF_ACT_TBL_ITEM(WUEPS_PID_AT,  MN_CALL_APP_START_DTMF_REQ,         TAF_SPM_RcvAppStartDtmfReqBasedOnCsOverIp),
     TAF_ACT_TBL_ITEM(WUEPS_PID_AT,  MN_CALL_APP_STOP_DTMF_REQ,          TAF_SPM_RcvAppStopDtmfReqBasedOnCsOverIp),
     TAF_ACT_TBL_ITEM(WUEPS_PID_AT,  MN_CALL_APP_GET_CDUR_REQ,           TAF_SPM_RcvAppGetCdurReqBasedOnCsOverIp),
-    /* Added by s00217060 for VoLTE_PhaseII  项目, 2013-09-18, begin */
     TAF_ACT_TBL_ITEM(WUEPS_PID_AT,  ID_TAFAGENT_MN_GET_CALL_INFO_REQ,   TAF_SPM_RcvAppGetCallInfoReqBasedOnCsOverIp),
-    /* Added by s00217060 for VoLTE_PhaseII  项目, 2013-09-18, end */
     TAF_ACT_TBL_ITEM(WUEPS_PID_AT,  MN_CALL_APP_CLPR_GET_REQ,           TAF_SPM_RcvAppGetClprReqBasedOnCsOverIp),
 
     TAF_ACT_TBL_ITEM(WUEPS_PID_AT,  MN_CALL_APP_CALL_MODIFY_REQ,        TAF_SPM_RcvAppCallModifyReqBasedOnCsOverIp),
@@ -110,8 +89,6 @@ TAF_SPM_PROC_MSG_STRU g_astTafSpmImsDomainSelMsgTbl[]=
     TAF_ACT_TBL_ITEM(WUEPS_PID_AT,  TAF_CALL_APP_GET_ECONF_CALLED_INFO_REQ,      TAF_SPM_RcvAppGetEconfInfoReqBasedOnCsOverIp),
 
     /*  AT SS message */
-    /* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-17, begin */
-    /* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-17, end */
     TAF_ACT_TBL_ITEM(WUEPS_PID_AT,  TAF_MSG_PROCESS_USS_MSG,            TAF_SPM_RcvProcUssSsReqBasedOnCsOverIp),
     TAF_ACT_TBL_ITEM(WUEPS_PID_AT,  TAF_MSG_RLEASE_MSG,                 TAF_SPM_RcvRleaseSsReqBasedOnCsOverIp),
 
@@ -125,8 +102,6 @@ TAF_SPM_PROC_MSG_STRU g_astTafSpmImsDomainSelMsgTbl[]=
     TAF_ACT_TBL_ITEM(MAPS_STK_PID,  STK_CALL_START_DTMF_REQ,            TAF_SPM_RcvStkStartDtmfReqBasedOnCsOverIp),
     TAF_ACT_TBL_ITEM(MAPS_STK_PID,  STK_CALL_STOP_DTMF_REQ,             TAF_SPM_RcvStkStopDtmfReqBasedOnCsOverIp),
 
-    /* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-17, begin */
-    /* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-17, end */
     /* STK SS message */
     TAF_ACT_TBL_ITEM(MAPS_STK_PID,  STK_SS_USSD_REQ,                    TAF_SPM_RcvProcUssSsReqBasedOnCsOverIp),
     TAF_ACT_TBL_ITEM(MAPS_STK_PID,  STK_SS_REGISTERSS_REQ,              TAF_SPM_RcvRegisterSsReqBasedOnCsOverIp),
@@ -138,60 +113,18 @@ TAF_SPM_PROC_MSG_STRU g_astTafSpmImsDomainSelMsgTbl[]=
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : TAF_SPM_GetImsDomainSelMsgTabAddr
- 功能描述  : 获取消息处理table的首地址
 
- 输入参数  : 无
-
- 输出参数  : 无
- 返 回 值  : 返回Table表的首地址
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2013年7月11日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 TAF_SPM_PROC_MSG_STRU *TAF_SPM_GetImsDomainSelMsgTabAddr(VOS_VOID)
 {
     return (&g_astTafSpmImsDomainSelMsgTbl[0]);
 }
 
-/* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-16, begin */
 /* TAF_SPM_GetCallType删除 */
-/* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-16, end */
 
 
 
 #if ( FEATURE_ON == FEATURE_LTE )
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcEmergencyCallDomainSelectionInCsVoicePreferredOnEutran
- 功能描述  : 语音优先域为CS voice preferred下，emergency call在EUTRAN下的域选择
-             流程。
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : TAF_SPM_MSG_CS_OVER_IP:              消息允许发送给IMS，基于IP发送
-             TAF_SPM_MSG_NAS_SIGNALLING:          消息走NAS signalling
-             TAF_SPM_MSG_BUFFER_MESSAGE:          缓存消息
-             TAF_SPM_DOMAIN_SEL_TYPE_SELECT_FAIL: 拒绝到来的请求消息
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年10月24日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月17日
-    作    者   : y00245242
-    修改内容   : 移IMS注册状态到SDC中
-  3.日    期   : 2015年10月10日
-    作    者   : c00318887
-    修改内容   : DTS2015090705019
-*****************************************************************************/
 TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcEmergencyCallDomainSelectionInCsVoicePreferredOnEutran(VOS_VOID)
 {
     TAF_SDC_NETWORK_CAP_INFO_STRU      *pstLteNwCapInfo = VOS_NULL_PTR;
@@ -227,31 +160,7 @@ TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcEmergencyCallDomainSelectionInC
     return TAF_SPM_DOMAIN_SEL_RESULT_NAS_SIGNALLING;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcEmergencyCallDomainSelectionInImsPsVoicePreferredOnEutran
- 功能描述  : 语音优先域为IMS PS voice preferred下，Emergency call在EUTRAN下的域
-             选择流程。
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : TAF_SPM_MSG_CS_OVER_IP:              消息允许发送给IMS，基于IP发送
-             TAF_SPM_MSG_NAS_SIGNALLING:          消息走NAS signalling
-             TAF_SPM_MSG_BUFFER_MESSAGE:          缓存消息
-             TAF_SPM_DOMAIN_SEL_TYPE_SELECT_FAIL: 拒绝到来的请求消息
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年10月24日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月17日
-    作    者   : y00245242
-    修改内容   : 移IMS注册状态到SDC中
-  3.日    期   : 2015年10月10日
-    作    者   : c00318887
-    修改内容   : DTS2015090705019
-*****************************************************************************/
 TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcEmergencyCallDomainSelectionInImsPsVoicePreferredOnEutran(VOS_VOID)
 {
     TAF_SDC_NETWORK_CAP_INFO_STRU      *pstLteNwCapInfo = VOS_NULL_PTR;
@@ -288,28 +197,7 @@ TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcEmergencyCallDomainSelectionInI
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcEmergencyCallDomainSelectionInImsPsVoiceOnlyOnEutran
- 功能描述  : 语音优先域为IMS PS voice only下，emergency call在EUTRAN下的域选择
-             流程。
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : TAF_SPM_MSG_CS_OVER_IP:              消息允许发送给IMS，基于IP发送
-             TAF_SPM_MSG_NAS_SIGNALLING:          消息走NAS signalling
-             TAF_SPM_MSG_BUFFER_MESSAGE:          缓存消息
-             TAF_SPM_DOMAIN_SEL_TYPE_SELECT_FAIL: 拒绝到来的请求消息
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年10月24日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月17日
-    作    者   : y00245242
-    修改内容   : 移IMS注册状态到SDC中
-*****************************************************************************/
 TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcEmergencyCallDomainSelectionInImsPsVoiceOnlyOnEutran(VOS_VOID)
 {
     TAF_SDC_NETWORK_CAP_INFO_STRU      *pstLteNwCapInfo = VOS_NULL_PTR;
@@ -338,33 +226,7 @@ TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcEmergencyCallDomainSelectionInI
     return TAF_SPM_DOMAIN_SEL_RESULT_SELECT_FAIL;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcNormalCallDomainSelectionInCsVoicePreferredOnEutran
- 功能描述  : 语音优先域为CS voice preferred下，normal call在EUTRAN下的域选择流程。
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : TAF_SPM_MSG_CS_OVER_IP:              消息允许发送给IMS，基于IP发送
-             TAF_SPM_MSG_NAS_SIGNALLING:          消息走NAS signalling
-             TAF_SPM_MSG_BUFFER_MESSAGE:          缓存消息
-             TAF_SPM_DOMAIN_SEL_TYPE_SELECT_FAIL: 拒绝到来的请求消息
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年10月09日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月14日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-  3.日    期   : 2013年12月17日
-    作    者   : y00245242
-    修改内容   : 移IMS注册状态到SDC中
-  4.日    期   : 2015年10月10日
-    作    者   : c00318887
-    修改内容   : DTS2015090705019
-*****************************************************************************/
 TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcNormalCallDomainSelectionInCsVoicePreferredOnEutran(VOS_VOID)
 {
     TAF_SDC_NETWORK_CAP_INFO_STRU      *pstLteNwCapInfo = VOS_NULL_PTR;
@@ -430,33 +292,7 @@ TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcNormalCallDomainSelectionInCsVo
     return TAF_SPM_ProcCcDomainSelectionByProtectTimerLen();
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcNormalCallDomainSelectionInImsPsVoicePreferredOnEutran
- 功能描述  : 语音优先域为IMS PS voice preferred下，normal call在EUTRAN下的域选择流程。
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : TAF_SPM_MSG_CS_OVER_IP:              消息允许发送给IMS，基于IP发送
-             TAF_SPM_MSG_NAS_SIGNALLING:          消息走NAS signalling
-             TAF_SPM_MSG_BUFFER_MESSAGE:          缓存消息
-             TAF_SPM_DOMAIN_SEL_TYPE_SELECT_FAIL: 拒绝到来的请求消息
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年10月09日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月14日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-  3.日    期   : 2013年12月17日
-    作    者   : y00245242
-    修改内容   : 移IMS注册状态到SDC中
-  4.日    期   : 2015年10月10日
-    作    者   : c00318887
-    修改内容   : DTS2015090705019
-*****************************************************************************/
 TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcNormalCallDomainSelectionInImsPsVoicePreferredOnEutran(VOS_VOID)
 {
     TAF_SDC_NETWORK_CAP_INFO_STRU      *pstLteNwCapInfo = VOS_NULL_PTR;
@@ -522,30 +358,7 @@ TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcNormalCallDomainSelectionInImsP
     return TAF_SPM_ProcCcDomainSelectionByProtectTimerLen();
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcNormalCallDomainSelectionInImsPsVoiceOnlyOnEutran
- 功能描述  : 语音优先域为IMS PS voice only下，normal call在EUTRAN下的域选择流程。
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : TAF_SPM_MSG_CS_OVER_IP:              消息允许发送给IMS，基于IP发送
-             TAF_SPM_MSG_NAS_SIGNALLING:          消息走NAS signalling
-             TAF_SPM_MSG_BUFFER_MESSAGE:          缓存消息
-             TAF_SPM_DOMAIN_SEL_TYPE_SELECT_FAIL: 拒绝到来的请求消息
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年10月09日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月14日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-  3.日    期   : 2013年12月17日
-    作    者   : y00245242
-    修改内容   : 移IMS注册状态到SDC中
-*****************************************************************************/
 TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcNormalCallDomainSelectionInImsPsVoiceOnlyOnEutran(VOS_VOID)
 {
     TAF_SDC_NETWORK_CAP_INFO_STRU      *pstLteNwCapInfo = VOS_NULL_PTR;
@@ -588,25 +401,7 @@ TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcNormalCallDomainSelectionInImsP
     return TAF_SPM_DOMAIN_SEL_RESULT_SELECT_FAIL;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcNormalCallDomainSelectionOnEutran
- 功能描述  : normal call在EUTRAN下的域选择流程。根据语音优先域的不同，做域选择
-             流程
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : TAF_SPM_MSG_CS_OVER_IP:              消息允许发送给IMS，基于IP发送
-             TAF_SPM_MSG_NAS_SIGNALLING:          消息走NAS signalling
-             TAF_SPM_MSG_BUFFER_MESSAGE:          缓存消息
-             TAF_SPM_DOMAIN_SEL_TYPE_SELECT_FAIL: 拒绝到来的请求消息
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年9月22日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcNormalCallDomainSelectionOnEutran(VOS_VOID)
 {
     TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8                    enDomainSelRslt;
@@ -641,26 +436,7 @@ TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcNormalCallDomainSelectionOnEutr
     return (enDomainSelRslt);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcEmergencyCallDomainSelectionOnEutran
- 功能描述  : 紧急呼叫在EUTRAN下的域选择流程。当PS业务状态为非normal service或
-             UE不支持EMS，或当前网络不支持EMS，选择NAS signalling，否则根据语
-             音优先域进行紧急呼叫域选择流程
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : TAF_SPM_MSG_CS_OVER_IP:              消息允许发送给IMS，基于IP发送
-             TAF_SPM_MSG_NAS_SIGNALLING:          消息走NAS signalling
-             TAF_SPM_MSG_BUFFER_MESSAGE:          缓存消息
-             TAF_SPM_DOMAIN_SEL_TYPE_SELECT_FAIL: 拒绝到来的请求消息
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年10月24日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcEmergencyCallDomainSelectionOnEutran(VOS_VOID)
 {
     TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8                    enDomainSelRslt;
@@ -713,25 +489,7 @@ TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcEmergencyCallDomainSelectionOnE
 }
 
  #if (FEATURE_ON == FEATURE_IMS)
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcEConfDomainSelectionOnEutran
- 功能描述  : ECONF在EUTRAN下的域选择流程。根据语音优先域的不同，做域选择
-             流程
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : TAF_SPM_MSG_CS_OVER_IP:              消息允许发送给IMS，基于IP发送
-             TAF_SPM_MSG_NAS_SIGNALLING:          消息走NAS signalling
-             TAF_SPM_MSG_BUFFER_MESSAGE:          缓存消息
-             TAF_SPM_DOMAIN_SEL_TYPE_SELECT_FAIL: 拒绝到来的请求消息
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年12月24日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcEConfDomainSelectionOnEutran(VOS_VOID)
 {
     TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8                    enDomainSelRslt;
@@ -762,34 +520,7 @@ TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcEConfDomainSelectionOnEutran(VO
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcCcDomainSelectionOnEutran
- 功能描述  : call在EUTRAN下的域选择流程。
-             如果UE不支持LTE下IMS功能，返回NAS SIGNALLING, 走CS call，否则check
-             本次call的呼叫类型:
-                1. 如果是紧急呼，选择EUTRAN下的紧急呼域选择流程；
-                2. 如果是video call，且IMS栈支持video call，选择EUTRAN下normal
-                   call域选择流程
-                3. 其他呼叫类型，暂选择normal call域选择流程
 
-
- 输入参数  : pstMsg -- 业务请求消息指针
- 输出参数  :
- 返 回 值  : TAF_SPM_MSG_CS_OVER_IP:              消息允许发送给IMS，基于IP发送
-             TAF_SPM_MSG_NAS_SIGNALLING:          消息走NAS signalling
-             TAF_SPM_MSG_BUFFER_MESSAGE:          缓存消息
-             TAF_SPM_DOMAIN_SEL_TYPE_SELECT_FAIL: 拒绝到来的请求消息
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年9月22日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-  2.日    期   : 2014年12月24日
-    作    者   : f00179208
-    修改内容   : 增强型多方通话
-*****************************************************************************/
 TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcCcDomainSelectionOnEutran(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -853,33 +584,7 @@ TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcCcDomainSelectionOnEutran(
     return enDomainSelRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcSsDomainSelectionInCsVoicePreferredOnEutran
- 功能描述  : 语音优先域为CS voice preferred下，补充业务在EUTRAN下的域选择流程。
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : TAF_SPM_MSG_CS_OVER_IP:              消息允许发送给IMS，基于IP发送
-             TAF_SPM_MSG_NAS_SIGNALLING:          消息走NAS signalling
-             TAF_SPM_MSG_BUFFER_MESSAGE:          缓存消息
-             TAF_SPM_DOMAIN_SEL_TYPE_SELECT_FAIL: 拒绝到来的请求消息
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年10月09日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月14日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-  3.日    期   : 2013年12月17日
-    作    者   : y00245242
-    修改内容   : 移IMS注册状态到SDC中
-  4.日    期   : 2015年10月10日
-    作    者   : c00318887
-    修改内容   : DTS2015090705019
-*****************************************************************************/
 TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcSsDomainSelectionInCsVoicePreferredOnEutran(VOS_VOID)
 {
     TAF_SDC_NETWORK_CAP_INFO_STRU      *pstLteNwCapInfo = VOS_NULL_PTR;
@@ -938,33 +643,7 @@ TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcSsDomainSelectionInCsVoicePrefe
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcSsDomainSelectionInImsPsVoicePreferredOnEutran
- 功能描述  : 语音优先域为IMS PS voice preferred下，补充在EUTRAN下的域选择流程。
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : TAF_SPM_MSG_CS_OVER_IP:              消息允许发送给IMS，基于IP发送
-             TAF_SPM_MSG_NAS_SIGNALLING:          消息走NAS signalling
-             TAF_SPM_MSG_BUFFER_MESSAGE:          缓存消息
-             TAF_SPM_DOMAIN_SEL_TYPE_SELECT_FAIL: 拒绝到来的请求消息
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年10月09日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月14日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-  3.日    期   : 2013年12月17日
-    作    者   : y00245242
-    修改内容   : 移IMS注册状态到SDC中
-  4.日    期   : 2015年10月10日
-    作    者   : c00318887
-    修改内容   : DTS2015090705019
-*****************************************************************************/
 TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcSsDomainSelectionInImsPsVoicePreferredOnEutran(VOS_VOID)
 {
     TAF_SDC_NETWORK_CAP_INFO_STRU      *pstLteNwCapInfo = VOS_NULL_PTR;
@@ -1023,30 +702,7 @@ TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcSsDomainSelectionInImsPsVoicePr
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcSsDomainSelectionInImsPsVoiceOnlyOnEutran
- 功能描述  : 语音优先域为IMS PS voice only下，补充在EUTRAN下的域选择流程。
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : TAF_SPM_MSG_CS_OVER_IP:              消息允许发送给IMS，基于IP发送
-             TAF_SPM_MSG_NAS_SIGNALLING:          消息走NAS signalling
-             TAF_SPM_MSG_BUFFER_MESSAGE:          缓存消息
-             TAF_SPM_DOMAIN_SEL_TYPE_SELECT_FAIL: 拒绝到来的请求消息
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年10月09日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月14日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-  3.日    期   : 2013年12月17日
-    作    者   : y00245242
-    修改内容   : 移IMS注册状态到SDC中
-*****************************************************************************/
 TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcSsDomainSelectionInImsPsVoiceOnlyOnEutran(VOS_VOID)
 {
     VOS_UINT8                           ucRoamSupport;
@@ -1081,25 +737,7 @@ TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcSsDomainSelectionInImsPsVoiceOn
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcSsDomainSelectionOnEutran
- 功能描述  : SS请求在EUTRAN下的域选择流程。根据语音优先域不同，做不同的SS业务
-             域选择流程
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : TAF_SPM_MSG_CS_OVER_IP:              消息允许发送给IMS，基于IP发送
-             TAF_SPM_MSG_NAS_SIGNALLING:          消息走NAS signalling
-             TAF_SPM_MSG_BUFFER_MESSAGE:          缓存消息
-             TAF_SPM_DOMAIN_SEL_TYPE_SELECT_FAIL: 拒绝到来的请求消息
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年9月22日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcSsDomainSelectionOnEutran(VOS_VOID)
 {
     TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8                    enDomainSelRslt;
@@ -1139,33 +777,7 @@ TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcSsDomainSelectionOnEutran(VOS_V
     return (enDomainSelRslt);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcSmsDomainSelectionOnEutran
- 功能描述  : 驻留在EUTRAN下的SMS域选择流程
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : TAF_SPM_MSG_CS_OVER_IP:              消息允许发送给IMS，基于IP发送
-             TAF_SPM_MSG_NAS_SIGNALLING:          消息走NAS signalling
-             TAF_SPM_MSG_BUFFER_MESSAGE:          缓存消息
-             TAF_SPM_DOMAIN_SEL_TYPE_SELECT_FAIL: 拒绝到来的请求消息
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年9月22日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月17日
-    作    者   : y00245242
-    修改内容   : 移IMS注册状态到SDC中
-  3.日    期   : 2015年3月9日
-    作    者   : s00217060
-    修改内容   : DTS2015020209437修改域选顺序
-  4.日    期   : 2015年10月10日
-    作    者   : c00318887
-    修改内容   : DTS2015090705019
-*****************************************************************************/
 TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcSmsDomainSelectionOnEutran(VOS_VOID)
 {
     IMSA_NORMAL_REG_STATUS_ENUM_UINT32  enImsaRegStatus;
@@ -1267,29 +879,7 @@ TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcSmsDomainSelectionOnEutran(VOS_
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcCcDomainSelectionOnNoRat
- 功能描述  : 在无RAT下的SMS域选择流程
-             在无RAT下，如果UE不支持任何RAT下的IMS，选择NAS signalling, 目的是
-             遵守在IMS不支持下不改变原有的消息流程；
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : TAF_SPM_MSG_CS_OVER_IP:              消息允许发送给IMS，基于IP发送
-             TAF_SPM_MSG_NAS_SIGNALLING:          消息走NAS signalling
-             TAF_SPM_MSG_BUFFER_MESSAGE:          缓存消息
-             TAF_SPM_DOMAIN_SEL_TYPE_SELECT_FAIL: 拒绝到来的请求消息
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年10月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-  2.日    期   : 2015年10月10日
-    作    者   : c00318887
-    修改内容   : DTS2015090705019
-*****************************************************************************/
 TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcCcDomainSelectionOnNoRat(
     MN_CALL_TYPE_ENUM_U8                enCallType
 )
@@ -1304,29 +894,7 @@ TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcCcDomainSelectionOnNoRat(
     return TAF_SPM_DOMAIN_SEL_RESULT_NAS_SIGNALLING;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcSmsDomainSelectionOnNoRat
- 功能描述  : 在无RAT下的SMS域选择流程。
-             在无RAT下，如果UE不支持任何RAT下的IMS，选择NAS signalling, 目的是
-             遵守在IMS不支持下不改变原有的消息流程；
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : TAF_SPM_MSG_CS_OVER_IP:              消息允许发送给IMS，基于IP发送
-             TAF_SPM_MSG_NAS_SIGNALLING:          消息走NAS signalling
-             TAF_SPM_MSG_BUFFER_MESSAGE:          缓存消息
-             TAF_SPM_DOMAIN_SEL_TYPE_SELECT_FAIL: 拒绝到来的请求消息
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年10月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-  2.日    期   : 2015年10月10日
-    作    者   : c00318887
-    修改内容   : DTS2015090705019
-*****************************************************************************/
 TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcSmsDomainSelectionOnNoRat(VOS_VOID)
 {
     if (VOS_TRUE == TAF_SDC_GetImsSupportFlag())
@@ -1338,29 +906,7 @@ TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcSmsDomainSelectionOnNoRat(VOS_V
     return TAF_SPM_DOMAIN_SEL_RESULT_NAS_SIGNALLING;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcSsDomainSelectionOnNoRat
- 功能描述  : 在无RAT下的SS域选择流程。
-             在无RAT下，如果UE不支持任何RAT下的IMS，选择NAS signalling, 目的是
-             遵守在IMS不支持下不改变原有的消息流程；
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : TAF_SPM_MSG_CS_OVER_IP:              消息允许发送给IMS，基于IP发送
-             TAF_SPM_MSG_NAS_SIGNALLING:          消息走NAS signalling
-             TAF_SPM_MSG_BUFFER_MESSAGE:          缓存消息
-             TAF_SPM_DOMAIN_SEL_TYPE_SELECT_FAIL: 拒绝到来的请求消息
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年10月23日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-  2.日    期   : 2015年10月10日
-    作    者   : c00318887
-    修改内容   : DTS2015090705019
-*****************************************************************************/
 TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcSsDomainSelectionOnNoRat(VOS_VOID)
 {
     if (VOS_TRUE == TAF_SDC_GetImsSupportFlag())
@@ -1372,21 +918,7 @@ TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcSsDomainSelectionOnNoRat(VOS_VO
     return TAF_SPM_DOMAIN_SEL_RESULT_NAS_SIGNALLING;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcCcDomainSelectionByProtectTimerLen
- 功能描述  : 根据保护定时器时长，判断是否需要缓存CC服务消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : TAF_SPM_MSG_NAS_SIGNALLING:          消息走NAS signalling
-             TAF_SPM_MSG_BUFFER_MESSAGE:          缓存消息
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月9日
-    作    者   : c00318887
-    修改内容   : 新生成函数
-*****************************************************************************/
 TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcCcDomainSelectionByProtectTimerLen(VOS_VOID)
 {
     if (0 == TAF_Spm_GetBufferCcProtectTimerLen())
@@ -1397,21 +929,7 @@ TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcCcDomainSelectionByProtectTimer
     return TAF_SPM_DOMAIN_SEL_RESULT_BUFFER_MESSAGE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcSmsDomainSelectionByProtectTimerLen
- 功能描述  : 根据保护定时器时长，判断是否需要缓存SMS服务消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : TAF_SPM_MSG_NAS_SIGNALLING:          消息走NAS signalling
-             TAF_SPM_MSG_BUFFER_MESSAGE:          缓存消息
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月9日
-    作    者   : c00318887
-    修改内容   : 新生成函数
-*****************************************************************************/
 TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcSmsDomainSelectionByProtectTimerLen(VOS_VOID)
 {
     if (0 == TAF_SPM_GetBufferSmsProtectTimerLen())
@@ -1421,21 +939,7 @@ TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcSmsDomainSelectionByProtectTime
 
     return TAF_SPM_DOMAIN_SEL_RESULT_BUFFER_MESSAGE;
 }
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcSmsDomainSelectionByProtectTimerLen
- 功能描述  : 根据保护定时器时长，判断是否需要缓存SS服务消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : TAF_SPM_MSG_NAS_SIGNALLING:          消息走NAS signalling
-             TAF_SPM_MSG_BUFFER_MESSAGE:          缓存消息
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月9日
-    作    者   : c00318887
-    修改内容   : 新生成函数
-*****************************************************************************/
 TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcSsDomainSelectionByProtectTimerLen(VOS_VOID)
 {
     if (0 == TAF_SPM_GetBufferSsProtectTimerLen())
@@ -1448,22 +952,7 @@ TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcSsDomainSelectionByProtectTimer
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_IsServiceExistedInCcDomainSelection
- 功能描述  : 判断在cc域选择处理中，是否存在业务
 
- 输入参数  : ulEventType
- 输出参数  : 无
- 返 回 值  : VOS_TRUE   存在业务
-             VOS_FALSE  不存在业务
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014-11-28
-    作    者   : n00269697
-    修改内容   : 新生成函数for enhanced conference
-*****************************************************************************/
 VOS_UINT8 TAF_SPM_IsServiceExistedInCcDomainSelection(
     VOS_UINT32                          ulEventType
 )
@@ -1480,44 +969,7 @@ VOS_UINT8 TAF_SPM_IsServiceExistedInCcDomainSelection(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcGULCcDomainSelection
- 功能描述  : GU CC业务的域选择流程
 
- 输入参数  : ulEventType －－ 请求消息事件类型
-             pstMsg －－ 消息指针
-
- 输出参数  : 无
- 返 回 值  : TAF_SPM_MSG_CS_OVER_IP:              消息允许发送给IMS，基于IP发送
-             TAF_SPM_MSG_NAS_SIGNALLING:          消息走NAS signalling
-             TAF_SPM_MSG_BUFFER_MESSAGE:          缓存消息
-             TAF_SPM_DOMAIN_SEL_TYPE_SELECT_FAIL: 拒绝到来的请求消息
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年9月22日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月14日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseIII项目
-  3.日    期   : 2014年2月17日
-    作    者   : y00245242
-    修改内容   : DTS2014031105153: 增加IMS域MPTY域选择流程
-  4.日    期   : 2014年6月4日
-    作    者   : y00245242
-    修改内容   : 为eCall特性增加修改
-  5.日    期   : 2014年7月2日
-    作    者   : s00217060
-    修改内容   : DTS2014062805899:CS域SS业务存在时，电话不选择IMS域
-  6.日    期   : 2014年11月28日
-    作    者   : f00179208
-    修改内容   : 增强型多方通话
-  7.日    期   : 2015年03月04日
-    作    者   : j00174725
-    修改内容   : DTS2015021104607
-*****************************************************************************/
 TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcGULCcDomainSelection(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1527,7 +979,6 @@ TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcGULCcDomainSelection(
     MN_CALL_TYPE_ENUM_U8                                    enCallType;
     VOS_UINT8                                               ucImsInvitePtptFlag;
     MN_CALL_APP_REQ_MSG_STRU                               *pstAppMsg       = VOS_NULL_PTR;
-    /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2014-01-03, begin */
     MN_APP_CALL_CALLORIG_REQ_STRU                          *pstStkOrigReq   = VOS_NULL_PTR;
 
     TAF_CALL_VOICE_DOMAIN_ENUM_UINT8                        enVoiceDomain;
@@ -1539,7 +990,6 @@ TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcGULCcDomainSelection(
 
     ucImsInvitePtptFlag = VOS_FALSE;
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-6-4, begin */
     /* eCall呼叫仅在GU下支持，域选择为NAS信令 */
 #if (FEATURE_ON == FEATURE_ECALL)
     enCallType      = pstAppMsg->unParm.stOrig.enCallType;
@@ -1549,7 +999,6 @@ TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcGULCcDomainSelection(
         return TAF_SPM_DOMAIN_SEL_RESULT_NAS_SIGNALLING;
     }
 #endif
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-6-4, end */
 
     enVoiceDomain   = TAF_CALL_VOICE_DOMAIN_3GPP;
 
@@ -1574,7 +1023,6 @@ TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcGULCcDomainSelection(
     {
         enCallType      = pstStkOrigReq->enCallType;
     }
-    /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2014-01-03, end */
 
     /* 这是IMS邀请第三方加入电话会议呼叫，直接选择IMS域发送
        如果是IMS的增强型会议添加与会者，直接选择IMS域发送 */
@@ -1623,9 +1071,7 @@ TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcGULCcDomainSelection(
         return TAF_SPM_DOMAIN_SEL_RESULT_NAS_SIGNALLING;
     }
 
-    /* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-14, begin */
     /* 呼叫类型和卡状态的判断放到预处理里面来做 */
-    /* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-14, end */
 
 
     /* check whether voice call on IMS is supported or not */
@@ -1658,26 +1104,7 @@ TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcGULCcDomainSelection(
 }
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcCLCcDomainSelection
- 功能描述  : 1x Call业务的域选择流程
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月3日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年8月4日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcCLCcDomainSelection(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1693,22 +1120,7 @@ TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcCLCcDomainSelection(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcCcDomainSelection
- 功能描述  : CS CALL业务的域选择流程
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月3日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcCcDomainSelection(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1726,41 +1138,12 @@ TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcCcDomainSelection(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcSsDomainSelection
- 功能描述  : SS业务请求的域选择流程。如果当前有SS业务或CC业务在运行，选择当前
-             业务运行域，否则如果RAT是LTE，选择EUTRAN下SS域选择流程。如果RAT为
-             GU(目前不支持GU下IMS)，域选择结果为NAS signnalling。
-             注: 如果当前消息为TAF_MSG_RLEASE_MSG，理论上来说，当前应该有SS业务
-             在运行，如果无SS业务在运行，选择NAS SIGNALLING，交由SSA模块处理
 
- 输入参数  : ulEventType －－ 消息事件类型
- 输出参数  : 无
- 返 回 值  : TAF_SPM_MSG_CS_OVER_IP:              消息允许发送给IMS，基于IP发送
-             TAF_SPM_MSG_NAS_SIGNALLING:          消息走NAS signalling
-             TAF_SPM_MSG_BUFFER_MESSAGE:          缓存消息
-             TAF_SPM_DOMAIN_SEL_TYPE_SELECT_FAIL: 拒绝到来的请求消息
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年9月22日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月14日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseIII项目
-  3.日    期   : 2014年04月01日
-    作    者   : y00245242
-    修改内容   : 为DTS2014040203732修改，增加NV控制USSD业务域选择；USSD业务NV打开，
-                 进行正常域选择，否则选择CS域
-*****************************************************************************/
 TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcSsDomainSelection(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 )
 {
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-25, begin */
     TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8                    enDomainSelRslt;
     VOS_UINT8                                               ucCsCallExistFlg;
     VOS_UINT8                                               ucImsCallExistFlg;
@@ -1792,7 +1175,6 @@ TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcSsDomainSelection(
         return TAF_SPM_DOMAIN_SEL_RESULT_NAS_SIGNALLING;
     }
 
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-25, end */
 
     ucCsCallExistFlg = TAF_SDC_GetCsCallExistFlg();
     if ((VOS_TRUE == TAF_SDC_GetCsSsSrvExistFlg())
@@ -1807,9 +1189,7 @@ TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcSsDomainSelection(
         return TAF_SPM_DOMAIN_SEL_RESULT_CS_OVER_IP;
     }
 
-    /* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-14, begin */
     /* release消息域选择，CUSD不带ussd string的场景，卡状态的判断放到预处理里面来做 */
-    /* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-14, end */
 
 
     switch (TAF_SDC_GetCampSysMode())
@@ -1835,30 +1215,7 @@ TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcSsDomainSelection(
     return (enDomainSelRslt);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcSmsDomainSelection
- 功能描述  : SMS域选择流程
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : TAF_SPM_MSG_CS_OVER_IP:               消息允许发送给IMS，基于IP发送
-             TAF_SPM_MSG_NAS_SIGNALLING:           消息走NAS signalling
-             TAF_SPM_MSG_BUFFER_MESSAGE:           缓存消息
-             TAF_SPM_DOMAIN_SEL_TYPE_SELECT_FAIL:  拒绝到来的请求消息
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年9月22日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月14日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseIII项目
-  3.日    期   : 2013年1月2日
-    作    者   : y00245242
-    修改内容   : 增加换域重拨功能
-*****************************************************************************/
 TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcSmsDomainSelection(VOS_VOID)
 {
     VOS_UINT8                                                   ucCsSmsExistFlg;
@@ -1901,9 +1258,7 @@ TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcSmsDomainSelection(VOS_VOID)
         return TAF_SPM_DOMAIN_SEL_RESULT_CS_OVER_IP;
     }
 
-    /* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-14, begin */
     /* 卡状态的判断放到预处理里面来做 */
-    /* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-14, end */
 
 
     switch (TAF_SDC_GetCampSysMode())
@@ -1932,28 +1287,7 @@ TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcSmsDomainSelection(VOS_VOID)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcServiceRequestDomainSelection
- 功能描述  : 域选择流程，将根据当前请求的消息业务类型(CC/SS/SMS)，选择对应的域
-             选择流程
 
- 输入参数  : ulEventType -- 消息事件类型
-             pstMsg －－ 消息指针
-
- 输出参数  : 无
- 返 回 值  : TAF_SPM_MSG_CS_OVER_IP:               消息允许发送给IMS，基于IP发送
-             TAF_SPM_MSG_NAS_SIGNALLING:           消息走NAS signalling
-             TAF_SPM_MSG_BUFFER_MESSAGE:           缓存消息
-             TAF_SPM_DOMAIN_SEL_TYPE_SELECT_FAIL:  拒绝到来的请求消息
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年9月22日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcServiceRequestDomainSelection(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2024,28 +1358,7 @@ TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 TAF_SPM_ProcServiceRequestDomainSelection(
 }
 
 #if (FEATURE_IMS == FEATURE_ON)
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcBufferedDomainSelectionResult
- 功能描述  : 分发缓存的消息到IMSA或TAF其他模块。对于结果为发送失败的消息，通知
-             发送业务请求失败
-             注: 在域选择结果为CS OVER IP时，需要有个特殊处理，即在ulRst结果为
-                 VOS_FALSE时，需要把缓存消息勾出来，由后续模块继续处理，主要是
-                 针对SMS，因为SMS不是直接发送给IMSA的，而是转交给MSG模块处理
 
- 输入参数  : enDomainSelType -- 业务域选择类型
-             pstMsgEntry －－ 消息指针
-
- 输出参数  : 无
- 返 回 值  : VOS_TRUE -- 消息处理完毕
-             VOS_FALSE -- 消息未处理完成，待进一步处理
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年9月22日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_ProcBufferedDomainSelectionResult(
     TAF_SPM_ENTRY_MSG_STRU                                     *pstMsgEntry,
     TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8                        enDomainSelRslt
@@ -2092,23 +1405,7 @@ VOS_UINT32 TAF_SPM_ProcBufferedDomainSelectionResult(
     return ulRst;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_IsSmmaMsgExistedInSericeSelectionBuffer
- 功能描述  : 检查SMMA中是否已经缓存了SMMA消息
 
- 输入参数  : 无
-
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  -- 已有消息在域选择存在中
-             VOS_FALSE -- 无SMMA消息在缓存中
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年1月15日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 TAF_SPM_IsSmmaMsgExistedInSericeSelectionBuffer(VOS_VOID)
 {
     VOS_UINT8                           i;
@@ -2130,27 +1427,7 @@ VOS_UINT8 TAF_SPM_IsSmmaMsgExistedInSericeSelectionBuffer(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcSmmaIndDomainSelectionResult
- 功能描述  : 根据域选择结果处理SMMA IND的消息
 
- 输入参数  : enDomainSelRslt -- 域选择结果类型
-
- 输出参数  : 无
- 返 回 值  : VOS_TRUE -- 消息处理完毕
-             VOS_FALSE -- 消息未处理完成，待进一步处理
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年9月22日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-  2.日    期   : 2015年4月13日
-    作    者   : s00217060
-    修改内容   : DTS2015041007878:ID_TAF_SPM_MSG_REPORT_IND中的client id不对
-                 ，重拨缓存未清除
-*****************************************************************************/
 VOS_VOID TAF_SPM_ProcSmmaIndDomainSelectionResult(
     VOS_UINT32                                              ulEventType,
     struct MsgCB                                           *pstMsg,
@@ -2214,35 +1491,11 @@ VOS_VOID TAF_SPM_ProcSmmaIndDomainSelectionResult(
 
 /* IMS无关函数放到IMS宏外面用于扩展使用 */
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_FreeMessagesInMessageQueue
- 功能描述  : 收到power off指示后，SPM需要根据队列中缓存的消息，发送失败指示给
-             对应的消息发送方，并清除缓存队列中的业务请求
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年10月10日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月31日
-    作    者   : y00245242
-    修改内容   : 增加换域重拨功能
-  3.日    期   : 2014年2月19日
-    作    者   : s00217060
-    修改内容   : coverity清理
-*****************************************************************************/
 VOS_VOID TAF_SPM_FreeMessagesInMessageQueue(VOS_VOID)
 {
     VOS_UINT8                           ucIndex;
-    /* Added by s00217060 for coverity清理, 2014-02-17, begin */
     VOS_UINT8                           ucMsgQueueNum;
-    /* Added by s00217060 for coverity清理, 2014-02-17, end */
     TAF_SPM_CACHE_MSG_INFO_STRU        *pstCachedMsg = VOS_NULL_PTR;
     MN_APP_REQ_MSG_STRU                *pstAppMsg    = VOS_NULL_PTR;
 
@@ -2252,7 +1505,6 @@ VOS_VOID TAF_SPM_FreeMessagesInMessageQueue(VOS_VOID)
      */
 
      /* free CC service request message in queue */
-    /* Modified by s00217060 for coverity清理, 2014-02-19, begin */
     ucMsgQueueNum = TAF_SPM_GetCcMsgQueueNum();
     ucMsgQueueNum = TAF_SDC_MIN(ucMsgQueueNum, TAF_SPM_MAX_CC_MSG_QUEUE_NUM);
     for (ucIndex = 0; ucIndex < ucMsgQueueNum; ucIndex++)
@@ -2305,7 +1557,6 @@ VOS_VOID TAF_SPM_FreeMessagesInMessageQueue(VOS_VOID)
     ucMsgQueueNum = TAF_SPM_GetSsMsgQueueNum();
     ucMsgQueueNum = TAF_SDC_MIN(ucMsgQueueNum, TAF_SPM_MAX_SS_MSG_QUEUE_NUM);
     for (ucIndex = 0; ucIndex < ucMsgQueueNum; ucIndex++)
-    /* Modified by s00217060 for coverity清理, 2014-02-19, end */
     {
         /* get the first cached message in queue */
         pstCachedMsg = TAF_SPM_GetSpecifiedIndexMessageAddrFromSsQueue(ucIndex);
@@ -2327,26 +1578,7 @@ VOS_VOID TAF_SPM_FreeMessagesInMessageQueue(VOS_VOID)
     TAF_SPM_LogSrvDomainSelQueueInfo();
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcMmaPowerOffInd
- 功能描述  : 处理来自MMA的关机指示，收到该消息，需要free所有缓存消息，并清除IMS
-             注册
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年9月22日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月17日
-    作    者   : y00245242
-    修改内容   : 移IMS注册状态到SDC中
-*****************************************************************************/
 VOS_VOID TAF_SPM_ProcMmaPowerOffInd(VOS_VOID)
 {
     /* free all buffered message */
@@ -2357,26 +1589,7 @@ VOS_VOID TAF_SPM_ProcMmaPowerOffInd(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcImsaNormalRegStatusNotify
- 功能描述  : 处理IMS注册状态，收到该消息后，更新IMS注册状态，同时触发缓存消息
-             处理
 
- 输入参数  : pstMsg -- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE -- 消息处理完毕
-             VOS_FALSE -- 消息未处理完成，待进一步处理
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年9月22日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月17日
-    作    者   : y00245242
-    修改内容   : 移IMS注册状态到SDC中
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_ProcImsaNormalRegStatusNotify(
     struct MsgCB                       *pstMsg
 )
@@ -2400,33 +1613,7 @@ VOS_UINT32 TAF_SPM_ProcImsaNormalRegStatusNotify(
 
 /* IMS无关函数放到IMS宏开关外面,用于扩展使用 */
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcInitialDomainSelectionResult
- 功能描述  : 该函数根据APP请求消息的初始域选择结果，选择对应的消息处理:
-             1. 域选择结果为NAS signalling，消息分发给TAF各业务适配模块
-                (CALL, MSG, SSA);
-             2. 域选择结果为CS OVER IP,选择消息发送给IMSA;
-             3. 域选择结果为buffer message，放消息到缓存队列中；
-             4. 域选择结果为select fail，通知APP消息发送失败；
 
- 输入参数  : ulEventType -- 消息事件类型
-             pstMsg      -- 消息指针
-
- 输出参数  : 无
- 返 回 值  : VOS_TRUE -- 消息处理完毕
-             VOS_FALSE -- 消息处理未完成，待后续进一步处理
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年9月22日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-  2.日    期   : 2014年6月23日
-    作    者   : z00161729
-    修改内容   : DSDS III新增
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_ProcInitialDomainSelectionResult(
     VOS_UINT32                                              ulEventType,
     struct MsgCB                                           *pstMsg,
@@ -2503,25 +1690,7 @@ VOS_UINT32 TAF_SPM_ProcInitialDomainSelectionResult(
 }
 
 #if (FEATURE_IMS == FEATURE_ON)
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcReqMsgBasedOnCsOverIp
- 功能描述  : 处理基于SIP信令承载的请求消息，通过消息跳转表，选择对应的消息处理
-             函数
 
- 输入参数  : ulEventType -- 由PID与message name组成
-             pstMsg      -- 消息地址
-
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  消息已经处理
-             VOS_FALSE: 消息未处理完
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年7月11日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_ProcReqMsgBasedOnCsOverIp(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2566,188 +1735,67 @@ VOS_UINT32 TAF_SPM_ProcReqMsgBasedOnCsOverIp(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvRegisterSsReqBasedOnCsOverIp
- 功能描述  : 处理来自AT或STK的register SS请求消息
- 输入参数  : pstRcvMsg  消息指针
 
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  消息已处理
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2013年7月23日
-   作    者   : y00245242
-   修改内容   : 新生成函数
- 2.日    期   : 2013年09月23日
-   作    者   : s00217060
-   修改内容   : VoLTE_PhaseII项目，更新IMS域SS业务标志
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvRegisterSsReqBasedOnCsOverIp(
     struct MsgCB                       *pstMsg
 )
 {
     TAF_SPM_SendImsaRegisterSsReq(pstMsg);
 
-    /* Added by s00217060 for VoLTE_PhaseII  项目, 2013-09-23, begin */
     TAF_SDC_SetImsSsSrvExistFlg(VOS_TRUE);
-    /* Added by s00217060 for VoLTE_PhaseII  项目, 2013-09-23, end */
 
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvEraseSsReqBasedOnCsOverIp
- 功能描述  : 处理来自AT或STK的SS erase请求消息
- 输入参数  : pstRcvMsg  消息指针
 
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  消息已处理
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2013年7月23日
-   作    者   : y00245242
-   修改内容   : 新生成函数
- 2.日    期   : 2013年09月23日
-   作    者   : s00217060
-   修改内容   : VoLTE_PhaseII项目，更新IMS域SS业务标志
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvEraseSsReqBasedOnCsOverIp(
     struct MsgCB                       *pstMsg
 )
 {
     TAF_SPM_SendImsaEraseSsReq(pstMsg);
 
-    /* Added by s00217060 for VoLTE_PhaseII  项目, 2013-09-23, begin */
     TAF_SDC_SetImsSsSrvExistFlg(VOS_TRUE);
-    /* Added by s00217060 for VoLTE_PhaseII  项目, 2013-09-23, end */
 
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvActivateSsReqBasedOnCsOverIp
- 功能描述  : 处理来自AT或STK的SS activate请求消息
- 输入参数  : pstRcvMsg  消息指针
 
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  消息已处理
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2013年7月23日
-   作    者   : y00245242
-   修改内容   : 新生成函数
- 2.日    期   : 2013年09月23日
-   作    者   : s00217060
-   修改内容   : VoLTE_PhaseII项目，更新IMS域SS业务标志
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvActivateSsReqBasedOnCsOverIp(
     struct MsgCB                       *pstMsg
 )
 {
     TAF_SPM_SendImsaActivateSsReq(pstMsg);
 
-    /* Added by s00217060 for VoLTE_PhaseII  项目, 2013-09-23, begin */
     TAF_SDC_SetImsSsSrvExistFlg(VOS_TRUE);
-    /* Added by s00217060 for VoLTE_PhaseII  项目, 2013-09-23, end */
 
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvDeactivateSsReqBasedOnCsOverIp
- 功能描述  : 处理来自AT或STK的SS deactivate请求消息
- 输入参数  : pstRcvMsg  消息指针
 
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  消息已处理
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2013年7月23日
-   作    者   : y00245242
-   修改内容   : 新生成函数
- 2.日    期   : 2013年09月23日
-   作    者   : s00217060
-   修改内容   : VoLTE_PhaseII项目，更新IMS域SS业务标志
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvDeactivateSsReqBasedOnCsOverIp(
     struct MsgCB                       *pstMsg
 )
 {
     TAF_SPM_SendImsaDeactivateSsReq(pstMsg);
 
-    /* Added by s00217060 for VoLTE_PhaseII  项目, 2013-09-23, begin */
     TAF_SDC_SetImsSsSrvExistFlg(VOS_TRUE);
-    /* Added by s00217060 for VoLTE_PhaseII  项目, 2013-09-23, end */
 
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvInterrogateSsReqBasedOnCsOverIp
- 功能描述  : 处理来自AT或STK的SS interrogate请求消息
- 输入参数  : pstRcvMsg  消息指针
 
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  消息已处理
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2013年7月23日
-   作    者   : y00245242
-   修改内容   : 新生成函数
- 2.日    期   : 2013年09月23日
-   作    者   : s00217060
-   修改内容   : VoLTE_PhaseII项目，更新IMS域SS业务标志
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvInterrogateSsReqBasedOnCsOverIp(
     struct MsgCB                       *pstMsg
 )
 {
     TAF_SPM_SendImsaInterrogateSsReq(pstMsg);
 
-    /* Added by s00217060 for VoLTE_PhaseII  项目, 2013-09-23, begin */
     TAF_SDC_SetImsSsSrvExistFlg(VOS_TRUE);
-    /* Added by s00217060 for VoLTE_PhaseII  项目, 2013-09-23, end */
 
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvProcUssSsReqBasedOnCsOverIp
- 功能描述  : 处理来自AT或STK的SS process Ussd请求消息
- 输入参数  : pstRcvMsg  消息指针
 
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  消息已处理
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2013年7月23日
-   作    者   : y00245242
-   修改内容   : 新生成函数
- 2.日    期   : 2013年09月23日
-   作    者   : s00217060
-   修改内容   : VoLTE_PhaseII项目，更新IMS域SS业务标志
- 3.日    期   : 2013年12月23日
-   作    者   : s00217060
-   修改内容   : VoLTE_PhaseIII项目
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvProcUssSsReqBasedOnCsOverIp(
     struct MsgCB                       *pstMsg
 )
@@ -2758,38 +1806,19 @@ VOS_UINT32 TAF_SPM_RcvProcUssSsReqBasedOnCsOverIp(
     pstRcvMsg   = (MN_APP_REQ_MSG_STRU *)pstMsg;
     pstSsReqMsg = (TAF_SS_PROCESS_USS_REQ_STRU *)&(pstRcvMsg->aucContent[0]);
 
-    /* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-23, begin */
-    /* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-23, end */
 
     /* check whether or not USSD string exists */
     if (0 != pstSsReqMsg->UssdStr.usCnt)
     {
         TAF_SPM_SendImsaProcessUssSsReq(pstMsg);
 
-        /* Added by s00217060 for VoLTE_PhaseII  项目, 2013-09-23, begin */
         TAF_SDC_SetImsSsSrvExistFlg(VOS_TRUE);
-        /* Added by s00217060 for VoLTE_PhaseII  项目, 2013-09-23, end */
     }
 
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvRleaseSsReqBasedOnCsOverIp
- 功能描述  : 处理来自AT或STK的SS release请求消息
- 输入参数  : pstRcvMsg  消息指针
 
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  消息已处理
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2013年7月23日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvRleaseSsReqBasedOnCsOverIp(
     struct MsgCB                       *pstMsg
 )
@@ -2799,35 +1828,11 @@ VOS_UINT32 TAF_SPM_RcvRleaseSsReqBasedOnCsOverIp(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvAppOrigReqBasedOnCsOverIp
- 功能描述  : SPM收到MN_CALL_APP_ORIG_REQ的处理
- 输入参数  : pstMsg       :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  消息处理完成
-             VOS_FALSE: 消息未处理完成，还需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月11日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月13日
-    作    者   : y00245242
-    修改内容   : 增加IMS域到CS域的换域重拨功能
-  3.日    期   : 2013年12月16日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseIII项目
-  4.日    期   : 2014年2月17日
-    作    者   : y00245242
-    修改内容   : DTS2014031105153: 增加IMS域MPTY域选择流程
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvAppOrigReqBasedOnCsOverIp(
     struct MsgCB                       *pstMsg
 )
 {
-    /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-16, begin */
     TAF_SDC_VOICE_DOMAIN_ENUM_UINT32    enVoicePerferred;
     VOS_UINT32                          ulEventType;
     MN_CALL_APP_REQ_MSG_STRU           *pstAppMsg       = VOS_NULL_PTR;
@@ -2857,29 +1862,11 @@ VOS_UINT32 TAF_SPM_RcvAppOrigReqBasedOnCsOverIp(
     }
 
     TAF_SPM_SendImsaCallOrigReq(pstAppMsg);
-    /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-16, end */
 
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvAppSupsCmdReqBasedOnCsOverIp
- 功能描述  : SPM收到MN_CALL_APP_SUPS_CMD_REQ的处理
- 输入参数  : pstMsg       :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  消息处理完成
-             VOS_FALSE: 消息未处理完成，还需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月11日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月13日
-    作    者   : y00245242
-    修改内容   : 增加IMS域到CS域的换域重拨功能
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvAppSupsCmdReqBasedOnCsOverIp(
     struct MsgCB                       *pstMsg
 )
@@ -2910,51 +1897,18 @@ VOS_UINT32 TAF_SPM_RcvAppSupsCmdReqBasedOnCsOverIp(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvAppGetInfoReqBasedOnCsOverIp
- 功能描述  : SPM收到MN_CALL_APP_GET_INFO_REQ的处理
- 输入参数  : pstMsg       :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  消息处理完成
-             VOS_FALSE: 消息未处理完成，还需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月11日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2013年09月18日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseII项目，添加消息来源模块标识
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvAppGetInfoReqBasedOnCsOverIp(
     struct MsgCB                       *pstMsg
 )
 {
-    /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-09-18, begin */
     /* 发送给IMSA处理 */
     TAF_SPM_SendImsaGetCallInfoReq((MN_CALL_APP_REQ_MSG_STRU *)pstMsg, CALL_IMSA_GET_CALL_INFO_REQ_TYPE_CLCC);
-    /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-09-18, end */
 
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvAppGetEconfInfoReqBasedOnCsOverIp
- 功能描述  : SPM收到TAF_CALL_APP_GET_ECONF_CALLED_INFO_REQ的处理
- 输入参数  : pstMsg       :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  消息处理完成
-             VOS_FALSE: 消息未处理完成，还需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月28日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvAppGetEconfInfoReqBasedOnCsOverIp(
     struct MsgCB                       *pstMsg
 )
@@ -2965,21 +1919,7 @@ VOS_UINT32 TAF_SPM_RcvAppGetEconfInfoReqBasedOnCsOverIp(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvAppStartDtmfReqBasedOnCsOverIp
- 功能描述  : SPM收到MN_CALL_APP_START_DTMF_REQ的处理
- 输入参数  : pstMsg       :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  消息处理完成
-             VOS_FALSE: 消息未处理完成，还需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月11日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvAppStartDtmfReqBasedOnCsOverIp(
     struct MsgCB                       *pstMsg
 )
@@ -2990,21 +1930,7 @@ VOS_UINT32 TAF_SPM_RcvAppStartDtmfReqBasedOnCsOverIp(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvAppStopDtmfReqBasedOnCsOverIp
- 功能描述  : SPM收到MN_CALL_APP_STOP_DTMF_REQ的处理
- 输入参数  : pstMsg       :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  消息处理完成
-             VOS_FALSE: 消息未处理完成，还需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月11日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvAppStopDtmfReqBasedOnCsOverIp(
     struct MsgCB                       *pstMsg
 )
@@ -3015,21 +1941,7 @@ VOS_UINT32 TAF_SPM_RcvAppStopDtmfReqBasedOnCsOverIp(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvAppGetCdurReqBasedOnCsOverIp
- 功能描述  : SPM收到MN_CALL_APP_GET_CDUR_REQ的处理
- 输入参数  : pstMsg       :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  消息处理完成
-             VOS_FALSE: 消息未处理完成，还需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月11日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvAppGetCdurReqBasedOnCsOverIp(
     struct MsgCB                       *pstMsg
 )
@@ -3040,22 +1952,7 @@ VOS_UINT32 TAF_SPM_RcvAppGetCdurReqBasedOnCsOverIp(
     return VOS_TRUE;
 }
 
-/* Added by s00217060 for VoLTE_PhaseII  项目, 2013-09-18, begin */
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvAppGetCallInfoReqBasedOnCsOverIp
- 功能描述  : SPM收到ID_TAFAGENT_MN_GET_CALL_INFO_REQ的处理
- 输入参数  : pstMsg       :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  消息处理完成
-             VOS_FALSE: 消息未处理完成，还需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月18日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvAppGetCallInfoReqBasedOnCsOverIp(
     struct MsgCB                       *pstMsg
 )
@@ -3066,23 +1963,8 @@ VOS_UINT32 TAF_SPM_RcvAppGetCallInfoReqBasedOnCsOverIp(
     return VOS_TRUE;
 }
 
-/* Added by s00217060 for VoLTE_PhaseII  项目, 2013-09-18, end */
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvAppGetClprReqBasedOnCsOverIp
- 功能描述  : SPM收到MN_CALL_APP_CLPR_GET_REQ的处理
- 输入参数  : pstMsg       :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  消息处理完成
-             VOS_FALSE: 消息未处理完成，还需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月08日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvAppGetClprReqBasedOnCsOverIp(
     struct MsgCB                       *pstMsg
 )
@@ -3094,33 +1976,12 @@ VOS_UINT32 TAF_SPM_RcvAppGetClprReqBasedOnCsOverIp(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvStkOrigReqBasedOnCsOverIp
- 功能描述  : SPM收到STK_CALL_CALLORIG_REQ的处理
- 输入参数  : pstMsg       :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  消息处理完成
-             VOS_FALSE: 消息未处理完成，还需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月11日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月13日
-    作    者   : y00245242
-    修改内容   : 增加IMS域到CS域的换域重拨功能
-  3.日    期   : 2013年12月16日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseIII项目
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvStkOrigReqBasedOnCsOverIp(
     struct MsgCB                       *pstMsg
 )
 {
     MN_APP_CALL_CALLORIG_REQ_STRU      *pstOrigParam       = VOS_NULL_PTR;
-    /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-16, begin */
     MN_CALL_APP_REQ_MSG_STRU            stAppMsg;
     TAF_SDC_VOICE_DOMAIN_ENUM_UINT32    enVoicePerferred;
     VOS_UINT32                          ulEventType;
@@ -3182,29 +2043,11 @@ VOS_UINT32 TAF_SPM_RcvStkOrigReqBasedOnCsOverIp(
                 sizeof(MN_CALL_EMERGENCY_CAT_STRU));
 
     TAF_SPM_SendImsaCallOrigReq(&stAppMsg);
-    /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-16, end */
 
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvStkSupsCmdReqBasedOnCsOverIp
- 功能描述  : SPM收到STK_CALL_SUPS_CMD_REQ的处理
- 输入参数  : pstMsg       :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  消息处理完成
-             VOS_FALSE: 消息未处理完成，还需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月11日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月13日
-    作    者   : y00245242
-    修改内容   : 增加IMS域到CS域的换域重拨功能
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvStkSupsCmdReqBasedOnCsOverIp(
     struct MsgCB                       *pstMsg
 )
@@ -3243,21 +2086,7 @@ VOS_UINT32 TAF_SPM_RcvStkSupsCmdReqBasedOnCsOverIp(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvStkStartDtmfReqBasedOnCsOverIp
- 功能描述  : SPM收到MN_CALL_APP_START_DTMF_REQ的处理
- 输入参数  : pstMsg       :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  消息处理完成
-             VOS_FALSE: 消息未处理完成，还需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月11日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvStkStartDtmfReqBasedOnCsOverIp(
     struct MsgCB                       *pstMsg
 )
@@ -3280,21 +2109,7 @@ VOS_UINT32 TAF_SPM_RcvStkStartDtmfReqBasedOnCsOverIp(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvStkStopDtmfReqBasedOnCsOverIp
- 功能描述  : SPM收到STK_CALL_STOP_DTMF_REQ的处理
- 输入参数  : pstMsg       :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  消息处理完成
-             VOS_FALSE: 消息未处理完成，还需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月11日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvStkStopDtmfReqBasedOnCsOverIp(
     struct MsgCB                       *pstMsg
 )
@@ -3315,25 +2130,7 @@ VOS_UINT32 TAF_SPM_RcvStkStopDtmfReqBasedOnCsOverIp(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvSendRpdataDirectBasedOnCsOverIp
- 功能描述  : 处理来自AT或STK的SMS RP DATA消息，设置消息路由类型为IMS
- 输入参数  : pstRcvMsg  消息指针
 
- 输出参数  : 无
- 返 回 值  : VOS_FALSE  消息未处理完成
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2013年7月11日
-   作    者   : y00245242
-   修改内容   : 新生成函数
- 2.日    期   : 2013年12月13日
-   作    者   : y00245242
-   修改内容   : 增加IMS域到CS域的换域重拨功能
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvSendRpdataDirectBasedOnCsOverIp(
     struct MsgCB                       *pstRcvMsg
 )
@@ -3371,25 +2168,7 @@ VOS_UINT32 TAF_SPM_RcvSendRpdataDirectBasedOnCsOverIp(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvSendRpdataFromMemBasedOnCsOverIp
- 功能描述  : 处理从memory中发送的SMS的消息，设置消息路由类型为IMS
- 输入参数  : pstRcvMsg  消息指针
 
- 输出参数  : 无
- 返 回 值  : VOS_FALSE  消息未处理完成
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2013年7月11日
-   作    者   : y00245242
-   修改内容   : 新生成函数
- 2.日    期   : 2013年12月13日
-   作    者   : y00245242
-   修改内容   : 增加IMS域到CS域的换域重拨功能
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvSendRpdataFromMemBasedOnCsOverIp(
     struct MsgCB                       *pstRcvMsg
 )
@@ -3428,25 +2207,7 @@ VOS_UINT32 TAF_SPM_RcvSendRpdataFromMemBasedOnCsOverIp(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_IsNeedtoWaitImsRegStatus
- 功能描述  : 根据之前的业务状态以及网路能力参数与当前的服务状态与能力参数决定
-             是否立即做域选择还是继续等待IMS新的注册状态
 
- 输入参数  : enLastPsStatus -- 上次PS服务状态
-
- 输出参数  : 无
- 返 回 值  : VOS_TRUE -- 需要等待新IMS注册状态
-             VOS_FALSE -- 不需要等待IMS注册状态
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2014年1月2日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 TAF_SPM_IsNeedtoWaitImsRegStatus(
     TAF_SPM_SERVICE_STATUS_ENUM_UINT8   enLastPsStatus
 )
@@ -3475,21 +2236,7 @@ VOS_UINT8 TAF_SPM_IsNeedtoWaitImsRegStatus(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvAppCallModifyReqBasedOnCsOverIp
- 功能描述  : SPM收到MN_CALL_APP_CALL_MODIFY_REQ的处理
- 输入参数  : pstMsg       :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  消息处理完成
-             VOS_FALSE: 消息未处理完成，还需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月16日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvAppCallModifyReqBasedOnCsOverIp(
     struct MsgCB                       *pstMsg
 )
@@ -3499,21 +2246,7 @@ VOS_UINT32 TAF_SPM_RcvAppCallModifyReqBasedOnCsOverIp(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvAppCallAnswerRemoteModifyReqBasedOnCsOverIp
- 功能描述  : SPM收到MN_CALL_APP_CALL_ANSWER_REMOTE_MODIFY_REQ的处理
- 输入参数  : pstMsg       :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  消息处理完成
-             VOS_FALSE: 消息未处理完成，还需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月16日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvAppCallAnswerRemoteModifyReqBasedOnCsOverIp(
     struct MsgCB                       *pstMsg
 )
@@ -3523,21 +2256,7 @@ VOS_UINT32 TAF_SPM_RcvAppCallAnswerRemoteModifyReqBasedOnCsOverIp(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvAppEconfDialReqBasedOnCsOverIp
- 功能描述  : SPM收到TAF_CALL_APP_ECONF_DIAL_REQ的处理
- 输入参数  : pstMsg       :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  消息处理完成
-             VOS_FALSE: 消息未处理完成，还需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月28日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvAppEconfDialReqBasedOnCsOverIp(
     struct MsgCB                       *pstMsg
 )
@@ -3560,28 +2279,7 @@ VOS_UINT32 TAF_SPM_RcvAppEconfDialReqBasedOnCsOverIp(
 
 #endif
 
-/* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-23, begin */
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcCcSrvReqProtectTimerExpired
- 功能描述  : CC业务保护定时器超时处理，收到该消息后，发送失败给业务请求发送方，
-             随后释放缓存消息
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE -- 消息已处理
-             VOS_FALSE-- 消息未处理完成
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年9月24日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-  2.日    期   : 2015年8月3日
-    作    者   : n00269697
-    修改内容   : DTS2015072802941，CC业务保护定时器超时，如果非PS ONLY，尝试域
-                 选择到NAS信令进行处理
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_ProcCcSrvReqProtectTimerExpired(VOS_VOID)
 {
     TAF_SPM_CACHE_MSG_INFO_STRU        *pstCachedMsg = VOS_NULL_PTR;
@@ -3658,30 +2356,7 @@ VOS_UINT32 TAF_SPM_ProcCcSrvReqProtectTimerExpired(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcSmsSrvReqProtectTimerExpired
- 功能描述  : SMS业务保护定时器超时处理，收到该消息后，发送失败给业务请求发送方，
-             随后释放缓存消息
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE -- 消息已处理
-             VOS_FALSE-- 消息未处理完成
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年9月24日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月31日
-    作    者   : y00245242
-    修改内容   : 增加换域重拨功能
-  3.日    期   : 2015年8月3日
-    作    者   : n00269697
-    修改内容   : DTS2015072802941，SMS业务保护定时器超时，如果非SMMA
-                 消息，尝试域选择到NAS信令进行处理
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_ProcSmsSrvReqProtectTimerExpired(
     struct MsgCB                       *pstMsg
 )
@@ -3766,27 +2441,7 @@ VOS_UINT32 TAF_SPM_ProcSmsSrvReqProtectTimerExpired(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcSsSrvReqProtectTimerExpired
- 功能描述  : SS业务保护定时器超时处理，收到该消息后，发送失败给业务请求发送方，
-             随后释放缓存消息
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE -- 消息已处理
-             VOS_FALSE-- 消息未处理完成
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年9月24日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-  2.日    期   : 2015年8月3日
-    作    者   : n00269697
-    修改内容   : DTS2015072802941，SS业务保护定时器超时，如果非PS ONLY，尝试域
-                 选择到NAS信令进行处理
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_ProcSsSrvReqProtectTimerExpired(VOS_VOID)
 {
     TAF_SPM_CACHE_MSG_INFO_STRU                            *pstCachedMsg = VOS_NULL_PTR;
@@ -3855,30 +2510,8 @@ VOS_UINT32 TAF_SPM_ProcSsSrvReqProtectTimerExpired(VOS_VOID)
     /* message need to be processed further by call module, so return VOS_FALSE */
     return VOS_FALSE;
 }
-/* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-23, end */
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_SendCcServiceRequetFail
- 功能描述  : 指示用户CC业务请求失败
 
- 输入参数  : ulEventType －－消息事件类型
-             pstMsg －－ 消息地址
-             enCause -- 业务请求失败原因值
-
- 输出参数  : 无
- 返 回 值  : 无
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年10月10日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-  2.日    期   : 2014年11月28日
-    作    者   : f00179208
-    修改内容   : enhanced conference项目
-*****************************************************************************/
 VOS_VOID TAF_SPM_SendCcServiceRequetFail(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -3940,25 +2573,7 @@ VOS_VOID TAF_SPM_SendCcServiceRequetFail(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_SendSmsServiceRequetFail
- 功能描述  : 指示用户SMS业务请求失败
 
- 输入参数  : ulEventType －－消息事件类型
-             pstMsg －－ 消息地址
-             ulCause -- 业务请求失败原因值
-
- 输出参数  : 无
- 返 回 值  : 无
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年10月10日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_SPM_SendSmsServiceRequetFail(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -3984,25 +2599,7 @@ VOS_VOID TAF_SPM_SendSmsServiceRequetFail(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_SendSsServiceRequetFail
- 功能描述  : 指示用户SS业务请求失败
 
- 输入参数  : ulEventType －－消息事件类型
-             pstMsg －－ 消息地址
-             errorCode －－ 业务请求原因值
-
- 输出参数  : 无
- 返 回 值  : 无
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年10月10日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_SPM_SendSsServiceRequetFail(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
@@ -4039,37 +2636,7 @@ VOS_VOID TAF_SPM_SendSsServiceRequetFail(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcReqMsgBasedOnNasSignalling
- 功能描述  : 处理基于NAS信令发送的APP的请求消息,仅需要对SMS的请求消息做处理，
-             设置消息发送的信令类型为NAS SIGNALLING
- 输入参数  : ulEventType -- 由PID与message name组成
-             pstRcvMsg   -- 消息指针
 
- 输出参数  : 无
- 返 回 值  : VOS_TRUE   消息息已处理完成
-             VOS_FALSE  消息未处理完成
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2013年7月31日
-   作    者   : y00245242
-   修改内容   : 新生成函数
- 2.日    期   : 2014年06月16日
-   作    者   : f00179208
-   修改内容   : VTLTE项目
- 3.日    期   : 2014年6月23日
-   作    者   : z00161729
-   修改内容   : DSDS III新增
- 4.日    期   : 2014年11月28日
-   作    者   : f00179208
-   修改内容   : 增强型多方通话
- 5.日    期   : 2015年6月27日
-   作    者   : w00242748
-   修改内容   : DTS2015062606295:1X no rf,syscfg设置1x不支持，atd117;会触发1X搜网
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_ProcReqMsgBasedOnNasSignalling(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstRcvMsg
@@ -4125,27 +2692,7 @@ VOS_UINT32 TAF_SPM_ProcReqMsgBasedOnNasSignalling(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcCcMsgQueue
- 功能描述  : 处理缓存CC消息的队列中的消息。当队列中有消息存在时，运行域选择，
-             除域选择结果为继续buffer message外，其他结果都停止定时器，清除
-             队列中缓存的消息；
 
- 输入参数  : 无
- 输出参数  : pEnDomainSelType -- 指针，返回域选择结果类型
- 返 回 值  : VOS_TRUE -- 消息处理完毕
-             VOS_FALSE -- 消息未处理完成，待进一步处理
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年9月25日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-  2.日    期   : 2014年7月8日
-    作    者   : w00176964
-    修改内容   : 函数位置调整以及放开IMS宏控制
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_ProcCcMsgQueue(TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 *pEnDomainSelRslt)
 {
     TAF_SPM_CACHE_MSG_INFO_STRU        *pstMsgInfo = VOS_NULL_PTR;
@@ -4195,30 +2742,7 @@ VOS_UINT32 TAF_SPM_ProcCcMsgQueue(TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 *pEnDomai
     return ulRst;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcSmsMsgQueue
- 功能描述  : 处理缓存SMS消息的队列中的消息。当队列中有消息存在时，运行域选择，
-             除域选择结果为继续buffer message外，其他结果都停止定时器，清除
-             队列中缓存的消息;
 
- 输入参数  : 无
- 输出参数  : pEnDomainSelType -- 指针，返回域选择结果类型
- 返 回 值  : VOS_TRUE -- 消息处理完毕
-             VOS_FALSE -- 消息未处理完成，待进一步处理
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年9月25日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-  2.日    期   : 2013年1月2日
-    作    者   : y00245242
-    修改内容   : 增加域选择换域重拨功能
-  3.日    期   : 2014年7月8日
-    作    者   : w00176964
-    修改内容   : 函数位置调整以及放开IMS宏控制
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_ProcSmsMsgQueue(TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 *pEnDomainSelRslt)
 {
     TAF_SPM_CACHE_MSG_INFO_STRU        *pstMsgInfo = VOS_NULL_PTR;
@@ -4282,27 +2806,7 @@ VOS_UINT32 TAF_SPM_ProcSmsMsgQueue(TAF_SPM_DOMAIN_SEL_RESULT_ENUM_UINT8 *pEnDoma
     return ulRst;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcSsMsgQueue
- 功能描述  : 处理缓存SS消息的队列中的消息。当队列中有消息存在时，运行域选择，
-             除域选择结果为继续buffer message外，其他结果都停止定时器，清除
-             队列中缓存的消息；
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE -- 消息处理完毕
-             VOS_FALSE -- 消息未处理完成，待进一步处理
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年9月25日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-  2.日    期   : 2014年7月8日
-    作    者   : w00176964
-    修改内容   : 函数位置调整以及放开IMS宏控制
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_ProcSsMsgQueue(VOS_VOID)
 {
     TAF_SPM_CACHE_MSG_INFO_STRU                            *pstMsgInfo = VOS_NULL_PTR;
@@ -4354,31 +2858,7 @@ VOS_UINT32 TAF_SPM_ProcSsMsgQueue(VOS_VOID)
     return ulRst;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcBufferedMsgInQueue
- 功能描述  : 处理缓存在队列中的消息，确认CC/SMS/SS缓存对列中是否有消息，如果有
-             运行对应的消息队列处理函数。
-             如果CC缓存消息域选择结果不为缓存消息，且有缓存的SMS或SS请求消息，
-             发送内部域选择指示消息给自己，否则继续处理SMS缓存消息，同样，如果
-             SMS缓存消息域选择结果不为缓存，且有SS请求消息缓存，发送域选择指示
-             给自己，否则返回
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE -- 消息处理完毕
-             VOS_FALSE -- 消息未处理完成，待进一步处理
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年9月24日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-  2.日    期   : 2013年1月2日
-    作    者   : y00245242
-    修改内容   : 增加换域重拨功能
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_ProcBufferedMsgInQueue(VOS_VOID)
 {
     VOS_UINT32                                              ulRst;
@@ -4451,24 +2931,7 @@ VOS_UINT32 TAF_SPM_ProcBufferedMsgInQueue(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcServiceRequestFail
- 功能描述  : 域选择结果为失败或已有缓存消息时，给AT/STK回复失败
 
- 输入参数  : ulEventType -- 消息事件类型
-             pstMsg -- 消息指针
-
- 输出参数  : 无
- 返 回 值  : VOS_TRUE -- 消息已处理
-             VOS_FALSE -- 消息未处理
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年9月22日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_ProcServiceRequestFail(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4499,22 +2962,7 @@ VOS_UINT32 TAF_SPM_ProcServiceRequestFail(
     return (VOS_TRUE);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_StartCcServiceReqProtectTimer
- 功能描述  : 启动cc服务保护定时器
- 输入参数  : ulRfAvailable -- RF
-             enVoicePerferred -- VOICE优先域
-             usClientId -- 定时器关联的client ID
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月9日
-    作    者   : c00318887
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_SPM_StartCcServiceReqProtectTimer(
     VOS_UINT32                          ulRfAvailable,
     TAF_SDC_VOICE_DOMAIN_ENUM_UINT32    enVoicePerferred,
@@ -4542,22 +2990,7 @@ VOS_VOID TAF_SPM_StartCcServiceReqProtectTimer(
                        usClientId);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_StartSmsServiceReqProtectTimer
- 功能描述  : 启动sms服务保护定时器
- 输入参数  : ulRfAvailable -- RF
-             enVoicePerferred -- VOICE优先域
-             usClientId -- 定时器关联的client ID
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月9日
-    作    者   : c00318887
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_SPM_StartSmsServiceReqProtectTimer(
     VOS_UINT32                          ulRfAvailable,
     TAF_SDC_VOICE_DOMAIN_ENUM_UINT32    enVoicePerferred,
@@ -4591,22 +3024,7 @@ VOS_VOID TAF_SPM_StartSmsServiceReqProtectTimer(
                        usClientId);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_StartCcServiceReqProtectTimer
- 功能描述  : 启动SS服务保护定时器
- 输入参数  : ulRfAvailable -- RF
-             enVoicePerferred -- VOICE优先域
-             usClientId -- 定时器关联的client ID
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月9日
-    作    者   : c00318887
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_SPM_StartSsServiceReqProtectTimer(
     VOS_UINT32                          ulRfAvailable,
     TAF_SDC_VOICE_DOMAIN_ENUM_UINT32    enVoicePerferred,
@@ -4634,26 +3052,7 @@ VOS_VOID TAF_SPM_StartSsServiceReqProtectTimer(
                        usClientId);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_BufferAppRequestMessage
- 功能描述  : 根据业务请求类型，保存消息到对应的缓存消息queue中，并启动对应的业务
-             保护定时器。如果queue已满，退出保存
 
- 输入参数  : ulEventType -- 消息事件类型
-             pstMsg -- 消息指针
-
- 输出参数  : 无
- 返 回 值  : VOS_TRUE -- 保存成功
-             VOS_FALSE -- queue中已经有消息存在，返回失败
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年9月22日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_BufferAppRequestMessage(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -4734,22 +3133,7 @@ VOS_UINT32 TAF_SPM_BufferAppRequestMessage(
 }
 
 #if (FEATURE_ON == FEATURE_ECALL)
-/*****************************************************************************
- 函 数 名  : TAF_SPM_IsEcallAllowedSelNasSignalling
- 功能描述  : 当前ecall是否允许在走nas signalling
- 输入参数  : enCallType -- 呼叫类型
 
- 输出参数  : 无
- 返 回 值  : VOS_FALSE － 呼叫不允许发起
-             VOS_TRUE  － 呼叫允许发起
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2015年03月02日
-   作    者   : j00174725
-   修改内容   :
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_IsEcallAllowedSelNasSignalling(
     MN_CALL_TYPE_ENUM_U8                enCallType
 )

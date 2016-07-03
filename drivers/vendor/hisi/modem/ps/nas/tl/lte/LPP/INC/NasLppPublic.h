@@ -273,13 +273,7 @@ typedef VOS_VOID (*NAS_LPP_TIMER_PROC_FUNC)(VOS_UINT8, VOS_UINT8, VOS_UINT8, VOS
   4 Enum
 *****************************************************************************/
 
-/*******************************************************************************
- 枚举名    : NAS_LPP_ERROR_CODE_ENUM
- 枚举说明  : LPP的错误原因之
- 1.日    期   : 2015年07月06日
-   作    者   :
-   修改内容   :
-*******************************************************************************/
+
 enum NAS_LPP_ERROR_CODE_ENUM
 {
     NAS_LPP_SUCCESS                     = 0,         /*LPP 模块函数返回成功*/
@@ -297,13 +291,7 @@ enum NAS_LPP_ERROR_CODE_ENUM
 };
 typedef VOS_UINT32  NAS_LPP_ERROR_CODE_ENUM_UINT32;
 
-/*******************************************************************************
- 枚举名    : NAS_LPP_UPLINK_MSG_TYPE_ENUM
- 枚举说明  : LPP上行消息类型
- 1.日    期   : 2015年07月06日
-   作    者   :
-   修改内容   :
-*******************************************************************************/
+
 enum NAS_LPP_UPLINK_MSG_TYPE_ENUM
 {
     NAS_LPP_UPLINK_MSG_TYPE_ACK             = 0,         /*上行消息是ACK消息*/
@@ -313,13 +301,7 @@ enum NAS_LPP_UPLINK_MSG_TYPE_ENUM
 };
 typedef VOS_UINT32  NAS_LPP_UPLINK_MSG_TYPE_UINT32;
 
-/*******************************************************************************
- 枚举名    : NAS_LPP_MAIN_STATE_ENUM
- 枚举说明  : LPP的主状态
- 1.日    期   : 2015年07月06日
-   作    者   : l00253982
-   修改内容   : Added for LPP
-*******************************************************************************/
+
 enum    NAS_LPP_MAIN_STATE_ENUM
 {
     /*=================== EMM的主状态 ===================*/
@@ -332,18 +314,7 @@ enum    NAS_LPP_MAIN_STATE_ENUM
 };
 typedef VOS_UINT32  NAS_LPP_MAIN_STATE_ENUM_UINT32;
 
-/*******************************************************************************
- 枚举名    : NAS_LPP_SUB_STATE_ENUM
- 枚举说明  : LPP的子状态
 
-     注意:  g_astLppSubStateTime和g_astNasLppFsm两个表格的单元项与此子状态的定义先后顺序
-            强相关，不要随意修改子状态的顺序、或在已有子状态中间插入定义新子状态(在最后面增加新的子状态定义)。
-            如果在中间插入新定义了子状态，不要忘记修改以上的两个表。
-
- 1.日    期   : 2015年07月06日
-   作    者   : l00253982
-   修改内容   : Added for LPP
-*******************************************************************************/
 enum    NAS_LPP_SUB_STATE_ENUM
 {
 
@@ -377,13 +348,7 @@ enum    NAS_LPP_SUB_STATE_ENUM
 };
 typedef VOS_UINT32  NAS_LPP_SUB_STATE_ENUM_UINT32;
 
-/*******************************************************************************
- 枚举名    : NAS_LPP_UP_STATE_STATE_ENUM
- 枚举说明  : LPP的状态
- 1.日    期   : 2015年11月24日
-   作    者   : l00253982
-   修改内容   : Added for LPP
-*******************************************************************************/
+
 enum  NAS_LPP_UP_STATE_STATE_ENUM
 {
     LPP_UP_STATE_IDLE                             = 0, /*表示当前没有任何LPP流程*/
@@ -396,13 +361,7 @@ enum  NAS_LPP_UP_STATE_STATE_ENUM
 };
 typedef VOS_UINT32  NAS_LPP_UP_STATE_ENUM_UINT32;
 
-/*******************************************************************************
- 枚举名    : NAS_LPP_SUB_STATE_ENUM
- 枚举说明  : LPP的子状态
- 1.日    期   : 2015年07月06日
-   作    者   :
-   修改内容   :
-*******************************************************************************/
+
 enum    NAS_LPP_AIR_MSG_ENUM
 {
     /*上行的*/
@@ -424,20 +383,7 @@ enum    NAS_LPP_AIR_MSG_ENUM
 };
 typedef VOS_UINT32  NAS_LPP_AIR_MSG_ENUM_UINT32;
 
-/*******************************************************************************
- 枚举名    : NAS_LPP_SUB_STATE_ENUM
- 枚举说明  : LPP所有使用的定时器
-             上报优先级是周期性上报>只上报一次>条件触发方式，如果下行请求位置
-             信息的时候，发现上面三种上报方式任意两种或者3中同时从网络侧带下来，
-             那么UE需要忽略优先级低的上报方式
 
-   注意: 这个定义的定义与g_astLppSubStateTime和g_afNasLppStateTimerFun/g_afNasLppNoneStateTimerFun表强相关。新定义最好在最后面增加，
-   不要在中间插入增加新的定时器名字。修改后，不要忘了修改上面的两个表格。
-
- 1.日    期   : 2015年07月06日
-   作    者   : l00253982
-   修改内容   : Added for LPP
-*******************************************************************************/
 enum NAS_LPP_TIMER_PARA_ENUM
 {
 /*------------------------------------------状态机对应的定时器--------------------------------------*/
@@ -482,13 +428,7 @@ enum NAS_LPP_TIMER_PARA_ENUM
 };
 typedef VOS_UINT8   NAS_LPP_TIMER_PARA_ENUM_UINT8;
 
-/*******************************************************************************
- 枚举名    : NAS_LPP_CONN_STATUS_ENUM
- 枚举说明  : LPP的连接状态
- 1.日    期   : 2015年07月06日
-   作    者   : l00253982
-   修改内容   : Added for LPP
-*******************************************************************************/
+
 enum NAS_LPP_CONN_STATUS_ENUM
 {
     NAS_LPP_CONN_STATUS_IDLE            = 0,    /*LPP当前处于空闲态*/
@@ -499,13 +439,7 @@ enum NAS_LPP_CONN_STATUS_ENUM
 };
 typedef VOS_UINT32   NAS_LPP_CONN_STATUS_ENUM_UINT32;
 
-/*******************************************************************************
- 枚举名    : NAS_LPP_REPORT_LOCATION_TYPE_ENUM
- 枚举说明  : LPP上报位置信息的方式
- 1.日    期   : 2015年07月06日
-   作    者   : lifuxin 00253982
-   修改内容   : Added for LPP
-*******************************************************************************/
+
 
 enum NAS_LPP_REPORT_LOCATION_TYPE_ENUM
 {
@@ -517,13 +451,7 @@ enum NAS_LPP_REPORT_LOCATION_TYPE_ENUM
 };
 typedef VOS_UINT8 NAS_LPP_REPORT_LOCATION_TYPE_ENUM_UINT8;
 
-/*******************************************************************************
- 枚举名    : NAS_LPP_POSITION_TECH_ENUM
- 枚举说明  : LPP定位记数枚举
- 1.日    期   : 2015年07月06日
-   作    者   : lifuxin 00253982
-   修改内容   : Added for LPP
-*******************************************************************************/
+
 
 enum NAS_LPP_POSITION_TECH_ENUM
 {
@@ -536,13 +464,7 @@ enum NAS_LPP_POSITION_TECH_ENUM
 };
 typedef VOS_UINT8 NAS_LPP_POSITION_TECH_ENUM_UINT8;
 
-/*******************************************************************************
- 枚举名    : NAS_LPP_POSITION_TECH_ENUM
- 枚举说明  : LPP定位记数枚举
- 1.日    期   : 2015年07月06日
-   作    者   : lifuxin 00253982
-   修改内容   : Added for LPP
-*******************************************************************************/
+
 
 enum NAS_LPP_BUFF_FSM_MSG_PRIORITY_ENUM
 {
@@ -552,13 +474,7 @@ enum NAS_LPP_BUFF_FSM_MSG_PRIORITY_ENUM
 };
 typedef VOS_UINT8 NAS_LPP_BUFF_FSM_MSG_PRIORITY_ENUM_UINT8;
 
-/*******************************************************************************
- 枚举名    : NAS_LPP_POSITION_PROCESS_TYPE_ENUM
- 枚举说明  : 记录当前定位流程是用户面还是控制面
- 1.日    期   : 2015年11月20日
-   作    者   : lifuxin 00253982
-   修改内容   : Added for LPP
-*******************************************************************************/
+
 enum NAS_LPP_POSITION_PROCESS_TYPE_ENUM
 {
     NAS_LPP_POSITION_PROCESS_TYPE_NULL,
@@ -568,13 +484,7 @@ enum NAS_LPP_POSITION_PROCESS_TYPE_ENUM
 };
 typedef VOS_UINT8 NAS_LPP_POSITION_PROCESS_TYPE_ENUM_UINT8;
 
-/*******************************************************************************
- 枚举名    : NAS_LPP_UP_POS_REQ_TECH_TYPE_ENUM
- 枚举说明  : 记录用户面当前请求的是哪一种定位技术
- 1.日    期   : 2015年11月20日
-   作    者   : lifuxin 00253982
-   修改内容   : Added for LPP
-*******************************************************************************/
+
 enum NAS_LPP_UP_POS_REQ_TECH_TYPE_ENUM
 {
     NAS_LPP_UP_POS_REQ_TECH_TYPE_NULL,
@@ -589,12 +499,7 @@ typedef VOS_UINT8 NAS_LPP_UP_POS_REQ_TECH_TYPE_ENUM_UINT8;
 /*****************************************************************************
   5 STRUCT
 *****************************************************************************/
-/*******************************************************************************
- 结构名    : NAS_LPP_FSM_ACT_STRU
- 结构说明  : NAS_LPP_FSM_ACT_STRU
- 1.日    期   : 2015年07月06日
-   作    者   :Xiaojun
-*******************************************************************************/
+
 
 typedef struct
 {
@@ -605,12 +510,7 @@ typedef struct
 #endif
 }NAS_LPP_FSM_ACT_STRU;
 
-/*******************************************************************************
- 结构名    :
- 结构说明  : NAS_LPP_FSM_STRU
- 1.日    期   : 2015年07月06日
-   作    者   :Xiaojun
-*******************************************************************************/
+
 
 typedef struct
 {
@@ -619,12 +519,7 @@ typedef struct
     NAS_LPP_FSM_ACT_STRU               *pfFsmActTbl;
 }NAS_LPP_FSM_STRU;
 
-/*******************************************************************************
- 结构名    :
- 结构说明  : LPP-TransactionID
- 1.日    期   : 2015年07月06日
-   作    者   :Xiaojun
-*******************************************************************************/
+
 typedef struct
 {
     NAS_LPP_SUB_STATE_ENUM_UINT32       enLppSubState;
@@ -633,12 +528,7 @@ typedef struct
 }NAS_LPP_SUB_STATE_TIME_STRU;
 
 
-/*******************************************************************************
- 结构名    :
- 结构说明  : LPP-TransactionID
- 1.日    期   : 2015年07月06日
-   作    者   :
-*******************************************************************************/
+
 typedef struct
 {
     LPP_INITIATOR_TYPE_ENUM_UINT8       enInitiator;
@@ -646,13 +536,7 @@ typedef struct
     VOS_UINT8                           aucRes[2];
 }NAS_LPP_TRANS_ID_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_LPP_MSG_IDENTITY_STRU
- 结构说明  : 唯一识别一条LPP消息的结构
- 1.日    期   : 2015年07月06日
-   作    者   : l00253982
-   修改内容   : Added for LPP
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulSessionId;        /*会话ID，组包上行generic消息需要使用*/
@@ -663,13 +547,7 @@ typedef struct
     VOS_BOOL                            bIsProvideLocFalg;   /*表示该条存储消息是否是provideLocation消息*/
 }NAS_LPP_MSG_IDENTITY_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_LPP_TIMER_STRU
- 结构说明  : LPP单个transaction运行的定时器
- 1.日    期   : 2015年07月06日
-   作    者   : l00253982
-   修改内容   : Added for LPP
-*******************************************************************************/
+
 typedef struct
 {
     HTIMER                                  hTimer;             /* vos分配的Timer Id */
@@ -677,13 +555,7 @@ typedef struct
     VOS_UINT8                               aucReserve1[3];     /* 四字节对齐，保留 */
     VOS_UINT32                              ulPara;             /* 定时器需要传入的参数*/
 }NAS_LPP_TIMER_STRU;
-/*******************************************************************************
- 结构名    : NAS_LPP_CAP_REQ_STRU
- 结构说明  : LPP下行能力请求缓存
- 1.日    期   : 2015年08月04日
-   作    者   : l00253982
-   修改内容   : Added for LPP
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                              bitOpAgnssCapReq    :1;
@@ -693,13 +565,7 @@ typedef struct
 
     LPP_AGNSS_REQ_CAP_STRU                  stGnssReqCap;
 }NAS_LPP_CAP_REQ_STRU;
-/*******************************************************************************
- 结构名    : NAS_LPP_FSM_MSG_BUFF_POOL_STRU
- 结构说明  :
- 1.日    期   : 2015年07月06日
-   作    者   : xiaojun
-   修改内容   : Added for LPP
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                              ulSenderPid;
@@ -707,13 +573,7 @@ typedef struct
     VOS_VOID                               *pMsg;
 }NAS_LPP_FSM_MSG_BUFF_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_LPP_FSM_MSG_BUFF_STRU
- 结构说明  :
- 1.日    期   : 2015年08月04日
-   作    者   :
-   修改内容   : Added for LPP
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                               ucHighNum;
@@ -725,13 +585,7 @@ typedef struct
     NAS_LPP_FSM_MSG_BUFF_STRU               astLowMsg[NAS_LPP_MAX_LOW_FSM_MSG_BUFF_NUM];
 }NAS_LPP_FSM_BUFF_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_LPP_TRANSACTION_ELEMENT_ENTIYT_STRU
- 结构说明  : LPP单个transaction的实体结构
- 1.日    期   : 2015年07月06日
-   作    者   : l00253982
-   修改内容   : Added for LPP
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                              bitOpWaitEcidMeasCnf    :1;
@@ -755,13 +609,7 @@ typedef struct
     NAS_LPP_FSM_BUFF_STRU                   stFsmBuff;
 }NAS_LPP_TRANSACTION_ELEMENT_ENTITY_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_LPP_MSG_HEAD_STRU
- 结构说明  : LPP消息头结构
- 1.日    期   : 2015年08月04日
-   作    者   : l00253982
-   修改内容   : Added for LPP
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                              bitOpLppTransactionId:1;
@@ -776,13 +624,7 @@ typedef struct
     LPP_ACKNOWLEDGEMENT_STRU                stAcknowledgement;
 }NAS_LPP_MSG_HEAD_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_LPP_SESSION_ENTITY_ELEMENT_STRU
- 结构说明  : LPP会话中transaction的实体结构
- 1.日    期   : 2015年07月06日
-   作    者   : l00253982
-   修改内容   : Added for LPP
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                   ucTransIdCount;         /*表示当前会话中running的transaction的总数*/
@@ -792,13 +634,7 @@ typedef struct
     VOS_UINT8                                   aucTransElementIdx[NAS_LPP_MAX_TRANS_COUNT];
 }NAS_LPP_TRANSACTION_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_LPP_SESSION_ENTITY_ELEMENT_STRU
- 结构说明  : LPP会话中transaction的实体结构
- 1.日    期   : 2015年07月06日
-   作    者   : l00253982
-   修改内容   : Added for LPP
-*******************************************************************************/
+
 typedef struct
 {
     /*对应bit 1:对应的transaction实体被使用； 对应bit 0:对应的transaction实体未使用*/
@@ -808,13 +644,7 @@ typedef struct
     NAS_LPP_TRANSACTION_ELEMENT_ENTITY_STRU     astTransElementEntity[NAS_LPP_MAX_TRANS_POOL_COUNT];
 }NAS_LPP_TRANSACTION_ENTITY_POOL_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_LPP_REPORT_LOCATION_TYPE_TRIGGER_STRU
- 结构说明  : 条件触发上报方式维护的全局信息
- 1.日    期   : 2015年07月06日
-   作    者   : l00253982
-   修改内容   : Added for LPP
-*******************************************************************************/
+
 typedef struct
 {
 
@@ -822,13 +652,7 @@ typedef struct
     NAS_LPP_TIMER_STRU                          stLppTimer;         /*上报持续时间定时器*/
 }NAS_LPP_REPORT_LOCATION_TYPE_TRIGGER_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_LPP_REPORT_LOCATION_TYPE_PERIOD_STRU
- 结构说明  : 周期性上报方式维护的全局信息
- 1.日    期   : 2015年07月06日
-   作    者   : l00253982
-   修改内容   : Added for LPP
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                   ucReportAmount;     /*要求上报的总的计数*/
@@ -838,26 +662,14 @@ typedef struct
     NAS_LPP_TIMER_STRU                          stLppTimer;         /*周期性上报定时器*/
 }NAS_LPP_REPORT_LOCATION_TYPE_PERIOD_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_LPP_REPORT_LOCATION_TYPE_ONCE_STRU
- 结构说明  : 上报一次维护的全局信息
- 1.日    期   : 2015年07月06日
-   作    者   : l00253982
-   修改内容   : Added for LPP
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                  ulResponseTime;     /*response time时长*/
     NAS_LPP_TIMER_STRU                          stLppTimer;         /*上报一次定时器*/
 }NAS_LPP_REPORT_LOCATION_TYPE_ONCE_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_LPP_REPORT_CRITERIA_STRU
- 结构说明  : lpp上报位置信息的方式
- 1.日    期   : 2015年07月06日
-   作    者   : l00253982
-   修改内容   : Added for LPP
-*******************************************************************************/
+
 typedef struct
 {
     NAS_LPP_REPORT_LOCATION_TYPE_ENUM_UINT8     enType;
@@ -873,13 +685,7 @@ typedef struct
     }u;
 }NAS_LPP_REPORT_CRITERIA_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_LPP_SESSION_ENTITY_ELEMENT_STRU
- 结构说明  : LPP单个会话的实体结构
- 1.日    期   : 2015年07月06日
-   作    者   : l00253982
-   修改内容   : Added for LPP
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                      ulSessionId;            /*当前会话的ID*/
@@ -891,13 +697,7 @@ typedef struct
     NAS_LPP_TRANSACTION_STRU                        stLppTrans;             /*一个会话中的所有transaction实体*/
 }NAS_LPP_SESSION_ENTITY_ELEMENT_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_LPP_SESSION_ENTITY_STRU
- 结构说明  : LPP会话实体的结构
- 1.日    期   : 2015年07月06日
-   作    者   : l00253982
-   修改内容   : Added for LPP
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                      ulSessionActiveBitmap;  /*当前SESSION的状态:对应bit为1，对应的session实体被使用；对应bit为0，对应的实体未被使用*/
@@ -906,15 +706,7 @@ typedef struct
 
 }NAS_LPP_SESSION_ENTITY_POOL_STRU;
 
-/*****************************************************************************
- 结构名    : LPP_UPLINK_MSG_BUF_STRU
- 结构说明  : LPP_UPLINK_MSG_BUF_STRU数据结构
- 作者      : lifuxin 00253982 2015-07-02 新开发
- 功能点描述: 上行缓存buffer存储的数据结构，每一个buffer包含LPP消息的IDENTIY，
-             以及具体的直传消息实体，这样定义的好处是操作每一个buffer的时候
-             都知道是哪一个session中哪一个transaction的哪一条空口消息，这样
-             就可以动态的维护指定的buffer。
-*****************************************************************************/
+
 typedef struct
 {
     NAS_LPP_MSG_IDENTITY_STRU           stLppMsgIdentity;    /*一条LPP消息的唯一的身份识别*/
@@ -927,29 +719,7 @@ typedef struct
     } u;
 }LPP_UPLINK_MSG_BUF_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_LPP_CONN_MANAGE_STRU
- 结构说明  : LPP连接管理数据结构
- 功能点描述: 有上行空口要发，如果当前为IDLE， 则跟LMM发起建链，建链同时，将对应
-             发给LMM的直传消息放到缓存列表中去，有两种结果，一是建链成功，则依次
-             取出缓存中的直传消息发送DATA REQ给LMM，二是建链失败，则启动重建链定
-             时器，定时器超时后，则重新发起建链，现阶段暂时重建链一次即可，如果
-             还是失败，则依次根据缓存中sessionID和transactionID找到对应transaction，
-             将对应的资源清空，终止定位流程。
 
-             直传有两个地方会用到:
-             1. 建链成功之后，立即去待发送缓存列表中依次去取对应的消息发送给LMM
-             2. 当前链路存在，直接组包直传消息，发送给LMM，同时将该上行消息也放到缓存
-             队列中去
-             上面两种情况，只要发送成功之后，则将对应buffer的指针设置成NULL， 并且发
-             送一条内部消息到transaction中通知需要启动重传定时器，如果发送失败，则
-             启动重建链定时器，定时器超时之后再次发起建链，回到上面建链的逻辑中去。
-
- 1.日    期   : 2015年07月06日
-   作    者   : l00253982
-   修改内容   : Added for LPP
-
-*******************************************************************************/
 typedef struct
 {
     NAS_LPP_CONN_STATUS_ENUM_UINT32         enConectStatus;                                 /*表示当前的连接状态*/
@@ -957,39 +727,21 @@ typedef struct
     NAS_LPP_TIMER_STRU                      stLppTimer;                                     /*连接管理中正在running的定时器*/
 }NAS_LPP_CONN_MANAGE_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_LPP_UP_MSG_BUFF_SEARCH_RSLT_STRU
- 结构说明  : 上行buffer的内存池搜的结果
- 1.日    期   : 2015年07月06日
-   作    者   : l00253982
-   修改内容   : Added for LPP
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                               ucNum;
     VOS_UINT8                               aucIndex[NAS_LPP_MAX_UP_MSG_PER_TRANSACTION];
 }NAS_LPP_UP_MSG_BUFF_SEARCH_RSLT_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_LPP_UP_MSG_SEQUENCE_STRU
- 结构说明  : 上行buffer的按先后顺序存储索引结构
- 1.日    期   : 2015年07月06日
-   作    者   : l00253982
-   修改内容   : Added for LPP
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT8               ucUsedFlag;         /*是否被占用flag*/
     VOS_UINT8               ucUpLinkBuffIndex;  /*上行缓存buffer的索引*/
 }NAS_LPP_UP_MSG_SEQUENCE_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_LPP_UP_MSG_BUFF_POOL_STRU
- 结构说明  : 上行buffer的内存池
- 1.日    期   : 2015年07月06日
-   作    者   : l00253982
-   修改内容   : Added for LPP
-*******************************************************************************/
+
 typedef struct
 {
     NAS_LPP_UP_MSG_SEQUENCE_STRU            astUpmsgSeq[NAS_LPP_MAX_BUFF_MSG_COUNT];
@@ -997,13 +749,7 @@ typedef struct
     LPP_UPLINK_MSG_BUF_STRU                 astLppUpMsg[NAS_LPP_MAX_BUFF_MSG_COUNT];
 }NAS_LPP_UP_MSG_BUFF_POOL_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_LPP_LOC_TECH_MAP_STRU
- 结构说明  : 定位技术和session间的映射关系
- 1.日    期   : 2015年07月06日
-   作    者   : l00253982
-   修改内容   : Added for LPP
-*******************************************************************************/
+
 typedef struct
 {
     NAS_LPP_POSITION_TECH_ENUM_UINT8        enPositionTech;     /*定位技术*/
@@ -1011,14 +757,7 @@ typedef struct
     VOS_UINT8                               ucSessionTranIndx;  /*正在running的定位技术对应的数组下标*/
     VOS_UINT8                               ucTransIndx;        /*正在running的定位技术对应的transaction内存池中的索引*/
 }NAS_LPP_LOC_TECH_MAP_STRU;
-/*******************************************************************************
- 结构名    : NAS_LPP_LOC_TECH_RUNING_STRU
- 结构说明  : 记录当前发起位置请求流程的session transactionID等，方便
-             LRRC回复测量IND之后，能知道是哪一个实体发起的流程
- 1.日    期   : 2015年07月06日
-   作    者   : l00253982
-   修改内容   : Added for LPP
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                               ucNum;
@@ -1026,13 +765,7 @@ typedef struct
     NAS_LPP_LOC_TECH_MAP_STRU               astLocTechMap[NAS_LPP_MAX_POS_TECH];
 }NAS_LPP_LOC_TECH_RUNING_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_LPP_ECID_MEAS_RESULT_STRU
- 结构说明  : 用于保存ECID的测量信息
- 1.日    期   : 2015年07月28日
-   作    者   : l00253982
-   修改内容   : Added for LPP
-*******************************************************************************/
+
 typedef struct
 {
     VOS_BOOL                                    bHaveEcidMeasFlag;
@@ -1041,13 +774,7 @@ typedef struct
     VOS_UINT16                                  usLastPhyCellId;        /*上次测量ind对应的物理小区ID*/
 }NAS_LPP_ECID_MEAS_RESULT_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_LPP_OTDOA_MEAS_RESLT_STRU
- 结构说明  : 用于保存otdoa的测量信息
- 1.日    期   : 2015年07月28日
-   作    者   : l00253982
-   修改内容   : Added for LPP
-*******************************************************************************/
+
 typedef struct
 {
     VOS_BOOL                                        bMeasRsltFlag;
@@ -1076,13 +803,7 @@ typedef struct
 }NAS_LPP_OTDOA_MEAS_RESLT_STRU;
 
 
-/*******************************************************************************
- 结构名    : NAS_LPP_GNSS_MEAS_RESLT_STRU
- 结构说明  : 用于保存GNSS的测量信息
- 1.日    期   : 2015年07月28日
-   作    者   : l00253982
-   修改内容   : Added for LPP
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                      bitCommonInfo:1;
@@ -1094,13 +815,7 @@ typedef struct
     MTA_LPP_COMMON_IES_PROVIDE_LOCATION_INFO_STRU   stCommonProvideLocInfo; /*经纬度公共信息*/
 }NAS_LPP_GNSS_MEAS_RESLT_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_LPP_MEAS_RESULT_STRU
- 结构说明  : 用于保存ECID，OTDOA，GNSS的测量信息
- 1.日    期   : 2015年07月28日
-   作    者   : l00253982
-   修改内容   : Added for LPP
-*******************************************************************************/
+
 typedef struct
 {
     NAS_LPP_ECID_MEAS_RESULT_STRU           stEcidMeasRslt;     /*ECID的测量结果*/
@@ -1108,13 +823,7 @@ typedef struct
     NAS_LPP_GNSS_MEAS_RESLT_STRU            stGnssMeasRslt;     /*GNSS的测量结果*/
 }NAS_LPP_MEAS_RESULT_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_LPP_MEAS_RESULT_STRU
- 结构说明  : 用于保存ECID，OTDOA，GNSS的测量信息
- 1.日    期   : 2015年08月03日
-   作    者   : w00324863
-   修改内容   : Added for LPP
-*******************************************************************************/
+
 
 typedef struct
 {
@@ -1139,13 +848,7 @@ typedef struct
     VOS_UINT32                                      aulBandInd[LRRC_LPP_MAX_BAND_IND_ARRAY_NUM];
 
 }LRRC_CAPABILITY_STRU;
-/*******************************************************************************
- 结构名    :NAS_LPP_TRANS_INDEX_STRU
- 结构说明  :  一个transaction实体对应的指针以及对应内存池中的索引，以及
-              对应的存储索引值的transaction的数组下标
- 1.日    期   : 2015年07月06日
-   作    者   :
-*******************************************************************************/
+
 typedef struct
 {
     NAS_LPP_TRANSACTION_ELEMENT_ENTITY_STRU *pstTransEntity;
@@ -1154,13 +857,7 @@ typedef struct
     VOS_UINT8                                aucRsv[2];
 }NAS_LPP_TRANS_INDEX_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_LPP_MEAS_RESULT_STRU
- 结构说明  : 用于保存ECID，OTDOA，GNSS的测量信息
- 1.日    期   : 2015年08月03日
-   作    者   : w00324863
-   修改内容   : Added for LPP
-*******************************************************************************/
+
 
 typedef struct
 {
@@ -1170,14 +867,7 @@ typedef struct
     LRRC_CAPABILITY_STRU            stRrcCapbility;
 }LRRC_SUPPORT_CAPABILITY_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_LPP_ENTITY_STRU
- 结构说明  : LPP实体的数据结构
- 1.日    期   : 2015年07月06日
-   作    者   : l00253982
-   修改内容   : Added for LPP
 
-*******************************************************************************/
 typedef struct
 {
     VOS_UINT16                          usReTransTimerLen;/*resend msg timer len*/
@@ -1190,13 +880,7 @@ typedef struct
     VOS_UINT8                           aucRsv[3];
 }NAS_LPP_NV_CONFIG_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_LPP_OTDOA_ASSIST_CFG_STRU
- 结构说明  : LPP下行辅助数据提供缓存
- 1.日    期   : 2015年08月04日
-   作    者   : l00253982
-   修改内容   : Added for LPP
-*******************************************************************************/
+
 typedef struct
 {
     VOS_BOOL                                        bOtdoaAssistDataFlag;
@@ -1215,13 +899,7 @@ typedef struct
 }NAS_LPP_OTDOA_ASSIST_CFG_STRU;
 
 
-/*******************************************************************************
- 结构名    : NAS_LPP_LOCATION_REQ_STRU
- 结构说明  : LPP下行位置信息请求
- 1.日    期   : 2015年08月04日
-   作    者   : l00253982
-   修改内容   : Added for LPP
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                      bitOpAgnssLocReq    :1;
@@ -1234,13 +912,7 @@ typedef struct
     LPP_ECID_REQ_LOCATION_INFO_STRU                 stEcidReqLocationInfo;
 }NAS_LPP_LOCATION_REQ_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_LPP_COMM_CONFIG_INFO_STRU
- 结构说明  :request location information的公共配置参数
- 1.日    期   : 2015年08月04日
-   作    者   : l00253982
-   修改内容   : Added for LPP
-*******************************************************************************/
+
 typedef struct
 {
    VOS_UINT32                                   bitOpQos                        :1;
@@ -1277,25 +949,13 @@ typedef struct
 }NAS_LPP_COMM_CONFIG_INFO_STRU;
 
 
-/*******************************************************************************
- 结构名    : NAS_LPP_ENTITY_STRU
- 结构说明  : LPP实体的数据结构
- 1.日    期   : 2015年07月06日
-   作    者   : l00253982
-   修改内容   : Added for LPP
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulBitmap;
     NAS_LPP_COMM_CONFIG_INFO_STRU       astLppCommCfgInfo[NAS_LPP_MAX_POS_TECH];
 }NAS_LPP_COMM_CONFIG_INFO_POOL_STRU;
-/*******************************************************************************
- 结构名    : NAS_LPP_SERVING_CELL_STRU
- 结构说明  : LPP实体的数据结构
- 1.日    期   : 2015年07月06日
-   作    者   : l00253982
-   修改内容   : Added for LPP
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          bitCELLIDChng:1;/* 记录CELL ID CHANGE */
@@ -1312,13 +972,7 @@ typedef struct
 
 }NAS_LPP_SERVING_CELL_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_LPP_CONFIG_PARA_STRU
- 结构说明  : LPP配置参数数据结构
- 1.日    期   : 2015年07月06日
-   作    者   : xiaojun
-   修改内容   : Added for LPP
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          bitOtdoaAssisChng   :1;
@@ -1343,13 +997,7 @@ typedef struct
     NAS_LPP_SERVING_CELL_STRU           stServingCell;
 }NAS_LPP_CONFIG_PARA_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_LPP_GNSS_TIMER_STRU
- 结构说明  : LPP gnss timer struct
- 1.日    期   : 2015年10月22日
-   作    者   : w00324863
-   修改内容   : Added for LPP
-*******************************************************************************/
+
 typedef struct
 {
     /* 获取GNSS CAP计数 */
@@ -1364,13 +1012,7 @@ typedef struct
     NAS_LPP_TIMER_STRU                      stLppGnssLocInfoInvalidTimer;    /* 位置信息有效定时器 */
 }NAS_LPP_GNSS_DATA_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_LPP_UP_REPORT_CRITERIA_STRU
- 结构说明  : lpp上报位置信息的方式
- 1.日    期   : 2015年07月06日
-   作    者   : W00324863
-   修改内容   : Added for LPP
-*******************************************************************************/
+
 typedef struct
 {
     NAS_LPP_REPORT_LOCATION_TYPE_ENUM_UINT8     enType;
@@ -1384,13 +1026,7 @@ typedef struct
     }u;
 }NAS_LPP_UP_REPORT_CRITERIA_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_LPP_UP_ECID_INFO_STRU
- 结构说明  : LPP 用户面ECID的实体结构
- 1.日    期   : 2015年11月18日
-   作    者   : l00253982
-   修改内容   : Added for LPP
-*******************************************************************************/
+
 typedef struct
 {
     NAS_LPP_UP_POS_REQ_TECH_TYPE_ENUM_UINT8     enReqPosTechType;   /*表示MTA请求具体定位技术类型*/
@@ -1402,13 +1038,7 @@ typedef struct
     MTA_LPP_REQ_MEASUREMENT_STRU                stRequestedMeasurements; /*表示请求ECID的测量的类型*/
 }NAS_LPP_UP_ECID_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_LPP_UP_OTDOA_INFO_STRU
- 结构说明  : LPP 用户面OTDOA的数据结构
- 1.日    期   : 2015年11月18日
-   作    者   : l00253982
-   修改内容   : Added for LPP
-*******************************************************************************/
+
 typedef struct
 {
     NAS_LPP_UP_POS_REQ_TECH_TYPE_ENUM_UINT8     enReqPosTechType;   /*表示MTA请求具体定位技术类型*/
@@ -1420,26 +1050,14 @@ typedef struct
     NAS_LPP_UP_STATE_ENUM_UINT32                enLppUpState;        /*表示OTDOA的当前状态*/
 }NAS_LPP_UP_OTDOA_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_LPP_USER_PLANE_ENTITY_STRU
- 结构说明  : LPP 用户面的实体信息
- 1.日    期   : 2015年11月18日
-   作    者   : l00253982
-   修改内容   : Added for LPP
-*******************************************************************************/
+
 typedef struct
 {
     VOS_BOOL                                bReqEcidAndOtdoaFlag; /*标识同时请求了ECID&OTDOA的测量请求*/
     NAS_LPP_UP_REPORT_CRITERIA_STRU         stReportCriteria;     /*同时请求ECID&OTDOA维护的上报准则*/
 }NAS_LPP_UP_MULTI_POS_TECH_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_LPP_USER_PLANE_ENTITY_STRU
- 结构说明  : LPP 用户面的实体信息
- 1.日    期   : 2015年11月18日
-   作    者   : l00253982
-   修改内容   : Added for LPP
-*******************************************************************************/
+
 typedef struct
 {
     NAS_LPP_UP_MULTI_POS_TECH_INFO_STRU     stMultiPosTechEntity; /*同时请求ECID&OTDOA的私有信息*/
@@ -1447,13 +1065,7 @@ typedef struct
     NAS_LPP_UP_OTDOA_INFO_STRU              stOtdoaUpEntity;    /*用户面OTDOA的实体信息*/
 }NAS_LPP_USER_PLANE_ENTITY_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_LPP_ENTITY_STRU
- 结构说明  : LPP实体的数据结构
- 1.日    期   : 2015年07月06日
-   作    者   : l00253982
-   修改内容   : Added for LPP
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                ucTransNum;             /*当前使用的由UE创建的transaction的transaction Number的最大值，网络侧发起的transaction由SMLC维护*/
@@ -1473,13 +1085,7 @@ typedef struct
     NAS_LPP_GNSS_DATA_STRU                   stStructDataForGnss;    /*gnss data */
     NAS_LPP_USER_PLANE_ENTITY_STRU           stUserPlaneEntity;      /*用户面实体*/
 } NAS_LPP_ENTITY_STRU;
-/*******************************************************************************
- 结构名    : NAS_LPP_MSG
- 结构说明  : LPP消息
- 1.日    期   : 2015年07月06日
-   作    者   : l00253982
-   修改内容   : Added for LPP
-*******************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                          /*_H2ASN_Skip*/

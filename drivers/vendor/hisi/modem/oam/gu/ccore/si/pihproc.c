@@ -1,18 +1,4 @@
-/************************************************************************
-Copyright   : 2005-2008, Huawei Tech. Co., Ltd.
-File name   : SimProc.c
-Author      : H59254
-Version     : V200R001
-Date        : 2008-10-18
-Description : 该文件定义了SIM卡事件实现
 
-Description : SIM卡事件的处理和实现
-History     :
-
-1.日    期  : 2008年10月28日
-  作    者  : H59254
-  修改内容  : Create
-************************************************************************/
 #include "product_config.h"
 #include "si_pih.h"
 #include "UsimPsInterface.h"
@@ -69,18 +55,7 @@ OM_LIST_S                               g_astPIHCtrlListHeader[SI_PIH_INFO_LIST_
 
 SI_PIH_CTRL_INFO_NODE_STRU             *g_pstPIHCurrNode = VOS_NULL_PTR;                /* 指向当前控制信息的节点 */
 
-/*****************************************************************************
-函 数 名  : SI_PIH_InitList
-功能描述  : 初始化队列信息
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
 
-修订记录  :
-1.日    期  : 2015年5月15日
-  作    者  : g00256031
-  修改内容  : 新建函数
-*****************************************************************************/
 VOS_VOID SI_PIH_InitList(VOS_VOID)
 {
     VOS_UINT8                           ucIndex;
@@ -109,18 +84,7 @@ VOS_VOID SI_PIH_InitList(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_GetCtrlNode
-功能描述  : 获取控制节点
-输入参数  : enListType
-输出参数  : 无
-返 回 值  : VOS_NULL_PTR - 获取失败
 
-修订记录  :
-1.日    期  : 2015年5月15日
-  作    者  : g00256031
-  修改内容  : 新建函数
-*****************************************************************************/
 SI_PIH_CTRL_INFO_NODE_STRU* SI_PIH_GetCtrlNode(
     SI_PIH_INFO_LIST_ENUM_UINT8         enListType
 )
@@ -148,19 +112,7 @@ SI_PIH_CTRL_INFO_NODE_STRU* SI_PIH_GetCtrlNode(
     return pstCtrlInfo;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_PutCtrlNode
-功能描述  : 将控制信息存放到队列尾部
-输入参数  : enListType
-            pstCtrlInfo
-输出参数  : 无
-返 回 值  : 无
 
-修订记录  :
-1.日    期  : 2015年05月15日
-  作    者  : g00256031
-  修改内容  : 新建函数
-*****************************************************************************/
 VOS_VOID SI_PIH_PutCtrlNode(
     SI_PIH_INFO_LIST_ENUM_UINT8         enListType,
     SI_PIH_CTRL_INFO_NODE_STRU         *pstCtrlInfo
@@ -177,19 +129,7 @@ VOS_VOID SI_PIH_PutCtrlNode(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_PutCtrlNode_Head
-功能描述  : 将控制信息存放到队列头部
-输入参数  : enListType
-            pstCtrlInfo
-输出参数  : 无
-返 回 值  : 无
 
-修订记录  :
-1.日    期  : 2015年05月15日
-  作    者  : g00256031
-  修改内容  : 新建函数
-*****************************************************************************/
 VOS_VOID SI_PIH_PutCtrlNode_Head(
     SI_PIH_INFO_LIST_ENUM_UINT8         enListType,
     SI_PIH_CTRL_INFO_NODE_STRU         *pstCtrlInfo
@@ -210,18 +150,7 @@ VOS_VOID SI_PIH_PutCtrlNode_Head(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_ClearChannelInfo
-功能描述  : 清空通道信息
-输入参数  :
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
 
-修订记录  :
-1.日    期  : 2015年01月30日
-  作    者  : zhuli
-  修改内容  : 新建函数
-*****************************************************************************/
 VOS_VOID SI_PIH_ClearChannelInfo(VOS_VOID)
 {
     VOS_UINT32                          i;
@@ -238,18 +167,7 @@ VOS_VOID SI_PIH_ClearChannelInfo(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_GetAppSession
-功能描述  : 清空通道信息
-输入参数  :
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
 
-修订记录  :
-1.日    期  : 2015年01月30日
-  作    者  : zhuli
-  修改内容  : 新建函数
-*****************************************************************************/
 
 VOS_UINT32 SI_PIH_GetAppBySession(
     VOS_UINT32                          ulSessionID,
@@ -275,18 +193,7 @@ VOS_UINT32 SI_PIH_GetAppBySession(
     return VOS_ERR;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_GetAppSession
-功能描述  : 清空通道信息
-输入参数  :
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
 
-修订记录  :
-1.日    期  : 2015年01月30日
-  作    者  : zhuli
-  修改内容  : 新建函数
-*****************************************************************************/
 
 VOS_UINT32 SI_PIH_GetAppSession(
     USIMM_CARDAPP_ENUM_UINT32           enAppType,
@@ -312,18 +219,7 @@ VOS_UINT32 SI_PIH_GetAppSession(
     return VOS_ERR;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_ClearAppSession
-功能描述  : 清空通道信息
-输入参数  :
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
 
-修订记录  :
-1.日    期  : 2015年01月30日
-  作    者  : zhuli
-  修改内容  : 新建函数
-*****************************************************************************/
 VOS_VOID SI_PIH_ClearAppSession(
     VOS_UINT32                          ulSessionID)
 {
@@ -352,18 +248,7 @@ VOS_VOID SI_PIH_ClearAppSession(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_SetAppSession
-功能描述  : 清空通道信息
-输入参数  :
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
 
-修订记录  :
-1.日    期  : 2015年01月30日
-  作    者  : zhuli
-  修改内容  : 新建函数
-*****************************************************************************/
 VOS_VOID SI_PIH_SetAppSession(
     USIMM_CARDAPP_ENUM_UINT32           enAppType)
 {
@@ -413,18 +298,7 @@ VOS_VOID SI_PIH_SetAppSession(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_SetChannelInfo
-功能描述  :
-输入参数  :
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
 
-修订记录  :
-1.日    期  : 2015年01月30日
-  作    者  : zhuli
-  修改内容  : 新建函数
-*****************************************************************************/
 VOS_VOID SI_PIH_SaveChannelInfo(
     VOS_UINT32                          ulChannelID,
     VOS_UINT32                          ulSessionID,
@@ -444,20 +318,7 @@ VOS_VOID SI_PIH_SaveChannelInfo(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_SendFdnReqMsg
-功能描述  : PIH模块FDN请求消息发送函数
-输入参数  : ulType:命令类型
-            pucPin2:PIN2码
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-调用函数  :
-被调函数  :
-修订记录  :
-1.日    期  : 2015年01月30日
-  作    者  : H00300778
-  修改内容  : 新建函数
-*****************************************************************************/
+
 VOS_UINT32 SI_PIH_SendFdnReqMsg(
     USIMM_FBDN_HANDLE_ENUM_UINT32       ulType,
     VOS_UINT8                           *pucPin2)
@@ -487,19 +348,7 @@ VOS_UINT32 SI_PIH_SendFdnReqMsg(
     return VOS_SendMsg(MAPS_PIH_PID, pstMsg);
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_SendDeactiveReqMsg
-功能描述  : PIH模块SIM卡去激活请求消息发送函数
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-调用函数  :
-被调函数  :
-修订记录  :
-1.日    期  : 2015年01月31日
-  作    者  : H00300778
-  修改内容  : 新建函数
-*****************************************************************************/
+
 VOS_UINT32 SI_PIH_SendDeactiveReqMsg(
     VOS_UINT32                          ulSendPara)
 {
@@ -523,19 +372,7 @@ VOS_UINT32 SI_PIH_SendDeactiveReqMsg(
     return VOS_SendMsg(MAPS_PIH_PID, pstMsg);
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_SendProtectResetReqMsg
-功能描述  : PIH模块SIM卡保护性复位请求消息发送函数
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-调用函数  :
-被调函数  :
-修订记录  :
-1.日    期  : 2015年01月31日
-  作    者  : H00300778
-  修改内容  : 新建函数
-*****************************************************************************/
+
 VOS_UINT32 SI_PIH_SendProtectResetReqMsg(VOS_VOID)
 {
     USIMM_PROTECTRESET_REQ_STRU        *pstMsg;
@@ -558,19 +395,7 @@ VOS_UINT32 SI_PIH_SendProtectResetReqMsg(VOS_VOID)
     return VOS_SendMsg(MAPS_PIH_PID, pstMsg);
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_SendStatusReqMsg
-功能描述  : PIH模块SIM卡周期性轮询请求消息发送函数
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-调用函数  :
-被调函数  :
-修订记录  :
-1.日    期  : 2015年01月31日
-  作    者  : H00300778
-  修改内容  : 新建函数
-*****************************************************************************/
+
 VOS_UINT32 SI_PIH_SendStatusReqMsg(
     USIMM_POLL_FCP_ENUM_UINT32          enNeedFcp)
 {
@@ -604,19 +429,7 @@ VOS_UINT32 SI_PIH_SendStatusReqMsg(
     return VOS_SendMsg(MAPS_PIH_PID, pstMsg);
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_SendImsiPollingReqMsg
-功能描述  : PIH模块SIM卡周期性轮询IMSI请求消息发送函数
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-调用函数  :
-被调函数  :
-修订记录  :
-1.日    期  : 2015年02月04日
-  作    者  : H00300778
-  修改内容  : 新建函数
-*****************************************************************************/
+
 VOS_UINT32 SI_PIH_SendImsiPollingReqMsg(VOS_VOID)
 {
     USIMM_RACCESS_REQ_STRU             *pstMsg;
@@ -647,19 +460,7 @@ VOS_UINT32 SI_PIH_SendImsiPollingReqMsg(VOS_VOID)
     return VOS_SendMsg(MAPS_PIH_PID, pstMsg);
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_CloseChannelReq
-功能描述  : PIH模块SIM卡逻辑通道关闭请求消息发送函数
-输入参数  : ulSessionID:会话ID
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-调用函数  :
-被调函数  :
-修订记录  :
-1.日    期  : 2015年02月02日
-  作    者  : H00300778
-  修改内容  : 新建函数
-*****************************************************************************/
+
 VOS_UINT32 SI_PIH_CloseChannelReq(
     VOS_UINT32                          ulAppType,
     VOS_UINT32                          ulSessionID)
@@ -694,20 +495,7 @@ VOS_UINT32 SI_PIH_CloseChannelReq(
     return VOS_SendMsg(MAPS_PIH_PID, pstMsg);
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_OpenChannelReq
-功能描述  : PIH模块SIM卡逻辑通道打开请求消息发送函数
-输入参数  : ulAIDLen:AID长度
-            pucADFName:AID内容
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-调用函数  :
-被调函数  :
-修订记录  :
-1.日    期  : 2015年02月02日
-  作    者  : H00300778
-  修改内容  : 新建函数
-*****************************************************************************/
+
 VOS_UINT32 SI_PIH_OpenChannelReq(
     VOS_UINT32                          ulAIDLen,
     VOS_UINT8                           *pucADFName)
@@ -755,19 +543,7 @@ VOS_UINT32 SI_PIH_OpenChannelReq(
     return VOS_SendMsg(MAPS_PIH_PID, pstMsg);
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_SendActiveCardReqMsg
-功能描述  : PIH模块SIM卡初始化消息发送函数
-输入参数  : enMsgName:初始化消息类型
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-调用函数  :
-被调函数  :
-修订记录  :
-1.日    期  : 2015年02月06日
-  作    者  : H00300778
-  修改内容  : 新建函数
-*****************************************************************************/
+
 VOS_UINT32 SI_PIH_SendActiveCardReqMsg(
     VOS_UINT32                          ulSendPara
 )
@@ -809,19 +585,7 @@ VOS_UINT32 SI_PIH_SendActiveCardReqMsg(
     return VOS_SendMsg(MAPS_PIH_PID, pstMsg);
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIHSendMsgToAT
-功能描述  : 发送消息给AT模块
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_UINT32，表示函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2008年10月28日
-  作    者  : H59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_PIHSendATMsg(
     SI_PIH_EVENT_INFO_STRU              *pstEvent)
 {
@@ -852,20 +616,7 @@ VOS_UINT32 SI_PIHSendATMsg(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_AsciiToHexCode
-功能描述  :转换字符串格式
-输入参数  :
 
-输出参数  :无
-返 回 值  :VOS_OK    :失败
-           VOS_ERR   :成功
-
-修订记录  :
-1. 日    期   : 2015年2月12日
-   作    者   : z00100318
-   修改内容   : Creat
-*****************************************************************************/
 
 VOS_UINT32 SI_PIH_HexToAsciiCode(
     VOS_UINT8                           ucSrc,
@@ -887,20 +638,7 @@ VOS_UINT32 SI_PIH_HexToAsciiCode(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PIH_AsciiToHexCode
-功能描述  :转换字符串格式
-输入参数  :
 
-输出参数  :无
-返 回 值  :VOS_OK    :失败
-           VOS_ERR   :成功
-
-修订记录  :
-1. 日    期   : 2015年2月12日
-   作    者   : z00100318
-   修改内容   : Creat
-*****************************************************************************/
 
 VOS_UINT32 SI_PIH_AsciiToHexCode(
     VOS_CHAR                            cSrc,
@@ -926,21 +664,7 @@ VOS_UINT32 SI_PIH_AsciiToHexCode(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PIH_SendTPDUReq
-功能描述  :发送TPDU数据请求
-输入参数  :enAppType:应用类型
-           enSendPara:透传参数
-           pstFilePath:文件路径信息
-           pstTpduData:TPDU的数据信息
-输出参数  :无
-返 回 值  :VOS_OK:成功，其余失败
 
-修订记录  :
-1. 日    期  : 2015年2月12日
-   作    者  : z00100318
-   修改内容  : Create
-*****************************************************************************/
 VOS_UINT32 SI_PIH_SendTPDUReq(
     USIMM_CARDAPP_ENUM_UINT32           enAppType,
     VOS_UINT32                          ulSendPara,
@@ -990,19 +714,7 @@ VOS_UINT32 SI_PIH_SendTPDUReq(
     return VOS_SendMsg(MAPS_PIH_PID, pstMsg);
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_PollTimerInit
-功能描述  : PIH定时器功能初始化时初始化函数，
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_OK
-调用函数  :
-被调函数  :
-修订记录  :
-1.日    期  : 2010年07月26日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_PIH_PollTimerInit(SI_VOID)
 {
     g_stPIHPollTime[SI_PIH_TIMER_NAME_CHECKSTATUS].ulTimeLen    = SI_PIH_POLL_TIMER_LEN;
@@ -1032,19 +744,7 @@ VOS_VOID SI_PIH_PollTimerInit(SI_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : WuepsPIHPidInit
-功能描述  : PIH功能初始化时初始化函数，
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_OK
-调用函数  :
-被调函数  :
-修订记录  :
-1.日    期  : 2010年07月26日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
+
 
 VOS_VOID SI_PIH_InitGlobalVar(VOS_VOID)
 {
@@ -1079,19 +779,7 @@ VOS_VOID SI_PIH_InitGlobalVar(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : WuepsPIHPidInit
-功能描述  : PIH功能初始化时初始化函数，
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_OK
-调用函数  :
-被调函数  :
-修订记录  :
-1.日    期  : 2010年07月26日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 WuepsPIHPidInit(enum VOS_INIT_PHASE_DEFINE InitPhrase)
 {
     switch( InitPhrase )
@@ -1114,21 +802,7 @@ VOS_UINT32 WuepsPIHPidInit(enum VOS_INIT_PHASE_DEFINE InitPhrase)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_MNTNDataHook
-功能描述  : PIH可维可测数据勾包
-输入参数  : ulHookMsgName:勾包的消息名称
-            ulHookDataLen:数据长度
-            pucHookData:数据内容
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修订记录  :
-1.日    期  : 2013年06月14日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_PIH_MNTNDataHook(
     VOS_UINT32                          ulHookMsgName,
     VOS_UINT32                          ulHookDataLen,
@@ -1161,19 +835,7 @@ VOS_VOID SI_PIH_MNTNDataHook(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_ParaCheck
-功能描述  : 判断当前ClientID是否已经在队列中
-输入参数  : usClient
-输出参数  : 无
-返 回 值  : VOS_OK - 不存在
-调用函数  :
-被调函数  :
-修订记录  :
-1. 日    期   : 2015年05月15日
-    作    者   : g00256031
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PIH_ParaCheck(
     VOS_UINT16                          usClient)
 {
@@ -1198,19 +860,7 @@ VOS_UINT32 SI_PIH_ParaCheck(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_PollTimerPro
-功能描述  : 处理PIH定时器相关的开启和修改时长等过程
-输入参数  : pstPIHTimer:定时器结构
-输出参数  : 无
-返 回 值  : VOS_OK
-调用函数  :
-被调函数  :
-修订记录  :
-1.日    期  : 2010年07月26日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_PIH_PollTimerPro(
     SI_PIH_POLL_TIME_STRU               *pstPIHTimer)
 {
@@ -1252,19 +902,7 @@ VOS_VOID SI_PIH_PollTimerPro(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :
-功能描述  :
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_UINT32 函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2010年08月20日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_PIH_EventCallBack(
     SI_PIH_EVENT_INFO_STRU              *pstEvent)
 {
@@ -1286,22 +924,7 @@ VOS_UINT32 SI_PIH_EventCallBack(
     return SI_PIHSendATMsg(pstEvent);
 }
 
-/*****************************************************************************
-函 数 名  :SI_PIH_SendPCSCCnfMsg
-功能描述  :回复PCSC命令的处理结果
-输入参数  :ulCmdType 命令类型
-           ulResult　命令处理结果
-           ulLen     响应数据长度
-           pucContent　响应数据
-输出参数  :无
-返 回 值  :无
-调用函数  :
-被调函数  :
-修订记录  :
-1. 日    期    : 2010年3月6日
-    作    者   : h59254
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID SI_PIH_SendPCSCCnfMsg(
     VOS_UINT32                          ulCmdType,
     VOS_UINT32                          ulResult,
@@ -1341,19 +964,7 @@ VOS_VOID SI_PIH_SendPCSCCnfMsg(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIHEventReportError
-功能描述  : 上报SIM卡事件ERROR事件上报
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_UINT32 函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2008年11月03日
-  作    者  : H59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_PIH_EventReportError(
     VOS_UINT16                          ClientId,
     VOS_UINT8                           OpId,
@@ -1384,19 +995,7 @@ VOS_VOID SI_PIH_EventReportError(
     return ;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_FdnBdnStateReport
-功能描述  : FDN状态上报函数
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_UINT32 函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2008年10月20日
-  作    者  : H59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32  SI_PIH_FdnBdnStateReport(
     VOS_UINT32                          ulState,
     VOS_UINT32                          SimError,
@@ -1415,22 +1014,7 @@ VOS_UINT32  SI_PIH_FdnBdnStateReport(
     return SI_PIH_EventCallBack(&Event);
 }
 
-/*****************************************************************************
-函 数 名  :SI_PIH_PCSCCmdCnf
-功能描述  :回复PCSC命令的处理结果
-输入参数  :ulCmdType 命令类型
-           ulResult　命令处理结果
-           ulLen     响应数据长度
-           pucContent　响应数据
-输出参数  :无
-返 回 值  :无
-调用函数  :
-被调函数  :
-修订记录  :
-1. 日    期    : 2010年3月6日
-    作    者   : h59254
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID SI_PIH_PCSCDataCnf(
     VOS_UINT32                          ulCmdType,
     VOS_UINT32                          ulResult,
@@ -1453,19 +1037,7 @@ VOS_VOID SI_PIH_PCSCDataCnf(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PIH_PCSCApduCheck
-功能描述  :PCSC的APDU命令检查函数
-输入参数  :PCSC命令结构
-输出参数  :SW状态字
-返 回 值  :VOS_OK
-           VOS_ERR
-调用函数  :
-修订记录  :
-1. 日    期   : 2011年01月12日
-   作    者   : J00168360
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PIH_PCSCApduCheck(
     VOS_UINT32                          *pulLen,
     VOS_UINT8                           *pucApdu,
@@ -1532,19 +1104,7 @@ VOS_UINT32 SI_PIH_PCSCApduCheck(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :
-功能描述  :
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_UINT32 函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2010年08月20日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_PIH_GAccessReqProc(
     SI_PIH_GACCESS_REQ_STRU             *pstMsg)
 {
@@ -1636,17 +1196,7 @@ VOS_UINT32 SI_PIH_GAccessReqProc(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_IsdbAccessReqProc
-功能描述  : ISDB APDU请求处理函数
-输入参数  : SI_PIH_ISDB_ACCESS_REQ_STRU *pstMsg AT命令发来的请求
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-History     :
-1.日    期  : 2012年08月28日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_PIH_IsdbAccessReqProc(
     SI_PIH_ISDB_ACCESS_REQ_STRU         *pstMsg)
 {
@@ -1691,17 +1241,7 @@ VOS_UINT32 SI_PIH_IsdbAccessReqProc(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_GetNFCConfigFlag
-功能描述  : 读取NV检查当前NFC的命令设置
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_TRUE/VOS_FALSE
-History     :
-1.日    期  : 2013年05月16日
-  作    者  : g47350
-  修改内容  : Create
-*****************************************************************************/
+
 
 VOS_UINT32 SI_PIH_GetNFCConfigFlag(VOS_VOID)
 {
@@ -1723,17 +1263,7 @@ VOS_UINT32 SI_PIH_GetNFCConfigFlag(VOS_VOID)
     return stUsimmFeatureCfg.unCfg.stFeatureCfg.ulNFCFlg;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_CChoSetReqProc
-功能描述  : 打开逻辑通道请求处理函数
-输入参数  : SI_PIH_CCHO_SET_REQ_STRU *pstMsg AT命令发来的请求
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-History     :
-1.日    期  : 2013年05月16日
-  作    者  : g47350
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_PIH_CchoSetReqProc(
     SI_PIH_CCHO_SET_REQ_STRU            *pstMsg)
 {
@@ -1764,17 +1294,7 @@ VOS_UINT32 SI_PIH_CchoSetReqProc(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_CchcSetReqProc
-功能描述  : 关闭逻辑通道请求处理函数
-输入参数  : SI_PIH_CCHC_SET_REQ_STRU *pstMsg AT命令发来的请求
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-History     :
-1.日    期  : 2013年05月16日
-  作    者  : g47350
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_PIH_CchcSetReqProc(
     SI_PIH_CCHC_SET_REQ_STRU            *pstMsg)
 {
@@ -1814,17 +1334,7 @@ VOS_UINT32 SI_PIH_CchcSetReqProc(
 
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_CglaSetReqProc
-功能描述  : 对逻辑通道请求处理函数
-输入参数  : SI_PIH_CGLA_REQ_STRU *pstMsg AT命令发来的请求
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-History     :
-1.日    期  : 2013年05月16日
-  作    者  : g47350
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_PIH_CglaSetReqProc(
     SI_PIH_CGLA_REQ_STRU                *pstMsg)
 {
@@ -1896,17 +1406,7 @@ VOS_UINT32 SI_PIH_CglaSetReqProc(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_ATRQryReqProc
-功能描述  : 查询ATR请求处理函数
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_OK/VOS_ERR
-History     :
-1.日    期  : 2013年08月22日
-  作    者  : g47350
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_PIH_ATRQryReqProc(VOS_VOID)
 {
     SI_PIH_EVENT_INFO_STRU              stEvent;
@@ -1946,18 +1446,7 @@ VOS_UINT32 SI_PIH_ATRQryReqProc(VOS_VOID)
     return SI_PIH_EventCallBack(&stEvent);
 }
 
-/*****************************************************************************
-函 数 名  :SI_PIH_PCSC_PowerOn
-功能描述  :PCSC的Power On命令处理函数
-输入参数  :PCSC命令结构
-输出参数  :无
-返 回 值  :VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2010年03月06日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID SI_PIH_PCSC_PowerOn(
     SI_PIH_PCSC_REQ_STRU                *pstMsg)
 {
@@ -1992,18 +1481,7 @@ VOS_VOID SI_PIH_PCSC_PowerOn(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PIH_PCSC_PowerOff
-功能描述  :PCSC的Power Off处理函数
-输入参数  :PCSC命令结构
-输出参数  :无
-返 回 值  :VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2010年03月06日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID SI_PIH_PCSC_PowerOff(
     SI_PIH_PCSC_REQ_STRU                *pstMsg)
 {
@@ -2012,18 +1490,7 @@ VOS_VOID SI_PIH_PCSC_PowerOff(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PIH_PCSC_SimQuiry
-功能描述  :PCSC的SIM状态查询处理函数
-输入参数  :PCSC命令结构
-输出参数  :无
-返 回 值  :VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2010年03月06日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID SI_PIH_PCSC_SimQuiry(
     SI_PIH_PCSC_REQ_STRU                *pstMsg)
 {
@@ -2046,18 +1513,7 @@ VOS_VOID SI_PIH_PCSC_SimQuiry(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PIH_PCSC_GetATR
-功能描述  :PCSC的ATR信息获取函数
-输入参数  :PCSC命令结构
-输出参数  :无
-返 回 值  :VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2010年03月06日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID SI_PIH_PCSC_GetATR(
     SI_PIH_PCSC_REQ_STRU                *pstMsg)
 {
@@ -2092,18 +1548,7 @@ VOS_VOID SI_PIH_PCSC_GetATR(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PIH_PCSC_GetPara
-功能描述  :PCSC的SIM卡参数获取函数
-输入参数  :PCSC命令结构
-输出参数  :无
-返 回 值  :VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2010年03月06日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID SI_PIH_PCSC_GetPara(
     SI_PIH_PCSC_REQ_STRU                *pstMsg)
 {
@@ -2118,18 +1563,7 @@ VOS_VOID SI_PIH_PCSC_GetPara(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PIH_PCSC_GetClkFreq
-功能描述  :PCSC的SIM卡时钟频率获取函数
-输入参数  :PCSC命令结构
-输出参数  :无
-返 回 值  :VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2010年03月06日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID SI_PIH_PCSC_GetClkFreq(
     SI_PIH_PCSC_REQ_STRU                *pstMsg)
 {
@@ -2144,18 +1578,7 @@ VOS_VOID SI_PIH_PCSC_GetClkFreq(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PIH_PCSC_GetBaudRate
-功能描述  :PCSC的SIM卡波特率获取函数
-输入参数  :PCSC命令结构
-输出参数  :无
-返 回 值  :VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2010年03月06日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID SI_PIH_PCSC_GetBaudRate(
     SI_PIH_PCSC_REQ_STRU                *pstMsg)
 {
@@ -2171,18 +1594,7 @@ VOS_VOID SI_PIH_PCSC_GetBaudRate(
 }
 
 
-/*****************************************************************************
-函 数 名  :USIMM_PCSC_ApduCmd
-功能描述  :PCSC的APDU命令处理函数
-输入参数  :PCSC命令结构
-输出参数  :无
-返 回 值  :VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2010年03月06日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID SI_PIH_PCSC_ApduCmd(
     SI_PIH_PCSC_REQ_STRU                *pstMsg)
 {
@@ -2262,18 +1674,7 @@ VOS_VOID SI_PIH_PCSC_ApduCmd(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PIH_PCSCCmdHandle
-功能描述  :PCSC的命令分发处理函数
-输入参数  :PCSC命令结构
-输出参数  :无
-返 回 值  :VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2010年03月06日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 static const PUSIMPCSCPROC  af_PIH_PCSCProc[] =
 {
     SI_PIH_PCSC_PowerOn,
@@ -2299,22 +1700,7 @@ VOS_UINT32 SI_PIH_PCSCCmdHandle(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_HVSSTQueryHandle
-功能描述  : AT/APP HVSST Query请求处理函数
-输入参数  : pMsg 消息内容
-输出参数  : 无
-返 回 值  : VOS_UINT32 函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2013年03月20日
-  作    者  : zhuli
-  修改内容  : Create
-2.日    期  : 2014年10月9日
-  作    者  : zhuli
-  修改内容  : 根据青松产品要求，该接口不受宏控制
-*****************************************************************************/
+
 VOS_UINT32 SI_PIH_HVSSTQueryHandle(
     SI_PIH_MSG_HEADER_STRU              *pMsg
 )
@@ -2354,25 +1740,7 @@ VOS_UINT32 SI_PIH_HVSSTQueryHandle(
     return SI_PIH_EventCallBack(&stEvent);
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_HVSSTStateCheck
-功能描述  : 判断是否需要进行激活或去激活操作的状态检测
-输入参数  : bIsHandleVSim  操作的是否是虚拟卡
-            enIsActiveCard 激活或去激活操作
-            pstEvent       返回给AT模块的事件
-输出参数  : 无
-返 回 值  : VOS_TRUE : 需要激活或去激活操作
-            VOS_FALSE: 不需要激活或去激活操作
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2013年03月20日
-  作    者  : zhuli
-  修改内容  : Create
-2.日    期  : 2014年10月9日
-  作    者  : zhuli
-  修改内容  : 根据青松产品要求，该接口不受宏控制
-*****************************************************************************/
+
 VOS_BOOL SI_PIH_HVSSTStateCheck(
     SI_PIH_HVSST_REQ_STRU               *pMsg,
     SI_PIH_EVENT_INFO_STRU              *pstEvent
@@ -2443,22 +1811,7 @@ VOS_BOOL SI_PIH_HVSSTStateCheck(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_HVSSTQueryHandle
-功能描述  : AT/APP HVSST Set请求处理函数
-输入参数  : pMsg 消息内容
-输出参数  : 无
-返 回 值  : VOS_UINT32 函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2013年03月20日
-  作    者  : zhuli
-  修改内容  : Create
-2.日    期  : 2014年10月9日
-  作    者  : zhuli
-  修改内容  : 根据青松产品要求，该接口不受宏控制
-*****************************************************************************/
+
 VOS_UINT32 SI_PIH_HVSSTSetHandle(
     SI_PIH_HVSST_REQ_STRU               *pMsg
 )
@@ -2572,19 +1925,7 @@ VOS_UINT32 SI_PIH_HVSSTSetHandle(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_SciCfgSetHandle
-功能描述  : AT/APP SCICFG Set请求处理函数
-输入参数  : pMsg 消息内容
-输出参数  : 无
-返 回 值  : VOS_UINT32 函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2014年10月9日
-  作    者  : zhuli
-  修改内容  : 根据青松产品要求，新增
-*****************************************************************************/
+
 VOS_UINT32 SI_PIH_SciCfgSetHandle(
     SI_PIH_SCICFG_SET_REQ_STRU          *pstMsg
 )
@@ -2630,19 +1971,7 @@ VOS_UINT32 SI_PIH_SciCfgSetHandle(
     return SI_PIH_EventCallBack(&stEvent);
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_SciCfgQueryHandle
-功能描述  : AT/APP SCICFG Query请求处理函数
-输入参数  : pMsg 消息内容
-输出参数  : 无
-返 回 值  : VOS_UINT32 函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2014年10月9日
-  作    者  : zhuli
-  修改内容  : 根据青松产品要求，新增
-*****************************************************************************/
+
 VOS_UINT32 SI_PIH_SciCfgQueryHandle(
     SI_PIH_MSG_HEADER_STRU              *pstMsg
 )
@@ -2678,19 +2007,7 @@ VOS_UINT32 SI_PIH_SciCfgQueryHandle(
     return SI_PIH_EventCallBack(&stEvent);
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_ActiveSimCnfProc
-功能描述  :
-输入参数  : pstMsg
-输出参数  : 无
-返 回 值  : VOS_UINT32 函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2010年08月20日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_PIH_ActiveSimCnfProc(
     USIMM_SINGLECMD_CNF_STRU            *pMsg)
 {
@@ -2712,22 +2029,7 @@ VOS_VOID SI_PIH_ActiveSimCnfProc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SI_PIH_BcdNumToAsciiNum
- 功能描述  : BCD码转位ASCII码，代码移植自MMA模块
- 输入参数  : VOS_UINT8 *pucAsciiNum
-             VOS_UINT8 *pucBcdNum
-             VOS_UINT8 ucBcdNumLen
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年08月28日
-    作    者   : zhangxuechao id:185430
-    修改内容   : Create
-*****************************************************************************/
 VOS_VOID SI_PIH_BcdNumToAsciiNum(
     VOS_UINT8                           *pucAsciiNum,
     VOS_UINT8                           *pucBcdNum,
@@ -2794,22 +2096,7 @@ VOS_VOID SI_PIH_BcdNumToAsciiNum(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SI_PIH_ImsiBcd2Ascii
- 功能描述  : 转换IMSI格式，将BCD码转为字符串，代码移植自MMA模块
- 输入参数  : VOS_UINT8 ucLen   --BCD码长度
-             VOS_UINT8 *pucNum --BCD码存放的位置
-             VOS_UINT8 *pucAsciiStr  --字符串写入位置
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 --传入为空指针或长度为0时，返回错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年08月28日
-    作    者   : zhangxuechao id:185430
-    修改内容   : Create
-*****************************************************************************/
 VOS_UINT32 SI_PIH_ImsiBcd2Ascii(
     VOS_UINT8                           ucLen,
     VOS_UINT8                           *pucNum,
@@ -2846,22 +2133,7 @@ VOS_UINT32 SI_PIH_ImsiBcd2Ascii(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : SI_PIH_ChangeNum
- 功能描述  : 按照协议计还原算值
- 输入参数  : ulSrcValude  -- BCD码长度
-             ulCodeMode   -- BCD码存放的位置
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 -按照协议还原计算值
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年08月28日
-    作    者   :
-    修改内容   : Create
-*****************************************************************************/
 VOS_UINT32 SI_PIH_ChangeNum(VOS_UINT32 ulSrcValude, VOS_UINT32 ulCodeMode)
 {
     VOS_UINT32                          ulTempl   = 0;
@@ -2897,21 +2169,7 @@ VOS_UINT32 SI_PIH_ChangeNum(VOS_UINT32 ulSrcValude, VOS_UINT32 ulCodeMode)
     return ulDstValue;
 }
 
-/*****************************************************************************
- 函 数 名  : SI_PIH_CImsiBcd2Ascii
- 功能描述  : 转换CIMSI格式，将BCD码转为字符串
- 输入参数  : VOS_UINT8 *pucNum       -- BCD码存放的位置
-             VOS_UINT8 *pucAsciiStr  -- 字符串写入位置
 
- 输出参数  : pucStrCIMSI 存放转换后字符
-
- 返 回 值  : VOS_UINT32 --传入为空指针或长度为0时，返回错误
-
- 修改历史      :
-  1.日    期   : 2015年06月23日
-    作    者   : d00212987
-    修改内容   : USIM卡多应用迭代VI
-*****************************************************************************/
 VOS_UINT32 SI_PIH_CImsiBcd2Ascii(
     VOS_UINT8                           *pucCIMSI,
     VOS_UINT8                           *pucStrCIMSI)
@@ -3031,19 +2289,7 @@ VOS_UINT32 SI_PIH_CImsiBcd2Ascii(
 
 #if (FEATURE_ON == FEATURE_VSIM)
 
-/*****************************************************************************
-函 数 名  :SI_PIH_DecodeImsiHPLMN
-功能描述  :解析IMSI
-输入参数  :pucImsi  -- IMSI 内容
-           ucMNCLen -- MNC长度
-输出参数  :pstCardCont--解析结果
-返 回 值  :无
-调用函数  :
-修订记录  :
-1. 日    期   : 2013年03月26日
-   作    者   : g47350
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID SI_PIH_DecodeImsiHPLMN(
     VOS_UINT8                           *pucImsi,
     VOS_UINT8                           ucMNCLen,
@@ -3073,19 +2319,7 @@ VOS_VOID SI_PIH_DecodeImsiHPLMN(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PIH_DecodeEHPLMN
-功能描述  :获取硬卡内容
-输入参数  :pucData  -- EHPLMN 内容
-           ulDateLen -- EHPLMN长度
-输出参数  :pstCardCont--解析结果
-返 回 值  :无
-调用函数  :
-修订记录  :
-1. 日    期   : 2013年03月26日
-   作    者   : g47350
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID SI_PIH_DecodeEHPLMN(
     VOS_UINT8                           *pucData,
     VOS_UINT32                          ulDateLen,
@@ -3128,18 +2362,7 @@ VOS_VOID SI_PIH_DecodeEHPLMN(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PIHGetEHPlmnNVState
-功能描述  :获取NV中EHPLMN的支持设置
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_FALSE/VOS_TRUE
-调用函数  :
-修订记录  :
-1. 日    期   : 2013年03月26日
-   作    者   : g47350
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_BOOL SI_PIH_GetEHPlmnNVState(VOS_VOID)
 {
     VOS_UINT16                          usEHPlmnSupportFlg;
@@ -3163,19 +2386,7 @@ VOS_BOOL SI_PIH_GetEHPlmnNVState(VOS_VOID)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PIH_GetMncLen
-功能描述  :获取MNC的长度
-输入参数  :pucAdContent  -- AD文件内容
-           ulFileSize    -- 文件内容
-输出参数  :无
-返 回 值  :MNC的长度
-调用函数  :
-修订记录  :
-1. 日    期   : 2013年03月26日
-   作    者   : g47350
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT8 SI_PIH_GetMncLen(
     VOS_UINT8                           *pucAdContent,
     VOS_UINT32                          ulFileSize)
@@ -3200,18 +2411,7 @@ VOS_UINT8 SI_PIH_GetMncLen(
     return ucHplmnMncLen;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PIH_GetRSimContent
-功能描述  :获取硬卡内容
-输入参数  :pstCardCont  -- 保存卡内容的地址
-输出参数  :无
-返 回 值  :VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2013年03月26日
-   作    者   : g47350
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID SI_PIH_GetRSimContent(
     SI_PIH_CARD_CONTENT_STRU            *pstCardCont)
 {
@@ -3304,18 +2504,7 @@ VOS_VOID SI_PIH_GetRSimContent(
     return ;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PIHGetVSimFileContent
-功能描述  :解析虚拟卡内容
-输入参数  :pucXMLNopde  -- 保存卡内容的节点
-输出参数  :pulDataLen   -- 内容长度
-返 回 值  :VOS_NULL_PTR/VSIM EF内容
-调用函数  :
-修订记录  :
-1. 日    期   : 2013年03月26日
-   作    者   : g47350
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT8* SI_PIH_GetVSimFileContent(
     OAM_XML_NODE_STRU                   *pstXmlNode,
     VOS_CHAR                            *pcEFName,
@@ -3371,20 +2560,7 @@ VOS_UINT8* SI_PIH_GetVSimFileContent(
     return pucContent;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PIH_GetUsimUstState
-功能描述  :解析虚拟卡Ust Bit内容
-输入参数  :pucUst  -- 保存卡Ust内容的地址
-           ulUstLen-- Ust长度
-           ulBitNo -- 查询服务号
-输出参数  :无
-返 回 值  :PS_USIM_SERVICE_NOT_AVAILIABLE/PS_USIM_SERVICE_AVAILIABLE
-调用函数  :
-修订记录  :
-1. 日    期   : 2013年03月26日
-   作    者   : g47350
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PIH_GetUsimUstState(
     VOS_UINT8                           *pucUst,
     VOS_UINT32                          ulUstLen,
@@ -3404,18 +2580,7 @@ VOS_UINT32 SI_PIH_GetUsimUstState(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PIH_DecodeVSimFile
-功能描述  :解析虚拟卡内容
-输入参数  : pucXMLData -- XML文件内容
-输出参数  : pstCardCont  -- 保存卡内容的地址
-返 回 值  : VOS_OK/VOS_ERR
-调用函数  :
-修订记录  :
-1. 日    期   : 2013年03月26日
-   作    者   : g47350
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PIH_DecodeVSimFile(
     VOS_UINT8                           *pucXMLData,
     SI_PIH_CARD_CONTENT_STRU            *pstCardCont)
@@ -3586,18 +2751,7 @@ VOS_UINT32 SI_PIH_DecodeVSimFile(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PIH_GetVSimContent
-功能描述  :获取虚拟卡内容
-输入参数  :pstCardCont  -- 保存卡内容的地址
-输出参数  :无
-返 回 值  :VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2013年03月26日
-   作    者   : g47350
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID SI_PIH_GetVSimContent(
     SI_PIH_CARD_CONTENT_STRU            *pstCardCont)
 {
@@ -3628,19 +2782,7 @@ VOS_VOID SI_PIH_GetVSimContent(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PIH_HvsDHSetHandle
-功能描述  :设置服务器公钥
-输入参数  :ulDataLen -- 公钥数据长度
-           pucData   -- 公钥数据内容
-输出参数  :无
-返 回 值  :VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2013年03月26日
-   作    者   : g47350
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PIH_HvsDHSetHandle(
     VOS_UINT32                          ulDataLen,
     VOS_UINT8                           *pucData)
@@ -3684,18 +2826,7 @@ VOS_UINT32 SI_PIH_HvsDHSetHandle(
     return SI_PIH_EventCallBack(&stEvent);
 }
 
-/*****************************************************************************
-函 数 名  :SI_PIH_HvsDHQueryHandle
-功能描述  :查询单板公钥信息
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2013年03月26日
-   作    者   : g47350
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PIH_HvsDHQueryHandle(VOS_VOID)
 {
     NVIM_VSIM_HVSDH_NV_STRU             stDhNv;
@@ -3786,18 +2917,7 @@ VOS_UINT32 SI_PIH_HvsDHQueryHandle(VOS_VOID)
     return SI_PIH_EventCallBack(&stEvent);
 }
 
-/*****************************************************************************
-函 数 名  :SI_PIH_HvsContQryReq
-功能描述  :查询单板卡内容
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2013年03月26日
-   作    者   : g47350
-   修改内容   : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_PIH_HvsContQueryHandle(VOS_VOID)
 {
     SI_PIH_EVENT_INFO_STRU              stEvent;
@@ -3817,17 +2937,7 @@ VOS_UINT32 SI_PIH_HvsContQueryHandle(VOS_VOID)
     return SI_PIH_EventCallBack(&stEvent);
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_ReDhNegotiateIndProc
-功能描述  : DH重协商上报指示处理函数
-输入参数  : pMsg:消息内容
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2013年08月28日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_PIH_ReDhNegotiateIndProc(VOS_VOID)
 {
     SI_PIH_EVENT_INFO_STRU              stEvent;
@@ -3847,18 +2957,7 @@ VOS_VOID SI_PIH_ReDhNegotiateIndProc(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PIH_FwriteParaCheck
-功能描述  :检查当前文件更新参数是否正确
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_OK VOS_ERR
-调用函数  :
-修订记录  :
-1. 日    期   : 2013年03月26日
-   作    者   : z00208519
-   修改内容   : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_PIH_FwriteParaCheck(
     SI_PIH_FILE_WRITE_REQ_STRU          *pstMsg)
 {
@@ -3909,18 +3008,7 @@ VOS_UINT32 SI_PIH_FwriteParaCheck(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PIH_ATFileWriteHandle
-功能描述  :实现VSIM文件的写入
-输入参数  :pstMsg  -- AT写入文件参数
-输出参数  :无
-返 回 值  :VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2013年03月26日
-   作    者   : z00208519
-   修改内容   : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_PIH_ATFileWriteHandle(
     SI_PIH_FILE_WRITE_REQ_STRU          *pstMsg)
 {
@@ -4027,18 +3115,7 @@ VOS_UINT32 SI_PIH_ATFileWriteHandle(
     return SI_PIH_EventCallBack(&stEvent);
 }
 
-/*****************************************************************************
-函 数 名  :SI_PIH_HukEncode
-功能描述  :实现数据的HUK+AES加密
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_UINT32
-调用函数  :
-修订记录  :
-1. 日    期   : 2014年10月09日
-   作    者   : zhuli
-   修改内容   : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_PIH_HukEncode(
     VOS_UINT8                           *pucSrc,
     VOS_UINT32                          ulSrcLen,
@@ -4070,18 +3147,7 @@ VOS_UINT32 SI_PIH_HukEncode(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PIH_HvteeDataCheck
-功能描述  :实现Share Memory 数据的检查
-输入参数  :无
-输出参数  :无
-返 回 值  :SI_PIH_HVTEE_ERROR_ENUM_UINT32
-调用函数  :
-修订记录  :
-1. 日    期   : 2014年10月09日
-   作    者   : zhuli
-   修改内容   : Create
-*****************************************************************************/
+
 SI_PIH_HVTEE_ERROR_ENUM_UINT32 SI_PIH_HvteeDataCheck(
     SI_PIH_HVTEE_DATAFLAG_ENUM_UINT32   enFlag,
     VOS_UINT32                          ulMaxLen,
@@ -4126,18 +3192,7 @@ SI_PIH_HVTEE_ERROR_ENUM_UINT32 SI_PIH_HvteeDataCheck(
     return SI_PIH_HVTEE_NOERROR;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PIH_HvteeApnHandle
-功能描述  :实现APN控制参数写入
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2014年10月09日
-   作    者   : zhuli
-   修改内容   : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_PIH_HvteeApnHandle(VOS_VOID)
 {
     SI_PIH_HVTEE_ERROR_ENUM_UINT32  enResult;
@@ -4195,18 +3250,7 @@ VOS_UINT32 SI_PIH_HvteeApnHandle(VOS_VOID)
     /*lint -restore*/
 }
 
-/*****************************************************************************
-函 数 名  :SI_PIH_HvteeDHHandle
-功能描述  :实现VSIM文件的写入
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2014年10月09日
-   作    者   : zhuli
-   修改内容   : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_PIH_HvteeDHHandle(VOS_VOID)
 {
     NVIM_VSIM_HVSDH_NV_STRU             stNVDHKey;
@@ -4289,18 +3333,7 @@ VOS_UINT32 SI_PIH_HvteeDHHandle(VOS_VOID)
     return SI_PIH_HVTEE_NOERROR;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PIH_HvteeVSIMHandle
-功能描述  :实现VSIM文件的写入
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2014年10月09日
-   作    者   : z00208519
-   修改内容   : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_PIH_HvteeVSIMHandle(VOS_VOID)
 {
     SI_PIH_HVTEE_ERROR_ENUM_UINT32      enResult;
@@ -4332,18 +3365,7 @@ VOS_UINT32 SI_PIH_HvteeVSIMHandle(VOS_VOID)
     return SI_PIH_HVTEE_NOERROR;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PIH_HvteeSetHandle
-功能描述  :实现VSIM文件的写入
-输入参数  :pstMsg  -- HVTEE参数
-输出参数  :无
-返 回 值  :VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2014年10月09日
-   作    者   : z00208519
-   修改内容   : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_PIH_HvteeSetHandle(
     SI_PIH_HVTEE_SET_REQ_STRU           *pstMsg
 )
@@ -4395,18 +3417,7 @@ VOS_UINT32 SI_PIH_HvteeSetHandle(
     return SI_PIH_EventCallBack(&stEvent);
 }
 
-/*****************************************************************************
-函 数 名  :SI_PIH_HvteeSetHandle
-功能描述  :实现VSIM的硬卡状态查询
-输入参数  :pstMsg  -- HVTEE参数
-输出参数  :无
-返 回 值  :VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2014年10月09日
-   作    者   : zhuli
-   修改内容   : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_PIH_HvCheckCardHandle(
     SI_PIH_HVCHECKCARD_REQ_STRU         *pstMsg
 )
@@ -4474,18 +3485,7 @@ VOS_UINT32 SI_PIH_HvCheckCardHandle(
     return SI_PIH_EventCallBack(&stEvent);
 }
 
-/*****************************************************************************
-函 数 名  :SI_PIH_InitTEEShareAddr
-功能描述  :实现VSIM的TEE共享地址查询
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2014年10月09日
-   作    者   : zhuli
-   修改内容   : Create
-*****************************************************************************/
+
 VOS_VOID SI_PIH_InitTEEShareAddr(VOS_VOID)
 {
     BSP_DDR_SECT_QUERY_S        stSectQuery;
@@ -4510,18 +3510,7 @@ VOS_VOID SI_PIH_InitTEEShareAddr(VOS_VOID)
 #endif  /*(FEATURE_ON == FEATURE_VSIM)*/
 
 #if (FEATURE_ON == FEATURE_IMS)
-/*****************************************************************************
-函 数 名  :SI_PIH_GetEFIDFromPath
-功能描述  :获取文件的ID
-输入参数  :pstFilePath: 文件信息
-输出参数  :pusEFID    : 文件ID
-返 回 值  :VOS_OK    :失败
-           VOS_ERR   :成功
-修订记录  :
-1. 日    期  : 2015年2月12日
-   作    者   : z00100318
-   修改内容   : Creat
-*****************************************************************************/
+
 
 VOS_VOID SI_PIH_GetEFIDFromPath(
     USIMM_FILEPATH_INFO_STRU           *pstFilePath,
@@ -4548,19 +3537,7 @@ VOS_VOID SI_PIH_GetEFIDFromPath(
     return ;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PIH_GetFileReq
-功能描述  :读取文件操作　
-输入参数  : ulSendPara: 　　　透传参数
-            pstGetFileInfo:　 文件信息
-输出参数  :无
-返 回 值  :
 
-修订记录  :
-1. 日    期  : 2015年2月12日
-   作    者   : z00100318
-   修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 SI_PIH_GetFileReq(
     VOS_UINT32                          ulSendPara,
     SI_PIH_GETFILE_INFO_STRU           *pstGetFileInfo
@@ -4599,18 +3576,7 @@ VOS_UINT32 SI_PIH_GetFileReq(
     return VOS_SendMsg(MAPS_PIH_PID, pstMsg);
 }
 
-/*****************************************************************************
-函 数 名  :SI_PIH_SetFileReq
-功能描述  :更新文件请求
-输入参数  :pstSetFileInfo:更新文件信息
-输出参数  :无
-返 回 值  :VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期  : 2015年2月12日
-   作    者   : z00100318
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 SI_PIH_SetFileReq(
     SI_PIH_SETFILE_INFO_STRU            *pstSetFileInfo)
 {
@@ -4650,18 +3616,7 @@ VOS_UINT32 SI_PIH_SetFileReq(
     return VOS_SendMsg(MAPS_PIH_PID, pstMsg);
 }
 
-/*****************************************************************************
-函 数 名  :SI_PIH_UiccAuthHandle
-功能描述  :实现UICC的鉴权
-输入参数  :pstMsg  -- AT写入参数
-输出参数  :无
-返 回 值  :VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2014年03月26日
-   作    者   : z00208519
-   修改内容   : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_PIH_UiccAuthHandle(
     SI_PIH_UICCAUTH_REQ_STRU            *pstMsg)
 {
@@ -4757,18 +3712,7 @@ VOS_UINT32 SI_PIH_UiccAuthHandle(
     return VOS_SendMsg(MAPS_PIH_PID, pstUsimMsg);
 }
 
-/*****************************************************************************
-函 数 名  :SI_PIH_AccessFileHandle
-功能描述  :实现UICC文件的访问
-输入参数  :pstMsg  -- AT写入参数
-输出参数  :无
-返 回 值  :VOS_OK
-调用函数  :
-修订记录  :
-1. 日    期   : 2014年03月26日
-   作    者   : z00208519
-   修改内容   : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_PIH_AccessFileHandle(
     SI_PIH_ACCESSFILE_REQ_STRU          *pstMsg)
 {
@@ -4809,17 +3753,7 @@ VOS_UINT32 SI_PIH_AccessFileHandle(
     }
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_AuthCnfProc
-功能描述  : Authentication cnf 消息处理函数
-输入参数  : pstMsg:Authenctication cnf 消息
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2014年03月20日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_PIH_AuthCnfProc(
     USIMM_AUTHENTICATION_CNF_STRU       *pstMsg)
 {
@@ -4914,17 +3848,7 @@ VOS_VOID SI_PIH_AuthCnfProc(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_SetFileCnfProc
-功能描述  : Set file cnf 消息处理函数
-输入参数  : pstMsg:Set file cnf 消息
-输出参数  : 无
-返 回 值  : 无
-History     :
-1. 日    期  : 2015年2月12日
-   作    者   : z00100318
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID SI_PIH_SetFileCnfProc(
     USIMM_UPDATEFILE_CNF_STRU           *pstMsg)
 {
@@ -4960,22 +3884,7 @@ VOS_VOID SI_PIH_SetFileCnfProc(
 
 #endif  /*(FEATURE_ON == FEATURE_VSIM)*/
 
-/*****************************************************************************
-函 数 名  : SI_PIH_ChangePollTimer
-功能描述  : 定时器状态设置接口
-输入参数  : enTimerName:定时器名字
-            enState:定时器状态
-            ulTimerLen:定时器时长
-            enData: 是否需要返回数据
-输出参数  : 无
-返 回 值  : 无
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2008年10月20日
-  作    者  : H59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_PIH_ChangePollTimer(
     SI_PIH_TIMER_NAME_ENUM_UINT32       enTimerName,
     SI_PIH_POLLTIMER_STATE_ENUM_UINT32  enState,
@@ -4995,18 +3904,7 @@ VOS_VOID SI_PIH_ChangePollTimer(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_CheckTestCard
-功能描述  : 判断是否是GCF函数
-输入参数  : Void
-输出参数  : 无
-返 回 值  : VOS_UINT32 函数执行结果
 
-History     :
-1.日    期  : 2015年10月20日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
 
 VOS_UINT32 SI_PIH_CheckGCFTestCard(VOS_VOID)
 {
@@ -5029,21 +3927,7 @@ VOS_UINT32 SI_PIH_CheckGCFTestCard(VOS_VOID)
     }
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_GetFileCnfProc
-功能描述  : Get file cnf 消息处理函数
-输入参数  : pstMsg:Get file cnf 消息
-输出参数  : 无
-返 回 值  : 无
-History     :
-1. 日    期  : 2015年2月12日
-   作    者  : z00100318
-   修改内容  : Creat
 
-2. 日    期  : 2015年06月09日
-   作    者  : d00212987
-   修改内容  : USIM卡多应用迭代IV
-*****************************************************************************/
 VOS_VOID SI_PIH_GetFileCnfProc(
     USIMM_READFILE_CNF_STRU             *pstMsg)
 {
@@ -5136,19 +4020,7 @@ VOS_VOID SI_PIH_GetFileCnfProc(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_CardTypeQueryHandle
-功能描述  : AT/APP请求处理函数
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_UINT32 函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2014年06月04日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_PIH_CardTypeQueryHandle(
     SI_PIH_MSG_HEADER_STRU              *pMsg)
 {
@@ -5202,19 +4074,7 @@ VOS_UINT32 SI_PIH_CardTypeQueryHandle(
     return SI_PIH_EventCallBack(&stEvent);
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_CrsmSetHandle
-功能描述  : CRSM请求处理函数
-输入参数  : SI_PIH_MSG_HEADER_STRU *pstMsg
-输出参数  : 无
-返 回 值  : VOS_UINT32 函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2015年04月09日
-  作    者  : g00256031
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_PIH_CrsmSetHandle(
     SI_PIH_MSG_HEADER_STRU              *pstMsg)
 {
@@ -5286,19 +4146,7 @@ VOS_UINT32 SI_PIH_CrsmSetHandle(
     return VOS_SendMsg(MAPS_PIH_PID, pstRAccessMsg);
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_CrlaSetHandle
-功能描述  : CRLA请求处理函数
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_UINT32 函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2014年06月04日
-  作    者  : w00180399
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_PIH_CrlaSetHandle(
     SI_PIH_MSG_HEADER_STRU              *pMsg)
 {
@@ -5387,19 +4235,7 @@ VOS_UINT32 SI_PIH_CrlaSetHandle(
     return VOS_SendMsg(MAPS_PIH_PID, pstMsg);
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_CardSessionQueryHandle
-功能描述  : CARDSESSION请求处理函数
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_UINT32 函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2015年04月09日
-  作    者  : g00256031
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_PIH_CardSessionQueryHandle(
     SI_PIH_MSG_HEADER_STRU              *pstMsg)
 {
@@ -5416,20 +4252,7 @@ VOS_UINT32 SI_PIH_CardSessionQueryHandle(
 
     return SI_PIH_EventCallBack(&stEvent);
 }
-/*****************************************************************************
-函 数 名  : SI_PIH_IMSICheckPinSatus
-功能描述  : TAF层错误码适配
 
-输入参数  : ulCardStatus 当前卡状态
-输出参数  : 无
-
-返 回 值  : VOS_UINT32 适配后错误
-
-修改历史    :
-1.日    期  : 2015年06月09日
-  作    者  : d00212987
-  修改内容  : USIM卡多应用迭代IV
-*****************************************************************************/
 VOS_UINT32 SI_PIH_IMSICheckPinSatus(VOS_UINT32 ulCardStatus)
 {
     VOS_UINT32                         ulErrorCode;
@@ -5464,20 +4287,7 @@ VOS_UINT32 SI_PIH_IMSICheckPinSatus(VOS_UINT32 ulCardStatus)
     return ulErrorCode;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_CIMIQueryHandle
-功能描述  : CIMI请求处理函数
 
-输入参数  : pstMsg
-输出参数  : 无
-
-返 回 值  : VOS_UINT32 函数执行结果
-
-修改历史    :
-1.日    期  : 2015年06月09日
-  作    者  : d00212987
-  修改内容  : USIM卡多应用迭代IV
-*****************************************************************************/
 VOS_UINT32 SI_PIH_CIMIQueryHandle(
     SI_PIH_MSG_HEADER_STRU              *pstMsg)
 {
@@ -5577,20 +4387,7 @@ VOS_UINT32 SI_PIH_CIMIQueryHandle(
 
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_CCIMIQueryHandle
-功能描述  : CIMI请求处理函数
 
-输入参数  : pstMsg
-输出参数  : 无
-
-返 回 值  : VOS_UINT32 函数执行结果
-
-修改历史    :
-1.日    期  : 2015年06月09日
-  作    者  : d00212987
-  修改内容  : USIM卡多应用迭代IV
-*****************************************************************************/
 VOS_UINT32 SI_PIH_CCIMIQueryHandle(
     SI_PIH_MSG_HEADER_STRU              *pstMsg)
 {
@@ -5639,19 +4436,7 @@ VOS_UINT32 SI_PIH_CCIMIQueryHandle(
     return VOS_SendMsg(MAPS_PIH_PID, pstReadMsg);
 
 }
-/*****************************************************************************
-函 数 名  : SI_PIH_MsgSyncProc
-功能描述  : 不用发送给USIM进行处理
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_UINT32 函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2015年05月16日
-  作    者  : g00256031
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32  SI_PIH_MsgSyncProc(
     PS_SI_MSG_STRU                      *pMsg
 )
@@ -5740,19 +4525,7 @@ VOS_UINT32  SI_PIH_MsgSyncProc(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_MsgAsyncProc
-功能描述  : 需要发送给USIM进行处理
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_UINT32 函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2015年05月16日
-  作    者  : g00256031
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32  SI_PIH_MsgAsyncProc(
     PS_SI_MSG_STRU                      *pMsg
 )
@@ -5845,19 +4618,7 @@ VOS_UINT32  SI_PIH_MsgAsyncProc(
 
     return ulResult;
 }
-/*****************************************************************************
-函 数 名  : SI_SIM_AppMsgProc
-功能描述  : AT/APP请求处理函数
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_UINT32 函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2008年10月20日
-  作    者  : H59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32  SI_PIH_MsgProc(
     PS_SI_MSG_STRU                      *pMsg
 )
@@ -5955,19 +4716,7 @@ VOS_UINT32  SI_PIH_MsgProc(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :SI_PIH_CardUsimStatusInd
-功能描述  :USIM/SIM卡状态上报
-输入参数  :pstMsg:  卡状态消息
-输出参数  :无
-返 回 值  :无
-调用函数  :VOS_AllocMsg
-被调函数  :
-修订记录  :
-1. 日    期   : 2007年7月10日
-    作    者   : z00100318
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID SI_PIH_CardUsimStatusInd(
     USIMM_CARDSTATUS_IND_STRU           *pstMsg)
 {
@@ -6016,19 +4765,7 @@ VOS_VOID SI_PIH_CardUsimStatusInd(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_SendMsg2DSPSingle
-功能描述  : PIH发送给GDSP的功率降低消息
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_OK
-调用函数  :
-被调函数  :
-修订记录  :
-1.日    期  : 2010年07月26日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_PIH_SendMsg2DSPSingle(
     SI_PIH_DSP_LIMIT_ENUM_UINT16        enLimit)
 {
@@ -6062,19 +4799,7 @@ VOS_VOID SI_PIH_SendMsg2DSPSingle(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_SendMsg2DSPAll
-功能描述  : PIH发送给GDSP的功率降低消息
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_OK
-调用函数  :
-被调函数  :
-修订记录  :
-1.日    期  : 2010年07月26日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_PIH_SendMsg2DSPAll(
     SI_PIH_DSP_LIMIT_ENUM_UINT16        enLimit)
 {
@@ -6116,19 +4841,7 @@ VOS_VOID SI_PIH_SendMsg2DSPAll(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_SendMsg2DSP
-功能描述  : PIH发送给GDSP的功率降低消息
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_OK
-调用函数  :
-被调函数  :
-修订记录  :
-1.日    期  : 2010年07月26日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_PIH_SendMsg2DSP(
     SI_PIH_DSP_LIMIT_ENUM_UINT16        enLimit)
 {
@@ -6144,22 +4857,7 @@ VOS_VOID SI_PIH_SendMsg2DSP(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_ProtectReset
-功能描述  : PIH保护复位卡功能
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_OK
-调用函数  :
-被调函数  :
-修订记录  :
-1.日    期  : 2010年07月26日
-  作    者  : zhuli
-  修改内容  : Create
-2.日    期  : 2011年7月5日
-  作    者  : j00168360
-  修改内容  : [DTS2011070102767]，马来外场，数传时修改PIN码错误，UE进入限制驻留
-*****************************************************************************/
+
 VOS_UINT32 SI_PIH_ProtectReset(SI_VOID)
 {
     /* 已经掉卡，就不要再重启SIM卡 */
@@ -6223,22 +4921,7 @@ VOS_UINT32 SI_PIH_ProtectReset(SI_VOID)
     return SI_PIH_NO_NEED_REPORT;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_CardStateIndProc
-功能描述  : PIH卡状态上报消息处理
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_OK
-调用函数  :
-被调函数  :
-修订记录  :
-1.日    期  : 2010年07月26日
-  作    者  : zhuli
-  修改内容  : Create
-2.日    期  : 2011年7月5日
-  作    者  : j00168360
-  修改内容  : [DTS2011070102767]，马来外场，数传时修改PIN码错误，UE进入限制驻留
-*****************************************************************************/
+
 VOS_VOID SI_PIH_CardStateIndProc(
     USIMM_CARDSTATUS_IND_STRU           *pstMsg)
 {
@@ -6340,19 +5023,7 @@ VOS_VOID SI_PIH_CardStateIndProc(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_RAccessCnfFromAT
-功能描述  : CRSM回复处理
-输入参数  : USIMM_RACCESS_CNF_STRU *pstRAccessCnf
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
-修订记录  :
-1.日    期  : 2015年04月09日
-  作    者  : g00256031
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_PIH_RAccessCnfFromAT(
     USIMM_RACCESS_CNF_STRU              *pstRAccessCnf)
 {
@@ -6377,31 +5048,7 @@ VOS_VOID SI_PIH_RAccessCnfFromAT(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_ImsiPollingCnfProc
-功能描述  : 处理读取IMSI的消息回复
-输入参数  : pstGAccessCnf 消息内容
-输出参数  : 无
-返 回 值  : VOS_OK -- 消息已经被处理
-            VOS_ERR-- 消息没有被处理
 
-History     :
-1.日    期  : 2010年07月26日
-  作    者  : zhuli
-  修改内容  : Create
-2.日    期  : 2011年04月12日
-  作    者  : j00168360
-  修改内容  : 在STK主动命令时IMSI号可能改变，此时查询IMSI定时器超时导致去激活卡
-3.日    期   : 2011年4月27日
-  作    者   : j00168360
-  修改内容   : [DTS2011042702232]新西兰外场，使用2Degrees的卡启用PIN码会发生掉卡
-4.日    期   : 2011年5月12日
-  作    者   : z00100318
-  修改内容   : [DTS2011050604056]识别不了带有SIM卡贴的SIM卡
-5.日    期  : 2011年7月5日
-  作    者  : j00168360
-  修改内容  : [DTS2011070102767]，马来外场，数传时修改PIN码错误，UE进入限制驻留
-*****************************************************************************/
 VOS_UINT32 SI_PIH_ImsiPollingCnfProc(
     USIMM_RACCESS_CNF_STRU              *pstRAccessCnf)
 {
@@ -6484,18 +5131,7 @@ VOS_UINT32 SI_PIH_ImsiPollingCnfProc(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_ProtectResetCnfProc
-功能描述  : 保护性复位回复消息处理函数
-输入参数  : pstStatusCnf: 消息内容
-输出参数  : 无
-返 回 值  :
 
-History     :
-1.日    期  : 2011年07月5日
-  作    者  : j00168360
-  修改内容  : Create[DTS2011070102767]，马来外场，数传时修改PIN码错误，UE进入限制驻留
-*****************************************************************************/
 VOS_VOID SI_PIH_ProtectResetCnfProc(
     USIMM_SINGLECMD_CNF_STRU            *pstMsg)
 {
@@ -6545,19 +5181,7 @@ VOS_VOID SI_PIH_ProtectResetCnfProc(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_StatusProc
-功能描述  : 查询卡状态消息和卡复位请求回复上报
-输入参数  : pstStatusCnf: 消息内容
-输出参数  : 无
-返 回 值  :
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2010年07月26日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_PIH_StatusCnfProc(
     USIMM_SINGLECMD_CNF_STRU            *pstMsg)
 {
@@ -6607,19 +5231,7 @@ VOS_VOID SI_PIH_StatusCnfProc(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_GAccessCnfProc
-功能描述  :
-输入参数  : pstMsg
-输出参数  : 无
-返 回 值  : VOS_UINT32 函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2010年08月20日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_PIH_PCSCCnfProc(
     USIMM_SENDTPDUDATA_CNF_STRU         *pstMsg)
 {
@@ -6698,19 +5310,7 @@ VOS_VOID SI_PIH_PCSCCnfProc(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_GAccessCnfProc
-功能描述  :
-输入参数  : pstMsg
-输出参数  : 无
-返 回 值  : VOS_UINT32 函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2010年08月20日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_PIH_GAccessCnfProc(
     USIMM_SENDTPDUDATA_CNF_STRU         *pstMsg)
 {
@@ -6791,18 +5391,7 @@ VOS_VOID SI_PIH_GAccessCnfProc(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_IsdbAccessCnfProc
-功能描述  : ISDB透传APDU数据回复消息处理函数
-输入参数  : USIMM_SENDTPDUDATA_CNF_STRU *pstMsg 数据回复消息结构指针
-输出参数  : 无
-返 回 值  : 无
-调用函数  : 无
-History     :
-1.日    期  : 2012年08月28日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_PIH_IsdbAccessCnfProc(
     USIMM_SENDTPDUDATA_CNF_STRU         *pstMsg)
 {
@@ -6834,18 +5423,7 @@ VOS_VOID SI_PIH_IsdbAccessCnfProc(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_OpenChannelCnfProc
-功能描述  : 打开通道数据回复消息处理函数
-输入参数  : PS_USIM_OPEN_CHANNEL_CNF_STRU *pstMsg 数据回复消息结构指针
-输出参数  : 无
-返 回 值  : 无
-调用函数  : 无
-History     :
-1.日    期  : 2013年05月17日
-  作    者  : g47350
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_PIH_OpenChannelCnfProc(
     USIMM_OPENCHANNEL_CNF_STRU          *pstMsg)
 {
@@ -6878,18 +5456,7 @@ VOS_VOID SI_PIH_OpenChannelCnfProc(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_CloseChannelCnfProc
-功能描述  : 关闭通道数据回复消息处理函数
-输入参数  : PS_USIM_CLOSE_CHANNEL_CNF_STRU *pstMsg 数据回复消息结构指针
-输出参数  : 无
-返 回 值  : 无
-调用函数  : 无
-History     :
-1.日    期  : 2013年05月17日
-  作    者  : g47350
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_PIH_CloseChannelCnfProc(
     USIMM_CLOSECHANNEL_CNF_STRU         *pstMsg)
 {
@@ -6906,18 +5473,7 @@ VOS_VOID SI_PIH_CloseChannelCnfProc(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_AccessChannelCnfProc
-功能描述  : 访问通道数据回复消息处理函数
-输入参数  : USIMM_SENDTPDUDATA_CNF_STRU *pstMsg 数据回复消息结构指针
-输出参数  : 无
-返 回 值  : 无
-调用函数  : 无
-History     :
-1.日    期  : 2013年05月17日
-  作    者  : g47350
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_PIH_AccessChannelCnfProc(
     USIMM_SENDTPDUDATA_CNF_STRU         *pstMsg)
 {
@@ -6951,17 +5507,7 @@ VOS_VOID SI_PIH_AccessChannelCnfProc(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_RefreshIndProc
-功能描述  : REFRESH IND消息处理函数
-输入参数  : pstMsg:REFRESH IND消息
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2013年05月28日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_PIH_RefreshIndProc(
     USIMM_STKREFRESH_IND_STRU           *pstMsg)
 {
@@ -7006,17 +5552,7 @@ VOS_VOID SI_PIH_RefreshIndProc(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_CardTimeOutProc
-功能描述  : Card Time Out IND消息处理函数
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2015年07月28日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
+
 
 VOS_VOID SI_PIH_CardTimeOutProc(VOS_VOID)
 {
@@ -7036,18 +5572,7 @@ VOS_VOID SI_PIH_CardTimeOutProc(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_UsimIndMsgProc
-功能描述  : 处理来自USIM主动上报的消息
-输入参数  : pstMsg
-输出参数  : 无
-返 回 值  : VOS_OK - 消息已经处理
-            VOS_ERR - 消息没有被处理
-History     :
-1.日    期  : 2015年05月15日
-  作    者  : g00256031
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_PIH_UsimIndMsgProc(
     PS_SI_MSG_STRU                      *pstMsg)
 {
@@ -7089,18 +5614,7 @@ VOS_UINT32 SI_PIH_UsimIndMsgProc(
     return VOS_ERR;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_UsimCnfMsgProc
-功能描述  : 处理来自USIM回复的消息
-输入参数  : pstMsg
-输出参数  : 无
-返 回 值  : VOS_OK - 消息已经处理
-            VOS_ERR - 消息没有被处理
-History     :
-1.日    期  : 2015年05月15日
-  作    者  : g00256031
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_PIH_UsimCnfMsgProc(
     PS_SI_MSG_STRU                      *pMsg)
 {
@@ -7240,25 +5754,7 @@ VOS_UINT32 SI_PIH_UsimCnfMsgProc(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_UsimMsgProc
-功能描述  : USIM模块回复消息处理函数
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_UINT32 函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2008年10月20日
-  作    者  : H59254
-  修改内容  : Create
-2.日    期  : 2011年7月5日
-  作    者  : j00168360
-  修改内容  : [DTS2011070102767]，马来外场，数传时修改PIN码错误，UE进入限制驻留
-3.日    期  : 2014年03月20日
-  作    者  : zhuli
-  修改内容  : For GBA Project
-*****************************************************************************/
+
 VOS_UINT32 SI_PIH_UsimMsgProc(
     PS_SI_MSG_STRU                      *pMsg)
 {
@@ -7277,22 +5773,7 @@ VOS_UINT32 SI_PIH_UsimMsgProc(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_TimerMsgProc
-功能描述  : 定时器消息处理函数
-输入参数  : pstMsg 定时器消息
-输出参数  : 无
-返 回 值  : VOS_UINT32 函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2008年10月20日
-  作    者  : H59254
-  修改内容  : Create
-2.日    期  : 2011年8月18日
-  作    者  : j00168360
-  修改内容  : [DTS2011081805771]使用MOVISTAR后台打开单板，后台不可用，AT口不通
-*****************************************************************************/
+
 VOS_UINT32 SI_PIH_TimerMsgProc(
     REL_TIMER_MSG                       *pstMsg)
 {
@@ -7323,19 +5804,7 @@ VOS_UINT32 SI_PIH_TimerMsgProc(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : SI_PIH_STKMsgProc
-功能描述  : STK消息处理函数
-输入参数  : pstMsg 定时器消息
-输出参数  : 无
-返 回 值  : VOS_UINT32 函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2015年10月20日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_PIH_STKMsgProc(
     PS_SI_MSG_STRU                       *pstMsg)
 {
@@ -7395,19 +5864,7 @@ VOS_UINT32 SI_PIH_STKMsgProc(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_SIM_PidMsgProc
-功能描述  : USIM PID注册的消息处理函数
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_UINT32 函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2008年10月20日
-  作    者  : H59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_PIH_PidMsgProc(
     PS_SI_MSG_STRU                      *pMsg )
 {
@@ -7453,19 +5910,7 @@ VOS_VOID SI_PIH_PidMsgProc(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : WuepsSIFidInit
-功能描述  : SI任务的初始化函数
-输入参数  : ip 初始化步骤
-输出参数  : 无
-返 回 值  : VOS_UINT32，表示函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2012年12月28日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 WuepsSIFidInit(enum VOS_INIT_PHASE_DEFINE ip)
 {
     VOS_UINT32          ulRslt;

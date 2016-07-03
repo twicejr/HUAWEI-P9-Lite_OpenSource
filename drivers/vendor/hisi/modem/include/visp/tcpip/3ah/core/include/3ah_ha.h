@@ -95,7 +95,6 @@ typedef struct tagOam3ahHaPortInfo
     OAM3AH_HA_INFOTLV_S     stHaRmtInfoTlv;     /* 对端INFO TLV                 */
 }OAM3AH_HA_PORTCFG_S;
 
-/* Modified by z00208058/w00207740, 3AH链路事件窗口和门限规格扩展, 2012/5/10 */
 /* 用户配置的支持64位链路事件窗口门限参数备份结构 */
 typedef struct tagHaEventWinThrshEx
 {
@@ -185,7 +184,6 @@ typedef enum enOam3ahHaBakType
 {
     OAM3AH_HA_PORTCFG = 0x0100,         /* 控制块备份,后续PORTCFG字段更新子TLV的TYPE值为0x0101、0x0102、etc ... */
     OAM3AH_HA_INFO_ORGSPEC = 0x0101,    /* info OAMPDU: ORG SPEC TLV(board type) */
-    /* Modified by z00208058/w00207740, 3AH链路事件窗口和门限规格扩展, 2012/5/12 */
     OAM3AH_HA_LINKEVT = 0x0102,         /* DULONG LINKEVT TLV TYPE*/
 
     OAM3AH_HA_GLOBAL_DISABLE = 0x0200,  /* 全局去使能备份   */
@@ -235,7 +233,6 @@ extern OAM3AH_HASTAT_S g_stOam3ahHaStat;
     iDbgLen += TCPIP_SNPRINTF(szDbgStr + iDbgLen, LEN_1024 - iDbgLen, P2("\r\n%20s: %lu", "Link Evt Thresh", (pst3ahBakEvt)->ulEventThresh));\
 }
 
-/* Modified by z00208058/w00207740, 3AH链路事件窗口和门限规格扩展, 2012/5/12 */
 /* 将链路配置信息打印到内存中 */
 #define OAM3AH_SPRINTF_HA_LINKEVT_EX(pst3ahBakEvt, szDbgStr, iDbgLen)\
 {\

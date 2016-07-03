@@ -164,7 +164,7 @@ typedef struct tagIPOA_PKT_STAT
     ULONG               ulOutByte; /* 发送字节数 */
     ULONG               ulOutPkt;   /* 发送报文数 */
     ULONG               ulOutPktErr;/* 错误的发送报文数 */
-    ULONG               ulQoSDropPkt; /* QoS队列拥塞导致的丢弃报文数 */
+    ULONG               ulQoSDropPkt;
 }IPOA_PKT_STAT_S;
 
 typedef struct tagIPOA_PVC_PARAM

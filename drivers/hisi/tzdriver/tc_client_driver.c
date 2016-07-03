@@ -1501,7 +1501,7 @@ static int tc_client_open(struct inode *inode, struct file *file)
 
 	if(!teecd_task){
 	    teecd_task = current->group_leader;
-	    agent_count = 2;//currently we have 2 agents need to care for.
+	    agent_count = 3;//currently we have 3 agents need to care for.
 	}
 	file->private_data = NULL;
 	ret = TC_NS_ClientOpen(&dev, TEE_REQ_FROM_USER_MODE);
@@ -1528,7 +1528,8 @@ static int tc_client_close(struct inode *inode, struct file *file)
 	if (dev->dev_file_id == tui_attach_device())
 		send_tui_msg_adapt(TUI_POLL_CANCEL, 0, NULL);
 #endif
-	if((teecd_task == current->group_leader)&&(!TC_NS_get_uid())) {
+	if((teecd_task == current->group_leader)&&(!TC_NS_get_uid())
+		&& (teecd_task->flags & PF_EXITING || current->flags & PF_EXITING)) {
 	    TCERR("teecd is killed, something bad must be happened!!!\n");
 	    TC_NS_send_event_reponse_all();
 	    ret = TC_NS_ClientClose(dev, 1);

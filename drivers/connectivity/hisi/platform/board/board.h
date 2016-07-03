@@ -6,7 +6,8 @@
   1 Include other Head file
 *****************************************************************************/
 
-#include "hw_bfg_ps.h"
+//#include "hw_bfg_ps.h"
+#include "plat_type.h"
 
 /*****************************************************************************
   2 Define macro
@@ -58,7 +59,9 @@ typedef struct {
     int32 power_on_enable;
     int32 wlan_wakeup_host;
     int32 bfgn_wakeup_host;
+#ifdef HAVE_HISI_IR
     int32 bfgn_ir_ctrl;
+#endif
     int32 xldo_pinmux;
 
     /* hi110x irq info */

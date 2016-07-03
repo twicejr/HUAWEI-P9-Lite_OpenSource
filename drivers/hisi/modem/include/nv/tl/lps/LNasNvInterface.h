@@ -51,6 +51,7 @@ extern "C" {
 #define LNAS_NV_GET_ESR_REJ39_OPTIMIZE_BIT              (0x00000020)
 
 #define LNAS_NV_GET_AUSTRALIA_OPTIMIZE_BIT              (0x00000040)
+#define LNAS_NV_GET_IMSI_ATTACH_FLAG_BIT                (0x00000080)
 /************************stNasFunFlag02 Begin***************************/
 
 /*****************************************************************************

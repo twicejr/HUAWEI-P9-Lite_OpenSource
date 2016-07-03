@@ -1,14 +1,4 @@
-/******************************************************************************
 
-  Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : LRrcGuRrcCommInterface.h
-  Description     : LTE&GU RRC模块公共信息头文件
-  History         :
-      1.liutao 38432       2010-12-30   Draft Enact
-	  2.wangyue 151278     2011-12-22 DTS2011121902767:L2G重选接口修改，增加能量值
-******************************************************************************/
 
 #ifndef __LRRC_GURRCCOMMINTERFACE_H__
 #define __LRRC_GURRCCOMMINTERFACE_H__
@@ -106,9 +96,7 @@ extern "C" {
 /* v7r2 code end */
 
 /* L重定向时，包括的UTRAN CELL 的系统消息最大长度 */
-/*DTS2015052702134,add by l00195322,联通网络配置不合理，contanier太长，大于256了，修改为512+128*/
 #define LRRC_WRRC_UTRAN_BCCH_CONTAINER_MAX_BYTE_LEN         640
-/*DTS2015052702134,add by l00195322,联通网络配置不合理，contanier太长，大于256了，修改为512+128*/
 
 
 /* L CellResel或者CCO到G时，如果目标G小区没有测量值，接口中设置的无效值 */

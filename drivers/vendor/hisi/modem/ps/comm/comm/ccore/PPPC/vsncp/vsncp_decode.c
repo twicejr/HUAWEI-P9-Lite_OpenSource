@@ -1,24 +1,4 @@
-/************************************************************************
-*                                                                      *
-*                             Vsncp_decode.c                           *
-*                                                                      *
-*  Project Code:       VRP3.0                                          *
-*  Create Date:        2012/12/15                                      *
-*  Author:             WANGYONG                                        *
-*  Modify Date:                                                        *
-*  Document:                                                           *
-*  Function:           PPP的VSNCP模块属性解析                          *
-*  Others:                                                             *
-*----------------------------------------------------------------------*
-*                                                                      *
-* Copyright 2000-2010 VRP3.0 Team Beijing Institute HuaWei Tech, Inc.  *
-*                     ALL RIGHTS RESERVED                              *
-*                                                                      *
-*----------------------------------------------------------------------*
-*                                                                      *
-*   这个文件定义了VSNCP协议模块的全部接口函数和内部处理函数            *
-*                                                                      *
-************************************************************************/
+
 
 
 
@@ -51,21 +31,7 @@ extern "C" {
 *****************************************************************************/
 /*lint -save -e958 */
 
-/*****************************************************************************
- 函 数 名  : PPP_VSNCP_EmsTrace
- 功能描述  : vsncp ems跟踪
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : wangyong 00138171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID PPP_VSNCP_EmsTrace(VOS_UINT32 ulRpIndex, UCHAR ucCode)
 {
     switch (ucCode)
@@ -97,23 +63,7 @@ VOID PPP_VSNCP_EmsTrace(VOS_UINT32 ulRpIndex, UCHAR ucCode)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_VSNCP_ApnLabelToString
- 功能描述  : 将APN转换为字符串
- 输入参数  : UCHAR *pLabelApn,
-             UCHAR *pStringApn,
-             UCHAR ucApnLen
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月31日
-    作    者   : wangyong 00138171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID PPP_VSNCP_ApnLabelToString(UCHAR *pLabelApn,
                                 UCHAR *pStringApn,
                                 UCHAR ucApnLen)
@@ -150,16 +100,7 @@ VOID PPP_VSNCP_ApnLabelToString(UCHAR *pLabelApn,
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2012/12/12                                                 *
-* CREATED BY   ：wangyong 00138171                                          *
-* FUNCTION     ：vsncp保存解析的属性顺序                                    *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：                                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：
-* CALLED BY    ：
-****************************************************************************/
+
 VOID PPP_VSNCP_SaveOptionTypeSequence(VSNP_CONIFG_OPTION_SEQUENCE_S *pstOptSequence,
                                       UCHAR ucType)
 {
@@ -195,16 +136,7 @@ VOID PPP_VSNCP_SaveOptionTypeSequence(VSNP_CONIFG_OPTION_SEQUENCE_S *pstOptSeque
 
     return;
 }
-/****************************************************************************
-* CREATE DATE  ：2012/12/12                                                 *
-* CREATED BY   ：wangyong 00138171                                          *
-* FUNCTION     ：vsncp协商报文解析函数并生成新数据包                        *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：                                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：
-* CALLED BY    ：
-****************************************************************************/
+
 UCHAR *PPP_VSNCP_DecodePactket(UCHAR *pPacket,
                                VOS_UINT32 ulLen,
                                VOS_UINT16 *pusPdnId,
@@ -331,22 +263,7 @@ UCHAR *PPP_VSNCP_DecodePactket(UCHAR *pPacket,
 
 
 
-/*****************************************************************************
- 函 数 名  : PPP_VSNCP_PDNIDDecode
- 功能描述  : PDN ID处理
- 输入参数  : PPPCONIFG_OPTION_S *pstConfigOpt,
-             VSNP_CONIFG_OPTION_S *pstVsncpInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月31日
-    作    者   : wangyong 00138171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_VSNCP_PDNIDDecode(PPPCONIFG_OPTION_S *pstConfigOpt,
                             PDN_PPP_VSNCP_REQ_S *pstVsncpInfo)
 {
@@ -373,22 +290,7 @@ VOS_UINT32 PPP_VSNCP_PDNIDDecode(PPPCONIFG_OPTION_S *pstConfigOpt,
 }
 
 
-/*****************************************************************************
- 函 数 名  : PPP_VSNCP_APNDecode
- 功能描述  : APN处理
- 输入参数  : PPPCONIFG_OPTION_S *pstConfigOpt,
-             VSNP_CONIFG_OPTION_S *pstVsncpInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月31日
-    作    者   : wangyong 00138171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_VSNCP_APNDecode(PPPCONIFG_OPTION_S *pstConfigOpt,
                           PDN_PPP_VSNCP_REQ_S *pstVsncpInfo)
 {
@@ -431,22 +333,7 @@ VOS_UINT32 PPP_VSNCP_APNDecode(PPPCONIFG_OPTION_S *pstConfigOpt,
 
 
 
-/*****************************************************************************
- 函 数 名  : PPP_VSNCP_PDNTypeDecode
- 功能描述  : PDNType处理
- 输入参数  : PPPCONIFG_OPTION_S *pstConfigOpt,
-             VSNP_CONIFG_OPTION_S *pstVsncpInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月31日
-    作    者   : wangyong 00138171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_VSNCP_PDNTypeDecode(PPPCONIFG_OPTION_S *pstConfigOpt,
                               PDN_PPP_VSNCP_REQ_S *pstVsncpInfo)
 {
@@ -482,22 +369,7 @@ VOS_UINT32 PPP_VSNCP_PDNTypeDecode(PPPCONIFG_OPTION_S *pstConfigOpt,
 
 
 /*lint -e{416,420,670}*/
-/*****************************************************************************
- 函 数 名  : PPP_VSNCP_PDNAddressDecode
- 功能描述  : PDNAddress处理
- 输入参数  : PPPCONIFG_OPTION_S *pstConfigOpt,
-             VSNP_CONIFG_OPTION_S *pstVsncpInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月31日
-    作    者   : wangyong 00138171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_VSNCP_PDNAddressDecode(PPPCONIFG_OPTION_S *pstConfigOpt,
                                  PDN_PPP_VSNCP_REQ_S *pstVsncpInfo)
 {
@@ -566,22 +438,7 @@ VOS_UINT32 PPP_VSNCP_PDNAddressDecode(PPPCONIFG_OPTION_S *pstConfigOpt,
     return PPP_VSNCP_DECODE_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_VSNCP_AttachTypeDecode
- 功能描述  : AttachType处理
- 输入参数  : PPPCONIFG_OPTION_S *pstConfigOpt,
-             VSNP_CONIFG_OPTION_S *pstVsncpInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月31日
-    作    者   : wangyong 00138171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_VSNCP_AttachTypeDecode(PPPCONIFG_OPTION_S *pstConfigOpt,
                                  PDN_PPP_VSNCP_REQ_S *pstVsncpInfo)
 {
@@ -617,22 +474,7 @@ VOS_UINT32 PPP_VSNCP_AttachTypeDecode(PPPCONIFG_OPTION_S *pstConfigOpt,
 
 
 
-/*****************************************************************************
- 函 数 名  : PPP_VSNCP_PCODecode
- 功能描述  : PCO处理
- 输入参数  : PPPCONIFG_OPTION_S *pstConfigOpt,
-             VSNP_CONIFG_OPTION_S *pstVsncpInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月31日
-    作    者   : wangyong 00138171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_VSNCP_PCODecode(PPPCONIFG_OPTION_S *pstConfigOpt,
                           PDN_PPP_VSNCP_REQ_S *pstVsncpInfo)
 {
@@ -665,22 +507,7 @@ VOS_UINT32 PPP_VSNCP_PCODecode(PPPCONIFG_OPTION_S *pstConfigOpt,
 }
 
 
-/*****************************************************************************
- 函 数 名  : PPP_VSNCP_IPV4DefRouterDecode
- 功能描述  : IPV4DefRouter处理
- 输入参数  : PPPCONIFG_OPTION_S *pstConfigOpt,
-             VSNP_CONIFG_OPTION_S *pstVsncpInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月01日
-    作    者   : t00265288
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_VSNCP_IPV4DefRouterDecode(PPPCONIFG_OPTION_S *pstConfigOpt,
                                     PDN_PPP_VSNCP_REQ_S *pstVsncpInfo)
 {
@@ -706,22 +533,7 @@ VOS_UINT32 PPP_VSNCP_IPV4DefRouterDecode(PPPCONIFG_OPTION_S *pstConfigOpt,
 }
 
 
-/*****************************************************************************
- 函 数 名  : PPP_VSNCP_AddressAllocCauseDecode
- 功能描述  : AddressAllocCause处理
- 输入参数  : PPPCONIFG_OPTION_S *pstConfigOpt,
-             VSNP_CONIFG_OPTION_S *pstVsncpInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月01日
-    作    者   : t00265288
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_VSNCP_AddressAllocCauseDecode(PPPCONIFG_OPTION_S *pstConfigOpt,
                                         PDN_PPP_VSNCP_REQ_S *pstVsncpInfo)
 {
@@ -746,22 +558,7 @@ VOS_UINT32 PPP_VSNCP_AddressAllocCauseDecode(PPPCONIFG_OPTION_S *pstConfigOpt,
 
 
 
-/*****************************************************************************
- 函 数 名  : PPP_VSNCP_IPV6LinkLocalDecode
- 功能描述  : IPV6LinkLocal处理
- 输入参数  : PPPCONIFG_OPTION_S *pstConfigOpt,
-             VSNP_CONIFG_OPTION_S *pstVsncpInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月31日
-    作    者   : wangyong 00138171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_VSNCP_IPV6LinkLocalDecode(PPPCONIFG_OPTION_S *pstConfigOpt,
                                     PDN_PPP_VSNCP_REQ_S *pstVsncpInfo)
 {
@@ -769,22 +566,7 @@ VOS_UINT32 PPP_VSNCP_IPV6LinkLocalDecode(PPPCONIFG_OPTION_S *pstConfigOpt,
     return PPP_VSNCP_DECODE_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_VSNCP_ErrorCodeDecode
- 功能描述  : ErrorCode处理
- 输入参数  : PPPCONIFG_OPTION_S *pstConfigOpt,
-             VSNP_CONIFG_OPTION_S *pstVsncpInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月26日
-    作    者   : t00265288
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_VSNCP_ErrorCodeDecode(PPPCONIFG_OPTION_S *pstConfigOpt,
                             PDN_PPP_VSNCP_REQ_S *pstVsncpInfo)
 {
@@ -809,22 +591,7 @@ VOS_UINT32 PPP_VSNCP_ErrorCodeDecode(PPPCONIFG_OPTION_S *pstConfigOpt,
     return PPP_VSNCP_DECODE_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_VSNCP_AmbrDecode
- 功能描述  : Ambr处理
- 输入参数  : PPPCONIFG_OPTION_S *pstConfigOpt,
-             PDN_PPP_VSNCP_REQ_S *pstVsncpInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月26日
-    作    者   : t00265288
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_VSNCP_AmbrDecode(PPPCONIFG_OPTION_S *pstConfigOpt,
                             PDN_PPP_VSNCP_REQ_S *pstVsncpInfo)
 {
@@ -852,21 +619,7 @@ VOS_UINT32 PPP_VSNCP_AmbrDecode(PPPCONIFG_OPTION_S *pstConfigOpt,
     return PPP_VSNCP_DECODE_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_VSNCP_OptionDecodeReg
- 功能描述  : vsncp属性解析函数注册
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月31日
-    作    者   : wangyong 00138171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID PPP_VSNCP_OptionDecodeReg(VOS_VOID)
 {
     /* vsncp option解析函数注册 */

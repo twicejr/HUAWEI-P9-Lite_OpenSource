@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasXregFsmMain.c
-  版 本 号   : 初稿
-  作    者   : l60609
-  生成日期   : 2014年07月03日
-  功能描述   : 1X reg L1主状态机下收到各事件处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年07月03日
-    作    者   : l60609
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -52,21 +37,7 @@ extern "C"{
 *****************************************************************************/
 /*lint -save -e958*/
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_RcvStartReq_Null
- 功能描述  : 在null状态收到开机请求ID_XSD_XREG_START_REQ的处理
- 输入参数  : ulEventType -- 事件类型
-             pstMsg      -- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年07月08日
-   作    者   : l60609
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XREG_RcvStartReq_Null(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -80,21 +51,7 @@ VOS_UINT32 CNAS_XREG_RcvStartReq_Null(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_RcvSwitchOnRslt_Null
- 功能描述  : 在null状态收到开机请求ID_XSD_XREG_START_REQ的处理
- 输入参数  : ulEventType -- 事件类型
-             pstMsg      -- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2014年07月08日
-   作    者   : l60609
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XREG_RcvSwitchOnRslt_Null(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -109,22 +66,7 @@ VOS_UINT32 CNAS_XREG_RcvSwitchOnRslt_Null(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_RcvStartReq_UnReg
- 功能描述  : 在UnReg状态收到关机请求ID_XSD_XREG_START_REQ的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月23日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XREG_RcvStartReq_UnReg(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -136,22 +78,7 @@ VOS_UINT32 CNAS_XREG_RcvStartReq_UnReg(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_RcvAccessInd_L1Main
- 功能描述  : CAS发送的注册结果
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月14日
-    作    者   : 甘兰
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XREG_RcvAccessInd_L1Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -204,22 +131,7 @@ VOS_UINT32 CNAS_XREG_RcvAccessInd_L1Main(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_RcvRegedDataInd_L1Main
- 功能描述  : CAS发送的已注册DSCH数据消息
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月14日
-    作    者   : 祝锂
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XREG_RcvRegedDataInd_L1Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -245,22 +157,7 @@ VOS_UINT32 CNAS_XREG_RcvRegedDataInd_L1Main(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_RcvRegReq_L1Main
- 功能描述  : 内部消息发送
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月14日
-    作    者   : 甘兰
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XREG_RcvRegReq_L1Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -320,22 +217,7 @@ VOS_UINT32 CNAS_XREG_RcvRegReq_L1Main(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_RcvRegCnf_L1Main
- 功能描述  : 内部消息回复
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月14日
-    作    者   : ganlan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XREG_RcvRegCnf_L1Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -398,21 +280,7 @@ VOS_UINT32 CNAS_XREG_RcvRegCnf_L1Main(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_WriteNvimInfo_PowerOff
- 功能描述  : 开机状态下读取NV项内容.
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年01月05日
-   作    者   : g00256031
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XREG_WriteNvimInfo_PowerOff(VOS_VOID)
 {
     VOS_UINT32                          ulLastSci;
@@ -428,21 +296,7 @@ VOS_VOID CNAS_XREG_WriteNvimInfo_PowerOff(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_ProcPowerOffReq
- 功能描述  : 关机流程处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月21日
-    作    者   : ganlan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XREG_ProcPowerOffReq(VOS_VOID)
 {
     /* 关机时关闭保护定时器 */
@@ -468,22 +322,7 @@ VOS_VOID CNAS_XREG_ProcPowerOffReq(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XREG_RcvPwrOffTimeOut_L1Main
- 功能描述  : 关机超时定时器处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月21日
-    作    者   : ganlan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XREG_RcvPwrOffTimeOut_L1Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg

@@ -44,16 +44,7 @@ extern "C" {
   3 Function
 *****************************************************************************/
 
-/*****************************************************************************
-Function Name  : NAS_LPP_StopReportTimer
-Description    : 停止三种方式定时器
-Input          : pstReportCriteria上报准则
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-1. lifuxin 00253982 2015-11-26 新开发
-*****************************************************************************/
 VOS_VOID   NAS_LPP_StopReportTimer
 (
     NAS_LPP_UP_REPORT_CRITERIA_STRU        *pstReportCriteria,
@@ -80,16 +71,7 @@ VOS_VOID   NAS_LPP_StopReportTimer
                               TI_NAS_LPP_UP_PERIODICAL_REPORT);
       }
 }
-/*****************************************************************************
-Function Name  : NAS_LPP_UpSetBandNum
-Description    : 设置UE支持的band数据
-Input          :
-Output         :
-Return Value   : VOS_VOID
 
-History        :
-1. wangensheng 00324863 2015-12-16 新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_UpSetBandNum
 (
     LPP_MTA_OTDOA_PROVIDE_CAP_STRU     *pstOTDOAProvideCapabilities,
@@ -120,16 +102,7 @@ VOS_VOID NAS_LPP_UpSetBandNum
 
 }
 
-/*****************************************************************************
-Function Name  : NAS_LPP_FillinUpOtodaCapCnfData
-Description    : LPP用户面填充OTDOA能力cnf的数据
-Input          :
-Output         : pstOTDOAProvideCapabilities,传出OTDO的能力数据
-Return Value   : VOS_VOID
 
-History        :
-1. lifuxin 00253982 2015-10-20 新开发
-*****************************************************************************/
 /*lint -e701*/
 VOS_UINT32   NAS_LPP_FillinUpOtodaCapCnfData
 (
@@ -217,16 +190,7 @@ VOS_UINT32   NAS_LPP_FillinUpOtodaCapCnfData
 }
 /*lint +e701*/
 
-/*****************************************************************************
-Function Name  : NAS_LPP_SendLppMtaUpCapCnf
-Description    : LPP模块用户面收能力请求的处理
-Input          :
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-1. lifuxin 00253982 2015-10-20 新开发
-*****************************************************************************/
 VOS_VOID   NAS_LPP_SendLppMtaUpCapCnf(VOS_VOID)
 {
     LPP_MTA_UP_CAPABILITY_CNF_STRU      *pstLppMtaCapCnf    = NAS_LPP_NULL_PTR;
@@ -280,16 +244,7 @@ VOS_VOID   NAS_LPP_SendLppMtaUpCapCnf(VOS_VOID)
 
     return;
 }
-/*****************************************************************************
- Function Name   : NAS_LPP_GetLppUpRefEarfcnFromOtdoaAssis
- Description     :
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-1. wangensheng 00324863 2015-11-24 新开发
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_UpGetRefEarfcnFromOtdoaAssis( LPP_OTDOA_REF_CELL_INFO_STRU  *pstOtdoaRefCellInfo )
 {
     VOS_UINT32 ulEarfcn;
@@ -317,16 +272,7 @@ VOS_UINT32  NAS_LPP_UpGetRefEarfcnFromOtdoaAssis( LPP_OTDOA_REF_CELL_INFO_STRU  
 
     return ulEarfcn;
 }
-/*****************************************************************************
- Function Name   : NAS_LPP_GetNeibhorFreqEarFcn
- Description     :
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-1. wangensheng 00324863 2015-11-24 新开发
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_UpGetNeibhorFreqEarFcn
 (
     MTA_LPP_OTDOA_NEIGHBOUR_CELL_INFO_ELEMENT_STRU *pstOtdoaRefCellInfo,
@@ -358,16 +304,7 @@ VOS_UINT32  NAS_LPP_UpGetNeibhorFreqEarFcn
 
     return ulEarfcn;
 }
-/*****************************************************************************
- Function Name   : NAS_LPP_CheckLppUpOtdoaNeighbourCell
- Description     :
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1. wangensheng 00324863 2015-11-24 新开发
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_UpCheckOtdoaNeighbourCell
 (
     LPP_OTDOA_NEIGHOUR_CELL_INFO_STRU   *pstOtdoaNeighbourCellInfo,
@@ -463,17 +400,7 @@ VOS_UINT32  NAS_LPP_UpCheckOtdoaNeighbourCell
 
     return NAS_LPP_MSG_VERIFY_SUCC;
 }
-/*****************************************************************************
-Function Name  : NAS_LPP_CheckMtaLppUpAssistData
-Description    : LPP模块用户面收能力请求的处理
-Input          : 辅助数据的结构数据
-Output         : NAS_LPP_MSG_VERIFY_SUCC
-                 NAS_LPP_MSG_VERIFY_FAIL
-Return Value   : VOS_VOID
 
-History        :
-1. wangensheng 00324863 2015-11-24 新开发
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_UpCheckMtaAssistData
 (
     MTA_LPP_OTDOA_PROVIDE_ASSIST_DATA_STRU *pstOtdoaProvideAssistData
@@ -574,16 +501,7 @@ VOS_UINT32  NAS_LPP_UpCheckMtaAssistData
 
     return NAS_LPP_MSG_VERIFY_SUCC;
 }
-/*****************************************************************************
-Function Name   : NAS_LPP_SaveLppUpOtdoaRefCell
-Description     : 存储otdoa的ref cell
-Input           : None
-Output          : None
-Return          : VOS_UINT32
 
-History         :
-1. wangensheng 00324863 2015-11-24 新开发
-*****************************************************************************/
 VOS_VOID  NAS_LPP_UpSaveOtdoaRefCell
 (
     LPP_OTDOA_PROVIDE_ASSIST_DATA_STRU          *pstOtdoaAssist,
@@ -699,16 +617,7 @@ VOS_VOID  NAS_LPP_UpSaveOtdoaRefCell
         pstOtdoaRefCellCfg->ucPrsInfoFlag = LPP_LRRC_INFO_FLAG_INVALID;
     }
 }
-/*****************************************************************************
-Function Name   :NAS_LPP_SaveLppUpOtdoaNghbrCell
-Description     : 存储otodoa的辅助数据的临区信息
-Input           : None
-Output          : None
-Return          : VOS_UINT32
 
-History         :
-1. wangensheng 00324863 2015-11-24 新开发
-*****************************************************************************/
 VOS_VOID   NAS_LPP_UpSaveOtdoaNghbrCell
 (
 LPP_OTDOA_PROVIDE_ASSIST_DATA_STRU      *pstOtdoaAssist,
@@ -786,16 +695,7 @@ NAS_LPP_OTDOA_ASSIST_CFG_STRU           *pstOtdoaAssisCfg
     }
 
 }
-/*****************************************************************************
-Function Name   : NAS_LPP_SaveLppUpOtdoaAssistData
-Description     : 存储otdoa的辅助数据
-Input           : None
-Output          : None
-Return          : VOS_UINT32
 
-History         :
-1. wangensheng 00324863 2015-11-24 新开发
-*****************************************************************************/
 VOS_VOID  NAS_LPP_UpSaveOtdoaAssistData
 (
     LPP_OTDOA_PROVIDE_ASSIST_DATA_STRU *pstOtdoaAssist
@@ -815,16 +715,7 @@ VOS_VOID  NAS_LPP_UpSaveOtdoaAssistData
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_PrePareEcidParameter
- Description    : 准备ECID编码的参数
- Input          :
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      lifuxin 00253982 2015-7-24  新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_UpPrePareEcidParameterElement
 (
     LPP_MEAS_RESULT_ELEMENT_STRU            *pstMeasRsltEle,
@@ -888,16 +779,7 @@ VOS_VOID NAS_LPP_UpPrePareEcidParameterElement
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_UpPrePareEcidParameter
- Description    : 准备ECID编码的参数
- Input          :
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      lifuxin 00253982 2015-7-24  新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_UpPrePareEcidParameter
 (
     LPP_MTA_ECID_SIGNAL_MEAS_INFO_STRU      *pstEcidSignalMeasInfo
@@ -968,16 +850,7 @@ VOS_VOID NAS_LPP_UpPrePareEcidParameter
 }
 
 
-/*****************************************************************************
-Function Name  : NAS_LPP_SndUpLppMtaMeasInd
-Description    : 给MTA发送测量结果-带有效的测量信息的场景
-Input          :
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-1. lifuxin 00253982 2015-11-26新开发
-*****************************************************************************/
 VOS_VOID   NAS_LPP_SndUpLppMtaMeasInd
 (
     NAS_LPP_UP_POS_REQ_TECH_TYPE_ENUM_UINT8     enReqTechType
@@ -1005,16 +878,7 @@ VOS_VOID   NAS_LPP_SndUpLppMtaMeasInd
     return;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LPP_SndUpLppMtaEcidMeasAndOtdoaErrInd
-Description    : 给MTA发送测量结果-测量结果中ECID有测量信息，OTDOA测量error
-Input          :
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-1. lifuxin 00253982 2015-11-26新开发
-*****************************************************************************/
 VOS_VOID   NAS_LPP_SndUpLppMtaEcidMeasAndOtodaErrInd
 (
     LPP_ECID_TARGET_DEVICE_ERROR_CAUSE_ENUM_UINT32            enEcidErrCause
@@ -1025,16 +889,7 @@ VOS_VOID   NAS_LPP_SndUpLppMtaEcidMeasAndOtodaErrInd
     return;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LPP_SndUpLppMtaOtodaMeasAndEcidErrInd
-Description    : 给MTA发送测量结果-测量结果中OTDOA有测量信息，ECID测量error
-Input          :
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-1. lifuxin 00253982 2015-11-26新开发
-*****************************************************************************/
 VOS_VOID   NAS_LPP_SndUpLppMtaOtodaMeasAndEcidErrInd
 (
     LPP_ECID_TARGET_DEVICE_ERROR_CAUSE_ENUM_UINT32            enEcidErrCause
@@ -1045,16 +900,7 @@ VOS_VOID   NAS_LPP_SndUpLppMtaOtodaMeasAndEcidErrInd
     return;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LPP_SndUpLppMtaEcidMeasmentInd
-Description    : 给MTA发送ECID测量结果
-Input          :
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-1. lifuxin 00253982 2015-11-26新开发
-*****************************************************************************/
 VOS_VOID   NAS_LPP_SndUpLppMtaEcidMeasmentInd
 (
     LPP_ECID_TARGET_DEVICE_ERROR_CAUSE_ENUM_UINT32 enEcidErrCause
@@ -1223,16 +1069,7 @@ VOS_VOID  NAS_LPP_UPprePareOtdoaSignalMeasInfo
     return;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LPP_SndUpLppMtaOtdoaMeasmentInd
-Description    : 给MTA发送OTDOA测量结果
-Input          :
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-1. lifuxin 00253982 2015-11-26新开发
-*****************************************************************************/
 VOS_VOID   NAS_LPP_SndUpLppMtaOtdoaMeasmentInd
 (
     LPP_OTDOA_LOCATION_TARGET_DEVICE_ERROR_CAUSE_ENUM_UINT32  enOtdoaErrCause
@@ -1281,16 +1118,7 @@ VOS_VOID   NAS_LPP_SndUpLppMtaOtdoaMeasmentInd
     NAS_LPP_SND_MSG(pstLppMtaMeasInd);
 }
 
-/*****************************************************************************
-Function Name  : NAS_LPP_SndUpLppMtaEcidAndOtodaMeasmentInd
-Description    : 给MTA发送测量结果
-Input          :
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-1. lifuxin 00253982 2015-11-26新开发
-*****************************************************************************/
 VOS_VOID   NAS_LPP_SndUpLppMtaEcidAndOtodaMeasmentInd
 (
     LPP_ECID_TARGET_DEVICE_ERROR_CAUSE_ENUM_UINT32 enEcidErrCause,
@@ -1359,16 +1187,7 @@ VOS_VOID   NAS_LPP_SndUpLppMtaEcidAndOtodaMeasmentInd
     NAS_LPP_SND_MSG(pstLppMtaMeasInd);
 }
 
-/*****************************************************************************
-Function Name  : NAS_LPP_UpRcvMtaOtdoaAssistData
-Description    : LPP模块用户面收能力请求的处理
-Input          : pstMtaLppUpCapREq表示能力请求的消息结构
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-1. wangensheng 00324863 2015-11-24 新开发
-*****************************************************************************/
 VOS_VOID   NAS_LPP_UpRcvMtaOtdoaAssistData
 (
     MTA_LPP_UP_OTDOA_ASSIST_DATA_NTY_STRU                  *pstMtaLppUpOtdoaAssistData
@@ -1428,16 +1247,7 @@ VOS_VOID   NAS_LPP_UpRcvMtaOtdoaAssistData
     return;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LPP_RcvMtaLppUpCapReq
-Description    : LPP模块用户面收能力请求的处理
-Input          : pstMtaLppUpCapREq表示能力请求的消息结构
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-1. lifuxin 00253982 2015-10-20 新开发
-*****************************************************************************/
 VOS_VOID   NAS_LPP_RcvMtaLppUpCapReq
 (
     MTA_LPP_UP_CAPABILITY_REQ_STRU          *pstMtaLppUpCapREq
@@ -1450,16 +1260,7 @@ VOS_VOID   NAS_LPP_RcvMtaLppUpCapReq
 
     return;
 }
-/*****************************************************************************
- Function Name  : NAS_LPP_UPProcessEcidMeasCnf
- Description    : LPP模块收到ECID的测量回复的处理
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-   1. wangensheng 00324863 2015-11-25  新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_UpProcessEcidMeasCnf
 (
     LRRC_LPP_ECID_MEAS_CNF_STRU        *pstEcidMeasCnf
@@ -1518,16 +1319,7 @@ VOS_VOID NAS_LPP_UpProcessEcidMeasCnf
 
     return;
 }
-/*****************************************************************************
- Function Name  : NAS_LPP_UPProcessOtdoaMeasCnf
- Description    : LPP模块收到OTDOA的测量回复的处理
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-   1. wangensheng 00324863 2015-11-25  新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_UpProcessOtdoaMeasCnf
 (
     LRRC_LPP_OTDOA_MEAS_CNF_STRU        *pstOtdoaMeasCnf
@@ -1586,16 +1378,7 @@ VOS_VOID NAS_LPP_UpProcessOtdoaMeasCnf
 
     return;
 }
-/*****************************************************************************
- Function Name  : NAS_LPP_SaveUPLppEcidMeasReslt
- Description    : LPP模块收到ECID的测量回复的处理
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-   1. wangensheng 00324863 2015-11-25  新开发
-*****************************************************************************/
 VOS_VOID    NAS_LPP_UpSaveEcidMeasReslt
 (
     LRRC_LPP_ECID_MEAS_RESULT_LIST_STRU                    *pstLrrcLppEcidMeasResultList
@@ -1626,16 +1409,7 @@ VOS_VOID    NAS_LPP_UpSaveEcidMeasReslt
     /* 设置ECID测量结果标志位 */
     pstEcidUpEntity->stEcidMeasRslt.bHaveEcidMeasFlag   = PS_TRUE;
 }
-/*****************************************************************************
- Function Name  : NAS_LPP_SaveUPLppOtdoaMeasReslt
- Description    : LPP模块收到OTDOA的测量回复的处理
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-   1. wangensheng 00324863 2015-11-25  新开发
-*****************************************************************************/
 VOS_VOID    NAS_LPP_UpSaveOtdoaMeasReslt
 (
     LRRC_LPP_OTDOA_MEAS_IND_STRU       *pstOtdoaMeasInd
@@ -1676,16 +1450,7 @@ VOS_VOID    NAS_LPP_UpSaveOtdoaMeasReslt
     /* 设置ECID测量结果标志位 */
     pstOtdoaInfo->stOtdoaMeasRslt.bMeasRsltFlag = PS_TRUE;
 }
-/*****************************************************************************
- Function Name  : NAS_LPP_ConfirmServeCellChange
- Description    : LPP模块收到OTDOA的测量回复的处理
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-   1. wangensheng 00324863 2015-11-25  新开发
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_UpConfirmServeCellChange
 (
     LRRC_LPP_ECID_MEAS_IND_STRU        *pstEcidMeasInd
@@ -1715,16 +1480,7 @@ VOS_UINT32  NAS_LPP_UpConfirmServeCellChange
 
     return PS_FALSE;
 }
-/*****************************************************************************
- Function Name  : NAS_LPP_UpProcessEcidMeasInd
- Description    : LPP模块收到ECID的测量回复的处理
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-   1. wangensheng 00324863 2015-11-25  新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_UpProcessEcidMeasInd
 (
     LRRC_LPP_ECID_MEAS_IND_STRU         *pstEcidMeasInd
@@ -1819,16 +1575,7 @@ VOS_VOID NAS_LPP_UpProcessEcidMeasInd
     }
 
 }
-/*****************************************************************************
- Function Name  : NAS_LPP_UPProcessOtdoaMeasInd
- Description    : LPP模块收到OTDOA的测量回复的处理
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-   1. wangensheng 00324863 2015-11-25  新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_UpProcessOtdoaMeasInd
 (
     LRRC_LPP_OTDOA_MEAS_IND_STRU        *pstOtdoaMeasInd
@@ -1898,16 +1645,7 @@ VOS_VOID NAS_LPP_UpProcessOtdoaMeasInd
 
 }
 
-/*****************************************************************************
-Function Name  : NAS_LPP_RcvMtaLppUpMeasNotify
-Description    : LPP用户面收到MTA测量通知消息的处理
-Input          : pstUpMeasNty表示测量请求的消息结构
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-1. lifuxin 00253982 2015-10-20 新开发
-*****************************************************************************/
 VOS_UINT32   NAS_LPP_UpCheckEcidOrOtodaParameter
 (
     MTA_LPP_UP_MEAS_NTY_STRU          *pstUpMeasNty
@@ -1971,17 +1709,7 @@ VOS_UINT32   NAS_LPP_UpCheckEcidOrOtodaParameter
     return NAS_LPP_SUCCESS;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LPP_UpSaveSingleReportCriteriaInfo
-Description    : 保存用户面上报方式的逻辑
-Input          : pstUpMeasNty表示测量请求的消息结构
-                 pstReportCriteria 传出上报准则
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-1. lifuxin 00253982 2015-10-20 新开发
-*****************************************************************************/
 VOS_VOID   NAS_LPP_UpSaveSingleReportCriteriaInfo
 (
     MTA_LPP_UP_MEAS_NTY_STRU           *pstUpMeasNty,
@@ -2038,16 +1766,7 @@ VOS_VOID   NAS_LPP_UpSaveSingleReportCriteriaInfo
     return;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LPP_UpSaveReportCriteriaInfo
-Description    : 保存用户面上报方式的逻辑
-Input          : pstUpMeasNty表示测量请求的消息结构
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-1. lifuxin 00253982 2015-10-20 新开发
-*****************************************************************************/
 VOS_VOID   NAS_LPP_UpSaveReportCriteriaInfo
 (
     MTA_LPP_UP_MEAS_NTY_STRU          *pstUpMeasNty
@@ -2085,16 +1804,7 @@ VOS_VOID   NAS_LPP_UpSaveReportCriteriaInfo
     return;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LPP_UpSaveMeasNotifyParameter
-Description    : 保存用户面ECID或者OTDOA测量的相关参数
-Input          : pstUpMeasNty表示测量请求的消息结构
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-1. lifuxin 00253982 2015-10-20 新开发
-*****************************************************************************/
 VOS_VOID   NAS_LPP_UpSaveMeasNotifyParameter
 (
     MTA_LPP_UP_MEAS_NTY_STRU          *pstUpMeasNty
@@ -2143,16 +1853,7 @@ VOS_VOID   NAS_LPP_UpSaveMeasNotifyParameter
     return;
 }
 
-/*****************************************************************************
-Function Name   : NAS_LPP_SndUpLppMtaOtdoaAssistDataReq
-Description     : 用户面请求Mta otdoa的辅助数据
-Input           : None
-Output          : None
-Return          : VOS_VOID
 
-History         :
-1.lifuxin 00253982      2015-11-26  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_LPP_SndUpLppMtaOtdoaAssistDataReq
 (
     VOS_UINT16                      usPhyCellId
@@ -2181,16 +1882,7 @@ VOS_VOID  NAS_LPP_SndUpLppMtaOtdoaAssistDataReq
     return;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LPP_UpStartReportTimer
-Description    : 启动三种方式定时器
-Input          : pstReportCriteria上报准则
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-1. lifuxin 00253982 2015-11-26 新开发
-*****************************************************************************/
 VOS_VOID   NAS_LPP_UpStartReportTimer
 (
     NAS_LPP_UP_REPORT_CRITERIA_STRU        *pstReportCriteria,
@@ -2218,16 +1910,7 @@ VOS_VOID   NAS_LPP_UpStartReportTimer
     }
 }
 
-/*****************************************************************************
-Function Name  : NAS_LPP_UpStartReportTypeTimer
-Description    : 启动上报方式定时器
-Input          : pstUpMeasNty表示测量请求的消息结构
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-1. lifuxin 00253982 2015-11-26 新开发
-*****************************************************************************/
 VOS_VOID   NAS_LPP_UpStartReportTypeTimer
 (
     MTA_LPP_UP_MEAS_NTY_STRU          *pstUpMeasNty
@@ -2265,16 +1948,7 @@ VOS_VOID   NAS_LPP_UpStartReportTypeTimer
     return;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LPP_CheckMutilSamePosTech
-Description    : LPP用户面check多个相同的定位技术请求判断
-Input          :
-Output         : VOS_VOID
-Return Value   : VOS_BOOL
 
-History        :
-1. lifuxin 00253982 2015-11-26 新开发
-*****************************************************************************/
 VOS_BOOL   NAS_LPP_CheckMutilSamePosTech
 (
     MTA_LPP_UP_MEAS_NTY_STRU          *pstUpMeasNty
@@ -2296,16 +1970,7 @@ VOS_BOOL   NAS_LPP_CheckMutilSamePosTech
 }
 
 
-/*****************************************************************************
-Function Name  : NAS_LPP_SinglePlaneHaveEcidPostionTech
-Description    : 有信令面的ECID running
-Input          : pstUpMeasNty表示测量请求的消息结构
-Output         : VOS_VOID
-Return Value   : VOS_BOOL
 
-History        :
-1. lifuxin 00253982 2015-11-26 新开发
-*****************************************************************************/
 VOS_BOOL   NAS_LPP_SinglePlaneHaveEcidPostionTech( VOS_VOID )
 {
     NAS_LPP_LOC_TECH_MAP_STRU       *pstTechMap = NAS_LPP_NULL_PTR;
@@ -2319,16 +1984,7 @@ VOS_BOOL   NAS_LPP_SinglePlaneHaveEcidPostionTech( VOS_VOID )
     return PS_TRUE;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LPP_SinglePlaneHaveOtdoaPostionTech
-Description    : 有信令面的OTDOA running
-Input          : pstUpMeasNty表示测量请求的消息结构
-Output         : VOS_VOID
-Return Value   : VOS_BOOL
 
-History        :
-1. lifuxin 00253982 2015-11-26 新开发
-*****************************************************************************/
 VOS_BOOL   NAS_LPP_SinglePlaneHaveOtdoaPostionTech( VOS_VOID )
 {
     NAS_LPP_LOC_TECH_MAP_STRU       *pstTechMap = NAS_LPP_NULL_PTR;
@@ -2342,16 +1998,7 @@ VOS_BOOL   NAS_LPP_SinglePlaneHaveOtdoaPostionTech( VOS_VOID )
     return PS_TRUE;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LPP_ControlPlaneHaveTheSamePosTech
-Description    : 收到用户面的测量请求的时候判断是否存在相同的信另面定位技术正在running
-Input          : pstUpMeasNty表示测量请求的消息结构
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-1. lifuxin 00253982 2015-11-26 新开发
-*****************************************************************************/
 VOS_BOOL   NAS_LPP_ControlPlaneHaveTheSamePosTech
 (
     MTA_LPP_UP_MEAS_NTY_STRU          *pstUpMeasNty
@@ -2372,16 +2019,7 @@ VOS_BOOL   NAS_LPP_ControlPlaneHaveTheSamePosTech
     return PS_FALSE;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LPP_RcvMtaLppUpMeasNotify
-Description    : LPP用户面收到MTA测量通知消息的处理
-Input          : pstUpMeasNty表示测量请求的消息结构
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-1. lifuxin 00253982 2015-10-20 新开发
-*****************************************************************************/
 VOS_VOID   NAS_LPP_RcvMtaLppUpMeasNotify
 (
     MTA_LPP_UP_MEAS_NTY_STRU          *pstUpMeasNty
@@ -2477,16 +2115,7 @@ VOS_VOID   NAS_LPP_RcvMtaLppUpMeasNotify
     return;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LPP_RcvMtaLppUpAbortMeas
-Description    : LPP用户面收到MTA测量停止消息
-Input          : pstUpMeasNty表示测量停止的消息结构
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-1. wangensheng 00324863 2015-12-01 新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_RcvMtaLppUpAbortMeas
 (
     MTA_LPP_UP_MEAS_ABORT_NTY_STRU     *pstLppUpMeasAbort

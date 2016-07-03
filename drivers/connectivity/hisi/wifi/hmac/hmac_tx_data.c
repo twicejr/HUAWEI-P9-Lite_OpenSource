@@ -1,23 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : hmac_tx_data.c
-  版 本 号   : 初稿
-  作    者   : c00178899
-  生成日期   : 2012年11月12日
-  最近修改   :
-  功能描述   : HMAC BSS AP TX 主文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年11月12日
-    作    者   : c00178899
-    修改内容   : 创建文件
-  2.日    期   : 2013年1月8日
-    作    者   : zourong 52447
-    修改内容   : 文件名修改为hmac_tx_data.c
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -88,21 +69,7 @@ oal_uint32 hmac_tx_data(hmac_vap_stru *pst_hmac_vap, oal_netbuf_stru *pst_netbuf
 #endif
 
 
-/*****************************************************************************
- 函 数 名  : hmac_tx_is_dhcp
- 功能描述  : 判断是否是dhcp帧
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月27日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_bool_enum_uint8 hmac_tx_is_dhcp(mac_ether_header_stru  *pst_ether_hdr)
 {
     oal_uint8              *puc_ip_hdr;
@@ -126,22 +93,7 @@ OAL_STATIC OAL_INLINE oal_bool_enum_uint8 hmac_tx_is_dhcp(mac_ether_header_stru 
 }
 
 
-/*****************************************************************************
- 函 数 名  : hmac_tx_report_dhcp_and_arp
- 功能描述  : 上报dhcp和arp request
- 输入参数  : pst_ether_hdr :以太网帧头指针
-             us_ether_len  :以太网帧长度
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月27日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void hmac_tx_report_dhcp_and_arp(
                                             mac_vap_stru  *pst_mac_vap,
                                             mac_ether_header_stru  *pst_ether_hdr,
@@ -181,22 +133,7 @@ OAL_STATIC oal_void hmac_tx_report_dhcp_and_arp(
 
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_tx_report_eth_frame
- 功能描述  : 将以太网过来的帧上报SDT
- 输入参数  : pst_mac_vap:mac_vap结构
-             pst_netbuf :以太网过来的数据帧
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月20日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_tx_report_eth_frame(mac_vap_stru   *pst_mac_vap,
                                            oal_netbuf_stru *pst_netbuf)
 {
@@ -302,21 +239,7 @@ oal_uint32  hmac_tx_report_eth_frame(mac_vap_stru   *pst_mac_vap,
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_free_netbuf_list
- 功能描述  : 释放一个netbuf链，此链中的skb或者都来自lan，或者都来自wlan
- 输入参数  : pst_buf－SKB结构体单向链表，最后一个next指针务必为NULL，否则会出异常
- 输出参数  :
- 返 回 值  : 释放的buf数目
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月14日
-    作    者   : c00178899
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint16 hmac_free_netbuf_list(oal_netbuf_stru  *pst_buf)
 {
     oal_netbuf_stru     *pst_buf_tmp;
@@ -333,10 +256,7 @@ oal_uint16 hmac_free_netbuf_list(oal_netbuf_stru  *pst_buf)
             us_buf_num++;
 
             pst_tx_cb = (mac_tx_ctl_stru *)OAL_NETBUF_CB(pst_buf);
-            /*
-               DTS2015041705929 释放内存增加判断oal_netbuf_headroom(pst_buf) <  MAC_80211_QOS_HTC_4ADDR_FRAME_LEN
-               如果frame_header部分是内存池申请的才从内存池释放，采用skb内部自身的，就不需要再释放
-            */
+            
             if ((oal_netbuf_headroom(pst_buf) <  MAC_80211_QOS_HTC_4ADDR_FRAME_LEN) && (OAL_PTR_NULL != pst_tx_cb->pst_frame_header))
             {
                 OAL_MEM_FREE(pst_tx_cb->pst_frame_header, OAL_TRUE);
@@ -357,21 +277,7 @@ oal_uint16 hmac_free_netbuf_list(oal_netbuf_stru  *pst_buf)
 }
 
 #if 0
-/*****************************************************************************
- 函 数 名  : hmac_tx_classify_wlan_to_wlan
- 功能描述  : 从wlan过来报文的业务识别
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月10日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void hmac_tx_classify_wlan_to_wlan(mac_tx_ctl_stru *pst_tx_ctl, oal_uint8 *puc_tid)
 {
     mac_ieee80211_frame_stru            *pst_frame_header;
@@ -408,21 +314,7 @@ OAL_STATIC oal_void hmac_tx_classify_wlan_to_wlan(mac_tx_ctl_stru *pst_tx_ctl, o
 #endif
 
 #ifdef _PRE_WLAN_FEATURE_HS20
-/*****************************************************************************
- 函 数 名  : hmac_tx_set_qos_map
- 功能描述  : 根据对端发送的QoS_Map项更新TID
- 输入参数  : oal_netbuf_stru *pst_buf, oal_uint8 *puc_tid
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月11日
-    作    者   : w00346925
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void hmac_tx_set_qos_map(oal_netbuf_stru *pst_buf, oal_uint8 *puc_tid)
 {
     mac_ether_header_stru  *pst_ether_header;
@@ -498,24 +390,7 @@ oal_void hmac_tx_set_qos_map(oal_netbuf_stru *pst_buf, oal_uint8 *puc_tid)
 #endif //_PRE_WLAN_FEATURE_HS20
 
 #ifdef _PRE_WLAN_FEATURE_CLASSIFY
-/*****************************************************************************
- 函 数 名  : hmac_tx_classify_lan_to_wlan
- 功能描述  : 从lan过来报文的业务识别
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月10日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-  2.日    期   : 2015年11月23日
-    作    者   : wanghao(w00357635)
-    修改内容   : 函数算法增量
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  hmac_tx_classify_lan_to_wlan(oal_netbuf_stru *pst_buf, oal_uint8 *puc_tid)
 {
     mac_ether_header_stru  *pst_ether_header;
@@ -755,21 +630,7 @@ OAL_STATIC OAL_INLINE oal_void  hmac_tx_classify_lan_to_wlan(oal_netbuf_stru *ps
     *puc_tid = uc_tid;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_tx_update_tid
- 功能描述  : 根据算法需求，tid = 1, 3, 5, 7的，分别更新为0, 2, 4, 6
-             如果WMM功能关闭，直接填为DMAC_WMM_SWITCH_TID
- 输入参数  : puc_tid 注意，此参数为入出参
- 输出参数  : puc_tid
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月14日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void hmac_tx_update_tid(oal_bool_enum_uint8  en_wmm, oal_uint8 *puc_tid)
 {
 
@@ -784,20 +645,7 @@ OAL_STATIC OAL_INLINE oal_void hmac_tx_update_tid(oal_bool_enum_uint8  en_wmm, o
 }
 
 #if (_PRE_PRODUCT_ID == _PRE_PRODUCT_ID_HI1102_HOST)
-/*****************************************************************************
- 函 数 名  : hmac_tx_wmm_acm
- 功能描述  : 根据热点配置ACM，重新选择队列
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月25日
-    作    者   : t00190962
-    修改内容   : 新生成函数
-*****************************************************************************/
 oal_uint8 hmac_tx_wmm_acm(oal_bool_enum_uint8  en_wmm, hmac_vap_stru *pst_hmac_vap, oal_uint8 *puc_tid)
 {
     oal_uint8                   uc_ac;
@@ -842,25 +690,7 @@ oal_uint8 hmac_tx_wmm_acm(oal_bool_enum_uint8  en_wmm, hmac_vap_stru *pst_hmac_v
 }
 #endif /* (_PRE_PRODUCT_ID == _PRE_PRODUCT_ID_HI1102_HOST) */
 
-/*****************************************************************************
- 函 数 名  : hmac_tx_classify
- 功能描述  : 以太网包 业务识别
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月2日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-  2.日    期   : 2013年10月10日
-    作    者   : zhangheng
-    修改内容   : 增加wlan to wlan分支处理
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  hmac_tx_classify(
                 hmac_vap_stru   *pst_hmac_vap,
                 mac_user_stru   *pst_user,
@@ -890,8 +720,7 @@ OAL_STATIC OAL_INLINE oal_void  hmac_tx_classify(
     hmac_tx_wmm_acm(pst_mac_dev->en_wmm, pst_hmac_vap, &uc_tid);
 #endif /* */
 
-    /* DTS2015120907139: 由于1151支持VO聚合, VIP报文和VO报文都放在tid 6聚合传输, 导致VIP报文无法以基本速率发送。
-       因此, 将VIP报文放在tid 7, 与实际VO业务区分, 保证VIP报文的传输可靠性。 */
+    
     pst_tx_ctl = (mac_tx_ctl_stru *)oal_netbuf_cb(pst_buf);
     if ((OAL_TRUE != pst_tx_ctl->bit_is_vipframe) || (OAL_FALSE == pst_mac_dev->en_wmm))
     {
@@ -914,24 +743,7 @@ OAL_STATIC OAL_INLINE oal_void  hmac_tx_classify(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : hmac_tx_filter_security
- 功能描述  : 针对来自以太网的数据帧做安全过滤
- 输入参数  : hmac_vap_stru     *pst_hmac_vap
-             oal_netbuf_stru  *pst_buf
-             hmac_user_stru   *pst_hmac_user
-             mac_tx_ctl_stru  *pst_tx_ctl
- 输出参数  : OAL_TRUE
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月12日
-    作    者   : duankaiyong 00194999
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32 hmac_tx_filter_security(hmac_vap_stru     *pst_hmac_vap,
                                         oal_netbuf_stru  *pst_buf,
                                         hmac_user_stru   *pst_hmac_user)
@@ -968,21 +780,7 @@ OAL_STATIC OAL_INLINE oal_uint32 hmac_tx_filter_security(hmac_vap_stru     *pst_
 
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_tx_ba_setup
- 功能描述  : 自动触发BA会话的建立
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月25日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  hmac_tx_ba_setup(
                 hmac_vap_stru    *pst_hmac_vap,
                 hmac_user_stru   *pst_user,
@@ -1039,24 +837,7 @@ oal_void  hmac_tx_ba_setup(
 
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_tx_ucast_process
- 功能描述  : 单播处理
- 输入参数  : pst_vap VAP结构体; pst_buf netbuf结构体;pst_user 用户结构体
- 输出参数  :
- 返 回 值  :
- 调用函数  : hmac_tx_mpdu_process_ap
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月14日
-    作    者   : c00178899
-    修改内容   : 新生成函数
-  2.日    期   : 2013年09月12日
-    作    者   : d00194999
-    修改内容   : 修改函数，增加安全过滤
-
-*****************************************************************************/
 oal_uint32 hmac_tx_ucast_process(
                 hmac_vap_stru     *pst_hmac_vap,
                 oal_netbuf_stru   *pst_buf,
@@ -1110,42 +891,14 @@ oal_uint32 hmac_tx_ucast_process(
 }
 
 #if (_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC != _PRE_MULTI_CORE_MODE)
-/*****************************************************************************
- 函 数 名  : hmac_nonqos_frame_set_sn
- 功能描述  : 对非Qos帧进行SN号的维护(目前只针对非qos帧分片场景下使用)
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月12日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32 hmac_nonqos_frame_set_sn(hmac_vap_stru *pst_hmac_vap, mac_tx_ctl_stru *pst_tx_ctl)
 {
     pst_tx_ctl->pst_frame_header->bit_seq_num = (us_noqos_frag_seqnum++) & 0x0fff;
     pst_tx_ctl->en_seq_ctrl_bypass = OAL_TRUE;
     return OAL_SUCC;
 }
-/*****************************************************************************
- 函 数 名  : hmac_tx_is_need_frag
- 功能描述  : 检查该报文是否需要分片
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月18日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_bool_enum_uint8  hmac_tx_is_need_frag(hmac_vap_stru *pst_hmac_vap, hmac_user_stru *pst_hmac_user, oal_netbuf_stru *pst_netbuf, mac_tx_ctl_stru *pst_tx_ctl)
 {
     oal_uint32        ul_threshold;
@@ -1185,21 +938,7 @@ OAL_STATIC oal_bool_enum_uint8  hmac_tx_is_need_frag(hmac_vap_stru *pst_hmac_vap
 
 #else
 
-/*****************************************************************************
- 函 数 名  : hmac_tx_is_need_frag
- 功能描述  : 检查该报文是否需要分片
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月18日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_bool_enum_uint8  hmac_tx_is_need_frag(hmac_vap_stru *pst_hmac_vap, hmac_user_stru *pst_hmac_user, oal_netbuf_stru *pst_netbuf, mac_tx_ctl_stru *pst_tx_ctl)
 {
     oal_uint32        ul_threshold;
@@ -1227,23 +966,7 @@ OAL_STATIC oal_bool_enum_uint8  hmac_tx_is_need_frag(hmac_vap_stru *pst_hmac_vap
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : hmac_tx_encap
- 功能描述  : 802.11帧头封装 AP模式
- 输入参数  : pst_vap－vap结构体
-             pst_user－用户结构体
-             pst_buf－BUF结构体
- 输出参数  : pst_ret_hdr－返回的头部
- 返 回 值  : OAL_PTR_NULL 或者 802.11帧头指针
- 调用函数  : AMSDU模块以及本文件
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月14日
-    作    者   : c00178899
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_INLINE oal_uint32  hmac_tx_encap(
                 hmac_vap_stru    *pst_vap,
                 hmac_user_stru   *pst_user,
@@ -1363,7 +1086,6 @@ OAL_INLINE oal_uint32  hmac_tx_encap(
     /* 挂接802.11头 */
     pst_tx_ctl->pst_frame_header = (mac_ieee80211_frame_stru *)pst_hdr;
 
-    /* 对非Qos 帧进行 软件seq num的维护，DTS2014082610148 */
     /* 分片处理 */
     if (OAL_TRUE == hmac_tx_is_need_frag(pst_vap, pst_user, pst_buf, pst_tx_ctl))
     {
@@ -1376,24 +1098,7 @@ OAL_INLINE oal_uint32  hmac_tx_encap(
     return ul_ret;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_tx_mpdu_process
- 功能描述  : 单个MPDU处理函数
- 输入参数  : pst_event－事件结构体
-             pst_vap－vap结构体
-             pst_buf－BUF结构体
-             pst_tx_ctl－CB结构体
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月13日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  hmac_tx_lan_mpdu_process_sta(
                 hmac_vap_stru      *pst_vap,
                 oal_netbuf_stru    *pst_buf,
@@ -1454,21 +1159,7 @@ OAL_STATIC oal_uint32  hmac_tx_lan_mpdu_process_sta(
 }
 
 #ifdef _PRE_WLAN_FEATURE_PROXY_ARP
-/*****************************************************************************
- 函 数 名  : hmac_tx_proxyarp_is_en
- 功能描述  : 检查proxyarp功能是否使能
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月18日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_bool_enum_uint8  hmac_tx_proxyarp_is_en(hmac_vap_stru *pst_vap)
 {
 
@@ -1477,21 +1168,7 @@ OAL_STATIC OAL_INLINE oal_bool_enum_uint8  hmac_tx_proxyarp_is_en(hmac_vap_stru 
 
 }
 #endif
-/*****************************************************************************
- 函 数 名  : hmac_tx_get_mac_vap
- 功能描述  : 获取VAP，并判断VAP状态
- 输入参数  : pst_event event结构体
- 输出参数  : pst_vap_stru VAP结构体
- 返 回 值  :
- 调用函数  : hmac_tx_wlan_to_wlan_ap
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月14日
-    作    者   : c00178899
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32 hmac_tx_get_mac_vap(oal_uint8 uc_vap_id, mac_vap_stru **pst_vap_stru)
 {
     mac_vap_stru         *pst_vap;
@@ -1525,24 +1202,7 @@ OAL_STATIC oal_uint32 hmac_tx_get_mac_vap(oal_uint8 uc_vap_id, mac_vap_stru **ps
 }
 
 
-/*****************************************************************************
- 函 数 名  : hmac_tx_mpdu_process
- 功能描述  : 单个MPDU处理函数
- 输入参数  : pst_event－事件结构体
-             pst_vap－vap结构体
-             pst_buf－BUF结构体
-             pst_tx_ctl－CB结构体
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月13日
-    作    者   : c00178899
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32  hmac_tx_lan_mpdu_process_ap(
                 hmac_vap_stru      *pst_vap,
                 oal_netbuf_stru    *pst_buf,
@@ -1657,23 +1317,7 @@ OAL_STATIC OAL_INLINE oal_uint32  hmac_tx_lan_mpdu_process_ap(
 
     return HMAC_TX_PASS;
 }
-/*****************************************************************************
- 函 数 名  : hmac_tx_lan_to_wlan_no_tcp_opt
- 功能描述  : hmac AP模式 处理HOST DRX事件，注册到事件管理模块中
-             PAYLOAD是一个NETBUF
- 输入参数  : pst_vap: vap指针
-             pst_buf: netbuf指针
- 输出参数  : 无
- 返 回 值  : OAL_SUCC或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月22日
-    作    者   : c00178899
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_INLINE oal_uint32  hmac_tx_lan_to_wlan_no_tcp_opt(mac_vap_stru *pst_vap, oal_netbuf_stru *pst_buf)
 {
     frw_event_stru        *pst_event;        /* 事件结构体 */
@@ -1777,7 +1421,6 @@ OAL_INLINE oal_uint32  hmac_tx_lan_to_wlan_no_tcp_opt(mac_vap_stru *pst_vap, oal
     {
         /* 处理当前MPDU */
         pst_tx_ctl->uc_ac                     = WLAN_WME_AC_VO;                  /* STA模式 非qos帧入VO队列 */
-        /* DTS2015012401608, AC和tid队列要保持一致 */
         pst_tx_ctl->uc_tid =  WLAN_WME_AC_TO_TID(pst_tx_ctl->uc_ac);
 
         OAL_MIPS_TX_STATISTIC(HMAC_PROFILING_FUNC_CB_INIT);
@@ -1920,26 +1563,7 @@ OAL_STATIC  oal_uint32 hmac_transfer_tx_handler(hmac_device_stru * hmac_device,h
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : hmac_tx_wlan_to_wlan_ap
- 功能描述  : (1)WLAN TO WLAN流程tx入口函数，接收rx流程抛过来的netbuf或者netbuf链，
-             其中每一个netbuf里面有一个MSDU，每一个MSDU的内容是一个以太网格式的
-             帧。如果是netbuf链，第一个netbuf的prev指针为空，最后一个netbuf的
-             next指针为空。
-             (2)函数循环调用LAN TO WLAN的入口函数来处理每一个MSDU，这样就把
-             WLAN TO WLAN流程统一到了LAN TO WLAN流程
- 输入参数  : pst_event_mem－事件内存块
- 输出参数  : 无
- 返 回 值  : OAL_SUCC或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月13日
-    作    者   : c00178899
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_tx_wlan_to_wlan_ap(oal_mem_stru *pst_event_mem)
 {
     frw_event_stru         *pst_event;        /* 事件结构体 */
@@ -1995,10 +1619,7 @@ oal_uint32  hmac_tx_wlan_to_wlan_ap(oal_mem_stru *pst_event_mem)
         OAL_NETBUF_NEXT(pst_buf) = OAL_PTR_NULL;
         OAL_NETBUF_PREV(pst_buf) = OAL_PTR_NULL;
 
-        /* 由于此netbuf来自接收流程，是从内存池申请的，而以太网过来的netbuf是从
-           操作系统申请的，二者的释放方式不一样，后续要通过事件类型字段来选择正确
-           的释放方式
-        */
+        
         pst_tx_ctl = (mac_tx_ctl_stru *)OAL_NETBUF_CB(pst_buf);
         OAL_MEMZERO(pst_tx_ctl, sizeof(mac_tx_ctl_stru));
 
@@ -2024,21 +1645,7 @@ oal_uint32  hmac_tx_wlan_to_wlan_ap(oal_mem_stru *pst_event_mem)
     return OAL_SUCC;
 }
 #ifdef _PRE_WLAN_FEATURE_BTCOEX
-/*****************************************************************************
- 函 数 名  : hmac_delba_send_timeout
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或 失败错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月25日
-    作    者   : c00221210
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_delba_send_timeout(oal_void *p_arg)
 {
     hmac_vap_stru *pst_hmac_vap;
@@ -2065,21 +1672,7 @@ oal_uint32 hmac_delba_send_timeout(oal_void *p_arg)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_base_arp_delba
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或 失败错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月25日
-    作    者   : c00221210
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 oal_void hmac_btcoex_arp_fail_delba(oal_netbuf_stru *pst_netbuf, hmac_vap_stru *pst_hmac_vap)
 {
@@ -2123,21 +1716,7 @@ oal_void hmac_btcoex_arp_fail_delba(oal_netbuf_stru *pst_netbuf, hmac_vap_stru *
 #endif
 #ifdef _PRE_WLAN_FEATURE_PROXYSTA
 
-/*****************************************************************************
- 函 数 名  : hmac_tx_proxysta_checksum
- 功能描述  : 计算报文的校验和
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月29日
-    作    者   : y00184180
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint16  hmac_tx_proxysta_checksum(oal_uint16   us_protocol,
                                                  oal_uint16   us_len,
                                                  oal_uint8    auc_src_addr[],
@@ -2197,21 +1776,7 @@ OAL_STATIC oal_uint16  hmac_tx_proxysta_checksum(oal_uint16   us_protocol,
     return ((oal_uint16) ul_sum);
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_tx_proxysta_arp_mat
- 功能描述  : arp包地址转换
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月8日
-    作    者   : l00279018
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32 hmac_tx_proxysta_arp_mat(mac_vap_stru *pst_mac_vap,
                                                       oal_uint8 *puc_eth_body,
                                                       oal_uint32 ul_pkt_len,
@@ -2283,21 +1848,7 @@ OAL_STATIC oal_uint32 hmac_tx_proxysta_arp_mat(mac_vap_stru *pst_mac_vap,
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_tx_proxysta_ip_mat
- 功能描述  : ip包地址转换
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月8日
-    作    者   : l00279018
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32 hmac_tx_proxysta_ip_mat(mac_vap_stru           *pst_mac_vap,
                                                      mac_ether_header_stru  *pst_ether_header,
                                                      oal_uint8              *puc_eth_body,
@@ -2433,21 +1984,7 @@ OAL_STATIC oal_uint32 hmac_tx_proxysta_ip_mat(mac_vap_stru           *pst_mac_va
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_tx_proxysta_icmpv6_mat
- 功能描述  : icmpv6包地址转换
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月8日
-    作    者   : l00279018
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32 hmac_tx_proxysta_icmpv6_mat(mac_vap_stru *pst_mac_vap,
                                                            oal_uint8 *puc_eth_body,
                                                            oal_uint32 ul_pkt_len,
@@ -2562,21 +2099,7 @@ OAL_STATIC oal_uint32 hmac_tx_proxysta_icmpv6_mat(mac_vap_stru *pst_mac_vap,
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_tx_proxysta_mat
- 功能描述  : ARP、DHCP、ICMPv6等包的地址转换 发送前地址转换函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月25日
-    作    者   : y00184180
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_tx_proxysta_mat(oal_netbuf_stru *pst_buf, mac_vap_stru *pst_mac_vap)
 {
     mac_ether_header_stru  *pst_ether_header;
@@ -2672,23 +2195,7 @@ oal_uint32  hmac_tx_proxysta_mat(oal_netbuf_stru *pst_buf, mac_vap_stru *pst_mac
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : hmac_tx_lan_to_wlan_tcp_opt
- 功能描述  : hmac AP模式 处理HOST DRX事件，注册到事件管理模块中
-             PAYLOAD是一个NETBUF
- 输入参数  : pst_vap: vap指针
-             pst_buf: netbuf指针
- 输出参数  : 无
- 返 回 值  : OAL_SUCC或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月22日
-    作    者   : c00178899
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_INLINE oal_uint32  hmac_tx_lan_to_wlan(mac_vap_stru *pst_vap, oal_netbuf_stru *pst_buf)
 {
     oal_uint32             ul_ret = HMAC_TX_PASS;
@@ -2999,21 +2506,7 @@ oal_uint32  hmac_tx_event_process(oal_mem_stru *pst_event_mem)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : hmac_tx_ba_cnt_vary
- 功能描述  : 发5个包建立聚合 改为 发5个"连续"的大包建立聚合 51暂时不变
-             因考虑不连续的包即使建立BA,发的也是单包聚合,意义并不大。
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月24日
-    作    者   : sunxiaolin
-    修改内容   : 新生成函数
-*****************************************************************************/
 oal_void hmac_tx_ba_cnt_vary(
                        hmac_vap_stru   *pst_hmac_vap,
                        hmac_user_stru  *pst_hmac_user,

@@ -1,23 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : VcComm.h
-  版 本 号   : 初稿
-  作    者   : h44270
-  生成日期   : 2009年7月05日
-  最近修改   : 2009年7月05日
-  功能描述   : VC模块和HPA之间的接口头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2009年7月05日
-    作    者   : h44270
-    修改内容   : 创建文件
-  2.日    期   : 2009-12-04
-    作    者   : h44270
-    修改内容   : 问题单号:AT2D15720,驱动接口清理
-******************************************************************************/
 #ifndef  VC_COMM_H
 #define  VC_COMM_H
 
@@ -30,9 +11,7 @@
 #include "VcCodecInterface.h"
 #include "VcCallInterface.h"
 
-/* Added by wx270776 for OM融合, 2015-6-27, begin */
 #include "TafLog.h"
-/* Added by wx270776 for OM融合, 2015-6-27, end */
 
 
 #ifdef __cplusplus
@@ -73,9 +52,7 @@ enum APP_VC_TIMER_ID_ENUM
     APP_VC_TIMER_SET_BACKGROUND,
     APP_VC_TIMER_QRY_GROUND,
 
-    /* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, begin */
     APP_VC_TIMER_SET_ECALL_CFG,
-    /* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, end */
 
     APP_VC_TIMER_BUTT
 };
@@ -210,36 +187,10 @@ extern VOS_UINT32 WuepsVCPidInit(enum VOS_INIT_PHASE_DEFINE InitPhrase);
 extern VOS_VOID   APP_VC_MsgProc(MsgBlock* pMsg);
 extern  VCVOICE_WORK_TYPE_ENUM_UINT16 APP_VC_GetWorkType(VOS_VOID);
 
-/*****************************************************************************
- 函 数 名  : NAS_VC_SndOutsideContextData
- 功能描述  : 把VC外部上下文作为SDT消息发送出去，以便在回放时通过桩函数还原
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年11月30日
-    作    者   : 王毛 00166186
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_VC_SndOutsideContextData(VOS_VOID);
 
-/*****************************************************************************
- 函 数 名  : APP_VC_SendVCReqToOm
- 功能描述  : 将VC的异步请求发送到OM所在任务处理
- 输入参数  : ulStatus - 命令类型
- 输出参数  : ulPort   - 端口号
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月17日
-    作    者   : f00179208
-    修改内容   : 新增，AT移植项目:将OM_PcvTransStatus接口改为异步消息发给OM
-*****************************************************************************/
 VOS_UINT32  APP_VC_SendVcReqToOm(VOS_UINT32 ulStatus, VOS_UINT32 ulPort);
 
 VCVOICE_TYPE_ENUM_UINT16 APP_VC_ConvertCallCodeTypeToVodecType(
@@ -248,20 +199,7 @@ VCVOICE_TYPE_ENUM_UINT16 APP_VC_ConvertCallCodeTypeToVodecType(
 
 
 #ifdef __PS_WIN32_RECUR__
-/*****************************************************************************
- 函 数 名  : NAS_VC_RestoreContextData
- 功能描述  : 恢复VC全局变量。
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年12月1日
-    作    者   : 王毛 00166186
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_VC_RestoreContextData(struct MsgCB * pMsg);
 #endif
 

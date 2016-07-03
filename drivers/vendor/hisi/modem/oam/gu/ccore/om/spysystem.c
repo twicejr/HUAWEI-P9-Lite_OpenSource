@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : MonitorSystem.C
-  版 本 号   : 初稿
-  作    者   : z00100318 g47350
-  生成日期   : 2009年7月23日
-  最近修改   :
-  功能描述   : MonitorSystem模块
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2008年7月1日
-    作    者   : g47350
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -45,9 +28,7 @@ extern "C" {
 /*****************************************************************************
     协议栈打印打点方式下的.C文件宏定义
 *****************************************************************************/
-/*lint -e767 修改人：z00100318；检视人：l46160；原因简述：打点日志文件宏ID定义*/
 #define    THIS_FILE_ID        PS_FILE_ID_SPYSYSTEM_C
-/*lint +e767 修改人：z00100318；检视人：l46160*/
 
 
 /*****************************************************************************
@@ -102,16 +83,7 @@ TAF_OAM_EMERGENCY_CALL_STATUS_ENUM_UINT8                   g_ucSpyEmergencyCallS
 *****************************************************************************/
 
 #ifdef SPY_STATISTICS_DEBUG
-/*****************************************************************************
- 函 数 名  : Spy_TimeRecord
- 功能描述  : 记录SPY事件
- 输入参数  : None
- 输出参数  : None
- 返 回 值  : VOS_VOID
 
- 作者      : s00180715
-             2012-02-16
-*****************************************************************************/
 VOS_VOID Spy_TimeRecord(VOS_CHAR * pcString)
 {
     VOS_UINT32 ulRecordPosition = 0;
@@ -136,23 +108,7 @@ VOS_VOID Spy_TimeRecord(VOS_CHAR * pcString)
 #endif
 
 
-/*****************************************************************************
- Prototype       :   Spy_AntenStatusProc
- Description     :   回调函数，根据ANTEN状态，上报处理消息
- Input           :   enModemID 卡ID
-                 :   ulStatus  天线状态
- Output          :   void
- Return Value    :   void
 
- History         : ---
-    Date         : 2009-05-7
-    Author       : m00128685
-    Modification : Created function
- -------------------------------------
-    Date         : 2012-03-20
-    Author       : s00207770
-    Modification : 修改为上报处理消息
- *****************************************************************************/
 VOS_VOID Spy_AntenStatusProc(MODEM_ID_ENUM_UINT16 enModemID, VOS_UINT32 ulStatus)
 {
     SPY_MSG_STRU                       *pstSarMsg;
@@ -178,18 +134,7 @@ VOS_VOID Spy_AntenStatusProc(MODEM_ID_ENUM_UINT16 enModemID, VOS_UINT32 ulStatus
     return;
 }
 
-/*****************************************************************************
- Prototype       :   Spy_Anten0StatusProc
- Description     :   回调函数，给DRV上报天线0状态函数
- Input           :   enModemID 卡ID
- Output          :   void
- Return Value    :   void
 
- History         : ---
-    Date         : 2013-05-30
-    Author       : d00212987
-    Modification : 上报天线处理消息
- *****************************************************************************/
 VOS_VOID Spy_Anten0StatusProc(VOS_VOID)
 {
     VOS_UINT                            ulStatus = 0; /* 无线连接 */
@@ -206,18 +151,7 @@ VOS_VOID Spy_Anten0StatusProc(VOS_VOID)
 }
 
 #if ( FEATURE_MULTI_MODEM == FEATURE_ON )
-/*****************************************************************************
- Prototype       :   Spy_Anten1StatusProc
- Description     :   回调函数，给DRV上报天线1状态函数
- Input           :   void
- Output          :   void
- Return Value    :   void
 
- History         : ---
-    Date         : 2013-05-30
-    Author       : d00212987
-    Modification : 上报天线处理消息
- *****************************************************************************/
 VOS_VOID Spy_Anten1StatusProc(VOS_VOID)
 {
     VOS_UINT                            ulStatus = 0; /* 无线连接 */;
@@ -235,20 +169,7 @@ VOS_VOID Spy_Anten1StatusProc(VOS_VOID)
 }
 #endif
 
-/*****************************************************************************
- Prototype       :   Spy_SarSendToDsp
- Description     :   将天线状态上报给DSP
- Input           :   enModemID 卡ID
-                     stSpyToDsp 发给DSP Sar 内容
 
- Output          :   void
- Return Value    :   void
-
- History         : ---
-    Date         : 2012-03-20
-    Author       : s00207770
-    Modification : Created function
- *****************************************************************************/
 VOS_VOID Spy_SarSendToDsp(MODEM_ID_ENUM_UINT16 enModemID, MN_APP_SAR_INFO_STRU *pstSpyToDsp)
 {
     PHY_OAM_SAR_CTRL_REQ_STRU          *pstSarMsg;
@@ -295,19 +216,7 @@ VOS_VOID Spy_SarSendToDsp(MODEM_ID_ENUM_UINT16 enModemID, MN_APP_SAR_INFO_STRU *
     return;
 }
 
-/*****************************************************************************
- Prototype       :   Spy_SarSendToTaf
- Description     :   将天线状态上报给TAF
- Input           :   enModemID   : 卡ID
-                 :   lAntenStatu : 天线状态
- Output          :   void
- Return Value    :   void
 
- History         : ---
-    Date         : 2012-03-20
-    Author       : s00207770
-    Modification : Created function
-*****************************************************************************/
 VOS_VOID Spy_SarSendToTaf(MODEM_ID_ENUM_UINT16 enModemID, VOS_INT32  lAntenStatus)
 {
     MN_APP_SAR_ANTENSTATUS_MSG_STRU *pstAntenStatusStru;
@@ -342,18 +251,7 @@ VOS_VOID Spy_SarSendToTaf(MODEM_ID_ENUM_UINT16 enModemID, VOS_INT32  lAntenStatu
     return;
 }
 
-/*****************************************************************************
- Prototype       :   Spy_SendAntenStatusToLte
- Description     :   天线状态上报给LTE
- Input           :   lAntenStatus 天线状态
- Output          :   void
- Return Value    :   void
 
- History         : ---
-    Date         : 2013-05-30
-    Author       : d00212987
-    Modification : 上报天线处理消息
- *****************************************************************************/
 VOS_VOID Spy_SendAntenStatusToLte(MODEM_ID_ENUM_UINT16 enModemID, VOS_INT32 lAntenStatus)
 {
     PLATAFORM_RAT_CAPABILITY_STRU       stPlatFormRat;
@@ -382,24 +280,7 @@ VOS_VOID Spy_SendAntenStatusToLte(MODEM_ID_ENUM_UINT16 enModemID, VOS_INT32 lAnt
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : Spy_SarMsgProc
- 功能描述  : 降SAR功能，天线状态变更处理接口
- 输入参数  : MsgBlock *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月20日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-  2.日    期   : 2012年5月28日
-    作    者   : s00207770
-    修改内容   : 添加L模天线状态更新处理
-
-*****************************************************************************/
 VOS_UINT32  Spy_SarMsgProc(MsgBlock *pMsg)
 {
     SPY_MSG_STRU                        *pstMsg;
@@ -441,24 +322,7 @@ VOS_UINT32  Spy_SarMsgProc(MsgBlock *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : Spy_AntenStatusInit
- 功能描述  : 降SAR功能，天线状态初始化接口
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月20日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-  2.日    期   : 2012年5月28日
-    作    者   : s00207770
-    修改内容   : 添加L模天线状态更新处理
-
-*****************************************************************************/
 VOS_VOID Spy_AntenStatusInit(VOS_VOID)
 {
     VOS_UINT                    ulStatus = 0; /* 无线连接 */
@@ -487,17 +351,7 @@ VOS_VOID Spy_AntenStatusInit(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : Spy_ReportEvent
- 功能描述  : 通过调用OM提供的接口上报状态事件
- 输入参数  : usEventId: 事件ID
-             lSimTemp:  SIM卡温度值
- 输出参数  : 无
- 返 回 值  : VOS_VOID
 
- 修改历史  : m00128685
-             2009-03-25
-*****************************************************************************/
 VOS_VOID Spy_ReportEvent(SPY_EVENT_NAME_ENUM_UINT32 enEventId, VOS_INT lSimTemp)
 {
     DIAG_EVENT_IND_STRU                 stEventInd;
@@ -515,16 +369,7 @@ VOS_VOID Spy_ReportEvent(SPY_EVENT_NAME_ENUM_UINT32 enEventId, VOS_INT lSimTemp)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : Spy_RegPhoneCallback
- 功能描述  : 处理NAS的回调事件上报
- 输入参数  : pEvent: 事件
- 输出参数  : 无
- 返 回 值  : VOS_VOID
 
- 修改历史  : m00128685
-             2009-03-25
-*****************************************************************************/
 VOS_VOID Spy_RegPhoneCallback(TAF_PHONE_EVENT_INFO_STRU *pEvent)
 {
     if(VOS_YES != pEvent->OP_OperMode)/*判断当前是否是开关机事件*/
@@ -722,16 +567,7 @@ VOS_UINT32 Spy_TempCheckInit(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : Spy_TempProtectInit
- 功能描述  : 任务初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 作者      : z00100318
- 修改历史  : z00100318
-             2009-07-10
-*****************************************************************************/
+
 VOS_UINT32 Spy_TempProtectInit(VOS_VOID)
 {
     VOS_INT16                           sTemp;
@@ -930,16 +766,7 @@ VOS_INT32 Spy_CheckTemp(VOS_VOID)
     return SPY_VOTE_NOMAL;
 }
 
-/*****************************************************************************
- 函 数 名  : Spy_VoteJudgeState
- 功能描述  : 根据投票结果进行系统状态转换，并计算真实的投票结果
- 输入参数  : lVote: 投票结果
- 输出参数  : 无
- 返 回 值  : SPY_VOTERESULT_ENUM 中定义的投票操作
- 作者      : z00100318
- 修改历史  : z00100318 2009-7-8
 
-*****************************************************************************/
 VOS_UINT32 Spy_VoteJudgeState(VOS_INT32 lVote)
 {
     SPY_STATE_ENUM_UINT32       enState     = SPY_STATE_NORMAL;
@@ -1026,16 +853,7 @@ VOS_UINT32 Spy_VoteJudgeState(VOS_INT32 lVote)
     return enVoteResult;
 }
 
-/*****************************************************************************
- 函 数 名  : Spy_PowerDown
- 功能描述  : 进行硬关机操作
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
 
- 修改历史  : m00128685
-             2009-03-25
-*****************************************************************************/
 VOS_UINT32 Spy_PowerDown(VOS_VOID)
 {
     OAM_MNTN_SPY_ERROR_EVENT_STRU       stSpyErrorLog;
@@ -1119,16 +937,7 @@ VOS_UINT32 Spy_SysCtrlCmd(VOS_UINT8 usOpId, VOS_UINT16 usClientId, VOS_UINT32 ul
     return VOS_SendMsg(WUEPS_PID_SPY, pstMsg);
 }
 
-/*****************************************************************************
- 函 数 名  : Spy_SoftPowerOff
- 功能描述  : 进行软关机操作,并启动定时器
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
 
- 修改历史  : m00128685
-             2009-03-25
-*****************************************************************************/
 VOS_UINT32 Spy_SoftPowerOff(VOS_VOID)
 {
 #ifndef COMM_ITT
@@ -1167,16 +976,7 @@ VOS_UINT32 Spy_SoftPowerOff(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : Spy_SoftPowerOn
- 功能描述  : 进行软开机操作，并且关闭定时器
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
 
- 修改历史  : m00128685
-             2009-03-25
-*****************************************************************************/
 VOS_UINT32 Spy_SoftPowerOn(VOS_VOID)
 {
 #ifndef COMM_ITT
@@ -1193,17 +993,7 @@ VOS_UINT32 Spy_SoftPowerOn(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名   : Spy_RateResume
- 功能描述   : 进行速率恢复
- 输入参数   : pstPdpInfo    指向PDP信息记录结构体
- 输出参数   : 无
- 返 回 值   : VOS_OK
-              VOS_ERR
 
- 修改历史   : m00128685
-              2009-03-25
-*****************************************************************************/
 VOS_UINT32 Spy_FlowCtrlDown()
 {
     /*call L2*/
@@ -1238,17 +1028,7 @@ VOS_UINT32 Spy_FlowCtrlDown()
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名   : Spy_RateResume
- 功能描述   : 进行速率恢复
- 输入参数   : pstPdpInfo    指向PDP信息记录结构体
- 输出参数   : 无
- 返 回 值   : VOS_OK
-              VOS_ERR
 
- 修改历史   : m00128685
-              2009-03-25
-*****************************************************************************/
 VOS_UINT32 Spy_FlowCtrlUp()
 {
     /*call L2*/
@@ -1340,16 +1120,7 @@ VOS_UINT32 Spy_Execute(VOS_UINT32 ulVoteResult)
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : Spy_MainProc
- 功能描述  : 系统监控任务的主处理函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 作者      : z00100318
- 修改历史  : z00100318 2009-7-8
 
-*****************************************************************************/
 VOS_VOID Spy_MainProc(VOS_VOID)
 {
     VOS_INT32  lTempVote;
@@ -1397,17 +1168,7 @@ VOS_VOID Spy_MainProc(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : Spy_E5_CheckSIMTemp
- 功能描述  : 用于 E5 防止电池温度实效的保护
- 输入参数  : 无
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
-
- 修改历史  : m00128685
-             2009-03-25
-*****************************************************************************/
 VOS_VOID Spy_E5_CheckSIMTemp(VOS_VOID)
 {
     VOS_UINT32                  ulResult;
@@ -1442,32 +1203,14 @@ VOS_VOID Spy_E5_CheckSIMTemp(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : Spy_ReadTempMsgProc
- 功能描述  : Monitor模块的消息处理函数
- 输入参数  : pMsg  消息块
- 输出参数  : 无
- 返 回 值  : 成功，失败
 
- 修改历史  : m00128685
-             2009-03-25
-*****************************************************************************/
 VOS_UINT32 Spy_ReadTempMsgProc(MsgBlock *pMsg)
 {
     /* 保留一个空函数以防方案再次发生变化 */
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : Spy_TempProtectMsgProc
- 功能描述  : 消息处理函数
- 输入参数  : pMsg:当前输入的消息内容
- 输出参数  : 无
- 返 回 值  : 无
- 作者      : z00100318
- 修改历史  : z00100318 2009-7-9
 
-*****************************************************************************/
 VOS_VOID Spy_TempProtectMsgProc(MsgBlock *pstMsg)
 {
     REL_TIMER_MSG                           *pstExpireMsg;
@@ -1540,16 +1283,7 @@ VOS_VOID Spy_TempProtectMsgProc(MsgBlock *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : Spy_FID_Init
- 功能描述  : 任务初始化函数
- 输入参数  : 初始化步骤
- 输出参数  : 无
- 返 回 值  : 无
- 作者      : z00100318
- 修改历史  : z00100318 2009-7-9
 
-*****************************************************************************/
 VOS_UINT32 Spy_FID_Init(enum VOS_INIT_PHASE_DEFINE ip)
 {
     VOS_UINT32 ulResult = VOS_OK;
@@ -1629,16 +1363,7 @@ VOS_UINT32 Spy_FID_Init(enum VOS_INIT_PHASE_DEFINE ip)
 
 }
 
-/*****************************************************************************
- 函 数 名  : Spy_SetTempPara
- 功能描述  : 设置热保护参数，包括各门限值和使能位
- 输入参数  : 需更改的门限值和使能位
- 输出参数  : 无
- 返 回 值  : VOS_OK  成功
-             VOS_ERR 失败
- 作者      : m00128685
 
-*****************************************************************************/
 VOS_UINT32 Spy_SetTempPara(SPY_TEMP_THRESHOLD_PARA_STRU *stTempPara)
 {
     SPY_TEMP_PROTECT_NV_STRU stTempProtectNv;
@@ -1715,15 +1440,7 @@ VOS_UINT32 Spy_SetTempPara(SPY_TEMP_THRESHOLD_PARA_STRU *stTempPara)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : Spy_DownGradeRegister
- 功能描述  : 设置流控降速回调函数
- 输入参数  : 流控回调函数
- 输出参数  : 无
- 返 回 值  : 无
- 作者      : s00207770
 
-*****************************************************************************/
 VOS_VOID Spy_DownGradeRegister(SPY_DOWNGRADE_PROC_FUNC pFnDowngradeProcFunc)
 {
     if (VOS_NULL_PTR ==  pFnDowngradeProcFunc)
@@ -1744,15 +1461,7 @@ VOS_VOID Spy_DownGradeRegister(SPY_DOWNGRADE_PROC_FUNC pFnDowngradeProcFunc)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : Spy_UpGradeRegister
- 功能描述  : 设置流控升速回调函数
- 输入参数  : 流控回调函数
- 输出参数  : 无
- 返 回 值  : 无
- 作者      : s00207770
 
-*****************************************************************************/
 VOS_VOID Spy_UpGradeRegister(SPY_UPGRADE_PROC_FUNC pFnUpgradeProcFunc)
 {
     if (VOS_NULL_PTR ==  pFnUpgradeProcFunc)
@@ -1772,15 +1481,7 @@ VOS_VOID Spy_UpGradeRegister(SPY_UPGRADE_PROC_FUNC pFnUpgradeProcFunc)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : Spy_RestoreRegister
- 功能描述  : 设置流控恢复初速回调函数
- 输入参数  : 流控回调函数
- 输出参数  : 无
- 返 回 值  : 无
- 作者      : s00207770
 
-*****************************************************************************/
 VOS_VOID Spy_RestoreRegister(SPY_RESTORE_PROC_FUNC pFnRestoreProcFunc)
 {
     if (VOS_NULL_PTR ==  pFnRestoreProcFunc)
@@ -1795,16 +1496,7 @@ VOS_VOID Spy_RestoreRegister(SPY_RESTORE_PROC_FUNC pFnRestoreProcFunc)
 }
 
 #ifdef SPY_STATISTICS_DEBUG
-/*****************************************************************************
- 函 数 名  : Spy_ShowCmdHelp
- 功能描述  : 显示SPY调试命令列表
- 输入参数  : None
- 输出参数  : None
- 返 回 值  : VOS_VOID
 
- 作者      : s00180715
-             2012-02-16
-*****************************************************************************/
 VOS_VOID  Spy_ShowCmdHelp(VOS_VOID)
 {
     /*lint -e534*/
@@ -1823,16 +1515,7 @@ VOS_VOID  Spy_ShowCmdHelp(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : Spy_ShowSpyStat
- 功能描述  : 显示SPY状态信息
- 输入参数  : None
- 输出参数  : None
- 返 回 值  : VOS_VOID
 
- 作者      : s00180715
-             2012-02-16
-*****************************************************************************/
 VOS_VOID Spy_ShowSpyStat(VOS_UINT32 ulIndex)
 {
     VOS_UINT32 i;
@@ -1879,16 +1562,7 @@ VOS_VOID Spy_ShowSpyStat(VOS_UINT32 ulIndex)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : Spy_ShowSysStat
- 功能描述  : 显示SPY系统状态信息
- 输入参数  : None
- 输出参数  : None
- 返 回 值  : VOS_VOID
 
- 作者      : s00180715
-             2012-02-16
-*****************************************************************************/
 VOS_VOID Spy_ShowSysStat(VOS_VOID)
 {
     /*lint -e534*/
@@ -1896,16 +1570,7 @@ VOS_VOID Spy_ShowSysStat(VOS_VOID)
     /*lint +e534*/
 }
 
-/*****************************************************************************
- 函 数 名  : Spy_ShowNvItem
- 功能描述  : 显示SPY NV项信息
- 输入参数  : None
- 输出参数  : None
- 返 回 值  : VOS_VOID
 
- 作者      : s00180715
-             2012-02-16
-*****************************************************************************/
 VOS_VOID Spy_ShowNvItem(VOS_VOID)
 {
     /*lint -e534*/

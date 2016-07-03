@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2012, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafMmaSndTaf.h
-  版 本 号   : 初稿
-  作    者   : w00176964
-  生成日期   : 2013年10月10日
-  最近修改   :
-  功能描述   : TafMmaSndTaf.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年10月10日
-    作    者   : w00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 #ifndef _TAF_MMA_SND_TAF_H_
 #define _TAF_MMA_SND_TAF_H_
 /*****************************************************************************
@@ -91,14 +74,12 @@ VOS_VOID TAF_MMA_SndMsgCsServiceChangeNotify(
 
 VOS_VOID MN_PH_SndMsgUsimStatus(VOS_UINT32  ulUsimSta);
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-31, begin */
 #if (FEATURE_ON == FEATURE_IMS)
 VOS_VOID TAF_MMA_SndSpmImsVoiceCapInd(
     VOS_UINT8                           ucAvail
 );
 
 #endif
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-31, end */
 
 VOS_VOID TAF_MMA_SndPowerOnIndMsg(VOS_VOID);
 

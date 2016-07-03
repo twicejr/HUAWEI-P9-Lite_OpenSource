@@ -1,16 +1,4 @@
-/************************************************************************
-Copyright   : 2005-2008, Huawei Tech. Co., Ltd.
-File name   : SiAppSim.h
-Author      : H59254
-Version     : V200R001
-Date        : 2008-10-13
-Description : vSIM authenticaion 头文件
-History     :
-History     :
-1.日    期  : 2008年10月13日
-  作    者  : zhuli
-  修改内容  : Create
-************************************************************************/
+
 
 #ifndef __usimmvsimauth_H__
 #define __usimmvsimauth_H__

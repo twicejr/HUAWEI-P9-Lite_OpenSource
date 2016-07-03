@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmcCtx.h
-  版 本 号   : 初稿
-  作    者   : zhoujun /40661
-  生成日期   : 2011年04月22日
-  最近修改   :
-  功能描述   : NasMmcCtx.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年04月22日
-    作    者   : zhoujun /40661
-    修改内容   : 创建文件
-
-******************************************************************************/
 #ifndef _NAS_MMC_CTX_H_
 #define _NAS_MMC_CTX_H_
 
@@ -44,9 +27,7 @@
 #include  "NasMmlCtx.h"
 #include  "NasCommDef.h"
 
-/* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
 #include "MsccMmcInterface.h"
-/* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 #include "TafAppMma.h"
 #include "UsimPsInterface.h"
 #include "CssInterface.h"
@@ -99,12 +80,9 @@ extern "C" {
 #define  NAS_MMC_TDD_ARFCN_MAX_NUM                      (9)                     /* TDD频点列表最大个数，用于GAS根据邻区结构给MTC上报频点信息 */
 #define  NAS_MMC_LTE_ARFCN_MAX_NUM                      (8)                     /* LTE频点列表最大个数，用于GAS根据邻区结构给MTC上报频点信息 */
 
-/* Added by s00246516 for L-C互操作项目, 2014-02-13, Begin */
 #define  NAS_MMC_LTE_CELL_MAX_NUM                       (8)                     /* LTE小区列表最大个数 */
-/* Added by s00246516 for L-C互操作项目, 2014-02-13, End */
 
 
-/* Modified by c00318887 for DPlmn扩容和优先接入HPLMN, 2015-5-18, begin */
 /* en_NV_Item_First_Preset_Dplmn_Nplmn_Cfg DPLMN数据,每7个字节代表一个dplmn信息，第1-3个字节为sim卡格式plmn id，
    第4-5字节为支持的接入技术(0x8000为支持w，0x4000为支持lte，0x0080为支持gsm)，
    第6字节为域信息:1(cs域注册成功)；2(ps域注册成功)；3(cs ps均注册成功)
@@ -114,7 +92,6 @@ extern "C" {
 
 #define NAS_MMC_MAX_CFG_DPLMN_NUM       (3*256)            /* DPLMN的最大个数 */
 #define NAS_MMC_MAX_CFG_NPLMN_NUM       (256)            /* NPLMN的最大个数 */
-/* Modified by c00318887 for DPlmn扩容和优先接入HPLMN, 2015-5-18, end */
 
 #define NAS_MMC_MAX_CFG_HPLMN_NUM       (8)              /* HPLMN的最大个数*/
 
@@ -142,13 +119,7 @@ extern "C" {
   3 枚举定义
 *****************************************************************************/
 
-/*****************************************************************************
- 枚举名    : NAS_MMC_FSM_ID_ENUM_UINT32
- 枚举说明  : 状态机ID枚举定义
- 1.日    期   : 2011年4月28日
-   作    者   : zhoujun 40661
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MMC_FSM_ID_ENUM
 {
     /* NAS MMC L1状态机的名称 */
@@ -197,13 +168,7 @@ enum NAS_MMC_FSM_ID_ENUM
 };
 typedef VOS_UINT32 NAS_MMC_FSM_ID_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : NAS_MMC_PLMN_SELECTION_MODE_ENUM_UINT8
- 结构说明  : MMC PLMN搜网类型
- 1.日    期   : 2011年6月30日
-   作    者   : zhoujun 40661
-   修改内容   : 新增
-*****************************************************************************/
+
 enum NAS_MMC_PLMN_SELECTION_MODE_ENUM
 {
     NAS_MMC_PLMN_SELECTION_MODE_AUTO,                                   /* 自动搜网模式 */
@@ -212,13 +177,7 @@ enum NAS_MMC_PLMN_SELECTION_MODE_ENUM
 };
 typedef VOS_UINT8 NAS_MMC_PLMN_SELECTION_MODE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MMC_PLMN_SEARCH_TYPE_AFTER_HISTORY_ENUM_UINT8
- 结构说明  : area lost时history搜完之后的搜网类型枚举
-  1.日    期   : 2015年10月22日
-    作    者   : s00217060
-    修改内容   : 新增
-*****************************************************************************/
+
 enum NAS_MMC_PLMN_SEARCH_TYPE_AFTER_HISTORY_ENUM
 {
     NAS_MMC_PLMN_SEARCH_TYPE_AFTER_HISTORY_NONE,                                /* 0:不搜 */
@@ -229,13 +188,7 @@ enum NAS_MMC_PLMN_SEARCH_TYPE_AFTER_HISTORY_ENUM
 };
 typedef VOS_UINT8 NAS_MMC_PLMN_SEARCH_TYPE_AFTER_HISTORY_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MMC_SPEC_PLMN_SEARCH_STATE_ENUM_UINT8
- 结构说明  : MMC 是否运行在指定搜网状态
- 1.日    期   : 2011年10月17日
-   作    者   : s46746
-   修改内容   : 新增
-*****************************************************************************/
+
 enum NAS_MMC_SPEC_PLMN_SEARCH_STATE_ENUM
 {
     NAS_MMC_SPEC_PLMN_SEARCH_RUNNING,                             /* 正在指定搜网,包含主动释放、指定搜网、主动挂起 */
@@ -244,13 +197,7 @@ enum NAS_MMC_SPEC_PLMN_SEARCH_STATE_ENUM
 };
 typedef VOS_UINT8 NAS_MMC_SPEC_PLMN_SEARCH_STATE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MMC_OOS_PHASE_ENUM
- 枚举说明  : OOS搜网阶段枚举定义
- 1.日    期   : 2015年10月28日
-   作    者   : h00281185
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MMC_OOS_PHASE_ENUM
 {
     NAS_MMC_OOS_PHASE_ONE               = 1,
@@ -259,13 +206,7 @@ enum NAS_MMC_OOS_PHASE_ENUM
 };
 typedef VOS_UINT8 NAS_MMC_OOS_PHASE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MMC_AS_CELL_CAMP_ON_ENUM_UINT8
- 结构说明  : MMC记录接入层是否驻留状态
- 1.日    期   : 2011年10月17日
-   作    者   : s46746
-   修改内容   : 新增
-*****************************************************************************/
+
 enum NAS_MMC_AS_CELL_CAMP_ON_ENUM
 {
     NAS_MMC_AS_CELL_CAMP_ON,                             /* 接入层当前驻留状态 */
@@ -373,13 +314,7 @@ enum NAS_MMC_SIGNALING_EXIST_ENUM
     NAS_MMC_SIGNALING_EXIST_BUTT
 };
 
-/*****************************************************************************
- 枚举名    : NAS_MMC_REG_DOMAIN_ENUM_UINT8
- 枚举说明  : 注册的域信息
- 1.日    期   : 2011年5月28日
-   作    者   : zhoujun 40661
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MMC_REG_DOMAIN_ENUM
 {
     NAS_MMC_REG_DOMAIN_NONE  = 0x00,                                            /* 注册结果域为无域 */
@@ -391,46 +326,7 @@ enum NAS_MMC_REG_DOMAIN_ENUM
 };
 typedef VOS_UINT8 NAS_MMC_REG_DOMAIN_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MMC_PLMN_SEARCH_SCENE_ENUM_UINT32
- 枚举说明  : 各种搜网场景的定义
- 1.日    期   : 2011年5月28日
-   作    者   : zhoujun 40661
-   修改内容   : 新建
- 2.日    期   : 2011年11月1日
-   作    者   : w00176964
-   修改内容   : V7R1_PhaseIII 联合注册调整 增加DISABLE LTE导致的搜网场景
- 3.日    期   : 2012年2月16日
-   作    者   : h00202780
-   修改内容   : V7R1C50 CSFB&PPAC&ETWS&ISR 增加 CSFB过程中SERVICE REJECT时导致的搜网场景
- 4.日    期   : 2012年5月15日
-   作    者   : l00130025
-   修改内容   : DTS2012012903053:Ts23.122 ch4.4.3.2.1 Auto user reselecton功能支持
- 5.日    期   : 2013年12月25日
-   作    者   : z00161729
-   修改内容   : SVLTE支持NCELL搜网
- 6.日    期   : 2014年1月22日
-   作    者   : w00167002
-   修改内容   : SVLTE共天线新建:MMC上下文中的选网列表可以用于高优先级搜网使用，
-                 也可以用于存储选网状态机中的搜网列表信息。在选网状态机中，如果当
-                 前搜网失败原因为NO RF，则需要保存当前的选网列表，用于下次继续进行搜网。
- 7.日    期   : 2014年2月24日
-   作    者   : w00176964
-   修改内容   : High_Rat_Hplmn_Search特性调整:增加搜网场景
- 8.日    期   : 2014年1月27日
-   作    者   : s00246516
-   修改内容   : L-C互操作项目:增加获取和注册请求的处理
- 9.日    期   : 2014年4月16日
-   作    者   : w00242748
-   修改内容   : DTS2014041704339:SYSCFG设置0201后，注册在W上，然后再设置030201后
-                需要触发高优先级搜网。
-10.日    期   : 2014年7月17日
-   作    者   : w00242748
-   修改内容   : DTS2014063003419:SYSCFG触发高优先级接入技术搜网增加NV控制
-11.日    期   : 2015年1月5日
-   作    者   : z00161729
-   修改内容   : AT&T 支持DAM特性修改
-*****************************************************************************/
+
 enum NAS_MMC_PLMN_SEARCH_SCENE_ENUM
 {
     NAS_MMC_PLMN_SEARCH_SCENE_SWITCH_ON,                        /* 开机 */
@@ -453,12 +349,10 @@ enum NAS_MMC_PLMN_SEARCH_SCENE_ENUM
     NAS_MMC_PLMN_SEARCH_SCENE_RF_ENABLE,                        /* 搜网NO RF失败后，RF可用触发搜网或者周期搜网定时器超时触发搜网 */
 
     NAS_MMC_PLMN_SEARCH_SCENE_HIGH_PRIO_RAT_HPLMN_SEARCH,       /* 高优先级RAT的HPLMN搜索 */
-    /* Added by s00246516 for L-C互操作项目, 2014-01-28, Begin */
     NAS_MMC_PLMN_SEARCH_SCENE_REG_NCELL,                        /* 根据NCELL信息进行搜网和注册 */
     NAS_MMC_PLMN_SEARCH_SCENE_REG_HPLMN,                        /* 只搜索和注册(E)HPLMN */
     NAS_MMC_PLMN_SEARCH_SCENE_REG_PREF_PLMN,                    /* 只搜索和注册(E)HPLMN+UPLMN+OPLMN */
     NAS_MMC_PLMN_SEARCH_SCENE_REG_ANY_PLMN,                     /* 可以搜索和注册任何非禁止网络 */
-    /* Added by s00246516 for L-C互操作项目, 2014-01-28, End */
 
 
     NAS_MMC_PLMN_SEARCH_SCENE_AREA_LOST_ROAMING_CFG,           /*软银定制漫游状态下丢网的搜网场景*/
@@ -481,14 +375,7 @@ enum NAS_MMC_PLMN_SEARCH_SCENE_ENUM
 };
 typedef VOS_UINT32 NAS_MMC_PLMN_SEARCH_SCENE_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : NAS_MMC_ANYCELL_SEARCH_SCENE_ENUM_UINT8
- 枚举说明  : anycell搜网场景的定义
-1.日    期   : 2014年6月23日
-  作    者   : z00161729
-  修改内容   : DSDS III新增
 
-*****************************************************************************/
 enum NAS_MMC_ANYCELL_SEARCH_SCENE_ENUM
 {
     NAS_MMC_ANYCELL_SEARCH_SCENE_SRV_TRIG_PLMN_SEARCH = 1,                 /* no rf时业务触发的anycell搜网 */
@@ -496,13 +383,7 @@ enum NAS_MMC_ANYCELL_SEARCH_SCENE_ENUM
 };
 typedef VOS_UINT8 NAS_MMC_ANYCELL_SEARCH_SCENE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MMC_SERVICE_ENUM_UINT8
- 枚举说明  : MMC当前的服务状态
- 1.日    期   : 2011年7月11日
-   作    者   : zhoujun 40661
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MMC_SERVICE_ENUM
 {
     NAS_MMC_NORMAL_SERVICE,
@@ -515,13 +396,7 @@ typedef VOS_UINT8  NAS_MMC_SERVICE_ENUM_UINT8;
 
 
 
-/*****************************************************************************
- 枚举名    : NAS_MMC_INIT_CTX_TYPE_ENUM_UINT8
- 结构说明  : 初始化MMC CTX类型
- 1.日    期   : 2011年7月14日
-   作    者   : zhoujun 40661
-   修改内容   : 新增
-*****************************************************************************/
+
 enum NAS_MMC_INIT_CTX_TYPE_ENUM
 {
     NAS_MMC_INIT_CTX_STARTUP                    = 0,
@@ -532,13 +407,7 @@ typedef VOS_UINT32 NAS_MMC_INIT_CTX_TYPE_ENUM_UINT8;
 
 
 
-/*****************************************************************************
- 枚举名    : NAS_MMC_PLMN_SEARCH_TYPE_ENUM_UINT32
- 结构说明  : MMC记录搜网的类型
- 1.日    期   : 2015年5月26日
-   作    者   : w00167002
-   修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_2.0项目修改
-*****************************************************************************/
+
 enum NAS_MMC_PLMN_SEARCH_TYPE_ENUM
 {
     NAS_MMC_PLMN_SEARCH_TYPE_SPEC       = 0,
@@ -549,20 +418,7 @@ enum NAS_MMC_PLMN_SEARCH_TYPE_ENUM
 typedef VOS_UINT32 NAS_MMC_PLMN_SEARCH_TYPE_ENUM_UINT32;
 
 
-/*****************************************************************************
-枚举名    : NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8
-结构说明  : MMC收到 MM/GMM的注册结果后，协议要求的Addtional动作类型
-          优先顺序：NAS_MMC_ADDITIONAL_ACTION_CSPS_ANYCELL > NAS_MMC_ADDITIONAL_ACTION_PLMN_SELECTION >.....
-          收到 CS或PS的注册结果后，比较2者的结果，取较小者，作为后续的处理动作
 
-1.日    期   : 2011年6月30日
-  作    者   : l00130025
-  修改内容   : 新增加操作类型
-
-2.日    期   : 2011年11月28日
-  作    者   : w00167002
-  修改内容   : 进行枚举数字的显示赋值，便于问题定位时ADDITIONAL_ACTION值的确定
-*****************************************************************************/
 enum NAS_MMC_ADDITIONAL_ACTION_ENUM
 {
     NAS_MMC_ADDITIONAL_ACTION_CSPS_ANYCELL                      = 0,            /* 卡无效，任意小区驻留,PS:#3,#6,#8,CS/PS:Auth Fail */
@@ -581,13 +437,7 @@ enum NAS_MMC_ADDITIONAL_ACTION_ENUM
 typedef VOS_UINT8 NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名    : NAS_MMC_NET_STATUS_ENUM
- 枚举说明  : PLMNID状态取值定义
- 1.日    期   : 2011年7月04日
-   作    者   : s46746
-   修改内容   : 新增
-*****************************************************************************/
+
 enum NAS_MMC_NET_STATUS_ENUM
 {
     NAS_MMC_NET_STATUS_NO_SEARCHED,                     /* 未搜索，当前环境中是否存在该网络还不确定 */
@@ -598,13 +448,7 @@ enum NAS_MMC_NET_STATUS_ENUM
 };
 typedef VOS_UINT8 NAS_MMC_NET_STATUS_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MMC_NET_QUALITY_ENUM
- 枚举说明  : PLMNID质量取值定义
- 1.日    期   : 2011年7月04日
-   作    者   : s46746
-   修改内容   : 新增
-*****************************************************************************/
+
 enum NAS_MMC_NET_QUALITY_ENUM
 {
     NAS_MMC_NET_QUALITY_UNKNOWN,                     /* 网络信号未知 */
@@ -614,13 +458,7 @@ enum NAS_MMC_NET_QUALITY_ENUM
 };
 typedef VOS_UINT8 NAS_MMC_NET_QUALITY_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MMC_PLMN_TYPE_ENUM
- 枚举说明  : PLMNID类型取值定义
- 1.日    期   : 2011年7月04日
-   作    者   : s46746
-   修改内容   : 新增
-*****************************************************************************/
+
 enum NAS_MMC_PLMN_TYPE_ENUM
 {
     NAS_MMC_PLMN_TYPE_RPLMN,                     /* 该网络为RPLMN */
@@ -634,13 +472,7 @@ enum NAS_MMC_PLMN_TYPE_ENUM
 };
 typedef VOS_UINT8 NAS_MMC_PLMN_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MMC_ROAM_PLMN_TYPE_ENUM
- 枚举说明  : 漫游plmn 类型,值越大越优先
- 1.日    期   : 2014年11月04日
-   作    者   : z00161729
-   修改内容   : 新增
-*****************************************************************************/
+
 enum NAS_MMC_ROAM_PLMN_TYPE_ENUM
 {
     NAS_MMC_ROAM_PLMN_TYPE_FORBIDDEN    = 0,          /* 该网络在禁止网络中 */
@@ -654,13 +486,7 @@ enum NAS_MMC_ROAM_PLMN_TYPE_ENUM
 typedef VOS_UINT8 NAS_MMC_ROAM_PLMN_TYPE_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名    : NAS_MMC_ROAM_PLMN_PRIO_ENUM
- 枚举说明  : 漫游搜网在搜DPLMN前先搜UOPLMN特性打开时，各plmn对应的优先级,值越大越优先
- 1.日    期   : 2015年10月09日
-   作    者   : l00289540
-   修改内容   : 新增
-*****************************************************************************/
+
 enum NAS_MMC_ROAM_PLMN_PRIO_ENUM
 {
     NAS_MMC_ROAM_PLMN_PRIO_FORBIDDEN    = 0,          /* 该网络在禁止网络中的优先级 */
@@ -674,36 +500,18 @@ enum NAS_MMC_ROAM_PLMN_PRIO_ENUM
 typedef VOS_UINT8 NAS_MMC_ROAM_PLMN_PRIO_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名    : NAS_MMC_WAIT_REG_RSLT_IND_ENUM
- 结构说明  : 用于标记收到的MM/GMM的注册回复消息
 
- 1.日    期   : 2011年7月11日
-   作    者   : l00130025
-   修改内容   : 新增
- 2.日    期   : 2014年2月7日
-   作    者   : w00176964
-   修改内容   : Volte_phase3新增等待IMS注册结果
-*****************************************************************************/
 enum NAS_MMC_WAIT_REG_RESULT_IND_ENUM
 {
     NAS_MMC_WAIT_REG_RESULT_IND_NULL   = 0x00,                                  /*当前不需要等待CS/PS的注册结果*/
     NAS_MMC_WAIT_REG_RESULT_IND_CS     = 0x01,                                  /*当前需要等待CS的注册结果*/
     NAS_MMC_WAIT_REG_RESULT_IND_PS     = 0x02,                                  /*当前需要等待PS的注册结果*/
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-2-7, begin */
     NAS_MMC_WAIT_REG_RESULT_IND_IMS    = 0x04,                                  /*当前需要等待IMS的注册结果*/
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-2-7, end */
     NAS_MMC_WAIT_REG_RESULT_IND_BUTT
 };
 typedef VOS_UINT8 NAS_MMC_WAIT_REG_RSLT_IND_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MMC_AT_ACTION_TYPE_ENUM
- 结构说明  : GAS和WAS的AT_MSG_REQ的action类型
- 1.日    期   : 2011年7月26日
-   作    者   : w00176964
-   修改内容   : 新增
-*****************************************************************************/
+
 enum NAS_MMC_AT_ACTION_TYPE_ENUM
 {
     NAS_MMC_AT_ACTION_TYPE_START_FOREVER                        = 0,            /* 指示WRRC和GRRC永久启动 */
@@ -713,13 +521,7 @@ enum NAS_MMC_AT_ACTION_TYPE_ENUM
 };
 typedef VOS_UINT8 NAS_MMC_AT_ACTION_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MMC_AT_MSG_TYPE_ENUM
- 结构说明  : GAS和WAS的AT_MSG_REQ的msg类型
- 1.日    期   : 2011年7月26日
-   作    者   : w00176964
-   修改内容   : 新增
-*****************************************************************************/
+
 enum NAS_MMC_AT_MSG_TYPE_ENUM
 {
     NAS_MMC_AT_MSG_TYPE_CELL_NONE                                   = 0,        /* 表示不获取小区任何信息 */
@@ -730,13 +532,7 @@ enum NAS_MMC_AT_MSG_TYPE_ENUM
 };
 typedef VOS_UINT8 NAS_MMC_AT_MSG_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MMC_ABORT_FSM_TYPE_UINT8
- 结构说明  : Abort类型
- 1.日    期   : 2011年7月14日
-   作    者   : zhoujun 40661
-   修改内容   : 新增
-*****************************************************************************/
+
 enum NAS_MMC_ABORT_FSM_TYPE
 {
     NAS_MMC_ABORT_FSM_IMMEDIATELY           = 0,
@@ -746,13 +542,7 @@ enum NAS_MMC_ABORT_FSM_TYPE
 typedef VOS_UINT8 NAS_MMC_ABORT_FSM_TYPE_UINT8;
 
 
-/*****************************************************************************
- 枚举名    : NAS_MMC_PLMN_LIST_SEARCH_SCENE_ENUM_UINT8
- 枚举说明  : LIST搜网状态机退出时携带的搜网场景的定义
- 1.日    期   : 2012年5月8日
-   作    者   : t00212959
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MMC_PLMN_LIST_SEARCH_SCENE_ENUM
 {
     NAS_MMC_PLMN_LIST_SEARCH_SCENE_USER_LIST,                                     /* 用户列表搜网结束后出发搜网 */
@@ -761,13 +551,7 @@ enum NAS_MMC_PLMN_LIST_SEARCH_SCENE_ENUM
 };
 typedef VOS_UINT8  NAS_MMC_PLMN_LIST_SEARCH_SCENE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MMC_BG_PLMN_SEARCH_SCENE_ENUM_UINT8
- 枚举说明  : 背景搜网状态机退出时携带的搜网场景的定义
- 1.日    期   : 2012年5月8日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MMC_BG_PLMN_SEARCH_SCENE_ENUM
 {
     NAS_MMC_BG_PLMN_SEARCH_SCENE_AREA_LOST,                                     /* 出服务区 */
@@ -777,13 +561,7 @@ enum NAS_MMC_BG_PLMN_SEARCH_SCENE_ENUM
 typedef VOS_UINT8 NAS_MMC_BG_PLMN_SEARCH_SCENE_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名    : NAS_MMC_COVERAGE_TYPE_ENUM
- 结构说明  : NAS_MMC_RAT_SEARCH_INFO_STRU消息中的enCoverageType
- 1.日    期   : 2012年11月5日
-   作    者   : w00176964
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MMC_COVERAGE_TYPE_ENUM
 {
     NAS_MMC_COVERAGE_TYPE_NONE              = 0,                                /* 无网络覆盖 */
@@ -793,13 +571,7 @@ enum NAS_MMC_COVERAGE_TYPE_ENUM
 };
 typedef VOS_UINT8  NAS_MMC_COVERAGE_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MMC_CS_DOMAIN_CAPA_CHANGE_TYPE_ENUM
- 结构说明  : CS域能力变化类型的枚举
- 1.日    期   : 2013年6月9日
-   作    者   : s00217060
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MMC_CS_DOMAIN_CAPA_CHANGE_TYPE_ENUM
 {
     NAS_MMC_CS_DOMAIN_CAPA_NO_CHANGE                        = 0,                /* CS域能力无变化 */
@@ -812,15 +584,7 @@ typedef VOS_UINT8 NAS_MMC_CS_DOMAIN_CAPA_CHANGE_TYPE_ENUM_UINT8;
 
 
 
-/*****************************************************************************
- 枚举名    : NAS_MMC_PLMN_SELECTION_LIST_TYPE_ENUM
- 结构说明  : MMC上下文中的选网列表类型
-  1.日    期   : 2014年1月22日
-    作    者   : w00167002
-    修改内容   : SVLTE共天线新建:MMC上下文中的选网列表可以用于高优先级搜网使用，
-                 也可以用于存储选网状态机中的搜网列表信息。在选网状态机中，如果当
-                 前搜网失败原因为NO RF，则需要保存当前的选网列表，用于下次继续进行搜网。
-*****************************************************************************/
+
 enum NAS_MMC_PLMN_SELECTION_LIST_TYPE_ENUM
 {
     NAS_MMC_STORE_HIGH_PRIO_PLMN_SELECTION_LIST             = 0,                /* 存储的是高优先级搜网列表信息 */
@@ -830,16 +594,7 @@ enum NAS_MMC_PLMN_SELECTION_LIST_TYPE_ENUM
 typedef VOS_UINT8 NAS_MMC_PLMN_SELECTION_LIST_TYPE_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名    : NAS_MMC_AVAILABLE_TIMER_TYPE_ENUM_UINT8
- 结构说明  : available定时器启动时类型是ncell还是普通搜网
- 1.日    期   : 2014年2月7日
-   作    者   : z00161729
-   修改内容   : 新建
- 2.日    期   : 2015年5月26日
-   作    者   : s00217060
-   修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_2.0修改
-*****************************************************************************/
+
 enum NAS_MMC_AVAILABLE_TIMER_TYPE_ENUM
 {
     NAS_MMC_AVAILABLE_TIMER_TYPE_NCELL                      = 0,                /* available定时器启动时类型为ncell搜网 */
@@ -850,14 +605,7 @@ enum NAS_MMC_AVAILABLE_TIMER_TYPE_ENUM
 };
 typedef VOS_UINT8 NAS_MMC_AVAILABLE_TIMER_TYPE_ENUM_UINT8;
 
-/* Added by s00246516 for L-C互操作项目, 2014-01-26, Begin */
-/*****************************************************************************
- 枚举名    : NAS_MMC_NET_RAT_TYPE_ENUM_U8
- 结构说明  : 搜网之后的注册，是MMC自动发起还是由3GPP2系统控制
- 1.日    期   : 2014年1月2日
-   作    者   : s00246516
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MMC_REG_CONTROL_ENUM
 {
     NAS_MMC_REG_CONTROL_BY_3GPP_MMC = 0,                 /* 搜索到网络后，是否注册按目前3GPP协议模块MMC控制 */
@@ -865,7 +613,6 @@ enum NAS_MMC_REG_CONTROL_ENUM
     NAS_MMC_REG_CONTROL_BUTT
 };
 typedef VOS_UINT8 NAS_MMC_REG_CONTROL_ENUM_UINT8;
-/* Added by s00246516 for L-C互操作项目, 2014-01-26, End */
 
 typedef NAS_MSCC_PIF_SRV_TYPE_ENUM_UINT8 NAS_MMC_SRV_TYPE_ENUM_UINT8;
 
@@ -873,13 +620,7 @@ typedef NAS_MSCC_PIF_DETACH_TYPE_ENUM_UINT32 NAS_MMC_DETACH_TYPE_ENUM_UINT32;
 
 typedef NAS_MSCC_PIF_DETACH_REASON_ENUM_UINT32 NAS_MMC_DETACH_REASON_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : NAS_MMC_GET_GEO_FSM_TASK_PHASE_ENUM
- 结构说明  : GET GEO状态机任务阶段
- 1.日    期 : 2015年06月03日
-   作    者 : sunjitan 00193151
-   修改内容 : 新增结构
-*****************************************************************************/
+
 enum NAS_MMC_GET_GEO_FSM_TASK_PHASE_ENUM
 {
     NAS_MMC_GET_GEO_FSM_TASK_PHASE_BAND_SCAN      = 0x01,   /* 扫频阶段 */
@@ -889,13 +630,7 @@ enum NAS_MMC_GET_GEO_FSM_TASK_PHASE_ENUM
 };
 typedef VOS_UINT8 NAS_MMC_GET_GEO_FSM_TASK_PHASE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MMC_RAT_TYPE_ENUM_U8
- 结构说明  : 接入技术枚举类型
- 1.日    期 : 2015年02月09日
-   作    者 : y00307564
-   修改内容 : 新增结构
-*****************************************************************************/
+
 enum NAS_MSC_RAT_TYPE_ENUM
 {
     NAS_MMC_RAT_GSM,                                                             /* GSM接入技术 */
@@ -905,13 +640,7 @@ enum NAS_MSC_RAT_TYPE_ENUM
 };
 typedef VOS_UINT8 NAS_MMC_RAT_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : NAS_MMC_DPLMN_NPLMN_SETTING_TYPE_ENUM_UINT8
- 结构说明  : DPLMN NPLMN是自学习得到的还是NV预置的
- 1.日    期   : 2015年5月18日
-   作    者   : c00318887
-   修改内容   : 新建
-*****************************************************************************/
+
 enum NAS_MMC_DPLMN_NPLMN_SETTING_TYPE_ENUM
 {
     NAS_MMC_DPLMN_NPLMN_SELF_LEARING_TYPE = 0,           /* DPLMN NPLMN是自学习得到的 */
@@ -920,16 +649,8 @@ enum NAS_MMC_DPLMN_NPLMN_SETTING_TYPE_ENUM
 };
 typedef VOS_UINT8 NAS_MMC_DPLMN_NPLMN_SETTING_TYPE_ENUM_UINT8;
 
-/* Added by c00318887 for DPlmn扩容和优先接入HPLMN, 2015-5-18, end */
 
-/*****************************************************************************
-枚举名    : NAS_MMC_CL_ADDITIONAL_ACTION_ENUM
-结构说明  : CL模式下MMC收到LTE下的PS注册结果后,指示UE进行的后续动作
 
-1.日    期   : 2016年1月18日
-  作    者   : w00176964
-  修改内容   : 新增加操作类型
-*****************************************************************************/
 enum NAS_MMC_CL_ADDITIONAL_ACTION_ENUM
 {
     NAS_MMC_CL_ADDITIONAL_ACTION_ANYCELL_SELECTION              = 0,            /* 卡无效,任意小区的搜索 */
@@ -976,18 +697,7 @@ typedef struct
 } NAS_MMC_ENTRY_MSG_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_MMC_BUFFERED_PLMN_SEARCH_INFO_STRU
- 结构说明  : 设置缓存的搜网标志以及搜网场景
- 1.日    期   : 2011年11月17日
-   作    者   : w00167002
-   修改内容   : 新增，目前缓存的处理只有在退栈时，框架进行统一处理，但若不
-   进行退栈，则缓存的搜网消息则无法处理，(如在ON PLMN状态下，Available Timer
-   超时，但此时又有业务;如在限制驻留下紧急呼时，用户进行重选，需要在链接释
-   放后，处理缓存的搜网，但都不涉及退栈操作)，故需要增加此结构体用来标记
-   缓存的搜网信息，这样与退栈框架相互补充，完成搜网各场景的搜网功能。
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                              ulPlmnSearchFlg;                    /* 缓存的搜网存在标志 */
@@ -995,13 +705,7 @@ typedef struct
 }NAS_MMC_BUFFERED_PLMN_SEARCH_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_MMC_NET_QUALITY_STRU
- 结构说明  : 记录网络支持对应接入技术标志、存在状态和信号质量
- 1.日    期   : 2011年7月04日
-   作    者   : s46746
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct{
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8    enRatType;         /* 网络的接入技术 */
     NAS_MMC_NET_STATUS_ENUM_UINT8      enNetStatus;       /* 网络的存在状态 */
@@ -1010,13 +714,7 @@ typedef struct{
     VOS_INT32                          lRscp;             /* RSCP测量值 */
 }NAS_MMC_PLMN_RAT_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_SEARCH_PLMN_INFO_STRU
- 结构说明  : 保存搜网列表结构体
- 1.日    期   : 2011年7月04日
-   作    者   : s46746
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct{
     NAS_MML_PLMN_ID_STRU                stPlmnId;                                   /* 此网络的PLMN ID */
     NAS_MMC_PLMN_TYPE_ENUM_UINT8        enPlmnType;                                 /* 网络类型        */
@@ -1025,27 +723,7 @@ typedef struct{
     NAS_MMC_PLMN_RAT_INFO_STRU          astPlmnRatInfo[NAS_MML_MAX_RAT_NUM];        /* 此网络各接入技术的信息 */
 }NAS_MMC_PLMN_SELECTION_PLMN_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_SEARCH_RAT_INFO_STRU
- 结构说明  : 保存不同接入技术的搜索信息
- 1.日    期   : 2011年7月04日
-   作    者   : s46746
-   修改内容   : 新增
- 2.日    期   : 2012年11月05日
-   作    者   : w00176964
-   修改内容   : DTS2011082405001:指定PLMN携带forbidden LA的场景,当前环境中仅存在
-                forbidden LA的小区,无法响应紧急呼叫。
- 3.日    期   : 2014年3月19日
-   作    者   : w00242748
-   修改内容   : DTS2014031200137:当NV特性打开时，自动开机或者搜网时，如果首次搜索RPLMN的话，
-                需要将HPLMN/EHPLMN带给接入层。
- 4.日    期   : 2014年9月9日
-   作    者   : z00161729
-   修改内容   : DTS2014082807343:csfb搜网到gu后mmc搜网请求需带rplmn+eplmn，否则存在搜网慢T303超时呼叫失败场景
- 5.日    期   : 2014年10月30日
-   作    者   : z00161729
-   修改内容   : 开机漫游搜网项目修改
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucSearchAllBand;   /* 是否在当前接入技术执行过全频搜网, VOS_TRUE:执行过全频搜, VOS_FALSE:未执行过 */
@@ -1057,22 +735,11 @@ typedef struct
     VOS_UINT8                           ucSearchedRoamPlmnSortedFlag;
     VOS_UINT8                           ucHistorySearchedFlag;
 
-    /* Modified by c00318887 for DPlmn扩容和优先接入HPLMN, 2015-5-22, begin */
     VOS_UINT8                           ucSearchDplmnAndHplmnFlg;
-    /* Modified by c00318887 for DPlmn扩容和优先接入HPLMN, 2015-5-22, end */
 
 }NAS_MMC_RAT_SEARCH_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_PLMN_SELECTION_REG_RSLT_INFO_STRU
- 结构说明  : 保存选网状态机中注册结果信息
- 1.日    期   : 2011年7月19日
-   作    者   : s46746
-   修改内容   : 新增
- 2.日    期   : 2015年4月22日
-   作    者   : wx27076
-   修改内容   : DTS2015031602665: 增加attach cl注册状态
-*****************************************************************************/
+
 typedef struct
 {
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16   enCsRegCause;                          /* CS注册结果cause值 */
@@ -1084,13 +751,7 @@ typedef struct
     MMC_LMM_ATTACH_CL_REG_STATUS_ENUM8   enLmmAttachClRegStatus;                /* attach cl注册状态 */
 }NAS_MMC_PLMN_SELECTION_REG_RSLT_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_PLMN_SELECTION_LIST_INFO_STRU
- 结构说明  : 保存选网状态机中选网列表信息
- 1.日    期   : 2011年7月19日
-   作    者   : s46746
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                             usSearchPlmnNum;                     /* 列表中保存的PLMN个数 */
@@ -1098,13 +759,7 @@ typedef struct
     NAS_MMC_PLMN_SELECTION_PLMN_INFO_STRU  astPlmnSelectionList[NAS_MMC_MAX_PLMN_NUM_IN_SELECTION_LIST]; /* 搜网列表 */
 }NAS_MMC_PLMN_SELECTION_LIST_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_ROAM_PLMN_INFO_STRU
- 结构说明  : 保存漫游搜网列表结构体
- 1.日    期   : 2014年10月30日
-   作    者   : z00161729
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     NAS_MML_PLMN_WITH_RAT_STRU          stPlmnWithRat;
@@ -1113,13 +768,7 @@ typedef struct
     VOS_UINT8                           aucLac[NAS_MML_MAX_LAC_LEN];
 }NAS_MMC_ROAM_PLMN_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_ROAM_PLMN_LIST_INFO_STRU
- 结构说明  : 保存选网状态机中漫游选网列表信息
- 1.日    期   : 2014年10月30日
-   作    者   : z00161729
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                             usSearchPlmnNum;                     /* 列表中保存的PLMN个数 */
@@ -1131,16 +780,7 @@ typedef struct
 
 
 
-/*****************************************************************************
- 结构名    : NAS_MMC_L1_MAIN_REG_RSLT_INFO_STRU
- 结构说明  : 保存L1状态机中注册结果信息
- 1.日    期   : 2011年10月13日
-   作    者   : w00176964
-   修改内容   : 新增
- 2.日    期   : 2016年1月18日
-   作    者   : w00176964
-   修改内容   : DTS2016011802320调整
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                              ulCsAttemptCount;                       /* CS注册的尝试次数 */
@@ -1208,25 +848,7 @@ typedef struct
 }NAS_MMC_GET_GEO_RAT_INFO_LIST_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_MMC_FSM_L1_MAIN_CTX_STRU
- 结构说明  : L1状态机上下文
- 1.日    期   : 2011年7月28日
-   作    者   : w00176964
-   修改内容   : 新增
- 2.日    期   : 2011年10月13日
-   作    者   : w00176964
-   修改内容   : 内部LIST搜网调整:状态机上下文中增加注册次数
- 3.日    期   : 2013年12月24日
-   作    者   : z00161729
-   修改内容   : SVLTE支持NCELL搜网
- 4.日    期   : 2014年2月7日
-   作    者   : z00161729
-   修改内容   : DTS2014012305088：支持增强NCELL搜网，如果Modem1传递过来的邻区信息不存在的情况下，通过历史频点支持NCELL搜索
- 5.日    期   : 2014年2月24日
-   作    者   : w00176964
-   修改内容   : High_Rat_Hplmn_Search特性调整
-*****************************************************************************/
+
 typedef struct
 {
     NAS_MMC_L1_MAIN_REG_RSLT_INFO_STRU                      stRegRsltInfo;                    /* 保存搜网状态机注册结果信息 */
@@ -1245,42 +867,7 @@ typedef struct
 
 }NAS_MMC_FSM_L1_MAIN_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_FSM_PLMN_SELECTION_CTX_STRU
- 结构说明  : 搜网状态机上下文
- 1.日    期   : 2011年7月04日
-   作    者   : s46746
-   修改内容   : 新增
- 2.日    期   : 2011年7月24日
-   作    者   : l00130025
-   修改内容   : 添加CS/PS的后续动作指示
- 3.日    期   : 2011年11月11日
-   作    者   : w00167002
-   修改内容   : DTS2011110907180:添加禁止漫游网络结构体信息，当指定搜时，向接入层发送的
-                 FORBIDEN ROAMING LAS信息会使用此变量中的内容。当指定搜网拒绝
-                 原因值#15时，需要告知接入层FORBIDEN ROAM LAS信息。
- 4.日    期   : 2012年06月01日
-   作    者   : s217060
-   修改内容   : CS/PS mode 1:添加当前L网络PLMNID，当后续所有的GU网络都搜索或注册失败时
-                 需要重新驻留该网络
 
- 5.日    期   : 2013年8月5日
-   作    者   : w00167002
-   修改内容   : DTS2013073106748:开机手动模式G下搜24003 CS域注册成功，PS域
-                注册失败17，在选网状态机，用户发起电话，切换到W下的46002网络上。
-                电话挂断后，W上报丢网,选网状态机作ANYCELL搜网，没有搜原有的24003网络。
-                修改为选网状态机等注册结果时候，如果收到HO切换成功后，则退出
-                选网状态机,待电话结束后，再由L1 MAIN进入选网状态机。
- 6.日    期   :2013年8月21日
-   作    者   :z00161729
-   修改内容   :DTS2013081607507:开机搜网过程中后台多次下发at+cops=0，mmc判断非正常服务不停打断当前搜网重新搜网导致开机速度慢
- 7.日    期   : 2014年6月30日
-   作    者   : z00161729
-   修改内容   : DSDS III新增
- 8.日    期   : 2014年11月12日
-   作    者   : z00161729
-   修改内容   : 开机搜网优化项目修改
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                                 ucAbortFlg;                       /* 当前状态机标志是否收到终止要求,VOS_TRUE:收到, VOS_FALSE:未收到 */
@@ -1310,23 +897,7 @@ typedef struct
 }NAS_MMC_FSM_PLMN_SELECTION_CTX_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_MMC_SENDING_AS_SWITCH_ON_SEQUENCE_CTRL_STRU
- 结构说明  : 记录给接入层下发开机请求的先后顺序
-              举例说明:
-                若开机顺序为G->L->W;那么aucSwitchOnRatPrio中存放接入层的
-              先后顺序为GLW,数组的总个数为3,在向G模发送开机请求的时候，下标为0，即 ucSwitchOnIndex
-              存放的值为0；
 
-              若开机顺序为G->W;那么aucSwitchOnRatPrio中存放接入层的
-              先后顺序为GW,数组的总个数为2,在向W模发送开机请求的时候，下标为0，即 ucSwitchOnIndex
-              存放的值为0;
-              使用如下结构后，MMC能容易的满足接入层可能要求的开机顺序变更。
-  1.日    期   : 2012年8月3日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新增结构
-
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                       ucTotalSwitchOnRatNum;                         /* 向接入层发送开机请求的总个数 */
@@ -1335,34 +906,14 @@ typedef struct
     VOS_UINT8                       aucResevel[3];
 }NAS_MMC_SENDING_AS_SWITCH_ON_SEQUENCE_CTRL_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_SENDING_AS_SWITCH_ON_SEQUENCE_CTRL_STRU
- 结构说明  : 记录给接入层下发开机请求的先后顺序
-  1.日    期   : 2012年8月3日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:新增结构
-*****************************************************************************/
+
 typedef struct
 {
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8 enSwitchOnAsRat;                            /* 存放设置开机需要发给接入层的接入技术 */
     VOS_UINT8                       ucNeedWaitCnfFlag;                          /* 需要等待该接入模的回复标识 */
     VOS_UINT8                       aucReserve[2];
 }NAS_MMC_AS_SWITCH_ON_CNF_INFO_STRU;
-/*****************************************************************************
- 结构名    : NAS_MMC_FSM_SWITCH_ON_CTX_STRU
- 协议表格  :
- ASN.1描述 :
- 结构说明  : 存放开机状态机的上下文信息
 
-  1.日    期   : 2012年8月3日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:删除记录接入层回复的数据标识，增加开机顺序的数据结构
-
-  2.日    期   : 2013年2月25日
-    作    者   : w00167002
-    修改内容   : DTS2013022500811:在开机上下文中存储开机前NV中保存的IMSI的内容，
-                  用于进行IMSI是否改变的判别。
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucMmcMmStartCnfFlg;
@@ -1379,19 +930,7 @@ typedef struct
     VOS_UINT8                           aucReserved[3];
 }NAS_MMC_FSM_SWITCH_ON_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_FSM_POWER_OFF_CTX_STRU
- 协议表格  :
- ASN.1描述 :
- 结构说明  : 存放关机状态机的上下文信息
-  1.日    期   : 2012年8月17日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseII:关机时记录当前的主模
-  2.日    期   : 2012年12月31日
-    作    者   : s00217060
-    修改内容   : for DSDA GUNAS C CORE:记录从模列表
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucMmcMmPowerOffCnfFlg;                  /* 用于记录是否需要等待MM和GMM的回复消息标志 */
@@ -1413,20 +952,7 @@ typedef struct
     VOS_UINT8                           ucAbortFlag;                            /* Abort消息存在标志:VOS_TRUE表示存在,VOS_FALSE表示不存在 */
 }NAS_MMC_FSM_ANYCELL_SEARCH_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_FSM_INTER_SYS_CELLRESEL_CTX_STRU
- 结构说明  : 存放异系统重选 状态机的上下文信息
- 修改人    : W00176964
- 修改日期  : 2011-06-29
- 修改原因  : 新增
 
-2.日    期   : 2012年11月15日
-  作    者   : s00217060
-  修改内容   : DTS2012082007133:增加Abort标志和是否收到RRMM_SUSPEND_REL_CNF标志
-3.日    期   : 2014年1月27日
-  作    者   : s00246516
-  修改内容   : L-C互操作项目，增加resume发起枚举
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                          ucMmcSuspendRspFlg;                      /* MMC挂起回复的标志 */
@@ -1434,20 +960,12 @@ typedef struct
     VOS_UINT8                          ucAbortFlg;                              /* 是否终止状态机标志,VOS_TRUE:表示收到状态机的打断消息;VOS_FALSE:表示未收到状态机的打断消息 */
     VOS_UINT8                          ucSndSuspendRelReqFlg;
 
-    /* Added by s00246516 for L-C互操作项目, 2014-01-27, Begin */
     MMC_RESUME_ORIGEN_ENUM_UINT8       enResumeOrign;
     VOS_UINT8                          aucReserve[3];
-    /* Added by s00246516 for L-C互操作项目, 2014-01-27, End */
 
 }NAS_MMC_FSM_INTER_SYS_CELLRESEL_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_FSM_INTER_SYS_OOS_CTX_STRU
- 结构说明  : 存放异系统出服务区搜网状态机的上下文信息
- 修改人    : W00176964
- 修改日期  : 2011-06-29
- 修改原因  : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                          ucMmcSuspendRspFlg;                      /* MMC挂起回复的标志 */
@@ -1455,16 +973,7 @@ typedef struct
     VOS_UINT8                          aucReserve[2];
 }NAS_MMC_FSM_INTER_SYS_OOS_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_FSM_INTER_SYS_HO_CTX_STRU
- 结构说明  : 存放INTER SYS HANDOVER状态机的上下文信息
- 1.修改人    : W00176964
-   修改日期  : 2011-06-29
-   修改原因  : 新增
- 2.修改人    : W00176964
-   修改日期  : 2013-11-26
-   修改原因  : Volte PhaseII修改
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucMmcSuspendRspFlg;                     /* MMC挂起回复的标志 */
@@ -1474,13 +983,7 @@ typedef struct
 }NAS_MMC_FSM_INTER_SYS_HO_CTX_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_MMC_FSM_INTER_SYS_CCO_CTX_STRU
- 结构说明  : 存放INTER SYS CCO状态机的上下文信息
- 修改人    : W00176964
- 修改日期  : 2011-06-29
- 修改原因  : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucMmcSuspendRspFlg;                     /* MMC挂起回复的标志 */
@@ -1489,26 +992,14 @@ typedef struct
 }NAS_MMC_FSM_INTER_SYS_CCO_CTX_STRU;
 
 
-/*****************************************************************************
- 结构名称: NAS_MMC_LOW_PLMN_INFO_STRU
- 结构说明: 低质量PLMN信息结构体
- 1.日    期   : 2011年7月11日
-   作    者   : sunxibo 46746
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     NAS_MML_PLMN_ID_STRU                stPlmnId;           /* PLMN ID    */
     VOS_INT32                           lRscp;              /* RSCP测量值 */
 }NAS_MMC_LOW_PLMN_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_PLMN_LIST_SEARCH_CTRL_STRUs
- 结构说明  : LIST搜网时需要搜索到接入技术以及搜索标记
- 1.日    期   : 2011年9月06日
-   作    者   : w00176964
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucSearchedFlag;                         /* 标识是否搜索过的接入技术 */
@@ -1516,13 +1007,7 @@ typedef struct
     VOS_UINT8                           aucResevel[2];
 }NAS_MMC_PLMN_LIST_SEARCH_CTRL_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_SEARCHED_TYPE_STRU
- 结构说明  : AS上报丢网时已经搜索过类型
-  1.日    期   : 2015年10月24日
-    作    者   : s00217060
-    修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                               ucHistorySearchedFlg;                                       /* 是否进行过history搜 */
@@ -1531,21 +1016,7 @@ typedef struct
     VOS_UINT8                                               ucReserve;
 }NAS_MMC_SEARCHED_TYPE_STRU;
 
-/*****************************************************************************
- 结构名称: NAS_MMC_SEARCHED_PLMN_LIST_INFO_STRU
- 结构说明: LIST搜网列表信息
- 1.日    期   : 2011年7月11日
-   作    者   : sunxibo 46746
-   修改内容   : 新增
 
- 2.日    期   : 2011年9月13日
-   作    者   : w00176964
-   修改内容   : 修改结构体名以及文件切割位置
- 3.日    期   : 2012年11月05日
-   作    者   : w00176964
-   修改内容   : DTS2011082405001:增加指定接入技术的网络覆盖类型信息,便于anycell
-                驻留时准确驻留可用小区
-*****************************************************************************/
 typedef struct
 {
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8                         enRatType;                                                  /* 网络的接入技术 */
@@ -1559,22 +1030,10 @@ typedef struct
 }NAS_MMC_SEARCHED_PLMN_LIST_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_MMC_CSG_SEARCHED_PLMN_LIST_INFO_STRU
- 结构说明  : PLMN 列表搜状态机中保存的CSG搜索结果信息
- 1.日    期   : 2015年10月16日
-   作    者   : s00193151
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef  RRMM_CSG_LIST_SEARCHED_RESULT_STRU  NAS_MMC_CSG_SEARCHED_PLMN_LIST_INFO_STRU;
 
-/*****************************************************************************
- 结构名称: NAS_MMC_PLMN_LIST_REG_RSLT_INFO_STRU
- 结构说明: LIST搜网过程中注册结果信息
- 1.日    期   : 2011年9月30日
-   作    者   : w00176964
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                               ucWaitRegRsltFlag;                       /* 等待 CS/PS的注册标志 */
@@ -1583,16 +1042,7 @@ typedef struct
     VOS_UINT8                                               aucReserve[1];
 }NAS_MMC_PLMN_LIST_REG_RSLT_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_FSM_PLMN_LIST_CTX_STRU
- 结构说明  : 存放LIST搜网状态机的上下文信息
- 修改人    : W00176964
- 修改日期  : 2011-09-06
- 修改原因  : 新增
- 修改人    : t00212959
- 修改日期  : 2012年5月8日
- 修改原因  : V7R1C50 GUL BG搜网修改
-*****************************************************************************/
+
 typedef struct
 {
     NAS_MMC_PLMN_LIST_SEARCH_CTRL_STRU                      astPlmnListCtrlInfo[NAS_MML_MAX_RAT_NUM];/* LIST搜网的搜索控制信息*/
@@ -1619,20 +1069,7 @@ typedef struct
 }NAS_MMC_FSM_PLMN_LIST_CTX_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_MMC_SYSCFG_SETTING_CTRL_STRU
- 结构说明  : 记录给接入层下发SYSCFG设置的先后顺序以及当前正在设置的接入层
-              举例说明:
-                当前只支持GU，当前在W模，那么aucSyscfgRatPrio中存放接入层的
-              先后顺序为WG,数组的总个数NAS_MML_NET_RAT_TYPE_BUTT为2,在设置W模的时候，下标为0，即 ucSetCurrSyscfgFlag
-              存放的值为0；
-                当前只支持GUL，当前在W模，那么aucSyscfgRatPrio中存放接入层的
-              先后顺序为WLG,数组的总个数NAS_MML_NET_RAT_TYPE_BUTT为3,在设置G模的时候，下标为2，即 ucSetCurrSyscfgFlag
-              存放的值为2；设置G模完成后，表示SYSCFG设置完成，所有信息进行初始化。
- 修改人    : w00167002
- 修改日期  : 2011-07-02
- 修改原因  : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                       ucSetCurrSyscfgIndex;                       /* 指向需要设置SYSCFG所对应模的接入技术的下标 */
@@ -1644,22 +1081,7 @@ typedef struct
 
 
 
-/*****************************************************************************
- 结构名    : NAS_MMC_FSM_SYSCFG_CTX_STRU
- 协议表格  :
- ASN.1描述 :
- 结构说明  : 存放SYSCFG状态机的上下文信息
- 1.修改人    : z00161729
-   修改日期  : 2011-07-02
-   修改原因  : 新增
- 2.日    期   : 2011年12月1日
-   作    者   : w00176964
-   修改内容   : GUNAS V7R1 PhaseIV 阶段调整:增加主动释放RRC链接标记
- 3.日    期   : 2012年8月15日
-   作    者   : z00161729
-   修改内容   : DCM定制需求和遗留问题修改，状态机收到mma的syscfg请求变会更新mml全局变量，
-                后续设置失败需要回退，需要增加变量记录syscfg设置前的接入技术和优先级
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucRelRequestFlg;                  /* 是否主动请求连接是否,VOS_TRUE:是主动请求, VOS_FALSE:被动等待释放 */
@@ -1668,18 +1090,10 @@ typedef struct
     VOS_UINT32                          ulNeedSearchPlmnFlag;                   /* syscfg设置是否需要搜网标识 */
     NAS_MMC_SYSCFG_SETTING_CTRL_STRU    stSyscfgSettingRecord;                  /* 记录给接入层下发SYSCFG设置的先后顺序以及当前正在设置的接入层 */
 
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, begin */
     NAS_MML_PLMN_RAT_PRIO_STRU          stPrePrioRatList;                       /* 进syscfg状态机前的接入技术和优先级 */
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, end */
 }NAS_MMC_FSM_SYSCFG_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_BG_PLMN_SEARCH_REG_INFO_STRU
- 结构说明  : BgPlmnSearch状态机中注册过程相关信息
- 1.日    期   : 2011年9月17日
-   作    者   : s46746
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                 ucRelRequestFlg;                  /* 是否主动请求连接标志,VOS_TRUE:是主动请求, VOS_FALSE:被动等待释放 */
@@ -1688,29 +1102,7 @@ typedef struct
     NAS_MMC_ADDITIONAL_ACTION_ENUM_UINT8      enPsRegAdditionalAction;          /* 当前网络PS域注册结果的附加处理 */
 }NAS_MMC_BG_PLMN_SEARCH_REG_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_FSM_BG_PLMN_SEARCH_CTX_STRU
- 结构说明  : BG高优先级搜网状态机上下文
- 1.日    期   : 2011年9月17日
-   作    者   : s46746
-   修改内容   : 新增
 
- 2.日    期   : 2011年11月29日
-   作    者   : w00167002
-   修改内容   : DTS2011112301233:增加打断事件ID，状态机可以知道是什么事件
-                打断自己的。
-                修改原因:用户下发关机命令后，当前可能在等注册结果或者在等连接
-                释放，可能需要比较久的时间才能处理关机命令，通过增加打断事件，
-                如归当前在等注册结果或者等链接释放状态，若收到关机命令，则直接
-                退出当前状态机，处理用户的关机命令。
- 3.日    期   : 2012年5月8日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
- 4.日    期   : 2012年6月25日
-   作    者   : l60609
-   修改内容   : AT&T&DCM:增加标志位用于记录收到系统消息后，是否需要立即给MSCC
-                上报
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                                ulAbortEventType;                 /* 打断事件ID */
@@ -1734,13 +1126,7 @@ typedef struct
 }NAS_MMC_FSM_BG_PLMN_SEARCH_CTX_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_MMC_FSM_GET_GEO_CTX_STRU
- 结构说明  : 获取地理信息状态机上下文
- 1.日    期   : 2015年05月08日
-   作    者   : sunjitan 00193151
-   修改内容   : 新增结构
-*****************************************************************************/
+
 typedef struct
 {
     /* 是否终止状态机标志,VOS_TRUE:表示收到状态机的打断消息;VOS_FALSE:表示未收到状态机的打断消息 */
@@ -1761,22 +1147,7 @@ typedef struct
     NAS_MMC_GET_GEO_RAT_INFO_LIST_STRU          stGetGeoRatInfoList;
 }NAS_MMC_FSM_GET_GEO_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_FSM_EXTRA_CTX_UNION
- 结构说明  : 状态机状态描述结构,状态机上下文信息
- 1.日    期   : 2011年5月28日
-   作    者   : zhoujun 40661
-   修改内容   : 新建
- 2.日    期   : 2011年7月11日
-   作    者   : sunxibo 46746
-   修改内容   : V7R1 phase II,autoplmnsrch状态机调整为PlmnSelection状态机
- 3.日    期   : 2011年9月17日
-   作    者   : sunxibo 46746
-   修改内容   : V7R1 phase II,增加BgPlmnSearch状态机上下文
- 4.日    期   : 2011年10月6日
-   作    者   : w00176964
-   修改内容   : V7R1 phase II,增加Plmn list状态机上下文
-*****************************************************************************/
+
 typedef union
 {
     NAS_MMC_FSM_SWITCH_ON_CTX_STRU                      stSwitchOnCtx;
@@ -1799,26 +1170,7 @@ typedef union
     NAS_MMC_FSM_GET_GEO_CTX_STRU                        stGetGeoCtx;
 }NAS_MMC_FSM_EXTRA_CTX_UNION;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_FSM_CTX_STRU
- 结构说明  : 状态机状态描述结构
- 1.日    期   : 2011年5月28日
-   作    者   : zhoujun 40661
-   修改内容   : 新建
 
- 2.日    期   : 2013年9月16日
-   作    者   : w00167002
-   修改内容   : DTS2013090908249:扩展增加父状态机的上下文内容地址；
-                 DTS2013090908249:开机用户指定搜网24003，CS注册被拒15，MM在LIMIT
-                 状态，在选网状态机收到同一小区的SYSINFO后，通知MM当前没有FORB FLG,
-                 导致MM发起循环注册；
-                 如果在选网状态机，CS注册被拒15，发生了GU异系统重选，在重选状态
-                 机需要用到父状态机的禁止LAI/GPRS信息；
-                 在现有机制中，子状态机可以知道父状态机及父状态机的入口消息
-                 类型。此处增加父状态机的上下文地址信息，由子状态机负责获取
-                 父状态机相关信息的安全性。
-
-*****************************************************************************/
 typedef struct
 {
     /* 状态机描述指针,指针为NULL表示当前状态机无效  */
@@ -1847,17 +1199,7 @@ typedef struct
     NAS_MMC_FSM_EXTRA_CTX_UNION         unFsmCtx;
 }NAS_MMC_FSM_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_FSM_STACK_STRU
- 结构说明  : 状态机栈描述结构
- 1.日    期   : 2011年5月28日
-   作    者   : zhoujun 40661
-   修改内容   : 新建
 
- 2.日    期   : 2011年10月9日
-   作    者   : zhoujun /40661
-   修改内容   : 增加栈POP的标志位
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16                          usStackDepth;                           /* 当前压栈的状态机数 */
@@ -1866,26 +1208,14 @@ typedef struct
 }NAS_MMC_FSM_STACK_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_MMC_CACH_MSG_INFO_STRU
- 结构说明  : 缓存的消息内容
- 1.日    期   : 2011年5月28日
-   作    者   : zhoujun 40661
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     NAS_MMC_ENTRY_MSG_STRU              stMsgEntry;     /* 缓存的具体内容 */
 }NAS_MMC_CACH_MSG_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_MMC_CACH_MSG_INFO_STRU
- 结构说明  : 缓存的消息队列
- 1.日    期   : 2011年5月28日
-   作    者   : zhoujun 40661
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ucCurrIndex;                            /* 记录当前处理缓存的index */
@@ -1894,13 +1224,7 @@ typedef struct
     NAS_MMC_CACH_MSG_INFO_STRU          astMsgQueue[NAS_MMC_MAX_MSG_QUEUE_NUM]; /* MMC的消息队列数组，存储的是带通用消息头的消息 */
 }NAS_MMC_MSG_QUEUE_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_GU_ACTION_RSLT_INFO_STRU
- 结构说明  : GU模向L模发送的注册结果的内容
- 1.日    期   : 2011年8月12日
-   作    者   : l00130025
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     NAS_MML_PROC_TYPE_ENUM_U32          enProcType;         /* 当前的业务过程 */
@@ -1912,13 +1236,7 @@ typedef struct
 
 }NAS_MMC_GU_ACTION_RSLT_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_SRV_STA_CHNG_INFO_STRU
- 结构说明  : MMC记录上次发送网络模式和卡状态的记录
- 1.日    期   : 2012年01月04日
-   作    者   : h44270
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8             enRatType;                      /* 网络模式 */
@@ -1926,13 +1244,7 @@ typedef struct
     VOS_UINT8                                   aucReserved[2];
 }NAS_MMC_SRV_STA_CHNG_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_AREA_LOST_NO_RF_INFO_STRU
- 结构说明  : 存储MMC通知MMA当前的NO RF相关信息
- 1.日    期   : 2014年6月16日
-   作    者   : w00167002
-   修改内容   : DSDS III新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucAreaLostNoRfFlg;
@@ -1940,23 +1252,7 @@ typedef struct
 }NAS_MMC_AREA_LOST_NO_RF_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_MMC_PLMN_SEARCH_NO_RF_INFO_STRU
- 结构说明  : 存储共天线相关的信息
- 1.日    期   : 2014年1月21日
-   作    者   : w00167002
-   修改内容   : SVLTE共天线新建
- 2.日    期   : 2013年4月1日
-   作    者   : y00176023
-   修改内容   : DSDS GUNAS II项目:修改成员名称
 
- 3.日    期   : 2014年6月13日
-   作    者   : w00167002
-   修改内容   : 增加记录MMC通知MMA当前NO RF信息
- 4.日    期   : 2014年6月30日
-   作    者   : w00176964
-   修改内容   : DSDS III调整:NO RF场景归一,不区分arealost的NO RF场景
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucRfAvailFlg;                           /* RF资源是否可用标记:VOS_TRTUE:默认RF资源可用;收到RRM的资源可用指示设设置
@@ -1968,16 +1264,7 @@ typedef struct
 }NAS_MMC_PLMN_SEARCH_NO_RF_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_MMC_DSDA_PLMN_SEARCH_ENHANCED_CFG_STRU
- 结构说明  : 控制通过两个Modem的信息交互的增强型的搜索策略
- 1.日    期   : 2013年11月25日
-   作    者   : z00161729
-   修改内容   : 新建
- 2.日    期   : 2013年12月24日
-   作    者   : z00161729
-   修改内容   : SVLTE支持NCELL搜网
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                   ucUtranSkipWPlmnSearchFlag;
@@ -1990,15 +1277,7 @@ typedef struct
     VOS_UINT8                                   ucNcellSearchSecondTimerLen;    /* 第二阶段邻区频点快速搜索策略的时间间隔 （单位秒）*/
 }NAS_MMC_DSDA_PLMN_SEARCH_ENHANCED_CFG_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_MMC_TDS_NCELL_INFO_STRU
- 结构说明  : GSM下的TDS频点列表
 
- 1.日    期   : 2013年12月24日
-   作    者   : z00161729
-   修改内容   : 新生成结构
-
-*******************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucTdsArfcnNum;                              /* 0表示TDD频点不存在 */
@@ -2006,42 +1285,21 @@ typedef struct
     VOS_UINT16                          ausTdsArfcnList[NAS_MMC_TDD_ARFCN_MAX_NUM];
 }NAS_MMC_TDS_NCELL_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : NAS_MMC_LTE_NCELL_INFO_STRU
- 结构说明  : GSM下的LTE频点列表
 
- 1.日    期   : 2013年12月24日
-   作    者   : z00161729
-   修改内容   : 新生成结构
- 2.日    期   : 2014年2月13日
-   作    者   : s00246516
-   修改内容   : L-C互操作项目:增加获取和注册请求的处理
- 3.日    期   : 2015年7月20日
-   作    者   : w000316404
-   修改内容   : R11协议升级(LTE频点配置值扩展)
-*******************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucLteArfcnNum;                              /* 0表示LTE频点不存在 */
     VOS_UINT8                           aucReserved[3];
     VOS_UINT32                          aulLteArfcnList[NAS_MMC_LTE_ARFCN_MAX_NUM];
 
-    /* Added by s00246516 for L-C互操作项目, 2014-02-13, Begin */
     VOS_UINT8                           ucLteCellNum;                              /* 0表示LTE消息ID不存在 */
     VOS_UINT8                           aucReserved1[3];
     VOS_UINT16                          ausLteCellList[NAS_MMC_LTE_CELL_MAX_NUM];
-    /* Added by s00246516 for L-C互操作项目, 2014-02-13, End */
 
 }NAS_MMC_LTE_NCELL_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_MMC_NCELL_SEARCH_INFO_STRU
- 结构说明  : NCELL搜网相关信息
- 1.日    期   : 2013年12月24日
-   作    者   : z00161729
-   修改内容   : SVLTE支持NCELL搜网
-*****************************************************************************/
+
 typedef struct
 {
     NAS_MMC_TDS_NCELL_INFO_STRU         stTdsNcellInfo;
@@ -2053,13 +1311,7 @@ typedef struct
 
 
 
-/*****************************************************************************
- 结构名    : NAS_MMC_ROAM_PLMN_SELECTION_SORT_CFG_STRU
- 结构说明  : en_NV_Item_Cfg_Dplmn_Nplmn NVIM项中的DPLMN NPLMN功能信息
- 1.日    期   : 2015年6月2日
-   作    者   : W00167002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                               ucRoamPlmnSelectionSortFlg;         /* 定制项使能标志 */
@@ -2068,33 +1320,16 @@ typedef struct
 }NAS_MMC_ROAM_PLMN_SELECTION_SORT_CFG_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_MMC_SIM_PLMN_WITH_REG_DOMAIN_STRU
- 结构说明  : plmn id和接入技术和注册domain信息
- 1.日    期   : 2014年11月3日
-   作    者   : z00161729
- 2.日    期   : 2015年5月20日
-   作    者   : c00318887
-*****************************************************************************/
+
 typedef struct
 {
     NAS_MML_SIM_PLMN_WITH_RAT_STRU                stSimPlmnWithRat;
     NAS_MMC_REG_DOMAIN_ENUM_UINT8                 enRegDomain;
-    /* Modified by c00318887 for DPlmn扩容和优先接入HPLMN, 2015-5-20, begin */
     NAS_MMC_DPLMN_NPLMN_SETTING_TYPE_ENUM_UINT8   enType;
     VOS_UINT8                                     aucReserved[2];
-    /* Modified by c00318887 for DPlmn扩容和优先接入HPLMN, 2015-5-20, end */
 }NAS_MMC_SIM_PLMN_WITH_REG_DOMAIN_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_DPLMN_NPLMN_CFG_INFO_STRU
- 结构说明  : en_NV_Item_Cfg_Dplmn_Nplmn NVIM项中的DPLMN NPLMN功能信息
- 1.日    期   : 2014年7月14日
-   作    者   : c00188733
- 2.日    期   : 2014年11月3日
-   作    者   : z00161729
-   修改内容   : 开机漫游搜网项目修改
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                               aucVersionId[NAS_MCC_INFO_VERSION_LEN];
@@ -2109,13 +1344,7 @@ typedef struct
     NAS_MMC_SIM_PLMN_WITH_REG_DOMAIN_STRU   astNPlmnList[NAS_MMC_MAX_CFG_NPLMN_NUM];
 }NAS_MMC_DPLMN_NPLMN_CFG_INFO_STRU;
 
-/*****************************************************************************
- 枚举名    : NAS_MMC_AP_PRESET_DPLMN_SCENE_ENUM_UINT8
- 结构说明  : 接入技术枚举类型
- 1.日    期 : 2015年11月02日
-   作    者 : l00289540
-   修改内容 : 新增结构
-*****************************************************************************/
+
 enum NAS_MMC_AP_PRESET_DPLMN_SCENE_ENUM
 {
     NAS_MMC_AP_PRESET_DPLMN_SCENE_SWITCH_ON,                                     /* 上电开机预置DPLMN场景 */
@@ -2125,12 +1354,7 @@ enum NAS_MMC_AP_PRESET_DPLMN_SCENE_ENUM
 };
 typedef VOS_UINT8 NAS_MMC_AP_PRESET_DPLMN_SCENE_ENUM_UINT8;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_DPLMN_NPLMN_CFG_INFO_STRU
- 结构说明  : DPLMN NPLMN配置相关信息的上下文
- 1.日    期   : 2015年11月2日
-   作    者   : l00289540
-*****************************************************************************/
+
 typedef struct
 {
     NAS_MMC_AP_PRESET_DPLMN_SCENE_ENUM_UINT8                enApPresetDplmnScene;
@@ -2140,28 +1364,13 @@ typedef struct
     NAS_MMC_DPLMN_NPLMN_CFG_INFO_STRU                      *pstDplmnNplmnInfoWorkCopy;
 }NAS_MMC_DPLMN_NPLMN_CFG_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_GET_GEO_INFO_STRU
- 结构说明  : GET_GEO相关信息
-  1.日    期   : 2015年5月23日
-    作    者   : s00217060
-    修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_2.0新增
-*****************************************************************************/
+
 typedef struct
 {
     NAS_MML_PLMN_WITH_RAT_STRU          stGeoPlmn;                              /* 获取地理位置得到的PLMN */
 }NAS_MMC_GET_GEO_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_NON_OOS_PLMN_SEARCH_FEATURE_SUPPORT_CFG_STRU
- 结构说明  : en_NV_Item_History_Timer_Len_Cfg NVIM项中的HISTORY时长信息
-  1.日    期   : 2015年5月23日
-    作    者   : s00217060
-    修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_2.0新增
-  2.日    期   : 2015年10月27日
-    作    者   : h00281185
-    修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_3.0新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                               ucHistoryActiveFlg;                     /* history使能标志 */
@@ -2170,13 +1379,7 @@ typedef struct
     VOS_UINT8                                               ucReserve;
 }NAS_MMC_NON_OOS_PLMN_SEARCH_FEATURE_SUPPORT_CFG_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_PHASE_ONE_TIMER_CFG_STRU
- 结构说明  : en_NV_Item_Oos_Plmn_Search_Strategy_Cfg NV项中的各阶段定时器
-  1.日    期   : 2015年10月10日
-    作    者   : h00281185
-    修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usTotalTimerLen;                        /* 各阶段搜网总时长,单位:s */
@@ -2187,13 +1390,7 @@ typedef struct
     VOS_UINT8                           ucReserve1;
 }NAS_MMC_OOS_PLMN_SEARCH_PATTERN_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_OOS_PLMN_SEARCH_STRATEGY_INFO_STRU
- 结构说明  : en_NV_Item_Oos_Plmn_Search_Strategy_Cfg NV项中的各个阶段定时器配置
-  1.日    期   : 2015年10月10日
-    作    者   : h00281185
-    修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     NAS_MMC_OOS_PLMN_SEARCH_PATTERN_INFO_STRU       stPhaseOnePatternCfg;
@@ -2206,13 +1403,7 @@ typedef struct
 }NAS_MMC_OOS_PLMN_SEARCH_STRATEGY_INFO_STRU;
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- 结构名    : NAS_MMC_CL_ASSOCIATED_INFO_NTF_STRU
- 结构说明  : NAS MMC CL相关信息
- 1.日    期   : 2015年9月18日
-   作    者   : y00346957
-   修改内容   : DTS2015070910885 增加MSCC给MMC发的消息
-*****************************************************************************/
+
 typedef struct
 {
     NAS_MSCC_PIF_PLMN_PRIORITY_CLASS_ENUM_UINT8             enLteSysPriClass;          /* 为保证搜索plmn的优先级不低于1x优先级的最低等级的priclass */
@@ -2220,40 +1411,7 @@ typedef struct
     VOS_UINT8                                               aucRsv[2];
 }NAS_MMC_CL_ASSOCIATED_INFO_NTF_STRU;
 #endif
-/*****************************************************************************
- 结构名    : NAS_MMC_PLMN_SEARCH_CTRL_CTX_STRU
- 结构说明  : NAS MMC 搜网控制块运行上下文
- 1.日    期   : 2011年6月30日
-   作    者   : zhoujun 40661
-   修改内容   : 新增
- 2.日    期   : 2011年10月17日
-   作    者   : s46746
-   修改内容   : 高优先级状态机代码检视意见修改,修改接入层驻留变量名,增加NAS是否搜网状态
- 3.日    期   : 2011年11月17日
-   作    者   : w00167002
-   修改内容   : DTS2011111603447:增加缓存的搜网的处理信息结构体
- 4.日    期   : 2013年11月23日
-   作    者   : z00161729
-   修改内容    : SVLTE优化G-TL ps切换性能修改
- 5.日    期   : 2013年12月24日
-   作    者   : z00161729
-   修改内容   : SVLTE支持NCELL搜网
- 6.日    期   : 2014年1月28日
-   作    者   : s00246516
-   修改内容   : L-C互操作项目:增加异系统到HRPD的处理
- 7.日    期   : 2014年12月29日
-   作    者   : z00161729
-   修改内容   : DSDS业务重拨时no rf未触发搜网导致业务失败，mm在no cell available状态no rf时给mmc发送cm service ind触发搜网
- 8.日    期   : 2014年11月3日
-   作    者   : z00161729
-   修改内容   : 开机漫游搜网项目修改
- 9.日    期   : 2015年1月5日
-   作    者   : z00161729
-   修改内容   : AT&T 支持DAM特性修改
- 10.日    期  : 2015年9月18日
-   作    者   : y00346957
-   修改内容   : DTS2015070910885 增加stCLAssociatedInfoNtf
-*****************************************************************************/
+
 typedef struct
 {
     NAS_MMC_PLMN_SELECTION_MODE_ENUM_UINT8        enSelectionMode;              /* MMC当前搜网模式,自动模式或手动模式*/
@@ -2273,13 +1431,11 @@ typedef struct
         也做清除标志的处理. */
     VOS_UINT8                                     ucUserSpecPlmnRegStatus;
 
-    /* Added by s00246516 for L-C互操作项目, 2014-01-28, Begin */
     NAS_MMC_REG_CONTROL_ENUM_UINT8                enRegCtrl;
     VOS_UINT8                                     ucAsAnyCampOn;
 
     VOS_UINT8                                     ucEnableLteTimerExpireFlag; /* 标识enable lte定时器是否超时标识，0:enable lte定时器未超时；1:enable lte定时器超时*/
     NAS_MML_PLMN_ID_STRU                          stDisabledLtePlmnId;    /* 记录驻留LTE下disable lte时驻留的网络信息 */
-    /* Added by s00246516 for L-C互操作项目, 2014-01-28, End */
 
     NAS_MMC_BUFFERED_PLMN_SEARCH_INFO_STRU        stBufferedPlmnSearchInfo;     /* 记录缓存的搜网标志以及搜网场景信息 */
 
@@ -2296,9 +1452,7 @@ typedef struct
 
 
 
-    /* Modified by c00318887 for 预置频点搜网优化, 2015-9-9, begin */
     NAS_MML_PLMN_WITH_RAT_STRU                    stLastCampedPlmnId;                      /*存储丢网时上次驻留的PLMN*/
-    /* Modified by c00318887 for 预置频点搜网优化, 2015-9-9, end */
 
 
     NAS_MMC_ROAM_PLMN_SELECTION_SORT_CFG_STRU               stRoamPlmnSeletionSortCfgInfo;  /* NV控制进入漫游时候是否可以进行DUO网络排序 */
@@ -2315,21 +1469,7 @@ typedef struct
     NAS_MMC_CL_ASSOCIATED_INFO_NTF_STRU                     stCLAssociatedInfoNtf;
 #endif
 }NAS_MMC_PLMN_SEARCH_CTRL_CTX_STRU;
-/*****************************************************************************
- 结构名    : NAS_MMC_HIGH_PRIO_PLMN_SEARCH_CTRL_CTX_STRU
- 结构说明  : NAS MMC 高优先级搜网控制块运行上下文
- 1.日    期   : 2011年9月15日
-   作    者   : z00161729
-   修改内容   : 新增
 
- 2.日    期   : 2014年1月22日
-   作    者   : w00167002
-   修改内容   : SVLTE共天线项目:在选网状态机，出现NO RF失败时候，保存选网状态机
-                的内容到MMC得全局变量中。
- 3.日    期   : 2014年10月25日
-   作    者   : b00269685
-   修改内容   : 新增ucTdHighRatSearchCount
-*****************************************************************************/
 typedef struct
 {
     NAS_MMC_PLMN_SELECTION_LIST_INFO_STRU                   stHighPrioPlmnSearchListInfo; /* 记录高优先级搜网列表信息(HPLMN+UPLMN+OPLMN支持的接入技术及网络状态)*/
@@ -2342,25 +1482,13 @@ typedef struct
 }NAS_MMC_HIGH_PRIO_PLMN_SEARCH_CTRL_CTX_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_MMC_NET_SCAN_REQ_CTX_STRU
- 结构说明  : NAS MMC NETSCAN请求运行上下文
- 1.日    期   : 2013年10月16日
-   作    者   : w00242748
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     MSCC_MMC_NET_SCAN_REQ_STRU          stNetScanReq;
 }NAS_MMC_NET_SCAN_REQ_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_HPLMN_REG_REJ_STRU
- 结构说明  : HPLMN被拒的位置区,路由区以及服务域,主要为Plmn not allow的原因值hplmn需要特殊处理
- 1.日    期   : 2011年6月30日
-   作    者   : zhoujun 40661
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          aucLac[NAS_MML_MAX_LAC_LEN];/* 位置区 */
@@ -2370,16 +1498,7 @@ typedef struct
     NAS_MML_PLMN_ID_STRU                stHplmnId;                  /* 被拒绝的PLMN ID */
 }NAS_MMC_HPLMN_REG_REJ_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_PLMN_REG_INFO_STRU
- 结构说明  : NAS MMC 注册被拒原因上下文,本次开机后，被拒注册结果
- 1.日    期   : 2011年6月30日
-   作    者   : zhoujun 40661
-   修改内容   : 新增
- 2.日    期   : 2011年12月7日
-   作    者   : z00161729
-   修改内容   : V7R1 phaseIV修改，合并原NAS_MMC_HPLMN_REG_REJ_STRU和NAS_MMC_PLMN_REG_INFO_STRU
-*****************************************************************************/
+
 typedef struct{
     NAS_MML_PLMN_ID_STRU                   stPlmnId;
     VOS_UINT16                             aucLac[NAS_MML_MAX_LAC_LEN];         /* 位置区 */
@@ -2395,17 +1514,7 @@ typedef struct{
 #endif
 }NAS_MMC_PLMN_REG_INFO_STRU;                     /*  对应网络的注册信息           */
 
-/*****************************************************************************
- 结构名    : NAS_MMC_PLMN_REG_REJ_CTX_STRU
- 结构说明  : NAS MMC 注册被拒原因上下文,本次开机后，Plmn被注册结果的动作类别和注册被拒Cause列表
- 1.日    期   : 2011年6月30日
-   作    者   : zhoujun 40661
-   修改内容   : 新增
- 2.日    期   : 2011年12月7日
-   作    者   : z00161729
-   修改内容   : V7R1 phaseIV修改，合并原NAS_MMC_HPLMN_REG_REJ_STRU和NAS_MMC_PLMN_REG_INFO_STRU
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                               ucPlmnRegInfoNum;                   /* 当前在注册原因列表中 存在的 Plmn个数 */
@@ -2413,13 +1522,7 @@ typedef struct
     NAS_MMC_PLMN_REG_INFO_STRU              astPlmnRegInfoList[NAS_MMC_MAX_REG_PLMN_INFO_NUM]; /*本次开机后, Plmn的注册信息 */
 }NAS_MMC_PLMN_REG_REJ_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_SERVICE_INFO_CTX_STRU
- 结构说明  : NAS MMC 当前的服务状态
- 1.日    期   : 2011年6月30日
-   作    者   : zhoujun 40661
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     NAS_MMC_SERVICE_ENUM_UINT8          enCsCurrService;                        /* 当前CS域的服务状态 */
@@ -2427,22 +1530,7 @@ typedef struct
     VOS_UINT8                           aucReserve[2];
 }NAS_MMC_SERVICE_INFO_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_MAINTAIN_CTX_STRU
- 结构说明  : NAS MMC 可维可测上下文
- 1.日    期   : 2011年6月30日
-   作    者   : zhoujun 40661
-   修改内容   : 新增
- 2.日    期   : 2011年7月26日
-   作    者   : w00176964
-   修改内容   : 增加AT主动上报的消息类型和action类型
- 3.日    期   : 2012年4月24日
-   作    者   : l00171473
-   修改内容   : DTS2012041805606
- 4.日    期   : 2012年11月21日
-   作    者   : z00161729
-   修改内容  : 支持cerssi和nmr
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                               ucGcfCh9_4_3_AND_Ch26_7_4_3;            /* GCF的桩变量是否生效,VOS_FALSE:不生效,VOS_TRUE:生效 */
@@ -2457,28 +1545,14 @@ typedef struct
 
 
 
-/*****************************************************************************
- 结构名    : MMC_PLMN_ID_STRU
- 结构说明  : PLMN 结构
- 1.日    期   : 2015年02月07日
-   作    者   : y00307564
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          Mcc;
     VOS_UINT32                          Mnc;
 }MMC_PLMN_ID_STRU;
 
-/*****************************************************************************
- 结构名    : MMC_MODIFY_PLMN_INFO_STRU
- 结构说明  : PLMN 结构
- 1.日    期   : 2015年02月07日
-   作    者   : y00307564
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     NAS_MML_PLMN_ID_STRU               stPlmnId;
@@ -2486,42 +1560,21 @@ typedef struct
     VOS_UINT16                         usIndex;
 }MMC_MODIFY_PLMN_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_DETACH_REQ_CTX_STRU
- 结构说明  : PLMN 结构
- 1.日    期   : 2015年4月17日
-   作    者   : y00245242
-   修改内容   : iteration 13开发
 
-*****************************************************************************/
 typedef struct
 {
     NAS_MMC_DETACH_TYPE_ENUM_UINT32     enDetachType;
     NAS_MMC_DETACH_REASON_ENUM_UINT32   enDetachReason;
 }NAS_MMC_DETACH_REQ_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_ATTACH_REQ_CTX_STRU
- 结构说明  : PLMN 结构
- 1.日    期   : 2015年4月22日
-   作    者   : y00245242
-   修改内容   : iteration 13开发
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          ulOpID;
 }NAS_MMC_ATTACH_REQ_CTX_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_MMC_RAT_HISTORY_SEARCH_INFO_STRU
- 结构说明  : 保存不同接入技术的搜索信息
- 1.日    期   : 2015年05月26日
-   作    者   : l00305157
-   修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_2.0 项目新增
-                用于记录NO RF下各制式的HISTORY的场景
-*****************************************************************************/
+
 typedef struct
 {
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enRatType;         /* 网络的接入技术 */
@@ -2529,52 +1582,20 @@ typedef struct
     VOS_UINT8                           aucReserved[2];
 }NAS_MMC_RAT_HISTORY_SEARCH_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_NO_RF_BACK_UP_INFO_STRU
- 结构说明  : 存储NO RF下备份的信息,包括搜网场景和搜网列表
- 1.日    期   : 2015年05月26日
-   作    者   : l00305157
-   修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_2.0 项目新增
-*****************************************************************************/
+
 typedef struct
 {
     NAS_MMC_RAT_HISTORY_SEARCH_INFO_STRU                    astHistorySearchRatInfo[NAS_MML_MAX_RAT_NUM];  /* 保存不同接入技术的搜索信息 */
     NAS_MMC_PLMN_SEARCH_SCENE_ENUM_UINT32                   enPlmnSearchScene;
 }NAS_MMC_NO_RF_BACK_UP_SEARCH_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_BACK_UP_SEARCH_INFO_STRU
- 结构说明  : 存储备份的搜网信息，目前仅存储NO RF下备份的信息，
-             后续可能会添加其它可能要备份去他的搜网信息以备扩展
- 1.日    期   : 2015年05月26日
-   作    者   : l00305157
-   修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_2.0 项目新增
-*****************************************************************************/
+
 typedef struct
 {
     NAS_MMC_NO_RF_BACK_UP_SEARCH_INFO_STRU                  stNoRFBackUpSearchInfo;  /* 存储NO RF下备份的信息,包括搜网场景和搜网列表*/
 }NAS_MMC_BACK_UP_SEARCH_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MMC_CONTEXT_STRU
- 结构说明  : NAS MMC 模块运行上下文
- 1.日    期   : 2011年5月28日
-   作    者   : zhoujun 40661
-   修改内容   : 新建
 
- 2.日    期   : 2011年7月9日
-   作    者   : zhoujun 40661
-   修改内容   : 增加plmn搜网信息,注册信息,维护信息以及定时器信息
- 3.日    期   : 2011年9月15日
-   作    者   : z00161729
-   修改内容   : 增加高优先级搜网信息
- 4.日    期   : 2015年02月15日
-   作    者   : y00307564
-   修改内容   : 增加设置prefplmn信息
- 5.日    期   : 2015年4月17日
-   作    者   : y00245242
-   修改内容   : iteration 13开发
-*****************************************************************************/
 typedef struct
 {
     /**************************************************************************
@@ -2757,7 +1778,6 @@ VOS_VOID NAS_MMC_SetUserSpecPlmnId(
     NAS_MML_PLMN_WITH_RAT_STRU         *pstPlmnInfo
 );
 
-/* Modified by c00318887 for 预置频点搜网优化, 2015-9-9, begin */
 NAS_MML_PLMN_ID_STRU* NAS_MMC_GetLastCampedPlmnid( VOS_VOID );
 NAS_MML_NET_RAT_TYPE_ENUM_UINT8 NAS_MMC_GetLastCampedPlmnRat( VOS_VOID );
 
@@ -2766,7 +1786,6 @@ NAS_MML_NET_RAT_TYPE_ENUM_UINT8 NAS_MMC_GetLastCampedPlmnRat( VOS_VOID );
      VOS_UINT32                          ulMnc,
      NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enRat
  );
-/* Modified by c00318887 for 预置频点搜网优化, 2015-9-9, end */
 
 NAS_MMC_PLMN_SELECTION_MODE_ENUM_UINT8 NAS_MMC_GetPlmnSelectionMode(VOS_VOID);
 
@@ -2796,9 +1815,7 @@ VOS_UINT32 NAS_MMC_IsCsNormalService( VOS_VOID );
 
 VOS_UINT32 NAS_MMC_IsPsNormalService( VOS_VOID );
 
-/* Added by s00261364 for V3R360_eCall项目, 2014-4-30, begin */
 VOS_UINT32  NAS_MMC_IsInValidCampPlmn( VOS_VOID );
-/* Added by s00261364 for V3R360_eCall项目, 2014-4-30, end */
 
 VOS_UINT32 NAS_MMC_IsNormalServiceStatus(VOS_VOID);
 
@@ -2837,7 +1854,6 @@ VOS_VOID NAS_MMC_InitFsmCtx_SysCfg(VOS_VOID);
 VOS_UINT32 NAS_MMC_GetPlmnSearchFlag_SysCfg(VOS_VOID);
 VOS_VOID NAS_MMC_SetPlmnSearchFlag_SysCfg(VOS_UINT32 ulNeedSearchPlmnFlag);
 
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, begin */
 VOS_VOID NAS_MMC_SetPrePrioRatList_SysCfg(
     NAS_MML_PLMN_RAT_PRIO_STRU          *pstPrePrioRatList
 );
@@ -2845,7 +1861,6 @@ VOS_VOID NAS_MMC_SetPrePrioRatList_SysCfg(
 NAS_MML_PLMN_RAT_PRIO_STRU* NAS_MMC_GetPrePrioRatList_SysCfg(VOS_VOID);
 
 
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, end */
 
 
 /* L1 MAIN状态机上下文操作函数 */
@@ -2857,11 +1872,9 @@ VOS_VOID    NAS_MMC_ResetCurNormalAvailableTimerCount_L1Main(VOS_VOID);
 
 VOS_VOID    NAS_MMC_AddCurNormalAvailableTimerCount_L1Main(VOS_VOID);
 
-/* Added by s00246516 for L-C互操作项目, 2014-03-28, Begin */
 VOS_VOID   NAS_MMC_SetCurNormalAvailableTimerCount(
     VOS_UINT32                          ulCurTimerCount
 );
-/* Added by s00246516 for L-C互操作项目, 2014-03-28, End */
 
 VOS_VOID  NAS_MMC_SetAvailableTimerTypebySearchType_OnPlmn(VOS_VOID);
 
@@ -2968,12 +1981,10 @@ VOS_VOID    NAS_MMC_ClearAllAsPowerOffCnfFlag_PowerOff(VOS_VOID);
 NAS_MMC_SUSPEND_RSP_FLAG_ENUM_UINT8  NAS_MMC_GetSuspendRspFlg_InterSysCellResel(VOS_VOID);
 NAS_MMC_RESUME_RSP_FLAG_ENUM_UINT8   NAS_MMC_GetResumeRspFlg_InterSysCellResel(VOS_VOID);
 
-/* Added by s00246516 for L-C互操作项目, 2014-01-27, Begin */
 MMC_RESUME_ORIGEN_ENUM_UINT8 NAS_MMC_GetResumeOrign_InterSysCellResel(VOS_VOID);
 VOS_VOID NAS_MMC_SetResumeOrign_InterSysCellResel(
     MMC_RESUME_ORIGEN_ENUM_UINT8        enResumeOrign
 );
-/* Added by s00246516 for L-C互操作项目, 2014-01-27, End */
 
 VOS_VOID NAS_MMC_ClearSuspendRspFlag_InterSysCellResel(NAS_MMC_SUSPEND_RSP_FLAG_ENUM_UINT8 enMmSuspendRsp);
 VOS_VOID NAS_MMC_ClearResumeRspFlag_InterSysCellResel(NAS_MMC_RESUME_RSP_FLAG_ENUM_UINT8 enMmResumeRsp);
@@ -3170,7 +2181,6 @@ VOS_UINT8 NAS_MMC_GetSearchRplmnAndEplmnFlg_PlmnSelection(
 );
 
 
-/* Modified by c00318887 for DPlmn扩容和优先接入HPLMN, 2015-5-18, begin */
 VOS_UINT8 NAS_MMC_GetSearchDplmnAndHplmnFlg_PlmnSelection(
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enRat
 );
@@ -3178,7 +2188,6 @@ VOS_VOID NAS_MMC_SetSearchDplmnAndHplmnFlg_PlmnSelection(
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enRat,
     VOS_UINT8                           ucSwithOnAddHplmnFlg
 );
-/* Modified by c00318887 for DPlmn扩容和优先接入HPLMN, 2015-5-18, end */
 
 VOS_VOID NAS_MMC_InitSearchRatInfo_PlmnSelection(VOS_VOID);
 
@@ -3260,11 +2269,9 @@ VOS_VOID NAS_MMC_SetSysCfgSendingOrder_SysCfg(
     MSCC_MMC_SYS_CFG_SET_REQ_STRU      *pstSysCfgMsg
 );
 
-/* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
 VOS_UINT32 NAS_MMC_IsCurrentPlmnIdRoamingAllowed_SysCfg(
     MSCC_MMC_SYS_CFG_SET_REQ_STRU        *pstSysCfgSetParm
 );
-/* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
 
 VOS_UINT8 NAS_MMC_GetRelRequestFlag_SysCfg(VOS_VOID);
@@ -3564,8 +2571,6 @@ VOS_VOID NAS_MMC_SetNcellSearchInfo(NAS_MMC_NCELL_SEARCH_INFO_STRU *pstNcellSear
 VOS_UINT32 NAS_MMC_GetWaitWasPlmnSrchCnfTimerLen(VOS_VOID);
 
 
-/* Deleted by w00167002 for L-C互操作项目, 2014-4-16, begin */
-/* Deleted by w00167002 for L-C互操作项目, 2014-4-16, end */
 
 
 VOS_UINT8 NAS_MMC_GetSrvTrigPlmnSearchFlag_PlmnSelection(VOS_VOID);
@@ -3645,7 +2650,6 @@ VOS_VOID NAS_MMC_SetDisabledLtePlmnId(
     NAS_MML_PLMN_ID_STRU              *pstPlmnId
 );
 VOS_VOID NAS_MMC_ClearDisabledLtePlmnId(VOS_VOID);
-/* Added by s00246516 for L-C互操作项目, 2014-02-13, Begin */
 NAS_MMC_REG_CONTROL_ENUM_UINT8 NAS_MMC_GetRegCtrl( VOS_VOID );
 
 VOS_VOID NAS_MMC_SetRegCtrl(
@@ -3661,7 +2665,6 @@ VOS_VOID NAS_MMC_SetAsAnyCampOn(
 VOS_VOID NAS_MMC_SaveRegReqNCellInfo(
     MSCC_MMC_REG_CELL_INFO_STRU         *pstCellInfo
 );
-/* Added by s00246516 for L-C互操作项目, 2014-02-13, End */
 
 VOS_VOID NAS_MMC_SetNotifyMsccFlag_PlmnList(
     VOS_UINT8                           ucNotifyFlg
@@ -3737,6 +2740,18 @@ MMC_LMM_ATTACH_CL_REG_STATUS_ENUM8 NAS_MMC_GetLmmAttachClRegStatus_PlmnSelection
 
 VOS_VOID NAS_MMC_SetLmmAttachClRegStatus_PlmnSelection(
     MMC_LMM_ATTACH_CL_REG_STATUS_ENUM8  enLmmAttachClRegStatus
+);
+
+#if (FEATURE_ON == FEATURE_LTE)
+extern VOS_UINT32 NAS_MML_IsLteSearched_AreaLost(
+    NAS_MMC_SEARCHED_PLMN_LIST_INFO_STRU                   *pstSearchedPlmnListInfo
+);
+#endif
+
+VOS_UINT32 NAS_MMC_GetCountryCode_PlmnSelection(VOS_VOID);
+
+VOS_VOID NAS_MMC_GetCampPosition(
+    NAS_MSCC_PIF_CAMP_POSITION_STRU    *pstCampPosition
 );
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)

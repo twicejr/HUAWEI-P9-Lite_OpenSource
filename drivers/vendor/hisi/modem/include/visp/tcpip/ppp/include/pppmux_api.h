@@ -362,23 +362,7 @@ extern ULONG TCPIP_SetMuxSubFrameCount(ULONG ulIfIndex, ULONG ulSubFrameCount);
 *
 *******************************************************************************/
 extern ULONG TCPIP_SetMuxMaxSubframeLen(ULONG ulIfIndex, ULONG ulLength);
-/*******************************************************************************
-*    Func Name: TCPIP_SetMuxMaxSubframeLenEx
-* Date Created: 2013-03-05
-*       Author: luogaowei
-*  Description: MBSC需求PPPMUX最大子帧长度规格扩展
-*        Input: ULONG ulIfIndex:ppp接口索引值
-*               ULONG ulLength:最大子帧长度(范围1~1498)
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2013-03-05   luogaowei               Create     DTS2013030608162
-*
-*******************************************************************************/
+
 ULONG TCPIP_SetMuxMaxSubframeLenEx(ULONG ulIfIndex, ULONG ulLength);
 /*******************************************************************************
 *    Func Name: TCPIP_RegFuncQOSPacketClassHook

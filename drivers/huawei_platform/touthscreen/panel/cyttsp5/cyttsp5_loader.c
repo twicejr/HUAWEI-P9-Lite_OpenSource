@@ -71,6 +71,8 @@ static const u8 cyttsp5_security_key[] = {
 #define FILENAME_LEN_MAX                 64
 #define PANEL_NAME_LEN_MAX                16
 
+#define CY_FIRMWARE_SIZE                (64*1024)
+
 #if defined (CONFIG_HUAWEI_DSM)
 extern struct tp_dsm_info g_tp_dsm_info;
 extern struct dsm_client *tp_cyp_dclient;
@@ -1656,7 +1658,11 @@ static int cyttsp5_file_open_firmware(u8 *file_path,u8 *databuf,
     }
 
     // read image data to kernel */
-    if (filp->f_op->read(filp, databuf, file_len, &filp->f_pos) != file_len) {
+    if(file_len > CY_FIRMWARE_SIZE) {
+        TS_LOG_ERR("%s: file size ( %d ) exception.\n", __func__, file_len);
+        retval = -EINVAL;
+        goto exit;
+    }else if (filp->f_op->read(filp, databuf, file_len, &filp->f_pos) != file_len) {
         TS_LOG_ERR("%s: file read error.\n", __func__);
         retval = -EINVAL;
         goto exit;
@@ -1683,7 +1689,7 @@ static int cyttsp5_fw_update_from_sdcard(struct device *dev,u8 *file_path,bool u
 
     TS_LOG_INFO("%s: file_name is %s.\n",__func__,file_path);
 
-    fw_data = kzalloc(64 * 1024, GFP_KERNEL);
+    fw_data = kzalloc(CY_FIRMWARE_SIZE, GFP_KERNEL);
     if(fw_data == NULL){
        TS_LOG_ERR("%s: kzalloc error.\n", __func__);
        return -EINVAL;

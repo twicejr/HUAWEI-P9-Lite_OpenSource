@@ -1,21 +1,4 @@
-/************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : Rabm2GInclude.h
-  Author      : l47619
-  Version     : V200R001
-  Date        : 2005-09-09
-  Description : 该头文件定义了RABM模块所用的数据结构
-  History     :
-  1. Date:2005-09-09
-     Author: l47619
-     Modification:Create
-  2. Date        : 2006-05-05
-     Author      : l47619
-     Modification: 根据问题单修改: A32D03487
-  3.日    期   : 2006年08月09日
-    作    者   : 蒋丽萍j60010247
-    修改内容   : 问题单A32D03479，在PC机上实现时将#pragma pack(0)和#pragma pack()加编译开关
-************************************************************************/
+
 
 #ifndef __RABM_2G_INCLUDE_H__
 #define __RABM_2G_INCLUDE_H__

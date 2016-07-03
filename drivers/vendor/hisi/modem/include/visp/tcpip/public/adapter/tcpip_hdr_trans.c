@@ -301,7 +301,7 @@ VOID HDR_GetLineByFile(FILE *fp, UCHAR *pucLine, ULONG *pulLineLen)
 {
 #if((TCPIP_FOR_HERT == VRP_NO) && (TCPIP_FOR_BALONG == VRP_NO)&&(TCPIP_FOR_USP == VRP_NO))
     /*CHAR ch;*/
-    LONG ch;/*by shuxieliu00176784, at 2011-05-16. 修改原因: fgetc返回值类型是整型 */    
+    LONG ch;
     CHAR cNextCh;
     UCHAR *pucBuf = pucLine;
     while ((ch = fgetc(fp)) != EOF)
@@ -310,7 +310,7 @@ VOID HDR_GetLineByFile(FILE *fp, UCHAR *pucLine, ULONG *pulLineLen)
         {
             if ('\r' == (CHAR)ch)
             {
-                cNextCh = (CHAR)fgetc(fp);/*by shuxieliu00176784, at 2011-05-16. 修改原因: fgetc返回值类型是整型 */
+                cNextCh = (CHAR)fgetc(fp);
                 if ('\n' != cNextCh)
                 {
                     fseek(fp,-1,SEEK_CUR);
@@ -318,7 +318,6 @@ VOID HDR_GetLineByFile(FILE *fp, UCHAR *pucLine, ULONG *pulLineLen)
             }
             break;
         }
-        /* Modified by y00176567, at 2011-05-26. 修改原因: 消除VC三级告警 */
         /* 将ch前添加(UCHAR),保证两端类型一致 */
         *pucBuf = (UCHAR)ch;
         
@@ -510,7 +509,6 @@ VOID HDR_TranslateByCfg(HDR_MSG_HEAD_S *pstHdrComHead, FILE *fpHdrFile, FILE *fp
     {
         CHAR  szLine[LEN_256] = {0};
         UCHAR ucDesc[LEN_256];
-        /* Modify by shuxieliu00176784, at 2011-05-20. 修改原因: 消除Coverity告警 字符数组初始化0*/        
         CHAR  szSubTemp[LEN_256] = {0};
         UCHAR ucTlvMsg[LEN_1024] = {0}; 
         
@@ -575,7 +573,6 @@ VOID HDR_TranslateByCfg(HDR_MSG_HEAD_S *pstHdrComHead, FILE *fpHdrFile, FILE *fp
                 break;
             }
             
-            /* Added by y00176567, at 2011-05-23. 修改原因: 消除Coverity告警 */
             /* if (NULL != (pcCurStr = strstr(szLine,"END;"))) */                
             pcCurStr = strstr(szLine,"END;");
             if (NULL != pcCurStr)
@@ -953,7 +950,7 @@ ULONG TCPIP_TranslatHdrByConfig(CHAR szHdrFile[LEN_128],CHAR szCfgFile[LEN_128],
 *
 *******************************************************************************/
 /*VOID main(VOID)*/
-int main(VOID) /* Modify by shuxieliu00176784, at 2011-05-20. 修改原因: 消除Coverity告警 */
+int main(VOID)
 {
 #if((TCPIP_FOR_HERT == VRP_NO) && (TCPIP_FOR_BALONG == VRP_NO)&&(TCPIP_FOR_USP == VRP_NO))
     CHAR szHdrFile[LEN_128];
@@ -1035,7 +1032,6 @@ int main(VOID) /* Modify by shuxieliu00176784, at 2011-05-20. 修改原因: 消除Cove
     (VOID)getchar();
     (VOID)getchar();
 #endif
-    /* Add by shuxieliu00176784, at 2011-05-20. 修改原因: 消除Coverity告警 */
     return VOS_OK;
 }
 

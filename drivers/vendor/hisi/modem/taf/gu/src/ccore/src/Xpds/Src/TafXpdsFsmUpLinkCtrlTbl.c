@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2012, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafXpdsFsmLinkCtrlTbl.c
-  版 本 号   : 初稿
-  作    者   : 谷传征
-  生成日期   : 2015年8月21日
-  最近修改   :
-  功能描述   : Xpds Link Ctrl Fsm Tbl file
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年8月21日
-    作    者   : g00261581
-    修改内容   : CDMA-AGPS项目新增
-
-******************************************************************************/
 #ifdef __cplusplus
 #if __cplusplus
 extern "C" {
@@ -155,61 +138,19 @@ TAF_STA_STRU g_astTafXpdsUpLinkCtrlStaTbl[] =
 
 };
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_GetUpLinkCtrlStaTblSize
- 功能描述  : 获取XPDS Link Ctrl状态机的大小
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:状态机的大小
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月21日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_XPDS_GetUpLinkCtrlStaTblSize( VOS_VOID )
 {
     return (sizeof(g_astTafXpdsUpLinkCtrlStaTbl)/sizeof(TAF_STA_STRU));
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_GetUpLinkCtrlStaTblAddr
- 功能描述  : 获取XPDS Up Link Ctrl状态机的大小
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:状态机的大小
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月21日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_STA_STRU* TAF_XPDS_GetUpLinkCtrlStaTblAddr( VOS_VOID )
 {
     return g_astTafXpdsUpLinkCtrlStaTbl;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_GetFsmUpLinkFsmDescAddr
- 功能描述  : 获取XPDS Up LINK Ctrl状态机的描述表
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : TAF_FSM_DESC_STRU:指向状态机的描述表
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月21日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_FSM_DESC_STRU * TAF_XPDS_GetFsmUpLinkFsmDescAddr( VOS_VOID )
 {
     return (&g_stTafXpdsUpLinkCtrlFsmDesc);

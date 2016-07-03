@@ -44,7 +44,6 @@ enum eOam1agBakType
     OAM_1AG_MEPINFO = 0x4000,
     OAM_1AG_RMEPINFO = 0x5000,
     OAM_1AG_COMPATILE = 0x6000,
-    /* Add for V2R3C06, by shuxieliu00176784, at 2011-10-04. 修改原因:  备份全局协议版本 */
     OAM_1AG_VERSION = 0x7000    
 };
 
@@ -236,7 +235,6 @@ typedef struct OAM1AG_RMEPTLV_DATA
     UCHAR  ucRes[3];
 }OAM1AG_RMEPTLV_DATA_S;
 
-/* Add for V2R3C06, by shuxieliu00176784, at 2011-10-04. 修改原因: 备份全局协议版本 */
 typedef struct tagOAM1AG_VERSION_BAK
 {
     ULONG ulGlobalVersion;/* 全局协议版本 */
@@ -303,7 +301,6 @@ ULONG OAM_1AG_HA_DebugOutPut(UCHAR *pucData, ULONG ulMsgLen, ULONG ulCmd);
 ULONG OAM_1AG_SetHaVerboseDebug (ULONG ulFlag);
 ULONG OAM_1AG_GetHaVerboseDebug (ULONG *pulFlag);
 ULONG OAM_1AG_HA_CompatibleData(VOID);
-/* Add for V2R3C06, by shuxieliu00176784, at 2011-10-04. 修改原因: 备份全局协议版本*/
 ULONG OAM_1AG_HA_VersionData(VOID);
 
 #ifdef  __cplusplus

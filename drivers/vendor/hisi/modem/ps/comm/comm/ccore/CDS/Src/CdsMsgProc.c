@@ -1,21 +1,4 @@
-/******************************************************************************
-                  版权所有 (C), 2006, 华为技术有限公司
 
- ******************************************************************************
-  文 件 名   : CdsMsgProc.c
-  版 本 号   : 初稿
-  作    者   : y00151394
-  生成日期   : 2011年12月12日
-  最近修改   :
-  功能描述   : 实现消息接收、发送处理
-  函数列表   :
-
-  修改历史   :
-  1.日    期   : 2011年12月12日
-    作    者   : y00151394
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -81,21 +64,7 @@ VOS_UINT32      g_astUlIpfBidToNdisType[] = {
 
 
 
-/*****************************************************************************
- 函 数 名  : CDS_UlDataIndToAds
- 功能描述  : 向ADS上报数据
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2011年12月12日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 /*lint -e524*/
 /*lint -e653*/
 
@@ -161,21 +130,7 @@ VOS_VOID CDS_UlDataIndToAds(TTF_MEM_ST *pstIpPkt)
 
 
 
-/*****************************************************************************
- 函 数 名  : CDS_GetRanMode
- 功能描述  : 获得当前接入模式。默认返回Modem0上的接入模式。
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2011年12月12日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  CDS_GetRanMode(VOS_VOID)
 {
     CDS_ENTITY_STRU         *pstCdsEntity;
@@ -191,21 +146,7 @@ VOS_UINT32  CDS_GetRanMode(VOS_VOID)
     return pstCdsEntity->enRanMode;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_ChangeRanModeToNULL
- 功能描述  : 将当前接入模式切换到NULL
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2011年12月12日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_ChangeRanModeToNULL(CDS_ENTITY_STRU *pstCdsEntity)
 {
 
@@ -215,7 +156,6 @@ VOS_VOID CDS_ChangeRanModeToNULL(CDS_ENTITY_STRU *pstCdsEntity)
     CDS_PRINT_INFO2(CDS_ChangeRanModeToNULL_ENUM,LL2_PTR_NULL,pstCdsEntity->usModemId,pstCdsEntity->enRanMode);
 
     /* 流控进入NULL模式处理 */
-    /*DTS2014050601430,只对MODEM0做流控切换*/
     if (MODEM_ID_0 == pstCdsEntity->usModemId)
     {
         Fc_SwitchToNull();
@@ -245,21 +185,7 @@ VOS_VOID CDS_ChangeRanModeToNULL(CDS_ENTITY_STRU *pstCdsEntity)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_ChangeRanModeToLTE
- 功能描述  : 将当前接入模式切换到LTE
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2011年12月12日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_ChangeRanModeToLTE(CDS_ENTITY_STRU *pstCdsEntity)
 {
 
@@ -268,7 +194,6 @@ VOS_VOID CDS_ChangeRanModeToLTE(CDS_ENTITY_STRU *pstCdsEntity)
     CDS_INFO_LOG2(UEPS_PID_CDS,"Enter CDS_ChangeRanModeToLTE. ModemId,PreRanMode :",pstCdsEntity->usModemId,pstCdsEntity->enRanMode);
     CDS_PRINT_INFO2(CDS_ChangeRanModeToLTE_ENUM,CDS_PRINT_PROC_INFO,pstCdsEntity->usModemId,pstCdsEntity->enRanMode);
 
-    /*DTS2014050601430,只对MODEM0做流控切换*/
     if (MODEM_ID_0 == pstCdsEntity->usModemId)
     {
         if (PS_FALSE == pstCdsEntity->ulTestModeFlg)
@@ -305,29 +230,7 @@ VOS_VOID CDS_ChangeRanModeToLTE(CDS_ENTITY_STRU *pstCdsEntity)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_ChangeRanModeToGU
- 功能描述  : 将当前接入模式切换到GU
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2011年12月12日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-    2.日    期   : 2011年02月02日
-      作    者   : y00151394
-      修改内容   : 将GU周期性定时器修改为NULL模式下独有，在切换到GU后停止下行周期性定时器。
-
-    3.日    期   : 2011年04月24日
-      作    者   : y00151394
-      修改内容   : 删除发送上行缓存功能。见问题单DTS2012033006483.
-
-*****************************************************************************/
 VOS_VOID CDS_ChangeRanModeToGU(CDS_ENTITY_STRU *pstCdsEntity)
 {
 
@@ -336,7 +239,6 @@ VOS_VOID CDS_ChangeRanModeToGU(CDS_ENTITY_STRU *pstCdsEntity)
     CDS_INFO_LOG2(UEPS_PID_CDS,"Enter CDS_ChangeRanModeToGU. ModemId,PreRanMode :",pstCdsEntity->usModemId,pstCdsEntity->enRanMode);
     CDS_PRINT_INFO2(CDS_ChangeRanModeToGU_ENUM,CDS_PRINT_PROC_INFO,pstCdsEntity->usModemId,pstCdsEntity->enRanMode);
 
-    /*DTS2014050601430,只对MODEM0做流控切换*/
     if (MODEM_ID_0 == pstCdsEntity->usModemId)
     {
         if (PS_FALSE == pstCdsEntity->ulTestModeFlg)
@@ -374,21 +276,7 @@ VOS_VOID CDS_ChangeRanModeToGU(CDS_ENTITY_STRU *pstCdsEntity)
 }
 
 
-/*****************************************************************************
- 函 数 名  : CDS_MMC_MsgProc
- 功能描述  : 处理收到的MMC消息
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2011年12月12日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_MMC_MsgProc(MsgBlock  *pstMsg)
 {
     MMC_CDS_MODE_CHANGE_IND_STRU        *pstModeChangeInd;
@@ -448,21 +336,7 @@ VOS_VOID CDS_MMC_MsgProc(MsgBlock  *pstMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : CDS_NdStartFilterMsgProc
- 功能描述  : 处理ND Client发送的启动下行过滤消息
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2011年12月12日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_NdStartFilterMsgProc(const MsgBlock  *pstMsg)
 {
     NDCLIENT_CDS_START_FILTER_REQ_STRU   *pstReqMsg;
@@ -512,21 +386,7 @@ VOS_VOID CDS_NdStartFilterMsgProc(const MsgBlock  *pstMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : CDS_NdStopFilterMsgProc
- 功能描述  : 处理ND Client发送的停止下行过滤消息
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2011年12月12日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_NdStopFilterMsgProc(const MsgBlock  *pstMsg)
 {
     NDCLIENT_CDS_STOP_FILTER_REQ_STRU    *pstReqMsg;
@@ -577,21 +437,7 @@ VOS_VOID CDS_NdStopFilterMsgProc(const MsgBlock  *pstMsg)
 
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_NdDataReqMsgProc
- 功能描述  : 处理ND Client发送的数据请求消息，CDS将RS等类型数据转发到核心网
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2011年12月12日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_NdDataReqMsgProc(MsgBlock  *pstMsg)
 {
     NDCLIENT_CDS_DATA_REQ_STRU      *pstDataReq;
@@ -644,9 +490,7 @@ VOS_VOID CDS_NdDataReqMsgProc(MsgBlock  *pstMsg)
                                              pstDataReq->enModemId,
                                              pstDataReq->ucRabId);
 
-    /*将ND CLIENT数据作为高优先级数据保存，供PDCP入队使用 by c00253308 20151024 begin*/
     pstNdPkt->ucDataPriority  = TTF_PS_DATA_PRIORITY_HIGH;
-    /*将ND CLIENT数据作为高优先级数据保存，供PDCP入队使用 by c00253308 end*/
 
     CDS_DBG_UL_REC_IP_PKT_INFO(pstNdPkt);
     CDS_DBB_NDCLIENT_DATA_REQ_HOOK(pstNdPkt);
@@ -656,21 +500,7 @@ VOS_VOID CDS_NdDataReqMsgProc(MsgBlock  *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_NDCLIENT_MsgProc
- 功能描述  : 处理收到的NDCLIENT消息
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2011年12月12日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_NDCLIENT_MsgProc(MsgBlock  *pstMsg)
 {
     /*入参判断*/
@@ -708,21 +538,7 @@ VOS_VOID CDS_NDCLIENT_MsgProc(MsgBlock  *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_RabmSerivceRequestNotify
- 功能描述  : CDS通知RABM发起SERVICE REQUEST
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2011年12月12日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_RabmSerivceRequestNotify(VOS_UINT8 ucRabId, CDS_ENTITY_STRU *pstCdsEntity)
 {
     CDS_RABM_SERVICE_IND_STRU   *pstIndMsg;
@@ -789,30 +605,7 @@ VOS_VOID CDS_RabmSerivceRequestNotify(VOS_UINT8 ucRabId, CDS_ENTITY_STRU *pstCds
 
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_ProcRabmSendBuffIndMsg
- 功能描述  : 处理收到的RABM 发送缓存数据消息，GU不启动二次过滤
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2011年12月12日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-    2.日    期   : 2012年04月24日
-      作    者   : y00151394
-      修改内容   : 发送数据前需要先查询GU RABM状态，根据状态操作。
-                   见问题单DTS2012033006483.
-
-    3.日    期   : 2012年05月16日
-      作    者   : y00151394
-      修改内容   : 如果当前为IDLE态且缓存为空应该设置为NORMAL态。
-                   见问题单DTS2012051405418.
-*****************************************************************************/
 VOS_VOID CDS_RabmSendBuffIndMsgProc(const MsgBlock  *pstMsg)
 {
     VOS_UINT16                           usModemId;
@@ -866,21 +659,7 @@ VOS_VOID CDS_RabmSendBuffIndMsgProc(const MsgBlock  *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_ProcRabmFreeBuffIndMsg
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 功能：处理RABM清空缓存数据消息
 
- 修改历史  :
-    1.日    期   : 2011年12月12日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_RabmFreeBuffIndMsgProc(const MsgBlock  *pstMsg)
 {
     VOS_UINT16                           usModemId;
@@ -935,21 +714,7 @@ VOS_VOID CDS_RabmFreeBuffIndMsgProc(const MsgBlock  *pstMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : CDS_ProcRabmVoicePreferActIndMsg
- 功能描述  : 处理RABM VP激活指示
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2014年12月26日
-      作    者   : s00273135
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_ProcRabmVoicePreferActIndMsg(const MsgBlock  *pstMsg)
 {
     VOS_UINT16                          usModemId;
@@ -989,21 +754,7 @@ VOS_VOID CDS_ProcRabmVoicePreferActIndMsg(const MsgBlock  *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_RABM_MsgProc
- 功能描述  : 处理收到的RABM消息
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2011年12月12日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_RABM_MsgProc(const MsgBlock  *pstMsg)
 {
     /*入参判断*/
@@ -1045,21 +796,7 @@ VOS_VOID CDS_RABM_MsgProc(const MsgBlock  *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_TmrMsgProc
- 功能描述  : 处理定时器消息
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2011年12月12日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_TmrMsgProc(const MsgBlock  *pstMsg)
 {
     REL_TIMER_MSG         *pstTmrMsg;
@@ -1103,21 +840,7 @@ VOS_VOID CDS_TmrMsgProc(const MsgBlock  *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_DhcpDataReqMsgProc
- 功能描述  : 处理DHCP发送的数据请求消息，CDS将RS等类型数据转发到核心网
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2015年06月10日
-      作    者   : l00304941
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_DhcpDataReqMsgProc(MsgBlock  *pstMsg)
 {
     DHCP_CDS_DATA_REQ_STRU          *pstDataReq;
@@ -1162,9 +885,7 @@ VOS_VOID CDS_DhcpDataReqMsgProc(MsgBlock  *pstMsg)
                                              pstDataReq->enModemId,
                                              pstDataReq->ucRabId);
 
-    /*将DHCP数据作为高优先级数据保存，供PDCP入队使用 by c00253308 20151024 begin*/
     pstDhcpPkt->ucDataPriority  = TTF_PS_DATA_PRIORITY_HIGH;
-    /*将DHCP数据作为高优先级数据保存，供PDCP入队使用 by c00253308 20151024 end*/
 
     CDS_DBG_UL_REC_IP_PKT_INFO(pstDhcpPkt);
     CDS_DBG_DHCP_DATA_REQ_HOOK(pstDhcpPkt);
@@ -1174,21 +895,7 @@ VOS_VOID CDS_DhcpDataReqMsgProc(MsgBlock  *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_DhcpStartFilterMsgProc
- 功能描述  : 处理DHCP发送的启动下行过滤消息
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2015年06月10日
-      作    者   : l00304941
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_DhcpStartFilterMsgProc(MsgBlock  *pstMsg)
 {
     DHCP_CDS_START_FILTER_REQ_STRU       *pstReqMsg;
@@ -1230,21 +937,7 @@ VOS_VOID CDS_DhcpStartFilterMsgProc(MsgBlock  *pstMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : CDS_DhcpStopFilterMsgProc
- 功能描述  : 处理DHCP发送的停止下行过滤消息
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2015年06月10日
-      作    者   : l00304941
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_DhcpStopFilterMsgProc(MsgBlock  *pstMsg)
 {
     DHCP_CDS_STOP_FILTER_REQ_STRU        *pstReqMsg;
@@ -1286,21 +979,7 @@ VOS_VOID CDS_DhcpStopFilterMsgProc(MsgBlock  *pstMsg)
 
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_DHCP_MsgProc
- 功能描述  : 处理收到的DHCP消息
- 输入参数  : const MsgBlock  *pstMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2015年06月10日
-      作    者   : l00304941
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_DHCP_MsgProc(MsgBlock  *pstMsg)
 {
     /*入参判断*/
@@ -1331,21 +1010,7 @@ VOS_VOID CDS_DHCP_MsgProc(MsgBlock  *pstMsg)
 
 
 #if (CDS_FEATURE_ON == CDS_FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : CDS_ERabmSerivceRequestNotify
- 功能描述  : CDS通知ERABM发起SERVICE REQUEST
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2011年12月12日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_ERabmSerivceRequestNotify(VOS_UINT8 ucEpsbId)
 {
     CDS_ERABM_SERVICE_NOTIFY_STRU   *pstNotifyMsg;
@@ -1388,21 +1053,7 @@ VOS_VOID CDS_ERabmSerivceRequestNotify(VOS_UINT8 ucEpsbId)
 
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_ProcERabmSendBuffIndMsg
- 功能描述  : 处理收到的ERABM 发送缓存数据消息
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2011年12月12日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_ERabmSendBuffIndMsgProc(MsgBlock  *pstMsg)
 {
     ERABM_CDS_SEND_BUFF_DATA_IND_STRU    *pstSendBufInd;
@@ -1441,21 +1092,7 @@ VOS_VOID CDS_ERabmSendBuffIndMsgProc(MsgBlock  *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_ProcERabmFreeBuffIndMsg
- 功能描述  : 处理ERABM 清空缓存数据消息
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2011年12月12日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_ERabmFreeBuffIndMsgProc(const MsgBlock  *pstMsg)
 {
     CDS_ENTITY_STRU                      *pstCdsEntity;
@@ -1489,21 +1126,7 @@ VOS_VOID CDS_ERabmFreeBuffIndMsgProc(const MsgBlock  *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_ERABM_MsgProc
- 功能描述  : 处理收到的ERABM消息
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2011年12月12日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_ERABM_MsgProc(MsgBlock  *pstMsg)
 {
     /*入参判断*/
@@ -1542,21 +1165,7 @@ VOS_VOID CDS_ERABM_MsgProc(MsgBlock  *pstMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : CDS_GetTestMode
- 功能描述  : 获得当前测试模式
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2011年12月12日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 CDS_TEST_MODE_ENUM_UINT32 CDS_GetTestMode(VOS_VOID)
 {
     CDS_ENTITY_STRU         *pstCdsEntity;
@@ -1581,21 +1190,7 @@ CDS_TEST_MODE_ENUM_UINT32 CDS_GetTestMode(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_ActLookBackMsgProc
- 功能描述  : 激活环回模式消息处理
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2011年12月12日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_ActLookBackMsgProc(const MsgBlock  *pstMsg)
 {
     CDS_ENTITY_STRU         *pstCdsEntity;
@@ -1642,21 +1237,7 @@ VOS_VOID CDS_ActLookBackMsgProc(const MsgBlock  *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_DeactLookBackMsgProc
- 功能描述  : 去激活环回模式消息处理
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2011年12月12日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_DeactLookBackMsgProc(const MsgBlock  *pstMsg)
 {
     CDS_ENTITY_STRU         *pstCdsEntity;
@@ -1716,21 +1297,7 @@ VOS_VOID CDS_DeactLookBackMsgProc(const MsgBlock  *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_LBStartTestLoopMsgProc
- 功能描述  : 处理环回Test Loop Start消息
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2012年09月17日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_StartLBTestLoopMsgProc(const MsgBlock  *pstMsg)
 {
     ETC_CDS_START_TEST_LOOP_NOTIFY_STRU  *pstStartTLMsg;
@@ -1795,21 +1362,7 @@ VOS_VOID CDS_StartLBTestLoopMsgProc(const MsgBlock  *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_StopLBTestLoopMsgProc
- 功能描述  : 处理环回Test Loop Stop消息
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2012年09月17日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_StopLBTestLoopMsgProc(const MsgBlock  *pstMsg)
 {
     CDS_ENTITY_STRU                      *pstCdsEntity;
@@ -1850,21 +1403,7 @@ VOS_VOID CDS_StopLBTestLoopMsgProc(const MsgBlock  *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_ETC_MsgProc
- 功能描述  : 处理收到的ETC消息
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2011年12月12日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_ETC_MsgProc(const MsgBlock  *pstMsg)
 {
     /*入参判断*/
@@ -1905,21 +1444,7 @@ VOS_VOID CDS_ETC_MsgProc(const MsgBlock  *pstMsg)
 #endif
 
 #if (CDS_FEATURE_ON == CDS_FEATURE_CDMA)
-/*****************************************************************************
- 函 数 名  : CDS_APSServiceRequestNotify
- 功能描述  : CDS通知APS发起SERVICE REQUEST
- 输入参数  : VOS_UINT8 ucRabId
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2014年10月25日
-      作    者   : l00304941
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_APSServiceRequestNotify(CDS_ENTITY_STRU *pstCdsEntity, VOS_UINT8 ucRabId)
 {
     CDS_APS_CDATA_SERVICE_IND_STRU                *pstNotifyMsg;
@@ -1989,21 +1514,7 @@ VOS_VOID CDS_APSServiceRequestNotify(CDS_ENTITY_STRU *pstCdsEntity, VOS_UINT8 uc
 
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_APSSendBuffIndMsgProc
- 功能描述  : 处理APS 发送缓存数据消息
- 输入参数  : MsgBlock  *pstMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2014年10月25日
-      作    者   : l00304941
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_APSSendBuffIndMsgProc(MsgBlock  *pstMsg)
 {
     APS_CDS_CDATA_SEND_BUFF_DATA_IND_STRU         *pstSendBufInd;
@@ -2056,21 +1567,7 @@ VOS_VOID CDS_APSSendBuffIndMsgProc(MsgBlock  *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_APSFreeBuffIndMsgProcs
- 功能描述  : 处理APS清空缓存数据消息
- 输入参数  : MsgBlock  *pstMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2014年10月25日
-      作    者   : l00304941
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_APSFreeBuffIndMsgProc(const MsgBlock  *pstMsg)
 {
     APS_CDS_CDATA_FREE_BUFF_DATA_IND_STRU          *pstFreeBufInd;
@@ -2124,21 +1621,7 @@ VOS_VOID CDS_APSFreeBuffIndMsgProc(const MsgBlock  *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_ChangeRanModeToCDMA
- 功能描述  : 将当前接入模式切换到CDMA
- 输入参数  : MsgBlock  *pstMsgS
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2014年10月25日
-      作    者   : l00304941
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_ChangeRanModeToCDMA(CDS_ENTITY_STRU *pstCdsEntity,APS_CDS_MODE_ENUM_UINT32 enMode)
 {
     //APS_CDS_MODE_ENUM_UINT32               PreRanMode;
@@ -2175,21 +1658,7 @@ VOS_VOID CDS_ChangeRanModeToCDMA(CDS_ENTITY_STRU *pstCdsEntity,APS_CDS_MODE_ENUM
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_APS_ChangeRanModeMsgProc
- 功能描述  : 处理收到的接入模式变更消息
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2014年 11月 05日
-      作    者   : l00304941
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_APS_ChangeRanModeMsgProc(MsgBlock  *pstMsg)
 {
     APS_CDS_MODE_CHANGE_IND_STRU        *pstModeChangeInd;
@@ -2252,21 +1721,7 @@ VOS_VOID CDS_APS_ChangeRanModeMsgProc(MsgBlock  *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_APS_MsgProc
- 功能描述  : 处理收到的APS消息
- 输入参数  : MsgBlock  *pstMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2014年10月25日
-      作    者   : l00304941
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_APS_MsgProc(MsgBlock  *pstMsg)
 {
     APS_CDS_CDATA_SEND_BUFF_DATA_IND_STRU         *pstSendBufInd;
@@ -2306,40 +1761,14 @@ VOS_VOID CDS_APS_MsgProc(MsgBlock  *pstMsg)
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : CDS_UMTS_TrigEvenTresMsgProc
- 功能描述  : 获取消息开会中的ulDlTrigEventThres
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2012年6月14日
-      作    者   : t148005
-      修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CDS_UMTS_TrigEvenTresMsgProc(const MsgBlock  *pstMsg)
 {
     (VOS_VOID)pstMsg;
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_UMTS_TrigEvenTresMsgProc
- 功能描述  : FcACore消息处理函数
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2012年6月14日
-      作    者   : t148005
-      修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CDS_FcACore_MsgProc(const MsgBlock  *pstMsg)
 {
     if (VOS_NULL_PTR == pstMsg)
@@ -2367,21 +1796,7 @@ VOS_VOID CDS_FcACore_MsgProc(const MsgBlock  *pstMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : CDS_RecvMsgProc
- 功能描述  : 对CDS收到的消息进行分发处理
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2011年12月12日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_RecvMsgProc(MsgBlock  *pstMsg)
 {
     if (VOS_NULL_PTR == pstMsg)

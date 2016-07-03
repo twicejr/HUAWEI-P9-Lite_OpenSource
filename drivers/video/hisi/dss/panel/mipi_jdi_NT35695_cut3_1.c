@@ -166,6 +166,31 @@ static char lane_nums[] = {
 	0x03,
 };
 
+static char trcrq2_cmd1[] = {
+	0xff,
+	0x26,
+};
+
+static char trcrq2_cmd2[] = {
+	0xe5,
+	0x59,
+};
+
+static char trcrq2_cmd3[] = {
+	0xe7,
+	0x59,
+};
+
+static char trcrq2_cmd4[] = {
+	0xfb,
+	0x01,
+};
+
+static char trcrq2_cmd5[] = {
+	0xff,
+	0x10,
+};
+
 /*******************************************************************************
 ** setting PWM frequency to 58KHZ
 */
@@ -228,6 +253,16 @@ static struct dsi_cmd_desc lcd_display_on_cmds[] = {
 		sizeof(bl_enable), bl_enable},
 	{DTYPE_GEN_LWRITE, 0, 200, WAIT_TYPE_US,
 		sizeof(te_line), te_line},
+	{DTYPE_DCS_WRITE1, 0, 200, WAIT_TYPE_US,
+		sizeof(trcrq2_cmd1), trcrq2_cmd1},
+	{DTYPE_DCS_WRITE1, 0, 200, WAIT_TYPE_US,
+		sizeof(trcrq2_cmd2), trcrq2_cmd2},
+	{DTYPE_DCS_WRITE1, 0, 200, WAIT_TYPE_US,
+		sizeof(trcrq2_cmd3), trcrq2_cmd3},
+	{DTYPE_DCS_WRITE1, 0, 200, WAIT_TYPE_US,
+		sizeof(trcrq2_cmd4), trcrq2_cmd4},
+	{DTYPE_DCS_WRITE1, 0, 200, WAIT_TYPE_US,
+		sizeof(trcrq2_cmd5), trcrq2_cmd5},
 	{DTYPE_DCS_WRITE, 0, 105, WAIT_TYPE_MS,
 		sizeof(exit_sleep), exit_sleep},
 	{DTYPE_DCS_WRITE, 0, 45, WAIT_TYPE_MS,

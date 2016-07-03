@@ -95,12 +95,16 @@ void pm_gic_pending_dump(void)
 			if ((value & BIT_MASK(j)) && ((value & BIT_MASK(j))
 					== (g_enable_value[i] & BIT_MASK(j)))) {
 				irq = i * IRQ_NUM_PER_WORD + j;
-				if (irq < g_irq_num)
-					printk("wake up irq num: %d, irq name: %s", irq, g_irq_name[irq]);
-				else
-					printk("wake up irq num: %d, irq name: no name!", irq);
-				power_monitor_report(WAKEUP_IRQ, "%s",
-						g_irq_name[irq]);
+				if (NULL == g_irq_name) {
+					printk("wake up irq num: %d", irq);
+				} else {
+					if (irq < g_irq_num)
+						printk("wake up irq num: %d, irq name: %s", irq, g_irq_name[irq]);
+					else
+						printk("wake up irq num: %d, irq name: no name!", irq);
+					power_monitor_report(WAKEUP_IRQ, "%s",
+							g_irq_name[irq]);
+				}
 				gpio = pm_ao_gpio_irq_dump(irq);
 				if (gpio >= 0) {
 					printk("(gpio-%d)", gpio);
@@ -299,9 +303,11 @@ static int init_lowpm_table(struct device_node *np)
 	}
 
 	pr_info("%s, init lowpm table success.\n", __func__);
+	return ret;
 
 err_free:
 	kfree(g_irq_name);
+	g_irq_name = NULL;
 err_put_node:
 	of_node_put(np);
 err:

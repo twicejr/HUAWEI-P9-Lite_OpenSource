@@ -40,17 +40,7 @@ extern "C" {
 /*****************************************************************************
   3 Function
 *****************************************************************************/
-/*****************************************************************************
- Function Name   : LNAS_DEBUG_GetEmmSta
- Description     : NAS软调信息：返回NAS所处的状态
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-8-27  Draft Enact
-
-*****************************************************************************/
 LPS_LNAS_STA_ENUM_UINT32 LNAS_DEBUG_GetEmmSta(VOS_VOID)
 {
     NAS_LMM_MAIN_STATE_ENUM_UINT16       enMainState;
@@ -99,17 +89,7 @@ LPS_LNAS_STA_ENUM_UINT32 LNAS_DEBUG_GetEmmSta(VOS_VOID)
 
 }
 
-/*****************************************************************************
- Function Name   : LNAS_DEBUG_GetUeIpInfo
- Description     : NAS软调信息：返回NAS当前所有激活的缺省承载对应的IP地址
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2010-09-22  Draft Enact
-
-*****************************************************************************/
 /*lint -e960*/
 VOS_VOID LNAS_DEBUG_GetUeIpInfo
 (

@@ -875,6 +875,13 @@ try_again:
 	else
 		printk(KERN_ERR "%s:send acmd41 with ocr:0x%x\n",mmc_hostname(host),ocr);
 
+	if (rocr && (0xffffffff == *rocr))
+	{
+		pr_err("%s:wrong rocr value:0x%x\n", mmc_hostname(host), *rocr);
+		return -1;
+	}
+
+
 	/*
 	 * In case CCS and S18A in the response is set, start Signal Voltage
 	 * Switch procedure. SPI mode doesn't support CMD11.

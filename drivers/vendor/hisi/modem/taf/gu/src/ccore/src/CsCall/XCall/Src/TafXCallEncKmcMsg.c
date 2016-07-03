@@ -1,20 +1,5 @@
 
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafXCallEncKmcMsg.c
-  版 本 号   : 初稿
-  作    者   : l00359089
-  生成日期   : 2015年10月20日
-  功能描述   : Taf X Call 对输入的数据编码成KMC的user data
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年10月20日
-    作    者   : l00359089
-    修改内容   : 创建文件 for CDMA 1X Iteration 19
-******************************************************************************/
 /*****************************************************************************
   1 头文件包含
 *****************************************************************************/
@@ -59,16 +44,7 @@ const TAF_XCALL_ENC_KMC_MSG_PROC_STRU g_astTafXcallEncKmcMsgProcTab[]=
   3 函数定义
 *****************************************************************************/
 
-/**********************************************
-函数名：TAF_XCALL_FillReservedFld
-功能： 填充保留字段
-Input：无
-Output：VOS_UINT8 *pucMsgData 待填充字段；
-        VOS_UINT16 *pusMsgDataLen填充的长度
- 1.日期:      20151026
-   作者:      l00359089
-   修改内容：新建
-*****************************************************/
+
 
 VOS_VOID TAF_XCALL_FillReservedFld(
     VOS_UINT8                          *pucMsgData,
@@ -84,17 +60,7 @@ VOS_VOID TAF_XCALL_FillReservedFld(
     (*pusMsgDataLen)++;
 
 }
-/**********************************************
-函数名：TAF_XCALL_EncKeyReqMsg
-功能：组装秘钥请求的User Data；
-Input：TAF_XCALL_KMC_MSG_STRU *pstEncodeData特定结构的待编码数据；
-Output：VOS_UINT8 *pucMsgData 组装后的User Data；
-        VOS_UINT16 *pusMsgDataLen组装后的User Data的长度
-返回：处理的具体结果值
- 1.日期:      20151021
-   作者:      l00359089
-   修改内容：新建
-*****************************************************/
+
 TAF_XCALL_KMC_MSG_PROCESS_RSLT_ENUM_UINT32 TAF_XCALL_EncKeyReqMsg(
     TAF_XCALL_KMC_MSG_STRU             *pstEncodeData,
     VOS_UINT8                          *pucMsgData,
@@ -180,18 +146,7 @@ TAF_XCALL_KMC_MSG_PROCESS_RSLT_ENUM_UINT32 TAF_XCALL_EncKeyReqMsg(
 
     return TAF_XCALL_KMC_MSG_PROCESS_RSLT_SUCCESS;
 }
-/**********************************************
-函数名： TAF_XCALL_EncPubKeyUpdateRspMsg;
-功能：组装公钥更新响应的User Data；
-Input：TAF_XCALL_KMC_MSG_STRU *pstEncodeData特定结构的待编码数据；
-Output：VOS_UINT8 *pucMsgData 组装后的User Data；
-        VOS_UINT16 *pusMsgDataLen组装后的User Data的长度
-返回：处理的具体结果值
- 1.日期:      20151021
-   作者:      l00359089
-   修改内容：新建
 
-*****************************************************/
 TAF_XCALL_KMC_MSG_PROCESS_RSLT_ENUM_UINT32 TAF_XCALL_EncPubKeyUpdateRspMsg(
     TAF_XCALL_KMC_MSG_STRU             *pstEncodeData,
     VOS_UINT8                          *pucMsgData,
@@ -209,18 +164,7 @@ TAF_XCALL_KMC_MSG_PROCESS_RSLT_ENUM_UINT32 TAF_XCALL_EncPubKeyUpdateRspMsg(
     return TAF_XCALL_KMC_MSG_PROCESS_RSLT_SUCCESS;
 
 }
-/**********************************************
-函数名： TAF_XCALL_EncRemoteCtrlCmdRspMsg
-功能：组装公钥更新响应的User Data；
-Input：TAF_XCALL_KMC_MSG_STRU *pstEncodeData特定结构的待编码数据；
-Output：VOS_UINT8 *pucMsgData 组装后的User Data；
-        VOS_UINT16 *pusMsgDataLen组装后的User Data的长度
 
-返回：处理的具体结果值
- 1.日期:      20151021
-   作者:      l00359089
-   修改内容：新建
-*****************************************************/
 TAF_XCALL_KMC_MSG_PROCESS_RSLT_ENUM_UINT32 TAF_XCALL_EncRemoteCtrlCmdRspMsg(
     TAF_XCALL_KMC_MSG_STRU             *pstEncodeData,
     VOS_UINT8                          *pucMsgData,
@@ -247,18 +191,7 @@ TAF_XCALL_KMC_MSG_PROCESS_RSLT_ENUM_UINT32 TAF_XCALL_EncRemoteCtrlCmdRspMsg(
 
 #ifdef VOS_WIN32
 
-/**********************************************
-函数名： TAF_XCALL_EncKeyRspMsg
-功能：组装密钥响应的User Data；
-Input：TAF_XCALL_KMC_MSG_STRU *pstEncodeData特定结构的待编码数据；
-Output：VOS_UINT8 *pucMsgData 组装后的User Data；
-        VOS_UINT16 *pusMsgDataLen组装后的User Data的长度
 
-返回：处理的具体结果值
- 1.日期:      20151026
-   作者:      l00359089
-   修改内容：新建
-*****************************************************/
 
 TAF_XCALL_KMC_MSG_PROCESS_RSLT_ENUM_UINT32 TAF_XCALL_EncKeyRspMsg(
     TAF_XCALL_KMC_MSG_STRU             *pstEncodeData,
@@ -308,18 +241,7 @@ TAF_XCALL_KMC_MSG_PROCESS_RSLT_ENUM_UINT32 TAF_XCALL_EncKeyRspMsg(
     return TAF_XCALL_KMC_MSG_PROCESS_RSLT_SUCCESS;
 }
 
-/**********************************************
-函数名： TAF_XCALL_EncMtEncryptIndMsg
-功能：组装被叫加密通知的User Data；
-Input：TAF_XCALL_KMC_MSG_STRU *pstEncodeData特定结构的待编码数据；
-Output：VOS_UINT8 *pucMsgData 组装后的User Data；
-        VOS_UINT16 *pusMsgDataLen组装后的User Data的长度
 
-返回：处理的具体结果值
- 1.日期:      20151026
-   作者:      l00359089
-   修改内容：新建
-*****************************************************/
 
 TAF_XCALL_KMC_MSG_PROCESS_RSLT_ENUM_UINT32 TAF_XCALL_EncMtEncryptIndMsg(
     TAF_XCALL_KMC_MSG_STRU             *pstEncodeData,
@@ -341,18 +263,7 @@ TAF_XCALL_KMC_MSG_PROCESS_RSLT_ENUM_UINT32 TAF_XCALL_EncMtEncryptIndMsg(
     return TAF_XCALL_KMC_MSG_PROCESS_RSLT_SUCCESS;
 }
 
-/**********************************************
-函数名： TAF_XCALL_EncErrIndMsg
-功能：组装错误通知的User Data；
-Input：TAF_XCALL_KMC_MSG_STRU *pstEncodeData特定结构的待编码数据；
-Output：VOS_UINT8 *pucMsgData 组装后的User Data；
-        VOS_UINT16 *pusMsgDataLen组装后的User Data的长度
 
-返回：处理的具体结果值
- 1.日期:      20151026
-   作者:      l00359089
-   修改内容：新建
-*****************************************************/
 
 TAF_XCALL_KMC_MSG_PROCESS_RSLT_ENUM_UINT32 TAF_XCALL_EncErrIndMsg(
     TAF_XCALL_KMC_MSG_STRU             *pstEncodeData,
@@ -368,18 +279,7 @@ TAF_XCALL_KMC_MSG_PROCESS_RSLT_ENUM_UINT32 TAF_XCALL_EncErrIndMsg(
     return TAF_XCALL_KMC_MSG_PROCESS_RSLT_SUCCESS;
 }
 
-/**********************************************
-函数名： TAF_XCALL_EncPubKeyUpdateMsg
-功能： 组装公钥更新的User Data；
-Input：TAF_XCALL_KMC_MSG_STRU *pstEncodeData特定结构的待编码数据；
-Output：VOS_UINT8 *pucMsgData 组装后的User Data；
-        VOS_UINT16 *pusMsgDataLen组装后的User Data的长度
 
-返回：处理的具体结果值
- 1.日期:      20151026
-   作者:      l00359089
-   修改内容：新建
-*****************************************************/
 
 TAF_XCALL_KMC_MSG_PROCESS_RSLT_ENUM_UINT32 TAF_XCALL_EncPubKeyUpdateMsg(
     TAF_XCALL_KMC_MSG_STRU             *pstEncodeData,
@@ -420,18 +320,7 @@ TAF_XCALL_KMC_MSG_PROCESS_RSLT_ENUM_UINT32 TAF_XCALL_EncPubKeyUpdateMsg(
     return TAF_XCALL_KMC_MSG_PROCESS_RSLT_SUCCESS;
 }
 
-/**********************************************
-函数名： TAF_XCALL_EncPubKeyUpdateAckMsg
-功能： 组装公钥更新确认的User Data；
-Input：TAF_XCALL_KMC_MSG_STRU *pstEncodeData特定结构的待编码数据；
-Output：VOS_UINT8 *pucMsgData 组装后的User Data；
-        VOS_UINT16 *pusMsgDataLen组装后的User Data的长度
 
-返回：处理的具体结果值
- 1.日期:      20151026
-   作者:      l00359089
-   修改内容：新建
-*****************************************************/
 
 TAF_XCALL_KMC_MSG_PROCESS_RSLT_ENUM_UINT32 TAF_XCALL_EncPubKeyUpdateAckMsg(
     TAF_XCALL_KMC_MSG_STRU             *pstEncodeData,
@@ -448,18 +337,7 @@ TAF_XCALL_KMC_MSG_PROCESS_RSLT_ENUM_UINT32 TAF_XCALL_EncPubKeyUpdateAckMsg(
     return TAF_XCALL_KMC_MSG_PROCESS_RSLT_SUCCESS;
 }
 
-/**********************************************
-函数名： TAF_XCALL_EncRemoteCtrlCmdMsg
-功能： 组装远程控制指令的User Data；
-Input：TAF_XCALL_KMC_MSG_STRU *pstEncodeData特定结构的待编码数据；
-Output：VOS_UINT8 *pucMsgData 组装后的User Data；
-        VOS_UINT16 *pusMsgDataLen组装后的User Data的长度
 
-返回：处理的具体结果值
- 1.日期:      20151026
-   作者:      l00359089
-   修改内容：新建
-*****************************************************/
 
 TAF_XCALL_KMC_MSG_PROCESS_RSLT_ENUM_UINT32 TAF_XCALL_EncRemoteCtrlCmdMsg(
     TAF_XCALL_KMC_MSG_STRU             *pstEncodeData,
@@ -531,17 +409,7 @@ TAF_XCALL_KMC_MSG_PROCESS_RSLT_ENUM_UINT32 TAF_XCALL_EncRemoteCtrlCmdMsg(
     return TAF_XCALL_KMC_MSG_PROCESS_RSLT_SUCCESS;
 }
 #endif
-/**********************************************
-函数名： TAF_XCALL_EncodeUserData
-功能：组装User Data；
-Input：TAF_XCALL_KMC_MSG_STRU *pstEncodeData特定结构的待编码数据；
-Output：VOS_UINT8 *pucMsgData 组装后的User Data；
-        VOS_UINT16 *pusMsgDataLen组装后的User Data的长度
-返回：处理的具体结果值
- 1.日期:      20151021
-   作者:      l00359089
-   修改内容：新建
-*****************************************************/
+
 
 TAF_XCALL_KMC_MSG_PROCESS_RSLT_ENUM_UINT32 TAF_XCALL_EncodeKmcMsg(
     TAF_XCALL_KMC_MSG_STRU             *pstEncodeData,

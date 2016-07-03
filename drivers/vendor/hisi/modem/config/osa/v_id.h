@@ -119,10 +119,8 @@ extern VOS_UINT32 hl100_SndCmd_FidInit ( enum VOS_INIT_PHASE_DEFINE ip );
 #elif (OSA_CPU_ACPU == VOS_OSA_CPU)
 extern VOS_UINT32 APP_NDIS_FidInit(enum VOS_INIT_PHASE_DEFINE ip);
 extern VOS_UINT32 DMS_DsFidInit(enum VOS_INIT_PHASE_DEFINE ip);
-/* Linux add begin£¬w68271 */
 extern VOS_UINT32 RNIC_FidInit( enum VOS_INIT_PHASE_DEFINE ip );
 extern VOS_UINT32 NFExt_FidInit ( enum VOS_INIT_PHASE_DEFINE ip );
-/* Linux add end£¬w68271 */
 extern VOS_UINT32 FC_ACORE_FidInit(enum VOS_INIT_PHASE_DEFINE enPhase);
 extern VOS_UINT32 CPULOAD_FidInit(enum VOS_INIT_PHASE_DEFINE enPhase);
 

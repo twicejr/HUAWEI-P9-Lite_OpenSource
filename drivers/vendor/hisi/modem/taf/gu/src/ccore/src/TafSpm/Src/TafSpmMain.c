@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafSpmMain.c
-  版 本 号   : 初稿
-  作    者   : W00176964
-  生成日期   : 2013年5月8日
-  最近修改   :
-  功能描述   : TafSpmMain.C文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年5月8日
-    作    者   : w00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -29,16 +12,10 @@
 #include "TafLog.h"
 #include "TafSpmFsmServiceCtrlTbl.h"
 #include "TafSpmProcNvim.h"
-/* Added by s00217060 for VoLTE_PhaseI  项目, 2013-07-11, begin */
 #include "TafSdcCtx.h"
-/* Added by s00217060 for VoLTE_PhaseI  项目, 2013-07-11, end */
 
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-15, begin */
 #include "TafSpmServiceDomainSelProc.h"
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-15, end */
-/* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-14, begin */
 #include "TafSpmPreProcTbl.h"
-/* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-14, end */
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -69,24 +46,7 @@ extern "C" {
 /*****************************************************************************
   6 函数定义
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : TAF_SPM_BuildEventType
- 功能描述  : 构造EventType
- 输入参数  : pstMsg      :  消息内容
- 输出参数  : 无
- 返 回 值  : ulEventType事件类型
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月9日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年6月6日
-    作    者   : l00198894
-    修改内容   : Modem PID扩展
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_BuildEventType(
     struct MsgCB                       *pstMsg
 )
@@ -104,9 +64,7 @@ VOS_UINT32 TAF_SPM_BuildEventType(
         pstRcvTimerMsg = (REL_TIMER_MSG *)pstMsg;
         ulEventType    = TAF_BuildEventType(pstMsgHeader->ulSenderPid, pstRcvTimerMsg->ulName);
 
-        /* Deleted by w00176964 for VoLTE_PhaseIII 项目, 2013-12-25, begin */
 
-        /* Deleted by w00176964 for VoLTE_PhaseIII 项目, 2013-12-25, end */
     }
     else
     {
@@ -117,25 +75,7 @@ VOS_UINT32 TAF_SPM_BuildEventType(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_MsgProc
- 功能描述  : TAF SPM的消息处理函数
- 输入参数  : pstSrcMsg       :SPM模块收到的原始消息
-             ppstDestMsg     :SPM模块处理完成后的目的消息
- 输出参数  : 无
- 返 回 值  : VOS_TRUE :当前消息在spm模块处理完成，不需要进入原有MN模块处理
-             VOS_FALSE:spm模块处理未完成，需要进入原有MN模块处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年7月14日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2013年12月17日
-   作    者   : s00217060
-   修改内容   : VoLTE_PhaseIII项目
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_MsgProc(
     struct MsgCB                       *pstSrcMsg,
     struct MsgCB                      **ppstDestMsg
@@ -145,7 +85,6 @@ VOS_UINT32 TAF_SPM_MsgProc(
     VOS_UINT32                          ulRet;
     TAF_SPM_ENTRY_MSG_STRU             *pstEntryMsg     = VOS_NULL_PTR;
 
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-25, begin */
     REL_TIMER_MSG                      *pstRcvTimerMsg  = VOS_NULL_PTR;
     MSG_HEADER_STRU                    *pstMsgHeader    = VOS_NULL_PTR;
 
@@ -163,17 +102,14 @@ VOS_UINT32 TAF_SPM_MsgProc(
             TAF_SPM_StopTimer(pstRcvTimerMsg->ulName,(VOS_UINT16)pstRcvTimerMsg->ulPara);
         }
     }
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-25, end */
 
     ulEventType = TAF_SPM_BuildEventType(pstSrcMsg);
 
-    /* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-17, begin */
     /* 如果已经预处理完成则直接返回 */
     if (VOS_TRUE == TAF_SPM_PreProcessMsg(ulEventType, pstSrcMsg))
     {
         return VOS_TRUE;
     }
-    /* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-17, end */
 
     /* 如果已经处理完成则直接返回 */
     ulRet = TAF_SPM_ProcessMsgInFsm(ulEventType, pstSrcMsg);
@@ -198,26 +134,9 @@ VOS_UINT32 TAF_SPM_MsgProc(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RegFsm
- 功能描述  : 各个状态机注册
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年05月8日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2014年01月02日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseIII项目
-*****************************************************************************/
 VOS_VOID TAF_SPM_RegFsm( VOS_VOID  )
 {
-    /* Added by s00217060 for VoLTE_PhaseIII  项目, 2014-01-02, begin */
     /* 预处理注册 */
     TAF_FSM_RegisterFsm((TAF_SPM_GetPreFsmDescAddr()),
                          "TAF_SPM:FSM:PreProcess",
@@ -225,7 +144,6 @@ VOS_VOID TAF_SPM_RegFsm( VOS_VOID  )
                          TAF_SPM_GetPreProcessStaTbl(),
                          VOS_NULL_PTR,
                          VOS_NULL_PTR);
-    /* Added by s00217060 for VoLTE_PhaseIII  项目, 2014-01-02, end */
 
     /* 主处理状态机注册 */
     TAF_FSM_RegisterFsm(TAF_SPM_GetMainFsmDescAddr(),
@@ -247,24 +165,7 @@ VOS_VOID TAF_SPM_RegFsm( VOS_VOID  )
     return;
 }
 
-/* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-14, begin */
-/*****************************************************************************
- 函 数 名  : TAF_SPM_PreProcessMsg
- 功能描述  : SPM消息预处理
- 输入参数  : ulEventType  :消息类型
-             pstMsg       :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:预处理完成
-             VOS_FALSE:还需要进行状态机中处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月14日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_PreProcessMsg(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -296,25 +197,9 @@ VOS_UINT32 TAF_SPM_PreProcessMsg(
     /* 消息未被处理完成需继续处理 */
     return VOS_FALSE;
 }
-/* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-14, end */
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcessMsgInFsm
- 功能描述  : 对消息进行状态机处理
- 输入参数  : ulEventType: 消息事件类型
-             pstMsg     : 消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  消息处理完成
-             VOS_FALSE: 消息未处理完成，还需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月8日
-    作    者   : W00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_ProcessMsgInFsm(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -379,23 +264,7 @@ VOS_UINT32 TAF_SPM_ProcessMsgInFsm(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcessMsgInEntityFsm
- 功能描述  : 在client ID实体状态机里对消息进行处理
- 输入参数  : ucFsmIndex   :状态机索引
-             ulEventType  :消息事件类型
-             pstMsg       :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  消息处理完成
-             VOS_FALSE: 消息未处理完成，还需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月8日
-    作    者   : W00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_ProcessMsgInEntityFsm(
     VOS_UINT8                           ucFsmIndex,
     VOS_UINT32                          ulEventType,
@@ -415,25 +284,7 @@ VOS_UINT32 TAF_SPM_ProcessMsgInEntityFsm(
 }
 
 
-/*****************************************************************************
- 函 数 名    : TAF_SPM_FSM_ProcessEvent
- 功能描述    : 状态机的事件处理函数
- 输入参数    : ulCurState :当前状态
-               ulEventType:处理事件
-               ulMsgID    :消息ID
-               pRcvMsg    :消息指针
-               pstFsmDesc :状态机描述表
- 输出参数    :
- 返回值      : VOS_UINT32:处理是否完成
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月8日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
- *****************************************************************************/
 VOS_UINT32 TAF_SPM_FSM_ProcessEvent(
     VOS_UINT32                          ulCurState,
     VOS_UINT32                          ulEventType,
@@ -461,21 +312,7 @@ VOS_UINT32 TAF_SPM_FSM_ProcessEvent(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_Init
- 功能描述  : SPM初始化函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年5月9日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  TAF_SPM_Init(VOS_VOID)
 {
     /* 初始化SPM模块CTX */
@@ -491,23 +328,7 @@ VOS_VOID  TAF_SPM_Init(VOS_VOID)
     TAF_SPM_FSM_InitMainFsm(TAF_SPM_FSM_MAIN, TAF_SPM_GetMainFsmDescAddr(), TAF_SPM_MAIN_STA_IDLE);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_InitCtx
- 功能描述  : SPM CTX模块初始化
- 输入参数  : pstSpmCtx-SPM模块上下文
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年5月8日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2014年11月28日
-   作    者   : j00174725
-   修改内容   : 增强型多方通话
-*****************************************************************************/
 VOS_VOID  TAF_SPM_InitCtx(
     TAF_SPM_CONTEXT_STRU               *pstSpmCtx
 )
@@ -524,17 +345,13 @@ VOS_VOID  TAF_SPM_InitCtx(
 
     TAF_SPM_InitServiceCtrlCfgInfo(&(pstSpmCtx->stServiceCtrlCfgInfo));
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-4-28, begin */
     TAF_SPM_InitServiceReqBufferMsgQueue();
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-4-28, end */
 
-    /* Added by y00245242 for VoLTE_PhaseII  项目, 2013-9-22, begin */
 #if (FEATURE_IMS == FEATURE_ON)
     TAF_SPM_InitDomainSelCtx(&(pstSpmCtx->stDomainSelCtx));
 
     TAF_SPM_InitEconfInfo();
 #endif
-    /* Added by y00245242 for VoLTE_PhaseII  项目, 2013-9-22, end */
 }
 
 

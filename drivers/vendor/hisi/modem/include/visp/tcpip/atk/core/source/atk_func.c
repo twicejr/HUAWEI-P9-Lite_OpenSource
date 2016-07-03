@@ -58,27 +58,7 @@ VOID ATK_Sock_TimeCallBack(VOID *pArg)
     return;
 }
 
-/*******************************************************************************
-*    Func Name: ATK_AddAtkStat
-* Date Created: 2014-08-06
-*       Author: a00900892
-*  Description: Increment count of an attack type in attack statistics for an
-*               interface.
-*        Input: ulIfIndex: If index of the incoming interface.
-*               ulAttackType: Type of IP attack, one of ENUM_ATKSTATTYPE.
-*               pstIp£ºPointer to the IP header of the incoming packet.
-*       Output: 
-*       Return: VRP_YES: If module not initialized, else VRP_NO.
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-08-06   a00900892               Create
-*  2014-08-18   a00900892               Modify (change return type, DTS2014081805831)
-*  2014-08-26   a00900892               Modify (for DTS2014082605389)
-*
-*******************************************************************************/
+
 ULONG ATK_AddAtkStat(ULONG ulIfIndex, ULONG ulAttackType, IP_S *pstIp)
 {
     ULONG ulHashIndex = 0;

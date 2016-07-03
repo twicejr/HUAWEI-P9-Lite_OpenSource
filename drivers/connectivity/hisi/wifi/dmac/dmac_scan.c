@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : dmac_scan.c
-  版 本 号   : 初稿
-  作    者   : w00196298
-  生成日期   : 2013年10月10日
-  最近修改   :
-  功能描述   : 扫描
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年10月10日
-    作    者   : w00196298
-    修改内容   : 创建文件
-
-******************************************************************************/
 #ifdef __cplusplus
 #if __cplusplus
 extern "C" {
@@ -61,6 +44,8 @@ extern "C" {
 #include "dmac_dft.h"
 #endif
 #include "hal_device.h"
+#include "dmac_config.h"
+#include "dmac_chan_mgmt.h"
 
 #undef  THIS_FILE_ID
 #define THIS_FILE_ID OAM_FILE_ID_DMAC_SCAN_C
@@ -104,27 +89,7 @@ OAL_STATIC oal_void dmac_scan_print_time_stamp()
 #endif
 
 #ifdef _PRE_WLAN_FEATURE_20_40_80_COEXIST
-/*****************************************************************************
- 函 数 名  : dmac_detect_2040_te_a_b
- 功能描述  : 20M 40M共存检查函数，查找带有40M不允许的BSS以及非HT能力信息的BSS
- 输入参数  : dmac_vap_stru *pst_dmac_vap,
-             oal_uint8 *puc_frame_body
-             oal_uint16 us_frame_len
-             oal_uint16 us_offset
-             oal_uint8 uc_curr_chan
- 输出参数  : 无
- 返 回 值  : oal_uint32，
-             OAL_SUCC,   成功
-             OTHERS,     失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月28日
-    作    者   : d00223710
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_detect_2040_te_a_b(dmac_vap_stru *pst_dmac_vap, oal_uint8 *puc_frame_body, oal_uint16 us_frame_len, oal_uint16 us_offset,oal_uint8 uc_curr_chan)
 {
     oal_uint8            chan_index     = 0;
@@ -196,21 +161,7 @@ oal_void dmac_detect_2040_te_a_b(dmac_vap_stru *pst_dmac_vap, oal_uint8 *puc_fra
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_scan_proc_obss_scan_complete_event
- 功能描述  : OBSS扫描完成后调用的接口
- 输入参数  : dmac_vap_stru *pst_dmac_vap
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月28日
-    作    者   : d00223710
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  dmac_scan_proc_obss_scan_complete_event(dmac_vap_stru *pst_dmac_vap)
 {
     frw_event_mem_stru             *pst_event_mem;      /* 申请事件返回的内存指针 */
@@ -270,22 +221,7 @@ oal_void  dmac_scan_proc_obss_scan_complete_event(dmac_vap_stru *pst_dmac_vap)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : dmac_scan_set_vap_mac_addr_by_scan_state
- 功能描述  : 随机mac addr扫描状态下，扫描开始时，更新vap mac addr为随机值，扫描完成后，恢复为默认值
- 输入参数  : mac_device_stru  *pst_mac_device
-             oal_bool_enum_uint8 en_is_scan_start,  标记扫描开始还是结束
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月28日
-    作    者   : l00279018
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void  dmac_scan_set_vap_mac_addr_by_scan_state(mac_device_stru  *pst_mac_device,
                                                                            oal_bool_enum_uint8 en_is_scan_start)
 {
@@ -358,24 +294,7 @@ OAL_STATIC oal_void  dmac_scan_set_vap_mac_addr_by_scan_state(mac_device_stru  *
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_scan_report_scanned_bss
- 功能描述  : 上报扫描结果到host侧，不区分02还是51，统一上报
- 输入参数  : dmac_vap_stru *pst_dmac_vap,
-             oal_void *p_param
- 输出参数  : 无
- 返 回 值  : oal_uint32，
-             OAL_SUCC,   成功
-             OTHERS,     失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月31日
-    作    者   : l00279018
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_scan_report_scanned_bss(dmac_vap_stru *pst_dmac_vap, oal_void *p_param)
 {
     frw_event_mem_stru                    *pst_event_mem;
@@ -497,24 +416,7 @@ OAL_STATIC oal_uint32  dmac_scan_report_scanned_bss(dmac_vap_stru *pst_dmac_vap,
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_scan_check_bss_in_pno_scan
- 功能描述  : 在pno扫描的情况下，检查收到的beacon/probe response是不是要扫描的bss，不是则不上报
- 输入参数  : oal_uint8         *puc_frame_body,             beacon帧或者probe rsp帧
-             mac_pno_scan_stru *pst_pno_scan_info,          pno扫描的参数
-             oal_uint8          uc_rssi                     管理帧的信号
- 输出参数  : 无
- 返 回 值  : OAL_SUCC,      可上报
-             其它，         不上报
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月9日
-    作    者   : l00279018
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_scan_check_bss_in_pno_scan(oal_uint8         *puc_frame_body,
                                                                   oal_int32          l_frame_body_len,
                                                                   mac_pno_scan_stru *pst_pno_scan_info,
@@ -555,22 +457,7 @@ OAL_STATIC oal_uint32  dmac_scan_check_bss_in_pno_scan(oal_uint8         *puc_fr
     return OAL_FAIL;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_scan_check_bss_type
- 功能描述  : 检查收到的beacon/probe response是不是要扫描的bss
- 输入参数  : puc_frame_body: beancon帧体
-             pst_scan_params: 本次扫描参数
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月20日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_scan_check_bss_type(oal_uint8 *puc_frame_body, mac_scan_req_stru *pst_scan_params)
 {
     mac_cap_info_stru         *pst_cap_info;
@@ -601,24 +488,61 @@ OAL_STATIC oal_uint32  dmac_scan_check_bss_type(oal_uint8 *puc_frame_body, mac_s
     return OAL_SUCC;
 }
 
+#ifdef _PRE_WLAN_FEATURE_20_40_80_COEXIST
 
-/*****************************************************************************
- 函 数 名  : dmac_scan_mgmt_filter
- 功能描述  : device在扫描状态下的接收管理帧处理
- 输入参数  : dmac_vap_stru *pst_dmac_vap,
-             oal_void *p_param,
-             oal_uint8 *pen_report_bss,              是否上报bss成功
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+oal_void  dmac_scan_check_assoc_ap_channel(dmac_vap_stru *pst_dmac_vap, mac_device_stru *pst_mac_device, oal_netbuf_stru *pst_netbuf)
+{
+    dmac_rx_ctl_stru           *pst_rx_ctrl;
+    mac_ieee80211_frame_stru   *pst_frame_hdr;
+    oal_uint8                  *puc_frame_body;
+    oal_uint16                  us_frame_len;
+    oal_uint16                  us_offset =  MAC_TIME_STAMP_LEN + MAC_BEACON_INTERVAL_LEN + MAC_CAP_INFO_LEN;
+    mac_cfg_ssid_param_stru     st_mib_ssid = {0};
+    oal_uint8                   uc_mib_ssid_len = 0;
+    oal_uint8                   uc_frame_channel;
+    oal_uint8                   uc_ssid_len = 0;
+    oal_uint8                  *puc_ssid;
 
- 修改历史      :
-  1.日    期   : 2013年6月19日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
+    pst_rx_ctrl = (dmac_rx_ctl_stru *)oal_netbuf_cb(pst_netbuf);
 
-*****************************************************************************/
+    /* 获取帧信息 */
+    pst_frame_hdr  = (mac_ieee80211_frame_stru *)mac_get_rx_cb_mac_hdr(&(pst_rx_ctrl->st_rx_info));
+    puc_frame_body = MAC_GET_RX_PAYLOAD_ADDR(&(pst_rx_ctrl->st_rx_info), pst_netbuf);
+    us_frame_len   = (oal_uint16)oal_netbuf_get_len(pst_netbuf);
+
+    if (!OAL_MEMCMP(pst_frame_hdr->auc_address3, pst_dmac_vap->st_vap_base_info.auc_bssid, WLAN_MAC_ADDR_LEN))
+    {
+        puc_ssid = mac_get_ssid(puc_frame_body, (oal_int32)(us_frame_len - MAC_80211_FRAME_LEN), &uc_ssid_len);
+        mac_mib_get_ssid(&pst_dmac_vap->st_vap_base_info, &uc_mib_ssid_len, (oal_uint8 *)&st_mib_ssid);
+        if ((OAL_PTR_NULL != puc_ssid) && (0 != uc_ssid_len) && (st_mib_ssid.uc_ssid_len == uc_ssid_len))
+        {
+            if (!OAL_MEMCMP(st_mib_ssid.ac_ssid, puc_ssid, uc_ssid_len))
+            {
+                /* 获取管理帧中的信道 */
+                uc_frame_channel = mac_ie_get_chan_num(puc_frame_body, (us_frame_len - MAC_80211_FRAME_LEN),
+                                   us_offset, pst_rx_ctrl->st_rx_info.uc_channel_number);
+
+                if (pst_dmac_vap->st_vap_base_info.st_channel.uc_chan_number != uc_frame_channel)
+                {
+                    /* STA当前信道与获取管理帧中的信道不一致，则更新STA的当前信道 */
+                    pst_dmac_vap->st_vap_base_info.st_channel.uc_chan_number = uc_frame_channel;
+                    if (!mac_is_dbac_running(pst_mac_device))
+                    {
+                        /* 非DBAC时上报信道切换完毕消息 */
+                        pst_dmac_vap->st_linkloss_info.us_link_loss = 0;
+                        OAM_WARNING_LOG2(pst_dmac_vap->st_vap_base_info.uc_vap_id, OAM_SF_SCAN, "{dmac_scan_mgmt_filter::AP has switch channel home chan[%d], new chan[%d].}\r\n",
+                                       pst_mac_device->st_home_channel.uc_chan_number, uc_frame_channel);
+                        pst_mac_device->st_home_channel = pst_dmac_vap->st_vap_base_info.st_channel;
+                        dmac_switch_complete_notify(&pst_dmac_vap->st_vap_base_info, OAL_FALSE);
+                    }
+                }
+            }
+        }
+    }
+}
+#endif
+
+
 oal_uint32  dmac_scan_mgmt_filter(dmac_vap_stru *pst_dmac_vap, oal_void *p_param, oal_bool_enum_uint8 *pen_report_bss)
 {
     oal_netbuf_stru            *pst_netbuf;
@@ -629,6 +553,7 @@ oal_uint32  dmac_scan_mgmt_filter(dmac_vap_stru *pst_dmac_vap, oal_void *p_param
     mac_scan_req_stru          *pst_scan_params;
     oal_uint32                  ul_ret;
     oal_uint16                  us_frame_len;
+
 #if (_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC == _PRE_MULTI_CORE_MODE)
 #ifdef _PRE_WLAN_FEATURE_20_40_80_COEXIST
     oal_uint16                  us_offset =  MAC_TIME_STAMP_LEN + MAC_BEACON_INTERVAL_LEN + MAC_CAP_INFO_LEN;
@@ -684,6 +609,17 @@ oal_uint32  dmac_scan_mgmt_filter(dmac_vap_stru *pst_dmac_vap, oal_void *p_param
                 pst_mac_device->uc_scan_recv_frame = OAL_TRUE;
             }
 #endif
+#ifdef _PRE_WLAN_FEATURE_20_40_80_COEXIST
+            if ((WLAN_VAP_MODE_BSS_STA == pst_dmac_vap->st_vap_base_info.en_vap_mode)
+                 && (MAC_VAP_STATE_PAUSE == pst_dmac_vap->st_vap_base_info.en_vap_state))
+            {
+                /* STA扫描且linkloss超过门限1/4时，进行AP信道是否切换的识别 */
+                if (pst_dmac_vap->st_linkloss_info.us_link_loss >= pst_dmac_vap->st_linkloss_info.us_linkloss_threshold / 4)
+                {
+                    dmac_scan_check_assoc_ap_channel(pst_dmac_vap, pst_mac_device, pst_netbuf);
+                }
+            }
+#endif
             /* 如果是pno调度扫描，则需要进行rssi和ssid的过滤 */
             if (WLAN_SCAN_MODE_BACKGROUND_PNO == pst_scan_params->en_scan_mode)
             {
@@ -726,24 +662,7 @@ oal_uint32  dmac_scan_mgmt_filter(dmac_vap_stru *pst_dmac_vap, oal_void *p_param
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_scan_encap_probe_req_frame
- 功能描述  : 封装probe request帧
- 输入参数  : pst_dmac_vap: DMAC VAP
-             puc_buffer: buffer起始地址
-             puc_bssid: bssid
-             pc_ssid: ssid
- 输出参数  : 无
- 返 回 值  : 封装后的帧长度
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月24日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint16  dmac_scan_encap_probe_req_frame(dmac_vap_stru *pst_dmac_vap, oal_netbuf_stru *pst_mgmt_buf, oal_uint8 *puc_bssid, oal_int8 *pc_ssid)
 {
     oal_uint8        uc_ie_len;
@@ -854,23 +773,7 @@ OAL_STATIC oal_uint16  dmac_scan_encap_probe_req_frame(dmac_vap_stru *pst_dmac_v
     return (oal_uint16)(puc_payload_addr - puc_payload_addr_origin + MAC_80211_FRAME_LEN);
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_scan_send_probe_req_frame
- 功能描述  : 发送探测请求帧
- 输入参数  : pst_dmac_vap: DMAC VAP
-             puc_bssid   : 此次探测请求帧中的bssid
-             pc_ssid     : 此次探测请求帧中的ssid
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月4日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_scan_send_probe_req_frame(dmac_vap_stru *pst_dmac_vap,
                                             oal_uint8 *puc_bssid,
                                             oal_int8 *pc_ssid)
@@ -887,7 +790,6 @@ oal_uint32  dmac_scan_send_probe_req_frame(dmac_vap_stru *pst_dmac_vap,
     if (OAL_PTR_NULL == pst_mgmt_buf)
     {
         OAM_ERROR_LOG0(pst_dmac_vap->st_vap_base_info.uc_vap_id, OAM_SF_SCAN, "{dmac_scan_send_probe_req_frame::alloc netbuf failed.}");
-        /* device netbuf 申请不到维测，以后删除， l00324381 20150902 */
         OAL_MEM_INFO_PRINT(OAL_MEM_POOL_ID_NETBUF);
         return OAL_ERR_CODE_PTR_NULL;
     }
@@ -935,22 +837,7 @@ oal_uint32  dmac_scan_send_probe_req_frame(dmac_vap_stru *pst_dmac_vap,
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_scan_proc_scan_complete_event
- 功能描述  : 扫描完成后调用的接口
- 输入参数  : dmac_vap_stru *pst_dmac_vap,
-             mac_scan_status_enum_uint8 en_scan_rsp_status
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月19日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_scan_proc_scan_complete_event(dmac_vap_stru *pst_dmac_vap,
                                                mac_scan_status_enum_uint8 en_scan_rsp_status)
 {
@@ -1013,22 +900,7 @@ oal_uint32  dmac_scan_proc_scan_complete_event(dmac_vap_stru *pst_dmac_vap,
 }
 
 #if 0
-/* DTS2015071604582:由于对P2P 邀请有影响，删除扫描忙判断 */
-/*****************************************************************************
- 函 数 名  : dmac_scan_is_too_busy
- 功能描述  : p2p已关联时 检查扫描是否太频繁
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月18日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_scan_is_too_busy(mac_device_stru *pst_mac_device, mac_scan_req_stru *pst_scan_req_params)
 {
     oal_uint32       ul_ret;
@@ -1064,23 +936,7 @@ OAL_STATIC oal_uint32  dmac_scan_is_too_busy(mac_device_stru *pst_mac_device, ma
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : dmac_scan_handle_scan_req_entry
- 功能描述  : 全系统扫描请求执行的总入口
- 输入参数  : mac_device_stru    *pst_mac_device,
-             dmac_vap_stru      *pst_dmac_vap,
-             mac_scan_req_stru  *pst_scan_req_params
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月14日
-    作    者   : l00279018
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_scan_handle_scan_req_entry(mac_device_stru    *pst_mac_device,
                                                                  dmac_vap_stru      *pst_dmac_vap,
                                                                  mac_scan_req_stru  *pst_scan_req_params)
@@ -1189,22 +1045,7 @@ oal_uint32  dmac_scan_handle_scan_req_entry(mac_device_stru    *pst_mac_device,
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_scan_prepare_pno_scan_params
- 功能描述  : 准备PNO调度扫描参数
- 输入参数  : mac_scan_req_stru  *pst_scan_params    准备好的扫描参数
-             oal_uint8           uc_vap_id          发起扫描的vap id
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月9日
-    作    者   : l00279018
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void dmac_scan_prepare_pno_scan_params(mac_scan_req_stru  *pst_scan_params,
                                                                   dmac_vap_stru    *pst_dmac_vap)
 {
@@ -1293,21 +1134,7 @@ OAL_STATIC oal_void dmac_scan_prepare_pno_scan_params(mac_scan_req_stru  *pst_sc
 }
 
 #if (_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC == _PRE_MULTI_CORE_MODE)
-/*****************************************************************************
- 函 数 名  : dmac_scan_pno_scan_timeout_fn
- 功能描述  : pno rtc调度扫描定时器超时，重新发起pno扫描
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月27日
-    作    者   : l00279018
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 /*lint -e528*/
 OAL_STATIC oal_void  dmac_scan_pno_scan_timeout_fn(void *p_ptr, void *p_arg)
 {
@@ -1378,21 +1205,7 @@ OAL_STATIC oal_void  dmac_scan_pno_scan_timeout_fn(void *p_ptr, void *p_arg)
 #endif
 
 
-/*****************************************************************************
- 函 数 名  : dmac_scan_start_pno_sched_scan_timer
- 功能描述  : 启动PNO调度扫描定时器，使得device进入深睡后，也能够唤醒
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月18日
-    作    者   : l00279018
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_scan_start_pno_sched_scan_timer(void *p_arg)
 {
 #if ((_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC == _PRE_MULTI_CORE_MODE) && (_PRE_TEST_MODE != _PRE_TEST_MODE_UT))
@@ -1456,21 +1269,7 @@ OAL_STATIC oal_uint32  dmac_scan_start_pno_sched_scan_timer(void *p_arg)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_scan_stop_pno_sched_scan_timer
- 功能描述  : 关闭PNO调度扫描定时器
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月18日
-    作    者   : l00279018
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_scan_stop_pno_sched_scan_timer(void *p_arg)
 {
 #if ((_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC == _PRE_MULTI_CORE_MODE) && (_PRE_TEST_MODE != _PRE_TEST_MODE_UT))
@@ -1495,21 +1294,7 @@ oal_uint32  dmac_scan_stop_pno_sched_scan_timer(void *p_arg)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_scan_proc_sched_scan_req_event
- 功能描述  : 处理上层下发的PNO调度扫描请求事件，调用扫描入口函数进行扫描
- 输入参数  : pst_event_mem: 事件内存
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月9日
-    作    者   : l00279018
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_scan_proc_sched_scan_req_event(frw_event_mem_stru *pst_event_mem)
 {
     frw_event_stru             *pst_event;
@@ -1571,21 +1356,7 @@ oal_uint32  dmac_scan_proc_sched_scan_req_event(frw_event_mem_stru *pst_event_me
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_scan_proc_scan_req_event
- 功能描述  : 处理上层下发的扫描请求事件，调用扫描入口函数进行扫描
- 输入参数  : pst_event_mem: 事件内存
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月19日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_scan_proc_scan_req_event(frw_event_mem_stru *pst_event_mem)
 {
     frw_event_stru             *pst_event;
@@ -1629,21 +1400,7 @@ oal_uint32  dmac_scan_proc_scan_req_event(frw_event_mem_stru *pst_event_mem)
 
 #ifdef _PRE_WLAN_FEATURE_20_40_80_COEXIST
 
-/*****************************************************************************
- 函 数 名  : dmac_scan_prepare_obss_scan_params
- 功能描述  : 准备obss扫描参数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月27日
-    作    者   : l00279018
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32 dmac_scan_prepare_obss_scan_params(mac_scan_req_stru  *pst_scan_params,
                                                          dmac_vap_stru      *pst_dmac_vap)
 {
@@ -1764,21 +1521,7 @@ OAL_STATIC oal_uint32 dmac_scan_prepare_obss_scan_params(mac_scan_req_stru  *pst
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_scan_obss_timeout_fn
- 功能描述  : obss扫描定时器超时，发起obss扫描
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月27日
-    作    者   : l00279018
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_scan_obss_timeout_fn(void *p_arg)
 {
     dmac_vap_stru          *pst_dmac_vap;
@@ -1844,21 +1587,7 @@ OAL_STATIC oal_uint32  dmac_scan_obss_timeout_fn(void *p_arg)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_scan_start_obss_timer
- 功能描述  : 启动obss扫描定时器
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月27日
-    作    者   : l00279018
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_scan_start_obss_timer(mac_vap_stru *pst_mac_vap)
 {
     dmac_vap_stru                 *pst_dmac_vap;
@@ -1907,21 +1636,7 @@ oal_void dmac_scan_start_obss_timer(mac_vap_stru *pst_mac_vap)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : dmac_scan_switch_channel_notify_alg
- 功能描述  : 切信道时，通知算法
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月18日
-    作    者   : l00279018
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void  dmac_scan_switch_channel_notify_alg(dmac_vap_stru     *pst_dmac_vap,
                                                                    mac_channel_stru  *pst_channel)
 {
@@ -1954,24 +1669,7 @@ OAL_STATIC oal_void  dmac_scan_switch_channel_notify_alg(dmac_vap_stru     *pst_
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_switch_channel_off
- 功能描述  : 单VAP发保护帧的方式切离信道
- 输入参数  : pst_mac_device : mac device
-             pst_mac_vap    : 要发保护帧的VAP
-             pst_dst_chl    : 目标信道
-             us_protect_time: 切离保护时间，ms
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月15日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_switch_channel_off(
                 mac_device_stru     *pst_mac_device,
                 mac_vap_stru        *pst_mac_vap,
@@ -2004,21 +1702,7 @@ oal_uint32  dmac_switch_channel_off(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_switch_channel_off_enhanced
- 功能描述  : 多VAP背景扫描时 切离工作信道接口
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月20日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_switch_channel_off_enhanced(
                 mac_device_stru     *pst_mac_device,
                 mac_vap_stru        *pst_mac_vap1,
@@ -2136,21 +1820,7 @@ oal_uint32  dmac_switch_channel_off_enhanced(
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_scan_switch_channel_off
- 功能描述  : 扫描切离home信道
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月5日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  dmac_scan_switch_channel_off(mac_device_stru *pst_mac_device)
 {
     mac_vap_stru                   *pst_mac_vap;    /* 要发保护帧的VAP */
@@ -2188,6 +1858,13 @@ oal_void  dmac_scan_switch_channel_off(mac_device_stru *pst_mac_device)
     /* 前景扫描或者PNO发起的扫描(注: PNO只在设备未关联的状态下才发起扫描) 直接切信道 */
     if ((WLAN_SCAN_MODE_FOREGROUND == en_scan_mode) || (WLAN_SCAN_MODE_BACKGROUND_PNO == en_scan_mode))
     {
+        /* 非关联状态下的扫描，保证1M dbb scaling与11M一致 */
+    #if (_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC == _PRE_MULTI_CORE_MODE)
+    #ifdef _PRE_PLAT_FEATURE_CUSTOMIZE
+        dmac_config_update_dsss_scaling_reg(DMAC_ALG_TPC_FAR_DISTANCE);
+    #endif  /* _PRE_PLAT_FEATURE_CUSTOMIZE */
+    #endif
+
     #ifdef _PRE_WLAN_FEATURE_PROXYSTA
         if ((OAL_TRUE == pst_mac_device->st_cap_flag.bit_proxysta) && (OAL_FALSE == pst_dmac_vap->st_vap_base_info.st_vap_proxysta.en_is_main_proxysta))
         {
@@ -2207,7 +1884,7 @@ oal_void  dmac_scan_switch_channel_off(mac_device_stru *pst_mac_device)
     uc_up_vap_num = (oal_uint8)mac_device_calc_up_vap_num(pst_mac_device);
 
     if (1 == uc_up_vap_num)
-    {  
+    {
         if (OAL_SUCC != mac_device_find_up_vap(pst_mac_device, &pst_mac_vap))
         {
             OAM_ERROR_LOG0(pst_dmac_vap->st_vap_base_info.uc_vap_id, OAM_SF_SCAN, "{dmac_scan_switch_channel_off::up vap is null ptr.}");
@@ -2244,21 +1921,7 @@ oal_void  dmac_scan_switch_channel_off(mac_device_stru *pst_mac_device)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_scan_switch_channel_back
- 功能描述  : 背景扫描切回home信道
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  dmac_scan_switch_channel_back(mac_device_stru *pst_mac_device)
 {
     if (OAL_FALSE == pst_mac_device->st_scan_params.en_working_in_home_chan)
@@ -2293,22 +1956,7 @@ oal_void  dmac_scan_switch_channel_back(mac_device_stru *pst_mac_device)
 
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_scan_need_switch_home_channel
- 功能描述  : 判断是否需要切回工作信道工作，如果背景扫描模式为支持切回工作信道，
-             且每扫描4个信道才切回工作信道
- 输入参数  : mac_device_stru *pst_mac_device
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月15日
-    作    者   : l00279018
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_bool_enum_uint8  dmac_scan_need_switch_home_channel(mac_device_stru *pst_mac_device)
 {
     /* 背景扫描需要切回工作信道，且间隔6个信道切回一次 */
@@ -2322,21 +1970,7 @@ OAL_STATIC oal_bool_enum_uint8  dmac_scan_need_switch_home_channel(mac_device_st
 }
 
 #if (_PRE_PRODUCT_ID == _PRE_PRODUCT_ID_HI1102_DEV)
-/*****************************************************************************
- 函 数 名  : dmac_scan_check_2g_scan_results
- 功能描述  : 当前信道扫描超时处理函数，判断是否扫描完成还是继续切换下一信道
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月15日
-    作    者   : l00279018
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_scan_check_2g_scan_results(mac_device_stru *pst_mac_device, mac_vap_stru *pst_vap, wlan_channel_band_enum_uint8 en_next_band)
 {
 
@@ -2371,21 +2005,7 @@ OAL_STATIC oal_uint32  dmac_scan_check_2g_scan_results(mac_device_stru *pst_mac_
     return OAL_SUCC;
 }
 #endif
-/*****************************************************************************
- 函 数 名  : dmac_scan_curr_channel_scan_time_out
- 功能描述  : 当前信道扫描超时处理函数，判断是否扫描完成还是继续切换下一信道
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月15日
-    作    者   : l00279018
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_scan_curr_channel_scan_time_out(void *p_arg)
 {
     mac_device_stru        *pst_mac_device = (mac_device_stru *)p_arg;
@@ -2507,21 +2127,7 @@ OAL_STATIC oal_uint32  dmac_scan_curr_channel_scan_time_out(void *p_arg)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_scan_begin
- 功能描述  : 启动一个扫描，其中，扫描的所有参数由dmac_scan_prepare准备
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月22日
-    作    者   : w00196298
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_scan_begin(mac_device_stru *pst_mac_device)
 {
     mac_scan_req_stru               *pst_scan_params;
@@ -2581,7 +2187,6 @@ oal_void dmac_scan_begin(mac_device_stru *pst_mac_device)
 
         pst_mac_device->st_p2p_vap_channel = pst_dmac_vap->st_vap_base_info.st_channel;
 
-        /* DTS2015021503830 扫描响应帧携带的DSSS Parameter表示STA可识别的信道号错误 */
         pst_dmac_vap->st_vap_base_info.st_channel = pst_scan_params->ast_channel_list[0];
 
 #ifdef _PRE_WLAN_FEATURE_STA_PM
@@ -2593,21 +2198,7 @@ oal_void dmac_scan_begin(mac_device_stru *pst_mac_device)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_scan_end
- 功能描述  : 一个扫描请求完成时的收尾函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月21日
-    作    者   : w00196298
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_scan_end(mac_device_stru *pst_mac_device)
 {
     dmac_vap_stru              *pst_dmac_vap;
@@ -2727,21 +2318,7 @@ oal_void dmac_scan_end(mac_device_stru *pst_mac_device)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_scan_abort
- 功能描述  : 结束扫描
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月30日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  dmac_scan_abort(mac_device_stru *pst_mac_device)
 {
     if (MAC_SCAN_STATE_RUNNING != pst_mac_device->en_curr_scan_state)
@@ -2759,28 +2336,11 @@ oal_void  dmac_scan_abort(mac_device_stru *pst_mac_device)
     OAM_WARNING_LOG0(0, OAM_SF_SCAN, "dmac_scan_abort: scan has been aborted");
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_scan_get_ssid_ie_info
- 功能描述  : 获取组装probe req请求时，需要组装的ssid，ssid信息根据内核下发的ssid中获取，
-             每信道扫描时，依次将携带这些ssid的probe req帧发送出去
-             p2p设备只发送指定ssid的probe req帧。
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月13日
-    作    者   : l00279018
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32 dmac_scan_get_ssid_ie_info(mac_device_stru *pst_mac_device, oal_int8 *pc_ssid, oal_uint8  uc_index)
 {
     dmac_vap_stru     *pst_dmac_vap;
 
-    /* begin：DTS2015033000055 :P2P 设备扫描时，需要携带指定ssid 信息，不能发送ssid 内容为0 的扫描 */
     pst_dmac_vap = (dmac_vap_stru *)mac_res_get_dmac_vap(pst_mac_device->st_scan_params.uc_vap_id);
 
     if (IS_LEGACY_VAP(&(pst_dmac_vap->st_vap_base_info)))
@@ -2793,29 +2353,12 @@ OAL_STATIC oal_uint32 dmac_scan_get_ssid_ie_info(mac_device_stru *pst_mac_device
         /* P2P 设备扫描，需要获取指定ssid 信息，对P2P 设备，扫描时只扫描一个指定ssid */
         oal_memcopy(pc_ssid, pst_mac_device->st_scan_params.ac_ssid[0], WLAN_SSID_MAX_LEN);
     }
-	/* end：DTS2015033000055 :P2P 设备扫描时，需要携带指定ssid 信息，不能发送ssid 内容为0 的扫描 */
 
     return OAL_SUCC;
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_scan_send_bcast_probe
- 功能描述  : 发送广播Probe request帧
- 输入参数  : mac_device_stru *pst_mac_device,
-             oal_uint8 uc_band,
-             oal_uint8 uc_index,        标示本信道扫描发送的第多少个probe req帧
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月21日
-    作    者   : w00196298
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32 dmac_scan_send_bcast_probe(mac_device_stru *pst_mac_device, oal_uint8 uc_band, oal_uint8  uc_index)
 {
     oal_int8           ac_ssid[WLAN_SSID_MAX_LEN] = {'\0'};
@@ -2836,10 +2379,7 @@ OAL_STATIC oal_uint32 dmac_scan_send_bcast_probe(mac_device_stru *pst_mac_device
         return OAL_ERR_CODE_PTR_NULL;
     }
 
-    /*
-       DTS2015041800808 如果st_scan_params.uc_vap_id = 0，可能内存被踩，要直接返回错误，
-       防止后面访问配置vap的造成空指针死机，同时增加维测，把st_scan_params
-    */
+    
     if(OAL_PTR_NULL == pst_dmac_vap->st_vap_base_info.pst_mib_info)
     {
         OAM_ERROR_LOG0(0, OAM_SF_SCAN, "{dmac_scan_send_bcast_probe::pst_dmac_vap->st_vap_base_info.pst_mib_info null.}");
@@ -2877,21 +2417,7 @@ OAL_STATIC oal_uint32 dmac_scan_send_bcast_probe(mac_device_stru *pst_mac_device
     return ul_ret;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_scan_switch_home_channel_work
- 功能描述  : 背景扫描时切回到工作信道进行工作
- 输入参数  : mac_device_stru *pst_mac_device
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月14日
-    作    者   : l00279018
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void  dmac_scan_switch_home_channel_work(mac_device_stru *pst_mac_device)
 {
     hal_enable_radar_det(pst_mac_device->pst_device_stru, 0);
@@ -2914,21 +2440,7 @@ OAL_STATIC oal_void  dmac_scan_switch_home_channel_work(mac_device_stru *pst_mac
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_scan_switch_home_channel_work_timeout
- 功能描述  : 背景扫描时切回工作信道工作超时，继续扫描
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月21日
-    作    者   : w00196298
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_scan_switch_home_channel_work_timeout(void *p_arg)
 {
     mac_device_stru         *pst_mac_device;
@@ -2963,21 +2475,7 @@ OAL_STATIC oal_uint32  dmac_scan_switch_home_channel_work_timeout(void *p_arg)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_scan_get_ch_statics_measurement_result
- 功能描述  : 获取硬件信道统计 测量结果
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月5日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void  dmac_scan_get_ch_statics_measurement_result(
                 mac_device_stru                 *pst_mac_device)
 {
@@ -3020,21 +2518,7 @@ OAL_STATIC oal_void  dmac_scan_get_ch_statics_measurement_result(
 
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_scan_channel_statistics_complete
- 功能描述  : HAL层中的信道统计/测量完成中断对应的事件处理函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月21日
-    作    者   : w00196298
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 dmac_scan_channel_statistics_complete(frw_event_mem_stru *pst_event_mem)
 {
     mac_device_stru                 *pst_mac_device;
@@ -3079,21 +2563,7 @@ oal_uint32 dmac_scan_channel_statistics_complete(frw_event_mem_stru *pst_event_m
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_scan_radar_detected
- 功能描述  : HAL层中的探测到雷达中断对应的事件处理函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月21日
-    作    者   : w00196298
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_scan_radar_detected(mac_device_stru *pst_mac_device, hal_radar_det_event_stru *pst_radar_det_info)
 {
     pst_mac_device->st_chan_result.uc_radar_detected = 1;
@@ -3101,21 +2571,7 @@ oal_void dmac_scan_radar_detected(mac_device_stru *pst_mac_device, hal_radar_det
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_scan_report_channel_result
- 功能描述  : 上报当前信道的信道测量结果
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月27日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_scan_report_channel_statistics_result(mac_device_stru *pst_mac_device, oal_uint8 uc_scan_idx)
 {
     frw_event_mem_stru         *pst_event_mem;
@@ -3154,21 +2610,7 @@ OAL_STATIC oal_uint32  dmac_scan_report_channel_statistics_result(mac_device_str
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_scan_init
- 功能描述  : DMAC SCAN模块的初始化函数，负责申请SCANNER的内存及初始化其成员变量
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月22日
-    作    者   : w00196298
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 dmac_scan_init(mac_device_stru *pst_device)
 {
     /* 初始化device扫描状态为空闲 */
@@ -3178,21 +2620,7 @@ oal_uint32 dmac_scan_init(mac_device_stru *pst_device)
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_scan_exit
- 功能描述  : DMAC SCAN模块的卸载函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月22日
-    作    者   : w00196298
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 dmac_scan_exit(mac_device_stru *pst_device)
 {
     return OAL_SUCC;

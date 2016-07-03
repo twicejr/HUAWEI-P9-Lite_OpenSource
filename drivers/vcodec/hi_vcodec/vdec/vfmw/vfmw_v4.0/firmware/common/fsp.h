@@ -150,7 +150,6 @@ typedef enum hiFSP_INST_STATE_E
 } FSP_INST_STATE_E;
 
 
-/*****************帧存划分状态描述 START l00273086***************/
 typedef enum hiFSP_PARTITION_STATE
 {
     FSP_PARTITION_STATE_FIRST = 0, /*第一次划分*/
@@ -158,7 +157,6 @@ typedef enum hiFSP_PARTITION_STATE
     FSP_PARTITION_STATE_SUCCESS,   /*划分成功*/
     FSP_PARTITION_STATE_FAIL,      /*划分失败*/
 }FSP_PARTITION_STATE_E;
-/*****************帧存划分状态描述 END   l00273086***************/
 
 /* 帧存池实例 */
 typedef struct hiFSP_INST_S

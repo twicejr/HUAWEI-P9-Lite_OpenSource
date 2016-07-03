@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2012, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : usm_am_public.h
-  版 本 号   : 初稿
-  作    者   : z00136627
-  生成日期   : 2012年11月20日
-  最近修改   :
-  功能描述   : USM提供给其他模块的接口
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年11月20日
-    作    者   : z00136627
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __USM_API_H__
 #define __USM_API_H__
@@ -146,7 +129,6 @@ typedef struct
     UCHAR  aucNAI[A11_MAX_NAI_LENGTH + 1];                /* NAI */
 }USM_PPP_LINKUP_RESULT_S;
 
-/* Added start by y00170683 at 2013-03-25 PS10.1 for 3.2.5	PSR.UGWV9R10C01.PDSNPMIPv6.FUNC.005 支持IPv4单栈地址的PMIPv6会话注册 */
 /* PMIPv6模块PDSN时需要使用的字段----NVSE扩展和NAI */
 typedef struct tagUSM_PMIPV6_CONTEXT_DATA
 {
@@ -172,7 +154,6 @@ typedef struct tagUSM_PMIPV6_CONTEXT_DATA
     VOS_UINT32 ulMagGreKey; /* HSGW */
     VOS_UINT32 ulLmaGreKey;
 }USM_PMIPV6_CONTEXT_DATA_S;
-/* Added end by y00170683 at 2013-03-25 PS10.1 for 3.2.5	PSR.UGWV9R10C01.PDSNPMIPv6.FUNC.005 支持IPv4单栈地址的PMIPv6会话注册 */
 typedef enum
 {
     EHRPD_VSNCP_PRO_OK = 0,                 /* 正常处理 */

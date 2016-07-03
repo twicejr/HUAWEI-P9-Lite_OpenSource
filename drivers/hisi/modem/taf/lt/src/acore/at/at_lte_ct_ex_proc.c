@@ -75,7 +75,6 @@
 #include "at_lte_common.h"
 #include "ATCmdProc.h"
 
-/*快速校准 c00173035  start in 2010-12-14*/
 
 /******************************************************************************
  */
@@ -559,8 +558,7 @@ VOS_UINT32 atSetBandSWPara(VOS_UINT8 ucClientId)
 
     /* 5、发送消息给命令处理模块:透明传送用户符合格式的输入，不判断输入值的正确性
  */
-	/* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+	
     /*ulRst = atLteSendMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_SET_BANDSW_REQ, (VOS_VOID*)(&stBandSwSetReq), sizeof(stBandSwSetReq));
  */
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_SET_BANDSW_REQ,ucClientId, (VOS_VOID*)(&stBandSwSetReq), sizeof(stBandSwSetReq));
@@ -615,8 +613,7 @@ VOS_UINT32 atQryBandSWPara(VOS_UINT8 ucClientId)
     FTM_RD_BANDSW_REQ_STRU stBandSWQryReq = {0};
     VOS_UINT32 ulRst;
 
-	/* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+	
     /*ulRst = atLteSendMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_RD_BANDSW_REQ, (VOS_VOID*)(&stBandSWQryReq), sizeof(stBandSWQryReq));
  */
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_RD_BANDSW_REQ, ucClientId,(VOS_VOID*)(&stBandSWQryReq), sizeof(stBandSWQryReq));
@@ -644,8 +641,7 @@ VOS_UINT32 atQryBandSWParaCnfProc(VOS_UINT8 ucClientId, VOS_VOID *pMsgBlock)
 		return ERR_MSP_FAILURE;
 	}
 
-    /* lkf58113 @ 20111103 add  先判断错误码再决定是否显示结构体内容
- */
+    
     if(ERR_MSP_SUCCESS != pstCnf->ulErrCode)
     {
         CmdErrProc(ucClientId, pstCnf->ulErrCode, 0, NULL);
@@ -736,8 +732,7 @@ VOS_UINT32 atSetFFCHANSPara(VOS_UINT8 ucClientId)
 
     /* 5、发送消息给命令处理模块:透明传送用户符合格式的输入，不判断输入值的正确性
  */
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     /*ulRst = atLteSendMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_F_SET_FCHANS_REQ, (VOS_VOID*)(&stFFCHANSSetReq), sizeof(stFFCHANSSetReq));
  */
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_F_SET_FCHANS_REQ,ucClientId, (VOS_VOID*)(&stFFCHANSSetReq), sizeof(stFFCHANSSetReq));
@@ -794,8 +789,7 @@ VOS_UINT32 atQryFFCHANSPara(VOS_UINT8 ucClientId)
     FTM_RD_F_FCHANS_REQ_STRU stFFCHANQryReq = {0};
     VOS_UINT32 ulRst;
 
-	/*lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+	
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_F_RD_FCHANS_REQ, ucClientId,(VOS_VOID*)(&stFFCHANQryReq), sizeof(stFFCHANQryReq));
 
     if(AT_SUCCESS == ulRst)
@@ -822,8 +816,7 @@ VOS_UINT32 atQryFFCHANSParaCnfProc(VOS_UINT8 ucClientId, VOS_VOID *pMsgBlock)
         return ERR_MSP_FAILURE;
 	}
 
-    /* lkf58113 @ 20111103 add  先判断错误码再决定是否显示结构体内容
- */
+    
     if(ERR_MSP_SUCCESS != pstCnf->ulErrCode)
     {
         CmdErrProc(ucClientId, pstCnf->ulErrCode, 0, NULL);
@@ -957,8 +950,7 @@ VOS_UINT32 atSetFFSEGMENTPara(VOS_UINT8 ucClientId)
 
     /* 5、发送消息给命令处理模块:透明传送用户符合格式的输入，不判断输入值的正确性
  */
-    /* lkf58113 @ 20110929 采用新的发送函数:atLteSendMsg 改为 atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_F_SET_FSEGMENT_REQ, ucClientId,(VOS_VOID*)(&stFFSegmentSetReq), sizeof(stFFSegmentSetReq));
 
     if(AT_SUCCESS == ulRst)
@@ -1012,8 +1004,7 @@ VOS_UINT32 atQryFFSEGMENTPara(VOS_UINT8 ucClientId)
     FTM_RD_F_FSEGMENT_REQ_STRU stFFSegmentQryReq = {0};
     VOS_UINT32 ulRst;
 
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_F_RD_FSEGMENT_REQ,ucClientId, (VOS_VOID*)(&stFFSegmentQryReq), sizeof(stFFSegmentQryReq));
 
     if(AT_SUCCESS == ulRst)
@@ -1107,8 +1098,7 @@ VOS_UINT32 atSetFFPOWSPara(VOS_UINT8 ucClientId)
 
     /* 5、发送消息给命令处理模块:透明传送用户符合格式的输入，不判断输入值的正确性
  */
-	/* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+	
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_F_SET_FPOWS_REQ, ucClientId,(VOS_VOID*)(&stFFPOWSSetReq), sizeof(stFFPOWSSetReq));
 
     if(AT_SUCCESS == ulRst)
@@ -1161,8 +1151,7 @@ VOS_UINT32 atQryFFPOWSPara(VOS_UINT8 ucClientId)
     FTM_RD_F_FPOWS_REQ_STRU stFFPowsQryReq = {0};
     VOS_UINT32 ulRst;
 
-	/* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+	
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_F_RD_FPOWS_REQ,ucClientId, (VOS_VOID*)(&stFFPowsQryReq), sizeof(stFFPowsQryReq));
 
     if(AT_SUCCESS == ulRst)
@@ -1279,8 +1268,7 @@ VOS_UINT32 atSetFFPASPara(VOS_UINT8 ucClientId)
 
     /* 5、发送消息给命令处理模块:透明传送用户符合格式的输入，不判断输入值的正确性
  */
-	/* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+	
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_F_SET_FPAS_REQ, ucClientId,(VOS_VOID*)(&stFFPASSetReq), sizeof(stFFPASSetReq));
 
     if(AT_SUCCESS == ulRst)
@@ -1333,8 +1321,7 @@ VOS_UINT32 atQryFFPASPara(VOS_UINT8 ucClientId)
     FTM_RD_F_FPAS_REQ_STRU stFFPasQryReq = {0};
     VOS_UINT32 ulRst;
 
-	/* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+	
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_F_RD_FPAS_REQ,ucClientId, (VOS_VOID*)(&stFFPasQryReq), sizeof(stFFPasQryReq));
 
     if(AT_SUCCESS == ulRst)
@@ -1451,8 +1438,7 @@ VOS_UINT32 atSetFFLNASPara(VOS_UINT8 ucClientId)
 
     /* 5、发送消息给命令处理模块:透明传送用户符合格式的输入，不判断输入值的正确性
  */
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_F_SET_FLNAS_REQ,ucClientId ,(VOS_VOID*)(&stFAAGCSetReq), sizeof(stFAAGCSetReq));
 
     if(AT_SUCCESS == ulRst)
@@ -1505,8 +1491,7 @@ VOS_UINT32 atQryFFLNASPara(VOS_UINT8 ucClientId)
     FTM_RD_F_AAGC_REQ_STRU stFAagcsQryReq = {0};
     VOS_UINT32 ulRst;
 
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_F_RD_FLNAS_REQ, ucClientId,(VOS_VOID*)(&stFAagcsQryReq), sizeof(stFAagcsQryReq));
 
     if(AT_SUCCESS == ulRst)
@@ -1612,8 +1597,7 @@ VOS_UINT32 atSetFFTXWAVEPara(VOS_UINT8 ucClientId)
 
     /* 5、发送消息给命令处理模块:透明传送用户符合格式的输入，不判断输入值的正确性
  */
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_F_SET_FTXWAVE_REQ,ucClientId, (VOS_VOID*)(&stFTxWaveSetReq), sizeof(stFTxWaveSetReq));
 
     if(AT_SUCCESS == ulRst)
@@ -1665,8 +1649,7 @@ VOS_UINT32 atQryFFTXWAVEPara(VOS_UINT8 ucClientId)
 {
     FTM_RD_F_FTXWAVE_REQ_STRU stFFTxwaveQryReq = {0};
     VOS_UINT32 ulRst;
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_F_RD_FTXWAVE_REQ, ucClientId,(VOS_VOID*)(&stFFTxwaveQryReq), sizeof(stFFTxwaveQryReq));
 
     if(AT_SUCCESS == ulRst)
@@ -1755,8 +1738,7 @@ VOS_UINT32 atSetFFSTARTPara(VOS_UINT8 ucClientId)
 
     /* 5、发送消息给命令处理模块:透明传送用户符合格式的输入，不判断输入值的正确性
  */
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_F_SET_FSTART_REQ,ucClientId ,(VOS_VOID*)(&stFTriggerSetReq), sizeof(stFTriggerSetReq));
 
     if(AT_SUCCESS == ulRst)
@@ -1808,8 +1790,7 @@ VOS_UINT32 atQryFFSTARTPara(VOS_UINT8 ucClientId)
 {
     FTM_RD_F_TRIGGER_REQ_STRU stFTriggerQryReq = {0};
     VOS_UINT32 ulRst;
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_F_RD_FSTART_REQ, ucClientId,(VOS_VOID*)(&stFTriggerQryReq), sizeof(stFTriggerQryReq));
 
     if(AT_SUCCESS == ulRst)
@@ -1897,8 +1878,7 @@ VOS_UINT32 atSetFFRSSISPara(VOS_UINT8 ucClientId)
 
     /* 5、发送消息给命令处理模块:透明传送用户符合格式的输入，不判断输入值的正确性
  */
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_F_SET_FRSSIS_REQ, ucClientId,(VOS_VOID*)(&stFFRSSISSetReq), sizeof(stFFRSSISSetReq));
     if(AT_SUCCESS == ulRst)
     {
@@ -1976,7 +1956,6 @@ VOS_UINT32 atSetFFRSSISParaCnfProc(VOS_UINT8 ucClientId, VOS_VOID *pMsgBlock)
     return AT_FW_CLIENT_STATUS_READY;
 
 }
-/*快速校准 c00173035  end in 2010-12-14*/
 
 
 /******************************************************************************
@@ -2003,8 +1982,7 @@ VOS_UINT32 atSetFFCMTMSPara(VOS_UINT8 ucClientId)
 {
     FTM_RD_F_FCMTMS_REQ_STRU stFFCmtmsQryReq = {0};
     VOS_UINT32 ulRst;
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_F_RD_FCMTMS_REQ,ucClientId, (VOS_VOID*)(&stFFCmtmsQryReq), sizeof(stFFCmtmsQryReq));
 
     if(AT_SUCCESS == ulRst)
@@ -2111,8 +2089,7 @@ VOS_UINT32 atSetFBLKPara(VOS_UINT8 ucClientId)
 
     /* 执行命令操作
  */
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     if(AT_SUCCESS == atSendFtmDataMsg(MSP_SYS_FTM_PID,ID_MSG_FTM_F_SET_FBLK_REQ,ucClientId,
         (VOS_VOID*)(&stFBLK), sizeof(FTM_SET_F_FBLK_REQ_STRU)))
     {
@@ -2146,8 +2123,7 @@ VOS_UINT32 atQryFBLKPara(VOS_UINT8 ucClientId)
     FTM_RD_F_FBLK_REQ_STRU stQryReq = {0};
     VOS_UINT32 ulRst;
 
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_F_RD_FBLK_REQ,ucClientId, (VOS_VOID*)(&stQryReq), sizeof(stQryReq));
 
     if(AT_SUCCESS == ulRst)
@@ -2234,8 +2210,7 @@ VOS_UINT32 atSetFIPSTARTPara(VOS_UINT8 ucClientId)
 
     /* 执行命令操作
  */
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     if(AT_SUCCESS == atSendFtmDataMsg(MSP_SYS_FTM_PID,ID_MSG_FTM_F_SET_FIPSTART_REQ,ucClientId,
         (VOS_VOID*)(&stFIPSTART), sizeof(FTM_SET_F_FIPSTART_REQ_STRU)))
     {
@@ -2301,8 +2276,7 @@ VOS_UINT32 atSetFPDMSPara(VOS_UINT8 ucClientId)
 
     /* 执行命令操作
  */
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     if(AT_SUCCESS == atSendFtmDataMsg(MSP_SYS_FTM_PID,ID_MSG_FTM_SET_FPDMS_REQ,ucClientId,
         (VOS_VOID*)(&stFPDMS), sizeof(FTM_SET_F_FPDMS_REQ_STRU)))
     {
@@ -2419,8 +2393,7 @@ VOS_UINT32 atSetFPAPOWERPara(VOS_UINT8 ucClientId)
 
     /* 5、发送消息给命令处理模块:透明传送用户符合格式的输入，不判断输入值的正确性
  */
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_F_SET_FPAPOWER_REQ,ucClientId, (VOS_VOID*)(&stSetReq), sizeof(stSetReq));
 
     if(AT_SUCCESS == ulRst)
@@ -2535,8 +2508,7 @@ VOS_UINT32 atSetFMAXPOWERPara(VOS_UINT8 ucClientId)
     stSetReq.usPaLevelNum= (VOS_UINT16)(gastAtParaList[0].ulParaValue);
 	stSetReq.usPaReduceGain = (VOS_UINT16)(gastAtParaList[1].ulParaValue);
 
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_F_SET_FMAXPOWER_REQ, ucClientId, (VOS_VOID*)(&stSetReq), sizeof(stSetReq));
 
     if(AT_SUCCESS == ulRst)
@@ -2648,7 +2620,6 @@ VOS_UINT32 atSetFCALPDDCSPara(VOS_UINT8 ucClientId)
     stFCALPDDCSSetReq.ulPdAutoFlg = (VOS_UINT16)(gastAtParaList[0].ulParaValue);
 
     // 5、发送消息给命令处理模块:透明传送用户符合格式的输入，不判断输入值的正确性
-    // lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_F_SET_FCALPDDCS_REQ, ucClientId,(VOS_VOID*)(&stFCALPDDCSSetReq), sizeof(stFCALPDDCSSetReq));
     if(AT_SUCCESS == ulRst)
     {
@@ -2819,7 +2790,6 @@ VOS_UINT32 atSetFQPDDCRESPara(VOS_UINT8 ucClientId)
     stFQPDDCRESSetReq.ulChannel = (VOS_UINT16)(gastAtParaList[0].ulParaValue);
 
     // 5、发送消息给命令处理模块:透明传送用户符合格式的输入，不判断输入值的正确性
-    // lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_F_SET_FQPDDCRES_REQ, ucClientId,(VOS_VOID*)(&stFQPDDCRESSetReq), sizeof(stFQPDDCRESSetReq));
     if(AT_SUCCESS == ulRst)
     {

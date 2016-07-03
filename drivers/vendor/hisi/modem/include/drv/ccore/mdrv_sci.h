@@ -200,45 +200,10 @@ typedef enum
 	 *****************************************************************************/
 	int mdrv_sci_recv(unsigned int u32DataLength, unsigned char * pu8DataBuffer);
 
-	/*****************************************************************************
-	 * 函 数 名  : mdrv_sci_get_atr
-	 *
-	 * 功能描述  : 本接口用于将Driver层缓存的ATR数据和数据个数返回给USIM Manager层
-	 *
-	 * 输入参数  : void
-	 * 输出参数  : unsigned long *u8DataLength  Driver读取的ATR数据长度，返回给USIM Manager。
-	 *                                   取值范围0～32，单位是字节
-	 *           unsigned char *pu8ATR          USIM Manager指定的Buffer，SCI Driver将ATR
-	 *                                   数据拷贝到本Buffer。一般为操作系统函数动态分配
-	 *                                   或者静态分配的地址
-	 *
-	 *
-	 * 返 回 值  : OK
-	 *          BSP_ERR_SCI_NOTINIT
-	 *          BSP_ERR_SCI_INVALIDPARA
-	 *
-	 * 修改记录  : Yangzhi create
-	 *
-	 *****************************************************************************/
+	
 	int mdrv_sci_get_atr(unsigned long * u32DataLength, unsigned char * pu8ATR,SCI_ATRINFO_S* stSCIATRInfo);
 
-	/*****************************************************************************
-	 * 函 数 名  : mdrv_sci_switch_class
-	 *
-	 * 功能描述  : 本接口用于支持PS对卡的电压类型进行切换，从1.8V切换到3V
-	 *
-	 * 输入参数  : void
-	 * 输出参数  : 无
-	 *
-	 * 返 回 值  :  OK    当前电压不是最高的，进行电压切换操作
-	 *           BSP_ERR_SCI_CURRENT_STATE_ERR 切换失败 current SCI driver state is ready/rx/tx
-	 *           BSP_ERR_SCI_VLTG_HIGHEST   当前电压已经是最高电压，没有进行电压切换
-	 *           BSP_ERR_SCI_NOTINIT
-	 *           BSP_ERR_SCI_CURRENT_VLTG_ERR 当前电压值异常（非class B或者C）
-	 *
-	 * 修改记录  :
-	 *
-	 *****************************************************************************/
+	
 	int  mdrv_sci_switch_class(void);
 
 	/*****************************************************************************

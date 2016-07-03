@@ -492,11 +492,13 @@ static int hi64xx_irq_suspend(struct platform_device *pdev, pm_message_t state)
 		return -EINVAL;
 	}
 
-	ret = hi64xx_hifi_misc_suspend();
-	if (ret)
-		return ret;
-
 	mutex_lock(&data->sr_lock);
+
+	ret = hi64xx_hifi_misc_suspend();
+	if (ret) {
+		mutex_unlock(&data->sr_lock);
+		return ret;
+	}
 
 	return ret;
 }
@@ -519,6 +521,7 @@ static int hi64xx_irq_resume(struct platform_device *pdev)
 		dev_err(dev, "%s hifi misc resume failed!\n", __FUNCTION__);
 
 	mutex_unlock(&data->sr_lock);
+
 	return ret;
 }
 

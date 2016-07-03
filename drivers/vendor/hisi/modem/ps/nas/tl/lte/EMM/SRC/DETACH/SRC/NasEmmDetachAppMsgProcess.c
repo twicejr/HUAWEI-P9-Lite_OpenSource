@@ -38,17 +38,7 @@ extern "C" {
   3 Function
 *****************************************************************************/
 
-/*****************************************************************************
- Function Name   : NAS_EMM_AppDetachReqMsgChk
- Description     : 检查APP发送消息内容是否正确
- Input           :
- Output          :
- Return          :
 
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_AppDetachReqMsgChk(const MMC_LMM_DETACH_REQ_STRU *pMsgMsg)
 {
 
@@ -69,20 +59,7 @@ VOS_UINT32  NAS_EMM_AppDetachReqMsgChk(const MMC_LMM_DETACH_REQ_STRU *pMsgMsg)
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegInitSsWtCnAttCnfMsgAppDetachReq
- Description     : 主状态REG_INIT+子状态WAIT_CN_ATTACH_CNF下收到应用层的DETACH
-                   REQUEST消息
 
- Input           :
-
- Return          :
-
- History         :
-    1.leili 00132387    2008-09-09  Draft Enact
-    2.lihong00150010    2012-11-01  Modify:emgergency
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsRegInitSsWtCnAttCnfMsgAppDetachReq(VOS_UINT32  ulMsgId,
                                                          VOS_VOID   *pMsgStru )
 {
@@ -182,19 +159,7 @@ VOS_UINT32  NAS_EMM_MsRegInitSsWtCnAttCnfMsgAppDetachReq(VOS_UINT32  ulMsgId,
     return   NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegSsAnyMsgAppStopReq
- Description     : 注册状态下收到关机请求的处理
-                   首先要发送关机DETACH,连接释放后进行本地资源释放
- Input           : VOS_UINT32                              ulMsgId
-                   VOS_VOID                                *pMsg
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.luojian 00107747      2009-2-13  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsRegSsAnyMsgAppStopReq(
                     VOS_UINT32                              ulMsgId,
                     VOS_VOID                                *pMsg )
@@ -244,19 +209,7 @@ VOS_UINT32    NAS_EMM_MsRegSsAnyMsgAppStopReq(
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegSsNmlSrvMsgAppDetachReq
- Description     : 主状态REG+子状态NORMAL_SERVICE下收到应用层的DETACH
-                   REQUEST消息
 
- Input           :
-
- Return          :
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-    2.zhengjunyan 00148421   2010-12-24  调整保存APP参数的位置，参数检查正确后
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsRegSsNmlSrvMsgAppDetachReq(VOS_UINT32  ulMsgId,
                                                  VOS_VOID   *pMsgStru )
 {
@@ -338,18 +291,7 @@ VOS_UINT32  NAS_EMM_MsRegSsNmlSrvMsgAppDetachReq(VOS_UINT32  ulMsgId,
     return  NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegSsRegAttemptUpdateMmMsgAppDetachReq
- Description     : 状态REG+REG_ATTEMPTING_TO_UPDATE_MM收到MMC的MMC_LMM_DETACH_REQ
-                    消息
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2011-7-12  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsRegSsRegAttemptUpdateMmMsgAppDetachReq
 (
     VOS_UINT32  ulMsgId,
@@ -444,18 +386,7 @@ VOS_UINT32  NAS_EMM_MsRegSsRegAttemptUpdateMmMsgAppDetachReq
 
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_AppSendDetCnf
- Description     : UE发起的DETACH过程完成后，向APP发送DETACH结果消息
 
- Input           :
-
- Return          : None
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-
-*****************************************************************************/
 /*lint -e960*/
 /*lint -e961*/
 VOS_VOID    NAS_EMM_AppSendDetCnf
@@ -508,19 +439,7 @@ VOS_VOID    NAS_EMM_AppSendDetCnf
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_EsmSendStatResult
- Description     : 向ESM发送状态结果消息
 
- Input           :
-
- Return          : None
-
- History         :
-    1.leili 00132387    2008-09-09  Draft Enact
-    2.lihong00150010    2012-11-01  Modify:emgergency
-
-*****************************************************************************/
 VOS_VOID    NAS_EMM_EsmSendStatResult(EMM_ESM_ATTACH_STATUS_ENUM_UINT32 ulStatRst)
 {
     EMM_ESM_STATUS_IND_STRU              *pEmmEsmStatMsg;
@@ -576,18 +495,7 @@ VOS_VOID    NAS_EMM_EsmSendStatResult(EMM_ESM_ATTACH_STATUS_ENUM_UINT32 ulStatRs
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsDrgSsPlmnSrcMsgAppDetachReq
- Description     : 主状态DEREG+子状态DEREG_PLMN_SEARCH下收到APP发送的
-                   DETACH REQUEST消息
- Input           :
- Output          :
- Return          :
 
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-    2.zhengjunyan 00148421   2010-11-16  MOD:删除冗余代码
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsDrgSsPlmnSrcMsgAppDetachReq(VOS_UINT32  ulMsgId,
                                                  VOS_VOID   *pMsgStru)
 {
@@ -645,18 +553,7 @@ VOS_UINT32    NAS_EMM_MsDrgSsPlmnSrcMsgAppDetachReq(VOS_UINT32  ulMsgId,
     return  NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsDrgSsAttemptToAttMsgAppDetachReq
- Description     : 主状态DEREG+子状态DEREG_ATTEMPTING_TO_ATTACH下收到APP发送的
-                   DETACH REQUEST消息
- Input           :
- Output          :
- Return          :
 
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-    2.zhengjunyan 00148421   2010-11-16  MOD:删除冗余代码
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsDrgSsAttemptToAttMsgAppDetachReq(VOS_UINT32  ulMsgId,
                                                  VOS_VOID   *pMsgStru)
 {
@@ -732,18 +629,7 @@ VOS_UINT32    NAS_EMM_MsDrgSsAttemptToAttMsgAppDetachReq(VOS_UINT32  ulMsgId,
     return  NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsDrgSsLimitedSrvMsgAppDetachReq
- Description     : 主状态DEREG+子状态DEREG_LIMITED_SERVICE下收到APP发送的
-                   DETACH REQUEST消息
- Input           :
- Output          :
- Return          :
 
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-    2.zhengjunyan 00148421   2010-11-16  MOD:删除冗余代码
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsDrgSsLimitedSrvMsgAppDetachReq(VOS_UINT32  ulMsgId,
                                                  VOS_VOID   *pMsgStru)
 {
@@ -801,18 +687,7 @@ VOS_UINT32    NAS_EMM_MsDrgSsLimitedSrvMsgAppDetachReq(VOS_UINT32  ulMsgId,
     return  NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsDrgSsNoCellAvailMsgAppDetachReq
- Description     : 主状态DEREG+子状态DEREG_NO_CELL_AVAILABLE下收到APP发送的
-                   DETACH REQUEST消息
- Input           :
- Output          :
- Return          :
 
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsDrgSsNoCellAvailMsgAppDetachReq(VOS_UINT32  ulMsgId,
                                                  VOS_VOID   *pMsgStru)
 {
@@ -870,18 +745,7 @@ VOS_UINT32    NAS_EMM_MsDrgSsNoCellAvailMsgAppDetachReq(VOS_UINT32  ulMsgId,
     return  NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsDrgSsAttNeedMsgAppDetachReq
- Description     : 主状态DEREG+子状态DEREG_ATTACH_NEEDED下收到APP发送的
-                   DETACH REQUEST消息
- Input           :
- Output          :
- Return          :
 
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-    2.zhengjunyan 00148421   2010-11-16  MOD:删除冗余代码
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsDrgSsAttNeedMsgAppDetachReq(VOS_UINT32  ulMsgId,
                                                  VOS_VOID   *pMsgStru)
 {
@@ -943,17 +807,7 @@ VOS_UINT32    NAS_EMM_MsDrgSsAttNeedMsgAppDetachReq(VOS_UINT32  ulMsgId,
 
     return  NAS_LMM_MSG_HANDLED;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegSsWaitAccessGrantIndImsiDetachProc
- Description     : 在REG+WAIT_ACCESS_GRANT_IND状态下收到用户IMSI DETACH
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong 00150010   2011-09-29  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_EMM_MsRegSsWaitAccessGrantIndImsiDetachProc( VOS_VOID )
 {
     /* 如果当前注册域不为CS+PS，则直接回复成功 */
@@ -1107,19 +961,7 @@ VOS_UINT32  NAS_EMM_MsRegSsNoCellAvailMsgAppDetachReq( VOS_UINT32  ulMsgId,
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegInitSsWtEsmPdnRspMsgAppDetachReq
- Description     : 主状态REG_INIT+子状态ATTACH_WAIT_ESM_PDN_RSP下收到APP发送的
-                   DETACH REQUEST消息
 
- Input           :
-
- Return          :
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsRegInitSsWtEsmPdnRspMsgAppDetachReq(VOS_UINT32  ulMsgId,
                                                  VOS_VOID   *pMsgStru )
 {
@@ -1194,19 +1036,7 @@ VOS_UINT32    NAS_EMM_MsRegInitSsWtEsmPdnRspMsgAppDetachReq(VOS_UINT32  ulMsgId,
     return  NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegInitSsWtEsmBearerCnfMsgAppDetachReq
- Description     : 主状态REG_INIT+子状态ATTACH_WAIT_ESM_BEARER_CNF下收到APP发送的
-                   DETACH REQUEST消息
 
- Input           :
-
- Return          :
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsRegInitSsWtEsmBearerCnfMsgAppDetachReq(VOS_UINT32  ulMsgId,
                                                  VOS_VOID   *pMsgStru )
 {
@@ -1262,19 +1092,7 @@ VOS_UINT32    NAS_EMM_MsRegInitSsWtEsmBearerCnfMsgAppDetachReq(VOS_UINT32  ulMsg
     return  NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegSsAtmpToUpdMsgAppDetachReq
- Description     : 主状态REG+子状态REG_ATTEMPTING_TO_UPDATE下收到APP发送的
-                   DETACH REQUEST消息
 
- Input           :
-
- Return          :
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-    2.zhengjunyan 00148421   2009.03.18  modified
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsRegSsAtmpToUpdMsgAppDetachReq(VOS_UINT32  ulMsgId,
                                                  VOS_VOID   *pMsgStru )
 {
@@ -1351,19 +1169,7 @@ VOS_UINT32    NAS_EMM_MsRegSsAtmpToUpdMsgAppDetachReq(VOS_UINT32  ulMsgId,
     return  NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsRegSsLimitedSrvMsgIntraDetReq
- Description     : 紧急呼特性合入后，TAU完成可能会进入REG+LIMIT_SERVICE态，
-                   如果TAU是打断DETACH流程的，则会在REG+LIMIT_SERVICE态下
-                   收到内部TAU消息
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong 00150010      2012-12-19  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsRegSsLimitedSrvMsgIntraDetReq
 (
     VOS_UINT32                         ulMsgId,
@@ -1581,18 +1387,7 @@ VOS_UINT32  NAS_EMM_MsRegSsPlmnSrcMsgAppDetachReq(VOS_UINT32  ulMsgId,
 }
 
 #if 0
-/*****************************************************************************
- Function Name   : NAS_EMM_MsSomeStateSsWtRrcRelIndMsgAppDetachReq
- Description     : 在TAU_Init/Reg_Init/Ser_Init等待RrcRelInd的状态下收到AppDetachReq，
-                   将消息缓存后发起去链接流程。
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.y00159566            2010-2-9      Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_MsSomeStateSsWtRrcRelIndMsgAppDetachReq( VOS_UINT32  ulMsgId,
                                                  VOS_VOID   *pMsgStru)
 {
@@ -1636,16 +1431,7 @@ VOS_UINT32  NAS_EMM_MsSomeStateSsWtRrcRelIndMsgAppDetachReq( VOS_UINT32  ulMsgId
 }
 #endif
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsgLppTauInitCnfMsgAppDetachReq
- Description     : 主状态TAU_INIT+子状态TAU_WAIT_CN_TAU_CNF下收到APP发送的
-                   DETACH REQUEST消息,处理LPP流程
- Input           :
- Return          :
 
- History         :
-    1.lifuxin   l00253982   2015-08-15
-*****************************************************************************/
 #if (FEATURE_LPP == FEATURE_ON)
 VOS_VOID    NAS_EMM_MsgLppTauInitWtCnfAppDetachReqSsOrLppHandle(VOS_VOID)
 {
@@ -1665,19 +1451,7 @@ VOS_VOID    NAS_EMM_MsgLppTauInitWtCnfAppDetachReqSsOrLppHandle(VOS_VOID)
 #endif
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsTauInitSsWtCnTauCnfMsgAppDetachReq
- Description     : 主状态TAU_INIT+子状态TAU_WAIT_CN_TAU_CNF下收到APP发送的
-                   DETACH REQUEST消息
 
- Input           :
-
- Return          :
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-    2.sunbing 49683          2011-11-21  增加SMS的处理
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsTauInitSsWtCnTauCnfMsgAppDetachReq( VOS_UINT32  ulMsgId,
                                                  VOS_VOID   *pMsgStru )
 {
@@ -1833,18 +1607,7 @@ VOS_UINT32    NAS_EMM_MsTauInitSsWtCnTauCnfMsgAppDetachReq( VOS_UINT32  ulMsgId,
 }
 /*lint +e961*/
 /*lint +e960*/
-/*****************************************************************************
- Function Name   : NAS_EMM_MsSerInitSsWtCnSerCnfImsiDetachProc
- Description     : 在EMM_MS_SER_INIT+EMM_SS_SER_WAIT_CN_SER_CNF状态下收到用户
-                   IMSI DETACH
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong 00150010   2011-09-29  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_EMM_MsSerInitSsWtCnSerCnfImsiDetachProc( VOS_VOID )
 {
     /* 如果当前注册域不为CS+PS，则直接回复成功 */
@@ -1878,19 +1641,7 @@ VOS_VOID NAS_EMM_MsSerInitSsWtCnSerCnfImsiDetachProc( VOS_VOID )
     return ;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_MsSerInitSsWtCnSerCnfMsgAppDetachReq
- Description     : 主状态SER_INIT+子状态SER_WAIT_CN_SER_CNF下收到APP发送的
-                   DETACH REQUEST消息
 
- Input           :
-
- Return          :
-
- History         :
-    1.leili 00132387         2008-09-09  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32    NAS_EMM_MsSerInitSsWtCnSerCnfMsgAppDetachReq( VOS_UINT32  ulMsgId,
                                                  VOS_VOID   *pMsgStru )
 {

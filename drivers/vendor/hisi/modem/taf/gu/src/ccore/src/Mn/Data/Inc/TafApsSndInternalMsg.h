@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafApsSndInternalMsg.h
-  版 本 号   : 初稿
-  作    者   : A00165503
-  生成日期   : 2011年12月29日
-  最近修改   :
-  功能描述   : 定义内部消息发送处理头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年12月29日
-    作    者   : A00165503
-    修改内容   : 创建文件
-
-******************************************************************************/
 #ifndef _TAF_APS_SND_INTERNAL_MSG_H_
 #define _TAF_APS_SND_INTERNAL_MSG_H_
 
@@ -88,13 +71,7 @@ enum TAF_PS_INTER_MSG_ID_ENUM
 };
 typedef VOS_UINT32 TAF_PS_INTER_MSG_ID_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : TAF_APS_INTER_END_CALL_REASON_ENUM_UINT8
- 枚举说明  : 内部断开呼叫的原因
- 1.日    期   : 2014年10月29日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_APS_INTER_END_CALL_REASON_ENUM
 {
     TAF_APS_INTER_END_CALL_REASON_PPP_ACT_FAIL           = 0x00000000,           /* PPP激活协商失败 */
@@ -115,13 +92,7 @@ enum TAF_APS_INTER_END_CALL_REASON_ENUM
 typedef VOS_UINT8 TAF_APS_INTER_END_CALL_REASON_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名    : TAF_APS_INTER_END_CALL_SCENE_ENUM_UINT8
- 枚举说明  : 内部断开呼叫的场景
- 1.日    期   : 2014年10月29日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_APS_INTER_END_CALL_SCENE_ENUM
 {
     TAF_APS_INTER_END_CALL_SCENE_USER_END               = 0x00000000,
@@ -138,13 +109,7 @@ enum TAF_APS_INTER_END_CALL_SCENE_ENUM
 typedef VOS_UINT8 TAF_APS_INTER_END_CALL_SCENE_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名    : TAF_APS_INTER_PS_OPTION_TYPE_ENUM_UINT8
- 枚举说明  : APS内部PS域服务变化的类型
- 1.日    期   : 2015年05月29日
-   作    者   : y00213812
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_APS_INTER_PS_OPTION_TYPE_ENUM
 {
     TAF_APS_INTER_PS_OPTION_DISCONNECTED                   = 0x00000000,
@@ -156,13 +121,7 @@ enum TAF_APS_INTER_PS_OPTION_TYPE_ENUM
 typedef VOS_UINT8 TAF_APS_INTER_PS_OPTION_TYPE_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名    : TAF_APS_INTER_SERVICE_TYPE_ENUM
- 枚举说明  : APS内部PS域服务变化的类型
- 1.日    期   : 2015年12月17日
-   作    者   : y00213812
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_APS_INTER_SERVICE_TYPE_ENUM
 {
     TAF_APS_INTER_SERVICE_RESULT_CL     = 0x00000000,
@@ -191,13 +150,7 @@ typedef VOS_UINT8 TAF_APS_INTER_SERVICE_TYPE_ENUM_UINT8;
   7 STRUCT定义
 *****************************************************************************/
 
-/*****************************************************************************
- 结构名称: TAF_APS_INTER_PDP_DEACTIVATE_REQ_STRU
- 结构说明: APS->APS, 内部去激活PDP消息的结构
-  1.日    期   : 2011年7月19日
-    作    者   : A00165503
-    修改内容   : 新增内部去激活PDP消息
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                    /* _H2ASN_Skip */
@@ -207,13 +160,7 @@ typedef struct
 
 } TAF_APS_INTER_PDP_DEACTIVATE_REQ_STRU;
 
-/*****************************************************************************
- 结构名称: TAF_APS_INTER_PDP_ACTIVATE_REQ_STRU
- 结构说明: APS->APS, 内部激活PDP消息的结构
-  1.日    期   : 2011年7月19日
-    作    者   : s62952
-    修改内容   : 新增内部激活PDP消息
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                    /* _H2ASN_Skip */
@@ -223,13 +170,7 @@ typedef struct
 
 } TAF_APS_INTER_PDP_ACTIVATE_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_APS_INTER_END_CDMA_CALL_REQ_STRU
- 结构说明  : CDMA PPP协商失败内部去激活消息结构
- 1.日    期   : 2014年10月16日
-   作    者   : h00246512
-   修改内容   : 新建结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                 stMsgHeader;            /* _H2ASN_Skip */
@@ -241,13 +182,7 @@ typedef struct
 }TAF_APS_INTER_END_CDMA_CALL_REQ_STRU;
 
 
-/*****************************************************************************
- 结构名    : TAF_APS_INTER_1X_TO_HRPD_HANDOFF_STRU
- 结构说明  : 数据模式从1x切换到HRPD
- 1.日    期   : 2015年03月31日
-   作    者   : y00314741
-   修改内容   : 新建结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;            /* _H2ASN_Skip */
@@ -255,13 +190,7 @@ typedef struct
     VOS_UINT8                           aucReserved[3];
 }TAF_APS_INTER_1X_TO_HRPD_HANDOFF_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_APS_INTER_HRPD_TO_1X_HANDOFF_STRU
- 结构说明  : 数据模式从HRPD切换到1X
- 1.日    期   : 2015年03月31日
-   作    者   : y00314741
-   修改内容   : 新建结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;            /* _H2ASN_Skip */
@@ -269,13 +198,7 @@ typedef struct
     VOS_UINT8                           aucReserved[3];
 }TAF_APS_INTER_HRPD_TO_1X_HANDOFF_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_APS_INTER_SERVICE_STATUS_CHANGE_IND_STRU
- 结构说明  : 收到MMA或MMC的SERVICE_STATUS_IND消息，转发内部消息
- 1.日    期   : 2015年04月08日
-   作    者   : y00314741
-   修改内容   : 新建结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;            /* _H2ASN_Skip */
@@ -289,14 +212,7 @@ typedef struct
 }TAF_APS_INTER_SERVICE_STATUS_CHANGE_IND_STRU;
 
 
-/*****************************************************************************
- 结构名称: TAF_APS_ATTACH_BEARER_ACTIVATE_IND_STRU
- 结构说明: 注册承载激活指示消息结构
 
-  1.日    期   : 2014年2月20日
-    作    者   : A00165503
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* _H2ASN_Skip */
@@ -304,14 +220,7 @@ typedef struct
 } TAF_APS_ATTACH_BEARER_ACTIVATE_IND_STRU;
 
 
-/*****************************************************************************
- 结构名称: TAF_APS_ATTACH_BEARER_ACTIVATE_IND_STRU
- 结构说明: 注册承载激活指示消息结构
 
-  1.日    期   : 2014年2月20日
-    作    者   : A00165503
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* _H2ASN_Skip */

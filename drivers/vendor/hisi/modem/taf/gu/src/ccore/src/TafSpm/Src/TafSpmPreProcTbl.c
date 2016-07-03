@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafSpmPreProcTbl.c
-  版 本 号   : 初稿
-  作    者   : s00217060
-  生成日期   : 2013年12月14日
-  最近修改   :
-  功能描述   : SPM模块预处理状态表
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年12月14日
-    作    者   : s00217060
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -313,11 +296,9 @@ TAF_ACT_STRU        g_astTafSpmPreProcessActTbl[]   =
                       ID_MMA_TAF_RAT_CHANGE_NOTIFY,
                       TAF_SPM_RcvMmaRatChangeNotify_PreProc ),
 
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-31, begin */
     TAF_ACT_TBL_ITEM( WUEPS_PID_MMA,
                       ID_MMA_TAF_IMS_VOICE_CAP_IND,
                       TAF_SPM_RcvMmaImsVoiceCapInd_PreProc ),
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-31, end */
 
     TAF_ACT_TBL_ITEM( WUEPS_PID_AT,
                       MN_CALL_APP_CALL_MODIFY_REQ,
@@ -366,7 +347,6 @@ TAF_ACT_STRU        g_astTafSpmPreProcessActTbl[]   =
 
 #endif
 
-    /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-23, begin */
     TAF_ACT_TBL_ITEM( VOS_PID_TIMER,
                       TI_TAF_SPM_CC_SRV_REQ_PROTECT_TIMER,
                       TAF_SPM_RcvCcSrvReqProtectTimerExpired_PreProc ),
@@ -378,23 +358,17 @@ TAF_ACT_STRU        g_astTafSpmPreProcessActTbl[]   =
     TAF_ACT_TBL_ITEM( VOS_PID_TIMER,
                       TI_TAF_SPM_SS_SRV_REQ_PROTECT_TIMER,
                       TAF_SPM_RcvSsSrvReqProtectTimerExpired_PreProc ),
-    /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-23, end */
 
 #if (FEATURE_ON == FEATURE_ECALL)
-    /* Added by s00261364 for V3R360_eCall项目, 2014-4-1, begin */
     TAF_ACT_TBL_ITEM( WUEPS_PID_MMA,
                       ID_TAF_MMA_PHONE_MODE_SET_CNF,
                       TAF_SPM_RcvMmaPhoneModeSetCnf_PreProc ),
-    /* Added by s00261364 for V3R360_eCall项目, 2014-4-1, end */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-4-26, begin */
     TAF_ACT_TBL_ITEM( WUEPS_PID_TAF,
                       TAF_CALL_TAF_REL_CALL_CNF,
                       TAF_SPM_RcvTafRelCallCnf_PreProc ),
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-4-26, end */
 
 
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-4-23, begin */
     TAF_ACT_TBL_ITEM( MAPS_PB_PID,
                       SI_PB_EVENT_ECALLQUERY_CNF,
                       TAF_SPM_RcvPbQryECallNumCnf_PreProc),
@@ -403,7 +377,6 @@ TAF_ACT_STRU        g_astTafSpmPreProcessActTbl[]   =
                       SI_PB_EVENT_ECALLINIT_IND,
                       TAF_SPM_RcvPbECallInitInd_PreProc),
 
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-4-23, end */
 
 #endif
     TAF_ACT_TBL_ITEM( WUEPS_PID_MMA,
@@ -423,42 +396,14 @@ TAF_STA_STRU        g_astTafSpmPreProcessFsmTbl[]   =
                       g_astTafSpmPreProcessActTbl )
 };
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_GetPreProcessStaTblSize
- 功能描述  : 获取预处理状态机的大小
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:预处理状态机的大小
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月14日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_GetPreProcessStaTblSize( VOS_VOID  )
 {
     return (sizeof(g_astTafSpmPreProcessFsmTbl)/sizeof(TAF_STA_STRU));
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_GetPreFsmDescAddr
- 功能描述  : 获取预处理状态机的描述表
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : TAF_FSM_DESC_STRU:指向预处理状态机的描述表
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月14日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_FSM_DESC_STRU * TAF_SPM_GetPreFsmDescAddr(VOS_VOID)
 {
     return (&g_stTafSpmPreFsmDesc);
@@ -466,40 +411,13 @@ TAF_FSM_DESC_STRU * TAF_SPM_GetPreFsmDescAddr(VOS_VOID)
 
 #if (FEATURE_ON == FEATURE_IMS)
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_GetImsDomainSelMsgTabAddr
- 功能描述  : 获取处理ID_IMSA_SPM_CALL_MSG消息的table的首地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回Table表的首地址
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年7月30日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-*****************************************************************************/
 TAF_SPM_PROC_IMSA_CALL_MSG_STRU *TAF_SPM_GetImsaCallMsgTabAddr(VOS_VOID)
 {
     return (&g_astTafSpmProcImsaCallMsgTbl[0]);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_GetImsaCallMsgTabSize
- 功能描述  : 获取SPM处理IMSA消息状态机的大小
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:预处理状态机的大小
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月14日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 VOS_UINT32 TAF_SPM_GetImsaCallMsgTabSize( VOS_VOID )
 {

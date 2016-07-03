@@ -37,11 +37,9 @@ VOID BFD_TrunkPortEventCoreProc(ULONG ulWarnType, ULONG ulPortIfIndex, ULONG ulV
 /* Bein:VISP1.7C03 VRF wangchengyang,2009-01-20 */
 VOID BFD_ProcGloableDisable(ULONG ulCurVrfIndex,ULONG ulCurSessionID,ULONG ulIpVersion);
 ULONG BFD6_ProcGloableDisableOneVrf(ULONG ulCurVrfIndex,ULONG *pulCurSessionID);
-/*Added by qinyun62011, 优化BFD会话ID扩展到9215的性能问题, 2013/9/27 */
 ULONG BFD_ProcGloableDisableOneVrf(ULONG ulCurVrfIndex,ULONG *pulCurSessionID);
 VOID BFD_ProcSessionDelete(BFD_SESS_ENTRY_S *pstBFDSessEntry);
 /* End:VISP1.7C03 VRF wangchengyang,2009-01-20 */
-/* Modified by qinyun62011, DTS2013101804899 删除队列判断，依赖Dopra函数的返回即可, 2013/10/18 */
 ULONG BFD_GetCPUType(CHAR *pCPUType);
 VOID BFD_License_ProcAdminUp(ULONG ulVrfIndex, ULONG ulSessionID);
 VOID BFD_Proc_LicenseMsg(ULONG ulCurVrfIndex, ULONG ulCurSessionId, ULONG ulBfdLicenseIsOn);

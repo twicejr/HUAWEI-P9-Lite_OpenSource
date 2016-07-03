@@ -54,18 +54,7 @@ VOS_UINT32 SCM_SoftDecodeCfgHdlcInit(OM_HDLC_STRU *pstHdlc);
   4 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : SCM_SoftDecodeCfgDataRcv
- 功能描述  : OM配置信息接收函数
- 输入参数  : pucBuffer:数据内容
-             ulLen:数据长度
- 输出参数  : 无
- 返 回 值  : 无
- 修改历史  :
-   1.日    期  : 2014年5月21日
-     作    者  : h59254
-     修改内容  : Creat Function
-*****************************************************************************/
+
 VOS_UINT32 SCM_SoftDecodeCfgDataRcv(VOS_UINT8 *pucBuffer, VOS_UINT32 ulLen)
 {
     VOS_UINT32                          ulRstl;
@@ -80,19 +69,7 @@ VOS_UINT32 SCM_SoftDecodeCfgDataRcv(VOS_UINT8 *pucBuffer, VOS_UINT32 ulLen)
     return ulRstl;
 }
 
-/*****************************************************************************
- 函 数 名  : SCM_SoftDecodeDataRcv
- 功能描述  : SCM软解码数据接收函数
- 输入参数  : pucBuffer:数据内容
-             ulLen:数据长度
-             ulTaskId:SCM软解码任务ID
- 输出参数  : 无
- 返 回 值  : VOS_OK/VOS_ERR
- 修改历史  :
-   1.日    期  : 2014年5月21日
-     作    者  : h59254
-     修改内容  : Creat Function
-*****************************************************************************/
+
 VOS_UINT32 SCM_SoftDecodeDataRcv(VOS_UINT8 *pucBuffer, VOS_UINT32 ulLen)
 {
     VOS_INT32                           sRet;
@@ -128,19 +105,7 @@ VOS_UINT32 SCM_SoftDecodeDataRcv(VOS_UINT8 *pucBuffer, VOS_UINT32 ulLen)
     return VOS_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : SCM_RcvDataDispatch
- 功能描述  : OM逻辑通道的分发
- 输入参数  : ulTaskId:   任务ID
-             pstHdlcCtrl:HDLC控制结构
-             ucDataType:GU/TL数据类型
- 输出参数  : 无
- 返 回 值  : 无
- 修改历史  :
-   1.日    期  : 2014年5月24日
-     作    者  : h59254
-     修改内容  : Creat Function
-*****************************************************************************/
+
 VOS_VOID SCM_RcvDataDispatch(
     OM_HDLC_STRU                       *pstHdlcCtrl,
     VOS_UINT8                           ucDataType)
@@ -166,19 +131,7 @@ VOS_VOID SCM_RcvDataDispatch(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SCM_SoftDecodeAcpuRcvData
- 功能描述  : SCM软解码数据接收函数
- 输入参数  : pstHdlcCtrl: HDLC控制结构
-             pucData:   需要发送的数据内容
-             ulLen: 数据长度
- 输出参数  : 无
- 返 回 值  : VOS_ERR/VOS_OK
- 修改历史  :
-   1.日    期  : 2014年5月21日
-     作    者  : h59254
-     修改内容  : Creat Function
-*****************************************************************************/
+
 VOS_UINT32 SCM_SoftDecodeAcpuRcvData(
     OM_HDLC_STRU                       *pstHdlcCtrl,
     VOS_UINT8                          *pucData,
@@ -221,17 +174,7 @@ VOS_UINT32 SCM_SoftDecodeAcpuRcvData(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : SCM_SoftDecodeCfgHdlcInit
- 功能描述  : SCM软解码HDLC解封装初始化函数
- 输入参数  : pstHdlc:指向HDLC控制结构的指针
- 输出参数  : 无
- 返 回 值  : VOS_OK/VOS_ERR
- 修改历史  :
-   1.日    期  : 2014年5月21日
-     作    者  : h59254
-     修改内容  : Creat Function
-*****************************************************************************/
+
 VOS_UINT32 SCM_SoftDecodeCfgHdlcInit(OM_HDLC_STRU *pstHdlc)
 {
     /* 申请用于HDLC解封装的缓存 */
@@ -255,20 +198,7 @@ VOS_UINT32 SCM_SoftDecodeCfgHdlcInit(OM_HDLC_STRU *pstHdlc)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : SCM_SoftDecodeCfgRcvSelfTask
- 功能描述  : SCM软解码OM配置数据接收任务
- 输入参数  : ulPara1:参数1
-             ulPara2:参数2
-             ulPara3:参数3
-             ulPara4:参数4
- 输出参数  : 无
- 返 回 值  : 无
- 修改历史  :
-   1.日    期  : 2014年5月21日
-     作    者  : h59254
-     修改内容  : Creat Function
-*****************************************************************************/
+
 VOS_VOID SCM_SoftDecodeCfgRcvSelfTask(
     VOS_UINT32                          ulPara1,
     VOS_UINT32                          ulPara2,
@@ -365,17 +295,7 @@ VOS_VOID SCM_SoftDecodeCfgRcvSelfTask(
 }
 
 
-/*****************************************************************************
- 函 数 名  : SCM_SoftDecodeCfgRcvTaskInit
- 功能描述  : SCM软解码OM配置数据接收函数初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_OK/VOS_ERR
- 修改历史  :
-   1.日    期  : 2014年5月21日
-     作    者  : h59254
-     修改内容  : Creat Function
-*****************************************************************************/
+
 VOS_UINT32 SCM_SoftDecodeCfgRcvTaskInit(VOS_VOID)
 {
     VOS_UINT32                              ulRslt;

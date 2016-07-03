@@ -27,9 +27,7 @@
 #include "NasNvInterface.h"
 #include "AtTimer.h"
 #include "AtInternalMsg.h"
-/* Added by wx270776 for OM融合, 2015-7-24, begin */
 #include "AtMntn.h"
-/* Added by wx270776 for OM融合, 2015-7-24, end */
 #if (FEATURE_ON == FEATURE_LTE)
 #include "LNasNvInterface.h"
 #endif
@@ -123,7 +121,6 @@ typedef TAF_UINT8 AT_CMEE_TYPE;
 #define AT_CMEE_ERROR_CODE                1
 #define AT_CMEE_ERROR_CONTENT             2
 
-/* Added by L60609 for MUX，2012-08-03,  Begin */
 /* AP-Modem 中，目前规格支持最大8个MUX AT通道 */
 #define AT_MUX_AT_CHANNEL_MAX           (8)
 
@@ -135,7 +132,6 @@ typedef TAF_UINT8 AT_CMEE_TYPE;
 #define AT_MUX_AT_CHANNEL_INDEX_6       (5)
 #define AT_MUX_AT_CHANNEL_INDEX_7       (6)
 #define AT_MUX_AT_CHANNEL_INDEX_8       (7)
-/* Added by L60609 for MUX，2012-08-03,  End */
 
 #define AT_OCTET_MOVE_FOUR_BITS    (0x04)  /* 将一个字节移动4位 */
 #define AT_OCTET_MOVE_EIGHT_BITS   (0x08)  /* 将一个字节移动8位 */
@@ -170,10 +166,8 @@ typedef VOS_UINT8 AT_CCWA_TYPE;
 #define AT_CCWA_DISABLE_TYPE            0
 #define AT_CCWA_ENABLE_TYPE             1
 
-/* Modified by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-8, begin */
 #define AT_SIMST_DISABLE_TYPE          (0)
 #define AT_SIMST_ENABLE_TYPE           (1)
-/* Modified by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-8, end */
 
 
 typedef VOS_UINT8 AT_CUSD_STATE_TYPE;
@@ -226,8 +220,6 @@ typedef VOS_UINT8 AT_CNMI_BFR_TYPE;
 #define AT_CNMI_BFR_SEND_TYPE               0
 #define AT_CNMI_BFR_CLEAR_TYPE              1
 
-/* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, end */
-/* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, end */
 
 #define AT_BUFFER_CBM_EVENT_MAX             5
 #define AT_BUFFER_SMT_EVENT_MAX             5
@@ -260,8 +252,6 @@ typedef VOS_UINT8 AT_CGREG_TYPE;
 #define AT_CGREG_RESULT_CODE_BREVITE_TYPE      1
 #define AT_CGREG_RESULT_CODE_ENTIRE_TYPE       2
 
-/* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-1, begin */
-/* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-1, end */
 
 #define AT_ROAM_FEATURE_OFF                    0
 #define AT_ROAM_FEATURE_ON                     1
@@ -271,9 +261,7 @@ typedef VOS_UINT8 AT_CGREG_TYPE;
 /* 记录天线信号格数  */
 #define AT_ANTENNA_LEVEL_MAX_NUM        3
 
-/* Modified by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-1, begin */
 #define AT_RSSI_RESULT_CODE_NOT_REPORT_TYPE    (0)
-/* Modified by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-1, end */
 
 #define AT_CURC_RPT_CFG_MAX_SIZE        (8)
 #define AT_CURC_RPT_CFG_PARA_LEN        (16)
@@ -321,10 +309,8 @@ typedef VOS_UINT8 AT_CGREG_TYPE;
 
 #define AT_SET_BIT64(n)       ((VOS_UINT64)1 << (n))
 
-/*lint -e960 -e960 修改人:f00179208;原因:clean waring*/
 #define AT_CLIENT_CFG_ELEMENT(port)\
             { AT_CLIENT_ID_##port, TAF_NV_CLIENT_CFG_##port, #port, AT_SET_BIT64(TAF_NV_CLIENT_CFG_##port) }
-/*lint +e960 +e960 修改人:f00179208;原因:clean waring*/
 
 #define AT_GET_CLIENT_CFG_TAB_LEN()         (g_ucAtClientCfgMapTabLen)
 
@@ -343,10 +329,7 @@ enum AT_INTERNAL_TIMER_TYPE_ENUM
 {
     AT_S0_TIMER               = 1,
     AT_HOLD_CMD_TIMER         = 2,
-    /* Deleted by l00198894 for V9R1 STK升级, 2013/07/11 */
-    /* Add by w00199382 for V7代码同步, 2012-04-07, Begin   */
     AT_SHUTDOWN_TIMER         = 8,
-    /* Add by w00199382 for V7代码同步, 2012-04-07, End   */
 
     AT_VOICE_RI_TIMER         = 9,
     AT_SMS_RI_TIMER           = 10,
@@ -357,14 +340,7 @@ enum AT_INTERNAL_TIMER_TYPE_ENUM
 
 /*********************************PORT Begin*****************************/
 
-/*****************************************************************************
- 枚举名    : AT_IO_LEVEL_ENUM
- 枚举说明  : 管脚电平枚举
 
-  1.日    期   : 2013年9月23日
-    作    者   : A00165503
-    修改内容   : 新增枚举
-*****************************************************************************/
 enum AT_IO_LEVEL_ENUM
 {
     AT_IO_LEVEL_LOW                     = 0,
@@ -387,8 +363,6 @@ typedef VOS_UINT32 AT_HSIC_REPORT_TYPE_ENUM_UINT32;
 /*********************************PROT End*****************************/
 
 /*********************************CTRL Begin*****************************/
-/* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-10, begin */
-/* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-10, end */
 
 
 enum AT_CMD_ANTENNA_LEVEL_ENUM
@@ -429,9 +403,6 @@ typedef VOS_UINT8 AT_CLCK_PARA_CLASS_ENUM_UINT8;
 /*********************************COMM End************************************/
 
 /*********************************CC/SS Begin*****************************/
-/* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-8, begin */
-/* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-8, end */
-/* Deleted by l00198894 for V9R1 STK升级, 2013/07/11 */
 
 
 /*********************************CC/SS End*****************************/
@@ -450,13 +421,7 @@ typedef MN_MSG_SEND_DOMAIN_ENUM_U8 AT_CGSMS_SEND_DOMAIN_ENUM_U8;
 
 /*********************************NET Begin************************************/
 
-/*****************************************************************************
- 枚举名    : AT_CEREG_TYPE_ENUM_UINT8
- 结构说明  : AT+CEREG设置的主动上报类型
- 1.日    期   : 2011年12月2日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 enum AT_CEREG_TYPE_ENUM
 {
     AT_CEREG_RESULT_CODE_NOT_REPORT_TYPE,    /* 禁止+CEREG 的主动上报 */
@@ -466,13 +431,7 @@ enum AT_CEREG_TYPE_ENUM
 };
 typedef VOS_UINT8 AT_CEREG_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : AT_CERSSI_REPORT_TYPE_ENUM_UINT8
- 结构说明  : AT^CERSSI设置的主动上报类型
- 1.日    期   : 2012年11月21日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 enum AT_CERSSI_REPORT_TYPE_ENUM
 {
     AT_CERSSI_REPORT_TYPE_NOT_REPORT,               /* 禁止^CERSSI的主动上报 */
@@ -486,20 +445,7 @@ enum AT_CERSSI_REPORT_TYPE_ENUM
 typedef VOS_UINT8 AT_CERSSI_REPORT_TYPE_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名    : AT_RPT_CMD_ENUM
- 结构说明  : 主动上报命令枚举
 
-  1.日    期   : 2012年09月18日
-    作    者   : l00198894
-    修改内容   : STK补充特性及DCM需求开发项目新增枚举
-  2.日    期   : 2012年11月21日
-    作    者   : z00161729
-    修改内容   : 支持cerssi和nmr
-  3.日    期   : 2012年12月07日
-    作    者   : w00176964
-    修改内容   : DTS2012120608537:增加控制不上报紧急呼叫号码
-*****************************************************************************/
 enum AT_RPT_CMD_INDEX_ENUM
 {
     AT_RPT_CMD_MODE                     = 0,
@@ -523,13 +469,10 @@ enum AT_RPT_CMD_INDEX_ENUM
     AT_RPT_CMD_ANLEVEL,
     AT_RPT_CMD_LWCLASH,
     AT_RPT_CMD_XLEMA,
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, begin */
     AT_RPT_CMD_ACINFO,
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-12, end */
 
     AT_RPT_CMD_PLMN,
 
-    /* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-8, begin */
     /* call state的上报由CURC控制 */
     AT_RPT_CMD_CALLSTATE,
 
@@ -543,20 +486,12 @@ enum AT_RPT_CMD_INDEX_ENUM
     AT_RPT_CMD_CUUS1U,
     AT_RPT_CMD_CGREG,
     AT_RPT_CMD_CEREG,
-    /* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-8, end */
 
     AT_RPT_CMD_BUTT
 };
 typedef VOS_UINT8 AT_RPT_CMD_INDEX_ENUM_UINT8;
 
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-8, begin */
-/*****************************************************************************
- 枚举名    : AT_CMD_RPT_CTRL_TYPE_ENUM_UINT8
- 结构说明  : 主动上报受控类型
- 1.日    期   : 2013年4月10日
-   作    者   : s00217060
-   修改内容   : 新建
-*****************************************************************************/
+
 enum AT_CMD_RPT_CTRL_TYPE_ENUM
 {
     AT_CMD_RPT_CTRL_BY_CURC,               /* 主动上报受CURC控制 */
@@ -564,7 +499,6 @@ enum AT_CMD_RPT_CTRL_TYPE_ENUM
     AT_CMD_RPT_CTRL_BUTT
 };
 typedef VOS_UINT8 AT_CMD_RPT_CTRL_TYPE_ENUM_UINT8;
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-8, end */
 
 
 /*****************************************************************************
@@ -601,13 +535,7 @@ typedef VOS_UINT8   CREG_CGREG_CI_RPT_BYTE_ENUM;
 
 /*********************************AGPS Begin************************************/
 
-/*****************************************************************************
- 枚举名    : AT_CPOSR_FLG_ENUM
- 结构说明  : AT+CPOSR 中主动上报使能开关
-1.日    期  : 2012年06月28日
-  作    者  : y00213812
-  修改内容  : V7R1C50 A_GPS项目新增结构
-*****************************************************************************/
+
 enum AT_CPOSR_FLG_ENUM
 {
     AT_CPOSR_DISABLE        = 0,                                                /* 不允许主动上报 */
@@ -616,13 +544,7 @@ enum AT_CPOSR_FLG_ENUM
 };
 typedef VOS_UINT8 AT_CPOSR_FLG_ENUM_UNIT8;
 
-/*****************************************************************************
- 枚举名    : AT_XCPOSR_FLG_ENUM
- 结构说明  : AT^XCPOSR 中主动上报使能开关
-1.日    期  : 2012年06月28日
-  作    者  : y00213812
-  修改内容  : V7R1C50 A_GPS项目新增结构
-*****************************************************************************/
+
 enum AT_XCPOSR_FLG_ENUM
 {
     AT_XCPOSR_DISABLE        = 0,                                                /* 不允许主动上报 */
@@ -631,13 +553,7 @@ enum AT_XCPOSR_FLG_ENUM
 };
 typedef VOS_UINT8 AT_XCPOSR_FLG_ENUM_UNIT8;
 
-/*****************************************************************************
- 枚举名    : AT_XML_END_CHAR_ENUM
- 结构说明  : XML码流最后一个字符的取值
-1.日    期  : 2012年06月28日
-  作    者  : y00213812
-  修改内容  : V7R1C50 A_GPS项目新增结构
-*****************************************************************************/
+
 enum AT_XML_END_CHAR_ENUM
 {
     AT_XML_CTRL_Z        = 0,                                                   /* 结束字符为“ctrl-Z” */
@@ -646,13 +562,7 @@ enum AT_XML_END_CHAR_ENUM
 };
 typedef VOS_UINT8 AT_XML_END_CHAR_ENUM_UNIT8;
 
-/*****************************************************************************
- 枚举名    : AT_XML_PROC_TYPE_ENUM
- 结构说明  : XML码流接收状态
-1.日    期  : 2012年06月28日
-  作    者  : y00213812
-  修改内容  : V7R1C50 A_GPS项目新增结构
-*****************************************************************************/
+
 enum AT_XML_PROC_TYPE_ENUM
 {
     AT_XML_PROC_TYPE_FINISH             = 0,                                    /* 输入了"ctrl-Z"或"ESC"    */
@@ -662,13 +572,7 @@ enum AT_XML_PROC_TYPE_ENUM
 typedef VOS_UINT8 AT_XML_PROC_TYPE_ENUM_UINT8;
 /*********************************AGPS End************************************/
 
-/*****************************************************************************
- 枚举名    : AT_ANT_STATE_ENUM_UINT16
- 结构说明  : 天线状态
-1.日    期  : 2012年06月28日
-  作    者  : z60575
-  修改内容  : DTS2013060307614, DSDA_SAR新增结构
-*****************************************************************************/
+
 enum AT_ANT_STATE_ENUM
 {
     AT_ANT_AIRWIRE_MODE            =   0,  /* 天线模式 */
@@ -677,22 +581,7 @@ enum AT_ANT_STATE_ENUM
 };
 typedef VOS_UINT16 AT_ANT_STATE_ENUM_UINT16;
 
-/*****************************************************************************
- 枚举名    : AT_UART_BAUDRATE_ENUM
- 枚举说明  : UART波特率对应表
 
-  1.日    期   : 2013年09月18日
-    作    者   : j00174725
-    修改内容   : 新增
-
-  2.日    期   : 2014年4月8日
-    作    者   : A00165503
-    修改内容   : DTS2014031207569: 调整波特率规格
-
-  3.日    期   : 2014年12月24日
-    作    者   : A00165503
-    修改内容   : DTS2014121801836: HSUART规格调整
-*****************************************************************************/
 enum AT_UART_BAUDRATE_ENUM
 {
     AT_UART_BAUDRATE_0                  = 0,                /* 表示波特率自适应 */
@@ -725,14 +614,7 @@ enum AT_UART_BAUDRATE_ENUM
 };
 typedef VOS_UINT32 AT_UART_BAUDRATE_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : AT_UART_FORMAT_ENUM
- 枚举说明  : UART数据位和停止位格式枚举
 
-  1.日    期   : 2013年09月18日
-    作    者   : j00174725
-    修改内容   : 新增
-*****************************************************************************/
 enum AT_UART_FORMAT_ENUM
 {
     AT_UART_FORMAT_AUTO_DETECT          = 0x00,             /* auto detect */
@@ -747,18 +629,7 @@ enum AT_UART_FORMAT_ENUM
 };
 typedef VOS_UINT8 AT_UART_FORMAT_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : AT_UART_PARITY_ENUM
- 枚举说明  : UART校验位
 
-  1.日    期   : 2013年09月18日
-    作    者   : j00174725
-    修改内容   : 新增
-
-  2.日    期   : 2014年12月24日
-    作    者   : A00165503
-    修改内容   : DTS2014121801836: HSUART规格调整
-*****************************************************************************/
 enum AT_UART_PARITY_ENUM
 {
     AT_UART_PARITY_ODD                  = 0x00,             /* ODD 奇 */
@@ -770,14 +641,7 @@ enum AT_UART_PARITY_ENUM
 };
 typedef VOS_UINT8 AT_UART_PARITY_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : AT_UART_DATA_LEN_ENUM
- 枚举说明  : UART 数据位位宽长度
 
-  1.日    期   : 2013年09月18日
-    作    者   : j00174725
-    修改内容   : 新增
-*****************************************************************************/
 enum AT_UART_DATA_LEN_ENUM
 {
     AT_UART_DATA_LEN_5_BIT              = 5,
@@ -789,14 +653,7 @@ enum AT_UART_DATA_LEN_ENUM
 };
 typedef VOS_UINT8 AT_UART_DATA_LEN_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : AT_UART_STOP_LEN_ENUM
- 枚举说明  : UART 停止位位宽长度
 
-  1.日    期   : 2013年09月18日
-    作    者   : j00174725
-    修改内容   : 新增
-*****************************************************************************/
 enum AT_UART_STOP_LEN_ENUM
 {
     AT_UART_STOP_LEN_1_BIT              = 1,
@@ -806,14 +663,7 @@ enum AT_UART_STOP_LEN_ENUM
 };
 typedef VOS_UINT8 AT_UART_STOP_LEN_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : AT_UART_PARITY_LEN_ENUM
- 枚举说明  : UART  校验位位宽长度
 
-  1.日    期   : 2013年09月18日
-    作    者   : j00174725
-    修改内容   : 新增
-*****************************************************************************/
 enum AT_UART_PARITY_LEN_ENUM
 {
     AT_UART_PARITY_LEN_0_BIT            = 0,
@@ -823,14 +673,7 @@ enum AT_UART_PARITY_LEN_ENUM
 };
 typedef VOS_UINT8 AT_UART_PARITY_LEN_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : AT_UART_DCD_MODE_ENUM
- 枚举说明  : DCD信号控制
 
-  1.日    期   : 2013年09月18日
-    作    者   : j00174725
-    修改内容   : 新增
-*****************************************************************************/
 enum AT_UART_DCD_MODE_ENUM
 {
     AT_UART_DCD_MODE_ALWAYS_ON          = 0x00,
@@ -840,14 +683,7 @@ enum AT_UART_DCD_MODE_ENUM
 };
 typedef VOS_UINT8 AT_UART_DCD_MODE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : AT_UART_DTR_MODE_ENUM
- 枚举说明  : DTR信号控制
 
-  1.日    期   : 2013年09月18日
-    作    者   : j00174725
-    修改内容   : 新增
-*****************************************************************************/
 enum AT_UART_DTR_MODE_ENUM
 {
     AT_UART_DTR_MODE_IGNORE             = 0x00,
@@ -858,14 +694,7 @@ enum AT_UART_DTR_MODE_ENUM
 };
 typedef VOS_UINT8 AT_UART_DTR_MODE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : AT_UART_DSR_MODE_ENUM
- 枚举说明  : DSR信号控制
 
-  1.日    期   : 2013年09月18日
-    作    者   : j00174725
-    修改内容   : 新增
-*****************************************************************************/
 enum AT_UART_DSR_MODE_ENUM
 {
     AT_UART_DSR_MODE_ALWAYS_ON          = 0x00,
@@ -875,14 +704,7 @@ enum AT_UART_DSR_MODE_ENUM
 };
 typedef VOS_UINT8 AT_UART_DSR_MODE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : AT_UART_FC_DCE_ENUM
- 枚举说明  : 下行流控方式
 
-  1.日    期   : 2013年09月18日
-    作    者   : j00174725
-    修改内容   : 新增
-*****************************************************************************/
 enum AT_UART_FC_DCE_BY_DTE_ENUM
 {
     AT_UART_FC_DCE_BY_DTE_NONE                  = 0x00,
@@ -894,14 +716,7 @@ enum AT_UART_FC_DCE_BY_DTE_ENUM
 };
 typedef VOS_UINT8 AT_UART_FC_DCE_BY_DTE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : AT_UART_FC_DTE_BY_DCE_ENUM
- 枚举说明  : 上行流控方式
 
-  1.日    期   : 2013年09月18日
-    作    者   : j00174725
-    修改内容   : 新增
-*****************************************************************************/
 enum AT_UART_FC_DTE_BY_DCE_ENUM
 {
     AT_UART_FC_DTE_BY_DCE_NONE                  = 0x00,
@@ -912,14 +727,7 @@ enum AT_UART_FC_DTE_BY_DCE_ENUM
 };
 typedef VOS_UINT8 AT_UART_FC_DTE_BY_DCE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : AT_UART_RI_TYPE_ENUM
- 枚举说明  : RI类型
 
-  1.日    期   : 2013年09月18日
-    作    者   : A00165503
-    修改内容   : 新增
-*****************************************************************************/
 enum AT_UART_RI_TYPE_ENUM
 {
     AT_UART_RI_TYPE_VOICE               = 0x00,
@@ -929,14 +737,7 @@ enum AT_UART_RI_TYPE_ENUM
 };
 typedef VOS_UINT32 AT_UART_RI_TYPE_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : AT_UART_RI_STATUS_ENUM
- 枚举说明  : RI类型
 
-  1.日    期   : 2013年09月18日
-    作    者   : A00165503
-    修改内容   : 新增
-*****************************************************************************/
 enum AT_UART_RI_STATUS_ENUM
 {
     AT_UART_RI_STATUS_STOP                = 0x00,
@@ -946,14 +747,7 @@ enum AT_UART_RI_STATUS_ENUM
 };
 typedef VOS_UINT8 AT_UART_RI_STATUS_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : AT_PORT_BUFF_CFG_ENUM
- 枚举说明  : 缓存
 
-  1.日    期   : 2013年12月28日
-    作    者   : j00174725
-    修改内容   : 新增
-*****************************************************************************/
 enum AT_PORT_BUFF_CFG_ENUM
 {
     AT_PORT_BUFF_DISABLE                     = 0,
@@ -987,18 +781,7 @@ typedef VOS_VOID (*AT_UART_WM_LOW_FUNC)(VOS_UINT8 ucIndex);
   7 STRUCT定义
 *****************************************************************************/
 
-/*****************************************************************************
- 结构名    : AT_MODEM_PID_TAB_STRU
- 结构说明  : DSDA 三个modem接收AT发送消息的PID映射表
 
-  1.日    期   : 2012年12月17日
-    作    者   : L60609
-    修改内容   : 新生成
-
-  2.日    期   : 2015年6月16日
-    作    者   : l00198894
-    修改内容   : TSTS
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                           ulModem0Pid;
@@ -1008,36 +791,17 @@ typedef struct
 }AT_MODEM_PID_TAB_STRU;
 
 /*********************************Modem CTX Begin*****************************/
-/*****************************************************************************
- 结构名    : AT_USIM_INFO_CTX_STRU
- 结构说明  : AT保存的USIM卡相关信息结构
 
-  1.日    期   : 2011年10月22日
-    作    者   : o00132663
-    修改内容   : 创建
-  2.日    期   : 2013年4月3日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核
-*****************************************************************************/
 typedef struct
 {
     USIMM_CARD_TYPE_ENUM_UINT32         enCardType;                             /* 卡类型:SIM、USIM、ROM-SIM  */
     USIMM_CARD_SERVIC_ENUM_UINT32       enCardStatus;                           /* 卡状态*/
     VOS_UINT8                           aucIMSI[9];                             /* IMSI号*/
     VOS_UINT8                           ucIMSILen;                              /* IMSI长度 */
-    /* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, begin */
-    /* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, end */
     VOS_UINT8                           ucReserve[6];
 }AT_USIM_INFO_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : AT_MODEM_SPT_RAT_STRU
- 结构说明  : modem支持接入技术
 
-  1.日    期   : 2012年12月27日
-    作    者   : z00220246
-    修改内容   : DSDA Phase II:平台支持接入技术
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucPlatformSptLte;
@@ -1047,14 +811,7 @@ typedef struct
     VOS_UINT8                           aucReserved[4];
 }AT_MODEM_SPT_RAT_STRU;
 
-/*****************************************************************************
- 结构名    : AT_MODEM_SPT_CAP_STRU
- 结构说明  : modem 模式配置
 
-  1.日    期   : 2015年10月27日
-    作    者   : f00279542
-    修改内容   : new
-*****************************************************************************/
 typedef struct
 {
     AT_MODEM_SPT_RAT_STRU               stPlatformRatList;
@@ -1069,13 +826,7 @@ typedef struct
     VOS_UINT8                           ucAtStatusReportGeneralControl;         /* 私有命令是否允许状态上报*/
 }NVIM_AT_PRIVATE_CMD_STATUS_RPT_STRU;
 
-/*****************************************************************************
-结构名    : AT_CLCK_CLASS_SERVICE_TBL_STRU
-结构说明  : +CLCK命令CLASS与SERVICE对应表结构
-1.日    期  : 2012年12月31日
-  作    者  : l00198894
-  修改内容  : 新增结构体
-*****************************************************************************/
+
 typedef struct
 {
     AT_CLCK_PARA_CLASS_ENUM_UINT8       enClass;
@@ -1086,8 +837,6 @@ typedef struct
 /*********************************CTRL CTX Begin*****************************/
 
 /*********************************CC/SS CTX Begin*****************************/
-/* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, begin */
-/* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, end */
 
 typedef MN_CALL_CS_DATA_CFG_STRU AT_CBST_DATA_CFG_STRU;
 
@@ -1185,14 +934,7 @@ typedef struct
     VOS_UINT8                           aucReserved[2];
 }AT_SMT_BUFFER_STRU;
 
-/*****************************************************************************
- 结构名称  : NAS_NV_SMS_FILTER_CFG_STRU
- 结构说明  : 短信过滤配置信息
 
-  1.日    期   : 2015年09月17日
-    作    者   : h00313353
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucSmsFilterEnableFlg;                   /* 短信过滤功能是否使能标识 */
@@ -1223,19 +965,9 @@ typedef struct
 
 /*********************************AGPS CTX End*****************************/
 
-/* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-1, begin */
-/* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-1, begin */
 
-/* Deleted by l00198894 for V9R1 STK升级, 2013/07/11 */
 
-/*****************************************************************************
- 结构名    : AT_ECONF_INFO_STRU
- 结构说明  : 增强型会议相关的上下文
 
-  1.日    期   : 2014年11月28日
-    作    者   : f00179208
-    修改内容   : enhanced conference
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucNumOfCalls;                           /* 所有正在通话的个数 */
@@ -1243,17 +975,7 @@ typedef struct
     TAF_CALL_ECONF_INFO_PARAM_STRU      astCallInfo[TAF_CALL_MAX_ECONF_CALLED_NUM];  /* 每一个成员的信息 */
 }AT_ECONF_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : AT_MODEM_CC_CTX_STRU
- 结构说明  : CC相关的上下文
 
-  1.日    期   : 2013年1月22日
-    作    者   : l60609
-    修改内容   : DSDA Phase III
-  2.日    期   : 2013年6月26日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级，删除stDtmfCtrlInfo
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          ulCurIsExistCallFlag;                   /* 当前是否存在呼叫标志 */
@@ -1265,22 +987,10 @@ typedef struct
 
 }AT_MODEM_CC_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : AT_MODEM_SS_CTX_STRU
- 结构说明  : SS相关的上下文
 
-  1.日    期   : 2013年1月22日
-    作    者   : l60609
-    修改内容   : DSDA Phase III
-  2.日    期   : 2013年4月16日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核项目修改
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16                          usUssdTransMode;                        /* USSD传输模式 */
-    /* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-8, begin */
-    /* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-8, end */
     AT_CMOD_MODE_ENUM                   enCModType;                             /* 呼叫模式类型 */
     AT_SALS_TYPE                        ucSalsType;                             /* 使能/禁止线路选择 */
     AT_CLIP_TYPE                        ucClipType;                             /* 使能/禁止主叫号码显示 */
@@ -1290,20 +1000,11 @@ typedef struct
     AT_CCWA_TYPE                        ucCcwaType;                             /* 使能/禁止呼叫等待 */
     VOS_UINT8                           ucReserved[7];
 
-    /* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, end */
-    /* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, end */
     AT_CBST_DATA_CFG_STRU               stCbstDataCfg;                          /* 承载(CBST)类型*/
     AT_CCUG_CFG_STRU                    stCcugCfg;                              /* 闭合用户群(CUG)参数 */
 }AT_MODEM_SS_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : AT_MODEM_SMS_CTX_STRU
- 结构说明  : SMS相关的上下文
 
-  1.日    期   : 2013年1月22日
-    作    者   : l60609
-    修改内容   : DSDA Phase III
-*****************************************************************************/
 typedef struct
 {
     AT_CMGF_MSG_FORMAT_ENUM_U8          enCmgfMsgFormat;                        /* 短信格式 TXT or PDU */
@@ -1331,22 +1032,10 @@ typedef struct
 
 }AT_MODEM_SMS_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : AT_MODEM_NET_CTX_STRU
- 结构说明  : NET相关的上下文
 
-  1.日    期   : 2013年1月22日
-    作    者   : l60609
-    修改内容   : DSDA Phase III
-  2.日    期   : 2013年4月1日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核
-*****************************************************************************/
 typedef struct
 {
     /* 控制上报相关 */
-    /* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-1, end */
-    /* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-1, end */
     AT_CERSSI_REPORT_TYPE_ENUM_UINT8    ucCerssiReportType;                     /* VOS_TRUE: ^CERSSI上报，VOS_FALSE: 不上报 */
     AT_CREG_TYPE                        ucCregType;                             /* VOS_TRUE: CS域服务状态上报，VOS_FALSE: 不上报 */
     AT_CGREG_TYPE                       ucCgregType;                            /* VOS_TRUE: PS域服务状态上报，VOS_FALSE: 不上报 */
@@ -1371,14 +1060,7 @@ typedef struct
 
 }AT_MODEM_NET_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : AT_MODEM_AGPS_CTX_STRU
- 结构说明  : AGPS的上下文
 
-  1.日    期   : 2013年1月22日
-    作    者   : l60609
-    修改内容   : DSDA Phase III
-*****************************************************************************/
 typedef struct
 {
     AT_CPOSR_FLG_ENUM_UNIT8             enCposrReport;                    /* +CPOSR命令主动上报控制，上电开机默认为不允许主动上报 */
@@ -1390,14 +1072,7 @@ typedef struct
 /*********************************Modem CTX End*****************************/
 
 /*********************************Client CTX Begin*****************************/
-/*****************************************************************************
- 结构名    : AT_CLIENT_BASIC_INFO_STRU
- 结构说明  : AT通道的基本配置信息
 
-  1.日    期   : 2012年12月20日
-    作    者   : L60609
-    修改内容   : 新生成
-*****************************************************************************/
 typedef struct
 {
     MODEM_ID_ENUM_UINT16                enModemId;                              /* 该端口属于哪个modem */
@@ -1407,14 +1082,7 @@ typedef struct
 /*********************************Client CTX End*****************************/
 
 /*********************************COMM CTX Begin*****************************/
-/* Added by L60609 for MUX，2012-08-03,  Begin */
-/*****************************************************************************
- 结构名    : AT_MUX_CLIENT_TAB_STRU
- 结构说明  : AP-MODEM新增8个MUX AT通道，该结构用于这八个AT通道的统一管理及配置
- 1.日    期   : 2012年08月03日
-   作    者   : L60609
-   修改内容   : 新增结构
-*****************************************************************************/
+
 typedef struct
 {
     RCV_UL_DLCI_DATA_FUNC               pReadDataCB;                            /* 注册给MUX的接口，用于获取MUX发送给协议栈的AT码流 */
@@ -1441,18 +1109,10 @@ typedef struct
     VOS_UINT8                           ucMuxSupportFlg;                        /* 是否支持MUX特性 */
     VOS_UINT8                           aucRsv[7];
 }AT_MUX_CTX_STRU;
-/* Added by L60609 for MUX，2012-08-03,  End */
 
 /*********************************COMM CTX End*****************************/
 
-/*****************************************************************************
- 结构名    : AT_MODEM_MT_INFO_CTX_STRU
- 结构说明  : MT INFO的上下文
 
-  1.日    期   : 2013年5月30日
-    作    者   : z60575
-    修改内容   : DSDA_SAR新增结构
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           aucReserve1[2];
@@ -1461,14 +1121,7 @@ typedef struct
 /*********************************Modem CTX End*****************************/
 
 
-/*****************************************************************************
- 结构名    : AT_RESET_CTX_STRU
- 结构说明  : AT复位上下文信息
 
-  1.日    期   : 2013年04月19日
-    作    者   : f00179208
-    修改内容   : 新生成
-*****************************************************************************/
 typedef struct
 {
     VOS_SEM                             hResetSem;                              /* 二进制信号量，用于复位处理  */
@@ -1476,14 +1129,7 @@ typedef struct
     VOS_UINT32                          ulReserved;
 }AT_RESET_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : AT_UART_FORMAT_PARAM_STRU
- 结构说明  : UART帧结构
 
-  1.日    期   : 2013年09月21日
-    作    者   : j00174725
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     AT_UART_FORMAT_ENUM_UINT8           enFormat;
@@ -1493,14 +1139,7 @@ typedef struct
 
 } AT_UART_FORMAT_PARAM_STRU;
 
-/*****************************************************************************
- 结构名    : UART_FRAME_STRU
- 结构说明  : UART 帧结构
 
-  1.日    期   : 2013年09月18日
-    作    者   : j00174725
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     AT_UART_FORMAT_ENUM_UINT8           enFormat;
@@ -1509,14 +1148,7 @@ typedef struct
 
 } AT_UART_FRAME_STRU;
 
-/*****************************************************************************
- 结构名    : AT_UART_PHY_CFG_STRU
- 结构说明  : UART 相关配置
 
-  1.日    期   : 2013年09月18日
-    作    者   : j00174725
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     AT_UART_BAUDRATE_ENUM_UINT32        enBaudRate;
@@ -1524,14 +1156,7 @@ typedef struct
 
 } AT_UART_PHY_CFG_STRU;
 
-/*****************************************************************************
- 结构名    : AT_UART_FLOW_CTRL_STRU
- 结构说明  : UART 流控参数
 
-  1.日    期   : 2013年09月18日
-    作    者   : z00189113
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     AT_UART_FC_DCE_BY_DTE_ENUM_UINT8    enDceByDte;
@@ -1540,14 +1165,7 @@ typedef struct
 
 } AT_UART_FLOW_CTRL_STRU;
 
-/*****************************************************************************
- 结构名    : AT_UART_LINE_CTRL_MODE_STRU
- 结构说明  : UART 管脚控制模式
 
-  1.日    期   : 2013年09月18日
-    作    者   : z00189113
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     AT_UART_DCD_MODE_ENUM_UINT8         enDcdMode;
@@ -1557,14 +1175,7 @@ typedef struct
 
 } AT_UART_LINE_CTRL_STRU;
 
-/*****************************************************************************
- 结构名    : AT_UART_RI_CFG_STRU
- 结构说明  : RING Indicator 相关配置
 
-  1.日    期   : 2013年09月18日
-    作    者   : A00165503
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          ulSmsRiOnInterval;      /* 短信RI拉高持续时间(ms) */
@@ -1577,14 +1188,7 @@ typedef struct
 
 } AT_UART_RI_CFG_STRU;
 
-/*****************************************************************************
- 结构名    : AT_UART_RI_STATE_INFO_STRU
- 结构说明  : RING Indicator 状态信息
 
-  1.日    期   : 2013年09月18日
-    作    者   : A00165503
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          ulRunFlg;           /* 标示是否有短信或语音呼叫 */
@@ -1602,14 +1206,7 @@ typedef struct
 
 } AT_UART_RI_STATE_INFO_STRU;
 
-/*****************************************************************************
- 结构名  : AT_UART_CTX_STRU
- 结构说明: UART公共上下文结构
 
-  1.日    期   : 2013年09月18日
-    作    者   : j00174725
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     AT_UART_PHY_CFG_STRU                stPhyConfig;            /* UART 物理配置 */
@@ -1623,13 +1220,7 @@ typedef struct
 
 } AT_UART_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : AT_PORT_BUFF_CFG_STRU
- 结构说明  : 记录已使用的clientID
- 1.日    期   : 2013年11月13日
-   作    者   : j00174725
-   修改内容   :
-*****************************************************************************/
+
 typedef struct
 {
     AT_PORT_BUFF_CFG_ENUM_UINT8         enSmsBuffCfg;
@@ -1638,14 +1229,7 @@ typedef struct
     VOS_UINT32                          ulUsedClientID[AT_MAX_CLIENT_NUM];      /* 已经使用的client ID记录 */
 }AT_PORT_BUFF_CFG_STRU;
 
-/*****************************************************************************
- 结构名称  : AT_COMM_PB_CTX_STRU
- 结构说明  : 电话本公共上下文结构
 
-  1.日    期   : 2015年3月12日
-    作    者   : A00165503
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16                          usCurrIdx;          /* 电话本读取当前索引 */
@@ -1653,14 +1237,7 @@ typedef struct
     VOS_UINT32                          ulSingleReadFlg;    /* 电话本读取单条标识 */
 } AT_COMM_PB_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : AT_COMM_CTX_STRU
- 结构说明  : AT公共的上下文结构
 
-  1.日    期   : 2012年12月06日
-    作    者   : L60609
-    修改内容   : 新生成
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucSystemAppConfigAddr;                  /* 保存后台版本 */
@@ -1675,26 +1252,7 @@ typedef struct
 
 }AT_COMM_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : AT_MODEM_CTX_STRU
- 结构说明  : AT和Modem相关的上下文结构
 
-  1.日    期   : 2012年12月06日
-    作    者   : L60609
-    修改内容   : 新生成
-  2.日    期   : 2012年12月25日
-    作    者   : z00220246
-    修改内容   : DSDA Phase II:平台支持接入技术
-  3.日    期   : 2013年3月5日
-    作    者   : l60609
-    修改内容   : DSDA PHASE III
-  4.日    期   : 2013年4月1日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核
-  5.日    期   : 2013年5月30日
-    作    者   : z60575
-    修改内容   : DSDA_SAR新增结构
-*****************************************************************************/
 typedef struct
 {
     AT_USIM_INFO_CTX_STRU               stAtUsimInfoCtx;                      /* 卡状态 */
@@ -1708,14 +1266,7 @@ typedef struct
     AT_MODEM_MT_INFO_CTX_STRU           stMtInfoCtx;                            /* 终端信息的上下文 */
 }AT_MODEM_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : AT_ClIENT_CTX_STRU
- 结构说明  : AT和通道相关的上下文结构
 
-  1.日    期   : 2012年12月06日
-    作    者   : L60609
-    修改内容   : 新生成
-*****************************************************************************/
 typedef struct
 {
     AT_CLIENT_CONFIGURATION_STRU        stClientConfiguration;                  /* 每个端口的配置信息 */
@@ -1748,16 +1299,7 @@ typedef struct
     VOS_INT8                            acPassword[AT_RIGHT_PWD_LEN];
 }AT_RIGHT_OPEN_FLAG_STRU;
 
-/*****************************************************************************
- 结构名    : AT_ABORT_CMD_PARA_STRU
- 结构说明  : 用于配置AT打断命令的命令名和返回结果的结构, 协议栈中使用
-             如配置用户输入"AT"表示发起打断请求, 返回"ABORT"表示打断完成. 不区分大小写
 
-  1.日    期   : 2012年09月21日
-    作    者   : L00171473
-    修改内容   : for V7R1C50_At_Abort,  新增
-
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucAbortEnableFlg;                               /* AT打断开关标志. VOS_TRUE: 使能; VOS_FALE: 未使能 */
@@ -1817,13 +1359,7 @@ typedef struct
 
 } AT_DOWNLINK_RATE_CATEGORY_STRU;
 
-/*****************************************************************************
- 结构名    : AT_TRACE_MSGID_TAB_STRU
- 结构说明  : AT消息ID
- 1.日    期   : 2013年11月13日
-   作    者   : j00174725
-   修改内容   :
-*****************************************************************************/
+
 typedef struct
 {
     AT_INTER_MSG_ID_ENUM_UINT32         enCmdMsgID;
@@ -1850,16 +1386,7 @@ typedef struct
 }NVIM_RSCP_CFG_STRU;
 #endif
 
-/*****************************************************************************
- 枚举名    : AT_SS_CUSTOMIZE_TYPE
- 结构说明  : SS业务定制类型
-                AT_SS_CUSTOMIZE_CCWA_QUERY +CCWA查询命令；
-                AT_SS_CUSTOMIZE_CLCK_QUERY +CLCK查询命令
 
-  1.日    期   : 2013年01月24日
-    作    者   : f62575
-    修改内容   : 创建
-*****************************************************************************/
 typedef enum
 {
     AT_SS_CUSTOMIZE_CCWA_QUERY,
@@ -1872,45 +1399,22 @@ typedef VOS_UINT8 AT_SS_CUSTOMIZE_TYPE_UINT8;
 
 /*********************************Other End*****************************/
 
-/*lint -e958 -e959 修改人:f00179208;原因:64bit*/
-/*****************************************************************************
- 结构名    : AT_CLINET_CONFIG_DESC_STRU
- 结构说明  : NV内部映射结构
 
-  1.日    期   : 2014年04月26日
-    作    者   : 范晶/f00179208
-    修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucModemId   : 2;
     VOS_UINT8                           ucReportFlg : 1;
     VOS_UINT8                           ucReserved  : 5;
 }AT_CLINET_CONFIG_DESC_STRU;
-/*lint +e958 +e959 修改人:f00179208;原因:64bit*/
 
-/*****************************************************************************
- 结构名    : AT_PORT_RPT_CFG_UNION
- 结构说明  : NV内部映射结构
 
-  1.日    期   : 2014年04月26日
-    作    者   : 范晶/f00179208
-    修改内容   : 新增
-*****************************************************************************/
 typedef union
 {
     VOS_UINT64                          ulRptCfgBit64;
     VOS_UINT32                          aulRptCfgBit32[2];
 } AT_PORT_RPT_CFG_UNION;
 
-/*****************************************************************************
- 结构名    : AT_CLIENT_CFG_MAP_TAB_STRU
- 结构说明  : AT CLIENT 配置TAB
 
-  1.日    期   : 2014年04月26日
-    作    者   : 范晶/f00179208
-    修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     AT_CLIENT_ID_ENUM_UINT16            enClientId;
@@ -1921,14 +1425,7 @@ typedef struct
 
 
 #if ( VOS_WIN32 == VOS_OS_VER )
-/*****************************************************************************
- 结构名    : AT_USIMM_FILE_NUM_TO_ID_STRU
- 结构说明  : USIM文件号与文件ID结构
 
-  1.日    期   : 2015年03月07日
-    作    者   : y00245242
-    修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          ulFileNum;
@@ -1977,8 +1474,6 @@ extern AT_CMEE_TYPE                            gucAtCmeeType;                   
 
 extern TAF_UINT32                              g_ulSTKFunctionFlag;
 
-/* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-10, begin */
-/* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-10, end */
 
 
 /*********************************SMS Begin*************************************/

@@ -1,27 +1,4 @@
-/*************************************************************************
- *
- *              Copyright 2005, Huawei Technologies Co. Ltd.
- *                          ALL RIGHTS RESERVED
- * 
- *-----------------------------------------------------------------------*
- *
- *                              poec_type.h 
- *
- *  Project Code: VISP1.5
- *   Module Name: PPPoE Client
- *  Date Created: 2003-01-11
- *        Author: liuhui
- *   Description: PPPoE Client模块的Core部分数据结构定义
- *               
- *----------------------------------------------------------------------*
- *  Modification History 
- *  DATE             NAME               DESCRIPTION
- *  2003-01-11       liuhui             Create file
- *  2005-09-15       t45114             Modify
- *  2006-03-30       liai               Adjust for D00660
- *  2006/04/21       liai               Adjust for D00865
- *   
- ************************************************************************/
+
 
 #ifndef  _POEC_TYPE_H_
 #define  _POEC_TYPE_H_

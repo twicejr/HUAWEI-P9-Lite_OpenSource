@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : MnCallTimer.h
-  版 本 号   : 初稿
-  作    者   : dfakl;f
-  生成日期   : 2010年5月19日
-  最近修改   :
-  功能描述   : MnCallTimer.h 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2010年5月19日
-    作    者   : dfakl;f
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __MNCALLTIMER_H__
 #define __MNCALLTIMER_H__
@@ -57,29 +40,19 @@ enum MN_CALL_TIMER_ID_ENUM
     MN_CALL_TID_WAIT_CALL_REDIAL_PERIOD,
     MN_CALL_TID_WAIT_CALL_REDAIL_INTERVAL,
 
-    /* Added by l00198894 for V9R1 STK升级, 2013/07/11, begin */
     TAF_CALL_TID_DTMF_ON_LENGTH,               /* start dtmf ack和stop dtmf req之间的时间间隔定时器 */
     TAF_CALL_TID_DTMF_OFF_LENGTH,              /* stop dtmf ack 和start dtmf req之间的时间间隔定时器 */
-    /* Added by l00198894 for V9R1 STK升级, 2013/07/11, end */
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-4-1, begin */
     TAF_CALL_TID_WAIT_ECALL_REDIAL_PERIOD,                                       /* eCall重拨时长定时器 */
     TAF_CALL_TID_WAIT_ECALL_REDAIL_INTERVAL,                                     /* eCall重拨间隔定时器 */
     TAF_CALL_TID_T2,                                                             /* eCall通话时长定时器 */
     TAF_CALL_TID_T9,                                                             /* 等待MT eCall时长定时器 */
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-4-1, end */
 
     MN_CALL_TID_BUTT
 };
 typedef VOS_UINT32  MN_CALL_TIMER_ID_ENUM_U32;
 
-/*****************************************************************************
- 枚举名    : MN_CALL_TIMER_STATUS_ENUM_U8
- 结构说明  : call定时器状态,停止或运行
-  1.日    期   : 2012年10月29日
-    作    者   : z00161729
-    修改内容   : 新建
-*****************************************************************************/
+
 enum MN_CALL_TIMER_STATUS_ENUM
 {
     MN_CALL_TIMER_STATUS_STOP,              /* 定时器停止状态 */
@@ -145,38 +118,12 @@ typedef struct
 /*****************************************************************************
   10 函数声明
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : MN_CALL_ProcTimeoutMsg
- 功能描述  : 处理定时器超时消息。
- 输入参数  : pMsg  - 定时器超时消息
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年5月20日
-    作    者   : h44270
-    修改内容   : 新生成函数
-*****************************************************************************/
 extern VOS_VOID  MN_CALL_ProcTimeoutMsg(
     REL_TIMER_MSG                       *pTmrMsg
 );
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_StartTimer
- 功能描述  : 启动指定的定时器
- 输入参数  : enTimerId:指定定时器TimerId
- 输出参数  : 无
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2010年5月20日
-    作    者   : h44270
-    修改内容   : 新生成函数
-*****************************************************************************/
 extern VOS_VOID  MN_CALL_StartTimer(
     MN_CALL_TIMER_ID_ENUM_U32           enTimerId,
     VOS_UINT32                          ulParam,
@@ -184,81 +131,25 @@ extern VOS_VOID  MN_CALL_StartTimer(
     VOS_UINT8                           ucTimerMode
 );
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_StopTimer
- 功能描述  : 停止指定的定时器
- 输入参数  : enTimerId:指定定时器TimerId
- 输出参数  : 无
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2010年5月20日
-    作    者   : h44270
-    修改内容   : 新生成函数
-*****************************************************************************/
 extern VOS_VOID MN_CALL_StopTimer(
     MN_CALL_TIMER_ID_ENUM_U32            enTimerId
 );
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_InitAllTimers
- 功能描述  : 初始化所有定时器，应在初始化及Reset时被调用
- 输入参数  : enPowerState - 开机或关机
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年5月20日
-    作    者   : h44270
-    修改内容   : 新生成函数
-*****************************************************************************/
 extern VOS_VOID  MN_CALL_InitAllTimers(MN_CALL_POWER_STATE_ENUM_U8 enPowerState);
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_CstSetupTimeout
- 功能描述  : 处理发给CST模块的setup消息的超时处理
- 输入参数  : ulParam:定时器参数
- 输出参数  : 无
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2010年5月20日
-    作    者   : h44270
-    修改内容   : 新生成函数
-*****************************************************************************/
 extern VOS_VOID  MN_CALL_CstSetupTimeout(
     VOS_UINT32                          ulParam
 );
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_RingTimerTimeout
- 功能描述  : 循环定时器，如果超时的时候，通知上层Incoming
- 输入参数  : ulParam:定时器参数
- 输出参数  : 无
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2010年5月20日
-    作    者   : h44270
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID MN_CALL_RingTimerTimeout(
     VOS_UINT32                          ulParam
 );
 
-/* Deleted by w00176964 for VoLTE_PhaseIII 项目, 2013-12-14, begin */
 
-/* Deleted by w00176964 for VoLTE_PhaseIII 项目, 2013-12-14, end */
 
 VOS_VOID MN_CALL_UpdateTimerPeriod(
     MN_CALL_TIMER_ID_ENUM_U32           enTimerId,
@@ -282,17 +173,14 @@ MN_CALL_TIMER_STATUS_ENUM_U8  MN_CALL_GetTimerStatus(
 
 
 
-/* Added by l00198894 for V9R1 STK升级, 2013/07/11, begin */
 VOS_VOID TAF_CALL_RcvTiDtmfOnLengthExpired(
     VOS_UINT32                          ulParam
 );
-/* Added by l00198894 for V9R1 STK升级, 2013/07/11, end */
 
 VOS_VOID TAF_CALL_RcvTiDtmfOffLengthExpired(
     VOS_UINT32                          ulParam
 );
 
-/* Added by y00245242 for V3R3C60_eCall项目, 2014-4-1, begin */
 VOS_UINT32 TAF_CALL_GetTimerLen(
     MN_CALL_TIMER_ID_ENUM_U32           enTimerId
 );
@@ -320,7 +208,6 @@ VOS_UINT32 TAF_CALL_GetRemainRedialPeriodTimerLen(VOS_UINT8 ucCallId);
 VOS_VOID TAF_CALL_StartRedialPeriodTimer(VOS_UINT8 ucCallId);
 
 MN_CALL_TIMER_STATUS_ENUM_U8 TAF_CALL_GetRedialIntervalTimerStatus(VOS_UINT8 ucCallId);
-/* Added by y00245242 for V3R3C60_eCall项目, 2014-4-1, end */
 
 #if (VOS_OS_VER == VOS_WIN32)
 #pragma pack()

@@ -201,9 +201,7 @@ extern  VOS_UINT32  NAS_EMM_MsRegImsiDetachWtCnDetCnfMsgCnDetachReq
 extern  VOS_UINT32    NAS_EMM_MsRegInitMsgCnDetachReq(
                                                 VOS_UINT32  ulMsgId,
                                                 VOS_VOID   *pMsgStru );
-/* leixiantiao 00258641 重构函数降低圈复杂度 2014-7-30 begin */
 extern VOS_VOID NAS_EMM_MsTauInitSsWtCnTauCnfMsgCnDetReqCollisionDetProc(const VOS_UINT32 *pvTauRslt);
-/* leixiantiao 00258641 重构函数降低圈复杂度 2014-7-30 end */
 
 extern  VOS_UINT32    NAS_EMM_MsTauInitSsWtCnTauCnfMsgCnDetatchReq(VOS_UINT32  ulMsgId,
                                                          VOS_VOID   *pMsgStru);

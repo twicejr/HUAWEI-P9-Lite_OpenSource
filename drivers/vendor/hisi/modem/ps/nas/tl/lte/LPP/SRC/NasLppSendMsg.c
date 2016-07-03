@@ -495,16 +495,7 @@ VOS_UINT8  NAS_LPP_SndUpLppErrorMsg
     return NAS_LPP_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_PreGnssAssistDataParameter
- Description     : 准备辅助数据请求的待编码的参数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lifuxin 00253982      2015-10-22  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_LPP_PreGnssAssistDataParameter
 (
     MTA_LPP_GNSS_ASSIST_DATA_REQ_STRU       *pstMtaLppGnssAssistDataReq,
@@ -693,16 +684,7 @@ VOS_UINT8  NAS_LPP_SndUplinkReqAssistDataMsg
     return NAS_LPP_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_RcvLppEmDataCnf
- Description    : LPP模块收到直传回复的消息处理
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      lifuxin 00253982 2015-7-13  新开发
-*****************************************************************************/
 VOS_VOID  NAS_LPP_SndIntraLppMsg
 (
     VOS_UINT32                                  ulOpId,

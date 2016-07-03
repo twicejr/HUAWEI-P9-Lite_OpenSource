@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2006, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : MtcDebug.c
-  版 本 号   : 初稿
-  作    者   : j00174725
-  生成日期   : 2013年08月13日
-  最近修改   :
-  功能描述   : MTC调试信息
-  函数列表   :
-
-  修改历史   :
-  1.日    期   : 2013年08月13日
-    作    者   : j00174725
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -40,8 +23,6 @@ extern "C" {
 /*****************************************************************************
   2 外部函数声明
 *****************************************************************************/
-/* Deleted by wx270776 for OM融合, 2015-6-28, begin */
-/* Deleted by wx270776 for OM融合, 2015-6-28, end */
 
 
 /******************************************************************************
@@ -59,24 +40,7 @@ MTC_DEBUG_RF_USING_FREQ_LIST_STRU       g_stRfUsingDebugInfo;
 /******************************************************************************
    5 函数实现
 ******************************************************************************/
-/*****************************************************************************
- 函 数 名  : MTC_DebugHelp
- 功能描述  : MTC模块帮助
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年08月12日
-    作    者   : j00174725
-    修改内容   : V9R1 干扰控制项目
-
-  2.日    期   : 2013年10月21日
-    作    者   : l00198894
-    修改内容   : V9R1C50 SVLTE离网重选项目新增
-*****************************************************************************/
 VOS_VOID MTC_DebugHelp(VOS_VOID)
 {
     (VOS_VOID)vos_printf("Intrusion Info      : MTC_DEBUG_ShowIntrusionInfo\r\n");
@@ -87,20 +51,7 @@ VOS_VOID MTC_DebugHelp(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_ModemDebugShow
- 功能描述  : MTC Modem 信息帮助函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年08月12日
-    作    者   : j00174725
-    修改内容  : V9R1 干扰控制项目
-*****************************************************************************/
 VOS_VOID MTC_DEBUG_ShowModemInfo(VOS_VOID)
 {
     MTC_MODEM_INFO_STRU                *pstModemInfo = VOS_NULL_PTR;
@@ -124,20 +75,7 @@ VOS_VOID MTC_DEBUG_ShowModemInfo(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : MTC_IntrusionDebugShow
- 功能描述  : MTC Intrusion模块帮助
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年08月12日
-    作    者   : j00174725
-    修改内容   : V9R1 干扰控制项目
-*****************************************************************************/
 VOS_VOID MTC_DEBUG_ShowIntrusionInfo(VOS_VOID)
 {
     (VOS_VOID)vos_printf("\r\nShow Power Num:\r\n");
@@ -179,20 +117,7 @@ VOS_VOID MTC_DEBUG_ShowIntrusionInfo(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_DEGUG_ShowPsTransferInfo
- 功能描述  : MTC PsTransfer模块帮助
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月21日
-    作    者   : l00198894
-    修改内容   : V9R1C50 SVLTE离网重选项目新增
-*****************************************************************************/
 VOS_VOID MTC_DEGUG_ShowPsTransferInfo(VOS_VOID)
 {
     MTC_PS_TRANSFER_DEBUG_INFO         *pstPsTransferDebugInfo = VOS_NULL_PTR;
@@ -213,20 +138,7 @@ VOS_VOID MTC_DEGUG_ShowPsTransferInfo(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_InitDebugCtx
- 功能描述  : 初始化MTC Intrusion调试模块
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年08月12日
-    作    者   : j00174725
-    修改内容  : V9R1 干扰控制项目
-*****************************************************************************/
 VOS_VOID MTC_InitDebugCtx(VOS_VOID)
 {
     /* 初始化MTC调试信息全局变量 */
@@ -235,58 +147,19 @@ VOS_VOID MTC_InitDebugCtx(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_GetIntrusionDebugCtxAddr
- 功能描述  : 获取频段冲突模块调试信息地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年08月12日
-    作    者   : j00174725
-    修改内容  : V9R1 干扰控制项目
-*****************************************************************************/
 MTC_INTRUSION_DEBUG_INFO* MTC_GetIntrusionDebugCtxAddr(VOS_VOID)
 {
     return &g_stMtcDebugInfo.stIntrusionDebugInfo;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_GetPsTransferDebugCtxAddr
- 功能描述  : 获取PS域迁移模块调试信息地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月21日
-    作    者   : l00198894
-    修改内容   : V9R1C50 SVLTE离网重选项目新增
-*****************************************************************************/
 MTC_PS_TRANSFER_DEBUG_INFO* MTC_GetPsTransferDebugCtxAddr(VOS_VOID)
 {
     return &g_stMtcDebugInfo.stPsTransferDebugInfo;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_DEBUG_IntrusionRcvSetBandCnf
- 功能描述  : 记录频段干扰模块接收band信息回复次数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年08月12日
-    作    者   : j00174725
-    修改内容   : V9R1 干扰控制项目
-*****************************************************************************/
 VOS_VOID MTC_DEBUG_IntrusionRcvSetBandCnf(VOS_UINT32 ulPid)
 {
     MTC_INTRUSION_DEBUG_INFO           *pstIntrusionDebugInfo;
@@ -313,20 +186,7 @@ VOS_VOID MTC_DEBUG_IntrusionRcvSetBandCnf(VOS_UINT32 ulPid)
 
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_DEBUG_IntrusionRcvActionCnf
- 功能描述  : 记录频段干扰模块接收控制上报回复次数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年08月12日
-    作    者   : j00174725
-    修改内容  : V9R1 干扰控制项目
-*****************************************************************************/
 VOS_VOID MTC_DEBUG_IntrusionRcvActionCnf(VOS_UINT32 ulPid)
 {
     MTC_INTRUSION_DEBUG_INFO           *pstIntrusionDebugInfo;
@@ -353,20 +213,7 @@ VOS_VOID MTC_DEBUG_IntrusionRcvActionCnf(VOS_UINT32 ulPid)
 
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_DEBUG_IntrusionSendActionReq
- 功能描述  : 记录频段干扰模块MTC通知控制开启次数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年08月12日
-    作    者   : j00174725
-    修改内容  : V9R1 干扰控制项目
-*****************************************************************************/
 VOS_VOID MTC_DEBUG_IntrusionSendActionReq(VOS_UINT32 ulPid)
 {
     MTC_INTRUSION_DEBUG_INFO           *pstIntrusionDebugInfo;
@@ -393,20 +240,7 @@ VOS_VOID MTC_DEBUG_IntrusionSendActionReq(VOS_UINT32 ulPid)
 
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_DEBUG_IntrusionSendSetBandReq
- 功能描述  : 记录频段干扰模块MTC通知控制开启次数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年08月12日
-    作    者   : j00174725
-    修改内容  : V9R1 干扰控制项目
-*****************************************************************************/
 VOS_VOID MTC_DEBUG_IntrusionSendSetBandReq(VOS_UINT32 ulPid)
 {
     MTC_INTRUSION_DEBUG_INFO           *pstIntrusionDebugInfo;
@@ -433,21 +267,7 @@ VOS_VOID MTC_DEBUG_IntrusionSendSetBandReq(VOS_UINT32 ulPid)
 
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_DEBUG_RcvPowerStateInd
- 功能描述  : MTC模块收到开关机状态上报的次数
- 输入参数  : enModemId      -- Modem Id
-             enPowerState   -- 开关机状态
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年08月12日
-    作    者   : j00174725
-    修改内容   : V9R1 干扰控制项目
-*****************************************************************************/
 VOS_VOID MTC_DEBUG_RcvPowerStateInd(
     MODEM_ID_ENUM_UINT16                enModemId,
     MTC_MODEM_POWER_STATE_ENUM_UINT8    enPowerState
@@ -465,20 +285,7 @@ VOS_VOID MTC_DEBUG_RcvPowerStateInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_DEBUG_RcvCsSrvInfoInd
- 功能描述  : MTC模块收到开关机状态上报的次数
- 输入参数  : enModemId      -- Modem Id
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年08月12日
-    作    者   : l00198894
-    修改内容   : V9R1 干扰控制项目
-*****************************************************************************/
 VOS_VOID MTC_DEBUG_RcvCsSrvInfoInd(
     MODEM_ID_ENUM_UINT16                enModemId
 )
@@ -488,20 +295,7 @@ VOS_VOID MTC_DEBUG_RcvCsSrvInfoInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_DEBUG_RcvRrcAreaLostInd
- 功能描述  : MTC模块收到开关机状态上报的次数
- 输入参数  : enModemId      -- Modem Id
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月21日
-    作    者   : l00198894
-    修改内容   : V9R1C50 SVLTE离网重选项目新增
-*****************************************************************************/
 VOS_VOID MTC_DEBUG_RcvRrcAreaLostInd(
     VOS_UINT32                          ulSenderPid
 )
@@ -522,20 +316,7 @@ VOS_VOID MTC_DEBUG_RcvRrcAreaLostInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_DEBUG_RcvRrcAreaAvaliableInd
- 功能描述  : MTC模块收到接入层网络恢复上报的次数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月21日
-    作    者   : l00198894
-    修改内容   : V9R1C50 SVLTE离网重选项目新增
-*****************************************************************************/
 VOS_VOID MTC_DEBUG_RcvRrcAreaAvaliableInd(VOS_VOID)
 {
     MTC_PS_TRANSFER_DEBUG_INFO         *pstPsTransferDebugInfo = VOS_NULL_PTR;
@@ -547,20 +328,7 @@ VOS_VOID MTC_DEBUG_RcvRrcAreaAvaliableInd(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_DEBUG_SndPsTransferInd
- 功能描述  : MTC模块记录上报PS域迁移指示次数
- 输入参数  : enModemId      -- Modem Id
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月21日
-    作    者   : l00198894
-    修改内容   : V9R1C50 SVLTE离网重选项目新增
-*****************************************************************************/
 VOS_VOID MTC_DEBUG_SndPsTransferInd(
     MTC_PS_TRANSFER_CAUSE_ENUM_UINT8    enPsTransferCause
 )
@@ -570,20 +338,7 @@ VOS_VOID MTC_DEBUG_SndPsTransferInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_DEBUG_GetRfLcdDebugAddr
- 功能描述  : MTC RF&LCD可维可测上下文地址
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年03月10日
-    作    者   : j00174725
-    修改内容   : RF&LCD INTRUSION项目新增
-*****************************************************************************/
 MTC_DEBUG_RF_LCD_INFO_STRU* MTC_DEBUG_GetRfLcdDebugAddr(VOS_VOID)
 {
     return &g_stMtcDebugInfo.stRfLcdDebugInfo;
@@ -591,20 +346,7 @@ MTC_DEBUG_RF_LCD_INFO_STRU* MTC_DEBUG_GetRfLcdDebugAddr(VOS_VOID)
 
 
 #if 1
-/*****************************************************************************
- 函 数 名  : MTC_DEBUG_ShowBand
- 功能描述  : 打印Band参数含义
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年08月12日
-    作    者   : l00198894
-    修改内容   : V9R1 干扰控制项目
-*****************************************************************************/
 VOS_VOID MTC_DEBUG_ShowBand(VOS_VOID)
 {
     (VOS_VOID)vos_printf("\r\nBAND_NONE   : %d\r\n", MTC_DEBUG_BAND_NONE);
@@ -621,20 +363,7 @@ VOS_VOID MTC_DEBUG_ShowBand(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_DEBUG_FillBandInfo
- 功能描述  : MTC模块填充接入层频段信息
- 输入参数  : ucBand      -- 频段信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年08月12日
-    作    者   : l00198894
-    修改内容   : V9R1 干扰控制项目
-*****************************************************************************/
 VOS_VOID MTC_DEBUG_FillBandInfo(
     RRC_MTC_INTRUSION_BAND_INFO_IND_STRU   *pstBandInfo,
     MTC_DEBUG_BAND_ENUM_UINT8               enBand
@@ -685,20 +414,7 @@ VOS_VOID MTC_DEBUG_FillBandInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_DEBUG_SendBandInfoInd
- 功能描述  : 模拟接入层给MTC模块上报频段信息
- 输入参数  : ucAs       -- 接入层 0: I1_GAS 1: TDS 2: LTE
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年08月12日
-    作    者   : l00198894
-    修改内容   : V9R1 干扰控制项目
-*****************************************************************************/
 VOS_VOID MTC_DEBUG_SendBandInfoInd(
     VOS_UINT8                               ucAs,
     MTC_DEBUG_BAND_ENUM_UINT8               enBand
@@ -754,20 +470,7 @@ VOS_VOID MTC_DEBUG_SendBandInfoInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_DEBUG_SendTBandSetReq
- 功能描述  : MTC模块给T下发频段设置请求
- 输入参数  : ucBand         -- 频段 0: 启用所有频段 1: 禁用频段B39 2: 禁用频段B40
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年08月12日
-    作    者   : l00198894
-    修改内容   : V9R1 干扰控制项目
-*****************************************************************************/
 VOS_VOID MTC_DEBUG_SendTBandSetReq(
     VOS_UINT8                               ucBand
 )
@@ -800,20 +503,7 @@ VOS_VOID MTC_DEBUG_SendTBandSetReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_DEBUG_SendLBandSetReq
- 功能描述  : MTC模块给L下发频段设置请求
- 输入参数  : ucBand         -- 频段 0: 启用所有频段 1: 禁用频段B39 2: 禁用频段B40
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年08月12日
-    作    者   : l00198894
-    修改内容   : V9R1 干扰控制项目
-*****************************************************************************/
 VOS_VOID MTC_DEBUG_SendLBandSetReq(
     VOS_UINT8                               ucBand
 )
@@ -846,20 +536,7 @@ VOS_VOID MTC_DEBUG_SendLBandSetReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_DEBUG_SendTLBandSetReq
- 功能描述  : MTC模块给TL下发频段设置请求
- 输入参数  : ucBand         -- 频段 0: 启用所有频段 1: 禁用频段B39 2: 禁用频段B40
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年08月12日
-    作    者   : l00198894
-    修改内容   : V9R1 干扰控制项目
-*****************************************************************************/
 VOS_VOID MTC_DEBUG_SendTLBandSetReq(
     VOS_UINT8                               ucBand
 )
@@ -879,20 +556,7 @@ VOS_VOID MTC_DEBUG_SendTLBandSetReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_DEBUG_SendOtherRatInfoInd
- 功能描述  : 模拟CDMA给MTC模块上报邻区信息
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年02月12日
-    作    者   : l00198894
-    修改内容   : C+L离网重选项目
-*****************************************************************************/
 VOS_VOID MTC_DEBUG_SendOtherRatInfoInd(VOS_VOID)
 {
     VOS_UINT16                              ulLenth;
@@ -936,20 +600,7 @@ VOS_VOID MTC_DEBUG_SendOtherRatInfoInd(VOS_VOID)
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : MTC_DEBUG_TraceEvent
- 功能描述  : 输出可维可测
- 输入参数  : pMsg - 可维可测消息(调用者保证非空)
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年03月15日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID MTC_DEBUG_TraceEvent(VOS_VOID *pMsg)
 {
 
@@ -958,20 +609,7 @@ VOS_VOID MTC_DEBUG_TraceEvent(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_DEBUG_TraceCtxInfo
- 功能描述  : MTC上下文信息上报
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年02月22日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-*****************************************************************************/
 /*lint -e813*/ /* auto variable 'stMtcCtxDebugInfo' in function 'MTC_DEBUG_TraceCtxInfo(void)' has size '1960') */
 VOS_VOID MTC_DEBUG_TraceCtxInfo(VOS_VOID)
 {
@@ -1001,20 +639,7 @@ VOS_VOID MTC_DEBUG_TraceCtxInfo(VOS_VOID)
 /*lint +e813*/
 
 
-/*****************************************************************************
- 函 数 名  : MTC_DEBUG_InitRfUsingFreqListInfo
- 功能描述  : 初始化 g_stRfUsingDebugInfo 全局变量
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年02月22日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID MTC_DEBUG_InitRfUsingFreqListInfo(VOS_VOID)
 {
     /* 初始化 */
@@ -1022,20 +647,7 @@ VOS_VOID MTC_DEBUG_InitRfUsingFreqListInfo(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : MTC_DEBUG_TraceRfUsingFreqListInfo
- 功能描述  : 接入层上报的频点信息经过转换后的信息上报到SDT
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年02月22日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID MTC_DEBUG_TraceRfUsingFreqListInfo(VOS_VOID)
 {
     /*  填写Debug 消息ID */
@@ -1053,24 +665,7 @@ VOS_VOID MTC_DEBUG_TraceRfUsingFreqListInfo(VOS_VOID)
 }
 
 
-/* Add by j00174725 for K3V3 多模多天线特性, 2014-06-16, Begin */
-/*****************************************************************************
- 函 数 名  : MTC_DEBUG_TraceAllModemConnStateInfo
- 功能描述  : 上报各个modem(包括外挂modem的状态)
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月25日
-    作    者   : j00174725
-    修改内容   : K3V3 多模多天线特性
-  2.日    期   : 2015年07月20日
-    作    者   : zwx247453
-    修改内容   : 3 modem TAS
-*****************************************************************************/
 VOS_VOID MTC_DEBUG_TraceAllModemConnStateInfo(VOS_VOID)
 {
     MTC_DEBUG_ALL_MODEM_STATE_INFO      stAllModemState;
@@ -1149,22 +744,8 @@ VOS_VOID MTC_DEBUG_TraceAllModemConnStateInfo(VOS_VOID)
     return;
 }
 
-/* Add by j00174725 for K3V3 多模多天线特性, 2014-06-16, End */
 
-/*****************************************************************************
- 函 数 名  : MTC_DEBUG_TraceNotchInfo
- 功能描述  : 上报各个modem Notch 相关信息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月01日
-    作    者   : j00174725
-    修改内容   : DTS2015102706654
-*****************************************************************************/
 VOS_VOID MTC_DEBUG_TraceNotchInfo(VOS_VOID)
 {
     MTC_MSG_BUF_STRU                   *pstBufAddr          = VOS_NULL_PTR;

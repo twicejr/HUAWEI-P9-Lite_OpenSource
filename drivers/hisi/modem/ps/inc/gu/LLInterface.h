@@ -1,24 +1,4 @@
-/******************************************************************************
-  Copyright   : 2005-2010, Huawei Tech. Co., Ltd.
-  File name   : LLInterface.h
-  Author      : g45205
-  Version     : V200R001
-  Date        : 2005-06-16
-  Description : 该头文件定义了LLC模块对GMM和SMS的接口
-  History     :
-  1. Date:2005-06-16
-     Author: g45205
-     Modification:Create
-  2.日    期   : 2006年08月09日
-    作    者   : 蒋丽萍j60010247
-    修改内容   : 问题单A32D03479，在PC机上实现时将#pragma pack(0)和#pragma pack()加编译开关
-  3.日    期   : 2009年02月12日
-    作    者   : f62575
-    修改内容   : 问题单A32D08966，参考V1R1版本的清除PC-LINT告警方式清除V2R1版本和V1R2版本告警
-  4.日    期   : 2009年6月30日
-    作    者   : s46746
-    修改内容   : AT2D12561,3G2情形GPRS下未启动加密，NAS指派层2加密算法后，层2对上行数据进行了加密
-******************************************************************************/
+
 #ifndef _LL_INTERFACE_H_
 #define _LL_INTERFACE_H_
 

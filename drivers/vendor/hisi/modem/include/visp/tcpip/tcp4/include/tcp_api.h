@@ -64,13 +64,11 @@ enum tagTCP_ErrCode
     TCP_NETINFO_FINISH,        /* 17 TCPNetInfo 查询结束 */
     TCP_GETINPCB_WRONG,        /* 18 获取得到的INPCB为空 */
 
-    /*Added by wangtong207740, 基于socket id 获取对应的tcp报文统计, 2012/9/5 */
     TCP_NOT_GLOBAL_SOCKET,      /* 19 不支持非全局SOCKET场景 */
 
     TCP_ERR_MAX,
 };
 
-/* Added by y00171195/p00193127 for TCPNetInfo TCP状态码 */
 enum tagTCP_StateCode
 {
     TCPSTATE_CLOSED        = 0,   /* closed */
@@ -356,9 +354,7 @@ typedef struct tagTCPIP_TCPNETINFO_S
     USHORT  usDestPort;
     USHORT  usState;
     USHORT  usRes;
-    /*Added by limin00188004, 获取网络状态时输出socket所绑定的VRF索引, 2012/9/28   问题单号:S.VRF.02.01 */
     ULONG   ulVrfIndex;
-    /* End of Added by limin00188004, 2012/9/28   问题单号:S.VRF.02.01 */
 }TCPIP_TCPNETINFO_S;
 
 /* COOKIE密钥, 136个字节长度 */  
@@ -633,104 +629,19 @@ extern TCPINPUT_HOOK_FUNC g_TCP_Input_HookFunc;
  * PP do not need to process the packet any more */
 #define TCP_PROCESSED_BY_INTERMEDIATE                  2
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetPerTcp4ConnStats
-* Date Created: 2009-12-25
-*       Author: Gexianjun/h00121208
-*  Description: 指定socket id, task id或指定四元组，VRF获取指定的TCP统计信息
-*        Input: TCP4CONN_S *pstConnInfo:    获取指定TCP Socket输入参数
-*       Output: TCP4PERSTAT_S *pstRetStats: 获取指定的TCP统计信息
-*       Return: 成功:VOS_OK;失败:错误码
-*      Caution: 如果socket的模式是全局socket,根据socket id获取tcp统计信息,则不需要指定task id;
-*               否则需要同时指定socket id和task id。本接口获取TCP统计信息输入参数必须配对才能正确
-*               获取:输入参数可以为socket id + task id去获取;或输入参数为四元组+vrf去获取；
-*               也可以同时指定这两种组合。获取方法是先根据socket id +task id去获取,
-*               如果获取失败,再根据四元组+vrf去获取。
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-12-25   Gexianjun/h00121208     Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_GetPerTcp4ConnStats(TCP4CONN_S *pstConnInfo, TCP4PERSTAT_S *pstRetStats);
 
-/*******************************************************************************
-*    Func Name: TCPIP_ResetPerTcp4ConnStats
-* Date Created: 2009-12-25
-*       Author: Gexianjun/h00121208
-*  Description: 指定socket id, task id或指定四元组，VRF清除指定的TCP统计信息
-*        Input: TCP4CONN_S *pstConnInfo: 清除指定TCP Socket输入参数
-*       Output: 
-*       Return: 成功:VOS_OK;失败:错误码
-*      Caution: 如果socket的模式是全局socket,根据socket id清除tcp统计信息,则不需要指定task id;
-*               否则需要同时指定socket id和task id。本接口清除TCP统计信息输入参数必须配对才能正确
-*               清除:输入参数可以为socket id + task id去清除;或输入参数为四元组+vrf去清除；
-*               也可以同时指定这两种组合。清除方法是先根据socket id +task id去查找tcp socket, 如果
-*               查找成功,则清除指定的该tcp socket的统计信息,如果查找失败,再根据四元组+vrf去查找tcp socket,
-*               如果查找成功,则清除指定的该tcp socket的统计信息。
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-12-25   Gexianjun/h00121208     Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_ResetPerTcp4ConnStats(TCP4CONN_S *pstConnInfo);
 
-/*******************************************************************************
-*    Func Name: TCPIP_OpenTcpNetInfo
-* Date Created: 2011-11-3
-*       Author: y00171195/p00193127
-*  Description: 打开查询句柄
-*        Input: 
-*       Output: pulWaitlist:Waitlist句柄
-*       Return: 成功:VOS_OK;失败:错误码
-*      Caution: 只有查询句柄打开成功才能进行下一步TCP网络连接信息查询操作。
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-11-3   y00171195/p00193127     Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_OpenTcpNetInfo(UINTPTR *pulWaitlist);
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetTcpNetInfo
-* Date Created: 2011-11-3
-*       Author: y00171195/p00193127
-*  Description: 获取TCP网络连接信息
-*        Input: pulWaitlist:Waitlist句柄
-*       Output: TCPIP_TCPNETINFO_S*pstNetInfo网络连接信息
-*       Return: 成功:VOS_OK;失败:错误码
-*      Caution: 只有查询句柄打开成功才能进行下一步TCP网络连接信息查询操作,每次查询获取一个连接信息,该函数
-*               在打开查询句柄后可以进行多次查询以返回所有的TCP网络连接信息。
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-11-3   y00171195/p00193127     Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_GetTcpNetInfo(UINTPTR ulWaitlist, TCPIP_TCPNETINFO_S *pstNetInfo);
 
-/*******************************************************************************
-*    Func Name: TCPIP_CloseTcpNetInfo
-* Date Created: 2011-11-3
-*       Author: y00171195/p00193127
-*  Description: 关闭查询句柄
-*        Input: ulWaitlist:Waitlist句柄
-*       Output: 
-*       Return: 成功:VOS_OK;失败:错误码
-*      Caution: 在查询结束后或者获取TCP网络连接信息失败时需要关闭查询句柄。
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-11-3   y00171195/p00193127     Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_CloseTcpNetInfo(UINTPTR ulWaitlist);
 
 /*******************************************************************************
@@ -752,39 +663,9 @@ extern ULONG TCPIP_CloseTcpNetInfo(UINTPTR ulWaitlist);
 *******************************************************************************/
 ULONG TCPIP_GetTcpInfo(ULONG ulSocketId, TCP_SOCK_INFO_S *pstTcpInfo);
 
-/*******************************************************************************
-*    Func Name: TCPIP_RegTcpCookieSecret
-* Date Created: 2014-5-13
-*       Author: f00209023
-*  Description: 注册获取TCP COOKIE的密钥钩子
-*        Input: gpfTCPIPGetCookieSecret  pfGetCookieHook
-*       Return: VOS_OK:
-*      Caution: 入参为空则注册失败，否则成功，在VISP初始化之前注册
-*         约束: 产品若要使用cookie特性，则必须注册该钩子。
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-5-13   f00209023                Create
-*
-*******************************************************************************/
+
 ULONG TCPIP_RegTcpCookieSecret(gpfTCPIPGetCookieSecret  pfGetCookieHook);
-/*******************************************************************************
-*    Func Name: TCPIP_RegGetUsrCookieSwitch
-* Date Created: 2014-5-13
-*       Author: f00209023
-*  Description: 注册获取产品COOKIE开关的钩子
-*        Input: gpfTCPIPGetUsrCookieSwitch pfGetUserCookieSwitch
-*       Return: VOS_OK:
-*      Caution: 入参为空则注册失败，否则成功，在VISP初始化之前注册
-*         约束: 产品若要使用cookie特性，则必须注册该钩子。
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-5-13   f00209023                Create
-*
-*******************************************************************************/
+
 ULONG  TCPIP_RegGetUsrCookieSwitch(gpfTCPIPGetUsrCookieSwitch pfGetUserCookieSwitch);
 
 ULONG TCPIP_RegTcp4Md5CfgNotifyHook(gpfTCPIPMd5CfgNotifyHook pfCfgNotify);

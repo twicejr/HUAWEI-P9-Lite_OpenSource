@@ -1,15 +1,4 @@
-/******************************************************************************
-  Copyright   : 2005-2010, Huawei Tech. Co., Ltd.
-  File name   : CdsPppInterface.h
-  Author      : c00184031
-  Version     : V100R001
-  Date        : 2014-12-30
-  Description : 该头文件定义了---
-  History     :
-  1. Date:2014-12-30
-     Author: c00184031
-     Modification:Create
-******************************************************************************/
+
 
 #ifndef __CDS_PPP_INTERFACE_H__
 #define __CDS_PPP_INTERFACE_H__

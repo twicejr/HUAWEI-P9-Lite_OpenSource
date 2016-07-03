@@ -1,27 +1,4 @@
-/*******************************************************************************
-*
-*
-*                Copyright 2006, Huawei Technologies Co. Ltd.
-*                            ALL RIGHTS RESERVED
-*
-*-------------------------------------------------------------------------------
-*
-*                              bfd_ext_sh.h
-*
-*  Project Code: VISPV100R007
-*   Module Name: BFD EXTERN
-*  Date Created: 2008-07-24
-*        Author: qinyun
-*   Description: EXTERN BFD Shell
-*
-*-------------------------------------------------------------------------------
-*  Modification History
-*  DATE            NAME              DESCRIPTION    
-*  -----------------------------------------------------------------------------
-*  2008-07-24      qinyun            Create
-*  2009-09-30      l00147446        BC3D02152【BFDEXT】模块无用API，需清理。
-*
-*******************************************************************************/
+
 
 #ifndef _BFD_EXT_SH_H_
 #define _BFD_EXT_SH_H_

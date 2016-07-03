@@ -47,28 +47,7 @@ extern "C" {
 
 
 
-/*****************************************************************************
- 函 数 名  : Taf_PhonePinHandle
- 功能描述  : +CPIN USIM提供的PIN操做的API
-             void Api_PIN_Handle(VOS_UINT8 ucClientId,VOS_UINT8 ucCmdType, VOS_UINT8
-             ucPINType,\
-             VOS_UINT8 *pucOldPIN, VOS_UINT8 *pucNewPIN)；
- 输入参数  : ClientId - APP/AT标识
-                 OpId - 操作标识
-*pPinData - 手机PIN码操作数据结构
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2005年8月25日
-    作    者   : liuyang
-    修改内容   : V200R001版本生成函数
-  2.日    期   : 2007年10月16日
-    作    者   : F62575
-    修改内容   : 问题单A32D13062(文档校对发现问题)
-*****************************************************************************/
 TAF_UINT32 Taf_PhonePinHandle ( MN_CLIENT_ID_T          ClientId,
                                 MN_OPERATION_ID_T       OpId,
                                 TAF_PH_PIN_DATA_STRU   *pPinData)
@@ -82,18 +61,7 @@ TAF_UINT32 Taf_PhonePinHandle ( MN_CLIENT_ID_T          ClientId,
 }
 
 
-/*****************************************************************************
- 函 数 名  : Taf_MePersonalisationHandle
- 功能描述  : 锁卡状态查询
- 输入参数  : pMsg  消息块
- 输出参数  : ClientId - APP/AT标识
-             OpId - 操作标识
- 返 回 值  : 成功，失败
- 修改历史      :
-  1.日    期   : 2007年9月28日
-    作    者   : h44270
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_UINT32 Taf_MePersonalisationHandle(MN_CLIENT_ID_T          ClientId,
                                        MN_OPERATION_ID_T                 OpId,
                                        TAF_ME_PERSONALISATION_DATA_STRU *pMePersonalData)
@@ -109,26 +77,7 @@ VOS_UINT32 Taf_MePersonalisationHandle(MN_CLIENT_ID_T          ClientId,
 
 /* Taf_PhoneAttach */
 
-/**********************************************************
- Function:       Taf_PhonePlmnList
- Description:    可用PLMN搜索
- Calls:          APP/AT
- Data Accessed:  2005-09-16
- Data Updated:
- Input:          ClientId - APP/AT标识
-                 OpId     - 操作标识
-                 ListType - 搜索类型
- Output:
- Return:         TAF_SUCCESS - 成功
-                 TAF_FAILURE - 失败
- Others:
-    1.Date        : 2007-10-16
-    Author      : F62575
-    Modification: 问题单A32D13062(文档校对发现问题)
-    2.Date        : 2015-3-4
-    Author      : b00269685
-    Modification: 使用新接口改为分段上报
-**********************************************************/
+
 TAF_UINT32 Taf_PhonePlmnList (
     VOS_UINT32                          ulModuleId,
     MN_CLIENT_ID_T                      usClientId,
@@ -187,23 +136,7 @@ TAF_UINT32 Taf_PhonePlmnList (
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_PlmnAutoReselReq
- 功能描述  : 自动搜网
- 输入参数  : ulModuleId             ---  外部模块PID
-             usCliendId             ---  外部模块CliendId
-             ucOpId                 ---  外部模块OpId
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:成功,VOS_FALSE:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月23日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_PlmnAutoReselReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -251,24 +184,7 @@ VOS_UINT32 TAF_MMA_PlmnAutoReselReq(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_PlmnSpecialSelReq
- 功能描述  : 自动搜网
- 输入参数  : ulModuleId             ---  外部模块PID
-             usCliendId             ---  外部模块CliendId
-             ucOpId                 ---  外部模块OpId
-             ucPlmnReselModeType    ---  fplmn resel设置参数
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:成功,VOS_FALSE:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月23日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_PlmnSpecialSelReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -317,24 +233,7 @@ VOS_UINT32 TAF_MMA_PlmnSpecialSelReq(
 
     return VOS_TRUE;
 }
-/*****************************************************************************
- 函 数 名  : TAF_MMA_AbortPlmnListReq
- 功能描述  : AbortReq
- 输入参数  : ulModuleId             ---  外部模块PID
-             usCliendId             ---  外部模块CliendId
-             ucOpId                 ---  外部模块OpId
-             ucPlmnReselModeType    ---  fplmn resel设置参数
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:成功,VOS_FALSE:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月23日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_AbortPlmnListReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -381,23 +280,7 @@ VOS_UINT32 TAF_MMA_AbortPlmnListReq(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_QryLocInfoReq
- 功能描述  : query loc info
- 输入参数  : ulModuleId             ---  外部模块PID
-             usCliendId             ---  外部模块CliendId
-             ucOpId                 ---  外部模块OpId
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:成功,VOS_FALSE:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月23日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_QryLocInfoReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -443,23 +326,7 @@ VOS_UINT32 TAF_MMA_QryLocInfoReq(
 
     return VOS_TRUE;
 }
-/*****************************************************************************
- 函 数 名  : TAF_MMA_QryCipherReq
- 功能描述  : query cipher info
- 输入参数  : ulModuleId             ---  外部模块PID
-             usCliendId             ---  外部模块CliendId
-             ucOpId                 ---  外部模块OpId
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:成功,VOS_FALSE:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月23日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_QryCipherReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -505,24 +372,7 @@ VOS_UINT32 TAF_MMA_QryCipherReq(
 
     return VOS_TRUE;
 }
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SetPrefPlmnTypeReq
- 功能描述  : set prefer plmn type
- 输入参数  : ulModuleId             ---  外部模块PID
-             usCliendId             ---  外部模块CliendId
-             ucOpId                 ---  外部模块OpId
-             ucPlmnReselModeType    ---  fplmn resel设置参数
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:成功,VOS_FALSE:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月23日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_SetPrefPlmnTypeReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -570,24 +420,7 @@ VOS_UINT32 TAF_MMA_SetPrefPlmnTypeReq(
 
     return VOS_TRUE;
 }
-/*****************************************************************************
- 函 数 名  : TAF_MMA_MtPowerDownReq
- 功能描述  : 自动搜网
- 输入参数  : ulModuleId             ---  外部模块PID
-             usCliendId             ---  外部模块CliendId
-             ucOpId                 ---  外部模块OpId
-             ucPlmnReselModeType    ---  fplmn resel设置参数
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:成功,VOS_FALSE:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月23日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_MtPowerDownReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -635,21 +468,7 @@ VOS_UINT32 TAF_MMA_MtPowerDownReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SetQuickStartReq
- 功能描述  : AT^CQST=功能
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月24日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_SetQuickStartReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -698,21 +517,7 @@ VOS_UINT32 TAF_MMA_SetQuickStartReq(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_QryQuickStartReq
- 功能描述  : CQST QRY命令
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月27日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_QryQuickStartReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -761,20 +566,7 @@ VOS_UINT32 TAF_MMA_QryQuickStartReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : Taf_UsimRestrictedAccessCommand
- 功能描述  : 用于支持受限制的卡操作命令
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2006年10月25日
-    作    者   : h59254
-    修改内容   : 新生成函数
-*****************************************************************************/
 TAF_UINT32 Taf_UsimRestrictedAccessCommand(MN_CLIENT_ID_T               ClientId,
                                            MN_OPERATION_ID_T            OpId,
                                            USIMM_RACCESS_REQ_STRU      *pPara)
@@ -789,23 +581,7 @@ TAF_UINT32 Taf_UsimRestrictedAccessCommand(MN_CLIENT_ID_T               ClientId
 
 
 
-/*****************************************************************************
- 函 数 名  : Taf_IndPhFreq
- 功能描述  : 指定频点搜网
- 输入参数  : MN_CLIENT_ID_T ClientId
-             MN_OPERATION_ID_T   OpId
-             TAF_IND_FREQ_STRU Freq
- 输出参数  : TAF_SUCCESS or TAF_FAILURE
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2006年10月24日
-    作    者   : x51137
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 Taf_IndPhFreq(MN_CLIENT_ID_T     ClientId,
                          MN_OPERATION_ID_T        OpId,
                          TAF_IND_FREQ_STRU        Freq)
@@ -850,23 +626,7 @@ VOS_UINT32 Taf_IndPhFreq(MN_CLIENT_ID_T     ClientId,
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_QrySyscfgReq
- 功能描述  : AT+SYSCFG QRY逻辑
- 输入参数  : VOS_UINT32                          ulModuleId,
-             VOS_UINT16                          usClientId,
-             VOS_UINT8                           ucOpId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月26日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_QrySyscfgReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -913,22 +673,7 @@ VOS_UINT32 TAF_MMA_QrySyscfgReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : Taf_SetCopsFormatTypeReq
- 功能描述  : 处理cops设置显示类型的请求
- 输入参数  : TAF_CLIENT_ID        ClientId
-             TAF_ID OpId
-             TAF_MMA_NET_SCAN_REQ_STRU    pstNetScan
- 输出参数  : 无
- 返 回 值  : TAF_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月9日
-    作    者   : z00161729
-    修改内容   : AT&T 支持EONS特性修改
-*****************************************************************************/
 VOS_UINT32 Taf_SetCopsFormatTypeReq(
     MN_CLIENT_ID_T                                          usClientId,
     MN_OPERATION_ID_T                                       ucOpId,
@@ -944,22 +689,7 @@ VOS_UINT32 Taf_SetCopsFormatTypeReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SetUsimStub
- 功能描述  : 处理模拟usim回复读文件回复给mma
- 输入参数  : TAF_CLIENT_ID        ClientId
-             TAF_ID OpId
-             TAF_MMA_USIM_STUB_SET_REQ_STRU     *pstUsimStub
- 输出参数  : 无
- 返 回 值  : TAF_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月31日
-    作    者   : z00161729
-    修改内容   : AT&T 支持EONS特性修改
-*****************************************************************************/
 VOS_UINT32 TAF_SetUsimStub(
     MN_CLIENT_ID_T                      usClientId,
     MN_OPERATION_ID_T                   ucOpId,
@@ -975,22 +705,7 @@ VOS_UINT32 TAF_SetUsimStub(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SetRefreshStub
- 功能描述  : 模拟pih给指定模块发送refresh消息
- 输入参数  : TAF_CLIENT_ID        ClientId
-             TAF_ID OpId
-             TAF_MMA_REFRESH_STUB_SET_REQ_STRU  *pstRefreshStub
- 输出参数  : 无
- 返 回 值  : TAF_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月31日
-    作    者   : z00161729
-    修改内容   : AT&T 支持EONS特性修改
-*****************************************************************************/
 VOS_UINT32 TAF_SetRefreshStub(
     MN_CLIENT_ID_T                      usClientId,
     MN_OPERATION_ID_T                   ucOpId,
@@ -1006,22 +721,7 @@ VOS_UINT32 TAF_SetRefreshStub(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SetAutoReselStub
- 功能描述  : auto resel
- 输入参数  : TAF_CLIENT_ID        ClientId
-             TAF_ID OpId
-             TAF_MMA_AUTO_RESEL_STUB_SET_REQ_STRU       *pstAutoReselStub
- 输出参数  : 无
- 返 回 值  : TAF_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月29日
-    作    者   : b00269685
-    修改内容   : 新增
-*****************************************************************************/
 VOS_UINT32 TAF_SetAutoReselStub(
     MN_CLIENT_ID_T                                          usClientId,
     MN_OPERATION_ID_T                                       ucOpId,
@@ -1038,21 +738,7 @@ VOS_UINT32 TAF_SetAutoReselStub(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_QryUsimInfo
- 功能描述  :
- 输入参数  :
- 输出参数  : Icctype
- 返 回 值  : TAF_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年9月19日
-    作    者   : z40661
-    修改内容   : 新增函数,查询USIM卡的相关信息
-
-*****************************************************************************/
 TAF_UINT32 TAF_QryUsimInfo(
     MN_CLIENT_ID_T                      ClientId,
     MN_OPERATION_ID_T                   OpId,
@@ -1078,21 +764,7 @@ TAF_UINT32 TAF_QryUsimInfo(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_QryCpnnInfo
- 功能描述  :
- 输入参数  :
- 输出参数  :
- 返 回 值  : TAF_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年9月19日
-    作    者   : z40661
-    修改内容   : 新增函数,查询USIM卡的相关信息
-
-*****************************************************************************/
 TAF_UINT32 TAF_QryCpnnInfo(
     MN_CLIENT_ID_T                      ClientId,
     MN_OPERATION_ID_T                   OpId,
@@ -1116,25 +788,7 @@ TAF_UINT32 TAF_QryCpnnInfo(
 
 
 
-/* Added by s00246516 for L-C互操作项目, 2014-01-29, Begin */
-/*****************************************************************************
- 函 数 名  : TAF_MMA_PhoneModeSetReq
- 功能描述  : 手机模式设置接口
- 输入参数  : ulModuleId       ---  外部模块PID
-             usCliendId       ---  外部模块CliendId
-             ucOpId           ---  外部模块OpId
-             pstPhoneModePara ---  Phone mode设置参数
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:成功,VOS_FALSE:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月27日
-    作    者   : s00246516
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_PhoneModeSetReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -1193,23 +847,7 @@ VOS_UINT32 TAF_MMA_PhoneModeSetReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_QryPhoneModeReq
- 功能描述  : 手机模式查询接口
- 输入参数  : ulModuleId       ---  外部模块PID
-             usCliendId       ---  外部模块CliendId
-             ucOpId           ---  外部模块OpId
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:成功,VOS_FALSE:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月23日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_QryPhoneModeReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -1257,24 +895,7 @@ VOS_UINT32 TAF_MMA_QryPhoneModeReq(
 }
 
 #if (FEATURE_ON == FEATURE_CSG)
-/*****************************************************************************
- 函 数 名  : TAF_MMA_CsgListSearchReq
- 功能描述  : CSG列表查询接口
- 输入参数  : ulModuleId      -  外部模块PID
-             usCliendId      -  外部模块CliendId
-             ucOpId          -  外部模块OpId
-             pstPlmnListPara -  csg list分段查询参数
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:成功,VOS_FALSE:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月28日
-    作    者   : z00161729
-    修改内容   : 支持LTE CSG功能新增
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_CsgListSearchReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -1333,23 +954,7 @@ VOS_UINT32 TAF_MMA_CsgListSearchReq(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_AbortCsgListSearchReq
- 功能描述  : 终止csg list搜网接口
- 输入参数  : ulModuleId             ---  外部模块PID
-             usCliendId             ---  外部模块CliendId
-             ucOpId                 ---  外部模块OpId
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:成功,VOS_FALSE:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月28日
-    作    者   : z00161729
-    修改内容   : 支持LTE CSG功能新增
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_AbortCsgListSearchReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -1402,24 +1007,7 @@ VOS_UINT32 TAF_MMA_AbortCsgListSearchReq(
 
 
 #endif
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SetSysCfgReq
- 功能描述  : 手机系统配置接口
- 输入参数  : ulModuleId      ---  外部模块PID
-            : usCliendId     ---  外部模块CliendId
-            ucOpId           ---  外部模块OpId
-            pstSysCfgPara    ---  Sys Cfg设置参数
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:成功,VOS_FALSE:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月27日
-    作    者   : s00246516
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_SetSysCfgReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -1479,23 +1067,7 @@ VOS_UINT32 TAF_MMA_SetSysCfgReq(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_QryEonsUcs2Req
- 功能描述  : 手机系统配置接口
- 输入参数  : ulModuleId       ---  外部模块PID
-             usCliendId       ---  外部模块CliendId
-             ucOpId           ---  外部模块OpId
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:成功,VOS_FALSE:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年03月12日
-    作    者   : c00318887
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_QryEonsUcs2Req(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -1545,24 +1117,7 @@ VOS_UINT32 TAF_MMA_QryEonsUcs2Req(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_AcqBestNetworkReq
- 功能描述  : 获取网络接口
- 输入参数  : ulModuleId      ---  外部模块PID
-            : usCliendId     ---  外部模块CliendId
-            ucOpId           ---  外部模块OpId
-            pstAcqPara       ---  Acq设置参数
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:成功,VOS_FALSE:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月27日
-    作    者   : s00246516
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_AcqBestNetworkReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -1620,24 +1175,7 @@ VOS_UINT32 TAF_MMA_AcqBestNetworkReq(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RegReq
- 功能描述  : 注册网络接口
- 输入参数  : ulModuleId      ---  外部模块PID
-            : usCliendId     ---  外部模块CliendId
-            ucOpId           ---  外部模块OpId
-            pstRegPara       ---  REG设置参数
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:成功,VOS_FALSE:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月27日
-    作    者   : s00246516
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RegReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -1696,24 +1234,7 @@ VOS_UINT32 TAF_MMA_RegReq(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_PowerSaveReq
- 功能描述  : Power Save接口
- 输入参数  : ulModuleId      ---  外部模块PID
-            : usCliendId     ---  外部模块CliendId
-            ucOpId           ---  外部模块OpId
-            pstPowerSavePara ---  Power Save设置参数
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:成功,VOS_FALSE:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月27日
-    作    者   : s00246516
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_PowerSaveReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -1772,24 +1293,7 @@ VOS_UINT32 TAF_MMA_PowerSaveReq(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_DetachReq
- 功能描述  : Detach接口
- 输入参数  : ulModuleId      ---  外部模块PID
-            : usCliendId     ---  外部模块CliendId
-            ucOpId           ---  外部模块OpId
-            pstDetachPara    ---  Detach设置参数
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:成功,VOS_FALSE:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月27日
-    作    者   : s00246516
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_DetachReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -1847,27 +1351,9 @@ VOS_UINT32 TAF_MMA_DetachReq(
 
     return VOS_TRUE;
 }
-/* Added by s00246516 for L-C互操作项目, 2014-01-29, End */
 
 #if (FEATURE_ON == FEATURE_IMS)
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SetImsSwitchReq
- 功能描述  : IMSSwitch接口
- 输入参数  : ulModuleId     ---  外部模块PID
-             usCliendId     ---  外部模块CliendId
-             ucOpId         ---  外部模块OpId
-             ucImsSwitch    ---  IMS 状态设置参数
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:成功,VOS_FALSE:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月02日
-    作    者   : zwx247453
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_SetImsSwitchReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -1926,23 +1412,7 @@ VOS_UINT32 TAF_MMA_SetImsSwitchReq(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_QryImsSwitchReq
- 功能描述  : IMSSwitch接口
- 输入参数  : ulModuleId     ---  外部模块PID
-             usCliendId     ---  外部模块CliendId
-             ucOpId         ---  外部模块OpId
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:成功,VOS_FALSE:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月02日
-    作    者   : zwx247453
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_QryImsSwitchReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -1993,24 +1463,7 @@ VOS_UINT32 TAF_MMA_QryImsSwitchReq(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SetVoiceDomainReq
- 功能描述  : VoiceDomain接口
- 输入参数  : ulModuleId       ---  外部模块PID
-             usCliendId       ---  外部模块CliendId
-             ucOpId           ---  外部模块OpId
-             enVoiceDomain    ---  优先域设置参数
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:成功,VOS_FALSE:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月02日
-    作    者   : zwx247453
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_SetVoiceDomainReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -2068,23 +1521,7 @@ VOS_UINT32 TAF_MMA_SetVoiceDomainReq(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_QryVoiceDomainReq
- 功能描述  : VoiceDomain接口
- 输入参数  : ulModuleId      ---  外部模块PID
-             usCliendId      ---  外部模块CliendId
-             ucOpId          ---  外部模块OpId
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:成功,VOS_FALSE:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月02日
-    作    者   : zwx247453
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_QryVoiceDomainReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -2136,25 +1573,7 @@ VOS_UINT32 TAF_MMA_QryVoiceDomainReq(
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_AttachReq
- 功能描述  : AT向MMA发送ATTACH请求消息函数
- 输入参数  : ulModuleId       ---  外部模块PID
-             usCliendId       ---  外部模块CliendId
-             ucOpId           ---  外部模块OpId
-             ucAttachType     ---  Attach设置参数
 
- 输出参数  : VOS_TRUE:成功,VOS_FALSE:失败
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年4月9日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_AttachReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -2204,24 +1623,7 @@ VOS_UINT32 TAF_MMA_AttachReq(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_AttachStatusQryReq
- 功能描述  : AT向MMA发送域状态查询消息的消息发送函数
- 输入参数  : ulModuleId       ---  外部模块PID
-             usCliendId       ---  外部模块CliendId
-             ucOpId           ---  外部模块OpId
-             enDomainType     ---  查询的服务域的类型
- 输出参数  : VOS_TRUE:成功,VOS_FALSE:失败
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月9日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_AttachStatusQryReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -2273,22 +1675,7 @@ VOS_UINT32 TAF_MMA_AttachStatusQryReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SrvAcqReq
- 功能描述  : SPM模块给MMA模块发送搜网指示
- 输入参数  : enSrvType:服务类型
-            pstRatList:需要搜网的RAT列表
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:成功,VOS_FALSE:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月17日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SrvAcqReq(
     TAF_MMA_SRV_TYPE_ENUM_UINT8         enSrvType,
     TAF_MMA_SRV_ACQ_RAT_LIST_STRU      *pstRatList
@@ -2329,23 +1716,7 @@ VOS_VOID TAF_MMA_SrvAcqReq(
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcCFreqLockSetReq
- 功能描述  : 发送TAF_MMA_CFREQ_LOCK_SET_REQ
- 输入参数  : ulModuleId        -  外部模块PID
-             usClientId        - Client ID
-             ucOpId            - 本次操作的标识
-             stCFreqLockPara   - 发送锁频操作需要的参数
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月29日
-    作    者   : y00307564
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  TAF_MMA_ProcCFreqLockSetReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -2398,23 +1769,7 @@ VOS_UINT32  TAF_MMA_ProcCFreqLockSetReq(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcCFreqLockQryReq
- 功能描述  : 手机模式设置接口
- 输入参数  : ulModuleId       ---  外部模块PID
-             usCliendId       ---  外部模块CliendId
-             ucOpId           ---  外部模块OpId
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:成功,VOS_FALSE:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月25日
-    作    者   : m00312079
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_ProcCFreqLockQryReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -2462,24 +1817,7 @@ VOS_UINT32 TAF_MMA_ProcCFreqLockQryReq(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcCdmaCsqSetReq
- 功能描述  : 手机模式设置接口
- 输入参数  : ulModuleId       ---  外部模块PID
-             usCliendId       ---  外部模块CliendId
-             ucOpId           ---  外部模块OpId
-             pstCdmaCsqPara   ---  CdmaCsq mode设置参数
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:成功,VOS_FALSE:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月25日
-    作    者   : m00312079
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_ProcCdmaCsqSetReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -2535,23 +1873,7 @@ VOS_UINT32 TAF_MMA_ProcCdmaCsqSetReq(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcCdmaCsqQryReq
- 功能描述  : 手机模式设置接口
- 输入参数  : ulModuleId       ---  外部模块PID
-             usCliendId       ---  外部模块CliendId
-             ucOpId           ---  外部模块OpId
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:成功,VOS_FALSE:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月25日
-    作    者   : m00312079
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_ProcCdmaCsqQryReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -2600,23 +1922,7 @@ VOS_UINT32 TAF_MMA_ProcCdmaCsqQryReq(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_Proc1xChanSetReq
- 功能描述  : 发送TAF_MMA_1XCHAN_SET_REQ
- 输入参数  : ulModuleId        -  外部模块PID
-             usClientId        - Client ID
-             ucOpId            - 本次操作的标识
-             stCFreqLockPara   - 发送锁频操作需要的参数
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月18日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  TAF_MMA_Proc1xChanSetReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -2672,23 +1978,7 @@ VOS_UINT32  TAF_MMA_Proc1xChanSetReq(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_Proc1xChanQryReq
- 功能描述  : 获取当前驻留channel的消息接口
- 输入参数  : ulModuleId       ---  外部模块PID
-             usCliendId       ---  外部模块CliendId
-             ucOpId           ---  外部模块OpId
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:成功,VOS_FALSE:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月18日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_Proc1xChanQryReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -2738,23 +2028,7 @@ VOS_UINT32 TAF_MMA_Proc1xChanQryReq(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcProRevInUseQryReq
- 功能描述  : 获取当前使用协议版本的消息接口
- 输入参数  : ulModuleId       ---  外部模块PID
-             usCliendId       ---  外部模块CliendId
-             ucOpId           ---  外部模块OpId
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:成功,VOS_FALSE:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月18日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_ProcProRevInUseQryReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -2804,23 +2078,7 @@ VOS_UINT32 TAF_MMA_ProcProRevInUseQryReq(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcStateQryReq
- 功能描述  : 获取当前使用协议版本的消息接口
- 输入参数  : ulModuleId       ---  外部模块PID
-             usCliendId       ---  外部模块CliendId
-             ucOpId           ---  外部模块OpId
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:成功,VOS_FALSE:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月18日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_ProcStateQryReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -2870,23 +2128,7 @@ VOS_UINT32 TAF_MMA_ProcStateQryReq(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcHPVerQryReq
- 功能描述  : 获取当前使用协议版本的消息接口
- 输入参数  : ulModuleId       ---  外部模块PID
-             usCliendId       ---  外部模块CliendId
-             ucOpId           ---  外部模块OpId
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:成功,VOS_FALSE:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月18日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_ProcCHVerQryReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -2939,23 +2181,7 @@ VOS_UINT32 TAF_MMA_ProcCHVerQryReq(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SetQuitCallBack
- 功能描述  : at QCCB命令处理
- 输入参数  : ulModuleId       ---  外部模块PID
-             usCliendId       ---  外部模块CliendId
-             ucOpId           ---  外部模块OpId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月9日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_SetQuitCallBack(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -3002,24 +2228,7 @@ VOS_UINT32 TAF_MMA_SetQuitCallBack(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SetCSidList
- 功能描述  : AT CMD CSIDLIST
- 输入参数  : ulModuleId       ---  外部模块PID
-             usCliendId       ---  外部模块CliendId
-             ucOpId           ---  外部模块OpId
-             pstWhiteSidList  ---  sid白名单信息
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月13日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_SetCSidList(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -3067,23 +2276,7 @@ VOS_UINT32 TAF_MMA_SetCSidList(
 
     return VOS_TRUE;
 }
-/*****************************************************************************
- 函 数 名  : TAF_MMA_QryCurrEmcCallBackMode
- 功能描述  : 查询当前是否在紧急呼callback模式
- 输入参数  : ulModuleId       ---  外部模块PID
-             usCliendId       ---  外部模块CliendId
-             ucOpId           ---  外部模块OpId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月14日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_QryCurrEmcCallBackMode(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -3127,23 +2320,7 @@ VOS_UINT32 TAF_MMA_QryCurrEmcCallBackMode(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcHdrCsqSetReq
- 功能描述  : 手机模式设置接口
- 输入参数  : ulModuleId       ---  外部模块PID
-             usCliendId       ---  外部模块CliendId
-             ucOpId           ---  外部模块OpId
-             pstHDRCsqPara   ---  HDRCsq mode设置参数
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:成功,VOS_FALSE:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :2015年10月21日
-    作    者   : C00299064
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_ProcHdrCsqSetReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -3193,23 +2370,7 @@ VOS_UINT32 TAF_MMA_ProcHdrCsqSetReq(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcHdrCsqQryReq
- 功能描述  : 手机模式设置接口
- 输入参数  : ulModuleId       ---  外部模块PID
-             usCliendId       ---  外部模块CliendId
-             ucOpId           ---  外部模块OpId
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:成功,VOS_FALSE:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月20日
-    作    者   : C00299064
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_ProcHdrCsqQryReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -3259,23 +2420,7 @@ VOS_UINT32 TAF_MMA_ProcHdrCsqQryReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_QryCurrSidNid
- 功能描述  : 查询当前系统驻留的SID NID
- 输入参数  : ulModuleId       ---  外部模块PID
-             usCliendId       ---  外部模块CliendId
-             ucOpId           ---  外部模块OpId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_QryCurrSidNid(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -3319,24 +2464,7 @@ VOS_UINT32 TAF_MMA_QryCurrSidNid(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SetFPlmnInfo
- 功能描述  : 下发CFPLMN设置请求
- 输入参数  : ulModuleId       ---  外部模块PID
-             usCliendId       ---  外部模块CliendId
-             ucOpId           ---  外部模块OpId
-             pstCFPlmnPara    ---  fplmn mode设置参数
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:成功,VOS_FALSE:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月9日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_SetFPlmnInfo(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -3392,23 +2520,7 @@ VOS_UINT32 TAF_MMA_SetFPlmnInfo(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_QryFPlmnInfo
- 功能描述  : fplmn 查询功能
- 输入参数  : ulModuleId       ---  外部模块PID
-             usCliendId       ---  外部模块CliendId
-             ucOpId           ---  外部模块OpId
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:成功,VOS_FALSE:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月9日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_QryFPlmnInfo(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -3455,24 +2567,7 @@ VOS_UINT32 TAF_MMA_QryFPlmnInfo(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SetCpolReq
- 功能描述  : prefplmn设置命令请求接口
- 输入参数  : ulModuleId       ---  外部模块PID
-             usCliendId       ---  外部模块CliendId
-             ucOpId           ---  外部模块OpId
-             pstPrefPlmn      ---  prefplmn 设置参数
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:成功,VOS_FALSE:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月3日
-    作    者   : y00307564
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_SetCpolReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -3525,24 +2620,7 @@ VOS_UINT32 TAF_MMA_SetCpolReq(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_QueryCpolReq
- 功能描述  : prefplmn查询命令请求接口
- 输入参数  : ulModuleId       ---  外部模块PID
-             usCliendId       ---  外部模块CliendId
-             ucOpId           ---  外部模块OpId
-             pstCpolInfo      ---  pstCpolInfo查询cpol消息参数
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:成功,VOS_FALSE:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月3日
-    作    者   : y00307564
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_QueryCpolReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -3596,24 +2674,7 @@ VOS_UINT32 TAF_MMA_QueryCpolReq(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_TestCpolReq
- 功能描述  : prefplmn测试命令请求接口
- 输入参数  : ulModuleId       ---  外部模块PID
-             usCliendId       ---  外部模块CliendId
-             ucOpId           ---  外部模块OpId
-             enPrefPlmnType   ---  测试prefplmn类型
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:成功,VOS_FALSE:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月3日
-    作    者   : y00307564
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_TestCpolReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -3666,24 +2727,7 @@ VOS_UINT32 TAF_MMA_TestCpolReq(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SetCerssiReq
- 功能描述  : Set Cerssi Cfg Req
- 输入参数  : VOS_UINT32                          ulModuleId
-             VOS_UINT16                          usClientId
-             VOS_UINT8                           ucOpId
-             TAF_START_INFO_IND_STRU            *pstStartInfoInd
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月23日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_SetCerssiReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -3743,23 +2787,7 @@ VOS_UINT32 TAF_MMA_SetCerssiReq(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_QryCerssiReq
- 功能描述  : Mma Proc Cerssi Qry Req
- 输入参数  : VOS_UINT32                          ulModuleId
-             VOS_UINT16                          usClientId
-             VOS_UINT8                           ucOpId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月24日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_QryCerssiReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -3808,21 +2836,7 @@ VOS_UINT32 TAF_MMA_QryCerssiReq(
 
 /*lint +e958*/
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_QryCrpnReq
- 功能描述  : AT^CRPN
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月24日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_QryCrpnReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -3875,21 +2889,7 @@ VOS_UINT32 TAF_MMA_QryCrpnReq(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SetCmmReq
- 功能描述  : AT^CMM 设置
- 输入参数  : ulModuleId usClientId ucOpId *pstCrpnQryReq
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月24日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_SetCmmReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -4525,21 +3525,7 @@ VOS_UINT32 TAF_MMA_QryApPwrOnAndRegTimeReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SetAutoAttachReq
- 功能描述  : AT^CAATT命令处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月25日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_MMA_SetAutoAttachReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -4588,23 +3574,7 @@ VOS_UINT32  TAF_MMA_SetAutoAttachReq(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_TestSysCfgReq
- 功能描述  : TEST SYSCFG
- 输入参数  : VOS_UINT32                          ulModuleId,
-             VOS_UINT16                          usClientId,
-             VOS_UINT8                           ucOpId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月26日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_TestSysCfgReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -4651,23 +3621,7 @@ VOS_UINT32 TAF_MMA_TestSysCfgReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_QryAccessModeReq
- 功能描述  : Phone mode qry req
- 输入参数  : VOS_UINT32                          ulModuleId
-             VOS_UINT16                          usClientId
-             VOS_UINT8                           ucOpId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月27日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_QryAccessModeReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -4714,23 +3668,7 @@ VOS_UINT32 TAF_MMA_QryAccessModeReq(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_QryCopsInfoReq
- 功能描述  : Cops Info qry req
- 输入参数  : VOS_UINT32                          ulModuleId
-             VOS_UINT16                          usClientId
-             VOS_UINT8                           ucOpId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月27日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_QryCopsInfoReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -4777,20 +3715,7 @@ VOS_UINT32 TAF_MMA_QryCopsInfoReq(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_QryDplmnListReq
- 功能描述  : TAF给MMA发送 消息
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月16日
-    作    者   : n00355355
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_QryDplmnListReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -4838,25 +3763,7 @@ VOS_UINT32 TAF_MMA_QryDplmnListReq(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SetDplmnListReq
- 功能描述  : AT给MMA发送SET DPLMN LIST REQ 消息
- 输入参数  : VOS_UINT32                          ulModuleId,
-             VOS_UINT16                          usClientId,
-             VOS_UINT8                           ucSeq,
-             VOS_UINT8                          *pucVersionId,
-             VOS_UINT16                          usParaLen
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月13日
-    作    者   : n00355355
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_SetDplmnListReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -4937,25 +3844,7 @@ VOS_UINT32 TAF_MMA_SetDplmnListReq(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_QryRegStateReq
- 功能描述  : Qry reg state info
- 输入参数  : VOS_UINT32                          ulModuleId
-             VOS_UINT16                          usClientId
-             VOS_UINT8                           ucOpId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月27日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-  2.日    期   : 2015年8月21日
-    作    者   : w00176964
-    修改内容   : DTS2015081907463
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_QryRegStateReq(
     VOS_UINT32                                              ulModuleId,
     VOS_UINT16                                              usClientId,
@@ -5005,23 +3894,7 @@ VOS_UINT32 TAF_MMA_QryRegStateReq(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_QryAutoAttachInfoReq
- 功能描述  : Mma Qry Auto Attach Info
- 输入参数  : VOS_UINT32                          ulModuleId
-             VOS_UINT16                          usClientId
-             VOS_UINT8                           ucOpId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月28日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_QryAutoAttachInfoReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -5068,24 +3941,7 @@ VOS_UINT32 TAF_MMA_QryAutoAttachInfoReq(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_QrySystemInfoReq
- 功能描述  : Mma Qry System Info
- 输入参数  : VOS_UINT32                          ulModuleId
-             VOS_UINT16                          usClientId
-             VOS_UINT8                           ucOpId
-             VOS_UINT32                          ulSysInfoExFlag
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月28日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_QrySystemInfoReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -5134,23 +3990,7 @@ VOS_UINT32 TAF_MMA_QrySystemInfoReq(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_QryAntennaInfoReq
- 功能描述  : Mma Qry antenna Info
- 输入参数  : VOS_UINT32                          ulModuleId
-             VOS_UINT16                          usClientId
-             VOS_UINT8                           ucOpId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月30日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_QryAntennaInfoReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -5197,23 +4037,7 @@ VOS_UINT32 TAF_MMA_QryAntennaInfoReq(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_QryApHplmnInfoReq
- 功能描述  : Mma Qry ApHplmn Info
- 输入参数  : VOS_UINT32                          ulModuleId
-             VOS_UINT16                          usClientId
-             VOS_UINT8                           ucOpId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月30日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_QryApHplmnInfoReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -5262,23 +4086,7 @@ VOS_UINT32 TAF_MMA_QryApHplmnInfoReq(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_QryCsnrReq
- 功能描述  : CSNR查询命令消息处理
- 输入参数  : VOS_UINT32                          ulModuleId,
-             VOS_UINT16                          usClientId,
-             VOS_UINT8                           ucOpId
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月28日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_MMA_QryCsnrReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -5326,23 +4134,7 @@ VOS_UINT32  TAF_MMA_QryCsnrReq(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_QryCsqReq
- 功能描述  : CSQ QRY查询消息下发接口
- 输入参数  : VOS_UINT32                          ulModuleId,
-             VOS_UINT16                          usClientId,
-             VOS_UINT8                           ucOpId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月28日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_QryCsqReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -5390,23 +4182,7 @@ VOS_UINT32 TAF_MMA_QryCsqReq(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_QryCsqlvlReq
- 功能描述  : csq qry req消息处理
- 输入参数  : VOS_UINT32                          ulModuleId,
-             VOS_UINT16                          usClientId,
-             VOS_UINT8                           ucOpId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月28日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_QryCsqlvlReq(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,

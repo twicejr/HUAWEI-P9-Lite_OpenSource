@@ -51,7 +51,6 @@ typedef struct tagLinkEvent
 
     VOID (*pfTimerFunc)(ULONG ulIfIndex);   /* 定时器回调函数指针,当前只有错帧事件/错帧秒事件使用   */
     DULONG_S stDulErrCnt;       /* 存储从底层读取的错帧数,当前只有错帧事件/错帧秒事件使用           */
-    /* Modified by z00208058/w00207740, 3AH链路事件窗口和门限规格扩展, 2012/5/12 */
     DULONG_S stdulEventWindow;        /* 存储用户配置的窗口值;周期事件的窗口需要驱动转换,故不能直接保存到stLinkEventInfo中  */
     /* 用户配置的链路事件门限参数直接保存在下面的stLinkEventInfo中,供组包用 */
     

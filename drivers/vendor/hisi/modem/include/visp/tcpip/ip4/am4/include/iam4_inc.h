@@ -64,7 +64,6 @@ typedef struct tagAM4_SHELL_RM_FUNC_PTR
 typedef ULONG(*AM4_SHELL_SYS_RECOVER_CALLBACK_PTR)();
 typedef ULONG(*AM4_SHELL_REPLACE_CONFIG_CALLBACK_PTR)(ULONG ulIfIndex);
 
-/* Add by zhaoyue00171897/shuxieliu00176784, at 2011-06-04. 修改原因: 支持VLAN配置不一致的告警 */
 typedef ULONG(*IP_AM4_ETHVLN_VLANWARNING_HOOK_FUNC)(IFNET_S *pstSubtIf, ULONG ulLocalIP, ULONG ulNeighbourIP, ULONG ulMatchMode, UCHAR ucRecoverReason);
 
 /* prototype of vtable of am4:fun */
@@ -151,7 +150,6 @@ DECLARE_INTERFACE( IIF_IPV4_IP_AM4_ComIntFUN )
     /* get if index by ip;对于借用地址(IP_BORROW)的接口跳过 */
     METHOD_(ULONG, pfIP_DHCP4R_FindIfByIp)(ULONG ulGiaddr, ULONG ulVrfIndex);
         
-    /* Added by l57500 for 同步VISPV1R5问题单A82D13365,2007-05-09 */
     /* 查询指定的地址是否和接口上的地址处于相同网段 */
     METHOD_(ULONG, pfIP_IF_IsSameNet)(IFNET_S *pstIfNet, ULONG ulIpAddr);
     /* End of addition */
@@ -208,10 +206,8 @@ DECLARE_INTERFACE( IIF_IPV4_IP_AM4_ComIntFUN )
     METHOD_(ULONG, pfIP_ConflictIpAddressSpecial_PT)(ULONG ulIfIndex, ULONG ulAddr, ULONG ulMask);
     METHOD_(struct tagIPIFADDR*, pfIP_GetBestIpAddrByVrf)(SOCKADDRIN_S *pstSockInAddr, ULONG ulVrfIndex);
 
-    /* Add by zhaoyue00171897/shuxieliu00176784, at 2011-06-04. 修改原因: 支持VLAN配置不一致的告警 */
     METHOD_(ULONG, pfIP_AM4_Ethvlan_VlanWarningHook_Register)(IP_AM4_ETHVLN_VLANWARNING_HOOK_FUNC pfHookFunc);
 
-    /* Added by likaikun213099, 地址冲突告警处理, 2014/10/24 */
     METHOD_(ULONG, pfIP_SetIpConflictFlag)(IFNET_S* pIf, ULONG ulIpAddr);
     METHOD_(ULONG, pfIP_ClearIpConflictFlag)(IFNET_S* pIf, ULONG ulIpAddr);
     METHOD_(BOOL_T, pfIP_AM4_SupportSameSubAddr)();

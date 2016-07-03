@@ -297,11 +297,12 @@ STATIC void ps_tty_close(struct tty_struct *tty)
 STATIC void ps_tty_receive(struct tty_struct *tty, const uint8 *data,
                int8 *tty_flags, int32 count)
 {
+#ifdef PLATFORM_DEBUG_ENABLE
     struct timeval tv;
     struct rtc_time tm;
     uint64  tmp;
     char filename[60] = {0};
-
+#endif
     struct  ps_core_s *ps_core_d = NULL;
 
     PS_PRINT_FUNCTION_NAME;
@@ -313,6 +314,7 @@ STATIC void ps_tty_receive(struct tty_struct *tty, const uint8 *data,
     }
     ps_core_d = tty->disc_data;
     spin_lock(&ps_core_d->rx_lock);
+#ifdef PLATFORM_DEBUG_ENABLE
     if(g_uart_rx_dump)
     {
         ps_core_d->curr_time = jiffies;
@@ -333,6 +335,7 @@ STATIC void ps_tty_receive(struct tty_struct *tty, const uint8 *data,
             ps_core_d->pre_time = ps_core_d->curr_time;
         }
     }
+#endif
 
 	PS_PRINT_DBG("RX:data[0] = %x, data[1] = %x, data[2] = %x, data[3] = %x, data[4] = %x, data[count-1] = %x\n",
 			  data[0],data[1],data[2],data[3],data[4],data[count-1]);
@@ -455,6 +458,8 @@ int32 ps_change_uart_baud_rate(int64 baud_rate, uint8 enable_flowctl)
     {
         ps_uart_state_dump(ps_core_d->tty);
         PS_PRINT_ERR("hisi bfgx ldisc reconfig timeout\n");
+        CHR_EXCEPTION(CHR_GNSS_DRV(CHR_GNSS_DRV_EVENT_PLAT, CHR_PLAT_DRV_ERROR_CFG_UART));
+
         return -EINVAL;
     }
 
@@ -527,6 +532,8 @@ int32 open_tty_drv(void *pm_data)
         }
 
     } while (retry--);
+
+    CHR_EXCEPTION(CHR_GNSS_DRV(CHR_GNSS_DRV_EVENT_PLAT, CHR_PLAT_DRV_ERROR_OPEN_UART));
 
     return -EPERM;
 }

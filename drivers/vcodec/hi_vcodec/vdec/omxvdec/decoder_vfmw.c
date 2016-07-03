@@ -128,7 +128,6 @@ static HI_S32 decoder_event_handler(HI_S32 chan_id, HI_S32 event_type, HI_VOID *
         return HI_FAILURE;
     }
 
-    // OMXVDEC的消息处理分支，注意新增消息，需在安全侧的上报出口处同步放开，以免错误过滤  y00226912
     switch (event_type)
     {
         case EVNT_NEED_ARRANGE:

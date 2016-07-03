@@ -1,16 +1,4 @@
-/******************************************************************************
 
-
-        @(#)Copyright(C)2013,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : CssCloudStrategyPublic.h
-    Description : CSS云端频点频段特性公共头文件
-    History     :
-      1.chengmin 00285307   2015-10-12  Draft Enact
-
-
-******************************************************************************/
 
 #ifndef __CSSCLOUDSTRATEGYPUBLIC_H__
 #define __CSSCLOUDSTRATEGYPUBLIC_H__
@@ -402,6 +390,7 @@ extern VOS_VOID * CSS_AllocCloudPreferNodeAndClearFullMemory(VOS_UINT32 ulLen);
 extern VOS_VOID * CSS_AllocCloudPreferNode(VOS_VOID);
 #endif
 extern VOS_VOID CSS_FreeCloudPreferNode(VOS_VOID *pAddr);
+extern VOS_UINT32    CSS_CheckMccIsValid( VOS_UINT8  aucMcc[2]);
 
 /*****************************************************************************
   9 OTHERS

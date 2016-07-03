@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : dmac_mgmt_sta.c
-  版 本 号   : 初稿
-  作    者   : zhangheng
-  生成日期   : 2013年6月7日
-  最近修改   :
-  功能描述   : sta侧管理帧处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年6月7日
-    作    者   : zhangheng
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -45,23 +28,7 @@ extern "C" {
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : dmac_mgmt_wmm_update_edca_machw_sta
- 功能描述  : STA模式下VAP更新EDCA寄存器
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 成功或错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月25日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-  2.日    期   : 2015年4月29日
-    作    者   : s00304087
-    修改内容   : 02新增同步hmac mib参数
-*****************************************************************************/
 oal_uint32 dmac_mgmt_wmm_update_edca_machw_sta(frw_event_mem_stru  *pst_event_mem)
 {
     frw_event_stru                      *pst_event;
@@ -163,17 +130,7 @@ oal_uint32 dmac_mgmt_wmm_update_edca_machw_sta(frw_event_mem_stru  *pst_event_me
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_chan_adjust_bandwidth_sta
- 功能描述  : 根据AP和(STA)自身的能力，计算准备要切换到的带宽模式
- 输入参数  : pst_mac_vap  : MAC VAP结构体指针，指向STA
- 输出参数  : pen_bandwidth: 更新后的带宽模式
- 返 回 值  : 无+ 调用函数  :+ 被调函数  :
- 修改历史      :
-  1.日    期   : 2014年3月13日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 OAL_STATIC oal_void  dmac_chan_adjust_bandwidth_sta(mac_vap_stru *pst_mac_vap, wlan_channel_bandwidth_enum_uint8 *pen_bandwidth)
 {
     wlan_channel_bandwidth_enum_uint8   en_curr_bandwidth;
@@ -231,21 +188,7 @@ OAL_STATIC oal_void  dmac_chan_adjust_bandwidth_sta(mac_vap_stru *pst_mac_vap, w
     }
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_chan_multi_select_channel_mac
- 功能描述  : 遍历device下所有VAP，设置SW/MAC/PHY/RF中的信道和带宽，使VAP工作在新信道上
- 输入参数  : pst_mac_vap : MAC VAP结构体指针
-             uc_channel  : 将要被设置的信道号
-             en_bandwidth: 将要被设置的带宽模式
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2014年4月3日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 oal_void  dmac_chan_multi_select_channel_mac(mac_vap_stru *pst_mac_vap, oal_uint8 uc_channel, wlan_channel_bandwidth_enum_uint8 en_bandwidth)
 {
     oal_uint8          uc_vap_idx;
@@ -292,19 +235,7 @@ oal_void  dmac_chan_multi_select_channel_mac(mac_vap_stru *pst_mac_vap, oal_uint
     }
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_chan_sta_switch_channel
- 功能描述  : STA切换信道
- 输入参数  : pst_mac_vap: MAC VAP结构体指针，指向sta
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2014年3月13日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 oal_void  dmac_chan_sta_switch_channel(mac_vap_stru *pst_mac_vap)
 {
     wlan_channel_bandwidth_enum_uint8   en_new_bandwidth = WLAN_BAND_WIDTH_20M;
@@ -326,23 +257,14 @@ oal_void  dmac_chan_sta_switch_channel(mac_vap_stru *pst_mac_vap)
     pst_mac_vap->st_ch_switch_info.en_channel_swt_cnt_zero     = OAL_FALSE;
     pst_mac_vap->st_ch_switch_info.en_waiting_to_shift_channel = OAL_FALSE;
     pst_mac_vap->st_ch_switch_info.en_new_bandwidth            = WLAN_BAND_WIDTH_BUTT;
+    pst_mac_vap->st_ch_switch_info.uc_csa_rsv_cnt              = 0;
 
 #if (_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC == _PRE_MULTI_CORE_MODE)
     dmac_switch_complete_notify(pst_mac_vap, OAL_FALSE);
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_handle_tbtt_chan_mgmt_sta
- 功能描述  : STA侧TBTT中断中进行信道管理
- 输入参数  : pst_hmac_vap: HMAC VAP结构体指针，指向sta
- 输出参数  : 无+ 返 回 值  : 无+ 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2014年3月13日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 oal_void  dmac_handle_tbtt_chan_mgmt_sta(dmac_vap_stru *pst_dmac_vap)
 {
     mac_vap_stru *pst_mac_vap = &(pst_dmac_vap->st_vap_base_info);
@@ -357,6 +279,8 @@ oal_void  dmac_handle_tbtt_chan_mgmt_sta(dmac_vap_stru *pst_dmac_vap)
     {
         dmac_chan_sta_switch_channel(pst_mac_vap);
         dmac_chan_enable_machw_tx(pst_mac_vap);
+        OAM_WARNING_LOG1(pst_mac_vap->uc_vap_id, OAM_SF_SCAN,"{dmac_handle_tbtt_chan_mgmt_sta::beacon cnt zero to switch channel %d}",
+                         pst_mac_vap->st_channel.uc_chan_number);
         //dmac_vap_linkloss_clean(pst_dmac_vap);
     }
 #if 0
@@ -386,22 +310,28 @@ oal_void  dmac_handle_tbtt_chan_mgmt_sta(dmac_vap_stru *pst_dmac_vap)
             {
                 dmac_chan_sta_switch_channel(pst_mac_vap);
                 dmac_chan_enable_machw_tx(pst_mac_vap);
+                OAM_WARNING_LOG1(pst_mac_vap->uc_vap_id, OAM_SF_SCAN,"{dmac_handle_tbtt_chan_mgmt_sta::tbtt cnt to switch channel %d}",
+                                 pst_mac_vap->st_channel.uc_chan_number);
             }
+        }
+    }
+
+    if (pst_mac_vap->st_ch_switch_info.uc_csa_rsv_cnt >= pst_mac_vap->st_ch_switch_info.uc_ch_swt_cnt + 2)
+    {
+        /* 连续收到N+2个 CSA元素中cnt值相同的帧，认为此AP不切换信道，上报信道切换完成 */
+        if (OAL_TRUE == pst_mac_vap->st_ch_switch_info.en_waiting_to_shift_channel)
+        {
+            pst_mac_vap->st_ch_switch_info.uc_new_channel    = pst_mac_vap->st_channel.uc_chan_number;
+            pst_mac_vap->st_ch_switch_info.en_new_bandwidth  = pst_mac_vap->st_channel.en_bandwidth;
+            dmac_chan_sta_switch_channel(pst_mac_vap);
+            dmac_chan_enable_machw_tx(pst_mac_vap);
+            OAM_WARNING_LOG1(pst_mac_vap->uc_vap_id, OAM_SF_SCAN,"{dmac_handle_tbtt_chan_mgmt_sta::swt cnt is same so to switch channel %d}",
+                             pst_mac_vap->st_channel.uc_chan_number);
         }
     }
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_mgmt_is_active_htsta
- 功能描述  : 判断sta是否为活跃sta
- 输入参数  : pst_hmac_vap: HMAC VAP结构体指针，指向sta
- 输出参数  : 无+ 返 回 值  : 无+ 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2015年3月30日
-    作    者   : l00311403
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 oal_uint8  dmac_mgmt_is_active_htsta(mac_vap_stru *pst_mac_vap)
 {
     //TODO 目前该函数始终返回true, 如有必要在此处加上判断sta是否为活跃ht sta的代码
@@ -409,17 +339,7 @@ oal_uint8  dmac_mgmt_is_active_htsta(mac_vap_stru *pst_mac_vap)
 }
 
 #ifdef _PRE_WLAN_FEATURE_20_40_80_COEXIST
-/*****************************************************************************
- 函 数 名  : dmac_mgmg_need_obss_scan
- 功能描述  : 判断是否需要启动obss scan
- 输入参数  : pst_hmac_vap: HMAC VAP结构体指针，指向sta
- 输出参数  : 无+ 返 回 值  : 无+ 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2015年3月30日
-    作    者   : l00311403
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 oal_uint8  dmac_mgmt_need_obss_scan(mac_vap_stru *pst_mac_vap)
 {
     mac_device_stru                     *pst_device;
@@ -447,9 +367,8 @@ oal_uint8  dmac_mgmt_need_obss_scan(mac_vap_stru *pst_mac_vap)
     }
 #endif
 
-    //l00311403 当前vht不启用obss扫描
     if ( (WLAN_VAP_MODE_BSS_STA == pst_mac_vap->en_vap_mode) &&
-         (MAC_VAP_STATE_UP == pst_mac_vap->en_vap_state) &&
+         ((MAC_VAP_STATE_UP == pst_mac_vap->en_vap_state) || (MAC_VAP_STATE_PAUSE == pst_mac_vap->en_vap_state)) &&
          (WLAN_BAND_2G == pst_mac_vap->st_channel.en_band)&&
          (OAL_TRUE == mac_mib_get_HighThroughputOptionImplemented(pst_mac_vap)) &&
          (OAL_TRUE == mac_mib_get_2040BSSCoexistenceManagementSupport(pst_mac_vap)) &&

@@ -48,15 +48,7 @@ VOS_UINT8  g_aucMask[8][8] =
 /*****************************************************************************
   3 Function
 *****************************************************************************/
-/*****************************************************************************
-Function Name   : LTE_MsgHook
-Description     : 可维可测函数
-Input           : None
-Output          : None
-Return          : None
-History         :
-  1.lifuxin 00253982           2014-05-29  Draft Enact
-*****************************************************************************/
+
 
 
 
@@ -66,43 +58,14 @@ History         :
     return 0;
 }*/
 //#endif
-/*****************************************************************************
-Function Name   : NAS_Lpp_AsnInit
-Description     : ASN初始化函数
-Input           : None
-Output          : None
-Return          : None
-History         :
-  1.lifuxin 00253982           2014-05-29  Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_Lpp_AsnInit(VOS_VOID)
 {
     NAS_LPP_MEM_CPY_S(g_aucLppEncodeMask, sizeof(g_aucLppEncodeMask),g_aucMask, 64);
 }
 
-/*****************************************************************************
-Function Name   : NAS_LPP_DebugInfo
-Description     : LPP debug勾消息使用
-Input           : None
-Output          : None
-Return          : None
-History         :
-  1.lifuxin 00253982           2014-05-29  Draft Enact
-*****************************************************************************/
-/*VOS_VOID NAS_LPP_SaveDebugInfo(LPP_DEBUG_INFO_STRU *pstLppDebug)
-{
-    return;
-}
 
-****************************************************************************
-Function Name   : NAS_Lpp_PrintfMsg
-Description     : 打印LPP消息
-Input           : None
-Output          : None
-Return          : None
-History         :
-  1.lifuxin 00253982           2015-05-29  Draft Enact
-*****************************************************************************/
+
 
 VOS_VOID NAS_Lpp_PrintfMsg(VOS_UINT8 *pucEncodeBuff, char * EncodeIe, VOS_UINT32 ulMsgLength)
 {
@@ -133,16 +96,7 @@ VOS_VOID NAS_Lpp_PrintfMsg(VOS_UINT8 *pucEncodeBuff, char * EncodeIe, VOS_UINT32
     vos_printf("========================================================2\n\n");
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_GetParaToOctet
- Description     : 将要编码的uslen长的数据存储到usTar中去，而且保持右对齐
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lifuxin 00253982  2015-05-02    Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_LPP_GetParaToOctet(
                                 VOS_UINT16      *pusTar,
                                 VOS_UINT8       *pArr,
@@ -178,16 +132,7 @@ VOS_VOID  NAS_LPP_GetParaToOctet(
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeExtBit
- Description     : 编码有扩展项且不选中扩展项的场景
- Input           :
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lifuxin 00253982  2015-05-02    Draft Enact
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_EncodeExtBit(
                         VOS_UINT16      *pBitPos,
                         VOS_UINT8       *pEncodeOutMsg)
@@ -314,19 +259,7 @@ VOS_VOID NAS_LPP_EncodeBitsLess8(
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_EncodeBitSteam
- Description     : LPP编码最基础的函数
- Input           : pTarget 表示编码完成后存储码流的buffer
-                   pulPos  表示当前编码的第一个位置
-                   usLen   表示实际要编码的长度
-                   pSource 表示实际要编码的码流
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lifuxin 00253982  2015-05-02    Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_LPP_EncodeBitSteam(
                                     VOS_UINT8       *pTarget,
                                     VOS_UINT16      *pulPos,
@@ -339,19 +272,7 @@ VOS_VOID NAS_LPP_EncodeBitSteam(
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_SetBitStreamFromStream
- Description     : LPP编码最基础的函数
- Input           : pTarget 表示编码完成后存储码流的buffer
-                   ulPos   表示当前编码的第一个位置
-                   usLen   表示实际要编码的长度
-                   pSource 表示实际要编码的码流
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lifuxin 00253982  2015-05-02    Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_LPP_SetBitStreamFromStream(
                                     VOS_UINT8       *pTarget,
                                     VOS_UINT16      ulPos,
@@ -440,18 +361,7 @@ VOS_VOID NAS_LPP_SetBitStreamFromStream(
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_GetParamFromBitStream
- Description     : LPP解码最基础的函数
- Input           : aArr  表示待解码的码流
-                   ulPos 表示即将解码的初始位置
-                   usLen 表示解码的实际长度
- Output          : None
- Return          : VOS_UINT32
-                   返回解码之后的码流
- History         :
-    1.lifuxin 00253982  2015-05-02    Draft Enact
-*****************************************************************************/
+
 VOS_UINT32 NAS_LPP_GetParamFromBitStream(
                                             VOS_UINT8       aArr[],
                                             VOS_UINT32      ulPos,
@@ -539,18 +449,7 @@ VOS_UINT32 NAS_LPP_GetParamFromBitStream(
       }
   return ulReturnvalue;
 }
-/*****************************************************************************
- Function Name   : NAS_LPP_GetDataFromBitStream
- Description     : LPP解码最基础的函数,
- Input           : aArr  表示待解码的码流
-                   ulPos 表示即将解码的初始位置
-                   usLen 表示解码的实际长度
- Output          : None
- Return          : VOS_UINT32
-                   返回解码之后的码流
- History         :
-    1.wangensheng 00324863  2015-05-04    Draft Enact
-*****************************************************************************/
+
 VOS_UINT32 NAS_LPP_GetDataFromBitStream(
                                             VOS_UINT8                       *pDecodeBitStream,
                                             VOS_UINT32                      *pCurrentBitPos,
@@ -564,19 +463,7 @@ VOS_UINT32 NAS_LPP_GetDataFromBitStream(
     return  ulReturnValue;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_GetLongDataFromBitStream
- Description     : LPP解码获取超过32bit数据的函数
- Input           : aArr  表示待解码的码流
-                   ulPos 表示即将解码的初始位置
-                   usLen 表示解码的实际长度
-                   pllDestData 表示存储数据的变量
- Output          : None
- Return          : VOS_UINT32
-                   成功返回 NAS_LPP_DECODE_SUCC 失败 返回 NAS_LPP_DECODE_FAIL
- History         :
-    1.wangensheng 00324863  2015-05-04    Draft Enact
-*****************************************************************************/
+
 VOS_UINT32 NAS_LPP_GetLongDataFromBitStream(
                                                 VOS_UINT8       aArr[],
                                                 VOS_UINT32      *ulPos,
@@ -607,19 +494,7 @@ VOS_UINT32 NAS_LPP_GetLongDataFromBitStream(
     *pllDestData = ullTargetValue;
     return NAS_LPP_DECODE_SUCC;
 }
-/*****************************************************************************
- Function Name   : NAS_LPP_GetLongBitFromBitStream
- Description     : LPP解码获取超过32bit数据的函数
- Input           : aArr  表示待解码的码流
-                   ulPos 表示即将解码的初始位置
-                   usLen 表示解码的实际长度
-                   pllDestData 表示存储数据的变量
- Output          : None
- Return          : VOS_UINT32
-                   成功返回 NAS_LPP_DECODE_SUCC 失败 返回 NAS_LPP_DECODE_FAIL
- History         :
-    1.wangensheng 00324863  2015-05-04    Draft Enact
-*****************************************************************************/
+
 VOS_UINT32 NAS_LPP_GetLongBitFromBitStream(
                                                 VOS_UINT8       aArr[],
                                                 VOS_UINT32      *ulPos,
@@ -645,20 +520,7 @@ VOS_UINT32 NAS_LPP_GetLongBitFromBitStream(
     }
     return NAS_LPP_DECODE_SUCC;
 }
-/*****************************************************************************
- Function Name   : NAS_LPP_ASN_FAIL_Message
- Description     : LPP编解码可维可测消息
- Input           :可维可测消息头
- Output          : None
- Return          : VOS_UINT32
-                   成功返回
- History         :
-    1.wangensheng 00324863  2015-05-04    Draft Enact
-****************************************************************************
-VOS_VOID NAS_LPP_Hook(VOS_VOID* pstMsg)
-{
-    return  ;
-}*/
+
 
 /*lint +e701*/
 #endif

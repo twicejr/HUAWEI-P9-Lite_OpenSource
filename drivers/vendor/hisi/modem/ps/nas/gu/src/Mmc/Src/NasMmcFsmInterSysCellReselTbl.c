@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmcFsmInterSysCellReselTbl.c
-  版 本 号   : 初稿
-  作    者   : w00176964
-  生成日期   : 2011年07月04日
-  最近修改   :
-  功能描述   : NAS 层InterSysCellResel状态机状态描述表
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年07月04日
-    作    者   : w00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -24,9 +7,7 @@
 
 #include "NasFsm.h"
 #include "NasMmcTimerMgmt.h"
-/* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
 #include "MsccMmcInterface.h"
-/* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 #include "Nasrrcinterface.h"
 #include "MmcGmmInterface.h"
 #include "MmcMmInterface.h"
@@ -37,9 +18,7 @@
 #include "NasMmcFsmInterSysCellReselTbl.h"
 #include "NasMmcSndInternalMsg.h"
 
-/* Added by s00246516 for L-C互操作项目, 2014-01-27, Begin */
 #include "CmmcaMmcInterface.h"
-/* Added by s00246516 for L-C互操作项目, 2014-01-27, End */
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -126,19 +105,15 @@ NAS_ACT_STRU   g_astNasInterSysCellReselWaitAsResumeIndActTbl[]          =
 
 #endif
 
-    /* Added by s00246516 for L-C互操作项目, 2014-01-27, Begin */
 #if   (FEATURE_ON == FEATURE_CL_INTERWORK)
     NAS_ACT_TBL_ITEM( WUEPS_PID_CMMCA,
                       ID_CMMCA_MMC_RESUME_IND,
                       NAS_MMC_RcvCmmcaResumeInd_InterSysCellResel_WaitAsResumeInd),
 
-    /* Added by w00167002 for L-C互操作项目, 2014-2-26, begin */
     NAS_ACT_TBL_ITEM( VOS_PID_TIMER,
                       TI_NAS_MMC_WAIT_CMMCA_RESUME_IND,
                       NAS_MMC_RcvTiWaitCmmcaResumeIndExpired_InterSysCellResel_WaitAsResumeInd),
-    /* Added by w00167002 for L-C互操作项目, 2014-2-26, end */
 #endif
-    /* Added by s00246516 for L-C互操作项目, 2014-01-27, End */
 
     NAS_ACT_TBL_ITEM( VOS_PID_TIMER,
                       TI_NAS_MMC_WAIT_AS_RESUME_IND,
@@ -405,21 +380,7 @@ NAS_STA_STRU g_astNasMmcInterSysCellReselStaTbl[] =
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetInterSysCellReselStaTblSize
- 功能描述  : 获取inter sys CellResel状态机的大小
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:inter sys CellResel状态机的大小
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月9日
-    作    者   : zhoujun 40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_GetInterSysCellReselStaTblSize( VOS_VOID  )
 {
     return (sizeof(g_astNasMmcInterSysCellReselStaTbl)/sizeof(NAS_STA_STRU));
@@ -427,21 +388,7 @@ VOS_UINT32 NAS_MMC_GetInterSysCellReselStaTblSize( VOS_VOID  )
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetInterSysCellReselFsmDescAddr
- 功能描述  : 获取挂起状态机的描述表
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : NAS_FSM_DESC_STRU:指向挂起状态机的描述表
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月9日
-    作    者   : zhoujun 40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_FSM_DESC_STRU * NAS_MMC_GetInterSysCellReselFsmDescAddr(VOS_VOID)
 {
     return (&g_stNasMmcInterSysCellReselFsmDesc);

@@ -68,78 +68,25 @@ AT_MNTN_MSG_RECORD_INFO_STRU            g_stAtMsgRecordInfo;
 /*****************************************************************************
   10 函数实现
 *****************************************************************************/
-/*****************************************************************************
-函 数 名  : AT_InitMntnCtx
-功能描述  : AT模块可维可测信息初始化
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2014年09月13日
-   作    者   : g00261581
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_InitMntnCtx(VOS_VOID)
 {
     PS_MEM_SET(&g_stAtMsgRecordInfo, 0, sizeof(g_stAtMsgRecordInfo));
 }
 
-/*****************************************************************************
-函 数 名  : AT_SetPcuiCtrlConcurrentFlag
-功能描述  : 设置PCUI、PCUI2及CTRL口的并发标志位
-输入参数  : VOS_UINT8    ucFlag
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2013年4月18日
-   作    者   : z00220246
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_SetPcuiCtrlConcurrentFlag(VOS_UINT8 ucFlag)
 {
     g_stAtDebugInfo.ucPcuiCtrlConcurrentFlg = ucFlag;
 }
 
-/*****************************************************************************
-函 数 名  : AT_GetPcuiCtrlConcurrentFlag
-功能描述  : 获取PCUI和CTRL口的并发标志位
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_UINT8
-调用函数  :
-被调函数  :
 
-修改历史      :
- 1.日    期   : 2013年4月18日
-   作    者   : z00220246
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 AT_GetPcuiCtrlConcurrentFlag(VOS_VOID)
 {
     return g_stAtDebugInfo.ucPcuiCtrlConcurrentFlg;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SetPcuiPsCallFlag
- 功能描述  : 设置PCUI口模拟nidsdup拨号的标志位
- 输入参数  : VOS_UINT8         ucFlag
-             VOS_UINT8         ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月27日
-    作    者   : l60609
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_SetPcuiPsCallFlag(
     VOS_UINT8                           ucFlag,
     VOS_UINT8                           ucIndex
@@ -149,59 +96,19 @@ VOS_VOID AT_SetPcuiPsCallFlag(
     g_stAtDebugInfo.ucPcuiUserId        = AT_CLIENT_TAB_APP_INDEX;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetPcuiPsCallFlag
- 功能描述  : 获取PCUI口模拟nidsdup拨号的标志位
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月27日
-    作    者   : l60609
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 AT_GetPcuiPsCallFlag(VOS_VOID)
 {
     return g_stAtDebugInfo.ucPcuiPsCallFlg;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetPcuiUsertId
- 功能描述  : 获取PCUI口模拟哪个端口NDISDUP拨号
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月7日
-    作    者   : l60609
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 AT_GetPcuiUsertId(VOS_VOID)
 {
     return g_stAtDebugInfo.ucPcuiUserId;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SetCtrlPsCallFlag
- 功能描述  : 设置Ctrl口模拟nidsdup拨号的标志位
- 输入参数  : VOS_UINT8            ucFlag
-             VOS_UINT8            ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月8日
-    作    者   : l60609
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_SetCtrlPsCallFlag(
     VOS_UINT8                           ucFlag,
     VOS_UINT8                           ucIndex
@@ -215,60 +122,19 @@ VOS_VOID AT_SetCtrlPsCallFlag(
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetCtrlPsCallFlag
- 功能描述  : 获取CTRL口模拟nidsdup拨号的标志位
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月8日
-    作    者   : l60609
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 AT_GetCtrlPsCallFlag(VOS_VOID)
 {
     return g_stAtDebugInfo.ucCtrlPsCallFlg;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetCtrlUserId
- 功能描述  : 获取CTRL口模拟哪个端口NDISDUP拨号
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月8日
-    作    者   : l60609
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 AT_GetCtrlUserId(VOS_VOID)
 {
     return g_stAtDebugInfo.ucCtrlUserId;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SetPcui2PsCallFlag
- 功能描述  : 设置PCUI2口模拟^NDISDUP拨号的标志位
- 输入参数  : VOS_UINT8        ucFlag
-             VOS_UINT8        ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月27日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_SetPcui2PsCallFlag(
     VOS_UINT8                           ucFlag,
     VOS_UINT8                           ucIndex
@@ -283,61 +149,20 @@ VOS_VOID AT_SetPcui2PsCallFlag(
 
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetPcui2PsCallFlag
- 功能描述  : 获取PCUI2口模拟^NDISDUP拨号的标志位
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月27日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 AT_GetPcui2PsCallFlag(VOS_VOID)
 {
     return g_stAtDebugInfo.ucPcui2PsCallFlg;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetPcui2UserId
- 功能描述  : 获取PCUI2口模拟哪个端口NDISDUP拨号
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月27日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 AT_GetPcui2UserId(VOS_VOID)
 {
     return g_stAtDebugInfo.ucPcui2UserId;
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_SetUnCheckApPortFlg
- 功能描述  : 设置 不检查ApPort标志
- 输入参数  : VOS_UINT8                            ucFlag
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月1日
-    作    者   : n00269697
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_SetUnCheckApPortFlg(
     VOS_UINT8                           ucFlag
 )
@@ -348,39 +173,13 @@ VOS_VOID AT_SetUnCheckApPortFlg(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetUnCheckApPortFlg
- 功能描述  : 获取 不检查ApPort标志
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : g_stAtDebugInfo.ucUnCheckApPortFlg
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月1日
-    作    者   : n00269697
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 AT_GetUnCheckApPortFlg(VOS_VOID)
 {
     return g_stAtDebugInfo.ucUnCheckApPortFlg;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_MNTN_TraceEvent
- 功能描述  : 输出可维可测
- 输入参数  : pMsg - 可维可测消息(调用者保证非空)
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月11日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_MNTN_TraceEvent(VOS_VOID *pMsg)
 {
 
@@ -389,21 +188,7 @@ VOS_VOID AT_MNTN_TraceEvent(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_MNTN_TraceInputMsc
- 功能描述  : 管脚信号输入可维可测
- 输入参数  : ucIndex   - 端口索引
-             pstDceMsc - 管脚信号信息(调用者保证非空)
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月11日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_MNTN_TraceInputMsc(
     VOS_UINT8                           ucIndex,
     AT_DCE_MSC_STRU                    *pstDceMsc
@@ -424,21 +209,7 @@ VOS_VOID AT_MNTN_TraceInputMsc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_MNTN_TraceOutputMsc
- 功能描述  : 管脚信号输出可维可测
- 输入参数  : ucIndex   - 端口索引
-             pstDceMsc - 管脚信号信息(调用者保证非空)
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月11日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_MNTN_TraceOutputMsc(
     VOS_UINT8                           ucIndex,
     AT_DCE_MSC_STRU                    *pstDceMsc
@@ -459,21 +230,7 @@ VOS_VOID AT_MNTN_TraceOutputMsc(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_MNTN_TraceStartFlowCtrl
- 功能描述  : 启动流控可维可测
- 输入参数  : ucIndex    - 端口索引
-             enFcDevive - 流控设备
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月11日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_MNTN_TraceStartFlowCtrl(
     VOS_UINT8                           ucIndex,
     AT_FC_DEVICE_TYPE_ENUM_UINT32       enFcDevive
@@ -494,21 +251,7 @@ VOS_VOID AT_MNTN_TraceStartFlowCtrl(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_MNTN_TraceStopFlowCtrl
- 功能描述  : 停止流控可维可测
- 输入参数  : ucIndex    - 端口索引
-             enFcDevive - 流控设备
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月11日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_MNTN_TraceStopFlowCtrl(
     VOS_UINT8                           ucIndex,
     AT_FC_DEVICE_TYPE_ENUM_UINT32       enFcDevive
@@ -529,21 +272,7 @@ VOS_VOID AT_MNTN_TraceStopFlowCtrl(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_MNTN_TraceRegFcPoint
- 功能描述  : 注册流控点可维可测
- 输入参数  : ucIndex   - 端口索引
-             enFcPoint - 流控点
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月11日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_MNTN_TraceRegFcPoint(
     VOS_UINT8                           ucIndex,
     AT_FC_POINT_TYPE_ENUM_UINT32        enFcPoint
@@ -564,21 +293,7 @@ VOS_VOID AT_MNTN_TraceRegFcPoint(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_MNTN_TraceDeregFcPoint
- 功能描述  : 去注册流控点可维可测
- 输入参数  : ucIndex   - 端口索引
-             enFcPoint - 流控点
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月11日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_MNTN_TraceDeregFcPoint(
     VOS_UINT8                           ucIndex,
     AT_FC_POINT_TYPE_ENUM_UINT32        enFcPoint
@@ -599,22 +314,7 @@ VOS_VOID AT_MNTN_TraceDeregFcPoint(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_MNTN_TraceCmdResult
- 功能描述  : AT命令回复可维可测
- 输入参数  : ucIndex   - 端口索引
-             pucData   - 数据内容
-             usDataLen - 数据长度
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月06日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_MNTN_TraceCmdResult(
     VOS_UINT8                           ucIndex,
     VOS_UINT8                          *pucData,
@@ -657,22 +357,7 @@ VOS_VOID AT_MNTN_TraceCmdResult(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_MNTN_TraceCmdBuffer
- 功能描述  : 缓存命令可维可测
- 输入参数  : ucIndex   - 端口索引
-             pucData   - 数据内容
-             usDataLen - 数据长度
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年3月24日
-    作    者   : s46746
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_MNTN_TraceCmdBuffer(
     VOS_UINT8                           ucIndex,
     VOS_UINT8                          *pucData,
@@ -715,25 +400,7 @@ VOS_VOID AT_MNTN_TraceCmdBuffer(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_MNTN_TraceContextData
- 功能描述  : 把AT外部上下文作为SDT消息发送出去，以便在回放时通过桩函数还原
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2010年02月12日
-    作    者   : 傅映君 62575
-    修改内容   : 新生成函数
-  2.日    期   : 2010年7月16日
-    作    者   : 傅映君/f62575
-    修改内容   : 问题单号：DTS2010071402189，支持AT模块多CLIENT ID的回放
-  3.日    期   : 2013年03月07日
-    作    者   : f00179208
-    修改内容   : DSDA PHASE III
-*****************************************************************************/
+
 VOS_VOID AT_MNTN_TraceContextData(VOS_VOID)
 {
     NAS_AT_SDT_AT_PART_ST                  *pstSndMsgCB     = VOS_NULL_PTR;
@@ -798,20 +465,7 @@ VOS_VOID AT_MNTN_TraceContextData(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_MNTN_TraceClientData
- 功能描述  : 发送AT模块的客户端口数据
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月17日
-    作    者   : 傅映君/f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_MNTN_TraceClientData(VOS_VOID)
 {
     NAS_AT_SDT_AT_CLIENT_TABLE_STRU         *pstSndMsgCB;
@@ -854,20 +508,7 @@ VOS_VOID AT_MNTN_TraceClientData(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_MNTN_TraceRPTPORT
- 功能描述  : 发送AT模块的客户端口数据
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月1日
-    作    者   : n00269697
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_MNTN_TraceRPTPORT(VOS_VOID)
 {
     AT_MNTN_RPTPORT_STRU                   *pstSndMsgCB;
@@ -903,63 +544,21 @@ VOS_VOID AT_MNTN_TraceRPTPORT(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_InitHsUartStats
- 功能描述  : 初始化UART可维可测信息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年09月21日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_InitHsUartStats(VOS_VOID)
 {
     PS_MEM_SET(&g_stAtStatsInfo.stHsUartStats, 0x00, sizeof(AT_MNTN_HSUART_STATS_STRU));
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_MODEM_Help
- 功能描述  : 初始化UART可维可测信息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月11日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_InitModemStats(VOS_VOID)
 {
     PS_MEM_SET(&g_stAtStatsInfo.stModemStats, 0x00, sizeof(AT_MNTN_MODEM_STATS_STRU));
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RecordAtMsgInfo
- 功能描述  : 记录进入At_MsgProc函数的消息属性
- 输入参数  : VOS_UINT32                          ulSendPid,
-             VOS_UINT32                          ulMsgName,
-             VOS_UINT32                          ulSliceStart,
-             VOS_UINT32                          ulSliceEnd
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年09月04日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_RecordAtMsgInfo(
     VOS_UINT32                          ulSendPid,
     VOS_UINT32                          ulMsgName,
@@ -987,20 +586,7 @@ VOS_VOID AT_RecordAtMsgInfo(
 }
 
 #if (FEATURE_ON == FEATURE_AT_HSUART)
-/*****************************************************************************
- 函 数 名  : AT_ShowHsUartConfigInfo
- 功能描述  : HSUART配置可维可测信息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月11日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_ShowHsUartConfigInfo(VOS_VOID)
 {
     AT_UART_LINE_CTRL_STRU             *pstLineCtrl = VOS_NULL_PTR;
@@ -1053,20 +639,7 @@ VOS_VOID AT_ShowHsUartConfigInfo(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_ShowHsUartNvStats
- 功能描述  : HSUART NV可维可测信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年09月21日
-    作    者   : j00174725
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_VOID AT_ShowHsUartNvStats(VOS_VOID)
 {
     (VOS_VOID)vos_printf("====================================\r\n");
@@ -1080,24 +653,7 @@ VOS_VOID AT_ShowHsUartNvStats(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_ShowHsUartIoctlStats
- 功能描述  : HSUART IOCTL操作结果
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年09月21日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年3月12日
-    作    者   : A00165503
-    修改内容   : DTS2015032409785: 增加水线检测功能
-*****************************************************************************/
 VOS_VOID AT_ShowHsUartIoctlStats(VOS_VOID)
 {
     (VOS_VOID)vos_printf("====================================\r\n");
@@ -1125,20 +681,7 @@ VOS_VOID AT_ShowHsUartIoctlStats(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_ShowHsUartDataStats
- 功能描述  : HSUART数据统计可维可测
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年09月21日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_ShowHsUartDataStats(VOS_VOID)
 {
     (VOS_VOID)vos_printf("====================================\r\n");
@@ -1172,20 +715,7 @@ VOS_VOID AT_ShowHsUartDataStats(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_ShowHsUartFcState
- 功能描述  : HSUART流控状态可维可测信息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月11日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_ShowHsUartFcState(VOS_VOID)
 {
     VOS_CHAR                            acFcStateStr[][20] = {"START", "STOP"};
@@ -1202,20 +732,7 @@ VOS_VOID AT_ShowHsUartFcState(VOS_VOID)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : AT_ShowModemDataStats
- 功能描述  : MODEM的数据统计可维可测
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : sunshaohua
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_ShowModemDataStats(VOS_VOID)
 {
     (VOS_VOID)vos_printf("====================================\r\n");
@@ -1238,20 +755,7 @@ VOS_VOID AT_ShowModemDataStats(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_ShowPsEntityInfo
- 功能描述  : PS域实体信息
- 输入参数  : ucCallId - 呼叫实体索引
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月31日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_ShowPsEntityInfo(VOS_UINT8 ucCallId)
 {
     AT_PS_CALL_ENTITY_STRU             *pstCallEntity = VOS_NULL_PTR;
@@ -1318,21 +822,7 @@ VOS_VOID AT_ShowPsEntityInfo(VOS_UINT8 ucCallId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_ShowPsFcIdState
- 功能描述  : 显示AT流控点注册信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2013年04月15日
-      作    者   : f00179208
-      修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_ShowPsFcIdState(VOS_UINT32 ulFcid)
 {
     if (ulFcid >= FC_ID_BUTT)
@@ -1350,21 +840,7 @@ VOS_VOID AT_ShowPsFcIdState(VOS_UINT32 ulFcid)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_ShowResetStats
- 功能描述  : 显示AT信号量初始化信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2013年04月15日
-      作    者   : f00179208
-      修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_ShowResetStatsInfo(VOS_VOID)
 {
     (VOS_VOID)vos_printf("模块初始化标识                              %d\n", g_stAtStatsInfo.stCCpuResetStatsInfo.ulSemInitFlg);
@@ -1382,20 +858,7 @@ VOS_VOID AT_ShowResetStatsInfo(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_ShowAllClientState
- 功能描述  : 端口状态查询
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年01月15日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_ShowAllClientState(VOS_VOID)
 {
     VOS_UINT8                           i;
@@ -1413,21 +876,7 @@ VOS_VOID AT_ShowAllClientState(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SetClientState
- 功能描述  : 设置端口状态
- 输入参数  : ucIndex -- clientID
-             ulState -- 端口状态(Pend/Ready)
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年01月15日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_SetClientState(VOS_UINT8 ucIndex, VOS_UINT8 ucState)
 {
     if ((ucIndex >= AT_MAX_CLIENT_NUM)||(ucState > AT_FW_CLIENT_STATUS_PEND))
@@ -1440,21 +889,7 @@ VOS_VOID AT_SetClientState(VOS_UINT8 ucIndex, VOS_UINT8 ucState)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SetClientMode
- 功能描述  : 设置端口模式
- 输入参数  : ucIndex -- clientID
-             ucMode -- 端口模式
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年01月15日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_SetClientMode(VOS_UINT8 ucIndex, VOS_UINT8 ucMode)
 {
     if ((ucIndex >= AT_MAX_CLIENT_NUM)||(ucMode > AT_ONLINE_CMD_MODE))
@@ -1467,21 +902,7 @@ VOS_VOID AT_SetClientMode(VOS_UINT8 ucIndex, VOS_UINT8 ucMode)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_ShowUsedClient
- 功能描述  : 打印当前使用端口状态
- 输入参数  : ucIndex -- clientID
-             ucMode -- 端口模式
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年01月15日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_ShowUsedClient(VOS_VOID)
 {
     AT_PORT_BUFF_CFG_STRU              *pstPortCfg;
@@ -1504,20 +925,7 @@ VOS_VOID AT_ShowUsedClient(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_ShowClientCtxInfo
- 功能描述  : 打印Client配置的上下文信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年04月25日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_ShowClientCtxInfo(VOS_VOID)
 {
     VOS_UINT8                           i;
@@ -1536,20 +944,7 @@ VOS_VOID AT_ShowClientCtxInfo(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : AT_Help
- 功能描述  : AT可维可测入口
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月12日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID AT_Help(VOS_VOID)
 {
     (VOS_VOID)vos_printf("********************************************************\n");

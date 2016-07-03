@@ -1,101 +1,4 @@
-/************************************************************************
-  Copyright    : 2005-2007, Huawei Tech. Co., Ltd.
-  File name    : Taf_ApsDealSmMsg.c
-  Author       : 韩鲁峰
-  Version      : V200R001
-  Date         : 2005-0
-  Description  :
-  Function List:
-        ---Aps_DealAllFromSm
-        ---Aps_PdpActCnf
-        ---Aps_PdpActCnfParaCheck
-        ---Aps_PdpActCnfStateCheck
-        ---Aps_CheckQosSatisify
 
-        ---Aps_GetPsMinQos
-        ---Aps_PdpActCnfQosSatisfy
-        ---TAF_APS_SndPdpActivateCnf
-        ---Aps_PdpQosNotSatisfy
-        ---Aps_PdpActRej
-
-        ---TAF_APS_SndPdpActivateRej
-        ---Aps_PdpActInd
-        ---TAF_APS_SndPdpManageInd
-        ---Aps_ActIndAutoAns
-        ---Aps_ActIndRejRsp
-
-        ---TAF_APS_GetPsReqPdp
-        ---Aps_PdpMdfCnf
-        ---Aps_PdpMdfCnfParaCheck
-        ---Aps_PdpMdfCnfStateCheck
-        ---Aps_PdpMdfCnfQosSatisfy
-
-        ---TAF_APS_SndPdpModifyCnf
-        ---Aps_PdpMdfRej
-        ---Aps_PdpMdfInd
-        ---Aps_PdpMdfIndParaCheck
-        ---Aps_PdpMdfIndStateCheck
-
-        ---Aps_PdpMdfIndStateCheck
-        ---TAF_APS_SndPdpModifyInd
-        ---Aps_PdpDeActCnf
-        ---Aps_PdpDeActCnfStateCheck
-        ---TAF_APS_SndPdpDeActivateCnf
-
-        ---TAF_APS_SndPdpDeActivateInd
-        ---Aps_PdpDeActInd
-        ---Aps_PdpDeActIndStateCheck
-        ---Aps_PdpDeActIndStateCheck
-        ---Aps_PdpActSecCnf
-
-        ---Aps_PdpActSecCnfParaCheck
-        ---Aps_PdpActSecCnfQosSatisfy
-        ---Aps_PdpActSecRej
-        ---Aps_PdpActSecRej
-        ---Aps_SmMsgModSnActIndParaPack
-
-        ---Aps_SetSnXidPara
-        ---Aps_SmMsgModSnMdfInd
-        ---Aps_SmMsgModSnMdfIndParaPack
-        ---Aps_SmMsgModSnDeActInd
-        ---Aps_SmMsgModSnDeActIndParaPack
-
-        ---Aps_SmMsgModSnDeActIndParaPack
-        ---Aps_SmMsgModSnDeActIndParaPack
-        ---Aps_UnpackSmPco
-        ---Aps_DetachSmAddrStru
-        ---Aps_DetachSmApn
-
-        ---Aps_CompareQos
-        ---
-  History      :
-  1. Date:2005-0
-     Author: ---
-     Modification:Create
-  2. 2006-02-23 modify by 韩鲁峰 FOR A32D02144
-  3. 2006-02-28 modify by 韩鲁峰 for A32D02265
-  4. 2006-02-24 add by 韩鲁峰 for A32D01902
-  5. 2006-03-03 MODIFY BY H41410 FOR A32D02345
-  6. 2006-03-22 Modify by h41410 for A32D02660
-  7. 2006-04-10 modify by 韩鲁峰 for A32D01902
-  8. 2006-04-14 modify by h41410 for A32D03182
-  9.日    期   : 2006年4月4日
-    作    者   : liuyang id:48197
-    修改内容   : 问题单号:A32D01738
-  10.2006-05-13 modify by h41410 for A32D03787
-  11.2006-05-13 modify by h41410 for A32D03843
-  12.2006-07-06 modify by L47619 for A32D04774
-  13.2006-07-06 modify by L47619 for A32D04802
-  14.2006-09-30 modify by L47619 for A32D06451
-  15.2006-09-30 modify by L47619 for A32D08328
-  16.日    期  : 2007年02月06日
-    作    者   : S62952
-    修改内容   : 问题单号：A32D08654
-  17.2007-07-09 modify by L47619 for A32D11705
- 18.日    期   : 2011年04月23日
-    作    者   : L00171473
-    修改内容   : for V7R1 porting, 事件上报中添加NBNS和GATEWAY参数
-************************************************************************/
 
 
 /*****************************************************************************
@@ -137,27 +40,7 @@
    3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : Aps_CheckPdpType
- 功能描述  : 检查PDP ACT accept中的PDP TYPE是否和PDP ACT request中的相同
- 输入参数  : VOS_UINT8                  ucPdpId
-             SM_TAF_PDP_ADDR_STRU*      pSmAddr
- 输出参数  : 无
- 返 回 值  : TAF_APS_SUCC - 收到的PDP type与请求的相同
-             TAF_APS_FAIL - 收到的PDP type与请求的不同
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年6月2日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年5月20日
-    作    者   : A00165503
-    修改内容   : 增加IPV6特性的处理
-
-*****************************************************************************/
 VOS_UINT32 Aps_CheckPdpType(
     VOS_UINT8                           ucPdpId,
     SM_TAF_PDP_ADDR_STRU               *pSmAddr
@@ -264,22 +147,7 @@ VOS_UINT32 Aps_CheckPdpType(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : Aps_ValidPacketFlowId
- 功能描述  : 检查网络分配的PFI是否有效，有效的PFI在[0,3]或[8,127]区间内；
-             若网络分配的PFI无效，使用默认值 Best Effort "0"
- 输入参数  : VOS_UINT8  *pucPacketFlowId - 网络分配的PFI
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年10月19日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID Aps_ValidPacketFlowId(VOS_UINT8 *pucPacketFlowId)
 {
     if ( ((*pucPacketFlowId > 3) && (*pucPacketFlowId < 8))
@@ -290,38 +158,7 @@ VOS_VOID Aps_ValidPacketFlowId(VOS_UINT8 *pucPacketFlowId)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : Aps_PdpActCnfParaCheck
- 功能描述  : 参数检查,基本继承V100R001
- 输入参数  : SMREG_PDP_ACTIVATE_CNF_STRU            *pSmActCnfMsg
-             APS_ACTCNF_PARA_ST                     *pActCnfPara
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2005年xx月xx日
-    作    者   : xxx
-    修改内容   : 新生成函数
-
-  2.日    期   : 2006年02月24日
-    作    者   : h41410
-    修改内容   : 问题单号: A32D01902
-
-  3.日    期   : 2010年12月15日
-    作    者   : A00165503
-    修改内容   : 问题单号: DTS2010120605160，W单模下PDP激活后，修改为双模，
-                 重选到G下数传无法恢复
-  4.日    期   : 2012年1月27日
-    作    者   : h44270
-    修改内容   : PS融合项目，删除冗余代码和全局变量
-
-  5.日    期   : 2013年4月23日
-    作    者   : L47619
-    修改内容   : V9R1 IPv6&TAF/SM接口优化项目修改
-
-*****************************************************************************/
 VOS_UINT32 Aps_PdpActCnfParaCheck(
     SMREG_PDP_ACTIVATE_CNF_STRU            *pSmActCnfMsg,
     APS_ACTCNF_PARA_ST                     *pActCnfPara
@@ -463,34 +300,7 @@ VOS_UINT32 Aps_PdpActCnfParaCheck(
     return  APS_PARA_VALID;
 }
 
-/*****************************************************************************
- Prototype      : Aps_CheckAddrWithActPdp
- Description    : 检查pucIpAddr中指向的IP地址与各激活了的PDP的IP地址是否相同,
-                  并把相同的PDP的PdpId输出,
- Input          : ucPdpId -- PDP ID
-                  pucIpAddr
-                    -- 一维数组指针 VOS_UINT8 aucIpAddr[TAF_IPV4_ADDR_LEN]
- Output         : pucPdpIdList
-                    -- 一维数组指针 VOS_UINT8 aucPdpIdList[APS_MAX_PDP_NUM+1];
-                    该数组中的元素只能填值0和1，
-                    0 - 标识PdpId为此索引的PDP的地址与此PDP不相同
-                    1 - 标识PdpId为此索引的PDP的地址与此PDP相同
- Return Value   :
- Date Accessed  :
- Date Update    :
- Calls          :
- Called By      :
- History        : ---
-  1.Date        : 2005-
-    Author      : ---
-    Modification: Created function
-  2. 日    期   : 2010年12月27日
-     作    者   : h44270
-     修改内容   : Modified by PS Project, 删除冗余代码，删除Middle Pdp Id的概念
-  3.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-*****************************************************************************/
+
 VOS_VOID    Aps_CheckAddrWithActPdp(    VOS_UINT8           ucPdpId,
                                         VOS_UINT8          *pucIpAddr)
 {
@@ -628,33 +438,7 @@ VOS_UINT32 Aps_GetPsMinQos(
     return TAF_SUCCESS;
 }
 
-/*****************************************************************************
- Prototype      : Aps_PdpMdfCnfQosSatisfy
- Description    :
- Input          : pStCnf:从这里直接取QOS发给SNDCP
- Output         :
- Return Value   : 取值: APS_PARA_VALID、APS_PARA_NOT_VALID
- Date Accessed  : g_PdpModifyReqTable,把申请修改时填到临时变量中的的QOS填到PDP
-                  状态机中,
- Calls          :
- Called By      :
- History        : ---
-  1.Date        : 2005-
-    Author      : ---
-    Modification: Created function
 
-  2.日    期   : 2013年4月23日
-    作    者   : L47619
-    修改内容   : V9R1 IPv6&TAF/SM接口优化项目修改
-
-  3.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，删除冗余的局部变量
-
-  4.日    期   : 2014年5月22日
-    作    者   : A00165503
-    修改内容   : DTS2014050703206: 增加紧急承载类型赋值
-*****************************************************************************/
 VOS_VOID Aps_PdpActCnfQosSatisfy(
     VOS_UINT8                           ucPdpId,
     APS_ACTCNF_PARA_ST                 *pActCnfPara,
@@ -822,27 +606,7 @@ VOS_VOID  Aps_GetPsAnswerMode(
 }
 
 
-/*****************************************************************************
- Prototype      : Aps_ActIndAutoAns
- Description    :
- Input          :
- Output         :
- Return Value   :
- Date Accessed  :
- Date Update    :
- Calls          : Aps_PdpActIndManualAns
- Called By      :
- History        : ---
-  1.Date        : 2005-
-    Author      : ---
-    Modification: Created function
-  2.Date        : 2006-07-11
-    Author      : L47619
-    Modification: 根据问题单修改:A32D04802
-  3.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : PS融合项目修改 :将拒绝网络移植到状态机中处理,删除状态处理
-*****************************************************************************/
+
 VOS_UINT32 Aps_ActIndAutoAns(
     TAF_PDP_ANSWER_TYPE_ENUM_UINT8                     AnswerType,
     VOS_UINT8                           ucPdpId,
@@ -942,24 +706,7 @@ VOS_UINT32 Aps_ActIndAutoAns(
     return TAF_APS_SUCC;
 }
 
-/*****************************************************************************
- Prototype      : Aps_ActIndRejRsp
- Description    :
- Input          : ucPdpId
- Output         :
- Return Value   :
- Date Accessed  :
- Date Update    :
- Calls          : Aps_PdpActIndManualAns
- Called By      :
- History        : ---
-  1.Date        : 2005-
-    Author      : ---
-    Modification: Created function
-  2.日    期   : 2012年8月22日
-    作    者   : Y00213812
-    修改内容   : 修改PS域错误码上报
-*****************************************************************************/
+
 VOS_VOID    Aps_ActIndRejRsp(       VOS_UINT8       ucPdpId )
 {
     SMREG_PDP_ACTIVATE_REJ_RSP_STRU    *pstPdpActRejRsp;
@@ -987,24 +734,7 @@ VOS_VOID    Aps_ActIndRejRsp(       VOS_UINT8       ucPdpId )
     return;
 }
 
-/**********************************************************
- Function:       TAF_APS_GetPsReqPdp
- Description:    APS模块收到网络发起的PDP激活请求后，如果是
-                 自动应答模式，APS调用该函数获取自动激活的PDP
-                 信息.
-                 注意:调用此函数时需要主调函数先将PdpId填进pReqPdp
- Calls:
- Data Accessed:
- Data Updated:
- Input:
- Output:         pReqPdp - APS获取的PDP信息
- Return:         TAF-SUCCESS - 成功
-                 TAF-FAILURE - 失败
- Others:
-  1.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，增加PID记录到实体
-**********************************************************/
+
 VOS_UINT32  TAF_APS_GetPsReqPdp(APS_PDP_ACT_REQ_ST *pReqPdp)
 {
     VOS_UINT8 ucIndex;
@@ -1053,24 +783,7 @@ VOS_UINT32  TAF_APS_GetPsReqPdp(APS_PDP_ACT_REQ_ST *pReqPdp)
 }
 
 
-/**********************************************************
- Function:       Taf_ComparePdp
- Description:    比较网络激活时携带的PdpType,IpAddr,Apn与CID
-                 表中定义的是否相同
- Calls:
- Data Accessed:
- Data Updated:
- Input:          pApsPdp - 网络激活时网络携带的PDP信息
-                 pTafCidPdp - CID表中定义的PDP信息
- Output:
- Return:         TAF_SUCCESS - 相同
-                 TAF_APS_FAIL - 不相同
- Others:
-  1.日    期 : 2013年07月08日
-    作    者 : Y00213812
-    修改内容 : VoLTE_PhaseI 项目，结构变更
 
-**********************************************************/
 VOS_UINT32  Taf_ComparePdp(             APS_PDP_ACT_REQ_ST  *pApsPdp,
                                         TAF_PDP_PRIM_CONTEXT_STRU    *pTafCidPdp)
 {
@@ -1123,30 +836,7 @@ VOS_UINT32  Taf_ComparePdp(             APS_PDP_ACT_REQ_ST  *pApsPdp,
 
 }
 
-/*****************************************************************************
- Prototype      : Aps_PdpMdfCnfParaCheck
- Description    : 检查MDF_CNF消息中网络返回的数据的合法性,包括QOS,SAPI,PFI,
-                  Radio Priority,并将这些返回值放入输出变量pMdfCnfPara中.
- Input          :
- Output         : pMdfCnfPara
- Return Value   : APS_PARA_VALID,
-                  APS_PARA_NOT_VALID,
-                  APS_PDPID_INVALID
- Date Accessed  :
- Date Update    :
- Calls          :
- Called By      :
- History        : ---
-  1.Date        : 2005-
-    Author      : ---
-    Modification: Created function
-  2.2006-03-03 MODIFY BY H41410 FOR A32D02345
 
-  3.日    期   : 2011年12月26日
-    作    者   : A00165503
-    修改内容   : PS Project: PDP修改流程参数检查逻辑修改
-
-*****************************************************************************/
 VOS_UINT32  Aps_PdpMdfCnfParaCheck (    SMREG_PDP_MODIFY_CNF_STRU   *pStMdfCnf,
                                         APS_MDFCNF_PARA_ST *pMdfCnfPara )
 {
@@ -1235,34 +925,7 @@ VOS_UINT32  Aps_PdpMdfCnfParaCheck (    SMREG_PDP_MODIFY_CNF_STRU   *pStMdfCnf,
 }
 
 
-/*****************************************************************************
- Prototype      : Aps_PdpMdfCnfQosSatisfy
- Description    :
- Input          :
- Output         :
- Return Value   :
- Date Accessed  : g_PdpModifyReqTable,把申请修改时填到临时变量中的的QOS填到PDP
-                  状态机中,
- Date Update    :
- Calls          :
- Called By      :
- History        : ---
-  1.Date        : 2005-
-    Author      : ---
-    Modification: Created function
 
-  2.日    期   : 2012年1月4日
-    作    者   : z60575
-    修改内容   : 将给ESM发送变更指示放到状态机处理中，同时删除IPF配置
-
-  3.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，删除冗余的局部变量
-
-  4.日    期   : 2014年8月4日
-    作    者   : A00165503
-    修改内容   : DTS2014080401792: LLC确认模式下, 处理SN_STATUS_REQ消息优化
-*****************************************************************************/
 VOS_VOID    Aps_PdpMdfCnfQosSatisfy (   VOS_UINT8          ucPdpId,
                                         APS_MDFCNF_PARA_ST          *pMdfCnfPara,
                                         SMREG_PDP_MODIFY_CNF_STRU   *pMdfCnf)
@@ -1407,24 +1070,7 @@ VOS_VOID    Aps_PdpMdfCnfQosSatisfy (   VOS_UINT8          ucPdpId,
 }
 
 
-/*****************************************************************************
- Prototype      : Aps_PdpMdfIndParaCheck
- Description    :
- Input          :
- Output         :
- Return Value   :APS_PDPID_INVALID
- Date Accessed  :
- Date Update    :
- Calls          :
- Called By      : Aps_PdpMdfInd
- History        : ---
-  1.Date        : 2005-
-    Author      : ---
-    Modification: Created function
-  2.  日    期   : 2010年02月01日
-      作    者   : l65478
-      修改内容   : AT2D16503,如果radio priority值为0，应该默认为level 4
-*****************************************************************************/
+
 VOS_UINT32  Aps_PdpMdfIndParaCheck (    SMREG_PDP_MODIFY_IND_STRU     *pStMdfInd,
                                         APS_MDFIND_PARA_ST *pMdfIndPara )
 {
@@ -1521,39 +1167,7 @@ VOS_UINT32  Aps_PdpMdfIndParaCheck (    SMREG_PDP_MODIFY_IND_STRU     *pStMdfInd
 }
 
 
-/*****************************************************************************
- Prototype      : Aps_PdpMdfIndQosSatisfy
- Description    : 上报APP,MODIFY_IND成功,响应SM,并修改PDP表项
- Input          : ucPdpId,
-                  pMdfIndPara,
-                  pStMdfInd
- Output         :
- Return Value   :
- Date Accessed  :
- Date Update    :
- Calls          : TAF_APS_SndPdpModifyInd
- Called By      :
- History        : ---
-  1.Date        : 2005-
-    Author      : ---
-    Modification: Created function
 
-  2.Date        : 2011-4-22
-    Author      : C00173809
-    Modification: 根据问题单修改:DTS2011042301271,ua错误的发起PDP去激活
-
-  3.日    期   : 2012年1月4日
-    作    者   : A00165503
-    修改内容   : PS Project: 同步PDP操作移到状态机中
-
-  4.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，删除冗余的局部变量
-
-  5.日    期   : 2014年8月4日
-    作    者   : A00165503
-    修改内容   : DTS2014080401792: LLC确认模式下, 处理SN_STATUS_REQ消息优化
-*****************************************************************************/
 VOS_VOID Aps_PdpMdfIndQosSatisfy (
     VOS_UINT8                           ucPdpId,
     APS_MDFIND_PARA_ST                 *pMdfIndPara,
@@ -1634,25 +1248,7 @@ VOS_VOID Aps_PdpMdfIndQosSatisfy (
 }
 
 
-/*****************************************************************************
- Prototype      : Aps_PdpMdfRsp
- Description    : PDP修改响应
- Input          :
- Output         :
- Return Value   :
- Data Accessed  :
- Data Update    :
- Calls          :
- Called By      :
- History        : ---
-  1.Date        : 2005-
-    Author      : ---
-    Modification: Created function
-  2.日    期   : 2012年01月05日
-    作    者   : h44270
-    修改内容   : 增加默认承载，当前发送到SM的CR变为从实体中的TI中来获取，不再
-                 直接使用PDP ID
-*****************************************************************************/
+
 VOS_VOID    Aps_PdpMdfRsp(              VOS_UINT8           ucPdpId)
 {
     SMREG_PDP_MODIFY_RSP_STRU          *pstPdpModRsp;
@@ -1683,31 +1279,7 @@ VOS_VOID    Aps_PdpMdfRsp(              VOS_UINT8           ucPdpId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : Aps_PdpActSecCnfParaCheck
- 功能描述  :
- 输入参数  : SMREG_PDP_ACTIVATE_SEC_CNF_STRU    *pStSecCnf,
-             APS_ACTSECCNF_PARA_ST              *pActSecCnfPara
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2005年xx月xx日
-    作    者   : xxx
-    修改内容   : 新生成函数
-
-  2.日    期   : 2010年02月01日
-    作    者   : l65478
-    修改内容   : AT2D16503,如果radio priority值为0，应该默认为level 4
-
-  3.日    期   : 2010年12月15日
-    作    者   : A00165503
-    修改内容   : 问题单号: DTS2010120605160，W单模下PDP激活后，修改为双模，
-                 重选到G下数传无法恢复
-
-*****************************************************************************/
 VOS_UINT32 Aps_PdpActSecCnfParaCheck(
     SMREG_PDP_ACTIVATE_SEC_CNF_STRU    *pStSecCnf,
     APS_ACTSECCNF_PARA_ST              *pActSecCnfPara
@@ -1815,29 +1387,7 @@ VOS_UINT32 Aps_PdpActSecCnfParaCheck(
     return  APS_PARA_VALID;
 }
 
-/*****************************************************************************
- Prototype      :
- Description    :
- Input          :
- Output         :
- Return Value   :
- Date Accessed  :
- Date Update    :
- Calls          :
- Called By      :
- History        : ---
-  1.Date        : 2005-
-    Author      : ---
-    Modification: Created function
 
-  2.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，删除冗余的局部变量
-
-  3.日    期   : 2014年5月22日
-    作    者   : A00165503
-    修改内容   : DTS2014050703206: 增加紧急承载类型赋值
-*****************************************************************************/
 VOS_VOID    Aps_PdpActSecCnfQosSatisfy( VOS_UINT8              ucPdpId,
                                         APS_ACTSECCNF_PARA_ST             *pSecCnfPara,
                                         SMREG_PDP_ACTIVATE_SEC_CNF_STRU   *pStSecCnf   )
@@ -2234,26 +1784,7 @@ VOS_VOID    Aps_SmMsgModSnDeActIndParaPack
 }
 
 
-/*****************************************************************************
- 函 数 名  : Aps_UnpackSmQos
- 功能描述  : 将SM的QOS结构拆包成APS的QOS结构.完全继承V100R001
- 输入参数  : pSmQos
- 输出参数  : pucQosLen
-             pApSQos
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-  2.日    期   : 2010年10月9日
-    作    者   : A00165503
-    修改内容   : 放宽对QOS长度的兼容性检查， 按QOS实际长度拆包
-
-*****************************************************************************/
 VOS_UINT32 Aps_UnpackSmQos (
     SM_TAF_QOS_STRU                     *pSmQos,
     VOS_UINT8                           *pucQosLen,
@@ -2368,24 +1899,7 @@ VOS_UINT32 Aps_UnpackSmQos (
     return(TAF_APS_SUCC);
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_DecodeIpcpConfigReqPkt
- 功能描述  : 解码IPCP包中的CONFIG_REQ
- 输入参数  : pstPdpEntity       - PDP实体
-             pucProtocolPacket  - 待解码的CONFIG_REQ的Packet地址
-             usPktLen           - 存放CONFIG_REQ的Packet长度
- 输出参数  : 无
- 返 回 值  : VOS_OK             - 解码成功
-             VOS_ERR            - 解码失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月30日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MN_APS_DecodeIpcpConfigReqPkt(
     APS_PDP_CONTEXT_ENTITY_ST          *pstPdpEntity,
     VOS_UINT8                          *pucProtocolPacket,
@@ -2458,24 +1972,7 @@ VOS_UINT32 MN_APS_DecodeIpcpConfigReqPkt(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_DecodeIpcpConfigNakAckRejPkt
- 功能描述  : 解码IPCP包中的CONFIG_NAK/CONFIG_ACK/CONFIG_REJ
- 输入参数  : pstPdpEntity       - PDP实体
-             pucProtocolPacket  - 待解码的CONFIG_NAK/CONFIG_ACK/CONFIG_REJ的Packet地址
-             usPktLen           - 存放CONFIG_NAK/CONFIG_ACK/CONFIG_REJ的Packet长度
- 输出参数  : 无
- 返 回 值  : VOS_OK             - 解码成功
-             VOS_ERR            - 解码失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月30日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MN_APS_DecodeIpcpConfigNakAckRejPkt(
     APS_PDP_CONTEXT_ENTITY_ST          *pstPdpEntity,
     VOS_UINT8                          *pucProtocolPacket,
@@ -2616,24 +2113,7 @@ VOS_UINT32 MN_APS_DecodeIpcpConfigNakAckRejPkt(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_DecodeIpcpProtocolPkt
- 功能描述  : 解码IPCP包
- 输入参数  : pstPdpEntity       - PDP实体
-             pucProtocolPkt     - 待解码的IPCP的Packet地址
-             usProtocolPktLen   - 存放IPCP的Packet长度
- 输出参数  : 无
- 返 回 值  : VOS_OK             - 解码成功
-             VOS_ERR            - 解码失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月30日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MN_APS_DecodeIpcpProtocolPkt(
     APS_PDP_CONTEXT_ENTITY_ST          *pstPdpEntity,
     VOS_UINT8                          *pucProtocolPkt,
@@ -2740,29 +2220,7 @@ VOS_UINT32 MN_APS_DecodeIpcpProtocolPkt(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_DecodeIpv4PcscfProtocolPkt
- 功能描述  : 解码IPv4 P-CSCF Container
- 输入参数  : pstPdpEntity           - PDP实体
-             pucIpv6PcscfNum        - 已解码的IPv6 P-CSCF的数量
-             pucProtocolPacket      - 待解码的IPv6 P-CSCF的Packet地址
-             usProtocolPacketLen    - 存放IPv6 P-CSCF的Packet长度
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月30日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-  2.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，结构变更
-  3.日    期   : 2012年08月07日
-    作    者   : f00179208
-    修改内容   : 问题单:DTS2015031000157, 新增第三个p-cscf地址
-*****************************************************************************/
 VOS_VOID TAF_APS_DecodeIpv4PcscfProtocolPkt(
     APS_PDP_CONTEXT_ENTITY_ST          *pstPdpEntity,
     VOS_UINT8                          *pucIpv4PcscfNum,
@@ -2833,24 +2291,7 @@ VOS_VOID TAF_APS_DecodeIpv4PcscfProtocolPkt(
 }
 
 #if (FEATURE_ON == FEATURE_IPV6)
-/*****************************************************************************
- 函 数 名  : MN_APS_DecodeIpV6DnsProtocolPkt
- 功能描述  : 解码IPv6 DNS Container
- 输入参数  : pstPdpEntity           - PDP实体
-             pucIpV6DnsNum          - 已解码的IPV6 DNS的数量
-             pucProtocolPacket      - 待解码的IPV6 DNS的Packet地址
-             usProtocolPacketLen    - 存放IPV6 DNS的Packet长度
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月30日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MN_APS_DecodeIpV6DnsProtocolPkt(
     APS_PDP_CONTEXT_ENTITY_ST          *pstPdpEntity,
     VOS_UINT8                          *pucIpV6DnsNum,
@@ -2906,26 +2347,7 @@ VOS_VOID MN_APS_DecodeIpV6DnsProtocolPkt(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_DecodeIpv6PcscfProtocolPkt
- 功能描述  : 解码IPV6 P-CSCF Container
- 输入参数  : pstPdpEntity           - PDP实体
-             pucIpv6PcscfNum        - 已解码的IPv6 P-CSCF的数量
-             pucProtocolPacket      - 待解码的IPv6 P-CSCF的Packet地址
-             usProtocolPacketLen    - 存放IPv6 P-CSCF的Packet长度
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月30日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-  2.日    期   : 2012年08月07日
-    作    者   : f00179208
-    修改内容   : 问题单:DTS2015031000157, 新增第三个p-cscf地址
-*****************************************************************************/
 VOS_VOID TAF_APS_DecodeIpv6PcscfProtocolPkt(
     APS_PDP_CONTEXT_ENTITY_ST          *pstPdpEntity,
     VOS_UINT8                          *pucIpv6PcscfNum,
@@ -2996,23 +2418,7 @@ VOS_VOID TAF_APS_DecodeIpv6PcscfProtocolPkt(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : MN_APS_DecodeProtocolConfigPara
- 功能描述  : 解码PCO的参数
- 输入参数  : pstPdpEntity       - PDP实体
-             pstProtoCfgOptions - PCO参数内容
- 输出参数  : 无
- 返 回 值  : VOS_OK             - 解码成功
-             VOS_ERR            - 解码失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月30日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MN_APS_DecodeProtocolConfigPara(
     APS_PDP_CONTEXT_ENTITY_ST          *pstPdpEntity,
     MN_APS_PROTOCOL_CFG_OPTIONS_STRU   *pstProtoCfgOptions
@@ -3093,23 +2499,7 @@ VOS_UINT32 MN_APS_DecodeProtocolConfigPara(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_UnpackProtocolOptionsList
- 功能描述  : 根据Protocol ID拆出PCO的参数列表
- 输入参数  : pstProtoCfgOptions - PCO参数内容
-             pstSmPco           - PCO原始码流(OTA码流)
- 输出参数  : 无
- 返 回 值  : VOS_OK             - 拆包成功
-             VOS_ERR            - 拆包失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月30日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MN_APS_UnpackProtocolOptionsList(
     MN_APS_PROTOCOL_CFG_OPTIONS_STRU   *pstProtoCfgOptions,
     SM_TAF_PROT_CFG_OPT_STRU           *pstSmPco
@@ -3164,27 +2554,7 @@ VOS_UINT32 MN_APS_UnpackProtocolOptionsList(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_UnpackPco
- 功能描述  : 拆出PCO中DNS/NBNS等信息
- 输入参数  : pstPdpEntity   - PDP实体
-             pstSmPco       - PCO原始码流(OTA码流)
- 输出参数  : 无
- 返 回 值  : VOS_OK         - 拆包成功
-             VOS_ERR        - 拆包失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月30日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年1月2日
-    作    者   : A00165503
-    修改内容   : PS Project: 增加P-CSCF地址的解析处理
-
-*****************************************************************************/
 VOS_UINT32 MN_APS_UnpackPco(
     APS_PDP_CONTEXT_ENTITY_ST          *pstPdpEntity,
     SM_TAF_PROT_CFG_OPT_STRU           *pstSmPco
@@ -3644,24 +3014,7 @@ VOS_UINT32  Aps_DetachSmAddrStru (
 
 }
 
-/******************************************************************************
- Prototype      : Aps_UnpackSmApn
- Description    : 将SM传来的APN结构拆包到APS定义的APN STRUCT中.完全继承V100R001
- Input          : pSmApn
- Output         : pApsApn
- Return Value   :
- Date Accessed  :
- Date Update    :
- Calls          :
- Called By      :
- History        : ---
-  1.Date        : 2005-
-    Author      : ---
-    Modification: Created function
-  2.日    期   : 2013年5月9日
-    作    者   : L47619
-    修改内容   : V9R1 IPv6&TAF/SM接口优化项目新增
-******************************************************************************/
+
 VOS_VOID    Aps_DetachSmApn  (  SM_TAF_APN_STRU*      pSmApn,
                                 APS_PDP_APN_ST*         pApsApn )
 {
@@ -3681,23 +3034,7 @@ VOS_VOID    Aps_DetachSmApn  (  SM_TAF_APN_STRU*      pSmApn,
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : Aps_CompareQos_ForDelayClass()
- 功能描述  : Aps_CompareQos降圈复杂度
- 输入参数  : pNetNegotQos
-             pUeMinQos
- 输出参数  : pucQosOkOrNot,QOS是否满足MIN要求
- 返 回 值  : APS_QOS_NOT_UP_TO_MIN
-             APS_QOS_UP_TO_MIN
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 Aps_CompareQos_ForDelayClass(
     APS_PDP_QOS_STRU                    *pNetNegotQos,
     APS_PDP_QOS_STRU                    *pUeMinQos
@@ -3714,23 +3051,7 @@ VOS_UINT32 Aps_CompareQos_ForDelayClass(
     return APS_QOS_UP_TO_MIN;
 }
 
-/*****************************************************************************
- 函 数 名  : Aps_CompareQos_ForReliabClass()
- 功能描述  : Aps_CompareQos降圈复杂度
- 输入参数  : pNetNegotQos
-             pUeMinQos
- 输出参数  : pucQosOkOrNot,QOS是否满足MIN要求
- 返 回 值  : APS_QOS_NOT_UP_TO_MIN
-             APS_QOS_UP_TO_MIN
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 Aps_CompareQos_ForReliabClass(
     APS_PDP_QOS_STRU                    *pNetNegotQos,
     APS_PDP_QOS_STRU                    *pUeMinQos
@@ -3747,23 +3068,7 @@ VOS_UINT32 Aps_CompareQos_ForReliabClass(
     return APS_QOS_UP_TO_MIN;
 }
 
-/*****************************************************************************
- 函 数 名  : Aps_CompareQos_ForPeakThrough()
- 功能描述  : Aps_CompareQos降圈复杂度
- 输入参数  : pNetNegotQos
-             pUeMinQos
- 输出参数  : pucQosOkOrNot,QOS是否满足MIN要求
- 返 回 值  : APS_QOS_NOT_UP_TO_MIN
-             APS_QOS_UP_TO_MIN
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 Aps_CompareQos_ForPeakThrough(
     APS_PDP_QOS_STRU                    *pNetNegotQos,
     APS_PDP_QOS_STRU                    *pUeMinQos
@@ -3780,23 +3085,7 @@ VOS_UINT32 Aps_CompareQos_ForPeakThrough(
     return APS_QOS_UP_TO_MIN;
 }
 
-/*****************************************************************************
- 函 数 名  : Aps_CompareQos_ForPrecedenceClass()
- 功能描述  : Aps_CompareQos降圈复杂度
- 输入参数  : pNetNegotQos
-             pUeMinQos
- 输出参数  : pucQosOkOrNot,QOS是否满足MIN要求
- 返 回 值  : APS_QOS_NOT_UP_TO_MIN
-             APS_QOS_UP_TO_MIN
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 Aps_CompareQos_ForPrecedenceClass(
     APS_PDP_QOS_STRU                    *pNetNegotQos,
     APS_PDP_QOS_STRU                    *pUeMinQos
@@ -3813,23 +3102,7 @@ VOS_UINT32 Aps_CompareQos_ForPrecedenceClass(
     return APS_QOS_UP_TO_MIN;
 }
 
-/*****************************************************************************
- 函 数 名  : Aps_CompareQos_ForTrafficClass()
- 功能描述  : Aps_CompareQos降圈复杂度
- 输入参数  : pNetNegotQos
-             pUeMinQos
- 输出参数  : pucQosOkOrNot,QOS是否满足MIN要求
- 返 回 值  : APS_QOS_NOT_UP_TO_MIN
-             APS_QOS_UP_TO_MIN
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 Aps_CompareQos_ForTrafficClass(
     APS_PDP_QOS_STRU                    *pNetNegotQos,
     APS_PDP_QOS_STRU                    *pUeMinQos
@@ -3847,23 +3120,7 @@ VOS_UINT32 Aps_CompareQos_ForTrafficClass(
 }
 
 
-/*****************************************************************************
- 函 数 名  : Aps_CompareQos_ForDeliverOrder()
- 功能描述  : Aps_CompareQos降圈复杂度
- 输入参数  : pNetNegotQos
-             pUeMinQos
- 输出参数  : pucQosOkOrNot,QOS是否满足MIN要求
- 返 回 值  : APS_QOS_NOT_UP_TO_MIN
-             APS_QOS_UP_TO_MIN
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 Aps_CompareQos_ForDeliverOrder(
     APS_PDP_QOS_STRU                    *pNetNegotQos,
     APS_PDP_QOS_STRU                    *pUeMinQos
@@ -3880,23 +3137,7 @@ VOS_UINT32 Aps_CompareQos_ForDeliverOrder(
     return APS_QOS_UP_TO_MIN;
 }
 
-/*****************************************************************************
- 函 数 名  : Aps_CompareQos_ForDeliverOfErrSdu()
- 功能描述  : Aps_CompareQos降圈复杂度
- 输入参数  : pNetNegotQos
-             pUeMinQos
- 输出参数  : pucQosOkOrNot,QOS是否满足MIN要求
- 返 回 值  : APS_QOS_NOT_UP_TO_MIN
-             APS_QOS_UP_TO_MIN
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 Aps_CompareQos_ForDeliverOfErrSdu(
     APS_PDP_QOS_STRU                    *pNetNegotQos,
     APS_PDP_QOS_STRU                    *pUeMinQos
@@ -3913,23 +3154,7 @@ VOS_UINT32 Aps_CompareQos_ForDeliverOfErrSdu(
     return APS_QOS_UP_TO_MIN;
 }
 
-/*****************************************************************************
- 函 数 名  : Aps_CompareQos_ForMaximSduSize()
- 功能描述  : Aps_CompareQos降圈复杂度
- 输入参数  : pNetNegotQos
-             pUeMinQos
- 输出参数  : pucQosOkOrNot,QOS是否满足MIN要求
- 返 回 值  : APS_QOS_NOT_UP_TO_MIN
-             APS_QOS_UP_TO_MIN
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 Aps_CompareQos_ForMaximSduSize(
     APS_PDP_QOS_STRU                    *pNetNegotQos,
     APS_PDP_QOS_STRU                    *pUeMinQos
@@ -3946,23 +3171,7 @@ VOS_UINT32 Aps_CompareQos_ForMaximSduSize(
     return APS_QOS_UP_TO_MIN;
 }
 
-/*****************************************************************************
- 函 数 名  : Aps_CompareQos_ForSduErrRatio()
- 功能描述  : Aps_CompareQos降圈复杂度
- 输入参数  : pNetNegotQos
-             pUeMinQos
- 输出参数  : pucQosOkOrNot,QOS是否满足MIN要求
- 返 回 值  : APS_QOS_NOT_UP_TO_MIN
-             APS_QOS_UP_TO_MIN
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 Aps_CompareQos_ForSduErrRatio(
     APS_PDP_QOS_STRU                    *pNetNegotQos,
     APS_PDP_QOS_STRU                    *pUeMinQos
@@ -3989,23 +3198,7 @@ VOS_UINT32 Aps_CompareQos_ForSduErrRatio(
     return APS_QOS_UP_TO_MIN;
 }
 
-/*****************************************************************************
- 函 数 名  : Aps_CompareQos_ForTransDelay()
- 功能描述  : Aps_CompareQos降圈复杂度
- 输入参数  : pNetNegotQos
-             pUeMinQos
- 输出参数  : pucQosOkOrNot,QOS是否满足MIN要求
- 返 回 值  : APS_QOS_NOT_UP_TO_MIN
-             APS_QOS_UP_TO_MIN
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 Aps_CompareQos_ForTransDelay(
     APS_PDP_QOS_STRU                    *pNetNegotQos,
     APS_PDP_QOS_STRU                    *pUeMinQos
@@ -4026,23 +3219,7 @@ VOS_UINT32 Aps_CompareQos_ForTransDelay(
     return APS_QOS_UP_TO_MIN;
 }
 
-/*****************************************************************************
- 函 数 名  : Aps_CompareQos_ForTrafficHandlePriority()
- 功能描述  : Aps_CompareQos降圈复杂度
- 输入参数  : pNetNegotQos
-             pUeMinQos
- 输出参数  : pucQosOkOrNot,QOS是否满足MIN要求
- 返 回 值  : APS_QOS_NOT_UP_TO_MIN
-             APS_QOS_UP_TO_MIN
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 Aps_CompareQos_ForTrafficHandlePriority(
     APS_PDP_QOS_STRU                    *pNetNegotQos,
     APS_PDP_QOS_STRU                    *pUeMinQos
@@ -4064,23 +3241,7 @@ VOS_UINT32 Aps_CompareQos_ForTrafficHandlePriority(
     return APS_QOS_UP_TO_MIN;
 }
 
-/*****************************************************************************
- 函 数 名  : Aps_CompareQos_ForMaxBitRateForUp()
- 功能描述  : Aps_CompareQos降圈复杂度
- 输入参数  : pNetNegotQos
-             pUeMinQos
- 输出参数  : pucQosOkOrNot,QOS是否满足MIN要求
- 返 回 值  : APS_QOS_NOT_UP_TO_MIN
-             APS_QOS_UP_TO_MIN
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 Aps_CompareQos_ForMaxBitRateForUp(
     APS_PDP_QOS_STRU                    *pNetNegotQos,
     APS_PDP_QOS_STRU                    *pUeMinQos
@@ -4132,23 +3293,7 @@ VOS_UINT32 Aps_CompareQos_ForMaxBitRateForUp(
     return APS_QOS_UP_TO_MIN;
 }
 
-/*****************************************************************************
- 函 数 名  : Aps_CompareQos_ForMaxBitRateForDown()
- 功能描述  : Aps_CompareQos降圈复杂度
- 输入参数  : pNetNegotQos
-             pUeMinQos
- 输出参数  : pucQosOkOrNot,QOS是否满足MIN要求
- 返 回 值  : APS_QOS_NOT_UP_TO_MIN
-             APS_QOS_UP_TO_MIN
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 Aps_CompareQos_ForMaxBitRateForDown(
     APS_PDP_QOS_STRU                    *pNetNegotQos,
     APS_PDP_QOS_STRU                    *pUeMinQos
@@ -4200,23 +3345,7 @@ VOS_UINT32 Aps_CompareQos_ForMaxBitRateForDown(
     return APS_QOS_UP_TO_MIN;
 }
 
-/*****************************************************************************
- 函 数 名  : Aps_CompareQos_ForResidualBer()
- 功能描述  : Aps_CompareQos降圈复杂度
- 输入参数  : pNetNegotQos
-             pUeMinQos
- 输出参数  : pucQosOkOrNot,QOS是否满足MIN要求
- 返 回 值  : APS_QOS_NOT_UP_TO_MIN
-             APS_QOS_UP_TO_MIN
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 Aps_CompareQos_ForResidualBer(
     APS_PDP_QOS_STRU                    *pNetNegotQos,
     APS_PDP_QOS_STRU                    *pUeMinQos
@@ -4233,23 +3362,7 @@ VOS_UINT32 Aps_CompareQos_ForResidualBer(
     return APS_QOS_UP_TO_MIN;
 }
 
-/*****************************************************************************
- 函 数 名  : Aps_CompareQos_ForGuarantBitRateForUp()
- 功能描述  : Aps_CompareQos降圈复杂度
- 输入参数  : pNetNegotQos
-             pUeMinQos
- 输出参数  : pucQosOkOrNot,QOS是否满足MIN要求
- 返 回 值  : APS_QOS_NOT_UP_TO_MIN
-             APS_QOS_UP_TO_MIN
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 Aps_CompareQos_ForGuarantBitRateForUp(
     APS_PDP_QOS_STRU                    *pNetNegotQos,
     APS_PDP_QOS_STRU                    *pUeMinQos
@@ -4306,23 +3419,7 @@ VOS_UINT32 Aps_CompareQos_ForGuarantBitRateForUp(
     return APS_QOS_UP_TO_MIN;
 }
 
-/*****************************************************************************
- 函 数 名  : Aps_CompareQos_ForGuarantBitRateForDown()
- 功能描述  : Aps_CompareQos降圈复杂度
- 输入参数  : pNetNegotQos
-             pUeMinQos
- 输出参数  : pucQosOkOrNot,QOS是否满足MIN要求
- 返 回 值  : APS_QOS_NOT_UP_TO_MIN
-             APS_QOS_UP_TO_MIN
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 Aps_CompareQos_ForGuarantBitRateForDown(
     APS_PDP_QOS_STRU                    *pNetNegotQos,
     APS_PDP_QOS_STRU                    *pUeMinQos
@@ -4379,23 +3476,7 @@ VOS_UINT32 Aps_CompareQos_ForGuarantBitRateForDown(
     return APS_QOS_UP_TO_MIN;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_CompareQos_ForSrcStatisticsDescriptor
- 功能描述  : Aps_CompareQos降圈复杂度
- 输入参数  : pNetNegotQos
-             pUeMinQos
- 输出参数  : pucQosOkOrNot,QOS是否满足MIN要求
- 返 回 值  : APS_QOS_NOT_UP_TO_MIN
-             APS_QOS_UP_TO_MIN
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月7日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_CompareQos_ForSrcStatisticsDescriptor(
     APS_PDP_QOS_STRU                    *pNetNegotQos,
     APS_PDP_QOS_STRU                    *pUeMinQos
@@ -4416,23 +3497,7 @@ VOS_UINT32 TAF_APS_CompareQos_ForSrcStatisticsDescriptor(
     return APS_QOS_UP_TO_MIN;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_CompareQos_ForSignallingIndication
- 功能描述  : Aps_CompareQos降圈复杂度
- 输入参数  : pNetNegotQos
-             pUeMinQos
- 输出参数  : pucQosOkOrNot,QOS是否满足MIN要求
- 返 回 值  : APS_QOS_NOT_UP_TO_MIN
-             APS_QOS_UP_TO_MIN
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月7日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_CompareQos_ForSignallingIndication(
     APS_PDP_QOS_STRU                    *pNetNegotQos,
     APS_PDP_QOS_STRU                    *pUeMinQos
@@ -4455,29 +3520,7 @@ VOS_UINT32 TAF_APS_CompareQos_ForSignallingIndication(
 }
 
 
-/*****************************************************************************
- 函 数 名  : Aps_CompareQos()
- 功能描述  : 比较网络返回的协商的QOS是否满足UE设定的最小QOS。待
-             比较的项很多, 任意一项不符合要求, 则认为整个QOS不符
-             合要求。在执行此函数前, 要先进行QOS合法性的判断。
-             QOS中的 0 代表由网络协商.
- 输入参数  : pNetNegotQos
-             pUeMinQos
- 输出参数  : pucQosOkOrNot,QOS是否满足MIN要求
- 返 回 值  : TAF_APS_SUCC
-             TAF_APS_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-  2.日    期   : 2015年4月7日
-    作    者   : w00316404
-    修改内容   : M project A characeristic AT part
-
-*****************************************************************************/
 VOS_UINT32 Aps_CompareQos(
     APS_PDP_QOS_STRU                    *pNetNegotQos,
     APS_PDP_QOS_STRU                    *pUeMinQos,

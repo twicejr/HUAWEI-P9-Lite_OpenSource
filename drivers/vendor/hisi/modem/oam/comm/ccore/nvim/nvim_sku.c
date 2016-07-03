@@ -33,9 +33,7 @@ extern "C" {
 #endif
 
 /* Macro of log */
-/*lint -e767 -e960 修改人:dongtinghuan 00105005;检视人:徐铖 51137;原因:Log打印 */
 #define THIS_FILE_ID PS_FILE_ID_NVIM_SKU_C
-/*lint +e767 +e960 修改人:dongtinghuan 00105005;检视人:徐铖 51137; */
 
 #if (FEATURE_ON == FEATURE_S_SKU_M_OPERATORS)
 extern VOS_CHAR g_acNvUpdateDir[];  /* update分区路径 */
@@ -61,20 +59,7 @@ SKU_SWITCH_FLAG_STRU                g_stSkuSwitchFlag;      /* 运营商切换标记 */
 
 NV_IMAGE_PATH_STRU                  g_stCurrentImagePath;   /* 当前Image路径 */
 
-/*****************************************************************************
- 函 数 名  : NV_GetDirectoryByPath
- 功能描述  : 通过路径获取文件目录名
- 输入参数  : pcPath:    文件夹路径
-             ulModle:   目标文件夹所在层级
- 输出参数  :
-             pcDirName: 获取到的文件夹名称
- 返 回 值  : VOS_UINT32
 
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : d00212987
-    修改内容   : 单SKU支持多运营商项目新增函数
-*****************************************************************************/
 VOS_UINT32 NV_GetDirectoryByPath(VOS_CHAR *pcPath, VOS_CHAR *pcDirName, VOS_UINT32 ulModle)
 {
     VOS_UINT32                          ulLoop    = 0;
@@ -113,21 +98,7 @@ VOS_UINT32 NV_GetDirectoryByPath(VOS_CHAR *pcPath, VOS_CHAR *pcDirName, VOS_UINT
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : NV_CheckImgWithCarrMatch
- 功能描述  : 检查Image 和 运营商路径是否匹配
- 输入参数  : pcCarrierDir: 运营商文件夹路径
-             pcImageDir: Image文件夹路径
 
- 输出参数  : 无
-
- 返 回 值  : VOS_BOOL
-
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : d00212987
-    修改内容   : 单SKU支持多运营商项目新增函数
-*****************************************************************************/
 VOS_BOOL NV_CheckImgWithCarrMatch(VOS_CHAR *pcCarrierDir, VOS_CHAR *pcImageDir)
 {
     /* 参数长度检查 */
@@ -163,19 +134,7 @@ VOS_BOOL NV_CheckImgWithCarrMatch(VOS_CHAR *pcCarrierDir, VOS_CHAR *pcImageDir)
 
 }
 
-/*****************************************************************************
- 函 数 名  : NV_SwitchFlagPrintf
- 功能描述  : 运营商切换标记打印
- 输入参数  : pcFunctionName: 函数名字
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
-
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : d00212987
-    修改内容   : 单SKU支持多运营商项目新增函数
-*****************************************************************************/
 VOS_VOID NV_SwitchFlagPrintf(VOS_CHAR *pcFunctionName)
 {
    NV_Printf("%s:Switch Carrier flag: \r\n", pcFunctionName);
@@ -187,20 +146,7 @@ VOS_VOID NV_SwitchFlagPrintf(VOS_CHAR *pcFunctionName)
    NV_Printf("     ulImageSwitchFlag: %d \r\n", g_stSkuSwitchFlag.ulImageSwitchFlag);
 }
 
-/*****************************************************************************
- 函 数 名  : NV_StrcatFilePath
- 功能描述  : 文件路径拼接
- 输入参数  : pcSrc1: 文件夹路径
-             pcSrc2: 文件名
 
- 输出参数  : pcDest: 拼接后文件路径
- 返 回 值  : VOS_VOID
-
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : d00212987
-    修改内容   : 单SKU支持多运营商项目新增函数
-*****************************************************************************/
 VOS_VOID NV_StrcatFilePath(VOS_CHAR *pcDest, VOS_CHAR* pcSrc1, VOS_CHAR* pcSrc2)
 {
     /*lint -e534*/
@@ -215,19 +161,7 @@ VOS_VOID NV_StrcatFilePath(VOS_CHAR *pcDest, VOS_CHAR* pcSrc1, VOS_CHAR* pcSrc2)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NV_ReadSwitchFlag
- 功能描述  : 读取切换标记，存于全局变量中
- 输入参数  : 无
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
-
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : d00212987
-    修改内容   : 单SKU支持多运营商项目新增函数
-*****************************************************************************/
 VOS_VOID NV_ReadSwitchFlag(VOS_VOID)
 {
     /* 读取切换标记 */
@@ -246,20 +180,7 @@ VOS_VOID NV_ReadSwitchFlag(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NV_SkuGetOperatorPath
- 功能描述  : 设置operator.xml路径
- 输入参数  :
 
- 输出参数  : pcFileName: operator.xml文件路径
-
- 返 回 值  : VOS_UINT32
-
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : d00212987
-    修改内容   : 单SKU支持多运营商项目新增函数
-*****************************************************************************/
 VOS_UINT32 NV_SkuGetOperatorPath(VOS_CHAR *pcFilePath)
 {
     if (NV_MIN_CARRIER_PATH_LEN > VOS_StrLen(g_stSkuSwitchFlag.acCurrentCarrierPath))
@@ -275,19 +196,7 @@ VOS_UINT32 NV_SkuGetOperatorPath(VOS_CHAR *pcFilePath)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : NV_SkuSetDefAndUpDir
- 功能描述  : SKU形态 置升级分区路径和默认分区路径
- 输入参数  : 无
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
-
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : d00212987
-    修改内容   : 单SKU支持多运营商项目新增函数
-*****************************************************************************/
 VOS_UINT32 NV_SkuSetDefAndUpDir(VOS_VOID)
 {
     /* 获取当前Image路径 */
@@ -329,19 +238,7 @@ VOS_UINT32 NV_SkuSetDefAndUpDir(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : NV_CheckUpdateFlag
- 功能描述  : SKU形态 升级标记检查，如不存在升级标记，拷贝默认区到升级区
- 输入参数  : 无
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
-
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : d00212987
-    修改内容   : 单SKU支持多运营商项目新增函数
-*****************************************************************************/
 VOS_UINT32 NV_CheckUpdateFlag(VOS_VOID)
 {
     if (VOS_OK != NV_File_Exist(g_acNvUpdateDir, g_acNvUpdateFile))
@@ -365,20 +262,7 @@ VOS_UINT32 NV_CheckUpdateFlag(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : NV_SkuRestoreNvFile
- 功能描述  : SKU形态 各流程NV相关文件恢复
- 输入参数  : bIsDefault: 特定文件是否需要恢复开关
 
- 输出参数  : 无
-
- 返 回 值  : VOS_UINT32
-
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : d00212987
-    修改内容   : 单SKU支持多运营商项目新增函数
-*****************************************************************************/
 VOS_UINT32 NV_SkuRestoreNvFile(VOS_BOOL bIsDefault)
 {
     /* 三个流程需要恢复文件图志
@@ -423,20 +307,7 @@ VOS_UINT32 NV_SkuRestoreNvFile(VOS_BOOL bIsDefault)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : NV_SkuBackupNvFile
- 功能描述  : SKU形态 NV相关文件备份
- 输入参数  : 无
 
- 输出参数  : 无
-
- 返 回 值  : VOS_UINT32
-
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : d00212987
-    修改内容   : 单SKU支持多运营商项目新增函数
-*****************************************************************************/
 VOS_UINT32 NV_SkuBackupNvFile(VOS_VOID)
 {
    /* 三个流程需要备份文件图志
@@ -471,21 +342,7 @@ VOS_UINT32 NV_SkuBackupNvFile(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NV_SkuGetNvFilePath
- 功能描述  : 获取user.bin 和 spec.bin路径
- 输入参数  :
 
- 输出参数  : pcFilePath: 存放路径地址
-             pcFileName: 查询地址名称
-
- 返 回 值  : VOS_UINT32
-
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : d00212987
-    修改内容   : 单SKU支持多运营商项目新增函数
-*****************************************************************************/
 VOS_UINT32 NV_SkuGetNvFilePath(VOS_CHAR *pcFilePath, VOS_CHAR *pcFileName)
 {
     if (VOS_OK == VOS_MemCmp(pcFileName, g_acUserBin, VOS_StrLen(g_acUserBin)))
@@ -506,20 +363,7 @@ VOS_UINT32 NV_SkuGetNvFilePath(VOS_CHAR *pcFilePath, VOS_CHAR *pcFileName)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NV_SkuRestoreNvFileRead
- 功能描述  : 单sku NV .bin恢复
- 输入参数  : pcfileName: 文件名称
 
- 输出参数  : 无
-
- 返 回 值  : VOS_UINT32
-
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : d00212987
-    修改内容   : 单SKU支持多运营商项目新增函数
-*****************************************************************************/
 VOS_UINT32 NV_SkuRestoreNvFileRead(VOS_CHAR *pcFileName)
 {
     FILE                               *pFile       = VOS_NULL_PTR;
@@ -622,20 +466,7 @@ VOS_UINT32 NV_SkuRestoreNvFileRead(VOS_CHAR *pcFileName)
     return ulRest;
 }
 
-/*****************************************************************************
- 函 数 名  : NV_SkuOpenNvFile
- 功能描述  : 文件操作
- 输入参数  : pcfileName: 需要打开文件名称
 
- 输出参数  : 无
-
- 返 回 值  : FILE
-
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : d00212987
-    修改内容   : 单SKU支持多运营商项目新增函数
-*****************************************************************************/
 FILE * NV_SkuOpenNvFile(VOS_CHAR *pcFileName)
 {
     VOS_CHAR                            acFilePath[NV_MAX_PATH_SIZE] = {0};
@@ -665,22 +496,7 @@ FILE * NV_SkuOpenNvFile(VOS_CHAR *pcFileName)
 
 }
 
-/*****************************************************************************
- 函 数 名  : NV_SkuBackupNvFileWrite
- 功能描述  : 单sku NV .bin备份
- 输入参数  : pcfileName: 需要备份文件名称
-             ulNvNum   : 需要备份NV ID数量
-             pusNvId   : NV ID 列表
 
- 输出参数  : 无
-
- 返 回 值  : VOS_UINT32
-
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : d00212987
-    修改内容   : 单SKU支持多运营商项目新增函数
-*****************************************************************************/
 VOS_UINT32 NV_SkuBackupNvFileWrite(VOS_CHAR *pcFileName, VOS_UINT32 ulNvNum, VOS_UINT16 *pusNvId)
 {
     FILE                               *pFile      = VOS_NULL_PTR;
@@ -761,19 +577,7 @@ VOS_UINT32 NV_SkuBackupNvFileWrite(VOS_CHAR *pcFileName, VOS_UINT32 ulNvNum, VOS
 
 }
 
-/*****************************************************************************
- 函 数 名  : NV_SwitchAvailCarr
- 功能描述  : 查找可用运营商并发起切换
- 输入参数  : 无
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
-
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : d00212987
-    修改内容   : 单SKU支持多运营商项目新增函数
-*****************************************************************************/
 VOS_UINT32 NV_SwitchAvailCarr(VOS_VOID)
 {
     NV_CARRIER_PATH_STRU                stCarrierPath;
@@ -809,18 +613,7 @@ VOS_UINT32 NV_SwitchAvailCarr(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : NV_SelectCarrier
- 功能描述  : 选择切换运营商
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
 
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : d00212987
-    修改内容   : 单SKU支持多运营商项目新增函数
-*****************************************************************************/
 VOS_UINT32 NV_SelectCarrier(VOS_VOID)
 {
     /* 切换标记读取 */
@@ -887,19 +680,7 @@ VOS_UINT32 NV_SelectCarrier(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : NV_SkuSwitchProc
- 功能描述  : 运营商切换流程
- 输入参数  : 无
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
-
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : d00212987
-    修改内容   : 单SKU支持多运营商项目新增函数
-*****************************************************************************/
 VOS_UINT32 NV_SkuSwitchProc()
 {
     /* 运营商升级分区和默认认分区路径设置 */
@@ -919,19 +700,7 @@ VOS_UINT32 NV_SkuSwitchProc()
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : NV_SkuUpdateSwitchFlag
- 功能描述  : 更新切换标记
- 输入参数  : 无
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
-
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : d00212987
-    修改内容   : 单SKU支持多运营商项目新增函数
-*****************************************************************************/
 VOS_UINT32 NV_SkuUpdateSwitchFlag()
 {
     /* 更新当前切换标识 */
@@ -952,21 +721,7 @@ VOS_UINT32 NV_SkuUpdateSwitchFlag()
 
 }
 
-/*****************************************************************************
- 函 数 名  : NV_SetSwitchCarrierFlag
- 功能描述  : 设置运营商切换标记
- 输入参数  : pcCarrierPath:    待切换运营商路径
-             ulCarrierPathLen: 待切换运营商路径长度
-             pbIsSwitchImage : 是否需要切换Image
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
-
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : d00212987
-    修改内容   : 单SKU支持多运营商项目新增函数
-*****************************************************************************/
 VOS_UINT32 NV_SetSwitchCarrierFlag(
     VOS_CHAR                           *pcCarrierPath,
     VOS_UINT32                          ulCarrierPathLen,
@@ -1048,21 +803,7 @@ VOS_UINT32 NV_SetSwitchCarrierFlag(
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : NV_SwitchCarrier
- 功能描述  : 切换运营商(对外提供切换运营商接口)
- 输入参数  : pcCarrierName   : 待切换运营商名称
-             ulCarrierNameLen: 待切换运营商名称长度
-             pbIsSwitchImage : 是否需要切换Image
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
-
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : d00212987
-    修改内容   : 单SKU支持多运营商项目新增函数
-*****************************************************************************/
 VOS_UINT32 NV_SwitchCarrier(
     VOS_CHAR                           *pcCarrierName,
     VOS_UINT32                          ulCarrierNameLen,

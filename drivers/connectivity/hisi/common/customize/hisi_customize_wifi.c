@@ -55,6 +55,7 @@ wlan_customize_stru g_st_wlan_customize = {
             10,             /* roam delta 2G */
             10,             /* roam delta 5G */
             0,              /* random mac addr scan */
+            0,              /* disable_capab_2ght40 */
 };
 
 OAL_STATIC wlan_cfg_cmd g_ast_wifi_config_dts[] =
@@ -82,6 +83,7 @@ OAL_STATIC wlan_cfg_cmd g_ast_wifi_config_dts[] =
     {"cali_txpwr_pa_dc_ref_5g_val_band5",                    WLAN_CFG_DTS_CALI_TXPWR_PA_DC_REF_5G_VAL_BAND5},
     {"cali_txpwr_pa_dc_ref_5g_val_band6",                    WLAN_CFG_DTS_CALI_TXPWR_PA_DC_REF_5G_VAL_BAND6},
     {"cali_txpwr_pa_dc_ref_5g_val_band7",                    WLAN_CFG_DTS_CALI_TXPWR_PA_DC_REF_5G_VAL_BAND7},
+    {"cali_tone_amp_grade",                                  WLAN_CFG_DTS_CALI_TONE_AMP_GRADE},
     /* FCC认证 */
     {"band_edge_limit_2g_11g_txpwr",                         WLAN_CFG_DTS_BAND_EDGE_LIMIT_2G_11G_TXPWR},
     {"band_edge_limit_2g_11n_ht20_txpwr",                    WLAN_CFG_DTS_BAND_EDGE_LIMIT_2G_11N_HT20_TXPWR},
@@ -119,6 +121,8 @@ OAL_STATIC wlan_cfg_cmd g_ast_wifi_config_dts[] =
     {"cali_txpwr_pa_fre6",                                   WLAN_CFG_DTS_BT_CALI_TXPWR_PA_FRE6},
     {"cali_txpwr_pa_fre7",                                   WLAN_CFG_DTS_BT_CALI_TXPWR_PA_FRE7},
     {"cali_txpwr_pa_fre8",                                   WLAN_CFG_DTS_BT_CALI_TXPWR_PA_FRE8},
+    {"cali_bt_tone_amp_grade",                               WLAN_CFG_DTS_BT_CALI_TONE_AMP_GRADE},
+
     {OAL_PTR_NULL, 0}
 };
 
@@ -200,24 +204,41 @@ OAL_STATIC wlan_cfg_cmd g_ast_wifi_config_cmds[] =
     {"random_mac_addr_scan",            WLAN_CFG_INIT_RANDOM_MAC_ADDR_SCAN},
     /* 11AC2G */
     {"11ac2g_enable",                   WLAN_CFG_INIT_11AC2G_ENABLE},
+    {"disable_capab_2ght40",            WLAN_CFG_INIT_DISABLE_CAPAB_2GHT40},
     {OAL_PTR_NULL, 0}
 };
 
-/*****************************************************************************
- 函 数 名  : original_value_for_dts_params
- 功能描述  : dts定制化参数初值处理
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或 失败错误码
- 调用函数  :
- 被调函数  :
+OAL_STATIC wlan_cfg_cmd g_ast_nvram_config_ini[NVRAM_PARAMS_INDEX_BUTT] =
+{
+    {"nvram_params0",                     NVRAM_PARAMS_INDEX_0},
+    {"nvram_params1",                     NVRAM_PARAMS_INDEX_1},
+    {"nvram_params2",                     NVRAM_PARAMS_INDEX_2},
+    {"nvram_params3",                     NVRAM_PARAMS_INDEX_3},
+    {"nvram_params4",                     NVRAM_PARAMS_INDEX_4},
+    {"nvram_params5",                     NVRAM_PARAMS_INDEX_5},
+    {"nvram_params6",                     NVRAM_PARAMS_INDEX_6},
+    {"nvram_params7",                     NVRAM_PARAMS_INDEX_7},
+    {"nvram_params8",                     NVRAM_PARAMS_INDEX_8},
+    {"nvram_params9",                     NVRAM_PARAMS_INDEX_9},
+    {"nvram_params10",                    NVRAM_PARAMS_INDEX_10},
+    {"nvram_params11",                    NVRAM_PARAMS_INDEX_11},
+    {"nvram_params12",                    NVRAM_PARAMS_INDEX_12},
+    {"nvram_params13",                    NVRAM_PARAMS_INDEX_13},
+    {"nvram_params14",                    NVRAM_PARAMS_INDEX_14},
+    {"nvram_params15",                    NVRAM_PARAMS_INDEX_15},
+    {"nvram_params16",                    NVRAM_PARAMS_INDEX_16},
+    {"nvram_params17",                    NVRAM_PARAMS_INDEX_17},
+    {"nvram_params18",                    NVRAM_PARAMS_INDEX_18},
+    {"nvram_params19",                    NVRAM_PARAMS_INDEX_19},
+    {"nvram_params20",                    NVRAM_PARAMS_INDEX_20},
+    {"nvram_params21",                    NVRAM_PARAMS_INDEX_21},
+    {"nvram_params22",                    NVRAM_PARAMS_INDEX_22},
+    {"nvram_params23",                    NVRAM_PARAMS_INDEX_23},
+    {"nvram_params24",                    NVRAM_PARAMS_INDEX_24},
+    {"nvram_params25",                    NVRAM_PARAMS_INDEX_25},
+};
 
- 修改历史      :
-  1.日    期   : 2015年11月2日
-    作    者   : h00349274
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 OAL_STATIC oal_void original_value_for_dts_params(oal_void)
 {
     g_al_dts_params[WLAN_CFG_DTS_BAND_5G_ENABLE]                        = 1;
@@ -242,6 +263,7 @@ OAL_STATIC oal_void original_value_for_dts_params(oal_void)
     g_al_dts_params[WLAN_CFG_DTS_CALI_TXPWR_PA_DC_REF_5G_VAL_BAND5]     = 3600;
     g_al_dts_params[WLAN_CFG_DTS_CALI_TXPWR_PA_DC_REF_5G_VAL_BAND6]     = 3700;
     g_al_dts_params[WLAN_CFG_DTS_CALI_TXPWR_PA_DC_REF_5G_VAL_BAND7]     = 3800;
+    g_al_dts_params[WLAN_CFG_DTS_CALI_TONE_AMP_GRADE]                   = 2;
     /* FCC认证 */
     g_al_dts_params[WLAN_CFG_DTS_BAND_EDGE_LIMIT_2G_11G_TXPWR]                      = 150;
     g_al_dts_params[WLAN_CFG_DTS_BAND_EDGE_LIMIT_2G_11N_HT20_TXPWR]                 = 150;
@@ -279,23 +301,9 @@ OAL_STATIC oal_void original_value_for_dts_params(oal_void)
     g_al_dts_params[WLAN_CFG_DTS_BT_CALI_TXPWR_PA_FRE6]                 = 63;
     g_al_dts_params[WLAN_CFG_DTS_BT_CALI_TXPWR_PA_FRE7]                 = 76;
     g_al_dts_params[WLAN_CFG_DTS_BT_CALI_TXPWR_PA_FRE8]                 = 78;
+    g_al_dts_params[WLAN_CFG_DTS_BT_CALI_TONE_AMP_GRADE]                = 2;
 }
-/*****************************************************************************
- 函 数 名  : host_params_init_first
- 功能描述  : 给定制化参数全局数组 g_al_host_init_params 附初值
-             ini文件读取失败时用初值
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或 失败错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : h00349274
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void host_params_init_first(oal_void)
 {
     /* ROAM */
@@ -373,36 +381,84 @@ OAL_STATIC oal_void host_params_init_first(oal_void)
     g_al_host_init_params[WLAN_CFG_INIT_RANDOM_MAC_ADDR_SCAN]              = 0;
     /* 11AC2G */
     g_al_host_init_params[WLAN_CFG_INIT_11AC2G_ENABLE]                     = 1;
+    g_al_host_init_params[WLAN_CFG_INIT_DISABLE_CAPAB_2GHT40]              = 0;
 
 }
-/*****************************************************************************
- 函 数 名  : hwifi_config_init_nvram
- 功能描述  : handle nvram customize params
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或 失败错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : h00349274
-    修改内容   : 新生成函数
+int32 hwifi_fetch_ori_caldata(uint8* auc_caldata, int32 l_nvm_len)
+{
+    int32 l_ret = INI_FAILED;
+    int32 l_cfg_id;
+    int32 aul_nvram_params[NVRAM_PARAMS_INDEX_BUTT]={0};
 
-*****************************************************************************/
+    if (l_nvm_len != HISI_CUST_NVRAM_LEN)
+    {
+        OAM_ERROR_LOG2(0, OAM_SF_ANY, "hwifi_fetch_ori_caldata atcmd[nv_len:%d] and plat_ini[nv_len:%d] model have different nvm lenth!!",
+                        l_nvm_len, HISI_CUST_NVRAM_LEN);
+        return INI_FAILED;
+    }
+
+    oal_memset(auc_caldata, 0x00, HISI_CUST_NVRAM_LEN);
+
+    for (l_cfg_id = NVRAM_PARAMS_INDEX_0; l_cfg_id < NVRAM_PARAMS_INDEX_BUTT; l_cfg_id++)
+    {
+        l_ret = get_cust_conf_int32(INI_MODU_WIFI, g_ast_nvram_config_ini[l_cfg_id].name, &aul_nvram_params[l_cfg_id]);
+        if(INI_FAILED == l_ret)
+        {
+            OAM_ERROR_LOG1(0, OAM_SF_ANY, "hwifi_fetch_ori_caldata read ori caldata %d from ini failed!", l_cfg_id);
+            break;
+        }
+    }
+
+    if (NVRAM_PARAMS_INDEX_BUTT == l_cfg_id)
+    {
+        OAM_INFO_LOG0(0, OAM_SF_ANY, "hwifi_fetch_ori_caldata read ori caldata from ini success!");
+        oal_memcopy(auc_caldata, aul_nvram_params, HISI_CUST_NVRAM_LEN);
+        return INI_SUCC;
+    }
+
+    l_ret = get_cust_conf_string(CUST_MODU_DTS, NVRAM_PARAMS_ARRAY, auc_caldata, HISI_CUST_NVRAM_LEN);
+    if(INI_FAILED == l_ret)
+    {
+        OAM_ERROR_LOG0(0, OAM_SF_ANY, "hwifi_fetch_ori_caldata read ori caldata from dts failed!");
+        return INI_FAILED;
+    }
+
+    return INI_SUCC;
+}
+
 OAL_STATIC int32 hwifi_config_init_nvram(void)
 {
-    int32       l_ret = INI_FAILED;
+    int32 l_ret = INI_FAILED;
+    int32 l_cfg_id;
+    int32 aul_nvram_params[NVRAM_PARAMS_INDEX_BUTT]={0};
 
     oal_memset(g_auc_nv_params, 0x00, sizeof(g_auc_nv_params));
-    l_ret = get_cust_conf_string(CUST_MODU_NVRAM, OAL_PTR_NULL, g_auc_nv_params);
+    l_ret = get_cust_conf_string(CUST_MODU_NVRAM, OAL_PTR_NULL, g_auc_nv_params, sizeof(g_auc_nv_params));
 
-    /* nv读取失败或者返回的参数值为零,尝试读取dts */
+    /* nv读取失败或者返回的参数值为零,尝试读取ini */
     if(INI_FAILED == l_ret || !g_auc_nv_params[0])
     {
         OAM_WARNING_LOG3(0, OAM_SF_ANY, "hwifi_config_init_nvram read nvram failed[ret:%d] or wrong values[first eight values:0x%x %x], read dts instead!", l_ret, *((oal_uint32*)g_auc_nv_params),*((oal_uint32*)(g_auc_nv_params+4)));
-        /* 尝试读取dts */
-        l_ret = get_cust_conf_string(CUST_MODU_DTS, NVRAM_PARAMS_ARRAY, g_auc_nv_params);
+        /* 先尝试从ini文件中读取，读不到的话再从dts中读取 */
+        for (l_cfg_id = NVRAM_PARAMS_INDEX_0; l_cfg_id < NVRAM_PARAMS_INDEX_BUTT; l_cfg_id++)
+        {
+            l_ret = get_cust_conf_int32(INI_MODU_WIFI, g_ast_nvram_config_ini[l_cfg_id].name, &aul_nvram_params[l_cfg_id]);
+            if(INI_FAILED == l_ret)
+            {
+                OAM_ERROR_LOG1(0, OAM_SF_ANY, "hwifi_config_init_nvram read %d from ini failed!", l_cfg_id);
+                break;
+            }
+        }
+
+        if (NVRAM_PARAMS_INDEX_BUTT == l_cfg_id)
+        {
+            OAM_INFO_LOG0(0, OAM_SF_ANY, "hwifi_config_init_nvram read from ini success!");
+            oal_memcopy(g_auc_nv_params, aul_nvram_params, sizeof(g_auc_nv_params));
+            return INI_SUCC;
+        }
+
+        l_ret = get_cust_conf_string(CUST_MODU_DTS, NVRAM_PARAMS_ARRAY, g_auc_nv_params, sizeof(g_auc_nv_params));
         if(INI_FAILED == l_ret)
         {
             OAM_WARNING_LOG0(0, OAM_SF_ANY, "hwifi_config_init_nvram read dts failed!");
@@ -414,25 +470,7 @@ OAL_STATIC int32 hwifi_config_init_nvram(void)
 
     return INI_SUCC;
 }
-/*****************************************************************************
- 函 数 名  : hwifi_config_init
- 功能描述  : netdev open 调用的定制化总入口
-             读取ini文件，更新 g_al_host_init_params 全局数组
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或 失败错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : h00349274
-    修改内容   : 新生成函数
-  2.日    期   : 2015年11月2日
-    作    者   : h00349274
-    修改内容   : 增加tag用于判断ini和dts
-
-*****************************************************************************/
 int32 hwifi_config_init(int32 cus_tag)
 {
     int32               l_cfg_id;
@@ -469,7 +507,7 @@ int32 hwifi_config_init(int32 cus_tag)
         if(CUS_TAG_INI == cus_tag && WLAN_CFG_INIT_COUNTRY_CODE == l_cfg_id)
         {
             /* 获取ini中的国家码 */
-            l_ret = get_cust_conf_string(INI_MODU_WIFI, pgast_wifi_config[l_cfg_id].name, g_ac_country_code);
+            l_ret = get_cust_conf_string(INI_MODU_WIFI, pgast_wifi_config[l_cfg_id].name, g_ac_country_code, sizeof(g_ac_country_code));
             if(INI_FAILED == l_ret)
             {
                 OAM_WARNING_LOG0(0, OAM_SF_ANY, "hisi_customize_wifi read country code failed, check if it exists!");
@@ -480,20 +518,17 @@ int32 hwifi_config_init(int32 cus_tag)
         }
 
         /* 获取ini或dts中的配置值 */
-        if (CUS_TAG_INI == cus_tag)
-        {
-            l_ret = get_cust_conf_int32(INI_MODU_WIFI, pgast_wifi_config[l_cfg_id].name, &l_cfg_value);
-        }
-        else
+        l_ret = get_cust_conf_int32(INI_MODU_WIFI, pgast_wifi_config[l_cfg_id].name, &l_cfg_value);
+        if (INI_FAILED == l_ret)
         {
             l_ret = get_cust_conf_int32(CUST_MODU_DTS, pgast_wifi_config[l_cfg_id].name, &l_cfg_value);
+            if(INI_FAILED == l_ret)
+            {
+                OAM_WARNING_LOG1(0, OAM_SF_ANY, "hisi_customize_wifi read ini or dts file failed, check if cfg_id[%d] exists!", l_cfg_id);
+                continue;
+            }
         }
 
-        if(INI_FAILED == l_ret)
-        {
-            OAM_WARNING_LOG1(0, OAM_SF_ANY, "hisi_customize_wifi read ini or dts file failed, check if cfg_id[%d] exists!", l_cfg_id);
-            continue;
-        }
         l_ori_val = pgal_params[l_cfg_id];
         pgal_params[l_cfg_id] = l_cfg_value;
         OAM_WARNING_LOG3(0, OAM_SF_ANY, "hisi_customize_wifi [cfg_id:%d]value changed from [init:%d] to [config:%d]. \n", l_cfg_id, l_ori_val, pgal_params[l_cfg_id]);
@@ -501,21 +536,7 @@ int32 hwifi_config_init(int32 cus_tag)
 
     return INI_SUCC;
 }
-/*****************************************************************************
- 函 数 名  : char2byte
- 功能描述  : 统计值，判断有无读取到mac地址
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或 失败错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : h00349274
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC int char2byte( char* strori, char* outbuf )
 {
     int i = 0;
@@ -549,22 +570,7 @@ OAL_STATIC int char2byte( char* strori, char* outbuf )
 
     return sum;
 }
-/*****************************************************************************
- 函 数 名  : hwifi_get_mac_addr
- 功能描述  : 从nvram中获取mac地址
-             如果获取失败，则随机一个mac地址
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或 失败错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : h00349274
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int32 hwifi_get_mac_addr(uint8 *puc_buf)
 {
     struct hisi_nve_info_user st_info;
@@ -616,24 +622,7 @@ int32 hwifi_get_mac_addr(uint8 *puc_buf)
 
     return INI_SUCC;
 }
-/*****************************************************************************
- 函 数 名  : hwifi_get_init_value
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或 失败错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : h00349274
-    修改内容   : 新生成函数
-  2.日    期   : 2015年11月2日
-    作    者   : h00349274
-    修改内容   : 增加tag用于判断ini和dts
-
-*****************************************************************************/
 int32 hwifi_get_init_value(int32 cus_tag, int32 cfg_id)
 {
     int32*              pgal_params = OAL_PTR_NULL;
@@ -662,42 +651,12 @@ int32 hwifi_get_init_value(int32 cus_tag, int32 cfg_id)
     }
     return pgal_params[cfg_id];
 }
-/*****************************************************************************
- 函 数 名  : hwifi_get_country_code
- 功能描述  :
 
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或 失败错误码
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : h00349274
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int8* hwifi_get_country_code(void)
 {
     return g_ac_country_code;
 }
-/*****************************************************************************
- 函 数 名  : hwifi_get_nvram_params
- 功能描述  :
 
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或 失败错误码
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : h00349274
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 uint8* hwifi_get_nvram_params(void)
 {
     return g_auc_nv_params;
@@ -711,6 +670,7 @@ EXPORT_SYMBOL_GPL(hwifi_get_mac_addr);
 EXPORT_SYMBOL_GPL(hwifi_get_init_value);
 EXPORT_SYMBOL_GPL(hwifi_get_country_code);
 EXPORT_SYMBOL_GPL(hwifi_get_nvram_params);
+EXPORT_SYMBOL_GPL(hwifi_fetch_ori_caldata);
 
 #endif /* #ifdef _PRE_PLAT_FEATURE_CUSTOMIZE */
 

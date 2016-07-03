@@ -88,16 +88,12 @@ ULONG PTP_Addr_Cmp(PTP_PORT_ADDR_S *pstDstAddr,PTP_PORT_ADDR_S *pstSrcAddr,LONG 
 
 ULONG PTP_Check_MAC_Zero_Addr(UCHAR *ucpPortMac);
 
-/*Begin Add by heyijun KF62476 for DTS2011122700669, 调试打印增加基于地址过滤功能 */
 ULONG PTP_CheckPacketFilter(PTP_ADDRINFO_S *pstAddrInfo);
-/*End   Add by heyijun KF62476 for DTS2011122700669, 调试打印增加基于地址过滤功能 */
 
 ULONG PTP_GetUnicastMasterByPortId(PTP_PORT_ID_S *pstPortId, PTP_UNI_MASTER_NODE_S **ppstUnicastMaster);
 
 ULONG PTP_GetForeignMasterByPortId(PTP_PORT_ID_S *pstPortId, PTP_FOREIGN_MASTER_S **ppstForeMaster);
-/* Add by heyijun 00218462 for DTS2012092803600 维测需求开发, 2012-9 */
 ULONG PTP_GetSlaveStatByNum(PTP_SLAVE_STAT_LIST_S *pstStatList, ULONG ulListSize);
-/* End of Add by heyijun 00218462 for DTS2012092803600 维测需求开发, 2012-9 */
 
 ULONG PTP_AddPortAddrVrf(USHORT usPortNum, PTP_PORT_ADDR_S *pstPortAddr, 
                             ULONG ulVrfIndex, ULONG ulIfIndex);
@@ -218,220 +214,38 @@ ULONG PTP_DelUnicastMasterNoLog(PTP_PORT_ADDR_S *pstPortAddr);
 
 ULONG PTP_ExternNotifyPTPWithClassNoLog(USHORT usPtpPortNumber, USHORT usCmd, UCHAR ucClass);
 
-/*******************************************************************************
-*    Func Name: PTP_GetCurrentPortNumber
-* Date Created: 2012-01-06
-*       Author: guo00178934
-*  Description: 获取当前PTP端口号
-*        Input: USHORT *pusPtpPortNumber:
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2012-01-06   guo00178934             Create
-*
-*******************************************************************************/
+
 ULONG PTP_GetCurrentPortNumber(USHORT *pusPtpPortNumber);
 
-/*******************************************************************************
-*    Func Name: PTP_GetWayMode
-* Date Created: 2012-01-06
-*       Author: guo00178934
-*  Description: 获取当前接口为1-Way Or 2-Way模式
-*        Input: USHORT usPtpPortNumber:
-*               ULONG *pulMode:
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2012-01-06   guo00178934             Create
-*
-*******************************************************************************/
+
 ULONG PTP_GetWayMode(USHORT usPtpPortNumber, ULONG *pulMode);
 
-/*******************************************************************************
-*    Func Name: PTP_IsValidParentPortAddr
-* Date Created: 2012-01-06
-*       Author: guo00178934
-*  Description: 判断ParentPortAddr是否有效
-*        Input: 
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2012-01-06   guo00178934             Create
-*
-*******************************************************************************/
+
 BOOL_T PTP_IsValidParentPortAddr(PTP_PORT_ADDR_S *pstPortAddr, ULONG ulVrfIndex, UCHAR ucCastMode);
 
-/*******************************************************************************
-*    Func Name: PTP_IsOneWayMode
-* Date Created: 2012-01-07
-*       Author: guo00178934
-*  Description: 判断当前的PTP端口是否为1-Way模式
-*        Input: 
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2012-01-07   guo00178934             Create
-*
-*******************************************************************************/
+
 BOOL_T PTP_IsOneWayMode(VOID);
 
-/*******************************************************************************
-*    Func Name: PTP_IsTwoWayMode
-* Date Created: 2012-01-07
-*       Author: guo00178934
-*  Description: 判断当前的PTP端口是否为2-Way模式
-*        Input: 
-*       Output: 
-*       Return: 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2012-01-07   guo00178934             Create
-*
-*******************************************************************************/
+
 BOOL_T PTP_IsTwoWayMode(VOID);
 
-/*******************************************************************************
-*    Func Name: PTP_CalcDurationTimeout
-* Date Created: 2012-01-07
-*       Author: guo00178934
-*  Description: 计算Duration重协商时间
-*        Input: PTP_PORT_S *pstPtpPort:
-*               ULONG ulDurationType:
-*               ULONG ulDuration:
-*       Output: 
-*       Return: 
-*      Caution: 内部代码调用，不对参数做有效性判断
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2012-01-07   guo00178934             Create
-*
-*******************************************************************************/
+
 ULONG PTP_CalcDurationTimeout(PTP_PORT_S *pstPtpPort, ULONG ulDurationType, ULONG ulDuration);
 
-/*Added by guo00178934, PTP 告警需求, 2012/1/13   问题单号:20120112_1 */
-/*******************************************************************************
-*    Func Name: PTP_WarningLinkUpDown
-* Date Created: 2012-01-13
-*       Author: guo00178934
-*  Description: UniMaster链路Up Down告警
-*        Input: PTP_UNI_MASTER_NODE_S *pstUniMaster:
-*               PTP_PORT_S *pstPtpPort:
-*               ULONG ulWarnID:
-*       Output: 
-*       Return: VOID
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2012-01-13   guo00178934             Create
-*
-*******************************************************************************/
+
 VOID PTP_WarningLinkUpDown(PTP_UNI_MASTER_NODE_S *pstUniMaster, PTP_PORT_S *pstPtpPort, ULONG ulWarnID);
 
-/*******************************************************************************
-*    Func Name: PTP_WarningSyncUpDown
-* Date Created: 2012-01-13
-*       Author: guo00178934
-*  Description: UniMaster Sync Up和Down告警
-                注意:Sync Up和Down告警依赖于ADD PPI下发,需在PPI下发前调用
-*        Input: PTP_UNI_MASTER_NODE_S *pstUniMaster:
-*               PTP_PORT_S *pstPtpPort:
-*               ULONG ulWarnID:
-*       Output: 
-*       Return: VOID
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2012-01-13   guo00178934             Create
-*
-*******************************************************************************/
+
 VOID PTP_WarningSyncUpDown(PTP_UNI_MASTER_NODE_S *pstUniMaster, PTP_PORT_S *pstPtpPort, ULONG ulWarnID);
 
-/*******************************************************************************
-*    Func Name: PTP_WarningDelayUpDown
-* Date Created: 2012-01-13
-*       Author: guo00178934
-*  Description: UniMaster Delay Up和Down告警
-                注意:Delay Up和Down告警依赖于SET PPI下发,需在PPI下发前调用
-*        Input: PTP_UNI_MASTER_NODE_S *pstUniMaster:
-*               PTP_PORT_S *pstPtpPort:
-*               ULONG ulWarnID:
-*       Output: 
-*       Return: VOID
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2012-01-13   guo00178934             Create
-*
-*******************************************************************************/
+
 VOID PTP_WarningDelayUpDown(PTP_UNI_MASTER_NODE_S *pstUniMaster, PTP_PORT_S *pstPtpPort, ULONG ulWarnID);
 
-/*******************************************************************************
-*    Func Name: PTP_WarningRefuse
-* Date Created: 2012-01-13
-*       Author: guo00178934
-*  Description: 协商(Annc, Sync, Delay)拒绝告警
-*        Input: PTP_UNI_MASTER_NODE_S *pstUniMaster:
-*               PTP_PORT_S *pstPtpPort:
-*               ULONG ulMsgType:
-*       Output: 
-*       Return: VOID
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2012-01-13   guo00178934             Create
-*
-*******************************************************************************/
+
 VOID PTP_WarningRefuse(PTP_UNI_MASTER_NODE_S *pstUniMaster, PTP_PORT_S *pstPtpPort, ULONG ulMsgType);
 
-/*******************************************************************************
-*    Func Name: PTP_WarningTimeout
-* Date Created: 2012-01-13
-*       Author: guo00178934
-*  Description: 协商(Annc, Sync, Delay)超时告警
-*        Input: PTP_UNI_MASTER_NODE_S *pstUniMaster:
-*               PTP_PORT_S *pstPtpPort:
-*               ULONG ulMsgType:
-*       Output: 
-*       Return: VOID
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2012-01-13   guo00178934             Create
-*
-*******************************************************************************/
+
 VOID PTP_WarningTimeout(PTP_UNI_MASTER_NODE_S *pstUniMaster, PTP_PORT_S *pstPtpPort, ULONG ulMsgType);
-/* End of Added by guo00178934, 2012/1/13   问题单号:20120112_1 */
 
 
 

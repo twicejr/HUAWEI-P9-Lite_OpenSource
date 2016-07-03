@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : oal_data_stru.h
-  版 本 号   : 初稿
-  作    者   : t00231215
-  生成日期   : 2012年11月29日
-  最近修改   :
-  功能描述   : oal_bit.h 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年11月29日
-    作    者   : t00231215
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __OAL_DATA_STRU_H__
 #define __OAL_DATA_STRU_H__
@@ -90,23 +73,7 @@ typedef struct
   10 函数声明
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : oal_queue_set
- 功能描述  : 设置队列参数
- 输入参数  : pst_queue      : 队列指针
-             pul_buf        : 指向队列缓冲区的指针
-             us_max_elements: 最大元素个数
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月23日
-    作    者   : mayuan m00212148
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void oal_queue_set(oal_queue_stru *pst_queue, oal_uint *pul_buf, oal_uint8 uc_max_elements)
 {
     pst_queue->pul_buf         = pul_buf;
@@ -117,22 +84,7 @@ OAL_STATIC OAL_INLINE oal_void oal_queue_set(oal_queue_stru *pst_queue, oal_uint
     pst_queue->uc_max_elements = uc_max_elements;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_queue_init
- 功能描述  : 队列初始化, uc_max_events必须是2的整数次幂
- 输入参数  : pst_queue      : 队列指针
-             uc_max_events: 最大元素个数
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月23日
-    作    者   : chenyan c00178899
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32 oal_queue_init(oal_queue_stru *pst_queue, oal_uint8 uc_max_events)
 {
     oal_uint *pul_buf;
@@ -161,21 +113,7 @@ OAL_STATIC OAL_INLINE oal_uint32 oal_queue_init(oal_queue_stru *pst_queue, oal_u
     }
 }
 
-/*****************************************************************************
- 函 数 名  : oal_queue_destroy
- 功能描述  : 销毁队列
- 输入参数  : pst_queue: 队列指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月18日
-    作    者   : mayuan m00212148
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  oal_queue_destroy(oal_queue_stru *pst_queue)
 {
     if (OAL_PTR_NULL == pst_queue)
@@ -193,22 +131,7 @@ OAL_STATIC OAL_INLINE oal_void  oal_queue_destroy(oal_queue_stru *pst_queue)
     oal_queue_set(pst_queue, OAL_PTR_NULL, 0);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_queue_enqueue
- 功能描述  : 元素入队
- 输入参数  : pst_queue: 队列指针
-             p_element: 元素指针
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月17日
-    作    者   : mayuan m00212148
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32  oal_queue_enqueue(oal_queue_stru *pst_queue, oal_void *p_element)
 {
     oal_uint8   uc_tail_index;
@@ -233,22 +156,7 @@ OAL_STATIC OAL_INLINE oal_uint32  oal_queue_enqueue(oal_queue_stru *pst_queue, o
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_queue_dequeue
- 功能描述  : 元素出队
- 输入参数  : pst_queue: 队列指针
- 输出参数  : 无
- 返 回 值  : 成功: 事件指针
-             失败: OAL_PTR_NULL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月17日
-    作    者   : mayuan m00212148
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void* oal_queue_dequeue(oal_queue_stru *pst_queue)
 {
     oal_uint8    uc_head_index;
@@ -272,21 +180,7 @@ OAL_STATIC OAL_INLINE oal_void* oal_queue_dequeue(oal_queue_stru *pst_queue)
     return p_element;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_queue_get_length
- 功能描述  : 获取队列中已经存放的元素个数
- 输入参数  : pst_queue: 队列指针
- 输出参数  : 无
- 返 回 值  : 队列中存放的事件个数
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月17日
-    作    者   : mayuan m00212148
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint8  oal_queue_get_length(oal_queue_stru *pst_queue)
 {
     if (OAL_PTR_NULL == pst_queue)

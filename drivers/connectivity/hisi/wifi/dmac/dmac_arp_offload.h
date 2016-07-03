@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : dmac_arp_offload.h
-  版 本 号   : 初稿
-  作    者   : w00316376
-  生成日期   : 2015年6月26日
-  最近修改   :
-  功能描述   : dmac_arp_offload.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年6月26日
-    作    者   : w00316376
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __DMAC_ARP_OFFLOAD_H__
 #define __DMAC_ARP_OFFLOAD_H__
@@ -88,6 +71,7 @@ extern    oal_uint32  g_ul_arpoffload_drop_frame;
   10 函数声明
 *****************************************************************************/
 extern dmac_rx_frame_ctrl_enum_uint8 dmac_ao_process_arp_and_mcast(dmac_vap_stru *pst_dmac_vap, dmac_user_stru *pst_dmac_user, oal_netbuf_stru *pst_netbuf);
+extern oal_bool_enum_uint8 dmac_ao_is_ipv4_addr_owner(dmac_vap_stru *pst_dmac_vap, oal_uint8 *puc_ipv4_addr);
 #endif
 
 

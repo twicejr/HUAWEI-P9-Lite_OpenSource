@@ -226,6 +226,7 @@ int hisifb_ce_service_set_lut(struct fb_info *info, void __user *argp)
 	ce_parameter_t param;
 	ce_service_t *service = NULL;
 	int ret = 0;
+	int i = 0;
 
 	if (NULL == argp) {
 		HISI_FB_ERR("NULL Pointer\n");
@@ -244,6 +245,18 @@ int hisifb_ce_service_set_lut(struct fb_info *info, void __user *argp)
 	}
 
 	service = (ce_service_t *)param.service;
+
+	for (i = 0; i < CE_SERVICE_LIMIT; i++ ) {
+		if (service == &g_ce_services[i]) {
+			break;
+		}
+	}
+
+	if (i >= CE_SERVICE_LIMIT) {
+		HISI_FB_ERR("service is not corrtct\n");
+		return -1;
+	}
+
 	if (service == NULL || service->ce_info == NULL) {
 		HISI_FB_ERR("service or ce_info is NULL\n");
 		return -1;
@@ -339,8 +352,8 @@ void hisi_dss_dpp_ace_set_reg(struct hisi_fb_data_type *hisifd)
 		return;
 
 	if (g_dss_effect_acm_ce_en != 1 || ce_ctrl->ctrl_enabled != 1) {
-		hisifd->set_reg(hisifd, ce_base + ACM_CE_HIST_CTL, 0x2, 3, 0);
-		hisifd->set_reg(hisifd, ce_base + ACM_CE_LUT_ENABLE, 0x0, 2, 0);
+		set_reg(ce_base + ACM_CE_HIST_CTL, 0x2, 3, 0);
+		set_reg(ce_base + ACM_CE_LUT_ENABLE, 0x0, 2, 0);
 		ce_info->first_lut_set = false;
 		return;
 	}
@@ -366,11 +379,13 @@ void hisi_dss_dpp_ace_set_reg(struct hisi_fb_data_type *hisifd)
 			ce_info->first_lut_set = true;
 		}
 	}
+
 	if (ce_info->first_lut_set) {
-		hisifd->set_reg(hisifd, ce_base + ACM_CE_LUT_SEL, ce_info->lut_sel, 32, 0);
+		set_reg(ce_base + ACM_CE_LUT_SEL, ce_info->lut_sel, 32, 0);
 	}
-	hisifd->set_reg(hisifd, ce_base + ACM_CE_HIST_CTL, 0x1, 3, 0);
-	hisifd->set_reg(hisifd, ce_base + ACM_CE_LUT_ENABLE, 0x3, 2, 0);
+
+	set_reg(ce_base + ACM_CE_HIST_CTL, 0x1, 3, 0);
+	set_reg(ce_base + ACM_CE_LUT_ENABLE, 0x3, 2, 0);
 }
 
 void hisi_dss_dpp_ace_handle_func(struct work_struct *work)

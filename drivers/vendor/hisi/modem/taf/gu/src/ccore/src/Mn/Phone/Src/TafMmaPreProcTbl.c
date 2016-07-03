@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafMmaPreProcTbl.c
-  版 本 号   : 初稿
-  作    者   : W00176964
-  生成日期   : 2013年7月9日
-  最近修改   :
-  功能描述   : MMA模块预处理状态表
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年7月9日
-    作    者   : w00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -31,11 +14,9 @@
 #include "MmaAppLocal.h"
 #include "Taf_Status.h"
 #include "TafMmaSndInternalMsg.h"
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-14, begin */
 #if (FEATURE_ON == FEATURE_IMS)
 #include "MmaMsccInterface.h"
 #endif
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-14, end */
 #include "MmaUphyInterface.h"
 
 
@@ -89,9 +70,7 @@ TAF_ACT_STRU        g_astTafMmaPreProcessActTbl[]   =
                       TAF_MMA_RcvMmaSimLockStatusChangeInd_PreProc ),
 
     /* OM的消息处理 */
-    /* Deleted by wx270776 for OM融合, 2015-7-16, begin */
 
-    /* Deleted by wx270776 for OM融合, 2015-7-16, end */
 
 
     TAF_ACT_TBL_ITEM( WUEPS_PID_SPY,
@@ -197,11 +176,9 @@ TAF_ACT_STRU        g_astTafMmaPreProcessActTbl[]   =
                       ID_MSCC_MMA_COVERAGE_AREA_IND,
                       Sta_CoverageAreaInd),
 
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, begin */
     TAF_ACT_TBL_ITEM( UEPS_PID_MSCC,
                       ID_MSCC_MMA_REG_RESULT_IND,
                       TAF_MMA_RcvMsccRegResultInd_PreProc),
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, end */
 
     TAF_ACT_TBL_ITEM( UEPS_PID_MSCC,
                       ID_MSCC_MMA_NETWORK_CAPABILITY_INFO_IND,
@@ -248,7 +225,6 @@ TAF_ACT_STRU        g_astTafMmaPreProcessActTbl[]   =
                       ID_MSCC_MMA_SRCHED_PLMN_INFO_IND,
                       TAF_MMA_RcvMsccSrchedPlmnInfoInd_PreProc ),
 
-    /* Added by s00261364 for L-C互操作项目, 2014-1-26, begin */
     TAF_ACT_TBL_ITEM( UEPS_PID_MSCC,
                       ID_MSCC_MMA_ACQ_CNF,
                       TAF_MMA_RcvMsccAcqCnf_PreProc ),
@@ -266,15 +242,12 @@ TAF_ACT_STRU        g_astTafMmaPreProcessActTbl[]   =
     TAF_ACT_TBL_ITEM( UEPS_PID_MSCC,
                       ID_MSCC_MMA_POWER_SAVE_CNF,
                       TAF_MMA_RcvMsccPowerSaveCnf_PreProc ),
-    /* Added by s00261364 for L-C互操作项目, 2014-1-26, end */
 
-    /* Add by j00174725 for K3V3 多模多天线特性, 2014-06-16, Begin */
 #if (FEATURE_MULTI_MODEM == FEATURE_ON)
     TAF_ACT_TBL_ITEM( UEPS_PID_MSCC,
                       ID_MSCC_MMA_PS_SERVICE_CONN_STATUS_IND,
                       TAF_MMA_RcvMsccPsServiceConnStatusInd_PreProc ),
 #endif
-    /* Add by j00174725 for K3V3 多模多天线特性, 2014-06-16, End */
 
     TAF_ACT_TBL_ITEM( UEPS_PID_MSCC,
                       ID_MSCC_MMA_PREF_PLMN_QUERY_CNF,
@@ -456,7 +429,6 @@ TAF_ACT_STRU        g_astTafMmaPreProcessActTbl[]   =
                       TAF_MSG_MMA_SET_PIN,
                       MMA_SetCPin),
 
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, begin */
 #if (FEATURE_ON == FEATURE_IMS)
     TAF_ACT_TBL_ITEM( UEPS_PID_MSCC,
                       ID_MSCC_MMA_IMS_VOICE_CAP_IND,
@@ -464,7 +436,6 @@ TAF_ACT_STRU        g_astTafMmaPreProcessActTbl[]   =
 
     /* 定时处理已经下移到MSCC模块，这里删除定时器处理逻辑 */
 #endif
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, end */
 
     /* 定时器消息 */
     TAF_ACT_TBL_ITEM( VOS_PID_TIMER,
@@ -493,13 +464,11 @@ TAF_ACT_STRU        g_astTafMmaPreProcessActTbl[]   =
 
 /* TAF的消息处理 */
 
-    /* Added by w00167002 for L-C互操作项目, 2014-2-14, begin */
 
     /* 收到模式设置请求 */
     TAF_ACT_TBL_ITEM( WUEPS_PID_TAF,
                       ID_TAF_MMA_PHONE_MODE_SET_REQ,
                       TAF_MMA_ProcTafPhoneModeSetReq_PreProc),
-    /* Added by w00167002 for L-C互操作项目, 2014-2-14, end */
 
     /* 收到AT的cfun查询请求 */
     TAF_ACT_TBL_ITEM( WUEPS_PID_TAF,
@@ -578,7 +547,6 @@ TAF_ACT_STRU        g_astTafMmaPreProcessActTbl[]   =
                       ID_TAF_MMA_AUTO_ATTACH_QRY_REQ,
                       TAF_MMA_RcvMmaQryAutoAttachReq_PreProc),
 
-    /* Added by s00261364 for L-C互操作项目, 2014-1-26, begin */
     TAF_ACT_TBL_ITEM( WUEPS_PID_TAF,
                       ID_TAF_MMA_BATTERY_CAPACITY_QRY_REQ,
                       TAF_MMA_RcvBatteryCapacityQry_PreProc),
@@ -597,7 +565,6 @@ TAF_ACT_STRU        g_astTafMmaPreProcessActTbl[]   =
     TAF_ACT_TBL_ITEM( WUEPS_PID_TAF,
                       ID_TAF_MMA_POWER_SAVE_REQ,
                       TAF_MMA_RcvMmaPowerSaveReq_PreProc),
-    /* Added by s00261364 for L-C互操作项目, 2014-1-26, end */
 
 #if (FEATURE_ON == FEATURE_IMS)
     TAF_ACT_TBL_ITEM( WUEPS_PID_TAF,
@@ -677,7 +644,6 @@ TAF_ACT_STRU        g_astTafMmaPreProcessActTbl[]   =
                       TI_TAF_MMA_WAIT_MSCC_CSG_LIST_ABORT_CNF,
                       TAF_MMA_RcvTiWaitMsccCsgListAbortCnfExpired_PreProc),
 #endif
-    /* Added by b00269685 for L-C互操作项目, 2014-3-4, begin */
     TAF_ACT_TBL_ITEM( VOS_PID_TIMER,
                       TI_TAF_MMA_WAIT_MSCC_ACQ_CNF,
                       TAF_MMA_RcvTiWaitMsccAcqCnfExpired_PreProc),
@@ -689,7 +655,6 @@ TAF_ACT_STRU        g_astTafMmaPreProcessActTbl[]   =
     TAF_ACT_TBL_ITEM( VOS_PID_TIMER,
                       TI_TAF_MMA_WAIT_MSCC_POWER_SAVE_CNF,
                       TAF_MMA_RcvTiWaitMsccPowerSaveExpired_PreProc),
-    /* Added by b00269685 for L-C互操作项目, 2014-3-4, end */
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
 
@@ -969,41 +934,13 @@ TAF_STA_STRU        g_astTafMmaPreProcessFsmTbl[]   =
                       g_astTafMmaPreProcessActTbl )
 };
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_GetPreProcessStaTblSize
- 功能描述  : 获取预处理状态机的大小
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:预处理状态机的大小
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月9日
-    作    者   : W00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_GetPreProcessStaTblSize( VOS_VOID  )
 {
     return (sizeof(g_astTafMmaPreProcessFsmTbl)/sizeof(TAF_STA_STRU));
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_GetPreFsmDescAddr
- 功能描述  : 获取预处理状态机的描述表
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : TAF_FSM_DESC_STRU:指向预处理状态机的描述表
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月9日
-    作    者   : zhoujun 40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_FSM_DESC_STRU * TAF_MMA_GetPreFsmDescAddr(VOS_VOID)
 {
     return (&g_stTafMmaPreFsmDesc);

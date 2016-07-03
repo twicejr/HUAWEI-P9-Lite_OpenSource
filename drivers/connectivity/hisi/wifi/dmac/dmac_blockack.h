@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : dmac_blockack.h
-  版 本 号   : 初稿
-  作    者   : huxiaotong
-  生成日期   : 2013年4月8日
-  最近修改   :
-  功能描述   : dmac_blockack.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年4月8日
-    作    者   : huxiaotong
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __DMAC_BLOCKACK_H__
 #define __DMAC_BLOCKACK_H__
@@ -199,21 +182,7 @@ extern oal_uint8 g_auc_proxysta_ba_lut_index_table[DMAC_Proxysta_BA_LUT_IDX_BMAP
 /*****************************************************************************
   10 inline函数定义
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : dmac_ba_rx_seqno_lt
- 功能描述  : 判断seq1是否小于seq2
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月15日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_bool_enum_uint8  dmac_ba_rx_seqno_lt(oal_uint16 us_seq1, oal_uint16 us_seq2)
 {
     if(((us_seq1 < us_seq2) && ((us_seq2 - us_seq1) < DMAC_BA_RX_ALLOW_MIN_SEQNO_BY_TWO)) ||
@@ -225,41 +194,13 @@ OAL_STATIC OAL_INLINE oal_bool_enum_uint8  dmac_ba_rx_seqno_lt(oal_uint16 us_seq
     return OAL_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_ba_rx_seqno_gt
- 功能描述  : 判断seq1是否大于seq2
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月15日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_bool_enum_uint8  dmac_ba_rx_seqno_gt(oal_uint16 us_seq1, oal_uint16 us_seq2)
 {
     return dmac_ba_rx_seqno_lt(us_seq2, us_seq1);
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_ba_seqno_lt
- 功能描述  : 判断seq1是否小于seq2
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月11日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_bool_enum_uint8 dmac_ba_seqno_lt(oal_uint16 us_seq1, oal_uint16 us_seq2)
 {
     if(((us_seq1 < us_seq2) && ((us_seq2 - us_seq1) < DMAC_BA_MAX_SEQNO_BY_TWO)) ||
@@ -271,41 +212,13 @@ OAL_STATIC OAL_INLINE oal_bool_enum_uint8 dmac_ba_seqno_lt(oal_uint16 us_seq1, o
     return OAL_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_ba_seqno_gt
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月15日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_bool_enum_uint8  dmac_ba_seqno_gt(oal_uint16 us_seq1, oal_uint16 us_seq2)
 {
     return dmac_ba_seqno_lt(us_seq2, us_seq1);
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_ba_rx_seqno_leq
- 功能描述  : 判断seq1是否小于或等于seq2
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月15日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_bool_enum_uint8  dmac_ba_rx_seqno_leq(oal_uint16 us_seq1, oal_uint16 us_seq2)
 {
     if(((us_seq1 <= us_seq2) && ((us_seq2 - us_seq1) < DMAC_BA_RX_ALLOW_MIN_SEQNO_BY_TWO)) ||
@@ -317,41 +230,13 @@ OAL_STATIC OAL_INLINE oal_bool_enum_uint8  dmac_ba_rx_seqno_leq(oal_uint16 us_se
     return OAL_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_ba_rx_seqno_geq
- 功能描述  : 判断seq1是否大于或等于seq2
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月15日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_bool_enum_uint8  dmac_ba_rx_seqno_geq(oal_uint16 us_seq1, oal_uint16 us_seq2)
 {
     return dmac_ba_rx_seqno_leq(us_seq2, us_seq1);
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_ba_seqno_leq
- 功能描述  : 判断seq1是否小于或等于seq2
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月11日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_bool_enum_uint8 dmac_ba_seqno_leq(oal_uint16 us_seq1, oal_uint16 us_seq2)
 {
     if(((us_seq1 <= us_seq2) && ((us_seq2 - us_seq1) < DMAC_BA_MAX_SEQNO_BY_TWO)) ||
@@ -363,64 +248,20 @@ OAL_STATIC OAL_INLINE oal_bool_enum_uint8 dmac_ba_seqno_leq(oal_uint16 us_seq1, 
     return OAL_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_ba_seqno_geq
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月15日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_bool_enum_uint8  dmac_ba_seqno_geq(oal_uint16 us_seq1, oal_uint16 us_seq2)
 {
     return dmac_ba_seqno_leq(us_seq2, us_seq1);
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_ba_seqnum_out_window
- 功能描述  : 确认seqnum是否在ba窗口外
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月15日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_bool_enum_uint8  dmac_ba_seqnum_out_window(dmac_ba_tx_stru *pst_ba_hdl, oal_uint16 us_seq_num)
 {
     return (oal_bool_enum_uint8)(dmac_ba_seqno_gt(us_seq_num, pst_ba_hdl->us_last_seq_num) || dmac_ba_seqno_gt(pst_ba_hdl->us_baw_start, us_seq_num));
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_ba_seqno_bound_chk
- 功能描述  :
- This function compares the given sequence number with the specified
- upper and lower bounds and returns its position relative to them.
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月11日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint8 dmac_ba_seqno_bound_chk(oal_uint16 us_seq_lo, oal_uint16 us_seq_hi, oal_uint16 us_seq)
 {
     oal_bool_enum_uint8 en_lo_chk;
@@ -442,104 +283,33 @@ OAL_STATIC OAL_INLINE oal_uint8 dmac_ba_seqno_bound_chk(oal_uint16 us_seq_lo, oa
     return uc_chk_res;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_ba_get_lut_index
- 功能描述  : 从BA LUT index bitmap table中获取一个BA lut index，如果BA LUT index
-             bitmap table已经满了，则返回一个不可用的index
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月27日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint8 dmac_ba_get_lut_index(oal_uint8 *puc_ba_lut_index_table)
 {
     return oal_get_lut_index(puc_ba_lut_index_table, DMAC_BA_LUT_IDX_BMAP_LEN, HAL_MAX_BA_LUT_SIZE);
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_ba_get_lut_index_proxysta
- 功能描述  : 从两个字节中获取第一个非零bit的值
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月15日
-    作    者   : y00184180
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 #ifdef _PRE_WLAN_FEATURE_PROXYSTA
 OAL_STATIC OAL_INLINE oal_uint8  dmac_ba_get_lut_index_proxysta(oal_uint8 *puc_ba_lut_index_table)
 {
     return oal_get_lut_index(puc_ba_lut_index_table, DMAC_Proxysta_BA_LUT_IDX_BMAP_LEN, HAL_PROXYSTA_MAX_BA_LUT_SIZE);
 }
 #endif
-/*****************************************************************************
- 函 数 名  : dmac_ba_get_lut_index_non_proxysta
- 功能描述  : 从两个字节中获取第一个非零bit的值
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月15日
-    作    者   : y00184180
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 #ifdef _PRE_WLAN_FEATURE_PROXYSTA
 OAL_STATIC OAL_INLINE oal_uint8  dmac_ba_get_lut_index_non_proxysta(oal_uint8 *puc_ba_lut_index_table)
 {
     return oal_get_lut_index(puc_ba_lut_index_table, DMAC_Non_Proxysta_BA_LUT_IDX_BMAP_LEN, HAL_PROXYSTA_MAX_BA_LUT_SIZE);
 }
 #endif
-/*****************************************************************************
- 函 数 名  : dmac_ba_del_lut_index
- 功能描述  : 从BA LUT index bitmap table中删除一个BA lut index
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月15日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  dmac_ba_del_lut_index(oal_uint8 *puc_ba_lut_index_table, oal_uint8 uc_lut_index)
 {
     oal_del_lut_index(puc_ba_lut_index_table, uc_lut_index);
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_update_txba_session_params_ap
- 功能描述  : 当AMPDU的确认策略为NORMAL ACK时，需要根据AMPDU的参数更新BA的参数信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月27日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void dmac_update_txba_session_params_ap(
                 dmac_tid_stru          *pst_dmac_tid,
                 oal_uint8               uc_ampdu_max_num)
@@ -551,21 +321,7 @@ OAL_STATIC OAL_INLINE oal_void dmac_update_txba_session_params_ap(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_ba_update_start_seq_num
- 功能描述  : This function updates the start sequence number for the block-ack session
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月18日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  dmac_ba_update_start_seq_num(dmac_ba_tx_stru *pst_tx_ba, oal_uint16 us_seq_num)
 {
     pst_tx_ba->us_baw_start = us_seq_num;
@@ -575,42 +331,13 @@ OAL_STATIC OAL_INLINE oal_void  dmac_ba_update_start_seq_num(dmac_ba_tx_stru *ps
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_ba_is_tx_data_useful
- 功能描述  : This function checks whether the Transmitted Data frame is useful enough
-             to be buffered.
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月18日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_bool_enum_uint8 dmac_ba_is_tx_data_useful(dmac_ba_tx_stru *pst_tx_ba, oal_uint16 us_seq_num)
 {
    return dmac_ba_seqno_geq(us_seq_num, pst_tx_ba->us_baw_start);
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_reset_tx_ampdu_session
- 功能描述  : 删除AMPDU的相关信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月7日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void dmac_reset_tx_ampdu_session(
                 hal_to_dmac_device_stru    *pst_hal_device,
                 dmac_user_stru             *pst_dmac_user,
@@ -625,21 +352,7 @@ OAL_STATIC OAL_INLINE oal_void dmac_reset_tx_ampdu_session(
     pst_tid_queue->en_tx_mode = DMAC_TX_MODE_NORMAL;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_reset_tx_ba_state_prot
- 功能描述  : 删除HT相关的参数信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月7日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  dmac_reset_tx_ba_state_prot(
                 hal_to_dmac_device_stru    *pst_hal_device,
                 dmac_user_stru             *pst_dmac_user,
@@ -650,21 +363,7 @@ OAL_STATIC OAL_INLINE oal_void  dmac_reset_tx_ba_state_prot(
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_ba_addto_baw
- 功能描述  : 一个子mpdu加入ampdu 更新记录seq num的窗口
- 输入参数  : 无
- 输出参数  : return TRUE表示是重传包 不需要再加入窗口bitmap, FALSE表示不是重传包，加入baw bitmap
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月7日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_bool_enum_uint8 dmac_ba_addto_baw(dmac_ba_tx_stru *pst_tx_ba_handle)
 {
     oal_uint16    us_index;
@@ -697,21 +396,7 @@ OAL_STATIC OAL_INLINE oal_bool_enum_uint8 dmac_ba_addto_baw(dmac_ba_tx_stru *pst
     return OAL_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_ba_update_baw
- 功能描述  : 更新ba窗
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月9日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  dmac_ba_update_baw(dmac_ba_tx_stru *pst_tx_ba_handle, oal_uint16 us_seqno)
 {
     oal_uint16  us_index;

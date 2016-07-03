@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasXccSndXcall.c
-  版 本 号   : 初稿
-  作    者   : h00246512
-  生成日期   : 2014年09月15日
-  功能描述   : 1X CC发给XCAll的消息处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年9月15日
-    作    者   : h00246512
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -44,25 +29,7 @@ extern "C"{
   3 函数定义
 *****************************************************************************/
 /*lint -save -e958*/
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndXcallCallConnectInd
- 功能描述  : 给XCALL模块发送ID_XCC_XCALL_CALL_CONNECT_IND消息
- 输入参数  : pstCallInfo -- 呼叫信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月15日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndXcallCallConnectInd(
     CNAS_XCC_CALL_INFO_CTX_STRU        *pstCallInfo
 )
@@ -93,25 +60,7 @@ VOS_VOID CNAS_XCC_SndXcallCallConnectInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndXcallHangUpCallCnf
- 功能描述  : 给XCALL模块发送ID_XCC_XCALL_HANGUP_CALL_CNF消息
- 输入参数  : ucCallId -- 呼叫标识
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月15日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndXcallHangUpCallCnf(
     VOS_UINT8                           ucCallId
 )
@@ -142,28 +91,7 @@ VOS_VOID CNAS_XCC_SndXcallHangUpCallCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndXcallIncomingCallInd
- 功能描述  : 给XCALL模块发送ID_XCC_XCALL_INCOMING_CALL_IND消息
- 输入参数  : pstCallInfo -- 呼叫信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月15日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-  2.日    期   : 2014年11月12日
-    作    者   : L00256032
-    修改内容   : 1X SS Project修改
-
-  3.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndXcallIncomingCallInd(
     CNAS_XCC_CALL_INFO_CTX_STRU        *pstCallInfo
 )
@@ -251,25 +179,7 @@ VOS_VOID CNAS_XCC_SndXcallIncomingCallInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndXcallOrigCallCnf
- 功能描述  : 给XCALL模块发送ID_XCC_XCALL_ORIG_CALL_CNF消息
- 输入参数  : ucCallId -- 呼叫标识
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月15日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndXcallOrigCallCnf(
     VOS_UINT8                           ucCallId,
     TAF_XCC_FAIL_LAYER_ENUM_UINT8       enFailLayer,
@@ -316,28 +226,7 @@ VOS_VOID CNAS_XCC_SndXcallOrigCallCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndXcallCallDiscInd
- 功能描述  : 给XCALL模块发送ID_XCC_XCALL_CALL_DISC_IND消息
- 输入参数  : pstCallInfo -- 呼叫信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月15日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-  2.日    期   : 2014年12月1日
-    作    者   : w00176964
-    修改内容   : CDMA 1X Iteration 5 Modified
-
-  3.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndXcallCallDiscInd(
     VOS_UINT8                           ucCallId,
     VOS_UINT8                           ucConnectId,
@@ -376,25 +265,7 @@ VOS_VOID CNAS_XCC_SndXcallCallDiscInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndXcallAnswerCallCnf
- 功能描述  : 给XCALL模块发送ID_XCC_XCALL_ANSWER_CALL_CNF消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月15日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndXcallAnswerCallCnf(
     VOS_UINT8                           ucCallId,
     VOS_UINT8                           ucConRef,
@@ -433,25 +304,7 @@ VOS_VOID CNAS_XCC_SndXcallAnswerCallCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndXcallCodecCloseInd
- 功能描述  : 给XCALL模块发送ID_XCC_XCALL_CODEC_CLOSE_IND消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月15日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndXcallCodecCloseInd( VOS_VOID )
 {
     XCC_XCALL_CODEC_CLOSE_IND_STRU     *pstCodecCloseInd = VOS_NULL_PTR;
@@ -483,25 +336,7 @@ VOS_VOID CNAS_XCC_SndXcallCodecCloseInd( VOS_VOID )
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndXcallCodecOpenInd
- 功能描述  : 给XCALL模块发送ID_XCC_XCALL_CODEC_OPEN_IND消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月15日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndXcallCodecOpenInd(
     CNAS_XCC_CALL_INFO_CTX_STRU        *pstCallInfo
 )
@@ -531,25 +366,7 @@ VOS_VOID CNAS_XCC_SndXcallCodecOpenInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndXcallCodecChangedInd
- 功能描述  : 给XCALL模块发送ID_XCC_XCALL_CODEC_CHANGED_IND消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月15日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndXcallCodecChangedInd(
     CNAS_XCC_CALL_INFO_CTX_STRU        *pstCallInfo
 )
@@ -580,25 +397,7 @@ VOS_VOID CNAS_XCC_SndXcallCodecChangedInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndXcallSoCtrlMsgInd
- 功能描述  : 给XCALL模块发送ID_XCC_XCALL_SO_CTRL_MSG_IND消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月15日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndXcallSoCtrlMsgInd(
     CNAS_XCC_CALL_INFO_CTX_STRU        *pstCallInfo,
     VOS_UINT8                          *pucSoCtrlData,
@@ -639,25 +438,7 @@ VOS_VOID CNAS_XCC_SndXcallSoCtrlMsgInd(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndXcallSoCtrlOrderInd
- 功能描述  : 给XCALL模块发送ID_XCC_XCALL_SO_CTRL_ORDER_IND消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月15日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndXcallSoCtrlOrderInd(
     CNAS_XCC_CALL_INFO_CTX_STRU        *pstCallInfo,
     VOS_UINT8                           ucORDQ
@@ -691,21 +472,7 @@ VOS_VOID CNAS_XCC_SndXcallSoCtrlOrderInd(
 
 #if 0
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndXcallStartDtmfCnf
- 功能描述  : 给XCALL模块发送ID_XCC_XCALL_START_DTMF_CNF消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月15日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndXcallStartDtmfCnf(
     VOS_UINT8                           ucCallId,
     TAF_XCC_FAIL_LAYER_ENUM_UINT8       enFailLayer,
@@ -743,25 +510,7 @@ VOS_VOID CNAS_XCC_SndXcallStartDtmfCnf(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndXcallSendFlashCnf
- 功能描述  : 给XCALL模块发送ID_XCC_XCALL_SEND_FLASH_CNF消息
- 输入参数  : VOS_UINT8                           ucCallId,
-             TAF_XCC_CAUSE_ENUM_UINT32           enCause
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月10日
-    作    者   : L00256032
-    修改内容   : 1X SS Project修改
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndXcallSendFlashCnf(
     VOS_UINT8                           ucCallId,
     TAF_XCC_CAUSE_ENUM_UINT32           enCause
@@ -803,26 +552,7 @@ VOS_VOID CNAS_XCC_SndXcallSendFlashCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndXcallSendBurstDTMFCnf
- 功能描述  : 给XCALL模块发送ID_XCC_XCALL_BURST_DTMF_CNF消息
- 输入参数  : VOS_UINT8                           ucCallId
-             TAF_XCC_CAUSE_ENUM_UINT32           enCause
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月10日
-    作    者   : f279542
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndXcallSendBurstDTMFCnf(
     VOS_UINT8                           ucCallId,
     TAF_XCC_CAUSE_ENUM_UINT32           enCause
@@ -864,27 +594,7 @@ VOS_VOID CNAS_XCC_SndXcallSendBurstDTMFCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndXcallInfoRecInd
- 功能描述  : 给XCALL模块发送ID_XCC_XCALL_INFO_REC_IND消息
- 输入参数  : VOS_UINT8                                               ucCallId,
-             CAS_CNAS_1X_RX_TCH_MSG_TYPE_ENUM_UINT8                  enRxTcMsgType,
-             VOS_UINT8                                              *pucInfoRecData
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月10日
-    作    者   : y00307564
-    修改内容   : 1X SS Project新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndXcallInfoRecInd(
     VOS_UINT8                                               ucCallId,
     CAS_CNAS_1X_RX_TCH_MSG_TYPE_ENUM_UINT8                  enRxTcMsgType,
@@ -954,24 +664,7 @@ VOS_VOID CNAS_XCC_SndXcallInfoRecInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_FillInfoRecIndWithFWIM
- 功能描述  : 使用FWIM填充ID_XCC_XCALL_INFO_REC_IND消息
- 输入参数  : CNAS_XCC_FWIM_STRU                 *pstFWIM
- 输出参数  : XCC_XCALL_INFO_REC_IND_STRU        *pstInfoRecInd
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月10日
-    作    者   : y00307564
-    修改内容   : 1X SS Project新生成函数
-  2.日    期   : 2015年08月27日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear pc-lint warning
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_FillInfoRecIndWithFWIM(
     CNAS_XCC_FWIM_STRU                 *pstFWIM,
     XCC_XCALL_INFO_REC_IND_STRU        *pstInfoRecInd
@@ -990,24 +683,7 @@ VOS_VOID CNAS_XCC_FillInfoRecIndWithFWIM(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_FillInfoRecIndWithEFWIM
- 功能描述  : 使用EFWIM填充ID_XCC_XCALL_INFO_REC_IND消息
- 输入参数  : CNAS_XCC_EFWIM_STRU                *pstEFWIM
- 输出参数  : XCC_XCALL_INFO_REC_IND_STRU        *pstInfoRecInd
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月10日
-    作    者   : y00307564
-    修改内容   : 1X SS Project新生成函数
-  2.日    期   : 2015年08月27日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear pc-lint warning
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_FillInfoRecIndWithEFWIM(
     CNAS_XCC_EFWIM_STRU                *pstEFWIM,
     XCC_XCALL_INFO_REC_IND_STRU        *pstInfoRecInd
@@ -1026,24 +702,7 @@ VOS_VOID CNAS_XCC_FillInfoRecIndWithEFWIM(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_FillInfoRecIndWithAWIM
- 功能描述  : 使用AWIM填充ID_XCC_XCALL_INFO_REC_IND消息
- 输入参数  : CNAS_XCC_AWIM_STRU                 *pstAWIM
- 输出参数  : XCC_XCALL_INFO_REC_IND_STRU        *pstInfoRecInd
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月12日
-    作    者   : L00256032
-    修改内容   : 1X SS Project修改
-  2.日    期   : 2015年08月27日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear pc-lint warning
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_FillInfoRecIndWithAWIM(
     CNAS_XCC_AWIM_STRU                 *pstAWIM,
     XCC_XCALL_INFO_REC_IND_STRU        *pstInfoRecInd
@@ -1073,24 +732,7 @@ VOS_VOID CNAS_XCC_FillInfoRecIndWithAWIM(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_FillInfoRecIndWithEAWIM
- 功能描述  : 使用EAWIM填充ID_XCC_XCALL_INFO_REC_IND消息
- 输入参数  : CNAS_XCC_EAWIM_STRU                *pstEAWIM
- 输出参数  : XCC_XCALL_INFO_REC_IND_STRU        *pstInfoRecInd
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月12日
-    作    者   : L00256032
-    修改内容   : 1X SS Project修改
-  2.日    期   : 2015年08月27日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear pc-lint warning
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_FillInfoRecIndWithEAWIM(
     CNAS_XCC_EAWIM_STRU                *pstEAWIM,
     XCC_XCALL_INFO_REC_IND_STRU        *pstInfoRecInd
@@ -1120,21 +762,7 @@ VOS_VOID CNAS_XCC_FillInfoRecIndWithEAWIM(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_FillInfoRecIndInfoRecs
- 功能描述  : 填充XCC_XCALL_INFO_REC_IND_STRU中的information records
- 输入参数  : CNAS_XCC_INFO_RECS_STRU            *pstInfoRes,
- 输出参数  : XCC_XCALL_INFO_REC_IND_STRU        *pstInfoRecInd
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月12日
-    作    者   : y00307564
-    修改内容   : 1X SS Project新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_FillInfoRecIndInfoRecs(
     CNAS_XCC_INFO_RECS_STRU            *pstInfoRes,
     XCC_XCALL_INFO_REC_IND_STRU        *pstInfoRecInd
@@ -1251,24 +879,7 @@ VOS_VOID CNAS_XCC_FillInfoRecIndInfoRecs(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_FillInfoRecIndWithFNM
- 功能描述  : 使用FNM填充ID_XCC_XCALL_INFO_REC_IND消息
- 输入参数  : CNAS_XCC_FWIM_STRU                 *pstFWIM
- 输出参数  : XCC_XCALL_INFO_REC_IND_STRU        *pstInfoRecInd
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月27日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-  2.日    期   : 2015年08月27日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear pc-lint warning
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_FillInfoRecIndWithFNM(
     CNAS_XCC_FNM_STRU                  *pstFNM,
     XCC_XCALL_INFO_REC_IND_STRU        *pstInfoRecInd
@@ -1287,27 +898,7 @@ VOS_VOID CNAS_XCC_FillInfoRecIndWithFNM(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndXcallCschInfoRecInd
- 功能描述  : 给XCALL模块发送ID_XCC_XCALL_INFO_REC_IND消息
- 输入参数  : VOS_UINT8                                               ucCallId,
-             CAS_CNAS_1X_RX_COMMON_MSG_TYPE_ENUM_UINT8               enRxTcMsgType,
-             VOS_UINT8                                              *pucInfoRecData
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月27日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndXcallCschInfoRecInd(
     VOS_UINT8                                               ucCallId,
     CAS_CNAS_1X_RX_COMMON_MSG_TYPE_ENUM_UINT8               enRxCommMsgType,
@@ -1361,26 +952,7 @@ VOS_VOID CNAS_XCC_SndXcallCschInfoRecInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndXcallNdssResultInd
- 功能描述  : 给XCALL模块发送ID_XCC_XCALL_NDSS_RESULT_IND消息
- 输入参数  : enNdssResult
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年1月8日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndXcallNdssResultInd(
     XCC_XCALL_NDSS_RESULT_ENUM_UINT8    enNsddResult
 )
@@ -1416,27 +988,7 @@ VOS_VOID CNAS_XCC_SndXcallNdssResultInd(
 
 
 
-/*****************************************************************************
-Function Name   :   CNAS_XCC_SndXcallContDTMFInd
-Description     :   Sends ID_XCC_XCALL_CONT_DTMF_IND
 
-Input parameters:   VOS_UINT8                           ucCallId
-                    VOS_UINT8                           ucDigit
-                    VOS_UINT8                           ucSwitch
-
-Output parameters:  None
-Return Value    :   None
-
-Modify History:
-    1)  Date    :   2015-07-24
-        Author  :   K00902809
-        Modify content :    Create
-
-    2)  日    期   : 2015年08月20日
-        作    者   : t00323010
-        修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndXcallContDTMFInd(
     VOS_UINT8                           ucCallId,
     VOS_UINT8                           ucDigit,
@@ -1470,24 +1022,7 @@ VOS_VOID CNAS_XCC_SndXcallContDTMFInd(
 }
 
 
-/*****************************************************************************
-Function Name   :   CNAS_XCC_SndXcallBurstDtmfInd
-Description     :   The function is used to Send the Burst DTMF message to XCALL
-Input parameters:   ulEventType - Event type of the Receive Snd Burst DTMF Message.
-                    pstMsg      - Pointer to the message.
 
-Output parameters:  None
-Return Value    :   VOS_TRUE
-Modify History:
-    1)  Date    :   2015-07-24
-        Author  :   a00295761
-        Modify content :Create
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 
 VOS_VOID CNAS_XCC_SndXcallBurstDtmfInd(
     VOS_UINT8                           ucCallId,
@@ -1536,26 +1071,7 @@ VOS_VOID CNAS_XCC_SndXcallBurstDtmfInd(
     (VOS_VOID)PS_SEND_MSG(UEPS_PID_XCC, pstBurstDtmfInd);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndXcallSendContDTMFCnf
- 功能描述  : 给XCALL模块发送ID_XCC_XCALL_SEND_CONT_DTMF_CNF消息
- 输入参数  : VOS_UINT8                           ucCallId
-             TAF_XCC_CAUSE_ENUM_UINT32           enCause
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月25日
-    作    者   : l00324781
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年08月20日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndXcallSendContDTMFCnf(
     VOS_UINT8                           ucCallId,
     TAF_XCC_CAUSE_ENUM_UINT32           enCause
@@ -1600,21 +1116,7 @@ VOS_VOID CNAS_XCC_SndXcallSendContDTMFCnf(
 }
 
 #if (FEATURE_ON == FEATURE_CHINA_TELECOM_VOICE_ENCRYPT)
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndXcallEccServiceCnf
- 功能描述  : 给XCALL模块发送ID_XCC_XCALL_SEND_CONT_DTMF_CNF消息
- 输入参数  : TAF_XCC_CAUSE_ENUM_UINT32           enCause
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : l00359089
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndXcallEccServiceCnf(
     XCC_XCALL_ECC_SERVICE_RESULT_ENUM_UINT8           enRslt
 )
@@ -1655,21 +1157,7 @@ VOS_VOID CNAS_XCC_SndXcallEccServiceCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndXcallTchAssignCmplInd
- 功能描述  : 给XCALL模块发送 ID_XCC_XCALL_TCH_ASSIGN_CMPL_IND 消息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : l00359089
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndXcallTchAssignCmplInd(VOS_VOID)
 {
     XCC_XCALL_TCH_ASSIGN_CMPL_IND_STRU *pstTchAssignCmplInd = VOS_NULL_PTR;
@@ -1704,24 +1192,7 @@ VOS_VOID CNAS_XCC_SndXcallTchAssignCmplInd(VOS_VOID)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndXcallPrivacyModeSetCnf
- 功能描述  : 给XCALL模块发送privacy mode设置结果
- 输入参数  : enResult      -- 设置结果
-             ulModuleId    -- module标识；
-             usClientId    -- client标识；
-             usOpId        -- 操作标识；
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月24日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndXcallPrivacyModeSetCnf(
     XCC_XCALL_RESULT_ENUM_UINT32        enResult,
     VOS_UINT32                          ulModuleId,
@@ -1764,24 +1235,7 @@ VOS_VOID CNAS_XCC_SndXcallPrivacyModeSetCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndXcallPrivacyModeQryCnf
- 功能描述  : 给XCALL模块发送privacy mode查询结果
- 输入参数  : enPrivacyMode -- privacy mode
-             ulModuleId    -- module标识；
-             usClientId    -- client标识；
-             usOpId        -- 操作标识；
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月24日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndXcallPrivacyModeQryCnf(
     XCALL_XCC_PRIVACY_MODE_ENUM_UINT8   enPrivacyMode,
     VOS_UINT32                          ulModuleId,
@@ -1823,23 +1277,7 @@ VOS_VOID CNAS_XCC_SndXcallPrivacyModeQryCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndXcallPrivacyModeInd
- 功能描述  : 通知XCALL privacy mode发生变更
- 输入参数  : enPrivacyMode -- privacy mode
-             ucCallId      -- call Id
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年12月24日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndXcallPrivacyModeInd(
     XCALL_XCC_PRIVACY_MODE_ENUM_UINT8   enPrivacyModeSetting,
     XCALL_XCC_PRIVACY_MODE_ENUM_UINT8   enCallPrivacyMode,

@@ -263,23 +263,7 @@ static void hifi_misc_msg_info(unsigned short _msg_id)
 	return;
 }
 
-/*****************************************************************************
- 函 数 名  : hifi_misc_async_write
- 功能描述  : Hifi MISC 设备异步发送接口，将异步消息发给Hifi，非阻塞接口
- 输入参数  :
-			 unsigned char *arg  :需要下发的数据buff指针
-			 unsigned int len	 :下发的数据长度
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史	   :
-  1.日	  期   : 2012年8月1日
-	作	  者   : 夏青 00195127
-	修改内容   : 新生成函数
-
-*****************************************************************************/
 static int hifi_misc_async_write(unsigned char *arg, unsigned int len)
 {
 	int ret = OK;
@@ -305,23 +289,7 @@ END:
 	return ret;
 }
 
-/*****************************************************************************
- 函 数 名  : hifi_misc_sync_write
- 功能描述  : Hifi MISC 设备同步发送接口，将同步消息发给Hifi，阻塞接口
- 输入参数  :
-			 unsigned char	*buff  :需要下发的数据buff指针
-			 unsigned int len	  :下发的数据长度
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
 
- 修改历史	   :
-  1.日	  期   : 2012年8月1日
-	作	  者   : 夏青 00195127
-	修改内容   : 新生成函数
-
-*****************************************************************************/
 static int hifi_misc_sync_write(unsigned char  *buff, unsigned int len)
 {
 	int ret = OK;
@@ -454,24 +422,7 @@ static void hifi_misc_mesg_process(void *cmd)
 
 	return;
 }
-/*****************************************************************************
- 函 数 名  : hifi_misc_handle_mail
- 功能描述  : Hifi MISC 设备双核通信接收中断处理函数
-			约定收到HIIF邮箱消息的首4个字节是MSGID
- 输入参数  : void *usr_para			: 注册时传递的参数
-			 void *mail_handle			: 邮箱数据参数
-			 unsigned int mail_len		: 邮箱数据长度
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史	   :
-  1.日	  期   : 2012年8月1日
-	作	  者   : 夏青 00195127
-	修改内容   : 新生成函数
-
-*****************************************************************************/
 static void hifi_misc_handle_mail(void *usr_para, void *mail_handle, unsigned int mail_len)
 {
 	unsigned int ret_mail			= 0;
@@ -571,23 +522,7 @@ END:
 	return;
 }
 
-/*****************************************************************************
- 函 数 名  : hifi_dsp_get_input_param
- 功能描述  : 获取用户空间入参，并转换为内核空间入参
- 输入参数  : usr_para_size，用户空间入参SIZE
-			usr_para_addr，用户空间入参地址
- 输出参数  : krn_para_size，转换后的内核空间入参SIZE
-			krn_para_addr，转换后的内核空间入参地址
- 返 回 值  : OK / ERROR
- 调用函数  :
- 被调函数  :
 
- 修改历史	   :
-  1.日	  期   : 2012年3月26日
-	作	  者   : s00212991
-	修改内容   : 新生成函数
-
-*****************************************************************************/
 static int hifi_dsp_get_input_param(unsigned int usr_para_size, void *usr_para_addr,
 									unsigned int *krn_para_size, void **krn_para_addr)
 {
@@ -640,21 +575,7 @@ ERR:
 	return ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : hifi_dsp_get_input_param_free
- 功能描述  : 释放分配的内核空间
- 输入参数  : krn_para_addr，待释放的内核空间地址
- 输出参数  : 无
- 返 回 值  : OK / ERROR
- 调用函数  :
- 被调函数  :
 
- 修改历史	   :
-  1.日	  期   : 2012年3月26日
-	作	  者   : s00212991
-	修改内容   : 新生成函数
-
-*****************************************************************************/
 static void hifi_dsp_get_input_param_free(void **krn_para_addr)
 {
 	IN_FUNCTION;
@@ -670,23 +591,7 @@ static void hifi_dsp_get_input_param_free(void **krn_para_addr)
 	return;
 }
 
-/*****************************************************************************
- 函 数 名  : hifi_dsp_get_output_param
- 功能描述  : 内核空间出参转换为用户空间出参
- 输入参数  : krn_para_size，转换后的内核空间出参SIZE
-			krn_para_addr，转换后的内核空间出参地址
- 输出参数  : usr_para_size，用户空间出参SIZE
-			usr_para_addr，用户空间出参地址
- 返 回 值  : OK / ERROR
- 调用函数  :
- 被调函数  :
 
- 修改历史	   :
-  1.日	  期   : 2012年3月26日
-	作	  者   : s00212991
-	修改内容   : 新生成函数
-
-*****************************************************************************/
 static int hifi_dsp_get_output_param(unsigned int krn_para_size, void *krn_para_addr,
 									 unsigned int *usr_para_size, void __user *usr_para_addr)
 {
@@ -741,21 +646,7 @@ END:
 	return ret;
 }
 
-/*****************************************************************************
- 函 数 名  : hifi_dsp_async_cmd
- 功能描述  : Hifi MISC IOCTL异步命令处理函数
- 输入参数  : unsigned long arg : ioctl的入参
- 输出参数  : 无
- 返 回 值  : 成功:OK 失败:BUSY
- 调用函数  :
- 被调函数  :
 
- 修改历史	   :
-  1.日	  期   : 2013年3月18日
-	作	  者   : 石旺来 00212991
-	修改内容   : 新生成函数
-
-*****************************************************************************/
 static int hifi_dsp_async_cmd(unsigned long arg)
 {
 	int ret = OK;
@@ -799,21 +690,7 @@ END:
 	return ret;
 }
 
-/*****************************************************************************
- 函 数 名  : hifi_dsp_sync_cmd
- 功能描述  : Hifi MISC IOCTL同步命令处理函数
- 输入参数  : unsigned long arg : ioctl的入参
- 输出参数  : 无
- 返 回 值  : 成功:OK 失败:BUSY
- 调用函数  :
- 被调函数  :
 
- 修改历史	   :
-  1.日	  期   : 2013年3月18日
-	作	  者   : 石旺来 00212991
-	修改内容   : 新生成函数
-
-*****************************************************************************/
 static int hifi_dsp_sync_cmd(unsigned long arg)
 {
 	int ret = OK;
@@ -877,7 +754,7 @@ static int hifi_dsp_sync_cmd(unsigned long arg)
 
 	if (copy_to_user((void*)arg, &param, sizeof(struct misc_io_sync_param))) {
 		loge("copy_to_user fail.\n");
-		ret = ERROR;
+		ret = COPYFAIL;
 		goto END;
 	}
 
@@ -889,21 +766,7 @@ END:
 	return ret;
 }
 
-/*****************************************************************************
- 函 数 名  : hifi_dsp_get_phys_cmd
- 功能描述  : Hifi MISC IOCTL获取物理地址
- 输入参数  : unsigned long arg : ioctl的入参
- 输出参数  : 无
- 返 回 值  : 成功:OK 失败:BUSY
- 调用函数  :
- 被调函数  :
 
- 修改历史	   :
-  1.日	  期   : 2013年3月18日
-	作	  者   : 石旺来 00212991
-	修改内容   : 新生成函数
-
-*****************************************************************************/
 static int hifi_dsp_get_phys_cmd(unsigned long arg)
 {
 	int ret  =	OK;
@@ -942,42 +805,14 @@ static int hifi_dsp_get_phys_cmd(unsigned long arg)
 	return ret;
 }
 
-/*****************************************************************************
- 函 数 名  : hifi_dsp_senddata_sync_cmd
- 功能描述  : Hifi MISC IOCTL发送数据同步命令处理函数
- 输入参数  : unsigned long arg : ioctl的入参
- 输出参数  : 无
- 返 回 值  : 成功:OK 失败:BUSY
- 调用函数  :
- 被调函数  :
 
- 修改历史	   :
-  1.日	  期   : 2013年3月18日
-	作	  者   : 石旺来 00212991
-	修改内容   : 新生成函数
-
-*****************************************************************************/
 static int hifi_dsp_senddata_sync_cmd(unsigned long arg)
 {
 	loge("this cmd is not supported by now .\n");
 	return ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : hifi_dsp_wakeup_read_thread
- 功能描述  : 唤醒read线程, 返回RESET消息
- 输入参数  : unsigned long arg : ioctl的入参
- 输出参数  : 无
- 返 回 值  : 成功:OK 失败:BUSY
- 调用函数  :
- 被调函数  :
 
- 修改历史	   :
-  1.日	  期   : 2014年4月24日
-	作	  者   : 张恩忠 00222844
-	修改内容   : 新生成函数
-
-*****************************************************************************/
 static int hifi_dsp_wakeup_read_thread(unsigned long arg)
 {
 	struct recv_request *recv = NULL;
@@ -1021,21 +856,7 @@ static int hifi_dsp_wakeup_read_thread(unsigned long arg)
 	return OK;
 }
 
-/*****************************************************************************
- 函 数 名  : hifi_dsp_write_param
- 功能描述  : 将用户态算法参数拷贝到HIFI中
- 输入参数  : unsigned long arg : ioctl的入参
- 输出参数  : 无
- 返 回 值  : 成功:OK 失败:BUSY
- 调用函数  :
- 被调函数  :
 
- 修改历史	   :
-  1.日	  期   : 2013年10月24日
-	作	  者   : 侯良军 00215385
-	修改内容   : 新生成函数
-
-*****************************************************************************/
 static int hifi_dsp_write_param(unsigned long arg)
 {
 	int ret = OK;
@@ -1093,67 +914,21 @@ error1:
 	return ret;
 }
 
-/*****************************************************************************
- 函 数 名  : hifi_misc_open
- 功能描述  : Hifi MISC 设备打开操作
- 输入参数  : struct inode *finode  :设备节点信息
-			 struct file *fd	:对应设备fd
- 输出参数  : 无
- 返 回 值  : 成功:OK 失败:BUSY
- 调用函数  :
- 被调函数  :
 
- 修改历史	   :
-  1.日	  期   : 2012年8月1日
-	作	  者   : 夏青 00195127
-	修改内容   : 新生成函数
-
-*****************************************************************************/
 static int hifi_misc_open(struct inode *finode, struct file *fd)
 {
 	logi("open device.\n");
 	return OK;
 }
 
-/*****************************************************************************
- 函 数 名  : hifi_misc_release
- 功能描述  : Hifi MISC 设备不再使用时释放函数
- 输入参数  : struct inode *finode  :设备节点信息
-			 struct file *fd	:对应设备fd
- 输出参数  : 无
- 返 回 值  : OK
- 调用函数  :
- 被调函数  :
 
- 修改历史	   :
-  1.日	  期   : 2012年8月1日
-	作	  者   : 夏青 00195127
-	修改内容   : 新生成函数
-
-*****************************************************************************/
 static int hifi_misc_release(struct inode *finode, struct file *fd)
 {
 	logi("close device.\n");
 	return OK;
 }
 
-/*****************************************************************************
- 函 数 名  : hifi_misc_ioctl
- 功能描述  : Hifi MISC 设备提供给上层与设备交互的控制通道接口
- 输入参数  : struct file *fd  :对应fd
-			 unsigned int cmd	:cmd类型
-			 unsigned long arg	:上层传下来的buff地址
- 输出参数  : 无
- 返 回 值  : 成功:OK 失败:ERROR
- 调用函数  :
- 被调函数  :
 
- 修改历史	   :
-  1.日	  期   : 2012年8月1日
-	作	  者   : 夏青 00195127
-	修改内容   : 新生成函数
-
-*****************************************************************************/
 static long hifi_misc_ioctl(struct file *fd,
 							unsigned int cmd,
 							unsigned long arg)
@@ -1292,28 +1067,7 @@ static int hifi_misc_mmap(struct file *file, struct vm_area_struct *vma)
 	return ret;
 }
 
-/*****************************************************************************
- 函 数 名  : hifi_misc_proc_read
- 功能描述  : 用于将Hifi MISC 设备接收Hifi的消息/数据通过文件的方式递交给用户
-			 态
- 输入参数  : char *pg	:系统自动填充的用以填充数据的buff，为系统申请的一页
-			 char**start  :指示读文件的起始位置，page的偏移量
-			 off_t off	  :读文件时page的偏移，当*start存在时，
-						   off会被系统忽略而认为*start就是off
-			 int count	  :表示读多少字节
-			 int *eof	  :读动作是否停止下发标志
-			 void *data   :保留为驱动内部使用
- 输出参数  : 无
- 返 回 值  : 尚未读取部分的长度,如果长度大于4K则返回ERROR
- 调用函数  :
- 被调函数  :
 
- 修改历史	   :
-  1.日	  期   : 2012年8月1日
-	作	  者   : 夏青 00195127
-	修改内容   : 新生成函数
-
-*****************************************************************************/
 static ssize_t hifi_misc_proc_read(struct file *file, char __user *buf,
 								   size_t count, loff_t *ppos)
 {
@@ -1626,21 +1380,7 @@ void reset_audio_clk_work(struct work_struct *work)
 	logi("%s--\n",__FUNCTION__);
 }
 #endif
-/*****************************************************************************
- 函 数 名  : hifi_misc_probe
- 功能描述  : Hifi MISC设备探测注册函数
- 输入参数  : struct platform_device *pdev
- 输出参数  : 无
- 返 回 值  : 成功:OK 失败:ERROR
- 调用函数  :
- 被调函数  :
 
- 修改历史	   :
-  1.日	  期   : 2012年8月1日
-	作	  者   : 夏青 00195127
-	修改内容   : 新生成函数
-
-*****************************************************************************/
 static int hifi_misc_probe (struct platform_device *pdev)
 {
 	int ret = OK;
@@ -1763,21 +1503,7 @@ ERR:
 	return ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : hifi_misc_remove
- 功能描述  : Hifi MISC 设备移除
- 输入参数  : struct platform_device *pdev
- 输出参数  : 无
- 返 回 值  : OK
- 调用函数  :
- 被调函数  :
 
- 修改历史	   :
-  1.日	  期   : 2012年8月1日
-	作	  者   : 夏青 00195127
-	修改内容   : 新生成函数
-
-*****************************************************************************/
 static int hifi_misc_remove(struct platform_device *pdev)
 {
 	IN_FUNCTION;

@@ -1,17 +1,4 @@
-/*************************************************************************
-*   版权所有(C) 1987-2012, 深圳华为技术有限公司.
-*
-*   文 件 名 :  ipf_balong.c
-*
-*   作    者 :  luting chendongyue
-*
-*   描    述 :  本文主要完成IP过滤接口函数，实现上行和下行的IP过滤功能
-*
-*   修改记录 :  2011年1月11日  v1.00  luting  创建
-*                            2012年11月23日v2.00 chendongyue 修改
-*                            2013年3月29日v2.10 chendongyue 修改
-*                             2014年9月25日  v3.00 longyi修改，a/c核拆分
-*************************************************************************/
+
 /*lint -save -e429 -e529 -e534 -e550 -e650 -e661 -e715 -e537  -e737 -e539 -e574 -e239 -e438 -e701 -e740 -e958 -e451
 -e64 -e732 -e740 -e801 -e830 -e530 -e775 -e414 -e525
 */
@@ -745,7 +732,6 @@ int ipf_init(void)
 
     g_stIpfDl.u32IdleBd = IPF_DLBD_DESC_SIZE;
 	
-    /*s00219058 共享内存 下行CD读指针 初始化为0*/
     /* 申请扩展过滤器的内存, 配置扩展过滤器的基址 */
     g_pstExFilterAddr = (IPF_MATCH_INFO_S*)IPF_EXT_FILTER_ADDR;
     memset_s((void*)g_pstExFilterAddr, EXFLITER_NUM*sizeof(IPF_MATCH_INFO_S), 0x0, EXFLITER_NUM*sizeof(IPF_MATCH_INFO_S));
@@ -2183,28 +2169,7 @@ int mdrv_ipf_config_adthred (unsigned int u32UlADThr, unsigned int u32DlADThr)
 
 
 
-/*****************************************************************************
-* 函 数 名     : BSP_IPF_SetFilter
-*
-* 功能描述  : 用来配置所有的Filter
-*
-* 输入参数  : unsigned char eFilterChainhead 过滤器链首/过滤器链号
-*                           IPF_FILTER_CONFIG_S *pFilterInfo  Filter配置结构体指针
-*                           unsigned int u32FilterNum   Filter个数
-*
-* 输出参数  : 无
-* 返 回 值      : IPF_SUCCESS                      配置成功
-*                            BSP_ERR_IPF_NOT_INIT             模块未初始化
-*                            BSP_ERR_IPF_FILTER_NOT_ENOUGH    Filter个数不够
-*                            BSP_ERR_IPF_INVALID_PARA         参数错误
-*
-* 修改记录  :2011年1月11日   鲁婷  创建
-                            2011年3月30日   鲁婷  修改
-                            2011年11月30日   鲁婷  修改
-                            2012年11月24日陈东岳c00228781修改
-							2014年1月23日v1.01 陈东岳 修改 由于K3V3总线设计问题，
-							无法在m3上进行低功耗恢复，移动到A9上进行。
-*****************************************************************************/
+
 int mdrv_ipf_set_filter(IPF_FILTER_CHAIN_TYPE_E eFilterChainhead, 
 	IPF_FILTER_CONFIG_S *pstFilterInfo, unsigned int u32FilterNum)
 {
@@ -2492,11 +2457,7 @@ int ipf_config_dlbd(unsigned int u32Num, IPF_CONFIG_DLPARAM_S* pstDlPara)
     ipf_check_filter_restore();
 #endif
 	
-    /*
-    chendongyue c00228781: DTS2013061501582
-    检测每个BD中数据的有效性，本来这里应该由上层保证，
-    但是出了BUG令BD长度为0，故在这里进行规避
-    */
+    
     for(i = 0; i < u32Num; i++)
     {
         if(0 == pstDlPara[i].u16Len)

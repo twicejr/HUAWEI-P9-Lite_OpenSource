@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafCbaCtx.h
-  版 本 号   : 初稿
-  作    者   : z40661
-  生成日期   : 2012年3月17日
-  最近修改   :
-  功能描述   : TafCbaCtx.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年3月17日
-    作    者   : z40661
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __TAFCBACTX_H__
 #define __TAFCBACTX_H__
@@ -75,13 +58,7 @@ extern "C" {
   3 枚举定义
 *****************************************************************************/
 
-/*****************************************************************************
- 枚举名    : TAF_CBA_CBSTATUS_ENUM_UINT8
- 结构说明  :  用户配置的CBS功能使能情况
- 1.日    期   : 2012年03月17日
-   作    者   : zhoujun 40661
-   修改内容   : 新增加枚举类型
-*****************************************************************************/
+
 enum TAF_CBA_CBSSTATUS_ENUM
 {
     TAF_CBA_CBSTATUS_DISABLE             = 0x00,                                /* CBS功能未使能 */
@@ -93,13 +70,7 @@ enum TAF_CBA_CBSSTATUS_ENUM
 typedef VOS_UINT8 TAF_CBA_CBSTATUS_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名    : TAF_CBA_NET_RAT_TYPE_ENUM_UINT8
- 结构说明  : 接入技术的枚举值
- 1.日    期   : 2012年03月19日
-   作    者   : zhoujun 40661
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_CBA_NET_RAT_TYPE_ENUM
 {
     TAF_CBA_NET_RAT_TYPE_GSM,                                                   /* GSM接入技术 */
@@ -109,13 +80,7 @@ enum TAF_CBA_NET_RAT_TYPE_ENUM
 };
 typedef VOS_UINT8 TAF_CBA_NET_RAT_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : TAF_CBA_READ_SIM_FILES_FLG_ENUM_UINT8
- 结构说明  : 开机时读取USIM卡中CBS相关卡文件的标记
- 1.日    期   : 2012年03月28日
-   作    者   : w00176964
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_CBA_READ_SIM_FILES_FLG_ENUM
 {
     TAF_CBA_READ_SIM_FILES_FLG_NULL                                      = 0x00,/* 初始读取标记, 表示不读取任何USIM文件 */
@@ -127,13 +92,7 @@ enum TAF_CBA_READ_SIM_FILES_FLG_ENUM
 typedef VOS_UINT8 TAF_CBA_READ_SIM_FILES_FLG_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名    : TAF_CBA_DUP_DETECT_CFG_ENUM_UINT8
- 结构说明  : CBS重复过滤开关的枚举值
- 1.日    期   : 2012年12月04日
-   作    者   : L00171473
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_CBA_DUP_DETECT_CFG_ENUM
 {
     TAF_CBA_DUP_DETECT_CFG_ALL_ENABLE                       = 0,    /* 都需要重复检测, 包括上报到应用的CBS(含ETWS), 和下载到USIM的CBS */
@@ -163,14 +122,7 @@ typedef VOS_UINT8 TAF_CBA_DUP_DETECT_CFG_ENUM_UINT8;
   7 STRUCT定义
 *****************************************************************************/
 
-/*****************************************************************************
- 结构名    : TAF_CBA_USIM_EFCBMI_FILE_INFO_STRU
- 结构说明  : USIM中EFCBMI 文件的状态信息
-             EFCBMI (Cell Broadcast Message identifier selection),参见3GPP 31.102
- 1.日    期   : 2012年03月17日
-   作    者   : z40661
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucEfCbmiExistFlg;                       /* USIM中是否存在EFCBMI 文件的标志, VOS_TRUE: 存在, VOS_FALSE: 不存在 */
@@ -178,14 +130,7 @@ typedef struct
     VOS_UINT16                          usEfCbmiFileLen;                        /* 从EFCBMI 文件中读取的数据的实际长度, EF文件长度(对二进制来说是文件长度，对其它文件来说是记录长度) */
 }TAF_CBA_USIM_EFCBMI_FILE_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_CBA_USIM_EFCBMIR_FILE_INFO_STRU
- 结构说明  : USIM中EFCBMIR 文件的状态信息
-             EFCBMIR (Cell Broadcast Message Identifier Range selection),参见3GPP 31.102
- 1.日    期   : 2012年03月17日
-   作    者   : z40661
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucEfCbmirExistFlg;                      /* USIM中是否存在EFCBMIR 文件的标志,  VOS_TRUE: 存在, VOS_FALSE: 不存在  */
@@ -193,14 +138,7 @@ typedef struct
     VOS_UINT16                          usEfCbmirFileLen;                       /* 从EFCBMIR 文件中读取的数据的实际长度 , EF文件长度(对二进制来说是文件长度，对其它文件来说是记录长度) */
 }TAF_CBA_USIM_EFCBMIR_FILE_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_CBA_USIM_EFCBMID_FILE_INFO_STRU
- 结构说明  : USIM模块中EFCBMID的内容
-             EFCBMID (Cell Broadcast Message Identifier for Data Download),参见3GPP 31.102
- 1.日    期   : 2012年03月17日
-   作    者   : z40661
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucEfCbmidExistFlg;                      /* USIM中是否存在EFCBMID 文件的标志, VOS_TRUE: 存在, VOS_FASLE: 不存在 */
@@ -209,20 +147,7 @@ typedef struct
 }TAF_CBA_USIM_EFCBMID_FILE_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : TAF_CBA_SIM_INFO_STRU
- 结构说明  : CBS模块需要记录的SIM卡的信息
- 1.日    期   : 2012年03月17日
-   作    者   : z40661
-   修改内容   : 新建
- 2.日    期   : 2012年03月29日
-   作    者   : w00176964
-   修改内容   : 调整读取USIM文件的状态为读取标记
- 3.日    期   : 2013年6月26日
-   作    者   : f62575
-   修改内容   : V9R1 STK升级，删除ucReadSimFileFlg
 
-*****************************************************************************/
 typedef struct
 {
     TAF_CBA_USIM_EFCBMI_FILE_INFO_STRU                      stEfCbmiFileInfo;   /* 记录USIM中的Cbmir文件信息 */
@@ -230,13 +155,7 @@ typedef struct
     TAF_CBA_USIM_EFCBMID_FILE_INFO_STRU                     stEfCbmidFileInfo;  /* 记录USIM中的Cbmid文件信息 */
 }TAF_CBA_SIM_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_CBA_CBMI_DOWNLOAD_LIST_STRU
- 结构说明  : CBMID List的信息
- 1.日    期   : 2012年03月17日
-   作    者   : z40661
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usCbmidNum;                             /* 所包含的广播id的总数量 */
@@ -244,19 +163,7 @@ typedef struct
     VOS_UINT16                          ausMsgId[TAF_CBA_MAX_CBMID_NUM];        /* 具体的广播消息id */
 }TAF_CBA_CBMI_DOWNLOAD_LIST_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_CBA_MS_CFG_CBS_INFO_STRU
- 结构说明  : 用户配置的CBS信息
- 1.日    期   : 2012年03月17日
-   作    者   : z40661
-   修改内容   : 新建
- 2.日    期   : 2012年12月4日
-   作    者   : l00171473
-   修改内容   : for DTS2012120600056, 通过NV项控制是否需要对CBS做重复过滤
- 3.日    期   : 2012年12月10日
-   作    者   : l00171473
-   修改内容   : for DTS2012120609682,终端要求CBS统一上报88个字节
-*****************************************************************************/
+
 typedef struct
 {
     TAF_CBA_CBSTATUS_ENUM_UINT8                             enCbStatus;         /* CBS业务是否启用标志 */
@@ -271,13 +178,7 @@ typedef struct
     TAF_CBA_CBMI_DOWNLOAD_LIST_STRU                         stCbMiDownloadList; /* sim卡指定的用于Data Download到卡的消息的ID */
 }TAF_CBA_MS_CFG_CBS_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_CBA_ENH_DUP_DETECT_TIME_LEN_CFG_STRU
- 结构说明  : 增强型重复检测开启时，重复检测时长的配置项
- 1.日    期   : 2012年3月08日
-   作    者   : l00171473
-   修改内容   : 新建 for V7R1C50 CSFB&PPAC&ETWS&ISR
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulSpecMccTimeLen;                       /* 单位:秒, 定制特性激活时主/从通知的MCC在指定Mcc中则使用此重复检测时长 */
@@ -285,13 +186,7 @@ typedef struct
     VOS_UINT32                          aulSpecMcc[TAF_CBA_MAX_ETWS_DUP_DETECT_SPEC_MCC_NUM];  /* 定制特性相关的MCC */
 }TAF_CBA_ENH_DUP_DETECT_TIME_LEN_CFG_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_CBA_DUPLI_DETECT_TIME_LEN_CFG_UNION
- 结构说明  : 重复检测时长相关的配置项
- 1.日    期   : 2012年3月08日
-   作    者   : z40661
-   修改内容   : 新建 for V7R1C50 CSFB&PPAC&ETWS&ISR
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                               ucEnhDupDetectFlg;  /* DoCoMo增强的重复检测定制特性是否激活, VOS_TRUE:激活,VOS_FALSE:未激活 */
@@ -301,26 +196,14 @@ typedef struct
 }TAF_CBA_DUP_DETECT_CFG_STRU;
 
 
-/*****************************************************************************
- 结构名    : TAF_CBA_ETWS_MSGID_RANGE_STRU
- 结构说明  : 用户定制的ETWS消息的 MSG ID范围
- 1.日    期   : 2012年3月08日
-   作    者   : l00171473
-   修改内容   : 新建 for V7R1C50 CSFB&PPAC&ETWS&ISR
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usMsgIdFrom;                            /*Cell broadcast message id value range from  */
     VOS_UINT16                          usMsgIdTo;                              /*Cell broadcast message id value range to    */
 }TAF_CBA_ETWS_MSGID_RANGE_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_CBA_MS_CFG_ETWS_INFO_STRU
- 结构说明  : 用户配置的ETWS的信息
- 1.日    期   : 2012年3月08日
-   作    者   : l00171473
-   修改内容   : 新建 for V7R1C50 CSFB&PPAC&ETWS&ISR
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                               ucEtwsEnableFlg;    /* ETWS特性开关, VOS_TRUE:开启, VOS_FALSE:未开启 */
@@ -334,13 +217,7 @@ typedef struct
 }TAF_CBA_MS_CFG_ETWS_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : TAF_CBA_RECORD_STRU
- 结构说明  : 保存主从通知/CBS的信息的结构
- 1.日    期   : 2012年2月27日
-   作    者   : l00171473
-   修改内容   : 新建 for V7R1C50 CSFB&PPAC&ETWS&ISR
-*****************************************************************************/
+
 typedef struct
 {
     TAF_CBA_NET_RAT_TYPE_ENUM_UINT8     enNetMode;                              /* 接收到此条CBS消息的接入技术 */
@@ -355,13 +232,7 @@ typedef struct
     VOS_UINT32                          ulRcvTimeTick;                          /* 收到消息时的时间戳, 取自 VOS_GetTick, 单位: 10 ms */
 }TAF_CBA_RECORD_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_CBA_NETWORK_INFO_STRU
- 结构说明  : 网络信息, 包括接入模式; PLMN ID; SA;CELL ID
- 1.日    期   : 2012年3月2日
-   作    者   : l00171473
-   修改内容   : 新建 for V7R1C50 CSFB&PPAC&ETWS&ISR
-*****************************************************************************/
+
 typedef struct
 {
     TAF_CBA_NET_RAT_TYPE_ENUM_UINT8     enCurrNetRatType;                       /* 网络模式 */
@@ -375,13 +246,7 @@ typedef struct
     VOS_UINT32                          ulCellId;                               /* 小区ID  */
 }TAF_CBA_NETWORK_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_CBA_RECORD_LIST_STRU
- 结构说明  : CBS及ETWS历史记录信息
- 1.日    期   : 2012年3月2日
-   作    者   : l00171473
-   修改内容   : 新建 for V7R1C50 CSFB&PPAC&ETWS&ISR
-*****************************************************************************/
+
 typedef struct
 {
 #if (FEATURE_ETWS == FEATURE_ON)
@@ -396,13 +261,7 @@ typedef struct
     TAF_CBA_RECORD_STRU                 astRcvCbsList[TAF_CBA_MAX_CBS_RECORD_NUM];  /* CBS(包括ETWS从通知)历史记录表 */
 }TAF_CBA_RECORD_LIST_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_CBA_CTX_STRU
- 结构说明  : CBS及ETWS网络信息
- 1.日    期   : 2012年3月2日
-   作    者   : l00171473
-   修改内容   : 新建 for V7R1C50 CSFB&PPAC&ETWS&ISR
-*****************************************************************************/
+
 typedef struct
 {
     TAF_CBA_SIM_INFO_STRU               stCbsSimInfo;                           /* CBS模块SIM卡相关信息 */
@@ -457,10 +316,6 @@ TAF_CBA_USIM_EFCBMIR_FILE_INFO_STRU* TAF_CBA_GetEfCbmiRangeInfo(VOS_VOID);
 
 TAF_CBA_USIM_EFCBMID_FILE_INFO_STRU* TAF_CBA_GetEfCbmidInfo(VOS_VOID);
 
-/* Deleted TAF_CBA_SetReadUsimFileFlg by f62575 for V9R1 STK升级, 2013-6-26 */
-/* Deleted TAF_CBA_GetReadUsimFileFlg by f62575 for V9R1 STK升级, 2013-6-26 */
-/* Deleted TAF_CBA_ClearReadUsimFileFlg by f62575 for V9R1 STK升级, 2013-6-26 */
-/* Deleted TAF_CBA_ClearAllReadUsimFilesFlg by f62575 for V9R1 STK升级, 2013-6-26 */
 
 TAF_CBA_MS_CFG_CBS_INFO_STRU* TAF_CBA_GetMsCfgCbsInfo(VOS_VOID);
 

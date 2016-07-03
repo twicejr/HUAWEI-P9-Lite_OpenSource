@@ -1,14 +1,4 @@
-/*************************************************************************
-*   版权所有(C) 2008-2013, 深圳华为技术有限公司.
-*
-*   文 件 名 :  memrepair_balong.c
-*
-*   作    者    :  z00228752
-*
-*   描    述    :  本文件主要实现modem memrepair
-*
-*   修改记录 :  2014年3月12日 创建
-*************************************************************************/
+
 /*lint -save -e801*/
 #include <product_config.h>
 #include <osl_types.h>
@@ -159,7 +149,7 @@ int modem_memrepair_hi3650(modem_memrepair_ip module)
     do{
         reg_value = (readl(apsctrl_base + 0x228) & ((u32)0x1<<bit));
         new_slice = bsp_get_slice_value_hrt();
-    }while((reg_value == 0)&&(get_timer_slice_delta(timestamp, new_slice) < MEMRAIR_START_TIMEOUT_SLICE));/*手册是30us，edit by x00195528*/
+    }while((reg_value == 0)&&(get_timer_slice_delta(timestamp, new_slice) < MEMRAIR_START_TIMEOUT_SLICE));
     if(reg_value == 0){
         g_memrepair.errno |= (0x1 << 1);
         mr_print_error("module %d memrepair not start, timeout,wait slice is %x\n",module,(new_slice - timestamp));
@@ -172,7 +162,7 @@ int modem_memrepair_hi3650(modem_memrepair_ip module)
         //bus_stat = get_hi_ap_sctrl_scmrbbusystat_mrb_efuse_busy() & (1<<bit);/*304*/
         reg_value = (readl(apsctrl_base + 0x304) & ((u32)0x1<<bit));
         new_slice = bsp_get_slice_value_hrt();
-    }while((reg_value != 0)&&(get_timer_slice_delta(timestamp, new_slice) < MEMRAIR_DONE_TIMEOUT_SLICE));/*手册是300us，edit by x00195528*/
+    }while((reg_value != 0)&&(get_timer_slice_delta(timestamp, new_slice) < MEMRAIR_DONE_TIMEOUT_SLICE));
 
     if(reg_value != 0){
         g_memrepair.errno |= (0x1 << 2);

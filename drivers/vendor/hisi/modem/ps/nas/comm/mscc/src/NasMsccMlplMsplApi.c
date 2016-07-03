@@ -31,21 +31,7 @@ extern "C"{
 *****************************************************************************/
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_GetMatchedMsplTableBy3gppInfo
- 功能描述  : 拆分原来NAS_MSCC_GetHigherPriMsplSysListThan3gpp，根据输入的系统信息，获取匹配的mspl表
- 输入参数  : *pstIn3gppInfo
- 输出参数  : 无
- 返 回 值  : NAS_MSCC_MSPL_ID_STRU* -- MSPL_INDEX对应的mspl表指针
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月10日
-    作    者   : j00354216
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_MSCC_MSPL_ID_STRU*  NAS_MSCC_GetMatchedMsplTableBy3gppInfo(
     NAS_MSCC_MMSS_MATCH_3GPP_INPUT_INFO_STRU               *pstIn3gppInfo
 )
@@ -137,30 +123,7 @@ NAS_MSCC_MSPL_ID_STRU*  NAS_MSCC_GetMatchedMsplTableBy3gppInfo(
     return pstMatchedMsplTable;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_GetHigherPriSysListWithMsplTable
- 功能描述  : 根据匹配到的mspl表，获取更高优先级的系统
-             拆分原来NAS_MSCC_GetHigherPriMsplSysListThan3gpp
- 输入参数  : *pstIn3gppInfo
-             *pstMatchedMsplTable -- MSPL_INDEX对应的mspl表指针
-             enInMlplMatchLvl     -- MLPL表匹配等级
-             ucInIsUseDfltMlplRec -- 是否使用默认mlpl
-             ucInMatchedMsplIndex -- 匹配的MSPL_INDEX
- 输出参数  : *pstOutSysList -- 输出所有比当前系统更高优先级的系统
- 返 回 值  : VOS_TRUE  -- 在mspl中找到匹配当前系统的mspl下标
-             VOS_FALSE -- 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月10日
-    作    者   : j00354216
-    修改内容   : 新生成函数
-  2.日    期   : 2016年1月14日
-    作    者   : w00176964
-    修改内容   : DTS2016011505496:L到C的BSR场景,LTE在MSPL表中无对应系统类型,开机搜优先级高的
-                 HRPD系统,hrpd掉网后,搜到LTE后,未启动BSR定时器搜HRPD
-*****************************************************************************/
 VOS_UINT8 NAS_MSCC_GetHigherPriSysListWithMsplTable(
     NAS_MSCC_MMSS_MATCH_3GPP_INPUT_INFO_STRU               *pstIn3gppInfo,
     NAS_MSCC_MSPL_ID_STRU                                  *pstMatchedMsplTable,
@@ -246,20 +209,7 @@ VOS_UINT8 NAS_MSCC_GetHigherPriSysListWithMsplTable(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_GetSysListFromMsplTable
- 功能描述  : 将匹配到的mspl表转成系统List
- 输入参数  : *pstMatchedMsplTable
- 输出参数  : *pstMsplSysList
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月10日
-    作    者   : j00354216
-    修改内容   : CL_MUTIMODE_OPTIMIZE新增
-*****************************************************************************/
 VOS_VOID NAS_MSCC_GetSysListFromMsplTable(
     NAS_MSCC_MSPL_ID_STRU              *pstMatchedMsplTable,
     NAS_MSCC_MSPL_SYS_LIST_INFO_STRU   *pstMsplSysList
@@ -423,23 +373,7 @@ VOS_UINT8 NAS_MSCC_GetHigherPriMsplSysListThan1x(
 }
 
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_GetHigherPriMsplSysListThanHrpd
-Description     :   Get higher prioity systems of HRPD system
-Input parameters:   pstInHrpdInfo - HRPD system info
-Outout parameters:  pstOutSysList - List of higher priority system,
-                                    the previous record has higher priority than the next
-Return Value     :  VOS_TRUE  - match success
-                    VOS_FALSE - match fail
-Modify History:
-    1)  Date    :   2015-04-08
-        Author  :   y00174758
-        Modify content :    Create
-    2)  Date    :   2016-01-07
-        Author  :   w00176964
-        Modify content :DTS2016010602409:CCF用例CL互操作用例11002失败(MSPL表LTE优先,无HRPD系统
-                        ,驻留HRPD后,不启动BSR定时器回LTE)
-*****************************************************************************/
+
 VOS_UINT8 NAS_MSCC_GetHigherPriMsplSysListThanHrpd(
     NAS_MSCC_MMSS_MATCH_HRPD_INPUT_INFO_STRU               *pstInHrpdInfo,
     NAS_MSCC_MSPL_SYS_LIST_INFO_STRU                       *pstOutSysList
@@ -589,25 +523,7 @@ VOS_UINT8 NAS_MSCC_GetHigherPriMsplSysListThanHrpd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_GetHigherPriMsplSysListThanHrpdBy1xLoc
-Description     :   When Mcc in overhead msg is invalid,use 1x sysinfo to get mspl prefer syslist
-                    Then use HRPD info to get sys list prefered than hrpd
-Input parameters:   NAS_MSCC_1X_SYS_INFO_STRU                              *pstIn1xInfo
-                    NAS_MSCC_MMSS_MATCH_HRPD_INPUT_INFO_STRU               *pstInHrpdInfo
 
-Output parameters:  NAS_MSCC_MSPL_SYS_LIST_INFO_STRU                       *pstOutSysList
-Return Value    :   VOS_UINT32
-
-Modify History:
-    1)  Date    :   2015-5-7
-        Author  :   t00323010
-        Modify content :    Create
-    2)  Date    :   2016-01-07
-        Author  :   w00176964
-        Modify content :DTS2016010602409:CCF用例CL互操作用例11002失败(MSPL表LTE优先,无HRPD系统
-                        ,驻留HRPD后,不启动BSR定时器回LTE)
-*****************************************************************************/
 VOS_UINT32 NAS_MSCC_GetHigherPriMsplSysListThanHrpdBy1xLoc(
     NAS_MSCC_MMSS_MATCH_1X_INPUT_INFO_STRU                 *pstIn1xInfo,
     NAS_MSCC_MMSS_MATCH_HRPD_INPUT_INFO_STRU               *pstInHrpdInfo,
@@ -761,21 +677,7 @@ VOS_UINT32 NAS_MSCC_GetHigherPriMsplSysListThanHrpdBy1xLoc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_GetMatchedMsplTableBy1xLocInfo
-Description     :   用1x的位置信息取得对应的mspl table
-Input parameters:   pstIn1xInfo 1x输入位置信息
-Outout parameters:  penMlplMatchLvl      mlpl匹配级别
-                    pucIsUseDfltMlplRec  是否使用缺省的mlpl记录
-                    pucMatchedMsplIndex  匹配的msplIndex
 
-Return Value     :  pstMatchedMsplTable mspl表
-
-Modify History:
-    1)  Date    :   2015-09-21
-        Author  :   y00346957
-        Modify content :    Create for DTS2015070910885
-*****************************************************************************/
 NAS_MSCC_MSPL_ID_STRU* NAS_MSCC_GetMatchedMsplTableBy1xLocInfo(
     NAS_MSCC_MMSS_MATCH_1X_INPUT_INFO_STRU                 *pstIn1xInfo,
     NAS_MSCC_MLPL_MATCH_LVL_ENUM_UINT8                     *penMlplMatchLvl,
@@ -934,22 +836,7 @@ VOS_UINT8 NAS_MSCC_GetMsplSysListBy1xLoc(
 }
 
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_GetCurr3gppSysBsrTimerLen
-Description     :   Get BSR timer length of 3gpp system
-Input parameters:   pstInHrpdInfo - 3gpp system info
-Outout parameters:  penOutBsrTimerLen - BSR timer length in unit millisecond
-Return Value     :  VOS_TRUE  - match success
-                    VOS_FALSE - match fail
-Modify History:
-    1)  Date    :   2015-04-08
-        Author  :   y00174758
-        Modify content :    Create
-   2.日    期   : 2016年1月14日
-     作    者   : w00176964
-     修改内容   : DTS2016011505496:L到C的BSR场景,LTE在MSPL表中无对应系统类型,开机搜优先级高的
-                  HRPD系统,hrpd掉网后,搜到LTE后,未启动BSR定时器搜HRPD
-*****************************************************************************/
+
 VOS_UINT8 NAS_MSCC_GetCurr3gppSysBsrTimerLen(
     NAS_MSCC_MMSS_MATCH_3GPP_INPUT_INFO_STRU               *pstIn3gppInfo,
     VOS_UINT32                                             *pulOutBsrTimerLenMilliSec
@@ -1200,22 +1087,7 @@ VOS_UINT8 NAS_MSCC_GetCurr1xSysBsrTimerLen(
 }
 
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_GetCurrHrpdSysBsrTimerLen
-Description     :   Get BSR timer length of HRPD system
-Input parameters:   pstInHrpdInfo - HRPD system info
-Outout parameters:  penOutBsrTimerLen - BSR timer length in unit millisecond
-Return Value     :  VOS_TRUE  - match success
-                    VOS_FALSE - match fail
-Modify History:
-    1)  Date    :   2015-04-08
-        Author  :   y00174758
-        Modify content :    Create
-    2)  Date    :   2016-01-07
-        Author  :   w00176964
-        Modify content :DTS2016010602409:CCF用例CL互操作用例11002失败(MSPL表LTE优先,无HRPD系统
-                        ,驻留HRPD后,不启动BSR定时器回LTE)
-*****************************************************************************/
+
 VOS_UINT8 NAS_MSCC_GetCurrHrpdSysBsrTimerLen(
     NAS_MSCC_MMSS_MATCH_HRPD_INPUT_INFO_STRU               *pstInHrpdInfo,
     VOS_UINT32                                             *pulOutBsrTimerLenMilliSec
@@ -1352,25 +1224,7 @@ VOS_UINT8 NAS_MSCC_GetCurrHrpdSysBsrTimerLen(
     return ucGetBsrTimerLenRslt;
 }
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_GetCurrHrpdSysBsrTimerLenBy1xLoc
-Description     :   When Mcc in overhead msg is invalid,use 1x sysinfo to get MSPL List
-                    Then use Hrpd info to get curr hrpd sys BSR timer len
-Input parameters:   NAS_MSCC_1X_SYS_INFO_STRU                              *pstIn1xInfo
-                    NAS_MSCC_MMSS_MATCH_HRPD_INPUT_INFO_STRU               *pstInHrpdInfo
 
-Output parameters:  VOS_UINT32                                             *pusOutBsrTimerLenMilliSec
-Return Value    :   VOS_UINT32
-
-Modify History:
-    1)  Date    :   2015-5-7
-        Author  :   t00323010
-        Modify content :    Create
-    2)  Date    :   2016-01-07
-        Author  :   w00176964
-        Modify content :DTS2016010602409:CCF用例CL互操作用例11002失败(MSPL表LTE优先,无HRPD系统
-                        ,驻留HRPD后,不启动BSR定时器回LTE)
-*****************************************************************************/
 VOS_UINT32 NAS_MSCC_GetCurrHrpdSysBsrTimerLenBy1xLoc(
     NAS_MSCC_MMSS_MATCH_1X_INPUT_INFO_STRU                 *pstIn1xInfo,
     NAS_MSCC_MMSS_MATCH_HRPD_INPUT_INFO_STRU               *pstInHrpdInfo,
@@ -1517,23 +1371,7 @@ VOS_UINT32 NAS_MSCC_GetCurrHrpdSysBsrTimerLenBy1xLoc(
     return ucGetBsrTimerLenRslt;
 }
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_GetMsplIndexBy3gppSys
-Description     :   Get MLPL index in MLPL of 3gpp system
-Input parameters:   pstInHrpdInfo - HRPD system info
-                    pstInMlplInfo - MLPL info
-Outout parameters:  pucOutMsplIndex - matched MSPL index
-                    penOutMatchLvl  - matched level
-Return Value     :  VOS_TRUE  - match success
-                    VOS_FALSE - match fail
-Modify History:
-1)  Date    :   2015-04-08
-    Author  :   y00174758
-    Modify content : Create
-2)  Date    :   2015-04-08
-    Author  :   y00174758
-    Modify content : 修改PLMN匹配规则，最高优先级改为MCC_MNC
-*****************************************************************************/
+
 VOS_UINT8 NAS_MSCC_GetMsplIndexBy3gppSys(
     NAS_MSCC_MMSS_MATCH_3GPP_INPUT_INFO_STRU               *pstIn3gppInfo,
     NAS_MSCC_MLPL_STRU                                     *pstInMlplInfo,
@@ -1719,21 +1557,7 @@ NAS_MSCC_MSPL_ID_STRU* NAS_MSCC_GetMsplTableByMsplIndex(
 }
 
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_Compare3gppSysWithMlplRec
-Description     :   Get the result of 3gpp system matching a MLPL record
-Input parameters:   pstIn3gppInfo - 3gpp system info
-                    pstInMlplRec  - MLPL record info
-Outout parameters:  penOutMatchLvl - match level
-Return Value     :  VOS_VOID
-Modify History:
-1)  Date    :   2015-04-08
-    Author  :   y00174758
-    Modify content : Create
-2)  Date    :   2015-06-03
-    Author  :   y00174758
-    Modify content : Iteration 12: 修改3GPP PLMN匹配规则
-*****************************************************************************/
+
 VOS_VOID NAS_MSCC_Compare3gppSysWithMlplRec(
     NAS_MSCC_MMSS_MATCH_3GPP_INPUT_INFO_STRU               *pstIn3gppInfo,
     NAS_MSCC_MLPL_RECORD_STRU                              *pstInMlplRec,
@@ -2343,19 +2167,7 @@ VOS_UINT8 NAS_MSCC_IsHrpdSysWithMsplRecMatched(
 }
 
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_GetHigherSysListThanSpecRecIndexSys
-Description     :   Get higher sys by MSPL record ID
-                    获取比当前Recoard ID的MSPL记录更优先的MSPL系统列表
-Input parameters:   enInPriSrchTime - enum of higher srch time
-Outout parameters:  pusOutMillSec   - timer length in millisecond
-Return Value     :  VOS_TURE  - SUCCESS
-                    VOS_FALSE - FAIL
-Modify History:
-    1)  Date    :   2015-04-08
-        Author  :   y00174758
-        Modify content :    Create
-*****************************************************************************/
+
 VOS_VOID NAS_MSCC_GetHigherSysListThanSpecRecIndexSys(
     NAS_MSCC_MSPL_ID_STRU                                  *pstInMsplTable,
     VOS_UINT8                                               ucInCurrMsplRecId,
@@ -2401,7 +2213,6 @@ VOS_VOID NAS_MSCC_GetHigherSysListThanSpecRecIndexSys(
     }
 
     /* 从下标0开始到MORE下标结束的所有记录比当前记录高， 依次填入列表 */
-    /* PCLINT告警屏蔽,wangfei 00351686 已同DE:sunxibo 00246516,工程组:yangguang 00187525确认*/
     /*lint -save -e661 -specific(-e661)*/
     /*lint -save -e662 -specific(-e662)*/
     for (sLoop = 0; sLoop <= sPriMoreRecPos; sLoop++)
@@ -2423,22 +2234,7 @@ VOS_VOID NAS_MSCC_GetHigherSysListThanSpecRecIndexSys(
 }
 
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_IsSysPlmnInLocTagPlmnRange
-Description     :   Check if sys PLMN is in PLMN range of MLPL record
-Input parameters:   pstSysPlmn   - PLMN of 3gpp sys
-                    aucPlmnStart - PLMN start of loc tag
-Outout parameters:  None
-Return Value     :  VOS_TRUE  - In PLMN range
-                    VOS_FALSE - Not in PLMN range
-Modify History:
-    1)  Date    :   2015-04-08
-        Author  :   y00174758
-        Modify content :    Create
-    2)  Date    :   2015-06-03
-        Author  :   y00174758
-        Modify content : Iteration 12: 修改3GPP PLMN匹配规则
-*****************************************************************************/
+
 VOS_UINT8 NAS_MSCC_IsSysPlmnInLocTagPlmnRange(
     NAS_MSCC_PIF_PLMN_ID_STRU                              *pstSysPlmn,
     VOS_UINT8                                              *aucPlmnStart,
@@ -2782,18 +2578,7 @@ NAS_MSCC_PARSE_MSPL_RSLT_ENUM_UINT32 NAS_MSCC_ParseMsplFile(
     return NAS_MSCC_PARSE_MSPL_RSLT_SUCCESS;
 }
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_IsHrpdSysTypeExistedInMsplTable
-Description     :   判定当前MSPL表是否存在HRPD系统类型的记录
-Input parameters:   pstInMsplTable----当前MSPL表
-Outout parameters:  VOS_VOID
-Return Value     :  VOS_TRUE  - 存在HRPD系统记录
-                    VOS_FALSE - 不存在HRPD系统记录
 
-    1)  Date    :   2016-01-07
-        Author  :   w00176964
-        Modify content :    Create
-*****************************************************************************/
 VOS_UINT32 NAS_MSCC_IsHrpdSysTypeExistedInMsplTable(
     NAS_MSCC_MSPL_ID_STRU              *pstInMsplTable
 )
@@ -2816,18 +2601,7 @@ VOS_UINT32 NAS_MSCC_IsHrpdSysTypeExistedInMsplTable(
 }
 
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_IsLteSysTypeExistedInMsplTable
-Description     :   判定当前MSPL表是否存在LTE系统类型的记录
-Input parameters:   pstInMsplTable----当前MSPL表
-Outout parameters:  VOS_VOID
-Return Value     :  VOS_TRUE  - 存在LTE系统记录
-                    VOS_FALSE - 不存在LTE系统记录
 
-    1)  Date    :   2016-01-14
-        Author  :   w00176964
-        Modify content :    Create
-*****************************************************************************/
 VOS_UINT32 NAS_MSCC_IsLteSysTypeExistedInMsplTable(
     NAS_MSCC_MSPL_ID_STRU              *pstInMsplTable
 )

@@ -36,17 +36,7 @@ extern "C" {
   2 Declare the Global Variable
 *****************************************************************************/
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_RcvEmmStartReq
- Description     : EMMC收到EMMC_EMM_START_REQ消息处理
- Input           : pMsg-------EMMC收到的消息
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.    leili  00132387      2011-2-22  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMMC_RcvEmmStartReq( MsgBlock *pMsg )
 {
     NAS_LMM_EMMC_LOG_NORM("NAS_EMMC_RcvEmmStartReq is entered.");
@@ -73,17 +63,7 @@ VOS_UINT32  NAS_EMMC_RcvEmmStartReq( MsgBlock *pMsg )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_RcvEmmStopReq
- Description     : EMMC收到EMMC_EMM_STOP_REQ消息的处理
- Input           : pMsg-----EMMC收到的消息
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.    leili  00132387      2011-2-22  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMMC_RcvEmmStopReq( MsgBlock *pMsg )
 {
     NAS_LMM_EMMC_LOG_NORM("NAS_EMMC_RcvEmmStopReq is entered.");
@@ -107,23 +87,7 @@ VOS_UINT32  NAS_EMMC_RcvEmmStopReq( MsgBlock *pMsg )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_RcvMmcPlmnSrchReq
- Description     : EMMC收到MMC_LMM_PLMN_SRCH_REQ消息的处理
- Input           : pMsg---------EMMC收到的消息
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.    leili  00132387      2011-2-21  Draft Enact
-    2.    zhengjunyan 00148421 2011-11-10 MOD:添加判断条件，如果LTE被DISABLE，则
-                                          丢弃MMC_LMM_PLMN_SEARCH_REQ
-    3.    zhengjunyan 00148421 2011-12-07 MOD:DISABLE LTE后，响应LIST搜网
-    4.    zhengjunyan 00148421 2011-12-27 MOD:连接态下不处理搜网请求
-    5.    wangchen    00209181 2012-05-28 MODIFY:PlmnSrch与RRC的挂起请求对冲
-    6.    liuhua      00212067 2013-02-05 使用新函数进行是否是背景LIST搜判断，
-                                          新函数中增加对是否收到Not Camp On消息的判断
-*****************************************************************************/
 /*lint -e960*/
 /*lint -e961*/
 VOS_UINT32  NAS_EMMC_RcvMmcPlmnSrchReq(MsgBlock *pMsg )
@@ -161,7 +125,6 @@ VOS_UINT32  NAS_EMMC_RcvMmcPlmnSrchReq(MsgBlock *pMsg )
         return NAS_LMM_MSG_HANDLED;
     }
 
-    /* H00234341 FOR MMC_LIST_PLMN SRS LIST搜网请求，20130603 BEGIN */
     /*非空闲态时，回复LIST搜索拒绝.
     LMM无论是否处于空闲态，MMC均可直接下发MMC_LMM_PLMN_SEARCH_REQ要求LMM进行
     LIST搜索；
@@ -208,7 +171,6 @@ VOS_UINT32  NAS_EMMC_RcvMmcPlmnSrchReq(MsgBlock *pMsg )
 ,LNAS_FUNCTION_LABEL4);
     /*lint +e830*/
     /*lint +e539*/
-    /* H00234341 FOR MMC_LIST_PLMN SRS LIST搜网请求，20130603 END */
 
 #if (VOS_OS_VER != VOS_WIN32)
     if(1 == s_ulPlmnSrchReqCnt)
@@ -271,17 +233,7 @@ VOS_UINT32  NAS_EMMC_RcvMmcPlmnSrchReq(MsgBlock *pMsg )
 
 
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_RcvRrcPlmnSrchCnf
- Description     : EMMC收到RRC_MM_PLMN_SEARCH_CNF消息
- Input           : pMsg-------EMMC收到的消息
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.    leili  00132387      2011-2-22  Draft Enact
-    2.    wangchen    00209181 2012-05-28 MODIFY:PlmnSrch与RRC的挂起请求对冲
-*****************************************************************************/
 VOS_UINT32  NAS_EMMC_RcvRrcPlmnSrchCnf (MsgBlock *pMsg)
 {
     LRRC_LMM_PLMN_SEARCH_CNF_STRU         *pstPlmnCnf = NAS_EMMC_NULL_PTR;
@@ -438,18 +390,7 @@ VOS_UINT32 NAS_LMM_PreProcMmcLteSysInfoInd(MsgBlock *pMsg )
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_RcvRrcSysInfoInd
- Description     : EMMC收到RRC_MM_SYS_INFO_IND消息处理
- Input           : pMsg--------EMMC收到的消息
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.    leili  00132387      2011-2-24  Draft Enact
-    2.    lihong 00150010      2012-12-22 Modify:DTS2012121306127，系统消息机制变更
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMMC_RcvRrcSysInfoInd(MsgBlock *pMsg )
 {
     LRRC_LMM_SYS_INFO_IND_STRU         *pstSysInfoInd = NAS_EMMC_NULL_PTR;
@@ -498,17 +439,7 @@ VOS_UINT32  NAS_EMMC_RcvRrcSysInfoInd(MsgBlock *pMsg )
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_RcvMmcEplmnNotifyReq
- Description     : EMMC收到MMC_LMM_EPLMN_NOTIFY_REQ消息处理
- Input           : pMsg-------EMMC收到的消息
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2011-2-28  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMMC_RcvMmcEplmnNotifyReq(MsgBlock *pMsg)
 {
     MMC_LMM_EPLMN_NOTIFY_REQ_STRU       *pstEplmnReq;
@@ -565,17 +496,7 @@ VOS_UINT32  NAS_EMMC_RcvMmcEplmnNotifyReq(MsgBlock *pMsg)
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_RcvMmcStopSrchReq
- Description     : EMMC收到MMC_LMM_STOP_SRCH_REQ消息处理
- Input           : pMsg--------EMMC收到的消息
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2011-2-28  Draft Enact
-    2.wangchen    00209181 2012-05-28 MODIFY:PlmnSrch与RRC的挂起请求对冲
-*****************************************************************************/
 VOS_UINT32  NAS_EMMC_RcvMmcStopSrchReq( MsgBlock *pMsg)
 {
     NAS_LMM_EMMC_LOG_NORM("NAS_EMMC_RcvMmcStopSrchReq is entered.");
@@ -606,17 +527,7 @@ VOS_UINT32  NAS_EMMC_RcvMmcStopSrchReq( MsgBlock *pMsg)
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_RcvRrcPlmnSrchStopCnf
- Description     : EMMC收到RRC_MM_PLMN_SEARCH_STOP_CNF消息处理
- Input           : pMsg--------EMMC收到的消息
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2011-3-1  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMMC_RcvRrcPlmnSrchStopCnf(MsgBlock *pMsg)
 {
 
@@ -641,17 +552,7 @@ VOS_UINT32  NAS_EMMC_RcvRrcPlmnSrchStopCnf(MsgBlock *pMsg)
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_RcvRrcAreaLostInd
- Description     : EMMC收到RRC_MM_AREA_LOST_IND消息处理
- Input           : pMsg------RRC发送的消息
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2011-3-1  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMMC_RcvRrcAreaLostInd(MsgBlock *pMsg )
 {
     LRRC_LMM_AREA_LOST_IND_STRU *pstAreaLostIndMsg = NAS_EMMC_NULL_PTR;
@@ -712,18 +613,7 @@ VOS_UINT32  NAS_EMMC_RcvRrcAreaLostInd(MsgBlock *pMsg )
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_RcvMmcUserPlmnEndNotify
- Description     :
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2011-11-28  Draft Enact
-    2.leili 00132387      2011-12-09  MOD:L模在挂起态时也需要处理该消息，
-                                      以便给LRRC通知禁止TA信息
-*****************************************************************************/
 VOS_UINT32  NAS_EMMC_RcvMmcUserPlmnEndNotify(MsgBlock *pMsg )
 {
     VOS_UINT32                                  i = 0;
@@ -786,17 +676,7 @@ VOS_UINT32  NAS_EMMC_RcvMmcUserPlmnEndNotify(MsgBlock *pMsg )
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_RcvMmcBgPlmnSearchReq
- Description     : EMMC收到背景搜请求后，如果当前是空闲态，则向LRRC透传
-                   背景搜请求；如果不是空闲态，则丢弃此背景搜请求
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.liuhua 00212067      2012-05-22  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_EMMC_RcvMmcBgPlmnSearchReq(MsgBlock *pMsg)
 {
     MMC_LMM_BG_PLMN_SEARCH_REQ_STRU  *pstMmcMsg = NAS_EMMC_NULL_PTR;
@@ -832,16 +712,7 @@ VOS_UINT32  NAS_EMMC_RcvMmcBgPlmnSearchReq(MsgBlock *pMsg)
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_RcvMmcStopBgPlmnSearchReq
- Description     : EMMC接收到停止背景搜请求后，向LRRC透传停止背景搜请求
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.liuhua 00212067      2012-05-22  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_EMMC_RcvMmcStopBgPlmnSearchReq(MsgBlock *pMsg)
 {
     MMC_LMM_STOP_BG_PLMN_SEARCH_REQ_STRU *pstMmcMsg;
@@ -922,17 +793,7 @@ VOS_UINT32  NAS_EMMC_RcvRrcBgPlmnSearchStopCnf(MsgBlock *pMsg)
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_RcvRrcNotCampOnInd
- Description     : EMMC收到LRRC的NOT_CAMP_ON消息后，向内部发送丢网消息，
-                   同时向MMC透传此消息
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.liuhua 00212067      2012-05-22  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_EMMC_RcvRrcNotCampOnInd(MsgBlock *pMsg)
 {
     NAS_LMM_EMMC_LOG_NORM("NAS_EMMC_RcvRrcNotCampOnInd: entered");
@@ -962,16 +823,7 @@ VOS_UINT32  NAS_EMMC_RcvRrcNotCampOnInd(MsgBlock *pMsg)
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_RcvRrcSearchPlmnInfoInd
- Description     : 收到LRRC上报的搜网信息，透传给MMC
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.sunjitan 00193151     2014-11-20  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_EMMC_RcvRrcSearchPlmnInfoInd(MsgBlock *pMsg)
 {
     LRRC_LMM_SEARCHED_PLMN_INFO_IND_STRU *pLrrcMsg = NAS_LMM_NULL_PTR;
@@ -997,16 +849,7 @@ VOS_UINT32  NAS_EMMC_RcvRrcSearchPlmnInfoInd(MsgBlock *pMsg)
 }
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- Function Name   : NAS_EMMC_RcvRrcBgSearchHrpdCnf
- Description     : EMMC收到ID_LRRC_LMM_BG_SEARCH_HRPD_CNF消息的处理
- Input           : pMsg-----EMMC收到的消息
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_EMMC_RcvRrcBgSearchHrpdCnf(MsgBlock *pMsg)
 {
     LRRC_LMM_BG_SEARCH_HRPD_CNF_STRU    *pstBgSearchCnf = NAS_EMMC_NULL_PTR;
@@ -1019,16 +862,7 @@ VOS_UINT32  NAS_EMMC_RcvRrcBgSearchHrpdCnf(MsgBlock *pMsg)
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_RcvRrcBgSearchHrpdStopCnf
- Description     : EMMC收到ID_LRRC_LMM_BG_SEARCH_HRPD_STOP_CNF消息的处理
- Input           : pMsg-----EMMC收到的消息
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_EMMC_RcvRrcBgSearchHrpdStopCnf(MsgBlock *pMsg)
 {
     /* 向MMC发送停止背景搜EHRPD的CNF消息 */
@@ -1039,17 +873,7 @@ VOS_UINT32  NAS_EMMC_RcvRrcBgSearchHrpdStopCnf(MsgBlock *pMsg)
 #endif
 
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_RcvMmcCellSelectionReq
- Description     : EMMC收到MMC_LMM_CELL_SELECTION_REQ消息
- Input           : pMsg-----EMMC收到的消息
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387     2011-3-3  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMMC_RcvMmcCellSelectionReq(  MsgBlock *pMsg )
 {
     MMC_LMM_CELL_SELECTION_CTRL_REQ_STRU    *pstCellSelReq;
@@ -1225,16 +1049,7 @@ VOS_UINT32 NAS_EMMC_RcvMmcUmtsSysInfoInd(MsgBlock *pMsg )
 
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- Function Name   : NAS_EMMC_RcvMmcBgSearchHrpdReq
- Description     : EMMC收到ID_MMC_LMM_BG_SEARCH_HRPD_REQ消息的处理
- Input           : pMsg-----EMMC收到的消息
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_EMMC_RcvMmcBgSearchHrpdReq(MsgBlock *pMsg)
 {
     /* 如果当前不是空闲态，则丢弃此背景搜请求 */
@@ -1252,16 +1067,7 @@ VOS_UINT32  NAS_EMMC_RcvMmcBgSearchHrpdReq(MsgBlock *pMsg)
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMMC_RcvMmcStopBgSearchHrpdReq
- Description     : EMMC收到ID_MMC_LMM_STOP_BG_SEARCH_HRPD_REQ消息
- Input           : pMsg-----EMMC收到的消息
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.sunjitan 00193151    2015-06-16   Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_EMMC_RcvMmcStopBgSearchHrpdReq(MsgBlock *pMsg)
 {
     /* 向LRRC发送停止背景搜EHRPD请求 */
@@ -1272,16 +1078,7 @@ VOS_UINT32  NAS_EMMC_RcvMmcStopBgSearchHrpdReq(MsgBlock *pMsg)
 #endif
 
 #if (FEATURE_ON == FEATURE_CSG)
-/*****************************************************************************
- Function Name   : NAS_EMMC_RcvMmcCsgWhiteListNotify
- Description     : EMMC收到ID_MMC_LMM_CSG_WHITE_LIST_NOTIFY消息的处理
- Input           : pMsg-----EMMC收到的消息
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.yanglei 00307272    2015-09-10   Draft Enact
-*****************************************************************************/
 VOS_UINT32 NAS_EMMC_RcvMmcCsgWhiteListNotify(MsgBlock *pMsg)
 {
     MMC_LMM_CSG_WHITE_LIST_NOTIFY_STRU           *pstCsgWhiteList = VOS_NULL_PTR;
@@ -1294,16 +1091,7 @@ VOS_UINT32 NAS_EMMC_RcvMmcCsgWhiteListNotify(MsgBlock *pMsg)
     NAS_EMMC_SendRrcCsgWhiteListNotify(pstCsgWhiteList);
     return NAS_LMM_MSG_HANDLED;
 }
-/*****************************************************************************
- Function Name   : NAS_EMMC_RcvMmcCsgListSearchReq
- Description     : EMMC收到ID_MMC_LMM_CSG_LIST_SEARCH_REQ消息的处理
- Input           : pMsg-----EMMC收到的消息
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.yanglei 00307272    2015-10-27   Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_EMMC_RcvMmcCsgListSearchReq(MsgBlock *pMsg)
 {
     MMC_LMM_CSG_LIST_SEARCH_REQ_STRU             *pstMmcCsgPlmnReq = NAS_EMMC_NULL_PTR;
@@ -1344,17 +1132,7 @@ VOS_UINT32  NAS_EMMC_RcvMmcCsgListSearchReq(MsgBlock *pMsg)
 
     return NAS_LMM_MSG_HANDLED;
 }
-/*****************************************************************************
- Function Name   : NAS_EMMC_RcvMmcCsgBgPlmnSearchReq
- Description     : EMMC收到CSG背景搜请求后，如果当前是空闲态，则向LRRC透传
-                   CSG背景搜请求；如果不是空闲态，则丢弃此背景搜请求
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.yanglei 00307272      2015-10-27  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_EMMC_RcvMmcCsgBgPlmnSearchReq(MsgBlock *pMsg)
 {
     MMC_LMM_CSG_BG_SEARCH_REQ_STRU  *pstMmcMsg = NAS_EMMC_NULL_PTR;

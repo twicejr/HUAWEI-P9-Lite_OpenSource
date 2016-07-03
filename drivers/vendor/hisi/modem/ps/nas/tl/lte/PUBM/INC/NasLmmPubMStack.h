@@ -1,14 +1,4 @@
-/******************************************************************************
 
-        @(#)Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : NasLmmPubMStacks.h
-    Description :
-    History     :
-    1.zhengjunyan 00148421  2011-05-28   文件名由 NasMmPubMStack.h修改为
-                                          NasLmmPubMStack.h
-******************************************************************************/
 
 #ifndef _NASLMMPUBMSTACK_H
 #define _NASLMMPUBMSTACK_H

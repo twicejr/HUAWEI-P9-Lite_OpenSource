@@ -1,18 +1,4 @@
-/************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : Om.h
-  Author      : Zongyan Lee
-  Version     : V100R001
-  Date        : 2005-04-15
-  Description : MAPS TAF OM对外的接口头文件。
-  History     :
-  1. Date:2005-04-15
-     Author: Zongyan Lee
-     Modification:Create
-  2. Date:2005-09-08
-     Author: Xiaopeng Du
-     Modification:add for A32D00484
-************************************************************************/
+
 
 #ifndef _TRACE_LEVEL_H_
 #define _TRACE_LEVEL_H_

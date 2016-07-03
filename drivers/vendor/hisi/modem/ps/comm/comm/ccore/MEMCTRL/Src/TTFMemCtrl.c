@@ -1,20 +1,4 @@
-/******************************************************************************
-  Copyright    : 2005-2011, Huawei Tech. Co., Ltd.
-  File name    : TtfMemCtrl.c
-  Author       : h00163499
-  Version      : V900R001
-  Date         : 2012-12-24
-  Description  : TTF内存地址管理
-  Function List:
-        ---
-        ---
-        ---
-  History      :
-  1. Date:2012-12-24
-     Author:h00163499
-     Modification:Create
 
-******************************************************************************/
 
 
 /******************************************************************************
@@ -374,20 +358,7 @@ TTF_MEM_SOLUTION_CFG_NV_STRU            g_stTtfMemSolution;
    6 函数实现
 ******************************************************************************/
 /*lint -save -e958 */
-/*****************************************************************************
- 函 数 名  : TTF_MEMCTRL_ModelSupport
- 功能描述  : 读取NV_PLATFORM_RAT_CAP，判断是否支持wcdma
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史   :
- 1.日    期 : 2014年03月12日
- 作    者   : c00212970
- 修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TTF_MEMCTRL_ModelSupport(MODEM_ID_ENUM_UINT16 enModemId)
 {
     VOS_UINT32                              ulResult;
@@ -476,21 +447,7 @@ VOS_VOID TTF_MEMCTRL_ModelSupport(MODEM_ID_ENUM_UINT16 enModemId)
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : TTF_MEMCTRL_GetBBPMemLen
- 功能描述  : 读取nv项en_NV_Item_WTTF_MACDL_BBPMST_TB_HEAD_Config中内容，
-             根据其中内容计算出BBP master所需用的内存大小（头部和数据部分大小）
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 - BBP master所需要的内存大小，单位byte
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年03月12日
-    作    者   : c00212970
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TTF_MEMCTRL_ReadBBPMemConfig(VOS_UINT32 ulPid)
 {
     VOS_UINT32                          ulResult;
@@ -524,20 +481,7 @@ VOS_VOID TTF_MEMCTRL_ReadBBPMemConfig(VOS_UINT32 ulPid)
 
 }
 
-/*****************************************************************************
- 函 数 名  : TTF_MEMCTRL_ReadNvCfg
- 功能描述  : 读取NV配置
- 输入参数  : TTF_MEM_SOLUTION_CFG_NV_STRU *pstTtfMemSolution
- 输出参数  : 无
- 返 回 值  : PS_SUCC, PS_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月20日
-    作    者   : x00138766
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TTF_MEMCTRL_ReadNvCfg(TTF_MEM_SOLUTION_CFG_NV_STRU *pstTtfMemSolution)
 {
     VOS_UINT32                     ulRet;
@@ -585,20 +529,7 @@ VOS_UINT32 TTF_MEMCTRL_ReadNvCfg(TTF_MEM_SOLUTION_CFG_NV_STRU *pstTtfMemSolution
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : TTF_MEMCTRL_MemNvCfgTotalLength
- 功能描述  : 计算内存配置所需长度
- 输入参数  : TTF_MEM_SOLUTION_CFG_NV_STRU *pstTtfMemSolution
- 输出参数  : 无
- 返 回 值  : 长度
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月20日
-    作    者   : x00138766
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TTF_MEMCTRL_MemNvCfgTotalLength(TTF_MEM_SOLUTION_CFG_NV_STRU *pstTtfMemSolution)
 {
     TTF_MEM_POOL_CFG_NV_STRU      *pstPoolCfg;
@@ -622,20 +553,7 @@ VOS_UINT32 TTF_MEMCTRL_MemNvCfgTotalLength(TTF_MEM_SOLUTION_CFG_NV_STRU *pstTtfM
     return ulTotalLength;
 }
 
-/*****************************************************************************
- 函 数 名  : TTF_MemSetDefaultNvCfg
- 功能描述  : 设置默认NV配置(V9R1版本)
- 输入参数  : TTF_MEM_SOLUTION_CFG_NV_STRU *pstTtfMemSolution
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月20日
-    作    者   : x00138766
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TTF_MemSetDefaultNvCfg(TTF_MEM_SOLUTION_CFG_NV_STRU *pstTtfMemSolution)
 {
     const   VOS_UINT8   ucPoolMask  = 0x16;
@@ -725,20 +643,7 @@ VOS_VOID TTF_MemSetDefaultNvCfg(TTF_MEM_SOLUTION_CFG_NV_STRU *pstTtfMemSolution)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TTF_MEMCTRL_CalcTotalDynamicMemLen
- 功能描述  : 计算出TTF所需申请的动态内存大小
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 - TTF所需向底软申请的uncached内存大小，单位byte
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年03月12日
-    作    者   : c00212970
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TTF_MEMCTRL_CalcTotalDynamicMemLen(VOS_UINT32 ulTtfInternalMemLength)
 {
     VOS_UINT32                           ulDynamicMemLen;
@@ -814,23 +719,7 @@ VOS_UINT32 TTF_MEMCTRL_CalcTotalDynamicMemLen(VOS_UINT32 ulTtfInternalMemLength)
     return ulDynamicMemLen;
 }
 
-/*****************************************************************************
- 函 数 名  : TTF_MEMCTRL_DynamicAddrInit
- 功能描述  : 对BBPMaster和TTF内存池进行初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
-             VOS_OK -- 初始化成功
-             VOS_ERR -- 初始化失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年03月12日
-    作    者   : c00212970
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TTF_MEMCTRL_DynamicAddrInit(VOS_UINT32 ulPid)
 {
     VOS_UINT32                          ulDynamicTtfMemLen;
@@ -931,21 +820,7 @@ VOS_UINT32 TTF_MEMCTRL_DynamicAddrInit(VOS_UINT32 ulPid)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TTF_MEMCTRL_ReportMemErrorInd
- 功能描述  : 挂接到MAC UL状态切换（WTTF_MACUL_UpdateMacState）上的内存检测，
-             检测到异常发送事件
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年03月12日
-    作    者   : c00212970
-    修改内容   : 新生成函数
-*****************************************************************************/
 
 VOS_UINT32 TTF_MEMCTRL_ReportMemErrorInd( VOS_UINT32 ulPid,
                                                  TTF_DYNAMIC_MEM_ADDR_TYPE_ENUM_UINT32 ulMagicNumFlag,
@@ -974,20 +849,7 @@ VOS_UINT32 TTF_MEMCTRL_ReportMemErrorInd( VOS_UINT32 ulPid,
 }
 
 
-/*****************************************************************************
- 函 数 名  : TTF_MEMCTRL_CheckMagicNum
- 功能描述  : 保护内存检查，检测magic number值是否改变
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年03月12日
-    作    者   : c00212970
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TTF_MEMCTRL_CheckMagicNum(TTF_MEMCTRL_CALLBACK_FUNC_FLAG_ENUM_ENUM8 ucCallbackFlag,
                                             VOS_UINT32 ulPid)
 {
@@ -1042,40 +904,14 @@ VOS_VOID TTF_MEMCTRL_CheckMagicNum(TTF_MEMCTRL_CALLBACK_FUNC_FLAG_ENUM_ENUM8 ucC
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TTF_MEMCTRL_DRVCallbackFunc
- 功能描述  : 保护内存检查，检测magic number值是否改变，用于挂接到底软
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年03月12日
-    作    者   : c00212970
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TTF_MEMCTRL_DRVCallbackFunc(VOS_VOID)
 {
     TTF_MEMCTRL_CheckMagicNum(TTF_MEMCTRL_CALLBACK_FUNC_DRV, TTF_MEMCTRL_PID_INVAILD);
 }
 
 
-/*****************************************************************************
- 函 数 名  : TTF_MEMCTRL_EnableAdvanceCheck
- 功能描述  : 内存是否被踩检测, 将内存检测函数挂钩到底软切换任务上，后续调测时直接shell里面输入
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年03月12日
-    作    者   : c00212970
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TTF_MEMCTRL_EnableAdvanceCheck (VOS_VOID)
 {
     /* 将内存检测函数挂钩到底软切换任务上，串口中打印出来,调用底软接口：OSAL_TaskSwitchHookAdd */
@@ -1084,20 +920,7 @@ VOS_VOID TTF_MEMCTRL_EnableAdvanceCheck (VOS_VOID)
     #endif
 }
 
-/*****************************************************************************
- 函 数 名  : TTF_MEMCTRL_DisableAdvanceCheck
- 功能描述  : 去除挂在底软上的钩子函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年03月12日
-    作    者   : c00212970
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TTF_MEMCTRL_DisableAdvanceCheck(VOS_VOID)
 {
     /*去钩子函数：OSAL_TaskSwitchHookDel */
@@ -1106,21 +929,7 @@ VOS_VOID TTF_MEMCTRL_DisableAdvanceCheck(VOS_VOID)
     #endif
 }
 
-/*****************************************************************************
- 函 数 名  : TTF_MEMCTRL_CheckTTFDynamicMem
- 功能描述  : 保护内存检查，检测magic number值是否改变，
-             挂接到MAC UL状态切换（WTTF_MACUL_UpdateMacState）上
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年03月12日
-    作    者   : c00212970
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TTF_MEMCTRL_CheckTTFDynamicMem(VOS_UINT32 ulPid)
 {
     TTF_MEMCTRL_CheckMagicNum(TTF_MEMCTRL_CALLBACK_FUNC_TTF, ulPid);
@@ -1128,20 +937,7 @@ VOS_VOID TTF_MEMCTRL_CheckTTFDynamicMem(VOS_UINT32 ulPid)
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : TTF_MEMCTRL_GetTtfInternalMemBaseAddr
- 功能描述  : 获取TTF内部使用的基地址，包括HDLC,CICOM,BBPMASTER CIRCLE,ACORE POOL,CCORE POOL
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年08月6日
-    作    者   : gebaizhang
-    修改内容   : Created
-*****************************************************************************/
 VOS_UINT_PTR TTF_MEMCTRL_GetTtfInternalMemBaseAddr(VOS_VOID)
 {
     VOS_UINT_PTR           ulBaseAddr;
@@ -1161,22 +957,7 @@ VOS_UINT_PTR TTF_MEMCTRL_GetTtfInternalMemBaseAddr(VOS_VOID)
     return ulBaseAddr;
 }
 
-/*****************************************************************************
- 函 数 名  : TTF_MEMCTRL_GetMemTotalLen
- 功能描述  : TTF内存地址A-CPU上初始化处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_OK  成功
-           : VOS_ERR 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月24日
-    作    者   : h00163499
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32   TTF_MEMCTRL_GetMemTotalLen(VOS_VOID)
 {
     VOS_UINT32                          ulMemTotalLen;
@@ -1204,22 +985,7 @@ VOS_UINT32   TTF_MEMCTRL_GetMemTotalLen(VOS_VOID)
     return ulMemTotalLen;
 }
 
-/*****************************************************************************
- 函 数 名  : TTF_MEMCTRL_AddrInit
- 功能描述  : TTF内存地址初始化处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_OK  成功
-           : VOS_ERR 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月24日
-    作    者   : h00163499
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32   TTF_MEMCTRL_AddrInit(VOS_UINT32 ulPid)
 {
     VOS_UINT8                           ucTypeLoop;
@@ -1277,22 +1043,7 @@ VOS_UINT32   TTF_MEMCTRL_AddrInit(VOS_UINT32 ulPid)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TTF_MEMCTRL_CCORE_AddrInit
- 功能描述  : TTF内存地址C-CPU上初始化处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_OK  成功
-           : VOS_ERR 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月24日
-    作    者   : h00163499
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32   TTF_MEMCTRL_CCORE_AddrInit(VOS_UINT32 ulPid)
 {
     if (VOS_YES == TTF_MEM_GET_W_RF_RXEVM_TEST_EN())
@@ -1312,21 +1063,7 @@ VOS_UINT32   TTF_MEMCTRL_CCORE_AddrInit(VOS_UINT32 ulPid)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TTF_MEMCTRL_GetOffsetBaseLen
- 功能描述  : 获取TTF内存类型对应的起始地址偏移值
- 输入参数  : VOS_UINT32  ulType  - 内存类型
- 输出参数  : VOS_UINT32      偏移基地址值
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月24日
-    作    者   : h00163499
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TTF_MEMCTRL_GetOffsetBaseLen(VOS_UINT32  ulType)
 {
     VOS_UINT32                          ulAttribute;
@@ -1356,22 +1093,7 @@ VOS_UINT32  TTF_MEMCTRL_GetOffsetBaseLen(VOS_UINT32  ulType)
     return 0;
 }
 
-/*****************************************************************************
- 函 数 名  : TTF_MEMCTRL_GetTypeAddr
- 功能描述  : 获取TTF内存类型对应的起始地址
- 输入参数  : VOS_UINT32  ulAddr  - 地址值
-           : VOS_UINT32  ulType  - 内存类型
- 输出参数  : VOS_UINT32      地址值
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月24日
-    作    者   : h00163499
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT_PTR  TTF_MEMCTRL_GetTypeAddr(VOS_UINT_PTR ulAddr, VOS_UINT32 ulType)
 {
     VOS_UINT32                          ulOffsetBaseLen;
@@ -1389,20 +1111,7 @@ VOS_UINT_PTR  TTF_MEMCTRL_GetTypeAddr(VOS_UINT_PTR ulAddr, VOS_UINT32 ulType)
     return  ulTtfMemCtrlTypeAddr;
 }
 
-/*****************************************************************************
- 函 数 名  : TTF_MemAddrPrint
- 功能描述  : 串口打印出TTF pool MEM、BBP master head和BBP master的内存地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年03月12日
-    作    者   : c00212970
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TTF_MEMCTRL_AddrPrint(VOS_VOID)
 {
     VOS_UINT32                          ulLoop;

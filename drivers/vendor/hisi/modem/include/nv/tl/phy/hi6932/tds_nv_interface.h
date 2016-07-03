@@ -1,22 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : tds_nv_interface.h
-  版 本 号   : 初稿
-  作    者   : baizhongjin
-  生成日期   : 2013年3月25日
-  最近修改   :
-  功能描述   : TDS nv 头文件
-  函数列表   :
-
-  修改历史   :
-  1.日    期   : 2013年3月25日
-    作    者   :
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /******************************************************************************/
 #ifndef __TDS_NV_INTERFACE_H__
@@ -324,7 +306,6 @@ typedef struct
     UINT16 usRsvd[4];
 }TDS_NV_DRX_PARA_STRU;
 
-/* BEGIN: Added by m00128895, 2015/9/10   PN:Vramp 开发，meiaihong*/
 #define MAX_TDS_VRAMP_PA_BAND_NUM    (2)
 
 typedef struct
@@ -499,7 +480,6 @@ typedef struct
     INT16 sTdsB39WirelessMaxTxPower;        //TDS B39无线状态下最大发射功率
 } TDS_NV_TX_POWER_PARA_STRU;
 
-/* BEGIN: Added by m00128895, 2015/10/9   PN:HP 降SAR特性开发*/
 typedef struct TDS_NV_BAND_HP_SAR
 {
     UINT16 usAverSarExpPrd;    /*HP 降SAR算法功率平均周期，单位s，典型3或6分钟*/
@@ -542,7 +522,6 @@ typedef struct
 	
     TDS_NV_HIGH_SPEED_PARA_STRU       stTdsHighSpeedPara;
     TDS_NV_TX_POWER_PARA_STRU         stTdsTxPowerPara;
-    /* BEGIN: Added by m00128895, 2015/10/9   PN:HP 降SAR特性开发*/
     UCOM_NV_TIME_AVG_SAR_FUNC_CTRL_STRU       stHpSarSwitch;
     TDS_NV_HP_SAR_PARA_STRU        stHpDecSarPara;
 }TDS_NV_STRU;

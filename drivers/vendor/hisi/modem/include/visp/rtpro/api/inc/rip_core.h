@@ -285,9 +285,7 @@ extern VOID RIP_ShowPeerInfoByOne(USHORT usProcId);
 extern VOID RIP_ShowRipCfgIfInfoByOne(USHORT usProcId);
 extern VOID RIP_ShowRipRouteInfoByeOne(USHORT usProcId);
 
-/*Modified by liangjicheng 00103192, G3, 2011/1/31   问题单号:V2R3C03-ROTUE-MERGE */
 extern RIP_ERROR_E  RIP_CFG_JoinToOther(ULONG ulProcId, BOOL_T bConfig, LONG  InterfaceId , LONG PartnerIndex);
-/*End of Modified by liangjicheng 00103192, 2011/1/31   问题单号:V2R3C03-ROTUE-MERGE */
 
 extern BOOL_T  IsRipExist(USHORT usProcId);
 extern USHORT  RIP_GetFirstEffectIndex(VOID);
@@ -333,8 +331,6 @@ extern ULONG RIP_DelCfgSndRcvInfoByType(ULONG ulType, ULONG ulPara);
 extern ULONG RIP_DelCfgDftRtCostInfoByType(ULONG ulType, ULONG ulPara);
 extern ULONG RIP_DelLocalInfoByIntf(ULONG ulIfIndex);
 extern ULONG RIP_DelLocalInfoByRipIndex(USHORT usRipIndex);
-/*Modified by liangjicheng 00103192, 错误内部函数删除, 2011/8/6   问题单号:   OSPF_20110616_01 */
-/*End of Modified by liangjicheng 00103192, 2011/8/6   问题单号:DTS2011070706274   OSPF_20110616_01 */
 extern VOID RIP_Direct_ShowPeerInfoByOne(USHORT usProcId);
 extern VOID RIP_ShowRipIfCfgInfoByOne(USHORT usProcId);
 extern RIP_ERROR_E RIP_SplitPoisonProcess (BOOL_T bUndoConfig, ULONG ulIfIndex, USHORT usType);
@@ -356,14 +352,12 @@ extern ULONG  g_ulSemForRipMibCfg ;
 extern ULONG RIP_send_ips_to_self_hostroute_proc(USHORT usType, USHORT usProcId, ULONG ulIfIndex, ULONG ulIPAddr);
 extern BOOL_T RIP_check_hostroute_network(USHORT usProcId, ULONG ulIpAddr);
 
-/*Added by guojianjun178934, V2R3C06SPC100代码检视路由部分意见修改_RIP网段删除，可能存在多个接口，只获取第一个接口索引有问题, 2013/4/20   问题单号:DTS2012090601039  */
 typedef struct tagRIP_IF_INFO_GET_BY_NETWORK_S
 {
     ULONG ulIfIndex;
     ULONG ulIfIPAddr;
 
 }RIP_IF_INFO_GET_BY_NETWORK_S;
-/* End of Added by guojianjun178934, 2013/4/20   问题单号:DTS2012090601039  */
 
 #ifdef  __cplusplus
 }
